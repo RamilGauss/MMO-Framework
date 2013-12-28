@@ -1,0 +1,8 @@
+some tests from X9.62:
+testing prime192v1: .... ok
+testing prime239v1: .... ok
+testing c2tnb191v1: .... ok
+testing c2tnb239v1: .... ok
+
+testing ECDSA_sign() and ECDSA_verify() with some internal curves:
+secp160k1: .......

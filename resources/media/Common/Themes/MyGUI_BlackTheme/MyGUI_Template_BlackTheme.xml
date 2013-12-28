@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Resource">
+    <Resource type="ResourceLayout" name="Button_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ButtonSkin_BlackTheme" position="30 30 25 24" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="WindowC_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="WindowPanelSkin_BlackTheme" position="30 30 85 49" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Window"/>
+            <Widget type="TextBox" skin="TextBox" position="5 3 75 22" align="HStretch Top" name="Caption">
+                <Property key="FontName" value="Default"/>
+                <Property key="TextAlign" value="Center"/>
+                <Property key="TextColour" value="0.888889 0.888889 0.888889"/>
+            </Widget>
+            <Widget type="Widget" skin="PanelEmpty" position="4 29 77 16" align="Stretch" name="Client"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="WindowCX_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="WindowPanelSkin_BlackTheme" position="30 30 85 49" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Window"/>
+            <Widget type="TextBox" skin="TextBox" position="26 3 33 22" align="HStretch Top" name="Caption">
+                <Property key="FontName" value="Default"/>
+                <Property key="TextAlign" value="Center"/>
+                <Property key="TextColour" value="0.888889 0.888889 0.888889"/>
+            </Widget>
+            <Widget type="Button" skin="WindowButtonXSkin_BlackTheme" position="62 5 18 18" align="Right Top" name="Button">
+                <UserString key="Event" value="close"/>
+            </Widget>
+            <Widget type="Widget" skin="PanelEmpty" position="4 29 77 16" align="Stretch" name="Client"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="WindowCXS_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="WindowPanelSkin_BlackTheme" position="30 30 85 49" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Window"/>
+            <Widget type="TextBox" skin="TextBox" position="26 3 33 22" align="HStretch Top" name="Caption">
+                <Property key="FontName" value="Default"/>
+                <Property key="TextAlign" value="Center"/>
+                <Property key="TextColour" value="0.888889 0.888889 0.888889"/>
+            </Widget>
+            <Widget type="Button" skin="WindowButtonXSkin_BlackTheme" position="62 5 18 18" align="Right Top" name="Button">
+                <UserString key="Event" value="close"/>
+            </Widget>
+            <Widget type="Button" skin="WindowButtonResizeLeftSkin_BlackTheme" position="0 38 11 11" align="Left Bottom" name="ResizeLeftBottom">
+                <Property key="Pointer" value="size_right"/>
+            </Widget>
+            <Widget type="Button" skin="WindowButtonResizeRightSkin_BlackTheme" position="74 38 11 11" align="Right Bottom" name="ResizeRightBottom">
+                <Property key="Pointer" value="size_left"/>
+            </Widget>
+            <Widget type="Widget" skin="PanelEmpty" position="4 29 77 16" align="Stretch" name="Client"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="WindowCS_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="WindowPanelSkin_BlackTheme" position="30 30 85 49" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Window"/>
+            <Widget type="TextBox" skin="TextBox" position="5 3 75 22" align="HStretch Top" name="Caption">
+                <Property key="FontName" value="Default"/>
+                <Property key="TextAlign" value="Center"/>
+                <Property key="TextColour" value="0.888889 0.888889 0.888889"/>
+            </Widget>
+            <Widget type="Button" skin="WindowButtonResizeLeftSkin_BlackTheme" position="0 38 11 11" align="Left Bottom" name="ResizeLeftBottom">
+                <Property key="Pointer" value="size_right"/>
+            </Widget>
+            <Widget type="Button" skin="WindowButtonResizeRightSkin_BlackTheme" position="74 38 11 11" align="Right Bottom" name="ResizeRightBottom">
+                <Property key="Pointer" value="size_left"/>
+            </Widget>
+            <Widget type="Widget" skin="PanelEmpty" position="4 29 77 16" align="Stretch" name="Client"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="EditBox_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="EditBoxSkin_BlackTheme" position="30 30 50 18" name="Root">
+            <Property key="Pointer" value="beam"/>
+            <UserString key="LE_TargetWidgetType" value="EditBox"/>
+            <Widget type="TextBox" skin="EditClientSkin" position="2 2 46 14" align="Stretch" name="Client">
+                <Property key="FontName" value="Default"/>
+                <Property key="Pointer" value="beam"/>
+                <Property key="TextAlign" value="Left VCenter"/>
+            </Widget>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="CheckBox_DarkTheme" version="3.2.0">
+        <Widget type="Widget" skin="CheckBoxSkin_BlackTheme" position="30 30 40 40" name="Root">
+            <Property key="FontName" value="Default"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="RadioButton_DarkTheme" version="3.2.0">
+        <Widget type="Widget" skin="RadioButtonSkin_BlackTheme" position="30 30 40 40" name="Root">
+            <Property key="FontName" value="Default"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ProgressBar_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ProgressBarPanelSkin_BlackTheme" position="30 30 50 9" name="Root">
+            <Property key="Caption" value="test1"/>
+            <UserString key="LE_TargetWidgetType" value="ProgressBar"/>
+            <UserString key="TrackFill" value="true"/>
+            <UserString key="TrackSkin" value="ProgressBarTrackSkin_BlackTheme"/>
+            <UserString key="TrackWidth" value="7"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ListBoxItem_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ListBoxItemSkin_BlackTheme" position="30 30 8 17" name="Root">
+            <Property key="FontName" value="Default"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ListBox_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ListBoxPanelSkin_BlackTheme" position="30 30 50 50" name="Root">
+            <Property key="FontName" value="Default"/>
+            <UserString key="LE_TargetWidgetType" value="ListBox"/>
+            <UserString key="HeightLine" value="20"/>
+            <UserString key="SkinLine" value="ListBoxItem_BlackTheme"/>
+            <Widget type="Widget" skin="PanelEmpty" position="0 0 36 50" align="Stretch" name="Client"/>
+            <Widget type="ScrollBar" skin="ScrollBarV_BlackTheme" position="37 0 13 50" align="Right VStretch" name="VScroll"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="SliderV_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="SliderPanelVSkin_BlackTheme" position="30 30 14 125" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="MoveToClick" value="true"/>
+            <Property key="VerticalAlignment" value="true"/>
+            <UserString key="LE_TargetWidgetType" value="ScrollBar"/>
+            <UserString key="MinTrackSize" value="14"/>
+            <Widget type="Button" skin="SliderTrackVSkin_BlackTheme" position="0 55 14 14" align="HCenter Top" name="Track"/>
+            <Widget type="Widget" skin="PanelEmpty" position="0 0 14 55" align="HStretch Top" name="FirstPart"/>
+            <Widget type="Widget" skin="PanelEmpty" position="0 69 14 56" align="HStretch Bottom" name="SecondPart"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="SliderH_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="SliderPanelHSkin_BlackTheme" position="25 50 125 14" name="Root">
+            <Property key="MoveToClick" value="true"/>
+            <Property key="VerticalAlignment" value="false"/>
+            <UserString key="LE_TargetWidgetType" value="ScrollBar"/>
+            <Widget type="Button" skin="SliderTrackHSkin_BlackTheme" position="55 0 14 14" align="Left VCenter" name="Track"/>
+            <Widget type="Widget" skin="PanelEmpty" position="0 0 55 14" align="Left VStretch" name="FirstPart"/>
+            <Widget type="Widget" skin="PanelEmpty" position="69 0 56 14" align="Right VStretch" name="SecondPart"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ListBox2_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ListBoxPanel2Skin_BlackTheme" position="30 30 50 50" name="Root">
+            <Property key="FontName" value="Default"/>
+            <UserString key="LE_TargetWidgetType" value="ListBox"/>
+            <UserString key="HeightLine" value="20"/>
+            <UserString key="SkinLine" value="ListBoxItem_BlackTheme"/>
+            <Widget type="Widget" skin="PanelEmpty" position="3 3 44 44" align="Stretch" name="Client"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ComboBox_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ComboBoxPanelSkin_BlackTheme" position="30 30 50 18" name="Root">
+            <Property key="MaxListLength" value="300"/>
+            <UserString key="LE_TargetWidgetType" value="ComboBox"/>
+            <Widget type="TextBox" skin="EditClientSkin" position="2 2 30 14" align="Stretch" name="Client">
+                <Property key="FontName" value="Default"/>
+                <Property key="Pointer" value="beam"/>
+                <Property key="TextAlign" value="Left VCenter"/>
+            </Widget>
+            <Widget type="Button" skin="ComboBoxButtonSkin_BlackTheme" position="36 3 12 12" align="Right VCenter" name="Button"/>
+            <Widget type="ListBox" skin="ListBox4_BlackTheme" position="30 51 50 50" style="Popup" layer="Popup" name="List"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ScrollBarV_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ScrollPanelVSkin_BlackTheme" position="25 50 13 125" name="Root">
+            <Property key="VerticalAlignment" value="true"/>
+            <UserString key="LE_TargetWidgetType" value="ScrollBar"/>
+            <UserString key="MinTrackSize" value="16"/>
+            <Widget type="Widget" skin="PanelEmpty" position="0 13 13 99" align="Stretch" name="TrackPlace">
+                <Property key="NeedKey" value="false"/>
+                <Property key="InheritsPick" value="true"/>
+                <Widget type="Button" skin="ScrollTrackVSkin_BlackTheme" position="0 25 12 16" align="HStretch Top" name="Track">
+                    <UserString key="MinTrackSize" value="16"/>
+                </Widget>
+                <Widget type="Widget" skin="PanelEmpty" position="0 0 13 25" align="HStretch Top" name="FirstPart"/>
+                <Widget type="Widget" skin="PanelEmpty" position="0 41 13 58" align="HStretch Top" name="SecondPart"/>
+            </Widget>
+            <Widget type="Button" skin="ButtonUpSkin_BlackTheme" position="2 3 8 8" align="HCenter Top" name="Start"/>
+            <Widget type="Button" skin="ButtonDownSkin_BlackTheme" position="2 114 8 8" align="HCenter Bottom" name="End"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ListBox3_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ListBoxPanel2Skin_BlackTheme" position="30 30 50 50" name="Root">
+            <Property key="FontName" value="Default"/>
+            <UserString key="LE_TargetWidgetType" value="ListBox"/>
+            <UserString key="HeightLine" value="20"/>
+            <UserString key="SkinLine" value="ListBoxItem_BlackTheme"/>
+            <Widget type="Widget" skin="PanelEmpty" position="3 3 30 44" align="Stretch" name="Client"/>
+            <Widget type="ScrollBar" skin="ScrollBarV_BlackTheme" position="34 3 13 44" align="Right VStretch" name="VScroll"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ScrollBarH_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ScrollPanelHSkin_BlackTheme" position="25 50 125 13" name="Root">
+            <Property key="VerticalAlignment" value="false"/>
+            <UserString key="LE_TargetWidgetType" value="ScrollBar"/>
+            <UserString key="MinTrackSize" value="16"/>
+            <Widget type="Widget" skin="PanelEmpty" position="13 0 99 13" align="Stretch" name="TrackPlace">
+                <Property key="NeedKey" value="false"/>
+                <Property key="InheritsPick" value="true"/>
+                <Widget type="Button" skin="ScrollTrackHSkin_BlackTheme" position="35 0 16 12" align="Left VStretch" name="Track">
+                    <UserString key="MinTrackSize" value="10"/>
+                </Widget>
+                <Widget type="Widget" skin="PanelEmpty" position="0 0 35 13" align="Left VStretch" name="FirstPart"/>
+                <Widget type="Widget" skin="PanelEmpty" position="51 0 47 13" align="Left VStretch" name="SecondPart"/>
+            </Widget>
+            <Widget type="Button" skin="ButtonLeftSkin_BlackTheme" position="3 2 8 8" align="Left VCenter" name="Start"/>
+            <Widget type="Button" skin="ButtonRightSkin_BlackTheme" position="114 2 8 8" align="Right VCenter" name="End"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ScrollBarV2_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="PanelEmpty" position="25 50 13 125" name="Root">
+            <Property key="VerticalAlignment" value="true"/>
+            <UserString key="LE_TargetWidgetType" value="ScrollBar"/>
+            <UserString key="MinTrackSize" value="16"/>
+            <Widget type="Widget" skin="PanelEmpty" position="0 13 13 99" align="Stretch" name="TrackPlace">
+                <Property key="NeedKey" value="false"/>
+                <Property key="InheritsPick" value="true"/>
+                <Widget type="Button" skin="ScrollTrackVSkin_BlackTheme" position="0 25 12 16" align="HStretch Top" name="Track">
+                    <UserString key="MinTrackSize" value="16"/>
+                </Widget>
+                <Widget type="Widget" skin="PanelEmpty" position="0 0 13 25" align="HStretch Top" name="FirstPart"/>
+                <Widget type="Widget" skin="PanelEmpty" position="0 41 13 58" align="HStretch Top" name="SecondPart"/>
+            </Widget>
+            <Widget type="Button" skin="ButtonUpSkin_BlackTheme" position="2 3 8 8" align="HCenter Top" name="Start"/>
+            <Widget type="Button" skin="ButtonDownSkin_BlackTheme" position="2 114 8 8" align="HCenter Bottom" name="End"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ListBox4_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ListBoxPanel2Skin_BlackTheme" position="30 30 50 50" name="Root">
+            <Property key="FontName" value="Default"/>
+            <UserString key="LE_TargetWidgetType" value="ListBox"/>
+            <UserString key="HeightLine" value="20"/>
+            <UserString key="SkinLine" value="ListBoxItem_BlackTheme"/>
+            <Widget type="Widget" skin="PanelEmpty" position="3 3 30 44" align="Stretch" name="Client"/>
+            <Widget type="ScrollBar" skin="ScrollBarV2_BlackTheme" position="34 3 13 44" align="Right VStretch" name="VScroll"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="ListBox5_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ListBoxPanelSkin_BlackTheme" position="30 30 50 50" name="Root">
+            <Property key="FontName" value="Default"/>
+            <UserString key="LE_TargetWidgetType" value="ListBox"/>
+            <UserString key="HeightLine" value="20"/>
+            <UserString key="SkinLine" value="ListBoxItem_BlackTheme"/>
+            <Widget type="Widget" skin="PanelEmpty" position="0 0 36 50" align="Stretch" name="Client"/>
+            <Widget type="ScrollBar" skin="ScrollBarV2_BlackTheme" position="37 0 13 50" align="Right VStretch" name="VScroll"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="TabControl_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="PanelEmpty" position="5 5 89 60" name="Root">
+            <UserString key="LE_TargetWidgetType" value="TabControl"/>
+            <UserString key="ButtonSkin" value="TabControlButton_BlackTheme"/>
+            <Widget type="Widget" skin="TabControlPanelSkin_BlackTheme" position="0 19 89 41" align="Stretch">
+                <Widget type="Widget" skin="PanelEmpty" position="4 4 81 33" align="Stretch" name="TabItem"/>
+            </Widget>
+            <Widget type="Widget" skin="PanelEmpty" position="4 0 81 23" align="HStretch Top" name="HeaderPlace">
+                <Widget type="Widget" skin="TabControlTopSkin_BlackTheme" position="0 19 81 4" name="Empty"/>
+            </Widget>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="TabControlButton_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="TabControlButtonSkin_BlackTheme" position="30 30 43 23" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="MenuBarButton_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="MenuControlButtonSkin_BlackTheme" position="30 30 7 20" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="MenuBar_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="MenuControlPanelSkin_BlackTheme" position="5 5 11 22" name="Root">
+            <Property key="VerticalAlignment" value="false"/>
+            <UserString key="LE_TargetWidgetType" value="MenuBar"/>
+            <UserString key="DistanceButton" value="6"/>
+            <UserString key="SubMenuLayer" value="Popup"/>
+            <UserString key="NormalSkin" value="MenuBarButton_BlackTheme"/>
+            <UserString key="PopupSkin" value="MenuBarButton_BlackTheme"/>
+            <UserString key="SeparatorSkin" value="PanelEmpty"/>
+            <UserString key="SubMenuSkin" value="PopupMenu_BlackTheme"/>
+            <Widget type="Widget" skin="PanelEmpty" position="2 1 7 20" align="Stretch" name="Client"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="PopupMenu_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="ListBoxPanel2Skin_BlackTheme" position="5 5 29 26" name="Root">
+            <Property key="VerticalAlignment" value="true"/>
+            <UserString key="SubMenuLayer" value="Popup"/>
+            <UserString key="SubMenuSkin" value="PopupMenu_BlackTheme"/>
+            <UserString key="LE_TargetWidgetType" value="PopupMenu"/>
+            <UserString key="SeparatorSkin" value="PopupMenuSeparator_Dark"/>
+            <UserString key="NormalSkin" value="PopupMenuNormal_BlackTheme"/>
+            <UserString key="PopupSkin" value="PopupMenuPopup_BlackTheme"/>
+            <Widget type="Widget" skin="PanelEmpty" position="3 4 23 18" align="Stretch" name="Client"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="PopupMenuSeparator_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="PanelEmpty" position="20 20 10 10" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="MinSize" value="10 10"/>
+            <Widget type="Widget" skin="MenuControlSeparatorSkin_BlackTheme" position="2 5 6 1" align="HStretch VCenter"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="PopupMenuNormal_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="PopupMenuNormalSkin_BlackTheme" position="20 25 43 17" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Left VCenter"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+            <Widget type="Widget" skin="PopupMenuCheckSkin_BlackTheme" position="1 1 16 16" align="Left VCenter" name="Check"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="PopupMenuPopup_BlackTheme" version="3.2.0">
+        <Widget type="Widget" skin="PopupMenuNormalSkin_BlackTheme" position="20 25 43 17" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Left VCenter"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+            <Widget type="Widget" skin="ButtonRightSkin_BlackTheme" position="31 5 8 8" align="Right VCenter">
+                <Property key="NeedMouse" value="false"/>
+            </Widget>
+        </Widget>
+    </Resource>
+</MyGUI>

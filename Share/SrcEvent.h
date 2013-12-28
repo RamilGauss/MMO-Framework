@@ -1,0 +1,65 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+√удаков –амиль —ергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
+#ifndef SrcEventH
+#define SrcEventH
+
+#include "TypeDef.h"
+#include <string>
+#include "BL_Debug.h"
+
+class TDstEvent;
+
+/*
+  источник событий. работает в св€зке с TDstEvent
+  пронаследоватьс€,
+  добавл€ть событи€ AddEvent
+*/
+
+class SHARE_EI TSrcEvent
+{
+  int sSelfID;
+  TDstEvent* pDstEvent;
+
+public:
+
+  TSrcEvent();
+  virtual ~TSrcEvent();
+
+  void SetSelfID(int selfID);
+
+  void SetDstObject(TDstEvent* p);
+  // можно добавл€ть событи€ через источник 
+  // добавить событие
+  void AddEventCopy(void* data, int size);
+  void AddEventCopy(void* data, int size, unsigned int time_create_ms);
+  //void AddEventWithoutCopy(void* data, int size);
+  //void AddEventWithoutCopy(void* data, int size, unsigned int time_create_ms);
+
+  template<typename T>
+  void AddEventWithoutCopy(T* pObject);
+  template<typename T>
+  void AddEventWithoutCopy(T* pObject, unsigned int time_create_ms);
+};
+//-------------------------------------------------------------------------------
+//template<typename T>
+//void TSrcEvent::AddEventWithoutCopy(T* pObject)
+//{
+//  BL_ASSERT(pDstEvent);
+//  pDstEvent->AddEventInQueueWithoutCopy<T>(sSelfID, pObject, -1);
+//}
+////-------------------------------------------------------------------------------
+//template<typename T>
+//void TSrcEvent::AddEventWithoutCopy(T* pObject, unsigned int time_create_ms)
+//{
+//  BL_ASSERT(pDstEvent);
+//  pDstEvent->AddEventInQueueWithoutCopy<T>(sSelfID, pObject, time_create_ms);
+//}
+////-------------------------------------------------------------------------------
+
+
+#endif

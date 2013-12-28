@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+	<Controls>
+		<SeparateControl>
+			<SeparatePanel_1>320 928</SeparatePanel_1>
+			<SeparatePanel_2>300 300</SeparatePanel_2>
+			<SeparatePanel_3>200 200</SeparatePanel_3>
+		</SeparateControl>
+		<Main>
+			<Maximized>true</Maximized>
+			<Coord>-8 -8 1936 1056</Coord>
+		</Main>
+	</Controls>
+	<Files>
+		<RecentFolder>d:\MyProjects\multiPlayer\media\Common\Tools</RecentFolder>
+		<RecentFolder.List>
+			<Value>d:\MyProjects\multiPlayer\media\Common\Tools</Value>
+			<Value>d:\MyProjects\multiPlayer\Exe\Debug</Value>
+		</RecentFolder.List>
+		<RecentFile.List>
+			<Value>d:\MyProjects\multiPlayer\media\Common\Tools\SplineSkin.xml</Value>
+			<Value>d:\MyProjects\multiPlayer\media\Common\Tools\ButtonExpandSkin.xml</Value>
+		</RecentFile.List>
+	</Files>
+</Settings>

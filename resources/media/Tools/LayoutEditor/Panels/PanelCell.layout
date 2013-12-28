@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Widget" skin="PanelEmpty" position="30 30 200 168" align="HStretch Top" name="Root">
+        <Widget type="Widget" skin="Panel3Skin_Dark" position="0 0 200 164" align="Stretch">
+            <Widget type="TextBox" skin="TextBox" position="3 3 195 20" align="HStretch Top" name="text_Caption">
+                <Property key="Caption" value="Caption"/>
+                <Property key="TextAlign" value="Center"/>
+                <Property key="FontName" value="DejaVuSansFont_13"/>
+            </Widget>
+            <Widget type="Button" skin="ExpandSkin_Dark" position="180 10 10 6" align="Right Top" name="button_Minimize"/>
+            <Widget type="Widget" skin="Default" position="3 23 195 138" align="Stretch" name="widget_Client"/>
+        </Widget>
+    </Widget>
+</MyGUI>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+	<Controls>
+		<WidgetsWindow>
+			<LastSkinGroup>Default</LastSkinGroup>
+		</WidgetsWindow>
+		<Main>
+			<Maximized>true</Maximized>
+			<Coord>-4 -4 1288 1002</Coord>
+		</Main>
+	</Controls>
+	<Settings>
+		<LayoutVersion>3.2.0</LayoutVersion>
+	</Settings>
+	<Files>
+		<RecentFolder>d:\MyProjects\multiPlayer\resources\form</RecentFolder>
+		<RecentFolder.List>
+			<Value>d:\MyProjects\multiPlayer\resources\form</Value>
+		</RecentFolder.List>
+		<RecentFile.List>
+			<Value>d:\MyProjects\multiPlayer\resources\form\GameRoomPrepare.layout</Value>
+			<Value>d:\MyProjects\multiPlayer\resources\form\ClientMain.layout</Value>
+		</RecentFile.List>
+		<RecentProject.List />
+	</Files>
+</Settings>

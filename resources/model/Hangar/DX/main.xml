@@ -1,0 +1,19 @@
+<root>
+	<lod>100</lod>
+	<part>
+		<strPathShader>shader.fxo</strPathShader>
+		<paramShader>paramShader.xml</paramShader>
+		<strTechnique>TexturedSpecular</strTechnique>
+		<texture>hangar_UV0.dds</texture>
+		<name>hangar</name>
+		<numUse>0</numUse>
+		<vAmbient>0.8;0.8;0.8</vAmbient>
+		<vDiffuse>0.4;0.4;0.4</vDiffuse>
+		<vSpecular>1;1;1</vSpecular>
+		<nShininess>1</nShininess>
+		<bSpecular>0</bSpecular>
+		<mTypeLOD>0</mTypeLOD>
+		<mflgNormal>1</mflgNormal>
+		<primitives>Hangar.bj</primitives>
+	</part>
+</root>

@@ -1,0 +1,101 @@
+set (HEADER_FILES
+  AnimationInfo.h
+  AnimationViewControl.h
+  Application.h
+  ApplicationState.h
+  ChangeTextureValueAction.h
+  EditorState.h
+  FrameListControl.h
+  FrameTextureController.h
+  GroupListControl.h
+  GroupTextureController.h
+  ImageExportSerializer.h
+  ImageListControl.h
+  IndexListControl.h
+  IndexTextureController.h
+  SettingsGeneralControl.h
+  SettingsResourcePathsControl.h
+  SettingsResourcesControl.h
+  StatisticInfoControl.h
+)
+set (SOURCE_FILES
+  ../../Common/Precompiled.cpp
+  AnimationInfo.cpp
+  AnimationViewControl.cpp
+  Application.cpp
+  ApplicationState.cpp
+  ChangeTextureValueAction.cpp
+  EditorState.cpp
+  FrameListControl.cpp
+  FrameTextureController.cpp
+  GroupListControl.cpp
+  GroupTextureController.cpp
+  ImageEditor.rc
+  ImageExportSerializer.cpp
+  ImageListControl.cpp
+  IndexListControl.cpp
+  IndexTextureController.cpp
+  SettingsGeneralControl.cpp
+  SettingsResourcePathsControl.cpp
+  SettingsResourcesControl.cpp
+  StatisticInfoControl.cpp
+)
+SOURCE_GROUP("Actions" FILES
+  ChangeTextureValueAction.cpp
+  ChangeTextureValueAction.h
+)
+SOURCE_GROUP("Application" FILES
+  Application.cpp
+  Application.h
+)
+SOURCE_GROUP("Controllers" FILES
+  FrameTextureController.cpp
+  FrameTextureController.h
+  GroupTextureController.cpp
+  GroupTextureController.h
+  IndexTextureController.cpp
+  IndexTextureController.h
+)
+SOURCE_GROUP("Controls\\Animations" FILES
+  AnimationInfo.cpp
+  AnimationInfo.h
+  AnimationViewControl.cpp
+  AnimationViewControl.h
+)
+SOURCE_GROUP("Controls\\Framework" FILES
+  StatisticInfoControl.cpp
+  StatisticInfoControl.h
+)
+SOURCE_GROUP("Controls\\Lists" FILES
+  FrameListControl.cpp
+  FrameListControl.h
+  GroupListControl.cpp
+  GroupListControl.h
+  ImageListControl.cpp
+  ImageListControl.h
+  IndexListControl.cpp
+  IndexListControl.h
+)
+SOURCE_GROUP("Controls\\Settings" FILES
+  SettingsGeneralControl.cpp
+  SettingsGeneralControl.h
+  SettingsResourcePathsControl.cpp
+  SettingsResourcePathsControl.h
+  SettingsResourcesControl.cpp
+  SettingsResourcesControl.h
+)
+SOURCE_GROUP("Exports" FILES
+  ImageExportSerializer.cpp
+  ImageExportSerializer.h
+)
+SOURCE_GROUP("Resources" FILES
+  ../../Common/Precompiled.cpp
+  CMakeLists.txt
+  ImageEditor.rc
+)
+SOURCE_GROUP("States" FILES
+  ApplicationState.cpp
+  ApplicationState.h
+  EditorState.cpp
+  EditorState.h
+)

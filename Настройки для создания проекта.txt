@@ -1,0 +1,103 @@
+ТИП проекта - Win32 Project(VC2008).
+
+
+===========================================================================================
+
+
+Project property\AllConfiguration:
+==================================
+
+General:
+Intermediate Directory = $(SolutionDir)\Temp\$(ProjectName)\$(ConfigurationName)
+Character set = Not Set
+
+C\C++:
+  General:  
+  Additional include directory = ..\glib-2.0; $(QTDIR)\include; ..\GBaseLib; ..\QBaseLib
+
+  Preprocessor:
+  Preprocessor definition = TD_CROSSPLATFORM;_CRT_SECURE_NO_WARNINGS
+
+
+Linker->General:
+Additional Library Directories = $(SolutionDir)\$(ConfigurationName)
+
+
+
+===========================================================================================
+
+Настройки интерфейса работы с VC2008:    (Tools->Customize->Keyboard )
+В строке Show commands containing производим поиск соответствующей команды и назначаем акселератор (Assign)
+Если назначаемый акселератор уже приписан к какой либо команде - найти ее и снять с нее акселератор (Remove)
+
+1)  Переключение из *.cpp в *.h: "GotoHeaderFile" : "Ctrl+F6"       (см. ниже Visual Assist !)
+2)  Сдвиг блока влево  - Edit.DecreaseLineIndent: "Ctrl+K, Ctrl+,"
+3)  Сдвиг блока вправо - Edit.IncreaseLineIndent: "Ctrl+K, Ctrl+."
+4)  Закомментировать блок: CommentSection: "Ctrl+K, Ctrl+/"
+5)  Раскомментировать блок: CommentSection: "Ctrl+K, Ctrl+\"
+
+Переопределения акселераторов Visual Assist под Borland keymapping:
+
+1) Переключение между *.cpp и *.h:   VAssistX.OpenCorrespondingFile = Ctrl+F6
+2) Диалог со всеми файлами solution: VAssistX.OpenFileInSolutionDialog = Ctrl+F12
+===========================================================================================
+
+Настройки для подключения библиотеки плагинов PluginWidgets
+
+Для VC2008:
+1) Для использования заголовочных файлов плагина: Project->Properties->Configuration Properties->C/C++->General:
+	в строку Additional Include Directories добавить:
+		..\PluginWidgets\MessageLine и/или
+		..\PluginWidgets\ModSpinBox
+	в строку Preprocessor добавить:
+		TD_CROSSPLATFORM
+
+2) Для использования библиотеки PluginWidgets:
+	- Project->Properties->Configuration Properties->Linker->General:
+		 в строку Additional Library Directories добавить 			
+		 $(SolutionDir)\$(ConfigurationName)
+	- Project->Properties->Configuration Properties->Linker->Input:
+		в строку Additional Dependencies добавить PluginWidgets.lib
+
+Для GCC:
+в файл *.pro добавить:
+		DEFINES += TD_CROSSPLATFORM
+		- в секцию INCLUDEPATH:
+			./../PluginWidgets/ModSpinBox \ и/или
+			./../PluginWidgets/MessageLine \
+		- в секцию LIBS:
+			-lPluginWidgets 	
+
+P.S. - пример использования данной библиотеки плагинов см. в шаблонном проекте TestTemplate
+
+
+Настройка ToolBar в Designer QT4:
+	Для неиспользования строки в ниспадающем меню (QAction) необходимо (для Qt Designer):
+	1)В свойствах объекта класса QMenu изменить "palette"->"ChangePalette".
+	2)Выбрать "Show Details".
+	3)Для "text"-"disabled" назначить цвет (например, синий).
+	4)Для "Highlight"-"disabled" назначить цвет (например, белый).
+  5)Для самой QAction выставить флаги font.Bold и font.Underline
+
+	Для настройки в тексте программы необходимо вставить код вида:
+		QMenu* menu = new QMenu;
+		QPalette disablePalette( menu->palette() );
+		disablePalette.setBrush ( QPalette::Disabled, QPalette::Text, QBrush( QColor(0, 0, 95) ) );
+		disablePalette.setBrush ( QPalette::Disabled, QPalette::Highlight, QBrush( QColor(255, 255, 255, 0) ) );
+		menu->setPalette( disablePalette );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

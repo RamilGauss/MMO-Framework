@@ -1,0 +1,19 @@
+<root>
+	<lod>1000</lod>
+	<part>
+		<strPathShader>shaderLight.fx</strPathShader>
+		<paramShader>paramShader.xml</paramShader>
+		<strTechnique>RenderLight</strTechnique>
+		<texture>light.jpg</texture>
+		<name>light</name>
+		<numUse>0</numUse>
+		<vAmbient>1.0;1.0;1.0</vAmbient>
+		<vDiffuse>1.0;1.0;1.0</vDiffuse>
+		<vSpecular>1.0;1.0;1.0</vSpecular>
+		<nShininess>200</nShininess>
+		<bSpecular>1</bSpecular>
+		<mTypeLOD>0</mTypeLOD>
+		<mflgNormal>1</mflgNormal>
+		<primitives>light.obj</primitives>
+	</part>
+</root>

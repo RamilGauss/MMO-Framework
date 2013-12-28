@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Widget" skin="PanelEmpty" position="25 25 340 315" align="Stretch" name="Root">
+        <UserString key="SnapTo" value="Stretch"/>
+        <Widget type="TabControl" skin="TabControl2_Dark" position="0 0 340 315" align="Stretch">
+            <Widget type="TabItem" skin="" position="2 22 336 291">
+                <Property key="Caption" value="#{Properties}"/>
+                <Widget type="Widget" skin="PanelEmpty" position="0 0 336 291" align="Stretch" name="PropertiesControl"/>
+            </Widget>
+            <Widget type="TabItem" skin="" position="2 22 336 291">
+                <Property key="Caption" value="#{Widgets}"/>
+                <Widget type="Widget" skin="PanelEmpty" position="0 0 336 291" align="Stretch" name="WidgetsControl"/>
+            </Widget>
+            <Widget type="TabItem" skin="" position="2 22 336 291">
+                <Property key="Caption" value="#{Project}"/>
+                <Widget type="Widget" skin="PanelEmpty" position="0 0 336 291" align="Stretch" name="ProjectControl"/>
+            </Widget>
+        </Widget>
+    </Widget>
+</MyGUI>

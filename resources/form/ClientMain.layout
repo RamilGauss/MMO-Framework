@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Window" skin="WindowCS" position="370 390 280 240" align="Center" layer="Back" name="_Main">
+        <Property key="MaxSize" value="330 240"/>
+        <Property key="Movable" value="false"/>
+        <Property key="MinSize" value="280 240"/>
+        <Widget type="Button" skin="Button" position="25 155 90 35" align="Left Top" name="bEnter">
+            <Property key="Caption" value="Вход"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="155 160 85 35" align="Right Top" name="bExit">
+            <Property key="Caption" value="Выход"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="120 25 140 30" align="Right Top" name="ebIP"/>
+        <Widget type="EditBox" skin="EditBox" position="120 65 140 30" align="Right Top" name="ebLogin"/>
+        <Widget type="TextBox" skin="TextBox" position="20 25 85 25" align="HStretch Top" name="lIP">
+            <Property key="Caption" value="IP сервера"/>
+            <Property key="TextAlign" value="Center"/>
+            <Property key="TextShadowColour" value="0.725146 0.258678 0.258678"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="20 60 85 30" align="Left Top" name="lLogin">
+            <Property key="Caption" value="Логин"/>
+            <Property key="TextAlign" value="Center"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="20 100 85 30" name="lPort">
+            <Property key="Caption" value="Порт"/>
+            <Property key="TextAlign" value="Center"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="120 100 135 30" align="Right Top" name="ebPort"/>
+    </Widget>
+</MyGUI>

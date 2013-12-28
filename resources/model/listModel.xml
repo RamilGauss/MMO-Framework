@@ -1,0 +1,12 @@
+<root>
+	<part>
+		<id>0</id>
+		<id_behavior>7</id_behavior>
+		<path>KingTiger</path>
+	</part>
+	<part>
+		<id>1</id>
+		<id_behavior>2</id_behavior>
+		<path>Hangar</path>
+	</part> 
+</root>

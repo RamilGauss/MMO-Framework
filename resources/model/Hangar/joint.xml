@@ -1,0 +1,14 @@
+<root>
+	<name>hangar</name>
+	<numUse>0</numUse>
+	<matrix>
+		<row>1;0;0;0</row>
+		<row>0;1;0;0</row>
+		<row>0;0;1;0</row>
+		<row>0;0;0;1</row>
+	</matrix>
+	<joint>
+		<name>hangar</name>
+		<numUse>0</numUse>
+	</joint>
+</root>
