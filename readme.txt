@@ -5,7 +5,7 @@
     Boost 1.54, 
     Qt 4.5, 
     DirectX SDK June 2010
-See for more inaformation /doc/DeveloperManual
+See for more information /doc/DeveloperManual
 
 	Engine features
 
