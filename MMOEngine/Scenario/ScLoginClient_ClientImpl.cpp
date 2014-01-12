@@ -144,7 +144,7 @@ void TScLoginClient_ClientImpl::ResultLoginM2C(TDescRecvSession* pDesc)
 			pEvent->res = TMaster::eReject;
 			// поместить данные, которые поясняют причину отказа
 			char* pDataResClient = pDesc->data + sizeof(THeaderResultLoginM2C);
-			pEvent->c.SetData( pDataResClient, pH->sizeResClient);
+			pEvent->c.SetDataByCount( pDataResClient, pH->sizeResClient);
 			Context()->GetSE()->AddEventWithoutCopy<TEventResultLogin>(pEvent);
       End();
     }

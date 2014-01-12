@@ -1249,7 +1249,10 @@ void TGraphicEngine::ResetShader( ID3DXEffect* m_pEffect, DWORD dwWidth, DWORD d
 				// Copy back
 				m_pEffect->SetVectorArray( hParamToConvert, pvKernel, cKernel );
 
-				delete[] pvKernel;
+				if(cKernel==1)
+					delete   pvKernel;
+				else
+					delete[] pvKernel;
 			}
 		}
 	}

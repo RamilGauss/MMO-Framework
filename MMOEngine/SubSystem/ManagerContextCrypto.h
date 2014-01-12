@@ -12,7 +12,7 @@ See for more information License.h.
 
 #include "ShareMisc.h"
 #include "CRC8.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 #include "BreakPacket.h"
 #include "ContainerRise.h"
 #include "CryptoRSA_Impl.h"

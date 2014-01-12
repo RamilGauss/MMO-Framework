@@ -14,7 +14,7 @@ See for more information License.h.
 #include <string>
 
 #include "TypeDef.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 /*
   Загрузка из файла
 */

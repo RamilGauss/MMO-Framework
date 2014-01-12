@@ -39,7 +39,7 @@ void TContextScSendToClient::SaveBreakPacket(TBreakPacket& bp)
 	// отцепиться от собранного пакета
 	bp.UnlinkCollect();
 	// отдать на хранение память пакета в контейнер
-	pSP->c.Entrust(p, size);
+	pSP->c.EntrustByCount(p, size);
 	// теперь когда память хранится в контейнере добавить в break packet
 	pSP->bp.PushFront(p, size);
 

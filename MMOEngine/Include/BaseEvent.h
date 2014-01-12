@@ -9,7 +9,7 @@ See for more information License.h.
 #define BASE_EVENT_H
 
 #include "Base.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 
 namespace nsMMOEngine
 {

@@ -50,7 +50,7 @@ void TDstEvent::AddEventInQueueWithoutCopy(int from, T* data, unsigned int time_
   pEvent->Init<T>(time_create_ms);
   
   pEvent->from = from;
-  pEvent->pContainer->Entrust((char*)data,0);
+  pEvent->pContainer->EntrustByCount((char*)data,1);
   pListEvent->Add(pEvent);
 }
 //-------------------------------------------------------------------------------------

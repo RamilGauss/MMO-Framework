@@ -12,7 +12,7 @@ See for more information License.h.
 #include <string>
 #include <vector>
 #include "TypeDef.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 
 /*
     Гибкий контейнер.

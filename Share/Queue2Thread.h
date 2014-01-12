@@ -13,7 +13,7 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "BL_Debug.h"
 #include "HiTimer.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 
 /*
 Класс для обмена данными между 2-мя потоками

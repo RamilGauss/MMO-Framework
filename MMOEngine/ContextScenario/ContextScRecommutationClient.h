@@ -9,7 +9,7 @@ See for more information License.h.
 #define CONTEXT_SC_RECOMMUTATION_CLIENT_H
 
 #include "IContextScenario.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 #include "ShareMisc.h"
 
 namespace nsMMOEngine

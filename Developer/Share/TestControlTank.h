@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef TestControlTankH
 #define TestControlTankH
 
-#include "Container.h"
+#include "ContainerTypes.h"
 #include "GCS.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
 

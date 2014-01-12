@@ -27,7 +27,7 @@ bool TQueue2Thread::Push(void* buffer, int size)
 {
   if(mCurrentCount==mCount) {BL_FIX_BUG();return false;}
 
-  pQueue[mEndPos].SetData((char*)buffer,size);
+  pQueue[mEndPos].SetDataByCount((char*)buffer,size);
 	
 	if(++mEndPos == mCount) mEndPos = 0;
   mCurrentCount++;
@@ -52,7 +52,10 @@ bool TQueue2Thread::Pop(void* buffer,int &size)
 //---------------------------------------------------------------------------
 void TQueue2Thread::Clear()
 {
-  delete[] pQueue;
+	if(mCount==1)
+		delete   pQueue;
+	else
+		delete[] pQueue;
 
   mBeginPos = 0;
   mEndPos = 0;

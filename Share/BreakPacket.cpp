@@ -25,7 +25,7 @@ TBreakPacket::~TBreakPacket()
 void TBreakPacket::PushBack(char* p,int size)
 {
   TContainerPtr cPtr;
-  cPtr.SetData(p, size);
+  cPtr.SetDataByCount(p, size);
 
   mList.push_back(cPtr);
 }
@@ -33,7 +33,7 @@ void TBreakPacket::PushBack(char* p,int size)
 void TBreakPacket::PushFront(char* p,int size)
 {
   TContainerPtr cPtr;
-  cPtr.SetData(p, size);
+  cPtr.SetDataByCount(p, size);
 
   mList.push_front(cPtr);
 }
@@ -43,7 +43,7 @@ void TBreakPacket::Collect()
   DeleteCollect();
   int size = GetSize();
 
-  mCollect.SetData(NULL, size);// выделить память
+  mCollect.SetDataByCount(NULL, size);// выделить память
   char* pCollect = (char*)mCollect.GetPtr();
 
   // копируем все в одну область памяти

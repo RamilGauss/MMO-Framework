@@ -3,7 +3,7 @@
 #include <conio.h>
 
 #include "HiTimer.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 #include "ManagerContextCrypto.h"
 #include <boost/foreach.hpp>
 #include <list>
@@ -19,7 +19,7 @@ int main(int argc, char** argv)
 
   src.AddEventWithoutCopy<TContainer>(pC);
 
-
+#if 0
   bool res = false;
   std::string msg = "Some cat smell like apple.Some cat smell like apple.Some cat smell like apple.Some cat smell like ap";
   TIP_Port ip_port_client(0,1), 
@@ -95,6 +95,6 @@ int main(int argc, char** argv)
   printf("Recv on server and Decrypt speed = %f\n", speed);
 
   _getch();
-
+#endif
   return 0;
 } 

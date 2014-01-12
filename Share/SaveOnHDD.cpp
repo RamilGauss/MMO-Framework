@@ -194,7 +194,7 @@ void TSaveOnHDD::ClearBuffer()
 void TSaveOnHDD::FlushInBuffer(char* buffer, int size)
 {
   TContainer* v = new TContainer;
-  v->SetData(buffer,size);
+  v->SetDataByCount(buffer,size);
 
   mListBuffer->push_back(v);
 

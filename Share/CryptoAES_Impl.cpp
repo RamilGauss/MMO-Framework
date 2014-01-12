@@ -39,7 +39,7 @@ TCryptoAES_Impl::~TCryptoAES_Impl()
 bool TCryptoAES_Impl::GenerateKey( eCountBits c )
 {
   int sizeKey = c / 8;// на 8 бит
-  mKey.SetData(NULL, sizeKey);
+  mKey.SetDataByCount(NULL, sizeKey);
   int res = RAND_bytes((unsigned char*)mKey.GetPtr(), mKey.GetSize());
 
   if(res==0)
@@ -70,7 +70,7 @@ bool TCryptoAES_Impl::Encrypt( void* pIn, int sizeIn, TContainer& c_out)
 	if(res==-1)
 		return false;
 
-  c_out.SetData(NULL, sizeIn);
+  c_out.SetDataByCount(NULL, sizeIn);
 
 	int sizeOut;
   // Шифруем данные
@@ -92,7 +92,7 @@ bool TCryptoAES_Impl::Decrypt(void* pIn, int sizeIn, TContainer& c_out)
 	if(res==-1)
 		return false;
 
-	c_out.SetData(NULL, sizeIn);
+	c_out.SetDataByCount(NULL, sizeIn);
 	
 	int sizeOut;
 	// дешифруем данные
@@ -132,13 +132,13 @@ bool TCryptoAES_Impl::GetPublicKey(TContainer& c_out)
 	if(mKey.GetSize()==0)
 		return false;
 
-	c_out.SetData((char*)mKey.GetPtr(), mKey.GetSize());
+	c_out.SetDataByCount((char*)mKey.GetPtr(), mKey.GetSize());
 	return true;
 }
 //--------------------------------------------------------------------------------
 void TCryptoAES_Impl::SetPublicKey(void* pKey, int sizeKey)
 {
-  mKey.SetData((char*)pKey, sizeKey);
+  mKey.SetDataByCount((char*)pKey, sizeKey);
 
 	int sizeCipher = sizeKey*8;
 	// Выбираем алгоритм шифрования

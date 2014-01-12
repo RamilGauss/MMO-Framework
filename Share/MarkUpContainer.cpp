@@ -39,7 +39,7 @@ void TMarkUpContainer::SetMarkUp(vector<TCommonDesc>* pVecSize)
 
     shift += GetSize(desc_p, NULL);
   }
-  mC.SetData(NULL,shift);
+  mC.SetDataByCount(NULL,shift);
 
   ZeroTensileField();
 }
@@ -92,7 +92,7 @@ bool TMarkUpContainer::Set(void* p, int size)
   // схема, по которой организован контейнер по адресу p известна
   // нам неизвестно только кол-во элементов в полях типа eVar
   // цель - заполнить поля shift, cntVar 
-  mC.SetData((char*)p,size);
+  mC.SetDataByCount((char*)p,size);
 
   char* ptr = (char*)GetPtr();
   int shift = 0;
@@ -210,8 +210,12 @@ void TMarkUpContainer::Update()
       memmove(ptrBoundLow, ptrBoundLow + d_size, sizeMove);
     }
     mC.Unlink();
-    mC.SetData((char*)newPtr,newSize);
-    delete[](char*)newPtr;
+    mC.SetDataByCount((char*)newPtr,newSize);
+
+		if(newSize==1)
+			delete (char*)newPtr;
+		else
+			delete[](char*)newPtr;
     
     // освежить сдвиги для дальних полей
     for(int j = i+1 ; j < cntSection ; j++ )
@@ -328,7 +332,7 @@ void TMarkUpContainer::SetDataAppendix(void* p, int size)
 		SetSizeAppendix(size);
 
 		mC.Unlink();
-		mC.SetData((char*)newPtr, newSize);
+		mC.SetDataByCount((char*)newPtr, newSize);
 		delete[](char*)newPtr;
 	}
 

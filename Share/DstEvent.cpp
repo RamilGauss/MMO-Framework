@@ -27,7 +27,7 @@ void TDstEvent::AddEventInQueueCopy(int from, void* data, int size, unsigned int
   pEvent->Init(time_create_ms);
 
   pEvent->from = from;
-  pEvent->pContainer->SetData((char*)data,size);
+  pEvent->pContainer->SetDataByCount((char*)data, size);// sizeof(char)==1, поэтому size
   pListEvent->Add(pEvent);
 }
 //------------------------------------------------------------

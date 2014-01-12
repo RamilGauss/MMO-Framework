@@ -11,8 +11,7 @@ See for more information License.h.
 #include <list>
 
 #include "TypeDef.h"
-#include "ContainerPtr.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 
 /*
   Разбитый на части пакет. Например, когда нужно добавлять на каждом уровне 

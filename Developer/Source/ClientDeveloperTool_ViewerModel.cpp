@@ -69,8 +69,8 @@ void TClientDeveloperTool_ViewerModel::Event(nsEvent::TEvent* pEvent)
 			break;
 		case ID_SRC_EVENT_GRAPHIC_ENGINE:
 		{
-			int s;
-			TBaseEvent* pData = (TBaseEvent*)pEvent->pContainer->GetData(s);
+			int s = pEvent->pContainer->GetSize();
+			TBaseEvent* pData = (TBaseEvent*)pEvent->pContainer->GetPtr();
 			switch(pData->type)
 			{
 				case eKeyBoard:

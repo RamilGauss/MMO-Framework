@@ -9,7 +9,7 @@ See for more information License.h.
 #define CryptoRSA_ImplH
 
 #include "TypeDef.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 
 class SHARE_EI TCryptoRSA_Impl
 {

@@ -263,7 +263,7 @@ void TScLoginClient_MasterImpl::TryLoginC2M(TDescRecvSession* pDesc)
 	// генерация события о попытке авторизации
 	TEventTryLogin* pEvent = new TEventTryLogin;
 	pEvent->id_session = GetID_SessionClientMaster();
-	pEvent->c.SetData(data,sizeData);
+	pEvent->c.SetDataByCount(data,sizeData);
 	Context()->GetSE()->AddEventWithoutCopy<TEventTryLogin>(pEvent);
 }
 //--------------------------------------------------------------

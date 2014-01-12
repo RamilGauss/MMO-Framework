@@ -9,7 +9,7 @@ See for more information License.h.
 #define ArrContainerH
 
 #include <vector>
-#include "Container.h"
+#include "ContainerTypes.h"
 
 /*
   класс работы с массивом контейнеров

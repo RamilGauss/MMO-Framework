@@ -9,8 +9,7 @@ See for more information License.h.
 #define CryptoAES_ImplH
 
 #include "TypeDef.h"
-#include "Container.h"
-#include "ContainerPtr.h"
+#include "ContainerTypes.h"
 
 class SHARE_EI TCryptoAES_Impl
 {

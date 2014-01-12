@@ -10,7 +10,7 @@ See for more information License.h.
 
 #include "INetTransport.h"
 #include "Base.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 #include "HiTimer.h"
 
 namespace nsMMOEngine
@@ -35,7 +35,7 @@ namespace nsMMOEngine
       ip_port    = p->ip_port;
       type       = p->type;
       // копирование данных
-      c.SetData(p->data, p->sizeData);
+      c.SetDataByCount(p->data, p->sizeData);
       sizeData = p->sizeData;
       data     = (char*)c.GetPtr();
     }

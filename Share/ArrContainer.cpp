@@ -30,7 +30,7 @@ void TArrContainer::GetElem( char*& p, int& size, int index)
 void TArrContainer::SetElem( char* p, int size, int index)
 {
   if(int(mVec.size())<=index) return;
-  mVec[index].SetData(p,size);
+  mVec[index].SetDataByCount(p,size);
 }
 //-----------------------------------------------------------------------------
 void TArrContainer::SetCount(int v)
@@ -64,7 +64,7 @@ int TArrContainer::GetSize()
 void TArrContainer::Collect()
 {
   int size = GetSize();
-  mFC.SetData(NULL,size);
+  mFC.SetDataByCount(NULL,size);
   char* p = (char*)mFC.GetPtr();
   int cnt = mVec.size(); 
   for(int i = 0 ; i < cnt ; i++ )

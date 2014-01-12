@@ -60,7 +60,7 @@ bool TCryptoRSA_Impl::Encrypt( void* pVoidIn, int sizeIn, TContainer& c_out)
   int countPart = (sizeIn-1)/mMaxSizePartBeforeCrypt + 1;
   int sizeOut   = mMaxSizePartAfterCrypt * countPart;
   // выделить память под результат 
-  c_out.SetData(NULL, sizeOut);
+  c_out.SetDataByCount(NULL, sizeOut);
   char* pIn  = (char*)pVoidIn;
   char* pOut = (char*)c_out.GetPtr();
   // шифровать частями 
@@ -97,7 +97,7 @@ bool TCryptoRSA_Impl::Decrypt(void* pVoidIn, int sizeIn, TContainer& c_out)
   int sizeOut = countPart * mMaxSizePartBeforeCrypt;
   // выделить память под результат 
   TContainer c_Temp;
-  c_Temp.SetData(NULL, sizeOut);
+  c_Temp.SetDataByCount(NULL, sizeOut);
   char* pIn  = (char*)pVoidIn;
   char* pOut = (char*)c_Temp.GetPtr();
   // шифровать частями 
@@ -119,7 +119,7 @@ bool TCryptoRSA_Impl::Decrypt(void* pVoidIn, int sizeIn, TContainer& c_out)
     BL_FIX_BUG();
     return false;
   }
-  c_out.SetData((char*)c_Temp.GetPtr(), sizeOut_Calc);
+  c_out.SetDataByCount((char*)c_Temp.GetPtr(), sizeOut_Calc);
   return true;
 }
 //----------------------------------------------------------------------------------
@@ -128,7 +128,7 @@ bool TCryptoRSA_Impl::GetPublicKey(TContainer& c_out)
   if(RSA_KEY==NULL)
     return false;
 
-  c_out.SetData((char*)mContainerPublicKey.GetPtr(), mContainerPublicKey.GetSize());
+  c_out.SetDataByCount((char*)mContainerPublicKey.GetPtr(), mContainerPublicKey.GetSize());
   return true;
 }
 //----------------------------------------------------------------------------------
@@ -169,7 +169,7 @@ void TCryptoRSA_Impl::MakeContainerForPublicKey()
   PEM_write_bio_RSAPublicKey(pBIO, RSA_KEY);
 
   int sizeBIO = BIO_pending(pBIO);
-  mContainerPublicKey.SetData(NULL, sizeBIO + 1);
+  mContainerPublicKey.SetDataByCount(NULL, sizeBIO + 1);
   char* pMemContainer = (char*)mContainerPublicKey.GetPtr();
   BIO_read(pBIO, pMemContainer, sizeBIO);
   BIO_free(pBIO);
@@ -182,7 +182,7 @@ void TCryptoRSA_Impl::MakeContainerForPrivateKey()
   PEM_write_bio_RSAPrivateKey(pBIO, RSA_KEY, NULL, NULL, 0, NULL, NULL);
 
   int sizeBIO = BIO_pending(pBIO);
-  mContainerPrivateKey.SetData(NULL, sizeBIO + 1);
+  mContainerPrivateKey.SetDataByCount(NULL, sizeBIO + 1);
   char* pMemContainer = (char*)mContainerPrivateKey.GetPtr();
   BIO_read(pBIO, pMemContainer, sizeBIO);
   BIO_free(pBIO);
@@ -194,7 +194,7 @@ bool TCryptoRSA_Impl::GetPrivateKey(TContainer& c_out)
   if(RSA_KEY==NULL)
     return false;
 
-  c_out.SetData((char*)mContainerPrivateKey.GetPtr(), mContainerPrivateKey.GetSize());
+  c_out.SetDataByCount((char*)mContainerPrivateKey.GetPtr(), mContainerPrivateKey.GetSize());
   return true;
 }
 //----------------------------------------------------------------------------------

@@ -212,14 +212,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Container.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ContainerPtr.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\ContainerRise.cpp"
 				>
 			</File>
@@ -450,19 +442,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Container.h"
+				RelativePath=".\ContainerArrObj.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ContainerObject.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ContainerPtr.h"
+				RelativePath=".\ContainerPtrArrObj.h"
 				>
 			</File>
 			<File
 				RelativePath=".\ContainerRise.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ContainerTypes.h"
 				>
 			</File>
 			<File
@@ -526,6 +518,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\IContainer.h"
+				>
+			</File>
+			<File
 				RelativePath=".\IControlCamera.h"
 				>
 			</File>
@@ -547,6 +543,10 @@
 			</File>
 			<File
 				RelativePath=".\ListMultiThread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ListObj.h"
 				>
 			</File>
 			<File

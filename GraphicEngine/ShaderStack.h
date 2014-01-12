@@ -11,7 +11,7 @@ See for more information License.h.
 #include <string>
 #include <vector>
 
-#include "Container.h"
+#include "ContainerTypes.h"
 
 class TShaderStack
 {
@@ -21,7 +21,7 @@ class TShaderStack
     TContainer c;
     void Set(char* p,int s)
     {
-      c.SetData(p, s);
+      c.SetDataByCount(p, s);
     }
   };
   

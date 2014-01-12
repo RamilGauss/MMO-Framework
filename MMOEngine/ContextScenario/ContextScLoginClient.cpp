@@ -153,7 +153,7 @@ int TContextScLoginClient::GetNumInQueue()
 //--------------------------------------------------------------
 void TContextScLoginClient::SaveAcceptData(void* resForClient, int sizeResClient)
 {
-  mAcceptData.SetData((char*)resForClient, sizeResClient);
+  mAcceptData.SetDataByCount((char*)resForClient, sizeResClient);
 }
 //--------------------------------------------------------------
 void* TContextScLoginClient::GetSaveAcceptDataPtr()
@@ -168,7 +168,7 @@ int TContextScLoginClient::GetSaveAcceptDataSize()
 //--------------------------------------------------------------
 void TContextScLoginClient::SaveQueueData(void* resForClient, int sizeResClient)
 {
-	mQueueData.SetData((char*)resForClient, sizeResClient);
+	mQueueData.SetDataByCount((char*)resForClient, sizeResClient);
 }
 //--------------------------------------------------------------
 void* TContextScLoginClient::GetSaveQueueDataPtr()

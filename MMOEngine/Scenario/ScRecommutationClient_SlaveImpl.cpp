@@ -275,7 +275,7 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
   // разработчику
 	TEventRestoreContext* pEvent = new TEventRestoreContext;
 	pEvent->id_session = pDesc->id_session;
-	pEvent->c.SetData(Context()->GetContextDataPtr(), Context()->GetContextDataSize());
+	pEvent->c.SetDataByCount(Context()->GetContextDataPtr(), Context()->GetContextDataSize());
 	Context()->GetSE()->AddEventWithoutCopy<TEventRestoreContext>(pEvent);
   // завершить сценарий
   End();

@@ -49,10 +49,18 @@ void* mo_realloc_new(void* old_mem, int old_size, int new_size)
   {
     void* volatileBuffer = new char[old_size];
     memcpy(volatileBuffer,old_mem,old_size);
-    delete[](char*)old_mem;
+    if(old_size==1)
+			delete  (char*)old_mem;
+		else
+			delete[](char*)old_mem;
+
     old_mem = new char[new_size];
     memcpy(old_mem,volatileBuffer,old_size);
-    delete[](char*)volatileBuffer;
+
+		if(old_size==1)
+			delete  (char*)volatileBuffer;
+		else
+			delete[](char*)volatileBuffer;
   }
   else
     old_mem = new char[new_size];
@@ -67,7 +75,11 @@ char* mo_realloc_bound_new(char* old_mem, int old_size, int size_bound, int size
   char* new_mem = new char[old_size+size_paste];
   memcpy(new_mem, old_mem,size_bound);
   memcpy(new_mem+size_bound+size_paste,old_mem+size_bound,old_size-size_bound);
-  delete[]old_mem;
+
+	if(old_size+size_paste==1)
+		delete  old_mem;
+	else
+		delete[]old_mem;
   return new_mem;
 }
 //--------------------------------------------------------------------------

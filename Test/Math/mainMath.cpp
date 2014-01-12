@@ -4,20 +4,24 @@
 */
 
 #include "Struct3D.h"
-
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/operation.hpp> 
-#include <boost/numeric/ublas/io.hpp>
-#include <iostream>
-#include <queue>
-#include "SetOrderElement.h"
-#include "MapCallBack.h"
-#include "ManagerRecommutation.h"
-#include "WrapperECDSA.h"
+//
+//#include <boost/numeric/ublas/matrix.hpp>
+//#include <boost/numeric/ublas/operation.hpp> 
+//#include <boost/numeric/ublas/io.hpp>
+//#include <iostream>
+//#include <queue>
+//#include "SetOrderElement.h"
+//#include "MapCallBack.h"
+#include "DescEvent.h"
+#include "SrcEvent.h"
+#include "Events.h"
+#include "SrcEvent_ex.h"
+#include "DstEvent.h"
 
 using namespace nsStruct3D;
+using namespace nsMMOEngine;
 
-using namespace boost::numeric::ublas;
+//using namespace boost::numeric::ublas;
 
 int main(int argc, char** argv)
 {
@@ -31,6 +35,23 @@ int main(int argc, char** argv)
 
 	//TMatrix16 matrix;
 	//TMatrix16* pResMatrix = SetMatrixIdentity(&matrix);
+
+	{
+		char data[100];
+		int sizeData = 100;
+
+		TEventTryLogin* pEventTL = new TEventTryLogin;
+		pEventTL->id_session = 0;
+		pEventTL->c.SetDataByCount(data,sizeData);
+
+		nsEvent::TEvent* pEvent = new nsEvent::TEvent();
+		pEvent->Init<TEventTryLogin>(0);
+
+		pEvent->from = 0;
+		pEvent->pContainer->EntrustByCount((char*)pEventTL,1);
+		delete pEvent;
+	}
+
   return 0;
 }
 //--------------------------------------------------------------------------------

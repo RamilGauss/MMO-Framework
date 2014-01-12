@@ -9,9 +9,8 @@ See for more information License.h.
 #define DescEventH
 
 #include "TypeDef.h"
-#include "Container.h"
+#include "ContainerTypes.h"
 #include "HiTimer.h"
-#include "ContainerObject.h"
 
 namespace nsEvent
 {
@@ -24,9 +23,12 @@ struct SHARE_EI TEvent
 {
   unsigned int time_ms;
   int from;
-  TContainer* pContainer;
+  IContainer* pContainer;
   TEvent(){pContainer=NULL;}
-  ~TEvent(){delete pContainer;}
+  ~TEvent()
+	{
+		delete pContainer;
+	}
   void Init(unsigned int time_create_ms)
   {
     pContainer = new TContainer;
@@ -35,7 +37,7 @@ struct SHARE_EI TEvent
   template <typename T>
   void Init(unsigned int time_create_ms)
   {
-    pContainer = (TContainer*)new TContainerObject<T>;
+    pContainer = new TContainerArrObj<T>;
     InitPrivate(time_create_ms);
   }
 protected:

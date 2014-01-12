@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\Share;..\..\MMOEngine\SubSystem"
+				AdditionalIncludeDirectories="..\..\Share;..\..\MMOEngine\SubSystem;..\..\MMOEngine\Include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"

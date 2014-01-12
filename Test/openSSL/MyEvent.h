@@ -1,7 +1,7 @@
 #ifndef MyEventH
 #define MyEventH
 
-#include "ContainerObject.h"
+#include "ContainerTypes.h"
 
 struct TMyEvent
 {

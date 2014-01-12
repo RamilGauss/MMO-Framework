@@ -74,7 +74,7 @@ unsigned int TLoadFromHDD::Size()
 //---------------------------------------------------------------
 int TLoadFromHDD::ReadSmall(TContainer& c)
 {
-  c.SetData(NULL, Size());
+  c.SetDataByCount(NULL, Size());
   return Read( c.GetPtr(), c.GetSize(), 0);
 }
 //---------------------------------------------------------------

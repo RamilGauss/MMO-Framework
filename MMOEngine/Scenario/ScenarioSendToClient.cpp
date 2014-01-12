@@ -90,7 +90,7 @@ void TScenarioSendToClient::RecvFromSlave(TDescRecvSession* pDesc)
 	// отцепиться от памяти, в которой содержится пакет
 	pDesc->c.Unlink();
 	// отдать память под контроль события
-	pEvent->c.Entrust(pDesc->data, pDesc->sizeData);
+	pEvent->c.EntrustByCount(pDesc->data, pDesc->sizeData);
 	pEvent->data     = pDesc->data     + sizeof(THeaderSlave);
 	pEvent->sizeData = pDesc->sizeData - sizeof(THeaderSlave);
 	// откуда пришел пакет - сессия

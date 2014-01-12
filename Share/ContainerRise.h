@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef ContainerRiseH
 #define ContainerRiseH
 
-#include "Container.h"
+#include "ContainerTypes.h"
 #include "TypeDef.h"
 
 class SHARE_EI TContainerRise

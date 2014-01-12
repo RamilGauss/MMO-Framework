@@ -82,7 +82,7 @@ unsigned int TContextScRecommutationClient::GetSessionRecipient()
 //------------------------------------------------------------------
 void TContextScRecommutationClient::SaveContextData(char* p, int size)
 {
-  mContextData.SetData(p,size);
+  mContextData.SetDataByCount(p,size);
 }
 //------------------------------------------------------------------
 char* TContextScRecommutationClient::GetContextDataPtr()

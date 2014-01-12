@@ -102,7 +102,7 @@ void TManagerContextCrypto::Send(TIP_Port& ip_port, TBreakPacket& bp, TContainer
   bp.Collect();
   // отдать под контроль контейнеру
   TContainer c_original;
-  c_original.Entrust((char*)bp.GetCollectPtr(), bp.GetSize());
+  c_original.EntrustByCount((char*)bp.GetCollectPtr(), bp.GetSize());
   // освободить break packet от памяти
   bp.UnlinkCollect();
   bp.UnlinkPart();
@@ -191,7 +191,7 @@ bool TManagerContextCrypto::Decrypt(TCryptoAES_Impl* pAES,
   // попытаться выделить память (расширит если будет мало)
   mCRise.Alloc(sizeEncrypt);
   // контейнер запомнит участок памяти
-  c_decrypt_ptr.SetData(mCRise.GetPtr(), mCRise.GetSize());
+  c_decrypt_ptr.SetDataByCount(mCRise.GetPtr(), mCRise.GetSize());
 
   // дешифровать и поместить результат в область памяти
   bool res = pAES->Decrypt(pEncrypt, sizeEncrypt, c_decrypt_ptr);
@@ -201,7 +201,7 @@ bool TManagerContextCrypto::Decrypt(TCryptoAES_Impl* pAES,
   // c_decrypt содержит данные и 1 байт под контрольную сумму,
   // c_decrypt.size() - 1 - считаем CRC8 и сравниваем с первым байтом
   unsigned char realy_crc8 = ((unsigned char*)c_decrypt_ptr.GetPtr())[0];
-  c_decrypt_ptr.SetData((char*)c_decrypt_ptr.GetPtr() + eSizeCRC,
+  c_decrypt_ptr.SetDataByCount((char*)c_decrypt_ptr.GetPtr() + eSizeCRC,
                         c_decrypt_ptr.GetSize()       - eSizeCRC);
 
   unsigned char calc_crc8  = mCRC8.Calc((char*)c_decrypt_ptr.GetPtr(), c_decrypt_ptr.GetSize());

@@ -9,6 +9,7 @@ See for more information License.h.
 #define MeshFileBjH
 
 #include "IMeshFile.h"
+#include "ContainerTypes.h"
 
 class TMeshFileBj : public IMeshFile
 {
@@ -29,7 +30,9 @@ public:
 protected:
 
   void Done();
-  char* pReadData;
+  //char* pReadData;
+
+	TContainer mReadData;
 };
 
 #endif

@@ -15,7 +15,7 @@ using namespace nsMeshStruct;
 
 TMeshFileBj::TMeshFileBj()
 {
-  pReadData = NULL;
+  //pReadData = NULL;
 }
 //-----------------------------------------------------------------------------------
 TMeshFileBj::~TMeshFileBj()
@@ -37,9 +37,10 @@ bool TMeshFileBj::Load(const char* strFilename,
   if(loader.ReOpen((char*)strFilename)==false) return false;
   int size = loader.Size();
 
-  pReadData = new char[size];
-  loader.Read(pReadData,size);
-  char* buffer = pReadData;
+  //pReadData = new char[size];
+  //loader.Read(pReadData,size);
+	loader.ReadSmall(mReadData);
+  char* buffer = mReadData.GetPtr();
 
   // вершины
   cntV = *((unsigned int*)buffer);
@@ -72,7 +73,7 @@ bool TMeshFileBj::Save(const char* strFilename,
 //-----------------------------------------------------------------------------------
 void TMeshFileBj::Done()
 {
-  delete[] pReadData;
-  pReadData = NULL;
+  //delete[] pReadData;
+  //pReadData = NULL;
 }
 //-----------------------------------------------------------------------------------
