@@ -31,6 +31,8 @@ See for more information License.h.
 
 #include "ContainerContextSc.h"
 #include "ErrorCode.h"
+#include "ManagerSession.h"
+#include "CryptMITM.h"
 
 using namespace std;
 using namespace nsMMOEngine;
@@ -897,3 +899,28 @@ void TMaster::NotifyRecipientAboutDisconnectClient(unsigned int id_client,
   mControlSc->mRcm->DisconnectClient();
 }
 //-------------------------------------------------------------------------
+bool TMaster::IsSessionSeciruty(unsigned int id_session, void* crypt,          int size_crypt, 
+							           			                           void* login_password, int size_login_password)
+{
+	TContainer cRSA;
+	// получить по сессии RSA от транспорта
+	if(mManagerSession->GetRSAPublicKey(id_session, cRSA)==false)
+		return false;
+
+	TCryptMITM cryptMITM;
+	TContainer cEncryptRSA_bySHA1_LP;
+	if(cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
+										login_password, size_login_password,
+		                cEncryptRSA_bySHA1_LP)==false)
+		return false;
+	// сравнить по размеру
+	if(size_crypt!=cEncryptRSA_bySHA1_LP.GetSize())
+		return false;
+	// сравнить по содержимому
+	if(memcmp(crypt, cEncryptRSA_bySHA1_LP.GetPtr(), size_crypt)!=0)
+		return false;
+	
+	return true;
+}
+//-------------------------------------------------------------------------
+

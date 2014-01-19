@@ -71,10 +71,13 @@ void TContainerArrObj<T>::SetData(char* p, int size)
 template <typename T>
 void TContainerArrObj<T>::SetDataByCount(char* p, int count)
 {
-  Done();
+  if(count!=mCount)
+  {
+    Done();
+    mCount = count;
+    pData = new T[mCount];
+  }
   
-  mCount = count;
-  pData = new T[mCount];
   if(p)
 	{
 		if((typeid(T)==typeid(char)          )||

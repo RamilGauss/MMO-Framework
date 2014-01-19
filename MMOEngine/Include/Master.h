@@ -57,14 +57,17 @@ namespace nsMMOEngine
     TMaster();
     virtual ~TMaster();
     
-    virtual bool TryCreateGroup(std::list<unsigned int>& l_id_client, unsigned int& id_group); // -
-    virtual void DestroyGroup(unsigned int id_group);// +
-    virtual void LeaveGroup(unsigned int id_client);// +
-    virtual void GetListForGroup(unsigned int id_group, std::list<unsigned int>& l);// +
+		bool IsSessionSeciruty(unsigned int id_session, void* crypt, int size_crypt, 
+			                     void* login_password, int size_login_password);
+
+    virtual bool TryCreateGroup(std::list<unsigned int>& l_id_client, unsigned int& id_group); 
+    virtual void DestroyGroup(unsigned int id_group);
+    virtual void LeaveGroup(unsigned int id_client);
+    virtual void GetListForGroup(unsigned int id_group, std::list<unsigned int>& l);
     virtual void SetResultLogin(bool res, unsigned int id_session, 
                                 unsigned int id_client, // ключ, из БД например
-                                void* resForClient, int sizeResClient);// +
-    virtual bool FindSlaveSessionByGroup(unsigned int id_group, unsigned int& id_session);// +
+                                void* resForClient, int sizeResClient);
+    virtual bool FindSlaveSessionByGroup(unsigned int id_group, unsigned int& id_session);
    
 		// BaseServer
     virtual void SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket bp);

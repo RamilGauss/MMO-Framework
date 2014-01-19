@@ -519,3 +519,30 @@ void TManagerSession::Send(TSession* pSession, TBreakPacket bp, bool check)
   pSession->Send(bp, check);
 }
 //-------------------------------------------------------------------------
+bool TManagerSession::GetRSAPublicKeyForUp(TContainer& cRSA)
+{
+  return mMngCtxCrypto.GetRSAkeyForUp(cRSA);
+}
+//-------------------------------------------------------------------------
+bool TManagerSession::GetRSAPublicKey(unsigned int id_session, TContainer& cRSA)
+{
+  bool res = false;
+  TIP_Port ip_port;
+  lockAccessSession();
+  if(mNavigateSession==NULL)
+  {
+    unlockAccessSession();
+    return res;
+  }
+  //===================================================================
+  TSession* pSession = mNavigateSession->FindSessionByID(id_session);
+  if(pSession) 
+  {
+    pSession->GetInfo(ip_port);
+    res = mMngCtxCrypto.GetRSAkeyByIP(ip_port, cRSA);
+  }
+
+  unlockAccessSession();
+  return res;
+}
+//-------------------------------------------------------------------------

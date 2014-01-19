@@ -34,7 +34,7 @@ public:
 	bool IsOpen();
 	unsigned int Size();
 
-  int Read(void* buffer, int size, int offset = 0);
+  unsigned int Read(void* buffer, unsigned int size, unsigned int offset = 0);
   
   int ReadSmall(TContainer& c);
 

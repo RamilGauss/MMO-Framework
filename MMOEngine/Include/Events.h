@@ -90,6 +90,7 @@ namespace nsMMOEngine
   {
     TEventTryLogin();
     unsigned int id_session;
+		bool use_crypt;
   };
   //-------------------------------------------------------------
   struct MMO_ENGINE_EI TEventSaveContext : public TBaseEvent

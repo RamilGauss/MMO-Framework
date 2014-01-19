@@ -9,8 +9,8 @@ See for more information License.h.
 #define SrcEventH
 
 #include "TypeDef.h"
-#include <string>
-#include "BL_Debug.h"
+//#include <string>
+//#include "BL_Debug.h"
 
 class TDstEvent;
 
@@ -37,29 +37,15 @@ public:
   // добавить событие
   void AddEventCopy(void* data, int size);
   void AddEventCopy(void* data, int size, unsigned int time_create_ms);
-  //void AddEventWithoutCopy(void* data, int size);
-  //void AddEventWithoutCopy(void* data, int size, unsigned int time_create_ms);
 
+
+  // Note: to use this methods include "SrcEvent_ex.h"
   template<typename T>
   void AddEventWithoutCopy(T* pObject);
   template<typename T>
   void AddEventWithoutCopy(T* pObject, unsigned int time_create_ms);
 };
 //-------------------------------------------------------------------------------
-//template<typename T>
-//void TSrcEvent::AddEventWithoutCopy(T* pObject)
-//{
-//  BL_ASSERT(pDstEvent);
-//  pDstEvent->AddEventInQueueWithoutCopy<T>(sSelfID, pObject, -1);
-//}
-////-------------------------------------------------------------------------------
-//template<typename T>
-//void TSrcEvent::AddEventWithoutCopy(T* pObject, unsigned int time_create_ms)
-//{
-//  BL_ASSERT(pDstEvent);
-//  pDstEvent->AddEventInQueueWithoutCopy<T>(sSelfID, pObject, time_create_ms);
-//}
-////-------------------------------------------------------------------------------
 
 
 #endif

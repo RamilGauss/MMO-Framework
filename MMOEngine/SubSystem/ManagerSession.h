@@ -78,6 +78,9 @@ namespace nsMMOEngine
     // настройка
     void SetTimeLiveSession(unsigned int time_ms);
 
+    bool GetRSAPublicKeyForUp(TContainer& cRSA);
+    bool GetRSAPublicKey(unsigned int id_session, TContainer& cRSA);
+
   protected:
     friend class TReciverTransport;
 
@@ -102,7 +105,9 @@ namespace nsMMOEngine
 
     // использовать шифрование для передачи TCP
     void SetUseCryptTCP(bool v);
+  public:
     bool GetUseCryptTCP();
+  protected:
   };
 }
 

@@ -18,6 +18,10 @@ using namespace std;
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;
 
+#ifdef WIN32
+#	pragma warning(disable: 4800)
+#endif
+
 TScLoginClient_MasterImpl::TScLoginClient_MasterImpl(IScenario* pSc):
 TBaseScLoginClient(pSc)
 {
@@ -262,6 +266,7 @@ void TScLoginClient_MasterImpl::TryLoginC2M(TDescRecvSession* pDesc)
 	int sizeData = pDesc->sizeData - sizeof(THeaderTryLoginC2M);
 	// генерация события о попытке авторизации
 	TEventTryLogin* pEvent = new TEventTryLogin;
+	pEvent->use_crypt  = bool(pDesc->use_crypt);
 	pEvent->id_session = GetID_SessionClientMaster();
 	pEvent->c.SetDataByCount(data,sizeData);
 	Context()->GetSE()->AddEventWithoutCopy<TEventTryLogin>(pEvent);

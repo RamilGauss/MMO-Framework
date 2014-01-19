@@ -482,6 +482,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\SubSystem\CryptMITM.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\SubSystem\CryptMITM.h"
+					>
+				</File>
+				<File
 					RelativePath=".\SubSystem\ManagerContextCrypto.cpp"
 					>
 				</File>

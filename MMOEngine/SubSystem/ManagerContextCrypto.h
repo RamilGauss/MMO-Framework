@@ -66,6 +66,9 @@ public:
 
   void Close(TIP_Port& ip_port);
 
+  bool GetRSAkeyForUp(TContainer& RSAkey);
+  bool GetRSAkeyByIP(TIP_Port& ip_port, TContainer& RSAkey);
+
 protected:
   TContextCrypto* Get(TIP_Port& ip_port);
   void Add(TIP_Port& ip_port, TContextCrypto* pCtx);

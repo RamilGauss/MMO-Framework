@@ -328,6 +328,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MD5.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\memory_operation.cpp"
 				>
 			</File>
@@ -349,6 +353,10 @@
 			</File>
 			<File
 				RelativePath=".\SetOrderElement.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SHA256.cpp"
 				>
 			</File>
 			<File
@@ -622,6 +630,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MD5.h"
+				>
+			</File>
+			<File
 				RelativePath=".\memory_operation.h"
 				>
 			</File>
@@ -647,6 +659,10 @@
 			</File>
 			<File
 				RelativePath=".\SetOrderElement.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SHA256.h"
 				>
 			</File>
 			<File

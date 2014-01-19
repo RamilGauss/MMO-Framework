@@ -78,13 +78,15 @@ int TLoadFromHDD::ReadSmall(TContainer& c)
   return Read( c.GetPtr(), c.GetSize(), 0);
 }
 //---------------------------------------------------------------
-int TLoadFromHDD::Read(void* buffer, int size, int offset)
+unsigned int TLoadFromHDD::Read(void* buffer, unsigned int size, unsigned int offset)
 {
-  int res = fseek(pFile, offset, SEEK_SET);
+  int res = _fseeki64( pFile, __int64(offset), SEEK_SET);
+
+  //int res = fseek(pFile, offset, SEEK_SET);
   if(res!=0) return 0;
 
-  int max_read = Size() - offset;
-  if(max_read<=0) return 0;
+  if(Size()<offset) return 0;
+  unsigned int max_read = Size() - offset;
 
   fread(buffer, size, 1, pFile);
   return min(max_read, size);

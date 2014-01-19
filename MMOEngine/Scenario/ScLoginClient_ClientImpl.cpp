@@ -13,6 +13,8 @@ See for more information License.h.
 #include "Events.h"
 #include "ErrorCode.h"
 #include "SrcEvent_ex.h"
+#include "MD5.h"
+#include "CryptMITM.h"
 
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;
@@ -63,13 +65,9 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port,
     return;
   }
   Context()->SetNeedLeaveQueue(false);
-  // формирование пакета
-  TBreakPacket bp;// контейнер для всего пакета
-  bp.PushFront((char*)data,size);
-  THeaderTryLoginC2M h;
-  bp.PushFront((char*)&h, sizeof(h));
-  // отослать пакет для попытки авторизации
-	Context()->SetSubNet(subNet);
+  Context()->SetSubNet(subNet);
+  // сформировать пустой пакет - эхо
+  TBreakPacket bp;
   SetID_SessionClientMaster(Context()->GetMS()->Send(ip, port, bp, subNet));
   if(GetID_SessionClientMaster()==INVALID_HANDLE_SESSION)
   {
@@ -80,9 +78,42 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port,
     End();
   }
   else
-	{
+  {
+    TBreakPacket bpLP;// контейнер для всего пакета
+    if(Context()->GetMS()->GetUseCryptTCP())
+    {
+      // если данные шифруются, то формировать так:
+      // получить RSA public key от ManagerSession
+      TContainer cRSA;
+      bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
+      BL_ASSERT(resRSA);
+			TCryptMITM cryptMITM;
+      TContainer cEncryptRSA_bySHA1_LP;
+			bool res = cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
+																data, size, cEncryptRSA_bySHA1_LP);
+      BL_ASSERT(res);
+      
+			TMD5 md5;
+			TContainer cMD5LP;
+			md5.FastCalc(data, size, cMD5LP);
+      // сначало MD5LP
+      bpLP.PushFront((char*)cMD5LP.GetPtr(), cMD5LP.GetSize());
+      // потом зашифрованный RSA
+      bpLP.PushFront((char*)cEncryptRSA_bySHA1_LP.GetPtr(), cEncryptRSA_bySHA1_LP.GetSize());
+    }
+    else
+    {
+      // иначе просто отослать данные:
+      // формирование пакета
+      bpLP.PushFront((char*)data,size);
+    }
+    THeaderTryLoginC2M h;
+    bpLP.PushFront((char*)&h, sizeof(h));
+    // отослать пакет для попытки авторизации
+    Context()->GetMS()->Send(GetID_SessionClientMaster(), bpLP);
+
     SetTimeWaitForNow();
-	}
+  }
 }
 //-----------------------------------------------------------------------------
 void TScLoginClient_ClientImpl::RecvFromSlave(TDescRecvSession* pDesc)

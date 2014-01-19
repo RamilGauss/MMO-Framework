@@ -1,24 +1,57 @@
 #include <stdio.h>
-#include <string>
-#include <conio.h>
-
-#include "HiTimer.h"
+#include <openssl/md5.h>
 #include "ContainerTypes.h"
-#include "ManagerContextCrypto.h"
-#include <boost/foreach.hpp>
-#include <list>
-#include "DescEvent.h"
-#include "SrcEvent.h"
+#include "LoadFromHDD.h"
+#include "MD5.h"
+#include "SHA.h"
+#include "openssl/sha.h"
+#define BUFSIZE (1025*160)
 
-
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
-  TContainer* pC = new TContainer;
+  // 3EB92D12773E8BF8061AFF68D5C187CEAA8DBFB7
+  TLoadFromHDD loader;
+  bool res = loader.ReOpen("d:\\dbltj\\загадка.txt");
+  //bool res = loader.ReOpen("d:\\dbltj\\Virtual Zeppelin-The Lemon Song.flv");
+  if(res==false)
+    return 1;
+  unsigned char bufferFile[BUFSIZE];
 
-  TSrcEvent src;
+  TSHA256 md5;
+  md5.Begin();
+  //------------------------------------------------
+  unsigned int size = loader.Size();
+  for( unsigned int i = 0 ; i < size ;  )
+  {
+    int sizeRead = loader.Read(bufferFile, BUFSIZE, i);
+    i += sizeRead;
+    md5.Calc(bufferFile, sizeRead);
+  }
+  // Помещаем вычисленный хэш в буфер md_buf
+  TContainer result;
+  md5.End(result);
+  //------------------------------------------------
+  // Отображаем результат
+  for( int i = 0; i < result.GetSize(); i++) 
+    printf("%02x", ((unsigned char*)result.GetPtr())[i]);
+  return 0;
+} 
 
-  src.AddEventWithoutCopy<TContainer>(pC);
+//#include <stdio.h>
+//#include <string>
+//#include <conio.h>
+//
+//#include "HiTimer.h"
+//#include "ContainerTypes.h"
+//#include "ManagerContextCrypto.h"
+//#include <boost/foreach.hpp>
+//#include <list>
+//#include "DescEvent.h"
+//#include "SrcEvent.h"
 
+
+//int main(int argc, char** argv)
+//{
 #if 0
   bool res = false;
   std::string msg = "Some cat smell like apple.Some cat smell like apple.Some cat smell like apple.Some cat smell like ap";
@@ -96,5 +129,5 @@ int main(int argc, char** argv)
 
   _getch();
 #endif
-  return 0;
-} 
+//  return 0;
+//} 

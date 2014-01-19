@@ -211,3 +211,17 @@ bool TManagerContextCrypto::Decrypt(TCryptoAES_Impl* pAES,
   return true;
 }
 //-----------------------------------------------------------------
+bool TManagerContextCrypto::GetRSAkeyForUp(TContainer& RSAkey)
+{
+  return mRSA_ForUpConnection.GetPublicKey(RSAkey);
+}
+//-----------------------------------------------------------------
+bool TManagerContextCrypto::GetRSAkeyByIP(TIP_Port& ip_port, TContainer& RSAkey)
+{
+  TContextCrypto* pCtx = Get(ip_port); 
+  if(pCtx==NULL)
+    return false;
+  
+  return pCtx->GetRSA()->GetPublicKey(RSAkey);
+}
+//-----------------------------------------------------------------
