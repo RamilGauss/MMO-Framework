@@ -477,7 +477,9 @@ void TGraphicEngine::Animate()
   }
 }
 //--------------------------------------------------------------------------------------
-void TGraphicEngine::SetCommonShaderStack(const TMatrix16* pView, const TMatrix16* pProj, const TVector3* pCameraPos)
+void TGraphicEngine::SetCommonShaderStack(const TMatrix16* pView, 
+                                          const TMatrix16* pProj, 
+                                          const TVector3* pCameraPos)
 {
   mMainShaderStack.SetData(mShHandleView,          (void*)pView, sizeof(TMatrix16));
   mMainShaderStack.SetData(mShHandleProj,          (void*)pProj, sizeof(TMatrix16));

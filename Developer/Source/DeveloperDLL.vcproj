@@ -262,7 +262,7 @@
 					>
 				</File>
 				<File
-					RelativePath="..\Share\MakerObjectCommon.h"
+					RelativePath="..\Share\MakerObjectGeneral.h"
 					>
 				</File>
 				<File
@@ -306,7 +306,7 @@
 					>
 				</File>
 				<File
-					RelativePath="..\Share\MakerObjectCommon.cpp"
+					RelativePath="..\Share\MakerObjectGeneral.cpp"
 					>
 				</File>
 				<File

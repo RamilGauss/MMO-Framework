@@ -162,7 +162,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IBaseObjectCommon.cpp"
+				RelativePath=".\IBaseObjectGeneral.cpp"
 				>
 			</File>
 			<File
@@ -178,7 +178,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IMakerObjectCommon.cpp"
+				RelativePath=".\IMakerObjectGeneral.cpp"
 				>
 			</File>
 			<File
@@ -186,7 +186,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IManagerObjectCommon.cpp"
+				RelativePath=".\IManagerObjectGeneral.cpp"
 				>
 			</File>
 			<File
@@ -198,7 +198,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderObjectCommon.cpp"
+				RelativePath=".\LoaderObjectGeneral.cpp"
 				>
 			</File>
 			<File
@@ -206,7 +206,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MakerManagerObjectCommon.cpp"
+				RelativePath=".\MakerManagerObjectGeneral.cpp"
 				>
 			</File>
 			<File
@@ -230,7 +230,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ManagerObjectCommon.cpp"
+				RelativePath=".\ManagerObjectGeneral.cpp"
 				>
 			</File>
 			<File
@@ -276,7 +276,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IBaseObjectCommon.h"
+				RelativePath=".\IBaseObjectGeneral.h"
 				>
 			</File>
 			<File
@@ -296,7 +296,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IMakerObjectCommon.h"
+				RelativePath=".\IMakerObjectGeneral.h"
 				>
 			</File>
 			<File
@@ -304,7 +304,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IManagerObjectCommon.h"
+				RelativePath=".\IManagerObjectGeneral.h"
 				>
 			</File>
 			<File
@@ -332,7 +332,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderObjectCommon.h"
+				RelativePath=".\LoaderObjectGeneral.h"
 				>
 			</File>
 			<File
@@ -340,7 +340,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MakerManagerObjectCommon.h"
+				RelativePath=".\MakerManagerObjectGeneral.h"
 				>
 			</File>
 			<File
@@ -364,7 +364,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ManagerObjectCommon.h"
+				RelativePath=".\ManagerObjectGeneral.h"
 				>
 			</File>
 			<File

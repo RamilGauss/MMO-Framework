@@ -104,7 +104,7 @@ protected:
   // 1 0 0 1 1 1 1
 
 
-  void* mPtrInherits;// назначить в IBaseObjectCommon (решение проблемы виртуального наследования)
+  void* mPtrInherits;// назначить в IBaseObjectGeneral (решение проблемы виртуального наследования)
 
   int GetCountPart(const char* name, std::vector<std::string>* pVec);
 

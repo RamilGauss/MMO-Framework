@@ -16,10 +16,10 @@ See for more information License.h.
 #include "Client.h"
 
 class TLogger;
-class IMakerObjectCommon;
+class IMakerObjectGeneral;
 class IManagerStateMachine;
 class IPhysicEngine;
-class IManagerObjectCommon;
+class IManagerObjectGeneral;
 class IManagerTime;
 class IControlCamera;
 class IGUI;
@@ -34,9 +34,9 @@ public:
     IGUI*                   mGUI;           // GUI, MyGUI!
     IGraphicEngine*         mGraphicEngine; // BigJack отрисовка сцены
     IManagerStateMachine*   mMStateMachine; // конечный автомат, для HotKeys, Net (обработка пакетов)
-    nsMMOEngine::TClient*     mNetClient;   // MMOEngine
+    nsMMOEngine::TClient*   mNetClient;   // MMOEngine
     IPhysicEngine*          mPhysicEngine;  // PhysicEngine
-    IManagerObjectCommon*   mMOC;           // GameLib
+    IManagerObjectGeneral*  mMOG;           // GameLib
     IManagerTime*           mMTime;         // GameLib
     TComponentClient()
     {
@@ -46,7 +46,7 @@ public:
       mMStateMachine = NULL; 
       mNetClient     = NULL; 
       mPhysicEngine  = NULL; 
-      mMOC           = NULL; 
+      mMOG           = NULL; 
       mMTime         = NULL; 
     }
   };

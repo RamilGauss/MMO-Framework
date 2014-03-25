@@ -10,7 +10,7 @@ See for more information License.h.
 #define IActorH
 
 #include <string>
-#include "IBaseObjectCommon.h"
+#include "IBaseObjectGeneral.h"
 
 class IRoom;
 
@@ -18,7 +18,7 @@ class IRoom;
 /*
   Активный участник сцены.
 */
-class IActor : public IBaseObjectCommon
+class IActor : public IBaseObjectGeneral
 {
   unsigned int mID_Client;
   IRoom* pRoom;
@@ -27,7 +27,7 @@ public:
   IActor();
   virtual ~IActor();
   //--------------------------------------------------------------------------------
-  // от IBaseObjectCommon
+  // от IBaseObjectGeneral
   virtual bool GetMirror(char** pData, int& size){return false;}
   virtual void SetMirror(char* pData, int size){}
 

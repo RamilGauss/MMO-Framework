@@ -5,33 +5,33 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "IManagerObjectCommon.h"
+#include "IManagerObjectGeneral.h"
 #include "BL_Debug.h"
 
-IManagerObjectCommon::IManagerObjectCommon()
+IManagerObjectGeneral::IManagerObjectGeneral()
 {
 
 }
 //--------------------------------------------------------
-IManagerObjectCommon::~IManagerObjectCommon()
+IManagerObjectGeneral::~IManagerObjectGeneral()
 {
 
 }
 //--------------------------------------------------------
-void IManagerObjectCommon::AddObject(IBaseObjectCommon* pObject)
+void IManagerObjectGeneral::AddObject(IBaseObjectGeneral* pObject)
 {
   mVectorObject.push_back(pObject);
 }
 //--------------------------------------------------------
 // отдать объект на изменение свойств объекта
-IBaseObjectCommon* IManagerObjectCommon::Get(int index)
+IBaseObjectGeneral* IManagerObjectGeneral::Get(int index)
 {
   BL_ASSERT(mVectorObject.size() > (unsigned int)index);
-  IBaseObjectCommon* pObject = mVectorObject.at(index);
+  IBaseObjectGeneral* pObject = mVectorObject.at(index);
   return pObject;
 }
 //--------------------------------------------------------
-int IManagerObjectCommon::GetCountObject()
+int IManagerObjectGeneral::GetCountObject()
 {
   return mVectorObject.size();
 }

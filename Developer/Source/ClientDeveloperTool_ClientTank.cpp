@@ -13,11 +13,11 @@ See for more information License.h.
 #include "IControlCamera.h"
 #include "IXML.h"
 
-#include "MakerObjectCommon.h"
+#include "MakerObjectGeneral.h"
 
 #include "../GameLib/IClientDeveloperTool.h"
-#include "../GameLib/IManagerObjectCommon.h"
-#include "../GameLib/IBaseObjectCommon.h"
+#include "../GameLib/IManagerObjectGeneral.h"
+#include "../GameLib/IBaseObjectGeneral.h"
 #include "../GameLib/NameSrcEventID.h"
 #include "../GameLib/IManagerStateMachine.h"
 #include "../GraphicEngine/IGraphicEngine.h"
@@ -54,7 +54,7 @@ TClientDeveloperTool_ClientTank::TClientDeveloperTool_ClientTank()
 {
   flgDragCamera = false;
 
-  mMakerObjectCommon = new TMakerObjectCommon;
+  mMakerObjectGeneral = new TMakerObjectGeneral;
   
   mIndexCurObj = 0;
 
@@ -70,7 +70,7 @@ TClientDeveloperTool_ClientTank::TClientDeveloperTool_ClientTank()
 //------------------------------------------------------------------------------------
 TClientDeveloperTool_ClientTank::~TClientDeveloperTool_ClientTank()
 {
-  delete mMakerObjectCommon;
+  delete mMakerObjectGeneral;
 }
 //------------------------------------------------------------------------------------
 void TClientDeveloperTool_ClientTank::MouseEvent(TMouseEvent* pEvent)
@@ -183,10 +183,10 @@ void TClientDeveloperTool_ClientTank::KeyEvent(TKeyEvent* pEvent)
     }
     case e_B: // B 
     {
-      IBaseObject* pBO = mComponent.mMOC->Get(mIndexCurObj);
+      IBaseObject* pBO = mComponent.mMOG->Get(mIndexCurObj);
       mComponent.mControlCamera->Link(pBO,IControlCamera::eCoord);
       mIndexCurObj++;
-      mIndexCurObj %= mComponent.mMOC->GetCountObject();
+      mIndexCurObj %= mComponent.mMOG->GetCountObject();
       break;
     }
     case e_N: 
@@ -197,9 +197,9 @@ void TClientDeveloperTool_ClientTank::KeyEvent(TKeyEvent* pEvent)
   }
 }
 //--------------------------------------------------------------------
-IMakerObjectCommon* TClientDeveloperTool_ClientTank::GetMakerObjectCommon()
+IMakerObjectGeneral* TClientDeveloperTool_ClientTank::GetMakerObjectGeneral()
 {
-  return mMakerObjectCommon;
+  return mMakerObjectGeneral;
 }
 //------------------------------------------------------------------------------------
 string TClientDeveloperTool_ClientTank::GetTitleWindow()
@@ -272,7 +272,7 @@ void TClientDeveloperTool_ClientTank::Event(nsEvent::TEvent* pEvent)
       break;
     case ID_SRC_EVENT_PHYSIC_ENGINE:
       break;
-    case ID_SRC_EVENT_MANAGER_OBJECT_COMMON:
+    case ID_SRC_EVENT_MANAGER_OBJECT_GENERAL:
       break;
     case ID_SRC_EVENT_TIMER_FIRST_EVENT:
 			mTestControlTank.SetupParamForNow();
@@ -415,10 +415,10 @@ void TClientDeveloperTool_ClientTank::CreateObjects()
   CreateHangar();
   CreateTank();
 
-  int cntObj = mComponent.mMOC->GetCountObject();
+  int cntObj = mComponent.mMOG->GetCountObject();
   for( int i = 0 ; i < cntObj ; i++ )
   {
-    IBaseObject* pBO = mComponent.mMOC->Get(i);
+    IBaseObject* pBO = mComponent.mMOG->Get(i);
     if(pBO==mTank)
       mIndexCurObj = i;
   }
@@ -434,7 +434,7 @@ void TClientDeveloperTool_ClientTank::CreateHangar()
   TMatrix16 w;
   SetMatrixIdentity(&w);
   w._43 -= 1.0f;
-  mHangar = mComponent.mMOC->CreateObject(1);
+  mHangar = mComponent.mMOG->CreateObject(1);
   mHangar->SetWorld(&w);
   mComponent.mGraphicEngine->AddObject(mHangar);
   mHangar->SetShow(false);
@@ -444,7 +444,7 @@ void TClientDeveloperTool_ClientTank::CreateTank()
 {
   TMatrix16 w;
   SetMatrixIdentity(&w);
-  mTank = mComponent.mMOC->CreateObject(0);
+  mTank = mComponent.mMOG->CreateObject(0);
   mTank->SetWorld(&w);
   mComponent.mGraphicEngine->AddObject(mTank);
   mTank->SetShow(false);

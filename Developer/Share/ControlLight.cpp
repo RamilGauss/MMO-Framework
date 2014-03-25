@@ -10,9 +10,9 @@ See for more information License.h.
 #include "..\Share\BL_Debug.h"
 #include "..\Share\MakerCamera.h"
 #include "..\GameLib\IClientDeveloperTool.h"
-#include "..\GameLib\IManagerObjectCommon.h"
+#include "..\GameLib\IManagerObjectGeneral.h"
 #include "Struct3D.h"
-#include "..\GameLib\IBaseObjectCommon.h"
+#include "..\GameLib\IBaseObjectGeneral.h"
 #include <valarray>
 
 using namespace nsStruct3D;
@@ -46,12 +46,12 @@ void TControlLight::Done()
 void TControlLight::Init()
 {
   pGE  = IClientDeveloperTool::Singleton()->GetComponent()->mGraphicEngine;
-  pMOC = IClientDeveloperTool::Singleton()->GetComponent()->mMOC;
+  pMOC = IClientDeveloperTool::Singleton()->GetComponent()->mMOG;
   // загрузка объектов
   int cnt = GetCountAllLight(); 
   for(int i = 0 ; i < cnt ; i++ )
   {
-    IBaseObjectCommon* pSphere = pMOC->CreateObject(3);// 
+    IBaseObjectGeneral* pSphere = pMOC->CreateObject(3);// 
     pGE->AddObject((IBaseObjectGE*)pSphere);
     mVecObjLight.push_back(pSphere);
   }
@@ -180,7 +180,7 @@ void TControlLight::Update()
 //----------------------------------------------------------------------------------
 void TControlLight::SetObjectPos(TVector3* m3, int i)
 {
-  IBaseObjectCommon* pObj = mVecObjLight[i];
+  IBaseObjectGeneral* pObj = mVecObjLight[i];
   TMatrix16 world = *pObj->GetWorld();
   world._41 = m3->x;
   world._42 = m3->y;

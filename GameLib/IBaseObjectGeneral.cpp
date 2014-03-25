@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "IBaseObjectCommon.h"
+#include "IBaseObjectGeneral.h"
 
-IBaseObjectCommon::IBaseObjectCommon()
+IBaseObjectGeneral::IBaseObjectGeneral()
 {
   mPtrInherits = this;
 }
 //-------------------------------------------------------------
-IBaseObjectCommon::~IBaseObjectCommon()
+IBaseObjectGeneral::~IBaseObjectGeneral()
 {
 
 }

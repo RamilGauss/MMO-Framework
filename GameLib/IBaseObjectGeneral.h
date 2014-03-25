@@ -5,19 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef IBaseObjectCommonH
-#define IBaseObjectCommonH
+#ifndef IBaseObjectGeneralH
+#define IBaseObjectGeneralH
 
 #include "IBaseObjectGE.h"
 #include "IBaseObjectPrediction.h"
 
 
-class IBaseObjectCommon : public IBaseObjectGE, public IBaseObjectPrediction
+class IBaseObjectGeneral : public IBaseObjectGE, public IBaseObjectPrediction
 {
 
 public:
-  IBaseObjectCommon();
-  virtual ~IBaseObjectCommon();
+  IBaseObjectGeneral();
+  virtual ~IBaseObjectGeneral();
 
 
   // зеркальное отражение такого же объекта на "той стороне"

@@ -11,7 +11,7 @@ See for more information License.h.
 #include "classTools.h"
 #include <string>
 #include "DescEvent.h"
-#include "IMakerObjectCommon.h"
+#include "IMakerObjectGeneral.h"
 #include "Logger.h"
 #include "SrcEvent.h"
 
@@ -35,12 +35,12 @@ protected:
     }
   };
 
-	IMakerObjectCommon* mMakerObjectCommon;
+	IMakerObjectGeneral* mMakerObjectGeneral;
 
 public:
   IDeveloperTool(){flgExit=false;}
   virtual ~IDeveloperTool(){};
-  virtual IMakerObjectCommon* GetMakerObjectCommon() = 0;
+  virtual IMakerObjectGeneral* GetMakerObjectGeneral() = 0;
   virtual std::string GetPathXMLFile() = 0;
 
   virtual void Done() = 0;

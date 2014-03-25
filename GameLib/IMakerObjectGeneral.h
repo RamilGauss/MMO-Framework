@@ -5,34 +5,34 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef IMakerObjectCommonH
-#define IMakerObjectCommonH
+#ifndef IMakerObjectGeneralH
+#define IMakerObjectGeneralH
 
 #include <map>
 
-class IBaseObjectCommon;
+class IBaseObjectGeneral;
 
-class IMakerObjectCommon
+class IMakerObjectGeneral
 {
   typedef std::map<unsigned int,unsigned int> TMapUintUint;
   TMapUintUint mMapID;
 
   bool flgNeedInit;
 public:
-  IMakerObjectCommon();
-  virtual ~IMakerObjectCommon();
+  IMakerObjectGeneral();
+  virtual ~IMakerObjectGeneral();
 
-  IBaseObjectCommon* New(unsigned int id_model);
+  IBaseObjectGeneral* New(unsigned int id_model);
 
   // данное требование объ€сн€етс€ просто: что создали в либине, то и уничтожили там же,
   // т.к. в родительской библиотеки при вызове деструктора линковщик не найдет деструктор дл€ наследника
 
   // In future must overload
-  virtual void Delete(IBaseObjectCommon* pObject) = 0;// просто вызвать delete pObject;
+  virtual void Delete(IBaseObjectGeneral* pObject) = 0;// просто вызвать delete pObject;
 
 protected:
   // In future must overload
-  virtual IBaseObjectCommon* NewByID_Behavior(unsigned int id_behavior) = 0;
+  virtual IBaseObjectGeneral* NewByID_Behavior(unsigned int id_behavior) = 0;
 
   unsigned int GetID_ModelByID_Behavior(unsigned int id_model);
 

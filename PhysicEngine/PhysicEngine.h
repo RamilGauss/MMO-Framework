@@ -5,13 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef RobertH
-#define RobertH
+#ifndef PHYSIC_ENGINE_H
+#define PHYSIC_ENGINE_H
 
 #include "IPhysicEngine.h"
 
 // предсказатель
-// Robert - физический движок
+// реализация физического движка
 class TPhysicEngine : public IPhysicEngine
 {
 public:

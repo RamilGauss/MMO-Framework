@@ -12,14 +12,14 @@ See for more information License.h.
 
 #include "IPhysicEngine.h"
 #include "IManagerTime.h"
-#include "IManagerObjectCommon.h"
+#include "IManagerObjectGeneral.h"
 #include "IManagerScene.h"
 #include "IXML.h"
 #include "IQtLib.h"
 #include "ITimer.h"
 
 #include "MakerPhysicEngine.h"
-#include "MakerManagerObjectCommon.h"
+#include "MakerManagerObjectGeneral.h"
 #include "MakerManagerTime.h"
 #include "MakerManagerStateMachine.h"
 #include "MakerManagerScene.h"

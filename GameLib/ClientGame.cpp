@@ -14,14 +14,14 @@ See for more information License.h.
 #include "IGraphicEngine.h"
 #include "IPhysicEngine.h"
 #include "IManagerTime.h"
-#include "IManagerObjectCommon.h"
+#include "IManagerObjectGeneral.h"
 #include "IGUI.h"
 #include "IXML.h"
 #include "ITimer.h"
 
 #include "MakerPhysicEngine.h"
 #include "MakerGraphicEngine.h"
-#include "MakerManagerObjectCommon.h"
+#include "MakerManagerObjectGeneral.h"
 #include "MakerManagerTime.h"
 #include "MakerGUI.h"
 #include "MakerControlCamera.h"
@@ -84,7 +84,7 @@ bool TClientGame::Init(int variant_use, const char* sNameDLL, vector<string>& ar
   mCClient.mControlCamera = makerControlCamera.New();
 
   // создатель объектов
-  IMakerObjectCommon* pMakerObjectCommon = mClientDeveloperTool->GetMakerObjectCommon();
+  IMakerObjectGeneral* pMakerObjectGeneral = mClientDeveloperTool->GetMakerObjectGeneral();
 
   // для внутреннего обмена
   mCClient.mDev.SetDstObject(this);
@@ -108,11 +108,11 @@ bool TClientGame::Init(int variant_use, const char* sNameDLL, vector<string>& ar
   mCClient.mNetClient = new nsMMOEngine::TClient;
 	SetupNetComponent(mCClient.mNetClient);
   //------------------------------------------
-  TMakerManagerObjectCommon makerMOC;
-  mCClient.mMOC = makerMOC.New();
-  mCClient.mMOC->Init(pMakerObjectCommon);
-  mCClient.mMOC->SetSelfID(ID_SRC_EVENT_MANAGER_OBJECT_COMMON);
-  mCClient.mMOC->SetDstObject(this);
+  TMakerManagerObjectGeneral makerMOC;
+  mCClient.mMOG = makerMOC.New();
+  mCClient.mMOG->Init(pMakerObjectGeneral);
+  mCClient.mMOG->SetSelfID(ID_SRC_EVENT_MANAGER_OBJECT_GENERAL);
+  mCClient.mMOG->SetDstObject(this);
   //------------------------------------------
   TMakerManagerTime makerMTime;
   mCClient.mMTime = makerMTime.New();
@@ -164,9 +164,9 @@ void TClientGame::Done()
   delete mCClient.mNetClient;
   mCClient.mNetClient = NULL;
 
-  TMakerManagerObjectCommon makerMOC;
-  makerMOC.Delete(mCClient.mMOC);
-  mCClient.mMOC = NULL;
+  TMakerManagerObjectGeneral makerMOG;
+  makerMOG.Delete(mCClient.mMOG);
+  mCClient.mMOG = NULL;
 
   TMakerManagerTime makerMTimer;
   makerMTimer.Delete(mCClient.mMTime);

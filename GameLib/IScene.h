@@ -10,7 +10,7 @@ See for more information License.h.
 
 #include <list>
 
-#include "IManagerObjectCommon.h"
+#include "IManagerObjectGeneral.h"
 #include "IPhysicEngine.h"
 
 class IScene
@@ -23,7 +23,7 @@ public:
 
 protected:
 
-  IManagerObjectCommon* mMOC;
+  IManagerObjectGeneral* mMOC;
   IPhysicEngine*        mPhysicEngine;
 
 

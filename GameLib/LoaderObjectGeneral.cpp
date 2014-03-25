@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "LoaderObjectCommon.h"
+#include "LoaderObjectGeneral.h"
 
 #include <stddef.h>
 #include <boost/foreach.hpp>
@@ -22,22 +22,22 @@ using namespace std;
 
 const char* sNameSettingMap = "main.xml";
 
-TLoaderMap::TLoaderMap()
+TLoaderObjectGeneral::TLoaderObjectGeneral()
 {
   LoadListMap();
 }
 //-------------------------------------------------------------
-TLoaderMap::~TLoaderMap()
+TLoaderObjectGeneral::~TLoaderObjectGeneral()
 {
   Done();
 }
 //-------------------------------------------------------------
-IBaseObjectCommon* TLoaderMap::LoadObject(unsigned int id_model)
+IBaseObjectGeneral* TLoaderObjectGeneral::LoadObject(unsigned int id_model)
 {
-  return mMakerObjectCommon->New(id_model);
+  return mMakerObjectGeneral->New(id_model);
 }
 //-------------------------------------------------------------
-void TLoaderMap::LoadMap(unsigned int id_map)
+void TLoaderObjectGeneral::LoadMap(unsigned int id_map)
 {
   string sPath = mMapID[id_map];
   if(sPath.length()==0) return;
@@ -46,7 +46,7 @@ void TLoaderMap::LoadMap(unsigned int id_map)
   // собственно загрузка
 }
 //-------------------------------------------------------------
-void TLoaderMap::LoadListMap()
+void TLoaderObjectGeneral::LoadListMap()
 {
   // открыть файл, содержащий список путей к картам и запомнить в ассоциативный список
   TLoaderListPathID loader;
@@ -58,34 +58,34 @@ void TLoaderMap::LoadListMap()
   PrepareMapPath();
 }
 //-------------------------------------------------------------
-int TLoaderMap::GetCountObject()
+int TLoaderObjectGeneral::GetCountObject()
 {
   return mVectorObject.size();
 }
 //-------------------------------------------------------------
-IBaseObjectCommon* TLoaderMap::Get(int i)
+IBaseObjectGeneral* TLoaderObjectGeneral::Get(int i)
 {
   return mVectorObject[i];
 }
 //-------------------------------------------------------------
-void TLoaderMap::Done()
+void TLoaderObjectGeneral::Done()
 {
   mVectorObject.clear();
 }
 //-------------------------------------------------------------
-void TLoaderMap::PrepareMapPath()
+void TLoaderObjectGeneral::PrepareMapPath()
 {
   BOOST_FOREACH(TMapIDName::value_type& bit, mMapID)
     bit.second += sNameSettingMap;
 }
 //-------------------------------------------------------------
-void TLoaderMap::Delete(IBaseObjectCommon* pObject)
+void TLoaderObjectGeneral::Delete(IBaseObjectGeneral* pObject)
 {
-  mMakerObjectCommon->Delete(pObject);
+  mMakerObjectGeneral->Delete(pObject);
 }
 //-------------------------------------------------------------
-void TLoaderMap::SetMakerObjectCommon(IMakerObjectCommon* pMakerObjectCommon)
+void TLoaderObjectGeneral::SetMakerObjectGeneral(IMakerObjectGeneral* pMakerObjectGeneral)
 {
-  mMakerObjectCommon = pMakerObjectCommon;
+  mMakerObjectGeneral = pMakerObjectGeneral;
 }
 //-------------------------------------------------------------

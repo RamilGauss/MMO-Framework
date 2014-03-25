@@ -9,7 +9,7 @@ See for more information License.h.
 
 #include <boost/asio/ip/impl/address_v4.ipp>
 
-#include "MakerObjectCommon.h"
+#include "MakerObjectGeneral.h"
 #include "../GameLib/NameSrcEventID.h"
 #include "Master.h"
 #include "NetSystem.h"
@@ -26,14 +26,14 @@ TServerDeveloperTool_MasterTank::TServerDeveloperTool_MasterTank()
 {
   mCounterClient = 0;
 
-  mMakerObjectCommon = new TMakerObjectCommon;
+  mMakerObjectGeneral = new TMakerObjectGeneral;
   
   mMasterForm = NULL;
 }
 //---------------------------------------------------------------------------------
 TServerDeveloperTool_MasterTank::~TServerDeveloperTool_MasterTank()
 {
-  delete mMakerObjectCommon;
+  delete mMakerObjectGeneral;
 }
 //---------------------------------------------------------------------------------
 void TServerDeveloperTool_MasterTank::Init(TComponentServer* pComponent, vector<string>& arg)
@@ -59,9 +59,9 @@ int TServerDeveloperTool_MasterTank::GetTimeRefreshMS()
 	return 100;
 }
 //---------------------------------------------------------------------------------
-IMakerObjectCommon* TServerDeveloperTool_MasterTank::GetMakerObjectCommon()
+IMakerObjectGeneral* TServerDeveloperTool_MasterTank::GetMakerObjectGeneral()
 {
-	return mMakerObjectCommon;
+	return mMakerObjectGeneral;
 }
 //------------------------------------------------------------------------------------
 string TServerDeveloperTool_MasterTank::GetPathXMLFile()
@@ -83,7 +83,7 @@ void TServerDeveloperTool_MasterTank::Event(nsEvent::TEvent* pEvent)
       break;
     case ID_SRC_EVENT_PHYSIC_ENGINE:
       break;
-    case ID_SRC_EVENT_MANAGER_OBJECT_COMMON:
+    case ID_SRC_EVENT_MANAGER_OBJECT_GENERAL:
       break;
     case ID_SRC_EVENT_QT_LIB:
       HandleFromQt(pEvent);

@@ -5,7 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "MakerManagerObjectCommon.h"
-#include "ManagerObjectCommon.h"
+#ifndef MakerManagerObjectGeneralH
+#define MakerManagerObjectGeneralH
 
-MACRO_MAKER_CPP_USE_SAME(ManagerObjectCommon,ManagerObjectCommon)
+#include "MacroMaker.h"
+
+MACRO_MAKER_H_USE_SAME(ManagerObjectGeneral)
+
+#endif

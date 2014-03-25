@@ -44,8 +44,8 @@ class TClientDeveloperTool_ClientTank : public IClientDeveloperTool
 
   int mIndexCurObj;
 
-  IBaseObjectCommon* mTank;
-  IBaseObjectCommon* mHangar;
+  IBaseObjectGeneral* mTank;
+  IBaseObjectGeneral* mHangar;
 
 	// показать магию
 	TTestControlTank mTestControlTank;
@@ -61,7 +61,7 @@ public:
 	virtual void Event(nsEvent::TEvent* pEvent);
   virtual void Done();
   
-	virtual IMakerObjectCommon* GetMakerObjectCommon();
+	virtual IMakerObjectGeneral* GetMakerObjectGeneral();
   virtual std::string GetPathXMLFile();
 
 protected:

@@ -10,7 +10,7 @@ See for more information License.h.
 #include "IGame.h"
 
 #include "IPhysicEngine.h"
-#include "IManagerObjectCommon.h"
+#include "IManagerObjectGeneral.h"
 #include "IGraphicEngine.h"
 #include "INetTransport.h"
 

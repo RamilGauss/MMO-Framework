@@ -5,37 +5,37 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerObjectCommon.h"
+#include "ManagerObjectGeneral.h"
 #include <stddef.h>
 #include "Logger.h"
 #include "HiTimer.h"
 
 //-----------------------------------------------------------------------------
-TManagerObjectCommon::TManagerObjectCommon()
+TManagerObjectGeneral::TManagerObjectGeneral()
 {
   flgLoadMap               = false;
   flgActiveLoadThread      = false;
 }
 //--------------------------------------------------------------------
-TManagerObjectCommon::~TManagerObjectCommon()
+TManagerObjectGeneral::~TManagerObjectGeneral()
 {
   Done();
 }
 //--------------------------------------------------------------------
 //void* Thread(void* p)
 //{
-  //((TManagerObjectCommon*)p)->ThreadLoadMap();
+  //((TManagerObjectGeneral*)p)->ThreadLoadMap();
   //return NULL;
 //}
 //--------------------------------------------------------------------
-//void TManagerObjectCommon::ThreadLoadMap()
+//void TManagerObjectGeneral::ThreadLoadMap()
 //{
   /*GlobalLoggerMOC.WriteF_time("Началась загрузка карты.\n");
   flgActiveLoadThread = true;
 
   mProcentLoadMap = 0;
   CHECK_END
-  mLoaderObject.LoadMap(mID_map);
+  mLoaderObjectGeneral.LoadMap(mID_map);
   mProcentLoadMap = 15;
   CHECK_END
   AddFromLoaderObjectInCommonList();
@@ -57,7 +57,7 @@ TManagerObjectCommon::~TManagerObjectCommon()
   GlobalLoggerMOC.WriteF_time("Ожидание корректирующего пакета.\n");*/
 //}
 //--------------------------------------------------------------------
-void TManagerObjectCommon::LoadMap(unsigned int id_map)
+void TManagerObjectGeneral::LoadMap(unsigned int id_map)
 {
   //flgNeedStopThreadLoadMap = false;
   //flgLoadMap               = true;
@@ -65,46 +65,46 @@ void TManagerObjectCommon::LoadMap(unsigned int id_map)
   //thread = g_thread_create(Thread, this, true, NULL);
 }
 //--------------------------------------------------------------------
-int TManagerObjectCommon::GetProgressLoadMap()
+int TManagerObjectGeneral::GetProgressLoadMap()
 {
   return 100;
 }
 //--------------------------------------------------------------------
-void TManagerObjectCommon::Done()
+void TManagerObjectGeneral::Done()
 {
   Clear();
 }
 //--------------------------------------------------------------------
-void TManagerObjectCommon::EndLoadMap()
+void TManagerObjectGeneral::EndLoadMap()
 {
   GetLogger("MOC")->WriteF_time("Загрузка карты завершена (поток Form).\n");
   mProcentLoadMap          = 100;
   flgLoadMap               = false;
 }
 //--------------------------------------------------------------
-void TManagerObjectCommon::StopLoadMap()// синхронно, придется подождать маленько
+void TManagerObjectGeneral::StopLoadMap()// синхронно, придется подождать маленько
 {
   GetLogger("MOC")->WriteF_time("Приказ остановить загрузку карты.\n");
   flgNeedStopThreadLoadMap = true;
 }
 //-------------------------------------------------------------------------------------------------------------  
-void TManagerObjectCommon::Init(IMakerObjectCommon* pMakerObjectCommon)
+void TManagerObjectGeneral::Init(IMakerObjectGeneral* pMakerObjectGeneral)
 {
-  mLoaderObject.SetMakerObjectCommon(pMakerObjectCommon);
+  mLoaderObjectGeneral.SetMakerObjectGeneral(pMakerObjectGeneral);
 }
 //--------------------------------------------------------------------------------------------------------
-void TManagerObjectCommon::Clear()
+void TManagerObjectGeneral::Clear()
 {
   int cnt = mVectorObject.size();
   for(int i = 0 ; i < cnt ; i++ )
-    mLoaderObject.Delete(mVectorObject[i]);
+    mLoaderObjectGeneral.Delete(mVectorObject[i]);
 
   mVectorObject.clear();
 }
 //--------------------------------------------------------------------------------------------------------
-IBaseObjectCommon* TManagerObjectCommon::CreateObject(unsigned int id_model)
+IBaseObjectGeneral* TManagerObjectGeneral::CreateObject(unsigned int id_model)
 {
-  IBaseObjectCommon* pObject = mLoaderObject.LoadObject(id_model);
+  IBaseObjectGeneral* pObject = mLoaderObjectGeneral.LoadObject(id_model);
   AddObject(pObject);
   return pObject;
 }

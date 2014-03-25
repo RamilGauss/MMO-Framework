@@ -18,7 +18,7 @@ See for more information License.h.
 #define STR_NAME_PHYSIC_ENGINE "PE"
 
 // предсказатель
-// Robert - физический движок
+// интефейс физического движка
 class PHYSIC_ENGINE_EI IPhysicEngine : public TSrcEvent
 {
 public:

@@ -32,7 +32,7 @@ public:
 
   virtual void Done();
   
-	virtual IMakerObjectCommon* GetMakerObjectCommon();
+	virtual IMakerObjectGeneral* GetMakerObjectGeneral();
   virtual std::string GetPathXMLFile();
 
 protected:

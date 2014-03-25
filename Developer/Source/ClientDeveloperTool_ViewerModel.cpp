@@ -8,11 +8,11 @@ See for more information License.h.
 #include <string.h>
 
 #include "ClientDeveloperTool_ViewerModel.h"
-#include "MakerObjectCommon.h"
+#include "MakerObjectGeneral.h"
 #include "../GameLib/IClientDeveloperTool.h"
-#include "../GameLib/IManagerObjectCommon.h"
+#include "../GameLib/IManagerObjectGeneral.h"
 #include "../GraphicEngine/IGraphicEngine.h"
-#include "../GameLib/IBaseObjectCommon.h"
+#include "../GameLib/IBaseObjectGeneral.h"
 #include "../GUI/IGUI.h"
 #include "Logger.h"
 #include "HiTimer.h"
@@ -43,14 +43,14 @@ TClientDeveloperTool_ViewerModel::TClientDeveloperTool_ViewerModel()
 {
   flgDragCamera = false;
 
-  mMakerObjectCommon = new TMakerObjectCommon;
+  mMakerObjectGeneral = new TMakerObjectGeneral;
   
   mIndexCurObj = 0;
 }
 //------------------------------------------------------------------------------------
 TClientDeveloperTool_ViewerModel::~TClientDeveloperTool_ViewerModel()
 {
-  delete mMakerObjectCommon;
+  delete mMakerObjectGeneral;
 }
 //------------------------------------------------------------------------------------
 void TClientDeveloperTool_ViewerModel::Event(nsEvent::TEvent* pEvent)
@@ -61,7 +61,7 @@ void TClientDeveloperTool_ViewerModel::Event(nsEvent::TEvent* pEvent)
 			break;
 		case ID_SRC_EVENT_PHYSIC_ENGINE:
 			break;
-		case ID_SRC_EVENT_MANAGER_OBJECT_COMMON:
+		case ID_SRC_EVENT_MANAGER_OBJECT_GENERAL:
 			break;
 		case ID_SRC_EVENT_TIMER_FIRST_EVENT:
 			break;
@@ -201,10 +201,10 @@ void TClientDeveloperTool_ViewerModel::KeyEvent(TKeyEvent* pEvent)
     }
     case e_B: // B 
     {
-      IBaseObject* pBO = mComponent.mMOC->Get(mIndexCurObj);
+      IBaseObject* pBO = mComponent.mMOG->Get(mIndexCurObj);
       mComponent.mControlCamera->Link(pBO,IControlCamera::eCoord);
       mIndexCurObj++;
-      mIndexCurObj %= mComponent.mMOC->GetCountObject();
+      mIndexCurObj %= mComponent.mMOG->GetCountObject();
       break;
     }
     case e_N: 
@@ -219,9 +219,9 @@ void TClientDeveloperTool_ViewerModel::KeyEvent(TKeyEvent* pEvent)
   }
 }
 //--------------------------------------------------------------------
-IMakerObjectCommon* TClientDeveloperTool_ViewerModel::GetMakerObjectCommon()
+IMakerObjectGeneral* TClientDeveloperTool_ViewerModel::GetMakerObjectGeneral()
 {
-  return mMakerObjectCommon;
+  return mMakerObjectGeneral;
 }
 //------------------------------------------------------------------------------------
 string TClientDeveloperTool_ViewerModel::GetTitleWindow()
@@ -261,7 +261,7 @@ void TClientDeveloperTool_ViewerModel::CreateHangar()
   TMatrix16 w;
   SetMatrixIdentity(&w);
   w._43 -= 1.0f;
-  IBaseObjectCommon* pBOC = mComponent.mMOC->CreateObject(1);
+  IBaseObjectGeneral* pBOC = mComponent.mMOG->CreateObject(1);
   pBOC->SetWorld(&w);
   mComponent.mGraphicEngine->AddObject(pBOC);
 }
@@ -283,7 +283,7 @@ void TClientDeveloperTool_ViewerModel::CreateObjects(int cntK,int cntJ,int cntI)
       w._42 += sizeJ;
       for(int i = 0 ; i < cntI ; i ++)
       {
-        IBaseObjectCommon* pBOC = mComponent.mMOC->CreateObject(0);
+        IBaseObjectGeneral* pBOC = mComponent.mMOG->CreateObject(0);
 
         //pBOC->SetVelocity(0.1f);
         w._41 += sizeI;

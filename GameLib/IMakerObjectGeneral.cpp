@@ -5,40 +5,40 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "IMakerObjectCommon.h"
+#include "IMakerObjectGeneral.h"
 #include <stddef.h>
 
 #include "LoaderListPathID.h"
 #include "GlobalParams.h"
 #include "file_operation.h"
 #include "BL_Debug.h"
-#include "IBaseObjectCommon.h"
+#include "IBaseObjectGeneral.h"
 #include "MapXML_Field.h"
 #include "StorePathResources.h"
 
 using namespace std;
 
-IMakerObjectCommon::IMakerObjectCommon()
+IMakerObjectGeneral::IMakerObjectGeneral()
 {
   flgNeedInit = true;
 }
 //------------------------------------------------------------------------
-IMakerObjectCommon::~IMakerObjectCommon()
+IMakerObjectGeneral::~IMakerObjectGeneral()
 {
 
 }
 //------------------------------------------------------------------------
-IBaseObjectCommon* IMakerObjectCommon::New(unsigned int id_model)
+IBaseObjectGeneral* IMakerObjectGeneral::New(unsigned int id_model)
 {
   if(flgNeedInit) Init();
 
   unsigned int id_behavior = GetID_ModelByID_Behavior(id_model);
-  IBaseObjectCommon* pObject = NewByID_Behavior(id_behavior);
+  IBaseObjectGeneral* pObject = NewByID_Behavior(id_behavior);
   pObject->SetID_Model(id_model);
   return pObject;
 }
 //------------------------------------------------------------------------
-unsigned int IMakerObjectCommon::GetID_ModelByID_Behavior(unsigned int id_model)
+unsigned int IMakerObjectGeneral::GetID_ModelByID_Behavior(unsigned int id_model)
 {
   TMapUintUint::iterator fit = mMapID.find(id_model);
   if(fit == mMapID.end())
@@ -49,7 +49,7 @@ unsigned int IMakerObjectCommon::GetID_ModelByID_Behavior(unsigned int id_model)
   return fit->second;
 }
 //------------------------------------------------------------------------
-void IMakerObjectCommon::Init()
+void IMakerObjectGeneral::Init()
 {
   TLoaderListPathID loader;
   char sAbsPath[300];

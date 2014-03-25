@@ -8,10 +8,10 @@ See for more information License.h.
 #ifndef ObjectSceneH
 #define ObjectSceneH
 
-#include "../GameLib/IBaseObjectCommon.h"
+#include "../GameLib/IBaseObjectGeneral.h"
 
 
-class TObjectScene : public IBaseObjectCommon
+class TObjectScene : public IBaseObjectGeneral
 {
 public:
   TObjectScene();

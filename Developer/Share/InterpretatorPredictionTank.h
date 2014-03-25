@@ -15,7 +15,7 @@ See for more information License.h.
 //#include "Robert.h"
 /*
 // предсказатель
-// Robert - физический движок
+// физический движок
 class TInterpretatorPredictionTank : public TPrediction
 {
 

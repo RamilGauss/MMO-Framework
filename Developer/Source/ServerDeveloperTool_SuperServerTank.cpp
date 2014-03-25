@@ -9,7 +9,7 @@ See for more information License.h.
 
 #include <boost/asio/ip/impl/address_v4.ipp>
 
-#include "MakerObjectCommon.h"
+#include "MakerObjectGeneral.h"
 #include "SuperServerForm.h"
 #include "../GameLib/NameSrcEventID.h"
 #include "../QtLib/IQtLib.h"
@@ -25,13 +25,13 @@ using namespace nsMMOEngine;
 
 TServerDeveloperTool_SuperServerTank::TServerDeveloperTool_SuperServerTank()
 {
-	mMakerObjectCommon = new TMakerObjectCommon;
+	mMakerObjectGeneral = new TMakerObjectGeneral;
   mSuperServerForm   = NULL;
 }
 //---------------------------------------------------------------------------------
 TServerDeveloperTool_SuperServerTank::~TServerDeveloperTool_SuperServerTank()
 {
-  delete mMakerObjectCommon;
+  delete mMakerObjectGeneral;
 }
 //---------------------------------------------------------------------------------
 void TServerDeveloperTool_SuperServerTank::Init(TComponentServer* pComponent, std::vector<std::string>& arg)
@@ -59,9 +59,9 @@ int TServerDeveloperTool_SuperServerTank::GetTimeRefreshMS()
 	return 100;
 }
 //---------------------------------------------------------------------------------
-IMakerObjectCommon* TServerDeveloperTool_SuperServerTank::GetMakerObjectCommon()
+IMakerObjectGeneral* TServerDeveloperTool_SuperServerTank::GetMakerObjectGeneral()
 {
-	return mMakerObjectCommon;
+	return mMakerObjectGeneral;
 }
 //------------------------------------------------------------------------------------
 string TServerDeveloperTool_SuperServerTank::GetPathXMLFile()
@@ -83,7 +83,7 @@ void TServerDeveloperTool_SuperServerTank::Event(nsEvent::TEvent* pEvent)
       break;
     case ID_SRC_EVENT_PHYSIC_ENGINE:
       break;
-    case ID_SRC_EVENT_MANAGER_OBJECT_COMMON:
+    case ID_SRC_EVENT_MANAGER_OBJECT_GENERAL:
       break;
     case ID_SRC_EVENT_QT_LIB:
       HandleFromQt(pEvent);

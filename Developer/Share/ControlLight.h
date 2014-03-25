@@ -13,14 +13,14 @@ See for more information License.h.
 
 class ICamera;
 class IGraphicEngine;
-class IManagerObjectCommon;
-class IBaseObjectCommon;
+class IManagerObjectGeneral;
+class IBaseObjectGeneral;
 
 class TControlLight
 {
 
   IGraphicEngine* pGE;
-  IManagerObjectCommon* pMOC;
+  IManagerObjectGeneral* pMOC;
   ICamera* mICamera;
   
   nsStruct3D::TVector3 mPos;// центр вращения
@@ -29,7 +29,7 @@ class TControlLight
   int  mOldX;
   int  mOldY;
 
-  typedef std::vector<IBaseObjectCommon*> TVectorPtr;
+  typedef std::vector<IBaseObjectGeneral*> TVectorPtr;
   TVectorPtr mVecObjLight;// указатели этих объектов содержатся в mMOC
 
 public:

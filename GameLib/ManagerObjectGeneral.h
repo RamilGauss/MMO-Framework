@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ManagerObjectCommonH
-#define ManagerObjectCommonH
+#ifndef ManagerObjectGeneralH
+#define ManagerObjectGeneralH
 
-#include "LoaderObjectCommon.h"
-#include "IManagerObjectCommon.h"
+#include "LoaderObjectGeneral.h"
+#include "IManagerObjectGeneral.h"
 
-class IBaseObjectCommon;
+class IBaseObjectGeneral;
 
-class TManagerObjectCommon : public IManagerObjectCommon
+class TManagerObjectGeneral : public IManagerObjectGeneral
 {
 protected:
   enum{
@@ -30,19 +30,19 @@ protected:
 
 protected:
   
-  TLoaderMap mLoaderObject;
+  TLoaderObjectGeneral mLoaderObjectGeneral;
 
 public:
 
-  TManagerObjectCommon();
-  virtual ~TManagerObjectCommon();
+  TManagerObjectGeneral();
+  virtual ~TManagerObjectGeneral();
 
-  virtual void Init(IMakerObjectCommon* pMakerObjectCommon);
+  virtual void Init(IMakerObjectGeneral* pMakerObjectGeneral);
   virtual void Done();
   virtual void Clear();
   virtual void LoadMap(unsigned int id_map);
   virtual int  GetProgressLoadMap();
-  virtual IBaseObjectCommon* CreateObject(unsigned int id_model);
+  virtual IBaseObjectGeneral* CreateObject(unsigned int id_model);
 
 protected:
 

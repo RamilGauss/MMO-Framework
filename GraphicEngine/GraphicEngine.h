@@ -226,7 +226,9 @@ protected:
   void PrepareForPostEffect(IBaseObjectGE* pObject);
   void RenderObject(IBaseObjectGE* pObject, const nsStruct3D::TMatrix16* view);
 
-	void SetCommonShaderStack(const nsStruct3D::TMatrix16* pView, const nsStruct3D::TMatrix16* pProj, const nsStruct3D::TVector3* pCameraPos);
+	void SetCommonShaderStack(const nsStruct3D::TMatrix16* pView, 
+                            const nsStruct3D::TMatrix16* pProj, 
+                            const nsStruct3D::TVector3* pCameraPos);
 
   virtual bool InitGUI();
 

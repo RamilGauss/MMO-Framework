@@ -34,7 +34,7 @@ public:
 	virtual void Done();
 	virtual void Event(nsEvent::TEvent* pEvent);
 
-	virtual IMakerObjectCommon* GetMakerObjectCommon();
+	virtual IMakerObjectGeneral* GetMakerObjectGeneral();
 	virtual std::string GetPathXMLFile();
 
 protected:

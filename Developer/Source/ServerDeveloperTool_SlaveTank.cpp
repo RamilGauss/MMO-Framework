@@ -9,7 +9,7 @@ See for more information License.h.
 
 #include <boost/asio/ip/impl/address_v4.ipp>
 
-#include "MakerObjectCommon.h"
+#include "MakerObjectGeneral.h"
 #include "Slave.h"
 #include "NetSystem.h"
 #include "GlobalParam.h"
@@ -25,13 +25,13 @@ using namespace nsMMOEngine;
 
 TServerDeveloperTool_SlaveTank::TServerDeveloperTool_SlaveTank()
 {
-	mMakerObjectCommon = new TMakerObjectCommon;
+	mMakerObjectGeneral = new TMakerObjectGeneral;
   mSlaveForm = NULL;
 }
 //---------------------------------------------------------------------------------
 TServerDeveloperTool_SlaveTank::~TServerDeveloperTool_SlaveTank()
 {
-  delete mMakerObjectCommon;
+  delete mMakerObjectGeneral;
 }
 //---------------------------------------------------------------------------------
 void TServerDeveloperTool_SlaveTank::Init(TComponentServer* pComponent, vector<string>& arg)
@@ -58,9 +58,9 @@ int TServerDeveloperTool_SlaveTank::GetTimeRefreshMS()
 	return 100;
 }
 //---------------------------------------------------------------------------------
-IMakerObjectCommon* TServerDeveloperTool_SlaveTank::GetMakerObjectCommon()
+IMakerObjectGeneral* TServerDeveloperTool_SlaveTank::GetMakerObjectGeneral()
 {
-	return mMakerObjectCommon;
+	return mMakerObjectGeneral;
 }
 //------------------------------------------------------------------------------------
 string TServerDeveloperTool_SlaveTank::GetPathXMLFile()
@@ -82,7 +82,7 @@ void TServerDeveloperTool_SlaveTank::Event(nsEvent::TEvent* pEvent)
       break;
     case ID_SRC_EVENT_PHYSIC_ENGINE:
       break;
-    case ID_SRC_EVENT_MANAGER_OBJECT_COMMON:
+    case ID_SRC_EVENT_MANAGER_OBJECT_GENERAL:
       break;
     case ID_SRC_EVENT_QT_LIB:
       HandleFromQt(pEvent);

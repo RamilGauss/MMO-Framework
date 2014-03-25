@@ -8,10 +8,10 @@ See for more information License.h.
 #ifndef ObjectLightH
 #define ObjectLightH
 
-#include "../GameLib/IBaseObjectCommon.h"
+#include "../GameLib/IBaseObjectGeneral.h"
 
 
-class TObjectLight : public IBaseObjectCommon
+class TObjectLight : public IBaseObjectGeneral
 {
 public:
   TObjectLight();

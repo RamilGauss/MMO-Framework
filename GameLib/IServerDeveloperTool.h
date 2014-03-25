@@ -13,10 +13,10 @@ See for more information License.h.
 #include "SuperServer.h"
 #include "Master.h"
 
-class IMakerObjectCommon;
+class IMakerObjectGeneral;
 class IManagerStateMachine;
 class IManagerScene;
-class IManagerObjectCommon;
+class IManagerObjectGeneral;
 class IManagerConnectClient;
 class IQtLib;
 
