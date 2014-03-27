@@ -57,7 +57,7 @@ namespace nsMMOEngine
     TMaster();
     virtual ~TMaster();
     
-		bool IsSessionSeciruty(unsigned int id_session, void* crypt, int size_crypt, 
+		bool IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 
 			                     void* login_password, int size_login_password);
 
     virtual bool TryCreateGroup(std::list<unsigned int>& l_id_client, unsigned int& id_group); 

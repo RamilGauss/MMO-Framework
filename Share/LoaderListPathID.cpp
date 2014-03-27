@@ -142,7 +142,8 @@ bool TLoaderListPathID::LoadPartID_Behavior(int i, map<unsigned int,unsigned int
   unsigned int id,id_behavior;
   RET_FALSE(mXML->ReadUint(Section_ID,0,id))
   RET_FALSE(mXML->ReadUint(Section_ID_behavior,0,id_behavior))
-  pMap->insert(map<unsigned int,unsigned int>::value_type(id,id_behavior));
+  // добавление нового значения
+  pMap->operator[](id) = id_behavior;
   //------------------------------------------------
   mXML->LeaveSection();
 

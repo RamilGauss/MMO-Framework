@@ -185,10 +185,10 @@ void TServerGame::MakeVectorModule()
   switch(mType)
   {
     case eSlave:
-      {
-        FuncHandleEvent fSceneEvent = boost::bind(&TServerGame::HandleSceneEvent, this);
-        mMainThreadVecModule.push_back(fSceneEvent);
-      }
+    {
+      FuncHandleEvent fSceneEvent = boost::bind(&TServerGame::HandleSceneEvent, this);
+      mMainThreadVecModule.push_back(fSceneEvent);
+    }
       break;
     case eMaster:
     case eSuperServer:

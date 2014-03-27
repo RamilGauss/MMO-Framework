@@ -234,7 +234,7 @@ void TClientDeveloperTool_ViewerModel::Init(TComponentClient* pComponent, vector
   InitLog();
   mComponent = *pComponent; 
 
-  int cnt[3] = {8,8,8};
+  int cnt[3] = {1,1,1};
 #ifdef LOG_TIME_LOAD_EDITOR_MODEL
   unsigned int start = ht_GetMSCount();
 #endif 

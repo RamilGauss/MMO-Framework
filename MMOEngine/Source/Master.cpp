@@ -899,7 +899,7 @@ void TMaster::NotifyRecipientAboutDisconnectClient(unsigned int id_client,
   mControlSc->mRcm->DisconnectClient();
 }
 //-------------------------------------------------------------------------
-bool TMaster::IsSessionSeciruty(unsigned int id_session, void* crypt,          int size_crypt, 
+bool TMaster::IsSessionSecurity(unsigned int id_session, void* crypt,          int size_crypt, 
 							           			                           void* login_password, int size_login_password)
 {
 	TContainer cRSA;
