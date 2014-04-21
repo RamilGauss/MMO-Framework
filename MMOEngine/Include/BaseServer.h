@@ -18,7 +18,12 @@ namespace nsMMOEngine
   public:
     TBaseServer();
     virtual ~TBaseServer();
-    
+
+    // проверить на доверие сессию
+    bool IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 
+                           void* login_password, int size_login_password);
+
+
     // this method will be realize in future
     virtual void DisconnectByKeyClient(unsigned int id_client);// = 0;
 
