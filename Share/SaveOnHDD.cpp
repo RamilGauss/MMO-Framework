@@ -29,8 +29,6 @@ using namespace std;
 
 TSaveOnHDD::TSaveOnHDD(char* path)
 {
-  pFile = NULL;
-
 	ReOpen(path);
   
   flgPrintf = false;
@@ -40,7 +38,7 @@ TSaveOnHDD::TSaveOnHDD(char* path)
 //---------------------------------------------------------------
 TSaveOnHDD::~TSaveOnHDD()
 {
-	Close();
+	//Close();
   ClearBuffer();
 }
 //---------------------------------------------------------------
@@ -68,10 +66,10 @@ bool TSaveOnHDD::ReOpen(char* path, bool append )
 	return false;
 }
 //---------------------------------------------------------------
-bool TSaveOnHDD::IsOpen()
-{
-	return (pFile!=NULL);
-}
+//bool TSaveOnHDD::IsOpen()
+//{
+//	return (pFile!=NULL);
+//}
 //---------------------------------------------------------------
 void TSaveOnHDD::Write(void* buffer, int size)
 {
@@ -89,12 +87,12 @@ void TSaveOnHDD::Write(void* buffer, int size)
   }
 }
 //---------------------------------------------------------------
-void TSaveOnHDD::Close()
-{
-	if(pFile==NULL) return;
-	fclose(pFile);
-	pFile = NULL;
-}
+//void TSaveOnHDD::Close()
+//{
+//	if(pFile==NULL) return;
+//	fclose(pFile);
+//	pFile = NULL;
+//}
 //---------------------------------------------------------------
 void TSaveOnHDD::WriteF(const char* format, ... )
 {

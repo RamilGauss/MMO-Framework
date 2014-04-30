@@ -41,6 +41,7 @@ void TLogger::Register(const char* nameLogger)
   pSoHDD->SetBufferization(flgBuffer);
 
   mMapNamePtr.insert(TMapStrPtr::value_type(nameLogger,pSoHDD));
+	mVecPtr.push_back(pSoHDD);
   if(sPrefix.length())
   {
     InitLogger(pSoHDD,nameLogger);
@@ -69,6 +70,7 @@ void TLogger::Done()
   BOOST_FOREACH(TMapStrPtr::value_type& bit,mMapNamePtr)
     delete bit.second;
   mMapNamePtr.clear();
+	mVecPtr.clear();
 }
 //-----------------------------------------------------------------------
 TLogger::~TLogger()
@@ -119,5 +121,18 @@ void TLogger::SetBufferization(bool val)
 bool TLogger::GetBufferization()
 {
   return flgBuffer;
+}
+//-----------------------------------------------------------------------
+int TLogger::GetCount()
+{
+	return mVecPtr.size();
+}
+//-----------------------------------------------------------------------
+TSaveOnHDD* TLogger::GetByIndex( int index )
+{
+	if((index >= GetCount()) ||
+		 (index < 0          ))
+		return NULL;
+	return mVecPtr[index];
 }
 //-----------------------------------------------------------------------

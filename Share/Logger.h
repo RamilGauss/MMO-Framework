@@ -17,6 +17,9 @@ See for more information License.h.
 
 class SHARE_EI TLogger : public TOnly_N_Object
 {
+	typedef std::vector<TSaveOnHDD*> TVectorPtr;
+	TVectorPtr mVecPtr;
+
   typedef std::map<std::string,TSaveOnHDD*> TMapStrPtr;
   TMapStrPtr mMapNamePtr;
 
@@ -52,6 +55,9 @@ public:
 
   void SetBufferization(bool val);
   bool GetBufferization();
+
+	int GetCount();
+	TSaveOnHDD* GetByIndex( int index);
 
 protected:
   void InitLogger(TSaveOnHDD* saver, const char* sName);

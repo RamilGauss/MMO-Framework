@@ -15,31 +15,22 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
+#include "FileInfoHDD.h"
 /*
   Загрузка из файла
 */
 
-class SHARE_EI TLoadFromHDD
+class SHARE_EI TLoadFromHDD : public TFileInfoHDD
 {
-  std::string sPath;
-  FILE* pFile;
-
 public:
-
 	TLoadFromHDD(char* path = NULL);
-	~TLoadFromHDD();
+	virtual ~TLoadFromHDD();
 
-	bool ReOpen(char* path);
+	virtual bool ReOpen(char* path, bool append = false);
 
-	bool IsOpen();
 	unsigned int Size();
-
   unsigned int Read(void* buffer, unsigned int size, unsigned int offset = 0);
-  
   int ReadSmall(TContainer& c);
-
- 	void Close();
-
 };
 
 #endif

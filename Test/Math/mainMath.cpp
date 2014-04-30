@@ -17,6 +17,7 @@
 #include "Events.h"
 #include "SrcEvent_ex.h"
 #include "DstEvent.h"
+#include "LoadFromHDD.h"
 
 using namespace nsStruct3D;
 using namespace nsMMOEngine;
@@ -25,6 +26,12 @@ using namespace nsMMOEngine;
 
 int main(int argc, char** argv)
 {
+	TLoadFromHDD loader;
+	bool res = loader.ReOpen("e:\\MyProjects\\MMOFramework\\Test\\Math\\mainMath.cpp");
+	std::string full_path, name;
+	loader.GetFullPathName(full_path);
+	loader.GetName(name);
+
 	//identity_matrix<float> ident_m(4,4);
 	//matrix<float> m(4,4);
 	//m = ident_m;

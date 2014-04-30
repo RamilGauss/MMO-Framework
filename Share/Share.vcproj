@@ -244,6 +244,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\FileInfoHDD.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\GCS.cpp"
 				>
 			</File>
@@ -503,6 +507,10 @@
 			</File>
 			<File
 				RelativePath=".\file_operation.h"
+				>
+			</File>
+			<File
+				RelativePath=".\FileInfoHDD.h"
 				>
 			</File>
 			<File

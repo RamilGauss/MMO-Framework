@@ -15,6 +15,7 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "ContainerTypes.h"
 #include "ListPtr.h"
+#include "FileInfoHDD.h"
 
 /*
   Сохранение файла. 
@@ -22,11 +23,11 @@ See for more information License.h.
   Буферизация при отсутствии открытого файла.
 */
 
-class SHARE_EI TSaveOnHDD
+class SHARE_EI TSaveOnHDD : public TFileInfoHDD
 {
-  std::string sPath;
+  //std::string sPath;
 
-	FILE* pFile;
+	//FILE* pFile;
 
   bool flgPrintf;
   bool flgEnable;
@@ -45,15 +46,14 @@ public:
 
   // в случае append==false - стирает содержимое файла
 	virtual bool ReOpen(char* path, bool append = false );
-
-	virtual bool IsOpen();
+	//virtual bool IsOpen();
+	//virtual void Close();
 
 	virtual void Write(void* buffer, int size);
   // форматированная строка, по типу printf(...)
   virtual void WriteF(const char* format, ... );
   virtual void WriteF_time(const char* format, ... );
 
-	virtual void Close();
 
   void SetPrintf(bool val){flgPrintf=val;};// все что записывается - дублируется в вывод на консоль
   bool GetPrintf(){return flgPrintf;};     // но только для форматированной строки

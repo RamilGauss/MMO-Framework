@@ -16,17 +16,15 @@ using namespace std;
 
 TLoadFromHDD::TLoadFromHDD(char* path)
 {
-  pFile = NULL;
-
-	ReOpen(path);
+ 	ReOpen(path);
 }
 //---------------------------------------------------------------
 TLoadFromHDD::~TLoadFromHDD()
 {
-	Close();
+
 }
 //---------------------------------------------------------------
-bool TLoadFromHDD::ReOpen(char* path)
+bool TLoadFromHDD::ReOpen(char* path, bool /*append*/)
 {
   Close();
 
@@ -40,11 +38,6 @@ bool TLoadFromHDD::ReOpen(char* path)
 	if(pFile!=NULL) return true;
 
 	return false;
-}
-//---------------------------------------------------------------
-bool TLoadFromHDD::IsOpen()
-{
-  return (pFile!=NULL);
 }
 //---------------------------------------------------------------
 unsigned int TLoadFromHDD::Size()
@@ -90,12 +83,5 @@ unsigned int TLoadFromHDD::Read(void* buffer, unsigned int size, unsigned int of
 
   fread(buffer, size, 1, pFile);
   return min(max_read, size);
-}
-//---------------------------------------------------------------
-void TLoadFromHDD::Close()
-{
-	if(pFile==NULL) return;
-  fclose(pFile);
-	pFile = NULL;
 }
 //---------------------------------------------------------------
