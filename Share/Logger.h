@@ -9,7 +9,7 @@ See for more information License.h.
 #ifndef LoggerH 
 #define LoggerH
 
-#include "SaveOnHDD.h"
+#include "SaveToFile.h"
 #include <map>
 #include <string>
 #include "Only_N_Object.h"
@@ -17,10 +17,10 @@ See for more information License.h.
 
 class SHARE_EI TLogger : public TOnly_N_Object
 {
-	typedef std::vector<TSaveOnHDD*> TVectorPtr;
+	typedef std::vector<TSaveToFile*> TVectorPtr;
 	TVectorPtr mVecPtr;
 
-  typedef std::map<std::string,TSaveOnHDD*> TMapStrPtr;
+  typedef std::map<std::string,TSaveToFile*> TMapStrPtr;
   TMapStrPtr mMapNamePtr;
 
   std::string sPrefix;
@@ -45,7 +45,7 @@ public:
 
   void Init(char* sPrefix);
   void Done();
-  TSaveOnHDD* Get(const char* nameLog);
+  TSaveToFile* Get(const char* nameLog);
 
   void SetPrintf(bool val);
   bool GetPrintf();
@@ -57,14 +57,14 @@ public:
   bool GetBufferization();
 
 	int GetCount();
-	TSaveOnHDD* GetByIndex( int index);
+	TSaveToFile* GetByIndex( int index);
 
 protected:
-  void InitLogger(TSaveOnHDD* saver, const char* sName);
+  void InitLogger(TSaveToFile* saver, const char* sName);
 };
 
 extern SHARE_EI TLogger* GetLogger();
-extern SHARE_EI TSaveOnHDD* GetLogger(const char* nameLog);
+extern SHARE_EI TSaveToFile* GetLogger(const char* nameLog);
 
 
 #endif 

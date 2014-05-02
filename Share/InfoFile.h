@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef FileInfoHDDH
-#define FileInfoHDDH
+#ifndef InfoFileH
+#define InfoFileH
 
 #include <stdio.h>
 #include <string>
@@ -14,15 +14,15 @@ See for more information License.h.
 #include "TypeDef.h"
 
 
-class SHARE_EI TFileInfoHDD
+class SHARE_EI InfoFile
 {
 protected:
   std::string sPath;
   FILE* pFile;
 public:
 
-	TFileInfoHDD();
-	virtual ~TFileInfoHDD();
+	InfoFile();
+	virtual ~InfoFile();
 
 	virtual bool ReOpen(char* path, bool append = false) = 0;
 	virtual bool IsOpen();

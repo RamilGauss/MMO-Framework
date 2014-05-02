@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SaveOnHDDH
-#define SaveOnHDDH
+#ifndef SaveToFileH
+#define SaveToFileH
 
 
 #include <stdio.h>
@@ -15,7 +15,7 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "ContainerTypes.h"
 #include "ListPtr.h"
-#include "FileInfoHDD.h"
+#include "InfoFile.h"
 
 /*
   Сохранение файла. 
@@ -23,12 +23,8 @@ See for more information License.h.
   Буферизация при отсутствии открытого файла.
 */
 
-class SHARE_EI TSaveOnHDD : public TFileInfoHDD
+class SHARE_EI TSaveToFile : public InfoFile
 {
-  //std::string sPath;
-
-	//FILE* pFile;
-
   bool flgPrintf;
   bool flgEnable;
   bool flgBuffer;
@@ -41,8 +37,8 @@ class SHARE_EI TSaveOnHDD : public TFileInfoHDD
 
 public:
 
-	TSaveOnHDD(char* path = NULL);
-	virtual ~TSaveOnHDD();
+	TSaveToFile(char* path = NULL);
+	virtual ~TSaveToFile();
 
   // в случае append==false - стирает содержимое файла
 	virtual bool ReOpen(char* path, bool append = false );

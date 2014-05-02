@@ -6,7 +6,7 @@
 
 #include "HiTimer.h"
 #include "NetSystem.h"
-#include "SaveOnHDD.h"
+#include "SaveToFile.h"
 #include "Logger.h"
 
 TAutoCreateVarT<TShareTest> g_ShareTest;

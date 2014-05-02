@@ -9,12 +9,12 @@ See for more information License.h.
 #define UdpDeviceH
 
 #include "classTools.h"
-#include "SaveOnHDD.h"
+#include "SaveToFile.h"
 
 // Класс, реализующий прием/отправку данных по протоколу UDP
 class SHARE_EI UdpDevice
 {
-  TSaveOnHDD mLog;
+  TSaveToFile mLog;
 
   int mSocket;
   void*       olRead;     // OVERLAPPED*

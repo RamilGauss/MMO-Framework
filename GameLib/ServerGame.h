@@ -18,7 +18,7 @@ See for more information License.h.
 class TServerGame : public IGame
 {
 protected:
-	TSaveOnHDD mLogLoad;
+	TSaveToFile mLogLoad;
 
 	typedef TStatType_double TStatLoad;
 	TStatLoad mStatLoad;

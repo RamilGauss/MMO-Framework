@@ -6,8 +6,8 @@ See for more information License.h.
 */
 
 #include "MeshFileBj.h"
-#include "SaveOnHDD.h"
-#include "LoadFromHDD.h"
+#include "SaveToFile.h"
+#include "LoadFromFile.h"
 #include "IXML.h"
 
 using namespace nsMeshStruct;
@@ -33,7 +33,7 @@ bool TMeshFileBj::Load(const char* strFilename,
      точки по 32 байта
     все остальное - это индексы
   */
-  TLoadFromHDD loader;
+  TLoadFromFile loader;
   if(loader.ReOpen((char*)strFilename)==false) return false;
   int size = loader.Size();
 
@@ -61,7 +61,7 @@ bool TMeshFileBj::Save(const char* strFilename,
                   VERTEX*       pVertex, unsigned int cntV,
                   unsigned int* pIndex,  unsigned int cntI) 
 {
-  TSaveOnHDD saver;
+  TSaveToFile saver;
   RET_FALSE(saver.ReOpen((char*)strFilename));
 
   saver.Write(&cntV,sizeof(cntV));// кол-во точек

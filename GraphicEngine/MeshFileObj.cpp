@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include "MeshFileObj.h"
-#include "LoadFromHDD.h"
+#include "LoadFromFile.h"
 #include "BL_Debug.h"
 #include <fstream>
 #include <list>

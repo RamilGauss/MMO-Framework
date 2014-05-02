@@ -10,7 +10,7 @@
 #include "GlobalParams.h"
 #include "HiTimer.h"
 #include "NetSystem.h"
-#include "SaveOnHDD.h"
+#include "SaveToFile.h"
 #include "ListPtr.h"
 #include "BreakPacket.h"
 #include "share_test.h"

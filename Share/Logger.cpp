@@ -20,12 +20,12 @@ TLogger* GetLogger()
   return (TLogger*)&g_Logger;
 }
 //-----------------------------------------------------------------------
-TSaveOnHDD* GetLogger(const char* nameLog)
+TSaveToFile* GetLogger(const char* nameLog)
 {
   return g_Logger.Get(nameLog);
 }
 //-----------------------------------------------------------------------
-void TLogger::InitLogger(TSaveOnHDD* saver, const char* sName)
+void TLogger::InitLogger(TSaveToFile* saver, const char* sName)
 {
   if(saver->IsOpen()) return;
   char nameLogFile[260];
@@ -35,7 +35,7 @@ void TLogger::InitLogger(TSaveOnHDD* saver, const char* sName)
 //-----------------------------------------------------------------------
 void TLogger::Register(const char* nameLogger)
 {
-  TSaveOnHDD* pSoHDD = new TSaveOnHDD;
+  TSaveToFile* pSoHDD = new TSaveToFile;
   pSoHDD->SetPrintf(flgPrintf);
   pSoHDD->SetEnable(flgEnable);
   pSoHDD->SetBufferization(flgBuffer);
@@ -56,7 +56,7 @@ void TLogger::Init(char* prefix)
     InitLogger(bit.second,bit.first.data());
 }
 //-----------------------------------------------------------------------
-TSaveOnHDD* TLogger::Get(const char* nameLog)
+TSaveToFile* TLogger::Get(const char* nameLog)
 {
   TMapStrPtr::iterator fit = mMapNamePtr.find(nameLog);
   if(mMapNamePtr.end()!=fit)
@@ -128,7 +128,7 @@ int TLogger::GetCount()
 	return mVecPtr.size();
 }
 //-----------------------------------------------------------------------
-TSaveOnHDD* TLogger::GetByIndex( int index )
+TSaveToFile* TLogger::GetByIndex( int index )
 {
 	if((index >= GetCount()) ||
 		 (index < 0          ))

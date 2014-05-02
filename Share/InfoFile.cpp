@@ -5,31 +5,31 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "FileInfoHDD.h"
+#include "InfoFile.h"
 
-TFileInfoHDD::TFileInfoHDD()
+InfoFile::InfoFile()
 {
 	pFile = NULL;
 }
 //------------------------------------------------------------------
-TFileInfoHDD::~TFileInfoHDD()
+InfoFile::~InfoFile()
 {
 	Close();
 }
 //------------------------------------------------------------------
-bool TFileInfoHDD::IsOpen()
+bool InfoFile::IsOpen()
 {
   return (pFile!=NULL);
 }
 //------------------------------------------------------------------
-void TFileInfoHDD::Close()
+void InfoFile::Close()
 {
 	if(pFile==NULL) return;
 	fclose(pFile);
 	pFile = NULL;
 }
 //------------------------------------------------------------------
-void TFileInfoHDD::GetName(std::string& path_name)
+void InfoFile::GetName(std::string& path_name)
 {
 	if(IsOpen()==false)
 		return;
@@ -43,14 +43,14 @@ void TFileInfoHDD::GetName(std::string& path_name)
 	path_name = sPath.data() + index + 1;
 }
 //------------------------------------------------------------------
-void TFileInfoHDD::GetPath(std::string& path_name)
+void InfoFile::GetPath(std::string& path_name)
 {
 	if(IsOpen()==false)
 		return;
 	path_name = sPath;
 }
 //------------------------------------------------------------------
-void TFileInfoHDD::GetFullPathName(std::string& path_name)
+void InfoFile::GetFullPathName(std::string& path_name)
 {
 	path_name = "";
 

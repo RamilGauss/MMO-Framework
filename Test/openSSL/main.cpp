@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <openssl/md5.h>
 #include "ContainerTypes.h"
-#include "LoadFromHDD.h"
+#include "LoadFromFile.h"
 #include "MD5.h"
 #include "SHA.h"
 #include "openssl/sha.h"
@@ -10,7 +10,7 @@
 int main(int argc, char **argv)
 {
   // 3EB92D12773E8BF8061AFF68D5C187CEAA8DBFB7
-  TLoadFromHDD loader;
+  TLoadFromFile loader;
   bool res = loader.ReOpen("d:\\dbltj\\загадка.txt");
   //bool res = loader.ReOpen("d:\\dbltj\\Virtual Zeppelin-The Lemon Song.flv");
   if(res==false)

@@ -6,8 +6,8 @@ See for more information License.h.
 */
 
 
-#ifndef LoadFromHDDH
-#define LoadFromHDDH
+#ifndef LoadFromFileH
+#define LoadFromFileH
 
 
 #include <stdio.h>
@@ -15,16 +15,16 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
-#include "FileInfoHDD.h"
+#include "InfoFile.h"
 /*
   Загрузка из файла
 */
 
-class SHARE_EI TLoadFromHDD : public TFileInfoHDD
+class SHARE_EI TLoadFromFile : public InfoFile
 {
 public:
-	TLoadFromHDD(char* path = NULL);
-	virtual ~TLoadFromHDD();
+	TLoadFromFile(char* path = NULL);
+	virtual ~TLoadFromFile();
 
 	virtual bool ReOpen(char* path, bool append = false);
 

@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "LoadFromHDD.h"
+#include "LoadFromFile.h"
 
 #include <string.h>
 #include <sys/types.h>
@@ -14,17 +14,17 @@ See for more information License.h.
 
 using namespace std;
 
-TLoadFromHDD::TLoadFromHDD(char* path)
+TLoadFromFile::TLoadFromFile(char* path)
 {
  	ReOpen(path);
 }
 //---------------------------------------------------------------
-TLoadFromHDD::~TLoadFromHDD()
+TLoadFromFile::~TLoadFromFile()
 {
 
 }
 //---------------------------------------------------------------
-bool TLoadFromHDD::ReOpen(char* path, bool /*append*/)
+bool TLoadFromFile::ReOpen(char* path, bool /*append*/)
 {
   Close();
 
@@ -40,7 +40,7 @@ bool TLoadFromHDD::ReOpen(char* path, bool /*append*/)
 	return false;
 }
 //---------------------------------------------------------------
-unsigned int TLoadFromHDD::Size()
+unsigned int TLoadFromFile::Size()
 {
 #ifdef WIN32
 	int fd = _fileno(pFile);
@@ -65,13 +65,13 @@ unsigned int TLoadFromHDD::Size()
 #endif
 }
 //---------------------------------------------------------------
-int TLoadFromHDD::ReadSmall(TContainer& c)
+int TLoadFromFile::ReadSmall(TContainer& c)
 {
   c.SetDataByCount(NULL, Size());
   return Read( c.GetPtr(), c.GetSize(), 0);
 }
 //---------------------------------------------------------------
-unsigned int TLoadFromHDD::Read(void* buffer, unsigned int size, unsigned int offset)
+unsigned int TLoadFromFile::Read(void* buffer, unsigned int size, unsigned int offset)
 {
   int res = _fseeki64( pFile, __int64(offset), SEEK_SET);
 

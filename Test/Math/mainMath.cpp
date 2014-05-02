@@ -17,7 +17,7 @@
 #include "Events.h"
 #include "SrcEvent_ex.h"
 #include "DstEvent.h"
-#include "LoadFromHDD.h"
+#include "LoadFromFile.h"
 
 using namespace nsStruct3D;
 using namespace nsMMOEngine;
@@ -26,7 +26,7 @@ using namespace nsMMOEngine;
 
 int main(int argc, char** argv)
 {
-	TLoadFromHDD loader;
+	TLoadFromFile loader;
 	bool res = loader.ReOpen("e:\\MyProjects\\MMOFramework\\Test\\Math\\mainMath.cpp");
 	std::string full_path, name;
 	loader.GetFullPathName(full_path);

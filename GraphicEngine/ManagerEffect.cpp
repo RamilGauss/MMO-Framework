@@ -8,7 +8,7 @@ See for more information License.h.
 #include "ManagerEffect.h"
 #include "HiTimer.h"
 #include "Logger.h"
-#include "SaveOnHDD.h"
+#include "SaveToFile.h"
 #include "IGraphicEngine.h"
 
 #include <boost/foreach.hpp>

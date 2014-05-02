@@ -9,7 +9,7 @@ See for more information License.h.
 #include <d3d9.h>
 #include "ModelDX.h"
 #include "GlobalParams.h"
-#include "LoadFromHDD.h"
+#include "LoadFromFile.h"
 #include "Logger.h"
 #include "BL_Debug.h"
 #include "LoaderListPathID.h"

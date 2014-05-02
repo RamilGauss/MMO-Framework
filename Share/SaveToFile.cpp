@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "SaveOnHDD.h"
+#include "SaveToFile.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -27,7 +27,7 @@ See for more information License.h.
 
 using namespace std;
 
-TSaveOnHDD::TSaveOnHDD(char* path)
+TSaveToFile::TSaveToFile(char* path)
 {
 	ReOpen(path);
   
@@ -36,13 +36,13 @@ TSaveOnHDD::TSaveOnHDD(char* path)
   flgBuffer = true;
 }
 //---------------------------------------------------------------
-TSaveOnHDD::~TSaveOnHDD()
+TSaveToFile::~TSaveToFile()
 {
 	//Close();
   ClearBuffer();
 }
 //---------------------------------------------------------------
-bool TSaveOnHDD::ReOpen(char* path, bool append )
+bool TSaveToFile::ReOpen(char* path, bool append )
 {
 	Close();
 
@@ -71,7 +71,7 @@ bool TSaveOnHDD::ReOpen(char* path, bool append )
 //	return (pFile!=NULL);
 //}
 //---------------------------------------------------------------
-void TSaveOnHDD::Write(void* buffer, int size)
+void TSaveToFile::Write(void* buffer, int size)
 {
   if(flgEnable==false) return;
 
@@ -94,7 +94,7 @@ void TSaveOnHDD::Write(void* buffer, int size)
 //	pFile = NULL;
 //}
 //---------------------------------------------------------------
-void TSaveOnHDD::WriteF(const char* format, ... )
+void TSaveToFile::WriteF(const char* format, ... )
 {
   if(flgEnable==false) return;
 
@@ -117,7 +117,7 @@ void TSaveOnHDD::WriteF(const char* format, ... )
   Write(s,strlen(s));
 }
 //---------------------------------------------------------------
-void TSaveOnHDD::WriteF_time(const char* format, ... )
+void TSaveToFile::WriteF_time(const char* format, ... )
 {
   if(flgEnable==false) return;
 
@@ -143,7 +143,7 @@ void TSaveOnHDD::WriteF_time(const char* format, ... )
   Write(s,strlen(s));
 }
 //---------------------------------------------------------------
-void TSaveOnHDD::Write_Time()
+void TSaveToFile::Write_Time()
 {
 #ifdef WIN32
   struct _timeb timebuffer;
@@ -170,7 +170,7 @@ void TSaveOnHDD::Write_Time()
   Write(str_time,strlen(str_time));
 }
 //---------------------------------------------------------------
-void TSaveOnHDD::FlushBuffer()
+void TSaveToFile::FlushBuffer()
 {
   TListContainer::T::iterator bit = mListBuffer->begin();
   TListContainer::T::iterator eit = mListBuffer->end();
@@ -184,12 +184,12 @@ void TSaveOnHDD::FlushBuffer()
   mListBuffer->clear();
 }
 //---------------------------------------------------------------
-void TSaveOnHDD::ClearBuffer()
+void TSaveToFile::ClearBuffer()
 {
   mListBuffer.Clear();
 }
 //---------------------------------------------------------------
-void TSaveOnHDD::FlushInBuffer(char* buffer, int size)
+void TSaveToFile::FlushInBuffer(char* buffer, int size)
 {
   TContainer* v = new TContainer;
   v->SetDataByCount(buffer,size);
