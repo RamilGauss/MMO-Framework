@@ -11,7 +11,7 @@ See for more information License.h.
 #include <list>
 
 #include "TypeDef.h"
-#include "Struct3D.h"
+#include "MathTools.h"
 #include "SrcEvent.h"
 
 #define STR_NAME_GE "GE"
@@ -58,8 +58,8 @@ public:
 
   // клиентские эффекты движка, не вли€ют на физические параметры объектов
   virtual void SetEffect(unsigned short id_effect/*уникальный эффект, см. таблицу эффектов*/,
-    nsStruct3D::TVector3* coord3,     // где
-    nsStruct3D::TVector3* orient3,    // ориентаци€ эффекта
+    nsMathTools::TVector3* coord3,     // где
+    nsMathTools::TVector3* orient3,    // ориентаци€ эффекта
     unsigned int time_past/* прошло времени, мс*/ = 0) = 0;
   virtual void SetViewFPS(bool val) = 0;
   // источники освещени€
@@ -68,10 +68,10 @@ public:
   virtual bool GetLightEnable(int index) = 0;
   virtual int  GetCountAllLight() = 0;
 
-	virtual const nsStruct3D::TVector3* GetLightPosition(int index) = 0;	
-	virtual void SetLightPosition(int index,nsStruct3D::TVector3* m3) = 0;
-	virtual const nsStruct3D::TVector3* GetLightColor(int index) = 0;
-	virtual void SetLightColor(int index, nsStruct3D::TVector3* color) = 0;
+	virtual const nsMathTools::TVector3* GetLightPosition(int index) = 0;	
+	virtual void SetLightPosition(int index,nsMathTools::TVector3* m3) = 0;
+	virtual const nsMathTools::TVector3* GetLightColor(int index) = 0;
+	virtual void SetLightColor(int index, nsMathTools::TVector3* color) = 0;
 
 	virtual bool GetPostEffectMirror() = 0;
 	virtual void SetPostEffectMirror(bool v) = 0;

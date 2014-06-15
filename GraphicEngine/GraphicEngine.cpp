@@ -37,7 +37,7 @@ See for more information License.h.
 //#define LOG_DX_STREAM
 
 using namespace std;
-using namespace nsStruct3D;
+using namespace nsMathTools;
 using namespace nsEvent;
 
 #pragma warning(disable: 4355)
@@ -758,12 +758,12 @@ void TGraphicEngine::RenderCubeMap(IDirect3DDevice9* pd3dDevice)
 		if(nPart>0)
 		{
 			pMatObj = pObj->GetWorld();
-			mat_view._41 = 0;// вращаться камера будет вокруг центра координат
-			mat_view._42 = 0;// затем умножится на матрицу, которая рассчитана для одной из сторон Cube map
-			mat_view._43 = 0;
-			vec_camera_pos.x = pMatObj->_41;
-			vec_camera_pos.y = pMatObj->_42;
-			vec_camera_pos.z = pMatObj->_43;
+			mat_view.s._41 = 0;// вращаться камера будет вокруг центра координат
+			mat_view.s._42 = 0;// затем умножится на матрицу, которая рассчитана для одной из сторон Cube map
+			mat_view.s._43 = 0;
+			vec_camera_pos.x = pMatObj->s._41;
+			vec_camera_pos.y = pMatObj->s._42;
+			vec_camera_pos.z = pMatObj->s._43;
 		}
 		for(int iPart = 0; iPart < nPart ; iPart++)// перечисление всех частей объекта, которые нуждаются в построении текстуры CubeMap
 		{

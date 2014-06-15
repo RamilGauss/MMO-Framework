@@ -20,7 +20,7 @@ namespace TreeSection
 
 using namespace std;
 using namespace TreeSection;
-using namespace nsStruct3D;
+using namespace nsMathTools;
 
 TLoaderTree::TLoaderTree()
 {

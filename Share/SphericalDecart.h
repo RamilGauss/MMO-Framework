@@ -9,7 +9,7 @@ See for more information License.h.
 #define SphericalDecartH
 
 #include "TypeDef.h"
-#include "Struct3D.h"
+#include "MathTools.h"
 
 class SHARE_EI TSphericalDecart
 {
@@ -20,8 +20,8 @@ public:
 		float theta;// относительно z
 		float r;
 	};
-	void Shperic2Decart(TSpheric& s,  nsStruct3D::TVector3&  d);
-	void Decart2Shperic(nsStruct3D::TVector3&  d, TSpheric& s);
+	void Shperic2Decart(TSpheric& s,  nsMathTools::TVector3&  d);
+	void Decart2Shperic(nsMathTools::TVector3&  d, TSpheric& s);
 };
 
 #endif

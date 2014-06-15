@@ -9,7 +9,7 @@ See for more information License.h.
 #define IDirectX_RealizeH
 
 #include <windows.h>
-#include "Struct3D.h"
+#include "MathTools.h"
 #include "DXUT.h"
 
 class TGraphicEngine;
@@ -45,7 +45,7 @@ public:
   virtual HRESULT CaptureState9() = 0;
   virtual HRESULT ApplyState9() = 0;
 
-	virtual void GetCubeMapViewMatrix( DWORD dwFace, nsStruct3D::TMatrix16& m ) = 0;
+	virtual void GetCubeMapViewMatrix( DWORD dwFace, nsMathTools::TMatrix16& m ) = 0;
 
 	virtual DXUTDeviceSettings GetDeviceSettings() = 0;
   

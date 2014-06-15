@@ -16,7 +16,7 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "AutoCreateVar.h"
 
-using namespace nsStruct3D;
+using namespace nsMathTools;
 using namespace std;
 
 static TAutoCreateVarT<TManagerBaseObject> mManagerObject;

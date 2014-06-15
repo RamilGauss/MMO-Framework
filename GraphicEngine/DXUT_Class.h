@@ -53,7 +53,7 @@ public:
   virtual IDirect3D9*       GetD3D9Object();
   virtual IDirect3DDevice9* GetD3D9Device();
 
-	virtual void GetCubeMapViewMatrix( DWORD dwFace, nsStruct3D::TMatrix16& m);
+	virtual void GetCubeMapViewMatrix( DWORD dwFace, nsMathTools::TMatrix16& m);
 
 	virtual DXUTDeviceSettings GetDeviceSettings();
 

@@ -11,7 +11,7 @@ See for more information License.h.
 #include <vector>
 #include <map>
 #include <string>
-#include "Struct3D.h"
+#include "MathTools.h"
 #include "TypeDef.h"
 
 
@@ -44,7 +44,7 @@ public:
   struct TChild
   {
     std::string   name;
-    nsStruct3D::TMatrix16 matrix;
+    nsMathTools::TMatrix16 matrix;
   };
   struct TPart
   {
@@ -74,7 +74,7 @@ public:
   struct TLoadedJoint
   {
     // матрица root, относительно него все строится
-    nsStruct3D::TMatrix16 world;
+    nsMathTools::TMatrix16 world;
     std::string root;   // название корня
     std::vector<TPart*> vectorPart;// части для соединения, одна из этих частей всегда root (по имени)
     ~TLoadedJoint()
@@ -119,9 +119,9 @@ public:
   void SetOrderMatrixByName(std::vector<std::string>* order);// вызвать до вызова ChangeMatrix и GetMatrix // +
   
   // умножить матрицу по-умолчанию на новую матрицу и произвести изменения по всем детям
-  void ChangeMatrix(std::string& name, nsStruct3D::TMatrix16* matrix, bool def = true);// +
+  void ChangeMatrix(std::string& name, nsMathTools::TMatrix16* matrix, bool def = true);// +
   // заполнить матрицей
-  void GetMatrix(std::vector<nsStruct3D::TMatrix16*>* matrix);// +
+  void GetMatrix(std::vector<nsMathTools::TMatrix16*>* matrix);// +
   // сбросить все матрицы в дефолт
   void SetDefault(); // +
 
@@ -135,9 +135,9 @@ protected:
     TNodeJoint* pParent;
     std::vector<TNodeJoint*> mVectorChild;
     std::string   name;
-    nsStruct3D::TMatrix16 matrixDef; // то что считали с файла настроек
-    nsStruct3D::TMatrix16 matrix;    // эта матрица получается умножением матрицы по-умолчанию на заданную матрицу через метод ChangeMatrix
-    nsStruct3D::TMatrix16 matrix_pro;// произведение по иерархии
+    nsMathTools::TMatrix16 matrixDef; // то что считали с файла настроек
+    nsMathTools::TMatrix16 matrix;    // эта матрица получается умножением матрицы по-умолчанию на заданную матрицу через метод ChangeMatrix
+    nsMathTools::TMatrix16 matrix_pro;// произведение по иерархии
     
     TNodeJoint()
     {

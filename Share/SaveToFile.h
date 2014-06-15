@@ -42,8 +42,6 @@ public:
 
   // в случае append==false - стирает содержимое файла
 	virtual bool ReOpen(char* path, bool append = false );
-	//virtual bool IsOpen();
-	//virtual void Close();
 
 	virtual void Write(void* buffer, int size);
   // форматированная строка, по типу printf(...)

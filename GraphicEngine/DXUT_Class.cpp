@@ -9,7 +9,7 @@ See for more information License.h.
 #include "GraphicEngine.h"
 
 using namespace std;
-using namespace nsStruct3D;
+using namespace nsMathTools;
 
 TDXUT* pDXUT_Realize = NULL;
 

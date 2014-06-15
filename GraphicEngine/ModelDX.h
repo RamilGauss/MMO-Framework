@@ -16,7 +16,7 @@ See for more information License.h.
 #include <map>
 #include <list>
 
-#include "Struct3D.h"
+#include "MathTools.h"
 #include "EffectDX.h"
 #include "ILoaderModelGE.h"
 #include "ShaderStack.h"
@@ -56,10 +56,10 @@ public:
   virtual void Draw(std::vector<void*>* pVecTexCubeMap,//                           
                     std::vector<unsigned char>* state, //                           
                     std::vector<unsigned char>* mask,  //                           
-                    std::vector<nsStruct3D::TMatrix16*>* matrix,//кол-во совпадает с cSubset 
-                    nsStruct3D::TMatrix16* pWorld,    // где и как расположен объект         
+                    std::vector<nsMathTools::TMatrix16*>* matrix,//кол-во совпадает с cSubset 
+                    nsMathTools::TMatrix16* pWorld,    // где и как расположен объект         
                     float alphaTransparency,  // прозрачность                       
-                    const nsStruct3D::TMatrix16* pView, // расположение и ориентация камеры    
+                    const nsMathTools::TMatrix16* pView, // расположение и ориентация камеры    
                     void* pEffect = NULL);
 
 
@@ -127,20 +127,20 @@ protected:
   void DrawSelf(std::vector<void*>* pVecTexCubeMap,//                           
 						    std::vector<unsigned char>* state, //                           
                 std::vector<unsigned char>* mask,  //                           
-                std::vector<nsStruct3D::TMatrix16*>* matrix,//кол-во совпадает с cSubset 
-                nsStruct3D::TMatrix16* pWorld,    // где и как расположен объект         
+                std::vector<nsMathTools::TMatrix16*>* matrix,//кол-во совпадает с cSubset 
+                nsMathTools::TMatrix16* pWorld,    // где и как расположен объект         
                 float alphaTransparency,  // прозрачность                       
-                const nsStruct3D::TMatrix16* pView); // расположение и ориентация камеры    
+                const nsMathTools::TMatrix16* pView); // расположение и ориентация камеры    
 
   // подменить эффект для отрисовки (модель служит как источник ресурсов)
   void DrawBy(void* pVecEffect,// пока один эффект на модель, но нужно будет переделать на вектор
               std::vector<void*>* pVecTexCubeMap,    //                           
               std::vector<unsigned char>* state,     //                           
               std::vector<unsigned char>* mask,      //                           
-              std::vector<nsStruct3D::TMatrix16*>* matrix,//кол-во совпадает с cSubset 
-              nsStruct3D::TMatrix16* pWorld,    // где и как расположен объект         
+              std::vector<nsMathTools::TMatrix16*>* matrix,//кол-во совпадает с cSubset 
+              nsMathTools::TMatrix16* pWorld,    // где и как расположен объект         
               float alphaTransparency,  // прозрачность                        
-              const nsStruct3D::TMatrix16* pView); // расположение и ориентация камеры    
+              const nsMathTools::TMatrix16* pView); // расположение и ориентация камеры    
 };
 //-----------------------------------------------------------------
 

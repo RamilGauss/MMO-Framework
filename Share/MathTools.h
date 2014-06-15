@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef Struct3DH
-#define Struct3DH
+#ifndef MathToolsH
+#define MathToolsH
 
 #include "TypeDef.h"
 
@@ -79,7 +79,7 @@ CopyMatrix16((float*)&b,(float*)a);
 CopyMatrix16((float*)b,(float*)a);
 //----------------------------------------------------------------------
 
-namespace nsStruct3D
+namespace nsMathTools
 {
 
 #pragma pack(push, 1)
@@ -188,12 +188,15 @@ public:
 //-----------------------------------------------------------------
 class SHARE_EI TMatrix9
 {
-  union {
-    struct {
+public:
+  union 
+  {
+    struct 
+    {
       float _11, _12, _13;
       float _21, _22, _23;
       float _31, _32, _33;
-    };
+    }s;
     float m[3][3];
   };
 };
@@ -201,13 +204,15 @@ class SHARE_EI TMatrix9
 class SHARE_EI TMatrix16
 {
 public:
-  union {
-    struct {
+  union 
+  {
+    struct 
+    {
       float _11, _12, _13, _14;
       float _21, _22, _23, _24;
       float _31, _32, _33, _34;
       float _41, _42, _43, _44;
-    };
+    }s;
     float m[4][4];
   };
   TMatrix16(){};
@@ -343,115 +348,128 @@ public:
 //----------------------------------------------------------------------------------------
 SHARE_EI extern void CopyMatrix16(float* pSrc, float* pDst);
 
-SHARE_EI extern float CalcDist(const nsStruct3D::TMatrix16* m1,const nsStruct3D::TMatrix16* m2);
+SHARE_EI extern float CalcDist(const nsMathTools::TMatrix16* m1,const nsMathTools::TMatrix16* m2);
 
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixIdentity(nsStruct3D::TMatrix16* pV);
-SHARE_EI extern nsStruct3D::TMatrix9* SetMatrixIdentity(nsStruct3D::TMatrix9* pV);
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixIdentity(nsMathTools::TMatrix16* pV);
+SHARE_EI extern nsMathTools::TMatrix9* SetMatrixIdentity(nsMathTools::TMatrix9* pV);
 
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixTranslation(nsStruct3D::TMatrix16 *pOut, 
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixTranslation(nsMathTools::TMatrix16 *pOut, 
                                                             float x, float y, float z );
 
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixRotateX(nsStruct3D::TMatrix16* pV, float ugol);
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixRotateY(nsStruct3D::TMatrix16* pV, float ugol);
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixRotateZ(nsStruct3D::TMatrix16* pV, float ugol);
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixRotateX(nsMathTools::TMatrix16* pV, float angle);
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixRotateY(nsMathTools::TMatrix16* pV, float angle);
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixRotateZ(nsMathTools::TMatrix16* pV, float angle);
 
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixRotationYawPitchRoll(nsStruct3D::TMatrix16* pV,
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixRotationYawPitchRoll(nsMathTools::TMatrix16* pV,
                                                                      float Yaw,
                                                                      float Pitch,
                                                                      float Roll );
 
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixRotationAxis(nsStruct3D::TMatrix16 *pOut,
-                                                             const nsStruct3D::TVector3 *pV,
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixRotationAxis(nsMathTools::TMatrix16 *pOut,
+                                                             const nsMathTools::TVector3 *pV,
                                                              float Angle);
 
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixMultiply(nsStruct3D::TMatrix16 *pOut,
-                                                         const nsStruct3D::TMatrix16 *pM1,
-                                                         const nsStruct3D::TMatrix16 *pM2);
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixMultiply(nsMathTools::TMatrix16 *pOut,
+                                                         const nsMathTools::TMatrix16 *pM1,
+                                                         const nsMathTools::TMatrix16 *pM2);
 
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixPerspectiveFovLH( nsStruct3D::TMatrix16* pOut, 
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixPerspectiveFovLH( nsMathTools::TMatrix16* pOut, 
                                                                  float fovy, 
                                                                  float Aspect, 
                                                                  float zn, float zf );
 
-SHARE_EI extern nsStruct3D::TMatrix16* SetMatrixInverse(nsStruct3D::TMatrix16* pOut,
+SHARE_EI extern float SetMatrixfDeterminant(const nsMathTools::TMatrix16 *pm);
+
+SHARE_EI extern nsMathTools::TMatrix16* SetMatrixInverse(nsMathTools::TMatrix16* pOut,
                                                         float* pDeterminant,
-                                                        const nsStruct3D::TMatrix16* pM );
+                                                        const nsMathTools::TMatrix16* pM );
 
-SHARE_EI extern nsStruct3D::TVector3*  SetVec3TransformCoord(nsStruct3D::TVector3* pOut,
-                                                             const nsStruct3D::TVector3* pV,
-                                                             const nsStruct3D::TMatrix16* pM);
+SHARE_EI extern nsMathTools::TVector4* SetVec4Cross(nsMathTools::TVector4 *pout, 
+																										const nsMathTools::TVector4 *pv1, 
+																										const nsMathTools::TVector4 *pv2, 
+																										const nsMathTools::TVector4 *pv3);
 
-SHARE_EI extern nsStruct3D::TVector3*  SetVec3Cross( nsStruct3D::TVector3* pOut,
-                                                     const nsStruct3D::TVector3* pV1,
-                                                     const nsStruct3D::TVector3* pV2);
+SHARE_EI extern nsMathTools::TVector3*  SetVec3Subtract(nsMathTools::TVector3* pOut, 
+																												const nsMathTools::TVector3* pV1, 
+																												const nsMathTools::TVector3* pV2);
 
-SHARE_EI extern float SetVec3Dot( const nsStruct3D::TVector3* pV1,
-                                  const nsStruct3D::TVector3* pV2);
+SHARE_EI extern nsMathTools::TVector3*  SetVec3TransformCoord(nsMathTools::TVector3* pOut,
+                                                             const nsMathTools::TVector3* pV,
+                                                             const nsMathTools::TMatrix16* pM);
 
-SHARE_EI extern nsStruct3D::TVector3* SetVec3Normalize(nsStruct3D::TVector3* pOut,
-                                                       const nsStruct3D::TVector3* pV);
+SHARE_EI extern nsMathTools::TVector3*  SetVec3Cross( nsMathTools::TVector3* pOut,
+                                                     const nsMathTools::TVector3* pV1,
+                                                     const nsMathTools::TVector3* pV2);
 
-SHARE_EI extern nsStruct3D::TPlane* SetPlaneFromPointNormal(nsStruct3D::TPlane* pOut,
-                                                            const nsStruct3D::TVector3* pPoint,
-                                                            const nsStruct3D::TVector3* pNormal);
+SHARE_EI extern float SetVec3Dot( const nsMathTools::TVector3* pV1,
+                                  const nsMathTools::TVector3* pV2);
 
-SHARE_EI extern nsStruct3D::TPlane* SetPlaneFromPoints( nsStruct3D::TPlane* pOut,
-                                                        const nsStruct3D::TVector3* pV1,
-                                                        const nsStruct3D::TVector3* pV2,
-                                                        const nsStruct3D::TVector3* pV3);
+SHARE_EI extern nsMathTools::TVector3* SetVec3Normalize(nsMathTools::TVector3* pOut,
+                                                       const nsMathTools::TVector3* pV);
 
-SHARE_EI extern nsStruct3D::TVector3* SetPlaneIntersectLine( nsStruct3D::TVector3*       pOut,
-                                                             const nsStruct3D::TPlane*   pP,
-                                                             const nsStruct3D::TVector3* pV1,
-                                                             const nsStruct3D::TVector3* pV2);
+SHARE_EI extern nsMathTools::TPlane* SetPlaneFromPointNormal(nsMathTools::TPlane* pOut,
+                                                            const nsMathTools::TVector3* pPoint,
+                                                            const nsMathTools::TVector3* pNormal);
 
-SHARE_EI extern nsStruct3D::TPlane* SetPlaneTransform( nsStruct3D::TPlane*       pOut,
-                                                       const nsStruct3D::TPlane*    pP,
-                                                       const nsStruct3D::TMatrix16* pM);
+SHARE_EI extern nsMathTools::TPlane* SetPlaneFromPoints( nsMathTools::TPlane* pOut,
+                                                        const nsMathTools::TVector3* pV1,
+                                                        const nsMathTools::TVector3* pV2,
+                                                        const nsMathTools::TVector3* pV3);
 
-SHARE_EI extern bool SetBoxBoundProbe(const nsStruct3D::TVector3 *pMin,
-                                      const nsStruct3D::TVector3 *pMax,
-                                      const nsStruct3D::TVector3 *pRayPosition,
-                                      const nsStruct3D::TVector3 *pRayDirection );
+SHARE_EI extern nsMathTools::TVector3* SetPlaneIntersectLine( nsMathTools::TVector3*       pOut,
+                                                             const nsMathTools::TPlane*   pP,
+                                                             const nsMathTools::TVector3* pV1,
+                                                             const nsMathTools::TVector3* pV2);
 
-SHARE_EI extern bool SetComputeBoundingBox(const nsStruct3D::TVector3 *pFirstPosition,
+SHARE_EI extern nsMathTools::TPlane* SetPlaneTransform( nsMathTools::TPlane*       pOut,
+                                                       const nsMathTools::TPlane*    pP,
+                                                       const nsMathTools::TMatrix16* pM);
+
+SHARE_EI extern bool SetBoxBoundProbe(const nsMathTools::TVector3 *pMin,
+                                      const nsMathTools::TVector3 *pMax,
+                                      const nsMathTools::TVector3 *pRayPosition,
+                                      const nsMathTools::TVector3 *pRayDirection );
+
+SHARE_EI extern bool SetComputeBoundingBox(const nsMathTools::TVector3 *pFirstPosition,
                                            unsigned int NumVertices,
                                            unsigned int dwStride,
-                                           nsStruct3D::TVector3 *pMin,
-                                           nsStruct3D::TVector3 *pMax);
+                                           nsMathTools::TVector3 *pMin,
+                                           nsMathTools::TVector3 *pMax);
 
-SHARE_EI extern bool SetIntersectTri(const nsStruct3D::TVector3 *p0,
-                                     const nsStruct3D::TVector3 *p1,
-                                     const nsStruct3D::TVector3 *p2,
-                                     const nsStruct3D::TVector3 *pRayPos,
-                                     const nsStruct3D::TVector3 *pRayDir,
+SHARE_EI extern bool SetIntersectTri(const nsMathTools::TVector3 *p0,
+                                     const nsMathTools::TVector3 *p1,
+                                     const nsMathTools::TVector3 *p2,
+                                     const nsMathTools::TVector3 *pRayPos,
+                                     const nsMathTools::TVector3 *pRayDir,
                                      float *pU,
                                      float *pV,
                                      float *pDist);
 
-SHARE_EI extern bool SetComputeBoundingSphere(const nsStruct3D::TVector3 *pFirstPosition,
+SHARE_EI extern bool SetComputeBoundingSphere(const nsMathTools::TVector3 *pFirstPosition,
                                               unsigned int NumVertices,
                                               unsigned int dwStride,
-                                              nsStruct3D::TVector3 *pCenter,
+                                              nsMathTools::TVector3 *pCenter,
                                               float *pRadius);
 
-SHARE_EI extern bool SetSphereBoundProbe(const nsStruct3D::TVector3 *pCenter,
+SHARE_EI extern bool SetSphereBoundProbe(const nsMathTools::TVector3 *pCenter,
                                          float Radius,
-                                         const nsStruct3D::TVector3 *pRayPosition,
-                                         const nsStruct3D::TVector3 *pRayDirection);
+                                         const nsMathTools::TVector3 *pRayPosition,
+                                         const nsMathTools::TVector3 *pRayDirection);
 
-SHARE_EI extern nsStruct3D::TQuaternion* SetQuaternionMultiply(nsStruct3D::TQuaternion *pOut,
-                                                               const nsStruct3D::TQuaternion *pQ1,
-                                                               const nsStruct3D::TQuaternion *pQ2);
+SHARE_EI extern nsMathTools::TQuaternion* SetQuaternionMultiply(nsMathTools::TQuaternion *pOut,
+                                                               const nsMathTools::TQuaternion *pQ1,
+                                                               const nsMathTools::TQuaternion *pQ2);
 
-SHARE_EI extern nsStruct3D::TQuaternion* SetQuaternionIdentity(nsStruct3D::TQuaternion *pOut);
+SHARE_EI extern nsMathTools::TQuaternion* SetQuaternionIdentity(nsMathTools::TQuaternion *pOut);
 
-SHARE_EI extern nsStruct3D::TQuaternion* SetQuaternionRotationAxis(nsStruct3D::TQuaternion* pOut,
-                                                                   const nsStruct3D::TVector3 *pV,
+SHARE_EI extern nsMathTools::TQuaternion* SetQuaternionRotationAxis(nsMathTools::TQuaternion* pOut,
+                                                                   const nsMathTools::TVector3 *pV,
                                                                    float Angle);
 
-SHARE_EI extern void SetQuaternionToAxisAngle(const nsStruct3D::TQuaternion *pQ,
-                                              nsStruct3D::TVector3 *pAxis,
+SHARE_EI extern void SetQuaternionToAxisAngle(const nsMathTools::TQuaternion *pQ,
+                                              nsMathTools::TVector3 *pAxis,
                                               float *pAngle);
+
+SHARE_EI extern float SetQuaternionLength(const nsMathTools::TQuaternion *pQ);
 
 #endif

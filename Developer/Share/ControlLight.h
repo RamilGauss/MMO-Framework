@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef ControlLightH
 #define ControlLightH
 
-#include "Struct3D.h"
+#include "MathTools.h"
 #include <vector>
 
 class ICamera;
@@ -23,7 +23,7 @@ class TControlLight
   IManagerObjectGeneral* pMOC;
   ICamera* mICamera;
   
-  nsStruct3D::TVector3 mPos;// центр вращения
+  nsMathTools::TVector3 mPos;// центр вращения
 
   bool isDrag;
   int  mOldX;
@@ -39,14 +39,14 @@ public:
 
   void Init();
 
-  void SetPosition(nsStruct3D::TVector3* pPos);// центр вращения
+  void SetPosition(nsMathTools::TVector3* pPos);// центр вращения
 
   // манипуляции с мышью
   void BeginDrag(int x, int y);// экранные координаты мыши
   void EndDrag();
   // при движении мыши вызвать
   void Drag(int iCurLight,// текущий источник
-            const nsStruct3D::TMatrix16* view,// матрица ориентации камеры
+            const nsMathTools::TMatrix16* view,// матрица ориентации камеры
             int x, int y);// экранные координаты мыши
 
 
@@ -55,10 +55,10 @@ public:
   bool GetLightEnable(int index);
   int  GetCountAllLight();
 
-	const nsStruct3D::TVector3* GetLightPosition(int index);	
-	void SetLightPosition(int index,nsStruct3D::TVector3* m3);
-	const nsStruct3D::TVector3* GetLightColor(int index);
-	void SetLightColor(int index, nsStruct3D::TVector3* color);
+	const nsMathTools::TVector3* GetLightPosition(int index);	
+	void SetLightPosition(int index,nsMathTools::TVector3* m3);
+	const nsMathTools::TVector3* GetLightColor(int index);
+	void SetLightColor(int index, nsMathTools::TVector3* color);
 
   void SetViewObject(bool v);
 
@@ -68,7 +68,7 @@ protected:
   void Update();
 
 
-  void SetObjectPos(nsStruct3D::TVector3* m3, int i);
+  void SetObjectPos(nsMathTools::TVector3* m3, int i);
 };
 
 

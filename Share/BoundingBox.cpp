@@ -9,7 +9,7 @@ See for more information License.h.
 #include <stdlib.h>
 #include <stdio.h>
 
-using namespace nsStruct3D;
+using namespace nsMathTools;
 
 TBoundingBox::TBoundingBox()
 {

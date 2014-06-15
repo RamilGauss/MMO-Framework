@@ -13,7 +13,7 @@ See for more information License.h.
 
 class TTankTower : public IActor
 {
-  nsStruct3D::TMatrix16 mMatrixForCamera;
+  nsMathTools::TMatrix16 mMatrixForCamera;
 
 public:
   typedef enum{
@@ -71,7 +71,7 @@ public:
   virtual bool Animate(unsigned int time_ms);
 
   // from IBaseObject
-  virtual const nsStruct3D::TMatrix16* GetMatrixForCamera();
+  virtual const nsMathTools::TMatrix16* GetMatrixForCamera();
 
 public://protected:
   // debug only

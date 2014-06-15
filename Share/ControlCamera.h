@@ -23,7 +23,7 @@ class TControlCamera : public IControlCamera
   TypeLinked mMask;
 
   // при изменении скорости
-  nsStruct3D::TVector3 mSpeedShift;// x - forward, y - right, z - up
+  nsMathTools::TVector3 mSpeedShift;// x - forward, y - right, z - up
   unsigned int         mLastTime;// врем€ изменени€, мс
 
 public:
@@ -51,20 +51,20 @@ public:
   // интерфейс камеры
   virtual void Update();
   // выдать результат манипул€ций
-  virtual const nsStruct3D::TMatrix16* GetView();
-  virtual const nsStruct3D::TMatrix16* GetProj();
-  virtual const nsStruct3D::TVector3*  GetEyePt();
+  virtual const nsMathTools::TMatrix16* GetView();
+  virtual const nsMathTools::TMatrix16* GetProj();
+  virtual const nsMathTools::TVector3*  GetEyePt();
 
   // базова€ настройка
-  virtual void SetView(nsStruct3D::TMatrix16* view);
-  virtual void SetProj(nsStruct3D::TMatrix16* proj);
+  virtual void SetView(nsMathTools::TMatrix16* view);
+  virtual void SetProj(nsMathTools::TMatrix16* proj);
   virtual void SetProjParams( float fFOV, float fAspect, float fNearPlane, float fFarPlane );
-  virtual void SetOrient(nsStruct3D::TVector3* up, bool use = true);
+  virtual void SetOrient(nsMathTools::TVector3* up, bool use = true);
 
   // положение
-  virtual void SetPositionLookAt(nsStruct3D::TVector3* pPosLookAt);
-  virtual void SetPosition(nsStruct3D::TVector3* pPos);
-  virtual void MoveInDirection(float dist, nsStruct3D::TVector3* pDir);
+  virtual void SetPositionLookAt(nsMathTools::TVector3* pPosLookAt);
+  virtual void SetPosition(nsMathTools::TVector3* pPos);
+  virtual void MoveInDirection(float dist, nsMathTools::TVector3* pDir);
   virtual void MoveForward(float dist);// вдоль осей камеры
   virtual void MoveRight(float dist);
   virtual void MoveUp(float dist);
@@ -76,7 +76,7 @@ public:
   virtual void RotateRight(float angle);
   virtual void Roll(float angle);
 
-  virtual void SetDir(nsStruct3D::TVector3* right, nsStruct3D::TVector3* up, nsStruct3D::TVector3* lookat);
+  virtual void SetDir(nsMathTools::TVector3* right, nsMathTools::TVector3* up, nsMathTools::TVector3* lookat);
 
 protected:
   void ApplySpeed();

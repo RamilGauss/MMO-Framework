@@ -25,7 +25,7 @@ See for more information License.h.
 #include "MapXML_Field.h"
 
 using namespace std;
-using namespace nsStruct3D;
+using namespace nsMathTools;
 using namespace nsEvent;
 using namespace nsMMOEngine;
 using namespace nsKey;
@@ -260,7 +260,7 @@ void TClientDeveloperTool_ViewerModel::CreateHangar()
 {
   TMatrix16 w;
   SetMatrixIdentity(&w);
-  w._43 -= 1.0f;
+  w.s._43 -= 1.0f;
   IBaseObjectGeneral* pBOC = mComponent.mMOG->CreateObject(1);
   pBOC->SetWorld(&w);
   mComponent.mGraphicEngine->AddObject(pBOC);
@@ -272,21 +272,21 @@ void TClientDeveloperTool_ViewerModel::CreateObjects(int cntK,int cntJ,int cntI)
   SetMatrixIdentity(&w);
   float sizeK = 4,sizeJ = 12, sizeI = 5;
 
-  w._43 = -((cntK+1)*sizeK)/2;
+  w.s._43 = -((cntK+1)*sizeK)/2;
   for(int k = 0 ; k < cntK ; k ++)
   {
-    w._42 = -((cntJ+1)*sizeJ)/2;
-    w._43 += sizeK;
+    w.s._42 = -((cntJ+1)*sizeJ)/2;
+    w.s._43 += sizeK;
     for(int j = 0 ; j < cntJ ; j ++)
     {
-      w._41  = -((cntI+1)*sizeI)/2;
-      w._42 += sizeJ;
+      w.s._41  = -((cntI+1)*sizeI)/2;
+      w.s._42 += sizeJ;
       for(int i = 0 ; i < cntI ; i ++)
       {
         IBaseObjectGeneral* pBOC = mComponent.mMOG->CreateObject(0);
 
         //pBOC->SetVelocity(0.1f);
-        w._41 += sizeI;
+        w.s._41 += sizeI;
         pBOC->SetWorld(&w);
         //if((i==cntI-1)&&(j==cntJ-1)&&(k==cntK-1))
           //pBOC->SetAlphaTransparency(0.5f);

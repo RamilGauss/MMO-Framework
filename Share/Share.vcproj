@@ -43,7 +43,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\3rdParty\SSL\include\"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -63,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib d3dx10d.lib d3dx9d.lib d3d9.lib ws2_32.lib dxerr.lib libeay32.lib ssleay32.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib dxerr.lib libeay32.lib ssleay32.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\Lib;&quot;..\Lib\$(ConfigurationName)&quot;;..\Lib\SSL;..\Lib\SSL\engines"
 				GenerateDebugInformation="true"
@@ -312,10 +312,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Map.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\MapCallBack.cpp"
 				>
 			</File>
@@ -329,6 +325,10 @@
 			</File>
 			<File
 				RelativePath=".\MarkUpContainer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MathTools.cpp"
 				>
 			</File>
 			<File
@@ -385,10 +385,6 @@
 			</File>
 			<File
 				RelativePath=".\StorePathResources.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Struct3D.cpp"
 				>
 			</File>
 			<File
@@ -618,10 +614,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Map.h"
-				>
-			</File>
-			<File
 				RelativePath=".\MapCallBack.h"
 				>
 			</File>
@@ -635,6 +627,10 @@
 			</File>
 			<File
 				RelativePath=".\MarkUpContainer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MathTools.h"
 				>
 			</File>
 			<File
@@ -703,10 +699,6 @@
 			</File>
 			<File
 				RelativePath=".\StorePathResources.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Struct3D.h"
 				>
 			</File>
 			<File

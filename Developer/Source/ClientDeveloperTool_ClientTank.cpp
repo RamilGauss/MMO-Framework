@@ -36,7 +36,7 @@ See for more information License.h.
 
 
 using namespace std;
-using namespace nsStruct3D;
+using namespace nsMathTools;
 using namespace nsEvent;
 using namespace nsMMOEngine;
 using namespace nsKey;
@@ -433,7 +433,7 @@ void TClientDeveloperTool_ClientTank::CreateHangar()
 {
   TMatrix16 w;
   SetMatrixIdentity(&w);
-  w._43 -= 1.0f;
+  w.s._43 -= 1.0f;
   mHangar = mComponent.mMOG->CreateObject(1);
   mHangar->SetWorld(&w);
   mComponent.mGraphicEngine->AddObject(mHangar);

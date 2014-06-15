@@ -9,7 +9,7 @@ See for more information License.h.
 #define BoundingBoxH
 
 #include "TypeDef.h"
-#include "Struct3D.h"
+#include "MathTools.h"
 
 
 #if defined( WIN32 )
@@ -20,23 +20,23 @@ See for more information License.h.
 class SHARE_EI TBoundingBox
 {
 protected:
-  nsStruct3D::TVector3 mMin;
-  nsStruct3D::TVector3 mMax;
+  nsMathTools::TVector3 mMin;
+  nsMathTools::TVector3 mMax;
 
 public:
 
   TBoundingBox();
   ~TBoundingBox();
 
-  void SetBound(nsStruct3D::TVector3& min,nsStruct3D::TVector3& max);
-  void AddBound(nsStruct3D::TVector3& min,nsStruct3D::TVector3& max);
+  void SetBound(nsMathTools::TVector3& min,nsMathTools::TVector3& max);
+  void AddBound(nsMathTools::TVector3& min,nsMathTools::TVector3& max);
 
-  nsStruct3D::TVector3& Min(){return mMin;};
-  nsStruct3D::TVector3& Max(){return mMax;};
+  nsMathTools::TVector3& Min(){return mMin;};
+  nsMathTools::TVector3& Max(){return mMax;};
 
   bool IsCorrect();
 
-  bool Contains(nsStruct3D::TVector3& point);
+  bool Contains(nsMathTools::TVector3& point);
   bool Collision(TBoundingBox& bb);
   float VolumeCollision(TBoundingBox& bb);// у.е. в кубе
 };

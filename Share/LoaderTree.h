@@ -27,7 +27,7 @@ public:
   TTreeJoint::TLoadedJoint* TakeTree();
 
 protected:
-  bool LoadMatrix4x4(const char* name,int num, nsStruct3D::TMatrix16* pM);
+  bool LoadMatrix4x4(const char* name,int num, nsMathTools::TMatrix16* pM);
   bool LoadJoint(int i);
 
 };

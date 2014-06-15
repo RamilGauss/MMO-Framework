@@ -11,7 +11,7 @@ See for more information License.h.
 #include "HiTimer.h"
 #include "Logger.h"
 
-using namespace nsStruct3D;
+using namespace nsMathTools;
 
 TControlCamera::TControlCamera()
 {
@@ -204,9 +204,9 @@ void TControlCamera::GetFromLinkObj()
   const TMatrix16* pMCam = mCamera->GetView();
 
   TVector3 v;
-  v.x = pM_Obj->_41;
-  v.y = pM_Obj->_42;
-  v.z = pM_Obj->_43;
+  v.x = pM_Obj->s._41;
+  v.y = pM_Obj->s._42;
+  v.z = pM_Obj->s._43;
   SetPosition(&v);
 
   if(mMask==eOrientAndCoord)

@@ -11,7 +11,7 @@ See for more information License.h.
 #include <atlconv.h>
 #include "IGraphicEngine.h"
 
-using namespace nsStruct3D;
+using namespace nsMathTools;
 using namespace std;
 
 const char* sPathShader = "/shader";

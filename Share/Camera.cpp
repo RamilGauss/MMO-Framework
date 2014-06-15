@@ -14,7 +14,7 @@ See for more information License.h.
 #include <math.h>
 #include "HiTimer.h"
 
-using namespace nsStruct3D;
+using namespace nsMathTools;
 
 TCamera::TCamera():
 defFOV(float(M_PI) / 4.0f),
@@ -45,10 +45,10 @@ void TCamera::SetView(TMatrix16* view)
   MATRIX16_EQUAL_M_P(mView,view);
   TMatrix16 mInv;
   SetMatrixInverse(&mInv,NULL,&mView);
-  mRight    = TVector3(mInv._11,mInv._12,mInv._13);
-  mUp       = TVector3(mInv._21,mInv._22,mInv._23);
-  mLookAt   = TVector3(mInv._31,mInv._32,mInv._33);
-  mPosition = TVector3(mInv._41,mInv._42,mInv._43);
+  mRight    = TVector3(mInv.s._11, mInv.s._12, mInv.s._13);
+  mUp       = TVector3(mInv.s._21, mInv.s._22, mInv.s._23);
+  mLookAt   = TVector3(mInv.s._31, mInv.s._32, mInv.s._33);
+  mPosition = TVector3(mInv.s._41, mInv.s._42, mInv.s._43);
 }
 //----------------------------------------------------------------------------------------
 void TCamera::SetProj(TMatrix16* proj)
@@ -138,10 +138,6 @@ void TCamera::RotateRight(float angle)
     TQuaternion rot = TQuaternion(mLookAt.x,mLookAt.y,mLookAt.z,0);
     SetQuaternionMultiply(&rot,&rot,&axis);
     SetQuaternionToAxisAngle(&rot,&mLookAt,&a);
-    //-----------------------------------------
-    rot = TQuaternion(mUp.x,mUp.y,mUp.z,0);
-    SetQuaternionMultiply(&rot,&rot,&axis);
-    SetQuaternionToAxisAngle(&rot,&mUp,&a);
     //-----------------------------------------
     rot = TQuaternion(mRight.x,mRight.y,mRight.z,0);
     SetQuaternionMultiply(&rot,&rot,&axis);

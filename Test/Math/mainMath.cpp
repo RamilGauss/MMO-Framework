@@ -1,63 +1,31 @@
 /*
 	Эксперименты по замене DirectX математических функций в 
-	Struct3D на boost-вские.
+	Struct3D на свои.
 */
 
-#include "Struct3D.h"
-//
-//#include <boost/numeric/ublas/matrix.hpp>
-//#include <boost/numeric/ublas/operation.hpp> 
-//#include <boost/numeric/ublas/io.hpp>
-//#include <iostream>
-//#include <queue>
-//#include "SetOrderElement.h"
-//#include "MapCallBack.h"
-#include "DescEvent.h"
-#include "SrcEvent.h"
-#include "Events.h"
-#include "SrcEvent_ex.h"
-#include "DstEvent.h"
-#include "LoadFromFile.h"
+#include "MathTools.h"
 
-using namespace nsStruct3D;
-using namespace nsMMOEngine;
+#ifdef WIN32
+  #include <d3dx9math.h>
+#endif
 
-//using namespace boost::numeric::ublas;
-
+using namespace nsMathTools;
+//--------------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-	TLoadFromFile loader;
-	bool res = loader.ReOpen("e:\\MyProjects\\MMOFramework\\Test\\Math\\mainMath.cpp");
-	std::string full_path, name;
-	loader.GetFullPathName(full_path);
-	loader.GetName(name);
+  D3DXMATRIX pOut;
+	float det;  
+	D3DXMATRIX pV;
+	pV._11 = 1.0f; pV._12 = 1.0f; pV._13 = 0.0f; pV._14 = 0.0f;
+	pV._21 = 0.0f; pV._22 = 1.0f;	pV._23 = 0.0f; pV._24 = 0.0f;
+	pV._31 = 0.0f; pV._32 = 0.0f;	pV._33 = 1.0f; pV._34 = 0.0f;
+	pV._41 = 0.0f; pV._42 = 0.0f;	pV._43 = 0.0f; pV._44 = 1.0f;
+	D3DXMATRIX* pRet = D3DXMatrixInverse(&pOut, &det, &pV);
 
-	//identity_matrix<float> ident_m(4,4);
-	//matrix<float> m(4,4);
-	//m = ident_m;
-	//float* pM = (float*)&m(0,0);
-	//int size1 = m.size1();
-	//int size2 = m.size2();
-	//std::cout << m << std::endl;
-
-	//TMatrix16 matrix;
-	//TMatrix16* pResMatrix = SetMatrixIdentity(&matrix);
-
-	{
-		char data[100];
-		int sizeData = 100;
-
-		TEventTryLogin* pEventTL = new TEventTryLogin;
-		pEventTL->id_session = 0;
-		pEventTL->c.SetDataByCount(data,sizeData);
-
-		nsEvent::TEvent* pEvent = new nsEvent::TEvent();
-		pEvent->Init<TEventTryLogin>(0);
-
-		pEvent->from = 0;
-		pEvent->pContainer->EntrustByCount((char*)pEventTL,1);
-		delete pEvent;
-	}
+	TMatrix16 pMOut;
+  TMatrix16 pMV;
+	memcpy(&pMV, &pV, sizeof(TMatrix16));
+	TMatrix16* pMRet = SetMatrixInverse(&pMOut, &det, &pMV);
 
   return 0;
 }

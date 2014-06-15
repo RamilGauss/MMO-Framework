@@ -22,7 +22,7 @@ See for more information License.h.
 #include <set>
 #include <map>
 
-#include "Struct3D.h"
+#include "MathTools.h"
 #include "ShaderStack.h"
 #include "IGraphicEngine.h"
 #include "StateMachine.h"
@@ -144,8 +144,8 @@ public:
 
   // клиентские эффекты движка, не вли€ют на физические параметры объектов
   virtual void SetEffect(unsigned short id_effect/*уникальный эффект, см. таблицу эффектов*/,
-    nsStruct3D::TVector3* coord3,     // где
-    nsStruct3D::TVector3* orient3,    // ориентаци€ эффекта
+    nsMathTools::TVector3* coord3,     // где
+    nsMathTools::TVector3* orient3,    // ориентаци€ эффекта
     unsigned int time_past/* прошло времени, мс*/ = 0);
   virtual void SetViewFPS(bool val);
   // источники освещени€
@@ -154,10 +154,10 @@ public:
 	virtual bool GetLightEnable(int index);
 	virtual int  GetCountAllLight();
 
-	virtual const nsStruct3D::TVector3* GetLightPosition(int index);	
-	virtual void SetLightPosition(int index,nsStruct3D::TVector3* m3);
-	virtual const nsStruct3D::TVector3* GetLightColor(int index);
-	virtual void SetLightColor(int index, nsStruct3D::TVector3* color);
+	virtual const nsMathTools::TVector3* GetLightPosition(int index);	
+	virtual void SetLightPosition(int index,nsMathTools::TVector3* m3);
+	virtual const nsMathTools::TVector3* GetLightColor(int index);
+	virtual void SetLightColor(int index, nsMathTools::TVector3* color);
 
 	virtual bool GetPostEffectMirror();
 	virtual void SetPostEffectMirror(bool v);
@@ -202,13 +202,13 @@ protected:
   // добавитс€ текстура, потом когда будет готова сцена надо блендить все текстуры на экран
   
   // дл€ данной точки обзора
-  void RenderBlendTexturePostEffect(const nsStruct3D::TMatrix16* pView, 
-                                    const nsStruct3D::TMatrix16* pProj,
-                                    const nsStruct3D::TVector3* pPosCamera);
+  void RenderBlendTexturePostEffect(const nsMathTools::TMatrix16* pView, 
+                                    const nsMathTools::TMatrix16* pProj,
+                                    const nsMathTools::TVector3* pPosCamera);
   void RenderSrcTextureForPostEffect(IBaseObjectGE* pObj, 
-                                     const nsStruct3D::TMatrix16* view, 
-                                     const nsStruct3D::TMatrix16* pProj,
-                                     const nsStruct3D::TVector3* pPosCamera);
+                                     const nsMathTools::TMatrix16* view, 
+                                     const nsMathTools::TMatrix16* pProj,
+                                     const nsMathTools::TVector3* pPosCamera);
 	void RenderGlow(IBaseObjectGE* pObject);// подготовить устройство дл€ отрисовки с помощью шейдера
 	void RenderByEffect(ID3DXEffect* g_pEffect);
   void BlendTextureFromPostEffect(IDirect3DTexture9* pTextureScreen, bool UsePostEffectTexture);
@@ -224,11 +224,11 @@ protected:
 	void ResetShader(ID3DXEffect* m_pEffect, DWORD dwWidth, DWORD dwHeight);
 
   void PrepareForPostEffect(IBaseObjectGE* pObject);
-  void RenderObject(IBaseObjectGE* pObject, const nsStruct3D::TMatrix16* view);
+  void RenderObject(IBaseObjectGE* pObject, const nsMathTools::TMatrix16* view);
 
-	void SetCommonShaderStack(const nsStruct3D::TMatrix16* pView, 
-                            const nsStruct3D::TMatrix16* pProj, 
-                            const nsStruct3D::TVector3* pCameraPos);
+	void SetCommonShaderStack(const nsMathTools::TMatrix16* pView, 
+                            const nsMathTools::TMatrix16* pProj, 
+                            const nsMathTools::TVector3* pCameraPos);
 
   virtual bool InitGUI();
 
@@ -243,7 +243,7 @@ protected:
   void DispFPS();
 
 
-  void GetMatrixForCubeMap(int nFace, nsStruct3D::TMatrix16& view);
+  void GetMatrixForCubeMap(int nFace, nsMathTools::TMatrix16& view);
 
   void InitLightArr();
 
@@ -260,21 +260,21 @@ protected:
 	enum{eCountLight=4,};
   struct TLight
   {
-    nsStruct3D::TVector3 color;
-    nsStruct3D::TVector3 position;
+    nsMathTools::TVector3 color;
+    nsMathTools::TVector3 position;
     bool active;
     TLight()
     {
       active   = false;
-      color    = nsStruct3D::TVector3(1.0f,1.0f,1.0f);
-      position = nsStruct3D::TVector3(0.0f,0.0f,2.4f);
+      color    = nsMathTools::TVector3(1.0f,1.0f,1.0f);
+      position = nsMathTools::TVector3(0.0f,0.0f,2.4f);
     }
   };
   TLight mArrLight[eCountLight];
 
   // формируетс€ перед отправкой в шейдер
-  nsStruct3D::TVector3 mArrLightColor[eCountLight];
-  nsStruct3D::TVector3 mArrLightPosition[eCountLight];
+  nsMathTools::TVector3 mArrLightColor[eCountLight];
+  nsMathTools::TVector3 mArrLightPosition[eCountLight];
 
 };
 

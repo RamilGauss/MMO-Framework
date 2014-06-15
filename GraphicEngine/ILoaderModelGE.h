@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef ILoaderObjectDXH
 #define ILoaderObjectDXH
 
-#include "Struct3D.h"
+#include "MathTools.h"
 #include <vector>
 #include "IXML.h"
 
@@ -26,9 +26,9 @@ public:
 
     void* pMesh;
 
-    nsStruct3D::TVector3 vAmbient;
-    nsStruct3D::TVector3 vDiffuse;
-    nsStruct3D::TVector3 vSpecular;
+    nsMathTools::TVector3 vAmbient;
+    nsMathTools::TVector3 vDiffuse;
+    nsMathTools::TVector3 vSpecular;
 
     int  nShininess;
 
@@ -92,8 +92,8 @@ protected:
   bool LoadMainFile();
   bool LoadFileResource();
   bool LoadPart(int i);
-  bool LoadVector(const char* key,nsStruct3D::TVector3& vector);
-  bool LoadVector4(const char* key,nsStruct3D::TVector4& vector4);
+  bool LoadVector(const char* key,nsMathTools::TVector3& vector);
+  bool LoadVector4(const char* key,nsMathTools::TVector4& vector4);
 
   virtual bool SetupMesh(TDefGroup *mArrDefGroup);
   

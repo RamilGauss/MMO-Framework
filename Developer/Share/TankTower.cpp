@@ -12,12 +12,12 @@ See for more information License.h.
 #include "TankTower.h"
 #include "HiTimer.h"
 #include "BL_Debug.h"
-#include "Struct3D.h"
+#include "MathTools.h"
 
 #pragma warning(disable: 4305)
 
 using namespace std;
-using namespace nsStruct3D;
+using namespace nsMathTools;
 
 const char* NameTrackR = "TrackR";
 const char* NameTrackL = "TrackL";
@@ -137,10 +137,10 @@ void TTankTower::EventSetModelGE()
   mShaderStackMask.at(mIndexTrackL) = 1;
 }
 //------------------------------------------------------------------------------------------------
-const nsStruct3D::TMatrix16* TTankTower::GetMatrixForCamera()
+const nsMathTools::TMatrix16* TTankTower::GetMatrixForCamera()
 {
   mMatrixForCamera = mWorld;
-  mMatrixForCamera._43 += 2.0f;
+  mMatrixForCamera.s._43 += 2.0f;
   return &mMatrixForCamera;
 }
 //------------------------------------------------------------------------------------------------

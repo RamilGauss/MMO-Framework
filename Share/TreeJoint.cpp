@@ -7,10 +7,10 @@ See for more information License.h.
 
 #include "TreeJoint.h"
 #include "BL_Debug.h"
-#include "Struct3D.h"
+#include "MathTools.h"
 
 using namespace std;
-using namespace nsStruct3D;
+using namespace nsMathTools;
 
 TTreeJoint::TTreeJoint()
 {

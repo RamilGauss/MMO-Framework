@@ -38,7 +38,6 @@ TSaveToFile::TSaveToFile(char* path)
 //---------------------------------------------------------------
 TSaveToFile::~TSaveToFile()
 {
-	//Close();
   ClearBuffer();
 }
 //---------------------------------------------------------------
@@ -66,11 +65,6 @@ bool TSaveToFile::ReOpen(char* path, bool append )
 	return false;
 }
 //---------------------------------------------------------------
-//bool TSaveOnHDD::IsOpen()
-//{
-//	return (pFile!=NULL);
-//}
-//---------------------------------------------------------------
 void TSaveToFile::Write(void* buffer, int size)
 {
   if(flgEnable==false) return;
@@ -86,13 +80,6 @@ void TSaveToFile::Write(void* buffer, int size)
       FlushInBuffer((char*)buffer,size);
   }
 }
-//---------------------------------------------------------------
-//void TSaveOnHDD::Close()
-//{
-//	if(pFile==NULL) return;
-//	fclose(pFile);
-//	pFile = NULL;
-//}
 //---------------------------------------------------------------
 void TSaveToFile::WriteF(const char* format, ... )
 {

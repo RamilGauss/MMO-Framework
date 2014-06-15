@@ -14,7 +14,7 @@ See for more information License.h.
 #include <boost/foreach.hpp>
 
 using namespace nsMeshStruct;
-using namespace nsStruct3D;
+using namespace nsMathTools;
 using namespace std;
 
 TMeshFileObj::TMeshFileObj()

@@ -12,7 +12,7 @@ See for more information License.h.
 #include <vector>
 
 //#include "TObject.h"
-#include "Struct3D.h"
+#include "MathTools.h"
 #include "TreeJoint.h"
 #include "CallBackRegistrator.h"
 
@@ -34,8 +34,8 @@ public:
   IBaseObject();
   virtual ~IBaseObject();
 
-  void SetWorld(nsStruct3D::TMatrix16* world);
-  const nsStruct3D::TMatrix16* GetWorld()const {return &mWorld;}
+  void SetWorld(nsMathTools::TMatrix16* world);
+  const nsMathTools::TMatrix16* GetWorld()const {return &mWorld;}
 
   void SetID_Model(unsigned int id);
   void SetID_Map(unsigned int id){ID_map = id;}
@@ -44,7 +44,7 @@ public:
   unsigned int GetID_Map(){return ID_map;}
   std::vector<unsigned char>* GetState(){return &mState;}
 
-  virtual const nsStruct3D::TMatrix16* GetMatrixForCamera(){return GetWorld();}
+  virtual const nsMathTools::TMatrix16* GetMatrixForCamera(){return GetWorld();}
 
   void SetVelocity(float v){mV=v;}// м/с - скаляр скорости
   float GetVelocity(){return mV;}
@@ -74,11 +74,11 @@ protected:
   unsigned int ID_map;  // идентификатор на карте
   unsigned int ID_model;// идентификатор модели
 
-  nsStruct3D::TMatrix16 mWorld; // здесь вся инфа по ориентации и координатам объекта
+  nsMathTools::TMatrix16 mWorld; // здесь вся инфа по ориентации и координатам объекта
 
   std::vector<unsigned char> mState;// графика, говорит движку какую из частей рисовать, для физики определяет поведение объекта
   std::vector<unsigned char> mMask; // и физика и графика какие части рисовать и использовать
-  std::vector<nsStruct3D::TMatrix16*> mVectorMatrix;// и физика и графика, cnt=cntAllJoint
+  std::vector<nsMathTools::TMatrix16*> mVectorMatrix;// и физика и графика, cnt=cntAllJoint
 
   // size = sizeAllPart
   struct TPart 

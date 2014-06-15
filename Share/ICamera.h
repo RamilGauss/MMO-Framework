@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef ICameraH
 #define ICameraH
 
-#include "Struct3D.h"
+#include "MathTools.h"
 #include "TypeDef.h"
 
 // абстрагирование здесь с целью отвязки от компиляции во внешних модулях.
@@ -33,26 +33,26 @@ public:
 
   virtual void Update() = 0;
   // выдать результат манипуляций
-  virtual const nsStruct3D::TMatrix16* GetView() = 0;
-  virtual const nsStruct3D::TVector3*  GetEyePt()= 0;
-  virtual const nsStruct3D::TMatrix16* GetProj() = 0;
+  virtual const nsMathTools::TMatrix16* GetView() = 0;
+  virtual const nsMathTools::TVector3*  GetEyePt()= 0;
+  virtual const nsMathTools::TMatrix16* GetProj() = 0;
 
   // базовая настройка
-  virtual void SetView(nsStruct3D::TMatrix16* view) = 0;
-  virtual void SetProj(nsStruct3D::TMatrix16* proj) = 0;
+  virtual void SetView(nsMathTools::TMatrix16* view) = 0;
+  virtual void SetProj(nsMathTools::TMatrix16* proj) = 0;
 
   virtual void SetProjParams( float fFOV, float fAspect, float fNearPlane, float fFarPlane ) = 0;
 
   // если задано использование этого параметра, то стоит запрет на использование Roll(...),
   // этот вектор и задает Roll
   // нормаль к Земле, например, при использовании не в космосе или воздухе.
-  virtual void SetOrient(nsStruct3D::TVector3* up, bool use = true) = 0;
+  virtual void SetOrient(nsMathTools::TVector3* up, bool use = true) = 0;
 
   // манипуляции
   // положение
-  virtual void SetPositionLookAt(nsStruct3D::TVector3* pPosLookAt)     = 0;
-  virtual void SetPosition(nsStruct3D::TVector3* pPos)                 = 0;
-  virtual void MoveInDirection(float dist, nsStruct3D::TVector3* pDir) = 0;
+  virtual void SetPositionLookAt(nsMathTools::TVector3* pPosLookAt)     = 0;
+  virtual void SetPosition(nsMathTools::TVector3* pPos)                 = 0;
+  virtual void MoveInDirection(float dist, nsMathTools::TVector3* pDir) = 0;
   virtual void MoveForward(float dist)                                 = 0;// вдоль осей камеры
   virtual void MoveRight(float dist)                                   = 0;
   virtual void MoveUp(float dist)                                      = 0;
@@ -64,7 +64,7 @@ public:
   virtual void RotateRight(float angle) = 0;
   virtual void Roll(float angle)        = 0;
 
-  virtual void SetDir(nsStruct3D::TVector3* right, nsStruct3D::TVector3* up, nsStruct3D::TVector3* lookat) = 0;
+  virtual void SetDir(nsMathTools::TVector3* right, nsMathTools::TVector3* up, nsMathTools::TVector3* lookat) = 0;
 };
 
 #endif

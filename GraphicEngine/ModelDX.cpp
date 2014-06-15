@@ -25,7 +25,7 @@ See for more information License.h.
 #include "IGraphicEngine.h"
 
 
-using namespace nsStruct3D;
+using namespace nsMathTools;
 using namespace std;
 
 const char* NameBeginOutputParam = "BeginOutputParam";// в будущем перенести в файл настроек

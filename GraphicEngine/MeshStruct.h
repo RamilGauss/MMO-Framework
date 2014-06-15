@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef MeshStructH
 #define MeshStructH
 
-#include "Struct3D.h"
+#include "MathTools.h"
 
 // бинарный формат хранения Mesh
 // только вершины (координаты, нормали, текстурные координаты) и индексы
@@ -20,9 +20,9 @@ namespace nsMeshStruct
 #endif
   struct VERTEX
   {
-    nsStruct3D::TVector3 position;
-    nsStruct3D::TVector3 normal;
-    nsStruct3D::TVector2 texcoord;
+    nsMathTools::TVector3 position;
+    nsMathTools::TVector3 normal;
+    nsMathTools::TVector2 texcoord;
 
     bool operator == ( const VERTEX& v) const
     {

@@ -28,7 +28,7 @@ public:
   void SetModel(IModelGE* pModel);
   IModelGE* GetModel();
 
-  void Draw(const nsStruct3D::TMatrix16* mView, void* pEffect = NULL);
+  void Draw(const nsMathTools::TMatrix16* mView, void* pEffect = NULL);
 
   void SetShow(bool show){flgShow=show;}
   bool IsShow(){return flgShow;}

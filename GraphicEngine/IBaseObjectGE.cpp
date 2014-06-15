@@ -11,10 +11,10 @@ See for more information License.h.
 #include "IBaseObjectGE.h"
 
 #include "IModelGE.h"
-#include "Struct3D.h"
+#include "MathTools.h"
 #include "ShaderStack.h"
 
-using namespace nsStruct3D;
+using namespace nsMathTools;
 using namespace std;
 
 IBaseObjectGE::IBaseObjectGE(int typeDX)

@@ -11,11 +11,11 @@ See for more information License.h.
 #include "..\Share\MakerCamera.h"
 #include "..\GameLib\IClientDeveloperTool.h"
 #include "..\GameLib\IManagerObjectGeneral.h"
-#include "Struct3D.h"
+#include "MathTools.h"
 #include "..\GameLib\IBaseObjectGeneral.h"
 #include <valarray>
 
-using namespace nsStruct3D;
+using namespace nsMathTools;
 
 
 #define ASPECT_LIGHT_X 0.01f
@@ -123,8 +123,8 @@ void TControlLight::Drag(int iCurLight,// текущий источник
 
   TMatrix16 mInv;
   SetMatrixInverse(&mInv,NULL,view);
-  TVector3 right = TVector3(mInv._11,mInv._12,mInv._13);
-  TVector3 up    = TVector3(mInv._21,mInv._22,mInv._23);
+  TVector3 right = TVector3(mInv.s._11, mInv.s._12, mInv.s._13);
+  TVector3 up    = TVector3(mInv.s._21, mInv.s._22, mInv.s._23);
 
   TVector3 posL = *GetLightPosition(iCurLight);
   TVector3 vecL = posL - mPos;
@@ -182,9 +182,9 @@ void TControlLight::SetObjectPos(TVector3* m3, int i)
 {
   IBaseObjectGeneral* pObj = mVecObjLight[i];
   TMatrix16 world = *pObj->GetWorld();
-  world._41 = m3->x;
-  world._42 = m3->y;
-  world._43 = m3->z;
+  world.s._41 = m3->x;
+  world.s._42 = m3->y;
+  world.s._43 = m3->z;
   pObj->SetWorld(&world);
 }
 //----------------------------------------------------------------------------------

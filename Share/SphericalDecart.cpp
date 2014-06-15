@@ -8,7 +8,7 @@ See for more information License.h.
 #include "SphericalDecart.h"
 #include <math.h>
 
-using namespace nsStruct3D;
+using namespace nsMathTools;
 
 void TSphericalDecart::Shperic2Decart(TSpheric& s, TVector3&  d)
 {

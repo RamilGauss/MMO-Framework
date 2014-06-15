@@ -5,20 +5,18 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "Struct3D.h"
-
-//----------------------------------------------------------------------
-#define SET_MATRIX_ROTATE_DX(pV,ugol,AXE) \
-D3DXMATRIX* InOut = (D3DXMATRIX*)pV; \
-D3DXMatrixRotation##AXE(InOut,ugol);
-//----------------------------------------------------------------------
+// Some parts of source code from http://wine.sourcearchive.com.
+// Thank you, Wine! Viva GPL!
 
 
-#ifdef WIN32
-  #include <d3dx9math.h>
-#endif
+#define _USE_MATH_DEFINES
+#include <cmath>
 
-using namespace nsStruct3D;
+#include "MathTools.h"
+#include <memory.h>
+#include <stddef.h>
+
+using namespace nsMathTools;
 
 //-------------------------------------------------------------------------
 void CopyMatrix16(float* pSrc, float* pDst)
@@ -29,172 +27,206 @@ void CopyMatrix16(float* pSrc, float* pDst)
 float CalcDist(const TMatrix16* m1, const TMatrix16* m2)
 {
   TVector3 dist;
-  dist.x = m1->_41 - m2->_41;
-  dist.y = m1->_42 - m2->_42;
-  dist.z = m1->_43 - m2->_43;
+  dist.x = m1->s._41 - m2->s._41;
+  dist.y = m1->s._42 - m2->s._42;
+  dist.z = m1->s._43 - m2->s._43;
   return dist.lenght();
 }
 //-------------------------------------------------------------------------
 TMatrix16* SetMatrixIdentity(TMatrix16* pV)
 {
-#ifdef WIN32
-  D3DXMATRIXA16* pM = (D3DXMATRIXA16*)pV;
-  D3DXMatrixIdentity(pM);
-#else
-#endif
+  pV->s._11 = 1.0f; pV->s._12 = 0.0f; pV->s._13 = 0.0f; pV->s._14 = 0.0f;
+  pV->s._21 = 0.0f; pV->s._22 = 1.0f; pV->s._23 = 0.0f; pV->s._24 = 0.0f;
+  pV->s._31 = 0.0f; pV->s._32 = 0.0f; pV->s._33 = 1.0f; pV->s._34 = 0.0f;
+  pV->s._41 = 0.0f; pV->s._42 = 0.0f; pV->s._43 = 0.0f; pV->s._44 = 1.0f;
   return pV;
 }
 //-------------------------------------------------------------------------
 TMatrix9* SetMatrixIdentity(TMatrix9* pV)
 {
-  pV->_11 = 1.0f;  pV->_12 = 0.0f;  pV->_13 = 0.0f;
-  pV->_21 = 0.0f;  pV->_22 = 1.0f;  pV->_23 = 0.0f;
-  pV->_31 = 0.0f;  pV->_32 = 0.0f;  pV->_33 = 1.0f;
+  pV->s._11 = 1.0f;  pV->s._12 = 0.0f;  pV->s._13 = 0.0f;
+  pV->s._21 = 0.0f;  pV->s._22 = 1.0f;  pV->s._23 = 0.0f;
+  pV->s._31 = 0.0f;  pV->s._32 = 0.0f;  pV->s._33 = 1.0f;
   return pV;
 }
 //-------------------------------------------------------------------------
 TMatrix16* SetMatrixTranslation(TMatrix16 *pOut, float x, float y, float z )
 {
-#ifdef WIN32
-  D3DXMATRIX* InOut = (D3DXMATRIX*)pOut;
-  D3DXMatrixTranslation(InOut,x,y,z);
-#else
-#endif
+  pOut->s._11 = 1.0f; pOut->s._12 = 0.0f; pOut->s._13 = 0.0f; pOut->s._14 = 0.0f;
+  pOut->s._21 = 0.0f; pOut->s._22 = 1.0f; pOut->s._23 = 0.0f; pOut->s._24 = 0.0f;
+  pOut->s._31 = 0.0f; pOut->s._32 = 0.0f; pOut->s._33 = 1.0f; pOut->s._34 = 0.0f;
+  pOut->s._41 = x;    pOut->s._42 = y;    pOut->s._43 = z;    pOut->s._44 = 1.0f;
   return pOut;
 }
 //-------------------------------------------------------------------------
-TMatrix16* SetMatrixRotateX(TMatrix16* pV, float ugol)
+TMatrix16* SetMatrixRotateX(TMatrix16* pOut, float angle)
 {
-#ifdef WIN32
-  SET_MATRIX_ROTATE_DX(pV,ugol,X)
-#else
-#endif
-  return pV;
+  float sin = sinf(angle); 
+  float cos = cosf(angle);
+
+  pOut->s._11 = 1.0f; pOut->s._12 =  0.0f; pOut->s._13 = 0.0f; pOut->s._14 = 0.0f;
+  pOut->s._21 = 0.0f; pOut->s._22 =  cos;  pOut->s._23 = sin;  pOut->s._24 = 0.0f;
+  pOut->s._31 = 0.0f; pOut->s._32 = -sin;  pOut->s._33 = cos;  pOut->s._34 = 0.0f;
+  pOut->s._41 = 0.0f; pOut->s._42 =  0.0f; pOut->s._43 = 0.0f; pOut->s._44 = 1.0f;
+
+  return pOut;
 }
 //-------------------------------------------------------------------------
-TMatrix16* SetMatrixRotateY(TMatrix16* pV, float ugol)
+TMatrix16* SetMatrixRotateY(TMatrix16* pOut, float angle)
 {
-#ifdef WIN32
-  SET_MATRIX_ROTATE_DX(pV,ugol,Y)
-#else
-#endif
-  return pV;
+  float sin = sinf(angle), 
+        cos = cosf(angle);
+
+  pOut->s._11 = cos;  pOut->s._12 =  0.0f; pOut->s._13 = -sin; pOut->s._14 = 0.0f;
+  pOut->s._21 = 0.0f; pOut->s._22 =  1.0f; pOut->s._23 = 0.0f; pOut->s._24 = 0.0f;
+  pOut->s._31 = sin;  pOut->s._32 =  0.0f; pOut->s._33 = cos;  pOut->s._34 = 0.0f;
+  pOut->s._41 = 0.0f; pOut->s._42 =  0.0f; pOut->s._43 = 0.0f; pOut->s._44 = 1.0f;
+
+  return pOut;
 }
 //-------------------------------------------------------------------------
-TMatrix16* SetMatrixRotateZ(TMatrix16* pV, float ugol)
+TMatrix16* SetMatrixRotateZ(TMatrix16* pOut, float angle)
 {
-#ifdef WIN32
-  SET_MATRIX_ROTATE_DX(pV,ugol,Z)
-#else
-#endif
-  return pV;
+  float sin = sinf(angle), 
+        cos = cosf(angle);
+
+  pOut->s._11 = cos;  pOut->s._12 =  sin;  pOut->s._13 = 0.0f; pOut->s._14 = 0.0f;
+  pOut->s._21 = -sin; pOut->s._22 =  cos;  pOut->s._23 = 0.0f; pOut->s._24 = 0.0f;
+  pOut->s._31 = 0.0f; pOut->s._32 =  0.0f; pOut->s._33 = 1.0f; pOut->s._34 = 0.0f;
+  pOut->s._41 = 0.0f; pOut->s._42 =  0.0f; pOut->s._43 = 0.0f; pOut->s._44 = 1.0f;
+
+  return pOut;
 }
 //-------------------------------------------------------------------------
-TMatrix16* SetMatrixRotationYawPitchRoll(TMatrix16* pV,
+TMatrix16* SetMatrixRotationYawPitchRoll(TMatrix16* pOut,
                                          float Yaw,
                                          float Pitch,
                                          float Roll )
 {
-#ifdef WIN32
-  D3DXMATRIX* InOut = (D3DXMATRIX*)pV;
-  D3DXMatrixRotationYawPitchRoll(InOut,
-                                 Yaw,
-                                 Pitch,
-                                 Roll);
-#else
-#endif
-  return pV;
+	TMatrix16 m;
+
+	SetMatrixIdentity(pOut);
+	SetMatrixRotateZ(&m, Roll);
+	SetMatrixMultiply(pOut, pOut, &m);
+	SetMatrixRotateX(&m, Pitch);
+	SetMatrixMultiply(pOut, pOut, &m);
+	SetMatrixRotateY(&m, Yaw);
+	SetMatrixMultiply(pOut, pOut, &m);
+	return pOut;
 }
 //-------------------------------------------------------------------------
 TMatrix16* SetMatrixRotationAxis(TMatrix16 *pOut,
-                                 const TVector3 *pV_,
+                                 const TVector3 *pV,
                                  float Angle)
 {
-#ifdef WIN32
-  D3DXMATRIX* InOut = (D3DXMATRIX*)pOut;
-  const D3DXVECTOR3* pV = (const D3DXVECTOR3*)pV_;
-  D3DXMatrixRotationAxis(InOut,
-                         pV,
-                         Angle);
-#else
-#endif
-  return pOut;
+	if(pOut==NULL)
+		return pOut;
+
+	TVector3 v;
+
+	SetVec3Normalize(&v, pV);
+	SetMatrixIdentity(pOut);
+	pOut->m[0][0] = (1.0f - cos(Angle)) * v.x * v.x + cos(Angle);
+	pOut->m[1][0] = (1.0f - cos(Angle)) * v.x * v.y - sin(Angle) * v.z;
+	pOut->m[2][0] = (1.0f - cos(Angle)) * v.x * v.z + sin(Angle) * v.y;
+	pOut->m[0][1] = (1.0f - cos(Angle)) * v.y * v.x + sin(Angle) * v.z;
+	pOut->m[1][1] = (1.0f - cos(Angle)) * v.y * v.y + cos(Angle);
+	pOut->m[2][1] = (1.0f - cos(Angle)) * v.y * v.z - sin(Angle) * v.x;
+	pOut->m[0][2] = (1.0f - cos(Angle)) * v.z * v.x - sin(Angle) * v.y;
+	pOut->m[1][2] = (1.0f - cos(Angle)) * v.z * v.y + sin(Angle) * v.x;
+	pOut->m[2][2] = (1.0f - cos(Angle)) * v.z * v.z + cos(Angle);
+	return pOut;
 }
 //-------------------------------------------------------------------------
 TMatrix16* SetMatrixMultiply(TMatrix16 *pOut,
                              const TMatrix16 *pM1,
                              const TMatrix16 *pM2)
 {
-#ifdef WIN32
-  D3DXMATRIX* InOut = (D3DXMATRIX*)pOut;
-  D3DXMATRIX* In1 = (D3DXMATRIX*)pM1;
-  D3DXMATRIX* In2 = (D3DXMATRIX*)pM2;
-  D3DXMatrixMultiply(InOut,
-                     In1,
-                     In2);
-#else
-#endif
-  return pOut;
+	if(pOut==NULL)
+		return pOut;
+
+	for(int i = 0 ; i< 4 ; i++)
+	{
+ 		for( int j = 0 ; j< 4 ; j++)
+		{
+			pOut->m[i][j] = pM1->m[i][0] * pM2->m[0][j] + 
+			                pM1->m[i][1] * pM2->m[1][j] + 
+									  	pM1->m[i][2] * pM2->m[2][j] + 
+									  	pM1->m[i][3] * pM2->m[3][j];
+		}
+	}
+	return pOut;
+}
+//-------------------------------------------------------------------------
+TVector3* SetVec3Subtract(TVector3* pOut, 
+													const TVector3* pV1, 
+													const TVector3* pV2)
+{
+	if(pOut==NULL)
+		return pOut;
+
+	pOut->x = pV1->x - pV2->x;
+	pOut->y = pV1->y - pV2->y;
+	pOut->z = pV1->z - pV2->z;
+	return pOut;
 }
 //-------------------------------------------------------------------------
 TVector3*  SetVec3TransformCoord(TVector3* pOut,
-                                 const TVector3* pV_,
-                                 const TMatrix16* pM_)
+                                 const TVector3* pV,
+                                 const TMatrix16* pM)
 {
-#ifdef WIN32
-  D3DXVECTOR3* InOut = (D3DXVECTOR3*)pOut;
-  const D3DXVECTOR3* pV = (const D3DXVECTOR3*)pV_;
-  const D3DXMATRIX* pM  = (const D3DXMATRIX*)pM_;
-  D3DXVec3TransformCoord(InOut,
-                         pV,
-                         pM );
-#else
-#endif
-  return pOut;
+	float norm;
+
+	norm = pM->m[0][3] * pV->x + pM->m[1][3] * pV->y + pM->m[2][3] *pV->z + pM->m[3][3];
+
+	if( norm )
+	{
+		const TVector3 v = *pV;
+		pOut->x = (pM->m[0][0] * v.x + pM->m[1][0] * v.y + pM->m[2][0] * v.z + pM->m[3][0]) / norm;
+		pOut->y = (pM->m[0][1] * v.x + pM->m[1][1] * v.y + pM->m[2][1] * v.z + pM->m[3][1]) / norm;
+		pOut->z = (pM->m[0][2] * v.x + pM->m[1][2] * v.y + pM->m[2][2] * v.z + pM->m[3][2]) / norm;
+	}
+	else
+	{
+		pOut->x = 0.0f;
+		pOut->y = 0.0f;
+		pOut->z = 0.0f;
+	}
+	return pOut;
 }
 //-------------------------------------------------------------------------
 TVector3* SetVec3Cross( TVector3* pOut,
-                        const TVector3* pV1_,
-                        const TVector3* pV2_)
+                       const TVector3* pV1,
+                       const TVector3* pV2)
 {
-#ifdef WIN32
-  D3DXVECTOR3* InOut     = (D3DXVECTOR3*) pOut;
-  const D3DXVECTOR3* pV1 = (const D3DXVECTOR3*) pV1_;
-  const D3DXVECTOR3* pV2 = (const D3DXVECTOR3*) pV2_;
- 
-  D3DXVec3Cross(InOut,
-                pV1,
-                pV2);
-#else
-#endif
+  TVector3 v;
+
+  v.x = pV1->y * pV2->z - pV1->z * pV2->y;
+  v.y = pV1->z * pV2->x - pV1->x * pV2->z;
+  v.z = pV1->x * pV2->y - pV1->y * pV2->x;
+
+  *pOut = v;
   return pOut;
 }
 //-------------------------------------------------------------------------
-float SetVec3Dot( const TVector3* pV1_,
-                  const TVector3* pV2_)
+float SetVec3Dot( const TVector3* pV1,
+                 const TVector3* pV2)
 {
-  float res;
-#ifdef WIN32
-  const D3DXVECTOR3* pV1 = (const D3DXVECTOR3*)pV1_;
-  const D3DXVECTOR3* pV2 = (const D3DXVECTOR3*)pV2_;
-
-  res = D3DXVec3Dot(pV1,
-                    pV2);
-#else
-#endif
+  float res = pV1->x * pV2->x + pV1->y * pV2->y + pV1->z * pV2->z;
   return res;
 }
 //-------------------------------------------------------------------------
 TVector3* SetVec3Normalize(TVector3* pOut,
-                           const TVector3* pV_)
+                           const TVector3* pV)
 {
-#ifdef WIN32
-  D3DXVECTOR3 *InOut    = (D3DXVECTOR3*)pOut;
-  const D3DXVECTOR3* pV = (const D3DXVECTOR3*)pV_;
-  D3DXVec3Normalize(InOut,
-                    pV);
-#else
-#endif
+  if(pOut==NULL)
+    return NULL;
+
+  *pOut = *pV;
+  float len = pOut->lenght();
+  if(len > 0.0f)
+    pOut->operator /= (len);
+
   return pOut;
 }
 //-------------------------------------------------------------------------
@@ -203,126 +235,178 @@ TMatrix16* SetMatrixPerspectiveFovLH( TMatrix16* pOut,
                                       float Aspect, 
                                       float zn, float zf )
 {
-#ifdef WIN32
-  D3DXMATRIX* InOut = (D3DXMATRIX*)pOut;
-  D3DXMatrixPerspectiveFovLH( InOut, 
-                              fovy, 
-                              Aspect, 
-                              zn, zf );
-#else
-#endif
+	if((Aspect==0.0f) ||
+		 (fovy  ==0.0f) ||
+	   (zn==zf))
+	  return NULL;
+
+	float tan_fovy_2 = tan(fovy/2.0f);
+  float _11 = 1.0f / (Aspect * tan_fovy_2);
+  float _22 = 1.0f / tan_fovy_2;
+
+  pOut->s._11 = _11;    pOut->s._12 =  0.0f;   pOut->s._13 = 0.0f;           pOut->s._14 = 0.0f;
+  pOut->s._21 = 0.0f;   pOut->s._22 = _22;     pOut->s._23 = 0.0f;           pOut->s._24 = 0.0f;
+  pOut->s._31 = 0.0f;   pOut->s._32 =  0.0f;   pOut->s._33 = zf/(zf-zn);     pOut->s._34 = 1.0f;
+  pOut->s._41 = 0.0f;   pOut->s._42 =  0.0f;   pOut->s._43 = -zn*zf/(zf-zn); pOut->s._44 = 0.0f;
+
   return pOut;
 }
 //-------------------------------------------------------------------------
-TMatrix16* SetMatrixInverse(TMatrix16* pOut,
-                            float* pDeterminant,
-                            const TMatrix16* pM_ )
+float SetMatrixfDeterminant(const nsMathTools::TMatrix16 *pm)
 {
-#ifdef WIN32
-  D3DXMATRIX* InOut = (D3DXMATRIX*)pOut;
-  const D3DXMATRIX* pM = (const D3DXMATRIX*)pM_;
-  D3DXMatrixInverse(InOut,pDeterminant,pM);
-#else
-#endif
-  return pOut;
+	TVector4 minor, v1, v2, v3;
+	float det;
+
+	v1.x = pm->m[0][0]; v1.y = pm->m[1][0]; v1.z = pm->m[2][0]; v1.w = pm->m[3][0];
+	v2.x = pm->m[0][1]; v2.y = pm->m[1][1]; v2.z = pm->m[2][1]; v2.w = pm->m[3][1];
+	v3.x = pm->m[0][2]; v3.y = pm->m[1][2]; v3.z = pm->m[2][2]; v3.w = pm->m[3][2];
+	SetVec4Cross(&minor,&v1,&v2,&v3);
+	det =  - (pm->m[0][3] * minor.x + pm->m[1][3] * minor.y + pm->m[2][3] * minor.z + pm->m[3][3] * minor.w);
+	return det;
+}
+//-------------------------------------------------------------------------
+TMatrix16* SetMatrixInverse(TMatrix16* pout,
+                            float* pdeterminant,
+                            const TMatrix16* pm )
+{
+	int a, i, j;
+	TVector4 v, vec[3];
+	float det;
+
+	det = SetMatrixfDeterminant(pm);
+	if ( !det ) return NULL;
+	if ( pdeterminant ) *pdeterminant = det;
+	for (i=0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			if (j != i )
+			{
+				a = j;
+				if ( j > i ) a = a-1;
+				vec[a].x = pm->m[j][0];
+				vec[a].y = pm->m[j][1];
+				vec[a].z = pm->m[j][2];
+				vec[a].w = pm->m[j][3];
+			}
+		}
+		SetVec4Cross(&v, &vec[0], &vec[1], &vec[2]);
+		pout->m[0][i] = pow(-1.0f, i) * v.x / det;
+		pout->m[1][i] = pow(-1.0f, i) * v.y / det;
+		pout->m[2][i] = pow(-1.0f, i) * v.z / det;
+		pout->m[3][i] = pow(-1.0f, i) * v.w / det;
+	}
+	return pout;
+}
+//-------------------------------------------------------------------------
+TVector4* SetVec4Cross(TVector4 *pout, 
+											 const TVector4 *pv1, 
+											 const TVector4 *pv2, 
+											 const TVector4 *pv3)
+{
+	TVector4 out;
+	out.x = pv1->y * (pv2->z * pv3->w - pv3->z * pv2->w) - pv1->z * (pv2->y * pv3->w - pv3->y * pv2->w) + pv1->w * (pv2->y * pv3->z - pv2->z *pv3->y);
+	out.y = -(pv1->x * (pv2->z * pv3->w - pv3->z * pv2->w) - pv1->z * (pv2->x * pv3->w - pv3->x * pv2->w) + pv1->w * (pv2->x * pv3->z - pv3->x * pv2->z));
+	out.z = pv1->x * (pv2->y * pv3->w - pv3->y * pv2->w) - pv1->y * (pv2->x *pv3->w - pv3->x * pv2->w) + pv1->w * (pv2->x * pv3->y - pv3->x * pv2->y);
+	out.w = -(pv1->x * (pv2->y * pv3->z - pv3->y * pv2->z) - pv1->y * (pv2->x * pv3->z - pv3->x *pv2->z) + pv1->z * (pv2->x * pv3->y - pv3->x * pv2->y));
+	*pout = out;
+	return pout;
 }
 //-------------------------------------------------------------------------
 TPlane* SetPlaneFromPointNormal(TPlane* pOut,
-                                const TVector3* _pPoint,
-                                const TVector3* _pNormal)
+                                const TVector3* pPoint,
+                                const TVector3* pNormal)
 {
-#ifdef WIN32
-  D3DXPLANE* InOut = (D3DXPLANE*)pOut; 
-  const D3DXVECTOR3 *pPoint  = (const D3DXVECTOR3*)_pPoint;
-  const D3DXVECTOR3 *pNormal = (const D3DXVECTOR3*)_pNormal;
-
-  D3DXPlaneFromPointNormal(InOut,pPoint,pNormal);
-#else
-#endif
-  return pOut;
+	pOut->a = pNormal->x;
+	pOut->b = pNormal->y;
+	pOut->c = pNormal->z;
+	pOut->d = -SetVec3Dot(pPoint, pNormal);
+	return pOut;
 }
 //-------------------------------------------------------------------------
 TPlane* SetPlaneFromPoints( TPlane* pOut,
-                            const TVector3* _pV1,
-                            const TVector3* _pV2,
-                            const TVector3* _pV3)
+                           const TVector3* pV1,
+                           const TVector3* pV2,
+                           const TVector3* pV3)
 {
-#ifdef WIN32
-  D3DXPLANE* InOut = (D3DXPLANE*)pOut; 
-  const D3DXVECTOR3* pV1 = (const D3DXVECTOR3*)_pV1;
-  const D3DXVECTOR3* pV2 = (const D3DXVECTOR3*)_pV2;
-  const D3DXVECTOR3* pV3 = (const D3DXVECTOR3*)_pV3;
-  D3DXPlaneFromPoints(InOut,pV1,pV2,pV3);
-#else
-#endif
-  return pOut;
+	TVector3 edge1, edge2, normal, Nnormal;
+
+	edge1.x = 0.0f; edge1.y = 0.0f; edge1.z = 0.0f;
+	edge2.x = 0.0f; edge2.y = 0.0f; edge2.z = 0.0f;
+	SetVec3Subtract(&edge1, pV2, pV1);
+	SetVec3Subtract(&edge2, pV3, pV1);
+	SetVec3Cross(&normal, &edge1, &edge2);
+	SetVec3Normalize(&Nnormal, &normal);
+	SetPlaneFromPointNormal(pOut, pV1, &Nnormal);
+	return pOut;
 }
 //-------------------------------------------------------------------------
 TVector3* SetPlaneIntersectLine( TVector3* pOut,
-                                 const TPlane*   _pP,
-                                 const TVector3* _pV1,
-                                 const TVector3* _pV2)
+                                const TPlane*   pP,
+                                const TVector3* pV1,
+                                const TVector3* pV2)
 {
-#ifdef WIN32
-  D3DXVECTOR3* InOut = (D3DXVECTOR3*)pOut; 
-  const D3DXPLANE*   pP  = (const D3DXPLANE*)_pP;
-  const D3DXVECTOR3 *pV1 = (const D3DXVECTOR3 *)_pV1;
-  const D3DXVECTOR3 *pV2 = (const D3DXVECTOR3 *)_pV2;
-  D3DXPlaneIntersectLine(InOut,pP,pV1,pV2);
-#else
-#endif
-  return pOut;
+	TVector3 direction, normal;
+	float dot, temp;
+
+	normal.x = pP->a;
+	normal.y = pP->b;
+	normal.z = pP->c;
+	direction.x = pV2->x - pV1->x;
+	direction.y = pV2->y - pV1->y;
+	direction.z = pV2->z - pV1->z;
+	dot = SetVec3Dot(&normal, &direction);
+	if ( !dot ) return NULL;
+	temp = ( pP->d + SetVec3Dot(&normal, pV1) ) / dot;
+	pOut->x = pV1->x - temp * direction.x;
+	pOut->y = pV1->y - temp * direction.y;
+	pOut->z = pV1->z - temp * direction.z;
+	return pOut;
 }
 //-------------------------------------------------------------------------
 TPlane* SetPlaneTransform( TPlane* pOut,
-                            const TPlane*    _pP,
-                            const TMatrix16* _pM)
+                          const TPlane*    pP,
+                          const TMatrix16* pM)
 {
-#ifdef WIN32
-  D3DXPLANE* InOut = (D3DXPLANE*)pOut;
-  const D3DXPLANE *pP  = (const D3DXPLANE*) _pP;
-  const D3DXMATRIX *pM = (const D3DXMATRIX*)_pM;
-  D3DXPlaneTransform(InOut,pP,pM);
-#else
-#endif
-  return pOut;
+	const TPlane plane = *pP;
+	pOut->a = pM->m[0][0] * plane.a + pM->m[1][0] * plane.b + pM->m[2][0] * plane.c + pM->m[3][0] * plane.d;
+	pOut->b = pM->m[0][1] * plane.a + pM->m[1][1] * plane.b + pM->m[2][1] * plane.c + pM->m[3][1] * plane.d;
+	pOut->c = pM->m[0][2] * plane.a + pM->m[1][2] * plane.b + pM->m[2][2] * plane.c + pM->m[3][2] * plane.d;
+	pOut->d = pM->m[0][3] * plane.a + pM->m[1][3] * plane.b + pM->m[2][3] * plane.c + pM->m[3][3] * plane.d;
+	return pOut;
 }
 //-------------------------------------------------------------------------
 TQuaternion * SetQuaternionMultiply(TQuaternion *pOut,
-                                    const TQuaternion *_pQ1,
-                                    const TQuaternion *_pQ2)
+                                    const TQuaternion *pQ1,
+                                    const TQuaternion *pQ2)
 {
-#ifdef WIN32
-  D3DXQUATERNION* InOut = (D3DXQUATERNION*)pOut;
-  const D3DXQUATERNION* pQ1 = (const D3DXQUATERNION*)_pQ1;
-  const D3DXQUATERNION* pQ2 = (const D3DXQUATERNION*)_pQ2;
-
-  D3DXQuaternionMultiply(InOut,pQ1,pQ2);
-#else
-#endif
-  return pOut;
+	TQuaternion out;
+	out.x = pQ2->w * pQ1->x + pQ2->x * pQ1->w + pQ2->y * pQ1->z - pQ2->z * pQ1->y;
+	out.y = pQ2->w * pQ1->y - pQ2->x * pQ1->z + pQ2->y * pQ1->w + pQ2->z * pQ1->x;
+	out.z = pQ2->w * pQ1->z + pQ2->x * pQ1->y - pQ2->y * pQ1->x + pQ2->z * pQ1->w;
+	out.w = pQ2->w * pQ1->w - pQ2->x * pQ1->x - pQ2->y * pQ1->y - pQ2->z * pQ1->z;
+	*pOut = out;
+	return pOut;
 }
 //-------------------------------------------------------------------------
 TQuaternion * SetQuaternionIdentity(TQuaternion *pOut)
 {
-#ifdef WIN32
-  D3DXQUATERNION* InOut = (D3DXQUATERNION*)pOut;
-  D3DXQuaternionIdentity(InOut);
-#else
-#endif
+  pOut->x = 0.0f;
+  pOut->y = 0.0f;
+  pOut->z = 0.0f;
+  pOut->w = 1.0f;
   return pOut;
 }
 //-------------------------------------------------------------------------
 TQuaternion* SetQuaternionRotationAxis(TQuaternion* pOut,
-                                       const TVector3 *_pV,
+                                       const TVector3 *pV,
                                        float Angle)
 {
-#ifdef WIN32
-  D3DXQUATERNION* InOut = (D3DXQUATERNION*)pOut;
-  const D3DXVECTOR3* pV = (const D3DXVECTOR3*)_pV;
-  D3DXQuaternionRotationAxis(InOut, pV, Angle);
-#else
-#endif
+  pOut->w = cos(Angle/2);
+  float sinAngle_2 = sin(Angle/2);
+  pOut->x = sinAngle_2*pV->x;
+  pOut->y = sinAngle_2*pV->y;
+  pOut->z = sinAngle_2*pV->z;
   return pOut;
 }
 //-------------------------------------------------------------------------
@@ -330,13 +414,44 @@ void SetQuaternionToAxisAngle(const TQuaternion *pQ,
                               TVector3 *pAxis,
                               float *pAngle)
 {
-#ifdef WIN32
-  const D3DXQUATERNION* InOut = (const D3DXQUATERNION*)pQ;
-  D3DXVECTOR3* pV = (D3DXVECTOR3*)pAxis;
-  
-  D3DXQuaternionToAxisAngle(InOut, pV, pAngle);
-#else
-#endif
+  float angle = atan2(sqrt(pQ->x*pQ->x + pQ->y*pQ->y + pQ->z*pQ->z), pQ->w);
+  if(angle!=0)
+  {
+    float sinAngle = sin(angle);
+    pAxis->x = pQ->x/sinAngle;
+    pAxis->y = pQ->y/sinAngle;
+    pAxis->z = pQ->z/sinAngle;
+  }
+  else
+  {
+    pAxis->x = 0;
+    pAxis->y = 0;
+    pAxis->z = 0;
+  }
+  *pAngle = angle;
+
+	/*float norm;
+
+	*pAngle = 0.0f;
+	norm = SetQuaternionLength(pQ);
+	if ( norm )
+	{
+		pAxis->x = pQ->x / norm;
+		pAxis->y = pQ->y / norm;
+		pAxis->z = pQ->z / norm;
+		if ( fabs( pQ->w ) <= 1.0f ) *pAngle = 2.0f * acos(pQ->w);
+	}
+	else
+	{
+		pAxis->x = 1.0f;
+		pAxis->y = 0.0f;
+		pAxis->z = 0.0f;
+	}*/
+}
+//-------------------------------------------------------------------------
+float SetQuaternionLength(const TQuaternion *pQ)
+{
+	return sqrt(pQ->x*pQ->x + pQ->y*pQ->y + pQ->z*pQ->z + pQ->w*pQ->w);
 }
 //-------------------------------------------------------------------------
 TMatrix16::TMatrix16( float _11, float _12, float _13, float _14,
@@ -344,35 +459,35 @@ TMatrix16::TMatrix16( float _11, float _12, float _13, float _14,
                       float _31, float _32, float _33, float _34,
                       float _41, float _42, float _43, float _44 )
 {
-  this->_11 = _11; this->_12 = _12; this->_13 = _13; this->_14 = _14;
-  this->_21 = _21; this->_22 = _22; this->_23 = _23; this->_24 = _24;
-  this->_31 = _31; this->_32 = _32; this->_33 = _33; this->_34 = _34;
-  this->_41 = _41; this->_42 = _42; this->_43 = _43; this->_44 = _44;
+  this->s._11 = _11; this->s._12 = _12; this->s._13 = _13; this->s._14 = _14;
+  this->s._21 = _21; this->s._22 = _22; this->s._23 = _23; this->s._24 = _24;
+  this->s._31 = _31; this->s._32 = _32; this->s._33 = _33; this->s._34 = _34;
+  this->s._41 = _41; this->s._42 = _42; this->s._43 = _43; this->s._44 = _44;
 }
 //-------------------------------------------------------------------------
 // assignment operators
 TMatrix16& TMatrix16::operator += ( const TMatrix16& v)
 {
   MATRIX16_OP_P_M(this,v, += )
-  return *this;
+    return *this;
 }
 //-------------------------------------------------------------------------
 TMatrix16& TMatrix16::operator -= ( const TMatrix16& v)
 {
   MATRIX16_OP_P_M(this,v, -= )
-  return *this;
+    return *this;
 }
 //-------------------------------------------------------------------------
 TMatrix16& TMatrix16::operator *= ( float v)
 {
   MATRIX16_OP_P(this,v,*=)
-  return *this;
+    return *this;
 }
 //-------------------------------------------------------------------------
 TMatrix16& TMatrix16::operator /= ( float v)
 {
   MATRIX16_OP_P(this,v,/=)
-  return *this;
+    return *this;
 }
 //-------------------------------------------------------------------------
 TMatrix16 TMatrix16::operator + () const
@@ -389,14 +504,14 @@ TMatrix16 TMatrix16::operator + ( const TMatrix16& v) const
 {
   TMatrix16 res = *this;
   MATRIX16_OP_M_M(res,v,+=)  
-  return res;
+    return res;
 }
 //-------------------------------------------------------------------------
 TMatrix16 TMatrix16::operator - ( const TMatrix16& v) const
 {
   TMatrix16 res = *this;
   MATRIX16_OP_M_M(res,v,-=)
-  return res;
+    return res;
 }
 //-------------------------------------------------------------------------
 TMatrix16 TMatrix16::operator * ( float v) const
@@ -404,7 +519,7 @@ TMatrix16 TMatrix16::operator * ( float v) const
   TMatrix16 res = *this;
   MATRIX16_OP_M(res,v,*=)
 
-  return res;
+    return res;
 }
 //-------------------------------------------------------------------------
 TMatrix16 TMatrix16::operator / ( float v) const
@@ -412,7 +527,7 @@ TMatrix16 TMatrix16::operator / ( float v) const
   TMatrix16 res = *this;
   MATRIX16_OP_M(res,v,/=)
 
-  return res;
+    return res;
 }
 //-------------------------------------------------------------------------
 bool TMatrix16::operator == ( const TMatrix16& v) const
@@ -435,27 +550,14 @@ bool TMatrix16::operator != ( const TMatrix16& v) const
 //-------------------------------------------------------------------------
 TMatrix16& TMatrix16::operator *= ( const TMatrix16& v)
 {
-#ifdef WIN32
-  TMatrix16 res;
-  D3DXMATRIX* In1 = (D3DXMATRIX*)this,
-            * In2 = (D3DXMATRIX*)&v,
-            * Out = (D3DXMATRIX*)&res;
-  D3DXMatrixMultiply(In1,In1,In2);
-#else
-#endif
+  SetMatrixMultiply(this, this, &v);
   return *this;
 }
 //-------------------------------------------------------------------------
 TMatrix16 TMatrix16::operator * ( const TMatrix16& v) const
 {
-#ifdef WIN32
   TMatrix16 res;
-  D3DXMATRIX* In1 = (D3DXMATRIX*)this,
-            * In2 = (D3DXMATRIX*)&v,
-            * Out = (D3DXMATRIX*)&res;
-  D3DXMatrixMultiply(Out,In1,In2);
-#else
-#endif
+  SetMatrixMultiply(&res, this, &v);
   return res;
 }
 //-------------------------------------------------------------------------
@@ -790,10 +892,10 @@ bool TPlane::operator != ( const TPlane& p) const
 bool TLine::FindAndSetIntersect(TPlane* pP1,TPlane* pP2)
 {
   //1 найдем тип прямой (зависит от того равны ли коэффициенты плоскости нулю)
-	// find type of line (determinate by equal coefficient of plane equal zero)
+  // find type of line (determinate by equal coefficient of plane equal zero)
   if((*pP1==*pP2)           ||// line will plane, линия выродилась в плоскость
-     (*pP1==TPlane(0,0,0,0))||// will zero equal, вырожденное уравнение
-     (*pP2==TPlane(0,0,0,0)))
+    (*pP1==TPlane(0,0,0,0))||// will zero equal, вырожденное уравнение
+    (*pP2==TPlane(0,0,0,0)))
   {
     SetType(eUndef);
     return false;

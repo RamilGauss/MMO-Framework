@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib opengl32.lib glu32.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Share.lib MMOEngine.lib"
+				AdditionalDependencies="shlwapi.lib opengl32.lib glu32.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Share.lib MMOEngine.lib d3dx10d.lib d3dx9d.lib d3d9.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\Lib;&quot;..\..\Lib\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
