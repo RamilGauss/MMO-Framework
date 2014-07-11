@@ -66,9 +66,40 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port,
   }
   Context()->SetNeedLeaveQueue(false);
   Context()->SetSubNet(subNet);
-  // сформировать пустой пакет - эхо
-  TBreakPacket bp;
-  SetID_SessionClientMaster(Context()->GetMS()->Send(ip, port, bp, subNet));
+  
+  TBreakPacket bpLP;// контейнер для всего пакета
+  if(Context()->GetMS()->GetUseCryptTCP())
+  {
+    // если данные шифруются, то формировать так:
+    // получить RSA public key от ManagerSession
+    TContainer cRSA;
+    bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
+    BL_ASSERT(resRSA);
+    TCryptMITM cryptMITM;
+    TContainer cEncryptRSA_bySHA1_LP;
+    bool res = cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
+      data, size, cEncryptRSA_bySHA1_LP);
+    BL_ASSERT(res);
+
+    TMD5 md5;
+    TContainer cMD5LP;
+    md5.FastCalc(data, size, cMD5LP);
+    // сначало MD5LP
+    bpLP.PushFront((char*)cMD5LP.GetPtr(), cMD5LP.GetSize());
+    // потом зашифрованный RSA
+    bpLP.PushFront((char*)cEncryptRSA_bySHA1_LP.GetPtr(), cEncryptRSA_bySHA1_LP.GetSize());
+  }
+  else
+  {
+    // иначе просто отослать данные:
+    // формирование пакета
+    bpLP.PushFront((char*)data,size);
+  }
+  THeaderTryLoginC2M h;
+  bpLP.PushFront((char*)&h, sizeof(h));
+
+  // отослать пакет для попытки авторизации
+  SetID_SessionClientMaster(Context()->GetMS()->Send(ip, port, bpLP, subNet));
   if(GetID_SessionClientMaster()==INVALID_HANDLE_SESSION)
   {
     // Генерация ошибки
@@ -76,44 +107,10 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port,
     event.code = LoginClient_ClientMasterNotReady;
     Context()->GetSE()->AddEventCopy(&event, sizeof(event));
     End();
+    return;
   }
-  else
-  {
-    TBreakPacket bpLP;// контейнер для всего пакета
-    if(Context()->GetMS()->GetUseCryptTCP())
-    {
-      // если данные шифруются, то формировать так:
-      // получить RSA public key от ManagerSession
-      TContainer cRSA;
-      bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
-      BL_ASSERT(resRSA);
-			TCryptMITM cryptMITM;
-      TContainer cEncryptRSA_bySHA1_LP;
-			bool res = cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
-																data, size, cEncryptRSA_bySHA1_LP);
-      BL_ASSERT(res);
-      
-			TMD5 md5;
-			TContainer cMD5LP;
-			md5.FastCalc(data, size, cMD5LP);
-      // сначало MD5LP
-      bpLP.PushFront((char*)cMD5LP.GetPtr(), cMD5LP.GetSize());
-      // потом зашифрованный RSA
-      bpLP.PushFront((char*)cEncryptRSA_bySHA1_LP.GetPtr(), cEncryptRSA_bySHA1_LP.GetSize());
-    }
-    else
-    {
-      // иначе просто отослать данные:
-      // формирование пакета
-      bpLP.PushFront((char*)data,size);
-    }
-    THeaderTryLoginC2M h;
-    bpLP.PushFront((char*)&h, sizeof(h));
-    // отослать пакет для попытки авторизации
-    Context()->GetMS()->Send(GetID_SessionClientMaster(), bpLP);
-
-    SetTimeWaitForNow();
-  }
+  
+  SetTimeWaitForNow();
 }
 //-----------------------------------------------------------------------------
 void TScLoginClient_ClientImpl::RecvFromSlave(TDescRecvSession* pDesc)

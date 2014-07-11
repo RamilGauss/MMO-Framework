@@ -23,10 +23,11 @@ mClient(this),mSlave(this),mMaster(this),mSS(this)
 {
   mCurBehavior = NULL;
 
-  AddCallBack(eSetClientKey,                     &mCBSetClientKey);
-  AddCallBack(eContextByMasterSessionByClientKey,&mCBContextByMasterSessionByClientKey);
-  AddCallBack(eNumInQueueByClientKey,            &mCBNumInQueueByClientKey);
-  AddCallBack(eContextByClientSessionByClientKey,&mCBContextByClientSessionByClientKey);
+  AddCallBack(eSetClientKey,                          &mCBSetClientKey);
+  AddCallBack(eContextByMasterSessionByClientKey,     &mCBContextByMasterSessionByClientKey);
+  AddCallBack(eNumInQueueByClientKey,                 &mCBNumInQueueByClientKey);
+  AddCallBack(eContextByClientSessionByClientKey,     &mCBContextByClientSessionByClientKey);
+  AddCallBack(eContextByClientSessionAfterAuthorised, &mCBContextByClientSessionAfterAuthorised);
 }
 //--------------------------------------------------------------
 TScenarioLoginClient::~TScenarioLoginClient()

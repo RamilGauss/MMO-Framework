@@ -227,6 +227,9 @@ void TBase::RegisterNeedForLoginClient()
   mControlSc->mLoginClient->Register<unsigned int,unsigned int>(
                             TScenarioLoginClient::eContextByClientSessionByClientKey,
                             &TBase::NeedContextLoginClientByClientSessionByKeyClient, this);
+  mControlSc->mLoginClient->Register<unsigned int>(
+                            TScenarioLoginClient::eContextByClientSessionAfterAuthorised,
+                            &TBase::NeedContextLoginClientBySessionAfterAuthorised, this);
 }
 //-------------------------------------------------------------------------
 void TBase::DeleteContainerScenario()

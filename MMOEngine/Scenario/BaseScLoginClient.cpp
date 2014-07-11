@@ -117,6 +117,12 @@ void TBaseScLoginClient::NeedContextByClientSessionByClientKey(unsigned int id_s
                                                id_session_client, id_client);
 }
 //---------------------------------------------------------------------
+void TBaseScLoginClient::NeedContextBySessionAfterAuthorised(unsigned int id_session_client)
+{
+  mScenario->Notify<unsigned int>(TScenarioLoginClient::eContextByClientSessionAfterAuthorised,
+        id_session_client);
+}
+//---------------------------------------------------------------------
 void TBaseScLoginClient::SetTimeWaitForNow()
 {
   Context()->SetTimeWait(ht_GetMSCount());

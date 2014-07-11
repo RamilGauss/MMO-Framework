@@ -31,6 +31,8 @@ namespace nsMMOEngine
     TCallBackRegistrator1<unsigned int>              mCBSetClientKey;
     // запрос на контекст по сессии и ключу клиента
     TCallBackRegistrator2<unsigned int,unsigned int> mCBContextByClientSessionByClientKey;
+    // запрос на контекст по сессии клиента после авторизации
+    TCallBackRegistrator1<unsigned int>              mCBContextByClientSessionAfterAuthorised;
 
     TScLoginClient_ClientImpl      mClient;
     TScLoginClient_SlaveImpl       mSlave;
@@ -46,6 +48,7 @@ namespace nsMMOEngine
       eNumInQueueByClientKey,
       eSetClientKey,
       eContextByClientSessionByClientKey,
+      eContextByClientSessionAfterAuthorised,
       eCountCallBack,
     }eTypeCallBack;
   public:

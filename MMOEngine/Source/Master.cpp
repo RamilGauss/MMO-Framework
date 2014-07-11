@@ -463,6 +463,23 @@ void TMaster::SendByClientKey(list<unsigned int>& lKey, TBreakPacket bp)
 	mControlSc->mSendToClient->SendFromSlave(lKey, bp);
 }
 //-------------------------------------------------------------------------
+void TMaster::NeedContextLoginClientBySessionAfterAuthorised(unsigned int id_session)
+{
+  // после авторизации Клиент получил информацию о Slave. Далее он пришлет Мастеру
+  // квитанцию об этом. Значит сессию Мастер должен найти.
+  TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession(id_session);
+  if(pC==NULL)
+  {
+    // внутренняя ошибка
+    GetLogger(STR_NAME_MMO_ENGINE)->
+      WriteF_time("TMaster::NeedContextLoginClientBySessionAfterAuthorised() context not found.\n");
+    mControlSc->mLoginClient->SetContext(NULL);
+    return;
+  }
+  // назначить контекст
+  mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
+}
+//-------------------------------------------------------------------------
 void TMaster::NeedContextLoginClientBySession(unsigned int id_session)
 {
   // если это повторная авторизация, то Begin по данному контексту клиента
@@ -473,6 +490,8 @@ void TMaster::NeedContextLoginClientBySession(unsigned int id_session)
     // внутренняя ошибка
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TMaster::NeedContextLoginClientBySession() against try authorized.\n");
+    mControlSc->mLoginClient->SetContext(NULL);
+    return;
   }
   else
   {

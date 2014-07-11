@@ -145,16 +145,18 @@ TMatrix16* SetMatrixMultiply(TMatrix16 *pOut,
 	if(pOut==NULL)
 		return pOut;
 
-	for(int i = 0 ; i< 4 ; i++)
+  TMatrix16 resM;
+	for(int i = 0 ; i < 4 ; i++)
 	{
- 		for( int j = 0 ; j< 4 ; j++)
+ 		for( int j = 0 ; j < 4 ; j++)
 		{
-			pOut->m[i][j] = pM1->m[i][0] * pM2->m[0][j] + 
-			                pM1->m[i][1] * pM2->m[1][j] + 
-									  	pM1->m[i][2] * pM2->m[2][j] + 
-									  	pM1->m[i][3] * pM2->m[3][j];
+			resM.m[i][j] = pM1->m[i][0] * pM2->m[0][j] + 
+			               pM1->m[i][1] * pM2->m[1][j] + 
+								  	 pM1->m[i][2] * pM2->m[2][j] + 
+					 			  	 pM1->m[i][3] * pM2->m[3][j];
 		}
 	}
+  *pOut = resM;
 	return pOut;
 }
 //-------------------------------------------------------------------------
