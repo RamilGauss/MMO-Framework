@@ -23,13 +23,14 @@ using namespace std;
 
 // Ќазначение: упростить отладку игры разработчику (нет необходимости создавать с дес€ток
 // исполнительных файлов, достаточно написать батник (*.bat))
-typedef enum{
-	    tUndef,
-	    tC,
-	    tS,
-	    tM,
-	    tSS,
-    }eTypeRealize;
+typedef enum
+{
+  tUndef,
+  tC,
+  tS,
+  tM,
+  tSS,
+}eTypeRealize;
 
 struct TTypeGame
 {
