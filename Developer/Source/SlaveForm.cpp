@@ -9,9 +9,9 @@ See for more information License.h.
 #include "ui_SlaveForm.h"
 #include "SlaveForm.h"
 
-#include "../QtLib/IQtLib.h"
-#include "../GameLib/IServerDeveloperTool.h"
 #include "TestControlTank.h"
+#include "DevTool_Share.h"
+#include "PrototypeAloneGUI_Starter.h"
 
 
 #define GUN_SPEED    0.00035f
@@ -52,7 +52,7 @@ void SlaveForm::customEvent( QEvent * event)
 void SlaveForm::closeEvent(QCloseEvent * event)
 {
   int type = 0;
-  IServerDeveloperTool::Singleton()->GetComponent()->mQtGUI->AddEventCopy(&type,sizeof(type));
+  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->AddEventCopy(&type,sizeof(type));
 
   delete this;
 }

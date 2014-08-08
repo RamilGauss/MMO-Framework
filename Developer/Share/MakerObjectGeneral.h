@@ -9,12 +9,11 @@ See for more information License.h.
 #define MakerObjectGeneralH
 
 #include <map>
-#include "../GameLib/IMakerObjectGeneral.h"
-
+#include "PrototypeMakerObjectGeneral.h"
 
 class IBaseObjectGeneral;
 
-class TMakerObjectGeneral : public IMakerObjectGeneral
+class TMakerObjectGeneral : public PrototypeMakerObjectGeneral
 {
 public:
   TMakerObjectGeneral();

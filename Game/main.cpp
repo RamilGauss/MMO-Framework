@@ -14,8 +14,7 @@ See for more information License.h.
 #include <map>
 
 #include "BL_Debug.h"
-#include "ClientGame.h"
-#include "ServerGame.h"
+#include "GameEngine.h"
 #include "InputCmdTornado.h"
 #include "ShareMisc.h"
 
@@ -23,35 +22,8 @@ using namespace std;
 
 // Назначение: упростить отладку игры разработчику (нет необходимости создавать с десяток
 // исполнительных файлов, достаточно написать батник (*.bat))
-typedef enum
-{
-  tUndef,
-  tC,
-  tS,
-  tM,
-  tSS,
-}eTypeRealize;
-
-struct TTypeGame
-{
-  string       name;
-  eTypeRealize t;
-};
-
-TTypeGame typeGame[]=
-{
-  {"c",  tC},
-  {"s",  tS},
-  {"m",  tM},
-  {"ss", tSS},
-};
 //-------------------------------------
-typedef map<string,eTypeRealize> TMapStrType;
-typedef TMapStrType::iterator TMapIter;
 typedef vector<string> TVectorStr;
-TMapStrType mapTypeGame;
-//-------------------------------------
-void Init();
 void ViewHowUse();
 //-------------------------------------
 #ifdef WIN32
@@ -62,8 +34,6 @@ bool GetArgvArgcConsole(int argc, char** argv, TVectorStr& vec_argv)
 int main(int argc, char** argv)
 #endif
 {
-  Init();
-  //-----------------------------------------------------------------
   TVectorStr vec_argv;
   bool resGet =
 #ifdef WIN32
@@ -81,11 +51,6 @@ int main(int argc, char** argv)
   //-----------------------------------------------------------------  
   TInputCmdTornado::TInput inputTornado;
   cmdTornado.Get(inputTornado);
-
-  eTypeRealize typeRealize = tUndef;
-  TMapIter fit = mapTypeGame.find(inputTornado.type);
-  if(fit!=mapTypeGame.end())
-    typeRealize = fit->second;
   //-----------------------------------------------------------------  
   if(inputTornado.useConsole)
   {
@@ -94,40 +59,12 @@ int main(int argc, char** argv)
     printf("----------------------------------------------\n");
   }
   //-----------------------------------------------------------------  
-  IGame *pGame = NULL;
-  switch(typeRealize)
-  {
-    case tUndef:
-		  ViewHowUse();
-		  break;
-	  case tC:
-      pGame = new TClientGame;
-      break;
-    case tS:
-		  pGame = new TServerGame(TServerGame::eSlave);
-      break;
-    case tM:
-		  pGame = new TServerGame(TServerGame::eMaster);
-      break;
-    case tSS:
-		  pGame = new TServerGame(TServerGame::eSuperServer);
-      break;
-  }
-  if(pGame)
-	  pGame->Work(inputTornado.variant_use, 
-                inputTornado.libName.data(), 
-                inputTornado.param);
+  IGameEngine *pGame = new TGameEngine;
+  pGame->Work(inputTornado.variant_use, 
+              inputTornado.libName.data(), 
+              inputTornado.param);
   delete pGame;
-  pGame = NULL;
-
   return 0;
-}
-//-------------------------------------------------------------------------------
-void Init()
-{
-  int cnt = sizeof(typeGame)/sizeof(TTypeGame);
-  for(int i = 0 ; i < cnt ; i++ )
-    mapTypeGame.insert(TMapStrType::value_type(typeGame[i].name,typeGame[i].t));
 }
 //-------------------------------------------------------------------------------
 #ifdef WIN32
@@ -163,14 +100,6 @@ void ViewHowUse()
 {
   BL_MessageBug(
     "Некорректный ввод параметров.\n"
-    "Ключ -r тип создаваемого воплощения игры\n"
-    "параметры ключа:\n"
-    "  c - клиент\n"
-    " сервер:\n"
-    "  s  - slave\n"
-    "  m  - master\n"
-    "  ss - super-server\n"
-    "\n"
     "Ключ -d имя загружаемой библиотеки.\n"
     "\n"
     "Ключ -p строка, адресованная воплощению игры.\n"
@@ -180,9 +109,9 @@ void ViewHowUse()
     "\n"
     "Ключ -c показывает консоль. Ключ актуален только для Windows.\n"
     "\n"
-    "Ключи -d и -r являются обязательными.\n"
+    "Ключ -d является обязательным.\n"
     "\n"
     "Например:\n"
-    "Tornado.exe -v 0 -r c -d ..\\DeveloperToolDLL\\ViewerModel.dll -p ip 192.168.23.226 port 1000\n");
+    "Tornado.exe -v 0 -d ..\\DeveloperToolDLL\\ViewerModel.dll -p ip 192.168.23.226 port 1000\n");
 }
 //-------------------------------------------------------------------------------

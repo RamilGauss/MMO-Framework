@@ -6,14 +6,13 @@ See for more information License.h.
 */
 
 #include "ControlLight.h"
-#include "..\GraphicEngine\IGraphicEngine.h"
-#include "..\Share\BL_Debug.h"
-#include "..\Share\MakerCamera.h"
-#include "..\GameLib\IClientDeveloperTool.h"
-#include "..\GameLib\IManagerObjectGeneral.h"
+#include "BL_Debug.h"
+#include "PrototypeMOG.h"
 #include "MathTools.h"
-#include "..\GameLib\IBaseObjectGeneral.h"
+#include "IBaseObjectGeneral.h"
 #include <valarray>
+#include "DevTool_Share.h"
+#include "PrototypeGraphicEngine.h"
 
 using namespace nsMathTools;
 
@@ -24,8 +23,6 @@ using namespace nsMathTools;
 
 TControlLight::TControlLight()
 {
-  TMakerCamera maker;
-  mICamera = maker.New();
   isDrag = false;
 }
 //----------------------------------------------------------------------------------
@@ -36,17 +33,13 @@ TControlLight::~TControlLight()
 //----------------------------------------------------------------------------------
 void TControlLight::Done()
 {
-  TMakerCamera maker;
-  maker.Delete(mICamera);
-  mICamera = NULL;
-
   mVecObjLight.clear();
 }
 //----------------------------------------------------------------------------------
 void TControlLight::Init()
 {
-  pGE  = IClientDeveloperTool::Singleton()->GetComponent()->mGraphicEngine;
-  pMOC = IClientDeveloperTool::Singleton()->GetComponent()->mMOG;
+  pGE  = TDevTool_Share::Singleton()->GetComponent()->mGraphicEngine;
+  pMOC = TDevTool_Share::Singleton()->GetComponent()->mMOG;
   // загрузка объектов
   int cnt = GetCountAllLight(); 
   for(int i = 0 ; i < cnt ; i++ )

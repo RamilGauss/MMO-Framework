@@ -11,7 +11,6 @@ See for more information License.h.
 #include "TankTower.h"
 #include "ObjectScene.h"
 #include "LoaderListPathID.h"
-#include "GlobalParams.h"
 #include "file_operation.h"
 #include "BL_Debug.h"
 #include "ObjectLight.h"

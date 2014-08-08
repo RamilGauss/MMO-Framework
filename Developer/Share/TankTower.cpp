@@ -27,6 +27,9 @@ const char* ParamaVelocity = "Velocity";
 
 TTankTower::TTankTower()
 {
+  mV = 0;
+  mA = 0;
+
   mIndexTrackR = 0;
   mIndexTrackL = 0;
   mIndexTime = 0;
@@ -79,8 +82,8 @@ void TTankTower::RotateTurret(float ugol)
   SetMatrixIdentity(&matrix);
   SetMatrixRotateZ(&matrix,ugol);
 
-  mTree.ChangeMatrix(string("Turret"),&matrix);
-  mTree.GetMatrix(&mVectorMatrix);
+  ChangeTreeMatrix(string("Turret"),&matrix); //mTree.ChangeMatrix(string("Turret"),&matrix);
+  RefreshVectorMatrixByTree(); // mTree.GetMatrix(&mVectorMatrix);
 }
 //------------------------------------------------------------------------
 void TTankTower::RotateVerticalGun(float ugol)
@@ -90,8 +93,8 @@ void TTankTower::RotateVerticalGun(float ugol)
   SetMatrixIdentity(&matrix);
   SetMatrixRotateX(&matrix,ugol);
 
-  mTree.ChangeMatrix(string("Gun"),&matrix);
-  mTree.GetMatrix(&mVectorMatrix);
+  ChangeTreeMatrix(string("Gun"),&matrix); //mTree.ChangeMatrix(string("Gun"),&matrix);
+  RefreshVectorMatrixByTree(); // mTree.GetMatrix(&mVectorMatrix);
 }
 //------------------------------------------------------------------------
 void TTankTower::SetHuman(char* pData, int size)

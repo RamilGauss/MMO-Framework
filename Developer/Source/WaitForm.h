@@ -11,8 +11,7 @@ See for more information License.h.
 #include "BaseGUI.h"
 #include <MyGUI.h>
 
-class TWaitForm :
-  public TBaseGUI
+class TWaitForm :  public TBaseGUI
 {
 
 public:

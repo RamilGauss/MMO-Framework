@@ -15,9 +15,11 @@ See for more information License.h.
 #include <QSettings>
 
 #include "GlobalParam.h"
-#include "../GameLib/IClientDeveloperTool.h"
 #include "NetSystem.h"
-#include "Base.h"
+#include "PrototypeMMOBase.h"
+#include "DevTool_Share.h"
+#include "PrototypeMMOStructs.h"
+#include "PrototypeMMOClient.h"
 
 TClientMain::TClientMain()
 {
@@ -55,12 +57,11 @@ void TClientMain::sl_Enter(MyGUI::Widget* _sender)
 
   std::string sLogin = W2A((LPCWSTR)ebLogin->getOnlyText().data());
 
-  IClientDeveloperTool::TComponentClient* pComponent = 
-    IClientDeveloperTool::Singleton()->GetComponent();
+  TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
   // настройка сети
   if(IsOpen==false)
   {
-    IsOpen = pComponent->mNetClient->Open(&nsMMOEngine::TDescOpen(port));
+    IsOpen = pComponent->mNetClient->Open(&PrototypeMMODescOpen(port));
   }
 
   SaveInputParam(ip,port,sLogin.data());
@@ -72,7 +73,7 @@ void TClientMain::sl_Enter(MyGUI::Widget* _sender)
 void TClientMain::sl_Exit(MyGUI::Widget* _sender)
 {
   //IClientDeveloperTool::Singleton()->GetComponent()->mNetClient->LeaveQueue();
-  IClientDeveloperTool::Singleton()->Exit();
+  TDevTool_Share::Singleton()->Exit();
 }
 //-------------------------------------------------------------------------------------
 const char* TClientMain::GetNameLayout()

@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef ObjectSceneH
 #define ObjectSceneH
 
-#include "../GameLib/IBaseObjectGeneral.h"
+#include "IBaseObjectGeneral.h"
 
 
 class TObjectScene : public IBaseObjectGeneral

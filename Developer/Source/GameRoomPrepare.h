@@ -11,8 +11,7 @@ See for more information License.h.
 #include "BaseGUI.h"
 #include <MyGUI.h>
 
-class TGameRoomPrepare :
-  public TBaseGUI
+class TGameRoomPrepare : public TBaseGUI
 {
 
 public:

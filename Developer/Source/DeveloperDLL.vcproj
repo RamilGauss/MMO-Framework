@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../Share;../Share;../../GraphicEngine;../../PhysicEngine;../../GUI;../../3rdParty/MyGUI/MyGUIEngine/include;../../3rdParty/MyGUI/Common;../../MMOEngine/Include;.\GeneratedFiles;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;.\"
+				AdditionalIncludeDirectories="./;../Share;../../Base/QtLib;../../Base/Share;../../GameEngine;../../3rdParty/MyGUI/MyGUIEngine/include;..\..\3rdParty\MyGUI\MyGUIEngine\src;../../3rdParty/MyGUI/Common;..\..\3rdParty\MyGUI\Common\Base;..\..\3rdParty\MyGUI\Common\Base\DirectX;..\..\3rdParty\MyGUI\Common\Input\Win32;.\GeneratedFiles;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;VIEWERMODEL_EXPORTS;_WIN32_WINNT=0x0501"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib opengl32.lib glu32.lib ws2_32.lib DXGI.lib d3dx10d.lib d3dx9d.lib d3d9.lib dxerr.lib dxguid.lib winmm.lib comctl32.lib Imm32.lib Version.lib Dsound.lib GameLib.lib DXUT.lib DXUTOpt.lib Share.lib PhysicEngine.lib Common.lib MyGUIEngine.lib Platforms.lib GraphicEngine.lib QtCored4.lib QtGuid4.lib QtOpenGLd4.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib GameEngine.lib Share.lib MyGUIEngine.lib QtLib.lib QtCored4.lib QtGuid4.lib Common.lib Platforms.lib d3dx10d.lib d3dx9d.lib d3d9.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../Lib;&quot;../../Lib\$(ConfigurationName)&quot;;&quot;$(QTDIR)\lib&quot;"
 				GenerateDebugInformation="true"
@@ -176,64 +176,60 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Source Files"
-			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			Name="DevTool"
 			>
-			<File
-				RelativePath=".\ClientDeveloperTool_ClientTank.cpp"
+			<Filter
+				Name="Header Files"
 				>
-			</File>
-			<File
-				RelativePath=".\ClientDeveloperTool_ViewerModel.cpp"
+				<File
+					RelativePath=".\DevTool_ClientTank.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool_MasterTank.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool_SlaveTank.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool_SuperServerTank.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool_ViewerModel.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Source Files"
 				>
-			</File>
-			<File
-				RelativePath=".\DefMainFunc_DeveloperDLL.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\dllmain.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ServerDeveloperTool_MasterTank.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ServerDeveloperTool_SlaveTank.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ServerDeveloperTool_SuperServerTank.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
-			>
-			<File
-				RelativePath=".\ClientDeveloperTool_ClientTank.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ClientDeveloperTool_ViewerModel.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ServerDeveloperTool_MasterTank.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ServerDeveloperTool_SlaveTank.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ServerDeveloperTool_SuperServerTank.h"
-				>
-			</File>
+				<File
+					RelativePath=".\DefMainFunc_DeveloperDLL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool_ClientTank.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool_MasterTank.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool_SlaveTank.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool_SuperServerTank.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool_ViewerModel.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Share"
@@ -323,6 +319,70 @@
 				</File>
 				<File
 					RelativePath="..\Share\TestControlTank.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="DevTool"
+				>
+				<File
+					RelativePath="..\Share\AdapterAloneGUI_Dev.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\AdapterAloneGUI_Dev.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\DevTool_Client.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\DevTool_Client.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\DevTool_Server.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\DevTool_Server.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\DevTool_Share.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\DevTool_Share.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="MyGUI"
+				>
+				<File
+					RelativePath="..\Share\AdapterGraphicEngineGUI_DX9.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\AdapterGraphicEngineGUI_DX9.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\BaseGUI.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\BaseGUI.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\MyGUI_Manager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Share\MyGUI_Manager.h"
 					>
 				</File>
 			</Filter>

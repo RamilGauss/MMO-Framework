@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef ObjectLightH
 #define ObjectLightH
 
-#include "../GameLib/IBaseObjectGeneral.h"
+#include "IBaseObjectGeneral.h"
 
 
 class TObjectLight : public IBaseObjectGeneral

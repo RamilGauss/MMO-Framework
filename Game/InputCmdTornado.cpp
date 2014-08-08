@@ -10,7 +10,6 @@ See for more information License.h.
 #define KEY_PARAM   string("-p")
 #define KEY_LIB     string("-d")
 #define KEY_VARIANT string("-v")
-#define KEY_REALIZE string("-r")
 #define KEY_CONSOLE string("-c")
 
 using namespace std;
@@ -19,7 +18,6 @@ TInputCmdTornado::TInputCmdTornado()
 {
 	mVecDefKey.push_back(KEY_VARIANT);
 	mVecDefKey.push_back(KEY_LIB    );
-	mVecDefKey.push_back(KEY_REALIZE);
 	mVecDefKey.push_back(KEY_PARAM  );
 	mVecDefKey.push_back(KEY_CONSOLE);
 
@@ -38,10 +36,6 @@ bool TInputCmdTornado::SetArg(vector<string>& vecArgv)
 	int cD = mCmdParam.GetCountValueByKey(KEY_LIB);
 	if(cD==0) return false;
 	mCmdParam.GetByKey(KEY_LIB, 0, mInput.libName);
-	//-------------------------------------------------
-	int cR = mCmdParam.GetCountValueByKey(KEY_REALIZE);
-	if(cR==0) return false;
-	mCmdParam.GetByKey(KEY_REALIZE, 0, mInput.type);
 	//-------------------------------------------------
 	int cV = mCmdParam.GetCountValueByKey(KEY_VARIANT);
 	if(cV==1)

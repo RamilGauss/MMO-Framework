@@ -11,17 +11,14 @@ See for more information License.h.
 #include "MathTools.h"
 #include <vector>
 
-class ICamera;
-class IGraphicEngine;
-class IManagerObjectGeneral;
+class PrototypeMOG;
+class PrototypeGraphicEngine;
 class IBaseObjectGeneral;
 
 class TControlLight
 {
-
-  IGraphicEngine* pGE;
-  IManagerObjectGeneral* pMOC;
-  ICamera* mICamera;
+  PrototypeGraphicEngine* pGE;
+  PrototypeMOG* pMOC;
   
   nsMathTools::TVector3 mPos;// центр вращения
 

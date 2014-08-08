@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef TankTowerH
 #define TankTowerH
 
-#include "../GameLib/IActor.h"
+#include "IActor.h"
 
 
 class TTankTower : public IActor
@@ -89,6 +89,8 @@ protected:
   int mIndexVelocity;
   std::vector<int> mShaderStackMask;
 
+  float mV;// скорость, м/с
+  float mA;// ускорение, м/с^2
 public:
 #pragma pack(push, 1)
   struct TProperty

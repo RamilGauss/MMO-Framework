@@ -10,11 +10,10 @@ See for more information License.h.
 #include "HiTimer.h"
 #include "BL_Debug.h"
 #include "BreakPacket.h"
-#include "..\..\GameLib\IServerDeveloperTool.h"
-#include "BaseServer.h"
+#include "PrototypeMMOBaseServer.h"
 #include <list>
-
-using namespace nsMMOEngine;
+#include "DevTool_Share.h"
+#include "PrototypeMMOSlave.h"
 
 // формула для аппроксимации параметров в будущее
 // x = x0 + v * ( now - time_recv )
@@ -66,14 +65,13 @@ void TTestControlTank::Send()
 	TBreakPacket bp;
 	bp.PushFront((char*)mDesc.get(), sizeof(TDesc));
 
-	IServerDeveloperTool::TComponentServer* pComponent = 
-		IServerDeveloperTool::Singleton()->GetComponent();
-	TBaseServer* pBS = (TBaseServer*)pComponent->mNet.Base;
+	TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
+	PrototypeMMOBaseServer* pBS = (PrototypeMMOBaseServer*)pComponent->mNet.Base;
 
 	std::list<unsigned int> listKey;
 	//###
 	// рассылка всем клиентам
-	TSlave::TDescDownSlave descDown;
+	PrototypeMMOSlave::TDescDownSlave descDown;
 	int sizeDesc = sizeof(descDown);
 	int countClient = pComponent->mNet.Slave->GetCountDown();
 	for( int iClient = 0 ; iClient < countClient ; iClient++)

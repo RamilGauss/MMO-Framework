@@ -9,9 +9,9 @@ See for more information License.h.
 #include "ui_SuperServerForm.h"
 #include "SuperServerForm.h"
 
-#include "../QtLib/IQtLib.h"
-#include "../GameLib/IServerDeveloperTool.h"
 #include "BL_Debug.h"
+#include "DevTool_Share.h"
+#include "PrototypeAloneGUI_Starter.h"
 
 SuperServerForm::SuperServerForm(QWidget *parent)
 {
@@ -34,7 +34,7 @@ void SuperServerForm::closeEvent(QCloseEvent * event)
 {
   int type = 0;
   // создать событие для главного потока, здесь менять нельзя, мы находимся в потоке Qt
-  IServerDeveloperTool::Singleton()->GetComponent()->mQtGUI->AddEventCopy(&type,sizeof(type));
+  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->AddEventCopy(&type,sizeof(type));
 
   delete this;
 }

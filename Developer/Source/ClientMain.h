@@ -11,8 +11,7 @@ See for more information License.h.
 #include "BaseGUI.h"
 #include <MyGUI.h>
 
-class TClientMain :
-  public TBaseGUI
+class TClientMain : public TBaseGUI
 {
   bool IsOpen;
 public:

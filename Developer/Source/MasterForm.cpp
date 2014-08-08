@@ -10,10 +10,10 @@ See for more information License.h.
 
 #include <QLabel>
 
-#include "../QtLib/IQtLib.h"
-#include "../GameLib/IServerDeveloperTool.h"
+#include "PrototypeAloneGUI_Starter.h"
 
 #include "DevProtocol.h"
+#include "DevTool_Share.h"
 
 using namespace nsDevProtocol;
 
@@ -42,7 +42,7 @@ void MasterForm::customEvent( QEvent * event)
 void MasterForm::closeEvent(QCloseEvent * event)
 {
   TExit h;
-  IServerDeveloperTool::Singleton()->GetComponent()->mQtGUI->AddEventCopy(&h,sizeof(h));
+  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->AddEventCopy(&h,sizeof(h));
 
   delete this;
 }
@@ -107,6 +107,6 @@ void MasterForm::Refresh()
 void MasterForm::sl_CreateGroup()
 {
   TCreateGroup h;
-  IServerDeveloperTool::Singleton()->GetComponent()->mQtGUI->AddEventCopy(&h,sizeof(h));
+  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->AddEventCopy(&h,sizeof(h));
 }
 //-----------------------------------------------------------
