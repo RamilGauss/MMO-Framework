@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include <boost/smart_ptr/scoped_ptr.hpp>
 #include <boost/bimap/bimap.hpp>
+#include <list>
 
 #include "PrototypeGraphicEngine.h"
 #include "PrototypeObject.h"
@@ -19,6 +20,7 @@ class TGraphicEngine;
 class TDstEvent;
 class AdapterCamera;
 class AdapterControlCamera;
+class AdapterGraphicEngineObject;
 class TObjectGE;
 class AdapterGUI_DX;
 class PrototypeModelGE;
@@ -35,6 +37,10 @@ class DllExport AdapterGraphicEngine : public PrototypeGraphicEngine, public TDs
 
   typedef boost::bimaps::bimap<PrototypeModelGE*,IModelGE*> bmGameModelPtrGraphicModelPtr;
   bmGameModelPtrGraphicModelPtr mMapModel;
+
+  typedef boost::shared_ptr<AdapterGraphicEngineObject> TSmartPtrAdapterGEObject;
+  typedef std::list<TSmartPtrAdapterGEObject> TListSmartPtr;
+  TListSmartPtr mListObjectGE;
 public:
   AdapterGraphicEngine();
   virtual ~AdapterGraphicEngine();

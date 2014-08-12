@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcproj", "{D2602F61-B76E-4537-A9A2-1A16D3DEBBA5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{73A4EF05-62AA-4529-8C04-0529ABFF8DCC} = {73A4EF05-62AA-4529-8C04-0529ABFF8DCC}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{B430C5D8-F825-4361-96AE-EC40E71483FD}"
 EndProject
@@ -84,6 +87,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MeshConverter", "Tools\Mesh
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DeveloperDLL", "Developer\Source\DeveloperDLL.vcproj", "{73534D02-D7A8-4D08-8A8A-187CEE536C3F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{73A4EF05-62AA-4529-8C04-0529ABFF8DCC} = {73A4EF05-62AA-4529-8C04-0529ABFF8DCC}
+		{D2602F61-B76E-4537-A9A2-1A16D3DEBBA5} = {D2602F61-B76E-4537-A9A2-1A16D3DEBBA5}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "openSSL", "openSSL", "{24FEB2DC-5026-4DC7-A8B3-96DC6E36B645}"
 EndProject

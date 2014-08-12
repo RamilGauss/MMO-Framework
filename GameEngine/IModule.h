@@ -23,7 +23,7 @@ public:
   void SetID(int id){mID=id;}
 
   void SetUseInConveyer(bool v){flgUseInConveyer=v;}
-  bool UseInConveyer(){return flgUseInConveyer;}
+  bool IsUseInConveyer(){return flgUseInConveyer;}
 };
 
 #endif

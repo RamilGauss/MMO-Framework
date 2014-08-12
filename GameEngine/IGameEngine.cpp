@@ -137,7 +137,7 @@ bool IGameEngine::MakeEventFromModule()
   {
     // обработка событий модулей
     // некоторые модули могут вернуть false
-    if(mMainThreadVecModule[i]->UseInConveyer())
+    if(mMainThreadVecModule[i]->IsUseInConveyer())
       RET_FALSE(mMainThreadVecModule[i]->Work())
   }
   return true;

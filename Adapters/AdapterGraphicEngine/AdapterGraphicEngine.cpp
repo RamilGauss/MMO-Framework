@@ -16,6 +16,8 @@ See for more information License.h.
 #include "AdapterGraphicEngineObject.h"
 #include "ShareMisc.h"
 
+#include <boost\foreach.hpp>
+
 AdapterGraphicEngine::AdapterGraphicEngine()
 {
   GetLogger()->Register(STR_NAME_GE);
@@ -112,7 +114,10 @@ void AdapterGraphicEngine::SetResolutionFrame(int  h, int  w )
 //-----------------------------------------------------------------------------------------
 void AdapterGraphicEngine::AddObject(IBaseObjectGE* pObject)
 {
-  AdapterGraphicEngineObject* pObjectGE = new AdapterGraphicEngineObject;
+  TSmartPtrAdapterGEObject smartPtrObject(new AdapterGraphicEngineObject);
+  mListObjectGE.push_back(smartPtrObject);
+  AdapterGraphicEngineObject* pObjectGE = smartPtrObject.get();
+
   pObjectGE->SetGameObject(pObject);
   mGraphicEngine->AddObject(pObjectGE);
 }

@@ -248,10 +248,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\PrototypeClient.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\PrototypeControlCamera.cpp"
 				>
 			</File>
@@ -265,10 +261,6 @@
 			</File>
 			<File
 				RelativePath=".\PrototypeMakerObjectGeneral.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PrototypeMaster.cpp"
 				>
 			</File>
 			<File
@@ -329,14 +321,6 @@
 			</File>
 			<File
 				RelativePath=".\PrototypeServer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PrototypeSlave.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PrototypeSuperServer.cpp"
 				>
 			</File>
 			<File
