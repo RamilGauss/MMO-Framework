@@ -9,6 +9,8 @@ See for more information License.h.
 #include "IBaseObjectGE.h"
 #include "AdapterModelGE.h"
 
+#include <boost/foreach.hpp>
+
 AdapterGraphicEngineObject::AdapterGraphicEngineObject(int typeDX):
 TObjectGE(typeDX)
 {
@@ -60,6 +62,7 @@ void AdapterGraphicEngineObject::SetGameObject(IBaseObjectGE* pObject)
   SetAlphaTransparency(mGameObject->GetAlphaTransparency());
   SetID_Model(mGameObject->GetID_Model());
   SetTree(mGameObject->GetTree());
+	AssignVectorMatrix();
 }
 //-----------------------------------------------------------------------------------
 IBaseObjectGE* AdapterGraphicEngineObject::GetGameObject()
@@ -81,11 +84,38 @@ void AdapterGraphicEngineObject::UpdateObject( PrototypeObject* p, int type_even
       SetAlphaTransparency(mGameObject->GetAlphaTransparency());
       break;
     case IBaseObject::eTree:
-      mTree = *(mGameObject->GetReadyTree());
+      AssignTree();
       break;
     case IBaseObject::eVectorMatrix:
-      mVectorMatrix = *(mGameObject->GetVectorMatrix());
+			AssignVectorMatrix();
       break;
   }
+}
+//-----------------------------------------------------------------------------------
+void AdapterGraphicEngineObject::AssignVectorMatrix()
+{
+	if(mGameObject->GetVectorMatrix()->size()==mVectorMatrix.size())
+	{
+		int cnt = mGameObject->GetVectorMatrix()->size();
+		for( int i = 0 ; i < cnt ; i++)
+			*(mVectorMatrix[i]) = *(mGameObject->GetVectorMatrix()->operator[](i));
+	}
+	else
+	{
+		BOOST_FOREACH(nsMathTools::TMatrix16* pMatrix, mVectorMatrix)
+			delete pMatrix;
+		mVectorMatrix.clear();
+		int cnt = mGameObject->GetVectorMatrix()->size();
+		for( int i = 0 ; i < cnt ; i++)
+		{
+			mVectorMatrix[i] = new nsMathTools::TMatrix16;
+			*(mVectorMatrix[i]) = *(mGameObject->GetVectorMatrix()->operator[](i));
+		}
+	}
+}
+//-----------------------------------------------------------------------------------
+void AdapterGraphicEngineObject::AssignTree()
+{
+  mTree = *(mGameObject->GetReadyTree());
 }
 //-----------------------------------------------------------------------------------

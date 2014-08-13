@@ -21,7 +21,6 @@ See for more information License.h.
 #include "SDKmisc.h"
 #include "IGUI_Core.h"
 #include "GUI_DescWindow.h"
-//#include "MyGUI.h"
 #include "DescEvent.h"
 #include "MakerDirectX_Realize.h"
 #include "Camera.h"

@@ -16,7 +16,6 @@ See for more information License.h.
 #include "DispTextDX.h"
 #include "ManagerModelDX.h"
 #include "ManagerResourceDX.h"
-//#include "EffectDX.h"
 
 #include <list>
 #include <set>

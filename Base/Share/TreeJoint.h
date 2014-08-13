@@ -125,6 +125,7 @@ public:
   // сбросить все матрицы в дефолт
   void SetDefault(); // +
 
+  void operator = (TTreeJoint& v);
 protected:
   
   void Done();

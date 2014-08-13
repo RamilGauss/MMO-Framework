@@ -33,7 +33,12 @@ AdapterGraphicEngine::AdapterGraphicEngine()
 //-----------------------------------------------------------------------------------------
 AdapterGraphicEngine::~AdapterGraphicEngine()
 {
+	mGraphicEngine.reset(NULL);
+	mCamera.reset(NULL);
+	mCCamera.reset(NULL);
+	mGUI_DX.reset(NULL);
 
+	mListObjectGE.clear();
 }
 //-----------------------------------------------------------------------------------------
 AdapterGraphicEngine::typeRender AdapterGraphicEngine::GetTypeRender()

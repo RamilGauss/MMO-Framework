@@ -31,6 +31,9 @@ public:
 
 protected:
   void UpdateObject( PrototypeObject* p, int type_event);
+
+	void AssignVectorMatrix();
+  void AssignTree();
 };
 //-----------------------------------------------------------------
 

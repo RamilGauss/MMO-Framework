@@ -212,3 +212,14 @@ void TTreeJoint::FindBranch(TPart* pPart, TNodeJoint* pParent)
   }
 }
 //-------------------------------------------------------------------------
+void TTreeJoint::operator = (TTreeJoint& v)
+{
+  int cnt = GetCountPart();
+  for(int i = 0 ; i < cnt ; i++ )
+  {
+    TNodeJoint* pNodeInner = mVectorNode.at(i);
+    TNodeJoint* pNodeXenos = v.mVectorNode.at(i);
+    pNodeXenos->matrix_pro = pNodeInner->matrix_pro;
+  }
+}
+//-------------------------------------------------------------------------
