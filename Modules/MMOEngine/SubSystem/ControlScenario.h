@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -35,7 +35,7 @@ namespace nsMMOEngine
   public:
     TControlScenario();
     ~TControlScenario();
-    // для обработки внутренних событий
+    // РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РІРЅСѓС‚СЂРµРЅРЅРёС… СЃРѕР±С‹С‚РёР№
     void Work(TDescRecvSession* pDesc);
 
     TScenarioDisconnectClient*    mDisClient;

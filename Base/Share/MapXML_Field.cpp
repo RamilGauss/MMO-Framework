@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -46,7 +46,7 @@ bool TMapXML_Field::Load(const char* sAbsPath)
 const char* TMapXML_Field::GetSecond(const char* name, unsigned int index)
 {
   unsigned int cnt = GetCount(name);
-  if(cnt<index+1) return NULL;// перебор
+  if(cnt<index+1) return NULL;// РїРµСЂРµР±РѕСЂ
 
   TMultiMapStrStr::iterator fit = mMap.lower_bound(name);
   for(unsigned int i = 0 ; i < index ; i++)

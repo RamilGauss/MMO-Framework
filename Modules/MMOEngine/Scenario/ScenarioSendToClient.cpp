@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -87,15 +87,15 @@ void TScenarioSendToClient::RecvFromSlave(TDescRecvSession* pDesc)
 	THeaderSlave* pH = (THeaderSlave*)pDesc->data;
 
 	TEventRecvFromUp* pEvent = new TEventRecvFromUp;
-	// îòöåïèòüñÿ îò ïàìÿòè, â êîòîðîé ñîäåðæèòñÿ ïàêåò
+	// Ð¾Ñ‚Ñ†ÐµÐ¿Ð¸Ñ‚ÑŒÑÑ Ð¾Ñ‚ Ð¿Ð°Ð¼ÑÑ‚Ð¸, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ñ‚ÑÑ Ð¿Ð°ÐºÐµÑ‚
 	pDesc->c.Unlink();
-	// îòäàòü ïàìÿòü ïîä êîíòðîëü ñîáûòèÿ
+	// Ð¾Ñ‚Ð´Ð°Ñ‚ÑŒ Ð¿Ð°Ð¼ÑÑ‚ÑŒ Ð¿Ð¾Ð´ ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»ÑŒ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ
 	pEvent->c.EntrustByCount(pDesc->data, pDesc->sizeData);
 	pEvent->data     = pDesc->data     + sizeof(THeaderSlave);
 	pEvent->sizeData = pDesc->sizeData - sizeof(THeaderSlave);
-	// îòêóäà ïðèøåë ïàêåò - ñåññèÿ
+	// Ð¾Ñ‚ÐºÑƒÐ´Ð° Ð¿Ñ€Ð¸ÑˆÐµÐ» Ð¿Ð°ÐºÐµÑ‚ - ÑÐµÑÑÐ¸Ñ
 	pEvent->id_session = pDesc->id_session;
-	// äîáàâèòü ñîáûòèå áåç êîïèðîâàíèÿ è óêàçàòü èñòèííîå âðåìÿ ñîçäàíèÿ ñîáûòèÿ â òðàíñïîðòå
+	// Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ Ð±ÐµÐ· ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¸ ÑƒÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð¸ÑÑ‚Ð¸Ð½Ð½Ð¾Ðµ Ð²Ñ€ÐµÐ¼Ñ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ Ð² Ñ‚Ñ€Ð°Ð½ÑÐ¿Ð¾Ñ€Ñ‚Ðµ
 	Context()->GetSE()->AddEventWithoutCopy<TEventRecvFromUp>(pEvent, pDesc->time_ms);
 }
 //-------------------------------------------------------------------

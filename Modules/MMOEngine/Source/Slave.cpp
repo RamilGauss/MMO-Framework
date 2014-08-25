@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -45,10 +45,10 @@ TSlave::~TSlave()
 void TSlave::SaveContext(unsigned int id_session, void* data, int size)
 {
   TContainerContextSc* pC = mMngContextClient->FindContextBySession(id_session);
-  if(pC && pC->IsRcmActive()) // ïåðåäàòü êîíòåêñò â ñöåíàðèé
+  if(pC && pC->IsRcmActive()) // Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‚ÑŒ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚ Ð² ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹
   {
     mControlSc->mRcm->SetContext(&pC->mRcm);
-    mControlSc->mRcm->SaveContext(data, size);// ýòî óæå âûçîâ ôóíêöèè ñöåíàðèÿ
+    mControlSc->mRcm->SaveContext(data, size);// ÑÑ‚Ð¾ ÑƒÐ¶Ðµ Ð²Ñ‹Ð·Ð¾Ð² Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ñ
   }
 }
 //-------------------------------------------------------------------------
@@ -64,11 +64,11 @@ bool TSlave::FindSessionByClientKey(unsigned int id, unsigned int& id_session)
 //-------------------------------------------------------------------------
 void TSlave::DisconnectInherit(unsigned int id_session)
 {
-  // ëèáî îáðûâ ñâÿçè ñ âåðõíèì ñîåäèíåíèåì - òîãäà ìû îäíè, íåðàáî÷åå ñîñòîÿíèå
+  // Ð»Ð¸Ð±Ð¾ Ð¾Ð±Ñ€Ñ‹Ð² ÑÐ²ÑÐ·Ð¸ Ñ Ð²ÐµÑ€Ñ…Ð½Ð¸Ð¼ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸ÐµÐ¼ - Ñ‚Ð¾Ð³Ð´Ð° Ð¼Ñ‹ Ð¾Ð´Ð½Ð¸, Ð½ÐµÑ€Ð°Ð±Ð¾Ñ‡ÐµÐµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ
   if(id_session==mID_SessionUp)
   {
     flgConnectUp = false;
-    DisconnectAllClient();// ðàñïóñòèòü âñåõ êëèåíòîâ
+    DisconnectAllClient();// Ñ€Ð°ÑÐ¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ Ð²ÑÐµÑ… ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð¾Ð²
     mID_SessionUp = INVALID_HANDLE_SESSION;
     
     TEventDisconnectUp event;
@@ -76,14 +76,14 @@ void TSlave::DisconnectInherit(unsigned int id_session)
     AddEventCopy(&event, sizeof(event));
     return;
   }
-  // ëèáî îáðûâ ñ îäíèì èç êëèåíòîâ - óíè÷òîæèòü êëèåíòà
-  // ôèçè÷åñêèé îáðûâ èëè ñöåíàðèé ñàì îáîðâàë
+  // Ð»Ð¸Ð±Ð¾ Ð¾Ð±Ñ€Ñ‹Ð² Ñ Ð¾Ð´Ð½Ð¸Ð¼ Ð¸Ð· ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð¾Ð² - ÑƒÐ½Ð¸Ñ‡Ñ‚Ð¾Ð¶Ð¸Ñ‚ÑŒ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð°
+  // Ñ„Ð¸Ð·Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ Ð¾Ð±Ñ€Ñ‹Ð² Ð¸Ð»Ð¸ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ ÑÐ°Ð¼ Ð¾Ð±Ð¾Ñ€Ð²Ð°Ð»
   unsigned int id_client;
   if(mMngContextClient->FindKeyBySession(id_session,id_client)==false)
     return;
 
   TContainerContextSc* pC = mMngContextClient->FindContextBySession(id_session);
-  // åñëè åñòü àêòèâíûé ñöåíàðèé, òî çàâåðøèòü è íà÷àòü ñöåíàðèé äèñêîííåêòà
+  // ÐµÑÐ»Ð¸ ÐµÑÑ‚ÑŒ Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹Ð¹ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹, Ñ‚Ð¾ Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ñ‚ÑŒ Ð¸ Ð½Ð°Ñ‡Ð°Ñ‚ÑŒ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ Ð´Ð¸ÑÐºÐ¾Ð½Ð½ÐµÐºÑ‚Ð°
   mControlSc->mDisClient->SetContext(&pC->mDisClient);
   pC->mDisClient.SetID_Session(mID_SessionUp);
   mControlSc->mDisClient->DisconnectFromSlave(id_client);
@@ -121,18 +121,18 @@ bool TSlave::GetDescDown(int index, void* pDesc, int& sizeDesc)
 //-------------------------------------------------------------------------
 void TSlave::ConnectUp(unsigned int ip, unsigned short port, unsigned char subNet)
 {
-  // åñëè ñåññèÿ æèâà, òî çíà÷èò ëèáî ñîåäèíèëèñü, ëèáî ñîåäèíÿåìñÿ
+  // ÐµÑÐ»Ð¸ ÑÐµÑÑÐ¸Ñ Ð¶Ð¸Ð²Ð°, Ñ‚Ð¾ Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ Ð»Ð¸Ð±Ð¾ ÑÐ¾ÐµÐ´Ð¸Ð½Ð¸Ð»Ð¸ÑÑŒ, Ð»Ð¸Ð±Ð¾ ÑÐ¾ÐµÐ´Ð¸Ð½ÑÐµÐ¼ÑÑ
   if(mID_SessionUp!=INVALID_HANDLE_SESSION)
     return;
 
   mControlSc->mLoginSlave->ConnectToMaster(ip, port, subNet);
-  // òóò æå îïðîñèòü íà ñîçäàííóþ ñåññèþ
+  // Ñ‚ÑƒÑ‚ Ð¶Ðµ Ð¾Ð¿Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ Ð½Ð° ÑÐ¾Ð·Ð´Ð°Ð½Ð½ÑƒÑŽ ÑÐµÑÑÐ¸ÑŽ
   mID_SessionUp = mContainerUp->mLoginSlave.GetID_Session();
 }
 //-------------------------------------------------------------------------
 void TSlave::WorkInherit()
 {
-  // ïîêà íåò ñâÿçè ñ Ìàñòåðîì - ñèíõðîíèçàöèþ íå ïðîâîäèòü
+  // Ð¿Ð¾ÐºÐ° Ð½ÐµÑ‚ ÑÐ²ÑÐ·Ð¸ Ñ ÐœÐ°ÑÑ‚ÐµÑ€Ð¾Ð¼ - ÑÐ¸Ð½Ñ…Ñ€Ð¾Ð½Ð¸Ð·Ð°Ñ†Ð¸ÑŽ Ð½Ðµ Ð¿Ñ€Ð¾Ð²Ð¾Ð´Ð¸Ñ‚ÑŒ
   if(flgConnectUp==false)
     return;
   //-------------------------------------------------------
@@ -147,18 +147,18 @@ void TSlave::WorkInherit()
 void TSlave::DisconnectAllClient()
 {
   unsigned int id;
-  // ïåðå÷èñëÿåì âñåõ êëèåíòîâ è óçíàåì èõ êëþ÷è
+  // Ð¿ÐµÑ€ÐµÑ‡Ð¸ÑÐ»ÑÐµÐ¼ Ð²ÑÐµÑ… ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð¾Ð² Ð¸ ÑƒÐ·Ð½Ð°ÐµÐ¼ Ð¸Ñ… ÐºÐ»ÑŽÑ‡Ð¸
   while(mMngContextClient->GetFirstKey(id))
   {
-    // ïî êëþ÷ó èùåì ñåññèþ
+    // Ð¿Ð¾ ÐºÐ»ÑŽÑ‡Ñƒ Ð¸Ñ‰ÐµÐ¼ ÑÐµÑÑÐ¸ÑŽ
     unsigned int id_session;
     if(mMngContextClient->FindSessionByKey(id, id_session))
     {
-      // çàêðûâàåì ñåññèþ
+      // Ð·Ð°ÐºÑ€Ñ‹Ð²Ð°ÐµÐ¼ ÑÐµÑÑÐ¸ÑŽ
       mManagerSession->CloseSession(id_session);
-      // óäàëÿåì ïî êëþ÷ó
+      // ÑƒÐ´Ð°Ð»ÑÐµÐ¼ Ð¿Ð¾ ÐºÐ»ÑŽÑ‡Ñƒ
       mMngContextClient->DeleteByKey(id);
-      // ãåíåðàöèÿ ñîáûòèÿ î äèñêîííåêòå
+      // Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ Ð¾ Ð´Ð¸ÑÐºÐ¾Ð½Ð½ÐµÐºÑ‚Ðµ
       TEventDisconnectDown event;
       event.id_session = id_session;
       AddEventCopy(&event, sizeof(event));
@@ -181,7 +181,7 @@ void TSlave::EndLoginClient(IScenario* pSc)
   TContextScLoginClient* pContext = (TContextScLoginClient*)pSc->GetContext();
   if(pContext->IsAccept())
   {
-    // ñîõðàíèòü ñåññèþ Êëèåíòà
+    // ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ ÑÐµÑÑÐ¸ÑŽ ÐšÐ»Ð¸ÐµÐ½Ñ‚Ð°
     TContainerContextSc* pC = mMngContextClient->FindContextByKey(pContext->GetClientKey());
     BL_ASSERT(pC);
     pC->SetID_Session(pContext->GetID_SessionClientSlave());
@@ -193,14 +193,14 @@ void TSlave::EndLoginClient(IScenario* pSc)
 //-------------------------------------------------------------------------
 void TSlave::EndLoginSlave(IScenario* pSc)
 {
-  // âçÿòü ïî ýòîìó êîíòåêñòó, çàäàòü âñåì êîíòåêñòàì
+  // Ð²Ð·ÑÑ‚ÑŒ Ð¿Ð¾ ÑÑ‚Ð¾Ð¼Ñƒ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ñƒ, Ð·Ð°Ð´Ð°Ñ‚ÑŒ Ð²ÑÐµÐ¼ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ð°Ð¼
   mID_SessionUp = pSc->GetContext()->GetID_Session();
   mContainerUp->SetID_Session(mID_SessionUp);
 
   flgConnectUp = mContainerUp->mLoginSlave.IsConnect();
   if(flgConnectUp)
   {
-    // âõîä â êëàñòåð çàêîí÷åí
+    // Ð²Ñ…Ð¾Ð´ Ð² ÐºÐ»Ð°ÑÑ‚ÐµÑ€ Ð·Ð°ÐºÐ¾Ð½Ñ‡ÐµÐ½
     TEventConnectUp event;
     event.id_session = mID_SessionUp;
     AddEventCopy(&event, sizeof(event));
@@ -213,7 +213,7 @@ void TSlave::EndRcm(IScenario* pSc)
   unsigned int key = pContext->GetClientKey();
   if(pContext->IsDonor())
   {
-    // ïðîñòî óäàëèòü  
+    // Ð¿Ñ€Ð¾ÑÑ‚Ð¾ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ  
     mMngContextClient->DeleteByKey(key);
     return;
   }
@@ -224,19 +224,19 @@ void TSlave::EndRcm(IScenario* pSc)
     BL_FIX_BUG();
     return;
   }
-  // ïåðåìåñòèòü èç âðåìåííîãî õðàíèëèùà â ïîñòîÿííîå
+  // Ð¿ÐµÑ€ÐµÐ¼ÐµÑÑ‚Ð¸Ñ‚ÑŒ Ð¸Ð· Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð³Ð¾ Ñ…Ñ€Ð°Ð½Ð¸Ð»Ð¸Ñ‰Ð° Ð² Ð¿Ð¾ÑÑ‚Ð¾ÑÐ½Ð½Ð¾Ðµ
   mMngContextClientSlaveRecipient->DeleteByKey(key);
 
   unsigned int id_session = pContext->GetID_SessionClientSlave();
   TContainerContextSc* pC = mMngContextClient->AddContextByKey(key);
   mMngContextClient->AddSessionByKey(key,id_session);
-  // äëÿ âñåõ êîíòåêñòîâ íàçíà÷èòü ñâÿçü âíèç
+  // Ð´Ð»Ñ Ð²ÑÐµÑ… ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ð¾Ð² Ð½Ð°Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÑŒ ÑÐ²ÑÐ·ÑŒ Ð²Ð½Ð¸Ð·
   pC->SetID_Session(id_session);
 }
 //-------------------------------------------------------------------------
 void TSlave::NeedContextSendToClient(unsigned int id_client)
 {
-  // çàïðîñ íà îòïðàâêó êàêîìó-òî êëèåíòó
+  // Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð½Ð° Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÑƒ ÐºÐ°ÐºÐ¾Ð¼Ñƒ-Ñ‚Ð¾ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ñƒ
   TContainerContextSc* pContext = mMngContextClient->FindContextByKey(id_client);
 	if(pContext)
 		mControlSc->mSendToClient->SetContext(&pContext->mSendToClient);
@@ -258,14 +258,14 @@ void TSlave::NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_se
     mControlSc->mLoginClient->SetContext(NULL);
     return;
   }
-  // íàäî ïðîâåðèòü, âäðóã êëèåíò ðåøèë âçÿòü íå ñâîé êëþ÷ è êëþ÷ ñîâïàë
+  // Ð½Ð°Ð´Ð¾ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ, Ð²Ð´Ñ€ÑƒÐ³ ÐºÐ»Ð¸ÐµÐ½Ñ‚ Ñ€ÐµÑˆÐ¸Ð» Ð²Ð·ÑÑ‚ÑŒ Ð½Ðµ ÑÐ²Ð¾Ð¹ ÐºÐ»ÑŽÑ‡ Ð¸ ÐºÐ»ÑŽÑ‡ ÑÐ¾Ð²Ð¿Ð°Ð»
   unsigned int id_session_exist;
   if(mMngContextClient->FindSessionByKey(id_client,id_session_exist)==false)
   {
     mControlSc->mLoginClient->SetContext(NULL);
     return;
   }
-  // ñåññèè íå äîëæíî áûòü, îí âåäü âïåðâûå ñîåäèíÿåòñÿ
+  // ÑÐµÑÑÐ¸Ð¸ Ð½Ðµ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ, Ð¾Ð½ Ð²ÐµÐ´ÑŒ Ð²Ð¿ÐµÑ€Ð²Ñ‹Ðµ ÑÐ¾ÐµÐ´Ð¸Ð½ÑÐµÑ‚ÑÑ
   if(id_session_exist!=INVALID_HANDLE_SESSION)
   {
     mControlSc->mLoginClient->SetContext(NULL);
@@ -292,7 +292,7 @@ void TSlave::NeedContextByClientForSlaveKeyRcm(unsigned int key, bool donor)
     TContainerContextSc* pC = mMngContextClient->FindContextByKey(key);
     if(pC)
     {
-      // íàñòðîèòü ñåññèè íàâåðõ è âíèç
+      // Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÑŒ ÑÐµÑÑÐ¸Ð¸ Ð½Ð°Ð²ÐµÑ€Ñ… Ð¸ Ð²Ð½Ð¸Ð·
       pC->mRcm.SetID_SessionClientSlave(pC->GetID_Session());
       pC->mRcm.SetID_SessionMasterSlave(mID_SessionUp);
 
@@ -307,21 +307,21 @@ void TSlave::NeedContextByClientForSlaveKeyRcm(unsigned int key, bool donor)
     if(pC==NULL)
       pC = mMngContextClientSlaveRecipient->AddContextByKey(key);
     
-    // âåðõ è íèç ñåññèÿ íàçíà÷èò ñàì ñöåíàðèé
+    // Ð²ÐµÑ€Ñ… Ð¸ Ð½Ð¸Ð· ÑÐµÑÑÐ¸Ñ Ð½Ð°Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ ÑÐ°Ð¼ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹
     mControlSc->mRcm->SetContext(&pC->mRcm);
   }
 }
 //-------------------------------------------------------------------------
 void TSlave::EventDisconnectClientRcm(unsigned int key)
 {
-  // äëÿ ïîäñòðàõîâêè è òàì è òàì óäàëèòü
+  // Ð´Ð»Ñ Ð¿Ð¾Ð´ÑÑ‚Ñ€Ð°Ñ…Ð¾Ð²ÐºÐ¸ Ð¸ Ñ‚Ð°Ð¼ Ð¸ Ñ‚Ð°Ð¼ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ
   TContainerContextSc* pC = mMngContextClientSlaveRecipient->FindContextByKey(key);
   if(pC)
     mMngContextClientSlaveRecipient->DeleteByKey(key);
   else
   {
-    // åñëè Êëèåíò èñõèòðèëñÿ è âìåñòî îòñûëêè "CheckInfoRecipient, ready to disconnect"
-    // ïðîñòî ðàçîðâàë ñîåäèíåíèå - óäàëèòü èç ñèñòåìû
+    // ÐµÑÐ»Ð¸ ÐšÐ»Ð¸ÐµÐ½Ñ‚ Ð¸ÑÑ…Ð¸Ñ‚Ñ€Ð¸Ð»ÑÑ Ð¸ Ð²Ð¼ÐµÑÑ‚Ð¾ Ð¾Ñ‚ÑÑ‹Ð»ÐºÐ¸ "CheckInfoRecipient, ready to disconnect"
+    // Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ñ€Ð°Ð·Ð¾Ñ€Ð²Ð°Ð» ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ - ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¸Ð· ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹
     pC = mMngContextClient->FindContextByKey(key);
     if(pC==NULL)
       return;
@@ -350,14 +350,14 @@ void TSlave::NeedContextByRequestForRecipient(TDescRequestConnectForRecipient* p
   TContainerContextSc*pC = mMngContextClientSlaveRecipient->FindContextByKey(pDescRequest->key);
   if(pC)
   {
-    // ïðîâåðêà ÷èñëà
+    // Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ‡Ð¸ÑÐ»Ð°
     if(pC->mRcm.GetRandomNum()==pDescRequest->random_num)
     {
       mControlSc->mRcm->SetContext(&pC->mRcm);
-      // ñîõðàíèòü ñåññèþ
+      // ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ ÑÐµÑÑÐ¸ÑŽ
       mMngContextClientSlaveRecipient->
         AddSessionByKey(pDescRequest->key, pDescRequest->id_session);
-      // çàïîìíèòü îòêóäà Êëèåíò âîîáùå
+      // Ð·Ð°Ð¿Ð¾Ð¼Ð½Ð¸Ñ‚ÑŒ Ð¾Ñ‚ÐºÑƒÐ´Ð° ÐšÐ»Ð¸ÐµÐ½Ñ‚ Ð²Ð¾Ð¾Ð±Ñ‰Ðµ
       pC->SetID_Session(pDescRequest->id_session);
       return;
     }
@@ -367,11 +367,11 @@ void TSlave::NeedContextByRequestForRecipient(TDescRequestConnectForRecipient* p
 //-------------------------------------------------------------------------
 void TSlave::EventTimeClientElapsedRcm(unsigned int id_client)
 {
-  // Äîíîð èëè Ðåöèïèåíò
+  // Ð”Ð¾Ð½Ð¾Ñ€ Ð¸Ð»Ð¸ Ð ÐµÑ†Ð¸Ð¿Ð¸ÐµÐ½Ñ‚
   TContainerContextSc* pC = mMngContextClient->FindContextByKey(id_client);
   if(pC)
   {
-    // Äîíîð
+    // Ð”Ð¾Ð½Ð¾Ñ€
     mMngContextClient->DeleteByKey(id_client);
   }
   else
@@ -379,10 +379,10 @@ void TSlave::EventTimeClientElapsedRcm(unsigned int id_client)
     pC = mMngContextClientSlaveRecipient->FindContextByKey(id_client);
     if(pC==NULL)
       return;
-    // ðåöèïèåíò
+    // Ñ€ÐµÑ†Ð¸Ð¿Ð¸ÐµÐ½Ñ‚
     mMngContextClientSlaveRecipient->DeleteByKey(id_client);
   }
-  // åñëè åñòü àêòèâíûé ñöåíàðèé, òî çàâåðøèòü è íà÷àòü ñöåíàðèé äèñêîííåêòà
+  // ÐµÑÐ»Ð¸ ÐµÑÑ‚ÑŒ Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹Ð¹ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹, Ñ‚Ð¾ Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ñ‚ÑŒ Ð¸ Ð½Ð°Ñ‡Ð°Ñ‚ÑŒ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ Ð´Ð¸ÑÐºÐ¾Ð½Ð½ÐµÐºÑ‚Ð°
   mControlSc->mDisClient->SetContext(&pC->mDisClient);
   pC->mDisClient.SetID_Session(mID_SessionUp);
   mControlSc->mDisClient->DisconnectFromSlave(id_client);

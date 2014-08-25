@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ğàìèëü Ñåğãååâè÷ 
+Ğ“ÑƒĞ´Ğ°ĞºĞ¾Ğ² Ğ Ğ°Ğ¼Ğ¸Ğ»ÑŒ Ğ¡ĞµÑ€Ğ³ĞµĞµĞ²Ğ¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -60,17 +60,17 @@ void TScLoginClient_SuperServerImpl::RequestM2SS(TDescRecvSession* pDesc)
   bool isExist = false;
   if(Context()->GetFakeClient())
     isExist = true;
-    // ïğîâåğêà
+    // Ğ¿Ñ€Ğ¾Ğ²ĞµÑ€ĞºĞ°
   if(Begin()==false)
     BL_FIX_BUG();
   End();
-  // ôîğìèğîâàíèå ïàêåòà
-  TBreakPacket bp;// êîíòåéíåğ äëÿ âñåãî ïàêåòà
+  // Ñ„Ğ¾Ñ€Ğ¼Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¿Ğ°ĞºĞµÑ‚Ğ°
+  TBreakPacket bp;// ĞºĞ¾Ğ½Ñ‚ĞµĞ¹Ğ½ĞµÑ€ Ğ´Ğ»Ñ Ğ²ÑĞµĞ³Ğ¾ Ğ¿Ğ°ĞºĞµÑ‚Ğ°
   THeaderCheckRequestSS2M h;
   h.id_client       = pRequest->id_client;
   h.isExistInSystem = isExist;
   bp.PushFront((char*)&h, sizeof(h));
-  // îòîñëàòü ïàêåò äëÿ ïîïûòêè àâòîğèçàöèè
+  // Ğ¾Ñ‚Ğ¾ÑĞ»Ğ°Ñ‚ÑŒ Ğ¿Ğ°ĞºĞµÑ‚ Ğ´Ğ»Ñ Ğ¿Ğ¾Ğ¿Ñ‹Ñ‚ĞºĞ¸ Ğ°Ğ²Ñ‚Ğ¾Ñ€Ğ¸Ğ·Ğ°Ñ†Ğ¸Ğ¸
   Context()->GetMS()->Send(id_session_master, bp);
 }
 //--------------------------------------------------------------

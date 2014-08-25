@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -46,26 +46,26 @@ int THistoryPacketTCP::SearchBegin(int readSize, char* buffer, TResult& res, int
   {
     state = eSearchSize;
     c.SetData(&buffer[beginPos], readSize - beginPos);
-    return readSize - beginPos;// вернуть сколько истратили
+    return readSize - beginPos;// РІРµСЂРЅСѓС‚СЊ СЃРєРѕР»СЊРєРѕ РёСЃС‚СЂР°С‚РёР»Рё
   }
-  // ищем в буфере начало
+  // РёС‰РµРј РІ Р±СѓС„РµСЂРµ РЅР°С‡Р°Р»Рѕ
   THeaderTCP header;
   THeaderTCP* pHeader = (THeaderTCP*)&buffer[beginPos];
-  // в случае хака, Взломанный Клиент, может прислать некорректный пакет
+  // РІ СЃР»СѓС‡Р°Рµ С…Р°РєР°, Р’Р·Р»РѕРјР°РЅРЅС‹Р№ РљР»РёРµРЅС‚, РјРѕР¶РµС‚ РїСЂРёСЃР»Р°С‚СЊ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РїР°РєРµС‚
   if(pHeader->header!=header.header)
   {
     GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("THistoryPacketTCP::SearchBegin header don't have correct preambula.\n");
     res.parse_error = true;
-    return 0;// сдвиг на 1 байт и поиск дальше
+    return 0;// СЃРґРІРёРі РЅР° 1 Р±Р°Р№С‚ Рё РїРѕРёСЃРє РґР°Р»СЊС€Рµ
   }
-  // проверка корректности предполагаемого размера пакета
+  // РїСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РїСЂРµРґРїРѕР»Р°РіР°РµРјРѕРіРѕ СЂР°Р·РјРµСЂР° РїР°РєРµС‚Р°
   if(pHeader->size > eMaxSize)
   {
     GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("THistoryPacketTCP::SearchBegin expect very large size of packet.\n");
-    // обмен нарушен канал скоро умрет, админ, проверяя логи, забанит "хака".
-    // ну, по крайней мере так должно быть.
+    // РѕР±РјРµРЅ РЅР°СЂСѓС€РµРЅ РєР°РЅР°Р» СЃРєРѕСЂРѕ СѓРјСЂРµС‚, Р°РґРјРёРЅ, РїСЂРѕРІРµСЂСЏСЏ Р»РѕРіРё, Р·Р°Р±Р°РЅРёС‚ "С…Р°РєР°".
+    // РЅСѓ, РїРѕ РєСЂР°Р№РЅРµР№ РјРµСЂРµ С‚Р°Рє РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ.
     res.parse_error = true;
     return 0;
   }
@@ -73,23 +73,23 @@ int THistoryPacketTCP::SearchBegin(int readSize, char* buffer, TResult& res, int
   sizePacket = pHeader->size;
 
   c.SetData(&buffer[beginPos], sizeof(THeaderTCP));
-  return sizeof(THeaderTCP);// вернуть сколько истратили
+  return sizeof(THeaderTCP);// РІРµСЂРЅСѓС‚СЊ СЃРєРѕР»СЊРєРѕ РёСЃС‚СЂР°С‚РёР»Рё
 }
 //----------------------------------------------------------------------------------
 int THistoryPacketTCP::SearchSize(int readSize, char* buffer, TResult& res, int beginPos)
 {
   if(readSize - beginPos + c.GetSize() < sizeof(THeaderTCP))
   {
-    // так и не нашли заголовок полностью
+    // С‚Р°Рє Рё РЅРµ РЅР°С€Р»Рё Р·Р°РіРѕР»РѕРІРѕРє РїРѕР»РЅРѕСЃС‚СЊСЋ
     c.AddData(&buffer[beginPos], readSize - beginPos);
-    return readSize - beginPos;// вернуть сколько истратили
+    return readSize - beginPos;// РІРµСЂРЅСѓС‚СЊ СЃРєРѕР»СЊРєРѕ РёСЃС‚СЂР°С‚РёР»Рё
   }
   int needCopy = sizeof(THeaderTCP) - c.GetSize();
   c.AddData(&buffer[beginPos], needCopy);
 
   THeaderTCP header;
   THeaderTCP* pHeader = (THeaderTCP*)c.GetPtr();
-  // в случае хака, Взломанный Клиент, может прислать некорректный пакет
+  // РІ СЃР»СѓС‡Р°Рµ С…Р°РєР°, Р’Р·Р»РѕРјР°РЅРЅС‹Р№ РљР»РёРµРЅС‚, РјРѕР¶РµС‚ РїСЂРёСЃР»Р°С‚СЊ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РїР°РєРµС‚
   if(pHeader->header!=header.header)
   {
     GetLogger(STR_NAME_NET_TRANSPORT)->
@@ -97,35 +97,35 @@ int THistoryPacketTCP::SearchSize(int readSize, char* buffer, TResult& res, int 
     res.parse_error = true;
     return 0;
   }
-  // проверка корректности предполагаемого размера пакета
+  // РїСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РїСЂРµРґРїРѕР»Р°РіР°РµРјРѕРіРѕ СЂР°Р·РјРµСЂР° РїР°РєРµС‚Р°
   if(pHeader->size > eMaxSize)
   {
     GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("THistoryPacketTCP::SearchBegin expect very large size of packet.\n");
-    // сдвиг на 1 байт и поиск дальше, но фактически обмен нарушен
-    // канал скоро умрет, админ, проверяя логи, забанит "хака".
-    // ну, по крайней мере так должно быть.
+    // СЃРґРІРёРі РЅР° 1 Р±Р°Р№С‚ Рё РїРѕРёСЃРє РґР°Р»СЊС€Рµ, РЅРѕ С„Р°РєС‚РёС‡РµСЃРєРё РѕР±РјРµРЅ РЅР°СЂСѓС€РµРЅ
+    // РєР°РЅР°Р» СЃРєРѕСЂРѕ СѓРјСЂРµС‚, Р°РґРјРёРЅ, РїСЂРѕРІРµСЂСЏСЏ Р»РѕРіРё, Р·Р°Р±Р°РЅРёС‚ "С…Р°РєР°".
+    // РЅСѓ, РїРѕ РєСЂР°Р№РЅРµР№ РјРµСЂРµ С‚Р°Рє РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ.
     res.parse_error = true;
     return 0;
   }
 
   state      = THistoryPacketTCP::eSearchEnd;
   sizePacket = pHeader->size;
-  return needCopy;// вернуть сколько истратили
+  return needCopy;// РІРµСЂРЅСѓС‚СЊ СЃРєРѕР»СЊРєРѕ РёСЃС‚СЂР°С‚РёР»Рё
 }
 //----------------------------------------------------------------------------------
 int THistoryPacketTCP::SearchEnd(int readSize, char* buffer,
                                  TResult& res, int beginPos)
 {
-  int mustSize = sizePacket + sizeof(THeaderTCP);// предполагаемый размер
-  // не хватает до полного размера
-  if( mustSize > readSize - beginPos + c.GetSize()/*остаток внутри истории*/)
+  int mustSize = sizePacket + sizeof(THeaderTCP);// РїСЂРµРґРїРѕР»Р°РіР°РµРјС‹Р№ СЂР°Р·РјРµСЂ
+  // РЅРµ С…РІР°С‚Р°РµС‚ РґРѕ РїРѕР»РЅРѕРіРѕ СЂР°Р·РјРµСЂР°
+  if( mustSize > readSize - beginPos + c.GetSize()/*РѕСЃС‚Р°С‚РѕРє РІРЅСѓС‚СЂРё РёСЃС‚РѕСЂРёРё*/)
   {
-    // скопировать внутрь и выйти
+    // СЃРєРѕРїРёСЂРѕРІР°С‚СЊ РІРЅСѓС‚СЂСЊ Рё РІС‹Р№С‚Рё
     c.AddData(&buffer[beginPos], readSize - beginPos);
     return readSize - beginPos;
   }
-  if( mustSize == readSize - beginPos + c.GetSize())// полный пакет
+  if( mustSize == readSize - beginPos + c.GetSize())// РїРѕР»РЅС‹Р№ РїР°РєРµС‚
   {
     c.AddData(&buffer[beginPos], readSize - beginPos);
 
@@ -133,8 +133,8 @@ int THistoryPacketTCP::SearchEnd(int readSize, char* buffer,
     Clear();
     return readSize - beginPos;
   }
-  // пакет собран
-  int needSize = mustSize - c.GetSize();// не хватает до полного пакета
+  // РїР°РєРµС‚ СЃРѕР±СЂР°РЅ
+  int needSize = mustSize - c.GetSize();// РЅРµ С…РІР°С‚Р°РµС‚ РґРѕ РїРѕР»РЅРѕРіРѕ РїР°РєРµС‚Р°
   c.AddData(&buffer[beginPos], needSize );
 
   res.Set(sizeof(THeaderTCP)+c.GetPtr(),sizePacket);

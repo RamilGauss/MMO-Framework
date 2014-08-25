@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -32,7 +32,7 @@ void TManagerContextCrypto::SendRSA_PublicKey(TIP_Port& ip_port, TContainer& c_p
   TContextCrypto* pCtx = new TContextCrypto;
   Add(ip_port, pCtx);
   
-  // полностью проинициализировать ключи
+  // РїРѕР»РЅРѕСЃС‚СЊСЋ РїСЂРѕРёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°С‚СЊ РєР»СЋС‡Рё
   TContainer c_private_key;
   bool resPrivate = mRSA_ForUpConnection.GetPrivateKey(c_private_key);
   bool resPublic  = mRSA_ForUpConnection.GetPublicKey(c_public_key);
@@ -95,15 +95,15 @@ void TManagerContextCrypto::Send(TIP_Port& ip_port, TBreakPacket& bp, TContainer
     BL_FIX_BUG();
     return;
   }
-  // добавить память под контрольную сумму
+  // РґРѕР±Р°РІРёС‚СЊ РїР°РјСЏС‚СЊ РїРѕРґ РєРѕРЅС‚СЂРѕР»СЊРЅСѓСЋ СЃСѓРјРјСѓ
   char crc8;
   bp.PushFront(&crc8,sizeof(crc8));
-  // собрать все
+  // СЃРѕР±СЂР°С‚СЊ РІСЃРµ
   bp.Collect();
-  // отдать под контроль контейнеру
+  // РѕС‚РґР°С‚СЊ РїРѕРґ РєРѕРЅС‚СЂРѕР»СЊ РєРѕРЅС‚РµР№РЅРµСЂСѓ
   TContainer c_original;
   c_original.EntrustByCount((char*)bp.GetCollectPtr(), bp.GetSize());
-  // освободить break packet от памяти
+  // РѕСЃРІРѕР±РѕРґРёС‚СЊ break packet РѕС‚ РїР°РјСЏС‚Рё
   bp.UnlinkCollect();
   bp.UnlinkPart();
 
@@ -173,11 +173,11 @@ bool TManagerContextCrypto::Decrypt(TCryptoRSA_Impl* pRSA,
 void TManagerContextCrypto::Encrypt(TCryptoAES_Impl* pAES, 
                                     TContainer& c_original, TContainer& c_encrypt)
 {
-  // c_original содержит данные и 1 байт под контрольную сумму,
-  // c_original.size() - 1 - считаем CRC8 и помещаем в первый байт
+  // c_original СЃРѕРґРµСЂР¶РёС‚ РґР°РЅРЅС‹Рµ Рё 1 Р±Р°Р№С‚ РїРѕРґ РєРѕРЅС‚СЂРѕР»СЊРЅСѓСЋ СЃСѓРјРјСѓ,
+  // c_original.size() - 1 - СЃС‡РёС‚Р°РµРј CRC8 Рё РїРѕРјРµС‰Р°РµРј РІ РїРµСЂРІС‹Р№ Р±Р°Р№С‚
   unsigned char crc8 = mCRC8.Calc((char*)c_original.GetPtr() + eSizeCRC, 
                                    c_original.GetSize()      - eSizeCRC);
-  // помещаем результат в первый байт
+  // РїРѕРјРµС‰Р°РµРј СЂРµР·СѓР»СЊС‚Р°С‚ РІ РїРµСЂРІС‹Р№ Р±Р°Р№С‚
   ((unsigned char*)c_original.GetPtr())[0] = crc8;
 
   pAES->Encrypt(c_original.GetPtr(), c_original.GetSize(), c_encrypt);
@@ -187,19 +187,19 @@ bool TManagerContextCrypto::Decrypt(TCryptoAES_Impl* pAES,
                                     void*  pEncrypt, int  sizeEncrypt,  
                                     TContainerPtr& c_decrypt_ptr)
 {
-  // размер шифрования равен размеру дешифрования
-  // попытаться выделить память (расширит если будет мало)
+  // СЂР°Р·РјРµСЂ С€РёС„СЂРѕРІР°РЅРёСЏ СЂР°РІРµРЅ СЂР°Р·РјРµСЂСѓ РґРµС€РёС„СЂРѕРІР°РЅРёСЏ
+  // РїРѕРїС‹С‚Р°С‚СЊСЃСЏ РІС‹РґРµР»РёС‚СЊ РїР°РјСЏС‚СЊ (СЂР°СЃС€РёСЂРёС‚ РµСЃР»Рё Р±СѓРґРµС‚ РјР°Р»Рѕ)
   mCRise.Alloc(sizeEncrypt);
-  // контейнер запомнит участок памяти
+  // РєРѕРЅС‚РµР№РЅРµСЂ Р·Р°РїРѕРјРЅРёС‚ СѓС‡Р°СЃС‚РѕРє РїР°РјСЏС‚Рё
   c_decrypt_ptr.SetDataByCount(mCRise.GetPtr(), mCRise.GetSize());
 
-  // дешифровать и поместить результат в область памяти
+  // РґРµС€РёС„СЂРѕРІР°С‚СЊ Рё РїРѕРјРµСЃС‚РёС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚ РІ РѕР±Р»Р°СЃС‚СЊ РїР°РјСЏС‚Рё
   bool res = pAES->Decrypt(pEncrypt, sizeEncrypt, c_decrypt_ptr);
   if(res==false)
     return false;
 
-  // c_decrypt содержит данные и 1 байт под контрольную сумму,
-  // c_decrypt.size() - 1 - считаем CRC8 и сравниваем с первым байтом
+  // c_decrypt СЃРѕРґРµСЂР¶РёС‚ РґР°РЅРЅС‹Рµ Рё 1 Р±Р°Р№С‚ РїРѕРґ РєРѕРЅС‚СЂРѕР»СЊРЅСѓСЋ СЃСѓРјРјСѓ,
+  // c_decrypt.size() - 1 - СЃС‡РёС‚Р°РµРј CRC8 Рё СЃСЂР°РІРЅРёРІР°РµРј СЃ РїРµСЂРІС‹Рј Р±Р°Р№С‚РѕРј
   unsigned char realy_crc8 = ((unsigned char*)c_decrypt_ptr.GetPtr())[0];
   c_decrypt_ptr.SetDataByCount((char*)c_decrypt_ptr.GetPtr() + eSizeCRC,
                         c_decrypt_ptr.GetSize()       - eSizeCRC);

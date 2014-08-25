@@ -1,36 +1,29 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
+
+#include <boost/asio/ip/impl/address_v4.ipp>
 
 #include "DevTool_ClientTank.h"
 #include <string.h>
 
 #include "Logger.h"
 #include "HiTimer.h"
-#include "PrototypeControlCamera.h"
 #include "IXML.h"
 
-#include "MakerObjectGeneral.h"
-
-#include "PrototypeMOG.h"
-#include "IBaseObjectGeneral.h"
 #include "ManagerStateMachine.h"
-#include "PrototypeGraphicEngine.h"
-#include "PrototypeMMOClient.h"
 #include "ShareMisc.h"
 #include "NetSystem.h"
-#include "PrototypeMMOBaseEvent.h"
 #include "file_operation.h"
 #include "StorePathResources.h"
 #include "MapXML_Field.h"
-#include "PrototypeMMOMaster.h"
-#include "PrototypeMMOEvents.h"
-#include "PrototypeTimer.h"
-#include "PrototypeMMOEnum.h"
 #include "GlobalParam.h"
+#include "MathTools.h"
+#include "ListModule.h"
+#include "Events.h"
 
 
 using namespace std;
@@ -59,8 +52,8 @@ TDevTool_ClientTank::TDevTool_ClientTank()
 
   mCurrentForm     = NULL;
 
-  mTank   = NULL;
-  mHangar = NULL;
+  //mTank   = NULL;
+  //mHangar = NULL;
 }
 //------------------------------------------------------------------------------------
 TDevTool_ClientTank::~TDevTool_ClientTank()
@@ -83,15 +76,15 @@ void TDevTool_ClientTank::MouseEvent(TMouseEvent* pEvent)
     case nsEvent::eButtonDblClick:
       break;
     case nsEvent::eWheel:
-      mComponent.mGraphicEngine->GetControlCamera()->AddDistObj(float(pEvent->delta_wheel)/100.0f);
+      //mComponent.mGraphicEngine->GetControlCamera()->AddDistObj(float(pEvent->delta_wheel)/100.0f);
       break;
     case nsEvent::eMove:
       if(flgDragCamera)
       {
         float dRight = float(pEvent->x - mOldX)*ASPECT_MOUSE_X;
         float dDown  = float(pEvent->y - mOldY)*ASPECT_MOUSE_Y;
-        mComponent.mGraphicEngine->GetControlCamera()->RotateRight(dRight);
-        mComponent.mGraphicEngine->GetControlCamera()->RotateDown(dDown);
+        //mComponent.mGraphicEngine->GetControlCamera()->RotateRight(dRight);
+        //mComponent.mGraphicEngine->GetControlCamera()->RotateDown(dDown);
         
         mOldX = pEvent->x;
         mOldY = pEvent->y;
@@ -105,10 +98,10 @@ void TDevTool_ClientTank::KeyEvent(TKeyEvent* pEvent)
   unsigned int v;
   bool res = mComponent.mMStateMachine.GetValue(mIDkey,pEvent->key,v);
   v |= (pEvent->pressed?0:UP);
-  if(res)
+/*  if(res)
   switch(v)
   {
-    // клавиатура
+    // РєР»Р°РІРёР°С‚СѓСЂР°
     case e_W://W
       mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(DELTA_MOVE);
       break;
@@ -145,29 +138,29 @@ void TDevTool_ClientTank::KeyEvent(TKeyEvent* pEvent)
     case e_E|UP://E
       mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(0);
       break;
-    // мышь
-    case e_Numpad4:// влево 4
+    // РјС‹С€СЊ
+    case e_Numpad4:// РІР»РµРІРѕ 4
       mComponent.mGraphicEngine->GetControlCamera()->RotateRight(-DELTA_ROTATE);
       break;
-    case e_Numpad6:// вправо 6
+    case e_Numpad6:// РІРїСЂР°РІРѕ 6
       mComponent.mGraphicEngine->GetControlCamera()->RotateRight(DELTA_ROTATE);
       break;
-    case e_Numpad8:// вверх 8
+    case e_Numpad8:// РІРІРµСЂС… 8
       mComponent.mGraphicEngine->GetControlCamera()->RotateDown(-DELTA_ROTATE);
       break;
-    case e_Numpad2:// вниз 2
+    case e_Numpad2:// РІРЅРёР· 2
       mComponent.mGraphicEngine->GetControlCamera()->RotateDown(DELTA_ROTATE);
       break;
-    case e_Numpad7:// вращаться влево 7
+    case e_Numpad7:// РІСЂР°С‰Р°С‚СЊСЃСЏ РІР»РµРІРѕ 7
       mComponent.mGraphicEngine->GetControlCamera()->Roll(DELTA_ROTATE);
       break;
-    case e_Numpad9:// вращаться вправо 9
+    case e_Numpad9:// РІСЂР°С‰Р°С‚СЊСЃСЏ РІРїСЂР°РІРѕ 9
       mComponent.mGraphicEngine->GetControlCamera()->Roll(-DELTA_ROTATE);
       break;
-    case e_C:// сбросить ориентацию камеры C
+    case e_C:// СЃР±СЂРѕСЃРёС‚СЊ РѕСЂРёРµРЅС‚Р°С†РёСЋ РєР°РјРµСЂС‹ C
       mComponent.mGraphicEngine->GetControlCamera()->ClearRotate();
       break;
-    case e_V:// сбросить ориентацию камеры V
+    case e_V:// СЃР±СЂРѕСЃРёС‚СЊ РѕСЂРёРµРЅС‚Р°С†РёСЋ РєР°РјРµСЂС‹ V
     {
       TVector3 v;
       v.x = 0.0f;
@@ -189,7 +182,7 @@ void TDevTool_ClientTank::KeyEvent(TKeyEvent* pEvent)
       break;
     case e_O: 
       break;
-  }
+  }*/
 }
 //--------------------------------------------------------------------
 void TDevTool_ClientTank::Init(vector<string>& arg )
@@ -203,10 +196,10 @@ void TDevTool_ClientTank::Init(vector<string>& arg )
   mComponent.mGUI.Add(string("mClientMain"),mClientMain);
   mComponent.mGUI.Add(string("mGameRoomPrepare"),mGameRoomPrepare);
   mComponent.mGUI.Add(string("mWaitForm"),mWaitForm);
-  // показать форму
+  // РїРѕРєР°Р·Р°С‚СЊ С„РѕСЂРјСѓ
   SetCurrentForm(mClientMain);
-  // подстроиться
-  mComponent.mGraphicEngine->Resize();
+  // РїРѕРґСЃС‚СЂРѕРёС‚СЊСЃСЏ
+  //mComponent.mGraphicEngine->Resize();
   // HotKey
 	if(GetStorePathResources()->GetCount("game_param")>0)
 	{
@@ -234,7 +227,7 @@ void TDevTool_ClientTank::Done()
 //---------------------------------------------------------------------------------------------
 void TDevTool_ClientTank::InitLog()
 {
-  GetLogger()->Register("Inner");// для логирования внутренних событий
+  GetLogger()->Register("Inner");// РґР»СЏ Р»РѕРіРёСЂРѕРІР°РЅРёСЏ РІРЅСѓС‚СЂРµРЅРЅРёС… СЃРѕР±С‹С‚РёР№
   GetLogger()->Init("ClientTank");
 }
 //---------------------------------------------------------------------------------------------
@@ -242,78 +235,76 @@ void TDevTool_ClientTank::Event(nsEvent::TEvent* pEvent)
 {
   switch(pEvent->type_object)
   {
-		case PROTOTYPE_TYPE_GRAPHIC_ENGINE:
+		case MODULE_GRAPHIC_ENGINE:
       HandleFromGUI((nsEvent::TBaseEvent*)pEvent->pContainer->GetPtr());
       break;
-		case PROTOTYPE_TYPE_MMO_ENGINE_CLIENT:
-      HandleFromMMOEngine((PrototypeMMOBaseEvent*)pEvent->pContainer->GetPtr());
+		case MODULE_MMO_ENGINE_CLIENT:
+      HandleFromMMOEngine((nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr());
       break;
-    case PROTOTYPE_TYPE_PHYSIC_ENGINE:
+    case MODULE_PHYSIC_ENGINE:
       break;
-    case PROTOTYPE_TYPE_MANAGER_OBJECT_GENERAL:
-      break;
-    case PROTOTYPE_TYPE_TIMER:
+    case MODULE_TIMER:
 			mTestControlTank.SetupParamForNow();
       break;
-    case PROTOTYPE_TYPE_DEV_TOOL:
+    case MODULE_DEV_TOOL:
       HandleFromDev((nsDevProtocol::TBase*)pEvent->pContainer->GetPtr());
       break;
   }
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_ClientTank::HandleFromMMOEngine(PrototypeMMOBaseEvent* pBE)
+void TDevTool_ClientTank::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
 {
   string sEvent;  
   switch(pBE->mType)
   {
-    case eConnectDown:
+    case nsMMOEngine::eConnectDown:
       sEvent = "ConnectDown";
       break;
-    case eDisconnectDown:
+    case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
       break;
-    case eConnectUp:
+    case nsMMOEngine::eConnectUp:
       sEvent = "ConnectUp";
       break;
-    case eDisconnectUp:
+    case nsMMOEngine::eDisconnectUp:
       sEvent = "DisconnectUp";
       DisconnectUp();
       break;
-    case eError:
+    case nsMMOEngine::eError:
 		{
 			char sError[300];
-			PrototypeMMOEventError* pEr = (PrototypeMMOEventError*)pBE;
+			nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
 			sprintf(sError, "Error code=%u", pEr->code);
 			sEvent = sError;
 		}
       break;
-    case eRecvFromDown:
+    case nsMMOEngine::eRecvFromDown:
       sEvent = "RecvFromDown";
       break;
-    case eRecvFromUp:
+    case nsMMOEngine::eRecvFromUp:
 	  {
 		  sEvent = "RecvFromUp";
-		  PrototypeMMOEventRecvFromUp* pRU = (PrototypeMMOEventRecvFromUp*)pBE;
+      nsMMOEngine::TEventRecvFromUp* pRU = (nsMMOEngine::TEventRecvFromUp*)pBE;
 		  mTestControlTank.Recv(pRU->data, pRU->sizeData);
 	  }
       break;
-    case eSaveContext:
+    case nsMMOEngine::eSaveContext:
       sEvent = "SaveContext";
       break;
-    case eRestoreContext:
+    case nsMMOEngine::eRestoreContext:
       sEvent = "RestoreContext";
       break;
-    case eTryLogin:
+    case nsMMOEngine::eTryLogin:
       sEvent = "TryLogin";
       break;
-    case eResultLogin:
+    case nsMMOEngine::eResultLogin:
       sEvent = "ResultLogin";
       Connect(pBE);
       break;
-    case eDestroyGroup:
+    case nsMMOEngine::eDestroyGroup:
       sEvent = "DestroyGroup";
       break;
-    case eEnterInQueue:
+    case nsMMOEngine::eEnterInQueue:
       sEvent = "InQueueLoginClient";
       break;
   }
@@ -353,15 +344,15 @@ void TDevTool_ClientTank::HandleFromGUI(nsEvent::TBaseEvent* pData)
 void TDevTool_ClientTank::ConnectUp()
 {
   SetCurrentForm(mGameRoomPrepare);
-  mTank  ->SetShow(true);
-  mHangar->SetShow(true);
+  //mTank  ->SetShow(true);
+  //mHangar->SetShow(true);
 }
 //---------------------------------------------------------------------------------------------
 void TDevTool_ClientTank::DisconnectUp()
 {
   SetCurrentForm(mClientMain);
-  mTank  ->SetShow(false);
-  mHangar->SetShow(false);
+  //mTank  ->SetShow(false);
+  //mHangar->SetShow(false);
 }
 //---------------------------------------------------------------------------------------------
 void TDevTool_ClientTank::SetCurrentForm(TBaseGUI* p)
@@ -373,59 +364,59 @@ void TDevTool_ClientTank::SetCurrentForm(TBaseGUI* p)
     mCurrentForm->Show();
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_ClientTank::Connect(PrototypeMMOBaseEvent* pBE)
+void TDevTool_ClientTank::Connect(nsMMOEngine::TBaseEvent* pBE)
 {
-  PrototypeMMOEventResultLogin* pResult = (PrototypeMMOEventResultLogin*)pBE;
+  nsMMOEngine::TEventResultLogin* pResult = (nsMMOEngine::TEventResultLogin*)pBE;
   switch(pResult->res)
   {
-    case PrototypeMMOMaster::eAccept:
+    case nsMMOEngine::TMaster::eAccept:
       ConnectUp();
       break;
-    case PrototypeMMOMaster::eReject:
+    case nsMMOEngine::TMaster::eReject:
       break;
   }
 }
 //---------------------------------------------------------------------------------------------
 void TDevTool_ClientTank::CreateObjects()
 {
-  CreateHangar();
-  CreateTank();
+  //CreateHangar();
+  //CreateTank();
 
-  int cntObj = mComponent.mMOG->GetCountObject();
-  for( int i = 0 ; i < cntObj ; i++ )
-  {
-    IBaseObject* pBO = mComponent.mMOG->Get(i);
-    if(pBO==mTank)
-      mIndexCurObj = i;
-  }
-  mComponent.mGraphicEngine->GetControlCamera()->Link(mTank,PrototypeControlCamera::eCoord);
-  mComponent.mGraphicEngine->GetControlCamera()->SetDistObj(-10.0f);
+  //int cntObj = mComponent.mMOG->GetCountObject();
+  //for( int i = 0 ; i < cntObj ; i++ )
+  //{
+  //  IBaseObject* pBO = mComponent.mMOG->Get(i);
+  //  if(pBO==mTank)
+  //    mIndexCurObj = i;
+  //}
+  //mComponent.mGraphicEngine->GetControlCamera()->Link(mTank,PrototypeControlCamera::eCoord);
+  //mComponent.mGraphicEngine->GetControlCamera()->SetDistObj(-10.0f);
 
-  mComponent.mGraphicEngine->GetControlCamera()->RotateRight(0.5f);
-  mComponent.mGraphicEngine->GetControlCamera()->RotateDown(0.5f);
+  //mComponent.mGraphicEngine->GetControlCamera()->RotateRight(0.5f);
+  //mComponent.mGraphicEngine->GetControlCamera()->RotateDown(0.5f);
 }
 //------------------------------------------------------------------------------------
 void TDevTool_ClientTank::CreateHangar()
 {
-  TMatrix16 w;
-  SetMatrixIdentity(&w);
-  w.s._43 -= 1.0f;
-  mHangar = mComponent.mMOG->CreateObject(1);
-  mHangar->SetWorld(&w);
-  mComponent.mGraphicEngine->AddObject(mHangar);
-  mHangar->SetShow(false);
+  //TMatrix16 w;
+  //SetMatrixIdentity(&w);
+  //w.s._43 -= 1.0f;
+  //mHangar = mComponent.mMOG->CreateObject(1);
+  //mHangar->SetWorld(&w);
+  //mComponent.mGraphicEngine->AddObject(mHangar);
+  //mHangar->SetShow(false);
 }
 //------------------------------------------------------------------------------------
 void TDevTool_ClientTank::CreateTank()
 {
-  TMatrix16 w;
-  SetMatrixIdentity(&w);
-  mTank = mComponent.mMOG->CreateObject(0);
-  mTank->SetWorld(&w);
-  mComponent.mGraphicEngine->AddObject(mTank);
-  mTank->SetShow(false);
+ // TMatrix16 w;
+ // SetMatrixIdentity(&w);
+ // mTank = mComponent.mMOG->CreateObject(0);
+ // mTank->SetWorld(&w);
+ // mComponent.mGraphicEngine->AddObject(mTank);
+ // mTank->SetShow(false);
 
-	mTestControlTank.SetTank((TTankTower*)mTank);
+	//mTestControlTank.SetTank((TTankTower*)mTank);
 }
 //---------------------------------------------------------------------------------------------
 void TDevTool_ClientTank::HandleFromDev(nsDevProtocol::TBase* pData)

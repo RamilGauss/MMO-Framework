@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,7 +20,7 @@ bool TXML_Markup::IsOpen()
   return mMarkup.IsWellFormed();
 }
 //------------------------------------------------------------------
-// операции с секциями
+// РѕРїРµСЂР°С†РёРё СЃ СЃРµРєС†РёСЏРјРё
 int TXML_Markup::GetCountSection(const char* name)
 {
   mMarkup.SavePos();
@@ -41,7 +41,7 @@ int TXML_Markup::GetCountSection(const char* name)
   return cntElem;
 }
 //------------------------------------------------------------------
-// навигация
+// РЅР°РІРёРіР°С†РёСЏ
 bool TXML_Markup::EnterSection(const char* name, int num)
 {
   if(name==NULL) return false;
@@ -73,7 +73,7 @@ bool TXML_Markup::AddSectionAndEnter(const char* name)
 {
   mMarkup.SavePos();
   bool res = mMarkup.AddElem(name, " ");
-  //вызов mMarkup.RestorePos(); не делать что бы остаться тут же
+  //РІС‹Р·РѕРІ mMarkup.RestorePos(); РЅРµ РґРµР»Р°С‚СЊ С‡С‚Рѕ Р±С‹ РѕСЃС‚Р°С‚СЊСЃСЏ С‚СѓС‚ Р¶Рµ
   return res;
 }
 //------------------------------------------------------------------
@@ -89,11 +89,11 @@ bool TXML_Markup::AddSectionAndEnter(const char *name, int numAttr, TAttrInfo *p
       break;
   }
 
-  //вызов mMarkup.RestorePos(); не делать что бы остаться тут же
+  //РІС‹Р·РѕРІ mMarkup.RestorePos(); РЅРµ РґРµР»Р°С‚СЊ С‡С‚Рѕ Р±С‹ РѕСЃС‚Р°С‚СЊСЃСЏ С‚СѓС‚ Р¶Рµ
   return res;
 }
 //------------------------------------------------------------------
-// изменение кол-ва
+// РёР·РјРµРЅРµРЅРёРµ РєРѕР»-РІР°
 bool TXML_Markup::AddSection(const char* name)
 {
   mMarkup.SavePos();
@@ -182,7 +182,7 @@ bool TXML_Markup::WriteSection(int index, string buffer)
   return res;
 }
 //------------------------------------------------------------------
-// чтение
+// С‡С‚РµРЅРёРµ
 string TXML_Markup::ReadSection(const char* name, int num)
 {
   string content;
@@ -298,7 +298,7 @@ bool TXML_Markup::WriteSectionAttr(int index, const char* nameAttr, string buffe
   return res;
 }
 //------------------------------------------------------------------
-// чтение
+// С‡С‚РµРЅРёРµ
 string TXML_Markup::ReadSectionAttr(const char* name, int num, const char* nameAttr)
 {
   string content;

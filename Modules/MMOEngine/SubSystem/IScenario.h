@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -23,14 +23,14 @@ namespace nsMMOEngine
   {
 		TCallBackRegistrator1<unsigned int> mCBNeedContextBySession;
     TCallBackRegistrator1<IScenario*>   mCBEnd;
-    // запрос на контекст по ключу клиента
+    // Р·Р°РїСЂРѕСЃ РЅР° РєРѕРЅС‚РµРєСЃС‚ РїРѕ РєР»СЋС‡Сѓ РєР»РёРµРЅС‚Р°
     TCallBackRegistrator1<unsigned int> mCBContextByClientKey;
 
     unsigned char mType;
   protected:
     IContextScenario* mCurContext;
   public:
-    // типы CallBack
+    // С‚РёРїС‹ CallBack
     enum
     {
       eContextBySession = 0,
@@ -58,14 +58,14 @@ namespace nsMMOEngine
 		virtual void Recv(TDescRecvSession* pDesc) = 0;
   protected:
     friend class IContextScenario;
-    // если нельзя было начать сценарий сразу, то когда будет такая возможность произойдет этот вызов
+    // РµСЃР»Рё РЅРµР»СЊР·СЏ Р±С‹Р»Рѕ РЅР°С‡Р°С‚СЊ СЃС†РµРЅР°СЂРёР№ СЃСЂР°Р·Сѓ, С‚Рѕ РєРѕРіРґР° Р±СѓРґРµС‚ С‚Р°РєР°СЏ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїСЂРѕРёР·РѕР№РґРµС‚ СЌС‚РѕС‚ РІС‹Р·РѕРІ
     virtual void DelayBegin();
-    // отработка своих событий и ожиданий
+    // РѕС‚СЂР°Р±РѕС‚РєР° СЃРІРѕРёС… СЃРѕР±С‹С‚РёР№ Рё РѕР¶РёРґР°РЅРёР№
     virtual void Work();
   public:
     bool Begin();
     void End();
-    // запрос на новую сессию, кто зарегистрировался выставит контекст с помощью SetContext()
+    // Р·Р°РїСЂРѕСЃ РЅР° РЅРѕРІСѓСЋ СЃРµСЃСЃРёСЋ, РєС‚Рѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°Р»СЃСЏ РІС‹СЃС‚Р°РІРёС‚ РєРѕРЅС‚РµРєСЃС‚ СЃ РїРѕРјРѕС‰СЊСЋ SetContext()
     void NeedContextBySession(unsigned int id_session);
     void NeedContextByClientKey(unsigned int id_client);
   };

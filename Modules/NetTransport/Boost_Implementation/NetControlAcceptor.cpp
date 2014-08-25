@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,7 +16,8 @@ See for more information License.h.
 
 using namespace std;
 
-TNetControlAcceptor::TNetControlAcceptor(boost::asio::io_service& io_service):
+TNetControlAcceptor::TNetControlAcceptor(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service):
+INetControl(pNTB),
 mDevice(io_service)
 {
   pNewControlTCP = NULL;
@@ -55,7 +56,7 @@ void TNetControlAcceptor::AcceptEvent(const boost::system::error_code& error)
     ip_port.ip   = pNewControlTCP->GetDevice()->GetSocket()->remote_endpoint().address().to_v4().to_ulong();
     pNewControlTCP->GetDevice()->SetIP_Port(ip_port);
     GetNetBoost()->AddInMapTCP(ip_port,pNewControlTCP);
-    pNewControlTCP->Init();// ãîòîâ ê ÷òåíèþ
+    pNewControlTCP->Init();// Ð³Ð¾Ñ‚Ð¾Ð² Ðº Ñ‡Ñ‚ÐµÐ½Ð¸ÑŽ
   }
   else
 	{
@@ -76,7 +77,7 @@ void TNetControlAcceptor::Done()
 //------------------------------------------------------------------------------
 void TNetControlAcceptor::ReadyAccept()
 {
-  pNewControlTCP = new TNetControlTCP(mDevice.GetSocket()->get_io_service());
+  pNewControlTCP = new TNetControlTCP(GetNetBoost(), mDevice.GetSocket()->get_io_service());
   mDevice.GetSocket()->async_accept(*(pNewControlTCP->GetDevice()->GetSocket()),
     boost::bind(&TNetControlAcceptor::AcceptEvent, this, 
     boost::asio::placeholders::error));

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -34,7 +34,7 @@ namespace nsMMOEngine
       id_session = p->id_session;
       ip_port    = p->ip_port;
       type       = p->type;
-      // êîïèðîâàíèå äàííûõ
+      // ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ…
       c.SetDataByCount(p->data, p->sizeData);
       sizeData = p->sizeData;
       data     = (char*)c.GetPtr();

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -57,8 +57,8 @@ bool TManagerRecommutation::GetClientKeyByIndex(unsigned int id_session,
   int countDonor     = int(fit->second.donor.size());
   int countRecipient = int(fit->second.recipient.size());
   if(countRecipient + countDonor <= index)
-    return false;// за границей
-  // сначала множество Доноров
+    return false;// Р·Р° РіСЂР°РЅРёС†РµР№
+  // СЃРЅР°С‡Р°Р»Р° РјРЅРѕР¶РµСЃС‚РІРѕ Р”РѕРЅРѕСЂРѕРІ
   if(countDonor>index)
   {
     TSetUintIt dbit = fit->second.donor.begin();
@@ -68,7 +68,7 @@ bool TManagerRecommutation::GetClientKeyByIndex(unsigned int id_session,
     return true;
   }
   index -= countDonor;
-  // потом множество Реципиентов
+  // РїРѕС‚РѕРј РјРЅРѕР¶РµСЃС‚РІРѕ Р РµС†РёРїРёРµРЅС‚РѕРІ
   TSetUintIt rbit = fit->second.recipient.begin();
   for( int i = 0 ; i < index ; i++)
     rbit++;
@@ -91,13 +91,13 @@ void TManagerRecommutation::AddClientKey(unsigned int key,
   TMapUintPairIt fit = mMapClientKey_Slaves.find(key);
   if(fit!=mMapClientKey_Slaves.end())
   {
-    // запись уже есть, значит, ее не удалили
+    // Р·Р°РїРёСЃСЊ СѓР¶Рµ РµСЃС‚СЊ, Р·РЅР°С‡РёС‚, РµРµ РЅРµ СѓРґР°Р»РёР»Рё
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TManagerRecommutation::AddClientKey(key=%u) is exist.\n",key);
     BL_FIX_BUG();
     return;
   }
-  // новая запись
+  // РЅРѕРІР°СЏ Р·Р°РїРёСЃСЊ
   TPairUintUint session_d_r(id_session_donor,id_session_recipient);
   mMapClientKey_Slaves.insert(TMapUintPair::value_type(key,session_d_r));
 
@@ -108,7 +108,7 @@ void TManagerRecommutation::AddClientKey(unsigned int key,
 void TManagerRecommutation::DeleteByClientKey(unsigned int key)
 {
   unsigned int donor, recipient;
-  // ищем Донора и Реципиента, связанных с Клиентом
+  // РёС‰РµРј Р”РѕРЅРѕСЂР° Рё Р РµС†РёРїРёРµРЅС‚Р°, СЃРІСЏР·Р°РЅРЅС‹С… СЃ РљР»РёРµРЅС‚РѕРј
   if(FindSessionByClientKey(key, donor, recipient)==false)
   {
     GetLogger(STR_NAME_MMO_ENGINE)->
@@ -116,11 +116,11 @@ void TManagerRecommutation::DeleteByClientKey(unsigned int key)
     BL_FIX_BUG();
     return;
   }
-  // удалить из списка Донора
+  // СѓРґР°Р»РёС‚СЊ РёР· СЃРїРёСЃРєР° Р”РѕРЅРѕСЂР°
   DeleteClientKeyBySession(key, donor, eDonor);
-  // и из списка Реципиента
+  // Рё РёР· СЃРїРёСЃРєР° Р РµС†РёРїРёРµРЅС‚Р°
   DeleteClientKeyBySession(key, recipient, eRecipient);
-  // удалить Клиента
+  // СѓРґР°Р»РёС‚СЊ РљР»РёРµРЅС‚Р°
   mMapClientKey_Slaves.erase(key);
 }
 //----------------------------------------------------------------------------------
@@ -128,8 +128,8 @@ void TManagerRecommutation::AddClientKeyBySession(unsigned int key,
                                                   unsigned int id_session,
                                                   Type type)
 {
-   //добавить Slave, может его еще не добавляли
-   //в случае существования insert проигнорирует попытку вставки
+   //РґРѕР±Р°РІРёС‚СЊ Slave, РјРѕР¶РµС‚ РµРіРѕ РµС‰Рµ РЅРµ РґРѕР±Р°РІР»СЏР»Рё
+   //РІ СЃР»СѓС‡Р°Рµ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ insert РїСЂРѕРёРіРЅРѕСЂРёСЂСѓРµС‚ РїРѕРїС‹С‚РєСѓ РІСЃС‚Р°РІРєРё
   mMapSlave_SetClient.insert(TMapUintSet::value_type(id_session, TSetClient()));
 
   TMapUintSetIt fit = mMapSlave_SetClient.find(id_session);

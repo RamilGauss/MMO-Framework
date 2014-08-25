@@ -5,15 +5,13 @@
 	For compiling requires:
     Boost 1.54, 
     Qt 4.8.5, 
-    DirectX SDK June 2010
-See for more information /doc/DeveloperManual.
 To view the architectural decisions need Enterprise Architect 7.0.
 
 	Engine features
 
 	This engine (MMO component) can work with more than one million Clients.
 This is achieved by using the cluster organization within the Server.
-Also present GUI, graphics engine.
+Use: MyGUI, Qt, OGRE, Bullet, OpenSSL.
 	
 	Folder with uppercase first letter contains the source code.
 All other folders contain either data (model, xml, etc.), or documents.	
@@ -26,16 +24,14 @@ doc - documentation and manual how use it.
 	Для компиляции требуется:
     Boost 1.54, 
     Qt 4.8.5, 
-    DirectX SDK June 2010
   
-Более подробно в /doc/DeveloperManual.
 Для просмотра архитектурных решений потребуется Enterprise Architect 7.0.
 
 	Возможности движка
     
 	Данный движок (ММО компонент) может работать с более чем миллионом Клиентов.
 Это достигается с помощью кластерной организации внутри Сервера.
-Также присутствует GUI, графический движок.		
+Сторонние компоненты: MyGUI, Qt, OGRE, Bullet, OpenSSL.
 		
 	Папка с Верхним регистром первой буквы содержит исходный код.
 Все остальные папки содержат либо данные(модели, xml и т.д.), либо документацию.

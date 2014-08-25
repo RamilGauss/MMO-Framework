@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -19,10 +19,10 @@ public:
   TDescCallBack();
   ~TDescCallBack();
 
-  // установить
+  // СѓСЃС‚Р°РЅРѕРІРёС‚СЊ
   void Set(void* pCB);
 
-  // регистрация
+  // СЂРµРіРёСЃС‚СЂР°С†РёСЏ
   template <typename F, class C>
   void Register(F f, C pObject);
 
@@ -32,7 +32,7 @@ public:
   template <typename Type0,typename Type1, typename F, class C>
   void Register(F f, C pObject);
 
-  // уведомление
+  // СѓРІРµРґРѕРјР»РµРЅРёРµ
   void Notify();
 
   template <typename Type0>

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,10 +16,10 @@ See for more information License.h.
 
 
 /*
-По иерархии
- M(n) = M(n)*M(n-1)*..*M(0) - с самого низа на верх
- причем M(0) = M(root)
-             Mroot                 - по именам a
+РџРѕ РёРµСЂР°СЂС…РёРё
+ M(n) = M(n)*M(n-1)*..*M(0) - СЃ СЃР°РјРѕРіРѕ РЅРёР·Р° РЅР° РІРµСЂС…
+ РїСЂРёС‡РµРј M(0) = M(root)
+             Mroot                 - РїРѕ РёРјРµРЅР°Рј a
           /   |   \  
          M1   M1   M1              -  b c d
          |         |  \          
@@ -34,13 +34,13 @@ See for more information License.h.
 
 class DllExport TTreeJoint
 {
-  bool flgNeedSetup; // отладка
-  bool flgWasSort;   // отладка
+  bool flgNeedSetup; // РѕС‚Р»Р°РґРєР°
+  bool flgWasSort;   // РѕС‚Р»Р°РґРєР°
 public:
   TTreeJoint();
   ~TTreeJoint();
   //--------------------------------------------------
-  // заготовка для настройки дерева
+  // Р·Р°РіРѕС‚РѕРІРєР° РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё РґРµСЂРµРІР°
   struct TChild
   {
     std::string   name;
@@ -49,7 +49,7 @@ public:
   struct TPart
   {
     std::string name;
-    int numUse;// номер башни например
+    int numUse;// РЅРѕРјРµСЂ Р±Р°С€РЅРё РЅР°РїСЂРёРјРµСЂ
     std::vector<TChild*> vectorChild;
     ~TPart()
     {
@@ -73,10 +73,10 @@ public:
   };
   struct TLoadedJoint
   {
-    // матрица root, относительно него все строится
+    // РјР°С‚СЂРёС†Р° root, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РЅРµРіРѕ РІСЃРµ СЃС‚СЂРѕРёС‚СЃСЏ
     nsMathTools::TMatrix16 world;
-    std::string root;   // название корня
-    std::vector<TPart*> vectorPart;// части для соединения, одна из этих частей всегда root (по имени)
+    std::string root;   // РЅР°Р·РІР°РЅРёРµ РєРѕСЂРЅСЏ
+    std::vector<TPart*> vectorPart;// С‡Р°СЃС‚Рё РґР»СЏ СЃРѕРµРґРёРЅРµРЅРёСЏ, РѕРґРЅР° РёР· СЌС‚РёС… С‡Р°СЃС‚РµР№ РІСЃРµРіРґР° root (РїРѕ РёРјРµРЅРё)
     ~TLoadedJoint()
     {
       int cnt = vectorPart.size();
@@ -99,12 +99,12 @@ public:
   };
   //--------------------------------------------------
   // INTERFACE
-  // Начальная настройка
+  // РќР°С‡Р°Р»СЊРЅР°СЏ РЅР°СЃС‚СЂРѕР№РєР°
   // 1. Setup(..)
   // 2. SetOrderMatrixByName(..)
   // 3. GetMatrix(..)
   // ...
-  // Изменение одной из матриц
+  // РР·РјРµРЅРµРЅРёРµ РѕРґРЅРѕР№ РёР· РјР°С‚СЂРёС†
   // N. ChangeMatrix(..)
   // N+1. GetMatrix(..)
   // ...
@@ -116,13 +116,13 @@ public:
   void Setup(TLoadedJoint* pLoadedTree,TNumUseMap* mapUse);// +
 
   int GetCountPart();// +
-  void SetOrderMatrixByName(std::vector<std::string>* order);// вызвать до вызова ChangeMatrix и GetMatrix // +
+  void SetOrderMatrixByName(std::vector<std::string>* order);// РІС‹Р·РІР°С‚СЊ РґРѕ РІС‹Р·РѕРІР° ChangeMatrix Рё GetMatrix // +
   
-  // умножить матрицу по-умолчанию на новую матрицу и произвести изменения по всем детям
+  // СѓРјРЅРѕР¶РёС‚СЊ РјР°С‚СЂРёС†Сѓ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ РЅР° РЅРѕРІСѓСЋ РјР°С‚СЂРёС†Сѓ Рё РїСЂРѕРёР·РІРµСЃС‚Рё РёР·РјРµРЅРµРЅРёСЏ РїРѕ РІСЃРµРј РґРµС‚СЏРј
   void ChangeMatrix(std::string& name, nsMathTools::TMatrix16* matrix, bool def = true);// +
-  // заполнить матрицей
+  // Р·Р°РїРѕР»РЅРёС‚СЊ РјР°С‚СЂРёС†РµР№
   void GetMatrix(std::vector<nsMathTools::TMatrix16*>* matrix);// +
-  // сбросить все матрицы в дефолт
+  // СЃР±СЂРѕСЃРёС‚СЊ РІСЃРµ РјР°С‚СЂРёС†С‹ РІ РґРµС„РѕР»С‚
   void SetDefault(); // +
 
   void operator = (TTreeJoint& v);
@@ -136,9 +136,9 @@ protected:
     TNodeJoint* pParent;
     std::vector<TNodeJoint*> mVectorChild;
     std::string   name;
-    nsMathTools::TMatrix16 matrixDef; // то что считали с файла настроек
-    nsMathTools::TMatrix16 matrix;    // эта матрица получается умножением матрицы по-умолчанию на заданную матрицу через метод ChangeMatrix
-    nsMathTools::TMatrix16 matrix_pro;// произведение по иерархии
+    nsMathTools::TMatrix16 matrixDef; // С‚Рѕ С‡С‚Рѕ СЃС‡РёС‚Р°Р»Рё СЃ С„Р°Р№Р»Р° РЅР°СЃС‚СЂРѕРµРє
+    nsMathTools::TMatrix16 matrix;    // СЌС‚Р° РјР°С‚СЂРёС†Р° РїРѕР»СѓС‡Р°РµС‚СЃСЏ СѓРјРЅРѕР¶РµРЅРёРµРј РјР°С‚СЂРёС†С‹ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ РЅР° Р·Р°РґР°РЅРЅСѓСЋ РјР°С‚СЂРёС†Сѓ С‡РµСЂРµР· РјРµС‚РѕРґ ChangeMatrix
+    nsMathTools::TMatrix16 matrix_pro;// РїСЂРѕРёР·РІРµРґРµРЅРёРµ РїРѕ РёРµСЂР°СЂС…РёРё
     
     TNodeJoint()
     {
@@ -149,11 +149,11 @@ protected:
     void SetMatrixDef(){matrix = matrixDef;}
   };
   
-  TNodeJoint* mRoot;// корень есть всегда
+  TNodeJoint* mRoot;// РєРѕСЂРµРЅСЊ РµСЃС‚СЊ РІСЃРµРіРґР°
 
-  std::vector<TNodeJoint*> mVectorNode;// общее кол-во
+  std::vector<TNodeJoint*> mVectorNode;// РѕР±С‰РµРµ РєРѕР»-РІРѕ
 
-  TLoadedJoint* mLoadedTree;// временно при Setup-е
+  TLoadedJoint* mLoadedTree;// РІСЂРµРјРµРЅРЅРѕ РїСЂРё Setup-Рµ
   TNumUseMap* mMapUse;
   //------------------------------------------------------
   void ProductAllMatrix();

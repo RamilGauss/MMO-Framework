@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -24,7 +24,7 @@ namespace nsMMOEngine
 
     TContainer mContextData;
 
-		// для самоопределения на Slave
+		// РґР»СЏ СЃР°РјРѕРѕРїСЂРµРґРµР»РµРЅРёСЏ РЅР° Slave
 		typedef enum
 		{
 			eUndef,
@@ -42,7 +42,7 @@ namespace nsMMOEngine
 		TContextScRecommutationClient();
     virtual ~TContextScRecommutationClient();
 
-    // сессии для Slave, в остальных случаях для Мастера и Клиента использовать G(S)etID_Session
+    // СЃРµСЃСЃРёРё РґР»СЏ Slave, РІ РѕСЃС‚Р°Р»СЊРЅС‹С… СЃР»СѓС‡Р°СЏС… РґР»СЏ РњР°СЃС‚РµСЂР° Рё РљР»РёРµРЅС‚Р° РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ G(S)etID_Session
     unsigned int GetID_SessionClientSlave();
     void SetID_SessionClientSlave(unsigned int id_session);
 
@@ -63,7 +63,7 @@ namespace nsMMOEngine
     int   GetContextDataSize();
     void  CleanContextData();
 
-		// необходимо для определения поведения при Дисконнекте Клиента
+		// РЅРµРѕР±С…РѕРґРёРјРѕ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ РїРѕРІРµРґРµРЅРёСЏ РїСЂРё Р”РёСЃРєРѕРЅРЅРµРєС‚Рµ РљР»РёРµРЅС‚Р°
 		void SetRoleAsDonor();
 		bool IsDonor();
 		void SetRoleAsRecipient();

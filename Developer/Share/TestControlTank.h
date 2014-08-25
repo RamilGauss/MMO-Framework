@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -14,7 +14,7 @@ See for more information License.h.
 
 class TTankTower;
 
-// зародыш Developer протокола для управления танком
+// Р·Р°СЂРѕРґС‹С€ Developer РїСЂРѕС‚РѕРєРѕР»Р° РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ С‚Р°РЅРєРѕРј
 
 
 class TTestControlTank
@@ -29,9 +29,6 @@ class TTestControlTank
 
 		float mSpeedRotateGun;
 		float mAngleGun;
-    //###
-    //char burn_memory[800000];
-    //###
 
 		TDesc()
 		{
@@ -60,17 +57,17 @@ class TTestControlTank
 public:
   TTestControlTank();
 
-	// назначить объект
+	// РЅР°Р·РЅР°С‡РёС‚СЊ РѕР±СЉРµРєС‚
 	void SetTank(TTankTower* pTank);
-	// вызывать для аппроксимации параметров и применения для объекта
+	// РІС‹Р·С‹РІР°С‚СЊ РґР»СЏ Р°РїРїСЂРѕРєСЃРёРјР°С†РёРё РїР°СЂР°РјРµС‚СЂРѕРІ Рё РїСЂРёРјРµРЅРµРЅРёСЏ РґР»СЏ РѕР±СЉРµРєС‚Р°
 	void SetupParamForNow();
 	
 public:
 	void Recv(void* data, int size);
 	void Send();
 
-	// реакция на нажатие кнопок в форме
-	// задать скорость
+	// СЂРµР°РєС†РёСЏ РЅР° РЅР°Р¶Р°С‚РёРµ РєРЅРѕРїРѕРє РІ С„РѕСЂРјРµ
+	// Р·Р°РґР°С‚СЊ СЃРєРѕСЂРѕСЃС‚СЊ
 	void SetSpeedRotateTurret(float v);
 	void SetSpeedRotateGun(float v);
 private:

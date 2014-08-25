@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,10 +11,9 @@ See for more information License.h.
 #include "classTools.h"
 #include <string>
 #include "DescEvent.h"
-#include "IMakerObjectGeneral.h"
 #include "Logger.h"
 
-class IModule;
+class ModuleDev;
 
 class DllExport IDevTool
 {
@@ -34,14 +33,14 @@ public:
   virtual int  GetCountModule() = 0;
   virtual int  GetModuleID(int index) = 0;
   virtual bool IsAddModuleInConveyer(int index) = 0;
-  virtual void SetModulePtr(IModule* ptr) = 0;// результат создания модуля, разработчик внесет к себе в компоненты
-  virtual void FreeModulePtr(IModule* ptr) = 0;// вызывается перед освобождением модуля, разработчик произведет дополнительные действия
+  virtual void SetModulePtr(ModuleDev* ptr) = 0;// СЂРµР·СѓР»СЊС‚Р°С‚ СЃРѕР·РґР°РЅРёСЏ РјРѕРґСѓР»СЏ, СЂР°Р·СЂР°Р±РѕС‚С‡РёРє РІРЅРµСЃРµС‚ Рє СЃРµР±Рµ РІ РєРѕРјРїРѕРЅРµРЅС‚С‹
+  virtual void FreeModulePtr(ModuleDev* ptr) = 0;// РІС‹Р·С‹РІР°РµС‚СЃСЏ РїРµСЂРµРґ РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµРј РјРѕРґСѓР»СЏ, СЂР°Р·СЂР°Р±РѕС‚С‡РёРє РїСЂРѕРёР·РІРµРґРµС‚ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РґРµР№СЃС‚РІРёСЏ
 
   virtual void SetLoadConveyer(int procent);
   virtual int  GetTimeRefresh_ms();
 
 	bool NeedExit();
-	void Exit();// закончить работу с движком
+	void Exit();// Р·Р°РєРѕРЅС‡РёС‚СЊ СЂР°Р±РѕС‚Сѓ СЃ РґРІРёР¶РєРѕРј
 };
 
 #endif

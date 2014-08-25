@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -13,7 +13,7 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  // сценарии, содержащиеся в контейнере взаимно блокируются
+  // СЃС†РµРЅР°СЂРёРё, СЃРѕРґРµСЂР¶Р°С‰РёРµСЃСЏ РІ РєРѕРЅС‚РµР№РЅРµСЂРµ РІР·Р°РёРјРЅРѕ Р±Р»РѕРєРёСЂСѓСЋС‚СЃСЏ
   class TContextScLoginMaster : public IContextScenario
 	{
     bool flgConnect;

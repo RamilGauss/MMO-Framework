@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -45,7 +45,7 @@ void TScLoginClient_ClientImpl::Work(unsigned int time_ms)
 	unsigned int time_end_ms = Context()->GetTimeWait() + eTimeWait;
 	if(time_end_ms < time_ms)
   {
-    // îøèáêà íà òîé ñòîðîíå
+    // Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð½Ð° Ñ‚Ð¾Ð¹ ÑÑ‚Ð¾Ñ€Ð¾Ð½Ðµ
     TEventError event;
     event.code = LoginClient_ClientNoAnswer;
     Context()->GetSE()->AddEventCopy(&event, sizeof(event));
@@ -58,7 +58,7 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port,
 {
 	if(Begin()==false)
   {
-    // ãåíåðàöèÿ îøèáêè
+    // Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ¸
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TScenarioLoginClient::TryLogin() scenario is not active.\n");
     BL_FIX_BUG();
@@ -67,11 +67,11 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port,
   Context()->SetNeedLeaveQueue(false);
   Context()->SetSubNet(subNet);
   
-  TBreakPacket bpLP;// êîíòåéíåð äëÿ âñåãî ïàêåòà
+  TBreakPacket bpLP;// ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ Ð´Ð»Ñ Ð²ÑÐµÐ³Ð¾ Ð¿Ð°ÐºÐµÑ‚Ð°
   if(Context()->GetMS()->GetUseCryptTCP())
   {
-    // åñëè äàííûå øèôðóþòñÿ, òî ôîðìèðîâàòü òàê:
-    // ïîëó÷èòü RSA public key îò ManagerSession
+    // ÐµÑÐ»Ð¸ Ð´Ð°Ð½Ð½Ñ‹Ðµ ÑˆÐ¸Ñ„Ñ€ÑƒÑŽÑ‚ÑÑ, Ñ‚Ð¾ Ñ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ‚Ð°Ðº:
+    // Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ RSA public key Ð¾Ñ‚ ManagerSession
     TContainer cRSA;
     bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
     BL_ASSERT(resRSA);
@@ -84,25 +84,25 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port,
     TMD5 md5;
     TContainer cMD5LP;
     md5.FastCalc(data, size, cMD5LP);
-    // ñíà÷àëî MD5LP
+    // ÑÐ½Ð°Ñ‡Ð°Ð»Ð¾ MD5LP
     bpLP.PushFront((char*)cMD5LP.GetPtr(), cMD5LP.GetSize());
-    // ïîòîì çàøèôðîâàííûé RSA
+    // Ð¿Ð¾Ñ‚Ð¾Ð¼ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ RSA
     bpLP.PushFront((char*)cEncryptRSA_bySHA1_LP.GetPtr(), cEncryptRSA_bySHA1_LP.GetSize());
   }
   else
   {
-    // èíà÷å ïðîñòî îòîñëàòü äàííûå:
-    // ôîðìèðîâàíèå ïàêåòà
+    // Ð¸Ð½Ð°Ñ‡Ðµ Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ð¾Ñ‚Ð¾ÑÐ»Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ:
+    // Ñ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð°ÐºÐµÑ‚Ð°
     bpLP.PushFront((char*)data,size);
   }
   THeaderTryLoginC2M h;
   bpLP.PushFront((char*)&h, sizeof(h));
 
-  // îòîñëàòü ïàêåò äëÿ ïîïûòêè àâòîðèçàöèè
+  // Ð¾Ñ‚Ð¾ÑÐ»Ð°Ñ‚ÑŒ Ð¿Ð°ÐºÐµÑ‚ Ð´Ð»Ñ Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÐ¸ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸
   SetID_SessionClientMaster(Context()->GetMS()->Send(ip, port, bpLP, subNet));
   if(GetID_SessionClientMaster()==INVALID_HANDLE_SESSION)
   {
-    // Ãåíåðàöèÿ îøèáêè
+    // Ð“ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ¸
     TEventError event;
     event.code = LoginClient_ClientMasterNotReady;
     Context()->GetSE()->AddEventCopy(&event, sizeof(event));
@@ -153,14 +153,14 @@ void TScLoginClient_ClientImpl::CheckConnectToSlaveS2C(TDescRecvSession* pDesc)
 //--------------------------------------------------------------
 void TScLoginClient_ClientImpl::ResultLoginM2C(TDescRecvSession* pDesc)
 {
-  // îáíîâèòü âðåìÿ òàéìåðà
+  // Ð¾Ð±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð²Ñ€ÐµÐ¼Ñ Ñ‚Ð°Ð¹Ð¼ÐµÑ€Ð°
   SetTimeWaitForNow();
   //==============================
   THeaderResultLoginM2C* pH = (THeaderResultLoginM2C*)pDesc->data;
   switch(pH->result)
   {
     case THeaderResultLoginM2C::eAccept:
-      // ñîõðàíèòü ñâîé êëþ÷
+      // ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ ÐºÐ»ÑŽÑ‡
       Context()->SetClientKey(pH->id_client);
       EventSetClientKey(pH->id_client);
       break;
@@ -170,7 +170,7 @@ void TScLoginClient_ClientImpl::ResultLoginM2C(TDescRecvSession* pDesc)
 
 			TEventResultLogin* pEvent = new TEventResultLogin;
 			pEvent->res = TMaster::eReject;
-			// ïîìåñòèòü äàííûå, êîòîðûå ïîÿñíÿþò ïðè÷èíó îòêàçà
+			// Ð¿Ð¾Ð¼ÐµÑÑ‚Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ð¿Ð¾ÑÑÐ½ÑÑŽÑ‚ Ð¿Ñ€Ð¸Ñ‡Ð¸Ð½Ñƒ Ð¾Ñ‚ÐºÐ°Ð·Ð°
 			char* pDataResClient = pDesc->data + sizeof(THeaderResultLoginM2C);
 			pEvent->c.SetDataByCount( pDataResClient, pH->sizeResClient);
 			Context()->GetSE()->AddEventWithoutCopy<TEventResultLogin>(pEvent);
@@ -196,18 +196,18 @@ void TScLoginClient_ClientImpl::ResultLoginM2C(TDescRecvSession* pDesc)
 void TScLoginClient_ClientImpl::InfoSlaveM2C(TDescRecvSession* pDesc)
 {
   Context()->SetNeedLeaveQueue(false);
-  // ñìîòðèì ÷òî íàì ïðèñëàëè
+  // ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ð¼ Ñ‡Ñ‚Ð¾ Ð½Ð°Ð¼ Ð¿Ñ€Ð¸ÑÐ»Ð°Ð»Ð¸
   THeaderInfoSlaveM2C* pInfoSlave = (THeaderInfoSlaveM2C*)pDesc->data;
   Context()->SetSlaveIP_Port(pInfoSlave->ip_port_slave);
-  // ÷èñòî äëÿ îòëàäêè, ÷òî áû óäîñòîâåðèòüñÿ ÷òî íàçíà÷èëè
-  // â áóäóùåì ìîæíî áóäåò óäàëèòü
+  // Ñ‡Ð¸ÑÑ‚Ð¾ Ð´Ð»Ñ Ð¾Ñ‚Ð»Ð°Ð´ÐºÐ¸, Ñ‡Ñ‚Ð¾ Ð±Ñ‹ ÑƒÐ´Ð¾ÑÑ‚Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒÑÑ Ñ‡Ñ‚Ð¾ Ð½Ð°Ð·Ð½Ð°Ñ‡Ð¸Ð»Ð¸
+  // Ð² Ð±ÑƒÐ´ÑƒÑ‰ÐµÐ¼ Ð¼Ð¾Ð¶Ð½Ð¾ Ð±ÑƒÐ´ÐµÑ‚ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ
   Context()->SetClientKey(pInfoSlave->id_client);
   EventSetClientKey(pInfoSlave->id_client);
 
-  // ôîðìèðóåì ïàêåò äëÿ Master
+  // Ñ„Ð¾Ñ€Ð¼Ð¸Ñ€ÑƒÐµÐ¼ Ð¿Ð°ÐºÐµÑ‚ Ð´Ð»Ñ Master
   TBreakPacket bp;
   THeaderCheckInfoSlaveC2M h;
-  h.id_client = Context()->GetClientKey();// ðàâíîçíà÷íî - pInfoSlave->id_client;
+  h.id_client = Context()->GetClientKey();// Ñ€Ð°Ð²Ð½Ð¾Ð·Ð½Ð°Ñ‡Ð½Ð¾ - pInfoSlave->id_client;
   bp.PushFront((char*)&h, sizeof(h));
 
   Context()->GetMS()->Send(GetID_SessionClientMaster(),bp);
@@ -215,7 +215,7 @@ void TScLoginClient_ClientImpl::InfoSlaveM2C(TDescRecvSession* pDesc)
 //--------------------------------------------------------------
 void TScLoginClient_ClientImpl::LeaveQueue()
 {
-  // ñïðîñèòü ó êîíòåêñòà ñîñòîèò ëè êëèåíò â î÷åðåäè
+  // ÑÐ¿Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ Ñƒ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ð° ÑÐ¾ÑÑ‚Ð¾Ð¸Ñ‚ Ð»Ð¸ ÐºÐ»Ð¸ÐµÐ½Ñ‚ Ð² Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸
   if(Context()->GetNumInQueue()==0)
     return;
 
@@ -239,29 +239,29 @@ void TScLoginClient_ClientImpl::CloseSessionMaster()
 //--------------------------------------------------------------
 void TScLoginClient_ClientImpl::Disconnect()
 {
-  // æäåò ëè â î÷åðåäè è õî÷åò ëè âûéòè èç íåå
+  // Ð¶Ð´ÐµÑ‚ Ð»Ð¸ Ð² Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸ Ð¸ Ñ…Ð¾Ñ‡ÐµÑ‚ Ð»Ð¸ Ð²Ñ‹Ð¹Ñ‚Ð¸ Ð¸Ð· Ð½ÐµÐµ
   if(Context()->NeedLeaveQueue())
   {
     End();
     return;
   }
-  // ïåðå ïîäêëþ÷èòü òðàíñïîðò ñ ìàñòåðà íà Slave
-  // ôîðìèðóåì ïàêåò äëÿ Slave
+  // Ð¿ÐµÑ€Ðµ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÑŒ Ñ‚Ñ€Ð°Ð½ÑÐ¿Ð¾Ñ€Ñ‚ Ñ Ð¼Ð°ÑÑ‚ÐµÑ€Ð° Ð½Ð° Slave
+  // Ñ„Ð¾Ñ€Ð¼Ð¸Ñ€ÑƒÐµÐ¼ Ð¿Ð°ÐºÐµÑ‚ Ð´Ð»Ñ Slave
   TBreakPacket bp;
   THeaderConnectToSlaveC2S h;
-  // äëÿ Slave îòäàòü ñâîé ID, îí ïî íåìó íàñ çàðåãèñòðèðóåò  
+  // Ð´Ð»Ñ Slave Ð¾Ñ‚Ð´Ð°Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ ID, Ð¾Ð½ Ð¿Ð¾ Ð½ÐµÐ¼Ñƒ Ð½Ð°Ñ Ð·Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€ÑƒÐµÑ‚  
   h.id_client = Context()->GetClientKey();
   bp.PushFront((char*)&h, sizeof(h));
-  // îòêðûòü ñåññèþ ïî IP:port
+  // Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ ÑÐµÑÑÐ¸ÑŽ Ð¿Ð¾ IP:port
   TIP_Port ip_port_slave = Context()->GetSlaveIP_Port();
   unsigned int id_slave = 
     Context()->GetMS()->Send(ip_port_slave.ip,
                              ip_port_slave.port,
                              bp, Context()->GetSubNet());
-  // ïðîâåðêà íà íàëè÷èå ãîòîâíîñòè Slave
+  // Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ð° Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ðµ Ð³Ð¾Ñ‚Ð¾Ð²Ð½Ð¾ÑÑ‚Ð¸ Slave
   if(id_slave==INVALID_HANDLE_SESSION)
   {
-    // Ãåíåðàöèÿ îøèáêè
+    // Ð“ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ¸
     TEventError event;
     event.code = LoginClient_ClientNotExistSlave;
     Context()->GetSE()->AddEventCopy(&event, sizeof(event));

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -33,7 +33,7 @@ public:
     char* buffer;
     int size;
 
-    bool parse_error;// обнаружена ошибка, при парсинге пакета
+    bool parse_error;// РѕР±РЅР°СЂСѓР¶РµРЅР° РѕС€РёР±РєР°, РїСЂРё РїР°СЂСЃРёРЅРіРµ РїР°РєРµС‚Р°
   };
 
   typedef enum
@@ -43,7 +43,7 @@ public:
     eSearchEnd,
   }eStatePacket;
 
-  int sizePacket;// предполагаемый размер пакета
+  int sizePacket;// РїСЂРµРґРїРѕР»Р°РіР°РµРјС‹Р№ СЂР°Р·РјРµСЂ РїР°РєРµС‚Р°
   TContainerRise c;    
   eStatePacket   state;
   THistoryPacketTCP();
@@ -57,7 +57,7 @@ protected:
 
   enum
   {
-    eMaxSize = 0xFFFF, // пакета большего размера быть не может
+    eMaxSize = 0xFFFF, // РїР°РєРµС‚Р° Р±РѕР»СЊС€РµРіРѕ СЂР°Р·РјРµСЂР° Р±С‹С‚СЊ РЅРµ РјРѕР¶РµС‚
   };
 };
 

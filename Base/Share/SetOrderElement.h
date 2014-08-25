@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -13,10 +13,10 @@ See for more information License.h.
 #include <vector>
 
 /*
-  Множество элементов, каждый из которых может определить свой индекс,
-  вне зависимости сколько элементов было удалено.
-  Добавление всегда происходит в начало. 
-  А удаление может происходить из по любому ключу массива.
+  РњРЅРѕР¶РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ, РєР°Р¶РґС‹Р№ РёР· РєРѕС‚РѕСЂС‹С… РјРѕР¶РµС‚ РѕРїСЂРµРґРµР»РёС‚СЊ СЃРІРѕР№ РёРЅРґРµРєСЃ,
+  РІРЅРµ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё СЃРєРѕР»СЊРєРѕ СЌР»РµРјРµРЅС‚РѕРІ Р±С‹Р»Рѕ СѓРґР°Р»РµРЅРѕ.
+  Р”РѕР±Р°РІР»РµРЅРёРµ РІСЃРµРіРґР° РїСЂРѕРёСЃС…РѕРґРёС‚ РІ РЅР°С‡Р°Р»Рѕ. 
+  Рђ СѓРґР°Р»РµРЅРёРµ РјРѕР¶РµС‚ РїСЂРѕРёСЃС…РѕРґРёС‚СЊ РёР· РїРѕ Р»СЋР±РѕРјСѓ РєР»СЋС‡Сѓ РјР°СЃСЃРёРІР°.
 */
 
 class DllExport TSetOrderElement
@@ -26,7 +26,7 @@ class DllExport TSetOrderElement
   typedef std::vector<unsigned int> TVectorUint;
 
   bmUintUint   mMapKeyInnerIndex;
-  TVectorUint  mVecSortInnerIndex; // сортированный
+  TVectorUint  mVecSortInnerIndex; // СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№
 
   unsigned int mNextAddInnerID;
 
@@ -34,10 +34,10 @@ public:
   TSetOrderElement();
   ~TSetOrderElement();
   
-  // навигация
+  // РЅР°РІРёРіР°С†РёСЏ
   bool FindIndexByClientKey(unsigned int key, int& index);
 
-  // добавление/удаление
+  // РґРѕР±Р°РІР»РµРЅРёРµ/СѓРґР°Р»РµРЅРёРµ
   void AddKeyAtEnd(unsigned int key);
   void DeleteKey(unsigned int key);
 	bool DeleteFirst(unsigned int& key);

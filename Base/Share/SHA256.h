@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -13,7 +13,7 @@ See for more information License.h.
 
 class DllExport TSHA256
 {
-  void* mContext; // контекст хэша
+  void* mContext; // РєРѕРЅС‚РµРєСЃС‚ С…СЌС€Р°
 
 public:
   TSHA256();

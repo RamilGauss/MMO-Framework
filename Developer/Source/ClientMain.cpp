@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,10 +16,7 @@ See for more information License.h.
 
 #include "GlobalParam.h"
 #include "NetSystem.h"
-#include "PrototypeMMOBase.h"
 #include "DevTool_Share.h"
-#include "PrototypeMMOStructs.h"
-#include "PrototypeMMOClient.h"
 
 TClientMain::TClientMain()
 {
@@ -58,16 +55,16 @@ void TClientMain::sl_Enter(MyGUI::Widget* _sender)
   std::string sLogin = W2A((LPCWSTR)ebLogin->getOnlyText().data());
 
   TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
-  // íàñòðîéêà ñåòè
+  // Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° ÑÐµÑ‚Ð¸
   if(IsOpen==false)
   {
-    IsOpen = pComponent->mNetClient->Open(&PrototypeMMODescOpen(port));
+    IsOpen = pComponent->mClient->Get()->Open(&nsMMOEngine::TDescOpen(port));
   }
 
   SaveInputParam(ip,port,sLogin.data());
 
   BL_ASSERT(IsOpen);
-  pComponent->mNetClient->Login( ip, MASTER_PORT, (void*)sLogin.data(), sLogin.length());
+  pComponent->mClient->Get()->Login( ip, MASTER_PORT, (void*)sLogin.data(), sLogin.length());
 }
 //-------------------------------------------------------------------------------------
 void TClientMain::sl_Exit(MyGUI::Widget* _sender)

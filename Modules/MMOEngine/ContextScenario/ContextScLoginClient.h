@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -17,7 +17,7 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  // сценарии, содержащиеся в контейнере взаимно блокируются
+  // СЃС†РµРЅР°СЂРёРё, СЃРѕРґРµСЂР¶Р°С‰РёРµСЃСЏ РІ РєРѕРЅС‚РµР№РЅРµСЂРµ РІР·Р°РёРјРЅРѕ Р±Р»РѕРєРёСЂСѓСЋС‚СЃСЏ
   class TContextScLoginClient : public IContextScenario
 	{
   public:
@@ -57,7 +57,7 @@ namespace nsMMOEngine
 
 		unsigned char mSubNet;
 
-		// используется на стороне Slave для определения стартовал ли контекст
+		// РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РЅР° СЃС‚РѕСЂРѕРЅРµ Slave РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ СЃС‚Р°СЂС‚РѕРІР°Р» Р»Рё РєРѕРЅС‚РµРєСЃС‚
 		bool flgWasBegin;
 	public:
 		TContextScLoginClient();
@@ -113,7 +113,7 @@ namespace nsMMOEngine
     TIP_Port GetSlaveIP_Port(); 
     void SetSlaveIP_Port(TIP_Port& ip_port);
     
-    // только для SuperServer
+    // С‚РѕР»СЊРєРѕ РґР»СЏ SuperServer
     bool GetFakeClient();
     void SetFakeClient(bool val);
 

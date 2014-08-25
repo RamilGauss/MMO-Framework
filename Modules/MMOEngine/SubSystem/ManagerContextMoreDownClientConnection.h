@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -29,16 +29,16 @@ namespace nsMMOEngine
     TManagerContextMoreDownClientConnection();
     ~TManagerContextMoreDownClientConnection();
     
-    // навигация
+    // РЅР°РІРёРіР°С†РёСЏ
     bool FindSessionByClientKey(unsigned int id, unsigned int& id_session);
     TContainerContextSc* FindContextByClientKey(unsigned int id);
-    // изменение сессии    
+    // РёР·РјРµРЅРµРЅРёРµ СЃРµСЃСЃРёРё    
     bool SetSessionByClientKey(unsigned int id_client, 
                                unsigned int id_session);
-    // добавление/удаление
+    // РґРѕР±Р°РІР»РµРЅРёРµ/СѓРґР°Р»РµРЅРёРµ
     TContainerContextSc* AddContext(unsigned int id_client, 
                                     unsigned int id_session);
-    // удаление
+    // СѓРґР°Р»РµРЅРёРµ
     void DeleteByKey(unsigned int key);
 	private:
     void Clear();

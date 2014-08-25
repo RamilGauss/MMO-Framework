@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -13,8 +13,8 @@ See for more information License.h.
 #include <utility>
 
 /*
-  Просмотр клиентов начинается с Донора, потом Реципиент.
-  Алфавитный порядок, "Д" стоит раньше "Р".
+  РџСЂРѕСЃРјРѕС‚СЂ РєР»РёРµРЅС‚РѕРІ РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ Р”РѕРЅРѕСЂР°, РїРѕС‚РѕРј Р РµС†РёРїРёРµРЅС‚.
+  РђР»С„Р°РІРёС‚РЅС‹Р№ РїРѕСЂСЏРґРѕРє, "Р”" СЃС‚РѕРёС‚ СЂР°РЅСЊС€Рµ "Р ".
 */
 
 namespace nsMMOEngine
@@ -22,17 +22,17 @@ namespace nsMMOEngine
   class TManagerRecommutation
   {
     typedef std::pair<unsigned int, unsigned int> TPairUintUint;
-    // Клиент Map
+    // РљР»РёРµРЅС‚ Map
     typedef std::map<unsigned int, TPairUintUint> TMapUintPair;
     typedef TMapUintPair::iterator TMapUintPairIt;
-    // Slave типы
+    // Slave С‚РёРїС‹
     typedef std::set<unsigned int> TSetUint;
     typedef TSetUint::iterator TSetUintIt;
 
     struct TSetClient
     {
-      TSetUint donor;    // хозяин Slave относится к Клиенту как донор
-      TSetUint recipient;// хозяин Slave относится к Клиенту как реципиент
+      TSetUint donor;    // С…РѕР·СЏРёРЅ Slave РѕС‚РЅРѕСЃРёС‚СЃСЏ Рє РљР»РёРµРЅС‚Сѓ РєР°Рє РґРѕРЅРѕСЂ
+      TSetUint recipient;// С…РѕР·СЏРёРЅ Slave РѕС‚РЅРѕСЃРёС‚СЃСЏ Рє РљР»РёРµРЅС‚Сѓ РєР°Рє СЂРµС†РёРїРёРµРЅС‚
     };
     typedef std::map<unsigned int, TSetClient> TMapUintSet;
     typedef TMapUintSet::iterator TMapUintSetIt;
@@ -45,7 +45,7 @@ namespace nsMMOEngine
     TManagerRecommutation();
     ~TManagerRecommutation();
     
-    // навигация
+    // РЅР°РІРёРіР°С†РёСЏ
     bool FindSessionByClientKey(unsigned int key,
                                 unsigned int& id_session_donor,
                                 unsigned int& id_session_recipient);
@@ -55,11 +55,11 @@ namespace nsMMOEngine
                              int index, 
                              unsigned int& key);
 
-    // добавить в группу клиента
+    // РґРѕР±Р°РІРёС‚СЊ РІ РіСЂСѓРїРїСѓ РєР»РёРµРЅС‚Р°
     void AddClientKey(unsigned int key, 
                       unsigned int id_session_donor,
                       unsigned int id_session_recipient);
-    // удаление
+    // СѓРґР°Р»РµРЅРёРµ
     void DeleteByClientKey(unsigned int key);
   private:
     void AddClientKeyBySession(unsigned int key, 

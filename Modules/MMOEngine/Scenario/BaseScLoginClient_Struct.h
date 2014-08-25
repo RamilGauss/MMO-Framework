@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,14 +16,14 @@ namespace nsMMOEngine
   namespace nsLoginClientStruct
   {
     enum{
-      // начало, множество ветвлений
+      // РЅР°С‡Р°Р»Рѕ, РјРЅРѕР¶РµСЃС‚РІРѕ РІРµС‚РІР»РµРЅРёР№
       eTryLoginC2M,
       eRequestM2SS,
       eCheckRequestSS2M,
       eResultLoginM2C,
       eLeaveQueueC2M,
       //-------------------------------
-      // прямолинейный обмен пакетами
+      // РїСЂСЏРјРѕР»РёРЅРµР№РЅС‹Р№ РѕР±РјРµРЅ РїР°РєРµС‚Р°РјРё
       eInfoClientM2S,
       eCheckInfoClientS2M,
       eInfoSlaveM2C,
@@ -71,7 +71,7 @@ namespace nsMMOEngine
     struct THeaderCheckRequestSS2M : THeaderSS
     {
       THeaderCheckRequestSS2M();
-      char isExistInSystem;// данный клиент присутствует в составе
+      char isExistInSystem;// РґР°РЅРЅС‹Р№ РєР»РёРµРЅС‚ РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚ РІ СЃРѕСЃС‚Р°РІРµ
     };
     //-------------------------------------------------
     struct THeaderResultLoginM2C : THeaderM

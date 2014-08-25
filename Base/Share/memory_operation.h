@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,22 +11,22 @@ See for more information License.h.
 #include "TypeDef.h"
 
 /*
-  mo_realloc_XXX - выделить память и скопировать туда содержимое старой памяти. 
-               Если размер новой памяти будет меньше чем старой, то копирование будет неполным.
+  mo_realloc_XXX - РІС‹РґРµР»РёС‚СЊ РїР°РјСЏС‚СЊ Рё СЃРєРѕРїРёСЂРѕРІР°С‚СЊ С‚СѓРґР° СЃРѕРґРµСЂР¶РёРјРѕРµ СЃС‚Р°СЂРѕР№ РїР°РјСЏС‚Рё. 
+               Р•СЃР»Рё СЂР°Р·РјРµСЂ РЅРѕРІРѕР№ РїР°РјСЏС‚Рё Р±СѓРґРµС‚ РјРµРЅСЊС€Рµ С‡РµРј СЃС‚Р°СЂРѕР№, С‚Рѕ РєРѕРїРёСЂРѕРІР°РЅРёРµ Р±СѓРґРµС‚ РЅРµРїРѕР»РЅС‹Рј.
   
-  mo_realloc_bound_XXX - увеличение размера памяти путем вставки новой памяти в определенную 
-               зону по смещению size_bound.
-               Новая память(то что вставили) будет содержать мусор. В остальной памяти будет копия
-               старой памяти.
+  mo_realloc_bound_XXX - СѓРІРµР»РёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° РїР°РјСЏС‚Рё РїСѓС‚РµРј РІСЃС‚Р°РІРєРё РЅРѕРІРѕР№ РїР°РјСЏС‚Рё РІ РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ 
+               Р·РѕРЅСѓ РїРѕ СЃРјРµС‰РµРЅРёСЋ size_bound.
+               РќРѕРІР°СЏ РїР°РјСЏС‚СЊ(С‚Рѕ С‡С‚Рѕ РІСЃС‚Р°РІРёР»Рё) Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ РјСѓСЃРѕСЂ. Р’ РѕСЃС‚Р°Р»СЊРЅРѕР№ РїР°РјСЏС‚Рё Р±СѓРґРµС‚ РєРѕРїРёСЏ
+               СЃС‚Р°СЂРѕР№ РїР°РјСЏС‚Рё.
 */
 
 
-// через malloc и free
+// С‡РµСЂРµР· malloc Рё free
 extern DllExport void* mo_realloc(void* old_mem, int old_size, int new_size);
 
 extern DllExport char* mo_realloc_bound(char* old_mem, int old_size, int size_bound, int size_paste);
 
-// через new и delete
+// С‡РµСЂРµР· new Рё delete
 extern DllExport void* mo_realloc_new(void* old_mem, int old_size, int new_size);
 
 extern DllExport char* mo_realloc_bound_new(char* old_mem, int old_size, int size_bound, int size_paste);

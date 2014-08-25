@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -23,15 +23,15 @@ namespace nsMMOEngine
 {
   class TScenarioLoginClient : public IScenario
   {
-    // выдать контекст по сессии Мастера и ключу Клиента
+    // РІС‹РґР°С‚СЊ РєРѕРЅС‚РµРєСЃС‚ РїРѕ СЃРµСЃСЃРёРё РњР°СЃС‚РµСЂР° Рё РєР»СЋС‡Сѓ РљР»РёРµРЅС‚Р°
     TCallBackRegistrator2<unsigned int,unsigned int> mCBContextByMasterSessionByClientKey;
-    // запрос к мастеру о номере клиента в очереди
+    // Р·Р°РїСЂРѕСЃ Рє РјР°СЃС‚РµСЂСѓ Рѕ РЅРѕРјРµСЂРµ РєР»РёРµРЅС‚Р° РІ РѕС‡РµСЂРµРґРё
     TCallBackRegistrator1<unsigned int>              mCBNumInQueueByClientKey;
-    // уведомить о назначении клиенту ключа Мастером
+    // СѓРІРµРґРѕРјРёС‚СЊ Рѕ РЅР°Р·РЅР°С‡РµРЅРёРё РєР»РёРµРЅС‚Сѓ РєР»СЋС‡Р° РњР°СЃС‚РµСЂРѕРј
     TCallBackRegistrator1<unsigned int>              mCBSetClientKey;
-    // запрос на контекст по сессии и ключу клиента
+    // Р·Р°РїСЂРѕСЃ РЅР° РєРѕРЅС‚РµРєСЃС‚ РїРѕ СЃРµСЃСЃРёРё Рё РєР»СЋС‡Сѓ РєР»РёРµРЅС‚Р°
     TCallBackRegistrator2<unsigned int,unsigned int> mCBContextByClientSessionByClientKey;
-    // запрос на контекст по сессии клиента после авторизации
+    // Р·Р°РїСЂРѕСЃ РЅР° РєРѕРЅС‚РµРєСЃС‚ РїРѕ СЃРµСЃСЃРёРё РєР»РёРµРЅС‚Р° РїРѕСЃР»Рµ Р°РІС‚РѕСЂРёР·Р°С†РёРё
     TCallBackRegistrator1<unsigned int>              mCBContextByClientSessionAfterAuthorised;
 
     TScLoginClient_ClientImpl      mClient;
@@ -66,11 +66,11 @@ namespace nsMMOEngine
     void SetBehavior(eBehavior v);
     virtual void Recv(TDescRecvSession* pDesc);
   public:
-    // от клиента, попытка авторизации
+    // РѕС‚ РєР»РёРµРЅС‚Р°, РїРѕРїС‹С‚РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё
     void TryLogin(unsigned int ip, unsigned short port, 
                   void* data, int size, unsigned char subNet);
     void LeaveQueue();
-    // решение Мастера
+    // СЂРµС€РµРЅРёРµ РњР°СЃС‚РµСЂР°
     void Reject(void* resForClient, int sizeResClient);
     void Accept(unsigned int key, void* resForClient, int sizeResClient, 
                 unsigned int id_session_slave, unsigned int id_superserver);

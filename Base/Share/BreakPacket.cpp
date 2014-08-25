@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -43,10 +43,10 @@ void TBreakPacket::Collect()
   DeleteCollect();
   int size = GetSize();
 
-  mCollect.SetDataByCount(NULL, size);// выделить память
+  mCollect.SetDataByCount(NULL, size);// РІС‹РґРµР»РёС‚СЊ РїР°РјСЏС‚СЊ
   char* pCollect = (char*)mCollect.GetPtr();
 
-  // копируем все в одну область памяти
+  // РєРѕРїРёСЂСѓРµРј РІСЃРµ РІ РѕРґРЅСѓ РѕР±Р»Р°СЃС‚СЊ РїР°РјСЏС‚Рё
   BOOST_FOREACH( TContainerPtr& c, mList )
   {
     int sizePart  =        c.GetSize();

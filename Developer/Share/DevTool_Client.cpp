@@ -1,11 +1,12 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "DevTool_Client.h"
+#include "ListModule.h"
 
 TDevTool_Client::TDevTool_Client()
 {
@@ -19,23 +20,25 @@ TDevTool_Client::~TDevTool_Client()
 //--------------------------------------------------------------------
 int TDevTool_Client::GetCountModule()
 {
-  return CNT_MODULE;
+  return eCountModule;
 }
 //--------------------------------------------------------------------
 int TDevTool_Client::GetModuleID(int index)
 {
   switch(index)
   {
-    case MODULE_DEV:
-      return PROTOTYPE_TYPE_DEV_TOOL;
-    case MODULE_GE:
-      return PROTOTYPE_TYPE_GRAPHIC_ENGINE;
-    case MODULE_MMO_CLIENT:
-      return PROTOTYPE_TYPE_MMO_ENGINE_CLIENT;
-    case MODULE_MOG:
-      return PROTOTYPE_TYPE_MANAGER_OBJECT_GENERAL;
-    case MODULE_TIMER:
-      return PROTOTYPE_TYPE_TIMER;
+    case eModuleDev:
+      return MODULE_DEV_TOOL;
+    case eModuleGE:
+      return MODULE_GRAPHIC_ENGINE;
+    case eModulePE:
+      return MODULE_PHYSIC_ENGINE;
+    case eModuleSE:
+      return MODULE_SOUND_ENGINE;
+    case eModuleMMO:
+      return MODULE_MMO_ENGINE_CLIENT;
+    case eModuleTimer:
+      return MODULE_TIMER;
   }
   return -1;
 }
@@ -44,10 +47,12 @@ bool TDevTool_Client::IsAddModuleInConveyer(int index)
 {
   switch(index)
   {
-    case MODULE_GE:
-    case MODULE_MMO_CLIENT:
-    case MODULE_MOG:
-    case MODULE_TIMER:
+    case eModuleGE:
+    case eModulePE:
+    case eModuleSE:
+    case eModuleMMO:
+    case eModuleTimer:
+    //case eModuleDev:
       return true;
   }
   return false;

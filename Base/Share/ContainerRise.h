@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,16 +20,16 @@ class DllExport TContainerRise
 public:
 	TContainerRise();
 	
-	void SetData(char* p, int size);// установит размер и скопирует внутрь
-	// для частичного копирования используй memcpy
+	void SetData(char* p, int size);// СѓСЃС‚Р°РЅРѕРІРёС‚ СЂР°Р·РјРµСЂ Рё СЃРєРѕРїРёСЂСѓРµС‚ РІРЅСѓС‚СЂСЊ
+	// РґР»СЏ С‡Р°СЃС‚РёС‡РЅРѕРіРѕ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РёСЃРїРѕР»СЊР·СѓР№ memcpy
 
   void AddData(char*p, int size);
 
 	char* GetPtr();
 	int GetSize();
 
-	void Alloc(int new_size);   // не копирует 
-	void Realloc( int new_size);// копирует старый кусок
+	void Alloc(int new_size);   // РЅРµ РєРѕРїРёСЂСѓРµС‚ 
+	void Realloc( int new_size);// РєРѕРїРёСЂСѓРµС‚ СЃС‚Р°СЂС‹Р№ РєСѓСЃРѕРє
 };
 
 

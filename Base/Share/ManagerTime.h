@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,8 +16,8 @@ public:
   TManagerTime();
   virtual ~TManagerTime();
 
-  // управление игровым временем
-  virtual void SetTimeSpeed(float relative = 1.0f);// отношение реального к игровому
+  // СѓРїСЂР°РІР»РµРЅРёРµ РёРіСЂРѕРІС‹Рј РІСЂРµРјРµРЅРµРј
+  virtual void SetTimeSpeed(float relative = 1.0f);// РѕС‚РЅРѕС€РµРЅРёРµ СЂРµР°Р»СЊРЅРѕРіРѕ Рє РёРіСЂРѕРІРѕРјСѓ
   virtual void SetTimeToBegin();
   virtual void SetTimeToEnd();
   virtual int  GetCountTimeStamp();

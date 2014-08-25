@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,7 +15,7 @@ namespace nsMMOEngine
 {
   class TSession
   {
-    // для предотвращения подсовывания пакетов внутри серверных каналов 
+    // РґР»СЏ РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёСЏ РїРѕРґСЃРѕРІС‹РІР°РЅРёСЏ РїР°РєРµС‚РѕРІ РІРЅСѓС‚СЂРё СЃРµСЂРІРµСЂРЅС‹С… РєР°РЅР°Р»РѕРІ 
     unsigned int mCounterIn;
     unsigned int mCounterOut;
     //----------------------------------------------------------------
@@ -28,7 +28,7 @@ namespace nsMMOEngine
     // mCounterOut++;
     // Send(...);
 
-    unsigned int mTimeLive;// мс
+    unsigned int mTimeLive;// РјСЃ
     unsigned int mID;
     TIP_Port mIP_Port;
     unsigned int mLastTimeActive;
@@ -39,7 +39,7 @@ namespace nsMMOEngine
     enum{
       eEcho   = 'e',
       ePacket = 'p',
-      // для процедуры обмена ключами шифрования
+      // РґР»СЏ РїСЂРѕС†РµРґСѓСЂС‹ РѕР±РјРµРЅР° РєР»СЋС‡Р°РјРё С€РёС„СЂРѕРІР°РЅРёСЏ
       eKeyRSA = 'r',
       eKeyAES = 'a',
     };

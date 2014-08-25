@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -14,11 +14,11 @@ See for more information License.h.
 #include "TypeDef.h"
 
 /*
-  Пример использования:
+  РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ:
 class TClass{
 protected:
-  TClass():                      // запрет на создание
-  TOnly_N_Object(1,NAME_CLASS){};// только один объект
+  TClass():                      // Р·Р°РїСЂРµС‚ РЅР° СЃРѕР·РґР°РЅРёРµ
+  TOnly_N_Object(1,NAME_CLASS){};// С‚РѕР»СЊРєРѕ РѕРґРёРЅ РѕР±СЉРµРєС‚
 };
 
 */

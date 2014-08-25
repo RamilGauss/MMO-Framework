@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta name="generator" content="imgh.ru" /><!-- LET IT BIT! -->
+
+<title>IMGH.ru free hosting image <> бесплатный хостинг картинок</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="en" />
+<link href="http://imgh.ru/estilo.css" rel="stylesheet" type="text/css" />
+
+<meta name="description" content="imgh.ru free hosting image бесплатный хостинг картинок без регистрации"/>
+<meta name="keywords" content="images, photos, image hosting, photo hosting, free image hosting"/>
+<meta name="robots" content="index,follow"/>
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+<!--[if lt IE 7.]>
+<script defer type="text/javascript" src="/js/pngfix.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jquery", "1");</script>
+<script type="text/javascript" src="/js/jquery.scrollTo-min.js"></script>
+<script type="text/javascript" src="/js/jquery_support.js"></script>
+
+<script type="text/javascript">
+// <![CDATA[
+$(document).ready(function(){
+});
+// ]]>
+</script>
+
+</head>
+
+<body>
+
+<div id="top">
+	<div id="logo">
+	  <a href="http://imgh.ru/"><img src="/site-img/logo.png" alt="бесплатный хостинг картинок" /></a>
+    </div>
+    <div id="tagline">Free Free Image Hosting</div><div id="limite">JPG PNG BMP GIF <span>Max.20Mb</span></div>
+</div>
+
+
+<div id="contenido-statico">
+<h1 id="titular">Not Found (404)</h1>
+	<p align="center">
+    The server can not find the requested page     </p>
+
+
+</div> <!-- contenido -->
+
+<div id="foot"><div class="foot-d2">
+<a href="http://imgh.ru" title="imgh.ru free hosting image бесплатный хостинг картинок без регистрации">Бесплатный хостинг картинок</a><br>
+<a href="http://host96.ru" title="Лучший хостинг на Урале, хостинг веб-сайтов и регистрация доменов по доступным ценам" target="_new">Спонсор</a>
+</div></div>
+
+</body>
+</html>

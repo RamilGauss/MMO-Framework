@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,10 +9,11 @@ See for more information License.h.
 #define DevTool_SuperServerTankH
 
 #include "DevTool_Server.h"
-#include "PrototypeMMOBaseEvent.h"
-#include "PrototypeMMOEvents.h"
 #include "InputCmdDevTool.h"
 #include "ListMultiThread.h"
+#include "BaseEvent.h"
+#include "Events.h"
+#include "ListModule.h"
 
 class SuperServerForm;
 
@@ -32,21 +33,21 @@ public:
 	virtual void Done();
 	virtual void Event(nsEvent::TEvent* pEvent);
 protected:
-  virtual int GetIDPrototypeMMOEngineServer(){return PROTOTYPE_TYPE_MMO_ENGINE_SUPER_SERVER;}
+  virtual int GetIDPrototypeMMOEngineServer(){return MODULE_MMO_ENGINE_SUPER_SERVER;}
 protected:
   void ParseCmd(std::vector<std::string>& arg);
   
   void InitLog();
 
-  void HandleFromMMOEngine(PrototypeMMOBaseEvent* pBE);
+  void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
   void HandleFromQt(nsEvent::TEvent* pEvent);
 
   void InitQtForm();
   void AddMasterQt();
   void DeleteMasterQt();
 
-  void ConnectDown(PrototypeMMOEventConnectDown* pEvent);
-  void DisconnectDown(PrototypeMMOEventDisconnectDown* pEvent);
+  void ConnectDown(nsMMOEngine::TEventConnectDown* pEvent);
+  void DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent);
 };
 
 #endif

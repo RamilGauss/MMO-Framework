@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -31,7 +31,7 @@ void TCmdParam::SetArg(vector<string>& vecArgv)
     if(resFoundKey)
     {
       mSetFoundKey.insert(vecArgv[iKey]);
-      // ищем значения после ключа
+      // РёС‰РµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕСЃР»Рµ РєР»СЋС‡Р°
       int iValue = iKey + 1;
       while(iValue < cnt)
       {

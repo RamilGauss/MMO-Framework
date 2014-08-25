@@ -1,12 +1,12 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "DevTool_Server.h"
-#include "PrototypeMMOBase.h"
+#include "ListModule.h"
 
 
 TDevTool_Server::TDevTool_Server()
@@ -21,21 +21,23 @@ TDevTool_Server::~TDevTool_Server()
 //--------------------------------------------------------------------
 int TDevTool_Server::GetCountModule()
 {
-  return CNT_MODULE;
+  return eCountModule;
 }
 //--------------------------------------------------------------------
 int TDevTool_Server::GetModuleID(int index)
 {
   switch(index)
   {
-    case MODULE_DEV:
-      return PROTOTYPE_TYPE_DEV_TOOL;
-    case MODULE_MMO:
+    case eModuleDev:
+      return MODULE_DEV_TOOL;
+    case eModuleMMO:
       return GetIDPrototypeMMOEngineServer();
-    case MODULE_QT:
-      return PROTOTYPE_TYPE_ALONE_GUI;
-    case MODULE_TIMER:
-      return PROTOTYPE_TYPE_TIMER;
+    case eModuleQt:
+      return MODULE_ALONE_GUI;
+    case eModuleTimer:
+      return MODULE_TIMER;
+    case eModuleServer:
+      return MODULE_SERVER;
   }
   return -1;
 }
@@ -44,8 +46,9 @@ bool TDevTool_Server::IsAddModuleInConveyer(int index)
 {
   switch(index)
   {
-    case MODULE_MMO:
-    case MODULE_TIMER:
+    case eModuleMMO:
+    case eModuleTimer:
+    case eModuleServer:
       return true;
   }
   return false;
@@ -53,7 +56,7 @@ bool TDevTool_Server::IsAddModuleInConveyer(int index)
 //--------------------------------------------------------------------
 void TDevTool_Server::SetLoadConveyer(int procent)
 {
-  mComponent.mNet.Base->SetLoad(procent);
+  mComponent.mMMO->SetLoad(procent);
 }
 //--------------------------------------------------------------------
 int TDevTool_Server::GetTimeRefresh_ms()

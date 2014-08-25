@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -78,7 +78,7 @@ void TScRecommutationClient_SlaveImpl::RecvFromMaster(TDescRecvSession* pDesc)
 //--------------------------------------------------------------------------------------
 void TScRecommutationClient_SlaveImpl::RecvFromClient(TDescRecvSession* pDesc)
 {
-  // защита от хака
+  // Р·Р°С‰РёС‚Р° РѕС‚ С…Р°РєР°
   if(pDesc->sizeData < sizeof(THeader))
     return;
   //=======================================
@@ -111,17 +111,17 @@ void TScRecommutationClient_SlaveImpl::BeginDonor(TDescRecvSession* pDesc)
   }
   //--------------------------------------------
   Context()->SetClientKey(pHeader->id_client);
-  Context()->SetRoleAsDonor();// роль Донора
-  // начало сценария
+  Context()->SetRoleAsDonor();// СЂРѕР»СЊ Р”РѕРЅРѕСЂР°
+  // РЅР°С‡Р°Р»Рѕ СЃС†РµРЅР°СЂРёСЏ
   if(Begin()==false)
   {
-    // генерация ошибки
+    // РіРµРЅРµСЂР°С†РёСЏ РѕС€РёР±РєРё
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TScRecommutationClient_SlaveImpl::BeginDonor() scenario is not active.\n");
     BL_FIX_BUG();
     return;    
   }
-  // сформировать пакет далее для Клиента
+  // СЃС„РѕСЂРјРёСЂРѕРІР°С‚СЊ РїР°РєРµС‚ РґР°Р»РµРµ РґР»СЏ РљР»РёРµРЅС‚Р°
   TBreakPacket bp;
   THeaderBeginClient h;
   h.id_client = Context()->GetClientKey();
@@ -170,22 +170,22 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient(TDescRecvSession* pDesc)
   //--------------------------------------------
   Context()->SetRandomNum(pHeader->random_num);
   Context()->SetClientKey(pHeader->id_client);
-  Context()->SetRoleAsRecipient();// роль Реципиента
+  Context()->SetRoleAsRecipient();// СЂРѕР»СЊ Р РµС†РёРїРёРµРЅС‚Р°
   Context()->SetID_SessionMasterSlave(pDesc->id_session);
-  // начало сценария
+  // РЅР°С‡Р°Р»Рѕ СЃС†РµРЅР°СЂРёСЏ
   if(Begin()==false)
   {
-    // генерация ошибки
+    // РіРµРЅРµСЂР°С†РёСЏ РѕС€РёР±РєРё
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TScRecommutationClient_SlaveImpl::BeginRecipient() scenario is not active.\n");
     BL_FIX_BUG();
     return;    
   }
-  // сохранить Контекст в контекст (извините за каламбур)
-  // Slave еще рано отдавать Контекст
+  // СЃРѕС…СЂР°РЅРёС‚СЊ РљРѕРЅС‚РµРєСЃС‚ РІ РєРѕРЅС‚РµРєСЃС‚ (РёР·РІРёРЅРёС‚Рµ Р·Р° РєР°Р»Р°РјР±СѓСЂ)
+  // Slave РµС‰Рµ СЂР°РЅРѕ РѕС‚РґР°РІР°С‚СЊ РљРѕРЅС‚РµРєСЃС‚
   Context()->SaveContextData(pDesc->data + sizeof(THeaderBeginRecipient), 
                              pDesc->sizeData - sizeof(THeaderBeginRecipient));
-  // сформировать пакет далее для Мастера
+  // СЃС„РѕСЂРјРёСЂРѕРІР°С‚СЊ РїР°РєРµС‚ РґР°Р»РµРµ РґР»СЏ РњР°СЃС‚РµСЂР°
   TBreakPacket bp;
   THeaderCheckBeginRecipient h;
   h.id_client = Context()->GetClientKey();
@@ -200,8 +200,8 @@ void TScRecommutationClient_SlaveImpl::DisconnectClientToSlave(TDescRecvSession*
 {
   THeaderDisconnectClient* pHeader = (THeaderDisconnectClient*)pDesc->data;
   EventDisconnectClient(pHeader->id_client);
-  // вызывать End(); нельзя, потому что тогда в Slave отработает по окончанию сценария 
-  // добавлением Клиента
+  // РІС‹Р·С‹РІР°С‚СЊ End(); РЅРµР»СЊР·СЏ, РїРѕС‚РѕРјСѓ С‡С‚Рѕ С‚РѕРіРґР° РІ Slave РѕС‚СЂР°Р±РѕС‚Р°РµС‚ РїРѕ РѕРєРѕРЅС‡Р°РЅРёСЋ СЃС†РµРЅР°СЂРёСЏ 
+  // РґРѕР±Р°РІР»РµРЅРёРµРј РљР»РёРµРЅС‚Р°
 }
 //--------------------------------------------------------------
 void TScRecommutationClient_SlaveImpl::CheckBeginClient(TDescRecvSession* pDesc)
@@ -209,12 +209,12 @@ void TScRecommutationClient_SlaveImpl::CheckBeginClient(TDescRecvSession* pDesc)
   NeedContextByClientSessionForSlave(pDesc->id_session, true);
   if(Context()==NULL)
   {
-    // за то время что ждали ответа от Клиента, Клиент отвалился
-    // смысла вызывать End нет, Контекста нет
+    // Р·Р° С‚Рѕ РІСЂРµРјСЏ С‡С‚Рѕ Р¶РґР°Р»Рё РѕС‚РІРµС‚Р° РѕС‚ РљР»РёРµРЅС‚Р°, РљР»РёРµРЅС‚ РѕС‚РІР°Р»РёР»СЃСЏ
+    // СЃРјС‹СЃР»Р° РІС‹Р·С‹РІР°С‚СЊ End РЅРµС‚, РљРѕРЅС‚РµРєСЃС‚Р° РЅРµС‚
     return;
   }
   //--------------------------------------------
-  // Сохранить контекст по данному Клиенту
+  // РЎРѕС…СЂР°РЅРёС‚СЊ РєРѕРЅС‚РµРєСЃС‚ РїРѕ РґР°РЅРЅРѕРјСѓ РљР»РёРµРЅС‚Сѓ
   TEventSaveContext event;
   event.id_session = pDesc->id_session;
   Context()->GetSE()->AddEventCopy(&event, sizeof(event));
@@ -227,15 +227,15 @@ void TScRecommutationClient_SlaveImpl::CheckInfoRecipient(TDescRecvSession* pDes
   NeedContextByClientSessionForSlave(pDesc->id_session, true);
   if(Context()==NULL)
   {
-    // за то время что ждали ответа от Клиента, Клиент отвалился
-    // смысла вызывать End нет, Контекста нет
+    // Р·Р° С‚Рѕ РІСЂРµРјСЏ С‡С‚Рѕ Р¶РґР°Р»Рё РѕС‚РІРµС‚Р° РѕС‚ РљР»РёРµРЅС‚Р°, РљР»РёРµРЅС‚ РѕС‚РІР°Р»РёР»СЃСЏ
+    // СЃРјС‹СЃР»Р° РІС‹Р·С‹РІР°С‚СЊ End РЅРµС‚, РљРѕРЅС‚РµРєСЃС‚Р° РЅРµС‚
     return;
   }
   //--------------------------------------------
-  // Клиент готов к дисконнекту, рвем связь
+  // РљР»РёРµРЅС‚ РіРѕС‚РѕРІ Рє РґРёСЃРєРѕРЅРЅРµРєС‚Сѓ, СЂРІРµРј СЃРІСЏР·СЊ
   Context()->GetMS()->CloseSession(pDesc->id_session);
 
-  // все, Клиента у нас больше нет
+  // РІСЃРµ, РљР»РёРµРЅС‚Р° Сѓ РЅР°СЃ Р±РѕР»СЊС€Рµ РЅРµС‚
   End();
 }
 //--------------------------------------------------------------
@@ -255,9 +255,9 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
                   pDesc->id_session, pHeader->id_client);
     return;
   }
-  // запомнить сессию
+  // Р·Р°РїРѕРјРЅРёС‚СЊ СЃРµСЃСЃРёСЋ
   SetID_SessionClientSlave(pDesc->id_session);
-  // Клиенту
+  // РљР»РёРµРЅС‚Сѓ
   TBreakPacket bpClient;
   THeaderCheckRequestConnect hClient;
   hClient.id_client = Context()->GetClientKey();
@@ -265,19 +265,19 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
 
   Context()->GetMS()->Send(GetID_SessionClientSlave(), bpClient);
 
-  // Мастеру
+  // РњР°СЃС‚РµСЂСѓ
   TBreakPacket bpMaster;
   THeaderClientConnect hMaster;
   hMaster.id_client = Context()->GetClientKey();
   bpMaster.PushFront((char*)&hMaster, sizeof(hMaster));
 
   Context()->GetMS()->Send(GetID_SessionMasterSlave(), bpMaster);
-  // разработчику
+  // СЂР°Р·СЂР°Р±РѕС‚С‡РёРєСѓ
 	TEventRestoreContext* pEvent = new TEventRestoreContext;
 	pEvent->id_session = pDesc->id_session;
 	pEvent->c.SetDataByCount(Context()->GetContextDataPtr(), Context()->GetContextDataSize());
 	Context()->GetSE()->AddEventWithoutCopy<TEventRestoreContext>(pEvent);
-  // завершить сценарий
+  // Р·Р°РІРµСЂС€РёС‚СЊ СЃС†РµРЅР°СЂРёР№
   End();
 }
 //--------------------------------------------------------------

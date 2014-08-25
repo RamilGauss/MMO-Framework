@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,8 +16,8 @@ class DllExport TSphericalDecart
 public:
 	struct TSpheric
 	{
-		float fi;// относительно x
-		float theta;// относительно z
+		float fi;// РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ x
+		float theta;// РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ z
 		float r;
 	};
 	void Shperic2Decart(TSpheric& s,  nsMathTools::TVector3&  d);

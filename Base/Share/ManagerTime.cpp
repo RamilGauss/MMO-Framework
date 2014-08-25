@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -18,7 +18,7 @@ TManagerTime::~TManagerTime()
 
 }
 //------------------------------------------------------------------------
-void TManagerTime::SetTimeSpeed(float relative)// отношение реального к игровому
+void TManagerTime::SetTimeSpeed(float relative)// РѕС‚РЅРѕС€РµРЅРёРµ СЂРµР°Р»СЊРЅРѕРіРѕ Рє РёРіСЂРѕРІРѕРјСѓ
 {
 
 }

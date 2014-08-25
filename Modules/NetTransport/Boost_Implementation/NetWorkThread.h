@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -17,7 +17,7 @@ class TNetWorkThread
 
   enum
   {
-    eWaitFeedBack = 50, // ждать пока активизируется двигатель, мс
+    eWaitFeedBack = 50, // Р¶РґР°С‚СЊ РїРѕРєР° Р°РєС‚РёРІРёР·РёСЂСѓРµС‚СЃСЏ РґРІРёРіР°С‚РµР»СЊ, РјСЃ
   };
 
   boost::asio::io_service mIO_Service;

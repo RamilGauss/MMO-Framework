@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,13 +20,15 @@ class TNetTransport_Boost;
 
 class INetControl
 {
+  TNetTransport_Boost* mNetTransportBoost;
+
 public:
   enum{
-    eSystemSizeForRecvBuffer_Socket = 2000000, // байт
-    eSystemSizeForSendBuffer_Socket = 2000000, // байт
+    eSystemSizeForRecvBuffer_Socket = 2000000, // Р±Р°Р№С‚
+    eSystemSizeForSendBuffer_Socket = 2000000, // Р±Р°Р№С‚
   };
 
-  INetControl();
+  INetControl(TNetTransport_Boost* pNetTransportBoost);
   virtual ~INetControl();
   
   // TNetTransport_XXX
@@ -38,12 +40,8 @@ public:
 
   virtual char* GetBuffer(){return NULL;}
   virtual int   GetSize(){return 0;}
-
-  static void SetNetBoost(TNetTransport_Boost* pTB);
-  static TCallBackRegistrator1<INetTransport::TDescRecv*>* GetCallbackRecv();
-  static TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect();
 protected:
-  static TNetTransport_Boost* GetNetBoost();
+  TNetTransport_Boost* GetNetBoost();
 
   void NotifyRecv(INetTransport::TDescRecv* p);
 	void NotifyDisconnect(TIP_Port* p);

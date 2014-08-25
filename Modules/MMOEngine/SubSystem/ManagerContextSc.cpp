@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -27,9 +27,9 @@ TManagerContextSc::~TManagerContextSc()
 bool TManagerContextSc::Activate(IContextScenario* pCSc)
 {
   bool res;
-  if(pActiveContextSc)// если есть активный, то поместить в очередь на активацию
+  if(pActiveContextSc)// РµСЃР»Рё РµСЃС‚СЊ Р°РєС‚РёРІРЅС‹Р№, С‚Рѕ РїРѕРјРµСЃС‚РёС‚СЊ РІ РѕС‡РµСЂРµРґСЊ РЅР° Р°РєС‚РёРІР°С†РёСЋ
   {
-    // даже если сейчас активен тот же сценарий, поместить в очередь
+    // РґР°Р¶Рµ РµСЃР»Рё СЃРµР№С‡Р°СЃ Р°РєС‚РёРІРµРЅ С‚РѕС‚ Р¶Рµ СЃС†РµРЅР°СЂРёР№, РїРѕРјРµСЃС‚РёС‚СЊ РІ РѕС‡РµСЂРµРґСЊ
     mListWaitActivation.push_back(pCSc);
     res = false;
   }
@@ -46,7 +46,7 @@ bool TManagerContextSc::Activate(IContextScenario* pCSc)
 void TManagerContextSc::Disactivate()
 {
   BL_ASSERT(pActiveContextSc);
-  // следующий сценарий
+  // СЃР»РµРґСѓСЋС‰РёР№ СЃС†РµРЅР°СЂРёР№
   if(mListWaitActivation.size())
   {
     pActiveContextSc = mListWaitActivation.front();

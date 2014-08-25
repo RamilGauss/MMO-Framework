@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -8,17 +8,14 @@ See for more information License.h.
 #include <string.h>
 
 #include "DevTool_ViewerModel.h"
-#include "PrototypeMOG.h"
-#include "IBaseObjectGeneral.h"
 #include "Logger.h"
 #include "HiTimer.h"
 #include "ManagerStateMachine.h"
-#include "PrototypeControlCamera.h"
 #include "IXML.h"
-#include "PrototypeMMOClient.h"
 #include "StorePathResources.h"
 #include "MapXML_Field.h"
-#include "PrototypeGraphicEngine.h"
+#include "MathTools.h"
+#include "ListModule.h"
 
 using namespace std;
 using namespace nsMathTools;
@@ -49,15 +46,13 @@ void TDevTool_ViewerModel::Event(nsEvent::TEvent* pEvent)
 {
 	switch(pEvent->type_object)
 	{
-		case PROTOTYPE_TYPE_MMO_ENGINE_CLIENT:
+		case MODULE_MMO_ENGINE_CLIENT:
 			break;
-		case PROTOTYPE_TYPE_PHYSIC_ENGINE:
+		case MODULE_PHYSIC_ENGINE:
 			break;
-		case PROTOTYPE_TYPE_MANAGER_OBJECT_GENERAL:
+		case MODULE_TIMER:
 			break;
-		case PROTOTYPE_TYPE_TIMER:
-			break;
-		case PROTOTYPE_TYPE_GRAPHIC_ENGINE:
+		case MODULE_GRAPHIC_ENGINE:
 		{
 			int s = pEvent->pContainer->GetSize();
 			TBaseEvent* pData = (TBaseEvent*)pEvent->pContainer->GetPtr();
@@ -96,15 +91,15 @@ void TDevTool_ViewerModel::MouseEvent(TMouseEvent* pEvent)
 
       break;
     case nsEvent::eWheel:
-      mComponent.mGraphicEngine->GetControlCamera()->AddDistObj(float(pEvent->delta_wheel)/100.0f);
+      //mComponent.mGraphicEngine->GetControlCamera()->AddDistObj(float(pEvent->delta_wheel)/100.0f);
       break;
     case nsEvent::eMove:
       if(flgDragCamera)
       {
         float dRight = float(pEvent->x - mOldX)*ASPECT_MOUSE_X;
         float dDown  = float(pEvent->y - mOldY)*ASPECT_MOUSE_Y;
-        mComponent.mGraphicEngine->GetControlCamera()->RotateRight(dRight);
-        mComponent.mGraphicEngine->GetControlCamera()->RotateDown(dDown);
+        //mComponent.mGraphicEngine->GetControlCamera()->RotateRight(dRight);
+        //mComponent.mGraphicEngine->GetControlCamera()->RotateDown(dDown);
         
         mOldX = pEvent->x;
         mOldY = pEvent->y;
@@ -118,10 +113,10 @@ void TDevTool_ViewerModel::KeyEvent(TKeyEvent* pEvent)
   unsigned int v;
   bool res = mComponent.mMStateMachine.GetValue(mIDkey,pEvent->key,v);
   v |= (pEvent->pressed?0:UP);
-  if(res)
+  /*if(res)
   switch(v)
   {
-    // клавиатура
+    // РєР»Р°РІРёР°С‚СѓСЂР°
     case e_W://W
       mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(DELTA_MOVE);
       break;
@@ -158,29 +153,29 @@ void TDevTool_ViewerModel::KeyEvent(TKeyEvent* pEvent)
     case e_E|UP://E
       mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(0);
       break;
-    // мышь
-    case e_Numpad4:// влево 4
+    // РјС‹С€СЊ
+    case e_Numpad4:// РІР»РµРІРѕ 4
       mComponent.mGraphicEngine->GetControlCamera()->RotateRight(-DELTA_ROTATE);
       break;
-    case e_Numpad6:// вправо 6
+    case e_Numpad6:// РІРїСЂР°РІРѕ 6
       mComponent.mGraphicEngine->GetControlCamera()->RotateRight(DELTA_ROTATE);
       break;
-    case e_Numpad8:// вверх 8
+    case e_Numpad8:// РІРІРµСЂС… 8
       mComponent.mGraphicEngine->GetControlCamera()->RotateDown(-DELTA_ROTATE);
       break;
-    case e_Numpad2:// вниз 2
+    case e_Numpad2:// РІРЅРёР· 2
       mComponent.mGraphicEngine->GetControlCamera()->RotateDown(DELTA_ROTATE);
       break;
-    case e_Numpad7:// вращаться влево 7
+    case e_Numpad7:// РІСЂР°С‰Р°С‚СЊСЃСЏ РІР»РµРІРѕ 7
       mComponent.mGraphicEngine->GetControlCamera()->Roll(DELTA_ROTATE);
       break;
-    case e_Numpad9:// вращаться вправо 9
+    case e_Numpad9:// РІСЂР°С‰Р°С‚СЊСЃСЏ РІРїСЂР°РІРѕ 9
       mComponent.mGraphicEngine->GetControlCamera()->Roll(-DELTA_ROTATE);
       break;
-    case e_C:// сбросить ориентацию камеры C
+    case e_C:// СЃР±СЂРѕСЃРёС‚СЊ РѕСЂРёРµРЅС‚Р°С†РёСЋ РєР°РјРµСЂС‹ C
       mComponent.mGraphicEngine->GetControlCamera()->ClearRotate();
       break;
-    case e_V:// сбросить ориентацию камеры V
+    case e_V:// СЃР±СЂРѕСЃРёС‚СЊ РѕСЂРёРµРЅС‚Р°С†РёСЋ РєР°РјРµСЂС‹ V
     {
       TVector3 v;
       v.x = 0.0f;
@@ -206,7 +201,7 @@ void TDevTool_ViewerModel::KeyEvent(TKeyEvent* pEvent)
     {
       break;
     }
-  }
+  }*/
 }
 //--------------------------------------------------------------------
 void TDevTool_ViewerModel::Init(vector<string>& arg )
@@ -221,7 +216,7 @@ void TDevTool_ViewerModel::Init(vector<string>& arg )
 #ifdef LOG_TIME_LOAD_EDITOR_MODEL
   start = ht_GetMSCount() - start;
   float v = start/float(cnt[0]*cnt[1]*cnt[2]);
-  GetLogger("Inner")->WriteF_time("ViewerModel: Время загрузки объектов t=%u мс,v=%f мс/об.\n",start,v);
+  GetLogger("Inner")->WriteF_time("ViewerModel: Р’СЂРµРјСЏ Р·Р°РіСЂСѓР·РєРё РѕР±СЉРµРєС‚РѕРІ t=%u РјСЃ,v=%f РјСЃ/РѕР±.\n",start,v);
 #endif
   // HotKey
 	if(GetStorePathResources()->GetCount("game_param")>0)
@@ -236,12 +231,12 @@ void TDevTool_ViewerModel::Init(vector<string>& arg )
 //------------------------------------------------------------------------------------
 void TDevTool_ViewerModel::CreateHangar()
 {
-  TMatrix16 w;
-  SetMatrixIdentity(&w);
-  w.s._43 -= 1.0f;
-  IBaseObjectGeneral* pBOC = mComponent.mMOG->CreateObject(1);
-  pBOC->SetWorld(&w);
-  mComponent.mGraphicEngine->AddObject(pBOC);
+  //TMatrix16 w;
+  //SetMatrixIdentity(&w);
+  //w.s._43 -= 1.0f;
+  //IBaseObjectGeneral* pBOC = mComponent.mMOG->CreateObject(1);
+  //pBOC->SetWorld(&w);
+  //mComponent.mGraphicEngine->AddObject(pBOC);
 }
 //------------------------------------------------------------------------------------
 void TDevTool_ViewerModel::CreateObjects(int cntK,int cntJ,int cntI)
@@ -261,14 +256,14 @@ void TDevTool_ViewerModel::CreateObjects(int cntK,int cntJ,int cntI)
       w.s._42 += sizeJ;
       for(int i = 0 ; i < cntI ; i ++)
       {
-        IBaseObjectGeneral* pBOC = mComponent.mMOG->CreateObject(0);
+        //IBaseObjectGeneral* pBOC = mComponent.mMOG->CreateObject(0);
 
         //pBOC->SetVelocity(0.1f);
         w.s._41 += sizeI;
-        pBOC->SetWorld(&w);
+        //pBOC->SetWorld(&w);
         //if((i==cntI-1)&&(j==cntJ-1)&&(k==cntK-1))
           //pBOC->SetAlphaTransparency(0.5f);
-        mComponent.mGraphicEngine->AddObject(pBOC);
+        //mComponent.mGraphicEngine->AddObject(pBOC);
       }
     }
   }
@@ -281,7 +276,7 @@ void TDevTool_ViewerModel::Done()
 //---------------------------------------------------------------------------------------------
 void TDevTool_ViewerModel::InitLog()
 {
-  GetLogger()->Register("Inner");// для логирования внутренних событий
+  GetLogger()->Register("Inner");// РґР»СЏ Р»РѕРіРёСЂРѕРІР°РЅРёСЏ РІРЅСѓС‚СЂРµРЅРЅРёС… СЃРѕР±С‹С‚РёР№
   GetLogger()->Init("ViewerModel");
 }
 //---------------------------------------------------------------------------------------------

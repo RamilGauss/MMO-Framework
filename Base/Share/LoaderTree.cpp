@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -46,14 +46,14 @@ bool TLoaderTree::Load(char* sPath)
   //--------------------------------------------
   LoadMatrix4x4(SectionMatrix,0,&(pLoadedTree->world));
 
-  // çàãðóçèòü Joint
-  // èìÿ êîðíÿ
+  // Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Joint
+  // Ð¸Ð¼Ñ ÐºÐ¾Ñ€Ð½Ñ
   string str = mXML->ReadSection(SectionName,0);
   if(str.length())
     pLoadedTree->root = str.data();
   else return false;
   //------------------------------------------------------------------
-  // çàãðóçèòü ÷àñòè
+  // Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ñ‡Ð°ÑÑ‚Ð¸
   int cntJoint = mXML->GetCountSection(SectionJoint);
   for(int i = 0 ; i < cntJoint ; i++)
     RET_FALSE(LoadJoint(i)) 
@@ -97,7 +97,7 @@ bool TLoaderTree::LoadJoint(int i)
   int numUse;
   RET_FALSE(mXML->ReadInt(SectionNumUse,0,numUse))
   pPart->numUse = numUse;
-  // çàãðóçèòü äåòåé
+  // Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð´ÐµÑ‚ÐµÐ¹
   int cntChild = mXML->GetCountSection(SectionChild);
   // 05.03.2013 if(cntChild==0) return false;
   for(int j = 0 ; j < cntChild; j++)

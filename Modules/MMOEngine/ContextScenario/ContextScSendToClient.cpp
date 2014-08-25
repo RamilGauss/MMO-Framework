@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -31,16 +31,16 @@ void TContextScSendToClient::Done()
 void TContextScSendToClient::SaveBreakPacket(TBreakPacket& bp)
 {
 	TSavePacket* pSP = new TSavePacket;
-	// собрать пакет
+	// СЃРѕР±СЂР°С‚СЊ РїР°РєРµС‚
 	bp.Collect();
-	// запомнить где находится собранный пакет
+	// Р·Р°РїРѕРјРЅРёС‚СЊ РіРґРµ РЅР°С…РѕРґРёС‚СЃСЏ СЃРѕР±СЂР°РЅРЅС‹Р№ РїР°РєРµС‚
 	char* p  = (char*)bp.GetCollectPtr();
 	int size = bp.GetSize();
-	// отцепиться от собранного пакета
+	// РѕС‚С†РµРїРёС‚СЊСЃСЏ РѕС‚ СЃРѕР±СЂР°РЅРЅРѕРіРѕ РїР°РєРµС‚Р°
 	bp.UnlinkCollect();
-	// отдать на хранение память пакета в контейнер
+	// РѕС‚РґР°С‚СЊ РЅР° С…СЂР°РЅРµРЅРёРµ РїР°РјСЏС‚СЊ РїР°РєРµС‚Р° РІ РєРѕРЅС‚РµР№РЅРµСЂ
 	pSP->c.EntrustByCount(p, size);
-	// теперь когда память хранится в контейнере добавить в break packet
+	// С‚РµРїРµСЂСЊ РєРѕРіРґР° РїР°РјСЏС‚СЊ С…СЂР°РЅРёС‚СЃСЏ РІ РєРѕРЅС‚РµР№РЅРµСЂРµ РґРѕР±Р°РІРёС‚СЊ РІ break packet
 	pSP->bp.PushFront(p, size);
 
 	mListSave.push_back(pSP);
@@ -50,7 +50,7 @@ void TContextScSendToClient::SendAndRemoveFirst()
 {
 	if(mListSave.size()==0)
 	{
-		// не ожидали
+		// РЅРµ РѕР¶РёРґР°Р»Рё
 		BL_FIX_BUG();
 		return;
 	}

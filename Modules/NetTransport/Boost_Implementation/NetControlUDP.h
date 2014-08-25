@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -32,8 +32,8 @@ class TNetControlUDP : public INetControl
 	//-----------------------------------------------------------------------------
   struct TInfoConnect
   {
-    unsigned short cnt_in; // определить свежесть пакета по входным данным
-    unsigned short cnt_out;// посылать наружу
+    unsigned short cnt_in; // РѕРїСЂРµРґРµР»РёС‚СЊ СЃРІРµР¶РµСЃС‚СЊ РїР°РєРµС‚Р° РїРѕ РІС…РѕРґРЅС‹Рј РґР°РЅРЅС‹Рј
+    unsigned short cnt_out;// РїРѕСЃС‹Р»Р°С‚СЊ РЅР°СЂСѓР¶Сѓ
     TInfoConnect()
     {
       cnt_in  = -1;
@@ -46,7 +46,7 @@ class TNetControlUDP : public INetControl
 	TMapIP_IC mMapInfoConnect;
 public:
 
-  TNetControlUDP(boost::asio::io_service& io_service);
+  TNetControlUDP(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service);
   virtual ~TNetControlUDP();
   // TNetTransport_XXX
   virtual void Init();
@@ -73,7 +73,7 @@ protected:
   void SendToEvent(const boost::system::error_code& error,size_t bytes_transferred);
 
   void ReadyRecvFrom();
-  // данные по указателю data будут удалены самостоятельно!
+  // РґР°РЅРЅС‹Рµ РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ data Р±СѓРґСѓС‚ СѓРґР°Р»РµРЅС‹ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ!
   void RequestSendTo(char* data, int size, TIP_Port& ip_port);
 
 private:

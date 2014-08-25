@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -36,7 +36,7 @@ protected:
 	void MouseEvent(nsEvent::TMouseEvent* pEvent);
 	void KeyEvent(nsEvent::TKeyEvent* pEvent);
 
-  virtual std::string GetTitleWindow(){return "Просмоторщик";}
+  virtual std::string GetTitleWindow(){return "РџСЂРѕСЃРјРѕС‚РѕСЂС‰РёРє";}
 };
 
 #endif

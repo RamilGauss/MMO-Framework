@@ -1,13 +1,13 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
 
-  //необходимо, т.к. #include <winsock2.h> -> #include <pshpack4.h> нарушает выравнивание
+  //РЅРµРѕР±С…РѕРґРёРјРѕ, С‚.Рє. #include <winsock2.h> -> #include <pshpack4.h> РЅР°СЂСѓС€Р°РµС‚ РІС‹СЂР°РІРЅРёРІР°РЅРёРµ
   #if !defined(WIN32)
     #define WIN32
   #endif
@@ -86,7 +86,7 @@ bool ns_Init()
 {
   if( ns_IsInit ) return true;
   ns_IsInit = true;
-  //errSource = err_RegisterSource( "Сетевая служба" );
+  //errSource = err_RegisterSource( "РЎРµС‚РµРІР°СЏ СЃР»СѓР¶Р±Р°" );
 #if defined(TD_WINDOWS)
   WSADATA data;
   #if defined(__BORLANDC__)
@@ -156,7 +156,7 @@ void ns_Done()
   BL_Log( "//..........................." );
 }*/
 //---------------------------------------------------------------------------
-//получение ip-адреса по имени хоста
+//РїРѕР»СѓС‡РµРЅРёРµ ip-Р°РґСЂРµСЃР° РїРѕ РёРјРµРЅРё С…РѕСЃС‚Р°
 char* ns_getHostIP( const char* name, int numNetWork )
 {
 	int foundNet = 0;
@@ -189,7 +189,7 @@ char* ns_getHostIP( const char* name, int numNetWork )
   return NULL;
 }
 //---------------------------------------------------------------------------
-//получение ip-адреса
+//РїРѕР»СѓС‡РµРЅРёРµ ip-Р°РґСЂРµСЃР°
 char* ns_getSelfIP(int numNetWork)
 {
   char name[255];
@@ -214,11 +214,11 @@ char* ns_str_addr( unsigned long addr )
 //---------------------------------------------------------------------------
 unsigned long ns_HostOrIPtoAddr( const char* hostOrIp )
 {
-  // интерпретируем hostOrIp как ip-адрес хоста и преобразуем его в число
+  // РёРЅС‚РµСЂРїСЂРµС‚РёСЂСѓРµРј hostOrIp РєР°Рє ip-Р°РґСЂРµСЃ С…РѕСЃС‚Р° Рё РїСЂРµРѕР±СЂР°Р·СѓРµРј РµРіРѕ РІ С‡РёСЃР»Рѕ
   unsigned long ret = hostOrIp ? inet_addr( hostOrIp ) : INADDR_NONE;  
   if( ret == INADDR_NONE )
   {  
-    // интерпретируем hostOrIp как имя хоста и запрашиваем его ip-адрес
+    // РёРЅС‚РµСЂРїСЂРµС‚РёСЂСѓРµРј hostOrIp РєР°Рє РёРјСЏ С…РѕСЃС‚Р° Рё Р·Р°РїСЂР°С€РёРІР°РµРј РµРіРѕ ip-Р°РґСЂРµСЃ
     const char* ip_str = ns_getHostIP( hostOrIp );
     if( ip_str )
       ret = inet_addr( ip_str );
@@ -226,7 +226,7 @@ unsigned long ns_HostOrIPtoAddr( const char* hostOrIp )
   return ret;
 }
 //---------------------------------------------------------------------------
-// Конвертация значения из машинного в сетевой порядок байт
+// РљРѕРЅРІРµСЂС‚Р°С†РёСЏ Р·РЅР°С‡РµРЅРёСЏ РёР· РјР°С€РёРЅРЅРѕРіРѕ РІ СЃРµС‚РµРІРѕР№ РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚
 unsigned short ns_htons( unsigned short value )
 {
   return htons( value );
@@ -236,7 +236,7 @@ unsigned long ns_htonl( unsigned long value )
   return htonl( value );
 }
 //---------------------------------------------------------------------------
-// Конвертация значения из сетевого в машинный порядок байт
+// РљРѕРЅРІРµСЂС‚Р°С†РёСЏ Р·РЅР°С‡РµРЅРёСЏ РёР· СЃРµС‚РµРІРѕРіРѕ РІ РјР°С€РёРЅРЅС‹Р№ РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚
 unsigned short ns_ntohs( unsigned short value )
 {
   return ntohs( value );
@@ -246,21 +246,21 @@ unsigned long ns_ntohl( unsigned long value )
   return ntohl( value );
 }
 //-----------------------------------------------------------------------------
-// получить сетевой адрес для сетевого адаптера с заданным именем
+// РїРѕР»СѓС‡РёС‚СЊ СЃРµС‚РµРІРѕР№ Р°РґСЂРµСЃ РґР»СЏ СЃРµС‚РµРІРѕРіРѕ Р°РґР°РїС‚РµСЂР° СЃ Р·Р°РґР°РЅРЅС‹Рј РёРјРµРЅРµРј
 bool get_ip_for_net_interface( const char* interface_name, char* out_buf )
 {
   #if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
   #else
-    // получаем сокет для IPv4
+    // РїРѕР»СѓС‡Р°РµРј СЃРѕРєРµС‚ РґР»СЏ IPv4
     int fd = socket( AF_INET, SOCK_DGRAM, 0 );
     if( fd >= 0 ) 
     {
-      // забиваем название интерфейса и название семейства протоколов
+      // Р·Р°Р±РёРІР°РµРј РЅР°Р·РІР°РЅРёРµ РёРЅС‚РµСЂС„РµР№СЃР° Рё РЅР°Р·РІР°РЅРёРµ СЃРµРјРµР№СЃС‚РІР° РїСЂРѕС‚РѕРєРѕР»РѕРІ
       struct ifreq ifr;
       strcpy( ifr.ifr_name, interface_name );
       ifr.ifr_addr.sa_family = AF_INET;
       
-      // обращаемся к устройству и получаем информацию о сетевом адресе
+      // РѕР±СЂР°С‰Р°РµРјСЃСЏ Рє СѓСЃС‚СЂРѕР№СЃС‚РІСѓ Рё РїРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃРµС‚РµРІРѕРј Р°РґСЂРµСЃРµ
       if( !ioctl(fd, SIOCGIFADDR, &ifr) ) 
       {
         struct sockaddr_in* addr = (struct sockaddr_in*)(&ifr.ifr_addr);

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,8 +9,8 @@ See for more information License.h.
 #define __CLASS_TOOLS_H__
 
 /**
- * Макрос, определяющий класс без конструктора копирования и 
- * без оператора присваивания 
+ * РњР°РєСЂРѕСЃ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР»Р°СЃСЃ Р±РµР· РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° РєРѕРїРёСЂРѕРІР°РЅРёСЏ Рё 
+ * Р±РµР· РѕРїРµСЂР°С‚РѕСЂР° РїСЂРёСЃРІР°РёРІР°РЅРёСЏ 
  */
 #define NO_COPY_OBJECT( classname )					\
 	private:                                  \

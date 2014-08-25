@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -17,7 +17,7 @@ namespace nsMMOEngine
   class TManagerContextDownConnection;
   class DllExport TSuperServer : public TBaseServer
   {
-    // в случае если повторная авторизация, что бы избежать замусоривания контекста
+    // РІ СЃР»СѓС‡Р°Рµ РµСЃР»Рё РїРѕРІС‚РѕСЂРЅР°СЏ Р°РІС‚РѕСЂРёР·Р°С†РёСЏ, С‡С‚Рѕ Р±С‹ РёР·Р±РµР¶Р°С‚СЊ Р·Р°РјСѓСЃРѕСЂРёРІР°РЅРёСЏ РєРѕРЅС‚РµРєСЃС‚Р°
     boost::scoped_ptr<TContainerContextSc> mContainer_SecondLogin;
 
     // DOWN

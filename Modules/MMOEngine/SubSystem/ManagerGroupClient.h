@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -34,7 +34,7 @@ namespace nsMMOEngine
     TManagerGroupClient();
     ~TManagerGroupClient();
     
-    // навигация
+    // РЅР°РІРёРіР°С†РёСЏ
     bool FindSessionByID(unsigned int id_group, unsigned int& id_session);
     bool FindIDByClientKey(unsigned int id_client, unsigned int& id_group);
     
@@ -46,18 +46,18 @@ namespace nsMMOEngine
                              int index, 
                              unsigned int& id_client);
 
-    // добавление/удаление
+    // РґРѕР±Р°РІР»РµРЅРёРµ/СѓРґР°Р»РµРЅРёРµ
     unsigned int AddGroup(unsigned int id_session);
-    // добавить в группу клиента
+    // РґРѕР±Р°РІРёС‚СЊ РІ РіСЂСѓРїРїСѓ РєР»РёРµРЅС‚Р°
     bool AddClientKey(unsigned int id_group, unsigned int id_client);
-    // для данной группы установить сессию
+    // РґР»СЏ РґР°РЅРЅРѕР№ РіСЂСѓРїРїС‹ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРµСЃСЃРёСЋ
     bool SetSessionByID(unsigned int id_group, unsigned int id_session);
 
-    // удаление
+    // СѓРґР°Р»РµРЅРёРµ
     void DeleteClientKey(unsigned int id_client);
     void DeleteByID(unsigned int id_group);
   private:
-    // добавление/удаление
+    // РґРѕР±Р°РІР»РµРЅРёРµ/СѓРґР°Р»РµРЅРёРµ
     void AddGroup(unsigned int id_group, unsigned int id_session);
   };
 }

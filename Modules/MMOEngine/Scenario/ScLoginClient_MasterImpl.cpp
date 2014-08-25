@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -30,7 +30,7 @@ TBaseScLoginClient(pSc)
 //-----------------------------------------------------------------------------
 void TScLoginClient_MasterImpl::RecvInherit(TDescRecvSession* pDesc)
 {
-  // защита от хака
+  // Р·Р°С‰РёС‚Р° РѕС‚ С…Р°РєР°
   if(pDesc->sizeData<sizeof(THeader))
     return;
   //=======================================
@@ -52,7 +52,7 @@ void TScLoginClient_MasterImpl::RecvInherit(TDescRecvSession* pDesc)
 //-----------------------------------------------------------------------------
 void TScLoginClient_MasterImpl::Work(unsigned int now_ms)
 {
-  // если клиент в очереди, обновить номер
+  // РµСЃР»Рё РєР»РёРµРЅС‚ РІ РѕС‡РµСЂРµРґРё, РѕР±РЅРѕРІРёС‚СЊ РЅРѕРјРµСЂ
   if(Context()->GetNumInQueue())
   {
     if(now_ms > Context()->GetTimeLastNeedNumInQueue() + eDeltaTimeNumInQueue_ms)
@@ -72,7 +72,7 @@ void TScLoginClient_MasterImpl::Work(unsigned int now_ms)
   // 
   if(Context()->GetTimeWait() + Context()->GetDeltaTimeWaitMS() < now_ms)
   {
-    // ошибка на той стороне
+    // РѕС€РёР±РєР° РЅР° С‚РѕР№ СЃС‚РѕСЂРѕРЅРµ
     TEventError event;
     event.code = LoginClient_MasterClientNotActive;
     Context()->GetSE()->AddEventCopy(&event, sizeof(event));
@@ -88,7 +88,7 @@ void TScLoginClient_MasterImpl::Reject(void* resForClient, int sizeResClient)
 {
   Context()->Reject();
 
-  // сформировать отказ для клиента
+  // СЃС„РѕСЂРјРёСЂРѕРІР°С‚СЊ РѕС‚РєР°Р· РґР»СЏ РєР»РёРµРЅС‚Р°
   THeaderResultLoginM2C h;
   h.result = THeaderResultLoginM2C::eReject;
   h.sizeResClient = sizeResClient;
@@ -106,20 +106,20 @@ void TScLoginClient_MasterImpl::Accept(unsigned int key, void* resForClient, int
                                        unsigned int id_session_slave, 
                                        unsigned int id_superserver)
 {
-  // сохранить свой ключ
+  // СЃРѕС…СЂР°РЅРёС‚СЊ СЃРІРѕР№ РєР»СЋС‡
   Context()->SetClientKey(key);
-  // сохранить сессию СуперСервера
+  // СЃРѕС…СЂР°РЅРёС‚СЊ СЃРµСЃСЃРёСЋ РЎСѓРїРµСЂРЎРµСЂРІРµСЂР°
   SetID_SessionMasterSS(id_superserver);
-  // сохранить сессию Slave
+  // СЃРѕС…СЂР°РЅРёС‚СЊ СЃРµСЃСЃРёСЋ Slave
   SetID_SessionMasterSlave(id_session_slave);
-  // выставить состояние контекста
+  // РІС‹СЃС‚Р°РІРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РєРѕРЅС‚РµРєСЃС‚Р°
   Context()->Accept();
 
-  // если SuperServer существует, то отослать запрос ему
-  // если нет, то отослать ответ клиенту сразу
+  // РµСЃР»Рё SuperServer СЃСѓС‰РµСЃС‚РІСѓРµС‚, С‚Рѕ РѕС‚РѕСЃР»Р°С‚СЊ Р·Р°РїСЂРѕСЃ РµРјСѓ
+  // РµСЃР»Рё РЅРµС‚, С‚Рѕ РѕС‚РѕСЃР»Р°С‚СЊ РѕС‚РІРµС‚ РєР»РёРµРЅС‚Сѓ СЃСЂР°Р·Сѓ
   if(GetID_SessionMasterSS()==INVALID_HANDLE_SESSION)
   {
-    // сразу ответ клиенту и Slave
+    // СЃСЂР°Р·Сѓ РѕС‚РІРµС‚ РєР»РёРµРЅС‚Сѓ Рё Slave
     SendResultAccept2ClientAndSlave(key,
                                     resForClient, sizeResClient);
     return;
@@ -132,7 +132,7 @@ void TScLoginClient_MasterImpl::Accept(unsigned int key, void* resForClient, int
   h.id_client = key;
   bp.PushFront((char*)&h, sizeof(h));
   Context()->GetMS()->Send(GetID_SessionMasterSS(), bp);
-  // ждем ответ от SuperServer
+  // Р¶РґРµРј РѕС‚РІРµС‚ РѕС‚ SuperServer
   SetWaitSS();
 }
 //--------------------------------------------------------------
@@ -204,13 +204,13 @@ void TScLoginClient_MasterImpl::CheckRequestSS2M(TDescRecvSession* pDesc)
     return;
   }
   //-------------------------------------------------------------
-  // анализ ответа SuperServer-а
+  // Р°РЅР°Р»РёР· РѕС‚РІРµС‚Р° SuperServer-Р°
   if(pHeader->isExistInSystem)
   {
     Context()->Reject();
-    // клиент уже есть в системе, повторная авторизация
+    // РєР»РёРµРЅС‚ СѓР¶Рµ РµСЃС‚СЊ РІ СЃРёСЃС‚РµРјРµ, РїРѕРІС‚РѕСЂРЅР°СЏ Р°РІС‚РѕСЂРёР·Р°С†РёСЏ
     string sReject = "Reject login. Client was been authorized.";
-    // сформировать отказ для клиента
+    // СЃС„РѕСЂРјРёСЂРѕРІР°С‚СЊ РѕС‚РєР°Р· РґР»СЏ РєР»РёРµРЅС‚Р°
     THeaderResultLoginM2C h;
     h.result = THeaderResultLoginM2C::eReject;
     h.sizeResClient = sReject.length();
@@ -235,7 +235,7 @@ void TScLoginClient_MasterImpl::CheckRequestSS2M(TDescRecvSession* pDesc)
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::TryLoginC2M(TDescRecvSession* pDesc)
 {
-  // защита от хака
+  // Р·Р°С‰РёС‚Р° РѕС‚ С…Р°РєР°
   if(pDesc->sizeData<sizeof(THeaderTryLoginC2M))
     return;
   //=====================================
@@ -248,23 +248,23 @@ void TScLoginClient_MasterImpl::TryLoginC2M(TDescRecvSession* pDesc)
   //-------------------------------------------------------------
   if(Begin()==false)
   {
-    // генерация ошибки
+    // РіРµРЅРµСЂР°С†РёСЏ РѕС€РёР±РєРё
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TScLoginClient_MasterImpl::TryLoginC2M() scenario is not active.\n");
     BL_FIX_BUG();
     return;
   }
-	SetWaitSS();// ждем
+	SetWaitSS();// Р¶РґРµРј
   SetTimeWaitForNow();
-  // новая сессия, сохранить
+  // РЅРѕРІР°СЏ СЃРµСЃСЃРёСЏ, СЃРѕС…СЂР°РЅРёС‚СЊ
   SetID_SessionClientMaster(pDesc->id_session);
-  // в буфере, который передали, содержится заголовок и блок
-  // размер блока прописан в заголовке
+  // РІ Р±СѓС„РµСЂРµ, РєРѕС‚РѕСЂС‹Р№ РїРµСЂРµРґР°Р»Рё, СЃРѕРґРµСЂР¶РёС‚СЃСЏ Р·Р°РіРѕР»РѕРІРѕРє Рё Р±Р»РѕРє
+  // СЂР°Р·РјРµСЂ Р±Р»РѕРєР° РїСЂРѕРїРёСЃР°РЅ РІ Р·Р°РіРѕР»РѕРІРєРµ
   
 	THeaderTryLoginC2M* pPacket = (THeaderTryLoginC2M*)pDesc->data;
 	char* data   = pDesc->data     + sizeof(THeaderTryLoginC2M);
 	int sizeData = pDesc->sizeData - sizeof(THeaderTryLoginC2M);
-	// генерация события о попытке авторизации
+	// РіРµРЅРµСЂР°С†РёСЏ СЃРѕР±С‹С‚РёСЏ Рѕ РїРѕРїС‹С‚РєРµ Р°РІС‚РѕСЂРёР·Р°С†РёРё
 	TEventTryLogin* pEvent = new TEventTryLogin;
 	pEvent->use_crypt  = bool(pDesc->use_crypt);
 	pEvent->id_session = GetID_SessionClientMaster();
@@ -274,7 +274,7 @@ void TScLoginClient_MasterImpl::TryLoginC2M(TDescRecvSession* pDesc)
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::LeaveQueueC2M(TDescRecvSession* pDesc)
 {
-  // защита от хака не нужна, данные пакета не используются
+  // Р·Р°С‰РёС‚Р° РѕС‚ С…Р°РєР° РЅРµ РЅСѓР¶РЅР°, РґР°РЅРЅС‹Рµ РїР°РєРµС‚Р° РЅРµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ
   //=====================================
   NeedContextBySession(pDesc->id_session);
   if(Context()==NULL)
@@ -300,14 +300,14 @@ void TScLoginClient_MasterImpl::ClientConnectS2M(TDescRecvSession* pDesc)
     return;
   }
   //------------------------------------------------------------
-  // квитанция о запросе
+  // РєРІРёС‚Р°РЅС†РёСЏ Рѕ Р·Р°РїСЂРѕСЃРµ
   THeaderCheckClientConnectM2S h;
   h.id_client = pHeader->id_client;
   TBreakPacket bp;
   bp.PushFront((char*)&h, sizeof(h));
   Context()->GetMS()->Send(GetID_SessionMasterSlave(), bp);
 
-  // конец сценария
+  // РєРѕРЅРµС† СЃС†РµРЅР°СЂРёСЏ
   End();
 }
 //--------------------------------------------------------------
@@ -321,11 +321,11 @@ void TScLoginClient_MasterImpl::CheckInfoClientS2M(TDescRecvSession* pDesc)
     return;
   }
   //------------------------------------------------------------
-  // ip и port Slave для клиента
+  // ip Рё port Slave РґР»СЏ РєР»РёРµРЅС‚Р°
   TIP_Port ip_port_slave;
   Context()->GetMS()->GetInfo(GetID_SessionMasterSlave(), ip_port_slave);
 
-  // отослать информацию о Slave
+  // РѕС‚РѕСЃР»Р°С‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Slave
   THeaderInfoSlaveM2C h;
   h.id_client     = Context()->GetClientKey();
   h.ip_port_slave = ip_port_slave;
@@ -347,14 +347,14 @@ void TScLoginClient_MasterImpl::SendResultAccept2ClientAndSlave(unsigned int key
   hForClient.sizeResClient = sizeResClient;
   bp.PushFront((char*)&hForClient, sizeof(hForClient));
   Context()->GetMS()->Send(GetID_SessionClientMaster(), bp);
-  bp.UnlinkPart();// очистить от частей
+  bp.UnlinkPart();// РѕС‡РёСЃС‚РёС‚СЊ РѕС‚ С‡Р°СЃС‚РµР№
   // Slave
   THeaderInfoClientM2S hForSlave;
   hForSlave.id_client = key;
   bp.PushFront((char*)&hForSlave, sizeof(hForSlave));
   Context()->GetMS()->Send(GetID_SessionMasterSlave(), bp);
 
-  // ждем ответ от Slave
+  // Р¶РґРµРј РѕС‚РІРµС‚ РѕС‚ Slave
   SetWaitSlave();
 }
 //--------------------------------------------------------------
@@ -370,12 +370,12 @@ void TScLoginClient_MasterImpl::Disconnect()
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::CheckInfoSlaveC2M(TDescRecvSession* pDesc)
 {
-  // защита от хака
+  // Р·Р°С‰РёС‚Р° РѕС‚ С…Р°РєР°
   if(pDesc->sizeData!=sizeof(THeaderCheckInfoSlaveC2M))
     return;
   //=====================================
   THeaderCheckInfoSlaveC2M* pHeader = (THeaderCheckInfoSlaveC2M*)pDesc->data;
-  // в целях безопасности нельзя использовать id_client, потому что клиент может "прикинуться" другим
+  // РІ С†РµР»СЏС… Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё РЅРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ id_client, РїРѕС‚РѕРјСѓ С‡С‚Рѕ РєР»РёРµРЅС‚ РјРѕР¶РµС‚ "РїСЂРёРєРёРЅСѓС‚СЊСЃСЏ" РґСЂСѓРіРёРј
   //NeedContextBySession(pDesc->id_session);
   NeedContextBySessionAfterAuthorised(pDesc->id_session);
   //NeedContextByClientKey(pHeader->id_client);
@@ -385,10 +385,10 @@ void TScLoginClient_MasterImpl::CheckInfoSlaveC2M(TDescRecvSession* pDesc)
     return;
   }
   //------------------------------------------------------------
-  // Мастер сам рвет соединение и клиент получает событие дисконнект,
+  // РњР°СЃС‚РµСЂ СЃР°Рј СЂРІРµС‚ СЃРѕРµРґРёРЅРµРЅРёРµ Рё РєР»РёРµРЅС‚ РїРѕР»СѓС‡Р°РµС‚ СЃРѕР±С‹С‚РёРµ РґРёСЃРєРѕРЅРЅРµРєС‚,
   Context()->GetMS()->CloseSession(pDesc->id_session);
 
-  // и ждем ответа от Slave о том, что Клиент подцепился к Slave
+  // Рё Р¶РґРµРј РѕС‚РІРµС‚Р° РѕС‚ Slave Рѕ С‚РѕРј, С‡С‚Рѕ РљР»РёРµРЅС‚ РїРѕРґС†РµРїРёР»СЃСЏ Рє Slave
   SetWaitClient();
 }
 //--------------------------------------------------------------

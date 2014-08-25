@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -53,7 +53,7 @@ bool IXML::ReadUint(const char* name, int num, unsigned int & v)
   return true;
 }
 //------------------------------------------------------------------
-bool IXML::ReadFloat3(const char* name, int num, float * v3)// разделитель или "space" или ";"
+bool IXML::ReadFloat3(const char* name, int num, float * v3)// СЂР°Р·РґРµР»РёС‚РµР»СЊ РёР»Рё "space" РёР»Рё ";"
 {
   string s = ReadSection(name, num);
   int size = s.length();
@@ -102,7 +102,7 @@ bool IXML::ReadUint(int index, unsigned int & v)
   return true;
 }
 //------------------------------------------------------------------
-bool IXML::ReadFloat3(int index, float * v3)// разделитель или "space" или ";"
+bool IXML::ReadFloat3(int index, float * v3)// СЂР°Р·РґРµР»РёС‚РµР»СЊ РёР»Рё "space" РёР»Рё ";"
 {
   string s = ReadSection(index);
   int size = s.length();
@@ -146,7 +146,7 @@ bool IXML::WriteUint(const char* name, int num, unsigned int v)
   return WriteSection(name,num, string(s));
 }
 //------------------------------------------------------------------
-bool IXML::WriteFloat3(const char* name, int num, float* v3)// разделитель ";"
+bool IXML::WriteFloat3(const char* name, int num, float* v3)// СЂР°Р·РґРµР»РёС‚РµР»СЊ ";"
 {
   char s[100];
   sprintf(s,"%f;%f;%f",v3[0],v3[1],v3[2]);
@@ -181,7 +181,7 @@ bool IXML::WriteUint(int index, unsigned int v)
   return WriteSection(index, string(s));
 }
 //------------------------------------------------------------------
-bool IXML::WriteFloat3(int index, float* v3)// разделитель ";"
+bool IXML::WriteFloat3(int index, float* v3)// СЂР°Р·РґРµР»РёС‚РµР»СЊ ";"
 {
   char s[100];
   sprintf(s,"%f;%f;%f",v3[0],v3[1],v3[2]);

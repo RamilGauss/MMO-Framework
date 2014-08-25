@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -30,13 +30,13 @@ class DllExport TLogger : public TOnly_N_Object
   bool flgBuffer;
 
 protected:
-  TLogger():                            // запрет на создание
+  TLogger():                            // Р·Р°РїСЂРµС‚ РЅР° СЃРѕР·РґР°РЅРёРµ
          TOnly_N_Object(1,NAME_CLASS)
          {
            flgPrintf = true;
            flgEnable = true;
            flgBuffer = true;
-         }// только один объект
+         }// С‚РѕР»СЊРєРѕ РѕРґРёРЅ РѕР±СЉРµРєС‚
 public:
 
   virtual ~TLogger();

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -25,9 +25,9 @@ TTreeJoint::~TTreeJoint()
   Done();
 }
 //-------------------------------------------------------------------------
-void TTreeJoint::SetOrderMatrixByName(vector<string>* order)// вызвать до вызова ChangeMatrix и GetMatrix
+void TTreeJoint::SetOrderMatrixByName(vector<string>* order)// РІС‹Р·РІР°С‚СЊ РґРѕ РІС‹Р·РѕРІР° ChangeMatrix Рё GetMatrix
 {
-  // переставить местами в векторе ноды в соответствии с порядком
+  // РїРµСЂРµСЃС‚Р°РІРёС‚СЊ РјРµСЃС‚Р°РјРё РІ РІРµРєС‚РѕСЂРµ РЅРѕРґС‹ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ РїРѕСЂСЏРґРєРѕРј
   int cnt = order->size();
   BL_ASSERT(cnt==GetCountPart());
   for(int i = 0 ; i < cnt ; i++)
@@ -40,8 +40,8 @@ void TTreeJoint::SetOrderMatrixByName(vector<string>* order)// вызвать до вызова
       {
         flgFound = true;
         if(i==j)
-          break;// в нужном месте
-        // меняем местами
+          break;// РІ РЅСѓР¶РЅРѕРј РјРµСЃС‚Рµ
+        // РјРµРЅСЏРµРј РјРµСЃС‚Р°РјРё
         TNodeJoint* pNode_i = mVectorNode.at(i);
         mVectorNode.at(i) = pNode_j;
         mVectorNode.at(j) = pNode_i;
@@ -62,7 +62,7 @@ void TTreeJoint::Setup(TLoadedJoint* pLoadedTree,TNumUseMap* mapUse)
   mLoadedTree = pLoadedTree;
   mMapUse = mapUse;
   //-----------------------------------------
-  // поиск root
+  // РїРѕРёСЃРє root
   int cnt = mLoadedTree->vectorPart.size();
   for(int i = 0 ; i < cnt ; i++)
   {
@@ -70,10 +70,10 @@ void TTreeJoint::Setup(TLoadedJoint* pLoadedTree,TNumUseMap* mapUse)
     if(pPart->name.compare(mLoadedTree->root)==0)
     { 
       TNumUseMap::iterator fit = mMapUse->find(pPart->name);
-      if(fit!=mMapUse->end()) // если нашли
-      if(fit->second==pPart->numUse) // совпало
+      if(fit!=mMapUse->end()) // РµСЃР»Рё РЅР°С€Р»Рё
+      if(fit->second==pPart->numUse) // СЃРѕРІРїР°Р»Рѕ
       {
-        // нашли root
+        // РЅР°С€Р»Рё root
         TNodeJoint* pNode = new TNodeJoint;
         mVectorNode.push_back(pNode);
         mRoot = pNode;
@@ -82,8 +82,8 @@ void TTreeJoint::Setup(TLoadedJoint* pLoadedTree,TNumUseMap* mapUse)
         mRoot->matrixDef = mLoadedTree->world;
         mRoot->SetMatrixDef();
         mRoot->matrix_pro = mRoot->matrix;
-        // теперь данная ветка сама найдет ветки для своих детей
-        FindBranch(pPart, mRoot);// + инициализация структуры TNodeJoint
+        // С‚РµРїРµСЂСЊ РґР°РЅРЅР°СЏ РІРµС‚РєР° СЃР°РјР° РЅР°Р№РґРµС‚ РІРµС‚РєРё РґР»СЏ СЃРІРѕРёС… РґРµС‚РµР№
+        FindBranch(pPart, mRoot);// + РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃС‚СЂСѓРєС‚СѓСЂС‹ TNodeJoint
         flgNeedSetup = false;
         break;
       }
@@ -113,7 +113,7 @@ void TTreeJoint::ChangeMatrix(string& name, TMatrix16* matrix, bool def)
   ProductAllMatrix();
 }
 //-------------------------------------------------------------------------
-// заполнить матрицей
+// Р·Р°РїРѕР»РЅРёС‚СЊ РјР°С‚СЂРёС†РµР№
 void TTreeJoint::GetMatrix(vector<TMatrix16*>* matrix)
 {
   int cnt = GetCountPart();
@@ -121,11 +121,11 @@ void TTreeJoint::GetMatrix(vector<TMatrix16*>* matrix)
   {
     TNodeJoint* pNode = mVectorNode.at(i);
     TMatrix16* pM = matrix->operator [](i);
-    *pM = pNode->matrix_pro;// умноженная по иерархии
+    *pM = pNode->matrix_pro;// СѓРјРЅРѕР¶РµРЅРЅР°СЏ РїРѕ РёРµСЂР°СЂС…РёРё
   }
 }
 //-------------------------------------------------------------------------
-// сбросить все матрицы в дефолт
+// СЃР±СЂРѕСЃРёС‚СЊ РІСЃРµ РјР°С‚СЂРёС†С‹ РІ РґРµС„РѕР»С‚
 void TTreeJoint::SetDefault()
 {
   int cnt = GetCountPart();
@@ -162,8 +162,8 @@ void TTreeJoint::ProductChild(TNodeJoint* pNode)
   for(int i = 0 ; i < cnt ; i++)
   {
     TNodeJoint* pChild = pNode->mVectorChild.at(i);
-    ProductUp(pChild);// умножить матрицы данного Node вверх к корню и 
-    //дать перемножить детям
+    ProductUp(pChild);// СѓРјРЅРѕР¶РёС‚СЊ РјР°С‚СЂРёС†С‹ РґР°РЅРЅРѕРіРѕ Node РІРІРµСЂС… Рє РєРѕСЂРЅСЋ Рё 
+    //РґР°С‚СЊ РїРµСЂРµРјРЅРѕР¶РёС‚СЊ РґРµС‚СЏРј
     ProductChild(pChild);
   }
 }
@@ -182,28 +182,28 @@ void TTreeJoint::ProductUp(TNodeJoint* pNode)
 void TTreeJoint::FindBranch(TPart* pPart, TNodeJoint* pParent)
 {
   int cntTree = mLoadedTree->vectorPart.size();
-  // настройка детей и поиск продолжения 
+  // РЅР°СЃС‚СЂРѕР№РєР° РґРµС‚РµР№ Рё РїРѕРёСЃРє РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ 
   int cnt = pPart->vectorChild.size();
   for(int i = 0; i < cnt ; i++)
   {
     TNodeJoint* pNode = new TNodeJoint;
-    pNode->pParent = pParent;// знакомим родителя с ребенком
-    pParent->mVectorChild.push_back(pNode);// добавить в список детей родителя
-    mVectorNode.push_back(pNode);// в общий список
+    pNode->pParent = pParent;// Р·РЅР°РєРѕРјРёРј СЂРѕРґРёС‚РµР»СЏ СЃ СЂРµР±РµРЅРєРѕРј
+    pParent->mVectorChild.push_back(pNode);// РґРѕР±Р°РІРёС‚СЊ РІ СЃРїРёСЃРѕРє РґРµС‚РµР№ СЂРѕРґРёС‚РµР»СЏ
+    mVectorNode.push_back(pNode);// РІ РѕР±С‰РёР№ СЃРїРёСЃРѕРє
 
     TChild* pChild = pPart->vectorChild.at(i);
-    pNode->name = pChild->name;// имя
-    pNode->matrixDef = pChild->matrix;// матрица
+    pNode->name = pChild->name;// РёРјСЏ
+    pNode->matrixDef = pChild->matrix;// РјР°С‚СЂРёС†Р°
     pNode->SetMatrixDef();
-    // поиск
+    // РїРѕРёСЃРє
     for(int j = 0 ; j < cntTree ; j++)
     {
       TPart* pFPart = mLoadedTree->vectorPart.at(j);
       if(pFPart->name.compare(pNode->name)==0)
       {
         TNumUseMap::iterator fit = mMapUse->find(pFPart->name);
-        if((fit!=mMapUse->end()        )&&// если нашли
-           (fit->second==pFPart->numUse)) // совпало
+        if((fit!=mMapUse->end()        )&&// РµСЃР»Рё РЅР°С€Р»Рё
+           (fit->second==pFPart->numUse)) // СЃРѕРІРїР°Р»Рѕ
         {
           FindBranch(pFPart,pNode);
         }

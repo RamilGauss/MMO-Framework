@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -25,27 +25,27 @@ namespace nsMMOEngine
   {
     enum{
       eLimitLoadProcentOnSlaveForAdd = 70,
-      eLimitLoadProcentOnSlaveForAdd_ClientInGroup = 75, // для Клиента, состоящего в Группе процент другой
+      eLimitLoadProcentOnSlaveForAdd_ClientInGroup = 75, // РґР»СЏ РљР»РёРµРЅС‚Р°, СЃРѕСЃС‚РѕСЏС‰РµРіРѕ РІ Р“СЂСѓРїРїРµ РїСЂРѕС†РµРЅС‚ РґСЂСѓРіРѕР№
 
-      eLimitCountClientWaitFreeSpace = 2000,// максимальный размер очереди ожидающих
+      eLimitCountClientWaitFreeSpace = 2000,// РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РѕС‡РµСЂРµРґРё РѕР¶РёРґР°СЋС‰РёС…
     };
 
     // DOWN
-    //клиенты, которые уже в системе
+    //РєР»РёРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ СѓР¶Рµ РІ СЃРёСЃС‚РµРјРµ
     boost::scoped_ptr<TManagerContextMoreDownClientConnection> mMngContextClient;
     // Slaves
     boost::scoped_ptr<TManagerContextDownConnection_Slave>     mMngContextSlave;
-    // клиенты, которые находятся в процессе авторизации
+    // РєР»РёРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ РЅР°С…РѕРґСЏС‚СЃСЏ РІ РїСЂРѕС†РµСЃСЃРµ Р°РІС‚РѕСЂРёР·Р°С†РёРё
     boost::scoped_ptr<TManagerContextClientLogining>           mMngContextClientLogining;
-    // группы клиентов
+    // РіСЂСѓРїРїС‹ РєР»РёРµРЅС‚РѕРІ
     boost::scoped_ptr<TManagerGroupClient>                     mMngGroup;
-    // ID клиентов, которые ожидают в очереди, по причине загруженности Slave
+    // ID РєР»РёРµРЅС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ РѕР¶РёРґР°СЋС‚ РІ РѕС‡РµСЂРµРґРё, РїРѕ РїСЂРёС‡РёРЅРµ Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚Рё Slave
     boost::scoped_ptr<TSetOrderElement>                        mSetClientKeyInQueue;
-		// для создания группы, нужна статистика по клиентам, которые уже в группе
+		// РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РіСЂСѓРїРїС‹, РЅСѓР¶РЅР° СЃС‚Р°С‚РёСЃС‚РёРєР° РїРѕ РєР»РёРµРЅС‚Р°Рј, РєРѕС‚РѕСЂС‹Рµ СѓР¶Рµ РІ РіСЂСѓРїРїРµ
 		boost::scoped_ptr<TStatisticaClientInGroup>                mStatisticaClientInGroup;
-    // какой клиент с какими Slave связан в процессе перекоммутации
-    // необходимо знать если произошел Дисконнект с Клиентом, Донором или Реципиентом, что бы 
-    // уведомить оставшихся на связи об этом Дисконнекте.
+    // РєР°РєРѕР№ РєР»РёРµРЅС‚ СЃ РєР°РєРёРјРё Slave СЃРІСЏР·Р°РЅ РІ РїСЂРѕС†РµСЃСЃРµ РїРµСЂРµРєРѕРјРјСѓС‚Р°С†РёРё
+    // РЅРµРѕР±С…РѕРґРёРјРѕ Р·РЅР°С‚СЊ РµСЃР»Рё РїСЂРѕРёР·РѕС€РµР» Р”РёСЃРєРѕРЅРЅРµРєС‚ СЃ РљР»РёРµРЅС‚РѕРј, Р”РѕРЅРѕСЂРѕРј РёР»Рё Р РµС†РёРїРёРµРЅС‚РѕРј, С‡С‚Рѕ Р±С‹ 
+    // СѓРІРµРґРѕРјРёС‚СЊ РѕСЃС‚Р°РІС€РёС…СЃСЏ РЅР° СЃРІСЏР·Рё РѕР± СЌС‚РѕРј Р”РёСЃРєРѕРЅРЅРµРєС‚Рµ.
     boost::scoped_ptr<TManagerRecommutation>                   mMngRcm;
   public:
     typedef enum
@@ -62,7 +62,7 @@ namespace nsMMOEngine
     virtual void LeaveGroup(unsigned int id_client);
     virtual void GetListForGroup(unsigned int id_group, std::list<unsigned int>& l);
     virtual void SetResultLogin(bool res, unsigned int id_session, 
-                                unsigned int id_client, // ключ, из БД например
+                                unsigned int id_client, // РєР»СЋС‡, РёР· Р‘Р” РЅР°РїСЂРёРјРµСЂ
                                 void* resForClient, int sizeResClient);
     virtual bool FindSlaveSessionByGroup(unsigned int id_group, unsigned int& id_session);
    
@@ -73,7 +73,7 @@ namespace nsMMOEngine
 			unsigned int id_session;
 		};
 		virtual int  GetCountDown();
-		virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc имеет тип TDescDownMaster*
+		virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc РёРјРµРµС‚ С‚РёРї TDescDownMaster*
 
     virtual void SendDown(unsigned int id_session, TBreakPacket bp, bool check = true);
 
@@ -133,12 +133,12 @@ namespace nsMMOEngine
                                  unsigned int id_session_slave, 
                                  void* resForClient, int sizeResClient);
     void AddInQueue(unsigned int id_client, void* resForClient, int sizeResClient);
-		// при освобождении места на Slave попытаться добавить Клиента, который ждет в очереди
+		// РїСЂРё РѕСЃРІРѕР±РѕР¶РґРµРЅРёРё РјРµСЃС‚Р° РЅР° Slave РїРѕРїС‹С‚Р°С‚СЊСЃСЏ РґРѕР±Р°РІРёС‚СЊ РљР»РёРµРЅС‚Р°, РєРѕС‚РѕСЂС‹Р№ Р¶РґРµС‚ РІ РѕС‡РµСЂРµРґРё
     bool TryFindClientForAdd(unsigned int& id_client, unsigned int& id_session_slave);
 		void TryAddClientFromQueue();
     void Done();
 
-    // находится ли Клиент в процессе перекоммутации
+    // РЅР°С…РѕРґРёС‚СЃСЏ Р»Рё РљР»РёРµРЅС‚ РІ РїСЂРѕС†РµСЃСЃРµ РїРµСЂРµРєРѕРјРјСѓС‚Р°С†РёРё
     bool IsClientRecommutation(unsigned int id_client);
 
     void NotifyRecipientAboutDisconnectClient(unsigned int id_client,

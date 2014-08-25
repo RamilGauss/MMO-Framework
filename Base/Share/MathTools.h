@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -45,7 +45,7 @@ MATRIX_ALL_VALUE(M,VALUE,OP,I,4,4)
 // OP - operation, for example, a *= b; M1 = "a", M2 = "b", OP = "*="
 // MATRIX16_OP_M_M( a, b, *= )
 //----------------------------------------------------------------------
-// матрица - матрица
+// РјР°С‚СЂРёС†Р° - РјР°С‚СЂРёС†Р°
 #define MATRIX16_OP_M_M(M1,M2,OP) \
 MATRIX16_OP(M1,M2,OP, . , .)
 
@@ -58,7 +58,7 @@ MATRIX16_OP(M1,M2,OP, -> , .)
 #define MATRIX16_OP_P_P(M1,M2,OP) \
 MATRIX16_OP(M1,M2,OP, -> , ->)
 //----------------------------------------------------------------------
-// матрица - float/double
+// РјР°С‚СЂРёС†Р° - float/double
 #define MATRIX16_OP_M(M,VALUE,OP) \
 MATRIX16_OP_V(M,VALUE,OP, . )
 
@@ -295,10 +295,10 @@ public:
   TLine(){mType=eUndef;}
 
   // forms equation of line, when intersect of 2 planes, 
-	// сформировать уравнение прямой при пересечении 2-ух плоскостей
+	// СЃС„РѕСЂРјРёСЂРѕРІР°С‚СЊ СѓСЂР°РІРЅРµРЅРёРµ РїСЂСЏРјРѕР№ РїСЂРё РїРµСЂРµСЃРµС‡РµРЅРёРё 2-СѓС… РїР»РѕСЃРєРѕСЃС‚РµР№
   bool FindAndSetIntersect(TPlane* pP1,TPlane* pP2);
   // find 2 vectors(normal) on line from point
-	// найти 2 вектора(нормальные) на прямой от точки
+	// РЅР°Р№С‚Рё 2 РІРµРєС‚РѕСЂР°(РЅРѕСЂРјР°Р»СЊРЅС‹Рµ) РЅР° РїСЂСЏРјРѕР№ РѕС‚ С‚РѕС‡РєРё
   bool FindVector(TVector3* pOut1, TVector3* pOut2, bool do_normal = false);
 
 protected:

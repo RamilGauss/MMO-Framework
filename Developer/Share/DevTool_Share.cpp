@@ -1,29 +1,18 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "DevTool_Share.h"
-#include "MakerObjectGeneral.h"
-#include "IModule.h"
-#include "PrototypeGraphicEngine.h"
-#include "PrototypeMMOSuperServer.h"
-#include "PrototypeMMOMaster.h"
-#include "PrototypeMMOClient.h"
-#include "PrototypeMMOSlave.h"
-#include "PrototypeAloneGUI_Starter.h"
-#include "PrototypeMOG.h"
-#include "AdapterGraphicEngineGUI_DX9.h"
-#include "BL_Debug.h"
+#include "ModuleDev.h"
+#include "ListModule.h"
 
 static TDevTool_Share* g_DevTool = NULL;
 
 TDevTool_Share::TDevTool_Share()
 {
-  mMakerObjectGeneral.reset(new TMakerObjectGeneral);
-
   g_DevTool = this;
 }
 //-----------------------------------------------------------------------
@@ -37,90 +26,62 @@ TDevTool_Share* TDevTool_Share::Singleton()
   return g_DevTool;
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::SetModulePtr(IModule* pModule)
+void TDevTool_Share::SetModulePtr(ModuleDev* pModule)
 {
   switch(pModule->GetID())
   {
-    case PROTOTYPE_TYPE_DEV_TOOL:
-    {
-      mComponent.mDev = (PrototypeDevTool*)pModule;
-    }
+    case MODULE_DEV_TOOL:
+      mComponent.mDev.reset(new AdapterDevTool);
+      pModule->SetPrototypeDev(mComponent.mDev.get());
       break;
-    case PROTOTYPE_TYPE_GRAPHIC_ENGINE:
-    {
-      mMyGUI_DX9.reset(new AdapterGraphicEngineGUI_DX9); 
-      mComponent.mGraphicEngine = (PrototypeGraphicEngine*)pModule;
-      if(mComponent.mGraphicEngine->GetTypeRender()==PrototypeGraphicEngine::DX9)
-        mComponent.mGraphicEngine->SetGUI(mMyGUI_DX9.get());
-      else
-        BL_FIX_BUG();// другая реализация GUI
-      mComponent.mGraphicEngine->Init();// создали окно
-      mComponent.mGraphicEngine->SetTitleWindow(GetTitleWindow().data());
-    }
+    case MODULE_GRAPHIC_ENGINE:
+      mComponent.mGraphicEngine.reset(new AdapterGraphicEngine);
+      pModule->SetPrototypeDev(mComponent.mGraphicEngine.get());
       break;
-    case PROTOTYPE_TYPE_PHYSIC_ENGINE:        
-    {
-      mComponent.mPhysicEngine = (PrototypePhysicEngine*)pModule;
-    }
+    case MODULE_PHYSIC_ENGINE: 
+      mComponent.mPhysicEngine.reset(new AdapterPhysicEngine);
+      pModule->SetPrototypeDev(mComponent.mPhysicEngine.get());
       break;
-    case PROTOTYPE_TYPE_SERVER:
-    {
-      mComponent.mServer = (PrototypeServer*)pModule;
-    }
+    case MODULE_SERVER:
+      mComponent.mServer.reset(new AdapterServer);
+      pModule->SetPrototypeDev(mComponent.mServer.get());
       break;
-    case PROTOTYPE_TYPE_MANAGER_OBJECT_GENERAL:
-    {
-      mComponent.mMOG = (PrototypeMOG*)pModule;
-      mComponent.mMOG->Init(mMakerObjectGeneral.get());
-    }
+    case MODULE_MMO_ENGINE_CLIENT:
+      mComponent.mClient.reset(new AdapterMMO<nsMMOEngine::TClient>);
+      pModule->SetPrototypeDev(mComponent.mClient.get());
+      mComponent.mMMO = mComponent.mClient->Get();
       break;
-    case PROTOTYPE_TYPE_MMO_ENGINE_CLIENT:
-    {
-      mComponent.mNetClient = (PrototypeMMOClient*)pModule;
-    }
+    case MODULE_MMO_ENGINE_SLAVE:
+      mComponent.mSlave.reset(new AdapterMMO<nsMMOEngine::TSlave>);
+      pModule->SetPrototypeDev(mComponent.mSlave.get());
+      mComponent.mMMO = mComponent.mSlave->Get();
       break;
-    case PROTOTYPE_TYPE_MMO_ENGINE_SLAVE:
-    {
-      mComponent.mNet.Slave = (PrototypeMMOSlave*)pModule;
-    }
+    case MODULE_MMO_ENGINE_MASTER:
+      mComponent.mMaster.reset(new AdapterMMO<nsMMOEngine::TMaster>);
+      pModule->SetPrototypeDev(mComponent.mMaster.get());
+      mComponent.mMMO = mComponent.mMaster->Get();
       break;
-    case PROTOTYPE_TYPE_MMO_ENGINE_MASTER:
-    {
-      mComponent.mNet.Master = (PrototypeMMOMaster*)pModule;
-    }
+    case MODULE_MMO_ENGINE_SUPER_SERVER:
+      mComponent.mSuperServer.reset(new AdapterMMO<nsMMOEngine::TSuperServer>);
+      pModule->SetPrototypeDev(mComponent.mSuperServer.get());
+      mComponent.mMMO = mComponent.mSuperServer->Get();
       break;
-    case PROTOTYPE_TYPE_MMO_ENGINE_SUPER_SERVER:
-    {
-      mComponent.mNet.SuperServer = (PrototypeMMOSuperServer*)pModule;
-    }
+    case MODULE_ALONE_GUI:
+      mComponent.mQtSrcEvent.reset(new AdapterAloneGUI);
+      pModule->SetPrototypeDev(mComponent.mQtSrcEvent.get());
+      mComponent.mQtSrcEvent->Start();
+      mComponent.mQtGUI = mComponent.mQtSrcEvent->Get();
       break;
-    case PROTOTYPE_TYPE_ALONE_GUI:
-    {
-      mAloneGUI_Dev.reset(new AdapterAloneGUI_Dev);
-      mComponent.mQtSrcEvent = (PrototypeAloneGUI_Starter*)pModule;
-      mComponent.mQtGUI = mAloneGUI_Dev->Get();
-      mComponent.mQtSrcEvent->SetDev(mAloneGUI_Dev.get());
-    }
-      break;
-    case PROTOTYPE_TYPE_TIMER:
-    {
-      mComponent.mTimer = (PrototypeTimer*)pModule;
-    }
+    case MODULE_TIMER:
+      mComponent.mTimer.reset(new AdapterTimer);
+      pModule->SetPrototypeDev(mComponent.mTimer.get());
       break;
   }
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::FreeModulePtr(IModule* pModule)
+void TDevTool_Share::FreeModulePtr(ModuleDev* pModule)
 {
-  switch(pModule->GetID())
-  {
-    case PROTOTYPE_TYPE_GRAPHIC_ENGINE:
-    {
-      mMyGUI_DX9.reset(NULL); 
-      mComponent.mGraphicEngine->ZeroGUI();
-    }
-    break;
-  }
+
 }
 //-----------------------------------------------------------------------
 std::string TDevTool_Share::GetPathXMLFile()

@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="Common_DirectX"
+	Name="Common"
 	ProjectGUID="{2EFFBFCF-E794-43AD-ADEC-8F0E60A00B66}"
 	RootNamespace="Common"
 	Keyword="Win32Proj"
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\MyGUIEngine\include;..\MyGUIEngine\src;.\Base\DirectX;.\;.\Input\Win32;..\Platforms\DirectX\DirectXPlatform\include"
+				AdditionalIncludeDirectories=".\;.\Base\DirectX;.\Input\Win32;..\MyGUIEngine\include;..\MyGUIEngine\src;..\Platforms\DirectX\DirectXPlatform\include;..\Platforms\Ogre\OgrePlatform\include;..\..\OGRE\include;..\..\OGRE\include\OIS;..\..\OGRE\include\OGRE;..\..\OGRE\include\OGRE\PlugIns\PCZSceneManager;..\..\OGRE\include\OGRE\PlugIns\OctreeZone;..\..\OGRE\include\OGRE\RTShaderSystem;..\..\OGRE\include\OGRE\Terrain;..\..\OGRE\include\OGRE\Paging;..\..\OGRE\include\OGRE\Volume;..\..\OGRE\include\OGRE\Overlay"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -49,6 +49,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4305"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -262,14 +263,30 @@
 		<Filter
 			Name="Base"
 			>
-			<File
-				RelativePath=".\Base\DirectX\BaseManager.cpp"
+			<Filter
+				Name="Ogre"
 				>
-			</File>
-			<File
-				RelativePath=".\Base\DirectX\BaseManager.h"
+				<File
+					RelativePath=".\Base\Ogre\BaseManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Base\Ogre\BaseManager.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="DirectX"
 				>
-			</File>
+				<File
+					RelativePath=".\Base\DirectX\BaseManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Base\DirectX\BaseManager.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

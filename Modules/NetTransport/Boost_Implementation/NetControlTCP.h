@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -18,13 +18,13 @@ See for more information License.h.
 
 class TNetControlTCP : public INetControl
 {
-  TNetDeviceTCP mDevice;// для соединения с сервером
+  TNetDeviceTCP mDevice;// РґР»СЏ СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ СЃРµСЂРІРµСЂРѕРј
   THistoryPacketTCP mHistory;
 
   enum{
        eSizeBuffer = 64000,  
-       eWaitConnect = 40,// мс
-			 eTimeRepeatSend = 20,// мс
+       eWaitConnect = 40,// РјСЃ
+			 eTimeRepeatSend = 20,// РјСЃ
   };
 
   char mBuffer[eSizeBuffer];
@@ -38,7 +38,7 @@ class TNetControlTCP : public INetControl
   void unlockSA(){gcsSendAccept.unlock();}
 public:
 
-  TNetControlTCP(boost::asio::io_service& io_service);
+  TNetControlTCP(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service);
   virtual ~TNetControlTCP();
 
   // TNetTransport_XXX

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -10,12 +10,12 @@ See for more information License.h.
 #include "HiTimer.h"
 #include "BL_Debug.h"
 #include "BreakPacket.h"
-#include "PrototypeMMOBaseServer.h"
+#include "BaseServer.h"
 #include <list>
 #include "DevTool_Share.h"
-#include "PrototypeMMOSlave.h"
+#include "Slave.h"
 
-// формула для аппроксимации параметров в будущее
+// С„РѕСЂРјСѓР»Р° РґР»СЏ Р°РїРїСЂРѕРєСЃРёРјР°С†РёРё РїР°СЂР°РјРµС‚СЂРѕРІ РІ Р±СѓРґСѓС‰РµРµ
 // x = x0 + v * ( now - time_recv )
 
 
@@ -66,22 +66,22 @@ void TTestControlTank::Send()
 	bp.PushFront((char*)mDesc.get(), sizeof(TDesc));
 
 	TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
-	PrototypeMMOBaseServer* pBS = (PrototypeMMOBaseServer*)pComponent->mNet.Base;
+  nsMMOEngine::TBaseServer* pBS = (nsMMOEngine::TBaseServer*)pComponent->mMMO;
 
 	std::list<unsigned int> listKey;
 	//###
-	// рассылка всем клиентам
-	PrototypeMMOSlave::TDescDownSlave descDown;
+	// СЂР°СЃСЃС‹Р»РєР° РІСЃРµРј РєР»РёРµРЅС‚Р°Рј
+	nsMMOEngine::TSlave::TDescDownSlave descDown;
 	int sizeDesc = sizeof(descDown);
-	int countClient = pComponent->mNet.Slave->GetCountDown();
+	int countClient = pComponent->mSlave->Get()->GetCountDown();
 	for( int iClient = 0 ; iClient < countClient ; iClient++)
 	{
 		//if(pComponent->mNet.Slave->GetDescDown(iClient, (void*)&descDown, sizeDesc))
 			//pBS->SendDown( descDown.id_session, bp);
-		if(pComponent->mNet.Slave->GetDescDown(iClient, (void*)&descDown, sizeDesc))
+		if(pComponent->mSlave->Get()->GetDescDown(iClient, (void*)&descDown, sizeDesc))
 		{
 			unsigned int id_client;
-			if(pComponent->mNet.Slave->FindClientKeyBySession(descDown.id_session,id_client))
+			if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.id_session,id_client))
 				listKey.push_back(id_client);
 		}
 	}

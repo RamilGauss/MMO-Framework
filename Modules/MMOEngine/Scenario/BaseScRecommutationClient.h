@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -41,7 +41,7 @@ namespace nsMMOEngine
   protected:
     void SetTimeWaitForNow();
   protected:
-    // от Scenario
+    // РѕС‚ Scenario
     bool Begin();
     void End();
   protected:
@@ -51,7 +51,7 @@ namespace nsMMOEngine
     void NeedSessionDonorByClientKey(IScenario* pScenario);
     void EventActivate();
     void EventDisconnectClient(unsigned int key);
-    void EventTimeClientElapsed(unsigned int key);// вышло время ожидания ответа от Клиента на Slave
+    void EventTimeClientElapsed(unsigned int key);// РІС‹С€Р»Рѕ РІСЂРµРјСЏ РѕР¶РёРґР°РЅРёСЏ РѕС‚РІРµС‚Р° РѕС‚ РљР»РёРµРЅС‚Р° РЅР° Slave
 
     void NeedContextByRequestForRecipient(TDescRequestConnectForRecipient* pDesc);
   };

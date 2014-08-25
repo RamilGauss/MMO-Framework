@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -17,7 +17,8 @@ See for more information License.h.
 using namespace std;
 using namespace boost::asio;
 
-TNetControlUDP::TNetControlUDP(boost::asio::io_service& io_service):
+TNetControlUDP::TNetControlUDP(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service):
+INetControl(pNTB),
 mDevice(io_service)
 {
 
@@ -43,7 +44,7 @@ bool TNetControlUDP::Open( unsigned short port, unsigned char numNetWork )
 bool TNetControlUDP::Connect(unsigned int ip, unsigned short port)
 {
   GetLogger(STR_NAME_NET_TRANSPORT)->WriteF_time("Try connect on UDP.\n");
-  return false;// нельзя, только TCP
+  return false;// РЅРµР»СЊР·СЏ, С‚РѕР»СЊРєРѕ TCP
 }
 //------------------------------------------------------------------------------
 bool TNetControlUDP::IsStreamFresh( TIP_Port& ip_port)
@@ -111,7 +112,7 @@ void TNetControlUDP::Done()
 //----------------------------------------------------------------------------------
 void TNetControlUDP::Send(unsigned int ip, unsigned short port, TBreakPacket bp)
 {
-  // формируем заголовок
+  // С„РѕСЂРјРёСЂСѓРµРј Р·Р°РіРѕР»РѕРІРѕРє
   unsigned short count_out = IncreaseCntOut(TIP_Port(ip,port));
   bp.PushFront( (char*)&count_out, sizeof(count_out));
   bp.Collect();

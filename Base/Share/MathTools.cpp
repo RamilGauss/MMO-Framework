@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -655,22 +655,22 @@ bool TVector2::operator != ( const TVector2& v) const
 //-------------------------------------------------------------------------
 bool TVector2::operator > ( const TVector2& v) const
 {
-  if(x>v.x) return true;// высший
+  if(x>v.x) return true;// РІС‹СЃС€РёР№
   else if(x<v.x) return false;
   //
   if(y>v.y) 
-    return true;// низший
+    return true;// РЅРёР·С€РёР№
 
   return false;
 }
 //-------------------------------------------------------------------------
 bool TVector2::operator < ( const TVector2& v) const
 {
-  if(x<v.x) return true;// высший
+  if(x<v.x) return true;// РІС‹СЃС€РёР№
   else if(x>v.x) return false;
   //
   if(y<v.y) 
-    return true;// низший
+    return true;// РЅРёР·С€РёР№
 
   return false;
 }
@@ -767,26 +767,26 @@ bool TVector3::operator != ( const TVector3& pV) const
 //-------------------------------------------------------------------------
 bool TVector3::operator > ( const TVector3& v) const
 {
-  if(x>v.x) return true; // high assign,  высший разряд
+  if(x>v.x) return true; // high assign,  РІС‹СЃС€РёР№ СЂР°Р·СЂСЏРґ
   else if(x<v.x) return false;
   //---------------------------------
   if(y>v.y) return true;
   else if(y<v.y) return false;
   //---------------------------------
-  if(z>v.z)// low assign, низший разряд
+  if(z>v.z)// low assign, РЅРёР·С€РёР№ СЂР°Р·СЂСЏРґ
     return true;
   return false;
 }
 //-------------------------------------------------------------------------
 bool TVector3::operator < ( const TVector3& v) const
 {
-  if(x<v.x) return true; // high assign, высший разряд
+  if(x<v.x) return true; // high assign, РІС‹СЃС€РёР№ СЂР°Р·СЂСЏРґ
   else if(x>v.x) return false;
   //---------------------------------
   if(y<v.y) return true;
   else if(y>v.y) return false;
   //---------------------------------
-  if(z<v.z)// low assign, низший разряд
+  if(z<v.z)// low assign, РЅРёР·С€РёР№ СЂР°Р·СЂСЏРґ
     return true;
   return false;
 }
@@ -893,16 +893,16 @@ bool TPlane::operator != ( const TPlane& p) const
 //-------------------------------------------------------------------------
 bool TLine::FindAndSetIntersect(TPlane* pP1,TPlane* pP2)
 {
-  //1 найдем тип прямой (зависит от того равны ли коэффициенты плоскости нулю)
+  //1 РЅР°Р№РґРµРј С‚РёРї РїСЂСЏРјРѕР№ (Р·Р°РІРёСЃРёС‚ РѕС‚ С‚РѕРіРѕ СЂР°РІРЅС‹ Р»Рё РєРѕСЌС„С„РёС†РёРµРЅС‚С‹ РїР»РѕСЃРєРѕСЃС‚Рё РЅСѓР»СЋ)
   // find type of line (determinate by equal coefficient of plane equal zero)
-  if((*pP1==*pP2)           ||// line will plane, линия выродилась в плоскость
-    (*pP1==TPlane(0,0,0,0))||// will zero equal, вырожденное уравнение
+  if((*pP1==*pP2)           ||// line will plane, Р»РёРЅРёСЏ РІС‹СЂРѕРґРёР»Р°СЃСЊ РІ РїР»РѕСЃРєРѕСЃС‚СЊ
+    (*pP1==TPlane(0,0,0,0))||// will zero equal, РІС‹СЂРѕР¶РґРµРЅРЅРѕРµ СѓСЂР°РІРЅРµРЅРёРµ
     (*pP2==TPlane(0,0,0,0)))
   {
     SetType(eUndef);
     return false;
   }
-  //  by X, через Х
+  //  by X, С‡РµСЂРµР· РҐ
   if(pP1->c*pP2->b!=pP2->c*pP1->b)
   {
     float div = pP1->c*pP2->b - pP1->b*pP2->c;// c1*b2-b1*c2
@@ -911,7 +911,7 @@ bool TLine::FindAndSetIntersect(TPlane* pP1,TPlane* pP2)
     c = (pP1->b*pP2->a - pP1->a*pP2->b)/div;// b1*a2-b2*a1
     d = (pP1->b*pP2->d - pP1->d*pP2->b)/div;// b1*d2-b2*d1
     SetType(eX);
-  }// by Z, через Z
+  }// by Z, С‡РµСЂРµР· Z
   else if(pP1->a*pP2->b!=pP2->a*pP1->b)
   {
     float div = pP1->b*pP2->a - pP1->a*pP2->b;// b1*a2-a1*b2 
@@ -921,7 +921,7 @@ bool TLine::FindAndSetIntersect(TPlane* pP1,TPlane* pP2)
     c = (pP1->c*pP2->a - pP1->a*pP2->c)/div;// c1*a2-a1*c2
     d = (pP1->d*pP2->a - pP1->a*pP2->d)/div;// d1*a2-a1*d2
     SetType(eZ);
-  }// by Y, через Y
+  }// by Y, С‡РµСЂРµР· Y
   else
   {
     float div = pP1->a*pP2->c - pP1->c*pP2->a;// a1*c2-c1*a2

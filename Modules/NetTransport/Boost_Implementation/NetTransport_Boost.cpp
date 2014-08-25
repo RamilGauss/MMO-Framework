@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -22,14 +22,15 @@ using namespace boost::asio;
 
 //----------------------------------------------------------------------------
 TNetTransport_Boost::TNetTransport_Boost():
-mNetWorkThread(),
-mUDP(*(mNetWorkThread.GetIO_Service())),
-mAcceptor(*(mNetWorkThread.GetIO_Service()))
+mNetWorkThread()
 {
+  mUDP.reset(new TNetControlUDP(this, *(mNetWorkThread.GetIO_Service())));
+  mAcceptor.reset(new TNetControlAcceptor(this,*(mNetWorkThread.GetIO_Service())));
+
   mLocalPort  = 0;
   mNumNetWork = 0;
 
-  INetControl::SetNetBoost(this);
+  //INetControl::SetNetBoost(this);
   CreateControlTcpUp();
 }
 //----------------------------------------------------------------------------------
@@ -49,10 +50,10 @@ bool TNetTransport_Boost::Open(unsigned short port, unsigned char numNetWork)
   mNumNetWork = numNetWork;
 
   bool res = true;
-  res &= mUDP.Open(port, numNetWork);
-  if(res) mUDP.Init();
-  res &= mAcceptor.Open(port, numNetWork);
-  if(res) mAcceptor.Init();
+  res &= mUDP->Open(port, numNetWork);
+  if(res) mUDP->Init();
+  res &= mAcceptor->Open(port, numNetWork);
+  if(res) mAcceptor->Init();
 
   return res;
 }
@@ -72,7 +73,7 @@ void TNetTransport_Boost::Send(unsigned int ip, unsigned short port,
     mMutexMapIP_TCP.unlock();
   }
   else
-    mUDP.Send(ip, port, packet);
+    mUDP->Send(ip, port, packet);
   mMutexSend.unlock();
 }
 //----------------------------------------------------------------------------------
@@ -109,7 +110,7 @@ bool TNetTransport_Boost::Connect(unsigned int ip, unsigned short port)
     TIP_Port ip_port(ip, port);
 		pTCP_Up->GetDevice()->SetIP_Port(ip_port);
     pTCP_Up->Init();
-    // â boost äðóãîé ïîðÿäîê áàéò â îïèñàíèè ïîðòà è ip, ïîýòîìó ïîëüçîâàòüñÿ GetIP
+    // Ð² boost Ð´Ñ€ÑƒÐ³Ð¾Ð¹ Ð¿Ð¾Ñ€ÑÐ´Ð¾Ðº Ð±Ð°Ð¹Ñ‚ Ð² Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸Ð¸ Ð¿Ð¾Ñ€Ñ‚Ð° Ð¸ ip, Ð¿Ð¾ÑÑ‚Ð¾Ð¼Ñƒ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒÑÑ GetIP
     AddInMapTCP(ip_port,pTCP_Up);
   }
   return res;
@@ -124,8 +125,8 @@ void TNetTransport_Boost::Close(unsigned int ip, unsigned short port)
     pControl->Close();
   if(pTCP_Up==pControl)
     pTCP_Up = NULL;
-  // delete pControl ÍÅ âûçûâàòü, ò.ê. ïðè âûçîâå pControl->Close()
-  // boost ñîçäàñò ñîáûòèå RecvEvent(0), íà ÷òî îòðåàãèðóåì óäàëåíèåì
+  // delete pControl ÐÐ• Ð²Ñ‹Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ, Ñ‚.Ðº. Ð¿Ñ€Ð¸ Ð²Ñ‹Ð·Ð¾Ð²Ðµ pControl->Close()
+  // boost ÑÐ¾Ð·Ð´Ð°ÑÑ‚ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ RecvEvent(0), Ð½Ð° Ñ‡Ñ‚Ð¾ Ð¾Ñ‚Ñ€ÐµÐ°Ð³Ð¸Ñ€ÑƒÐµÐ¼ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸ÐµÐ¼
   //---------------------
   mMutexMapIP_TCP.unlock();
 }
@@ -159,8 +160,8 @@ void TNetTransport_Boost::RemoveFromMapTCP(TIP_Port* ip_port, TNetControlTCP* pC
 //----------------------------------------------------------------------------------
 void TNetTransport_Boost::CloseAll()
 {
-  mUDP.Close();
-  mAcceptor.Close();
+  mUDP->Close();
+  mAcceptor->Close();
 
   mMutexMapIP_TCP.lock();
   //---------------------
@@ -180,7 +181,7 @@ void TNetTransport_Boost::DeleteMapControlTCP()
 //----------------------------------------------------------------------------------
 void TNetTransport_Boost::CreateControlTcpUp()
 {
-  pTCP_Up = new TNetControlTCP(*(mNetWorkThread.GetIO_Service()));
+  pTCP_Up = new TNetControlTCP(this, *(mNetWorkThread.GetIO_Service()));
 }
 //----------------------------------------------------------------------------------
 void TNetTransport_Boost::DeleteControlTCP(TNetControlTCP* pControl)

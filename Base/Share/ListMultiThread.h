@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,7 +11,7 @@ See for more information License.h.
 #include "BL_Debug.h"
 
 /*
-  класс работы со списком
+  РєР»Р°СЃСЃ СЂР°Р±РѕС‚С‹ СЃРѕ СЃРїРёСЃРєРѕРј
   Thread safe
 
 */
@@ -59,7 +59,7 @@ public:
     TClass** data = GetFirst(); 
     while(data)
     {
-      Remove(data);// удаляем
+      Remove(data);// СѓРґР°Р»СЏРµРј
       data = GetFirst();        
     }
     if(cnt!=0) BL_FIX_BUG();
@@ -81,7 +81,7 @@ public:
   void ZeroPointerElement(TClass**d)
   {
     TElement* pEl = GetElement(d);
-    pEl->mDefElement.data = NULL;// отцепиться
+    pEl->mDefElement.data = NULL;// РѕС‚С†РµРїРёС‚СЊСЃСЏ
   }
   //---------------------------------------------
   int GetCnt(){return cnt;};
@@ -97,17 +97,17 @@ public:
 		Clear();
 	}
 	//----------------------------------------------
-	// чтение/запись
-  // функции Remove, Add, GetFirst, GetLast, Next и Below обрамлять Begin()/End()
+	// С‡С‚РµРЅРёРµ/Р·Р°РїРёСЃСЊ
+  // С„СѓРЅРєС†РёРё Remove, Add, GetFirst, GetLast, Next Рё Below РѕР±СЂР°РјР»СЏС‚СЊ Begin()/End()
   //++++++++++++++++++++++++++++++++++++++++++++
-  // если в одном потоке используется Add
-  // то во втором можно спокойно использовать Remove, GetFirst,Below, Next и GetLast.
+  // РµСЃР»Рё РІ РѕРґРЅРѕРј РїРѕС‚РѕРєРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ Add
+  // С‚Рѕ РІРѕ РІС‚РѕСЂРѕРј РјРѕР¶РЅРѕ СЃРїРѕРєРѕР№РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Remove, GetFirst,Below, Next Рё GetLast.
   //++++++++++++++++++++++++++++++++++++++++++++
-  // список запретных комбинаций (используй мьютекс для избежания коллизий)
+  // СЃРїРёСЃРѕРє Р·Р°РїСЂРµС‚РЅС‹С… РєРѕРјР±РёРЅР°С†РёР№ (РёСЃРїРѕР»СЊР·СѓР№ РјСЊСЋС‚РµРєСЃ РґР»СЏ РёР·Р±РµР¶Р°РЅРёСЏ РєРѕР»Р»РёР·РёР№)
   // Add    - Add
   // Remove - Remove
-  // Remove - ( GetFirst,Below, Next и GetLast ) (операции чтения/запись R/W)
-  // ( GetFirst,Below, Next и GetLast ) - ( GetFirst,Below, Next и GetLast )
+  // Remove - ( GetFirst,Below, Next Рё GetLast ) (РѕРїРµСЂР°С†РёРё С‡С‚РµРЅРёСЏ/Р·Р°РїРёСЃСЊ R/W)
+  // ( GetFirst,Below, Next Рё GetLast ) - ( GetFirst,Below, Next Рё GetLast )
   TClass** GetFirst()
   {
     if(pFirst==NULL)
@@ -183,7 +183,7 @@ public:
     return dNext;
   }
   //----------------------------------------------
-  // копирует внутрь
+  // РєРѕРїРёСЂСѓРµС‚ РІРЅСѓС‚СЂСЊ
   TClass** Add(TClass* d)
   {
     if(d==NULL) {BL_FIX_BUG();return NULL;}

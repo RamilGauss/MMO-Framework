@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,15 +9,14 @@ See for more information License.h.
 #define SrcEventH
 
 #include "TypeDef.h"
-//#include <string>
-//#include "BL_Debug.h"
+#include "DescEvent.h"
 
 class TDstEvent;
 
 /*
-  источник событий. работает в связке с TDstEvent
-  пронаследоваться,
-  добавлять события AddEvent
+  РёСЃС‚РѕС‡РЅРёРє СЃРѕР±С‹С‚РёР№. СЂР°Р±РѕС‚Р°РµС‚ РІ СЃРІСЏР·РєРµ СЃ TDstEvent
+  РїСЂРѕРЅР°СЃР»РµРґРѕРІР°С‚СЊСЃСЏ,
+  РґРѕР±Р°РІР»СЏС‚СЊ СЃРѕР±С‹С‚РёСЏ AddEvent
 */
 
 class DllExport TSrcEvent
@@ -33,8 +32,8 @@ public:
   void SetSelfID(int type_object);
 
   void SetDstObject(TDstEvent* p);
-  // можно добавлять события через источник 
-  // добавить событие
+  // РјРѕР¶РЅРѕ РґРѕР±Р°РІР»СЏС‚СЊ СЃРѕР±С‹С‚РёСЏ С‡РµСЂРµР· РёСЃС‚РѕС‡РЅРёРє 
+  // РґРѕР±Р°РІРёС‚СЊ СЃРѕР±С‹С‚РёРµ
   void AddEventCopy(void* data, int size);
   void AddEventCopy(void* data, int size, unsigned int time_create_ms);
 
@@ -44,6 +43,8 @@ public:
   void AddEventWithoutCopy(T* pObject);
   template<typename T>
   void AddEventWithoutCopy(T* pObject, unsigned int time_create_ms);
+
+  void Translate(nsEvent::TEvent* pEvent, bool use_self_info = true);
 };
 //-------------------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -140,28 +140,28 @@ void TManagerGroupClient::DeleteClientKey(unsigned int id_client)
   TMapUintSetUintIt fit = mMapID_ClientKey.find(id_group);
   if(fit==mMapID_ClientKey.end())
     return;
-  // связка группа---множество клиентов
+  // СЃРІСЏР·РєР° РіСЂСѓРїРїР°---РјРЅРѕР¶РµСЃС‚РІРѕ РєР»РёРµРЅС‚РѕРІ
   fit->second.erase(id_client);
-  // связка клиента---группа
+  // СЃРІСЏР·РєР° РєР»РёРµРЅС‚Р°---РіСЂСѓРїРїР°
   mMapClientKey_ID.erase(id_client);
 }
 //------------------------------------------------------------------------------------
 void TManagerGroupClient::DeleteByID(unsigned int id_group)
 {
   list<unsigned int> listClientOnErase;
-  // поиск всех клиентов, связанных с данной группой
+  // РїРѕРёСЃРє РІСЃРµС… РєР»РёРµРЅС‚РѕРІ, СЃРІСЏР·Р°РЅРЅС‹С… СЃ РґР°РЅРЅРѕР№ РіСЂСѓРїРїРѕР№
   int countClient = GetCountClientKey(id_group);
-  // сформировать список ключей клиентов, которые содержаться в данной группе
+  // СЃС„РѕСЂРјРёСЂРѕРІР°С‚СЊ СЃРїРёСЃРѕРє РєР»СЋС‡РµР№ РєР»РёРµРЅС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ СЃРѕРґРµСЂР¶Р°С‚СЊСЃСЏ РІ РґР°РЅРЅРѕР№ РіСЂСѓРїРїРµ
   for( int i = 0 ; i < countClient ; i++ )
   {
     unsigned int id_client;
     GetClientKeyByIndex(id_group, i, id_client);
     listClientOnErase.push_back(id_client);
   }
-  // удалить все упоминания о ключах
+  // СѓРґР°Р»РёС‚СЊ РІСЃРµ СѓРїРѕРјРёРЅР°РЅРёСЏ Рѕ РєР»СЋС‡Р°С…
   BOOST_FOREACH(unsigned int id_client, listClientOnErase)
     DeleteClientKey(id_client);
-  // группа---сессия Slave
+  // РіСЂСѓРїРїР°---СЃРµСЃСЃРёСЏ Slave
   mMapID_SlaveSession.erase(id_group);
 }
 //------------------------------------------------------------------------------------

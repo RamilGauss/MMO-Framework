@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,9 +16,9 @@ See for more information License.h.
 #include "ContainerTypes.h"
 
 /*
-Класс для обмена данными между 2-мя потоками
-В одном потоке всегда вызывается Pop или PopFresh
-в другом всегда Push
+РљР»Р°СЃСЃ РґР»СЏ РѕР±РјРµРЅР° РґР°РЅРЅС‹РјРё РјРµР¶РґСѓ 2-РјСЏ РїРѕС‚РѕРєР°РјРё
+Р’ РѕРґРЅРѕРј РїРѕС‚РѕРєРµ РІСЃРµРіРґР° РІС‹Р·С‹РІР°РµС‚СЃСЏ Pop РёР»Рё PopFresh
+РІ РґСЂСѓРіРѕРј РІСЃРµРіРґР° Push
 FIFO
 
 ThreadSafe Class
@@ -34,20 +34,20 @@ class DllExport TQueue2Thread
 
 	TContainer* pQueue;
 
-	int mBeginPos, // первый поток
-			mEndPos;   // второй поток
-	volatile int mCurrentCount;// используется в 2 потоках
+	int mBeginPos, // РїРµСЂРІС‹Р№ РїРѕС‚РѕРє
+			mEndPos;   // РІС‚РѕСЂРѕР№ РїРѕС‚РѕРє
+	volatile int mCurrentCount;// РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ 2 РїРѕС‚РѕРєР°С…
 public:
 	TQueue2Thread(int queue_count);
 
 	virtual ~TQueue2Thread();
-	//Добавить элемент в очередь
+	//Р”РѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ РІ РѕС‡РµСЂРµРґСЊ
 	bool Push(void* buffer, int size);
-	//Извлечь элемент из очереди
+	//РР·РІР»РµС‡СЊ СЌР»РµРјРµРЅС‚ РёР· РѕС‡РµСЂРµРґРё
 	bool Pop(void* buffer,int &size);
 
 protected:
-	//Очистка очереди
+	//РћС‡РёСЃС‚РєР° РѕС‡РµСЂРµРґРё
 	void Clear();
 };
 

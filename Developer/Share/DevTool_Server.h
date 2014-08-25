@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -14,11 +14,12 @@ class TDevTool_Server : public TDevTool_Share
 {
   enum
   {
-    MODULE_DEV,
-    MODULE_MMO,
-    MODULE_QT,
-    MODULE_TIMER,
-    CNT_MODULE,
+    eModuleDev = 0,
+    eModuleMMO,
+    eModuleQt,
+    eModuleTimer,
+    eModuleServer,
+    eCountModule,
   };
 
 public:
@@ -32,7 +33,7 @@ public:
   virtual void SetLoadConveyer(int procent);
   virtual int  GetTimeRefresh_ms();
 protected:
-  virtual int GetIDPrototypeMMOEngineServer() = 0;// выбрать какой тип из серверов
+  virtual int GetIDPrototypeMMOEngineServer() = 0;// РІС‹Р±СЂР°С‚СЊ РєР°РєРѕР№ С‚РёРї РёР· СЃРµСЂРІРµСЂРѕРІ
 };
 
 #endif

@@ -1,4 +1,4 @@
-ÒÈÏ ïðîåêòà - Win32 Project(VC2008).
+Ð¢Ð˜ÐŸ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° - Win32 Project(VC2008).
 
 
 ===========================================================================================
@@ -26,60 +26,60 @@ Additional Library Directories = $(SolutionDir)\$(ConfigurationName)
 
 ===========================================================================================
 
-Íàñòðîéêè èíòåðôåéñà ðàáîòû ñ VC2008:    (Tools->Customize->Keyboard )
-Â ñòðîêå Show commands containing ïðîèçâîäèì ïîèñê ñîîòâåòñòâóþùåé êîìàíäû è íàçíà÷àåì àêñåëåðàòîð (Assign)
-Åñëè íàçíà÷àåìûé àêñåëåðàòîð óæå ïðèïèñàí ê êàêîé ëèáî êîìàíäå - íàéòè åå è ñíÿòü ñ íåå àêñåëåðàòîð (Remove)
+ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹ÑÐ° Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ Ñ VC2008:    (Tools->Customize->Keyboard )
+Ð’ ÑÑ‚Ñ€Ð¾ÐºÐµ Show commands containing Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´Ð¸Ð¼ Ð¿Ð¾Ð¸ÑÐº ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‰ÐµÐ¹ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð¸ Ð½Ð°Ð·Ð½Ð°Ñ‡Ð°ÐµÐ¼ Ð°ÐºÑÐµÐ»ÐµÑ€Ð°Ñ‚Ð¾Ñ€ (Assign)
+Ð•ÑÐ»Ð¸ Ð½Ð°Ð·Ð½Ð°Ñ‡Ð°ÐµÐ¼Ñ‹Ð¹ Ð°ÐºÑÐµÐ»ÐµÑ€Ð°Ñ‚Ð¾Ñ€ ÑƒÐ¶Ðµ Ð¿Ñ€Ð¸Ð¿Ð¸ÑÐ°Ð½ Ðº ÐºÐ°ÐºÐ¾Ð¹ Ð»Ð¸Ð±Ð¾ ÐºÐ¾Ð¼Ð°Ð½Ð´Ðµ - Ð½Ð°Ð¹Ñ‚Ð¸ ÐµÐµ Ð¸ ÑÐ½ÑÑ‚ÑŒ Ñ Ð½ÐµÐµ Ð°ÐºÑÐµÐ»ÐµÑ€Ð°Ñ‚Ð¾Ñ€ (Remove)
 
-1)  Ïåðåêëþ÷åíèå èç *.cpp â *.h: "GotoHeaderFile" : "Ctrl+F6"       (ñì. íèæå Visual Assist !)
-2)  Ñäâèã áëîêà âëåâî  - Edit.DecreaseLineIndent: "Ctrl+K, Ctrl+,"
-3)  Ñäâèã áëîêà âïðàâî - Edit.IncreaseLineIndent: "Ctrl+K, Ctrl+."
-4)  Çàêîììåíòèðîâàòü áëîê: CommentSection: "Ctrl+K, Ctrl+/"
-5)  Ðàñêîììåíòèðîâàòü áëîê: CommentSection: "Ctrl+K, Ctrl+\"
+1)  ÐŸÐµÑ€ÐµÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð¸Ð· *.cpp Ð² *.h: "GotoHeaderFile" : "Ctrl+F6"       (ÑÐ¼. Ð½Ð¸Ð¶Ðµ Visual Assist !)
+2)  Ð¡Ð´Ð²Ð¸Ð³ Ð±Ð»Ð¾ÐºÐ° Ð²Ð»ÐµÐ²Ð¾  - Edit.DecreaseLineIndent: "Ctrl+K, Ctrl+,"
+3)  Ð¡Ð´Ð²Ð¸Ð³ Ð±Ð»Ð¾ÐºÐ° Ð²Ð¿Ñ€Ð°Ð²Ð¾ - Edit.IncreaseLineIndent: "Ctrl+K, Ctrl+."
+4)  Ð—Ð°ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð±Ð»Ð¾Ðº: CommentSection: "Ctrl+K, Ctrl+/"
+5)  Ð Ð°ÑÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð±Ð»Ð¾Ðº: CommentSection: "Ctrl+K, Ctrl+\"
 
-Ïåðåîïðåäåëåíèÿ àêñåëåðàòîðîâ Visual Assist ïîä Borland keymapping:
+ÐŸÐµÑ€ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð°ÐºÑÐµÐ»ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ð¾Ð² Visual Assist Ð¿Ð¾Ð´ Borland keymapping:
 
-1) Ïåðåêëþ÷åíèå ìåæäó *.cpp è *.h:   VAssistX.OpenCorrespondingFile = Ctrl+F6
-2) Äèàëîã ñî âñåìè ôàéëàìè solution: VAssistX.OpenFileInSolutionDialog = Ctrl+F12
+1) ÐŸÐµÑ€ÐµÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð¼ÐµÐ¶Ð´Ñƒ *.cpp Ð¸ *.h:   VAssistX.OpenCorrespondingFile = Ctrl+F6
+2) Ð”Ð¸Ð°Ð»Ð¾Ð³ ÑÐ¾ Ð²ÑÐµÐ¼Ð¸ Ñ„Ð°Ð¹Ð»Ð°Ð¼Ð¸ solution: VAssistX.OpenFileInSolutionDialog = Ctrl+F12
 ===========================================================================================
 
-Íàñòðîéêè äëÿ ïîäêëþ÷åíèÿ áèáëèîòåêè ïëàãèíîâ PluginWidgets
+ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð´Ð»Ñ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸ Ð¿Ð»Ð°Ð³Ð¸Ð½Ð¾Ð² PluginWidgets
 
-Äëÿ VC2008:
-1) Äëÿ èñïîëüçîâàíèÿ çàãîëîâî÷íûõ ôàéëîâ ïëàãèíà: Project->Properties->Configuration Properties->C/C++->General:
-	â ñòðîêó Additional Include Directories äîáàâèòü:
-		..\PluginWidgets\MessageLine è/èëè
+Ð”Ð»Ñ VC2008:
+1) Ð”Ð»Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ñ‡Ð½Ñ‹Ñ… Ñ„Ð°Ð¹Ð»Ð¾Ð² Ð¿Ð»Ð°Ð³Ð¸Ð½Ð°: Project->Properties->Configuration Properties->C/C++->General:
+	Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ Additional Include Directories Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ:
+		..\PluginWidgets\MessageLine Ð¸/Ð¸Ð»Ð¸
 		..\PluginWidgets\ModSpinBox
-	â ñòðîêó Preprocessor äîáàâèòü:
+	Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ Preprocessor Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ:
 		TD_CROSSPLATFORM
 
-2) Äëÿ èñïîëüçîâàíèÿ áèáëèîòåêè PluginWidgets:
+2) Ð”Ð»Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸ PluginWidgets:
 	- Project->Properties->Configuration Properties->Linker->General:
-		 â ñòðîêó Additional Library Directories äîáàâèòü 			
+		 Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ Additional Library Directories Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ 			
 		 $(SolutionDir)\$(ConfigurationName)
 	- Project->Properties->Configuration Properties->Linker->Input:
-		â ñòðîêó Additional Dependencies äîáàâèòü PluginWidgets.lib
+		Ð² ÑÑ‚Ñ€Ð¾ÐºÑƒ Additional Dependencies Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ PluginWidgets.lib
 
-Äëÿ GCC:
-â ôàéë *.pro äîáàâèòü:
+Ð”Ð»Ñ GCC:
+Ð² Ñ„Ð°Ð¹Ð» *.pro Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ:
 		DEFINES += TD_CROSSPLATFORM
-		- â ñåêöèþ INCLUDEPATH:
-			./../PluginWidgets/ModSpinBox \ è/èëè
+		- Ð² ÑÐµÐºÑ†Ð¸ÑŽ INCLUDEPATH:
+			./../PluginWidgets/ModSpinBox \ Ð¸/Ð¸Ð»Ð¸
 			./../PluginWidgets/MessageLine \
-		- â ñåêöèþ LIBS:
+		- Ð² ÑÐµÐºÑ†Ð¸ÑŽ LIBS:
 			-lPluginWidgets 	
 
-P.S. - ïðèìåð èñïîëüçîâàíèÿ äàííîé áèáëèîòåêè ïëàãèíîâ ñì. â øàáëîííîì ïðîåêòå TestTemplate
+P.S. - Ð¿Ñ€Ð¸Ð¼ÐµÑ€ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ Ð´Ð°Ð½Ð½Ð¾Ð¹ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸ Ð¿Ð»Ð°Ð³Ð¸Ð½Ð¾Ð² ÑÐ¼. Ð² ÑˆÐ°Ð±Ð»Ð¾Ð½Ð½Ð¾Ð¼ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ðµ TestTemplate
 
 
-Íàñòðîéêà ToolBar â Designer QT4:
-	Äëÿ íåèñïîëüçîâàíèÿ ñòðîêè â íèñïàäàþùåì ìåíþ (QAction) íåîáõîäèìî (äëÿ Qt Designer):
-	1)Â ñâîéñòâàõ îáúåêòà êëàññà QMenu èçìåíèòü "palette"->"ChangePalette".
-	2)Âûáðàòü "Show Details".
-	3)Äëÿ "text"-"disabled" íàçíà÷èòü öâåò (íàïðèìåð, ñèíèé).
-	4)Äëÿ "Highlight"-"disabled" íàçíà÷èòü öâåò (íàïðèìåð, áåëûé).
-  5)Äëÿ ñàìîé QAction âûñòàâèòü ôëàãè font.Bold è font.Underline
+ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° ToolBar Ð² Designer QT4:
+	Ð”Ð»Ñ Ð½ÐµÐ¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ ÑÑ‚Ñ€Ð¾ÐºÐ¸ Ð² Ð½Ð¸ÑÐ¿Ð°Ð´Ð°ÑŽÑ‰ÐµÐ¼ Ð¼ÐµÐ½ÑŽ (QAction) Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð¾ (Ð´Ð»Ñ Qt Designer):
+	1)Ð’ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð°Ñ… Ð¾Ð±ÑŠÐµÐºÑ‚Ð° ÐºÐ»Ð°ÑÑÐ° QMenu Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ "palette"->"ChangePalette".
+	2)Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ "Show Details".
+	3)Ð”Ð»Ñ "text"-"disabled" Ð½Ð°Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÑŒ Ñ†Ð²ÐµÑ‚ (Ð½Ð°Ð¿Ñ€Ð¸Ð¼ÐµÑ€, ÑÐ¸Ð½Ð¸Ð¹).
+	4)Ð”Ð»Ñ "Highlight"-"disabled" Ð½Ð°Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÑŒ Ñ†Ð²ÐµÑ‚ (Ð½Ð°Ð¿Ñ€Ð¸Ð¼ÐµÑ€, Ð±ÐµÐ»Ñ‹Ð¹).
+  5)Ð”Ð»Ñ ÑÐ°Ð¼Ð¾Ð¹ QAction Ð²Ñ‹ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ñ„Ð»Ð°Ð³Ð¸ font.Bold Ð¸ font.Underline
 
-	Äëÿ íàñòðîéêè â òåêñòå ïðîãðàììû íåîáõîäèìî âñòàâèòü êîä âèäà:
+	Ð”Ð»Ñ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð² Ñ‚ÐµÐºÑÑ‚Ðµ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð¾ Ð²ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ ÐºÐ¾Ð´ Ð²Ð¸Ð´Ð°:
 		QMenu* menu = new QMenu;
 		QPalette disablePalette( menu->palette() );
 		disablePalette.setBrush ( QPalette::Disabled, QPalette::Text, QBrush( QColor(0, 0, 95) ) );

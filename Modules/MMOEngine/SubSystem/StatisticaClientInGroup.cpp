@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -37,8 +37,8 @@ bool TStatisticaClientInGroup::FindSlaveSessionByMinimumClient(unsigned int &id_
 	
   id_session_slave = mVecDesc[0].id_session;
   //###
-	// только для теста перекоммутаций
-  //id_session_slave = mVecDesc[mVecDesc.size() - 1].id_session;// выдать последний
+	// С‚РѕР»СЊРєРѕ РґР»СЏ С‚РµСЃС‚Р° РїРµСЂРµРєРѕРјРјСѓС‚Р°С†РёР№
+  //id_session_slave = mVecDesc[mVecDesc.size() - 1].id_session;// РІС‹РґР°С‚СЊ РїРѕСЃР»РµРґРЅРёР№
   //###
 	return true;
 }

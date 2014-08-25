@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -44,9 +44,9 @@ mMngMngContextSc(new TManagerManagerContextSc)
   mID_SessionUp = INVALID_HANDLE_SESSION;
 
   SetupScForContext(mContainerUp.get());
-  // задать контекст по-умолчанию
+  // Р·Р°РґР°С‚СЊ РєРѕРЅС‚РµРєСЃС‚ РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ
   SetDefualtContextForScenario();
-  // регистрация на события сценариев
+  // СЂРµРіРёСЃС‚СЂР°С†РёСЏ РЅР° СЃРѕР±С‹С‚РёСЏ СЃС†РµРЅР°СЂРёРµРІ
   RegisterOnScenarioEvent();
 }
 //-------------------------------------------------------------------------
@@ -87,12 +87,12 @@ void TBase::DisconnectUp()
 	mManagerSession->CloseSession(mID_SessionUp);
 	
 	mID_SessionUp = INVALID_HANDLE_SESSION;
-  // событие НЕ создавать, т.к. процесс синхронный
+  // СЃРѕР±С‹С‚РёРµ РќР• СЃРѕР·РґР°РІР°С‚СЊ, С‚.Рє. РїСЂРѕС†РµСЃСЃ СЃРёРЅС…СЂРѕРЅРЅС‹Р№
 }
 //-------------------------------------------------------------------------
 void TBase::SendUp(TBreakPacket bp, bool check)
 {
-  // устанавливать для сценария контекст не требуется
+  // СѓСЃС‚Р°РЅР°РІР»РёРІР°С‚СЊ РґР»СЏ СЃС†РµРЅР°СЂРёСЏ РєРѕРЅС‚РµРєСЃС‚ РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ
   mControlSc->mFlow->SendUp(bp, check);
 }
 //-------------------------------------------------------------------------
@@ -121,18 +121,18 @@ void TBase::Disconnect(unsigned int id)
 //-------------------------------------------------------------------------
 void TBase::Work()
 {
-  //пробежка по ожидающим разъединения и удаление сессий
+  //РїСЂРѕР±РµР¶РєР° РїРѕ РѕР¶РёРґР°СЋС‰РёРј СЂР°Р·СЉРµРґРёРЅРµРЅРёСЏ Рё СѓРґР°Р»РµРЅРёРµ СЃРµСЃСЃРёР№
   mManagerSession->Work();
-  // обработать полученные данные соответствующим сценарием
+  // РѕР±СЂР°Р±РѕС‚Р°С‚СЊ РїРѕР»СѓС‡РµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРј СЃС†РµРЅР°СЂРёРµРј
   HandleListRecv();
-	// отреагировать на событие дисконнект сессий
+	// РѕС‚СЂРµР°РіРёСЂРѕРІР°С‚СЊ РЅР° СЃРѕР±С‹С‚РёРµ РґРёСЃРєРѕРЅРЅРµРєС‚ СЃРµСЃСЃРёР№
 	HandleListDisconnect();
-  // дать отработать всем сценариям по своим задачам 
-  // порядок вызовов здесь не случаен, сначала должен быть вызов HandleListRecv
+  // РґР°С‚СЊ РѕС‚СЂР°Р±РѕС‚Р°С‚СЊ РІСЃРµРј СЃС†РµРЅР°СЂРёСЏРј РїРѕ СЃРІРѕРёРј Р·Р°РґР°С‡Р°Рј 
+  // РїРѕСЂСЏРґРѕРє РІС‹Р·РѕРІРѕРІ Р·РґРµСЃСЊ РЅРµ СЃР»СѓС‡Р°РµРЅ, СЃРЅР°С‡Р°Р»Р° РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІС‹Р·РѕРІ HandleListRecv
   mMngMngContextSc->Work();
-  // те сценарии которые должны были быть удалены, но были активны (нельзя было явно удалять)
+  // С‚Рµ СЃС†РµРЅР°СЂРёРё РєРѕС‚РѕСЂС‹Рµ РґРѕР»Р¶РЅС‹ Р±С‹Р»Рё Р±С‹С‚СЊ СѓРґР°Р»РµРЅС‹, РЅРѕ Р±С‹Р»Рё Р°РєС‚РёРІРЅС‹ (РЅРµР»СЊР·СЏ Р±С‹Р»Рѕ СЏРІРЅРѕ СѓРґР°Р»СЏС‚СЊ)
   DeleteContainerScenario();
-	// например, Slave должен отсылать отчет по своей нагрузке CPU на Master
+	// РЅР°РїСЂРёРјРµСЂ, Slave РґРѕР»Р¶РµРЅ РѕС‚СЃС‹Р»Р°С‚СЊ РѕС‚С‡РµС‚ РїРѕ СЃРІРѕРµР№ РЅР°РіСЂСѓР·РєРµ CPU РЅР° Master
 	WorkInherit();
 }
 //-------------------------------------------------------------------------
@@ -147,11 +147,11 @@ void TBase::HandleListDisconnect()
   while(ppFirst)
   {
     unsigned int ID = *(*ppFirst);
-    // сообщить о разрыве связи для различных реализаций
+    // СЃРѕРѕР±С‰РёС‚СЊ Рѕ СЂР°Р·СЂС‹РІРµ СЃРІСЏР·Рё РґР»СЏ СЂР°Р·Р»РёС‡РЅС‹С… СЂРµР°Р»РёР·Р°С†РёР№
     DisconnectInherit(ID);
-    // закрыть сессию
+    // Р·Р°РєСЂС‹С‚СЊ СЃРµСЃСЃРёСЋ
     mManagerSession->CloseSession(ID);
-    // следующий ID
+    // СЃР»РµРґСѓСЋС‰РёР№ ID
     mIDSessionDisconnect.Remove(ppFirst);
     ppFirst = mIDSessionDisconnect.GetFirst();
   }
@@ -163,7 +163,7 @@ void TBase::HandleListRecv()
   while(ppFirst)
   {
     TDescRecvSession* pDesc = *ppFirst;
-    // обработать через сценарий
+    // РѕР±СЂР°Р±РѕС‚Р°С‚СЊ С‡РµСЂРµР· СЃС†РµРЅР°СЂРёР№
     mControlSc->Work(pDesc);
     mRecvPacket.Remove(ppFirst);
     ppFirst = mRecvPacket.GetFirst();
@@ -175,9 +175,9 @@ TManagerContextSc* TBase::AddManagerContextSc()
   return mMngMngContextSc->Add();
 }
 //-------------------------------------------------------------------------
-void TBase::RemoveManagerContextSc(TManagerContextSc* pMСSc)
+void TBase::RemoveManagerContextSc(TManagerContextSc* pMРЎSc)
 {
-  return mMngMngContextSc->Remove(pMСSc);
+  return mMngMngContextSc->Remove(pMРЎSc);
 }
 //-------------------------------------------------------------------------
 void TBase::SetupScForContext(TContainerContextSc* pCCSc)
@@ -198,7 +198,7 @@ void TBase::SetupScForContext(TContainerContextSc* pCCSc)
 //-------------------------------------------------------------------------
 void TBase::DelayDeleteContainerScenario(TContainerContextSc* pCCSc)
 {
-  // добавить в список на удаление
+  // РґРѕР±Р°РІРёС‚СЊ РІ СЃРїРёСЃРѕРє РЅР° СѓРґР°Р»РµРЅРёРµ
   mListDelayDeleteContainerSc.push_back(pCCSc);
 }
 //-------------------------------------------------------------------------

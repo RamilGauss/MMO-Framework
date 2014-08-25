@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -59,11 +59,11 @@ bool TCryptoRSA_Impl::Encrypt( void* pVoidIn, int sizeIn, TContainer& c_out)
   
   int countPart = (sizeIn-1)/mMaxSizePartBeforeCrypt + 1;
   int sizeOut   = mMaxSizePartAfterCrypt * countPart;
-  // выделить память под результат 
+  // РІС‹РґРµР»РёС‚СЊ РїР°РјСЏС‚СЊ РїРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚ 
   c_out.SetDataByCount(NULL, sizeOut);
   char* pIn  = (char*)pVoidIn;
   char* pOut = (char*)c_out.GetPtr();
-  // шифровать частями 
+  // С€РёС„СЂРѕРІР°С‚СЊ С‡Р°СЃС‚СЏРјРё 
   int sizePart = std::min(sizeIn, mMaxSizePartBeforeCrypt);
   for( int i = 0 ; i < countPart ; i++ )
   {
@@ -85,24 +85,24 @@ bool TCryptoRSA_Impl::Decrypt(void* pVoidIn, int sizeIn, TContainer& c_out)
 {
   BL_ASSERT(RSA_KEY);
   if((sizeIn < mMaxSizePartAfterCrypt)||
-     (sizeIn % mMaxSizePartAfterCrypt))// размер должен делиться без остатка
+     (sizeIn % mMaxSizePartAfterCrypt))// СЂР°Р·РјРµСЂ РґРѕР»Р¶РµРЅ РґРµР»РёС‚СЊСЃСЏ Р±РµР· РѕСЃС‚Р°С‚РєР°
   {
     BL_FIX_BUG();
     return false;
   }
 
   int countPart = sizeIn/mMaxSizePartAfterCrypt;
-  // пока выделить по максимуму,
-  //потому как будет рассчитываться в процессе дешифрования
+  // РїРѕРєР° РІС‹РґРµР»РёС‚СЊ РїРѕ РјР°РєСЃРёРјСѓРјСѓ,
+  //РїРѕС‚РѕРјСѓ РєР°Рє Р±СѓРґРµС‚ СЂР°СЃСЃС‡РёС‚С‹РІР°С‚СЊСЃСЏ РІ РїСЂРѕС†РµСЃСЃРµ РґРµС€РёС„СЂРѕРІР°РЅРёСЏ
   int sizeOut = countPart * mMaxSizePartBeforeCrypt;
-  // выделить память под результат 
+  // РІС‹РґРµР»РёС‚СЊ РїР°РјСЏС‚СЊ РїРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚ 
   TContainer c_Temp;
   c_Temp.SetDataByCount(NULL, sizeOut);
   char* pIn  = (char*)pVoidIn;
   char* pOut = (char*)c_Temp.GetPtr();
-  // шифровать частями 
+  // С€РёС„СЂРѕРІР°С‚СЊ С‡Р°СЃС‚СЏРјРё 
   int sizeOut_Calc = 0;
-  int sizePart = mMaxSizePartAfterCrypt;// размер частей всегда один и тот же
+  int sizePart = mMaxSizePartAfterCrypt;// СЂР°Р·РјРµСЂ С‡Р°СЃС‚РµР№ РІСЃРµРіРґР° РѕРґРёРЅ Рё С‚РѕС‚ Р¶Рµ
   for( int i = 0 ; i < countPart ; i++ )
   {
     int res = RSA_private_decrypt(sizePart, (const unsigned char*)pIn, 
@@ -201,13 +201,13 @@ bool TCryptoRSA_Impl::GetPrivateKey(TContainer& c_out)
 bool TCryptoRSA_Impl::SetupAllKeys(void* pPrivateKey, int sizePrivateKey, 
                                    void* pPublicKey,  int sizePublicKey)
 {
-  // инициализация BIO приватного ключа
+  // РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ BIO РїСЂРёРІР°С‚РЅРѕРіРѕ РєР»СЋС‡Р°
   BIO *pPrivateBIO = BIO_new(BIO_s_mem());
   int resPrivateBIO_write = BIO_write(pPrivateBIO, (char*)pPrivateKey, sizePrivateKey);
-  // инициализация BIO публичного ключа
+  // РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ BIO РїСѓР±Р»РёС‡РЅРѕРіРѕ РєР»СЋС‡Р°
   BIO *pPublicBIO = BIO_new(BIO_s_mem());
   int resPublicBIO_write = BIO_write(pPublicBIO, (char*)pPublicKey, sizePublicKey);
-  // проверка результата записи в BIO
+  // РїСЂРѕРІРµСЂРєР° СЂРµР·СѓР»СЊС‚Р°С‚Р° Р·Р°РїРёСЃРё РІ BIO
   if(resPrivateBIO_write==-1 || resPublicBIO_write==-1)
   {
     BIO_free(pPrivateBIO);
@@ -215,7 +215,7 @@ bool TCryptoRSA_Impl::SetupAllKeys(void* pPrivateKey, int sizePrivateKey,
     return false;
   }
   //============================================
-  // создать объект ключа заново
+  // СЃРѕР·РґР°С‚СЊ РѕР±СЉРµРєС‚ РєР»СЋС‡Р° Р·Р°РЅРѕРІРѕ
   RSA_free(RSA_KEY);
   mRSAKey = RSA_new();
   if(mRSAKey==NULL)
@@ -227,14 +227,14 @@ bool TCryptoRSA_Impl::SetupAllKeys(void* pPrivateKey, int sizePrivateKey,
   //============================================
   RSA* pPrivateRes = NULL,
      * pPublicRes  = NULL;
-  // запись в RSA структуру из BIO
+  // Р·Р°РїРёСЃСЊ РІ RSA СЃС‚СЂСѓРєС‚СѓСЂСѓ РёР· BIO
   pPrivateRes = PEM_read_bio_RSAPrivateKey(pPrivateBIO, (RSA**)&mRSAKey, NULL, NULL);
   if(pPrivateRes)
     pPublicRes = PEM_read_bio_RSAPublicKey(pPublicBIO, (RSA**)&mRSAKey, NULL, NULL);
-  // освободить BIO
+  // РѕСЃРІРѕР±РѕРґРёС‚СЊ BIO
   BIO_free(pPrivateBIO);
   BIO_free(pPublicBIO);
-  // проверка результата
+  // РїСЂРѕРІРµСЂРєР° СЂРµР·СѓР»СЊС‚Р°С‚Р°
   if(pPrivateRes==NULL || pPublicRes==NULL)
     return false;
 

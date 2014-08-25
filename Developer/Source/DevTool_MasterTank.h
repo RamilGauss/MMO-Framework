@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,11 +9,12 @@ See for more information License.h.
 #define DevTool_MasterTankH
 
 #include "DevTool_Server.h"
-#include "PrototypeMMOBaseEvent.h"
-#include "PrototypeMMOEvents.h"
 #include "InputCmdDevTool.h"
 #include "ListMultiThread.h"
 #include <list>
+#include "BaseEvent.h"
+#include "Events.h"
+#include "ListModule.h"
 
 class MasterForm;
 
@@ -39,12 +40,12 @@ public:
   virtual void Done();
   virtual void Event(nsEvent::TEvent* pEvent);
 protected:
-  virtual int GetIDPrototypeMMOEngineServer(){return PROTOTYPE_TYPE_MMO_ENGINE_MASTER;}
+  virtual int GetIDPrototypeMMOEngineServer(){return MODULE_MMO_ENGINE_MASTER;}
 protected:
   void ParseCmd(std::vector<std::string>& arg);
 
   void InitLog();
-  void HandleFromMMOEngine(PrototypeMMOBaseEvent* pBE);
+  void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
   void HandleFromQt(nsEvent::TEvent* pEvent);
 
   void InitQtForm();
@@ -55,12 +56,12 @@ protected:
 
   void CreateGroup();
 
-  void TryLogin(PrototypeMMOEventTryLogin* pEvent);
-  void ConnectDown(PrototypeMMOEventConnectDown* pEvent);
-  void DisconnectDown(PrototypeMMOEventDisconnectDown* pEvent);
+  void TryLogin(nsMMOEngine::TEventTryLogin* pEvent);
+  void ConnectDown(nsMMOEngine::TEventConnectDown* pEvent);
+  void DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent);
 
-  void ConnectUp(PrototypeMMOEventConnectUp* pBE);
-  void DisconnectUp(PrototypeMMOEventDisconnectUp* pBE);
+  void ConnectUp(nsMMOEngine::TEventConnectUp* pBE);
+  void DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE);
 };
 
 #endif

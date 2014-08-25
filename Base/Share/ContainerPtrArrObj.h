@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -13,8 +13,8 @@ See for more information License.h.
 #include <stddef.h>
 
 /*
-  В качестве ресурсов хранит указатель на объект, 
-  НЕ позаботится об освобождении ресурсов
+  Р’ РєР°С‡РµСЃС‚РІРµ СЂРµСЃСѓСЂСЃРѕРІ С…СЂР°РЅРёС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚, 
+  РќР• РїРѕР·Р°Р±РѕС‚РёС‚СЃСЏ РѕР± РѕСЃРІРѕР±РѕР¶РґРµРЅРёРё СЂРµСЃСѓСЂСЃРѕРІ
 */
 
 template <typename T>

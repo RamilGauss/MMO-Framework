@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -51,15 +51,15 @@ namespace nsMMOEngine
     TStatisticaClientInGroup();
     ~TStatisticaClientInGroup();
     
-    // навигация
+    // РЅР°РІРёРіР°С†РёСЏ
     bool FindSlaveSessionByMinimumClient(unsigned int &id_session_slave);
     bool FindCountClientBySlaveSession(unsigned int id_session_slave, int& countClient);
-    // добавление
+    // РґРѕР±Р°РІР»РµРЅРёРµ
     void AddSlave(unsigned int id_session);
-    // добавить в группу клиента
+    // РґРѕР±Р°РІРёС‚СЊ РІ РіСЂСѓРїРїСѓ РєР»РёРµРЅС‚Р°
     void AddBySlaveSessionClientKey(unsigned int id_session_slave, unsigned int id_client);
 
-    // удаление
+    // СѓРґР°Р»РµРЅРёРµ
     void DeleteBySlaveSession(unsigned int id_session_slave);
 		void DeleteByClientKey(unsigned int id_session_slave, unsigned int key);
   private:

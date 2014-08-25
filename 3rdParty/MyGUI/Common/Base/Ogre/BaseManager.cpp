@@ -500,4 +500,16 @@ namespace base
 		return result;
 	}
 
+  //###
+  // Gauss 25.08.2014
+  bool BaseManager::work()
+  {
+    Ogre::WindowEventUtilities::messagePump();
+    return mRoot->renderOneFrame();
+  }
+  Ogre::Root* BaseManager::getRoot()
+  {
+    return mRoot;
+  }
+  //###
 } // namespace base

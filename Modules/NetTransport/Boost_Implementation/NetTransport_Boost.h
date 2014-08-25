@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,12 +11,13 @@ See for more information License.h.
 #include "INetTransport.h"
 #include "GCS.h"
 #include "NetWorkThread.h"
+#include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "NetControlTCP.h"
 #include "NetControlAcceptor.h"
 #include "NetControlUDP.h"
 
-// Thread safe - Send поддерживает.
+// Thread safe - Send РїРѕРґРґРµСЂР¶РёРІР°РµС‚.
 
 class TNetTransport_Boost : public INetTransport
 {
@@ -28,14 +29,17 @@ class TNetTransport_Boost : public INetTransport
 
   TNetWorkThread mNetWorkThread;
 
-  TNetControlUDP      mUDP;
-  TNetControlAcceptor mAcceptor;
+  boost::scoped_ptr<TNetControlUDP>      mUDP;
+  boost::scoped_ptr<TNetControlAcceptor> mAcceptor;
   TNetControlTCP*     pTCP_Up;
 
   typedef std::map<TIP_Port,TNetControlTCP*> TMapIP_Ptr;
   typedef TMapIP_Ptr::iterator TMapIP_PtrIt;
   
   TMapIP_Ptr mMapIP_TCP;
+
+  TCallBackRegistrator1<INetTransport::TDescRecv*> mCallBackRecv;
+  TCallBackRegistrator1<TIP_Port*>                 mCallBackDisconnect;
 
 public:
 	TNetTransport_Boost();
@@ -46,15 +50,15 @@ public:
 	virtual void Send(unsigned int ip, unsigned short port, 
                     TBreakPacket packet, bool check = true);
 
-  virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv(){return INetControl::GetCallbackRecv();}
-  virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect(){return INetControl::GetCallbackDisconnect();}
+  virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv(){return &mCallBackRecv;}
+  virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect(){return &mCallBackDisconnect;}
 
 	virtual void Start();
 	virtual void Stop();
 	virtual bool IsActive();
 
-  // синхронная функция
-  virtual bool Connect(unsigned int ip, unsigned short port); // вызов только для клиента
+  // СЃРёРЅС…СЂРѕРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ
+  virtual bool Connect(unsigned int ip, unsigned short port); // РІС‹Р·РѕРІ С‚РѕР»СЊРєРѕ РґР»СЏ РєР»РёРµРЅС‚Р°
 
 	virtual void Close(unsigned int ip, unsigned short port);
 public:

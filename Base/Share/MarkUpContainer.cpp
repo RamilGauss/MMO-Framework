@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -60,9 +60,9 @@ void* TMarkUpContainer::Get(const char* name, bool type_counter, int index)
     case eVar:
       if(type_counter==false)
       {
-        // проверка
+        // РїСЂРѕРІРµСЂРєР°
         int cnt = GetValueBy(ptr,desc.c.v.sizeCnt);
-        if(index>=cnt) return NULL;// кричать
+        if(index>=cnt) return NULL;// РєСЂРёС‡Р°С‚СЊ
 
         ptr += desc.c.v.sizeCnt;
         ptr += index*desc.c.v.sizeVar;
@@ -89,9 +89,9 @@ int TMarkUpContainer::GetSize()
 //--------------------------------------------------------------------
 bool TMarkUpContainer::Set(void* p, int size)
 {
-  // схема, по которой организован контейнер по адресу p известна
-  // нам неизвестно только кол-во элементов в полях типа eVar
-  // цель - заполнить поля shift, cntVar 
+  // СЃС…РµРјР°, РїРѕ РєРѕС‚РѕСЂРѕР№ РѕСЂРіР°РЅРёР·РѕРІР°РЅ РєРѕРЅС‚РµР№РЅРµСЂ РїРѕ Р°РґСЂРµСЃСѓ p РёР·РІРµСЃС‚РЅР°
+  // РЅР°Рј РЅРµРёР·РІРµСЃС‚РЅРѕ С‚РѕР»СЊРєРѕ РєРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РїРѕР»СЏС… С‚РёРїР° eVar
+  // С†РµР»СЊ - Р·Р°РїРѕР»РЅРёС‚СЊ РїРѕР»СЏ shift, cntVar 
   mC.SetDataByCount((char*)p,size);
 
   char* ptr = (char*)GetPtr();
@@ -99,9 +99,9 @@ bool TMarkUpContainer::Set(void* p, int size)
   int cnt = mVectorSection.size();
   for( int i = 0 ; i < cnt ; i++)
   {
-    TDesc_Private& desc_p = mVectorSection.operator[](i);// взять описание секции
+    TDesc_Private& desc_p = mVectorSection.operator[](i);// РІР·СЏС‚СЊ РѕРїРёСЃР°РЅРёРµ СЃРµРєС†РёРё
 
-    int sizeSection = GetSize(desc_p, ptr);// рассчитать размер секции
+    int sizeSection = GetSize(desc_p, ptr);// СЂР°СЃСЃС‡РёС‚Р°С‚СЊ СЂР°Р·РјРµСЂ СЃРµРєС†РёРё
 
     switch(desc_p.c.type)
     {
@@ -135,8 +135,8 @@ void TMarkUpContainer::Done()
 //--------------------------------------------------------------------
 void TMarkUpContainer::Update()
 {
-  vector<int> vecDisVar;// вектор несоответствий
-  // считаем кол-во несоответствий по типам
+  vector<int> vecDisVar;// РІРµРєС‚РѕСЂ РЅРµСЃРѕРѕС‚РІРµС‚СЃС‚РІРёР№
+  // СЃС‡РёС‚Р°РµРј РєРѕР»-РІРѕ РЅРµСЃРѕРѕС‚РІРµС‚СЃС‚РІРёР№ РїРѕ С‚РёРїР°Рј
   int cntSection = mVectorSection.size();
   for(int i = 0 ; i < cntSection ; i++ )
   {
@@ -164,8 +164,8 @@ void TMarkUpContainer::Update()
     }
   }
   //--------------------------------------------------------
-  // разбираем каждое несоответствие
-  // считаем кол-во несоответствий по типу eVar и eMarkUp
+  // СЂР°Р·Р±РёСЂР°РµРј РєР°Р¶РґРѕРµ РЅРµСЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ
+  // СЃС‡РёС‚Р°РµРј РєРѕР»-РІРѕ РЅРµСЃРѕРѕС‚РІРµС‚СЃС‚РІРёР№ РїРѕ С‚РёРїСѓ eVar Рё eMarkUp
   int cntDisVar = vecDisVar.size();
   for(int d = 0 ; d < cntDisVar ; d++ )
   {
@@ -173,11 +173,11 @@ void TMarkUpContainer::Update()
 
     TDesc_Private& desc_p = mVectorSection.operator[](i);
 
-    char* ptr = (char*)GetPtr() + desc_p.shift;          // указатель на начало секции (содержит в памяти кол-во следующих секций, кол-во которых переменная)
-    int freshValue = GetValueBy(ptr,desc_p.c.v.sizeCnt); // прочитать кол-во из памяти
+    char* ptr = (char*)GetPtr() + desc_p.shift;          // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅР°С‡Р°Р»Рѕ СЃРµРєС†РёРё (СЃРѕРґРµСЂР¶РёС‚ РІ РїР°РјСЏС‚Рё РєРѕР»-РІРѕ СЃР»РµРґСѓСЋС‰РёС… СЃРµРєС†РёР№, РєРѕР»-РІРѕ РєРѕС‚РѕСЂС‹С… РїРµСЂРµРјРµРЅРЅР°СЏ)
+    int freshValue = GetValueBy(ptr,desc_p.c.v.sizeCnt); // РїСЂРѕС‡РёС‚Р°С‚СЊ РєРѕР»-РІРѕ РёР· РїР°РјСЏС‚Рё
     //------------------------------------------------------------------------------
-    int d_size = 0;// разность по размеру
-    // расчет разницы в размере и изменение нового значения размера
+    int d_size = 0;// СЂР°Р·РЅРѕСЃС‚СЊ РїРѕ СЂР°Р·РјРµСЂСѓ
+    // СЂР°СЃС‡РµС‚ СЂР°Р·РЅРёС†С‹ РІ СЂР°Р·РјРµСЂРµ Рё РёР·РјРµРЅРµРЅРёРµ РЅРѕРІРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ СЂР°Р·РјРµСЂР°
     switch(desc_p.c.type)
     {
       case eVar:
@@ -191,20 +191,20 @@ void TMarkUpContainer::Update()
       default:;
     }
     //-----------------------------------------------------------------------------
-    int newSize  = GetSize() - d_size;        // новый размер
+    int newSize  = GetSize() - d_size;        // РЅРѕРІС‹Р№ СЂР°Р·РјРµСЂ
 
     void* newPtr = GetPtr();
     if(d_size < 0)
     {
       int sizeBound = desc_p.shift + GetSizeByDesc(desc_p) + d_size;
 
-      // увеличение размера
+      // СѓРІРµР»РёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР°
       newPtr = mo_realloc_bound_new((char*)GetPtr(), GetSize(), sizeBound, -d_size);
     }
     else
     {
       int sizeBound = desc_p.shift + GetSizeByDesc(desc_p);
-      // уменьшение размера
+      // СѓРјРµРЅСЊС€РµРЅРёРµ СЂР°Р·РјРµСЂР°
       char* ptrBoundLow = (char*)GetPtr() + sizeBound;
       int sizeMove      = GetSize() - sizeBound - d_size;
       memmove(ptrBoundLow, ptrBoundLow + d_size, sizeMove);
@@ -217,7 +217,7 @@ void TMarkUpContainer::Update()
 		else
 			delete[](char*)newPtr;
     
-    // освежить сдвиги для дальних полей
+    // РѕСЃРІРµР¶РёС‚СЊ СЃРґРІРёРіРё РґР»СЏ РґР°Р»СЊРЅРёС… РїРѕР»РµР№
     for(int j = i+1 ; j < cntSection ; j++ )
     {
       mVectorSection.operator[](j).shift -= d_size;    
@@ -271,12 +271,12 @@ int TMarkUpContainer::GetSize(TDesc_Private& desc_p, char* ptr)
       break;
     case eVar:
       res  = desc_p.c.v.sizeCnt;
-      if(ptr!=NULL)// по-умолчанию равно 0
+      if(ptr!=NULL)// РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ СЂР°РІРЅРѕ 0
         res += desc_p.c.v.sizeVar*GetValueBy(ptr,desc_p.c.v.sizeCnt);
       break;
     case eMarkUp:
       res = desc_p.c.m.sizeSize;
-      if(ptr!=NULL)// по-умолчанию равно 0
+      if(ptr!=NULL)// РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ СЂР°РІРЅРѕ 0
         res += GetValueBy(ptr,desc_p.c.m.sizeSize);
       break;
     default:;

@@ -196,10 +196,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\BoundingBox.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\BreakPacket.cpp"
 				>
 			</File>
@@ -376,10 +372,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\UdpDevice.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\XML_Markup.cpp"
 				>
 			</File>
@@ -403,10 +395,6 @@
 			</File>
 			<File
 				RelativePath=".\BL_Debug.h"
-				>
-			</File>
-			<File
-				RelativePath=".\BoundingBox.h"
 				>
 			</File>
 			<File
@@ -667,10 +655,6 @@
 			</File>
 			<File
 				RelativePath=".\TypeDef.h"
-				>
-			</File>
-			<File
-				RelativePath=".\UdpDevice.h"
 				>
 			</File>
 			<File

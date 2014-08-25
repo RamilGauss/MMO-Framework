@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -26,7 +26,7 @@ bool TBaseServer::IsSessionSecurity(unsigned int id_session, void* crypt, int si
                                       void* login_password, int size_login_password)
 {
   TContainer cRSA;
-  // получить по сессии RSA от транспорта
+  // РїРѕР»СѓС‡РёС‚СЊ РїРѕ СЃРµСЃСЃРёРё RSA РѕС‚ С‚СЂР°РЅСЃРїРѕСЂС‚Р°
   if(mManagerSession->GetRSAPublicKey(id_session, cRSA)==false)
     return false;
 
@@ -36,10 +36,10 @@ bool TBaseServer::IsSessionSecurity(unsigned int id_session, void* crypt, int si
     login_password, size_login_password,
     cEncryptRSA_bySHA1_LP)==false)
     return false;
-  // сравнить по размеру
+  // СЃСЂР°РІРЅРёС‚СЊ РїРѕ СЂР°Р·РјРµСЂСѓ
   if(size_crypt!=cEncryptRSA_bySHA1_LP.GetSize())
     return false;
-  // сравнить по содержимому
+  // СЃСЂР°РІРЅРёС‚СЊ РїРѕ СЃРѕРґРµСЂР¶РёРјРѕРјСѓ
   if(memcmp(crypt, cEncryptRSA_bySHA1_LP.GetPtr(), size_crypt)!=0)
     return false;
 

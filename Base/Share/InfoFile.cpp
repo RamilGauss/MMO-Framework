@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -33,11 +33,11 @@ void InfoFile::GetName(std::string& path_name)
 {
 	if(IsOpen()==false)
 		return;
-	// первый тип разделителя
+	// РїРµСЂРІС‹Р№ С‚РёРї СЂР°Р·РґРµР»РёС‚РµР»СЏ
 	int index = sPath.rfind('\\');
 	if(index==-1)
 	{
-		// второй тип разделителя
+		// РІС‚РѕСЂРѕР№ С‚РёРї СЂР°Р·РґРµР»РёС‚РµР»СЏ
 		index = sPath.rfind('/');
 	}
 	path_name = sPath.data() + index + 1;

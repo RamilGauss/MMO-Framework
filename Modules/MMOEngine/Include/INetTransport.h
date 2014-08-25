@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -14,16 +14,16 @@ See for more information License.h.
 
 #define STR_NAME_NET_TRANSPORT "Net"
 
-// транспорт
+// С‚СЂР°РЅСЃРїРѕСЂС‚
 class DllExport INetTransport
 {
 public:
-  //типы callback вызовов
+  //С‚РёРїС‹ callback РІС‹Р·РѕРІРѕРІ
 	typedef enum{
 		eTcp  = 0,		   
 		eUdp  = 1,
 	}eTypeRecv;
-  // callback вернет данную структуру
+  // callback РІРµСЂРЅРµС‚ РґР°РЅРЅСѓСЋ СЃС‚СЂСѓРєС‚СѓСЂСѓ
   struct TDescRecv
   {
     TIP_Port ip_port;
@@ -37,23 +37,23 @@ public:
 
   virtual bool Open(unsigned short port, unsigned char numNetWork = 0) = 0;
 
-  // в качестве передаваемых данных выступает объект, который
-  // содержит цепочку данных
+  // РІ РєР°С‡РµСЃС‚РІРµ РїРµСЂРµРґР°РІР°РµРјС‹С… РґР°РЅРЅС‹С… РІС‹СЃС‚СѓРїР°РµС‚ РѕР±СЉРµРєС‚, РєРѕС‚РѕСЂС‹Р№
+  // СЃРѕРґРµСЂР¶РёС‚ С†РµРїРѕС‡РєСѓ РґР°РЅРЅС‹С…
 	virtual void Send(unsigned int ip, unsigned short port,
                     TBreakPacket packet, bool check = true) = 0;
 
-	// чтение - зарегистрируйся
+	// С‡С‚РµРЅРёРµ - Р·Р°СЂРµРіРёСЃС‚СЂРёСЂСѓР№СЃСЏ
   virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv()       = 0;
   virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect() = 0;
 
-	// старт и стоп движка
+	// СЃС‚Р°СЂС‚ Рё СЃС‚РѕРї РґРІРёР¶РєР°
 	virtual void Start() = 0;
 	virtual void Stop()  = 0;
 	virtual bool IsActive() = 0;
 
-  // синхронная функция
-	// вызывать до вызова Start()
-  virtual bool Connect(unsigned int ip, unsigned short port) = 0; // вызов только для клиента
+  // СЃРёРЅС…СЂРѕРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ
+	// РІС‹Р·С‹РІР°С‚СЊ РґРѕ РІС‹Р·РѕРІР° Start()
+  virtual bool Connect(unsigned int ip, unsigned short port) = 0; // РІС‹Р·РѕРІ С‚РѕР»СЊРєРѕ РґР»СЏ РєР»РёРµРЅС‚Р°
 
 	virtual void Close(unsigned int ip, unsigned short port) = 0;
 };

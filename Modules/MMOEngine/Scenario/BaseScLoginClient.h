@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -44,11 +44,11 @@ namespace nsMMOEngine
   protected:
     void SetTimeWaitForNow();
   protected:
-    // от Scenario
+    // РѕС‚ Scenario
     bool Begin();
     void End();
   protected:
-    // запрос на новую сессию, кто зарегистрировался выставит контекст с помощью SetContext()
+    // Р·Р°РїСЂРѕСЃ РЅР° РЅРѕРІСѓСЋ СЃРµСЃСЃРёСЋ, РєС‚Рѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°Р»СЃСЏ РІС‹СЃС‚Р°РІРёС‚ РєРѕРЅС‚РµРєСЃС‚ СЃ РїРѕРјРѕС‰СЊСЋ SetContext()
     void NeedContextBySession(unsigned int id_session);
     void NeedContextByClientKey(unsigned int id_client);
     void NeedContextByMasterSessionByClientKey(unsigned int id_session_master,unsigned int id_client);

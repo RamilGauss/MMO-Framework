@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-√Û‰‡ÍÓ‚ –‡ÏËÎ¸ —Â„ÂÂ‚Ë˜ 
+–ì—É–¥–∞–∫–æ–≤ –†–∞–º–∏–ª—å –°–µ—Ä–≥–µ–µ–≤–∏—á 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -24,25 +24,25 @@ TManagerManagerContextSc::~TManagerManagerContextSc()
 //-----------------------------------------------------------------------------
 TManagerContextSc* TManagerManagerContextSc::Add()
 {
-  TManagerContextSc* pM—Sc = new TManagerContextSc();
-  pM—Sc->GetCallBackActivate()   ->Register(&TManagerManagerContextSc::ActiveEvent,this);
-  pM—Sc->GetCallBackDisactivate()->Register(&TManagerManagerContextSc::DisactiveEvent,this);
-  mSetManagerContextSc.insert(pM—Sc);
-  return pM—Sc;
+  TManagerContextSc* pM–°Sc = new TManagerContextSc();
+  pM–°Sc->GetCallBackActivate()   ->Register(&TManagerManagerContextSc::ActiveEvent,this);
+  pM–°Sc->GetCallBackDisactivate()->Register(&TManagerManagerContextSc::DisactiveEvent,this);
+  mSetManagerContextSc.insert(pM–°Sc);
+  return pM–°Sc;
 }
 //-----------------------------------------------------------------------------
-void TManagerManagerContextSc::Remove(TManagerContextSc* pM—Sc)
+void TManagerManagerContextSc::Remove(TManagerContextSc* pM–°Sc)
 {
-  mSetManagerContextSc.erase(pM—Sc);
-  mSetActiveManagerContextSc.erase(pM—Sc);
-  delete pM—Sc;
+  mSetManagerContextSc.erase(pM–°Sc);
+  mSetActiveManagerContextSc.erase(pM–°Sc);
+  delete pM–°Sc;
 }
 //-----------------------------------------------------------------------------
 void TManagerManagerContextSc::Work()
 {
   TSetPtr copySetActiveManagerContextSc = mSetActiveManagerContextSc;
   BOOST_FOREACH( TManagerContextSc* pMSc, copySetActiveManagerContextSc )
-    pMSc->Work();// ‡·ÓÚ‡ÂÚ ÚÓÎ¸ÍÓ ‡ÍÚË‚Ì˚È ÒˆÂÌ‡ËÈ
+    pMSc->Work();// —Ä–∞–±–æ—Ç–∞–µ—Ç —Ç–æ–ª—å–∫–æ –∞–∫—Ç–∏–≤–Ω—ã–π —Å—Ü–µ–Ω–∞—Ä–∏–π
 }
 //-----------------------------------------------------------------------------
 void TManagerManagerContextSc::ActiveEvent(TManagerContextSc* pMCSc)

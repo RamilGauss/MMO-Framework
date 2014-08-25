@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,8 +9,6 @@ See for more information License.h.
 #include "MasterForm.h"
 
 #include <QLabel>
-
-#include "PrototypeAloneGUI_Starter.h"
 
 #include "DevProtocol.h"
 #include "DevTool_Share.h"
@@ -42,7 +40,7 @@ void MasterForm::customEvent( QEvent * event)
 void MasterForm::closeEvent(QCloseEvent * event)
 {
   TExit h;
-  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->AddEventCopy(&h,sizeof(h));
+  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&h,sizeof(h));
 
   delete this;
 }
@@ -107,6 +105,6 @@ void MasterForm::Refresh()
 void MasterForm::sl_CreateGroup()
 {
   TCreateGroup h;
-  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->AddEventCopy(&h,sizeof(h));
+  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&h,sizeof(h));
 }
 //-----------------------------------------------------------

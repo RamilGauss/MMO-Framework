@@ -1,21 +1,18 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "DevTool_SlaveTank.h"
-
 #include <boost/asio/ip/impl/address_v4.ipp>
 
-#include "MakerObjectGeneral.h"
-#include "PrototypeMMOSlave.h"
+#include "DevTool_SlaveTank.h"
+
 #include "NetSystem.h"
 #include "GlobalParam.h"
 #include "IQtLib.h"
 #include "SlaveForm.h"
-#include "PrototypeTimer.h"
 #include "DevProtocol.h"
 
 using namespace std;
@@ -38,9 +35,9 @@ void TDevTool_SlaveTank::Init(vector<string>& arg)
   TInputCmdDevTool::TInput input;
   mInputCmd.Get(input);
 
-  bool resOpen = mComponent.mNet.Slave->Open(&PrototypeMMODescOpen(input.port));
+  bool resOpen = mComponent.mSlave->Get()->Open(&nsMMOEngine::TDescOpen(input.port));
   BL_ASSERT(resOpen);
-  mComponent.mNet.Slave->ConnectUp( input.ip, MASTER_PORT);
+  mComponent.mSlave->Get()->ConnectUp( input.ip, MASTER_PORT);
 
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SlaveTank::InitQtForm,this);
 
@@ -56,73 +53,71 @@ void TDevTool_SlaveTank::Event(nsEvent::TEvent* pEvent)
 {
   switch(pEvent->type_object)
   {
-    case PROTOTYPE_TYPE_MMO_ENGINE_SLAVE:
-      HandleFromMMOEngine((PrototypeMMOBaseEvent*)pEvent->pContainer->GetPtr());
+    case MODULE_MMO_ENGINE_SLAVE:
+      HandleFromMMOEngine((nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr());
       break;
-    case PROTOTYPE_TYPE_PHYSIC_ENGINE:
+    case MODULE_PHYSIC_ENGINE:
       break;
-    case PROTOTYPE_TYPE_MANAGER_OBJECT_GENERAL:
-      break;
-    case PROTOTYPE_TYPE_ALONE_GUI:
+    case MODULE_ALONE_GUI:
       HandleFromQt(pEvent);
       break;
-		case PROTOTYPE_TYPE_TIMER:
+		case MODULE_TIMER:
 			mTestControlTank.Send();
 			break;
   }
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SlaveTank::HandleFromMMOEngine(PrototypeMMOBaseEvent* pBE)
+void TDevTool_SlaveTank::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
 {
   string sEvent;  
   switch(pBE->mType)
   {
-    case eConnectDown:
+    case nsMMOEngine::eConnectDown:
       sEvent = "ConnectDown";
-      ConnectDown((PrototypeMMOEventConnectDown*)pBE);
+      ConnectDown((nsMMOEngine::TEventConnectDown*)pBE);
       break;
-    case eDisconnectDown:
+    case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
-      DisconnectDown((PrototypeMMOEventDisconnectDown*)pBE);
+      DisconnectDown((nsMMOEngine::TEventDisconnectDown*)pBE);
       break;
-    case eConnectUp:
+    case nsMMOEngine::eConnectUp:
       sEvent = "ConnectUp";
-      ConnectUp((PrototypeMMOEventConnectUp*)pBE);
+      ConnectUp((nsMMOEngine::TEventConnectUp*)pBE);
       break;
-    case eDisconnectUp:
+    case nsMMOEngine::eDisconnectUp:
       sEvent = "DisconnectUp";
-      DisconnectUp((PrototypeMMOEventDisconnectUp*)pBE);
+      DisconnectUp((nsMMOEngine::TEventDisconnectUp*)pBE);
       break;
-    case eError:
+    case nsMMOEngine::eError:
     {
       char sError[300];
-      PrototypeMMOEventError* pEr = (PrototypeMMOEventError*)pBE;
+      nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
       sprintf(sError, "Error code=%u", pEr->code);
       sEvent = sError;
     }
       break;
-    case eRecvFromDown:
+    case nsMMOEngine::eRecvFromDown:
       sEvent = "RecvFromDown";
       break;
-    case eRecvFromUp:
+    case nsMMOEngine::eRecvFromUp:
       sEvent = "RecvFromUp";
       break;
-    case eSaveContext:
+    case nsMMOEngine::eSaveContext:
       sEvent = "SaveContext";
-      // типа Сохранить данные нашего Клиента и отдать другому Slave
-      SaveContextClient((PrototypeMMOEventSaveContext*)pBE);
+      // С‚РёРїР° РЎРѕС…СЂР°РЅРёС‚СЊ РґР°РЅРЅС‹Рµ РЅР°С€РµРіРѕ РљР»РёРµРЅС‚Р° Рё РѕС‚РґР°С‚СЊ РґСЂСѓРіРѕРјСѓ Slave
+      SaveContextClient((nsMMOEngine::TEventSaveContext*)pBE);
       break;
-    case eRestoreContext:
+    case nsMMOEngine::eRestoreContext:
       sEvent = "RestoreContext";
-      RestoreContextClient((PrototypeMMOEventRestoreContext*)pBE);
+      RestoreContextClient((nsMMOEngine::TEventRestoreContext*)pBE);
       break;
-    case eTryLogin:
+    case nsMMOEngine::eTryLogin:
       sEvent = "TryLogin";
       break;
-    case eResultLogin:
+    case nsMMOEngine::eResultLogin:
       sEvent = "ResultLogin";
       break;
-    case eDestroyGroup:
+    case nsMMOEngine::eDestroyGroup:
       sEvent = "DestroyGroup";
       break;
   }
@@ -131,7 +126,7 @@ void TDevTool_SlaveTank::HandleFromMMOEngine(PrototypeMMOBaseEvent* pBE)
 //---------------------------------------------------------------------------------------------
 void TDevTool_SlaveTank::InitLog()
 {
-  GetLogger()->Register("Inner");// для логирования внутренних событий
+  GetLogger()->Register("Inner");// РґР»СЏ Р»РѕРіРёСЂРѕРІР°РЅРёСЏ РІРЅСѓС‚СЂРµРЅРЅРёС… СЃРѕР±С‹С‚РёР№
   GetLogger()->Init("SlaveTank");
 }
 //---------------------------------------------------------------------------------------------
@@ -166,7 +161,7 @@ void TDevTool_SlaveTank::ParseCmd(std::vector<std::string>& arg)
   mInputCmd.SetArg(arg);
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SlaveTank::ConnectUp(PrototypeMMOEventConnectUp* pBE)
+void TDevTool_SlaveTank::ConnectUp(nsMMOEngine::TEventConnectUp* pBE)
 {
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SlaveTank::ConnectUpQt,this);
   // ###
@@ -176,7 +171,7 @@ void TDevTool_SlaveTank::ConnectUp(PrototypeMMOEventConnectUp* pBE)
   //mComponent.mNet.Slave->SendUp(bp);
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SlaveTank::DisconnectUp(PrototypeMMOEventDisconnectUp* pBE)
+void TDevTool_SlaveTank::DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE)
 {
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SlaveTank::DisconnectUpQt,this);
 }
@@ -193,7 +188,7 @@ void TDevTool_SlaveTank::DisconnectUpQt()
     mSlaveForm->SetConnect(false);
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SlaveTank::ConnectDown(PrototypeMMOEventConnectDown* pEvent)
+void TDevTool_SlaveTank::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
   unsigned int* pID = new unsigned int(pEvent->id_session);
   mListID_SessionAdd.Add(pID);
@@ -201,7 +196,7 @@ void TDevTool_SlaveTank::ConnectDown(PrototypeMMOEventConnectDown* pEvent)
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SlaveTank::AddClientQt,this);
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SlaveTank::DisconnectDown(PrototypeMMOEventDisconnectDown* pEvent)
+void TDevTool_SlaveTank::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
   unsigned int* pID = new unsigned int(pEvent->id_session);
   mListID_SessionDelete.Add(pID);
@@ -218,11 +213,11 @@ void TDevTool_SlaveTank::AddClientQt()
 
     SlaveForm::TDesc desc;
     desc.id_session = ID;
-    bool resInfoSession = mComponent.mNet.Slave->GetInfoSession(ID, desc.ip_port);
+    bool resInfoSession = mComponent.mSlave->Get()->GetInfoSession(ID, desc.ip_port);
     BL_ASSERT(resInfoSession);
     if(mSlaveForm)
       mSlaveForm->Add(desc);
-    // следующий ID
+    // СЃР»РµРґСѓСЋС‰РёР№ ID
     mListID_SessionAdd.Remove(ppFirst);
     ppFirst = mListID_SessionAdd.GetFirst();
   }
@@ -237,26 +232,26 @@ void TDevTool_SlaveTank::DeleteClientQt()
 
     if(mSlaveForm)
       mSlaveForm->Delete(ID);
-    // следующий ID
+    // СЃР»РµРґСѓСЋС‰РёР№ ID
     mListID_SessionDelete.Remove(ppFirst);
     ppFirst = mListID_SessionDelete.GetFirst();
   }
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SlaveTank::SaveContextClient(PrototypeMMOEventSaveContext* pEvent)
+void TDevTool_SlaveTank::SaveContextClient(nsMMOEngine::TEventSaveContext* pEvent)
 {
-  mComponent.mNet.Slave->SaveContext(pEvent->id_session, NULL, 0);
+  mComponent.mSlave->Get()->SaveContext(pEvent->id_session, NULL, 0);
 
-  // удалить из списка этого Клиента
+  // СѓРґР°Р»РёС‚СЊ РёР· СЃРїРёСЃРєР° СЌС‚РѕРіРѕ РљР»РёРµРЅС‚Р°
   unsigned int* pID = new unsigned int(pEvent->id_session);
   mListID_SessionDelete.Add(pID);
 
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SlaveTank::DeleteClientQt,this);
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SlaveTank::RestoreContextClient(PrototypeMMOEventRestoreContext* pEvent)
+void TDevTool_SlaveTank::RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent)
 {
-  // добавить Клиента
+  // РґРѕР±Р°РІРёС‚СЊ РљР»РёРµРЅС‚Р°
   unsigned int* pID = new unsigned int(pEvent->id_session);
   mListID_SessionAdd.Add(pID);
 

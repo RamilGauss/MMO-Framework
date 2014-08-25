@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,7 +11,7 @@ See for more information License.h.
 #include "BaseEvent.h"
 #include "Master.h"
 
-// только Асинхронные события
+// С‚РѕР»СЊРєРѕ РђСЃРёРЅС…СЂРѕРЅРЅС‹Рµ СЃРѕР±С‹С‚РёСЏ
 
 namespace nsMMOEngine
 {

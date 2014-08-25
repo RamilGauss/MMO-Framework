@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -23,31 +23,31 @@ See for more information License.h.
 bool DllExport ns_Init();
 void DllExport ns_Done();
 
-DllExport char* ns_getHostIP( const char* name, int numNetWork = 0 ); // получение ip-адреса по имени хоста
-DllExport char* ns_getSelfIP(int numNetWork=0);                   // получение ip-адреса
+DllExport char* ns_getHostIP( const char* name, int numNetWork = 0 ); // РїРѕР»СѓС‡РµРЅРёРµ ip-Р°РґСЂРµСЃР° РїРѕ РёРјРµРЅРё С…РѕСЃС‚Р°
+DllExport char* ns_getSelfIP(int numNetWork=0);                   // РїРѕР»СѓС‡РµРЅРёРµ ip-Р°РґСЂРµСЃР°
 
-// функция-обертка для inet_addr()
+// С„СѓРЅРєС†РёСЏ-РѕР±РµСЂС‚РєР° РґР»СЏ inet_addr()
 DllExport unsigned long ns_inet_addr( const char* addr );
 
-// функция-обертка для inet_ntoa()
+// С„СѓРЅРєС†РёСЏ-РѕР±РµСЂС‚РєР° РґР»СЏ inet_ntoa()
 DllExport char* ns_str_addr( unsigned long addr );
 
-// преобразовать имя носта или строку с его ip-адресом в число
-// Результат: двоичный код адреса с сетевым расположением байт или INADDR_NONE (-1)
+// РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РёРјСЏ РЅРѕСЃС‚Р° РёР»Рё СЃС‚СЂРѕРєСѓ СЃ РµРіРѕ ip-Р°РґСЂРµСЃРѕРј РІ С‡РёСЃР»Рѕ
+// Р РµР·СѓР»СЊС‚Р°С‚: РґРІРѕРёС‡РЅС‹Р№ РєРѕРґ Р°РґСЂРµСЃР° СЃ СЃРµС‚РµРІС‹Рј СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµРј Р±Р°Р№С‚ РёР»Рё INADDR_NONE (-1)
 unsigned long ns_HostOrIPtoAddr( const char* hostOrIp );
 
-// Конвертация значения из машинного в сетевой порядок байт
+// РљРѕРЅРІРµСЂС‚Р°С†РёСЏ Р·РЅР°С‡РµРЅРёСЏ РёР· РјР°С€РёРЅРЅРѕРіРѕ РІ СЃРµС‚РµРІРѕР№ РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚
 unsigned short DllExport ns_htons( unsigned short value );
 unsigned long  ns_htonl( unsigned long value );
 
-// Конвертация значения из сетевого в машинный порядок байт
+// РљРѕРЅРІРµСЂС‚Р°С†РёСЏ Р·РЅР°С‡РµРЅРёСЏ РёР· СЃРµС‚РµРІРѕРіРѕ РІ РјР°С€РёРЅРЅС‹Р№ РїРѕСЂСЏРґРѕРє Р±Р°Р№С‚
 unsigned short DllExport ns_ntohs( unsigned short value );
 unsigned long  ns_ntohl( unsigned long value );
 
-// получить сетевой адрес для сетевого адаптера с заданным именем
+// РїРѕР»СѓС‡РёС‚СЊ СЃРµС‚РµРІРѕР№ Р°РґСЂРµСЃ РґР»СЏ СЃРµС‚РµРІРѕРіРѕ Р°РґР°РїС‚РµСЂР° СЃ Р·Р°РґР°РЅРЅС‹Рј РёРјРµРЅРµРј
 bool get_ip_for_net_interface( const char* interface_name, char* out_buf );  
 
-// поиск первого доступного с именем интерфейса ethN
+// РїРѕРёСЃРє РїРµСЂРІРѕРіРѕ РґРѕСЃС‚СѓРїРЅРѕРіРѕ СЃ РёРјРµРЅРµРј РёРЅС‚РµСЂС„РµР№СЃР° ethN
 bool get_ip_first_eth(char* out_buf);
 
 #endif

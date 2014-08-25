@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -25,14 +25,14 @@ void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port,
   Context()->SetConnect(false);
   if(Begin()==false)
   {
-    // âåðõíåå ñîåäèíåíèå çàíÿòî âûïîëíåíèåì äðóãîãî ñöåíàðèÿ - òàêîãî íå äîëæíî áûòü
-    // ãåíåðàöèÿ îøèáêè
+    // Ð²ÐµÑ€Ñ…Ð½ÐµÐµ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ð·Ð°Ð½ÑÑ‚Ð¾ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸ÐµÐ¼ Ð´Ñ€ÑƒÐ³Ð¾Ð³Ð¾ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ñ - Ñ‚Ð°ÐºÐ¾Ð³Ð¾ Ð½Ðµ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ
+    // Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ¸
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TScenarioLoginSlave::ConnectToMaster() scenario is not active.\n");
     BL_FIX_BUG();
     return;
   }
-  // çàêðûòü ñîåäèíåíèå
+  // Ð·Ð°ÐºÑ€Ñ‹Ñ‚ÑŒ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ
   Context()->GetMS()->CloseSession(Context()->GetID_Session());
   TBreakPacket bp;
   THeaderFromSlave h;
@@ -40,7 +40,7 @@ void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port,
   Context()->SetID_Session( Context()->GetMS()->Send(ip, port, bp, subNet) );
   if(Context()->GetID_Session()==INVALID_HANDLE_SESSION)
   {
-    // Ãåíåðàöèÿ îøèáêè
+    // Ð“ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ¸
     TEventError event;
     event.code = LoginSlave_MasterNotReady;
     Context()->GetSE()->AddEventCopy(&event, sizeof(event));
@@ -55,7 +55,7 @@ void TScenarioLoginSlave::Work()
   unsigned int now = ht_GetMSCount();
   if(Context()->GetTimeWait()<now)
   {
-    // Ãåíåðàöèÿ îøèáêè
+    // Ð“ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ¸
     TEventError event;
     event.code = LoginSlave_NoAnswerFromMaster;
     Context()->GetSE()->AddEventCopy(&event, sizeof(event));
@@ -74,8 +74,8 @@ void TScenarioLoginSlave::RecvFromSlave(TDescRecvSession* pDesc)
   if(Begin()==false)
   {
     End();
-    // âåðõíåå ñîåäèíåíèå çàíÿòî âûïîëíåíèåì äðóãîãî ñöåíàðèÿ - òàêîãî íå äîëæíî áûòü
-    // âíóòðåííÿÿ îøèáêà
+    // Ð²ÐµÑ€Ñ…Ð½ÐµÐµ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ð·Ð°Ð½ÑÑ‚Ð¾ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸ÐµÐ¼ Ð´Ñ€ÑƒÐ³Ð¾Ð³Ð¾ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ñ - Ñ‚Ð°ÐºÐ¾Ð³Ð¾ Ð½Ðµ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ
+    // Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð¾ÑˆÐ¸Ð±ÐºÐ°
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TScenarioLoginSlave::RecvFromSlave() scenario is not active.\n");
     BL_FIX_BUG();

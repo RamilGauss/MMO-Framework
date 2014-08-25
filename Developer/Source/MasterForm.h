@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -29,7 +29,7 @@ public:
     TIP_Port     ip_port;
   };
 
-  // добавление и удаление мастера
+  // РґРѕР±Р°РІР»РµРЅРёРµ Рё СѓРґР°Р»РµРЅРёРµ РјР°СЃС‚РµСЂР°
   void Add(TDesc& desc);               
   void Delete(unsigned int id_session);
 protected:

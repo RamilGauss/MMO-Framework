@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -19,7 +19,7 @@ namespace nsMMOEngine
 #endif
   struct DllExport TBaseEvent
   {
-    // переназначить в наследуемом классе
+    // РїРµСЂРµРЅР°Р·РЅР°С‡РёС‚СЊ РІ РЅР°СЃР»РµРґСѓРµРјРѕРј РєР»Р°СЃСЃРµ
     tTypeEvent mType;
 		TContainer c;
   };

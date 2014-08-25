@@ -38,6 +38,10 @@ namespace base
 		void run();
 		void quit();
 
+    //###
+    bool work();
+    //###
+
 		void setWindowCaption(const std::wstring& _text);
 		void makeScreenShot();
 
@@ -52,6 +56,7 @@ namespace base
 
 	/*internal:*/
 		Ogre::SceneManager* getSceneManager();
+		Ogre::Root* getRoot();
 		Ogre::Camera* getCamera();
 
 	protected:

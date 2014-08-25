@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -51,11 +51,11 @@ namespace nsMMOEngine
     void SetUserPtr(void* p);
     void* GetUserPtr();
 
-    // можно ли сейчас удалить
+    // РјРѕР¶РЅРѕ Р»Рё СЃРµР№С‡Р°СЃ СѓРґР°Р»РёС‚СЊ
     bool CanDelete();
-    // удалить контекст позже, после дезактивации
+    // СѓРґР°Р»РёС‚СЊ РєРѕРЅС‚РµРєСЃС‚ РїРѕР·Р¶Рµ, РїРѕСЃР»Рµ РґРµР·Р°РєС‚РёРІР°С†РёРё
     void DeleteLater();
-    // поставили ли на удаление позже
+    // РїРѕСЃС‚Р°РІРёР»Рё Р»Рё РЅР° СѓРґР°Р»РµРЅРёРµ РїРѕР·Р¶Рµ
     bool IsSetDeleteLater();
   protected:
   };

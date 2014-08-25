@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -49,26 +49,26 @@ namespace nsMMOEngine
     virtual void DelayBegin();
   private:
     TContextScFlow* Context(){return (TContextScFlow*)mCurContext;}
-    // для Send
+    // РґР»СЏ Send
     void HandlePacket(TBreakPacket& bp, bool check);
-    // для Recv
+    // РґР»СЏ Recv
     template <class TypeSrc>
     void Recv(TDescRecvSession* pDesc)
     {
-      // защита от хака, могут прислать пакет меньшего размера, сервер выйдет за границы памяти и упадет
+      // Р·Р°С‰РёС‚Р° РѕС‚ С…Р°РєР°, РјРѕРіСѓС‚ РїСЂРёСЃР»Р°С‚СЊ РїР°РєРµС‚ РјРµРЅСЊС€РµРіРѕ СЂР°Р·РјРµСЂР°, СЃРµСЂРІРµСЂ РІС‹Р№РґРµС‚ Р·Р° РіСЂР°РЅРёС†С‹ РїР°РјСЏС‚Рё Рё СѓРїР°РґРµС‚
       if(pDesc->sizeData < sizeof(THeaderFlow))
         return;
-      // создать событие
+      // СЃРѕР·РґР°С‚СЊ СЃРѕР±С‹С‚РёРµ
       TypeSrc* pEvent = new TypeSrc;
-      // отцепиться от памяти, в которой содержится пакет
+      // РѕС‚С†РµРїРёС‚СЊСЃСЏ РѕС‚ РїР°РјСЏС‚Рё, РІ РєРѕС‚РѕСЂРѕР№ СЃРѕРґРµСЂР¶РёС‚СЃСЏ РїР°РєРµС‚
       pDesc->c.Unlink();
-      // отдать память под контроль события
+      // РѕС‚РґР°С‚СЊ РїР°РјСЏС‚СЊ РїРѕРґ РєРѕРЅС‚СЂРѕР»СЊ СЃРѕР±С‹С‚РёСЏ
       pEvent->c.Entrust(pDesc->data, pDesc->sizeData);
 			pEvent->data     = pDesc->data     + sizeof(THeaderFlow);
 			pEvent->sizeData = pDesc->sizeData - sizeof(THeaderFlow);
-      // откуда пришел пакет - сессия
+      // РѕС‚РєСѓРґР° РїСЂРёС€РµР» РїР°РєРµС‚ - СЃРµСЃСЃРёСЏ
       pEvent->id_session = pDesc->id_session;
-      // добавить событие без копирования и указать истинное время создания события в транспорте
+      // РґРѕР±Р°РІРёС‚СЊ СЃРѕР±С‹С‚РёРµ Р±РµР· РєРѕРїРёСЂРѕРІР°РЅРёСЏ Рё СѓРєР°Р·Р°С‚СЊ РёСЃС‚РёРЅРЅРѕРµ РІСЂРµРјСЏ СЃРѕР·РґР°РЅРёСЏ СЃРѕР±С‹С‚РёСЏ РІ С‚СЂР°РЅСЃРїРѕСЂС‚Рµ
       //Context()->GetSE()->AddEventWithoutCopy(pEvent, sizeof(TypeSrc), pDesc->time_ms);
 
       Context()->GetSE()->AddEventWithoutCopy<TypeSrc>(pEvent, pDesc->time_ms);

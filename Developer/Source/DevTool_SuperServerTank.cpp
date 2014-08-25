@@ -1,24 +1,20 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "DevTool_SuperServerTank.h"
-
 #include <boost/asio/ip/impl/address_v4.ipp>
 
+#include "DevTool_SuperServerTank.h"
+
 #include "SuperServerForm.h"
-#include "../QtLib/IQtLib.h"
+#include "IQtLib.h"
 #include "GlobalParam.h"
 #include "NetSystem.h"
 #include "BL_Debug.h"
-#include "PrototypeTimer.h"
-
 #include "DevProtocol.h"
-#include "PrototypeMMOStructs.h"
-#include "PrototypeMMOSuperServer.h"
 
 using namespace std;
 
@@ -40,12 +36,12 @@ void TDevTool_SuperServerTank::Init(std::vector<std::string>& arg)
   TInputCmdDevTool::TInput input;
   mInputCmd.Get(input);
 
-  bool resOpen = mComponent.mNet.SuperServer->Open(&PrototypeMMODescOpen(input.port));
+  bool resOpen = mComponent.mSuperServer->Get()->Open(&nsMMOEngine::TDescOpen(input.port));
   BL_ASSERT(resOpen);
 
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SuperServerTank::InitQtForm,this);
   
-  // для вызова каждый цикл, время выставить в 0
+  // РґР»СЏ РІС‹Р·РѕРІР° РєР°Р¶РґС‹Р№ С†РёРєР», РІСЂРµРјСЏ РІС‹СЃС‚Р°РІРёС‚СЊ РІ 0
   //mComponent.mTimerFirstEvent->New(0);
   //mComponent.mTimerLastEvent->New(0);
 }
@@ -59,24 +55,22 @@ void TDevTool_SuperServerTank::Event(nsEvent::TEvent* pEvent)
 {
   switch(pEvent->type_object)
   {
-    case PROTOTYPE_TYPE_MMO_ENGINE_SUPER_SERVER:
-      HandleFromMMOEngine((PrototypeMMOBaseEvent*)pEvent->pContainer->GetPtr());
+    case MODULE_MMO_ENGINE_SUPER_SERVER:
+      HandleFromMMOEngine((nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr());
       break;
-    case PROTOTYPE_TYPE_PHYSIC_ENGINE:
+    case MODULE_PHYSIC_ENGINE:
       break;
-    case PROTOTYPE_TYPE_MANAGER_OBJECT_GENERAL:
-      break;
-    case PROTOTYPE_TYPE_ALONE_GUI:
+    case MODULE_ALONE_GUI:
       HandleFromQt(pEvent);
       break;
-    case PROTOTYPE_TYPE_TIMER:
+    case MODULE_TIMER:
       break;
   }
 }
 //---------------------------------------------------------------------------------------------
 void TDevTool_SuperServerTank::InitLog()
 {
-  GetLogger()->Register("Inner");// для логирования внутренних событий
+  GetLogger()->Register("Inner");// РґР»СЏ Р»РѕРіРёСЂРѕРІР°РЅРёСЏ РІРЅСѓС‚СЂРµРЅРЅРёС… СЃРѕР±С‹С‚РёР№
   GetLogger()->Init("SuperServerTank");
 }
 //---------------------------------------------------------------------------------------------
@@ -99,34 +93,34 @@ void TDevTool_SuperServerTank::HandleFromQt(nsEvent::TEvent* pEvent)
   }
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SuperServerTank::HandleFromMMOEngine(PrototypeMMOBaseEvent* pBE)
+void TDevTool_SuperServerTank::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
 {
   string sEvent;  
   switch(pBE->mType)
   {
-    case eConnectDown:
+    case nsMMOEngine::eConnectDown:
       sEvent = "ConnectDown";
-      ConnectDown((PrototypeMMOEventConnectDown*)pBE);
+      ConnectDown((nsMMOEngine::TEventConnectDown*)pBE);
       break;
-    case eDisconnectDown:
+    case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
-      DisconnectDown((PrototypeMMOEventDisconnectDown*)pBE);
+      DisconnectDown((nsMMOEngine::TEventDisconnectDown*)pBE);
       break;
-    case eConnectUp:
+    case nsMMOEngine::eConnectUp:
       sEvent = "ConnectUp";
       break;
-    case eDisconnectUp:
+    case nsMMOEngine::eDisconnectUp:
       sEvent = "DisconnectUp";
       break;
-    case eError:
+    case nsMMOEngine::eError:
     {
       char sError[300];
-      PrototypeMMOEventError* pEr = (PrototypeMMOEventError*)pBE;
+      nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
       sprintf(sError, "Error code=%u", pEr->code);
       sEvent = sError;
     }
       break;
-    case eRecvFromDown:
+    case nsMMOEngine::eRecvFromDown:
       sEvent = "RecvFromDown";
       {
         // ###
@@ -137,29 +131,29 @@ void TDevTool_SuperServerTank::HandleFromMMOEngine(PrototypeMMOBaseEvent* pBE)
         //mComponent.mNet.SuperServer->SendDown(id_session,bp);
       }
       break;
-    case eRecvFromUp:
+    case nsMMOEngine::eRecvFromUp:
       sEvent = "RecvFromUp";
       break;
-    case eSaveContext:
+    case nsMMOEngine::eSaveContext:
       sEvent = "SaveContext";
       break;
-    case eRestoreContext:
+    case nsMMOEngine::eRestoreContext:
       sEvent = "RestoreContext";
       break;
-    case eTryLogin:
+    case nsMMOEngine::eTryLogin:
       sEvent = "TryLogin";
       break;
-    case eResultLogin:
+    case nsMMOEngine::eResultLogin:
       sEvent = "ResultLogin";
       break;
-    case eDestroyGroup:
+    case nsMMOEngine::eDestroyGroup:
       sEvent = "DestroyGroup";
       break;
   }
   GetLogger("Inner")->WriteF_time("MMOEngine: %s.\n",sEvent.data());
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SuperServerTank::ConnectDown(PrototypeMMOEventConnectDown* pEvent)
+void TDevTool_SuperServerTank::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
   unsigned int* pID = new unsigned int(pEvent->id_session);
   mListID_SessionAdd.Add(pID);
@@ -167,7 +161,7 @@ void TDevTool_SuperServerTank::ConnectDown(PrototypeMMOEventConnectDown* pEvent)
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SuperServerTank::AddMasterQt,this);
 }
 //---------------------------------------------------------------------------------------------
-void TDevTool_SuperServerTank::DisconnectDown(PrototypeMMOEventDisconnectDown* pEvent)
+void TDevTool_SuperServerTank::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
   unsigned int* pID = new unsigned int(pEvent->id_session);
   mListID_SessionDelete.Add(pID);
@@ -194,11 +188,11 @@ void TDevTool_SuperServerTank::AddMasterQt()
     
     SuperServerForm::TDesc desc;
     desc.id_session = ID;
-    bool resInfoSession = mComponent.mNet.SuperServer->GetInfoSession(ID, desc.ip_port);
+    bool resInfoSession = mComponent.mSuperServer->Get()->GetInfoSession(ID, desc.ip_port);
     BL_ASSERT(resInfoSession);
     if(mSuperServerForm)
       mSuperServerForm->Add(desc);
-    // следующий ID
+    // СЃР»РµРґСѓСЋС‰РёР№ ID
     mListID_SessionAdd.Remove(ppFirst);
     ppFirst = mListID_SessionAdd.GetFirst();
   }
@@ -213,7 +207,7 @@ void TDevTool_SuperServerTank::DeleteMasterQt()
 
     if(mSuperServerForm)
       mSuperServerForm->Delete(ID);
-    // следующий ID
+    // СЃР»РµРґСѓСЋС‰РёР№ ID
     mListID_SessionDelete.Remove(ppFirst);
     ppFirst = mListID_SessionDelete.GetFirst();
   }

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -19,12 +19,12 @@ namespace nsMMOEngine
   class DllExport TSlave : public TActiveServer
   {
     enum{
-      eDeltaSynchro = 300,// мс
+      eDeltaSynchro = 300,// РјСЃ
     };
 
     unsigned int mTimeNeedSendSynchro;
     boost::scoped_ptr<TManagerContextClient_slave> mMngContextClient;
-		// только для Клиентов, которые считают текущий Slave реципиентом
+		// С‚РѕР»СЊРєРѕ РґР»СЏ РљР»РёРµРЅС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ СЃС‡РёС‚Р°СЋС‚ С‚РµРєСѓС‰РёР№ Slave СЂРµС†РёРїРёРµРЅС‚РѕРј
     boost::scoped_ptr<TManagerContextClient_slave> mMngContextClientSlaveRecipient;
   public:
     TSlave();
@@ -37,12 +37,12 @@ namespace nsMMOEngine
     // BaseServer
     virtual void SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket bp);
 
-		struct TDescDownSlave // для GetDescDown
+		struct TDescDownSlave // РґР»СЏ GetDescDown
 		{
 			unsigned int id_session;
 		};
 		virtual int  GetCountDown();
-		virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc имеет тип TDescDownSlave
+		virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc РёРјРµРµС‚ С‚РёРї TDescDownSlave
     virtual void SendDown(unsigned int id_session, TBreakPacket bp, bool check = true);
     // ActiveServer      
     virtual void ConnectUp(unsigned int ip, unsigned short port, unsigned char subNet = 0);

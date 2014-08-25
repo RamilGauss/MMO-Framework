@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -38,14 +38,14 @@ TCryptoAES_Impl::~TCryptoAES_Impl()
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::GenerateKey( eCountBits c )
 {
-  int sizeKey = c / 8;// на 8 бит
+  int sizeKey = c / 8;// РЅР° 8 Р±РёС‚
   mKey.SetDataByCount(NULL, sizeKey);
   int res = RAND_bytes((unsigned char*)mKey.GetPtr(), mKey.GetSize());
 
   if(res==0)
     return false;
 
-  // Выбираем алгоритм шифрования
+  // Р’С‹Р±РёСЂР°РµРј Р°Р»РіРѕСЂРёС‚Рј С€РёС„СЂРѕРІР°РЅРёСЏ
   switch(c)
   {
     case e128:
@@ -63,9 +63,9 @@ bool TCryptoAES_Impl::GenerateKey( eCountBits c )
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::Encrypt( void* pIn, int sizeIn, TContainer& c_out)
 {
-	// Обнуляем структуру контекста
+	// РћР±РЅСѓР»СЏРµРј СЃС‚СЂСѓРєС‚СѓСЂСѓ РєРѕРЅС‚РµРєСЃС‚Р°
 	EVP_CIPHER_CTX_init(CONTEXT);
-	// Инициализируем контекст алгоритма
+	// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РєРѕРЅС‚РµРєСЃС‚ Р°Р»РіРѕСЂРёС‚РјР°
 	int res = EVP_EncryptInit_ex(CONTEXT, CIPHER, NULL, (const unsigned char*)mKey.GetPtr(), iv);
 	if(res==-1)
 		return false;
@@ -73,7 +73,7 @@ bool TCryptoAES_Impl::Encrypt( void* pIn, int sizeIn, TContainer& c_out)
   c_out.SetDataByCount(NULL, sizeIn);
 
 	int sizeOut;
-  // Шифруем данные
+  // РЁРёС„СЂСѓРµРј РґР°РЅРЅС‹Рµ
   if(!EVP_EncryptUpdate(CONTEXT, (unsigned char*)c_out.GetPtr(), &sizeOut, (const unsigned char *)pIn, sizeIn))
 		return false;
   if(!EVP_EncryptFinal_ex(CONTEXT, (unsigned char*)c_out.GetPtr() + sizeOut, &sizeOut))
@@ -85,9 +85,9 @@ bool TCryptoAES_Impl::Encrypt( void* pIn, int sizeIn, TContainer& c_out)
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::Decrypt(void* pIn, int sizeIn, TContainer& c_out)
 {
-	// Обнуляем структуру контекста
+	// РћР±РЅСѓР»СЏРµРј СЃС‚СЂСѓРєС‚СѓСЂСѓ РєРѕРЅС‚РµРєСЃС‚Р°
 	EVP_CIPHER_CTX_init(CONTEXT);
-	// Инициализируем контекст алгоритма
+	// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РєРѕРЅС‚РµРєСЃС‚ Р°Р»РіРѕСЂРёС‚РјР°
 	int res = EVP_DecryptInit_ex(CONTEXT, CIPHER, NULL, (const unsigned char*)mKey.GetPtr(), iv);
 	if(res==-1)
 		return false;
@@ -95,10 +95,10 @@ bool TCryptoAES_Impl::Decrypt(void* pIn, int sizeIn, TContainer& c_out)
 	c_out.SetDataByCount(NULL, sizeIn);
 	
 	int sizeOut;
-	// дешифруем данные
+	// РґРµС€РёС„СЂСѓРµРј РґР°РЅРЅС‹Рµ
 	if(!EVP_DecryptUpdate(CONTEXT, (unsigned char*)c_out.GetPtr(), &sizeOut, (const unsigned char *)pIn, sizeIn)) 
 		return false;
-	// Завершаем процесс дешифрования
+	// Р—Р°РІРµСЂС€Р°РµРј РїСЂРѕС†РµСЃСЃ РґРµС€РёС„СЂРѕРІР°РЅРёСЏ
 	if(!EVP_DecryptFinal_ex(CONTEXT, (unsigned char*)c_out.GetPtr() + sizeOut, &sizeOut)) 
 		return false; 
 
@@ -108,18 +108,18 @@ bool TCryptoAES_Impl::Decrypt(void* pIn, int sizeIn, TContainer& c_out)
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::Decrypt(void* pIn, int sizeIn, TContainerPtr& c_out)
 {
-  // Обнуляем структуру контекста
+  // РћР±РЅСѓР»СЏРµРј СЃС‚СЂСѓРєС‚СѓСЂСѓ РєРѕРЅС‚РµРєСЃС‚Р°
   EVP_CIPHER_CTX_init(CONTEXT);
-  // Инициализируем контекст алгоритма
+  // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РєРѕРЅС‚РµРєСЃС‚ Р°Р»РіРѕСЂРёС‚РјР°
   int res = EVP_DecryptInit_ex(CONTEXT, CIPHER, NULL, (const unsigned char*)mKey.GetPtr(), iv);
   if(res==-1)
     return false;
 
   int sizeOut;
-  // дешифруем данные
+  // РґРµС€РёС„СЂСѓРµРј РґР°РЅРЅС‹Рµ
   if(!EVP_DecryptUpdate(CONTEXT, (unsigned char*)c_out.GetPtr(), &sizeOut, (const unsigned char *)pIn, sizeIn)) 
     return false;
-  // Завершаем процесс дешифрования
+  // Р—Р°РІРµСЂС€Р°РµРј РїСЂРѕС†РµСЃСЃ РґРµС€РёС„СЂРѕРІР°РЅРёСЏ
   if(!EVP_DecryptFinal_ex(CONTEXT, (unsigned char*)c_out.GetPtr() + sizeOut, &sizeOut)) 
     return false; 
 
@@ -141,7 +141,7 @@ void TCryptoAES_Impl::SetPublicKey(void* pKey, int sizeKey)
   mKey.SetDataByCount((char*)pKey, sizeKey);
 
 	int sizeCipher = sizeKey*8;
-	// Выбираем алгоритм шифрования
+	// Р’С‹Р±РёСЂР°РµРј Р°Р»РіРѕСЂРёС‚Рј С€РёС„СЂРѕРІР°РЅРёСЏ
 	switch(sizeCipher)
 	{
 		case e128:

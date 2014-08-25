@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef DEF_MACRO_MAKER_PREPARE_H
 #define DEF_MACRO_MAKER_PREPARE_H
 
-// подготовка ( то, что для использования, смотри ниже )
+// РїРѕРґРіРѕС‚РѕРІРєР° ( С‚Рѕ, С‡С‚Рѕ РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ, СЃРјРѕС‚СЂРё РЅРёР¶Рµ )
 #define MACRO_MAKER_H_DECL(DECL, NameInterface, NameRealize, param_for_decl) \
 class I##NameInterface; \
 class DECL TMaker##NameRealize \

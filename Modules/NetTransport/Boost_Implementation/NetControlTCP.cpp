@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,7 +20,8 @@ See for more information License.h.
 
 using namespace std;
 
-TNetControlTCP::TNetControlTCP(boost::asio::io_service& io_service):
+TNetControlTCP::TNetControlTCP(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service):
+INetControl(pNTB),
 mDevice(io_service)
 {
   mReadSize = 0;
@@ -50,7 +51,7 @@ bool TNetControlTCP::Connect(unsigned int ip, unsigned short port)
 //----------------------------------------------------------------------------------
 void TNetControlTCP::Send(unsigned int ip, unsigned short port, TBreakPacket bp)
 {
-  // добавить заголовки в начало  - 2 байт под заголовок + 4 байта - размер данных
+  // РґРѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРєРё РІ РЅР°С‡Р°Р»Рѕ  - 2 Р±Р°Р№С‚ РїРѕРґ Р·Р°РіРѕР»РѕРІРѕРє + 4 Р±Р°Р№С‚Р° - СЂР°Р·РјРµСЂ РґР°РЅРЅС‹С…
   THeaderTCP header;
   header.size = bp.GetSize();
   bp.PushFront((char*)&header, sizeof(header));
@@ -83,13 +84,13 @@ void TNetControlTCP::RecvEvent(const boost::system::error_code& error,size_t byt
   {
     THistoryPacketTCP::TResult res;
     mHistory.Analiz(beginPos, res, mReadSize, mBuffer);
-    // если ошибка парсинга - удалить и выйти
+    // РµСЃР»Рё РѕС€РёР±РєР° РїР°СЂСЃРёРЅРіР° - СѓРґР°Р»РёС‚СЊ Рё РІС‹Р№С‚Рё
     if(res.parse_error)
     {
       DeleteSelf();
       return;
     }
-    // завершен ли пакет
+    // Р·Р°РІРµСЂС€РµРЅ Р»Рё РїР°РєРµС‚
     if(res.complete)
     {
       INetTransport::TDescRecv descRecv;

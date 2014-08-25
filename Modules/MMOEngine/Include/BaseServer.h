@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -19,7 +19,7 @@ namespace nsMMOEngine
     TBaseServer();
     virtual ~TBaseServer();
 
-    // проверить на доверие сессию
+    // РїСЂРѕРІРµСЂРёС‚СЊ РЅР° РґРѕРІРµСЂРёРµ СЃРµСЃСЃРёСЋ
     bool IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 
                            void* login_password, int size_login_password);
 
@@ -27,7 +27,7 @@ namespace nsMMOEngine
     // this method will be realize in future
     virtual void DisconnectByKeyClient(unsigned int id_client);// = 0;
 
-		// всегда с гарантией доставки, т.к. тогда не имеет смысла так долго пересылать (слишком много затрат сил, а гарантии нет?)
+		// РІСЃРµРіРґР° СЃ РіР°СЂР°РЅС‚РёРµР№ РґРѕСЃС‚Р°РІРєРё, С‚.Рє. С‚РѕРіРґР° РЅРµ РёРјРµРµС‚ СЃРјС‹СЃР»Р° С‚Р°Рє РґРѕР»РіРѕ РїРµСЂРµСЃС‹Р»Р°С‚СЊ (СЃР»РёС€РєРѕРј РјРЅРѕРіРѕ Р·Р°С‚СЂР°С‚ СЃРёР», Р° РіР°СЂР°РЅС‚РёРё РЅРµС‚?)
     virtual void SendByClientKey(std::list<unsigned int>& l, TBreakPacket bp) = 0;
 
     virtual void SendDown(unsigned int id_session, TBreakPacket bp, bool check = true) = 0;

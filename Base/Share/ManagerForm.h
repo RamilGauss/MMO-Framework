@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -18,22 +18,22 @@ class DllExport TManagerForm
   bmStrPtr mMapNameForm;
 public:
 
-  // реализация класса не зависит от GUI
+  // СЂРµР°Р»РёР·Р°С†РёСЏ РєР»Р°СЃСЃР° РЅРµ Р·Р°РІРёСЃРёС‚ РѕС‚ GUI
   TManagerForm();
   virtual ~TManagerForm();
 
-  // добавление
+  // РґРѕР±Р°РІР»РµРЅРёРµ
   void Add(std::string& name, void* pForm);
 
-  // поиск
+  // РїРѕРёСЃРє
   void* GetFormByName(std::string& name);
-  std::string GetNameForm(void* pForm);// если не найдет вернет NULL
+  std::string GetNameForm(void* pForm);// РµСЃР»Рё РЅРµ РЅР°Р№РґРµС‚ РІРµСЂРЅРµС‚ NULL
 
-  // удаление
+  // СѓРґР°Р»РµРЅРёРµ
   void RemoveFormByName(std::string name);
   void RemoveForm(void*);
 
-  // чистка
+  // С‡РёСЃС‚РєР°
   void Clear();
 };
 

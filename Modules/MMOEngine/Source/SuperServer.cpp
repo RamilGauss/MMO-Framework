@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -48,7 +48,7 @@ void TSuperServer::DisconnectInherit(unsigned int id_session)
   if(mMngContextMaster->FindContextBySession(id_session)==NULL)
     return;
   
-  // ïåðå÷èñëèòü âñåõ êëèåíòîâ, êîòîðûå ñèäÿò íà ýòîì ìàñòåðå è èõ óäàëåíèå
+  // Ð¿ÐµÑ€ÐµÑ‡Ð¸ÑÐ»Ð¸Ñ‚ÑŒ Ð²ÑÐµÑ… ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð¾Ð², ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ ÑÐ¸Ð´ÑÑ‚ Ð½Ð° ÑÑ‚Ð¾Ð¼ Ð¼Ð°ÑÑ‚ÐµÑ€Ðµ Ð¸ Ð¸Ñ… ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ðµ
   int cClient ;
   if(mMngContextMaster->GetCountClientKey(id_session, cClient)==false)
     return;
@@ -83,7 +83,7 @@ bool TSuperServer::GetDescDown(int index, void* pDesc, int& sizeDesc)
   unsigned int id_session;
   if(mMngContextMaster->GetSessionByIndex(index, id_session)==false)
     return false;
-  // êîë-âî êëèåíòîâ íà ääííîì ìàñòåðå
+  // ÐºÐ¾Ð»-Ð²Ð¾ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð¾Ð² Ð½Ð° Ð´Ð´Ð½Ð½Ð¾Ð¼ Ð¼Ð°ÑÑ‚ÐµÑ€Ðµ
   int countClient;
   if(mMngContextMaster->GetCountClientKey(id_session, countClient)==false)
     return false;
@@ -109,15 +109,15 @@ void TSuperServer::NeedContextLoginMaster(unsigned int id_session)
   TContainerContextSc* pC = mMngContextMaster->FindContextBySession(id_session);
   if(pC)
   {
-    // âíóòðåííÿÿ îøèáêà
+    // Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð¾ÑˆÐ¸Ð±ÐºÐ°
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TSuperServer::LoginMaster() against try authorized.\n");
     return;
   }
   pC = mMngContextMaster->AddContext(id_session);
-  // íàçíà÷èòü êîíòåêñò äëÿ ñöåíàðèÿ
+  // Ð½Ð°Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÑŒ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚ Ð´Ð»Ñ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ñ
   mControlSc->mLoginMaster->SetContext(&pC->mLoginMaster);
-  // ñîáûòèå íàðóæó
+  // ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ Ð½Ð°Ñ€ÑƒÐ¶Ñƒ
   TEventConnectDown event;
   event.id_session = id_session;
   AddEventCopy(&event, sizeof(event));
@@ -126,7 +126,7 @@ void TSuperServer::NeedContextLoginMaster(unsigned int id_session)
 void TSuperServer::NeedContextByMasterSessionByClientKey(unsigned int id_session,
                                                          unsigned int id_client)
 {
-  // ïðîâåðêà íà ñóùåñòâîâàíèå ìàñòåðà
+  // Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ð° ÑÑƒÑ‰ÐµÑÑ‚Ð²Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¼Ð°ÑÑ‚ÐµÑ€Ð°
   if(mMngContextMaster->FindContextBySession(id_session)==NULL)
   {
     BL_FIX_BUG();
@@ -136,14 +136,14 @@ void TSuperServer::NeedContextByMasterSessionByClientKey(unsigned int id_session
   bool fakeClient = false;
   if(pC==NULL)
   {
-    // ïåðâûé çàõîä
+    // Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð·Ð°Ñ…Ð¾Ð´
     mMngContextMaster->AddClientKey(id_session,id_client);
     pC = mMngContextClient->AddContext(id_client,id_session);
     fakeClient = false;
   }
   else
   {
-    // ïîâòîðíàÿ àâòîðèçàöèÿ
+    // Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð½Ð°Ñ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ
     pC = mContainer_SecondLogin.get();
     fakeClient = true;
   }
@@ -154,10 +154,10 @@ void TSuperServer::NeedContextByMasterSessionByClientKey(unsigned int id_session
 void TSuperServer::NeedContextDisconnectClient(unsigned int id_client)
 {
   unsigned int id_session_master;
-  // óäàëèòü çàïèñü â Ìàñòåðå
+  // ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð² ÐœÐ°ÑÑ‚ÐµÑ€Ðµ
   if(mMngContextClient->FindSessionByClientKey(id_client,id_session_master))
     mMngContextMaster->DeleteByClientKey(id_session_master, id_client);
-  // è ñàì êëèåíò
+  // Ð¸ ÑÐ°Ð¼ ÐºÐ»Ð¸ÐµÐ½Ñ‚
   mMngContextClient->DeleteByKey(id_client);
 }
 //-------------------------------------------------------------------------

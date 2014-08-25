@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -12,9 +12,9 @@ See for more information License.h.
 #include "ContainerTypes.h"
 
 /*
-  класс работы с массивом контейнеров
-  массив линейно находится памяти
-  сплошь, как в std::vector
+  РєР»Р°СЃСЃ СЂР°Р±РѕС‚С‹ СЃ РјР°СЃСЃРёРІРѕРј РєРѕРЅС‚РµР№РЅРµСЂРѕРІ
+  РјР°СЃСЃРёРІ Р»РёРЅРµР№РЅРѕ РЅР°С…РѕРґРёС‚СЃСЏ РїР°РјСЏС‚Рё
+  СЃРїР»РѕС€СЊ, РєР°Рє РІ std::vector
 */
 class DllExport TArrContainer
 {
@@ -23,22 +23,22 @@ class DllExport TArrContainer
 
   TVectorContainer mVec;
 
-  TContainer mFC;// вся память
+  TContainer mFC;// РІСЃСЏ РїР°РјСЏС‚СЊ
 
 public:
 
   TArrContainer();
   ~TArrContainer();
-  // доступ к элементам
+  // РґРѕСЃС‚СѓРї Рє СЌР»РµРјРµРЅС‚Р°Рј
   void GetElem( char*& p, int& size, int index); 
   void SetElem( char*p,   int  size, int index); 
-  // кол-во элементов
+  // РєРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
   void SetCount(int v);
   int GetCount();
 
-  // вернуть указатель на первый элемент
+  // РІРµСЂРЅСѓС‚СЊ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
   char* GetPtr();
-  // размер - сумма всех размеров элементов
+  // СЂР°Р·РјРµСЂ - СЃСѓРјРјР° РІСЃРµС… СЂР°Р·РјРµСЂРѕРІ СЌР»РµРјРµРЅС‚РѕРІ
   int GetSize();
 
 protected:

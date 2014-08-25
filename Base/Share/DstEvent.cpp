@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -28,7 +28,7 @@ void TDstEvent::AddEventInQueueCopy(int type_object, void* ptr_src, void* data, 
 
   pEvent->ptr_object  = ptr_src;
   pEvent->type_object = type_object;
-  pEvent->pContainer->SetDataByCount((char*)data, size);// sizeof(char)==1, ïîýòîìó size
+  pEvent->pContainer->SetDataByCount((char*)data, size);// sizeof(char)==1, Ð¿Ð¾ÑÑ‚Ð¾Ð¼Ñƒ size
   pListEvent->Add(pEvent);
 }
 //------------------------------------------------------------
@@ -45,5 +45,10 @@ TEvent* TDstEvent::GetEvent()
 void TDstEvent::AddSrcEvent(TSrcEvent* pSrcEvent)
 {
   pSrcEvent->SetDstObject(this);
+}
+//------------------------------------------------------------
+void TDstEvent::Translate(nsEvent::TEvent* pEvent)
+{
+  pListEvent->Add(pEvent);
 }
 //------------------------------------------------------------

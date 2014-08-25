@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -39,12 +39,12 @@ TOnly_N_Object::~TOnly_N_Object()
 // like C-style
 void StoreObject(int i, int maxCntObject, std::string nameClass, void* pThis)
 {
-  static TMapStrInt mMapClassCnt;// для нахождения по имени класса макс. кол-ва объектов
-  static TMapPtrStr mMapPtrName; //                по указателю на объект имя класса
+  static TMapStrInt mMapClassCnt;// РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РїРѕ РёРјРµРЅРё РєР»Р°СЃСЃР° РјР°РєСЃ. РєРѕР»-РІР° РѕР±СЉРµРєС‚РѕРІ
+  static TMapPtrStr mMapPtrName; //                РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ РЅР° РѕР±СЉРµРєС‚ РёРјСЏ РєР»Р°СЃСЃР°
   int cntMake = 0;
   bool res = false;
 
-  LockThread(nsLockThread::eLock);// блокировка
+  LockThread(nsLockThread::eLock);// Р±Р»РѕРєРёСЂРѕРІРєР°
   switch(i)
   {
     case nsStoreObject::ePush:
@@ -53,11 +53,11 @@ void StoreObject(int i, int maxCntObject, std::string nameClass, void* pThis)
       TMapStrInt::iterator fit = mMapClassCnt.find(nameClass);
       if(fit==mMapClassCnt.end())
       {
-        // не нашли - добавить
+        // РЅРµ РЅР°С€Р»Рё - РґРѕР±Р°РІРёС‚СЊ
         mMapClassCnt.insert(TMapStrInt::value_type(nameClass,1));
         fit = mMapClassCnt.find(nameClass);
 
-        // что бы потом найти в деструкторе
+        // С‡С‚Рѕ Р±С‹ РїРѕС‚РѕРј РЅР°Р№С‚Рё РІ РґРµСЃС‚СЂСѓРєС‚РѕСЂРµ
         mMapPtrName.insert(TMapPtrStr::value_type(pThis,nameClass));
       }
       else
@@ -83,8 +83,8 @@ void StoreObject(int i, int maxCntObject, std::string nameClass, void* pThis)
     }
     break;
   }
-  LockThread(nsLockThread::eUnlock);// разблокировать
-  // проверка результатов
+  LockThread(nsLockThread::eUnlock);// СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ
+  // РїСЂРѕРІРµСЂРєР° СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ
   switch(i)
   {
     case nsStoreObject::ePush:

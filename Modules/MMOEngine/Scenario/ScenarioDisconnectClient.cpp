@@ -1,13 +1,13 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-// Begin и End не обрамлять,
-// т.к. возможно есть активные сценарии, поэтому что бы не ждать их окончания
-// и тут же отреагировать
+// Begin Рё End РЅРµ РѕР±СЂР°РјР»СЏС‚СЊ,
+// С‚.Рє. РІРѕР·РјРѕР¶РЅРѕ РµСЃС‚СЊ Р°РєС‚РёРІРЅС‹Рµ СЃС†РµРЅР°СЂРёРё, РїРѕСЌС‚РѕРјСѓ С‡С‚Рѕ Р±С‹ РЅРµ Р¶РґР°С‚СЊ РёС… РѕРєРѕРЅС‡Р°РЅРёСЏ
+// Рё С‚СѓС‚ Р¶Рµ РѕС‚СЂРµР°РіРёСЂРѕРІР°С‚СЊ
 
 #include "ScenarioDisconnectClient.h"
 #include "Logger.h"
@@ -43,24 +43,24 @@ void TScenarioDisconnectClient::Work()
 //---------------------------------------------------------------
 void TScenarioDisconnectClient::DisconnectFromSlave(unsigned int id_client)
 {
-  // формирование пакета
-  TBreakPacket bp;// контейнер для всего пакета
+  // С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ РїР°РєРµС‚Р°
+  TBreakPacket bp;// РєРѕРЅС‚РµР№РЅРµСЂ РґР»СЏ РІСЃРµРіРѕ РїР°РєРµС‚Р°
   THeaderFromSlave h;
   h.id_client = id_client;
   bp.PushFront((char*)&h, sizeof(h));
-  // отослать пакет для попытки авторизации
+  // РѕС‚РѕСЃР»Р°С‚СЊ РїР°РєРµС‚ РґР»СЏ РїРѕРїС‹С‚РєРё Р°РІС‚РѕСЂРёР·Р°С†РёРё
   Context()->GetMS()->Send(Context()->GetID_Session(), bp);
 }
 //---------------------------------------------------------------
 void TScenarioDisconnectClient::DisconnectFromMaster(vector<unsigned int>& vecID_client)
 {
-  // формирование пакета
-  TBreakPacket bp;// контейнер для всего пакета
+  // С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ РїР°РєРµС‚Р°
+  TBreakPacket bp;// РєРѕРЅС‚РµР№РЅРµСЂ РґР»СЏ РІСЃРµРіРѕ РїР°РєРµС‚Р°
   bp.PushFront((char*)&vecID_client[0],vecID_client.size()*sizeof(unsigned int));
   THeaderFromMaster h;
   h.countID = vecID_client.size();
   bp.PushFront((char*)&h, sizeof(h));
-  // отослать пакет для попытки авторизации
+  // РѕС‚РѕСЃР»Р°С‚СЊ РїР°РєРµС‚ РґР»СЏ РїРѕРїС‹С‚РєРё Р°РІС‚РѕСЂРёР·Р°С†РёРё
   Context()->GetMS()->Send(Context()->GetID_Session(), bp);
 }
 //---------------------------------------------------------------
@@ -71,7 +71,7 @@ void TScenarioDisconnectClient::RecvFromMaster(TDescRecvSession* pDesc)
   unsigned int* pArrID = (unsigned int*)(pDesc->data + sizeof(THeaderFromMaster));
   for(int i = 0 ; i < pH->countID ; i++ )
   {
-    // нужен контекст под это ID
+    // РЅСѓР¶РµРЅ РєРѕРЅС‚РµРєСЃС‚ РїРѕРґ СЌС‚Рѕ ID
     NeedContextByClientKey(pArrID[i]);
   }
 }

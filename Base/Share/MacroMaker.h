@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,9 +11,9 @@ See for more information License.h.
 #include "MacroMaker_Prepare.h"
 
 //------------------------------------------------------------------------------------------------------------
-// готово для использования
+// РіРѕС‚РѕРІРѕ РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 //------------------------------------------------------------------------------------------------------------
-// с параметрами конструктора
+// СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 #define MACRO_MAKER_H_USE_P(NameInterface, NameRealize, param_for_decl) \
 MACRO_MAKER_H(NameInterface, NameRealize, param_for_decl)
 
@@ -23,13 +23,13 @@ MACRO_MAKER_H_EXPORT(decl, NameInterface, NameRealize, param_for_decl)
 #define MACRO_MAKER_CPP_USE_P(NameInterface, NameRealize, ClassRealize, param_for_decl, param_for_def) \
 MACRO_MAKER_CPP(NameInterface, NameRealize, ClassRealize, param_for_decl, param_for_def)
 //------------------------------------------------------------------------------------------------------------
-// без параметров
+// Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 #define MACRO_MAKER_H_USE(NameInterface, NameRealize)                 MACRO_MAKER_H(NameInterface, NameRealize,)
 #define MACRO_MAKER_H_EXPORT_USE(decl, NameInterface, NameRealize)    MACRO_MAKER_H_EXPORT(decl, NameInterface, NameRealize,)
 #define MACRO_MAKER_CPP_USE(NameInterface, NameRealize, ClassRealize) MACRO_MAKER_CPP(NameInterface, NameRealize, ClassRealize,,)
 //------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------
-// если имя реализации совпадает с именем интерфейса
+// РµСЃР»Рё РёРјСЏ СЂРµР°Р»РёР·Р°С†РёРё СЃРѕРІРїР°РґР°РµС‚ СЃ РёРјРµРЅРµРј РёРЅС‚РµСЂС„РµР№СЃР°
 #define MACRO_MAKER_H_USE_P_SAME(NameInterface, param_for_decl) \
 MACRO_MAKER_H_USE_P(NameInterface, NameInterface, param_for_decl)
 
@@ -39,7 +39,7 @@ MACRO_MAKER_H_EXPORT_USE_P(decl, NameInterface, NameInterface, param_for_decl)
 #define MACRO_MAKER_CPP_USE_P_SAME(NameInterface, ClassRealize, param_for_decl, param_for_def) \
 MACRO_MAKER_CPP_USE_P(NameInterface, NameInterface, ClassRealize, param_for_decl, param_for_def)
 //------------------------------------------------------------------------------------------------------------
-// без параметров
+// Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 #define MACRO_MAKER_H_USE_SAME(NameInterface)                 MACRO_MAKER_H_USE(NameInterface, NameInterface)
 #define MACRO_MAKER_H_EXPORT_USE_SAME(decl, NameInterface)    MACRO_MAKER_H_EXPORT_USE(decl, NameInterface, NameInterface)
 #define MACRO_MAKER_CPP_USE_SAME(NameInterface, ClassRealize) MACRO_MAKER_CPP_USE(NameInterface, NameInterface, ClassRealize)

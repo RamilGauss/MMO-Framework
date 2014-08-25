@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,7 +20,7 @@ namespace nsMMOEngine
     typedef TListPtr::iterator TListPtrIt;
 
     TListPtr   mListWaitActivation;
-    IContextScenario* pActiveContextSc;// активный на данный момент 
+    IContextScenario* pActiveContextSc;// Р°РєС‚РёРІРЅС‹Р№ РЅР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ 
 
     TCallBackRegistrator1<TManagerContextSc*> mCallBackActivateEvent;
     TCallBackRegistrator1<TManagerContextSc*> mCallBackDisactivateEvent;
@@ -28,7 +28,7 @@ namespace nsMMOEngine
     TManagerContextSc();
     ~TManagerContextSc();
 
-    // для обработки внутренних событий
+    // РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РІРЅСѓС‚СЂРµРЅРЅРёС… СЃРѕР±С‹С‚РёР№
     void Work();
 
     bool Activate(IContextScenario* pCSc);

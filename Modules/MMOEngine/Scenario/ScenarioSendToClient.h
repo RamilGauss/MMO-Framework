@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -91,7 +91,7 @@ namespace nsMMOEngine
 	void TScenarioSendToClient::SendAll(std::list<unsigned int>& lKey, TBreakPacket& bp)
 	{
 		if(bp.GetSize()==0)
-			return;// нельзя передавать нулевые пакеты
+			return;// РЅРµР»СЊР·СЏ РїРµСЂРµРґР°РІР°С‚СЊ РЅСѓР»РµРІС‹Рµ РїР°РєРµС‚С‹
 		BOOST_FOREACH(unsigned int id_client, lKey)
 		{
 			NeedContextByClientKey(id_client);
@@ -104,7 +104,7 @@ namespace nsMMOEngine
 					T h;
 					h.id_client = id_client;
 					bpForSave.PushFront((char*)&h, sizeof(h));
-					// пока отослать нельзя, сохранить пакет до момента возможности
+					// РїРѕРєР° РѕС‚РѕСЃР»Р°С‚СЊ РЅРµР»СЊР·СЏ, СЃРѕС…СЂР°РЅРёС‚СЊ РїР°РєРµС‚ РґРѕ РјРѕРјРµРЅС‚Р° РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё
 					Context()->SaveBreakPacket(bpForSave);
 					continue;
 				}

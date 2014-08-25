@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,7 +11,6 @@ See for more information License.h.
 
 #include "BL_Debug.h"
 #include "DevTool_Share.h"
-#include "PrototypeAloneGUI_Starter.h"
 
 SuperServerForm::SuperServerForm(QWidget *parent)
 {
@@ -33,8 +32,8 @@ void SuperServerForm::customEvent( QEvent * event)
 void SuperServerForm::closeEvent(QCloseEvent * event)
 {
   int type = 0;
-  // ñîçäàòü ñîáûòèå äëÿ ãëàâíîãî ïîòîêà, çäåñü ìåíÿòü íåëüçÿ, ìû íàõîäèìñÿ â ïîòîêå Qt
-  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->AddEventCopy(&type,sizeof(type));
+  // ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ Ð´Ð»Ñ Ð³Ð»Ð°Ð²Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ñ‚Ð¾ÐºÐ°, Ð·Ð´ÐµÑÑŒ Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð½ÐµÐ»ÑŒÐ·Ñ, Ð¼Ñ‹ Ð½Ð°Ñ…Ð¾Ð´Ð¸Ð¼ÑÑ Ð² Ð¿Ð¾Ñ‚Ð¾ÐºÐµ Qt
+  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&type,sizeof(type));
 
   delete this;
 }

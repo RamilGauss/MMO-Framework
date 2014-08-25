@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,8 +11,6 @@ See for more information License.h.
 
 #include "TestControlTank.h"
 #include "DevTool_Share.h"
-#include "PrototypeAloneGUI_Starter.h"
-
 
 #define GUN_SPEED    0.00035f
 #define TURRET_SPEED 0.00035f
@@ -52,7 +50,7 @@ void SlaveForm::customEvent( QEvent * event)
 void SlaveForm::closeEvent(QCloseEvent * event)
 {
   int type = 0;
-  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->AddEventCopy(&type,sizeof(type));
+  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&type,sizeof(type));
 
   delete this;
 }

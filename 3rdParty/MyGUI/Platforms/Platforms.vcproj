@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="Platforms_DirectX"
+	Name="Platforms"
 	ProjectGUID="{D2685F5F-4EC8-4E06-99B5-9DB122DB9413}"
 	RootNamespace="Platforms"
 	Keyword="Win32Proj"
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;..\MyGUIEngine\include;..\MyGUIEngine\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common"
+				AdditionalIncludeDirectories=".\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\MyGUIEngine\include;..\MyGUIEngine\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;..\..\OGRE\include;..\..\OGRE\include\OIS;..\..\OGRE\include\OGRE;..\..\OGRE\include\OGRE\PlugIns\PCZSceneManager;..\..\OGRE\include\OGRE\PlugIns\OctreeZone;..\..\OGRE\include\OGRE\RTShaderSystem;..\..\OGRE\include\OGRE\Terrain;..\..\OGRE\include\OGRE\Paging;..\..\OGRE\include\OGRE\Volume;..\..\OGRE\include\OGRE\Overlay"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -49,6 +49,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4221;4006"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -148,64 +149,140 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Source Files"
-			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			Name="Ogre"
 			>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXDataManager.cpp"
+			<Filter
+				Name="Header Files"
 				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXRenderManager.cpp"
+				<File
+					RelativePath=".\Ogre\OgrePlatform\include\MyGUI_LastHeader.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\include\MyGUI_OgreDataManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\include\MyGUI_OgreDataStream.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\include\MyGUI_OgreDiagnostic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\include\MyGUI_OgrePlatform.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\include\MyGUI_OgreRenderManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\include\MyGUI_OgreRTTexture.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\include\MyGUI_OgreTexture.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\include\MyGUI_OgreVertexBuffer.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Source Files"
 				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXRTTexture.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXTexture.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXVertexBuffer.cpp"
-				>
-			</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\src\MyGUI_OgreDataManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\src\MyGUI_OgreDataStream.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\src\MyGUI_OgreRenderManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\src\MyGUI_OgreRTTexture.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\src\MyGUI_OgreTexture.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ogre\OgrePlatform\src\MyGUI_OgreVertexBuffer.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			Name="DirectX"
 			>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXDataManager.h"
+			<Filter
+				Name="Header Files"
+				Filter="h;hpp;hxx;hm;inl;inc;xsd"
+				UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXDiagnostic.h"
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXDataManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXDiagnostic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXPlatform.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXRenderManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXRTTexture.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXTexture.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXVertexBuffer.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Source Files"
+				Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+				UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXPlatform.h"
-				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXRenderManager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXRTTexture.h"
-				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXTexture.h"
-				>
-			</File>
-			<File
-				RelativePath=".\DirectX\DirectXPlatform\include\MyGUI_DirectXVertexBuffer.h"
-				>
-			</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXDataManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXRenderManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXRTTexture.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXTexture.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DirectX\DirectXPlatform\src\MyGUI_DirectXVertexBuffer.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -17,10 +17,10 @@ See for more information License.h.
 class TSrcEvent;
 
 /*
-  поглотитель событий. работает в связке с TSrcEvent
-  пронаследоваться,
-  зарегистрировать источники с помощью функции AddSrcEvent
-  и получать события через GetEvent
+  РїРѕРіР»РѕС‚РёС‚РµР»СЊ СЃРѕР±С‹С‚РёР№. СЂР°Р±РѕС‚Р°РµС‚ РІ СЃРІСЏР·РєРµ СЃ TSrcEvent
+  РїСЂРѕРЅР°СЃР»РµРґРѕРІР°С‚СЊСЃСЏ,
+  Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РёСЃС‚РѕС‡РЅРёРєРё СЃ РїРѕРјРѕС‰СЊСЋ С„СѓРЅРєС†РёРё AddSrcEvent
+  Рё РїРѕР»СѓС‡Р°С‚СЊ СЃРѕР±С‹С‚РёСЏ С‡РµСЂРµР· GetEvent
 */
 
 class DllExport TDstEvent
@@ -36,8 +36,10 @@ public:
 
   template<typename T>
   void AddEventInQueueWithoutCopy(int type_object, void* ptr_src, T* data, unsigned int time_create_ms);
+
+  void Translate(nsEvent::TEvent* pEvent);
 protected:
-  // забрал объект - уничтожь с помощью delete
+  // Р·Р°Р±СЂР°Р» РѕР±СЉРµРєС‚ - СѓРЅРёС‡С‚РѕР¶СЊ СЃ РїРѕРјРѕС‰СЊСЋ delete
   nsEvent::TEvent* GetEvent();
   
   void AddSrcEvent(TSrcEvent* pSrcEvent);

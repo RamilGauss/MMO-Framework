@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -21,23 +21,23 @@ namespace nsMMOEngine
 
   class TScenarioRecommutationClient : public IScenario
   {
-    // по ключу дать контекст, с учетом Донор или Реципиент
+    // РїРѕ РєР»СЋС‡Сѓ РґР°С‚СЊ РєРѕРЅС‚РµРєСЃС‚, СЃ СѓС‡РµС‚РѕРј Р”РѕРЅРѕСЂ РёР»Рё Р РµС†РёРїРёРµРЅС‚
     TCallBackRegistrator2<unsigned int,bool> mCBNeedContextByClientKeyForSlave;
-    // по сессии дать контекст, с учетом Донор или Реципиент
+    // РїРѕ СЃРµСЃСЃРёРё РґР°С‚СЊ РєРѕРЅС‚РµРєСЃС‚, СЃ СѓС‡РµС‚РѕРј Р”РѕРЅРѕСЂ РёР»Рё Р РµС†РёРїРёРµРЅС‚
     TCallBackRegistrator2<unsigned int,bool> mCBNeedContextByClientSessionForSlave;
-    // на каком Slave находится Клиент? назначить сессию через Context()->SetSessionDonor()
+    // РЅР° РєР°РєРѕРј Slave РЅР°С…РѕРґРёС‚СЃСЏ РљР»РёРµРЅС‚? РЅР°Р·РЅР°С‡РёС‚СЊ СЃРµСЃСЃРёСЋ С‡РµСЂРµР· Context()->SetSessionDonor()
     TCallBackRegistrator1<IScenario*> mCBNeedSessionDonorByClientKey;
-    // при вызове DelayBegin или при (Begin()==true)
-    // сценарий активировался и начался обмен пакетами
-    // это нужно учесть в статистике
+    // РїСЂРё РІС‹Р·РѕРІРµ DelayBegin РёР»Рё РїСЂРё (Begin()==true)
+    // СЃС†РµРЅР°СЂРёР№ Р°РєС‚РёРІРёСЂРѕРІР°Р»СЃСЏ Рё РЅР°С‡Р°Р»СЃСЏ РѕР±РјРµРЅ РїР°РєРµС‚Р°РјРё
+    // СЌС‚Рѕ РЅСѓР¶РЅРѕ СѓС‡РµСЃС‚СЊ РІ СЃС‚Р°С‚РёСЃС‚РёРєРµ
     TCallBackRegistrator1<IScenario*>   mCBActivate;
-    // если с Донором разорвется соединение, то Мастер сообщит о разрыве связи с Клиентом на Реципиенте
-    // и он должен уничтожить информацию о Клиенте
+    // РµСЃР»Рё СЃ Р”РѕРЅРѕСЂРѕРј СЂР°Р·РѕСЂРІРµС‚СЃСЏ СЃРѕРµРґРёРЅРµРЅРёРµ, С‚Рѕ РњР°СЃС‚РµСЂ СЃРѕРѕР±С‰РёС‚ Рѕ СЂР°Р·СЂС‹РІРµ СЃРІСЏР·Рё СЃ РљР»РёРµРЅС‚РѕРј РЅР° Р РµС†РёРїРёРµРЅС‚Рµ
+    // Рё РѕРЅ РґРѕР»Р¶РµРЅ СѓРЅРёС‡С‚РѕР¶РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РљР»РёРµРЅС‚Рµ
     TCallBackRegistrator1<unsigned int> mCBDisconnectByClientKey;
 
-    // по структуре, описывающей запрос на соединение со стороны Клиента
+    // РїРѕ СЃС‚СЂСѓРєС‚СѓСЂРµ, РѕРїРёСЃС‹РІР°СЋС‰РµР№ Р·Р°РїСЂРѕСЃ РЅР° СЃРѕРµРґРёРЅРµРЅРёРµ СЃРѕ СЃС‚РѕСЂРѕРЅС‹ РљР»РёРµРЅС‚Р°
     TCallBackRegistrator1<TDescRequestConnectForRecipient*> mCBNeedContextByRequestForRecipient;
-    // время ожидания ответа от Клиента на Slave истекло
+    // РІСЂРµРјСЏ РѕР¶РёРґР°РЅРёСЏ РѕС‚РІРµС‚Р° РѕС‚ РљР»РёРµРЅС‚Р° РЅР° Slave РёСЃС‚РµРєР»Рѕ
     TCallBackRegistrator1<unsigned int> mCBTimeClientElapsed;
 
     TScRecommutationClient_ClientImpl mClient;

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -8,183 +8,22 @@ See for more information License.h.
 #ifndef TankTowerH
 #define TankTowerH
 
-#include "IActor.h"
+#include "ISynchroObject.h"
 
-
-class TTankTower : public IActor
+class TTankTower : public ISynchroObject
 {
-  nsMathTools::TMatrix16 mMatrixForCamera;
-
-public:
-  typedef enum{
-    Engine          = 1>>1, // двигатель, поврежден
-    EngineBreak     = 2>>1, // двигатель, не работает
-    //------------------------------------------------
-    Gun             = 3>>1, // пушка 
-    GunBreak        = 4>>1, // пушка 
-    //------------------------------------------------
-    Tower           = 5>>1, // башня
-    TowerBreak      = 6>>1, // башня
-    //------------------------------------------------
-    Chassis         = 7>>1, // шасси
-    ChassisBreak    = 8>>1, // шасси
-    //------------------------------------------------
-    Optica          = 9>>1, // триплекс расстояния
-    OpticaBreak     = 10>>1, // триплекс расстояния
-    //------------------------------------------------
-    LeftTrack       = 11>>1,
-    LeftTrackBreak  = 12>>1,
-    //------------------------------------------------
-    RightTrack      = 13>>1,
-    RightTrackBreak = 14>>1,
-    //------------------------------------------------
-    BK              = 15>>1,// бое укладка повреждена
-  }eMaskDefectDevice;
-
-  typedef enum{
-    e1 = 1>>1, 
-    e2 = 2>>1, 
-    e3 = 3>>1, 
-    e4 = 4>>1, 
-    e5 = 5>>1, 
-    e6 = 6>>1, 
-    e7 = 7>>1, 
-    e8 = 8>>1, 
-  }eMaskDefectCrew;
-  //----------------------------------------
-
-  typedef enum{
-    eLeft=0,
-    eRight,
-    eBack,
-    eForward,
-  }ePushButton;
 public:
   TTankTower();
   virtual ~TTankTower();
 
-  virtual bool GetMirror(char ** pData,int &size);
-  virtual void SetMirror(char *pData,int size);
+  virtual void Synchro();
 
-  virtual void SetHuman(char* pData, int size);
-
-  virtual bool Animate(unsigned int time_ms);
-
-  // from IBaseObject
-  virtual const nsMathTools::TMatrix16* GetMatrixForCamera();
-
-public://protected:
+  //###
   // debug only
   void RotateTurret(float ugol);
   void RotateVerticalGun(float ugol);
-
+  //###
 protected:
-  virtual void SetupShaderStackModelGE();
-  virtual void EventSetModelGE();
-
-protected:
-  int mIndexTrackR;
-  int mIndexTrackL;
-  int mIndexTime;
-  int mIndexVelocity;
-  std::vector<int> mShaderStackMask;
-
-  float mV;// скорость, м/с
-  float mA;// ускорение, м/с^2
-public:
-#pragma pack(push, 1)
-  struct TProperty
-  {
-    unsigned int mID_tank;
-    // базовые
-    float mMassa;                    //масса, кг
-    float mPower;                    //мощность двигателя, Вт
-    float mSpeedRotate;              //мощность поворота, град/сек
-    float mDistView;                 //дальность обзора, м
-    float mVisibilityStatic;         //видимость неподвижный
-    float mVisibilityDinamic;        //          подвижный, коэф
-    float mSpeedRotateTower;         // скорость вращения башни, рад/сек
-    float mSpeedReductionGun;        // скорость движения пушки, рад/с
-    // Property, которые не меняются
-    float mMaxSpeedForward;          //максимальная скорость вперед, м/с
-    float mMaxSpeedBackward;         //максимальная скорость назад, м/с
-    float mRadiusRadio;              // радиус действия радио, м - зависит от рации и радиста
-
-    // максимальный угол вертикальной наводки у пушки
-    float mVMaxGunUgol;  // вверх, рад
-    float mVMinGunUgol;  // вниз, рад
-    // максимальный угол вертикальной наводки у пушки
-    float mHMaxGunUgol;  // по часовой стрелке, рад
-    float mHMinGunUgol;  // против часовой стрелке, рад
-  };
-#pragma pack(pop)
-
-  struct TDefShell
-  {
-    float damage;              // урон, хп
-    float depthShoot;          // пробиваемость, мм
-    float mSpeedShell;               // скорость снаряда
-  };
-
-  // характеристики
-  // свойства в бою
-
-  unsigned int maskDefectDevice;   // маска неисправности устройств,  0 - исправно, 1 - неисправно см. eMaskDefectDevice
-  unsigned int maskDefectCrew;     // маска контузии экипажа,  0 - здоров, 1 - контужен см. eMaskDefectCrew
-
-  // состояние
-
-  // ББ
-  TDefShell mShellBron; // зависит от пушки
-  // ОФ
-  TDefShell mShellExplosive; // зависит от пушки
-  // КС
-  TDefShell mShellCumul; // зависит от пушки
-
-  float mProbablyFireEngine;       // вероятность загорания танка, зависит от двигателя
-  unsigned short mFireDamage; 
-  float mProbablyExplosiveStackShell; // вероятность взрыва БК
-  unsigned short mExplosiveStackShellDamage; 
-
-  unsigned short mHP;              // у.е. зависит от типа танка и типа башни
-
-  float mCentrRotate;              //центр поворота, смещение относительно центра танка, м  от типа танка и типа шасси
-
-  // Property, которые меняются
-  TProperty mProperty;
-
-  // характеристики орудия
-  unsigned short mCntCommonShell;   // общее кол-во снарядов
-  unsigned short mCntBronShell;     // бронебойный
-  unsigned short mCntExplosiveShell;// ОФ
-  unsigned short mCntCumulShell;    // кумулятивный
-
-  unsigned short mMaxCntShell;
-  unsigned char mTypeCurShell;
-  unsigned char mTypeNextShell;
-
-  float mTimeReload;               // время перезарядки, сек
-  float mSpeedReductionAim;        // скорость наведения
-
-
-  // есть два фактора: экипаж и комплектация танка
-  // комплектация
-  unsigned char mTower; // номер, 0 - базовая (сток)
-  unsigned char mGun;
-  unsigned char mChassis;
-  unsigned char mEngine;
-  unsigned char mRadio;
-
-  // установленные модули
-  unsigned int maskModule;
-
-  unsigned int mTimeRefreshOrientAim;
-
-  // маска нажатых клавиш
-  unsigned int mTimeRefreshPushButton;// когда последний раз менялась маска
-  unsigned int mMaskPushButton; // см. ePushButton
-  unsigned int mRestReload;
-
 };
 
 

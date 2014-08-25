@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -50,7 +50,7 @@ bool TManagerContextDownConnection_Slave::FindMinimumLoad(unsigned int& id_sessi
 	id_session   = mVecDesc[0].id_session;
 	load_procent = mVecDesc[0].load_procent;
   //###
-  // для теста объединения из разных Slave
+  // РґР»СЏ С‚РµСЃС‚Р° РѕР±СЉРµРґРёРЅРµРЅРёСЏ РёР· СЂР°Р·РЅС‹С… Slave
   //id_session   = mVecDesc[mVecDesc.size()-1].id_session; 
   //load_procent = mVecDesc[mVecDesc.size()-1].load_procent;
   //###

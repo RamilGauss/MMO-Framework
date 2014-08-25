@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -17,7 +17,7 @@ TSession::TSession(unsigned int time_live_ms )
   srand( (unsigned)time( NULL ) );
 
   mCounterIn  = 0;
-  mCounterOut = rand();// чтобы избежать повторений содержимого пакета
+  mCounterOut = rand();// С‡С‚РѕР±С‹ РёР·Р±РµР¶Р°С‚СЊ РїРѕРІС‚РѕСЂРµРЅРёР№ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РїР°РєРµС‚Р°
 
   mTimeLive = time_live_ms;
 
@@ -45,8 +45,8 @@ void TSession::Send(TBreakPacket bp, bool check, bool use_crypt)
   if(use_crypt)
     check = true;
   SendData(ePacket, bp, check, use_crypt);
-  // гарантия того что пакет дойдет
-  // иначе сессия на той стороне не освежит время
+  // РіР°СЂР°РЅС‚РёСЏ С‚РѕРіРѕ С‡С‚Рѕ РїР°РєРµС‚ РґРѕР№РґРµС‚
+  // РёРЅР°С‡Рµ СЃРµСЃСЃРёСЏ РЅР° С‚РѕР№ СЃС‚РѕСЂРѕРЅРµ РЅРµ РѕСЃРІРµР¶РёС‚ РІСЂРµРјСЏ
   if(check)
     RefreshLastTime();
 }

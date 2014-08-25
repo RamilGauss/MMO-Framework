@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -10,7 +10,7 @@ See for more information License.h.
 
 #include <boost/signals2/signal.hpp>
 //-------------------------------------------------------------
-// например:
+// РЅР°РїСЂРёРјРµСЂ:
 // Register(&TClass::Method, &object)
 // Unregister(&object)
 //-------------------------------------------------------------

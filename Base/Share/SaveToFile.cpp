@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -98,7 +98,7 @@ void TSaveToFile::WriteF(const char* format, ... )
     BL_MessageBug("WriteF Error!");
     return;
   }
-  // делаем то что хотели, будь то запись в файл или в консоль
+  // РґРµР»Р°РµРј С‚Рѕ С‡С‚Рѕ С…РѕС‚РµР»Рё, Р±СѓРґСЊ С‚Рѕ Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р» РёР»Рё РІ РєРѕРЅСЃРѕР»СЊ
   if(flgPrintf)
     printf("%s",s);   
   Write(s,strlen(s));
@@ -124,7 +124,7 @@ void TSaveToFile::WriteF_time(const char* format, ... )
     return;
   }
 
-  // делаем то что хотели, будь то запись в файл или в консоль
+  // РґРµР»Р°РµРј С‚Рѕ С‡С‚Рѕ С…РѕС‚РµР»Рё, Р±СѓРґСЊ С‚Рѕ Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р» РёР»Рё РІ РєРѕРЅСЃРѕР»СЊ
   if(flgPrintf)
     printf("%s",s);   
   Write(s,strlen(s));
@@ -147,7 +147,7 @@ void TSaveToFile::Write_Time()
   millitm1 = timebuffer.millitm;
 
   char str_time[1000];
-  // формируем время в строку
+  // С„РѕСЂРјРёСЂСѓРµРј РІСЂРµРјСЏ РІ СЃС‚СЂРѕРєСѓ
   struct tm * my_time = localtime(&time1);
 
   sprintf(str_time,"%04d_%02d_%02d %02d:%02d:%02d.%03d\n\t",

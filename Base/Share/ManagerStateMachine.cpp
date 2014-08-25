@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -31,7 +31,7 @@ TManagerStateMachine::~TManagerStateMachine()
 }
 //---------------------------------------------------------------------------------
 /*
-  Формат xml
+  Р¤РѕСЂРјР°С‚ xml
   <state>
     <name>A</name>
     <desc>
@@ -63,7 +63,7 @@ bool TManagerStateMachine::Load(const char* sPath,unsigned int& id)
       unsigned int k, v;
       TMapUintPtr* m = new TMapUintPtr;
       RET_FALSE(pXML->EnterSection(sState,i))
-        nameState = pXML->ReadSection(sName,0);// имя состояния
+        nameState = pXML->ReadSection(sName,0);// РёРјСЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ
         int cntDesc = pXML->GetCountSection(sDesc);
         for(int j = 0 ; j < cntDesc ; j++)
         {

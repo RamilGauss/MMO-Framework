@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -18,7 +18,7 @@ namespace nsMMOEngine
     
 		unsigned char mSubNet;
 
-    unsigned int mID;// назначенный Мастером
+    unsigned int mID;// РЅР°Р·РЅР°С‡РµРЅРЅС‹Р№ РњР°СЃС‚РµСЂРѕРј
   public:
     TClient();
     virtual ~TClient();

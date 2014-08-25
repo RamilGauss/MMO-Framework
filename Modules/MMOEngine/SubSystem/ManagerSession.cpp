@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -35,10 +35,10 @@ TManagerSession::TManagerSession()
 //--------------------------------------------------------------------------------------------
 TManagerSession::~TManagerSession()
 {
-  // сначала уничтожить сессии, важно вызвать до уничтожения Менеджера транспорта
+  // СЃРЅР°С‡Р°Р»Р° СѓРЅРёС‡С‚РѕР¶РёС‚СЊ СЃРµСЃСЃРёРё, РІР°Р¶РЅРѕ РІС‹Р·РІР°С‚СЊ РґРѕ СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ РњРµРЅРµРґР¶РµСЂР° С‚СЂР°РЅСЃРїРѕСЂС‚Р°
   lockAccessSession();
   delete mNavigateSession;
-  mNavigateSession = NULL;// не готов к приему пакетов
+  mNavigateSession = NULL;// РЅРµ РіРѕС‚РѕРІ Рє РїСЂРёРµРјСѓ РїР°РєРµС‚РѕРІ
   unlockAccessSession();
 
   delete mMngTransport;
@@ -75,7 +75,7 @@ bool TManagerSession::StartTransport(unsigned short port, unsigned char subNet)
     BL_FIX_BUG();
     return false;
   }
-  // старт потока чтения
+  // СЃС‚Р°СЂС‚ РїРѕС‚РѕРєР° С‡С‚РµРЅРёСЏ
   pTransport->Start();
   return resOpen;
 }
@@ -128,15 +128,15 @@ unsigned int TManagerSession::Send(unsigned int ip, unsigned short port, TBreakP
     return INVALID_HANDLE_SESSION;
   }
   //===================================================================
-  // соединиться с сервером
+  // СЃРѕРµРґРёРЅРёС‚СЊСЃСЏ СЃ СЃРµСЂРІРµСЂРѕРј
   if(pTransport->Connect(ip, port)==false) 
   {
     unlockAccessSession();
     unlockConnectUp();
     //BL_FIX_BUG();
-    return INVALID_HANDLE_SESSION;// нет такого прослушивающего порта
+    return INVALID_HANDLE_SESSION;// РЅРµС‚ С‚Р°РєРѕРіРѕ РїСЂРѕСЃР»СѓС€РёРІР°СЋС‰РµРіРѕ РїРѕСЂС‚Р°
   }
-  mIP_PortUp.Set(ip,port);  // запомнить параметры верхнего соединения
+  mIP_PortUp.Set(ip,port);  // Р·Р°РїРѕРјРЅРёС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РІРµСЂС…РЅРµРіРѕ СЃРѕРµРґРёРЅРµРЅРёСЏ
  
   TSession* pSession = mNavigateSession->FindSessionByIP(mIP_PortUp);
   if(pSession==NULL)
@@ -151,12 +151,12 @@ unsigned int TManagerSession::Send(unsigned int ip, unsigned short port, TBreakP
 		return INVALID_HANDLE_SESSION;
   }
   unsigned int id_session = pSession->GetID();
-  // отсылка запроса на AES ключ
+  // РѕС‚СЃС‹Р»РєР° Р·Р°РїСЂРѕСЃР° РЅР° AES РєР»СЋС‡
 	SendKeyRSA_Up(pSession);
 
   unlockAccessSession();
   //===================================================================
-  // ждем ответа
+  // Р¶РґРµРј РѕС‚РІРµС‚Р°
   bool res = WaitAnswerFromUp();
   CleanFlagsForWaitUp();
   if(res==false)
@@ -170,12 +170,12 @@ unsigned int TManagerSession::Send(unsigned int ip, unsigned short port, TBreakP
   lockAccessSession();
   if(mNavigateSession==NULL)
   {
-    // произошел разрыв соединения
+    // РїСЂРѕРёР·РѕС€РµР» СЂР°Р·СЂС‹РІ СЃРѕРµРґРёРЅРµРЅРёСЏ
     unlockAccessSession();
     unlockConnectUp();
     return INVALID_HANDLE_SESSION;
   }
-  // возможно сессия была удалена, пока ждали ответа
+  // РІРѕР·РјРѕР¶РЅРѕ СЃРµСЃСЃРёСЏ Р±С‹Р»Р° СѓРґР°Р»РµРЅР°, РїРѕРєР° Р¶РґР°Р»Рё РѕС‚РІРµС‚Р°
   pSession = mNavigateSession->FindSessionByID(id_session);
   if(pSession)
     Send(pSession, bp, check);
@@ -237,25 +237,25 @@ void TManagerSession::Recv( INetTransport::TDescRecv* pDescRecv, INetTransport* 
     return;
   }
   //===================================================================
-  // данные, пришедшие от сессии содержат заголовок, учесть при формировании
+  // РґР°РЅРЅС‹Рµ, РїСЂРёС€РµРґС€РёРµ РѕС‚ СЃРµСЃСЃРёРё СЃРѕРґРµСЂР¶Р°С‚ Р·Р°РіРѕР»РѕРІРѕРє, СѓС‡РµСЃС‚СЊ РїСЂРё С„РѕСЂРјРёСЂРѕРІР°РЅРёРё
   TSession::THeader* pHeader = (TSession::THeader*)pDescRecv->data;
-  // определить новая сессия или нет
+  // РѕРїСЂРµРґРµР»РёС‚СЊ РЅРѕРІР°СЏ СЃРµСЃСЃРёСЏ РёР»Рё РЅРµС‚
   TSession* pSession = mNavigateSession->FindSessionByIP(pDescRecv->ip_port);
   if(pSession==NULL)
   {
-    // новую сессию создавать, только если получен RSA ключ
+    // РЅРѕРІСѓСЋ СЃРµСЃСЃРёСЋ СЃРѕР·РґР°РІР°С‚СЊ, С‚РѕР»СЊРєРѕ РµСЃР»Рё РїРѕР»СѓС‡РµРЅ RSA РєР»СЋС‡
     if(pHeader->type!=TSession::eKeyRSA)
       return;
     pSession = NewSession(pDescRecv->ip_port, pTransport);
   }
   else
-    pSession->Recv();// уведомить сессию о приеме
+    pSession->Recv();// СѓРІРµРґРѕРјРёС‚СЊ СЃРµСЃСЃРёСЋ Рѕ РїСЂРёРµРјРµ
   unsigned int id = pSession->GetID();
   //-----------------------------------------------
   TDescRecvSession descRecvSession;
   *((INetTransport::TDescRecv*)&descRecvSession) = *pDescRecv;
   descRecvSession.id_session = id;
-  // данные, пришедшие от сессии содержат заголовок, учесть при формировании
+  // РґР°РЅРЅС‹Рµ, РїСЂРёС€РµРґС€РёРµ РѕС‚ СЃРµСЃСЃРёРё СЃРѕРґРµСЂР¶Р°С‚ Р·Р°РіРѕР»РѕРІРѕРє, СѓС‡РµСЃС‚СЊ РїСЂРё С„РѕСЂРјРёСЂРѕРІР°РЅРёРё
   descRecvSession.use_crypt  = pHeader->use_crypt;
   switch(pHeader->type)
   {
@@ -299,7 +299,7 @@ void TManagerSession::Disconnect(TIP_Port* ip_port)
 //--------------------------------------------------------------------------------------------
 TSession* TManagerSession::NewSession(TIP_Port& ip_port, INetTransport* pTransport)
 {
-  mLastID_Session++;// нет проверки на совпадение, unsigned int 4 млрд - слишком много
+  mLastID_Session++;// РЅРµС‚ РїСЂРѕРІРµСЂРєРё РЅР° СЃРѕРІРїР°РґРµРЅРёРµ, unsigned int 4 РјР»СЂРґ - СЃР»РёС€РєРѕРј РјРЅРѕРіРѕ
   TSession* pSession = new TSession(mTimeLiveSession);
   pSession->SetTransport(pTransport);
   pSession->SetInfo(ip_port);
@@ -360,23 +360,23 @@ bool TManagerSession::GetUseCryptTCP()
 //-------------------------------------------------------------------------
 void TManagerSession::RecvPacket(TDescRecvSession& descRecvSession, TSession* pSession)
 {
-  // вся система должна обмениваться либо шифрованными либо не шифрованными пакетами
+  // РІСЃСЏ СЃРёСЃС‚РµРјР° РґРѕР»Р¶РЅР° РѕР±РјРµРЅРёРІР°С‚СЊСЃСЏ Р»РёР±Рѕ С€РёС„СЂРѕРІР°РЅРЅС‹РјРё Р»РёР±Рѕ РЅРµ С€РёС„СЂРѕРІР°РЅРЅС‹РјРё РїР°РєРµС‚Р°РјРё
   if(GetUseCryptTCP())
   {
-    // все компоненты шифруют, а вот получили мы не шифрованный. Игнорируем пакет.
+    // РІСЃРµ РєРѕРјРїРѕРЅРµРЅС‚С‹ С€РёС„СЂСѓСЋС‚, Р° РІРѕС‚ РїРѕР»СѓС‡РёР»Рё РјС‹ РЅРµ С€РёС„СЂРѕРІР°РЅРЅС‹Р№. РРіРЅРѕСЂРёСЂСѓРµРј РїР°РєРµС‚.
     if(descRecvSession.use_crypt==false)
     {
       FixHack("System use crypt, but recv not crypt");
       return;
     }
   }
-  // проверка размера
+  // РїСЂРѕРІРµСЂРєР° СЂР°Р·РјРµСЂР°
   if(descRecvSession.sizeData<=sizeof(TSession::THeader))
   {
     FixHack("Size less Header");
     return;
   }
-  // под расшифрованные данные
+  // РїРѕРґ СЂР°СЃС€РёС„СЂРѕРІР°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ
   TContainerPtr c_decrypt;
 
   descRecvSession.data     += sizeof(TSession::THeader);
@@ -384,20 +384,20 @@ void TManagerSession::RecvPacket(TDescRecvSession& descRecvSession, TSession* pS
 
   if(descRecvSession.use_crypt)
   {
-    if(descRecvSession.sizeData <= sizeof(unsigned int)  // counter 4 байта
-                                 + sizeof(unsigned char))// crc8, 1 байт
+    if(descRecvSession.sizeData <= sizeof(unsigned int)  // counter 4 Р±Р°Р№С‚Р°
+                                 + sizeof(unsigned char))// crc8, 1 Р±Р°Р№С‚
     {
       FixHack("Size less Counter + CRC8");
       return;
     }
-    // зашифрованным может быть только TCP
+    // Р·Р°С€РёС„СЂРѕРІР°РЅРЅС‹Рј РјРѕР¶РµС‚ Р±С‹С‚СЊ С‚РѕР»СЊРєРѕ TCP
     if(descRecvSession.type==INetTransport::eUdp)
     {
       FixHack("Using crypt for UDP");
       BL_FIX_BUG();
 			return;
     }
-    // попытка расшифровать
+    // РїРѕРїС‹С‚РєР° СЂР°СЃС€РёС„СЂРѕРІР°С‚СЊ
     if(mMngCtxCrypto.Recv(descRecvSession.ip_port, descRecvSession.data,
                           descRecvSession.sizeData,c_decrypt)==false)
     {
@@ -405,16 +405,16 @@ void TManagerSession::RecvPacket(TDescRecvSession& descRecvSession, TSession* pS
 	    BL_FIX_BUG();
       return;
     }
-    // поместить результат
+    // РїРѕРјРµСЃС‚РёС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚
     descRecvSession.data     = (char*)c_decrypt.GetPtr();
     descRecvSession.sizeData = c_decrypt.GetSize();
-    // внутренний счетчик сессии должен быть меньше чем полученный
+    // РІРЅСѓС‚СЂРµРЅРЅРёР№ СЃС‡РµС‚С‡РёРє СЃРµСЃСЃРёРё РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ С‡РµРј РїРѕР»СѓС‡РµРЅРЅС‹Р№
     if(pSession->GetCounterIn()>=((unsigned int*)descRecvSession.data)[0])
     {
       FixHack("Fail counter in");
       return;
     }
-    // смещаемся на длину счетчика
+    // СЃРјРµС‰Р°РµРјСЃСЏ РЅР° РґР»РёРЅСѓ СЃС‡РµС‚С‡РёРєР°
     descRecvSession.data     += sizeof(unsigned int);
     descRecvSession.sizeData -= sizeof(unsigned int);
   }
@@ -499,23 +499,23 @@ void TManagerSession::Send(TSession* pSession, TBreakPacket bp, bool check)
   if(check==true)// TCP
   if(GetUseCryptTCP())  
   {
-    // достать ip и порт
+    // РґРѕСЃС‚Р°С‚СЊ ip Рё РїРѕСЂС‚
     TIP_Port ip_port;
     pSession->GetInfo(ip_port);
     pSession->IncrementCounterOut();
     unsigned int counter_out = pSession->GetCounterOut();
     bp.PushFront((char*)&counter_out, sizeof(counter_out));
-    // зашифровать
+    // Р·Р°С€РёС„СЂРѕРІР°С‚СЊ
     TContainer c_encrypt;
     mMngCtxCrypto.Send(ip_port, bp, c_encrypt);
-    // создать новый пакет
+    // СЃРѕР·РґР°С‚СЊ РЅРѕРІС‹Р№ РїР°РєРµС‚
     TBreakPacket encrypt_bp;
     encrypt_bp.PushFront((char*)c_encrypt.GetPtr(), c_encrypt.GetSize());
-    // отослать с параметром "шифруется"
+    // РѕС‚РѕСЃР»Р°С‚СЊ СЃ РїР°СЂР°РјРµС‚СЂРѕРј "С€РёС„СЂСѓРµС‚СЃСЏ"
     pSession->Send(encrypt_bp, true, true);
     return;
   }
-  // либо UDP, либо не шифрованный TCP
+  // Р»РёР±Рѕ UDP, Р»РёР±Рѕ РЅРµ С€РёС„СЂРѕРІР°РЅРЅС‹Р№ TCP
   pSession->Send(bp, check);
 }
 //-------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -60,22 +60,22 @@ void TClient::Login(unsigned int ip, unsigned short port, void* data, int size)
 //-------------------------------------------------------------------------
 void TClient::DisconnectInherit(unsigned int id_session)
 {
-  // òóò ïðîáëåìà â òîì, ÷òî áû ðàçëè÷èòü äèñêîííåêò ñî ñòîðîíû Ìàñòåðà ïðè 
-  // îòðàáîòêå ñöåíàðèÿ LoginClient îò äðóãèõ
-  if(mContainerUp->IsLoginClientActive())// àêòèâåí ñöåíàðèé LoginClient
+  // Ñ‚ÑƒÑ‚ Ð¿Ñ€Ð¾Ð±Ð»ÐµÐ¼Ð° Ð² Ñ‚Ð¾Ð¼, Ñ‡Ñ‚Ð¾ Ð±Ñ‹ Ñ€Ð°Ð·Ð»Ð¸Ñ‡Ð¸Ñ‚ÑŒ Ð´Ð¸ÑÐºÐ¾Ð½Ð½ÐµÐºÑ‚ ÑÐ¾ ÑÑ‚Ð¾Ñ€Ð¾Ð½Ñ‹ ÐœÐ°ÑÑ‚ÐµÑ€Ð° Ð¿Ñ€Ð¸ 
+  // Ð¾Ñ‚Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐµ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ñ LoginClient Ð¾Ñ‚ Ð´Ñ€ÑƒÐ³Ð¸Ñ…
+  if(mContainerUp->IsLoginClientActive())// Ð°ÐºÑ‚Ð¸Ð²ÐµÐ½ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ LoginClient
   {
-    // âîçìîæíî ýòî ïðîäîëæåíèå ñöåíàðèÿ
+    // Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ ÑÑ‚Ð¾ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶ÐµÐ½Ð¸Ðµ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ñ
     mControlSc->mLoginClient->DisconnectFromClient();
     return;
   }
   // Rcm
-  if(mContainerUp->IsRcmActive())// àêòèâåí ñöåíàðèé ïåðåêîììóòàöèè
+  if(mContainerUp->IsRcmActive())// Ð°ÐºÑ‚Ð¸Ð²ÐµÐ½ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ Ð¿ÐµÑ€ÐµÐºÐ¾Ð¼Ð¼ÑƒÑ‚Ð°Ñ†Ð¸Ð¸
   {
-    // âîçìîæíî ýòî ïðîäîëæåíèå ñöåíàðèÿ
+    // Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ ÑÑ‚Ð¾ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶ÐµÐ½Ð¸Ðµ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ñ
     mControlSc->mRcm->DisconnectFromClient(mSubNet);
     return;
   }
-  // â îñòàëüíûõ ñëó÷àÿõ ýòî äåéñòâèòåëüíî ïîòåðÿ ñâÿçè
+  // Ð² Ð¾ÑÑ‚Ð°Ð»ÑŒÐ½Ñ‹Ñ… ÑÐ»ÑƒÑ‡Ð°ÑÑ… ÑÑ‚Ð¾ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð¿Ð¾Ñ‚ÐµÑ€Ñ ÑÐ²ÑÐ·Ð¸
   mID_SessionUp = INVALID_HANDLE_SESSION;
 	TEventDisconnectUp event;
 	event.id_session = id_session;
@@ -84,14 +84,14 @@ void TClient::DisconnectInherit(unsigned int id_session)
 //-------------------------------------------------------------------------
 void TClient::EndLoginClient(IScenario* pSc)
 {
-  // âçÿòü ïî ýòîìó êîíòåêñòó, çàäàòü âñåì êîíòåêñòàì
+  // Ð²Ð·ÑÑ‚ÑŒ Ð¿Ð¾ ÑÑ‚Ð¾Ð¼Ñƒ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ñƒ, Ð·Ð°Ð´Ð°Ñ‚ÑŒ Ð²ÑÐµÐ¼ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ð°Ð¼
   mID_SessionUp = pSc->GetContext()->GetID_Session();
   mContainerUp->SetID_Session(mID_SessionUp);
 }
 //-------------------------------------------------------------------------
 void TClient::EndRcm(IScenario* pSc)
 {
-  // âçÿòü ïî ýòîìó êîíòåêñòó, çàäàòü âñåì êîíòåêñòàì
+  // Ð²Ð·ÑÑ‚ÑŒ Ð¿Ð¾ ÑÑ‚Ð¾Ð¼Ñƒ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ñƒ, Ð·Ð°Ð´Ð°Ñ‚ÑŒ Ð²ÑÐµÐ¼ ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ð°Ð¼
   mID_SessionUp = pSc->GetContext()->GetID_Session();
   mContainerUp->SetID_Session(mID_SessionUp);
 }

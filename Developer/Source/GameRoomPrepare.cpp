@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -10,7 +10,6 @@ See for more information License.h.
 #include "Precompiled.h"
 #include <atlconv.h>
 
-#include "PrototypeMMOClient.h"
 #include "DevProtocol.h"
 #include "DevTool_Share.h"
 
@@ -40,10 +39,10 @@ void TGameRoomPrepare::sl_Fight(MyGUI::Widget* _sender)
 //-------------------------------------------------------------------------------------
 void TGameRoomPrepare::sl_Exit(MyGUI::Widget* _sender)
 {
-	TDevTool_Share::Singleton()->GetComponent()->mNetClient->DisconnectUp();
+	TDevTool_Share::Singleton()->GetComponent()->mClient->Get()->DisconnectUp();
 
   nsDevProtocol::TDisconnectUp_Client h;
-  TDevTool_Share::Singleton()->GetComponent()->mDev->AddEventCopy(&h, sizeof(h));
+  TDevTool_Share::Singleton()->GetComponent()->mDev->GetSrcEvent()->AddEventCopy(&h, sizeof(h));
 }
 //-------------------------------------------------------------------------------------
 const char* TGameRoomPrepare::GetNameLayout()

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -70,20 +70,20 @@ void TScRecommutationClient_ClientImpl::RecvFromSlaveRecipient(TDescRecvSession*
 void TScRecommutationClient_ClientImpl::BeginClient(TDescRecvSession* pDesc)
 {
   THeaderBeginClient* pHeader = (THeaderBeginClient*)pDesc->data;
-  // çàïîìíèòü ñâîé êëþ÷, íî õîòÿ îí è òàê èçâåñòåí.
-  // ýòî íóæíî äëÿ ïðîñòîòû
+  // Ð·Ð°Ð¿Ð¾Ð¼Ð½Ð¸Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ ÐºÐ»ÑŽÑ‡, Ð½Ð¾ Ñ…Ð¾Ñ‚Ñ Ð¾Ð½ Ð¸ Ñ‚Ð°Ðº Ð¸Ð·Ð²ÐµÑÑ‚ÐµÐ½.
+  // ÑÑ‚Ð¾ Ð½ÑƒÐ¶Ð½Ð¾ Ð´Ð»Ñ Ð¿Ñ€Ð¾ÑÑ‚Ð¾Ñ‚Ñ‹
   Context()->SetClientKey(pHeader->id_client);
   SetID_SessionClientSlave(pDesc->id_session);
-  // íà÷àëî ñöåíàðèÿ
+  // Ð½Ð°Ñ‡Ð°Ð»Ð¾ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ñ
   if(Begin()==false)
   {
-    // ãåíåðàöèÿ îøèáêè
+    // Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ¸
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TScRecommutationClient_ClientImpl::BeginClient() scenario is not active.\n");
     BL_FIX_BUG();
     return;    
   }
-  // ñôîðìèðîâàòü ïàêåò äàëåå äëÿ Slave
+  // ÑÑ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð°ÐºÐµÑ‚ Ð´Ð°Ð»ÐµÐµ Ð´Ð»Ñ Slave
   TBreakPacket bp;
   THeaderCheckBeginClient h;
   h.id_client = Context()->GetClientKey();
@@ -96,16 +96,16 @@ void TScRecommutationClient_ClientImpl::InfoRecipientToClient(TDescRecvSession* 
 {
   THeaderInfoRecipientToClient* pHeader = (THeaderInfoRecipientToClient*)pDesc->data;
   Context()->SetIP_PortRecipient(pHeader->ip_port_recipient);
-  // çàïîìíèòü ÷èñëî, ïðèãîäèòñÿ ïðè çàïðîñå ê ðåöèïèåíòó
+  // Ð·Ð°Ð¿Ð¾Ð¼Ð½Ð¸Ñ‚ÑŒ Ñ‡Ð¸ÑÐ»Ð¾, Ð¿Ñ€Ð¸Ð³Ð¾Ð´Ð¸Ñ‚ÑÑ Ð¿Ñ€Ð¸ Ð·Ð°Ð¿Ñ€Ð¾ÑÐµ Ðº Ñ€ÐµÑ†Ð¸Ð¿Ð¸ÐµÐ½Ñ‚Ñƒ
   Context()->SetRandomNum(pHeader->random_num);
-  // ñôîðìèðîâàòü ïàêåò äàëåå äëÿ Slave
+  // ÑÑ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð°ÐºÐµÑ‚ Ð´Ð°Ð»ÐµÐµ Ð´Ð»Ñ Slave
   TBreakPacket bp;
   THeaderCheckInfoRecipient h;
   h.id_client = Context()->GetClientKey();
   bp.PushFront((char*)&h, sizeof(h));
 
   Context()->GetMS()->Send(GetID_SessionClientSlave(), bp);
-  // æäåì äèñêîííåêòà
+  // Ð¶Ð´ÐµÐ¼ Ð´Ð¸ÑÐºÐ¾Ð½Ð½ÐµÐºÑ‚Ð°
 }
 //--------------------------------------------------------------
 void TScRecommutationClient_ClientImpl::CheckRequestConnect(TDescRecvSession* pDesc)
@@ -126,14 +126,14 @@ void TScRecommutationClient_ClientImpl::DisconnectClient(unsigned char subNet)
 
   unsigned int id_session_recipient = 
     Context()->GetMS()->Send(ip_port_recipient.ip, ip_port_recipient.port, bp, subNet);
-  // ïîäñîåäèíèëèñü?
+  // Ð¿Ð¾Ð´ÑÐ¾ÐµÐ´Ð¸Ð½Ð¸Ð»Ð¸ÑÑŒ?
   if(id_session_recipient==INVALID_HANDLE_SESSION)
   {
-    // íåò ñâÿçè ñ Ðåöèïèåíòîì
+    // Ð½ÐµÑ‚ ÑÐ²ÑÐ·Ð¸ Ñ Ð ÐµÑ†Ð¸Ð¿Ð¸ÐµÐ½Ñ‚Ð¾Ð¼
     End();
     return;
   }
-  // çàïîìíèòü íà áóäóùåå
+  // Ð·Ð°Ð¿Ð¾Ð¼Ð½Ð¸Ñ‚ÑŒ Ð½Ð° Ð±ÑƒÐ´ÑƒÑ‰ÐµÐµ
   Context()->SetSessionRecipient(id_session_recipient);
 	Context()->SetID_Session(id_session_recipient);
 }

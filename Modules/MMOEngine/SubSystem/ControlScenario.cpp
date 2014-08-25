@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -58,9 +58,9 @@ void TControlScenario::Work(TDescRecvSession* pDesc)
   TMapIntPtrIt fit = mMapTypeSc.find(pPacket->type);
   if(fit!=mMapTypeSc.end())
   {
-    // çàùèòà îò ïîëó÷åíèÿ íåçàùèùåííûõ UDP ïàêåòîâ
+    // Ð·Ð°Ñ‰Ð¸Ñ‚Ð° Ð¾Ñ‚ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ Ð½ÐµÐ·Ð°Ñ‰Ð¸Ñ‰ÐµÐ½Ð½Ñ‹Ñ… UDP Ð¿Ð°ÐºÐµÑ‚Ð¾Ð²
     if(pDesc->type==INetTransport::eUdp)
-      if(fit->second!=mFlow)// òîëüêî Flow èñïîëüçóåò UDP, îñòàëüíûì íåëüçÿ
+      if(fit->second!=mFlow)// Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Flow Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ UDP, Ð¾ÑÑ‚Ð°Ð»ÑŒÐ½Ñ‹Ð¼ Ð½ÐµÐ»ÑŒÐ·Ñ
         return;
 
     fit->second->Recv(pDesc);

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -26,10 +26,10 @@ unsigned __int64 ht_GetUSCount()
   return t.time_since_epoch().count();
 }
 //------------------------------------------------------------------------------
-// Задержка на миллисекунды
+// Р—Р°РґРµСЂР¶РєР° РЅР° РјРёР»Р»РёСЃРµРєСѓРЅРґС‹
 void ht_msleep( unsigned int ms )
 {
-	// в силу того что под Windows XP boost кидается ассертом (см. chrono)
+	// РІ СЃРёР»Сѓ С‚РѕРіРѕ С‡С‚Рѕ РїРѕРґ Windows XP boost РєРёРґР°РµС‚СЃСЏ Р°СЃСЃРµСЂС‚РѕРј (СЃРј. chrono)
 #ifdef WIN32
 	Sleep(ms);
 #else
@@ -46,15 +46,15 @@ unsigned int ht_GetMSCount()
   return (unsigned int)(t.time_since_epoch().count()/1000000);
 }
 //------------------------------------------------------------------------------
-// Задержка на микросекунды
+// Р—Р°РґРµСЂР¶РєР° РЅР° РјРёРєСЂРѕСЃРµРєСѓРЅРґС‹
 void ht_usleep( unsigned int us )
 {
   bool ht_usleep( unsigned int us, THT_CheckFunc func );
   ht_usleep( us, (THT_CheckFunc)NULL );
 }
 //------------------------------------------------------------------------------
-// Задержка на микросекунды c дополнительной проверкой состояния
-// Результат: true - выход по результату func, false - выход по таймауту
+// Р—Р°РґРµСЂР¶РєР° РЅР° РјРёРєСЂРѕСЃРµРєСѓРЅРґС‹ c РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РїСЂРѕРІРµСЂРєРѕР№ СЃРѕСЃС‚РѕСЏРЅРёСЏ
+// Р РµР·СѓР»СЊС‚Р°С‚: true - РІС‹С…РѕРґ РїРѕ СЂРµР·СѓР»СЊС‚Р°С‚Сѓ func, false - РІС‹С…РѕРґ РїРѕ С‚Р°Р№РјР°СѓС‚Сѓ
 bool ht_usleep( unsigned int us, THT_CheckFunc func )
 {
   unsigned __int64 start  = ht_GetUSCount();

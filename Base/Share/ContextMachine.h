@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -25,10 +25,10 @@ public:
   TContextMachine();
   virtual ~TContextMachine();
 
-  // добавить событие - получить реакцию (реакции может и не быть)
+  // РґРѕР±Р°РІРёС‚СЊ СЃРѕР±С‹С‚РёРµ - РїРѕР»СѓС‡РёС‚СЊ СЂРµР°РєС†РёСЋ (СЂРµР°РєС†РёРё РјРѕР¶РµС‚ Рё РЅРµ Р±С‹С‚СЊ)
   bool Action(Key k, Value& v);
 
-  // для инициализации
+  // РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
   void AddState(Key k, TMapKeyValue* mKV);
   int GetStateCount() const;
 
@@ -43,7 +43,7 @@ protected:
 
   typedef std::map<Key, int> TMapKeyInt;
 
-  // для оптимизации
+  // РґР»СЏ РѕРїС‚РёРјРёР·Р°С†РёРё
   TMapKeyInt mMapKeyCount; 
   int mCurCount;
   bool flgFirstUse;
@@ -73,13 +73,13 @@ TContextMachine<Key,Value>::~TContextMachine()
 template <class Key, class Value>
 bool TContextMachine<Key,Value>::Action(Key k, Value& v)
 {
-  // определить состояние
-  if(mSameState==k)// то же значение состояния
+  // РѕРїСЂРµРґРµР»РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ
+  if(mSameState==k)// С‚Рѕ Р¶Рµ Р·РЅР°С‡РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ
     ActionForSameKey(k);
   else
     ActionForOtherKey(k);
   //------------------------------------------------------------------
-  // поиск для состояния
+  // РїРѕРёСЃРє РґР»СЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ
   TMapKeyValue::iterator ffit = mCurrentMap->find(k);
   if(ffit!=mCurrentMap->end())
   {

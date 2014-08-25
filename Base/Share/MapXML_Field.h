@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -30,10 +30,10 @@ public:
   TMapXML_Field();
   virtual ~TMapXML_Field();
   
-  // зугрузить XML
+  // Р·СѓРіСЂСѓР·РёС‚СЊ XML
   bool Load(const char* sAbsPath);
 
-  // вернуть по ключу значение 
+  // РІРµСЂРЅСѓС‚СЊ РїРѕ РєР»СЋС‡Сѓ Р·РЅР°С‡РµРЅРёРµ 
 	const char* GetSecond(const char* name, unsigned int index = 0);
   unsigned int GetCount(const char* name);
 

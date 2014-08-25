@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -18,9 +18,9 @@ See for more information License.h.
 #include "InfoFile.h"
 
 /*
-  Сохранение файла. 
-  Вывод в консоль.
-  Буферизация при отсутствии открытого файла.
+  РЎРѕС…СЂР°РЅРµРЅРёРµ С„Р°Р№Р»Р°. 
+  Р’С‹РІРѕРґ РІ РєРѕРЅСЃРѕР»СЊ.
+  Р‘СѓС„РµСЂРёР·Р°С†РёСЏ РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё РѕС‚РєСЂС‹С‚РѕРіРѕ С„Р°Р№Р»Р°.
 */
 
 class DllExport TSaveToFile : public InfoFile
@@ -40,22 +40,22 @@ public:
 	TSaveToFile(char* path = NULL);
 	virtual ~TSaveToFile();
 
-  // в случае append==false - стирает содержимое файла
+  // РІ СЃР»СѓС‡Р°Рµ append==false - СЃС‚РёСЂР°РµС‚ СЃРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р°
 	virtual bool ReOpen(char* path, bool append = false );
 
 	virtual void Write(void* buffer, int size);
-  // форматированная строка, по типу printf(...)
+  // С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРЅР°СЏ СЃС‚СЂРѕРєР°, РїРѕ С‚РёРїСѓ printf(...)
   virtual void WriteF(const char* format, ... );
   virtual void WriteF_time(const char* format, ... );
 
 
-  void SetPrintf(bool val){flgPrintf=val;};// все что записывается - дублируется в вывод на консоль
-  bool GetPrintf(){return flgPrintf;};     // но только для форматированной строки
+  void SetPrintf(bool val){flgPrintf=val;};// РІСЃРµ С‡С‚Рѕ Р·Р°РїРёСЃС‹РІР°РµС‚СЃСЏ - РґСѓР±Р»РёСЂСѓРµС‚СЃСЏ РІ РІС‹РІРѕРґ РЅР° РєРѕРЅСЃРѕР»СЊ
+  bool GetPrintf(){return flgPrintf;};     // РЅРѕ С‚РѕР»СЊРєРѕ РґР»СЏ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРЅРѕР№ СЃС‚СЂРѕРєРё
 
-  void SetEnable(bool val){flgEnable=val;};// отмена применения в Write, WriteF, WriteF_time
+  void SetEnable(bool val){flgEnable=val;};// РѕС‚РјРµРЅР° РїСЂРёРјРµРЅРµРЅРёСЏ РІ Write, WriteF, WriteF_time
   bool GetEnable(){return flgEnable;};
 
-  void SetBufferization(bool val){flgBuffer=val;};// буферизация, без открытого файла все складируется в памяти
+  void SetBufferization(bool val){flgBuffer=val;};// Р±СѓС„РµСЂРёР·Р°С†РёСЏ, Р±РµР· РѕС‚РєСЂС‹С‚РѕРіРѕ С„Р°Р№Р»Р° РІСЃРµ СЃРєР»Р°РґРёСЂСѓРµС‚СЃСЏ РІ РїР°РјСЏС‚Рё
   bool GetBufferization(){return flgBuffer;};
 
 protected:

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -102,13 +102,13 @@ TContainerContextSc* TManagerContextDownConnection::AddContext(unsigned int id_s
 bool TManagerContextDownConnection::AddClientKey(unsigned int id_session, 
                                                  unsigned int id_client)
 {
-  // проверка на существование такого мастера
+  // РїСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ С‚Р°РєРѕРіРѕ РјР°СЃС‚РµСЂР°
   TContainerContextSc* pC = FindContextBySession(id_session);
   if(pC==NULL)
     return false;
   
   TMapUintSetUintIt fit = mMapSessionKey.find(id_session);
-  // создать
+  // СЃРѕР·РґР°С‚СЊ
   if(fit==mMapSessionKey.end())
   {
     //mMapSessionKey.insert(TMapUintSetUint::value_type(id_session,TSetUint()));

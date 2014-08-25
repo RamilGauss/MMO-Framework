@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -94,7 +94,7 @@ int TManagerContextClient_slave::GetCountKey()
 //-------------------------------------------------------------------------
 TContainerContextSc* TManagerContextClient_slave::AddContextByKey(unsigned int id)
 {
-  // проверка на существование ключа
+  // РїСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ РєР»СЋС‡Р°
   TContainerContextSc* pC = FindContextByKey(id);
   if(pC)
   {

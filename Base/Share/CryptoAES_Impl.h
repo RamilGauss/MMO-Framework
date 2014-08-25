@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,7 +15,7 @@ class DllExport TCryptoAES_Impl
 {
   TContainer mKey;
   
-  unsigned char iv[32]; // вектор инициализации 
+  unsigned char iv[32]; // РІРµРєС‚РѕСЂ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё 
 
   void* mCipher;
   void* mContext;

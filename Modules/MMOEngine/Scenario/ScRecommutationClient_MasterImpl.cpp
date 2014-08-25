@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -84,11 +84,11 @@ void TScRecommutationClient_MasterImpl::DelayBegin()
 //--------------------------------------------------------------
 void TScRecommutationClient_MasterImpl::SendFirstPacket()
 {
-	// откуда уходим?
+	// РѕС‚РєСѓРґР° СѓС…РѕРґРёРј?
   NeedSessionDonorByClientKey(mScenario);
-  // сценарий активен
+  // СЃС†РµРЅР°СЂРёР№ Р°РєС‚РёРІРµРЅ
   EventActivate();
-  // проверка на совпадение	Донора с Реципиентом
+  // РїСЂРѕРІРµСЂРєР° РЅР° СЃРѕРІРїР°РґРµРЅРёРµ	Р”РѕРЅРѕСЂР° СЃ Р РµС†РёРїРёРµРЅС‚РѕРј
   if(Context()->GetSessionDonor()==Context()->GetSessionRecipient())
   {
     End();
@@ -110,13 +110,13 @@ void TScRecommutationClient_MasterImpl::CheckBeginDonor(TDescRecvSession* pDesc)
   {
     return;
   }
-  // запомнить число, которое знаю только участники перекоммутации
+  // Р·Р°РїРѕРјРЅРёС‚СЊ С‡РёСЃР»Рѕ, РєРѕС‚РѕСЂРѕРµ Р·РЅР°СЋ С‚РѕР»СЊРєРѕ СѓС‡Р°СЃС‚РЅРёРєРё РїРµСЂРµРєРѕРјРјСѓС‚Р°С†РёРё
   TDescRequestConnectForRecipient privateNum;
   privateNum.Generate();
   Context()->SetRandomNum(privateNum.random_num);
 
   TBreakPacket bp;
-  // поместить контекст Донора в пакет
+  // РїРѕРјРµСЃС‚РёС‚СЊ РєРѕРЅС‚РµРєСЃС‚ Р”РѕРЅРѕСЂР° РІ РїР°РєРµС‚
   bp.PushFront(pDesc->data + sizeof(THeaderCheckBeginDonor), 
                pDesc->sizeData - sizeof(THeaderCheckBeginDonor));
 
@@ -137,7 +137,7 @@ void TScRecommutationClient_MasterImpl::CheckBeginRecipient(TDescRecvSession* pD
     return;
   }
   //==============================================
-  // узнать IP и порт Реципиента
+  // СѓР·РЅР°С‚СЊ IP Рё РїРѕСЂС‚ Р РµС†РёРїРёРµРЅС‚Р°
   TIP_Port ip_port_recipient;
   bool resIP_recipient = 
     Context()->GetMS()->GetInfo(Context()->GetSessionRecipient(), ip_port_recipient);
@@ -170,13 +170,13 @@ void TScRecommutationClient_MasterImpl::ClientConnect(TDescRecvSession* pDesc)
 //--------------------------------------------------------------
 void TScRecommutationClient_MasterImpl::DisconnectClient()
 {
-  // уведомить Реципиента о потери связи с Клиентом
+  // СѓРІРµРґРѕРјРёС‚СЊ Р РµС†РёРїРёРµРЅС‚Р° Рѕ РїРѕС‚РµСЂРё СЃРІСЏР·Рё СЃ РљР»РёРµРЅС‚РѕРј
   TBreakPacket bp;
   THeaderDisconnectClient h;
   h.id_client = Context()->GetClientKey();
   bp.PushFront((char*)&h,  sizeof(h));
   Context()->GetMS()->Send(Context()->GetSessionRecipient(), bp);
-  //Нельзя вызывать End();
+  //РќРµР»СЊР·СЏ РІС‹Р·С‹РІР°С‚СЊ End();
 }
 //--------------------------------------------------------------
 

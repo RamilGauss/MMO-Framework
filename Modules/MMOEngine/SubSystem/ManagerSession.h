@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -25,15 +25,15 @@ namespace nsMMOEngine
   {
     enum
     {
-      eDefTimeLive               = 5*1000,// мс
-      eSleepForWaitUp            = 40,  // мс
-      eLimitWaitTimeAnswerFromUp = 2000,// мс
+      eDefTimeLive               = 5*1000,// РјСЃ
+      eSleepForWaitUp            = 40,  // РјСЃ
+      eLimitWaitTimeAnswerFromUp = 2000,// РјСЃ
     };
 
     unsigned int mTimeLiveSession;
     unsigned int mLastID_Session;
    
-    // должен быть как указатель, что бы контролировать порядок уничтожения объектов
+    // РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РєР°Рє СѓРєР°Р·Р°С‚РµР»СЊ, С‡С‚Рѕ Р±С‹ РєРѕРЅС‚СЂРѕР»РёСЂРѕРІР°С‚СЊ РїРѕСЂСЏРґРѕРє СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРІ
 		TNavigateSession  *mNavigateSession;
     TManagerTransport *mMngTransport;
     bool flgStart;
@@ -41,7 +41,7 @@ namespace nsMMOEngine
     bool flgUseCryptTCP;
     TManagerContextCrypto mMngCtxCrypto;
 
-    // один менеджер - одно верхнее соединение
+    // РѕРґРёРЅ РјРµРЅРµРґР¶РµСЂ - РѕРґРЅРѕ РІРµСЂС…РЅРµРµ СЃРѕРµРґРёРЅРµРЅРёРµ
     bool flgNeedAnswerFromUp;
     bool flgGetAnswerFromUp;
     TIP_Port mIP_PortUp;
@@ -53,14 +53,14 @@ namespace nsMMOEngine
     void lockAccessSession(){mMutexAccessMapSession.lock();}
     void unlockAccessSession(){mMutexAccessMapSession.unlock();}
 
-    // запрет на попытку соединиться наверх более чем один раз
+    // Р·Р°РїСЂРµС‚ РЅР° РїРѕРїС‹С‚РєСѓ СЃРѕРµРґРёРЅРёС‚СЊСЃСЏ РЅР°РІРµСЂС… Р±РѕР»РµРµ С‡РµРј РѕРґРёРЅ СЂР°Р·
     GCS mMutexConnectUp;
     void lockConnectUp(){mMutexConnectUp.lock();}
     void unlockConnectUp(){mMutexConnectUp.unlock();}
   public:
     TManagerSession();
     ~TManagerSession();
-		// для поддержания работы
+		// РґР»СЏ РїРѕРґРґРµСЂР¶Р°РЅРёСЏ СЂР°Р±РѕС‚С‹
     void SetMakerTransport(IMakerTransport* pMakerTransport);
 
     TCallBackRegistrator1<TDescRecvSession*>* GetCallbackRecv(){return &mCallBackRecv;}
@@ -68,14 +68,14 @@ namespace nsMMOEngine
     
 		bool Start(TDescOpen* pDesc, int count = 1);
     void Work();
-		// для работы с сетью
-    unsigned int Send(unsigned int ip, unsigned short port, TBreakPacket bp, unsigned char subNet, bool check = true);// только если не установлено соединение
+		// РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ СЃРµС‚СЊСЋ
+    unsigned int Send(unsigned int ip, unsigned short port, TBreakPacket bp, unsigned char subNet, bool check = true);// С‚РѕР»СЊРєРѕ РµСЃР»Рё РЅРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕРµРґРёРЅРµРЅРёРµ
 		void Send(unsigned int id_session, TBreakPacket bp, bool check = true);
     unsigned int GetSessionID(unsigned int ip, unsigned short port);
     bool GetInfo(unsigned int id_session, TIP_Port& ip_port_out);
     void CloseSession(unsigned int id_session);
     bool IsExist(unsigned int id_session);
-    // настройка
+    // РЅР°СЃС‚СЂРѕР№РєР°
     void SetTimeLiveSession(unsigned int time_ms);
 
     bool GetRSAPublicKeyForUp(TContainer& cRSA);
@@ -103,7 +103,7 @@ namespace nsMMOEngine
 
     void FixHack(char* sMsg);
 
-    // использовать шифрование для передачи TCP
+    // РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С€РёС„СЂРѕРІР°РЅРёРµ РґР»СЏ РїРµСЂРµРґР°С‡Рё TCP
     void SetUseCryptTCP(bool v);
   public:
     bool GetUseCryptTCP();

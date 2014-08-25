@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -37,15 +37,15 @@ bool TSetOrderElement::FindIndexByClientKey(unsigned int key, int& index)
   if(mMapKeyInnerIndex.size()==0)
     return false;
 
-  // èùåì âíóòðåííèé èíäåêñ
+  // Ð¸Ñ‰ÐµÐ¼ Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½Ð¸Ð¹ Ð¸Ð½Ð´ÐµÐºÑ
 	bmUintUint::left_iterator fmit = mMapKeyInnerIndex.left.find(key);
   if(fmit==mMapKeyInnerIndex.left.end())
   {
     BL_FIX_BUG();
     return false;
   }
-  // èùåì èòåðàòîð ïî âíóòðåííåìó èíäåêñó
-  // ò.ê. ìàññèâ âñåãäà ñîðòèðîâàííûé ìîæíî áûñòðî èñêàòü äèõîòîìèåé
+  // Ð¸Ñ‰ÐµÐ¼ Ð¸Ñ‚ÐµÑ€Ð°Ñ‚Ð¾Ñ€ Ð¿Ð¾ Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÐµÐ¼Ñƒ Ð¸Ð½Ð´ÐµÐºÑÑƒ
+  // Ñ‚.Ðº. Ð¼Ð°ÑÑÐ¸Ð² Ð²ÑÐµÐ³Ð´Ð° ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð¼Ð¾Ð¶Ð½Ð¾ Ð±Ñ‹ÑÑ‚Ñ€Ð¾ Ð¸ÑÐºÐ°Ñ‚ÑŒ Ð´Ð¸Ñ…Ð¾Ñ‚Ð¾Ð¼Ð¸ÐµÐ¹
   void* result = bsearch( &(fmit->second), 
                           &mVecSortInnerIndex[0], 
                           mVecSortInnerIndex.size(),

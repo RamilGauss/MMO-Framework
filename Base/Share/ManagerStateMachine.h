@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -44,11 +44,11 @@ public:
   TManagerStateMachine();
   virtual ~TManagerStateMachine();
   enum{eAll=-1};
-  // загрузить и вернуть id для доступа
+  // Р·Р°РіСЂСѓР·РёС‚СЊ Рё РІРµСЂРЅСѓС‚СЊ id РґР»СЏ РґРѕСЃС‚СѓРїР°
   virtual bool Load(const char* sPath, unsigned int &id);
-  // по id поменять состояние с текущего на новое
+  // РїРѕ id РїРѕРјРµРЅСЏС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ СЃ С‚РµРєСѓС‰РµРіРѕ РЅР° РЅРѕРІРѕРµ
   virtual bool SetState(const char* sNewStateName, unsigned int id = eAll);
-  // по id получить мэппинг от k (состояние не меняется), сделано в угоду скорости работы
+  // РїРѕ id РїРѕР»СѓС‡РёС‚СЊ РјСЌРїРїРёРЅРі РѕС‚ k (СЃРѕСЃС‚РѕСЏРЅРёРµ РЅРµ РјРµРЅСЏРµС‚СЃСЏ), СЃРґРµР»Р°РЅРѕ РІ СѓРіРѕРґСѓ СЃРєРѕСЂРѕСЃС‚Рё СЂР°Р±РѕС‚С‹
   virtual bool GetValue(unsigned int id, unsigned int k, unsigned int& v);
   virtual bool GetComment(unsigned int id, unsigned int k, std::string&  comment);
 

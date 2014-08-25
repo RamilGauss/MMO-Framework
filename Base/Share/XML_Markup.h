@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,7 +15,7 @@ See for more information License.h.
 #define UTF82A  CMarkup::UTF8ToA
 
 /*
-  реализация XML-парсера на CMarkUp.
+  СЂРµР°Р»РёР·Р°С†РёСЏ XML-РїР°СЂСЃРµСЂР° РЅР° CMarkUp.
 */
 
 class TXML_Markup : public IXML
@@ -30,22 +30,22 @@ public:
 
   virtual bool Load(const char* sPath);
   virtual bool IsOpen();
-  // операции с секциями
+  // РѕРїРµСЂР°С†РёРё СЃ СЃРµРєС†РёСЏРјРё
   
-  // навигация
+  // РЅР°РІРёРіР°С†РёСЏ
   virtual void ResetPos();
   virtual int  GetCountSection(const char* name = NULL);
   virtual std::string GetNameSection(int index);
   virtual bool EnterSection(const char* name, int num);
   virtual bool LeaveSection();
-  // изменение кол-ва
+  // РёР·РјРµРЅРµРЅРёРµ РєРѕР»-РІР°
   virtual bool AddSectionAndEnter(const char* name);
   virtual bool AddSectionAndEnter(const char *name, int numAttr, TAttrInfo *pAttribs);
   virtual bool AddSection(const char* name);
   virtual bool AddSection(const char *name, int numAttr, TAttrInfo *pAttribs);
   virtual bool RemoveSection(const char* name, int num);
 
-  // изменение содержимого
+  // РёР·РјРµРЅРµРЅРёРµ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ
   virtual bool AddXMLDeclaration(const char* strDecl);
 
   virtual bool WriteSectionAttr(const char* name, int num, const char* nameAttr, std::string buffer);
@@ -53,7 +53,7 @@ public:
   
   virtual bool WriteSectionAttr(int index, const char* nameAttr, std::string buffer);
   virtual bool WriteSection(int index, std::string buffer);
-  // чтение
+  // С‡С‚РµРЅРёРµ
   virtual std::string ReadSectionAttr(const char* name, int num, const char* nameAttr );
   virtual std::string ReadSection(const char* name, int num);
   

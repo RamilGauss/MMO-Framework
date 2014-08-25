@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,14 +15,14 @@ class TNetControlTCP;
 
 class TNetControlAcceptor : public INetControl
 {
-  TNetDeviceAcceptor mDevice;// слушающий сокет, ждет подключения от клиентов
+  TNetDeviceAcceptor mDevice;// СЃР»СѓС€Р°СЋС‰РёР№ СЃРѕРєРµС‚, Р¶РґРµС‚ РїРѕРґРєР»СЋС‡РµРЅРёСЏ РѕС‚ РєР»РёРµРЅС‚РѕРІ
 
   GCS gcsSendAccept;
   void lockSA(){gcsSendAccept.lock();}
   void unlockSA(){gcsSendAccept.unlock();}
 public:
 
-  TNetControlAcceptor(boost::asio::io_service& io_service);
+  TNetControlAcceptor(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service);
   virtual ~TNetControlAcceptor();
   // TNetTransport_XXX
   virtual void Init();

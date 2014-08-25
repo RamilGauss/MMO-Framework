@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,10 +15,10 @@ See for more information License.h.
 #include "ClientMain.h"
 #include "GameRoomPrepare.h"
 #include "WaitForm.h"
-#include "PrototypeMMOBaseEvent.h"
 #include "InputCmdDevTool.h"
 #include "TestControlTank.h"
 #include "DevProtocol.h"
+#include "BaseEvent.h"
 
 class TClientMain;
 class TGameRoomPrepare;
@@ -43,10 +43,10 @@ class TDevTool_ClientTank : public TDevTool_Client
 
   int mIndexCurObj;
 
-  IBaseObjectGeneral* mTank;
-  IBaseObjectGeneral* mHangar;
+  //IBaseObjectGeneral* mTank;
+  //IBaseObjectGeneral* mHangar;
 
-	// показать магию
+	// РїРѕРєР°Р·Р°С‚СЊ РјР°РіРёСЋ
 	TTestControlTank mTestControlTank;
 
 public:
@@ -61,7 +61,7 @@ protected:
   void ParseCmd(std::vector<std::string>& arg);
 
   void InitLog();
-  void HandleFromMMOEngine(PrototypeMMOBaseEvent* pBE);
+  void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
   void HandleFromGUI(nsEvent::TBaseEvent* pData);
   void HandleFromDev(nsDevProtocol::TBase* pData);
 
@@ -71,7 +71,7 @@ protected:
 protected:
   void SetCurrentForm(TBaseGUI* mGameRoomPrepare);
 protected:
-  void Connect(PrototypeMMOBaseEvent* pBE);
+  void Connect(nsMMOEngine::TBaseEvent* pBE);
   void ConnectUp();
   void DisconnectUp();
 protected:
@@ -79,7 +79,7 @@ protected:
   void CreateHangar();
   void CreateTank();
 
-  virtual std::string GetTitleWindow(){return "Клиент танков";}
+  virtual std::string GetTitleWindow(){return "РљР»РёРµРЅС‚ С‚Р°РЅРєРѕРІ";}
 };
 
 #endif

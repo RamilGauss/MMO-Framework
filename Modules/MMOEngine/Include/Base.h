@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -41,17 +41,17 @@ namespace nsMMOEngine
     boost::scoped_ptr<TControlScenario>    mControlSc;
     boost::scoped_ptr<TContainerContextSc> mContainerUp;
 
-		// уведомления о разрыве связи
+		// СѓРІРµРґРѕРјР»РµРЅРёСЏ Рѕ СЂР°Р·СЂС‹РІРµ СЃРІСЏР·Рё
     typedef TListMultiThread<unsigned int> TListUint;
     TListUint mIDSessionDisconnect;
-		// полученные пакеты от mManagerSession
+		// РїРѕР»СѓС‡РµРЅРЅС‹Рµ РїР°РєРµС‚С‹ РѕС‚ mManagerSession
     typedef TListMultiThread<TDescRecvSession> TListRecvPacket;
     TListRecvPacket mRecvPacket;
 
-		// транспорт
+		// С‚СЂР°РЅСЃРїРѕСЂС‚
     boost::scoped_ptr<TManagerSession> mManagerSession;
-		// загрузка CPU
-    int mLoadProcent;// затраченное время/выделенное, %
+		// Р·Р°РіСЂСѓР·РєР° CPU
+    int mLoadProcent;// Р·Р°С‚СЂР°С‡РµРЅРЅРѕРµ РІСЂРµРјСЏ/РІС‹РґРµР»РµРЅРЅРѕРµ, %
 
     unsigned int mID_SessionUp;
     bool         flgConnectUp;
@@ -81,7 +81,7 @@ namespace nsMMOEngine
 
     virtual void DisconnectInherit(unsigned int id) = 0;
 		virtual void WorkInherit(){};
-    // события сценариев
+    // СЃРѕР±С‹С‚РёСЏ СЃС†РµРЅР°СЂРёРµРІ
     virtual void NeedContextDisconnectClient(unsigned int id_client){}
     //----------------------------------------------------
     // LoginClient

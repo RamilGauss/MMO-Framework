@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\;..\GameEngine;..\Base\Share;..\Adapters\AdapterGraphicEngine;..\Adapters\AdapterMMOEngine;..\Adapters\AdapterPhysicEngine;..\Adapters\AdapterServer;..\Adapters\AdapterTimer;..\Adapters\AdapterMOG;..\Adapters\AdapterAloneGUI"
+				AdditionalIncludeDirectories=".\;..\GameEngine;..\Base\Share"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Share.lib GameEngine.lib AdapterGraphicEngine.lib AdapterMMOEngine.lib AdapterPhysicEngine.lib AdapterServer.lib AdapterTimer.lib AdapterMOG.lib AdapterAloneGUI.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Share.lib GameEngine.lib"
 				OutputFile="$(OutDir)\Tornado.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\Lib;&quot;..\Lib\$(ConfigurationName)&quot;"
@@ -182,10 +182,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\GameEngine.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\InputCmdTornado.cpp"
 				>
 			</File>
@@ -199,10 +195,6 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath=".\GameEngine.h"
-				>
-			</File>
 			<File
 				RelativePath=".\InputCmdTornado.h"
 				>

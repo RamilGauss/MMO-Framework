@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -37,7 +37,7 @@ bool TLoaderListPathID::Load(char* sAbsPath, map<unsigned int,string>* pMap)
   else
   {
     pMap->clear();
-    // кол-во записей
+    // РєРѕР»-РІРѕ Р·Р°РїРёСЃРµР№
     string sRoot = mXML->GetNameSection(0);
     if(sRoot.length()==0) return false;
     RET_FALSE(mXML->EnterSection(sRoot.data(),0))
@@ -108,7 +108,7 @@ bool TLoaderListPathID::LoadBehavior(char* sAbsPath, std::map<unsigned int,unsig
   else
   {
     pMapID_model_ID_Behavior->clear();
-    // кол-во записей
+    // РєРѕР»-РІРѕ Р·Р°РїРёСЃРµР№
     string sRoot = mXML->GetNameSection(0);
     if(sRoot.length()==0) return false;
     RET_FALSE(mXML->EnterSection(sRoot.data(),0))
@@ -142,7 +142,7 @@ bool TLoaderListPathID::LoadPartID_Behavior(int i, map<unsigned int,unsigned int
   unsigned int id,id_behavior;
   RET_FALSE(mXML->ReadUint(Section_ID,0,id))
   RET_FALSE(mXML->ReadUint(Section_ID_behavior,0,id_behavior))
-  // добавление нового значения
+  // РґРѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
   pMap->operator[](id) = id_behavior;
   //------------------------------------------------
   mXML->LeaveSection();
