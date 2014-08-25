@@ -204,6 +204,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\cnvCoderText.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ContainerRise.cpp"
 				>
 			</File>
@@ -411,6 +415,10 @@
 			</File>
 			<File
 				RelativePath=".\CmdParam.h"
+				>
+			</File>
+			<File
+				RelativePath=".\cnvCoderText.h"
 				>
 			</File>
 			<File

@@ -20,7 +20,7 @@ namespace demo
   //-------------------------------------------------------------------------------------
 	void DemoKeeper::createScene()
 	{
-    MyGUI::ResourceManager::getInstance().load("MyGUI_BlackBlueTheme.xml");// çàãðóçêà ñêèíà
+    MyGUI::ResourceManager::getInstance().load("MyGUI_BlackBlueTheme.xml");// Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° ÑÐºÐ¸Ð½Ð°
     getRoot()->getRenderSystem()->_initRenderTargets();
     //============================================================================
     //Ogre::Entity* ent = getSceneManager()->createEntity("MyEntity","sinbad.mesh");
