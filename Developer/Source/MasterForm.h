@@ -13,13 +13,13 @@ See for more information License.h.
 #include <map>
 #include "ShareMisc.h"
 
-class MasterForm : public QWidget
+class TMasterForm : public QWidget
 {
   Q_OBJECT
 
 public:
-  MasterForm(QWidget *parent = NULL);
-  ~MasterForm();
+  TMasterForm(QWidget *parent = NULL);
+  ~TMasterForm();
 
   void SetConnect(bool val);
 

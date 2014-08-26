@@ -74,7 +74,7 @@ protected:
   void PushModule(IModule* ptr);
   IModule* GetModulePtr(int index);
 private:
-  ModuleDev* NewModule(int id_module, bool flgUseInConveyer);
+  TModuleDev* NewModule(int id_module, bool flgUseInConveyer);
   void DeleteModule(IModule* pModule);
 };
 

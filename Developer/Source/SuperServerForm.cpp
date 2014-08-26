@@ -12,24 +12,24 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "DevTool_Share.h"
 
-SuperServerForm::SuperServerForm(QWidget *parent)
+TSuperServerForm::TSuperServerForm(QWidget *parent)
 {
   ui.setupUi(this);
   setWindowTitle(tr("SuperServer"));
   Refresh();
 }
 //-----------------------------------------------------------
-SuperServerForm::~SuperServerForm()
+TSuperServerForm::~TSuperServerForm()
 {
 
 }
 //-----------------------------------------------------------
-void SuperServerForm::customEvent( QEvent * event)
+void TSuperServerForm::customEvent( QEvent * event)
 {
 
 }
 //-----------------------------------------------------------
-void SuperServerForm::closeEvent(QCloseEvent * event)
+void TSuperServerForm::closeEvent(QCloseEvent * event)
 {
   int type = 0;
   // создать событие для главного потока, здесь менять нельзя, мы находимся в потоке Qt
@@ -38,21 +38,21 @@ void SuperServerForm::closeEvent(QCloseEvent * event)
   delete this;
 }
 //-----------------------------------------------------------
-void SuperServerForm::Add(TDesc& desc)
+void TSuperServerForm::Add(TDesc& desc)
 {
   mMapID_SessionDesc.insert(TMapUintDesc::value_type(desc.id_session,desc));
 
   Refresh();
 }
 //-----------------------------------------------------------
-void SuperServerForm::Delete(unsigned int id_session)
+void TSuperServerForm::Delete(unsigned int id_session)
 {
   mMapID_SessionDesc.erase(id_session);
   
   Refresh();
 }
 //-----------------------------------------------------------
-void SuperServerForm::Refresh()
+void TSuperServerForm::Refresh()
 {
   QString sCount = QString("%1").arg(mMapID_SessionDesc.size());
   ui.lCount->setText(sCount);

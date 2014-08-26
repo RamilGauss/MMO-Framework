@@ -16,14 +16,14 @@ See for more information License.h.
 #include "Events.h"
 #include "ListModule.h"
 
-class SlaveForm;
+class TSlaveForm;
 
 class TDevTool_SlaveTank : public TDevTool_Server
 {
   TListMultiThread<unsigned int> mListID_SessionAdd;
   TListMultiThread<unsigned int> mListID_SessionDelete;
 
-  SlaveForm* mSlaveForm;
+  TSlaveForm* mSlaveForm;
 
   TInputCmdDevTool mInputCmd;
 
@@ -35,6 +35,8 @@ public:
 	virtual void Init(std::vector<std::string>& arg);
 	virtual void Done();
 	virtual void Event(nsEvent::TEvent* pEvent);
+
+  virtual std::string GetPathServerLog(){return ".\\serverLoad_Slave.xls";}
 protected:
   virtual int GetIDPrototypeMMOEngineServer(){return MODULE_MMO_ENGINE_SLAVE;}
 protected:

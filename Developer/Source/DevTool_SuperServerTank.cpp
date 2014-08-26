@@ -76,7 +76,7 @@ void TDevTool_SuperServerTank::InitLog()
 //---------------------------------------------------------------------------------------------
 void TDevTool_SuperServerTank::InitQtForm()
 {
-  mSuperServerForm = new SuperServerForm;
+  mSuperServerForm = new TSuperServerForm;
   mSuperServerForm->show();
 }
 //---------------------------------------------------------------------------------------------
@@ -186,7 +186,7 @@ void TDevTool_SuperServerTank::AddMasterQt()
   {
     unsigned int ID = *(*ppFirst);
     
-    SuperServerForm::TDesc desc;
+    TSuperServerForm::TDesc desc;
     desc.id_session = ID;
     bool resInfoSession = mComponent.mSuperServer->Get()->GetInfoSession(ID, desc.ip_port);
     BL_ASSERT(resInfoSession);

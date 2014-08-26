@@ -15,7 +15,7 @@ See for more information License.h.
 
 using namespace nsDevProtocol;
 
-MasterForm::MasterForm(QWidget *parent)
+TMasterForm::TMasterForm(QWidget *parent)
 {
   ui.setupUi(this);
   setWindowTitle(tr("Master"));
@@ -27,17 +27,17 @@ MasterForm::MasterForm(QWidget *parent)
   connect(ui.bCreateGroup, SIGNAL(clicked()), this, SLOT(sl_CreateGroup()));
 }
 //-----------------------------------------------------------
-MasterForm::~MasterForm()
+TMasterForm::~TMasterForm()
 {
 
 }
 //-----------------------------------------------------------
-void MasterForm::customEvent( QEvent * event)
+void TMasterForm::customEvent( QEvent * event)
 {
 
 }
 //-----------------------------------------------------------
-void MasterForm::closeEvent(QCloseEvent * event)
+void TMasterForm::closeEvent(QCloseEvent * event)
 {
   TExit h;
   TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&h,sizeof(h));
@@ -45,7 +45,7 @@ void MasterForm::closeEvent(QCloseEvent * event)
   delete this;
 }
 //-----------------------------------------------------------
-void MasterForm::SetConnect(bool val)
+void TMasterForm::SetConnect(bool val)
 {
   QPixmap pixmap(20,20);
   if(val)
@@ -55,21 +55,21 @@ void MasterForm::SetConnect(bool val)
   ui.lColor->setPixmap(pixmap);
 }
 //-----------------------------------------------------------
-void MasterForm::Add(TDesc& desc)
+void TMasterForm::Add(TDesc& desc)
 {
   mMapID_SessionDesc.insert(TMapUintDesc::value_type(desc.id_session,desc));
 
   Refresh();
 }
 //-----------------------------------------------------------
-void MasterForm::Delete(unsigned int id_session)
+void TMasterForm::Delete(unsigned int id_session)
 {
   mMapID_SessionDesc.erase(id_session);
 
   Refresh();
 }
 //-----------------------------------------------------------
-void MasterForm::Refresh()
+void TMasterForm::Refresh()
 {
   QString sCount = QString("%1").arg(mMapID_SessionDesc.size());
   ui.lCount->setText(sCount);
@@ -102,7 +102,7 @@ void MasterForm::Refresh()
   ui.table->resizeColumnsToContents();
 }
 //-----------------------------------------------------------
-void MasterForm::sl_CreateGroup()
+void TMasterForm::sl_CreateGroup()
 {
   TCreateGroup h;
   TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&h,sizeof(h));

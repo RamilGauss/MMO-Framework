@@ -15,7 +15,7 @@ See for more information License.h.
 #define GUN_SPEED    0.00035f
 #define TURRET_SPEED 0.00035f
 
-SlaveForm::SlaveForm(QWidget *parent)
+TSlaveForm::TSlaveForm(QWidget *parent)
 {
   ui.setupUi(this);
 
@@ -37,17 +37,17 @@ SlaveForm::SlaveForm(QWidget *parent)
   Refresh();
 }
 //-----------------------------------------------------------
-SlaveForm::~SlaveForm()
+TSlaveForm::~TSlaveForm()
 {
 
 }
 //-----------------------------------------------------------
-void SlaveForm::customEvent( QEvent * event)
+void TSlaveForm::customEvent( QEvent * event)
 {
 
 }
 //-----------------------------------------------------------
-void SlaveForm::closeEvent(QCloseEvent * event)
+void TSlaveForm::closeEvent(QCloseEvent * event)
 {
   int type = 0;
   TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&type,sizeof(type));
@@ -55,7 +55,7 @@ void SlaveForm::closeEvent(QCloseEvent * event)
   delete this;
 }
 //-----------------------------------------------------------
-void SlaveForm::SetConnect(bool val)
+void TSlaveForm::SetConnect(bool val)
 {
   QPixmap pixmap(20,20);
   if(val)
@@ -65,21 +65,21 @@ void SlaveForm::SetConnect(bool val)
   ui.lColor->setPixmap(pixmap);
 }
 //-----------------------------------------------------------
-void SlaveForm::Add(TDesc& desc)
+void TSlaveForm::Add(TDesc& desc)
 {
   mMapID_SessionDesc.insert(TMapUintDesc::value_type(desc.id_session,desc));
 
   Refresh();
 }
 //-----------------------------------------------------------
-void SlaveForm::Delete(unsigned int id_session)
+void TSlaveForm::Delete(unsigned int id_session)
 {
   mMapID_SessionDesc.erase(id_session);
 
   Refresh();
 }
 //-----------------------------------------------------------
-void SlaveForm::Refresh()
+void TSlaveForm::Refresh()
 {
   QString sCount = QString("%1").arg(mMapID_SessionDesc.size());
   ui.lCount->setText(sCount);
@@ -112,47 +112,47 @@ void SlaveForm::Refresh()
   ui.table->resizeColumnsToContents();
 }
 //-----------------------------------------------------------
-void SlaveForm::SetControlTank(TTestControlTank* pTCT)
+void TSlaveForm::SetControlTank(TTestControlTank* pTCT)
 {
 	mTCT = pTCT;
 }
 //-----------------------------------------------------------
-void SlaveForm::sl_DownPressed()
+void TSlaveForm::sl_DownPressed()
 {
 	mTCT->SetSpeedRotateGun(GUN_SPEED);
 }
 //-----------------------------------------------------------
-void SlaveForm::sl_UpPressed()
+void TSlaveForm::sl_UpPressed()
 {
 	mTCT->SetSpeedRotateGun(-GUN_SPEED);
 }
 //-----------------------------------------------------------
-void SlaveForm::sl_LeftPressed()
+void TSlaveForm::sl_LeftPressed()
 {
 	mTCT->SetSpeedRotateTurret(-TURRET_SPEED);
 }
 //-----------------------------------------------------------
-void SlaveForm::sl_RightPressed()
+void TSlaveForm::sl_RightPressed()
 {
 	mTCT->SetSpeedRotateTurret(TURRET_SPEED);
 }
 //-----------------------------------------------------------
-void SlaveForm::sl_DownReleased()
+void TSlaveForm::sl_DownReleased()
 {
 	mTCT->SetSpeedRotateGun(0);
 }
 //-----------------------------------------------------------
-void SlaveForm::sl_UpReleased()
+void TSlaveForm::sl_UpReleased()
 {
 	mTCT->SetSpeedRotateGun(0);
 }
 //-----------------------------------------------------------
-void SlaveForm::sl_LeftReleased()
+void TSlaveForm::sl_LeftReleased()
 {
 	mTCT->SetSpeedRotateTurret(0);
 }
 //-----------------------------------------------------------
-void SlaveForm::sl_RightReleased()
+void TSlaveForm::sl_RightReleased()
 {
 	mTCT->SetSpeedRotateTurret(0);
 }

@@ -17,12 +17,12 @@ class PrototypeDev;
   и требует (не всегда) квант времени.
 */
 
-class DllExport ModuleDev : public IModule
+class DllExport TModuleDev : public IModule
 {
   PrototypeDev* mPrototypeDev;
 public:
-  ModuleDev();
-  virtual ~ModuleDev();
+  TModuleDev();
+  virtual ~TModuleDev();
 
   virtual bool Work();
   void SetPrototypeDev(PrototypeDev* ptr);

@@ -15,15 +15,15 @@ See for more information License.h.
 
 class TTestControlTank;
 
-class SlaveForm : public QWidget
+class TSlaveForm : public QWidget
 {
   Q_OBJECT
 
 	TTestControlTank* mTCT;
 
 public:
-  SlaveForm(QWidget *parent = NULL);
-  ~SlaveForm();
+  TSlaveForm(QWidget *parent = NULL);
+  ~TSlaveForm();
 
 	void SetControlTank(TTestControlTank* pTCT);
 

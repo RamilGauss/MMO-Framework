@@ -157,7 +157,7 @@ void TDevTool_MasterTank::TryLogin(nsMMOEngine::TEventTryLogin* pEvent)
 //---------------------------------------------------------------------------------------------
 void TDevTool_MasterTank::InitQtForm()
 {
-  mMasterForm = new MasterForm;
+  mMasterForm = new TMasterForm;
   mMasterForm->show();
 }
 //---------------------------------------------------------------------------------------------
@@ -216,7 +216,7 @@ void TDevTool_MasterTank::AddSlaveQt()
   {
     unsigned int ID = *(*ppFirst);
 
-    MasterForm::TDesc desc;
+    TMasterForm::TDesc desc;
     desc.id_session = ID;
     bool resInfoSession = mComponent.mMaster->Get()->GetInfoSession(ID, desc.ip_port);
     BL_ASSERT(resInfoSession);

@@ -16,7 +16,7 @@ See for more information License.h.
 #include "Events.h"
 #include "ListModule.h"
 
-class MasterForm;
+class TMasterForm;
 
 class TDevTool_MasterTank : public TDevTool_Server
 {
@@ -25,7 +25,7 @@ class TDevTool_MasterTank : public TDevTool_Server
 
   unsigned int mCounterClient;
 
-  MasterForm* mMasterForm;
+  TMasterForm* mMasterForm;
 
   TInputCmdDevTool mInputCmd;
 
@@ -39,6 +39,8 @@ public:
   virtual void Init(std::vector<std::string>& arg);
   virtual void Done();
   virtual void Event(nsEvent::TEvent* pEvent);
+  
+  virtual std::string GetPathServerLog(){return ".\\serverLoad_Master.xls";}
 protected:
   virtual int GetIDPrototypeMMOEngineServer(){return MODULE_MMO_ENGINE_MASTER;}
 protected:

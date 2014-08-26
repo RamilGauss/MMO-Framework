@@ -13,7 +13,7 @@ See for more information License.h.
 #include "DescEvent.h"
 #include "Logger.h"
 
-class ModuleDev;
+class TModuleDev;
 
 class DllExport IDevTool
 {
@@ -26,6 +26,7 @@ public:
 
   virtual void Init(std::vector<std::string>& arg) = 0;
   virtual std::string GetPathXMLFile() = 0;
+  virtual std::string GetPathServerLog() = 0;
 
   virtual void Done() = 0;
   virtual void Event(nsEvent::TEvent* pEvent) = 0;
@@ -33,8 +34,8 @@ public:
   virtual int  GetCountModule() = 0;
   virtual int  GetModuleID(int index) = 0;
   virtual bool IsAddModuleInConveyer(int index) = 0;
-  virtual void SetModulePtr(ModuleDev* ptr) = 0;// результат создания модуля, разработчик внесет к себе в компоненты
-  virtual void FreeModulePtr(ModuleDev* ptr) = 0;// вызывается перед освобождением модуля, разработчик произведет дополнительные действия
+  virtual void SetModulePtr(TModuleDev* ptr) = 0;// результат создания модуля, разработчик внесет к себе в компоненты
+  virtual void FreeModulePtr(TModuleDev* ptr) = 0;// вызывается перед освобождением модуля, разработчик произведет дополнительные действия
 
   virtual void SetLoadConveyer(int procent);
   virtual int  GetTimeRefresh_ms();

@@ -78,8 +78,8 @@ public:
   TComponent* GetComponent(){return &mComponent;}
   static TDevTool_Share* Singleton();
 
-  virtual void SetModulePtr(ModuleDev* ptr);
-  virtual void FreeModulePtr(ModuleDev* ptr);
+  virtual void SetModulePtr(TModuleDev* ptr);
+  virtual void FreeModulePtr(TModuleDev* ptr);
   virtual std::string GetPathXMLFile();
 protected:
   virtual std::string GetTitleWindow(){return "";}

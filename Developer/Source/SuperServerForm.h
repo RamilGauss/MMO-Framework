@@ -13,13 +13,13 @@ See for more information License.h.
 #include <map>
 #include "ShareMisc.h"
 
-class SuperServerForm : public QWidget
+class TSuperServerForm : public QWidget
 {
   Q_OBJECT
 
 public:
-  SuperServerForm(QWidget *parent = NULL);
-  ~SuperServerForm();
+  TSuperServerForm(QWidget *parent = NULL);
+  ~TSuperServerForm();
 
   struct TDesc
   {

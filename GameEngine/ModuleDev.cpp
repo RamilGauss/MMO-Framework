@@ -10,24 +10,24 @@ See for more information License.h.
 
 #include <stddef.h>
 
-ModuleDev::ModuleDev()
+TModuleDev::TModuleDev()
 {
   mPrototypeDev = NULL;
 }
 //---------------------------------------------------------------------
-ModuleDev::~ModuleDev()
+TModuleDev::~TModuleDev()
 {
 
 }
 //---------------------------------------------------------------------
-bool ModuleDev::Work()
+bool TModuleDev::Work()
 {
   if(mPrototypeDev)
     return mPrototypeDev->Work();
-  return true;//### 
+  return true;
 }
 //---------------------------------------------------------------------
-void ModuleDev::SetPrototypeDev(PrototypeDev* ptr)
+void TModuleDev::SetPrototypeDev(PrototypeDev* ptr)
 {
   mPrototypeDev = ptr;
   mPrototypeDev->SetSrcEvent(this);

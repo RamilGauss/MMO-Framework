@@ -30,6 +30,8 @@ public:
   virtual int  GetCountModule();
   virtual int  GetModuleID(int index);
   virtual bool IsAddModuleInConveyer(int index);
+  
+  virtual std::string GetPathServerLog(){return "";}
 };
 
 #endif

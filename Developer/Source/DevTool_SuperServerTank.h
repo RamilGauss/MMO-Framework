@@ -15,7 +15,7 @@ See for more information License.h.
 #include "Events.h"
 #include "ListModule.h"
 
-class SuperServerForm;
+class TSuperServerForm;
 
 class TDevTool_SuperServerTank : public TDevTool_Server
 {
@@ -24,7 +24,7 @@ class TDevTool_SuperServerTank : public TDevTool_Server
   
   TInputCmdDevTool mInputCmd;
 
-  SuperServerForm* mSuperServerForm;
+  TSuperServerForm* mSuperServerForm;
 public:
   TDevTool_SuperServerTank();
   virtual ~TDevTool_SuperServerTank();
@@ -32,6 +32,8 @@ public:
 	virtual void Init(std::vector<std::string>& arg);
 	virtual void Done();
 	virtual void Event(nsEvent::TEvent* pEvent);
+  
+  virtual std::string GetPathServerLog(){return ".\\serverLoad_SuperServer.xls";}
 protected:
   virtual int GetIDPrototypeMMOEngineServer(){return MODULE_MMO_ENGINE_SUPER_SERVER;}
 protected:

@@ -132,7 +132,7 @@ void TDevTool_SlaveTank::InitLog()
 //---------------------------------------------------------------------------------------------
 void TDevTool_SlaveTank::InitQtForm()
 {
-  mSlaveForm = new SlaveForm;
+  mSlaveForm = new TSlaveForm;
   mSlaveForm->show();
 
 	mSlaveForm->SetControlTank(&mTestControlTank);
@@ -211,7 +211,7 @@ void TDevTool_SlaveTank::AddClientQt()
   {
     unsigned int ID = *(*ppFirst);
 
-    SlaveForm::TDesc desc;
+    TSlaveForm::TDesc desc;
     desc.id_session = ID;
     bool resInfoSession = mComponent.mSlave->Get()->GetInfoSession(ID, desc.ip_port);
     BL_ASSERT(resInfoSession);

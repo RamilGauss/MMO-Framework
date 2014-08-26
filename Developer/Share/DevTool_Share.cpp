@@ -26,7 +26,7 @@ TDevTool_Share* TDevTool_Share::Singleton()
   return g_DevTool;
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::SetModulePtr(ModuleDev* pModule)
+void TDevTool_Share::SetModulePtr(TModuleDev* pModule)
 {
   switch(pModule->GetID())
   {
@@ -79,7 +79,7 @@ void TDevTool_Share::SetModulePtr(ModuleDev* pModule)
   }
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::FreeModulePtr(ModuleDev* pModule)
+void TDevTool_Share::FreeModulePtr(TModuleDev* pModule)
 {
 
 }

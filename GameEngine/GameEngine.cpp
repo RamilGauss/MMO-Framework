@@ -28,8 +28,6 @@ using namespace nsEvent;
 
 TGameEngine::TGameEngine():mStatLoad(30)
 {
-	mLogLoad.ReOpen(".\\serverLoad.xls");
-
   TMakerLoaderDLL maker;
   mLoaderDLL = maker.New();
 
@@ -157,6 +155,10 @@ bool TGameEngine::Init(int variant_use, const char* sNameDLL, vector<string>& ar
 {
   // загрузка DLL
   RET_FALSE(LoadDLL(variant_use,sNameDLL))
+	
+  string sRelPathServerLog = mDevTool->GetPathServerLog();
+  if(sRelPathServerLog.length())
+    mLogLoad.ReOpen((char*)sRelPathServerLog.data());
   // подготовить пути для ресурсов
   string sRelPathXML = mDevTool->GetPathXMLFile();
   char sAbsPath[300];
@@ -211,7 +213,7 @@ IModule* TGameEngine::GetModulePtr(int index)
 //------------------------------------------------------------------------
 int TGameEngine::GetVersion()
 {
-	return 4;
+	return 5;
 }
 //------------------------------------------------------------------------
 void TGameEngine::SetupDevModule()
@@ -220,7 +222,7 @@ void TGameEngine::SetupDevModule()
   for( int i = 0 ; i < count ; i++ )
   {
     int id_module = mDevTool->GetModuleID(i);
-    ModuleDev* pModule = NewModule(id_module, mDevTool->IsAddModuleInConveyer(i));
+    TModuleDev* pModule = NewModule(id_module, mDevTool->IsAddModuleInConveyer(i));
     mDevTool->SetModulePtr(pModule);
     PushModule(pModule);
   }
@@ -231,15 +233,15 @@ void TGameEngine::FreeDevModule()
   int count = mDevTool->GetCountModule();
   for( int i = 0 ; i < count ; i++ )
   {
-    ModuleDev* pModule = (ModuleDev*)GetModulePtr(i);
+    TModuleDev* pModule = (TModuleDev*)GetModulePtr(i);
     mDevTool->FreeModulePtr(pModule);
     DeleteModule(pModule);
   }
 }
 //-------------------------------------------------------------------
-ModuleDev* TGameEngine::NewModule(int id_module, bool flgUseInConveyer)
+TModuleDev* TGameEngine::NewModule(int id_module, bool flgUseInConveyer)
 {
-  ModuleDev* pModule = new ModuleDev;
+  TModuleDev* pModule = new TModuleDev;
   pModule->SetID(id_module);
   pModule->SetUseInConveyer(flgUseInConveyer);
   return pModule;
