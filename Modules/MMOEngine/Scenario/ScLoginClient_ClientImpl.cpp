@@ -53,8 +53,8 @@ void TScLoginClient_ClientImpl::Work(unsigned int time_ms)
   }
 }
 //-----------------------------------------------------------------------------
-void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port, 
-                                         void* data, int size, unsigned char subNet)
+void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port, unsigned char subNet,
+                                         void* pLogin, int sizeLogin, void* pPassword, int sizePassword)
 {
 	if(Begin()==false)
   {
@@ -66,7 +66,8 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port,
   }
   Context()->SetNeedLeaveQueue(false);
   Context()->SetSubNet(subNet);
-  
+
+  TContainer cMITM;
   TBreakPacket bpLP;// контейнер для всего пакета
   if(Context()->GetMS()->GetUseCryptTCP())
   {
@@ -76,24 +77,20 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port,
     bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
     BL_ASSERT(resRSA);
     TCryptMITM cryptMITM;
-    TContainer cEncryptRSA_bySHA1_LP;
     bool res = cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
-      data, size, cEncryptRSA_bySHA1_LP);
+      pLogin, sizeLogin, pPassword, sizePassword, cMITM);
     BL_ASSERT(res);
 
-    TMD5 md5;
-    TContainer cMD5LP;
-    md5.FastCalc(data, size, cMD5LP);
-    // сначало MD5LP
-    bpLP.PushFront((char*)cMD5LP.GetPtr(), cMD5LP.GetSize());
-    // потом зашифрованный RSA
-    bpLP.PushFront((char*)cEncryptRSA_bySHA1_LP.GetPtr(), cEncryptRSA_bySHA1_LP.GetSize());
+    bpLP.PushFront(cMITM.GetPtr(), cMITM.GetSize());
+		// сохранить на будущее
+		Context()->Set_L_AES_RSA(cMITM.GetPtr(), cMITM.GetSize());
   }
   else
   {
     // иначе просто отослать данные:
     // формирование пакета
-    bpLP.PushFront((char*)data,size);
+    bpLP.PushFront((char*)pLogin,    sizeLogin);
+    bpLP.PushFront((char*)pPassword, sizePassword);
   }
   THeaderTryLoginC2M h;
   bpLP.PushFront((char*)&h, sizeof(h));
@@ -251,6 +248,9 @@ void TScLoginClient_ClientImpl::Disconnect()
   THeaderConnectToSlaveC2S h;
   // для Slave отдать свой ID, он по нему нас зарегистрирует  
   h.id_client = Context()->GetClientKey();
+  // для проверки на надежность нашего канала 
+  if(Context()->GetMS()->GetUseCryptTCP())
+    bp.PushFront(Context()->GetPtr_L_AES_RSA(),Context()->GetSize_L_AES_RSA());
   bp.PushFront((char*)&h, sizeof(h));
   // открыть сессию по IP:port
   TIP_Port ip_port_slave = Context()->GetSlaveIP_Port();

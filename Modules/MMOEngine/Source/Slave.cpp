@@ -119,13 +119,16 @@ bool TSlave::GetDescDown(int index, void* pDesc, int& sizeDesc)
 	return true;
 }
 //-------------------------------------------------------------------------
-void TSlave::ConnectUp(unsigned int ip, unsigned short port, unsigned char subNet)
+void TSlave::ConnectUp(unsigned int ip, unsigned short port, 
+                       void* pLogin, int sizeLogin, void* pPassword, int sizePassword,
+                       unsigned char subNet )
 {
   // если сессия жива, то значит либо соединились, либо соединяемся
   if(mID_SessionUp!=INVALID_HANDLE_SESSION)
     return;
 
-  mControlSc->mLoginSlave->ConnectToMaster(ip, port, subNet);
+  mControlSc->mLoginSlave->ConnectToMaster(ip, port, 
+    pLogin, sizeLogin, pPassword, sizePassword, subNet);
   // тут же опросить на созданную сессию
   mID_SessionUp = mContainerUp->mLoginSlave.GetID_Session();
 }

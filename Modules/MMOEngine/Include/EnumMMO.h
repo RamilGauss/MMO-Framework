@@ -26,6 +26,7 @@ namespace nsMMOEngine
     LoginMaster_NoAnswerFromSS,
     //--------------------------------------
     // LoginClient
+		LoginClient_EmptyLoginPassword,
     LoginClient_ClientSecondEnter,
     LoginClient_ClientMasterNotReady,
     LoginClient_ClientNoAnswer,

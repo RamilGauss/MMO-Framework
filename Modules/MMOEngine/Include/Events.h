@@ -60,6 +60,7 @@ namespace nsMMOEngine
   {
     TEventConnectDown();
     unsigned int id_session;
+		bool use_crypt;
   };
   //-------------------------------------------------------------
   struct DllExport TEventDestroyGroup : public TBaseEvent

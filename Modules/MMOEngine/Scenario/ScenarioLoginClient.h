@@ -67,8 +67,8 @@ namespace nsMMOEngine
     virtual void Recv(TDescRecvSession* pDesc);
   public:
     // от клиента, попытка авторизации
-    void TryLogin(unsigned int ip, unsigned short port, 
-                  void* data, int size, unsigned char subNet);
+    void TryLogin(unsigned int ip, unsigned short port, unsigned char subNet,
+                  void* pLogin, int sizeLogin, void* pPassword, int sizePassword);
     void LeaveQueue();
     // решение Мастера
     void Reject(void* resForClient, int sizeResClient);

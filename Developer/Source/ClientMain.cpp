@@ -64,7 +64,8 @@ void TClientMain::sl_Enter(MyGUI::Widget* _sender)
   SaveInputParam(ip,port,sLogin.data());
 
   BL_ASSERT(IsOpen);
-  pComponent->mClient->Get()->Login( ip, MASTER_PORT, (void*)sLogin.data(), sLogin.length());
+  pComponent->mClient->Get()->Login( ip, MASTER_PORT, 
+    (void*)sLogin.data(), sLogin.length(), "1", 1);// пока пароль - 1 ###
 }
 //-------------------------------------------------------------------------------------
 void TClientMain::sl_Exit(MyGUI::Widget* _sender)

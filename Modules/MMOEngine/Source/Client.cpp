@@ -45,7 +45,8 @@ bool TClient::Open(TDescOpen* pDesc, int count)
 	return mManagerSession->Start(pDesc, 1);
 }
 //-------------------------------------------------------------------------
-void TClient::Login(unsigned int ip, unsigned short port, void* data, int size)
+void TClient::Login(unsigned int ip, unsigned short port, 
+                    void* pLogin, int sizeLogin, void* pPassword, int sizePassword)
 {
   if(IsConnectUp())
   {
@@ -54,8 +55,17 @@ void TClient::Login(unsigned int ip, unsigned short port, void* data, int size)
     AddEventCopy(&event, sizeof(event));
     return;
   }
-
-  mControlSc->mLoginClient->TryLogin(ip, port, data, size, mSubNet);
+	if((pLogin   ==NULL)||(sizeLogin   ==0)||
+     (pPassword==NULL)||(sizePassword==0))
+	{
+		TEventError event;
+		event.code = LoginClient_EmptyLoginPassword;
+		AddEventCopy(&event, sizeof(event));
+		return;
+	}
+	
+  mControlSc->mLoginClient->TryLogin(ip, port, mSubNet, 
+            pLogin, sizeLogin, pPassword, sizePassword);
 }
 //-------------------------------------------------------------------------
 void TClient::DisconnectInherit(unsigned int id_session)

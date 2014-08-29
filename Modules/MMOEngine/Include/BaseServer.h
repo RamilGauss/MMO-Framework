@@ -21,7 +21,7 @@ namespace nsMMOEngine
 
     // проверить на доверие сессию
     bool IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 
-                           void* login_password, int size_login_password);
+                           void* pLogin, int sizeLogin, void* pPassword, int sizePassword);
 
 
     // this method will be realize in future

@@ -160,6 +160,8 @@ bool TCryptoRSA_Impl::SetPublicKey(void* pKey, int sizeKey)
   mMaxSizePartAfterCrypt  = RSA_size(RSA_KEY);
   mMaxSizePartBeforeCrypt = mMaxSizePartAfterCrypt - 11;
 
+  mContainerPublicKey.SetData((char*)pKey, sizeKey);
+
   return true;
 }
 //----------------------------------------------------------------------------------

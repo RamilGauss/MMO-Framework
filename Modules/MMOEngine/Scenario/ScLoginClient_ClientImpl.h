@@ -23,7 +23,8 @@ namespace nsMMOEngine
 
     virtual void Work(unsigned int time_ms);
 
-    void TryLogin(unsigned int ip, unsigned short port, void* data, int size, unsigned char subNet);
+    void TryLogin(unsigned int ip, unsigned short port, unsigned char subNet,
+                  void* pLogin, int sizeLogin, void* pPassword, int sizePassword);
     void LeaveQueue();
 
     void Disconnect();

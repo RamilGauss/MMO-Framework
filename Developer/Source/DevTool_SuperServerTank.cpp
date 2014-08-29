@@ -159,6 +159,9 @@ void TDevTool_SuperServerTank::ConnectDown(nsMMOEngine::TEventConnectDown* pEven
   mListID_SessionAdd.Add(pID);
 
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SuperServerTank::AddMasterQt,this);
+
+  //bool res = mComponent.mSuperServer->Get()->IsSessionSecurity(pEvent->id_session,
+  //  pEvent->c.GetPtr(), pEvent->c.GetSize(), "1", 1, "1", 1);
 }
 //---------------------------------------------------------------------------------------------
 void TDevTool_SuperServerTank::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)

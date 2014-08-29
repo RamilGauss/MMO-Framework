@@ -37,7 +37,8 @@ void TDevTool_SlaveTank::Init(vector<string>& arg)
 
   bool resOpen = mComponent.mSlave->Get()->Open(&nsMMOEngine::TDescOpen(input.port));
   BL_ASSERT(resOpen);
-  mComponent.mSlave->Get()->ConnectUp( input.ip, MASTER_PORT);
+
+  mComponent.mSlave->Get()->ConnectUp( input.ip, MASTER_PORT,"1",1,"1",1);
 
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SlaveTank::InitQtForm,this);
 
@@ -194,6 +195,9 @@ void TDevTool_SlaveTank::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
   mListID_SessionAdd.Add(pID);
 
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_SlaveTank::AddClientQt,this);
+
+  bool res = mComponent.mSlave->Get()->IsSessionSecurity(pEvent->id_session,
+    pEvent->c.GetPtr(), pEvent->c.GetSize(), "Gauss", strlen("Gauss"), "1", 1);
 }
 //---------------------------------------------------------------------------------------------
 void TDevTool_SlaveTank::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)

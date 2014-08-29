@@ -40,7 +40,7 @@ void TDevTool_MasterTank::Init(vector<string>& arg)
   bool resOpen = mComponent.mMaster->Get()->Open(&nsMMOEngine::TDescOpen(input.port));
   BL_ASSERT(resOpen);
 
-  mComponent.mMaster->Get()->ConnectUp(input.ip, SUPERSERVER_PORT);
+  mComponent.mMaster->Get()->ConnectUp(input.ip, SUPERSERVER_PORT, "1", 1, "1", 1);//### удалить!
 
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_MasterTank::InitQtForm,this);
 }
@@ -132,6 +132,9 @@ void TDevTool_MasterTank::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
   mListID_SessionAdd.Add(pID);
 
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_MasterTank::AddSlaveQt,this);
+
+  //bool res = mComponent.mMaster->Get()->IsSessionSecurity(pEvent->id_session,
+  //  pEvent->c.GetPtr(), pEvent->c.GetSize(), "1", 1, "1", 1);
 }
 //---------------------------------------------------------------------------------------------
 void TDevTool_MasterTank::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)

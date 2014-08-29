@@ -59,6 +59,8 @@ namespace nsMMOEngine
 
 		// используется на стороне Slave для определения стартовал ли контекст
 		bool flgWasBegin;
+
+		TContainer mC_L_AES_RSA;
 	public:
 		TContextScLoginClient();
     virtual ~TContextScLoginClient();
@@ -119,6 +121,10 @@ namespace nsMMOEngine
 
 		void SetSubNet(unsigned char v);
 		unsigned char GetSubNet();
+
+		void Set_L_AES_RSA(char* p, int size);
+		char* GetPtr_L_AES_RSA();
+		int GetSize_L_AES_RSA();
   private:
     void SetID_Session(std::string& name, unsigned int id);
     unsigned int GetID_Session(std::string& name);

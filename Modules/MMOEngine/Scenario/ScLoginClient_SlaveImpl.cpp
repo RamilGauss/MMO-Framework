@@ -87,7 +87,7 @@ void TScLoginClient_SlaveImpl::RecvFromMaster(TDescRecvSession* pDesc)
 void TScLoginClient_SlaveImpl::ConnectToSlaveC2S(TDescRecvSession* pDesc)
 {
   // защита от хака
-  if(pDesc->sizeData!=sizeof(THeaderConnectToSlaveC2S))
+  if(pDesc->sizeData<sizeof(THeaderConnectToSlaveC2S))
     return;
   
   THeaderConnectToSlaveC2S* pHeader = (THeaderConnectToSlaveC2S*)pDesc->data;
@@ -115,6 +115,11 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S(TDescRecvSession* pDesc)
   bp.PushFront((char*)&h, sizeof(h));
 
   Context()->GetMS()->Send(GetID_SessionMasterSlave(),bp);
+	// сохранить информацию о логине и пароле клиента
+	char* data   = pDesc->data     + sizeof(THeaderConnectToSlaveC2S);
+	int sizeData = pDesc->sizeData - sizeof(THeaderConnectToSlaveC2S);
+
+	Context()->Set_L_AES_RSA(data, sizeData);
 }
 //--------------------------------------------------------------
 void TScLoginClient_SlaveImpl::InfoClientM2S(TDescRecvSession* pDesc)
@@ -170,9 +175,12 @@ void TScLoginClient_SlaveImpl::CheckClientConnectM2S(TDescRecvSession* pDesc)
   }
   //--------------------------------------------
 	// отсылка уведомления Developer Slave события Connect
-  TEventConnectDown event;
-  event.id_session = GetID_SessionClientSlave();
-  Context()->GetSE()->AddEventCopy(&event, sizeof(event));
+  TEventConnectDown* pEvent = new TEventConnectDown;
+  pEvent->id_session = GetID_SessionClientSlave();
+	pEvent->c.SetData(Context()->GetPtr_L_AES_RSA(),
+		                Context()->GetSize_L_AES_RSA());
+	
+	Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
   // отослать клиенту уведомление
   THeaderCheckConnectToSlaveS2C h;
   TBreakPacket bp;

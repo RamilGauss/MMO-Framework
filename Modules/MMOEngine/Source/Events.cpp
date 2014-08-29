@@ -54,6 +54,7 @@ TEventConnectDown::TEventConnectDown()
 {
   mType = eConnectDown;
   id_session = INVALID_HANDLE_SESSION;
+	use_crypt = true;
 }
 //-------------------------------------------------------------
 TEventDestroyGroup::TEventDestroyGroup()
@@ -83,6 +84,7 @@ TEventTryLogin::TEventTryLogin()
 {
   mType = eTryLogin;
   id_session = INVALID_HANDLE_SESSION;
+	use_crypt = true;
 }
 //-------------------------------------------------------------
 TEventSaveContext::TEventSaveContext()

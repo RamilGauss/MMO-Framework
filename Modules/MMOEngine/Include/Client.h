@@ -25,7 +25,8 @@ namespace nsMMOEngine
     
 		virtual bool Open(TDescOpen* pDesc, int count = 1);
 
-    void Login(unsigned int ip, unsigned short port, void* data, int size);
+    void Login(unsigned int ip, unsigned short port, 
+               void* pLogin, int sizeLogin, void* pPassword, int sizePassword);
     void LeaveQueue();
 	protected:
     // Base

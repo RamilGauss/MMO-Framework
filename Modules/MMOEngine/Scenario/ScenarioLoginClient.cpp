@@ -44,10 +44,11 @@ void TScenarioLoginClient::Work()
   }
 }
 //--------------------------------------------------------------
-void TScenarioLoginClient::TryLogin(unsigned int ip, unsigned short port, 
-                                    void* data, int size, unsigned char subNet)
+void TScenarioLoginClient::TryLogin(unsigned int ip, unsigned short port, unsigned char subNet,
+                                    void* pLogin, int sizeLogin, void* pPassword, int sizePassword)
 {
-  mClient.TryLogin(ip, port, data, size, subNet);
+  mClient.TryLogin(ip, port, subNet, 
+    pLogin, sizeLogin, pPassword, sizePassword);
 }
 //--------------------------------------------------------------
 void TScenarioLoginClient::Recv(TDescRecvSession* pDesc)

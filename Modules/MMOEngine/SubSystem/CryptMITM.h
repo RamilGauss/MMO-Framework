@@ -15,7 +15,8 @@ class TCryptMITM
 {
 public:
 	bool Calc(void* rsa, int size_rsa, 
-		        void* login_password, int size_login_password, 
+		        void* pLogin, int sizeLogin,        
+            void* pPassword, int sizePassword, 
 						TContainer& c_result);
 };
 

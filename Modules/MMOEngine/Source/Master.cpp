@@ -194,9 +194,12 @@ bool TMaster::GetDescDown(int index, void* pDesc, int& sizeDesc)
   return true;
 }
 //-------------------------------------------------------------------------
-void TMaster::ConnectUp(unsigned int ip, unsigned short port, unsigned char subNet)
+void TMaster::ConnectUp(unsigned int ip, unsigned short port, 
+                        void* pLogin, int sizeLogin, void* pPassword, int sizePassword,
+                        unsigned char subNet)
 {
-  mControlSc->mLoginMaster->ConnectToSuperServer(ip, port, subNet);
+  mControlSc->mLoginMaster->ConnectToSuperServer(ip, port, 
+    pLogin, sizeLogin, pPassword, sizePassword, subNet);
   // тут же опросить на созданную сессию
   mID_SessionUp = mControlSc->mLoginMaster->GetContext()->GetID_Session();
 }
@@ -438,9 +441,9 @@ void TMaster::NeedContextLoginSlave(unsigned int id_session)
 
   mStatisticaClientInGroup->AddSlave(id_session);
   // событие наружу
-  TEventConnectDown event;
-  event.id_session = id_session;
-  AddEventCopy(&event, sizeof(event));
+  //TEventConnectDown event;
+  //event.id_session = id_session;
+  //AddEventCopy(&event, sizeof(event));
 }
 //-------------------------------------------------------------------------
 void TMaster::NeedContextSynchroSlave(unsigned int id_session)

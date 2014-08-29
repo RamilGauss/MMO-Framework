@@ -117,10 +117,10 @@ void TSuperServer::NeedContextLoginMaster(unsigned int id_session)
   pC = mMngContextMaster->AddContext(id_session);
   // назначить контекст для сценария
   mControlSc->mLoginMaster->SetContext(&pC->mLoginMaster);
-  // событие наружу
-  TEventConnectDown event;
-  event.id_session = id_session;
-  AddEventCopy(&event, sizeof(event));
+  //// событие наружу
+  //TEventConnectDown event;
+  //event.id_session = id_session;
+  //AddEventCopy(&event, sizeof(event));
 }
 //-------------------------------------------------------------------------
 void TSuperServer::NeedContextByMasterSessionByClientKey(unsigned int id_session,

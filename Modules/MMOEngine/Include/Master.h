@@ -78,7 +78,9 @@ namespace nsMMOEngine
     virtual void SendDown(unsigned int id_session, TBreakPacket bp, bool check = true);
 
     // ActiveServer      
-    virtual void ConnectUp(unsigned int ip, unsigned short port, unsigned char subNet = 0);
+    virtual void ConnectUp(unsigned int ip, unsigned short port, 
+                           void* pLogin, int sizeLogin, void* pPassword, int sizePassword, 
+                           unsigned char subNet = 0 );
 	protected:
     // Base
     virtual void DisconnectInherit(unsigned int id_session);

@@ -12,6 +12,9 @@ See for more information License.h.
 #include "HiTimer.h"
 #include "Events.h"
 #include "EnumMMO.h"
+#include "CryptMITM.h"
+
+#include "SrcEvent_ex.h"
 
 using namespace nsMMOEngine;
 
@@ -20,7 +23,9 @@ TScenarioLoginSlave::TScenarioLoginSlave()
 
 }
 //-------------------------------------------------------------------------------------
-void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port, unsigned char subNet )
+void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port, 
+                                           void* pLogin, int sizeLogin, void* pPassword, int sizePassword,
+                                           unsigned char subNet)
 {
   Context()->SetConnect(false);
   if(Begin()==false)
@@ -34,9 +39,25 @@ void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port,
   }
   // закрыть соединение
   Context()->GetMS()->CloseSession(Context()->GetID_Session());
+  TContainer cMITM;
   TBreakPacket bp;
+	if((Context()->GetMS()->GetUseCryptTCP())&&
+		 (pLogin!=NULL)&&(sizeLogin>0)&&(pPassword!=NULL)&&(sizePassword>0))
+	{
+		// если данные шифруются, то формировать так:
+    TContainer cRSA;
+    bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
+    BL_ASSERT(resRSA);
+    TCryptMITM cryptMITM;
+    bool res = cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
+      pLogin, sizeLogin, pPassword, sizePassword, cMITM);
+    BL_ASSERT(res);
+
+    bp.PushFront(cMITM.GetPtr(), cMITM.GetSize());
+	}
   THeaderFromSlave h;
   bp.PushFront((char*)&h, sizeof(h));
+
   Context()->SetID_Session( Context()->GetMS()->Send(ip, port, bp, subNet) );
   if(Context()->GetID_Session()==INVALID_HANDLE_SESSION)
   {
@@ -82,6 +103,15 @@ void TScenarioLoginSlave::RecvFromSlave(TDescRecvSession* pDesc)
     return;
   }
   Context()->SetID_Session(pDesc->id_session);
+
+	// событие наружу
+  TEventConnectDown* pEvent = new TEventConnectDown;
+	pEvent->id_session = pDesc->id_session;
+	// сохранить информацию о логине и пароле клиента
+	char* data   = pDesc->data     + sizeof(THeaderFromSlave);
+	int sizeData = pDesc->sizeData - sizeof(THeaderFromSlave);
+	pEvent->c.SetData(data,sizeData);
+	Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
 
   TBreakPacket bp;
   THeaderAnswerMaster h;

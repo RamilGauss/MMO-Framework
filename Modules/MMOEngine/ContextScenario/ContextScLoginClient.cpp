@@ -261,4 +261,18 @@ void TContextScLoginClient::SetWasBegin()
 	flgWasBegin = true;
 }
 //--------------------------------------------------------------
-
+void TContextScLoginClient::Set_L_AES_RSA(char* p, int size)
+{
+	mC_L_AES_RSA.SetData(p, size);
+}
+//--------------------------------------------------------------
+char* TContextScLoginClient::GetPtr_L_AES_RSA()
+{
+	return (char*)mC_L_AES_RSA.GetPtr();
+}
+//--------------------------------------------------------------
+int TContextScLoginClient::GetSize_L_AES_RSA()
+{
+	return mC_L_AES_RSA.GetSize();
+}
+//--------------------------------------------------------------

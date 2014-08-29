@@ -23,7 +23,7 @@ TBaseServer::~TBaseServer()
 }
 //-------------------------------------------------------------------------
 bool TBaseServer::IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 
-                                      void* login_password, int size_login_password)
+                                    void* pLogin, int sizeLogin, void* pPassword, int sizePassword)
 {
   TContainer cRSA;
   // получить по сессии RSA от транспорта
@@ -31,16 +31,15 @@ bool TBaseServer::IsSessionSecurity(unsigned int id_session, void* crypt, int si
     return false;
 
   TCryptMITM cryptMITM;
-  TContainer cEncryptRSA_bySHA1_LP;
+  TContainer cMITM;
   if(cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
-    login_password, size_login_password,
-    cEncryptRSA_bySHA1_LP)==false)
+    pLogin, sizeLogin, pPassword, sizePassword, cMITM)==false)
     return false;
   // сравнить по размеру
-  if(size_crypt!=cEncryptRSA_bySHA1_LP.GetSize())
+  if(size_crypt!=cMITM.GetSize())
     return false;
   // сравнить по содержимому
-  if(memcmp(crypt, cEncryptRSA_bySHA1_LP.GetPtr(), size_crypt)!=0)
+  if(memcmp(crypt, cMITM.GetPtr(), size_crypt)!=0)
     return false;
 
   return true;
