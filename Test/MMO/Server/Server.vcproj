@@ -41,14 +41,15 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\Share;..\..\..\NetTransport;..\..\..\Melissa\Include;..\Share"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_WIN32_WINNT=0x0501"
+				AdditionalIncludeDirectories="../../../Base/Share;../../../Modules/NetTransport;../../../Modules/MMOEngine/Include;../Share"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4251"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -61,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib opengl32.lib glu32.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Share.lib NetTransport.lib"
+				AdditionalDependencies="Share.lib NetTransport.lib MMOEngine.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\..\Lib;&quot;..\..\..\Lib\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
@@ -115,15 +116,16 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
+				Optimization="3"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\Share;..\..\..\NetTransport;..\..\..\Melissa;..\Share"
+				AdditionalIncludeDirectories="../../../Base/Share;../../../Modules/NetTransport;../../../Modules/MMOEngine/Include;../Share"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;_WIN32_WINNT=0x0501"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
+				DisableSpecificWarnings="4251"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -136,7 +138,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib opengl32.lib glu32.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Share.lib NetTransport.lib"
+				AdditionalDependencies="Share.lib NetTransport.lib MMOEngine.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\..\Lib;&quot;..\..\..\Lib\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
@@ -180,18 +182,38 @@
 				RelativePath=".\mainServer.cpp"
 				>
 			</File>
-			<File
-				RelativePath="..\Share\share_test.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
-			Name="Header Files"
+			Name="Share"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\Share\share_test.h"
+				RelativePath="..\Share\CommonParam.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Share\HandlerMMO.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Share\HandlerMMO.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Share\InputCmdTestMMO.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Share\InputCmdTestMMO.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Share\MakerTransport.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Share\MakerTransport.h"
 				>
 			</File>
 		</Filter>

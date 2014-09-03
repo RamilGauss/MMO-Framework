@@ -26,7 +26,7 @@ namespace nsMMOEngine
     bmUintUint   mMapSessionKey;
     
   public:
-    TManagerContextClientLogining();
+    TManagerContextClientLogining(TBase* pBase);
     ~TManagerContextClientLogining();
     
     // навигация

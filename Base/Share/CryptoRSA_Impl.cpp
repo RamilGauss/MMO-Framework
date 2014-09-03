@@ -13,10 +13,21 @@ See for more information License.h.
 
 #include <algorithm>
 #include "BL_Debug.h"
+#include "GCS.h"
 
 namespace nsCryptoRSA_Impl
 {
   #define RSA_KEY ((RSA*)mRSAKey)
+  
+  // на случай когда в одном процессе созданы несколько верхних соединений
+  // то что бы не создавать много разных RSA ключей (тратиться много времени, а смысла в этом нет,
+  // потому что процесс все равно один, соответственно безопасность не нарушается).
+  static RSA* g_RSAKey           = NULL;
+  static int  g_CountGenerateKey = 0;
+  static GCS  g_MutexRSAKey;
+  static int  g_BitsRSA          = 2048;
+  void lockRSA()  {g_MutexRSAKey.lock();}
+  void unlockRSA(){g_MutexRSAKey.unlock();}
 }
 
 using namespace nsCryptoRSA_Impl;
@@ -30,7 +41,49 @@ TCryptoRSA_Impl::TCryptoRSA_Impl()
 //----------------------------------------------------------------------------------
 TCryptoRSA_Impl::~TCryptoRSA_Impl()
 {
+lockRSA();
+  if(mRSAKey==g_RSAKey)
+  {
+    BL_ASSERT(g_CountGenerateKey);
+    if((g_RSAKey==NULL && g_CountGenerateKey)||
+       (g_RSAKey && g_CountGenerateKey==0))
+      {BL_FIX_BUG();}
+    if(g_CountGenerateKey==1)
+    {
+      RSA_free(g_RSAKey);
+      g_RSAKey = NULL;
+      mRSAKey  = NULL;
+    }
+    g_CountGenerateKey--;
+  }
+unlockRSA();
   RSA_free(RSA_KEY);
+}
+//----------------------------------------------------------------------------------
+bool TCryptoRSA_Impl::GenerateKey_OnlyOneExample(int bits)
+{
+lockRSA();
+  // проверка
+  if(g_CountGenerateKey==0)
+    g_BitsRSA = bits;
+  else
+    BL_ASSERT(g_BitsRSA==bits);
+  // создавать новый или использовать старый?
+  if(g_CountGenerateKey==0)
+    g_RSAKey = RSA_generate_key(bits, RSA_F4, NULL, NULL);
+  mRSAKey = g_RSAKey;
+  g_CountGenerateKey++;
+unlockRSA();
+  if(RSA_KEY==NULL)
+    return false;
+
+  mMaxSizePartAfterCrypt  = RSA_size(RSA_KEY);
+  mMaxSizePartBeforeCrypt = mMaxSizePartAfterCrypt - 11;
+
+  MakeContainerForPrivateKey();
+  MakeContainerForPublicKey();
+
+  return true;
 }
 //----------------------------------------------------------------------------------
 bool TCryptoRSA_Impl::GenerateKey(int bits)

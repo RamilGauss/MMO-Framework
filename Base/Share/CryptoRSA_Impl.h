@@ -27,6 +27,7 @@ public:
   ~TCryptoRSA_Impl();
   
   bool GenerateKey(int bits = 2048);
+  bool GenerateKey_OnlyOneExample(int bits = 2048);
 
   bool Encrypt( void* pIn, int sizeIn, TContainer& c_out);
   bool Decrypt(void* pIn, int sizeIn, TContainer& c_out);

@@ -36,15 +36,16 @@ See for more information License.h.
 using namespace std;
 using namespace nsMMOEngine;
 
-TMaster::TMaster():
-mMngContextClient(new TManagerContextMoreDownClientConnection),
-mMngContextSlave (new TManagerContextDownConnection_Slave),
-mMngContextClientLogining(new TManagerContextClientLogining),
-mMngGroup(new TManagerGroupClient),
-mSetClientKeyInQueue(new TSetOrderElement),
-mStatisticaClientInGroup(new TStatisticaClientInGroup),
-mMngRcm(new TManagerRecommutation)
+TMaster::TMaster()
 {
+  mMngContextClient.reset(new TManagerContextMoreDownClientConnection(this));
+  mMngContextSlave.reset(new TManagerContextDownConnection_Slave(this));
+  mMngContextClientLogining.reset(new TManagerContextClientLogining(this));
+  mMngGroup.reset(new TManagerGroupClient);
+  mSetClientKeyInQueue.reset(new TSetOrderElement);
+  mStatisticaClientInGroup.reset(new TStatisticaClientInGroup);
+  mMngRcm.reset(new TManagerRecommutation);
+
   mControlSc->mLoginClient->SetBehavior(TScenarioLoginClient::eMaster);
 	mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eMaster);
 }

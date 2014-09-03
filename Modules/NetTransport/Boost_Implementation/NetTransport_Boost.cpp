@@ -30,7 +30,6 @@ mNetWorkThread()
   mLocalPort  = 0;
   mNumNetWork = 0;
 
-  //INetControl::SetNetBoost(this);
   CreateControlTcpUp();
 }
 //----------------------------------------------------------------------------------

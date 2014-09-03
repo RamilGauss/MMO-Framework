@@ -43,7 +43,7 @@ namespace nsMMOEngine
 
 		TVectorDesc mVecDesc;
   public:
-    TManagerContextDownConnection_Slave();
+    TManagerContextDownConnection_Slave(TBase* pBase);
     virtual ~TManagerContextDownConnection_Slave();
     
 		bool FindMinimumLoad(unsigned int& id_session, unsigned char& load_procent);

@@ -63,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib dxerr.lib libeay32.lib ssleay32.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib libeay32.lib ssleay32.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\Lib;&quot;..\..\Lib\$(ConfigurationName)&quot;;..\..\Lib\SSL;..\..\Lib\SSL\engines"
 				GenerateDebugInformation="true"
@@ -96,8 +96,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\Exe\$(ConfigurationName)"
-			IntermediateDirectory="..\Temp\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\Exe\$(ConfigurationName)"
+			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="2"
 			CharacterSet="0"
 			WholeProgramOptimization="1"
@@ -119,16 +119,16 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
+				Optimization="3"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\3rdParty\SSL\include\"
+				AdditionalIncludeDirectories="..\..\3rdParty\SSL\include\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				DisableSpecificWarnings="4996;4251"
+				DisableSpecificWarnings="4996;4251;4275"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -141,14 +141,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib d3dx10.lib d3dx9.lib d3d9.lib ws2_32.lib dxerr.lib libeay32.lib ssleay32.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib libeay32.lib ssleay32.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\Lib;&quot;..\Lib\$(ConfigurationName)&quot;;..\Lib\SSL;..\Lib\SSL\engines"
+				AdditionalLibraryDirectories="..\..\Lib;&quot;..\..\Lib\$(ConfigurationName)&quot;;..\..\Lib\SSL;..\..\Lib\SSL\engines"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="..\Lib\$(ConfigurationName)\$(TargetName).lib"
+				ImportLibrary="..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -156,7 +156,6 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
-				AdditionalManifestFiles="..\Exe\Release.manifest"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"

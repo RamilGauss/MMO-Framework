@@ -94,8 +94,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\Exe\$(ConfigurationName)"
-			IntermediateDirectory="..\Temp\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\Exe\$(ConfigurationName)"
+			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -119,7 +119,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\Share;.\Boost_Implementation;.\"
+				AdditionalIncludeDirectories=".\;.\Boost_Implementation;..\..\Base\Share;..\..\Modules\MMOEngine\Include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;NET_TRANSPORT_EI=__declspec(dllexport);NET_TRANSPORT_EXPORTS;FAST_NET_TRANSPORT;_WIN32_WINNT=0x0501"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -139,14 +139,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib d3dx10.lib d3dx9.lib d3d9.lib ws2_32.lib dxerr.lib Share.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib Share.lib MMOEngine.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\Lib;..\Lib\$(ConfigurationName)"
+				AdditionalLibraryDirectories="..\..\Lib;..\..\Lib\$(ConfigurationName)"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="..\Lib\$(ConfigurationName)\$(TargetName).lib"
+				ImportLibrary="..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool

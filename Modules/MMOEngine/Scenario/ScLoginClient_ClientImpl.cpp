@@ -139,12 +139,15 @@ void TScLoginClient_ClientImpl::RecvFromMaster(TDescRecvSession* pDesc)
 //--------------------------------------------------------------
 void TScLoginClient_ClientImpl::CheckConnectToSlaveS2C(TDescRecvSession* pDesc)
 {
-  TEventResultLogin event;
-  event.res = TMaster::eAccept;
-  Context()->GetSE()->AddEventCopy(&event, sizeof(event));
-  
-  ((IContextScenario*)Context())->SetID_Session(pDesc->id_session);
+  TEventResultLogin* pEvent = new TEventResultLogin;
+  pEvent->res = TMaster::eAccept;
+  // поместить данные, которые шлет сервер в качестве приветствия
+  char* pDataResClient = (char*)Context()->GetSaveAcceptDataPtr();
+  int sizeResClient    = Context()->GetSaveAcceptDataSize();
+  pEvent->c.SetDataByCount( pDataResClient, sizeResClient);
+  Context()->GetSE()->AddEventWithoutCopy<TEventResultLogin>(pEvent);
 
+  ((IContextScenario*)Context())->SetID_Session(pDesc->id_session);
   End();
 }
 //--------------------------------------------------------------
@@ -157,9 +160,14 @@ void TScLoginClient_ClientImpl::ResultLoginM2C(TDescRecvSession* pDesc)
   switch(pH->result)
   {
     case THeaderResultLoginM2C::eAccept:
-      // сохранить свой ключ
+    {
+      // сохранить свой ключ и данные авторизации
       Context()->SetClientKey(pH->id_client);
+      char* p  = ((char*)(pH)) + sizeof(THeaderResultLoginM2C);
+      int size = pH->sizeResClient;
+      Context()->SaveAcceptData(p, size);
       EventSetClientKey(pH->id_client);
+    }
       break;
     case THeaderResultLoginM2C::eReject:
     {

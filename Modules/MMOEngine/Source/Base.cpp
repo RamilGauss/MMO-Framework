@@ -37,7 +37,6 @@ mControlSc(new TControlScenario),
 mContainerUp(new TContainerContextSc),
 mMngMngContextSc(new TManagerManagerContextSc)
 {
-  TDelegateManagerContextSc::SetBase(this);
   mLoadProcent     = 0;
 
   flgConnectUp  = false;

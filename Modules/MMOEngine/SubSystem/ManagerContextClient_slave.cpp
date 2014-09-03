@@ -16,7 +16,8 @@ See for more information License.h.
 using namespace nsMMOEngine;
 using namespace std;
 
-TManagerContextClient_slave::TManagerContextClient_slave()
+TManagerContextClient_slave::TManagerContextClient_slave(TBase* pBase):
+TDelegateManagerContextSc(pBase)
 {
 
 }

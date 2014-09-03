@@ -14,7 +14,7 @@ See for more information License.h.
 
 TManagerContextCrypto::TManagerContextCrypto()
 {
-  mRSA_ForUpConnection.GenerateKey();
+  mRSA_ForUpConnection.GenerateKey_OnlyOneExample();//GenerateKey();
 }
 //-----------------------------------------------------------------
 TManagerContextCrypto::~TManagerContextCrypto()

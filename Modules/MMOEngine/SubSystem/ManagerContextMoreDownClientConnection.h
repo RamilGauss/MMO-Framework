@@ -26,7 +26,7 @@ namespace nsMMOEngine
     TMapUintUint mMapKeySession;
     
   public:
-    TManagerContextMoreDownClientConnection();
+    TManagerContextMoreDownClientConnection(TBase* pBase);
     ~TManagerContextMoreDownClientConnection();
     
     // навигация

@@ -23,11 +23,12 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
-TSuperServer::TSuperServer():
-mMngContextClient(new TManagerContextMoreDownClientConnection),
-mMngContextMaster(new TManagerContextDownConnection),
-mContainer_SecondLogin(new TContainerContextSc)
+TSuperServer::TSuperServer()
 {
+  mMngContextClient.reset(new TManagerContextMoreDownClientConnection(this));
+  mMngContextMaster.reset(new TManagerContextDownConnection(this));
+  mContainer_SecondLogin.reset(new TContainerContextSc);
+
   mControlSc->mLoginClient->SetBehavior(TScenarioLoginClient::eSuperServer);
 
   SetupScForContext(mContainer_SecondLogin.get());

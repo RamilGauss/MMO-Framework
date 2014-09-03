@@ -29,7 +29,7 @@ namespace nsMMOEngine
     TMapUintUint mMapSessionKey;// размер может быть меньше чем mMapKeySession
 
   public:
-    TManagerContextClient_slave();
+    TManagerContextClient_slave(TBase* pBase);
     ~TManagerContextClient_slave();
     
     // навигация

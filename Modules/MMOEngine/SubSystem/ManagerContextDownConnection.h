@@ -30,7 +30,7 @@ namespace nsMMOEngine
     TMapUintSetUint mMapSessionKey;
     
   public:
-    TManagerContextDownConnection();
+    TManagerContextDownConnection(TBase* pBase);
     virtual ~TManagerContextDownConnection();
     
     // навигация

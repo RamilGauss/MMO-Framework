@@ -16,8 +16,8 @@ See for more information License.h.
 //------------------------------------------------------------------------------------------
 typedef struct ConvLetter 
 {
-	const char  win1251;
-	const int   unicode;
+	const unsigned char win1251;
+	const int           unicode;
 } Letter;
 //------------------------------------------------------------------------------------------
 static Letter g_letters[] = 
@@ -146,5 +146,44 @@ NEXT_LETTER:
 	}
 	windows1251[j] = 0;
 	return 1;
+}
+//------------------------------------------------------------------------------------------
+#include <boost/bimap/bimap.hpp>
+
+struct PairCode
+{
+  const unsigned char c1;
+  const unsigned char c2;
+};
+static PairCode g_UTF8_CP1251[]=
+{
+  {0x01,0x01},
+};
+//------------------------------------------------------------------------------------------
+typedef boost::bimaps::bimap<unsigned char,unsigned char> BimapUcharUchar;
+static BimapUcharUchar g_BimapUTF8_CP1251;
+//------------------------------------------------------------------------------------------
+void InitPairCode()
+{
+  int cnt = sizeof(g_UTF8_CP1251)/sizeof(PairCode);
+  for( int i = 0 ; i < cnt ; i++)
+    g_BimapUTF8_CP1251.insert(BimapUcharUchar::value_type(g_UTF8_CP1251[i].c1,g_UTF8_CP1251[i].c2));
+}
+//------------------------------------------------------------------------------------------
+class TInitPairCode
+{
+public: TInitPairCode(){InitPairCode();}
+};
+static TInitPairCode g_InitPairCode;
+//------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
+int utf8_to_cp1251(const char* utf8,   char* windows1251, size_t n)
+{
+  return 0;
+}
+//------------------------------------------------------------------------------------------
+int cp1251_to_utf8(const char* cp1251, char* utf8, size_t n)
+{
+  return 0;
 }
 //------------------------------------------------------------------------------------------

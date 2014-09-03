@@ -11,11 +11,9 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
-static TBase* g_pBase = NULL;
-
-TDelegateManagerContextSc::TDelegateManagerContextSc()
+TDelegateManagerContextSc::TDelegateManagerContextSc(TBase* pBase)
 {
-
+	mBase = pBase;
 }
 //--------------------------------------------------------------------------
 TDelegateManagerContextSc::~TDelegateManagerContextSc()
@@ -23,20 +21,15 @@ TDelegateManagerContextSc::~TDelegateManagerContextSc()
 
 }
 //--------------------------------------------------------------------------
-void TDelegateManagerContextSc::SetBase(TBase* pBase)
-{
-	g_pBase = pBase;
-}
-//--------------------------------------------------------------------------
 TContainerContextSc* TDelegateManagerContextSc::AddContainer()
 {
 	TContainerContextSc* pC = new TContainerContextSc;
-	g_pBase->SetupScForContext(pC);
+	mBase->SetupScForContext(pC);
 	return pC;
 }
 //--------------------------------------------------------------------------
 void TDelegateManagerContextSc::DeleteContainer(TContainerContextSc* pC)
 {
-	g_pBase->DelayDeleteContainerScenario(pC);
+	mBase->DelayDeleteContainerScenario(pC);
 }
 //--------------------------------------------------------------------------

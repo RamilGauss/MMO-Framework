@@ -28,10 +28,11 @@ See for more information License.h.
 using namespace nsMMOEngine;
 using namespace std;
 
-TSlave::TSlave():
-mMngContextClient(new TManagerContextClient_slave),
-mMngContextClientSlaveRecipient(new TManagerContextClient_slave)
+TSlave::TSlave()
 {
+  mMngContextClient.reset(new TManagerContextClient_slave(this));
+  mMngContextClientSlaveRecipient.reset(new TManagerContextClient_slave(this));
+
   mTimeNeedSendSynchro = 0;
   mControlSc->mLoginClient->SetBehavior(TScenarioLoginClient::eSlave);
 	mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eSlave);

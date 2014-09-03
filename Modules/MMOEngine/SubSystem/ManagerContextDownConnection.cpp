@@ -15,7 +15,8 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
-TManagerContextDownConnection::TManagerContextDownConnection()
+TManagerContextDownConnection::TManagerContextDownConnection(TBase* pBase):
+TDelegateManagerContextSc(pBase)
 {
 
 }

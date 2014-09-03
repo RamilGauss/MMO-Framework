@@ -14,13 +14,12 @@ namespace nsMMOEngine
 	class TBase;
   class TDelegateManagerContextSc
   {
+    TBase* mBase;
   public:
-    TDelegateManagerContextSc();
+    TDelegateManagerContextSc(TBase* pBase);
     virtual ~TDelegateManagerContextSc();
 
-		static void SetBase(TBase* pBase);
 	protected:
-
 		TContainerContextSc* AddContainer();
 		void DeleteContainer(TContainerContextSc* pC);
   };
