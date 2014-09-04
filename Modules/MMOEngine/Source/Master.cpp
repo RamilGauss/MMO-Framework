@@ -128,8 +128,12 @@ void TMaster::SetResultLogin(bool res, unsigned int id_session_client,
      (mMngContextClientLogining->FindSessionByClientKey(id_client,id_session_temp)))
   {
     TEventError event;
-    event.code = LoginClientMaster_KeyBusy;
+    event.code = LoginClient_MasterKeyBusy;
     AddEventCopy(&event,sizeof(event)); 
+
+    // отказ
+    string sReject = "Reject login. Client was been authorized.";
+    mControlSc->mLoginClient->Reject((void*)sReject.data(), sReject.length());
     return;
   }
   // связка сессии и ключа клиента
@@ -250,18 +254,16 @@ void TMaster::EndLoginClient(IScenario* pSc)
     mMngContextClientLogining->FindContextBySession(id_session_client);
   // удалить из списка авторизующихся
   mMngContextClientLogining->DeleteBySession(id_session_client);
+  // либо время вышло, либо отказали в авторизации
   if(pContextLoginClient->IsReject())
   {
-    if(pContextLoginClient->IsTimeWaitElapsed())
+    if(pContainer)
     {
-      if(pContainer)
-      {
-        vector<unsigned int> vecID_Client;
-        vecID_Client.push_back(pContextLoginClient->GetClientKey());
-        mControlSc->mDisClient->SetContext(&pContainer->mDisClient);
-        pContainer->mDisClient.SetID_Session(mID_SessionUp);
-        mControlSc->mDisClient->DisconnectFromMaster(vecID_Client);
-      }
+      vector<unsigned int> vecID_Client;
+      vecID_Client.push_back(pContextLoginClient->GetClientKey());
+      mControlSc->mDisClient->SetContext(&pContainer->mDisClient);
+      pContainer->mDisClient.SetID_Session(mID_SessionUp);
+      mControlSc->mDisClient->DisconnectFromMaster(vecID_Client);
     }
     return;
   }
@@ -441,10 +443,6 @@ void TMaster::NeedContextLoginSlave(unsigned int id_session)
   mControlSc->mLoginSlave->SetContext(&pC->mLoginSlave);
 
   mStatisticaClientInGroup->AddSlave(id_session);
-  // событие наружу
-  //TEventConnectDown event;
-  //event.id_session = id_session;
-  //AddEventCopy(&event, sizeof(event));
 }
 //-------------------------------------------------------------------------
 void TMaster::NeedContextSynchroSlave(unsigned int id_session)
@@ -464,7 +462,7 @@ void TMaster::EndSynchroSlave(IScenario* pSc)
 //-------------------------------------------------------------------------
 void TMaster::SendByClientKey(list<unsigned int>& lKey, TBreakPacket bp)
 {
-	mControlSc->mSendToClient->SendFromSlave(lKey, bp);
+	mControlSc->mSendToClient->SendFromMaster(lKey, bp);
 }
 //-------------------------------------------------------------------------
 void TMaster::NeedContextLoginClientBySessionAfterAuthorised(unsigned int id_session)
@@ -482,6 +480,15 @@ void TMaster::NeedContextLoginClientBySessionAfterAuthorised(unsigned int id_ses
   }
   // назначить контекст
   mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
+}
+//-------------------------------------------------------------------------
+void TMaster::NeedContextLoginClientBySessionLeaveQueue(unsigned int id_session)
+{
+  TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession(id_session);
+  if(pC)
+    mControlSc->mLoginClient->SetContext(&pC->mLoginClient);// назначить контекст
+  else
+    mControlSc->mLoginClient->SetContext(NULL);// сам вышел из очереди, ну и хер с ним
 }
 //-------------------------------------------------------------------------
 void TMaster::NeedContextLoginClientBySession(unsigned int id_session)

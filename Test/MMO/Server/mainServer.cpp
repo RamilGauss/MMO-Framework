@@ -18,6 +18,15 @@ See for more information License.h.
 #include "Master.h"
 #include "SuperServer.h"
 
+unsigned int GetLoad()
+{
+  const int delta_max_load = 20000;
+  static unsigned int start = ht_GetMSCount();
+  if(start+delta_max_load>ht_GetMSCount())
+    return 100;
+  return 0;
+}
+//----------------------------------------------
 int main(int argc, char** argv)
 {
   // обязательно инициализировать лог
@@ -75,7 +84,7 @@ int main(int argc, char** argv)
     // замер времени слэйва
     unsigned int deltaTime = ht_GetMSCount() - startTime;
     int load = int(100.0f*float(deltaTime)/SERVER_QUANT_TIME);
-    pSlave->SetLoad(load);
+    pSlave->SetLoad(GetLoad());//load);
     if(deltaTime>20)
       printf("dTime=%d\n", deltaTime);
     // реакции мастера и суперсервера
@@ -87,7 +96,6 @@ int main(int argc, char** argv)
     if(deltaTime < SERVER_QUANT_TIME)
       ht_msleep(SERVER_QUANT_TIME-deltaTime);
   }
-
   return 0;
 }
 //-----------------------------------------------------------------------

@@ -12,12 +12,14 @@ See for more information License.h.
 #include "Master.h"
 #include "Slave.h"
 #include "BaseEvent.h"
+#include <set>
 
 class THandlerMMO : public TDstEvent
 {
   nsMMOEngine::TMaster* mMaster;
   nsMMOEngine::TSlave*  mSlave;
 
+  std::set<unsigned int> mSetID_Client;
   int mCountConnection;
 public:
   THandlerMMO();
@@ -25,7 +27,7 @@ public:
                     nsMMOEngine::TSlave* pSlave);
   void Work();
 protected:
-  void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
+  void HandleFromMMOEngine(nsEvent::TEvent* pEvent);
   std::string GetStrError(int code);
 };
 

@@ -21,17 +21,17 @@ namespace nsMMOEngine
     LoginSlave_NoAnswerFromMaster,
     //--------------------------------------
     // LoginMaster
-    LoginClientMaster_KeyBusy,
     LoginMaster_SSNotReady,
     LoginMaster_NoAnswerFromSS,
     //--------------------------------------
     // LoginClient
-		LoginClient_EmptyLoginPassword,
+    LoginClient_EmptyLoginPassword,
     LoginClient_ClientSecondEnter,
     LoginClient_ClientMasterNotReady,
     LoginClient_ClientNoAnswer,
     LoginClient_ClientNotExistSlave,
     LoginClient_SlaveNoAnswer,
+    LoginClient_MasterKeyBusy,
     LoginClient_MasterClientNotActive,
     LoginClient_SuperServerNoAnswer,
     //--------------------------------------
@@ -54,6 +54,7 @@ namespace nsMMOEngine
     eResultLogin,
     eDestroyGroup,
     eEnterInQueue,
+    eLeaveQueue,
   }tTypeEvent;
 }
 #endif

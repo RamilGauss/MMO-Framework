@@ -28,6 +28,7 @@ mClient(this),mSlave(this),mMaster(this),mSS(this)
   AddCallBack(eNumInQueueByClientKey,                 &mCBNumInQueueByClientKey);
   AddCallBack(eContextByClientSessionByClientKey,     &mCBContextByClientSessionByClientKey);
   AddCallBack(eContextByClientSessionAfterAuthorised, &mCBContextByClientSessionAfterAuthorised);
+  AddCallBack(eContextByClientSessionLeaveQueue,      &mCBContextByClientSessionLeaveQueue);
 }
 //--------------------------------------------------------------
 TScenarioLoginClient::~TScenarioLoginClient()

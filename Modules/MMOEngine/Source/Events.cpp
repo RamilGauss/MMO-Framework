@@ -99,3 +99,8 @@ TEventEnterInQueue::TEventEnterInQueue()
   numInQueue = 0;
 }
 //-------------------------------------------------------------
+TEventLeaveQueue::TEventLeaveQueue()
+{
+  mType = eLeaveQueue;
+}
+//-------------------------------------------------------------

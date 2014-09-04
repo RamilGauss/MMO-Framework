@@ -11,6 +11,7 @@ See for more information License.h.
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
 #include "NetSystem.h"
+#include "Client.h"
 
 using namespace std;
 
@@ -27,21 +28,34 @@ void THandlerMMO::Work()
   while(pEvent)
   {
     // обработать событие
-    nsMMOEngine::TBaseEvent* pBase = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
-    HandleFromMMOEngine(pBase);
+    HandleFromMMOEngine(pEvent);
     delete pEvent;
     pEvent = GetEvent();
   }
 }
 //-----------------------------------------------------------------------------------
-void THandlerMMO::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
+void THandlerMMO::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
 {
+  nsMMOEngine::TBaseEvent* pBE = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
+
   string sEvent;  
   switch(pBE->mType)
   {
     case nsMMOEngine::eConnectDown:
       sEvent = "ConnectDown";
       mCountConnection++;
+      // если это Slave, то отправить пакет Мастеру с ID_Client
+      if(pEvent->ptr_object==mSlave)
+      {
+        unsigned int id_client;
+        bool res = mSlave->FindClientKeyBySession(
+          ((nsMMOEngine::TEventConnectDown*)pBE)->id_session,id_client);
+        TBreakPacket bp;
+        char s[50];
+        sprintf(s,"%d",id_client);
+        bp.PushFront(s, strlen(s));
+        mSlave->SendUp(bp);
+      }
       break;
     case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
@@ -75,10 +89,36 @@ void THandlerMMO::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
     }
       break;
     case nsMMOEngine::eRecvFromDown:
+    {
       sEvent = "RecvFromDown";
+      nsMMOEngine::TEventRecvFromDown* pR = (nsMMOEngine::TEventRecvFromDown*)pBE;
+      char s[200];
+      memcpy(s, pR->data, pR->sizeData);
+      s[pR->sizeData] = '\0';
+      sEvent += " msg: ";
+      sEvent += s;
+      if(pEvent->ptr_object==mMaster)
+      {
+        // получили пакет от Slave с id_client
+        std::list<unsigned int> l_id;
+        l_id.push_front(atoi(s));
+        TBreakPacket bp;
+        char* sMsgFromMaster = "Master say hello!";
+        bp.PushFront(sMsgFromMaster, strlen(sMsgFromMaster));
+        mMaster->SendByClientKey(l_id, bp);
+      }
+    }
       break;
     case nsMMOEngine::eRecvFromUp:
+    {
       sEvent = "RecvFromUp";
+      nsMMOEngine::TEventRecvFromUp* pR = (nsMMOEngine::TEventRecvFromUp*)pBE;
+      char s[200];
+      memcpy(s, pR->data, pR->sizeData);
+      s[pR->sizeData] = '\0';
+      sEvent += " msg: ";
+      sEvent += s;
+    }
       break;
     case nsMMOEngine::eSaveContext:
       sEvent = "SaveContext";
@@ -116,10 +156,17 @@ void THandlerMMO::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
       sEvent = "DestroyGroup";
       break;
     case nsMMOEngine::eEnterInQueue:
+    {
       sEvent = "InQueueLoginClient";
+      //nsMMOEngine::TClient* pClient = (nsMMOEngine::TClient*)pEvent->ptr_object;
+      //pClient->LeaveQueue();
+    }
+      break;
+    case nsMMOEngine::eLeaveQueue:
+      sEvent = "LeaveQueue";
       break;
   }
-  printf("MMOEngine: %s.\t",sEvent.data());
+  printf("MMOEngine: %s.\t\t",sEvent.data());
   printf("CC=%d\n",mCountConnection);
 }
 //---------------------------------------------------------------------------------------------
@@ -151,8 +198,8 @@ string THandlerMMO::GetStrError(int code)
       break;
     //--------------------------------------
     // LoginMaster
-    case nsMMOEngine::LoginClientMaster_KeyBusy:
-      s += "LoginClientMaster_KeyBusy";
+    case nsMMOEngine::LoginClient_MasterKeyBusy:
+      s += "LoginClient_MasterKeyBusy";
       break;
     case nsMMOEngine::LoginMaster_SSNotReady:
       s += "LoginMaster_SSNotReady";

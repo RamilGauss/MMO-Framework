@@ -32,9 +32,7 @@ TContextScLoginClient::TContextScLoginClient()
 
   mClientKey = (unsigned int)-1;
 
-  flgNeedLeaveQueue = true;
-
-  flgTimeWaitElapsed = false;
+  flgNeedLeaveQueue = false;
 
 	flgWasBegin = false;
 }
@@ -239,16 +237,6 @@ unsigned int TContextScLoginClient::GetDeltaTimeWaitMS()
 void TContextScLoginClient::SetDeltaTimeWaitMS(unsigned int v)
 {
   mDeltaTimeWait_ms = v;
-}
-//--------------------------------------------------------------
-bool TContextScLoginClient::IsTimeWaitElapsed()
-{
-  return flgTimeWaitElapsed;
-}
-//--------------------------------------------------------------
-void TContextScLoginClient::SetTimeWaitElapsed()
-{
-  flgTimeWaitElapsed = true;
 }
 //--------------------------------------------------------------
 bool TContextScLoginClient::WasBegin()

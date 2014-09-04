@@ -77,7 +77,6 @@ void TScLoginClient_MasterImpl::Work(unsigned int now_ms)
     event.code = LoginClient_MasterClientNotActive;
     Context()->GetSE()->AddEventCopy(&event, sizeof(event));
     Context()->Reject();
-    Context()->SetTimeWaitElapsed();
     End();
 		
 		BL_FIX_BUG();
@@ -200,6 +199,8 @@ void TScLoginClient_MasterImpl::CheckRequestSS2M(TDescRecvSession* pDesc)
   NeedContextByClientKey(pHeader->id_client);
   if(Context()==NULL)
   {
+    // такая ситуация вполне возможна, пока SS слал ответ, клиент отвалился, 
+    // но под Debug фиксировать это событие
     BL_FIX_BUG();
     return;
   }
@@ -276,7 +277,7 @@ void TScLoginClient_MasterImpl::LeaveQueueC2M(TDescRecvSession* pDesc)
 {
   // защита от хака не нужна, данные пакета не используются
   //=====================================
-  NeedContextBySession(pDesc->id_session);
+  NeedContextBySessionLeaveQueue(pDesc->id_session);
   if(Context()==NULL)
   {
     End();

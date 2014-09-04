@@ -95,9 +95,8 @@ void TBaseScLoginClient::NeedNumInQueueByClientKey(unsigned int id_client)
 //---------------------------------------------------------------------
 void TBaseScLoginClient::NeedContextByMasterSessionByClientKey(unsigned int id_session_master,unsigned int id_client)
 {
-  mScenario->Notify<unsigned int,unsigned int>(TScenarioLoginClient::eContextByMasterSessionByClientKey,
-                                               id_session_master,
-                                               id_client);
+  mScenario->Notify<unsigned int,unsigned int>(
+    TScenarioLoginClient::eContextByMasterSessionByClientKey, id_session_master, id_client);
 }
 //---------------------------------------------------------------------
 void TBaseScLoginClient::EventSetClientKey(unsigned int id_client)
@@ -113,16 +112,22 @@ void TBaseScLoginClient::NeedContextBySession(unsigned int id_session)
 void TBaseScLoginClient::NeedContextByClientSessionByClientKey(unsigned int id_session_client,
                                                                unsigned int id_client)
 {
-  mScenario->Notify<unsigned int,unsigned int>(TScenarioLoginClient::eContextByClientSessionByClientKey,
-                                               id_session_client, id_client);
+  mScenario->Notify<unsigned int,unsigned int>(
+    TScenarioLoginClient::eContextByClientSessionByClientKey, id_session_client, id_client);
 }
 //---------------------------------------------------------------------
 void TBaseScLoginClient::NeedContextBySessionAfterAuthorised(unsigned int id_session_client)
 {
-  mScenario->Notify<unsigned int>(TScenarioLoginClient::eContextByClientSessionAfterAuthorised,
-        id_session_client);
+  mScenario->Notify<unsigned int>(
+    TScenarioLoginClient::eContextByClientSessionAfterAuthorised, id_session_client);
 }
 //---------------------------------------------------------------------
+void TBaseScLoginClient::NeedContextBySessionLeaveQueue(unsigned int id_session)
+{
+  mScenario->Notify<unsigned int>(
+    TScenarioLoginClient::eContextByClientSessionLeaveQueue, id_session);
+}
+//--------------------------------------------------------------
 void TBaseScLoginClient::SetTimeWaitForNow()
 {
   Context()->SetTimeWait(ht_GetMSCount());

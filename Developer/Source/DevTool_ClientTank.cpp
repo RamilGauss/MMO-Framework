@@ -307,6 +307,9 @@ void TDevTool_ClientTank::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
     case nsMMOEngine::eEnterInQueue:
       sEvent = "InQueueLoginClient";
       break;
+    case nsMMOEngine::eLeaveQueue:
+      sEvent = "LeaveClient";
+      break;
   }
   GetLogger("Inner")->WriteF_time("MMOEngine: %s.\n",sEvent.data());
 }

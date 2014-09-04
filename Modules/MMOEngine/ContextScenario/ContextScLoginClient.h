@@ -29,8 +29,6 @@ namespace nsMMOEngine
     }tStateResult;
   private:
     
-    bool flgNeedLeaveQueue;
-
     tStateResult mState;
 
     int mNumInQueue;
@@ -53,7 +51,7 @@ namespace nsMMOEngine
 
     bool flgFakeClient;
 
-    bool flgTimeWaitElapsed;
+    bool flgNeedLeaveQueue;
 
 		unsigned char mSubNet;
 
@@ -76,9 +74,6 @@ namespace nsMMOEngine
 
     unsigned int GetDeltaTimeWaitMS();
     void SetDeltaTimeWaitMS(unsigned int delta);
-
-    bool IsTimeWaitElapsed();
-    void SetTimeWaitElapsed();
 
     void SetTimeLastNeedNumInQueue(unsigned int v);
     unsigned int GetTimeLastNeedNumInQueue();

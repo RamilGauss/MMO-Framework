@@ -106,6 +106,11 @@ namespace nsMMOEngine
     int numInQueue;
   };
   //-------------------------------------------------------------
+  struct DllExport TEventLeaveQueue : public TBaseEvent
+  {
+    TEventLeaveQueue();
+  };
+  //-------------------------------------------------------------
 #if defined( WIN32 )
 #pragma pack(pop)
 #endif

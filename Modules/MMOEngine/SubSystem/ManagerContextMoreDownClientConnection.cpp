@@ -65,6 +65,8 @@ TContainerContextSc* TManagerContextMoreDownClientConnection::AddContext(unsigne
 
     mMapKeyContext.insert(TMapUintPtr::value_type(id_client,pC));
     mMapKeySession.insert(TMapUintUint::value_type(id_client,id_session));
+
+    pC->SetID_Session(id_session);
   }
   return pC;
 }
@@ -100,6 +102,11 @@ bool TManagerContextMoreDownClientConnection::SetSessionByClientKey(unsigned int
     return false;
   }
   fit->second = id_session;
+  // изменить номер сессии для всех контекстов
+  TContainerContextSc* pC = FindContextByClientKey(id_client);
+  if(pC)
+    pC->SetID_Session(id_session);
+
   return true;
 }
 //-------------------------------------------------------------------------

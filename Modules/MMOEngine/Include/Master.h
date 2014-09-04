@@ -88,6 +88,7 @@ namespace nsMMOEngine
 
 	protected:// like slots
     virtual void NeedContextDisconnectClient(unsigned int id_client);
+    virtual void NeedContextLoginClientBySessionLeaveQueue(unsigned int id_session);
     virtual void NeedContextLoginClientBySession(unsigned int id_session);
     virtual void NeedContextLoginClientBySessionAfterAuthorised(unsigned int id_session);
     virtual void NeedContextLoginClientByClientKey(unsigned int id_key_client);

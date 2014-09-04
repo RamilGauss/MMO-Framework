@@ -247,6 +247,8 @@ void TScLoginClient_ClientImpl::Disconnect()
   // ждет ли в очереди и хочет ли выйти из нее
   if(Context()->NeedLeaveQueue())
   {
+    TEventLeaveQueue event;
+    Context()->GetSE()->AddEventCopy(&event, sizeof(event));
     End();
     return;
   }
