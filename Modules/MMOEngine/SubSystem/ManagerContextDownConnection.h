@@ -35,6 +35,7 @@ namespace nsMMOEngine
     
     // навигация
     TContainerContextSc* FindContextBySession(unsigned int id_session);
+		bool FindSessionByClientKey(unsigned int id_client, unsigned int &id_session_slave);
     
     int GetCountSession();
     bool GetSessionByIndex( int index, unsigned int& id_session);

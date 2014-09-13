@@ -39,6 +39,8 @@ namespace nsMMOEngine
     bool AddKeyBySession(unsigned int id_session, unsigned int id_client);
     // удаление
     void DeleteBySession(unsigned int id_session);
+		// отцепиться
+		void UnlinkContextBySession(unsigned int id_session);
 	private:
     void Clear();
   };

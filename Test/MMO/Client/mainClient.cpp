@@ -10,14 +10,14 @@ See for more information License.h.
 #include "Client.h"
 #include "CommonParam.h"
 #include <string.h>
-#include "InputCmdTestMMO.h"
+#include "InputCmdTestMMO_Client.h"
 #include "MakerTransport.h"
 #include "HiTimer.h"
 #include "NetSystem.h"
-#include "HandlerMMO.h"
 #include "Logger.h"
 #include <boost/smart_ptr/scoped_array.hpp>
 #include <vector>
+#include "HandlerMMO_Client.h"
 
 int main(int argc, char** argv)
 {
@@ -27,13 +27,13 @@ int main(int argc, char** argv)
   GetLogger()->SetPrintf(false);
   GetLogger()->SetEnable(false);
 
-  THandlerMMO handler;
+  THandlerMMO_Client handler;
 
-  TInputCmdTestMMO inputCmd;
+  TInputCmdTestMMO_Client inputCmd;
   bool res = inputCmd.SetArg(argc, argv);
   BL_ASSERT(res);
 
-  TInputCmdTestMMO::TInput inputArg;
+  TInputCmdTestMMO_Client::TInput inputArg;
   inputCmd.Get(inputArg);
 
   TMakerTransport makerTransport;
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
     for( int i = indexClientOnLogin ; i < cnt ; i++ )
     {
       char sLogin[100];
-      sprintf(sLogin, "%d", i);
+      sprintf(sLogin, "%d", inputArg.begin_id + i);
       pArrClient[i]->Login(masterIP, MASTER_PORT,
         sLogin, strlen(sLogin), PASSWORD_CLIENT, strlen(PASSWORD_CLIENT));
     }

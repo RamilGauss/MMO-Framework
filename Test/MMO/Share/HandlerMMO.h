@@ -9,25 +9,20 @@ See for more information License.h.
 #define HandlerMMOH
 
 #include "DstEvent.h"
-#include "Master.h"
-#include "Slave.h"
 #include "BaseEvent.h"
 #include <set>
 
 class THandlerMMO : public TDstEvent
 {
-  nsMMOEngine::TMaster* mMaster;
-  nsMMOEngine::TSlave*  mSlave;
-
-  std::set<unsigned int> mSetID_Client;
-  int mCountConnection;
 public:
   THandlerMMO();
-  void SetServerMMO(nsMMOEngine::TMaster* pMaster, 
-                    nsMMOEngine::TSlave* pSlave);
   void Work();
+
+  static void IncreaseCountConnection();
+  static void DecreaseCountConnection();
+  static int  GetCountConnection();
 protected:
-  void HandleFromMMOEngine(nsEvent::TEvent* pEvent);
+  virtual void HandleFromMMOEngine(nsEvent::TEvent* pEvent) = 0;
   std::string GetStrError(int code);
 };
 

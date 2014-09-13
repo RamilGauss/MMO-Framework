@@ -5,27 +5,29 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "InputCmdTestMMO.h"
+#include "InputCmdTestMMO_Client.h"
 
 #define KEY_BEGIN_PORT string("begin_port")
 #define KEY_COUNT      string("count")
+#define KEY_BEGIN_ID   string("begin_id")
 
 using namespace std;
 
-TInputCmdTestMMO::TInputCmdTestMMO()
+TInputCmdTestMMO_Client::TInputCmdTestMMO_Client()
 {
 	mVecDefKey.push_back(KEY_BEGIN_PORT);
 	mVecDefKey.push_back(KEY_COUNT     );
+  mVecDefKey.push_back(KEY_BEGIN_ID  );
 
 	mCmdParam.SetDefKey(mVecDefKey);
 }
 //-------------------------------------------------------------------------------
-TInputCmdTestMMO::~TInputCmdTestMMO()
+TInputCmdTestMMO_Client::~TInputCmdTestMMO_Client()
 {
 
 }
 //-------------------------------------------------------------------------------
-bool TInputCmdTestMMO::SetArg(int argc, char** argv)
+bool TInputCmdTestMMO_Client::SetArg(int argc, char** argv)
 {
   vector<string> vecArgv;
   for( int i = 1 ; i < argc ; i++)
@@ -33,7 +35,7 @@ bool TInputCmdTestMMO::SetArg(int argc, char** argv)
   return SetArg(vecArgv);
 }
 //-------------------------------------------------------------------------------
-bool TInputCmdTestMMO::SetArg(vector<string>& vecArgv)
+bool TInputCmdTestMMO_Client::SetArg(vector<string>& vecArgv)
 {
 	mCmdParam.SetArg(vecArgv);
 
@@ -52,10 +54,17 @@ bool TInputCmdTestMMO::SetArg(vector<string>& vecArgv)
 		mCmdParam.GetByKey(KEY_COUNT, 0, sCount);
 		mInput.count = atoi(sCount.data());
 	}
+  int cL = mCmdParam.GetCountValueByKey(KEY_BEGIN_ID);
+  if(cL==1)
+  {
+    string sBeginID;
+    mCmdParam.GetByKey(KEY_BEGIN_ID, 0, sBeginID);
+		mInput.begin_id = atoi(sBeginID.data());
+  }
 	return true;
 }
 //-------------------------------------------------------------------------------
-void TInputCmdTestMMO::Get(TInputCmdTestMMO::TInput& v_out)
+void TInputCmdTestMMO_Client::Get(TInputCmdTestMMO_Client::TInput& v_out)
 {
 	v_out = mInput;
 }

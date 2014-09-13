@@ -38,6 +38,9 @@ namespace nsMMOEngine
     // добавление/удаление
     TContainerContextSc* AddContext(unsigned int id_client, 
                                     unsigned int id_session);
+		void EntrustContext(unsigned int id_client, 
+										    unsigned int id_session,
+												TContainerContextSc* pContext);
     // удаление
     void DeleteByKey(unsigned int key);
 	private:

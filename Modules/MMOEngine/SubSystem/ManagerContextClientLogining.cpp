@@ -113,3 +113,13 @@ void TManagerContextClientLogining::Clear()
   mMapSessionKey.clear();
 }
 //-------------------------------------------------------------------------------------------
+void TManagerContextClientLogining::UnlinkContextBySession(unsigned int id_session)
+{
+	TContainerContextSc* pC = FindContextBySession(id_session);
+	if(pC==NULL)
+		return;
+
+	mMapSessionContext.erase(id_session);
+	mMapSessionKey.left.erase(id_session);
+}
+//-------------------------------------------------------------------------------------------

@@ -179,6 +179,22 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\HandlerMMO_Client.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\HandlerMMO_Client.h"
+				>
+			</File>
+			<File
+				RelativePath=".\InputCmdTestMMO_Client.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\InputCmdTestMMO_Client.h"
+				>
+			</File>
+			<File
 				RelativePath=".\mainClient.cpp"
 				>
 			</File>
@@ -196,14 +212,6 @@
 			</File>
 			<File
 				RelativePath="..\Share\HandlerMMO.h"
-				>
-			</File>
-			<File
-				RelativePath="..\Share\InputCmdTestMMO.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Share\InputCmdTestMMO.h"
 				>
 			</File>
 			<File

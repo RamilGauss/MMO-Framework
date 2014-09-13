@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef InputCmdTestMMOH
-#define InputCmdTestMMOH
+#ifndef InputCmdTestMMO_ClientH
+#define InputCmdTestMMO_ClientH
 
 #include <string>
 #include <vector>
@@ -14,7 +14,7 @@ See for more information License.h.
 #include "CmdParam.h"
 #include "CommonParam.h"
  
-class TInputCmdTestMMO
+class TInputCmdTestMMO_Client
 {
   TCmdParam mCmdParam;
 
@@ -27,15 +27,17 @@ public:
 	{
 		unsigned short begin_port;
     int            count;
+    int            begin_id;
 		TInput()
 		{
       begin_port = CLIENT_PORT;
 			count      = 1;
+      begin_id   = 0;
 		}
 	};
 
-  TInputCmdTestMMO();
-  ~TInputCmdTestMMO();
+  TInputCmdTestMMO_Client();
+  ~TInputCmdTestMMO_Client();
 
 	bool SetArg(int argc, char** argv);
 	bool SetArg(std::vector<std::string>& vecArgv);

@@ -9,9 +9,9 @@ See for more information License.h.
 #define CommonParamH
 
 #define SLAVE_PORT        1234
-#define MASTER_PORT       1235
-#define SUPER_SERVER_PORT 1236
-#define CLIENT_PORT       1237
+#define MASTER_PORT       2235
+#define SUPER_SERVER_PORT 2236
+#define CLIENT_PORT       2237
 
 #define PASSWORD_CLIENT "1"
 

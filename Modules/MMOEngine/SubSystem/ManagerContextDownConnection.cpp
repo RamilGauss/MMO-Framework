@@ -152,3 +152,17 @@ void TManagerContextDownConnection::Clear()
   mMapSessionContext.clear();
 }
 //-----------------------------------------------------------------------------------
+bool TManagerContextDownConnection::FindSessionByClientKey(unsigned int id_client, unsigned int &id_session_slave)
+{
+	BOOST_FOREACH(TMapUintSetUint::value_type& it, mMapSessionKey)
+	{
+		TSetUintIt fit = it.second.find(id_client);
+		if(fit!=it.second.end())
+		{
+			id_session_slave = it.first;
+			return true;
+		}
+	}
+	return false;
+}
+//-----------------------------------------------------------------------------------

@@ -110,3 +110,15 @@ bool TManagerContextMoreDownClientConnection::SetSessionByClientKey(unsigned int
   return true;
 }
 //-------------------------------------------------------------------------
+void TManagerContextMoreDownClientConnection::EntrustContext(unsigned int id_client, 
+																														 unsigned int id_session,
+																														 TContainerContextSc* pContext)
+{
+	BL_ASSERT(id_session!=INVALID_HANDLE_SESSION);
+
+	mMapKeyContext.insert(TMapUintPtr::value_type(id_client,  pContext));
+	mMapKeySession.insert(TMapUintUint::value_type(id_client, id_session));
+
+	pContext->SetID_Session(id_session);
+}
+//-------------------------------------------------------------------------
