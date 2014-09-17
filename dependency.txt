@@ -1,0 +1,28 @@
+﻿    Windows
+
+  Два варианта решения:
+1. Скачать все зависимости с оффициальных сайтов, скомпилировать.
+2. Скачать из облака (https://cloud.mail.ru/public/a69136fbab85%2FDependency.rar, 
+                      https://cloud.mail.ru/public/594080076bcd%2FDependency.zip,
+                      https://cloud.mail.ru/public/bde5f1031ef5%2Fboost_1_54_0.zip,
+                      https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe).
+  Далее прописать в Visual Studio пути:
+1. Tools->Options->Projects and Solutions
+2. VC++ Directories->Include files - добавить путь, например, "D:\MyProjects\Dependency\Include\MyGUIEngine\include".
+3. VC++ Directories->Library files - например, "D:\MyProjects\Dependency\Lib".
+4. Прописать путь к DLL в переменные среды (Win+Break->Дополнительно->Переменные среды), 
+например, PATH += D:\MyProjects\Dependency\Bin;
+//---------------------------------------------------------------------------------------
+    Linux (mainly Ubuntu)
+
+You are lucky! Just download and install by Synaptic next packet of libraries.
+Используйте Synaptic, он сам все сделает.
+//---------------------------------------------------------------------------------------
+
+  Список зависимостей:
+Boost   1.54, 
+OpenSSL 1.0.1E, 
+Qt      4.8.5, 
+MyGUI   3.2.0, 
+OGRE    1.9, 
+Bullet  2.82.

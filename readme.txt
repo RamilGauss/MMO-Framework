@@ -2,28 +2,18 @@
 //----------------------------------------------------------------------------------------
     English 
     
-	For compiling requires:
-    Boost 1.54, 
-    Qt 4.8.5, 
+	For compiling requires: see directory Dependency.
+
 To view the architectural decisions need Enterprise Architect 7.0.
 
 	Engine features
 
 	This engine (MMO component) can work with more than one million Clients.
 This is achieved by using the cluster organization within the Server.
-Use: MyGUI, Qt, OGRE, Bullet, OpenSSL.
-	
-	Folder with uppercase first letter contains the source code.
-All other folders contain either data (model, xml, etc.), or documents.	
-
-doc - documentation and manual how use it.
-
 //------------------------------------------------------------------------------------------
     Russian
     
-	Для компиляции требуется:
-    Boost 1.54, 
-    Qt 4.8.5, 
+	Для компиляции требуется: смотри папку Dependency.
   
 Для просмотра архитектурных решений потребуется Enterprise Architect 7.0.
 
@@ -32,8 +22,3 @@ doc - documentation and manual how use it.
 	Данный движок (ММО компонент) может работать с более чем миллионом Клиентов.
 Это достигается с помощью кластерной организации внутри Сервера.
 Сторонние компоненты: MyGUI, Qt, OGRE, Bullet, OpenSSL.
-		
-	Папка с Верхним регистром первой буквы содержит исходный код.
-Все остальные папки содержат либо данные(модели, xml и т.д.), либо документацию.
-
-doc - документация, мануал как работать с движком.

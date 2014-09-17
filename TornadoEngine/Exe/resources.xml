@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Paths>
+  <Path root="true">../../Resources/Media</Path>
+  <Path>../../Resources/media/MyGUI_Media</Path>
+  <model>../../Resources/model/listModel.xml</model>
+  <shader>../../Resources/shader</shader>
+  <map>../../Resources/map/listMap.xml</map>
+  <texture>../../Resources/texture</texture>
+	<game_param>../../Resources/game_param/ViewerModel.xml</game_param>
+  <GUI>/Demos/Demo_Themes</GUI>
+  <GUI>/../form</GUI>
+  <GUI>/Common/Themes</GUI>
+  <GUI_skin>MyGUI_BlackBlueTheme.xml</GUI_skin>
+</Paths>
