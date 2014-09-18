@@ -8,5 +8,10 @@ See for more information License.h.
 
 #include "MakerXML.h"
 #include "XML_Markup.h"
+#include "XML_TinyXML2.h"
 
-MACRO_MAKER_CPP_USE_SAME(XML,XML_Markup);
+#if 1
+  MACRO_MAKER_CPP_USE_SAME(XML,XML_Markup);
+#else
+  MACRO_MAKER_CPP_USE_SAME(XML,XML_TinyXML2);
+#endif

@@ -82,8 +82,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\..\Lib\$(ConfigurationName)"
-			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\..\..\Lib"
+			IntermediateDirectory="..\..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="0"
 			WholeProgramOptimization="1"

@@ -95,8 +95,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\Exe\$(ConfigurationName)"
-			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\..\Exe"
+			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -142,12 +142,12 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="shlwapi.lib ws2_32.lib Share.lib MMOEngine.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\Lib;..\..\Lib\$(ConfigurationName)"
+				AdditionalLibraryDirectories="..\..\..\Lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
+				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool

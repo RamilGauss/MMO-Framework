@@ -1,1 +1,6 @@
-﻿
+﻿    Russian
+  
+  Windows
+1. Скачать архив проекта с Github.com.
+2. Скачать архив dependency (zip или rar), разархивровать, следовать инструкции dependency.txt.
+3. Скачать Qt 4.8.5 с официального сайта или из облака (см. dependency.txt).

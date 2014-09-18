@@ -82,8 +82,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\..\Lib\$(ConfigurationName)"
-			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\..\..\Lib"
+			IntermediateDirectory="..\..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="0"
 			WholeProgramOptimization="1"
@@ -107,7 +107,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\MyGUIEngine\include;..\MyGUIEngine\src;.\Base\DirectX;.\;.\Input\Win32;..\Platforms\DirectX\DirectXPlatform\include"
+				AdditionalIncludeDirectories=".\;.\Base\DirectX;.\Input\Win32;..\Platforms\DirectX\DirectXPlatform\include;..\Platforms\Ogre\OgrePlatform\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"

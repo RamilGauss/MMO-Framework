@@ -2,7 +2,7 @@
 //----------------------------------------------------------------------------------------
     English 
     
-	For compiling requires: see directory Dependency.
+	For compiling requires: see files dpendency.txt and todo.txt.
 
 To view the architectural decisions need Enterprise Architect 7.0.
 
@@ -13,7 +13,7 @@ This is achieved by using the cluster organization within the Server.
 //------------------------------------------------------------------------------------------
     Russian
     
-	Для компиляции требуется: смотри папку Dependency.
+	Для компиляции требуется: смотри файлы dependency.txt и todo.txt.
   
 Для просмотра архитектурных решений потребуется Enterprise Architect 7.0.
 
@@ -21,4 +21,3 @@ This is achieved by using the cluster organization within the Server.
     
 	Данный движок (ММО компонент) может работать с более чем миллионом Клиентов.
 Это достигается с помощью кластерной организации внутри Сервера.
-Сторонние компоненты: MyGUI, Qt, OGRE, Bullet, OpenSSL.

@@ -19,8 +19,27 @@ See for more information License.h.
 #include <vector>
 #include "HandlerMMO_Client.h"
 
+
+#include "MakerXML.h"
+#include "IXML.h"
+
 int main(int argc, char** argv)
 {
+  //###
+  //TMakerXML maker;
+  //IXML* pXML = maker.New();
+  //bool r = pXML->Load("resources.xml");
+  ////bool enter = pXML->EnterSection("Paths",0);
+  //int cnt = pXML->GetCountSection();
+  //for( int i = 0 ; i < cnt ; i++)
+  //{
+  //  std::string sName  = pXML->GetNameSection(i);
+  //  std::string sValue = pXML->ReadSection(i);
+  //  printf("%s-%s\n",sName.data(), sValue.data());
+  //}
+  //bool resSave = pXML->Save();
+  //###
+
   GetLogger()->Register(STR_NAME_MMO_ENGINE);
   GetLogger()->Register(STR_NAME_NET_TRANSPORT);
   GetLogger()->Init("Client_Test");

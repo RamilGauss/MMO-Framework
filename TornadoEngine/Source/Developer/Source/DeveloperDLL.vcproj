@@ -95,7 +95,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="../DLL"
-			IntermediateDirectory="../../Temp/$(ConfigurationName)/$(ProjectName)"
+			IntermediateDirectory="../../../Temp/$(ConfigurationName)/$(ProjectName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -126,7 +126,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				DisableSpecificWarnings="4996;4251;4275"
+				DisableSpecificWarnings="4251;4275;4005;4244"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -139,9 +139,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib opengl32.lib glu32.lib ws2_32.lib DXGI.lib d3dx10.lib d3dx9.lib d3d9.lib dxerr.lib dxguid.lib winmm.lib comctl32.lib Imm32.lib Version.lib Dsound.lib GraphicEngine.lib GameLib.lib DXUT.lib DXUTOpt.lib Share.lib PhysicEngine.lib Common.lib MyGUIEngine.lib Platforms.lib QtCore4.lib QtGui4.lib QtOpenGL4.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine.lib QtCore4.lib QtGui4.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib GameEngine.lib Share.lib QtLib.lib Common.lib Platforms.lib NetTransport.lib MMOEngine.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="../../Lib;&quot;../../Lib\$(ConfigurationName)&quot;;&quot;$(QTDIR)\lib&quot;"
+				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -153,7 +153,6 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
-				AdditionalManifestFiles="../../Exe/Release.manifest"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
