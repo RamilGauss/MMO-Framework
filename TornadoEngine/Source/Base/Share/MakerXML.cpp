@@ -10,7 +10,7 @@ See for more information License.h.
 #include "XML_Markup.h"
 #include "XML_TinyXML2.h"
 
-#if 1
+#if 0
   MACRO_MAKER_CPP_USE_SAME(XML,XML_Markup);
 #else
   MACRO_MAKER_CPP_USE_SAME(XML,XML_TinyXML2);

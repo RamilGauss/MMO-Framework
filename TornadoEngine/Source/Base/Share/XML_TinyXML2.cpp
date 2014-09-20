@@ -89,10 +89,19 @@ bool TXML_TinyXML2::LeaveSection()
 //------------------------------------------------------------------
 bool TXML_TinyXML2::AddSectionAndEnter(const char* name)
 {
-  //mMarkup.SavePos();
-  //bool res = mMarkup.AddElem(name, " ");
-  ////вызов mMarkup.RestorePos(); не делать что бы остаться тут же
-  //return res;
+  XMLElement* pNewElement = mDoc.NewElement(name);
+  if(pNewElement)
+  {
+    pNewElement->SetText("");
+    XMLNode* pNode = NULL;
+    if(mCurrentElement->Parent()==NULL)
+      pNode = mDoc.InsertEndChild(pNewElement);
+    else
+      pNode = mCurrentElement->Parent()->InsertEndChild(pNewElement);
+    
+    //mCurrentElement = pNode->ToElement()->FirstChildElement();
+    return true;
+  }
   return false;
 }
 //------------------------------------------------------------------
@@ -120,10 +129,12 @@ bool TXML_TinyXML2::AddSection(const char* name)
   if(pNewElement)
   {
     pNewElement->SetText("");
-    if(mCurrentElement->Parent()==NULL)
+    if(mCurrentElement==NULL || mCurrentElement->Parent()==NULL)
       mDoc.InsertEndChild(pNewElement);
     else
       mCurrentElement->Parent()->InsertEndChild(pNewElement);
+    if(mCurrentElement==NULL)
+      mCurrentElement = mDoc.FirstChildElement();
     return true;
   }
   return false;
@@ -175,43 +186,39 @@ bool TXML_TinyXML2::RemoveSection(const char* name, int num)
 //------------------------------------------------------------------
 bool TXML_TinyXML2::WriteSection(const char* name, int num, string buffer)
 {
-  /*mMarkup.SavePos();
-  bool res = false;
+  XMLElement* pElement = mCurrentElement;
   int cntElem = 0;
-  while(mMarkup.FindElem())
-  { 
-    string sName = mMarkup.GetTagName();
-    if(strcmp(name,sName.data())==0)
+  while(pElement)
+  {
+    const char* sValue = pElement->Value();
+    if(strcmp(sValue,name)==0)
     {
       if(num==cntElem)
       {
-        res = mMarkup.SetElemContent(buffer.data());
-        break;
+        pElement->SetText(buffer.data());
+        return true;
       }
       cntElem++;
     }
+    pElement = pElement->NextSiblingElement();
   }
-  mMarkup.RestorePos();
-  return res;*/
   return false;
 }
 //------------------------------------------------------------------
 bool TXML_TinyXML2::WriteSection(int index, string buffer)
 {
-  /*mMarkup.SavePos();
-  bool res = false;
+  XMLElement* pElement = mCurrentElement;
   int cntElem = 0;
-  while(mMarkup.FindElem())
-  { 
+  while(pElement)
+  {
     if(index==cntElem)
     {
-      res = mMarkup.SetElemContent(buffer.data());
-      break;
+      pElement->SetText(buffer.data());
+      return true;
     }
     cntElem++;
+    pElement = pElement->NextSiblingElement();
   }
-  mMarkup.RestorePos();
-  return res;*/
   return false;
 }
 //------------------------------------------------------------------
@@ -228,7 +235,9 @@ string TXML_TinyXML2::ReadSection(const char* name, int num)
     {
       if(num==cntElem)
       {
-        content = pElement->GetText();
+        const char* pContent = pElement->GetText();
+        if(pContent)
+          content = pContent;
         break;
       }
       cntElem++;
@@ -247,7 +256,9 @@ string TXML_TinyXML2::ReadSection(int index)
   {
     if(index==cntElem)
     {
-      content = pElement->GetText();
+      const char* pContent = pElement->GetText();
+      if(pContent)
+        content = pContent;
       break;
     }
     cntElem++;
