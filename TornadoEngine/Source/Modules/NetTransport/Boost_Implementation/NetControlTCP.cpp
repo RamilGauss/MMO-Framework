@@ -41,7 +41,8 @@ bool TNetControlTCP::Connect(unsigned int ip, unsigned short port)
 {
   flgWaitConnect = true;
   flgResConnect  = false;
-  RequestConnect(TIP_Port(ip, port));
+	TIP_Port ip_port(ip, port);
+  RequestConnect(ip_port);
   
   while(flgWaitConnect)
     ht_msleep(eWaitConnect);

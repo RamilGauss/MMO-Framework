@@ -65,7 +65,8 @@ void TNetTransport_Boost::Send(unsigned int ip, unsigned short port,
   {
     mMutexMapIP_TCP.lock();
     //---------------------
-    TNetControlTCP* pControl = GetTCP_ByIP(TIP_Port(ip,port));
+		TIP_Port ip_port(ip,port);
+    TNetControlTCP* pControl = GetTCP_ByIP(ip_port);
     if(pControl)
       pControl->Send(ip,port,packet);
     //---------------------
@@ -119,7 +120,8 @@ void TNetTransport_Boost::Close(unsigned int ip, unsigned short port)
 {
   mMutexMapIP_TCP.lock();
   //---------------------
-  TNetControlTCP* pControl = GetTCP_ByIP(TIP_Port(ip,port));
+	TIP_Port ip_port(ip,port);
+  TNetControlTCP* pControl = GetTCP_ByIP(ip_port);
   if(pControl)
     pControl->Close();
   if(pTCP_Up==pControl)

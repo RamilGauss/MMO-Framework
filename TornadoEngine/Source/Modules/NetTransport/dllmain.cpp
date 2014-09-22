@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
+#ifdef WIN32
+
 #include <windows.h>
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -22,3 +24,4 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	return TRUE;
 }
 
+#endif

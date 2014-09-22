@@ -10,8 +10,8 @@ See for more information License.h.
 #include "common_defs.h"
 
 #include "Logger.h"
-#include <boost\asio\placeholders.hpp>
-#include <boost\asio\buffer.hpp>
+#include <boost/asio/placeholders.hpp>
+#include <boost/asio/buffer.hpp>
 #include "HiTimer.h"
 
 using namespace std;
@@ -113,13 +113,14 @@ void TNetControlUDP::Done()
 void TNetControlUDP::Send(unsigned int ip, unsigned short port, TBreakPacket bp)
 {
   // формируем заголовок
-  unsigned short count_out = IncreaseCntOut(TIP_Port(ip,port));
+	TIP_Port ip_port(ip,port);
+  unsigned short count_out = IncreaseCntOut(ip_port);
   bp.PushFront( (char*)&count_out, sizeof(count_out));
   bp.Collect();
 
   char* data = (char*)bp.GetCollectPtr();
   int size   = bp.GetSize();
-  RequestSendTo(data, size, TIP_Port(ip, port));
+  RequestSendTo(data, size, ip_port);
 }
 //----------------------------------------------------------------------------------
 void TNetControlUDP::Close()
