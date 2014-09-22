@@ -24,7 +24,7 @@ namespace nsMMOEngine
     ~TManagerManagerContextSc();
 
     TManagerContextSc* Add();
-    void Remove(TManagerContextSc* pMСSc);
+    void Remove(TManagerContextSc* pMCSc);
     // для обработки внутренних событий
     void Work();
   protected:

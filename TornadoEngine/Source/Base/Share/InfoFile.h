@@ -30,7 +30,6 @@ public:
 
 	void GetName(std::string& path_name);
 	void GetPath(std::string& path_name);
-	void GetFullPathName(std::string& path_name);
 };
 
 #endif

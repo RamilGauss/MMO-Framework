@@ -7,7 +7,7 @@ See for more information License.h.
 
 
 //---------------------------------------------------------------------------
-
+#ifdef WIN32
 #include <windows.h>
 //---------------------------------------------------------------------------
 //   Important note about DLL memory management when your DLL uses the
@@ -36,3 +36,4 @@ int WINAPI DllEntryPoint(HINSTANCE hinst, unsigned long reason, void* lpReserved
 return 1;
 }
 //---------------------------------------------------------------------------
+#endif

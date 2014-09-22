@@ -50,15 +50,4 @@ void InfoFile::GetPath(std::string& path_name)
 	path_name = sPath;
 }
 //------------------------------------------------------------------
-void InfoFile::GetFullPathName(std::string& path_name)
-{
-	path_name = "";
-
-	if(IsOpen()==false)
-		return;
-	char full[MAX_PATH];
-	if( _fullpath( full, sPath.data(), MAX_PATH ) != NULL )
-		path_name = full;
-}
-//------------------------------------------------------------------
 

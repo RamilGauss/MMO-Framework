@@ -11,6 +11,7 @@ See for more information License.h.
 #include "IContextScenario.h"
 
 #include <map>
+#include <string>
 
 #include "BreakPacket.h"
 #include "ShareMisc.h"

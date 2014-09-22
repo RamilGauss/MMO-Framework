@@ -8,7 +8,6 @@ See for more information License.h.
 #ifndef ManagerStateMachineH
 #define ManagerStateMachineH
 
-//#include "IManagerStateMachine.h"
 #include "StateMachine.h"
 #include <vector>
 #include <string>
@@ -16,7 +15,7 @@ See for more information License.h.
 
 class IXML;
 
-class DllExport TManagerStateMachine// : public IManagerStateMachine
+class DllExport TManagerStateMachine
 {
   struct TDesc
   {

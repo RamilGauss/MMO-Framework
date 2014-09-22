@@ -6,32 +6,26 @@ See for more information License.h.
 */
 
 
-#ifndef LoaderDLLH
-#define LoaderDLLH
+#ifndef LoaderDLL_UnixH
+#define LoaderDLL_UnixH
+
+#ifndef WIN32
 
 #include "ILoaderDLL.h"
 
-#ifdef WIN32
-  #include <windows.h>
-#else
-
-#endif
-
-//------------------------------------------------------------------
-class TLoaderDLL : public ILoaderDLL
+class TLoaderDLL_Unix : public ILoaderDLL
 {
-#ifdef WIN32
-  HMODULE hModule;
-#else
-#endif
 
+  void* pHandle;
 public:
-  TLoaderDLL();
-  virtual ~TLoaderDLL();
+  TLoaderDLL_Unix();
+  virtual ~TLoaderDLL_Unix();
 
   virtual bool Init(const char* sPath);
   virtual void* Get(const char* nameFunc);
   virtual void Done();
 };
+
+#endif
 
 #endif

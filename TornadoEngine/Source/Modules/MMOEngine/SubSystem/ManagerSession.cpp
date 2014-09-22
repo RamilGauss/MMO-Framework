@@ -197,7 +197,8 @@ unsigned int TManagerSession::GetSessionID(unsigned int ip, unsigned short port)
     return id;
   }
   //===================================================================
-  TSession* pSession = mNavigateSession->FindSessionByIP(TIP_Port(ip,port));
+  TIP_Port ip_port(ip,port);
+  TSession* pSession = mNavigateSession->FindSessionByIP(ip_port);
   if(pSession)
     id = pSession->GetID();
   unlockAccessSession();

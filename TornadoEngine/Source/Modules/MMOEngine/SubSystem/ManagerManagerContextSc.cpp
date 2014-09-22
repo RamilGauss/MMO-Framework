@@ -24,18 +24,18 @@ TManagerManagerContextSc::~TManagerManagerContextSc()
 //-----------------------------------------------------------------------------
 TManagerContextSc* TManagerManagerContextSc::Add()
 {
-  TManagerContextSc* pMСSc = new TManagerContextSc();
-  pMСSc->GetCallBackActivate()   ->Register(&TManagerManagerContextSc::ActiveEvent,this);
-  pMСSc->GetCallBackDisactivate()->Register(&TManagerManagerContextSc::DisactiveEvent,this);
-  mSetManagerContextSc.insert(pMСSc);
-  return pMСSc;
+  TManagerContextSc* pMCSc = new TManagerContextSc();
+  pMCSc->GetCallBackActivate()   ->Register(&TManagerManagerContextSc::ActiveEvent,this);
+  pMCSc->GetCallBackDisactivate()->Register(&TManagerManagerContextSc::DisactiveEvent,this);
+  mSetManagerContextSc.insert(pMCSc);
+  return pMCSc;
 }
 //-----------------------------------------------------------------------------
-void TManagerManagerContextSc::Remove(TManagerContextSc* pMСSc)
+void TManagerManagerContextSc::Remove(TManagerContextSc* pMCSc)
 {
-  mSetManagerContextSc.erase(pMСSc);
-  mSetActiveManagerContextSc.erase(pMСSc);
-  delete pMСSc;
+  mSetManagerContextSc.erase(pMCSc);
+  mSetActiveManagerContextSc.erase(pMCSc);
+  delete pMCSc;
 }
 //-----------------------------------------------------------------------------
 void TManagerManagerContextSc::Work()

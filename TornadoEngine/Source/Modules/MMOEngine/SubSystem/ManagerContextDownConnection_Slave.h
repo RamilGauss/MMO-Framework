@@ -30,12 +30,12 @@ namespace nsMMOEngine
 				load_procent = lp;
 				id_session   = is;
 			}
-			bool operator <(TDesc& right)
-			{
-				if(load_procent < right.load_procent)
-					return true;
-				return false;
-			}
+      bool operator < (const TDesc& right) const
+      {
+        if(load_procent < right.load_procent)
+          return true;
+        return false;
+      }
 		};
 
 		typedef std::vector<TDesc> TVectorDesc;

@@ -96,7 +96,7 @@ TStateMachine<Key,Data>::~TStateMachine()
 template <class Key, class Data>
 bool TStateMachine<Key,Data>::Init(const char* sNewStateName)
 {
-  TMapStrState::iterator fit = mMapStrState.find(sNewStateName);
+  typename TMapStrState::iterator fit = mMapStrState.find(sNewStateName);
   if(fit!=mMapStrState.end())
   {
     mCurStateIt = fit;
@@ -108,7 +108,7 @@ bool TStateMachine<Key,Data>::Init(const char* sNewStateName)
 template <class Key, class Data>
 Data* TStateMachine<Key,Data>::Action(Key k)
 {
-  TMapKeyStr::iterator fit = mCurStateIt->second->m.find(k);
+  typename TMapKeyStr::iterator fit = mCurStateIt->second->m.find(k);
   if(fit!=mCurStateIt->second->m.end())
   {
     if(Init(fit->second.data()))// ищем новое состояние
@@ -121,7 +121,7 @@ template <class Key, class Data>
 void TStateMachine<Key,Data>::AddState(std::string name, TMapKeyStr* mKS, Data* pData)
 {
   TState* pState = new TState(pData,mKS);
-  mMapStrState.insert(TMapStrState::value_type(name,pState));
+  mMapStrState.insert(typename TMapStrState::value_type(name,pState));
 }
 //---------------------------------------------------------------------
 template <class Key, class Data>
@@ -133,7 +133,7 @@ int TStateMachine<Key,Data>::GetStateCount() const
 template <class Key, class Data>
 void TStateMachine<Key,Data>::Done()
 {
-  BOOST_FOREACH(TMapStrState::value_type& bit,mMapStrState)
+  BOOST_FOREACH(typename TMapStrState::value_type& bit,mMapStrState)
     delete bit.second;
   mMapStrState.clear();
 }

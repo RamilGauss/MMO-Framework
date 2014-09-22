@@ -6,7 +6,12 @@ See for more information License.h.
 */
 
 #include "MakerLoaderDLL.h"
-#include "LoaderDLL.h"
+#include "LoaderDLL_Win32.h"
+#include "LoaderDLL_Unix.h"
 
-MACRO_MAKER_CPP_USE_SAME(LoaderDLL,LoaderDLL)
+#ifdef WIN32
+  MACRO_MAKER_CPP_USE_SAME(LoaderDLL,LoaderDLL_Win32)
+#else
+  MACRO_MAKER_CPP_USE_SAME(LoaderDLL,LoaderDLL_Unix)
+#endif
 

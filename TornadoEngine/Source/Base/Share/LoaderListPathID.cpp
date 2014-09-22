@@ -9,6 +9,8 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "MakerXML.h"
 
+#include <string.h>
+
 using namespace std;
 
 const char* Section_ID          = "id";

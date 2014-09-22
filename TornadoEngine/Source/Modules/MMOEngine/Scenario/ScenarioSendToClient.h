@@ -11,6 +11,7 @@ See for more information License.h.
 #include "IScenario.h"
 #include "ContextScSendToClient.h"
 #include "MakerScenario.h"
+#include "ManagerSession.h"
 
 #include <boost/foreach.hpp>
 

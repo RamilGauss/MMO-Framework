@@ -174,9 +174,9 @@ TManagerContextSc* TBase::AddManagerContextSc()
   return mMngMngContextSc->Add();
 }
 //-------------------------------------------------------------------------
-void TBase::RemoveManagerContextSc(TManagerContextSc* pMСSc)
+void TBase::RemoveManagerContextSc(TManagerContextSc* pMCSc)
 {
-  return mMngMngContextSc->Remove(pMСSc);
+  return mMngMngContextSc->Remove(pMCSc);
 }
 //-------------------------------------------------------------------------
 void TBase::SetupScForContext(TContainerContextSc* pCCSc)

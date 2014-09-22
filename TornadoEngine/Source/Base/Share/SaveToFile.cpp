@@ -19,11 +19,20 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "HiTimer.h"
 
+#ifdef WIN32
 #define CHECK_LEN(buffer) \
 { \
-  int len = _vscprintf( format, list )+ 1; \
+  size_t len = _vscprintf( format, list )+ 1; \
   BL_ASSERT(len<sizeof(buffer)); \
 }
+#else
+#define CHECK_LEN(buffer) \
+{ \
+  size_t len = vprintf( format, list ) + 1; \
+  if(len>=sizeof(buffer)) \
+  printf("SaveOnHDD: Warning, over limit write in buffer!!!\n"); \
+}
+#endif
 
 using namespace std;
 

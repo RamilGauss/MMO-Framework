@@ -40,7 +40,6 @@ See for more information License.h.
   #include <unistd.h>
   #include <errno.h>
   #include <arpa/inet.h>
-  #include "ErrorReg.h"
   #include <string.h>
   #include <stdlib.h>
   #include <stdio.h>

@@ -26,7 +26,7 @@ namespace nsMMOEngine
 				countClient = cc;
 				id_session  = is;
 			}
-			bool operator <(TDesc& right)
+			bool operator <(const TDesc& right) const
 			{
 				if(countClient < right.countClient)
 					return true;

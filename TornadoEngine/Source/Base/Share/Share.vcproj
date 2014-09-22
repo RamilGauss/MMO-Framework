@@ -252,7 +252,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderDLL.cpp"
+				RelativePath=".\LoaderDLL_Unix.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\LoaderDLL_Win32.cpp"
 				>
 			</File>
 			<File
@@ -526,7 +530,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderDLL.h"
+				RelativePath=".\LoaderDLL_Unix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\LoaderDLL_Win32.h"
 				>
 			</File>
 			<File

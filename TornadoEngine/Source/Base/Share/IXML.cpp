@@ -7,6 +7,9 @@ See for more information License.h.
 
 #include "IXML.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+
 using namespace std;
 
 bool IXML::AddChildSection(const char* childName, int num, const char* name)

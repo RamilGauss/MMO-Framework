@@ -75,7 +75,11 @@ int TLoadFromFile::ReadSmall(TContainer& c)
 //---------------------------------------------------------------
 unsigned int TLoadFromFile::Read(void* buffer, unsigned int size, unsigned int offset)
 {
+#ifdef WIN32
   int res = _fseeki64( pFile, boost::int64_t(offset), SEEK_SET);
+#else
+  int res = fseeko( pFile, off_t(offset), SEEK_SET);
+#endif
 
   if(res!=0) return 0;
 
