@@ -58,7 +58,14 @@ void BL_MessageBug( const char* lpszFileName, int nLine )
 //------------------------------------------------------------------------------
 
 #include "BL_Debug.h"
-//#include "BL_Conv.h"
+
+//------------------------------------------------------------------------------
+bool BL_MessageBug( const char* lpszMsg )
+{
+  fprintf( stderr, "%s\n", lpszMsg );
+  fflush( stderr );
+  return true;
+}
 //------------------------------------------------------------------------------
 void BL_MessageBug( const char* lpszFileName, int nLine )
 {

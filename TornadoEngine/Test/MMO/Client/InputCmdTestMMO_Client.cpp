@@ -7,11 +7,14 @@ See for more information License.h.
 
 #include "InputCmdTestMMO_Client.h"
 
-#define KEY_BEGIN_PORT string("begin_port")
-#define KEY_COUNT      string("count")
-#define KEY_BEGIN_ID   string("begin_id")
+#include <stdlib.h>
+#include <stdio.h>
 
 using namespace std;
+
+string KEY_BEGIN_PORT("begin_port");
+string KEY_COUNT     ("count");
+string KEY_BEGIN_ID  ("begin_id");
 
 TInputCmdTestMMO_Client::TInputCmdTestMMO_Client()
 {

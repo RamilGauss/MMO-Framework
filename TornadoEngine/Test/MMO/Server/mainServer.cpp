@@ -79,15 +79,15 @@ int main(int argc, char** argv)
   // потом slave-ы
   unsigned int superserverIP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
   pMaster->ConnectUp(superserverIP, SUPER_SERVER_PORT, 
-    LOGIN_MASTER, strlen(LOGIN_MASTER), 
-    PASSWORD_MASTER, strlen(PASSWORD_MASTER));
+    (void*)LOGIN_MASTER, strlen(LOGIN_MASTER), 
+    (void*)PASSWORD_MASTER, strlen(PASSWORD_MASTER));
   unsigned int masterIP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
   for( int i = 0 ; i < COUNT_SLAVE ; i++ )
   {
     char sLogin[100];
     sprintf(sLogin, "%d", i);
     arrSlave[i]->ConnectUp(masterIP, MASTER_PORT, 
-      sLogin, strlen(sLogin), PASSWORD_SLAVE, strlen(PASSWORD_SLAVE));
+      sLogin, strlen(sLogin), (void*)PASSWORD_SLAVE, strlen(PASSWORD_SLAVE));
   }
   while(true)
   {

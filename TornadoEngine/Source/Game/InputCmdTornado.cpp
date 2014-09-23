@@ -7,12 +7,12 @@ See for more information License.h.
 
 #include "InputCmdTornado.h"
 
-#define KEY_PARAM   string("-p")
-#define KEY_LIB     string("-d")
-#define KEY_VARIANT string("-v")
-#define KEY_CONSOLE string("-c")
-
 using namespace std;
+
+string KEY_PARAM  ("-p");
+string KEY_LIB    ("-d");
+string KEY_VARIANT("-v");
+string KEY_CONSOLE("-c");
 
 TInputCmdTornado::TInputCmdTornado()
 {

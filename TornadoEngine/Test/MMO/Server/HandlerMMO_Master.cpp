@@ -88,7 +88,7 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       memcpy(s, pETL->c.GetPtr()+1, lenLogin);
       s[lenLogin] = '\0';
       unsigned int ID_Client = atoi(s);
-      pMaster->SetResultLogin(true, pETL->id_session, ID_Client, "Wellcome", strlen("Wellcome"));
+      pMaster->SetResultLogin(true, pETL->id_session, ID_Client, (void*)"Wellcome", strlen("Wellcome"));
       mListClient.push_back(ID_Client);
 			if(mListClient.size()>19)
       {

@@ -73,7 +73,7 @@ int main(int argc, char** argv)
       char sLogin[100];
       sprintf(sLogin, "%d", inputArg.begin_id + i);
       pArrClient[i]->Login(masterIP, MASTER_PORT,
-        sLogin, strlen(sLogin), PASSWORD_CLIENT, strlen(PASSWORD_CLIENT));
+        sLogin, strlen(sLogin), (void*)PASSWORD_CLIENT, strlen(PASSWORD_CLIENT));
     }
     indexClientOnLogin = cnt;
 
