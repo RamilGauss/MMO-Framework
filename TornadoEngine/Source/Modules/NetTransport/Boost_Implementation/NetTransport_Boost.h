@@ -31,7 +31,7 @@ class TNetTransport_Boost : public INetTransport
 
   boost::scoped_ptr<TNetControlUDP>      mUDP;
   boost::scoped_ptr<TNetControlAcceptor> mAcceptor;
-  TNetControlTCP*     pTCP_Up;
+  boost::scoped_ptr<TNetControlTCP>      mTCP_Up;
 
   typedef std::map<TIP_Port,TNetControlTCP*> TMapIP_Ptr;
   typedef TMapIP_Ptr::iterator TMapIP_PtrIt;
@@ -70,7 +70,7 @@ protected:
   void CloseAll();
   void DeleteMapControlTCP();
 
-  void CreateControlTcpUp();
+  //void CreateControlTcpUp();
   void DeleteControlTCP(TNetControlTCP* pControl);
 
   TNetControlTCP* GetTCP_ByIP(TIP_Port &ip_port);

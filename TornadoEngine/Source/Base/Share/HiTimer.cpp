@@ -9,6 +9,8 @@ See for more information License.h.
 
 #ifdef WIN32
   #include <windows.h>
+#else
+  #include <time.h>
 #endif
 
 #include <boost/thread/thread.hpp>
@@ -40,10 +42,16 @@ void ht_msleep( unsigned int ms )
 //------------------------------------------------------------------------------
 unsigned int ht_GetMSCount()
 {
+#ifdef WIN32
   typedef chrono::process_real_cpu_clock type_clock;
 
   type_clock::time_point t = type_clock::now();
   return (unsigned int)(t.time_since_epoch().count()/1000000);
+#else
+  timespec v;
+  clock_gettime(CLOCK_REALTIME, &v);
+  return (unsigned int)(v.tv_sec*1000+v.tv_nsec/1000000);
+#endif
 }
 //------------------------------------------------------------------------------
 // Задержка на микросекунды

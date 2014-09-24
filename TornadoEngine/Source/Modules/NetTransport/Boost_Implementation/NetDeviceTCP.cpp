@@ -42,7 +42,7 @@ bool TNetDeviceTCP::Open( unsigned short port, unsigned char numNetWork )
   {
     const ip::address_v4 ipv4_address_Local = ip::address_v4::from_string(sLocalHost);
     const ip::address addr_Local(ipv4_address_Local);
-    ip::tcp::endpoint endpoint_Local(addr_Local,port);
+    const ip::tcp::endpoint endpoint_Local(addr_Local,port);
     mSocket.open(endpoint_Local.protocol());
 
     SetReUse();
