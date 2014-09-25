@@ -38,7 +38,7 @@ bool TSetOrderElement::FindIndexByClientKey(unsigned int key, int& index)
     return false;
 
   // ищем внутренний индекс
-	bmUintUint::left_iterator fmit = mMapKeyInnerIndex.left.find(key);
+	bmUintUint::left_const_iterator fmit = mMapKeyInnerIndex.left.find(key);
   if(fmit==mMapKeyInnerIndex.left.end())
   {
     BL_FIX_BUG();
@@ -78,7 +78,7 @@ void TSetOrderElement::AddKeyAtEnd(unsigned int key)
 //-------------------------------------------------------------------------------------
 void TSetOrderElement::DeleteKey(unsigned int key)
 {
-  bmUintUint::left_iterator fit = mMapKeyInnerIndex.left.find(key);
+  bmUintUint::left_const_iterator fit = mMapKeyInnerIndex.left.find(key);
   if(fit==mMapKeyInnerIndex.left.end())
     return;
 
@@ -94,7 +94,7 @@ void TSetOrderElement::Clear()
 //-------------------------------------------------------------------------------------
 bool TSetOrderElement::FindByKey(unsigned int key)
 {
-	bmUintUint::left_iterator fit = mMapKeyInnerIndex.left.find(key);
+	bmUintUint::left_const_iterator fit = mMapKeyInnerIndex.left.find(key);
   if(fit==mMapKeyInnerIndex.left.end())
     return false;
   return true;
@@ -128,7 +128,7 @@ bool TSetOrderElement::DeleteFirst(unsigned int& key)
 //-------------------------------------------------------------------------------------
 bool TSetOrderElement::FindKeyByInnerIndex(unsigned int inner_index, unsigned int& key)
 {
-	bmUintUint::right_iterator fit = mMapKeyInnerIndex.right.find(inner_index);
+	bmUintUint::right_const_iterator fit = mMapKeyInnerIndex.right.find(inner_index);
 	if(fit==mMapKeyInnerIndex.right.end())
 		return false;
 

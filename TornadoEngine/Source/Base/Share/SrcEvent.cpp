@@ -30,7 +30,7 @@ void TSrcEvent::SetDstObject(TDstEvent* p)
 //------------------------------------------------------------
 void TSrcEvent::AddEventCopy( void* data, int size)
 {
-  pDstEvent->AddEventInQueueCopy(mTypeObject, this, data, size, -1);
+  pDstEvent->AddEventInQueueCopy(mTypeObject, this, data, size, (unsigned int)(-1));
 }
 //------------------------------------------------------------
 void TSrcEvent::AddEventCopy( void* data, int size, unsigned int time_create_ms)

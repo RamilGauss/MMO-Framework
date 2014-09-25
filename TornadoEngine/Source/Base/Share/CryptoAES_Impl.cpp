@@ -33,7 +33,7 @@ TCryptoAES_Impl::~TCryptoAES_Impl()
 {
 	EVP_CIPHER_CTX_cleanup(CONTEXT);
 
-  delete mContext;
+  delete CONTEXT;
 }
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::GenerateKey( eCountBits c )
@@ -155,7 +155,6 @@ void TCryptoAES_Impl::SetPublicKey(void* pKey, int sizeKey)
 			break;
 		default:BL_FIX_BUG();
 	}
-
 }
 //--------------------------------------------------------------------------------
 

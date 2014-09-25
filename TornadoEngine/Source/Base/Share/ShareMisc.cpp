@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include "ShareMisc.h"
+#include "BL_Debug.h"
 #ifdef WIN32
 	#include <windows.h>
 	#include <conio.h>
@@ -48,6 +49,7 @@ void DeleteConsole()
 {
 #ifdef WIN32
   BOOL resFreeConsole = FreeConsole(); 
+  BL_ASSERT(resFreeConsole);
 #endif
   g_flgConsoleExist = false;
 }

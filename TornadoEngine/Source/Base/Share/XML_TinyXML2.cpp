@@ -105,7 +105,9 @@ bool TXML_TinyXML2::AddSectionAndEnter(const char* name)
   return false;
 }
 //------------------------------------------------------------------
-bool TXML_TinyXML2::AddSectionAndEnter(const char *name, int numAttr, TAttrInfo *pAttribs)
+bool TXML_TinyXML2::AddSectionAndEnter(const char *,// name 
+                                       int ,//numAttr 
+                                       TAttrInfo *)//pAttribs
 {
   //mMarkup.SavePos();
 
@@ -159,7 +161,7 @@ bool TXML_TinyXML2::AddSection(const char *name, int numAttr, TAttrInfo *pAttrib
   return false;
 }
 //------------------------------------------------------------------
-bool TXML_TinyXML2::RemoveSection(const char* name, int num)
+bool TXML_TinyXML2::RemoveSection(const char* /*name*/, int /*num*/)
 {
   /*bool res = false;
   mMarkup.SavePos();
@@ -298,7 +300,7 @@ void TXML_TinyXML2::ResetPos()
   mCurrentElement = mDoc.RootElement();
 }
 //------------------------------------------------------------------
-bool TXML_TinyXML2::WriteSectionAttr(const char* name, int num, const char* nameAttr, string buffer)
+bool TXML_TinyXML2::WriteSectionAttr(const char* /*name*/, int /*num*/, const char* /*nameAttr*/, string /*buffer*/)
 {
   /*mMarkup.SavePos();
   bool res = false;
@@ -321,7 +323,7 @@ bool TXML_TinyXML2::WriteSectionAttr(const char* name, int num, const char* name
   return false;
 }
 //------------------------------------------------------------------
-bool TXML_TinyXML2::WriteSectionAttr(int index, const char* nameAttr, string buffer)
+bool TXML_TinyXML2::WriteSectionAttr(int /*index*/, const char* /*nameAttr*/, string /*buffer*/)
 {
   /*mMarkup.SavePos();
   bool res = false;
@@ -341,7 +343,7 @@ bool TXML_TinyXML2::WriteSectionAttr(int index, const char* nameAttr, string buf
 }
 //------------------------------------------------------------------
 // чтение
-string TXML_TinyXML2::ReadSectionAttr(const char* name, int num, const char* nameAttr)
+string TXML_TinyXML2::ReadSectionAttr(const char* /*name*/, int /*num*/, const char* /*nameAttr*/)
 {
   string content;
   /*mMarkup.SavePos();
@@ -365,7 +367,7 @@ string TXML_TinyXML2::ReadSectionAttr(const char* name, int num, const char* nam
   return content;
 }
 //------------------------------------------------------------------
-string TXML_TinyXML2::ReadSectionAttr(int index, const char* nameAttr)
+string TXML_TinyXML2::ReadSectionAttr(int /*index*/, const char* /*nameAttr*/)
 {
   string content;
   /*mMarkup.SavePos();
@@ -385,7 +387,7 @@ string TXML_TinyXML2::ReadSectionAttr(int index, const char* nameAttr)
   return content;
 }
 //------------------------------------------------------------------
-bool TXML_TinyXML2::AddXMLDeclaration( const char* strDecl )
+bool TXML_TinyXML2::AddXMLDeclaration( const char* /*strDecl*/ )
 {
   //return mMarkup.AddNode(CMarkup::MNT_PROCESSING_INSTRUCTION, strDecl);
   return false;

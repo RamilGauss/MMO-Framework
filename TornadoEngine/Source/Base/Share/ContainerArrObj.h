@@ -18,7 +18,7 @@ See for more information License.h.
   позаботится об уничтожении для указателя и вызове деструктора
 */
 
-template <typename T>
+template <class T>
 class TContainerArrObj : public IContainer
 {
   T* pData;
@@ -38,20 +38,20 @@ public:
   virtual void Done();
 };
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 TContainerArrObj<T>::TContainerArrObj()
 {
   pData = NULL;
   mCount = 0;
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 TContainerArrObj<T>::~TContainerArrObj()
 {
   Done();
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 void TContainerArrObj<T>::Done()
 {
 	if(mCount==1)
@@ -62,13 +62,13 @@ void TContainerArrObj<T>::Done()
   mCount = 0;
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 void TContainerArrObj<T>::SetData(char* p, int size)
 {
   SetDataByCount(p, size/sizeof(T));
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 void TContainerArrObj<T>::SetDataByCount(char* p, int count)
 {
   if(count!=mCount)
@@ -98,38 +98,38 @@ void TContainerArrObj<T>::SetDataByCount(char* p, int count)
 	}
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 char* TContainerArrObj<T>::GetPtr() const
 {
   return (char*)pData;
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 int TContainerArrObj<T>::GetCount()const
 {
   return mCount;
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 int TContainerArrObj<T>::GetSize() const
 {
 	return mCount*sizeof(T);
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 void TContainerArrObj<T>::Unlink()
 {
   pData  = NULL;
   mCount = 0;
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 void TContainerArrObj<T>::Entrust(char* p, int size)
 {
   EntrustByCount(p, size/sizeof(T));
 }
 //---------------------------------------------------------------
-template <typename T>
+template <class T>
 void TContainerArrObj<T>::EntrustByCount(char* p, int count)
 {
   Done();
