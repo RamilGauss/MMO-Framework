@@ -5,6 +5,7 @@
 2. Скачать из облака (https://cloud.mail.ru/public/a69136fbab85%2FDependency.rar, 
                       https://cloud.mail.ru/public/594080076bcd%2FDependency.zip,
                       https://cloud.mail.ru/public/bde5f1031ef5%2Fboost_1_54_0.zip,
+		      https://cloud.mail.ru/public/e5f237ddeb4d%2Fboost_1_54_0.rar,
                       https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe).
   Далее прописать в Visual Studio пути:
 1. Tools->Options->Projects and Solutions
