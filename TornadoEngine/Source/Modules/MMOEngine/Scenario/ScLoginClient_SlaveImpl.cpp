@@ -13,6 +13,8 @@ See for more information License.h.
 #include "Events.h"
 #include "EnumMMO.h"
 
+#include "SrcEvent_ex.h"
+
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;
 
