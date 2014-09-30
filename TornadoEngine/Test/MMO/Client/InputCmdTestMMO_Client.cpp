@@ -15,12 +15,14 @@ using namespace std;
 string KEY_BEGIN_PORT("begin_port");
 string KEY_COUNT     ("count");
 string KEY_BEGIN_ID  ("begin_id");
+string KEY_IP_SERVER ("ip_server");
 
 TInputCmdTestMMO_Client::TInputCmdTestMMO_Client()
 {
 	mVecDefKey.push_back(KEY_BEGIN_PORT);
 	mVecDefKey.push_back(KEY_COUNT     );
   mVecDefKey.push_back(KEY_BEGIN_ID  );
+  mVecDefKey.push_back(KEY_IP_SERVER );
 
 	mCmdParam.SetDefKey(mVecDefKey);
 }
@@ -64,6 +66,9 @@ bool TInputCmdTestMMO_Client::SetArg(vector<string>& vecArgv)
     mCmdParam.GetByKey(KEY_BEGIN_ID, 0, sBeginID);
 		mInput.begin_id = atoi(sBeginID.data());
   }
+  int cIP_S = mCmdParam.GetCountValueByKey(KEY_IP_SERVER);
+  if(cL==1)
+    mCmdParam.GetByKey(KEY_IP_SERVER, 0, mInput.ip_server);
 	return true;
 }
 //-------------------------------------------------------------------------------

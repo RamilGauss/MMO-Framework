@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -32,7 +32,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
     {
       sEvent = "ConnectDown";
       IncreaseCountConnection();
-      // åñëè ýòî Slave, òî îòïðàâèòü ïàêåò Ìàñòåðó ñ ID_Client
+      // ÐµÑÐ»Ð¸ ÑÑ‚Ð¾ Slave, Ñ‚Ð¾ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð°ÐºÐµÑ‚ ÐœÐ°ÑÑ‚ÐµÑ€Ñƒ Ñ ID_Client
       unsigned int id_client;
       bool res = pSlave->FindClientKeyBySession(
         ((nsMMOEngine::TEventConnectDown*)pBE)->id_session, id_client);
@@ -41,7 +41,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       sprintf(s,"%d",id_client);
       bp.PushFront(s, strlen(s));
       pSlave->SendUp(bp);
-      // ïðè àâòîðèçàöèè êëèåíòà âûñòàâèòü íàãðóçêó
+      // Ð¿Ñ€Ð¸ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð° Ð²Ñ‹ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ð½Ð°Ð³Ñ€ÑƒÐ·ÐºÑƒ
       pSlave->SetLoad(40);
     }
       break;
@@ -108,7 +108,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       break;
     default:BL_FIX_BUG();
   }
-  printf("MMOEngine S(0x%X): %s.\t\t", pSlave, sEvent.data());
+  printf("MMOEngine S (0x%X): %s.\t\t", pSlave, sEvent.data());
   printf("CC=%d\n",GetCountConnection());
 }
 //---------------------------------------------------------------------------------------------

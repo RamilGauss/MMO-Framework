@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -59,7 +59,7 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       s[pR->sizeData] = '\0';
       sEvent += " msg: ";
       sEvent += s;
-      // получили пакет от Slave с id_client
+      // РїРѕР»СѓС‡РёР»Рё РїР°РєРµС‚ РѕС‚ Slave СЃ id_client
       std::list<unsigned int> l_id;
       l_id.push_front(atoi(s));
       TBreakPacket bp;
@@ -89,12 +89,12 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       s[lenLogin] = '\0';
       unsigned int ID_Client = atoi(s);
       pMaster->SetResultLogin(true, pETL->id_session, ID_Client, (void*)"Wellcome", strlen("Wellcome"));
-      mListClient.push_back(ID_Client);
-			if(mListClient.size()>19)
-      {
-        unsigned int id_group;
-        bool res = pMaster->TryCreateGroup(mListClient, id_group);
-      }
+      //mListClient.push_back(ID_Client);
+			//if(mListClient.size()>19)
+      //{
+        //unsigned int id_group;
+        //bool res = pMaster->TryCreateGroup(mListClient, id_group);
+      //}
     }
       break;
     case nsMMOEngine::eDestroyGroup:
@@ -102,7 +102,7 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       break;
     default:BL_FIX_BUG();
   }
-  printf("MMOEngine M(0x%X): %s.\t\t", pMaster, sEvent.data());
+  printf("MMOEngine M (0x%X): %s.\t\t", pMaster, sEvent.data());
   printf("CC=%d\n",GetCountConnection());
 }
 //---------------------------------------------------------------------------------------------

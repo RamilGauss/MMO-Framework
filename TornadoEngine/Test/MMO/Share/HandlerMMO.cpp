@@ -36,7 +36,7 @@ void THandlerMMO::Work()
 //-----------------------------------------------------------------------------------
 string THandlerMMO::GetStrError(int code)
 {
-  string s = "Error ";
+  string s = "\tError ";
   switch(code)
   {
     // open

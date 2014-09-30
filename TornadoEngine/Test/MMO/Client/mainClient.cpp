@@ -55,12 +55,7 @@ int main(int argc, char** argv)
     pArrClient.push_back(pClient);
   }
   
-#ifdef WIN32
-  char* sLocalHost = ns_getSelfIP(0);
-#else
-  char sLocalHost[100];
-  get_ip_first_eth(sLocalHost);
-#endif
+  const char* sLocalHost = inputArg.ip_server.data();
   unsigned int masterIP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
   int indexClientOnLogin = 0;
   while(true)
