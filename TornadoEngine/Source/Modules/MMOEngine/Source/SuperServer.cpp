@@ -84,7 +84,7 @@ bool TSuperServer::GetDescDown(int index, void* pDesc, int& sizeDesc)
   unsigned int id_session;
   if(mMngContextMaster->GetSessionByIndex(index, id_session)==false)
     return false;
-  // кол-во клиентов на дднном мастере
+  // кол-во клиентов на одном мастере
   int countClient;
   if(mMngContextMaster->GetCountClientKey(id_session, countClient)==false)
     return false;
@@ -118,10 +118,6 @@ void TSuperServer::NeedContextLoginMaster(unsigned int id_session)
   pC = mMngContextMaster->AddContext(id_session);
   // назначить контекст для сценария
   mControlSc->mLoginMaster->SetContext(&pC->mLoginMaster);
-  //// событие наружу
-  //TEventConnectDown event;
-  //event.id_session = id_session;
-  //AddEventCopy(&event, sizeof(event));
 }
 //-------------------------------------------------------------------------
 void TSuperServer::NeedContextByMasterSessionByClientKey(unsigned int id_session,

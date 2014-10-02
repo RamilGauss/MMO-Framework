@@ -40,7 +40,7 @@ void TDevTool_MasterTank::Init(vector<string>& arg)
   bool resOpen = mComponent.mMaster->Get()->Open(&nsMMOEngine::TDescOpen(input.port));
   BL_ASSERT(resOpen);
 
-  mComponent.mMaster->Get()->ConnectUp(input.ip, SUPERSERVER_PORT, "1", 1, "1", 1);//### удалить!
+  mComponent.mMaster->Get()->ConnectUp(input.ip, SUPERSERVER_PORT, "1", 1, "1", 1);
 
   mComponent.mQtGUI->CallFromQtThreadByFunc(&TDevTool_MasterTank::InitQtForm,this);
 }

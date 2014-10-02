@@ -78,8 +78,6 @@ void TScLoginClient_MasterImpl::Work(unsigned int now_ms)
     Context()->GetSE()->AddEventCopy(&event, sizeof(event));
     Context()->Reject();
     End();
-		
-		BL_FIX_BUG();
   }
 }
 //-----------------------------------------------------------------------------

@@ -91,6 +91,7 @@ namespace nsMMOEngine
     virtual void NeedContextLoginClientBySession(unsigned int id_session){}// S,M
     virtual void NeedContextLoginClientBySessionAfterAuthorised(unsigned int id_session){}// M
     virtual void NeedContextLoginClientByClientKey(unsigned int id_client){}//S,M,SS
+    virtual void NeedContextLoginClientByClientKey_SecondCallSlave(unsigned int id_client){}//S
     virtual void NeedNumInQueueLoginClient(unsigned int id_session){}// M
     virtual void EventSetClientKeyLoginClient(unsigned int id_client){};//C
     virtual void NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_session_client,

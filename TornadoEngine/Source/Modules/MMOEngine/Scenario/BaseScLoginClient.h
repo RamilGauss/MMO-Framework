@@ -52,6 +52,7 @@ namespace nsMMOEngine
     void NeedContextBySessionLeaveQueue(unsigned int id_session);
     void NeedContextBySession(unsigned int id_session);
     void NeedContextByClientKey(unsigned int id_client);
+    void NeedContextByClientKey_SecondCallSlave(unsigned int id_client);
     void NeedContextByMasterSessionByClientKey(unsigned int id_session_master,unsigned int id_client);
     void NeedNumInQueueByClientKey(unsigned int id_client);
     void EventSetClientKey(unsigned int id_client);

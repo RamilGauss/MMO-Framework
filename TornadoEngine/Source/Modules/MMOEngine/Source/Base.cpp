@@ -215,6 +215,9 @@ void TBase::RegisterNeedForLoginClient()
                             TScenarioLoginClient::eContextByClientKey, 
                             &TBase::NeedContextLoginClientByClientKey, this);
   mControlSc->mLoginClient->Register<unsigned int>(
+                            TScenarioLoginClient::eContextByClientKey_SecondCallSlave, 
+                            &TBase::NeedContextLoginClientByClientKey_SecondCallSlave, this);
+  mControlSc->mLoginClient->Register<unsigned int>(
                             TScenarioLoginClient::eNumInQueueByClientKey,
                             &TBase::NeedNumInQueueLoginClient,this);
   mControlSc->mLoginClient->Register<unsigned int,unsigned int>(

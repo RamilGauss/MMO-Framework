@@ -19,10 +19,7 @@ See for more information License.h.
 #include "ShareMisc.h"
 #include "cnvCoderText.h"
 #include "ContainerTypes.h"
-
-//###
 #include "file_operation.h"
-//###
 
 using namespace std;
 

@@ -84,6 +84,11 @@ void TSlave::DisconnectInherit(unsigned int id_session)
     return;
 
   TContainerContextSc* pC = mMngContextClient->FindContextBySession(id_session);
+  if(pC==NULL)
+  {
+    BL_FIX_BUG();
+    return;
+  }
   // если есть активный сценарий, то завершить и начать сценарий дисконнекта
   mControlSc->mDisClient->SetContext(&pC->mDisClient);
   pC->mDisClient.SetID_Session(mID_SessionUp);
@@ -91,9 +96,12 @@ void TSlave::DisconnectInherit(unsigned int id_session)
 
   mMngContextClient->DeleteByKey(id_client);
   
-  TEventDisconnectDown event;
-  event.id_session = id_session;
-  AddEventCopy(&event, sizeof(event));
+  if(pC->IsLoginClientActive()==false)
+  {
+    TEventDisconnectDown event;
+    event.id_session = id_session;
+    AddEventCopy(&event, sizeof(event));
+  }
 }
 //-------------------------------------------------------------------------
 int TSlave::GetCountDown()
@@ -286,6 +294,17 @@ void TSlave::NeedContextLoginClientByClientKey(unsigned int id_client)
   if(pC==NULL)
     pC = mMngContextClient->AddContextByKey(id_client);
 
+  mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
+}
+//-------------------------------------------------------------------------
+void TSlave::NeedContextLoginClientByClientKey_SecondCallSlave(unsigned int id_client)
+{
+  TContainerContextSc* pC = mMngContextClient->FindContextByKey(id_client);  
+  if(pC==NULL)
+  {
+    mControlSc->mLoginClient->SetContext(NULL);
+    return;
+  }
   mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
 }
 //-------------------------------------------------------------------------

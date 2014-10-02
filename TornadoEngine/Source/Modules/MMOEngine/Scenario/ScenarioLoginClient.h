@@ -35,6 +35,8 @@ namespace nsMMOEngine
     TCallBackRegistrator1<unsigned int>              mCBContextByClientSessionAfterAuthorised;
     // запрос на контекст по сессии клиента при желании выхода из очереди на ожидание авторизации
     TCallBackRegistrator1<unsigned int>              mCBContextByClientSessionLeaveQueue;
+    // запрос на контекст по ключу клиента от Slave
+    TCallBackRegistrator1<unsigned int>              mCBContextByClientKey_SecondCallSlave;
 
     TScLoginClient_ClientImpl      mClient;
     TScLoginClient_SlaveImpl       mSlave;
@@ -52,6 +54,7 @@ namespace nsMMOEngine
       eContextByClientSessionByClientKey,
       eContextByClientSessionAfterAuthorised,
       eContextByClientSessionLeaveQueue,
+      eContextByClientKey_SecondCallSlave,
       eCountCallBack,
     }eTypeCallBack;
   public:

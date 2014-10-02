@@ -55,6 +55,7 @@ namespace nsMMOEngine
     
 	protected:
     virtual void NeedContextLoginClientByClientKey(unsigned int id_client);
+    virtual void NeedContextLoginClientByClientKey_SecondCallSlave(unsigned int id_client);
     virtual void NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_session_client,
                                                                   unsigned int id_client);
     //-----------------------------------------------------------------

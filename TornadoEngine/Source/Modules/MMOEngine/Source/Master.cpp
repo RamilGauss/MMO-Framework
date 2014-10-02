@@ -317,12 +317,10 @@ bool TMaster::DisconnectClientWait(unsigned int id_session)
 		mSetClientKeyInQueue->DeleteKey(id_client);
     // закончить с Клиентом на Slave
     mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
+    // в EndLoginClient в случае не принятия клиента будет рассылка уведомления выше
+    pC->mLoginClient.Reject();
+    // в конце авторизации, если не будет принятия, то соединению выше передан пакет о уничтожении клиента
     mControlSc->mLoginClient->DisconnectFromMaster();
-    // отослать SuperServer информацию о дисконнекте Клиента
-    mControlSc->mDisClient->SetContext(&pC->mDisClient);
-    vector<unsigned int> vecID;
-    vecID.push_back(id_client);
-    mControlSc->mDisClient->DisconnectFromMaster(vecID);
   }
 
   mMngContextClientLogining->DeleteBySession(id_session);
@@ -575,7 +573,7 @@ void TMaster::NeedContextDisconnectClient(unsigned int id_client)
   {
     if(mMngContextClientLogining->FindSessionByClientKey(id_client,id_session_client)==false)
       return;
-    TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession(id_session_client);
+    pC = mMngContextClientLogining->FindContextBySession(id_session_client);
     if(pC==NULL)
       return;
     client_is_logining = true;

@@ -88,6 +88,11 @@ void TBaseScLoginClient::NeedContextByClientKey(unsigned int id_client)
   mScenario->NeedContextByClientKey(id_client);
 }
 //---------------------------------------------------------------------
+void TBaseScLoginClient::NeedContextByClientKey_SecondCallSlave(unsigned int id_client)
+{
+  mScenario->Notify<unsigned int>(TScenarioLoginClient::eContextByClientKey_SecondCallSlave,id_client);
+}
+//---------------------------------------------------------------------
 void TBaseScLoginClient::NeedNumInQueueByClientKey(unsigned int id_client)
 {
   mScenario->Notify<unsigned int>(TScenarioLoginClient::eNumInQueueByClientKey,id_client);

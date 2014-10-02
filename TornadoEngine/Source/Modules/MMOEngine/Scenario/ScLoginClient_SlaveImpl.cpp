@@ -169,12 +169,9 @@ void TScLoginClient_SlaveImpl::InfoClientM2S(TDescRecvSession* pDesc)
 void TScLoginClient_SlaveImpl::CheckClientConnectM2S(TDescRecvSession* pDesc)
 {
   THeaderCheckClientConnectM2S* pHeader = (THeaderCheckClientConnectM2S*)pDesc->data;
-  NeedContextByClientKey(pHeader->id_client);
+  NeedContextByClientKey_SecondCallSlave(pHeader->id_client);
   if(Context()==NULL)
-  {
-    BL_FIX_BUG();
     return;
-  }
   //--------------------------------------------
 	// отсылка уведомления Developer Slave события Connect
   TEventConnectDown* pEvent = new TEventConnectDown;
