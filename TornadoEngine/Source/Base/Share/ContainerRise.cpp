@@ -49,6 +49,8 @@ void TContainerRise::Realloc( int new_size)
 			else
 				delete[](char*)pOld;
     }
+    else
+      mC.SetDataByCount(NULL, new_size);
   }
   mSizeUse = new_size;
 }
