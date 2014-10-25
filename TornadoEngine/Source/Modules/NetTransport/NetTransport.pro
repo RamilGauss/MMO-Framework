@@ -20,7 +20,7 @@ DEFINES += USE_MATH_TOOLS
 LIBS += -lMMOEngine_d
 LIBS += -lShare_d
 
-COMPILER_FLAS = -fPIC
+COMPILER_FLAGS = -fPIC
 
 OBJECTS_DIR = ../../../Temp/Debug/NetTransport
 

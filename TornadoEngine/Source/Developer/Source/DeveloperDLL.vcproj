@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;../Share;../Adapters;../../Base/Share;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtLib;../../Modules/MMOEngine/Include;../../Modules/NetTransport"
+				AdditionalIncludeDirectories="./;../ShareDev/Share;../ShareDev/Adapters;../../Base/Share;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtLib;../../Modules/MMOEngine/Include;../../Modules/NetTransport"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;VIEWERMODEL_EXPORTS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib GameEngine_d.lib Share_d.lib QtLib_d.lib Common_d.lib Platforms_d.lib NetTransport_d.lib MMOEngine_d.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib GameEngine_d.lib Share_d.lib QtLib_d.lib Common_d.lib Platforms_d.lib NetTransport_d.lib MMOEngine_d.lib ShareDev_d.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;"
 				GenerateDebugInformation="true"
@@ -226,102 +226,6 @@
 				</File>
 				<File
 					RelativePath=".\DevTool_ViewerModel.cpp"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="Share"
-			>
-			<Filter
-				Name="Header Files"
-				>
-				<File
-					RelativePath="..\Share\DevProtocol.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\GlobalParam.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\InputCmdDevTool.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\ISynchroObject.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\ManagerObject.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\ManagerSynchroObject.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\TankTower.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\TestControlTank.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Source Files"
-				>
-				<File
-					RelativePath="..\Share\DevProtocol.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\InputCmdDevTool.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\ManagerObject.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\ManagerSynchroObject.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\TankTower.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\TestControlTank.cpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="DevTool"
-				>
-				<File
-					RelativePath="..\Share\DevTool_Client.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\DevTool_Client.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\DevTool_Server.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\DevTool_Server.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\DevTool_Share.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Share\DevTool_Share.h"
 					>
 				</File>
 			</Filter>
@@ -623,138 +527,6 @@
 							Name="VCCLCompilerTool"
 						/>
 					</FileConfiguration>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="Adapters"
-			>
-			<File
-				RelativePath="..\Adapters\ListModule.h"
-				>
-			</File>
-			<Filter
-				Name="OGRE+MyGUI"
-				>
-				<File
-					RelativePath="..\Adapters\AdapterGraphicEngine.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\AdapterGraphicEngine.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\BaseGUI.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\BaseGUI.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\DemoKeeper.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\DemoKeeper.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\OGRE_Application.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\OGRE_Application.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Bullet"
-				>
-				<File
-					RelativePath="..\Adapters\AdapterPhysicEngine.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\AdapterPhysicEngine.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Qt"
-				>
-				<File
-					RelativePath="..\Adapters\AdapterAloneGUI.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\AdapterAloneGUI.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Melissa"
-				>
-				<File
-					RelativePath="..\Adapters\AdapterMMO.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\WrapperMakerTransport.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\WrapperMakerTransport.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Sound"
-				>
-				<File
-					RelativePath="..\Adapters\AdapterSoundEngine.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\AdapterSoundEngine.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Timer"
-				>
-				<File
-					RelativePath="..\Adapters\AdapterTimer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\AdapterTimer.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Server"
-				>
-				<File
-					RelativePath="..\Adapters\AdapterServer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\AdapterServer.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Dev"
-				>
-				<File
-					RelativePath="..\Adapters\AdapterDevTool.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Adapters\AdapterDevTool.h"
-					>
 				</File>
 			</Filter>
 		</Filter>
