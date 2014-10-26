@@ -60,6 +60,7 @@ build/
 *_i.c
 *_p.c
 *.ilk
+*.exp
 *.meta
 #*.obj
 *.pch
