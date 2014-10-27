@@ -48,7 +48,11 @@ namespace base
 		mSceneManager(nullptr),
 		mWindow(nullptr),
 		mExit(false),
-		mPluginCfgName("plugins.cfg"),
+#ifdef _DEBUG // Gauss 27.10.2014
+    mPluginCfgName("plugins_d.cfg"),
+#else
+    mPluginCfgName("plugins.cfg"),
+#endif
 		mResourceXMLName("resources.xml"),
 		mResourceFileName("MyGUI_Core.xml")
 	{
@@ -66,8 +70,8 @@ namespace base
 	bool BaseManager::create()
 	{
 		Ogre::String pluginsPath;
-
-		#ifndef OGRE_STATIC_LIB
+    
+    #ifndef OGRE_STATIC_LIB
 			pluginsPath = mResourcePath + mPluginCfgName;
 		#endif
 
@@ -121,7 +125,7 @@ namespace base
 		mSceneManager->setAmbientLight(Ogre::ColourValue::White);
 		Ogre::Light* light = mSceneManager->createLight("MainLight");
 		light->setType(Ogre::Light::LT_DIRECTIONAL);
-		Ogre::Vector3 vec(-0.3, -0.3, -0.3);
+		Ogre::Vector3 vec(-0.3f, -0.3f, -0.3f);
 		vec.normalise();
 		light->setDirection(vec);
 
