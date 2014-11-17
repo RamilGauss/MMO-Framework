@@ -96,6 +96,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShareDev", "Developer\Share
 		{0E4224F3-AE4D-4E4C-914C-800A97AA5594} = {0E4224F3-AE4D-4E4C-914C-800A97AA5594}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml_test", "..\Test\xml_test\xml_test.vcproj", "{188959AC-A6A9-450D-B4CB-AAA462B6A624}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -211,6 +216,12 @@ Global
 		{59260B4A-EC18-46A5-B8B5-1A77C507BEE9}.Profile|Win32.Build.0 = Release|Win32
 		{59260B4A-EC18-46A5-B8B5-1A77C507BEE9}.Release|Win32.ActiveCfg = Release|Win32
 		{59260B4A-EC18-46A5-B8B5-1A77C507BEE9}.Release|Win32.Build.0 = Release|Win32
+		{188959AC-A6A9-450D-B4CB-AAA462B6A624}.Debug|Win32.ActiveCfg = Debug|Win32
+		{188959AC-A6A9-450D-B4CB-AAA462B6A624}.Debug|Win32.Build.0 = Debug|Win32
+		{188959AC-A6A9-450D-B4CB-AAA462B6A624}.Profile|Win32.ActiveCfg = Release|Win32
+		{188959AC-A6A9-450D-B4CB-AAA462B6A624}.Profile|Win32.Build.0 = Release|Win32
+		{188959AC-A6A9-450D-B4CB-AAA462B6A624}.Release|Win32.ActiveCfg = Release|Win32
+		{188959AC-A6A9-450D-B4CB-AAA462B6A624}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -236,6 +247,7 @@ Global
 		{91D29338-9A35-43B6-93F7-0C5202ABDEE5} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
 		{B4E4FBCF-07AA-4AFA-B96D-C65B1FD312B3} = {91D29338-9A35-43B6-93F7-0C5202ABDEE5}
 		{9EFF54C3-67A6-40F2-8263-299BE313A9DA} = {91D29338-9A35-43B6-93F7-0C5202ABDEE5}
+		{188959AC-A6A9-450D-B4CB-AAA462B6A624} = {91D29338-9A35-43B6-93F7-0C5202ABDEE5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .

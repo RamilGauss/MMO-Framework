@@ -59,6 +59,18 @@ bool TXML_Markup::EnterSection(const char* name, int num)
   return false;
 }
 //------------------------------------------------------------------
+bool TXML_Markup::EnterSection(int index)
+{
+  int cntElem = 0;
+  while(mMarkup.FindElem())
+  { 
+    if(index==cntElem)
+      return mMarkup.IntoElem();
+    cntElem++;
+  }
+  return false;
+}
+//------------------------------------------------------------------
 bool TXML_Markup::LeaveSection()
 {
   if(mMarkup.OutOfElem())
@@ -294,6 +306,54 @@ bool TXML_Markup::WriteSectionAttr(int index, const char* nameAttr, string buffe
     }
     cntElem++;
   }
+  mMarkup.RestorePos();
+  return res;
+}
+//------------------------------------------------------------------
+bool TXML_Markup::ReadSectionAttrByIndex(const char* nameSection, int numSection, 
+                                         int indexAttr, TAttrInfo& attrInfo)
+{
+  bool res = false;
+
+  mMarkup.SavePos();
+
+  int cntElem = 0;
+  while(mMarkup.FindElem())
+  { 
+    string sName = mMarkup.GetTagName();
+    if(strcmp(nameSection,sName.data())==0)
+    {
+      if(numSection==cntElem)
+      {
+        if(mMarkup.GetNthAttrib(indexAttr, attrInfo.Name, attrInfo.Value))
+          res = true;
+        break;
+      }
+      cntElem++;
+    }
+  }
+
+  mMarkup.RestorePos();
+  return res;
+}
+//------------------------------------------------------------------
+bool TXML_Markup::ReadSectionAttrByIndex(int indexSection, int indexAttr, TAttrInfo& attrInfo)
+{
+  bool res = false;
+  mMarkup.SavePos();
+
+  int cntElem = 0;
+  while(mMarkup.FindElem())
+  { 
+    if(indexSection==cntElem)
+    {
+      if(mMarkup.GetNthAttrib(indexAttr, attrInfo.Name, attrInfo.Value))
+        res = true;
+      break;
+    }
+    cntElem++;
+  }
+
   mMarkup.RestorePos();
   return res;
 }

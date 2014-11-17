@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<country name="Russian Federation" >
+<city id="0" populity="58"> </city>
+<city id="1" populity="9265"> </city>
+<city id="2" populity="4234"> </city>
+<city id="3" populity="1955"> </city>
+<city id="4" populity="3771"> </city>
+<city id="5" populity="2879"> </city>
+<city id="6" populity="7485"> </city>
+<city id="7" populity="8082"> </city>
+<city id="8" populity="952"> </city>
+<city id="9" populity="4425"> </city>
+<city id="10" populity="5497"> </city>
+<city id="11" populity="958"> </city>
+<city id="12" populity="2706"> </city>
+<city id="13" populity="365"> </city>
+<city id="14" populity="1478"> </city>
+<city id="15" populity="8945"> </city>
+<city id="16" populity="45"> </city>
+</country>

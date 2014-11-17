@@ -1,0 +1,15 @@
+material Material_1
+{
+    technique
+    {
+        pass
+        {
+            diffuse 0.587609 0.587609 0.587609
+            texture_unit
+            {
+                texture Tiger_II_track.dds
+            }
+        }
+    }
+}
+

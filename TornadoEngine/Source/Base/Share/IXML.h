@@ -34,6 +34,7 @@ public:
   virtual int  GetCountSection(const char* name = NULL) = 0;
   virtual std::string GetNameSection(int index) = 0;
   virtual bool EnterSection(const char* name, int num) = 0;
+  virtual bool EnterSection(int index) = 0;
   virtual bool LeaveSection() = 0;
   // изменение кол-ва
   virtual bool AddChildSection(const char* childName, int num, const char* name);
@@ -55,6 +56,10 @@ public:
   virtual bool WriteSectionAttr(int index, const char* nameAttr, std::string buffer) = 0;
   virtual bool WriteSection(int index, std::string buffer) = 0;
   // чтение
+  virtual bool ReadSectionAttrByIndex(const char* nameSection, int numSection, 
+                                      int indexAttr, TAttrInfo& attrInfo) = 0;
+  virtual bool ReadSectionAttrByIndex(int indexSection, int indexAttr, TAttrInfo& attrInfo) = 0;
+
   virtual std::string ReadSectionAttr(const char* name, int num, const char* nameAttr) = 0;
   virtual std::string ReadSection(const char* name, int num) = 0;
 

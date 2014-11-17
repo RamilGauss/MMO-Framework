@@ -1,0 +1,15 @@
+material Material_4
+{
+    technique
+    {
+        pass
+        {
+            diffuse 0.587609 0.587609 0.587609
+            texture_unit
+            {
+                texture PzVIB_Tiger_II.dds
+            }
+        }
+    }
+}
+
