@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- перечисление всех моделей игрового движка -->
+<list_models>
+  <model id="0"   type="tank"          file="kingtiger.xml"/>
+  <model id="1"   type="tank"          file="pantera.xml"  />
+  <model id="111" type="static_object" file="tree.xml"     />
+  <model id="112" type="static_object" file="house.xml"    />
+</list_models>                        

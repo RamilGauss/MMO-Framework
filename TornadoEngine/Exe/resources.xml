@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-
 <Paths>
-  <Path root="true">../../Resources/Media</Path>
-  <Path>../../Resources/media/MyGUI_Media</Path>
-  <model>../../Resources/model/listModel.xml</model>
-  <shader>../../Resources/shader</shader>
-  <map>../../Resources/map/listMap.xml</map>
-  <texture>../../Resources/texture</texture>
-	<game_param>../../Resources/game_param/ViewerModel.xml</game_param>
-  <GUI>/Demos/Demo_Themes</GUI>
-  <GUI>/../form</GUI>
-  <GUI>/Common/Themes</GUI>
-  <GUI_skin>MyGUI_BlackBlueTheme.xml</GUI_skin>
+  <Path root="true">../../Resources/GUI</Path>
+  <Path>../../Resources/GUI/MyGUI_Media</Path>
+  <GUI implementation="MyGUI" >
+    <path>/Demos/Demo_Themes</path>
+    <path>/../GUI_forms</path>
+    <path>/Common/Themes</path>
+    <skin>MyGUI_BlackBlueTheme.xml</skin>
+  </GUI>
+  <Game>
+    <models     list     = "list_models.xml" />
+    <maps       list     = "list_maps.xml"   />
+    <game_param map_keys = "ViewerModel.xml" />
+  </Game>
 </Paths>

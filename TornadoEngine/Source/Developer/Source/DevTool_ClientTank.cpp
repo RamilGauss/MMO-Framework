@@ -17,7 +17,7 @@ See for more information License.h.
 #include "ManagerStateMachine.h"
 #include "ShareMisc.h"
 #include "NetSystem.h"
-#include "file_operation.h"
+#include "FileOperation.h"
 #include "StorePathResources.h"
 #include "MapXML_Field.h"
 #include "GlobalParam.h"

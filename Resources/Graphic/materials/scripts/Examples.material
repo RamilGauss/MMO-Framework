@@ -1,0 +1,34 @@
+material Examples/Ninja
+{
+	technique
+	{
+		pass
+		{
+
+			texture_unit
+			{
+				texture PzVIB_Tiger_II.dds
+			}
+			//scene_blend alpha_blend
+		}
+	}
+}
+
+material Examples/Track
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture Tiger_II_track.dds
+			}
+			//scene_blend alpha_blend
+			scene_blend alpha_blend
+			//depth_write off
+			//diffuse vertexcolour
+			//cull_hardware none
+		}
+	}
+}

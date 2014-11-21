@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<MyGUI type="Layout" version="3.2.0">
-    <Widget type="EditBox" skin="WordWrapEmpty" position="585 260 250 85" align="Left Top" layer="Info" name="ViewText">
-        <Property key="Caption" value="11111111"/>
-    </Widget>
-</MyGUI>

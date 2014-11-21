@@ -15,7 +15,7 @@ namespace demo
 		base::BaseManager::setupResources();
     addResourceLocation(getRootMedia() + "/Demos/Demo_Themes");
     addResourceLocation(getRootMedia() + "/Common/Themes");
-    addResourceLocation(getRootMedia() + "/../form");
+    addResourceLocation(getRootMedia() + "/../GUI_forms");
 	}
   //-------------------------------------------------------------------------------------
 	void DemoKeeper::createScene()

@@ -58,6 +58,7 @@ extern void DllExport CreateConsole();
 extern void DllExport DeleteConsole();
 extern bool DllExport IsConsoleExist();
 
+extern bool DllExport SetCurrentPathByArgv0();
 //--------------------------------------------------
 
 #endif

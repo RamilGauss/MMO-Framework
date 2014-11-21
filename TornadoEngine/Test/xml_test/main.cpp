@@ -25,7 +25,7 @@ void PrintContentSection()
     std::string nameSection = pXML->GetNameSection(i);
     Tab();
     printf("<%s", nameSection.data());
-    // àòðèáóòû
+    // Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚Ñ‹
     for( int j = 0 ; ; j++)
     {
       TAttrInfo attrInfo;

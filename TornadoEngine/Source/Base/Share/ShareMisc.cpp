@@ -7,6 +7,7 @@ See for more information License.h.
 
 #include "ShareMisc.h"
 #include "BL_Debug.h"
+#include "FileOperation.h"
 #ifdef WIN32
 	#include <windows.h>
 	#include <conio.h>
@@ -57,5 +58,24 @@ void DeleteConsole()
 bool IsConsoleExist()
 {
   return g_flgConsoleExist;
+}
+//--------------------------------------------------
+bool SetCurrentPathByArgv0()
+{
+  char** argv = __argv;
+  // иногда вызов происходит под отладкой, менять путь, чтобы был доступ к файлу с указанием ресурсов.
+  char sAbsPath[1000];
+  if(FindAbsPath(argv[0], sAbsPath, sizeof(sAbsPath))==false)
+  {
+    BL_MessageBug(argv[0]);
+    return false;
+  }
+  UpPath(sAbsPath);// нужен путь к папке, а не к файлу
+  if(SetCurrentPath(sAbsPath)==false)
+  {
+    BL_MessageBug(argv[0]);
+    return false;
+  }
+  return true;
 }
 //--------------------------------------------------

@@ -5,8 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
+#ifndef GameObjectH
+#define GameObjectH
 
-#include "MakerXML.h"
-#include "XML_Markup.h"
+#include <string>
 
-MACRO_MAKER_CPP_USE_SAME(XML,XML_Markup);
+class TGameObject
+{
+public:
+  TGameObject();
+  virtual ~TGameObject();
+  
+  virtual std::string GetType() = 0;
+};
+
+
+#endif

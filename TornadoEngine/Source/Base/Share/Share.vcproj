@@ -188,10 +188,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\BasePacket.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\BL_Debug.cpp"
 				>
 			</File>
@@ -232,7 +228,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\file_operation.cpp"
+				RelativePath=".\FileOperation.cpp"
 				>
 			</File>
 			<File
@@ -261,10 +257,6 @@
 			</File>
 			<File
 				RelativePath=".\LoaderListPathID.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\LoaderTree.cpp"
 				>
 			</File>
 			<File
@@ -308,19 +300,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MarkUpContainer.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\MathTools.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\MD5.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\memory_operation.cpp"
 				>
 			</File>
 			<File
@@ -376,19 +360,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\tinyxml2.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\TreeJoint.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\XML_Markup.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\XML_TinyXML2.cpp"
 				>
 			</File>
 		</Filter>
@@ -403,10 +375,6 @@
 			</File>
 			<File
 				RelativePath=".\AutoCreateVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\BasePacket.h"
 				>
 			</File>
 			<File
@@ -486,7 +454,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\file_operation.h"
+				RelativePath=".\FileOperation.h"
 				>
 			</File>
 			<File
@@ -542,10 +510,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderTree.h"
-				>
-			</File>
-			<File
 				RelativePath=".\LoadFromFile.h"
 				>
 			</File>
@@ -594,19 +558,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MarkUpContainer.h"
-				>
-			</File>
-			<File
 				RelativePath=".\MathTools.h"
 				>
 			</File>
 			<File
 				RelativePath=".\MD5.h"
-				>
-			</File>
-			<File
-				RelativePath=".\memory_operation.h"
 				>
 			</File>
 			<File
@@ -646,6 +602,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Singleton.h"
+				>
+			</File>
+			<File
 				RelativePath=".\SortByAlphabetic.h"
 				>
 			</File>
@@ -674,23 +634,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\tinyxml2.h"
-				>
-			</File>
-			<File
-				RelativePath=".\TreeJoint.h"
-				>
-			</File>
-			<File
 				RelativePath=".\TypeDef.h"
 				>
 			</File>
 			<File
 				RelativePath=".\XML_Markup.h"
-				>
-			</File>
-			<File
-				RelativePath=".\XML_TinyXML2.h"
 				>
 			</File>
 		</Filter>

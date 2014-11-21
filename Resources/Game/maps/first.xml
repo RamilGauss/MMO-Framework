@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- формат карты игрового движка -->
+<map id="0" name="Первая карта" >
+  <property width="1000" lenght="1000" />
+  <object id="0" index="0">
+    <location>
+      <position x="0" y="0" z="0"/>
+      <scale    x="1" y="1" z="1"/>
+      <rotate   x="1" y="0" z="0" a="0"/>
+    </location>
+  </object>
+  <light id="0">
+    <location>
+      <position x="0" y="0" z="0"/>
+      <scale    x="1" y="1" z="1"/>
+      <rotate   x="1" y="0" z="0" a="0"/>
+    </location>
+  </light>
+  <terrain file="terrain.data">
+    <texture file="terrain.png" />
+    <!-- центровка -->
+    <location>
+      <position x="0" y="0" z="0"/>
+      <scale    x="1" y="1" z="1"/>
+      <rotate   x="1" y="0" z="0" a="0"/>
+    </location>
+    <!-- пока неясно что тут писать 
+    но по идее поверхность земли должна описывать как графику, так и физику -->
+  </terrain>
+</map>

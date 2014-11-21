@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- модель игрового движка -->
+<model name="Королевский тигр" >
+  <part name="Hull">
+    <hierarchy>
+      <child name="Turret"/>
+      <child name="TrackL"/>
+      <child name="TrackR"/>
+      <child name="ChassisL"/>
+      <child name="ChassisR"/>
+    </hierarchy>
+    <variant id="0">
+      <state id="0" >
+        <joint>
+          <location name="Hull">
+            <position x="0" y="0" z="0"/>
+            <scale    x="1" y="1" z="1"/>
+            <rotate   x="1" y="0" z="0" a="0"/>
+          </location>
+          <location name="Turret">
+            <position x="-0.010775" y="-0.079083003" z="0.98732799"/>
+            <scale    x="1" y="1" z="1"/>
+            <rotate   x="1" y="0" z="0" a="0"/>
+          </location>
+          <location name="TrackL">
+            <position x="0"  y="0" z="-1.0800000"/>
+            <scale    x="-1" y="-1" z="1"/>
+            <rotate   x="1"  y="0" z="0" a="0"/>
+          </location>
+          <location name="TrackR">
+            <position x="0"  y="0" z="-1.0800000"/>
+            <scale    x="-1" y="-1" z="1"/>
+            <rotate   x="1"  y="0" z="0" a="0"/>
+          </location>
+          <location name="ChassisL">
+            <position x="0"  y="0" z="-1.0800000"/>
+            <scale    x="-1" y="-1" z="1"/>
+            <rotate   x="1"  y="0" z="0" a="0"/>
+          </location>
+          <location name="ChassisR">
+            <position x="0"  y="0" z="-1.0800000"/>
+            <scale    x="-1" y="-1" z="1"/>
+            <rotate   x="1"  y="0" z="0" a="0"/>
+          </location>
+        </joint>
+        <graphic path="../../Graphic/models/KingTiger/Hull.mesh"/>
+        <physic  path="../../Physic/models/KingTiger/Hull.mesh" />
+      </state>
+    </variant>
+  </part>
+  <part name="Turret">
+    <hierarchy>
+      <child name="Gun"/>
+    </hierarchy>
+    <variant id="0">
+      <state id="0" >
+        <joint>
+          <location name="Gun">
+            <position x="0.064711" y="1.421399" z="0.367343"/>
+            <scale    x="-1"       y="-1"       z="1"/>
+            <rotate   x="1"        y="0"        z="0" a="0"/>
+          </location>                                  
+        </joint>
+        <graphic path="../../Graphic/models/KingTiger/Turret.mesh"/>
+        <physic  path="../../Physic/models/KingTiger/Turret.mesh" />
+      </state>
+    </variant>
+  </part>
+  <part name="TrackL">
+    <hierarchy>
+    </hierarchy>
+    <variant id="0">
+      <state id="0" >
+        <joint>
+        </joint>
+        <graphic path="../../Graphic/models/KingTiger/TrackL.mesh"/>
+        <physic  path="../../Physic/models/KingTiger/TrackL.mesh" />
+      </state>
+    </variant>
+  </part>
+  <part name="TrackR">
+    <hierarchy>
+    </hierarchy>
+    <variant id="0">
+      <state id="0" >
+        <joint>
+        </joint>
+        <graphic path="../../Graphic/models/KingTiger/TrackR.mesh"/>
+        <physic  path="../../Physic/models/KingTiger/TrackR.mesh" />
+      </state>
+    </variant>
+  </part>
+  <part name="ChassisL">
+    <hierarchy>
+    </hierarchy>
+    <variant id="0">
+      <state id="0" >
+        <joint>
+        </joint>
+        <graphic path="../../Graphic/models/KingTiger/ChassisL.mesh"/>
+        <physic  path="../../Physic/models/KingTiger/ChassisL.mesh" />
+      </state>
+    </variant>
+  </part>
+  <part name="ChassisR">
+    <hierarchy>
+    </hierarchy>
+    <variant id="0">
+      <state id="0" >
+        <joint>
+        </joint>
+        <graphic path="../../Graphic/models/KingTiger/ChassisR.mesh"/>
+        <physic  path="../../Physic/models/KingTiger/ChassisR.mesh" />
+      </state>
+    </variant>
+  </part>
+  <part name="Gun">
+    <hierarchy>
+    </hierarchy>
+    <variant id="0">
+      <state id="0" >
+        <joint>
+        </joint>
+        <graphic path="../../Graphic/models/KingTiger/Gun.mesh"/>
+        <physic  path="../../Physic/models/KingTiger/Gun.mesh" />
+      </state>
+    </variant>
+  </part>
+</model>

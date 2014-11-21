@@ -19,7 +19,7 @@ See for more information License.h.
 #include "ShareMisc.h"
 #include "cnvCoderText.h"
 #include "ContainerTypes.h"
-#include "file_operation.h"
+#include "FileOperation.h"
 
 using namespace std;
 
@@ -32,24 +32,12 @@ bool GetArgvArgcConsole(int argc, char** argv, TVectorStr& vec_argv);
 //-------------------------------------
 #ifdef WIN32
 INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR cmdLine, INT){
-  int argc = __argc;
   char** argv = __argv;
+  int argc = __argc;
 #else
 int main(int argc, char** argv){
 #endif
-  // иногда вызов происходит под отладкой, менять путь, чтобы был доступ к файлу с указанием ресурсов.
-  char sAbsPath[1000];
-  if(FindAbsPath(argv[0], sAbsPath, sizeof(sAbsPath))==false)
-  {
-    BL_MessageBug(argv[0]);
-    return -1;
-  }
-  UpPath(sAbsPath);// нужен путь к папке, а не к файлу
-  if(SetCurrentPath(sAbsPath)==false)
-  {
-    BL_MessageBug(argv[0]);
-    return -1;
-  }
+  SetCurrentPathByArgv0();
 
   TVectorStr vec_argv;
   bool resGet = GetArgvArgcConsole(argc, argv, vec_argv);
