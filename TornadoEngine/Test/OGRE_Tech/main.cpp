@@ -13,12 +13,12 @@ extern "C" {
 #endif
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-  INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT)
+  INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT){
+	char** argv = __argv;
 #else
-  int main(int argc, char *argv[])
+	int main(int argc, char *argv[]){
 #endif
-  {
-    SetCurrentPathByArgv0();
+    SetCurrentPath(argv[0]);
     // Create application object
     TutorialApplication app;
 

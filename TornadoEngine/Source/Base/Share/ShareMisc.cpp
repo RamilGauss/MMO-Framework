@@ -60,20 +60,19 @@ bool IsConsoleExist()
   return g_flgConsoleExist;
 }
 //--------------------------------------------------
-bool SetCurrentPathByArgv0()
+bool SetCurrentPath(char* sPath)
 {
-  char** argv = __argv;
   // иногда вызов происходит под отладкой, менять путь, чтобы был доступ к файлу с указанием ресурсов.
   char sAbsPath[1000];
-  if(FindAbsPath(argv[0], sAbsPath, sizeof(sAbsPath))==false)
+  if(FindAbsPath(sPath, sAbsPath, sizeof(sAbsPath))==false)
   {
-    BL_MessageBug(argv[0]);
+    BL_MessageBug(sPath);
     return false;
   }
   UpPath(sAbsPath);// нужен путь к папке, а не к файлу
   if(SetCurrentPath(sAbsPath)==false)
   {
-    BL_MessageBug(argv[0]);
+    BL_MessageBug(sPath);
     return false;
   }
   return true;
