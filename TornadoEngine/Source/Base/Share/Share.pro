@@ -27,7 +27,6 @@ LIBS += -lboost_chrono
 
 
 SOURCES = ArrContainer.cpp \
-BasePacket.cpp \
 BL_Debug.cpp \
 BreakPacket.cpp \
 CmdParam.cpp \
@@ -38,7 +37,7 @@ CryptoAES_Impl.cpp \
 CryptoRSA_Impl.cpp \
 DescCallBack.cpp \
 DstEvent.cpp \
-file_operation.cpp \
+FileOperation.cpp \
 GCS.cpp \
 HiTimer.cpp \
 InfoFile.cpp \
@@ -46,7 +45,6 @@ IXML.cpp \
 LoaderDLL_Unix.cpp \
 LoaderDLL_Win32.cpp \
 LoaderListPathID.cpp \
-LoaderTree.cpp \
 LoadFromFile.cpp \
 Logger.cpp \
 MakerLoaderDLL.cpp \
@@ -56,11 +54,9 @@ ManagerStateMachine.cpp \
 ManagerTime.cpp \
 MapCallBack.cpp \
 MapXML_Field.cpp \
-MarkUpContainer.cpp \
 Markup.cpp \
 MathTools.cpp \
 MD5.cpp \
-memory_operation.cpp \
 NetSystem.cpp \
 Only_N_Object.cpp \
 Queue2Thread.cpp \
@@ -74,15 +70,11 @@ SortByAlphabetic.cpp \
 SphericalDecart.cpp \
 SrcEvent.cpp \
 StorePathResources.cpp \
-tinyxml2.cpp \
-TreeJoint.cpp \
-XML_Markup.cpp \
-XML_TinyXML2.cpp
+XML_Markup.cpp
 
 
 HEADERS = ArrContainer.h\
 AutoCreateVar.h \
-BasePacket.h \
 BL_Debug.h \
 BreakPacket.h \
 CallBackRegistrator.h \
@@ -102,7 +94,7 @@ DateChanges.h \
 DescCallBack.h \
 DescEvent.h \
 DstEvent.h \
-file_operation.h \
+FileOperation.h \
 GCS.h \
 HiTimer.h \
 IContainer.h \
@@ -116,7 +108,6 @@ ListPtr.h \
 LoaderDLL_Unix.h \
 LoaderDLL_Win32.h \
 LoaderListPathID.h \
-LoaderTree.h \
 LoadFromFile.h \
 Logger.h \
 MacroMaker.h \
@@ -128,11 +119,9 @@ ManagerStateMachine.h \
 ManagerTime.h \
 MapCallBack.h \
 MapXML_Field.h \
-MarkUpContainer.h \
 Markup.h \
 MathTools.h \
 MD5.h \
-memory_operation.h \
 NetSystem.h \
 Only_N_Object.h \
 Paradigma.h \
@@ -149,8 +138,5 @@ SrcEvent.h \
 StateMachine.h \
 StatisticValue.h \
 StorePathResources.h \
-tinyxml2.h \
-TreeJoint.h \
 TypeDef.h \
-XML_Markup.h \
-XML_TinyXML2.h
+XML_Markup.h
