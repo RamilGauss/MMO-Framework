@@ -4,3 +4,28 @@
 1. Скачать архив проекта с Github.com.
 2. Скачать архив dependency (zip или rar), разархивровать, следовать инструкции dependency.txt.
 3. Запуск /MMOFramework/TornadoEngine/Source/openSolution.bat. Потребуется Visual Studio 2008.
+
+  Ubuntu 64 
+Способ увеличения количества соединений (хотя я так знаю что любой Линуксоид сам справиться с решением этой проблемы, но все же).
+
+В файле /etc/sysctl.conf добавить строки:
+
+net.core.somaxconn=65535
+fs.file-max=131072
+и также выполнить:
+
+sudo sysctl -p
+
+В файле /usr/include/linux/limits.h
+
+поменять:
+
+NR_OPEN =65536
+at /etc/security/limits.conf
+
+и добавить:
+
+*                soft    nofile          65535
+*                hard    nofile          65535
+
+и перезагрузиться.
