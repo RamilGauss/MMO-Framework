@@ -201,14 +201,16 @@ void TDevTool_ClientTank::Init(vector<string>& arg )
   // подстроиться
   //mComponent.mGraphicEngine->Resize();
   // HotKey
-	if(GetStorePathResources()->GetCount("game_param")>0)
-	{
-		string sGameParam = GetStorePathResources()->GetSecond("game_param");
-		bool resLoadMSM = mComponent.mMStateMachine.Load(sGameParam.data(), mIDkey);
-		BL_ASSERT(resLoadMSM);
-	}
-	else
-		BL_FIX_BUG();
+  //###
+	//if(GetStorePathResources()->GetCount("game_param")>0)
+	//{
+	//	string sGameParam = GetStorePathResources()->GetSecond("game_param");
+	//	bool resLoadMSM = mComponent.mMStateMachine.Load(sGameParam.data(), mIDkey);
+	//	BL_ASSERT(resLoadMSM);
+	//}
+	//else
+	//	BL_FIX_BUG();
+  //###
 
   CreateObjects();
 

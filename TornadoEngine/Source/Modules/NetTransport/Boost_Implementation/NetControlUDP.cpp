@@ -10,9 +10,11 @@ See for more information License.h.
 #include "common_defs.h"
 
 #include "Logger.h"
+#include "HiTimer.h"
+
 #include <boost/asio/placeholders.hpp>
 #include <boost/asio/buffer.hpp>
-#include "HiTimer.h"
+#include <boost/bind.hpp>
 
 using namespace std;
 using namespace boost::asio;

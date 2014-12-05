@@ -70,7 +70,7 @@ bool SetCurrentPath(char* sPath)
     return false;
   }
   UpPath(sAbsPath);// нужен путь к папке, а не к файлу
-  if(SetCurrentPath(sAbsPath)==false)
+  if(SetCurrentPath(std::string(sAbsPath))==false)
   {
     BL_MessageBug(sPath);
     return false;

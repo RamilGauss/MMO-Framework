@@ -13,6 +13,7 @@ See for more information License.h.
 #include "NetControlTCP.h"
 #include <boost/asio/placeholders.hpp>
 #include <boost/system/error_code.hpp>
+#include <boost/bind.hpp>
 
 using namespace std;
 

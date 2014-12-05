@@ -8,6 +8,7 @@ See for more information License.h.
 #include <boost/asio/placeholders.hpp>
 #include <boost/smart_ptr/shared_array.hpp>
 #include <boost/asio/socket_base.hpp>
+#include <boost/bind.hpp>
 
 #include "NetControlTCP.h"
 #include "BL_Debug.h"
