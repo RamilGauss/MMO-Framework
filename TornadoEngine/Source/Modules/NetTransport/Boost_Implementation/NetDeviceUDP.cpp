@@ -60,7 +60,6 @@ void TNetDeviceUDP::Close()
 	if(mSocket.is_open()==false) return;
 	try
 	{
-		//mSocket.shutdown(boost::asio::socket_base::shutdown_type::shutdown_both);
 		mSocket.close();
 	}
 	catch(std::exception& e)

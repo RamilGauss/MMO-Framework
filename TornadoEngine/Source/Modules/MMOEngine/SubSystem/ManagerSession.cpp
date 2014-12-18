@@ -71,8 +71,10 @@ bool TManagerSession::StartTransport(unsigned short port, unsigned char subNet)
   bool resOpen = pTransport->Open(port,subNet);
   if(resOpen==false) 
   {
-    GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TManagerSession::Start() open port %u FAIL.\n", port);
-    BL_FIX_BUG();
+    char s[100];
+    sprintf(s,"TManagerSession::Start() open port %u FAIL.\n", port);
+    GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time(s);
+    BL_MessageBug(s);
     return false;
   }
   // старт потока чтения
@@ -246,7 +248,10 @@ void TManagerSession::Recv( INetTransport::TDescRecv* pDescRecv, INetTransport* 
   {
     // новую сессию создавать, только если получен RSA ключ
     if(pHeader->type!=TSession::eKeyRSA)
+    {
+      unlockAccessSession();
       return;
+    }
     pSession = NewSession(pDescRecv->ip_port, pTransport);
   }
   else
