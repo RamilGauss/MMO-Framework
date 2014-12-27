@@ -360,6 +360,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ThreadBoost.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\XML_Markup.cpp"
 				>
 			</File>
@@ -631,6 +635,10 @@
 			</File>
 			<File
 				RelativePath=".\StorePathResources.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ThreadBoost.h"
 				>
 			</File>
 			<File

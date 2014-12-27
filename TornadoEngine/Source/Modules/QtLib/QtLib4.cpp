@@ -25,19 +25,15 @@ TQtLib4::TQtLib4()
 //-------------------------------------------------------------------
 TQtLib4::~TQtLib4()
 {
-  StopQtThread();
-
-  delete mQtComm;
-  mQtComm = NULL;
+  Stop();
 }
 //-------------------------------------------------------------------
 void TQtLib4::Init(int argc, char** argv)
 {
-  // старт потока Qt
-  boost::thread work_thread(boost::bind(&TQtLib4::Thread, this, argc, argv));
+  mArgc = argc;
+  mArgv = argv;
 
-  while(mApplication==NULL)
-    ht_msleep(eFeedBack);
+  Start();
 }
 //-------------------------------------------------------------------
 void TQtLib4::CallFromQtThread(TCallBackRegistrator0* pCallBack)
@@ -45,14 +41,14 @@ void TQtLib4::CallFromQtThread(TCallBackRegistrator0* pCallBack)
   mQtComm->CallFromQtThread(pCallBack);
 }
 //-------------------------------------------------------------------
-void TQtLib4::Thread(int argc, char** argv)
+void TQtLib4::Work()
 {
   GetLogger(STR_NAME_QT)->WriteF_time("Qt Thread start.\n");
 
   QTextCodec::setCodecForTr(QTextCodec::codecForName("CP1251"));
   // т.к. mQtComm наследуется от QObject, то сначала нужно создать объект типа QApplication
   // иначе все события от других потоков через postEvent не дойдут до Qt
-  mApplication = new QApplication(argc, argv);
+  mApplication = new QApplication(mArgc, mArgv);
   mQtComm = new TQtMediator();
 
   mApplication->exec();
@@ -63,16 +59,15 @@ void TQtLib4::Thread(int argc, char** argv)
   GetLogger(STR_NAME_QT)->WriteF_time("Qt Thread stop.\n");
 }
 //--------------------------------------------------------------------
-void TQtLib4::StopQtThread()
+void TQtLib4::Stop()
 {
   GetLogger(STR_NAME_QT)->WriteF_time("Qt Thread: request stop.\n");
+  mQtComm->StopQtThread();// стоп потока Qt
 
-  if(mApplication==NULL)
-    return;
+  TThreadBoost::Stop();
 
-  mQtComm->StopQtThread();
-
-  while(mApplication)
-    ht_msleep(eFeedBack);
+  delete mQtComm;
+  mQtComm = NULL;
 }
 //--------------------------------------------------------------------
+

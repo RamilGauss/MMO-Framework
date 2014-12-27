@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include <algorithm>
-#include <boost/thread/thread.hpp>
+//#include <boost/thread/thread.hpp>
 
 #include "NetWorkThread.h"
 
@@ -15,53 +15,32 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "Logger.h"
 
-using namespace std;
-
 TNetWorkThread::TNetWorkThread()
 {
-  flgActive   = false;
-  flgNeedStop = false;
+
 }
 //-----------------------------------------------------------------
 TNetWorkThread::~TNetWorkThread()
 {
-  Done();
+
 }
 //-----------------------------------------------------------------
-void TNetWorkThread::Engine()
+void TNetWorkThread::Work()
 {
-  flgNeedStop = false;
-  flgActive = true;
-  while(!flgNeedStop)
-  {
-    boost::system::error_code ec;
-    mIO_Service.run(ec);
-    if(ec)
-      GetLogger(STR_NAME_NET_TRANSPORT)->
-        WriteF_time("TNetWorkThread::Engine FAIL %d\n",ec.value());
-  }
-  flgActive = false;
+  boost::system::error_code ec;
+  mIO_Service.run(ec);
+  if(ec)
+    GetLogger(STR_NAME_NET_TRANSPORT)->
+    WriteF_time("TNetWorkThread::Engine FAIL %d\n",ec.value());
 }
 //----------------------------------------------------------------------------------
-void TNetWorkThread::Start()
+void TNetWorkThread::StartEvent()
 {
-  boost::thread work_thread(boost::bind(&TNetWorkThread::Engine, this));
 
-  while(IsActive()==false)
-    ht_msleep(eWaitFeedBack);
 }
 //----------------------------------------------------------------------------------
-void TNetWorkThread::Stop()
+void TNetWorkThread::StopEvent()
 {
-  flgNeedStop = true;
-
   mIO_Service.stop();
-  while(IsActive())
-    ht_msleep(eWaitFeedBack);
-}
-//----------------------------------------------------------------------------------
-void TNetWorkThread::Done()
-{
-
 }
 //----------------------------------------------------------------------------------
