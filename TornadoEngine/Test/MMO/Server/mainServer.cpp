@@ -20,7 +20,6 @@ See for more information License.h.
 #include "HandlerMMO_Master.h"
 #include "HandlerMMO_SuperServer.h"
 
-
 #define COUNT_SLAVE 2
 //----------------------------------------------
 int main(int argc, char** argv)
@@ -32,7 +31,7 @@ int main(int argc, char** argv)
   GetLogger()->SetPrintf(false);
   GetLogger()->SetEnable(false);
 
-  std::vector<THandlerMMO*> arrHandlerSlave;
+  std::vector<THandlerMMO_Slave*> arrHandlerSlave;
 
   TMakerTransport makerTransport;
 
@@ -89,6 +88,7 @@ int main(int argc, char** argv)
     arrSlave[i]->ConnectUp(masterIP, MASTER_PORT, 
       sLogin, strlen(sLogin), (void*)PASSWORD_SLAVE, strlen(PASSWORD_SLAVE));
   }
+
   while(true)
   {
     unsigned int startTime = ht_GetMSCount();

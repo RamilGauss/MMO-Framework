@@ -21,10 +21,9 @@ public:
 
   boost::asio::io_service* GetIO_Service(){return &mIO_Service;}
 
+  virtual void Stop();
 protected:
   virtual void Work();
-  virtual void StartEvent();
-  virtual void StopEvent();
 };
 
 

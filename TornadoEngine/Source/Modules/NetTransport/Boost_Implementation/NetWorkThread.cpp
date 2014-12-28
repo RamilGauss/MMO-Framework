@@ -6,7 +6,6 @@ See for more information License.h.
 */
 
 #include <algorithm>
-//#include <boost/thread/thread.hpp>
 
 #include "NetWorkThread.h"
 
@@ -22,25 +21,21 @@ TNetWorkThread::TNetWorkThread()
 //-----------------------------------------------------------------
 TNetWorkThread::~TNetWorkThread()
 {
-
+  Stop();
 }
 //-----------------------------------------------------------------
 void TNetWorkThread::Work()
 {
   boost::system::error_code ec;
-  mIO_Service.run(ec);
+  mIO_Service.run_one(ec);
   if(ec)
     GetLogger(STR_NAME_NET_TRANSPORT)->
-    WriteF_time("TNetWorkThread::Engine FAIL %d\n",ec.value());
+      WriteF_time("TNetWorkThread::Engine FAIL %d\n",ec.value());
 }
 //----------------------------------------------------------------------------------
-void TNetWorkThread::StartEvent()
-{
-
-}
-//----------------------------------------------------------------------------------
-void TNetWorkThread::StopEvent()
+void TNetWorkThread::Stop()
 {
   mIO_Service.stop();
+  TThreadBoost::Stop();
 }
 //----------------------------------------------------------------------------------

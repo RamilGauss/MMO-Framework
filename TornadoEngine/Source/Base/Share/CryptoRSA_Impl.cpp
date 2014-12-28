@@ -55,9 +55,13 @@ lockRSA();
       mRSAKey  = NULL;
     }
     g_CountGenerateKey--;
+    
+    unlockRSA();
+    return;
   }
 unlockRSA();
   RSA_free(RSA_KEY);
+  mRSAKey  = NULL;
 }
 //----------------------------------------------------------------------------------
 bool TCryptoRSA_Impl::GenerateKey_OnlyOneExample(int bits)
