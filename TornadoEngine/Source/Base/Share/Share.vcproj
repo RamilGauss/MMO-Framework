@@ -360,6 +360,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SynchroAbonent.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SynchroPoint.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ThreadBoost.cpp"
 				>
 			</File>
@@ -635,6 +643,14 @@
 			</File>
 			<File
 				RelativePath=".\StorePathResources.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SynchroAbonent.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SynchroPoint.h"
 				>
 			</File>
 			<File
