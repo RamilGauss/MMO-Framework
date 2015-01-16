@@ -62,6 +62,7 @@ public:
 //-------------------------------------------------------------
 #else// STL_IMPL
 #include <map>
+#include <memory.h>
 
 class TCallBackRegistrator
 {
@@ -70,22 +71,22 @@ protected:
   {
     class TF{};
 
-    unsigned int mFunc;
-    unsigned int mObject;
+		char mFunc[20];
+		char mObject[20];
   public:
     template<typename F, class A1>  
     void Set(F pFunc, A1 pObject)
     {
-      memcpy( &mFunc,   &pFunc,   sizeof(F));
-      memcpy( &mObject, &pObject, sizeof(A1));
+      memcpy( &mFunc[0],   &pFunc,   sizeof(F));
+      memcpy( &mObject[0], &pObject, sizeof(A1));
     }
     void Call()
     {
       typedef void (TF::*TFunc)();
       TF* pT = NULL;
       TFunc tf;
-      memcpy( &tf, &mFunc,   sizeof(mFunc));
-      memcpy( &pT, &mObject, sizeof(mObject));
+      memcpy( &tf, &mFunc,   sizeof(TFunc));
+      memcpy( &pT, &mObject, sizeof(TF*));
       (pT->*tf)();
     }
     template <typename T1> void Call(T1 t1)
@@ -93,8 +94,8 @@ protected:
       typedef void (TF::*TFunc)(T1);
       TF* pT = NULL;
       TFunc tf;
-      memcpy( &tf, &mFunc,   sizeof(mFunc));
-      memcpy( &pT, &mObject, sizeof(mObject));
+      memcpy( &tf, &mFunc,   sizeof(TFunc));
+      memcpy( &pT, &mObject, sizeof(TF*));
       (pT->*tf)(t1);
     }
     template <typename T1, typename T2> void Call(T1 t1, T2 t2)
@@ -102,8 +103,8 @@ protected:
       typedef void (TF::*TFunc)(T1,T2);
       TF* pT = NULL;
       TFunc tf;
-      memcpy( &tf, &mFunc,   sizeof(mFunc));
-      memcpy( &pT, &mObject, sizeof(mObject));
+      memcpy( &tf, &mFunc,   sizeof(TFunc));
+      memcpy( &pT, &mObject, sizeof(TF*));
       (pT->*tf)(t1,t2);
     }
   };

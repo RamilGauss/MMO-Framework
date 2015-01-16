@@ -3,7 +3,7 @@ LANGUAGE = C++
 
 CONFIG += qt warn_on
 
-TARGET = ../../../Exe/Client
+TARGET = ../../../Exe/StressTestClient
 
 INCLUDEPATH = \
 . \

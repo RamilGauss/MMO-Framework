@@ -70,6 +70,7 @@ SortByAlphabetic.cpp \
 SphericalDecart.cpp \
 SrcEvent.cpp \
 StorePathResources.cpp \
+ThreadBoost.cpp \
 XML_Markup.cpp
 
 
@@ -139,4 +140,5 @@ StateMachine.h \
 StatisticValue.h \
 StorePathResources.h \
 TypeDef.h \
+ThreadBoost.h \
 XML_Markup.h

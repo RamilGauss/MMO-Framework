@@ -14,6 +14,8 @@ TThreadBoost::TThreadBoost()
 {
   flgActive   = false;
   flgNeedStop = false;
+
+	mTimeStart = -1;
 }
 //-----------------------------------------------------------------
 TThreadBoost::~TThreadBoost()
@@ -42,6 +44,8 @@ void TThreadBoost::Start()
 
   while(IsActive()==false)
     ht_msleep(eWaitFeedBack);
+
+	mTimeStart = ht_GetMSCount();
 }
 //----------------------------------------------------------------------------------
 void TThreadBoost::Stop()
@@ -55,5 +59,18 @@ void TThreadBoost::Stop()
 bool TThreadBoost::IsActive()
 {
   return flgActive;
+}
+//---------------------------------------------------------------------------------
+unsigned int TThreadBoost::GetTimeLastStart()
+{
+	return mTimeStart;
+}
+//---------------------------------------------------------------------------------
+unsigned int TThreadBoost::GetTimeWork()
+{
+	if(IsActive()==false)
+		return 0;
+	unsigned int now_ms = ht_GetMSCount();
+	return now_ms - mTimeStart;
 }
 //---------------------------------------------------------------------------------
