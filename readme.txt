@@ -1,6 +1,8 @@
 ﻿Video: http://www.youtube.com/watch?v=g8IlYRepclE
 //----------------------------------------------------------------------------------------
     English 
+	
+	Article on habrahabr: http://habrahabr.ru/post/233915/
     
 	For compiling requires: see files dpendency.txt and todo.txt.
 
@@ -13,6 +15,9 @@ This is achieved by using the cluster organization within the Server.
 //------------------------------------------------------------------------------------------
     Russian
     
+	Статья на хабре: http://habrahabr.ru/post/233915/
+
+
 	Для компиляции требуется: смотри файлы dependency.txt и todo.txt.
   
 Для просмотра архитектурных решений потребуется Enterprise Architect 7.0.
