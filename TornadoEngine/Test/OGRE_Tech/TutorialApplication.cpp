@@ -15,7 +15,7 @@ See for more information License.h.
 #include "MapXML_Field.h"
 
 //---------------------------------------------------------------------------
-TutorialApplication::TutorialApplication(void)
+TutorialApplication::TutorialApplication()
 {
   std::string sNameXML = "resources.xml";
   if(GetStorePathResources()->Load(sNameXML.data())==false)
@@ -24,7 +24,7 @@ TutorialApplication::TutorialApplication(void)
   }
 }
 //---------------------------------------------------------------------------
-TutorialApplication::~TutorialApplication(void)
+TutorialApplication::~TutorialApplication()
 {
 }
 //---------------------------------------------------------------------------

@@ -58,7 +58,7 @@ extern void DllExport CreateConsole();
 extern void DllExport DeleteConsole();
 extern bool DllExport IsConsoleExist();
 
-extern bool DllExport SetCurrentPath(char* sPath);
+extern bool DllExport SetCurrentPathByFile(char* sPath);
 //--------------------------------------------------
 
 #endif

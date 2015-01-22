@@ -37,7 +37,7 @@ INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR cmdLine, INT){
 #else
 int main(int argc, char** argv){
 #endif
-  SetCurrentPath(argv[0]);
+  SetCurrentPathByFile(argv[0]);
 
   TVectorStr vec_argv;
   bool resGet = GetArgvArgcConsole(argc, argv, vec_argv);

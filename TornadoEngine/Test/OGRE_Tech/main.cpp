@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Гудаков Рамиль Сергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -18,7 +25,7 @@ extern "C" {
 #else
 	int main(int argc, char *argv[]){
 #endif
-    SetCurrentPath(argv[0]);
+    SetCurrentPathByFile(argv[0]);
     // Create application object
     TutorialApplication app;
 

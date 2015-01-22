@@ -60,19 +60,19 @@ bool IsConsoleExist()
   return g_flgConsoleExist;
 }
 //--------------------------------------------------
-bool SetCurrentPath(char* sPath)
+bool SetCurrentPathByFile(char* sPathFile)
 {
   // иногда вызов происходит под отладкой, менять путь, чтобы был доступ к файлу с указанием ресурсов.
   char sAbsPath[1000];
-  if(FindAbsPath(sPath, sAbsPath, sizeof(sAbsPath))==false)
+  if(FindAbsPath(sPathFile, sAbsPath, sizeof(sAbsPath))==false)
   {
-    BL_MessageBug(sPath);
+    BL_MessageBug(sPathFile);
     return false;
   }
   UpPath(sAbsPath);// нужен путь к папке, а не к файлу
   if(SetCurrentPath(std::string(sAbsPath))==false)
   {
-    BL_MessageBug(sPath);
+    BL_MessageBug(sPathFile);
     return false;
   }
   return true;

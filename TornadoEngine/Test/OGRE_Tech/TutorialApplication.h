@@ -13,11 +13,11 @@ See for more information License.h.
 class TutorialApplication : public BaseApplication
 {
 public:
-    TutorialApplication(void);
-    virtual ~TutorialApplication(void);
+    TutorialApplication();
+    virtual ~TutorialApplication();
 
 protected:
-    virtual void createScene(void);
+    virtual void createScene();
 
     struct TOrient
     {

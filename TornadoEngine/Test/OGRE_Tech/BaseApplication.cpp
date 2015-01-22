@@ -227,7 +227,11 @@ void BaseApplication::go(void)
   if (!setup())
       return;
 
-  mRoot->startRendering();
+  //mRoot->startRendering();
+  while(mRoot->renderOneFrame())
+  {
+
+  }
 
   // Clean up
   destroyScene();
