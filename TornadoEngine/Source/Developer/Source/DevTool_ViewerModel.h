@@ -33,8 +33,8 @@ protected:
 
   void InitLog();
 
-	void MouseEvent(nsEvent::TMouseEvent* pEvent);
-	void KeyEvent(nsEvent::TKeyEvent* pEvent);
+	//void MouseEvent(nsEvent::TMouseEvent* pEvent);
+	//void KeyEvent(nsEvent::TKeyEvent* pEvent);
 
   virtual std::string GetTitleWindow(){return "Просмоторщик";}
 };

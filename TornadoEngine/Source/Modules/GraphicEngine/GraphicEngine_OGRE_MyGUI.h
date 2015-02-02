@@ -9,17 +9,33 @@ See for more information License.h.
 #define GraphicEngine_OGRE_MyGUIH
 
 #include "TypeDef.h"
+#include "SrcEvent.h"
 
-class DllExport TGraphicEngine_OGRE_MyGUI
+#include <OgreRoot.h>
+#include <OgreSceneManager.h>
+#include <OgreCamera.h>
+
+/*
+  Задачи класса: организация использования кванта времени (через Work()),
+  выдача событий клавиатуры и мыши (те что не были поглощены GUI), 
+  отрисовка окна GUI, 
+  давать возможность управления камерой, 
+  добавление и изменение объектов.
+*/
+
+class DllExport TGraphicEngine_OGRE_MyGUI : 
+  public TSrcEvent /*for generation keyboard and mouse events(unused by GUI)*/
 {
 public:
   TGraphicEngine_OGRE_MyGUI();
   virtual ~TGraphicEngine_OGRE_MyGUI();
 
-	virtual void Work();
+	void Work();
+
+  Ogre::Root*         GetRoot();
+  Ogre::SceneManager* GetSceneManager();
+  Ogre::Camera*       GetCamera();
 protected:
-
 };
-
 
 #endif

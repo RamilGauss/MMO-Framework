@@ -62,11 +62,11 @@ protected:
 
   void InitLog();
   void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
-  void HandleFromGUI(nsEvent::TBaseEvent* pData);
+  //void HandleFromGUI(nsEvent::TBaseEvent* pData);
   void HandleFromDev(nsDevProtocol::TBase* pData);
 
-	void MouseEvent(nsEvent::TMouseEvent* pEvent);
-	void KeyEvent(nsEvent::TKeyEvent* pEvent);
+	//void MouseEvent(nsEvent::TMouseEvent* pEvent);
+	//void KeyEvent(nsEvent::TKeyEvent* pEvent);
 
 protected:
   void SetCurrentForm(TBaseGUI* mGameRoomPrepare);

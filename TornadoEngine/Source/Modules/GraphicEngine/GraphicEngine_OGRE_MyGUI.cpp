@@ -22,3 +22,18 @@ void TGraphicEngine_OGRE_MyGUI::Work()
 
 }
 //---------------------------------------------------------------------
+Ogre::Root* TGraphicEngine_OGRE_MyGUI::GetRoot()
+{
+  return NULL;
+}
+//---------------------------------------------------------------------
+Ogre::SceneManager* TGraphicEngine_OGRE_MyGUI::GetSceneManager()
+{
+  return NULL;
+}
+//---------------------------------------------------------------------
+Ogre::Camera* TGraphicEngine_OGRE_MyGUI::GetCamera()
+{
+  return NULL;
+}
+//---------------------------------------------------------------------

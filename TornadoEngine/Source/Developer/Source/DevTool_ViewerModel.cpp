@@ -20,7 +20,7 @@ See for more information License.h.
 using namespace std;
 using namespace nsMathTools;
 using namespace nsEvent;
-using namespace nsKey;
+//using namespace nsKey;
 
 #define LOG_TIME_LOAD_EDITOR_MODEL
 
@@ -55,154 +55,154 @@ void TDevTool_ViewerModel::Event(nsEvent::TEvent* pEvent)
 		case MODULE_GRAPHIC_ENGINE:
 		{
 			int s = pEvent->pContainer->GetSize();
-			TBaseEvent* pData = (TBaseEvent*)pEvent->pContainer->GetPtr();
-			switch(pData->type)
-			{
-				case eKeyBoard:
-				{
-					TKeyEvent* pKey = (TKeyEvent*)pData;
-					KeyEvent(pKey);
-					break;
-				}
-				case eMouse:
-				{
-					TMouseEvent* pMouse = (TMouseEvent*)pData;
-					MouseEvent(pMouse);
-					break;
-				}
-			}
+			//TBaseEvent* pData = (TBaseEvent*)pEvent->pContainer->GetPtr();
+			//switch(pData->type)
+			//{
+			//	case eKeyBoard:
+			//	{
+			//		TKeyEvent* pKey = (TKeyEvent*)pData;
+			//		KeyEvent(pKey);
+			//		break;
+			//	}
+			//	case eMouse:
+			//	{
+			//		TMouseEvent* pMouse = (TMouseEvent*)pData;
+			//		MouseEvent(pMouse);
+			//		break;
+			//	}
+			//}
 		}
 	}
 }
 //------------------------------------------------------------------------------------
-void TDevTool_ViewerModel::MouseEvent(TMouseEvent* pEvent)
-{
-  switch(pEvent->state)
-  {
-    case nsEvent::eButtonUp:
-      flgDragCamera = false;
-      break;
-    case nsEvent::eButtonDown:
-      flgDragCamera = true;
-      mOldX = pEvent->x;
-      mOldY = pEvent->y;
-      break;
-    case nsEvent::eButtonDblClick:
-
-      break;
-    case nsEvent::eWheel:
-      //mComponent.mGraphicEngine->GetControlCamera()->AddDistObj(float(pEvent->delta_wheel)/100.0f);
-      break;
-    case nsEvent::eMove:
-      if(flgDragCamera)
-      {
-        float dRight = float(pEvent->x - mOldX)*ASPECT_MOUSE_X;
-        float dDown  = float(pEvent->y - mOldY)*ASPECT_MOUSE_Y;
-        //mComponent.mGraphicEngine->GetControlCamera()->RotateRight(dRight);
-        //mComponent.mGraphicEngine->GetControlCamera()->RotateDown(dDown);
-        
-        mOldX = pEvent->x;
-        mOldY = pEvent->y;
-      }
-			break;
-  }
-}
-//------------------------------------------------------------------------------------
-void TDevTool_ViewerModel::KeyEvent(TKeyEvent* pEvent)
-{
-  unsigned int v;
-  bool res = mComponent.mMStateMachine.GetValue(mIDkey,pEvent->key,v);
-  v |= (pEvent->pressed?0:UP);
-  /*if(res)
-  switch(v)
-  {
-    // клавиатура
-    case e_W://W
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(DELTA_MOVE);
-      break;
-    case e_W|UP://W
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(0);
-      break;
-    case e_S://S
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(-DELTA_MOVE);
-      break;
-    case e_S|UP://S
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(0);
-      break;
-    case e_A://A
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedRight(-DELTA_MOVE);
-      break;
-    case e_A|UP://A
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedRight(0);
-      break;
-    case e_D://D
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedRight(DELTA_MOVE);
-      break;
-    case e_D|UP://D
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedRight(0);
-      break;
-    case e_Q://Q
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(DELTA_MOVE);
-      break;
-    case e_Q|UP://Q
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(0);
-      break;
-    case e_E://E
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(-DELTA_MOVE);
-      break;
-    case e_E|UP://E
-      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(0);
-      break;
-    // мышь
-    case e_Numpad4:// влево 4
-      mComponent.mGraphicEngine->GetControlCamera()->RotateRight(-DELTA_ROTATE);
-      break;
-    case e_Numpad6:// вправо 6
-      mComponent.mGraphicEngine->GetControlCamera()->RotateRight(DELTA_ROTATE);
-      break;
-    case e_Numpad8:// вверх 8
-      mComponent.mGraphicEngine->GetControlCamera()->RotateDown(-DELTA_ROTATE);
-      break;
-    case e_Numpad2:// вниз 2
-      mComponent.mGraphicEngine->GetControlCamera()->RotateDown(DELTA_ROTATE);
-      break;
-    case e_Numpad7:// вращаться влево 7
-      mComponent.mGraphicEngine->GetControlCamera()->Roll(DELTA_ROTATE);
-      break;
-    case e_Numpad9:// вращаться вправо 9
-      mComponent.mGraphicEngine->GetControlCamera()->Roll(-DELTA_ROTATE);
-      break;
-    case e_C:// сбросить ориентацию камеры C
-      mComponent.mGraphicEngine->GetControlCamera()->ClearRotate();
-      break;
-    case e_V:// сбросить ориентацию камеры V
-    {
-      TVector3 v;
-      v.x = 0.0f;
-      v.y = 0.0f;
-      v.z = 0.0f;
-      mComponent.mGraphicEngine->GetControlCamera()->SetPositionLookAt(&v);
-      break;
-    }
-    case e_B: // B 
-    {
-      IBaseObject* pBO = mComponent.mMOG->Get(mIndexCurObj);
-      mComponent.mGraphicEngine->GetControlCamera()->Link(pBO,PrototypeControlCamera::eCoord);
-      mIndexCurObj++;
-      mIndexCurObj %= mComponent.mMOG->GetCountObject();
-      break;
-    }
-    case e_N: 
-    {
-      mComponent.mGraphicEngine->GetControlCamera()->Unlink();
-      break;
-    }
-    case e_O: 
-    {
-      break;
-    }
-  }*/
-}
+//void TDevTool_ViewerModel::MouseEvent(TMouseEvent* pEvent)
+//{
+//  switch(pEvent->state)
+//  {
+//    case nsEvent::eButtonUp:
+//      flgDragCamera = false;
+//      break;
+//    case nsEvent::eButtonDown:
+//      flgDragCamera = true;
+//      mOldX = pEvent->x;
+//      mOldY = pEvent->y;
+//      break;
+//    case nsEvent::eButtonDblClick:
+//
+//      break;
+//    case nsEvent::eWheel:
+//      //mComponent.mGraphicEngine->GetControlCamera()->AddDistObj(float(pEvent->delta_wheel)/100.0f);
+//      break;
+//    case nsEvent::eMove:
+//      if(flgDragCamera)
+//      {
+//        float dRight = float(pEvent->x - mOldX)*ASPECT_MOUSE_X;
+//        float dDown  = float(pEvent->y - mOldY)*ASPECT_MOUSE_Y;
+//        //mComponent.mGraphicEngine->GetControlCamera()->RotateRight(dRight);
+//        //mComponent.mGraphicEngine->GetControlCamera()->RotateDown(dDown);
+//        
+//        mOldX = pEvent->x;
+//        mOldY = pEvent->y;
+//      }
+//			break;
+//  }
+//}
+////------------------------------------------------------------------------------------
+//void TDevTool_ViewerModel::KeyEvent(TKeyEvent* pEvent)
+//{
+//  unsigned int v;
+//  bool res = mComponent.mMStateMachine.GetValue(mIDkey,pEvent->key,v);
+//  v |= (pEvent->pressed?0:UP);
+//  /*if(res)
+//  switch(v)
+//  {
+//    // клавиатура
+//    case e_W://W
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(DELTA_MOVE);
+//      break;
+//    case e_W|UP://W
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(0);
+//      break;
+//    case e_S://S
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(-DELTA_MOVE);
+//      break;
+//    case e_S|UP://S
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedForward(0);
+//      break;
+//    case e_A://A
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedRight(-DELTA_MOVE);
+//      break;
+//    case e_A|UP://A
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedRight(0);
+//      break;
+//    case e_D://D
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedRight(DELTA_MOVE);
+//      break;
+//    case e_D|UP://D
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedRight(0);
+//      break;
+//    case e_Q://Q
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(DELTA_MOVE);
+//      break;
+//    case e_Q|UP://Q
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(0);
+//      break;
+//    case e_E://E
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(-DELTA_MOVE);
+//      break;
+//    case e_E|UP://E
+//      mComponent.mGraphicEngine->GetControlCamera()->SetSpeedUp(0);
+//      break;
+//    // мышь
+//    case e_Numpad4:// влево 4
+//      mComponent.mGraphicEngine->GetControlCamera()->RotateRight(-DELTA_ROTATE);
+//      break;
+//    case e_Numpad6:// вправо 6
+//      mComponent.mGraphicEngine->GetControlCamera()->RotateRight(DELTA_ROTATE);
+//      break;
+//    case e_Numpad8:// вверх 8
+//      mComponent.mGraphicEngine->GetControlCamera()->RotateDown(-DELTA_ROTATE);
+//      break;
+//    case e_Numpad2:// вниз 2
+//      mComponent.mGraphicEngine->GetControlCamera()->RotateDown(DELTA_ROTATE);
+//      break;
+//    case e_Numpad7:// вращаться влево 7
+//      mComponent.mGraphicEngine->GetControlCamera()->Roll(DELTA_ROTATE);
+//      break;
+//    case e_Numpad9:// вращаться вправо 9
+//      mComponent.mGraphicEngine->GetControlCamera()->Roll(-DELTA_ROTATE);
+//      break;
+//    case e_C:// сбросить ориентацию камеры C
+//      mComponent.mGraphicEngine->GetControlCamera()->ClearRotate();
+//      break;
+//    case e_V:// сбросить ориентацию камеры V
+//    {
+//      TVector3 v;
+//      v.x = 0.0f;
+//      v.y = 0.0f;
+//      v.z = 0.0f;
+//      mComponent.mGraphicEngine->GetControlCamera()->SetPositionLookAt(&v);
+//      break;
+//    }
+//    case e_B: // B 
+//    {
+//      IBaseObject* pBO = mComponent.mMOG->Get(mIndexCurObj);
+//      mComponent.mGraphicEngine->GetControlCamera()->Link(pBO,PrototypeControlCamera::eCoord);
+//      mIndexCurObj++;
+//      mIndexCurObj %= mComponent.mMOG->GetCountObject();
+//      break;
+//    }
+//    case e_N: 
+//    {
+//      mComponent.mGraphicEngine->GetControlCamera()->Unlink();
+//      break;
+//    }
+//    case e_O: 
+//    {
+//      break;
+//    }
+//  }*/
+//}
 //--------------------------------------------------------------------
 void TDevTool_ViewerModel::Init(vector<string>& arg )
 {
