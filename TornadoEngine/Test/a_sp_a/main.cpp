@@ -6,6 +6,10 @@
 #define NUM_PE  1
 #define NUM_SE  2
 
+/*
+  Цель теста: тестирование связки Точка синхронизация-Абоненты
+*/
+
 int main(int argc, char** argv)
 {
   TSynchroAbonent GE, PE, SE;

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -40,9 +40,9 @@ public:
   TBehaviourClient();
   ~TBehaviourClient();
   void Init(TMakerTransport* pMakerTransport, 
-            TInputCmdTestMMO_Client::TInput &inputArg);// начальная настройка
+            TInputCmdTestMMO_Client::TInput &inputArg);// РЅР°С‡Р°Р»СЊРЅР°СЏ РЅР°СЃС‚СЂРѕР№РєР°
   void SetTimeNextStep(unsigned int timeNextState = -1);
-  void Work();// работа по своему сценарию
+  void Work();// СЂР°Р±РѕС‚Р° РїРѕ СЃРІРѕРµРјСѓ СЃС†РµРЅР°СЂРёСЋ
 protected:
   unsigned int RandomTime();
 

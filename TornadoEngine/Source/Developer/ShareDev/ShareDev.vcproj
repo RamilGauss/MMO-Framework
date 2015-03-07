@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./Share;./Adapters;./;../../Base/Share;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtLib;../../Modules/MMOEngine/Include;../../Modules/NetTransport"
+				AdditionalIncludeDirectories="./Share;./Adapters;./;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtLib;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -311,19 +311,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\BaseGUI.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\DemoKeeper.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Adapters\ListModule.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\OGRE_Application.h"
 					>
 				</File>
 				<File
@@ -360,18 +348,6 @@
 				</File>
 				<File
 					RelativePath=".\Adapters\AdapterTimer.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\BaseGUI.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\DemoKeeper.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\OGRE_Application.cpp"
 					>
 				</File>
 				<File

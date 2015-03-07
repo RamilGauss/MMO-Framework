@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\;.\Base\DirectX;.\Input\Win32;..\Platforms\DirectX\DirectXPlatform\include;..\Platforms\Ogre\OgrePlatform\include"
+				AdditionalIncludeDirectories=".\;.\Base\Ogre;.\Input\OIS;..\Platforms\DirectX\DirectXPlatform\include;..\Platforms\Ogre\OgrePlatform\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -154,11 +154,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\Input\Win32\InputManager.cpp"
+				RelativePath=".\Input\OIS\InputManager.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Input\Win32\PointerManager.cpp"
+				RelativePath=".\Input\OIS\PointerManager.cpp"
 				>
 			</File>
 			<File
@@ -220,7 +220,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Input\Win32\InputManager.h"
+				RelativePath=".\Input\OIS\InputManager.h"
 				>
 			</File>
 			<File
@@ -240,7 +240,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Input\Win32\PointerManager.h"
+				RelativePath=".\Input\OIS\PointerManager.h"
 				>
 			</File>
 			<File
@@ -272,18 +272,6 @@
 				</File>
 				<File
 					RelativePath=".\Base\Ogre\BaseManager.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="DirectX"
-				>
-				<File
-					RelativePath=".\Base\DirectX\BaseManager.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Base\DirectX\BaseManager.h"
 					>
 				</File>
 			</Filter>

@@ -1,16 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Paths>
-  <Path root="true">../../Resources/GUI</Path>
-  <Path>../../Resources/GUI/MyGUI_Media</Path>
-  <GUI implementation="MyGUI" >
-    <path>/Demos/Demo_Themes</path>
-    <path>/../GUI_forms</path>
-    <path>/Common/Themes</path>
-    <skin>MyGUI_BlackBlueTheme.xml</skin>
-  </GUI>
-  <Game>
-    <models     list     = "list_models.xml" />
-    <maps       list     = "list_maps.xml"   />
-    <game_param map_keys = "ViewerModel.xml" />
-  </Game>
-</Paths>
+<GameEngine comment = "TornadoEngine">
+  <Conveyer>./conveyer.xml</Conveyer>
+</GameEngine>
+<OGRE comment="GraphicEngine">
+  <PluginsCfg Debug="./plugins_d.cfg" Release="./plugins_d.cfg" </>
+  <Resource Name = "../../Resources/GUI/MyGUI_Media"            Type = "FileSystem"/>
+  <Resource Name = "../../Resources/GUI/Demos/Demo_Themes"      Type = "FileSystem"/>
+  <Resource Name = "../../Resources/GUI/Common/Base"            Type = "FileSystem"/>
+  <Resource Name = "../../Resources/GUI/Common/Themes"          Type = "FileSystem"/>
+  <Resource Name = "../../Resources/GUI_forms"                  Type = "FileSystem"/>
+  <Resource Name = "../../Resources/Graphic/materials/programs" Type = "FileSystem"/>
+  <Resource Name = "../../Resources/Graphic/materials/scripts"  Type = "FileSystem"/>
+  <Resource Name = "../../Resources/Graphic/materials/textures" Type = "FileSystem"/>
+  <Resource Name = "../../Resources/Graphic/models"             Type = "FileSystem"/>
+  <Resource Name = "../../Resources/Graphic/packs/SdkTrays.zip" Type = "Zip"/>
+</OGRE>
+<MyGUI comment="GUI">
+  <Core>MyGUI_Core.xml</Core>
+	<Skin>MyGUI_BlackBlueTheme.xml</Skin>
+</MyGUI>
+<Game>
+	<Models>list_models.xml</Models>
+	<Maps>list_maps.xml</Maps>
+	<MapKeys>ViewerModel.xml</MapKeys>
+</Game>

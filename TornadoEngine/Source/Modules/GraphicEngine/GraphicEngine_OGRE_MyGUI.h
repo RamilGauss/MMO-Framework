@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,16 +11,23 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "SrcEvent.h"
 
+#include <boost/smart_ptr/scoped_ptr.hpp>
+
 #include <OgreRoot.h>
 #include <OgreSceneManager.h>
 #include <OgreCamera.h>
+#include <MyGUI_Exception.h>
+
+class TGE_Impl;
+
+#define STR_NAME_GRAPHIC_ENGINE "GE"
 
 /*
-  Задачи класса: организация использования кванта времени (через Work()),
-  выдача событий клавиатуры и мыши (те что не были поглощены GUI), 
-  отрисовка окна GUI, 
-  давать возможность управления камерой, 
-  добавление и изменение объектов.
+  Р—Р°РґР°С‡Рё РєР»Р°СЃСЃР°: РѕСЂРіР°РЅРёР·Р°С†РёСЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РєРІР°РЅС‚Р° РІСЂРµРјРµРЅРё (С‡РµСЂРµР· Work()),
+  РІС‹РґР°С‡Р° СЃРѕР±С‹С‚РёР№ РєР»Р°РІРёР°С‚СѓСЂС‹ Рё РјС‹С€Рё (С‚Рµ С‡С‚Рѕ РЅРµ Р±С‹Р»Рё РїРѕРіР»РѕС‰РµРЅС‹ GUI), 
+  РѕС‚СЂРёСЃРѕРІРєР° РѕРєРЅР° GUI, 
+  РґР°РІР°С‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СѓРїСЂР°РІР»РµРЅРёСЏ РєР°РјРµСЂРѕР№, 
+  РґРѕР±Р°РІР»РµРЅРёРµ Рё РёР·РјРµРЅРµРЅРёРµ РѕР±СЉРµРєС‚РѕРІ.
 */
 
 class DllExport TGraphicEngine_OGRE_MyGUI : 
@@ -29,13 +36,24 @@ class DllExport TGraphicEngine_OGRE_MyGUI :
 public:
   TGraphicEngine_OGRE_MyGUI();
   virtual ~TGraphicEngine_OGRE_MyGUI();
+/* Order of calls:
+   1. InitOGRE, 2. AddResource, 3. InitMyGUI */
+	bool InitOGRE(const std::string& pathPluginCfg);
+  void AddResource(const std::string& name, const std::string& type);
+  bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
+  // return false - need exit
+	bool Work();
 
-	void Work();
+  void SetWindowCaption(const std::wstring& _text);
+  size_t GetWindowHandle();
 
   Ogre::Root*         GetRoot();
   Ogre::SceneManager* GetSceneManager();
   Ogre::Camera*       GetCamera();
-protected:
+  Ogre::RenderWindow* GetWindow();
+private:
+	boost::scoped_ptr<TGE_Impl> mGE;
+  void MsgException(MyGUI::Exception& _e);
 };
 
 #endif

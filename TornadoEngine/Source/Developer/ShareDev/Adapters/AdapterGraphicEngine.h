@@ -9,18 +9,13 @@ See for more information License.h.
 #define AdapterGraphicEngineH
 
 #include <boost/smart_ptr/scoped_ptr.hpp>
-
 #include "PrototypeDev.h"
 
-#include "DemoKeeper.h"
-
-class TOGRE_Application;
+class TGraphicEngine_OGRE_MyGUI;
 
 class DllExport AdapterGraphicEngine : public PrototypeDev
 {
-  //boost::scoped_ptr<TOGRE_Application> mApp; 
-  demo::DemoKeeper* mDemoKeeper;
-
+	boost::scoped_ptr<TGraphicEngine_OGRE_MyGUI> mGE;
 public:
   AdapterGraphicEngine();
   virtual ~AdapterGraphicEngine();

@@ -5,45 +5,95 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-#define WIN32_LEAN_AND_MEAN
+#include "ShareMisc.h"
+#include "GraphicEngine_OGRE_MyGUI.h"
+#include "BL_Debug.h"
+#include "ClientMain_Test.h"
+#include "Logger.h"
+#include <OgreEntity.h>
+#include <OgreRenderWindow.h>
+
+#ifdef WIN32
 #include <windows.h>
 #endif
 
-#include "TutorialApplication.h"
-#include "BL_Debug.h"
-#include "FileOperation.h"
-#include "ShareMisc.h"
+struct TOrient
+{
+  const Ogre::Vector3 axisRotate;
+  const Ogre::Radian  angleRotate;
+  const Ogre::Vector3 scale;
+  const Ogre::Vector3 pos;
+  TOrient(Ogre::Vector3 _axisRotate, Ogre::Radian _angleRotate, 
+    Ogre::Vector3 _scale, Ogre::Vector3 _pos):
+    axisRotate(_axisRotate), angleRotate(_angleRotate),
+    scale(_scale),pos(_pos){}
+};
+TGraphicEngine_OGRE_MyGUI ge;
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+void AddEntity(Ogre::Entity* pEnt, TOrient& orient)
+{
+  pEnt->setCastShadows(false);
+  Ogre::SceneNode* pNode = ge.GetSceneManager()->getRootSceneNode()->createChildSceneNode();
+  pNode->attachObject(pEnt);
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-  INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT){
-	char** argv = __argv;
-#else
-	int main(int argc, char *argv[]){
-#endif
-    SetCurrentPathByFile(argv[0]);
-    // Create application object
-    TutorialApplication app;
-
-    try 
-    {
-      app.go();
-    } 
-    catch(Ogre::Exception& e)  
-    {
-#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-      MessageBox(NULL, e.getFullDescription().c_str(), "An exception has occurred!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
-#else
-      std::cerr << "An exception has occurred: " <<
-        e.getFullDescription().c_str() << std::endl;
-#endif
-    }
-    return 0;
-  }
-#ifdef __cplusplus
+  pNode->setScale(orient.scale);
+  pNode->rotate(orient.axisRotate, orient.angleRotate);
+  pNode->setPosition(orient.pos);
 }
+
+#ifdef WIN32
+INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT){	char** argv = __argv;
+#else
+int main(int argc, char *argv[]){
 #endif
+  bool resSetPath = SetCurrentPathByFile(argv[0]);
+	BL_ASSERT(resSetPath);
+  
+  GetLogger()->Register(STR_NAME_GRAPHIC_ENGINE);
+  GetLogger()->Init("testGE");
+	GetLogger(STR_NAME_GRAPHIC_ENGINE)->SetEnable(false);
+#ifdef DEBUG
+	ge.InitOGRE("./plugins_d.cfg");
+#else
+	ge.InitOGRE("./plugins.cfg");
+#endif
+  ge.AddResource("../../Resources/GUI/MyGUI_Media",       "FileSystem");
+  ge.AddResource("../../Resources/GUI/Demos/Demo_Themes", "FileSystem");
+  ge.AddResource("../../Resources/GUI/Common/Base",       "FileSystem");
+  ge.AddResource("../../Resources/GUI/Common/Themes",     "FileSystem");
+  ge.AddResource("../../Resources/GUI_forms",             "FileSystem");
+  ge.AddResource("../../Resources/Graphic/materials/programs", "FileSystem");
+  ge.AddResource("../../Resources/Graphic/materials/scripts",  "FileSystem");
+  ge.AddResource("../../Resources/Graphic/materials/textures", "FileSystem");
+  ge.AddResource("../../Resources/Graphic/models",             "FileSystem");
+  ge.AddResource("../../Resources/Graphic/packs/SdkTrays.zip", "Zip");
+  ge.InitMyGUI("MyGUI_Core.xml", "MyGUI_BlackBlueTheme.xml");
+
+  boost::scoped_ptr<TClientMain_Test> pForm(new TClientMain_Test);
+  pForm->Show();
+
+  ge.GetSceneManager()->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+  TOrient orGun     (Ogre::Vector3(1,0,0), Ogre::Radian( 3.14f/2), Ogre::Vector3(10,-10,10), Ogre::Vector3(0, 3,4));
+  TOrient orHull    (Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10,-10,10), Ogre::Vector3(0,-10,-10));
+  TOrient orChassisL(Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10, 10,10), Ogre::Vector3(0, -20,-10));
+  TOrient orChassisR(Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10, 10,10), Ogre::Vector3(0, -20,-10));
+  TOrient orTurret  (Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10,-10,10), Ogre::Vector3(0, 0,-10));
+  TOrient orTrackL  (Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10, 10,10), Ogre::Vector3(0, -20,-10));
+  TOrient orTrackR  (Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10, 10,10), Ogre::Vector3(0, -20,-10));
+
+  AddEntity(ge.GetSceneManager()->createEntity("Hull",     "KingTiger/Hull.mesh"),    orHull);
+  AddEntity(ge.GetSceneManager()->createEntity("Turret",   "KingTiger/Turret.mesh"),  orTurret);
+  AddEntity(ge.GetSceneManager()->createEntity("ChassisL", "KingTiger/ChassisL.mesh"),orChassisL);
+  AddEntity(ge.GetSceneManager()->createEntity("ChassisR", "KingTiger/ChassisR.mesh"),orChassisR);
+  AddEntity(ge.GetSceneManager()->createEntity("Gun",      "KingTiger/Gun.mesh"),     orGun);
+  AddEntity(ge.GetSceneManager()->createEntity("TrackL",   "KingTiger/TrackL.mesh"),  orTrackL);
+  AddEntity(ge.GetSceneManager()->createEntity("TrackR",   "KingTiger/TrackR.mesh"),  orTrackR);
+  //---------------------------------------------------------------------------
+	while(ge.Work())
+	{
+		float fps = ge.GetWindow()->getAverageFPS();
+		pForm->SetFPS(fps);
+	}
+
+  return 0;
+}

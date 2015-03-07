@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -22,7 +22,7 @@ TMainForm::TMainForm(QWidget *parent)
 
   ui.setupUi(this);
 
-  setWindowTitle(tr("Êîíâåðòåð èç Obj â Bj"));
+  setWindowTitle(tr("ÐšÐ¾Ð½Ð²ÐµÑ€Ñ‚ÐµÑ€ Ð¸Ð· Obj Ð² Bj"));
 
   LoadFromReestr();
 
@@ -51,11 +51,11 @@ void TMainForm::sl_SetPath()
 //---------------------------------------------------------------------------------------------
 void TMainForm::sl_Start()
 {
-  // äëÿ çàãðóçêè Mesh íóæíî óñòðîéñòâî
+  // Ð´Ð»Ñ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸ Mesh Ð½ÑƒÐ¶Ð½Ð¾ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾
   MakeDevice();
-  // ñîçäàòü ñïèñîê ôàéëîâ
+  // ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ ÑÐ¿Ð¸ÑÐ¾Ðº Ñ„Ð°Ð¹Ð»Ð¾Ð²
   MakeListPath();
-  // çàãðóæàòü ïî îäíîìó è ñîõðàíÿòü
+  // Ð·Ð°Ð³Ñ€ÑƒÐ¶Ð°Ñ‚ÑŒ Ð¿Ð¾ Ð¾Ð´Ð½Ð¾Ð¼Ñƒ Ð¸ ÑÐ¾Ñ…Ñ€Ð°Ð½ÑÑ‚ÑŒ
   ConvertAll();
 
   DestroyDevice();
@@ -79,8 +79,8 @@ void TMainForm::LoadFromReestr()
 void TMainForm::MakeListPath()
 {
   mListPath.clear();
-  // ñêàíèðóåì óñòàíîâëåííóþ äèðåêòîðèþ
-  // èùåì âñå ÷òî ñîäåðæèò ðàñøèðåíèå "obj"
+  // ÑÐºÐ°Ð½Ð¸Ñ€ÑƒÐµÐ¼ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½ÑƒÑŽ Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€Ð¸ÑŽ
+  // Ð¸Ñ‰ÐµÐ¼ Ð²ÑÐµ Ñ‡Ñ‚Ð¾ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ñ‚ Ñ€Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð¸Ðµ "obj"
   QDir dir(ui.lePath->text());
   QStringList nameFilters;
   nameFilters << tr("*.obj");
@@ -114,12 +114,12 @@ void TMainForm::DestroyDevice()
 //---------------------------------------------------------------------------------------------
 void TMainForm::MakeDevice()
 {
-  // Ñîçäàíèå îáúåêòà Direct3D
+  // Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¾Ð±ÑŠÐµÐºÑ‚Ð° Direct3D
   m_pD3D = Direct3DCreate9( D3D_SDK_VERSION);
   if( !m_pD3D )
     BL_FIX_BUG();
 
-  // Ñîçäàíèå óñòðîéñòâà ðåíäåðà.
+  // Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð° Ñ€ÐµÐ½Ð´ÐµÑ€Ð°.
   D3DPRESENT_PARAMETERS d3dpp = {0};
   d3dpp.Windowed = TRUE;
   d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;

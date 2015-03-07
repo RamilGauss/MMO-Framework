@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\;..\..\Base\Share"
+				AdditionalIncludeDirectories="./;../../Base/Share;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty/MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/OIS;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHICENGINE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Share_d.lib"
+				AdditionalDependencies="Share_d.lib MyGUIEngine_d.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib Common_d.lib Platforms_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\..\Lib"
@@ -119,7 +119,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".\;..\..\Base\Share"
+				AdditionalIncludeDirectories="./;../../Base/Share;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty/MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/OIS;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICENGINE_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -138,7 +138,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Share.lib"
+				AdditionalDependencies="Share.lib MyGUIEngine.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib Common.lib Platforms.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\..\Lib"
 				GenerateDebugInformation="true"
@@ -180,7 +180,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\BaseGUI.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\GE_Impl.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\GraphicEngine_OGRE_MyGUI.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\InputManagerOIS.cpp"
 				>
 			</File>
 		</Filter>
@@ -190,11 +202,23 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\BaseGUI.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Events.h"
 				>
 			</File>
 			<File
+				RelativePath=".\GE_Impl.h"
+				>
+			</File>
+			<File
 				RelativePath=".\GraphicEngine_OGRE_MyGUI.h"
+				>
+			</File>
+			<File
+				RelativePath=".\InputManagerOIS.h"
 				>
 			</File>
 		</Filter>
