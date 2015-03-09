@@ -12,11 +12,26 @@ See for more information License.h.
 #include "Logger.h"
 #include <OgreEntity.h>
 #include <OgreRenderWindow.h>
+#include "DstEvent.h"
 
 #ifdef WIN32
 #include <windows.h>
 #endif
-
+//---------------------------------------------------------------------------------------------
+class TDstGE : public TDstEvent
+{
+public:
+  void HandleEvent()
+  {
+    nsEvent::TEvent* pEvent = GetEvent();
+		while(pEvent)
+		{
+			delete pEvent;
+			pEvent = GetEvent();
+		}
+  }
+};
+//---------------------------------------------------------------------------------------------
 struct TOrient
 {
   const Ogre::Vector3 axisRotate;
@@ -28,8 +43,10 @@ struct TOrient
     axisRotate(_axisRotate), angleRotate(_angleRotate),
     scale(_scale),pos(_pos){}
 };
+//---------------------------------------------------------------------------------------------
 TGraphicEngine_OGRE_MyGUI ge;
-
+TDstGE dst;
+//---------------------------------------------------------------------------------------------
 void AddEntity(Ogre::Entity* pEnt, TOrient& orient)
 {
   pEnt->setCastShadows(false);
@@ -40,7 +57,7 @@ void AddEntity(Ogre::Entity* pEnt, TOrient& orient)
   pNode->rotate(orient.axisRotate, orient.angleRotate);
   pNode->setPosition(orient.pos);
 }
-
+//---------------------------------------------------------------------------------------------
 #ifdef WIN32
 INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT){	char** argv = __argv;
 #else
@@ -48,11 +65,13 @@ int main(int argc, char *argv[]){
 #endif
   bool resSetPath = SetCurrentPathByFile(argv[0]);
 	BL_ASSERT(resSetPath);
-  
+
+  ge.SetDstObject(&dst);
+
   GetLogger()->Register(STR_NAME_GRAPHIC_ENGINE);
   GetLogger()->Init("testGE");
 	GetLogger(STR_NAME_GRAPHIC_ENGINE)->SetEnable(false);
-#ifdef DEBUG
+#ifdef _DEBUG
 	ge.InitOGRE("./plugins_d.cfg");
 #else
 	ge.InitOGRE("./plugins.cfg");
@@ -70,7 +89,6 @@ int main(int argc, char *argv[]){
   ge.InitMyGUI("MyGUI_Core.xml", "MyGUI_BlackBlueTheme.xml");
 
   boost::scoped_ptr<TClientMain_Test> pForm(new TClientMain_Test);
-  pForm->Show();
 
   ge.GetSceneManager()->setAmbientLight(Ogre::ColourValue(1, 1, 1));
   TOrient orGun     (Ogre::Vector3(1,0,0), Ogre::Radian( 3.14f/2), Ogre::Vector3(10,-10,10), Ogre::Vector3(0, 3,4));
@@ -89,10 +107,17 @@ int main(int argc, char *argv[]){
   AddEntity(ge.GetSceneManager()->createEntity("TrackL",   "KingTiger/TrackL.mesh"),  orTrackL);
   AddEntity(ge.GetSceneManager()->createEntity("TrackR",   "KingTiger/TrackR.mesh"),  orTrackR);
   //---------------------------------------------------------------------------
+
+  pForm->Show();
+	ge.GetWindow()->resize(ge.GetWindow()->getWidth()-1,ge.GetWindow()->getHeight());
+	ge.GetWindow()->resize(ge.GetWindow()->getWidth()+1,ge.GetWindow()->getHeight());
+
 	while(ge.Work())
 	{
 		float fps = ge.GetWindow()->getAverageFPS();
 		pForm->SetFPS(fps);
+    
+    dst.HandleEvent();
 	}
 
   return 0;

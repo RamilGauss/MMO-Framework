@@ -14,7 +14,7 @@ See for more information License.h.
 // Unregister(&object)
 //-------------------------------------------------------------
 
-//#define USE_CALLBACK_BOOST_IMPL
+#define USE_CALLBACK_BOOST_IMPL
 #ifdef USE_CALLBACK_BOOST_IMPL
 
 #include <boost/signals2/signal.hpp>
@@ -58,6 +58,20 @@ public:
   {sig.disconnect(pObject);}
 
   void Notify(T1 t1, T2 t2){sig(t1,t2);}
+};
+//-------------------------------------------------------------
+template < typename T1, typename T2, typename T3 >
+class TCallBackRegistrator3
+{
+  boost::signals2::signal<void (T1, T2, T3)> sig;
+public:
+  template<typename F, class A1>  void Register(F pFunc, A1 pObject)
+  {sig.connect(boost::bind(pFunc, pObject, _1, _2, _3));}
+
+  template<class A1>  void Unregister(A1 pObject)
+  {sig.disconnect(pObject);}
+
+  void Notify(T1 t1, T2 t2, T3 t3){sig(t1,t2,t3);}
 };
 //-------------------------------------------------------------
 #else// STL_IMPL
@@ -106,6 +120,15 @@ protected:
       memcpy( &tf, &mFunc,   sizeof(TFunc));
       memcpy( &pT, &mObject, sizeof(TF*));
       (pT->*tf)(t1,t2);
+    }
+    template <typename T1, typename T2, typename T3> void Call(T1 t1, T2 t2, T3 t3)
+    {
+      typedef void (TF::*TFunc)(T1,T2,T3);
+      TF* pT = NULL;
+      TFunc tf;
+      memcpy( &tf, &mFunc,   sizeof(TFunc));
+      memcpy( &pT, &mObject, sizeof(TF*));
+      (pT->*tf)(t1,t2,t3);
     }
   };
 
@@ -173,6 +196,22 @@ public:
     while(bit!=eit)
     {
       bit->second.Call<T1,T2>(t1,t2);
+      bit++;
+    }
+  }
+};
+//-------------------------------------------------------------
+template < typename T1, typename T2, typename T3>
+class TCallBackRegistrator3 : public TCallBackRegistrator
+{
+public:
+  void Notify(T1 t1, T2 t2, T3 t3)
+  {
+    TMMapPtrPtrIt bit = mMapObjFunc.begin();
+    TMMapPtrPtrIt eit = mMapObjFunc.end();
+    while(bit!=eit)
+    {
+      bit->second.Call<T1,T2,T3>(t1,t2,t3);
       bit++;
     }
   }

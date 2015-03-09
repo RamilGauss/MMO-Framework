@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Window" skin="WindowCS" position="370 390 280 240" align="Center" layer="Back" name="_Main">
+    <Widget type="Window" skin="WindowCS" position="220 215 280 240" align="Center" layer="Main" name="_Main">
         <Property key="MaxSize" value="330 240"/>
         <Property key="Movable" value="false"/>
         <Property key="MinSize" value="280 240"/>

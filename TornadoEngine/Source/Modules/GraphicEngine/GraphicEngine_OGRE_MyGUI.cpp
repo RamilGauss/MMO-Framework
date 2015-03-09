@@ -8,11 +8,21 @@ See for more information License.h.
 #include "GraphicEngine_OGRE_MyGUI.h"
 #include "GE_Impl.h"
 #include "BL_Debug.h"
-
+#include "SrcEvent_ex.h"
+#include "Events.h"
+#include "Logger.h"
 
 TGraphicEngine_OGRE_MyGUI::TGraphicEngine_OGRE_MyGUI()
 {
+  mTimeoutDblClick = eTimeoutDblClick;
+
+  mCBKeyBoard.Register( &TGraphicEngine_OGRE_MyGUI::KeyBoardEvent, this);
+  mCBMouse.Register( &TGraphicEngine_OGRE_MyGUI::MouseEvent, this);
+
 	mGE.reset(new TGE_Impl);
+  
+  mGE->SetCallBackKeyBoard(&mCBKeyBoard);
+  mGE->SetCallBackMouse(&mCBMouse);
 }
 //---------------------------------------------------------------------
 TGraphicEngine_OGRE_MyGUI::~TGraphicEngine_OGRE_MyGUI()
@@ -106,4 +116,85 @@ size_t TGraphicEngine_OGRE_MyGUI::GetWindowHandle()
   return mGE->GetWindowHandle();
 }
 //---------------------------------------------------------------------
+void TGraphicEngine_OGRE_MyGUI::KeyBoardEvent(const OIS::KeyEvent & k, bool pressed)
+{
+  nsGraphicEngine::TKeyEvent* pKE = new nsGraphicEngine::TKeyEvent;
 
+  pKE->key      = k.key;
+  pKE->pressed  = pressed;
+  pKE->modifier = mGE->GetModifierKeyBoard();
+  
+  AddEventWithoutCopy<nsGraphicEngine::TKeyEvent>(pKE);
+}
+//---------------------------------------------------------------------
+void TGraphicEngine_OGRE_MyGUI::MouseEvent(const OIS::MouseEvent& m, OIS::MouseButtonID id,
+                                           nsGraphicEngine::tTypeMouseEvent typeEvent)
+{
+  nsGraphicEngine::TMouseEvent* pME = new nsGraphicEngine::TMouseEvent;
+
+  pME->x              = m.state.X.abs;
+  pME->y              = m.state.Y.abs;
+  pME->button         = id;
+  pME->pressedButtons = m.state.buttons;
+  pME->typeEvent      = typeEvent;
+
+  if(m.state.Z.rel!=0)
+  {
+    pME->typeEvent = nsGraphicEngine::eWheel;
+    pME->delta_wheel = m.state.Z.rel;
+  }
+  
+  AddEventWithoutCopy<nsGraphicEngine::TMouseEvent>(pME);
+
+  if(CheckDblClick(m, id, typeEvent))
+  {
+    pME = new nsGraphicEngine::TMouseEvent;
+
+    pME->x              = m.state.X.abs;
+    pME->y              = m.state.Y.abs;
+    pME->button         = id;
+    pME->pressedButtons = m.state.buttons;
+    pME->typeEvent      = nsGraphicEngine::eButtonDblClick;
+
+    AddEventWithoutCopy<nsGraphicEngine::TMouseEvent>(pME);
+  }
+}
+//---------------------------------------------------------------------
+bool TGraphicEngine_OGRE_MyGUI::CheckDblClick(const OIS::MouseEvent& m, OIS::MouseButtonID id,
+    nsGraphicEngine::tTypeMouseEvent typeEvent)
+{
+  // проверка на двойной клик
+  if(typeEvent!=nsGraphicEngine::eButtonDown && 
+     typeEvent!=nsGraphicEngine::eButtonUp    )
+    return false;
+  
+  if(id!=OIS::MB_Left && id!=OIS::MB_Right)
+    return false;
+
+  TInfoClick* pClick = (id==OIS::MB_Left) ? &mLClick : &mRClick;
+
+  unsigned int now_ms = ht_GetMSCount();
+
+  if(typeEvent==nsGraphicEngine::eButtonDown)
+  {
+    pClick->SetTime(now_ms);
+  }
+  else
+  {
+    if(pClick->IsSecondRelease())
+    {
+      if(now_ms < pClick->mTimePrevLastPress + mTimeoutDblClick)
+      {
+        pClick->Init();
+        return true;
+      }
+    }
+  }
+  return false;
+}
+//---------------------------------------------------------------------
+void TGraphicEngine_OGRE_MyGUI::SetTimeoutDblClick(int t_ms)
+{
+  mTimeoutDblClick = t_ms;
+}
+//---------------------------------------------------------------------

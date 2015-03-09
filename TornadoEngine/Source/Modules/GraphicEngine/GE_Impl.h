@@ -14,6 +14,8 @@ See for more information License.h.
 #include "InputManagerOIS.h"
 #include "MyGUI_LastHeader.h"
 #include "MyGUI_OgrePlatform.h"
+#include "CallBackRegistrator.h"
+#include "Events.h"
 
 class TGE_Impl :
   public TInputManagerOIS,
@@ -30,24 +32,29 @@ public:
 
   bool Work();
 
+  void SetCallBackKeyBoard(TCallBackRegistrator2<const OIS::KeyEvent &, bool>* pCB);
+  void SetCallBackMouse(TCallBackRegistrator3<const OIS::MouseEvent &, OIS::MouseButtonID, nsGraphicEngine::tTypeMouseEvent>*  pCB);
+
+  int GetModifierKeyBoard();
+
 	void SetWindowCaption(const std::wstring& _text);
 	size_t GetWindowHandle();
 
-/*internal:*/
 	Ogre::SceneManager* GetSceneManager();
 	Ogre::Root*         GetRoot();
 	Ogre::Camera*       GetCamera();
   Ogre::RenderWindow* GetWindow();
 protected:
+  void SetKeyBoardModifier(const OIS::KeyEvent &arg, bool pressed);
+
   void Done();
+	void DestroyGui();
 
   virtual bool mouseMoved( const OIS::MouseEvent &arg );
   virtual bool mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
   virtual bool mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
   virtual bool keyPressed(const OIS::KeyEvent &arg);
   virtual bool keyReleased(const OIS::KeyEvent &arg);		
-
-	void DestroyGui();
 private:
 	virtual bool frameStarted(const Ogre::FrameEvent& _evt);
 	virtual bool frameEnded(const Ogre::FrameEvent& _evt);
@@ -64,6 +71,18 @@ private:
 	Ogre::RenderWindow* mWindow;
 
 	bool mExit;
+
+  int mKeyModifier;
+
+  TCallBackRegistrator2<const OIS::KeyEvent &, bool>* mCBKeyBoard;
+  TCallBackRegistrator3<const OIS::MouseEvent&,OIS::MouseButtonID, nsGraphicEngine::tTypeMouseEvent>* mCBMouse;
+
+  bool flgLControl_Press;
+  bool flgRControl_Press;
+  bool flgLAlt_Press;
+  bool flgRAlt_Press;
+  bool flgLShift_Press;
+  bool flgRShift_Press;
 };
 
 #endif 

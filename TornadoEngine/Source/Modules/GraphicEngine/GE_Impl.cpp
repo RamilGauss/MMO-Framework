@@ -8,6 +8,7 @@ See for more information License.h.
 #include "GE_Impl.h"
 #include "Logger.h"
 #include "GraphicEngine_OGRE_MyGUI.h"
+#include "Events.h"
 
 #include <MyGUI_OgrePlatform.h>
 
@@ -24,7 +25,7 @@ using namespace std;
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_APPLE
 #include <CoreFoundation/CoreFoundation.h>
 // This function will locate the path to our application on OS X,
-// unlike windows you can not rely on the curent working directory
+// unlike windows you can not rely on the current working directory
 // for locating your configuration files and resources.
 std::string macBundlePath()
 {
@@ -42,15 +43,26 @@ std::string macBundlePath()
 }
 #endif
 
-TGE_Impl::TGE_Impl() :
-	mGUI(nullptr),
-	mPlatform(nullptr),
-	mRoot(nullptr),
-	mCamera(nullptr),
-	mSceneManager(nullptr),
-	mWindow(nullptr),
-	mExit(false)
+TGE_Impl::TGE_Impl()
 {
+  mGUI          = NULL;
+  mPlatform     = NULL;
+  mRoot         = NULL;
+  mCamera       = NULL;
+  mSceneManager = NULL;
+  mWindow       = NULL;
+  mExit         = false;
+
+  mCBKeyBoard  = NULL;
+  mCBMouse     = NULL;
+  mKeyModifier = 0;
+
+  flgLControl_Press = false;
+  flgRControl_Press = false;
+  flgLAlt_Press = false;
+  flgRAlt_Press = false;
+  flgLShift_Press = false;
+  flgRShift_Press = false;
 }
 //------------------------------------------------------------------------------------------
 TGE_Impl::~TGE_Impl()
@@ -117,6 +129,7 @@ bool TGE_Impl::InitMyGUI(const std::string& nameFileCore, const std::string& nam
 
 	CreateInput(GetWindowHandle());
 	windowResized(mWindow);
+
   return resLoad;
 }
 //------------------------------------------------------------------------------------------
@@ -276,7 +289,7 @@ bool TGE_Impl::mouseMoved( const OIS::MouseEvent &arg )
   if(unused)
   {
     // транслировать разработчику как событие
-    int a = 0;
+    mCBMouse->Notify( arg, OIS::MB_Left/*nevermind*/, nsGraphicEngine::eMove);
   }
   return true;
 }
@@ -291,7 +304,7 @@ bool TGE_Impl::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
   if(unused)
   {
     // транслировать разработчику как событие
-    int a = 0;
+    mCBMouse->Notify( arg, id, nsGraphicEngine::eButtonDown);
   }
   return true;
 }
@@ -306,25 +319,18 @@ bool TGE_Impl::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id 
   if(unused)
   {
     // транслировать разработчику как событие
-    int a = 0;
+    mCBMouse->Notify( arg, id, nsGraphicEngine::eButtonUp );
   }
   return true;
 }
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::keyPressed(const OIS::KeyEvent &arg)
 {
-  GetLogger(STR_NAME_GRAPHIC_ENGINE)->WriteF_time("keyPressed key=%s(0x%X), text=%u\n", 
-    ConvertKey2Str(arg.key).data(), arg.key, arg.text);
+  SetKeyBoardModifier(arg, true);
 
   MyGUI::Char text;
   MyGUI::KeyCode key;
   ConvertOIS2MyGUI(arg, text, key);
-
-  if(key == MyGUI::KeyCode::Escape)
-  {
-    mExit = true;
-    return false;
-  }
 
   bool unused = true;
   if(mGUI)
@@ -333,15 +339,14 @@ bool TGE_Impl::keyPressed(const OIS::KeyEvent &arg)
   if(unused)
   {
     // транслировать разработчику как событие
-    int a = 0;
+    mCBKeyBoard->Notify( arg, true);
   }
   return true;
 }
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::keyReleased(const OIS::KeyEvent &arg)
 {
-  GetLogger(STR_NAME_GRAPHIC_ENGINE)->WriteF_time("keyReleased key=%s(0x%X), text=%u\n", 
-    ConvertKey2Str(arg.key).data(), arg.key, arg.text);
+  SetKeyBoardModifier(arg, false);
 
   MyGUI::Char text;
   MyGUI::KeyCode key;
@@ -354,8 +359,56 @@ bool TGE_Impl::keyReleased(const OIS::KeyEvent &arg)
   if(unused)
   {
     // транслировать разработчику как событие
-    int a = 0;
+    mCBKeyBoard->Notify( arg, false);
   }
   return true;
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::SetCallBackKeyBoard(TCallBackRegistrator2<const OIS::KeyEvent &, bool>* pCB)
+{
+  mCBKeyBoard = pCB;
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::SetCallBackMouse(TCallBackRegistrator3<const OIS::MouseEvent &,OIS::MouseButtonID, nsGraphicEngine::tTypeMouseEvent>* pCB)
+{
+  mCBMouse = pCB;
+}
+//------------------------------------------------------------------------------------------
+int TGE_Impl::GetModifierKeyBoard()
+{
+  return mKeyModifier;
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::SetKeyBoardModifier(const OIS::KeyEvent &arg, bool pressed)
+{
+  switch(arg.key)
+  {
+    case OIS::KC_LCONTROL:
+      flgLControl_Press = pressed;
+      break;
+    case OIS::KC_RCONTROL:
+      flgRControl_Press = pressed;
+      break;
+    case OIS::KC_LSHIFT:
+      flgLShift_Press = pressed;
+      break;
+    case OIS::KC_RSHIFT:
+      flgRShift_Press = pressed;
+      break;
+    case OIS::KC_LMENU:// alt
+      flgLAlt_Press = pressed;
+      break;
+    case OIS::KC_RMENU:// alt
+      flgRAlt_Press = pressed;
+      break;
+    default:return;
+  }
+  mKeyModifier = 0;
+  if(flgLControl_Press || flgRControl_Press)
+    mKeyModifier |= OIS::Keyboard::Ctrl;
+  if(flgLShift_Press || flgRShift_Press)
+    mKeyModifier |= OIS::Keyboard::Shift;
+  if(flgLAlt_Press || flgRAlt_Press)
+    mKeyModifier |= OIS::Keyboard::Alt;
 }
 //------------------------------------------------------------------------------------------
