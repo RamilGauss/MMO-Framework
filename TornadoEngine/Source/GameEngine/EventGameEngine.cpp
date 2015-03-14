@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -24,12 +24,12 @@ namespace nsGameEngine
 
   TDescEvent g_StrEvents[] = 
   {
-    {eStartThreads,          "Создание и настройка модулей завершена, запуск потоков модулей."},
-    {eStopThreads,           "Остановка потоков, причина %s."                                 },
-    {eStopThreadsEnd,        "Остановка потоков."                                             },
-    {eParseFileConveyerError,"Ошибка формата файла конвейера: %s."                            },
-    {eModuleNotMade,         "Модуль с именем %s не создан."                                  },
-    {eThreadsNotExist,       "Не созданы потоки"                                              },
+    {eStartThreads,          "РЎРѕР·РґР°РЅРёРµ Рё РЅР°СЃС‚СЂРѕР№РєР° РјРѕРґСѓР»РµР№ Р·Р°РІРµСЂС€РµРЅР°, Р·Р°РїСѓСЃРє РїРѕС‚РѕРєРѕРІ РјРѕРґСѓР»РµР№."},
+    {eStopThreads,           "РћСЃС‚Р°РЅРѕРІРєР° РїРѕС‚РѕРєРѕРІ, РїСЂРёС‡РёРЅР° %s."                                 },
+    {eStopThreadsEnd,        "РћСЃС‚Р°РЅРѕРІРєР° РїРѕС‚РѕРєРѕРІ."                                             },
+    {eParseFileConveyerError,"РћС€РёР±РєР° С„РѕСЂРјР°С‚Р° С„Р°Р№Р»Р° РєРѕРЅРІРµР№РµСЂР°: %s."                            },
+    {eModuleNotMade,         "РњРѕРґСѓР»СЊ СЃ РёРјРµРЅРµРј %s РЅРµ СЃРѕР·РґР°РЅ."                                  },
+    {eThreadsNotExist,       "РќРµ СЃРѕР·РґР°РЅС‹ РїРѕС‚РѕРєРё"                                              },
   };
   
   bool GetStrEventsByID(int id, std::string& str)

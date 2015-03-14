@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -45,31 +45,31 @@ bool TParserXMLConveyer::Work(string& fileDescConveyer, string& variantConveyer)
 
   if(mXML->Load(fileDescConveyer.data())==false)
   {
-    strError = "Нет такого файла";
+    strError = "РќРµС‚ С‚Р°РєРѕРіРѕ С„Р°Р№Р»Р°";
     return false;
   }
 
   if(mXML->EnterSection(sHeader, 0)==false)
   {
-    strError = "Файл некорректен";
+    strError = "Р¤Р°Р№Р» РЅРµРєРѕСЂСЂРµРєС‚РµРЅ";
     return false;
   }
 
   if(SearchVariant()==false)
   {
-    strError = "Нет такого Варианта";
+    strError = "РќРµС‚ С‚Р°РєРѕРіРѕ Р’Р°СЂРёР°РЅС‚Р°";
     return false;
   }
-  // потоки данных
+  // РїРѕС‚РѕРєРё РґР°РЅРЅС‹С…
   if(MakeMapDstSrcModule()==false)
     return false;
 
   if(SearchCountCore()==false)
   {
-    strError = "Нет такого количества ядер процессора";
+    strError = "РќРµС‚ С‚Р°РєРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° СЏРґРµСЂ РїСЂРѕС†РµСЃСЃРѕСЂР°";
     return false;
   }
-  // потоки и модули
+  // РїРѕС‚РѕРєРё Рё РјРѕРґСѓР»Рё
   if(MakeStrModule()==false)
     return false;
 
@@ -89,7 +89,7 @@ void TParserXMLConveyer::GetResult(vector< vector<string > >& vecVecStrModule, m
 //---------------------------------------------------------------------------------------
 bool TParserXMLConveyer::SearchVariant()
 {
-  // ищем вариант
+  // РёС‰РµРј РІР°СЂРёР°РЅС‚
   int cntVariant = mXML->GetCountSection(sVariant);
   for( int iVariant = 0; iVariant < cntVariant ; iVariant++ )
   {
@@ -140,7 +140,7 @@ bool TParserXMLConveyer::MakeMapDstSrcModule()
 void TParserXMLConveyer::ErrorNoSection(const char* section)
 {
   char s[200];
-  sprintf(s, "Нет секции %s", section);
+  sprintf(s, "РќРµС‚ СЃРµРєС†РёРё %s", section);
   strError = s;
 }
 //---------------------------------------------------------------------------------------
@@ -186,7 +186,7 @@ bool TParserXMLConveyer::SearchCountCore()
   sprintf(arrSearchCount, "%d", mCountCore);
   string sSearchCount = arrSearchCount;
 
-  // ищем вариант
+  // РёС‰РµРј РІР°СЂРёР°РЅС‚
   int cntCPU = mXML->GetCountSection(sCPU);
   for( int iCPU = 0; iCPU < cntCPU ; iCPU++ )
   {

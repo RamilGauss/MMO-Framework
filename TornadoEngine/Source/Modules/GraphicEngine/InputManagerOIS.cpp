@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -55,19 +55,19 @@ MyGUI::Char translateWin32Text(MyGUI::KeyCode kc)
 		// http://www.fileformat.info/info/unicode/block/combining_diacritical_marks/images.htm
 		switch (buff[0])
 		{
-		case 0x5E: // Circumflex accent: в
+		case 0x5E: // Circumflex accent: РІ
 			deadKey = 0x302;
 			break;
-		case 0x60: // Grave accent: а
+		case 0x60: // Grave accent: Р°
 			deadKey = 0x300;
 			break;
-		case 0xA8: // Diaeresis: ь
+		case 0xA8: // Diaeresis: СЊ
 			deadKey = 0x308;
 			break;
-		case 0xB4: // Acute accent: й
+		case 0xB4: // Acute accent: Р№
 			deadKey = 0x301;
 			break;
-		case 0xB8: // Cedilla: з
+		case 0xB8: // Cedilla: Р·
 			deadKey = 0x327;
 			break;
 		default:
