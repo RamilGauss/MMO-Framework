@@ -53,14 +53,14 @@ int main(int argc, char** argv){
   TInputCmdTornado::TInput inputTornado;
   cmdTornado.Get(inputTornado);
   //-----------------------------------------------------------------  
+  TGameEngine *pGame = new TGameEngine;
   if(inputTornado.useConsole)
   {
     CreateConsole();
-    printf("Welcome to Tornado!\n");
+    printf("%s\n", pGame->GetVersion());
     printf("----------------------------------------------\n");
   }
   //-----------------------------------------------------------------  
-  TGameEngine *pGame = new TGameEngine;
   pGame->Work(inputTornado.variant_use, 
               inputTornado.libName.data(), 
               inputTornado.param);

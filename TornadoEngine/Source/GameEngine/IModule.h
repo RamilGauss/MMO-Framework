@@ -8,22 +8,17 @@ See for more information License.h.
 #ifndef IModuleH
 #define IModuleH
 
-#include "SrcEvent.h"
+#include "SynchroAbonent.h"
 
-class DllExport IModule : public TSrcEvent
+class DllExport IModule : public TSynchroAbonent
 {
-  bool flgUseInConveyer;
-  int  mID;
 public:
-  IModule(){flgUseInConveyer=true;mID=-1;};
+  IModule(){};
   virtual ~IModule(){};
 
-  virtual bool Work() = 0;
-  int  GetID(){return mID;}
-  void SetID(int id){mID=id;}
-
-  void SetUseInConveyer(bool v){flgUseInConveyer=v;}
-  bool IsUseInConveyer(){return flgUseInConveyer;}
+  virtual bool Work()           = 0;
+  virtual int GetID()           = 0;
+  virtual std::string GetName() = 0;
 };
 
 #endif

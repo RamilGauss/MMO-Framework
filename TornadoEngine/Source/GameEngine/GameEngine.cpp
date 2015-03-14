@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include <stddef.h>
+#include <stdarg.h>
 
 #include "GameEngine.h"
 
@@ -16,18 +17,24 @@ See for more information License.h.
 #include "Logger.h"
 #include "ILoaderDLL.h"
 #include "NetSystem.h"
-#include "StorePathResources.h"
-#include "MapXML_Field.h"
+#include "IModule.h"
 #include "FileOperation.h"
-#include "ModuleDev.h"
+#include "SynchroPoint.h"
+#include "IDevTool.h"
+#include "ThreadModules.h"
+#include "EventGameEngine.h"
+#include "ParserXMLConveyer.h"
 
 using namespace std;
-using namespace nsEvent;
 
 #define STR_GAME "GameEngine"
 
-TGameEngine::TGameEngine():mStatLoad(30)
+TGameEngine::TGameEngine()
 {
+  mCB_Stop.Register(&TGameEngine::StopThreadByModule, this);
+
+  mSynchroPoint.reset(new TSynchroPoint);
+
   TMakerLoaderDLL maker;
   mLoaderDLL = maker.New();
 
@@ -35,11 +42,10 @@ TGameEngine::TGameEngine():mStatLoad(30)
   mFreeDevTool = NULL;
   mDevTool     = NULL;
 
-  InitLog();
   Init();
 }
 //----------------------------------------------------------------------
-TGameEngine::~TGameEngine()
+void TGameEngine::Done()
 {
   if(mFreeDevTool)
     mFreeDevTool(mDevTool);
@@ -52,204 +58,233 @@ TGameEngine::~TGameEngine()
 //----------------------------------------------------------------------
 bool TGameEngine::LoadDLL(int variant_use, const char* sNameDLL)
 {
-  if(mDevTool!=NULL)
-  {
-    GetLogger(STR_GAME)->WriteF_time("LoadDLL() warning, object was loaded.\n");
-    BL_FIX_BUG();
-    return true;
-  }
   if(mLoaderDLL->Init(sNameDLL)==false)
   {
     GetLogger(STR_GAME)->WriteF_time("LoadDLL() FAIL init.\n");
-    BL_FIX_BUG();
     return false;
   }
   mFreeDevTool = (FuncFreeDevTool)mLoaderDLL->Get(StrFreeDevTool);
   if(mFreeDevTool==NULL)
   {
     GetLogger(STR_GAME)->WriteF_time("LoadDLL() FAIL load FuncFree.\n");
-    BL_FIX_BUG();
     return false;
   }
   mGetDevTool = (FuncGetDevTool)mLoaderDLL->Get(StrGetDevTool);
   if(mGetDevTool==NULL)
   {
     GetLogger(STR_GAME)->WriteF_time("LoadDLL() FAIL load FuncGetdevTool.\n");
-    BL_FIX_BUG();
     return false;
   }
+  if(mDevTool!=NULL)
+  {
+    GetLogger(STR_GAME)->WriteF_time("LoadDLL() warning, object was loaded.\n");
+    return true;
+  }
   mDevTool = mGetDevTool(variant_use);
-  if(mDevTool==NULL)// политика: нет DLL - нет движка.
+  if(mDevTool==NULL)// нет DLL - нет движка.
     return false;
   return true;
 }
 //----------------------------------------------------------------------
 void TGameEngine::Init()
 {
+  GetLogger()->Done();
+  GetLogger()->Register(STR_GAME);
   if(ns_Init()==false)
   {
     GetLogger(STR_GAME)->WriteF_time("Error ns_Init().\n");
     BL_FIX_BUG();
   }
 }
-//----------------------------------------------------------------------
-void TGameEngine::InitLog()
-{
-	GetLogger()->Done();
-	GetLogger()->Register(STR_GAME);
-}
 //------------------------------------------------------------------------
 void TGameEngine::Work(int variant_use, const char* sNameDLL, vector<string>& arg)// начало работы
 {
-  if(Init(variant_use,sNameDLL,arg)==false)
+  if(LoadDLL(variant_use,sNameDLL)==false)
     return;
-
-  flgNeedStop = false;
-  flgActive   = true;
-  //------------------------------------------------------
-  while(flgNeedStop==false)
-  {
-    mStartTime = ht_GetMSCount();// запомнить время старта
-    // опросить модули движка для генерации событий
-    if(MakeEventFromModule()==false)
-      break;
-    // обработать события
-    HandleEventByDeveloper();
-
-    if(mDevTool->NeedExit())
-      break;
-    // расчет нагрузки
-    CalcAndWaitRestTime();
-  }
-  //------------------------------------------------------
-  flgActive = false;
+  mDevTool->SetArg(arg);
+  // подготовка конвейера
+  if(PrepareConveyer()==false)
+    return;
+  if(CreateModules()==false)
+    return;
+  LinkModulesToSynchroPoint();
+  // создать поток, который создает потоки модулей
+  StartThread_StartThreads();
+  // засыпаем, проснемся только если нас разбудят потоки с модулями
+  Suspend();
+  // останавливаем потоки с модулями
+  StopThreadsWithModules();
+  // чистка
   Done();
 }
 //------------------------------------------------------------------------
-bool TGameEngine::MakeEventFromModule()
+string TGameEngine::GetVersion()
 {
-  int cnt = mMainThreadVecModule.size();
-  for( int i = 0 ; i < cnt ; i++ )
+	return "Version 7, Tornado Game Engine";
+}
+//------------------------------------------------------------------------
+void TGameEngine::StopThreadByModule(std::string sNameModule)
+{
+  // создать событие
+  Event(nsGameEngine::eStopThreads, sNameModule.data());
+
+  // проснуться
+  Resume();
+}
+//------------------------------------------------------------------------
+bool TGameEngine::PrepareConveyer()
+{
+  string sFileDescConveyer = mDevTool->GetFileDescConveyer();
+  string sVariantConveyer  = mDevTool->GetVariantConveyer();
+  //int countCore = GetCountCoreCPU();
+  TParserXMLConveyer parser;
+  if(parser.Work(sFileDescConveyer, sVariantConveyer)==false)
   {
-    // обработка событий модулей
-    // некоторые модули могут вернуть false
-    if(mMainThreadVecModule[i]->IsUseInConveyer())
-      RET_FALSE(mMainThreadVecModule[i]->Work())
+    string sError = parser.GetStrError();
+    Event(nsGameEngine::eParseFileConveyerError, sError.data());
+    return false;
   }
+  parser.GetResult(mVecVecStrModule, mMapDst_SrcModule);
+
   return true;
 }
 //------------------------------------------------------------------------
-void TGameEngine::HandleEventByDeveloper()
+void TGameEngine::StartThread_StartThreads()
 {
-  TEvent* pEvent = GetEvent();
-  while(pEvent)
-  {
-    // обработка события
-    mDevTool->Event(pEvent);
-    delete pEvent;
-    pEvent = GetEvent();
-  }
+  boost::thread work_thread(boost::bind(&TGameEngine::StartThreadsWithModules, this));
 }
 //------------------------------------------------------------------------
-bool TGameEngine::Init(int variant_use, const char* sNameDLL, vector<string>& arg)
+void TGameEngine::Suspend()
 {
-  // загрузка DLL
-  RET_FALSE(LoadDLL(variant_use,sNameDLL))
-	
-  string sRelPathServerLog = mDevTool->GetPathServerLog();
-  if(sRelPathServerLog.length())
-    mLogLoad.ReOpen((char*)sRelPathServerLog.data());
-  // подготовить пути для ресурсов
-  string sRelPathXML;
-  sRelPathXML = mDevTool->GetPathXMLFile();
-  char sAbsPath[300];
-  RET_FALSE(FindAbsPath((char*)sRelPathXML.data(),sAbsPath,sizeof(sAbsPath)));
-  RET_FALSE(GetStorePathResources()->Load(sAbsPath))
+  boost::mutex::scoped_lock lock(mMutex);
+  mConditionVariable.wait(lock);
+}
+//------------------------------------------------------------------------
+void TGameEngine::Resume()
+{
+  mConditionVariable.notify_all();
+}
+//------------------------------------------------------------------------
+void TGameEngine::StartThreadsWithModules()
+{
+  // ждать пока главный поток уснет
+  boost::mutex::scoped_lock lock(mMutex);
+  while(lock.owns_lock()==false) 
+    ht_msleep(50);
 
-  // в конструкторе вызывать нельзя, надо вызвать здесь
-  SetupDevModule();
+  int cntThread = mVecVecModule.size();
+  for( int iThread = 0; iThread < cntThread ; iThread++ )
+  {
+    // создать поток и поместить в него модули
+    TThreadModules* pThread = new TThreadModules;
+    mVecThread.push_back(pThread);
+    int cntModule = mVecVecModule[iThread].size();
+    TVecPtrModule& vecModule = mVecVecModule[iThread];
+    for( int iModule = 0 ; iModule < cntModule ; iModule++ )
+      pThread->AddModule(vecModule[iModule]);
+    pThread->SetCallbackStop(&mCB_Stop);
+    pThread->Start();
+  }
+  // разблокировать главный поток, что бы созданные потоки с модулями могли уведомить его.
+  lock.unlock();
+}
+//------------------------------------------------------------------------
+void TGameEngine::StopThreadsWithModules()
+{
+  int cntThread = mVecThread.size();
+  for( int iThread = 0; iThread < cntThread ; iThread++ )
+  {
+    mVecThread[iThread]->Stop();
+    delete mVecThread[iThread];
+  }
+  mVecThread.clear();
 
-  mDevTool->Init(arg);
+  Event(nsGameEngine::eStopThreadsEnd);
+}
+//------------------------------------------------------------------------
+bool TGameEngine::CreateModules()
+{
+  int cntThread = mVecVecStrModule.size();
+  for( int iThread = 0; iThread < cntThread ; iThread++ )
+  {
+    // создать поток и поместить в него модули
+    int cntModule = mVecVecStrModule[iThread].size();
+    TVecStr& vecStrModule = mVecVecStrModule[iThread];
+
+    TVecPtrModule vecPtrModule;
+    for( int iModule = 0 ; iModule < cntModule ; iModule++ )
+    {
+      IModule* pModule = mDevTool->GetModuleByName(vecStrModule[iModule].data());
+      if(pModule!=NULL)
+      {
+        vecPtrModule.push_back(pModule);
+        mMapName_IDModule.insert(TMapStrIntVT(pModule->GetName(), pModule->GetID()));
+      }
+      else
+        Event(nsGameEngine::eModuleNotMade, vecStrModule[iModule].data());
+    }
+    if(vecPtrModule.size())
+      mVecVecModule.push_back(vecPtrModule);
+  }
+
+  if(mVecVecStrModule.size()==0)
+    return false;
+
   return true;
 }
 //------------------------------------------------------------------------
-void TGameEngine::CalcAndWaitRestTime()
+void TGameEngine::Event(int id, ...)
 {
-  unsigned int refresh_time = mDevTool->GetTimeRefresh_ms();// сколько можно потратить
-  if(refresh_time==0)
-    return;
-
-  unsigned int now = ht_GetMSCount();
-
-  unsigned int work_time = now - mStartTime;// потрачено времени
-  double loadProcent = (work_time*100.0)/refresh_time;// расчет нагрузки
-  mStatLoad.add(loadProcent);                         // занести в статистику
-  mDevTool->SetLoadConveyer(int(mStatLoad.aver()));              
-
-  mLogLoad.WriteF("%d\n",int(mStatLoad.aver()));
-  // спать остаток времени
-  if(now>refresh_time+mStartTime) return;
-  unsigned int time_sleep = mStartTime + refresh_time - now;
-  ht_msleep(time_sleep);
-}
-//------------------------------------------------------------------------
-void TGameEngine::Done()
-{
-  mDevTool->Done();// освободить ресурсы DevTool
-  FreeDevModule();
-}
-//------------------------------------------------------------------------
-void TGameEngine::PushModule(IModule* pModule)
-{
-  mMainThreadVecModule.push_back(pModule);
-
-  pModule->SetDstObject(this);
-  pModule->SetSelfID(pModule->GetID());
-}
-//------------------------------------------------------------------------
-IModule* TGameEngine::GetModulePtr(int index)
-{
-  return mMainThreadVecModule[index];
-}
-//------------------------------------------------------------------------
-int TGameEngine::GetVersion()
-{
-	return 5;
-}
-//------------------------------------------------------------------------
-void TGameEngine::SetupDevModule()
-{
-  int count = mDevTool->GetCountModule();
-  for( int i = 0 ; i < count ; i++ )
+  string sEvent;
+  if(nsGameEngine::GetStrEventsByID(id, sEvent))
   {
-    int id_module = mDevTool->GetModuleID(i);
-    TModuleDev* pModule = NewModule(id_module, mDevTool->IsAddModuleInConveyer(i));
-    mDevTool->SetModulePtr(pModule);
-    PushModule(pModule);
+    const char* ptrEvent = sEvent.data();
+
+    va_list list;
+    va_start(list, ptrEvent);
+
+    char sError[10000]; 
+    int res = vsprintf(sError, ptrEvent, list); 
+
+    va_end(list);
+
+    mDevTool->EventGameEngine(id, sError);
   }
 }
-//-------------------------------------------------------------------
-void TGameEngine::FreeDevModule()
+//------------------------------------------------------------------------
+void TGameEngine::LinkModulesToSynchroPoint()
 {
-  int count = mDevTool->GetCountModule();
-  for( int i = 0 ; i < count ; i++ )
+  int cntThread = mVecVecModule.size();
+  for( int iThread = 0; iThread < cntThread ; iThread++ )
   {
-    TModuleDev* pModule = (TModuleDev*)GetModulePtr(i);
-    mDevTool->FreeModulePtr(pModule);
-    DeleteModule(pModule);
+    int cntModule = mVecVecModule[iThread].size();
+    TVecPtrModule& vecModule = mVecVecModule[iThread];
+    for( int iModule = 0 ; iModule < cntModule ; iModule++ )
+    {
+      vecModule[iModule]->SetSynchroPoint(mSynchroPoint.get());
+      vecModule[iModule]->SetSelfID(vecModule[iModule]->GetID());
+      // ищем вектор имен источников для данного модуля (на кого он хочет зарегистрироваться)
+      TMapStrVecStrIt fit = mMapDst_SrcModule.find(vecModule[iModule]->GetName());
+      if(fit!=mMapDst_SrcModule.end())
+      {
+        BOOST_FOREACH(string& nameSrc ,fit->second)
+        {
+          int id_src;// находим по имени ID
+          if(FindIDByNameModule(nameSrc, id_src))
+            vecModule[iModule]->Register(id_src);
+        }
+      }
+    }
   }
 }
-//-------------------------------------------------------------------
-TModuleDev* TGameEngine::NewModule(int id_module, bool flgUseInConveyer)
+//------------------------------------------------------------------------
+bool TGameEngine::FindIDByNameModule(string& nameSrc, int& id)
 {
-  TModuleDev* pModule = new TModuleDev;
-  pModule->SetID(id_module);
-  pModule->SetUseInConveyer(flgUseInConveyer);
-  return pModule;
+  TMapStrIntIt fit = mMapName_IDModule.find(nameSrc);
+  if(fit==mMapName_IDModule.end())
+    return false;
+
+  id = fit->second;
+  return true;
 }
-//-------------------------------------------------------------------
-void TGameEngine::DeleteModule(IModule* pModule)
-{
-  delete pModule;
-}
-//-------------------------------------------------------------------
+//------------------------------------------------------------------------

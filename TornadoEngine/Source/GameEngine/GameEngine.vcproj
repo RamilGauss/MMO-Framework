@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".;..\Base\Share"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GAME_ENGINE_EXPORTS;GAME_ENGINE_EI=__declspec(dllexport);_WIN32_WINNT=0x0501"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GAME_ENGINE_EXPORTS;GAME_ENGINE_EI=__declspec(dllexport);_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -177,10 +177,10 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Core"
+			Name="Source Files"
 			>
 			<File
-				RelativePath=".\DeveloperTool_DLL.h"
+				RelativePath=".\EventGameEngine.cpp"
 				>
 			</File>
 			<File
@@ -188,11 +188,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\GameEngine.h"
+				RelativePath=".\ParserXMLConveyer.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\IDevTool.cpp"
+				RelativePath=".\ThreadModules.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			>
+			<File
+				RelativePath=".\DeveloperTool_DLL.h"
+				>
+			</File>
+			<File
+				RelativePath=".\EventGameEngine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GameEngine.h"
 				>
 			</File>
 			<File
@@ -203,24 +219,12 @@
 				RelativePath=".\IModule.h"
 				>
 			</File>
-		</Filter>
-		<Filter
-			Name="ModuleTech"
-			>
 			<File
-				RelativePath=".\ModuleDev.cpp"
+				RelativePath=".\ParserXMLConveyer.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ModuleDev.h"
-				>
-			</File>
-			<File
-				RelativePath=".\PrototypeDev.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PrototypeDev.h"
+				RelativePath=".\ThreadModules.h"
 				>
 			</File>
 		</Filter>

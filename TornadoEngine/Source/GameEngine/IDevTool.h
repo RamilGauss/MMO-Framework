@@ -8,40 +8,21 @@ See for more information License.h.
 #ifndef IDevToolH
 #define IDevToolH
 
-#include "classTools.h"
 #include <string>
-#include "DescEvent.h"
-#include "Logger.h"
 
-class TModuleDev;
+class IModule;
 
 class DllExport IDevTool
 {
-  NO_COPY_OBJECT(IDevTool)
-
-  bool flgExit;
 public:
-  IDevTool();
-  virtual ~IDevTool();
+  IDevTool(){};
+  virtual ~IDevTool(){};
 
-  virtual void Init(std::vector<std::string>& arg) = 0;
-  virtual std::string GetPathXMLFile() = 0;
-  virtual std::string GetPathServerLog() = 0;
-
-  virtual void Done() = 0;
-  virtual void Event(nsEvent::TEvent* pEvent) = 0;
-
-  virtual int  GetCountModule() = 0;
-  virtual int  GetModuleID(int index) = 0;
-  virtual bool IsAddModuleInConveyer(int index) = 0;
-  virtual void SetModulePtr(TModuleDev* ptr) = 0;// результат создания модуля, разработчик внесет к себе в компоненты
-  virtual void FreeModulePtr(TModuleDev* ptr) = 0;// вызывается перед освобождением модуля, разработчик произведет дополнительные действия
-
-  virtual void SetLoadConveyer(int procent);
-  virtual int  GetTimeRefresh_ms();
-
-	bool NeedExit();
-	void Exit();// закончить работу с движком
+  virtual std::string GetFileDescConveyer()               = 0;
+  virtual std::string GetVariantConveyer()                = 0;
+  virtual IModule* GetModuleByName(const char* sName)     = 0;
+  virtual void EventGameEngine(int id, const char* sDesc) = 0;
+  virtual void SetArg(std::vector<std::string>& arg)      = 0;
 };
 
 #endif

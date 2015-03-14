@@ -1,36 +1,46 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Conveyer>
   <Variant name = "Client">
-    <StreamData>
-      <Src name = "MMOEngine">
-        <Dst name = "GraphicEngine"/>
-      </Src>
-    </StreamData>
+    <Dataflow>
+      <Dst name = "GraphicEngine">
+        <Src name = "MMOEngine"/>
+      </Dst>
+      <Dst name = "MMOEngine">
+        <Src name = "GraphicEngine"/>
+      </Dst>
+    </Dataflow>
     <CPU countCore = "1" >
-      <Thread index = "0" >
+      <Thread>
         <Module name = "GraphicEngine"/>
         <Module name = "MMOEngine"    />
       </Thread>
     </CPU>
     <CPU countCore = "2" >
-      <Thread index = "0" >
+      <Thread>
         <Module name = "GraphicEngine"/>
+      </Thread>
+      <Thread>
         <Module name = "MMOEngine"    />
       </Thread>
     </CPU>
     <CPU countCore = "4" >
-      <Thread index = "0" >
+      <Thread>
         <Module name = "GraphicEngine"/>
+      </Thread>
+      <Thread>
         <Module name = "MMOEngine"    />
       </Thread>
     </CPU>
   </Variant>
   <Variant name = "Server" >
-    <StreamData>
-      <Src name = "MMOEngine">
-        <Dst name = "AloneGUI"/>
-      </Src>
-    </StreamData>
+    <Dataflow>
+      <Dst name = "AloneGUI">
+        <Src name = "MMOEngine"/>
+      </Dst>
+      <Dst name = "MMOEngine">
+        <Src name = "AloneGUI"/>
+      </Dst>
+    </Dataflow>
     <CPU countCore = "1" >
       <Thread index = "0" >
         <Module name = "AloneGUI"/>
