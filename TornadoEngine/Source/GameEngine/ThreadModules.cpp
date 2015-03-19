@@ -27,3 +27,15 @@ void TThreadModules::SetCallbackStop(TCallBackRegistrator1<std::string>* pCB)
   mCB_Stop = pCB;
 }
 //----------------------------------------------------------------
+void TThreadModules::StartEvent()
+{
+  BOOST_FOREACH( IModule* pM, mVecModule)
+    pM->StartEvent();
+}
+//----------------------------------------------------------------
+void TThreadModules::StopEvent()
+{
+  BOOST_FOREACH( IModule* pM, mVecModule)
+    pM->StopEvent();
+}
+//----------------------------------------------------------------

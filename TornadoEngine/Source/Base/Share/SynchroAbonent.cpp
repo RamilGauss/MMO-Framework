@@ -48,7 +48,7 @@ void TSynchroAbonent::AddEventWithoutCopy(void* data, int size)
 {
   lock();
   mSynchroPoint->AddEventWithoutCopy(mSelfID, data, size);
-  lock();
+  unlock();
 }
 //------------------------------------------------------------------------------
 TContainer* TSynchroAbonent::GetEvent(int id_sender)
@@ -57,7 +57,7 @@ TContainer* TSynchroAbonent::GetEvent(int id_sender)
   // найти среди кеша
 	TContainer* pC = FindContainerByID(id_sender);
 	bool res = mSynchroPoint->GetEvent(mSelfID, id_sender, pC);
-  lock();
+  unlock();
   if(res)
     return pC;
 
@@ -73,5 +73,23 @@ TContainer* TSynchroAbonent::FindContainerByID(int id)
 	TContainer* pC = new TContainer;
 	mMapID_LastEvent.insert(TMapIntPtrVT(id, pC));
 	return pC;
+}
+//------------------------------------------------------------------------------
+int TSynchroAbonent::GetCountSenders()
+{
+  return mMapID_LastEvent.size();
+}
+//------------------------------------------------------------------------------
+int TSynchroAbonent::GetID_SenderByIndex(int index)
+{
+  int i = 0;
+  BOOST_FOREACH(TMapIntPtrVT& vt, mMapID_LastEvent)
+  {
+    if(index==i)
+      return vt.first;
+    i++;
+  }
+
+  return -1;
 }
 //------------------------------------------------------------------------------

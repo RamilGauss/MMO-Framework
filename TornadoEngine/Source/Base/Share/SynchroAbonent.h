@@ -59,6 +59,8 @@ public:
   // забрать событие от определенного абонента, удалять нельзя
   TContainer* GetEvent(int id_sender);
 
+  int GetCountSenders();
+  int GetID_SenderByIndex(int index);
 protected:
 	TContainer* FindContainerByID(int id);
 

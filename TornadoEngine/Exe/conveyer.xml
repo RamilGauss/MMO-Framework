@@ -32,7 +32,7 @@
       </Thread>
     </CPU>
   </Variant>
-  <Variant name = "Server" >
+  <Variant name = "ServerSlave" >
     <Dataflow>
       <Dst name = "AloneGUI">
         <Src name = "MMOEngine"/>

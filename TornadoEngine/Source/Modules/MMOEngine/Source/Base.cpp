@@ -37,6 +37,8 @@ mControlSc(new TControlScenario),
 mContainerUp(new TContainerContextSc),
 mMngMngContextSc(new TManagerManagerContextSc)
 {
+  GetLogger()->Register(STR_NAME_MMO_ENGINE);
+
   mLoadProcent     = 0;
 
   flgConnectUp  = false;

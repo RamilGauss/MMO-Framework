@@ -17,12 +17,12 @@ See for more information License.h.
 
 #include "DeveloperTool_DLL.h"
 #include "CallBackRegistrator.h"
+#include "SynchroPoint.h"
 
 class ILoaderDLL;
 class IDevTool;
 class TThreadModules;
 class IModule;
-class TSynchroPoint;
 
 class DllExport TGameEngine
 {

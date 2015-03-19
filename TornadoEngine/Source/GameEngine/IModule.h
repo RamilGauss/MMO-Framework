@@ -19,6 +19,9 @@ public:
   virtual bool Work()           = 0;
   virtual int GetID()           = 0;
   virtual std::string GetName() = 0;
+
+  virtual void StartEvent() = 0;
+  virtual void StopEvent()  = 0;
 };
 
 #endif

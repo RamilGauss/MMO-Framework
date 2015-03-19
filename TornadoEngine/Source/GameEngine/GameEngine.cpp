@@ -19,7 +19,6 @@ See for more information License.h.
 #include "NetSystem.h"
 #include "IModule.h"
 #include "FileOperation.h"
-#include "SynchroPoint.h"
 #include "IDevTool.h"
 #include "ThreadModules.h"
 #include "EventGameEngine.h"
@@ -101,7 +100,7 @@ void TGameEngine::Work(int variant_use, const char* sNameDLL, vector<string>& ar
 {
   if(LoadDLL(variant_use,sNameDLL)==false)
     return;
-  mDevTool->SetArg(arg);
+  mDevTool->Init(arg);
   // подготовка конвейера
   if(PrepareConveyer()==false)
     return;

@@ -27,6 +27,8 @@ public:
 
 protected:
   virtual void Work();
+  virtual void StartEvent();
+  virtual void StopEvent();
 };
 
 #endif

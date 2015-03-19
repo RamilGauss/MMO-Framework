@@ -11,6 +11,7 @@ See for more information License.h.
 #endif 
 
 #include <string>
+#include <vector>
 #include <map>
 
 #include "BL_Debug.h"
@@ -85,7 +86,7 @@ void ViewHowUse()
     "Ключ -p строка, адресованная воплощению игры.\n"
     "\n"
     "Ключ -v вариант, который будет использован из библиотеки,\n"
-    "по-умолчанию используется 0, (см. GetXXXDeveloperTool(int variant).\n"
+    "по-умолчанию используется 0, (см. GetDevTool(int variant).\n"
     "\n"
     "Ключ -c показывает консоль. Ключ актуален только для Windows.\n"
     "\n"

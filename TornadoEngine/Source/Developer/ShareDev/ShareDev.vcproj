@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./Share;./Adapters;./;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtLib;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine"
+				AdditionalIncludeDirectories="./Share;./Adapters;./;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib GameEngine_d.lib Share_d.lib QtLib_d.lib Common_d.lib Platforms_d.lib NetTransport_d.lib MMOEngine_d.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib GameEngine_d.lib Share_d.lib QtEngine_d.lib Common_d.lib Platforms_d.lib NetTransport_d.lib MMOEngine_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;"
@@ -180,50 +180,14 @@
 			Name="Share"
 			>
 			<Filter
-				Name="DevTool"
-				>
-				<File
-					RelativePath=".\Share\DevTool_Client.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\DevTool_Client.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\DevTool_Server.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\DevTool_Server.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\DevTool_Share.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\DevTool_Share.h"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="Header Files"
 				>
 				<File
-					RelativePath=".\Share\DevProtocol.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\GlobalParam.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\InputCmdDevTool.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Share\ISynchroObject.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Share\ListModules.h"
 					>
 				</File>
 				<File
@@ -235,25 +199,17 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Share\TankTower.h"
+					RelativePath=".\Share\ModuleDev.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Share\TestControlTank.h"
+					RelativePath=".\Share\WrapperMakerTransport.h"
 					>
 				</File>
 			</Filter>
 			<Filter
 				Name="Source Files"
 				>
-				<File
-					RelativePath=".\Share\DevProtocol.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\InputCmdDevTool.cpp"
-					>
-				</File>
 				<File
 					RelativePath=".\Share\ManagerObject.cpp"
 					>
@@ -263,59 +219,47 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Share\TankTower.cpp"
+					RelativePath=".\Share\ModuleDev.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Share\TestControlTank.cpp"
+					RelativePath=".\Share\WrapperMakerTransport.cpp"
 					>
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Adapters"
+			Name="Modules"
 			>
 			<Filter
 				Name="Header Files"
 				>
 				<File
-					RelativePath=".\Adapters\AdapterAloneGUI.h"
+					RelativePath=".\Modules\ModuleAloneGUI.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterDevTool.h"
+					RelativePath=".\Modules\ModuleGraphicEngine.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterGraphicEngine.h"
+					RelativePath=".\Modules\ModuleMMO.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterMMO.h"
+					RelativePath=".\Modules\ModulePhysicEngine.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterPhysicEngine.h"
+					RelativePath=".\Modules\ModuleServerLogic.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterServer.h"
+					RelativePath=".\Modules\ModuleSoundEngine.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterSoundEngine.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\AdapterTimer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\ListModule.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\WrapperMakerTransport.h"
+					RelativePath=".\Modules\ModuleTimer.h"
 					>
 				</File>
 			</Filter>
@@ -323,35 +267,27 @@
 				Name="Source Files"
 				>
 				<File
-					RelativePath=".\Adapters\AdapterAloneGUI.cpp"
+					RelativePath=".\Modules\ModuleAloneGUI.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterDevTool.cpp"
+					RelativePath=".\Modules\ModuleGraphicEngine.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterGraphicEngine.cpp"
+					RelativePath=".\Modules\ModulePhysicEngine.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterPhysicEngine.cpp"
+					RelativePath=".\Modules\ModuleServerLogic.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterServer.cpp"
+					RelativePath=".\Modules\ModuleSoundEngine.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Adapters\AdapterSoundEngine.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\AdapterTimer.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Adapters\WrapperMakerTransport.cpp"
+					RelativePath=".\Modules\ModuleTimer.cpp"
 					>
 				</File>
 			</Filter>
