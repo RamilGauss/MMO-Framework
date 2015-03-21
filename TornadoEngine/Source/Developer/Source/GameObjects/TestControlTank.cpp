@@ -59,36 +59,36 @@ void TTestControlTank::Recv(void* data, int size)
 //---------------------------------------------------------------------------
 void TTestControlTank::Send()
 {
-	lockQtSend();
-	//----------------------------
-	UpdateAngle();
-	TBreakPacket bp;
-	bp.PushFront((char*)mDesc.get(), sizeof(TDesc));
+	//lockQtSend();
+	////----------------------------
+	//UpdateAngle();
+	//TBreakPacket bp;
+	//bp.PushFront((char*)mDesc.get(), sizeof(TDesc));
 
-	TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
-  nsMMOEngine::TBaseServer* pBS = (nsMMOEngine::TBaseServer*)pComponent->mMMO;
+	//TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
+ // nsMMOEngine::TBaseServer* pBS = (nsMMOEngine::TBaseServer*)pComponent->mMMO;
 
-	std::list<unsigned int> listKey;
-	//###
-	// рассылка всем клиентам
-	nsMMOEngine::TSlave::TDescDownSlave descDown;
-	int sizeDesc = sizeof(descDown);
-	int countClient = pComponent->mSlave->Get()->GetCountDown();
-	for( int iClient = 0 ; iClient < countClient ; iClient++)
-	{
-		//if(pComponent->mNet.Slave->GetDescDown(iClient, (void*)&descDown, sizeDesc))
-			//pBS->SendDown( descDown.id_session, bp);
-		if(pComponent->mSlave->Get()->GetDescDown(iClient, (void*)&descDown, sizeDesc))
-		{
-			unsigned int id_client;
-			if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.id_session,id_client))
-				listKey.push_back(id_client);
-		}
-	}
-	pBS->SendByClientKey( listKey, bp);
-	//###
-  //----------------------------
-	unlockQtSend();
+	//std::list<unsigned int> listKey;
+	////###
+	//// рассылка всем клиентам
+	//nsMMOEngine::TSlave::TDescDownSlave descDown;
+	//int sizeDesc = sizeof(descDown);
+	//int countClient = pComponent->mSlave->Get()->GetCountDown();
+	//for( int iClient = 0 ; iClient < countClient ; iClient++)
+	//{
+	//	//if(pComponent->mNet.Slave->GetDescDown(iClient, (void*)&descDown, sizeDesc))
+	//		//pBS->SendDown( descDown.id_session, bp);
+	//	if(pComponent->mSlave->Get()->GetDescDown(iClient, (void*)&descDown, sizeDesc))
+	//	{
+	//		unsigned int id_client;
+	//		if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.id_session,id_client))
+	//			listKey.push_back(id_client);
+	//	}
+	//}
+	//pBS->SendByClientKey( listKey, bp);
+	////###
+ // //----------------------------
+	//unlockQtSend();
 }
 //---------------------------------------------------------------------------
 void TTestControlTank::SetSpeedRotateTurret(float v)

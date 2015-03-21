@@ -23,7 +23,7 @@ bool TModuleGraphicEngine::Work()
 {
   InputFromModules();
   bool resWork = mGE->Work();
-  OutputFromModules();
+  OutputToModules();
 
   return resWork;
 }

@@ -17,8 +17,7 @@ class TTankTower;
 
 // зародыш Developer протокола для управления танком
 
-
-class DllExport TTestControlTank
+class TTestControlTank
 {
 #if defined( WIN32 )
 #pragma pack(push, 1)

@@ -179,54 +179,46 @@
 		<Filter
 			Name="Share"
 			>
-			<Filter
-				Name="Header Files"
+			<File
+				RelativePath=".\Share\ModuleDev.cpp"
 				>
-				<File
-					RelativePath=".\Share\ISynchroObject.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\ListModules.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\ManagerObject.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\ManagerSynchroObject.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\ModuleDev.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\WrapperMakerTransport.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Source Files"
+			</File>
+			<File
+				RelativePath=".\Share\ModuleDev.h"
 				>
-				<File
-					RelativePath=".\Share\ManagerObject.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\ManagerSynchroObject.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\ModuleDev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Share\WrapperMakerTransport.cpp"
-					>
-				</File>
-			</Filter>
+			</File>
+			<File
+				RelativePath=".\Share\ParserXMLResource.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\ParserXMLResource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\Resources.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\Resources.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\ResourcesGraphicEngine.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\ResourcesGraphicEngine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\WrapperMakerTransport.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\WrapperMakerTransport.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Modules"
@@ -239,11 +231,35 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Modules\ModuleClientLogic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleDataBase.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Modules\ModuleGraphicEngine.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Modules\ModuleMMO.h"
+					RelativePath=".\Modules\ModuleMMOEngine.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleMMOEngineClient.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleMMOEngineMaster.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleMMOEngineSlave.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleMMOEngineSuperServer.h"
 					>
 				</File>
 				<File
@@ -271,7 +287,31 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Modules\ModuleClientLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleDataBase.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Modules\ModuleGraphicEngine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleMMOEngineClient.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleMMOEngineMaster.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleMMOEngineSlave.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Modules\ModuleMMOEngineSuperServer.cpp"
 					>
 				</File>
 				<File

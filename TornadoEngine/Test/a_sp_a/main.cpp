@@ -10,8 +10,6 @@
 #include "ShareMisc.h"
 #include "BL_Debug.h"
 
-//#include "ParserXMLConveyer.h"
-
 #define NUM_GE  0
 #define NUM_PE  1
 #define NUM_SE  2
@@ -22,22 +20,6 @@ int main(int argc, char** argv)
 {
   bool resSetPath = SetCurrentPathByFile(argv[0]);
   BL_ASSERT(resSetPath);
-
-  //TParserXMLConveyer parser;
-
-  //std::string fileConveyer = "conveyer.xml";
-  //std::string variant = "Client";
-
-  //parser.Work(fileConveyer, variant);
-
-  //typedef std::vector<std::string> TVecStr;
-  //typedef std::vector< TVecStr > TVecVecStr;
-  //typedef std::map<std::string,TVecStr> TMapStrVecStr;
-
-  //TMapStrVecStr mMapDst_SrcModule;
-  //TVecVecStr mVecVecStrModule;
-  //parser.GetResult(mVecVecStrModule, mMapDst_SrcModule);
-
 
   TSynchroAbonent GE, PE, SE;
   TSynchroPoint* pSP = new TSynchroPoint;

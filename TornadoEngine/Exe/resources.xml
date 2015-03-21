@@ -1,26 +1,29 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<GameEngine comment = "TornadoEngine">
-  <Conveyer>./conveyer.xml</Conveyer>
-</GameEngine>
-<OGRE comment="GraphicEngine">
-  <PluginsCfg Debug="./plugins_d.cfg" Release="./plugins_d.cfg" </>
-  <Resource Name = "../../Resources/GUI/MyGUI_Media"            Type = "FileSystem"/>
-  <Resource Name = "../../Resources/GUI/Demos/Demo_Themes"      Type = "FileSystem"/>
-  <Resource Name = "../../Resources/GUI/Common/Base"            Type = "FileSystem"/>
-  <Resource Name = "../../Resources/GUI/Common/Themes"          Type = "FileSystem"/>
-  <Resource Name = "../../Resources/GUI_forms"                  Type = "FileSystem"/>
-  <Resource Name = "../../Resources/Graphic/materials/programs" Type = "FileSystem"/>
-  <Resource Name = "../../Resources/Graphic/materials/scripts"  Type = "FileSystem"/>
-  <Resource Name = "../../Resources/Graphic/materials/textures" Type = "FileSystem"/>
-  <Resource Name = "../../Resources/Graphic/models"             Type = "FileSystem"/>
-  <Resource Name = "../../Resources/Graphic/packs/SdkTrays.zip" Type = "Zip"/>
-</OGRE>
-<MyGUI comment="GUI">
-  <Core>MyGUI_Core.xml</Core>
-	<Skin>MyGUI_BlackBlueTheme.xml</Skin>
-</MyGUI>
-<Game>
-	<Models>list_models.xml</Models>
-	<Maps>list_maps.xml</Maps>
-	<MapKeys>ViewerModel.xml</MapKeys>
-</Game>
+<Resources>
+  <GameEngine Comment = "TornadoEngine">
+    <Resource Name = "conveyer.xml" Type = "Conveyer" />
+  </GameEngine>
+  <GraphicEngine Comment = "OGRE" >
+    <PluginsCfg Name = "plugins.cfg" Variant = "Release"/>
+    <PluginsCfg Name = "plugins_d.cfg"   Variant = "Debug"  />
+    <Resource Name = "../../Resources/GUI/MyGUI_Media"            Type = "FileSystem" />
+    <Resource Name = "../../Resources/GUI/Demos/Demo_Themes"      Type = "FileSystem" />
+    <Resource Name = "../../Resources/GUI/Common/Base"            Type = "FileSystem" />
+    <Resource Name = "../../Resources/GUI/Common/Themes"          Type = "FileSystem" />
+    <Resource Name = "../../Resources/GUI_forms"                  Type = "FileSystem" />
+    <Resource Name = "../../Resources/Graphic/materials/programs" Type = "FileSystem" />
+    <Resource Name = "../../Resources/Graphic/materials/scripts"  Type = "FileSystem" />
+    <Resource Name = "../../Resources/Graphic/materials/textures" Type = "FileSystem" />
+    <Resource Name = "../../Resources/Graphic/models"             Type = "FileSystem" />
+    <Resource Name = "../../Resources/Graphic/packs/SdkTrays.zip" Type = "Zip"        />
+  </GraphicEngine>
+  <GUI Comment = "MyGUI" >
+    <Resource Name = "MyGUI_Core.xml"           Type = "Core" />
+    <Resource Name = "MyGUI_BlackBlueTheme.xml" Type = "Skin" />
+  </GUI>
+  <Game Comment = "Tanks" >
+    <Resource Name = "list_models.xml" Type = "Models"/>
+    <Resource Name = "list_maps.xml"   Type = "Maps"  />
+    <Resource Name = "map_keys.xml"    Type = "MapKeys" />
+  </Game>
+</Resources>

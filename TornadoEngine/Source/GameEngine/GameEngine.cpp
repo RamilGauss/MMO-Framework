@@ -135,7 +135,6 @@ bool TGameEngine::PrepareConveyer()
 {
   string sFileDescConveyer = mDevTool->GetFileDescConveyer();
   string sVariantConveyer  = mDevTool->GetVariantConveyer();
-  //int countCore = GetCountCoreCPU();
   TParserXMLConveyer parser;
   if(parser.Work(sFileDescConveyer, sVariantConveyer)==false)
   {

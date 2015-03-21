@@ -55,7 +55,10 @@ public:
   // Добавить событие с/без копирования
   void AddEventCopy(void* data, int size);
   void AddEventWithoutCopy(void* data, int size);
-  
+
+  void AddEventCopy(int id_recv, void* data, int size);
+  void AddEventWithoutCopy(int id_recv, void* data, int size);
+
   // забрать событие от определенного абонента, удалять нельзя
   TContainer* GetEvent(int id_sender);
 

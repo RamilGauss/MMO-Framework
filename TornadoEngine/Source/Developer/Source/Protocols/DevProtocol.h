@@ -20,22 +20,22 @@ namespace nsDevProtocol
     DisconnectUp_Client,
   };
   //-----------------------------------------------------------
-  struct DllExport TBase
+  struct TBase
   {
     unsigned short type;
   };
   //-----------------------------------------------------------
-  struct DllExport TExit : public TBase
+  struct TExit : public TBase
   {
     TExit();
   };
   //-----------------------------------------------------------
-  struct DllExport TCreateGroup : public TBase
+  struct TCreateGroup : public TBase
   {
     TCreateGroup();
   };
   //-----------------------------------------------------------
-  struct DllExport TDisconnectUp_Client : public TBase
+  struct TDisconnectUp_Client : public TBase
   {
     TDisconnectUp_Client();
   };

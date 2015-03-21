@@ -13,7 +13,7 @@ See for more information License.h.
 
 #include "CmdParam.h"
  
-class DllExport TInputCmdDevTool
+class TInputCmdDevTool
 {
  TCmdParam mCmdParam;
 

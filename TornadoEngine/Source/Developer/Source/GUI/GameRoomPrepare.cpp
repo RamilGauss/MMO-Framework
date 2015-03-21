@@ -39,10 +39,10 @@ void TGameRoomPrepare::sl_Fight(MyGUI::Widget* _sender)
 //-------------------------------------------------------------------------------------
 void TGameRoomPrepare::sl_Exit(MyGUI::Widget* _sender)
 {
-	TDevTool_Share::Singleton()->GetComponent()->mClient->Get()->DisconnectUp();
+	//TDevTool_Share::Singleton()->GetComponent()->mClient->Get()->DisconnectUp();
 
-  nsDevProtocol::TDisconnectUp_Client h;
-  TDevTool_Share::Singleton()->GetComponent()->mDev->GetSrcEvent()->AddEventCopy(&h, sizeof(h));
+  //nsDevProtocol::TDisconnectUp_Client h;
+  //TDevTool_Share::Singleton()->GetComponent()->mDev->GetSrcEvent()->AddEventCopy(&h, sizeof(h));
 }
 //-------------------------------------------------------------------------------------
 const char* TGameRoomPrepare::GetNameLayout()

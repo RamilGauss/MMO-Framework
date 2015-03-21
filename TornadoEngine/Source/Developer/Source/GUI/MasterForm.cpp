@@ -40,7 +40,7 @@ void TMasterForm::customEvent( QEvent * event)
 void TMasterForm::closeEvent(QCloseEvent * event)
 {
   TExit h;
-  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&h,sizeof(h));
+  //TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&h,sizeof(h));
 
   delete this;
 }
@@ -82,29 +82,29 @@ void TMasterForm::Refresh()
   };
 
   int iRow = 0;
-  BOOST_FOREACH(TMapUintDesc::value_type& bit, mMapID_SessionDesc)
-  {
-    QTableWidgetItem* item = new QTableWidgetItem;
-    QString sSession = QString("%1").arg(bit.second.id_session);
-    item->setText(sSession);
-    ui.table->setItem(iRow, 0, item);
-    //-------------------------------------------------------
-    IP ip;
-    ip.d = bit.second.ip_port.ip;
-    item = new QTableWidgetItem();
-    QString sIP_Port = QString("%1.%2.%3.%4:%5").
-      arg(ip.c[3]).arg(ip.c[2]).arg(ip.c[1]).arg(ip.c[0]).
-      arg(bit.second.ip_port.port);
-    item->setText(sIP_Port); 
-    ui.table->setItem(iRow, 1, item);
-    iRow++;
-  }
+  //BOOST_FOREACH(TMapUintDesc::value_type& bit, mMapID_SessionDesc)
+  //{
+  //  QTableWidgetItem* item = new QTableWidgetItem;
+  //  QString sSession = QString("%1").arg(bit.second.id_session);
+  //  item->setText(sSession);
+  //  ui.table->setItem(iRow, 0, item);
+  //  //-------------------------------------------------------
+  //  IP ip;
+  //  ip.d = bit.second.ip_port.ip;
+  //  item = new QTableWidgetItem();
+  //  QString sIP_Port = QString("%1.%2.%3.%4:%5").
+  //    arg(ip.c[3]).arg(ip.c[2]).arg(ip.c[1]).arg(ip.c[0]).
+  //    arg(bit.second.ip_port.port);
+  //  item->setText(sIP_Port); 
+  //  ui.table->setItem(iRow, 1, item);
+  //  iRow++;
+  //}
   ui.table->resizeColumnsToContents();
 }
 //-----------------------------------------------------------
 void TMasterForm::sl_CreateGroup()
 {
-  TCreateGroup h;
-  TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&h,sizeof(h));
+  //TCreateGroup h;
+  //TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&h,sizeof(h));
 }
 //-----------------------------------------------------------

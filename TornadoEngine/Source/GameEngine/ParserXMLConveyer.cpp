@@ -10,7 +10,7 @@ See for more information License.h.
 #include "ShareMisc.h"
 #include "IXML.h"
 
-const char* sHeader = "Conveyer";
+const char* sConveyer = "Conveyer";
 
 const char* sVariant     = "Variant";
 const char* sDataflow    = "Dataflow";
@@ -49,7 +49,7 @@ bool TParserXMLConveyer::Work(string& fileDescConveyer, string& variantConveyer)
     return false;
   }
 
-  if(mXML->EnterSection(sHeader, 0)==false)
+  if(mXML->EnterSection(sConveyer, 0)==false)
   {
     strError = "Файл некорректен";
     return false;

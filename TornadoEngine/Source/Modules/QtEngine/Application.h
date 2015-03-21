@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,7 +11,7 @@ See for more information License.h.
 #include <QApplication>
 #include "CallBackRegistrator.h"
 
-// Класс нужен для обработки таймерного кванта от Qt
+// РљР»Р°СЃСЃ РЅСѓР¶РµРЅ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё С‚Р°Р№РјРµСЂРЅРѕРіРѕ РєРІР°РЅС‚Р° РѕС‚ Qt
 
 class TApplication : public QApplication
 {

@@ -10,7 +10,7 @@ See for more information License.h.
 
 #include "IMakerTransport.h"
 
-class TWrapperMakerTransport : public IMakerTransport
+class DllExport TWrapperMakerTransport : public IMakerTransport
 {
 public:
   TWrapperMakerTransport();

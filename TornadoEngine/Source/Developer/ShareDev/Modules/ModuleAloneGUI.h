@@ -13,7 +13,7 @@ See for more information License.h.
 
 class TQtEngine;
 
-class TModuleAloneGUI : public TModuleDev
+class DllExport TModuleAloneGUI : public TModuleDev
 {
   boost::scoped_ptr<TQtEngine> mQt;
 

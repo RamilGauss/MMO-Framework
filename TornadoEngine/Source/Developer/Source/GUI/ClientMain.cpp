@@ -54,24 +54,25 @@ void TClientMain::sl_Enter(MyGUI::Widget* _sender)
 
   std::string sLogin = W2A((LPCWSTR)ebLogin->getOnlyText().data());
 
-  TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
-  // настройка сети
-  if(IsOpen==false)
-  {
-    IsOpen = pComponent->mClient->Get()->Open(&nsMMOEngine::TDescOpen(port));
-  }
+  //TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
+  //// настройка сети
+  //if(IsOpen==false)
+  //{
+  //  IsOpen = pComponent->mClient->Get()->Open(&nsMMOEngine::TDescOpen(port));
+  //}
 
-  SaveInputParam(ip,port,sLogin.data());
+  //SaveInputParam(ip,port,sLogin.data());
 
-  BL_ASSERT(IsOpen);
-  pComponent->mClient->Get()->Login( ip, MASTER_PORT, 
-    (void*)sLogin.data(), sLogin.length(), "1", 1);// пока пароль - 1 ###
+  //BL_ASSERT(IsOpen);
+  //pComponent->mClient->Get()->Login( ip, MASTER_PORT, 
+  //  (void*)sLogin.data(), sLogin.length(), "1", 1);// пока пароль - 1 ###
 }
 //-------------------------------------------------------------------------------------
 void TClientMain::sl_Exit(MyGUI::Widget* _sender)
 {
   //IClientDeveloperTool::Singleton()->GetComponent()->mNetClient->LeaveQueue();
-  TDevTool_Share::Singleton()->Exit();
+
+  //TDevTool_Share::Singleton()->Exit();
 }
 //-------------------------------------------------------------------------------------
 const char* TClientMain::GetNameLayout()

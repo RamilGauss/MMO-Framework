@@ -30,7 +30,7 @@ bool TModuleTimer::Work()
 {
   InputFromModules();
   WorkTimer();
-  OutputFromModules();
+  OutputToModules();
   return true;
 }
 //-----------------------------------------------------------------

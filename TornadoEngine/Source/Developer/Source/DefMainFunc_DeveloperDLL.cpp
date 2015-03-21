@@ -7,27 +7,23 @@ See for more information License.h.
 
 #include "DeveloperTool_DLL.h"
 
-#include "DevTool_ViewerModel.h"
-#include "DevTool_ClientTank.h"
-
-#include "DevTool_SlaveTank.h"
-#include "DevTool_MasterTank.h"
-#include "DevTool_SuperServerTank.h"
+#include "DevTool_Client.h"
+#include "DevTool_Slave.h"
+#include "DevTool_Master.h"
+#include "DevTool_SuperServer.h"
 
 DllExport_C IDevTool* GetDevTool(int variant_use)
 {
   switch(variant_use)
   {
     case 0:
-      return new TDevTool_ViewerModel;
+      return new TDevTool_Client;
     case 1:
-      return new TDevTool_ClientTank;
+      return new TDevTool_Slave;
     case 2:
-      return new TDevTool_SlaveTank;
+      return new TDevTool_Master;
     case 3:
-      return new TDevTool_MasterTank;
-    case 4:
-      return new TDevTool_SuperServerTank;
+      return new TDevTool_SuperServer;
   }
   return NULL;
 }

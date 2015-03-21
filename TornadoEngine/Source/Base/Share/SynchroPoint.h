@@ -39,11 +39,15 @@ protected:
   void AddEventCopy(int id_sender, void* data, int size);
   void AddEventWithoutCopy(int id_sender, void* data, int size);
 
+  void AddEventCopy(int id_sender, int id_recv, void* data, int size);
+  void AddEventWithoutCopy(int id_sender, int id_recv, void* data, int size);
+
   // забрать событие от определенного абонента, удалять нельзя
   bool GetEvent(int id_reciver, int id_sender, TContainer* pC_out);// копия
 private:
   void AddEvent(int id_sender, void* data, int size, bool copy);
- 
+  void AddEvent(int id_sender, int id_recv, void* data, int size, bool copy);
+
   void Done();
 };
 

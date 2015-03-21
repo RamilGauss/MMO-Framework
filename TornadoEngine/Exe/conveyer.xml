@@ -3,16 +3,16 @@
   <Variant name = "Client">
     <Dataflow>
       <Dst name = "GraphicEngine">
-        <Src name = "MMOEngine"/>
+        <Src name = "MMOEngineClient"/>
       </Dst>
-      <Dst name = "MMOEngine">
+      <Dst name = "MMOEngineClient">
         <Src name = "GraphicEngine"/>
       </Dst>
     </Dataflow>
     <CPU countCore = "1" >
       <Thread>
         <Module name = "GraphicEngine"/>
-        <Module name = "MMOEngine"    />
+        <Module name = "MMOEngineClient"    />
       </Thread>
     </CPU>
     <CPU countCore = "2" >
@@ -20,7 +20,7 @@
         <Module name = "GraphicEngine"/>
       </Thread>
       <Thread>
-        <Module name = "MMOEngine"    />
+        <Module name = "MMOEngineClient"    />
       </Thread>
     </CPU>
     <CPU countCore = "4" >
@@ -28,11 +28,11 @@
         <Module name = "GraphicEngine"/>
       </Thread>
       <Thread>
-        <Module name = "MMOEngine"    />
+        <Module name = "MMOEngineClient"    />
       </Thread>
     </CPU>
   </Variant>
-  <Variant name = "ServerSlave" >
+  <Variant name = "Slave" >
     <Dataflow>
       <Dst name = "AloneGUI">
         <Src name = "MMOEngine"/>

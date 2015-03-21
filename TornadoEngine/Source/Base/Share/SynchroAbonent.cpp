@@ -51,6 +51,20 @@ void TSynchroAbonent::AddEventWithoutCopy(void* data, int size)
   unlock();
 }
 //------------------------------------------------------------------------------
+void TSynchroAbonent::AddEventCopy(int id_recv, void* data, int size)
+{
+  lock();
+  mSynchroPoint->AddEventCopy(mSelfID, id_recv, data, size);
+  unlock();
+}
+//------------------------------------------------------------------------------
+void TSynchroAbonent::AddEventWithoutCopy(int id_recv, void* data, int size)
+{
+  lock();
+  mSynchroPoint->AddEventWithoutCopy(mSelfID, id_recv, data, size);
+  unlock();
+}
+//------------------------------------------------------------------------------
 TContainer* TSynchroAbonent::GetEvent(int id_sender)
 {
   lock();

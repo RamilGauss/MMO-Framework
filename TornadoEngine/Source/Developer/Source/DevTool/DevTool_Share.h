@@ -12,10 +12,11 @@ See for more information License.h.
 #include <map>
 
 #include "IDevTool.h"
+#include "Resources.h"
 
 class IQtLib;
 
-class DllExport TDevTool_Share : public IDevTool
+class TDevTool_Share : public IDevTool
 { 
   typedef std::map<std::string,int> TMapStrInt;
   typedef TMapStrInt::value_type    TMapStrIntVT;
@@ -27,6 +28,12 @@ class DllExport TDevTool_Share : public IDevTool
   typedef TMapIntPtrModule::iterator   TMapIntPtrModuleIt;
   TMapIntPtrModule mMapID_PtrModules;
 
+  std::string mPluginsCfg;
+
+  TResources::TListPairNameType mListRGame; 
+  TResources::TListPairNameType mListRGUI; 
+  TResources::TListPairNameType mListRGameEngine;
+  TResources::TListPairNameType mListRGraphicEngine;
 public:
   TDevTool_Share();
   virtual ~TDevTool_Share();

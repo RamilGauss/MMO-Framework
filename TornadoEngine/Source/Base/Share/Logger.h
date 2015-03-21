@@ -9,9 +9,11 @@ See for more information License.h.
 #ifndef LoggerH 
 #define LoggerH
 
-#include "SaveToFile.h"
 #include <map>
 #include <string>
+#include <boost/smart_ptr/scoped_ptr.hpp>
+
+#include "SaveToFile.h"
 #include "Only_N_Object.h"
 #include "TypeDef.h"
 
@@ -20,7 +22,13 @@ class DllExport TLogger : public TOnly_N_Object
 	typedef std::vector<TSaveToFile*> TVectorPtr;
 	TVectorPtr mVecPtr;
 
-  typedef std::map<std::string,TSaveToFile*> TMapStrPtr;
+  struct TDescFile
+  {
+    std::string sExtension;
+    TSaveToFile stf;
+  };
+
+  typedef std::map<std::string,TDescFile*> TMapStrPtr;
   TMapStrPtr mMapNamePtr;
 
   std::string sPrefix;
@@ -41,7 +49,8 @@ public:
 
   virtual ~TLogger();
 
-  void Register(const char* nameLogger);
+  // ret false if name is same
+  bool Register(const char* nameLogger, const char* extension = "log");
 
   void Init(char* sPrefix);
   void Done();
@@ -60,7 +69,7 @@ public:
 	TSaveToFile* GetByIndex( int index);
 
 protected:
-  void InitLogger(TSaveToFile* saver, const char* sName);
+  void InitLogger(TSaveToFile* saver, const char* sName, const char* extension);
 };
 
 extern DllExport TLogger* GetLogger();

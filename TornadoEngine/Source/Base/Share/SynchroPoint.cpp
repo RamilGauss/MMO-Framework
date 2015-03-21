@@ -117,3 +117,37 @@ void TSynchroPoint::AddEvent(int id_sender, void* data, int size, bool copy)
   }
 }
 //-----------------------------------------------------------------------------------------
+void TSynchroPoint::AddEventCopy(int id_sender, int id_recv, void* data, int size)
+{
+  AddEvent(id_sender, id_recv, data, size, true);
+}
+//-----------------------------------------------------------------------------------------
+void TSynchroPoint::AddEventWithoutCopy(int id_sender, int id_recv, void* data, int size)
+{
+  AddEvent(id_sender, id_recv, data, size, false);
+}
+//-----------------------------------------------------------------------------------------
+void TSynchroPoint::AddEvent(int id_sender, int id_recv, void* data, int size, bool copy)
+{
+  TMapIntMapIt fitSendRecv = mMap_Sender_Recv_ListEvent.find(id_sender);
+  if(fitSendRecv==mMap_Sender_Recv_ListEvent.end())
+  {
+    BL_FIX_BUG();
+    return;
+  }
+
+  TMapIntPtrIt fitRecvList = fitSendRecv->second.find(id_recv);
+  if(fitSendRecv->second.end()==fitRecvList)
+  {
+    BL_FIX_BUG();
+    return;
+  }
+
+  TContainer* pC = new TContainer;
+  if(copy)
+    pC->SetData((char*)data,size);
+  else
+    pC->Entrust((char*)data,size);
+  fitRecvList->second->Add(pC);
+}
+//-----------------------------------------------------------------------------------------

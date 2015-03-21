@@ -25,27 +25,32 @@ TSaveToFile* GetLogger(const char* nameLog)
   return g_Logger.Get(nameLog);
 }
 //-----------------------------------------------------------------------
-void TLogger::InitLogger(TSaveToFile* saver, const char* sName)
+void TLogger::InitLogger(TSaveToFile* saver, const char* sName, const char* extension)
 {
   if(saver->IsOpen()) return;
   char nameLogFile[260];
-  sprintf(nameLogFile,".\\%s%s.log",sName,sPrefix.data());
+  sprintf(nameLogFile,".\\%s%s.%s",sName,sPrefix.data(),extension);
   saver->ReOpen(nameLogFile);
 }
 //-----------------------------------------------------------------------
-void TLogger::Register(const char* nameLogger)
+bool TLogger::Register(const char* nameLogger, const char* extension)
 {
-  TSaveToFile* pSoHDD = new TSaveToFile;
-  pSoHDD->SetPrintf(flgPrintf);
-  pSoHDD->SetEnable(flgEnable);
-  pSoHDD->SetBufferization(flgBuffer);
+  if(mMapNamePtr.find(nameLogger)!=mMapNamePtr.end())
+    return false;
 
-  mMapNamePtr.insert(TMapStrPtr::value_type(nameLogger,pSoHDD));
-	mVecPtr.push_back(pSoHDD);
+  TDescFile* pDF = new TDescFile;
+  pDF->stf.SetPrintf(flgPrintf);
+  pDF->stf.SetEnable(flgEnable);
+  pDF->stf.SetBufferization(flgBuffer);
+  pDF->sExtension = extension;
+
+  mMapNamePtr.insert(TMapStrPtr::value_type(nameLogger,pDF));
+	mVecPtr.push_back(&pDF->stf);
   if(sPrefix.length())
   {
-    InitLogger(pSoHDD,nameLogger);
+    InitLogger(&pDF->stf, nameLogger, pDF->sExtension.data());
   }
+  return true;
 }
 //-----------------------------------------------------------------------
 void TLogger::Init(char* prefix)
@@ -53,14 +58,14 @@ void TLogger::Init(char* prefix)
   sPrefix = prefix;
   
   BOOST_FOREACH( TMapStrPtr::value_type& bit, mMapNamePtr )
-    InitLogger(bit.second,bit.first.data());
+    InitLogger(&bit.second->stf, bit.first.data(), bit.second->sExtension.data());
 }
 //-----------------------------------------------------------------------
 TSaveToFile* TLogger::Get(const char* nameLog)
 {
   TMapStrPtr::iterator fit = mMapNamePtr.find(nameLog);
   if(mMapNamePtr.end()!=fit)
-    return fit->second;
+    return &fit->second->stf;
 
   return NULL;
 }
@@ -85,7 +90,7 @@ void TLogger::SetPrintf(bool val)
   
   flgPrintf = val;
   BOOST_FOREACH(TMapStrPtr::value_type &bit,mMapNamePtr)
-    bit.second->SetPrintf(flgPrintf);
+    bit.second->stf.SetPrintf(flgPrintf);
 }
 //-----------------------------------------------------------------------
 bool TLogger::GetPrintf()
@@ -100,7 +105,7 @@ void TLogger::SetEnable(bool val)
 
   flgEnable = val;
   BOOST_FOREACH(TMapStrPtr::value_type &bit,mMapNamePtr)
-    bit.second->SetEnable(flgEnable);
+    bit.second->stf.SetEnable(flgEnable);
 }
 //-----------------------------------------------------------------------
 bool TLogger::GetEnable()
@@ -115,7 +120,7 @@ void TLogger::SetBufferization(bool val)
   
   flgBuffer = val;
   BOOST_FOREACH(TMapStrPtr::value_type &bit,mMapNamePtr)
-    bit.second->SetBufferization(flgBuffer);
+    bit.second->stf.SetBufferization(flgBuffer);
 }
 //-----------------------------------------------------------------------
 bool TLogger::GetBufferization()

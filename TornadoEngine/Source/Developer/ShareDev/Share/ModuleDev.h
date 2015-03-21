@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -27,11 +27,11 @@ public:
   void GetName(const char* name);
 
 protected:
-  virtual void InputFromModules();
-  virtual void OutputFromModules();
-
-  virtual void Input(void* p, int size);
+  virtual void Input(int id_sender, void* p, int size);
   virtual bool Output(void* p, int size);
+protected:
+  void InputFromModules();
+  void OutputToModules();
 };
 
 #endif

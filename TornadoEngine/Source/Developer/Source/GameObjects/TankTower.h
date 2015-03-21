@@ -8,10 +8,10 @@ See for more information License.h.
 #ifndef TankTowerH
 #define TankTowerH
 
-#include "ISynchroObject.h"
+//#include "ISynchroObject.h"
 #include "TypeDef.h"
 
-class DllExport TTankTower : public ISynchroObject
+class TTankTower //: public ISynchroObject
 {
 public:
   TTankTower();
