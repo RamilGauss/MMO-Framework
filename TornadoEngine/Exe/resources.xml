@@ -26,4 +26,6 @@
     <Resource Name = "list_maps.xml"   Type = "Maps"  />
     <Resource Name = "map_keys.xml"    Type = "MapKeys" />
   </Game>
+  <Developer>
+  </Developer>
 </Resources>

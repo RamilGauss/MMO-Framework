@@ -13,8 +13,9 @@ See for more information License.h.
 
 #include "IDevTool.h"
 #include "Resources.h"
+#include "CallBackRegistrator.h"
 
-class IQtLib;
+class TModuleDev;
 
 class TDevTool_Share : public IDevTool
 { 
@@ -23,7 +24,7 @@ class TDevTool_Share : public IDevTool
   typedef TMapStrInt::iterator      TMapStrIntIt;
   TMapStrInt mMapNameID_Modules;
 
-  typedef std::map<int,IModule*>       TMapIntPtrModule;
+  typedef std::map<int,TModuleDev*>    TMapIntPtrModule;
   typedef TMapIntPtrModule::value_type TMapIntPtrModuleVT;
   typedef TMapIntPtrModule::iterator   TMapIntPtrModuleIt;
   TMapIntPtrModule mMapID_PtrModules;
@@ -46,10 +47,15 @@ protected:
   void InitMapModules();
   // навигация
   int FindIDByNameModule(std::string name);
-  IModule* FindPtrModuleByID(int id);
+  TModuleDev* FindPtrModuleByID(int id);
   
-  void Add(int id, IModule* pModule);
+  void Add(int id, TModuleDev* pModule);
   void Add(std::string name, int id);
+private:
+
+  TCallBackRegistrator1<TModuleDev*> mCBSetupGraphicEngine;
+
+  void SetupGraphicEngine(TModuleDev* pModule);
 };
 
 #endif

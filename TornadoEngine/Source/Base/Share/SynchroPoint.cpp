@@ -62,6 +62,9 @@ bool TSynchroPoint::GetEvent(int id_reciver, int id_sender, TContainer* pC_out)
     return false;
 
   TContainer** ppC = fitList->second->GetFirst();
+  if(ppC==NULL)
+    return false;
+
   TContainer* pC = *ppC;
   pC_out->Entrust(pC->GetPtr(), pC->GetSize());
   pC->Unlink();
@@ -76,12 +79,6 @@ void TSynchroPoint::Done()
   {
     BOOST_FOREACH(TMapIntPtrVT& vtRecvList, vtSendRecv.second)
     {
-      TContainer** ppC = vtRecvList.second->GetFirst();
-      while(ppC)
-      {
-        delete *ppC;
-        ppC = vtRecvList.second->Next(ppC);
-      }
       delete vtRecvList.second;
     }
   }

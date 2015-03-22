@@ -19,8 +19,8 @@ const char* sDataflowSrc = "Src";
 const char* sCPU         = "CPU";
 const char* sThread      = "Thread";
 const char* sModule      = "Module";
-const char* sCountCore   = "countCore";
-const char* sName        = "name";
+const char* sCountCore   = "CountCore";
+const char* sName        = "Name";
 
 using namespace std;
 

@@ -84,7 +84,7 @@ private:
 private:
   void Done();
   void StopThreadByModule(std::string sNameModule);// callback
-  void Event(int id, ...);
+  void Event(int id, std::string param);
 };
 
 #endif

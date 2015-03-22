@@ -12,6 +12,8 @@ See for more information License.h.
 TModuleGraphicEngine::TModuleGraphicEngine()
 {
 	mGE.reset(new TGraphicEngine_OGRE_MyGUI);
+  mGE->SetSelfID(0);
+  mGE->SetDstObject(this);
 }
 //---------------------------------------------------------------------------------
 TModuleGraphicEngine::~TModuleGraphicEngine()
@@ -35,12 +37,16 @@ TGraphicEngine_OGRE_MyGUI* TModuleGraphicEngine::GetGE()
 //---------------------------------------------------------------------------------
 void TModuleGraphicEngine::StartEvent()
 {
-  mGE->SetSelfID(0);
-  mGE->SetDstObject(this);
+  mCBSetup->Notify(this);
 }
 //---------------------------------------------------------------------------------
 void TModuleGraphicEngine::StopEvent()
 {
-  
+
+}
+//---------------------------------------------------------------------------------
+void TModuleGraphicEngine::SetFuncForSetup(TCallBackRegistrator1<TModuleDev*>* pCBSetup)
+{
+  mCBSetup = pCBSetup;
 }
 //---------------------------------------------------------------------------------

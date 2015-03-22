@@ -35,7 +35,7 @@ void TModuleDev::SetID(int id)
   mID = id;
 }
 //----------------------------------------------------------------------
-void TModuleDev::GetName(const char* name)
+void TModuleDev::SetName(const char* name)
 {
   mName = name;
 }

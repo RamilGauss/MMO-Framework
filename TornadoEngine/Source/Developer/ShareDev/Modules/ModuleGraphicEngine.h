@@ -11,12 +11,15 @@ See for more information License.h.
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "ModuleDev.h"
+#include "CallBackRegistrator.h"
 
 class TGraphicEngine_OGRE_MyGUI;
 
 class DllExport TModuleGraphicEngine : public TModuleDev
 {
 	boost::scoped_ptr<TGraphicEngine_OGRE_MyGUI> mGE;
+
+  TCallBackRegistrator1<TModuleDev*>* mCBSetup;
 public:
   TModuleGraphicEngine();
   virtual ~TModuleGraphicEngine();
@@ -26,6 +29,9 @@ public:
   virtual void StopEvent();
 
   TGraphicEngine_OGRE_MyGUI* GetGE();
+
+  // графический движок требуется настраивать в том же потоке, в котором он работает
+  void SetFuncForSetup(TCallBackRegistrator1<TModuleDev*>* pCBSetup);
 protected:
 };
 

@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include <map>
+#include <vector>
 #include "ContainerTypes.h"
 #include "GCS.h"
 
@@ -38,7 +39,9 @@ class DllExport TSynchroAbonent
 
   TMapIntPtr mMapID_LastEvent;
 
-  GCS mMutexAddGet;
+  typedef std::vector<int> TVectorInt;
+  TVectorInt mVecID_Senders;
+
 public:
   TSynchroAbonent();
   virtual ~TSynchroAbonent();
@@ -66,9 +69,6 @@ public:
   int GetID_SenderByIndex(int index);
 protected:
 	TContainer* FindContainerByID(int id);
-
-  void lock()  {mMutexAddGet.lock();}
-  void unlock(){mMutexAddGet.unlock();}
 };
 
 #endif

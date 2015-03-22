@@ -58,7 +58,7 @@ int main(int argc, char** argv){
   if(inputTornado.useConsole)
   {
     CreateConsole();
-    printf("%s\n", pGame->GetVersion());
+    printf("%s\n", pGame->GetVersion().data());
     printf("----------------------------------------------\n");
   }
   //-----------------------------------------------------------------  

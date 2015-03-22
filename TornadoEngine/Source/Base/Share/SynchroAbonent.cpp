@@ -35,43 +35,34 @@ void TSynchroAbonent::SetSelfID(int id)
 void TSynchroAbonent::Register(int id_sender)
 {
 	mSynchroPoint->Register(mSelfID, id_sender);
+  mVecID_Senders.push_back(id_sender);
 }
 //------------------------------------------------------------------------------
 void TSynchroAbonent::AddEventCopy(void* data, int size)
 {
-  lock();
 	mSynchroPoint->AddEventCopy(mSelfID, data, size);
-  unlock();
 }
 //------------------------------------------------------------------------------
 void TSynchroAbonent::AddEventWithoutCopy(void* data, int size)
 {
-  lock();
   mSynchroPoint->AddEventWithoutCopy(mSelfID, data, size);
-  unlock();
 }
 //------------------------------------------------------------------------------
 void TSynchroAbonent::AddEventCopy(int id_recv, void* data, int size)
 {
-  lock();
   mSynchroPoint->AddEventCopy(mSelfID, id_recv, data, size);
-  unlock();
 }
 //------------------------------------------------------------------------------
 void TSynchroAbonent::AddEventWithoutCopy(int id_recv, void* data, int size)
 {
-  lock();
   mSynchroPoint->AddEventWithoutCopy(mSelfID, id_recv, data, size);
-  unlock();
 }
 //------------------------------------------------------------------------------
 TContainer* TSynchroAbonent::GetEvent(int id_sender)
 {
-  lock();
   // найти среди кеша
 	TContainer* pC = FindContainerByID(id_sender);
 	bool res = mSynchroPoint->GetEvent(mSelfID, id_sender, pC);
-  unlock();
   if(res)
     return pC;
 
@@ -91,19 +82,13 @@ TContainer* TSynchroAbonent::FindContainerByID(int id)
 //------------------------------------------------------------------------------
 int TSynchroAbonent::GetCountSenders()
 {
-  return mMapID_LastEvent.size();
+  return mVecID_Senders.size();
 }
 //------------------------------------------------------------------------------
 int TSynchroAbonent::GetID_SenderByIndex(int index)
 {
-  int i = 0;
-  BOOST_FOREACH(TMapIntPtrVT& vt, mMapID_LastEvent)
-  {
-    if(index==i)
-      return vt.first;
-    i++;
-  }
-
-  return -1;
+  if(index >= GetCountSenders() || index < 0)
+    return -1;
+  return mVecID_Senders[index];
 }
 //------------------------------------------------------------------------------

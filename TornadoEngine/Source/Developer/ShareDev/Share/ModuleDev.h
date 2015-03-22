@@ -24,7 +24,7 @@ public:
   virtual std::string GetName();
 
   void SetID(int id);
-  void GetName(const char* name);
+  void SetName(const char* name);
 
 protected:
   virtual void Input(int id_sender, void* p, int size);

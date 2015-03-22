@@ -34,11 +34,23 @@ See for more information License.h.
 
 #include <boost/foreach.hpp>
 
-using namespace std;
+#include "GraphicEngine_OGRE_MyGUI.h"
+
+namespace nsDevTool_Share
+{
+  const char* sFileResources = "resources.xml";
+
+  const char* sCore     = "Core";
+  const char* sSkin     = "Skin";
+  const char* sConveyer = "Conveyer";
+}
+
+//using namespace std;
 using namespace nsListModules;
 
 TDevTool_Share::TDevTool_Share()
 {
+  mCBSetupGraphicEngine.Register(&TDevTool_Share::SetupGraphicEngine,this);
   InitMapModules();
 }
 //-----------------------------------------------------------------------
@@ -47,11 +59,11 @@ TDevTool_Share::~TDevTool_Share()
 
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::Init(vector<string>& arg)
+void TDevTool_Share::Init(std::vector<std::string>& arg)
 {
   // загрузка и разбор XML файла (ресурсы)
   TParserXMLResource parser;
-  std::string file = "resources.xml";
+  std::string file = nsDevTool_Share::sFileResources;
   bool res = parser.Work(file);
 
   TResourcesGraphicEngine mGraphicEngine_Resources;
@@ -75,14 +87,17 @@ void TDevTool_Share::Init(vector<string>& arg)
 IModule* TDevTool_Share::GetModuleByName(const char* sName)
 {
   int id = FindIDByNameModule(sName);
-  IModule* pModule = FindPtrModuleByID(id);
+  TModuleDev* pModule = FindPtrModuleByID(id);
   if(pModule)
     return pModule;
 
   switch(id)
   {
     // active modules
-    case GraphicEngine:          pModule = new TModuleGraphicEngine_Dev;         break;
+    case GraphicEngine: pModule = new TModuleGraphicEngine_Dev;
+      // единственный модуль, который требуется настраивать в том же потоке
+      ((TModuleGraphicEngine*)pModule)->SetFuncForSetup(&mCBSetupGraphicEngine);
+      break;
     case AloneGUISlave:          pModule = new TModuleAloneGUISlave_Dev;         break;
     case AloneGUIMaster:         pModule = new TModuleAloneGUIMaster_Dev;        break;
     case AloneGUISuperServer:    pModule = new TModuleAloneGUISuperServer_Dev;   break;
@@ -102,6 +117,8 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
     case Timer:                  pModule = new TModuleTimer;                     break;
     default:BL_FIX_BUG();
   }
+  pModule->SetID(id);
+  pModule->SetName(sName);
   Add(id,pModule);
   return pModule;
 }
@@ -117,6 +134,7 @@ void TDevTool_Share::InitMapModules()
   Add(NAME_ID(MMOEngineSlave)      );
   Add(NAME_ID(MMOEngineMaster)     );
   Add(NAME_ID(MMOEngineSuperServer));
+  Add(NAME_ID(ClientLogic)         );
   Add(NAME_ID(ServerLogicSlave)    );
   Add(NAME_ID(ServerLogicMaster)   );
   Add(NAME_ID(ServerLogicSlave)    );
@@ -135,7 +153,7 @@ int TDevTool_Share::FindIDByNameModule(std::string name)
   return fit->second;
 }
 //-----------------------------------------------------------------------
-IModule* TDevTool_Share::FindPtrModuleByID(int id)
+TModuleDev* TDevTool_Share::FindPtrModuleByID(int id)
 {
   TMapIntPtrModuleIt fit = mMapID_PtrModules.find(id);
   if(fit==mMapID_PtrModules.end())
@@ -143,7 +161,7 @@ IModule* TDevTool_Share::FindPtrModuleByID(int id)
   return fit->second;
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::Add(int id, IModule* pModule)
+void TDevTool_Share::Add(int id, TModuleDev* pModule)
 {
   if(pModule)
     mMapID_PtrModules.insert(TMapIntPtrModuleVT(id, pModule));
@@ -156,11 +174,10 @@ void TDevTool_Share::Add(std::string name, int id)
 //-----------------------------------------------------------------------
 std::string TDevTool_Share::GetFileDescConveyer()
 {
-	int cnt = mListRGameEngine.size();
-	BOOST_FOREACH(TResources::TPairStrStr& pairStrStr, mListRGameEngine)
+	BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGameEngine)
 	{
-		if(pairStrStr.second=="Conveyer")
-			return pairStrStr.first;
+		if(pairNameType.second==nsDevTool_Share::sConveyer)
+			return pairNameType.first;
 	}
 	BL_FIX_BUG();
 	return "";
@@ -169,5 +186,26 @@ std::string TDevTool_Share::GetFileDescConveyer()
 void TDevTool_Share::EventGameEngine(int id, const char* sDesc)
 {
 
+}
+//-----------------------------------------------------------------------
+void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
+{
+  TModuleGraphicEngine* pGE = (TModuleGraphicEngine*)pModule;
+  // настройка перед запуском
+  pGE->GetGE()->InitOGRE(mPluginsCfg);
+  // пути для ресурсов графического движка
+	BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGraphicEngine)
+    pGE->GetGE()->AddResource(pairNameType.first, pairNameType.second);
+  // оболочка и ядро для GUI
+  std::string sSkin, sCore;
+  BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGUI)
+  {
+    if(pairNameType.second==nsDevTool_Share::sCore)
+      sCore = pairNameType.first;
+    if(pairNameType.second==nsDevTool_Share::sSkin)
+      sSkin = pairNameType.first;
+  }
+  BL_ASSERT(sCore.length() && sSkin.length());
+  pGE->GetGE()->InitMyGUI(sCore,sSkin);
 }
 //-----------------------------------------------------------------------

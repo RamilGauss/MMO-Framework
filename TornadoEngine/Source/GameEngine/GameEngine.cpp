@@ -197,7 +197,7 @@ void TGameEngine::StopThreadsWithModules()
   }
   mVecThread.clear();
 
-  Event(nsGameEngine::eStopThreadsEnd);
+  Event(nsGameEngine::eStopThreadsEnd,"");
 }
 //------------------------------------------------------------------------
 bool TGameEngine::CreateModules()
@@ -231,23 +231,21 @@ bool TGameEngine::CreateModules()
   return true;
 }
 //------------------------------------------------------------------------
-void TGameEngine::Event(int id, ...)
+void TGameEngine::Event(int id, std::string param)
 {
   string sEvent;
-  if(nsGameEngine::GetStrEventsByID(id, sEvent))
-  {
-    const char* ptrEvent = sEvent.data();
+  if(nsGameEngine::GetStrEventsByID(id, sEvent)==false)
+    return;
 
-    va_list list;
-    va_start(list, ptrEvent);
+  char sError[10000]; 
+  const char* format = sEvent.data();
+  if(param.length())
+    sprintf(sError, format, param.data()); 
+  else
+    sprintf(sError, format); 
 
-    char sError[10000]; 
-    int res = vsprintf(sError, ptrEvent, list); 
 
-    va_end(list);
-
-    mDevTool->EventGameEngine(id, sError);
-  }
+  mDevTool->EventGameEngine(id, sError);
 }
 //------------------------------------------------------------------------
 void TGameEngine::LinkModulesToSynchroPoint()
