@@ -14,7 +14,7 @@ See for more information License.h.
 // Unregister(&object)
 //-------------------------------------------------------------
 
-#define USE_CALLBACK_BOOST_IMPL
+//#define USE_CALLBACK_BOOST_IMPL
 #ifdef USE_CALLBACK_BOOST_IMPL
 
 #include <boost/signals2/signal.hpp>
