@@ -17,6 +17,17 @@ protected:
 	TComponents mComp;
 public:
 	void SetComponents(TComponents components);
+protected:
+	template <typename F>
+	void CallBackModule(int id_module, F pFunc);
 };
-
+//---------------------------------------------------------------------------
+template <typename Func>
+void TModuleLogic::CallBackModule(int id_module, Func pFunc)
+{
+	TLogicEventCallBack* pLCB = new TLogicEventCallBack;
+	pLCB->mCB.Register( pFunc, this );
+	TSynchroAbonent::AddEventWithoutCopy(id_module, pLCB);
+}
+//---------------------------------------------------------------------------
 #endif

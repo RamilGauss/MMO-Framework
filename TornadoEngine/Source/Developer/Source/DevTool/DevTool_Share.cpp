@@ -187,6 +187,9 @@ void TDevTool_Share::EventGameEngine(int id, const char* sDesc)
 		case nsGameEngine::eStopThreadsEnd:
 			break;
 		case nsGameEngine::eParseFileConveyerError:
+			{
+				int a = 0;
+			}
 			break;
 		case nsGameEngine::eModuleNotMade:
 			break;

@@ -36,27 +36,106 @@
         <Module Name = "Timer"          />
       </Thread>
       <Thread>
-        <Module Name = "PhysicEngine" />
+        <Module Name = "PhysicEngine"   />
       </Thread>
     </CPU>
   </Variant>
   <Variant Name = "Slave" >
     <CPU CountCore = "1" >
-      <Thread index = "0" >
-        <Module Name = "AloneGUI"/>
-        <Module Name = "MMOEngine"    />
+      <Thread>
+        <Module Name = "AloneGUI"         />
+        <Module Name = "ServerLogicSlave" />
+        <Module Name = "MMOEngineSlave"   />
+        <Module Name = "PhysicEngine"     />
+        <Module Name = "DataBase"         />
+        <Module Name = "Timer"            />
       </Thread>
     </CPU>
     <CPU CountCore = "2" >
-      <Thread index = "0" >
-        <Module Name = "AloneGUI"/>
-        <Module Name = "MMOEngine"    />
+      <Thread>
+        <Module Name = "AloneGUI"         />
+        <Module Name = "MMOEngineSlave"   />
+        <Module Name = "DataBase"         />
+      </Thread>
+      <Thread>
+        <Module Name = "ServerLogicSlave" />
+        <Module Name = "PhysicEngine"     />
+        <Module Name = "Timer"            />
       </Thread>
     </CPU>
     <CPU CountCore = "4" >
-      <Thread index = "0" >
-        <Module Name = "AloneGUI"/>
-        <Module Name = "MMOEngine"    />
+      <Thread>
+        <Module Name = "AloneGUI"         />
+        <Module Name = "MMOEngineSlave"   />
+        <Module Name = "DataBase"         />
+      </Thread>
+      <Thread>
+        <Module Name = "ServerLogicSlave" />
+        <Module Name = "PhysicEngine"     />
+        <Module Name = "Timer"            />
+      </Thread>
+    </CPU>
+  </Variant>
+  <Variant Name = "Master" >
+    <CPU CountCore = "1" >
+      <Thread>
+        <Module Name = "AloneGUI"          />
+        <Module Name = "ServerLogicMaster" />
+        <Module Name = "MMOEngineMaster"   />
+        <Module Name = "DataBase"          />
+        <Module Name = "Timer"             />
+      </Thread>
+    </CPU>
+    <CPU CountCore = "2" >
+      <Thread>
+        <Module Name = "AloneGUI"        />
+        <Module Name = "MMOEngineMaster" />
+        <Module Name = "DataBase"        />
+      </Thread>
+      <Thread>
+        <Module Name = "ServerLogicMaster" />
+        <Module Name = "Timer"             />
+      </Thread>
+    </CPU>
+    <CPU CountCore = "4" >
+      <Thread>
+        <Module Name = "AloneGUI"         />
+        <Module Name = "MMOEngineMaster"  />
+        <Module Name = "DataBase"         />
+      </Thread>
+      <Thread>
+        <Module Name = "ServerLogicMaster"/>
+        <Module Name = "Timer"            />
+      </Thread>
+    </CPU>
+  </Variant>
+  <Variant Name = "SuperServer" >
+    <CPU CountCore = "1" >
+      <Thread>
+        <Module Name = "AloneGUI"              />
+        <Module Name = "ServerLogicSuperServer"/>
+        <Module Name = "MMOEngineSuperServer"  />
+        <Module Name = "Timer"                 />
+      </Thread>
+    </CPU>
+    <CPU CountCore = "2" >
+      <Thread>
+        <Module Name = "AloneGUI"              />
+        <Module Name = "MMOEngineSuperServer"  />
+      </Thread>
+      <Thread>
+        <Module Name = "ServerLogicSuperServer"/>
+        <Module Name = "Timer"                 />
+      </Thread>
+    </CPU>
+    <CPU CountCore = "4" >
+      <Thread>
+        <Module Name = "AloneGUI"              />
+        <Module Name = "MMOEngineSuperServer"  />
+      </Thread>
+      <Thread>
+        <Module Name = "ServerLogicSuperServer"/>
+        <Module Name = "Timer"                 />
       </Thread>
     </CPU>
   </Variant>

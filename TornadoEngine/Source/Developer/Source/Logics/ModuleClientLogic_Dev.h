@@ -10,8 +10,12 @@ See for more information License.h.
 
 #include "ModuleClientLogic.h"
 
+class TClientMain;
+
 class TModuleClientLogic_Dev : public TModuleClientLogic
 {
+	TClientMain* mClientMain;
+
 public:
 	virtual void StartEvent();
 protected:
@@ -21,6 +25,7 @@ protected:
 private:
 
 	void StartTimer();
+	void InitForms();
 };
 
 #endif

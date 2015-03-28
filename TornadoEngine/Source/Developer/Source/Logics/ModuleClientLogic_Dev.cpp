@@ -9,6 +9,7 @@ See for more information License.h.
 #include "ListModules.h"
 #include "LogicEventCallBack.h"
 #include "ModuleTimer.h"
+#include "ClientMain.h"
 
 bool TModuleClientLogic_Dev::WorkClient()
 {
@@ -40,14 +41,19 @@ void TModuleClientLogic_Dev::Input(int id, void* p, int size)
 //----------------------------------------------------------
 void TModuleClientLogic_Dev::StartEvent()
 {
-	TLogicEventCallBack* pLCB = new TLogicEventCallBack;
-	pLCB->mCB.Register( &TModuleClientLogic_Dev::StartTimer, this);
-	TSynchroAbonent::AddEventWithoutCopy(nsListModules::Timer, pLCB);
+	//CallBackModule(nsListModules::Timer, &TModuleClientLogic_Dev::StartTimer);
+	CallBackModule(nsListModules::GraphicEngine, &TModuleClientLogic_Dev::InitForms);
 }
 //----------------------------------------------------------
 void TModuleClientLogic_Dev::StartTimer()
 {
 	// вызовется из потока таймера
 	unsigned int mID_Timer = mComp.pTimer->New(5000);
+}
+//----------------------------------------------------------
+void TModuleClientLogic_Dev::InitForms()
+{
+	mClientMain = new TClientMain;
+	mClientMain->Show();
 }
 //----------------------------------------------------------

@@ -394,6 +394,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Blog.h"
+				>
+			</File>
+			<File
 				RelativePath=".\BreakPacket.h"
 				>
 			</File>
@@ -447,10 +451,6 @@
 			</File>
 			<File
 				RelativePath=".\CryptoRSA_Impl.h"
-				>
-			</File>
-			<File
-				RelativePath=".\DateChanges.h"
 				>
 			</File>
 			<File
