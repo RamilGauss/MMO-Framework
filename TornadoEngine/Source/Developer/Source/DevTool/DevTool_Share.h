@@ -15,6 +15,7 @@ See for more information License.h.
 #include "Resources.h"
 #include "CallBackRegistrator.h"
 
+class TModuleLogic;
 class TModuleDev;
 
 class TDevTool_Share : public IDevTool
@@ -39,12 +40,11 @@ public:
   TDevTool_Share();
   virtual ~TDevTool_Share();
 
-  virtual void Init(std::vector<std::string>& arg);
   virtual std::string GetFileDescConveyer();
   virtual IModule* GetModuleByName(const char* sName);
   virtual void EventGameEngine(int id, const char* sDesc);
 protected:
-  void InitMapModules();
+	void InitMapModules();
   // навигация
   int FindIDByNameModule(std::string name);
   TModuleDev* FindPtrModuleByID(int id);
@@ -54,8 +54,14 @@ protected:
 private:
 
   TCallBackRegistrator1<TModuleDev*> mCBSetupGraphicEngine;
-
   void SetupGraphicEngine(TModuleDev* pModule);
+
+private:
+	// реакции на события
+  void Init();
+	void SetComponentsForLogic();
+	
+	TModuleLogic* FindLogic();
 };
 
 #endif

@@ -16,24 +16,20 @@ namespace nsListModules
     Undef               = 0,
     // visual
     GraphicEngine,      // client
-    AloneGUISlave,
-    AloneGUIMaster,
-    AloneGUISuperServer,
+    AloneGUI,           // server
     // network
     MMOEngineClient,
     MMOEngineSlave,
     MMOEngineMaster,
     MMOEngineSuperServer,
-    // client logic
+    // logic
     ClientLogic,
-    // server logic
     ServerLogicSlave,
     ServerLogicMaster,
     ServerLogicSuperServer,
     // auxiliary
-    PhysicEngineClient, // common ???
-    PhysicEngineSlave,  // common ???
-    SoundEngine,        // client (common ?)
+    PhysicEngine, 
+    SoundEngine,        // client
     DataBase,           // common
     Timer,              // common
   }ID_Modules;

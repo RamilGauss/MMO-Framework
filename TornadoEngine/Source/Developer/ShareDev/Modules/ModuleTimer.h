@@ -8,11 +8,11 @@ See for more information License.h.
 #ifndef ModuleTimerH
 #define ModuleTimerH
 
-#include "ModuleDev.h"
 #include <map>
 #include "HiTimer.h"
+#include "ModuleComponent.h"
 
-class DllExport TModuleTimer : public TModuleDev
+class DllExport TModuleTimer : public TModuleComponent
 {
   unsigned int mLastID;
 

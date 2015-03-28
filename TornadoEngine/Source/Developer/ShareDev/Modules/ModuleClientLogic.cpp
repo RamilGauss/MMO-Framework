@@ -9,19 +9,8 @@ See for more information License.h.
 
 bool TModuleClientLogic::Work()
 {
-  InputFromModules();
+  InputFromSynchroPoint();
   bool resWork = WorkClient();
-  OutputToModules();
   return true;
-}
-//----------------------------------------------------------------
-void TModuleClientLogic::StartEvent()
-{
-
-}
-//----------------------------------------------------------------
-void TModuleClientLogic::StopEvent()
-{
-
 }
 //----------------------------------------------------------------

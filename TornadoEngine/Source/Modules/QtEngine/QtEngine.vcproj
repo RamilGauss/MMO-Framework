@@ -238,6 +238,10 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\QtEventNotify.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Generated Files"

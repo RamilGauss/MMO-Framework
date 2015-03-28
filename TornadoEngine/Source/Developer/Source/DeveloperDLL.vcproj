@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./DevTool;./GameObjects;./GUI;./Protocols;../ShareDev/Share;../ShareDev/Adapters;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;../../Base/Share;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../ShareDev/Modules;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine"
+				AdditionalIncludeDirectories="./;./DevTool;./GameObjects;./GUI;./Logics;./Protocols;../ShareDev/Share;../ShareDev/Adapters;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;../../Base/Share;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../ShareDev/Modules;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -228,108 +228,44 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Modules"
+			Name="Logics"
 			>
 			<File
-				RelativePath=".\Modules\ListModules.h"
+				RelativePath=".\Logics\ListModules.h"
 				>
 			</File>
-			<Filter
-				Name="Client"
+			<File
+				RelativePath=".\Logics\ModuleClientLogic_Dev.cpp"
 				>
-				<File
-					RelativePath=".\Modules\Client\ModuleClientLogic_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Client\ModuleClientLogic_Dev.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Client\ModuleGraphicEngine_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Client\ModuleGraphicEngine_Dev.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Client\ModulePhysicEngineClient_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Client\ModulePhysicEngineClient_Dev.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Slave"
+			</File>
+			<File
+				RelativePath=".\Logics\ModuleClientLogic_Dev.h"
 				>
-				<File
-					RelativePath=".\Modules\Slave\ModuleAloneGUISlave_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Slave\ModuleAloneGUISlave_Dev.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Slave\ModulePhysicEngineSlave_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Slave\ModulePhysicEngineSlave_Dev.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Slave\ModuleServerLogicSlave_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Slave\ModuleServerLogicSlave_Dev.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Master"
+			</File>
+			<File
+				RelativePath=".\Logics\ModuleServerLogicMaster_Dev.cpp"
 				>
-				<File
-					RelativePath=".\Modules\Master\ModuleAloneGUIMaster_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Master\ModuleAloneGUIMaster_Dev.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Master\ModuleServerLogicMaster_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\Master\ModuleServerLogicMaster_Dev.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="SuperServer"
+			</File>
+			<File
+				RelativePath=".\Logics\ModuleServerLogicMaster_Dev.h"
 				>
-				<File
-					RelativePath=".\Modules\SuperServer\ModuleAloneGUISuperServer_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\SuperServer\ModuleAloneGUISuperServer_Dev.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\SuperServer\ModuleServerLogicSuperServer_Dev.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\SuperServer\ModuleServerLogicSuperServer_Dev.h"
-					>
-				</File>
-			</Filter>
+			</File>
+			<File
+				RelativePath=".\Logics\ModuleServerLogicSlave_Dev.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\ModuleServerLogicSlave_Dev.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\ModuleServerLogicSuperServer_Dev.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\ModuleServerLogicSuperServer_Dev.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="GUI"

@@ -14,9 +14,6 @@ See for more information License.h.
 class DllExport TModuleMMOEngineSlave : 
   public TModuleMMOEngine<nsMMOEngine::TSlave>
 {
-protected:
-  virtual void Input(int id_sender, void* p, int size);
-  virtual bool Output(void* p, int size);
 };
 
 #endif

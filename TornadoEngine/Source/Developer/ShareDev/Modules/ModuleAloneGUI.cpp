@@ -8,15 +8,14 @@ See for more information License.h.
 #include "ModuleAloneGUI.h"
 #include "QtEngine.h"
 
+#include "LogicEventCallBack.h"
+#include <QApplication>
+#include "QtEventNotify.h"
+
 TModuleAloneGUI::TModuleAloneGUI()
 {
   mArgc = 0;
   mArgv = NULL;
-}
-//--------------------------------------------------------------
-TModuleAloneGUI::~TModuleAloneGUI()
-{
-
 }
 //--------------------------------------------------------------
 void TModuleAloneGUI::StartEvent()
@@ -35,8 +34,8 @@ bool TModuleAloneGUI::Work()
   if(mQt->IsActive()==false)
     return false;
 
-  InputFromModules();
-  //OutputFromModule();// не имеет смысла вызывать, потому что все события обрабатываются в формах
+  InputFromSynchroPoint();
+  OutputToSynchroPoint();
   return true;
 }
 //--------------------------------------------------------------
@@ -44,5 +43,25 @@ void TModuleAloneGUI::SetArg(int argc, char** argv)
 {
   mArgc = argc;
   mArgv = argv;
+}
+//--------------------------------------------------------------
+void TModuleAloneGUI::Input(int id_sender, void* p, int size)
+{
+	if(id_sender!=mLogicID)
+		return;
+
+	TBaseLogicPacket* pBLP = (TBaseLogicPacket*)p;
+	switch(pBLP->type)
+	{
+		case nsBaseLogicPacket::eCallBack0:
+		{
+			// создать customEvent для Qt
+			TQtEventNotify* pE = new TQtEventNotify;
+			pE->mCB = ((TLogicEventCallBack*)pBLP)->mCB;
+			QCoreApplication::postEvent( mQt->GetApp(), pE);
+		}
+			break;
+		default:;
+	}
 }
 //--------------------------------------------------------------

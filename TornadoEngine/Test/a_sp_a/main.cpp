@@ -1,55 +1,57 @@
-#include "ThreadBoost.h"
-#include <boost/thread/thread_time.hpp>
-#include <boost/thread/thread.hpp>
-#include <boost/thread/condition_variable.hpp>
-
 #include "SynchroAbonent.h"
 #include "SynchroPoint.h"
 #include "ContainerTypes.h"
 #include "HiTimer.h"
 #include "ShareMisc.h"
 #include "BL_Debug.h"
+#include "CallBackRegistrator.h"
+#include "ContainerArrObj.h"
 
-#define NUM_GE  0
-#define NUM_PE  1
-#define NUM_SE  2
+#define NUM_GE    1
+#define NUM_LOGIC 2
 
 //Цель теста: тестирование связки Точка синхронизация-Абоненты
+class TA
+{
+public:
+	~TA()
+	{
+		abc = 0;
+	}
+	int abc;
+};
 
 int main(int argc, char** argv)
 {
   bool resSetPath = SetCurrentPathByFile(argv[0]);
   BL_ASSERT(resSetPath);
 
-  TSynchroAbonent GE, PE, SE;
+  TSynchroAbonent GE, Logic;
   TSynchroPoint* pSP = new TSynchroPoint;
 
   GE.SetSynchroPoint(pSP);
   GE.SetSelfID(NUM_GE);
-  GE.Register(NUM_PE);
 
-  SE.SetSynchroPoint(pSP);
-  SE.SetSelfID(NUM_SE);
-  SE.Register(NUM_PE);
+	Logic.SetSynchroPoint(pSP);
+	Logic.SetSelfID(NUM_LOGIC);
 
-  PE.SetSynchroPoint(pSP);
-  PE.SetSelfID(NUM_PE);
-  PE.Register(NUM_GE);
-  
-  //char eventGE[] = {0x1,};
-  //GE.AddEventCopy( &eventGE[0], sizeof(eventGE));
-  //TContainer* pEvent1 = PE.GetEvent(NUM_GE);
+	pSP->SetupAfterRegister();
 
-  char eventPE[] = {0x2,};
-  PE.AddEventWithoutCopy( &eventPE[0], sizeof(eventPE));
+	int i = 0;
+	while(1)
+	{
+		i++;
+		TA* pA0 = new TA;
+		pA0->abc = i;
+		IContainer* pC = new TContainerArrObj<TA>;
+		pC->EntrustByCount( (char*)pA0, 1);
+		GE.AddEventWithoutCopy( NUM_LOGIC, pC);
 
-  TContainer* pEventGE = GE.GetEvent(NUM_PE);
-  char* pGE  = pEventGE->GetPtr();
-  int sizeGE = pEventGE->GetSize();
-
-  TContainer* pEventSE = SE.GetEvent(NUM_PE);
-  char* pSE  = pEventSE->GetPtr();
-  int sizeSE = pEventSE->GetSize();
+		int id_sender;
+		IContainer* pEventLogic = Logic.GetEvent(id_sender);
+		TA* pA1  = (TA*)pEventLogic->GetPtr();
+		int a = 0;
+	}
 
   return 0;
 }

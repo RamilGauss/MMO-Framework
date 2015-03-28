@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef ModuleMMOEngineH
 #define ModuleMMOEngineH
 
-#include "ModuleDev.h"
+#include "ModuleComponent.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "WrapperMakerTransport.h"
@@ -20,7 +20,7 @@ See for more information License.h.
 class TWrapperMakerTransport;
 
 template <typename T>
-class DllExport TModuleMMOEngine : public TModuleDev
+class DllExport TModuleMMOEngine : public TModuleComponent
 {
   boost::scoped_ptr<TWrapperMakerTransport> mMakerTransport;
   boost::scoped_ptr<T>                      mPtrMMO;
@@ -53,10 +53,10 @@ void TModuleMMOEngine<T>::StopEvent()
 template <typename T>
 bool TModuleMMOEngine<T>::Work()
 {
-  InputFromModules();
+  InputFromSynchroPoint();
   //дать квант времени и транслировать события в игровой движок
   mPtrMMO->Work();
-  OutputToModules();
+  OutputToSynchroPoint();
   return true;// всегда возвращать true
 }
 //------------------------------------------------------------------------------------

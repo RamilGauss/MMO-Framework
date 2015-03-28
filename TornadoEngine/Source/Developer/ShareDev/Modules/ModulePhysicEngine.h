@@ -8,13 +8,12 @@ See for more information License.h.
 #ifndef ModulePhysicEngineH
 #define ModulePhysicEngineH
 
-#include "ModuleDev.h"
+#include "ModuleComponent.h"
 
-class DllExport TModulePhysicEngine : public TModuleDev
+class DllExport TModulePhysicEngine : public TModuleComponent
 {
 public:
   TModulePhysicEngine();
-  virtual ~TModulePhysicEngine();
 
   virtual void StartEvent();
   virtual bool Work();

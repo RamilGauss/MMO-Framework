@@ -24,14 +24,9 @@ class TParserXMLConveyer
   std::string strError;
 
   typedef std::vector<std::string> TVecStr;
-  typedef std::vector< TVecStr > TVecVecStr;
+  typedef std::vector<TVecStr> TVecVecStr;
 
   TVecVecStr mVecVecStrModule;
-
-  typedef std::map<std::string,TVecStr> TMapStrVecStr;
-  typedef TMapStrVecStr::value_type TMapStrVecStrVT;
-  typedef TMapStrVecStr::iterator TMapStrVecStrIt;
-  TMapStrVecStr mMapDst_SrcModule;
 
 public:
   TParserXMLConveyer();
@@ -39,17 +34,13 @@ public:
 
   bool Work(std::string& fileDescConveyer, std::string& variantConveyer);
   std::string GetStrError();
-  void GetResult(std::vector< std::vector<std::string > >&         vecVecStrModule, 
-                 std::map<std::string, std::vector<std::string> >& mapDst_SrcModule);
+  void GetResult(std::vector< std::vector<std::string > >& vecVecStrModule);
 protected:
   bool SearchVariant();
   bool SearchCountCore();
-  bool MakeMapDstSrcModule();
   bool MakeStrModule();
 
   void ErrorNoSection(const char* section);
-
-  TVecStr* FindVecStrByName(std::string name);
 };
 
 #endif

@@ -30,22 +30,7 @@ void TSynchroAbonent::SetSynchroPoint(TSynchroPoint* p)
 void TSynchroAbonent::SetSelfID(int id)
 {
   mSelfID = id;
-}
-//------------------------------------------------------------------------------
-void TSynchroAbonent::Register(int id_sender)
-{
-	mSynchroPoint->Register(mSelfID, id_sender);
-  mVecID_Senders.push_back(id_sender);
-}
-//------------------------------------------------------------------------------
-void TSynchroAbonent::AddEventCopy(void* data, int size)
-{
-	mSynchroPoint->AddEventCopy(mSelfID, data, size);
-}
-//------------------------------------------------------------------------------
-void TSynchroAbonent::AddEventWithoutCopy(void* data, int size)
-{
-  mSynchroPoint->AddEventWithoutCopy(mSelfID, data, size);
+	mSynchroPoint->Register(mSelfID);
 }
 //------------------------------------------------------------------------------
 void TSynchroAbonent::AddEventCopy(int id_recv, void* data, int size)
@@ -53,42 +38,29 @@ void TSynchroAbonent::AddEventCopy(int id_recv, void* data, int size)
   mSynchroPoint->AddEventCopy(mSelfID, id_recv, data, size);
 }
 //------------------------------------------------------------------------------
-void TSynchroAbonent::AddEventWithoutCopy(int id_recv, void* data, int size)
-{
-  mSynchroPoint->AddEventWithoutCopy(mSelfID, id_recv, data, size);
-}
-//------------------------------------------------------------------------------
-TContainer* TSynchroAbonent::GetEvent(int id_sender)
+IContainer* TSynchroAbonent::GetEvent(int& id_sender)
 {
   // найти среди кеша
-	TContainer* pC = FindContainerByID(id_sender);
-	bool res = mSynchroPoint->GetEvent(mSelfID, id_sender, pC);
-  if(res)
-    return pC;
-
-	return NULL;
-}
-//------------------------------------------------------------------------------
-TContainer* TSynchroAbonent::FindContainerByID(int id)
-{
-	TMapIntPtrIt fit = mMapID_LastEvent.find(id);
-	if(fit!=mMapID_LastEvent.end())
-		return fit->second;
-
-	TContainer* pC = new TContainer;
-	mMapID_LastEvent.insert(TMapIntPtrVT(id, pC));
+	IContainer* pC = mSynchroPoint->GetEvent(mSelfID, id_sender);
+	if(pC)
+		AddCache(pC, id_sender);
 	return pC;
 }
 //------------------------------------------------------------------------------
-int TSynchroAbonent::GetCountSenders()
+void TSynchroAbonent::AddCache(IContainer* pC, int id_sender)
 {
-  return mVecID_Senders.size();
+	TMapIntPtrIt fit = mMapID_LastEvent.find(id_sender);
+	if(fit!=mMapID_LastEvent.end())
+	{
+		delete fit->second;// тип объекта может быть каждый разный, поэтому контейнер нужно каждый раз удалять
+		mMapID_LastEvent[id_sender] = pC;
+	}
+	else
+		mMapID_LastEvent.insert(TMapIntPtrVT(id_sender, pC));
 }
 //------------------------------------------------------------------------------
-int TSynchroAbonent::GetID_SenderByIndex(int index)
+void TSynchroAbonent::AddEventWithoutCopy(int id_recv, IContainer* pC)
 {
-  if(index >= GetCountSenders() || index < 0)
-    return -1;
-  return mVecID_Senders[index];
+	mSynchroPoint->AddEventWithoutCopy(mSelfID, id_recv, pC);
 }
 //------------------------------------------------------------------------------

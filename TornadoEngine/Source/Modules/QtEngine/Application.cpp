@@ -6,20 +6,22 @@ See for more information License.h.
 */
 
 #include "Application.h"
+#include "CallBackRegistrator.h"
+#include "QtEventNotify.h"
 
 TApplication::TApplication(int arc, char** arv) : QApplication(arc, arv)
 {
-  mCB_Timer = NULL;
+
 }
 //--------------------------------------------------------------------
-void TApplication::SetCallBackTimer(TCallBackRegistrator0* pCB)
+void TApplication::customEvent(QEvent *pE)
 {
-  mCB_Timer = pCB;
-}
-//--------------------------------------------------------------------
-void TApplication::timerEvent( QTimerEvent * e )
-{
-  if(mCB_Timer)
-    mCB_Timer->Notify();
+	switch(pE->type())
+	{
+		case TQtEventNotify::TypeEvent:
+			((TQtEventNotify*)pE)->mCB.Notify();
+			break;
+		default:;
+	}
 }
 //--------------------------------------------------------------------

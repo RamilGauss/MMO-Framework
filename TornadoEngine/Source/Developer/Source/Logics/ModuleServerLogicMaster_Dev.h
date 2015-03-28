@@ -17,7 +17,6 @@ protected:
   virtual void EndWork();
 
   virtual void Input(int id, void* p, int size);
-  virtual bool Output(void* p, int size);
 };
 
 #endif

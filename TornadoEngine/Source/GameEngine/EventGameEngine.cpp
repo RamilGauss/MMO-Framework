@@ -24,6 +24,8 @@ namespace nsGameEngine
 
   TDescEvent g_StrEvents[] = 
   {
+		{eAfterCreateDevTool,    "После создания инструмента разработчика"                        },
+		{eAfterCreateModules,    "После создания всех модулей"                                    },
     {eStartThreads,          "Создание и настройка модулей завершена, запуск потоков модулей."},
     {eStopThreads,           "Остановка потоков, причина %s."                                 },
     {eStopThreadsEnd,        "Остановка потоков."                                             },

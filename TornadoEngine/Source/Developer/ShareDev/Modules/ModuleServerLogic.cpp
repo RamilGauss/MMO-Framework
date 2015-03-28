@@ -7,6 +7,7 @@ See for more information License.h.
 
 #include "ModuleServerLogic.h"
 #include "Logger.h"
+#include "HiTimer.h"
 
 #define STR_NAME_SERVER_LOGIC "ServerLogic"
 
@@ -22,32 +23,16 @@ TModuleServerLogic::TModuleServerLogic():mStatLoad(30)
   mStartTime    = -1;
 }
 //----------------------------------------------------------------
-TModuleServerLogic::~TModuleServerLogic()
-{
-
-}
-//----------------------------------------------------------------
 bool TModuleServerLogic::Work()
 {
   mStartTime = ht_GetMSCount();
 
-  InputFromModules();
+  InputFromSynchroPoint();
   bool resWork = WorkServer();
-  OutputToModules();
   CalcAndWaitRestTime();
 
   EndWork();
   return resWork;
-}
-//----------------------------------------------------------------
-void TModuleServerLogic::StartEvent()
-{
-
-}
-//----------------------------------------------------------------
-void TModuleServerLogic::StopEvent()
-{
-
 }
 //----------------------------------------------------------------
 void TModuleServerLogic::SetCycleTime(unsigned int t_ms)

@@ -20,8 +20,8 @@ public:
   virtual int GetID()           = 0;
   virtual std::string GetName() = 0;
 
-  virtual void StartEvent() = 0;
-  virtual void StopEvent()  = 0;
+	virtual void StartEvent(){}
+	virtual void StopEvent() {}
 };
 
 #endif

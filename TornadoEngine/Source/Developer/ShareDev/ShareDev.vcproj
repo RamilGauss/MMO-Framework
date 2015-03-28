@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./Share;./Adapters;./;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine"
+				AdditionalIncludeDirectories="./;./Share;./Modules;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -180,6 +180,14 @@
 			Name="Share"
 			>
 			<File
+				RelativePath=".\Share\Components.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\Components.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Share\ModuleDev.cpp"
 				>
 			</File>
@@ -224,66 +232,18 @@
 			Name="Modules"
 			>
 			<Filter
-				Name="Header Files"
+				Name="Logic"
 				>
 				<File
-					RelativePath=".\Modules\ModuleAloneGUI.h"
+					RelativePath=".\Modules\BaseLogicPacket.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Modules\ModuleClientLogic.h"
+					RelativePath=".\Modules\BaseLogicPacket.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Modules\ModuleDataBase.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleGraphicEngine.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleMMOEngine.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleMMOEngineClient.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleMMOEngineMaster.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleMMOEngineSlave.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleMMOEngineSuperServer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModulePhysicEngine.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleServerLogic.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleSoundEngine.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleTimer.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Source Files"
-				>
-				<File
-					RelativePath=".\Modules\ModuleAloneGUI.cpp"
+					RelativePath=".\Modules\LogicEventCallBack.h"
 					>
 				</File>
 				<File
@@ -291,31 +251,15 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Modules\ModuleDataBase.cpp"
+					RelativePath=".\Modules\ModuleClientLogic.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Modules\ModuleGraphicEngine.cpp"
+					RelativePath=".\Modules\ModuleLogic.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Modules\ModuleMMOEngineClient.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleMMOEngineMaster.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleMMOEngineSlave.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModuleMMOEngineSuperServer.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modules\ModulePhysicEngine.cpp"
+					RelativePath=".\Modules\ModuleLogic.h"
 					>
 				</File>
 				<File
@@ -323,13 +267,97 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Modules\ModuleSoundEngine.cpp"
+					RelativePath=".\Modules\ModuleServerLogic.h"
 					>
 				</File>
-				<File
-					RelativePath=".\Modules\ModuleTimer.cpp"
+			</Filter>
+			<Filter
+				Name="Components"
+				>
+				<Filter
+					Name="Header Files"
 					>
-				</File>
+					<File
+						RelativePath=".\Modules\ModuleAloneGUI.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleDataBase.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleGraphicEngine.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleMMOEngine.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleMMOEngineClient.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleMMOEngineMaster.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleMMOEngineSlave.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleMMOEngineSuperServer.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModulePhysicEngine.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleSoundEngine.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleTimer.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Source Files"
+					>
+					<File
+						RelativePath=".\Modules\ModuleAloneGUI.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleComponent.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleDataBase.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleGraphicEngine.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModulePhysicEngine.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleSoundEngine.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Modules\ModuleTimer.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 	</Files>

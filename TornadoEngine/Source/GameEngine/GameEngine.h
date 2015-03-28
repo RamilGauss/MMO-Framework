@@ -42,10 +42,6 @@ class DllExport TGameEngine
   typedef std::vector<TThreadModules*> TVecPtrThread;
   TVecPtrThread mVecThread;
 
-  typedef std::map<std::string,TVecStr> TMapStrVecStr;
-  typedef TMapStrVecStr::iterator TMapStrVecStrIt;
-  TMapStrVecStr mMapDst_SrcModule;
-
   typedef std::map<std::string,int> TMapStrInt;
   typedef TMapStrInt::value_type TMapStrIntVT;
   typedef TMapStrInt::iterator TMapStrIntIt;
@@ -62,7 +58,7 @@ class DllExport TGameEngine
 public:
   TGameEngine();
 
-  void Work(int variant_use, const char* sNameDLL, std::vector<std::string>& arg);// начало работы
+  void Work(int variant_use, const char* sNameDLL);// начало работы
   std::string GetVersion();
 private:
   void Init();
@@ -84,7 +80,7 @@ private:
 private:
   void Done();
   void StopThreadByModule(std::string sNameModule);// callback
-  void Event(int id, std::string param);
+  void Event(int id, std::string param = "");
 };
 
 #endif

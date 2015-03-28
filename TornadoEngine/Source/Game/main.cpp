@@ -63,8 +63,7 @@ int main(int argc, char** argv){
   }
   //-----------------------------------------------------------------  
   pGame->Work(inputTornado.variant_use, 
-              inputTornado.libName.data(), 
-              inputTornado.param);
+              inputTornado.libName.data());
   delete pGame;
   return 0;
 }
@@ -83,15 +82,13 @@ void ViewHowUse()
 		"Некорректный ввод параметров.\n"
     "Ключ -d имя загружаемой библиотеки (обязательный параметр).\n"
     "\n"
-    "Ключ -p строка, адресованная воплощению игры.\n"
-    "\n"
     "Ключ -v вариант, который будет использован из библиотеки,\n"
     "по-умолчанию используется 0, (см. GetDevTool(int variant).\n"
     "\n"
     "Ключ -c показывает консоль. Ключ актуален только для Windows.\n"
     "\n"
     "Например:\n"
-    "Tornado.exe -v 0 -d ..\\Developer\\DLL\\DeveloperDLL.dll -p ip 192.168.23.226 port 1000\n";
+    "Tornado.exe -v 0 -d DeveloperDLL.dll\n";
 #ifdef WIN32
   size_t lenMsgUtf8 = strlen(sMsgUtf8);
 	TContainer cWin1251;

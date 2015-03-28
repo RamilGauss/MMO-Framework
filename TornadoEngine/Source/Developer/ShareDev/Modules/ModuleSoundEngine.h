@@ -8,13 +8,12 @@ See for more information License.h.
 #ifndef ModuleSoundEngineH
 #define ModuleSoundEngineH
 
-#include "ModuleDev.h"
+#include "ModuleComponent.h"
 
-class DllExport TModuleSoundEngine : public TModuleDev
+class DllExport TModuleSoundEngine : public TModuleComponent
 {
 public:
   TModuleSoundEngine();
-  virtual ~TModuleSoundEngine();
 
   virtual void StartEvent();
   virtual bool Work();

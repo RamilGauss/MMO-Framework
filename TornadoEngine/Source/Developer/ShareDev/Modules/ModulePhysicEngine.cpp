@@ -12,11 +12,6 @@ TModulePhysicEngine::TModulePhysicEngine()
 
 }
 //---------------------------------------------------------------------------------
-TModulePhysicEngine::~TModulePhysicEngine()
-{
-
-}
-//---------------------------------------------------------------------------------
 bool TModulePhysicEngine::Work()
 {
   return true;

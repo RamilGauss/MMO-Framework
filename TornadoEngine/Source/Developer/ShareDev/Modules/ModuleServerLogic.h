@@ -8,10 +8,10 @@ See for more information License.h.
 #ifndef ModuleServerLogicH
 #define ModuleServerLogicH
 
-#include "ModuleDev.h"
 #include "StatisticValue.h"
+#include "ModuleLogic.h"
 
-class DllExport TModuleServerLogic : public TModuleDev
+class DllExport TModuleServerLogic : public TModuleLogic
 {
   unsigned int mCycleTime_ms;
 
@@ -20,14 +20,9 @@ class DllExport TModuleServerLogic : public TModuleDev
 
   unsigned int mStartTime;
 public:
-
   TModuleServerLogic();
-  virtual ~TModuleServerLogic();
 
-  virtual void StartEvent();
   virtual bool Work();
-  virtual void StopEvent();
-
 protected:
   // вызов между input и output
   virtual bool WorkServer() = 0;

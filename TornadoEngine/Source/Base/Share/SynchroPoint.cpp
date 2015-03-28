@@ -8,6 +8,7 @@ See for more information License.h.
 #include "SynchroPoint.h"
 #include <boost/foreach.hpp>
 #include "BL_Debug.h"
+#include "ContainerTypes.h"
 
 
 TSynchroPoint::TSynchroPoint()
@@ -20,131 +21,97 @@ TSynchroPoint::~TSynchroPoint()
   Done();
 }
 //-----------------------------------------------------------------------------------------
-void TSynchroPoint::Register(int id_reciver, int id_sender)
+void TSynchroPoint::Register(int id_abonent)
 {
-  TMapIntMapIt fitRecvList = mMap_Sender_Recv_ListEvent.find(id_sender);
-  if(fitRecvList==mMap_Sender_Recv_ListEvent.end())
-  {
-    TMapIntPtr mapRecvList;
-    TListContainer* pList = new TListContainer;
-    mapRecvList[id_reciver] = pList;
-
-    mMap_Sender_Recv_ListEvent[id_sender] = mapRecvList;
-    return;
-  }
-    
-  TMapIntPtrIt fitList = fitRecvList->second.find(id_reciver);
-  if(fitList!=fitRecvList->second.end())
-    return;
-
-  TListContainer* pList = new TListContainer;
-  fitRecvList->second[id_reciver] = pList;
+	mListIDAbonent.push_back(id_abonent);
 }
 //-----------------------------------------------------------------------------------------
-void TSynchroPoint::AddEventCopy(int id_sender, void* data, int size)
+void TSynchroPoint::SetupAfterRegister()
 {
-  AddEvent(id_sender, data, size, true);
+	// матрица всех возможных комбинаций
+	BOOST_FOREACH(int& id_recv, mListIDAbonent)
+	{
+		TMapIntPtr mapID_RecvList;
+		BOOST_FOREACH(int& id_sender, mListIDAbonent)
+		{
+			if(id_recv!=id_sender)
+				mapID_RecvList.insert(TMapIntPtrVT(id_sender, new TListContainer));
+		}
+		mMap_Recv_Sender_ListEvent.insert(TMapIntMapVT(id_recv,mapID_RecvList));
+	}
 }
 //-----------------------------------------------------------------------------------------
-void TSynchroPoint::AddEventWithoutCopy(int id_sender, void* data, int size)
+IContainer* TSynchroPoint::GetEvent(int id_reciver, int& id_sender)
 {
-  AddEvent(id_sender, data, size, false);
-}
-//-----------------------------------------------------------------------------------------
-bool TSynchroPoint::GetEvent(int id_reciver, int id_sender, TContainer* pC_out)
-{
-  TMapIntMapIt fitRecv_List = mMap_Sender_Recv_ListEvent.find(id_sender);
-  if(fitRecv_List==mMap_Sender_Recv_ListEvent.end())
-    return false;
+	TMapIntMapIt fitSender_List = mMap_Recv_Sender_ListEvent.find(id_reciver);
+	if(fitSender_List==mMap_Recv_Sender_ListEvent.end())
+	{
+		BL_FIX_BUG();
+		return NULL;
+	}
 
-  TMapIntPtrIt fitList = fitRecv_List->second.find(id_reciver);
-  if(fitList==fitRecv_List->second.end())
-    return false;
-
-  TContainer** ppC = fitList->second->GetFirst();
-  if(ppC==NULL)
-    return false;
-
-  TContainer* pC = *ppC;
-  pC_out->Entrust(pC->GetPtr(), pC->GetSize());
-  pC->Unlink();
-  fitList->second->Remove(ppC);
-
-  return true;
+	BOOST_FOREACH(TMapIntPtrVT& vtSenderList, fitSender_List->second)
+	{
+		IContainer** ppC = vtSenderList.second->GetFirst();
+		if(ppC)
+		{
+			id_sender = vtSenderList.first;
+			IContainer* pC = *ppC;
+			vtSenderList.second->ZeroPointerElement(ppC);
+			vtSenderList.second->Remove(ppC);
+			return pC;
+		}
+	}
+	return NULL;
 }
 //-----------------------------------------------------------------------------------------
 void TSynchroPoint::Done()
 {
-  BOOST_FOREACH(TMapIntMapVT& vtSendRecv, mMap_Sender_Recv_ListEvent)
+  BOOST_FOREACH(TMapIntMapVT& vtRecvSend, mMap_Recv_Sender_ListEvent)
   {
-    BOOST_FOREACH(TMapIntPtrVT& vtRecvList, vtSendRecv.second)
+    BOOST_FOREACH(TMapIntPtrVT& vtSendList, vtRecvSend.second)
     {
-      delete vtRecvList.second;
+      delete vtSendList.second;
     }
   }
 }
 //-----------------------------------------------------------------------------------------
-void TSynchroPoint::AddEvent(int id_sender, void* data, int size, bool copy)
+bool TSynchroPoint::FindListEvents(int id_sender, int id_recv, TMapIntPtrIt& fitSendList)
 {
-  TMapIntMapIt fitSendRecv = mMap_Sender_Recv_ListEvent.find(id_sender);
-  if(fitSendRecv==mMap_Sender_Recv_ListEvent.end())
-  {
-    BL_FIX_BUG();
-    return;
-  }
+	TMapIntMapIt fitRecvSend = mMap_Recv_Sender_ListEvent.find(id_recv);
+	if(fitRecvSend==mMap_Recv_Sender_ListEvent.end())
+	{
+		BL_FIX_BUG();
+		return false;
+	}
 
-  int i = 0;
-  int count = fitSendRecv->second.size();
-  BOOST_FOREACH(TMapIntPtrVT& vtRecvList, fitSendRecv->second)
-  {
-    TContainer* pC = new TContainer;
+	fitSendList = fitRecvSend->second.find(id_sender);
+	if(fitRecvSend->second.end()==fitSendList)
+	{
+		BL_FIX_BUG();
+		return false;
+	}
 
-    if(i==count-1)
-    {
-      if(copy)
-        pC->SetData((char*)data,size);
-      else
-        pC->Entrust((char*)data,size);
-    }
-    else
-      pC->SetData((char*)data,size);
-
-    vtRecvList.second->Add(pC);
-    i++;
-  }
+	return true;
 }
 //-----------------------------------------------------------------------------------------
 void TSynchroPoint::AddEventCopy(int id_sender, int id_recv, void* data, int size)
 {
-  AddEvent(id_sender, id_recv, data, size, true);
+	TMapIntPtrIt fitSendList;
+	if(FindListEvents(id_sender, id_recv, fitSendList)==false)
+		return;
+
+  IContainer* pC = new TContainer;
+  pC->SetData((char*)data,size);
+  fitSendList->second->Add(pC);
 }
 //-----------------------------------------------------------------------------------------
-void TSynchroPoint::AddEventWithoutCopy(int id_sender, int id_recv, void* data, int size)
+void TSynchroPoint::AddEventWithoutCopy(int id_sender, int id_recv, IContainer* pC)
 {
-  AddEvent(id_sender, id_recv, data, size, false);
-}
-//-----------------------------------------------------------------------------------------
-void TSynchroPoint::AddEvent(int id_sender, int id_recv, void* data, int size, bool copy)
-{
-  TMapIntMapIt fitSendRecv = mMap_Sender_Recv_ListEvent.find(id_sender);
-  if(fitSendRecv==mMap_Sender_Recv_ListEvent.end())
-  {
-    BL_FIX_BUG();
-    return;
-  }
+	TMapIntPtrIt fitSendList;
+	if(FindListEvents(id_sender, id_recv, fitSendList)==false)
+		return;
 
-  TMapIntPtrIt fitRecvList = fitSendRecv->second.find(id_recv);
-  if(fitSendRecv->second.end()==fitRecvList)
-  {
-    BL_FIX_BUG();
-    return;
-  }
-
-  TContainer* pC = new TContainer;
-  if(copy)
-    pC->SetData((char*)data,size);
-  else
-    pC->Entrust((char*)data,size);
-  fitRecvList->second->Add(pC);
+	fitSendList->second->Add(pC);
 }
 //-----------------------------------------------------------------------------------------

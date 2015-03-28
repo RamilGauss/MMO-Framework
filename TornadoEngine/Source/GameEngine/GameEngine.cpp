@@ -27,6 +27,7 @@ See for more information License.h.
 using namespace std;
 
 #define STR_GAME "GameEngine"
+#define VERSION_GAME_ENGINE 7
 
 TGameEngine::TGameEngine()
 {
@@ -82,6 +83,8 @@ bool TGameEngine::LoadDLL(int variant_use, const char* sNameDLL)
   mDevTool = mGetDevTool(variant_use);
   if(mDevTool==NULL)// нет DLL - нет движка.
     return false;
+
+	Event(nsGameEngine::eAfterCreateDevTool);
   return true;
 }
 //----------------------------------------------------------------------
@@ -96,11 +99,10 @@ void TGameEngine::Init()
   }
 }
 //------------------------------------------------------------------------
-void TGameEngine::Work(int variant_use, const char* sNameDLL, vector<string>& arg)// начало работы
+void TGameEngine::Work(int variant_use, const char* sNameDLL)// начало работы
 {
   if(LoadDLL(variant_use,sNameDLL)==false)
     return;
-  mDevTool->Init(arg);
   // подготовка конвейера
   if(PrepareConveyer()==false)
     return;
@@ -119,15 +121,16 @@ void TGameEngine::Work(int variant_use, const char* sNameDLL, vector<string>& ar
 //------------------------------------------------------------------------
 string TGameEngine::GetVersion()
 {
-	return "Version 7, Tornado Game Engine";
+	char s[100];
+	sprintf(s, "Tornado Game Engine, Version %d", VERSION_GAME_ENGINE);
+	return s;
 }
 //------------------------------------------------------------------------
 void TGameEngine::StopThreadByModule(std::string sNameModule)
 {
   // создать событие
   Event(nsGameEngine::eStopThreads, sNameModule.data());
-
-  // проснуться
+  // разбудить главный поток
   Resume();
 }
 //------------------------------------------------------------------------
@@ -142,7 +145,7 @@ bool TGameEngine::PrepareConveyer()
     Event(nsGameEngine::eParseFileConveyerError, sError.data());
     return false;
   }
-  parser.GetResult(mVecVecStrModule, mMapDst_SrcModule);
+  parser.GetResult(mVecVecStrModule);
 
   return true;
 }
@@ -197,7 +200,7 @@ void TGameEngine::StopThreadsWithModules()
   }
   mVecThread.clear();
 
-  Event(nsGameEngine::eStopThreadsEnd,"");
+  Event(nsGameEngine::eStopThreadsEnd);
 }
 //------------------------------------------------------------------------
 bool TGameEngine::CreateModules()
@@ -224,6 +227,8 @@ bool TGameEngine::CreateModules()
     if(vecPtrModule.size())
       mVecVecModule.push_back(vecPtrModule);
   }
+
+	Event(nsGameEngine::eAfterCreateModules);
 
   if(mVecVecStrModule.size()==0)
     return false;
@@ -259,19 +264,9 @@ void TGameEngine::LinkModulesToSynchroPoint()
     {
       vecModule[iModule]->SetSynchroPoint(mSynchroPoint.get());
       vecModule[iModule]->SetSelfID(vecModule[iModule]->GetID());
-      // ищем вектор имен источников для данного модуля (на кого он хочет зарегистрироваться)
-      TMapStrVecStrIt fit = mMapDst_SrcModule.find(vecModule[iModule]->GetName());
-      if(fit!=mMapDst_SrcModule.end())
-      {
-        BOOST_FOREACH(string& nameSrc ,fit->second)
-        {
-          int id_src;// находим по имени ID
-          if(FindIDByNameModule(nameSrc, id_src))
-            vecModule[iModule]->Register(id_src);
-        }
-      }
     }
   }
+	mSynchroPoint->SetupAfterRegister();
 }
 //------------------------------------------------------------------------
 bool TGameEngine::FindIDByNameModule(string& nameSrc, int& id)

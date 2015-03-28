@@ -13,9 +13,6 @@ See for more information License.h.
 const char* sConveyer = "Conveyer";
 
 const char* sVariant     = "Variant";
-const char* sDataflow    = "Dataflow";
-const char* sDataflowDst = "Dst";
-const char* sDataflowSrc = "Src";
 const char* sCPU         = "CPU";
 const char* sThread      = "Thread";
 const char* sModule      = "Module";
@@ -60,11 +57,8 @@ bool TParserXMLConveyer::Work(string& fileDescConveyer, string& variantConveyer)
     strError = "Нет такого Варианта";
     return false;
   }
-  // потоки данных
-  if(MakeMapDstSrcModule()==false)
-    return false;
 
-  if(SearchCountCore()==false)
+	if(SearchCountCore()==false)
   {
     strError = "Нет такого количества ядер процессора";
     return false;
@@ -81,10 +75,9 @@ string TParserXMLConveyer::GetStrError()
   return strError;
 }
 //---------------------------------------------------------------------------------------
-void TParserXMLConveyer::GetResult(vector< vector<string > >& vecVecStrModule, map<string, vector<string> >& mapDst_SrcModule)
+void TParserXMLConveyer::GetResult(vector< vector<string > >& vecVecStrModule)
 {
   vecVecStrModule  = mVecVecStrModule;
-  mapDst_SrcModule = mMapDst_SrcModule;
 }
 //---------------------------------------------------------------------------------------
 bool TParserXMLConveyer::SearchVariant()
@@ -101,56 +94,11 @@ bool TParserXMLConveyer::SearchVariant()
   return false;
 }
 //---------------------------------------------------------------------------------------
-bool TParserXMLConveyer::MakeMapDstSrcModule()
-{
-  if(mXML->EnterSection(sDataflow, 0)==false)
-  {
-    ErrorNoSection(sDataflow);
-    return false;
-  }
-
-  int cntDst = mXML->GetCountSection(sDataflowDst);
-  if(cntDst==0)
-  {
-    ErrorNoSection(sDataflowDst);
-    return false;
-  }
-
-  for( int iDst = 0 ; iDst < cntDst ; iDst++ )
-  {
-    string nameDst = mXML->ReadSectionAttr(sDataflowDst, iDst, sName);
-    mMapDst_SrcModule.insert(TMapStrVecStrVT(nameDst,TVecStr()));
-    TVecStr* pVecStr = FindVecStrByName(nameDst);
-    if(mXML->EnterSection(sDataflowDst, iDst))
-    {
-      int cntSrc = mXML->GetCountSection(sDataflowSrc);
-      for( int iSrc = 0 ; iSrc < cntSrc ; iSrc++ )
-      {
-        string nameSrc = mXML->ReadSectionAttr(sDataflowSrc, iSrc, sName);
-        pVecStr->push_back(nameSrc);
-      }
-      mXML->LeaveSection();
-    }
-  }
-
-  mXML->LeaveSection();
-  return true;
-}
-//---------------------------------------------------------------------------------------
 void TParserXMLConveyer::ErrorNoSection(const char* section)
 {
   char s[200];
   sprintf(s, "Нет секции %s", section);
   strError = s;
-}
-//---------------------------------------------------------------------------------------
-TParserXMLConveyer::TVecStr* TParserXMLConveyer::FindVecStrByName(string name)
-{
-  TMapStrVecStrIt fit = mMapDst_SrcModule.find(name);
-  if(fit==mMapDst_SrcModule.end())
-    return NULL;
-  
-  return &fit->second;
 }
 //---------------------------------------------------------------------------------------
 bool TParserXMLConveyer::MakeStrModule()

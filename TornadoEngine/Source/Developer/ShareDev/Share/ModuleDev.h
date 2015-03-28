@@ -10,28 +10,23 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "IModule.h"
-#include "DstEvent.h"
 
-class DllExport TModuleDev : public IModule, public TDstEvent
+class DllExport TModuleDev : public IModule
 {
   int mID;
   std::string mName;
 public:
   TModuleDev();
-  virtual ~TModuleDev();
 
   virtual int GetID();
   virtual std::string GetName();
 
   void SetID(int id);
   void SetName(const char* name);
-
 protected:
-  virtual void Input(int id_sender, void* p, int size);
-  virtual bool Output(void* p, int size);
+	void InputFromSynchroPoint();
 protected:
-  void InputFromModules();
-  void OutputToModules();
+	virtual void Input(int id_sender, void* p, int size) = 0;
 };
 
 #endif

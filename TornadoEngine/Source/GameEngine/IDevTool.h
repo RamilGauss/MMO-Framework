@@ -21,7 +21,6 @@ public:
   IDevTool(){};
   virtual ~IDevTool(){};
 
-  virtual void Init(std::vector<std::string>& arg)        = 0;
   virtual std::string GetFileDescConveyer()               = 0;
   virtual std::string GetVariantConveyer()                = 0;
   virtual IModule* GetModuleByName(const char* sName)     = 0;

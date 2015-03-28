@@ -22,8 +22,3 @@ void TModuleServerLogicSuperServer_Dev::Input(int id, void* p, int size)
 
 }
 //------------------------------------------------------------------------------
-bool TModuleServerLogicSuperServer_Dev::Output(void* p, int size)
-{
-  return true;
-}
-//------------------------------------------------------------------------------

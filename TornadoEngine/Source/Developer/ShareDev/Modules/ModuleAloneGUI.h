@@ -9,11 +9,13 @@ See for more information License.h.
 #define ModuleAloneGUIH
 
 #include "ModuleDev.h"
-#include <boost\smart_ptr\scoped_ptr.hpp>
+#include <boost/smart_ptr/scoped_ptr.hpp>
+#include "ModuleComponent.h"
+#include "QtEngine.h"
 
 class TQtEngine;
 
-class DllExport TModuleAloneGUI : public TModuleDev
+class DllExport TModuleAloneGUI : public TModuleComponent
 {
   boost::scoped_ptr<TQtEngine> mQt;
 
@@ -21,13 +23,14 @@ class DllExport TModuleAloneGUI : public TModuleDev
   char** mArgv;
 public:
   TModuleAloneGUI();
-  virtual ~TModuleAloneGUI();
 
   virtual void StartEvent();
   virtual bool Work();
   virtual void StopEvent();
 
   void SetArg(int argc, char** argv);
+protected:
+	virtual void Input(int id_sender, void* p, int size);
 };
 
 

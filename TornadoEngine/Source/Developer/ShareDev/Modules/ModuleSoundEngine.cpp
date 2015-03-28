@@ -12,11 +12,6 @@ TModuleSoundEngine::TModuleSoundEngine()
 
 }
 //----------------------------------------------------------------------
-TModuleSoundEngine::~TModuleSoundEngine()
-{
-
-}
-//----------------------------------------------------------------------
 bool TModuleSoundEngine::Work()
 {
   return true;

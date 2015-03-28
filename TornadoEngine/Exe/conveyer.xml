@@ -1,78 +1,46 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Conveyer>
   <Variant Name = "Client">
-    <Dataflow>
-      <Dst Name = "ClientLogic">
-        <Src Name = "GraphicEngine"/>
-        <Src Name = "MMOEngineClient"/>
-        <Src Name = "PhysicEngineClient"/>
-        <Src Name = "SoundEngine"/>
-        <Src Name = "Timer"/>
-      </Dst>
-      <Dst Name = "GraphicEngine">
-        <Src Name = "ClientLogic"/>
-      </Dst>
-      <Dst Name = "MMOEngineClient">
-        <Src Name = "ClientLogic"/>
-      </Dst>
-      <Dst Name = "PhysicEngineClient">
-        <Src Name = "ClientLogic"/>
-      </Dst>
-      <Dst Name = "SoundEngine">
-        <Src Name = "ClientLogic"/>
-      </Dst>
-      <Dst Name = "Timer">
-        <Src Name = "ClientLogic"/>
-      </Dst>
-    </Dataflow>
     <CPU CountCore = "1" >
       <Thread>
-        <Module Name = "GraphicEngine"      />
-        <Module Name = "ClientLogic"        />
-        <Module Name = "MMOEngineClient"    />
-        <Module Name = "PhysicEngineClient" />
-        <Module Name = "SoundEngine"        />
-        <Module Name = "Timer"              />
+        <Module Name = "GraphicEngine"  />
+        <Module Name = "ClientLogic"    />
+        <Module Name = "MMOEngineClient"/>
+        <Module Name = "PhysicEngine"   />
+        <Module Name = "SoundEngine"    />
+        <Module Name = "Timer"          />
       </Thread>
     </CPU>
     <CPU CountCore = "2" >
       <Thread>
-        <Module Name = "GraphicEngine"      />
+        <Module Name = "GraphicEngine"  />
       </Thread>
       <Thread>
-        <Module Name = "ClientLogic"        />
-        <Module Name = "MMOEngineClient"    />
-        <Module Name = "PhysicEngineClient" />
-        <Module Name = "SoundEngine"        />
-        <Module Name = "Timer"              />
+        <Module Name = "ClientLogic"    />
+        <Module Name = "MMOEngineClient"/>
+        <Module Name = "PhysicEngine" 	/>
+        <Module Name = "SoundEngine"  	/>
+        <Module Name = "Timer"        	/>
       </Thread>
     </CPU>
     <CPU CountCore = "4" >
       <Thread>
-        <Module Name = "GraphicEngine"      />
+        <Module Name = "GraphicEngine"  />
       </Thread>
       <Thread>
-        <Module Name = "ClientLogic"        />
+        <Module Name = "ClientLogic"    />
       </Thread>
       <Thread>
-        <Module Name = "MMOEngineClient"    />
-        <Module Name = "SoundEngine"        />
-        <Module Name = "Timer"              />
+        <Module Name = "MMOEngineClient"/>
+        <Module Name = "SoundEngine"    />
+        <Module Name = "Timer"          />
       </Thread>
       <Thread>
-        <Module Name = "PhysicEngineClient" />
+        <Module Name = "PhysicEngine" />
       </Thread>
     </CPU>
   </Variant>
   <Variant Name = "Slave" >
-    <Dataflow>
-      <Dst Name = "AloneGUI">
-        <Src Name = "MMOEngine"/>
-      </Dst>
-      <Dst Name = "MMOEngine">
-        <Src Name = "AloneGUI"/>
-      </Dst>
-    </Dataflow>
     <CPU CountCore = "1" >
       <Thread index = "0" >
         <Module Name = "AloneGUI"/>

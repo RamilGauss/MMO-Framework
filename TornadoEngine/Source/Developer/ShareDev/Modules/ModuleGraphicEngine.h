@@ -10,19 +10,19 @@ See for more information License.h.
 
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
-#include "ModuleDev.h"
 #include "CallBackRegistrator.h"
+#include "ModuleComponent.h"
+#include "GraphicEngine_OGRE_MyGUI.h"
 
 class TGraphicEngine_OGRE_MyGUI;
 
-class DllExport TModuleGraphicEngine : public TModuleDev
+class DllExport TModuleGraphicEngine : public TModuleComponent
 {
 	boost::scoped_ptr<TGraphicEngine_OGRE_MyGUI> mGE;
 
   TCallBackRegistrator1<TModuleDev*>* mCBSetup;
 public:
   TModuleGraphicEngine();
-  virtual ~TModuleGraphicEngine();
 
   virtual void StartEvent();
   virtual bool Work();

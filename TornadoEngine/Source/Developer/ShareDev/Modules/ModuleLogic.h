@@ -5,17 +5,18 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleClientLogicH
-#define ModuleClientLogicH
+#ifndef ModuleLogicH
+#define ModuleLogicH
 
-#include "ModuleLogic.h"
+#include "ModuleDev.h"
+#include "Components.h"
 
-class DllExport TModuleClientLogic : public TModuleLogic
+class DllExport TModuleLogic : public TModuleDev
 {
-public:
-  virtual bool Work();
 protected:
-  virtual bool WorkClient() = 0;
+	TComponents mComp;
+public:
+	void SetComponents(TComponents components);
 };
 
 #endif

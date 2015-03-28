@@ -9,15 +9,10 @@ See for more information License.h.
 
 #include <boost/foreach.hpp>
 #include "BL_Debug.h"
-#include "Logger.h"
 #include "SrcEvent.h"
-
-#define STR_NAME_TIMER "Timer"
 
 TModuleTimer::TModuleTimer()
 {
-  GetLogger()->Register(STR_NAME_TIMER);
-
   mLastID = 0;
 }
 //-----------------------------------------------------------------
@@ -28,9 +23,9 @@ TModuleTimer::~TModuleTimer()
 //-----------------------------------------------------------------
 bool TModuleTimer::Work()
 {
-  InputFromModules();
+  InputFromSynchroPoint();
   WorkTimer();
-  OutputToModules();
+  OutputToSynchroPoint();
   return true;
 }
 //-----------------------------------------------------------------
@@ -45,7 +40,7 @@ void TModuleTimer::WorkTimer()
       bit.second->start_time_ms = now_ms;
       TEvent event;
       event.id = bit.second->id;
-      AddEventCopy(&event,sizeof(event));
+      AddEventCopy(mLogicID, &event,sizeof(event));
     }
   }
 }

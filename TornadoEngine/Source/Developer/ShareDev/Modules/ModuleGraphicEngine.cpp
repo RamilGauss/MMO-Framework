@@ -16,16 +16,11 @@ TModuleGraphicEngine::TModuleGraphicEngine()
   mGE->SetDstObject(this);
 }
 //---------------------------------------------------------------------------------
-TModuleGraphicEngine::~TModuleGraphicEngine()
-{
-
-}
-//---------------------------------------------------------------------------------
 bool TModuleGraphicEngine::Work()
 {
-  InputFromModules();
+  InputFromSynchroPoint();
   bool resWork = mGE->Work();
-  OutputToModules();
+  OutputToSynchroPoint();
 
   return resWork;
 }

@@ -8,24 +8,18 @@ See for more information License.h.
 #include "DevTool_Share.h"
 #include "ListModules.h"
 
-#include "ModuleGraphicEngine_Dev.h"
-#include "ModuleAloneGUISlave_Dev.h"
-#include "ModuleAloneGUIMaster_Dev.h"
-#include "ModuleAloneGUISuperServer_Dev.h"
-
-#include "ModuleMMOEngineClient.h"
-#include "ModuleMMOEngineSlave.h"
-#include "ModuleMMOEngineMaster.h"
-#include "ModuleMMOEngineSuperServer.h"
-
 #include "ModuleClientLogic_Dev.h"
 #include "ModuleServerLogicSlave_Dev.h"
 #include "ModuleServerLogicMaster_Dev.h"
 #include "ModuleServerLogicSuperServer_Dev.h"
 
-#include "ModulePhysicEngineClient_Dev.h"
-#include "ModulePhysicEngineSlave_Dev.h"
-
+#include "ModuleGraphicEngine.h"
+#include "ModuleAloneGUI.h"
+#include "ModuleMMOEngineClient.h"
+#include "ModuleMMOEngineSlave.h"
+#include "ModuleMMOEngineMaster.h"
+#include "ModuleMMOEngineSuperServer.h"
+#include "ModulePhysicEngine.h"
 #include "ModuleSoundEngine.h"
 #include "ModuleTimer.h"
 #include "ModuleDatabase.h"
@@ -35,6 +29,7 @@ See for more information License.h.
 #include <boost/foreach.hpp>
 
 #include "GraphicEngine_OGRE_MyGUI.h"
+#include "EventGameEngine.h"
 
 namespace nsDevTool_Share
 {
@@ -59,7 +54,7 @@ TDevTool_Share::~TDevTool_Share()
 
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::Init(std::vector<std::string>& arg)
+void TDevTool_Share::Init()
 {
   // загрузка и разбор XML файла (ресурсы)
   TParserXMLResource parser;
@@ -93,21 +88,17 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
 
   switch(id)
   {
-    // active modules
-    case GraphicEngine: pModule = new TModuleGraphicEngine_Dev;
-      // единственный модуль, который требуется настраивать в том же потоке
+		// ядро
+		case ClientLogic:            pModule = new TModuleClientLogic_Dev;           break;
+		case ServerLogicSlave:       pModule = new TModuleServerLogicSlave_Dev;      break;
+		case ServerLogicMaster:      pModule = new TModuleServerLogicMaster_Dev;     break;
+		case ServerLogicSuperServer: pModule = new TModuleServerLogicSuperServer_Dev;break;
+    // периферия
+		case GraphicEngine:    			 pModule = new TModuleGraphicEngine;// единственный модуль, который требуется настраивать в том же потоке
       ((TModuleGraphicEngine*)pModule)->SetFuncForSetup(&mCBSetupGraphicEngine);
       break;
-    case AloneGUISlave:          pModule = new TModuleAloneGUISlave_Dev;         break;
-    case AloneGUIMaster:         pModule = new TModuleAloneGUIMaster_Dev;        break;
-    case AloneGUISuperServer:    pModule = new TModuleAloneGUISuperServer_Dev;   break;
-    case ClientLogic:            pModule = new TModuleClientLogic_Dev;           break;
-    case ServerLogicSlave:       pModule = new TModuleServerLogicSlave_Dev;      break;
-    case ServerLogicMaster:      pModule = new TModuleServerLogicMaster_Dev;     break;
-    case ServerLogicSuperServer: pModule = new TModuleServerLogicSuperServer_Dev;break;
-    case PhysicEngineClient:     pModule = new TModulePhysicEngineClient_Dev;    break;
-    case PhysicEngineSlave:      pModule = new TModulePhysicEngineSlave_Dev;     break;
-    // passive modules
+    case AloneGUI:               pModule = new TModuleAloneGUI;                  break;
+    case PhysicEngine:           pModule = new TModulePhysicEngine;              break;
     case MMOEngineClient:        pModule = new TModuleMMOEngineClient;           break;
     case MMOEngineSlave:         pModule = new TModuleMMOEngineSlave;            break;
     case MMOEngineMaster:        pModule = new TModuleMMOEngineMaster;           break;
@@ -127,9 +118,7 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
 void TDevTool_Share::InitMapModules()
 {
   Add(NAME_ID(GraphicEngine)       );
-  Add(NAME_ID(AloneGUISlave)       );
-  Add(NAME_ID(AloneGUIMaster)      );
-  Add(NAME_ID(AloneGUISuperServer) );
+  Add(NAME_ID(AloneGUI)            );
   Add(NAME_ID(MMOEngineClient)     );
   Add(NAME_ID(MMOEngineSlave)      );
   Add(NAME_ID(MMOEngineMaster)     );
@@ -138,8 +127,7 @@ void TDevTool_Share::InitMapModules()
   Add(NAME_ID(ServerLogicSlave)    );
   Add(NAME_ID(ServerLogicMaster)   );
   Add(NAME_ID(ServerLogicSlave)    );
-  Add(NAME_ID(PhysicEngineClient)  );
-  Add(NAME_ID(PhysicEngineSlave)   );
+  Add(NAME_ID(PhysicEngine)        );
   Add(NAME_ID(SoundEngine)         );
   Add(NAME_ID(DataBase)            );
   Add(NAME_ID(Timer)               );
@@ -185,7 +173,26 @@ std::string TDevTool_Share::GetFileDescConveyer()
 //-----------------------------------------------------------------------
 void TDevTool_Share::EventGameEngine(int id, const char* sDesc)
 {
-
+	switch(id)
+	{
+		case nsGameEngine::eAfterCreateDevTool:
+			Init();
+			break;
+		case nsGameEngine::eAfterCreateModules:
+			// назначить логике компоненты
+			SetComponentsForLogic();
+			break;
+		case nsGameEngine::eStopThreads:
+			break;
+		case nsGameEngine::eStopThreadsEnd:
+			break;
+		case nsGameEngine::eParseFileConveyerError:
+			break;
+		case nsGameEngine::eModuleNotMade:
+			break;
+		case nsGameEngine::eThreadsNotExist:
+			break;
+	}
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
@@ -207,5 +214,50 @@ void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
   }
   BL_ASSERT(sCore.length() && sSkin.length());
   pGE->GetGE()->InitMyGUI(sCore,sSkin);
+}
+//-----------------------------------------------------------------------
+void TDevTool_Share::SetComponentsForLogic()
+{
+	TComponents components;
+	components.pGraphicEngine   		 = (TModuleGraphicEngine*)  		 FindPtrModuleByID(GraphicEngine);
+	components.pAloneGUI        		 = (TModuleAloneGUI*)  		       FindPtrModuleByID(AloneGUI);;
+	components.pMMOEngineClient 		 = (TModuleMMOEngineClient*)		 FindPtrModuleByID(MMOEngineClient);
+	components.pMMOEngineSlave  		 = (TModuleMMOEngineSlave*) 		 FindPtrModuleByID(MMOEngineSlave);
+	components.pMMOEngineMaster 		 = (TModuleMMOEngineMaster*)		 FindPtrModuleByID(MMOEngineMaster);
+	components.pMMOEngineSuperServer = (TModuleMMOEngineSuperServer*)FindPtrModuleByID(MMOEngineSuperServer);
+	components.pPhysicEngine         = (TModulePhysicEngine*)        FindPtrModuleByID(PhysicEngine);
+	components.pSoundEngine          = (TModuleSoundEngine*)				 FindPtrModuleByID(SoundEngine);
+	components.pDataBase             = (TModuleDataBase*)						 FindPtrModuleByID(DataBase);
+	components.pTimer                = (TModuleTimer*)   						 FindPtrModuleByID(Timer);
+
+	int id_logic = -1;
+	// ищем логику
+	TModuleLogic* pLogic = FindLogic();
+	if(pLogic)
+	{
+		id_logic = pLogic->GetID();
+		components.SetLogicID(id_logic);
+		pLogic->SetComponents(components);
+	}
+	else 
+		BL_FIX_BUG();
+}
+//-----------------------------------------------------------------------
+TModuleLogic* TDevTool_Share::FindLogic()
+{
+	TModuleLogic* pLogic = NULL;
+	
+	pLogic = (TModuleLogic*)FindPtrModuleByID(ClientLogic);
+	if(pLogic)
+		return pLogic;
+	pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicSlave);
+	if(pLogic)
+		return pLogic;
+	pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicMaster);
+	if(pLogic)
+		return pLogic;
+	pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicSuperServer);
+
+	return pLogic;
 }
 //-----------------------------------------------------------------------

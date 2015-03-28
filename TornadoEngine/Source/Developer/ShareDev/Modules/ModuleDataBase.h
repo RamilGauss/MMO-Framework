@@ -8,9 +8,9 @@ See for more information License.h.
 #ifndef ModuleDataBaseH
 #define ModuleDataBaseH
 
-#include "ModuleDev.h"
+#include "ModuleComponent.h"
 
-class DllExport TModuleDataBase : public TModuleDev
+class DllExport TModuleDataBase : public TModuleComponent
 {
 public:
   TModuleDataBase();

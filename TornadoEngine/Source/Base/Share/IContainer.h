@@ -20,7 +20,7 @@ public:
   virtual void Entrust(char* p, int size) = 0;
   virtual void EntrustByCount(char* p, int count) = 0;
 
-  // задать, "получи, попользуйся, но отдай мне обратно"
+  // задать, "получи, попользуйся, но отдай мне обратно" (копирование)
   virtual void SetData(char* p, int size) = 0;
   virtual void SetDataByCount(char* p, int count) = 0;
   // для получения доступа, "чем владеешь?"

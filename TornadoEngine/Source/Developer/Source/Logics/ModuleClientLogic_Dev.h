@@ -5,17 +5,22 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleAloneGUISuperServer_DevH
-#define ModuleAloneGUISuperServer_DevH
+#ifndef ModuleClientLogic_DevH
+#define ModuleClientLogic_DevH
 
-#include "ModuleAloneGUI.h"
+#include "ModuleClientLogic.h"
 
-class TModuleAloneGUISuperServer_Dev : public TModuleAloneGUI
+class TModuleClientLogic_Dev : public TModuleClientLogic
 {
+public:
+	virtual void StartEvent();
 protected:
-  virtual void Input(int id, void* p, int size);
-  virtual bool Output(void* p, int size);
-};
+  virtual bool WorkClient();
 
+  virtual void Input(int id, void* p, int size);
+private:
+
+	void StartTimer();
+};
 
 #endif
