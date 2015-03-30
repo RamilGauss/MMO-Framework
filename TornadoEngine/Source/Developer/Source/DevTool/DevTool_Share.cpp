@@ -88,13 +88,13 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
 
   switch(id)
   {
-		// ядро
-		case ClientLogic:            pModule = new TModuleClientLogic_Dev;           break;
-		case ServerLogicSlave:       pModule = new TModuleServerLogicSlave_Dev;      break;
-		case ServerLogicMaster:      pModule = new TModuleServerLogicMaster_Dev;     break;
-		case ServerLogicSuperServer: pModule = new TModuleServerLogicSuperServer_Dev;break;
+    // ядро
+    case ClientLogic:            pModule = new TModuleClientLogic_Dev;           break;
+    case ServerLogicSlave:       pModule = new TModuleServerLogicSlave_Dev;      break;
+    case ServerLogicMaster:      pModule = new TModuleServerLogicMaster_Dev;     break;
+    case ServerLogicSuperServer: pModule = new TModuleServerLogicSuperServer_Dev;break;
     // периферия
-		case GraphicEngine:    			 pModule = new TModuleGraphicEngine;// единственный модуль, который требуется настраивать в том же потоке
+    case GraphicEngine:          pModule = new TModuleGraphicEngine;// единственный модуль, который требуется настраивать в том же потоке
       ((TModuleGraphicEngine*)pModule)->SetFuncForSetup(&mCBSetupGraphicEngine);
       break;
     case AloneGUI:               pModule = new TModuleAloneGUI;                  break;
@@ -162,40 +162,40 @@ void TDevTool_Share::Add(std::string name, int id)
 //-----------------------------------------------------------------------
 std::string TDevTool_Share::GetFileDescConveyer()
 {
-	BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGameEngine)
-	{
-		if(pairNameType.second==nsDevTool_Share::sConveyer)
-			return pairNameType.first;
-	}
-	BL_FIX_BUG();
-	return "";
+  BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGameEngine)
+  {
+    if(pairNameType.second==nsDevTool_Share::sConveyer)
+      return pairNameType.first;
+  }
+  BL_FIX_BUG();
+  return "";
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::EventGameEngine(int id, const char* sDesc)
 {
-	switch(id)
-	{
-		case nsGameEngine::eAfterCreateDevTool:
-			Init();
-			break;
-		case nsGameEngine::eAfterCreateModules:
-			// назначить логике компоненты
-			SetComponentsForLogic();
-			break;
-		case nsGameEngine::eStopThreads:
-			break;
-		case nsGameEngine::eStopThreadsEnd:
-			break;
-		case nsGameEngine::eParseFileConveyerError:
-			{
-				int a = 0;
-			}
-			break;
-		case nsGameEngine::eModuleNotMade:
-			break;
-		case nsGameEngine::eThreadsNotExist:
-			break;
-	}
+  switch(id)
+  {
+    case nsGameEngine::eAfterCreateDevTool:
+      Init();
+      break;
+    case nsGameEngine::eAfterCreateModules:
+    // назначить логике компоненты
+      SetComponentsForLogic();
+      break;
+    case nsGameEngine::eStopThreads:
+      break;
+    case nsGameEngine::eStopThreadsEnd:
+      break;
+    case nsGameEngine::eParseFileConveyerError:
+    {
+      int a = 0;
+    }
+      break;
+    case nsGameEngine::eModuleNotMade:
+      break;
+    case nsGameEngine::eThreadsNotExist:
+      break;
+  }
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
@@ -204,7 +204,7 @@ void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
   // настройка перед запуском
   pGE->GetGE()->InitOGRE(mPluginsCfg);
   // пути для ресурсов графического движка
-	BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGraphicEngine)
+  BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGraphicEngine)
     pGE->GetGE()->AddResource(pairNameType.first, pairNameType.second);
   // оболочка и ядро для GUI
   std::string sSkin, sCore;
@@ -221,46 +221,46 @@ void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetComponentsForLogic()
 {
-	TComponents components;
-	components.pGraphicEngine   		 = (TModuleGraphicEngine*)  		 FindPtrModuleByID(GraphicEngine);
-	components.pAloneGUI        		 = (TModuleAloneGUI*)  		       FindPtrModuleByID(AloneGUI);;
-	components.pMMOEngineClient 		 = (TModuleMMOEngineClient*)		 FindPtrModuleByID(MMOEngineClient);
-	components.pMMOEngineSlave  		 = (TModuleMMOEngineSlave*) 		 FindPtrModuleByID(MMOEngineSlave);
-	components.pMMOEngineMaster 		 = (TModuleMMOEngineMaster*)		 FindPtrModuleByID(MMOEngineMaster);
-	components.pMMOEngineSuperServer = (TModuleMMOEngineSuperServer*)FindPtrModuleByID(MMOEngineSuperServer);
-	components.pPhysicEngine         = (TModulePhysicEngine*)        FindPtrModuleByID(PhysicEngine);
-	components.pSoundEngine          = (TModuleSoundEngine*)				 FindPtrModuleByID(SoundEngine);
-	components.pDataBase             = (TModuleDataBase*)						 FindPtrModuleByID(DataBase);
-	components.pTimer                = (TModuleTimer*)   						 FindPtrModuleByID(Timer);
+  TComponents components;
+  components.pGraphicEngine   		 = (TModuleGraphicEngine*)  		 FindPtrModuleByID(GraphicEngine);
+  components.pAloneGUI        		 = (TModuleAloneGUI*)  		       FindPtrModuleByID(AloneGUI);;
+  components.pMMOEngineClient 		 = (TModuleMMOEngineClient*)		 FindPtrModuleByID(MMOEngineClient);
+  components.pMMOEngineSlave  		 = (TModuleMMOEngineSlave*) 		 FindPtrModuleByID(MMOEngineSlave);
+  components.pMMOEngineMaster 		 = (TModuleMMOEngineMaster*)		 FindPtrModuleByID(MMOEngineMaster);
+  components.pMMOEngineSuperServer = (TModuleMMOEngineSuperServer*)FindPtrModuleByID(MMOEngineSuperServer);
+  components.pPhysicEngine         = (TModulePhysicEngine*)        FindPtrModuleByID(PhysicEngine);
+  components.pSoundEngine          = (TModuleSoundEngine*)				 FindPtrModuleByID(SoundEngine);
+  components.pDataBase             = (TModuleDataBase*)						 FindPtrModuleByID(DataBase);
+  components.pTimer                = (TModuleTimer*)   						 FindPtrModuleByID(Timer);
 
-	int id_logic = -1;
-	// ищем логику
-	TModuleLogic* pLogic = FindLogic();
-	if(pLogic)
-	{
-		id_logic = pLogic->GetID();
-		components.SetLogicID(id_logic);
-		pLogic->SetComponents(components);
-	}
-	else 
-		BL_FIX_BUG();
+  int id_logic = -1;
+  // ищем логику
+  TModuleLogic* pLogic = FindLogic();
+  if(pLogic)
+  {
+    id_logic = pLogic->GetID();
+    components.SetLogicID(id_logic);
+    pLogic->SetComponents(components);
+  }
+  else 
+    BL_FIX_BUG();
 }
 //-----------------------------------------------------------------------
 TModuleLogic* TDevTool_Share::FindLogic()
 {
-	TModuleLogic* pLogic = NULL;
-	
-	pLogic = (TModuleLogic*)FindPtrModuleByID(ClientLogic);
-	if(pLogic)
-		return pLogic;
-	pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicSlave);
-	if(pLogic)
-		return pLogic;
-	pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicMaster);
-	if(pLogic)
-		return pLogic;
-	pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicSuperServer);
+  TModuleLogic* pLogic = NULL;
 
-	return pLogic;
+  pLogic = (TModuleLogic*)FindPtrModuleByID(ClientLogic);
+  if(pLogic)
+    return pLogic;
+  pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicSlave);
+  if(pLogic)
+    return pLogic;
+  pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicMaster);
+  if(pLogic)
+    return pLogic;
+  pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicSuperServer);
+
+  return pLogic;
 }
 //-----------------------------------------------------------------------

@@ -49,26 +49,25 @@ void TClientMain::Activate()
 //-------------------------------------------------------------------------------------
 void TClientMain::sl_Enter(MyGUI::Widget* _sender)
 {
-	USES_CONVERSION;
-	std::string sPort = W2A((LPCWSTR)ebPort->getOnlyText().data());
-	int port = atoi(sPort.data());
+  USES_CONVERSION;
+  std::string sPort = W2A((LPCWSTR)ebPort->getOnlyText().data());
+  int port = atoi(sPort.data());
 
-	std::string sIP = W2A((LPCWSTR)ebIP->getOnlyText().data());
-	ip = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
+  std::string sIP = W2A((LPCWSTR)ebIP->getOnlyText().data());
+  ip = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
 
-	sLogin = W2A((LPCWSTR)ebLogin->getOnlyText().data());
-	mDescOpen = nsMMOEngine::TDescOpen(port);
+  sLogin = W2A((LPCWSTR)ebLogin->getOnlyText().data());
+  mDescOpen = nsMMOEngine::TDescOpen(port);
 
   // настройка сети
   if(IsOpen==false)
-		TModuleLogic::Get()->CallBackModule(nsListModules::MMOEngineClient, &TClientMain::EnterServer, this );
+    TModuleLogic::Get()->CallBackModule(nsListModules::MMOEngineClient, &TClientMain::EnterServer, this );
 }
 //-------------------------------------------------------------------------------------
 void TClientMain::sl_Exit(MyGUI::Widget* _sender)
 {
   //IClientDeveloperTool::Singleton()->GetComponent()->mNetClient->LeaveQueue();
-
-	TModuleLogic::Get()->Exit();
+  TModuleLogic::Get()->Exit();
 }
 //-------------------------------------------------------------------------------------
 const char* TClientMain::GetNameLayout()
@@ -133,12 +132,12 @@ void TClientMain::LoadInputParam()
 //-------------------------------------------------------------------------------------
 void TClientMain::EnterServer()
 {
-	nsMMOEngine::TClient* pClient = TModuleLogic::Get()->GetC()->pMMOEngineClient->Get();
+  nsMMOEngine::TClient* pClient = TModuleLogic::Get()->GetC()->pMMOEngineClient->Get();
 
-	IsOpen = pClient->Open(&mDescOpen);
-	BL_ASSERT(IsOpen);
-	pClient->Login( ip, MASTER_PORT, (void*)sLogin.data(), sLogin.length(), "1", 1);// пока пароль - 1 ###
+  IsOpen = pClient->Open(&mDescOpen);
+  BL_ASSERT(IsOpen);
+  pClient->Login( ip, MASTER_PORT, (void*)sLogin.data(), sLogin.length(), "1", 1);// пока пароль - 1 ###
 
-	SaveInputParam(ip, mDescOpen.port, sLogin.data());
+  SaveInputParam(ip, mDescOpen.port, sLogin.data());
 }
 //-------------------------------------------------------------------------------------

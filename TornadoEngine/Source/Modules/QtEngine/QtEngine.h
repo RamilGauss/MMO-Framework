@@ -28,7 +28,7 @@ class DllExport TQtEngine
     eFeedBack = 50,
   };
 
-	GCS mMutexApplication;
+  GCS mMutexApplication;
 public:
   TQtEngine();
   ~TQtEngine();
@@ -42,8 +42,8 @@ public:
 protected:
   void Work();
 private:
-	void lock()  {mMutexApplication.lock();}
-	void unlock(){mMutexApplication.unlock();}
+  void lock()  {mMutexApplication.lock();}
+  void unlock(){mMutexApplication.unlock();}
 };
 
 

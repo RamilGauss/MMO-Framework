@@ -11,33 +11,32 @@ static TModuleLogic* g_ptrModuleLogic = NULL;
 
 TModuleLogic::TModuleLogic()
 {
-	g_ptrModuleLogic = this;
-
-	flgNeedExit = false;
+  g_ptrModuleLogic = this;
+  flgNeedExit = false;
 }
 //--------------------------------------------------------------------
 void TModuleLogic::SetComponents(TComponents components)
 {
-	mComp = components;
+  mComp = components;
 }
 //--------------------------------------------------------------------
 TModuleLogic* TModuleLogic::Get()
 {
-	return g_ptrModuleLogic;
+  return g_ptrModuleLogic;
 }
 //--------------------------------------------------------------------
 void TModuleLogic::Exit( int reason )
 {
-	flgNeedExit = true;
+  flgNeedExit = true;
 }
 //--------------------------------------------------------------------
 bool TModuleLogic::NeedExit()
 {
-	return flgNeedExit;
+  return flgNeedExit;
 }
 //--------------------------------------------------------------------
 TComponents* TModuleLogic::GetC()
 {
-	return &mComp;
+  return &mComp;
 }
 //--------------------------------------------------------------------

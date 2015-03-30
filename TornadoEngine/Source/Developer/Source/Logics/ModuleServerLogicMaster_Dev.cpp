@@ -11,7 +11,7 @@ See for more information License.h.
 
 TModuleServerLogicMaster_Dev::TModuleServerLogicMaster_Dev()
 {
-	mMasterForm = NULL;
+  mMasterForm = NULL;
 }
 //------------------------------------------------------------------------------
 bool TModuleServerLogicMaster_Dev::WorkServer()
@@ -26,32 +26,32 @@ void TModuleServerLogicMaster_Dev::EndWork()
 //------------------------------------------------------------------------------
 void TModuleServerLogicMaster_Dev::Input(int id, void* p, int size)
 {
-	switch(id)
-	{
-		case nsListModules::AloneGUI:
-			break;
-		case nsListModules::MMOEngineMaster:
-			break;
-		case nsListModules::DataBase:
-			break;
-		case nsListModules::Timer:
-		{
-			// события от таймера
-			int a = 0;
-		}
-		break;
-	}
+  switch(id)
+  {
+    case nsListModules::AloneGUI:
+      break;
+    case nsListModules::MMOEngineMaster:
+      break;
+    case nsListModules::DataBase:
+      break;
+    case nsListModules::Timer:
+    {
+      // события от таймера
+      int a = 0;
+    }
+      break;
+  }
 }
 //------------------------------------------------------------------------------
 void TModuleServerLogicMaster_Dev::InitForms()
 {
-	mMasterForm = new TMasterForm;
-	mMasterForm->show();
+  mMasterForm = new TMasterForm;
+  mMasterForm->show();
 }
 //------------------------------------------------------------------------------
 void TModuleServerLogicMaster_Dev::StartEvent()
 {
-	CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicMaster_Dev::InitForms);
+  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicMaster_Dev::InitForms);
 }
 //----------------------------------------------------------
 void TModuleServerLogicMaster_Dev::StopEvent()

@@ -37,8 +37,7 @@ void TMasterForm::customEvent( QEvent * event)
 //-----------------------------------------------------------
 void TMasterForm::closeEvent(QCloseEvent * event)
 {
-	TModuleLogic::Get()->Exit();
-
+  TModuleLogic::Get()->Exit();
   delete this;
 }
 //-----------------------------------------------------------

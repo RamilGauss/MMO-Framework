@@ -18,7 +18,7 @@ See for more information License.h.
 
 class DllExport TSynchroPoint
 {
-	typedef TListMultiThread<IContainer>  TListContainer;
+  typedef TListMultiThread<IContainer>  TListContainer;
 
   typedef std::map<int,TListContainer*> TMapIntPtr;
   typedef TMapIntPtr::iterator          TMapIntPtrIt;
@@ -30,14 +30,15 @@ class DllExport TSynchroPoint
 
   TMapIntMap mMap_Recv_Sender_ListEvent;
 
-	typedef std::list<int> TListInt;
+  typedef std::list<int> TListInt;
+  
+  TListInt mListIDAbonent;
 
-	TListInt mListIDAbonent;
 public:
   TSynchroPoint();
   virtual ~TSynchroPoint();
 
-	void SetupAfterRegister();
+  void SetupAfterRegister();
 protected:
   friend class TSynchroAbonent;
 
@@ -61,13 +62,13 @@ private:
 template <typename T>
 void TSynchroPoint::AddEventWithoutCopy(int id_sender, int id_recv, T* pObject)
 {
-	TMapIntPtrIt fitSendList;
-	if(FindListEvents(id_sender, id_recv, fitSendList)==false)
-		return;
+  TMapIntPtrIt fitSendList;
+  if(FindListEvents(id_sender, id_recv, fitSendList)==false)
+    return;
 
-	IContainer* pC = new TContainerArrObj<T>;
-	pC->EntrustByCount((char*)pObject, 1);
-	fitSendList->second->Add(pC);
+  IContainer* pC = new TContainerArrObj<T>;
+  pC->EntrustByCount((char*)pObject, 1);
+  fitSendList->second->Add(pC);
 }
 //-----------------------------------------------------------------------------------------
 

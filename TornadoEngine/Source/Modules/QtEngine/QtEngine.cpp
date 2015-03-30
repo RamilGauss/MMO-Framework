@@ -48,10 +48,10 @@ void TQtEngine::Work()
   mApplication = new TApplication(mArgc, mArgv);
   mApplication->exec();
 
-	lock();
+  lock();
   delete mApplication;
   mApplication = NULL;
-	unlock();
+  unlock();
 
   GetLogger(STR_NAME_QT)->WriteF_time("Qt Thread stop.\n");
 }
@@ -71,16 +71,16 @@ void TQtEngine::Stop()
 //--------------------------------------------------------------------
 bool TQtEngine::IsActive()
 {
-	lock();
+  lock();
   if(mApplication==NULL)
-	{
-		unlock();
-		return false;
-	}
+  {
+    unlock();
+    return false;
+  }
   bool isActive = mApplication->thread()->isRunning();
-	unlock();
+  unlock();
 
-	return isActive;
+  return isActive;
 }
 //--------------------------------------------------------------------
 QApplication* TQtEngine::GetApp()

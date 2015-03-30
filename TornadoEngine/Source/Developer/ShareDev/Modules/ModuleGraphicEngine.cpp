@@ -11,7 +11,7 @@ See for more information License.h.
 
 TModuleGraphicEngine::TModuleGraphicEngine()
 {
-	mGE.reset(new TGraphicEngine_OGRE_MyGUI);
+  mGE.reset(new TGraphicEngine_OGRE_MyGUI);
   mGE->SetSelfID(0);
   mGE->SetDstObject(this);
 }

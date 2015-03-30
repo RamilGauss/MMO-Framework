@@ -18,10 +18,10 @@ protected:
 public:
   TModuleComponent();
 
-	void SetLogicID(int id);
+  void SetLogicID(int id);
 
 protected:
-	virtual void Input(int id_sender, void* p, int size);
+  virtual void Input(int id_sender, void* p, int size);
 protected:
   void OutputToSynchroPoint();
 };

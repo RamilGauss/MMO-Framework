@@ -18,7 +18,7 @@ public:
   TApplication(int arc, char** arv);
 
 protected:
-	virtual void customEvent(QEvent *pE);
+  virtual void customEvent(QEvent *pE);
 };
 
 

@@ -26,22 +26,22 @@ class TModuleComponent;
 
 class DllExport TComponents
 {
-	std::vector<TModuleComponent*> mVecComp;
+  std::vector<TModuleComponent*> mVecComp;
 public:
   TComponents();
 
-	void SetLogicID(int id);
+  void SetLogicID(int id);
 
-	TModuleAloneGUI* 			  		 pAloneGUI;
-	TModuleDataBase* 			  		 pDataBase;
-	TModuleGraphicEngine*   		 pGraphicEngine;
-	TModuleMMOEngineClient* 		 pMMOEngineClient;
-	TModuleMMOEngineSlave*  		 pMMOEngineSlave;
-	TModuleMMOEngineMaster* 		 pMMOEngineMaster;
-	TModuleMMOEngineSuperServer* pMMOEngineSuperServer;
-	TModulePhysicEngine* 				 pPhysicEngine;
-	TModuleSoundEngine*  				 pSoundEngine;
-	TModuleTimer*        				 pTimer;
+  TModuleAloneGUI*             pAloneGUI;
+  TModuleDataBase*             pDataBase;
+  TModuleGraphicEngine*        pGraphicEngine;
+  TModuleMMOEngineClient*      pMMOEngineClient;
+  TModuleMMOEngineSlave*       pMMOEngineSlave;
+  TModuleMMOEngineMaster*      pMMOEngineMaster;
+  TModuleMMOEngineSuperServer* pMMOEngineSuperServer;
+  TModulePhysicEngine*         pPhysicEngine;
+  TModuleSoundEngine*          pSoundEngine;
+  TModuleTimer*                pTimer;
 };
 
 #endif

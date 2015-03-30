@@ -16,12 +16,12 @@ TApplication::TApplication(int arc, char** arv) : QApplication(arc, arv)
 //--------------------------------------------------------------------
 void TApplication::customEvent(QEvent *pE)
 {
-	switch(pE->type())
-	{
-		case TQtEventNotify::TypeEvent:
-			((TQtEventNotify*)pE)->mCB.Notify();
-			break;
-		default:;
-	}
+  switch(pE->type())
+  {
+    case TQtEventNotify::TypeEvent:
+      ((TQtEventNotify*)pE)->mCB.Notify();
+      break;
+    default:;
+  }
 }
 //--------------------------------------------------------------------

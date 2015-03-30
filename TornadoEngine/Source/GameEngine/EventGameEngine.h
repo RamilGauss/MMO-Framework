@@ -14,8 +14,8 @@ namespace nsGameEngine
 {
   enum
   {
-		eAfterCreateDevTool,
-		eAfterCreateModules,
+    eAfterCreateDevTool,
+    eAfterCreateModules,
     eStartThreads,
     eStopThreads,
     eStopThreadsEnd,

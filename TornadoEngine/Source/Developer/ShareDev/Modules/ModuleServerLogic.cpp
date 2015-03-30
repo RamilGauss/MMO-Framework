@@ -29,11 +29,11 @@ bool TModuleServerLogic::Work()
   bool resWork = WorkServer();
   CalcAndWaitRestTime();
 
-	EndWork();
-	resWork &= !NeedExit();
+  EndWork();
+  resWork &= !NeedExit();
 
-	mStartTime = ht_GetMSCount();
-	return resWork;
+  mStartTime = ht_GetMSCount();
+  return resWork;
 }
 //----------------------------------------------------------------
 void TModuleServerLogic::SetCycleTime(unsigned int t_ms)

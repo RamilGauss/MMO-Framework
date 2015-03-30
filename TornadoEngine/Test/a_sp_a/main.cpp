@@ -14,11 +14,11 @@
 class TA
 {
 public:
-	~TA()
-	{
-		abc = 0;
-	}
-	int abc;
+  ~TA()
+  {
+    abc = 0;
+  }
+  int abc;
 };
 
 int main(int argc, char** argv)
@@ -32,26 +32,26 @@ int main(int argc, char** argv)
   GE.SetSynchroPoint(pSP);
   GE.SetSelfID(NUM_GE);
 
-	Logic.SetSynchroPoint(pSP);
-	Logic.SetSelfID(NUM_LOGIC);
+  Logic.SetSynchroPoint(pSP);
+  Logic.SetSelfID(NUM_LOGIC);
 
-	pSP->SetupAfterRegister();
+  pSP->SetupAfterRegister();
 
-	int i = 0;
-	while(1)
-	{
-		i++;
-		TA* pA0 = new TA;
-		pA0->abc = i;
-		IContainer* pC = new TContainerArrObj<TA>;
-		pC->EntrustByCount( (char*)pA0, 1);
-		GE.AddEventWithoutCopy( NUM_LOGIC, pC);
+  int i = 0;
+  while(1)
+  {
+    i++;
+    TA* pA0 = new TA;
+    pA0->abc = i;
+    IContainer* pC = new TContainerArrObj<TA>;
+    pC->EntrustByCount( (char*)pA0, 1);
+    GE.AddEventWithoutCopy( NUM_LOGIC, pC);
 
-		int id_sender;
-		IContainer* pEventLogic = Logic.GetEvent(id_sender);
-		TA* pA1  = (TA*)pEventLogic->GetPtr();
-		int a = 0;
-	}
+    int id_sender;
+    IContainer* pEventLogic = Logic.GetEvent(id_sender);
+    TA* pA1  = (TA*)pEventLogic->GetPtr();
+    int a = 0;
+  }
 
   return 0;
 }

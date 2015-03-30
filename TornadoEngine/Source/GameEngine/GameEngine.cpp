@@ -53,7 +53,7 @@ void TGameEngine::Done()
   TMakerLoaderDLL maker;
   maker.Delete(mLoaderDLL);
 
-	GetLogger()->Done();
+  GetLogger()->Done();
 }
 //----------------------------------------------------------------------
 bool TGameEngine::LoadDLL(int variant_use, const char* sNameDLL)
@@ -121,9 +121,9 @@ void TGameEngine::Work(int variant_use, const char* sNameDLL)// начало р�
 //------------------------------------------------------------------------
 string TGameEngine::GetVersion()
 {
-	char s[100];
-	sprintf(s, "Tornado Game Engine, Version %d", VERSION_GAME_ENGINE);
-	return s;
+  char s[100];
+  sprintf(s, "Tornado Game Engine, Version %d", VERSION_GAME_ENGINE);
+  return s;
 }
 //------------------------------------------------------------------------
 void TGameEngine::StopThreadByModule(std::string sNameModule)

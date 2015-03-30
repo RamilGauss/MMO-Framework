@@ -12,17 +12,17 @@ See for more information License.h.
 
 struct DllExport TBaseLogicPacket
 {
-	TBaseLogicPacket();
-	int type;
+  TBaseLogicPacket();
+  int type;
 };
 
 namespace nsBaseLogicPacket
 {
-	enum
-	{
-		eUndef,
-		eCallBack0,
-	};
+  enum
+  {
+    eUndef,
+    eCallBack0,
+  };
 };
 
 #endif

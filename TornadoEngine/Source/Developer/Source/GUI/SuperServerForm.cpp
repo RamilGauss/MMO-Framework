@@ -32,7 +32,7 @@ void TSuperServerForm::customEvent( QEvent * event)
 void TSuperServerForm::closeEvent(QCloseEvent * event)
 {
   // создать событие для главного потока, здесь менять нельзя, мы находимся в потоке Qt
-	TModuleLogic::Get()->Exit();
+  TModuleLogic::Get()->Exit();
 
   delete this;
 }
@@ -63,24 +63,24 @@ void TSuperServerForm::Refresh()
     unsigned int d;
   };
   
- // int iRow = 0;
-	//BOOST_FOREACH(TMapUintDesc::value_type& bit, mMapID_SessionDesc)
-	//{
-	//	QTableWidgetItem* item = new QTableWidgetItem;
-	//	QString sSession = QString("%1").arg(bit.second.id_session);
-	//	item->setText(sSession);
-	//	ui.table->setItem(iRow, 0, item);
-	//	//-------------------------------------------------------
- //   IP ip;
- //   ip.d = bit.second.ip_port.ip;
-	//	item = new QTableWidgetItem();
-	//	QString sIP_Port = QString("%1.%2.%3.%4:%5").
- //     arg(ip.c[3]).arg(ip.c[2]).arg(ip.c[1]).arg(ip.c[0]).
- //     arg(bit.second.ip_port.port);
-	//	item->setText(sIP_Port); 
-	//	ui.table->setItem(iRow, 1, item);
-	//	iRow++;
-	//}
-	ui.table->resizeColumnsToContents();
+  // int iRow = 0;
+  //BOOST_FOREACH(TMapUintDesc::value_type& bit, mMapID_SessionDesc)
+  //{
+  //	QTableWidgetItem* item = new QTableWidgetItem;
+  //	QString sSession = QString("%1").arg(bit.second.id_session);
+  //	item->setText(sSession);
+  //	ui.table->setItem(iRow, 0, item);
+  //	//-------------------------------------------------------
+  //   IP ip;
+  //   ip.d = bit.second.ip_port.ip;
+  //	item = new QTableWidgetItem();
+  //	QString sIP_Port = QString("%1.%2.%3.%4:%5").
+  //     arg(ip.c[3]).arg(ip.c[2]).arg(ip.c[1]).arg(ip.c[0]).
+  //     arg(bit.second.ip_port.port);
+  //	item->setText(sIP_Port); 
+  //	ui.table->setItem(iRow, 1, item);
+  //	iRow++;
+  //}
+  ui.table->resizeColumnsToContents();
 }
 //-----------------------------------------------------------

@@ -19,19 +19,19 @@ TSlaveForm::TSlaveForm(QWidget *parent)
 {
   ui.setupUi(this);
 
-	mTCT = NULL;
+  mTCT = NULL;
 
-	connect(ui.bDown,  SIGNAL(pressed()), this, SLOT(sl_DownPressed()));
-	connect(ui.bUp,    SIGNAL(pressed()), this, SLOT(sl_UpPressed()));
-	connect(ui.bLeft,  SIGNAL(pressed()), this, SLOT(sl_LeftPressed()));
-	connect(ui.bRight, SIGNAL(pressed()), this, SLOT(sl_RightPressed()));
+  connect(ui.bDown,  SIGNAL(pressed()), this, SLOT(sl_DownPressed()));
+  connect(ui.bUp,    SIGNAL(pressed()), this, SLOT(sl_UpPressed()));
+  connect(ui.bLeft,  SIGNAL(pressed()), this, SLOT(sl_LeftPressed()));
+  connect(ui.bRight, SIGNAL(pressed()), this, SLOT(sl_RightPressed()));
 
-	connect(ui.bDown,  SIGNAL(released()), this, SLOT(sl_DownReleased()));
-	connect(ui.bUp,    SIGNAL(released()), this, SLOT(sl_UpReleased()));
-	connect(ui.bLeft,  SIGNAL(released()), this, SLOT(sl_LeftReleased()));
-	connect(ui.bRight, SIGNAL(released()), this, SLOT(sl_RightReleased()));
+  connect(ui.bDown,  SIGNAL(released()), this, SLOT(sl_DownReleased()));
+  connect(ui.bUp,    SIGNAL(released()), this, SLOT(sl_UpReleased()));
+  connect(ui.bLeft,  SIGNAL(released()), this, SLOT(sl_LeftReleased()));
+  connect(ui.bRight, SIGNAL(released()), this, SLOT(sl_RightReleased()));
 
-	setWindowTitle(tr("Slave"));
+  setWindowTitle(tr("Slave"));
 
   SetConnect(false);
   Refresh();
@@ -50,7 +50,7 @@ void TSlaveForm::customEvent( QEvent * event)
 void TSlaveForm::closeEvent(QCloseEvent * event)
 {
   int type = 0;
-	TModuleLogic::Get()->Exit();
+  TModuleLogic::Get()->Exit();
 
   delete this;
 }
@@ -114,46 +114,46 @@ void TSlaveForm::Refresh()
 //-----------------------------------------------------------
 void TSlaveForm::SetControlTank(TTestControlTank* pTCT)
 {
-	mTCT = pTCT;
+  mTCT = pTCT;
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_DownPressed()
 {
-	mTCT->SetSpeedRotateGun(GUN_SPEED);
+  mTCT->SetSpeedRotateGun(GUN_SPEED);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_UpPressed()
 {
-	mTCT->SetSpeedRotateGun(-GUN_SPEED);
+  mTCT->SetSpeedRotateGun(-GUN_SPEED);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_LeftPressed()
 {
-	mTCT->SetSpeedRotateTurret(-TURRET_SPEED);
+  mTCT->SetSpeedRotateTurret(-TURRET_SPEED);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_RightPressed()
 {
-	mTCT->SetSpeedRotateTurret(TURRET_SPEED);
+  mTCT->SetSpeedRotateTurret(TURRET_SPEED);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_DownReleased()
 {
-	mTCT->SetSpeedRotateGun(0);
+  mTCT->SetSpeedRotateGun(0);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_UpReleased()
 {
-	mTCT->SetSpeedRotateGun(0);
+  mTCT->SetSpeedRotateGun(0);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_LeftReleased()
 {
-	mTCT->SetSpeedRotateTurret(0);
+  mTCT->SetSpeedRotateTurret(0);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_RightReleased()
 {
-	mTCT->SetSpeedRotateTurret(0);
+  mTCT->SetSpeedRotateTurret(0);
 }
 //-----------------------------------------------------------

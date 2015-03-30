@@ -13,11 +13,11 @@ See for more information License.h.
 
 struct DllExport TLogicEventCallBack : public TBaseLogicPacket
 {
-	TLogicEventCallBack()
-	{
-		type = nsBaseLogicPacket::eCallBack0;
-	}
-	TCallBackRegistrator0 mCB; 
+  TLogicEventCallBack()
+  {
+    type = nsBaseLogicPacket::eCallBack0;
+  }
+  TCallBackRegistrator0 mCB; 
 };
 
 #endif

@@ -15,7 +15,7 @@ TThreadBoost::TThreadBoost()
   flgActive   = false;
   flgNeedStop = false;
 
-	mTimeStart = -1;
+  mTimeStart = -1;
 }
 //-----------------------------------------------------------------
 TThreadBoost::~TThreadBoost()
@@ -45,7 +45,7 @@ void TThreadBoost::Start()
   while(IsActive()==false)
     ht_msleep(eWaitFeedBack);
 
-	mTimeStart = ht_GetMSCount();
+  mTimeStart = ht_GetMSCount();
 }
 //----------------------------------------------------------------------------------
 void TThreadBoost::Stop()
@@ -63,14 +63,14 @@ bool TThreadBoost::IsActive()
 //---------------------------------------------------------------------------------
 unsigned int TThreadBoost::GetTimeLastStart()
 {
-	return mTimeStart;
+  return mTimeStart;
 }
 //---------------------------------------------------------------------------------
 unsigned int TThreadBoost::GetTimeWork()
 {
-	if(IsActive()==false)
-		return 0;
-	unsigned int now_ms = ht_GetMSCount();
-	return now_ms - mTimeStart;
+  if(IsActive()==false)
+    return 0;
+  unsigned int now_ms = ht_GetMSCount();
+  return now_ms - mTimeStart;
 }
 //---------------------------------------------------------------------------------

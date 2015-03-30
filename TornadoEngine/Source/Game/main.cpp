@@ -77,9 +77,9 @@ bool GetArgvArgcConsole(int argc, char** argv, TVectorStr& vec_argv)
 //-------------------------------------------------------------------------------
 void ViewHowUse()
 {
-	// Ввиду того, что весь исходный код я переконвертировал в utf-8.
+  // Ввиду того, что весь исходный код я переконвертировал в utf-8.
   char* sMsgUtf8 = 
-		"Некорректный ввод параметров.\n"
+    "Некорректный ввод параметров.\n"
     "Ключ -d имя загружаемой библиотеки (обязательный параметр).\n"
     "\n"
     "Ключ -v вариант, который будет использован из библиотеки,\n"
@@ -91,11 +91,11 @@ void ViewHowUse()
     "Tornado.exe -v 0 -d DeveloperDLL.dll\n";
 #ifdef WIN32
   size_t lenMsgUtf8 = strlen(sMsgUtf8);
-	TContainer cWin1251;
-	cWin1251.SetData(NULL,lenMsgUtf8+1);
-	memset(cWin1251.GetPtr(), 0, cWin1251.GetSize());
-	convert_utf8_to_windows1251(sMsgUtf8, cWin1251.GetPtr(), lenMsgUtf8);
-	BL_MessageBug(cWin1251.GetPtr());
+  TContainer cWin1251;
+  cWin1251.SetData(NULL,lenMsgUtf8+1);
+  memset(cWin1251.GetPtr(), 0, cWin1251.GetSize());
+  convert_utf8_to_windows1251(sMsgUtf8, cWin1251.GetPtr(), lenMsgUtf8);
+  BL_MessageBug(cWin1251.GetPtr());
 #else
   BL_MessageBug(sMsgUtf8);
 #endif

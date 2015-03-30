@@ -9,6 +9,6 @@ See for more information License.h.
 
 TBaseLogicPacket::TBaseLogicPacket()
 {
-	type = nsBaseLogicPacket::eUndef;
+  type = nsBaseLogicPacket::eUndef;
 }
 //------------------------------------------------------------------------------------

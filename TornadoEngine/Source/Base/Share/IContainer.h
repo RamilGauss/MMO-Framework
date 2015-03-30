@@ -25,9 +25,9 @@ public:
   virtual void SetDataByCount(char* p, int count) = 0;
   // для получения доступа, "чем владеешь?"
   virtual char* GetPtr()const = 0;
-	// полный размер хранимых ресурсов
-	virtual int GetSize()const = 0;
-	// "сколько элементов у тебя?"
+  // полный размер хранимых ресурсов
+  virtual int GetSize()const = 0;
+  // "сколько элементов у тебя?"
   virtual int GetCount()const = 0;
   // отцепиться от ресурсов, "забудь, что у тебя есть"
   virtual void Unlink() = 0;

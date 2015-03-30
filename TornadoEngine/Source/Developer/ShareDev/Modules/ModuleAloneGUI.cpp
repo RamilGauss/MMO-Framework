@@ -34,8 +34,8 @@ bool TModuleAloneGUI::Work()
   InputFromSynchroPoint();
   OutputToSynchroPoint();
 
-	// что бы разгрузить поток
-	ht_msleep(eSleep);
+  // что бы разгрузить поток
+  ht_msleep(eSleep);
   return true;
 }
 //--------------------------------------------------------------
@@ -47,21 +47,21 @@ void TModuleAloneGUI::SetArg(int argc, char** argv)
 //--------------------------------------------------------------
 void TModuleAloneGUI::Input(int id_sender, void* p, int size)
 {
-	if(id_sender!=mLogicID)
-		return;
+  if(id_sender!=mLogicID)
+    return;
 
-	TBaseLogicPacket* pBLP = (TBaseLogicPacket*)p;
-	switch(pBLP->type)
-	{
-		case nsBaseLogicPacket::eCallBack0:
-		{
-			// создать customEvent для Qt
-			TQtEventNotify* pE = new TQtEventNotify;
-			pE->mCB = ((TLogicEventCallBack*)pBLP)->mCB;
-			QCoreApplication::postEvent( mQt->GetApp(), pE);
-		}
-			break;
-		default:;
-	}
+  TBaseLogicPacket* pBLP = (TBaseLogicPacket*)p;
+  switch(pBLP->type)
+  {
+    case nsBaseLogicPacket::eCallBack0:
+    {
+      // создать customEvent для Qt
+      TQtEventNotify* pE = new TQtEventNotify;
+      pE->mCB = ((TLogicEventCallBack*)pBLP)->mCB;
+      QCoreApplication::postEvent( mQt->GetApp(), pE);
+    }
+      break;
+    default:;
+  }
 }
 //--------------------------------------------------------------

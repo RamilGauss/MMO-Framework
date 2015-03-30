@@ -23,33 +23,33 @@ See for more information License.h.
 
 TComponents::TComponents()
 {
-	pAloneGUI 			 			= NULL;
-	pDataBase 			 			= NULL;
-	pGraphicEngine   			= NULL;
-	pMMOEngineClient 			= NULL;
-	pMMOEngineSlave  			= NULL;
-	pMMOEngineMaster 			= NULL;
-	pMMOEngineSuperServer = NULL;
-	pPhysicEngine 				= NULL;
-	pSoundEngine  				= NULL;
-	pTimer        				= NULL;
+  pAloneGUI             = NULL;
+  pDataBase             = NULL;
+  pGraphicEngine        = NULL;
+  pMMOEngineClient      = NULL;
+  pMMOEngineSlave       = NULL;
+  pMMOEngineMaster      = NULL;
+  pMMOEngineSuperServer = NULL;
+  pPhysicEngine         = NULL;
+  pSoundEngine          = NULL;
+  pTimer                = NULL;
 }
 //------------------------------------------------------------------------------------------
 void TComponents::SetLogicID(int id)
 {
-	mVecComp.push_back(pAloneGUI);
-	mVecComp.push_back(pDataBase);
-	mVecComp.push_back(pGraphicEngine);
-	mVecComp.push_back(pMMOEngineClient);
-	mVecComp.push_back(pMMOEngineSlave);
-	mVecComp.push_back(pMMOEngineMaster);
-	mVecComp.push_back(pMMOEngineSuperServer);
-	mVecComp.push_back(pPhysicEngine);
-	mVecComp.push_back(pSoundEngine);
-	mVecComp.push_back(pTimer);
+  mVecComp.push_back(pAloneGUI);
+  mVecComp.push_back(pDataBase);
+  mVecComp.push_back(pGraphicEngine);
+  mVecComp.push_back(pMMOEngineClient);
+  mVecComp.push_back(pMMOEngineSlave);
+  mVecComp.push_back(pMMOEngineMaster);
+  mVecComp.push_back(pMMOEngineSuperServer);
+  mVecComp.push_back(pPhysicEngine);
+  mVecComp.push_back(pSoundEngine);
+  mVecComp.push_back(pTimer);
 
-	BOOST_FOREACH(TModuleComponent* pM, mVecComp)
-		if(pM)
-			pM->SetLogicID(id);
+  BOOST_FOREACH(TModuleComponent* pM, mVecComp)
+    if(pM)
+      pM->SetLogicID(id);
 }
 //------------------------------------------------------------------------------------------

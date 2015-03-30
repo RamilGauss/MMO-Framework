@@ -16,13 +16,13 @@ See for more information License.h.
 class DllExport TQtEventNotify : public QEvent
 {
 public:
-	enum
-	{
-		TypeEvent = QEvent::User + 1,
-	};
-	TQtEventNotify() : QEvent((QEvent::Type)TypeEvent)
-	{}
-	TCallBackRegistrator0 mCB;
+  enum
+  {
+    TypeEvent = QEvent::User + 1,
+  };
+  TQtEventNotify() : QEvent((QEvent::Type)TypeEvent)
+  {}
+  TCallBackRegistrator0 mCB;
 };
 
 

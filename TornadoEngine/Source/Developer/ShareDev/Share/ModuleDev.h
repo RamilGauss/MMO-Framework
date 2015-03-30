@@ -24,9 +24,9 @@ public:
   void SetID(int id);
   void SetName(const char* name);
 protected:
-	void InputFromSynchroPoint();
+  void InputFromSynchroPoint();
 protected:
-	virtual void Input(int id_sender, void* p, int size) = 0;
+  virtual void Input(int id_sender, void* p, int size) = 0;
 };
 
 #endif

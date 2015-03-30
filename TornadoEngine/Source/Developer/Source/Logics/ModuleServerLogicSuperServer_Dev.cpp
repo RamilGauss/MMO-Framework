@@ -12,7 +12,7 @@ See for more information License.h.
 
 TModuleServerLogicSuperServer_Dev::TModuleServerLogicSuperServer_Dev()
 {
-	mSuperServerForm = NULL;
+  mSuperServerForm = NULL;
 }
 //------------------------------------------------------------------------------
 bool TModuleServerLogicSuperServer_Dev::WorkServer()
@@ -27,30 +27,30 @@ void TModuleServerLogicSuperServer_Dev::EndWork()
 //------------------------------------------------------------------------------
 void TModuleServerLogicSuperServer_Dev::Input(int id, void* p, int size)
 {
-	switch(id)
-	{
-		case nsListModules::AloneGUI:
-			break;
-		case nsListModules::MMOEngineSuperServer:
-			break;
-		case nsListModules::Timer:
-		{
-			// события от таймера
-			int a = 0;
-		}
-		break;
-	}
+  switch(id)
+  {
+    case nsListModules::AloneGUI:
+      break;
+    case nsListModules::MMOEngineSuperServer:
+      break;
+    case nsListModules::Timer:
+    {
+      // события от таймера
+      int a = 0;
+    }
+      break;
+  }
 }
 //------------------------------------------------------------------------------
 void TModuleServerLogicSuperServer_Dev::InitForms()
 {
-	mSuperServerForm = new TSuperServerForm;
-	mSuperServerForm->show();
+  mSuperServerForm = new TSuperServerForm;
+  mSuperServerForm->show();
 }
 //------------------------------------------------------------------------------
 void TModuleServerLogicSuperServer_Dev::StartEvent()
 {
-	CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSuperServer_Dev::InitForms);
+  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSuperServer_Dev::InitForms);
 }
 //----------------------------------------------------------
 void TModuleServerLogicSuperServer_Dev::StopEvent()

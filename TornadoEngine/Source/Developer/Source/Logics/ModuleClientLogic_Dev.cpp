@@ -17,42 +17,42 @@ bool TModuleClientLogic_Dev::WorkClient()
 //----------------------------------------------------------
 void TModuleClientLogic_Dev::Input(int id, void* p, int size)
 {
-	switch(id)
-	{
-		case nsListModules::GraphicEngine:
-			break;
+  switch(id)
+  {
+    case nsListModules::GraphicEngine:
+      break;
     case nsListModules::MMOEngineClient:
-			break;
+      break;
     case nsListModules::PhysicEngine:
-			break;
+      break;
     case nsListModules::SoundEngine:
-			break;
+      break;
     case nsListModules::DataBase:
-			break;
+      break;
     case nsListModules::Timer:
-		{
-			// события от таймера
-			int a = 0;
-		}
-			break;
-	}
+    {
+      // события от таймера
+      int a = 0;
+    }
+      break;
+  }
 }
 //----------------------------------------------------------
 void TModuleClientLogic_Dev::StartEvent()
 {
-	//CallBackModule(nsListModules::Timer, &TModuleClientLogic_Dev::StartTimer);
-	CallBackModule(nsListModules::GraphicEngine, &TModuleClientLogic_Dev::InitForms);
+  //CallBackModule(nsListModules::Timer, &TModuleClientLogic_Dev::StartTimer);
+  CallBackModule(nsListModules::GraphicEngine, &TModuleClientLogic_Dev::InitForms);
 }
 //----------------------------------------------------------
 void TModuleClientLogic_Dev::StartTimer()
 {
-	// вызовется из потока таймера
-	unsigned int mID_Timer = mComp.pTimer->New(5000);
+  // вызовется из потока таймера
+  unsigned int mID_Timer = mComp.pTimer->New(5000);
 }
 //----------------------------------------------------------
 void TModuleClientLogic_Dev::InitForms()
 {
-	mClientMain = new TClientMain;
-	mClientMain->Show();
+  mClientMain = new TClientMain;
+  mClientMain->Show();
 }
 //----------------------------------------------------------

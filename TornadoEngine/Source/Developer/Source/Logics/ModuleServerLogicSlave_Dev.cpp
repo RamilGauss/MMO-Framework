@@ -11,9 +11,9 @@ See for more information License.h.
 
 TModuleServerLogicSlave_Dev::TModuleServerLogicSlave_Dev()
 {
-	SetCycleTime(eCycleTime);
+  SetCycleTime(eCycleTime);
 
-	mSlaveForm = NULL;
+  mSlaveForm = NULL;
 }
 //------------------------------------------------------------------------------
 bool TModuleServerLogicSlave_Dev::WorkServer()
@@ -28,34 +28,34 @@ void TModuleServerLogicSlave_Dev::EndWork()
 //------------------------------------------------------------------------------
 void TModuleServerLogicSlave_Dev::Input(int id, void* p, int size)
 {
-	switch(id)
-	{
-		case nsListModules::AloneGUI:
-			break;
-		case nsListModules::MMOEngineSlave:
-			break;
-		case nsListModules::PhysicEngine:
-			break;
-		case nsListModules::DataBase:
-			break;
-		case nsListModules::Timer:
-		{
-			// события от таймера
-			int a = 0;
-		}
-		break;
-	}
+  switch(id)
+  {
+    case nsListModules::AloneGUI:
+      break;
+    case nsListModules::MMOEngineSlave:
+      break;
+    case nsListModules::PhysicEngine:
+      break;
+    case nsListModules::DataBase:
+      break;
+    case nsListModules::Timer:
+    {
+      // события от таймера
+      int a = 0;
+    }
+      break;
+  }
 }
 //------------------------------------------------------------------------------
 void TModuleServerLogicSlave_Dev::InitForms()
 {
-	mSlaveForm = new TSlaveForm;
-	mSlaveForm->show();
+  mSlaveForm = new TSlaveForm;
+  mSlaveForm->show();
 }
 //------------------------------------------------------------------------------
 void TModuleServerLogicSlave_Dev::StartEvent()
 {
-	CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSlave_Dev::InitForms);
+  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSlave_Dev::InitForms);
 }
 //----------------------------------------------------------
 void TModuleServerLogicSlave_Dev::StopEvent()

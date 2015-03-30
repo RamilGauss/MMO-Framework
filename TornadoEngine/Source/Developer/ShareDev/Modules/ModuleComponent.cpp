@@ -11,40 +11,40 @@ See for more information License.h.
 
 TModuleComponent::TModuleComponent()
 {
-	mLogicID = -1;
+  mLogicID = -1;
 }
 //------------------------------------------------------------------------
 void TModuleComponent::SetLogicID(int id)
 {
-	mLogicID = id;
+  mLogicID = id;
 }
 //------------------------------------------------------------------------
 void TModuleComponent::Input(int id_sender, void* p, int size)
 {
-	if(id_sender!=mLogicID)
-		return;
+  if(id_sender!=mLogicID)
+    return;
 
-	TBaseLogicPacket* pBLP = (TBaseLogicPacket*)p;
-	switch(pBLP->type)
-	{
-		case nsBaseLogicPacket::eCallBack0:
-			((TLogicEventCallBack*)pBLP)->mCB.Notify();
-			break;
-		default:;
-	}
+  TBaseLogicPacket* pBLP = (TBaseLogicPacket*)p;
+  switch(pBLP->type)
+  {
+    case nsBaseLogicPacket::eCallBack0:
+      ((TLogicEventCallBack*)pBLP)->mCB.Notify();
+      break;
+    default:;
+  }
 }
 //--------------------------------------------------------------
 void TModuleComponent::OutputToSynchroPoint()
 {
-	while(1)
-	{ // модуль создал события
-		nsEvent::TEvent* pEvent = TDstEvent::GetEvent();
-		if(pEvent==NULL)
-			break;
+  while(1)
+  { // модуль создал события
+    nsEvent::TEvent* pEvent = TDstEvent::GetEvent();
+    if(pEvent==NULL)
+      break;
 
-		TSynchroAbonent::AddEventWithoutCopy(mLogicID, pEvent->pContainer);
-		pEvent->pContainer = NULL;
-		delete pEvent;
-	}
+    TSynchroAbonent::AddEventWithoutCopy(mLogicID, pEvent->pContainer);
+    pEvent->pContainer = NULL;
+    delete pEvent;
+  }
 }
 //---------------------------------------------------------------------------------

@@ -14,17 +14,17 @@ class TClientMain;
 
 class TModuleClientLogic_Dev : public TModuleClientLogic
 {
-	TClientMain* mClientMain;
+  TClientMain* mClientMain;
 
 public:
-	virtual void StartEvent();
+  virtual void StartEvent();
 protected:
   virtual bool WorkClient();
 
   virtual void Input(int id, void* p, int size);
 private:
-	void StartTimer();
-	void InitForms();
+  void StartTimer();
+  void InitForms();
 };
 
 #endif

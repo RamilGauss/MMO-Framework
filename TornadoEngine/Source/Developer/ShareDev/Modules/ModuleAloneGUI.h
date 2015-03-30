@@ -22,10 +22,10 @@ class DllExport TModuleAloneGUI : public TModuleComponent
   int    mArgc; 
   char** mArgv;
 
-	enum
-	{
-		eSleep = 50,
-	};
+  enum
+  {
+    eSleep = 50,
+  };
 public:
   TModuleAloneGUI();
 
@@ -35,7 +35,7 @@ public:
 
   void SetArg(int argc, char** argv);
 protected:
-	virtual void Input(int id_sender, void* p, int size);
+  virtual void Input(int id_sender, void* p, int size);
 };
 
 

@@ -23,38 +23,38 @@ See for more information License.h.
 TTestControlTank::TTestControlTank():
 mDesc(new TDesc)
 {
-	mTank	             = NULL;
-	mTimeLastUpdate_ms = 0;
-	mTimeRecv_ms       = 0;
+  mTank	             = NULL;
+  mTimeLastUpdate_ms = 0;
+  mTimeRecv_ms       = 0;
 }
 //---------------------------------------------------------------------------
 void TTestControlTank::SetTank(TTankTower* pTank)
 {
-	mTank = pTank;
+  mTank = pTank;
 }
 //---------------------------------------------------------------------------
 void TTestControlTank::SetupParamForNow()
 {
-	unsigned int now_ms = ht_GetMSCount();
-	unsigned int delta = now_ms - mTimeRecv_ms;
+  unsigned int now_ms = ht_GetMSCount();
+  unsigned int delta = now_ms - mTimeRecv_ms;
 
-	float angleGun    = mDesc->mAngleGun    + delta * mDesc->mSpeedRotateGun;
-	float angleTurret = mDesc->mAngleTurret + delta * mDesc->mSpeedRotateTurret;
+  float angleGun    = mDesc->mAngleGun    + delta * mDesc->mSpeedRotateGun;
+  float angleTurret = mDesc->mAngleTurret + delta * mDesc->mSpeedRotateTurret;
 
-	mTank->RotateTurret(angleTurret);
-	mTank->RotateVerticalGun(angleGun);
+  mTank->RotateTurret(angleTurret);
+  mTank->RotateVerticalGun(angleGun);
 }
 //---------------------------------------------------------------------------
 void TTestControlTank::Recv(void* data, int size)
 {
-	if(size!=sizeof(TDesc))
-	{
-		BL_FIX_BUG();
-		return;
-	}
-	//*(mDesc) = *((TDesc*)data);
-	memcpy(mDesc.get(), data, size);
-	mTimeRecv_ms = ht_GetMSCount();
+  if(size!=sizeof(TDesc))
+  {
+    BL_FIX_BUG();
+    return;
+  }
+  //*(mDesc) = *((TDesc*)data);
+  memcpy(mDesc.get(), data, size);
+  mTimeRecv_ms = ht_GetMSCount();
 }
 //---------------------------------------------------------------------------
 void TTestControlTank::Send()
@@ -93,27 +93,26 @@ void TTestControlTank::Send()
 //---------------------------------------------------------------------------
 void TTestControlTank::SetSpeedRotateTurret(float v)
 {
-	lockQtSend();
-	mDesc->mSpeedRotateTurret = v;
-	unlockQtSend();
+  lockQtSend();
+  mDesc->mSpeedRotateTurret = v;
+  unlockQtSend();
 }
 //---------------------------------------------------------------------------
 void TTestControlTank::SetSpeedRotateGun(float v)
 {
-	lockQtSend();
-	mDesc->mSpeedRotateGun = v;
-	unlockQtSend();
+  lockQtSend();
+  mDesc->mSpeedRotateGun = v;
+  unlockQtSend();
 }
 //---------------------------------------------------------------------------
 void TTestControlTank::UpdateAngle()
 {
-	unsigned int now_ms = ht_GetMSCount();
-	unsigned int delta = (mTimeLastUpdate_ms==0) ? 0:
-												now_ms - mTimeLastUpdate_ms;
+  unsigned int now_ms = ht_GetMSCount();
+  unsigned int delta = (mTimeLastUpdate_ms==0) ? 0 : now_ms - mTimeLastUpdate_ms;
 	
-	mDesc->mAngleGun    = mDesc->mAngleGun    + delta * mDesc->mSpeedRotateGun;
-	mDesc->mAngleTurret = mDesc->mAngleTurret + delta * mDesc->mSpeedRotateTurret;
+  mDesc->mAngleGun    = mDesc->mAngleGun    + delta * mDesc->mSpeedRotateGun;
+  mDesc->mAngleTurret = mDesc->mAngleTurret + delta * mDesc->mSpeedRotateTurret;
 
-	mTimeLastUpdate_ms = now_ms;
+  mTimeLastUpdate_ms = now_ms;
 }
 //---------------------------------------------------------------------------

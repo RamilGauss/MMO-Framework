@@ -37,13 +37,13 @@ void TModuleDev::SetName(const char* name)
 //----------------------------------------------------------------------
 void TModuleDev::InputFromSynchroPoint()
 {
-	while(1) 
-	{
-		int id_sender;
-		IContainer* pCInput = TSynchroAbonent::GetEvent(id_sender);
-		if(pCInput==NULL)
-			break;
-		Input(id_sender, pCInput->GetPtr(), pCInput->GetSize());
-	}
+  while(1) 
+  {
+    int id_sender;
+    IContainer* pCInput = TSynchroAbonent::GetEvent(id_sender);
+    if(pCInput==NULL)
+      break;
+    Input(id_sender, pCInput->GetPtr(), pCInput->GetSize());
+  }
 }
 //---------------------------------------------------------------------------------

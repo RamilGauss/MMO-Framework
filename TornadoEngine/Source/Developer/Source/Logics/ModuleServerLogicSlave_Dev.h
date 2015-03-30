@@ -14,17 +14,17 @@ class TSlaveForm;
 
 class TModuleServerLogicSlave_Dev : public TModuleServerLogic
 {
-	TSlaveForm* mSlaveForm;
+  TSlaveForm* mSlaveForm;
 
-	enum
-	{
-		eCycleTime = 100,
-	};
+  enum
+  {
+    eCycleTime = 100,
+  };
 public:
-	TModuleServerLogicSlave_Dev();
+  TModuleServerLogicSlave_Dev();
 
-	virtual void StartEvent();
-	virtual void StopEvent();
+  virtual void StartEvent();
+  virtual void StopEvent();
 protected:
   virtual bool WorkServer();
   virtual void EndWork();
@@ -32,8 +32,8 @@ protected:
   virtual void Input(int id, void* p, int size);
 
 private:
-	void StartTimer();
-	void InitForms();
+  void StartTimer();
+  void InitForms();
 
 };
 

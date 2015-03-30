@@ -59,9 +59,9 @@ private:
 private:
 	// реакции на события
   void Init();
-	void SetComponentsForLogic();
+  void SetComponentsForLogic();
 	
-	TModuleLogic* FindLogic();
+  TModuleLogic* FindLogic();
 };
 
 #endif

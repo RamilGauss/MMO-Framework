@@ -47,13 +47,13 @@ public:
   // забрать событие от определенного абонента, удалять нельзя
   IContainer* GetEvent(int& id_sender);
 protected:
-	void AddCache(IContainer* pC, int id_sender);
+  void AddCache(IContainer* pC, int id_sender);
 };
 //------------------------------------------------------------------------------
 template<typename T>
 void TSynchroAbonent::AddEventWithoutCopy(int id_recv, T* pObject)
 {
-	mSynchroPoint->AddEventWithoutCopy<T>(mSelfID, id_recv, pObject);
+  mSynchroPoint->AddEventWithoutCopy<T>(mSelfID, id_recv, pObject);
 }
 //------------------------------------------------------------------------------
 

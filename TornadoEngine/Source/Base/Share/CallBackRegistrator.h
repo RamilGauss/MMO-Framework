@@ -24,8 +24,8 @@ protected:
   {
     class TF{};
 
-		char mFunc[20];
-		char mObject[20];
+    char mFunc[20];
+    char mObject[20];
   public:
     template<typename F, class A1>  
     void Set(F pFunc, A1 pObject)
