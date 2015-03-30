@@ -7,7 +7,6 @@ See for more information License.h.
 
 #include "ModuleClientLogic_Dev.h"
 #include "ListModules.h"
-#include "LogicEventCallBack.h"
 #include "ModuleTimer.h"
 #include "ClientMain.h"
 
@@ -31,10 +30,10 @@ void TModuleClientLogic_Dev::Input(int id, void* p, int size)
     case nsListModules::DataBase:
 			break;
     case nsListModules::Timer:
-			{
-				// события от таймера
-				int a = 0;
-			}
+		{
+			// события от таймера
+			int a = 0;
+		}
 			break;
 	}
 }

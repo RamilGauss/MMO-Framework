@@ -21,6 +21,11 @@ class DllExport TModuleAloneGUI : public TModuleComponent
 
   int    mArgc; 
   char** mArgv;
+
+	enum
+	{
+		eSleep = 50,
+	};
 public:
   TModuleAloneGUI();
 

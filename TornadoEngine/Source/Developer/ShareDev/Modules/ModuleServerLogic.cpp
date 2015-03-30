@@ -20,19 +20,20 @@ TModuleServerLogic::TModuleServerLogic():mStatLoad(30)
 #endif
 
   mCycleTime_ms = 0;
-  mStartTime    = -1;
+  mStartTime    = 0;
 }
 //----------------------------------------------------------------
 bool TModuleServerLogic::Work()
 {
-  mStartTime = ht_GetMSCount();
-
   InputFromSynchroPoint();
   bool resWork = WorkServer();
   CalcAndWaitRestTime();
 
-  EndWork();
-  return resWork;
+	EndWork();
+	resWork &= !NeedExit();
+
+	mStartTime = ht_GetMSCount();
+	return resWork;
 }
 //----------------------------------------------------------------
 void TModuleServerLogic::SetCycleTime(unsigned int t_ms)

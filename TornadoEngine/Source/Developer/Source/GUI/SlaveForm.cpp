@@ -10,7 +10,7 @@ See for more information License.h.
 #include "SlaveForm.h"
 
 #include "TestControlTank.h"
-#include "DevTool_Share.h"
+#include "ModuleLogic.h"
 
 #define GUN_SPEED    0.00035f
 #define TURRET_SPEED 0.00035f
@@ -50,7 +50,7 @@ void TSlaveForm::customEvent( QEvent * event)
 void TSlaveForm::closeEvent(QCloseEvent * event)
 {
   int type = 0;
-  //TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&type,sizeof(type));
+	TModuleLogic::Get()->Exit();
 
   delete this;
 }

@@ -31,11 +31,11 @@ void TModuleAloneGUI::StopEvent()
 //--------------------------------------------------------------
 bool TModuleAloneGUI::Work()
 {
-  if(mQt->IsActive()==false)
-    return false;
-
   InputFromSynchroPoint();
   OutputToSynchroPoint();
+
+	// что бы разгрузить поток
+	ht_msleep(eSleep);
   return true;
 }
 //--------------------------------------------------------------

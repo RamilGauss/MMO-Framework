@@ -117,20 +117,20 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
 #define NAME_ID(X) NAME_MODULE(X),X
 void TDevTool_Share::InitMapModules()
 {
-  Add(NAME_ID(GraphicEngine)       );
-  Add(NAME_ID(AloneGUI)            );
-  Add(NAME_ID(MMOEngineClient)     );
-  Add(NAME_ID(MMOEngineSlave)      );
-  Add(NAME_ID(MMOEngineMaster)     );
-  Add(NAME_ID(MMOEngineSuperServer));
-  Add(NAME_ID(ClientLogic)         );
-  Add(NAME_ID(ServerLogicSlave)    );
-  Add(NAME_ID(ServerLogicMaster)   );
-  Add(NAME_ID(ServerLogicSlave)    );
-  Add(NAME_ID(PhysicEngine)        );
-  Add(NAME_ID(SoundEngine)         );
-  Add(NAME_ID(DataBase)            );
-  Add(NAME_ID(Timer)               );
+  Add(NAME_ID(GraphicEngine)       	 );
+  Add(NAME_ID(AloneGUI)            	 );
+  Add(NAME_ID(MMOEngineClient)     	 );
+  Add(NAME_ID(MMOEngineSlave)      	 );
+  Add(NAME_ID(MMOEngineMaster)     	 );
+  Add(NAME_ID(MMOEngineSuperServer)	 );
+  Add(NAME_ID(ClientLogic)         	 );
+  Add(NAME_ID(ServerLogicSlave)    	 );
+  Add(NAME_ID(ServerLogicMaster)   	 );
+  Add(NAME_ID(ServerLogicSuperServer));
+  Add(NAME_ID(PhysicEngine)        	 );
+  Add(NAME_ID(SoundEngine)         	 );
+  Add(NAME_ID(DataBase)            	 );
+  Add(NAME_ID(Timer)               	 );
 }
 //-----------------------------------------------------------------------
 int TDevTool_Share::FindIDByNameModule(std::string name)

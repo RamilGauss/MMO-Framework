@@ -10,13 +10,24 @@ See for more information License.h.
 
 #include "ModuleServerLogic.h"
 
+class TMasterForm;
+
 class TModuleServerLogicMaster_Dev : public TModuleServerLogic
 {
+	TMasterForm* mMasterForm;
+public:
+	TModuleServerLogicMaster_Dev();
+
+	virtual void StartEvent();
+	virtual void StopEvent();
 protected:
   virtual bool WorkServer();
   virtual void EndWork();
 
   virtual void Input(int id, void* p, int size);
+
+private:
+	void InitForms();
 };
 
 #endif

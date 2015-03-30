@@ -10,10 +10,8 @@ See for more information License.h.
 
 #include <QLabel>
 
-#include "DevProtocol.h"
-#include "DevTool_Share.h"
+#include "ModuleLogic.h"
 
-using namespace nsDevProtocol;
 
 TMasterForm::TMasterForm(QWidget *parent)
 {
@@ -39,8 +37,7 @@ void TMasterForm::customEvent( QEvent * event)
 //-----------------------------------------------------------
 void TMasterForm::closeEvent(QCloseEvent * event)
 {
-  TExit h;
-  //TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&h,sizeof(h));
+	TModuleLogic::Get()->Exit();
 
   delete this;
 }

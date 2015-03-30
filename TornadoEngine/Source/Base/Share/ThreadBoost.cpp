@@ -33,9 +33,9 @@ void TThreadBoost::Engine()
   while(flgNeedStop==false)
     Work();
 
-  flgActive = false;
-
   StopEvent();
+
+  flgActive = false;
 }
 //----------------------------------------------------------------------------------
 void TThreadBoost::Start()

@@ -11,6 +11,7 @@ bool TModuleClientLogic::Work()
 {
   InputFromSynchroPoint();
   bool resWork = WorkClient();
-  return true;
+	resWork &= !NeedExit();
+  return resWork;
 }
 //----------------------------------------------------------------

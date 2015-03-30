@@ -10,10 +10,14 @@ See for more information License.h.
 
 #include "BaseGUI.h"
 #include <MyGUI.h>
+#include "Structs.h"
 
 class TClientMain : public TBaseGUI
 {
-  bool IsOpen;
+  volatile bool IsOpen;
+	unsigned int ip;
+	std::string sLogin;
+	nsMMOEngine::TDescOpen mDescOpen;
 public:
   TClientMain();
   virtual ~TClientMain();
@@ -40,6 +44,7 @@ private:
   void SaveInputParam(unsigned int ip, unsigned int port, const char* sLogin);
   void LoadInputParam();
 
+	void EnterServer();
 };
 
 #endif 

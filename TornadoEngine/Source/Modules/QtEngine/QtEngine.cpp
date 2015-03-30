@@ -47,8 +47,11 @@ void TQtEngine::Work()
   QTextCodec::setCodecForTr(QTextCodec::codecForName("CP1251"));
   mApplication = new TApplication(mArgc, mArgv);
   mApplication->exec();
+
+	lock();
   delete mApplication;
   mApplication = NULL;
+	unlock();
 
   GetLogger(STR_NAME_QT)->WriteF_time("Qt Thread stop.\n");
 }
@@ -68,9 +71,16 @@ void TQtEngine::Stop()
 //--------------------------------------------------------------------
 bool TQtEngine::IsActive()
 {
+	lock();
   if(mApplication==NULL)
-    return false;
-  return mApplication->thread()->isRunning();
+	{
+		unlock();
+		return false;
+	}
+  bool isActive = mApplication->thread()->isRunning();
+	unlock();
+
+	return isActive;
 }
 //--------------------------------------------------------------------
 QApplication* TQtEngine::GetApp()

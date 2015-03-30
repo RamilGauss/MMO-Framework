@@ -23,7 +23,6 @@ protected:
 
   virtual void Input(int id, void* p, int size);
 private:
-
 	void StartTimer();
 	void InitForms();
 };

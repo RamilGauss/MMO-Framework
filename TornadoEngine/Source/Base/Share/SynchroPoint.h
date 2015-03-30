@@ -14,6 +14,7 @@ See for more information License.h.
 
 #include "IContainer.h"
 #include "ListMultiThread.h"
+#include "ContainerArrObj.h"
 
 class DllExport TSynchroPoint
 {

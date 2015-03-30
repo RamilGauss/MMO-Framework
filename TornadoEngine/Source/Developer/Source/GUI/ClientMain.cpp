@@ -16,7 +16,11 @@ See for more information License.h.
 
 #include "GlobalParam.h"
 #include "NetSystem.h"
-#include "DevTool_Share.h"
+#include "ModuleLogic.h"
+#include "ListModules.h"
+#include "Client.h"
+#include "ModuleMMOEngineClient.h"
+#include "LogicEventCallBack.h"
 
 TClientMain::TClientMain()
 {
@@ -45,34 +49,26 @@ void TClientMain::Activate()
 //-------------------------------------------------------------------------------------
 void TClientMain::sl_Enter(MyGUI::Widget* _sender)
 {
-  USES_CONVERSION;
-  std::string sPort = W2A((LPCWSTR)ebPort->getOnlyText().data());
-  int port = atoi(sPort.data());
+	USES_CONVERSION;
+	std::string sPort = W2A((LPCWSTR)ebPort->getOnlyText().data());
+	int port = atoi(sPort.data());
 
-  std::string sIP = W2A((LPCWSTR)ebIP->getOnlyText().data());
-  unsigned int ip = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
+	std::string sIP = W2A((LPCWSTR)ebIP->getOnlyText().data());
+	ip = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
 
-  std::string sLogin = W2A((LPCWSTR)ebLogin->getOnlyText().data());
+	sLogin = W2A((LPCWSTR)ebLogin->getOnlyText().data());
+	mDescOpen = nsMMOEngine::TDescOpen(port);
 
-  //TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
-  //// настройка сети
-  //if(IsOpen==false)
-  //{
-  //  IsOpen = pComponent->mClient->Get()->Open(&nsMMOEngine::TDescOpen(port));
-  //}
-
-  //SaveInputParam(ip,port,sLogin.data());
-
-  //BL_ASSERT(IsOpen);
-  //pComponent->mClient->Get()->Login( ip, MASTER_PORT, 
-  //  (void*)sLogin.data(), sLogin.length(), "1", 1);// пока пароль - 1 ###
+  // настройка сети
+  if(IsOpen==false)
+		TModuleLogic::Get()->CallBackModule(nsListModules::MMOEngineClient, &TClientMain::EnterServer, this );
 }
 //-------------------------------------------------------------------------------------
 void TClientMain::sl_Exit(MyGUI::Widget* _sender)
 {
   //IClientDeveloperTool::Singleton()->GetComponent()->mNetClient->LeaveQueue();
 
-  //TDevTool_Share::Singleton()->Exit();
+	TModuleLogic::Get()->Exit();
 }
 //-------------------------------------------------------------------------------------
 const char* TClientMain::GetNameLayout()
@@ -133,5 +129,16 @@ void TClientMain::LoadInputParam()
 
   QByteArray ba = sLogin.toLocal8Bit();
   ebLogin->setOnlyText(ba.data());
+}
+//-------------------------------------------------------------------------------------
+void TClientMain::EnterServer()
+{
+	nsMMOEngine::TClient* pClient = TModuleLogic::Get()->GetC()->pMMOEngineClient->Get();
+
+	IsOpen = pClient->Open(&mDescOpen);
+	BL_ASSERT(IsOpen);
+	pClient->Login( ip, MASTER_PORT, (void*)sLogin.data(), sLogin.length(), "1", 1);// пока пароль - 1 ###
+
+	SaveInputParam(ip, mDescOpen.port, sLogin.data());
 }
 //-------------------------------------------------------------------------------------

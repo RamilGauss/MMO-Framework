@@ -10,7 +10,7 @@ See for more information License.h.
 #include "SuperServerForm.h"
 
 #include "BL_Debug.h"
-#include "DevTool_Share.h"
+#include "ModuleLogic.h"
 
 TSuperServerForm::TSuperServerForm(QWidget *parent)
 {
@@ -31,9 +31,8 @@ void TSuperServerForm::customEvent( QEvent * event)
 //-----------------------------------------------------------
 void TSuperServerForm::closeEvent(QCloseEvent * event)
 {
-  int type = 0;
   // создать событие для главного потока, здесь менять нельзя, мы находимся в потоке Qt
-  //TDevTool_Share::Singleton()->GetComponent()->mQtSrcEvent->GetSrcEvent()->AddEventCopy(&type,sizeof(type));
+	TModuleLogic::Get()->Exit();
 
   delete this;
 }
