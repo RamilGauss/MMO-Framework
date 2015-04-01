@@ -58,7 +58,7 @@ class DllExport TGameEngine
 public:
   TGameEngine();
 
-  void Work(int variant_use, const char* sNameDLL);// начало работы
+  void Work(int variant_use, const char* sNameDLL, std::vector<std::string>& vecParam);// начало работы
   std::string GetVersion();
 private:
   void Init();

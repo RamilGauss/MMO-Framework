@@ -15,3 +15,8 @@ bool TModuleClientLogic::Work()
   return resWork;
 }
 //----------------------------------------------------------------
+void TModuleClientLogic::ParseCmd(std::vector<std::string>& arg)
+{
+  mInputCmd.SetArg(arg);
+}
+//------------------------------------------------------------------------

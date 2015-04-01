@@ -9,6 +9,7 @@ See for more information License.h.
 #define ModuleServerLogicSlave_DevH
 
 #include "ModuleServerLogic.h"
+#include "BaseEvent.h"
 
 class TSlaveForm;
 
@@ -22,6 +23,7 @@ class TModuleServerLogicSlave_Dev : public TModuleServerLogic
   };
 public:
   TModuleServerLogicSlave_Dev();
+  virtual void InitLog();
 
   virtual void StartEvent();
   virtual void StopEvent();
@@ -30,11 +32,12 @@ protected:
   virtual void EndWork();
 
   virtual void Input(int id, void* p, int size);
-
+private:
+  void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
 private:
   void StartTimer();
   void InitForms();
-
+  void ConnectToMaster();
 };
 
 #endif

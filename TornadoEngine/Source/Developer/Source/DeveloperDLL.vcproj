@@ -586,14 +586,6 @@
 				RelativePath=".\Protocols\GlobalParam.h"
 				>
 			</File>
-			<File
-				RelativePath=".\Protocols\InputCmdDevTool.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Protocols\InputCmdDevTool.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="GameObjects"

@@ -63,7 +63,8 @@ int main(int argc, char** argv){
   }
   //-----------------------------------------------------------------  
   pGame->Work(inputTornado.variant_use, 
-              inputTornado.libName.data());
+              inputTornado.libName.data(),
+              inputTornado.param);
   delete pGame;
   return 0;
 }
@@ -87,8 +88,10 @@ void ViewHowUse()
     "\n"
     "Ключ -c показывает консоль. Ключ актуален только для Windows.\n"
     "\n"
+    "Ключ -p строка, адресованная воплощению игры.\n"
+    "\n"
     "Например:\n"
-    "Tornado.exe -v 0 -d DeveloperDLL.dll\n";
+    "Tornado.exe -v 0 -d DeveloperDLL.dll -p port_src 1234 port_self 7777\n";
 #ifdef WIN32
   size_t lenMsgUtf8 = strlen(sMsgUtf8);
   TContainer cWin1251;

@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef INPUT_CMD_TORNADO_H
-#define INPUT_CMD_TORNADO_H
+#ifndef InputCmdTornadoH
+#define InputCmdTornadoH
 
 #include <string>
 #include <vector>
@@ -27,8 +27,7 @@ public:
 	{
 		std::string              libName;
     std::vector<std::string> param;
-		std::string              type; 
-		int                      variant_use;
+    int                      variant_use;
     bool                     useConsole;
 		TInput()
 		{

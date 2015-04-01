@@ -36,10 +36,13 @@ class TDevTool_Share : public IDevTool
   TResources::TListPairNameType mListRGUI; 
   TResources::TListPairNameType mListRGameEngine;
   TResources::TListPairNameType mListRGraphicEngine;
+
+  std::vector<std::string> mVecArg;
 public:
   TDevTool_Share();
   virtual ~TDevTool_Share();
 
+  virtual void SetVectorParam(std::vector<std::string>& vecArg);
   virtual std::string GetFileDescConveyer();
   virtual IModule* GetModuleByName(const char* sName);
   virtual void EventGameEngine(int id, const char* sDesc);

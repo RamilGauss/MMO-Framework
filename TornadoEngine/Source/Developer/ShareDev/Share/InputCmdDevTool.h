@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef INPUT_CMD_DEV_TOOL_H
-#define INPUT_CMD_DEV_TOOL_H
+#ifndef InputCmdDevToolH
+#define InputCmdDevToolH
 
 #include <string>
 #include <vector>
 
 #include "CmdParam.h"
  
-class TInputCmdDevTool
+class DllExport TInputCmdDevTool
 {
  TCmdParam mCmdParam;
 
@@ -23,8 +23,9 @@ class TInputCmdDevTool
 public:
 	struct TInput
 	{
-    unsigned int   ip;
-    unsigned short port;
+    unsigned int   ip_src;
+    unsigned short port_src;
+    unsigned short port_self;
 	};
 
   TInputCmdDevTool();

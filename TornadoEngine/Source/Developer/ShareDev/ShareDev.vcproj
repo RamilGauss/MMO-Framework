@@ -188,6 +188,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Share\InputCmdDevTool.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\InputCmdDevTool.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Share\ModuleDev.cpp"
 				>
 			</File>

@@ -19,6 +19,9 @@ protected:
   TComponents mComp;
 public:
   TModuleLogic();
+  virtual void ParseCmd(std::vector<std::string>& arg) = 0;
+  virtual void InitLog();
+
   void SetComponents(TComponents components);
   TComponents* GetC();
 

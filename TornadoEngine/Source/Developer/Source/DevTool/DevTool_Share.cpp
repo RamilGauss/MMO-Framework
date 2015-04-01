@@ -241,6 +241,8 @@ void TDevTool_Share::SetComponentsForLogic()
     id_logic = pLogic->GetID();
     components.SetLogicID(id_logic);
     pLogic->SetComponents(components);
+    pLogic->InitLog();
+    pLogic->ParseCmd(mVecArg);
   }
   else 
     BL_FIX_BUG();
@@ -262,5 +264,10 @@ TModuleLogic* TDevTool_Share::FindLogic()
   pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicSuperServer);
 
   return pLogic;
+}
+//-----------------------------------------------------------------------
+void TDevTool_Share::SetVectorParam(std::vector<std::string>& vecArg)
+{
+  mVecArg = vecArg;
 }
 //-----------------------------------------------------------------------

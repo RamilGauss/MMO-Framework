@@ -64,3 +64,8 @@ void TModuleServerLogic::CalcAndWaitRestTime()
   ht_msleep(time_sleep);
 }
 //------------------------------------------------------------------------
+void TModuleServerLogic::ParseCmd(std::vector<std::string>& arg)
+{
+  mInputCmd.SetArg(arg);
+}
+//------------------------------------------------------------------------

@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include "StatisticValue.h"
 #include "ModuleLogic.h"
+#include "InputCmdDevTool.h"
 
 class DllExport TModuleServerLogic : public TModuleLogic
 {
@@ -19,8 +20,11 @@ class DllExport TModuleServerLogic : public TModuleLogic
   TStatLoad mStatLoad;
 
   unsigned int mStartTime;
+protected:
+  TInputCmdDevTool mInputCmd;
 public:
   TModuleServerLogic();
+  virtual void ParseCmd(std::vector<std::string>& arg);
 
   virtual bool Work();
 protected:

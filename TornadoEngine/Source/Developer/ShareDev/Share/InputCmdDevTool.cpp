@@ -8,15 +8,17 @@ See for more information License.h.
 #include "InputCmdDevTool.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 
-#define KEY_IP   string("ip")
-#define KEY_PORT string("port")
+#define KEY_IP_SRC    string("ip_src")
+#define KEY_PORT_SRC  string("port_src")
+#define KEY_PORT_SELF string("port_self")
 
 using namespace std;
 
 TInputCmdDevTool::TInputCmdDevTool()
 {
-  mVecDefKey.push_back(KEY_IP);
-	mVecDefKey.push_back(KEY_PORT);
+  mVecDefKey.push_back(KEY_IP_SRC);
+	mVecDefKey.push_back(KEY_PORT_SRC);
+  mVecDefKey.push_back(KEY_PORT_SELF);
 
 	mCmdParam.SetDefKey(mVecDefKey);
 }
@@ -35,22 +37,30 @@ bool TInputCmdDevTool::SetArg(vector<string>& vecArgv)
 {
 	mCmdParam.SetArg(vecArgv);
 
-	int cIP = mCmdParam.GetCountValueByKey(KEY_IP);
+	int cIP = mCmdParam.GetCountValueByKey(KEY_IP_SRC);
 	if(cIP)
   {
     string sIP;
-    mCmdParam.GetByKey(KEY_IP, 0, sIP);
-    mInput.ip = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
+    mCmdParam.GetByKey(KEY_IP_SRC, 0, sIP);
+    mInput.ip_src = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
   }
 	//-------------------------------------------------
-	int cPort = mCmdParam.GetCountValueByKey(KEY_PORT);
+	int cPort = mCmdParam.GetCountValueByKey(KEY_PORT_SRC);
 	if(cPort)
   {
     string sPort;
-    mCmdParam.GetByKey(KEY_PORT, 0, sPort);
-    mInput.port = atoi(sPort.data());
+    mCmdParam.GetByKey(KEY_PORT_SRC, 0, sPort);
+    mInput.port_src = atoi(sPort.data());
   }
 	//-------------------------------------------------
+  cPort = mCmdParam.GetCountValueByKey(KEY_PORT_SELF);
+  if(cPort)
+  {
+    string sPort;
+    mCmdParam.GetByKey(KEY_PORT_SELF, 0, sPort);
+    mInput.port_self = atoi(sPort.data());
+  }
+  //-------------------------------------------------
 	return true;
 }
 //-------------------------------------------------------------------------------

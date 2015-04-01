@@ -9,9 +9,9 @@ See for more information License.h.
 
 using namespace std;
 
-string KEY_PARAM  ("-p");
 string KEY_LIB    ("-d");
 string KEY_VARIANT("-v");
+string KEY_PARAM  ("-p");
 string KEY_CONSOLE("-c");
 
 TInputCmdTornado::TInputCmdTornado()

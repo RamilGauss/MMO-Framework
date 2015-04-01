@@ -99,10 +99,11 @@ void TGameEngine::Init()
   }
 }
 //------------------------------------------------------------------------
-void TGameEngine::Work(int variant_use, const char* sNameDLL)// начало работы
+void TGameEngine::Work(int variant_use, const char* sNameDLL, vector<string>& vecParam)// начало работы
 {
   if(LoadDLL(variant_use,sNameDLL)==false)
     return;
+  mDevTool->SetVectorParam(vecParam);
   // подготовка конвейера
   if(PrepareConveyer()==false)
     return;
