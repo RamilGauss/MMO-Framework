@@ -43,6 +43,7 @@ public:
                     TBreakPacket packet, bool check = true) = 0;
 
 	// чтение - зарегистрируйся
+  // вызывается из потока транспорта, поэтому ЗАПРЕЩАЕТСЯ вызывать методы транспорта по данным событиям
   virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv()       = 0;
   virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect() = 0;
 
