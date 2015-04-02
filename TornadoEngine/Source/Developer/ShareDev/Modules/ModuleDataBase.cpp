@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include "ModuleDataBase.h"
+#include "HiTimer.h"
 
 TModuleDataBase::TModuleDataBase()
 {
@@ -19,6 +20,7 @@ TModuleDataBase::~TModuleDataBase()
 //----------------------------------------------------------------------
 bool TModuleDataBase::Work()
 {
+  ht_msleep(20);//###
   return true;
 }
 //----------------------------------------------------------------------

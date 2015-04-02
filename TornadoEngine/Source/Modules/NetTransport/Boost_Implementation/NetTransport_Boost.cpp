@@ -98,6 +98,16 @@ bool TNetTransport_Boost::IsActive()
 //--------------------------------------------------------------------------
 bool TNetTransport_Boost::Connect(unsigned int ip, unsigned short port)
 {
+  //###
+  if(mTCP_Up.get()==NULL)
+  {
+    // This decision does not take effect under Ubuntu
+    // Well check it out
+    mTCP_Up.reset(new TNetControlTCP(this, *(mNetWorkThread.GetIO_Service())));
+    bool resOpen = mTCP_Up->Open(mLocalPort, mNumNetWork);
+    int a = 0;
+  }
+  //###
   bool res = mTCP_Up->Connect(ip, port);
   if(res)
   {
@@ -175,7 +185,20 @@ void TNetTransport_Boost::DeleteMapControlTCP()
 void TNetTransport_Boost::DeleteControlTCP(TNetControlTCP* pControl)
 {
   if(mTCP_Up.get()==pControl)
+  {
+    //###
+    //mAcceptor->Close();
+    //mAcceptor.reset(new TNetControlAcceptor(this,*(mNetWorkThread.GetIO_Service())));
+
+    mTCP_Up.reset(NULL);
+    //mTCP_Up.reset(new TNetControlTCP(this, *(mNetWorkThread.GetIO_Service())));
+    //bool res = mTCP_Up->Open(mLocalPort, mNumNetWork);
+
+    //res &= mAcceptor->Open(mLocalPort, mNumNetWork);
+    //if(res) mAcceptor->Init();
+    //###
     return;
+  }
   delete pControl;
 }
 //----------------------------------------------------------------------------------

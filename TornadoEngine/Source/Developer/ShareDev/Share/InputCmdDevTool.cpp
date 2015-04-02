@@ -8,8 +8,8 @@ See for more information License.h.
 #include "InputCmdDevTool.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 
-#define KEY_IP_SRC    string("ip_src")
-#define KEY_PORT_SRC  string("port_src")
+#define KEY_IP_SRC    string("ip_dst")
+#define KEY_PORT_SRC  string("port_dst")
 #define KEY_PORT_SELF string("port_self")
 
 using namespace std;
@@ -42,7 +42,7 @@ bool TInputCmdDevTool::SetArg(vector<string>& vecArgv)
   {
     string sIP;
     mCmdParam.GetByKey(KEY_IP_SRC, 0, sIP);
-    mInput.ip_src = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
+    mInput.ip_dst = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
   }
 	//-------------------------------------------------
 	int cPort = mCmdParam.GetCountValueByKey(KEY_PORT_SRC);
@@ -50,7 +50,7 @@ bool TInputCmdDevTool::SetArg(vector<string>& vecArgv)
   {
     string sPort;
     mCmdParam.GetByKey(KEY_PORT_SRC, 0, sPort);
-    mInput.port_src = atoi(sPort.data());
+    mInput.port_dst = atoi(sPort.data());
   }
 	//-------------------------------------------------
   cPort = mCmdParam.GetCountValueByKey(KEY_PORT_SELF);

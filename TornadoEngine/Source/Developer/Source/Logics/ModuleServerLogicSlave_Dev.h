@@ -10,8 +10,8 @@ See for more information License.h.
 
 #include "ModuleServerLogic.h"
 #include "BaseEvent.h"
-
-class TSlaveForm;
+#include "Events.h"
+#include "SlaveForm.h"
 
 class TModuleServerLogicSlave_Dev : public TModuleServerLogic
 {
@@ -21,6 +21,14 @@ class TModuleServerLogicSlave_Dev : public TModuleServerLogic
   {
     eCycleTime = 100,
   };
+
+  TListMultiThread<unsigned int> mListSessionAdd;
+
+  TListMultiThread<TSlaveForm::TDesc> mListID_SessionAdd;
+  TListMultiThread<TSlaveForm::TDesc> mListID_SessionDelete;
+
+  TListMultiThread<unsigned int> mListSessionRestore;
+  TListMultiThread<unsigned int> mListSessionSave;
 public:
   TModuleServerLogicSlave_Dev();
   virtual void InitLog();
@@ -38,6 +46,23 @@ private:
   void StartTimer();
   void InitForms();
   void ConnectToMaster();
+
+  void ConnectUpQt();
+  void DisconnectUpQt();
+  void AddClientQt();
+  void DeleteClientQt();
+
+  void ConnectDownMMOEngine();
+  void SaveContextClientMMOEngine();
+
+  void ConnectUp(nsMMOEngine::TEventConnectUp* pBE);
+  void DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE);
+
+  void ConnectDown(nsMMOEngine::TEventConnectDown* pEvent);
+  void DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent);
+
+  void SaveContextClient(nsMMOEngine::TEventSaveContext* pEvent);
+  void RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent);
 };
 
 #endif

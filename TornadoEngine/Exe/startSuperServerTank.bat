@@ -1,1 +1,1 @@
-start Tornado.exe -v 4 -d ..\Source\Developer\DLL\DeveloperDLL.dll
+start Tornado_d.exe -v 3 -d DeveloperDLL_d.dll

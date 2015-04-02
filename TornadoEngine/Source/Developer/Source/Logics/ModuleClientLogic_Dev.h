@@ -18,6 +18,7 @@ class TModuleClientLogic_Dev : public TModuleClientLogic
 
 public:
   virtual void StartEvent();
+  virtual void InitLog();
 protected:
   virtual bool WorkClient();
 

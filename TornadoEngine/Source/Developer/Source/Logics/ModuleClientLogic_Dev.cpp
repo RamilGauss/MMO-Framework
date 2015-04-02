@@ -9,6 +9,7 @@ See for more information License.h.
 #include "ListModules.h"
 #include "ModuleTimer.h"
 #include "ClientMain.h"
+#include "Logger.h"
 
 bool TModuleClientLogic_Dev::WorkClient()
 {
@@ -56,3 +57,9 @@ void TModuleClientLogic_Dev::InitForms()
   mClientMain->Show();
 }
 //----------------------------------------------------------
+void TModuleClientLogic_Dev::InitLog()
+{
+  GetLogger()->Register("Inner");// для логирования внутренних событий
+  GetLogger()->Init("Client");
+}
+//---------------------------------------------------------------------------------------------

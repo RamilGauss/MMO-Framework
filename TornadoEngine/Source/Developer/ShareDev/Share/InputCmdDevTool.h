@@ -23,8 +23,8 @@ class DllExport TInputCmdDevTool
 public:
 	struct TInput
 	{
-    unsigned int   ip_src;
-    unsigned short port_src;
+    unsigned int   ip_dst;
+    unsigned short port_dst;
     unsigned short port_self;
 	};
 

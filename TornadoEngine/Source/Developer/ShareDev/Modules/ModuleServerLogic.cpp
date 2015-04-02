@@ -19,7 +19,7 @@ TModuleServerLogic::TModuleServerLogic():mStatLoad(30)
   GetLogger(STR_NAME_SERVER_LOGIC)->SetEnable(false);
 #endif
 
-  mCycleTime_ms = 0;
+  mCycleTime_ms = eDefCycleTime;
   mStartTime    = 0;
 }
 //----------------------------------------------------------------

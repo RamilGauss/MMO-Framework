@@ -20,6 +20,11 @@ class DllExport TModuleServerLogic : public TModuleLogic
   TStatLoad mStatLoad;
 
   unsigned int mStartTime;
+
+  enum
+  {
+    eDefCycleTime = 100,
+  };
 protected:
   TInputCmdDevTool mInputCmd;
 public:
