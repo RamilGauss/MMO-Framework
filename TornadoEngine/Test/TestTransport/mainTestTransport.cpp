@@ -104,7 +104,9 @@ int main(int argc, char** argv)
     TIP_Port** ppFisrt = g_Handler.mListDisc.GetFirst();
     while(ppFisrt)
     {
-      resConnect = g_pTransport->Connect(IP, inputArg.port_dst);      
+      TIP_Port* pIP_Port = *ppFisrt;
+      if(pIP_Port->port==inputArg.port_dst)
+        resConnect = g_pTransport->Connect(IP, inputArg.port_dst);
 
       g_Handler.mListDisc.Remove(ppFisrt);
       ppFisrt = g_Handler.mListDisc.GetFirst();

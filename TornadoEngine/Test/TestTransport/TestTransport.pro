@@ -3,7 +3,7 @@ LANGUAGE = C++
 
 CONFIG += qt warn_on
 
-TARGET = ../../Exe/Client
+TARGET = ../../Exe/TestTransport
 
 INCLUDEPATH = \
 . \
@@ -28,7 +28,7 @@ LIBS += -lNetTransport_d
 
 SOURCES = \
 InputCmdTestTransport.cpp \
-mainClient.cpp
+mainTestTransport.cpp
 
 HEADERS = \
 InputCmdTestTransport.h
