@@ -101,10 +101,8 @@ bool TNetTransport_Boost::Connect(unsigned int ip, unsigned short port)
   if(mTCP_Up.get()==NULL)
   {
     // порядок открытия портов (сначала TCP_Up, потом Acceptor) под Ubuntu - строгий
-    //###
     mAcceptor->Close();
     mAcceptor.reset(new TNetControlAcceptor(this,*(mNetWorkThread.GetIO_Service())));
-    //###
 
     mTCP_Up.reset(new TNetControlTCP(this, *(mNetWorkThread.GetIO_Service())));
     bool resOpen = mTCP_Up->Open(mLocalPort, mNumNetWork);

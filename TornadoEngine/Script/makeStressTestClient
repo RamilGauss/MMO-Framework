@@ -1,4 +1,4 @@
-cd ./Test/MMO/Server
+cd ../Test/MMO/StressTestClient
 qmake
 make clean
 make

@@ -1,4 +1,4 @@
-cd ./Test/MMO/Client
+cd ../Test/MMO/Client
 qmake
 make clean
 make
