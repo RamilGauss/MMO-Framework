@@ -15,6 +15,8 @@ class TNetControlTCP;
 
 class TNetControlAcceptor : public INetControl
 {
+  volatile bool flgReadyAccept;
+
   TNetDeviceAcceptor mDevice;// слушающий сокет, ждет подключения от клиентов
 
   GCS gcsSendAccept;
@@ -33,6 +35,7 @@ public:
   
   virtual TNetDeviceAcceptor* GetDevice(){return &mDevice;}
 
+  bool IsReadyAccept();
 protected:
   void Done();
 

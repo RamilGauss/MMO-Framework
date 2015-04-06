@@ -7,10 +7,10 @@
   Multi-threaded game engine - the ability to control the initial number of threads and the number of modules in the thread.
 The module is a graphical, physical, network, GUI, etc engines.
     
-  MMO (network) component can work with more than one million customers.
+  MMO (network) component can work with more than one million Clients.
 This is achieved by using the cluster organization within the Server.
 
-  For compiling requires: see files dpendency.txt and todo.txt.
+  For compiling requires: see files dependency.txt and todo.txt.
 To view the architectural decisions need Enterprise Architect 7.0.
 Article on habrahabr: http://habrahabr.ru/post/233915/
 //------------------------------------------------------------------------------------------

@@ -9,6 +9,7 @@ See for more information License.h.
 #define ModuleClientLogic_DevH
 
 #include "ModuleClientLogic.h"
+#include "BaseEvent.h"
 
 class TClientMain;
 
@@ -26,6 +27,10 @@ protected:
 private:
   void StartTimer();
   void InitForms();
+
+  void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
+
+  void LoginOnServer();
 };
 
 #endif

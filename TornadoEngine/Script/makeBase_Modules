@@ -4,13 +4,13 @@ make clean
 make
 cd ../../..
 ###########################################################
-cd ../Source/Modules/MMOEngine
+cd ./Source/Modules/MMOEngine
 qmake
 make clean
 make
 cd ../../..
 ###########################################################
-cd ../Source/Modules/NetTransport
+cd ./Source/Modules/NetTransport
 qmake
 make clean
 make

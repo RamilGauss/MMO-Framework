@@ -165,10 +165,6 @@
 				RelativePath=".\Precompiled.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\Input\Win32\ResourceW32Pointer.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -245,10 +241,6 @@
 			</File>
 			<File
 				RelativePath=".\Precompiled.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Input\Win32\ResourceW32Pointer.h"
 				>
 			</File>
 			<File

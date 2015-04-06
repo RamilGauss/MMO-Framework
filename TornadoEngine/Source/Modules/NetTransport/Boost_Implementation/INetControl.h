@@ -44,7 +44,7 @@ protected:
   TNetTransport_Boost* GetNetBoost();
 
   void NotifyRecv(INetTransport::TDescRecv* p);
-	void NotifyDisconnect(TIP_Port* p);
+	void NotifyDisconnect(TIP_Port* p, TNetTransport_Boost* pNetTransportBoost);
 };
 
 #endif

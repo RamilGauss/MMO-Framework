@@ -22,6 +22,7 @@ INetControl(pNTB),
 mDevice(io_service)
 {
   pNewControlTCP = NULL;
+  flgReadyAccept = false;
 }
 //------------------------------------------------------------------------------
 TNetControlAcceptor::~TNetControlAcceptor()
@@ -65,6 +66,8 @@ void TNetControlAcceptor::AcceptEvent(const boost::system::error_code& error)
 		pNewControlTCP = NULL;
 		GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("Acceptor AcceptEvent FAIL: %s.\n", error.message().data());
+
+    flgReadyAccept = false;
 		return;
 	}
 
@@ -82,10 +85,17 @@ void TNetControlAcceptor::ReadyAccept()
   mDevice.GetSocket()->async_accept(*(pNewControlTCP->GetDevice()->GetSocket()),
     boost::bind(&TNetControlAcceptor::AcceptEvent, this, 
     boost::asio::placeholders::error));
+
+  flgReadyAccept = true;
 }
 //------------------------------------------------------------------------------
 void TNetControlAcceptor::Init()
 {
   ReadyAccept();
+}
+//------------------------------------------------------------------------------
+bool TNetControlAcceptor::IsReadyAccept()
+{
+  return flgReadyAccept;
 }
 //------------------------------------------------------------------------------

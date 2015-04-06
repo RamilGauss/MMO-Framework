@@ -102,6 +102,9 @@ bool TNetTransport_Boost::Connect(unsigned int ip, unsigned short port)
   {
     // порядок открытия портов (сначала TCP_Up, потом Acceptor) под Ubuntu - строгий
     mAcceptor->Close();
+    // ждать пока Получатель соединений избавится от сокета, который готов к приему.
+    while(mAcceptor->IsReadyAccept())
+      ht_msleep(0);
     mAcceptor.reset(new TNetControlAcceptor(this,*(mNetWorkThread.GetIO_Service())));
 
     mTCP_Up.reset(new TNetControlTCP(this, *(mNetWorkThread.GetIO_Service())));
