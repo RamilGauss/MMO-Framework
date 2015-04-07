@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleServerLogicSuperServer_DevH
-#define ModuleServerLogicSuperServer_DevH
+#ifndef SuperServerLogicH
+#define SuperServerLogicH
 
 #include "ModuleServerLogic.h"
 #include "BaseEvent.h"
@@ -14,7 +14,7 @@ See for more information License.h.
 #include "SuperServerForm.h"
 #include "Events.h"
 
-class TModuleServerLogicSuperServer_Dev : public TModuleServerLogic
+class TSuperServerLogic : public TModuleServerLogic
 {
   TSuperServerForm* mSuperServerForm;
 
@@ -23,7 +23,7 @@ class TModuleServerLogicSuperServer_Dev : public TModuleServerLogic
   TListMultiThread<TSuperServerForm::TDesc> mListID_SessionAdd;
   TListMultiThread<TSuperServerForm::TDesc> mListID_SessionDelete;
 public:
-  TModuleServerLogicSuperServer_Dev();
+  TSuperServerLogic();
   virtual void InitLog();
 
   virtual void StartEvent();

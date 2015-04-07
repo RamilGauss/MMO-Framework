@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ModuleClientLogic_Dev.h"
+#include "ClientLogic.h"
 #include "ListModules.h"
 #include "ModuleTimer.h"
 #include "ClientMain.h"
@@ -13,12 +13,12 @@ See for more information License.h.
 #include <Ogre.h>
 #include "ModuleGraphicEngine.h"
 
-bool TModuleClientLogic_Dev::WorkClient()
+bool TClientLogic::WorkClient()
 {
   return true;
 }
 //----------------------------------------------------------
-void TModuleClientLogic_Dev::Input(int id, void* p, int size)
+void TClientLogic::Input(int id, void* p, int size)
 {
   switch(id)
   {
@@ -31,42 +31,37 @@ void TModuleClientLogic_Dev::Input(int id, void* p, int size)
       break;
     case nsListModules::SoundEngine:
       break;
-    case nsListModules::DataBase:
-      break;
     case nsListModules::Timer:
-    {
-      // события от таймера
-      int a = 0;
-    }
       break;
+    default:BL_FIX_BUG();
   }
 }
 //----------------------------------------------------------
-void TModuleClientLogic_Dev::StartEvent()
+void TClientLogic::StartEvent()
 {
-  //CallBackModule(nsListModules::Timer, &TModuleClientLogic_Dev::StartTimer);
-  CallBackModule(nsListModules::GraphicEngine, &TModuleClientLogic_Dev::InitForms);
+  //CallBackModule(nsListModules::Timer, &TClientLogic::StartTimer);
+  CallBackModule(nsListModules::GraphicEngine, &TClientLogic::InitForms);
 }
 //----------------------------------------------------------
-void TModuleClientLogic_Dev::StartTimer()
+void TClientLogic::StartTimer()
 {
   // вызовется из потока таймера
   unsigned int mID_Timer = mComp.pTimer->New(5000);
 }
 //----------------------------------------------------------
-void TModuleClientLogic_Dev::InitForms()
+void TClientLogic::InitForms()
 {
   mClientMain = new TClientMain;
   mClientMain->Show();
 }
 //----------------------------------------------------------
-void TModuleClientLogic_Dev::InitLog()
+void TClientLogic::InitLog()
 {
   GetLogger()->Register("Inner");// для логирования внутренних событий
   GetLogger()->Init("Client");
 }
 //---------------------------------------------------------------------------------------------
-void TModuleClientLogic_Dev::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
+void TClientLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
 {
   std::string sEvent;  
   switch(pBE->mType)
@@ -88,8 +83,9 @@ void TModuleClientLogic_Dev::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
       break;
     case nsMMOEngine::eResultLogin:
       sEvent = "ResultLogin";
-      CallBackModule(nsListModules::GraphicEngine, &TModuleClientLogic_Dev::LoginOnServer);
+      CallBackModule(nsListModules::GraphicEngine, &TClientLogic::LoginOnServer);
       break;
+    default:BL_FIX_BUG();
   }
   GetLogger("Inner")->WriteF_time("MMOEngine: %s.\n",sEvent.data());
 }
@@ -117,10 +113,10 @@ void AddEntity(Ogre::Entity* pEnt, TOrient& orient, Ogre::SceneManager* pSM)
   pNode->setPosition(orient.pos);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleClientLogic_Dev::LoginOnServer()
+void TClientLogic::LoginOnServer()
 {
   mClientMain->Hide();
-  // вставка Танка (временно)
+  // вставка Танка (временно), прототип модели
   //###
   Ogre::SceneManager* pSM = mComp.pGraphicEngine->GetGE()->GetSceneManager();
   pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));

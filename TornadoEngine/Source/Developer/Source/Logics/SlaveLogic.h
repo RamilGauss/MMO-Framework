@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleServerLogicSlave_DevH
-#define ModuleServerLogicSlave_DevH
+#ifndef SlaveLogicH
+#define SlaveLogicH
 
 #include "ModuleServerLogic.h"
 #include "BaseEvent.h"
 #include "Events.h"
 #include "SlaveForm.h"
 
-class TModuleServerLogicSlave_Dev : public TModuleServerLogic
+class TSlaveLogic : public TModuleServerLogic
 {
   TSlaveForm* mSlaveForm;
 
@@ -30,7 +30,7 @@ class TModuleServerLogicSlave_Dev : public TModuleServerLogic
   TListMultiThread<unsigned int> mListSessionRestore;
   TListMultiThread<unsigned int> mListSessionSave;
 public:
-  TModuleServerLogicSlave_Dev();
+  TSlaveLogic();
   virtual void InitLog();
 
   virtual void StartEvent();

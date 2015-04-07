@@ -13,7 +13,7 @@ See for more information License.h.
 #include "ModuleLogic.h"
 #include <boost/foreach.hpp>
 #include "ListModules.h"
-#include "ModuleServerLogicMaster_Dev.h"
+#include "MasterLogic.h"
 
 TMasterForm::TMasterForm(QWidget *parent)
 {
@@ -102,6 +102,6 @@ void TMasterForm::Refresh()
 //-----------------------------------------------------------
 void TMasterForm::sl_CreateGroup()
 {
-  TModuleLogic::Get()->CallBackModule(nsListModules::MMOEngineMaster, &TModuleServerLogicMaster_Dev::CreateGroup );
+  TModuleLogic::Get()->CallBackModule(nsListModules::MMOEngineMaster, &TMasterLogic::CreateGroup );
 }
 //-----------------------------------------------------------

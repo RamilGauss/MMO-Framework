@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleClientLogic_DevH
-#define ModuleClientLogic_DevH
+#ifndef ClientLogicH
+#define ClientLogicH
 
 #include "ModuleClientLogic.h"
 #include "BaseEvent.h"
 
 class TClientMain;
 
-class TModuleClientLogic_Dev : public TModuleClientLogic
+class TClientLogic : public TModuleClientLogic
 {
   TClientMain* mClientMain;
 

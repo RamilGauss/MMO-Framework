@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include <boost/asio/ip/impl/address_v4.ipp>
 
-#include "ModuleServerLogicSlave_Dev.h"
+#include "SlaveLogic.h"
 #include "ListModules.h"
 #include "GlobalParam.h"
 #include "NetSystem.h"
@@ -16,7 +16,7 @@ See for more information License.h.
 #include "ModuleMMOEngineSlave.h"
 #include "Events.h"
 
-TModuleServerLogicSlave_Dev::TModuleServerLogicSlave_Dev()
+TSlaveLogic::TSlaveLogic()
 {
   SetCycleTime(eCycleTime);
 
@@ -31,17 +31,17 @@ TModuleServerLogicSlave_Dev::TModuleServerLogicSlave_Dev()
   mInputCmd.SetDefParam(input);
 }
 //------------------------------------------------------------------------------
-bool TModuleServerLogicSlave_Dev::WorkServer()
+bool TSlaveLogic::WorkServer()
 {
   return true;
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::EndWork()
+void TSlaveLogic::EndWork()
 {
 
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::Input(int id, void* p, int size)
+void TSlaveLogic::Input(int id, void* p, int size)
 {
   switch(id)
   {
@@ -55,32 +55,29 @@ void TModuleServerLogicSlave_Dev::Input(int id, void* p, int size)
     case nsListModules::DataBase:
       break;
     case nsListModules::Timer:
-    {
-      // события от таймера
-      int a = 0;
-    }
       break;
+    default:BL_FIX_BUG();
   }
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::InitForms()
+void TSlaveLogic::InitForms()
 {
   mSlaveForm = new TSlaveForm;
   mSlaveForm->show();
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::StartEvent()
+void TSlaveLogic::StartEvent()
 {
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSlave_Dev::InitForms);
-  CallBackModule(nsListModules::MMOEngineSlave, &TModuleServerLogicSlave_Dev::ConnectToMaster);
+  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::InitForms);
+  CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::ConnectToMaster);
 }
 //----------------------------------------------------------
-void TModuleServerLogicSlave_Dev::StopEvent()
+void TSlaveLogic::StopEvent()
 {
 
 }
 //----------------------------------------------------------
-void TModuleServerLogicSlave_Dev::ConnectToMaster()
+void TSlaveLogic::ConnectToMaster()
 {
   TInputCmdDevTool::TInput input;
   mInputCmd.Get(input);
@@ -91,7 +88,7 @@ void TModuleServerLogicSlave_Dev::ConnectToMaster()
   mComp.pMMOEngineSlave->Get()->ConnectUp(input.ip_dst, input.port_dst, "1", 1, "1", 1);
 }
 //----------------------------------------------------------
-void TModuleServerLogicSlave_Dev::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
+void TSlaveLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
 {
   std::string sEvent;  
   switch(pBE->mType)
@@ -135,57 +132,49 @@ void TModuleServerLogicSlave_Dev::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* p
       sEvent = "RestoreContext";
       RestoreContextClient((nsMMOEngine::TEventRestoreContext*)pBE);
       break;
-    case nsMMOEngine::eTryLogin:
-      sEvent = "TryLogin";
-      break;
-    case nsMMOEngine::eResultLogin:
-      sEvent = "ResultLogin";
-      break;
-    case nsMMOEngine::eDestroyGroup:
-      sEvent = "DestroyGroup";
-      break;
+    default:BL_FIX_BUG();
   }
   GetLogger("Inner")->WriteF_time("MMOEngine: %s.\n",sEvent.data());
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::InitLog()
+void TSlaveLogic::InitLog()
 {
   GetLogger()->Register("Inner");// для логирования внутренних событий
   GetLogger()->Init("Slave");
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::ConnectUp(nsMMOEngine::TEventConnectUp* pBE)
+void TSlaveLogic::ConnectUp(nsMMOEngine::TEventConnectUp* pBE)
 {
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSlave_Dev::ConnectUpQt);
+  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::ConnectUpQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE)
+void TSlaveLogic::DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE)
 {
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSlave_Dev::DisconnectUpQt);
+  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::DisconnectUpQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::ConnectUpQt()
+void TSlaveLogic::ConnectUpQt()
 {
   if(mSlaveForm)
     mSlaveForm->SetConnect(true);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::DisconnectUpQt()
+void TSlaveLogic::DisconnectUpQt()
 {
   if(mSlaveForm)
     mSlaveForm->SetConnect(false);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
+void TSlaveLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
   unsigned int* pID = new unsigned int;
   *pID = pEvent->id_session;
   mListSessionAdd.Add(pID);
 
-  CallBackModule(nsListModules::MMOEngineSlave, &TModuleServerLogicSlave_Dev::ConnectDownMMOEngine);
+  CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::ConnectDownMMOEngine);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::ConnectDownMMOEngine()
+void TSlaveLogic::ConnectDownMMOEngine()
 {
   unsigned int** ppFirst = mListSessionAdd.GetFirst();
   while(ppFirst)
@@ -202,19 +191,19 @@ void TModuleServerLogicSlave_Dev::ConnectDownMMOEngine()
     ppFirst = mListSessionAdd.GetFirst();
   }
 
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSlave_Dev::AddClientQt);
+  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::AddClientQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
+void TSlaveLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
   TSlaveForm::TDesc* pDesc = new TSlaveForm::TDesc;
   pDesc->id_session = pEvent->id_session;
   mListID_SessionDelete.Add(pDesc);
 
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSlave_Dev::DeleteClientQt);
+  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::DeleteClientQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::AddClientQt()
+void TSlaveLogic::AddClientQt()
 {
   TSlaveForm::TDesc** ppFirst = mListID_SessionAdd.GetFirst();
   while(ppFirst)
@@ -228,7 +217,7 @@ void TModuleServerLogicSlave_Dev::AddClientQt()
   }
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::DeleteClientQt()
+void TSlaveLogic::DeleteClientQt()
 {
   TSlaveForm::TDesc** ppFirst = mListID_SessionDelete.GetFirst();
   while(ppFirst)
@@ -243,14 +232,14 @@ void TModuleServerLogicSlave_Dev::DeleteClientQt()
   }
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::SaveContextClient(nsMMOEngine::TEventSaveContext* pEvent)
+void TSlaveLogic::SaveContextClient(nsMMOEngine::TEventSaveContext* pEvent)
 {
   unsigned int* pID = new unsigned int(pEvent->id_session);
   mListSessionSave.Add(pID);
-  CallBackModule(nsListModules::MMOEngineSlave, &TModuleServerLogicSlave_Dev::SaveContextClientMMOEngine);
+  CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::SaveContextClientMMOEngine);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::SaveContextClientMMOEngine()
+void TSlaveLogic::SaveContextClientMMOEngine()
 {
   unsigned int** ppFirst = mListSessionSave.GetFirst();
   while(ppFirst)
@@ -266,15 +255,15 @@ void TModuleServerLogicSlave_Dev::SaveContextClientMMOEngine()
     mListSessionSave.Remove(ppFirst);
     ppFirst = mListSessionSave.GetFirst();
   }
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSlave_Dev::DeleteClientQt);
+  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::DeleteClientQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSlave_Dev::RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent)
+void TSlaveLogic::RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent)
 {
   unsigned int* pID = new unsigned int;
   *pID = pEvent->id_session;
   mListSessionAdd.Add(pID);
 
-  CallBackModule(nsListModules::MMOEngineSlave, &TModuleServerLogicSlave_Dev::ConnectDownMMOEngine);
+  CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::ConnectDownMMOEngine);
 }
 //---------------------------------------------------------------------------------------------

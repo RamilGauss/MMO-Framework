@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleServerLogicMaster_DevH
-#define ModuleServerLogicMaster_DevH
+#ifndef MasterLogicH
+#define MasterLogicH
 
 #include "ModuleServerLogic.h"
 #include "BaseEvent.h"
@@ -14,7 +14,7 @@ See for more information License.h.
 
 #include "MasterForm.h"
 
-class TModuleServerLogicMaster_Dev : public TModuleServerLogic
+class TMasterLogic : public TModuleServerLogic
 {
   TMasterForm* mMasterForm;
     
@@ -31,7 +31,7 @@ class TModuleServerLogicMaster_Dev : public TModuleServerLogic
   TListMultiThread<unsigned int> mListTryLogic;
 
 public:
-  TModuleServerLogicMaster_Dev();
+  TMasterLogic();
   virtual void InitLog();
 
   virtual void StartEvent();

@@ -231,39 +231,39 @@
 			Name="Logics"
 			>
 			<File
+				RelativePath=".\Logics\ClientLogic.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\ClientLogic.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Logics\ListModules.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Logics\ModuleClientLogic_Dev.cpp"
+				RelativePath=".\Logics\MasterLogic.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Logics\ModuleClientLogic_Dev.h"
+				RelativePath=".\Logics\MasterLogic.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Logics\ModuleServerLogicMaster_Dev.cpp"
+				RelativePath=".\Logics\SlaveLogic.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Logics\ModuleServerLogicMaster_Dev.h"
+				RelativePath=".\Logics\SlaveLogic.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Logics\ModuleServerLogicSlave_Dev.cpp"
+				RelativePath=".\Logics\SuperServerLogic.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Logics\ModuleServerLogicSlave_Dev.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\ModuleServerLogicSuperServer_Dev.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\ModuleServerLogicSuperServer_Dev.h"
+				RelativePath=".\Logics\SuperServerLogic.h"
 				>
 			</File>
 		</Filter>

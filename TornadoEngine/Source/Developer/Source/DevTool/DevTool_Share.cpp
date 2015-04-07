@@ -8,10 +8,10 @@ See for more information License.h.
 #include "DevTool_Share.h"
 #include "ListModules.h"
 
-#include "ModuleClientLogic_Dev.h"
-#include "ModuleServerLogicSlave_Dev.h"
-#include "ModuleServerLogicMaster_Dev.h"
-#include "ModuleServerLogicSuperServer_Dev.h"
+#include "ClientLogic.h"
+#include "SlaveLogic.h"
+#include "MasterLogic.h"
+#include "SuperServerLogic.h"
 
 #include "ModuleGraphicEngine.h"
 #include "ModuleAloneGUI.h"
@@ -89,10 +89,10 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
   switch(id)
   {
     // ядро
-    case ClientLogic:            pModule = new TModuleClientLogic_Dev;           break;
-    case ServerLogicSlave:       pModule = new TModuleServerLogicSlave_Dev;      break;
-    case ServerLogicMaster:      pModule = new TModuleServerLogicMaster_Dev;     break;
-    case ServerLogicSuperServer: pModule = new TModuleServerLogicSuperServer_Dev;break;
+    case ClientLogic:            pModule = new TClientLogic;                     break;
+    case ServerLogicSlave:       pModule = new TSlaveLogic;                      break;
+    case ServerLogicMaster:      pModule = new TMasterLogic;                     break;
+    case ServerLogicSuperServer: pModule = new TSuperServerLogic;                break;
     // периферия
     case GraphicEngine:          pModule = new TModuleGraphicEngine;// единственный модуль, который требуется настраивать в том же потоке
       ((TModuleGraphicEngine*)pModule)->SetFuncForSetup(&mCBSetupGraphicEngine);

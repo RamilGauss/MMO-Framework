@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ModuleServerLogicSuperServer_Dev.h"
+#include "SuperServerLogic.h"
 #include "ListModules.h"
 #include "GlobalParam.h"
 #include "NetSystem.h"
@@ -15,7 +15,7 @@ See for more information License.h.
 #include "Events.h"
 
 
-TModuleServerLogicSuperServer_Dev::TModuleServerLogicSuperServer_Dev()
+TSuperServerLogic::TSuperServerLogic()
 {
   SetCycleTime(100);//###
 
@@ -27,17 +27,17 @@ TModuleServerLogicSuperServer_Dev::TModuleServerLogicSuperServer_Dev()
   mInputCmd.SetDefParam(input);
 }
 //------------------------------------------------------------------------------
-bool TModuleServerLogicSuperServer_Dev::WorkServer()
+bool TSuperServerLogic::WorkServer()
 {
   return true;
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::EndWork()
+void TSuperServerLogic::EndWork()
 {
 
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::Input(int id, void* p, int size)
+void TSuperServerLogic::Input(int id, void* p, int size)
 {
   switch(id)
   {
@@ -47,32 +47,29 @@ void TModuleServerLogicSuperServer_Dev::Input(int id, void* p, int size)
       HandleFromMMOEngine((nsMMOEngine::TBaseEvent*)p);
       break;
     case nsListModules::Timer:
-    {
-      // события от таймера
-      int a = 0;
-    }
       break;
+    default:BL_FIX_BUG();
   }
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::InitForms()
+void TSuperServerLogic::InitForms()
 {
   mSuperServerForm = new TSuperServerForm;
   mSuperServerForm->show();
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::StartEvent()
+void TSuperServerLogic::StartEvent()
 {
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSuperServer_Dev::InitForms);
-  CallBackModule(nsListModules::MMOEngineSuperServer, &TModuleServerLogicSuperServer_Dev::OpenPort);
+  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::InitForms);
+  CallBackModule(nsListModules::MMOEngineSuperServer, &TSuperServerLogic::OpenPort);
 }
 //----------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::StopEvent()
+void TSuperServerLogic::StopEvent()
 {
 
 }
 //----------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::OpenPort()
+void TSuperServerLogic::OpenPort()
 {
   TInputCmdDevTool::TInput input;
   mInputCmd.Get(input);
@@ -82,7 +79,7 @@ void TModuleServerLogicSuperServer_Dev::OpenPort()
   bool resOpen = mComp.pMMOEngineSuperServer->Get()->Open(&descOpen);
 }
 //----------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
+void TSuperServerLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
 {
   std::string sEvent;  
   switch(pBE->mType)
@@ -94,12 +91,6 @@ void TModuleServerLogicSuperServer_Dev::HandleFromMMOEngine(nsMMOEngine::TBaseEv
     case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
       DisconnectDown((nsMMOEngine::TEventDisconnectDown*)pBE);
-      break;
-    case nsMMOEngine::eConnectUp:
-      sEvent = "ConnectUp";
-      break;
-    case nsMMOEngine::eDisconnectUp:
-      sEvent = "DisconnectUp";
       break;
     case nsMMOEngine::eError:
     {
@@ -120,44 +111,27 @@ void TModuleServerLogicSuperServer_Dev::HandleFromMMOEngine(nsMMOEngine::TBaseEv
         //mComponent.mNet.SuperServer->SendDown(id_session,bp);
       }
       break;
-    case nsMMOEngine::eRecvFromUp:
-      sEvent = "RecvFromUp";
-      break;
-    case nsMMOEngine::eSaveContext:
-      sEvent = "SaveContext";
-      break;
-    case nsMMOEngine::eRestoreContext:
-      sEvent = "RestoreContext";
-      break;
-    case nsMMOEngine::eTryLogin:
-      sEvent = "TryLogin";
-      break;
-    case nsMMOEngine::eResultLogin:
-      sEvent = "ResultLogin";
-      break;
-    case nsMMOEngine::eDestroyGroup:
-      sEvent = "DestroyGroup";
-      break;
+    default:BL_FIX_BUG();
   }
   GetLogger("Inner")->WriteF_time("MMOEngine: %s.\n",sEvent.data());
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::InitLog()
+void TSuperServerLogic::InitLog()
 {
   GetLogger()->Register("Inner");// для логирования внутренних событий
   GetLogger()->Init("SuperServer");
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
+void TSuperServerLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
   unsigned int* pID = new unsigned int;
   *pID = pEvent->id_session;
   mListSessionAdd.Add(pID);
 
-  CallBackModule(nsListModules::MMOEngineSuperServer, &TModuleServerLogicSuperServer_Dev::ConnectDownMMOEngine);
+  CallBackModule(nsListModules::MMOEngineSuperServer, &TSuperServerLogic::ConnectDownMMOEngine);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::ConnectDownMMOEngine()
+void TSuperServerLogic::ConnectDownMMOEngine()
 {
   unsigned int** ppFirst = mListSessionAdd.GetFirst();
   while(ppFirst)
@@ -174,19 +148,19 @@ void TModuleServerLogicSuperServer_Dev::ConnectDownMMOEngine()
     ppFirst = mListSessionAdd.GetFirst();
   }
 
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSuperServer_Dev::AddMasterQt);
+  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::AddMasterQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
+void TSuperServerLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
   TSuperServerForm::TDesc* pDesc = new TSuperServerForm::TDesc;
   pDesc->id_session = pEvent->id_session;
   mListID_SessionDelete.Add(pDesc);
 
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicSuperServer_Dev::DeleteMasterQt);
+  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::DeleteMasterQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::AddMasterQt()
+void TSuperServerLogic::AddMasterQt()
 {
   TSuperServerForm::TDesc** ppFirst = mListID_SessionAdd.GetFirst();
   while(ppFirst)
@@ -201,7 +175,7 @@ void TModuleServerLogicSuperServer_Dev::AddMasterQt()
   }
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicSuperServer_Dev::DeleteMasterQt()
+void TSuperServerLogic::DeleteMasterQt()
 {
   TSuperServerForm::TDesc** ppFirst = mListID_SessionDelete.GetFirst();
   while(ppFirst)

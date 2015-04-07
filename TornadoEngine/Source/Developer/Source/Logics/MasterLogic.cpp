@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include <boost/asio/ip/impl/address_v4.ipp>
 
-#include "ModuleServerLogicMaster_Dev.h"
+#include "MasterLogic.h"
 #include "ListModules.h"
 #include "GlobalParam.h"
 #include "NetSystem.h"
@@ -16,7 +16,7 @@ See for more information License.h.
 #include "ModuleMMOEngineMaster.h"
 #include "Events.h"
 
-TModuleServerLogicMaster_Dev::TModuleServerLogicMaster_Dev()
+TMasterLogic::TMasterLogic()
 {
   SetCycleTime(100);//###
 
@@ -30,17 +30,17 @@ TModuleServerLogicMaster_Dev::TModuleServerLogicMaster_Dev()
   mInputCmd.SetDefParam(input);
 }
 //------------------------------------------------------------------------------
-bool TModuleServerLogicMaster_Dev::WorkServer()
+bool TMasterLogic::WorkServer()
 {
   return true;
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::EndWork()
+void TMasterLogic::EndWork()
 {
 
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::Input(int id, void* p, int size)
+void TMasterLogic::Input(int id, void* p, int size)
 {
   switch(id)
   {
@@ -52,32 +52,29 @@ void TModuleServerLogicMaster_Dev::Input(int id, void* p, int size)
     case nsListModules::DataBase:
       break;
     case nsListModules::Timer:
-    {
-      // события от таймера
-      int a = 0;
-    }
       break;
+    default:BL_FIX_BUG();
   }
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::InitForms()
+void TMasterLogic::InitForms()
 {
   mMasterForm = new TMasterForm;
   mMasterForm->show();
 }
 //------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::StartEvent()
+void TMasterLogic::StartEvent()
 {
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicMaster_Dev::InitForms);
-  CallBackModule(nsListModules::MMOEngineMaster, &TModuleServerLogicMaster_Dev::ConnectToSuperServer);
+  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::InitForms);
+  CallBackModule(nsListModules::MMOEngineMaster, &TMasterLogic::ConnectToSuperServer);
 }
 //----------------------------------------------------------
-void TModuleServerLogicMaster_Dev::StopEvent()
+void TMasterLogic::StopEvent()
 {
 
 }
 //----------------------------------------------------------
-void TModuleServerLogicMaster_Dev::ConnectToSuperServer()
+void TMasterLogic::ConnectToSuperServer()
 {
   TInputCmdDevTool::TInput input;
   mInputCmd.Get(input);
@@ -88,7 +85,7 @@ void TModuleServerLogicMaster_Dev::ConnectToSuperServer()
   mComp.pMMOEngineMaster->Get()->ConnectUp(input.ip_dst, input.port_dst, "1", 1, "1", 1);
 }
 //----------------------------------------------------------
-void TModuleServerLogicMaster_Dev::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
+void TMasterLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
 {
   std::string sEvent;  
   switch(pBE->mType)
@@ -123,42 +120,34 @@ void TModuleServerLogicMaster_Dev::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* 
     case nsMMOEngine::eRecvFromUp:
       sEvent = "RecvFromUp";
       break;
-    case nsMMOEngine::eSaveContext:
-      sEvent = "SaveContext";
-      break;
-    case nsMMOEngine::eRestoreContext:
-      sEvent = "RestoreContext";
-      break;
     case nsMMOEngine::eTryLogin:
       sEvent = "TryLogin";
       TryLogin((nsMMOEngine::TEventTryLogin*)pBE);
       break;
-    case nsMMOEngine::eResultLogin:
-      sEvent = "ResultLogin";
-      break;
     case nsMMOEngine::eDestroyGroup:
       sEvent = "DestroyGroup";
       break;
+    default:BL_FIX_BUG();
   }
   GetLogger("Inner")->WriteF_time("MMOEngine: %s.\n",sEvent.data());
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::InitLog()
+void TMasterLogic::InitLog()
 {
   GetLogger()->Register("Inner");// для логирования внутренних событий
   GetLogger()->Init("Master");
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
+void TMasterLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
   unsigned int* pID = new unsigned int;
   *pID = pEvent->id_session;
   mListSessionAdd.Add(pID);
 
-  CallBackModule(nsListModules::MMOEngineMaster, &TModuleServerLogicMaster_Dev::ConnectDownMMOEngine);
+  CallBackModule(nsListModules::MMOEngineMaster, &TMasterLogic::ConnectDownMMOEngine);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::ConnectDownMMOEngine()
+void TMasterLogic::ConnectDownMMOEngine()
 {
   unsigned int** ppFirst = mListSessionAdd.GetFirst();
   while(ppFirst)
@@ -175,28 +164,28 @@ void TModuleServerLogicMaster_Dev::ConnectDownMMOEngine()
     ppFirst = mListSessionAdd.GetFirst();
   }
   
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicMaster_Dev::AddSlaveQt);
+  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::AddSlaveQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
+void TMasterLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
   TMasterForm::TDesc* pDesc = new TMasterForm::TDesc;
   pDesc->id_session = pEvent->id_session;
   mListID_SessionDelete.Add(pDesc);
 
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicMaster_Dev::DeleteSlaveQt);
+  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::DeleteSlaveQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::TryLogin(nsMMOEngine::TEventTryLogin* pEvent)
+void TMasterLogic::TryLogin(nsMMOEngine::TEventTryLogin* pEvent)
 {
   unsigned int* pID = new unsigned int;
   *pID = pEvent->id_session;
   mListTryLogic.Add(pID);
 
-  CallBackModule(nsListModules::MMOEngineMaster, &TModuleServerLogicMaster_Dev::TryLoginMMOEngine);
+  CallBackModule(nsListModules::MMOEngineMaster, &TMasterLogic::TryLoginMMOEngine);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::TryLoginMMOEngine()
+void TMasterLogic::TryLoginMMOEngine()
 {
   bool resAccept = true;
 
@@ -219,29 +208,29 @@ void TModuleServerLogicMaster_Dev::TryLoginMMOEngine()
   }
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::ConnectUp(nsMMOEngine::TEventConnectUp* pBE)
+void TMasterLogic::ConnectUp(nsMMOEngine::TEventConnectUp* pBE)
 {
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicMaster_Dev::ConnectUpQt);
+  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::ConnectUpQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE)
+void TMasterLogic::DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE)
 {
-  CallBackModule(nsListModules::AloneGUI, &TModuleServerLogicMaster_Dev::DisconnectUpQt);
+  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::DisconnectUpQt);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::ConnectUpQt()
+void TMasterLogic::ConnectUpQt()
 {
   if(mMasterForm)
     mMasterForm->SetConnect(true);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::DisconnectUpQt()
+void TMasterLogic::DisconnectUpQt()
 {
   if(mMasterForm)
     mMasterForm->SetConnect(false);
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::AddSlaveQt()
+void TMasterLogic::AddSlaveQt()
 {
   TMasterForm::TDesc** ppFirst = mListID_SessionAdd.GetFirst();
   while(ppFirst)
@@ -256,7 +245,7 @@ void TModuleServerLogicMaster_Dev::AddSlaveQt()
   }
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::DeleteSlaveQt()
+void TMasterLogic::DeleteSlaveQt()
 {
   TMasterForm::TDesc** ppFirst = mListID_SessionDelete.GetFirst();
   while(ppFirst)
@@ -270,7 +259,7 @@ void TModuleServerLogicMaster_Dev::DeleteSlaveQt()
   }
 }
 //---------------------------------------------------------------------------------------------
-void TModuleServerLogicMaster_Dev::CreateGroup()
+void TMasterLogic::CreateGroup()
 {
   unsigned int id_group;
   bool res = mComp.pMMOEngineMaster->Get()->TryCreateGroup(mListKeyAllClient, id_group);
