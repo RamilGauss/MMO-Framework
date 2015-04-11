@@ -59,7 +59,7 @@ bool TSaveToFile::ReOpen(char* path, bool append )
 
 	if(sPath.length()==0) return false;
 
-  const char* sMode = (append)?"ba":"wb";
+  const char* sMode = (append)?"ab":"wb";
   pFile = fopen(sPath.data(),sMode);
 	if(pFile!=NULL) 
   {
