@@ -22,6 +22,7 @@ public:
   TClientMain();
   virtual ~TClientMain();
 
+  void SetFPS(float fps);//###
 protected:
   virtual void Activate();
   virtual void* GetParent();
@@ -33,6 +34,8 @@ protected:
 
   void sl_Enter(MyGUI::Widget* _sender);
   void sl_Exit(MyGUI::Widget* _sender);
+	
+  MyGUI::TextBox* lIP;
 
   MyGUI::Button* bEnter;
   MyGUI::Button* bExit;

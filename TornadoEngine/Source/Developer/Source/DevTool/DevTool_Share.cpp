@@ -51,7 +51,8 @@ TDevTool_Share::TDevTool_Share()
 //-----------------------------------------------------------------------
 TDevTool_Share::~TDevTool_Share()
 {
-
+  BOOST_FOREACH(TMapIntPtrModuleVT& vtID_Ptr, mMapID_PtrModules)
+    delete vtID_Ptr.second;
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::Init()

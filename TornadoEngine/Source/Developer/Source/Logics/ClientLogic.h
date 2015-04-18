@@ -31,6 +31,8 @@ private:
   void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
 
   void LoginOnServer();
+
+  void ShowFPS();
 };
 
 #endif

@@ -50,6 +50,8 @@ void TGameEngine::Done()
   if(mFreeDevTool)
     mFreeDevTool(mDevTool);
 
+  mSynchroPoint.reset(NULL);
+
   TMakerLoaderDLL maker;
   maker.Delete(mLoaderDLL);
 

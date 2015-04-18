@@ -32,6 +32,7 @@ void TClientLogic::Input(int id, void* p, int size)
     case nsListModules::SoundEngine:
       break;
     case nsListModules::Timer:
+      CallBackModule(nsListModules::GraphicEngine, &TClientLogic::ShowFPS);
       break;
     default:BL_FIX_BUG();
   }
@@ -39,14 +40,14 @@ void TClientLogic::Input(int id, void* p, int size)
 //----------------------------------------------------------
 void TClientLogic::StartEvent()
 {
-  //CallBackModule(nsListModules::Timer, &TClientLogic::StartTimer);
+  CallBackModule(nsListModules::Timer, &TClientLogic::StartTimer);
   CallBackModule(nsListModules::GraphicEngine, &TClientLogic::InitForms);
 }
 //----------------------------------------------------------
 void TClientLogic::StartTimer()
 {
   // вызовется из потока таймера
-  unsigned int mID_Timer = mComp.pTimer->New(5000);
+  unsigned int mID_Timer = mComp.pTimer->New(100);
 }
 //----------------------------------------------------------
 void TClientLogic::InitForms()
@@ -140,5 +141,11 @@ void TClientLogic::LoginOnServer()
   pCamera->setPosition(60,60,60);
   pCamera->lookAt(0,0,0);
   //###
+}
+//---------------------------------------------------------------------------------------------
+void TClientLogic::ShowFPS()
+{
+  float fps = mComp.pGraphicEngine->GetGE()->GetWindow()->getAverageFPS();
+  mClientMain->SetFPS(fps);
 }
 //---------------------------------------------------------------------------------------------
