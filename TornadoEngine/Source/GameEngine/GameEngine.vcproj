@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..\Base\Share"
+				AdditionalIncludeDirectories=".;../Base/Share;../Developer/Source"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GAME_ENGINE_EXPORTS;GAME_ENGINE_EI=__declspec(dllexport);_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -188,6 +188,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\IModule.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagerThreadModules.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ParserXMLConveyer.cpp"
 				>
 			</File>
@@ -217,6 +225,10 @@
 			</File>
 			<File
 				RelativePath=".\IModule.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagerThreadModules.h"
 				>
 			</File>
 			<File

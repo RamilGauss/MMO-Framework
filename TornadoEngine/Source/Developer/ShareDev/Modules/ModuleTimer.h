@@ -43,7 +43,7 @@ public:
   virtual ~TModuleTimer();
 
   virtual void StartEvent();
-  virtual bool Work();
+  virtual bool WorkInherit();
   virtual void StopEvent();
 
   unsigned int New(int delta_time_ms, bool enable = true);

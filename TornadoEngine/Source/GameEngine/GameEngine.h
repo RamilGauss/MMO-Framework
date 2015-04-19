@@ -15,9 +15,10 @@ See for more information License.h.
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/thread.hpp>
 
-#include "DeveloperTool_DLL.h"
 #include "CallBackRegistrator.h"
 #include "SynchroPoint.h"
+#include "ManagerThreadModules.h"
+#include "DeveloperTool_DLL.h"
 
 class ILoaderDLL;
 class IDevTool;
@@ -39,15 +40,14 @@ class DllExport TGameEngine
   typedef std::vector< TVecPtrModule > TVecVecPtrModule;
   TVecVecPtrModule mVecVecModule;
 
-  typedef std::vector<TThreadModules*> TVecPtrThread;
-  TVecPtrThread mVecThread;
-
   typedef std::map<std::string,int> TMapStrInt;
   typedef TMapStrInt::value_type TMapStrIntVT;
   typedef TMapStrInt::iterator TMapStrIntIt;
   TMapStrInt mMapName_IDModule;
 
   IDevTool* mDevTool;
+
+  TManagerThreadModules mMngThreadModules;
 
   boost::scoped_ptr<TSynchroPoint> mSynchroPoint;
 

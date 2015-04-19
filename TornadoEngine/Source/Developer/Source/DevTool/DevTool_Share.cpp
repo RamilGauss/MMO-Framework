@@ -183,6 +183,8 @@ void TDevTool_Share::EventGameEngine(int id, const char* sDesc)
     // назначить логике компоненты
       SetComponentsForLogic();
       break;
+    case nsGameEngine::eStartThreads:
+      break;
     case nsGameEngine::eStopThreads:
       break;
     case nsGameEngine::eStopThreadsEnd:

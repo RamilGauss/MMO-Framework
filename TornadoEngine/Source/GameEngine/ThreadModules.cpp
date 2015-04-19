@@ -12,9 +12,13 @@ See for more information License.h.
 
 void TThreadModules::Work()
 {
-  BOOST_FOREACH( IModule* pM, mVecModule)
+  int cnt = mVecModule.size();
+  for( int i = 0 ; i < cnt ; i++)
+  {
+    IModule* pM = mVecModule[i];
     if(pM->Work()==false)
       mCB_Stop->Notify(pM->GetName());
+  }
 }
 //----------------------------------------------------------------
 void TThreadModules::AddModule(IModule* pModule)

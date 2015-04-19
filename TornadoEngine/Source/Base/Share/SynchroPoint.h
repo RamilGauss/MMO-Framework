@@ -20,19 +20,13 @@ class DllExport TSynchroPoint
 {
   typedef TListMultiThread<IContainer>  TListContainer;
 
-  typedef std::map<int,TListContainer*> TMapIntPtr;
-  typedef TMapIntPtr::iterator          TMapIntPtrIt;
-  typedef TMapIntPtr::value_type        TMapIntPtrVT;
+  typedef std::vector<TListContainer*> TVecPtr;
+  typedef std::vector<TVecPtr> TVecVec;
+  TVecVec mVec_Recv_Sender_ListEvent;
 
-	typedef std::map<int,TMapIntPtr> TMapIntMap;
-  typedef TMapIntMap::iterator     TMapIntMapIt;
-  typedef TMapIntMap::value_type   TMapIntMapVT;
-
-  TMapIntMap mMap_Recv_Sender_ListEvent;
-
-  typedef std::list<int> TListInt;
+  typedef std::vector<int> TVectorInt;
   
-  TListInt mListIDAbonent;
+  TVectorInt mVecIDAbonent;
 
 public:
   TSynchroPoint();
@@ -42,7 +36,7 @@ public:
 protected:
   friend class TSynchroAbonent;
 
-  // регистрация одного абонента на события другого
+  // регистрация абонента
   void Register(int id_abonent);
 
   // Добавить событие с/без копирования
@@ -55,20 +49,23 @@ protected:
   IContainer* GetEvent(int id_reciver, int& id_sender);
 private:
   void AddEvent(int id_sender, int id_recv, void* data, int size, bool copy);
-	bool FindListEvents(int id_sender, int id_recv, TMapIntPtrIt& fitSendList);
   void Done();
 };
 //-----------------------------------------------------------------------------------------
 template <typename T>
 void TSynchroPoint::AddEventWithoutCopy(int id_sender, int id_recv, T* pObject)
 {
-  TMapIntPtrIt fitSendList;
-  if(FindListEvents(id_sender, id_recv, fitSendList)==false)
+  if(id_recv >= int(mVec_Recv_Sender_ListEvent.size()))
+  {
+    BL_FIX_BUG();
     return;
+  }
+
+  TVecPtr& vecList = mVec_Recv_Sender_ListEvent[id_recv];
 
   IContainer* pC = new TContainerArrObj<T>;
   pC->EntrustByCount((char*)pObject, 1);
-  fitSendList->second->Add(pC);
+  vecList[id_sender]->Add(pC);
 }
 //-----------------------------------------------------------------------------------------
 

@@ -23,17 +23,17 @@ TModuleServerLogic::TModuleServerLogic():mStatLoad(30)
   mStartTime    = 0;
 }
 //----------------------------------------------------------------
-bool TModuleServerLogic::Work()
+bool TModuleServerLogic::WorkInherit()
 {
   InputFromSynchroPoint();
-  bool resWork = WorkServer();
+  bool res = WorkServer();
   CalcAndWaitRestTime();
 
   EndWork();
-  resWork &= !NeedExit();
+  res &= !NeedExit();
 
   mStartTime = ht_GetMSCount();
-  return resWork;
+  return res;
 }
 //----------------------------------------------------------------
 void TModuleServerLogic::SetCycleTime(unsigned int t_ms)

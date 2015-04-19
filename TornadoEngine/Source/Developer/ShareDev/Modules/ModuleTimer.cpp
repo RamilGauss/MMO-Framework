@@ -21,7 +21,7 @@ TModuleTimer::~TModuleTimer()
   Done();
 }
 //-----------------------------------------------------------------
-bool TModuleTimer::Work()
+bool TModuleTimer::WorkInherit()
 {
   InputFromSynchroPoint();
   WorkTimer();

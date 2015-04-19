@@ -7,12 +7,16 @@ See for more information License.h.
 
 #include "ModuleClientLogic.h"
 
-bool TModuleClientLogic::Work()
+TModuleClientLogic::TModuleClientLogic()
+{
+}
+//----------------------------------------------------------------
+bool TModuleClientLogic::WorkInherit()
 {
   InputFromSynchroPoint();
-  bool resWork = WorkClient();
-  resWork &= !NeedExit();
-  return resWork;
+  bool res = WorkClient();
+  res &= !NeedExit();
+  return res;
 }
 //----------------------------------------------------------------
 void TModuleClientLogic::ParseCmd(std::vector<std::string>& arg)

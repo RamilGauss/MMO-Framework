@@ -9,6 +9,7 @@ See for more information License.h.
 #define IModuleH
 
 #include "SynchroAbonent.h"
+#include "CallBackRegistrator.h"
 
 class DllExport IModule : public TSynchroAbonent
 {
@@ -16,7 +17,10 @@ public:
   IModule(){};
   virtual ~IModule(){};
 
-  virtual bool Work()           = 0;
+  virtual bool WorkInherit();
+
+  bool Work();
+
   virtual int GetID()           = 0;
   virtual std::string GetName() = 0;
 

@@ -9,20 +9,18 @@ See for more information License.h.
 #include <stdarg.h>
 
 #include "GameEngine.h"
-
-#include "MakerLoaderDLL.h"
 #include "BL_Debug.h"
 #include "ShareMisc.h"
 #include "HiTimer.h"
 #include "Logger.h"
-#include "ILoaderDLL.h"
 #include "NetSystem.h"
 #include "IModule.h"
 #include "FileOperation.h"
 #include "IDevTool.h"
-#include "ThreadModules.h"
 #include "EventGameEngine.h"
 #include "ParserXMLConveyer.h"
+#include "MakerLoaderDLL.h"
+#include "ILoaderDLL.h"
 
 using namespace std;
 
@@ -86,7 +84,7 @@ bool TGameEngine::LoadDLL(int variant_use, const char* sNameDLL)
   if(mDevTool==NULL)// нет DLL - нет движка.
     return false;
 
-	Event(nsGameEngine::eAfterCreateDevTool);
+  Event(nsGameEngine::eAfterCreateDevTool);
   return true;
 }
 //----------------------------------------------------------------------
@@ -101,7 +99,7 @@ void TGameEngine::Init()
   }
 }
 //------------------------------------------------------------------------
-void TGameEngine::Work(int variant_use, const char* sNameDLL, vector<string>& vecParam)// начало работы
+void TGameEngine::Work(int variant_use, const char* sNameDLL, std::vector<std::string>& vecParam)// начало работы
 {
   if(LoadDLL(variant_use,sNameDLL)==false)
     return;
@@ -177,31 +175,27 @@ void TGameEngine::StartThreadsWithModules()
     ht_msleep(50);
 
   int cntThread = mVecVecModule.size();
+  mMngThreadModules.SetCountThread(cntThread);
   for( int iThread = 0; iThread < cntThread ; iThread++ )
   {
     // создать поток и поместить в него модули
-    TThreadModules* pThread = new TThreadModules;
-    mVecThread.push_back(pThread);
     int cntModule = mVecVecModule[iThread].size();
     TVecPtrModule& vecModule = mVecVecModule[iThread];
     for( int iModule = 0 ; iModule < cntModule ; iModule++ )
-      pThread->AddModule(vecModule[iModule]);
-    pThread->SetCallbackStop(&mCB_Stop);
-    pThread->Start();
+      mMngThreadModules.AddModuleByThread(iThread, vecModule[iModule]);
   }
+  mMngThreadModules.SetCallbackStop(&mCB_Stop);
+  mMngThreadModules.Start();
+
+  Event(nsGameEngine::eStartThreads);
+
   // разблокировать главный поток, что бы созданные потоки с модулями могли уведомить его.
   lock.unlock();
 }
 //------------------------------------------------------------------------
 void TGameEngine::StopThreadsWithModules()
 {
-  int cntThread = mVecThread.size();
-  for( int iThread = 0; iThread < cntThread ; iThread++ )
-  {
-    mVecThread[iThread]->Stop();
-    delete mVecThread[iThread];
-  }
-  mVecThread.clear();
+  mMngThreadModules.Stop();
 
   Event(nsGameEngine::eStopThreadsEnd);
 }

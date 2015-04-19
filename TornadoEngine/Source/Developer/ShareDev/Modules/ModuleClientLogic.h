@@ -16,7 +16,9 @@ class DllExport TModuleClientLogic : public TModuleLogic
 protected:
   TInputCmdDevTool mInputCmd;
 public:
-  virtual bool Work();
+  TModuleClientLogic();
+
+  virtual bool WorkInherit();
   virtual void ParseCmd(std::vector<std::string>& arg);
 protected:
   virtual bool WorkClient() = 0;

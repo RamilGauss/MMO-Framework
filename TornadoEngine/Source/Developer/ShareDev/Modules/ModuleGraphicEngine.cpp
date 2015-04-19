@@ -16,13 +16,12 @@ TModuleGraphicEngine::TModuleGraphicEngine()
   mGE->SetDstObject(this);
 }
 //---------------------------------------------------------------------------------
-bool TModuleGraphicEngine::Work()
+bool TModuleGraphicEngine::WorkInherit()
 {
   InputFromSynchroPoint();
-  bool resWork = mGE->Work();
+  bool res = mGE->Work();
   OutputToSynchroPoint();
-
-  return resWork;
+  return res;
 }
 //---------------------------------------------------------------------------------
 TGraphicEngine_OGRE_MyGUI* TModuleGraphicEngine::GetGE()

@@ -17,7 +17,7 @@ public:
   virtual ~TModuleDataBase();
 
   virtual void StartEvent();
-  virtual bool Work();
+  virtual bool WorkInherit();
   virtual void StopEvent();
 };
 

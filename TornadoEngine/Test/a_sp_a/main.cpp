@@ -8,8 +8,8 @@
 #include "ContainerArrObj.h"
 #include "SaveToFile.h"
 
-#define NUM_GE    1
-#define NUM_LOGIC 2
+#define NUM_GE    3
+#define NUM_LOGIC 1
 
 //Цель теста: тестирование связки Точка синхронизация-Абоненты
 class TA

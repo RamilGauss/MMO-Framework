@@ -47,7 +47,7 @@ void TClientLogic::StartEvent()
 void TClientLogic::StartTimer()
 {
   // вызовется из потока таймера
-  unsigned int mID_Timer = mComp.pTimer->New(100);
+  unsigned int mID_Timer = mComp.pTimer->New(1000);
 }
 //----------------------------------------------------------
 void TClientLogic::InitForms()
