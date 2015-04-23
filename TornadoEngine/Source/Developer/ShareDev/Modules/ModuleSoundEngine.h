@@ -16,7 +16,7 @@ public:
   TModuleSoundEngine();
 
   virtual void StartEvent();
-  virtual bool WorkInherit();
+  virtual bool Work();
   virtual void StopEvent();
 };
 

@@ -7,6 +7,7 @@
 #include "CallBackRegistrator.h"
 #include "ContainerArrObj.h"
 #include "SaveToFile.h"
+#include <boost/thread/thread.hpp>
 
 #define NUM_GE    3
 #define NUM_LOGIC 1
@@ -22,13 +23,57 @@ public:
   int abc;
 };
 
+TSynchroPoint* pSP = NULL;
+
+void Thread0(TSynchroAbonent* pAbonent)
+{
+  int i = 0;
+  while(1)
+  {
+    TA* pA0 = new TA;
+    pA0->abc = i;
+    IContainer* pC = new TContainerArrObj<TA>;
+    pC->EntrustByCount( (char*)pA0, 1);
+    pAbonent->AddEventWithoutCopy( NUM_LOGIC, pC);
+
+    int id_sender;
+    IContainer* pEventLogic = pAbonent->GetEvent(id_sender);
+    if(pEventLogic)
+    {
+      TA* pA1  = (TA*)pEventLogic->GetPtr();
+    }
+    i++;
+  }
+}
+
+void Thread1(TSynchroAbonent* pAbonent)
+{
+  int i = 0;
+  while(1)
+  {
+    TA* pA0 = new TA;
+    pA0->abc = i;
+    IContainer* pC = new TContainerArrObj<TA>;
+    pC->EntrustByCount( (char*)pA0, 1);
+    pAbonent->AddEventWithoutCopy( NUM_GE, pC);
+
+    int id_sender;
+    IContainer* pEventLogic = pAbonent->GetEvent(id_sender);
+    if(pEventLogic)
+    {
+      TA* pA1  = (TA*)pEventLogic->GetPtr();
+    }
+    i++;
+  }
+}
+
 int main(int argc, char** argv)
 {
   bool resSetPath = SetCurrentPathByFile(argv[0]);
   BL_ASSERT(resSetPath);
 
   TSynchroAbonent GE, Logic;
-  TSynchroPoint* pSP = new TSynchroPoint;
+  pSP = new TSynchroPoint;
 
   GE.SetSynchroPoint(pSP);
   GE.SetSelfID(NUM_GE);
@@ -38,21 +83,24 @@ int main(int argc, char** argv)
 
   pSP->SetupAfterRegister();
 
-  int i = 0;
-  while(1)
-  {
-    i++;
-    TA* pA0 = new TA;
-    pA0->abc = i;
-    IContainer* pC = new TContainerArrObj<TA>;
-    pC->EntrustByCount( (char*)pA0, 1);
-    GE.AddEventWithoutCopy( NUM_LOGIC, pC);
+  boost::thread threadGE(boost::bind(&Thread0,&GE));
+  boost::thread threadLogic(boost::bind(&Thread0,&Logic));
+  ht_msleep(1000000);
+  //int i = 0;
+  //while(1)
+  //{
+  //  i++;
+  //  TA* pA0 = new TA;
+  //  pA0->abc = i;
+  //  IContainer* pC = new TContainerArrObj<TA>;
+  //  pC->EntrustByCount( (char*)pA0, 1);
+  //  GE.AddEventWithoutCopy( NUM_LOGIC, pC);
 
-    int id_sender;
-    IContainer* pEventLogic = Logic.GetEvent(id_sender);
-    TA* pA1  = (TA*)pEventLogic->GetPtr();
-    int a = 0;
-  }
+  //  int id_sender;
+  //  IContainer* pEventLogic = Logic.GetEvent(id_sender);
+  //  TA* pA1  = (TA*)pEventLogic->GetPtr();
+  //  int a = 0;
+  //}
 
   return 0;
 }

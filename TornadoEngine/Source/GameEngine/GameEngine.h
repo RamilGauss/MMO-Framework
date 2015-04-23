@@ -47,7 +47,7 @@ class DllExport TGameEngine
 
   IDevTool* mDevTool;
 
-  TManagerThreadModules mMngThreadModules;
+  boost::scoped_ptr<TManagerThreadModules> mMngThreadModules;
 
   boost::scoped_ptr<TSynchroPoint> mSynchroPoint;
 

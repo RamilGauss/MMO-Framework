@@ -18,7 +18,7 @@ protected:
 public:
   TModuleClientLogic();
 
-  virtual bool WorkInherit();
+  virtual bool Work();
   virtual void ParseCmd(std::vector<std::string>& arg);
 protected:
   virtual bool WorkClient() = 0;

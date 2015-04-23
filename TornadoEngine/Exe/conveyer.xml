@@ -14,26 +14,26 @@
     <CPU CountCore = "2" >
       <Thread>
         <Module Name = "GraphicEngine"  />
+        <Module Name = "MMOEngineClient"/>
+        <Module Name = "ClientLogic"    />
+        <Module Name = "SoundEngine"    />
+        <Module Name = "Timer"          />
       </Thread>
       <Thread>
-        <Module Name = "ClientLogic"    />
-        <Module Name = "MMOEngineClient"/>
-        <Module Name = "PhysicEngine" 	/>
-        <Module Name = "SoundEngine"  	/>
-        <Module Name = "Timer"        	/>
+        <Module Name = "PhysicEngine"   />
       </Thread>
     </CPU>
     <CPU CountCore = "4" >
       <Thread>
         <Module Name = "GraphicEngine"  />
+        <Module Name = "SoundEngine"    />
+        <Module Name = "Timer"          />
       </Thread>
       <Thread>
         <Module Name = "ClientLogic"    />
       </Thread>
       <Thread>
         <Module Name = "MMOEngineClient"/>
-        <Module Name = "SoundEngine"    />
-        <Module Name = "Timer"          />
       </Thread>
       <Thread>
         <Module Name = "PhysicEngine"   />

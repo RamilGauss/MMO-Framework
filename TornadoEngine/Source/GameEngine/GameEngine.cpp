@@ -84,6 +84,8 @@ bool TGameEngine::LoadDLL(int variant_use, const char* sNameDLL)
   if(mDevTool==NULL)// нет DLL - нет движка.
     return false;
 
+  mMngThreadModules.reset(new TManagerThreadModules);
+
   Event(nsGameEngine::eAfterCreateDevTool);
   return true;
 }
@@ -175,17 +177,17 @@ void TGameEngine::StartThreadsWithModules()
     ht_msleep(50);
 
   int cntThread = mVecVecModule.size();
-  mMngThreadModules.SetCountThread(cntThread);
+  mMngThreadModules->SetCountThread(cntThread);
   for( int iThread = 0; iThread < cntThread ; iThread++ )
   {
     // создать поток и поместить в него модули
     int cntModule = mVecVecModule[iThread].size();
     TVecPtrModule& vecModule = mVecVecModule[iThread];
     for( int iModule = 0 ; iModule < cntModule ; iModule++ )
-      mMngThreadModules.AddModuleByThread(iThread, vecModule[iModule]);
+      mMngThreadModules->AddModuleByThread(iThread, vecModule[iModule]);
   }
-  mMngThreadModules.SetCallbackStop(&mCB_Stop);
-  mMngThreadModules.Start();
+  mMngThreadModules->SetCallbackStop(&mCB_Stop);
+  mMngThreadModules->Start();
 
   Event(nsGameEngine::eStartThreads);
 
@@ -195,8 +197,7 @@ void TGameEngine::StartThreadsWithModules()
 //------------------------------------------------------------------------
 void TGameEngine::StopThreadsWithModules()
 {
-  mMngThreadModules.Stop();
-
+  mMngThreadModules->Stop();
   Event(nsGameEngine::eStopThreadsEnd);
 }
 //------------------------------------------------------------------------
@@ -245,7 +246,6 @@ void TGameEngine::Event(int id, std::string param)
     sprintf(sError, format, param.data()); 
   else
     sprintf(sError, format); 
-
 
   mDevTool->EventGameEngine(id, sError);
 }

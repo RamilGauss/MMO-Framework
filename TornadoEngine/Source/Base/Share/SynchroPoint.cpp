@@ -10,9 +10,6 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "ContainerTypes.h"
 
-#include <algorithm>
-
-
 TSynchroPoint::TSynchroPoint()
 {
 
@@ -30,57 +27,56 @@ void TSynchroPoint::Register(int id_abonent)
 //-----------------------------------------------------------------------------------------
 void TSynchroPoint::SetupAfterRegister()
 {
-  sort(mVecIDAbonent.begin(), mVecIDAbonent.end());
-
-  int cntAbonent = mVecIDAbonent.size();
-  int cntID = mVecIDAbonent[cntAbonent-1] + 1;
-  // матрица всех возможных комбинаций
-  int IndexRecver = 0;
-  for(int id_recver = 0 ; id_recver < cntID ; id_recver++ )
+  BOOST_FOREACH(int& id_recv, mVecIDAbonent)
   {
-    TVecPtr vectorRecvList;
-    if(mVecIDAbonent[IndexRecver]==id_recver)
+    TDescRecv descRecv;
+    descRecv.id = id_recv;
+    BOOST_FOREACH( int& id_sender, mVecIDAbonent)
     {
-      int IndexSender = 0;
-      for(int id_sender = 0 ; id_sender < cntID ; id_sender++ )
-      {
-        if(mVecIDAbonent[IndexSender]==id_sender)
-        {
-          vectorRecvList.push_back(new TListContainer);
-          IndexSender++;
-        }
-        else
-          vectorRecvList.push_back(NULL);
-      }
-      IndexRecver++;
+      TDescSender descSender;
+      descSender.id = id_sender;
+      descSender.pList = new TListContainer;
+      descRecv.vec.push_back(descSender);
     }
-
-    mVec_Recv_Sender_ListEvent.push_back(vectorRecvList);
+    mVecRecv.push_back(descRecv);
   }
 }
 //-----------------------------------------------------------------------------------------
-IContainer* TSynchroPoint::GetEvent(int id_reciver, int& id_sender)
+IContainer* TSynchroPoint::GetEvent(int id_recv, int& id_sender)
 {
-  if(id_reciver >= int(mVec_Recv_Sender_ListEvent.size()))
-  {
-    BL_FIX_BUG();
-    return NULL;
-  }
+  //return NULL;//###
+//  TDescRecv* descRecv = NULL;
+//  int cnt = 2;//mVecRecv.size();
+//  int i = 0;
+//l_next:
+//  //descRecv = mVecRecv[i];
+//  //if(descRecv.id==id_recv)
+//    //return NULL;
+//  if(i < cnt) 
+//  {
+//    i++;
+//    goto l_next;
+//  }
+//  return NULL;
 
-  TVecPtr& vecList = mVec_Recv_Sender_ListEvent[id_reciver];
-  for(id_sender = 0 ; id_sender < int(vecList.size()) ; id_sender++)
+  TDescRecv* pDescRecv = NULL;
+  pDescRecv = FindByRecv(id_recv);
+  if(pDescRecv)
   {
-    TListContainer* ptrList = vecList[id_sender];
-    if(ptrList==NULL)
-      continue;
-
-    IContainer** ppC = ptrList->GetFirst();
-    if(ppC)
+    int cnt = pDescRecv->vec.size();
+    for( int i = 0 ; i < cnt ; i++ )
     {
-      IContainer* pC = *ppC;
-      ptrList->ZeroPointerElement(ppC);
-      ptrList->Remove(ppC);
-      return pC;
+      TDescSender* pDescSender = &(pDescRecv->vec[i]);
+      TListContainer* pList = pDescSender->pList;
+      IContainer** ppC = pList->GetFirst();
+      if(ppC)
+      {
+        id_sender = pDescSender->id;
+        IContainer* pC = *ppC;
+        pList->ZeroPointerElement(ppC);
+        pList->Remove(ppC);
+        return pC;
+      }
     }
   }
   return NULL;
@@ -88,39 +84,65 @@ IContainer* TSynchroPoint::GetEvent(int id_reciver, int& id_sender)
 //-----------------------------------------------------------------------------------------
 void TSynchroPoint::Done()
 {
-  BOOST_FOREACH(TVecPtr& vecPtr, mVec_Recv_Sender_ListEvent)
+  BOOST_FOREACH(TDescRecv& descRecv, mVecRecv)
   {
-    BOOST_FOREACH(TListContainer*& ptrList, vecPtr)
+    BOOST_FOREACH(TDescSender& descSender, descRecv.vec)
     {
-      delete ptrList;
+      delete descSender.pList;
     }
   }
 }
 //-----------------------------------------------------------------------------------------
 void TSynchroPoint::AddEventCopy(int id_sender, int id_recv, void* data, int size)
 {
-  if(id_recv >= int(mVec_Recv_Sender_ListEvent.size()))
+  TDescSender* pDescSender = NULL;
+  pDescSender = Find(id_recv, id_sender);
+  if(pDescSender)
   {
-    BL_FIX_BUG();
-    return;
+    IContainer* pC = new TContainer;
+    pC->SetData((char*)data,size);
+    pDescSender->pList->Add(pC);
   }
-
-  TVecPtr& vecList = mVec_Recv_Sender_ListEvent[id_recv];
-
-  IContainer* pC = new TContainer;
-  pC->SetData((char*)data,size);
-  vecList[id_sender]->Add(pC);
 }
 //-----------------------------------------------------------------------------------------
 void TSynchroPoint::AddEventWithoutCopy(int id_sender, int id_recv, IContainer* pC)
 {
-  if(id_recv >= int(mVec_Recv_Sender_ListEvent.size()))
-  {
-    BL_FIX_BUG();
-    return;
-  }
-
-  TVecPtr& vecList = mVec_Recv_Sender_ListEvent[id_recv];
-  vecList[id_sender]->Add(pC);
+  TDescSender* pDescSender = NULL;
+  pDescSender = Find(id_recv, id_sender);
+  if(pDescSender)
+    pDescSender->pList->Add(pC);
 }
 //-----------------------------------------------------------------------------------------
+TSynchroPoint::TDescRecv* TSynchroPoint::FindByRecv(int id_recv)
+{
+  int cnt = mVecRecv.size();
+  for(int i = 0 ; i < cnt ; i++ )
+  {
+    TDescRecv* pDescRecv = &mVecRecv[i];
+    if(pDescRecv->id==id_recv)
+      return pDescRecv;
+  }
+  BL_FIX_BUG();
+  return NULL;
+}
+//-----------------------------------------------------------------------------------------
+TSynchroPoint::TDescSender* TSynchroPoint::Find(int id_recv, int id_sender)
+{
+  TDescRecv* pDescRecv = NULL;
+  pDescRecv = FindByRecv(id_recv);
+  if(pDescRecv)
+  {
+    int cnt = pDescRecv->vec.size();
+    for( int i = 0 ; i < cnt ; i++ )
+    {
+      TDescSender* pDescSender = &pDescRecv->vec[i];
+      if(pDescSender->id==id_sender)
+        return pDescSender;
+    }
+  }
+
+  BL_FIX_BUG();
+  return NULL;
+}
+//-----------------------------------------------------------------------------------------
+

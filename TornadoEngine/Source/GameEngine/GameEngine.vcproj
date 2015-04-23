@@ -188,10 +188,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\IModule.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\ManagerThreadModules.cpp"
 				>
 			</File>

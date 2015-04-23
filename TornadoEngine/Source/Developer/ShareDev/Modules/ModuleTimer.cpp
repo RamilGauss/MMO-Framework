@@ -21,7 +21,7 @@ TModuleTimer::~TModuleTimer()
   Done();
 }
 //-----------------------------------------------------------------
-bool TModuleTimer::WorkInherit()
+bool TModuleTimer::Work()
 {
   InputFromSynchroPoint();
   WorkTimer();
@@ -32,16 +32,18 @@ bool TModuleTimer::WorkInherit()
 void TModuleTimer::WorkTimer()
 {
   unsigned int now_ms = ht_GetMSCount();
-  BOOST_FOREACH(TMapDescPtr::value_type& bit, mMapIDTimer)
+  int cnt = mVecTimer.size();
+  for( int i = 0 ; i < cnt ; i++)
   {
-    if(bit.second->enable)
-    if(bit.second->start_time_ms + bit.second->interval_ms < now_ms)
-    {
-      bit.second->start_time_ms = now_ms;
-      TEvent event;
-      event.id = bit.second->id;
-      AddEventCopy(mLogicID, &event,sizeof(event));
-    }
+    TDescTimer* pDesc = mVecTimer[i];
+    if(pDesc->enable)
+      if(pDesc->start_time_ms + pDesc->interval_ms < now_ms)
+      {
+        pDesc->start_time_ms = now_ms;
+        TEvent event;
+        event.id = pDesc->id;
+        AddEventCopy(mLogicID, &event,sizeof(event));
+      }
   }
 }
 //-----------------------------------------------------------------
@@ -53,19 +55,24 @@ unsigned int TModuleTimer::New(int interval_ms, bool enable)
   pDesc->id          = mLastID;
   pDesc->interval_ms = interval_ms;
   pDesc->enable      = enable;
-  mMapIDTimer.insert(TMapDescPtr::value_type(mLastID, pDesc));
+  mVecTimer.push_back(pDesc);
   
   return pDesc->id;
 }
 //-----------------------------------------------------------------
 void TModuleTimer::Delete(unsigned int id)
 {
-  TDescTimer* pDesc = Get(id);
-  if(pDesc==NULL)
-    return;
-  mMapIDTimer.erase(id);
-
-  delete pDesc;
+  int cnt = mVecTimer.size();
+  TVectorDescPtr::iterator bit = mVecTimer.begin();
+  for( int i = 0 ; i < cnt ; i++, bit++)
+  {
+    if(id==mVecTimer[i]->id)
+    {
+      delete mVecTimer[i];
+      mVecTimer.erase(bit);
+      return;
+    }
+  }
 }
 //-----------------------------------------------------------------
 void TModuleTimer::SetEnable(unsigned int id, bool val)
@@ -86,20 +93,21 @@ void TModuleTimer::SetInterval(unsigned int id, int val)
 //-----------------------------------------------------------------
 TModuleTimer::TDescTimer* TModuleTimer::Get(unsigned int id)
 {
-  TMapDescPtrIt fit = mMapIDTimer.find(id);
-  if(fit==mMapIDTimer.end())
+  int cnt = mVecTimer.size();
+  for( int i = 0 ; i < cnt ; i++)
   {
-    BL_FIX_BUG();
-    return NULL;
+    if(id==mVecTimer[i]->id)
+      return mVecTimer[i];
   }
-  return fit->second;
+  BL_FIX_BUG();
+  return NULL;
 }
 //-----------------------------------------------------------------
 void TModuleTimer::Done()
 {
-  BOOST_FOREACH(TMapDescPtr::value_type& bit, mMapIDTimer)
-    delete bit.second;
-  mMapIDTimer.clear();
+  BOOST_FOREACH(TDescTimer* pDesc, mVecTimer)
+    delete pDesc;
+  mVecTimer.clear();
 }
 //-----------------------------------------------------------------
 void TModuleTimer::StartEvent()

@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include "ModuleClientLogic.h"
 #include "BaseEvent.h"
+#include <Ogre.h>
 
 class TClientMain;
 
@@ -31,6 +32,8 @@ private:
   void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
 
   void LoginOnServer();
+  void ShowTank(int index, Ogre::Vector3& pos);
+  void ShowTanks();
 
   void ShowFPS();
 };

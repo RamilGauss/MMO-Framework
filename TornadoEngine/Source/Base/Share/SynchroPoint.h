@@ -20,12 +20,21 @@ class DllExport TSynchroPoint
 {
   typedef TListMultiThread<IContainer>  TListContainer;
 
-  typedef std::vector<TListContainer*> TVecPtr;
-  typedef std::vector<TVecPtr> TVecVec;
-  TVecVec mVec_Recv_Sender_ListEvent;
+  struct TDescSender
+  {
+    int             id;
+    TListContainer* pList;
+  };
+  typedef std::vector<TDescSender> TVectorDescSender;
+  struct TDescRecv
+  {
+    int               id;
+    TVectorDescSender vec;
+  };
+  typedef std::vector<TDescRecv> TVectorDescRecv;
+  TVectorDescRecv mVecRecv;
 
   typedef std::vector<int> TVectorInt;
-  
   TVectorInt mVecIDAbonent;
 
 public:
@@ -46,26 +55,26 @@ protected:
   void AddEventWithoutCopy(int id_sender, int id_recv, IContainer* pC);
 
   // забрать событие от определенного абонента, удалять нельзя
-  IContainer* GetEvent(int id_reciver, int& id_sender);
+  IContainer* GetEvent(int id_recv, int& id_sender);
 private:
   void AddEvent(int id_sender, int id_recv, void* data, int size, bool copy);
   void Done();
+
+  TDescSender* Find(int id_recv, int id_sender);
+  TDescRecv* FindByRecv(int id_recv);
 };
 //-----------------------------------------------------------------------------------------
 template <typename T>
 void TSynchroPoint::AddEventWithoutCopy(int id_sender, int id_recv, T* pObject)
 {
-  if(id_recv >= int(mVec_Recv_Sender_ListEvent.size()))
+  TDescSender* pDescSender = NULL;
+  pDescSender = Find(id_recv, id_sender);
+  if(pDescSender)
   {
-    BL_FIX_BUG();
-    return;
+    IContainer* pC = new TContainerArrObj<T>;
+    pC->EntrustByCount((char*)pObject, 1);
+    pDescSender->pList->Add(pC);
   }
-
-  TVecPtr& vecList = mVec_Recv_Sender_ListEvent[id_recv];
-
-  IContainer* pC = new TContainerArrObj<T>;
-  pC->EntrustByCount((char*)pObject, 1);
-  vecList[id_sender]->Add(pC);
 }
 //-----------------------------------------------------------------------------------------
 

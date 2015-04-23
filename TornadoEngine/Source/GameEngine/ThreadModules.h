@@ -20,8 +20,8 @@ class TThreadModules : public TThreadBoost
   TVecPtrModule mVecModule;
 
   TCallBackRegistrator1<std::string>* mCB_Stop;
-
 public:
+  TThreadModules();
   void AddModule(IModule* pModule);
   void SetCallbackStop(TCallBackRegistrator1<std::string>* pCB);
 

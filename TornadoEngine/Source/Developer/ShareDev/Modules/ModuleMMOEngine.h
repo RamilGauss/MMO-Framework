@@ -27,7 +27,7 @@ class DllExport TModuleMMOEngine : public TModuleComponent
 public:
   TModuleMMOEngine();
   virtual void StartEvent();
-  virtual bool WorkInherit();
+  virtual bool Work();
   virtual void StopEvent();
 
   T* Get();
@@ -58,7 +58,7 @@ void TModuleMMOEngine<T>::StopEvent()
 }
 //------------------------------------------------------------------------------------
 template <typename T>
-bool TModuleMMOEngine<T>::WorkInherit()
+bool TModuleMMOEngine<T>::Work()
 {
   InputFromSynchroPoint();
   //дать квант времени и транслировать события в игровой движок

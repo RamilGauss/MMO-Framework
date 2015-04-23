@@ -17,9 +17,7 @@ public:
   IModule(){};
   virtual ~IModule(){};
 
-  virtual bool WorkInherit();
-
-  bool Work();
+  virtual bool Work()           = 0;
 
   virtual int GetID()           = 0;
   virtual std::string GetName() = 0;

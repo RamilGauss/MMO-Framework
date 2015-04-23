@@ -25,7 +25,7 @@ public:
   TModuleGraphicEngine();
 
   virtual void StartEvent();
-  virtual bool WorkInherit();
+  virtual bool Work();
   virtual void StopEvent();
 
   TGraphicEngine_OGRE_MyGUI* GetGE();

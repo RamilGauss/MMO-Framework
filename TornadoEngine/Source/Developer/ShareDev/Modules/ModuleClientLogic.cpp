@@ -11,7 +11,7 @@ TModuleClientLogic::TModuleClientLogic()
 {
 }
 //----------------------------------------------------------------
-bool TModuleClientLogic::WorkInherit()
+bool TModuleClientLogic::Work()
 {
   InputFromSynchroPoint();
   bool res = WorkClient();

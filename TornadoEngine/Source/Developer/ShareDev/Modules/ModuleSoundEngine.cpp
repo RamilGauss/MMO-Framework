@@ -12,7 +12,7 @@ TModuleSoundEngine::TModuleSoundEngine()
 
 }
 //----------------------------------------------------------------------
-bool TModuleSoundEngine::WorkInherit()
+bool TModuleSoundEngine::Work()
 {
   return true;
 }

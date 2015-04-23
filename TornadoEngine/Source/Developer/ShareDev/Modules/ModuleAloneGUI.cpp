@@ -29,7 +29,7 @@ void TModuleAloneGUI::StopEvent()
   mQt->Stop();
 }
 //--------------------------------------------------------------
-bool TModuleAloneGUI::WorkInherit()
+bool TModuleAloneGUI::Work()
 {
   InputFromSynchroPoint();
   OutputToSynchroPoint();

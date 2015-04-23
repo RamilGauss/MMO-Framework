@@ -31,7 +31,7 @@ public:
   TModuleServerLogic();
   virtual void ParseCmd(std::vector<std::string>& arg);
 
-  virtual bool WorkInherit();
+  virtual bool Work();
 protected:
   // вызов между input и output
   virtual bool WorkServer() = 0;

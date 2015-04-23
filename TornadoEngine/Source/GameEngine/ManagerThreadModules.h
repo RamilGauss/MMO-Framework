@@ -21,7 +21,6 @@ class DllExport TManagerThreadModules
   TVecPtrThread mVecThread;
 
 public:
-
   TManagerThreadModules();
   ~TManagerThreadModules();
 

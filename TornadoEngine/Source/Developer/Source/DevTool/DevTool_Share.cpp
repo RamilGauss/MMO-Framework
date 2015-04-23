@@ -40,7 +40,6 @@ namespace nsDevTool_Share
   const char* sConveyer = "Conveyer";
 }
 
-//using namespace std;
 using namespace nsListModules;
 
 TDevTool_Share::TDevTool_Share()

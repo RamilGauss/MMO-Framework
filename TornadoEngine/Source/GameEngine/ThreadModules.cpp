@@ -9,7 +9,14 @@ See for more information License.h.
 #include "ThreadModules.h"
 #include <boost/foreach.hpp>
 #include "IModule.h"
+#include "IDevTool.h"
 
+
+TThreadModules::TThreadModules()
+{
+
+}
+//----------------------------------------------------------------
 void TThreadModules::Work()
 {
   int cnt = mVecModule.size();

@@ -8,9 +8,12 @@ See for more information License.h.
 #ifndef ModuleTimerH
 #define ModuleTimerH
 
-#include <map>
+#include <vector>
 #include "HiTimer.h"
 #include "ModuleComponent.h"
+
+#include <boost/icl/map.hpp>
+
 
 class DllExport TModuleTimer : public TModuleComponent
 {
@@ -29,10 +32,13 @@ class DllExport TModuleTimer : public TModuleComponent
     }
   };
 
-  typedef std::map<unsigned int,TDescTimer*> TMapDescPtr;
-  typedef TMapDescPtr::iterator TMapDescPtrIt;
+  //typedef std::map<unsigned int,TDescTimer*> TMapDescPtr;
+  //typedef TMapDescPtr::iterator TMapDescPtrIt;
 
-  TMapDescPtr mMapIDTimer;
+  //TMapDescPtr mMapIDTimer;
+
+  typedef std::vector<TDescTimer*> TVectorDescPtr;
+  TVectorDescPtr mVecTimer;
 public:
   struct TEvent
   {
@@ -43,7 +49,7 @@ public:
   virtual ~TModuleTimer();
 
   virtual void StartEvent();
-  virtual bool WorkInherit();
+  virtual bool Work();
   virtual void StopEvent();
 
   unsigned int New(int delta_time_ms, bool enable = true);
