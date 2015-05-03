@@ -12,6 +12,7 @@ See for more information License.h.
 #include "Logger.h"
 #include <Ogre.h>
 #include "ModuleGraphicEngine.h"
+#include "ModulePhysicEngine.h"
 
 bool TClientLogic::WorkClient()
 {
@@ -43,6 +44,8 @@ void TClientLogic::StartEvent()
   CallBackModule(nsListModules::Timer, &TClientLogic::StartTimer);
   CallBackModule(nsListModules::GraphicEngine, &TClientLogic::InitForms);
   CallBackModule(nsListModules::GraphicEngine, &TClientLogic::ShowTanks);
+
+  mComp.pPhysicEngine->GetCBEndWork()->Register( &TClientLogic::PhysicEndWork ,this);
 }
 //----------------------------------------------------------
 void TClientLogic::StartTimer()
@@ -178,5 +181,10 @@ void TClientLogic::ShowTanks()
   Ogre::Camera* pCamera = mComp.pGraphicEngine->GetGE()->GetCamera();
   pCamera->setPosition(160,160,160);
   pCamera->lookAt(0,0,0);
+}
+//---------------------------------------------------------------------------------------------
+void TClientLogic::PhysicEndWork()
+{
+
 }
 //---------------------------------------------------------------------------------------------

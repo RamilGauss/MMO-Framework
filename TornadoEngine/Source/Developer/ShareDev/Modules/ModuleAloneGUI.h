@@ -30,7 +30,7 @@ public:
   TModuleAloneGUI();
 
   virtual void StartEvent();
-  virtual bool Work();
+  virtual bool WorkInherit();
   virtual void StopEvent();
 
   void SetArg(int argc, char** argv);

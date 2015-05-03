@@ -16,7 +16,7 @@ TModuleGraphicEngine::TModuleGraphicEngine()
   mGE->SetDstObject(this);
 }
 //---------------------------------------------------------------------------------
-bool TModuleGraphicEngine::Work()
+bool TModuleGraphicEngine::WorkInherit()
 {
   InputFromSynchroPoint();
   bool res = mGE->Work();

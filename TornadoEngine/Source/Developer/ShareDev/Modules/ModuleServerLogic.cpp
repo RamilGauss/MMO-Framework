@@ -23,7 +23,7 @@ TModuleServerLogic::TModuleServerLogic():mStatLoad(30)
   mStartTime    = 0;
 }
 //----------------------------------------------------------------
-bool TModuleServerLogic::Work()
+bool TModuleServerLogic::WorkInherit()
 {
   InputFromSynchroPoint();
   bool res = WorkServer();

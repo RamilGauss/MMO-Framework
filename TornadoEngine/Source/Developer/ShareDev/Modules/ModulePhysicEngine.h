@@ -9,14 +9,17 @@ See for more information License.h.
 #define ModulePhysicEngineH
 
 #include "ModuleComponent.h"
+#include "PhysicEngine_Bullet.h"
+#include <boost/smart_ptr/scoped_ptr.hpp>
 
 class DllExport TModulePhysicEngine : public TModuleComponent
 {
+	boost::scoped_ptr<TPhysicEngine_Bullet> mPE;
 public:
   TModulePhysicEngine();
 
   virtual void StartEvent();
-  virtual bool Work();
+  virtual bool WorkInherit();
   virtual void StopEvent();
 };
 

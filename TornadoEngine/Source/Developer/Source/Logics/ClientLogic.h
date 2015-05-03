@@ -36,6 +36,8 @@ private:
   void ShowTanks();
 
   void ShowFPS();
+
+  void PhysicEndWork();
 };
 
 #endif

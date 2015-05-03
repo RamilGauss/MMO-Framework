@@ -12,7 +12,7 @@ TModulePhysicEngine::TModulePhysicEngine()
 
 }
 //---------------------------------------------------------------------------------
-bool TModulePhysicEngine::Work()
+bool TModulePhysicEngine::WorkInherit()
 {
   return true;
 }

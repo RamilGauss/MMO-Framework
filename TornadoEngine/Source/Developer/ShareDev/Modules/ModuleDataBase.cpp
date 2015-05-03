@@ -18,7 +18,7 @@ TModuleDataBase::~TModuleDataBase()
 
 }
 //----------------------------------------------------------------------
-bool TModuleDataBase::Work()
+bool TModuleDataBase::WorkInherit()
 {
   ht_msleep(20);//###
   return true;

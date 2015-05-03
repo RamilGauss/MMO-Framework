@@ -15,6 +15,18 @@ TModuleDev::TModuleDev()
   mName = "";
 }
 //----------------------------------------------------------------------
+bool TModuleDev::Work()
+{
+  bool res = WorkInherit();
+  mCBEndWork.Notify();
+  return res;
+}
+//----------------------------------------------------------------------
+TCallBackRegistrator0* TModuleDev::GetCBEndWork()
+{
+  return &mCBEndWork;
+}
+//----------------------------------------------------------------------
 int TModuleDev::GetID()
 {
   return mID;
