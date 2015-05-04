@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib Share_d.lib GameEngine_d.lib QtEngine_d.lib Common_d.lib Platforms_d.lib GraphicEngine_d.lib PhysicEngine_d.lib NetTransport_d.lib MMOEngine_d.lib ShareDev_d.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib BulletCollision_d.lib BulletDynamics_d.lib BulletSoftBody_d.lib LinearMath_d.lib Share_d.lib GameEngine_d.lib QtEngine_d.lib Common_d.lib Platforms_d.lib GraphicEngine_d.lib PhysicEngine_d.lib NetTransport_d.lib MMOEngine_d.lib ShareDev_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;"

@@ -66,7 +66,7 @@
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\..\Lib"
-				GenerateDebugInformation="false"
+				GenerateDebugInformation="true"
 				SubSystem="2"
 				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"

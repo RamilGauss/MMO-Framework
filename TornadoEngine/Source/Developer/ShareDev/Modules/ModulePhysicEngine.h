@@ -18,6 +18,8 @@ class DllExport TModulePhysicEngine : public TModuleComponent
 public:
   TModulePhysicEngine();
 
+  TPhysicEngine_Bullet* GetPE();
+
   virtual void StartEvent();
   virtual bool WorkInherit();
   virtual void StopEvent();

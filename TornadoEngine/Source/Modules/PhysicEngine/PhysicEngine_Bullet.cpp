@@ -7,6 +7,7 @@ See for more information License.h.
 
 #include "PhysicEngine_Bullet.h"
 #include <boost/foreach.hpp>
+#include "HiTimer.h"
 
 
 TPhysicEngine_Bullet::TPhysicEngine_Bullet()
@@ -16,14 +17,22 @@ TPhysicEngine_Bullet::TPhysicEngine_Bullet()
 //----------------------------------------------------------------------------------------------
 TPhysicEngine_Bullet::~TPhysicEngine_Bullet()
 {
-
+  BOOST_FOREACH(TMapIntWorldVT& ID_World, mMapIDWorld)
+    ID_World.second.Done();
+  mMapIDWorld.clear();
 }
 //----------------------------------------------------------------------------------------------
-void TPhysicEngine_Bullet::Work()
+void TPhysicEngine_Bullet::Work(bool first_start)
 {
   // делать замеры времени самостоятельно
-  //BOOST_FOREACH(TMapIntWorldVT& ID_World, mMapIDWorld)
-    //ID_World.second.pWorld->stepSimulation(timeStep, maxSubSteps, fixedTimeStep);
+  unsigned int now_ms = ht_GetMSCount();
+  unsigned int dt = now_ms - mPrevTimeWork;
+  float dt_sec = first_start ? 0 : dt/1000.0f;
+
+  BOOST_FOREACH(TMapIntWorldVT& ID_World, mMapIDWorld)
+    ID_World.second.pWorld->stepSimulation(dt_sec, 1, dt_sec);
+
+  mPrevTimeWork = now_ms;
 }
 //----------------------------------------------------------------------------------------------
 void TPhysicEngine_Bullet::Work(btScalar timeStep, int maxSubSteps, btScalar fixedTimeStep)

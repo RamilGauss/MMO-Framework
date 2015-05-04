@@ -9,21 +9,29 @@ See for more information License.h.
 
 TModulePhysicEngine::TModulePhysicEngine()
 {
-
+  mPE.reset(new TPhysicEngine_Bullet);
 }
 //---------------------------------------------------------------------------------
 bool TModulePhysicEngine::WorkInherit()
 {
+  InputFromSynchroPoint();
+  mPE->Work();
+  OutputToSynchroPoint();
   return true;
 }
 //---------------------------------------------------------------------------------
 void TModulePhysicEngine::StartEvent()
 {
-
+  
 }
 //---------------------------------------------------------------------------------
 void TModulePhysicEngine::StopEvent()
 {
 
+}
+//---------------------------------------------------------------------------------
+TPhysicEngine_Bullet* TModulePhysicEngine::GetPE()
+{
+  return mPE.get();
 }
 //---------------------------------------------------------------------------------

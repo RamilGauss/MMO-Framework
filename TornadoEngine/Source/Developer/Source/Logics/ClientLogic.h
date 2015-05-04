@@ -37,6 +37,7 @@ private:
 
   void ShowFPS();
 
+  void InitPhysic();
   void PhysicEndWork();
 };
 

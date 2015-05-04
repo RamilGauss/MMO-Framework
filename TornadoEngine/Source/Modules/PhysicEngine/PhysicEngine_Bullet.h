@@ -50,12 +50,14 @@ class DllExport TPhysicEngine_Bullet
   TMapIntWorld mMapIDWorld;
 
   int mLastID;
+  
+  unsigned int mPrevTimeWork;
 
 public:
   TPhysicEngine_Bullet();
   virtual ~TPhysicEngine_Bullet();
 
-  void Work();// נואכüםמו גנולÿ
+  void Work(bool first_start = false);// נואכüםמו גנולÿ
   void Work(btScalar timeStep, int maxSubSteps = 1, btScalar fixedTimeStep = btScalar(1.)/btScalar(60.));
 
   int AddWorld();
