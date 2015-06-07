@@ -53,7 +53,7 @@ namespace base
 #else
     mPluginCfgName("plugins.cfg"),
 #endif
-		mResourceXMLName("resources.xml"),
+		mResourceXMLName("resourcesBaseManager.xml"),
 		mResourceFileName("MyGUI_Core.xml")
 	{
 		#if MYGUI_PLATFORM == MYGUI_PLATFORM_APPLE
@@ -246,7 +246,9 @@ namespace base
 
 		MyGUI::xml::ElementPtr root = doc.getRoot();
 		if (root == nullptr || root->getName() != "Paths")
-			return;
+    {
+      return;
+    }
 
 		MyGUI::xml::ElementEnumerator node = root->getElementEnumerator();
 		while (node.next())

@@ -4,8 +4,8 @@
 	@date		09/2009
 */
 
-#ifndef __INPUT_MANAGER_H__
-#define __INPUT_MANAGER_H__
+#ifndef InputManagerH
+#define InputManagerH
 
 #include <MyGUI.h>
 #include <OIS.h>
@@ -13,7 +13,7 @@
 namespace input
 {
 
-	class InputManager :
+class InputManager :
 		public OIS::MouseListener,
 		public OIS::KeyListener
 	{
@@ -52,7 +52,6 @@ namespace input
 		int mCursorX;
 		int mCursorY;
 	};
-
 } // namespace input
 
 #endif // __INPUT_MANAGER_H__

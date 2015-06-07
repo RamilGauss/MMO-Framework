@@ -55,8 +55,6 @@ protected:
   void Add(int id, TModuleDev* pModule);
   void Add(std::string name, int id);
 private:
-
-  TCallBackRegistrator1<TModuleDev*> mCBSetupGraphicEngine;
   void SetupGraphicEngine(TModuleDev* pModule);
 
 private:

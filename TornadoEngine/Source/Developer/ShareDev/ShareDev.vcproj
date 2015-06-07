@@ -368,6 +368,34 @@
 				</Filter>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="ManagementObjects"
+			>
+			<File
+				RelativePath=".\ManagementObjects\ManagerGraphicObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagementObjects\ManagerGraphicObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagementObjects\ManagerMovableObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagementObjects\ManagerMovableObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagementObjects\ManagerPhysicObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagementObjects\ManagerPhysicObject.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

@@ -44,21 +44,6 @@ void TSynchroPoint::SetupAfterRegister()
 //-----------------------------------------------------------------------------------------
 IContainer* TSynchroPoint::GetEvent(int id_recv, int& id_sender)
 {
-  //return NULL;//###
-//  TDescRecv* descRecv = NULL;
-//  int cnt = 2;//mVecRecv.size();
-//  int i = 0;
-//l_next:
-//  //descRecv = mVecRecv[i];
-//  //if(descRecv.id==id_recv)
-//    //return NULL;
-//  if(i < cnt) 
-//  {
-//    i++;
-//    goto l_next;
-//  }
-//  return NULL;
-
   TDescRecv* pDescRecv = NULL;
   pDescRecv = FindByRecv(id_recv);
   if(pDescRecv)

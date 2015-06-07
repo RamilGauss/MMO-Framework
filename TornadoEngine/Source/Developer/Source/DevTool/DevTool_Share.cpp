@@ -44,7 +44,6 @@ using namespace nsListModules;
 
 TDevTool_Share::TDevTool_Share()
 {
-  mCBSetupGraphicEngine.Register(&TDevTool_Share::SetupGraphicEngine,this);
   InitMapModules();
 }
 //-----------------------------------------------------------------------
@@ -95,7 +94,7 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
     case ServerLogicSuperServer: pModule = new TSuperServerLogic;                break;
     // периферия
     case GraphicEngine:          pModule = new TModuleGraphicEngine;// единственный модуль, который требуется настраивать в том же потоке
-      ((TModuleGraphicEngine*)pModule)->SetFuncForSetup(&mCBSetupGraphicEngine);
+      ((TModuleGraphicEngine*)pModule)->GetCBSetup()->Register(&TDevTool_Share::SetupGraphicEngine,this);
       break;
     case AloneGUI:               pModule = new TModuleAloneGUI;                  break;
     case PhysicEngine:           pModule = new TModulePhysicEngine;              break;

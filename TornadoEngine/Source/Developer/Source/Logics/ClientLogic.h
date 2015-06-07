@@ -13,12 +13,24 @@ See for more information License.h.
 #include <Ogre.h>
 
 class TClientMain;
+class TDebugPanel;
+
+struct btDefaultMotionState;
 
 class TClientLogic : public TModuleClientLogic
 {
   TClientMain* mClientMain;
+  TDebugPanel* mDebugPanel;
 
+  volatile float x;
+  volatile float y;
+  volatile float z;
+  btDefaultMotionState* fallMotionState;
+  void ShowDebugInfo();
 public:
+  TClientLogic();
+  virtual ~TClientLogic();
+
   virtual void StartEvent();
   virtual void InitLog();
 protected:
@@ -38,6 +50,11 @@ private:
   void ShowFPS();
 
   void InitPhysic();
+  
+  void GraphicBeginWork();
+  void FreeGraphicResource();
+  
+  void PhysicBeginWork();
   void PhysicEndWork();
 };
 

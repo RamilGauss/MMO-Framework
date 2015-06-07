@@ -20,7 +20,8 @@ class DllExport TModuleGraphicEngine : public TModuleComponent
 {
 	boost::scoped_ptr<TGraphicEngine_OGRE_MyGUI> mGE;
 
-  TCallBackRegistrator1<TModuleDev*>* mCBSetup;
+  TCallBackRegistrator1<TModuleDev*> mCBSetup;
+  TCallBackRegistrator0              mCBStopEvent; 
 public:
   TModuleGraphicEngine();
 
@@ -31,7 +32,9 @@ public:
   TGraphicEngine_OGRE_MyGUI* GetGE();
 
   // графический движок требуется настраивать в том же потоке, в котором он работает
-  void SetFuncForSetup(TCallBackRegistrator1<TModuleDev*>* pCBSetup);
+  TCallBackRegistrator1<TModuleDev*>* GetCBSetup();
+
+  TCallBackRegistrator0* GetCBStopEvent();
 protected:
 };
 

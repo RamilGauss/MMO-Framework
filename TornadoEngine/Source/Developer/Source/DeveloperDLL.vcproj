@@ -459,6 +459,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\GUI\DebugPanel.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\DebugPanel.h"
+					>
+				</File>
+				<File
 					RelativePath=".\GUI\GameRoomPrepare.cpp"
 					>
 				</File>

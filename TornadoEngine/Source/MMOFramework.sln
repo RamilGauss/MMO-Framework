@@ -68,12 +68,19 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server", "..\Test\MMO\Serve
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EditorFramework", "3rdParty\MyGUI\Tools\EditorFramework\EditorFramework.vcproj", "{79A540B7-3E9D-40FF-9A45-DE21947B54B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D2685F5F-4EC8-4E06-99B5-9DB122DB9413} = {D2685F5F-4EC8-4E06-99B5-9DB122DB9413}
+		{2EFFBFCF-E794-43AD-ADEC-8F0E60A00B66} = {2EFFBFCF-E794-43AD-ADEC-8F0E60A00B66}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FontEditor", "3rdParty\MyGUI\Tools\FontEditor\FontEditor.vcproj", "{10F5E2B6-2EF6-4162-B74F-29DC369F7FD1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageEditor", "3rdParty\MyGUI\Tools\ImageEditor\ImageEditor.vcproj", "{2EAF30A9-731E-40AF-9DE5-7E5CFEB77A9A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LayoutEditor", "3rdParty\MyGUI\Tools\LayoutEditor\LayoutEditor.vcproj", "{4360F30E-8C07-4808-9B14-E18E6638FBBD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{79A540B7-3E9D-40FF-9A45-DE21947B54B5} = {79A540B7-3E9D-40FF-9A45-DE21947B54B5}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MeshConverter", "3rdParty\MyGUI\Tools\MeshConverter\MeshConverter.vcproj", "{45505213-5075-408C-A46D-D203B6C696D5}"
 EndProject

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -24,7 +24,7 @@ TPhysicEngine_Bullet::~TPhysicEngine_Bullet()
 //----------------------------------------------------------------------------------------------
 void TPhysicEngine_Bullet::Work(bool first_start)
 {
-  // делать замеры времени самостоятельно
+  // РґРµР»Р°С‚СЊ Р·Р°РјРµСЂС‹ РІСЂРµРјРµРЅРё СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ
   unsigned int now_ms = ht_GetMSCount();
   unsigned int dt = now_ms - mPrevTimeWork;
   float dt_sec = first_start ? 0 : dt/1000.0f;

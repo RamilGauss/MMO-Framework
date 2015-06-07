@@ -17,6 +17,7 @@ TModuleDev::TModuleDev()
 //----------------------------------------------------------------------
 bool TModuleDev::Work()
 {
+  mCBBeginWork.Notify();
   bool res = WorkInherit();
   mCBEndWork.Notify();
   return res;
@@ -25,6 +26,11 @@ bool TModuleDev::Work()
 TCallBackRegistrator0* TModuleDev::GetCBEndWork()
 {
   return &mCBEndWork;
+}
+//----------------------------------------------------------------------
+TCallBackRegistrator0* TModuleDev::GetCBBeginWork()
+{
+  return &mCBBeginWork;
 }
 //----------------------------------------------------------------------
 int TModuleDev::GetID()

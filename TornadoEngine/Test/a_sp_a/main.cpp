@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include "SynchroAbonent.h"
 #include "SynchroPoint.h"
 #include "ContainerTypes.h"
@@ -12,7 +19,7 @@
 #define NUM_GE    3
 #define NUM_LOGIC 1
 
-//Цель теста: тестирование связки Точка синхронизация-Абоненты
+//Р¦РµР»СЊ С‚РµСЃС‚Р°: С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ СЃРІСЏР·РєРё РўРѕС‡РєР° СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ-РђР±РѕРЅРµРЅС‚С‹
 class TA
 {
 public:

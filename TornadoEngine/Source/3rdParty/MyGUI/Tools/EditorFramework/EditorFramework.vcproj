@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\Exe\$(ConfigurationName)"
-			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\..\..\..\Exe"
+			IntermediateDirectory="..\..\..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			>
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\3rdParty\MyGUI\Common;..\..\3rdParty\MyGUI\MyGUIEngine\include;..\..\3rdParty\MyGUI\MyGUIEngine\src;..\..\3rdParty\MyGUI\Common\Base;..\..\3rdParty\MyGUI\Common\Base\DirectX;..\..\3rdParty\MyGUI\Common\Input\Win32"
+				AdditionalIncludeDirectories="..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;EDITORFRAMEWORK_EXPORTS;MYGUI_BUILD_DLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -49,7 +49,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
-				DisableSpecificWarnings="4275"
+				DisableSpecificWarnings="4275;4150"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -62,12 +62,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Common.lib Platforms.lib D3D9.lib D3dx9.lib MyGUIEngine.lib"
+				AdditionalDependencies="Common_d.lib Platforms_d.lib MyGUIEngine_d.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\Lib;&quot;..\..\Lib\$(ConfigurationName)&quot;;&quot;..\..\Exe\$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="..\..\..\..\..\Lib;&quot;..\..\..\..\..\Lib\$(ConfigurationName)&quot;;&quot;..\..\..\..\..\Exe\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
+				ImportLibrary="..\..\..\..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool

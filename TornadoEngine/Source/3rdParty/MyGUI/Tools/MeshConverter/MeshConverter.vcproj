@@ -85,8 +85,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\Exe\$(ConfigurationName)"
-			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\..\..\..\Exe"
+			IntermediateDirectory="..\..\..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			>
 			<Tool
@@ -125,10 +125,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="qtmaind.lib QtCored4.lib QtGuid4.lib Share.lib GraphicEngine.lib DXUT.lib DXUTOpt.lib d3dx10d.lib d3dx9d.lib d3d9.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
-				AdditionalLibraryDirectories="&quot;$(QTDIR)\lib&quot;;../../Lib;&quot;../../Lib/$(ConfigurationName)&quot;"
+				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
+				AdditionalLibraryDirectories="&quot;$(QTDIR)\lib&quot;;..\..\..\..\..\Lib;&quot;..\..\..\..\..\Lib\$(ConfigurationName)&quot;;&quot;..\..\..\..\..\Exe\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
+				ImportLibrary="..\..\..\..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"

@@ -12,3 +12,8 @@ TBaseLogicPacket::TBaseLogicPacket()
   type = nsBaseLogicPacket::eUndef;
 }
 //------------------------------------------------------------------------------------
+TBaseLogicPacket::~TBaseLogicPacket()
+{
+
+}
+//------------------------------------------------------------------------------------

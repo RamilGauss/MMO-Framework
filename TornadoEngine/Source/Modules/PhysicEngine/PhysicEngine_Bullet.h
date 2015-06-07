@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -57,7 +57,7 @@ public:
   TPhysicEngine_Bullet();
   virtual ~TPhysicEngine_Bullet();
 
-  void Work(bool first_start = false);// реальное время
+  void Work(bool first_start = false);// СЂРµР°Р»СЊРЅРѕРµ РІСЂРµРјСЏ
   void Work(btScalar timeStep, int maxSubSteps = 1, btScalar fixedTimeStep = btScalar(1.)/btScalar(60.));
 
   int AddWorld();

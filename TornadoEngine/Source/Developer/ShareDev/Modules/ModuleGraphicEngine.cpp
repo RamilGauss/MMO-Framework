@@ -31,16 +31,21 @@ TGraphicEngine_OGRE_MyGUI* TModuleGraphicEngine::GetGE()
 //---------------------------------------------------------------------------------
 void TModuleGraphicEngine::StartEvent()
 {
-  mCBSetup->Notify(this);
+  mCBSetup.Notify(this);
 }
 //---------------------------------------------------------------------------------
 void TModuleGraphicEngine::StopEvent()
 {
-
+  mCBStopEvent.Notify();
 }
 //---------------------------------------------------------------------------------
-void TModuleGraphicEngine::SetFuncForSetup(TCallBackRegistrator1<TModuleDev*>* pCBSetup)
+TCallBackRegistrator1<TModuleDev*>* TModuleGraphicEngine::GetCBSetup()
 {
-  mCBSetup = pCBSetup;
+  return &mCBSetup;
+}
+//---------------------------------------------------------------------------------
+TCallBackRegistrator0* TModuleGraphicEngine::GetCBStopEvent()
+{
+  return &mCBStopEvent;
 }
 //---------------------------------------------------------------------------------

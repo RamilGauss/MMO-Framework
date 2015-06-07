@@ -16,12 +16,14 @@ class DllExport TModuleDev : public IModule
   int mID;
   std::string mName;
 
+  TCallBackRegistrator0 mCBBeginWork;
   TCallBackRegistrator0 mCBEndWork;
 public:
   TModuleDev();
 
   virtual bool Work();
   virtual bool WorkInherit() = 0;
+  TCallBackRegistrator0* GetCBBeginWork();
   TCallBackRegistrator0* GetCBEndWork();
 
   virtual int GetID();

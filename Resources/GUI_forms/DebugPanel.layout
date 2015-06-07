@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Widget" skin="Panel3Skin_Dark" position="0 0 95 125" align="Left Bottom" layer="Main" name="_Main">
+        <Property key="MaxSize" value="330 240"/>
+        <Property key="Movable" value="false"/>
+        <Property key="MinSize" value="280 240"/>
+        <Widget type="TextBox" skin="TextBox" position="5 0 85 25" align="Left Top" name="lFPS">
+            <Property key="TextAlign" value="Center"/>
+            <Property key="TextShadowColour" value="0.725146 0.258678 0.258678"/>
+            <Property key="Caption" value="FPS"/>
+            <Property key="Colour" value="1 1 1"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="5 25 85 30" align="Left Top" name="lX">
+            <Property key="Caption" value="X, м"/>
+            <Property key="TextAlign" value="Center"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="0 55 90 30" name="lY">
+            <Property key="TextAlign" value="Center"/>
+            <Property key="Caption" value="Y, м"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="5 90 80 30" name="lZ">
+            <Property key="Caption" value="Z, м"/>
+            <Property key="TextAlign" value="Center"/>
+        </Widget>
+    </Widget>
+</MyGUI>

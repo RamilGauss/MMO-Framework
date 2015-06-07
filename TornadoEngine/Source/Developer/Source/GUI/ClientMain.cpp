@@ -41,8 +41,6 @@ void TClientMain::Activate()
   assignWidget(ebPort,  "ebPort");
   assignWidget(ebLogin, "ebLogin");
 
-  assignWidget(lIP, "lIP");
-
   bEnter->eventMouseButtonClick += MyGUI::newDelegate(this, &TClientMain::sl_Enter);
   bExit ->eventMouseButtonClick += MyGUI::newDelegate(this, &TClientMain::sl_Exit);
 
@@ -141,12 +139,5 @@ void TClientMain::EnterServer()
   pClient->Login( ip, MASTER_PORT, (void*)sLogin.data(), sLogin.length(), "1", 1);// пока пароль - 1 ###
 
   SaveInputParam(ip, mDescOpen.port, sLogin.data());
-}
-//-------------------------------------------------------------------------------------
-void TClientMain::SetFPS(float fps)
-{
-  char s[100];
-  sprintf(s, "%d", int(fps));
-  lIP->setCaption(s);
 }
 //-------------------------------------------------------------------------------------

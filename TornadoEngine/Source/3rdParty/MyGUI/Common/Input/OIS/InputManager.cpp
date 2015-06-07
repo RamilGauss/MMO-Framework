@@ -1,6 +1,6 @@
 /*!
 	@file
-	@author		Albert Semenov
+	@author		Albert Semenov - руки оторвать за такой класс (хотя у меня нет претензий ко всему MyGUI, крутая библиотека, но это косяк с написанным классом работы с OIS - реально убить мало)
 	@date		09/2009
 */
 
@@ -149,20 +149,23 @@ namespace input
 		mCursorY += _arg.state.Y.rel;
 
 		checkPosition();
-
-		injectMouseMove(mCursorX, mCursorY, _arg.state.Z.abs);
+    
+    // руки оторвать Gauss 10.05.2015
+		injectMouseMove(_arg.state.X.abs, _arg.state.Y.abs, _arg.state.Z.abs);// mCursorX, mCursorY, _arg.state.Z.abs);
 		return true;
 	}
 
 	bool InputManager::mousePressed(const OIS::MouseEvent& _arg, OIS::MouseButtonID _id)
 	{
-		injectMousePress(mCursorX, mCursorY, MyGUI::MouseButton::Enum(_id));
+		//injectMousePress(mCursorX, mCursorY, MyGUI::MouseButton::Enum(_id));// руки оторвать Gauss 10.05.2015
+		injectMousePress(_arg.state.X.abs, _arg.state.Y.abs , MyGUI::MouseButton::Enum(_id));
 		return true;
 	}
 
 	bool InputManager::mouseReleased(const OIS::MouseEvent& _arg, OIS::MouseButtonID _id)
 	{
-		injectMouseRelease(mCursorX, mCursorY, MyGUI::MouseButton::Enum(_id));
+		//injectMouseRelease(mCursorX, mCursorY, MyGUI::MouseButton::Enum(_id));// руки оторвать Gauss 10.05.2015
+		injectMouseRelease(_arg.state.X.abs, _arg.state.Y.abs, MyGUI::MouseButton::Enum(_id));
 		return true;
 	}
 

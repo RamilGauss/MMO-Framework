@@ -6,14 +6,31 @@ See for more information License.h.
 */
 
 #include "ClientLogic.h"
-#include "ListModules.h"
-#include "ModuleTimer.h"
-#include "ClientMain.h"
-#include "Logger.h"
+
 #include <Ogre.h>
+
+#include "ListModules.h"
+#include "Logger.h"
+
+#include "ModuleTimer.h"
 #include "ModuleGraphicEngine.h"
 #include "ModulePhysicEngine.h"
 
+#include "ClientMain.h"
+#include "DebugPanel.h"
+
+TClientLogic::TClientLogic()
+{
+  mClientMain = NULL;
+  mDebugPanel = NULL;
+  fallMotionState = NULL;
+}
+//----------------------------------------------------------
+TClientLogic::~TClientLogic()
+{
+
+}
+//----------------------------------------------------------
 bool TClientLogic::WorkClient()
 {
   return true;
@@ -47,19 +64,27 @@ void TClientLogic::StartEvent()
 
   CallBackModule(nsListModules::PhysicEngine, &TClientLogic::InitPhysic);
 
+  mComp.pGraphicEngine->GetCBBeginWork()->Register( &TClientLogic::GraphicBeginWork ,this);
+  
+  mComp.pGraphicEngine->GetCBStopEvent()->Register( &TClientLogic::FreeGraphicResource,this);
+
+  mComp.pPhysicEngine->GetCBBeginWork()->Register( &TClientLogic::PhysicBeginWork ,this);
   mComp.pPhysicEngine->GetCBEndWork()->Register( &TClientLogic::PhysicEndWork ,this);
 }
 //----------------------------------------------------------
 void TClientLogic::StartTimer()
 {
   // вызовется из потока таймера
-  unsigned int mID_Timer = mComp.pTimer->New(1000);
+  unsigned int mID_Timer = mComp.pTimer->New(10);
 }
 //----------------------------------------------------------
 void TClientLogic::InitForms()
 {
-  mClientMain = new TClientMain;
-  mClientMain->Show();
+  //mClientMain = new TClientMain;
+  //mClientMain->Show();
+
+  mDebugPanel = new TDebugPanel;
+  mDebugPanel->Show();
 }
 //----------------------------------------------------------
 void TClientLogic::InitLog()
@@ -134,7 +159,11 @@ void TClientLogic::LoginOnServer()
 void TClientLogic::ShowFPS()
 {
   float fps = mComp.pGraphicEngine->GetGE()->GetWindow()->getAverageFPS();
-  mClientMain->SetFPS(fps);
+  mDebugPanel->SetFPS(fps);
+
+  mDebugPanel->SetX(x);
+  mDebugPanel->SetY(y);
+  mDebugPanel->SetZ(z);
 }
 //---------------------------------------------------------------------------------------------
 void TClientLogic::ShowTank(int index, Ogre::Vector3& pos)
@@ -175,7 +204,7 @@ void TClientLogic::ShowTanks()
   Ogre::Vector3 pos;
   pos.y = 0;
   pos.z = 0;
-  for( int i = 0 ; i < 0 ; i++ )
+  for( int i = 0 ; i < 1 ; i++ )
   {
     pos.x = i*6;
     ShowTank(i, pos);
@@ -187,34 +216,64 @@ void TClientLogic::ShowTanks()
 //---------------------------------------------------------------------------------------------
 void TClientLogic::PhysicEndWork()
 {
-
+  if(fallMotionState)
+  {
+    static float minY = 100000;
+    btTransform trans;
+    fallMotionState->getWorldTransform(trans);
+    x = trans.getOrigin().getX();
+    minY = std::min(minY, trans.getOrigin().getY());
+    y = minY;
+    z = trans.getOrigin().getZ();
+  }
 }
 //---------------------------------------------------------------------------------------------
 void TClientLogic::InitPhysic()
 {
   int id_world = mComp.pPhysicEngine->GetPE()->AddWorld();
-
   btDiscreteDynamicsWorld* dynamicsWorld = mComp.pPhysicEngine->GetPE()->GetWorld(id_world);
-
-  dynamicsWorld->setGravity(btVector3(0, 1, 0));
+  dynamicsWorld->setGravity(btVector3(0, -9.81, 0));
 
   btCollisionShape* groundShape = new btStaticPlaneShape(btVector3(0, 1, 0), 1);
-
-  btCollisionShape* fallShape = new btSphereShape(1);
-
   btDefaultMotionState* groundMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));
-  btRigidBody::btRigidBodyConstructionInfo
-    groundRigidBodyCI(0, groundMotionState, groundShape, btVector3(0, 0, 0));
+  btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0, groundMotionState, groundShape, btVector3(0, 0, 0));
   btRigidBody* groundRigidBody = new btRigidBody(groundRigidBodyCI);
   dynamicsWorld->addRigidBody(groundRigidBody);
-
-  btDefaultMotionState* fallMotionState =
-    new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 150, 0)));
+  //-----------------------------------------
+  btCollisionShape* fallShape = new btSphereShape(1);
+  /*btDefaultMotionState* */
+  fallMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 15000, 0)));
   btScalar mass = 1;
   btVector3 fallInertia(0, 0, 0);
   fallShape->calculateLocalInertia(mass, fallInertia);
   btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI(mass, fallMotionState, fallShape, fallInertia);
   btRigidBody* fallRigidBody = new btRigidBody(fallRigidBodyCI);
   dynamicsWorld->addRigidBody(fallRigidBody);
+  //-----------------------------------------
+  btCollisionShape* fallShape2 = new btSphereShape(1);
+  btDefaultMotionState* 
+  fallMotionState2 = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0.1f, 1, 0.1f)));
+  btScalar mass2 = 1;
+  btVector3 fallInertia2(0, 0, 0);
+  fallShape2->calculateLocalInertia(mass2, fallInertia2);
+  btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI2(mass2, fallMotionState2, fallShape2, fallInertia2);
+  btRigidBody* fallRigidBody2 = new btRigidBody(fallRigidBodyCI2);
+  //dynamicsWorld->addRigidBody(fallRigidBody2);
+}
+//---------------------------------------------------------------------------------------------
+void TClientLogic::GraphicBeginWork()
+{
+
+}
+//---------------------------------------------------------------------------------------------
+void TClientLogic::PhysicBeginWork()
+{
+
+}
+//---------------------------------------------------------------------------------------------
+void TClientLogic::FreeGraphicResource()
+{
+  delete mClientMain;
+  delete mDebugPanel;
 }
 //---------------------------------------------------------------------------------------------

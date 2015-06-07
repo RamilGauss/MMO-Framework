@@ -13,6 +13,7 @@ See for more information License.h.
 struct DllExport TBaseLogicPacket
 {
   TBaseLogicPacket();
+  virtual ~TBaseLogicPacket();
   int type;
 };
 
