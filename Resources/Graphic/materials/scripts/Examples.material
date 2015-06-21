@@ -1,10 +1,9 @@
-material Examples/Ninja
+material KingTiger
 {
 	technique
 	{
 		pass
 		{
-
 			texture_unit
 			{
 				texture PzVIB_Tiger_II.dds
@@ -14,7 +13,7 @@ material Examples/Ninja
 	}
 }
 
-material Examples/Track
+material KingTiger/Track
 {
 	technique
 	{
@@ -24,11 +23,7 @@ material Examples/Track
 			{
 				texture Tiger_II_track.dds
 			}
-			//scene_blend alpha_blend
 			scene_blend alpha_blend
-			//depth_write off
-			//diffuse vertexcolour
-			//cull_hardware none
 		}
 	}
 }

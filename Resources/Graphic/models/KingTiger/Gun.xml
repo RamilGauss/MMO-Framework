@@ -1,6 +1,6 @@
 <mesh>
     <submeshes>
-        <submesh material="Examples/Ninja" usesharedvertices="false" use32bitindexes="false" operationtype="triangle_list">
+        <submesh material="KingTiger" usesharedvertices="false" use32bitindexes="false" operationtype="triangle_list">
             <faces count="514">
                 <face v1="0" v2="1" v3="2" />
                 <face v1="1" v2="3" v3="2" />

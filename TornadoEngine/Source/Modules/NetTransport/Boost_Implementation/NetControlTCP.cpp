@@ -189,8 +189,7 @@ void TNetControlTCP::DeleteSelf()
 {
   TIP_Port ip_port = *(mDevice.GetIP_Port());
   TNetTransport_Boost* pNetTransport_Boost = GetNetBoost();
-
-  GetNetBoost()->RemoveFromMapTCP( &ip_port, this);
+  pNetTransport_Boost->RemoveFromMapTCP( &ip_port, this);
   // передать стековый объект, т.к. mDevice уже уничтожен, а pNetTransport_Boost - указатель на хозяина (он еще существует)
   NotifyDisconnect( &ip_port, pNetTransport_Boost);
 }
