@@ -11,9 +11,18 @@
             <scale    x="1" y="1" z="1"/>
             <rotate   x="1" y="0" z="0" a="0"/>
           </node>
-          <property>
-            <mass value="30000" x="0" y="0" z="0" />
-          </property>
+          <constraint type="polar" r0="0" r1="0" a0="0" a1="0" b0="0" b1="0">
+            <A x="0" y="0" z="0"/>
+            <B x="0" y="0" z="0"/>
+            <spring>
+              <>
+              <>
+            </spring>
+          </constraint>
+          <constraint type="cartesian" x0="0" x1="0" y0="0" y1="0" z0="0" z1="0">
+            <A x="0" y="0" z="0"/>
+            <B x="0" y="0" z="0"/>
+          </constraint>
         </joint>
         <joint>
           <node name="Turret">
@@ -67,6 +76,7 @@
       <physic>
         <shape path="../../Physic/models/KingTiger/Hull.mesh"/>
         <property>
+            <mass value="30000" x="0" y="0" z="0" />
         </property>
       </physic>
     </state>
