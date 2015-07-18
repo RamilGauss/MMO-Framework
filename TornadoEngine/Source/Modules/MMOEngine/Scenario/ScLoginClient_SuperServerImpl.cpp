@@ -62,7 +62,7 @@ void TScLoginClient_SuperServerImpl::RequestM2SS(TDescRecvSession* pDesc)
     isExist = true;
     // проверка
   if(Begin()==false)
-    BL_FIX_BUG();
+    {BL_FIX_BUG();}
   End();
   // формирование пакета
   TBreakPacket bp;// контейнер для всего пакета

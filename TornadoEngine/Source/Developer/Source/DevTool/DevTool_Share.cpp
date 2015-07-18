@@ -246,7 +246,7 @@ void TDevTool_Share::SetComponentsForLogic()
     pLogic->ParseCmd(mVecArg);
   }
   else 
-    BL_FIX_BUG();
+    {BL_FIX_BUG();}
 }
 //-----------------------------------------------------------------------
 TModuleLogic* TDevTool_Share::FindLogic()

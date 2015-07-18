@@ -62,7 +62,7 @@ public:
       Remove(data);// удаляем
       data = GetFirst();        
     }
-    if(cnt!=0) BL_FIX_BUG();
+    if(cnt!=0){ BL_FIX_BUG();}
     end();
   }
 

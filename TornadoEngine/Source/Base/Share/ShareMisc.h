@@ -49,8 +49,6 @@ struct TIP_Port
 #pragma pack(pop)
 #endif
 
-
-
 extern int DllExport GetCountCoreCPU();
 
 // NOT Thread Safe!
@@ -59,6 +57,20 @@ extern void DllExport DeleteConsole();
 extern bool DllExport IsConsoleExist();
 
 extern bool DllExport SetCurrentPathByFile(char* sPath);
+
+template <class Type>
+bool A_more_B_cycle(Type A, Type B)
+{
+  if(A>B)
+  {
+    if(A-B>Type(-1)/2) return false;
+    else return true;
+  }
+  else
+    if(B-A>Type(-1)/2) return true;
+
+  return false;
+}
 //--------------------------------------------------
 
 #endif

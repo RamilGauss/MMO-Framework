@@ -25,6 +25,8 @@ int GetCountCoreCPU()
 	SYSTEM_INFO siSysInfo;
 	GetSystemInfo(&siSysInfo);
 	countCore = siSysInfo.dwNumberOfProcessors;
+#else
+  countCore = 1;// доделать
 #endif
 	return countCore;
 }

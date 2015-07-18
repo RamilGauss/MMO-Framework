@@ -36,6 +36,8 @@ public:
 	virtual int GetCount()const;
   virtual void Unlink();
   virtual void Done();
+
+  TContainerArrObj<T>& operator = (const TContainerArrObj<T>& c);
 };
 //---------------------------------------------------------------
 template <class T>
@@ -135,6 +137,15 @@ void TContainerArrObj<T>::EntrustByCount(char* p, int count)
   Done();
   pData  = (T*)p;
   mCount = count;
+}
+//---------------------------------------------------------------
+template <class T>
+TContainerArrObj<T>& TContainerArrObj<T>::operator = (const TContainerArrObj<T>& c)
+{
+  Entrust(c.GetPtr(), c.GetSize());
+  TContainerArrObj<T>* pC = (TContainerArrObj<T>*)&c;
+  pC->Unlink();
+  return *this;
 }
 //---------------------------------------------------------------
 #endif

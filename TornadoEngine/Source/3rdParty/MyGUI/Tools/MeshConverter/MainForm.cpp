@@ -117,7 +117,7 @@ void TMainForm::MakeDevice()
   // Создание объекта Direct3D
   m_pD3D = Direct3DCreate9( D3D_SDK_VERSION);
   if( !m_pD3D )
-    BL_FIX_BUG();
+    {BL_FIX_BUG();}
 
   // Создание устройства рендера.
   D3DPRESENT_PARAMETERS d3dpp = {0};
@@ -134,6 +134,6 @@ void TMainForm::MakeDevice()
     D3DCREATE_SOFTWARE_VERTEXPROCESSING,
     &d3dpp, &m_pd3dDevice );
   if( FAILED(hr) || !m_pd3dDevice)
-    BL_FIX_BUG();
+    {BL_FIX_BUG();}
 }
 //---------------------------------------------------------------------------------------------

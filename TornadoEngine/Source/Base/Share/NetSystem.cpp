@@ -179,7 +179,7 @@ char* ns_getHostIP( const char* name, int numNetWork )
 					else
 						foundNet++;
       }
-      else BL_FIX_BUG();
+      else {BL_FIX_BUG();}
       i++;
     }
     if( isLocalHost )

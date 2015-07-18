@@ -418,10 +418,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\common_defs.h"
-				>
-			</File>
-			<File
 				RelativePath=".\ContainerArrObj.h"
 				>
 			</File>

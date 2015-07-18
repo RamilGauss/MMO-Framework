@@ -66,6 +66,6 @@ void TControlScenario::Work(TDescRecvSession* pDesc)
     fit->second->Recv(pDesc);
   }
   else
-    BL_FIX_BUG();
+    {BL_FIX_BUG();}
 }
 //----------------------------------------------------------------------

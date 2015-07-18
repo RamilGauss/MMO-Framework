@@ -82,7 +82,6 @@ CallBackRegistrator.h \
 classTools.h \
 CmdParam.h \
 cnvCoderText.h \
-common_defs.h \
 ContainerArrObj.h \
 ContainerPtrArrObj.h \
 ContainerRise.h \
