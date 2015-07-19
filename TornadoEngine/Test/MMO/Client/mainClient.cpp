@@ -19,10 +19,6 @@ See for more information License.h.
 #include <vector>
 #include "HandlerMMO_Client.h"
 
-
-#include "MakerXML.h"
-#include "IXML.h"
-
 int main(int argc, char** argv)
 {
   GetLogger()->Register(STR_NAME_MMO_ENGINE);

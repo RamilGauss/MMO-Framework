@@ -7,7 +7,6 @@ See for more information License.h.
 
 #include "NetControlUDP.h"
 #include "BL_Debug.h"
-#include "common_defs.h"
 
 #include "Logger.h"
 #include "HiTimer.h"

@@ -11,7 +11,6 @@ See for more information License.h.
 #include <boost/asio/placeholders.hpp>
 #include <boost/foreach.hpp>
 
-#include "common_defs.h"
 #include "HiTimer.h"
 #include "NetSystem.h"
 #include "Logger.h"
