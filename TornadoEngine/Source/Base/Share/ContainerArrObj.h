@@ -25,6 +25,7 @@ class TContainerArrObj : public IContainer
   int mCount;
 public:
   TContainerArrObj();
+  TContainerArrObj(const TContainerArrObj& c);
   virtual ~TContainerArrObj();
 
   virtual void Entrust(char* p, int size);
@@ -146,6 +147,15 @@ TContainerArrObj<T>& TContainerArrObj<T>::operator = (const TContainerArrObj<T>&
   TContainerArrObj<T>* pC = (TContainerArrObj<T>*)&c;
   pC->Unlink();
   return *this;
+}
+//---------------------------------------------------------------
+template <class T>
+TContainerArrObj<T>::TContainerArrObj(const TContainerArrObj<T>& c)
+{
+  pData  = NULL;
+  mCount = 0;
+
+  *this = c;
 }
 //---------------------------------------------------------------
 #endif
