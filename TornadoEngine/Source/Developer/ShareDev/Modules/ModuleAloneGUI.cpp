@@ -57,7 +57,7 @@ void TModuleAloneGUI::Input(int id_sender, void* p, int size)
     {
       // создать customEvent для Qt
       TQtEventNotify* pE = new TQtEventNotify;
-      pE->mCB = ((TLogicEventCallBack*)pBLP)->mCB;
+      pE->mCB = ((TLogicEventCallBack0*)pBLP)->mCB;
       QCoreApplication::postEvent( mQt->GetApp(), pE);
     }
       break;

@@ -33,6 +33,12 @@ public:
   void CallBackModule(int id_module, F pFunc);
   template <typename F, class A1>
   void CallBackModule(int id_module, F pFunc, A1 pObject);
+  
+  // параметризованная
+  template <typename F, typename P>
+  void CallBackModuleParam(int id_module, F pFunc, P* p);
+  template <typename F, class A1, typename P>
+  void CallBackModuleParam(int id_module, F pFunc, A1 pObject, P* p);
 protected:
   bool NeedExit();
 };
@@ -40,7 +46,7 @@ protected:
 template <typename Func>
 void TModuleLogic::CallBackModule(int id_module, Func pFunc)
 {
-  TLogicEventCallBack* pLCB = new TLogicEventCallBack;
+  TLogicEventCallBack0* pLCB = new TLogicEventCallBack0;
   pLCB->mCB.Register( pFunc, this );
   TSynchroAbonent::AddEventWithoutCopy(id_module, pLCB);
 }
@@ -48,8 +54,26 @@ void TModuleLogic::CallBackModule(int id_module, Func pFunc)
 template <typename Func, class A1>
 void TModuleLogic::CallBackModule(int id_module, Func pFunc, A1 pObject)
 {
-  TLogicEventCallBack* pLCB = new TLogicEventCallBack;
+  TLogicEventCallBack0* pLCB = new TLogicEventCallBack0;
   pLCB->mCB.Register( pFunc, pObject );
+  TSynchroAbonent::AddEventWithoutCopy(id_module, pLCB);
+}
+//---------------------------------------------------------------------------
+template <typename F, typename P>
+void TModuleLogic::CallBackModuleParam(int id_module, F pFunc, P* p)
+{
+  TLogicEventCallBack1<P>* pLCB = new TLogicEventCallBack1<P>;
+  pLCB->mCB.Register( pFunc, this );
+  pLCB->pParam = p;
+  TSynchroAbonent::AddEventWithoutCopy(id_module, pLCB);
+}
+//---------------------------------------------------------------------------
+template <typename F, class A1, typename P>
+void TModuleLogic::CallBackModuleParam(int id_module, F pFunc, A1 pObject, P* p)
+{
+  TLogicEventCallBack1<P>* pLCB = new TLogicEventCallBack1<P>;
+  pLCB->mCB.Register( pFunc, pObject );
+  pLCB->pParam = p;
   TSynchroAbonent::AddEventWithoutCopy(id_module, pLCB);
 }
 //---------------------------------------------------------------------------

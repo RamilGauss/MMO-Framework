@@ -28,7 +28,7 @@ void TModuleComponent::Input(int id_sender, void* p, int size)
   switch(pBLP->type)
   {
     case nsBaseLogicPacket::eCallBack0:
-      ((TLogicEventCallBack*)pBLP)->mCB.Notify();
+      ((TLogicEventCallBack0*)pBLP)->mCB.Notify();
       break;
     default:;
   }

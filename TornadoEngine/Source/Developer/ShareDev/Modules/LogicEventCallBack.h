@@ -11,13 +11,30 @@ See for more information License.h.
 #include "BaseLogicPacket.h"
 #include "CallBackRegistrator.h"
 
-struct DllExport TLogicEventCallBack : public TBaseLogicPacket
+struct DllExport TLogicEventCallBack0 : public TBaseLogicPacket
 {
-  TLogicEventCallBack()
+  TLogicEventCallBack0()
   {
     type = nsBaseLogicPacket::eCallBack0;
   }
   TCallBackRegistrator0 mCB; 
 };
+//-----------------------------------------------------------------
+template < typename P >
+struct DllExport TLogicEventCallBack1 : public TBaseLogicPacket
+{
+  P* pParam;
 
+  TLogicEventCallBack1()
+  {
+    pParam = NULL;
+    type = nsBaseLogicPacket::eCallBack1;
+  }
+  ~TLogicEventCallBack1()
+  {
+    delete pParam;
+  }
+  TCallBackRegistrator1<P> mCB; 
+};
+//-----------------------------------------------------------------
 #endif

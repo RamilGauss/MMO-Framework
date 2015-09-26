@@ -23,6 +23,7 @@ namespace nsBaseLogicPacket
   {
     eUndef,
     eCallBack0,
+    eCallBack1,
   };
 };
 
