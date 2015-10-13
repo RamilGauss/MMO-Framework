@@ -96,8 +96,10 @@ public:
   virtual int   GetCount(int indexDesc)             = 0;
   virtual void  SetCount(const char* name, int cnt) = 0;
   virtual int   GetCount(const char* name)          = 0;
-  virtual void* GetPtrConst(int indexDesc)       = 0;
-  virtual void* GetPtrConst(const char* name)    = 0;
+  virtual void* GetPtrConst(int indexDesc)          = 0;
+  virtual void* GetPtrConst(const char* name)       = 0;
+  virtual int   GetSizeConst(int indexDesc)         = 0;
+  virtual int   GetSizeConst(const char* name)      = 0;
 
   // результат - дать область пам€ти готового пакета
   virtual void  Collect() = 0;

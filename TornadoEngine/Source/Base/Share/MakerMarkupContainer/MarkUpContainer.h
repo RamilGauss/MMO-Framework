@@ -81,6 +81,8 @@ public:
   virtual int   GetCount(const char* name);
   virtual void* GetPtrConst(int indexDesc);
   virtual void* GetPtrConst(const char* name);
+  virtual int   GetSizeConst(int indexDesc);
+  virtual int   GetSizeConst(const char* name);
 
   virtual void  Collect();
   virtual void* GetPtr();

@@ -116,10 +116,7 @@ IMarkUpContainer::eType TMarkUpContainer::GetTypeDesc(int indexDesc)
   if(mCurElem==NULL)
     return eUndef;
 
-  if(mCurElem==mRootElem)
-    return eRoot;
-
-  return mCurElem->vecSlaveDesc[indexDesc]->GetTypeDescByIndex(indexDesc);
+  return mCurElem->vecSlaveDesc[indexDesc]->GetSelfType();//GetTypeDescByIndex(indexDesc);
 }
 //--------------------------------------------------------------------
 void TMarkUpContainer::SetCount(int indexDesc, int cnt)
@@ -205,6 +202,25 @@ void* TMarkUpContainer::GetPtrConst(const char* name)
   if(fit==mCurElem->mapNameDesc.end())
     return NULL;
   return fit->second->data.GetPtr();
+}
+//--------------------------------------------------------------------
+int TMarkUpContainer::GetSizeConst(int indexDesc)
+{
+  if(mCurElem==NULL)
+    return 0;
+
+  return mCurElem->vecSlaveDesc[indexDesc]->data.GetSize();
+}
+//--------------------------------------------------------------------
+int TMarkUpContainer::GetSizeConst(const char* name)
+{
+  if(mCurElem==NULL)
+    return 0;
+
+  TMapStrDescPrivateIt fit = mCurElem->mapNameDesc.find(name);
+  if(fit==mCurElem->mapNameDesc.end())
+    return 0;
+  return fit->second->data.GetSize();
 }
 //--------------------------------------------------------------------
 void TMarkUpContainer::Collect()
