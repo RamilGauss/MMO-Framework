@@ -3,7 +3,7 @@
   <include_header name="BosforStruct.h"/>
   <include_cpp name="BosforProtocol.h"/>
   <include_cpp name="BL_Debug.h"/>
-  <packet name="CmdPacket">
+  <packet name="CmdPacket" id="BSFD_CMD" full_name="Команда (сигнал)">
     <desc name="Type" type="int" def_value="BSFD_CMD">
     </desc>
     <desc name="NumCmd" type="int">
@@ -15,7 +15,7 @@
     <desc name="TimeBegin" type="double">
     </desc>
   </packet>
-  <packet name="RequestOpenIRIPacket">
+  <packet name="RequestOpenIRIPacket" id="BSFD_REQUEST_OPEN_IRI" full_name="Запрос о вскрытых ИРИ">
     <desc name="Type" type="int" def_value="BSFD_REQUEST_OPEN_IRI">
     </desc>
     <desc name="NumRequest" type="int">
@@ -41,7 +41,7 @@
       </desc> 
     </desc>
   </packet>
-  <packet name="AnswerOpenIRIPacket">  
+  <packet name="AnswerOpenIRIPacket" id="BSFD_ANSWER_OPEN_IRI" full_name="Донесение о вскрытых ИРИ">  
     <desc name="Type" type="int" def_value="BSFD_ANSWER_OPEN_IRI">
     </desc>
     <desc name="NumRequest" type="int">
@@ -81,7 +81,7 @@
       </desc> 
     </desc>
   </packet>
-  <packet name="AnswerOpenIRISputnikPacket">
+  <packet name="AnswerOpenIRISputnikPacket" id="BSFD_ANSWER_OPEN_IRI_SPUTNIK" full_name="Донесение (сообщение для КРЭП СпС) о вскрытых ИРИ спутниковой связи">
     <desc name="Type" type="int" def_value="BSFD_ANSWER_OPEN_IRI_SPUTNIK">
     </desc>
     <desc name="NumRequest" type="int">
@@ -127,7 +127,7 @@
       </desc> 
     </desc>
   </packet>
-  <packet name="RequestInfoIRIPacket">
+  <packet name="RequestInfoIRIPacket" id="BSFD_REQUEST_INFO_IRI" full_name="Запрос об оперативной выдаче информации об ИРИ СпС">
     <desc name="Type" type="int" def_value="BSFD_REQUEST_INFO_IRI">
     </desc>
     <desc name="NumAim" type="int">
@@ -155,7 +155,7 @@
     <desc name="LastTime" type="double">
     </desc>
   </packet>
-  <packet name="ListIRI_RP_Packet">
+  <packet name="ListIRI_RP_Packet" id="BSFD_LIST_IRI_RP" full_name="Перечень ИРИ СпС - объектов РП и доразведки">
     <desc name="Type" type="int" def_value="BSFD_LIST_IRI_RP">
     </desc>
     <desc name="NumMsg" type="int">
@@ -191,7 +191,7 @@
       </desc>
     </desc>
   </packet>
-  <packet name="InfoPropertyIRISputnikPacket">
+  <packet name="InfoPropertyIRISputnikPacket" id="BSFD_INFO_PROPERTY_IRI_SPUTNIK" full_name="Сведения о характеристиках вскрытых ИРИ спутниковой связи">
     <desc name="Type" type="int" def_value="BSFD_INFO_PROPERTY_IRI_SPUTNIK">
     </desc>
     <desc name="NumRequest" type="int">
@@ -223,7 +223,7 @@
       </desc>
     </desc>
   </packet>
-  <packet name="ListIRI_MKRP_Packet">
+  <packet name="ListIRI_MKRP_Packet" id="BSFD_LIST_IRI_MKRP" full_name="Перечень ИРИ СпС - объектов РП для МКРП">
     <desc name="Type" type="int" def_value="BSFD_LIST_IRI_MKRP">
     </desc>
     <desc name="NumMsg" type="int">
@@ -251,7 +251,7 @@
       </desc> 
     </desc>
   </packet>
-  <packet name="RequestOpenUSPacket">
+  <packet name="RequestOpenUSPacket" id="BSFD_REQUEST_OPEN_US" full_name="Запрос о вскрытых УС">
     <desc name="Type" type="int" def_value="BSFD_REQUEST_OPEN_US">
     </desc>
     <desc name="NumRequest" type="int">
@@ -273,7 +273,7 @@
       </desc>
     </desc>
   </packet>
-  <packet name="AnswerOpenUSPacket">
+  <packet name="AnswerOpenUSPacket" id="BSFD_ANSWER_OPEN_US" full_name="Донесение о вскрытых УС">
     <desc name="Type" type="int" def_value="BSFD_ANSWER_OPEN_US">
     </desc>
     <desc name="NumRequest" type="int">
@@ -309,13 +309,13 @@
       </desc>
     </desc>
   </packet>
-  <packet name="RequestResultRPPacket">
+  <packet name="RequestResultRPPacket" id="BSFD_REQUEST_RESULT_RP" full_name="Запрос о результатах РП СпС">
     <desc name="Type" type="int" def_value="BSFD_REQUEST_RESULT_RP">
     </desc>
     <desc name="NumRequest" type="int">
     </desc>
   </packet>
-  <packet name="InfoResultRPPacket">
+  <packet name="InfoResultRPPacket" id="BSFD_INFO_RESULT_RP" full_name="Сведения о результатах РП СпС">
     <desc name="Type" type="int" def_value="BSFD_INFO_RESULT_RP">
     </desc>
     <desc name="NumRequest" type="int">
@@ -335,13 +335,13 @@
       </desc>
     </desc>
   </packet>
-  <packet name="RequestReadyMKRP_Packet">
+  <packet name="RequestReadyMKRP_Packet" id="BSFD_REQUEST_READY_MKRP" full_name="Запрос о боеспособности МКРП">
     <desc name="Type" type="int" def_value="BSFD_REQUEST_READY_MKRP">
     </desc>
     <desc name="NumRequest" type="int">
     </desc>
   </packet>  
-  <packet name="AnswerReadyMKRP_Packet">
+  <packet name="AnswerReadyMKRP_Packet" id="BSFD_ANSWER_READY_MKRP" full_name="Донесение (сообщение для КРЭП СпС) о боеспособности МКРП">
     <desc name="Type" type="int" def_value="BSFD_ANSWER_READY_MKRP">
     </desc>
     <desc name="NumRequest" type="int">
@@ -407,13 +407,13 @@
 	  </desc> 	  
 	</desc>
   </packet>
-  <packet name="RequestReadyRRTR_RP_Packet">
+  <packet name="RequestReadyRRTR_RP_Packet" id="BSFD_REQUEST_READY_RRTR_RP" full_name="Запрос о возможностях по РРТР и РП КРЭП СпС">
     <desc name="Type" type="int" def_value="BSFD_REQUEST_READY_RRTR_RP">
     </desc>
     <desc name="NumRequest" type="int">
     </desc>
   </packet> 
-  <packet name="AnswerReadyRRTR_RP_Packet">
+  <packet name="AnswerReadyRRTR_RP_Packet" id="BSFD_ANSWER_READY_RRTR_RP" full_name="Донесение о возможностях по РРТР и РП КРЭП СпС">
     <desc name="Type" type="int" def_value="BSFD_ANSWER_READY_RRTR_RP">
     </desc>
     <desc name="NumRequest" type="int">

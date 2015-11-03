@@ -26,7 +26,7 @@ TContainer TBasePacket::GetData()
   return c;
 }
 //--------------------------------------------------------------------------------
-void TBasePacket::GetStrDesc(std::vector<std::string>& vecStr)
+void TBasePacket::GetStrContent(std::vector<std::string>& vecStr)
 {
   vecStr.clear();
   mMarkUp->EnterRoot();

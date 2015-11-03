@@ -354,6 +354,16 @@ function FillSourceCPP()
   WriteSetDefValue();
   fileCPP:write("}\n");
   WriteLineCPP();
+  fileCPP:write("int  T"..name_packet.."::GetID()\n");
+  fileCPP:write("{\n");
+  fileCPP:write("  return "..id_packet..";\n");
+  fileCPP:write("}\n");
+  WriteLineCPP();  
+  fileCPP:write("std::string T"..name_packet.."::GetName()\n");
+  fileCPP:write("{\n");
+  fileCPP:write("  return \""..full_name_packet.."\";\n");
+  fileCPP:write("}\n");
+  WriteLineCPP();  
   -- перебор методов
   for index_node, node in pairs(arr_stack_desc) do
     WriteMethodBodyByNode(node);

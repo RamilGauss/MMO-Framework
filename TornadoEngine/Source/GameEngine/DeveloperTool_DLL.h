@@ -25,10 +25,4 @@ typedef void (*FuncFreeDevTool)(IDevTool*);
 DllExport_C IDevTool* GetDevTool(int variant_use);
 DllExport_C void FreeDevTool(IDevTool* p);
 
-//###
-#define StrWorkModule "WorkModule"
-typedef bool (*FuncWorkModule)(int);
-DllExport_C bool WorkModule(int id_module);
-//###
-
 #endif

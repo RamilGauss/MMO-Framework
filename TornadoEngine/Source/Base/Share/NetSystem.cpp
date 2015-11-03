@@ -115,6 +115,7 @@ void ns_Done()
 #if defined(TD_WINDOWS)
   WSACleanup();
 #endif
+  ns_IsInit = false;
 }
 //---------------------------------------------------------------------------
 /*void ns_getaddrinfo()

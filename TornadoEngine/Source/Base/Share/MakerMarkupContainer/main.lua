@@ -14,6 +14,8 @@ flgForceMake     = true;
 fileCPP          = nil;
 fileH            = nil;
 name_packet      = nil;
+id_packet        = nil;
+full_name_packet = nil;
 arr_stack_desc   = {};
 size_stack_methods = 0;
 
@@ -73,7 +75,9 @@ end;
 --------------------------------------------------------
 -- каждый пакет в отдельности
 function handle_packet(tbl)
-  name_packet = tbl["name"];
+  name_packet      = tbl["name"];
+  id_packet        = tbl["id"];
+  full_name_packet = tbl["full_name"];
 
   arr_stack_desc = {};
   enum_child(tbl);

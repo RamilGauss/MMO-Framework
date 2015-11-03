@@ -22,18 +22,18 @@ function WriteMethodByNode(node)
   end;
   ---------------------------------
   if cnt_child==0 then -- Const
-    fileH:write("    "..type_node.." Get"..name_node.."("..str_index_param..");\n");
+    fileH:write("  "..type_node.." Get"..name_node.."("..str_index_param..");\n");
     if #str_index_param~=0 then
       str_index_param = str_index_param..", ";
     end;
-    fileH:write("    void Set"..name_node.."("..str_index_param..type_node.." v);\n");
+    fileH:write("  void Set"..name_node.."("..str_index_param..type_node.." v);\n");
     fileH:write("\n");
   else -- Arr
-    fileH:write("    int  GetCount"..name_node.."("..str_index_param..");\n");
+    fileH:write("  int  GetCount"..name_node.."("..str_index_param..");\n");
     if #str_index_param~=0 then
       str_index_param = str_index_param..", ";
     end;
-    fileH:write("    void SetCount"..name_node.."("..str_index_param.."int v);\n");
+    fileH:write("  void SetCount"..name_node.."("..str_index_param.."int v);\n");
     fileH:write("\n");
   end;
   ---------------------------------
@@ -62,6 +62,8 @@ function FillHeader()
   fileH:write("  T"..name_packet.."();\n");
   fileH:write("  virtual ~T"..name_packet.."();\n");
   fileH:write("  void SetDefValue();\n");
+  fileH:write("  virtual int         GetID();\n");
+  fileH:write("  virtual std::string GetName();\n");
   fileH:write("\n");
   -- перебор иерархии
   for index_node, node in pairs(arr_stack_desc) do

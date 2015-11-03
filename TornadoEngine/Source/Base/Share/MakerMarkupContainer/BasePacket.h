@@ -17,7 +17,10 @@ public:
   int Set(char* p, int size);
   TContainer GetData();
 
-  void GetStrDesc(std::vector<std::string>& vecStr);
+  virtual int         GetID()   = 0;
+  virtual std::string GetName() = 0;
+
+  void GetStrContent(std::vector<std::string>& vecStr);
 private:
   void GetStrDescItem(std::vector<std::string>& vecStr, int sizeStack);
 };
