@@ -6,7 +6,19 @@
                       https://cloud.mail.ru/public/594080076bcd%2FDependency.zip,
                       https://cloud.mail.ru/public/bde5f1031ef5%2Fboost_1_54_0.zip,
                       https://cloud.mail.ru/public/e5f237ddeb4d%2Fboost_1_54_0.rar,
-                      https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe).
+                      https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe,
+                      https://cloud.mail.ru/public/3GYW/9huRk9uNT - EnterpriseArchitect,
+                      https://cloud.mail.ru/public/e9b8aec7f670/qt-win-opensource-4.8.5-vs2008.exe,
+                      https://cloud.mail.ru/public/19dc30beeff2/qt-vs-addin-1.1.11-opensource.exe,
+                      https://cloud.mail.ru/public/KTAG/UV4942Avh - VC_Addons,
+                      https://cloud.mail.ru/public/B7EE/mS2NPExCd - lua,
+                      https://cloud.mail.ru/public/8E7U/UpsmjKpCm - полезная книга по LUA,
+                      https://cloud.mail.ru/public/LG5Q/WzvUsn8Rz - ZeroBrainStudio.exe
+                    Visual Studio 2008 частями:
+                      https://cloud.mail.ru/public/Lk5Y/P193qZ78u - vs 2008.z01,
+                      https://cloud.mail.ru/public/7AQS/9ZNYR9TN7 - vs 2008.z02,
+                      https://cloud.mail.ru/public/LVj6/Ly5d84BCJ - vs 2008.zip
+                      ).
   Далее прописать в Visual Studio пути:
 1. Tools->Options->Projects and Solutions
 2. VC++ Directories->Include files - добавить путь, например, "D:\MyProjects\Dependency\Include\MyGUIEngine\include".
