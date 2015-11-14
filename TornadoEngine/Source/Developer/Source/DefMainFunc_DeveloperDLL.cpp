@@ -11,6 +11,9 @@ See for more information License.h.
 #include "DevTool_Slave.h"
 #include "DevTool_Master.h"
 #include "DevTool_SuperServer.h"
+#include "DevTool_EditorShape.h"
+#include "DevTool_EditorModel.h"
+#include "DevTool_EditorMap.h"
 
 DllExport_C IDevTool* GetDevTool(int variant_use)
 {
@@ -24,6 +27,12 @@ DllExport_C IDevTool* GetDevTool(int variant_use)
       return new TDevTool_Master;
     case 3:
       return new TDevTool_SuperServer;
+    case 4:
+      return new TDevTool_EditorShape;
+    case 5:
+      return new TDevTool_EditorModel;
+    case 6:
+      return new TDevTool_EditorMap;
   }
   return NULL;
 }

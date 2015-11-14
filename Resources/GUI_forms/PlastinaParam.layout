@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="WindowCX" skin="WindowCX" position="735 5 195 175" align="Right Top" layer="Overlapped" name="_Main">
+        <Widget type="Button" skin="Button" position="85 140 100 25" name="bApply">
+            <Property key="Caption" value="Применить"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="90 35 95 25" name="tbWidth"/>
+        <Widget type="TextBox" skin="TextBox" position="15 35 65 25">
+            <Property key="Caption" value="Ширина"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="15 70 65 25">
+            <Property key="Caption" value="Высота"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="15 110 65 25">
+            <Property key="Caption" value="Длина"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="95 75 90 25" name="tbHeight"/>
+        <Widget type="EditBox" skin="EditBox" position="95 110 85 25" name="tbLength"/>
+    </Widget>
+</MyGUI>

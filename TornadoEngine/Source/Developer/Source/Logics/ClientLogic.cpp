@@ -7,8 +7,6 @@ See for more information License.h.
 
 #include "ClientLogic.h"
 
-#include <Ogre.h>
-
 #include "ListModules.h"
 #include "Logger.h"
 
@@ -61,11 +59,9 @@ void TClientLogic::StartEvent()
   CallBackModule(nsListModules::Timer, &TClientLogic::StartTimer);
   CallBackModule(nsListModules::GraphicEngine, &TClientLogic::InitForms);
   CallBackModule(nsListModules::GraphicEngine, &TClientLogic::ShowTanks);
-
   CallBackModule(nsListModules::PhysicEngine, &TClientLogic::InitPhysic);
 
   mComp.pGraphicEngine->GetCBBeginWork()->Register( &TClientLogic::GraphicBeginWork ,this);
-  
   mComp.pGraphicEngine->GetCBStopEvent()->Register( &TClientLogic::FreeGraphicResource,this);
 
   mComp.pPhysicEngine->GetCBBeginWork()->Register( &TClientLogic::PhysicBeginWork ,this);
@@ -232,7 +228,7 @@ void TClientLogic::InitPhysic()
 {
   int id_world = mComp.pPhysicEngine->GetPE()->AddWorld();
   btDiscreteDynamicsWorld* dynamicsWorld = mComp.pPhysicEngine->GetPE()->GetWorld(id_world);
-  dynamicsWorld->setGravity(btVector3(0, -9.81, 0));
+  dynamicsWorld->setGravity(btVector3(0, -9.81f, 0));
 
   btCollisionShape* groundShape = new btStaticPlaneShape(btVector3(0, 1, 0), 1);
   btDefaultMotionState* groundMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));

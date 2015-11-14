@@ -187,6 +187,18 @@
 					>
 				</File>
 				<File
+					RelativePath=".\DevTool\DevTool_EditorMap.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool\DevTool_EditorModel.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool\DevTool_EditorShape.h"
+					>
+				</File>
+				<File
 					RelativePath=".\DevTool\DevTool_Master.h"
 					>
 				</File>
@@ -208,6 +220,18 @@
 				>
 				<File
 					RelativePath=".\DevTool\DevTool_Client.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool\DevTool_EditorMap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool\DevTool_EditorModel.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool\DevTool_EditorShape.cpp"
 					>
 				</File>
 				<File
@@ -237,6 +261,30 @@
 			</File>
 			<File
 				RelativePath=".\Logics\ClientLogic.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\EditorMapLogic.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\EditorMapLogic.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\EditorModelLogic.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\EditorModelLogic.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\EditorShapeLogic.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Logics\EditorShapeLogic.h"
 				>
 			</File>
 			<File
@@ -467,11 +515,35 @@
 					>
 				</File>
 				<File
+					RelativePath=".\GUI\EditorShape.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\EditorShape.h"
+					>
+				</File>
+				<File
 					RelativePath=".\GUI\GameRoomPrepare.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\GUI\GameRoomPrepare.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\PlastinaParam.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\PlastinaParam.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\PlastinaVarGeomParam.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\PlastinaVarGeomParam.h"
 					>
 				</File>
 				<File

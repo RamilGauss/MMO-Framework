@@ -47,6 +47,8 @@ public:
   virtual IModule* GetModuleByName(const char* sName);
   virtual void EventGameEngine(int id, const char* sDesc);
 protected:
+  virtual TModuleDev* GetModuleByID(int id);
+protected:
 	void InitMapModules();
   // навигация
   int FindIDByNameModule(std::string name);

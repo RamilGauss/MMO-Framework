@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Window" skin="WindowCSX" position="735 0 195 180" align="Right Top" layer="Overlapped" name="_Main">
+        <Widget type="Button" skin="Button" position="85 115 100 25" align="Right Bottom" name="bApply">
+            <Property key="Caption" value="Применить"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="90 5 95 25" name="tbThickness"/>
+        <Widget type="TextBox" skin="TextBox" position="15 5 65 20">
+            <Property key="Caption" value="Толщина"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="5 85 175 25" align="Stretch" name="ibGeom">
+            <Property key="Colour" value="0.964912 0.0733559 0.0733559"/>
+            <Property key="Enabled" value="true"/>
+            <Property key="Visible" value="true"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="15 30 70 20">
+            <Property key="Caption" value="Ширина"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="90 30 95 25" name="btWidth"/>
+        <Widget type="TextBox" skin="TextBox" position="10 55 75 20">
+            <Property key="Caption" value="Длина"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="90 55 95 25" name="btLength"/>
+    </Widget>
+</MyGUI>

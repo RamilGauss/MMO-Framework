@@ -127,7 +127,7 @@ bool TGE_Impl::InitMyGUI(const std::string& nameFileCore, const std::string& nam
 
   bool resLoad = MyGUI::ResourceManager::getInstance().load(nameFileSkin);
 
-	CreateInput(GetWindowHandle());
+  CreateInput(GetWindowHandle());
 	windowResized(mWindow);
 
   return resLoad;

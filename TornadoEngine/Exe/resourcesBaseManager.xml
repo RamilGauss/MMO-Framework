@@ -4,7 +4,11 @@
   <Path>../../Resources/GUI/MyGUI_Media</Path>
   <Path>../../Resources/GUI/Demos/Demo_Themes</Path>
   <Path>../../Resources/GUI/Common/Base</Path>
+  <Path>../../Resources/GUI/Common/Demos</Path>
+  <Path>../../Resources/GUI/Common/MessageBox</Path>
   <Path>../../Resources/GUI/Common/Themes</Path>
+  <Path>../../Resources/GUI/Common/Tools</Path>
+  <Path>../../Resources/GUI/Tools/LayoutEditor</Path>
   <Path>../../Resources/GUI_forms</Path>
   <Path>../../Resources/Graphic/materials/programs</Path>
   <Path>../../Resources/Graphic/materials/scripts</Path>

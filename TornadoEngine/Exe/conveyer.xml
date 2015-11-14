@@ -157,4 +157,31 @@
       </Thread>
     </CPU>
   </Variant>
+  <Variant Name = "EditorShape">
+    <CPU CountCore = "1" >
+      <Thread>
+        <Module Name = "GraphicEngine"  />
+        <Module Name = "ClientLogic"    />
+        <Module Name = "Timer"          />
+      </Thread>
+    </CPU>
+    <CPU CountCore = "2" >
+      <Thread>
+        <Module Name = "GraphicEngine"  />
+        <Module Name = "Timer"          />
+      </Thread>
+      <Thread>
+        <Module Name = "ClientLogic"    />
+      </Thread>
+    </CPU>
+    <CPU CountCore = "4" >
+      <Thread>
+        <Module Name = "GraphicEngine"  />
+        <Module Name = "Timer"          />
+      </Thread>
+      <Thread>
+        <Module Name = "ClientLogic"    />
+      </Thread>
+    </CPU>
+  </Variant>
 </Conveyer>
