@@ -1,20 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="WindowCX" skin="WindowCX" position="735 5 195 175" align="Right Top" layer="Overlapped" name="_Main">
-        <Widget type="Button" skin="Button" position="85 140 100 25" name="bApply">
-            <Property key="Caption" value="Применить"/>
+    <Widget type="Window" skin="Window" position="725 5 194 163" align="Right Top" layer="Main" name="_Main">
+        <Property key="Caption" value="Пластина"/>
+        <Property key="MinSize" value="200 160"/>
+        <Property key="Movable" value="true"/>
+        <Widget type="Button" skin="Button" position="105 100 75 25" align="Right Top" name="bClose">
+            <Property key="Caption" value="Закрыть"/>
         </Widget>
-        <Widget type="EditBox" skin="EditBox" position="90 35 95 25" name="tbWidth"/>
-        <Widget type="TextBox" skin="TextBox" position="15 35 65 25">
+        <Widget type="EditBox" skin="EditBox" position="80 5 95 25" name="ebWidth"/>
+        <Widget type="TextBox" skin="TextBox" position="5 5 65 25">
             <Property key="Caption" value="Ширина"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="15 70 65 25">
+        <Widget type="TextBox" skin="TextBox" position="5 35 65 25">
             <Property key="Caption" value="Высота"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="15 110 65 25">
+        <Widget type="TextBox" skin="TextBox" position="5 65 65 25">
             <Property key="Caption" value="Длина"/>
         </Widget>
-        <Widget type="EditBox" skin="EditBox" position="95 75 90 25" name="tbHeight"/>
-        <Widget type="EditBox" skin="EditBox" position="95 110 85 25" name="tbLength"/>
+        <Widget type="EditBox" skin="EditBox" position="80 35 95 25" name="ebHeight"/>
+        <Widget type="EditBox" skin="EditBox" position="80 65 95 25" name="ebLength"/>
+        <Widget type="Button" skin="Button" position="5 100 95 25" align="Left Top" name="bApply">
+            <Property key="Caption" value="Применить"/>
+        </Widget>
     </Widget>
 </MyGUI>

@@ -180,6 +180,14 @@
 			Name="Share"
 			>
 			<File
+				RelativePath=".\Share\BuilderShape.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\BuilderShape.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Share\Components.cpp"
 				>
 			</File>
@@ -201,6 +209,14 @@
 			</File>
 			<File
 				RelativePath=".\Share\ModuleDev.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\ParamBuilderShape.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\ParamBuilderShape.h"
 				>
 			</File>
 			<File

@@ -20,7 +20,16 @@ See for more information License.h.
 
 #include <OgreManualObject.h>
 
-TEditorShape::TEditorShape() 
+#include "PlastinaParam.h"
+#include "PlastinaVarGeomParam.h"
+
+#include "ClientMain.h"
+
+TEditorShape::TEditorShape() : 
+mPlastinaParamForm(new TPlastinaParam),
+mPlastinaVarGeomParamForm(new TPlastinaVarGeomParam),
+
+mClientMain(new TClientMain)
 {
   mBar                       = nullptr;
   mPopupMenu_File            = nullptr;
@@ -36,6 +45,8 @@ TEditorShape::TEditorShape()
   miNewShape_Cone            = nullptr;
   miNewShape_Pyramid3        = nullptr;
   miNewShape_Pyramid4        = nullptr;
+
+  mCurNewShape = nullptr;
 }
 //------------------------------------------------------
 TEditorShape::~TEditorShape()
@@ -51,7 +62,7 @@ void TEditorShape::Activate()
   mPopupMenu_File->eventMenuCtrlAccept += MyGUI::newDelegate(this, &TEditorShape::sl_WidgetsSelect);
 
   mPopupMenu_NewShape = mBar->findItemById("NewShape", true)->getItemChild();
-  mPopupMenu_File->eventMenuCtrlAccept += MyGUI::newDelegate(this, &TEditorShape::sl_WidgetsSelect);
+  mPopupMenu_NewShape->eventMenuCtrlAccept += MyGUI::newDelegate(this, &TEditorShape::sl_WidgetsSelect);
 
   miOpen = mPopupMenu_File->findItemById("Command_FileOpen");
   miSave = mPopupMenu_File->findItemById("Command_FileSave");
@@ -123,59 +134,8 @@ void TEditorShape::OpenShape()
 //---------------------------------------------------------------------------------------------
 void TEditorShape::NewShape()
 {
-  // выбрать из списка шаблон
-  
-
-
-  const float size = 60;
-  Ogre::ManualObject mo("Cube");
-
-  mo.begin("Cube", Ogre::RenderOperation::OT_TRIANGLE_LIST);
-  
-  mo.position(-size, -size, -size);
-  mo.textureCoord(0, 0);
-
-  mo.position(-size, size, -size);
-  mo.textureCoord(1, 0);
-
-  mo.position(size, size, -size);
-  mo.textureCoord(1, 1);
-
-  mo.position(size, -size, -size);
-  mo.textureCoord(0, 1);
-  //-----------------------------------  
-  mo.position(-size, -size, size);
-  mo.textureCoord(1, 0);
-
-  mo.position(-size, size, size);
-  mo.textureCoord(0, 0);
-
-  mo.position(size, size, size);
-  mo.textureCoord(1, 1);
-
-  mo.position(size, -size, size);
-  mo.textureCoord(0, 1);
-
-  mo.triangle(0,1,2);
-  mo.triangle(0,2,3);
-
-  mo.triangle(0,4,5);
-  mo.triangle(0,5,1);
-
-  mo.triangle(3,2,6);
-  mo.triangle(3,6,7);
-
-  mo.triangle(0,7,4);
-  mo.triangle(0,3,7);
-
-  mo.triangle(1,5,6);
-  mo.triangle(1,6,2);
-
-  mo.triangle(4,6,5);
-  mo.triangle(4,7,6);
-  mo.end();
-
-  Ogre::MeshPtr ptr = mo.convertToMesh("GrassBladesMesh");
+  nsParamBuilderShape::TPlastina mPlastina;
+  Ogre::MeshPtr ptr = mBuilder.Build(&mPlastina);
   Ogre::MeshSerializer ser;
   ser.exportMesh(ptr.getPointer(), "../../Resources/Graphic/models/EditorShape/Cube.mesh");
 
@@ -198,12 +158,13 @@ void TEditorShape::SaveShape()
 //---------------------------------------------------------------------------------------------
 void TEditorShape::NewPlastina()
 {
-
+  ShowNewShape(mPlastinaParamForm.get());
+  //ShowNewShape(mClientMain.get());
 }
 //---------------------------------------------------------------------------------------------
 void TEditorShape::NewPlastinaVarGeom()
 {
-
+  ShowNewShape(mPlastinaVarGeomParamForm.get());
 }
 //---------------------------------------------------------------------------------------------
 void TEditorShape::NewSphere()
@@ -229,5 +190,14 @@ void TEditorShape::NewPyramid3()
 void TEditorShape::NewPyramid4()
 {
 
+}
+//---------------------------------------------------------------------------------------------
+void TEditorShape::ShowNewShape(TBaseGUI* pForm)
+{
+  if(mCurNewShape)
+    mCurNewShape->Hide();
+
+  mCurNewShape = pForm;
+  mCurNewShape->Show();
 }
 //---------------------------------------------------------------------------------------------

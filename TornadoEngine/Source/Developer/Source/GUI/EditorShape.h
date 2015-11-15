@@ -12,9 +12,26 @@ See for more information License.h.
 #include <MyGUI.h>
 #include <Ogre.h>
 
+#include <boost/smart_ptr/scoped_ptr.hpp>
+#include "BuilderShape.h"
+
+class TPlastinaParam;
+class TPlastinaVarGeomParam;
+
+class TClientMain;
+
 class TEditorShape :  public TBaseGUI
 {
+  boost::scoped_ptr<TPlastinaParam>        mPlastinaParamForm;
+  boost::scoped_ptr<TPlastinaVarGeomParam> mPlastinaVarGeomParamForm;
 
+  boost::scoped_ptr<TClientMain> mClientMain;
+
+  TBaseGUI* mCurNewShape;
+
+  Ogre::MeshPtr mCurMesh;
+
+  TBuilderShape mBuilder;
 public:
   TEditorShape();
   virtual ~TEditorShape();
@@ -39,6 +56,7 @@ protected:
   void NewPyramid3();
   void NewPyramid4();
 
+  void ShowNewShape(TBaseGUI* pForm);
 protected:
   void sl_WidgetsSelect(MyGUI::MenuControl* _sender, MyGUI::MenuItem* _item);
 

@@ -23,6 +23,7 @@
 		<RecentFolder>d:\MyProjects\MMOFramework\Resources\GUI_forms</RecentFolder>
 		<RecentFolder.List>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\EditorFramework</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\Panels</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_Themes</Value>
@@ -31,19 +32,18 @@
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_Console</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_Gui</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_PanelView</Value>
-			<Value>d:\MyProjects\multiPlayer\resources\form</Value>
 		</RecentFolder.List>
 		<RecentFile.List>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\PlastinaVarGeomParam.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\PlastinaParam.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\EditorFramework\OpenSaveFileDialog2.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\CodeGeneratorWindow.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\Background.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\ToolsControl.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\SettingsGeneralControl.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\ClientMain.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorShape.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\MainMenuControl.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\MainMenuControl.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\EditorToolTip.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\CodeGeneratorWindow.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\Background.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\Panels\PanelMainProperties.layout</Value>
 		</RecentFile.List>
 		<RecentProject.List>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorShape.project</Value>
