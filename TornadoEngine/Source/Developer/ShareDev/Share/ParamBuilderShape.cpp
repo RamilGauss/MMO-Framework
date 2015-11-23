@@ -24,6 +24,7 @@ TContainer TPlastinaVarGeom::Get()
 {
   TContainer c;
   TBreakPacket bp;
+  bp.PushBack((char*)&type, sizeof(type));
   bp.PushBack((char*)&width, sizeof(width));
   bp.PushBack((char*)&height, sizeof(height));
   if(vecCoord.size())
@@ -39,14 +40,16 @@ bool TPlastinaVarGeom::Set(TContainer& c)
   vecCoord.clear();
 
   int size = c.GetSize();
-  if(size < sizeof(width) + sizeof(height))
+  if(size < sizeof(type) + sizeof(width) + sizeof(height))
     return false;
-  float* p = (float*)c.GetPtr();
-  width  = p[0];
-  height = p[1];
+  char* p = c.GetPtr();
+  p += sizeof(type);
+  width  = *((float*)p);
+  p += sizeof(width);
+  height = *((float*)p);
+  p += sizeof(height);
 
-  size -= sizeof(width) + sizeof(height);
-  p    += 2;
+  size -= sizeof(type) + sizeof(width) + sizeof(height);
   if(size==0)
     return true;
   
@@ -83,6 +86,16 @@ TPyramid4::TPyramid4():TBaseParam(ePyramid4)
 }
 //-------------------------------------------------------------------------------------------
 TCylinder::TCylinder():TBaseParam(eCylinder)
+{
+
+}
+//-------------------------------------------------------------------------------------------
+TTrianglePrism::TTrianglePrism():TBaseParam(eTrianglePrism)
+{
+
+}
+//-------------------------------------------------------------------------------------------
+TFlatRing::TFlatRing():TBaseParam(eFlatRing)
 {
 
 }

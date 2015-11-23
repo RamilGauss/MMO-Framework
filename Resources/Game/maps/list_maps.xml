@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- перечисление всех доступных карт -->
-<list_maps>
-  <map id="0" file="first.xml"/>
-</list_maps>

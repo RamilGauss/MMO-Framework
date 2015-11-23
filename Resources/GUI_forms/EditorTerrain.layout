@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Window" skin="PanelSkin" position="0 0 525 35" align="Left Top" layer="Overlapped" name="_Main">
+        <Property key="Alpha" value="0.7"/>
+        <Widget type="MenuBar" skin="MenuBar" position="5 5 295 25" name="Menu">
+            <Property key="InheritsAlpha" value="false"/>
+            <UserString key="Сохранить" value="Save"/>
+            <Widget type="MenuItem" skin="" position="0 0 53 21">
+                <Property key="MenuItemType" value="Popup"/>
+                <Property key="MenuItemId" value="File"/>
+                <Property key="Caption" value="Файл"/>
+                <Widget type="PopupMenu" skin="PopupMenu" position="27 45 117 67" style="Popup" layer="Popup">
+                    <Widget type="MenuItem" skin="" position="0 0 109 19">
+                        <Property key="MenuItemId" value="Command_FileOpen"/>
+                        <Property key="Caption" value="Открыть"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 19 109 19">
+                        <Property key="Caption" value="Сохранить"/>
+                        <Property key="MenuItemId" value="Command_FileSave"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 38 109 19">
+                        <Property key="Caption" value="Выход"/>
+                        <Property key="MenuItemId" value="Command_FileExit"/>
+                    </Widget>
+                </Widget>
+            </Widget>
+            <Widget type="MenuItem" skin="" position="59 0 108 21">
+                <Property key="Caption" value="Новая форма"/>
+                <Property key="MenuItemType" value="Popup"/>
+                <Property key="MenuItemId" value="NewShape"/>
+                <Widget type="PopupMenu" skin="PopupMenu" position="66 30 237 143" style="Popup" layer="Popup">
+                    <Widget type="MenuItem" skin="" position="0 0 229 19">
+                        <Property key="MenuItemId" value="Command_NewShape_Plastina"/>
+                        <Property key="Caption" value="Пластина"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 19 229 19">
+                        <Property key="Caption" value="Пластина с изм. геометрией"/>
+                        <Property key="MenuItemId" value="Command_NewShape_PlastinaVarGeom"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 38 229 19">
+                        <Property key="Caption" value="Шар"/>
+                        <Property key="MenuItemId" value="Command_NewShape_Sphere"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 57 229 19">
+                        <Property key="Caption" value="Цилиндр"/>
+                        <Property key="MenuItemId" value="Command_NewShape_Cylinder"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 76 229 19">
+                        <Property key="Caption" value="Пирамида осн.3"/>
+                        <Property key="MenuItemId" value="Command_NewShape_Pyramid3"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 95 229 19">
+                        <Property key="Caption" value="Пирамида осн.4"/>
+                        <Property key="MenuItemId" value="Command_NewShape_Pyramid4"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 114 229 19">
+                        <Property key="Caption" value="Конус"/>
+                        <Property key="MenuItemId" value="Command_NewShape_Cone"/>
+                    </Widget>
+                </Widget>
+            </Widget>
+            <Widget type="MenuItem" skin="" position="173 0 111 21">
+                <Property key="Caption" value="Инструменты"/>
+                <Property key="MenuItemType" value="Popup"/>
+                <Property key="MenuItemId" value="Instruments"/>
+                <Widget type="PopupMenu" skin="PopupMenu" position="200 45 157 48" style="Popup" layer="Popup">
+                    <Widget type="MenuItem" skin="" position="0 0 149 19">
+                        <Property key="MenuItemId" value="Command_Instruments_ColorBrush"/>
+                        <Property key="Caption" value="Цветовые кисти"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 19 149 19">
+                        <Property key="MenuItemId" value="Command_Instruments_TransparencyBrush"/>
+                        <Property key="Caption" value="Прозрачность"/>
+                    </Widget>
+                </Widget>
+            </Widget>
+        </Widget>
+    </Widget>
+</MyGUI>

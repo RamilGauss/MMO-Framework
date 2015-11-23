@@ -18,6 +18,7 @@ public:
   
   virtual std::string GetVariantConveyer();
 protected:
+  virtual TModuleDev* GetModuleLogic();
 };
 
 #endif

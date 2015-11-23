@@ -191,11 +191,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\DevTool\DevTool_EditorMaterial.h"
+					>
+				</File>
+				<File
 					RelativePath=".\DevTool\DevTool_EditorModel.h"
 					>
 				</File>
 				<File
 					RelativePath=".\DevTool\DevTool_EditorShape.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool\DevTool_EditorTerrain.h"
 					>
 				</File>
 				<File
@@ -227,11 +235,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\DevTool\DevTool_EditorMaterial.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\DevTool\DevTool_EditorModel.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\DevTool\DevTool_EditorShape.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DevTool\DevTool_EditorTerrain.cpp"
 					>
 				</File>
 				<File
@@ -256,65 +272,89 @@
 			Name="Logics"
 			>
 			<File
-				RelativePath=".\Logics\ClientLogic.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\ClientLogic.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\EditorMapLogic.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\EditorMapLogic.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\EditorModelLogic.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\EditorModelLogic.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\EditorShapeLogic.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\EditorShapeLogic.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Logics\ListModules.h"
 				>
 			</File>
-			<File
-				RelativePath=".\Logics\MasterLogic.cpp"
+			<Filter
+				Name="Main"
 				>
-			</File>
-			<File
-				RelativePath=".\Logics\MasterLogic.h"
+				<File
+					RelativePath=".\Logics\ClientLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\ClientLogic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\MasterLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\MasterLogic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\SlaveLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\SlaveLogic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\SuperServerLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\SuperServerLogic.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Tools"
 				>
-			</File>
-			<File
-				RelativePath=".\Logics\SlaveLogic.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\SlaveLogic.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\SuperServerLogic.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Logics\SuperServerLogic.h"
-				>
-			</File>
+				<File
+					RelativePath=".\Logics\EditorMapLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\EditorMapLogic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\EditorMaterialLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\EditorMaterialLogic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\EditorModelLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\EditorModelLogic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\EditorShapeLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\EditorShapeLogic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\EditorTerrainLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Logics\EditorTerrainLogic.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="GUI"
@@ -498,62 +538,106 @@
 			<Filter
 				Name="MyGUIForms"
 				>
-				<File
-					RelativePath=".\GUI\ClientMain.cpp"
+				<Filter
+					Name="Secondary"
 					>
-				</File>
-				<File
-					RelativePath=".\GUI\ClientMain.h"
+					<File
+						RelativePath=".\GUI\PlastinaParam.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\PlastinaParam.h"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\PlastinaVarGeomParam.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\PlastinaVarGeomParam.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Tools"
 					>
-				</File>
-				<File
-					RelativePath=".\GUI\DebugPanel.cpp"
+					<File
+						RelativePath=".\GUI\EditorMap.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\EditorMap.h"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\EditorMaterial.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\EditorMaterial.h"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\EditorModel.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\EditorModel.h"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\EditorShape.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\EditorShape.h"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\EditorTerrain.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\EditorTerrain.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Main"
 					>
-				</File>
-				<File
-					RelativePath=".\GUI\DebugPanel.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\EditorShape.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\EditorShape.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\GameRoomPrepare.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\GameRoomPrepare.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\PlastinaParam.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\PlastinaParam.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\PlastinaVarGeomParam.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\PlastinaVarGeomParam.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\WaitForm.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\WaitForm.h"
-					>
-				</File>
+					<File
+						RelativePath=".\GUI\ClientMain.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\ClientMain.h"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\DebugPanel.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\DebugPanel.h"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\GameRoomPrepare.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\GameRoomPrepare.h"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\WaitForm.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\GUI\WaitForm.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Generated Files"

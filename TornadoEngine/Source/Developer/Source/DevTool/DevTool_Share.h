@@ -48,6 +48,7 @@ public:
   virtual void EventGameEngine(int id, const char* sDesc);
 protected:
   virtual TModuleDev* GetModuleByID(int id);
+  virtual TModuleDev* GetModuleLogic() = 0;
 protected:
 	void InitMapModules();
   // навигация
@@ -63,8 +64,6 @@ private:
 	// реакции на события
   void Init();
   void SetComponentsForLogic();
-	
-  TModuleLogic* FindLogic();
 };
 
 #endif

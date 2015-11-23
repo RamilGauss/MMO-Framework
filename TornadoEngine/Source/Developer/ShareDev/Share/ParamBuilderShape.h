@@ -28,6 +28,8 @@ namespace nsParamBuilderShape
     ePyramid3,
     ePyramid4,
     eCylinder,
+    eTrianglePrism,
+    eFlatRing,
   }eType;
   //--------------------------------------------------
   struct DllExport TBaseParam
@@ -58,6 +60,7 @@ namespace nsParamBuilderShape
   struct DllExport TSphere : public TBaseParam
   {
     TSphere();
+    int cnt_points_per_circle;// точность описания круговых поверхностей
     float radius_max;
     float radius_min;
     float cut;// срезка плоскостью - получится круг
@@ -65,6 +68,7 @@ namespace nsParamBuilderShape
   struct DllExport TCone : public TBaseParam
   {
     TCone();
+    int cnt_points_per_circle;// точность описания круговых поверхностей
     float radius;
     float height;
     float cut;
@@ -97,8 +101,26 @@ namespace nsParamBuilderShape
   struct DllExport TCylinder : public TBaseParam
   {
     TCylinder();
-    float radius;
+    int cnt_points_per_circle;// точность описания круговых поверхностей
+    float radius_max;
+    float radius_min;// получится труба
     float lenght;
+  }_PACKED;
+  struct DllExport TTrianglePrism : public TBaseParam
+  {
+    TTrianglePrism();
+    float base0;
+    float base1;
+    float base2;
+    float lenght;
+  }_PACKED;
+  struct DllExport TFlatRing : public TBaseParam
+  {
+    TFlatRing();
+    float lenght;
+    float width;
+    int cnt_points_len;
+    int cnt_points_width;
   }_PACKED;
 }
 

@@ -28,16 +28,9 @@ std::string TDevTool_EditorShape::GetVariantConveyer()
   return "EditorShape";
 }
 //-------------------------------------------------------------
-TModuleDev* TDevTool_EditorShape::GetModuleByID(int id)
+TModuleDev* TDevTool_EditorShape::GetModuleLogic()
 {
-  TModuleDev* pModule = NULL;
-  switch(id)
-  {
-    case ClientLogic: 
-      pModule = new TEditorShapeLogic; break;
-    default: pModule = TDevTool_Share::GetModuleByID(id);
-  }
-  return pModule;
+  return new TEditorShapeLogic;
 }
 //-----------------------------------------------------------------------
 

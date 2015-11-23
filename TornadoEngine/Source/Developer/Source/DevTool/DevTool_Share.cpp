@@ -8,11 +8,8 @@ See for more information License.h.
 #include "DevTool_Share.h"
 #include "ListModules.h"
 
-#include "ClientLogic.h"
-#include "SlaveLogic.h"
-#include "MasterLogic.h"
-#include "SuperServerLogic.h"
-
+#include "Components.h"
+#include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
 #include "ModuleAloneGUI.h"
 #include "ModuleMMOEngineClient.h"
@@ -33,7 +30,7 @@ See for more information License.h.
 
 namespace nsDevTool_Share
 {
-  const char* sFileResources = "resources.xml";
+  const char* sFileResources = "Resources.xml";
 
   const char* sCore        = "Core";
   const char* sSkin        = "Skin";
@@ -95,20 +92,17 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
 #define NAME_ID(X) NAME_MODULE(X),X
 void TDevTool_Share::InitMapModules()
 {
-  Add(NAME_ID(GraphicEngine)       	 );
-  Add(NAME_ID(AloneGUI)            	 );
-  Add(NAME_ID(MMOEngineClient)     	 );
-  Add(NAME_ID(MMOEngineSlave)      	 );
-  Add(NAME_ID(MMOEngineMaster)     	 );
-  Add(NAME_ID(MMOEngineSuperServer)	 );
-  Add(NAME_ID(ClientLogic)         	 );
-  Add(NAME_ID(ServerLogicSlave)    	 );
-  Add(NAME_ID(ServerLogicMaster)   	 );
-  Add(NAME_ID(ServerLogicSuperServer));
-  Add(NAME_ID(PhysicEngine)        	 );
-  Add(NAME_ID(SoundEngine)         	 );
-  Add(NAME_ID(DataBase)            	 );
-  Add(NAME_ID(Timer)               	 );
+  Add(NAME_ID(GraphicEngine)       );
+  Add(NAME_ID(AloneGUI)            );
+  Add(NAME_ID(MMOEngineClient)     );
+  Add(NAME_ID(MMOEngineSlave)      );
+  Add(NAME_ID(MMOEngineMaster)     );
+  Add(NAME_ID(MMOEngineSuperServer));
+  Add(NAME_ID(Logic)               );
+  Add(NAME_ID(PhysicEngine)        );
+  Add(NAME_ID(SoundEngine)         );
+  Add(NAME_ID(DataBase)            );
+  Add(NAME_ID(Timer)               );
 }
 //-----------------------------------------------------------------------
 int TDevTool_Share::FindIDByNameModule(std::string name)
@@ -214,12 +208,11 @@ void TDevTool_Share::SetComponentsForLogic()
   components.pDataBase             = (TModuleDataBase*)						 FindPtrModuleByID(DataBase);
   components.pTimer                = (TModuleTimer*)   						 FindPtrModuleByID(Timer);
 
-  int id_logic = -1;
   // ищем логику
-  TModuleLogic* pLogic = FindLogic();
+  TModuleLogic* pLogic = (TModuleLogic*)FindPtrModuleByID(Logic);
   if(pLogic)
   {
-    id_logic = pLogic->GetID();
+    int id_logic = pLogic->GetID();
     components.SetLogicID(id_logic);
     pLogic->SetComponents(components);
     pLogic->InitLog();
@@ -227,24 +220,6 @@ void TDevTool_Share::SetComponentsForLogic()
   }
   else 
     {BL_FIX_BUG();}
-}
-//-----------------------------------------------------------------------
-TModuleLogic* TDevTool_Share::FindLogic()
-{
-  TModuleLogic* pLogic = NULL;
-
-  pLogic = (TModuleLogic*)FindPtrModuleByID(ClientLogic);
-  if(pLogic)
-    return pLogic;
-  pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicSlave);
-  if(pLogic)
-    return pLogic;
-  pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicMaster);
-  if(pLogic)
-    return pLogic;
-  pLogic = (TModuleLogic*)FindPtrModuleByID(ServerLogicSuperServer);
-
-  return pLogic;
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetVectorParam(std::vector<std::string>& vecArg)
@@ -257,12 +232,9 @@ TModuleDev* TDevTool_Share::GetModuleByID(int id)
   TModuleDev* pModule = NULL;
   switch(id)
   {
-      // ядро
-    case ClientLogic:            pModule = new TClientLogic;                     break;
-    case ServerLogicSlave:       pModule = new TSlaveLogic;                      break;
-    case ServerLogicMaster:      pModule = new TMasterLogic;                     break;
-    case ServerLogicSuperServer: pModule = new TSuperServerLogic;                break;
-      // периферия
+    // ядро
+    case Logic: pModule = GetModuleLogic();                                      break;
+    // периферия
     case GraphicEngine:          pModule = new TModuleGraphicEngine;// единственный модуль, который требуется настраивать в том же потоке
       ((TModuleGraphicEngine*)pModule)->GetCBSetup()->Register(&TDevTool_Share::SetupGraphicEngine,this);
       break;

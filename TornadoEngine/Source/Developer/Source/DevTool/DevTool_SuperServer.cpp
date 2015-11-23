@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include "DevTool_SuperServer.h"
+#include "SuperServerLogic.h"
 
 TDevTool_SuperServer::TDevTool_SuperServer()
 {
@@ -20,5 +21,10 @@ TDevTool_SuperServer::~TDevTool_SuperServer()
 std::string TDevTool_SuperServer::GetVariantConveyer()
 {
   return "SuperServer";
+}
+//---------------------------------------------------------------------------
+TModuleDev* TDevTool_SuperServer::GetModuleLogic()
+{
+  return new TSuperServerLogic;
 }
 //---------------------------------------------------------------------------

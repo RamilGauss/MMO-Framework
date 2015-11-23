@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TornadoEngine type="Material" name="Iron">
+  <Graphic>
+    <!-- выбор случайным образом текстуры в движке, что бы не было "близнецов"-->
+    <Variant>    <!-- LODs? В будущем см. Ogre. -->
+      <LOD distance="100">
+        <Property key="Color"  value="Iron_00.png"/>
+        <Property key="Normal" value="NormalIron_00.png"/>
+      </LOD>
+      <LOD distance="1000">
+        <Property key="Color"  value="Iron_00.png"/>
+        <Property key="Normal" value="NormalIron_00.png"/>
+      </LOD>
+    </Variant>
+    <Variant>
+      <LOD distance="100">
+        <Property key="Color"  value="Iron_01.png"/>
+        <Property key="Normal" value="NormalIron_01.png"/>
+      </LOD>
+      <LOD distance="1000">
+        <Property key="Color"  value="Iron_01.png"/>
+        <Property key="Normal" value="NormalIron_01.png"/>
+      </LOD>
+    </Variant>
+  </Graphic>
+  <Physic>
+    <Property key="Density" value="7.6"/>
+    <Property key="Elasticity" value="2.6"/>
+    <Property key="Friction" value="1.6"/>
+    <Property key="Type" value="Rigid"/>
+  </Physic>
+</TornadoEngine>
+<TornadoEngine type="Shape" name="Cone">
+  <Geometry>
+    <Property key="Name"   value="Cone"/>
+    <Property key="Radius" value="10.01"/>
+    <Property key="Height" value="11"/>
+    <Property key="Cut"    value="5"/>
+    <Property key="Volume" value="11"/> <!-- Кэшированный параметр-->
+  </Geometry>
+  <Material name="Iron"/>
+  <Paint use_nature_color="true"><!-- Для оптимизации - если польностью закрашен предмет, то цвет материала неважен. -->
+    <Layer>
+      <Property key="Color"  value="a.png"/>
+      <Property key="Normal" value="Normal_a.png"/>
+    </Layer>
+    <Layer>
+      <Property key="Color"  value="b.png"/>
+      <Property key="Normal" value="Normal_b.png"/>
+    </Layer>
+  </Paint>
+</TornadoEngine>
+<TornadoEngine type="Model" name="Tower">
+  <Pattern name="Part"/>
+</TornadoEngine>
+<TornadoEngine type="Model" name="Hull">
+</TornadoEngine>
+<TornadoEngine type="Model" name="Chassis">
+</TornadoEngine>
+<TornadoEngine type="Model" name="Gun">
+</TornadoEngine>
+<TornadoEngine type="Model" name="KingTiger">
+  <!-- Используемая модель может содержать в себе как Shape, так и готовые Model -->
+  <Pattern name="Tank"/><!-- Список наподобие как в Conveyer.xml -->
+</TornadoEngine>
+<TornadoEngine type="Terrain" name="Grass">
+  <!-- Карта высот -->
+</TornadoEngine>
+<TornadoEngine type="Map" name="Field">
+  <LightSource>
+  </LightSource>
+  <Objects>
+  </Objects>
+</TornadoEngine>

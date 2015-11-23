@@ -66,6 +66,7 @@
 				OutputFile="$(OutDir)\Tornado_d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\Lib"
+				AssemblyLinkResource=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -197,6 +198,22 @@
 			>
 			<File
 				RelativePath=".\InputCmdTornado.h"
+				>
+			</File>
+			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\Game.rc"
+				>
+			</File>
+			<File
+				RelativePath=".\icon1.ico"
 				>
 			</File>
 		</Filter>

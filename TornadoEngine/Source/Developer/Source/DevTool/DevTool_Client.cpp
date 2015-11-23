@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include "DevTool_Client.h"
+#include "ClientLogic.h"
 
 TDevTool_Client::TDevTool_Client()
 {
@@ -20,5 +21,10 @@ TDevTool_Client::~TDevTool_Client()
 std::string TDevTool_Client::GetVariantConveyer()
 {
   return "Client";
+}
+//---------------------------------------------------------------------------
+TModuleDev* TDevTool_Client::GetModuleLogic()
+{
+  return new TClientLogic;
 }
 //---------------------------------------------------------------------------

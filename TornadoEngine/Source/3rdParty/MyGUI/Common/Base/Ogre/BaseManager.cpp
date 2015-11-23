@@ -53,7 +53,7 @@ namespace base
 #else
     mPluginCfgName("plugins.cfg"),
 #endif
-		mResourceXMLName("resourcesBaseManager.xml"),
+		mResourceXMLName("ResourcesBaseManager.xml"),
 		mResourceFileName("MyGUI_Core.xml")
 	{
 		#if MYGUI_PLATFORM == MYGUI_PLATFORM_APPLE

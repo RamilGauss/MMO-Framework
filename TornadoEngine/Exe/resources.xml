@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Resources>
   <GameEngine Comment = "TornadoEngine">
-    <Resource Name = "conveyer.xml" Type = "Conveyer" />
+    <Resource Name = "Conveyer.xml" Type = "Conveyer" />
   </GameEngine>
   <GraphicEngine Comment = "OGRE" >
     <PluginsCfg Name = "plugins.cfg" Variant = "Release"/>
@@ -23,10 +23,7 @@
     <Resource Name = "MyGUI_BlackBlueTheme.xml" Type = "Skin" />
   </GUI>
   <Game Comment = "MetaMorf" >
-    <Resource Name = "list_models.xml" Type = "Models"/>
-    <Resource Name = "list_maps.xml"   Type = "Maps"  />
-    <Resource Name = "map_keys.xml"    Type = "MapKeys" />
+    <Resource Name = "../../Resources/Game/Items.xml"    Type = "Items"  />
+    <Resource Name = "../../Resources/Game/Settings.xml" Type = "Settings"/>
   </Game>
-  <Developer>
-  </Developer>
 </Resources>

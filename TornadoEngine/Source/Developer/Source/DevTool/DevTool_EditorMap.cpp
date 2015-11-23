@@ -28,15 +28,8 @@ std::string TDevTool_EditorMap::GetVariantConveyer()
   return "EditorMap";
 }
 //-------------------------------------------------------------
-TModuleDev* TDevTool_EditorMap::GetModuleByID(int id)
+TModuleDev* TDevTool_EditorMap::GetModuleLogic()
 {
-  TModuleDev* pModule = NULL;
-  switch(id)
-  {
-    case ClientLogic: 
-      pModule = new TEditorMapLogic; break;
-    default: pModule = GetModuleByID(id);
-  }
-  return pModule;
+  return new TEditorMapLogic;
 }
 //-----------------------------------------------------------------------

@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include "DevTool_Master.h"
+#include "MasterLogic.h"
 
 TDevTool_Master::TDevTool_Master()
 {
@@ -20,5 +21,10 @@ TDevTool_Master::~TDevTool_Master()
 std::string TDevTool_Master::GetVariantConveyer()
 {
   return "Master";
+}
+//---------------------------------------------------------------------------
+TModuleDev* TDevTool_Master::GetModuleLogic()
+{
+  return new TMasterLogic;
 }
 //---------------------------------------------------------------------------

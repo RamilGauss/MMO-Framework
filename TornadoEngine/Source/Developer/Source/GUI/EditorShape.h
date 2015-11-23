@@ -25,8 +25,6 @@ class TEditorShape :  public TBaseGUI
   boost::scoped_ptr<TPlastinaParam>        mPlastinaParamForm;
   boost::scoped_ptr<TPlastinaVarGeomParam> mPlastinaVarGeomParamForm;
 
-  boost::scoped_ptr<TClientMain> mClientMain;
-
   TBaseGUI* mCurNewShape;
 
   Ogre::MeshPtr mCurMesh;
@@ -55,6 +53,7 @@ protected:
   void NewCone();
   void NewPyramid3();
   void NewPyramid4();
+  void NewTrianglePrism();
 
   void ShowNewShape(TBaseGUI* pForm);
 protected:

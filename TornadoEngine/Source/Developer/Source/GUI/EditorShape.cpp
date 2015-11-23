@@ -11,25 +11,18 @@ See for more information License.h.
 #include <atlconv.h>
 
 #include "ModuleLogic.h"
-#include "ListModules.h"
-#include "Client.h"
-#include "LogicEventCallBack.h"
-
-#include "ClientLogic.h"
 #include "ModuleGraphicEngine.h"
+#include "ListModules.h"
+#include "LogicEventCallBack.h"
 
 #include <OgreManualObject.h>
 
 #include "PlastinaParam.h"
 #include "PlastinaVarGeomParam.h"
 
-#include "ClientMain.h"
-
 TEditorShape::TEditorShape() : 
 mPlastinaParamForm(new TPlastinaParam),
-mPlastinaVarGeomParamForm(new TPlastinaVarGeomParam),
-
-mClientMain(new TClientMain)
+mPlastinaVarGeomParamForm(new TPlastinaVarGeomParam)
 {
   mBar                       = nullptr;
   mPopupMenu_File            = nullptr;
@@ -188,6 +181,11 @@ void TEditorShape::NewPyramid3()
 }
 //---------------------------------------------------------------------------------------------
 void TEditorShape::NewPyramid4()
+{
+
+}
+//---------------------------------------------------------------------------------------------
+void TEditorShape::NewTrianglePrism()
 {
 
 }
