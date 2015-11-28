@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -60,15 +60,15 @@ namespace nsParamBuilderShape
   struct DllExport TSphere : public TBaseParam
   {
     TSphere();
-    int cnt_points_per_circle;// точность описания круговых поверхностей
+    int cnt_points_per_circle;// С‚РѕС‡РЅРѕСЃС‚СЊ РѕРїРёСЃР°РЅРёСЏ РєСЂСѓРіРѕРІС‹С… РїРѕРІРµСЂС…РЅРѕСЃС‚РµР№
     float radius_max;
     float radius_min;
-    float cut;// срезка плоскостью - получится круг
+    float cut;// СЃСЂРµР·РєР° РїР»РѕСЃРєРѕСЃС‚СЊСЋ - РїРѕР»СѓС‡РёС‚СЃСЏ РєСЂСѓРі
   }_PACKED;
   struct DllExport TCone : public TBaseParam
   {
     TCone();
-    int cnt_points_per_circle;// точность описания круговых поверхностей
+    int cnt_points_per_circle;// С‚РѕС‡РЅРѕСЃС‚СЊ РѕРїРёСЃР°РЅРёСЏ РєСЂСѓРіРѕРІС‹С… РїРѕРІРµСЂС…РЅРѕСЃС‚РµР№
     float radius;
     float height;
     float cut;
@@ -101,9 +101,9 @@ namespace nsParamBuilderShape
   struct DllExport TCylinder : public TBaseParam
   {
     TCylinder();
-    int cnt_points_per_circle;// точность описания круговых поверхностей
+    int cnt_points_per_circle;// С‚РѕС‡РЅРѕСЃС‚СЊ РѕРїРёСЃР°РЅРёСЏ РєСЂСѓРіРѕРІС‹С… РїРѕРІРµСЂС…РЅРѕСЃС‚РµР№
     float radius_max;
-    float radius_min;// получится труба
+    float radius_min;// РїРѕР»СѓС‡РёС‚СЃСЏ С‚СЂСѓР±Р°
     float lenght;
   }_PACKED;
   struct DllExport TTrianglePrism : public TBaseParam

@@ -75,5 +75,4 @@ protected:
 extern DllExport TLogger* GetLogger();
 extern DllExport TSaveToFile* GetLogger(const char* nameLog);
 
-
 #endif 

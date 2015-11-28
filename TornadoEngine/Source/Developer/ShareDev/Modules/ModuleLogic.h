@@ -11,12 +11,14 @@ See for more information License.h.
 #include "ModuleDev.h"
 #include "Components.h"
 #include "LogicEventCallBack.h"
+#include "FactoryGameItem.h"
 
 class DllExport TModuleLogic : public TModuleDev
 {
   volatile bool flgNeedExit;
 protected:
-  TComponents mComp;
+  TComponents      mComp;
+  TFactoryGameItem mFGI;
 public:
   TModuleLogic();
   virtual void ParseCmd(std::vector<std::string>& arg) = 0;
@@ -24,6 +26,7 @@ public:
 
   void SetComponents(TComponents components);
   TComponents* GetC();
+  TFactoryGameItem* GetFGI();
 
   static TModuleLogic* Get();
 

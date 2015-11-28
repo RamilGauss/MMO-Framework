@@ -10,7 +10,7 @@ See for more information License.h.
 #include "Precompiled.h"
 #include <atlconv.h>
 
-#include "DevProtocol.h"
+//#include "DevProtocol.h"
 #include "DevTool_Share.h"
 
 TGameRoomPrepare::TGameRoomPrepare()

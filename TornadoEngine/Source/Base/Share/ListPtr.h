@@ -9,7 +9,6 @@ See for more information License.h.
 #define ListPtrH
 
 #include <list>
-#include <boost/foreach.hpp>
 /*
   список указателей
   Not Thread safe
@@ -27,8 +26,13 @@ public:
   T* operator ->(){return Get();}
   void Clear()
   {
-    BOOST_FOREACH(TClass* p, mList)
-      delete p;
+    T::iterator bit = mList.begin();
+    T::iterator eit = mList.end();
+    while(bit!=eit)
+    {
+      delete *bit;
+      bit++;
+    }
     mList.clear();
   }
 protected:

@@ -12,13 +12,11 @@ See for more information License.h.
 #include "GlobalParam.h"
 #include "NetSystem.h"
 #include "Logger.h"
-
 #include "ModuleMMOEngineMaster.h"
-#include "Events.h"
 
 TMasterLogic::TMasterLogic()
 {
-  SetCycleTime(100);//###
+  SetCycleTime(100);
 
   mMasterForm = NULL;
   // значения по-умолчанию для параметров командной строки

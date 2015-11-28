@@ -13,19 +13,19 @@ See for more information License.h.
 #include <map>
 #include "ShareMisc.h"
 
-class TTestControlTank;
+//class TTestControlTank;
 
 class TSlaveForm : public QWidget
 {
   Q_OBJECT
 
-	TTestControlTank* mTCT;
+	//TTestControlTank* mTCT;
 
 public:
   TSlaveForm(QWidget *parent = NULL);
   ~TSlaveForm();
 
-	void SetControlTank(TTestControlTank* pTCT);
+	//void SetControlTank(TTestControlTank* pTCT);
 
   void SetConnect(bool val);
 

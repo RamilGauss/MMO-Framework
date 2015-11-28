@@ -20,6 +20,11 @@ void TModuleLogic::SetComponents(TComponents components)
   mComp = components;
 }
 //--------------------------------------------------------------------
+TFactoryGameItem* TModuleLogic::GetFGI()
+{
+  return &mFGI;
+}
+//--------------------------------------------------------------------
 TModuleLogic* TModuleLogic::Get()
 {
   return g_ptrModuleLogic;

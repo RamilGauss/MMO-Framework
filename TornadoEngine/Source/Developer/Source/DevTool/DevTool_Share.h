@@ -8,7 +8,6 @@ See for more information License.h.
 #ifndef DevTool_ShareH
 #define DevTool_ShareH
 
-#include <boost/smart_ptr/scoped_ptr.hpp>
 #include <map>
 
 #include "IDevTool.h"
@@ -31,6 +30,7 @@ class TDevTool_Share : public IDevTool
   TMapIntPtrModule mMapID_PtrModules;
 
   std::string mPluginsCfg;
+  std::string mPathItems;
 
   TResources::TListPairNameType mListRGame; 
   TResources::TListPairNameType mListRGUI; 

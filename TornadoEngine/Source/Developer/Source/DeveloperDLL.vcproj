@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./DevTool;./GameObjects;./GUI;./Logics;./Protocols;../ShareDev/Share;../ShareDev/Adapters;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;../../Base/Share;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../ShareDev/Modules;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
+				AdditionalIncludeDirectories="./;./DevTool;./GameObjects;./GUI;./Logics;./Protocols;../ShareDev/Adapters;../ShareDev/GameItems;../ShareDev/Modules;../ShareDev/Share;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;../../Base/Share;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -740,35 +740,39 @@
 			Name="Protocols"
 			>
 			<File
-				RelativePath=".\Protocols\DevProtocol.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Protocols\DevProtocol.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Protocols\GlobalParam.h"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="GameObjects"
+			Name="BehaviourPattern"
 			>
 			<File
-				RelativePath=".\GameObjects\TankTower.cpp"
+				RelativePath=".\BehaviourPattern\FactoryBehaviourPatternItem.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\GameObjects\TankTower.h"
+				RelativePath=".\BehaviourPattern\FactoryBehaviourPatternItem.h"
 				>
 			</File>
 			<File
-				RelativePath=".\GameObjects\TestControlTank.cpp"
+				RelativePath=".\BehaviourPattern\ListBehaviourPattern.h"
 				>
 			</File>
 			<File
-				RelativePath=".\GameObjects\TestControlTank.h"
+				RelativePath=".\BehaviourPattern\TankTower.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\BehaviourPattern\TankTower.h"
+				>
+			</File>
+			<File
+				RelativePath=".\BehaviourPattern\TestControlTank.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\BehaviourPattern\TestControlTank.h"
 				>
 			</File>
 		</Filter>

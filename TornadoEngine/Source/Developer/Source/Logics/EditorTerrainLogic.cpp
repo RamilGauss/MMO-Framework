@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -35,7 +35,7 @@ void TEditorTerrainLogic::StartEvent()
 //-------------------------------------------------------------------
 void TEditorTerrainLogic::InitLog()
 {
-  GetLogger()->Register("Inner");// äëÿ ëîãèðîâàíèÿ âíóòðåííèõ ñîáûòèé
+  GetLogger()->Register("Inner");// Ð´Ð»Ñ Ð»Ð¾Ð³Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½Ð¸Ñ… ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ð¹
   GetLogger()->Init("EditorMaterial");
 }
 //-------------------------------------------------------------------
@@ -62,7 +62,7 @@ void TEditorTerrainLogic::Input(int id_sender, void* p, int size)
 //-------------------------------------------------------------------
 void TEditorTerrainLogic::StartTimer()
 {
-  // âûçîâåòñÿ èç ïîòîêà òàéìåðà
+  // Ð²Ñ‹Ð·Ð¾Ð²ÐµÑ‚ÑÑ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° Ñ‚Ð°Ð¹Ð¼ÐµÑ€Ð°
   unsigned int mID_Timer = mComp.pTimer->New(100);
 }
 //----------------------------------------------------------

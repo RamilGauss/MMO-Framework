@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TornadoEngine type="KeyMap" name="ViewerModel">
-  <Property key="W" value="1" comment="Forward" />
-  <Property key="S" value="2" comment="Backward"/>
+<TornadoEngine version="1.0" name="Bonobo">
+  <KeyMap name="ViewerModel">
+    <Property key="W" value="1" comment="Forward" />
+    <Property key="S" value="2" comment="Backward"/>
+  </KeyMap>
 </TornadoEngine>

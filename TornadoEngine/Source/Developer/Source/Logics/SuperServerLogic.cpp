@@ -17,7 +17,7 @@ See for more information License.h.
 
 TSuperServerLogic::TSuperServerLogic()
 {
-  SetCycleTime(100);//###
+  SetCycleTime(100);
 
   mSuperServerForm = NULL;
   // значения по-умолчанию для параметров командной строки

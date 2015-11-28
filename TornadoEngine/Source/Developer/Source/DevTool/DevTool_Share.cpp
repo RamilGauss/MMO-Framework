@@ -32,9 +32,10 @@ namespace nsDevTool_Share
 {
   const char* sFileResources = "Resources.xml";
 
-  const char* sCore        = "Core";
-  const char* sSkin        = "Skin";
-  const char* sConveyer    = "Conveyer";
+  const char* sCore     = "Core";
+  const char* sSkin     = "Skin";
+  const char* sConveyer = "Conveyer";
+  const char* sItems    = "Items";
 }
 
 using namespace nsListModules;
@@ -73,6 +74,15 @@ void TDevTool_Share::Init()
   mGameEngine_Resources.GetResource(mListRGameEngine);
   mGUI_Resources.GetResource(mListRGUI);
   mGraphicEngine_Resources.GetResource(mListRGraphicEngine);
+
+  BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGame)
+  {
+    if(pairNameType.second==nsDevTool_Share::sItems)
+    {
+      mPathItems = pairNameType.first;
+      break;
+    }
+  }
 }
 //-----------------------------------------------------------------------
 IModule* TDevTool_Share::GetModuleByName(const char* sName)
@@ -215,6 +225,10 @@ void TDevTool_Share::SetComponentsForLogic()
     int id_logic = pLogic->GetID();
     components.SetLogicID(id_logic);
     pLogic->SetComponents(components);
+    pLogic->GetFGI()->Init(mPathItems);
+    //###
+    pLogic->GetFGI()->FullLoad();
+    //###
     pLogic->InitLog();
     pLogic->ParseCmd(mVecArg);
   }

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -22,7 +22,7 @@ TBuilderShape::~TBuilderShape()
 //-----------------------------------------------------------------------------
 Ogre::MeshPtr TBuilderShape::Build(nsParamBuilderShape::TBaseParam* pParam)
 {
-  // выбрать из списка шаблон
+  // РІС‹Р±СЂР°С‚СЊ РёР· СЃРїРёСЃРєР° С€Р°Р±Р»РѕРЅ
   const float size = 60;
   Ogre::ManualObject mo("Cube");
 

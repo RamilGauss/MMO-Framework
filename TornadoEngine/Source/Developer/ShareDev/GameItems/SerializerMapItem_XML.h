@@ -1,0 +1,29 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Гудаков Рамиль Сергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
+#ifndef SerializerMapItem_XMLH
+#define SerializerMapItem_XMLH
+
+#include <string>
+#include "TypeDef.h"
+#include "BaseSerializerItem_XML.h"
+
+struct TMapItem;
+
+class DllExport TSerializerMapItem_XML : public TBaseSerializerItem_XML
+{
+  TMapItem* mMap;
+public:
+  TSerializerMapItem_XML();
+  virtual ~TSerializerMapItem_XML();
+
+  virtual bool Load(TBaseItem* pItem);
+  virtual bool Save(TBaseItem* pItem);
+protected:
+};
+
+#endif

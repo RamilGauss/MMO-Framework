@@ -9,7 +9,7 @@ See for more information License.h.
 #include "ui_SlaveForm.h"
 #include "SlaveForm.h"
 
-#include "TestControlTank.h"
+//#include "TestControlTank.h"
 #include "ModuleLogic.h"
 #include <boost/foreach.hpp>
 
@@ -20,7 +20,7 @@ TSlaveForm::TSlaveForm(QWidget *parent)
 {
   ui.setupUi(this);
 
-  mTCT = NULL;
+  //mTCT = NULL;
 
   connect(ui.bDown,  SIGNAL(pressed()), this, SLOT(sl_DownPressed()));
   connect(ui.bUp,    SIGNAL(pressed()), this, SLOT(sl_UpPressed()));
@@ -113,48 +113,48 @@ void TSlaveForm::Refresh()
   ui.table->resizeColumnsToContents();
 }
 //-----------------------------------------------------------
-void TSlaveForm::SetControlTank(TTestControlTank* pTCT)
-{
-  mTCT = pTCT;
-}
+//void TSlaveForm::SetControlTank(TTestControlTank* pTCT)
+//{
+  //mTCT = pTCT;
+//}
 //-----------------------------------------------------------
 void TSlaveForm::sl_DownPressed()
 {
-  mTCT->SetSpeedRotateGun(GUN_SPEED);
+  //mTCT->SetSpeedRotateGun(GUN_SPEED);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_UpPressed()
 {
-  mTCT->SetSpeedRotateGun(-GUN_SPEED);
+  //mTCT->SetSpeedRotateGun(-GUN_SPEED);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_LeftPressed()
 {
-  mTCT->SetSpeedRotateTurret(-TURRET_SPEED);
+  //mTCT->SetSpeedRotateTurret(-TURRET_SPEED);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_RightPressed()
 {
-  mTCT->SetSpeedRotateTurret(TURRET_SPEED);
+  //mTCT->SetSpeedRotateTurret(TURRET_SPEED);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_DownReleased()
 {
-  mTCT->SetSpeedRotateGun(0);
+  //mTCT->SetSpeedRotateGun(0);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_UpReleased()
 {
-  mTCT->SetSpeedRotateGun(0);
+  //mTCT->SetSpeedRotateGun(0);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_LeftReleased()
 {
-  mTCT->SetSpeedRotateTurret(0);
+  //mTCT->SetSpeedRotateTurret(0);
 }
 //-----------------------------------------------------------
 void TSlaveForm::sl_RightReleased()
 {
-  mTCT->SetSpeedRotateTurret(0);
+  //mTCT->SetSpeedRotateTurret(0);
 }
 //-----------------------------------------------------------
