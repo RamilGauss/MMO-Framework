@@ -5,19 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef PlastinaParamH
-#define PlastinaParamH
+#ifndef PlateParamH
+#define PlateParamH
 
 #include "BaseGUI.h"
 #include <MyGUI.h>
 #include <Ogre.h>
 
-class TPlastinaParam :  public TBaseGUI
+class TPlateParam :  public TBaseGUI
 {
 
 public:
-  TPlastinaParam();
-  virtual ~TPlastinaParam();
+  TPlateParam();
+  virtual ~TPlateParam();
 
 protected:
   virtual void Activate();

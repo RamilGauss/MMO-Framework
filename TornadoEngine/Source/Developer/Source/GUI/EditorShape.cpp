@@ -17,12 +17,12 @@ See for more information License.h.
 
 #include <OgreManualObject.h>
 
-#include "PlastinaParam.h"
-#include "PlastinaVarGeomParam.h"
+#include "PlateParam.h"
+#include "PlateVarGeomParam.h"
 
 TEditorShape::TEditorShape() : 
-mPlastinaParamForm(new TPlastinaParam),
-mPlastinaVarGeomParamForm(new TPlastinaVarGeomParam)
+mPlateParamForm(new TPlateParam),
+mPlateVarGeomParamForm(new TPlateVarGeomParam)
 {
   mBar                       = nullptr;
   mPopupMenu_File            = nullptr;
@@ -105,9 +105,9 @@ void TEditorShape::sl_WidgetsSelect(MyGUI::MenuControl* _sender, MyGUI::MenuItem
   if(_item==miExit)
     TModuleLogic::Get()->Exit();
   if(_item==miNewShape_Plastina)
-    NewPlastina();
+    NewPlate();
   if(_item==miNewShape_PlastinaVarGeom)
-    NewPlastinaVarGeom();
+    NewPlateVarGeom();
   if(_item==miNewShape_Sphere)
     NewSphere();
   if(_item==miNewShape_Cylinder)
@@ -115,9 +115,9 @@ void TEditorShape::sl_WidgetsSelect(MyGUI::MenuControl* _sender, MyGUI::MenuItem
   if(_item==miNewShape_Cone)
     NewCone();
   if(_item==miNewShape_Pyramid3)
-    NewPyramid3();
+    NewTriangularPyramid();
   if(_item==miNewShape_Pyramid4)
-    NewPyramid4();
+    NewQuadrangularPyramid();
 }
 //-------------------------------------------------------------------------------------
 void TEditorShape::OpenShape()
@@ -127,7 +127,7 @@ void TEditorShape::OpenShape()
 //---------------------------------------------------------------------------------------------
 void TEditorShape::NewShape()
 {
-  nsParamBuilderShape::TPlastina mPlastina;
+  nsParamBuilderShape::TPlate mPlastina;
   Ogre::MeshPtr ptr = mBuilder.Build(&mPlastina);
   Ogre::MeshSerializer ser;
   ser.exportMesh(ptr.getPointer(), "../../Resources/Graphic/models/EditorShape/Cube.mesh");
@@ -149,15 +149,15 @@ void TEditorShape::SaveShape()
 
 }
 //---------------------------------------------------------------------------------------------
-void TEditorShape::NewPlastina()
+void TEditorShape::NewPlate()
 {
-  ShowNewShape(mPlastinaParamForm.get());
+  ShowNewShape(mPlateParamForm.get());
   //ShowNewShape(mClientMain.get());
 }
 //---------------------------------------------------------------------------------------------
-void TEditorShape::NewPlastinaVarGeom()
+void TEditorShape::NewPlateVarGeom()
 {
-  ShowNewShape(mPlastinaVarGeomParamForm.get());
+  ShowNewShape(mPlateVarGeomParamForm.get());
 }
 //---------------------------------------------------------------------------------------------
 void TEditorShape::NewSphere()
@@ -175,12 +175,12 @@ void TEditorShape::NewCone()
 
 }
 //---------------------------------------------------------------------------------------------
-void TEditorShape::NewPyramid3()
+void TEditorShape::NewTriangularPyramid()
 {
 
 }
 //---------------------------------------------------------------------------------------------
-void TEditorShape::NewPyramid4()
+void TEditorShape::NewQuadrangularPyramid()
 {
 
 }

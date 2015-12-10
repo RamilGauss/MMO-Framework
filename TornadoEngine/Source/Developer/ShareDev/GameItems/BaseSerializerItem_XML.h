@@ -9,6 +9,8 @@ See for more information License.h.
 #define BaseSerializerItem_XMLH
 
 #include <string>
+#include <map>
+
 #include "TypeDef.h"
 
 class IXML;
@@ -32,12 +34,19 @@ public:
   static std::string ReadName(int index, IXML* xml);
 protected:
   bool EnterByType(std::string& name);
+  bool AddAndEnterByType(std::string& name);
 
   int GetCountProperty();
   bool LoadProperty(int index, std::string& key, std::string& value);
+  bool SaveProperty(std::string& key, std::string& value);
+
   bool RemoveSection(std::string& name);
 private:
   bool EnterRoot();
+protected:
+  typedef std::map<std::string,std::string> TMapStrStr;
+  typedef TMapStrStr::iterator              TMapStrStrIt;
+  typedef TMapStrStr::value_type            TMapStrStrVT;
 };
 
 #endif

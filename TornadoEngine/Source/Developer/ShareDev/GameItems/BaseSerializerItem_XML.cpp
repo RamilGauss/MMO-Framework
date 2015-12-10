@@ -51,6 +51,14 @@ bool TBaseSerializerItem_XML::EnterByType(std::string& name)
   return false;
 }
 //------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::AddAndEnterByType(std::string& name)
+{
+  TAttrInfo attr;
+  attr.Name  = sName;
+  attr.Value = name;
+  return mXML->AddSectionAndEnter(mType.data(), 1, &attr);
+}
+//------------------------------------------------------------------------------
 int TBaseSerializerItem_XML::GetCountProperty()
 {
   return mXML->GetCountSection(sProperty);
@@ -64,6 +72,16 @@ bool TBaseSerializerItem_XML::LoadProperty(int index, std::string& key, std::str
   key = mXML->ReadSectionAttr(sProperty, index, sKey);
   value = mXML->ReadSectionAttr(sProperty, index, sValue);
   return true;
+}
+//------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::SaveProperty(std::string& key, std::string& value)
+{
+  TAttrInfo attr[2];
+  attr[0].Name  = sKey;
+  attr[0].Value = key;
+  attr[1].Name  = sValue;
+  attr[1].Value = value;
+  return mXML->AddSection(sProperty, 2, &attr[0]);
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::EnterRoot()

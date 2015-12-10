@@ -44,7 +44,7 @@ bool TSerializerTerrainItem_XML::Save(TBaseItem* pItem)
   mTerrain = (TTerrainItem*)pItem;
   RemoveSection(mTerrain->mName);// грохнуть всю запись, связанную с данным item
 
-  bool resEnter = EnterByType(mTerrain->mName);
+  bool resEnter = AddAndEnterByType(mTerrain->mName);
   if(resEnter==false)
     return false;
 

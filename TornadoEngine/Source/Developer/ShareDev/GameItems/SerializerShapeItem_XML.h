@@ -8,17 +8,16 @@ See for more information License.h.
 #ifndef SerializerShapeItem_XMLH
 #define SerializerShapeItem_XMLH
 
-#include <string>
-#include <map>
-
-#include "TypeDef.h"
 #include "BaseSerializerItem_XML.h"
+#include "SerializerParamBuilderShape.h"
 
 struct TShapeItem;
 
 class DllExport TSerializerShapeItem_XML : public TBaseSerializerItem_XML
 {
   TShapeItem* mShape;
+
+  TSerializerParamBuilderShape mSerParamShape;
 public:
   TSerializerShapeItem_XML();
   virtual ~TSerializerShapeItem_XML();
@@ -34,15 +33,10 @@ protected:
   void SavePaint();
   void SaveMaterial();
 
-  void MakeGeometry();
-
-  typedef std::map<std::string,float> TMapStrFloat;
-  typedef TMapStrFloat::iterator      TMapStrFloatIt;
-  typedef TMapStrFloat::value_type    TMapStrFloatVT;
-
-  std::string mNameShape;
-  TMapStrFloat mMapNameValue;
-
+  void MakeGeometryByMap();
+  void MakeMapByGeometry();
+private:
+  TMapStrStr mMapNameValue_Geometry;
 };
 
 #endif

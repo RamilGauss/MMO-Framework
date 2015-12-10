@@ -44,7 +44,7 @@ bool TSerializerMapItem_XML::Save(TBaseItem* pItem)
   mMap = (TMapItem*)pItem;
   RemoveSection(mMap->mName);// грохнуть всю запись, связанную с данным item
 
-  bool resEnter = EnterByType(mMap->mName);
+  bool resEnter = AddAndEnterByType(mMap->mName);
   if(resEnter==false)
     return false;
 

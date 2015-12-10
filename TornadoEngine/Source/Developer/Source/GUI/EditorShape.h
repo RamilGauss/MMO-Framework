@@ -15,15 +15,15 @@ See for more information License.h.
 #include <boost/smart_ptr/scoped_ptr.hpp>
 #include "BuilderShape.h"
 
-class TPlastinaParam;
-class TPlastinaVarGeomParam;
+class TPlateParam;
+class TPlateVarGeomParam;
 
 class TClientMain;
 
-class TEditorShape :  public TBaseGUI
+class TEditorShape : public TBaseGUI
 {
-  boost::scoped_ptr<TPlastinaParam>        mPlastinaParamForm;
-  boost::scoped_ptr<TPlastinaVarGeomParam> mPlastinaVarGeomParamForm;
+  boost::scoped_ptr<TPlateParam>        mPlateParamForm;
+  boost::scoped_ptr<TPlateVarGeomParam> mPlateVarGeomParamForm;
 
   TBaseGUI* mCurNewShape;
 
@@ -46,13 +46,13 @@ protected:
   void NewShape();
   void SaveShape();
 
-  void NewPlastina();
-  void NewPlastinaVarGeom();
+  void NewPlate();
+  void NewPlateVarGeom();
   void NewSphere();
   void NewCylinder();
   void NewCone();
-  void NewPyramid3();
-  void NewPyramid4();
+  void NewTriangularPyramid();
+  void NewQuadrangularPyramid();
   void NewTrianglePrism();
 
   void ShowNewShape(TBaseGUI* pForm);

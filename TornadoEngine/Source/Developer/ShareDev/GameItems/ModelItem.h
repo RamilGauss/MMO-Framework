@@ -12,6 +12,9 @@ See for more information License.h.
 
 struct DllExport TModelItem : public TBaseItem
 {
+  std::string mNamePattern;
+  
+
   TModelItem(std::string& name);
 };
 

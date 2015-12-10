@@ -86,7 +86,9 @@ bool TXML_Markup::AddSectionAndEnter(const char* name)
   mMarkup.SavePos();
   bool res = mMarkup.AddElem(name, " ");
   //вызов mMarkup.RestorePos(); не делать что бы остаться тут же
-  return res;
+  if(res)
+    return mMarkup.IntoElem();
+  return false;
 }
 //------------------------------------------------------------------
 bool TXML_Markup::AddSectionAndEnter(const char *name, int numAttr, TAttrInfo *pAttribs)
@@ -102,7 +104,9 @@ bool TXML_Markup::AddSectionAndEnter(const char *name, int numAttr, TAttrInfo *p
   }
 
   //вызов mMarkup.RestorePos(); не делать что бы остаться тут же
-  return res;
+  if(res)
+    return mMarkup.IntoElem();
+  return false;
 }
 //------------------------------------------------------------------
 // изменение кол-ва

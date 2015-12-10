@@ -13,19 +13,14 @@ namespace nsShapeItem
 {
   const char* sShape          = "Shape";
   const char* sGeometry       = "Geometry";
-  const char* sName           = "Name";
 
-  const char* sNameForm_Cone  = "Cone";
-  const char* sRadius         = "Radius";
-  const char* sHeight         = "Height";
-  const char* sCut            = "Cut";
-
-  const char* sVolume         = "Volume";
   const char* sNameMaterial   = "name";
   const char* sMaterial       = "Material";
   const char* sPaint          = "Paint"; 
   const char* sUseNatureColor = "use_nature_color";
   const char* sLayer          = "Layer";
+  const char* sLOD            = "LOD";
+  const char* sDistance       = "distance";
   const char* sColor          = "Color";
   const char* sNormal         = "Normal";
 }
@@ -62,9 +57,10 @@ bool TSerializerShapeItem_XML::Save(TBaseItem* pItem)
 
   RemoveSection(mShape->mName);// грохнуть всю запись, связанную с данным item
 
-  bool resEnter = EnterByType(mShape->mName);
+  bool resEnter = AddAndEnterByType(mShape->mName);
   if(resEnter==false)
     return false;
+
   SaveGeometry();
   SavePaint();
   SaveMaterial();
@@ -73,6 +69,8 @@ bool TSerializerShapeItem_XML::Save(TBaseItem* pItem)
 //-------------------------------------------------------------------------------------------------------
 void TSerializerShapeItem_XML::LoadGeometry()
 {
+  mMapNameValue_Geometry.clear();
+
   if(mXML->EnterSection(sGeometry,0))
   {
     std::string key, value;
@@ -80,15 +78,12 @@ void TSerializerShapeItem_XML::LoadGeometry()
     for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
     {
       LoadProperty(iProperty, key, value);
-      if(key==sName)
-        mNameShape = value;
-      else
-        mMapNameValue.insert(TMapStrFloatVT(key, atof(value.data())));
+      mMapNameValue_Geometry.insert(TMapStrStrVT(key, value));
     }
     mXML->LeaveSection();
   }
 
-  MakeGeometry();
+  MakeGeometryByMap();
 }
 //--------------------------------------------------------------------------------  
 void TSerializerShapeItem_XML::LoadPaint()
@@ -96,23 +91,35 @@ void TSerializerShapeItem_XML::LoadPaint()
   std::string flag = mXML->ReadSectionAttr(sPaint, 0, sUseNatureColor);
   mShape->flgUseNatureColor = bool(flag=="true");
 
-  if(mXML->EnterSection(sPaint,0))
+  if(mXML->EnterSection(sPaint,0))// краска
   {
     int cntLayer = mXML->GetCountSection(sLayer);
     for( int iLayer = 0 ; iLayer < cntLayer ; iLayer++ )
     {
-      if(mXML->EnterSection(sLayer, iLayer))
+      TShapeItem::TLayer layer;
+      if(mXML->EnterSection(sLayer, iLayer))// слои
       {
-        TShapeItem::TLayer layer;
-        std::string key, value;
-        int cntProperty = GetCountProperty();
-        for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
+        int cntLOD = mXML->GetCountSection(sLOD);
+        for( int iLOD = 0 ; iLOD < cntLOD ; iLOD++ )
         {
-          LoadProperty(iProperty, key, value);
-          if(key==sColor)
-            layer.color  = value;
-          if(key==sNormal)
-            layer.normal = value;
+          std::string distance = mXML->ReadSectionAttr(sLOD, iLOD, sDistance);
+          TShapeItem::TLOD lod;
+          lod.distance = atof(distance.data());
+          if(mXML->EnterSection(sLOD, iLOD))// ЛОД
+          {
+            std::string key, value;
+            int cntProperty = GetCountProperty();
+            for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
+            {
+              LoadProperty(iProperty, key, value);
+              if(key==sColor)
+                lod.color  = value;
+              if(key==sNormal)
+                lod.normal = value;
+            }
+            layer.push_back(lod);
+            mXML->LeaveSection();
+          }
         }
         mShape->mVecPaint.push_back(layer);
         mXML->LeaveSection();
@@ -129,7 +136,22 @@ void TSerializerShapeItem_XML::LoadMaterial()
 //--------------------------------------------------------------------------------  
 void TSerializerShapeItem_XML::SaveGeometry()
 {
+  MakeMapByGeometry();
 
+  if(mXML->AddSectionAndEnter(sGeometry))
+  {
+    TMapStrStrIt bit = mMapNameValue_Geometry.begin();
+    TMapStrStrIt eit = mMapNameValue_Geometry.end();
+    while(bit!=eit)
+    {
+      std::string key, value;
+      key = bit->first; 
+      value = bit->second;
+      SaveProperty(key, value);
+      bit++;
+    }
+    mXML->LeaveSection();
+  }
 }
 //--------------------------------------------------------------------------------  
 void TSerializerShapeItem_XML::SavePaint()
@@ -144,18 +166,25 @@ void TSerializerShapeItem_XML::SavePaint()
     {
       if(mXML->AddSectionAndEnter(sLayer))
       {
-        TShapeItem::TLayer layer;
-        std::string key, value;
-        int cntProperty = GetCountProperty();
-        for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
+        int cntLOD = mShape->mVecPaint[iLayer].size();
+        for( int iLOD = 0 ; iLOD < cntLOD ; iLOD++ )
         {
-          LoadProperty(iProperty, key, value);
-          if(key==sColor)
-            layer.color  = value;
-          if(key==sNormal)
-            layer.normal = value;
+          TShapeItem::TLOD lod = mShape->mVecPaint[iLayer].operator [](iLOD);
+          TAttrInfo attr;
+          char strDist[50];
+          _gcvt_s(strDist, sizeof(strDist), lod.distance, 9);
+          attr.Name  = sDistance;
+          attr.Value = strDist;
+          if(mXML->AddSectionAndEnter(sLOD, 1, &attr))
+          {
+            std::string key;
+            key = sColor;
+            SaveProperty(key, lod.color);
+            key = sNormal;
+            SaveProperty(key, lod.normal);
+            mXML->LeaveSection();
+          }
         }
-        mShape->mVecPaint.push_back(layer);
         mXML->LeaveSection();
       }
     }
@@ -165,11 +194,21 @@ void TSerializerShapeItem_XML::SavePaint()
 //--------------------------------------------------------------------------------  
 void TSerializerShapeItem_XML::SaveMaterial()
 {
+  TAttrInfo attr;
+  attr.Name  = sNameMaterial;
+  attr.Value = mShape->mNameMaterial;
 
+  mXML->AddSection(sMaterial, 1, &attr);
 }
 //--------------------------------------------------------------------------------  
-void TSerializerShapeItem_XML::MakeGeometry()
+void TSerializerShapeItem_XML::MakeGeometryByMap()
 {
-  mShape->mPtrGeometry.reset(new nsParamBuilderShape::TCone);
+  nsParamBuilderShape::TBaseParam* pParam = mSerParamShape.GetParamByMap(&mMapNameValue_Geometry);
+  mShape->mPtrGeometry.reset(pParam);
+}
+//--------------------------------------------------------------------------------  
+void TSerializerShapeItem_XML::MakeMapByGeometry()
+{
+  mSerParamShape.GetMapByParam(mShape->mPtrGeometry.get(), &mMapNameValue_Geometry);
 }
 //--------------------------------------------------------------------------------  

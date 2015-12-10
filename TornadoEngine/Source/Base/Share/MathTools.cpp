@@ -30,7 +30,7 @@ float CalcDist(const TMatrix16* m1, const TMatrix16* m2)
   dist.x = m1->s._41 - m2->s._41;
   dist.y = m1->s._42 - m2->s._42;
   dist.z = m1->s._43 - m2->s._43;
-  return dist.lenght();
+  return dist.length();
 }
 //-------------------------------------------------------------------------
 TMatrix16* SetMatrixIdentity(TMatrix16* pV)
@@ -225,7 +225,7 @@ TVector3* SetVec3Normalize(TVector3* pOut,
     return NULL;
 
   *pOut = *pV;
-  float len = pOut->lenght();
+  float len = pOut->length();
   if(len > 0.0f)
     pOut->operator /= (len);
 
@@ -791,7 +791,7 @@ bool TVector3::operator < ( const TVector3& v) const
   return false;
 }
 //-------------------------------------------------------------------------
-float TVector3::lenght()
+float TVector3::length()
 {
   return sqrt(x*x+y*y+z*z);
 }

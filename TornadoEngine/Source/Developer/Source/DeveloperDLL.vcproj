@@ -542,19 +542,19 @@
 					Name="Secondary"
 					>
 					<File
-						RelativePath=".\GUI\PlastinaParam.cpp"
+						RelativePath=".\GUI\PlateParam.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\GUI\PlastinaParam.h"
+						RelativePath=".\GUI\PlateParam.h"
 						>
 					</File>
 					<File
-						RelativePath=".\GUI\PlastinaVarGeomParam.cpp"
+						RelativePath=".\GUI\PlateVarGeomParam.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\GUI\PlastinaVarGeomParam.h"
+						RelativePath=".\GUI\PlateVarGeomParam.h"
 						>
 					</File>
 				</Filter>

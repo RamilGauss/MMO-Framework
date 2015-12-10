@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -27,7 +27,7 @@ class DllExport TManagerSerializerItem
 {
   IXML* mXML;
 
-  // сериализаторы из/в формат XML
+  // СЃРµСЂРёР°Р»РёР·Р°С‚РѕСЂС‹ РёР·/РІ С„РѕСЂРјР°С‚ XML
   typedef std::map<int,TBaseSerializerItem_XML*> TMapIntPtrSerilizer;
   typedef TMapIntPtrSerilizer::iterator          TMapIntPtrSerilizerIt;
   typedef TMapIntPtrSerilizer::value_type        TMapIntPtrSerilizerVT;
@@ -38,7 +38,7 @@ class DllExport TManagerSerializerItem
   boost::scoped_ptr<TSerializerTerrainItem_XML>  mSerializerTerrain;
   boost::scoped_ptr<TSerializerMapItem_XML>      mSerializerMap;
 
-  TMapIntPtrSerilizer mMapTypeSerializer;// каждому типу итэма - свой сериализатор
+  TMapIntPtrSerilizer mMapTypeSerializer;// РєР°Р¶РґРѕРјСѓ С‚РёРїСѓ РёС‚СЌРјР° - СЃРІРѕР№ СЃРµСЂРёР°Р»РёР·Р°С‚РѕСЂ
 
 public:
   TManagerSerializerItem();

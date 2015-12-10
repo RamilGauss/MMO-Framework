@@ -20,16 +20,15 @@ namespace nsParamBuilderShape
 {
   typedef enum
   {
-    ePlastina,
-    ePlastinaVarGeom,
-    eSphere,
-    eCone,
-    eTrapezium,
-    ePyramid3,
-    ePyramid4,
-    eCylinder,
-    eTrianglePrism,
-    eFlatRing,
+    Plate,
+    PlateVarGeom,
+    Sphere,
+    Cone,
+    Trapezium,
+    TriangularPyramid,
+    QuadrangularPyramid,
+    Cylinder,
+    TriangularPrism,
   }eType;
   //--------------------------------------------------
   struct DllExport TBaseParam
@@ -38,16 +37,16 @@ namespace nsParamBuilderShape
     TBaseParam(eType t){type=t;}
   }_PACKED;
   //--------------------------------------------------
-  struct DllExport TPlastina : public TBaseParam
+  struct DllExport TPlate : public TBaseParam
   {
-    TPlastina();
+    TPlate();
     float width;
     float height;
-    float lenght;
+    float length;
   }_PACKED;
-  struct DllExport TPlastinaVarGeom : public TBaseParam
+  struct DllExport TPlateVarGeom : public TBaseParam
   {
-    TPlastinaVarGeom();
+    TPlateVarGeom();
     float width;
     float height;
 
@@ -82,18 +81,18 @@ namespace nsParamBuilderShape
     float height;
     float shift_up_down;
   }_PACKED;
-  struct DllExport TPyramid3 : public TBaseParam
+  struct DllExport TTriangularPyramid : public TBaseParam
   {
-    TPyramid3();
+    TTriangularPyramid();
     float base0;
     float base1;
     float base2;
     float height;
     float cut;
   }_PACKED;
-  struct DllExport TPyramid4 : public TBaseParam
+  struct DllExport TQuadrangularPyramid : public TBaseParam
   {
-    TPyramid4();
+    TQuadrangularPyramid();
     float base;
     float height;
     float cut;
@@ -104,23 +103,15 @@ namespace nsParamBuilderShape
     int cnt_points_per_circle;// точность описания круговых поверхностей
     float radius_max;
     float radius_min;// получится труба
-    float lenght;
+    float length;
   }_PACKED;
-  struct DllExport TTrianglePrism : public TBaseParam
+  struct DllExport TTriangularPrism : public TBaseParam
   {
-    TTrianglePrism();
+    TTriangularPrism();
     float base0;
     float base1;
     float base2;
-    float lenght;
-  }_PACKED;
-  struct DllExport TFlatRing : public TBaseParam
-  {
-    TFlatRing();
-    float lenght;
-    float width;
-    int cnt_points_len;
-    int cnt_points_width;
+    float length;
   }_PACKED;
 }
 

@@ -30,6 +30,12 @@ See for more information License.h.
 
 namespace nsDevTool_Share
 {
+  // для именования модулей в конвейере для Ядра
+  // сделано так с целью присутствия в коде имени модуля единожды
+#define NAME_MODULE(enumID) ""#enumID
+
+#define NAME_ID(X) NAME_MODULE(X),X
+
   const char* sFileResources = "Resources.xml";
 
   const char* sCore     = "Core";
@@ -99,7 +105,6 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
   return pModule;
 }
 //-----------------------------------------------------------------------
-#define NAME_ID(X) NAME_MODULE(X),X
 void TDevTool_Share::InitMapModules()
 {
   Add(NAME_ID(GraphicEngine)       );
@@ -226,9 +231,9 @@ void TDevTool_Share::SetComponentsForLogic()
     components.SetLogicID(id_logic);
     pLogic->SetComponents(components);
     pLogic->GetFGI()->Init(mPathItems);
-    //###
+#ifdef _DEBUG
     pLogic->GetFGI()->FullLoad();
-    //###
+#endif
     pLogic->InitLog();
     pLogic->ParseCmd(mVecArg);
   }

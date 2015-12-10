@@ -19,11 +19,14 @@ See for more information License.h.
 
 struct DllExport TShapeItem : public TBaseItem
 {
-  struct TLayer
+  struct TLOD
   {
+    float distance;
     std::string color;
     std::string normal;
   };
+
+  typedef std::vector<TLOD> TLayer;
 
   std::vector<TLayer> mVecPaint;// слои краски
   std::string mNameMaterial;    // имя материала

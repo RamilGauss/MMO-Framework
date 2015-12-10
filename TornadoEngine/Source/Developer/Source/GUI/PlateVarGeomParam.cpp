@@ -5,50 +5,50 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "PlastinaParam.h"
+#include "PlateVarGeomParam.h"
 
-TPlastinaParam::TPlastinaParam()
+TPlateVarGeomParam::TPlateVarGeomParam()
 {
 
 }
 //---------------------------------------------------------------------------------------------
-TPlastinaParam::~TPlastinaParam()
+TPlateVarGeomParam::~TPlateVarGeomParam()
 {
 
 }
 //---------------------------------------------------------------------------------------------
-void TPlastinaParam::Activate()
+void TPlateVarGeomParam::Activate()
 {
-  assignWidget(bApply,   "bApply");
-  assignWidget(bClose,   "bClose");
-  assignWidget(ebWidth,  "ebWidth");
-  assignWidget(ebHeight, "ebHeight"); 
-  assignWidget(ebLength, "ebLength");
+  assignWidget(ebThickness, "ebThickness"); 
+  assignWidget(ebWidth,     "ebWidth");
+  assignWidget(ebLength,    "ebLength");
+  assignWidget(ibGeom,      "ibGeom");
+  assignWidget(bApply,      "bApply");
+  assignWidget(bClose,      "bClose");
 
-  bApply->eventMouseButtonClick += MyGUI::newDelegate(this, &TPlastinaParam::sl_Apply);
-  bClose->eventMouseButtonClick += MyGUI::newDelegate(this, &TPlastinaParam::sl_Close);
+  bApply->eventMouseButtonClick += MyGUI::newDelegate(this, &TPlateVarGeomParam::sl_Apply);
+  bClose->eventMouseButtonClick += MyGUI::newDelegate(this, &TPlateVarGeomParam::sl_Close);
 }
 //---------------------------------------------------------------------------------------------
-void* TPlastinaParam::GetParent()
+void* TPlateVarGeomParam::GetParent()
 {
   return nullptr;
 }
 //---------------------------------------------------------------------------------------------
-const char* TPlastinaParam::GetNameLayout()
+const char* TPlateVarGeomParam::GetNameLayout()
 {
-  return "PlastinaParam.layout";
+  return "PlastinaVarGeomParam.layout";
 }
 //---------------------------------------------------------------------------------------------
-void TPlastinaParam::SetupTabChild()
+void TPlateVarGeomParam::SetupTabChild()
 {
+  mVectorChild_Tab.push_back(ebThickness);
   mVectorChild_Tab.push_back(ebWidth);
-  mVectorChild_Tab.push_back(ebHeight);
   mVectorChild_Tab.push_back(ebLength);
   mVectorChild_Tab.push_back(bApply);
-  mVectorChild_Tab.push_back(bClose);
 }
 //---------------------------------------------------------------------------------------------
-void TPlastinaParam::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char)
+void TPlateVarGeomParam::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char)
 {
   switch(_key.getValue())
   {
@@ -59,12 +59,12 @@ void TPlastinaParam::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI
   }
 }
 //---------------------------------------------------------------------------------------------
-void TPlastinaParam::sl_Apply(MyGUI::Widget* _sender)
+void TPlateVarGeomParam::sl_Apply(MyGUI::Widget* _sender)
 {
 
 }
 //---------------------------------------------------------------------------------------------
-void TPlastinaParam::sl_Close(MyGUI::Widget* _sender)
+void TPlateVarGeomParam::sl_Close(MyGUI::Widget* _sender)
 {
   Hide();
 }

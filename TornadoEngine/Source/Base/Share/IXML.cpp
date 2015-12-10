@@ -29,6 +29,15 @@ bool IXML::RemoveChildSection(const char* childName, int numChild, const char* n
 }
 //------------------------------------------------------------------
 //------------------------------------------------------------------
+bool IXML::ReadDouble(const char* name, int num, double& v)
+{
+  string s = ReadSection(name, num);
+  if(s.length()==0)
+    return false;
+  v = atof(s.data());
+  return true;
+}
+//------------------------------------------------------------------
 bool IXML::ReadFloat(const char* name, int num, float & v)
 {
   string s = ReadSection(name, num);
@@ -75,6 +84,15 @@ bool IXML::ReadFloat4(const char* name, int num, float * v4)
     return false;
   if(sscanf(s.data(),"%f;%f;%f;%f",&v4[0],&v4[1],&v4[2],&v4[3])!=4) return false;
 
+  return true;
+}
+//------------------------------------------------------------------
+bool IXML::ReadDouble(int index, double& v)
+{
+  string s = ReadSection(index);
+  if(s.length()==0)
+    return false;
+  v = atof(s.data());
   return true;
 }
 //------------------------------------------------------------------
@@ -128,39 +146,53 @@ bool IXML::ReadFloat4(int index, float * v4)
 }
 //------------------------------------------------------------------
 //------------------------------------------------------------------
+bool IXML::WriteDouble(const char* name, int num, double v)
+{
+  char s[150];
+  _gcvt_s(s, sizeof(s), v, 20);
+  return WriteSection(name, num, string(s));
+}
+//------------------------------------------------------------------
 bool IXML::WriteFloat(const char* name, int num, float v)
 {
   char s[100];
   sprintf(s,"%f",v);
-  return WriteSection(name,num, string(s));
+  return WriteSection(name, num, string(s));
 }
 //------------------------------------------------------------------
 bool IXML::WriteInt(const char* name, int num, int v)
 {
   char s[100];
   sprintf(s,"%d",v);
-  return WriteSection(name,num, string(s));
+  return WriteSection(name, num, string(s));
 }
 //------------------------------------------------------------------
 bool IXML::WriteUint(const char* name, int num, unsigned int v)
 {
   char s[100];
   sprintf(s,"%u",v);
-  return WriteSection(name,num, string(s));
+  return WriteSection(name, num, string(s));
 }
 //------------------------------------------------------------------
 bool IXML::WriteFloat3(const char* name, int num, float* v3)// разделитель ";"
 {
   char s[100];
   sprintf(s,"%f;%f;%f",v3[0],v3[1],v3[2]);
-  return WriteSection(name,num, string(s));
+  return WriteSection(name, num, string(s));
 }
 //------------------------------------------------------------------
 bool IXML::WriteFloat4(const char* name, int num, float* v4)
 {
   char s[100];
   sprintf(s,"%f;%f;%f;%f",v4[0],v4[1],v4[2],v4[3]);
-  return WriteSection(name,num, string(s));
+  return WriteSection(name, num, string(s));
+}
+//------------------------------------------------------------------
+bool IXML::WriteDouble(int index, double v)
+{
+  char s[150];
+  _gcvt_s(s, sizeof(s), v, 20);
+  return WriteSection(index, string(s));
 }
 //------------------------------------------------------------------
 bool IXML::WriteFloat(int index, float v)

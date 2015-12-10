@@ -43,7 +43,7 @@ bool TSerializerModelItem_XML::Save(TBaseItem* pItem)
   mModel = (TModelItem*)pItem;
   RemoveSection(mModel->mName);// грохнуть всю запись, связанную с данным item
 
-  bool resEnter = EnterByType(mModel->mName);
+  bool resEnter = AddAndEnterByType(mModel->mName);
   if(resEnter==false)
     return false;
 

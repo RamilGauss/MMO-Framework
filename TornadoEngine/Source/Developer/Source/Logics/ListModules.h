@@ -34,11 +34,6 @@ namespace nsListModules
     DataBase,           // common
     Timer,              // common
   }ID_Modules;
-
-// для именования модулей в конвейере для Ядра
-// сделано так с целью присутствия в коде имени модуля единожды
-#define NAME_MODULE(enumID) ""#enumID
-
 }
 
 #endif

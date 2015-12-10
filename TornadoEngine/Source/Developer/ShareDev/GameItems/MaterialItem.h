@@ -15,7 +15,7 @@ struct DllExport TMaterialItem : public TBaseItem
 {
   struct TLOD
   {
-    float distance;
+    float distance;// максимальная дистанция
     std::string color;
     std::string normal;
   };
@@ -24,9 +24,6 @@ struct DllExport TMaterialItem : public TBaseItem
 
   struct TPhysic
   {
-    typedef enum{Soft, Rigid}Type;
-    Type type;
-
     float density;
     float elasticity;
     float friction;

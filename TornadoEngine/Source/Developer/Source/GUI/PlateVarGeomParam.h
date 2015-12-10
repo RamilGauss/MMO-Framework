@@ -5,19 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef PlastinaVarGeomParamH
-#define PlastinaVarGeomParamH
+#ifndef PlateVarGeomParamH
+#define PlateVarGeomParamH
 
 #include "BaseGUI.h"
 #include <MyGUI.h>
 #include <Ogre.h>
 
-class TPlastinaVarGeomParam :  public TBaseGUI
+class TPlateVarGeomParam :  public TBaseGUI
 {
 
 public:
-  TPlastinaVarGeomParam();
-  virtual ~TPlastinaVarGeomParam();
+  TPlateVarGeomParam();
+  virtual ~TPlateVarGeomParam();
 
 protected:
   virtual void Activate();

@@ -8,6 +8,23 @@ See for more information License.h.
 #ifndef ListBehaviourPatternH
 #define ListBehaviourPatternH
 
+namespace nsListBehaviourPatterns
+{
+  typedef enum
+  {
+    Undef  = 0,
+    House,
+    Bush,
+    Tree,
 
+    Track,
+    Chassis,
+    Hull,
+    Tower,
+    Gun,
+    TankTower,
+
+  }ID_BehaviourPattern;
+}
 
 #endif

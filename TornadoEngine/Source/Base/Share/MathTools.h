@@ -165,7 +165,7 @@ public:
   bool operator > ( const TVector3& ) const;
   bool operator < ( const TVector3& ) const;
 
-  float lenght();
+  float length();
 };
 //-----------------------------------------------------------------
 class DllExport TVector4

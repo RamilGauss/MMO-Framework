@@ -10,17 +10,17 @@ See for more information License.h.
 
 using namespace nsParamBuilderShape;
 
-TPlastina::TPlastina():TBaseParam(ePlastina)
+TPlate::TPlate():TBaseParam(Plate)
 {
 
 }
 //-------------------------------------------------------------------------------------------
-TPlastinaVarGeom::TPlastinaVarGeom():TBaseParam(ePlastinaVarGeom)
+TPlateVarGeom::TPlateVarGeom():TBaseParam(PlateVarGeom)
 {
 
 }
 //-------------------------------------------------------------------------------------------
-TContainer TPlastinaVarGeom::Get()
+TContainer TPlateVarGeom::Get()
 {
   TContainer c;
   TBreakPacket bp;
@@ -35,7 +35,7 @@ TContainer TPlastinaVarGeom::Get()
   return c;
 }
 //-------------------------------------------------------------------------------------------
-bool TPlastinaVarGeom::Set(TContainer& c)
+bool TPlateVarGeom::Set(TContainer& c)
 {
   vecCoord.clear();
 
@@ -60,42 +60,37 @@ bool TPlastinaVarGeom::Set(TContainer& c)
   return true;
 }
 //-------------------------------------------------------------------------------------------
-TSphere::TSphere():TBaseParam(eSphere)
+TSphere::TSphere():TBaseParam(Sphere)
 {
 
 }
 //-------------------------------------------------------------------------------------------
-TCone::TCone():TBaseParam(eCone)
+TCone::TCone():TBaseParam(Cone)
 {
 
 }
 //-------------------------------------------------------------------------------------------
-TTrapezium::TTrapezium():TBaseParam(eTrapezium)
+TTrapezium::TTrapezium():TBaseParam(Trapezium)
 {
 
 }
 //-------------------------------------------------------------------------------------------
-TPyramid3::TPyramid3():TBaseParam(ePyramid3)
+TTriangularPyramid::TTriangularPyramid():TBaseParam(TriangularPyramid)
 {
 
 }
 //-------------------------------------------------------------------------------------------
-TPyramid4::TPyramid4():TBaseParam(ePyramid4)
+TQuadrangularPyramid::TQuadrangularPyramid():TBaseParam(QuadrangularPyramid)
 {
 
 }
 //-------------------------------------------------------------------------------------------
-TCylinder::TCylinder():TBaseParam(eCylinder)
+TCylinder::TCylinder():TBaseParam(Cylinder)
 {
 
 }
 //-------------------------------------------------------------------------------------------
-TTrianglePrism::TTrianglePrism():TBaseParam(eTrianglePrism)
-{
-
-}
-//-------------------------------------------------------------------------------------------
-TFlatRing::TFlatRing():TBaseParam(eFlatRing)
+TTriangularPrism::TTriangularPrism():TBaseParam(TriangularPrism)
 {
 
 }

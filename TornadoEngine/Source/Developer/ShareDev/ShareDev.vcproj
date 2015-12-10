@@ -551,6 +551,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\GameItems\SerializerParamBuilderShape.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerParamBuilderShape.h"
+					>
+				</File>
+				<File
 					RelativePath=".\GameItems\SerializerShapeItem_XML.cpp"
 					>
 				</File>

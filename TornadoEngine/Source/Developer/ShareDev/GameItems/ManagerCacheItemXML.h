@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,15 +20,15 @@ class DllExport TManagerCacheItemXML
 {
   IXML* mXML;
 
-  // кэш
-  typedef std::set<std::string> TSetStr;// все имена итэмов данного типа
+  // РєСЌС€
+  typedef std::set<std::string> TSetStr;// РІСЃРµ РёРјРµРЅР° РёС‚СЌРјРѕРІ РґР°РЅРЅРѕРіРѕ С‚РёРїР°
   typedef TSetStr::iterator     TSetStrIt;
 
   typedef std::map<std::string,TSetStr> TMapStrSet;
   typedef TMapStrSet::iterator          TMapStrSetIt;
   typedef TMapStrSet::value_type        TMapStrSetVT;
 
-  TMapStrSet mMapStrType_SetName;// для поиска кэшированных имен итэмов в XML по типам
+  TMapStrSet mMapStrType_SetName;// РґР»СЏ РїРѕРёСЃРєР° РєСЌС€РёСЂРѕРІР°РЅРЅС‹С… РёРјРµРЅ РёС‚СЌРјРѕРІ РІ XML РїРѕ С‚РёРїР°Рј
 
 public:
   TManagerCacheItemXML();

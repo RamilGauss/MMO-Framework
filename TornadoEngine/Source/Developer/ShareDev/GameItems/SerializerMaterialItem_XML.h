@@ -24,6 +24,16 @@ public:
   virtual bool Load(TBaseItem* pItem);
   virtual bool Save(TBaseItem* pItem);
 protected:
+
+  void LoadGraphic();
+  void LoadPhysic();
+
+  void SaveGraphic();
+  void SavePhysic();
+
+  void FillPhysicParam();
+private:
+  TMapStrStr mMapNameValue_Physic;
 };
 
 #endif
