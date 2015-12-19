@@ -46,6 +46,7 @@ class TMarkUpContainer : public IMarkUpContainer
     TVectorPtrElem vecSlaveElem;// индексация
 
     TContainer data;// данные этого элемента - если const - просто кусок памяти, массив - счетчик
+    std::string typeConst;// если константа, то тип данных
 
     TDescPrivate();
     ~TDescPrivate();
@@ -83,6 +84,8 @@ public:
   virtual void* GetPtrConst(const char* name);
   virtual int   GetSizeConst(int indexDesc);
   virtual int   GetSizeConst(const char* name);
+  virtual std::string GetTypeConst(int indexDesc);
+  virtual std::string GetTypeConst(const char* name);
 
   virtual void  Collect();
   virtual void* GetPtr();

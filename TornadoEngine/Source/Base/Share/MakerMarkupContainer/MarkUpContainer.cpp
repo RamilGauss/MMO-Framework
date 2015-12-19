@@ -37,6 +37,7 @@ void TMarkUpContainer::SetMarkUp(TDesc* pDesc)
     memset(pDescPrivate->data.GetPtr(), 0, pDescPrivate->data.GetSize());
     pDescPrivate->pDesc = itDesc;
     pDescPrivate->pMasterElem = mRootElem;
+    pDescPrivate->typeConst = itDesc->typeConst;
 
     mRootElem->mapNameDesc.insert(TMapStrDescPrivateVT(itDesc->name, pDescPrivate));
     mRootElem->vecSlaveDesc.push_back(pDescPrivate);
@@ -223,6 +224,25 @@ int TMarkUpContainer::GetSizeConst(const char* name)
   return fit->second->data.GetSize();
 }
 //--------------------------------------------------------------------
+std::string TMarkUpContainer::GetTypeConst(int indexDesc)
+{
+  if(mCurElem==NULL)
+    return "";
+
+  return mCurElem->vecSlaveDesc[indexDesc]->typeConst;
+}
+//--------------------------------------------------------------------
+std::string TMarkUpContainer::GetTypeConst(const char* name)
+{
+  if(mCurElem==NULL)
+    return "";
+
+  TMapStrDescPrivateIt fit = mCurElem->mapNameDesc.find(name);
+  if(fit==mCurElem->mapNameDesc.end())
+    return "";
+  return fit->second->typeConst;
+}
+//--------------------------------------------------------------------
 void TMarkUpContainer::Collect()
 {
   if(mRootElem==NULL)
@@ -267,7 +287,7 @@ TMarkUpContainer::TElem::~TElem()
 //--------------------------------------------------------------------
 TMarkUpContainer::TDescPrivate::TDescPrivate()
 {
-  pDesc        = NULL;
+  pDesc       = NULL;
   pMasterElem = NULL;
 }
 //--------------------------------------------------------------------
@@ -358,6 +378,7 @@ void TMarkUpContainer::TDescPrivate::AddElem()
     memset(pDescPrivate->data.GetPtr(), 0, pDescPrivate->data.GetSize());
     pDescPrivate->pDesc = pItDesc;
     pDescPrivate->pMasterElem = pElem;
+    pDescPrivate->typeConst = pItDesc->typeConst;
 
     pElem->mapNameDesc.insert(TMapStrDescPrivateVT(pItDesc->name, pDescPrivate));
     pElem->vecSlaveDesc.push_back(pDescPrivate);

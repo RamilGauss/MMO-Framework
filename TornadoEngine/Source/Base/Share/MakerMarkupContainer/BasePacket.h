@@ -14,14 +14,16 @@ public:
   TBasePacket();
   virtual ~TBasePacket();
 
-  int Set(char* p, int size);
-  TContainer GetData();
+  virtual int Set(char* p, int size);
+  virtual TContainer GetData();
 
   virtual int         GetID()   = 0;
   virtual std::string GetName() = 0;
 
-  void GetStrContent(std::vector<std::string>& vecStr);
+  virtual void GetStrContent(std::vector<std::string>& vecStr);
 private:
   void GetStrDescItem(std::vector<std::string>& vecStr, int sizeStack);
+protected:  
+  virtual std::string GetStrDescConstItem(std::string name) = 0;
 };
 #endif

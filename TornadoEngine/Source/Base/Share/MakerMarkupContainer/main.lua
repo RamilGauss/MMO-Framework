@@ -16,6 +16,7 @@ fileH            = nil;
 name_packet      = nil;
 id_packet        = nil;
 full_name_packet = nil;
+inherit_class    = "TBasePacket";
 arr_stack_desc   = {};
 size_stack_methods = 0;
 
@@ -51,9 +52,15 @@ function handle_desc(desc, node, flgRoot)
  
   -- добавление нового стека
   local next_node = {};
-  next_node["name"] = desc["name"];
-  next_node["type"] = desc["type"];
-  next_node["def_value"] = desc["def_value"];  
+  next_node["nameFunc"]   = desc["nameFunc"];
+  next_node["type"]       = desc["type"];
+  next_node["def_value"]  = desc["def_value"];
+  next_node["name"]       = desc["name"];
+  local type_const        = desc["type_const"];
+  if type_const==nil then
+    type_const = "";
+  end;
+  next_node["type_const"] = type_const;
   if flgRoot==false then
     next_node["parent"] = node;
   end;
@@ -105,6 +112,9 @@ function parse(tbl)
     if value=="include_cpp" then
       add_include_in_cpp[#add_include_in_cpp+1] = tbl["name"];
     end;
+    if value=="inherit_class" then
+      inherit_class = tbl["name"];
+    end;
     if type(value)=="table" then 
       parse(value);
     end;
@@ -114,9 +124,10 @@ end;
 -- поиск ключей запуска
 if #arg==0 then
   print("keys:");
-  print("\"xml\"        - path_name_xml,");
+  print("\"xml\"      - path_name_xml,");
   print("\"dst_path\" - destination path.");
   print("\"force\"    - force update files(true/false).");
+  print("Example: main.lua xml markup.xml dst_path \"\" force true");
   return;
 end;
 

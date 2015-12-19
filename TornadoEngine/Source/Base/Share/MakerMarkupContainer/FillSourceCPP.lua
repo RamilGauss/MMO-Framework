@@ -22,9 +22,10 @@ function WriteFormula(node)
 end;
 ---------------------------------------------------------------------
 function WriteGlobalStr(node)
-  local name = node["name"];
-  if name~=nil then
-    fileCPP:write("  const char* g_p"..name.." = \""..name.."\";\n");
+  local nameFunc = node["nameFunc"];
+  local name     = node["name"];
+  if nameFunc~=nil then
+    fileCPP:write("  const char* g_p"..nameFunc.." = \""..name.."\";\n");
   end;
     
   for index, value in pairs(node) do
@@ -43,15 +44,18 @@ function WritePushDesc(node, num_tab)
     str_tab_pre = str_tab_pre.."  ";
   end;
   
-  local name      = node["name"];
-  local type_node = node["type"];
-  if name~=nil and type_node~=nil then
+  local nameFunc   = node["nameFunc"];
+  local type_node  = node["type"];
+  local type_const = node["type_const"];
+  if nameFunc~=nil and type_node~=nil then
     fileCPP:write(str_tab);
-    fileCPP:write("IMarkUpContainer::TDesc* p"..name.." = new IMarkUpContainer::TDesc;\n");
+    fileCPP:write("IMarkUpContainer::TDesc* p"..nameFunc.." = new IMarkUpContainer::TDesc;\n");
     fileCPP:write(str_tab);
-    fileCPP:write("p"..name.."->name = g_p"..name..";\n");
+    fileCPP:write("p"..nameFunc.."->name = g_p"..nameFunc..";\n");
     fileCPP:write(str_tab);
-    fileCPP:write("p"..name.."->size = sizeof("..type_node..");\n");
+    fileCPP:write("p"..nameFunc.."->typeConst = \""..type_const.."\";\n");
+    fileCPP:write(str_tab);
+    fileCPP:write("p"..nameFunc.."->size = sizeof("..type_node..");\n");
     for index, value in pairs(node) do
       if type(value)=="table" and index~="parent" then
         WritePushDesc(value, num_tab + 1);
@@ -60,12 +64,12 @@ function WritePushDesc(node, num_tab)
     local parent = node["parent"];
     if parent==nil then
       fileCPP:write(str_tab_pre);
-      fileCPP:write("mRootDesc->list.push_back(p"..name..");\n");
+      fileCPP:write("mRootDesc->list.push_back(p"..nameFunc..");\n");
       fileCPP:write("\n");
     else
-      local name_parent = parent["name"];
+      local nameFunc_parent = parent["nameFunc"];
       fileCPP:write(str_tab_pre);
-      fileCPP:write("p"..name_parent.."->list.push_back(p"..name..");\n");
+      fileCPP:write("p"..nameFunc_parent.."->list.push_back(p"..nameFunc..");\n");
     end;
   end;
 end;
@@ -243,10 +247,10 @@ end
 ---------------------------------------------------------------------
 function WriteSetDefValue()
   for index, value in pairs(arr_stack_desc) do
-    local name = value["name"];
+    local nameFunc = value["nameFunc"];
     local def_value = value["def_value"];
     if def_value~=nil then
-      fileCPP:write("  Set"..name.."("..def_value..");\n");
+      fileCPP:write("  Set"..nameFunc.."("..def_value..");\n");
     end
   end;
 end;
@@ -255,7 +259,7 @@ function WriteMethodBodyByNode(node)
   size_stack_methods = size_stack_methods + 1;
   local arr_name = {};
   -- формирование методов
-  local name_node = node["name"];
+  local nameFunc_node = node["nameFunc"];
   local type_node = node["type"];
   local cnt_child = #node;
   ---------------------------------
@@ -265,33 +269,33 @@ function WriteMethodBodyByNode(node)
     if parent==nil then
       break;
     end;
-    local name_parent = parent["name"];
+    local nameFunc_parent = parent["nameFunc"];
     if #str_index_param==0 then
-      str_index_param = "int index"..name_parent;
+      str_index_param = "int index"..nameFunc_parent;
     else
-      str_index_param = "int index"..name_parent..", "..str_index_param;
+      str_index_param = "int index"..nameFunc_parent..", "..str_index_param;
     end
     parent = parent["parent"];
     
-    arr_name[i] = name_parent;
+    arr_name[i] = nameFunc_parent;
   end
   ---------------------------------
   if cnt_child==0 then -- Const
-    fileCPP:write(type_node.." T"..name_packet.."::Get"..name_node.."("..str_index_param..")\n");
-    WriteBody_GET(name_node, type_node, arr_name); -- тело метода
+    fileCPP:write(type_node.." T"..name_packet.."::Get"..nameFunc_node.."("..str_index_param..")\n");
+    WriteBody_GET(nameFunc_node, type_node, arr_name); -- тело метода
     if #str_index_param~=0 then
       str_index_param = str_index_param..", ";
     end;
-    fileCPP:write("void T"..name_packet.."::Set"..name_node.."("..str_index_param..type_node.." v)\n");
-    WriteBody_SET(name_node, type_node, arr_name); -- тело метода
+    fileCPP:write("void T"..name_packet.."::Set"..nameFunc_node.."("..str_index_param..type_node.." v)\n");
+    WriteBody_SET(nameFunc_node, type_node, arr_name); -- тело метода
   else -- Arr
-    fileCPP:write("int T"..name_packet.."::GetCount"..name_node.."("..str_index_param..")\n");
-    WriteBody_GET_COUNT(name_node, type_node, arr_name); -- тело метода
+    fileCPP:write("int T"..name_packet.."::GetCount"..nameFunc_node.."("..str_index_param..")\n");
+    WriteBody_GET_COUNT(nameFunc_node, type_node, arr_name); -- тело метода
     if #str_index_param~=0 then
       str_index_param = str_index_param..", ";
     end;
-    fileCPP:write("void T"..name_packet.."::SetCount"..name_node.."("..str_index_param.."int v)\n");
-    WriteBody_SET_COUNT(name_node, type_node, arr_name); -- тело метода
+    fileCPP:write("void T"..name_packet.."::SetCount"..nameFunc_node.."("..str_index_param.."int v)\n");
+    WriteBody_SET_COUNT(nameFunc_node, type_node, arr_name); -- тело метода
   end;
   ---------------------------------
   for index, value in pairs(node) do
@@ -369,6 +373,7 @@ function FillSourceCPP()
     WriteMethodBodyByNode(node);
   end;
   
+  fileCPP:write("\n");
   fileCPP:flush();
   fileCPP:close();
 end;

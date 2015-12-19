@@ -30,9 +30,10 @@ IMarkUpContainer::TDesc::~TDesc()
 //-------------------------------------------------------------------
 IMarkUpContainer::TDesc* IMarkUpContainer::TDesc::CloneHierarhy()
 {
-  TDesc* pNew = new TDesc;
-  pNew->size = size;
-  pNew->name = name;
+  TDesc* pNew     = new TDesc;
+  pNew->size      = size;
+  pNew->name      = name;
+  pNew->typeConst = typeConst;
 
   std::list<TDesc*>::iterator bit = list.begin();
   std::list<TDesc*>::iterator eit = list.end();

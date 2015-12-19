@@ -67,6 +67,7 @@ public:
   }eType;
   struct TDesc
   {
+    std::string typeConst;
     std::string name;
     int size; // байт
     std::list<TDesc*> list;
@@ -100,6 +101,8 @@ public:
   virtual void* GetPtrConst(const char* name)       = 0;
   virtual int   GetSizeConst(int indexDesc)         = 0;
   virtual int   GetSizeConst(const char* name)      = 0;
+  virtual std::string GetTypeConst(int indexDesc)   = 0;
+  virtual std::string GetTypeConst(const char* name)= 0;
 
   // результат - дать область памяти готового пакета
   virtual void  Collect() = 0;

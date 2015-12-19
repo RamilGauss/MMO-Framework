@@ -2,7 +2,7 @@
 function WriteMethodByNode(node)
   size_stack_methods = size_stack_methods + 1;
   -- формирование методов
-  local name_node = node["name"];
+  local nameFunc_node = node["nameFunc"];
   local type_node = node["type"];
   local cnt_child = #node;
   ---------------------------------
@@ -12,28 +12,28 @@ function WriteMethodByNode(node)
     if parent==nil then 
       break;
     end;
-    local name_parent = parent["name"];
+    local nameFunc_parent = parent["nameFunc"];
     if #str_index_param==0 then
-      str_index_param = "int index"..name_parent;
+      str_index_param = "int index"..nameFunc_parent;
     else
-      str_index_param = "int index"..name_parent..", "..str_index_param;
+      str_index_param = "int index"..nameFunc_parent..", "..str_index_param;
     end;
     parent = parent["parent"];
   end;
   ---------------------------------
   if cnt_child==0 then -- Const
-    fileH:write("  "..type_node.." Get"..name_node.."("..str_index_param..");\n");
+    fileH:write("  "..type_node.." Get"..nameFunc_node.."("..str_index_param..");\n");
     if #str_index_param~=0 then
       str_index_param = str_index_param..", ";
     end;
-    fileH:write("  void Set"..name_node.."("..str_index_param..type_node.." v);\n");
+    fileH:write("  void Set"..nameFunc_node.."("..str_index_param..type_node.." v);\n");
     fileH:write("\n");
   else -- Arr
-    fileH:write("  int  GetCount"..name_node.."("..str_index_param..");\n");
+    fileH:write("  int  GetCount"..nameFunc_node.."("..str_index_param..");\n");
     if #str_index_param~=0 then
       str_index_param = str_index_param..", ";
     end;
-    fileH:write("  void SetCount"..name_node.."("..str_index_param.."int v);\n");
+    fileH:write("  void SetCount"..nameFunc_node.."("..str_index_param.."int v);\n");
     fileH:write("\n");
   end;
   ---------------------------------
@@ -56,7 +56,7 @@ function FillHeader()
   end;
 
   fileH:write("\n");
-  fileH:write("class T"..name_packet.." : public TBasePacket\n");
+  fileH:write("class T"..name_packet.." : public "..inherit_class.."\n");
   fileH:write("{\n");
   fileH:write("public:\n");
   fileH:write("  T"..name_packet.."();\n");
@@ -69,9 +69,10 @@ function FillHeader()
   for index_node, node in pairs(arr_stack_desc) do
     WriteMethodByNode(node);
   end;
-  
+
   fileH:write("};\n");
-  fileH:write("#endif");
+  fileH:write("#endif\n");
+  fileH:write("\n");  
   
   fileH:flush();
   fileH:close();

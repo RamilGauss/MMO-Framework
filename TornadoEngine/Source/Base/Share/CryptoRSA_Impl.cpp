@@ -71,7 +71,7 @@ lockRSA();
   if(g_CountGenerateKey==0)
     g_BitsRSA = bits;
   else
-    BL_ASSERT(g_BitsRSA==bits);
+    {BL_ASSERT(g_BitsRSA==bits);}
   // создавать новый или использовать старый?
   if(g_CountGenerateKey==0)
     g_RSAKey = RSA_generate_key(bits, RSA_F4, NULL, NULL);

@@ -39,7 +39,7 @@ void* TLoaderDLL_Win32::Get(const char* nameFunc)
 {
   void* ptrFunc = GetProcAddress(hModule, nameFunc);
   if(ptrFunc==NULL)
-    BL_FIX_BUG();
+    {BL_FIX_BUG();}
   return ptrFunc;
 }
 //------------------------------------------------------------------

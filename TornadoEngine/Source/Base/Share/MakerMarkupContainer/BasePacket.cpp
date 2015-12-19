@@ -1,5 +1,8 @@
 #include "BasePacket.h"
 #include "MarkUpContainer.h"
+#include "BL_QConv.h"
+#include "BL_Debug.h"
+#include <time.h>
 
 TBasePacket::TBasePacket()
 {
@@ -43,29 +46,54 @@ void TBasePacket::GetStrDescItem(std::vector<std::string>& vecStr, int sizeStack
   for( int iDesc = 0 ; iDesc < cntDesc ; iDesc++ )
   {
     std::string name = mMarkUp->GetNameDesc(iDesc);
+    QByteArray ba = WinToKoi8(name.data(), name.length());
+    std::string nameKOI8 = ba.data();
+
     int cntElem = 0;
     if(mMarkUp->GetTypeDesc(iDesc)==IMarkUpContainer::eArr)
     {
+      // войти в какой-нибудь элемент и проверить что он константный
       cntElem = mMarkUp->GetCount(name.data());
+      if(cntElem!=0)
+      {
+        bool resConst = false;
+        if(mMarkUp->Enter(name.data(), 0))
+        {
+          resConst = ((mMarkUp->GetCountDesc()==1) && (mMarkUp->GetTypeDesc(0)==IMarkUpContainer::eConst));
+          mMarkUp->Leave();
+        }
+        if(resConst)
+        {
+          std::string sConst = ": ";
+          for( int iElem = 0 ; iElem < cntElem ; iElem++ )
+          {
+            if(mMarkUp->Enter(name.data(), iElem))
+            {
+              sConst += GetStrDescConstItem(mMarkUp->GetNameDesc(0));
+              mMarkUp->Leave();
+            }
+          }
+          QByteArray ba = WinToKoi8(sConst.data(), sConst.length());
+          sConst = ba.data();
+          vecStr.push_back(tabs + nameKOI8 + sConst);
+          continue;
+        }
+      }
       char s[100];
       sprintf(s, "(%d):\n", cntElem);
-      vecStr.push_back(tabs + name + s);
+      vecStr.push_back(tabs + nameKOI8 + s);
     }
     else
     {
       std::string sConst = ": ";
-      int size     = mMarkUp->GetSizeConst(name.data());
-      char* pConst = (char*)mMarkUp->GetPtrConst(name.data());
-      for( int i = 0 ; i < size ; i++)
-      {
-        char s[100];
-        sprintf(s, "0x%X ", pConst[i]);
-        sConst += s;
-      }
+      sConst += GetStrDescConstItem(name);
       sConst += "\n";
-      vecStr.push_back(tabs + name + sConst);
-    }
+      QByteArray ba = WinToKoi8(sConst.data(), sConst.length());
+      sConst = ba.data();
 
+      vecStr.push_back(tabs + nameKOI8 + sConst);
+    }
+    
     for( int iElem = 0 ; iElem < cntElem ; iElem++ )
     {
       if(mMarkUp->Enter(name.data(), iElem))

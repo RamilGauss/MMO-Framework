@@ -107,7 +107,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\MyGUIEngine\include;..\MyGUIEngine\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;..\..\OGRE\include;..\..\OGRE\include\OIS;..\..\OGRE\include\OGRE;..\..\OGRE\include\OGRE\PlugIns\PCZSceneManager;..\..\OGRE\include\OGRE\PlugIns\OctreeZone;..\..\OGRE\include\OGRE\RTShaderSystem;..\..\OGRE\include\OGRE\Terrain;..\..\OGRE\include\OGRE\Paging;..\..\OGRE\include\OGRE\Volume;..\..\OGRE\include\OGRE\Overlay"
+				AdditionalIncludeDirectories=".\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
