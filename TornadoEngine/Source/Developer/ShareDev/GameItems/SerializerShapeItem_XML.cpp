@@ -8,13 +8,19 @@ See for more information License.h.
 #include "SerializerShapeItem_XML.h"
 #include "ShapeItem.h"
 #include "IXML.h"
+#include <boost/foreach.hpp>
 
 namespace nsShapeItem
 {
   const char* sShape          = "Shape";
   const char* sGeometry       = "Geometry";
 
-  const char* sNameMaterial   = "name";
+  const char* sName           = "name";
+  const char* sJoining        = "Joining";
+  const char* sJoint          = "Joint";
+  const char* sPosition       = "Position";
+  const char* sRotation       = "Rotation";
+
   const char* sMaterial       = "Material";
   const char* sPaint          = "Paint"; 
   const char* sUseNatureColor = "use_nature_color";
@@ -46,6 +52,7 @@ bool TSerializerShapeItem_XML::Load(TBaseItem* pItem)
   if(resEnter==false)
     return false;
   LoadGeometry();
+  LoadJoining();
   LoadPaint();
   LoadMaterial();
   return true;
@@ -62,9 +69,42 @@ bool TSerializerShapeItem_XML::Save(TBaseItem* pItem)
     return false;
 
   SaveGeometry();
+  SaveJoining();
   SavePaint();
   SaveMaterial();
   return mXML->Save();
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerShapeItem_XML::LoadJoining()
+{
+  if(mXML->EnterSection(sJoining,0))
+  {
+    int cntJoint = mXML->GetCountSection(sJoint);
+    for( int iJoint = 0 ; iJoint < cntJoint ; iJoint++ )
+    {
+      std::string nameJoint = mXML->ReadSectionAttr(iJoint, sName);
+      TShapeItem::TJoint joint;
+      if(mXML->EnterSection(sJoint,iJoint))
+      {
+        nsMathTools::TVector3 v3;
+        if(mXML->EnterSection(sPosition,0))
+        {
+          LoadVector3ByProperty(v3);
+          joint.position = v3;
+          mXML->LeaveSection();
+        }
+        if(mXML->EnterSection(sRotation,0))
+        {
+          LoadVector3ByProperty(v3);
+          joint.rotation = v3;
+          mXML->LeaveSection();
+        }
+        mXML->LeaveSection();
+      }
+      mShape->mMapNameJoint.insert(TShapeItem::TMapStrJointVT(nameJoint, joint));
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerShapeItem_XML::LoadGeometry()
@@ -96,7 +136,7 @@ void TSerializerShapeItem_XML::LoadPaint()
     int cntLayer = mXML->GetCountSection(sLayer);
     for( int iLayer = 0 ; iLayer < cntLayer ; iLayer++ )
     {
-      TShapeItem::TLayer layer;
+      TShapeItem::TMapFloatLayer layer;
       if(mXML->EnterSection(sLayer, iLayer))// слои
       {
         int cntLOD = mXML->GetCountSection(sLOD);
@@ -104,7 +144,6 @@ void TSerializerShapeItem_XML::LoadPaint()
         {
           std::string distance = mXML->ReadSectionAttr(sLOD, iLOD, sDistance);
           TShapeItem::TLOD lod;
-          lod.distance = atof(distance.data());
           if(mXML->EnterSection(sLOD, iLOD))// ЛОД
           {
             std::string key, value;
@@ -117,7 +156,7 @@ void TSerializerShapeItem_XML::LoadPaint()
               if(key==sNormal)
                 lod.normal = value;
             }
-            layer.push_back(lod);
+            layer.insert(TShapeItem::TMapFloatLayerVT(atof(distance.data()),lod));
             mXML->LeaveSection();
           }
         }
@@ -131,7 +170,7 @@ void TSerializerShapeItem_XML::LoadPaint()
 //--------------------------------------------------------------------------------  
 void TSerializerShapeItem_XML::LoadMaterial()
 {
-  mShape->mNameMaterial = mXML->ReadSectionAttr(sMaterial, 0, sNameMaterial);
+  mShape->mNameMaterial = mXML->ReadSectionAttr(sMaterial, 0, sName);
 }
 //--------------------------------------------------------------------------------  
 void TSerializerShapeItem_XML::SaveGeometry()
@@ -154,34 +193,56 @@ void TSerializerShapeItem_XML::SaveGeometry()
   }
 }
 //--------------------------------------------------------------------------------  
+void TSerializerShapeItem_XML::SaveJoining()
+{
+  if(mXML->AddSectionAndEnter(sJoining))
+  {
+    BOOST_FOREACH( TShapeItem::TMapStrJointVT& bit, mShape->mMapNameJoint )
+    {
+      if(mXML->AddSectionAndEnter(sJoint))
+      {
+        if(mXML->AddSectionAndEnter(sPosition))
+        {
+          SaveVector3ByProperty(bit.second.position);
+          mXML->LeaveSection();
+        }
+        if(mXML->AddSectionAndEnter(sRotation))
+        {
+          SaveVector3ByProperty(bit.second.rotation);
+          mXML->LeaveSection();
+        }
+        mXML->LeaveSection();
+      }
+    }
+    mXML->LeaveSection();
+  }
+}
+//--------------------------------------------------------------------------------  
 void TSerializerShapeItem_XML::SavePaint()
 {
-  if(mXML->AddSectionAndEnter(sPaint))
+  TAttrInfo attr;
+  attr.Name  = sUseNatureColor;
+  attr.Value = mShape->flgUseNatureColor ? "true" : "false";
+  if(mXML->AddSectionAndEnter(sPaint, 1, &attr))
   {
-    std::string flag = mShape->flgUseNatureColor ? "true" : "false";
-    mXML->WriteSectionAttr(sPaint, 0, sUseNatureColor, flag);
-
     int cntLayer = mShape->mVecPaint.size();
     for( int iLayer = 0 ; iLayer < cntLayer ; iLayer++ )
     {
       if(mXML->AddSectionAndEnter(sLayer))
       {
-        int cntLOD = mShape->mVecPaint[iLayer].size();
-        for( int iLOD = 0 ; iLOD < cntLOD ; iLOD++ )
+        BOOST_FOREACH(TShapeItem::TMapFloatLayerVT& bit, mShape->mVecPaint[iLayer])
         {
-          TShapeItem::TLOD lod = mShape->mVecPaint[iLayer].operator [](iLOD);
-          TAttrInfo attr;
           char strDist[50];
-          _gcvt_s(strDist, sizeof(strDist), lod.distance, 9);
+          _gcvt_s(strDist, sizeof(strDist), bit.first, 9);
           attr.Name  = sDistance;
           attr.Value = strDist;
           if(mXML->AddSectionAndEnter(sLOD, 1, &attr))
           {
             std::string key;
             key = sColor;
-            SaveProperty(key, lod.color);
+            SaveProperty(key, bit.second.color);
             key = sNormal;
-            SaveProperty(key, lod.normal);
+            SaveProperty(key, bit.second.normal);
             mXML->LeaveSection();
           }
         }
@@ -195,7 +256,7 @@ void TSerializerShapeItem_XML::SavePaint()
 void TSerializerShapeItem_XML::SaveMaterial()
 {
   TAttrInfo attr;
-  attr.Name  = sNameMaterial;
+  attr.Name  = sName;
   attr.Value = mShape->mNameMaterial;
 
   mXML->AddSection(sMaterial, 1, &attr);

@@ -30,6 +30,20 @@
     </Physic>
   </Material>
   <Shape name="PlateVarGeom">
+    <Joining>
+      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
+        <Position>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Position>
+        <Rotation>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Rotation>
+      </Joint>
+    </Joining>
     <Geometry>
       <Property key="Name"     value="PlateVarGeom"/>
       <Property key="Height"   value="10.01"/>
@@ -41,39 +55,7 @@
       <Property key="Coord3"   value="1;-0.123"/>
     </Geometry>
     <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если польностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="Cone">
-    <Geometry>
-      <Property key="Name"   value="Cone"/>
-      <Property key="Radius" value="10.01"/>
-      <Property key="Height" value="11"/>
-      <Property key="Cut"    value="5"/>
-      <Property key="CntPointsPerCircle" value="100"/>
-      </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если польностью закрашен предмет, то цвет материала неважен. -->
+    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
       <Layer>
         <LOD distance="100">
           <Property key="Color"  value="a.png"/>

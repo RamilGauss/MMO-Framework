@@ -12,6 +12,7 @@ See for more information License.h.
 #include <map>
 
 #include "TypeDef.h"
+#include "MathTools.h"
 
 class IXML;
 struct TBaseItem;
@@ -39,6 +40,9 @@ protected:
   int GetCountProperty();
   bool LoadProperty(int index, std::string& key, std::string& value);
   bool SaveProperty(std::string& key, std::string& value);
+
+  bool LoadVector3ByProperty(nsMathTools::TVector3& v3);
+  bool SaveVector3ByProperty(nsMathTools::TVector3& v3);
 
   bool RemoveSection(std::string& name);
 private:

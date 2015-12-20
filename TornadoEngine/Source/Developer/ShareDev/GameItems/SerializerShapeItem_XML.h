@@ -26,10 +26,12 @@ public:
   virtual bool Save(TBaseItem* pItem);
 protected:
   void LoadGeometry();
+  void LoadJoining();
   void LoadPaint();
   void LoadMaterial();
 
   void SaveGeometry();
+  void SaveJoining();
   void SavePaint();
   void SaveMaterial();
 

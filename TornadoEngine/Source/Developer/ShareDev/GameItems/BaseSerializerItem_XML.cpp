@@ -15,6 +15,12 @@ namespace nsBaseSerializerItem_XML
   const char* sProperty = "Property";
   const char* sKey      = "key";
   const char* sValue    = "value";
+
+  const char* sAxeX     = "x";
+  const char* sAxeY     = "y";
+  const char* sAxeZ     = "z";
+
+  const int CountAxes3  = 3;
 }
 
 using namespace nsBaseSerializerItem_XML;
@@ -82,6 +88,57 @@ bool TBaseSerializerItem_XML::SaveProperty(std::string& key, std::string& value)
   attr[1].Name  = sValue;
   attr[1].Value = value;
   return mXML->AddSection(sProperty, 2, &attr[0]);
+}
+//------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::LoadVector3ByProperty(nsMathTools::TVector3& v3)
+{
+  std::string key, value;
+  int cnt = GetCountProperty();
+  
+  if(cnt!=CountAxes3)// кол-во компонентов в векторе
+    return false;
+
+  for( int i = 0 ; i < cnt ; i++ )
+  {
+    if(LoadProperty(i,key,value))
+    {
+      if(key==sAxeX)
+        v3.x = atof(value.data());
+      else if(key==sAxeY)
+        v3.y = atof(value.data());
+      else if(key==sAxeZ)
+        v3.z = atof(value.data());
+    }
+    else 
+      return false;
+  }
+  return true;
+}
+//------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::SaveVector3ByProperty(nsMathTools::TVector3& v3)
+{
+  std::string key, value;
+  char str[50];
+
+  key = sAxeX;
+  _gcvt_s(str, sizeof(str), v3.x, 9);
+  value = str;
+  if(SaveProperty(key,value)==false)
+    return false;
+  
+  key = sAxeY;
+  _gcvt_s(str, sizeof(str), v3.y, 9);
+  value = str;
+  if(SaveProperty(key,value)==false)
+    return false;
+
+  key = sAxeZ;
+  _gcvt_s(str, sizeof(str), v3.z, 9);
+  value = str;
+  if(SaveProperty(key,value)==false)
+    return false;
+
+  return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::EnterRoot()
