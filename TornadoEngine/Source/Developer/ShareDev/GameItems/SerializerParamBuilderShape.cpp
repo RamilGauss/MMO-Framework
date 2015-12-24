@@ -19,7 +19,7 @@ handler.toStr    = &mCB_##NAME_TYPE##ToStr; \
 mMapNameType_Handler.insert(TMapStrHandlerVT(#NAME_TYPE, handler));
 
 
-  const char* sName               = "Name";
+  const char* sType               = "Type";
 
   const char* sRadius             = "Radius";
   const char* sHeight             = "Height";
@@ -56,10 +56,10 @@ TSerializerParamBuilderShape::~TSerializerParamBuilderShape()
 //---------------------------------------------------------------------
 nsParamBuilderShape::TBaseParam* TSerializerParamBuilderShape::GetParamByMap(TMapStrStr* pM)
 {
-  mMapNameValue_Geometry = pM;
+  mMapKeyValue = pM;
 
-  TMapStrStrIt fit = mMapNameValue_Geometry->find(sName);
-  if(fit==mMapNameValue_Geometry->end())
+  TMapStrStrIt fit = mMapKeyValue->find(sType);
+  if(fit==mMapKeyValue->end())
   {
     BL_FIX_BUG();
     return NULL;
@@ -74,8 +74,8 @@ nsParamBuilderShape::TBaseParam* TSerializerParamBuilderShape::GetParamByMap(TMa
 //---------------------------------------------------------------------
 void TSerializerParamBuilderShape::GetMapByParam(nsParamBuilderShape::TBaseParam* p, TMapStrStr* pM)
 {
-  mMapNameValue_Geometry = pM;
-  mMapNameValue_Geometry->clear();
+  mMapKeyValue = pM;
+  mMapKeyValue->clear();
 
   mPtrParam = p;
 
@@ -89,7 +89,7 @@ void TSerializerParamBuilderShape::GetMapByParam(nsParamBuilderShape::TBaseParam
 //---------------------------------------------------------------------
 void TSerializerParamBuilderShape::Init()
 {
-  mMapNameValue_Geometry = NULL;
+  mMapKeyValue = NULL;
   mPtrParam = NULL;
 
   THandler handler;
@@ -126,8 +126,8 @@ void TSerializerParamBuilderShape::HandlerPlateVarGeomToStruct()
     char strCoord[100];
     sprintf(strCoord, "%s%d", sCoord, i);
 
-    TMapStrStrIt fit = mMapNameValue_Geometry->find(strCoord);
-    if(fit==mMapNameValue_Geometry->end()) 
+    TMapStrStrIt fit = mMapKeyValue->find(strCoord);
+    if(fit==mMapKeyValue->end()) 
     {
       BL_FIX_BUG();
       continue;
@@ -229,18 +229,18 @@ void TSerializerParamBuilderShape::HandlerPlateToStr()
   nsParamBuilderShape::TPlate* pPlate = (nsParamBuilderShape::TPlate*)mPtrParam;
 
   std::string strType = FindStrByType(pPlate->type);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sName,strType));
+  mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
   char value[100];
 
   _gcvt_s(value, sizeof(value), pPlate->length, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sLength, value));
+  mMapKeyValue->insert(TMapStrStrVT(sLength, value));
 
   _gcvt_s(value, sizeof(value), pPlate->height, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sHeight, value));
+  mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 
   _gcvt_s(value, sizeof(value), pPlate->width, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sWidth, value));
+  mMapKeyValue->insert(TMapStrStrVT(sWidth, value));
 }
 //---------------------------------------------------------------------
 void TSerializerParamBuilderShape::HandlerPlateVarGeomToStr()
@@ -248,19 +248,19 @@ void TSerializerParamBuilderShape::HandlerPlateVarGeomToStr()
   nsParamBuilderShape::TPlateVarGeom* pPlateVarGeom = (nsParamBuilderShape::TPlateVarGeom*)mPtrParam;
 
   std::string strType = FindStrByType(pPlateVarGeom->type);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sName,strType));
+  mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
   char value[100];
 
   _gcvt_s(value, sizeof(value), pPlateVarGeom->height, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sHeight, value));
+  mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 
   _gcvt_s(value, sizeof(value), pPlateVarGeom->width, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sWidth, value));
+  mMapKeyValue->insert(TMapStrStrVT(sWidth, value));
 
   int cnt = pPlateVarGeom->vecCoord.size();
   sprintf(value, "%d", cnt);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sCntCoord, value));
+  mMapKeyValue->insert(TMapStrStrVT(sCntCoord, value));
 
   for(int i = 0 ; i < cnt ; i++ )
   {
@@ -276,7 +276,7 @@ void TSerializerParamBuilderShape::HandlerPlateVarGeomToStr()
     _gcvt_s(value, sizeof(value), pPlateVarGeom->vecCoord[i].y, 9);
     strValue += value;
 
-    mMapNameValue_Geometry->insert(TMapStrStrVT(strCoord, strValue));
+    mMapKeyValue->insert(TMapStrStrVT(strCoord, strValue));
   }
 }
 //---------------------------------------------------------------------
@@ -285,21 +285,21 @@ void TSerializerParamBuilderShape::HandlerSphereToStr()
   nsParamBuilderShape::TSphere* pSphere = (nsParamBuilderShape::TSphere*)mPtrParam;
 
   std::string strType = FindStrByType(pSphere->type);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sName,strType));
+  mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
   char value[100];
 
   _gcvt_s(value, sizeof(value), pSphere->radius_max, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sRadiusMax, value));
+  mMapKeyValue->insert(TMapStrStrVT(sRadiusMax, value));
 
   _gcvt_s(value, sizeof(value), pSphere->radius_min, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sRadiusMin, value));
+  mMapKeyValue->insert(TMapStrStrVT(sRadiusMin, value));
 
   _gcvt_s(value, sizeof(value), pSphere->cut, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sCut, value));
+  mMapKeyValue->insert(TMapStrStrVT(sCut, value));
 
   _gcvt_s(value, sizeof(value), pSphere->cnt_points_per_circle, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sCntPointsPerCircle, value));
+  mMapKeyValue->insert(TMapStrStrVT(sCntPointsPerCircle, value));
 }
 //---------------------------------------------------------------------
 void TSerializerParamBuilderShape::HandlerConeToStr()
@@ -307,21 +307,21 @@ void TSerializerParamBuilderShape::HandlerConeToStr()
   nsParamBuilderShape::TCone* pCone = (nsParamBuilderShape::TCone*)mPtrParam;
   
   std::string strType = FindStrByType(pCone->type);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sName,strType));
+  mMapKeyValue->insert(TMapStrStrVT(sType,strType));
   
   char value[100];
 
   _gcvt_s(value, sizeof(value), pCone->radius, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sRadius, value));
+  mMapKeyValue->insert(TMapStrStrVT(sRadius, value));
 
   _gcvt_s(value, sizeof(value), pCone->height, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sHeight, value));
+  mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 
   _gcvt_s(value, sizeof(value), pCone->cut, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sCut, value));
+  mMapKeyValue->insert(TMapStrStrVT(sCut, value));
 
   _gcvt_s(value, sizeof(value), pCone->cnt_points_per_circle, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sCntPointsPerCircle, value));
+  mMapKeyValue->insert(TMapStrStrVT(sCntPointsPerCircle, value));
 }
 //---------------------------------------------------------------------
 void TSerializerParamBuilderShape::HandlerTrapeziumToStr()
@@ -329,24 +329,24 @@ void TSerializerParamBuilderShape::HandlerTrapeziumToStr()
   nsParamBuilderShape::TTrapezium* pTrapezium = (nsParamBuilderShape::TTrapezium*)mPtrParam;
 
   std::string strType = FindStrByType(pTrapezium->type);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sName,strType));
+  mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
   char value[100];
 
   _gcvt_s(value, sizeof(value), pTrapezium->height, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sHeight, value));
+  mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 
   _gcvt_s(value, sizeof(value), pTrapezium->len_down_base, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sLenDownBase, value));
+  mMapKeyValue->insert(TMapStrStrVT(sLenDownBase, value));
 
   _gcvt_s(value, sizeof(value), pTrapezium->len_up_base, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sLenUpBase, value));
+  mMapKeyValue->insert(TMapStrStrVT(sLenUpBase, value));
 
   _gcvt_s(value, sizeof(value), pTrapezium->shift_up_down, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sShiftUpDown, value));
+  mMapKeyValue->insert(TMapStrStrVT(sShiftUpDown, value));
 
   _gcvt_s(value, sizeof(value), pTrapezium->thickless, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sThickless, value));
+  mMapKeyValue->insert(TMapStrStrVT(sThickless, value));
 }
 //---------------------------------------------------------------------
 void TSerializerParamBuilderShape::HandlerTriangularPyramidToStr()
@@ -354,24 +354,24 @@ void TSerializerParamBuilderShape::HandlerTriangularPyramidToStr()
   nsParamBuilderShape::TTriangularPyramid* pTriangularPyramid = (nsParamBuilderShape::TTriangularPyramid*)mPtrParam;
 
   std::string strType = FindStrByType(pTriangularPyramid->type);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sName,strType));
+  mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
   char value[100];
 
   _gcvt_s(value, sizeof(value), pTriangularPyramid->base0, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sBase0, value));
+  mMapKeyValue->insert(TMapStrStrVT(sBase0, value));
 
   _gcvt_s(value, sizeof(value), pTriangularPyramid->base1, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sBase1, value));
+  mMapKeyValue->insert(TMapStrStrVT(sBase1, value));
 
   _gcvt_s(value, sizeof(value), pTriangularPyramid->base2, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sBase2, value));
+  mMapKeyValue->insert(TMapStrStrVT(sBase2, value));
 
   _gcvt_s(value, sizeof(value), pTriangularPyramid->cut, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sCut, value));
+  mMapKeyValue->insert(TMapStrStrVT(sCut, value));
 
   _gcvt_s(value, sizeof(value), pTriangularPyramid->height, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sHeight, value));
+  mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 }
 //---------------------------------------------------------------------
 void TSerializerParamBuilderShape::HandlerQuadrangularPyramidToStr()
@@ -379,18 +379,18 @@ void TSerializerParamBuilderShape::HandlerQuadrangularPyramidToStr()
   nsParamBuilderShape::TQuadrangularPyramid* pQuadrangularPyramid = (nsParamBuilderShape::TQuadrangularPyramid*)mPtrParam;
 
   std::string strType = FindStrByType(pQuadrangularPyramid->type);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sName,strType));
+  mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
   char value[100];
 
   _gcvt_s(value, sizeof(value), pQuadrangularPyramid->base, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sBase, value));
+  mMapKeyValue->insert(TMapStrStrVT(sBase, value));
 
   _gcvt_s(value, sizeof(value), pQuadrangularPyramid->cut, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sCut, value));
+  mMapKeyValue->insert(TMapStrStrVT(sCut, value));
 
   _gcvt_s(value, sizeof(value), pQuadrangularPyramid->height, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sHeight, value));
+  mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 }
 //---------------------------------------------------------------------
 void TSerializerParamBuilderShape::HandlerCylinderToStr()
@@ -398,21 +398,21 @@ void TSerializerParamBuilderShape::HandlerCylinderToStr()
   nsParamBuilderShape::TCylinder* pCylinder = (nsParamBuilderShape::TCylinder*)mPtrParam;
 
   std::string strType = FindStrByType(pCylinder->type);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sName,strType));
+  mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
   char value[100];
 
   _gcvt_s(value, sizeof(value), pCylinder->cnt_points_per_circle, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sCntPointsPerCircle, value));
+  mMapKeyValue->insert(TMapStrStrVT(sCntPointsPerCircle, value));
 
   _gcvt_s(value, sizeof(value), pCylinder->length, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sLength, value));
+  mMapKeyValue->insert(TMapStrStrVT(sLength, value));
 
   _gcvt_s(value, sizeof(value), pCylinder->radius_max, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sRadiusMax, value));
+  mMapKeyValue->insert(TMapStrStrVT(sRadiusMax, value));
 
   _gcvt_s(value, sizeof(value), pCylinder->radius_min, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sRadiusMin, value));
+  mMapKeyValue->insert(TMapStrStrVT(sRadiusMin, value));
 }
 //---------------------------------------------------------------------
 void TSerializerParamBuilderShape::HandlerTriangularPrismToStr()
@@ -420,27 +420,27 @@ void TSerializerParamBuilderShape::HandlerTriangularPrismToStr()
   nsParamBuilderShape::TTriangularPrism* pTriangularPrism = (nsParamBuilderShape::TTriangularPrism*)mPtrParam;
 
   std::string strType = FindStrByType(pTriangularPrism->type);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sName,strType));
+  mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
   char value[100];
 
   _gcvt_s(value, sizeof(value), pTriangularPrism->base0, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sBase0, value));
+  mMapKeyValue->insert(TMapStrStrVT(sBase0, value));
 
   _gcvt_s(value, sizeof(value), pTriangularPrism->base1, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sBase1, value));
+  mMapKeyValue->insert(TMapStrStrVT(sBase1, value));
 
   _gcvt_s(value, sizeof(value), pTriangularPrism->base2, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sBase2, value));
+  mMapKeyValue->insert(TMapStrStrVT(sBase2, value));
 
   _gcvt_s(value, sizeof(value), pTriangularPrism->length, 9);
-  mMapNameValue_Geometry->insert(TMapStrStrVT(sLength, value));
+  mMapKeyValue->insert(TMapStrStrVT(sLength, value));
 }
 //---------------------------------------------------------------------
 float TSerializerParamBuilderShape::GetValueByName(const char* name)
 {
-  TMapStrStrIt fit = mMapNameValue_Geometry->find(name);
-  if(fit==mMapNameValue_Geometry->end()) 
+  TMapStrStrIt fit = mMapKeyValue->find(name);
+  if(fit==mMapKeyValue->end()) 
     return 0.0;
 
   return atof(fit->second.data());

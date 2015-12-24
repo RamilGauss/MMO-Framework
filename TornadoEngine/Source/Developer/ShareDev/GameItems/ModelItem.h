@@ -10,11 +10,76 @@ See for more information License.h.
 
 #include "BaseItem.h"
 
+#include <map>
+#include <vector>
+#include <memory>
+
+#include "ParamBuilderConstraint.h"
+#include "MathTools.h"
+#include "ContainerArrObj.h"
+
 struct DllExport TModelItem : public TBaseItem
 {
-  std::string mNamePattern;
-  
+  struct DllExport TJoint
+  {
+    std::string namePart;
+    std::string nameJoint;
+  };
+  //---------------------------------------------------------
+  typedef std::map<std::string,TJoint>     TMapExternalInternal;
+  typedef TMapExternalInternal::iterator   TMapExternalInternalIt;
+  typedef TMapExternalInternal::value_type TMapExternalInternalVT;
+  //---------------------------------------------------------  
+  struct DllExport TVariant
+  {
+    std::string type;
+    std::string name;
 
+    std::string           redefinitionMaterial;
+    TMapExternalInternal  mapExternalInternal;
+    nsMathTools::TVector3 scale;
+  };
+  //---------------------------------------------------------  
+  struct DllExport TPart
+  {
+    std::vector<std::string> vecNameJoint;
+    std::vector<TVariant>    vecVariant;
+  };
+  //---------------------------------------------------------  
+  typedef std::map<std::string,TPart> TMapStrPart;
+  typedef TMapStrPart::iterator   TMapStrPartIt;
+  typedef TMapStrPart::value_type TMapStrPartVT;
+  //---------------------------------------------------------  
+  struct DllExport TBranch
+  {
+    TJoint joint0;
+    TJoint joint1;
+    nsMathTools::TVector3 position;
+    nsMathTools::TVector3 rotation;
+    std::auto_ptr<nsParamBuilderConstraint::TBaseParam> mPtrConstraint;
+
+    TBranch();
+    TBranch(const TBranch& c);
+    ~TBranch();
+  };
+  //---------------------------------------------------------  
+  typedef std::map<std::string,TBranch> TMapStrBranch;
+  typedef TMapStrBranch::iterator       TMapStrBranchIt;
+  typedef TMapStrBranch::value_type     TMapStrBranchVT;
+  //---------------------------------------------------------
+  struct DllExport TRoot
+  {
+    std::string           name;
+    nsMathTools::TVector3 position;
+    nsMathTools::TVector3 rotation;
+  };
+  //---------------------------------------------------------
+  //---------------------------------------------------------
+  std::string   mNamePattern;// поведение
+  TRoot         mRoot;
+  TMapStrBranch mMapNameBase_Branch;// иерархия
+  TMapStrPart   mMapNamePart;       // набор
+  
   TModelItem(std::string& name);
 };
 

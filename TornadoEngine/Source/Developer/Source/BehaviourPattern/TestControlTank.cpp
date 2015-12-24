@@ -20,8 +20,7 @@ See for more information License.h.
 
 
 //---------------------------------------------------------------------------
-TTestControlTank::TTestControlTank():
-mDesc(new TDesc)
+TTestControlTank::TTestControlTank()
 {
   mTank	             = NULL;
   mTimeLastUpdate_ms = 0;
@@ -38,8 +37,8 @@ void TTestControlTank::SetupParamForNow()
   unsigned int now_ms = ht_GetMSCount();
   unsigned int delta = now_ms - mTimeRecv_ms;
 
-  float angleGun    = mDesc->mAngleGun    + delta * mDesc->mSpeedRotateGun;
-  float angleTurret = mDesc->mAngleTurret + delta * mDesc->mSpeedRotateTurret;
+  float angleGun    = mDesc.mAngleGun    + delta * mDesc.mSpeedRotateGun;
+  float angleTurret = mDesc.mAngleTurret + delta * mDesc.mSpeedRotateTurret;
 
   mTank->RotateTurret(angleTurret);
   mTank->RotateVerticalGun(angleGun);
@@ -53,7 +52,7 @@ void TTestControlTank::Recv(void* data, int size)
     return;
   }
   //*(mDesc) = *((TDesc*)data);
-  memcpy(mDesc.get(), data, size);
+  memcpy(&mDesc, data, size);
   mTimeRecv_ms = ht_GetMSCount();
 }
 //---------------------------------------------------------------------------
@@ -94,14 +93,14 @@ void TTestControlTank::Send()
 void TTestControlTank::SetSpeedRotateTurret(float v)
 {
   lockQtSend();
-  mDesc->mSpeedRotateTurret = v;
+  mDesc.mSpeedRotateTurret = v;
   unlockQtSend();
 }
 //---------------------------------------------------------------------------
 void TTestControlTank::SetSpeedRotateGun(float v)
 {
   lockQtSend();
-  mDesc->mSpeedRotateGun = v;
+  mDesc.mSpeedRotateGun = v;
   unlockQtSend();
 }
 //---------------------------------------------------------------------------
@@ -110,8 +109,8 @@ void TTestControlTank::UpdateAngle()
   unsigned int now_ms = ht_GetMSCount();
   unsigned int delta = (mTimeLastUpdate_ms==0) ? 0 : now_ms - mTimeLastUpdate_ms;
 	
-  mDesc->mAngleGun    = mDesc->mAngleGun    + delta * mDesc->mSpeedRotateGun;
-  mDesc->mAngleTurret = mDesc->mAngleTurret + delta * mDesc->mSpeedRotateTurret;
+  mDesc.mAngleGun    = mDesc.mAngleGun    + delta * mDesc.mSpeedRotateGun;
+  mDesc.mAngleTurret = mDesc.mAngleTurret + delta * mDesc.mSpeedRotateTurret;
 
   mTimeLastUpdate_ms = now_ms;
 }

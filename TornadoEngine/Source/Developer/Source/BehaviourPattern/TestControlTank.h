@@ -37,7 +37,7 @@ class TTestControlTank
 			mSpeedRotateGun 	 = 0;
 			mAngleGun       	 = 0;
 		}
-	};
+	}_PACKED;
 #if defined( WIN32 )
 #pragma pack(pop)
 #endif
@@ -47,7 +47,7 @@ class TTestControlTank
 	unsigned int mTimeRecv_ms;
 	unsigned int mTimeLastUpdate_ms;
 	
-	boost::scoped_ptr<TDesc> mDesc;
+	TDesc mDesc;
 
 	GCS mMutexQtSend;
 

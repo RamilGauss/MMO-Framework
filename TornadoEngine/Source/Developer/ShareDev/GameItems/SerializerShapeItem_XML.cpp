@@ -179,15 +179,12 @@ void TSerializerShapeItem_XML::SaveGeometry()
 
   if(mXML->AddSectionAndEnter(sGeometry))
   {
-    TMapStrStrIt bit = mMapNameValue_Geometry.begin();
-    TMapStrStrIt eit = mMapNameValue_Geometry.end();
-    while(bit!=eit)
+    BOOST_FOREACH(TMapStrStrVT& bit, mMapNameValue_Geometry)
     {
       std::string key, value;
-      key = bit->first; 
-      value = bit->second;
+      key   = bit.first; 
+      value = bit.second;
       SaveProperty(key, value);
-      bit++;
     }
     mXML->LeaveSection();
   }

@@ -11,12 +11,14 @@ See for more information License.h.
 #include <string>
 #include "TypeDef.h"
 #include "BaseSerializerItem_XML.h"
-
-struct TModelItem;
+#include "ModelItem.h"
+#include "SerializerParamBuilderConstraint.h"
 
 class DllExport TSerializerModelItem_XML : public TBaseSerializerItem_XML
 {
   TModelItem* mModel;
+
+  TSerializerParamBuilderConstraint mSerParamConstraint;
 public:
   TSerializerModelItem_XML();
   virtual ~TSerializerModelItem_XML();
@@ -24,6 +26,28 @@ public:
   virtual bool Load(TBaseItem* pItem);
   virtual bool Save(TBaseItem* pItem);
 protected:
+  void LoadPattern();
+  void LoadHierarchy();
+  void LoadCollection();
+
+  void LoadRoot();
+  void LoadBranch(TModelItem::TBranch& branch, int iBranch);
+  void LoadPart(TModelItem::TPart& part, int iPart);
+  void LoadVariant(TModelItem::TVariant& variant, int iVariant);
+
+  void SavePattern();
+  void SaveHierarchy();
+  void SaveCollection();
+
+  void SaveRoot();
+  void SaveBranch(TModelItem::TBranch& branch);
+  void SavePart(TModelItem::TPart& part);
+  void SaveVariant(TModelItem::TVariant& variant);
+private:
+  TMapStrStr mMapNameValue_Constraint;
+  
+  void MakeConstraintByMap(TModelItem::TBranch& branch);
+  void MakeMapByConstraint(TModelItem::TBranch& branch);
 };
 
 #endif

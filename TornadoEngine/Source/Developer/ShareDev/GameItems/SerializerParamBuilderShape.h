@@ -60,7 +60,7 @@ private:
   std::string FindStrByType(int type);
 private:
   // временные параметры
-  TMapStrStr*                      mMapNameValue_Geometry;
+  TMapStrStr*                      mMapKeyValue;
   nsParamBuilderShape::TBaseParam* mPtrParam;
 private:
   void HandlerPlateToStruct();

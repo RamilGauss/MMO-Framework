@@ -13,3 +13,25 @@ TBaseItem(name)
 
 }
 //--------------------------------------------------------------------------------
+TModelItem::TBranch::TBranch()
+{
+
+}
+//--------------------------------------------------------------------------------
+TModelItem::TBranch::TBranch(const TBranch& c)
+{
+  joint0 = c.joint0;
+  joint1 = c.joint1;
+  position = c.position;
+  rotation = c.rotation;
+
+  TBranch* pB = (TBranch*)&c;
+  mPtrConstraint = pB->mPtrConstraint;
+ }
+//--------------------------------------------------------------------------------
+TModelItem::TBranch::~TBranch()
+{
+
+}
+//--------------------------------------------------------------------------------
+

@@ -16,30 +16,31 @@ See for more information License.h.
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "ParamBuilderShape.h"
-#include "TypeDef.h"
 #include "MathTools.h"
 
 struct DllExport TShapeItem : public TBaseItem
 {
-  struct TJoint
+  struct DllExport TJoint
   {
     nsMathTools::TVector3 position;
     nsMathTools::TVector3 rotation;
   };
-  struct TLOD
+  //---------------------------------------------------------
+  struct DllExport TLOD
   {
     std::string color;
     std::string normal;
   };
+  //---------------------------------------------------------
   typedef std::map<float,TLOD>       TMapFloatLayer;
   typedef TMapFloatLayer::iterator   TMapFloatLayerIt;
   typedef TMapFloatLayer::value_type TMapFloatLayerVT;
-
+  //---------------------------------------------------------
   typedef std::map<std::string,TJoint> TMapStrJoint;
   typedef TMapStrJoint::iterator       TMapStrJointIt;
   typedef TMapStrJoint::value_type     TMapStrJointVT;
-
-
+  //---------------------------------------------------------
+  //---------------------------------------------------------
   std::map<std::string,TJoint> mMapNameJoint;    // места подсоединения других форм
   std::vector<TMapFloatLayer>  mVecPaint;        // слои краски
   std::string                  mNameMaterial;    // имя материала

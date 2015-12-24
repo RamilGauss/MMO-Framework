@@ -212,6 +212,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Share\ParamBuilderConstraint.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\ParamBuilderConstraint.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Share\ParamBuilderShape.cpp"
 				>
 			</File>
@@ -548,6 +556,14 @@
 				</File>
 				<File
 					RelativePath=".\GameItems\SerializerModelItem_XML.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerParamBuilderConstraint.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerParamBuilderConstraint.h"
 					>
 				</File>
 				<File

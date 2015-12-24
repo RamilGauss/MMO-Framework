@@ -12,7 +12,7 @@ See for more information License.h.
 #include <MyGUI.h>
 #include <Ogre.h>
 
-#include <boost/smart_ptr/scoped_ptr.hpp>
+#include <memory>
 #include "BuilderShape.h"
 
 class TPlateParam;
@@ -22,8 +22,8 @@ class TClientMain;
 
 class TEditorShape : public TBaseGUI
 {
-  boost::scoped_ptr<TPlateParam>        mPlateParamForm;
-  boost::scoped_ptr<TPlateVarGeomParam> mPlateVarGeomParamForm;
+  std::auto_ptr<TPlateParam>        mPlateParamForm;
+  std::auto_ptr<TPlateVarGeomParam> mPlateVarGeomParamForm;
 
   TBaseGUI* mCurNewShape;
 
