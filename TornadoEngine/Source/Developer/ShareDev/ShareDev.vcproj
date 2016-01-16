@@ -180,11 +180,11 @@
 			Name="Share"
 			>
 			<File
-				RelativePath=".\Share\BuilderShape.cpp"
+				RelativePath=".\Share\BuilderShape_Ogre.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Share\BuilderShape.h"
+				RelativePath=".\Share\BuilderShape_Ogre.h"
 				>
 			</File>
 			<File

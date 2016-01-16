@@ -19,6 +19,7 @@ See for more information License.h.
 
 #include "PlateParam.h"
 #include "PlateVarGeomParam.h"
+#include "ShapeItem.h"
 
 TEditorShape::TEditorShape() : 
 mPlateParamForm(new TPlateParam),
@@ -122,15 +123,11 @@ void TEditorShape::sl_WidgetsSelect(MyGUI::MenuControl* _sender, MyGUI::MenuItem
 //-------------------------------------------------------------------------------------
 void TEditorShape::OpenShape()
 {
+  // взять имя из предложенных
+  std::string name = "PlateVarGeom";//###
 
-}
-//---------------------------------------------------------------------------------------------
-void TEditorShape::NewShape()
-{
-  nsParamBuilderShape::TPlate mPlastina;
-  Ogre::MeshPtr ptr = mBuilder.Build(&mPlastina);
-  Ogre::MeshSerializer ser;
-  ser.exportMesh(ptr.getPointer(), "../../Resources/Graphic/models/EditorShape/Cube.mesh");
+  TShapeItem* pItem = (TShapeItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Shape, name);
+  Ogre::MeshPtr ptr = mBuilder.Build(pItem);
 
   Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
   pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
@@ -142,6 +139,25 @@ void TEditorShape::NewShape()
 
   const Ogre::Vector3 pos(0,0,0);
   pNode->setPosition(pos);
+}
+//---------------------------------------------------------------------------------------------
+void TEditorShape::NewShape()
+{
+  //nsParamBuilderShape::TPlate mPlastina;
+  //Ogre::MeshPtr ptr = mBuilder.Build(&mPlastina);
+  //Ogre::MeshSerializer ser;
+  //ser.exportMesh(ptr.getPointer(), "../../Resources/Graphic/models/EditorShape/Cube.mesh");
+
+  //Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
+  //pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+  //Ogre::Entity* pEnt = pSM->createEntity(ptr);
+  //pEnt->setCastShadows(false);
+
+  //Ogre::SceneNode* pNode = pSM->getRootSceneNode()->createChildSceneNode();
+  //pNode->attachObject(pEnt);
+
+  //const Ogre::Vector3 pos(0,0,0);
+  //pNode->setPosition(pos);
 }
 //---------------------------------------------------------------------------------------------
 void TEditorShape::SaveShape()

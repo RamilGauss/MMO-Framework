@@ -74,8 +74,13 @@ struct DllExport TModelItem : public TBaseItem
     nsMathTools::TVector3 rotation;
   };
   //---------------------------------------------------------
+  typedef std::map<std::string,std::string> TMapStrStr;
+  typedef TMapStrStr::iterator              TMapStrStrIt;
+  typedef TMapStrStr::value_type            TMapStrStrVT;
+  //---------------------------------------------------------
   //---------------------------------------------------------
   std::string   mNamePattern;// поведение
+  TMapStrStr    mMapKeyValue;// для объекта-поведения
   TRoot         mRoot;
   TMapStrBranch mMapNameBase_Branch;// иерархия
   TMapStrPart   mMapNamePart;       // набор

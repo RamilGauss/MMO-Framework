@@ -16,6 +16,8 @@ namespace nsSerializerMaterialItem_XML
   const char* sVariant    = "Variant";
   const char* sLOD        = "LOD";
   const char* sDistance   = "distance";
+  const char* sWidth      = "Width";
+  const char* sLength     = "Length";
   const char* sColor      = "Color";
   const char* sNormal     = "Normal";
 
@@ -92,6 +94,10 @@ void TSerializerMaterialItem_XML::LoadGraphic()
                 lod.color  = value;
               if(key==sNormal)
                 lod.normal = value;
+              if(key==sWidth)
+                lod.width  = atof(value.data());
+              if(key==sLength)
+                lod.length = atof(value.data());
             }
             vecLOD.push_back(lod);
             mXML->LeaveSection();
@@ -148,6 +154,17 @@ void TSerializerMaterialItem_XML::SaveGraphic()
           {
             std::string key = sColor;  SaveProperty(key, lod.color);
                         key = sNormal; SaveProperty(key, lod.normal);
+            std::string value;
+            char strValue[50];
+
+            _gcvt_s(strValue, sizeof(strValue), lod.width, 9);
+            key = sWidth; value = strValue;
+            SaveProperty(key, value);
+            
+            _gcvt_s(strValue, sizeof(strValue), lod.length, 9);
+            key = sLength; value = strValue;
+            SaveProperty(key, value);
+
             mXML->LeaveSection();
           }
         }

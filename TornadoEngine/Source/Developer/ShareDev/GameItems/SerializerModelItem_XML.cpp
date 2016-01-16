@@ -88,6 +88,17 @@ bool TSerializerModelItem_XML::Save(TBaseItem* pItem)
 void TSerializerModelItem_XML::LoadPattern()
 {
   mModel->mNamePattern = mXML->ReadSectionAttr(sPattern, 0, sName);
+  if(mXML->EnterSection(sPattern,0))
+  {
+    int cntProperty = GetCountProperty();
+    for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
+    {
+      std::string key,value;
+      LoadProperty(iProperty, key, value);
+      mModel->mMapKeyValue.insert(TModelItem::TMapStrStrVT(key,value));
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadHierarchy()
@@ -135,7 +146,16 @@ void TSerializerModelItem_XML::SavePattern()
   attr.Name  = sName;
   attr.Value = mModel->mNamePattern;
 
-  mXML->AddSection(sPattern, 1, &attr);
+  if(mXML->AddSectionAndEnter(sPattern, 1, &attr))
+  {
+    BOOST_FOREACH(TModelItem::TMapStrStrVT& bit,mModel->mMapKeyValue)
+    {
+      std::string key   = bit.first;
+      std::string value = bit.second;
+      SaveProperty(key,value);
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SaveHierarchy()
