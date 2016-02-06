@@ -46,10 +46,11 @@ class DllExport TFactoryGameItem
   TMapStrPtrItem mMapNameModel;
   TMapStrPtrItem mMapNameTerrain;
   TMapStrPtrItem mMapNameMap;
+	TMapStrPtrItem mMapNameTableSound;
 
-  typedef std::map<int,TMapStrPtrItem*> TMapInt_PtrMapStrPtr;
-  typedef TMapInt_PtrMapStrPtr::iterator        TMapInt_PtrMapStrPtrIt;
-  typedef TMapInt_PtrMapStrPtr::value_type      TMapInt_PtrMapStrPtrVT;
+  typedef std::map<int,TMapStrPtrItem*>    TMapInt_PtrMapStrPtr;
+  typedef TMapInt_PtrMapStrPtr::iterator   TMapInt_PtrMapStrPtrIt;
+  typedef TMapInt_PtrMapStrPtr::value_type TMapInt_PtrMapStrPtrVT;
 
   TMapInt_PtrMapStrPtr mMapType_StrName_pItem;// по типу найти карту в которой хранятся
 public:
@@ -58,7 +59,7 @@ public:
   
   bool Init(std::string& name_file);
 
-  typedef enum{Material, Shape, Model, Terrain, Map, CountType}Type;
+  typedef enum{Material, Shape, Model, Terrain, TableSound, Map, CountType}Type;
 
   TBaseItem* Add(Type type, std::string& name);
   int GetCount(Type type);

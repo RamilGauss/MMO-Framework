@@ -491,6 +491,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\GameItems\TableSoundItem.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\TableSoundItem.h"
+					>
+				</File>
+				<File
 					RelativePath=".\GameItems\TerrainItem.cpp"
 					>
 				</File>
@@ -580,6 +588,14 @@
 				</File>
 				<File
 					RelativePath=".\GameItems\SerializerShapeItem_XML.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerTableSoundItem_XML.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerTableSoundItem_XML.h"
 					>
 				</File>
 				<File

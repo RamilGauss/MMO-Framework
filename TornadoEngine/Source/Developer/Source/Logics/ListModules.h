@@ -24,10 +24,6 @@ namespace nsListModules
     MMOEngineSuperServer,
     // logic
     Logic,
-    //ClientLogic,
-    //ServerLogicSlave,
-    //ServerLogicMaster,
-    //ServerLogicSuperServer,
     // auxiliary
     PhysicEngine, 
     SoundEngine,        // client

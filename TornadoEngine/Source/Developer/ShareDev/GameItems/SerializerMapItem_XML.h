@@ -16,7 +16,7 @@ struct TMapItem;
 
 class DllExport TSerializerMapItem_XML : public TBaseSerializerItem_XML
 {
-  TMapItem* mMap;
+  TMapItem* mMapItem;
 public:
   TSerializerMapItem_XML();
   virtual ~TSerializerMapItem_XML();
@@ -24,6 +24,17 @@ public:
   virtual bool Load(TBaseItem* pItem);
   virtual bool Save(TBaseItem* pItem);
 protected:
+
+	void LoadTableSound();
+	void LoadSet();
+	void LoadScenario();
+
+	void LoadObject();
+
+	void SaveTableSound();
+	void SaveSet();
+	void SaveScenario();
+
 };
 
 #endif

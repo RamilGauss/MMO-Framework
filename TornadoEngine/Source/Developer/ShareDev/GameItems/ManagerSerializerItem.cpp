@@ -18,14 +18,16 @@ TManagerSerializerItem::TManagerSerializerItem()
   mSerializerMaterial.reset(new TSerializerMaterialItem_XML);
   mSerializerTerrain.reset(new TSerializerTerrainItem_XML);
   mSerializerMap.reset(new TSerializerMapItem_XML);
+  mSerializerTableSound.reset(new TSerializerTableSoundItem_XML);
 
   mXML = NULL;
 
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Material, mSerializerMaterial.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Shape,    mSerializerShape.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Model,    mSerializerModel.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Terrain,  mSerializerTerrain.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Map,      mSerializerMap.get()));
+  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Material,   mSerializerMaterial.get()));
+  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Shape,      mSerializerShape.get()));
+  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Model,      mSerializerModel.get()));
+  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Terrain,    mSerializerTerrain.get()));
+  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Map,        mSerializerMap.get()));
+	mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::TableSound, mSerializerTableSound.get()));
 }
 //--------------------------------------------------------------------------------------
 void TManagerSerializerItem::Init(IXML* xml)

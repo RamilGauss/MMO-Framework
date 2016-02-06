@@ -250,7 +250,10 @@
     </Collection>
   </Model>
   <Terrain name="Grass">
-	  <Size width="1" length="1"/>
+    <Geometry>
+      <Property key="Length"   value="1.01"/>
+      <Property key="Width"    value="1.5"/>
+    </Geometry>
 		<Graphic>
 		  <LOD distance="100">
 				<Property key="Color"  value="ColorGrass00.png"/>
@@ -266,46 +269,164 @@
 		</HeightMap>
   </Terrain>
   <Map name="Field">
-	  <Set>
-		  <Object type="Zone">
-			  <Property key="Type" value="GraphicEffect"/>
-			  <Property key="Name" value="Grass"/>
-        <Property key="Height" value="10.01"/>				
-			  <Property key="x" value="0"/><!-- Координаты центра -->
-			  <Property key="y" value="0"/>
-			  <Property key="z" value="0"/>
-			  <Property key="Rotate_x" value="0"/><!-- Ориентация -->
-			  <Property key="Rotate_y" value="0"/>
-			  <Property key="Rotate_z" value="0"/>
-				<Property key="CntCoord" value="4"/>
-				<Property key="Coord0"   value="0.0000012;0.0001212"/>
-				<Property key="Coord1"   value="0;1.56"/>
-				<Property key="Coord2"   value="1;1.3456"/>
-				<Property key="Coord3"   value="1;-0.123"/>
+	  <TableSound name="0"/>
+	  <Set><!-- Набор объектов сцены -->
+		  <Object>
+				<BaseProperty>
+				  <Identity>
+						<Property key="Type" value="Zone"/>
+						<Property key="Name" value="Grass"/>
+					</Identity>
+					<Position><!-- Координаты центра -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Position>
+					<Rotation><!-- Ориентация -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Rotation>
+				</BaseProperty>
+				<InternalState>
+					<Property key="Type" value="GraphicEffect"/>
+					<Property key="Height" value="10.01"/>				
+					<Property key="CntCoord" value="4"/>
+					<Property key="Coord0"   value="0.0000012;0.0001212"/>
+					<Property key="Coord1"   value="0;1.56"/>
+					<Property key="Coord2"   value="1;1.3456"/>
+					<Property key="Coord3"   value="1;-0.123"/>
+				</InternalState>
 			</Object>
-		  <Object type="Skybox">
+		  <Object>
+				<BaseProperty>
+				  <Identity>
+						<Property key="Type" value="Skybox"/>
+						<Property key="Name" value="Main"/>
+					</Identity>
+					<Position><!-- Координаты центра -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Position>
+					<Rotation><!-- Ориентация -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Rotation>
+				</BaseProperty>
+				<InternalState>
+				</InternalState>
 			</Object>
-		  <Object type="Model">
-				<Property key="Name" value="Gear"/>
+		  <Object>
+				<BaseProperty>
+				  <Identity>
+						<Property key="Type" value="Model"/>
+						<Property key="Name" value="Gear"/>
+					</Identity>
+					<Position><!-- Координаты центра -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Position>
+					<Rotation><!-- Ориентация -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Rotation>
+				</BaseProperty>
+				<InternalState>
+				</InternalState>
 			</Object>
-		  <Object type="Light">
-				<Property key="x" value="0"/>
-				<Property key="y" value="0"/>
-				<Property key="z" value="0"/>
-				<Property key="type" value="point"/>
+		  <Object>
+				<BaseProperty>
+				  <Identity>
+						<Property key="Type" value="Light"/>
+						<Property key="Name" value="Point"/>
+					</Identity>
+					<Position><!-- Координаты центра -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Position>
+					<Rotation><!-- Ориентация -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Rotation>
+				</BaseProperty>
+				<InternalState>
+					<Property key="type" value="point"/>
+				</InternalState>
 			</Object>
-		  <Object type="Terrain">
-				<Property key="Name" value="Grass"/>
-			  <Property key="x" value="0"/><!-- Координаты центра -->
-			  <Property key="y" value="0"/>
-			  <Property key="z" value="0"/>
-			  <Property key="Rotate_x" value="0"/><!-- Ориентация -->
-			  <Property key="Rotate_y" value="0"/>
-			  <Property key="Rotate_z" value="0"/>
+		  <Object>
+				<BaseProperty>
+				  <Identity>
+						<Property key="Type" value="Terrain"/>
+						<Property key="Name" value="0_0"/>
+					</Identity>
+					<Position><!-- Координаты центра -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Position>
+					<Rotation><!-- Ориентация -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Rotation>
+				</BaseProperty>
+				<InternalState>
+				</InternalState>
 			</Object>
-		  <Object type="Animated">
-				<Property key="" value=""/>
+		  <Object>
+				<BaseProperty>
+				  <Identity>
+						<Property key="Type" value="Animated"/>
+						<Property key="Name" value="BirdFly"/>
+					</Identity>
+					<Position><!-- Координаты центра -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Position>
+					<Rotation><!-- Ориентация -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Rotation>
+				</BaseProperty>
+				<InternalState>
+				</InternalState>
+			</Object>
+		  <Object>
+				<BaseProperty>
+				  <Identity>
+						<Property key="Type" value="Sound"/><!-- Звук ветра в определенном месте. -->
+						<Property key="Name" value="Wind"/>
+					</Identity>
+					<Position><!-- Координаты центра -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Position>
+					<Rotation><!-- Ориентация -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+					</Rotation>
+				</BaseProperty>
+				<InternalState>
+				  <Property key="file" value="wind.mp3"/>
+				</InternalState>
 			</Object>
 		</Set>
+		<Scenario> <!-- Операции с объектами сцены -->
+		</Scenario>
   </Map>
+	<TableSound name="0">
+		<Velosity>
+		  <Property key="Velosity" value="0"/>
+		</Velosity>
+	</TableSound>
 </TornadoEngine>

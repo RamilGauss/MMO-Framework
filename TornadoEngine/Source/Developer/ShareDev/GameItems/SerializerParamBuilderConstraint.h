@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -60,7 +60,7 @@ private:
   float GetValueByName(const char* name);
   std::string FindStrByType(int type);
 private:
-  // временные параметры
+  // РІСЂРµРјРµРЅРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹
   TMapStrStr*                           mMapKeyValue;
   nsParamBuilderConstraint::TBaseParam* mPtrParam;
 private:

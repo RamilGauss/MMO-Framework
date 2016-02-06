@@ -1,0 +1,105 @@
+ТИП проекта - Win32 Project(VC2008).
+
+===========================================================================================
+Project property\AllConfiguration:
+==================================
+
+General:
+Intermediate Directory = $(SolutionDir)\Temp\$(ProjectName)\$(ConfigurationName)
+Character set = Not Set
+
+C\C++:
+  General:  
+  Additional include directory = $(QTDIR)\include;
+
+Linker->General:
+Additional Library Directories = $(SolutionDir)\$(ConfigurationName)
+===========================================================================================
+
+Настройки интерфейса работы с VC2008:    (Tools->Customize->Keyboard )
+В строке Show commands containing производим поиск соответствующей команды и назначаем акселератор (Assign)
+Если назначаемый акселератор уже приписан к какой либо команде - найти ее и снять с нее акселератор (Remove)
+
+1)  Переключение из *.cpp в *.h: "GotoHeaderFile" : "Ctrl+F6"       (см. ниже Visual Assist !)
+2)  Закомментировать блок:  Edit.CommentSection:    "Ctrl+R"
+3)  Раскомментировать блок: Edit.UncommentSection:  "Ctrl+T"
+
+Переопределения акселераторов Visual Assist под Borland keymapping:
+
+1) Переключение между *.cpp и *.h:   VAssistX.OpenCorrespondingFile = Ctrl+F6
+2) Диалог со всеми файлами solution: VAssistX.OpenFileInSolutionDialog = Ctrl+F12
+===========================================================================================
+
+Настройки для подключения библиотеки плагинов PluginWidgets
+
+Для VC2008:
+1) Для использования заголовочных файлов плагина: Project->Properties->Configuration Properties->C/C++->General:
+	в строку Additional Include Directories добавить:
+		..\PluginWidgets\MessageLine и/или
+		..\PluginWidgets\ModSpinBox
+	в строку Preprocessor добавить:
+		TD_CROSSPLATFORM
+
+2) Для использования библиотеки PluginWidgets:
+	- Project->Properties->Configuration Properties->Linker->General:
+		 в строку Additional Library Directories добавить 			
+		 $(SolutionDir)\$(ConfigurationName)
+	- Project->Properties->Configuration Properties->Linker->Input:
+		в строку Additional Dependencies добавить PluginWidgets.lib
+
+Для GCC:
+в файл *.pro добавить:
+		DEFINES += TD_CROSSPLATFORM
+		- в секцию INCLUDEPATH:
+			./../PluginWidgets/ModSpinBox \ и/или
+			./../PluginWidgets/MessageLine \
+		- в секцию LIBS:
+			-lPluginWidgets 	
+
+P.S. - пример использования данной библиотеки плагинов см. в шаблонном проекте TestTemplate
+
+
+===========================================================================================
+Настройка ToolBar в Designer QT4:
+	Для неиспользования строки в ниспадающем меню (QAction) необходимо (для Qt Designer):
+	1)В свойствах объекта класса QMenu изменить "palette"->"ChangePalette".
+	2)Выбрать "Show Details".
+	3)Для "text"-"disabled" назначить цвет (например, синий).
+	4)Для "Highlight"-"disabled" назначить цвет (например, белый).
+  5)Для самой QAction выставить флаги font.Bold и font.Underline
+
+	Для настройки в тексте программы необходимо вставить код вида:
+		QMenu* menu = new QMenu;
+		QPalette disablePalette( menu->palette() );
+		disablePalette.setBrush ( QPalette::Disabled, QPalette::Text, QBrush( QColor(0, 0, 95) ) );
+		disablePalette.setBrush ( QPalette::Disabled, QPalette::Highlight, QBrush( QColor(255, 255, 255, 0) ) );
+		menu->setPalette( disablePalette );
+
+===========================================================================================
+Использование предкомпилированных заголовков:
+
+1) Каждый .cpp файл должен начинаться с #include "stdafx.h"
+2) Состав "stdafx.h":
+    #include "TypeDef.h"          - блокирует нестандартные объявления макросов TRUE и FALSE в qXXX.h
+    #include <QtCore/QVariant>
+    #include <QtGui/QAction>
+    #include <QtGui/QApplication>
+    #include <QtGui/QWidget>
+3) В опциях C\C++\Precompiled header:
+    Precompiled Header Files    = stdafx.h
+    Create/Use PCH Through File = $(OutDir)\$(ProjectName).pch
+
+4) В опциях C\C++\Precompiled header:
+
+   а) Выставить Create/Use Precompiled Header = Create Precompiled Header (/Yc)
+   б) Собрать проект 
+   в) Выставить Create/Use Precompiled Header = Use Precompiled Header (/Yu)
+   г) Собрать проект 
+
+===========================================================================================
+Настройки IncrediBuild:
+
+IncrediBuild.DebugProject = F5
+IncrediBuild.BuildSolution = F7
+IncrediBuild.BuildProject = Alt+F9
+===========================================================================================

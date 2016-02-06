@@ -13,6 +13,7 @@ See for more information License.h.
 #include "ModelItem.h"
 #include "TerrainItem.h"
 #include "MapItem.h"
+#include "TableSoundItem.h"
 #include "BL_Debug.h"
 #include "IXML.h"
 #include <boost/foreach.hpp>
@@ -128,6 +129,9 @@ TBaseItem* TFactoryGameItem::NewItem(Type type, std::string& name)
     case Terrain:
       pItem = new TTerrainItem(name);
       break;
+		case TableSound:
+			pItem = new TTableSoundItem(name);
+			break;
   }
   return pItem;
 }
@@ -158,10 +162,11 @@ void TFactoryGameItem::FullLoad()
 //-----------------------------------------------------------------------------
 void TFactoryGameItem::MakeStr_Map()
 {
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Material, &mMapNameMaterial));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Shape,    &mMapNameShape   ));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Model,    &mMapNameModel   ));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Terrain,  &mMapNameTerrain ));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Map,      &mMapNameMap     ));
+  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Material,	 &mMapNameMaterial	));
+  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Shape,   	 &mMapNameShape   	));
+  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Model,   	 &mMapNameModel   	));
+  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Terrain, 	 &mMapNameTerrain 	));
+  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Map,     	 &mMapNameMap     	));
+  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(TableSound, &mMapNameTableSound));
 }
 //-----------------------------------------------------------------------------

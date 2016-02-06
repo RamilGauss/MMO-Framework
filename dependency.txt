@@ -21,9 +21,22 @@
                       ).
   Далее прописать в Visual Studio пути:
 1. Tools->Options->Projects and Solutions
-2. VC++ Directories->Include files - добавить путь, например, "D:\MyProjects\Dependency\Include\MyGUIEngine\include".
-3. VC++ Directories->Library files - например, "D:\MyProjects\Dependency\Lib".
-4. Прописать путь к DLL в переменные среды (Win+Break->Дополнительно->Переменные среды), 
+	1.1. VC++ Directories->Include files - добавить путь, примерно так:
+	  - "C:\Program Files (x86)\boost\boost_1_54_0",
+		- "E:\Temp\Dependency\Include",
+		- "E:\Temp\Dependency\Include\MyGUIEngine\include",
+		- "E:\Temp\Dependency\Include\OGRE\include\OGRE",
+		- "E:\Temp\Dependency\Include\OGRE\include\OIS",
+		- "E:\Temp\Dependency\Include\Bullet",
+		- "E:\Temp\Dependency\Include\Bullet\BulletCollision",
+		- "E:\Temp\Dependency\Include\Bullet\BulletDynamics",
+		- "E:\Temp\Dependency\Include\Bullet\BulletSoftBody",
+		- "E:\Temp\Dependency\Include\Bullet\LinearMath",
+		- "E:\Temp\Dependency\Include\Bullet\Extras".
+	1.2. VC++ Directories->Library files - добавить, примерно так:
+	  - "C:\Program Files (x86)\boost\boost_1_54_0\stage\lib",
+		- "E:\Temp\Dependency\Lib".
+2. Прописать путь к DLL в переменные среды (Win+Break->Дополнительно->Переменные среды): 
 например, PATH += D:\MyProjects\Dependency\Bin;
 //---------------------------------------------------------------------------------------
     Linux (mainly Ubuntu)

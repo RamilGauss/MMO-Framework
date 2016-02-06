@@ -14,8 +14,8 @@ See for more information License.h.
 #include "DevTool_EditorMaterial.h"
 #include "DevTool_EditorShape.h"
 #include "DevTool_EditorModel.h"
-#include "DevTool_EditorTerrain.h"
 #include "DevTool_EditorMap.h"
+#include "DevTool_EditorTableSound.h"
 
 DllExport_C IDevTool* GetDevTool(int variant_use)
 {
@@ -35,8 +35,8 @@ DllExport_C IDevTool* GetDevTool(int variant_use)
       return new TDevTool_EditorShape;
     case 6:
       return new TDevTool_EditorModel;
-    case 7:
-      return new TDevTool_EditorTerrain;
+		case 7:
+			return new TDevTool_EditorTableSound;
     case 8:
       return new TDevTool_EditorMap;
   }

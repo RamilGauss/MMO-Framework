@@ -5,32 +5,31 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "DevTool_EditorTerrain.h"
+#include "DevTool_EditorTableSound.h"
 #include "ModuleDev.h"
 #include "ListModules.h"
 
-#include "EditorTerrainLogic.h"
+#include "EditorTableSoundLogic.h"
 
 using namespace nsListModules;
 
-TDevTool_EditorTerrain::TDevTool_EditorTerrain()
+TDevTool_EditorTableSound::TDevTool_EditorTableSound()
 {
 
 }
 //-------------------------------------------------------------
-TDevTool_EditorTerrain::~TDevTool_EditorTerrain()
+TDevTool_EditorTableSound::~TDevTool_EditorTableSound()
 {
 
 }
 //-------------------------------------------------------------
-std::string TDevTool_EditorTerrain::GetVariantConveyer()
+std::string TDevTool_EditorTableSound::GetVariantConveyer()
 {
-  return "EditorTerrain";
+	return "EditorTableSound";
 }
 //-------------------------------------------------------------
-TModuleDev* TDevTool_EditorTerrain::GetModuleLogic()
+TModuleDev* TDevTool_EditorTableSound::GetModuleLogic()
 {
-  return new TEditorTerrainLogic;
+	return new TEditorTableSoundLogic;
 }
 //-----------------------------------------------------------------------
-

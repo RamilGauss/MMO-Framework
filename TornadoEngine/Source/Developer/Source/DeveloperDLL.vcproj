@@ -203,7 +203,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\DevTool\DevTool_EditorTerrain.h"
+					RelativePath=".\DevTool\DevTool_EditorTableSound.h"
 					>
 				</File>
 				<File
@@ -247,7 +247,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\DevTool\DevTool_EditorTerrain.cpp"
+					RelativePath=".\DevTool\DevTool_EditorTableSound.cpp"
 					>
 				</File>
 				<File
@@ -347,11 +347,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Logics\EditorTerrainLogic.cpp"
+					RelativePath=".\Logics\EditorTableSoundLogic.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Logics\EditorTerrainLogic.h"
+					RelativePath=".\Logics\EditorTableSoundLogic.h"
 					>
 				</File>
 			</Filter>
@@ -591,14 +591,6 @@
 					</File>
 					<File
 						RelativePath=".\GUI\EditorShape.h"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorTerrain.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorTerrain.h"
 						>
 					</File>
 				</Filter>

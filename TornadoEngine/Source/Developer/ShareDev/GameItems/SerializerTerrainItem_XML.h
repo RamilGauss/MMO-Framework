@@ -24,6 +24,13 @@ public:
   virtual bool Load(TBaseItem* pItem);
   virtual bool Save(TBaseItem* pItem);
 protected:
+  void LoadGeometry();
+  void LoadGraphic();
+  void LoadHeightMap();
+
+  void SaveGeometry();
+  void SaveGraphic();
+  void SaveHeightMap();
 };
 
 #endif
