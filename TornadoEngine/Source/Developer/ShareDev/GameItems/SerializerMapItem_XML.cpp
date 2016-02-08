@@ -8,21 +8,25 @@ See for more information License.h.
 #include "SerializerMapItem_XML.h"
 #include "MapItem.h"
 #include "IXML.h"
+#include <boost/foreach.hpp>
 
 
 namespace nsSerializerMapItem_XML
 {
-  const char* sMap           = "Map";
-	const char* sTableSound    = "TableSound";
-	const char* sSet					 = "Set";
-	const char* sObject				 = "Object";
-	const char* sBaseProperty	 = "BaseProperty";
-	const char* sIdentity			 = "Identity";
-	const char* sType					 = "Type";
-	const char* sName					 = "Name";
-	const char* sPosition			 = "Position";
-	const char* sRotation			 = "Rotation";
-	const char* sInternalState = "InternalState";
+  const char* sMap            = "Map";
+	const char* sTableSound     = "TableSound";
+	const char* sNameTableSound = "name";
+	const char* sSet					  = "Set";
+	const char* sObject				  = "Object";
+	const char* sBaseProperty	  = "BaseProperty";
+	const char* sIdentity			  = "Identity";
+	const char* sType					  = "Type";
+	const char* sName					  = "Name";
+	const char* sPosition			  = "Position";
+	const char* sRotation			  = "Rotation";
+	const char* sInternalState  = "InternalState";
+  // reserve
+	const char* sScenario       = "Scenario";
 }
 
 using namespace nsSerializerMapItem_XML;
@@ -69,7 +73,7 @@ bool TSerializerMapItem_XML::Save(TBaseItem* pItem)
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadTableSound()
 {
-  mMapItem->mNameTableSound = mXML->ReadSectionAttr(sTableSound, 0, sName);
+  mMapItem->mNameTableSound = mXML->ReadSectionAttr(sTableSound, 0, sNameTableSound);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadSet()
@@ -81,8 +85,11 @@ void TSerializerMapItem_XML::LoadSet()
 		{
 			if(mXML->EnterSection(sObject, iObject))
 			{
-				LoadObject();
-				mXML->LeaveSection();
+        TMapItem::TObject object;
+				LoadObject(object);
+        mMapItem->mListObject.push_back(object);
+
+        mXML->LeaveSection();
 			}
 		}
 		mXML->LeaveSection();
@@ -91,30 +98,151 @@ void TSerializerMapItem_XML::LoadSet()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadScenario()
 {
-
+  if(mXML->EnterSection(sScenario,0))
+  {
+    // reserve
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::SaveTableSound()
 {
+  TAttrInfo attr;
+  attr.Name  = sNameTableSound;
+  attr.Value = mMapItem->mNameTableSound;
 
+  mXML->AddSection(sTableSound, 1, &attr);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::SaveSet()
 {
-
+  if(mXML->AddSectionAndEnter(sSet))
+  {
+    BOOST_FOREACH( TMapItem::TObject& object, mMapItem->mListObject )
+    {
+      if(mXML->AddSectionAndEnter(sObject))
+      {
+        SaveObject(object);
+        mXML->LeaveSection();
+      }
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::SaveScenario()
 {
-
+  if(mXML->AddSectionAndEnter(sScenario))
+  {
+    // reserve
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::LoadObject()
+void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
 {
 	if(mXML->EnterSection(sBaseProperty,0))
 	{
+    // базовые свойства
+    if(mXML->EnterSection(sIdentity,0)) 
+    {
+      int cntProperty = GetCountProperty();
+      for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
+      {
+        std::string key, value;
+        if(LoadProperty(iProperty, key, value))
+        {
+          if(key==sType)
+            object.type = value;
+          if(key==sName)
+            object.name = value;
+        }
+      }
+      mXML->LeaveSection();
+    }
+    // позиция и ориентация
+    if(mXML->EnterSection(sPosition,0))
+    {
+      nsMathTools::TVector3 pos;
+      if(LoadVector3ByProperty(pos))
+        object.position = pos;
 
+      mXML->LeaveSection();
+    }
+    if(mXML->EnterSection(sRotation,0))
+    {
+      nsMathTools::TVector3 rot;
+      if(LoadVector3ByProperty(rot))
+        object.rotation = rot;
+
+      mXML->LeaveSection();
+    }
 		mXML->LeaveSection();
 	}
+
+  // внутренние свойства
+  if(mXML->EnterSection(sInternalState,0))
+  {
+    int cntProperty = GetCountProperty();
+    for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
+    {
+      std::string key, value;
+      if(LoadProperty(iProperty, key, value))
+        object.internalState.insert(TMapItem::TMapStrStrVT(key,value));
+    }
+    mXML->LeaveSection();
+  }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
+{
+  if(mXML->AddSectionAndEnter(sBaseProperty))
+  {
+    // базовые свойства
+    if(mXML->AddSectionAndEnter(sIdentity)) 
+    {
+      std::string key, value;
+      key   = sType;
+      value = object.type;
+      SaveProperty(key, value);
+
+      key   = sName;
+      value = object.name;
+      SaveProperty(key, value);
+
+      mXML->LeaveSection();
+    }
+    // позиция и ориентация
+    if(mXML->AddSectionAndEnter(sPosition))
+    {
+      nsMathTools::TVector3 pos;
+      if(LoadVector3ByProperty(pos))
+        object.position = pos;
+
+      mXML->LeaveSection();
+    }
+    if(mXML->AddSectionAndEnter(sRotation))
+    {
+      nsMathTools::TVector3 rot;
+      if(LoadVector3ByProperty(rot))
+        object.rotation = rot;
+
+      mXML->LeaveSection();
+    }
+    mXML->LeaveSection();
+  }
+
+  // внутренние свойства
+  if(mXML->AddSectionAndEnter(sInternalState))
+  {
+    BOOST_FOREACH(TMapItem::TMapStrStrVT& KeyValue, object.internalState)
+    {
+      std::string key, value;
+      key   = KeyValue.first;
+      value = KeyValue.second;
+      SaveProperty(key, value);
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------

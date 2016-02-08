@@ -11,6 +11,7 @@ See for more information License.h.
 #include <string>
 #include "TypeDef.h"
 #include "BaseSerializerItem_XML.h"
+#include "MapItem.h"
 
 struct TMapItem;
 
@@ -29,12 +30,13 @@ protected:
 	void LoadSet();
 	void LoadScenario();
 
-	void LoadObject();
+	void LoadObject(TMapItem::TObject& object);
 
 	void SaveTableSound();
 	void SaveSet();
 	void SaveScenario();
-
+	
+  void SaveObject(TMapItem::TObject& object);
 };
 
 #endif
