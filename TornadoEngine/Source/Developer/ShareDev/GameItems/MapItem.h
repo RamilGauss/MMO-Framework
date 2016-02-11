@@ -20,7 +20,7 @@ struct DllExport TMapItem : public TBaseItem
 	typedef TMapStrStr::iterator   						TMapStrStrIt;
 	typedef TMapStrStr::value_type 						TMapStrStrVT;
 
-	struct TObject
+	struct DllExport TObject
 	{
 		// base property
 		std::string type;

@@ -9,6 +9,7 @@ See for more information License.h.
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
 
 using namespace std;
 
@@ -35,6 +36,9 @@ bool IXML::ReadDouble(const char* name, int num, double& v)
   if(s.length()==0)
     return false;
   v = atof(s.data());
+
+  if(errno==ERANGE)
+    return false;
   return true;
 }
 //------------------------------------------------------------------
@@ -44,6 +48,9 @@ bool IXML::ReadFloat(const char* name, int num, float & v)
   if(s.length()==0)
     return false;
   v = (float)atof(s.data());
+
+  if(errno==ERANGE)
+    return false;
   return true;
 }
 //------------------------------------------------------------------

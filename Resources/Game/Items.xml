@@ -425,8 +425,73 @@
 		</Scenario>
   </Map>
 	<TableSound name="0">
-		<Velosity>
-		  <Property key="Velosity" value="0"/>
-		</Velosity>
+		<Range>
+      <Velocity><!-- Относительная скорость двух объектов -->
+        <Property key="0" value="10"/>
+        <Property key="1" value="20"/>
+      </Velocity>
+      <Angle>
+        <Property key="0" value="45"/>
+        <Property key="1" value="90"/>
+      </Angle>
+      <Mass>
+        <Property key="0" value="100"/>
+        <Property key="1" value="200"/>
+      </Mass>
+      <Material>
+        <Property key="0" value="Iron"/><!-- Для материалов важен порядок индексации -->
+        <Property key="1" value="Rock"/>
+      </Material>
+		</Range>
+    <Collision>
+      <Sound>
+        <Combination>
+          <Property key="Angle"    value="0"/>
+          <Property key="Mass0"     value="0"/>
+          <Property key="Mass1"     value="1"/>
+          <Property key="Material0" value="0"/>
+          <Property key="Material1" value="1"/>
+          <Property key="Velocity" value="0"/>
+        </Combination>
+        <Param>
+					<Variant>
+						<Property key="file"   value="a.mp3"/>
+						<Property key="gain"   value="0.8"/>
+						<Property key="radius" value="100"/>
+						<Property key="effect" value="echo"/>
+					</Variant>
+					<Variant>
+						<Property key="file"   value="b.mp3"/>
+						<Property key="gain"   value="0.8"/>
+						<Property key="radius" value="100"/>
+						<Property key="effect" value="echo"/>
+					</Variant>
+        </Param>
+      </Sound>
+      <Sound>
+        <Combination>
+          <Property key="Angle"    value="0"/>
+          <Property key="Mass0"     value="0"/>
+          <Property key="Mass1"     value="1"/>
+          <Property key="Material0" value="0"/>
+          <Property key="Material1" value="1"/>
+          <Property key="Velocity" value="0"/>
+        </Combination>
+        <Param>
+					<Variant>
+						<Property key="file"   value="c.mp3"/>
+						<Property key="gain"   value="0.8"/>
+						<Property key="radius" value="100"/>
+						<Property key="effect" value="echo"/>
+					</Variant>
+					<Variant>
+						<Property key="file"   value="d.mp3"/>
+						<Property key="gain"   value="0.8"/>
+						<Property key="radius" value="100"/>
+						<Property key="effect" value="echo"/>
+					</Variant>
+        </Param>
+      </Sound>
+    </Collision>
 	</TableSound>
 </TornadoEngine>

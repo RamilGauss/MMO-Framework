@@ -11,12 +11,16 @@ See for more information License.h.
 #include <string>
 #include "TypeDef.h"
 #include "BaseSerializerItem_XML.h"
+#include "TableSoundItem.h"
 
 struct TTableSoundItem;
 
 class DllExport TSerializerTableSoundItem_XML : public TBaseSerializerItem_XML
 {
 	TTableSoundItem* mTableSound;
+
+  TTableSoundItem::TMapStrInt       mMapCombination;
+  TTableSoundItem::TVectorMapStrStr mVecMapStrStr;
 public:
 	TSerializerTableSoundItem_XML();
 	virtual ~TSerializerTableSoundItem_XML();
@@ -24,6 +28,29 @@ public:
 	virtual bool Load(TBaseItem* pItem);
 	virtual bool Save(TBaseItem* pItem);
 protected:
+
+  void LoadRange();
+  void LoadCollision();
+
+  void LoadRangeVelocity();
+  void LoadRangeAngle();
+  void LoadRangeMass();
+  void LoadRangeMaterial();
+
+  void LoadSound();
+  void LoadCombination();
+  void LoadParam();
+
+  void SaveRange();
+  void SaveCollision();
+
+  void SaveRangeVelocity();
+  void SaveRangeAngle();
+  void SaveRangeMass();
+  void SaveRangeMaterial();
+
+
+  void MakeAndInsertSound();
 };
 
 #endif

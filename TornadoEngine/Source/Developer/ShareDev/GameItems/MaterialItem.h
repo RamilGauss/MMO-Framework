@@ -13,7 +13,7 @@ See for more information License.h.
 
 struct DllExport TMaterialItem : public TBaseItem
 {
-  struct TLOD
+  struct DllExport TLOD
   {
     float distance;// максимальная дистанция
     // размеры текстуры для воссоздания внешнего вида
@@ -26,7 +26,7 @@ struct DllExport TMaterialItem : public TBaseItem
   typedef std::vector<TLOD>    TVecLOD;
   typedef std::vector<TVecLOD> TVecVariant;
 
-  struct TPhysic
+  struct DllExport TPhysic
   {
     float density;
     float elasticity;

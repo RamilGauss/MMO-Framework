@@ -7,6 +7,7 @@ See for more information License.h.
 
 #include "BaseSerializerItem_XML.h"
 #include "IXML.h"
+#include <errno.h>
 
 namespace nsBaseSerializerItem_XML
 {
@@ -108,6 +109,9 @@ bool TBaseSerializerItem_XML::LoadVector3ByProperty(nsMathTools::TVector3& v3)
         v3.y = atof(value.data());
       else if(key==sAxeZ)
         v3.z = atof(value.data());
+
+      if(errno==ERANGE)
+        return false;
     }
     else 
       return false;

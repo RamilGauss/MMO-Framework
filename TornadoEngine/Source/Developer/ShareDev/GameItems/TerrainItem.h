@@ -13,7 +13,7 @@ See for more information License.h.
 
 struct DllExport TTerrainItem : public TBaseItem
 {
-  struct TLOD
+  struct DllExport TLOD
   {
     float distance;// максимальная дистанция
     std::string color;
@@ -21,7 +21,7 @@ struct DllExport TTerrainItem : public TBaseItem
   };
   typedef std::vector<TLOD> TVecLOD;
 
-  struct TPoint
+  struct DllExport TPoint
   {
     float x;
     float y;
