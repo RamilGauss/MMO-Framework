@@ -9,6 +9,8 @@ See for more information License.h.
 #include "IXML.h"
 #include "TableSoundItem.h"
 #include <errno.h>
+#include <boost/foreach.hpp>
+#include "BL_Debug.h"
 
 
 namespace nsSerializerTableSoundItem_XML
@@ -54,6 +56,7 @@ bool TSerializerTableSoundItem_XML::Load(TBaseItem* pItem)
 
   LoadRange();
   LoadCollision();
+
 	return true;
 }
 //-------------------------------------------------------------------------------------------------------
@@ -103,12 +106,33 @@ void TSerializerTableSoundItem_XML::LoadCollision()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTableSoundItem_XML::SaveRange()
 {
+  if(mXML->AddSectionAndEnter(sRange))
+  {
+    SaveRangeVelocity();
+    SaveRangeAngle();
+    SaveRangeMass();
+    SaveRangeMaterial();
 
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTableSoundItem_XML::SaveCollision()
 {
+  MakeAndInsertCollision();
 
+  if(mXML->AddSectionAndEnter(sCollision))
+  {
+    BOOST_FOREACH(TTableSoundItem::TCombiSound& combiSound, mListCombiSound)
+    {
+      if(mXML->AddSectionAndEnter(sSound))
+      {
+        SaveSound(combiSound);
+        mXML->LeaveSection();
+      }
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTableSoundItem_XML::LoadRangeVelocity()
@@ -192,22 +216,67 @@ void TSerializerTableSoundItem_XML::LoadRangeMaterial()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTableSoundItem_XML::SaveRangeVelocity()
 {
-
+  if(mXML->AddSectionAndEnter(sVelocity))
+  {
+    BOOST_FOREACH(TTableSoundItem::TMapFloatIntVT& vt, mTableSound->mMapVelocity)
+    {
+      char strValue[50];
+      std::string key, value;
+      _gcvt_s(strValue, sizeof(strValue), vt.first, 9); value = strValue;
+      sprintf(strValue, "%d", vt.second);               key   = strValue; 
+      SaveProperty(key, value);
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTableSoundItem_XML::SaveRangeAngle()
 {
-
+  if(mXML->AddSectionAndEnter(sAngle))
+  {
+    BOOST_FOREACH(TTableSoundItem::TMapFloatIntVT& vt, mTableSound->mMapAngle)
+    {
+      char strValue[50];
+      std::string key, value;
+      _gcvt_s(strValue, sizeof(strValue), vt.first, 9); value = strValue;
+      sprintf(strValue, "%d", vt.second);               key   = strValue; 
+      SaveProperty(key, value);
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTableSoundItem_XML::SaveRangeMass()
 {
-
+  if(mXML->AddSectionAndEnter(sMass))
+  {
+    BOOST_FOREACH(TTableSoundItem::TMapFloatIntVT& vt, mTableSound->mMapMass)
+    {
+      char strValue[50];
+      std::string key, value;
+      _gcvt_s(strValue, sizeof(strValue), vt.first, 9); value = strValue;
+      sprintf(strValue, "%d", vt.second);               key   = strValue; 
+      SaveProperty(key, value);
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTableSoundItem_XML::SaveRangeMaterial()
 {
-
+  if(mXML->AddSectionAndEnter(sMaterial))
+  {
+    BOOST_FOREACH(TTableSoundItem::TMapStrIntVT& vt, mTableSound->mMapMaterial)
+    {
+      char strValue[50];
+      std::string key, value;
+      value = vt.first;
+      sprintf(strValue, "%d", vt.second);
+      key = strValue; 
+      SaveProperty(key, value);
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTableSoundItem_XML::LoadSound()
@@ -238,6 +307,11 @@ void TSerializerTableSoundItem_XML::LoadCombination()
     if(LoadProperty(iProperty, key, value))
     {
       int index = atoi(value.data());
+      if(CheckIndex(index)==false)
+      {
+        BL_FIX_BUG();
+        continue;
+      }
       if(errno!=ERANGE)
         mMapCombination.insert(TTableSoundItem::TMapStrIntVT(key, index));
     }
@@ -254,16 +328,12 @@ void TSerializerTableSoundItem_XML::LoadParam()
     if(mXML->EnterSection(sVariant,iVariant))
     {
       TTableSoundItem::TMapStrStr mapStrStr;
-      std::string key, value;
-      if(LoadProperty(iVariant, key, value))
+      int cntProperty = GetCountProperty();
+      for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
       {
-        int cntProperty = GetCountProperty();
-        for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
-        {
-          std::string key, value;
-          if(LoadProperty(iProperty, key, value))
-            mapStrStr.insert(TTableSoundItem::TMapStrStrVT(key,value));
-        }
+        std::string key, value;
+        if(LoadProperty(iProperty, key, value))
+          mapStrStr.insert(TTableSoundItem::TMapStrStrVT(key,value));
       }
       mVecMapStrStr.push_back(mapStrStr);
       mXML->LeaveSection();
@@ -297,7 +367,7 @@ void TSerializerTableSoundItem_XML::MakeAndInsertSound()
   if(AngleIt==mMapCombination.end())
     return;
 
-  TTableSoundItem::TCombination combination;
+  TTableSoundItem::TCombinationIndex combination;
 
   combination.velocity  = VelocityIt ->second;
   combination.mass0     = Mass0It    ->second;
@@ -307,5 +377,73 @@ void TSerializerTableSoundItem_XML::MakeAndInsertSound()
   combination.angle     = AngleIt    ->second;
 
   mTableSound->Add(combination, mVecMapStrStr);
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerTableSoundItem_XML::SaveSound(TTableSoundItem::TCombiSound& combiSound)
+{
+  if(mXML->AddSectionAndEnter(sCombination))
+  {
+    SaveCombination(combiSound.mapCombination);
+    mXML->LeaveSection();
+  }
+
+  if(mXML->AddSectionAndEnter(sParam))
+  {
+    SaveParam(combiSound.vecSound);
+    mXML->LeaveSection();
+  }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerTableSoundItem_XML::SaveCombination(TTableSoundItem::TMapStrInt& mapCombination)
+{
+  BOOST_FOREACH(TTableSoundItem::TMapStrIntVT& vt, mapCombination)
+  {
+    std::string key, value;
+    char str[50];
+    key = vt.first;
+    sprintf(str, "%d", vt.second);
+    value = str;
+    SaveProperty(key, value);
+  }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerTableSoundItem_XML::SaveParam(TTableSoundItem::TVectorMapStrStr& vecSound)
+{
+  BOOST_FOREACH(TTableSoundItem::TMapStrStr& mapStrStr, vecSound )
+  {
+    if(mXML->AddSectionAndEnter(sVariant))
+    {
+      BOOST_FOREACH(TTableSoundItem::TMapStrStrVT& vt, mapStrStr)
+      {
+        std::string key, value;
+        key   = vt.first;
+        value = vt.second;
+        SaveProperty(key, value);
+      }
+      mXML->LeaveSection();
+    }
+  }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerTableSoundItem_XML::MakeAndInsertCollision()
+{
+  mListCombiSound.clear();
+  
+  TTableSoundItem::TSetNameParam setNameParam;
+  setNameParam.angle     = sAngle;
+  setNameParam.mass0     = sMass0;
+  setNameParam.mass1     = sMass1;
+  setNameParam.material0 = sMaterial0;
+  setNameParam.material1 = sMaterial1;
+  setNameParam.velocity  = sVelocity;
+
+  mTableSound->MakeList(mListCombiSound, setNameParam);
+}
+//-------------------------------------------------------------------------------------------------------
+bool TSerializerTableSoundItem_XML::CheckIndex(int index)
+{
+  if(index>MaxIndex || index < MinIndex)
+    return false;
+  return true;
 }
 //-------------------------------------------------------------------------------------------------------

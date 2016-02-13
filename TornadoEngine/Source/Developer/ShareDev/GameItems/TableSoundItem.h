@@ -12,6 +12,7 @@ See for more information License.h.
 #include <map>
 #include <string>
 #include <vector>
+#include <list>
 
 struct DllExport TTableSoundItem : public TBaseItem
 {
@@ -23,12 +24,12 @@ struct DllExport TTableSoundItem : public TBaseItem
   typedef std::vector<TMapStrStr> TVectorMapStrStr;
 
   // для устранения warning C4503 - представлено в виде структур
-  struct DllExport TMapAngleMap{     std::map<int, TVectorMapStrStr> m;};
-  struct DllExport TMapMaterial0Map{ std::map<int, TMapAngleMap>     m;};
-  struct DllExport TMapMaterial1Map{ std::map<int, TMapMaterial0Map> m;};
-  struct DllExport TMapMass0Map{     std::map<int, TMapMaterial1Map> m;};
-  struct DllExport TMapMass1Map{     std::map<int, TMapMass0Map>     m;};
-  struct DllExport TMapVelocityMap{  std::map<int, TMapMass1Map>     m;};
+  struct DllExport TVecAngleVecMap{  std::vector<TVectorMapStrStr> v;};// вектор индекса угла - вектор карты строка/строка
+  struct DllExport TVecMaterial0Vec{ std::vector<TVecAngleVecMap>  v;};
+  struct DllExport TVecMaterial1Vec{ std::vector<TVecMaterial0Vec> v;};
+  struct DllExport TVecMass0Vec{     std::vector<TVecMaterial1Vec> v;};
+  struct DllExport TVecMass1Vec{     std::vector<TVecMass0Vec>     v;};
+  struct DllExport TVecVelocityVec{  std::vector<TVecMass1Vec>     v;};
 
   typedef std::map<float,int>      TMapFloatInt;
   typedef TMapFloatInt::iterator   TMapFloatIntIt;
@@ -42,7 +43,7 @@ struct DllExport TTableSoundItem : public TBaseItem
   TMapStrInt mMapMaterial;
 
   // порядок поиска: velocity, mass, mass, material, material, angle
-  TMapVelocityMap mMapParamMap;
+  TVecVelocityVec mVecParam;
 
 public:
 	TTableSoundItem(std::string& name);
@@ -50,20 +51,20 @@ public:
   // использование 
   struct DllExport TIn
   {
-    float velocity;
-    float mass0;
-    float mass1;
-    std::string material0;
-    std::string material1;
-    float angle;
+    float velocity;// м/с
+    float mass0;// кг
+    float mass1;// кг
+    std::string material0;// имя
+    std::string material1;// имя
+    float angle;// градусы
   };
 
   // наружу выдаст набор из вариантов описания звука - использующий класс сам решит какой вариант лучше
   bool Get(TIn& paramIn, TVectorMapStrStr& paramOut);
 
 
-  struct DllExport TCombination
-  {
+  struct DllExport TCombinationIndex
+  {// набор индексов
     int velocity;
     int mass0;
     int mass1;
@@ -72,7 +73,24 @@ public:
     int angle;
   };
 
-  void Add(TCombination& combination, TVectorMapStrStr& vecMap);
+  void Add(TCombinationIndex& combination, TVectorMapStrStr& vecMap);
+
+  struct TCombiSound
+  {
+    TTableSoundItem::TMapStrInt       mapCombination;
+    TTableSoundItem::TVectorMapStrStr vecSound;
+  };
+  typedef std::list<TCombiSound> TListCombiSound;
+  struct TSetNameParam
+  {
+    std::string velocity;
+    std::string mass0;
+    std::string mass1;
+    std::string material0;
+    std::string material1;
+    std::string angle;
+  };
+  void MakeList(TListCombiSound& listCombi, TSetNameParam& setNameParam);
 };
 
 #endif

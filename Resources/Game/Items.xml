@@ -446,12 +446,12 @@
     <Collision>
       <Sound>
         <Combination>
-          <Property key="Angle"    value="0"/>
+          <Property key="Angle"     value="0"/>
           <Property key="Mass0"     value="0"/>
           <Property key="Mass1"     value="1"/>
           <Property key="Material0" value="0"/>
           <Property key="Material1" value="1"/>
-          <Property key="Velocity" value="0"/>
+          <Property key="Velocity"  value="0"/>
         </Combination>
         <Param>
 					<Variant>
@@ -470,12 +470,12 @@
       </Sound>
       <Sound>
         <Combination>
-          <Property key="Angle"    value="0"/>
+          <Property key="Angle"     value="1"/>
           <Property key="Mass0"     value="0"/>
           <Property key="Mass1"     value="1"/>
           <Property key="Material0" value="0"/>
           <Property key="Material1" value="1"/>
-          <Property key="Velocity" value="0"/>
+          <Property key="Velocity"  value="0"/>
         </Combination>
         <Param>
 					<Variant>
