@@ -270,6 +270,16 @@
   </Terrain>
   <Map name="Field">
 	  <TableSound name="0"/>
+    <Gravity><!-- Ускорение свободного падения -->
+      <Property key="x" value="0"/>
+      <Property key="y" value="-9.81"/>
+      <Property key="z" value="0"/>
+    </Gravity>
+    <CameraUp><!-- Как ориентирована камера, где у нее верх -->
+      <Property key="x" value="0"/>
+      <Property key="y" value="1"/>
+      <Property key="z" value="0"/>
+    </CameraUp>
 	  <Set><!-- Набор объектов сцены -->
 		  <Object>
 				<BaseProperty>

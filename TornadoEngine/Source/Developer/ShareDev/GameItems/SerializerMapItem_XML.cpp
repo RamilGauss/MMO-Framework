@@ -15,7 +15,9 @@ namespace nsSerializerMapItem_XML
 {
   const char* sMap            = "Map";
 	const char* sTableSound     = "TableSound";
-	const char* sNameTableSound = "name";
+  const char* sGravity        = "Gravity";
+  const char* sCameraUp       = "CameraUp";
+  const char* sNameTableSound = "name";
 	const char* sSet					  = "Set";
 	const char* sObject				  = "Object";
 	const char* sBaseProperty	  = "BaseProperty";
@@ -51,7 +53,9 @@ bool TSerializerMapItem_XML::Load(TBaseItem* pItem)
     return false;
 
 	LoadTableSound();
-	LoadSet();
+  LoadGravity();
+  LoadCameraUp();
+  LoadSet();
 	LoadScenario();
   return true;
 }
@@ -66,6 +70,8 @@ bool TSerializerMapItem_XML::Save(TBaseItem* pItem)
     return false;
 
 	SaveTableSound();
+  SaveGravity();
+  SaveCameraUp();
 	SaveSet();
 	SaveScenario();
   return mXML->Save();
@@ -74,6 +80,24 @@ bool TSerializerMapItem_XML::Save(TBaseItem* pItem)
 void TSerializerMapItem_XML::LoadTableSound()
 {
   mMapItem->mNameTableSound = mXML->ReadSectionAttr(sTableSound, 0, sNameTableSound);
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerMapItem_XML::LoadGravity()
+{
+  if(mXML->EnterSection(sGravity, 0))
+  {
+    LoadVector3ByProperty(mMapItem->mGravity);
+    mXML->LeaveSection();
+  }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerMapItem_XML::LoadCameraUp()
+{
+  if(mXML->EnterSection(sCameraUp, 0))
+  {
+    LoadVector3ByProperty(mMapItem->mCameraUp);
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadSet()
@@ -112,6 +136,24 @@ void TSerializerMapItem_XML::SaveTableSound()
   attr.Value = mMapItem->mNameTableSound;
 
   mXML->AddSection(sTableSound, 1, &attr);
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerMapItem_XML::SaveGravity()
+{
+  if(mXML->AddSectionAndEnter(sGravity))
+  {
+    SaveVector3ByProperty(mMapItem->mGravity);
+    mXML->LeaveSection();
+  }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerMapItem_XML::SaveCameraUp()
+{
+  if(mXML->AddSectionAndEnter(sCameraUp))
+  {
+    SaveVector3ByProperty(mMapItem->mCameraUp);
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::SaveSet()
@@ -246,3 +288,4 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
   }
 }
 //-------------------------------------------------------------------------------------------------------
+

@@ -35,6 +35,8 @@ struct DllExport TMapItem : public TBaseItem
 
 	TListObject mListObject;
 	std::string mNameTableSound;
+  nsMathTools::TVector3 mGravity;
+  nsMathTools::TVector3 mCameraUp;
 
   TMapItem(std::string& name);
 };

@@ -27,12 +27,16 @@ public:
 protected:
 
 	void LoadTableSound();
+  void LoadGravity();
+  void LoadCameraUp();
 	void LoadSet();
 	void LoadScenario();
 
 	void LoadObject(TMapItem::TObject& object);
 
 	void SaveTableSound();
+  void SaveGravity();
+  void SaveCameraUp();
 	void SaveSet();
 	void SaveScenario();
 	
