@@ -15,10 +15,11 @@ See for more information License.h.
 #include "ContainerArrObj.h"
 #include "SaveToFile.h"
 #include <boost/thread/thread.hpp>
+#include "ThreadBoost.h"
 
 #define NUM_GE    3
 #define NUM_LOGIC 1
-
+//---------------------------------------------------------------------------------------
 //Цель теста: тестирование связки Точка синхронизация-Абоненты
 class TA
 {
@@ -29,86 +30,77 @@ public:
   }
   int abc;
 };
+//---------------------------------------------------------------------------------------
+class TTestAbonent : public TThreadBoost
+{
+  TSynchroAbonent mSAbonent;
+  
+  TSynchroPoint*  mSPoint;
+  int             mDstID;
+public:
+  TTestAbonent();
+  void Setup(TSynchroPoint* pSP, int id_reciver, int id_sender);
+protected:
+  virtual void Work();
+};
+//---------------------------------------------------------------------------------------
+TTestAbonent::TTestAbonent()
+{
+  mSPoint = NULL;
+  mDstID  = 0;
+}
+//---------------------------------------------------------------------------------------
+void TTestAbonent::Setup(TSynchroPoint* pSP, int selfID, int dstID)
+{
+  mDstID  = dstID;
+  mSPoint = pSP;
 
-TSynchroPoint* pSP = NULL;
-
-void Thread0(TSynchroAbonent* pAbonent)
+  mSAbonent.SetSynchroPoint(pSP);
+  mSAbonent.SetSelfID(selfID);
+}
+//---------------------------------------------------------------------------------------
+void TTestAbonent::Work()
 {
   int i = 0;
   while(1)
   {
-    TA* pA0 = new TA;
-    pA0->abc = i;
-    IContainer* pC = new TContainerArrObj<TA>;
-    pC->EntrustByCount( (char*)pA0, 1);
-    pAbonent->AddEventWithoutCopy( NUM_LOGIC, pC);
+    if( (rand() % 10) == 0) // имитация случайности пакетов
+    {
+      TA* pA0 = new TA;
+      pA0->abc = i;
+      IContainer* pC = new TContainerArrObj<TA>;
+      pC->EntrustByCount( (char*)pA0, 1);
+      mSAbonent.AddEventWithoutCopy( mDstID, pC);
+    }
 
     int id_sender;
-    IContainer* pEventLogic = pAbonent->GetEvent(id_sender);
-    if(pEventLogic)
+    IContainer* pEvent = mSAbonent.GetEvent(id_sender);
+    if(pEvent)
     {
-      TA* pA1  = (TA*)pEventLogic->GetPtr();
+      TA* pA1 = (TA*)pEvent->GetPtr();
     }
     i++;
   }
 }
-
-void Thread1(TSynchroAbonent* pAbonent)
-{
-  int i = 0;
-  while(1)
-  {
-    TA* pA0 = new TA;
-    pA0->abc = i;
-    IContainer* pC = new TContainerArrObj<TA>;
-    pC->EntrustByCount( (char*)pA0, 1);
-    pAbonent->AddEventWithoutCopy( NUM_GE, pC);
-
-    int id_sender;
-    IContainer* pEventLogic = pAbonent->GetEvent(id_sender);
-    if(pEventLogic)
-    {
-      TA* pA1  = (TA*)pEventLogic->GetPtr();
-    }
-    i++;
-  }
-}
-
+//---------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
   bool resSetPath = SetCurrentPathByFile(argv[0]);
   BL_ASSERT(resSetPath);
 
-  TSynchroAbonent GE, Logic;
-  pSP = new TSynchroPoint;
+  TSynchroPoint* pSP = new TSynchroPoint;
 
-  GE.SetSynchroPoint(pSP);
-  GE.SetSelfID(NUM_GE);
-
-  Logic.SetSynchroPoint(pSP);
-  Logic.SetSelfID(NUM_LOGIC);
+  TTestAbonent testGE, testLogic;
+  testGE.Setup(pSP, NUM_LOGIC, NUM_GE);
+  testLogic.Setup(pSP, NUM_GE, NUM_LOGIC );
 
   pSP->SetupAfterRegister();
 
-  boost::thread threadGE(boost::bind(&Thread0,&GE));
-  boost::thread threadLogic(boost::bind(&Thread0,&Logic));
+  testGE.Start();
+  testLogic.Start();
   ht_msleep(1000000);
-  //int i = 0;
-  //while(1)
-  //{
-  //  i++;
-  //  TA* pA0 = new TA;
-  //  pA0->abc = i;
-  //  IContainer* pC = new TContainerArrObj<TA>;
-  //  pC->EntrustByCount( (char*)pA0, 1);
-  //  GE.AddEventWithoutCopy( NUM_LOGIC, pC);
-
-  //  int id_sender;
-  //  IContainer* pEventLogic = Logic.GetEvent(id_sender);
-  //  TA* pA1  = (TA*)pEventLogic->GetPtr();
-  //  int a = 0;
-  //}
-
+  
+  delete pSP;
   return 0;
 }
 /*

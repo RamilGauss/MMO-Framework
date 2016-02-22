@@ -17,6 +17,14 @@ See for more information License.h.
 
 class DllExport TPhysicEngine_Bullet
 {
+public:
+  typedef enum
+  {
+    eStatePause, 
+    eStateRealTime, 
+    eStateControlTime,
+  } eStateWorld;
+private:
   struct TWorld
   {
     btDiscreteDynamicsWorld*             pWorld;
@@ -25,6 +33,13 @@ class DllExport TPhysicEngine_Bullet
     btSequentialImpulseConstraintSolver* pSolver;
     btDefaultCollisionConfiguration*     pCollisionConfiguration;
 
+    eStateWorld state;
+    eStateWorld prevState;
+    
+    float ratioRealTimeToControl;//  ratio > 1 - ускорение времени, ratio < 1 - замедление
+
+    unsigned int prevTimeWork;
+    
     TWorld()
     {
       pWorld = NULL;
@@ -32,8 +47,12 @@ class DllExport TPhysicEngine_Bullet
       pDispatcher = NULL;
       pSolver = NULL;
       pCollisionConfiguration = NULL;
+      state     = eStatePause;
+      prevState = eStatePause;
+      prevTimeWork = 0;
+      ratioRealTimeToControl = 1.0f;
     }
-    void Done()
+    ~TWorld()
     {
       delete pWorld;
       delete pBroadphase;
@@ -43,22 +62,21 @@ class DllExport TPhysicEngine_Bullet
     }
   };
 
-  typedef std::map<int,TWorld> TMapIntWorld;
-  typedef TMapIntWorld::iterator   TMapIntWorldIt;
-  typedef TMapIntWorld::value_type TMapIntWorldVT;
+  typedef std::map<int,TWorld*> TMapIntPtrWorld;
+  typedef TMapIntPtrWorld::iterator   TMapIntPtrWorldIt;
+  typedef TMapIntPtrWorld::value_type TMapIntPtrWorldVT;
   
-  TMapIntWorld mMapIDWorld;
+  TMapIntPtrWorld mMapIDWorld;
 
   int mLastID;
   
-  unsigned int mPrevTimeWork;
-
 public:
   TPhysicEngine_Bullet();
   virtual ~TPhysicEngine_Bullet();
 
-  void Work(bool first_start = false);// реальное время
-  void Work(btScalar timeStep, int maxSubSteps = 1, btScalar fixedTimeStep = btScalar(1.)/btScalar(60.));
+  void Work();
+  void Setup(int id_world, eStateWorld state = eStateRealTime, 
+             float ratioRealTimeToControl = 1.0f);
 
   int AddWorld();
   void DeleteWorld(int id_world);
@@ -71,7 +89,7 @@ public:
 
 private:
 
-  bool GetByID(int id_world, TPhysicEngine_Bullet::TWorld& world);
+  TPhysicEngine_Bullet::TWorld* GetByID(int id_world);
 };
 
 #endif

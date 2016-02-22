@@ -530,6 +530,10 @@
 					RelativePath=".\GameItems\PrototypeScene.h"
 					>
 				</File>
+				<File
+					RelativePath=".\GameItems\TypeEventScene.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="SerializerXML"

@@ -70,6 +70,7 @@ void TSlaveLogic::StartEvent()
 {
   CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::InitForms);
   CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::ConnectToMaster);
+  CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::InitMMOSlave);
 }
 //----------------------------------------------------------
 void TSlaveLogic::StopEvent()
@@ -265,5 +266,15 @@ void TSlaveLogic::RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent
   mListSessionAdd.Add(pID);
 
   CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::ConnectDownMMOEngine);
+}
+//---------------------------------------------------------------------------------------------
+void TSlaveLogic::InitMMOSlave()
+{
+  mComp.pMMOEngineSlave->GetCBBeginWork()->Register( &TSlaveLogic::BeginWorkMMOSlave, this );
+}
+//---------------------------------------------------------------------------------------------
+void TSlaveLogic::BeginWorkMMOSlave()
+{
+  mComp.pMMOEngineSlave->Get()->SetLoad( GetLastLoad() );
 }
 //---------------------------------------------------------------------------------------------

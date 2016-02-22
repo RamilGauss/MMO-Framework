@@ -63,6 +63,9 @@ private:
 
   void SaveContextClient(nsMMOEngine::TEventSaveContext* pEvent);
   void RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent);
+
+  void InitMMOSlave();
+  void BeginWorkMMOSlave();
 };
 
 #endif
