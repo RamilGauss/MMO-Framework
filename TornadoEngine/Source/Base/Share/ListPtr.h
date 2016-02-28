@@ -26,8 +26,8 @@ public:
   T* operator ->(){return Get();}
   void Clear()
   {
-    T::iterator bit = mList.begin();
-    T::iterator eit = mList.end();
+    typename T::iterator bit = mList.begin();
+    typename T::iterator eit = mList.end();
     while(bit!=eit)
     {
       delete *bit;

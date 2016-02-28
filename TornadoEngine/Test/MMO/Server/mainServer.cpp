@@ -6,9 +6,11 @@ See for more information License.h.
 */
 
 #include <boost/asio/ip/impl/address_v4.ipp>
+#include <string>
+#include <boost/foreach.hpp>
+
 #include "BL_Debug.h"
 #include "CommonParam.h"
-#include <string.h>
 #include "MakerTransport.h"
 #include "HiTimer.h"
 #include "NetSystem.h"
