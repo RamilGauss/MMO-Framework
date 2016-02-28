@@ -9,6 +9,7 @@ See for more information License.h.
 #include "ShapeItem.h"
 #include "IXML.h"
 #include <boost/foreach.hpp>
+#include <boost/lexical_cast.hpp>
 
 namespace nsShapeItem
 {
@@ -229,10 +230,8 @@ void TSerializerShapeItem_XML::SavePaint()
       {
         BOOST_FOREACH(TShapeItem::TMapFloatLayerVT& bit, mShape->mVecPaint[iLayer])
         {
-          char strDist[50];
-          _gcvt_s(strDist, sizeof(strDist), bit.first, 9);
           attr.Name  = sDistance;
-          attr.Value = strDist;
+          attr.Value = boost::lexical_cast<std::string>(bit.first);
           if(mXML->AddSectionAndEnter(sLOD, 1, &attr))
           {
             std::string key;

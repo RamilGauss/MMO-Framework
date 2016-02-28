@@ -9,6 +9,8 @@ See for more information License.h.
 #include "MaterialItem.h"
 #include "IXML.h"
 
+#include <boost/lexical_cast.hpp>
+
 namespace nsSerializerMaterialItem_XML
 {
   const char* sMaterial   = "Material";
@@ -144,25 +146,19 @@ void TSerializerMaterialItem_XML::SaveGraphic()
         {
           TMaterialItem::TLOD lod = mMaterial->mGraphic[iVariant].operator [](iLOD);
 
-          char strDist[50];
-          _gcvt_s(strDist, sizeof(strDist), lod.distance, 9);
-
           TAttrInfo attr;
           attr.Name  = sDistance;
-          attr.Value = strDist;
+          attr.Value = boost::lexical_cast<std::string>(lod.distance);
           if(mXML->AddSectionAndEnter(sLOD, 1, &attr))
           {
             std::string key = sColor;  SaveProperty(key, lod.color);
                         key = sNormal; SaveProperty(key, lod.normal);
-            std::string value;
-            char strValue[50];
-
-            _gcvt_s(strValue, sizeof(strValue), lod.width, 9);
-            key = sWidth; value = strValue;
+            key = sWidth; 
+            std::string value = boost::lexical_cast<std::string>(lod.width);
             SaveProperty(key, value);
             
-            _gcvt_s(strValue, sizeof(strValue), lod.length, 9);
-            key = sLength; value = strValue;
+            key = sLength; 
+            value = boost::lexical_cast<std::string>(lod.length);
             SaveProperty(key, value);
 
             mXML->LeaveSection();
@@ -179,22 +175,18 @@ void TSerializerMaterialItem_XML::SavePhysic()
 {
   if(mXML->AddSectionAndEnter(sPhysic))// начало секции Физика
   {
-    char str[100];
     std::string key, value;
 
-    _gcvt_s(str, sizeof(str), mMaterial->mPhysic.density, 9);
     key = sDensity; 
-    value = str;
+    value = boost::lexical_cast<std::string>(mMaterial->mPhysic.density);
     SaveProperty(key, value);
 
-    _gcvt_s(str, sizeof(str), mMaterial->mPhysic.elasticity, 9);
     key = sElasticity; 
-    value = str;
+    value = boost::lexical_cast<std::string>(mMaterial->mPhysic.elasticity);
     SaveProperty(key, value);
 
-    _gcvt_s(str, sizeof(str), mMaterial->mPhysic.friction, 9);
     key = sFriction; 
-    value = str;
+    value = boost::lexical_cast<std::string>(mMaterial->mPhysic.friction);
     SaveProperty(key, value);
 
     mXML->LeaveSection();

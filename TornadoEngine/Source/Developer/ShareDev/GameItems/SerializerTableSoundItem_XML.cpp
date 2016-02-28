@@ -8,9 +8,11 @@ See for more information License.h.
 #include "SerializerTableSoundItem_XML.h"
 #include "IXML.h"
 #include "TableSoundItem.h"
+#include "BL_Debug.h"
+
 #include <errno.h>
 #include <boost/foreach.hpp>
-#include "BL_Debug.h"
+#include <boost/lexical_cast.hpp>
 
 
 namespace nsSerializerTableSoundItem_XML
@@ -220,10 +222,10 @@ void TSerializerTableSoundItem_XML::SaveRangeVelocity()
   {
     BOOST_FOREACH(TTableSoundItem::TMapFloatIntVT& vt, mTableSound->mMapVelocity)
     {
-      char strValue[50];
       std::string key, value;
-      _gcvt_s(strValue, sizeof(strValue), vt.first, 9); value = strValue;
-      sprintf(strValue, "%d", vt.second);               key   = strValue; 
+      value = boost::lexical_cast<std::string>(vt.first);
+      key   = boost::lexical_cast<std::string>(vt.second); 
+
       SaveProperty(key, value);
     }
     mXML->LeaveSection();
@@ -236,10 +238,9 @@ void TSerializerTableSoundItem_XML::SaveRangeAngle()
   {
     BOOST_FOREACH(TTableSoundItem::TMapFloatIntVT& vt, mTableSound->mMapAngle)
     {
-      char strValue[50];
       std::string key, value;
-      _gcvt_s(strValue, sizeof(strValue), vt.first, 9); value = strValue;
-      sprintf(strValue, "%d", vt.second);               key   = strValue; 
+      value = boost::lexical_cast<std::string>(vt.first);
+      key   = boost::lexical_cast<std::string>(vt.second); 
       SaveProperty(key, value);
     }
     mXML->LeaveSection();
@@ -252,10 +253,9 @@ void TSerializerTableSoundItem_XML::SaveRangeMass()
   {
     BOOST_FOREACH(TTableSoundItem::TMapFloatIntVT& vt, mTableSound->mMapMass)
     {
-      char strValue[50];
       std::string key, value;
-      _gcvt_s(strValue, sizeof(strValue), vt.first, 9); value = strValue;
-      sprintf(strValue, "%d", vt.second);               key   = strValue; 
+      value = boost::lexical_cast<std::string>(vt.first);
+      key   = boost::lexical_cast<std::string>(vt.second); 
       SaveProperty(key, value);
     }
     mXML->LeaveSection();

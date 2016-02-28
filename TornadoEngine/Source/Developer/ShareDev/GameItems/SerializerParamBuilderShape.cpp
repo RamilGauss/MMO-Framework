@@ -8,6 +8,8 @@ See for more information License.h.
 #include "SerializerParamBuilderShape.h"
 #include "BL_Debug.h"
 
+#include <boost/lexical_cast.hpp>
+
 namespace nsSerializerParamBuilderShape
 {
 #define REGISTER_HANDLER(NAME_TYPE) \
@@ -231,15 +233,15 @@ void TSerializerParamBuilderShape::HandlerPlateToStr()
   std::string strType = FindStrByType(pPlate->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pPlate->length, 9);
+  value = boost::lexical_cast<std::string>(pPlate->length);
   mMapKeyValue->insert(TMapStrStrVT(sLength, value));
 
-  _gcvt_s(value, sizeof(value), pPlate->height, 9);
+  value = boost::lexical_cast<std::string>(pPlate->height);
   mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 
-  _gcvt_s(value, sizeof(value), pPlate->width, 9);
+  value = boost::lexical_cast<std::string>(pPlate->width);
   mMapKeyValue->insert(TMapStrStrVT(sWidth, value));
 }
 //---------------------------------------------------------------------
@@ -250,16 +252,16 @@ void TSerializerParamBuilderShape::HandlerPlateVarGeomToStr()
   std::string strType = FindStrByType(pPlateVarGeom->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pPlateVarGeom->height, 9);
+  value = boost::lexical_cast<std::string>(pPlateVarGeom->height);
   mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 
-  _gcvt_s(value, sizeof(value), pPlateVarGeom->width, 9);
+  value = boost::lexical_cast<std::string>(pPlateVarGeom->width);
   mMapKeyValue->insert(TMapStrStrVT(sWidth, value));
 
   int cnt = pPlateVarGeom->vecCoord.size();
-  sprintf(value, "%d", cnt);
+  value = boost::lexical_cast<std::string>(cnt);
   mMapKeyValue->insert(TMapStrStrVT(sCntCoord, value));
 
   for(int i = 0 ; i < cnt ; i++ )
@@ -269,12 +271,9 @@ void TSerializerParamBuilderShape::HandlerPlateVarGeomToStr()
 
     std::string strValue;
 
-    _gcvt_s(value, sizeof(value), pPlateVarGeom->vecCoord[i].x, 9);
-    strValue = value;
+    strValue = boost::lexical_cast<std::string>(pPlateVarGeom->vecCoord[i].x);
     strValue += ";";
-    
-    _gcvt_s(value, sizeof(value), pPlateVarGeom->vecCoord[i].y, 9);
-    strValue += value;
+    strValue += boost::lexical_cast<std::string>(pPlateVarGeom->vecCoord[i].y);
 
     mMapKeyValue->insert(TMapStrStrVT(strCoord, strValue));
   }
@@ -287,18 +286,18 @@ void TSerializerParamBuilderShape::HandlerSphereToStr()
   std::string strType = FindStrByType(pSphere->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pSphere->radius_max, 9);
+  value = boost::lexical_cast<std::string>(pSphere->radius_max);
   mMapKeyValue->insert(TMapStrStrVT(sRadiusMax, value));
 
-  _gcvt_s(value, sizeof(value), pSphere->radius_min, 9);
+  value = boost::lexical_cast<std::string>(pSphere->radius_min);
   mMapKeyValue->insert(TMapStrStrVT(sRadiusMin, value));
 
-  _gcvt_s(value, sizeof(value), pSphere->cut, 9);
+  value = boost::lexical_cast<std::string>(pSphere->cut);
   mMapKeyValue->insert(TMapStrStrVT(sCut, value));
 
-  _gcvt_s(value, sizeof(value), pSphere->cnt_points_per_circle, 9);
+  value = boost::lexical_cast<std::string>(pSphere->cnt_points_per_circle);
   mMapKeyValue->insert(TMapStrStrVT(sCntPointsPerCircle, value));
 }
 //---------------------------------------------------------------------
@@ -309,18 +308,18 @@ void TSerializerParamBuilderShape::HandlerConeToStr()
   std::string strType = FindStrByType(pCone->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
   
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pCone->radius, 9);
+  value = boost::lexical_cast<std::string>(pCone->radius);
   mMapKeyValue->insert(TMapStrStrVT(sRadius, value));
 
-  _gcvt_s(value, sizeof(value), pCone->height, 9);
+  value = boost::lexical_cast<std::string>(pCone->height);
   mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 
-  _gcvt_s(value, sizeof(value), pCone->cut, 9);
+  value = boost::lexical_cast<std::string>(pCone->cut);
   mMapKeyValue->insert(TMapStrStrVT(sCut, value));
 
-  _gcvt_s(value, sizeof(value), pCone->cnt_points_per_circle, 9);
+  value = boost::lexical_cast<std::string>(pCone->cnt_points_per_circle);
   mMapKeyValue->insert(TMapStrStrVT(sCntPointsPerCircle, value));
 }
 //---------------------------------------------------------------------
@@ -331,21 +330,21 @@ void TSerializerParamBuilderShape::HandlerTrapeziumToStr()
   std::string strType = FindStrByType(pTrapezium->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pTrapezium->height, 9);
+  value = boost::lexical_cast<std::string>(pTrapezium->height);
   mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 
-  _gcvt_s(value, sizeof(value), pTrapezium->len_down_base, 9);
+  value = boost::lexical_cast<std::string>(pTrapezium->len_down_base);
   mMapKeyValue->insert(TMapStrStrVT(sLenDownBase, value));
 
-  _gcvt_s(value, sizeof(value), pTrapezium->len_up_base, 9);
+  value = boost::lexical_cast<std::string>(pTrapezium->len_up_base);
   mMapKeyValue->insert(TMapStrStrVT(sLenUpBase, value));
 
-  _gcvt_s(value, sizeof(value), pTrapezium->shift_up_down, 9);
+  value = boost::lexical_cast<std::string>(pTrapezium->shift_up_down);
   mMapKeyValue->insert(TMapStrStrVT(sShiftUpDown, value));
 
-  _gcvt_s(value, sizeof(value), pTrapezium->thickless, 9);
+  value = boost::lexical_cast<std::string>(pTrapezium->thickless);
   mMapKeyValue->insert(TMapStrStrVT(sThickless, value));
 }
 //---------------------------------------------------------------------
@@ -356,21 +355,21 @@ void TSerializerParamBuilderShape::HandlerTriangularPyramidToStr()
   std::string strType = FindStrByType(pTriangularPyramid->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pTriangularPyramid->base0, 9);
+  value = boost::lexical_cast<std::string>(pTriangularPyramid->base0);
   mMapKeyValue->insert(TMapStrStrVT(sBase0, value));
 
-  _gcvt_s(value, sizeof(value), pTriangularPyramid->base1, 9);
+  value = boost::lexical_cast<std::string>(pTriangularPyramid->base1);
   mMapKeyValue->insert(TMapStrStrVT(sBase1, value));
 
-  _gcvt_s(value, sizeof(value), pTriangularPyramid->base2, 9);
+  value = boost::lexical_cast<std::string>(pTriangularPyramid->base2);
   mMapKeyValue->insert(TMapStrStrVT(sBase2, value));
 
-  _gcvt_s(value, sizeof(value), pTriangularPyramid->cut, 9);
+  value = boost::lexical_cast<std::string>(pTriangularPyramid->cut);
   mMapKeyValue->insert(TMapStrStrVT(sCut, value));
 
-  _gcvt_s(value, sizeof(value), pTriangularPyramid->height, 9);
+  value = boost::lexical_cast<std::string>(pTriangularPyramid->height);
   mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 }
 //---------------------------------------------------------------------
@@ -381,15 +380,15 @@ void TSerializerParamBuilderShape::HandlerQuadrangularPyramidToStr()
   std::string strType = FindStrByType(pQuadrangularPyramid->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pQuadrangularPyramid->base, 9);
+  value = boost::lexical_cast<std::string>(pQuadrangularPyramid->base);
   mMapKeyValue->insert(TMapStrStrVT(sBase, value));
 
-  _gcvt_s(value, sizeof(value), pQuadrangularPyramid->cut, 9);
+  value = boost::lexical_cast<std::string>(pQuadrangularPyramid->cut);
   mMapKeyValue->insert(TMapStrStrVT(sCut, value));
 
-  _gcvt_s(value, sizeof(value), pQuadrangularPyramid->height, 9);
+  value = boost::lexical_cast<std::string>(pQuadrangularPyramid->height);
   mMapKeyValue->insert(TMapStrStrVT(sHeight, value));
 }
 //---------------------------------------------------------------------
@@ -400,18 +399,18 @@ void TSerializerParamBuilderShape::HandlerCylinderToStr()
   std::string strType = FindStrByType(pCylinder->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pCylinder->cnt_points_per_circle, 9);
+  value = boost::lexical_cast<std::string>(pCylinder->cnt_points_per_circle);
   mMapKeyValue->insert(TMapStrStrVT(sCntPointsPerCircle, value));
 
-  _gcvt_s(value, sizeof(value), pCylinder->length, 9);
+  value = boost::lexical_cast<std::string>(pCylinder->length);
   mMapKeyValue->insert(TMapStrStrVT(sLength, value));
 
-  _gcvt_s(value, sizeof(value), pCylinder->radius_max, 9);
+  value = boost::lexical_cast<std::string>(pCylinder->radius_max);
   mMapKeyValue->insert(TMapStrStrVT(sRadiusMax, value));
 
-  _gcvt_s(value, sizeof(value), pCylinder->radius_min, 9);
+  value = boost::lexical_cast<std::string>(pCylinder->radius_min);
   mMapKeyValue->insert(TMapStrStrVT(sRadiusMin, value));
 }
 //---------------------------------------------------------------------
@@ -422,18 +421,18 @@ void TSerializerParamBuilderShape::HandlerTriangularPrismToStr()
   std::string strType = FindStrByType(pTriangularPrism->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pTriangularPrism->base0, 9);
+  value = boost::lexical_cast<std::string>(pTriangularPrism->base0);
   mMapKeyValue->insert(TMapStrStrVT(sBase0, value));
 
-  _gcvt_s(value, sizeof(value), pTriangularPrism->base1, 9);
+  value = boost::lexical_cast<std::string>(pTriangularPrism->base1);
   mMapKeyValue->insert(TMapStrStrVT(sBase1, value));
 
-  _gcvt_s(value, sizeof(value), pTriangularPrism->base2, 9);
+  value = boost::lexical_cast<std::string>(pTriangularPrism->base2);
   mMapKeyValue->insert(TMapStrStrVT(sBase2, value));
 
-  _gcvt_s(value, sizeof(value), pTriangularPrism->length, 9);
+  value = boost::lexical_cast<std::string>(pTriangularPrism->length);
   mMapKeyValue->insert(TMapStrStrVT(sLength, value));
 }
 //---------------------------------------------------------------------

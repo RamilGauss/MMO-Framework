@@ -125,19 +125,19 @@ bool TBaseSerializerItem_XML::SaveVector3ByProperty(nsMathTools::TVector3& v3)
   char str[50];
 
   key = sAxeX;
-  _gcvt_s(str, sizeof(str), v3.x, 9);
+  gcvt(v3.x, 9, str);
   value = str;
   if(SaveProperty(key,value)==false)
     return false;
   
   key = sAxeY;
-  _gcvt_s(str, sizeof(str), v3.y, 9);
+  gcvt(v3.y, 9, str);
   value = str;
   if(SaveProperty(key,value)==false)
     return false;
 
   key = sAxeZ;
-  _gcvt_s(str, sizeof(str), v3.z, 9);
+  gcvt(v3.z, 9, str);
   value = str;
   if(SaveProperty(key,value)==false)
     return false;

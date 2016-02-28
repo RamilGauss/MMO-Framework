@@ -10,6 +10,7 @@ See for more information License.h.
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
+#include <boost/lexical_cast.hpp>
 
 using namespace std;
 
@@ -155,9 +156,8 @@ bool IXML::ReadFloat4(int index, float * v4)
 //------------------------------------------------------------------
 bool IXML::WriteDouble(const char* name, int num, double v)
 {
-  char s[150];
-  _gcvt_s(s, sizeof(s), v, 20);
-  return WriteSection(name, num, string(s));
+  std::string s = boost::lexical_cast<std::string>(v);
+  return WriteSection(name, num, s);
 }
 //------------------------------------------------------------------
 bool IXML::WriteFloat(const char* name, int num, float v)
@@ -197,8 +197,7 @@ bool IXML::WriteFloat4(const char* name, int num, float* v4)
 //------------------------------------------------------------------
 bool IXML::WriteDouble(int index, double v)
 {
-  char s[150];
-  _gcvt_s(s, sizeof(s), v, 20);
+  std::string s = boost::lexical_cast<std::string>(v);
   return WriteSection(index, string(s));
 }
 //------------------------------------------------------------------

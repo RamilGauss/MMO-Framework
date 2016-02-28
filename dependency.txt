@@ -33,7 +33,7 @@
 		- "E:\Temp\Dependency\Include\Bullet\BulletSoftBody",
 		- "E:\Temp\Dependency\Include\Bullet\LinearMath",
 		- "E:\Temp\Dependency\Include\Bullet\Extras",
-    - "E:\Temp\Dependency\Include\Bullet\Extras\ConvexDecomposition".
+                - "E:\Temp\Dependency\Include\Bullet\Extras\ConvexDecomposition".
 	1.2. VC++ Directories->Library files - добавить, примерно так:
 	  - "C:\Program Files (x86)\boost\boost_1_54_0\stage\lib",
 		- "E:\Temp\Dependency\Lib".

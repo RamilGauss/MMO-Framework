@@ -8,6 +8,8 @@ See for more information License.h.
 #include "SerializerParamBuilderConstraint.h"
 #include "BL_Debug.h"
 
+#include <boost/lexical_cast.hpp>
+
 namespace nsSerializerParamBuilderConstraint
 {
 #define REGISTER_HANDLER(NAME_TYPE) \
@@ -321,51 +323,51 @@ void TSerializerParamBuilderConstraint::HandlerGeneric6DofToStr()
   std::string strType = FindStrByType(pGeneric6Dof->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->breakImpulse, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->breakImpulse);
   mMapKeyValue->insert(TMapStrStrVT(sBreakImpulse, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->pointA.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->pointA.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->pointA.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->pointA.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->pointA.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->pointA.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->pointB.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->pointB.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->pointB.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->pointB.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->pointB.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->pointB.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitAngleLower.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitAngleLower.x);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleLower_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitAngleLower.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitAngleLower.y);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleLower_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitAngleLower.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitAngleLower.z);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleLower_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitAngleUpper.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitAngleUpper.x);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleUpper_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitAngleUpper.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitAngleUpper.y);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleUpper_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitAngleUpper.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitAngleUpper.z);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleUpper_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitLinearLower.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitLinearLower.x);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearLower_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitLinearLower.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitLinearLower.y);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearLower_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitLinearLower.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitLinearLower.z);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearLower_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitLinearUpper.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitLinearUpper.x);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearUpper_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitLinearUpper.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitLinearUpper.y);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearUpper_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6Dof->limitLinearUpper.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6Dof->limitLinearUpper.z);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearUpper_Z, value));
 }
 //---------------------------------------------------------------------
@@ -376,54 +378,54 @@ void TSerializerParamBuilderConstraint::HandlerGeneric6DofSpringToStr()
   std::string strType = FindStrByType(pGeneric6DofSpring->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->breakImpulse, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->breakImpulse);
   mMapKeyValue->insert(TMapStrStrVT(sBreakImpulse, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->pointA.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->pointA.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->pointA.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->pointA.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->pointA.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->pointA.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->pointB.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->pointB.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->pointB.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->pointB.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->pointB.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->pointB.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitAngleLower.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitAngleLower.x);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleLower_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitAngleLower.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitAngleLower.y);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleLower_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitAngleLower.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitAngleLower.z);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleLower_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitAngleUpper.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitAngleUpper.x);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleUpper_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitAngleUpper.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitAngleUpper.y);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleUpper_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitAngleUpper.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitAngleUpper.z);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngleUpper_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitLinearLower.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitLinearLower.x);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearLower_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitLinearLower.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitLinearLower.y);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearLower_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitLinearLower.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitLinearLower.z);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearLower_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitLinearUpper.x, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitLinearUpper.x);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearUpper_X, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitLinearUpper.y, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitLinearUpper.y);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearUpper_Y, value));
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->limitLinearUpper.z, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->limitLinearUpper.z);
   mMapKeyValue->insert(TMapStrStrVT(sLimitLinearUpper_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGeneric6DofSpring->springStiffness, 9);
+  value = boost::lexical_cast<std::string>(pGeneric6DofSpring->springStiffness);
   mMapKeyValue->insert(TMapStrStrVT(sSpringStiffness, value));
 }
 //---------------------------------------------------------------------
@@ -434,23 +436,23 @@ void TSerializerParamBuilderConstraint::HandlerFixedToStr()
   std::string strType = FindStrByType(pFixed->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pFixed->breakImpulse, 9);
+  value = boost::lexical_cast<std::string>(pFixed->breakImpulse);
   mMapKeyValue->insert(TMapStrStrVT(sBreakImpulse, value));
 
-  _gcvt_s(value, sizeof(value), pFixed->pointA.x, 9);
+  value = boost::lexical_cast<std::string>(pFixed->pointA.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_X, value));
-  _gcvt_s(value, sizeof(value), pFixed->pointA.y, 9);
+  value = boost::lexical_cast<std::string>(pFixed->pointA.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Y, value));
-  _gcvt_s(value, sizeof(value), pFixed->pointA.z, 9);
+  value = boost::lexical_cast<std::string>(pFixed->pointA.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pFixed->pointB.x, 9);
+  value = boost::lexical_cast<std::string>(pFixed->pointB.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_X, value));
-  _gcvt_s(value, sizeof(value), pFixed->pointB.y, 9);
+  value = boost::lexical_cast<std::string>(pFixed->pointB.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Y, value));
-  _gcvt_s(value, sizeof(value), pFixed->pointB.z, 9);
+  value = boost::lexical_cast<std::string>(pFixed->pointB.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Z, value));
 }
 //---------------------------------------------------------------------
@@ -461,28 +463,28 @@ void TSerializerParamBuilderConstraint::HandlerSliderToStr()
   std::string strType = FindStrByType(pSlider->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pSlider->breakImpulse, 9);
+  value = boost::lexical_cast<std::string>(pSlider->breakImpulse);
   mMapKeyValue->insert(TMapStrStrVT(sBreakImpulse, value));
 
-  _gcvt_s(value, sizeof(value), pSlider->pointA.x, 9);
+  value = boost::lexical_cast<std::string>(pSlider->pointA.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_X, value));
-  _gcvt_s(value, sizeof(value), pSlider->pointA.y, 9);
+  value = boost::lexical_cast<std::string>(pSlider->pointA.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Y, value));
-  _gcvt_s(value, sizeof(value), pSlider->pointA.z, 9);
+  value = boost::lexical_cast<std::string>(pSlider->pointA.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pSlider->pointB.x, 9);
+  value = boost::lexical_cast<std::string>(pSlider->pointB.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_X, value));
-  _gcvt_s(value, sizeof(value), pSlider->pointB.y, 9);
+  value = boost::lexical_cast<std::string>(pSlider->pointB.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Y, value));
-  _gcvt_s(value, sizeof(value), pSlider->pointB.z, 9);
+  value = boost::lexical_cast<std::string>(pSlider->pointB.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Z, value));
 
-  _gcvt_s(value, sizeof(value), pSlider->limitSliderMax, 9);
+  value = boost::lexical_cast<std::string>(pSlider->limitSliderMax);
   mMapKeyValue->insert(TMapStrStrVT(sLimitSlider_Max, value));
-  _gcvt_s(value, sizeof(value), pSlider->limitSliderMin, 9);
+  value = boost::lexical_cast<std::string>(pSlider->limitSliderMin);
   mMapKeyValue->insert(TMapStrStrVT(sLimitSlider_Min, value));
 }
 //---------------------------------------------------------------------
@@ -493,30 +495,30 @@ void TSerializerParamBuilderConstraint::HandlerConeTwistToStr()
   std::string strType = FindStrByType(pConeTwist->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pConeTwist->breakImpulse, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->breakImpulse);
   mMapKeyValue->insert(TMapStrStrVT(sBreakImpulse, value));
 
-  _gcvt_s(value, sizeof(value), pConeTwist->pointA.x, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->pointA.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_X, value));
-  _gcvt_s(value, sizeof(value), pConeTwist->pointA.y, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->pointA.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Y, value));
-  _gcvt_s(value, sizeof(value), pConeTwist->pointA.z, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->pointA.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pConeTwist->pointB.x, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->pointB.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_X, value));
-  _gcvt_s(value, sizeof(value), pConeTwist->pointB.y, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->pointB.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Y, value));
-  _gcvt_s(value, sizeof(value), pConeTwist->pointB.z, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->pointB.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Z, value));
 
-  _gcvt_s(value, sizeof(value), pConeTwist->limitAngle.x, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->limitAngle.x);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngle_X, value));
-  _gcvt_s(value, sizeof(value), pConeTwist->limitAngle.y, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->limitAngle.y);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngle_Y, value));
-  _gcvt_s(value, sizeof(value), pConeTwist->limitAngle.z, 9);
+  value = boost::lexical_cast<std::string>(pConeTwist->limitAngle.z);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngle_Z, value));
 }
 //---------------------------------------------------------------------
@@ -527,42 +529,42 @@ void TSerializerParamBuilderConstraint::HandlerHingeToStr()
   std::string strType = FindStrByType(pHinge->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pHinge->breakImpulse, 9);
+  value = boost::lexical_cast<std::string>(pHinge->breakImpulse);
   mMapKeyValue->insert(TMapStrStrVT(sBreakImpulse, value));
 
-  _gcvt_s(value, sizeof(value), pHinge->pointA.x, 9);
+  value = boost::lexical_cast<std::string>(pHinge->pointA.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_X, value));
-  _gcvt_s(value, sizeof(value), pHinge->pointA.y, 9);
+  value = boost::lexical_cast<std::string>(pHinge->pointA.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Y, value));
-  _gcvt_s(value, sizeof(value), pHinge->pointA.z, 9);
+  value = boost::lexical_cast<std::string>(pHinge->pointA.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pHinge->pointB.x, 9);
+  value = boost::lexical_cast<std::string>(pHinge->pointB.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_X, value));
-  _gcvt_s(value, sizeof(value), pHinge->pointB.y, 9);
+  value = boost::lexical_cast<std::string>(pHinge->pointB.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Y, value));
-  _gcvt_s(value, sizeof(value), pHinge->pointB.z, 9);
+  value = boost::lexical_cast<std::string>(pHinge->pointB.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Z, value));
 
-  _gcvt_s(value, sizeof(value), pHinge->axeA.x, 9);
+  value = boost::lexical_cast<std::string>(pHinge->axeA.x);
   mMapKeyValue->insert(TMapStrStrVT(sAxeA_X, value));
-  _gcvt_s(value, sizeof(value), pHinge->axeA.y, 9);
+  value = boost::lexical_cast<std::string>(pHinge->axeA.y);
   mMapKeyValue->insert(TMapStrStrVT(sAxeA_Y, value));
-  _gcvt_s(value, sizeof(value), pHinge->axeA.z, 9);
+  value = boost::lexical_cast<std::string>(pHinge->axeA.z);
   mMapKeyValue->insert(TMapStrStrVT(sAxeA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pHinge->axeB.x, 9);
+  value = boost::lexical_cast<std::string>(pHinge->axeB.x);
   mMapKeyValue->insert(TMapStrStrVT(sAxeB_X, value));
-  _gcvt_s(value, sizeof(value), pHinge->axeB.y, 9);
+  value = boost::lexical_cast<std::string>(pHinge->axeB.y);
   mMapKeyValue->insert(TMapStrStrVT(sAxeB_Y, value));
-  _gcvt_s(value, sizeof(value), pHinge->axeB.z, 9);
+  value = boost::lexical_cast<std::string>(pHinge->axeB.z);
   mMapKeyValue->insert(TMapStrStrVT(sAxeB_Z, value));
 
-  _gcvt_s(value, sizeof(value), pHinge->limitAngle_Max, 9);
+  value = boost::lexical_cast<std::string>(pHinge->limitAngle_Max);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngle_Max, value));
-  _gcvt_s(value, sizeof(value), pHinge->limitAngle_Min, 9);
+  value = boost::lexical_cast<std::string>(pHinge->limitAngle_Min);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngle_Min, value));
 }
 //---------------------------------------------------------------------
@@ -573,45 +575,45 @@ void TSerializerParamBuilderConstraint::HandlerHinge2ToStr()
   std::string strType = FindStrByType(pHinge2->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pHinge2->breakImpulse, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->breakImpulse);
   mMapKeyValue->insert(TMapStrStrVT(sBreakImpulse, value));
 
-  _gcvt_s(value, sizeof(value), pHinge2->pointA.x, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->pointA.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_X, value));
-  _gcvt_s(value, sizeof(value), pHinge2->pointA.y, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->pointA.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Y, value));
-  _gcvt_s(value, sizeof(value), pHinge2->pointA.z, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->pointA.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pHinge2->pointB.x, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->pointB.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_X, value));
-  _gcvt_s(value, sizeof(value), pHinge2->pointB.y, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->pointB.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Y, value));
-  _gcvt_s(value, sizeof(value), pHinge2->pointB.z, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->pointB.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Z, value));
 
-  _gcvt_s(value, sizeof(value), pHinge2->axeA.x, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->axeA.x);
   mMapKeyValue->insert(TMapStrStrVT(sAxeA_X, value));
-  _gcvt_s(value, sizeof(value), pHinge2->axeA.y, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->axeA.y);
   mMapKeyValue->insert(TMapStrStrVT(sAxeA_Y, value));
-  _gcvt_s(value, sizeof(value), pHinge2->axeA.z, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->axeA.z);
   mMapKeyValue->insert(TMapStrStrVT(sAxeA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pHinge2->axeB.x, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->axeB.x);
   mMapKeyValue->insert(TMapStrStrVT(sAxeB_X, value));
-  _gcvt_s(value, sizeof(value), pHinge2->axeB.y, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->axeB.y);
   mMapKeyValue->insert(TMapStrStrVT(sAxeB_Y, value));
-  _gcvt_s(value, sizeof(value), pHinge2->axeB.z, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->axeB.z);
   mMapKeyValue->insert(TMapStrStrVT(sAxeB_Z, value));
 
-  _gcvt_s(value, sizeof(value), pHinge2->limitAngle_Max, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->limitAngle_Max);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngle_Max, value));
-  _gcvt_s(value, sizeof(value), pHinge2->limitAngle_Min, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->limitAngle_Min);
   mMapKeyValue->insert(TMapStrStrVT(sLimitAngle_Min, value));
 
-  _gcvt_s(value, sizeof(value), pHinge2->springStiffness, 9);
+  value = boost::lexical_cast<std::string>(pHinge2->springStiffness);
   mMapKeyValue->insert(TMapStrStrVT(sSpringStiffness, value));
 }
 //---------------------------------------------------------------------
@@ -622,23 +624,23 @@ void TSerializerParamBuilderConstraint::HandlerPoint2PointToStr()
   std::string strType = FindStrByType(pPoint2Point->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pPoint2Point->breakImpulse, 9);
+  value = boost::lexical_cast<std::string>(pPoint2Point->breakImpulse);
   mMapKeyValue->insert(TMapStrStrVT(sBreakImpulse, value));
 
-  _gcvt_s(value, sizeof(value), pPoint2Point->pointA.x, 9);
+  value = boost::lexical_cast<std::string>(pPoint2Point->pointA.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_X, value));
-  _gcvt_s(value, sizeof(value), pPoint2Point->pointA.y, 9);
+  value = boost::lexical_cast<std::string>(pPoint2Point->pointA.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Y, value));
-  _gcvt_s(value, sizeof(value), pPoint2Point->pointA.z, 9);
+  value = boost::lexical_cast<std::string>(pPoint2Point->pointA.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pPoint2Point->pointB.x, 9);
+  value = boost::lexical_cast<std::string>(pPoint2Point->pointB.x);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_X, value));
-  _gcvt_s(value, sizeof(value), pPoint2Point->pointB.y, 9);
+  value = boost::lexical_cast<std::string>(pPoint2Point->pointB.y);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Y, value));
-  _gcvt_s(value, sizeof(value), pPoint2Point->pointB.z, 9);
+  value = boost::lexical_cast<std::string>(pPoint2Point->pointB.z);
   mMapKeyValue->insert(TMapStrStrVT(sPointB_Z, value));
 }
 //---------------------------------------------------------------------
@@ -649,26 +651,26 @@ void TSerializerParamBuilderConstraint::HandlerGearToStr()
   std::string strType = FindStrByType(pGear->type);
   mMapKeyValue->insert(TMapStrStrVT(sType,strType));
 
-  char value[100];
+  std::string value;
 
-  _gcvt_s(value, sizeof(value), pGear->breakImpulse, 9);
+  value = boost::lexical_cast<std::string>(pGear->breakImpulse);
   mMapKeyValue->insert(TMapStrStrVT(sBreakImpulse, value));
 
-  _gcvt_s(value, sizeof(value), pGear->axeA.x, 9);
+  value = boost::lexical_cast<std::string>(pGear->axeA.x);
   mMapKeyValue->insert(TMapStrStrVT(sAxeA_X, value));
-  _gcvt_s(value, sizeof(value), pGear->axeA.y, 9);
+  value = boost::lexical_cast<std::string>(pGear->axeA.y);
   mMapKeyValue->insert(TMapStrStrVT(sAxeA_Y, value));
-  _gcvt_s(value, sizeof(value), pGear->axeA.z, 9);
+  value = boost::lexical_cast<std::string>(pGear->axeA.z);
   mMapKeyValue->insert(TMapStrStrVT(sAxeA_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGear->axeB.x, 9);
+  value = boost::lexical_cast<std::string>(pGear->axeB.x);
   mMapKeyValue->insert(TMapStrStrVT(sAxeB_X, value));
-  _gcvt_s(value, sizeof(value), pGear->axeB.y, 9);
+  value = boost::lexical_cast<std::string>(pGear->axeB.y);
   mMapKeyValue->insert(TMapStrStrVT(sAxeB_Y, value));
-  _gcvt_s(value, sizeof(value), pGear->axeB.z, 9);
+  value = boost::lexical_cast<std::string>(pGear->axeB.z);
   mMapKeyValue->insert(TMapStrStrVT(sAxeB_Z, value));
 
-  _gcvt_s(value, sizeof(value), pGear->ratio, 9);
+  value = boost::lexical_cast<std::string>(pGear->ratio);
   mMapKeyValue->insert(TMapStrStrVT(sRatio, value));
 }
 //---------------------------------------------------------------------
