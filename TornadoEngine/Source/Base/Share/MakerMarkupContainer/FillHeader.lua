@@ -37,10 +37,11 @@ function WriteMethodByNode(node)
     fileH:write("\n");
   end;
   ---------------------------------
-  for index, value in pairs(node) do
-    if type(value)=="table" and index~="parent" then
+  for i = 1, #node do
+    local value = node[i];
+    if type(value)=="table" then
       WriteMethodByNode(value);
-    end;
+    end;  
   end;
   size_stack_methods = size_stack_methods - 1;
 end;
@@ -66,8 +67,11 @@ function FillHeader()
   fileH:write("  virtual std::string GetName();\n");
   fileH:write("\n");
   -- перебор иерархии
-  for index_node, node in pairs(arr_stack_desc) do
-    WriteMethodByNode(node);
+  for i = 1, #arr_stack_desc do
+    local node = arr_stack_desc[i];
+    if type(node)=="table" then
+      WriteMethodByNode(node);
+    end;
   end;
 
   fileH:write("};\n");

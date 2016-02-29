@@ -8,6 +8,7 @@ See for more information License.h.
 #include "BaseSerializerItem_XML.h"
 #include "IXML.h"
 #include <errno.h>
+#include <boost/lexical_cast.hpp>
 
 namespace nsBaseSerializerItem_XML
 {
@@ -122,23 +123,19 @@ bool TBaseSerializerItem_XML::LoadVector3ByProperty(nsMathTools::TVector3& v3)
 bool TBaseSerializerItem_XML::SaveVector3ByProperty(nsMathTools::TVector3& v3)
 {
   std::string key, value;
-  char str[50];
 
   key = sAxeX;
-  gcvt(v3.x, 9, str);
-  value = str;
+  value = boost::lexical_cast<std::string>(v3.x);
   if(SaveProperty(key,value)==false)
     return false;
   
   key = sAxeY;
-  gcvt(v3.y, 9, str);
-  value = str;
+  value = boost::lexical_cast<std::string>(v3.y);
   if(SaveProperty(key,value)==false)
     return false;
 
   key = sAxeZ;
-  gcvt(v3.z, 9, str);
-  value = str;
+  value = boost::lexical_cast<std::string>(v3.z);
   if(SaveProperty(key,value)==false)
     return false;
 

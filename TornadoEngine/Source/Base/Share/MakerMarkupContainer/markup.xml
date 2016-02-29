@@ -6,7 +6,7 @@
   <include_cpp name="BosforProtocol.h"/>
   <include_cpp name="BL_Debug.h"/>
   <packet name="CmdPacket" id="BSFD_CMD" full_name="Команда (сигнал)">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_CMD">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_CMD">
     </desc>
     <desc nameFunc="NumCmd" name="Номер команды" type="int" type_const="eInt">
     </desc>
@@ -18,7 +18,7 @@
     </desc>
   </packet>
   <packet name="RequestOpenIRIPacket" id="BSFD_REQUEST_OPEN_IRI" full_name="Запрос о вскрытых ИРИ">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_REQUEST_OPEN_IRI">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_REQUEST_OPEN_IRI">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
@@ -44,47 +44,51 @@
     </desc>
   </packet>
   <packet name="AnswerOpenIRIPacket" id="BSFD_ANSWER_OPEN_IRI" full_name="Донесение о вскрытых ИРИ">  
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_ANSWER_OPEN_IRI">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_ANSWER_OPEN_IRI">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
-    <desc nameFunc="ArrAim" name="Массив вскрытых целей" type="int">
+    <desc nameFunc="ArrAim" name="Массив родов вскрытых целей" type="int">
       <desc nameFunc="NumAim" name="Номер рода цели" type="int" type_const="eInt">
-      </desc> 
+      </desc>
       <desc nameFunc="ArrTypeAim" name="Массив типов целей этого рода" type="int">
-        <desc nameFunc="Freq" name="Частота, кГц" type="int" type_const="eInt">
-        </desc> 
-        <desc nameFunc="Band" name="Полоса, кГц" type="int" type_const="eInt">
-        </desc> 
-        <desc nameFunc="ArrParam" name="Массив параметров результата технического анализа" type="int">
-          <desc nameFunc="CodeParam" name="Код параметра" type="int" type_const="eInt">
+        <desc nameFunc="NumTypeAim" name="Номер типа целей" type="int" type_const="eInt">
+        </desc>
+        <desc nameFunc="ArrIRI" name="Массив ИРИ этого типа целей" type="int">
+          <desc nameFunc="Freq" name="Частота, кГц" type="int" type_const="eInt">
           </desc> 
-          <desc nameFunc="ValueParam" name="Значение параметра" type="float" type_const="eFloat">
+          <desc nameFunc="Band" name="Полоса, кГц" type="int" type_const="eInt">
+          </desc> 
+          <desc nameFunc="ArrParam" name="Массив параметров результата технического анализа" type="int">
+            <desc nameFunc="CodeParam" name="Код параметра" type="int" type_const="eInt">
+            </desc> 
+            <desc nameFunc="ValueParam" name="Значение параметра" type="float" type_const="eFloat">
+            </desc> 
+          </desc> 
+          <desc nameFunc="IsCoord" name="Признак наличия координат" type="int" type_const="eBool">
+          </desc> 
+          <desc nameFunc="MethodCalcCoord" name="Метод расчета координат" type="int" type_const="eInt">
+          </desc> 
+          <desc nameFunc="X" name="Координата X, м" type="int" type_const="eInt">
+          </desc> 
+          <desc nameFunc="Y" name="Координата Y, м" type="int" type_const="eInt">
+          </desc> 
+          <desc nameFunc="DispX" name="Дисперсия по X (А)" type="int" type_const="eInt">
+          </desc> 
+          <desc nameFunc="DispY" name="Дисперсия по Y (С)" type="int" type_const="eInt">
+          </desc> 
+          <desc nameFunc="Corr" name="Корреляция (В)" type="int" type_const="eInt">
+          </desc> 
+          <desc nameFunc="CntInOut" name="Количество частото-выходов" type="int" type_const="eInt">
+          </desc> 
+          <desc nameFunc="LastTime" name="Время последнего выхода в эфир" type="double" type_const="eTime_Double">
           </desc> 
         </desc> 
-        <desc nameFunc="IsCoord" name="Признак наличия координат" type="int" type_const="eBool">
-        </desc> 
-        <desc nameFunc="MethodCalcCoord" name="Метод расчета координат" type="int" type_const="eInt">
-        </desc> 
-        <desc nameFunc="X" name="Координата X, м" type="int" type_const="eInt">
-        </desc> 
-        <desc nameFunc="Y" name="Координата Y, м" type="int" type_const="eInt">
-        </desc> 
-        <desc nameFunc="DispX" name="Дисперсия по X (А)" type="int" type_const="eInt">
-        </desc> 
-        <desc nameFunc="DispY" name="Дисперсия по Y (С)" type="int" type_const="eInt">
-        </desc> 
-        <desc nameFunc="Corr" name="Корреляция (В)" type="int" type_const="eInt">
-        </desc> 
-        <desc nameFunc="CntInOut" name="Количество частото-выходов" type="int" type_const="eInt">
-        </desc> 
-        <desc nameFunc="LastTime" name="Время последнего выхода в эфир" type="double" type_const="eTime_Double">
-        </desc> 
-      </desc> 
+      </desc>  
     </desc>
   </packet>
   <packet name="AnswerOpenIRISputnikPacket" id="BSFD_ANSWER_OPEN_IRI_SPUTNIK" full_name="Донесение (сообщение для КРЭП СпС) о вскрытых ИРИ спутниковой связи">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_ANSWER_OPEN_IRI_SPUTNIK">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_ANSWER_OPEN_IRI_SPUTNIK">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
@@ -130,7 +134,7 @@
     </desc>
   </packet>
   <packet name="RequestInfoIRIPacket" id="BSFD_REQUEST_INFO_IRI" full_name="Запрос об оперативной выдаче информации об ИРИ СпС">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_REQUEST_INFO_IRI">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_REQUEST_INFO_IRI">
     </desc>
     <desc nameFunc="NumAim" name="Номер рода целей спутниковой связи" type="int" type_const="eInt">
     </desc>
@@ -158,7 +162,7 @@
     </desc>
   </packet>
   <packet name="ListIRI_RP_Packet" id="BSFD_LIST_IRI_RP" full_name="Перечень ИРИ СпС - объектов РП и доразведки">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_LIST_IRI_RP">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_LIST_IRI_RP">
     </desc>
     <desc nameFunc="NumMsg" name="Номер сообщения" type="int" type_const="eInt">
     </desc>
@@ -170,31 +174,31 @@
         </desc>
         <desc nameFunc="IsRP" name="Признак РП" type="int" type_const="eBool">
         </desc>
-        <desc nameFunc="FreqEarthToISZ" name="Частота РП, кГц («Земля -> ИСЗ»)" type="int" type_const="eInt">
+        <desc nameFunc="FreqEarthToISZ" name="Частота РП, кГц (Земля -> ИСЗ)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="BandEarthToISZ" name="Полоса РП, кГц («Земля -> ИСЗ»)" type="int" type_const="eInt">
+        <desc nameFunc="BandEarthToISZ" name="Полоса РП, кГц (Земля -> ИСЗ)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="ArrParamTAEarthToISZ" name="Массив параметров технического анализа («Земля -> ИСЗ»)" type="int">
-          <desc nameFunc="CodeParamEarthToISZ" name="Код параметра («Земля -> ИСЗ»)" type="int" type_const="eInt">
+        <desc nameFunc="ArrParamTAEarthToISZ" name="Массив параметров технического анализа (Земля -> ИСЗ)" type="int">
+          <desc nameFunc="CodeParamEarthToISZ" name="Код параметра (Земля -> ИСЗ)" type="int" type_const="eInt">
           </desc>
-          <desc nameFunc="ValueParamEarthToISZ" name="Значение параметра («Земля -> ИСЗ»)" type="float" type_const="eFloat">
+          <desc nameFunc="ValueParamEarthToISZ" name="Значение параметра (Земля -> ИСЗ)" type="float" type_const="eFloat">
           </desc>
         </desc>
-        <desc nameFunc="FreqISZToEarth" name="Частота контроля, кГц («ИСЗ -> Земля»)" type="int" type_const="eInt">
+        <desc nameFunc="FreqISZToEarth" name="Частота контроля, кГц (ИСЗ -> Земля)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="BandISZToEarth" name="Полоса контроля, кГц («ИСЗ -> Земля»)" type="int" type_const="eInt">
+        <desc nameFunc="BandISZToEarth" name="Полоса контроля, кГц (ИСЗ -> Земля)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="ArrParamTAISZToEarth" name="Массив параметров технического анализа («ИСЗ -> Земля»)" type="int">
-          <desc nameFunc="CodeParamISZToEarth" name="Код параметра («ИСЗ -> Земля»)" type="int" type_const="eInt">
+        <desc nameFunc="ArrParamTAISZToEarth" name="Массив параметров технического анализа (ИСЗ -> Земля)" type="int">
+          <desc nameFunc="CodeParamISZToEarth" name="Код параметра (ИСЗ -> Земля)" type="int" type_const="eInt">
           </desc>
-          <desc nameFunc="ValueParamISZToEarth" name="Значение параметра («ИСЗ -> Земля»)" type="float" type_const="eFloat">
+          <desc nameFunc="ValueParamISZToEarth" name="Значение параметра (ИСЗ -> Земля)" type="float" type_const="eFloat">
           </desc>
         </desc>
       </desc>
     </desc>
   </packet>
   <packet name="InfoPropertyIRISputnikPacket" id="BSFD_INFO_PROPERTY_IRI_SPUTNIK" full_name="Сведения о характеристиках вскрытых ИРИ спутниковой связи">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_INFO_PROPERTY_IRI_SPUTNIK">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_INFO_PROPERTY_IRI_SPUTNIK">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
@@ -208,13 +212,13 @@
         </desc>
         <desc nameFunc="IsService" name="Признак обслуживания" type="int" type_const="eBool">
         </desc>
-        <desc nameFunc="FreqEarthToISZ" name="Частота, кГц («Земля -> ИСЗ»)" type="int" type_const="eInt">
+        <desc nameFunc="FreqEarthToISZ" name="Частота, кГц (Земля -> ИСЗ)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="BandEarthToISZ" name="Полоса, кГц («Земля -> ИСЗ»)" type="int" type_const="eInt">
+        <desc nameFunc="BandEarthToISZ" name="Полоса, кГц (Земля -> ИСЗ)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="FreqISZToEarth" name="Частота, кГц («ИСЗ -> Земля»)" type="int" type_const="eInt">
+        <desc nameFunc="FreqISZToEarth" name="Частота, кГц (ИСЗ -> Земля)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="BandISZToEarth" name="Полоса, кГц («ИСЗ -> Земля»)" type="int" type_const="eInt">
+        <desc nameFunc="BandISZToEarth" name="Полоса, кГц (ИСЗ -> Земля)" type="int" type_const="eInt">
         </desc>
         <desc nameFunc="ArrParamTA" name="Массив параметров результатов технического анализа" type="int">
           <desc nameFunc="CodeParam" name="Код параметра" type="int" type_const="eInt">
@@ -226,7 +230,7 @@
     </desc>
   </packet>
   <packet name="ListIRI_MKRP_Packet" id="BSFD_LIST_IRI_MKRP" full_name="Перечень ИРИ СпС - объектов РП для МКРП">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_LIST_IRI_MKRP">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_LIST_IRI_MKRP">
     </desc>
     <desc nameFunc="NumMsg" name="Номер сообщения" type="int" type_const="eInt">
     </desc>
@@ -236,13 +240,13 @@
       <desc nameFunc="ArrIRI" name="Массив ИРИ этого типа целей" type="int">
         <desc nameFunc="NumIRI" name="Условный номер ИРИ" type="int" type_const="eInt">
         </desc> 
-        <desc nameFunc="FreqEarthToISZ" name="Частота, кГц («Земля -> ИСЗ»)" type="int" type_const="eInt">
+        <desc nameFunc="FreqEarthToISZ" name="Частота, кГц (Земля -> ИСЗ)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="BandEarthToISZ" name="Полоса, кГц («Земля -> ИСЗ»)" type="int" type_const="eInt">
+        <desc nameFunc="BandEarthToISZ" name="Полоса, кГц (Земля -> ИСЗ)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="FreqISZToEarth" name="Частота, кГц («ИСЗ -> Земля»)" type="int" type_const="eInt">
+        <desc nameFunc="FreqISZToEarth" name="Частота, кГц (ИСЗ -> Земля)" type="int" type_const="eInt">
         </desc>
-        <desc nameFunc="BandISZToEarth" name="Полоса, кГц («ИСЗ -> Земля»)" type="int" type_const="eInt">
+        <desc nameFunc="BandISZToEarth" name="Полоса, кГц (ИСЗ -> Земля)" type="int" type_const="eInt">
         </desc>
         <desc nameFunc="ArrParamTA" name="Массив параметров технического анализа" type="int">
           <desc nameFunc="CodeParam" name="Код параметра" type="int" type_const="eInt">
@@ -254,7 +258,7 @@
     </desc>
   </packet>
   <packet name="RequestOpenUSPacket" id="BSFD_REQUEST_OPEN_US" full_name="Запрос о вскрытых УС">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_REQUEST_OPEN_US">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_REQUEST_OPEN_US">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
@@ -276,7 +280,7 @@
     </desc>
   </packet>
   <packet name="AnswerOpenUSPacket" id="BSFD_ANSWER_OPEN_US" full_name="Донесение о вскрытых УС">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_ANSWER_OPEN_US">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_ANSWER_OPEN_US">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
@@ -295,9 +299,7 @@
           </desc>
         </desc>
       </desc>
-      <desc nameFunc="EstimateOTP_US" name="Предполагаемая ОТП УС" type="int" type_const="eInt">
-      </desc>
-      <desc nameFunc="Text" name="Текст" type="int">
+      <desc nameFunc="Text" name="Предполагаемая ОТП УС (текст)" type="int">
         <desc nameFunc="Symbol" name="Символ" type="char" type_const="eSymbol">
         </desc>
       </desc>
@@ -312,13 +314,13 @@
     </desc>
   </packet>
   <packet name="RequestResultRPPacket" id="BSFD_REQUEST_RESULT_RP" full_name="Запрос о результатах РП СпС">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_REQUEST_RESULT_RP">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_REQUEST_RESULT_RP">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
   </packet>
   <packet name="InfoResultRPPacket" id="BSFD_INFO_RESULT_RP" full_name="Сведения о результатах РП СпС">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_INFO_RESULT_RP">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_INFO_RESULT_RP">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
@@ -338,20 +340,20 @@
     </desc>
   </packet>
   <packet name="RequestReadyMKRP_Packet" id="BSFD_REQUEST_READY_MKRP" full_name="Запрос о боеспособности МКРП">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_REQUEST_READY_MKRP">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_REQUEST_READY_MKRP">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
   </packet>  
   <packet name="AnswerReadyMKRP_Packet" id="BSFD_ANSWER_READY_MKRP" full_name="Донесение (сообщение для КРЭП СпС) о боеспособности МКРП">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_ANSWER_READY_MKRP">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_ANSWER_READY_MKRP">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
     <desc nameFunc="NumMKRP_Order" name="Массив МКРП в наряде" type="int" type_const="eInt">
       <desc nameFunc="BortNumber" name="Бортовой номер" type="int" type_const="eInt">
       </desc> 
-	    <desc nameFunc="MethodApply" name="Способ применения" type="int" type_const="eInt">
+	    <desc nameFunc="MethodApply" name="Способ применения" type="int" type_const="Способ применения">
       </desc> 
 	    <desc nameFunc="NumDiapRRTR" name="Массив диапазонов РРТР" type="int">
         <desc nameFunc="LowDiapBroudRRTR" name="Нижняя граница диапазона" type="int" type_const="eInt">
@@ -365,58 +367,58 @@
         <desc nameFunc="HiDiapBroudRP" name="Верхняя граница диапазона" type="int" type_const="eInt">
         </desc>
       </desc> 
-	    <desc nameFunc="StateDeviceRR" name="Состояние аппаратуры РР" type="int" type_const="eInt">
+	    <desc nameFunc="StateDeviceRR" name="Состояние аппаратуры РР" type="int" type_const="Передача состояния аппаратуры">
       </desc>
-		  <desc nameFunc="RPU1_F1" name="РПУ 1, F1" type="int" type_const="eInt">
+		  <desc nameFunc="RPU1_F1" name="РПУ 1, F1" type="int" type_const="Состояние аппаратуры">
       </desc>
-		  <desc nameFunc="RPU2_F1" name="РПУ2, F1" type="int" type_const="eInt">
+		  <desc nameFunc="RPU2_F1" name="РПУ2, F1" type="int" type_const="Состояние аппаратуры">
       </desc>
-		  <desc nameFunc="RPU3_F2" name="РПУ3, F2" type="int" type_const="eInt">
+		  <desc nameFunc="RPU3_F2" name="РПУ3, F2" type="int" type_const="Состояние аппаратуры">
       </desc>
-	    <desc nameFunc="StateDeviceRP_F1" name="Состояние аппаратуры РП F1" type="int" type_const="eInt">
+	    <desc nameFunc="StateDeviceRP_F1" name="Состояние аппаратуры РП F1" type="int" type_const="Передача состояния аппаратуры">
       </desc>
-		  <desc nameFunc="PP1" name="ПП 1" type="int" type_const="eInt">
+		  <desc nameFunc="PP1" name="ПП 1" type="int" type_const="Состояние аппаратуры">
       </desc>
-		  <desc nameFunc="PP2" name="ПП 2" type="int" type_const="eInt">
+		  <desc nameFunc="PP2" name="ПП 2" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="PP3" name="ПП 3" type="int" type_const="eInt">
+      <desc nameFunc="PP3" name="ПП 3" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="PP4" name="ПП 4" type="int" type_const="eInt">
+      <desc nameFunc="PP4" name="ПП 4" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="PP5" name="ПП 5" type="int" type_const="eInt">
+      <desc nameFunc="PP5" name="ПП 5" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="PP6" name="ПП 6" type="int" type_const="eInt">
+      <desc nameFunc="PP6" name="ПП 6" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="StateDeviceRP_F2" name="Состояние аппаратуры РП F2" type="int" type_const="eInt">
+      <desc nameFunc="StateDeviceRP_F2" name="Состояние аппаратуры РП F2" type="int" type_const="Передача состояния аппаратуры">
       </desc>
-      <desc nameFunc="PP7" name="ПП 7" type="int" type_const="eInt">
+      <desc nameFunc="PP7" name="ПП 7" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="PP8" name="ПП 8" type="int" type_const="eInt">
+      <desc nameFunc="PP8" name="ПП 8" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="PP9_1" name="ПП 9.1" type="int" type_const="eInt">
+      <desc nameFunc="PP9_1" name="ПП 9.1" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="PP9_2" name="ПП 9.2" type="int" type_const="eInt">
+      <desc nameFunc="PP9_2" name="ПП 9.2" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="StateDeviceNaviTime" name="Состояние аппаратуры навигационно-временного обеспечения" type="int" type_const="eInt">
+      <desc nameFunc="StateDeviceNaviTime" name="Состояние аппаратуры навигационно-временного обеспечения" type="int" type_const="Передача состояния аппаратуры">
       </desc>
-      <desc nameFunc="AHBO" name="АНВО" type="int" type_const="eInt">
+      <desc nameFunc="AHBO" name="АНВО" type="int" type_const="AHBO">
       </desc>
-      <desc nameFunc="StateDeviceConnectDataTransmit" name="Состояние аппаратуры связи и передачи данных" type="int" type_const="eInt">
+      <desc nameFunc="StateDeviceConnectDataTransmit" name="Состояние аппаратуры связи и передачи данных" type="int" type_const="Передача состояния аппаратуры">
       </desc>
-      <desc nameFunc="DeviceTransmitData" name="Аппаратура передачи данных" type="int" type_const="eInt">
+      <desc nameFunc="DeviceTransmitData" name="Аппаратура передачи данных" type="int" type_const="Состояние аппаратуры">
       </desc>
-      <desc nameFunc="DeviceVoiceConnnect" name="Аппаратура речевой связи" type="int" type_const="eInt">
+      <desc nameFunc="DeviceVoiceConnnect" name="Аппаратура речевой связи" type="int" type_const="Состояние аппаратуры">
       </desc>
     </desc>
   </packet>
   <packet name="RequestReadyRRTR_RP_Packet" id="BSFD_REQUEST_READY_RRTR_RP" full_name="Запрос о возможностях по РРТР и РП КРЭП СпС">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_REQUEST_READY_RRTR_RP">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_REQUEST_READY_RRTR_RP">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>
   </packet> 
   <packet name="AnswerReadyRRTR_RP_Packet" id="BSFD_ANSWER_READY_RRTR_RP" full_name="Донесение о возможностях по РРТР и РП КРЭП СпС">
-    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="eInt" def_value="BSFD_ANSWER_READY_RRTR_RP">
+    <desc nameFunc="Type" name="Тип пакета" type="int" type_const="Не отображать" def_value="BSFD_ANSWER_READY_RRTR_RP">
     </desc>
     <desc nameFunc="NumRequest" name="Номер запроса" type="int" type_const="eInt">
     </desc>

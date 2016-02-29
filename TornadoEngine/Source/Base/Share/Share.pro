@@ -44,7 +44,6 @@ InfoFile.cpp \
 IXML.cpp \
 LoaderDLL_Unix.cpp \
 LoaderDLL_Win32.cpp \
-LoaderListPathID.cpp \
 LoadFromFile.cpp \
 Logger.cpp \
 MakerLoaderDLL.cpp \
@@ -63,11 +62,8 @@ Queue2Thread.cpp \
 SaveToFile.cpp \
 SetOrderElement.cpp \
 SHA256.cpp \
-ShaderStack.cpp \
 ShareLibWin.cpp \
 ShareMisc.cpp \
-SortByAlphabetic.cpp \
-SphericalDecart.cpp \
 SrcEvent.cpp \
 StorePathResources.cpp \
 ThreadBoost.cpp \
@@ -75,18 +71,15 @@ XML_Markup.cpp
 
 
 HEADERS = ArrContainer.h\
-AutoCreateVar.h \
 BL_Debug.h \
 BreakPacket.h \
 CallBackRegistrator.h \
-classTools.h \
 CmdParam.h \
 cnvCoderText.h \
 ContainerArrObj.h \
 ContainerPtrArrObj.h \
 ContainerRise.h \
 ContainerTypes.h \
-ContextMachine.h \
 CRC8.h \
 CryptoAES_Impl.h \
 CryptoRSA_Impl.h \
@@ -102,11 +95,9 @@ InfoFile.h \
 IXML.h \
 License.h \
 ListMultiThread.h \
-ListObj.h \
 ListPtr.h \
 LoaderDLL_Unix.h \
 LoaderDLL_Win32.h \
-LoaderListPathID.h \
 LoadFromFile.h \
 Logger.h \
 MacroMaker.h \
@@ -123,15 +114,11 @@ MathTools.h \
 MD5.h \
 NetSystem.h \
 Only_N_Object.h \
-Paradigma.h \
 Queue2Thread.h \
 SaveToFile.h \
 SetOrderElement.h \
 SHA256.h \
-ShaderStack.h \
 ShareMisc.h \
-SortByAlphabetic.h \
-SphericalDecart.h \
 SrcEvent_ex.h \
 SrcEvent.h \
 StateMachine.h \

@@ -256,10 +256,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderListPathID.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\LoadFromFile.cpp"
 				>
 			</File>
@@ -332,23 +328,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ShaderStack.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\ShareLibWin.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\ShareMisc.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\SortByAlphabetic.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\SphericalDecart.cpp"
 				>
 			</File>
 			<File
@@ -386,10 +370,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\AutoCreateVar.h"
-				>
-			</File>
-			<File
 				RelativePath=".\BL_Debug.h"
 				>
 			</File>
@@ -403,10 +383,6 @@
 			</File>
 			<File
 				RelativePath=".\CallBackRegistrator.h"
-				>
-			</File>
-			<File
-				RelativePath=".\classTools.h"
 				>
 			</File>
 			<File
@@ -431,10 +407,6 @@
 			</File>
 			<File
 				RelativePath=".\ContainerTypes.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ContextMachine.h"
 				>
 			</File>
 			<File
@@ -498,10 +470,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ListObj.h"
-				>
-			</File>
-			<File
 				RelativePath=".\ListPtr.h"
 				>
 			</File>
@@ -511,10 +479,6 @@
 			</File>
 			<File
 				RelativePath=".\LoaderDLL_Win32.h"
-				>
-			</File>
-			<File
-				RelativePath=".\LoaderListPathID.h"
 				>
 			</File>
 			<File
@@ -582,10 +546,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Paradigma.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Queue2Thread.h"
 				>
 			</File>
@@ -602,23 +562,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ShaderStack.h"
-				>
-			</File>
-			<File
 				RelativePath=".\ShareMisc.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Singleton.h"
-				>
-			</File>
-			<File
-				RelativePath=".\SortByAlphabetic.h"
-				>
-			</File>
-			<File
-				RelativePath=".\SphericalDecart.h"
 				>
 			</File>
 			<File

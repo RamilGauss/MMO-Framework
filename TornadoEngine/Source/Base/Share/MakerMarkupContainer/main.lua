@@ -65,7 +65,7 @@ function handle_desc(desc, node, flgRoot)
     next_node["parent"] = node;
   end;
   node[#node+1] = next_node;
-  
+ 
   for index_desc, value_desc in pairs(desc) do
     handle_desc(value_desc, next_node, false);
   end;

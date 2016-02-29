@@ -10,12 +10,13 @@ function WriteFormula(node)
     fileCPP:write(" Arr( ");
   end;
   
-  for index, value in pairs(node) do
-    if type(value)=="table" and index~="parent" then
+  for i = 1, #node do
+    local value = node[i];
+    if type(value)=="table" then
       WriteFormula(value);
     end;
   end;
-  
+
   if #node>0 then 
     fileCPP:write(" ) ");
   end;
@@ -28,8 +29,9 @@ function WriteGlobalStr(node)
     fileCPP:write("  const char* g_p"..nameFunc.." = \""..name.."\";\n");
   end;
     
-  for index, value in pairs(node) do
-    if type(value)=="table" and index~="parent" then
+  for i = 1, #node do
+    local value = node[i];
+    if type(value)=="table"then
       WriteGlobalStr(value);
     end;
   end;
@@ -56,10 +58,11 @@ function WritePushDesc(node, num_tab)
     fileCPP:write("p"..nameFunc.."->typeConst = \""..type_const.."\";\n");
     fileCPP:write(str_tab);
     fileCPP:write("p"..nameFunc.."->size = sizeof("..type_node..");\n");
-    for index, value in pairs(node) do
-      if type(value)=="table" and index~="parent" then
+    for i = 1, #node do
+      local value = node[i];
+      if type(value)=="table" then
         WritePushDesc(value, num_tab + 1);
-      end;
+      end;     
     end;
     local parent = node["parent"];
     if parent==nil then
@@ -246,12 +249,15 @@ function WriteBody_SET_COUNT(name, type_param, arr_name)
 end
 ---------------------------------------------------------------------
 function WriteSetDefValue()
-  for index, value in pairs(arr_stack_desc) do
-    local nameFunc = value["nameFunc"];
-    local def_value = value["def_value"];
-    if def_value~=nil then
-      fileCPP:write("  Set"..nameFunc.."("..def_value..");\n");
-    end
+  for i = 1, #arr_stack_desc do
+    local value = arr_stack_desc[i];
+    if value~=nil then
+      local nameFunc = value["nameFunc"];
+      local def_value = value["def_value"];
+      if def_value~=nil then
+        fileCPP:write("  Set"..nameFunc.."("..def_value..");\n");
+      end
+    end;
   end;
 end;
 ---------------------------------------------------------------------
@@ -298,8 +304,9 @@ function WriteMethodBodyByNode(node)
     WriteBody_SET_COUNT(nameFunc_node, type_node, arr_name); -- тело метода
   end;
   ---------------------------------
-  for index, value in pairs(node) do
-    if type(value)=="table" and index~="parent" then
+  for i = 1, #node do
+    local value = node[i];
+    if type(value)=="table" then
       WriteMethodBodyByNode(value);
     end;
   end;
@@ -317,8 +324,11 @@ function FillSourceCPP()
   ------------------------------------------
   -- типа: формула пакета Root(C, Arr(C), C)
   fileCPP:write("// формула пакета Root(");
-  for index_node, node in pairs(arr_stack_desc) do
-    WriteFormula(node);
+  for i = 1, #arr_stack_desc do
+    local node = arr_stack_desc[i];
+    if type(node)=="table" then
+      WriteFormula(node);
+    end;
   end;
   fileCPP:write(")\n");
   fileCPP:write("\n");
@@ -326,8 +336,11 @@ function FillSourceCPP()
   -- namespace пакета
   fileCPP:write("namespace ns"..name_packet.."\n");
   fileCPP:write("{\n");
-  for index_node, node in pairs(arr_stack_desc) do
-    WriteGlobalStr(node);
+  for i = 1, #arr_stack_desc do
+    local node = arr_stack_desc[i];
+    if type(node)=="table" then
+      WriteGlobalStr(node);
+    end;
   end;
   fileCPP:write("}\n");
   ------------------------------------------
@@ -339,8 +352,11 @@ function FillSourceCPP()
   fileCPP:write("{\n");
   -- вставка иерархии в MarkUp
   -----------------------------
-  for index_node, node in pairs(arr_stack_desc) do
-    WritePushDesc(node, 1);
+  for i = 1, #arr_stack_desc do
+    local node = arr_stack_desc[i];
+    if type(node)=="table" then
+      WritePushDesc(node, 1);
+    end;
   end;
   fileCPP:write("  mMarkUp->SetMarkUp(mRootDesc);\n");
   fileCPP:write("\n");  
@@ -369,8 +385,11 @@ function FillSourceCPP()
   fileCPP:write("}\n");
   WriteLineCPP();  
   -- перебор методов
-  for index_node, node in pairs(arr_stack_desc) do
-    WriteMethodBodyByNode(node);
+  for i = 1, #arr_stack_desc do
+    local node = arr_stack_desc[i];
+    if type(node)=="table" then
+      WriteMethodBodyByNode(node);
+    end;
   end;
   
   fileCPP:write("\n");
