@@ -200,11 +200,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\cnvCoderText.cpp"
+				RelativePath=".\ContainerRise.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ContainerRise.cpp"
+				RelativePath=".\ConverterLocale.cpp"
 				>
 			</File>
 			<File
@@ -390,10 +390,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\cnvCoderText.h"
-				>
-			</File>
-			<File
 				RelativePath=".\ContainerArrObj.h"
 				>
 			</File>
@@ -407,6 +403,10 @@
 			</File>
 			<File
 				RelativePath=".\ContainerTypes.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ConverterLocale.h"
 				>
 			</File>
 			<File

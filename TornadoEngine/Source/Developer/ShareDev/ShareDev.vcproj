@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./GameItems;./Modules;./Share;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
+				AdditionalIncludeDirectories="./;./Builder;./GameItems;./Modules;./Scene;./Share;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -180,14 +180,6 @@
 			Name="Share"
 			>
 			<File
-				RelativePath=".\Share\BuilderShape_Ogre.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Share\BuilderShape_Ogre.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Share\Components.cpp"
 				>
 			</File>
@@ -204,6 +196,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Share\ManagerRoom.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\ManagerRoom.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Share\ModuleDev.cpp"
 				>
 			</File>
@@ -212,27 +212,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Share\ParamBuilderConstraint.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Share\ParamBuilderConstraint.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Share\ParamBuilderShape.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Share\ParamBuilderShape.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Share\ParserXMLResource.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Share\ParserXMLResource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\PrototypeRoom.h"
 				>
 			</File>
 			<File
@@ -423,30 +411,6 @@
 		<Filter
 			Name="GameItems"
 			>
-			<File
-				RelativePath=".\GameItems\FactoryGameItem.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GameItems\FactoryGameItem.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GameItems\ManagerCacheItemXML.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GameItems\ManagerCacheItemXML.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GameItems\ManagerSerializerItem.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GameItems\ManagerSerializerItem.h"
-				>
-			</File>
 			<Filter
 				Name="Structs"
 				>
@@ -508,30 +472,30 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Secondary"
+				Name="ManagerItem"
 				>
 				<File
-					RelativePath=".\GameItems\ManagerRoom.cpp"
+					RelativePath=".\GameItems\FactoryGameItem.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\ManagerRoom.h"
+					RelativePath=".\GameItems\FactoryGameItem.h"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\PrototypeBehaviourPattern.h"
+					RelativePath=".\GameItems\ManagerCacheItemXML.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\PrototypeRoom.h"
+					RelativePath=".\GameItems\ManagerCacheItemXML.h"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\PrototypeScene.h"
+					RelativePath=".\GameItems\ManagerSerializerItem.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\TypeEventScene.h"
+					RelativePath=".\GameItems\ManagerSerializerItem.h"
 					>
 				</File>
 			</Filter>
@@ -611,6 +575,66 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Builder"
+			>
+			<Filter
+				Name="Ogre"
+				>
+				<File
+					RelativePath=".\Builder\BuilderShape_Ogre.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\BuilderShape_Ogre.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Bullet"
+				>
+			</Filter>
+			<Filter
+				Name="OpenAL"
+				>
+			</Filter>
+			<Filter
+				Name="Common"
+				>
+				<File
+					RelativePath=".\Builder\ParamBuilderConstraint.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\ParamBuilderConstraint.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\ParamBuilderShape.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\ParamBuilderShape.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Scene"
+			>
+			<File
+				RelativePath=".\Scene\PrototypeBehaviourPattern.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Scene\PrototypeScene.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Scene\TypeEventScene.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

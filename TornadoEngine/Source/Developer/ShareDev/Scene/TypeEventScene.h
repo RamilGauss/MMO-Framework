@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,7 +20,7 @@ namespace nsTypeEventScene
 
   struct TEvent
   {
-    typedef enum{Add,Delete,Update}eTypeEvent;// операции над объектами
+    typedef enum{Add,Delete,Update}eTypeEvent;// РѕРїРµСЂР°С†РёРё РЅР°Рґ РѕР±СЉРµРєС‚Р°РјРё
 
     unsigned int typeEvent : 2;
     unsigned int idObject  : 30;

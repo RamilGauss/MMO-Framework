@@ -30,7 +30,7 @@ SOURCES = ArrContainer.cpp \
 BL_Debug.cpp \
 BreakPacket.cpp \
 CmdParam.cpp \
-cnvCoderText.cpp \
+ConverterLocale.cpp \
 ContainerRise.cpp \
 CRC8.cpp \
 CryptoAES_Impl.cpp \
@@ -75,7 +75,7 @@ BL_Debug.h \
 BreakPacket.h \
 CallBackRegistrator.h \
 CmdParam.h \
-cnvCoderText.h \
+ConverterLocale.h \
 ContainerArrObj.h \
 ContainerPtrArrObj.h \
 ContainerRise.h \

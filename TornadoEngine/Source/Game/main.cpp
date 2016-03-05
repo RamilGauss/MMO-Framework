@@ -18,7 +18,7 @@ See for more information License.h.
 #include "GameEngine.h"
 #include "InputCmdTornado.h"
 #include "ShareMisc.h"
-#include "cnvCoderText.h"
+#include "ConverterLocale.h"
 #include "ContainerTypes.h"
 #include "FileOperation.h"
 
@@ -94,10 +94,13 @@ void ViewHowUse()
     "Tornado.exe -v 0 -d DeveloperDLL.dll -p port_src 1234 port_self 7777\n";
 #ifdef WIN32
   size_t lenMsgUtf8 = strlen(sMsgUtf8);
-  TContainer cWin1251;
-  cWin1251.SetData(NULL,lenMsgUtf8+1);
-  memset(cWin1251.GetPtr(), 0, cWin1251.GetSize());
-  convert_utf8_to_windows1251(sMsgUtf8, cWin1251.GetPtr(), lenMsgUtf8);
+  TContainer cUtf8;
+  cUtf8.SetData(sMsgUtf8, lenMsgUtf8);
+
+  TConverterLocale cnvUtf8ToWin1251;
+  cnvUtf8ToWin1251.Setup("utf-8", "windows-1251");
+  TContainer cWin1251 = cnvUtf8ToWin1251.Convert(cUtf8);
+
   BL_MessageBug(cWin1251.GetPtr());
 #else
   BL_MessageBug(sMsgUtf8);

@@ -4,6 +4,7 @@ Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
+
 #ifndef PrototypeSceneH
 #define PrototypeSceneH
 
@@ -22,6 +23,7 @@ public:
   virtual void Entrust(TGameObject* pObject) = 0;
   virtual void DeleteObject(unsigned int id) = 0;// ??? изъятие возможно ли?
   virtual void DeleteAllObject() = 0;            // ???
+  
   // 2. Выборка
   virtual int  GetCount() = 0;
   virtual TGameObject* Get(int index) = 0;
@@ -37,7 +39,7 @@ public:
   virtual void UpdateToOut(TListEvent& listEvent)   = 0;// информация по всем подвижным объектам
 
   // 4. Выявление коллизий
-  
+    
 };
 
 #endif
