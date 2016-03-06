@@ -24,6 +24,7 @@ LIBS += -lboost_filesystem
 LIBS += -lboost_system
 LIBS += -lboost_thread
 LIBS += -lboost_chrono
+LIBS += -lboost_locale
 
 
 SOURCES = ArrContainer.cpp \
