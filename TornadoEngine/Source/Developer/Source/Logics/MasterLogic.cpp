@@ -10,7 +10,7 @@ See for more information License.h.
 #include "MasterLogic.h"
 #include "ListModules.h"
 #include "GlobalParam.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
 #include "ModuleMMOEngineMaster.h"
 
@@ -20,8 +20,12 @@ TMasterLogic::TMasterLogic()
 
   mMasterForm = NULL;
   // значения по-умолчанию для параметров командной строки
+  std::string sLocalHost;
+  TResolverSelf_IP_v4 resolver;
+  resolver.Get(sLocalHost, 0);
+
   TInputCmdDevTool::TInput input;
-  input.ip_dst   = boost::asio::ip::address_v4::from_string(ns_getSelfIP(0)).to_ulong();
+  input.ip_dst   = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
   input.port_self = MASTER_PORT;
   input.port_dst  = SUPER_SERVER_PORT;
 

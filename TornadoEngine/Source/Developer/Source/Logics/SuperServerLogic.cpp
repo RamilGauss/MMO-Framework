@@ -8,7 +8,7 @@ See for more information License.h.
 #include "SuperServerLogic.h"
 #include "ListModules.h"
 #include "GlobalParam.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
 
 #include "ModuleMMOEngineSuperServer.h"

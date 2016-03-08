@@ -13,7 +13,7 @@ See for more information License.h.
 #include "InputCmdTestMMO_Client.h"
 #include "MakerTransport.h"
 #include "HiTimer.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
 #include <boost/smart_ptr/scoped_array.hpp>
 #include <vector>

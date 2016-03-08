@@ -9,7 +9,7 @@ See for more information License.h.
 #include "Events.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include "HandlerMMO_Slave.h"
 #include "Slave.h"
 

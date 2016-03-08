@@ -13,7 +13,7 @@ See for more information License.h.
 #include "CommonParam.h"
 #include "MakerTransport.h"
 #include "HiTimer.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
 #include "Slave.h"
 #include "Master.h"
@@ -22,10 +22,22 @@ See for more information License.h.
 #include "HandlerMMO_Master.h"
 #include "HandlerMMO_SuperServer.h"
 
-#define COUNT_SLAVE 2
+#define COUNT_SLAVE 1
 //----------------------------------------------
 int main(int argc, char** argv)
 {
+  {
+    std::string sLocalHost;
+    TResolverSelf_IP_v4 resolver;
+    int countIP_v4 = resolver.GetCount();
+    for( int i = 0 ; i < countIP_v4 ; i++ )
+    {
+      if( resolver.Get(sLocalHost, i)==false )
+        continue;
+      printf("ip=%s\n", sLocalHost.data());
+    }
+  }
+
   // обязательно инициализировать лог
   GetLogger()->Register(STR_NAME_MMO_ENGINE);
   GetLogger()->Register(STR_NAME_NET_TRANSPORT);
@@ -70,12 +82,11 @@ int main(int argc, char** argv)
   pSuperServer->SetDstObject(handlerSuperServer.get());
   pSuperServer->SetSelfID(descOpen.port);
   
-#ifdef WIN32
-  char* sLocalHost = ns_getSelfIP(0);
-#else
-  char sLocalHost[100];
-  get_ip_first_eth(sLocalHost);
-#endif
+  std::string sLocalHost;
+  TResolverSelf_IP_v4 resolver;
+  if( resolver.Get(sLocalHost, 0)==false )
+    return -1;
+
   // сначала мастер цепляется к суперсерверу,
   // потом slave-ы
   unsigned int superserverIP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();

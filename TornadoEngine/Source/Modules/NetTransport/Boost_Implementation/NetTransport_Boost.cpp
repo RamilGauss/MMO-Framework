@@ -12,7 +12,7 @@ See for more information License.h.
 #include <boost/foreach.hpp>
 
 #include "HiTimer.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
 
 

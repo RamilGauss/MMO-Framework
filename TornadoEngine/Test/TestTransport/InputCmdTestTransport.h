@@ -13,7 +13,7 @@ See for more information License.h.
 
 #include "CmdParam.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 
 class TInputCmdTestTransport
 {

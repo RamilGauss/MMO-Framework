@@ -10,7 +10,7 @@ See for more information License.h.
 #include "HiTimer.h"
 #include "Logger.h"
 #include "INetTransport.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/socket_base.hpp>
 
@@ -30,12 +30,10 @@ TNetDeviceUDP::~TNetDeviceUDP()
 bool TNetDeviceUDP::Open( unsigned short port, unsigned char numNetWork )
 {
   bool res = false;
-#ifdef WIN32
-  char* sLocalHost = ns_getSelfIP(numNetWork);
-#else
-  char sLocalHost[100];
-  get_ip_first_eth(sLocalHost);
-#endif
+  std::string sLocalHost;
+  TResolverSelf_IP_v4 resolver;
+  if( resolver.Get(sLocalHost, numNetWork)==false )
+    return false;
   try
   {
     const ip::address_v4 ipv4_address_Local = ip::address_v4::from_string(sLocalHost);
@@ -44,7 +42,7 @@ bool TNetDeviceUDP::Open( unsigned short port, unsigned char numNetWork )
     mSocket.open(endpoint_Local.protocol());
     mSocket.bind(endpoint_Local);
 
-    mIP_Port.Set( ns_inet_addr(sLocalHost), port); 
+    mIP_Port.Set( ipv4_address_Local.to_ulong(), port); 
     res = true;
   }
   catch(std::exception& e)

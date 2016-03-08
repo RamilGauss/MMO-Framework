@@ -13,7 +13,7 @@ See for more information License.h.
 #include "ShareMisc.h"
 #include "HiTimer.h"
 #include "Logger.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include "IModule.h"
 #include "FileOperation.h"
 #include "IDevTool.h"
@@ -94,11 +94,6 @@ void TGameEngine::Init()
 {
   GetLogger()->Done();
   GetLogger()->Register(STR_GAME);
-  if(ns_Init()==false)
-  {
-    GetLogger(STR_GAME)->WriteF_time("Error ns_Init().\n");
-    BL_FIX_BUG();
-  }
 }
 //------------------------------------------------------------------------
 void TGameEngine::Work(int variant_use, const char* sNameDLL, std::vector<std::string>& vecParam)// начало работы

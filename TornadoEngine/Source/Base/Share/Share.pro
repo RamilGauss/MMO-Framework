@@ -57,9 +57,9 @@ MapXML_Field.cpp \
 Markup.cpp \
 MathTools.cpp \
 MD5.cpp \
-NetSystem.cpp \
 Only_N_Object.cpp \
 Queue2Thread.cpp \
+ResolverSelf_IP_v4.cpp \
 SaveToFile.cpp \
 SetOrderElement.cpp \
 SHA256.cpp \
@@ -113,9 +113,9 @@ MapXML_Field.h \
 Markup.h \
 MathTools.h \
 MD5.h \
-NetSystem.h \
 Only_N_Object.h \
 Queue2Thread.h \
+ResolverSelf_IP_v4.h \
 SaveToFile.h \
 SetOrderElement.h \
 SHA256.h \

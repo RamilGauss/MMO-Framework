@@ -304,15 +304,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\NetSystem.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Only_N_Object.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Queue2Thread.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ResolverSelf_IP_v4.cpp"
 				>
 			</File>
 			<File
@@ -538,15 +538,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\NetSystem.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Only_N_Object.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Queue2Thread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ResolverSelf_IP_v4.h"
 				>
 			</File>
 			<File

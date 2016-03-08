@@ -10,7 +10,7 @@ See for more information License.h.
 #include <string.h>
 #include "InputCmdTestTransport.h"
 #include "HiTimer.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
 #include "ShareMisc.h"
 #include "MakerNetTransport.h"

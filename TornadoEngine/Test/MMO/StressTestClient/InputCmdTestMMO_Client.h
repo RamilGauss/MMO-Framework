@@ -14,7 +14,7 @@ See for more information License.h.
 #include "CmdParam.h"
 #include "CommonParam.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 
 class TInputCmdTestMMO_Client
 {
@@ -36,13 +36,9 @@ public:
       begin_port = CLIENT_PORT;
 			count      = 1;
       begin_id   = 0;
-#ifdef WIN32
-      char* sLocalHost = ns_getSelfIP(0);
-#else
-      char sLocalHost[100];
-      get_ip_first_eth(sLocalHost);
-#endif
-      ip_server  = sLocalHost;
+
+      TResolverSelf_IP_v4 resolver;
+      resolver.Get(ip_server, 0);
     }
 	};
 

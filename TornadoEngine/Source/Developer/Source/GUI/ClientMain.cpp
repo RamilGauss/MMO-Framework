@@ -15,7 +15,7 @@ See for more information License.h.
 #include <QSettings>
 
 #include "GlobalParam.h"
-#include "NetSystem.h"
+#include "ResolverSelf_IP_v4.h"
 #include "ModuleLogic.h"
 #include "ListModules.h"
 #include "Client.h"
