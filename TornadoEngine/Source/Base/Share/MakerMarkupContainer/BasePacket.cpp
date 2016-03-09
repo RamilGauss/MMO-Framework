@@ -40,14 +40,14 @@ void TBasePacket::GetStrDescItem(std::vector<std::string>& vecStr, int sizeStack
 {
   std::string tabs = "";
   for(int i = 0 ; i < sizeStack ; i++)
-    tabs += "\t";
+    tabs += "\t\t";
 
   int cntDesc = mMarkUp->GetCountDesc();
   for( int iDesc = 0 ; iDesc < cntDesc ; iDesc++ )
   {
     std::string name = mMarkUp->GetNameDesc(iDesc);
-    QByteArray ba = WinToKoi8(name.data(), name.length());
-    std::string nameKOI8 = ba.data();
+    QByteArray ba = WinToKoi8(name.data());
+    std::string nameKOI8 = ba.data();// название секции берется из xml, там кодировка CP1251.
 
     int cntElem = 0;
     if(mMarkUp->GetTypeDesc(iDesc)==IMarkUpContainer::eArr)
@@ -69,12 +69,11 @@ void TBasePacket::GetStrDescItem(std::vector<std::string>& vecStr, int sizeStack
           {
             if(mMarkUp->Enter(name.data(), iElem))
             {
+              // не учел (пока намеренно) вариант когда str_const == "" т.е. когда не нужно отображать
               sConst += GetStrDescConstItem(mMarkUp->GetNameDesc(0));
               mMarkUp->Leave();
             }
           }
-          QByteArray ba = WinToKoi8(sConst.data(), sConst.length());
-          sConst = ba.data();
           vecStr.push_back(tabs + nameKOI8 + sConst);
           continue;
         }
@@ -85,13 +84,15 @@ void TBasePacket::GetStrDescItem(std::vector<std::string>& vecStr, int sizeStack
     }
     else
     {
-      std::string sConst = ": ";
-      sConst += GetStrDescConstItem(name);
-      sConst += "\n";
-      QByteArray ba = WinToKoi8(sConst.data(), sConst.length());
-      sConst = ba.data();
+      std::string str_const = GetStrDescConstItem(name);
+      if(str_const.length())
+      {
+        std::string sConst = ": ";
+        sConst += str_const;
+        sConst += "\n";
 
-      vecStr.push_back(tabs + nameKOI8 + sConst);
+        vecStr.push_back(tabs + nameKOI8 + sConst);
+      }
     }
     
     for( int iElem = 0 ; iElem < cntElem ; iElem++ )

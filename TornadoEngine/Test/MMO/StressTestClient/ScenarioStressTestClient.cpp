@@ -6,23 +6,24 @@ See for more information License.h.
 */
 
 #include <boost/asio/ip/impl/address_v4.ipp>
+#include <boost/smart_ptr/scoped_array.hpp>
+#include <vector>
+#include <boost/foreach.hpp>
+#include <string.h>
+
 #include "BL_Debug.h"
 #include "Client.h"
 #include "CommonParam.h"
-#include <string.h>
 #include "InputCmdTestMMO_Client.h"
 #include "MakerTransport.h"
 #include "HiTimer.h"
 #include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
-#include <boost/smart_ptr/scoped_array.hpp>
-#include <vector>
 #include "HandlerMMO_Client.h"
-
-
 #include "MakerXML.h"
 #include "IXML.h"
 #include "ScenarioStressTestClient.h"
+
 
 void TScenarioStressTestClient::Init(int argc, char** argv)
 {
