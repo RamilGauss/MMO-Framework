@@ -13,6 +13,8 @@ See for more information License.h.
 #include "ModuleGraphicEngine.h"
 #include "ModulePhysicEngine.h"
 
+#include "EditorMap.h"
+
 TEditorMapLogic::TEditorMapLogic()
 {
 
@@ -46,7 +48,7 @@ void TEditorMapLogic::InitLog()
 //-------------------------------------------------------------------
 bool TEditorMapLogic::WorkClient()
 {
-  return false;
+  return true;
 }
 //-------------------------------------------------------------------
 void TEditorMapLogic::Input(int id_sender, void* p, int size)
@@ -71,8 +73,8 @@ void TEditorMapLogic::StartTimer()
 //----------------------------------------------------------
 void TEditorMapLogic::InitForms()
 {
-  //mDebugPanel = new TDebugPanel;
-  //mDebugPanel->Show();
+  mEditorMap = new TEditorMap;
+  mEditorMap->Show();
 }
 //----------------------------------------------------------
 void TEditorMapLogic::PhysicEndWork()
@@ -97,7 +99,28 @@ void TEditorMapLogic::PhysicBeginWork()
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::FreeGraphicResource()
 {
-  //delete mClientMain;
-  //delete mDebugPanel;
+  delete mEditorMap;
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::LoadGameMap(std::string& nameMap)
+{
+  // перейти в режим загрузки карты, то есть перенаправлять кванты времени потоков на загрузку
+  flgLoadGameMap = true;
+
+  std::vector<TBuilderGameMap::eTypeThread> vecType;
+  vecType.push_back(TBuilderGameMap::eOGRE);
+  vecType.push_back(TBuilderGameMap::eBullet);
+  vecType.push_back(TBuilderGameMap::eOpenAL);
+
+  mBuilderGameMap.SetupListThread(vecType);
+  if( mBuilderGameMap.BeginLoad( nameMap, &mFGI)==false )
+  {
+    BL_FIX_BUG();
+    return;
+  }
+
+  flgNeedLoad_OGRE   = true;
+  flgNeedLoad_Bullet = true;
+  flgNeedLoad_OpenAL = true;
 }
 //---------------------------------------------------------------------------------------------

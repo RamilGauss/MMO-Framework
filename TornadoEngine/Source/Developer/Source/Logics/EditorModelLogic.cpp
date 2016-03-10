@@ -46,7 +46,7 @@ void TEditorModelLogic::InitLog()
 //-------------------------------------------------------------------
 bool TEditorModelLogic::WorkClient()
 {
-  return false;
+  return true;
 }
 //-------------------------------------------------------------------
 void TEditorModelLogic::Input(int id_sender, void* p, int size)

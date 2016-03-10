@@ -238,48 +238,25 @@
       </Thread>
     </CPU>
   </Variant>
-  <Variant Name = "EditorTerrain">
-    <CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Logic"          />
-        <Module Name = "Timer"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-      </Thread>
-      <Thread>
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-      </Thread>
-      <Thread>
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
-  </Variant>
   <Variant Name = "EditorMap">
     <CPU CountCore = "1" >
       <Thread>
         <Module Name = "GraphicEngine"  />
         <Module Name = "Logic"          />
+        <Module Name = "PhysicEngine"   />
+        <Module Name = "SoundEngine"    />
         <Module Name = "Timer"          />
       </Thread>
     </CPU>
     <CPU CountCore = "2" >
       <Thread>
         <Module Name = "GraphicEngine"  />
+        <Module Name = "Logic"          />
+        <Module Name = "SoundEngine"    />
         <Module Name = "Timer"          />
       </Thread>
       <Thread>
-        <Module Name = "Logic"          />
+        <Module Name = "PhysicEngine"   />
       </Thread>
     </CPU>
     <CPU CountCore = "4" >
@@ -289,6 +266,12 @@
       </Thread>
       <Thread>
         <Module Name = "Logic"          />
+      </Thread>
+      <Thread>
+        <Module Name = "SoundEngine"    />
+      </Thread>
+      <Thread>
+        <Module Name = "PhysicEngine"   />
       </Thread>
     </CPU>
   </Variant>

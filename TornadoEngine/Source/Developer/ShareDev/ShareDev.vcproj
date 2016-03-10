@@ -603,6 +603,14 @@
 				Name="Common"
 				>
 				<File
+					RelativePath=".\Builder\BuilderGameMap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\BuilderGameMap.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Builder\ParamBuilderConstraint.cpp"
 					>
 				</File>
@@ -623,6 +631,14 @@
 		<Filter
 			Name="Scene"
 			>
+			<File
+				RelativePath=".\Scene\GameObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Scene\GameObject.h"
+				>
+			</File>
 			<File
 				RelativePath=".\Scene\PrototypeBehaviourPattern.h"
 				>

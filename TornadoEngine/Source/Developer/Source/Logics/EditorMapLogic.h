@@ -9,9 +9,20 @@ See for more information License.h.
 #define EditorMapLogicH
 
 #include "ModuleClientLogic.h"
+#include "BuilderGameMap.h"
+
+class TEditorMap;
 
 class TEditorMapLogic : public TModuleClientLogic
 {
+  volatile bool flgLoadGameMap;
+  volatile bool flgNeedLoad_OGRE;
+  volatile bool flgNeedLoad_Bullet;
+  volatile bool flgNeedLoad_OpenAL;
+
+  TBuilderGameMap mBuilderGameMap;
+
+  TEditorMap* mEditorMap;
 public:
   TEditorMapLogic();
   virtual ~TEditorMapLogic();
@@ -33,6 +44,9 @@ private:
 
   void PhysicBeginWork();
   void PhysicEndWork();
+
+private:
+  void LoadGameMap(std::string& nameMap);
 };
 
 #endif

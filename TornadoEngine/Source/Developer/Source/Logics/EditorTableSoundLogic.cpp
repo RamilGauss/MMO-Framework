@@ -46,7 +46,7 @@ void TEditorTableSoundLogic::InitLog()
 //-------------------------------------------------------------------
 bool TEditorTableSoundLogic::WorkClient()
 {
-	return false;
+	return true;
 }
 //-------------------------------------------------------------------
 void TEditorTableSoundLogic::Input(int id_sender, void* p, int size)
