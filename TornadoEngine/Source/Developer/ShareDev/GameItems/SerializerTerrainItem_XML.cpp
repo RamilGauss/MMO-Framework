@@ -8,7 +8,7 @@ See for more information License.h.
 #include "SerializerTerrainItem_XML.h"
 #include "TerrainItem.h"
 #include "IXML.h"
-
+#include <boost/lexical_cast.hpp>
 
 namespace nsSerializerTerrainItem_XML
 {
@@ -81,9 +81,9 @@ void TSerializerTerrainItem_XML::LoadGeometry()
     {
       LoadProperty(iProperty, key, value);
       if(key==sLength)
-        mTerrain->mLength = atof(value.data());
+        mTerrain->mLength = boost::lexical_cast<float>(value.data());
       if(key==sWidth)
-        mTerrain->mWidth = atof(value.data());
+        mTerrain->mWidth = boost::lexical_cast<float>(value.data());
     }
     mXML->LeaveSection();
   }
@@ -98,7 +98,7 @@ void TSerializerTerrainItem_XML::LoadGraphic()
     {
       TTerrainItem::TLOD lod;
       std::string distance = mXML->ReadSectionAttr(sLOD, iLOD, sDistance);
-      lod.distance = atof(distance.data());
+      lod.distance = boost::lexical_cast<float>(distance.data());
       if(mXML->EnterSection(sLOD, iLOD))// ЛОД
       {
         std::string key, value;
@@ -133,11 +133,11 @@ void TSerializerTerrainItem_XML::LoadHeightMap()
       std::string v = mXML->ReadSectionAttr(sPoint, iPoint, sV);
 
       TTerrainItem::TPoint point;
-      point.x = atof(x.data());
-      point.y = atof(y.data());
-      point.h = atof(h.data());
-      point.u = atof(u.data());
-      point.v = atof(v.data());
+      point.x = boost::lexical_cast<float>(x.data());
+      point.y = boost::lexical_cast<float>(y.data());
+      point.h = boost::lexical_cast<float>(h.data());
+      point.u = boost::lexical_cast<float>(u.data());
+      point.v = boost::lexical_cast<float>(v.data());
 
       mTerrain->mHeightMap.push_back(point);
     }

@@ -6,9 +6,10 @@ See for more information License.h.
 */
 
 #include "MaterialItem.h"
+#include "FactoryGameItem.h"
 
 TMaterialItem::TMaterialItem(std::string& name):
-TBaseItem(name)
+TBaseItem(name, TFactoryGameItem::Material)
 {
 
 }

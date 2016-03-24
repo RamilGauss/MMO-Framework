@@ -7,6 +7,7 @@ See for more information License.h.
 
 #include "InputCmdDevTool.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
+#include <boost/lexical_cast.hpp>
 
 #define KEY_IP_SRC    string("ip_dst")
 #define KEY_PORT_SRC  string("port_dst")
@@ -50,7 +51,7 @@ bool TInputCmdDevTool::SetArg(vector<string>& vecArgv)
   {
     string sPort;
     mCmdParam.GetByKey(KEY_PORT_SRC, 0, sPort);
-    mInput.port_dst = atoi(sPort.data());
+    mInput.port_dst = boost::lexical_cast<int>(sPort.data());
   }
 	//-------------------------------------------------
   cPort = mCmdParam.GetCountValueByKey(KEY_PORT_SELF);
@@ -58,7 +59,7 @@ bool TInputCmdDevTool::SetArg(vector<string>& vecArgv)
   {
     string sPort;
     mCmdParam.GetByKey(KEY_PORT_SELF, 0, sPort);
-    mInput.port_self = atoi(sPort.data());
+    mInput.port_self = boost::lexical_cast<int>(sPort.data());
   }
   //-------------------------------------------------
 	return true;

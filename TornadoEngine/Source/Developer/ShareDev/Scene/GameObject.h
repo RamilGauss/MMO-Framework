@@ -9,13 +9,34 @@ See for more information License.h.
 #define GameObjectH
 
 #include "TypeDef.h"
+#include "MathTools.h"
+#include <string>
+#include <map>
+
+/*
+  Базовый тип игрового объекта для карты.
+*/
 
 class DllExport TGameObject
 {
+  std::string mType;// для отладки
+  
+  int mID;
+
+  nsMathTools::TVector3 mPosition;
+  nsMathTools::TVector3 mRotation;
+
 public:
-  TGameObject();
+  TGameObject(std::string type);
   virtual ~TGameObject();
 
+  int GetID() const;
+  void SetID( int id );
+
+  typedef std::map<std::string,std::string> TMapStrStr;
+
+  virtual void SetInternalState(TMapStrStr& mapStrStr) = 0;
+  virtual bool GetInternalState(TMapStrStr& mapStrStr) = 0;
 };
 
 #endif

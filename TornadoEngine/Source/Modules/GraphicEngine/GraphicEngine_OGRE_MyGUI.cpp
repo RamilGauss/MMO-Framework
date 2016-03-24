@@ -5,19 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "GraphicEngine_OGRE_MyGUI.h"
+#include "GraphicEngine_Ogre_MyGUI.h"
 #include "GE_Impl.h"
 #include "BL_Debug.h"
 #include "SrcEvent_ex.h"
 #include "Events.h"
 #include "Logger.h"
 
-TGraphicEngine_OGRE_MyGUI::TGraphicEngine_OGRE_MyGUI()
+TGraphicEngine_Ogre_MyGUI::TGraphicEngine_Ogre_MyGUI()
 {
   mTimeoutDblClick = eTimeoutDblClick;
 
-  mCBKeyBoard.Register( &TGraphicEngine_OGRE_MyGUI::KeyBoardEvent, this);
-  mCBMouse.Register( &TGraphicEngine_OGRE_MyGUI::MouseEvent, this);
+  mCBKeyBoard.Register( &TGraphicEngine_Ogre_MyGUI::KeyBoardEvent, this);
+  mCBMouse.Register( &TGraphicEngine_Ogre_MyGUI::MouseEvent, this);
 
 	mGE.reset(new TGE_Impl);
   
@@ -25,12 +25,12 @@ TGraphicEngine_OGRE_MyGUI::TGraphicEngine_OGRE_MyGUI()
   mGE->SetCallBackMouse(&mCBMouse);
 }
 //---------------------------------------------------------------------
-TGraphicEngine_OGRE_MyGUI::~TGraphicEngine_OGRE_MyGUI()
+TGraphicEngine_Ogre_MyGUI::~TGraphicEngine_Ogre_MyGUI()
 {
 
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_OGRE_MyGUI::InitOGRE(const std::string& pathPluginCfg)
+bool TGraphicEngine_Ogre_MyGUI::InitOGRE(const std::string& pathPluginCfg)
 {
 	try
 	{
@@ -44,12 +44,12 @@ bool TGraphicEngine_OGRE_MyGUI::InitOGRE(const std::string& pathPluginCfg)
 	return false;
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_OGRE_MyGUI::AddResource(const std::string& name, const std::string& type)
+void TGraphicEngine_Ogre_MyGUI::AddResource(const std::string& name, const std::string& type)
 {
   mGE->AddResource(name, type);
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_OGRE_MyGUI::InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin)
+bool TGraphicEngine_Ogre_MyGUI::InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin)
 {
   try
   {
@@ -63,7 +63,7 @@ bool TGraphicEngine_OGRE_MyGUI::InitMyGUI(const std::string& nameFileCore, const
   return false;
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_OGRE_MyGUI::Work()
+bool TGraphicEngine_Ogre_MyGUI::Work()
 {
   try
   {
@@ -77,27 +77,27 @@ bool TGraphicEngine_OGRE_MyGUI::Work()
   return false;
 }
 //---------------------------------------------------------------------
-Ogre::Root* TGraphicEngine_OGRE_MyGUI::GetRoot()
+Ogre::Root* TGraphicEngine_Ogre_MyGUI::GetRoot()
 {
   return mGE->GetRoot();
 }
 //---------------------------------------------------------------------
-Ogre::SceneManager* TGraphicEngine_OGRE_MyGUI::GetSceneManager()
+Ogre::SceneManager* TGraphicEngine_Ogre_MyGUI::GetSceneManager()
 {
   return mGE->GetSceneManager();
 }
 //---------------------------------------------------------------------
-Ogre::Camera* TGraphicEngine_OGRE_MyGUI::GetCamera()
+Ogre::Camera* TGraphicEngine_Ogre_MyGUI::GetCamera()
 {
   return mGE->GetCamera();
 }
 //---------------------------------------------------------------------
-Ogre::RenderWindow* TGraphicEngine_OGRE_MyGUI::GetWindow()
+Ogre::RenderWindow* TGraphicEngine_Ogre_MyGUI::GetWindow()
 {
 	return mGE->GetWindow();
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_OGRE_MyGUI::MsgException(MyGUI::Exception& _e)
+void TGraphicEngine_Ogre_MyGUI::MsgException(MyGUI::Exception& _e)
 {
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
   MessageBoxA( NULL, _e.getFullDescription().c_str(), "An exception has occured", MB_OK | MB_ICONERROR | MB_TASKMODAL);
@@ -106,17 +106,17 @@ void TGraphicEngine_OGRE_MyGUI::MsgException(MyGUI::Exception& _e)
 #endif
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_OGRE_MyGUI::SetWindowCaption(const std::wstring& _text)
+void TGraphicEngine_Ogre_MyGUI::SetWindowCaption(const std::wstring& _text)
 {
   mGE->SetWindowCaption(_text);
 }
 //---------------------------------------------------------------------
-size_t TGraphicEngine_OGRE_MyGUI::GetWindowHandle()
+size_t TGraphicEngine_Ogre_MyGUI::GetWindowHandle()
 {
   return mGE->GetWindowHandle();
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_OGRE_MyGUI::KeyBoardEvent(const OIS::KeyEvent & k, bool pressed)
+void TGraphicEngine_Ogre_MyGUI::KeyBoardEvent(const OIS::KeyEvent & k, bool pressed)
 {
   nsGraphicEngine::TKeyEvent* pKE = new nsGraphicEngine::TKeyEvent;
 
@@ -127,7 +127,7 @@ void TGraphicEngine_OGRE_MyGUI::KeyBoardEvent(const OIS::KeyEvent & k, bool pres
   AddEventWithoutCopy<nsGraphicEngine::TKeyEvent>(pKE);
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_OGRE_MyGUI::MouseEvent(const OIS::MouseEvent& m, OIS::MouseButtonID id,
+void TGraphicEngine_Ogre_MyGUI::MouseEvent(const OIS::MouseEvent& m, OIS::MouseButtonID id,
                                            nsGraphicEngine::tTypeMouseEvent typeEvent)
 {
   nsGraphicEngine::TMouseEvent* pME = new nsGraphicEngine::TMouseEvent;
@@ -160,7 +160,7 @@ void TGraphicEngine_OGRE_MyGUI::MouseEvent(const OIS::MouseEvent& m, OIS::MouseB
   }
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_OGRE_MyGUI::CheckDblClick(const OIS::MouseEvent& m, OIS::MouseButtonID id,
+bool TGraphicEngine_Ogre_MyGUI::CheckDblClick(const OIS::MouseEvent& m, OIS::MouseButtonID id,
     nsGraphicEngine::tTypeMouseEvent typeEvent)
 {
   // проверка на двойной клик
@@ -193,7 +193,7 @@ bool TGraphicEngine_OGRE_MyGUI::CheckDblClick(const OIS::MouseEvent& m, OIS::Mou
   return false;
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_OGRE_MyGUI::SetTimeoutDblClick(int t_ms)
+void TGraphicEngine_Ogre_MyGUI::SetTimeoutDblClick(int t_ms)
 {
   mTimeoutDblClick = t_ms;
 }

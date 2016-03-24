@@ -285,7 +285,7 @@
 				<BaseProperty>
 				  <Identity>
 						<Property key="Type" value="Zone"/>
-						<Property key="Name" value="Grass"/>
+            <Property key="ID"   value="1"/>     <!-- Уникальный в пределах карты идентификатор -->
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -299,7 +299,8 @@
 					</Rotation>
 				</BaseProperty>
 				<InternalState>
-					<Property key="Type" value="GraphicEffect"/>
+					<Property key="Name" value="Grass"/> <!-- Или имя модели или просто имя -->
+          <Property key="Type" value="GraphicEffect"/>
 					<Property key="Height" value="10.01"/>				
 					<Property key="CntCoord" value="4"/>
 					<Property key="Coord0"   value="0.0000012;0.0001212"/>
@@ -312,7 +313,7 @@
 				<BaseProperty>
 				  <Identity>
 						<Property key="Type" value="Skybox"/>
-						<Property key="Name" value="Main"/>
+            <Property key="ID"   value="2"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -326,13 +327,14 @@
 					</Rotation>
 				</BaseProperty>
 				<InternalState>
+          <Property key="Name" value="Main"/>
 				</InternalState>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
 						<Property key="Type" value="Model"/>
-						<Property key="Name" value="Gear"/>
+            <Property key="ID"   value="3"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -346,13 +348,14 @@
 					</Rotation>
 				</BaseProperty>
 				<InternalState>
-				</InternalState>
+          <Property key="Name" value="Gear"/>
+        </InternalState>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
 						<Property key="Type" value="Light"/>
-						<Property key="Name" value="Point"/>
+            <Property key="ID"   value="4"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -367,13 +370,14 @@
 				</BaseProperty>
 				<InternalState>
 					<Property key="type" value="point"/>
-				</InternalState>
+					<Property key="Name" value="Point"/>
+        </InternalState>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
 						<Property key="Type" value="Terrain"/>
-						<Property key="Name" value="0_0"/>
+            <Property key="ID"   value="5"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -387,13 +391,14 @@
 					</Rotation>
 				</BaseProperty>
 				<InternalState>
+					<Property key="Name" value="0_0"/>
 				</InternalState>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
 						<Property key="Type" value="Animated"/>
-						<Property key="Name" value="BirdFly"/>
+            <Property key="ID"   value="6"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -407,13 +412,14 @@
 					</Rotation>
 				</BaseProperty>
 				<InternalState>
+					<Property key="Name" value="BirdFly"/>
 				</InternalState>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
 						<Property key="Type" value="Sound"/><!-- Звук ветра в определенном месте. -->
-						<Property key="Name" value="Wind"/>
+            <Property key="ID"   value="7"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -428,6 +434,7 @@
 				</BaseProperty>
 				<InternalState>
 				  <Property key="file" value="wind.mp3"/>
+					<Property key="Name" value="Wind"/>
 				</InternalState>
 			</Object>
 		</Set>

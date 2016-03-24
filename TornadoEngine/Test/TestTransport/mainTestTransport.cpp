@@ -69,12 +69,10 @@ int main(int argc, char** argv)
   TMakerNetTransport_Boost makerTransport;
   g_pTransport = makerTransport.New();
 
-#ifdef WIN32
-  char* sLocalHost = ns_getSelfIP(0);
-#else
-  char sLocalHost[100];
-  get_ip_first_eth(sLocalHost);
-#endif
+  std::string sLocalHost;
+  TResolverSelf_IP_v4 resolver;
+  resolver.Get(sLocalHost, 0);
+
   unsigned int IP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
 
   g_pTransport->GetCallbackDisconnect()->Register( &THandler::Disconnect, &g_Handler);

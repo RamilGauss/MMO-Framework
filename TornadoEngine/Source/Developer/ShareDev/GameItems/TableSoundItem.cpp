@@ -9,7 +9,7 @@ See for more information License.h.
 #include <boost/foreach.hpp>
 
 TTableSoundItem::TTableSoundItem(std::string& name):
-TBaseItem(name)
+TBaseItem(name, TFactoryGameItem::TableSound)
 {
 
 }

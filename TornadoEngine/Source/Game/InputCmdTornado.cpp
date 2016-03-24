@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include "InputCmdTornado.h"
+#include <boost/lexical_cast.hpp>
 
 using namespace std;
 
@@ -42,7 +43,7 @@ bool TInputCmdTornado::SetArg(vector<string>& vecArgv)
 	{
 		string sVariant;
 		mCmdParam.GetByKey(KEY_VARIANT, 0, sVariant);
-		mInput.variant_use = atoi(sVariant.data());
+		mInput.variant_use = boost::lexical_cast<int>(sVariant.data());
 	}
 	//-------------------------------------------------
 	int cP = mCmdParam.GetCountValueByKey(KEY_PARAM);

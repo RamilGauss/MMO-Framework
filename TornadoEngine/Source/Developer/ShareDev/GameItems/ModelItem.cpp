@@ -8,7 +8,7 @@ See for more information License.h.
 #include "ModelItem.h"
 
 TModelItem::TModelItem(std::string& name):
-TBaseItem(name)
+TBaseItem(name, TFactoryGameItem::Model)
 {
 
 }

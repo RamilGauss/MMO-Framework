@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "GE_Impl.h"
 #include "Logger.h"
-#include "GraphicEngine_OGRE_MyGUI.h"
+#include "GraphicEngine_Ogre_MyGUI.h"
 #include "Events.h"
 
 #include <MyGUI_OgrePlatform.h>

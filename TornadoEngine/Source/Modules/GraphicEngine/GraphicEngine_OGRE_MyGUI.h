@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef GraphicEngine_OGRE_MyGUIH
-#define GraphicEngine_OGRE_MyGUIH
+#ifndef GraphicEngine_Ogre_MyGUIH
+#define GraphicEngine_Ogre_MyGUIH
 
 #include "TypeDef.h"
 #include "SrcEvent.h"
@@ -34,14 +34,14 @@ class TGE_Impl;
   добавление и изменение объектов.
 */
 
-class DllExport TGraphicEngine_OGRE_MyGUI : 
+class DllExport TGraphicEngine_Ogre_MyGUI : 
   public TSrcEvent /*for generation keyboard and mouse events(unused by GUI)*/
 {
   TCallBackRegistrator2<const OIS::KeyEvent &, bool> mCBKeyBoard;
   TCallBackRegistrator3<const OIS::MouseEvent&, OIS::MouseButtonID, nsGraphicEngine::tTypeMouseEvent> mCBMouse;
 public:
-  TGraphicEngine_OGRE_MyGUI();
-  virtual ~TGraphicEngine_OGRE_MyGUI();
+  TGraphicEngine_Ogre_MyGUI();
+  virtual ~TGraphicEngine_Ogre_MyGUI();
 /* Order of calls:
    1. InitOGRE, 2. AddResource, 3. InitMyGUI */
 	bool InitOGRE(const std::string& pathPluginCfg);

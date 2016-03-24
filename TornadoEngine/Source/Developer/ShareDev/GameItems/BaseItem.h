@@ -10,12 +10,14 @@ See for more information License.h.
 
 #include <string>
 #include "TypeDef.h"
+#include "FactoryGameItem.h"
 
 struct DllExport TBaseItem
 {
   std::string mName;
+  int mType;
 
-  TBaseItem(std::string& name);
+  TBaseItem(std::string& name, int type);
 };
 
 #endif

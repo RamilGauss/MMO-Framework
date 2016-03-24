@@ -104,23 +104,11 @@ void TEditorMapLogic::FreeGraphicResource()
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::LoadGameMap(std::string& nameMap)
 {
-  // перейти в режим загрузки карты, то есть перенаправлять кванты времени потоков на загрузку
-  flgLoadGameMap = true;
-
-  std::vector<TBuilderGameMap::eTypeThread> vecType;
-  vecType.push_back(TBuilderGameMap::eOGRE);
-  vecType.push_back(TBuilderGameMap::eBullet);
-  vecType.push_back(TBuilderGameMap::eOpenAL);
-
-  mBuilderGameMap.SetupListThread(vecType);
-  if( mBuilderGameMap.BeginLoad( nameMap, &mFGI)==false )
+  TMapItem* pMapItem = (TMapItem*)mFGI.Get( TFactoryGameItem::Map, nameMap );
+  if( mBGM.BuildMap( pMapItem )==false )
   {
     BL_FIX_BUG();
     return;
   }
-
-  flgNeedLoad_OGRE   = true;
-  flgNeedLoad_Bullet = true;
-  flgNeedLoad_OpenAL = true;
 }
 //---------------------------------------------------------------------------------------------

@@ -10,6 +10,7 @@ See for more information License.h.
 #include "Precompiled.h"
 #include <atlconv.h>
 #include <boost/asio/ip/impl/address_v4.ipp>
+#include <boost/lexical_cast.hpp>
 
 #include <QString>
 #include <QSettings>
@@ -51,7 +52,7 @@ void TClientMain::sl_Enter(MyGUI::Widget* _sender)
 {
   USES_CONVERSION;
   std::string sPort = W2A((LPCWSTR)ebPort->getOnlyText().data());
-  int port = atoi(sPort.data());
+  int port = boost::lexical_cast<int>(sPort.data());
 
   std::string sIP = W2A((LPCWSTR)ebIP->getOnlyText().data());
   ip = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();

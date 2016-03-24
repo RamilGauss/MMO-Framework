@@ -9,6 +9,7 @@ See for more information License.h.
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <boost/lexical_cast.hpp>
 
 using namespace std;
 
@@ -49,7 +50,7 @@ bool TInputCmdTestMMO_Client::SetArg(vector<string>& vecArgv)
   {
     string sBeginPort;
     mCmdParam.GetByKey(KEY_BEGIN_PORT, 0, sBeginPort);
-    mInput.begin_port = atoi(sBeginPort.data());
+    mInput.begin_port = boost::lexical_cast<int>(sBeginPort.data());
   }
 	//-------------------------------------------------
 	int cV = mCmdParam.GetCountValueByKey(KEY_COUNT);
@@ -57,14 +58,14 @@ bool TInputCmdTestMMO_Client::SetArg(vector<string>& vecArgv)
 	{
 		string sCount;
 		mCmdParam.GetByKey(KEY_COUNT, 0, sCount);
-		mInput.count = atoi(sCount.data());
+		mInput.count = boost::lexical_cast<int>(sCount.data());
 	}
   int cL = mCmdParam.GetCountValueByKey(KEY_BEGIN_ID);
   if(cL==1)
   {
     string sBeginID;
     mCmdParam.GetByKey(KEY_BEGIN_ID, 0, sBeginID);
-		mInput.begin_id = atoi(sBeginID.data());
+		mInput.begin_id = boost::lexical_cast<int>(sBeginID.data());
   }
   int cIP_S = mCmdParam.GetCountValueByKey(KEY_IP_SERVER);
   if(cIP_S==1)

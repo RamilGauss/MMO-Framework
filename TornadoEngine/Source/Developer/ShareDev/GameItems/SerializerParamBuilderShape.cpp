@@ -442,7 +442,7 @@ float TSerializerParamBuilderShape::GetValueByName(const char* name)
   if(fit==mMapKeyValue->end()) 
     return 0.0;
 
-  return atof(fit->second.data());
+  return boost::lexical_cast<float>(fit->second.data());
 }
 //---------------------------------------------------------------------
 std::string TSerializerParamBuilderShape::FindStrByType(int type)

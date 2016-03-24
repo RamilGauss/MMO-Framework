@@ -7,62 +7,90 @@ See for more information License.h.
 
 #include "BuilderGameMap.h"
 #include "FactoryGameItem.h"
-#include <boost\foreach.hpp>
+#include <boost/foreach.hpp>
+
+#include "MapItem.h"
+#include "TableSoundItem.h"
+#include "GameTableSound.h"
 
 TBuilderGameMap::TBuilderGameMap()
 {
   mFactoryGameItem = NULL;
-
-  mVecThread.push_back(eOGRE);
-  mVecThread.push_back(eBullet);
-  mVecThread.push_back(eOpenAL);
+  mMapItem    = NULL;
+  mTableSound = NULL;
+  mGameTableSound = NULL;
+  mState = eIdle;
 }
 //--------------------------------------------------------------------------------------------
 TBuilderGameMap::~TBuilderGameMap()
 {
-
+  delete mGameTableSound;
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::SetupListThread(std::vector<eTypeThread>& vec)
+void TBuilderGameMap::Init(std::vector<eTypeThread>& vec, TFactoryGameItem* pFactoryGameItem)
 {
   mVecThread = vec;
-}
-//--------------------------------------------------------------------------------------------
-bool TBuilderGameMap::BeginLoad(std::string& nameMapItem, TFactoryGameItem* pFactoryGameItem)
-{
-  mNameMapItem     = nameMapItem;
   mFactoryGameItem = pFactoryGameItem;
-
-  bool result = true;
-  BOOST_FOREACH(eTypeThread& type, mVecThread)
-  {
-    switch(type)
-    {
-      case eOGRE:
-        result &= PrepareTask_OGRE();
-        break;
-      case eBullet:
-        result &= PrepareTask_Bullet();
-        break;
-      case eOpenAL:
-        result &= PrepareTask_OpenAL();
-        break;
-    }
-  }
-  return result;
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::BuildFromThread_OGRE(int& progress_procent)
+bool TBuilderGameMap::BuildMap( TMapItem* pMI )
+{
+  if(CheckIdle()==false)
+    return false;
+
+  mMapItem = pMI;
+  if( mMapItem==NULL )
+    return false;
+  mTableSound = 
+    (TTableSoundItem*)mFactoryGameItem->Get( TFactoryGameItem::TableSound, mMapItem->mNameTableSound);
+  if( mTableSound )
+    mGameTableSound = new TGameTableSound;
+
+/*  TPreBuilderCameraUp preBuilderCameraUp;
+  preBuilderCameraUp.Set(mMapItem->mCameraUp);
+  preBuilderCameraUp.Work();
+  preBuilderCameraUp.GetTask();
+  
+  TPreBuilderGravityVector preBuilderGravityVector;
+  preBuilderGravityVector.Set(mMapItem->mGravity);
+  preBuilderGravityVector.Work();
+  preBuilderGravityVector.GetTask();
+
+  TPreBuilderGameObject preBuilderGameObject;
+  preBuilderGameObject.Set(mMapItem->mListObject);
+  preBuilderGameObject.Work();
+  preBuilderGameObject.GetTask();
+*/
+  return true;
+}
+//--------------------------------------------------------------------------------------------
+bool TBuilderGameMap::AddObject( TMapItem::TObject* pObject )
+{
+  if(CheckIdle()==false)
+    return false;
+
+  return true;
+}
+//--------------------------------------------------------------------------------------------
+bool TBuilderGameMap::DeleteObject( TGameObject* pObject )
+{
+  if(CheckIdle()==false)
+    return false;
+
+  return true;
+}
+//--------------------------------------------------------------------------------------------
+void TBuilderGameMap::BuildFromThread_Ogre()
 {
 
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::BuildFromThread_Bullet(int& progress_procent)
+void TBuilderGameMap::BuildFromThread_Bullet()
 {
 
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::BuildFromThread_OpenAL(int& progress_procent)
+void TBuilderGameMap::BuildFromThread_OpenAL()
 {
 
 }
@@ -72,18 +100,21 @@ void TBuilderGameMap::Get(std::vector<TGameObject*>& vecPtrGameObject)
 
 }
 //--------------------------------------------------------------------------------------------
-bool TBuilderGameMap::PrepareTask_OGRE()
+TBuilderGameMap::State TBuilderGameMap::GetState()
 {
-  return true;
+  return mState;
 }
 //--------------------------------------------------------------------------------------------
-bool TBuilderGameMap::PrepareTask_Bullet()
+int TBuilderGameMap::GetProgress()
 {
-  return true;
+  return 0;
 }
 //--------------------------------------------------------------------------------------------
-bool TBuilderGameMap::PrepareTask_OpenAL()
+bool TBuilderGameMap::CheckIdle()
 {
+  if((mState==eBuildMap) || 
+     (mState==eObjectOperation))
+    return false;
   return true;
 }
 //--------------------------------------------------------------------------------------------

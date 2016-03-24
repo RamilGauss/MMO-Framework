@@ -6,9 +6,10 @@ See for more information License.h.
 */
 
 #include "ShapeItem.h"
+#include "FactoryGameItem.h"
 
 TShapeItem::TShapeItem(std::string& name):
-TBaseItem(name)
+TBaseItem(name, TFactoryGameItem::Shape)
 {
   flgUseNatureColor = true;
 }

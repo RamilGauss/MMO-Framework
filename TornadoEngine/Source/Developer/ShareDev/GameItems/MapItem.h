@@ -24,7 +24,7 @@ struct DllExport TMapItem : public TBaseItem
 	{
 		// base property
 		std::string type;
-		std::string name;
+    int         id;
 		nsMathTools::TVector3 position;
 		nsMathTools::TVector3 rotation;
 

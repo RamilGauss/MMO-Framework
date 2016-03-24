@@ -7,8 +7,9 @@ See for more information License.h.
 
 #include "BaseItem.h"
 
-TBaseItem::TBaseItem(std::string& name)
+TBaseItem::TBaseItem(std::string& name, int type)
 {
   mName = name;
+  mType = type;
 }
 //------------------------------------------------------------------------------

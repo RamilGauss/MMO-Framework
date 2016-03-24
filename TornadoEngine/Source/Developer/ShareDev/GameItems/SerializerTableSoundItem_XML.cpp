@@ -147,8 +147,8 @@ void TSerializerTableSoundItem_XML::LoadRangeVelocity()
       std::string key, value;
       if(LoadProperty(iProperty, key, value))
       {
-        float v = (float)atof(value.data());
-        int index = atoi(key.data());
+        float v   = boost::lexical_cast<float>(value.data());
+        int index = boost::lexical_cast<int>(key.data());
         if(errno!=ERANGE)
           mTableSound->mMapVelocity.insert(TTableSoundItem::TMapFloatIntVT(v, index));
       }
@@ -167,8 +167,8 @@ void TSerializerTableSoundItem_XML::LoadRangeAngle()
       std::string key, value;
       if(LoadProperty(iProperty, key, value))
       {
-        float v = (float)atof(value.data());
-        int index = atoi(key.data());
+        float v = boost::lexical_cast<float>(value.data());
+        int index = boost::lexical_cast<int>(key.data());
         if(errno!=ERANGE)
           mTableSound->mMapAngle.insert(TTableSoundItem::TMapFloatIntVT(v, index));
       }
@@ -187,8 +187,8 @@ void TSerializerTableSoundItem_XML::LoadRangeMass()
       std::string key, value;
       if(LoadProperty(iProperty, key, value))
       {
-        float v = (float)atof(value.data());
-        int index = atoi(key.data());
+        float v = boost::lexical_cast<float>(value.data());
+        int index = boost::lexical_cast<int>(key.data());
         if(errno!=ERANGE)
           mTableSound->mMapMass.insert(TTableSoundItem::TMapFloatIntVT(v, index));
       }
@@ -207,7 +207,7 @@ void TSerializerTableSoundItem_XML::LoadRangeMaterial()
       std::string key, value;
       if(LoadProperty(iProperty, key, value))
       {
-        int index = atoi(key.data());
+        int index = boost::lexical_cast<int>(key.data());
         if(errno!=ERANGE)
           mTableSound->mMapMaterial.insert(TTableSoundItem::TMapStrIntVT(value, index));
       }
@@ -306,7 +306,7 @@ void TSerializerTableSoundItem_XML::LoadCombination()
     std::string key, value;
     if(LoadProperty(iProperty, key, value))
     {
-      int index = atoi(value.data());
+      int index = boost::lexical_cast<int>(value.data());
       if(CheckIndex(index)==false)
       {
         BL_FIX_BUG();
@@ -430,7 +430,7 @@ void TSerializerTableSoundItem_XML::MakeAndInsertCollision()
   mListCombiSound.clear();
   
   TTableSoundItem::TSetNameParam setNameParam;
-  setNameParam.angle     = sAngle;
+  setNameParam.angle     = sAngle;// прописывается описание, чтобы не было дублирования имени в других классах
   setNameParam.mass0     = sMass0;
   setNameParam.mass1     = sMass1;
   setNameParam.material0 = sMaterial0;

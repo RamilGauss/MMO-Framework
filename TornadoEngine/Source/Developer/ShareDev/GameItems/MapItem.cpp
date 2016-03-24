@@ -6,9 +6,10 @@ See for more information License.h.
 */
 
 #include "MapItem.h"
+#include "FactoryGameItem.h"
 
 TMapItem::TMapItem(std::string& name):
-TBaseItem(name)
+TBaseItem(name, TFactoryGameItem::Map)
 {
 
 }

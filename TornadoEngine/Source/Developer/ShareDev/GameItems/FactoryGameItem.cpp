@@ -52,17 +52,19 @@ bool TFactoryGameItem::Init(std::string& name_file)
   return resLoad;
 }
 //-----------------------------------------------------------------------------
-TBaseItem* TFactoryGameItem::Add(Type type, std::string& name)
+bool TFactoryGameItem::Save(TBaseItem* pItem)
 {
-  TBaseItem* pItem = NewItem(type, name);
-  if(mMngSerializer->Save(type, pItem)==false)
-  {
-    delete pItem;
-    return NULL;
-  }
+  if(mMngSerializer->Save( (Type)pItem->mType, pItem)==false)
+    return false;
 
   mListItems.push_back(pItem);
   mMngCache->Init(mXML);// перезагрузить кэш (происходит редко, поэтому просто перезагрузить кэш)
+  return true;
+}
+//-----------------------------------------------------------------------------
+TBaseItem* TFactoryGameItem::Add(Type type, std::string& name)
+{
+  TBaseItem* pItem = NewItem(type, name);
   return pItem;
 }
 //-----------------------------------------------------------------------------

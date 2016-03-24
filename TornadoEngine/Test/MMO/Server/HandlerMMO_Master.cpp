@@ -5,10 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
+#include <boost/asio/ip/impl/address_v4.ipp>
+#include <boost/lexical_cast.hpp>
+
 #include "HandlerMMO_Master.h"
 #include "BaseEvent.h"
 #include "Events.h"
-#include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
 #include "ResolverSelf_IP_v4.h"
 #include "Master.h"
@@ -61,7 +63,7 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       sEvent += s;
       // получили пакет от Slave с id_client
       std::list<unsigned int> l_id;
-      l_id.push_front(atoi(s));
+      l_id.push_front(boost::lexical_cast<int>(s));
       TBreakPacket bp;
       char* sMsgFromMaster = "Master say hello!";
       bp.PushFront(sMsgFromMaster, strlen(sMsgFromMaster));
@@ -87,7 +89,7 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       char s[100];
       memcpy(s, pETL->c.GetPtr()+1, lenLogin);
       s[lenLogin] = '\0';
-      unsigned int ID_Client = atoi(s);
+      unsigned int ID_Client = boost::lexical_cast<int>(s);
       pMaster->SetResultLogin(true, pETL->id_session, ID_Client, (void*)"Wellcome", strlen("Wellcome"));
       //mListClient.push_back(ID_Client);
 			//if(mListClient.size()>19)

@@ -9,6 +9,12 @@ See for more information License.h.
 
 TModuleClientLogic::TModuleClientLogic()
 {
+  std::vector<TBuilderGameMap::eTypeThread> vecType;
+  vecType.push_back(TBuilderGameMap::eOgre);
+  vecType.push_back(TBuilderGameMap::eBullet);
+  vecType.push_back(TBuilderGameMap::eOpenAL);
+
+  mBGM.Init(vecType, &mFGI);
 }
 //----------------------------------------------------------------
 bool TModuleClientLogic::WorkInherit()

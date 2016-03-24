@@ -10,8 +10,11 @@ See for more information License.h.
 
 #include "ModuleClientLogic.h"
 
+class TEditorTableSound;
+
 class TEditorTableSoundLogic : public TModuleClientLogic
 {
+  TEditorTableSound* mEditorTableSound;
 public:
 	TEditorTableSoundLogic();
 	virtual ~TEditorTableSoundLogic();

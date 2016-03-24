@@ -8,8 +8,9 @@ See for more information License.h.
 #include "SerializerMapItem_XML.h"
 #include "MapItem.h"
 #include "IXML.h"
-#include <boost/foreach.hpp>
 
+#include <boost/foreach.hpp>
+#include <boost/lexical_cast.hpp>
 
 namespace nsSerializerMapItem_XML
 {
@@ -23,7 +24,7 @@ namespace nsSerializerMapItem_XML
 	const char* sBaseProperty	  = "BaseProperty";
 	const char* sIdentity			  = "Identity";
 	const char* sType					  = "Type";
-	const char* sName					  = "Name";
+	const char* sID  					  = "ID";
 	const char* sPosition			  = "Position";
 	const char* sRotation			  = "Rotation";
 	const char* sInternalState  = "InternalState";
@@ -196,8 +197,8 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
         {
           if(key==sType)
             object.type = value;
-          if(key==sName)
-            object.name = value;
+          if(key==sID)
+            object.id = boost::lexical_cast<int>(value.data());
         }
       }
       mXML->LeaveSection();
@@ -248,8 +249,8 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
       value = object.type;
       SaveProperty(key, value);
 
-      key   = sName;
-      value = object.name;
+      key   = sID;
+      value = boost::lexical_cast<std::string>(object.id);
       SaveProperty(key, value);
 
       mXML->LeaveSection();

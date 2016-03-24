@@ -188,7 +188,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\GraphicEngine_OGRE_MyGUI.cpp"
+				RelativePath=".\GraphicEngine_Ogre_MyGUI.cpp"
 				>
 			</File>
 			<File
@@ -214,7 +214,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\GraphicEngine_OGRE_MyGUI.h"
+				RelativePath=".\GraphicEngine_Ogre_MyGUI.h"
 				>
 			</File>
 			<File

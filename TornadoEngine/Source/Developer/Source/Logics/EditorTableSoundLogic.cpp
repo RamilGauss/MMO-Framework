@@ -13,6 +13,8 @@ See for more information License.h.
 #include "ModuleGraphicEngine.h"
 #include "ModulePhysicEngine.h"
 
+#include "EditorTableSound.h"
+
 TEditorTableSoundLogic::TEditorTableSoundLogic()
 {
 
@@ -25,17 +27,15 @@ TEditorTableSoundLogic::~TEditorTableSoundLogic()
 //-------------------------------------------------------------------
 void TEditorTableSoundLogic::StartEvent()
 {
-	CallBackModule(nsListModules::Timer, &TEditorTableSoundLogic::StartTimer);
+	CallBackModule(nsListModules::Timer,         &TEditorTableSoundLogic::StartTimer);
 	CallBackModule(nsListModules::GraphicEngine, &TEditorTableSoundLogic::InitForms);
-
-	CallBackModule(nsListModules::PhysicEngine, &TEditorTableSoundLogic::InitPhysic);
+	CallBackModule(nsListModules::PhysicEngine,  &TEditorTableSoundLogic::InitPhysic);
 
 	mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::GraphicBeginWork ,this);
-
 	mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorTableSoundLogic::FreeGraphicResource,this);
 
 	mComp.pPhysicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::PhysicBeginWork ,this);
-	mComp.pPhysicEngine->GetCBEndWork()->Register( &TEditorTableSoundLogic::PhysicEndWork ,this);
+	mComp.pPhysicEngine->GetCBEndWork()  ->Register( &TEditorTableSoundLogic::PhysicEndWork ,this);
 }
 //-------------------------------------------------------------------
 void TEditorTableSoundLogic::InitLog()
@@ -71,8 +71,8 @@ void TEditorTableSoundLogic::StartTimer()
 //----------------------------------------------------------
 void TEditorTableSoundLogic::InitForms()
 {
-	//mDebugPanel = new TDebugPanel;
-	//mDebugPanel->Show();
+	mEditorTableSound = new TEditorTableSound;
+	mEditorTableSound->Show();
 }
 //----------------------------------------------------------
 void TEditorTableSoundLogic::PhysicEndWork()
@@ -97,7 +97,6 @@ void TEditorTableSoundLogic::PhysicBeginWork()
 //---------------------------------------------------------------------------------------------
 void TEditorTableSoundLogic::FreeGraphicResource()
 {
-	//delete mClientMain;
-	//delete mDebugPanel;
+	delete mEditorTableSound;
 }
 //---------------------------------------------------------------------------------------------

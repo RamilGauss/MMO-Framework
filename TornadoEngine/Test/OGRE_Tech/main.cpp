@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include "ShareMisc.h"
-#include "GraphicEngine_OGRE_MyGUI.h"
+#include "GraphicEngine_Ogre_MyGUI.h"
 #include "BL_Debug.h"
 #include "ClientMain_Test.h"
 #include "Logger.h"
@@ -44,7 +44,7 @@ struct TOrient
     scale(_scale),pos(_pos){}
 };
 //---------------------------------------------------------------------------------------------
-TGraphicEngine_OGRE_MyGUI ge;
+TGraphicEngine_Ogre_MyGUI ge;
 TDstGE dst;
 //---------------------------------------------------------------------------------------------
 void AddEntity(Ogre::Entity* pEnt, TOrient& orient)

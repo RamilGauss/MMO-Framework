@@ -25,7 +25,7 @@ See for more information License.h.
 
 #include <boost/foreach.hpp>
 
-#include "GraphicEngine_OGRE_MyGUI.h"
+#include "GraphicEngine_Ogre_MyGUI.h"
 #include "EventGameEngine.h"
 
 namespace nsDevTool_Share

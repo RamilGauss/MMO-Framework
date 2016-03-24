@@ -62,6 +62,8 @@ public:
   typedef enum{Material, Shape, Model, Terrain, TableSound, Map, CountType}Type;
 
   TBaseItem* Add(Type type, std::string& name);
+  bool Save(TBaseItem* pItem);
+
   int GetCount(Type type);
   bool GetName(Type type, int index, std::string& name);
   TBaseItem* Get(Type type, std::string& name);

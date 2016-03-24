@@ -62,7 +62,6 @@ public:
   // наружу выдаст набор из вариантов описания звука - использующий класс сам решит какой вариант лучше
   bool Get(TIn& paramIn, TVectorMapStrStr& paramOut);
 
-
   struct DllExport TCombinationIndex
   {// набор индексов
     int velocity;

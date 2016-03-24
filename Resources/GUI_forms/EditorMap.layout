@@ -63,7 +63,7 @@
                 <Property key="Caption" value="Инструменты"/>
                 <Property key="MenuItemType" value="Popup"/>
                 <Property key="MenuItemId" value="Instruments"/>
-                <Widget type="PopupMenu" skin="PopupMenu" position="200 45 157 48" style="Popup" layer="Popup">
+                <Widget type="PopupMenu" skin="PopupMenu" position="180 30 157 48" style="Popup" layer="Popup">
                     <Widget type="MenuItem" skin="" position="0 0 149 19">
                         <Property key="MenuItemId" value="Command_Instruments_ColorBrush"/>
                         <Property key="Caption" value="Цветовые кисти"/>
@@ -74,6 +74,12 @@
                     </Widget>
                 </Widget>
             </Widget>
+        </Widget>
+        <Widget type="Button" skin="CheckBox" position="310 10 195 20" name="cbUsePhysic">
+            <Property key="Colour" value="0.440135 0.836257 0.817689"/>
+            <Property key="Caption" value="Использовать физику"/>
+            <Property key="Enabled" value="true"/>
+            <Property key="TextColour" value="1 1 1"/>
         </Widget>
     </Widget>
 </MyGUI>

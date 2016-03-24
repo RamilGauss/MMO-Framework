@@ -36,7 +36,7 @@ bool IXML::ReadDouble(const char* name, int num, double& v)
   string s = ReadSection(name, num);
   if(s.length()==0)
     return false;
-  v = atof(s.data());
+  v = boost::lexical_cast<double>(s.data());
 
   if(errno==ERANGE)
     return false;
@@ -48,7 +48,7 @@ bool IXML::ReadFloat(const char* name, int num, float & v)
   string s = ReadSection(name, num);
   if(s.length()==0)
     return false;
-  v = (float)atof(s.data());
+  v = boost::lexical_cast<float>(s.data());
 
   if(errno==ERANGE)
     return false;
@@ -60,7 +60,7 @@ bool IXML::ReadInt(const char* name, int num, int & v)
   string s = ReadSection(name, num);
   if(s.length()==0)
     return false;
-  v = atoi(s.data());
+  v = boost::lexical_cast<int>(s.data());
   return true;
 }
 //------------------------------------------------------------------
@@ -69,7 +69,7 @@ bool IXML::ReadUint(const char* name, int num, unsigned int & v)
   string s = ReadSection(name, num);
   if(s.length()==0)
     return false;
-  v = atoi(s.data());
+  v = boost::lexical_cast<int>(s.data());
   return true;
 }
 //------------------------------------------------------------------
@@ -100,7 +100,7 @@ bool IXML::ReadDouble(int index, double& v)
   string s = ReadSection(index);
   if(s.length()==0)
     return false;
-  v = atof(s.data());
+  v = boost::lexical_cast<double>(s.data());
   return true;
 }
 //------------------------------------------------------------------
@@ -109,7 +109,7 @@ bool IXML::ReadFloat(int index, float & v)
   string s = ReadSection(index);
   if(s.length()==0)
     return false;
-  v = (float)atof(s.data());
+  v = boost::lexical_cast<float>(s.data());
   return true;
 }
 //------------------------------------------------------------------
@@ -118,7 +118,7 @@ bool IXML::ReadInt(int index, int & v)
   string s = ReadSection(index);
   if(s.length()==0)
     return false;
-  v = atoi(s.data());
+  v = boost::lexical_cast<int>(s.data());
   return true;
 }
 //------------------------------------------------------------------
@@ -127,7 +127,7 @@ bool IXML::ReadUint(int index, unsigned int & v)
   string s = ReadSection(index);
   if(s.length()==0)
     return false;
-  v = atoi(s.data());
+  v = boost::lexical_cast<int>(s.data());
   return true;
 }
 //------------------------------------------------------------------

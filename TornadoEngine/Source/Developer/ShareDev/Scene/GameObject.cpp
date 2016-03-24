@@ -7,13 +7,23 @@ See for more information License.h.
 
 #include "GameObject.h"
 
-TGameObject::TGameObject()
+TGameObject::TGameObject(std::string type)
 {
-
+  mType = type;
 }
 //----------------------------------------------------------------
 TGameObject::~TGameObject()
 {
 
+}
+//----------------------------------------------------------------
+int TGameObject::GetID() const
+{
+  return mID;
+}
+//----------------------------------------------------------------
+void TGameObject::SetID( int id )
+{ 
+  mID = id;
 }
 //----------------------------------------------------------------

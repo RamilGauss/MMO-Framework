@@ -9,6 +9,7 @@ See for more information License.h.
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <boost/lexical_cast.hpp>
 
 using namespace std;
 
@@ -47,7 +48,7 @@ bool TInputCmdTestTransport::SetArg(vector<string>& vecArgv)
   {
     string sPortSrc;
     mCmdParam.GetByKey(KEY_PORT_SRC, 0, sPortSrc);
-    mInput.port_src = atoi(sPortSrc.data());
+    mInput.port_src = boost::lexical_cast<int>(sPortSrc.data());
   }
 	//-------------------------------------------------
 	int cV = mCmdParam.GetCountValueByKey(KEY_PORT_DST);
@@ -55,14 +56,14 @@ bool TInputCmdTestTransport::SetArg(vector<string>& vecArgv)
 	{
 		string sPortDst;
 		mCmdParam.GetByKey(KEY_PORT_DST, 0, sPortDst);
-		mInput.port_dst = atoi(sPortDst.data());
+		mInput.port_dst = boost::lexical_cast<int>(sPortDst.data());
 	}
   int cL = mCmdParam.GetCountValueByKey(KEY_TIME_SEND);
   if(cL==1)
   {
     string sTime;
     mCmdParam.GetByKey(KEY_TIME_SEND, 0, sTime);
-		mInput.timer_send = atoi(sTime.data());
+		mInput.timer_send = boost::lexical_cast<int>(sTime.data());
   }
 	return true;
 }

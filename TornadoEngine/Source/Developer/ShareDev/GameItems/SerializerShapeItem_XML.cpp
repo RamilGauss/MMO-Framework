@@ -157,7 +157,7 @@ void TSerializerShapeItem_XML::LoadPaint()
               if(key==sNormal)
                 lod.normal = value;
             }
-            layer.insert(TShapeItem::TMapFloatLayerVT(atof(distance.data()),lod));
+            layer.insert(TShapeItem::TMapFloatLayerVT(boost::lexical_cast<float>(distance.data()),lod));
             mXML->LeaveSection();
           }
         }

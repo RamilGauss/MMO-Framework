@@ -84,7 +84,7 @@ void TSerializerMaterialItem_XML::LoadGraphic()
         {
           std::string distance = mXML->ReadSectionAttr(sLOD, iLOD, sDistance);
           TMaterialItem::TLOD lod;
-          lod.distance = atof(distance.data());
+          lod.distance = boost::lexical_cast<float>(distance.data());
           if(mXML->EnterSection(sLOD, iLOD))
           {
             std::string key, value;
@@ -97,9 +97,9 @@ void TSerializerMaterialItem_XML::LoadGraphic()
               if(key==sNormal)
                 lod.normal = value;
               if(key==sWidth)
-                lod.width  = atof(value.data());
+                lod.width  = boost::lexical_cast<float>(value.data());
               if(key==sLength)
-                lod.length = atof(value.data());
+                lod.length = boost::lexical_cast<float>(value.data());
             }
             vecLOD.push_back(lod);
             mXML->LeaveSection();
@@ -197,14 +197,14 @@ void TSerializerMaterialItem_XML::FillPhysicParam()
 {
   TMapStrStrIt fit = mMapNameValue_Physic.find(sDensity);
   if(fit!=mMapNameValue_Physic.end())
-    mMaterial->mPhysic.density = atof(fit->second.data());
+    mMaterial->mPhysic.density = boost::lexical_cast<float>(fit->second.data());
 
   fit = mMapNameValue_Physic.find(sElasticity);
   if(fit!=mMapNameValue_Physic.end())
-    mMaterial->mPhysic.elasticity = atof(fit->second.data());
+    mMaterial->mPhysic.elasticity = boost::lexical_cast<float>(fit->second.data());
 
   fit = mMapNameValue_Physic.find(sFriction);
   if(fit!=mMapNameValue_Physic.end())
-    mMaterial->mPhysic.friction = atof(fit->second.data());
+    mMaterial->mPhysic.friction = boost::lexical_cast<float>(fit->second.data());
 }
 //-------------------------------------------------------------------------------------------------------

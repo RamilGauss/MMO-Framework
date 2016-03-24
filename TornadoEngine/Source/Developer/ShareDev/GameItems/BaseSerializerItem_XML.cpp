@@ -105,11 +105,11 @@ bool TBaseSerializerItem_XML::LoadVector3ByProperty(nsMathTools::TVector3& v3)
     if(LoadProperty(i,key,value))
     {
       if(key==sAxeX)
-        v3.x = atof(value.data());
+        v3.x = boost::lexical_cast<float>(value.data());
       else if(key==sAxeY)
-        v3.y = atof(value.data());
+        v3.y = boost::lexical_cast<float>(value.data());
       else if(key==sAxeZ)
-        v3.z = atof(value.data());
+        v3.z = boost::lexical_cast<float>(value.data());
 
       if(errno==ERANGE)
         return false;

@@ -5,18 +5,21 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
+#include <vector>
+#include <string.h>
+
 #include <boost/asio/ip/impl/address_v4.ipp>
+#include <boost/smart_ptr/scoped_array.hpp>
+#include <boost/lexical_cast.hpp>
+
 #include "BL_Debug.h"
 #include "Client.h"
 #include "CommonParam.h"
-#include <string.h>
 #include "InputCmdTestMMO_Client.h"
 #include "MakerTransport.h"
 #include "HiTimer.h"
 #include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
-#include <boost/smart_ptr/scoped_array.hpp>
-#include <vector>
 #include "HandlerMMO_Client.h"
 
 int main(int argc, char** argv)
@@ -50,7 +53,7 @@ int main(int argc, char** argv)
     
     pArrClient.push_back(pClient);
   }
-  
+
   const char* sLocalHost = inputArg.ip_server.data();
   unsigned int masterIP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
   int indexClientOnLogin = 0;
