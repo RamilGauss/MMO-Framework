@@ -10,14 +10,18 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include <string>
+#include "PreBuilder.h"
+#include "MapItem.h"
 
 class TGameObject;
 
-class DllExport TPreBuilderGameObject
+class DllExport TPreBuilderGameObject : public TPreBuilder
 {
 public:
   TPreBuilderGameObject();
   virtual ~TPreBuilderGameObject();
+
+  virtual void SetObjectItem(TMapItem::TObject* pObjectItem) = 0;
 
   virtual std::string GetStrDesc() = 0;
   virtual TGameObject* GetGameObject() = 0;

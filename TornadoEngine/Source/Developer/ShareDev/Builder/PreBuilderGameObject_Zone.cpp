@@ -17,6 +17,11 @@ TPreBuilderGameObject_Zone::~TPreBuilderGameObject_Zone()
 
 }
 //----------------------------------------------------------------------------
+void TPreBuilderGameObject_Zone::SetObjectItem(TMapItem::TObject* pObjectItem)
+{
+
+}
+//----------------------------------------------------------------------------
 std::string TPreBuilderGameObject_Zone::GetStrDesc()
 {
   return "Zone";
@@ -25,5 +30,25 @@ std::string TPreBuilderGameObject_Zone::GetStrDesc()
 TGameObject* TPreBuilderGameObject_Zone::GetGameObject()
 {
   return NULL;
+}
+//----------------------------------------------------------------------------
+bool TPreBuilderGameObject_Zone::GenerateTask(TVectorTypeTask& vecTypeTask)
+{
+  return false;
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Zone::TakeTask_Ogre(TListTaskOgre& listOgre)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Zone::TakeTask_Bullet(TListTaskBullet& listBullet)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Zone::TakeTask_OpenAL(TListTaskOpenAL& listOpenAL)
+{
+
 }
 //----------------------------------------------------------------------------

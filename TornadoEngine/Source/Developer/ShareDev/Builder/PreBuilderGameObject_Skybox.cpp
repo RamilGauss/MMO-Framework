@@ -17,6 +17,11 @@ TPreBuilderGameObject_Skybox::~TPreBuilderGameObject_Skybox()
 
 }
 //----------------------------------------------------------------------------
+void TPreBuilderGameObject_Skybox::SetObjectItem(TMapItem::TObject* pObjectItem)
+{
+
+}
+//----------------------------------------------------------------------------
 std::string TPreBuilderGameObject_Skybox::GetStrDesc()
 {
   return "Skybox";
@@ -25,5 +30,25 @@ std::string TPreBuilderGameObject_Skybox::GetStrDesc()
 TGameObject* TPreBuilderGameObject_Skybox::GetGameObject()
 {
   return NULL;
+}
+//----------------------------------------------------------------------------
+bool TPreBuilderGameObject_Skybox::GenerateTask(TVectorTypeTask& vecTypeTask)
+{
+  return false;
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Skybox::TakeTask_Ogre(TListTaskOgre& listOgre)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Skybox::TakeTask_Bullet(TListTaskBullet& listBullet)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Skybox::TakeTask_OpenAL(TListTaskOpenAL& listOpenAL)
+{
+
 }
 //----------------------------------------------------------------------------

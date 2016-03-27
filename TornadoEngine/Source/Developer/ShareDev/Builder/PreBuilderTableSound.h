@@ -9,13 +9,23 @@ See for more information License.h.
 #define PreBuilderTableSoundH
 
 #include "TypeDef.h"
+#include "PreBuilder.h"
 
-class DllExport TPreBuilderTableSound
+struct TTableSoundItem;
+
+class DllExport TPreBuilderTableSound : public TPreBuilder
 {
 public:
   TPreBuilderTableSound();
   virtual ~TPreBuilderTableSound();
 
+  void Set(TTableSoundItem* pTableSoundItem);
+
+  virtual bool GenerateTask(TVectorTypeTask& vecTypeTask);
+
+  virtual void TakeTask_Ogre(TListTaskOgre& listOgre);
+  virtual void TakeTask_Bullet(TListTaskBullet& listBullet);
+  virtual void TakeTask_OpenAL(TListTaskOpenAL& listOpenAL);
 };
 
 #endif

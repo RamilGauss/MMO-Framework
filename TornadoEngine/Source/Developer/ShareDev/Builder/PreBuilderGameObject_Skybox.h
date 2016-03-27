@@ -17,8 +17,16 @@ public:
   TPreBuilderGameObject_Skybox();
   virtual ~TPreBuilderGameObject_Skybox();
 
+  virtual void SetObjectItem(TMapItem::TObject* pObjectItem);
+
   virtual std::string GetStrDesc();
   virtual TGameObject* GetGameObject();
+
+  virtual bool GenerateTask(TVectorTypeTask& vecTypeTask);
+
+  virtual void TakeTask_Ogre(TListTaskOgre& listOgre);
+  virtual void TakeTask_Bullet(TListTaskBullet& listBullet);
+  virtual void TakeTask_OpenAL(TListTaskOpenAL& listOpenAL);
 
 };
 

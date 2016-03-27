@@ -84,7 +84,9 @@ void TEditorMapLogic::PhysicEndWork()
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::InitPhysic()
 {
-
+  mID_PhysicWorld = mComp.pPhysicEngine->GetPE()->AddWorld();
+  btDiscreteDynamicsWorld* dynamicsWorld = mComp.pPhysicEngine->GetPE()->GetWorld(mID_PhysicWorld);
+  dynamicsWorld->setGravity(btVector3(0, -9.81f, 0));
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::GraphicBeginWork()
@@ -104,8 +106,10 @@ void TEditorMapLogic::FreeGraphicResource()
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::LoadGameMap(std::string& nameMap)
 {
+  mMGM.GetBGM()->InitPhysic( mID_PhysicWorld );
+
   TMapItem* pMapItem = (TMapItem*)mFGI.Get( TFactoryGameItem::Map, nameMap );
-  if( mBGM.BuildMap( pMapItem )==false )
+  if( mMGM.GetBGM()->BuildMap( pMapItem )==false )
   {
     BL_FIX_BUG();
     return;

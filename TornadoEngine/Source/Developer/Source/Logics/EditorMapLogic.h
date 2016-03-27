@@ -14,6 +14,7 @@ class TEditorMap;
 
 class TEditorMapLogic : public TModuleClientLogic
 {
+  int mID_PhysicWorld;
   TEditorMap* mEditorMap;
 public:
   TEditorMapLogic();

@@ -18,6 +18,11 @@ TPreBuilderGameObject_Model::~TPreBuilderGameObject_Model()
 
 }
 //----------------------------------------------------------------------------
+void TPreBuilderGameObject_Model::SetObjectItem(TMapItem::TObject* pObjectItem)
+{
+
+}
+//----------------------------------------------------------------------------
 std::string TPreBuilderGameObject_Model::GetStrDesc()
 {
   return "Model";
@@ -26,5 +31,25 @@ std::string TPreBuilderGameObject_Model::GetStrDesc()
 TGameObject* TPreBuilderGameObject_Model::GetGameObject()
 {
   return NULL;//new TGameObject_Model;
+}
+//----------------------------------------------------------------------------
+bool TPreBuilderGameObject_Model::GenerateTask(TVectorTypeTask& vecTypeTask)
+{
+  return false;
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Model::TakeTask_Ogre(TListTaskOgre& listOgre)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Model::TakeTask_Bullet(TListTaskBullet& listBullet)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Model::TakeTask_OpenAL(TListTaskOpenAL& listOpenAL)
+{
+
 }
 //----------------------------------------------------------------------------

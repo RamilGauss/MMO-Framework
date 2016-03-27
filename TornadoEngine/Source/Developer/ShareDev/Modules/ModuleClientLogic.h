@@ -10,13 +10,13 @@ See for more information License.h.
 
 #include "ModuleLogic.h"
 #include "InputCmdDevTool.h"
-#include "BuilderGameMap.h"
+#include "ManagerGameMap.h"
 
 class DllExport TModuleClientLogic : public TModuleLogic
 {
 protected:
   TInputCmdDevTool mInputCmd;
-  TBuilderGameMap  mBGM;
+  TManagerGameMap  mMGM;
 public:
   TModuleClientLogic();
 

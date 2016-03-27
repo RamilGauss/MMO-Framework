@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./Builder;./GameItems;./Modules;./Scene;./Share;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./ManagementObjects;./Modules;./Scene;./Share;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -384,6 +384,14 @@
 			Name="ManagementObjects"
 			>
 			<File
+				RelativePath=".\ManagementObjects\ManagerGameMap.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagementObjects\ManagerGameMap.h"
+				>
+			</File>
+			<File
 				RelativePath=".\ManagementObjects\ManagerGraphicObject.cpp"
 				>
 			</File>
@@ -583,6 +591,14 @@
 				Name="Ogre"
 				>
 				<File
+					RelativePath=".\Builder\Builder_Ogre.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\Builder_Ogre.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Builder\BuilderShape_Ogre.cpp"
 					>
 				</File>
@@ -595,6 +611,14 @@
 				Name="Bullet"
 				>
 				<File
+					RelativePath=".\Builder\Builder_Bullet.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\Builder_Bullet.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Builder\ParamBuilderConstraint.cpp"
 					>
 				</File>
@@ -606,26 +630,6 @@
 			<Filter
 				Name="OpenAL"
 				>
-			</Filter>
-			<Filter
-				Name="Common"
-				>
-				<File
-					RelativePath=".\Builder\Builder_Bullet.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\Builder_Bullet.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\Builder_Ogre.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\Builder_Ogre.h"
-					>
-				</File>
 				<File
 					RelativePath=".\Builder\Builder_OpenAL.cpp"
 					>
@@ -634,6 +638,10 @@
 					RelativePath=".\Builder\Builder_OpenAL.h"
 					>
 				</File>
+			</Filter>
+			<Filter
+				Name="Common"
+				>
 				<File
 					RelativePath=".\Builder\BuilderGameMap.cpp"
 					>
@@ -899,6 +907,50 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Destructor"
+			>
+			<File
+				RelativePath=".\Destructor\DestructorGameObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Destructor\DestructorGameObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Destructor\PreDestructor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Destructor\PreDestructor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Destructor\TaskForDestructor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Destructor\TaskForDestructor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Destructor\TaskForDestructor_Bullet.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Destructor\TaskForDestructor_Bullet.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Destructor\TaskForDestructor_Ogre.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Destructor\TaskForDestructor_Ogre.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

@@ -9,13 +9,22 @@ See for more information License.h.
 #define PreBuilderGravityVectorH
 
 #include "TypeDef.h"
+#include "PreBuilder.h"
+#include "MathTools.h"
 
-class DllExport TPreBuilderGravityVector
+class DllExport TPreBuilderGravityVector : public TPreBuilder
 {
 public:
   TPreBuilderGravityVector();
   virtual ~TPreBuilderGravityVector();
 
+  void Set(nsMathTools::TVector3& vGravity);
+
+  virtual bool GenerateTask(TVectorTypeTask& vecTypeTask);
+
+  virtual void TakeTask_Ogre(TListTaskOgre& listOgre);
+  virtual void TakeTask_Bullet(TListTaskBullet& listBullet);
+  virtual void TakeTask_OpenAL(TListTaskOpenAL& listOpenAL);
 };
 
 #endif

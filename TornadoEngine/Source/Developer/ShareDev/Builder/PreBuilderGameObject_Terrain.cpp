@@ -17,6 +17,11 @@ TPreBuilderGameObject_Terrain::~TPreBuilderGameObject_Terrain()
 
 }
 //----------------------------------------------------------------------------
+void TPreBuilderGameObject_Terrain::SetObjectItem(TMapItem::TObject* pObjectItem)
+{
+
+}
+//----------------------------------------------------------------------------
 std::string TPreBuilderGameObject_Terrain::GetStrDesc()
 {
   return "Terrain";
@@ -25,5 +30,25 @@ std::string TPreBuilderGameObject_Terrain::GetStrDesc()
 TGameObject* TPreBuilderGameObject_Terrain::GetGameObject()
 {
   return NULL;
+}
+//----------------------------------------------------------------------------
+bool TPreBuilderGameObject_Terrain::GenerateTask(TVectorTypeTask& vecTypeTask)
+{
+  return false;
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Terrain::TakeTask_Ogre(TListTaskOgre& listOgre)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Terrain::TakeTask_Bullet(TListTaskBullet& listBullet)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Terrain::TakeTask_OpenAL(TListTaskOpenAL& listOpenAL)
+{
+
 }
 //----------------------------------------------------------------------------

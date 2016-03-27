@@ -12,10 +12,13 @@ See for more information License.h.
 #include <string>
 #include <vector>
 #include "MapItem.h"
+#include "FactoryPreBuilderGameObject.h"
+#include "PreBuilder.h"
 
-class TFactoryGameItem;
+class TBuilder_Ogre;
+class TBuilder_Bullet;
+class TBuilder_OpenAL;
 class TGameObject;
-class TGameTableSound;
 class TTaskForBuilder;
 struct TTableSoundItem;
 
@@ -24,7 +27,7 @@ struct TTableSoundItem;
     1. Настройка - Init(указать потоки).
     2. Проверка GetState.
     3. Дать квант времени по потокам - только если состояние eLoadMap (не давать физике квант),
-    eObjectOperation - квант движкам, квант сборщику.
+    eBuildObject - квант движкам, квант сборщику.
 */
 
 class DllExport TBuilderGameMap
@@ -32,35 +35,49 @@ class DllExport TBuilderGameMap
   TMapItem*        mMapItem;
   TTableSoundItem* mTableSound;
 
-  TGameTableSound* mGameTableSound;
+  TFactoryPreBuilderGameObject mFactoryPreBuilderObject;
 
-  volatile bool flgLoading;
-  
-  volatile int mCountTask_Ogre;
-  volatile int mCurrentLoadTask_Ogre;
-  
-  volatile int mCountTask_Bullet;
-  volatile int mCurrentLoadTask_Bullet;
-  
-  volatile int mCountTask_OpenAL;
-  volatile int mCurrentLoadTask_OpenAL;
+  std::string                  mNameMapItem;
+  TFactoryGameItem*            mFactoryGameItem;
+  TPreBuilder::TVectorTypeTask mVecTask;
+
+  TPreBuilder::TListTaskOgre   mListTask_Ogre;
+  TPreBuilder::TListTaskBullet mListTask_Bullet;
+  TPreBuilder::TListTaskOpenAL mListTask_OpenAL;
+
+  TPreBuilder::TListTaskOgre::iterator   mLastTask_Ogre;
+  TPreBuilder::TListTaskBullet::iterator mLastTask_Bullet;
+  TPreBuilder::TListTaskOpenAL::iterator mLastTask_OpenAL;
+
+  boost::scoped_ptr<TBuilder_Ogre>   mBuilderOgre;
+  boost::scoped_ptr<TBuilder_Bullet> mBuilderBullet;
+  boost::scoped_ptr<TBuilder_OpenAL> mBuilderOpenAL;
+
+  struct TProgressTask
+  {
+    int mCurIndex;
+    int mCount;
+  };
+
+  volatile TProgressTask mProgressTask_Ogre;
+  volatile TProgressTask mProgressTask_Bullet;
+  volatile TProgressTask mProgressTask_OpenAL;
 public:
+  enum{CountTaskPerQuant=10,};
   TBuilderGameMap();
   virtual ~TBuilderGameMap();
 
-  typedef enum{eOgre, eBullet, eOpenAL} eTypeThread;
-  void Init( std::vector<eTypeThread>& vec, TFactoryGameItem* pFactoryGameItem );
+  void Init( TPreBuilder::TVectorTypeTask& vec, TFactoryGameItem* pFactoryGameItem );
   // кэширование структуры карты и подготовка данных для загрузки из разных потоков
   // для каждого потока готовится список целей
-  bool BuildMap( TMapItem* pMI );              // вызывать только если состояние eIdle
-  bool AddObject( TMapItem::TObject* pObject );// вызывать только если состояние eIdle
-  bool DeleteObject( TGameObject* pObject );   // вызывать только если состояние eIdle
+  void InitPhysic( int id_physic_world );
+  bool BuildMap( TMapItem* pMI );// вызывать только если состояние eIdle
+  bool BuildObject( TMapItem::TObject* pObject );// вызывать только если состояние eIdle
 
-  typedef enum{eBuildMap,       // полностью требуется отдать квант
-               eObjectOperation,// сначало отдать квант движкам, потом загрузчику
-               eEndBuildMap,    // сборка карты завершена, можно забрать результат, фактически это eIdle
-               eEndBuildObject, // сборка объекта завершена, можно забрать результат, фактически это eIdle
-               eIdle,           // не требуется квант
+  typedef enum{eBuildMap,     // полностью требуется отдать квант
+               eBuildObject,  // сначало отдать квант движкам, потом загрузчику
+               eBuildComplete,// сборка завершена, можно забрать результат, фактически это eIdle
+               eIdle,         // не требуется квант
   }State;
   State GetState();
   int GetProgress();
@@ -70,22 +87,24 @@ public:
   void BuildFromThread_OpenAL();
 
   // забрать результат сборки
-  void Get(std::vector<TGameObject*>& vecPtrGameObject);
+  typedef std::list<TGameObject*> TListPtrGameObject;
+  typedef TListPtrGameObject::iterator TListPtrGameObjectIt;
+
+  void GetResult(TListPtrGameObject& listPtrGameObject);
 private:
-
-  std::string              mNameMapItem;
-  TFactoryGameItem*        mFactoryGameItem;
-  std::vector<eTypeThread> mVecThread;
-
-  typedef std::vector<TTaskForBuilder*> TVectorPtrTask;
-
-  TVectorPtrTask mVecTask_OGRE;
-  TVectorPtrTask mVecTask_Bullet;
-  TVectorPtrTask mVecTask_OpenAL;
-
+  TListPtrGameObject mListGameObject;
   volatile State mState;
 private:
   bool CheckIdle();
+
+  bool AddObject_Private( TMapItem::TObject* pObject );
+
+  bool PrepareCameraUp();
+  bool PrepareGravity();
+  bool PrepareTableSound();
+  bool PrepareGameObject();
+
+  void CollectTask(TPreBuilder* pPreBuilder);
 };
 
 #endif

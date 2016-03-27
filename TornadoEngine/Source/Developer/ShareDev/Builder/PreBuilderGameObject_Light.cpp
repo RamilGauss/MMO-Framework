@@ -17,6 +17,11 @@ TPreBuilderGameObject_Light::~TPreBuilderGameObject_Light()
 
 }
 //----------------------------------------------------------------------------
+void TPreBuilderGameObject_Light::SetObjectItem(TMapItem::TObject* pObjectItem)
+{
+
+}
+//----------------------------------------------------------------------------
 std::string TPreBuilderGameObject_Light::GetStrDesc()
 {
   return "Light";
@@ -25,5 +30,25 @@ std::string TPreBuilderGameObject_Light::GetStrDesc()
 TGameObject* TPreBuilderGameObject_Light::GetGameObject()
 {
   return NULL;
+}
+//----------------------------------------------------------------------------
+bool TPreBuilderGameObject_Light::GenerateTask(TVectorTypeTask& vecTypeTask)
+{
+  return false;
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Light::TakeTask_Ogre(TListTaskOgre& listOgre)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Light::TakeTask_Bullet(TListTaskBullet& listBullet)
+{
+
+}
+//----------------------------------------------------------------------------
+void TPreBuilderGameObject_Light::TakeTask_OpenAL(TListTaskOpenAL& listOpenAL)
+{
+
 }
 //----------------------------------------------------------------------------
