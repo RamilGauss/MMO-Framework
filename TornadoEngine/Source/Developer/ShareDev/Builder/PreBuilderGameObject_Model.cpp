@@ -35,7 +35,7 @@ TGameObject* TPreBuilderGameObject_Model::GetGameObject()
 //----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Model::GenerateTask(TVectorTypeTask& vecTypeTask)
 {
-  return false;
+  return true;
 }
 //----------------------------------------------------------------------------
 void TPreBuilderGameObject_Model::TakeTask_Ogre(TListTaskOgre& listOgre)

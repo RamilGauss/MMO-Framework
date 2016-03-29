@@ -73,7 +73,13 @@ bool TBuilderGameMap::BuildMap( TMapItem* pMI )
   if( PrepareGameObject()==false )
     return false;
 
-  mState = eBuildMap;
+  CalcStatisticForProgress();
+  PrepareIterator();
+
+  if( mAllCount )
+    mState = eBuildMap;
+  else
+    mState = eIdle;
   return true;
 }
 //--------------------------------------------------------------------------------------------
@@ -94,21 +100,29 @@ bool TBuilderGameMap::BuildObject( TMapItem::TObject* pObject )
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::BuildFromThread_Ogre()
 {
-  //std::min(CountTaskPerQuant, );
-  for(;;)
-  {
-
-  }
+  TProgressTask progress;
+  progress.mCurIndex = mProgressTask_Ogre.mCurIndex;
+  progress.mCount    = mProgressTask_Ogre.mCount;
+  BuildFromThread_XXX(progress, mBuilderOgre.get(), mLastTask_Ogre);
+  mProgressTask_Ogre.mCurIndex = progress.mCurIndex;
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::BuildFromThread_Bullet()
 {
-
+  TProgressTask progress;
+  progress.mCurIndex = mProgressTask_Bullet.mCurIndex;
+  progress.mCount    = mProgressTask_Bullet.mCount;
+  BuildFromThread_XXX(progress, mBuilderBullet.get(), mLastTask_Bullet);
+  mProgressTask_Bullet.mCurIndex = progress.mCurIndex;
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::BuildFromThread_OpenAL()
 {
-
+  TProgressTask progress;
+  progress.mCurIndex = mProgressTask_OpenAL.mCurIndex;
+  progress.mCount    = mProgressTask_OpenAL.mCount;
+  BuildFromThread_XXX(progress, mBuilderOpenAL.get(), mLastTask_OpenAL);
+  mProgressTask_OpenAL.mCurIndex = progress.mCurIndex;
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::GetResult(TListPtrGameObject& listPtrGameObject)
@@ -123,7 +137,10 @@ TBuilderGameMap::State TBuilderGameMap::GetState()
 //--------------------------------------------------------------------------------------------
 int TBuilderGameMap::GetProgress()
 {
-  return 0;
+  if( mAllCount==0 )
+    return 100;
+  int cntComplete = mProgressTask_Ogre.mCurIndex + mProgressTask_Bullet.mCurIndex + mProgressTask_OpenAL.mCurIndex;
+  return ( cntComplete * 100 ) / mAllCount;
 }
 //--------------------------------------------------------------------------------------------
 bool TBuilderGameMap::CheckIdle()
@@ -204,5 +221,26 @@ bool TBuilderGameMap::AddObject_Private( TMapItem::TObject* pObject )
     CollectTask(pPreBuilder);
   }
   return true;
+}
+//--------------------------------------------------------------------------------------------
+void TBuilderGameMap::CalcStatisticForProgress()
+{
+  mProgressTask_Ogre.mCount    = mListTask_Ogre.size();
+  mProgressTask_Ogre.mCurIndex = 0;
+
+  mProgressTask_Bullet.mCount    = mListTask_Bullet.size();
+  mProgressTask_Bullet.mCurIndex = 0;
+
+  mProgressTask_OpenAL.mCount    = mListTask_OpenAL.size();
+  mProgressTask_OpenAL.mCurIndex = 0;
+
+  mAllCount = mProgressTask_Ogre.mCount + mProgressTask_Bullet.mCount + mProgressTask_OpenAL.mCount;
+}
+//--------------------------------------------------------------------------------------------
+void TBuilderGameMap::PrepareIterator()
+{
+  mLastTask_Ogre   = mListTask_Ogre.begin();
+  mLastTask_Bullet = mListTask_Bullet.begin();
+  mLastTask_OpenAL = mListTask_OpenAL.begin();
 }
 //--------------------------------------------------------------------------------------------

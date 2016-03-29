@@ -38,7 +38,7 @@ private:
   void PhysicBeginWork();
   void PhysicEndWork();
 
-protected:
+public:
   void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic
 };
 

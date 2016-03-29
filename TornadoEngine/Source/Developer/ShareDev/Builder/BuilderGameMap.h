@@ -55,13 +55,15 @@ class DllExport TBuilderGameMap
 
   struct TProgressTask
   {
-    int mCurIndex;
+    int mCurIndex;// следующий на выполнение или кол-во сделанных
     int mCount;
   };
 
   volatile TProgressTask mProgressTask_Ogre;
   volatile TProgressTask mProgressTask_Bullet;
   volatile TProgressTask mProgressTask_OpenAL;
+
+  volatile int mAllCount;
 public:
   enum{CountTaskPerQuant=10,};
   TBuilderGameMap();
@@ -105,6 +107,22 @@ private:
   bool PrepareGameObject();
 
   void CollectTask(TPreBuilder* pPreBuilder);
+  void CalcStatisticForProgress();
+  void PrepareIterator();
+
+  template<typename TypeBuilderPtr, typename ListTaskIterator>
+  void BuildFromThread_XXX(TProgressTask& progress, TypeBuilderPtr pBuilder, ListTaskIterator& iter)
+  {
+    int maxCount = CountTaskPerQuant;
+    int calcMaxCount = progress.mCount - progress.mCurIndex;
+    int cnt = std::min( maxCount, calcMaxCount);
+    for( int i = 0 ; i < cnt ; i++ )
+    {
+      pBuilder->Work(*iter);
+      iter++;
+      progress.mCurIndex++;
+    }
+  }
 };
 
 #endif

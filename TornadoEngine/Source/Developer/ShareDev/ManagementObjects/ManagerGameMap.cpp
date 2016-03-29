@@ -27,3 +27,13 @@ TDestructorGameObject* TManagerGameMap::GetDGO()
   return &mDGO;
 }
 //------------------------------------------------------------------------------------
+TManagerGameMap::State TManagerGameMap::GetState()
+{
+  return mState;
+}
+//------------------------------------------------------------------------------------
+void TManagerGameMap::SetState(State v)
+{
+  mState = v;
+}
+//------------------------------------------------------------------------------------

@@ -24,7 +24,7 @@ void TPreBuilderGravityVector::Set(nsMathTools::TVector3& vGravity)
 //-----------------------------------------------------------------------
 bool TPreBuilderGravityVector::GenerateTask(TVectorTypeTask& vecTypeTask)
 {
-  return false;
+  return true;
 }
 //-----------------------------------------------------------------------
 void TPreBuilderGravityVector::TakeTask_Ogre(TListTaskOgre& listOgre)

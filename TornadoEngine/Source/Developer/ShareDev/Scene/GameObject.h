@@ -19,7 +19,7 @@ See for more information License.h.
 
 class DllExport TGameObject
 {
-  std::string mType;// для отладки
+  std::string mType;// для поиска деструктора
   
   int mID;
 
@@ -29,6 +29,8 @@ class DllExport TGameObject
 public:
   TGameObject(std::string type);
   virtual ~TGameObject();
+
+  std::string GetSelfType();
 
   int GetID() const;
   void SetID( int id );

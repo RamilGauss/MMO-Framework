@@ -34,7 +34,7 @@ TGameObject* TPreBuilderGameObject_Sound::GetGameObject()
 //----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Sound::GenerateTask(TVectorTypeTask& vecTypeTask)
 {
-  return false;
+  return true;
 }
 //----------------------------------------------------------------------------
 void TPreBuilderGameObject_Sound::TakeTask_Ogre(TListTaskOgre& listOgre)

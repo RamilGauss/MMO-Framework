@@ -61,6 +61,13 @@ void TEditorMapLogic::Input(int id_sender, void* p, int size)
       break;
     case nsListModules::Timer:
       break;
+    case nsListModules::FromSomeToLogic:// EditorMap
+    {
+      //### пока через строку, потом должен быть протокол
+      TLoadMapParam* pLMP = (TLoadMapParam*)p;
+      LoadGameMap(pLMP->nameMap);
+      //### пока через строку, потом должен быть протокол
+    }
     default:BL_FIX_BUG();
   }
 }

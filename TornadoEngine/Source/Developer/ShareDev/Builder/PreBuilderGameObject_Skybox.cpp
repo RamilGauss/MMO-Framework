@@ -34,7 +34,7 @@ TGameObject* TPreBuilderGameObject_Skybox::GetGameObject()
 //----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Skybox::GenerateTask(TVectorTypeTask& vecTypeTask)
 {
-  return false;
+  return true;
 }
 //----------------------------------------------------------------------------
 void TPreBuilderGameObject_Skybox::TakeTask_Ogre(TListTaskOgre& listOgre)

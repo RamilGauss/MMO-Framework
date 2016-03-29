@@ -24,7 +24,7 @@ void TPreBuilderTableSound::Set(TTableSoundItem* pTableSoundItem)
 //----------------------------------------------------------------------
 bool TPreBuilderTableSound::GenerateTask(TVectorTypeTask& vecTypeTask)
 {
-  return false;
+  return true;
 }
 //----------------------------------------------------------------------
 void TPreBuilderTableSound::TakeTask_Ogre(TListTaskOgre& listOgre)

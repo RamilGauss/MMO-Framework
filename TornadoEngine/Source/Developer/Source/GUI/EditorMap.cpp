@@ -10,16 +10,23 @@ See for more information License.h.
 #include "Precompiled.h"
 #include <atlconv.h>
 
-#include "ModuleLogic.h"
 #include "ListModules.h"
-#include "LogicEventCallBack.h"
+#include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
+#include "LogicEventCallBack.h"
+#include "EditorMapLogic.h"
 
 #include <OgreManualObject.h>
 
 TEditorMap::TEditorMap() 
 {
-
+  mBar                       = nullptr;
+  mPopupMenu_File            = nullptr;
+  mPopupMenu_NewShape        = nullptr;
+  mPopupMenu_Instruments     = nullptr;
+  miOpen                     = nullptr;
+  miSave                     = nullptr;
+  miExit                     = nullptr;
 }
 //------------------------------------------------------
 TEditorMap::~TEditorMap()
@@ -29,7 +36,16 @@ TEditorMap::~TEditorMap()
 //-------------------------------------------------------------------------------------
 void TEditorMap::Activate()
 {
+  assignWidget(mBar, "Menu");
+  // меню для виджетов
+  mPopupMenu_File = mBar->findItemById("File", true)->getItemChild();
+  //mPopupMenu_File->eventMenuCtrlAccept += MyGUI::newDelegate(this, &TEditorShape::sl_WidgetsSelect);
 
+  miOpen = mPopupMenu_File->findItemById("Command_FileOpen");
+  miSave = mPopupMenu_File->findItemById("Command_FileSave");
+  miExit = mPopupMenu_File->findItemById("Command_FileExit");
+
+  miOpen->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Open);
 }
 //-------------------------------------------------------------------------------------
 const char* TEditorMap::GetNameLayout()
@@ -56,5 +72,11 @@ void TEditorMap::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Ch
       break;
     default:;
   }
+}
+//-------------------------------------------------------------------------------------
+void TEditorMap::sl_Open(MyGUI::Widget* _sender)
+{
+  mLMP.nameMap = "Field";
+  TModuleLogic::Get()->AddEventWithoutCopy(nsListModules::FromSomeToLogic, &mLMP);
 }
 //-------------------------------------------------------------------------------------

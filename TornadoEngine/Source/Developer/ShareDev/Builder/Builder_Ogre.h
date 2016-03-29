@@ -10,11 +10,15 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
+class TTaskForBuilder_Ogre;
+
 class DllExport TBuilder_Ogre
 {
 public:
   TBuilder_Ogre();
   virtual ~TBuilder_Ogre();
+
+  void Work(TTaskForBuilder_Ogre* pTask);
 };
 
 #endif

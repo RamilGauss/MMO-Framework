@@ -25,8 +25,12 @@ public:
   TBuilderGameMap* GetBGM();
   TDestructorGameObject* GetDGO();
 
-
+  typedef enum{eBuild,eDestruct,eIdle}State;
+  State GetState();
+  void SetState(State v);
 private:
+
+  State mState;
 };
 
 #endif

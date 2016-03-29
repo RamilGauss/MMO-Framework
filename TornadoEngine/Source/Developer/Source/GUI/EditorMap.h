@@ -14,8 +14,15 @@ See for more information License.h.
 
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
+#define TypeEvent_EditorMap 999
+struct DllExport TLoadMapParam
+{
+  std::string nameMap;
+};
+
 class TEditorMap : public TBaseGUI
 {
+  TLoadMapParam mLMP;
 public:
   TEditorMap();
   virtual ~TEditorMap();
@@ -28,6 +35,16 @@ protected:
 
   virtual void KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char);
 protected:
+  void sl_Open(MyGUI::Widget* _sender);
+protected:
+  MyGUI::MenuBar*     mBar;
+  MyGUI::MenuControl* mPopupMenu_File;
+  MyGUI::MenuControl* mPopupMenu_NewShape;
+  MyGUI::MenuControl* mPopupMenu_Instruments;
+
+  MyGUI::MenuItem* miOpen;
+  MyGUI::MenuItem* miSave;
+  MyGUI::MenuItem* miExit;
 };
 
 #endif 
