@@ -5,14 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef PrototypeBehaviourPatternH
-#define PrototypeBehaviourPatternH
+#ifndef IGameLogicRoomH
+#define IGameLogicRoomH
 
-class TPrototypeBehaviourPattern
+class DllExport IGameLogicRoom
 {
 public:
-  TPrototypeBehaviourPattern();
-  ~TPrototypeBehaviourPattern();
+
+  IGameLogicRoom();
+  virtual ~IGameLogicRoom();
 };
 
 #endif

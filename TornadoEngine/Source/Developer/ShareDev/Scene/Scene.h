@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef PrototypeSceneH
-#define PrototypeSceneH
+#ifndef GameSceneH
+#define GameSceneH
 
 #include "TypeEventScene.h"
 #include <list>
 
 class TGameObject;
 
-class PrototypeScene
+class TScene
 {
 public:
   // 1. Добавление от класса Загрузчика, который загружал объект в нескольких потоках 

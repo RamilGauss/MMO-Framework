@@ -5,16 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef GameTableSoundH
-#define GameTableSoundH
+#ifndef IBehaviourPatternH
+#define IBehaviourPatternH
 
-#include "TypeDef.h"
-
-class DllExport TGameTableSound
+class IBehaviourPattern
 {
 public:
-  TGameTableSound();
-  ~TGameTableSound();
+  IBehaviourPattern();
+  ~IBehaviourPattern();
 };
 
 #endif

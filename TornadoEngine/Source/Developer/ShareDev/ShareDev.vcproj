@@ -188,6 +188,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Share\IGameLogicRoom.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Share\InputCmdDevTool.cpp"
 				>
 			</File>
@@ -217,10 +221,6 @@
 			</File>
 			<File
 				RelativePath=".\Share\ParserXMLResource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Share\PrototypeRoom.h"
 				>
 			</File>
 			<File
@@ -811,6 +811,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="BehaviourPattern"
+				>
+				<File
+					RelativePath=".\Builder\FactoryBehaviourPattern.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\FactoryBehaviourPattern.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Scene"
@@ -887,19 +899,11 @@
 				Name="Common"
 				>
 				<File
-					RelativePath=".\Scene\GameTableSound.cpp"
+					RelativePath=".\Scene\IBehaviourPattern.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameTableSound.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\PrototypeBehaviourPattern.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\PrototypeScene.h"
+					RelativePath=".\Scene\Scene.h"
 					>
 				</File>
 				<File

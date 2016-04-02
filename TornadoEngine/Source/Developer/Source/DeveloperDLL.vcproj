@@ -747,34 +747,50 @@
 		<Filter
 			Name="BehaviourPattern"
 			>
-			<File
-				RelativePath=".\BehaviourPattern\FactoryBehaviourPatternItem.cpp"
+			<Filter
+				Name="Client"
 				>
-			</File>
-			<File
-				RelativePath=".\BehaviourPattern\FactoryBehaviourPatternItem.h"
+				<File
+					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_Client.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_Client.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Server"
 				>
-			</File>
-			<File
-				RelativePath=".\BehaviourPattern\ListBehaviourPattern.h"
+				<File
+					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_Server.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_Server.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Common"
 				>
-			</File>
-			<File
-				RelativePath=".\BehaviourPattern\TankTower.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\BehaviourPattern\TankTower.h"
-				>
-			</File>
-			<File
-				RelativePath=".\BehaviourPattern\TestControlTank.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\BehaviourPattern\TestControlTank.h"
-				>
-			</File>
+				<File
+					RelativePath=".\BehaviourPattern\TankTower.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\TankTower.h"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\TestControlTank.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\TestControlTank.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="GameParam"

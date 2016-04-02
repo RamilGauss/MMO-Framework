@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -12,7 +12,7 @@ See for more information License.h.
 #include "BuilderGameMap.h"
 #include "DestructorGameObject.h"
 
-// Хранит состояние - загрузка карты, объекта, уничтожение объектов или ничего не делает.
+// РҐСЂР°РЅРёС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ - Р·Р°РіСЂСѓР·РєР° РєР°СЂС‚С‹, РѕР±СЉРµРєС‚Р°, СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ РѕР±СЉРµРєС‚РѕРІ РёР»Рё РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµС‚.
 
 class DllExport TManagerGameMap
 {

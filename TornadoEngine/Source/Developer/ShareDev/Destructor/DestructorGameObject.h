@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -21,11 +21,11 @@ public:
   virtual ~TDestructorGameObject();
 
   void Init( TPreDestructor::TVectorTypeTask& vec );
-  bool DesctructObject( std::list<TGameObject*>& pListObject );// вызывать только если состояние eIdle
+  bool DesctructObject( std::list<TGameObject*>& pListObject );// РІС‹Р·С‹РІР°С‚СЊ С‚РѕР»СЊРєРѕ РµСЃР»Рё СЃРѕСЃС‚РѕСЏРЅРёРµ eIdle
 
   typedef enum{eDestruct, eIdle}State;
   State GetState();
-  // дать квант в потоках - нет блокировки, вернет управление
+  // РґР°С‚СЊ РєРІР°РЅС‚ РІ РїРѕС‚РѕРєР°С… - РЅРµС‚ Р±Р»РѕРєРёСЂРѕРІРєРё, РІРµСЂРЅРµС‚ СѓРїСЂР°РІР»РµРЅРёРµ
   void DestructFromThread_Ogre();
   void DestructFromThread_Bullet();
 private:

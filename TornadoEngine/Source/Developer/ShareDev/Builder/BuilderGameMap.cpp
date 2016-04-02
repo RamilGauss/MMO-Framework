@@ -11,7 +11,6 @@ See for more information License.h.
 
 #include "MapItem.h"
 #include "TableSoundItem.h"
-#include "GameTableSound.h"
 
 #include "PreBuilderCameraUp.h"
 #include "PreBuilderGravityVector.h"
