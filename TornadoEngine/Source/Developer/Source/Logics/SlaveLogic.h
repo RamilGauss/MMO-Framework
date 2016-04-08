@@ -22,13 +22,13 @@ class TSlaveLogic : public TModuleServerLogic
     eCycleTime = 100,
   };
 
-  TListMultiThread<unsigned int> mListSessionAdd;
+  TDataExchange2Thread<unsigned int> mListSessionAdd;
 
-  TListMultiThread<TSlaveForm::TDesc> mListID_SessionAdd;
-  TListMultiThread<TSlaveForm::TDesc> mListID_SessionDelete;
+  TDataExchange2Thread<TSlaveForm::TDesc> mListID_SessionAdd;
+  TDataExchange2Thread<TSlaveForm::TDesc> mListID_SessionDelete;
 
-  TListMultiThread<unsigned int> mListSessionRestore;
-  TListMultiThread<unsigned int> mListSessionSave;
+  TDataExchange2Thread<unsigned int> mListSessionRestore;
+  TDataExchange2Thread<unsigned int> mListSessionSave;
 public:
   TSlaveLogic();
   virtual void InitLog();

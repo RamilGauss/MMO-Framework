@@ -162,7 +162,7 @@ void TMasterLogic::ConnectDownMMOEngine()
     BL_ASSERT(resInfoSession);
     mListID_SessionAdd.Add(pDesc);
     // следующий ID
-    mListSessionAdd.Remove(ppFirst);
+    mListSessionAdd.RemoveFirst();
     ppFirst = mListSessionAdd.GetFirst();
   }
   
@@ -205,7 +205,7 @@ void TMasterLogic::TryLoginMMOEngine()
     mListKeyAllClient.push_back(mCounterClient);
 
     // следующий ID
-    mListTryLogic.Remove(ppFirst);
+    mListTryLogic.RemoveFirst();
     ppFirst = mListTryLogic.GetFirst();
   }
 }
@@ -242,7 +242,7 @@ void TMasterLogic::AddSlaveQt()
     if(mMasterForm)
       mMasterForm->Add(*pDesc);
     // следующий ID
-    mListID_SessionAdd.Remove(ppFirst);
+    mListID_SessionAdd.RemoveFirst();
     ppFirst = mListID_SessionAdd.GetFirst();
   }
 }
@@ -256,7 +256,7 @@ void TMasterLogic::DeleteSlaveQt()
     if(mMasterForm)
       mMasterForm->Delete(pDesc->id_session);
     // следующий ID
-    mListID_SessionDelete.Remove(ppFirst);
+    mListID_SessionDelete.RemoveFirst();
     ppFirst = mListID_SessionDelete.GetFirst();
   }
 }

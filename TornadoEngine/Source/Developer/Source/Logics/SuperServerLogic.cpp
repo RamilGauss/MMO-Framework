@@ -144,7 +144,7 @@ void TSuperServerLogic::ConnectDownMMOEngine()
     BL_ASSERT(resInfoSession);
     mListID_SessionAdd.Add(pDesc);
     // следующий ID
-    mListSessionAdd.Remove(ppFirst);
+    mListSessionAdd.RemoveFirst();
     ppFirst = mListSessionAdd.GetFirst();
   }
 
@@ -170,7 +170,7 @@ void TSuperServerLogic::AddMasterQt()
     if(mSuperServerForm)
       mSuperServerForm->Add(*pDesc);
     // следующий ID
-    mListID_SessionAdd.Remove(ppFirst);
+    mListID_SessionAdd.RemoveFirst();
     ppFirst = mListID_SessionAdd.GetFirst();
   }
 }
@@ -185,7 +185,7 @@ void TSuperServerLogic::DeleteMasterQt()
     if(mSuperServerForm)
       mSuperServerForm->Delete(pDesc->id_session);
     // следующий ID
-    mListID_SessionDelete.Remove(ppFirst);
+    mListID_SessionDelete.RemoveFirst();
     ppFirst = mListID_SessionDelete.GetFirst();
   }
 }

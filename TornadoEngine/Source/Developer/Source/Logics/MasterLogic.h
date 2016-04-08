@@ -23,12 +23,12 @@ class TMasterLogic : public TModuleServerLogic
   typedef std::list<unsigned int> TListUint;
   TListUint mListKeyAllClient;
 
-  TListMultiThread<unsigned int> mListSessionAdd;
+  TDataExchange2Thread<unsigned int> mListSessionAdd;
 
-  TListMultiThread<TMasterForm::TDesc> mListID_SessionAdd;
-  TListMultiThread<TMasterForm::TDesc> mListID_SessionDelete;
+  TDataExchange2Thread<TMasterForm::TDesc> mListID_SessionAdd;
+  TDataExchange2Thread<TMasterForm::TDesc> mListID_SessionDelete;
 
-  TListMultiThread<unsigned int> mListTryLogic;
+  TDataExchange2Thread<unsigned int> mListTryLogic;
 
 public:
   TMasterLogic();

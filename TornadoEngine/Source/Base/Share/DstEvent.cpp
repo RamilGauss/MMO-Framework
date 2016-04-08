@@ -7,13 +7,13 @@ See for more information License.h.
 
 #include "DstEvent.h"
 #include "SrcEvent.h"
-#include "ListMultiThread.h"
+#include "DataExchange2Thread.h"
 
 using namespace nsEvent;
 
 TDstEvent::TDstEvent()
 {
-  pListEvent = new TListMultiThread<TEvent>;
+  pListEvent = new TDataExchange2Thread<TEvent>;
 }
 //------------------------------------------------------------
 TDstEvent::~TDstEvent()
@@ -37,8 +37,8 @@ TEvent* TDstEvent::GetEvent()
   TEvent** ppEvent = pListEvent->GetFirst();
   if(ppEvent==NULL) return NULL;
   TEvent* pEvent = *(ppEvent);
-  pListEvent->ZeroPointerElement(ppEvent);
-  pListEvent->Remove(ppEvent);
+  pListEvent->UnlinkData(ppEvent);
+  pListEvent->RemoveFirst();
   return pEvent;
 }
 //------------------------------------------------------------

@@ -46,6 +46,7 @@ IXML.cpp \
 LoaderDLL_Unix.cpp \
 LoaderDLL_Win32.cpp \
 LoadFromFile.cpp \
+LockFreeDef.h \
 Logger.cpp \
 MakerLoaderDLL.cpp \
 MakerXML.cpp \
@@ -58,7 +59,6 @@ Markup.cpp \
 MathTools.cpp \
 MD5.cpp \
 Only_N_Object.cpp \
-Queue2Thread.cpp \
 ResolverSelf_IP_v4.cpp \
 SaveToFile.cpp \
 SetOrderElement.cpp \
@@ -84,6 +84,7 @@ ContainerTypes.h \
 CRC8.h \
 CryptoAES_Impl.h \
 CryptoRSA_Impl.h \
+DataExchange2Thread.h \
 DescCallBack.h \
 DescEvent.h \
 DstEvent.h \
@@ -95,7 +96,6 @@ ILoaderDLL.h \
 InfoFile.h \
 IXML.h \
 License.h \
-ListMultiThread.h \
 ListPtr.h \
 LoaderDLL_Unix.h \
 LoaderDLL_Win32.h \
@@ -114,7 +114,6 @@ Markup.h \
 MathTools.h \
 MD5.h \
 Only_N_Object.h \
-Queue2Thread.h \
 ResolverSelf_IP_v4.h \
 SaveToFile.h \
 SetOrderElement.h \

@@ -99,5 +99,13 @@ See for more information License.h.
 
 //-----------------------------------------------------------------------------
 
+#ifdef WIN32
+  #if _MSC_VER < 1200 
+    #define ATOMIC(X) volatile X
+  #else
+    #define ATOMIC std::atomic<typeid(X)> X
+  #endif
 #endif
 
+//-----------------------------------------------------------------------------
+#endif

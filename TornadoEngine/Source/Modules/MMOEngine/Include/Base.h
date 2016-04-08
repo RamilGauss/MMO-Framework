@@ -9,15 +9,15 @@ See for more information License.h.
 #define BASE_H
 
 #include "TypeDef.h"
-#include "Structs.h"
-
-#include "SrcEvent.h"
-#include "IMakerTransport.h"
-#include "BreakPacket.h"
-#include "ListMultiThread.h"
 
 #include <boost/smart_ptr/scoped_ptr.hpp>
 #include <list>
+
+#include "Structs.h"
+#include "SrcEvent.h"
+#include "IMakerTransport.h"
+#include "BreakPacket.h"
+#include "DataExchange2Thread.h"
 
 #define STR_NAME_MMO_ENGINE "MMOEngine"
 
@@ -42,10 +42,10 @@ namespace nsMMOEngine
     boost::scoped_ptr<TContainerContextSc> mContainerUp;
 
 		// уведомления о разрыве связи
-    typedef TListMultiThread<unsigned int> TListUint;
+    typedef TDataExchange2Thread<unsigned int> TListUint;
     TListUint mIDSessionDisconnect;
 		// полученные пакеты от mManagerSession
-    typedef TListMultiThread<TDescRecvSession> TListRecvPacket;
+    typedef TDataExchange2Thread<TDescRecvSession> TListRecvPacket;
     TListRecvPacket mRecvPacket;
 
 		// транспорт

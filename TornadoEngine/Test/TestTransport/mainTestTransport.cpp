@@ -15,7 +15,7 @@ See for more information License.h.
 #include "ShareMisc.h"
 #include "MakerNetTransport.h"
 #include "INetTransport.h"
-#include "ListMultiThread.h"
+#include "DataExchange2Thread.h"
 
 INetTransport* g_pTransport = NULL;
 
@@ -23,7 +23,7 @@ class THandler
 {
   int count_recv;
 public:
-  TListMultiThread<TIP_Port> mListDisc;
+  TDataExchange2Thread<TIP_Port> mListDisc;
 
   THandler()
   {
@@ -106,7 +106,7 @@ int main(int argc, char** argv)
       if(pIP_Port->port==inputArg.port_dst)
         resConnect = g_pTransport->Connect(IP, inputArg.port_dst);
 
-      g_Handler.mListDisc.Remove(ppFisrt);
+      g_Handler.mListDisc.RemoveFirst();
       ppFisrt = g_Handler.mListDisc.GetFirst();
     }
   }

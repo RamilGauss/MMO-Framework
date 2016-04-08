@@ -10,7 +10,6 @@ See for more information License.h.
 
 #include "ModuleServerLogic.h"
 #include "BaseEvent.h"
-#include "ListMultiThread.h"
 #include "SuperServerForm.h"
 #include "Events.h"
 
@@ -18,10 +17,10 @@ class TSuperServerLogic : public TModuleServerLogic
 {
   TSuperServerForm* mSuperServerForm;
 
-  TListMultiThread<unsigned int> mListSessionAdd;
+  TDataExchange2Thread<unsigned int> mListSessionAdd;
 
-  TListMultiThread<TSuperServerForm::TDesc> mListID_SessionAdd;
-  TListMultiThread<TSuperServerForm::TDesc> mListID_SessionDelete;
+  TDataExchange2Thread<TSuperServerForm::TDesc> mListID_SessionAdd;
+  TDataExchange2Thread<TSuperServerForm::TDesc> mListID_SessionDelete;
 public:
   TSuperServerLogic();
   virtual void InitLog();

@@ -308,10 +308,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Queue2Thread.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\ResolverSelf_IP_v4.cpp"
 				>
 			</File>
@@ -422,6 +418,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DataExchange2Thread.h"
+				>
+			</File>
+			<File
 				RelativePath=".\DescCallBack.h"
 				>
 			</File>
@@ -466,10 +466,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ListMultiThread.h"
-				>
-			</File>
-			<File
 				RelativePath=".\ListPtr.h"
 				>
 			</File>
@@ -483,6 +479,10 @@
 			</File>
 			<File
 				RelativePath=".\LoadFromFile.h"
+				>
+			</File>
+			<File
+				RelativePath=".\LockFreeDef.h"
 				>
 			</File>
 			<File
@@ -539,10 +539,6 @@
 			</File>
 			<File
 				RelativePath=".\Only_N_Object.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Queue2Thread.h"
 				>
 			</File>
 			<File

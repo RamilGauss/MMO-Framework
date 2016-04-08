@@ -8,11 +8,17 @@ See for more information License.h.
 #ifndef IBehaviourPatternH
 #define IBehaviourPatternH
 
-class IBehaviourPattern
+#include "TypeDef.h"
+#include "ContainerTypes.h"
+
+class DllExport IBehaviourPattern
 {
 public:
   IBehaviourPattern();
-  ~IBehaviourPattern();
+  virtual ~IBehaviourPattern();
+
+  virtual bool SetInternalState(TContainer c) = 0;
+  virtual TContainer GetInternalState() = 0;
 };
 
 #endif

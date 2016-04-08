@@ -12,7 +12,7 @@ See for more information License.h.
 #include <vector>
 #include "TypeDef.h"
 #include "DescEvent.h"
-#include "ListMultiThread.h"
+#include "DataExchange2Thread.h"
 
 class TSrcEvent;
 
@@ -25,7 +25,7 @@ class TSrcEvent;
 
 class DllExport TDstEvent
 {
-  TListMultiThread<nsEvent::TEvent>* pListEvent;
+  TDataExchange2Thread<nsEvent::TEvent>* pListEvent;
 
 public:
 

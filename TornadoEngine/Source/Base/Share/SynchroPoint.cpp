@@ -58,8 +58,8 @@ IContainer* TSynchroPoint::GetEvent(int id_recv, int& id_sender)
       {
         id_sender = pDescSender->id;
         IContainer* pC = *ppC;
-        pList->ZeroPointerElement(ppC);
-        pList->Remove(ppC);
+        pList->UnlinkData(ppC);
+        pList->RemoveFirst();
         return pC;
       }
     }

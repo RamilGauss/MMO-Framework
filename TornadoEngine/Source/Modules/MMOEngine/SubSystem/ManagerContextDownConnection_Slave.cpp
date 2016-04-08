@@ -8,6 +8,7 @@ See for more information License.h.
 #include "ManagerContextDownConnection_Slave.h"
 
 #include <boost/foreach.hpp>
+#include <algorithm>
 
 #include "Logger.h"
 #include "ContainerContextSc.h"
@@ -47,7 +48,7 @@ bool TManagerContextDownConnection_Slave::FindMinimumLoad(unsigned int& id_sessi
 	BOOST_FOREACH(TMapUintUchar::value_type& it, mMapSessionLoadProcent)
 		mVecDesc.push_back(TDesc(it.second,it.first));
 
-	sort(mVecDesc.begin(), mVecDesc.end());
+  std::sort(mVecDesc.begin(), mVecDesc.end());
 	id_session   = mVecDesc[0].id_session;
 	load_procent = mVecDesc[0].load_procent;
   //###

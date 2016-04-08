@@ -13,12 +13,12 @@ See for more information License.h.
 #include <list>
 
 #include "IContainer.h"
-#include "ListMultiThread.h"
 #include "ContainerArrObj.h"
+#include "DataExchange2Thread.h"
 
 class DllExport TSynchroPoint
 {
-  typedef TListMultiThread<IContainer>  TListContainer;
+  typedef TDataExchange2Thread<IContainer>  TListContainer;
 
   struct TDescSender
   {

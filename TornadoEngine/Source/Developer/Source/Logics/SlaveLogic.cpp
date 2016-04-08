@@ -192,7 +192,7 @@ void TSlaveLogic::ConnectDownMMOEngine()
     BL_ASSERT(resInfoSession);
     mListID_SessionAdd.Add(pDesc);
     // следующий ID
-    mListSessionAdd.Remove(ppFirst);
+    mListSessionAdd.RemoveFirst();
     ppFirst = mListSessionAdd.GetFirst();
   }
 
@@ -217,7 +217,7 @@ void TSlaveLogic::AddClientQt()
     if(mSlaveForm)
       mSlaveForm->Add(*pDesc);
     // следующий ID
-    mListID_SessionAdd.Remove(ppFirst);
+    mListID_SessionAdd.RemoveFirst();
     ppFirst = mListID_SessionAdd.GetFirst();
   }
 }
@@ -232,7 +232,7 @@ void TSlaveLogic::DeleteClientQt()
     if(mSlaveForm)
       mSlaveForm->Delete(pDesc->id_session);
     // следующий ID
-    mListID_SessionDelete.Remove(ppFirst);
+    mListID_SessionDelete.RemoveFirst();
     ppFirst = mListID_SessionDelete.GetFirst();
   }
 }
@@ -257,7 +257,7 @@ void TSlaveLogic::SaveContextClientMMOEngine()
     pDesc->id_session = ID;
     mListID_SessionDelete.Add(pDesc);
 
-    mListSessionSave.Remove(ppFirst);
+    mListSessionSave.RemoveFirst();
     ppFirst = mListSessionSave.GetFirst();
   }
   CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::DeleteClientQt);

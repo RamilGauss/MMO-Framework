@@ -16,6 +16,7 @@ See for more information License.h.
 #include "SaveToFile.h"
 #include <boost/thread/thread.hpp>
 #include "ThreadBoost.h"
+#include "StatisticValue.h"
 
 #define NUM_GE    3
 #define NUM_LOGIC 1
@@ -37,17 +38,27 @@ class TTestAbonent : public TThreadBoost
   
   TSynchroPoint*  mSPoint;
   int             mDstID;
+
+  unsigned int mStartAdd;
+
+  TStatType_double mStatTimeAdd;
+  unsigned int mTimePrint;
+  enum{eIntervalPrint=700,};
 public:
   TTestAbonent();
   void Setup(TSynchroPoint* pSP, int id_reciver, int id_sender);
 protected:
   virtual void Work();
+
+  void PrintStatistic();
 };
 //---------------------------------------------------------------------------------------
-TTestAbonent::TTestAbonent()
+TTestAbonent::TTestAbonent() : mStatTimeAdd(100)
 {
   mSPoint = NULL;
   mDstID  = 0;
+  mStartAdd = ht_GetMSCount();
+  mTimePrint = 0;
 }
 //---------------------------------------------------------------------------------------
 void TTestAbonent::Setup(TSynchroPoint* pSP, int selfID, int dstID)
@@ -64,13 +75,18 @@ void TTestAbonent::Work()
   int i = 0;
   while(1)
   {
-    if( (rand() % 10) == 0) // имитация случайности пакетов
+    if( (rand() % 100) == 0) // имитация случайности пакетов
     {
       TA* pA0 = new TA;
       pA0->abc = i;
       IContainer* pC = new TContainerArrObj<TA>;
       pC->EntrustByCount( (char*)pA0, 1);
       mSAbonent.AddEventWithoutCopy( mDstID, pC);
+
+      unsigned int now_ms = ht_GetMSCount();
+      unsigned int dTime = now_ms - mStartAdd;
+      mStatTimeAdd.add(dTime);
+      mStartAdd = now_ms; 
     }
 
     int id_sender;
@@ -80,6 +96,18 @@ void TTestAbonent::Work()
       TA* pA1 = (TA*)pEvent->GetPtr();
     }
     i++;
+
+    PrintStatistic();
+  }
+}
+//---------------------------------------------------------------------------------------
+void TTestAbonent::PrintStatistic()
+{
+  unsigned int now_ms = ht_GetMSCount();
+  if(mTimePrint + eIntervalPrint < now_ms)
+  {
+    printf("Stat time adding %f\n", mStatTimeAdd.aver());
+    mTimePrint = now_ms;
   }
 }
 //---------------------------------------------------------------------------------------

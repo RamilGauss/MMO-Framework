@@ -153,7 +153,7 @@ void TBase::HandleListDisconnect()
     // закрыть сессию
     mManagerSession->CloseSession(ID);
     // следующий ID
-    mIDSessionDisconnect.Remove(ppFirst);
+    mIDSessionDisconnect.RemoveFirst();
     ppFirst = mIDSessionDisconnect.GetFirst();
   }
 }
@@ -166,7 +166,7 @@ void TBase::HandleListRecv()
     TDescRecvSession* pDesc = *ppFirst;
     // обработать через сценарий
     mControlSc->Work(pDesc);
-    mRecvPacket.Remove(ppFirst);
+    mRecvPacket.RemoveFirst();
     ppFirst = mRecvPacket.GetFirst();
   }
 }
