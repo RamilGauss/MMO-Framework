@@ -10,7 +10,8 @@ See for more information License.h.
 
 TMutex::TMutex( const char *_dbgname )
 {
-  mDbgName = _dbgname;
+  if(_dbgname)
+    mDbgName = _dbgname;
 }
 //---------------------------------------------------------------------------
 TMutex::~TMutex()
