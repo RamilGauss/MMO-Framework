@@ -15,6 +15,7 @@ See for more information License.h.
 #include "MathTools.h"
 #include <memory.h>
 #include <stddef.h>
+#include "BL_Debug.h"
 
 using namespace nsMathTools;
 
@@ -945,30 +946,30 @@ bool TLine::FindVector(TVector3* pOut1, TVector3* pOut2, bool do_normal)
   {
     case eX:
       betweenPoint.x = 0.0f;
-      Calc(betweenPoint.x,betweenPoint.y,betweenPoint.z);
+      Calc(betweenPoint.x, &betweenPoint.y, &betweenPoint.z);
 
       pOut1->x = 1.0f;
-      Calc(pOut1->x,pOut1->y,pOut1->z);
+      Calc(pOut1->x, &pOut1->y, &pOut1->z);
       pOut2->x = -1.0f;
-      Calc(pOut2->x,pOut2->y,pOut2->z);
+      Calc(pOut2->x, &pOut2->y, &pOut2->z);
       break;
     case eY:
       betweenPoint.y = 0.0f;
-      Calc(betweenPoint.y,betweenPoint.x,betweenPoint.z);
+      Calc(betweenPoint.y, &betweenPoint.x, &betweenPoint.z);
 
       pOut1->y = 1.0f;
-      Calc(pOut1->y,pOut1->x,pOut1->z);
+      Calc(pOut1->y, &pOut1->x, &pOut1->z);
       pOut2->y = -1.0f;
-      Calc(pOut2->y,pOut2->x,pOut2->z);
+      Calc(pOut2->y, &pOut2->x, &pOut2->z);
       break;
     case eZ:
       betweenPoint.z = 0.0f;
-      Calc(betweenPoint.z,betweenPoint.x,betweenPoint.y);
+      Calc(betweenPoint.z, &betweenPoint.x, &betweenPoint.y);
 
       pOut1->z = 1.0f;
-      Calc(pOut1->z,pOut1->x,pOut1->y);
+      Calc(pOut1->z, &pOut1->x, &pOut1->y);
       pOut2->z = -1.0f;
-      Calc(pOut2->z,pOut2->x,pOut2->y);
+      Calc(pOut2->z, &pOut2->x, &pOut2->y);
       break;
   }
 
@@ -983,10 +984,12 @@ bool TLine::FindVector(TVector3* pOut1, TVector3* pOut2, bool do_normal)
   return true;
 }
 //-------------------------------------------------------------------------
-void TLine::Calc(float arg, float& res1, float& res2)
+void TLine::Calc(float arg, float* res1, float* res2)
 {
-  res1 = a*arg + b;
-  res2 = c*arg + d;
+  BL_ASSERT(res1);
+  BL_ASSERT(res2);
+  *res1 = a*arg + b;
+  *res2 = c*arg + d;
 }
 //-------------------------------------------------------------------------
 TQuaternion::TQuaternion( const float * pF)

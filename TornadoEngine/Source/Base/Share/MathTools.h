@@ -303,7 +303,7 @@ public:
 
 protected:
   void SetType(int v){mType=v;}
-  void Calc(float arg, float& res1, float& res2);
+  void Calc(float arg, float* res1, float* res2);
 }_PACKED;
 //----------------------------------------------------------------------------------------
 class DllExport TQuaternion
