@@ -5,25 +5,25 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef GCSH
-#define GCSH
+#ifndef MutexH
+#define MutexH
 
 #include <boost/thread/recursive_mutex.hpp>
 
 #include "TypeDef.h"
 //---------------------------------------------------------------------------
 // надстройка над мьютексом
-class DllExport GCS
+class DllExport TMutex
 {
   boost::recursive_mutex m;
 
-	const char* mDbgName;
+  std::string mDbgName;
 public:
-  GCS( const char * _dbgname = NULL );
-  virtual ~GCS();
+  TMutex( const char * _dbgname = NULL );
+  virtual ~TMutex();
 
   void setDbgName( const char *_dbgname ) { mDbgName = _dbgname; }
-  const char * dbgName() { return mDbgName; }
+  std::string dbgName() { return mDbgName; }
 
   bool tryLock();
   void lock();
@@ -37,9 +37,9 @@ public:
 // Предназначен для создания объектов на стеке
 class TBL_Locker
 {
-  GCS* mCS;
+  TMutex* mCS;
 public:
-  TBL_Locker( GCS* cs )     { mCS = cs; mCS->lock(); }
+  TBL_Locker( TMutex* cs )     { mCS = cs; mCS->lock(); }
 
   virtual ~TBL_Locker()             { done(); }
 

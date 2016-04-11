@@ -13,19 +13,13 @@ See for more information License.h.
 #include <map>
 #include "ShareMisc.h"
 
-//class TTestControlTank;
-
 class TSlaveForm : public QWidget
 {
   Q_OBJECT
 
-	//TTestControlTank* mTCT;
-
 public:
   TSlaveForm(QWidget *parent = NULL);
   ~TSlaveForm();
-
-	//void SetControlTank(TTestControlTank* pTCT);
 
   void SetConnect(bool val);
 
@@ -35,23 +29,18 @@ public:
     TIP_Port     ip_port;
   };
 
-  // добавление и удаление мастера
-  void Add(TDesc& desc);               
+  // добавления и удаления клиентов
+  void Add(TDesc& desc);
   void Delete(unsigned int id_session);
 protected:
+  void Update(TDesc* pDesc);
+  void Update_MMOEngine(unsigned int* pID);
+
 	virtual void customEvent( QEvent * event  );
 	virtual void closeEvent(QCloseEvent * event );
 
   void Refresh();
 protected slots:
-		void sl_DownPressed();
-		void sl_UpPressed();
-		void sl_LeftPressed();
-		void sl_RightPressed();
-		void sl_DownReleased();
-		void sl_UpReleased();
-		void sl_LeftReleased();
-		void sl_RightReleased();
 
 private:
   typedef std::map<unsigned int,TDesc> TMapUintDesc;

@@ -14,6 +14,7 @@ See for more information License.h.
 #include <boost/foreach.hpp>
 #include "ListModules.h"
 #include "MasterLogic.h"
+#include "ModuleMMOEngineMaster.h"
 
 TMasterForm::TMasterForm(QWidget *parent)
 {
@@ -57,7 +58,8 @@ void TMasterForm::Add(TDesc& desc)
 {
   mMapID_SessionDesc.insert(TMapUintDesc::value_type(desc.id_session,desc));
 
-  Refresh();
+  TModuleLogic::Get()->CallBackModuleParam(nsListModules::MMOEngineMaster, 
+    &TMasterForm::Update_MMOEngine, &desc.id_session);
 }
 //-----------------------------------------------------------
 void TMasterForm::Delete(unsigned int id_session)
@@ -103,5 +105,28 @@ void TMasterForm::Refresh()
 void TMasterForm::sl_CreateGroup()
 {
   TModuleLogic::Get()->CallBackModule(nsListModules::MMOEngineMaster, &TMasterLogic::CreateGroup );
+}
+//-----------------------------------------------------------
+void TMasterForm::Update_MMOEngine(unsigned int* pID)
+{
+  TDesc* pDesc = new TDesc;
+  pDesc->id_session = *pID;
+
+  bool resInfoSession = TModuleLogic::Get()->GetC()->pMMOEngineMaster->Get()->
+    GetInfoSession( pDesc->id_session, pDesc->ip_port );
+  BL_ASSERT(resInfoSession);
+
+  TModuleLogic::Get()->CallBackModuleParam(nsListModules::AloneGUI, 
+    &TMasterForm::Update, pDesc);
+}
+//---------------------------------------------------------------------------------------------
+void TMasterForm::Update(TDesc* pDesc)
+{
+  TMapUintDescIt fit = mMapID_SessionDesc.find(pDesc->id_session);
+  if(fit==mMapID_SessionDesc.end())
+    return;
+  fit->second = *pDesc;
+
+  Refresh();
 }
 //-----------------------------------------------------------

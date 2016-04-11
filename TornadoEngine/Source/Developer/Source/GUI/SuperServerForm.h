@@ -31,6 +31,9 @@ public:
   void Add(TDesc& desc);               
   void Delete(unsigned int id_session);
 protected:
+  void Update(TDesc* pDesc);
+  void Update_MMOEngine(unsigned int* pID);
+
 	virtual void customEvent( QEvent * event  );
 	virtual void closeEvent(QCloseEvent * event );
 

@@ -5,30 +5,30 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "GCS.h"
+#include "Mutex.h"
 #include "BL_Debug.h"
 
-GCS::GCS( const char *_dbgname )
+TMutex::TMutex( const char *_dbgname )
 {
   mDbgName = _dbgname;
 }
 //---------------------------------------------------------------------------
-GCS::~GCS()
+TMutex::~TMutex()
 {
 
 }
 //---------------------------------------------------------------------------
-void GCS::lock()
+void TMutex::lock()
 {
   m.lock();
 }
 //---------------------------------------------------------------------------
-bool GCS::tryLock()    
+bool TMutex::tryLock()    
 { 
   return m.try_lock(); 
 }
 //---------------------------------------------------------------------------
-void GCS::unlock()
+void TMutex::unlock()
 {
   m.unlock();
 }

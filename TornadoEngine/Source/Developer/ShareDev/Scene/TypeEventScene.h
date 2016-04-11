@@ -14,7 +14,7 @@ See for more information License.h.
 
 namespace nsTypeEventScene
 {
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -44,7 +44,7 @@ namespace nsTypeEventScene
     TUpdateEvent(){typeEvent = Update;}
   }_PACKED;
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 }

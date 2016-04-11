@@ -14,7 +14,7 @@ See for more information License.h.
   if(f==false) \
   return false;
 //--------------------------------------------------
-#if defined( WIN32 )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -43,7 +43,7 @@ struct TIP_Port
           return true;
     return false;
   }
-};
+}_PACKED;
 
 #if defined( WIN32 )
 #pragma pack(pop)

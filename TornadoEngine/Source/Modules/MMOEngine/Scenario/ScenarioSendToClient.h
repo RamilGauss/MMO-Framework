@@ -15,7 +15,7 @@ See for more information License.h.
 
 #include <boost/foreach.hpp>
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -34,22 +34,22 @@ namespace nsMMOEngine
     {
       THeader(){type = TMakerScenario::eSendToClient;id_client=0;}
       unsigned int id_client;
-    };
+    }_PACKED;
     //==================================================================
     struct THeaderSuperServer : public THeader
     {
       THeaderSuperServer(){subType = eSuperServer;}
-    };
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderMaster : public THeader
     {
       THeaderMaster(){subType = eMaster;}
-    };
+    }_PACKED;
     //-------------------------------------------------
 		struct THeaderSlave : public THeader
 		{
 			THeaderSlave(){subType = eSlave;}
-		};
+		}_PACKED;
 		//-------------------------------------------------
   public:
     TScenarioSendToClient();
@@ -117,7 +117,7 @@ namespace nsMMOEngine
 	//-------------------------------------------------------------------
 }
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 

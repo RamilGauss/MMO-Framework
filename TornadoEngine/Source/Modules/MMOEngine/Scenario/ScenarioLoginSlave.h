@@ -12,7 +12,7 @@ See for more information License.h.
 #include "ContextScLoginSlave.h"
 #include "MakerScenario.h"
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -24,17 +24,17 @@ namespace nsMMOEngine
     struct THeaderLoginSlave : public IScenario::TBaseHeader
     {
       THeaderLoginSlave(){type=TMakerScenario::eLoginSlave;} 
-    };
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderFromSlave : public THeaderLoginSlave
     {
       THeaderFromSlave(){subType=eFromSlave;}
-    };
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderAnswerMaster : public THeaderLoginSlave
     {
       THeaderAnswerMaster(){subType=eAnswerMaster;}
-    };
+    }_PACKED;
     //-------------------------------------------------
     enum{
       eTimeoutWait_ms = 20000,
@@ -58,7 +58,7 @@ namespace nsMMOEngine
   };
 }
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 

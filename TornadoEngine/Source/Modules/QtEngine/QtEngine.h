@@ -9,7 +9,7 @@ See for more information License.h.
 #define QtEngineH
 
 #include "TypeDef.h"
-#include "GCS.h"
+#include "Mutex.h"
 
 class TApplication;
 class QApplication;
@@ -28,7 +28,7 @@ class DllExport TQtEngine
     eFeedBack = 50,
   };
 
-  GCS mMutexApplication;
+  TMutex mMutexApplication;
 public:
   TQtEngine();
   ~TQtEngine();

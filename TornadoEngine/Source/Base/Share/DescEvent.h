@@ -49,7 +49,7 @@ protected:
     else
       time_ms = time_create_ms;
   }
-};
+}_PACKED;
 
 #ifdef WIN32
 #pragma pack(pop)

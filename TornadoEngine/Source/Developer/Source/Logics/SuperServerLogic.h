@@ -17,10 +17,13 @@ class TSuperServerLogic : public TModuleServerLogic
 {
   TSuperServerForm* mSuperServerForm;
 
-  TDataExchange2Thread<unsigned int> mListSessionAdd;
-
-  TDataExchange2Thread<TSuperServerForm::TDesc> mListID_SessionAdd;
-  TDataExchange2Thread<TSuperServerForm::TDesc> mListID_SessionDelete;
+  typedef enum{eAdd,eDelete}TypeEvent;
+  struct TSessionOperation
+  {
+    TSuperServerForm::TDesc desc;
+    TypeEvent typeEvent;
+  };
+  TDataExchange2Thread<TSessionOperation> mListMasterSessionOperation;
 public:
   TSuperServerLogic();
   virtual void InitLog();
@@ -38,8 +41,7 @@ private:
   void InitForms();
   void OpenPort();
 
-  void AddMasterQt();
-  void DeleteMasterQt();
+  void OperationSessionQt();
 
   void ConnectDown(nsMMOEngine::TEventConnectDown* pEvent);
   void ConnectDownMMOEngine();

@@ -9,7 +9,7 @@ See for more information License.h.
 #define TestControlTankH
 
 #include "ContainerTypes.h"
-#include "GCS.h"
+#include "Mutex.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
 #include "TypeDef.h"
 
@@ -49,7 +49,7 @@ class TTestControlTank
 	
 	TDesc mDesc;
 
-	GCS mMutexQtSend;
+	TMutex mMutexQtSend;
 
 	void lockQtSend()  {mMutexQtSend.lock();}
 	void unlockQtSend(){mMutexQtSend.unlock();}

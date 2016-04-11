@@ -12,6 +12,8 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "ModuleLogic.h"
 #include <boost/foreach.hpp>
+#include "ModuleMMOEngineSuperServer.h"
+#include "ListModules.h"
 
 TSuperServerForm::TSuperServerForm(QWidget *parent)
 {
@@ -42,13 +44,37 @@ void TSuperServerForm::Add(TDesc& desc)
 {
   mMapID_SessionDesc.insert(TMapUintDesc::value_type(desc.id_session,desc));
 
-  Refresh();
+  TModuleLogic::Get()->CallBackModuleParam(nsListModules::MMOEngineSuperServer, 
+    &TSuperServerForm::Update_MMOEngine, &desc.id_session);
 }
 //-----------------------------------------------------------
 void TSuperServerForm::Delete(unsigned int id_session)
 {
   mMapID_SessionDesc.erase(id_session);
   
+  Refresh();
+}
+//-----------------------------------------------------------
+void TSuperServerForm::Update_MMOEngine(unsigned int* pID)
+{
+  TDesc* pDesc = new TDesc;
+  pDesc->id_session = *pID;
+
+  bool resInfoSession = TModuleLogic::Get()->GetC()->pMMOEngineSuperServer->Get()->
+    GetInfoSession( pDesc->id_session, pDesc->ip_port );
+  BL_ASSERT(resInfoSession);
+
+  TModuleLogic::Get()->CallBackModuleParam(nsListModules::AloneGUI, 
+    &TSuperServerForm::Update, pDesc);
+}
+//---------------------------------------------------------------------------------------------
+void TSuperServerForm::Update(TDesc* pDesc)
+{
+  TMapUintDescIt fit = mMapID_SessionDesc.find(pDesc->id_session);
+  if(fit==mMapID_SessionDesc.end())
+    return;
+  fit->second = *pDesc;
+
   Refresh();
 }
 //-----------------------------------------------------------

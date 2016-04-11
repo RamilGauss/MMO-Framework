@@ -13,7 +13,7 @@ See for more information License.h.
 #include "ContainerTypes.h"
 #include "MathTools.h"
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -130,7 +130,7 @@ namespace nsParamBuilderConstraint
   //--------------------------------------------------
 }
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 

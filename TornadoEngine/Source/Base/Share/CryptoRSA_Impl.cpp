@@ -13,7 +13,7 @@ See for more information License.h.
 
 #include <algorithm>
 #include "BL_Debug.h"
-#include "GCS.h"
+#include "Mutex.h"
 
 namespace nsCryptoRSA_Impl
 {
@@ -24,7 +24,7 @@ namespace nsCryptoRSA_Impl
   // потому что процесс все равно один, соответственно безопасность не нарушается).
   static RSA* g_RSAKey           = NULL;
   static int  g_CountGenerateKey = 0;
-  static GCS  g_MutexRSAKey;
+  static TMutex  g_MutexRSAKey;
   static int  g_BitsRSA          = 2048;
   void lockRSA()  {g_MutexRSAKey.lock();}
   void unlockRSA(){g_MutexRSAKey.unlock();}

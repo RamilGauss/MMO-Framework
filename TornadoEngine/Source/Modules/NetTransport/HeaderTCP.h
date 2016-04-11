@@ -21,7 +21,7 @@ struct THeaderTCP
   short header;
   int   size;
   THeaderTCP(){header = short(eHeader);}
-};
+}_PACKED;
 #ifdef WIN32
 #pragma pack(pop)
 #endif

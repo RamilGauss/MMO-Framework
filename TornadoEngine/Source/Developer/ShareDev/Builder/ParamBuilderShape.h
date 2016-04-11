@@ -12,7 +12,7 @@ See for more information License.h.
 #include <vector>
 #include "ContainerTypes.h"
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -115,7 +115,7 @@ namespace nsParamBuilderShape
   }_PACKED;
 }
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 

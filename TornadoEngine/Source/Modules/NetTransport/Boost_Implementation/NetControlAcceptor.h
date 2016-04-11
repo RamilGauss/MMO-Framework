@@ -19,9 +19,6 @@ class TNetControlAcceptor : public INetControl
 
   TNetDeviceAcceptor mDevice;// слушающий сокет, ждет подключения от клиентов
 
-  GCS gcsSendAccept;
-  void lockSA(){gcsSendAccept.lock();}
-  void unlockSA(){gcsSendAccept.unlock();}
 public:
 
   TNetControlAcceptor(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service);

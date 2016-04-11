@@ -9,18 +9,14 @@ See for more information License.h.
 #include "ui_SlaveForm.h"
 #include "SlaveForm.h"
 
-//#include "TestControlTank.h"
 #include "ModuleLogic.h"
 #include <boost/foreach.hpp>
-
-#define GUN_SPEED    0.00035f
-#define TURRET_SPEED 0.00035f
+#include "ListModules.h"
+#include "ModuleMMOEngineSlave.h"
 
 TSlaveForm::TSlaveForm(QWidget *parent)
 {
   ui.setupUi(this);
-
-  //mTCT = NULL;
 
   connect(ui.bDown,  SIGNAL(pressed()), this, SLOT(sl_DownPressed()));
   connect(ui.bUp,    SIGNAL(pressed()), this, SLOT(sl_UpPressed()));
@@ -70,12 +66,36 @@ void TSlaveForm::Add(TDesc& desc)
 {
   mMapID_SessionDesc.insert(TMapUintDesc::value_type(desc.id_session,desc));
 
-  Refresh();
+  TModuleLogic::Get()->CallBackModuleParam(nsListModules::MMOEngineSlave, 
+    &TSlaveForm::Update_MMOEngine, &desc.id_session);
 }
 //-----------------------------------------------------------
 void TSlaveForm::Delete(unsigned int id_session)
 {
   mMapID_SessionDesc.erase(id_session);
+
+  Refresh();
+}
+//-----------------------------------------------------------
+void TSlaveForm::Update_MMOEngine(unsigned int* pID)
+{
+  TDesc* pDesc = new TDesc;
+  pDesc->id_session = *pID;
+
+  bool resInfoSession = TModuleLogic::Get()->GetC()->pMMOEngineSlave->Get()->
+    GetInfoSession( pDesc->id_session, pDesc->ip_port );
+  BL_ASSERT(resInfoSession);
+  
+  TModuleLogic::Get()->CallBackModuleParam(nsListModules::AloneGUI, 
+    &TSlaveForm::Update, pDesc);
+}
+//---------------------------------------------------------------------------------------------
+void TSlaveForm::Update(TDesc* pDesc)
+{
+  TMapUintDescIt fit = mMapID_SessionDesc.find(pDesc->id_session);
+  if(fit==mMapID_SessionDesc.end())
+    return;
+  fit->second = *pDesc;
 
   Refresh();
 }
@@ -111,50 +131,5 @@ void TSlaveForm::Refresh()
     iRow++;
   }
   ui.table->resizeColumnsToContents();
-}
-//-----------------------------------------------------------
-//void TSlaveForm::SetControlTank(TTestControlTank* pTCT)
-//{
-  //mTCT = pTCT;
-//}
-//-----------------------------------------------------------
-void TSlaveForm::sl_DownPressed()
-{
-  //mTCT->SetSpeedRotateGun(GUN_SPEED);
-}
-//-----------------------------------------------------------
-void TSlaveForm::sl_UpPressed()
-{
-  //mTCT->SetSpeedRotateGun(-GUN_SPEED);
-}
-//-----------------------------------------------------------
-void TSlaveForm::sl_LeftPressed()
-{
-  //mTCT->SetSpeedRotateTurret(-TURRET_SPEED);
-}
-//-----------------------------------------------------------
-void TSlaveForm::sl_RightPressed()
-{
-  //mTCT->SetSpeedRotateTurret(TURRET_SPEED);
-}
-//-----------------------------------------------------------
-void TSlaveForm::sl_DownReleased()
-{
-  //mTCT->SetSpeedRotateGun(0);
-}
-//-----------------------------------------------------------
-void TSlaveForm::sl_UpReleased()
-{
-  //mTCT->SetSpeedRotateGun(0);
-}
-//-----------------------------------------------------------
-void TSlaveForm::sl_LeftReleased()
-{
-  //mTCT->SetSpeedRotateTurret(0);
-}
-//-----------------------------------------------------------
-void TSlaveForm::sl_RightReleased()
-{
-  //mTCT->SetSpeedRotateTurret(0);
 }
 //-----------------------------------------------------------

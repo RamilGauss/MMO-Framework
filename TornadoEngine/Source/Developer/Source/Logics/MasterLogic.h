@@ -23,13 +23,13 @@ class TMasterLogic : public TModuleServerLogic
   typedef std::list<unsigned int> TListUint;
   TListUint mListKeyAllClient;
 
-  TDataExchange2Thread<unsigned int> mListSessionAdd;
-
-  TDataExchange2Thread<TMasterForm::TDesc> mListID_SessionAdd;
-  TDataExchange2Thread<TMasterForm::TDesc> mListID_SessionDelete;
-
-  TDataExchange2Thread<unsigned int> mListTryLogic;
-
+  typedef enum{eAdd,eDelete}TypeEvent;
+  struct TSessionOperation
+  {
+    TMasterForm::TDesc desc;
+    TypeEvent typeEvent;
+  };
+  TDataExchange2Thread<TSessionOperation> mListSlaveSessionOperation;
 public:
   TMasterLogic();
   virtual void InitLog();
@@ -50,16 +50,14 @@ private:
   void ConnectToSuperServer();
 
   void ConnectUp(nsMMOEngine::TEventConnectUp* pBE);
-  void ConnectDownMMOEngine();
 
   void DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE);
   void ConnectUpQt();
   void DisconnectUpQt();
-  void AddSlaveQt();
-  void DeleteSlaveQt();
+  void OperationSessionQt();
 
   void TryLogin(nsMMOEngine::TEventTryLogin* pEvent);
-  void TryLoginMMOEngine();
+  void TryLoginMMOEngine(unsigned int* pID);
 
   void ConnectDown(nsMMOEngine::TEventConnectDown* pEvent);
   void DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent);

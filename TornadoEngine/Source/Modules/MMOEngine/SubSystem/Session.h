@@ -55,7 +55,7 @@ namespace nsMMOEngine
         type      = t;
         use_crypt = 0;
       }
-    };
+    }_PACKED;
 #if defined( WIN32 )
 #pragma pack(pop)
 #endif

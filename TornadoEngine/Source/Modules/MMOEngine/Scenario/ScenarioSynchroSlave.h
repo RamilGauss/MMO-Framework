@@ -12,7 +12,7 @@ See for more information License.h.
 #include "ContextScSynchroSlave.h"
 #include "MakerScenario.h"
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -25,7 +25,7 @@ namespace nsMMOEngine
     {
       unsigned char loadProcent;
       THeaderSynchroSlave(){type=TMakerScenario::eSynchroSlave;subType=eFromSlave;}
-    };
+    }_PACKED;
     //-------------------------------------------------
   public:
     TScenarioSynchroSlave();
@@ -40,7 +40,7 @@ namespace nsMMOEngine
   };
 }
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 

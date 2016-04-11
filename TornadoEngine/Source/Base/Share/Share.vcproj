@@ -232,10 +232,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\GCS.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\HiTimer.cpp"
 				>
 			</File>
@@ -301,6 +297,10 @@
 			</File>
 			<File
 				RelativePath=".\MD5.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Mutex.cpp"
 				>
 			</File>
 			<File
@@ -438,10 +438,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\GCS.h"
-				>
-			</File>
-			<File
 				RelativePath=".\HiTimer.h"
 				>
 			</File>
@@ -535,6 +531,10 @@
 			</File>
 			<File
 				RelativePath=".\MD5.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Mutex.h"
 				>
 			</File>
 			<File

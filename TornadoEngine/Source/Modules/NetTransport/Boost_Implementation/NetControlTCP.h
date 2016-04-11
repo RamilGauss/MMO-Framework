@@ -13,7 +13,7 @@ See for more information License.h.
 
 #include "INetControl.h"
 #include "NetDeviceTCP.h"
-#include "GCS.h"
+#include "Mutex.h"
 #include "HistoryPacketTCP.h"
 
 class TNetControlTCP : public INetControl
@@ -32,10 +32,6 @@ class TNetControlTCP : public INetControl
 
   volatile bool flgWaitConnect;
   volatile bool flgResConnect;
-
-  GCS gcsSendAccept;
-  void lockSA(){gcsSendAccept.lock();}
-  void unlockSA(){gcsSendAccept.unlock();}
 public:
 
   TNetControlTCP(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service);

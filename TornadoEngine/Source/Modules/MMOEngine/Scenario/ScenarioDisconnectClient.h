@@ -15,7 +15,7 @@ See for more information License.h.
 
 #include <vector>
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -31,19 +31,19 @@ namespace nsMMOEngine
     struct THeaderDisconnectClient : public IScenario::TBaseHeader
     {
       THeaderDisconnectClient(){type=TMakerScenario::eDisconnectClient;} 
-    };
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderFromMaster : public THeaderDisconnectClient
     {
       THeaderFromMaster(){subType=eFromMaster;}
       int countID;// далее массив unsigned int
-    };
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderFromSlave : public THeaderDisconnectClient
     {
       THeaderFromSlave(){subType=eFromSlave;}
       unsigned int id_client;
-    };
+    }_PACKED;
     //-------------------------------------------------
   public:
     TScenarioDisconnectClient();
@@ -64,7 +64,7 @@ namespace nsMMOEngine
   };
 }
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 

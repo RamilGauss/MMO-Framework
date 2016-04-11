@@ -9,7 +9,7 @@ See for more information License.h.
 #define NetTransport_BoostH
 
 #include "INetTransport.h"
-#include "GCS.h"
+#include "Mutex.h"
 #include "NetWorkThread.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
@@ -24,8 +24,8 @@ class TNetTransport_Boost : public INetTransport
   unsigned short mLocalPort;
   unsigned char  mNumNetWork;
 
-  GCS mMutexSend;
-  GCS mMutexMapIP_TCP;
+  TMutex mMutexSend;
+  TMutex mMutexMapIP_TCP;
 
   TNetWorkThread mNetWorkThread;
 

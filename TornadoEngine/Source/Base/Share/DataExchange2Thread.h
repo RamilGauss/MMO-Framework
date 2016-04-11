@@ -27,7 +27,7 @@ See for more information License.h.
 */
 template <typename TClass> class TDataExchange2Thread
 {
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
   struct TElement
@@ -44,7 +44,7 @@ template <typename TClass> class TDataExchange2Thread
     TElement();
 		~TElement();
   }_PACKED;
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 #ifdef USE_COUNT_FOR_DEBUG

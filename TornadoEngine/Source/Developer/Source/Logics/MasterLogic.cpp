@@ -142,72 +142,41 @@ void TMasterLogic::InitLog()
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
-  unsigned int* pID = new unsigned int;
-  *pID = pEvent->id_session;
-  mListSessionAdd.Add(pID);
+  TSessionOperation* pSO = new TSessionOperation;
+  pSO->desc.id_session = pEvent->id_session;
+  pSO->typeEvent = eAdd;
+  mListSlaveSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::MMOEngineMaster, &TMasterLogic::ConnectDownMMOEngine);
-}
-//---------------------------------------------------------------------------------------------
-void TMasterLogic::ConnectDownMMOEngine()
-{
-  unsigned int** ppFirst = mListSessionAdd.GetFirst();
-  while(ppFirst)
-  {
-    unsigned int* pID_session = *ppFirst;
-
-    TMasterForm::TDesc* pDesc = new TMasterForm::TDesc;
-    pDesc->id_session = *pID_session;
-    bool resInfoSession = mComp.pMMOEngineMaster->Get()->GetInfoSession(pDesc->id_session, pDesc->ip_port);
-    BL_ASSERT(resInfoSession);
-    mListID_SessionAdd.Add(pDesc);
-    // следующий ID
-    mListSessionAdd.RemoveFirst();
-    ppFirst = mListSessionAdd.GetFirst();
-  }
-  
-  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::AddSlaveQt);
+  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
-  TMasterForm::TDesc* pDesc = new TMasterForm::TDesc;
-  pDesc->id_session = pEvent->id_session;
-  mListID_SessionDelete.Add(pDesc);
+  TSessionOperation* pSO = new TSessionOperation;
+  pSO->desc.id_session = pEvent->id_session;
+  pSO->typeEvent = eDelete;
+  mListSlaveSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::DeleteSlaveQt);
+  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::TryLogin(nsMMOEngine::TEventTryLogin* pEvent)
 {
-  unsigned int* pID = new unsigned int;
-  *pID = pEvent->id_session;
-  mListTryLogic.Add(pID);
-
-  CallBackModule(nsListModules::MMOEngineMaster, &TMasterLogic::TryLoginMMOEngine);
+  unsigned int* pID = new unsigned int(pEvent->id_session);
+  CallBackModuleParam(nsListModules::MMOEngineMaster, &TMasterLogic::TryLoginMMOEngine, pID);
 }
 //---------------------------------------------------------------------------------------------
-void TMasterLogic::TryLoginMMOEngine()
+void TMasterLogic::TryLoginMMOEngine(unsigned int* pID)
 {
   bool resAccept = true;
 
-  unsigned int** ppFirst = mListTryLogic.GetFirst();
-  while(ppFirst)
-  {
-    unsigned int ID = *(*ppFirst);
+  mCounterClient++;
+  char result[100];
+  sprintf(result,"hello, Client %u",mCounterClient);
+  mComp.pMMOEngineMaster->Get()->SetResultLogin(resAccept, *pID, mCounterClient,
+    (void*)&result[0], strlen(result));
 
-    mCounterClient ++;
-    char result[100];
-    sprintf(result,"hello, Client %u",mCounterClient);
-    mComp.pMMOEngineMaster->Get()->SetResultLogin(resAccept, ID, mCounterClient,
-      (void*)&result[0], strlen(result));
-
-    mListKeyAllClient.push_back(mCounterClient);
-
-    // следующий ID
-    mListTryLogic.RemoveFirst();
-    ppFirst = mListTryLogic.GetFirst();
-  }
+  mListKeyAllClient.push_back(mCounterClient);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::ConnectUp(nsMMOEngine::TEventConnectUp* pBE)
@@ -232,39 +201,33 @@ void TMasterLogic::DisconnectUpQt()
     mMasterForm->SetConnect(false);
 }
 //---------------------------------------------------------------------------------------------
-void TMasterLogic::AddSlaveQt()
-{
-  TMasterForm::TDesc** ppFirst = mListID_SessionAdd.GetFirst();
-  while(ppFirst)
-  {
-    TMasterForm::TDesc* pDesc = *ppFirst;
-
-    if(mMasterForm)
-      mMasterForm->Add(*pDesc);
-    // следующий ID
-    mListID_SessionAdd.RemoveFirst();
-    ppFirst = mListID_SessionAdd.GetFirst();
-  }
-}
-//---------------------------------------------------------------------------------------------
-void TMasterLogic::DeleteSlaveQt()
-{
-  TMasterForm::TDesc** ppFirst = mListID_SessionDelete.GetFirst();
-  while(ppFirst)
-  {
-    TMasterForm::TDesc* pDesc = *ppFirst;
-    if(mMasterForm)
-      mMasterForm->Delete(pDesc->id_session);
-    // следующий ID
-    mListID_SessionDelete.RemoveFirst();
-    ppFirst = mListID_SessionDelete.GetFirst();
-  }
-}
-//---------------------------------------------------------------------------------------------
 void TMasterLogic::CreateGroup()
 {
   unsigned int id_group;
   bool res = mComp.pMMOEngineMaster->Get()->TryCreateGroup(mListKeyAllClient, id_group);
   BL_ASSERT(res);
+}
+//---------------------------------------------------------------------------------------------
+void TMasterLogic::OperationSessionQt()
+{
+  TSessionOperation** ppOperation = mListSlaveSessionOperation.GetFirst();
+  while(ppOperation)
+  {
+    TSessionOperation* pOperation = *ppOperation;
+    switch(pOperation->typeEvent)
+    {
+    case eAdd:
+      if(mMasterForm)
+        mMasterForm->Add(pOperation->desc);
+      break;
+    case eDelete:
+      if(mMasterForm)
+        mMasterForm->Delete(pOperation->desc.id_session);
+      break;
+    }
+    // следующий ID
+    mListSlaveSessionOperation.RemoveFirst();
+    ppOperation = mListSlaveSessionOperation.GetFirst();
+  }
 }
 //---------------------------------------------------------------------------------------------

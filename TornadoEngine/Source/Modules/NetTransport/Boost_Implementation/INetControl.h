@@ -10,7 +10,7 @@ See for more information License.h.
 
 #include <list>
 
-#include "GCS.h"
+#include "Mutex.h"
 
 #include "BreakPacket.h"
 #include "CallBackRegistrator.h"

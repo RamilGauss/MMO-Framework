@@ -12,7 +12,7 @@ See for more information License.h.
 #include "ContextScLoginMaster.h"
 #include "MakerScenario.h"
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -24,17 +24,17 @@ namespace nsMMOEngine
     struct THeaderLoginMaster : public IScenario::TBaseHeader
     {
       THeaderLoginMaster(){type=TMakerScenario::eLoginMaster;}
-    };
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderFromMaster : public THeaderLoginMaster
     {
       THeaderFromMaster(){subType=eFromMaster;}
-    };
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderAnswerFromSS : public THeaderLoginMaster
     {
       THeaderAnswerFromSS(){subType=eAnswerFromSS;}
-    };
+    }_PACKED;
     //-------------------------------------------------
 
     enum{
@@ -58,7 +58,7 @@ namespace nsMMOEngine
   };
 }
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 

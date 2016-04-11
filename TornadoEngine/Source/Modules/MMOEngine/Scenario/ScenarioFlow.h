@@ -13,7 +13,7 @@ See for more information License.h.
 #include "MakerScenario.h"
 #include "SrcEvent_ex.h"
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(push, 1)
 #endif
 
@@ -25,17 +25,17 @@ namespace nsMMOEngine
     struct THeaderFlow : public IScenario::TBaseHeader
     {
       THeaderFlow(){type = TMakerScenario::eFlow;}
-    };
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderSendUp : public THeaderFlow
     {
       THeaderSendUp(){subType = eUp;}
-    };
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderSendDown : public THeaderFlow
     {
       THeaderSendDown(){subType = eDown;}
-    };
+    }_PACKED;
     //-------------------------------------------------
   public:
     TScenarioFlow();
@@ -77,7 +77,7 @@ namespace nsMMOEngine
   //-------------------------------------------------------------------
 }
 
-#if defined( TD_WINDOWS )
+#ifdef WIN32
 #pragma pack(pop)
 #endif
 

@@ -13,7 +13,6 @@ See for more information License.h.
 #include <vector>
 
 #include "IContainer.h"
-#include "GCS.h"
 #include "SynchroPoint.h"
 
 class DllExport TSynchroAbonent

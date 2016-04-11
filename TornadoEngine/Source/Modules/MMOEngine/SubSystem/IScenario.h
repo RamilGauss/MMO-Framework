@@ -42,7 +42,7 @@ namespace nsMMOEngine
 #if defined( WIN32 )
 #pragma pack(push, 1)
 #endif
-    struct TBaseHeader{char type;char subType;};
+    struct TBaseHeader{char type;char subType;}_PACKED;
 #if defined( WIN32 )
 #pragma pack(pop)
 #endif

@@ -12,7 +12,7 @@ See for more information License.h.
 
 #include "ShareMisc.h"
 #include "Session.h"
-#include "GCS.h"
+#include "Mutex.h"
 #include "NavigateSession.h"
 #include "CallBackRegistrator.h"
 #include "DescRecvSession.h"
@@ -49,12 +49,12 @@ namespace nsMMOEngine
     TCallBackRegistrator1<int>               mCallBackDiconnect;
     TCallBackRegistrator1<TDescRecvSession*> mCallBackRecv;
 
-    GCS mMutexAccessMapSession;
+    TMutex mMutexAccessMapSession;
     void lockAccessSession(){mMutexAccessMapSession.lock();}
     void unlockAccessSession(){mMutexAccessMapSession.unlock();}
 
     // запрет на попытку соединиться наверх более чем один раз
-    GCS mMutexConnectUp;
+    TMutex mMutexConnectUp;
     void lockConnectUp(){mMutexConnectUp.lock();}
     void unlockConnectUp(){mMutexConnectUp.unlock();}
   public:

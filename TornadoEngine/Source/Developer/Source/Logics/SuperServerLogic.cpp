@@ -124,69 +124,44 @@ void TSuperServerLogic::InitLog()
 //---------------------------------------------------------------------------------------------
 void TSuperServerLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
-  unsigned int* pID = new unsigned int;
-  *pID = pEvent->id_session;
-  mListSessionAdd.Add(pID);
+  TSessionOperation* pSO = new TSessionOperation;
+  pSO->typeEvent = eAdd;
+  pSO->desc.id_session = pEvent->id_session;
+  mListMasterSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::MMOEngineSuperServer, &TSuperServerLogic::ConnectDownMMOEngine);
-}
-//---------------------------------------------------------------------------------------------
-void TSuperServerLogic::ConnectDownMMOEngine()
-{
-  unsigned int** ppFirst = mListSessionAdd.GetFirst();
-  while(ppFirst)
-  {
-    unsigned int* pID_session = *ppFirst;
-
-    TSuperServerForm::TDesc* pDesc = new TSuperServerForm::TDesc;
-    pDesc->id_session = *pID_session;
-    bool resInfoSession = mComp.pMMOEngineSuperServer->Get()->GetInfoSession(pDesc->id_session, pDesc->ip_port);
-    BL_ASSERT(resInfoSession);
-    mListID_SessionAdd.Add(pDesc);
-    // следующий ID
-    mListSessionAdd.RemoveFirst();
-    ppFirst = mListSessionAdd.GetFirst();
-  }
-
-  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::AddMasterQt);
+  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TSuperServerLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
-  TSuperServerForm::TDesc* pDesc = new TSuperServerForm::TDesc;
-  pDesc->id_session = pEvent->id_session;
-  mListID_SessionDelete.Add(pDesc);
+  TSessionOperation* pSO = new TSessionOperation;
+  pSO->typeEvent = eDelete;
+  pSO->desc.id_session = pEvent->id_session;
+  mListMasterSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::DeleteMasterQt);
+  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
-void TSuperServerLogic::AddMasterQt()
+void TSuperServerLogic::OperationSessionQt()
 {
-  TSuperServerForm::TDesc** ppFirst = mListID_SessionAdd.GetFirst();
-  while(ppFirst)
+  TSessionOperation** ppOperation = mListMasterSessionOperation.GetFirst();
+  while(ppOperation)
   {
-    TSuperServerForm::TDesc* pDesc = *ppFirst;
-
-    if(mSuperServerForm)
-      mSuperServerForm->Add(*pDesc);
+    TSessionOperation* pOperation = *ppOperation;
+    switch(pOperation->typeEvent)
+    {
+    case eAdd:
+      if(mSuperServerForm)
+        mSuperServerForm->Add(pOperation->desc);
+      break;
+    case eDelete:
+      if(mSuperServerForm)
+        mSuperServerForm->Delete(pOperation->desc.id_session);
+      break;
+    }
     // следующий ID
-    mListID_SessionAdd.RemoveFirst();
-    ppFirst = mListID_SessionAdd.GetFirst();
-  }
-}
-//---------------------------------------------------------------------------------------------
-void TSuperServerLogic::DeleteMasterQt()
-{
-  TSuperServerForm::TDesc** ppFirst = mListID_SessionDelete.GetFirst();
-  while(ppFirst)
-  {
-    TSuperServerForm::TDesc* pDesc = *ppFirst;
-
-    if(mSuperServerForm)
-      mSuperServerForm->Delete(pDesc->id_session);
-    // следующий ID
-    mListID_SessionDelete.RemoveFirst();
-    ppFirst = mListID_SessionDelete.GetFirst();
+    mListMasterSessionOperation.RemoveFirst();
+    ppOperation = mListMasterSessionOperation.GetFirst();
   }
 }
 //---------------------------------------------------------------------------------------------

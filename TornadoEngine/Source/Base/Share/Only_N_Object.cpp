@@ -9,7 +9,7 @@ See for more information License.h.
 #include <string>
 
 #include "Only_N_Object.h"
-#include "GCS.h"
+#include "Mutex.h"
 
 typedef std::map<std::string,int> TMapStrInt;
 typedef std::map<void*,std::string> TMapPtrStr;
@@ -98,7 +98,7 @@ void StoreObject(int i, int maxCntObject, std::string nameClass, void* pThis)
 //----------------------------------------------------------------------------
 void LockThread(int lock)
 {
-  static GCS gcs;
+  static TMutex gcs;
   switch(lock)
   {
     case nsLockThread::eLock:

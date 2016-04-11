@@ -22,13 +22,13 @@ class TSlaveLogic : public TModuleServerLogic
     eCycleTime = 100,
   };
 
-  TDataExchange2Thread<unsigned int> mListSessionAdd;
-
-  TDataExchange2Thread<TSlaveForm::TDesc> mListID_SessionAdd;
-  TDataExchange2Thread<TSlaveForm::TDesc> mListID_SessionDelete;
-
-  TDataExchange2Thread<unsigned int> mListSessionRestore;
-  TDataExchange2Thread<unsigned int> mListSessionSave;
+  typedef enum{eAdd,eDelete}TypeEvent;
+  struct TSessionOperation
+  {
+    TSlaveForm::TDesc desc;
+    TypeEvent typeEvent;
+  };
+  TDataExchange2Thread<TSessionOperation> mListClientSessionOperation;
 public:
   TSlaveLogic();
   virtual void InitLog();
@@ -49,11 +49,9 @@ private:
 
   void ConnectUpQt();
   void DisconnectUpQt();
-  void AddClientQt();
-  void DeleteClientQt();
+  void OperationSessionQt();
 
-  void ConnectDownMMOEngine();
-  void SaveContextClientMMOEngine();
+  void SaveContextClientMMOEngine(unsigned int* pID);
 
   void ConnectUp(nsMMOEngine::TEventConnectUp* pBE);
   void DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE);

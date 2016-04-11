@@ -81,8 +81,9 @@ CopyMatrix16((float*)b,(float*)a);
 
 namespace nsMathTools
 {
-
+#ifdef WIN32 
 #pragma pack(push, 1)
+#endif
 //----------------------------------------------------------------------------------------
 class DllExport TPoint2
 {
@@ -90,7 +91,7 @@ public:
   unsigned int x;
   unsigned int y;
   TPoint2(){x=0;y=0;}
-};
+}_PACKED;
 //----------------------------------------------------------------------------------------
 class DllExport TVector2 
 {
@@ -126,7 +127,7 @@ public:
 
 public:
   float x, y;
-};
+}_PACKED;
 //-------------------------------------------------------------------
 class DllExport TVector3
 {
@@ -166,7 +167,7 @@ public:
   bool operator < ( const TVector3& ) const;
 
   float length();
-};
+}_PACKED;
 //-----------------------------------------------------------------
 class DllExport TVector4
 {
@@ -183,8 +184,7 @@ public:
   {
     x=0;y=0;z=0;w=0;
   }
-
-};
+}_PACKED;
 //-----------------------------------------------------------------
 class DllExport TMatrix9
 {
@@ -199,7 +199,7 @@ public:
     }s;
     float m[3][3];
   };
-};
+}_PACKED;
 //-----------------------------------------------------------------
 class DllExport TMatrix16
 {
@@ -246,7 +246,7 @@ public:
 
   bool operator == ( const TMatrix16& ) const;
   bool operator != ( const TMatrix16& ) const;
-};
+}_PACKED;
 //----------------------------------------------------------------------------------------
 class DllExport TPlane
 {
@@ -277,7 +277,7 @@ public:
   bool operator != ( const TPlane& ) const;
 
   float a, b, c, d;
-};
+}_PACKED;
 //----------------------------------------------------------------------------------------
 class DllExport TLine
 {
@@ -304,7 +304,8 @@ public:
 protected:
   void SetType(int v){mType=v;}
   void Calc(float arg, float& res1, float& res2);
-};
+}_PACKED;
+//----------------------------------------------------------------------------------------
 class DllExport TQuaternion
 {
 
@@ -341,9 +342,10 @@ public:
 
   bool operator == ( const TQuaternion& ) const;
   bool operator != ( const TQuaternion& ) const;
-
-};
+}_PACKED;
+#ifdef WIN32 
 #pragma pack(pop)
+#endif
 }
 //----------------------------------------------------------------------------------------
 DllExport extern void CopyMatrix16(float* pSrc, float* pDst);
