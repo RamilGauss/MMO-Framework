@@ -27,6 +27,10 @@ class DllExport TGameObject
   nsMathTools::TVector3 mRotation;
 
 public:
+  //TGraphicComponent* mPtrGraphic;
+  //TPhysicComponent*  mPtrPhysic;
+  //TSoundComponent*   mPtrSound;
+public:
   TGameObject(std::string type);
   virtual ~TGameObject();
 

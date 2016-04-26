@@ -87,7 +87,7 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port, u
   }
   else
   {
-    // иначе просто отослать данные:
+    // иначе просто отправить данные:
     // формирование пакета
     bpLP.PushFront((char*)pLogin,    sizeLogin);
     bpLP.PushFront((char*)pPassword, sizePassword);
