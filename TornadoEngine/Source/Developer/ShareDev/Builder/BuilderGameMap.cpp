@@ -93,6 +93,7 @@ bool TBuilderGameMap::BuildObject( TMapItem::TObject* pObject )
   if( AddObject_Private( pObject )==false )
     return false;
 
+  CalcStatisticForProgress();
   mState = eBuildObject;
   return true;
 }
@@ -131,6 +132,12 @@ void TBuilderGameMap::GetResult(TListPtrGameObject& listPtrGameObject)
 //--------------------------------------------------------------------------------------------
 TBuilderGameMap::State TBuilderGameMap::GetState()
 {
+  if( mState==eIdle )
+    return mState;
+
+  int progress = GetProgress();
+  if( progress==100 )
+    mState = eBuildComplete;
   return mState;
 }
 //--------------------------------------------------------------------------------------------
