@@ -17,6 +17,11 @@ See for more information License.h.
   Базовый тип игрового объекта для карты.
 */
 
+class TGraphicComponent;
+class TPhysicComponent;
+class TSoundComponent;
+class IBehaviourPattern;
+
 class DllExport TGameObject
 {
   std::string mType;// для поиска деструктора
@@ -27,10 +32,13 @@ public:
   // отправлять по трубе Графике и Звуку + InternalState by ID's game object
   //nsMathTools::TVector3 mPosition; - применять в физике, графике и звуке
   //nsMathTools::TVector3 mRotation; - применять в физике, графике и звуке
-
-  //TGraphicComponent* mPtrGraphic;
-  //TPhysicComponent*  mPtrPhysic;
-  //TSoundComponent*   mPtrSound;
+  
+  // данные движков
+  TGraphicComponent* mPtrGraphic;
+  TPhysicComponent*  mPtrPhysic;
+  TSoundComponent*   mPtrSound;
+  // поведение - зависит от типа (Model, Terrain, Zone, Light, Sound, Animated, Skybox)
+  IBehaviourPattern*   mPtrPattern;
 
   // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
   typedef enum{eMovable, eUnmovable}TypeMobility;
