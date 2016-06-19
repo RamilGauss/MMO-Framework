@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./ManagementObjects;./Modules;./Scene;./Share;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./ManagementObjects;./Modules;./ProtocolClientSlave;./Scene;./Share;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -1055,6 +1055,46 @@
 				Name="Ogre"
 				>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="ProtocolClientSlave"
+			>
+			<File
+				RelativePath=".\ProtocolClientSlave\PCS_HandlerClient.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ProtocolClientSlave\PCS_HandlerClient.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ProtocolClientSlave\PCS_HandlerSlave.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ProtocolClientSlave\PCS_HandlerSlave.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ProtocolClientSlave\PCS_IHandler.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ProtocolClientSlave\PCS_IHandler.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ProtocolClientSlave\PCS_PacketLevelGame.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ProtocolClientSlave\PCS_PacketLevelGame.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ProtocolClientSlave\PCS_TypePacket.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
