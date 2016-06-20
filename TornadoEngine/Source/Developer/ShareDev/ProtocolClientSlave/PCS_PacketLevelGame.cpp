@@ -14,27 +14,17 @@ TPacket_TryEnterRoom::TPacket_TryEnterRoom() : TBasePacket_PCS(ePacket_TryEnterR
 
 }
 //-----------------------------------------------------------------
-TPacket_TryLeaveRoom::TPacket_TryLeaveRoom() : TBasePacket_PCS(ePacket_TryLeaveRoom)
+TPacket_TryEnterGarage::TPacket_TryEnterGarage() : TBasePacket_PCS(ePacket_TryEnterGarage)
 {
 
 }
 //-----------------------------------------------------------------
-TPacket_TryLeaveQueue::TPacket_TryLeaveQueue() : TBasePacket_PCS(ePacket_TryLeaveQueue)
+TPacket_EnterGarage::TPacket_EnterGarage() : TBasePacket_PCS(ePacket_EnterGarage)
 {
 
 }
 //-----------------------------------------------------------------
-TPacket_CorrectGameObjects::TPacket_CorrectGameObjects() : TBasePacket_PCS(ePacket_CorrectGameObjects)
-{
-
-}
-//-----------------------------------------------------------------
-TPacket_EnterQueueRoom::TPacket_EnterQueueRoom() : TBasePacket_PCS(ePacket_EnterQueueRoom)
-{
-
-}
-//-----------------------------------------------------------------
-TPacket_LeaveQueueRoom::TPacket_LeaveQueueRoom() : TBasePacket_PCS(ePacket_LeaveQueueRoom)
+TPacket_EnterQueue::TPacket_EnterQueue() : TBasePacket_PCS(ePacket_EnterQueue)
 {
 
 }
@@ -44,14 +34,14 @@ TPacket_EnterRoom::TPacket_EnterRoom() : TBasePacket_PCS(ePacket_EnterRoom)
 
 }
 //-----------------------------------------------------------------
-TPacket_LeaveRoom::TPacket_LeaveRoom() : TBasePacket_PCS(ePacket_LeaveRoom)
-{
-
-}
-//-----------------------------------------------------------------
 TPacket_LoadMap::TPacket_LoadMap() : TBasePacket_PCS(ePacket_LoadMap)
 {
   id_map = 0;
+}
+//-----------------------------------------------------------------
+TPacket_CorrectGameObjects::TPacket_CorrectGameObjects() : TBasePacket_PCS(ePacket_CorrectGameObjects)
+{
+
 }
 //-----------------------------------------------------------------
 TPacket_AddGameObjects::TPacket_AddGameObjects() : TBasePacket_PCS(ePacket_AddGameObjects)

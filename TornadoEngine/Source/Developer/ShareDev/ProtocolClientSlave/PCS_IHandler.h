@@ -7,7 +7,7 @@ public:
   PCS_IHandler();
   virtual ~PCS_IHandler() = 0;
 
-  void Setup();
-  void Send();
+  virtual void Recv(TBasePacket_PCS* p);
+  void Send(TBasePacket_PCS* p);
 };
 #endif

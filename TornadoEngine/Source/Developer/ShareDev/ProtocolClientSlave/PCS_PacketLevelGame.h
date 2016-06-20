@@ -22,29 +22,19 @@ namespace nsPCS
     TPacket_TryEnterRoom();
   }_PACKED;
   //-----------------------------------------------------------------
-  struct DllExport TPacket_TryLeaveRoom : public TBasePacket_PCS
+  struct DllExport TPacket_TryEnterGarage : public TBasePacket_PCS
   {
-    TPacket_TryLeaveRoom();
+    TPacket_TryEnterGarage();
   }_PACKED;
   //-----------------------------------------------------------------
-  struct DllExport TPacket_TryLeaveQueue : public TBasePacket_PCS
+  struct DllExport TPacket_EnterGarage : public TBasePacket_PCS
   {
-    TPacket_TryLeaveQueue();
+    TPacket_EnterGarage();
   }_PACKED;
   //-----------------------------------------------------------------
-  struct DllExport TPacket_CorrectGameObjects : public TBasePacket_PCS
+  struct DllExport TPacket_EnterQueue : public TBasePacket_PCS
   {
-    TPacket_CorrectGameObjects();
-  }_PACKED;
-  //-----------------------------------------------------------------
-  struct DllExport TPacket_EnterQueueRoom : public TBasePacket_PCS
-  {
-    TPacket_EnterQueueRoom();
-  }_PACKED;
-  //-----------------------------------------------------------------
-  struct DllExport TPacket_LeaveQueueRoom : public TBasePacket_PCS
-  {
-    TPacket_LeaveQueueRoom();
+    TPacket_EnterQueue();
   }_PACKED;
   //-----------------------------------------------------------------
   struct DllExport TPacket_EnterRoom : public TBasePacket_PCS
@@ -52,15 +42,15 @@ namespace nsPCS
     TPacket_EnterRoom();
   }_PACKED;
   //-----------------------------------------------------------------
-  struct DllExport TPacket_LeaveRoom : public TBasePacket_PCS
-  {
-    TPacket_LeaveRoom();
-  }_PACKED;
-  //-----------------------------------------------------------------
   struct DllExport TPacket_LoadMap : public TBasePacket_PCS
   {
     TPacket_LoadMap();
-    unsigned int id_map;
+    int id_map;
+  }_PACKED;
+  //-----------------------------------------------------------------
+  struct DllExport TPacket_CorrectGameObjects : public TBasePacket_PCS
+  {
+    TPacket_CorrectGameObjects();
   }_PACKED;
   //-----------------------------------------------------------------
   struct DllExport TPacket_AddGameObjects : public TBasePacket_PCS

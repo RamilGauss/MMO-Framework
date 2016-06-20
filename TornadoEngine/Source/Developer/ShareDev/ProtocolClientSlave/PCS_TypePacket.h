@@ -18,22 +18,22 @@ namespace nsPCS
 {
   enum
   {
-    // from Client
+  // from Client
     ePacket_TryEnterRoom,// Клиент хочет зайти в бой
-    ePacket_TryLeaveRoom,// Клиент хочет выйти из боя
-    ePacket_TryLeaveQueue,// Клиент хочет ждать боя
-    // from Slave
-    ePacket_CorrectGameObjects,// корректировка физических параметров игровых объектов
-    ePacket_EnterQueueRoom,
-    ePacket_LeaveQueueRoom,
+    ePacket_TryEnterGarage,// Клиент хочет выйти из боя
+  // from Slave
+    // переходы между состояниями
+    ePacket_EnterGarage,
+    ePacket_EnterQueue,
     ePacket_EnterRoom,
-    ePacket_LeaveRoom,
+    // Room events
     ePacket_LoadMap,// Slave описывает карту для загрузки
+    ePacket_CorrectGameObjects,// корректировка физических параметров игровых объектов
     ePacket_AddGameObjects,
     ePacket_EnableGameObjects,
     ePacket_DisableGameObjects,
     ePacket_DeleteGameObjects,
-    // from Client/Slave
+  // from Client/Slave
     // специфическое игровое событие (e.g. повысить мощность двигателя, 
     // направление вектора мыши(целеуказание),
     // событие GUI(чат,изменение счета, ХП), звуковые события)

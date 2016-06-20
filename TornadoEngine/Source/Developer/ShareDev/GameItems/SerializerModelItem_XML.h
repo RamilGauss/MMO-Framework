@@ -26,7 +26,6 @@ public:
   virtual bool Load(TBaseItem* pItem);
   virtual bool Save(TBaseItem* pItem);
 protected:
-  void LoadPattern();
   void LoadHierarchy();
   void LoadCollection();
 
@@ -35,7 +34,6 @@ protected:
   void LoadPart(TModelItem::TPart& part, int iPart);
   void LoadVariant(TModelItem::TVariant& variant, int iVariant);
 
-  void SavePattern();
   void SaveHierarchy();
   void SaveCollection();
 

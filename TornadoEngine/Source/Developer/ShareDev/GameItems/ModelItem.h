@@ -79,8 +79,8 @@ struct DllExport TModelItem : public TBaseItem
   typedef TMapStrStr::value_type            TMapStrStrVT;
   //---------------------------------------------------------
   //---------------------------------------------------------
-  std::string   mNamePattern;// поведение
-  TMapStrStr    mMapKeyValue;// для объекта-поведения
+  //std::string   mNamePattern;// поведение
+  //TMapStrStr    mMapKeyValue;// для объекта-поведения
   TRoot         mRoot;
   TMapStrBranch mMapNameBase_Branch;// иерархия
   TMapStrPart   mMapNamePart;       // набор

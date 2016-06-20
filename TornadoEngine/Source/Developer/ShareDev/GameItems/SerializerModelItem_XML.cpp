@@ -16,7 +16,6 @@ namespace nsSerializerModelItem_XML
   const char* sName         = "name";
   const char* sJoint        = "Joint";
 
-  const char* sPattern      = "Pattern";
   const char* sCollection   = "Collection";
   const char* sHierarchy    = "Hierarchy";
   
@@ -64,7 +63,7 @@ bool TSerializerModelItem_XML::Load(TBaseItem* pItem)
   if(resEnter==false)
     return false;
 
-  LoadPattern();
+  //LoadPattern();
   LoadHierarchy();
   LoadCollection();
   return true;
@@ -79,26 +78,9 @@ bool TSerializerModelItem_XML::Save(TBaseItem* pItem)
   if(resEnter==false)
     return false;
 
-  SavePattern();
   SaveHierarchy();
   SaveCollection();
   return mXML->Save();
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerModelItem_XML::LoadPattern()
-{
-  mModel->mNamePattern = mXML->ReadSectionAttr(sPattern, 0, sName);
-  if(mXML->EnterSection(sPattern,0))
-  {
-    int cntProperty = GetCountProperty();
-    for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
-    {
-      std::string key,value;
-      LoadProperty(iProperty, key, value);
-      mModel->mMapKeyValue.insert(TModelItem::TMapStrStrVT(key,value));
-    }
-    mXML->LeaveSection();
-  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadHierarchy()
@@ -135,24 +117,6 @@ void TSerializerModelItem_XML::LoadCollection()
 
       std::string namePart = mXML->ReadSectionAttr(sPart, iPart, sName);
       mModel->mMapNamePart.insert(TModelItem::TMapStrPartVT(namePart, part));
-    }
-    mXML->LeaveSection();
-  }
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerModelItem_XML::SavePattern()
-{
-  TAttrInfo attr;
-  attr.Name  = sName;
-  attr.Value = mModel->mNamePattern;
-
-  if(mXML->AddSectionAndEnter(sPattern, 1, &attr))
-  {
-    BOOST_FOREACH(TModelItem::TMapStrStrVT& bit,mModel->mMapKeyValue)
-    {
-      std::string key   = bit.first;
-      std::string value = bit.second;
-      SaveProperty(key,value);
     }
     mXML->LeaveSection();
   }

@@ -91,9 +91,6 @@
     <!-- Задать видимость частей для физики (главный конвейер обрабатывает только коробку, остальные части
     находятся в обработчике, когда происходит коллизия коробки с другими объектами - идет вызов
     обработчика и проверяются коллизии с остальными частями). -->
-    <Pattern name="Gear"><!-- Поведение модели -->
-			<Property key="Power" value="100"/><!-- Данные, адресованные объекту-паттерну -->
-		</Pattern>
     <Hierarchy><!-- Как части соединяются -->
       <Root name="root">
         <Position>
@@ -334,7 +331,7 @@
 				<BaseProperty>
 				  <Identity>
 						<Property key="Type" value="Model"/>
-            <Property key="ID"   value="3"/>
+            <Property key="ID"   value="3"/><!-- Уникален в пределах карты -->
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -348,7 +345,20 @@
 					</Rotation>
 				</BaseProperty>
 				<InternalState>
-          <Property key="Name" value="Gear"/>
+          <!-- Адресуется Модели как типу -->
+          <Property key="Name"     value="Gear"/><!-- Какую модель выбрать -->
+          <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
+          <Property key="Pattern"  value="Gear"/><!-- Поведение модели -->
+          <!-- Адресуется Паттерну -->
+          <Property key="param0" value="0.00"/><!-- Например угол между шарнирами, сам паттерн должен знать что это такое -->
+          <Property key="param1" value="0.00"/>
+          <Property key="param2" value="0.00"/>
+          <Property key="param3" value="0.00"/>
+          <Property key="variant0" value="ModelPlate"/><!-- Из нескольких вариантов части нужно выбрать один -->
+          <Property key="variant1" value="PlateVarGeom"/>
+    			<Property key="MaxPower" value="100"/><!-- Игровые параметры, должны браться из БД (Шухрат) -->
+          <Property key="velocity" value="0.0"/><!-- Текущая скорость -->
+          <Property key="velocity_rotate" value="0.0"/><!-- Текущая скорость поворота гусеницами -->
         </InternalState>
 			</Object>
 		  <Object>
