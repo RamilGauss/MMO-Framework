@@ -1,5 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TornadoEngine version="1.0" name="Bonobo">
+  <Pattern name="Gear">
+    <Variant name="0">
+      <Property key="variant0" value="ModelPlate"/><!-- Из нескольких вариантов части нужно выбрать один -->
+      <Property key="variant1" value="PlateVarGeom"/>
+    </Variant>
+    <Variant name="1">
+      <Property key="param0" value="0.00"/><!-- Например угол между шарнирами, сам паттерн должен знать что это такое -->
+      <Property key="param1" value="0.00"/>
+      <Property key="param2" value="0.00"/>
+      <Property key="param3" value="0.00"/>
+      <Property key="variant0" value="ModelPlate"/><!-- Из нескольких вариантов части нужно выбрать один -->
+      <Property key="variant1" value="PlateVarGeom"/>
+      <Property key="MaxPower" value="100"/><!-- Игровые параметры, должны браться из БД (Шухрат) -->
+      <Property key="velocity" value="0.0"/><!-- Текущая скорость -->
+      <Property key="velocity_rotate" value="0.0"/><!-- Текущая скорость поворота гусеницами -->
+    </Variant>
+  </Pattern>
   <Material name="Iron">
     <Graphic>
       <Variant><!-- выбор случайным образом текстуры в движке, что бы не было "близнецов"-->
@@ -87,6 +104,7 @@
     </Paint>
   </Shape>
   <Model name="Gear">
+    <Pattern name="Gear" variant="0"/>
     <!-- Используемая модель может содержать в себе как Shape, так и готовые Model -->
     <!-- Задать видимость частей для физики (главный конвейер обрабатывает только коробку, остальные части
     находятся в обработчике, когда происходит коллизия коробки с другими объектами - идет вызов
@@ -350,15 +368,7 @@
           <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
           <Property key="Pattern"  value="Gear"/><!-- Поведение модели -->
           <!-- Адресуется Паттерну -->
-          <Property key="param0" value="0.00"/><!-- Например угол между шарнирами, сам паттерн должен знать что это такое -->
-          <Property key="param1" value="0.00"/>
-          <Property key="param2" value="0.00"/>
-          <Property key="param3" value="0.00"/>
-          <Property key="variant0" value="ModelPlate"/><!-- Из нескольких вариантов части нужно выбрать один -->
-          <Property key="variant1" value="PlateVarGeom"/>
-    			<Property key="MaxPower" value="100"/><!-- Игровые параметры, должны браться из БД (Шухрат) -->
-          <Property key="velocity" value="0.0"/><!-- Текущая скорость -->
-          <Property key="velocity_rotate" value="0.0"/><!-- Текущая скорость поворота гусеницами -->
+          <Property key="variant"  value="1"/>
         </InternalState>
 			</Object>
 		  <Object>

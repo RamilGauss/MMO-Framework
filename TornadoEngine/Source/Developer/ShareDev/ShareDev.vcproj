@@ -455,6 +455,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\GameItems\PatternItem.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\PatternItem.h"
+					>
+				</File>
+				<File
 					RelativePath=".\GameItems\ShapeItem.cpp"
 					>
 				</File>
@@ -556,6 +564,14 @@
 				</File>
 				<File
 					RelativePath=".\GameItems\SerializerParamBuilderShape.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerPatternItem_XML.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerPatternItem_XML.h"
 					>
 				</File>
 				<File

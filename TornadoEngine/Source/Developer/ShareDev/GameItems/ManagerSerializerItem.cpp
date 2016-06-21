@@ -13,6 +13,7 @@ See for more information License.h.
 
 TManagerSerializerItem::TManagerSerializerItem()
 {
+  mSerializerPattern.reset(new TSerializerPatternItem_XML);
   mSerializerShape.reset(new TSerializerShapeItem_XML);
   mSerializerModel.reset(new TSerializerModelItem_XML);
   mSerializerMaterial.reset(new TSerializerMaterialItem_XML);
@@ -22,6 +23,7 @@ TManagerSerializerItem::TManagerSerializerItem()
 
   mXML = NULL;
 
+  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Pattern,    mSerializerPattern.get()));
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Material,   mSerializerMaterial.get()));
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Shape,      mSerializerShape.get()));
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Model,      mSerializerModel.get()));

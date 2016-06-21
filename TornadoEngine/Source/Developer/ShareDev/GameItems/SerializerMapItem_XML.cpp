@@ -223,7 +223,7 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
 		mXML->LeaveSection();
 	}
 
-  // внутренние свойства
+  // внутренние состояние
   if(mXML->EnterSection(sInternalState,0))
   {
     int cntProperty = GetCountProperty();
@@ -258,18 +258,12 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
     // позиция и ориентация
     if(mXML->AddSectionAndEnter(sPosition))
     {
-      nsMathTools::TVector3 pos;
-      if(LoadVector3ByProperty(pos))
-        object.position = pos;
-
+      SaveVector3ByProperty(object.position);
       mXML->LeaveSection();
     }
     if(mXML->AddSectionAndEnter(sRotation))
     {
-      nsMathTools::TVector3 rot;
-      if(LoadVector3ByProperty(rot))
-        object.rotation = rot;
-
+      SaveVector3ByProperty(object.rotation);
       mXML->LeaveSection();
     }
     mXML->LeaveSection();

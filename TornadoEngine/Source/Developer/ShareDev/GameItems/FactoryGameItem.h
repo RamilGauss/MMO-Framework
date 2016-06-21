@@ -41,6 +41,7 @@ class DllExport TFactoryGameItem
   typedef TMapStrPtrItem::value_type       TMapStrPtrItemVT;
 
   // карты итэмов по типам
+  TMapStrPtrItem mMapNamePattern;
   TMapStrPtrItem mMapNameMaterial;
   TMapStrPtrItem mMapNameShape;
   TMapStrPtrItem mMapNameModel;
@@ -59,7 +60,7 @@ public:
   
   bool Init(std::string& name_file);
 
-  typedef enum{Material, Shape, Model, Terrain, TableSound, Map, CountType}Type;
+  typedef enum{Pattern, Material, Shape, Model, Terrain, TableSound, Map, CountType}Type;
 
   TBaseItem* Add(Type type, std::string& name);
   bool Save(TBaseItem* pItem);

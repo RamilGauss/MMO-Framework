@@ -21,6 +21,7 @@ class IXML;
 #include "SerializerTerrainItem_XML.h"
 #include "SerializerMapItem_XML.h"
 #include "SerializerTableSoundItem_XML.h"
+#include "SerializerPatternItem_XML.h"
 
 struct TBaseItem;
 
@@ -33,6 +34,7 @@ class DllExport TManagerSerializerItem
   typedef TMapIntPtrSerilizer::iterator          TMapIntPtrSerilizerIt;
   typedef TMapIntPtrSerilizer::value_type        TMapIntPtrSerilizerVT;
 
+  boost::scoped_ptr<TSerializerPatternItem_XML>    mSerializerPattern;
   boost::scoped_ptr<TSerializerShapeItem_XML>      mSerializerShape;
   boost::scoped_ptr<TSerializerModelItem_XML>      mSerializerModel;
   boost::scoped_ptr<TSerializerMaterialItem_XML>   mSerializerMaterial;

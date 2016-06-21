@@ -11,35 +11,38 @@ See for more information License.h.
 
 namespace nsSerializerModelItem_XML
 {
-  const char* sModel        = "Model";
+  const char* sModel          = "Model";
 
-  const char* sName         = "name";
-  const char* sJoint        = "Joint";
+  const char* sName           = "name";
+  const char* sJoint          = "Joint";
 
-  const char* sCollection   = "Collection";
-  const char* sHierarchy    = "Hierarchy";
+  const char* sPattern        = "Pattern";
+  const char* sVariantPattern = "variant";
+
+  const char* sCollection     = "Collection";
+  const char* sHierarchy      = "Hierarchy";
   
-  const char* sRoot         = "Root";
-  const char* sPosition     = "Position";
-  const char* sRotation     = "Rotation";
-  const char* sFormation    = "Formation";
-  const char* sBranch       = "Branch";
-  const char* sBase         = "base";
-  const char* sBind         = "Bind";
-  const char* sConstraint   = "Constraint";
+  const char* sRoot           = "Root";
+  const char* sPosition       = "Position";
+  const char* sRotation       = "Rotation";
+  const char* sFormation      = "Formation";
+  const char* sBranch         = "Branch";
+  const char* sBase           = "base";
+  const char* sBind           = "Bind";
+  const char* sConstraint     = "Constraint";
   
-  const char* sVariant      = "Variant";
-  const char* sIncarnation  = "Incarnation";
-  const char* sTranslation  = "Translation";
-  const char* sScale        = "Scale";
-  const char* sPart         = "Part";
-  const char* sMaterial     = "Material";
-  const char* sJoining      = "Joining";
+  const char* sVariant        = "Variant";
+  const char* sIncarnation    = "Incarnation";
+  const char* sTranslation    = "Translation";
+  const char* sScale          = "Scale";
+  const char* sPart           = "Part";
+  const char* sMaterial       = "Material";
+  const char* sJoining        = "Joining";
 
-  const char* sType         = "type";
-  const char* sExternal     = "external";
-  const char* sNamePart     = "part";
-  const char* sInternal     = "internal";
+  const char* sType           = "type";
+  const char* sExternal       = "external";
+  const char* sNamePart       = "part";
+  const char* sInternal       = "internal";
 }
 
 using namespace nsSerializerModelItem_XML;
@@ -63,9 +66,10 @@ bool TSerializerModelItem_XML::Load(TBaseItem* pItem)
   if(resEnter==false)
     return false;
 
-  //LoadPattern();
+  LoadPattern();
   LoadHierarchy();
   LoadCollection();
+
   return true;
 }
 //-------------------------------------------------------------------------------------------------------
@@ -78,9 +82,16 @@ bool TSerializerModelItem_XML::Save(TBaseItem* pItem)
   if(resEnter==false)
     return false;
 
+  SavePattern();
   SaveHierarchy();
   SaveCollection();
   return mXML->Save();
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerModelItem_XML::LoadPattern()
+{
+  mModel->mNamePattern    = mXML->ReadSectionAttr(sPattern, 0, sName);
+  mModel->mVariantPattern = mXML->ReadSectionAttr(sPattern, 0, sVariantPattern);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadHierarchy()
@@ -122,9 +133,19 @@ void TSerializerModelItem_XML::LoadCollection()
   }
 }
 //-------------------------------------------------------------------------------------------------------
+void TSerializerModelItem_XML::SavePattern()
+{
+  TAttrInfo attr[2];
+  attr[0].Name  = sName;
+  attr[0].Value = mModel->mNamePattern;
+  attr[1].Name  = sVariantPattern;
+  attr[1].Value = mModel->mVariantPattern;
+  mXML->AddSection(sPattern, 2, &attr[0]);
+}
+//-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SaveHierarchy()
 {
-  if(mXML->AddSectionAndEnter(sHierarchy))
+  if( mXML->AddSectionAndEnter(sHierarchy) )
   {
     SaveRoot();
     if(mXML->AddSectionAndEnter(sFormation))
