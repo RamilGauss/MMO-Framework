@@ -17,8 +17,13 @@ public:
   IBehaviourPattern();
   virtual ~IBehaviourPattern();
 
+  // Сериализация
   virtual bool SetInternalState(TContainer c) = 0;
   virtual TContainer GetInternalState() = 0;
+
+  // Визуализация
+
+  // Применить 
 };
 
 #endif

@@ -9,6 +9,7 @@ See for more information License.h.
 #define PCS_TypePacketH
 
 #include "TypeDef.h"
+#include "ContainerTypes.h"
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -40,10 +41,17 @@ namespace nsPCS
     ePacket_GameImpl,
   };
   
-  struct DllExport TBasePacket_PCS
+  class DllExport TBasePacket_PCS
   {
-    TBasePacket_PCS(unsigned char _type){type = _type;}
-    unsigned char type;
+    unsigned char mType;
+  public:
+    TBasePacket_PCS(unsigned char _type);
+
+    TContainer Pack();
+    void Unpack(TContainer c);
+  protected:
+    virtual TContainer PackInherit() = 0;
+    virtual void UnpackInherit( char* p, int size ) = 0;
   }_PACKED;
 }
 

@@ -36,32 +36,32 @@ TPacket_EnterRoom::TPacket_EnterRoom() : TBasePacket_PCS(ePacket_EnterRoom)
 //-----------------------------------------------------------------
 TPacket_LoadMap::TPacket_LoadMap() : TBasePacket_PCS(ePacket_LoadMap)
 {
-  id_map = 0;
+  mID_Map = 0;
 }
 //-----------------------------------------------------------------
 TPacket_CorrectGameObjects::TPacket_CorrectGameObjects() : TBasePacket_PCS(ePacket_CorrectGameObjects)
 {
-
+  mID_Object = 0;
 }
 //-----------------------------------------------------------------
 TPacket_AddGameObjects::TPacket_AddGameObjects() : TBasePacket_PCS(ePacket_AddGameObjects)
 {
-
+  mID_Object = 0;
 }
 //-----------------------------------------------------------------
 TPacket_EnableGameObjects::TPacket_EnableGameObjects() : TBasePacket_PCS(ePacket_EnableGameObjects)
 {
-
+  mID_Object = 0;
 }
 //-----------------------------------------------------------------
 TPacket_DisableGameObjects::TPacket_DisableGameObjects() : TBasePacket_PCS(ePacket_DisableGameObjects)
 {
-
+  mID_Object = 0;
 }
 //-----------------------------------------------------------------
 TPacket_DeleteGameObjects::TPacket_DeleteGameObjects() : TBasePacket_PCS(ePacket_DeleteGameObjects)
 {
-
+  mID_Object = 0;
 }
 //-----------------------------------------------------------------
 TPacket_GameImpl::TPacket_GameImpl() : TBasePacket_PCS(ePacket_GameImpl)

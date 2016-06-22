@@ -9,80 +9,130 @@ See for more information License.h.
 #define PCS_PacketLevelGameH
 
 #include "PCS_TypePacket.h"
-
-#ifdef WIN32
-#pragma pack(push, 1)
-#endif
+#include <string>
 
 namespace nsPCS
 {
+  typedef int            TypeID_GameMap;
+  typedef unsigned short TypeID_GameOject;
   //-----------------------------------------------------------------
-  struct DllExport TPacket_TryEnterRoom : public TBasePacket_PCS
+  class DllExport TPacket_TryEnterRoom : public TBasePacket_PCS
   {
+  public:
     TPacket_TryEnterRoom();
-  }_PACKED;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_TryEnterGarage : public TBasePacket_PCS
+  class DllExport TPacket_TryEnterGarage : public TBasePacket_PCS
   {
+  public:
     TPacket_TryEnterGarage();
-  }_PACKED;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_EnterGarage : public TBasePacket_PCS
+  class DllExport TPacket_EnterGarage : public TBasePacket_PCS
   {
+  public:
     TPacket_EnterGarage();
-  }_PACKED;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_EnterQueue : public TBasePacket_PCS
+  class DllExport TPacket_EnterQueue : public TBasePacket_PCS
   {
     TPacket_EnterQueue();
-  }_PACKED;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_EnterRoom : public TBasePacket_PCS
+  class DllExport TPacket_EnterRoom : public TBasePacket_PCS
   {
     TPacket_EnterRoom();
-  }_PACKED;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_LoadMap : public TBasePacket_PCS
+  class DllExport TPacket_LoadMap : public TBasePacket_PCS
   {
+  public:
     TPacket_LoadMap();
-    int id_map;
-  }_PACKED;
+    TypeID_GameMap mID_Map;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_CorrectGameObjects : public TBasePacket_PCS
+  class DllExport TPacket_CorrectGameObjects : public TBasePacket_PCS
   {
+  public:
     TPacket_CorrectGameObjects();
-  }_PACKED;
+    TypeID_GameOject mID_Object;
+    TContainer       mInternalState;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_AddGameObjects : public TBasePacket_PCS
+  class DllExport TPacket_AddGameObjects : public TBasePacket_PCS
   {
+  public:
     TPacket_AddGameObjects();
-  }_PACKED;
+    std::string      mNameModel;
+    bool             mMovable;
+    TypeID_GameOject mID_Object;
+    TContainer       mIternalState;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_EnableGameObjects : public TBasePacket_PCS
+  class DllExport TPacket_EnableGameObjects : public TBasePacket_PCS
   {
+  public:
     TPacket_EnableGameObjects();
-  }_PACKED;
+    TypeID_GameOject mID_Object;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_DisableGameObjects : public TBasePacket_PCS
+  class DllExport TPacket_DisableGameObjects : public TBasePacket_PCS
   {
+  public:
     TPacket_DisableGameObjects();
-  }_PACKED;
+    TypeID_GameOject mID_Object;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_DeleteGameObjects : public TBasePacket_PCS
+  class DllExport TPacket_DeleteGameObjects : public TBasePacket_PCS
   {
+  public:
     TPacket_DeleteGameObjects();
-  }_PACKED;
+    TypeID_GameOject mID_Object;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
-  struct DllExport TPacket_GameImpl : public TBasePacket_PCS
+  class DllExport TPacket_GameImpl : public TBasePacket_PCS
   {
+  public:
     TPacket_GameImpl();
     // empty! add some members!
-  }_PACKED;
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
 }
-
-#ifdef WIN32
-#pragma pack(pop)
-#endif
 
 #endif
