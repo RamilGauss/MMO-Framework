@@ -34,6 +34,15 @@ namespace nsPCS
     virtual void UnpackInherit( char* p, int size ){}
   };
   //-----------------------------------------------------------------
+  class DllExport TPacket_LoadMapEnd : public TBasePacket_PCS
+  {
+  public:
+    TPacket_LoadMapEnd();
+  protected:
+    virtual TContainer PackInherit(){return TContainer();}
+    virtual void UnpackInherit( char* p, int size ){}
+  };
+  //-----------------------------------------------------------------
   class DllExport TPacket_EnterGarage : public TBasePacket_PCS
   {
   public:
