@@ -34,7 +34,6 @@ namespace nsPCS
     ePacket_AddGameObjects,
     ePacket_EnableGameObjects,
     ePacket_DisableGameObjects,
-    ePacket_DeleteGameObjects,
   // from Client/Slave
     // специфическое игровое событие (e.g. повысить мощность двигателя, 
     // направление вектора мыши(целеуказание),

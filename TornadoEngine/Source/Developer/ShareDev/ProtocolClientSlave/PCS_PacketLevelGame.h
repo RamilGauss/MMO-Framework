@@ -10,11 +10,15 @@ See for more information License.h.
 
 #include "PCS_TypePacket.h"
 #include <string>
+#include <vector>
 
 namespace nsPCS
 {
   typedef int            TypeID_GameMap;
   typedef unsigned short TypeID_GameOject;
+  typedef unsigned short TypeSizeInternalState;
+  typedef unsigned char  TypeSizeNameModel;
+  typedef unsigned char  TypeMovable;
   //-----------------------------------------------------------------
   class DllExport TPacket_TryEnterRoom : public TBasePacket_PCS
   {
@@ -74,62 +78,62 @@ namespace nsPCS
     TPacket_LoadMap();
     TypeID_GameMap mID_Map;
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
-    virtual void UnpackInherit( char* p, int size ){}
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
   class DllExport TPacket_CorrectGameObjects : public TBasePacket_PCS
   {
   public:
     TPacket_CorrectGameObjects();
-    TypeID_GameOject mID_Object;
-    TContainer       mInternalState;
+    struct TDescCorrection
+    {
+      TypeID_GameOject mID_Object;
+      TContainer       mInternalState;
+    };
+    typedef std::vector<TDescCorrection> TVectorDescCorrection;
+    TVectorDescCorrection mVector;
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
-    virtual void UnpackInherit( char* p, int size ){}
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
   class DllExport TPacket_AddGameObjects : public TBasePacket_PCS
   {
   public:
     TPacket_AddGameObjects();
-    std::string      mNameModel;
-    bool             mMovable;
-    TypeID_GameOject mID_Object;
-    TContainer       mIternalState;
+    struct TDescAdd
+    {
+      std::string      mNameModel;
+      TypeMovable      mMovable;
+      TypeID_GameOject mID_Object;
+      TContainer       mInternalState;
+    };
+    typedef std::vector<TDescAdd> TVectorAdd;
+    TVectorAdd mVector;
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
-    virtual void UnpackInherit( char* p, int size ){}
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
   class DllExport TPacket_EnableGameObjects : public TBasePacket_PCS
   {
   public:
     TPacket_EnableGameObjects();
-    TypeID_GameOject mID_Object;
+    std::vector<TypeID_GameOject> mVectorID_Object;
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
-    virtual void UnpackInherit( char* p, int size ){}
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
   class DllExport TPacket_DisableGameObjects : public TBasePacket_PCS
   {
   public:
     TPacket_DisableGameObjects();
-    TypeID_GameOject mID_Object;
+    std::vector<TypeID_GameOject> mVectorID_Object;
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
-    virtual void UnpackInherit( char* p, int size ){}
-  };
-  //-----------------------------------------------------------------
-  class DllExport TPacket_DeleteGameObjects : public TBasePacket_PCS
-  {
-  public:
-    TPacket_DeleteGameObjects();
-    TypeID_GameOject mID_Object;
-  protected:
-    virtual TContainer PackInherit(){return TContainer();}
-    virtual void UnpackInherit( char* p, int size ){}
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
   class DllExport TPacket_GameImpl : public TBasePacket_PCS
