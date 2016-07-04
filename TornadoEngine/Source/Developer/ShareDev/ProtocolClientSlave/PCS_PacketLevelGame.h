@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-√Û‰‡ÍÓ‚ –‡ÏËÎ¸ —Â„ÂÂ‚Ë˜ 
+–ì—É–¥–∞–∫–æ–≤ –†–∞–º–∏–ª—å –°–µ—Ä–≥–µ–µ–≤–∏—á 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -18,7 +18,17 @@ namespace nsPCS
   typedef unsigned short TypeID_GameOject;
   typedef unsigned short TypeSizeInternalState;
   typedef unsigned char  TypeSizeNameModel;
+  typedef unsigned char  TypeSizeNameFGIObject;
+  typedef unsigned short TypeSizeDescFGIObject;
   typedef unsigned char  TypeMovable;
+  typedef unsigned char  TypeFGIObject;
+  typedef enum
+  {
+    Map,
+    Model,
+    Shape,
+    Terrain,
+  }eTypeFGIObject;
   //-----------------------------------------------------------------
   class DllExport TPacket_TryEnterRoom : public TBasePacket_PCS
   {
@@ -131,6 +141,64 @@ namespace nsPCS
   public:
     TPacket_DisableGameObjects();
     std::vector<TypeID_GameOject> mVectorID_Object;
+  protected:
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
+  };
+  //-----------------------------------------------------------------
+  class DllExport TPacket_AddFGIObject : public TBasePacket_PCS
+  {
+  public:
+    TypeFGIObject mTypeFGIObject;
+    std::string   mNameObject;
+    TContainer    mDesc;
+    TPacket_AddFGIObject();
+  protected:
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
+  };
+  //-----------------------------------------------------------------
+  class DllExport TPacket_ModifyFGIObject : public TBasePacket_PCS
+  {
+  public:
+    TypeFGIObject mTypeFGIObject;
+    std::string   mNameObject;
+    TContainer    mDesc;
+    TPacket_ModifyFGIObject();
+  protected:
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
+  };
+  //-----------------------------------------------------------------
+  class DllExport TPacket_DeleteFGIObject : public TBasePacket_PCS
+  {
+  public:
+    TypeFGIObject mTypeFGIObject;
+    std::string   mNameObject;
+    TPacket_DeleteFGIObject();
+  protected:
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
+  };
+  //-----------------------------------------------------------------
+  class DllExport TPacket_UpdateGameObjectByFGI : public TBasePacket_PCS
+  {
+  public:
+    TypeFGIObject mTypeFGIObject;
+    std::string   mNameObject;
+    TPacket_UpdateGameObjectByFGI();
+  protected:
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
+  };
+  //-----------------------------------------------------------------
+  class DllExport TPacket_UpdateGameObjectByPattern : public TBasePacket_PCS
+  {
+  public:
+    TypeFGIObject mTypeFGIObject;
+    std::string   mNameObject;
+    TContainer    mDesc;
+    TPacket_UpdateGameObjectByPattern();
   protected:
     virtual TContainer PackInherit();
     virtual void UnpackInherit( char* p, int size );

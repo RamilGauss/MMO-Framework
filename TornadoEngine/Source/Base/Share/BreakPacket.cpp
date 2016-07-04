@@ -20,22 +20,31 @@ TBreakPacket::TBreakPacket()
 TBreakPacket::~TBreakPacket()
 {
   DeleteCollect();
+  UnlinkPart();
 }
 //-----------------------------------------------------------------
-void TBreakPacket::PushBack(char* p,int size)
+IContainer* TBreakPacket::PushData(char* p,int size, bool copyData)
 {
-  TContainerPtr cPtr;
-  cPtr.SetDataByCount(p, size);
+  IContainer* pC = NULL;
+  if( copyData )
+    pC = new TContainer;
+  else
+    pC = new TContainerPtr;
 
-  mList.push_back(cPtr);
+  pC->SetDataByCount(p, size);
+  return pC;
 }
 //-----------------------------------------------------------------
-void TBreakPacket::PushFront(char* p,int size)
+void TBreakPacket::PushBack(char* p,int size, bool copyData)
 {
-  TContainerPtr cPtr;
-  cPtr.SetDataByCount(p, size);
-
-  mList.push_front(cPtr);
+  IContainer* pC = PushData(p, size, copyData);
+  mList.push_back(pC);
+}
+//-----------------------------------------------------------------
+void TBreakPacket::PushFront(char* p,int size, bool copyData)
+{
+  IContainer* pC = PushData(p, size, copyData);
+  mList.push_front(pC);
 }
 //-----------------------------------------------------------------
 void TBreakPacket::Collect()
@@ -47,10 +56,10 @@ void TBreakPacket::Collect()
   char* pCollect = (char*)mCollect.GetPtr();
 
   // копируем все в одну область памяти
-  BOOST_FOREACH( TContainerPtr& c, mList )
+  BOOST_FOREACH( IContainer* pC, mList )
   {
-    int sizePart  =        c.GetSize();
-    char* ptrPart = (char*)c.GetPtr(); 
+    int sizePart  =        pC->GetSize();
+    char* ptrPart = (char*)pC->GetPtr(); 
     memcpy(pCollect, ptrPart, sizePart);
     pCollect += sizePart;
   }
@@ -67,8 +76,8 @@ int TBreakPacket::GetSize()
     return mCollect.GetSize();
   int size = 0;
 
-  BOOST_FOREACH( TContainerPtr& c, mList )
-    size += c.GetSize();
+  BOOST_FOREACH( IContainer* pC, mList )
+    size += pC->GetSize();
 
   return size;
 }
@@ -85,6 +94,8 @@ void TBreakPacket::DeleteCollect()
 //-----------------------------------------------------------------
 void TBreakPacket::UnlinkPart()
 {
+  BOOST_FOREACH( IContainer* pC, mList )
+    delete pC;
   mList.clear();
 }
 //-----------------------------------------------------------------	

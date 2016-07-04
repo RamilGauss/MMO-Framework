@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Гудаков Рамиль Сергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include "BasePacketBosfor.h"
 #include "BL_Debug.h"
 
@@ -53,9 +60,9 @@ std::string TBasePacketBosfor::GetStrDescConstItem(std::string name)
   {
     BL_ASSERT(sizeof(int)==size);
     if(((bool*)pConst)[0])
-      sConst = "��";
+      sConst = "Да";
     else
-      sConst = "���";
+      sConst = "Нет";
   }
   else if(type=="ePairInt")
   {

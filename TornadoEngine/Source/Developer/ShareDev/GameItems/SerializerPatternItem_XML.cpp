@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -44,7 +44,7 @@ bool TSerializerPatternItem_XML::Load(TBaseItem* pItem)
 bool TSerializerPatternItem_XML::Save(TBaseItem* pItem)
 {
   mPattern = (TPatternItem*)pItem;
-  RemoveSection(mPattern->mName);// ãðîõíóòü âñþ çàïèñü, ñâÿçàííóþ ñ äàííûì item
+  RemoveSection(mPattern->mName);// Ð³Ñ€Ð¾Ñ…Ð½ÑƒÑ‚ÑŒ Ð²ÑÑŽ Ð·Ð°Ð¿Ð¸ÑÑŒ, ÑÐ²ÑÐ·Ð°Ð½Ð½ÑƒÑŽ Ñ Ð´Ð°Ð½Ð½Ñ‹Ð¼ item
 
   bool resEnter = AddAndEnterByType(mPattern->mName);
   if(resEnter==false)

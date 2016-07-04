@@ -22,20 +22,20 @@ See for more information License.h.
 class DllExport TBreakPacket
 {
 protected:
-  typedef std::list<TContainerPtr> TListC_Ptr;
-  typedef TListC_Ptr::iterator TListC_PtrIt;
+  typedef std::list<IContainer*> TListPtrContainer;
+  typedef TListPtrContainer::iterator TListPtrContainerIt;
 
-  TListC_Ptr mList;
+  TListPtrContainer mList;
 
   TContainer mCollect;
-
 public:
   TBreakPacket();
   virtual ~TBreakPacket();
 
   // добавить кусок памяти
-  void PushBack(char* p,int size);
-  void PushFront(char* p,int size);
+  // copyData=true - например если в цикле используется стековая переменная
+  void PushBack(char* p,int size, bool copyData = false);
+  void PushFront(char* p,int size, bool copyData = false);
   // собрать кусочки в одно целое (копированием), 
   // теперь можно получить указатель на собранный пакет через GetPtr
   // если кол-во частей равно 1, то сборки не будет.
@@ -54,8 +54,9 @@ public:
 
   const TBreakPacket& operator =( const TBreakPacket& b );
 
-  std::list<TContainerPtr>* GetList(){return &mList;}
+  TListPtrContainer* GetList(){return &mList;}
 protected:
+  IContainer* PushData(char* p,int size, bool copyData);
 };
 
 

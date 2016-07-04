@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include "MarkUpContainer.h"
 #include "BL_Debug.h"
 
@@ -17,11 +24,11 @@ TMarkUpContainer::~TMarkUpContainer()
 //--------------------------------------------------------------------
 void TMarkUpContainer::SetMarkUp(TDesc* pDesc)
 {
-  // удалить старую разметку
+  // СѓРґР°Р»РёС‚СЊ СЃС‚Р°СЂСѓСЋ СЂР°Р·РјРµС‚РєСѓ
   delete mRoot;
-  mRoot = pDesc->CloneHierarhy();// создать свою иерархию
+  mRoot = pDesc->CloneHierarhy();// СЃРѕР·РґР°С‚СЊ СЃРІРѕСЋ РёРµСЂР°СЂС…РёСЋ
 
-  // удалить старую структуру данных
+  // СѓРґР°Р»РёС‚СЊ СЃС‚Р°СЂСѓСЋ СЃС‚СЂСѓРєС‚СѓСЂСѓ РґР°РЅРЅС‹С…
   delete mRootElem;
   mRootElem = new TElem;
   mCurElem = mRootElem;
@@ -296,7 +303,7 @@ TMarkUpContainer::TDescPrivate::~TDescPrivate()
   pDesc = NULL;
   pMasterElem = NULL;
 
-  int cnt = vecSlaveElem.size();// индексация
+  int cnt = vecSlaveElem.size();// РёРЅРґРµРєСЃР°С†РёСЏ
   for( int i = 0 ; i < cnt ; i++ )
     delete vecSlaveElem[i];
   vecSlaveElem.clear();
@@ -346,7 +353,7 @@ IMarkUpContainer::eType TMarkUpContainer::TDescPrivate::GetSelfType()
      (data.GetSize()      ==0))
     return eRoot;
 
-  BL_ASSERT(data.GetSize());// либо под cnt, либо под const
+  BL_ASSERT(data.GetSize());// Р»РёР±Рѕ РїРѕРґ cnt, Р»РёР±Рѕ РїРѕРґ const
 
   if(pDesc->list.size())
     return eArr;

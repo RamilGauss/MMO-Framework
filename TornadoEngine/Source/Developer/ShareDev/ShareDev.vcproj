@@ -1124,6 +1124,58 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="GameProcess"
+			>
+			<Filter
+				Name="Client"
+				>
+				<File
+					RelativePath=".\GameProcess\GP_AggregationScenario_Client.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_AggregationScenario_Client.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Slave"
+				>
+				<File
+					RelativePath=".\GameProcess\GP_AggregationScenario_Slave.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_AggregationScenario_Slave.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Common"
+				>
+				<File
+					RelativePath=".\GameProcess\GP_AggregationScenario.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_AggregationScenario.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="SystemCollision"
+			>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

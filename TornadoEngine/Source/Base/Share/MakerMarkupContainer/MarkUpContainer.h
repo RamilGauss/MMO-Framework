@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #ifndef MarkUpContainerH
 #define MarkUpContainerH
 
@@ -11,8 +18,8 @@
 
 class TMarkUpContainer : public IMarkUpContainer
 {
-  // Элемент - это набор описаний (доступ по индексу)
-  // Описание - именованная структура (в соответствии с разметкой), набор элементов (доступ по имени)
+  // Р­Р»РµРјРµРЅС‚ - СЌС‚Рѕ РЅР°Р±РѕСЂ РѕРїРёСЃР°РЅРёР№ (РґРѕСЃС‚СѓРї РїРѕ РёРЅРґРµРєСЃСѓ)
+  // РћРїРёСЃР°РЅРёРµ - РёРјРµРЅРѕРІР°РЅРЅР°СЏ СЃС‚СЂСѓРєС‚СѓСЂР° (РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ СЂР°Р·РјРµС‚РєРѕР№), РЅР°Р±РѕСЂ СЌР»РµРјРµРЅС‚РѕРІ (РґРѕСЃС‚СѓРї РїРѕ РёРјРµРЅРё)
   // DescPrivate("Root") ->[ Elem[0](DescPrivate("A"), DescPrivate("B")), 
   //                         Elem[1](DescPrivate("A"), DescPrivate("B")) ]
 
@@ -40,13 +47,13 @@ class TMarkUpContainer : public IMarkUpContainer
   };
   struct TDescPrivate
   {
-    IMarkUpContainer::TDesc* pDesc;// описание группы нужно для помещения элементов внутрь группы
+    IMarkUpContainer::TDesc* pDesc;// РѕРїРёСЃР°РЅРёРµ РіСЂСѓРїРїС‹ РЅСѓР¶РЅРѕ РґР»СЏ РїРѕРјРµС‰РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РІРЅСѓС‚СЂСЊ РіСЂСѓРїРїС‹
 
     TElem*         pMasterElem;
-    TVectorPtrElem vecSlaveElem;// индексация
+    TVectorPtrElem vecSlaveElem;// РёРЅРґРµРєСЃР°С†РёСЏ
 
-    TContainer data;// данные этого элемента - если const - просто кусок памяти, массив - счетчик
-    std::string typeConst;// если константа, то тип данных
+    TContainer data;// РґР°РЅРЅС‹Рµ СЌС‚РѕРіРѕ СЌР»РµРјРµРЅС‚Р° - РµСЃР»Рё const - РїСЂРѕСЃС‚Рѕ РєСѓСЃРѕРє РїР°РјСЏС‚Рё, РјР°СЃСЃРёРІ - СЃС‡РµС‚С‡РёРє
+    std::string typeConst;// РµСЃР»Рё РєРѕРЅСЃС‚Р°РЅС‚Р°, С‚Рѕ С‚РёРї РґР°РЅРЅС‹С…
 
     TDescPrivate();
     ~TDescPrivate();

@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+–ì—É–¥–∞–∫–æ–≤ –†–∞–º–∏–ª—å –°–µ—Ä–≥–µ–µ–≤–∏—á 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include "BasePacket.h"
 #include "MarkUpContainer.h"
 #include "BL_QConv.h"
@@ -47,12 +54,12 @@ void TBasePacket::GetStrDescItem(std::vector<std::string>& vecStr, int sizeStack
   {
     std::string name = mMarkUp->GetNameDesc(iDesc);
     QByteArray ba = WinToKoi8(name.data());
-    std::string nameKOI8 = ba.data();// Ì‡Á‚‡ÌËÂ ÒÂÍˆËË ·ÂÂÚÒˇ ËÁ xml, Ú‡Ï ÍÓ‰ËÓ‚Í‡ CP1251.
+    std::string nameKOI8 = ba.data();// –Ω–∞–∑–≤–∞–Ω–∏–µ —Å–µ–∫—Ü–∏–∏ –±–µ—Ä–µ—Ç—Å—è –∏–∑ xml, —Ç–∞–º –∫–æ–¥–∏—Ä–æ–≤–∫–∞ CP1251.
 
     int cntElem = 0;
     if(mMarkUp->GetTypeDesc(iDesc)==IMarkUpContainer::eArr)
     {
-      // ‚ÓÈÚË ‚ Í‡ÍÓÈ-ÌË·Û‰¸ ˝ÎÂÏÂÌÚ Ë ÔÓ‚ÂËÚ¸ ˜ÚÓ ÓÌ ÍÓÌÒÚ‡ÌÚÌ˚È
+      // –≤–æ–π—Ç–∏ –≤ –∫–∞–∫–æ–π-–Ω–∏–±—É–¥—å —ç–ª–µ–º–µ–Ω—Ç –∏ –ø—Ä–æ–≤–µ—Ä–∏—Ç—å —á—Ç–æ –æ–Ω –∫–æ–Ω—Å—Ç–∞–Ω—Ç–Ω—ã–π
       cntElem = mMarkUp->GetCount(name.data());
       if(cntElem!=0)
       {
@@ -69,7 +76,7 @@ void TBasePacket::GetStrDescItem(std::vector<std::string>& vecStr, int sizeStack
           {
             if(mMarkUp->Enter(name.data(), iElem))
             {
-              // ÌÂ Û˜ÂÎ (ÔÓÍ‡ Ì‡ÏÂÂÌÌÓ) ‚‡Ë‡ÌÚ ÍÓ„‰‡ str_const == "" Ú.Â. ÍÓ„‰‡ ÌÂ ÌÛÊÌÓ ÓÚÓ·‡Ê‡Ú¸
+              // –Ω–µ —É—á–µ–ª (–ø–æ–∫–∞ –Ω–∞–º–µ—Ä–µ–Ω–Ω–æ) –≤–∞—Ä–∏–∞–Ω—Ç –∫–æ–≥–¥–∞ str_const == "" —Ç.–µ. –∫–æ–≥–¥–∞ –Ω–µ –Ω—É–∂–Ω–æ –æ—Ç–æ–±—Ä–∞–∂–∞—Ç—å
               sConst += GetStrDescConstItem(mMarkUp->GetNameDesc(0));
               mMarkUp->Leave();
             }

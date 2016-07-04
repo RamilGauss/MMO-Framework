@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,7 +20,7 @@ struct DllExport TPatternItem : public TBaseItem
   typedef TMapStrStr::iterator              TMapStrStrIt;
   typedef TMapStrStr::value_type            TMapStrStrVT;
   //---------------------------------------------------------
-  typedef std::map<std::string,TMapStrStr> TMapStrMap;// для объекта-поведения
+  typedef std::map<std::string,TMapStrStr> TMapStrMap;// РґР»СЏ РѕР±СЉРµРєС‚Р°-РїРѕРІРµРґРµРЅРёСЏ
   typedef TMapStrMap::iterator   TMapStrMapIt;
   typedef TMapStrMap::value_type TMapStrMapVT;
   //---------------------------------------------------------

@@ -24,6 +24,19 @@ public:
   // Визуализация
 
   // Применить 
+
+  // Модификация
+  // Обновить от такого же Паттерна
+  virtual bool SetDescUpdate(TContainer c) = 0;
+  virtual TContainer GetDescUpdate() = 0;
+
+  virtual void SetPosition(nsMathTools::TVector3& v) = 0;
+  virtual void SetOrientation(nsMathTools::TVector3& v) = 0;
+
+  // Обновить от FGIObject
+  // ???
+  //virtual bool SetDescFGIObject(TContainer c) = 0;
+  //virtual TContainer GetDescFGIObject() = 0;
 };
 
 #endif

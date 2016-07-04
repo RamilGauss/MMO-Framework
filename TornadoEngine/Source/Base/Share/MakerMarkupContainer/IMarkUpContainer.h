@@ -1,12 +1,19 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #ifndef IMarkUpContainerH
 #define IMarkUpContainerH
 
 /*
-    Гибкий контейнер.
-  Например: Root( C, Arr( C )) - пакет состоит из константной части и массива констант
+    Р“РёР±РєРёР№ РєРѕРЅС‚РµР№РЅРµСЂ.
+  РќР°РїСЂРёРјРµСЂ: Root( C, Arr( C )) - РїР°РєРµС‚ СЃРѕСЃС‚РѕРёС‚ РёР· РєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ С‡Р°СЃС‚Рё Рё РјР°СЃСЃРёРІР° РєРѕРЅСЃС‚Р°РЅС‚
                  "A" "D" "E"
 =========================================================================
-  // разметка
+  // СЂР°Р·РјРµС‚РєР°
   IMarkUpContainer::TDesc* pRoot = new IMarkUpContainer::TDesc;
 
   IMarkUpContainer::TDesc* pDA = new IMarkUpContainer::TDesc;
@@ -27,10 +34,10 @@
   IMarkUpContainer* pMarkUp = new ...;
   pMarkUp->SetMarkUp(pRoot);
 =========================================================================
-  // навигация, доступ и изменение
+  // РЅР°РІРёРіР°С†РёСЏ, РґРѕСЃС‚СѓРї Рё РёР·РјРµРЅРµРЅРёРµ
   int* pA = (int*)pMarkUp->GetPtrConst("A");
-  int сnt = pMarkUp->GetCount();
-  for(int i = 0 ; i < сnt ; i++)
+  int СЃnt = pMarkUp->GetCount();
+  for(int i = 0 ; i < СЃnt ; i++)
   {
     if(pMarkUp->Enter("B", i))
     {
@@ -40,12 +47,12 @@
     }
   }
 =========================================================================
-  // после формирования 
-  pMarkUp->Collect();// с учетом всех изменений
+  // РїРѕСЃР»Рµ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ 
+  pMarkUp->Collect();// СЃ СѓС‡РµС‚РѕРј РІСЃРµС… РёР·РјРµРЅРµРЅРёР№
   void* pPacket  = pMarkUp->GetPtr();
   int sizePacket = pMarkUp->GetSize();
 =========================================================================
-  // получения пакета по сетке
+  // РїРѕР»СѓС‡РµРЅРёСЏ РїР°РєРµС‚Р° РїРѕ СЃРµС‚РєРµ
   void* pPacketFromNet = ...;
   int sizePacketFromNet = ...;
   pMarkUp->Set(pPacketFromNet, sizePacketFromNet);
@@ -61,15 +68,15 @@ public:
   typedef enum
   {
     eUndef,
-    eArr,   // массив элементов
-    eRoot,  // мнимый массив с 1 элементом size==0
-    eConst, // область постоянной длины
+    eArr,   // РјР°СЃСЃРёРІ СЌР»РµРјРµРЅС‚РѕРІ
+    eRoot,  // РјРЅРёРјС‹Р№ РјР°СЃСЃРёРІ СЃ 1 СЌР»РµРјРµРЅС‚РѕРј size==0
+    eConst, // РѕР±Р»Р°СЃС‚СЊ РїРѕСЃС‚РѕСЏРЅРЅРѕР№ РґР»РёРЅС‹
   }eType;
   struct TDesc
   {
     std::string typeConst;
     std::string name;
-    int size; // байт
+    int size; // Р±Р°Р№С‚
     std::list<TDesc*> list;
     TDesc();
     ~TDesc();
@@ -79,16 +86,16 @@ public:
   IMarkUpContainer();
   virtual ~IMarkUpContainer();
 
-  // разметка контейнера, копирует информацию из pDesc
+  // СЂР°Р·РјРµС‚РєР° РєРѕРЅС‚РµР№РЅРµСЂР°, РєРѕРїРёСЂСѓРµС‚ РёРЅС„РѕСЂРјР°С†РёСЋ РёР· pDesc
   virtual void SetMarkUp(TDesc* pDesc) = 0;
 
-  // навигация
+  // РЅР°РІРёРіР°С†РёСЏ
   virtual void  EnterRoot()                            = 0;
-  // войти в массив
+  // РІРѕР№С‚Рё РІ РјР°СЃСЃРёРІ
   virtual bool  Enter(const char* name, int indexElem) = 0;
   virtual void  Leave()                                = 0;
 
-  // когда находимся внутри массива
+  // РєРѕРіРґР° РЅР°С…РѕРґРёРјСЃСЏ РІРЅСѓС‚СЂРё РјР°СЃСЃРёРІР°
   virtual int   GetCountDesc()                   = 0;
   virtual std::string GetNameDesc(int indexDesc) = 0;
   virtual eType GetTypeDesc(int indexDesc)       = 0;
@@ -104,12 +111,12 @@ public:
   virtual std::string GetTypeConst(int indexDesc)   = 0;
   virtual std::string GetTypeConst(const char* name)= 0;
 
-  // результат - дать область памяти готового пакета
+  // СЂРµР·СѓР»СЊС‚Р°С‚ - РґР°С‚СЊ РѕР±Р»Р°СЃС‚СЊ РїР°РјСЏС‚Рё РіРѕС‚РѕРІРѕРіРѕ РїР°РєРµС‚Р°
   virtual void  Collect() = 0;
   virtual void* GetPtr()  = 0;
   virtual int   GetSize() = 0;
   
-  // занести в разметку размеры элементов
+  // Р·Р°РЅРµСЃС‚Рё РІ СЂР°Р·РјРµС‚РєСѓ СЂР°Р·РјРµСЂС‹ СЌР»РµРјРµРЅС‚РѕРІ
   virtual int   Set(void* p, int size) = 0;
 protected:
   TDesc* mRoot;

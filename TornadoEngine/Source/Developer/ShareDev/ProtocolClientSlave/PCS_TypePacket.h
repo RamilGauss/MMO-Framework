@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,24 +20,32 @@ namespace nsPCS
   enum
   {
   // from Client
-    ePacket_TryEnterRoom,// Клиент хочет зайти в бой
-    ePacket_TryEnterGarage,// Клиент хочет выйти из боя
-    ePacket_LoadMapEnd,// загрузка карты завершена, можно присылать пакеты для манипуляции объектами
+    ePacket_TryEnterRoom,// РљР»РёРµРЅС‚ С…РѕС‡РµС‚ Р·Р°Р№С‚Рё РІ Р±РѕР№
+    ePacket_TryEnterGarage,// РљР»РёРµРЅС‚ С…РѕС‡РµС‚ РІС‹Р№С‚Рё РёР· Р±РѕСЏ
+    ePacket_LoadMapEnd,// Р·Р°РіСЂСѓР·РєР° РєР°СЂС‚С‹ Р·Р°РІРµСЂС€РµРЅР°, РјРѕР¶РЅРѕ РїСЂРёСЃС‹Р»Р°С‚СЊ РїР°РєРµС‚С‹ РґР»СЏ РјР°РЅРёРїСѓР»СЏС†РёРё РѕР±СЉРµРєС‚Р°РјРё
   // from Slave
-    // переходы между состояниями
+    // РїРµСЂРµС…РѕРґС‹ РјРµР¶РґСѓ СЃРѕСЃС‚РѕСЏРЅРёСЏРјРё
     ePacket_EnterGarage,
     ePacket_EnterQueue,
     ePacket_EnterRoom,
     // Room events
-    ePacket_LoadMap,// Slave описывает карту для загрузки
-    ePacket_CorrectGameObjects,// корректировка физических параметров игровых объектов
+    ePacket_LoadMap,// Slave РѕРїРёСЃС‹РІР°РµС‚ РєР°СЂС‚Сѓ РґР»СЏ Р·Р°РіСЂСѓР·РєРё
+    ePacket_CorrectGameObjects,// РєРѕСЂСЂРµРєС‚РёСЂРѕРІРєР° С„РёР·РёС‡РµСЃРєРёС… РїР°СЂР°РјРµС‚СЂРѕРІ РёРіСЂРѕРІС‹С… РѕР±СЉРµРєС‚РѕРІ
     ePacket_AddGameObjects,
     ePacket_EnableGameObjects,
     ePacket_DisableGameObjects,
   // from Client/Slave
-    // специфическое игровое событие (e.g. повысить мощность двигателя, 
-    // направление вектора мыши(целеуказание),
-    // событие GUI(чат,изменение счета, ХП), звуковые события)
+    ePacket_AddFGIObject,// FGI - TFactoryGameItem
+    ePacket_ModifyFGIObject,
+    ePacket_DeleteFGIObject,
+    // РІ Slave Р·Р°РґР°С‡Р° Update СЂРµС€Р°РµС‚СЃСЏ РІС‹Р·РѕРІРѕРј С„СѓРЅРєС†РёРё РџР°С‚С‚РµСЂРЅР°
+    // РІ Client С‡РµСЂРµР· РџР°С‚С‚РµСЂРЅ РёР· Model/Shape, РіРѕС‚РѕРІРёС‚СЃСЏ СЃРїРёСЃРѕРє Р·Р°РґР°С‡ РґР»СЏ РџР°С‚С‚РµСЂРЅР°, 
+    // Р° РѕРЅ РІ РєР°Р¶РґРѕРј РїРѕС‚РѕРєРµ РїСЂРёРјРµРЅРёС‚ РёС…
+    ePacket_UpdateGameObjectByFGI, // Р·Р°РЅРѕРІРѕ РїРѕРґРіСЂСѓР·РёС‚СЊ РёР· FGI
+    ePacket_UpdateGameObjectByPattern, // Р·Р°РЅРѕРІРѕ РїРѕРґРіСЂСѓР·РёС‚СЊ РёР· Pattern
+    // СЃРїРµС†РёС„РёС‡РµСЃРєРѕРµ РёРіСЂРѕРІРѕРµ СЃРѕР±С‹С‚РёРµ (e.g. РїРѕРІС‹СЃРёС‚СЊ РјРѕС‰РЅРѕСЃС‚СЊ РґРІРёРіР°С‚РµР»СЏ, 
+    // РЅР°РїСЂР°РІР»РµРЅРёРµ РІРµРєС‚РѕСЂР° РјС‹С€Рё(С†РµР»РµСѓРєР°Р·Р°РЅРёРµ),
+    // СЃРѕР±С‹С‚РёРµ GUI(С‡Р°С‚,РёР·РјРµРЅРµРЅРёРµ СЃС‡РµС‚Р°, РҐРџ), Р·РІСѓРєРѕРІС‹Рµ СЃРѕР±С‹С‚РёСЏ)
     ePacket_GameImpl,
   };
   
