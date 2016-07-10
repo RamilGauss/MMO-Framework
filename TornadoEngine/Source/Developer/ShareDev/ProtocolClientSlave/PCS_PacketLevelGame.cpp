@@ -26,11 +26,6 @@ TPacket_EnterGarage::TPacket_EnterGarage() : TBasePacket_PCS(ePacket_EnterGarage
 
 }
 //-----------------------------------------------------------------
-TPacket_LoadMapEnd::TPacket_LoadMapEnd() : TBasePacket_PCS(ePacket_LoadMapEnd)
-{
-
-}
-//-----------------------------------------------------------------
 TPacket_EnterQueue::TPacket_EnterQueue() : TBasePacket_PCS(ePacket_EnterQueue)
 {
 

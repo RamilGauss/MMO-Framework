@@ -22,7 +22,6 @@ namespace nsPCS
   // from Client
     ePacket_TryEnterRoom,// Клиент хочет зайти в бой
     ePacket_TryEnterGarage,// Клиент хочет выйти из боя
-    ePacket_LoadMapEnd,// загрузка карты завершена, можно присылать пакеты для манипуляции объектами
   // from Slave
     // переходы между состояниями
     ePacket_EnterGarage,
