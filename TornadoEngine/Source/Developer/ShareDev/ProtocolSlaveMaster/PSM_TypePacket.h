@@ -24,7 +24,11 @@ namespace nsPSM
 
     ePacket_ClientEnterGarage,
     ePacket_ClientEnterQueue,
-    ePacket_ClientEnterRoom,
+    ePacket_ClientEnterRoom,// указать id_room
+    
+    // уникальный для кластера id_room
+    ePacket_AddRoom,
+    ePacket_DeleteRoom,
 
     ePacket_GameImpl,
     //### ???
