@@ -18,8 +18,7 @@ namespace nsPSM
 {
   enum
   { 
-    //### ???
-    ePacket_ClientTryEnterRoom,
+    ePacket_ClientTryEnterRoom,// указать id_client, тип боя - от этого зависит кол-во игроков
     ePacket_ClientTryEnterGarage,
 
     ePacket_ClientEnterGarage,
@@ -31,7 +30,6 @@ namespace nsPSM
     ePacket_DeleteRoom,
 
     ePacket_GameImpl,
-    //### ???
   };
   
   struct DllExport TBasePacket_PSM

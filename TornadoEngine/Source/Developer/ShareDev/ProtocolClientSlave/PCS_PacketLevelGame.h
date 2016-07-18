@@ -22,6 +22,7 @@ namespace nsPCS
   typedef unsigned short TypeSizeDescFGIObject;
   typedef unsigned char  TypeMovable;
   typedef unsigned char  TypeFGIObject;
+  typedef unsigned int   TypeTryEnterRoom;
   typedef enum
   {
     Map,
@@ -34,9 +35,13 @@ namespace nsPCS
   {
   public:
     TPacket_TryEnterRoom();
+    TypeTryEnterRoom mTypeRoom;// клиент выбирает какой тип боя ему нужен
+    // 4 байта - запас под тренировочные бои, 4(например) + id_room - номер тренировочной комнаты
+    // для Slave он ничего не значит, 
+    // для Master - правила для создания, балансировки, выбора карты, условий боя (Игровая логика).
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
-    virtual void UnpackInherit( char* p, int size ){}
+    virtual TContainer PackInherit();
+    virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
   class DllExport TPacket_TryEnterGarage : public TBasePacket_PCS

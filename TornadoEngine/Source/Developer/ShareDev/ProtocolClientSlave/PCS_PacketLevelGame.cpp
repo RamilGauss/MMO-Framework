@@ -16,6 +16,19 @@ TPacket_TryEnterRoom::TPacket_TryEnterRoom() : TBasePacket_PCS(ePacket_TryEnterR
 
 }
 //-----------------------------------------------------------------
+TContainer TPacket_TryEnterRoom::PackInherit()
+{
+  TContainer sResult;
+  sResult.SetData((char*)&mTypeRoom, sizeof(mTypeRoom));
+  return sResult;
+}
+//-----------------------------------------------------------------
+void TPacket_TryEnterRoom::UnpackInherit( char* p, int size )
+{
+  if( size >= sizeof(mTypeRoom) )
+    mTypeRoom = *((TypeTryEnterRoom*)p);
+}
+//-----------------------------------------------------------------
 TPacket_TryEnterGarage::TPacket_TryEnterGarage() : TBasePacket_PCS(ePacket_TryEnterGarage)
 {
 

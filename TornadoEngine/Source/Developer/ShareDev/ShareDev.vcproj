@@ -919,6 +919,34 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Scene\IHandlerScene.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\IHandlerScene.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\ISceneDataAccess.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\ISceneDataAccess.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\ISceneSystemCollision.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\ISceneSystemCollision.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\Scene.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Scene\Scene.h"
 					>
 				</File>
@@ -1138,6 +1166,14 @@
 					RelativePath=".\GameProcess\GP_AggregationScenario_Client.h"
 					>
 				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_SynchroClient.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_SynchroClient.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Slave"
@@ -1150,24 +1186,100 @@
 					RelativePath=".\GameProcess\GP_AggregationScenario_Slave.h"
 					>
 				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_GameProcessSlave.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_GameProcessSlave.h"
+					>
+				</File>
 			</Filter>
 			<Filter
-				Name="Common"
+				Name="GeneralImpl"
 				>
-				<File
-					RelativePath=".\GameProcess\GP_AggregationScenario.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\GP_AggregationScenario.h"
-					>
-				</File>
 				<File
 					RelativePath=".\GameProcess\GP_Scenario.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\GameProcess\GP_Scenario.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_Block.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_Block.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_Builder.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_Builder.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_Destructor.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_Destructor.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="GeneralAbstract"
+				>
+				<File
+					RelativePath=".\GameProcess\IGP_AggregationScenario.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_AggregationScenario.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_Builder.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_Builder.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_Destructor.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_Destructor.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_GameProcessSlave.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_GameProcessSlave.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_General.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_General.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_SynchroClient.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario_SynchroClient.h"
 					>
 				</File>
 			</Filter>
