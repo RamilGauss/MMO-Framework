@@ -23,6 +23,10 @@ public:
 
   // Визуализация
 
+  // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
+  // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
+  virtual bool GetNeedSynchro() = 0;
+
   // Применить 
 
   // Модификация
@@ -37,6 +41,11 @@ public:
   // ???
   //virtual bool SetDescFGIObject(TContainer c) = 0;
   //virtual TContainer GetDescFGIObject() = 0;
+
+  virtual void ThreadLogica();
+  virtual void ThreadOgre();
+  virtual void ThreadBullet();
+  virtual void ThreadOpenAL();
 };
 
 #endif

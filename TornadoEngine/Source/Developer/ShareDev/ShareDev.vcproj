@@ -831,11 +831,11 @@
 				Name="BehaviourPattern"
 				>
 				<File
-					RelativePath=".\Builder\FactoryBehaviourPattern.cpp"
+					RelativePath=".\Builder\IFactoryBehaviourPattern.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\FactoryBehaviourPattern.h"
+					RelativePath=".\Builder\IFactoryBehaviourPattern.h"
 					>
 				</File>
 			</Filter>

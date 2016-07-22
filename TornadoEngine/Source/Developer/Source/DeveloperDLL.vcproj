@@ -748,31 +748,19 @@
 			Name="BehaviourPattern"
 			>
 			<Filter
-				Name="Client"
+				Name="Factory"
 				>
 				<File
-					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_Client.cpp"
+					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_EoWM.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_Client.h"
+					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_EoWM.h"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="Server"
-				>
-				<File
-					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_Server.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_Server.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Common"
+				Name="Patterns"
 				>
 				<File
 					RelativePath=".\BehaviourPattern\TankTower.cpp"

@@ -8,38 +8,64 @@ See for more information License.h.
 #ifndef GameSceneH
 #define GameSceneH
 
-#include "TypeEventScene.h"
-#include <list>
+#include <boost/smart_ptr/scoped_ptr.hpp>
+#include "ISceneDataAccess.h"
+#include "ISceneSystemCollision.h"
+#include <map>
 
 class TGameObject;
 
-class TScene
+class TScene : public ISceneDataAccess, public ISceneSystemCollision
 {
+  typedef std::map<int,TGameObject*> TMapIntPtr;
+  typedef TMapIntPtr::iterator       TMapIntPtrIt;
+  typedef TMapIntPtr::value_type     TMapIntPtrVT;
+
+  TMapIntPtr mMapID_UsingGO;
+  TMapIntPtr mMapID_NotUsingGO;
+
+  // подвижные объекты - для внутренней синхронизации
+  
 public:
-  // 1. Добавление от класса Загрузчика, который загружал объект в нескольких потоках 
-  typedef std::list<TGameObject*>& TListObject;
+  TScene();
+  virtual ~TScene();
 
-  virtual void Entrust(TListObject& listObject) = 0;
-  virtual void Entrust(TGameObject* pObject) = 0;
-  virtual void DeleteObject(unsigned int id) = 0;// ??? изъятие возможно ли?
-  virtual void DeleteAllObject() = 0;            // ???
+  // квантование
+  void UpdateFromPhysic();// дать квант для внутренней синхронизации
+  void UpdateToGraphic(); 
+  void UpdateToSound();
+  //---------------------------------------------------------------------------
+  // выборка
+  virtual int GetCountUsing();                    // mainly for debug
+  virtual TGameObject* GetUsingByIndex(int index);// mainly for debug
+  virtual TGameObject* GetUsingByID(int id);
+
+  virtual int GetCountNotUsing();                    // mainly for debug
+  virtual TGameObject* GetNotUsingByIndex(int index);// mainly for debug
+  virtual TGameObject* GetNotUsingByID(int id);
+
+  // манипуляции
+  virtual void Include(TGameObject* pGO);
+  virtual void Exclude(int id);
   
-  // 2. Выборка
-  virtual int  GetCount() = 0;
-  virtual TGameObject* Get(int index) = 0;
-  virtual TGameObject* Get(unsigned int id) = 0;
+  // набор методов, в основном, для системы коллизий,
+  // используется ли в конвейере игрового процесса
+  virtual void SetUsing(int id, bool v);
+  virtual bool GetUsing(int id);
+  //---------------------------------------------------------------------------
+  virtual void RefreshCollision();
+  //---------------------------------------------------------------------------
+private:
+  bool Move( TMapIntPtr& fromMap, TMapIntPtr& toMap, int id);
 
-  // 3. Синхронизация
-  virtual void UpdateFromPhysicThread() = 0;
-  virtual void UpdateToGraphicThread() = 0;
-  
-  typedef std::list<nsTypeEventScene::TEvent*> TListEvent;
+  int GetCount(TMapIntPtr& m);
+  TGameObject* GetByIndex(TMapIntPtr& m, int index);
+  TGameObject* GetByID(TMapIntPtr& m, int id);
 
-  virtual void UpdateFromOut(TListEvent& listEvent) = 0;
-  virtual void UpdateToOut(TListEvent& listEvent)   = 0;// информация по всем подвижным объектам
-
-  // 4. Выявление коллизий
-    
+  void ThreadLogic();
+  void ThreadOgre();
+  void ThreadBullet();
+  void ThreadOpenAL();
 };
 
 #endif

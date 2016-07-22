@@ -28,7 +28,6 @@ class DllExport TGameObject
   
   int mID;
 
-public:
   // отправлять по трубе Графике и Звуку + InternalState by ID's game object
   //nsMathTools::TVector3 mPosition; - применять в физике, графике и звуке
   //nsMathTools::TVector3 mRotation; - применять в физике, графике и звуке
@@ -38,12 +37,12 @@ public:
   TPhysicComponent*  mPtrPhysic;
   TSoundComponent*   mPtrSound;
   // поведение - зависит от типа (Model, Terrain, Zone, Light, Sound, Animated, Skybox)
-  IBehaviourPattern*   mPtrPattern;
+  IBehaviourPattern* mPtrPattern;
 
-  // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
-  typedef enum{eMovable, eUnmovable}TypeMobility;
-  TypeMobility mMobility;
 public:
+  IBehaviourPattern* GetPattern();
+
+
   TGameObject(std::string type);
   virtual ~TGameObject();
 
