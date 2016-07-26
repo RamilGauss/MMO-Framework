@@ -22,15 +22,15 @@ void TPreBuilderGameObject_Sound::SetObjectItem(TMapItem::TObject* pObjectItem)
 
 }
 //----------------------------------------------------------------------------
-std::string TPreBuilderGameObject_Sound::GetStrDesc()
-{
-  return "Sound";
-}
-//----------------------------------------------------------------------------
-TGameObject* TPreBuilderGameObject_Sound::GetGameObject()
-{
-  return NULL;
-}
+//std::string TPreBuilderGameObject_Sound::GetStrDesc()
+//{
+//  return "Sound";
+//}
+////----------------------------------------------------------------------------
+//TGameObject* TPreBuilderGameObject_Sound::GetGameObject()
+//{
+//  return NULL;
+//}
 //----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Sound::GenerateTask(TVectorTypeTask& vecTypeTask)
 {

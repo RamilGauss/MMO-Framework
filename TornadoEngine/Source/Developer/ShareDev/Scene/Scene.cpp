@@ -18,23 +18,19 @@ TScene::~TScene()
 
 }
 //-----------------------------------------------------------------------------
-void TScene::ThreadQuant(eTypeThread t)
+void TScene::UpdateFromPhysic()
 {
-  switch(t)
-  {
-    case eLogic:
-      ThreadLogic();
-      break;
-    case eOgre:
-      ThreadOgre();
-      break;
-    case eBullet:
-      ThreadBullet();
-      break;
-    case eOpenAL:
-      ThreadOpenAL();
-      break;
-  }
+
+}
+//-----------------------------------------------------------------------------
+void TScene::UpdateToGraphic() 
+{
+
+}
+//-----------------------------------------------------------------------------
+void TScene::UpdateToSound()
+{
+
 }
 //-----------------------------------------------------------------------------
 int TScene::GetCountUsing()
@@ -155,5 +151,10 @@ TGameObject* TScene::GetByID(TMapIntPtr& m, int id)
   if( fit==m.end() )
     return NULL;
   return fit->second;
+}
+//-----------------------------------------------------------------------------
+void TScene::RefreshCollision()
+{
+
 }
 //-----------------------------------------------------------------------------

@@ -25,7 +25,8 @@ class TScene : public ISceneDataAccess, public ISceneSystemCollision
   TMapIntPtr mMapID_NotUsingGO;
 
   // подвижные объекты - для внутренней синхронизации
-  
+  // для оптимизации процесса - создать список подвижных и включенных в конвейер
+  //###
 public:
   TScene();
   virtual ~TScene();

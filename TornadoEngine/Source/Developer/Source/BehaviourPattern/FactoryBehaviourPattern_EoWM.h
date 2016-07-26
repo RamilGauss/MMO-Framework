@@ -8,17 +8,16 @@ See for more information License.h.
 #ifndef FactoryBehaviourPattern_EoWMH
 #define FactoryBehaviourPattern_EoWMH
 
-#include "IFactoryBehaviourPattern.h"
+#include "FactoryBehaviourPattern.h"
 
-class TFactoryBehaviourPattern_EoWM : public IFactoryBehaviourPattern
+class TFactoryBehaviourPattern_EoWM : public TFactoryBehaviourPattern
 {
+  TCallBackRegistrator1<TBehaviourPattern*&> mCB_Tank;
 public:
   TFactoryBehaviourPattern_EoWM();
   virtual ~TFactoryBehaviourPattern_EoWM();
-
-  virtual int GetCount();
-  virtual std::string GetPatternNameByIndex(int index);
-  virtual IBehaviourPattern* MakePatternByName(std::string name);
+protected:
+  void MakeTank(TBehaviourPattern*& p);
 };
 
 #endif

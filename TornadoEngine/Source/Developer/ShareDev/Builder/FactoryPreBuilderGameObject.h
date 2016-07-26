@@ -22,16 +22,11 @@ class DllExport TFactoryPreBuilderGameObject
   typedef TMapStrPtr::iterator   TMapStrPtrIt;
   typedef TMapStrPtr::value_type TMapStrPtrVT;
 
-  typedef std::vector<TPreBuilderGameObject*> TVectorPtr;
-
   TMapStrPtr mMapStrType_PreBuilder;
-  TVectorPtr mVecPreBuilder;
 public:
   TFactoryPreBuilderGameObject();
   virtual ~TFactoryPreBuilderGameObject();
 
-  int GetCountType();
-  TPreBuilderGameObject* GetPreBuilderByIndex(int index);
   TPreBuilderGameObject* GetPreBuilderByType(std::string type);
 private:
 

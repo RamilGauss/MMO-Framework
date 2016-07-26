@@ -22,15 +22,15 @@ void TPreBuilderGameObject_Terrain::SetObjectItem(TMapItem::TObject* pObjectItem
 
 }
 //----------------------------------------------------------------------------
-std::string TPreBuilderGameObject_Terrain::GetStrDesc()
-{
-  return "Terrain";
-}
-//----------------------------------------------------------------------------
-TGameObject* TPreBuilderGameObject_Terrain::GetGameObject()
-{
-  return NULL;
-}
+//std::string TPreBuilderGameObject_Terrain::GetStrDesc()
+//{
+//  return "Terrain";
+//}
+////----------------------------------------------------------------------------
+//TGameObject* TPreBuilderGameObject_Terrain::GetGameObject()
+//{
+//  return NULL;
+//}
 //----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Terrain::GenerateTask(TVectorTypeTask& vecTypeTask)
 {

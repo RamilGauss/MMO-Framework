@@ -5,37 +5,46 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef IBehaviourPatternH
-#define IBehaviourPatternH
+#ifndef BehaviourPatternH
+#define BehaviourPatternH
+
+/*
+  Базовый тип поведения игрового объекта.
+*/
+
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
+#include "MathTools.h"
 
-class DllExport IBehaviourPattern
+class TGameObject;
+
+class DllExport TBehaviourPattern
 {
+protected:
+  TGameObject* mGO;
 public:
-  IBehaviourPattern();
-  virtual ~IBehaviourPattern();
+  TBehaviourPattern();
+  virtual ~TBehaviourPattern();
+
+  void SetGameObject(TGameObject* p);
 
   // Сериализация
-  virtual bool SetInternalState(TContainer c) = 0;
-  virtual TContainer GetInternalState() = 0;
-
-  // Визуализация
+  virtual bool SetInternalState(TContainer c);
+  virtual TContainer GetInternalState();
 
   // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
   // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
-  virtual bool GetNeedSynchro() = 0;
-
-  // Применить 
+  virtual bool GetNeedSynchro();
 
   // Модификация
   // Обновить от такого же Паттерна
-  virtual bool SetDescUpdate(TContainer c) = 0;
-  virtual TContainer GetDescUpdate() = 0;
+  virtual bool SetModify(TContainer c);
+  virtual TContainer GetModify();
 
-  virtual void SetPosition(nsMathTools::TVector3& v) = 0;
-  virtual void SetOrientation(nsMathTools::TVector3& v) = 0;
+  // mainly, for debug
+  void SetPosition(nsMathTools::TVector3& v);
+  void SetOrientation(nsMathTools::TVector3& v);
 
   // Обновить от FGIObject
   // ???

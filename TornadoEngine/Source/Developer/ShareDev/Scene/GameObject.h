@@ -12,49 +12,54 @@ See for more information License.h.
 #include "MathTools.h"
 #include <string>
 #include <map>
+#include <boost/smart_ptr/scoped_ptr.hpp>
 
-/*
-  Базовый тип игрового объекта для карты.
-*/
-
-class TGraphicComponent;
-class TPhysicComponent;
-class TSoundComponent;
-class IBehaviourPattern;
+class TGameObjectComponent_Graphic;
+class TGameObjectComponent_Physic;
+class TGameObjectComponent_Sound;
+class TBehaviourPattern;
+class TBuilderGameObjectFromGameItem;
+class TDestructorGameObjectFromGameItem;
+class TUpdaterGameObjectFromGameItem;
 
 class DllExport TGameObject
 {
   std::string mType;// для поиска деструктора
-  
   int mID;
 
-  // отправлять по трубе Графике и Звуку + InternalState by ID's game object
-  //nsMathTools::TVector3 mPosition; - применять в физике, графике и звуке
-  //nsMathTools::TVector3 mRotation; - применять в физике, графике и звуке
-  
   // данные движков
-  TGraphicComponent* mPtrGraphic;
-  TPhysicComponent*  mPtrPhysic;
-  TSoundComponent*   mPtrSound;
+  boost::scoped_ptr<TGameObjectComponent_Graphic> mPtrGraphic;
+  boost::scoped_ptr<TGameObjectComponent_Physic>  mPtrPhysic;
+  boost::scoped_ptr<TGameObjectComponent_Sound>   mPtrSound;
   // поведение - зависит от типа (Model, Terrain, Zone, Light, Sound, Animated, Skybox)
-  IBehaviourPattern* mPtrPattern;
+  TBehaviourPattern* mPtrPattern;
 
+  TBuilderGameObjectFromGameItem*    mPtrBuilder;
+  TDestructorGameObjectFromGameItem* mPtrDestructor;
+  TUpdaterGameObjectFromGameItem*    mPtrUpdater;
 public:
-  IBehaviourPattern* GetPattern();
-
-
-  TGameObject(std::string type);
+  TGameObject();
   virtual ~TGameObject();
 
-  std::string GetSelfType();
+  void SetType(std::string v);
+  std::string GetType();
 
   int GetID() const;
   void SetID( int id );
 
-  typedef std::map<std::string,std::string> TMapStrStr;
+  void SetPattern(TBehaviourPattern* p);
+  TBehaviourPattern* GetPattern();
 
-  virtual void SetInternalState(TMapStrStr& mapStrStr) = 0;
-  virtual bool GetInternalState(TMapStrStr& mapStrStr) = 0;
+  void SetBuilder(TBuilderGameObjectFromGameItem* p);
+  TBuilderGameObjectFromGameItem* GetBuilder();
+  void SetDestructor(TDestructorGameObjectFromGameItem* p);
+  TDestructorGameObjectFromGameItem* GetDestructor();
+  void SetUpdater(TUpdaterGameObjectFromGameItem* p);
+  TUpdaterGameObjectFromGameItem* GetUpdater();
+
+  TGameObjectComponent_Graphic* GetGraphic();
+  TGameObjectComponent_Physic*  GetPhysic();
+  TGameObjectComponent_Sound*   GetSound();
 };
 
 #endif

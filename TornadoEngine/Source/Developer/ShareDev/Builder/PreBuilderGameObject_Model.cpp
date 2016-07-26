@@ -6,7 +6,7 @@ See for more information License.h.
 */  
 
 #include "PreBuilderGameObject_Model.h"
-#include "GameObject_Model.h"
+//#include "GameObject_Model.h"
 
 TPreBuilderGameObject_Model::TPreBuilderGameObject_Model()
 {
@@ -23,15 +23,15 @@ void TPreBuilderGameObject_Model::SetObjectItem(TMapItem::TObject* pObjectItem)
 
 }
 //----------------------------------------------------------------------------
-std::string TPreBuilderGameObject_Model::GetStrDesc()
-{
-  return "Model";
-}
-//----------------------------------------------------------------------------
-TGameObject* TPreBuilderGameObject_Model::GetGameObject()
-{
-  return NULL;//new TGameObject_Model;
-}
+//std::string TPreBuilderGameObject_Model::GetStrDesc()
+//{
+//  return "Model";
+//}
+////----------------------------------------------------------------------------
+//TGameObject* TPreBuilderGameObject_Model::GetGameObject()
+//{
+//  return NULL;//new TGameObject_Model;
+//}
 //----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Model::GenerateTask(TVectorTypeTask& vecTypeTask)
 {

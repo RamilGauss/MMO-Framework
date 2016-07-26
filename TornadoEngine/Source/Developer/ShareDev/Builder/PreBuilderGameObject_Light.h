@@ -19,8 +19,8 @@ public:
  
   virtual void SetObjectItem(TMapItem::TObject* pObjectItem);
 
-  virtual std::string GetStrDesc();
-  virtual TGameObject* GetGameObject();
+  //virtual std::string GetStrDesc();
+  //virtual TGameObject* GetGameObject();
 
   virtual bool GenerateTask(TVectorTypeTask& vecTypeTask);
 

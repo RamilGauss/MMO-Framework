@@ -22,16 +22,16 @@ void TPreBuilderGameObject_Zone::SetObjectItem(TMapItem::TObject* pObjectItem)
 
 }
 //----------------------------------------------------------------------------
-std::string TPreBuilderGameObject_Zone::GetStrDesc()
-{
-  return "Zone";
-}
-//----------------------------------------------------------------------------
-TGameObject* TPreBuilderGameObject_Zone::GetGameObject()
-{
-  return NULL;
-}
-//----------------------------------------------------------------------------
+//std::string TPreBuilderGameObject_Zone::GetStrDesc()
+//{
+//  return "Zone";
+//}
+////----------------------------------------------------------------------------
+//TGameObject* TPreBuilderGameObject_Zone::GetGameObject()
+//{
+//  return NULL;
+//}
+////----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Zone::GenerateTask(TVectorTypeTask& vecTypeTask)
 {
   return true;

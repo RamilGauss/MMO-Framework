@@ -15,7 +15,7 @@ See for more information License.h.
 namespace nsPCS
 {
   typedef int            TypeID_GameMap;
-  typedef unsigned short TypeID_GameOject;
+  typedef int            TypeID_GameOject;
   typedef unsigned short TypeSizeInternalState;
   typedef unsigned char  TypeSizeNameModel;
   typedef unsigned char  TypeSizeNameFGIObject;
@@ -25,10 +25,12 @@ namespace nsPCS
   typedef unsigned int   TypeTryEnterRoom;
   typedef enum
   {
+    Material,
     Map,
     Model,
     Shape,
     Terrain,
+    Pattern,
   }eTypeFGIObject;
   //-----------------------------------------------------------------
   class DllExport TPacket_TryEnterRoom : public TBasePacket_PCS

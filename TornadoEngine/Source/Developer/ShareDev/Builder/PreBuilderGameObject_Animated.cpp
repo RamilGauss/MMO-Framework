@@ -6,7 +6,7 @@ See for more information License.h.
 */  
 
 #include "PreBuilderGameObject_Animated.h"
-#include "GameObject_Animated.h"
+//#include "GameObject_Animated.h"
 
 TPreBuilderGameObject_Animated::TPreBuilderGameObject_Animated()
 {
@@ -23,16 +23,16 @@ void TPreBuilderGameObject_Animated::SetObjectItem(TMapItem::TObject* pObjectIte
 
 }
 //----------------------------------------------------------------------------
-std::string TPreBuilderGameObject_Animated::GetStrDesc()
-{
-  return TGameObject_Animated::GetType();
-}
-//----------------------------------------------------------------------------
-TGameObject* TPreBuilderGameObject_Animated::GetGameObject()
-{
-  return new TGameObject_Animated;
-}
-//----------------------------------------------------------------------------
+//std::string TPreBuilderGameObject_Animated::GetStrDesc()
+//{
+//  return TGameObject_Animated::GetType();
+//}
+////----------------------------------------------------------------------------
+//TGameObject* TPreBuilderGameObject_Animated::GetGameObject()
+//{
+//  return new TGameObject_Animated;
+//}
+////----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Animated::GenerateTask(TVectorTypeTask& vecTypeTask)
 {
   return true;

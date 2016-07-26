@@ -16,40 +16,30 @@ See for more information License.h.
 #include "PreBuilderGameObject_Zone.h"
 
 #include <boost/foreach.hpp>
+#include "ManagerNameTypeObjectMap.h"
 
 TFactoryPreBuilderGameObject::TFactoryPreBuilderGameObject()
 {
-  mVecPreBuilder.push_back( new TPreBuilderGameObject_Animated);
-  mVecPreBuilder.push_back( new TPreBuilderGameObject_Light   );
-  mVecPreBuilder.push_back( new TPreBuilderGameObject_Model   );
-  mVecPreBuilder.push_back( new TPreBuilderGameObject_Skybox  );
-  mVecPreBuilder.push_back( new TPreBuilderGameObject_Sound   );
-  mVecPreBuilder.push_back( new TPreBuilderGameObject_Terrain );
-  mVecPreBuilder.push_back( new TPreBuilderGameObject_Zone    );
-
-  BOOST_FOREACH(TPreBuilderGameObject*& pPreBuilder, mVecPreBuilder)
-    mMapStrType_PreBuilder.insert(TMapStrPtrVT(pPreBuilder->GetStrDesc(), pPreBuilder));
+  mMapStrType_PreBuilder.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Animated(), new TPreBuilderGameObject_Animated));
+  mMapStrType_PreBuilder.insert(TMapStrPtrVT(
+    TManagerNameTypeObjectMap::Light(), new TPreBuilderGameObject_Light()));
+  mMapStrType_PreBuilder.insert(TMapStrPtrVT(
+    TManagerNameTypeObjectMap::Model(), new TPreBuilderGameObject_Model()));
+  mMapStrType_PreBuilder.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Skybox(), new TPreBuilderGameObject_Skybox()));
+  mMapStrType_PreBuilder.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Sound(), new TPreBuilderGameObject_Sound()));
+  mMapStrType_PreBuilder.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Terrain(), new TPreBuilderGameObject_Terrain()));
+  mMapStrType_PreBuilder.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Zone(), new TPreBuilderGameObject_Zone()));
 }             
 //--------------------------------------------------------------------
 TFactoryPreBuilderGameObject::~TFactoryPreBuilderGameObject()
 {
-  BOOST_FOREACH(TPreBuilderGameObject*& pPreBuilder, mVecPreBuilder)
-    delete pPreBuilder;
-  mVecPreBuilder.clear();
-}
-//--------------------------------------------------------------------
-int TFactoryPreBuilderGameObject::GetCountType()
-{
-  return mVecPreBuilder.size();
-}
-//--------------------------------------------------------------------
-TPreBuilderGameObject* TFactoryPreBuilderGameObject::GetPreBuilderByIndex(int index)
-{
-  if(index >= GetCountType() ||
-     index <= 0 )
-    return NULL;
-  
-  return mVecPreBuilder[index];
+  BOOST_FOREACH(TMapStrPtrVT& vt, mMapStrType_PreBuilder)
+    delete vt.second;
 }
 //--------------------------------------------------------------------
 TPreBuilderGameObject* TFactoryPreBuilderGameObject::GetPreBuilderByType(std::string type)

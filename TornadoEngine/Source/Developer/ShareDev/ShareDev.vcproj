@@ -831,11 +831,11 @@
 				Name="BehaviourPattern"
 				>
 				<File
-					RelativePath=".\Builder\IFactoryBehaviourPattern.cpp"
+					RelativePath=".\Builder\FactoryBehaviourPattern.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\IFactoryBehaviourPattern.h"
+					RelativePath=".\Builder\FactoryBehaviourPattern.h"
 					>
 				</File>
 			</Filter>
@@ -844,80 +844,76 @@
 			Name="Scene"
 			>
 			<Filter
-				Name="GameObject"
+				Name="Pattern"
 				>
 				<File
-					RelativePath=".\Scene\GameObject.cpp"
+					RelativePath=".\Scene\BehaviourPattern.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject.h"
+					RelativePath=".\Scene\BehaviourPattern.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Animated.cpp"
+					RelativePath=".\Scene\Pattern_Animated.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Animated.h"
+					RelativePath=".\Scene\Pattern_Animated.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Light.cpp"
+					RelativePath=".\Scene\Pattern_Light.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Light.h"
+					RelativePath=".\Scene\Pattern_Light.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Model.cpp"
+					RelativePath=".\Scene\Pattern_Model.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Model.h"
+					RelativePath=".\Scene\Pattern_Model.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Skybox.cpp"
+					RelativePath=".\Scene\Pattern_Skybox.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Skybox.h"
+					RelativePath=".\Scene\Pattern_Skybox.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Sound.cpp"
+					RelativePath=".\Scene\Pattern_Sound.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Sound.h"
+					RelativePath=".\Scene\Pattern_Sound.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Terrain.cpp"
+					RelativePath=".\Scene\Pattern_Terrain.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Terrain.h"
+					RelativePath=".\Scene\Pattern_Terrain.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Zone.cpp"
+					RelativePath=".\Scene\Pattern_Zone.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject_Zone.h"
+					RelativePath=".\Scene\Pattern_Zone.h"
 					>
 				</File>
 			</Filter>
 			<Filter
 				Name="Common"
 				>
-				<File
-					RelativePath=".\Scene\IBehaviourPattern.h"
-					>
-				</File>
 				<File
 					RelativePath=".\Scene\IHandlerScene.cpp"
 					>
@@ -943,6 +939,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Scene\ManagerNameTypeObjectMap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\ManagerNameTypeObjectMap.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Scene\Scene.cpp"
 					>
 				</File>
@@ -952,6 +956,42 @@
 				</File>
 				<File
 					RelativePath=".\Scene\TypeEventScene.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="GameObject"
+				>
+				<File
+					RelativePath=".\Scene\GameObject.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\GameObject.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\GameObjectComponent_Graphic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\GameObjectComponent_Graphic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\GameObjectComponent_Physic.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\GameObjectComponent_Physic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\GameObjectComponent_Sound.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\GameObjectComponent_Sound.h"
 					>
 				</File>
 			</Filter>

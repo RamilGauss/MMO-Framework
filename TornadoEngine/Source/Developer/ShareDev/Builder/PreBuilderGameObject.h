@@ -23,8 +23,8 @@ public:
 
   virtual void SetObjectItem(TMapItem::TObject* pObjectItem) = 0;
 
-  virtual std::string GetStrDesc() = 0;
-  virtual TGameObject* GetGameObject() = 0;
+  //virtual std::string GetStrDesc() = 0;
+  //virtual TGameObject* GetGameObject() = 0;
 };
 
 #endif

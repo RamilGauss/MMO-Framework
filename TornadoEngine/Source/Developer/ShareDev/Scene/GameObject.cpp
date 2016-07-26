@@ -6,15 +6,24 @@ See for more information License.h.
 */
 
 #include "GameObject.h"
+#include "GameObjectComponent_Graphic.h"
+#include "GameObjectComponent_Physic.h"
+#include "GameObjectComponent_Sound.h"
+#include "BehaviourPattern.h"
 
-TGameObject::TGameObject(std::string type)
+TGameObject::TGameObject()
 {
-  mType = type;
+  mPtrPattern = NULL;
+  mID = 0;
+
+  mPtrGraphic.reset(new TGameObjectComponent_Graphic);
+  mPtrPhysic.reset(new  TGameObjectComponent_Physic);
+  mPtrSound.reset(new   TGameObjectComponent_Sound);
 }
 //----------------------------------------------------------------
 TGameObject::~TGameObject()
 {
-
+  
 }
 //----------------------------------------------------------------
 int TGameObject::GetID() const
@@ -27,8 +36,54 @@ void TGameObject::SetID( int id )
   mID = id;
 }
 //----------------------------------------------------------------
-std::string TGameObject::GetSelfType()
+std::string TGameObject::GetType()
 { 
   return mType;
+}
+//----------------------------------------------------------------
+void TGameObject::SetType(std::string v)
+{ 
+  mType = v;
+}
+//----------------------------------------------------------------
+void TGameObject::SetPattern(TBehaviourPattern* p)
+{
+  mPtrPattern = p;
+  mPtrPattern->SetGameObject(this);
+}
+//----------------------------------------------------------------
+TBehaviourPattern* TGameObject::GetPattern()
+{
+  return mPtrPattern;
+}
+//----------------------------------------------------------------
+void TGameObject::SetBuilder(TBuilderGameObjectFromGameItem* p)
+{
+
+}
+//----------------------------------------------------------------
+TBuilderGameObjectFromGameItem* TGameObject::GetBuilder()
+{
+  return mPtrBuilder;
+}
+//----------------------------------------------------------------
+void TGameObject::SetDestructor(TDestructorGameObjectFromGameItem* p)
+{
+
+}
+//----------------------------------------------------------------
+TDestructorGameObjectFromGameItem* TGameObject::GetDestructor()
+{
+  return mPtrDestructor;
+}
+//----------------------------------------------------------------
+void TGameObject::SetUpdater(TUpdaterGameObjectFromGameItem* p)
+{
+
+}
+//----------------------------------------------------------------
+TUpdaterGameObjectFromGameItem* TGameObject::GetUpdater()
+{
+  return mPtrUpdater;
 }
 //----------------------------------------------------------------

@@ -22,15 +22,15 @@ void TPreBuilderGameObject_Light::SetObjectItem(TMapItem::TObject* pObjectItem)
 
 }
 //----------------------------------------------------------------------------
-std::string TPreBuilderGameObject_Light::GetStrDesc()
-{
-  return "Light";
-}
-//----------------------------------------------------------------------------
-TGameObject* TPreBuilderGameObject_Light::GetGameObject()
-{
-  return NULL;
-}
+//std::string TPreBuilderGameObject_Light::GetStrDesc()
+//{
+//  return "Light";
+//}
+////----------------------------------------------------------------------------
+//TGameObject* TPreBuilderGameObject_Light::GetGameObject()
+//{
+//  return NULL;
+//}
 //----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Light::GenerateTask(TVectorTypeTask& vecTypeTask)
 {

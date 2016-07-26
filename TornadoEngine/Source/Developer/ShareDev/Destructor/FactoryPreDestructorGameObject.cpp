@@ -17,30 +17,24 @@ See for more information License.h.
 #include "PreDestructorGameObject_Terrain.h"
 #include "PreDestructorGameObject_Zone.h"
 
-#include "GameObject_Animated.h"
-#include "GameObject_Light.h"
-#include "GameObject_Model.h"
-#include "GameObject_Skybox.h"
-#include "GameObject_Sound.h"
-#include "GameObject_Terrain.h"
-#include "GameObject_Zone.h"
+#include "ManagerNameTypeObjectMap.h"
 
 TFactoryPreDestructorGameObject::TFactoryPreDestructorGameObject()
 {
-  mMapStrType_PreDestructor.insert(
-    TMapStrPtrVT( TGameObject_Animated::GetType(), new TPreDestructorGameObject_Animated) );
-  mMapStrType_PreDestructor.insert( 
-    TMapStrPtrVT( TGameObject_Light::GetType(), new TPreDestructorGameObject_Light) );
-  mMapStrType_PreDestructor.insert( 
-    TMapStrPtrVT( TGameObject_Model::GetType(), new TPreDestructorGameObject_Model) );
-  mMapStrType_PreDestructor.insert( 
-    TMapStrPtrVT( TGameObject_Skybox::GetType(), new TPreDestructorGameObject_Skybox) );
-  mMapStrType_PreDestructor.insert( 
-    TMapStrPtrVT( TGameObject_Sound::GetType(), new TPreDestructorGameObject_Sound) );
-  mMapStrType_PreDestructor.insert( 
-    TMapStrPtrVT( TGameObject_Terrain::GetType(), new TPreDestructorGameObject_Terrain) );
-  mMapStrType_PreDestructor.insert( 
-    TMapStrPtrVT( TGameObject_Zone::GetType(), new TPreDestructorGameObject_Zone) );
+  mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Animated(), new TPreDestructorGameObject_Animated) );
+  mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Light(), new TPreDestructorGameObject_Light) );
+  mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Model(), new TPreDestructorGameObject_Model) );
+  mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Skybox(), new TPreDestructorGameObject_Skybox) );
+  mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Sound(), new TPreDestructorGameObject_Sound) );
+  mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Terrain(), new TPreDestructorGameObject_Terrain) );
+  mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
+    TManagerNameTypeObjectMap::Zone(), new TPreDestructorGameObject_Zone) );
 }
 //--------------------------------------------------------------------
 TFactoryPreDestructorGameObject::~TFactoryPreDestructorGameObject()

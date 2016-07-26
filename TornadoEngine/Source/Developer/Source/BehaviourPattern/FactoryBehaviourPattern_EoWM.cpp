@@ -9,7 +9,9 @@ See for more information License.h.
 
 TFactoryBehaviourPattern_EoWM::TFactoryBehaviourPattern_EoWM()
 {
-
+  mCB_Tank.Register(&TFactoryBehaviourPattern_EoWM::MakeTank, this);
+  
+  AddPattern(TMapStrCBVT("tank", &mCB_Tank));
 }
 //-----------------------------------------------------------------------------------
 TFactoryBehaviourPattern_EoWM::~TFactoryBehaviourPattern_EoWM()
@@ -17,18 +19,8 @@ TFactoryBehaviourPattern_EoWM::~TFactoryBehaviourPattern_EoWM()
 
 }
 //-----------------------------------------------------------------------------------
-int TFactoryBehaviourPattern_EoWM::GetCount()
+void TFactoryBehaviourPattern_EoWM::MakeTank(TBehaviourPattern*& p)
 {
-  return 0;
+  //p = new TPattern_Tank();
 }
-//-----------------------------------------------------------------------------------
-std::string TFactoryBehaviourPattern_EoWM::GetPatternNameByIndex(int index)
-{
-  return std::string();
-}
-//-----------------------------------------------------------------------------------
-IBehaviourPattern* TFactoryBehaviourPattern_EoWM::MakePatternByName(std::string name)
-{
-  return NULL;
-}
-//-----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------

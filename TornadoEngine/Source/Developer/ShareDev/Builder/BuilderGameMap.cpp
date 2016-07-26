@@ -20,6 +20,7 @@ See for more information License.h.
 #include "Builder_Ogre.h"
 #include "Builder_Bullet.h"
 #include "Builder_OpenAL.h"
+#include "GameObject.h"
 
 TBuilderGameMap::TBuilderGameMap()
 {
@@ -221,7 +222,7 @@ bool TBuilderGameMap::AddObject_Private( TMapItem::TObject* pObject )
     pPreBuilder->SetObjectItem(pObject);
     if( pPreBuilder->GenerateTask(mVecTask)==false )
       return false;
-    TGameObject* pGameObject = pPreBuilder->GetGameObject();
+    TGameObject* pGameObject = new TGameObject();
     mListGameObject.push_back(pGameObject);
 
     CollectTask(pPreBuilder);

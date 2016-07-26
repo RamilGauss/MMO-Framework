@@ -22,15 +22,15 @@ void TPreBuilderGameObject_Skybox::SetObjectItem(TMapItem::TObject* pObjectItem)
 
 }
 //----------------------------------------------------------------------------
-std::string TPreBuilderGameObject_Skybox::GetStrDesc()
-{
-  return "Skybox";
-}
-//----------------------------------------------------------------------------
-TGameObject* TPreBuilderGameObject_Skybox::GetGameObject()
-{
-  return NULL;
-}
+//std::string TPreBuilderGameObject_Skybox::GetStrDesc()
+//{
+//  return "Skybox";
+//}
+////----------------------------------------------------------------------------
+//TGameObject* TPreBuilderGameObject_Skybox::GetGameObject()
+//{
+//  return NULL;
+//}
 //----------------------------------------------------------------------------
 bool TPreBuilderGameObject_Skybox::GenerateTask(TVectorTypeTask& vecTypeTask)
 {
