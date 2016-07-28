@@ -25,13 +25,14 @@ struct DllExport TMapItem : public TBaseItem
 		// base property
 		std::string type;
     int         id;
+    std::string namePattern;// если пусто, то использовать дефолтный паттерн
 		nsMathTools::TVector3 position;
 		nsMathTools::TVector3 rotation;
 
 		TMapStrStr internalState;
 	};
 
-	typedef std::list<TObject> TListObject;
+  typedef std::list<TObject> TListObject;
 
 	TListObject mListObject;
 	std::string mNameTableSound;

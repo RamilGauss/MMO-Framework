@@ -11,6 +11,7 @@ See for more information License.h.
 #include "PCS_TypePacket.h"
 #include <string>
 #include <vector>
+#include "MathTools.h"
 
 namespace nsPCS
 {
@@ -18,9 +19,10 @@ namespace nsPCS
   typedef int            TypeID_GameOject;
   typedef unsigned short TypeSizeInternalState;
   typedef unsigned char  TypeSizeNameModel;
+  typedef unsigned char  TypeSizeNameType;
   typedef unsigned char  TypeSizeNameFGIObject;
   typedef unsigned short TypeSizeDescFGIObject;
-  typedef unsigned char  TypeMovable;
+  typedef unsigned char  TypeMobility;
   typedef unsigned char  TypeFGIObject;
   typedef unsigned int   TypeTryEnterRoom;
   typedef enum
@@ -112,10 +114,11 @@ namespace nsPCS
     TPacket_AddGameObjects();
     struct TDescAdd
     {
-      std::string      mNameModel;
-      TypeMovable      mMovable;
-      TypeID_GameOject mID_Object;
-      TContainer       mInternalState;
+      TypeID_GameOject      mID_Object;
+      std::string           mType;
+      nsMathTools::TVector3 mPos;
+      nsMathTools::TVector3 mOrient;
+      TContainer            mInternalState;// упакован самим объектом
     };
     typedef std::vector<TDescAdd> TVectorAdd;
     TVectorAdd mVector;

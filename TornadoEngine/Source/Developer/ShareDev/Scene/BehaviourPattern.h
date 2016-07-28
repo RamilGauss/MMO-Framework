@@ -16,6 +16,7 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "ContainerTypes.h"
 #include "MathTools.h"
+#include "MapItem.h"
 
 class TGameObject;
 
@@ -30,8 +31,11 @@ public:
   void SetGameObject(TGameObject* p);
 
   // Сериализация
-  virtual bool SetInternalState(TContainer c);
-  virtual TContainer GetInternalState();
+  virtual bool SetInternalStateMap(TMapItem::TMapStrStr& m);
+  virtual void GetInternalStateMap(TMapItem::TMapStrStr& m);
+
+  virtual bool SetInternalStateC(TContainer c);
+  virtual TContainer GetInternalStateC();
 
   // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
   // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
@@ -51,10 +55,10 @@ public:
   //virtual bool SetDescFGIObject(TContainer c) = 0;
   //virtual TContainer GetDescFGIObject() = 0;
 
-  virtual void ThreadLogica();
-  virtual void ThreadOgre();
-  virtual void ThreadBullet();
-  virtual void ThreadOpenAL();
+  virtual void Thread_Logic();
+  virtual void Thread_Ogre();
+  virtual void Thread_Bullet();
+  virtual void Thread_OpenAL();
 };
 
 #endif

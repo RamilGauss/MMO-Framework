@@ -139,12 +139,15 @@ TContainer TPacket_AddGameObjects::PackInherit()
   TBreakPacket bp;
   for( int i = 0 ; i < cnt ; i++ )
   {
-    TypeSizeNameModel sizeNameModel = mVector[i].mNameModel.length();
-    bp.PushBack( (char*)&sizeNameModel, sizeof(TypeSizeNameModel), true);
-    bp.PushBack( (char*)mVector[i].mNameModel.data(), sizeNameModel );
-
-    bp.PushBack( (char*)&(mVector[i].mMovable), sizeof(TypeMovable));
     bp.PushBack( (char*)&(mVector[i].mID_Object), sizeof(TypeID_GameOject));
+
+    TypeSizeNameType sizeNameType = mVector[i].mType.length();
+    bp.PushBack( (char*)&sizeNameType, sizeof(TypeSizeNameType), true);
+    bp.PushBack( (char*)mVector[i].mType.data(), sizeNameType );
+
+
+    bp.PushBack( (char*)&mVector[i].mPos,    sizeof(nsMathTools::TVector3));
+    bp.PushBack( (char*)&mVector[i].mOrient, sizeof(nsMathTools::TVector3));
 
     TypeSizeInternalState sizeInternalState = mVector[i].mInternalState.GetSize();
     bp.PushBack( (char*)&sizeInternalState, sizeof(TypeSizeInternalState), true);
@@ -162,35 +165,6 @@ void TPacket_AddGameObjects::UnpackInherit( char* p, int size )
   while( size > 0)
   {
     TDescAdd desc;
-    if( size < sizeof(TypeSizeNameModel) )
-    {
-      BL_FIX_BUG();
-      return;
-    }
-    TypeSizeNameModel sizeNameModel = *((TypeSizeNameModel*)p);
-    p    += sizeof(TypeSizeNameModel);
-    size -= sizeof(TypeSizeNameModel);
-    //---------------------------------------------------------------------
-    if( size < sizeNameModel )
-    {
-      BL_FIX_BUG();
-      return;
-    }
-    char str[256];
-    strncpy(str, p, sizeNameModel);
-    str[sizeNameModel] = '\0';
-    desc.mNameModel = str;
-    p    += sizeNameModel;
-    size -= sizeNameModel;
-    //---------------------------------------------------------------------
-    if( size < sizeof(TypeMovable) )
-    {
-      BL_FIX_BUG();
-      return;
-    }
-    desc.mMovable = *((TypeMovable*)p);
-    p    += sizeof(TypeMovable);
-    size -= sizeof(TypeMovable);
     //---------------------------------------------------------------------
     if( size < sizeof(TypeID_GameOject) )
     {
@@ -200,6 +174,45 @@ void TPacket_AddGameObjects::UnpackInherit( char* p, int size )
     desc.mID_Object = *((TypeID_GameOject*)p);
     p    += sizeof(TypeID_GameOject);
     size -= sizeof(TypeID_GameOject);
+    //---------------------------------------------------------------------
+    if( size < sizeof(TypeSizeNameType) )
+    {
+      BL_FIX_BUG();
+      return;
+    }
+    TypeSizeNameType sizeNameType = *((TypeSizeNameType*)p);
+    p    += sizeof(TypeSizeNameType);
+    size -= sizeof(TypeSizeNameType);
+    //---------------------------------------------------------------------
+    if( size < sizeNameType )
+    {
+      BL_FIX_BUG();
+      return;
+    }
+    char str[256];
+    strncpy(str, p, sizeNameType);
+    str[sizeNameType] = '\0';
+    desc.mType = str;
+    p    += sizeNameType;
+    size -= sizeNameType;
+    //---------------------------------------------------------------------
+    if( size < sizeof(nsMathTools::TVector3) )
+    {
+      BL_FIX_BUG();
+      return;
+    }
+    desc.mPos = *((nsMathTools::TVector3*)p);
+    p    += sizeof(nsMathTools::TVector3);
+    size -= sizeof(nsMathTools::TVector3);
+    //---------------------------------------------------------------------
+    if( size < sizeof(nsMathTools::TVector3) )
+    {
+      BL_FIX_BUG();
+      return;
+    }
+    desc.mOrient = *((nsMathTools::TVector3*)p);
+    p    += sizeof(nsMathTools::TVector3);
+    size -= sizeof(nsMathTools::TVector3);
     //---------------------------------------------------------------------
     if( size < sizeof(TypeSizeInternalState) )
     {

@@ -5,13 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef GP_AggregationScenarioH
-#define GP_AggregationScenarioH
+#ifndef IGP_AggregationScenarioH
+#define IGP_AggregationScenarioH
 
-class TGP_AggregationScenario
+class IGP_AggregationScenario
 {
 public:
-  TGP_AggregationScenario();
+  IGP_AggregationScenario();
+  virtual ~IGP_AggregationScenario();
 };
 
 #endif 

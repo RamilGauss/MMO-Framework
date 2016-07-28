@@ -348,8 +348,9 @@
 		  <Object>
 				<BaseProperty>
 				  <Identity>
-						<Property key="Type" value="Model"/>
-            <Property key="ID"   value="3"/><!-- Уникален в пределах карты -->
+						<Property key="Type"    value="Model"/>
+            <Property key="ID"      value="3"/><!-- Уникален в пределах карты -->
+            <Property key="Pattern" value="Gear"/><!-- Переопределение Паттерна -->
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -363,11 +364,9 @@
 					</Rotation>
 				</BaseProperty>
 				<InternalState>
-          <!-- Адресуется Модели как типу -->
+          <!-- Адресуется Паттерну -->
           <Property key="Name"     value="Gear"/><!-- Какую модель выбрать -->
           <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
-          <Property key="Pattern"  value="Gear"/><!-- Поведение модели -->
-          <!-- Адресуется Паттерну -->
           <Property key="variant"  value="1"/>
         </InternalState>
 			</Object>

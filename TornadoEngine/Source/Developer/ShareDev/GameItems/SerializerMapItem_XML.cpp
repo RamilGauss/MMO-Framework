@@ -25,6 +25,7 @@ namespace nsSerializerMapItem_XML
 	const char* sIdentity			  = "Identity";
 	const char* sType					  = "Type";
 	const char* sID  					  = "ID";
+  const char* sPattern        = "Pattern";
 	const char* sPosition			  = "Position";
 	const char* sRotation			  = "Rotation";
 	const char* sInternalState  = "InternalState";
@@ -199,6 +200,8 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
             object.type = value;
           if(key==sID)
             object.id = boost::lexical_cast<int>(value.data());
+          if(key==sPattern)
+            object.namePattern = value;
         }
       }
       mXML->LeaveSection();
@@ -253,6 +256,9 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
       value = boost::lexical_cast<std::string>(object.id);
       SaveProperty(key, value);
 
+      key   = sPattern;
+      value = object.namePattern;
+      SaveProperty(key, value);
       mXML->LeaveSection();
     }
     // позиция и ориентация
