@@ -234,7 +234,7 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
     {
       std::string key, value;
       if(LoadProperty(iProperty, key, value))
-        object.internalState.insert(TMapItem::TMapStrStrVT(key,value));
+        object.parameterMap.insert(TMapItem::TMapStrStrVT(key,value));
     }
     mXML->LeaveSection();
   }
@@ -278,7 +278,7 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
   // внутренние свойства
   if(mXML->AddSectionAndEnter(sInternalState))
   {
-    BOOST_FOREACH(TMapItem::TMapStrStrVT& KeyValue, object.internalState)
+    BOOST_FOREACH(TMapItem::TMapStrStrVT& KeyValue, object.parameterMap)
     {
       std::string key, value;
       key   = KeyValue.first;

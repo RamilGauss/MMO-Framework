@@ -29,7 +29,7 @@ namespace nsPCS
     ePacket_EnterRoom,
     // Room events
     ePacket_LoadMap,// Slave описывает карту для загрузки
-    ePacket_CorrectGameObjects,// корректировка физических параметров игровых объектов
+    //ePacket_CorrectGameObjects,// корректировка физических параметров игровых объектов
     ePacket_AddGameObjects,
     ePacket_EnableGameObjects,
     ePacket_DisableGameObjects,
@@ -41,7 +41,7 @@ namespace nsPCS
     // в Client через Паттерн из Model/Shape, готовится список задач для Паттерна, 
     // а он в каждом потоке применит их
     ePacket_UpdateGameObjectByFGI, // заново подгрузить из FGI
-    ePacket_UpdateGameObjectByPattern, // заново подгрузить из Pattern
+    ePacket_UpdateGameObjectByPattern,// корректировка физических параметров игровых объектов
     // специфическое игровое событие (e.g. повысить мощность двигателя, 
     // направление вектора мыши(целеуказание),
     // событие GUI(чат,изменение счета, ХП), звуковые события)

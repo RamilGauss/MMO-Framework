@@ -22,14 +22,14 @@ struct DllExport TMapItem : public TBaseItem
 
 	struct DllExport TObject
 	{
-		// base property
+		// base parameters
 		std::string type;
     int         id;
     std::string namePattern;// если пусто, то использовать дефолтный паттерн
 		nsMathTools::TVector3 position;
 		nsMathTools::TVector3 rotation;
 
-		TMapStrStr internalState;
+		TMapStrStr parameterMap;
 	};
 
   typedef std::list<TObject> TListObject;

@@ -36,16 +36,6 @@ void TGameObject::SetID( int id )
   mID = id;
 }
 //----------------------------------------------------------------
-std::string TGameObject::GetType()
-{ 
-  return mType;
-}
-//----------------------------------------------------------------
-void TGameObject::SetType(std::string v)
-{ 
-  mType = v;
-}
-//----------------------------------------------------------------
 void TGameObject::SetPattern(TBehaviourPattern* p)
 {
   mPtrPattern = p;

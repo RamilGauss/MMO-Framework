@@ -92,21 +92,21 @@ namespace nsPCS
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
-  class DllExport TPacket_CorrectGameObjects : public TBasePacket_PCS
-  {
-  public:
-    TPacket_CorrectGameObjects();
-    struct TDescCorrection
-    {
-      TypeID_GameOject mID_Object;
-      TContainer       mInternalState;
-    };
-    typedef std::vector<TDescCorrection> TVectorDescCorrection;
-    TVectorDescCorrection mVector;
-  protected:
-    virtual TContainer PackInherit();
-    virtual void UnpackInherit( char* p, int size );
-  };
+  //class DllExport TPacket_CorrectGameObjects : public TBasePacket_PCS
+  //{
+  //public:
+  //  TPacket_CorrectGameObjects();
+  //  struct TDescCorrection
+  //  {
+  //    TypeID_GameOject mID_Object;
+  //    TContainer       mInternalState;
+  //  };
+  //  typedef std::vector<TDescCorrection> TVectorDescCorrection;
+  //  TVectorDescCorrection mVector;
+  //protected:
+  //  virtual TContainer PackInherit();
+  //  virtual void UnpackInherit( char* p, int size );
+  //};
   //-----------------------------------------------------------------
   class DllExport TPacket_AddGameObjects : public TBasePacket_PCS
   {

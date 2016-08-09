@@ -17,27 +17,37 @@ TBehaviourPattern::~TBehaviourPattern()
 
 }
 //------------------------------------------------------------------------
+std::string TBehaviourPattern::GetType()
+{ 
+  return mType;
+}
+//----------------------------------------------------------------
+void TBehaviourPattern::SetType(std::string v)
+{ 
+  mType = v;
+}
+//----------------------------------------------------------------
 void TBehaviourPattern::SetGameObject(TGameObject* p)
 {
   mGO = p;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::SetInternalStateMap(TMapItem::TMapStrStr& m)
+bool TBehaviourPattern::SetParameterMap(TMapItem::TMapStrStr& m)
 {
   return false;
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::GetInternalStateMap(TMapItem::TMapStrStr& m)
+void TBehaviourPattern::GetParameterMap(TMapItem::TMapStrStr& m)
 {
 
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::SetInternalStateC(TContainer c)
+bool TBehaviourPattern::SetParameterFromPattern(TContainer c)
 {
   return false;
 }
 //------------------------------------------------------------------------
-TContainer TBehaviourPattern::GetInternalStateC()
+TContainer TBehaviourPattern::GetParameterToPattern()
 {
   return TContainer();
 }
@@ -47,14 +57,14 @@ bool TBehaviourPattern::GetNeedSynchro()
   return false;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::SetModify(TContainer c)
+bool TBehaviourPattern::LoadFromGameItem(TBaseItem* pBI, bool fast)
 {
   return true;
 }
 //------------------------------------------------------------------------
-TContainer TBehaviourPattern::GetModify()
+bool TBehaviourPattern::Unload(bool fast)
 {
-  return TContainer();
+  return true;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::Thread_Logic()
@@ -75,5 +85,10 @@ void TBehaviourPattern::Thread_Bullet()
 void TBehaviourPattern::Thread_OpenAL()
 {
 
+}
+//------------------------------------------------------------------------
+int TBehaviourPattern::GetProgressLoad()
+{
+  return 0;
 }
 //------------------------------------------------------------------------

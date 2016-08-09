@@ -24,10 +24,9 @@ class TUpdaterGameObjectFromGameItem;
 
 class DllExport TGameObject
 {
-  std::string mType;// для поиска деструктора
   int mID;
 
-  // данные движков
+  // данные
   boost::scoped_ptr<TGameObjectComponent_Graphic> mPtrGraphic;
   boost::scoped_ptr<TGameObjectComponent_Physic>  mPtrPhysic;
   boost::scoped_ptr<TGameObjectComponent_Sound>   mPtrSound;
@@ -40,9 +39,6 @@ class DllExport TGameObject
 public:
   TGameObject();
   virtual ~TGameObject();
-
-  void SetType(std::string v);
-  std::string GetType();
 
   int GetID() const;
   void SetID( int id );
