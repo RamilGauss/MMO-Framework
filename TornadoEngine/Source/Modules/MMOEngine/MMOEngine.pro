@@ -12,9 +12,9 @@ INCLUDEPATH = \
 ./ContextScenario \
 ./Scenario \
 ./SubSystem \
-../../Base/Share
+../../Base
 
-LIBS += -lShare_d
+LIBS += -lBase_d
 
 DEFINES += _DEBUG
 DEFINES += _USRDLL

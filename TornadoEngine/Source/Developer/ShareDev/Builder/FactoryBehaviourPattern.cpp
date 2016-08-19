@@ -13,7 +13,7 @@ See for more information License.h.
 #include "Pattern_Sound.h"
 #include "Pattern_Terrain.h"
 #include "Pattern_Zone.h"
-#include "ManagerNameTypeObjectMap.h"
+#include "ManagerNamePattern.h"
 
 TFactoryBehaviourPattern::TFactoryBehaviourPattern()
 {
@@ -25,13 +25,13 @@ TFactoryBehaviourPattern::TFactoryBehaviourPattern()
   mCB_Terrain. Register(&TFactoryBehaviourPattern::MakeTerrain,  this);
   mCB_Zone.    Register(&TFactoryBehaviourPattern::MakeZone,     this);
 
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNameTypeObjectMap::Animated(), &mCB_Animated));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNameTypeObjectMap::Light(),    &mCB_Light));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNameTypeObjectMap::Model(),    &mCB_Model));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNameTypeObjectMap::Skybox(),   &mCB_Skybox));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNameTypeObjectMap::Sound(),    &mCB_Sound));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNameTypeObjectMap::Terrain(),  &mCB_Terrain));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNameTypeObjectMap::Zone(),     &mCB_Zone));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Animated(), &mCB_Animated));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Light(),    &mCB_Light));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Model(),    &mCB_Model));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skybox(),   &mCB_Skybox));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Sound(),    &mCB_Sound));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Terrain(),  &mCB_Terrain));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Zone(),     &mCB_Zone));
 }
 //----------------------------------------------------------------------------
 TFactoryBehaviourPattern::~TFactoryBehaviourPattern()

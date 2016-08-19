@@ -10,20 +10,29 @@ See for more information License.h.
 
 #include "IGP_Scenario_Builder.h"
 #include "GP_Scenario_Block.h"
+#include "BuilderGameMap.h"
 
 class DllExport TGP_Scenario_Builder : 
   public IGP_Scenario_Builder, public TGP_Scenario_Block
 {
+  TBuilderGameMap mBuilder;
+  volatile bool flgNeedThreadQuant;// требуется ли получать квант из других потоков для реализации загрузки
 public:
   TGP_Scenario_Builder();
   virtual ~TGP_Scenario_Builder();
 
+  virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP);
   virtual void LoadMap(std::string nameMap);
-
-  virtual bool AddGameObject(TAddGameObject&    desc);
   virtual bool AddGameObject(TMapItem::TObject& desc);
+  virtual int GetPhysicWorldID();
 
-  virtual int Progress();
+  virtual int GetProgress();
+
+  virtual void SetScene(TScene* pScene);
+  virtual void Thread_Bullet();
+  virtual void Thread_Ogre();
+  virtual void Thread_Logic();
+  virtual void Thread_OpenAL();
 };
 
 #endif

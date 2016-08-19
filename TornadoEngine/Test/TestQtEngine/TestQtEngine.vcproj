@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;../../Source/Base/Share;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Source/Modules/QtEngine"
+				AdditionalIncludeDirectories="./;../../Source/Base;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Source/Modules/QtEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib QtCored4.lib QtGuid4.lib Share_d.lib QtEngine_d.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib QtCored4.lib QtGuid4.lib Base_d.lib QtEngine_d.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../Lib;&quot;../../Lib\$(ConfigurationName)&quot;;&quot;$(QTDIR)/lib&quot;"
 				GenerateDebugInformation="true"
@@ -117,6 +117,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="./;../../Source/Base;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Source/Modules/QtEngine"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -135,6 +136,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib QtCore4.lib QtGui4.lib Base.lib QtEngine.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"

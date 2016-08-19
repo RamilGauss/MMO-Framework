@@ -1,15 +1,27 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-√Û‰‡ÍÓ‚ –‡ÏËÎ¸ —Â„ÂÂ‚Ë˜ 
+–ì—É–¥–∞–∫–æ–≤ –†–∞–º–∏–ª—å –°–µ—Ä–≥–µ–µ–≤–∏—á 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "BehaviourPattern.h"
+#include <boost/foreach.hpp>
+
+namespace nsBehaviourPattern
+{
+  const char* sMobility     = "Mobility";
+  const char* sNameGameItem = "NameGameItem";
+  const char* sVariant      = "Variant";
+};
+
+using namespace nsBehaviourPattern;
 
 TBehaviourPattern::TBehaviourPattern()
 {
-  mGO = NULL;
+  mFGI = NULL;
+  mGO  = NULL;
+  mPhysicWorldID = -1;
 }
 //------------------------------------------------------------------------
 TBehaviourPattern::~TBehaviourPattern()
@@ -17,14 +29,19 @@ TBehaviourPattern::~TBehaviourPattern()
 
 }
 //------------------------------------------------------------------------
-std::string TBehaviourPattern::GetType()
+void TBehaviourPattern::SetPhysicWorld(int id_physic_world)
+{
+  mPhysicWorldID = id_physic_world;
+}
+//------------------------------------------------------------------------
+std::string TBehaviourPattern::GetName()
 { 
-  return mType;
+  return mName;
 }
 //----------------------------------------------------------------
-void TBehaviourPattern::SetType(std::string v)
+void TBehaviourPattern::SetName(std::string v)
 { 
-  mType = v;
+  mName = v;
 }
 //----------------------------------------------------------------
 void TBehaviourPattern::SetGameObject(TGameObject* p)
@@ -32,14 +49,19 @@ void TBehaviourPattern::SetGameObject(TGameObject* p)
   mGO = p;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::SetParameterMap(TMapItem::TMapStrStr& m)
+void TBehaviourPattern::SetFGI(TFactoryGameItem* pFGI)
 {
-  return false;
+  mFGI = pFGI;
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::GetParameterMap(TMapItem::TMapStrStr& m)
+void TBehaviourPattern::SetParameterMap(TMapItem::TMapStrStr& m)
 {
-
+  mParameterMap = m;
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::GetDefualtParameterMap(TMapItem::TMapStrStr& m)
+{
+  m = mDefaultParameterMap;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::SetParameterFromPattern(TContainer c)
@@ -54,35 +76,90 @@ TContainer TBehaviourPattern::GetParameterToPattern()
 //------------------------------------------------------------------------
 bool TBehaviourPattern::GetNeedSynchro()
 {
-  return false;
+  return mStructParameterMap.flgMobility;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::LoadFromGameItem(TBaseItem* pBI, bool fast)
+void TBehaviourPattern::SetPosition(nsMathTools::TVector3& v)
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::GetPosition(nsMathTools::TVector3& v)
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::SetOrientation(nsMathTools::TVector3& v)
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::GetOrientation(nsMathTools::TVector3& v)
+{
+
+}
+//------------------------------------------------------------------------
+bool TBehaviourPattern::LoadFromParameterMap()
 {
   return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::Unload(bool fast)
+bool TBehaviourPattern::UpdateFromGameItem(TBaseItem* pBI)
 {
   return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::Thread_Logic()
+bool TBehaviourPattern::Unload()
+{
+  return true;
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::LoadFromThread_Ogre(bool fast)
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::Thread_Ogre()
+void TBehaviourPattern::LoadFromThread_Bullet(bool fast)
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::Thread_Bullet()
+void TBehaviourPattern::LoadFromThread_OpenAL(bool fast)
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::Thread_OpenAL()
+void TBehaviourPattern::UnloadFromThread_Ogre(bool fast)
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::UnloadFromThread_Bullet(bool fast)
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::UnloadFromThread_OpenAL(bool fast)
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::SynchroFromThread_Logic()
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::SynchroFromThread_Ogre()
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::SynchroFromThread_Bullet()
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::SynchroFromThread_OpenAL()
 {
 
 }
@@ -90,5 +167,32 @@ void TBehaviourPattern::Thread_OpenAL()
 int TBehaviourPattern::GetProgressLoad()
 {
   return 0;
+}
+//------------------------------------------------------------------------
+int TBehaviourPattern::GetProgressUnload()
+{
+  return 0;
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::ParseParameterMap(TMapItem::TMapStrStr& m)
+{
+  BOOST_FOREACH(TMapItem::TMapStrStrVT& vt, m)
+  {
+    if(vt.first==sMobility)
+    {
+      if(vt.second=="true")
+        mStructParameterMap.flgMobility = true;
+      else
+        mStructParameterMap.flgMobility = false;
+    }
+    else if(vt.first==sNameGameItem)
+    {
+      mStructParameterMap.nameGameItem = vt.second;
+    }
+    else if(vt.first==sVariant)
+    {
+      mStructParameterMap.nameVariant = vt.second;
+    }
+  }
 }
 //------------------------------------------------------------------------

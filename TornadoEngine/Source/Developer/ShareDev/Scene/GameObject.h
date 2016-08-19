@@ -33,6 +33,8 @@ class DllExport TGameObject
   // поведение - зависит от типа (Model, Terrain, Zone, Light, Sound, Animated, Skybox)
   TBehaviourPattern* mPtrPattern;
 
+  // атомарные операции, характерные для каждого из движком
+  // 6 штук: 3 Builder_XXX, 3 Destructor_XXX
   TBuilderGameObjectFromGameItem*    mPtrBuilder;
   TDestructorGameObjectFromGameItem* mPtrDestructor;
   TUpdaterGameObjectFromGameItem*    mPtrUpdater;

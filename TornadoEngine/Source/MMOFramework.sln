@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcproj", "{D2602F61-B76E-4537-A9A2-1A16D3DEBBA5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{73A4EF05-62AA-4529-8C04-0529ABFF8DCC} = {73A4EF05-62AA-4529-8C04-0529ABFF8DCC}
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{B430C5D8-F825-4361-96AE-EC40E71483FD}"
@@ -50,8 +51,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "3rdParty\MyGUI\Common\Common.vcproj", "{2EFFBFCF-E794-43AD-ADEC-8F0E60A00B66}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Platforms", "3rdParty\MyGUI\Platforms\Platforms.vcproj", "{D2685F5F-4EC8-4E06-99B5-9DB122DB9413}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Share", "Base\Share\Share.vcproj", "{4FE15A87-875C-41AB-B100-317EAA0A9E5A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "..\Test\MMO\Client\Client.vcproj", "{B4E4FBCF-07AA-4AFA-B96D-C65B1FD312B3}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -142,6 +141,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestWaitFreeQueue", "..\Tes
 		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Base", "Base\Base.vcproj", "{4FE15A87-875C-41AB-B100-317EAA0A9E5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -191,12 +192,6 @@ Global
 		{D2685F5F-4EC8-4E06-99B5-9DB122DB9413}.Profile|Win32.Build.0 = Release|Win32
 		{D2685F5F-4EC8-4E06-99B5-9DB122DB9413}.Release|Win32.ActiveCfg = Release|Win32
 		{D2685F5F-4EC8-4E06-99B5-9DB122DB9413}.Release|Win32.Build.0 = Release|Win32
-		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Debug|Win32.Build.0 = Debug|Win32
-		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Profile|Win32.ActiveCfg = Release|Win32
-		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Profile|Win32.Build.0 = Release|Win32
-		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Release|Win32.ActiveCfg = Release|Win32
-		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Release|Win32.Build.0 = Release|Win32
 		{B4E4FBCF-07AA-4AFA-B96D-C65B1FD312B3}.Debug|Win32.ActiveCfg = Debug|Win32
 		{B4E4FBCF-07AA-4AFA-B96D-C65B1FD312B3}.Debug|Win32.Build.0 = Debug|Win32
 		{B4E4FBCF-07AA-4AFA-B96D-C65B1FD312B3}.Profile|Win32.ActiveCfg = Release|Win32
@@ -305,6 +300,12 @@ Global
 		{A5854403-96C6-46DA-821B-82F51C9067F8}.Profile|Win32.Build.0 = Release|Win32
 		{A5854403-96C6-46DA-821B-82F51C9067F8}.Release|Win32.ActiveCfg = Release|Win32
 		{A5854403-96C6-46DA-821B-82F51C9067F8}.Release|Win32.Build.0 = Release|Win32
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Debug|Win32.Build.0 = Debug|Win32
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Profile|Win32.ActiveCfg = Release|Win32
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Profile|Win32.Build.0 = Release|Win32
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Release|Win32.ActiveCfg = Release|Win32
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

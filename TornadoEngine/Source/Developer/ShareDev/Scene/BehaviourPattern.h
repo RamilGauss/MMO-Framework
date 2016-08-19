@@ -19,53 +19,82 @@ See for more information License.h.
 #include "MapItem.h"
 
 class TGameObject;
+class TFactoryGameItem;
 
 class DllExport TBehaviourPattern
 {
-  std::string mType;// для поиска деструктора
+  std::string          mName;// Debug 
 protected:
-  TGameObject* mGO;
+  TGameObject*         mGO;
+  TFactoryGameItem*    mFGI;
+  TMapItem::TMapStrStr mParameterMap;
+  TMapItem::TMapStrStr mDefaultParameterMap;
+
+  int mPhysicWorldID;
 public:
   TBehaviourPattern();
   virtual ~TBehaviourPattern();
 
-  void SetType(std::string v);
-  std::string GetType();
+  void SetPhysicWorld(int id_physic_world);
+
+  void SetName(std::string v);
+  std::string GetName();
 
   void SetGameObject(TGameObject* p);
+  void SetFGI(TFactoryGameItem* pFGI);
 
-  // Сериализация параметров
-  // при загрузке карты/объекта, key - value
-  virtual bool SetParameterMap(TMapItem::TMapStrStr& m);
-  virtual void GetParameterMap(TMapItem::TMapStrStr& m);
+  // при загрузке карты/объекта
+  virtual void SetParameterMap(TMapItem::TMapStrStr& m);// L
+  // при сохранении карты/объекта,
+  // что бы знать какие ключи вообще возможны, проектирование новых карт
+  virtual void GetDefualtParameterMap(TMapItem::TMapStrStr& m);// L
   // от одного Паттерна другому, упаковано 
-  virtual bool SetParameterFromPattern(TContainer c);
-  virtual TContainer GetParameterToPattern();
+  virtual bool SetParameterFromPattern(TContainer c);// L
+  virtual TContainer GetParameterToPattern();// B - Slave
 
   // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
   // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
-  virtual bool GetNeedSynchro();
+  virtual bool GetNeedSynchro();// B
 
-  // mainly, for debug, меняет физику
-  virtual void SetPosition(nsMathTools::TVector3& v);
-  virtual void SetOrientation(nsMathTools::TVector3& v);
+  // меняет физику
+  virtual void SetPosition(nsMathTools::TVector3& v);// L
+  virtual void GetPosition(nsMathTools::TVector3& v);// B, мгновенное значение
+  virtual void SetOrientation(nsMathTools::TVector3& v);// L
+  virtual void GetOrientation(nsMathTools::TVector3& v);// B, мгновенное значение
 
-  // fast = false - если объект очень сложный, 
-  // то может повысить fps (но только если выключена физика)
-  // при этом нужно контролировать прогресс загрузки
-  // Задания: загрузка, выгрузка, модификация
-  virtual bool LoadFromGameItem(TBaseItem* pBI, 
-    bool fast = true);// если вызывать без выгрузки, то Update
-  virtual bool Unload(bool fast = true);
+  virtual bool LoadFromParameterMap();// L
+  virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
+  virtual bool Unload();// L
 
-  // выгрузка считается законченной если возвращается 100
-  virtual int GetProgressLoad();
+  // считается законченной если возвращается 100
+  virtual int GetProgressLoad();// L
+  virtual int GetProgressUnload();// L
 
   // Выполнить задания в каждом из потоков
-  virtual void Thread_Logic();
-  virtual void Thread_Ogre();
-  virtual void Thread_Bullet();
-  virtual void Thread_OpenAL();
+  virtual void LoadFromThread_Ogre(bool fast = true);
+  virtual void LoadFromThread_Bullet(bool fast = true);
+  virtual void LoadFromThread_OpenAL(bool fast = true);
+
+  virtual void UnloadFromThread_Ogre(bool fast = true);
+  virtual void UnloadFromThread_Bullet(bool fast = true);
+  virtual void UnloadFromThread_OpenAL(bool fast = true);
+
+  virtual void SynchroFromThread_Logic(); // внешняя синхронизация
+  virtual void SynchroFromThread_Ogre();  // графика от физики
+  virtual void SynchroFromThread_Bullet();// внутренняя синхронизация
+  virtual void SynchroFromThread_OpenAL();// звук от физики
+protected:
+  struct TParameterMap
+  {
+    bool flgMobility;
+    std::string nameGameItem;
+    std::string nameVariant;
+    TParameterMap(){flgMobility=false;}
+  };
+  TParameterMap mStructParameterMap;
+
+  virtual void ParseParameterMap(TMapItem::TMapStrStr& m);
+
 };
 
 #endif

@@ -15,7 +15,7 @@ DEFINES += USE_MATH_TOOLS
 
 COMPILER_FLAGS = -fPIC
 
-OBJECTS_DIR = ../../../Temp/Debug/Share
+OBJECTS_DIR = ../../Temp/Debug/Share
 
 LIBS += -lssl
 LIBS += -lcrypto

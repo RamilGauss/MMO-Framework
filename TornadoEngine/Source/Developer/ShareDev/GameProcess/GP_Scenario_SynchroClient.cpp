@@ -7,28 +7,58 @@ See for more information License.h.
 
 #include "GP_Scenario_SynchroClient.h"
 
-GP_Scenario_SynchroClient::GP_Scenario_SynchroClient()
+TGP_Scenario_SynchroClient::TGP_Scenario_SynchroClient()
 {
 
 }
 //----------------------------------------------------------------------------------
-GP_Scenario_SynchroClient::~GP_Scenario_SynchroClient()
+TGP_Scenario_SynchroClient::~TGP_Scenario_SynchroClient()
 {
 
 }
 //----------------------------------------------------------------------------------
-void GP_Scenario_SynchroClient::SetEnable(int id, bool v)
+void TGP_Scenario_SynchroClient::SetEnable(int id, bool v)
 {
   
 }
 //----------------------------------------------------------------------------------
-bool GP_Scenario_SynchroClient::UpdateGameObjectFromGameItem(int id, std::string type, std::string name)
+bool TGP_Scenario_SynchroClient::UpdateGameObjectFromGameItem(int id, std::string type, std::string name)
 {
   return false;
 }
 //----------------------------------------------------------------------------------
-bool GP_Scenario_SynchroClient::UpdateGameObjectFromPattern(int id, TContainer internalState)
+bool TGP_Scenario_SynchroClient::UpdateGameObjectFromPattern(int id, TContainer internalState)
 {
   return false;
+}
+//----------------------------------------------------------------------------------
+int TGP_Scenario_SynchroClient::GetProgress()
+{
+  return 0;
+}
+//----------------------------------------------------------------------------------
+void TGP_Scenario_SynchroClient::SetScene(TScene* pScene)
+{
+  
+}
+//----------------------------------------------------------------------------------
+void TGP_Scenario_SynchroClient::Thread_Bullet()
+{
+  
+}
+//----------------------------------------------------------------------------------
+void TGP_Scenario_SynchroClient::Thread_Ogre()
+{
+  
+}
+//----------------------------------------------------------------------------------
+void TGP_Scenario_SynchroClient::Thread_Logic()
+{
+  
+}
+//----------------------------------------------------------------------------------
+void TGP_Scenario_SynchroClient::Thread_OpenAL()
+{
+  
 }
 //----------------------------------------------------------------------------------

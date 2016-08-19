@@ -23,12 +23,11 @@ namespace nsSerializerMapItem_XML
 	const char* sObject				  = "Object";
 	const char* sBaseProperty	  = "BaseProperty";
 	const char* sIdentity			  = "Identity";
-	const char* sType					  = "Type";
 	const char* sID  					  = "ID";
   const char* sPattern        = "Pattern";
 	const char* sPosition			  = "Position";
 	const char* sRotation			  = "Rotation";
-	const char* sInternalState  = "InternalState";
+	const char* sParameterMap   = "ParameterMap";
   // reserve
 	const char* sScenario       = "Scenario";
 }
@@ -196,12 +195,10 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
         std::string key, value;
         if(LoadProperty(iProperty, key, value))
         {
-          if(key==sType)
-            object.type = value;
-          if(key==sID)
-            object.id = boost::lexical_cast<int>(value.data());
           if(key==sPattern)
             object.namePattern = value;
+          if(key==sID)
+            object.id = boost::lexical_cast<int>(value.data());
         }
       }
       mXML->LeaveSection();
@@ -227,7 +224,7 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
 	}
 
   // внутренние состояние
-  if(mXML->EnterSection(sInternalState,0))
+  if(mXML->EnterSection(sParameterMap,0))
   {
     int cntProperty = GetCountProperty();
     for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
@@ -248,16 +245,12 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
     if(mXML->AddSectionAndEnter(sIdentity)) 
     {
       std::string key, value;
-      key   = sType;
-      value = object.type;
+      key   = sPattern;
+      value = object.namePattern;
       SaveProperty(key, value);
 
       key   = sID;
       value = boost::lexical_cast<std::string>(object.id);
-      SaveProperty(key, value);
-
-      key   = sPattern;
-      value = object.namePattern;
       SaveProperty(key, value);
       mXML->LeaveSection();
     }
@@ -276,7 +269,7 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
   }
 
   // внутренние свойства
-  if(mXML->AddSectionAndEnter(sInternalState))
+  if(mXML->AddSectionAndEnter(sParameterMap))
   {
     BOOST_FOREACH(TMapItem::TMapStrStrVT& KeyValue, object.parameterMap)
     {

@@ -18,6 +18,8 @@ public:
   IGP_Scenario_General();
   virtual ~IGP_Scenario_General();
 
+  virtual int GetProgress() = 0;
+
   virtual void SetScene(TScene* pScene) = 0;
   virtual void Thread_Bullet() = 0;
   virtual void Thread_Ogre()   = 0;

@@ -113,13 +113,6 @@ void TEditorMapLogic::FreeGraphicResource()
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::LoadGameMap(std::string& nameMap)
 {
-  mMGM.GetBGM()->InitPhysic( mID_PhysicWorld );
-
-  TMapItem* pMapItem = (TMapItem*)mFGI.Get( TFactoryGameItem::Map, nameMap );
-  if( mMGM.GetBGM()->BuildMap( pMapItem )==false )
-  {
-    BL_FIX_BUG();
-    return;
-  }
+  mAggregationScenario_Client.LoadMap(nameMap);
 }
 //---------------------------------------------------------------------------------------------

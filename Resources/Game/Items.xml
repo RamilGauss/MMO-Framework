@@ -299,9 +299,9 @@
 		  <Object>
 				<BaseProperty>
 				  <Identity>
-						<Property key="Type" value="Zone"/>
-            <Property key="ID"   value="1"/>     <!-- Уникальный в пределах карты идентификатор -->
-					</Identity>
+						<Property key="Pattern" value="Zone"/>
+            <Property key="ID"      value="1"/>     <!-- Уникальный в пределах карты идентификатор -->
+          </Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
 						<Property key="y" value="0"/>
@@ -313,8 +313,7 @@
 						<Property key="z" value="0"/>
 					</Rotation>
 				</BaseProperty>
-				<InternalState>
-					<Property key="Name" value="Grass"/> <!-- Или имя модели или просто имя -->
+				<ParameterMap>
           <Property key="Type" value="GraphicEffect"/>
 					<Property key="Height" value="10.01"/>				
 					<Property key="CntCoord" value="4"/>
@@ -322,12 +321,12 @@
 					<Property key="Coord1"   value="0;1.56"/>
 					<Property key="Coord2"   value="1;1.3456"/>
 					<Property key="Coord3"   value="1;-0.123"/>
-				</InternalState>
+				</ParameterMap>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
-						<Property key="Type" value="Skybox"/>
+						<Property key="Pattern" value="Skybox"/>
             <Property key="ID"   value="2"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
@@ -341,16 +340,17 @@
 						<Property key="z" value="0"/>
 					</Rotation>
 				</BaseProperty>
-				<InternalState>
-          <Property key="Name" value="Main"/>
-				</InternalState>
+				<ParameterMap>
+          <Property key="Width"  value="1000"/>
+          <Property key="Length" value="1000"/>
+          <Property key="Type"   value="Quad"/>
+				</ParameterMap>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
-						<Property key="Type"    value="Model"/>
+						<Property key="Pattern" value="Gear"/><!-- Переопределение Паттерна -->
             <Property key="ID"      value="3"/><!-- Уникален в пределах карты -->
-            <Property key="Pattern" value="Gear"/><!-- Переопределение Паттерна -->
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="0"/>
@@ -363,17 +363,17 @@
 						<Property key="z" value="0"/>
 					</Rotation>
 				</BaseProperty>
-				<InternalState>
+				<ParameterMap>
           <!-- Адресуется Паттерну -->
-          <Property key="Name"     value="Gear"/><!-- Какую модель выбрать -->
+          <Property key="NameGameItem" value="Gear"/><!-- Какую модель выбрать -->
           <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
-          <Property key="variant"  value="1"/>
-        </InternalState>
+          <Property key="Variant"  value="1"/>
+        </ParameterMap>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
-						<Property key="Type" value="Light"/>
+						<Property key="Pattern" value="Light"/>
             <Property key="ID"   value="4"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
@@ -387,15 +387,15 @@
 						<Property key="z" value="0"/>
 					</Rotation>
 				</BaseProperty>
-				<InternalState>
+				<ParameterMap>
 					<Property key="type" value="point"/>
 					<Property key="Name" value="Point"/>
-        </InternalState>
+        </ParameterMap>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
-						<Property key="Type" value="Terrain"/>
+						<Property key="Pattern" value="Terrain"/>
             <Property key="ID"   value="5"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
@@ -409,14 +409,14 @@
 						<Property key="z" value="0"/>
 					</Rotation>
 				</BaseProperty>
-				<InternalState>
-					<Property key="Name" value="0_0"/>
-				</InternalState>
+				<ParameterMap>
+					<Property key="NameGameItem" value="0_0"/>
+				</ParameterMap>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
-						<Property key="Type" value="Animated"/>
+						<Property key="Pattern" value="Animated"/>
             <Property key="ID"   value="6"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
@@ -430,14 +430,14 @@
 						<Property key="z" value="0"/>
 					</Rotation>
 				</BaseProperty>
-				<InternalState>
+				<ParameterMap>
 					<Property key="Name" value="BirdFly"/>
-				</InternalState>
+				</ParameterMap>
 			</Object>
 		  <Object>
 				<BaseProperty>
 				  <Identity>
-						<Property key="Type" value="Sound"/><!-- Звук ветра в определенном месте. -->
+						<Property key="Pattern" value="Sound"/><!-- Звук ветра в определенном месте. -->
             <Property key="ID"   value="7"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
@@ -451,10 +451,10 @@
 						<Property key="z" value="0"/>
 					</Rotation>
 				</BaseProperty>
-				<InternalState>
+				<ParameterMap>
 				  <Property key="file" value="wind.mp3"/>
 					<Property key="Name" value="Wind"/>
-				</InternalState>
+				</ParameterMap>
 			</Object>
 		</Set>
 		<Scenario> <!-- Операции с объектами сцены -->

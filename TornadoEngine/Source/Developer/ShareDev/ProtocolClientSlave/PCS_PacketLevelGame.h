@@ -12,19 +12,20 @@ See for more information License.h.
 #include <string>
 #include <vector>
 #include "MathTools.h"
+#include "MapItem.h"
 
 namespace nsPCS
 {
   typedef int            TypeID_GameMap;
-  typedef int            TypeID_GameOject;
-  typedef unsigned short TypeSizeInternalState;
-  typedef unsigned char  TypeSizeNameModel;
-  typedef unsigned char  TypeSizeNameType;
+  typedef unsigned short TypeSizeParameter;
+  typedef unsigned char  TypeSizeNamePattern;
   typedef unsigned char  TypeSizeNameFGIObject;
   typedef unsigned short TypeSizeDescFGIObject;
-  typedef unsigned char  TypeMobility;
   typedef unsigned char  TypeFGIObject;
   typedef unsigned int   TypeTryEnterRoom;
+  typedef unsigned short TypeCountParameterMap;
+  typedef unsigned char  TypeSizeKeyParameterMap;
+  typedef unsigned char  TypeSizeValueParameterMap;
   typedef enum
   {
     Material,
@@ -92,36 +93,21 @@ namespace nsPCS
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
-  //class DllExport TPacket_CorrectGameObjects : public TBasePacket_PCS
-  //{
-  //public:
-  //  TPacket_CorrectGameObjects();
-  //  struct TDescCorrection
-  //  {
-  //    TypeID_GameOject mID_Object;
-  //    TContainer       mInternalState;
-  //  };
-  //  typedef std::vector<TDescCorrection> TVectorDescCorrection;
-  //  TVectorDescCorrection mVector;
-  //protected:
-  //  virtual TContainer PackInherit();
-  //  virtual void UnpackInherit( char* p, int size );
-  //};
+  class DllExport TPacket_EndLoadMap : public TBasePacket_PCS
+  {
+  public:
+    TPacket_EndLoadMap();
+  protected:
+    virtual TContainer PackInherit(){return TContainer();};
+    virtual void UnpackInherit( char* p, int size ){}
+  };
   //-----------------------------------------------------------------
   class DllExport TPacket_AddGameObjects : public TBasePacket_PCS
   {
   public:
     TPacket_AddGameObjects();
-    struct TDescAdd
-    {
-      TypeID_GameOject      mID_Object;
-      std::string           mType;
-      nsMathTools::TVector3 mPos;
-      nsMathTools::TVector3 mOrient;
-      TContainer            mInternalState;// упакован самим объектом
-    };
-    typedef std::vector<TDescAdd> TVectorAdd;
-    TVectorAdd mVector;
+    typedef std::vector<TMapItem::TObject> TVectorMapObject;
+    TVectorMapObject mVectorObject;
   protected:
     virtual TContainer PackInherit();
     virtual void UnpackInherit( char* p, int size );
@@ -131,7 +117,7 @@ namespace nsPCS
   {
   public:
     TPacket_EnableGameObjects();
-    std::vector<TypeID_GameOject> mVectorID_Object;
+    std::vector<TypeID_GameMap> mVectorID_Object;
   protected:
     virtual TContainer PackInherit();
     virtual void UnpackInherit( char* p, int size );
@@ -141,7 +127,7 @@ namespace nsPCS
   {
   public:
     TPacket_DisableGameObjects();
-    std::vector<TypeID_GameOject> mVectorID_Object;
+    std::vector<TypeID_GameMap> mVectorID_Object;
   protected:
     virtual TContainer PackInherit();
     virtual void UnpackInherit( char* p, int size );
@@ -185,8 +171,7 @@ namespace nsPCS
   class DllExport TPacket_UpdateGameObjectByFGI : public TBasePacket_PCS
   {
   public:
-    TypeFGIObject mTypeFGIObject;
-    std::string   mNameObject;
+    std::string mNameObject;
     TPacket_UpdateGameObjectByFGI();
   protected:
     virtual TContainer PackInherit();
@@ -196,9 +181,14 @@ namespace nsPCS
   class DllExport TPacket_UpdateGameObjectByPattern : public TBasePacket_PCS
   {
   public:
-    TypeFGIObject mTypeFGIObject;
-    std::string   mNameObject;
-    TContainer    mDesc;
+    struct TDescCorrection
+    {
+      TypeID_GameMap mID_Object;
+      TContainer     mParameter;
+    };
+    typedef std::vector<TDescCorrection> TVectorDescCorrection;
+    TVectorDescCorrection mVector;
+
     TPacket_UpdateGameObjectByPattern();
   protected:
     virtual TContainer PackInherit();

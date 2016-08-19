@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene;./Share;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene;./Share;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib Share_d.lib GameEngine_d.lib PhysicEngine_d.lib QtEngine_d.lib Common_d.lib Platforms_d.lib NetTransport_d.lib MMOEngine_d.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib Base_d.lib GameEngine_d.lib PhysicEngine_d.lib QtEngine_d.lib Common_d.lib Platforms_d.lib NetTransport_d.lib MMOEngine_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;./Builder;./GameItems;./Modules;./Scene;./Share;../../Base/Share;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
+				AdditionalIncludeDirectories="./;./Builder;./GameItems;./Modules;./Scene;./Share;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine.lib QtCore4.lib QtGui4.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib Share.lib GameEngine.lib PhysicEngine.lib QtEngine.lib Common.lib Platforms.lib NetTransport.lib MMOEngine.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine.lib QtCore4.lib QtGui4.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib Base.lib GameEngine.lib PhysicEngine.lib QtEngine.lib Common.lib Platforms.lib NetTransport.lib MMOEngine.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;"
 				GenerateDebugInformation="true"
@@ -604,58 +604,6 @@
 			Name="Builder"
 			>
 			<Filter
-				Name="Ogre"
-				>
-				<File
-					RelativePath=".\Builder\Builder_Ogre.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\Builder_Ogre.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\BuilderShape_Ogre.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\BuilderShape_Ogre.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Bullet"
-				>
-				<File
-					RelativePath=".\Builder\Builder_Bullet.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\Builder_Bullet.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\ParamBuilderConstraint.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\ParamBuilderConstraint.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="OpenAL"
-				>
-				<File
-					RelativePath=".\Builder\Builder_OpenAL.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\Builder_OpenAL.h"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="Common"
 				>
 				<File
@@ -664,6 +612,14 @@
 				</File>
 				<File
 					RelativePath=".\Builder\BuilderGameMap.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\BuilderGameMap_Old.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\BuilderGameMap_Old.h"
 					>
 				</File>
 				<File
@@ -676,154 +632,30 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="PreBuilder"
-				>
-				<Filter
-					Name="GameObject"
-					>
-					<File
-						RelativePath=".\Builder\FactoryPreBuilderGameObject.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\FactoryPreBuilderGameObject.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Animated.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Animated.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Light.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Light.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Model.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Model.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Skybox.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Skybox.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Sound.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Sound.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Terrain.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Terrain.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Zone.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGameObject_Zone.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Common"
-					>
-					<File
-						RelativePath=".\Builder\PreBuilder.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilder.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderCameraUp.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderCameraUp.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGravityVector.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderGravityVector.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderTableSound.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\PreBuilderTableSound.h"
-						>
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="Task"
+				Name="ApplySetup"
 				>
 				<File
-					RelativePath=".\Builder\TaskForBuilder.cpp"
+					RelativePath=".\Builder\ApplySetup_CameraUp.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\TaskForBuilder.h"
+					RelativePath=".\Builder\ApplySetup_CameraUp.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\TaskForBuilder_Bullet.cpp"
+					RelativePath=".\Builder\ApplySetup_GravityVector.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\TaskForBuilder_Bullet.h"
+					RelativePath=".\Builder\ApplySetup_GravityVector.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\TaskForBuilder_Ogre.cpp"
+					RelativePath=".\Builder\CacheTableSound.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\TaskForBuilder_Ogre.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\TaskForBuilder_OpenAL.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\TaskForBuilder_OpenAL.h"
+					RelativePath=".\Builder\CacheTableSound.h"
 					>
 				</File>
 			</Filter>
@@ -838,6 +670,70 @@
 					RelativePath=".\Builder\FactoryBehaviourPattern.h"
 					>
 				</File>
+				<File
+					RelativePath=".\Builder\UsePattern.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\UsePattern.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Tools"
+				>
+				<Filter
+					Name="Ogre"
+					>
+					<File
+						RelativePath=".\Builder\Builder_Ogre.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\Builder_Ogre.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShape_Ogre.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShape_Ogre.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Bullet"
+					>
+					<File
+						RelativePath=".\Builder\Builder_Bullet.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\Builder_Bullet.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\ParamBuilderConstraint.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\ParamBuilderConstraint.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="OpenAL"
+					>
+					<File
+						RelativePath=".\Builder\Builder_OpenAL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\Builder_OpenAL.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -939,11 +835,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\ManagerNameTypeObjectMap.cpp"
+					RelativePath=".\Scene\ManagerNamePattern.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\ManagerNameTypeObjectMap.h"
+					RelativePath=".\Scene\ManagerNamePattern.h"
 					>
 				</File>
 				<File

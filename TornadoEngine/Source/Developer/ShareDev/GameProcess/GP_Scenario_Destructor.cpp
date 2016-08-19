@@ -27,8 +27,33 @@ bool TGP_Scenario_Destructor::DeleteGameObject(int id)
   return false;
 }
 //---------------------------------------------------------------------------------
-int TGP_Scenario_Destructor::Progress()
+int TGP_Scenario_Destructor::GetProgress()
 {
   return 0;
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Destructor::SetScene(TScene* pScene)
+{
+
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Destructor::Thread_Bullet()
+{
+
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Destructor::Thread_Ogre()
+{
+
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Destructor::Thread_Logic()
+{
+
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Destructor::Thread_OpenAL()
+{
+
 }
 //---------------------------------------------------------------------------------

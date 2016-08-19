@@ -17,24 +17,24 @@ See for more information License.h.
 #include "PreDestructorGameObject_Terrain.h"
 #include "PreDestructorGameObject_Zone.h"
 
-#include "ManagerNameTypeObjectMap.h"
+#include "ManagerNamePattern.h"
 
 TFactoryPreDestructorGameObject::TFactoryPreDestructorGameObject()
 {
   mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
-    TManagerNameTypeObjectMap::Animated(), new TPreDestructorGameObject_Animated) );
+    TManagerNamePattern::Animated(), new TPreDestructorGameObject_Animated) );
   mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
-    TManagerNameTypeObjectMap::Light(), new TPreDestructorGameObject_Light) );
+    TManagerNamePattern::Light(), new TPreDestructorGameObject_Light) );
   mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
-    TManagerNameTypeObjectMap::Model(), new TPreDestructorGameObject_Model) );
+    TManagerNamePattern::Model(), new TPreDestructorGameObject_Model) );
   mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
-    TManagerNameTypeObjectMap::Skybox(), new TPreDestructorGameObject_Skybox) );
+    TManagerNamePattern::Skybox(), new TPreDestructorGameObject_Skybox) );
   mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
-    TManagerNameTypeObjectMap::Sound(), new TPreDestructorGameObject_Sound) );
+    TManagerNamePattern::Sound(), new TPreDestructorGameObject_Sound) );
   mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
-    TManagerNameTypeObjectMap::Terrain(), new TPreDestructorGameObject_Terrain) );
+    TManagerNamePattern::Terrain(), new TPreDestructorGameObject_Terrain) );
   mMapStrType_PreDestructor.insert(TMapStrPtrVT( 
-    TManagerNameTypeObjectMap::Zone(), new TPreDestructorGameObject_Zone) );
+    TManagerNamePattern::Zone(), new TPreDestructorGameObject_Zone) );
 }
 //--------------------------------------------------------------------
 TFactoryPreDestructorGameObject::~TFactoryPreDestructorGameObject()

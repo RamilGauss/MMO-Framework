@@ -9,7 +9,7 @@ INCLUDEPATH = \
 . \
 ./Boost_Implementation \
 ../MMOEngine/Include \
-../../Base/Share
+../../Base
 
 DEFINES += _DEBUG
 DEFINES += _USRDLL
@@ -18,7 +18,7 @@ DEFINES += MARKUP_STL
 DEFINES += USE_MATH_TOOLS
 
 LIBS += -lMMOEngine_d
-LIBS += -lShare_d
+LIBS += -lBase_d
 
 COMPILER_FLAGS = -fPIC
 

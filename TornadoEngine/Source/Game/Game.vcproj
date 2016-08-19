@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\;..\GameEngine;..\Base\Share"
+				AdditionalIncludeDirectories=".\;..\GameEngine;..\Base"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Share_d.lib GameEngine_d.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Base_d.lib GameEngine_d.lib"
 				OutputFile="$(OutDir)\Tornado_d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\Lib"
@@ -121,7 +121,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".\;..\GameEngine;..\Base\Share"
+				AdditionalIncludeDirectories=".\;..\GameEngine;..\Base"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -141,7 +141,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Share.lib GameEngine.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib comctl32.lib Imm32.lib Version.lib Base.lib GameEngine.lib"
 				OutputFile="$(OutDir)\Tornado.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\Lib"

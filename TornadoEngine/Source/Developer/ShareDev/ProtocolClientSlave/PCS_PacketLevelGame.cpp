@@ -8,6 +8,7 @@ See for more information License.h.
 #include "PCS_PacketLevelGame.h"
 #include "BreakPacket.h"
 #include "BL_Debug.h"
+#include <boost/foreach.hpp>
 
 using namespace nsPCS;
 
@@ -67,65 +68,10 @@ void TPacket_LoadMap::UnpackInherit( char* p, int size )
     mID_Map = *((unsigned int*)p);
 }
 //-----------------------------------------------------------------
-//TPacket_CorrectGameObjects::TPacket_CorrectGameObjects() : TBasePacket_PCS(ePacket_CorrectGameObjects)
-//{
-//
-//}
-////-----------------------------------------------------------------
-//TContainer TPacket_CorrectGameObjects::PackInherit()
-//{
-//  TContainer result;
-//  int cnt = mVector.size();
-//  TBreakPacket bp;
-//  for( int i = 0 ; i < cnt ; i++ )
-//  {
-//    bp.PushBack( (char*)&(mVector[i].mID_Object), sizeof(TypeID_GameOject));
-//    TypeSizeInternalState sizeInternalState = mVector[i].mInternalState.GetSize();
-//    bp.PushBack( (char*)&sizeInternalState, sizeof(TypeSizeInternalState), true);
-//    bp.PushBack( (char*)mVector[i].mInternalState.GetPtr(), sizeInternalState);
-//  }
-//  bp.Collect();
-//  result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
-//  bp.UnlinkCollect();
-//  return result;
-//}
-////-----------------------------------------------------------------
-//void TPacket_CorrectGameObjects::UnpackInherit( char* p, int size )
-//{
-//  mVector.clear();
-//  while( size > 0)
-//  {
-//    TDescCorrection desc;
-//    if( size < sizeof(TypeID_GameOject) )
-//    {
-//      BL_FIX_BUG();
-//      return;
-//    }
-//    desc.mID_Object = *((TypeID_GameOject*)p);
-//    p    += sizeof(TypeID_GameOject);
-//    size -= sizeof(TypeID_GameOject);
-//    //---------------------------------------------------------------------
-//    if( size < sizeof(TypeSizeInternalState) )
-//    {
-//      BL_FIX_BUG();
-//      return;
-//    }
-//    TypeSizeInternalState sizeInternalSize = *((TypeSizeInternalState*)p);
-//    p    += sizeof(TypeSizeInternalState);
-//    size -= sizeof(TypeSizeInternalState);
-//    //---------------------------------------------------------------------
-//    if( size < sizeInternalSize )
-//    {
-//      BL_FIX_BUG();
-//      return;
-//    }
-//    desc.mInternalState.SetData( p, sizeInternalSize);
-//    p    += sizeInternalSize;
-//    size -= sizeInternalSize;
-//    //---------------------------------------------------------------------
-//    mVector.push_back(desc);
-//  }
-//}
+TPacket_EndLoadMap::TPacket_EndLoadMap() : TBasePacket_PCS(ePacket_EndLoadMap)
+{
+
+}
 //-----------------------------------------------------------------
 TPacket_AddGameObjects::TPacket_AddGameObjects() : TBasePacket_PCS(ePacket_AddGameObjects)
 {
@@ -135,23 +81,31 @@ TPacket_AddGameObjects::TPacket_AddGameObjects() : TBasePacket_PCS(ePacket_AddGa
 TContainer TPacket_AddGameObjects::PackInherit()
 {
   TContainer result;
-  int cnt = mVector.size();
   TBreakPacket bp;
-  for( int i = 0 ; i < cnt ; i++ )
+  BOOST_FOREACH(TMapItem::TObject& object, mVectorObject)
   {
-    bp.PushBack( (char*)&(mVector[i].mID_Object), sizeof(TypeID_GameOject));
+    TypeSizeNamePattern sizeNamePattern = object.namePattern.length();
+    bp.PushBack( (char*)&sizeNamePattern, sizeof(TypeSizeNamePattern), true);
+    bp.PushBack( (char*)object.namePattern.data(), sizeNamePattern );
 
-    TypeSizeNameType sizeNameType = mVector[i].mType.length();
-    bp.PushBack( (char*)&sizeNameType, sizeof(TypeSizeNameType), true);
-    bp.PushBack( (char*)mVector[i].mType.data(), sizeNameType );
+    bp.PushBack( (char*)&(object.id), sizeof(TypeID_GameMap));
 
+    bp.PushBack( (char*)&object.position, sizeof(nsMathTools::TVector3));
+    bp.PushBack( (char*)&object.rotation, sizeof(nsMathTools::TVector3));
 
-    bp.PushBack( (char*)&mVector[i].mPos,    sizeof(nsMathTools::TVector3));
-    bp.PushBack( (char*)&mVector[i].mOrient, sizeof(nsMathTools::TVector3));
+    TypeCountParameterMap cntParameter = object.parameterMap.size();
+    bp.PushBack( (char*)&cntParameter, sizeof(TypeCountParameterMap), true);
+    // перечисление
+    BOOST_FOREACH(TMapItem::TMapStrStrVT& vt, object.parameterMap)
+    {
+      TypeSizeKeyParameterMap sizeKey = vt.first.length();
+      bp.PushBack( (char*)&sizeKey, sizeof(TypeSizeKeyParameterMap), true);
+      bp.PushBack( (char*)vt.first.data(), sizeKey);
 
-    TypeSizeInternalState sizeInternalState = mVector[i].mInternalState.GetSize();
-    bp.PushBack( (char*)&sizeInternalState, sizeof(TypeSizeInternalState), true);
-    bp.PushBack( (char*)mVector[i].mInternalState.GetPtr(), sizeInternalState);
+      TypeSizeValueParameterMap sizeValue = vt.second.length();
+      bp.PushBack( (char*)&sizeValue, sizeof(TypeSizeValueParameterMap), true);
+      bp.PushBack( (char*)vt.second.data(), sizeValue);
+    }
   }
   bp.Collect();
   result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
@@ -161,47 +115,47 @@ TContainer TPacket_AddGameObjects::PackInherit()
 //-----------------------------------------------------------------
 void TPacket_AddGameObjects::UnpackInherit( char* p, int size )
 {
-  mVector.clear();
+  mVectorObject.clear();
   while( size > 0)
   {
-    TDescAdd desc;
+    TMapItem::TObject object;
     //---------------------------------------------------------------------
-    if( size < sizeof(TypeID_GameOject) )
+    if( size < sizeof(TypeSizeNamePattern) )
     {
       BL_FIX_BUG();
       return;
     }
-    desc.mID_Object = *((TypeID_GameOject*)p);
-    p    += sizeof(TypeID_GameOject);
-    size -= sizeof(TypeID_GameOject);
+    TypeSizeNamePattern sizeNamePattern = *((TypeSizeNamePattern*)p);
+    p    += sizeof(TypeSizeNamePattern);
+    size -= sizeof(TypeSizeNamePattern);
     //---------------------------------------------------------------------
-    if( size < sizeof(TypeSizeNameType) )
-    {
-      BL_FIX_BUG();
-      return;
-    }
-    TypeSizeNameType sizeNameType = *((TypeSizeNameType*)p);
-    p    += sizeof(TypeSizeNameType);
-    size -= sizeof(TypeSizeNameType);
-    //---------------------------------------------------------------------
-    if( size < sizeNameType )
+    if( size < sizeNamePattern )
     {
       BL_FIX_BUG();
       return;
     }
     char str[256];
-    strncpy(str, p, sizeNameType);
-    str[sizeNameType] = '\0';
-    desc.mType = str;
-    p    += sizeNameType;
-    size -= sizeNameType;
+    strncpy(str, p, sizeNamePattern);
+    str[sizeNamePattern] = '\0';
+    object.namePattern = str;
+    p    += sizeNamePattern;
+    size -= sizeNamePattern;
+    //---------------------------------------------------------------------
+    if( size < sizeof(TypeID_GameMap) )
+    {
+      BL_FIX_BUG();
+      return;
+    }
+    object.id = *((TypeID_GameMap*)p);
+    p    += sizeof(TypeID_GameMap);
+    size -= sizeof(TypeID_GameMap);
     //---------------------------------------------------------------------
     if( size < sizeof(nsMathTools::TVector3) )
     {
       BL_FIX_BUG();
       return;
     }
-    desc.mPos = *((nsMathTools::TVector3*)p);
+    object.position = *((nsMathTools::TVector3*)p);
     p    += sizeof(nsMathTools::TVector3);
     size -= sizeof(nsMathTools::TVector3);
     //---------------------------------------------------------------------
@@ -210,29 +164,56 @@ void TPacket_AddGameObjects::UnpackInherit( char* p, int size )
       BL_FIX_BUG();
       return;
     }
-    desc.mOrient = *((nsMathTools::TVector3*)p);
+    object.rotation = *((nsMathTools::TVector3*)p);
     p    += sizeof(nsMathTools::TVector3);
     size -= sizeof(nsMathTools::TVector3);
     //---------------------------------------------------------------------
-    if( size < sizeof(TypeSizeInternalState) )
+    if( size < sizeof(TypeCountParameterMap) )
     {
       BL_FIX_BUG();
       return;
     }
-    TypeSizeInternalState sizeInternalSize = *((TypeSizeInternalState*)p);
-    p    += sizeof(TypeSizeInternalState);
-    size -= sizeof(TypeSizeInternalState);
+    TypeCountParameterMap cntParameter = *((TypeCountParameterMap*)p);
+    p    += sizeof(TypeCountParameterMap);
+    size -= sizeof(TypeCountParameterMap);
     //---------------------------------------------------------------------
-    if( size < sizeInternalSize )
+    while(cntParameter)
     {
-      BL_FIX_BUG();
-      return;
+      TypeSizeKeyParameterMap sizeKey = *((TypeSizeKeyParameterMap*)p);
+      p    += sizeof(TypeSizeKeyParameterMap);
+      size -= sizeof(TypeSizeKeyParameterMap);
+      if( size < sizeKey )
+      {
+        BL_FIX_BUG();
+        return;
+      }
+      char str[256];
+      strncpy(str, p, sizeKey);
+      str[sizeKey] = '\0';
+      std::string key = str;
+      p    += sizeKey;
+      size -= sizeKey;
+      //---------------------------------------------------------------------
+      TypeSizeValueParameterMap sizeValue = *((TypeSizeValueParameterMap*)p);
+      p    += sizeof(TypeSizeValueParameterMap);
+      size -= sizeof(TypeSizeValueParameterMap);
+      if( size < sizeValue )
+      {
+        BL_FIX_BUG();
+        return;
+      }
+      strncpy(str, p, sizeValue);
+      str[sizeValue] = '\0';
+      std::string value = str;
+      p    += sizeValue;
+      size -= sizeValue;
+      //---------------------------------------------------------------------
+      object.parameterMap.insert(TMapItem::TMapStrStrVT(key,value));
+
+      cntParameter--;
     }
-    desc.mInternalState.SetData( p, sizeInternalSize);
-    p    += sizeInternalSize;
-    size -= sizeInternalSize;
     //---------------------------------------------------------------------
-    mVector.push_back(desc);
+    mVectorObject.push_back(object);
   }
 }
 //-----------------------------------------------------------------
@@ -244,10 +225,9 @@ TPacket_EnableGameObjects::TPacket_EnableGameObjects() : TBasePacket_PCS(ePacket
 TContainer TPacket_EnableGameObjects::PackInherit()
 {
   TContainer result;
-  int cnt = mVectorID_Object.size();
   TBreakPacket bp;
-  for( int i = 0 ; i < cnt ; i++ )
-    bp.PushBack( (char*)&(mVectorID_Object[i]), sizeof(TypeID_GameOject));
+  BOOST_FOREACH( TypeID_GameMap& id, mVectorID_Object )
+    bp.PushBack( (char*)&id, sizeof(TypeID_GameMap));
 
   bp.Collect();
   result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
@@ -260,15 +240,15 @@ void TPacket_EnableGameObjects::UnpackInherit( char* p, int size )
   mVectorID_Object.clear();
   while( size > 0)
   {
-    TypeID_GameOject id;
-    if( size < sizeof(TypeID_GameOject) )
+    TypeID_GameMap id;
+    if( size < sizeof(TypeID_GameMap) )
     {
       BL_FIX_BUG();
       return;
     }
-    id = *((TypeID_GameOject*)p);
-    p    += sizeof(TypeID_GameOject);
-    size -= sizeof(TypeID_GameOject);
+    id = *((TypeID_GameMap*)p);
+    p    += sizeof(TypeID_GameMap);
+    size -= sizeof(TypeID_GameMap);
     //---------------------------------------------------------------------
     mVectorID_Object.push_back(id);
   }
@@ -282,10 +262,9 @@ TPacket_DisableGameObjects::TPacket_DisableGameObjects() : TBasePacket_PCS(ePack
 TContainer TPacket_DisableGameObjects::PackInherit()
 {
   TContainer result;
-  int cnt = mVectorID_Object.size();
   TBreakPacket bp;
-  for( int i = 0 ; i < cnt ; i++ )
-    bp.PushBack( (char*)&(mVectorID_Object[i]), sizeof(TypeID_GameOject));
+  BOOST_FOREACH( TypeID_GameMap& id, mVectorID_Object)
+    bp.PushBack( (char*)&id, sizeof(TypeID_GameMap));
 
   bp.Collect();
   result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
@@ -298,15 +277,15 @@ void TPacket_DisableGameObjects::UnpackInherit( char* p, int size )
   mVectorID_Object.clear();
   while( size > 0)
   {
-    TypeID_GameOject id;
-    if( size < sizeof(TypeID_GameOject) )
+    TypeID_GameMap id;
+    if( size < sizeof(TypeID_GameMap) )
     {
       BL_FIX_BUG();
       return;
     }
-    id = *((TypeID_GameOject*)p);
-    p    += sizeof(TypeID_GameOject);
-    size -= sizeof(TypeID_GameOject);
+    id = *((TypeID_GameMap*)p);
+    p    += sizeof(TypeID_GameMap);
+    size -= sizeof(TypeID_GameMap);
     //---------------------------------------------------------------------
     mVectorID_Object.push_back(id);
   }
@@ -533,7 +512,6 @@ TPacket_UpdateGameObjectByFGI::TPacket_UpdateGameObjectByFGI() : TBasePacket_PCS
 TContainer TPacket_UpdateGameObjectByFGI::PackInherit()
 {
   TBreakPacket bp;
-  bp.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
 
   TypeSizeNameFGIObject sizeName = mNameObject.length();
   bp.PushBack( (char*)&sizeName, sizeof(TypeSizeNameFGIObject));
@@ -548,15 +526,6 @@ TContainer TPacket_UpdateGameObjectByFGI::PackInherit()
 //-----------------------------------------------------------------
 void TPacket_UpdateGameObjectByFGI::UnpackInherit( char* p, int size )
 {
-  if( size < sizeof(TypeFGIObject) )
-  {
-    BL_FIX_BUG();
-    return;
-  }
-  mTypeFGIObject = *((TypeFGIObject*)p);
-  p    += sizeof(TypeFGIObject);
-  size -= sizeof(TypeFGIObject);
-  //-------------------------------------------------
   if( size < sizeof(TypeSizeNameFGIObject) )
   {
     BL_FIX_BUG();
@@ -589,19 +558,16 @@ TPacket_UpdateGameObjectByPattern::TPacket_UpdateGameObjectByPattern() : TBasePa
 //-----------------------------------------------------------------
 TContainer TPacket_UpdateGameObjectByPattern::PackInherit()
 {
-  TBreakPacket bp;
-  bp.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
-
-  TypeSizeNameFGIObject sizeName = mNameObject.length();
-  bp.PushBack( (char*)&sizeName, sizeof(TypeSizeNameFGIObject));
-  bp.PushBack( (char*)mNameObject.data(), sizeName);
-
-  TypeSizeDescFGIObject sizeDesc = mDesc.GetSize();
-  bp.PushBack( (char*)&sizeDesc, sizeof(TypeSizeDescFGIObject));
-  bp.PushBack( (char*)mDesc.GetPtr(), sizeDesc);
-
-  bp.Collect();
   TContainer result;
+  TBreakPacket bp;
+  BOOST_FOREACH( TDescCorrection& desc,  mVector )
+  {
+    bp.PushBack( (char*)&(desc.mID_Object), sizeof(TypeID_GameMap));
+    TypeSizeParameter sizeParameter = desc.mParameter.GetSize();
+    bp.PushBack( (char*)&sizeParameter, sizeof(TypeSizeParameter), true);
+    bp.PushBack( (char*)desc.mParameter.GetPtr(), sizeParameter);
+  }
+  bp.Collect();
   result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
   bp.UnlinkCollect();
   return result;
@@ -609,55 +575,39 @@ TContainer TPacket_UpdateGameObjectByPattern::PackInherit()
 //-----------------------------------------------------------------
 void TPacket_UpdateGameObjectByPattern::UnpackInherit( char* p, int size )
 {
-  if( size < sizeof(TypeFGIObject) )
+  mVector.clear();
+  while( size > 0)
   {
-    BL_FIX_BUG();
-    return;
+    TDescCorrection desc;
+    if( size < sizeof(TypeID_GameMap) )
+    {
+      BL_FIX_BUG();
+      return;
+    }
+    desc.mID_Object = *((TypeID_GameMap*)p);
+    p    += sizeof(TypeID_GameMap);
+    size -= sizeof(TypeID_GameMap);
+    //---------------------------------------------------------------------
+    if( size < sizeof(TypeSizeParameter) )
+    {
+      BL_FIX_BUG();
+      return;
+    }
+    TypeSizeParameter sizeParameter = *((TypeSizeParameter*)p);
+    p    += sizeof(TypeSizeParameter);
+    size -= sizeof(TypeSizeParameter);
+    //---------------------------------------------------------------------
+    if( size < sizeParameter )
+    {
+      BL_FIX_BUG();
+      return;
+    }
+    desc.mParameter.SetData( p, sizeParameter);
+    p    += sizeParameter;
+    size -= sizeParameter;
+    //---------------------------------------------------------------------
+    mVector.push_back(desc);
   }
-  mTypeFGIObject = *((TypeFGIObject*)p);
-  p    += sizeof(TypeFGIObject);
-  size -= sizeof(TypeFGIObject);
-  //-------------------------------------------------
-  if( size < sizeof(TypeSizeNameFGIObject) )
-  {
-    BL_FIX_BUG();
-    return;
-  }
-  TypeSizeNameFGIObject sizeName = *((TypeSizeNameFGIObject*)p);
-  p    += sizeof(TypeSizeNameFGIObject);
-  size -= sizeof(TypeSizeNameFGIObject);
-  //-------------------------------------------------
-  if( size < sizeName )
-  {
-    BL_FIX_BUG();
-    return;
-  }
-  char str[256];
-  strncpy(str, p, sizeName);
-  str[sizeName] = '\0';
-  mNameObject = str;
-  p    += sizeName;
-  size -= sizeName;
-  //-------------------------------------------------
-  if( size < sizeof(TypeSizeDescFGIObject) )
-  {
-    BL_FIX_BUG();
-    return;
-  }
-  TypeSizeDescFGIObject sizeDesc = *((TypeSizeDescFGIObject*)p);
-  p    += sizeof(TypeSizeDescFGIObject);
-  size -= sizeof(TypeSizeDescFGIObject);
-  //-------------------------------------------------
-  if( size < sizeDesc )
-  {
-    BL_FIX_BUG();
-    return;
-  }
-  mDesc.SetData(p, sizeDesc);
-  p    += sizeDesc;
-  size -= sizeDesc;
-
-  BL_ASSERT(size==0);
 }
 //-----------------------------------------------------------------
 TPacket_GameImpl::TPacket_GameImpl() : TBasePacket_PCS(ePacket_GameImpl)

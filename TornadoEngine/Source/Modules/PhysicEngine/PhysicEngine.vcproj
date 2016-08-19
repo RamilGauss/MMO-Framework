@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;../../Base/Share"
+				AdditionalIncludeDirectories="./;../../Base"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Share_d.lib BulletCollision_d.lib BulletDynamics_d.lib BulletSoftBody_d.lib LinearMath_d.lib"
+				AdditionalDependencies="Base_d.lib BulletCollision_d.lib BulletDynamics_d.lib BulletSoftBody_d.lib LinearMath_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\..\Lib"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;../../Base/Share"
+				AdditionalIncludeDirectories="./;../../Base"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Share.lib BulletCollision.lib BulletDynamics.lib BulletSoftBody.lib LinearMath.lib"
+				AdditionalDependencies="Base.lib BulletCollision.lib BulletDynamics.lib BulletSoftBody.lib LinearMath.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\..\Lib"
 				GenerateDebugInformation="true"

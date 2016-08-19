@@ -29,7 +29,7 @@ namespace nsPCS
     ePacket_EnterRoom,
     // Room events
     ePacket_LoadMap,// Slave описывает карту для загрузки
-    //ePacket_CorrectGameObjects,// корректировка физических параметров игровых объектов
+    ePacket_EndLoadMap,// Client отправляет событие окончания загрузки карты
     ePacket_AddGameObjects,
     ePacket_EnableGameObjects,
     ePacket_DisableGameObjects,

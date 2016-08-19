@@ -1,26 +1,26 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-√Û‰‡ÍÓ‚ –‡ÏËÎ¸ —Â„ÂÂ‚Ë˜ 
+–ì—É–¥–∞–∫–æ–≤ –†–∞–º–∏–ª—å –°–µ—Ä–≥–µ–µ–≤–∏—á 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerNameTypeObjectMap.h"
+#include "ManagerNamePattern.h"
 
 namespace nsManagerNameTypeObjectMap
 {
-  const char* sAnimated = "animated";
-  const char* sLight    = "light";
-  const char* sModel    = "model";
-  const char* sSkybox   = "skybox";
-  const char* sSound    = "sound";
-  const char* sTerrain  = "terrain";
-  const char* sZone     = "zone";
+  const char* sAnimated = "Animated";
+  const char* sLight    = "Light";
+  const char* sModel    = "Model";
+  const char* sSkybox   = "Skybox";
+  const char* sSound    = "Sound";
+  const char* sTerrain  = "Terrain";
+  const char* sZone     = "Zone";
 }
 
 using namespace nsManagerNameTypeObjectMap;
 
-TManagerNameTypeObjectMap::TManagerNameTypeObjectMap()
+TManagerNamePattern::TManagerNamePattern()
 {
   mVecNameType.push_back(sAnimated);
   mVecNameType.push_back(sLight);
@@ -31,49 +31,49 @@ TManagerNameTypeObjectMap::TManagerNameTypeObjectMap()
   mVecNameType.push_back(sZone);
 }
 //-----------------------------------------------------------------------
-int TManagerNameTypeObjectMap::GetCount()
+int TManagerNamePattern::GetCount()
 {
   return mVecNameType.size();
 }
 //-----------------------------------------------------------------------
-std::string TManagerNameTypeObjectMap::Get(int index)
+std::string TManagerNamePattern::Get(int index)
 {
   if( index < 0 || index >= GetCount() )
     return "";
   return mVecNameType[index];
 }
 //-----------------------------------------------------------------------
-std::string TManagerNameTypeObjectMap::Animated()
+std::string TManagerNamePattern::Animated()
 {
   return sAnimated;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNameTypeObjectMap::Light()
+std::string TManagerNamePattern::Light()
 {
   return sLight;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNameTypeObjectMap::Model()
+std::string TManagerNamePattern::Model()
 {
   return sModel;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNameTypeObjectMap::Skybox()
+std::string TManagerNamePattern::Skybox()
 {
   return sSkybox;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNameTypeObjectMap::Sound()
+std::string TManagerNamePattern::Sound()
 {
   return sSound;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNameTypeObjectMap::Terrain()
+std::string TManagerNamePattern::Terrain()
 {
   return sTerrain;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNameTypeObjectMap::Zone()
+std::string TManagerNamePattern::Zone()
 {
   return sZone;
 }

@@ -21,7 +21,13 @@ public:
   virtual void UnloadAll();
   virtual bool DeleteGameObject(int id);
 
-  virtual int Progress();
+  virtual int GetProgress();
+
+  virtual void SetScene(TScene* pScene);
+  virtual void Thread_Bullet();
+  virtual void Thread_Ogre();
+  virtual void Thread_Logic();
+  virtual void Thread_OpenAL();
 };
 
 #endif

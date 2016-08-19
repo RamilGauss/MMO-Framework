@@ -22,18 +22,48 @@ void TGP_Scenario_Builder::LoadMap(std::string nameMap)
 
 }
 //---------------------------------------------------------------------------------
-bool TGP_Scenario_Builder::AddGameObject(TAddGameObject&    desc)
-{
-  return false;
-}
-//---------------------------------------------------------------------------------
 bool TGP_Scenario_Builder::AddGameObject(TMapItem::TObject& desc)
 {
   return false;
 }
 //---------------------------------------------------------------------------------
-int TGP_Scenario_Builder::Progress()
+int TGP_Scenario_Builder::GetPhysicWorldID()
 {
-  return 0;
+  return mBuilder.GetPhysicWorldID();
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Builder::Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP)
+{
+
+}
+//---------------------------------------------------------------------------------
+int TGP_Scenario_Builder::GetProgress()
+{
+  return mBuilder.GetProgress();
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Builder::SetScene(TScene* pScene)
+{
+
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Builder::Thread_Bullet()
+{
+
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Builder::Thread_Ogre()
+{
+
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Builder::Thread_Logic()
+{
+
+}
+//---------------------------------------------------------------------------------
+void TGP_Scenario_Builder::Thread_OpenAL()
+{
+
 }
 //---------------------------------------------------------------------------------

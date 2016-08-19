@@ -23,9 +23,8 @@ struct DllExport TMapItem : public TBaseItem
 	struct DllExport TObject
 	{
 		// base parameters
-		std::string type;
+    std::string namePattern;
     int         id;
-    std::string namePattern;// если пусто, то использовать дефолтный паттерн
 		nsMathTools::TVector3 position;
 		nsMathTools::TVector3 rotation;
 

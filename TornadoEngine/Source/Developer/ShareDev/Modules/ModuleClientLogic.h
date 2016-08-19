@@ -11,12 +11,14 @@ See for more information License.h.
 #include "ModuleLogic.h"
 #include "InputCmdDevTool.h"
 #include "ManagerGameMap.h"
+#include "GP_AggregationScenario_Client.h"
 
 class DllExport TModuleClientLogic : public TModuleLogic
 {
 protected:
-  TInputCmdDevTool mInputCmd;
-  TManagerGameMap  mMGM;
+  TInputCmdDevTool               mInputCmd;
+  TGP_AggregationScenario_Client mAggregationScenario_Client;
+
 public:
   TModuleClientLogic();
 

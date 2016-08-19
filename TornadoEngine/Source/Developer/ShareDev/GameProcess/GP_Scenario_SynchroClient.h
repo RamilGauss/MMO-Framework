@@ -11,16 +11,25 @@ See for more information License.h.
 #include "IGP_Scenario_SynchroClient.h"
 #include "GP_Scenario.h"
 
-class DllExport GP_Scenario_SynchroClient : public IGP_Scenario_SynchroClient, 
+class DllExport TGP_Scenario_SynchroClient : public IGP_Scenario_SynchroClient, 
   public TGP_Scenario
 {
 public:
-  GP_Scenario_SynchroClient();
-  virtual ~GP_Scenario_SynchroClient();
+  TGP_Scenario_SynchroClient();
+  virtual ~TGP_Scenario_SynchroClient();
 
   virtual void SetEnable(int id, bool v);
   virtual bool UpdateGameObjectFromGameItem(int id, std::string type, std::string name);
   virtual bool UpdateGameObjectFromPattern(int id, TContainer internalState);
+
+  virtual int GetProgress();
+
+  virtual void SetScene(TScene* pScene);
+  virtual void Thread_Bullet();
+  virtual void Thread_Ogre();
+  virtual void Thread_Logic();
+  virtual void Thread_OpenAL();
+
 };
 
 #endif

@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="Share"
+	Name="Base"
 	ProjectGUID="{4FE15A87-875C-41AB-B100-317EAA0A9E5A}"
 	RootNamespace="Share"
 	Keyword="Win32Proj"
@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\..\Exe"
-			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\Exe"
+			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="2"
 			CharacterSet="0"
 			ManagedExtensions="0"
@@ -70,7 +70,7 @@
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
 				SubSystem="2"
-				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
+				ImportLibrary="..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -97,8 +97,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\..\Exe"
-			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\Exe"
+			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="2"
 			CharacterSet="0"
 			WholeProgramOptimization="1"
@@ -149,7 +149,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
+				ImportLibrary="..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool

@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;../../Source/Base/Share;../../Source/Modules/NetTransport;../../Source/Modules/MMOEngine/Include"
+				AdditionalIncludeDirectories="./;../../Source/Base;../../Source/Modules/NetTransport;../../Source/Modules/MMOEngine/Include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Share_d.lib NetTransport_d.lib MMOEngine_d.lib"
+				AdditionalDependencies="Base_d.lib NetTransport_d.lib MMOEngine_d.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\Lib"
 				GenerateDebugInformation="true"
@@ -118,6 +118,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="./;../../Source/Base;../../Source/Modules/NetTransport;../../Source/Modules/MMOEngine/Include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -136,6 +137,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="Base.lib NetTransport.lib MMOEngine.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="1"

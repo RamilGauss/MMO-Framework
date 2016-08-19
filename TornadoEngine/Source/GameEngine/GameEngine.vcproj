@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../Base/Share;../Developer/Source"
+				AdditionalIncludeDirectories=".;../Base;../Developer/Source"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GAME_ENGINE_EXPORTS;GAME_ENGINE_EI=__declspec(dllexport);_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib comctl32.lib Share_d.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib comctl32.lib Base_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\Lib;"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;..\Base\Share"
+				AdditionalIncludeDirectories=".;..\Share;../Developer/Source"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;GAMEENGINE_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib comctl32.lib Share.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib comctl32.lib Base.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\Lib;"
 				GenerateDebugInformation="true"

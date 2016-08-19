@@ -16,7 +16,6 @@ public:
   TGP_Scenario_Block();
   virtual ~TGP_Scenario_Block();
 
-  virtual int Progress() = 0;
   virtual bool IsBlock();
 };
 
