@@ -3,7 +3,7 @@ LANGUAGE = C++
 
 CONFIG += dll qt warn_on
 
-TARGET = /usr/lib/Share_d
+TARGET = /usr/lib/Base_d
 
 INCLUDEPATH = .
 

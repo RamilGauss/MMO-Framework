@@ -1,8 +1,8 @@
-cd ../Source/Base/Share
+cd ../Source/Base
 qmake
 make clean
 make
-cd ../../..
+cd ../..
 ###########################################################
 cd ./Source/Modules/MMOEngine
 qmake
