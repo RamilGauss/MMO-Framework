@@ -32,11 +32,6 @@ bool TGP_Scenario_SynchroClient::UpdateGameObjectFromPattern(int id, TContainer 
   return false;
 }
 //----------------------------------------------------------------------------------
-int TGP_Scenario_SynchroClient::GetProgress()
-{
-  return 0;
-}
-//----------------------------------------------------------------------------------
 void TGP_Scenario_SynchroClient::SetScene(TScene* pScene)
 {
   
@@ -62,3 +57,8 @@ void TGP_Scenario_SynchroClient::Thread_OpenAL()
   
 }
 //----------------------------------------------------------------------------------
+nsGameProcess::GP_TypeScenario TGP_Scenario_SynchroClient::GetType()
+{
+  return nsGameProcess::eSynchroClient;
+}
+//-----------------------------------------------------------------------------

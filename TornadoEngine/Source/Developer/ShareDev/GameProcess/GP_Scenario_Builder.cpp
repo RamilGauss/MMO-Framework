@@ -37,11 +37,6 @@ void TGP_Scenario_Builder::Setup(TUsePattern* pUsePattern, TFactoryBehaviourPatt
 
 }
 //---------------------------------------------------------------------------------
-int TGP_Scenario_Builder::GetProgress()
-{
-  return mBuilder.GetProgress();
-}
-//---------------------------------------------------------------------------------
 void TGP_Scenario_Builder::SetScene(TScene* pScene)
 {
 
@@ -67,3 +62,13 @@ void TGP_Scenario_Builder::Thread_OpenAL()
 
 }
 //---------------------------------------------------------------------------------
+bool TGP_Scenario_Builder::IsBlock()
+{
+  return true;
+}
+//-------------------------------------------------------------------------------
+nsGameProcess::GP_TypeScenario TGP_Scenario_Builder::GetType()
+{
+  return nsGameProcess::eBuilder;
+}
+//-----------------------------------------------------------------------------

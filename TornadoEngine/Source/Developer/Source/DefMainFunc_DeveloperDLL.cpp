@@ -17,8 +17,17 @@ See for more information License.h.
 #include "DevTool_EditorMap.h"
 #include "DevTool_EditorTableSound.h"
 
+//###
+#include "GP_AggregationScenario_Client.h"
+//###
+
 DllExport_C IDevTool* GetDevTool(int variant_use)
 {
+  //###
+  // тест
+  TGP_AggregationScenario_Client aggrSc;
+  //###
+
   switch(variant_use)
   {
     case 0:

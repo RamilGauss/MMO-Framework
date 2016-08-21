@@ -8,21 +8,29 @@ See for more information License.h.
 #ifndef IGP_AggregationScenarioH
 #define IGP_AggregationScenarioH
 
+#include "GP_TypeScenario.h"
+
 class IGP_Scenario_General;
+class TGP_Scenario;
 
 class IGP_AggregationScenario
 {
 protected:
-  IGP_Scenario_General* volatile mPtrCurrentScenario;// для смены указателя только в потоке Логики
+  // для смены указателя только в потоке Логики
+  void* mPtrCurrentScenario;
 public:
   IGP_AggregationScenario();
   virtual ~IGP_AggregationScenario();
 
-  enum{eUndefType=0};
-  int GetCurrentScenarioType();
+  nsGameProcess::GP_TypeScenario GetCurrentScenarioType();// L
+  
+  virtual bool Activate(nsGameProcess::GP_TypeScenario type) = 0;// L
 protected:
   void Begin(IGP_Scenario_General* pNewScenario);
   void End();
+
+  IGP_Scenario_General* GetCurrentScGeneral();
+  TGP_Scenario*         GetCurrentSc();
 };
 
 #endif 

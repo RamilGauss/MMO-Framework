@@ -1091,6 +1091,10 @@
 		<Filter
 			Name="GameProcess"
 			>
+			<File
+				RelativePath=".\GameProcess\GP_TypeScenario.h"
+				>
+			</File>
 			<Filter
 				Name="Client"
 				>
@@ -1140,14 +1144,6 @@
 				</File>
 				<File
 					RelativePath=".\GameProcess\GP_Scenario.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\GP_Scenario_Block.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\GP_Scenario_Block.h"
 					>
 				</File>
 				<File

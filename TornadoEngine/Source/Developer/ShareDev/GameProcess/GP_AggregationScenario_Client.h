@@ -34,7 +34,7 @@ public:
   virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP);
   virtual void LoadMap(std::string nameMap);
   virtual bool AddGameObject(TMapItem::TObject& desc);
-  virtual int GetPhysicWorldID();
+  virtual int  GetPhysicWorldID();
 
   virtual void SetEnable(int id, bool v);
   virtual bool UpdateGameObjectFromGameItem(int id, std::string type, std::string name);
@@ -43,12 +43,14 @@ public:
   virtual void UnloadAll();
   virtual bool DeleteGameObject(int id);// запустить инициализацию процесса уничтожения объекта
 
-  virtual int GetProgress();
   virtual void SetScene(TScene* pScene);
   virtual void Thread_Bullet();
   virtual void Thread_Ogre();
   virtual void Thread_Logic();
   virtual void Thread_OpenAL();
+
+
+  virtual bool Activate(nsGameProcess::GP_TypeScenario type);
 protected:
 
 };

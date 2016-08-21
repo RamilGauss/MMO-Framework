@@ -21,6 +21,7 @@ public:
   TGP_AggregationScenario_Slave();
   virtual ~TGP_AggregationScenario_Slave();
 
+  virtual bool Activate(nsGameProcess::GP_TypeScenario type);
 
 };
 

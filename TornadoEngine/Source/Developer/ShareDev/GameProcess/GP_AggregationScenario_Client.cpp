@@ -73,28 +73,27 @@ void TGP_AggregationScenario_Client::SetScene(TScene* pScene)
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::Thread_Bullet()
 {
-  mPtrCurrentScenario->Thread_Bullet();
+  GetCurrentScGeneral()->Thread_Bullet();
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::Thread_Ogre()
 {
-  mPtrCurrentScenario->Thread_Ogre();
+  GetCurrentScGeneral()->Thread_Ogre();
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::Thread_Logic()
 {
   // проверка на новые задания
-  mPtrCurrentScenario->Thread_Logic();
+  GetCurrentScGeneral()->Thread_Logic();
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::Thread_OpenAL()
 {
-  mPtrCurrentScenario->Thread_OpenAL();
+  GetCurrentScGeneral()->Thread_OpenAL();
 }
 //---------------------------------------------------------------------------------------------
-int TGP_AggregationScenario_Client::GetProgress()
+bool TGP_AggregationScenario_Client::Activate(nsGameProcess::GP_TypeScenario type)
 {
-  return 0;
+  return true;
 }
 //---------------------------------------------------------------------------------------------
-

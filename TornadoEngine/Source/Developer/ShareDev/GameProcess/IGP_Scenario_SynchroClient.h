@@ -13,15 +13,15 @@ See for more information License.h.
 #include <string>
 #include "ContainerTypes.h"
 
-class DllExport IGP_Scenario_SynchroClient : public IGP_Scenario_General
+class DllExport IGP_Scenario_SynchroClient : public virtual IGP_Scenario_General
 {
 public:
   IGP_Scenario_SynchroClient();
   virtual ~IGP_Scenario_SynchroClient();
 
-  virtual void SetEnable(int id, bool v) = 0;
-  virtual bool UpdateGameObjectFromGameItem(int id, std::string type, std::string name) = 0;
-  virtual bool UpdateGameObjectFromPattern(int id, TContainer internalState) = 0;
+  virtual void SetEnable(int id, bool v) = 0;// L
+  virtual bool UpdateGameObjectFromGameItem(int id, std::string type, std::string name) = 0;// L
+  virtual bool UpdateGameObjectFromPattern(int id, TContainer internalState) = 0;// L
 };
 
 #endif

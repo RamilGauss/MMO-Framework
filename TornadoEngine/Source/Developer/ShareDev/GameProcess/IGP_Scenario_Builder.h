@@ -17,7 +17,7 @@ See for more information License.h.
 class TFactoryBehaviourPattern;
 class TUsePattern;
 
-class DllExport IGP_Scenario_Builder : public IGP_Scenario_General
+class DllExport IGP_Scenario_Builder : public virtual IGP_Scenario_General
 {
 public:
   IGP_Scenario_Builder();
@@ -26,7 +26,6 @@ public:
   virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP) = 0;
   virtual void LoadMap(std::string nameMap)  = 0;
   virtual bool AddGameObject(TMapItem::TObject& desc) = 0;
-
   virtual int GetPhysicWorldID() = 0;
 };
 

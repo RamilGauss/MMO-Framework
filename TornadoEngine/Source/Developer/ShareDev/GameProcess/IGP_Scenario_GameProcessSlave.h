@@ -11,7 +11,7 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "IGP_Scenario_General.h"
 
-class DllExport IGP_Scenario_GameProcessSlave : public IGP_Scenario_General
+class DllExport IGP_Scenario_GameProcessSlave : public virtual IGP_Scenario_General
 {
 public:
   IGP_Scenario_GameProcessSlave();

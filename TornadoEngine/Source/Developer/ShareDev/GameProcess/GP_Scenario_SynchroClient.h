@@ -22,14 +22,13 @@ public:
   virtual bool UpdateGameObjectFromGameItem(int id, std::string type, std::string name);
   virtual bool UpdateGameObjectFromPattern(int id, TContainer internalState);
 
-  virtual int GetProgress();
-
   virtual void SetScene(TScene* pScene);
   virtual void Thread_Bullet();
   virtual void Thread_Ogre();
   virtual void Thread_Logic();
   virtual void Thread_OpenAL();
 
+  virtual nsGameProcess::GP_TypeScenario GetType();
 };
 
 #endif

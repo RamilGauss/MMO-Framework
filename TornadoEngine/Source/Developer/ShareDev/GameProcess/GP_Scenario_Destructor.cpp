@@ -27,11 +27,6 @@ bool TGP_Scenario_Destructor::DeleteGameObject(int id)
   return false;
 }
 //---------------------------------------------------------------------------------
-int TGP_Scenario_Destructor::GetProgress()
-{
-  return 0;
-}
-//---------------------------------------------------------------------------------
 void TGP_Scenario_Destructor::SetScene(TScene* pScene)
 {
 
@@ -57,3 +52,13 @@ void TGP_Scenario_Destructor::Thread_OpenAL()
 
 }
 //---------------------------------------------------------------------------------
+bool TGP_Scenario_Destructor::IsBlock()
+{
+  return true;
+}
+//-------------------------------------------------------------------------------
+nsGameProcess::GP_TypeScenario TGP_Scenario_Destructor::GetType()
+{
+  return nsGameProcess::eDestructor;
+}
+//-----------------------------------------------------------------------------

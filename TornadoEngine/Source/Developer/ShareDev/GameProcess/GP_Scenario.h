@@ -9,20 +9,19 @@ See for more information License.h.
 #define GP_ScenarioH
 
 #include "TypeDef.h"
+#include "GP_TypeScenario.h"
 
 class TScene;
 
 class DllExport TGP_Scenario
 {
-  int mType;
 protected:
   TScene* mPtrScene;
 public:
   TGP_Scenario();
   virtual ~TGP_Scenario();
 
-  int  GetType();
-  void SetType(int type);
+  virtual nsGameProcess::GP_TypeScenario GetType() = 0;
   virtual bool IsBlock();
 };
 

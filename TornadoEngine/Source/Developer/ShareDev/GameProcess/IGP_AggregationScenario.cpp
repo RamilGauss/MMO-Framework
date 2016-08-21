@@ -8,6 +8,7 @@ See for more information License.h.
 #include "IGP_AggregationScenario.h"
 #include "IGP_Scenario_General.h"
 #include <stddef.h>
+#include "GP_Scenario.h"
 
 IGP_AggregationScenario::IGP_AggregationScenario()
 {
@@ -29,10 +30,20 @@ void IGP_AggregationScenario::End()
   mPtrCurrentScenario = NULL;
 }
 //-----------------------------------------------------------------
-int IGP_AggregationScenario::GetCurrentScenarioType()
+nsGameProcess::GP_TypeScenario IGP_AggregationScenario::GetCurrentScenarioType()
 {
-  //if(mPtrCurrentScenario==NULL)
-    return eUndefType;
-  //return mPtrCurrentScenario->GetType();
+  if(mPtrCurrentScenario==NULL)
+    return nsGameProcess::eUndef;
+  return GetCurrentSc()->GetType();
+}
+//-----------------------------------------------------------------
+IGP_Scenario_General* IGP_AggregationScenario::GetCurrentScGeneral()
+{
+  return (IGP_Scenario_General*)mPtrCurrentScenario;
+}
+//-----------------------------------------------------------------
+TGP_Scenario* IGP_AggregationScenario::GetCurrentSc()
+{
+  return (TGP_Scenario*)mPtrCurrentScenario;
 }
 //-----------------------------------------------------------------

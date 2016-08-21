@@ -11,14 +11,15 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "IGP_Scenario_General.h"
 
-class DllExport IGP_Scenario_Destructor : public IGP_Scenario_General
+class DllExport IGP_Scenario_Destructor : public virtual IGP_Scenario_General
 {
 public:
   IGP_Scenario_Destructor();
   virtual ~IGP_Scenario_Destructor();
 
-  virtual void UnloadAll() = 0;
-  virtual bool DeleteGameObject(int id) = 0;// запустить инициализацию процесса уничтожения объекта
+  virtual void UnloadAll() = 0;// L
+  // запустить инициализацию процесса уничтожения объекта
+  virtual bool DeleteGameObject(int id) = 0;// L
 };
 
 #endif
