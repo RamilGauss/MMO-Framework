@@ -40,7 +40,7 @@ void TSession::Work()
   }
 }
 //---------------------------------------------------------------------
-void TSession::Send(TBreakPacket bp, bool check, bool use_crypt)
+void TSession::Send(TBreakPacket& bp, bool check, bool use_crypt)
 {
   if(use_crypt)
     check = true;

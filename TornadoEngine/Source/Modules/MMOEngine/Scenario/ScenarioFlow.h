@@ -41,8 +41,8 @@ namespace nsMMOEngine
     TScenarioFlow();
     virtual ~TScenarioFlow();
 
-    void SendUp(TBreakPacket bp, bool check);
-    void SendDown(TBreakPacket bp, bool check);
+    void SendUp(TBreakPacket& bp, bool check);
+    void SendDown(TBreakPacket& bp, bool check);
 
     virtual void Recv(TDescRecvSession* pDesc);
   protected:

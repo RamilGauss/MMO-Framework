@@ -40,7 +40,7 @@ public:
   // в качестве передаваемых данных выступает объект, который
   // содержит цепочку данных
 	virtual void Send(unsigned int ip, unsigned short port,
-                    TBreakPacket packet, bool check = true) = 0;
+                    TBreakPacket& packet, bool check = true) = 0;
 
 	// чтение - зарегистрируйся
   // вызывается из потока транспорта, поэтому ЗАПРЕЩАЕТСЯ вызывать методы транспорта по данным событиям

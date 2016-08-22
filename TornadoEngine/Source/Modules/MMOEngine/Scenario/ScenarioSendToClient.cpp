@@ -39,17 +39,17 @@ void TScenarioSendToClient::Recv(TDescRecvSession* pDesc)
   }
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::SendFromSuperServer(std::list<unsigned int>& lKey, TBreakPacket bp)
+void TScenarioSendToClient::SendFromSuperServer(std::list<unsigned int>& lKey, TBreakPacket& bp)
 {
 	SendAll<THeaderSuperServer>(lKey, bp);
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::SendFromMaster(std::list<unsigned int>& lKey, TBreakPacket bp)
+void TScenarioSendToClient::SendFromMaster(std::list<unsigned int>& lKey, TBreakPacket& bp)
 {
 	SendAll<THeaderMaster>(lKey, bp);
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::SendFromSlave(std::list<unsigned int>& lKey, TBreakPacket bp)
+void TScenarioSendToClient::SendFromSlave(std::list<unsigned int>& lKey, TBreakPacket& bp)
 {
 	SendAll<THeaderSlave>(lKey, bp);
 }

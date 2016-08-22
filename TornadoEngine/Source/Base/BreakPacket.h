@@ -21,15 +21,31 @@ See for more information License.h.
 
 class DllExport TBreakPacket
 {
-protected:
-  typedef std::list<IContainer*> TListPtrContainer;
+public:
+  struct TDescContainer
+  {
+    typedef enum{eContainer, eContainerPtr}TypeContainer;
+    TypeContainer type;
+    IContainer* pC;
+    TDescContainer(){pC=NULL;}
+    void Init(TypeContainer t)
+    {
+      type = t;
+      if(type==eContainer)
+        pC = new TContainer;
+      else
+        pC = new TContainerPtr;
+    }
+  };
+  typedef std::list<TDescContainer> TListPtrContainer;
   typedef TListPtrContainer::iterator TListPtrContainerIt;
-
+protected:
   TListPtrContainer mList;
 
   TContainer mCollect;
 public:
   TBreakPacket();
+  TBreakPacket(const TBreakPacket& bp);
   virtual ~TBreakPacket();
 
   // добавить кусок памяти
@@ -52,11 +68,12 @@ public:
 
   void UnlinkCollect();
 
-  const TBreakPacket& operator =( const TBreakPacket& b );
+  TBreakPacket& operator =( const TBreakPacket& b );
 
   TListPtrContainer* GetList(){return &mList;}
 protected:
-  IContainer* PushData(char* p,int size, bool copyData);
+  TDescContainer PushData(char* p,int size, bool copyData);
+  void CopyFrom(const TBreakPacket& bp);
 };
 
 

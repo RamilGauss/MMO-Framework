@@ -41,7 +41,7 @@ public:
   virtual void Init();
   virtual bool Open( unsigned short port, unsigned char numNetWork = 0);
   virtual bool Connect(unsigned int ip, unsigned short port);
-  virtual void Send(unsigned int ip, unsigned short port, TBreakPacket bp);
+  virtual void Send(unsigned int ip, unsigned short port, TBreakPacket& bp);
   virtual void Close();
   virtual TNetDeviceTCP* GetDevice(){return &mDevice;}
 

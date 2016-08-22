@@ -65,7 +65,7 @@ namespace nsMMOEngine
     ~TSession();
     
     void Work();
-    void Send(TBreakPacket bp, bool check = true, bool use_crypt = false);
+    void Send(TBreakPacket& bp, bool check = true, bool use_crypt = false);
     void SetTransport(INetTransport* pTransport);
     void GetInfo(TIP_Port& pDesc);
     void SetInfo(TIP_Port& pDesc);
@@ -76,8 +76,6 @@ namespace nsMMOEngine
 
     void SendKeyRSA(TContainer& c_keyRSA);
     void SendKeyAES(TContainer& c_keyAES);
-
-    void SendEncrypt(TBreakPacket bp);
 
     unsigned int GetCounterIn();
 

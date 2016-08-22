@@ -17,34 +17,45 @@ TBreakPacket::TBreakPacket()
 
 }
 //-----------------------------------------------------------------
+TBreakPacket::TBreakPacket(const TBreakPacket& bp)
+{
+  CopyFrom(bp);
+}
+//-----------------------------------------------------------------
+TBreakPacket& TBreakPacket::operator =( const TBreakPacket& bp )
+{
+  CopyFrom(bp);
+	return *this;
+}
+//-----------------------------------------------------------------
 TBreakPacket::~TBreakPacket()
 {
   DeleteCollect();
   UnlinkPart();
 }
 //-----------------------------------------------------------------
-IContainer* TBreakPacket::PushData(char* p,int size, bool copyData)
+TBreakPacket::TDescContainer TBreakPacket::PushData(char* p,int size, bool copyData )
 {
-  IContainer* pC = NULL;
+  TDescContainer desc;
   if( copyData )
-    pC = new TContainer;
+    desc.Init(TDescContainer::eContainer);
   else
-    pC = new TContainerPtr;
+    desc.Init(TDescContainer::eContainerPtr);
 
-  pC->SetDataByCount(p, size);
-  return pC;
+  desc.pC->SetDataByCount(p, size);
+  return desc;
 }
 //-----------------------------------------------------------------
 void TBreakPacket::PushBack(char* p,int size, bool copyData)
 {
-  IContainer* pC = PushData(p, size, copyData);
-  mList.push_back(pC);
+  TDescContainer desc = PushData(p, size, copyData);
+  mList.push_back(desc);
 }
 //-----------------------------------------------------------------
 void TBreakPacket::PushFront(char* p,int size, bool copyData)
 {
-  IContainer* pC = PushData(p, size, copyData);
-  mList.push_front(pC);
+  TDescContainer desc = PushData(p, size, copyData);
+  mList.push_front(desc);
 }
 //-----------------------------------------------------------------
 void TBreakPacket::Collect()
@@ -56,10 +67,10 @@ void TBreakPacket::Collect()
   char* pCollect = (char*)mCollect.GetPtr();
 
   // копируем все в одну область памяти
-  BOOST_FOREACH( IContainer* pC, mList )
+  BOOST_FOREACH( TDescContainer& desc, mList )
   {
-    int sizePart  =        pC->GetSize();
-    char* ptrPart = (char*)pC->GetPtr(); 
+    int sizePart  =        desc.pC->GetSize();
+    char* ptrPart = (char*)desc.pC->GetPtr(); 
     memcpy(pCollect, ptrPart, sizePart);
     pCollect += sizePart;
   }
@@ -76,8 +87,8 @@ int TBreakPacket::GetSize()
     return mCollect.GetSize();
   int size = 0;
 
-  BOOST_FOREACH( IContainer* pC, mList )
-    size += pC->GetSize();
+  BOOST_FOREACH( TDescContainer& desc, mList )
+    size += desc.pC->GetSize();
 
   return size;
 }
@@ -94,19 +105,25 @@ void TBreakPacket::DeleteCollect()
 //-----------------------------------------------------------------
 void TBreakPacket::UnlinkPart()
 {
-  BOOST_FOREACH( IContainer* pC, mList )
-    delete pC;
+  BOOST_FOREACH( TDescContainer& desc, mList )
+    delete desc.pC;
   mList.clear();
 }
 //-----------------------------------------------------------------	
-const TBreakPacket& TBreakPacket::operator =( const TBreakPacket& b )
-{
-	mList = b.mList;
-	return *this;
-}
-//-----------------------------------------------------------------
 void TBreakPacket::UnlinkCollect()
 {
   mCollect.Unlink();
+}
+//-----------------------------------------------------------------
+void TBreakPacket::CopyFrom(const TBreakPacket& bp)
+{
+  DeleteCollect();
+  UnlinkPart();
+  BOOST_FOREACH( TDescContainer desc, bp.mList )
+  {
+    bool copyData = bool(desc.type==TDescContainer::eContainer);
+    TDescContainer descCopy = PushData(desc.pC->GetPtr(), desc.pC->GetSize(), copyData);
+    mList.push_back(descCopy);
+  }
 }
 //-----------------------------------------------------------------

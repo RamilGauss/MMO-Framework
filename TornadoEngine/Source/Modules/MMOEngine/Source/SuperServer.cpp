@@ -39,7 +39,7 @@ TSuperServer::~TSuperServer()
 
 }
 //-------------------------------------------------------------------------
-void TSuperServer::SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket bp)
+void TSuperServer::SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket& bp)
 {
 	mControlSc->mSendToClient->SendFromSuperServer(lKey, bp);
 }
@@ -96,7 +96,7 @@ bool TSuperServer::GetDescDown(int index, void* pDesc, int& sizeDesc)
   return true;
 }
 //-------------------------------------------------------------------------
-void TSuperServer::SendDown(unsigned int id_session, TBreakPacket bp, bool check)
+void TSuperServer::SendDown(unsigned int id_session, TBreakPacket& bp, bool check)
 {
   TContainerContextSc* pC = mMngContextMaster->FindContextBySession(id_session);
   if(pC==NULL)

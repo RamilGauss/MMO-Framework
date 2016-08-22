@@ -66,7 +66,7 @@ namespace nsMMOEngine
     virtual void Init(IMakerTransport* pMakerTransport);
     virtual bool Open(TDescOpen* pDesc, int count = 1);
     virtual void DisconnectUp();
-    virtual void SendUp(TBreakPacket bp, bool check = true);
+    virtual void SendUp(TBreakPacket& bp, bool check = true);
     void Work();
     virtual bool IsConnectUp();
     virtual bool IsConnect(unsigned int id);

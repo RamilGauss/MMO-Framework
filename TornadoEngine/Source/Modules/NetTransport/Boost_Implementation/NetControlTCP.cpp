@@ -51,7 +51,7 @@ bool TNetControlTCP::Connect(unsigned int ip, unsigned short port)
   return flgResConnect;
 }
 //----------------------------------------------------------------------------------
-void TNetControlTCP::Send(unsigned int ip, unsigned short port, TBreakPacket bp)
+void TNetControlTCP::Send(unsigned int ip, unsigned short port, TBreakPacket& bp)
 {
   // добавить заголовки в начало  - 2 байт под заголовок + 4 байта - размер данных
   THeaderTCP header;

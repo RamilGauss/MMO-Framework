@@ -111,7 +111,7 @@ void TNetControlUDP::Done()
   mDevice.Close();
 }
 //----------------------------------------------------------------------------------
-void TNetControlUDP::Send(unsigned int ip, unsigned short port, TBreakPacket bp)
+void TNetControlUDP::Send(unsigned int ip, unsigned short port, TBreakPacket& bp)
 {
   // формируем заголовок
 	TIP_Port ip_port(ip,port);

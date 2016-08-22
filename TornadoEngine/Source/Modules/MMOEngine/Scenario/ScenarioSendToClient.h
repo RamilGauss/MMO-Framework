@@ -57,9 +57,9 @@ namespace nsMMOEngine
     
     virtual void Recv(TDescRecvSession* pDesc);
   public:
-    void SendFromSuperServer(std::list<unsigned int>& lKey, TBreakPacket bp);
-    void SendFromMaster(std::list<unsigned int>& lKey, TBreakPacket bp);
-    void SendFromSlave(std::list<unsigned int>& lKey, TBreakPacket bp);
+    void SendFromSuperServer(std::list<unsigned int>& lKey, TBreakPacket& bp);
+    void SendFromMaster(std::list<unsigned int>& lKey, TBreakPacket& bp);
+    void SendFromSlave(std::list<unsigned int>& lKey, TBreakPacket& bp);
   protected:
 
     void RecvFromSuperServer(TDescRecvSession* pDesc);
@@ -74,11 +74,11 @@ namespace nsMMOEngine
 		void SendAll(std::list<unsigned int>& lKey, TBreakPacket& bp);
 
 		template <class T>
-		void Send(unsigned int id_client, TBreakPacket bp);
+		void Send(unsigned int id_client, TBreakPacket& bp);
   };
 	//------------------------------------------------------------------------------
 	template <class T>
-	void TScenarioSendToClient::Send(unsigned int id_client, TBreakPacket bp)
+	void TScenarioSendToClient::Send(unsigned int id_client, TBreakPacket& bp)
 	{
 		T h;
 		h.id_client = id_client;

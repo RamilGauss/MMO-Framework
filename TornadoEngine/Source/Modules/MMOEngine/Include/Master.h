@@ -67,7 +67,7 @@ namespace nsMMOEngine
     virtual bool FindSlaveSessionByGroup(unsigned int id_group, unsigned int& id_session);
    
 		// BaseServer
-    virtual void SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket bp);
+    virtual void SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket& bp);
 		struct TDescDownMaster
 		{
 			unsigned int id_session;
@@ -75,7 +75,7 @@ namespace nsMMOEngine
 		virtual int  GetCountDown();
 		virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc имеет тип TDescDownMaster*
 
-    virtual void SendDown(unsigned int id_session, TBreakPacket bp, bool check = true);
+    virtual void SendDown(unsigned int id_session, TBreakPacket& bp, bool check = true);
 
     // ActiveServer      
     virtual void ConnectUp(unsigned int ip, unsigned short port, 

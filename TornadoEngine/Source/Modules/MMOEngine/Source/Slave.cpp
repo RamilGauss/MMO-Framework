@@ -178,7 +178,7 @@ void TSlave::DisconnectAllClient()
   }
 }
 //-------------------------------------------------------------------------
-void TSlave::SendDown(unsigned int id_session, TBreakPacket bp, bool check)
+void TSlave::SendDown(unsigned int id_session, TBreakPacket& bp, bool check)
 {
   TContainerContextSc* pC = mMngContextClient->FindContextBySession(id_session);
   if(pC)
@@ -256,7 +256,7 @@ void TSlave::NeedContextSendToClient(unsigned int id_client)
 		mControlSc->mSendToClient->SetContext(NULL);
 }
 //-------------------------------------------------------------------------
-void TSlave::SendByClientKey(list<unsigned int>& lKey, TBreakPacket bp)
+void TSlave::SendByClientKey(list<unsigned int>& lKey, TBreakPacket& bp)
 {
 	mControlSc->mSendToClient->SendFromSlave(lKey, bp);
 }

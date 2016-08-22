@@ -39,7 +39,7 @@ bool TNetControlAcceptor::Connect(unsigned int ip, unsigned short port)
   return false;
 }
 //------------------------------------------------------------------------------
-void TNetControlAcceptor::Send(unsigned int ip, unsigned short port, TBreakPacket bp)
+void TNetControlAcceptor::Send(unsigned int ip, unsigned short port, TBreakPacket& bp)
 {
 
 }

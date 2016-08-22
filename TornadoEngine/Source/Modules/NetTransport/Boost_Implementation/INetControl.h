@@ -35,7 +35,7 @@ public:
   virtual void Init() = 0;
   virtual bool Open( unsigned short port, unsigned char numNetWork = 0) = 0;
   virtual bool Connect(unsigned int ip, unsigned short port) = 0;              // blocking
-  virtual void Send(unsigned int ip, unsigned short port, TBreakPacket bp) = 0;
+  virtual void Send(unsigned int ip, unsigned short port, TBreakPacket& bp) = 0;
 	virtual void Close() = 0;
 
   virtual char* GetBuffer(){return NULL;}

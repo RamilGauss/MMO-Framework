@@ -91,7 +91,7 @@ void TBase::DisconnectUp()
   // событие НЕ создавать, т.к. процесс синхронный
 }
 //-------------------------------------------------------------------------
-void TBase::SendUp(TBreakPacket bp, bool check)
+void TBase::SendUp(TBreakPacket& bp, bool check)
 {
   // устанавливать для сценария контекст не требуется
   mControlSc->mFlow->SendUp(bp, check);

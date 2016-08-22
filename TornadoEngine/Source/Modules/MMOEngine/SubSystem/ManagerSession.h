@@ -69,8 +69,8 @@ namespace nsMMOEngine
 		bool Start(TDescOpen* pDesc, int count = 1);
     void Work();
 		// для работы с сетью
-    unsigned int Send(unsigned int ip, unsigned short port, TBreakPacket bp, unsigned char subNet, bool check = true);// только если не установлено соединение
-		void Send(unsigned int id_session, TBreakPacket bp, bool check = true);
+    unsigned int Send(unsigned int ip, unsigned short port, TBreakPacket& bp, unsigned char subNet, bool check = true);// только если не установлено соединение
+		void Send(unsigned int id_session, TBreakPacket& bp, bool check = true);
     unsigned int GetSessionID(unsigned int ip, unsigned short port);
     bool GetInfo(unsigned int id_session, TIP_Port& ip_port_out);
     void CloseSession(unsigned int id_session);
@@ -99,7 +99,7 @@ namespace nsMMOEngine
     void CleanFlagsForWaitUp();
     void SendKeyRSA_Up(TSession* pSession);
 
-    void Send(TSession* pSession, TBreakPacket bp, bool check);
+    void Send(TSession* pSession, TBreakPacket& bp, bool check);
 
     void FixHack(char* sMsg);
 

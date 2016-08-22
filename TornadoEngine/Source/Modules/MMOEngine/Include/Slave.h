@@ -35,7 +35,7 @@ namespace nsMMOEngine
     virtual bool FindSessionByClientKey(unsigned int id, unsigned int& id_session);
 
     // BaseServer
-    virtual void SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket bp);
+    virtual void SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket& bp);
 
 		struct TDescDownSlave // для GetDescDown
 		{
@@ -43,7 +43,7 @@ namespace nsMMOEngine
 		};
 		virtual int  GetCountDown();
 		virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc имеет тип TDescDownSlave
-    virtual void SendDown(unsigned int id_session, TBreakPacket bp, bool check = true);
+    virtual void SendDown(unsigned int id_session, TBreakPacket& bp, bool check = true);
     // ActiveServer      
     virtual void ConnectUp(unsigned int ip, unsigned short port, 
                            void* pLogin, int sizeLogin, void* pPassword, int sizePassword,

@@ -48,7 +48,7 @@ public:
   virtual bool Open(unsigned short port, unsigned char numNetWork = 0);
 
 	virtual void Send(unsigned int ip, unsigned short port, 
-                    TBreakPacket packet, bool check = true);
+                    TBreakPacket& packet, bool check = true);
 
   virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv(){return &mCallBackRecv;}
   virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect(){return &mCallBackDisconnect;}

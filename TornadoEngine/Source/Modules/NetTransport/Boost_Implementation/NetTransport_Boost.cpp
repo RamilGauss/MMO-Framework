@@ -57,7 +57,7 @@ bool TNetTransport_Boost::Open(unsigned short port, unsigned char numNetWork)
 }
 //----------------------------------------------------------------------------------
 void TNetTransport_Boost::Send(unsigned int ip, unsigned short port, 
-							                   TBreakPacket packet, bool check)
+							                   TBreakPacket& packet, bool check)
 {
   mMutexSend.lock();
   if(check)

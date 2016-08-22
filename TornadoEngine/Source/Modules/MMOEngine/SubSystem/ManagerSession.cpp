@@ -95,7 +95,7 @@ void TManagerSession::Work()
   unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
-void TManagerSession::Send(unsigned int id_session, TBreakPacket bp, bool check)
+void TManagerSession::Send(unsigned int id_session, TBreakPacket& bp, bool check)
 {
   lockAccessSession();
   if(mNavigateSession==NULL)
@@ -111,7 +111,7 @@ void TManagerSession::Send(unsigned int id_session, TBreakPacket bp, bool check)
   unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
-unsigned int TManagerSession::Send(unsigned int ip, unsigned short port, TBreakPacket bp, unsigned char subNet, bool check)
+unsigned int TManagerSession::Send(unsigned int ip, unsigned short port, TBreakPacket& bp, unsigned char subNet, bool check)
 {
   lockConnectUp();
 
@@ -500,7 +500,7 @@ void TManagerSession::SendKeyRSA_Up(TSession* pSession)
   pSession->SendKeyRSA(c_RSAkey);
 }
 //-------------------------------------------------------------------------
-void TManagerSession::Send(TSession* pSession, TBreakPacket bp, bool check)
+void TManagerSession::Send(TSession* pSession, TBreakPacket& bp, bool check)
 {
   if(check==true)// TCP
   if(GetUseCryptTCP())  
