@@ -15,14 +15,16 @@ class TScene;
 
 class DllExport TGP_Scenario
 {
-protected:
-  TScene* mPtrScene;
 public:
   TGP_Scenario();
   virtual ~TGP_Scenario();
 
   virtual nsGameProcess::GP_TypeScenario GetType() = 0;
-  virtual bool IsBlock();
+  virtual bool IsActive();
+
+  // как правило поведение блокирующее, потому что идет синхронизация потоков
+  virtual void Activate() = 0;
+  virtual void Deactivate() = 0;
 };
 
 #endif

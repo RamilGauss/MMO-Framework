@@ -9,6 +9,7 @@ See for more information License.h.
 
 IGP_Scenario_General::IGP_Scenario_General()
 {
+  mPtrScene     = NULL;
   mProgressStep = 10;
 }
 //------------------------------------------------------------------------
@@ -17,7 +18,7 @@ IGP_Scenario_General::~IGP_Scenario_General()
 
 }
 //------------------------------------------------------------------------
-TCallBackRegistrator0* IGP_Scenario_General::GetCB_End()
+TCallBackRegistrator1<nsGameProcess::GP_TypeScenario>* IGP_Scenario_General::GetCB_End()
 {
   return &mCB_End;
 }
@@ -27,7 +28,7 @@ void IGP_Scenario_General::SetProgressStep(int step)
   mProgressStep = step;
 }
 //------------------------------------------------------------------------
-TCallBackRegistrator1<int>* IGP_Scenario_General::GetCB_Progress()
+TCallBackRegistrator2<nsGameProcess::GP_TypeScenario,int>* IGP_Scenario_General::GetCB_Progress()
 {
   return &mCB_Progress;
 }

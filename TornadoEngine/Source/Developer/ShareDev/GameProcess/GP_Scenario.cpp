@@ -10,7 +10,7 @@ See for more information License.h.
 
 TGP_Scenario::TGP_Scenario()
 {
-  mPtrScene = NULL;
+
 }
 //-------------------------------------------------------------------------------
 TGP_Scenario::~TGP_Scenario()
@@ -18,7 +18,7 @@ TGP_Scenario::~TGP_Scenario()
 
 }
 //-------------------------------------------------------------------------------
-bool TGP_Scenario::IsBlock()
+bool TGP_Scenario::IsActive()
 {
   return false;
 }

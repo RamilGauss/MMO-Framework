@@ -17,6 +17,16 @@ class DllExport TGP_Scenario_Builder :
 {
   TBuilderGameMap mBuilder;
   volatile bool flgNeedThreadQuant;// требуется ли получать квант из других потоков для реализации загрузки
+
+  volatile bool flgActive;
+
+  volatile bool flgActive_ThreadBullet;
+  volatile bool flgActive_ThreadOgre;
+  volatile bool flgActive_ThreadOpenAL;
+  enum
+  {
+    eTimeFeedBackThread = 1, // мс
+  };
 public:
   TGP_Scenario_Builder();
   virtual ~TGP_Scenario_Builder();
@@ -33,7 +43,12 @@ public:
   virtual void Thread_OpenAL();
 
   virtual nsGameProcess::GP_TypeScenario GetType();
-  virtual bool IsBlock();
+  virtual bool IsActive();
+
+  virtual void Activate();
+  virtual void Deactivate();
+private:
+  bool IsAnyThreadActive();
 };
 
 #endif

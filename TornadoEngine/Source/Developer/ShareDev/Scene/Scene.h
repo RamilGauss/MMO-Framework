@@ -32,9 +32,10 @@ public:
   virtual ~TScene();
 
   // квантование
-  void UpdateFromPhysic();// дать квант для внутренней синхронизации
-  void UpdateToGraphic(); 
-  void UpdateToSound();
+  // дать квант для внутренней синхронизации
+  void UpdateFromPhysic();// убрать???
+  void UpdateToGraphic(); // убрать???
+  void UpdateToSound();   // убрать???
   //---------------------------------------------------------------------------
   // выборка
   virtual int GetCountUsing();                    // mainly for debug

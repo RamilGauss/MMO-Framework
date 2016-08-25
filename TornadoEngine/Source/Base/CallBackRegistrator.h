@@ -98,6 +98,7 @@ class TCallBackRegistrator0 : public TCallBackRegistrator
 public:
   void Notify()
   {
+    // BOOST_FOREACH не используется для совместимости с системами, не использующих boost
     TMMapPtrPtrIt bit = mMapObjFunc.begin();
     TMMapPtrPtrIt eit = mMapObjFunc.end();
     while(bit!=eit)

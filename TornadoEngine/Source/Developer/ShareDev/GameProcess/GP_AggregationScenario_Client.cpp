@@ -11,6 +11,10 @@ See for more information License.h.
 TGP_AggregationScenario_Client::TGP_AggregationScenario_Client()
 {
   mPtrScene = NULL;
+
+  RegisterScenarioOnEvent(&mBuilder);
+  RegisterScenarioOnEvent(&mSynchro);
+  RegisterScenarioOnEvent(&mDestructor);
 }
 //---------------------------------------------------------------------------------------------
 TGP_AggregationScenario_Client::~TGP_AggregationScenario_Client()
@@ -20,20 +24,24 @@ TGP_AggregationScenario_Client::~TGP_AggregationScenario_Client()
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP)
 {
-
+  if(IsActive(nsGameProcess::eBuilder)==false)
+    return;
+  mBuilder.Setup(pUsePattern, pFBP);
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::LoadMap(std::string nameMap)
 {
+  if(IsActive(nsGameProcess::eBuilder)==false)
+    return;
   // перейти в состояние загрузки карты
-  End();
   mBuilder.LoadMap(nameMap);
-  Begin(&mBuilder);
 }
 //---------------------------------------------------------------------------------------------
 bool TGP_AggregationScenario_Client::AddGameObject(TMapItem::TObject& desc)
 {
-  return true;
+  if(IsActive(nsGameProcess::eBuilder)==false)
+    return false;
+  return mBuilder.AddGameObject(desc);
 }
 //---------------------------------------------------------------------------------------------
 int TGP_AggregationScenario_Client::GetPhysicWorldID()
@@ -43,57 +51,62 @@ int TGP_AggregationScenario_Client::GetPhysicWorldID()
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::SetEnable(int id, bool v)
 {
-
+  if(IsActive(nsGameProcess::eSynchroClient)==false)
+    return;
+  mSynchro.SetEnable(id,v);
 }
 //---------------------------------------------------------------------------------------------
 bool TGP_AggregationScenario_Client::UpdateGameObjectFromGameItem(int id, std::string type, std::string name)
 {
-  return true;
+  if(IsActive(nsGameProcess::eSynchroClient)==false)
+    return false;
+  return mSynchro.UpdateGameObjectFromGameItem(id,type,name);
 }
 //---------------------------------------------------------------------------------------------
 bool TGP_AggregationScenario_Client::UpdateGameObjectFromPattern(int id, TContainer internalState)
 {
-  return true;
+  if(IsActive(nsGameProcess::eSynchroClient)==false)
+    return false;
+  return mSynchro.UpdateGameObjectFromPattern(id,internalState);
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::UnloadAll()
 {
-
+  if(IsActive(nsGameProcess::eDestructor)==false)
+    return;
+  mDestructor.UnloadAll();
 }
 //---------------------------------------------------------------------------------------------
 bool TGP_AggregationScenario_Client::DeleteGameObject(int id)
 {
-  return true;
+  if(IsActive(nsGameProcess::eDestructor)==false)
+    return false;
+  return mDestructor.DeleteGameObject(id);
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::SetScene(TScene* pScene)
 {
   mPtrScene = pScene;
+  mBuilder.   SetScene(pScene);
+  mSynchro.   SetScene(pScene);
+  mDestructor.SetScene(pScene);
 }
 //---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_Client::Thread_Bullet()
+TGP_Scenario* TGP_AggregationScenario_Client::GetByType(nsGameProcess::GP_TypeScenario type)
 {
-  GetCurrentScGeneral()->Thread_Bullet();
-}
-//---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_Client::Thread_Ogre()
-{
-  GetCurrentScGeneral()->Thread_Ogre();
-}
-//---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_Client::Thread_Logic()
-{
-  // проверка на новые задания
-  GetCurrentScGeneral()->Thread_Logic();
-}
-//---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_Client::Thread_OpenAL()
-{
-  GetCurrentScGeneral()->Thread_OpenAL();
-}
-//---------------------------------------------------------------------------------------------
-bool TGP_AggregationScenario_Client::Activate(nsGameProcess::GP_TypeScenario type)
-{
-  return true;
+  TGP_Scenario* pSc = NULL;
+  switch(type)
+  {
+    case nsGameProcess::eBuilder:
+      pSc = &mBuilder;
+      break;
+    case nsGameProcess::eSynchroClient:
+      pSc = &mSynchro;
+      break;
+    case nsGameProcess::eDestructor:
+      pSc = &mDestructor;
+      break;
+  }
+  return pSc;
 }
 //---------------------------------------------------------------------------------------------

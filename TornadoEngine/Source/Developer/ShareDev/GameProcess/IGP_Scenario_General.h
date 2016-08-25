@@ -10,22 +10,25 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "CallBackRegistrator.h"
+#include "GP_TypeScenario.h"
 
 class TScene;
 
 class DllExport IGP_Scenario_General
 {
 protected:
-  TCallBackRegistrator0 mCB_End;
+  TScene* mPtrScene;
+
+  TCallBackRegistrator1<nsGameProcess::GP_TypeScenario> mCB_End;
   int mProgressStep;
-  TCallBackRegistrator1<int> mCB_Progress;
+  TCallBackRegistrator2<nsGameProcess::GP_TypeScenario,int> mCB_Progress;
 public:
   IGP_Scenario_General();
   virtual ~IGP_Scenario_General();
 
-  TCallBackRegistrator0* GetCB_End();
+  TCallBackRegistrator1<nsGameProcess::GP_TypeScenario>* GetCB_End();
   void SetProgressStep(int step);
-  TCallBackRegistrator1<int>* GetCB_Progress();
+  TCallBackRegistrator2<nsGameProcess::GP_TypeScenario,int>* GetCB_Progress();
 
   virtual void SetScene(TScene* pScene) = 0;
 

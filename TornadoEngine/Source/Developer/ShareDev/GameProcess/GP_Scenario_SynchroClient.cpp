@@ -62,3 +62,13 @@ nsGameProcess::GP_TypeScenario TGP_Scenario_SynchroClient::GetType()
   return nsGameProcess::eSynchroClient;
 }
 //-----------------------------------------------------------------------------
+void TGP_Scenario_SynchroClient::Activate()
+{
+
+}
+//-----------------------------------------------------------------------------
+void TGP_Scenario_SynchroClient::Deactivate()
+{
+
+}
+//-----------------------------------------------------------------------------

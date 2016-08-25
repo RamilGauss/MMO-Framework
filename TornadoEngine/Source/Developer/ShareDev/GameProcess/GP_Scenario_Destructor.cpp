@@ -52,13 +52,24 @@ void TGP_Scenario_Destructor::Thread_OpenAL()
 
 }
 //---------------------------------------------------------------------------------
-bool TGP_Scenario_Destructor::IsBlock()
+bool TGP_Scenario_Destructor::IsActive()
 {
+  // меняется во времени!
   return true;
 }
 //-------------------------------------------------------------------------------
 nsGameProcess::GP_TypeScenario TGP_Scenario_Destructor::GetType()
 {
   return nsGameProcess::eDestructor;
+}
+//-----------------------------------------------------------------------------
+void TGP_Scenario_Destructor::Activate()
+{
+
+}
+//-----------------------------------------------------------------------------
+void TGP_Scenario_Destructor::Deactivate()
+{
+
 }
 //-----------------------------------------------------------------------------

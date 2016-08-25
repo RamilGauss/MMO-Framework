@@ -14,6 +14,7 @@ See for more information License.h.
 class DllExport TGP_Scenario_Destructor : 
   public IGP_Scenario_Destructor, public TGP_Scenario
 {
+  volatile bool flgActive;
 public:
   TGP_Scenario_Destructor();
   virtual ~TGP_Scenario_Destructor();
@@ -28,7 +29,10 @@ public:
   virtual void Thread_OpenAL();
 
   virtual nsGameProcess::GP_TypeScenario GetType();
-  virtual bool IsBlock();
+  virtual bool IsActive();
+
+  virtual void Activate();
+  virtual void Deactivate();
 };
 
 #endif

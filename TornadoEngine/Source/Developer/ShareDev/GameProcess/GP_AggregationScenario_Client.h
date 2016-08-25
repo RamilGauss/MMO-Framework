@@ -22,8 +22,6 @@ class DllExport TGP_AggregationScenario_Client :
   public IGP_Scenario_Builder, public IGP_Scenario_SynchroClient,
   public IGP_Scenario_Destructor, public IGP_AggregationScenario
 {
-  TScene* mPtrScene;
-
   TGP_Scenario_Builder       mBuilder;
   TGP_Scenario_SynchroClient mSynchro;
   TGP_Scenario_Destructor    mDestructor;
@@ -44,15 +42,8 @@ public:
   virtual bool DeleteGameObject(int id);// запустить инициализацию процесса уничтожения объекта
 
   virtual void SetScene(TScene* pScene);
-  virtual void Thread_Bullet();
-  virtual void Thread_Ogre();
-  virtual void Thread_Logic();
-  virtual void Thread_OpenAL();
-
-
-  virtual bool Activate(nsGameProcess::GP_TypeScenario type);
 protected:
-
+  virtual TGP_Scenario* GetByType(nsGameProcess::GP_TypeScenario type);
 };
 
 #endif

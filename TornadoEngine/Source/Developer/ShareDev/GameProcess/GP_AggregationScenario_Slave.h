@@ -13,16 +13,16 @@ See for more information License.h.
 #include "IGP_Scenario_GameProcessSlave.h"
 #include "IGP_Scenario_Destructor.h"
 
-class DllExport TGP_AggregationScenario_Slave : 
-  public IGP_Scenario_Builder, public IGP_Scenario_GameProcessSlave,
-  public IGP_Scenario_Destructor, public IGP_AggregationScenario
-{
-public:
-  TGP_AggregationScenario_Slave();
-  virtual ~TGP_AggregationScenario_Slave();
-
-  virtual bool Activate(nsGameProcess::GP_TypeScenario type);
-
-};
+//class DllExport TGP_AggregationScenario_Slave : 
+//  public IGP_Scenario_Builder, public IGP_Scenario_GameProcessSlave,
+//  public IGP_Scenario_Destructor, public IGP_AggregationScenario
+//{
+//public:
+//  TGP_AggregationScenario_Slave();
+//  virtual ~TGP_AggregationScenario_Slave();
+//
+//  virtual bool Activate(nsGameProcess::GP_TypeScenario type);
+//
+//};
 
 #endif

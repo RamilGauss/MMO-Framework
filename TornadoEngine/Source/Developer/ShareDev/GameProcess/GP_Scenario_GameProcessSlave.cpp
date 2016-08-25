@@ -47,3 +47,13 @@ nsGameProcess::GP_TypeScenario TGP_Scenario_GameProcessSlave::GetType()
   return nsGameProcess::eGameProcessSlave;
 }
 //-----------------------------------------------------------------------------
+void TGP_Scenario_GameProcessSlave::Activate()
+{
+
+}
+//-----------------------------------------------------------------------------
+void TGP_Scenario_GameProcessSlave::Deactivate()
+{
+
+}
+//-----------------------------------------------------------------------------

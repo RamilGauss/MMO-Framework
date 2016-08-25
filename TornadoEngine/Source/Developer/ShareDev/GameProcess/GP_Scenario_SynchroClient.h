@@ -29,6 +29,9 @@ public:
   virtual void Thread_OpenAL();
 
   virtual nsGameProcess::GP_TypeScenario GetType();
+
+  virtual void Activate();
+  virtual void Deactivate();
 };
 
 #endif
