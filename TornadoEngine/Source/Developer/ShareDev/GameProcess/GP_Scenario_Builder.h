@@ -15,11 +15,13 @@ See for more information License.h.
 class DllExport TGP_Scenario_Builder : 
   public IGP_Scenario_Builder, public TGP_Scenario
 {
+  int mLastProgressEvent;
   TBuilderGameMap mBuilder;
   volatile bool flgNeedThreadQuant;// требуется ли получать квант из других потоков для реализации загрузки
 
   volatile bool flgActive;
 
+  volatile bool flgActive_ThreadLogic;
   volatile bool flgActive_ThreadBullet;
   volatile bool flgActive_ThreadOgre;
   volatile bool flgActive_ThreadOpenAL;

@@ -52,8 +52,11 @@ TGP_Scenario* IGP_AggregationScenario::GetCurrentSc()
 //-----------------------------------------------------------------
 bool IGP_AggregationScenario::Activate(nsGameProcess::GP_TypeScenario type)
 {// прототип идеи агрегата!
-  if(!GetCurrentSc() || GetCurrentSc()->IsActive())
-    return false;
+  if(GetCurrentSc())
+  {
+    if(GetCurrentSc()->IsActive())
+      return false;
+  }
   TGP_Scenario* pSc = GetByType(type);
   // нет такого типа
   if(pSc==NULL)

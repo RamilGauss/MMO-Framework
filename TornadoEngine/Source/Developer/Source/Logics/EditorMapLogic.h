@@ -9,6 +9,8 @@ See for more information License.h.
 #define EditorMapLogicH
 
 #include "ModuleClientLogic.h"
+#include "UsePattern.h"
+#include "FactoryBehaviourPattern_EoWM.h"
 
 class TEditorMap;
 
@@ -16,6 +18,10 @@ class TEditorMapLogic : public TModuleClientLogic
 {
   int mID_PhysicWorld;
   TEditorMap* mEditorMap;
+
+  TUsePattern                   mUsePattern;
+  TFactoryBehaviourPattern_EoWM mFBP_EoWM;
+
 public:
   TEditorMapLogic();
   virtual ~TEditorMapLogic();
@@ -30,12 +36,13 @@ private:
   void StartTimer();
   void InitForms();
 
-  void InitPhysic();
+  //void InitPhysic();
 
-  void GraphicBeginWork();
+  void SoundEndWork();
+  void GraphicEndWork();
   void FreeGraphicResource();
 
-  void PhysicBeginWork();
+  //void PhysicBeginWork();
   void PhysicEndWork();
 
 public:

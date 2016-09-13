@@ -16,11 +16,10 @@ See for more information License.h.
 #include "ApplySetup_GravityVector.h"
 #include "ApplySetup_CameraUp.h"
 
-#include "GameObject.h"
-
 #include "PhysicEngine_Bullet.h"
 #include "ModuleLogic.h"
 #include "ModulePhysicEngine.h"
+#include "BehaviourPattern.h"
 
 TBuilderGameMap::TBuilderGameMap()
 {
@@ -58,8 +57,7 @@ void TBuilderGameMap::InitPhysic()
 //--------------------------------------------------------------------------------------------
 bool TBuilderGameMap::BuildMap( TMapItem* pMI )
 {
-  //if(CheckIdle()==false)
-    //return false;
+  mAllCount = 0;
   mState = eIdle;
   mListGameObject.clear();
 
@@ -69,17 +67,11 @@ bool TBuilderGameMap::BuildMap( TMapItem* pMI )
   mTableSound = 
     (TTableSoundItem*)mFactoryGameItem->Get( TFactoryGameItem::TableSound, mMapItem->mNameTableSound);
 
-  //if( PrepareCameraUp()==false )
-  //  return false;
-  //if( PrepareGravity()==false )
-  //  return false;
-  //if( PrepareTableSound()==false )
-  //  return false;
-  //if( PrepareGameObject()==false )
-  //  return false;
+  mTask_Bullet.flgNeedInit = true;
+  mTask_Ogre.flgNeedInit   = true;
+  mTask_OpenAL.flgNeedInit = true;
 
-  //CalcStatisticForProgress();
-  //PrepareIterator();
+  CalcStatisticForProgress();
 
   //if( mAllCount )
     //mState = eBuildMap;
@@ -112,37 +104,36 @@ void TBuilderGameMap::BuildFromThread_Logic()
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::BuildFromThread_Ogre()
 {
-  //TProgressTask progress;
-  //progress.mCurIndex = mProgressTask_Ogre.mCurIndex;
-  //progress.mCount    = mProgressTask_Ogre.mCount;
-  //BuildFromThread_XXX(progress, mBuilderOgre.get(), mLastTask_Ogre);
-  //mProgressTask_Ogre.mCurIndex = progress.mCurIndex;
+  TCallBackRegistrator0 cbInit;
+  cbInit.Register( &TBuilderGameMap::InitMapFrom_Ogre,this);
+  TProgressTask progress;
+  progress = mProgressTask_Ogre;
+  BuildFromThread_XXX(mTask_Ogre, cbInit, progress, eOgreThread);
+  mProgressTask_Ogre.mCurIndex = progress.mCurIndex;
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::BuildFromThread_Bullet()
 {
-  if(flgNeedInitPhysic)
-  {
-    InitPhysic();
-    flgNeedInitPhysic = false;
-  }
-  // когда вывести из состояния паузы - решит логика
-  TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->Setup(mPhysicWorldID, TPhysicEngine_Bullet::eStatePause);
+  TCallBackRegistrator0 cbInit;
+  cbInit.Register( &TBuilderGameMap::InitMapFrom_Bullet,this);
+  TProgressTask progress;
+  progress = mProgressTask_Bullet;
+  BuildFromThread_XXX(mTask_Bullet, cbInit, progress, eBulletThread);
+  mProgressTask_Bullet.mCurIndex = progress.mCurIndex;
 
-  //TProgressTask progress;
-  //progress.mCurIndex = mProgressTask_Bullet.mCurIndex;
-  //progress.mCount    = mProgressTask_Bullet.mCount;
-  //BuildFromThread_XXX(progress, mBuilderBullet.get(), mLastTask_Bullet);
-  //mProgressTask_Bullet.mCurIndex = progress.mCurIndex;
+  //### когда вывести из состояния паузы - решит логика
+  //TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->Setup(mPhysicWorldID, TPhysicEngine_Bullet::eStatePause);
+  //###
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::BuildFromThread_OpenAL()
 {
-  //TProgressTask progress;
-  //progress.mCurIndex = mProgressTask_OpenAL.mCurIndex;
-  //progress.mCount    = mProgressTask_OpenAL.mCount;
-  //BuildFromThread_XXX(progress, mBuilderOpenAL.get(), mLastTask_OpenAL);
-  //mProgressTask_OpenAL.mCurIndex = progress.mCurIndex;
+  TCallBackRegistrator0 cbInit;
+  cbInit.Register( &TBuilderGameMap::InitMapFrom_OpenAL,this);
+  TProgressTask progress;
+  progress = mProgressTask_OpenAL;
+  BuildFromThread_XXX(mTask_OpenAL, cbInit, progress, eOpenALThread);
+  mProgressTask_OpenAL.mCurIndex = progress.mCurIndex;
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::GetResult(TListPtrGameObject& listPtrGameObject)
@@ -163,115 +154,89 @@ TBuilderGameMap::State TBuilderGameMap::GetState()
 //--------------------------------------------------------------------------------------------
 int TBuilderGameMap::GetProgress()
 {
-  //if( mAllCount==0 )
+  if( mAllCount==0 )
     return 100;
-  //int cntComplete = mProgressTask_Ogre.mCurIndex + mProgressTask_Bullet.mCurIndex + mProgressTask_OpenAL.mCurIndex;
-  //return ( cntComplete * 100 ) / mAllCount;
+  int cntComplete = mProgressTask_Ogre.mCurIndex + mProgressTask_Bullet.mCurIndex + mProgressTask_OpenAL.mCurIndex;
+  return ( cntComplete * 100 ) / (3*mAllCount);// в сумме должно быть в 3 раза больше, Bullet+Ogre+OpenAL
 }
 //--------------------------------------------------------------------------------------------
-//bool TBuilderGameMap::CheckIdle()
-//{
-//  if((mState==eBuildMap) || 
-//     (mState==eBuildObject))
-//    return false;
-//  return true;
-//}
-//--------------------------------------------------------------------------------------------
-//bool TBuilderGameMap::PrepareCameraUp()
-//{
-//  TPreBuilderCameraUp preBuilderCameraUp;
-//  preBuilderCameraUp.Set(mMapItem->mCameraUp);
-//  if( preBuilderCameraUp.GenerateTask(mVecTask)==false )
-//    return false;
-//
-//  CollectTask(&preBuilderCameraUp);
-//  return true;
-//}
-//--------------------------------------------------------------------------------------------
-//bool TBuilderGameMap::PrepareGravity()
-//{
-//  TPreBuilderGravityVector preBuilderGravityVector;
-//  preBuilderGravityVector.Set(mMapItem->mGravity);
-//  if( preBuilderGravityVector.GenerateTask(mVecTask)==false )
-//    return false;
-//  CollectTask(&preBuilderGravityVector);
-//  return true;
-//}
-//--------------------------------------------------------------------------------------------
-//bool TBuilderGameMap::PrepareTableSound()
-//{
-//  TPreBuilderTableSound preBuilderTableSound;
-//  preBuilderTableSound.Set(mTableSound);
-//  if( preBuilderTableSound.GenerateTask(mVecTask)==false )
-//    return false;
-//  CollectTask(&preBuilderTableSound);
-//  return true;
-//}
-//--------------------------------------------------------------------------------------------
-//bool TBuilderGameMap::PrepareGameObject()
-//{
-//  BOOST_FOREACH(TMapItem::TObject& objectItem, mMapItem->mListObject)
-//  {
-//    if( AddObject_Private(&objectItem)==false )
-//      return false;
-//  }
-//  return true;
-//}
-//--------------------------------------------------------------------------------------------
-//void TBuilderGameMap::CollectTask(TPreBuilder* pPreBuilder)
-//{
-//  TPreBuilder::TListTaskOgre   listTask_Ogre;
-//  TPreBuilder::TListTaskBullet listTask_Bullet;
-//  TPreBuilder::TListTaskOpenAL listTask_OpenAL;
-//
-//  pPreBuilder->TakeTask_Ogre(listTask_Ogre);
-//  pPreBuilder->TakeTask_Bullet(listTask_Bullet);
-//  pPreBuilder->TakeTask_OpenAL(listTask_OpenAL);
-//  // слияние списков задач по типам:
-//  mListTask_Ogre.insert(mListTask_Ogre.end(),     listTask_Ogre.begin(),   listTask_Ogre.end());
-//  mListTask_Bullet.insert(mListTask_Bullet.end(), listTask_Bullet.begin(), listTask_Bullet.end());
-//  mListTask_OpenAL.insert(mListTask_OpenAL.end(), listTask_OpenAL.begin(), listTask_OpenAL.end());
-//}
-//--------------------------------------------------------------------------------------------
-//bool TBuilderGameMap::AddObject_Private( TMapItem::TObject* pObject )
-//{
-//  TPreBuilderGameObject* pPreBuilder = mFactoryPreBuilderObject.GetPreBuilderByType(pObject->type);
-//  if( pPreBuilder )
-//  {
-//    pPreBuilder->SetObjectItem(pObject);
-//    if( pPreBuilder->GenerateTask(mVecTask)==false )
-//      return false;
-//    TGameObject* pGameObject = new TGameObject();
-//    mListGameObject.push_back(pGameObject);
-//
-//    CollectTask(pPreBuilder);
-//  }
-//  return true;
-//}
-//--------------------------------------------------------------------------------------------
-//void TBuilderGameMap::CalcStatisticForProgress()
-//{
-//  mProgressTask_Ogre.mCount    = mListTask_Ogre.size();
-//  mProgressTask_Ogre.mCurIndex = 0;
-//
-//  mProgressTask_Bullet.mCount    = mListTask_Bullet.size();
-//  mProgressTask_Bullet.mCurIndex = 0;
-//
-//  mProgressTask_OpenAL.mCount    = mListTask_OpenAL.size();
-//  mProgressTask_OpenAL.mCurIndex = 0;
-//
-//  mAllCount = mProgressTask_Ogre.mCount + mProgressTask_Bullet.mCount + mProgressTask_OpenAL.mCount;
-//}
-//--------------------------------------------------------------------------------------------
-//void TBuilderGameMap::PrepareIterator()
-//{
-//  mLastTask_Ogre   = mListTask_Ogre.begin();
-//  mLastTask_Bullet = mListTask_Bullet.begin();
-//  mLastTask_OpenAL = mListTask_OpenAL.begin();
-//}
+void TBuilderGameMap::CalcStatisticForProgress()
+{
+  mAllCount = mMapItem->mListObject.size();
+
+  mProgressTask_Ogre.mCount    = mAllCount;
+  mProgressTask_Ogre.mCurIndex = 0;
+
+  mProgressTask_Bullet.mCount    = mAllCount;
+  mProgressTask_Bullet.mCurIndex = 0;
+
+  mProgressTask_OpenAL.mCount    = mAllCount;
+  mProgressTask_OpenAL.mCurIndex = 0;
+}
 //--------------------------------------------------------------------------------------------
 int TBuilderGameMap::GetPhysicWorldID()
 {
   return mPhysicWorldID;
+}
+//--------------------------------------------------------------------------------------------
+void TBuilderGameMap::InitMapFrom_Bullet()
+{
+  mAS_GravityVector->Set(mMapItem->mGravity);
+  mAS_GravityVector->WorkFromThread_Bullet();
+}
+//--------------------------------------------------------------------------------------------
+void TBuilderGameMap::InitMapFrom_Ogre()
+{
+  mAS_CameraUp->Set(mMapItem->mCameraUp);
+  mAS_CameraUp->WorkFromThread_Ogre();
+}
+//--------------------------------------------------------------------------------------------
+void TBuilderGameMap::InitMapFrom_OpenAL()
+{
+  mCTableSound->Set(mTableSound);
+  mCTableSound->WorkFromThread_OpenAL();
+}
+//--------------------------------------------------------------------------------------------
+void TBuilderGameMap::BuildFromThread_XXX( TTaskForThread& task, 
+                                           TCallBackRegistrator0& cbInit, 
+                                           TProgressTask& progress, 
+                                           TypeThread typeThread)
+{
+  if( task.flgNeedInit )
+  {
+    cbInit.Notify();
+    task.flgNeedInit = false;
+  }
+
+  int cntDone = 0;
+  TGameObject** ppGO = NULL;
+  while(1)
+  {
+    ppGO = task.pipe.GetFirst();
+    if( ppGO==NULL )
+    {
+      ht_msleep(eTimeWaitObject);
+      break;
+    }
+
+    TGameObject* pGO = *ppGO;
+    switch(typeThread)
+    {
+      case eBulletThread:
+        pGO->GetPattern()->LoadFromThread_Bullet();
+        break;
+      case eOgreThread:
+        pGO->GetPattern()->LoadFromThread_Ogre();
+        break;
+      case eOpenALThread:
+        pGO->GetPattern()->LoadFromThread_OpenAL();
+        break;
+    }
+    task.pipe.RemoveFirst();
+    cntDone++;
+    progress.mCurIndex++;
+    if( cntDone > eMaxCountBuildObject )
+      break;
+  }
 }
 //--------------------------------------------------------------------------------------------

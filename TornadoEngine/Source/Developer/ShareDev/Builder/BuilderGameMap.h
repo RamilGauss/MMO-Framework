@@ -12,10 +12,12 @@ See for more information License.h.
 #include <string>
 #include <vector>
 #include "MapItem.h"
+#include "DataExchange2Thread.h"
+#include "GameObject.h"
+#include "CallBackRegistrator.h"
 
 class TFactoryGameItem;
 class TUsePattern;
-class TGameObject;
 struct TTableSoundItem;
 
 class TCacheTableSound;
@@ -49,6 +51,18 @@ class DllExport TBuilderGameMap
   boost::scoped_ptr<TApplySetup_CameraUp>      mAS_CameraUp;
 
   bool flgNeedInitPhysic;
+
+  enum
+  {
+    eMaxCountBuildObject = 10,
+    eTimeWaitObject = 1,
+  };
+  typedef enum
+  {
+    eBulletThread, 
+    eOgreThread, 
+    eOpenALThread
+  }TypeThread;
 public:
   TBuilderGameMap();
   virtual ~TBuilderGameMap();
@@ -80,6 +94,38 @@ private:
   volatile State mState;
   
   void InitPhysic();
+
+  typedef TDataExchange2Thread<TGameObject> TPipeToThreadFromLogic;
+  struct TTaskForThread
+  {
+    volatile bool flgNeedInit;
+    TPipeToThreadFromLogic pipe;
+  };
+  TTaskForThread mTask_Ogre;
+  TTaskForThread mTask_Bullet;
+  TTaskForThread mTask_OpenAL;
+
+  void InitMapFrom_Bullet();
+  void InitMapFrom_Ogre();
+  void InitMapFrom_OpenAL();
+
+  struct TProgressTask
+  {
+    int mCurIndex;
+    int mCount;
+  };
+
+  TProgressTask mProgressTask_Bullet;
+  TProgressTask mProgressTask_Ogre;
+  TProgressTask mProgressTask_OpenAL;
+
+  volatile int mAllCount;
+
+  void BuildFromThread_XXX( 
+    TTaskForThread& task, TCallBackRegistrator0& cbInit, 
+    TProgressTask& progress, TypeThread typeThread );
+
+  void CalcStatisticForProgress();
 };
 
 #endif
