@@ -13,6 +13,7 @@ See for more information License.h.
 
 class DllExport TApplySetup_CameraUp
 {
+  nsMathTools::TVector3 mVCameraUp;
 public:
   TApplySetup_CameraUp();
   virtual ~TApplySetup_CameraUp();

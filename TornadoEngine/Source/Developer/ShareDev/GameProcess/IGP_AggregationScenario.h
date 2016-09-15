@@ -18,7 +18,9 @@ class IGP_AggregationScenario : public virtual IGP_Scenario_General
 {
 protected:
   // для смены указателя только в потоке Логики
-  void* mPtrCurrentScenario;
+  //void* mPtrCurrentScenario;
+  IGP_Scenario_General* mPtrCurrentScenario_General;
+  TGP_Scenario*         mPtrCurrentScenario_Scenario;
 public:
   IGP_AggregationScenario();
   virtual ~IGP_AggregationScenario();
@@ -32,9 +34,10 @@ public:
   
   virtual bool Activate(nsGameProcess::GP_TypeScenario type);// L
 protected:
-  virtual TGP_Scenario* GetByType(nsGameProcess::GP_TypeScenario type) = 0;
+  virtual void GetByType(nsGameProcess::GP_TypeScenario type, 
+    IGP_Scenario_General*& pGeneral, TGP_Scenario*& pScenario) = 0;
 
-  void Begin(void* pNewScenario);
+  void Begin( IGP_Scenario_General* pNew_General, TGP_Scenario* pNew_Scenario );
   void End();
 
   IGP_Scenario_General* GetCurrentScGeneral();

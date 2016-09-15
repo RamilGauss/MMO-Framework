@@ -14,7 +14,11 @@ TGP_Scenario_Builder::TGP_Scenario_Builder()
 {
   mLastProgressEvent = 0;
   flgActive = false;
-  flgActive_ThreadLogic  = false;
+  flgActiveTask_ThreadLogic = false;
+  flgActiveTask_ThreadBullet = false;
+  flgActiveTask_ThreadOgre   = false;
+  flgActiveTask_ThreadOpenAL = false;
+
   flgActive_ThreadBullet = false;
   flgActive_ThreadOgre   = false;
   flgActive_ThreadOpenAL = false;
@@ -32,10 +36,11 @@ void TGP_Scenario_Builder::LoadMap(std::string nameMap)
   TMapItem* pMI = (TMapItem*)pBI;
   if(mBuilder.BuildMap(pMI))
   {
-    flgActive_ThreadLogic  = true;
-    flgActive_ThreadBullet = true;
-    flgActive_ThreadOgre   = true;
-    flgActive_ThreadOpenAL = true;
+    flgProgressComplete    = false;
+    flgActiveTask_ThreadLogic  = true;
+    flgActiveTask_ThreadBullet = true;
+    flgActiveTask_ThreadOgre   = true;
+    flgActiveTask_ThreadOpenAL = true;
   }
 }
 //---------------------------------------------------------------------------------
@@ -43,10 +48,11 @@ bool TGP_Scenario_Builder::AddGameObject(TMapItem::TObject& desc)
 {
   if(mBuilder.BuildObject(&desc))
   {
-    flgActive_ThreadLogic  = true;
-    flgActive_ThreadBullet = true;
-    flgActive_ThreadOgre   = true;
-    flgActive_ThreadOpenAL = true;
+    flgProgressComplete    = false;
+    flgActiveTask_ThreadLogic  = true;
+    flgActiveTask_ThreadBullet = true;
+    flgActiveTask_ThreadOgre   = true;
+    flgActiveTask_ThreadOpenAL = true;
     return true;
   }
 
@@ -70,35 +76,49 @@ void TGP_Scenario_Builder::SetScene(TScene* pScene)
 //---------------------------------------------------------------------------------
 void TGP_Scenario_Builder::Thread_Bullet()
 {
-  if(flgActive_ThreadBullet==false)
+  Enter(eBulletActive);
+  if(flgActiveTask_ThreadBullet==false)
+  {
+    Leave(eBulletActive);
     return;
+  }
   if(IsActive()==false)
   {
-    flgActive_ThreadBullet = false;
+    flgActiveTask_ThreadBullet = false;
+    Leave(eBulletActive);
     return;
   }
   mBuilder.BuildFromThread_Bullet();
+  Leave(eBulletActive);
 }
 //---------------------------------------------------------------------------------
 void TGP_Scenario_Builder::Thread_Ogre()
 {
-  if(flgActive_ThreadOgre==false)
+  Enter(eOgreActive);
+  flgActive_ThreadOgre = true;
+
+  if(flgActiveTask_ThreadOgre==false)
+  {
+    Leave(eOgreActive);
     return;
+  }
   if(IsActive()==false)
   {
-    flgActive_ThreadOgre = false;
+    flgActiveTask_ThreadOgre = false;
+    Leave(eOgreActive);
     return;
   }
   mBuilder.BuildFromThread_Ogre();
+  Leave(eOgreActive);
 }
 //---------------------------------------------------------------------------------
 void TGP_Scenario_Builder::Thread_Logic()
 {
-  if(flgActive_ThreadLogic==false)
+  if(flgActiveTask_ThreadLogic==false)
     return;
   if(IsActive()==false)
   {
-    flgActive_ThreadLogic = false;
+    flgActiveTask_ThreadLogic = false;
     return;
   }
 
@@ -116,25 +136,34 @@ void TGP_Scenario_Builder::Thread_Logic()
 
   if(progress==100)
   {
+    flgProgressComplete = true;
     mCB_End.Notify(GetType());
-    flgActive_ThreadLogic = false;
+    flgActiveTask_ThreadLogic = false;
   }
 }
 //---------------------------------------------------------------------------------
 void TGP_Scenario_Builder::Thread_OpenAL()
 {
-  if(flgActive_ThreadOpenAL==false)
+  Enter(eOpenALActive);
+  if(flgActiveTask_ThreadOpenAL==false)
+  {
+    Leave(eOpenALActive);
     return;
+  }
   if(IsActive()==false)
   {
-    flgActive_ThreadOpenAL = false;
+    flgActiveTask_ThreadOpenAL = false;
+    Leave(eOpenALActive);
     return;
   }
   mBuilder.BuildFromThread_OpenAL();
+  Leave(eOpenALActive);
 }
 //---------------------------------------------------------------------------------
 bool TGP_Scenario_Builder::IsActive()
 {
+  if( flgProgressComplete )
+    return false;
   // меняется во времени!
   return flgActive;
 }
@@ -152,6 +181,8 @@ void TGP_Scenario_Builder::Activate()
 void TGP_Scenario_Builder::Deactivate()
 {
   // снаружи сказали "стоп!"
+
+  // обработка может быть как в другом потоке, так и в этом же.
   flgActive = false;
   while(IsAnyThreadActive()==true)
     ht_msleep(eTimeFeedBackThread);
@@ -159,10 +190,36 @@ void TGP_Scenario_Builder::Deactivate()
 //-----------------------------------------------------------------------------
 bool TGP_Scenario_Builder::IsAnyThreadActive()
 {
-  if(flgActive_ThreadBullet ||
-     flgActive_ThreadOgre   ||
-     flgActive_ThreadOpenAL)
+  if((flgActive_ThreadBullet && flgActiveTask_ThreadBullet) ||
+     (flgActive_ThreadOgre   && flgActiveTask_ThreadOgre  ) ||
+     (flgActive_ThreadOpenAL && flgActiveTask_ThreadOpenAL))
     return true;
   return false;
+}
+//-----------------------------------------------------------------------------
+void TGP_Scenario_Builder::Enter(TypeActive t)
+{
+  SetActiveTask( t, true );
+}
+//-----------------------------------------------------------------------------
+void TGP_Scenario_Builder::Leave(TypeActive t)
+{
+  SetActiveTask( t, false );
+}
+//-----------------------------------------------------------------------------
+void TGP_Scenario_Builder::SetActiveTask(TypeActive t, bool v)
+{
+  switch(t)
+  {
+    case eOgreActive: 
+      flgActive_ThreadOgre = v;
+      break;
+    case eBulletActive: 
+      flgActive_ThreadBullet = v;
+      break;
+    case eOpenALActive:
+      flgActive_ThreadOpenAL = v;
+      break;
+  }
 }
 //-----------------------------------------------------------------------------

@@ -126,6 +126,8 @@ private:
     TProgressTask& progress, TypeThread typeThread );
 
   void CalcStatisticForProgress();
+
+  TMapItem::TListObject::iterator mBeginIteratorMapObject;
 };
 
 #endif

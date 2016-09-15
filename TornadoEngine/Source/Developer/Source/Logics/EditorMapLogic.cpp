@@ -18,7 +18,7 @@ See for more information License.h.
 
 TEditorMapLogic::TEditorMapLogic()
 {
-
+  mAggregationScenario_Client.reset(new TGP_AggregationScenario_Client);
 }
 //-------------------------------------------------------------------
 TEditorMapLogic::~TEditorMapLogic()
@@ -28,6 +28,12 @@ TEditorMapLogic::~TEditorMapLogic()
 //-------------------------------------------------------------------
 void TEditorMapLogic::StartEvent()
 {
+  if(mAggregationScenario_Client.get())
+  {
+    mAggregationScenario_Client->GetCB_Progress()->Register( &TEditorMapLogic::ProgressScenario, this);
+    mAggregationScenario_Client->GetCB_End()->Register( &TEditorMapLogic::EndScenario, this);
+  }
+
   CallBackModule(nsListModules::Timer, &TEditorMapLogic::StartTimer);
   CallBackModule(nsListModules::GraphicEngine, &TEditorMapLogic::InitForms);
 
@@ -35,6 +41,11 @@ void TEditorMapLogic::StartEvent()
   mComp.pGraphicEngine->GetCBEndWork()->Register( &TEditorMapLogic::GraphicEndWork ,this);
   mComp.pPhysicEngine->GetCBEndWork()->Register( &TEditorMapLogic::PhysicEndWork ,this);
   mComp.pSoundEngine->GetCBEndWork()->Register( &TEditorMapLogic::SoundEndWork ,this);
+}
+//-------------------------------------------------------------------
+void TEditorMapLogic::StopEvent()
+{
+  mAggregationScenario_Client.reset(NULL);
 }
 //-------------------------------------------------------------------
 void TEditorMapLogic::InitLog()
@@ -45,7 +56,8 @@ void TEditorMapLogic::InitLog()
 //-------------------------------------------------------------------
 bool TEditorMapLogic::WorkClient()
 {
-  mAggregationScenario_Client.Thread_Logic();
+  if(mAggregationScenario_Client.get())
+    mAggregationScenario_Client->Thread_Logic();
   return true;
 }
 //-------------------------------------------------------------------
@@ -62,10 +74,16 @@ void TEditorMapLogic::Input(int id_sender, void* p, int size)
     case nsListModules::FromSomeToLogic:// EditorMap
     {
       //### пока через строку, потом должен быть протокол
-      TLoadMapParam* pLMP = (TLoadMapParam*)p;
-      LoadGameMap(pLMP->nameMap);
+      char* pLMP = (char*)p;
+      char s[300];
+      strncpy(s, pLMP, size);
+      s[size] = '\0';
+      std::string sNameMap;
+      sNameMap = s;
+      LoadGameMap(sNameMap);
       //### пока через строку, потом должен быть протокол
     }
+      break;
     default:BL_FIX_BUG();
   }
 }
@@ -84,24 +102,20 @@ void TEditorMapLogic::InitForms()
 //----------------------------------------------------------
 void TEditorMapLogic::PhysicEndWork()
 {
-  mAggregationScenario_Client.Thread_Bullet();
+  if(mAggregationScenario_Client.get())
+    mAggregationScenario_Client->Thread_Bullet();
 }
-//---------------------------------------------------------------------------------------------
-//void TEditorMapLogic::InitPhysic()// не удалять, пример установки вектора гравитации
-//{
-//  mID_PhysicWorld = mComp.pPhysicEngine->GetPE()->AddWorld();
-//  btDiscreteDynamicsWorld* dynamicsWorld = mComp.pPhysicEngine->GetPE()->GetWorld(mID_PhysicWorld);
-//  dynamicsWorld->setGravity(btVector3(0, -9.81f, 0));
-//}
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::GraphicEndWork()
 {
-  mAggregationScenario_Client.Thread_Ogre();
+  if(mAggregationScenario_Client.get())
+    mAggregationScenario_Client->Thread_Ogre();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::SoundEndWork()
 {
-  mAggregationScenario_Client.Thread_OpenAL();
+  if(mAggregationScenario_Client.get())
+    mAggregationScenario_Client->Thread_OpenAL();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::FreeGraphicResource()
@@ -111,10 +125,48 @@ void TEditorMapLogic::FreeGraphicResource()
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::LoadGameMap(std::string& nameMap)
 {
-  if(mAggregationScenario_Client.Activate(nsGameProcess::eBuilder))
+  if(mAggregationScenario_Client.get())
+    if(mAggregationScenario_Client->Activate(nsGameProcess::eBuilder))
   {
-    mAggregationScenario_Client.Setup( &mUsePattern, &mFBP_EoWM );
-    mAggregationScenario_Client.LoadMap(nameMap);
+    mAggregationScenario_Client->Setup( &mUsePattern, &mFBP_EoWM );
+    mAggregationScenario_Client->LoadMap(nameMap);
   }
 }
 //---------------------------------------------------------------------------------------------
+void TEditorMapLogic::ProgressScenario(nsGameProcess::GP_TypeScenario type, int progress)
+{
+  switch(type)
+  {
+    case nsGameProcess::eBuilder:
+    case nsGameProcess::eDestructor:
+      // отрисовка прогресса загрузки или выгрузки
+      break;
+    case nsGameProcess::eSynchroClient:
+      // не должны сюда попасть
+      BL_FIX_BUG();
+      break;
+  }
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::EndScenario(nsGameProcess::GP_TypeScenario type)
+{
+  switch(type)
+  {
+    case nsGameProcess::eBuilder:
+    case nsGameProcess::eDestructor:
+      if( mAggregationScenario_Client->Activate(nsGameProcess::eSynchroClient)==false )
+      {
+        BL_FIX_BUG();
+      }
+      // ??? вызов из физического потока?
+      if(type==nsGameProcess::eBuilder)
+        mComp.pPhysicEngine->GetPE()->Setup( mAggregationScenario_Client->GetPhysicWorldID(), 
+                                             TPhysicEngine_Bullet::eStatePause );
+      // ???
+      break;
+    case nsGameProcess::eSynchroClient:
+      break;
+  }
+}
+//---------------------------------------------------------------------------------------------
+

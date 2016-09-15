@@ -13,11 +13,13 @@ See for more information License.h.
 
 class DllExport TApplySetup_GravityVector
 {
+  nsMathTools::TVector3 mVGravity;
+  int mID_PhysicWorld;
 public:
   TApplySetup_GravityVector();
   virtual ~TApplySetup_GravityVector();
 
-  void Set(nsMathTools::TVector3& vGravity);
+  void Set(nsMathTools::TVector3& vGravity, int id_PhysicWorld);
 
   void WorkFromThread_Bullet();
 };

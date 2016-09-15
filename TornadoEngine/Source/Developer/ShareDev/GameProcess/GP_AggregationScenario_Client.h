@@ -43,7 +43,8 @@ public:
 
   virtual void SetScene(TScene* pScene);
 protected:
-  virtual TGP_Scenario* GetByType(nsGameProcess::GP_TypeScenario type);
+  virtual void GetByType(nsGameProcess::GP_TypeScenario type, 
+    IGP_Scenario_General*& pGeneral, TGP_Scenario*& pScenario );
 };
 
 #endif

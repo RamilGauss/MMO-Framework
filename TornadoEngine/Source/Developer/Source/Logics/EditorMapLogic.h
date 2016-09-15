@@ -12,6 +12,8 @@ See for more information License.h.
 #include "UsePattern.h"
 #include "FactoryBehaviourPattern_EoWM.h"
 
+#include "GP_AggregationScenario_Client.h"
+
 class TEditorMap;
 
 class TEditorMapLogic : public TModuleClientLogic
@@ -22,11 +24,14 @@ class TEditorMapLogic : public TModuleClientLogic
   TUsePattern                   mUsePattern;
   TFactoryBehaviourPattern_EoWM mFBP_EoWM;
 
+  boost::scoped_ptr<TGP_AggregationScenario_Client> mAggregationScenario_Client;
+
 public:
   TEditorMapLogic();
   virtual ~TEditorMapLogic();
 
   virtual void StartEvent();
+  virtual void StopEvent();
   virtual void InitLog();
 protected:
   virtual bool WorkClient();
@@ -45,6 +50,8 @@ private:
   //void PhysicBeginWork();
   void PhysicEndWork();
 
+  void ProgressScenario(nsGameProcess::GP_TypeScenario type, int progress);
+  void EndScenario(nsGameProcess::GP_TypeScenario type);
 public:
   void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic
 };

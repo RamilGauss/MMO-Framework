@@ -13,11 +13,13 @@ See for more information License.h.
 class TFactoryBehaviourPattern_EoWM : public TFactoryBehaviourPattern
 {
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Tank;
+  TCallBackRegistrator1<TBehaviourPattern*&> mCB_Gear;
 public:
   TFactoryBehaviourPattern_EoWM();
   virtual ~TFactoryBehaviourPattern_EoWM();
 protected:
   void MakeTank(TBehaviourPattern*& p);
+  void MakeGear(TBehaviourPattern*& p);
 };
 
 #endif

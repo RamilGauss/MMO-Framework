@@ -46,6 +46,7 @@ void TEditorMap::Activate()
   miExit = mPopupMenu_File->findItemById("Command_FileExit");
 
   miOpen->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Open);
+  miExit->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Exit);
 }
 //-------------------------------------------------------------------------------------
 const char* TEditorMap::GetNameLayout()
@@ -76,7 +77,13 @@ void TEditorMap::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Ch
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Open(MyGUI::Widget* _sender)
 {
-  mLMP.nameMap = "Field";
-  TModuleLogic::Get()->AddEventWithoutCopy(nsListModules::FromSomeToLogic, &mLMP);
+  std::string nameMap = "Field";
+  TModuleLogic::Get()->AddEventCopy(nsListModules::FromSomeToLogic, 
+    (void*)nameMap.data(), nameMap.length() );
+}
+//-------------------------------------------------------------------------------------
+void TEditorMap::sl_Exit(MyGUI::Widget* _sender)
+{
+  TModuleLogic::Get()->Exit();
 }
 //-------------------------------------------------------------------------------------

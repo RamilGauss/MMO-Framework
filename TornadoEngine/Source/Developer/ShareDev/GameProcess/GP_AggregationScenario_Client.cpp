@@ -19,7 +19,10 @@ TGP_AggregationScenario_Client::TGP_AggregationScenario_Client()
 //---------------------------------------------------------------------------------------------
 TGP_AggregationScenario_Client::~TGP_AggregationScenario_Client()
 {
-
+  // форсированно
+  if(GetCurrentSc())
+    GetCurrentSc()->Deactivate();// синхронизация и остановка всех потоков
+  End();
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_Client::Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP)
@@ -92,21 +95,23 @@ void TGP_AggregationScenario_Client::SetScene(TScene* pScene)
   mDestructor.SetScene(pScene);
 }
 //---------------------------------------------------------------------------------------------
-TGP_Scenario* TGP_AggregationScenario_Client::GetByType(nsGameProcess::GP_TypeScenario type)
+void TGP_AggregationScenario_Client::GetByType(nsGameProcess::GP_TypeScenario type, 
+    IGP_Scenario_General*& pGeneral, TGP_Scenario*& pScenario )
 {
-  TGP_Scenario* pSc = NULL;
   switch(type)
   {
     case nsGameProcess::eBuilder:
-      pSc = &mBuilder;
+      pGeneral = &mBuilder;
+      pScenario = &mBuilder;
       break;
     case nsGameProcess::eSynchroClient:
-      pSc = &mSynchro;
+      pGeneral = &mSynchro;
+      pScenario = &mSynchro;
       break;
     case nsGameProcess::eDestructor:
-      pSc = &mDestructor;
+      pGeneral = &mDestructor;
+      pScenario = &mDestructor;
       break;
   }
-  return pSc;
 }
 //---------------------------------------------------------------------------------------------

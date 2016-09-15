@@ -12,25 +12,25 @@ See for more information License.h.
 
 IGP_AggregationScenario::IGP_AggregationScenario()
 {
-  mPtrCurrentScenario = NULL;
+  mPtrCurrentScenario_General = NULL;
+  mPtrCurrentScenario_Scenario = NULL;
 }
 //-----------------------------------------------------------------
 IGP_AggregationScenario::~IGP_AggregationScenario()
 {
-  // форсированно
-  if(GetCurrentSc())
-    GetCurrentSc()->Deactivate();// синхронизация и остановка всех потоков
-  End();
+
 }
 //-----------------------------------------------------------------
-void IGP_AggregationScenario::Begin(void* pNewScenario)
+void IGP_AggregationScenario::Begin( IGP_Scenario_General* pNew_General, TGP_Scenario* pNew_Scenario )
 {
-  mPtrCurrentScenario = pNewScenario;
+  mPtrCurrentScenario_General  = pNew_General;
+  mPtrCurrentScenario_Scenario = pNew_Scenario;
 }
 //-----------------------------------------------------------------
 void IGP_AggregationScenario::End()
 {
-  mPtrCurrentScenario = NULL;
+  mPtrCurrentScenario_General = NULL;
+  mPtrCurrentScenario_Scenario = NULL;
 }
 //-----------------------------------------------------------------
 nsGameProcess::GP_TypeScenario IGP_AggregationScenario::GetCurrentScenarioType()
@@ -42,12 +42,12 @@ nsGameProcess::GP_TypeScenario IGP_AggregationScenario::GetCurrentScenarioType()
 //-----------------------------------------------------------------
 IGP_Scenario_General* IGP_AggregationScenario::GetCurrentScGeneral()
 {
-  return (IGP_Scenario_General*)mPtrCurrentScenario;
+  return mPtrCurrentScenario_General;
 }
 //-----------------------------------------------------------------
 TGP_Scenario* IGP_AggregationScenario::GetCurrentSc()
 {
-  return (TGP_Scenario*)mPtrCurrentScenario;
+  return mPtrCurrentScenario_Scenario;
 }
 //-----------------------------------------------------------------
 bool IGP_AggregationScenario::Activate(nsGameProcess::GP_TypeScenario type)
@@ -57,19 +57,21 @@ bool IGP_AggregationScenario::Activate(nsGameProcess::GP_TypeScenario type)
     if(GetCurrentSc()->IsActive())
       return false;
   }
-  TGP_Scenario* pSc = GetByType(type);
+  TGP_Scenario* pScenario = NULL;
+  IGP_Scenario_General* pGeneral = NULL;
+  GetByType(type, pGeneral, pScenario);
   // нет такого типа
-  if(pSc==NULL)
+  if(pScenario==NULL || pGeneral==NULL)
     return false;
   // если текущий такой же какой нужен
-  if(pSc==GetCurrentSc())
+  if(pScenario==GetCurrentSc() || pGeneral==GetCurrentScGeneral())
     return true;
   // деактивация старого
   if(GetCurrentSc())
     GetCurrentSc()->Deactivate();// синхронизация и остановка всех потоков
   // смена текущего
   End();
-  Begin(pSc);
+  Begin(pGeneral, pScenario);
   // начало работы, сценарий сам решит когда, куда и какой поток направлять
   GetCurrentSc()->Activate();
   return true;
@@ -93,26 +95,31 @@ void IGP_AggregationScenario::RegisterScenarioOnEvent(IGP_Scenario_General* pSc)
 //---------------------------------------------------------------------------------------------
 void IGP_AggregationScenario::Thread_Bullet()
 {
-  if(GetCurrentScGeneral())
-    GetCurrentScGeneral()->Thread_Bullet();
+  IGP_Scenario_General* pGP_General = GetCurrentScGeneral();
+  if( pGP_General )
+    pGP_General->Thread_Bullet();
 }
 //---------------------------------------------------------------------------------------------
 void IGP_AggregationScenario::Thread_Ogre()
 {
-  if(GetCurrentScGeneral())
-    GetCurrentScGeneral()->Thread_Ogre();
+  IGP_Scenario_General* pGP_General = GetCurrentScGeneral();
+  if( pGP_General )
+    pGP_General->Thread_Ogre();
 }
 //---------------------------------------------------------------------------------------------
 void IGP_AggregationScenario::Thread_Logic()
 {
-  if(GetCurrentScGeneral())
-    GetCurrentScGeneral()->Thread_Logic();
+  IGP_Scenario_General* pGP_General = GetCurrentScGeneral();
+  if( pGP_General )
+    pGP_General->Thread_Logic();
 }
 //---------------------------------------------------------------------------------------------
+#include "GP_Scenario_Builder.h"
 void IGP_AggregationScenario::Thread_OpenAL()
 {
-  if(GetCurrentScGeneral())
-    GetCurrentScGeneral()->Thread_OpenAL();
+  IGP_Scenario_General* pGP_General = GetCurrentScGeneral();
+  if( pGP_General )
+    pGP_General->Thread_OpenAL();
 }
 //---------------------------------------------------------------------------------------------
 bool IGP_AggregationScenario::IsActive(nsGameProcess::GP_TypeScenario type)

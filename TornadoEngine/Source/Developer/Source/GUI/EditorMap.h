@@ -17,7 +17,7 @@ See for more information License.h.
 #define TypeEvent_EditorMap 999
 struct DllExport TLoadMapParam
 {
-  std::string nameMap;
+  char/*std::string*/ nameMap[100];
 };
 
 class TEditorMap : public TBaseGUI
@@ -36,6 +36,7 @@ protected:
   virtual void KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char);
 protected:
   void sl_Open(MyGUI::Widget* _sender);
+  void sl_Exit(MyGUI::Widget* _sender);
 protected:
   MyGUI::MenuBar*     mBar;
   MyGUI::MenuControl* mPopupMenu_File;

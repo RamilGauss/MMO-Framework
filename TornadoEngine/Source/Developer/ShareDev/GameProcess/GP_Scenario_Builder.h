@@ -17,14 +17,20 @@ class DllExport TGP_Scenario_Builder :
 {
   int mLastProgressEvent;
   TBuilderGameMap mBuilder;
-  volatile bool flgNeedThreadQuant;// требуется ли получать квант из других потоков для реализации загрузки
 
+  volatile bool flgProgressComplete;
   volatile bool flgActive;
 
-  volatile bool flgActive_ThreadLogic;
+  // активна ли функция
   volatile bool flgActive_ThreadBullet;
   volatile bool flgActive_ThreadOgre;
   volatile bool flgActive_ThreadOpenAL;
+
+  // требуется ли получать квант для выполнения задания
+  volatile bool flgActiveTask_ThreadLogic;
+  volatile bool flgActiveTask_ThreadBullet;
+  volatile bool flgActiveTask_ThreadOgre;
+  volatile bool flgActiveTask_ThreadOpenAL;
   enum
   {
     eTimeFeedBackThread = 1, // мс
@@ -51,6 +57,12 @@ public:
   virtual void Deactivate();
 private:
   bool IsAnyThreadActive();
+
+  typedef enum{eOgreActive, eBulletActive, eOpenALActive}TypeActive;
+  void Enter(TypeActive t);
+  void Leave(TypeActive t);
+  
+  void SetActiveTask(TypeActive t, bool v);
 };
 
 #endif

@@ -24,12 +24,12 @@ void TGP_Scenario_SynchroClient::SetEnable(int id, bool v)
 //----------------------------------------------------------------------------------
 bool TGP_Scenario_SynchroClient::UpdateGameObjectFromGameItem(int id, std::string type, std::string name)
 {
-  return false;
+  return true;
 }
 //----------------------------------------------------------------------------------
 bool TGP_Scenario_SynchroClient::UpdateGameObjectFromPattern(int id, TContainer internalState)
 {
-  return false;
+  return true;
 }
 //----------------------------------------------------------------------------------
 void TGP_Scenario_SynchroClient::SetScene(TScene* pScene)

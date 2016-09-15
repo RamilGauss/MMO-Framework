@@ -20,9 +20,11 @@ See for more information License.h.
 #include "ModuleLogic.h"
 #include "ModulePhysicEngine.h"
 #include "BehaviourPattern.h"
+#include "FactoryBehaviourPattern.h"
 
 TBuilderGameMap::TBuilderGameMap()
 {
+  mPhysicWorldID    = -1;
   flgNeedInitPhysic = true;
 
   mUsePattern      = NULL;
@@ -41,18 +43,21 @@ void TBuilderGameMap::Init(TUsePattern* pUsePattern, TFactoryBehaviourPattern* p
   mUsePattern              = pUsePattern;
   mFactoryBehaviourPattern = pFBP;
   mFactoryGameItem         = TModuleLogic::Get()->GetFGI();
+
+  InitPhysic();
 }
 //--------------------------------------------------------------------------------------------
 TBuilderGameMap::~TBuilderGameMap()
 {
-  // прежде чем уничтожать мир, деструктор должен уничтожить всего объекты, связанные с ним!
-  TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->DeleteWorld(mPhysicWorldID);
+  // прежде чем уничтожать мир, деструктор должен уничтожить все объекты, связанные с ним!
+  //TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->DeleteWorld(mPhysicWorldID);
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::InitPhysic()
 {
   // Создание физического мира.
-  mPhysicWorldID = TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->AddWorld();
+  if( mPhysicWorldID==-1 )
+    mPhysicWorldID = TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->AddWorld();
 }
 //--------------------------------------------------------------------------------------------
 bool TBuilderGameMap::BuildMap( TMapItem* pMI )
@@ -67,39 +72,53 @@ bool TBuilderGameMap::BuildMap( TMapItem* pMI )
   mTableSound = 
     (TTableSoundItem*)mFactoryGameItem->Get( TFactoryGameItem::TableSound, mMapItem->mNameTableSound);
 
+  mBeginIteratorMapObject = mMapItem->mListObject.begin();
+
   mTask_Bullet.flgNeedInit = true;
   mTask_Ogre.flgNeedInit   = true;
   mTask_OpenAL.flgNeedInit = true;
 
   CalcStatisticForProgress();
-
-  //if( mAllCount )
-    //mState = eBuildMap;
-  //else
-    //mState = eIdle;
   return true;
 }
 //--------------------------------------------------------------------------------------------
 bool TBuilderGameMap::BuildObject( TMapItem::TObject* pObject, bool fast )
 {
-  //if(CheckIdle()==false)
-    //return false;
-
+  //### in process...
   mState = eIdle;
   mListGameObject.clear();
-
-  //if( AddObject_Private( pObject )==false )
-    //return false;
-
-  //CalcStatisticForProgress();
   mState = eBuildObject;
+  //###
   return true;
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::BuildFromThread_Logic()
 {
+  int cnt = 0;
   // создание и настройка игровых объектов
+  TMapItem::TListObject::iterator eit = mMapItem->mListObject.end();
+  while( mBeginIteratorMapObject!=eit )
+  {
+    TGameObject* pGO = new TGameObject;
+    pGO->SetID(mBeginIteratorMapObject->id);
+    TBehaviourPattern* pPattern = 
+     mFactoryBehaviourPattern->MakePatternByName(mBeginIteratorMapObject->namePattern);
+    pGO->SetPattern(pPattern);
+    pGO->GetPattern()->SetPosition(mBeginIteratorMapObject->position);
+    pGO->GetPattern()->SetOrientation(mBeginIteratorMapObject->rotation);
+    pGO->GetPattern()->SetParameterMap(mBeginIteratorMapObject->parameterMap);
 
+    mListGameObject.push_back(pGO);
+
+    mTask_Ogre.pipe.Add(pGO);
+    mTask_Bullet.pipe.Add(pGO);;
+    mTask_OpenAL.pipe.Add(pGO);;
+
+    mBeginIteratorMapObject++;
+    cnt++;
+    if( cnt > eMaxCountBuildObject )
+      break;
+  }
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::BuildFromThread_Ogre()
@@ -120,10 +139,6 @@ void TBuilderGameMap::BuildFromThread_Bullet()
   progress = mProgressTask_Bullet;
   BuildFromThread_XXX(mTask_Bullet, cbInit, progress, eBulletThread);
   mProgressTask_Bullet.mCurIndex = progress.mCurIndex;
-
-  //### когда вывести из состояния паузы - решит логика
-  //TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->Setup(mPhysicWorldID, TPhysicEngine_Bullet::eStatePause);
-  //###
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::BuildFromThread_OpenAL()
@@ -181,7 +196,7 @@ int TBuilderGameMap::GetPhysicWorldID()
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::InitMapFrom_Bullet()
 {
-  mAS_GravityVector->Set(mMapItem->mGravity);
+  mAS_GravityVector->Set(mMapItem->mGravity, mPhysicWorldID);
   mAS_GravityVector->WorkFromThread_Bullet();
 }
 //--------------------------------------------------------------------------------------------
@@ -232,6 +247,7 @@ void TBuilderGameMap::BuildFromThread_XXX( TTaskForThread& task,
         pGO->GetPattern()->LoadFromThread_OpenAL();
         break;
     }
+    task.pipe.UnlinkData(ppGO);// отцепиться прежде, чем уничтожить первый из списка
     task.pipe.RemoveFirst();
     cntDone++;
     progress.mCurIndex++;
