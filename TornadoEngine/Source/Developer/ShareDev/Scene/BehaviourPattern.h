@@ -58,17 +58,17 @@ public:
 
   // меняет физику
   virtual void SetPosition(nsMathTools::TVector3& v);// L
-  virtual void GetPosition(nsMathTools::TVector3& v);// B, мгновенное значение
+  virtual bool GetPosition(nsMathTools::TVector3& v);// B, мгновенное значение
   virtual void SetOrientation(nsMathTools::TVector3& v);// L
-  virtual void GetOrientation(nsMathTools::TVector3& v);// B, мгновенное значение
+  virtual bool GetOrientation(nsMathTools::TVector3& v);// B, мгновенное значение
 
   virtual bool LoadFromParameterMap();// L
   virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
   virtual bool Unload();// L
 
   // считается законченной если возвращается 100
-  virtual int GetProgressLoad();// L
-  virtual int GetProgressUnload();// L
+  //virtual int GetProgressLoad();// L
+  //virtual int GetProgressUnload();// L
 
   // Выполнить задания в каждом из потоков
   virtual void LoadFromThread_Ogre(bool fast = true);

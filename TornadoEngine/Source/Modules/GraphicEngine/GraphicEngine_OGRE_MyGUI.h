@@ -50,7 +50,8 @@ public:
   // return false - need exit
 	bool Work();
 
-  void SetWindowCaption(const std::wstring& _text);
+  void SetWindowCaptionW(const std::wstring& _text);
+  void SetWindowCaptionA(const char* _text);
   size_t GetWindowHandle();
 
   void SetTimeoutDblClick(int t_ms);

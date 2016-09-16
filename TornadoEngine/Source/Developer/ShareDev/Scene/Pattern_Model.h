@@ -27,17 +27,13 @@ public:
 
   // меняет физику
   virtual void SetPosition(nsMathTools::TVector3& v);// L
-  virtual void GetPosition(nsMathTools::TVector3& v);// B, мгновенное значение
+  virtual bool GetPosition(nsMathTools::TVector3& v);// B, мгновенное значение
   virtual void SetOrientation(nsMathTools::TVector3& v);// L
-  virtual void GetOrientation(nsMathTools::TVector3& v);// B, мгновенное значение
+  virtual bool GetOrientation(nsMathTools::TVector3& v);// B, мгновенное значение
 
   virtual bool LoadFromParameterMap();// L
   virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
   virtual bool Unload();// L
-
-  // считается законченной если возвращается 100
-  virtual int GetProgressLoad();// L
-  virtual int GetProgressUnload();// L
 
   // Выполнить задания в каждом из потоков
   virtual void LoadFromThread_Ogre(bool fast = true);
@@ -52,6 +48,9 @@ public:
   virtual void SynchroFromThread_Ogre();  // графика от физики
   virtual void SynchroFromThread_Bullet();// внутренняя синхронизация
   virtual void SynchroFromThread_OpenAL();// звук от физики
+protected:
+
+  bool GetFromPipe(nsMathTools::TVector3& v, TDataExchange2Thread<nsMathTools::TVector3>* pPipe);
 };
 
 #endif

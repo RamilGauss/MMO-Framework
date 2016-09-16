@@ -19,7 +19,7 @@ TCacheTableSound::~TCacheTableSound()
 //----------------------------------------------------------------------
 void TCacheTableSound::Set(TTableSoundItem* pTableSoundItem)
 {
-
+  mTableSoundItem = pTableSoundItem;
 }
 //----------------------------------------------------------------------
 void TCacheTableSound::WorkFromThread_OpenAL()

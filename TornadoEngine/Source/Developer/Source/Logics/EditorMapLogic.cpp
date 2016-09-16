@@ -16,6 +16,9 @@ See for more information License.h.
 
 #include "EditorMap.h"
 
+#include <boost/locale/util.hpp>
+#include <boost/cstdint.hpp>
+
 TEditorMapLogic::TEditorMapLogic()
 {
   mAggregationScenario_Client.reset(new TGP_AggregationScenario_Client);
@@ -95,9 +98,37 @@ void TEditorMapLogic::StartTimer()
 }
 //----------------------------------------------------------
 void TEditorMapLogic::InitForms()
-{
+{ //mComp.pGraphicEngine->GetGE()->GetWindow()->setFullscreen(true, 1280, 1024);
   mEditorMap = new TEditorMap;
   mEditorMap->Show();
+
+//  char* sMsgUtf8 = "Редактор карт";
+//#ifdef WIN32
+//  size_t lenMsgUtf8 = strlen(sMsgUtf8);
+//  TContainer cUnicode;
+//  cUnicode.SetData(NULL, 3*lenMsgUtf8+2);
+//  std::auto_ptr<boost::locale::util::base_converter> mConvFrom = 
+//    boost::locale::util::create_utf8_converter();
+//
+//  wchar_t* pUnicode = (wchar_t*)cUnicode.GetPtr();
+//  const char* pCurFrom = (const char*)(sMsgUtf8);
+//  char* pEndFrom = sMsgUtf8 + lenMsgUtf8;
+//  int cntUnicode = 0;
+//  while(true)
+//  {
+//    boost::uint32_t u = mConvFrom->to_unicode(pCurFrom, pEndFrom);
+//    pUnicode[cntUnicode] = u;
+//    cntUnicode++;
+//    int len = pEndFrom - pCurFrom;
+//    if( len <= 0 )
+//      break;
+//  }
+//#else
+//    wchar_t* pUnicode = (wchar_t*)sMsgUtf8;
+//#endif
+//  pUnicode[cntUnicode] = L'\0';
+//  std::wstring caption = pUnicode;//"Редактор карт";
+  mComp.pGraphicEngine->GetGE()->SetWindowCaptionA("Редактор карт");
 }
 //----------------------------------------------------------
 void TEditorMapLogic::PhysicEndWork()

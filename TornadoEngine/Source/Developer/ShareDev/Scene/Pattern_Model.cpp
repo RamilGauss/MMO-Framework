@@ -6,10 +6,24 @@ See for more information License.h.
 */
 
 #include "Pattern_Model.h"
+#include <boost/foreach.hpp>
+#include <OgreRoot.h>
+#include "ModuleLogic.h"
+#include "ModuleGraphicEngine.h"
+#include "FactoryGameItem.h"
+#include "ModelItem.h"
+
+namespace nsPatternModel
+{
+  const char* sNameGameItem = "NameGameItem";
+
+}
+
+using namespace nsPatternModel;
 
 TPattern_Model::TPattern_Model()
 {
-
+  //mDefaultParameterMap.insert();
 }
 //---------------------------------------------------------------------------
 TPattern_Model::~TPattern_Model()
@@ -35,9 +49,9 @@ void TPattern_Model::SetPosition(nsMathTools::TVector3& v)
   mPipePositionLogic2Bullet.Add(pV);
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::GetPosition(nsMathTools::TVector3& v)
+bool TPattern_Model::GetPosition(nsMathTools::TVector3& v)
 {
-
+  return GetFromPipe(v, &mPipePositionLogic2Bullet);
 }
 //---------------------------------------------------------------------------
 void TPattern_Model::SetOrientation(nsMathTools::TVector3& v)
@@ -47,9 +61,25 @@ void TPattern_Model::SetOrientation(nsMathTools::TVector3& v)
   mPipeOrientationLogic2Bullet.Add(pV);
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::GetOrientation(nsMathTools::TVector3& v)
+bool TPattern_Model::GetOrientation(nsMathTools::TVector3& v)
 {
-
+  return GetFromPipe(v, &mPipeOrientationLogic2Bullet);
+}
+//---------------------------------------------------------------------------
+bool TPattern_Model::GetFromPipe(nsMathTools::TVector3& v, TDataExchange2Thread<nsMathTools::TVector3>* pPipe)
+{
+  nsMathTools::TVector3** ppV = pPipe->GetFirst();
+  if( ppV==NULL )
+    return false;
+  while(1)
+  {
+    v = *(*ppV);
+    pPipe->RemoveFirst();
+    ppV = pPipe->GetFirst();
+    if( ppV==NULL )
+      return true;
+  }
+  return false;
 }
 //---------------------------------------------------------------------------
 bool TPattern_Model::LoadFromParameterMap()
@@ -67,42 +97,61 @@ bool TPattern_Model::Unload()
   return true;
 }
 //---------------------------------------------------------------------------
-int TPattern_Model::GetProgressLoad()
-{
-  return 100;
+void TPattern_Model::LoadFromThread_Ogre( bool fast )
+{//mGO->GetGraphic();
+  Ogre::Root* pRoot = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetRoot();
+
+  // найти имя модели
+  TMapItem::TMapStrStrIt itName = mParameterMap.find(sNameGameItem);
+  if( itName==mParameterMap.end() )
+    return;
+  std::string nameGameItem = itName->second;
+
+  TModelItem* pModel = (TModelItem*)mFGI->Get(TFactoryGameItem::Model, nameGameItem);
+  if( pModel==NULL )
+    return;
+  BOOST_FOREACH( TModelItem::TMapStrPartVT& vtPart, pModel->mMapNamePart )
+  {
+    std::string namePart = vtPart.first;
+    BOOST_FOREACH( TModelItem::TVariant& variant, vtPart.second.vecVariant )
+    {
+      variant.type.data();
+      variant.name.data();
+
+      variant.redefinitionMaterial.data();
+      BOOST_FOREACH( TModelItem::TMapExternalInternalVT& vtExtInt, variant.mapExternalInternal )
+      {
+        vtExtInt.first.data();
+        TModelItem::TJoint joint = vtExtInt.second;
+        joint.nameJoint.data();
+        joint.namePart.data();
+      }
+      variant.scale;
+    }
+  }
 }
 //---------------------------------------------------------------------------
-int TPattern_Model::GetProgressUnload()
-{
-  return 100;
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::LoadFromThread_Ogre(bool fast )
+void TPattern_Model::LoadFromThread_Bullet( bool fast )
 {
 
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::LoadFromThread_Bullet(bool fast )
+void TPattern_Model::LoadFromThread_OpenAL( bool fast )
 {
 
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::LoadFromThread_OpenAL(bool fast )
+void TPattern_Model::UnloadFromThread_Ogre( bool fast )
 {
 
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::UnloadFromThread_Ogre(bool fast )
+void TPattern_Model::UnloadFromThread_Bullet( bool fast )
 {
 
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::UnloadFromThread_Bullet(bool fast )
-{
-
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::UnloadFromThread_OpenAL(bool fast )
+void TPattern_Model::UnloadFromThread_OpenAL( bool fast )
 {
 
 }

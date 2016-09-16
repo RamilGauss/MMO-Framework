@@ -103,6 +103,7 @@ void TBuilderGameMap::BuildFromThread_Logic()
     pGO->SetID(mBeginIteratorMapObject->id);
     TBehaviourPattern* pPattern = 
      mFactoryBehaviourPattern->MakePatternByName(mBeginIteratorMapObject->namePattern);
+    pPattern->SetFGI(mFactoryGameItem);
     pGO->SetPattern(pPattern);
     pGO->GetPattern()->SetPosition(mBeginIteratorMapObject->position);
     pGO->GetPattern()->SetOrientation(mBeginIteratorMapObject->rotation);

@@ -189,8 +189,8 @@
             </Translation>
             <Scale>
               <Property key="x" value="1"/>
-              <Property key="y" value="2"/>
-              <Property key="z" value="3"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
             </Scale>
           </Variant>
           <Variant type="Shape" name="PlateVarGeom" >
@@ -200,8 +200,8 @@
             </Translation>
             <Scale>
               <Property key="x" value="1"/>
-              <Property key="y" value="2"/>
-              <Property key="z" value="3"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
             </Scale>                 
           </Variant>
         </Incarnation>
@@ -216,9 +216,9 @@
               <Joint external="1" part="root" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
             </Translation>
             <Scale>
-              <Property key="x" value="0"/>
-              <Property key="y" value="0"/>
-              <Property key="z" value="0"/>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
             </Scale>
           </Variant>
           <Variant type="Shape" name="PlateVarGeom">
@@ -227,9 +227,9 @@
               <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
             </Translation>
             <Scale>
-              <Property key="x" value="0"/>
-              <Property key="y" value="0"/>
-              <Property key="z" value="0"/>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
             </Scale>
           </Variant>
         </Incarnation>
@@ -244,9 +244,9 @@
               <Joint external="1" part="root" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
             </Translation>
             <Scale>
-              <Property key="x" value="0"/>
-              <Property key="y" value="0"/>
-              <Property key="z" value="0"/>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
             </Scale>
           </Variant>
           <Variant type="Shape" name="PlateVarGeom">
@@ -255,9 +255,9 @@
               <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
             </Translation>
             <Scale>
-              <Property key="x" value="0"/>
-              <Property key="y" value="0"/>
-              <Property key="z" value="0"/>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
             </Scale>
           </Variant>
         </Incarnation>

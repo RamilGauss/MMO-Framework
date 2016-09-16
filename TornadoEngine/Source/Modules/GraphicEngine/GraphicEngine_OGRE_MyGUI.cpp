@@ -12,6 +12,9 @@ See for more information License.h.
 #include "Events.h"
 #include "Logger.h"
 
+#include <boost/locale/util.hpp>
+#include <boost/cstdint.hpp>
+
 TGraphicEngine_Ogre_MyGUI::TGraphicEngine_Ogre_MyGUI()
 {
   mTimeoutDblClick = eTimeoutDblClick;
@@ -106,9 +109,41 @@ void TGraphicEngine_Ogre_MyGUI::MsgException(MyGUI::Exception& _e)
 #endif
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_Ogre_MyGUI::SetWindowCaption(const std::wstring& _text)
+void TGraphicEngine_Ogre_MyGUI::SetWindowCaptionW(const std::wstring& _text)
 {
   mGE->SetWindowCaption(_text);
+}
+//---------------------------------------------------------------------
+void TGraphicEngine_Ogre_MyGUI::SetWindowCaptionA(const char* _text)
+{
+  char* sMsgUtf8 = (char*)_text;
+#ifdef WIN32
+  size_t lenMsgUtf8 = strlen(_text);
+  TContainer cUnicode;
+  cUnicode.SetData(NULL, 3*lenMsgUtf8+2);
+  std::auto_ptr<boost::locale::util::base_converter> mConvFrom = 
+    boost::locale::util::create_utf8_converter();
+
+  wchar_t* pUnicode = (wchar_t*)cUnicode.GetPtr();
+  const char* pCurFrom = (const char*)(sMsgUtf8);
+  char* pEndFrom = sMsgUtf8 + lenMsgUtf8;
+  int cntUnicode = 0;
+  while(true)
+  {
+    boost::uint32_t u = mConvFrom->to_unicode(pCurFrom, pEndFrom);
+    pUnicode[cntUnicode] = u;
+    cntUnicode++;
+    int len = pEndFrom - pCurFrom;
+    if( len <= 0 )
+      break;
+  }
+#else
+  wchar_t* pUnicode = (wchar_t*)sMsgUtf8;
+#endif
+  pUnicode[cntUnicode] = L'\0';
+  std::wstring caption = pUnicode;
+
+  mGE->SetWindowCaption(caption);
 }
 //---------------------------------------------------------------------
 size_t TGraphicEngine_Ogre_MyGUI::GetWindowHandle()

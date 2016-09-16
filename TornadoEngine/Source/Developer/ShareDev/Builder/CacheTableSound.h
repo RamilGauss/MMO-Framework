@@ -14,6 +14,7 @@ struct TTableSoundItem;
 
 class DllExport TCacheTableSound
 {
+  TTableSoundItem* mTableSoundItem;
 public:
   TCacheTableSound();
   virtual ~TCacheTableSound();

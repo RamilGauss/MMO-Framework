@@ -84,9 +84,9 @@ void TBehaviourPattern::SetPosition(nsMathTools::TVector3& v)
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::GetPosition(nsMathTools::TVector3& v)
+bool TBehaviourPattern::GetPosition(nsMathTools::TVector3& v)
 {
-
+  return false;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::SetOrientation(nsMathTools::TVector3& v)
@@ -94,9 +94,9 @@ void TBehaviourPattern::SetOrientation(nsMathTools::TVector3& v)
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::GetOrientation(nsMathTools::TVector3& v)
+bool TBehaviourPattern::GetOrientation(nsMathTools::TVector3& v)
 {
-
+  return false;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::LoadFromParameterMap()
@@ -164,15 +164,15 @@ void TBehaviourPattern::SynchroFromThread_OpenAL()
 
 }
 //------------------------------------------------------------------------
-int TBehaviourPattern::GetProgressLoad()
-{
-  return 0;
-}
-//------------------------------------------------------------------------
-int TBehaviourPattern::GetProgressUnload()
-{
-  return 0;
-}
+//int TBehaviourPattern::GetProgressLoad()
+//{
+//  return 0;
+//}
+////------------------------------------------------------------------------
+//int TBehaviourPattern::GetProgressUnload()
+//{
+//  return 0;
+//}
 //------------------------------------------------------------------------
 void TBehaviourPattern::ParseParameterMap(TMapItem::TMapStrStr& m)
 {
