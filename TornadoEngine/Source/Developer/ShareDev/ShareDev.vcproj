@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene;./Share;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene;./Share;./Test;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -811,6 +811,14 @@
 				Name="Common"
 				>
 				<File
+					RelativePath=".\Scene\ControlCamera.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Scene\ControlCamera.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Scene\IHandlerScene.cpp"
 					>
 				</File>
@@ -1219,6 +1227,18 @@
 		<Filter
 			Name="SystemCollision"
 			>
+		</Filter>
+		<Filter
+			Name="Test"
+			>
+			<File
+				RelativePath=".\Test\ShowTankWoT_test.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Test\ShowTankWoT_test.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

@@ -14,7 +14,11 @@ See for more information License.h.
 
 #include "GP_AggregationScenario_Client.h"
 
+#include "./GraphicEngine/Events.h"
+
 class TEditorMap;
+class TShowTankWoT_test;
+class TControlCamera;
 
 class TEditorMapLogic : public TModuleClientLogic
 {
@@ -25,6 +29,8 @@ class TEditorMapLogic : public TModuleClientLogic
   TFactoryBehaviourPattern_EoWM mFBP_EoWM;
 
   boost::scoped_ptr<TGP_AggregationScenario_Client> mAggregationScenario_Client;
+  boost::scoped_ptr<TShowTankWoT_test>              mPtrShowTank;
+  boost::scoped_ptr<TControlCamera>                 mPtrControlCamera;
 
 public:
   TEditorMapLogic();
@@ -37,11 +43,17 @@ protected:
   virtual bool WorkClient();
 
   virtual void Input(int id_sender, void* p, int size);
+protected:
+  void HandleFromGraphicEngine(nsGraphicEngine::TBaseEvent* pBaseGE);
+  void HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent* pMouseGE);
+  void HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pKeyGE);
+
 private:
   void StartTimer();
   void InitForms();
 
   //void InitPhysic();
+  void ShowTanks();
 
   void SoundEndWork();
   void GraphicEndWork();
@@ -54,6 +66,9 @@ private:
   void EndScenario(nsGameProcess::GP_TypeScenario type);
 public:
   void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic
+
+protected:
+  void CameraTryMove();
 };
 
 #endif

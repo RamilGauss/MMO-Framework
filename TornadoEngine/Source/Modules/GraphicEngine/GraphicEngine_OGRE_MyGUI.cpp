@@ -35,6 +35,12 @@ TGraphicEngine_Ogre_MyGUI::~TGraphicEngine_Ogre_MyGUI()
 //---------------------------------------------------------------------
 bool TGraphicEngine_Ogre_MyGUI::InitOGRE(const std::string& pathPluginCfg)
 {
+#ifdef WIN32
+  ShowCursor(false);
+#else
+
+#endif
+
 	try
 	{
 		return mGE->InitOGRE(pathPluginCfg);
@@ -114,19 +120,18 @@ void TGraphicEngine_Ogre_MyGUI::SetWindowCaptionW(const std::wstring& _text)
   mGE->SetWindowCaption(_text);
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_Ogre_MyGUI::SetWindowCaptionA(const char* _text)
+void TGraphicEngine_Ogre_MyGUI::SetWindowCaptionUtf8(const char* sMsgUtf8)
 {
-  char* sMsgUtf8 = (char*)_text;
 #ifdef WIN32
-  size_t lenMsgUtf8 = strlen(_text);
+  size_t lenMsgUtf8 = strlen(sMsgUtf8);
   TContainer cUnicode;
   cUnicode.SetData(NULL, 3*lenMsgUtf8+2);
   std::auto_ptr<boost::locale::util::base_converter> mConvFrom = 
     boost::locale::util::create_utf8_converter();
 
   wchar_t* pUnicode = (wchar_t*)cUnicode.GetPtr();
-  const char* pCurFrom = (const char*)(sMsgUtf8);
-  char* pEndFrom = sMsgUtf8 + lenMsgUtf8;
+  const char* pCurFrom = sMsgUtf8;
+  char* pEndFrom = (char*)sMsgUtf8 + lenMsgUtf8;
   int cntUnicode = 0;
   while(true)
   {

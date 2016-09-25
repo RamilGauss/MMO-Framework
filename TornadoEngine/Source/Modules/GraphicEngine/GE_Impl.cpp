@@ -73,7 +73,7 @@ TGE_Impl::~TGE_Impl()
 bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg)
 {
 	mRoot = new Ogre::Root(pathPluginCfg, "ogre.cfg", "Ogre.log");
-  if(!mRoot->restoreConfig())// попробуем завестись на дефолтных
+  if( !mRoot->restoreConfig() )// попробуем завестись на дефолтных
   {
     if(!mRoot->showConfigDialog()) return false;// ничего не получилось, покажем диалог
   }
@@ -88,7 +88,7 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg)
   HINSTANCE instance = ::GetModuleHandleA(buf);
   // по-быстрому грузим иконку
   HICON hIcon = ::LoadIcon(instance, MAKEINTRESOURCE(1001));
-  if (hIcon)
+  if( hIcon )
   {
     ::SendMessageA((HWND)handle, WM_SETICON, 1, (LPARAM)hIcon);
     ::SendMessageA((HWND)handle, WM_SETICON, 0, (LPARAM)hIcon);

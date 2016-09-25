@@ -52,7 +52,7 @@ struct DllExport TMouseEvent : public TBaseEvent
   // wheel
   int delta_wheel;
   // for All events
-  int pressedButtons;// bit position indicates button down OIS::MouseButtonID
+  int pressedButtons;// bit position indicates button down OIS::MouseButtonID, e.g. (1<<OIS::MB_Right)
   int x;
   int y;
   TMouseEvent(){type=eMouse;x=0;y=0;delta_wheel=0;pressedButtons=0;button=OIS::MB_Left ;}

@@ -15,6 +15,8 @@ See for more information License.h.
 #include "ModuleSoundEngine.h"
 
 #include "EditorMap.h"
+#include "ShowTankWoT_test.h"
+#include "ControlCamera.h"
 
 #include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
@@ -22,6 +24,8 @@ See for more information License.h.
 TEditorMapLogic::TEditorMapLogic()
 {
   mAggregationScenario_Client.reset(new TGP_AggregationScenario_Client);
+  mPtrShowTank.reset(new TShowTankWoT_test);
+  mPtrControlCamera.reset(new TControlCamera);
 }
 //-------------------------------------------------------------------
 TEditorMapLogic::~TEditorMapLogic()
@@ -39,6 +43,7 @@ void TEditorMapLogic::StartEvent()
 
   CallBackModule(nsListModules::Timer, &TEditorMapLogic::StartTimer);
   CallBackModule(nsListModules::GraphicEngine, &TEditorMapLogic::InitForms);
+  CallBackModule(nsListModules::GraphicEngine, &TEditorMapLogic::ShowTanks);
 
   mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorMapLogic::FreeGraphicResource,this);
   mComp.pGraphicEngine->GetCBEndWork()->Register( &TEditorMapLogic::GraphicEndWork ,this);
@@ -69,6 +74,7 @@ void TEditorMapLogic::Input(int id_sender, void* p, int size)
   switch(id_sender)
   {
     case nsListModules::GraphicEngine:
+      HandleFromGraphicEngine((nsGraphicEngine::TBaseEvent*)p);
       break;
     case nsListModules::PhysicEngine:
       break;
@@ -94,7 +100,7 @@ void TEditorMapLogic::Input(int id_sender, void* p, int size)
 void TEditorMapLogic::StartTimer()
 {
   // вызовется из потока таймера
-  unsigned int mID_Timer = mComp.pTimer->New(10);
+  //unsigned int mID_Timer = mComp.pTimer->New(100);
 }
 //----------------------------------------------------------
 void TEditorMapLogic::InitForms()
@@ -102,33 +108,7 @@ void TEditorMapLogic::InitForms()
   mEditorMap = new TEditorMap;
   mEditorMap->Show();
 
-//  char* sMsgUtf8 = "Редактор карт";
-//#ifdef WIN32
-//  size_t lenMsgUtf8 = strlen(sMsgUtf8);
-//  TContainer cUnicode;
-//  cUnicode.SetData(NULL, 3*lenMsgUtf8+2);
-//  std::auto_ptr<boost::locale::util::base_converter> mConvFrom = 
-//    boost::locale::util::create_utf8_converter();
-//
-//  wchar_t* pUnicode = (wchar_t*)cUnicode.GetPtr();
-//  const char* pCurFrom = (const char*)(sMsgUtf8);
-//  char* pEndFrom = sMsgUtf8 + lenMsgUtf8;
-//  int cntUnicode = 0;
-//  while(true)
-//  {
-//    boost::uint32_t u = mConvFrom->to_unicode(pCurFrom, pEndFrom);
-//    pUnicode[cntUnicode] = u;
-//    cntUnicode++;
-//    int len = pEndFrom - pCurFrom;
-//    if( len <= 0 )
-//      break;
-//  }
-//#else
-//    wchar_t* pUnicode = (wchar_t*)sMsgUtf8;
-//#endif
-//  pUnicode[cntUnicode] = L'\0';
-//  std::wstring caption = pUnicode;//"Редактор карт";
-  mComp.pGraphicEngine->GetGE()->SetWindowCaptionA("Редактор карт");
+  mComp.pGraphicEngine->GetGE()->SetWindowCaptionUtf8("Редактор карт");
 }
 //----------------------------------------------------------
 void TEditorMapLogic::PhysicEndWork()
@@ -141,6 +121,8 @@ void TEditorMapLogic::GraphicEndWork()
 {
   if(mAggregationScenario_Client.get())
     mAggregationScenario_Client->Thread_Ogre();
+  
+  mPtrControlCamera->CameraTryMove();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::SoundEndWork()
@@ -200,4 +182,76 @@ void TEditorMapLogic::EndScenario(nsGameProcess::GP_TypeScenario type)
   }
 }
 //---------------------------------------------------------------------------------------------
-
+void TEditorMapLogic::HandleFromGraphicEngine(nsGraphicEngine::TBaseEvent* pBaseGE)
+{
+  switch( pBaseGE->type )
+  {
+    case nsGraphicEngine::eMouse:
+      HandleFromGraphicEngine_Mouse((nsGraphicEngine::TMouseEvent*)pBaseGE);
+      break;
+    case nsGraphicEngine::eKeyBoard:
+      HandleFromGraphicEngine_Key((nsGraphicEngine::TKeyEvent*)pBaseGE);
+      break;
+  }
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent* pMouseGE)
+{
+  switch( pMouseGE->typeEvent )
+  {
+    case nsGraphicEngine::eButtonDown:
+      if( (pMouseGE->pressedButtons&(1<<OIS::MB_Left)) )
+        mPtrControlCamera->MouseLeftButtonDown(pMouseGE->x, pMouseGE->y);
+      break;
+    case nsGraphicEngine::eButtonUp:
+      if( (pMouseGE->pressedButtons&(1<<OIS::MB_Left))==0 )// отжали левую кнопку
+        mPtrControlCamera->MouseLeftButtonUp();
+      break;
+    case nsGraphicEngine::eButtonDblClick:
+      break;
+    case nsGraphicEngine::eWheel:
+      break;
+    case nsGraphicEngine::eMove:
+      if( pMouseGE->pressedButtons&(1<<OIS::MB_Left) )
+        mPtrControlCamera->MoveMouse(pMouseGE->x, pMouseGE->y);// двигать камеру
+      else if( pMouseGE->pressedButtons&(1<<OIS::MB_Right) )
+      {// двигать объект
+        int a = 0;
+      }
+      break;
+  }
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pKeyGE)
+{
+  switch( pKeyGE->key )
+  {
+    case OIS::KC_W:
+      mPtrControlCamera->SetMoveForward(pKeyGE->pressed);
+      break;
+    case OIS::KC_S:
+      mPtrControlCamera->SetMoveBackward(pKeyGE->pressed);
+      break;
+    case OIS::KC_A:
+      mPtrControlCamera->SetMoveLeft(pKeyGE->pressed);
+      break;
+    case OIS::KC_D:
+      mPtrControlCamera->SetMoveRight(pKeyGE->pressed);
+      break;
+    case OIS::KC_Q:
+      mPtrControlCamera->SetMoveDown(pKeyGE->pressed);
+      break;
+    case OIS::KC_E:
+      mPtrControlCamera->SetMoveUp(pKeyGE->pressed);
+      break;
+    case OIS::KC_ESCAPE:
+      Exit();
+      break;
+  }
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::ShowTanks()
+{
+  mPtrShowTank->ShowTanks(4);
+}
+//---------------------------------------------------------------------------------------------

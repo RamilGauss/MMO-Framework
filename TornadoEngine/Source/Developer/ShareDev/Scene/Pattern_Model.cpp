@@ -110,6 +110,25 @@ void TPattern_Model::LoadFromThread_Ogre( bool fast )
   TModelItem* pModel = (TModelItem*)mFGI->Get(TFactoryGameItem::Model, nameGameItem);
   if( pModel==NULL )
     return;
+
+  // раскрыть ветку всех форм.
+  // моделей быть не должно, они должны замениться на формы,
+  // входящие в состав моделей
+
+  // по описанию форм нужно в Ogre создать графическое представление
+
+  // нужно анализировать констрейнты для нужного порядка соединения и применять
+  // к ним параметры по-умолчанию
+
+
+  // встретили форму - превратили в OgreObject
+  // встретили модель - разлагаем на составляющие -> итерация для модели (если есть)
+
+
+  // имея список форм и моделей -> можем соединить констрейнтами
+  // параметры констрейнта берем
+
+
   BOOST_FOREACH( TModelItem::TMapStrPartVT& vtPart, pModel->mMapNamePart )
   {
     std::string namePart = vtPart.first;

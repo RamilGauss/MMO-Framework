@@ -14,6 +14,7 @@ See for more information License.h.
 
 class TClientMain;
 class TDebugPanel;
+class TShowTankWoT_test;
 
 struct btDefaultMotionState;
 
@@ -21,6 +22,8 @@ class TClientLogic : public TModuleClientLogic
 {
   TClientMain* mClientMain;
   TDebugPanel* mDebugPanel;
+
+  boost::scoped_ptr<TShowTankWoT_test> mPtrShowTank;
 
   volatile float x;
   volatile float y;
