@@ -23,6 +23,7 @@ See for more information License.h.
 
 TEditorMapLogic::TEditorMapLogic()
 {
+  mID_TimerTryMoveCamera = -1;
   mAggregationScenario_Client.reset(new TGP_AggregationScenario_Client);
   mPtrShowTank.reset(new TShowTankWoT_test);
   mPtrControlCamera.reset(new TControlCamera);
@@ -79,6 +80,11 @@ void TEditorMapLogic::Input(int id_sender, void* p, int size)
     case nsListModules::PhysicEngine:
       break;
     case nsListModules::Timer:
+      {
+        TModuleTimer::TEvent* pTE = (TModuleTimer::TEvent*)p;
+        if(pTE->id==mID_TimerTryMoveCamera)
+          mPtrControlCamera->CameraTryMove(); 
+      }
       break;
     case nsListModules::FromSomeToLogic:// EditorMap
     {
@@ -100,7 +106,7 @@ void TEditorMapLogic::Input(int id_sender, void* p, int size)
 void TEditorMapLogic::StartTimer()
 {
   // вызовется из потока таймера
-  //unsigned int mID_Timer = mComp.pTimer->New(100);
+  mID_TimerTryMoveCamera = mComp.pTimer->New(30);
 }
 //----------------------------------------------------------
 void TEditorMapLogic::InitForms()
@@ -122,7 +128,7 @@ void TEditorMapLogic::GraphicEndWork()
   if(mAggregationScenario_Client.get())
     mAggregationScenario_Client->Thread_Ogre();
   
-  mPtrControlCamera->CameraTryMove();
+  //mPtrControlCamera->CameraTryMove();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::SoundEndWork()
@@ -200,12 +206,12 @@ void TEditorMapLogic::HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent
   switch( pMouseGE->typeEvent )
   {
     case nsGraphicEngine::eButtonDown:
-      if( (pMouseGE->pressedButtons&(1<<OIS::MB_Left)) )
-        mPtrControlCamera->MouseLeftButtonDown(pMouseGE->x, pMouseGE->y);
+      //if( (pMouseGE->pressedButtons&(1<<OIS::MB_Left)) )
+        //mPtrControlCamera->MouseLeftButtonDown(pMouseGE->x, pMouseGE->y);
       break;
     case nsGraphicEngine::eButtonUp:
-      if( (pMouseGE->pressedButtons&(1<<OIS::MB_Left))==0 )// отжали левую кнопку
-        mPtrControlCamera->MouseLeftButtonUp();
+      //if( (pMouseGE->pressedButtons&(1<<OIS::MB_Left))==0 )// отжали левую кнопку
+        //mPtrControlCamera->MouseLeftButtonUp();
       break;
     case nsGraphicEngine::eButtonDblClick:
       break;
@@ -213,7 +219,7 @@ void TEditorMapLogic::HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent
       break;
     case nsGraphicEngine::eMove:
       if( pMouseGE->pressedButtons&(1<<OIS::MB_Left) )
-        mPtrControlCamera->MoveMouse(pMouseGE->x, pMouseGE->y);// двигать камеру
+        mPtrControlCamera->MoveMouse(pMouseGE->dx, pMouseGE->dy);// двигать камеру
       else if( pMouseGE->pressedButtons&(1<<OIS::MB_Right) )
       {// двигать объект
         int a = 0;

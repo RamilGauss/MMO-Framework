@@ -174,6 +174,8 @@ void TGraphicEngine_Ogre_MyGUI::MouseEvent(const OIS::MouseEvent& m, OIS::MouseB
 
   pME->x              = m.state.X.abs;
   pME->y              = m.state.Y.abs;
+  pME->dx             = m.state.X.rel;
+  pME->dy             = m.state.Y.rel;
   pME->button         = id;
   pME->pressedButtons = m.state.buttons;
   pME->typeEvent      = typeEvent;
@@ -186,12 +188,14 @@ void TGraphicEngine_Ogre_MyGUI::MouseEvent(const OIS::MouseEvent& m, OIS::MouseB
   
   AddEventWithoutCopy<nsGraphicEngine::TMouseEvent>(pME);
 
-  if(CheckDblClick(m, id, typeEvent))
+  if( CheckDblClick(m, id, typeEvent) )
   {
     pME = new nsGraphicEngine::TMouseEvent;
 
     pME->x              = m.state.X.abs;
     pME->y              = m.state.Y.abs;
+    pME->dx             = m.state.X.rel;
+    pME->dy             = m.state.Y.rel;
     pME->button         = id;
     pME->pressedButtons = m.state.buttons;
     pME->typeEvent      = nsGraphicEngine::eButtonDblClick;

@@ -32,6 +32,7 @@ class TEditorMapLogic : public TModuleClientLogic
   boost::scoped_ptr<TShowTankWoT_test>              mPtrShowTank;
   boost::scoped_ptr<TControlCamera>                 mPtrControlCamera;
 
+  unsigned int mID_TimerTryMoveCamera;
 public:
   TEditorMapLogic();
   virtual ~TEditorMapLogic();

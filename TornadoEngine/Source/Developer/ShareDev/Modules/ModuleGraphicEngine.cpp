@@ -37,6 +37,7 @@ void TModuleGraphicEngine::StartEvent()
 void TModuleGraphicEngine::StopEvent()
 {
   mCBStopEvent.Notify();
+  mGE.reset(NULL);
 }
 //---------------------------------------------------------------------------------
 TCallBackRegistrator1<TModuleDev*>* TModuleGraphicEngine::GetCBSetup()

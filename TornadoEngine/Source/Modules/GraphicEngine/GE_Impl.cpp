@@ -161,6 +161,17 @@ void TGE_Impl::Done()
 		delete mRoot;
 		mRoot = nullptr;
 	}
+
+#ifdef WIN32
+  RECT rc;
+  rc.left = 0;
+  rc.top  = 0;
+  rc.right  = 10000;
+  rc.bottom = 10000;
+  ClipCursor(&rc);
+#else
+  // TODO: X11, how clip cursor?
+#endif
 }
 //------------------------------------------------------------------------------------------
 void TGE_Impl::DestroyGui()
@@ -281,6 +292,28 @@ Ogre::Root* TGE_Impl::GetRoot()
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::mouseMoved( const OIS::MouseEvent &arg )
 {
+  // 04.10.2016, clipping the cursor
+  // проверить - выходит ли курсор за границу окна 
+#ifdef WIN32
+  RECT rc;
+  POINT point;
+  point.x = 0;
+  point.y = 0;
+  ClientToScreen((HWND)GetWindowHandle(), &point);
+  rc.left = point.x;
+  rc.top  = point.y;
+
+  point.x = (int)GetWindow()->getWidth();
+  point.y = (int)GetWindow()->getHeight();
+  ClientToScreen((HWND)GetWindowHandle(), &point);
+  rc.right  = point.x;
+  rc.bottom = point.y;
+
+  ClipCursor(&rc);
+#else
+  // TODO: X11, how clip cursor?
+#endif
+
   bool unused = true;
   if(mGUI)
     unused = !MyGUI::InputManager::getInstance().injectMouseMove(

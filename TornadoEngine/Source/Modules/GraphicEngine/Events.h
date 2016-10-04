@@ -44,6 +44,9 @@ struct DllExport TKeyEvent : public TBaseEvent
   int modifier;// OIS::KeyBoard::Modifier
   TKeyEvent(){type=eKeyBoard;pressed=false;modifier=0;}
 }_PACKED;
+
+// курсор мыши всегда находится внутри области окна (clipping), в случае попытки выйти за границу
+// курсор вернётся в область окна, то есть x и y останутся теми же, а dx и dy изменятся.
 struct DllExport TMouseEvent : public TBaseEvent
 {
   tTypeMouseEvent typeEvent;// что произошло
@@ -55,7 +58,9 @@ struct DllExport TMouseEvent : public TBaseEvent
   int pressedButtons;// bit position indicates button down OIS::MouseButtonID, e.g. (1<<OIS::MB_Right)
   int x;
   int y;
-  TMouseEvent(){type=eMouse;x=0;y=0;delta_wheel=0;pressedButtons=0;button=OIS::MB_Left ;}
+  int dx;
+  int dy;
+  TMouseEvent(){type=eMouse;x=0;y=0;dx=0;dy=0;delta_wheel=0;pressedButtons=0;button=OIS::MB_Left ;}
 }_PACKED;
 
 #ifdef WIN32

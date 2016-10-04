@@ -12,8 +12,8 @@ See for more information License.h.
 
 class DllExport TControlCamera
 {
-  int mOldX;
-  int mOldY;
+  //int mOldX;
+  //int mOldY;
 
   volatile bool flgMovedCamera;
 
@@ -36,9 +36,9 @@ public:
 
   void CameraTryMove();
 
-  void MouseLeftButtonDown( int x, int y);
-  void MouseLeftButtonUp();
-  void MoveMouse(int new_x, int new_y);
+  //void MouseLeftButtonDown( int x, int y);
+  //void MouseLeftButtonUp();
+  void MoveMouse(int dX, int dY);
 protected:
 
 };

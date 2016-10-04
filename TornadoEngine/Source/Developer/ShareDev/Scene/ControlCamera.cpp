@@ -11,10 +11,10 @@ See for more information License.h.
 
 #include <OgreVector3.h>
 
-#define MOUSE_X_AMP 0.0025f
-#define MOUSE_Y_AMP 0.0025f
+#define MOUSE_X_AMP 0.004f
+#define MOUSE_Y_AMP 0.004f
 
-#define DELTA_MOVE_CAMERA 1.5f
+#define DELTA_MOVE_CAMERA 3.5f
 
 #define DELTA_CAMERA_FORWARD  DELTA_MOVE_CAMERA
 #define DELTA_CAMERA_BACKWARD DELTA_MOVE_CAMERA
@@ -92,31 +92,46 @@ void TControlCamera::CameraTryMove()
   pCamera->moveRelative(v);
 }
 //---------------------------------------------------------------------------------------------
-void TControlCamera::MouseLeftButtonDown( int x, int y)
-{
-  mOldX = x;
-  mOldY = y;
-}
+//void TControlCamera::MouseLeftButtonDown( int x, int y)
+//{
+  //mOldX = x;
+  //mOldY = y;
+//}
 //---------------------------------------------------------------------------------------------
-void TControlCamera::MouseLeftButtonUp()
-{
-  flgMovedCamera = false;
-}
+//void TControlCamera::MouseLeftButtonUp()
+//{
+  //flgMovedCamera = false;
+//}
 //---------------------------------------------------------------------------------------------
-void TControlCamera::MoveMouse(int new_x, int new_y)
+// передавать разницу в координатах! а не сами координаты
+//void TControlCamera::MoveMouse(int new_x, int new_y)
+//{
+//  flgMovedCamera = true;
+//
+//  Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
+//
+//  Ogre::Radian angle;
+//  angle = mOldY - new_y;
+//  pCamera->pitch(MOUSE_Y_AMP*angle);
+//
+//  angle = mOldX - new_x;
+//  pCamera->yaw(MOUSE_X_AMP*angle);
+//
+//  mOldX = new_x;
+//  mOldY = new_y;
+//}
+//---------------------------------------------------------------------------------------------
+void TControlCamera::MoveMouse(int dX, int dY)
 {
-  flgMovedCamera = true;
+  //flgMovedCamera = true;
 
   Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 
   Ogre::Radian angle;
-  angle = mOldY - new_y;
+  angle = -dY;
   pCamera->pitch(MOUSE_Y_AMP*angle);
 
-  angle = mOldX - new_x;
+  angle = -dX;
   pCamera->yaw(MOUSE_X_AMP*angle);
-
-  mOldX = new_x;
-  mOldY = new_y;
 }
 //---------------------------------------------------------------------------------------------
