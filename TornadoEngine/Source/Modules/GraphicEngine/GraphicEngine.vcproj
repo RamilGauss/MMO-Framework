@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ControlClippingCursor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\GE_Impl.cpp"
 				>
 			</File>
@@ -204,6 +208,10 @@
 			>
 			<File
 				RelativePath=".\BaseGUI.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ControlClippingCursor.h"
 				>
 			</File>
 			<File

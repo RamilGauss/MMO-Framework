@@ -19,8 +19,11 @@ See for more information License.h.
 #include "PhysicEngine_Bullet.h"
 #include "ModuleLogic.h"
 #include "ModulePhysicEngine.h"
-#include "BehaviourPattern.h"
-#include "FactoryBehaviourPattern.h"
+
+#include "FactoryBehaviourPatternModel.h"
+
+#include "BehaviourPatternModel.h"
+#include "BehaviourPatternContext.h"
 
 TBuilderGameMap::TBuilderGameMap()
 {
@@ -38,7 +41,7 @@ TBuilderGameMap::TBuilderGameMap()
   mAS_CameraUp.reset(new TApplySetup_CameraUp);
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::Init(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP)
+void TBuilderGameMap::Init(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP)
 {
   mUsePattern              = pUsePattern;
   mFactoryBehaviourPattern = pFBP;
@@ -101,19 +104,20 @@ void TBuilderGameMap::BuildFromThread_Logic()
   {
     TGameObject* pGO = new TGameObject;
     pGO->SetID(mBeginIteratorMapObject->id);
-    TBehaviourPattern* pPattern = 
-     mFactoryBehaviourPattern->MakePatternByName(mBeginIteratorMapObject->namePattern);
-    pPattern->SetFGI(mFactoryGameItem);
-    pGO->SetPattern(pPattern);
-    pGO->GetPattern()->SetPosition(mBeginIteratorMapObject->position);
-    pGO->GetPattern()->SetOrientation(mBeginIteratorMapObject->rotation);
-    pGO->GetPattern()->SetParameterMap(mBeginIteratorMapObject->parameterMap);
+    TBehaviourPatternModel* pModel = 
+      mFactoryBehaviourPattern->GetPatternByName(mBeginIteratorMapObject->namePattern);
+    pGO->SetModel(pModel);
+    pGO->SetContext( pGO->GetModel()->MakeNewConext() );
+    pGO->GetContext()->SetPosition(mBeginIteratorMapObject->position);
+    pGO->GetContext()->SetOrientation(mBeginIteratorMapObject->rotation);
+    pGO->GetContext()->SetParameterMap(mBeginIteratorMapObject->parameterMap);
+    pGO->GetModel()->LoadFromThread_Logic(pGO->GetContext());
 
     mListGameObject.push_back(pGO);
 
     mTask_Ogre.pipe.Add(pGO);
-    mTask_Bullet.pipe.Add(pGO);;
-    mTask_OpenAL.pipe.Add(pGO);;
+    mTask_Bullet.pipe.Add(pGO);
+    mTask_OpenAL.pipe.Add(pGO);
 
     mBeginIteratorMapObject++;
     cnt++;
@@ -236,16 +240,17 @@ void TBuilderGameMap::BuildFromThread_XXX( TTaskForThread& task,
     }
 
     TGameObject* pGO = *ppGO;
+    TBehaviourPatternContext* pContext = pGO->GetContext();
     switch(typeThread)
     {
       case eBulletThread:
-        pGO->GetPattern()->LoadFromThread_Bullet();
+        pGO->GetModel()->LoadFromThread_Bullet(pContext);
         break;
       case eOgreThread:
-        pGO->GetPattern()->LoadFromThread_Ogre();
+        pGO->GetModel()->LoadFromThread_Ogre(pContext);
         break;
       case eOpenALThread:
-        pGO->GetPattern()->LoadFromThread_OpenAL();
+        pGO->GetModel()->LoadFromThread_OpenAL(pContext);
         break;
     }
     task.pipe.UnlinkData(ppGO);// отцепиться прежде, чем уничтожить первый из списка

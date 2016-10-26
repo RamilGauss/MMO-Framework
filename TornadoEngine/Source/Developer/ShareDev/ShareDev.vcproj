@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene;./Share;./Test;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene;./Share;./Test;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -615,14 +615,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\BuilderGameMap_Old.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\BuilderGameMap_Old.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Builder\ParamBuilderShape.cpp"
 					>
 				</File>
@@ -663,11 +655,11 @@
 				Name="BehaviourPattern"
 				>
 				<File
-					RelativePath=".\Builder\FactoryBehaviourPattern.cpp"
+					RelativePath=".\Builder\FactoryBehaviourPatternModel.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\FactoryBehaviourPattern.h"
+					RelativePath=".\Builder\FactoryBehaviourPatternModel.h"
 					>
 				</File>
 				<File
@@ -742,124 +734,196 @@
 			<Filter
 				Name="Pattern"
 				>
-				<File
-					RelativePath=".\Scene\BehaviourPattern.cpp"
+				<Filter
+					Name="Model"
 					>
-				</File>
-				<File
-					RelativePath=".\Scene\BehaviourPattern.h"
+					<File
+						RelativePath=".\Scene\Pattern\BehaviourPatternModel.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\BehaviourPatternModel.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Animated.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Animated.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Light.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Light.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Model.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Skybox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Skybox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Sound.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Sound.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Terrain.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Terrain.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Zone.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Zone.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Context"
 					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Animated.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Animated.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Light.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Light.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Model.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Model.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Skybox.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Skybox.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Sound.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Sound.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Terrain.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Terrain.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Zone.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Scene\Pattern_Zone.h"
-					>
-				</File>
+					<File
+						RelativePath=".\Scene\Pattern\BehaviourPatternContext.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\BehaviourPatternContext.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Animated.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Animated.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Light.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Light.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Model.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Skybox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Skybox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Sound.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Sound.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Terrain.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Terrain.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Zone.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Zone.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Common"
 				>
 				<File
-					RelativePath=".\Scene\ControlCamera.cpp"
+					RelativePath=".\Scene\Common\ControlCamera.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\ControlCamera.h"
+					RelativePath=".\Scene\Common\ControlCamera.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\IHandlerScene.cpp"
+					RelativePath=".\Scene\Common\IHandlerScene.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\IHandlerScene.h"
+					RelativePath=".\Scene\Common\IHandlerScene.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\ISceneDataAccess.cpp"
+					RelativePath=".\Scene\Common\ISceneDataAccess.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\ISceneDataAccess.h"
+					RelativePath=".\Scene\Common\ISceneDataAccess.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\ISceneSystemCollision.cpp"
+					RelativePath=".\Scene\Common\ISceneSystemCollision.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\ISceneSystemCollision.h"
+					RelativePath=".\Scene\Common\ISceneSystemCollision.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\ManagerNamePattern.cpp"
+					RelativePath=".\Scene\Common\ManagerNamePattern.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\ManagerNamePattern.h"
+					RelativePath=".\Scene\Common\ManagerNamePattern.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Scene.cpp"
+					RelativePath=".\Scene\Common\Scene.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Scene.h"
+					RelativePath=".\Scene\Common\Scene.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\TypeEventScene.h"
+					RelativePath=".\Scene\Common\TypeEventScene.h"
 					>
 				</File>
 			</Filter>
@@ -867,35 +931,35 @@
 				Name="GameObject"
 				>
 				<File
-					RelativePath=".\Scene\GameObject.cpp"
+					RelativePath=".\Scene\GameObject\GameObject.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject.h"
+					RelativePath=".\Scene\GameObject\GameObject.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObjectComponent_Graphic.cpp"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Graphic.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObjectComponent_Graphic.h"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Graphic.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObjectComponent_Physic.cpp"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Physic.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObjectComponent_Physic.h"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Physic.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObjectComponent_Sound.cpp"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Sound.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObjectComponent_Sound.h"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Sound.h"
 					>
 				</File>
 			</Filter>

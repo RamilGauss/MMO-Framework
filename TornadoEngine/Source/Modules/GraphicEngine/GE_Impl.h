@@ -16,12 +16,15 @@ See for more information License.h.
 #include "MyGUI_OgrePlatform.h"
 #include "CallBackRegistrator.h"
 #include "Events.h"
+#include "ControlClippingCursor.h"
 
 class TGE_Impl :
   public TInputManagerOIS,
 	public Ogre::FrameListener,
 	public Ogre::WindowEventListener
 {
+  TControlClippingCursor mClipCursor;
+  volatile bool flgCenterClippingCursor;
 public:
 	TGE_Impl();
 	virtual ~TGE_Impl();
@@ -40,11 +43,19 @@ public:
 	void SetWindowCaption(const std::wstring& _text);
 	size_t GetWindowHandle();
 
+  void SetCenterClippingCursor(bool v);
+  bool GetCenterClippingCursor();
+
 	Ogre::SceneManager* GetSceneManager();
 	Ogre::Root*         GetRoot();
 	Ogre::Camera*       GetCamera();
   Ogre::RenderWindow* GetWindow();
 protected:
+  void ClipCursor();
+  void UnclipCursor();
+
+  bool IsWindowFocus();
+
   void SetKeyBoardModifier(const OIS::KeyEvent &arg, bool pressed);
 
   void Done();
@@ -58,8 +69,10 @@ protected:
 private:
 	virtual bool frameStarted(const Ogre::FrameEvent& _evt);
 	virtual bool frameEnded(const Ogre::FrameEvent& _evt);
+  virtual void windowMoved(Ogre::RenderWindow* rw);
 	virtual void windowResized(Ogre::RenderWindow* _rw);
 	virtual void windowClosed(Ogre::RenderWindow* _rw);
+  virtual void windowFocusChange(Ogre::RenderWindow* rw);
 
 private:
 	MyGUI::Gui* mGUI;

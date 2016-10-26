@@ -64,7 +64,7 @@ int TGP_Scenario_Builder::GetPhysicWorldID()
   return mBuilder.GetPhysicWorldID();
 }
 //---------------------------------------------------------------------------------
-void TGP_Scenario_Builder::Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP)
+void TGP_Scenario_Builder::Setup(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP)
 {
   mBuilder.Init(pUsePattern, pFBP);
 }

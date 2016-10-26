@@ -63,6 +63,11 @@ void TEditorMapLogic::InitLog()
   GetLogger()->Init("EditorMap");
 }
 //-------------------------------------------------------------------
+TFactoryBehaviourPatternModel* TEditorMapLogic::GetFBPM()
+{
+  return &mFBP_EoWM;
+}
+//--------------------------------------------------------------------
 bool TEditorMapLogic::WorkClient()
 {
   if(mAggregationScenario_Client.get())

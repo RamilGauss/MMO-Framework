@@ -9,7 +9,10 @@ See for more information License.h.
 
 #include <Ogre.h>
 #include <OgreManualObject.h>
+
 #include "ShapeItem.h"
+//#include "ModuleLogic.h"
+//#include "Components.h"
 
 TBuilderShape_Ogre::TBuilderShape_Ogre()
 {
@@ -61,9 +64,16 @@ Ogre::MeshPtr TBuilderShape_Ogre::Build(TShapeItem* pShape)
 //-----------------------------------------------------------------------------
 void TBuilderShape_Ogre::BuildPlate()
 {
-  // взять материал
-  //Ogre::MaterialPtr mMaterialPtr = ;
+  //TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager()->MaterialManager
 
+  // материал создается как фантом - не надо его сохранять
+  //Ogre::MaterialPtr mMaterialPtr = Ogre::MaterialManager::create("","");
+  
+  // сохранение происходит только в редакторе
+  //Ogre::MaterialSerializer matSer;
+  //matSer.exportMaterial(mMaterialPtr, "file");
+  //Ogre::MeshSerializer meshSer;
+  //meshSer.exportMesh()
 
   // взять геометрическую форму
   const float size = 60;

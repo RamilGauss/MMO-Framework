@@ -242,3 +242,13 @@ void TGraphicEngine_Ogre_MyGUI::SetTimeoutDblClick(int t_ms)
   mTimeoutDblClick = t_ms;
 }
 //---------------------------------------------------------------------
+void TGraphicEngine_Ogre_MyGUI::SetCenterClippingCursor(bool v)
+{
+  mGE->SetCenterClippingCursor(v);
+}
+//---------------------------------------------------------------------
+bool TGraphicEngine_Ogre_MyGUI::GetCenterClippingCursor()
+{
+  return mGE->GetCenterClippingCursor();
+}
+//---------------------------------------------------------------------

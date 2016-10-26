@@ -29,7 +29,7 @@ public:
   TGP_AggregationScenario_Client();
   virtual ~TGP_AggregationScenario_Client();
 
-  virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP);
+  virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP);
   virtual void LoadMap(std::string nameMap);
   virtual bool AddGameObject(TMapItem::TObject& desc);
   virtual int  GetPhysicWorldID();

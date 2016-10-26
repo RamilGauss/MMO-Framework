@@ -25,7 +25,7 @@ TGP_AggregationScenario_Client::~TGP_AggregationScenario_Client()
   End();
 }
 //---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_Client::Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP)
+void TGP_AggregationScenario_Client::Setup(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP)
 {
   if(IsActive(nsGameProcess::eBuilder)==false)
     return;

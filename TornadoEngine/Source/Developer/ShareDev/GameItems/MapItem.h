@@ -18,6 +18,7 @@ struct DllExport TMapItem : public TBaseItem
 {
 	typedef std::map<std::string,std::string> TMapStrStr;
 	typedef TMapStrStr::iterator   						TMapStrStrIt;
+	typedef TMapStrStr::const_iterator   			TMapStrStrConstIt;
 	typedef TMapStrStr::value_type 						TMapStrStrVT;
 
 	struct DllExport TObject

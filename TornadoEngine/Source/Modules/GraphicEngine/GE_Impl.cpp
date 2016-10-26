@@ -63,6 +63,8 @@ TGE_Impl::TGE_Impl()
   flgRAlt_Press = false;
   flgLShift_Press = false;
   flgRShift_Press = false;
+  
+  flgCenterClippingCursor = false;
 }
 //------------------------------------------------------------------------------------------
 TGE_Impl::~TGE_Impl()
@@ -112,6 +114,9 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg)
 
   mRoot->addFrameListener(this);
   Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
+
+  mClipCursor.Init(GetWindowHandle());
+  ClipCursor();
   return true;
 }
 //------------------------------------------------------------------------------------------
@@ -161,17 +166,6 @@ void TGE_Impl::Done()
 		delete mRoot;
 		mRoot = nullptr;
 	}
-
-#ifdef WIN32
-  RECT rc;
-  rc.left = 0;
-  rc.top  = 0;
-  rc.right  = 10000;
-  rc.bottom = 10000;
-  ClipCursor(&rc);
-#else
-  // TODO: X11, how clip cursor?
-#endif
 }
 //------------------------------------------------------------------------------------------
 void TGE_Impl::DestroyGui()
@@ -208,6 +202,11 @@ bool TGE_Impl::frameEnded(const Ogre::FrameEvent& evt)
 	return true;
 }
 //------------------------------------------------------------------------------------------
+void TGE_Impl::windowMoved(Ogre::RenderWindow* rw)
+{
+  //не ставить ClipCursor() для избежания блокировки курсора во время передвигания окна
+}
+//------------------------------------------------------------------------------------------
 void TGE_Impl::windowResized(Ogre::RenderWindow* _rw)
 {
 	int width  = (int)_rw->getWidth();
@@ -219,6 +218,8 @@ void TGE_Impl::windowResized(Ogre::RenderWindow* _rw)
 		mCamera->setAspectRatio((float)width / (float)height);
 		SetInputViewSize(width, height);
 	}
+
+  //не ставить ClipCursor() для избежания блокировки курсора во время изменения размера окна
 }
 //------------------------------------------------------------------------------------------
 void TGE_Impl::windowClosed(Ogre::RenderWindow* _rw)
@@ -292,27 +293,7 @@ Ogre::Root* TGE_Impl::GetRoot()
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::mouseMoved( const OIS::MouseEvent &arg )
 {
-  // 04.10.2016, clipping the cursor
-  // проверить - выходит ли курсор за границу окна 
-#ifdef WIN32
-  RECT rc;
-  POINT point;
-  point.x = 0;
-  point.y = 0;
-  ClientToScreen((HWND)GetWindowHandle(), &point);
-  rc.left = point.x;
-  rc.top  = point.y;
-
-  point.x = (int)GetWindow()->getWidth();
-  point.y = (int)GetWindow()->getHeight();
-  ClientToScreen((HWND)GetWindowHandle(), &point);
-  rc.right  = point.x;
-  rc.bottom = point.y;
-
-  ClipCursor(&rc);
-#else
-  // TODO: X11, how clip cursor?
-#endif
+  ClipCursor();
 
   bool unused = true;
   if(mGUI)
@@ -443,5 +424,59 @@ void TGE_Impl::SetKeyBoardModifier(const OIS::KeyEvent &arg, bool pressed)
     mKeyModifier |= OIS::Keyboard::Shift;
   if(flgLAlt_Press || flgRAlt_Press)
     mKeyModifier |= OIS::Keyboard::Alt;
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::SetCenterClippingCursor(bool v)
+{
+  flgCenterClippingCursor = v;
+}
+//------------------------------------------------------------------------------------------
+bool TGE_Impl::GetCenterClippingCursor()
+{
+  return flgCenterClippingCursor;
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::ClipCursor()
+{
+  // 04.10.2016, clipping the cursor
+  TControlClippingCursor::TRect rect;
+  if( flgCenterClippingCursor )
+  {
+    rect.x = (int)GetWindow()->getHeight()/2;
+    rect.y = (int)GetWindow()->getHeight()/2;
+    rect.w = (int)1;
+    rect.h = (int)1;
+  }
+  else
+  {
+    rect.x = 0;
+    rect.y = 0;
+    rect.w = (int)GetWindow()->getWidth();
+    rect.h = (int)GetWindow()->getHeight();
+  }
+  mClipCursor.SetClipRect(rect);
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::windowFocusChange(Ogre::RenderWindow* rw)
+{
+  if( !IsWindowFocus() )
+    ClipCursor();
+  else
+    UnclipCursor();
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::UnclipCursor()
+{
+  mClipCursor.Unclip();
+}
+//------------------------------------------------------------------------------------------
+bool TGE_Impl::IsWindowFocus()
+{
+  bool res = true;
+#ifdef WIN32
+  res = bool( GetFocus()==(HWND)GetWindowHandle() );
+#else
+#endif
+  return res;
 }
 //------------------------------------------------------------------------------------------

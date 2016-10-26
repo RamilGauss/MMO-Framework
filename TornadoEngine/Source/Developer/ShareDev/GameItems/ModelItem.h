@@ -32,10 +32,10 @@ struct DllExport TModelItem : public TBaseItem
   //---------------------------------------------------------  
   struct DllExport TVariant
   {
-    std::string type;
-    std::string name;
+    std::string type;// либо модель, либо форма
+    std::string name;// имя модели/формы
 
-    std::string           redefinitionMaterial;
+    std::string           redefinitionMaterial;// переопределение материала действует только для формы
     TMapExternalInternal  mapExternalInternal;
     nsMathTools::TVector3 scale;
   };

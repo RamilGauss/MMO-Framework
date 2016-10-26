@@ -23,7 +23,7 @@ struct TTableSoundItem;
 class TCacheTableSound;
 class TApplySetup_GravityVector;
 class TApplySetup_CameraUp;
-class TFactoryBehaviourPattern;
+class TFactoryBehaviourPatternModel;
 
 
 /*
@@ -39,7 +39,7 @@ class TFactoryBehaviourPattern;
 
 class DllExport TBuilderGameMap
 {
-  TFactoryBehaviourPattern* mFactoryBehaviourPattern;
+  TFactoryBehaviourPatternModel* mFactoryBehaviourPattern;
   TFactoryGameItem*         mFactoryGameItem;
   TUsePattern*              mUsePattern;
   int                       mPhysicWorldID;
@@ -67,7 +67,7 @@ public:
   TBuilderGameMap();
   virtual ~TBuilderGameMap();
 
-  void Init(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP);
+  void Init(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP);
   bool BuildMap( TMapItem* pMI );// вызывать только если состояние eIdle
   bool BuildObject( TMapItem::TObject* pObject, 
     bool fast = false );// вызывать только если состояние eIdle

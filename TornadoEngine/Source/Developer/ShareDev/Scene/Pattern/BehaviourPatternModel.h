@@ -1,0 +1,71 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Гудаков Рамиль Сергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
+#ifndef BehaviourPatternModelH
+#define BehaviourPatternModelH
+
+/*
+  Базовый тип поведения игрового объекта.
+
+  Идеология: модель-логика без данных.
+  Контекст: данные для модели для текущего вызова функции.
+  GameObject: данные только Ogre, Bullet, OpenAL.
+  Контекст: надстройка данных над Ogre, Bullet, OpenAL.
+*/
+
+#include "TypeDef.h"
+#include "ContainerTypes.h"
+#include "MathTools.h"
+#include "MapItem.h"
+
+class TFactoryGameItem;
+class TFactoryBehaviourPatternModel;
+class TBehaviourPatternContext;
+
+class DllExport TBehaviourPatternModel
+{
+  std::string mName;// Debug 
+public:
+  TBehaviourPatternModel();
+  virtual ~TBehaviourPatternModel();
+
+  void SetName(std::string v);
+  std::string GetName();
+
+  virtual TBehaviourPatternContext* MakeNewConext();
+  // от одного Паттерна другому, упаковано 
+  virtual bool SetParameterFromPattern(TBehaviourPatternContext* pContext, TContainer c);// L
+  virtual TContainer GetParameterToPattern(TBehaviourPatternContext* pContext);// B - Slave
+
+  // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
+  // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
+  virtual bool GetNeedSynchro();// B
+
+  //virtual bool LoadFromParameterMap();// L
+  virtual bool UpdateFromGameItem(TBehaviourPatternContext* pContext, TBaseItem* pBI);// L
+
+  // Выполнить задания в каждом из потоков
+  // Правило(загрузка,синхронизация,выгрузка): 
+  // сначало отрабатывает поток Логики, потом уже все остальные потоки
+  virtual void LoadFromThread_Logic(TBehaviourPatternContext* pContext);
+  virtual void LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual void LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual void LoadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
+
+  virtual void UnloadFromThread_Logic(TBehaviourPatternContext* pContext);
+  virtual void UnloadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual void UnloadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual void UnloadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
+
+  virtual void SynchroFromThread_Logic(TBehaviourPatternContext* pContext); // внешняя синхронизация
+  virtual void SynchroFromThread_Ogre(TBehaviourPatternContext* pContext);  // графика от физики
+  virtual void SynchroFromThread_Bullet(TBehaviourPatternContext* pContext);// внутренняя синхронизация
+  virtual void SynchroFromThread_OpenAL(TBehaviourPatternContext* pContext);// звук от физики
+protected:
+};
+
+#endif

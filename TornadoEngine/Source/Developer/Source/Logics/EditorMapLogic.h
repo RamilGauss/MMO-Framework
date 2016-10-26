@@ -10,7 +10,7 @@ See for more information License.h.
 
 #include "ModuleClientLogic.h"
 #include "UsePattern.h"
-#include "FactoryBehaviourPattern_EoWM.h"
+#include "FactoryBehaviourPatternModel_EoWM.h"
 
 #include "GP_AggregationScenario_Client.h"
 
@@ -26,7 +26,7 @@ class TEditorMapLogic : public TModuleClientLogic
   TEditorMap* mEditorMap;
 
   TUsePattern                   mUsePattern;
-  TFactoryBehaviourPattern_EoWM mFBP_EoWM;
+  TFactoryBehaviourPatternModel_EoWM mFBP_EoWM;
 
   boost::scoped_ptr<TGP_AggregationScenario_Client> mAggregationScenario_Client;
   boost::scoped_ptr<TShowTankWoT_test>              mPtrShowTank;
@@ -40,6 +40,9 @@ public:
   virtual void StartEvent();
   virtual void StopEvent();
   virtual void InitLog();
+
+  virtual TFactoryBehaviourPatternModel* GetFBPM();
+
 protected:
   virtual bool WorkClient();
 

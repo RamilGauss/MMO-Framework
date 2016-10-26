@@ -11,7 +11,6 @@ See for more information License.h.
 #include "ModuleLogic.h"
 #include "InputCmdDevTool.h"
 #include "ManagerGameMap.h"
-//#include "GP_AggregationScenario_Client.h"
 
 class DllExport TModuleClientLogic : public TModuleLogic
 {

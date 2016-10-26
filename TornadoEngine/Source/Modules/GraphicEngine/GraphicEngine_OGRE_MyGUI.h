@@ -56,6 +56,10 @@ public:
 
   void SetTimeoutDblClick(int t_ms);
 
+  // например, в шутерах когда мешает GUI для получения события движения мыши
+  void SetCenterClippingCursor(bool v);
+  bool GetCenterClippingCursor();
+
   Ogre::Root*         GetRoot();
   Ogre::SceneManager* GetSceneManager();
   Ogre::Camera*       GetCamera();

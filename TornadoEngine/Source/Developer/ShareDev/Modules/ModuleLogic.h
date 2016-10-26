@@ -12,10 +12,13 @@ See for more information License.h.
 #include "Components.h"
 #include "LogicEventCallBack.h"
 #include "FactoryGameItem.h"
+#include "FactoryBehaviourPatternModel.h"
 
 class DllExport TModuleLogic : public TModuleDev
 {
   volatile bool flgNeedExit;
+
+  TFactoryBehaviourPatternModel mFBPM;
 protected:
   TComponents      mComp;
   TFactoryGameItem mFGI;
@@ -27,6 +30,7 @@ public:
   void SetComponents(TComponents components);
   TComponents* GetC();
   TFactoryGameItem* GetFGI();
+  virtual TFactoryBehaviourPatternModel* GetFBPM();
 
   static TModuleLogic* Get();
 

@@ -25,6 +25,11 @@ TFactoryGameItem* TModuleLogic::GetFGI()
   return &mFGI;
 }
 //--------------------------------------------------------------------
+TFactoryBehaviourPatternModel* TModuleLogic::GetFBPM()
+{
+  return &mFBPM;
+}
+//--------------------------------------------------------------------
 TModuleLogic* TModuleLogic::Get()
 {
   return g_ptrModuleLogic;

@@ -14,7 +14,7 @@ See for more information License.h.
 #include "ContainerTypes.h"
 #include "MapItem.h"
 
-class TFactoryBehaviourPattern;
+class TFactoryBehaviourPatternModel;
 class TUsePattern;
 
 class DllExport IGP_Scenario_Builder : public virtual IGP_Scenario_General
@@ -23,7 +23,7 @@ public:
   IGP_Scenario_Builder();
   virtual ~IGP_Scenario_Builder();
 
-  virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPattern* pFBP) = 0;
+  virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP) = 0;
   virtual void LoadMap(std::string nameMap)  = 0;
   virtual bool AddGameObject(TMapItem::TObject& desc) = 0;
   virtual int GetPhysicWorldID() = 0;
