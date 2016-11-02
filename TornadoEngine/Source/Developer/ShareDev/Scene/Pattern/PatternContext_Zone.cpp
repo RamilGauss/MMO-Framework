@@ -8,8 +8,8 @@ See for more information License.h.
 #include "PatternContext_Zone.h"
 #include "ManagerNamePattern.h"
 
-TPatternContext_Zone::TPatternContext_Zone():
-TBehaviourPatternContext(TManagerNamePattern::Zone())
+TPatternContext_Zone::TPatternContext_Zone(TBehaviourPatternModel* pModel):
+TBehaviourPatternContext(pModel)
 {
 
 }

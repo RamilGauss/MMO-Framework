@@ -14,7 +14,7 @@ See for more information License.h.
 class DllExport TPatternContext_Light : public TBehaviourPatternContext
 {
 public:
-  TPatternContext_Light();
+  TPatternContext_Light(TBehaviourPatternModel* pModel);
   virtual ~TPatternContext_Light();
 };
 

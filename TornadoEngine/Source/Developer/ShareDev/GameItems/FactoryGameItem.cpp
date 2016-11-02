@@ -8,7 +8,7 @@ See for more information License.h.
 #include "FactoryGameItem.h"
 #include "MakerXML.h"
 
-#include "PatternItem.h"
+#include "PatternConfigItem.h"
 #include "MaterialItem.h"
 #include "ShapeItem.h"
 #include "ModelItem.h"
@@ -117,8 +117,8 @@ TBaseItem* TFactoryGameItem::NewItem(Type type, std::string& name)
   TBaseItem* pItem = NULL;
   switch(type)
   {
-    case Pattern:
-      pItem = new TPatternItem(name);
+    case PatternConfig:
+      pItem = new TPatternConfigItem(name);
       break;
     case Material:
       pItem = new TMaterialItem(name);
@@ -168,7 +168,7 @@ void TFactoryGameItem::FullLoad()
 //-----------------------------------------------------------------------------
 void TFactoryGameItem::MakeStr_Map()
 {
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Pattern,  	 &mMapNamePattern	  ));
+  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(PatternConfig,  	 &mMapNamePattern	  ));
   mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Material,	 &mMapNameMaterial	));
   mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Shape,   	 &mMapNameShape   	));
   mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Model,   	 &mMapNameModel   	));

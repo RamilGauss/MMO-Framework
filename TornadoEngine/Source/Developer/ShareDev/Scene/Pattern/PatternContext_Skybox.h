@@ -14,7 +14,7 @@ See for more information License.h.
 class DllExport TPatternContext_Skybox : public TBehaviourPatternContext
 {
 public:
-  TPatternContext_Skybox();
+  TPatternContext_Skybox(TBehaviourPatternModel* pModel);
   virtual ~TPatternContext_Skybox();
 };
 

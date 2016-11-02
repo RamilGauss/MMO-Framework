@@ -8,8 +8,8 @@ See for more information License.h.
 #include "PatternContext_Sound.h"
 #include "ManagerNamePattern.h"
 
-TPatternContext_Sound::TPatternContext_Sound():
-TBehaviourPatternContext(TManagerNamePattern::Sound())
+TPatternContext_Sound::TPatternContext_Sound(TBehaviourPatternModel* pModel):
+TBehaviourPatternContext(pModel)
 {
 
 }

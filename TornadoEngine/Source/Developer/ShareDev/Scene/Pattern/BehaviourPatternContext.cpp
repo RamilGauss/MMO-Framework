@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-√Û‰‡ÍÓ‚ –‡ÏËÎ¸ —Â„ÂÂ‚Ë˜ 
+–ì—É–¥–∞–∫–æ–≤ –†–∞–º–∏–ª—å –°–µ—Ä–≥–µ–µ–≤–∏—á 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -8,18 +8,18 @@ See for more information License.h.
 #include "BehaviourPatternContext.h"
 #include <boost/foreach.hpp>
 
-namespace nsBehaviourPatternContext
-{
-  const char* sMobility     = "Mobility";
-  const char* sNameGameItem = "NameGameItem";
-  const char* sVariant      = "Variant";
-};
+//namespace nsBehaviourPatternContext
+//{
+//  const char* sMobility     = "Mobility";
+//  const char* sNameGameItem = "NameGameItem";
+//  const char* sVariant      = "Variant";
+//};
+//
+//using namespace nsBehaviourPatternContext;
 
-using namespace nsBehaviourPatternContext;
-
-TBehaviourPatternContext::TBehaviourPatternContext(std::string nameModel)
+TBehaviourPatternContext::TBehaviourPatternContext(TBehaviourPatternModel* pModel)
 {
-  mNameModel = nameModel;
+  mModel = pModel;
 
   mGO  = NULL;
   mPhysicWorldID = -1;
@@ -35,6 +35,16 @@ void TBehaviourPatternContext::SetPhysicWorld(int id_physic_world)
   mPhysicWorldID = id_physic_world;
 }
 //------------------------------------------------------------------------
+void TBehaviourPatternContext::SetModel(TBehaviourPatternModel* pModel)
+{
+  mModel = pModel;
+}
+//------------------------------------------------------------------------
+TBehaviourPatternModel* TBehaviourPatternContext::GetModel()
+{
+  return mModel;
+}
+//------------------------------------------------------------------------
 void TBehaviourPatternContext::SetGameObject(TGameObject* p)
 {
   mGO = p;
@@ -43,16 +53,6 @@ void TBehaviourPatternContext::SetGameObject(TGameObject* p)
 void TBehaviourPatternContext::SetParameterMap(TMapItem::TMapStrStr& m)
 {
   mParameterMap = m;
-}
-//------------------------------------------------------------------------
-bool TBehaviourPatternContext::SetParameterFromPattern(TContainer c)
-{
-  return false;
-}
-//------------------------------------------------------------------------
-TContainer TBehaviourPatternContext::GetParameterToPattern()
-{
-  return TContainer();
 }
 //------------------------------------------------------------------------
 void TBehaviourPatternContext::SetPosition(nsMathTools::TVector3& v)
@@ -80,27 +80,27 @@ bool TBehaviourPatternContext::UpdateFromGameItem(TBaseItem* pBI)
   return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternContext::ParseParameterMap(TMapItem::TMapStrStr& m)
-{
-  BOOST_FOREACH(TMapItem::TMapStrStrVT& vt, m)
-  {
-    if(vt.first==sMobility)
-    {
-      if(vt.second=="true")
-        mStructParameterMap.flgMobility = true;
-      else
-        mStructParameterMap.flgMobility = false;
-    }
-    else if(vt.first==sNameGameItem)
-    {
-      mStructParameterMap.nameGameItem = vt.second;
-    }
-    else if(vt.first==sVariant)
-    {
-      mStructParameterMap.nameVariant = vt.second;
-    }
-  }
-}
+//void TBehaviourPatternContext::ParseParameterMap(TMapItem::TMapStrStr& m)
+//{
+//  BOOST_FOREACH(TMapItem::TMapStrStrVT& vt, m)
+//  {
+//    if(vt.first==sMobility)
+//    {
+//      if(vt.second=="true")
+//        mStructParameterMap.flgMobility = true;
+//      else
+//        mStructParameterMap.flgMobility = false;
+//    }
+//    else if(vt.first==sNameGameItem)
+//    {
+//      mStructParameterMap.nameGameItem = vt.second;
+//    }
+//    else if(vt.first==sVariant)
+//    {
+//      mStructParameterMap.nameVariant = vt.second;
+//    }
+//  }
+//}
 //------------------------------------------------------------------------
 const TMapItem::TMapStrStr* TBehaviourPatternContext::GetParameterMap()
 {

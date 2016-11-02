@@ -6,10 +6,9 @@ See for more information License.h.
 */
 
 #include "PatternContext_Animated.h"
-#include "ManagerNamePattern.h"
 
-TPatternContext_Animated::TPatternContext_Animated():
-TBehaviourPatternContext(TManagerNamePattern::Animated())
+TPatternContext_Animated::TPatternContext_Animated(TBehaviourPatternModel* pModel):
+TBehaviourPatternContext(pModel)
 {
 
 }

@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef PatternItemH
-#define PatternItemH
+#ifndef PatternConfigItemH
+#define PatternConfigItemH
 
 #include "BaseItem.h"
 
@@ -14,7 +14,7 @@ See for more information License.h.
 #include <vector>
 
 
-struct DllExport TPatternItem : public TBaseItem
+struct DllExport TPatternConfigItem : public TBaseItem
 {
   typedef std::map<std::string,std::string> TMapStrStr;
   typedef TMapStrStr::iterator              TMapStrStrIt;
@@ -26,7 +26,7 @@ struct DllExport TPatternItem : public TBaseItem
   //---------------------------------------------------------
   TMapStrMap mMapVariant;
 
-  TPatternItem(std::string& name);
+  TPatternConfigItem(std::string& name);
 };
 
 #endif

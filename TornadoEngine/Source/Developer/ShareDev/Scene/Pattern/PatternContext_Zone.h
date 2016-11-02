@@ -14,7 +14,7 @@ See for more information License.h.
 class DllExport TPatternContext_Zone : public TBehaviourPatternContext
 {
 public:
-  TPatternContext_Zone();
+  TPatternContext_Zone(TBehaviourPatternModel* pModel);
   virtual ~TPatternContext_Zone();
 };
 

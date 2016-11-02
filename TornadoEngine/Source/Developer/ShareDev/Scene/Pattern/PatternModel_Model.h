@@ -19,12 +19,16 @@ class DllExport TPatternModel_Model : public TBehaviourPatternModel
   TDataExchange2Thread<nsMathTools::TVector3> mPipeOrientationLogic2Bullet;
 
   TBuilderShape_Ogre mBuilderShape_Ogre;
+
+  TMapItem::TMapStrStr mDefaultParameterMap;
 public:
   TPatternModel_Model();
   virtual ~TPatternModel_Model();
 
   // создать контекст для работы с этой моделью
   virtual TBehaviourPatternContext* MakeNewConext();
+    
+  virtual void GetDefaultParameterMap(TMapItem::TMapStrStr& m);// L
 
   // от одного Паттерна другому, упаковано 
   virtual bool SetParameterFromPattern(TContainer c);// L
@@ -58,6 +62,8 @@ public:
 protected:
 
   bool GetFromPipe(nsMathTools::TVector3& v, TDataExchange2Thread<nsMathTools::TVector3>* pPipe);
+
+protected:
 };
 
 #endif

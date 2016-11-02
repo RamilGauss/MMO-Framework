@@ -37,13 +37,17 @@ public:
   std::string GetName();
 
   virtual TBehaviourPatternContext* MakeNewConext();
+  // при сохранении карты/объекта,
+  // что бы знать какие ключи вообще возможны, проектирование новых карт
+  virtual void GetDefaultParameterMap(TMapItem::TMapStrStr& m);// L
+
   // от одного Паттерна другому, упаковано 
   virtual bool SetParameterFromPattern(TBehaviourPatternContext* pContext, TContainer c);// L
   virtual TContainer GetParameterToPattern(TBehaviourPatternContext* pContext);// B - Slave
 
   // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
   // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
-  virtual bool GetNeedSynchro();// B
+  virtual bool GetNeedSynchro(TBehaviourPatternContext* pContext);// B
 
   //virtual bool LoadFromParameterMap();// L
   virtual bool UpdateFromGameItem(TBehaviourPatternContext* pContext, TBaseItem* pBI);// L

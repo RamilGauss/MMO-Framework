@@ -455,11 +455,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\PatternItem.cpp"
+					RelativePath=".\GameItems\PatternConfigItem.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\PatternItem.h"
+					RelativePath=".\GameItems\PatternConfigItem.h"
 					>
 				</File>
 				<File
@@ -567,11 +567,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\SerializerPatternItem_XML.cpp"
+					RelativePath=".\GameItems\SerializerPatternConfigItem_XML.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\SerializerPatternItem_XML.h"
+					RelativePath=".\GameItems\SerializerPatternConfigItem_XML.h"
 					>
 				</File>
 				<File

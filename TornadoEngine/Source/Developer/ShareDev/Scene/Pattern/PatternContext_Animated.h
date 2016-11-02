@@ -14,7 +14,7 @@ See for more information License.h.
 class DllExport TPatternContext_Animated : public TBehaviourPatternContext
 {
 public:
-  TPatternContext_Animated();
+  TPatternContext_Animated(TBehaviourPatternModel* pModel);
   virtual ~TPatternContext_Animated();
 };
 

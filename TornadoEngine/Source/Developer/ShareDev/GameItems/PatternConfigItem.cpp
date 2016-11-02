@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "PatternItem.h"
+#include "PatternConfigItem.h"
 
-TPatternItem::TPatternItem(std::string& name):
-TBaseItem(name, TFactoryGameItem::Pattern)
+TPatternConfigItem::TPatternConfigItem(std::string& name):
+TBaseItem(name, TFactoryGameItem::PatternConfig)
 {
 
 }

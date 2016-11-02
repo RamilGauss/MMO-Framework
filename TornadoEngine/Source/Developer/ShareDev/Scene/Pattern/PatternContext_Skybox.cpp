@@ -8,8 +8,8 @@ See for more information License.h.
 #include "PatternContext_Skybox.h"
 #include "ManagerNamePattern.h"
 
-TPatternContext_Skybox::TPatternContext_Skybox():
-TBehaviourPatternContext(TManagerNamePattern::Skybox())
+TPatternContext_Skybox::TPatternContext_Skybox(TBehaviourPatternModel* pModel):
+TBehaviourPatternContext(pModel)
 {
 
 }

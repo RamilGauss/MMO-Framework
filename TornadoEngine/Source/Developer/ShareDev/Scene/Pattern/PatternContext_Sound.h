@@ -14,7 +14,7 @@ See for more information License.h.
 class DllExport TPatternContext_Sound : public TBehaviourPatternContext
 {
 public:
-  TPatternContext_Sound();
+  TPatternContext_Sound(TBehaviourPatternModel* pModel);
   virtual ~TPatternContext_Sound();
 };
 

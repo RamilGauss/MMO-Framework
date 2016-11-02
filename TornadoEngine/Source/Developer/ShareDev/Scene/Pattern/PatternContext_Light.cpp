@@ -8,8 +8,8 @@ See for more information License.h.
 #include "PatternContext_Light.h"
 #include "ManagerNamePattern.h"
 
-TPatternContext_Light::TPatternContext_Light():
-TBehaviourPatternContext(TManagerNamePattern::Light())
+TPatternContext_Light::TPatternContext_Light(TBehaviourPatternModel* pModel):
+TBehaviourPatternContext(pModel)
 {
 
 }

@@ -11,6 +11,7 @@ See for more information License.h.
 #include "BaseItem.h"
 
 #include <map>
+#include <set>
 #include <vector>
 #include <memory>
 
@@ -24,6 +25,8 @@ struct DllExport TModelItem : public TBaseItem
   {
     std::string namePart;
     std::string nameJoint;
+    bool operator < (const TJoint& right) const;
+    bool operator > (const TJoint& right) const;
   };
   //---------------------------------------------------------
   typedef std::map<std::string,TJoint>     TMapExternalInternal;
@@ -42,6 +45,7 @@ struct DllExport TModelItem : public TBaseItem
   //---------------------------------------------------------  
   struct DllExport TPart
   {
+    std::string              patternModel;// носит рекомендательный характер (подсказка для разработчика)
     std::vector<std::string> vecNameJoint;
     std::vector<TVariant>    vecVariant;
   };
@@ -50,22 +54,37 @@ struct DllExport TModelItem : public TBaseItem
   typedef TMapStrPart::iterator   TMapStrPartIt;
   typedef TMapStrPart::value_type TMapStrPartVT;
   //---------------------------------------------------------  
-  struct DllExport TBranch
+  typedef std::auto_ptr<nsParamBuilderConstraint::TBaseParam> TAutoPtrConstraint;
+  //---------------------------------------------------------  
+  struct DllExport TLink
   {
-    TJoint joint0;
-    TJoint joint1;
-    nsMathTools::TVector3 position;
-    nsMathTools::TVector3 rotation;
-    std::auto_ptr<nsParamBuilderConstraint::TBaseParam> mPtrConstraint;
+    std::string nameJointBase;
+    std::string nameJointBranch;
+    TAutoPtrConstraint mPtrConstraint;
 
-    TBranch();
-    TBranch(const TBranch& c);
-    ~TBranch();
+    TLink(){}
+    TLink(const TLink& c);
+    TLink& operator = (const TLink& c);
   };
   //---------------------------------------------------------  
-  typedef std::map<std::string,TBranch> TMapStrBranch;
-  typedef TMapStrBranch::iterator       TMapStrBranchIt;
-  typedef TMapStrBranch::value_type     TMapStrBranchVT;
+  typedef std::list<TLink> TListLink;
+  //---------------------------------------------------------  
+  struct DllExport TLocation
+  {
+    std::string nameBase;
+    std::string nameBranch;
+    nsMathTools::TVector3 position;
+    nsMathTools::TVector3 rotation;
+    TListLink listLink;
+
+    TLocation(){}
+    TLocation(const TLocation& c);
+    TLocation& operator = (const TLocation& c);
+  };
+  //---------------------------------------------------------  
+  typedef std::multimap<std::string,TLocation> TMMapStrLocation;
+  typedef TMMapStrLocation::iterator           TMMapStrLocationIt;
+  typedef TMMapStrLocation::value_type         TMMapStrLocationVT;
   //---------------------------------------------------------
   struct DllExport TRoot
   {
@@ -80,11 +99,10 @@ struct DllExport TModelItem : public TBaseItem
   //---------------------------------------------------------
   //---------------------------------------------------------
   std::string   mNamePattern;// поведение
-  std::string   mVariantPattern;
 
-  TRoot         mRoot;
-  TMapStrBranch mMapNameBase_Branch;// иерархия
-  TMapStrPart   mMapNamePart;       // набор
+  TRoot            mRoot;
+  TMMapStrLocation mMapNameBaseLocation;// иерархия
+  TMapStrPart      mMapNamePart;        // набор
   
   TModelItem(std::string& name);
 };

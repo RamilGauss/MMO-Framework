@@ -13,13 +13,19 @@ See for more information License.h.
 class TFactoryBehaviourPatternModel_EoWM : public TFactoryBehaviourPatternModel
 {
   TCallBackRegistrator1<TBehaviourPatternModel*&> mCB_Tank;
-  TCallBackRegistrator1<TBehaviourPatternModel*&> mCB_Gear;
+  TCallBackRegistrator1<TBehaviourPatternModel*&> mCB_Gun;
+  TCallBackRegistrator1<TBehaviourPatternModel*&> mCB_Turret;
+  TCallBackRegistrator1<TBehaviourPatternModel*&> mCB_Hull;
+  TCallBackRegistrator1<TBehaviourPatternModel*&> mCB_Chassis;
 public:
   TFactoryBehaviourPatternModel_EoWM();
   virtual ~TFactoryBehaviourPatternModel_EoWM();
 protected:
-  void MakeTank(TBehaviourPatternModel*& p);
-  void MakeGear(TBehaviourPatternModel*& p);
+  void MakeTank(   TBehaviourPatternModel*& p);
+  void MakeGun(    TBehaviourPatternModel*& p);
+  void MakeTurret( TBehaviourPatternModel*& p);
+  void MakeHull(   TBehaviourPatternModel*& p);
+  void MakeChassis(TBehaviourPatternModel*& p);
 };
 
 #endif

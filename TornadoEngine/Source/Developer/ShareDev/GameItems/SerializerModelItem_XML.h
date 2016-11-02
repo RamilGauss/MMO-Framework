@@ -31,7 +31,8 @@ protected:
   void LoadCollection();
 
   void LoadRoot();
-  void LoadBranch(TModelItem::TBranch& branch, int iBranch);
+  void LoadLocation(TModelItem::TLocation& location, int iLocation);
+  void LoadLink(TModelItem::TLink& link, int iLink);
   void LoadPart(TModelItem::TPart& part, int iPart);
   void LoadVariant(TModelItem::TVariant& variant, int iVariant);
 
@@ -40,14 +41,15 @@ protected:
   void SaveCollection();
 
   void SaveRoot();
-  void SaveBranch(TModelItem::TBranch& branch);
+  void SaveLocation(TModelItem::TLocation& location);
+  void SaveLink(TModelItem::TLink& link);
   void SavePart(TModelItem::TPart& part);
   void SaveVariant(TModelItem::TVariant& variant);
 private:
   TMapStrStr mMapNameValue_Constraint;
   
-  void MakeConstraintByMap(TModelItem::TBranch& branch);
-  void MakeMapByConstraint(TModelItem::TBranch& branch);
+  void MakeConstraintByMap(TModelItem::TLink& link);
+  void MakeMapByConstraint(TModelItem::TLink& link);
 };
 
 #endif

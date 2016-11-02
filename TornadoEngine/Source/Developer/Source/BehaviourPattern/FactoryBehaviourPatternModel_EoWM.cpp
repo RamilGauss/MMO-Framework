@@ -6,15 +6,27 @@ See for more information License.h.
 */
 
 #include "FactoryBehaviourPatternModel_EoWM.h"
+
 #include "PatternModel_Model.h"
+#include "PatternModel_Tank.h"
+#include "PatternModel_Gun.h"
+#include "PatternModel_Turret.h"
+#include "PatternModel_Hull.h"
+#include "PatternModel_Chassis.h"
 
 TFactoryBehaviourPatternModel_EoWM::TFactoryBehaviourPatternModel_EoWM()
 {
-  mCB_Tank.Register(&TFactoryBehaviourPatternModel_EoWM::MakeTank, this);
-  mCB_Gear.Register(&TFactoryBehaviourPatternModel_EoWM::MakeGear, this);
+  mCB_Tank.   Register(&TFactoryBehaviourPatternModel_EoWM::MakeTank, this);
+  mCB_Gun.    Register(&TFactoryBehaviourPatternModel_EoWM::MakeGun, this);
+  mCB_Turret. Register(&TFactoryBehaviourPatternModel_EoWM::MakeTurret, this);
+  mCB_Hull.   Register(&TFactoryBehaviourPatternModel_EoWM::MakeHull, this);
+  mCB_Chassis.Register(&TFactoryBehaviourPatternModel_EoWM::MakeChassis, this);
   
-  AddPattern(TMapStrCBVT("tank", &mCB_Tank));
-  AddPattern(TMapStrCBVT("Gear", &mCB_Gear));
+  AddPattern(TMapStrCBVT("Tank",    &mCB_Tank));
+  AddPattern(TMapStrCBVT("Hull",    &mCB_Hull));
+  AddPattern(TMapStrCBVT("Turret",  &mCB_Turret));
+  AddPattern(TMapStrCBVT("Chassis", &mCB_Chassis));
+  AddPattern(TMapStrCBVT("Gun",     &mCB_Gun));
 }
 //-----------------------------------------------------------------------------------
 TFactoryBehaviourPatternModel_EoWM::~TFactoryBehaviourPatternModel_EoWM()
@@ -24,12 +36,26 @@ TFactoryBehaviourPatternModel_EoWM::~TFactoryBehaviourPatternModel_EoWM()
 //-----------------------------------------------------------------------------------
 void TFactoryBehaviourPatternModel_EoWM::MakeTank(TBehaviourPatternModel*& p)
 {
-  //p = new TPattern_Tank();
-  p = new TPatternModel_Model();
+  p = new TPatternModel_Tank();
 }
 //----------------------------------------------------------------------------
-void TFactoryBehaviourPatternModel_EoWM::MakeGear(TBehaviourPatternModel*& p)
+void TFactoryBehaviourPatternModel_EoWM::MakeGun(TBehaviourPatternModel*& p)
 {
-  p = new TPatternModel_Model();
+  p = new TPatternModel_Gun();
+}
+//----------------------------------------------------------------------------
+void TFactoryBehaviourPatternModel_EoWM::MakeTurret(TBehaviourPatternModel*& p)
+{
+  p = new TPatternModel_Turret();
+}
+//----------------------------------------------------------------------------
+void TFactoryBehaviourPatternModel_EoWM::MakeHull(TBehaviourPatternModel*& p)
+{
+  p = new TPatternModel_Hull();
+}
+//----------------------------------------------------------------------------
+void TFactoryBehaviourPatternModel_EoWM::MakeChassis(TBehaviourPatternModel*& p)
+{
+  p = new TPatternModel_Chassis();
 }
 //----------------------------------------------------------------------------

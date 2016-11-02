@@ -13,25 +13,45 @@ TBaseItem(name, TFactoryGameItem::Model)
 
 }
 //--------------------------------------------------------------------------------
-TModelItem::TBranch::TBranch()
+TModelItem::TLocation::TLocation(const TLocation& c)
 {
-
+  nameBase   = c.nameBase;
+  nameBranch = c.nameBranch;
+  position   = c.position;
+  rotation   = c.rotation;
+  listLink   = c.listLink;
 }
 //--------------------------------------------------------------------------------
-TModelItem::TBranch::TBranch(const TBranch& c)
+TModelItem::TLocation& TModelItem::TLocation::operator = (const TLocation& c)
 {
-  joint0 = c.joint0;
-  joint1 = c.joint1;
-  position = c.position;
-  rotation = c.rotation;
+  TLocation* pC = (TLocation*)&c;
 
-  TBranch* pB = (TBranch*)&c;
-  mPtrConstraint = pB->mPtrConstraint;
- }
-//--------------------------------------------------------------------------------
-TModelItem::TBranch::~TBranch()
-{
+  pC->nameBase = nameBase;
+  pC->nameBranch = nameBranch;
+  pC->position = position;
+  pC->rotation = rotation;
+  pC->listLink = listLink;
 
+  return *this;
 }
 //--------------------------------------------------------------------------------
+TModelItem::TLink::TLink(const TLink& c)
+{
+  nameJointBase   = c.nameJointBase;
+  nameJointBranch = c.nameJointBranch;
 
+  TLink* pLink = (TLink*)&c;
+  mPtrConstraint = pLink->mPtrConstraint;
+}
+//--------------------------------------------------------------------------------
+TModelItem::TLink& TModelItem::TLink::operator = (const TLink& c)
+{
+  TLink* pC = (TLink*)&c;
+
+  pC->nameJointBase = nameJointBase;
+  pC->nameJointBranch = nameJointBranch;
+
+  pC->mPtrConstraint = mPtrConstraint;
+  return *this;
+}
+//--------------------------------------------------------------------------------

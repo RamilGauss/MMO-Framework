@@ -60,7 +60,7 @@ public:
   
   bool Init(std::string& name_file);
 
-  typedef enum{Pattern, Material, Shape, Model, Terrain, TableSound, Map, CountType}Type;
+  typedef enum{PatternConfig, Material, Shape, Model, Terrain, TableSound, Map, CountType}Type;
 
   TBaseItem* Add(Type type, std::string& name);
   bool Save(TBaseItem* pItem);

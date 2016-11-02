@@ -33,7 +33,7 @@ namespace nsPCS
     Model,
     Shape,
     Terrain,
-    Pattern,
+    PatternConfig,
   }eTypeFGIObject;
   //-----------------------------------------------------------------
   class DllExport TPacket_TryEnterRoom : public TBasePacket_PCS

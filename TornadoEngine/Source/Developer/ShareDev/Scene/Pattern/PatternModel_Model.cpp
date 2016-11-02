@@ -26,7 +26,9 @@ using namespace nsPatternModel_Model;
 
 TPatternModel_Model::TPatternModel_Model()
 {
-  //mDefaultParameterMap.insert();
+  mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sNameGameItem,""));
+  mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sVariant,""));
+  mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sMobility,""));
 }
 //---------------------------------------------------------------------------
 TPatternModel_Model::~TPatternModel_Model()
@@ -36,7 +38,12 @@ TPatternModel_Model::~TPatternModel_Model()
 //---------------------------------------------------------------------------
 TBehaviourPatternContext* TPatternModel_Model::MakeNewConext()
 { 
-  return new TPatternContext_Model();
+  return new TPatternContext_Model(this);
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Model::GetDefaultParameterMap(TMapItem::TMapStrStr& m)
+{
+  m = mDefaultParameterMap;
 }
 //---------------------------------------------------------------------------
 bool TPatternModel_Model::SetParameterFromPattern(TContainer c)
@@ -107,6 +114,7 @@ bool TPatternModel_Model::Unload()
 //---------------------------------------------------------------------------
 void TPatternModel_Model::LoadFromThread_Logic(TBehaviourPatternContext* pContext)
 {
+  TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
   // найти имя модели
   TMapItem::TMapStrStrConstIt itNameGameItem = pContext->GetParameterMap()->find(sNameGameItem);
   if( itNameGameItem==pContext->GetParameterMap()->end() )
@@ -118,15 +126,20 @@ void TPatternModel_Model::LoadFromThread_Logic(TBehaviourPatternContext* pContex
     return;
   std::string variantPattern = itVariant->second;
 
-  //??? Ogre::Root* pRoot = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetRoot();
-  // фабрики
-  //??? TFactoryBehaviourPatternModel* pFBPM = TModuleLogic::Get()->GetFBPM();
-  TFactoryGameItem* pFGI               = TModuleLogic::Get()->GetFGI();
+  TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
 
   TModelItem* pModel = (TModelItem*)pFGI->Get(TFactoryGameItem::Model, nameGameItem);
   if( pModel==NULL )
     return;
   
+  TPatternConfigItem* pPattern = (TPatternConfigItem*)pFGI->Get(TFactoryGameItem::PatternConfig, GetName());
+  if( pPattern==NULL )
+    return;
+
+  TPatternConfigItem::TMapStrMapIt itMapVariant = pPattern->mMapVariant.find(variantPattern);
+  if( itMapVariant!=pPattern->mMapVariant.end() )
+    pContextModel->SetMapVariant(itMapVariant->second);// использовать в конце загрузки в каждом из потоков (графика,звук,физика)
+
   // задача: создать карту форм и моделей по имени. При синхронизации менять положение и ориентацию
   // форм и моделей
 

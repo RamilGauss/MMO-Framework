@@ -12,37 +12,39 @@ See for more information License.h.
 namespace nsSerializerModelItem_XML
 {
   const char* sModel          = "Model";
-
   const char* sName           = "name";
-  const char* sJoint          = "Joint";
-
   const char* sPattern        = "Pattern";
-  const char* sVariantPattern = "variant";
-
-  const char* sCollection     = "Collection";
   const char* sHierarchy      = "Hierarchy";
-  
   const char* sRoot           = "Root";
+  
   const char* sPosition       = "Position";
   const char* sRotation       = "Rotation";
   const char* sFormation      = "Formation";
-  const char* sBranch         = "Branch";
-  const char* sBase           = "base";
-  const char* sBind           = "Bind";
-  const char* sConstraint     = "Constraint";
-  
-  const char* sVariant        = "Variant";
-  const char* sIncarnation    = "Incarnation";
-  const char* sTranslation    = "Translation";
-  const char* sScale          = "Scale";
-  const char* sPart           = "Part";
-  const char* sMaterial       = "Material";
-  const char* sJoining        = "Joining";
+  const char* sLocation       = "Location";
+  const char* sBase           = "Base";
 
-  const char* sType           = "type";
-  const char* sExternal       = "external";
   const char* sNamePart       = "part";
+  const char* sBranch         = "Branch";
+  const char* sLink           = "Link";
+  const char* sJointBase      = "JointBase";
+  const char* sJointBranch    = "JointBranch";
+
+  const char* sConstraint     = "Constraint";
+  const char* sCollection     = "Collection";
+  const char* sPart           = "Part";
+  const char* sPatternModel   = "patternModel";
+  const char* sJoining        = "Joining";
+ 
+  const char* sJoint          = "Joint";
+  const char* sIncarnation    = "Incarnation";
+  const char* sVariant        = "Variant";
+  const char* sMaterial       = "Material";
+  const char* sType           = "type";
+
+  const char* sTranslation    = "Translation";
+  const char* sExternal       = "external";
   const char* sInternal       = "internal";
+  const char* sScale          = "Scale";
 }
 
 using namespace nsSerializerModelItem_XML;
@@ -90,8 +92,7 @@ bool TSerializerModelItem_XML::Save(TBaseItem* pItem)
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadPattern()
 {
-  mModel->mNamePattern    = mXML->ReadSectionAttr(sPattern, 0, sName);
-  mModel->mVariantPattern = mXML->ReadSectionAttr(sPattern, 0, sVariantPattern);
+  mModel->mNamePattern = mXML->ReadSectionAttr(sPattern, 0, sName);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadHierarchy()
@@ -101,14 +102,12 @@ void TSerializerModelItem_XML::LoadHierarchy()
     LoadRoot();
     if(mXML->EnterSection(sFormation,0))
     {
-      int cntBranch = mXML->GetCountSection(sBranch);
-      for( int iBranch = 0 ; iBranch < cntBranch ; iBranch++ )
+      int cntLocation = mXML->GetCountSection(sLocation);
+      for( int iLocation = 0 ; iLocation < cntLocation ; iLocation++ )
       {
-        TModelItem::TBranch branch;
-        LoadBranch(branch, iBranch);
-
-        std::string nameBranch = mXML->ReadSectionAttr(sBranch, iBranch, sBase);
-        mModel->mMapNameBase_Branch.insert(TModelItem::TMapStrBranchVT(nameBranch, branch));
+        TModelItem::TLocation location;
+        LoadLocation(location, iLocation);
+        mModel->mMapNameBaseLocation.insert(TModelItem::TMMapStrLocationVT(location.nameBase, location));
       }
       mXML->LeaveSection();
     }
@@ -126,6 +125,8 @@ void TSerializerModelItem_XML::LoadCollection()
       TModelItem::TPart part;
       LoadPart(part, iPart);
 
+      part.patternModel = mXML->ReadSectionAttr(sPart, iPart, sPatternModel);
+
       std::string namePart = mXML->ReadSectionAttr(sPart, iPart, sName);
       mModel->mMapNamePart.insert(TModelItem::TMapStrPartVT(namePart, part));
     }
@@ -135,12 +136,10 @@ void TSerializerModelItem_XML::LoadCollection()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SavePattern()
 {
-  TAttrInfo attr[2];
+  TAttrInfo attr[1];
   attr[0].Name  = sName;
   attr[0].Value = mModel->mNamePattern;
-  attr[1].Name  = sVariantPattern;
-  attr[1].Value = mModel->mVariantPattern;
-  mXML->AddSection(sPattern, 2, &attr[0]);
+  mXML->AddSection(sPattern, 1, &attr[0]);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SaveHierarchy()
@@ -150,17 +149,9 @@ void TSerializerModelItem_XML::SaveHierarchy()
     SaveRoot();
     if(mXML->AddSectionAndEnter(sFormation))
     {
-      BOOST_FOREACH(TModelItem::TMapStrBranchVT& bit, mModel->mMapNameBase_Branch)
-      {
-        TAttrInfo attr;
-        attr.Name  = sBase;
-        attr.Value = bit.first;
-        if(mXML->AddSectionAndEnter(sBranch, 1, &attr))
-        {
-          SaveBranch(bit.second);
-          mXML->LeaveSection();
-        }
-      }
+      BOOST_FOREACH(TModelItem::TMMapStrLocationVT& bit, mModel->mMapNameBaseLocation)
+        SaveLocation(bit.second);
+
       mXML->LeaveSection();
     }
     mXML->LeaveSection();
@@ -173,10 +164,12 @@ void TSerializerModelItem_XML::SaveCollection()
   {
     BOOST_FOREACH(TModelItem::TMapStrPartVT& bit, mModel->mMapNamePart)
     {
-      TAttrInfo attr;
-      attr.Name  = sName;
-      attr.Value = bit.first;
-      if(mXML->AddSectionAndEnter(sPart, 1, &attr))
+      TAttrInfo attr[2];
+      attr[0].Name  = sName;
+      attr[0].Value = bit.first;
+      attr[1].Name  = sPatternModel;
+      attr[1].Value = bit.second.patternModel;
+      if(mXML->AddSectionAndEnter(sPart, 2, &attr[0]))
       {
         SavePart(bit.second);
         mXML->LeaveSection();
@@ -264,31 +257,42 @@ void TSerializerModelItem_XML::LoadRoot()
   }
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerModelItem_XML::LoadBranch(TModelItem::TBranch& branch, int iBranch)
+void TSerializerModelItem_XML::LoadLocation(TModelItem::TLocation& location, int iLocation)
+{
+  if(mXML->EnterSection(sLocation, iLocation))
+  {
+    location.nameBase   = mXML->ReadSectionAttr(sBase, 0, sNamePart);
+    location.nameBranch = mXML->ReadSectionAttr(sBranch, 0, sNamePart);
+
+    if(mXML->EnterSection(sPosition,0))
+    {
+      LoadVector3ByProperty( location.position );
+      mXML->LeaveSection();
+    }
+    if(mXML->EnterSection(sRotation,0))
+    {
+      LoadVector3ByProperty( location.rotation );
+      mXML->LeaveSection();
+    }
+    int cntLink = mXML->GetCountSection(sLink);
+    for( int iLink = 0 ; iLink < cntLink ; iLink++ )
+    {
+      TModelItem::TLink link;
+      LoadLink(link, iLink);
+      location.listLink.push_back(link);
+    }
+    mXML->LeaveSection();
+  }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerModelItem_XML::LoadLink(TModelItem::TLink& link, int iLink)
 {
   mMapNameValue_Constraint.clear();
 
-  if(mXML->EnterSection(sBranch,iBranch))
+  if(mXML->EnterSection(sLink, iLink))
   {
-    if(mXML->EnterSection(sBind,0))
-    {
-      branch.joint0.namePart  = mXML->ReadSectionAttr(sJoint, 0, sNamePart);
-      branch.joint0.nameJoint = mXML->ReadSectionAttr(sJoint, 0, sName);
-      branch.joint1.namePart  = mXML->ReadSectionAttr(sJoint, 1, sNamePart);
-      branch.joint1.nameJoint = mXML->ReadSectionAttr(sJoint, 1, sName);
-
-      if(mXML->EnterSection(sPosition,0))
-      {
-        LoadVector3ByProperty( branch.position );
-        mXML->LeaveSection();
-      }
-      if(mXML->EnterSection(sRotation,0))
-      {
-        LoadVector3ByProperty( branch.rotation );
-        mXML->LeaveSection();
-      }
-      mXML->LeaveSection();
-    }
+    link.nameJointBase   = mXML->ReadSectionAttr(sJointBase,   0, sName);
+    link.nameJointBranch = mXML->ReadSectionAttr(sJointBranch, 0, sName);
     if(mXML->EnterSection(sConstraint,0))
     {
       int cntPropertyConstraint = GetCountProperty();
@@ -302,7 +306,7 @@ void TSerializerModelItem_XML::LoadBranch(TModelItem::TBranch& branch, int iBran
     }
     mXML->LeaveSection();
   }
-  MakeConstraintByMap(branch);
+  MakeConstraintByMap(link);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SaveRoot()
@@ -326,46 +330,62 @@ void TSerializerModelItem_XML::SaveRoot()
   }
 }
 //--------------------------------------------------------------------------------  
-void TSerializerModelItem_XML::SaveBranch(TModelItem::TBranch& branch)
+void TSerializerModelItem_XML::SaveLocation(TModelItem::TLocation& location)
 {
-  if(mXML->AddSectionAndEnter(sBind))
+  if( mXML->AddSectionAndEnter(sLocation) )
   {
-    TAttrInfo attr[2];
-    attr[0].Name  = sNamePart;
-    attr[0].Value = branch.joint0.namePart;
-    attr[1].Name  = sName;
-    attr[1].Value = branch.joint0.nameJoint;
-    mXML->AddSection(sJoint, 2, &attr[0]);
+    TAttrInfo attr;
+    attr.Name  = sName;
+    attr.Value = location.nameBase;
+    mXML->AddSection(sJointBase, 1, &attr);
 
-    attr[0].Name  = sNamePart;
-    attr[0].Value = branch.joint1.namePart;
-    attr[1].Name  = sName;
-    attr[1].Value = branch.joint1.nameJoint;
-    mXML->AddSection(sJoint, 2, &attr[0]);
+    attr.Name  = sName;
+    attr.Value = location.nameBranch;
+    mXML->AddSection(sJointBranch, 1, &attr);
 
     if(mXML->AddSectionAndEnter(sPosition))
     {
-      SaveVector3ByProperty( branch.position );
+      SaveVector3ByProperty( location.position );
       mXML->LeaveSection();
     }
     if(mXML->AddSectionAndEnter(sRotation))
     {
-      SaveVector3ByProperty( branch.rotation );
+      SaveVector3ByProperty( location.rotation );
       mXML->LeaveSection();
     }
+    BOOST_FOREACH(TModelItem::TLink& link, location.listLink)
+      SaveLink(link);
+
     mXML->LeaveSection();
   }
-  
-  MakeMapByConstraint(branch);
-  if(mXML->AddSectionAndEnter(sConstraint))
+}
+//--------------------------------------------------------------------------------  
+void TSerializerModelItem_XML::SaveLink(TModelItem::TLink& link)
+{
+  if( mXML->AddSectionAndEnter(sLink) )
   {
-    BOOST_FOREACH(TMapStrStrVT& bit, mMapNameValue_Constraint)
+    TAttrInfo attr;
+    attr.Name  = sName;
+    attr.Value = link.nameJointBase;
+    mXML->AddSection(sJointBase, 1, &attr);
+
+    attr.Name  = sName;
+    attr.Value = link.nameJointBranch;
+    mXML->AddSection(sJointBranch, 1, &attr);
+
+    MakeMapByConstraint(link);
+    if(mXML->AddSectionAndEnter(sConstraint))
     {
-      std::string key, value;
-      key   = bit.first; 
-      value = bit.second;
-      SaveProperty(key, value);
+      BOOST_FOREACH(TMapStrStrVT& bit, mMapNameValue_Constraint)
+      {
+        std::string key, value;
+        key   = bit.first; 
+        value = bit.second;
+        SaveProperty(key, value);
+      }
+      mXML->LeaveSection();
     }
+
     mXML->LeaveSection();
   }
 }
@@ -434,15 +454,15 @@ void TSerializerModelItem_XML::SaveVariant(TModelItem::TVariant& variant)
   }
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerModelItem_XML::MakeConstraintByMap(TModelItem::TBranch& branch)
+void TSerializerModelItem_XML::MakeConstraintByMap(TModelItem::TLink& link)
 {
   nsParamBuilderConstraint::TBaseParam* pParam = mSerParamConstraint.GetParamByMap(&mMapNameValue_Constraint);
-  branch.mPtrConstraint.reset(pParam);
+  link.mPtrConstraint.reset(pParam);
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerModelItem_XML::MakeMapByConstraint(TModelItem::TBranch& branch)
+void TSerializerModelItem_XML::MakeMapByConstraint(TModelItem::TLink& link)
 {
-  if(branch.mPtrConstraint.get())
-    mSerParamConstraint.GetMapByParam(branch.mPtrConstraint.get(), &mMapNameValue_Constraint);
+  if( link.mPtrConstraint.get() )
+    mSerParamConstraint.GetMapByParam(link.mPtrConstraint.get(), &mMapNameValue_Constraint);
 }
 //--------------------------------------------------------------------------------  

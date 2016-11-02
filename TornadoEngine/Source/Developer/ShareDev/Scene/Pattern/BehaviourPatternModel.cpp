@@ -40,7 +40,12 @@ void TBehaviourPatternModel::SetName(std::string v)
 //----------------------------------------------------------------
 TBehaviourPatternContext* TBehaviourPatternModel::MakeNewConext()
 {
-  return new TBehaviourPatternContext(mName);
+  return new TBehaviourPatternContext(this);
+}
+//------------------------------------------------------------------------
+void TBehaviourPatternModel::GetDefaultParameterMap(TMapItem::TMapStrStr& m)
+{
+
 }
 //------------------------------------------------------------------------
 //void TBehaviourPatternModel::SetParameterMap(TMapItem::TMapStrStr& m)
@@ -63,7 +68,7 @@ TContainer TBehaviourPatternModel::GetParameterToPattern(TBehaviourPatternContex
   return TContainer();
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::GetNeedSynchro()
+bool TBehaviourPatternModel::GetNeedSynchro(TBehaviourPatternContext* pContext)
 {
   return true;//mStructParameterMap.flgMobility;
 }
