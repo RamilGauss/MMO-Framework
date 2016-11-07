@@ -291,12 +291,12 @@ void TPacket_DisableGameObjects::UnpackInherit( char* p, int size )
   }
 }
 //-----------------------------------------------------------------
-TPacket_AddFGIObject::TPacket_AddFGIObject() : TBasePacket_PCS(ePacket_AddFGIObject)
+TPacket_AddGameItem::TPacket_AddGameItem() : TBasePacket_PCS(ePacket_AddGameItem)
 {
 
 }
 //-----------------------------------------------------------------
-TContainer TPacket_AddFGIObject::PackInherit()
+TContainer TPacket_AddGameItem::PackInherit()
 {
   TBreakPacket bp;
   bp.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
@@ -316,7 +316,7 @@ TContainer TPacket_AddFGIObject::PackInherit()
   return result;
 }
 //-----------------------------------------------------------------
-void TPacket_AddFGIObject::UnpackInherit( char* p, int size )
+void TPacket_AddGameItem::UnpackInherit( char* p, int size )
 {
   if( size < sizeof(TypeFGIObject) )
   {
@@ -369,12 +369,12 @@ void TPacket_AddFGIObject::UnpackInherit( char* p, int size )
   BL_ASSERT(size==0);
 }
 //-----------------------------------------------------------------
-TPacket_ModifyFGIObject::TPacket_ModifyFGIObject() : TBasePacket_PCS(ePacket_ModifyFGIObject)
+TPacket_ModifyGameItem::TPacket_ModifyGameItem() : TBasePacket_PCS(ePacket_ModifyGameItem)
 {
 
 }
 //-----------------------------------------------------------------
-TContainer TPacket_ModifyFGIObject::PackInherit()
+TContainer TPacket_ModifyGameItem::PackInherit()
 {
   TBreakPacket bp;
   bp.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
@@ -394,7 +394,7 @@ TContainer TPacket_ModifyFGIObject::PackInherit()
   return result;
 }
 //-----------------------------------------------------------------
-void TPacket_ModifyFGIObject::UnpackInherit( char* p, int size )
+void TPacket_ModifyGameItem::UnpackInherit( char* p, int size )
 {
   if( size < sizeof(TypeFGIObject) )
   {
@@ -447,12 +447,12 @@ void TPacket_ModifyFGIObject::UnpackInherit( char* p, int size )
   BL_ASSERT(size==0);
 }
 //-----------------------------------------------------------------
-TPacket_DeleteFGIObject::TPacket_DeleteFGIObject() : TBasePacket_PCS(ePacket_DeleteFGIObject)
+TPacket_DeleteGameItem::TPacket_DeleteGameItem() : TBasePacket_PCS(ePacket_DeleteGameItem)
 {
 
 }
 //-----------------------------------------------------------------
-TContainer TPacket_DeleteFGIObject::PackInherit()
+TContainer TPacket_DeleteGameItem::PackInherit()
 {
   TBreakPacket bp;
   bp.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
@@ -468,7 +468,7 @@ TContainer TPacket_DeleteFGIObject::PackInherit()
   return result;
 }
 //-----------------------------------------------------------------
-void TPacket_DeleteFGIObject::UnpackInherit( char* p, int size )
+void TPacket_DeleteGameItem::UnpackInherit( char* p, int size )
 {
   if( size < sizeof(TypeFGIObject) )
   {

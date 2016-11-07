@@ -12,6 +12,7 @@ See for more information License.h.
 #include "BehaviourPatternModel.h"
 #include "DataExchange2Thread.h"
 #include "BuilderShape_Ogre.h"
+#include "ModelItem.h"
 
 class DllExport TPatternModel_Model : public TBehaviourPatternModel
 {
@@ -63,7 +64,10 @@ protected:
 
   bool GetFromPipe(nsMathTools::TVector3& v, TDataExchange2Thread<nsMathTools::TVector3>* pPipe);
 
+  void LoadModelsFromThread_Logic(TBehaviourPatternContext* pContext, TModelItem::TMapStrPart& mapNamePart);
+  void LoadShapesFromThread_Logic(TBehaviourPatternContext* pContext, TModelItem::TMapStrPart& mapNamePart);
 protected:
+
 };
 
 #endif

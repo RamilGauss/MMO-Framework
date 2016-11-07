@@ -38,6 +38,7 @@ namespace nsSerializerModelItem_XML
   const char* sJoint          = "Joint";
   const char* sIncarnation    = "Incarnation";
   const char* sVariant        = "Variant";
+  const char* sNameItem       = "nameItem";
   const char* sMaterial       = "Material";
   const char* sType           = "type";
 
@@ -45,6 +46,9 @@ namespace nsSerializerModelItem_XML
   const char* sExternal       = "external";
   const char* sInternal       = "internal";
   const char* sScale          = "Scale";
+
+  const char* sTypeModel      = "Model";
+  const char* sTypeShape      = "Shape";
 }
 
 using namespace nsSerializerModelItem_XML;
@@ -117,6 +121,12 @@ void TSerializerModelItem_XML::LoadHierarchy()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadCollection()
 {
+  std::string type = mXML->ReadSectionAttr(sCollection, 0, sType);
+  if( type==sTypeModel )
+    mModel->mTypeCollection = TModelItem::eModel;
+  else
+    mModel->mTypeCollection = TModelItem::eShape;
+
   if(mXML->EnterSection(sCollection,0))
   {
     int cntPart = mXML->GetCountSection(sPart);
@@ -136,10 +146,10 @@ void TSerializerModelItem_XML::LoadCollection()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SavePattern()
 {
-  TAttrInfo attr[1];
-  attr[0].Name  = sName;
-  attr[0].Value = mModel->mNamePattern;
-  mXML->AddSection(sPattern, 1, &attr[0]);
+  TAttrInfo attr;
+  attr.Name  = sName;
+  attr.Value = mModel->mNamePattern;
+  mXML->AddSection(sPattern, 1, &attr);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SaveHierarchy()
@@ -160,7 +170,14 @@ void TSerializerModelItem_XML::SaveHierarchy()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SaveCollection()
 {
-  if(mXML->AddSectionAndEnter(sCollection))
+  std::string type = sTypeShape;
+  if( mModel->mTypeCollection==TModelItem::eModel )
+    type = sTypeModel;
+
+  TAttrInfo attr;
+  attr.Name  = sType;
+  attr.Value = type;
+  if( mXML->AddSectionAndEnter(sCollection, 1, &attr) )
   {
     BOOST_FOREACH(TModelItem::TMapStrPartVT& bit, mModel->mMapNamePart)
     {
@@ -210,8 +227,8 @@ void TSerializerModelItem_XML::LoadPart(TModelItem::TPart& part, int iPart)
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadVariant(TModelItem::TVariant& variant, int iVariant)
 {
-  variant.type = mXML->ReadSectionAttr(sVariant, iVariant, sType);
-  variant.name = mXML->ReadSectionAttr(sVariant, iVariant, sName);
+  variant.name  = mXML->ReadSectionAttr(sVariant, iVariant, sName);
+  variant.nameItem = mXML->ReadSectionAttr(sVariant, iVariant, sNameItem);
 
   if(mXML->EnterSection(sVariant,iVariant))
   {
@@ -408,10 +425,10 @@ void TSerializerModelItem_XML::SavePart(TModelItem::TPart& part)
     BOOST_FOREACH(TModelItem::TVariant& variant, part.vecVariant)
     {
       TAttrInfo attr[2];
-      attr[0].Name  = sType;
-      attr[0].Value = variant.type;
-      attr[1].Name  = sName;
-      attr[1].Value = variant.name;
+      attr[0].Name  = sName;
+      attr[0].Value = variant.name;
+      attr[1].Name  = sNameItem;
+      attr[1].Value = variant.nameItem;
       if(mXML->AddSectionAndEnter(sVariant, 2, &attr[0]))
       {
         SaveVariant(variant);

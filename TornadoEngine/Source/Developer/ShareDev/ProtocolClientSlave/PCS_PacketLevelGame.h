@@ -133,36 +133,36 @@ namespace nsPCS
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
-  class DllExport TPacket_AddFGIObject : public TBasePacket_PCS
+  class DllExport TPacket_AddGameItem : public TBasePacket_PCS
   {
   public:
     TypeFGIObject mTypeFGIObject;
     std::string   mNameObject;
     TContainer    mDesc;
-    TPacket_AddFGIObject();
+    TPacket_AddGameItem();
   protected:
     virtual TContainer PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
-  class DllExport TPacket_ModifyFGIObject : public TBasePacket_PCS
+  class DllExport TPacket_ModifyGameItem : public TBasePacket_PCS
   {
   public:
     TypeFGIObject mTypeFGIObject;
     std::string   mNameObject;
     TContainer    mDesc;
-    TPacket_ModifyFGIObject();
+    TPacket_ModifyGameItem();
   protected:
     virtual TContainer PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
-  class DllExport TPacket_DeleteFGIObject : public TBasePacket_PCS
+  class DllExport TPacket_DeleteGameItem : public TBasePacket_PCS
   {
   public:
     TypeFGIObject mTypeFGIObject;
     std::string   mNameObject;
-    TPacket_DeleteFGIObject();
+    TPacket_DeleteGameItem();
   protected:
     virtual TContainer PackInherit();
     virtual void UnpackInherit( char* p, int size );

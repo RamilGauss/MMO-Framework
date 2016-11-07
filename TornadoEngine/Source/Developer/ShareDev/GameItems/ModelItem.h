@@ -35,8 +35,8 @@ struct DllExport TModelItem : public TBaseItem
   //---------------------------------------------------------  
   struct DllExport TVariant
   {
-    std::string type;// либо модель, либо форма
-    std::string name;// имя модели/формы
+    std::string name;    // уникален в пределах части (Part)
+    std::string nameItem;// имя модели/формы
 
     std::string           redefinitionMaterial;// переопределение материала действует только для формы
     TMapExternalInternal  mapExternalInternal;
@@ -98,10 +98,13 @@ struct DllExport TModelItem : public TBaseItem
   typedef TMapStrStr::value_type            TMapStrStrVT;
   //---------------------------------------------------------
   //---------------------------------------------------------
-  std::string   mNamePattern;// поведение
+  std::string      mNamePattern;        // модель поведения
 
   TRoot            mRoot;
   TMMapStrLocation mMapNameBaseLocation;// иерархия
+
+  typedef enum{eModel,eShape}eType;// либо модель, либо форма
+  eType            mTypeCollection;
   TMapStrPart      mMapNamePart;        // набор
   
   TModelItem(std::string& name);
