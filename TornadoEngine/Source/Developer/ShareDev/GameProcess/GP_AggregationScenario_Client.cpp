@@ -40,11 +40,11 @@ void TGP_AggregationScenario_Client::LoadMap(std::string nameMap)
   mBuilder.LoadMap(nameMap);
 }
 //---------------------------------------------------------------------------------------------
-bool TGP_AggregationScenario_Client::AddGameObject(TMapItem::TObject& desc)
+bool TGP_AggregationScenario_Client::AddGameObject(std::list<TMapItem::TObject>& listDesc)
 {
   if(IsActive(nsGameProcess::eBuilder)==false)
     return false;
-  return mBuilder.AddGameObject(desc);
+  return mBuilder.AddGameObject(listDesc);
 }
 //---------------------------------------------------------------------------------------------
 int TGP_AggregationScenario_Client::GetPhysicWorldID()

@@ -69,7 +69,7 @@ public:
 
   void Init(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP);
   bool BuildMap( TMapItem* pMI );// вызывать только если состояние eIdle
-  bool BuildObject( TMapItem::TObject* pObject, 
+  bool BuildObject( std::list<TMapItem::TObject>& listObject, 
     bool fast = false );// вызывать только если состояние eIdle
 
   typedef enum{eBuildMap,     // полностью требуется отдать квант

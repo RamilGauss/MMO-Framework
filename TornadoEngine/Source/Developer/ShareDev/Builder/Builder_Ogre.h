@@ -9,16 +9,18 @@ See for more information License.h.
 #define Builder_OgreH
 
 #include "TypeDef.h"
-
-class TTaskForBuilder_Ogre;
+#include "BuilderShape_Ogre.h"
 
 class DllExport TBuilder_Ogre
 {
+  TBuilderShape_Ogre mBuilderShape_Ogre;
+
 public:
   TBuilder_Ogre();
   virtual ~TBuilder_Ogre();
 
-  void Work(TTaskForBuilder_Ogre* pTask);
+  //void Work(TTaskForBuilder_Ogre* pTask);
+  const TBuilderShape_Ogre* GetShapeMaker()const;
 };
 
 #endif

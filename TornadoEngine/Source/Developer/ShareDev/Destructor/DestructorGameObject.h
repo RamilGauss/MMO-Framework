@@ -9,7 +9,6 @@ See for more information License.h.
 #define DestructorGameObjectH
 
 #include "TypeDef.h"
-#include "PreDestructor.h"
 #include <list>
 
 class TGameObject;
@@ -20,7 +19,7 @@ public:
   TDestructorGameObject();
   virtual ~TDestructorGameObject();
 
-  void Init( TPreDestructor::TVectorTypeTask& vec );
+  void Init( /*TPreDestructor::TVectorTypeTask& vec*/ );
   bool DesctructObject( std::list<TGameObject*>& pListObject );// вызывать только если состояние eIdle
 
   typedef enum{eDestruct, eIdle}State;

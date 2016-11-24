@@ -28,7 +28,7 @@ class TEditorMapLogic : public TModuleClientLogic
   TUsePattern                   mUsePattern;
   TFactoryBehaviourPatternModel_EoWM mFBP_EoWM;
 
-  boost::scoped_ptr<TGP_AggregationScenario_Client> mAggregationScenario_Client;
+  //boost::scoped_ptr<TGP_AggregationScenario_Client> mAggregationScenario_Client;
   boost::scoped_ptr<TShowTankWoT_test>              mPtrShowTank;
   boost::scoped_ptr<TControlCamera>                 mPtrControlCamera;
 

@@ -11,15 +11,13 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "BehaviourPatternModel.h"
 #include "DataExchange2Thread.h"
-#include "BuilderShape_Ogre.h"
 #include "ModelItem.h"
+#include "PatternContext_Model.h"
 
 class DllExport TPatternModel_Model : public TBehaviourPatternModel
 {
   TDataExchange2Thread<nsMathTools::TVector3> mPipePositionLogic2Bullet;
   TDataExchange2Thread<nsMathTools::TVector3> mPipeOrientationLogic2Bullet;
-
-  TBuilderShape_Ogre mBuilderShape_Ogre;
 
   TMapItem::TMapStrStr mDefaultParameterMap;
 public:
@@ -64,8 +62,11 @@ protected:
 
   bool GetFromPipe(nsMathTools::TVector3& v, TDataExchange2Thread<nsMathTools::TVector3>* pPipe);
 
-  void LoadModelsFromThread_Logic(TBehaviourPatternContext* pContext, TModelItem::TMapStrPart& mapNamePart);
-  void LoadShapesFromThread_Logic(TBehaviourPatternContext* pContext, TModelItem::TMapStrPart& mapNamePart);
+  void LoadModelsFromThread_Logic(TPatternContext_Model* pContextModel, TModelItem::TMapStrPart& mapNamePart);
+  void LoadShapesFromThread_Logic(TPatternContext_Model* pContextModel, TModelItem::TMapStrPart& mapNamePart);
+
+  void LoadShapesFromThread_Ogre(TPatternContext_Model* pContextModel, TPatternContext_Model::TShapeDesc* pShapeDesc);
+
 protected:
 
 };

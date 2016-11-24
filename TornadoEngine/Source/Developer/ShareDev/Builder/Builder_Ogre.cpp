@@ -17,8 +17,8 @@ TBuilder_Ogre::~TBuilder_Ogre()
 
 }
 //---------------------------------------------------------------------------------
-void TBuilder_Ogre::Work(TTaskForBuilder_Ogre* pTask)
+const TBuilderShape_Ogre* TBuilder_Ogre::GetShapeMaker() const
 {
-  
+  return &mBuilderShape_Ogre;
 }
 //---------------------------------------------------------------------------------

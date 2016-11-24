@@ -85,7 +85,7 @@ bool TBuilderGameMap::BuildMap( TMapItem* pMI )
   return true;
 }
 //--------------------------------------------------------------------------------------------
-bool TBuilderGameMap::BuildObject( TMapItem::TObject* pObject, bool fast )
+bool TBuilderGameMap::BuildObject( std::list<TMapItem::TObject>& listObject, bool fast )
 {
   //### in process...
   mState = eIdle;

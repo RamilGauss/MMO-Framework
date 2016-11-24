@@ -14,6 +14,10 @@ See for more information License.h.
 #include <vector>
 #include <list>
 
+#ifdef WIN32
+#pragma pack(push, 1)
+#endif
+
 struct DllExport TTableSoundItem : public TBaseItem
 {
   // внутреннее наполнение
@@ -90,6 +94,10 @@ public:
     std::string angle;
   };
   void MakeList(TListCombiSound& listCombi, TSetNameParam& setNameParam);
-};
+}_PACKED;
+
+#if defined( WIN32 )
+#pragma pack(pop)
+#endif
 
 #endif

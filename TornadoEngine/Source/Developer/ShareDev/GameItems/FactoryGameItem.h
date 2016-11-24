@@ -9,39 +9,33 @@ See for more information License.h.
 #define FactoryGameItemH
 
 #include <map>
-#include <list>
-#include <boost/bimap/bimap.hpp>
-
-#include "TypeDef.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
+#include "TypeDef.h"
+
+#include "ContainerTypes.h"
 
 struct TBaseItem;
-class IXML;
+class TStorageGameItem_XML;
+class TManagerSerializerItem_Binary;
+/*
+  ВАЖНО!
+  Нельзя добавлять, менять и удалять итэмы, когда идет сценарий Построения или Разрушения карты.
+  Во время Синхронизации игровых объектов можно добавлять, менять или удалять итэмы.
 
-class TManagerSerializerItem;
-class TManagerCacheItemXML;
-
+  P.S. я мало доволен этим классом, точнее интерфейсом. Не те фундаментальные методы.
+*/
 class DllExport TFactoryGameItem
 {
-  IXML* mXML;
+  boost::scoped_ptr<TStorageGameItem_XML> mStorageGameItem_XML;
 
-  std::list<TBaseItem*> mListItems;// удобно для освобождения ресурсов
-
-  boost::scoped_ptr<TManagerSerializerItem> mMngSerializer;
-  boost::scoped_ptr<TManagerCacheItemXML>   mMngCache;
-
-  // для поиска типа по имени и наоборот
-  typedef boost::bimaps::bimap<std::string,int> bmStrInt;
-  typedef bmStrInt::value_type                  bmStrIntVT;
-
-  bmStrInt mMapStrType;
+  boost::scoped_ptr<TManagerSerializerItem_Binary> mMngSerBin;// импорт/экспорт бинарных блоков
 
   typedef std::map<std::string,TBaseItem*> TMapStrPtrItem;
   typedef TMapStrPtrItem::iterator         TMapStrPtrItemIt;
   typedef TMapStrPtrItem::value_type       TMapStrPtrItemVT;
 
   // карты итэмов по типам
-  TMapStrPtrItem mMapNamePattern;
+  TMapStrPtrItem mMapNamePatternConfig;
   TMapStrPtrItem mMapNameMaterial;
   TMapStrPtrItem mMapNameShape;
   TMapStrPtrItem mMapNameModel;
@@ -57,27 +51,44 @@ class DllExport TFactoryGameItem
 public:
   TFactoryGameItem();
   virtual ~TFactoryGameItem();
+
+  typedef enum{FirstType,
+               PatternConfig=FirstType, Material, Shape, Model, Terrain, TableSound, Map, 
+               CountType}TypeGameItem;
   
-  bool Init(std::string& name_file);
+  // для операций с XML (сохранение, удаление и т.д.)
+  TStorageGameItem_XML* GetStorage_XML();
+  bool Init_XML(std::string& name_file_xml);
+  // загрузка из XML в кэш итэмов, при дублировании происходит замена на вариант из XML
+  void ReloadFromStorageAll_XML();
+  void ReloadFromStorageByType_XML( TypeGameItem type );
 
-  typedef enum{PatternConfig, Material, Shape, Model, Terrain, TableSound, Map, CountType}Type;
-
-  TBaseItem* Add(Type type, std::string& name);
-  bool Save(TBaseItem* pItem);
-
-  int GetCount(Type type);
-  bool GetName(Type type, int index, std::string& name);
-  TBaseItem* Get(Type type, std::string& name);
-
-  void FullLoad();
+  // добавить в кэш с заменой, старый итэм уничтожается
+  TBaseItem* Add(TypeGameItem type, std::string& name);
+  // из упакованного описания добавить в кэш с заменой, старый итэм уничтожается
+  TBaseItem* AddFromBinary(void* pIn, int sizeIn);
+  // формирование блока памяти, содержащий упакованное описание итэма
+  bool MakeBinary(TypeGameItem type, std::string& name, TContainer& cBinOut);
+  bool MakeBinary(TBaseItem* pItem, TContainer& cBinOut);
+  // удалить только из кэша
+  bool Delete(TypeGameItem type, std::string& name);
+  bool Delete(TBaseItem* pItem);
+  // если нет в кэше, то ищет в XML (добавляя в кэш)
+  TBaseItem* Get(TypeGameItem type, std::string& name);
+  // сколько итэмов данного типа в кэше (не ищет в XML)
+  int GetCountByType(TypeGameItem type);
+  // по индексу и типу получить имя (не ищет в XML)
+  bool GetNameByType(TypeGameItem type, int index, std::string& name);
+  // очистка кэша
+  void Clear();
 private:
-  void AddItemInMap(TBaseItem* pItem, TMapStrPtrItem* pMap);
-  TBaseItem* FindItemInMapByName(std::string& name, TMapStrPtrItem* pMap);
-
-  TBaseItem* NewItem(Type type, std::string& name);
-  TMapStrPtrItem* FindMap(Type type);
-
+  bool AddItemInMap(TBaseItem* pItem);
+  TBaseItem* FindItemByTypeByName(int type, std::string& name);
+  TBaseItem* MakeNewItem(int type, std::string& name);
+  TMapStrPtrItem* FindMap(int type);
   void MakeStr_Map();
+
+  void Done();
 };
 
 #endif

@@ -32,6 +32,7 @@ public:
   virtual bool Load(TBaseItem* pItem) = 0;
   virtual bool Save(TBaseItem* pItem) = 0;
 
+  bool RemoveSection(std::string& name);
   static std::string ReadName(int index, IXML* xml);
 protected:
   bool EnterByType(std::string& name);
@@ -43,8 +44,6 @@ protected:
 
   bool LoadVector3ByProperty(nsMathTools::TVector3& v3);
   bool SaveVector3ByProperty(nsMathTools::TVector3& v3);
-
-  bool RemoveSection(std::string& name);
 private:
   bool EnterRoot();
 protected:

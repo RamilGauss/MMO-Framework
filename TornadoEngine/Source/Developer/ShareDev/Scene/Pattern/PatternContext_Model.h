@@ -12,46 +12,46 @@ See for more information License.h.
 #include "BehaviourPatternContext.h"
 
 #include "PatternConfigItem.h"
+#include "ModelItem.h"
 
 class DllExport TPatternContext_Model : public TBehaviourPatternContext
 {
+  TModelItem::eType mTypeContent;
 public:
-  struct TShape
+  struct TBaseDesc
   {
+    TModelItem::eType type;
     std::string  namePart;
     std::string  nameVariant;
+  };
+  struct TModelDesc : public TBaseDesc
+  {
+    TPatternContext_Model* pCtxModel;
+    TModelDesc(){type=TModelItem::eModel;pCtxModel=NULL;}
+    ~TModelDesc(){delete pCtxModel;}
+  };
+  struct TShapeDesc : public TBaseDesc
+  {
     std::string  nameShapeItem;
     std::string  nameMaterial; // реальный материал и переопределенный могут не совпадать
     // результат создания формы:
     unsigned int id_mesh_ogre;
     unsigned int id_mesh_bullet;
-    TShape(){id_mesh_ogre=0;id_mesh_bullet=0;}
+    TShapeDesc(){type=TModelItem::eShape;id_mesh_ogre=0;id_mesh_bullet=0;}
   };
 protected:
-  TPatternConfigItem::TMapStrStr mMapVariant;
+  TPatternConfigItem::TMapStrStr mMapVariantPatternConfig;
 
-  typedef std::map<std::string,TShape*> TMapStrPtrShape;
-  typedef TMapStrPtrShape::iterator     TMapStrPtrShapeIt;
-  typedef TMapStrPtrShape::value_type   TMapStrPtrShapeVT;
+  typedef std::map<std::string,TBaseDesc*> TMapStrPtrDesc;
+  typedef TMapStrPtrDesc::iterator         TMapStrPtrDescIt;
+  typedef TMapStrPtrDesc::value_type       TMapStrPtrDescVT;
   
-  typedef std::map<std::string,TMapStrPtrShape> TMapStrMapStrPtrShape;
-  typedef TMapStrMapStrPtrShape::iterator       TMapStrMapStrPtrShapeIt;
-  typedef TMapStrMapStrPtrShape::value_type     TMapStrMapStrPtrShapeVT;
+  typedef std::map<std::string,TMapStrPtrDesc> TMapStr_StrPtrDesc;
+  typedef TMapStr_StrPtrDesc::iterator        TMapStr_StrPtrDescIt;
+  typedef TMapStr_StrPtrDesc::value_type      TMapStr_StrPtrDescVT;
 
-  typedef std::multimap<std::string,TPatternContext_Model*> TMMapStrPtrContextModel;
-  typedef TMMapStrPtrContextModel::iterator             TMMapStrPtrContextModelIt;
-  typedef TMMapStrPtrContextModel::value_type           TMMapStrPtrContextModelVT;
-
-  typedef std::map<std::string,TPatternContext_Model*> TMapStrPtrContextModel;
-  typedef TMapStrPtrContextModel::iterator             TMapStrPtrContextModelIt;
-  typedef TMapStrPtrContextModel::value_type           TMapStrPtrContextModelVT;
-
-  // набор форм
-  TMapStrMapStrPtrShape   mMapNamePart_MapNameVariantShape;
-
-  TMMapStrPtrContextModel mMapNameContextModel;
-  // связь с другими моделями
-  TMapStrPtrContextModel mMapNameCtxModel;
+  // набор форм или моделей
+  TMapStr_StrPtrDesc mMapNamePart_NameVariantDesc;
 
   std::string mNameGameItem;
   std::string mNameVariantPatternConfig;
@@ -59,22 +59,33 @@ protected:
 public:
   TPatternContext_Model(TBehaviourPatternModel* pModel);
   virtual ~TPatternContext_Model();
+  
+  TModelItem::eType GetTypeContent();
+  void SetTypeContent(TModelItem::eType type);
 
+  // игровой итэм для загрузки и управления частями
   void SetNameGameItem(std::string& name);
   std::string GetNameGameItem();
-
+  // имя вариант паттерна
   void SetNameVariantPatternConfig(std::string& name);
   std::string GetNameVariantPatternConfig();
-
+  // подвижность
   void SetMobility(bool v);
   bool GetMobility();
-
+  // вариант паттерна
   void SetMapVariant(TPatternConfigItem::TMapStrStr& mapVariant);
+  
+  void AddDesc(TBaseDesc* pDesc);
+  TBaseDesc* GetDesc(std::string& namePart, std::string& nameVariant);
 
-  void AddShape(TShape* pShape);
-  TShape* GetShape(std::string namePart, std::string nameVariant);
+  int GetCountPart();
+  std::string GetNamePart(int index);
 
-  void AddContextModel(std::string name, TPatternContext_Model* pContextModel);
+  int GetCountVariant(std::string& namePart);
+  std::string GetNameVariant(std::string& namePart, int index);
+
+protected:
+  TMapStrPtrDesc* FindMapByNamePart(std::string& namePart);
 };
 
 #endif

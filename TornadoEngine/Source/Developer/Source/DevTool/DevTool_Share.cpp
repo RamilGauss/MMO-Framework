@@ -28,6 +28,13 @@ See for more information License.h.
 #include "GraphicEngine_Ogre_MyGUI.h"
 #include "EventGameEngine.h"
 
+//###
+#include "ModelItem.h"
+#include "StorageGameItem_XML.h"
+#include "MaterialItem.h"
+#include "SaveToFile.h"
+//###
+
 namespace nsDevTool_Share
 {
   // для именования модулей в конвейере для Ядра
@@ -230,9 +237,45 @@ void TDevTool_Share::SetComponentsForLogic()
     int id_logic = pLogic->GetID();
     components.SetLogicID(id_logic);
     pLogic->SetComponents(components);
-    pLogic->GetFGI()->Init(mPathItems);
+    pLogic->GetFGI()->Init_XML(mPathItems);
 #ifdef _DEBUG
-    pLogic->GetFGI()->FullLoad();
+    pLogic->GetFGI()->ReloadFromStorageAll_XML();
+    //###
+    std::string name = "Iron";
+    TContainer c;
+    pLogic->GetFGI()->MakeBinary(TFactoryGameItem::Material, name, c);
+    pLogic->GetFGI()->Clear();// очистить кэш
+    //TMaterialItem* pMaterial = (TMaterialItem*)pLogic->GetFGI()->Get(TFactoryGameItem::Material, name);
+    pLogic->GetFGI()->AddFromBinary(c.GetPtr(), c.GetSize());
+
+    TSaveToFile stf;
+    stf.ReOpen("C:\\Material.bin");
+    stf.Write(c.GetPtr(), c.GetSize());
+    TMaterialItem* pMaterial = (TMaterialItem*)pLogic->GetFGI()->Get(TFactoryGameItem::Material, name);
+
+    name = "SomeModel";
+    //pLogic->GetFGI()->GetStorage_XML()->Delete(TFactoryGameItem::Model, name);
+    TModelItem* p = (TModelItem*)pLogic->GetFGI()->Add(TFactoryGameItem::Model, name);// добавить в кэш
+
+    int cnt = pLogic->GetFGI()->GetStorage_XML()->GetCountByType(TFactoryGameItem::Model);
+    for( int i = 0 ; i < cnt ; i++ )
+    {
+      std::string iName;
+      bool res = pLogic->GetFGI()->GetStorage_XML()->GetNameByType(TFactoryGameItem::Model, i, iName);
+    }
+    pLogic->GetFGI()->GetStorage_XML()->Save(p);// сохранить в XML
+    pLogic->GetFGI()->Clear();// очистить кэш
+    p = (TModelItem*)pLogic->GetFGI()->Get(TFactoryGameItem::Model, name);// найти еще раз
+    pLogic->GetFGI()->GetStorage_XML()->Delete(p);// удалить из XML
+    p = (TModelItem*)pLogic->GetFGI()->Get(TFactoryGameItem::Model, name);// найти еще раз
+    pLogic->GetFGI()->Clear();// очистить кэш
+    p = (TModelItem*)pLogic->GetFGI()->Get(TFactoryGameItem::Model, name);// найти еще раз
+    //###
+#else
+    // карта сама по цепочке ("раскрутит") загрузит итэмы
+    pLogic->GetFGI()->ReloadFromStorageByType_XML(TFactoryGameItem::Map);
+    pLogic->GetFGI()->ReloadFromStorageByType_XML(TFactoryGameItem::Model);
+    pLogic->GetFGI()->ReloadFromStorageByType_XML(TFactoryGameItem::Shape);
 #endif
     pLogic->InitLog();
     pLogic->ParseCmd(mVecArg);

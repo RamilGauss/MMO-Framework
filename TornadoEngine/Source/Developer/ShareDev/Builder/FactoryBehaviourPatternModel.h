@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef IFactoryBehaviourPatternModelH
-#define IFactoryBehaviourPatternModelH
+#ifndef FactoryBehaviourPatternModelH
+#define FactoryBehaviourPatternModelH
 
 #include "TypeDef.h"
 #include "CallBackRegistrator.h"
@@ -40,6 +40,8 @@ public:
   virtual ~TFactoryBehaviourPatternModel();
 
   TBehaviourPatternModel* GetPatternByName(std::string name);
+  int GetCount();
+  std::string GetNameByIndex(int index);
 
 protected:
   void AddPattern(TMapStrCBVT& vt_cb);

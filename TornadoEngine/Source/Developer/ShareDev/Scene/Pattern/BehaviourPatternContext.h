@@ -25,6 +25,10 @@ class TFactoryGameItem;
 class TFactoryBehaviourPatternModel;
 class TBehaviourPatternModel;
 
+class TGameObjectComponent_Ogre;
+class TGameObjectComponent_Bullet;
+class TGameObjectComponent_OpenAL;
+
 class DllExport TBehaviourPatternContext
 {
   TBehaviourPatternModel* mModel;
@@ -35,6 +39,12 @@ protected:
   TMapItem::TMapStrStr mDefaultParameterMap;
 
   int mPhysicWorldID;
+
+  // данные
+  boost::scoped_ptr<TGameObjectComponent_Ogre> mPtrGraphic;
+  boost::scoped_ptr<TGameObjectComponent_Bullet>  mPtrPhysic;
+  boost::scoped_ptr<TGameObjectComponent_OpenAL>   mPtrSound;
+
 public:
   TBehaviourPatternContext(TBehaviourPatternModel* pModel);
   virtual ~TBehaviourPatternContext();
@@ -61,6 +71,10 @@ public:
   virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
 
   const TMapItem::TMapStrStr* GetParameterMap();
+
+  TGameObjectComponent_Ogre* GetGraphic();
+  TGameObjectComponent_Bullet*  GetPhysic();
+  TGameObjectComponent_OpenAL*   GetSound();
 protected:
   //struct TParameterMap
   //{

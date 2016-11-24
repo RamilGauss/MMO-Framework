@@ -44,11 +44,11 @@ void TGP_Scenario_Builder::LoadMap(std::string nameMap)
   }
 }
 //---------------------------------------------------------------------------------
-bool TGP_Scenario_Builder::AddGameObject(TMapItem::TObject& desc)
+bool TGP_Scenario_Builder::AddGameObject(std::list<TMapItem::TObject>& listDesc)
 {
-  if(mBuilder.BuildObject(&desc))
+  if(mBuilder.BuildObject(listDesc))
   {
-    flgProgressComplete    = false;
+    flgProgressComplete        = false;
     flgActiveTask_ThreadLogic  = true;
     flgActiveTask_ThreadBullet = true;
     flgActiveTask_ThreadOgre   = true;

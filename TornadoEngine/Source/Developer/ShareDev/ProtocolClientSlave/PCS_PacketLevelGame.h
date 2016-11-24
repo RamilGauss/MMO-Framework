@@ -168,16 +168,6 @@ namespace nsPCS
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
-  class DllExport TPacket_UpdateGameObjectByFGI : public TBasePacket_PCS
-  {
-  public:
-    std::string mNameObject;
-    TPacket_UpdateGameObjectByFGI();
-  protected:
-    virtual TContainer PackInherit();
-    virtual void UnpackInherit( char* p, int size );
-  };
-  //-----------------------------------------------------------------
   class DllExport TPacket_UpdateGameObjectByPattern : public TBasePacket_PCS
   {
   public:

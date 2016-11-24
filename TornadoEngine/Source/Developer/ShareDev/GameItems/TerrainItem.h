@@ -11,6 +11,10 @@ See for more information License.h.
 #include "BaseItem.h"
 #include <vector>
 
+#ifdef WIN32
+#pragma pack(push, 1)
+#endif
+
 struct DllExport TTerrainItem : public TBaseItem
 {
   struct DllExport TLOD
@@ -40,6 +44,10 @@ struct DllExport TTerrainItem : public TBaseItem
   TVecPoint mHeightMap;
 
   TTerrainItem(std::string& name);
-};
+}_PACKED;
+
+#if defined( WIN32 )
+#pragma pack(pop)
+#endif
 
 #endif

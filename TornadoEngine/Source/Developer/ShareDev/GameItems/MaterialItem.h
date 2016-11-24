@@ -11,6 +11,10 @@ See for more information License.h.
 #include <vector>
 #include "BaseItem.h"
 
+#ifdef WIN32
+#pragma pack(push, 1)
+#endif
+
 struct DllExport TMaterialItem : public TBaseItem
 {
   struct DllExport TLOD
@@ -37,6 +41,10 @@ struct DllExport TMaterialItem : public TBaseItem
   TPhysic mPhysic;
 
   TMaterialItem(std::string& name);
-};
+}_PACKED;
+
+#if defined( WIN32 )
+#pragma pack(pop)
+#endif
 
 #endif

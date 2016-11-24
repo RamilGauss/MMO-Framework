@@ -504,53 +504,6 @@ void TPacket_DeleteGameItem::UnpackInherit( char* p, int size )
   BL_ASSERT(size==0);
 }
 //-----------------------------------------------------------------
-TPacket_UpdateGameObjectByFGI::TPacket_UpdateGameObjectByFGI() : TBasePacket_PCS(ePacket_UpdateGameObjectByFGI)
-{
-
-}
-//-----------------------------------------------------------------
-TContainer TPacket_UpdateGameObjectByFGI::PackInherit()
-{
-  TBreakPacket bp;
-
-  TypeSizeNameFGIObject sizeName = mNameObject.length();
-  bp.PushBack( (char*)&sizeName, sizeof(TypeSizeNameFGIObject));
-  bp.PushBack( (char*)mNameObject.data(), sizeName);
-
-  bp.Collect();
-  TContainer result;
-  result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
-  bp.UnlinkCollect();
-  return result;
-}
-//-----------------------------------------------------------------
-void TPacket_UpdateGameObjectByFGI::UnpackInherit( char* p, int size )
-{
-  if( size < sizeof(TypeSizeNameFGIObject) )
-  {
-    BL_FIX_BUG();
-    return;
-  }
-  TypeSizeNameFGIObject sizeName = *((TypeSizeNameFGIObject*)p);
-  p    += sizeof(TypeSizeNameFGIObject);
-  size -= sizeof(TypeSizeNameFGIObject);
-  //-------------------------------------------------
-  if( size < sizeName )
-  {
-    BL_FIX_BUG();
-    return;
-  }
-  char str[256];
-  strncpy(str, p, sizeName);
-  str[sizeName] = '\0';
-  mNameObject = str;
-  p    += sizeName;
-  size -= sizeName;
-  //-------------------------------------------------
-
-  BL_ASSERT(size==0);
-}
-//-----------------------------------------------------------------
 TPacket_UpdateGameObjectByPattern::TPacket_UpdateGameObjectByPattern() : TBasePacket_PCS(ePacket_UpdateGameObjectByPattern)
 {
 

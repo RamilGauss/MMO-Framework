@@ -6,9 +6,6 @@ See for more information License.h.
 */
 
 #include "GameObject.h"
-#include "GameObjectComponent_Graphic.h"
-#include "GameObjectComponent_Physic.h"
-#include "GameObjectComponent_Sound.h"
 
 #include "BehaviourPatternModel.h"
 #include "BehaviourPatternContext.h"
@@ -19,10 +16,6 @@ TGameObject::TGameObject()
   mPtrContext = NULL;
 
   mID = 0;
-
-  mPtrGraphic.reset(new TGameObjectComponent_Graphic);
-  mPtrPhysic.reset(new  TGameObjectComponent_Physic);
-  mPtrSound.reset(new   TGameObjectComponent_Sound);
 }
 //----------------------------------------------------------------
 TGameObject::~TGameObject()
@@ -61,35 +54,5 @@ void TGameObject::SetContext(TBehaviourPatternContext* p)
 TBehaviourPatternContext* TGameObject::GetContext()
 {
   return mPtrContext;
-}
-//----------------------------------------------------------------
-void TGameObject::SetBuilder(TBuilderGameObjectFromGameItem* p)
-{
-  mPtrBuilder = p;
-}
-//----------------------------------------------------------------
-TBuilderGameObjectFromGameItem* TGameObject::GetBuilder()
-{
-  return mPtrBuilder;
-}
-//----------------------------------------------------------------
-void TGameObject::SetDestructor(TDestructorGameObjectFromGameItem* p)
-{
-  mPtrDestructor = p;
-}
-//----------------------------------------------------------------
-TDestructorGameObjectFromGameItem* TGameObject::GetDestructor()
-{
-  return mPtrDestructor;
-}
-//----------------------------------------------------------------
-void TGameObject::SetUpdater(TUpdaterGameObjectFromGameItem* p)
-{
-  mPtrUpdater = p;
-}
-//----------------------------------------------------------------
-TUpdaterGameObjectFromGameItem* TGameObject::GetUpdater()
-{
-  return mPtrUpdater;
 }
 //----------------------------------------------------------------

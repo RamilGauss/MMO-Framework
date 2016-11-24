@@ -17,7 +17,7 @@ TDestructorGameObject::~TDestructorGameObject()
 
 }
 //-------------------------------------------------------------------
-void TDestructorGameObject::Init( TPreDestructor::TVectorTypeTask& vec )
+void TDestructorGameObject::Init( /*TPreDestructor::TVectorTypeTask& vec*/ )
 {
 
 }

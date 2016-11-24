@@ -14,6 +14,10 @@ See for more information License.h.
 #include "MathTools.h"
 #include <list>
 
+#ifdef WIN32
+#pragma pack(push, 1)
+#endif
+
 struct DllExport TMapItem : public TBaseItem
 {
 	typedef std::map<std::string,std::string> TMapStrStr;
@@ -40,6 +44,10 @@ struct DllExport TMapItem : public TBaseItem
   nsMathTools::TVector3 mCameraUp;
 
   TMapItem(std::string& name);
-};
+}_PACKED;
+
+#if defined( WIN32 )
+#pragma pack(pop)
+#endif
 
 #endif

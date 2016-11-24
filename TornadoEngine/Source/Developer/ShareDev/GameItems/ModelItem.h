@@ -14,10 +14,15 @@ See for more information License.h.
 #include <set>
 #include <vector>
 #include <memory>
+#include <list>
 
 #include "ParamBuilderConstraint.h"
 #include "MathTools.h"
 #include "ContainerArrObj.h"
+
+#ifdef WIN32
+#pragma pack(push, 1)
+#endif
 
 struct DllExport TModelItem : public TBaseItem
 {
@@ -45,7 +50,6 @@ struct DllExport TModelItem : public TBaseItem
   //---------------------------------------------------------  
   struct DllExport TPart
   {
-    std::string              patternModel;// носит рекомендательный характер (подсказка для разработчика)
     std::vector<std::string> vecNameJoint;
     std::vector<TVariant>    vecVariant;
   };
@@ -108,6 +112,10 @@ struct DllExport TModelItem : public TBaseItem
   TMapStrPart      mMapNamePart;        // набор
   
   TModelItem(std::string& name);
-};
+}_PACKED;
+
+#if defined( WIN32 )
+#pragma pack(pop)
+#endif
 
 #endif

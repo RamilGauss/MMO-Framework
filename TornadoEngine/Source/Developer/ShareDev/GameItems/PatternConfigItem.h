@@ -13,6 +13,9 @@ See for more information License.h.
 #include <map>
 #include <vector>
 
+#ifdef WIN32
+#pragma pack(push, 1)
+#endif
 
 struct DllExport TPatternConfigItem : public TBaseItem
 {
@@ -27,6 +30,10 @@ struct DllExport TPatternConfigItem : public TBaseItem
   TMapStrMap mMapVariant;
 
   TPatternConfigItem(std::string& name);
-};
+}_PACKED;
+
+#if defined( WIN32 )
+#pragma pack(pop)
+#endif
 
 #endif

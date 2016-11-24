@@ -32,7 +32,6 @@ namespace nsSerializerModelItem_XML
   const char* sConstraint     = "Constraint";
   const char* sCollection     = "Collection";
   const char* sPart           = "Part";
-  const char* sPatternModel   = "patternModel";
   const char* sJoining        = "Joining";
  
   const char* sJoint          = "Joint";
@@ -135,8 +134,6 @@ void TSerializerModelItem_XML::LoadCollection()
       TModelItem::TPart part;
       LoadPart(part, iPart);
 
-      part.patternModel = mXML->ReadSectionAttr(sPart, iPart, sPatternModel);
-
       std::string namePart = mXML->ReadSectionAttr(sPart, iPart, sName);
       mModel->mMapNamePart.insert(TModelItem::TMapStrPartVT(namePart, part));
     }
@@ -181,12 +178,10 @@ void TSerializerModelItem_XML::SaveCollection()
   {
     BOOST_FOREACH(TModelItem::TMapStrPartVT& bit, mModel->mMapNamePart)
     {
-      TAttrInfo attr[2];
-      attr[0].Name  = sName;
-      attr[0].Value = bit.first;
-      attr[1].Name  = sPatternModel;
-      attr[1].Value = bit.second.patternModel;
-      if(mXML->AddSectionAndEnter(sPart, 2, &attr[0]))
+      TAttrInfo attr;
+      attr.Name  = sName;
+      attr.Value = bit.first;
+      if(mXML->AddSectionAndEnter(sPart, 1, &attr))
       {
         SavePart(bit.second);
         mXML->LeaveSection();

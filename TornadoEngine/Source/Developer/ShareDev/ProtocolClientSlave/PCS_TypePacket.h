@@ -33,14 +33,13 @@ namespace nsPCS
     ePacket_AddGameObjects,
     ePacket_EnableGameObjects,
     ePacket_DisableGameObjects,
-  // from Client/Slave
-    ePacket_AddGameItem,// FGI - TFactoryGameItem
-    ePacket_ModifyGameItem,
-    ePacket_DeleteGameItem,
+  // FGI - TFactoryGameItem
+    ePacket_AddGameItem,// from Client/Slave
+    ePacket_ModifyGameItem,// from Client
+    ePacket_DeleteGameItem,// from Client
     // в Slave задача Update решается вызовом функции Паттерна
     // в Client через Паттерн из Model/Shape, готовится список задач для Паттерна, 
     // а он в каждом потоке применит их
-    ePacket_UpdateGameObjectByFGI, // заново подгрузить из FGI
     ePacket_UpdateGameObjectByPattern,// корректировка физических параметров игровых объектов
     // специфическое игровое событие (e.g. повысить мощность двигателя, 
     // направление вектора мыши(целеуказание),

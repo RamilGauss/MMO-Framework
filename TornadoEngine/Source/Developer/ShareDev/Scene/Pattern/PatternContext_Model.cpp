@@ -7,11 +7,13 @@ See for more information License.h.
 
 #include "PatternContext_Model.h"
 #include "ManagerNamePattern.h"
+#include "BL_Debug.h"
 
 TPatternContext_Model::TPatternContext_Model(TBehaviourPatternModel* pModel):
 TBehaviourPatternContext(pModel)
 {
   flgMobility = false;
+  mTypeContent = TModelItem::eModel;
 }
 //--------------------------------------------------------------------------
 TPatternContext_Model::~TPatternContext_Model()
@@ -19,36 +21,46 @@ TPatternContext_Model::~TPatternContext_Model()
 
 }
 //--------------------------------------------------------------------------
+TModelItem::eType TPatternContext_Model::GetTypeContent()
+{
+  return mTypeContent;
+}
+//--------------------------------------------------------------------------
+void TPatternContext_Model::SetTypeContent(TModelItem::eType type)
+{
+  mTypeContent = type;
+}
+//--------------------------------------------------------------------------
 void TPatternContext_Model::SetMapVariant(TPatternConfigItem::TMapStrStr& mapVariant)
 {
-  mMapVariant = mapVariant;
+  mMapVariantPatternConfig = mapVariant;
 }
 //--------------------------------------------------------------------------
-void TPatternContext_Model::AddShape(TShape* pShape)
+void TPatternContext_Model::AddDesc(TBaseDesc* pDesc)
 {
-  TMapStrMapStrPtrShapeIt fitPart = mMapNamePart_MapNameVariantShape.find(pShape->namePart); 
-  if( fitPart==mMapNamePart_MapNameVariantShape.end() )
+  TMapStrPtrDesc* pMap = FindMapByNamePart(pDesc->namePart);
+  if( pMap==NULL )
   {
-    mMapNamePart_MapNameVariantShape.insert(TMapStrMapStrPtrShapeVT(pShape->namePart, TMapStrPtrShape()));
-    fitPart = mMapNamePart_MapNameVariantShape.find(pShape->namePart);
+    mMapNamePart_NameVariantDesc.insert(TMapStr_StrPtrDescVT(pDesc->namePart, TMapStrPtrDesc()));
+    pMap = FindMapByNamePart(pDesc->namePart);
   }
-  fitPart->second.insert(TMapStrPtrShapeVT(pShape->nameVariant, pShape));
+  if( pMap->find(pDesc->nameVariant)==pMap->end() )
+    pMap->insert(TMapStrPtrDescVT(pDesc->nameVariant, pDesc));
+  else
+  {
+    BL_FIX_BUG();
+  }
 }
 //--------------------------------------------------------------------------
-TPatternContext_Model::TShape* TPatternContext_Model::GetShape(std::string namePart, std::string nameVariant)
+TPatternContext_Model::TBaseDesc* TPatternContext_Model::GetDesc(std::string& namePart, std::string& nameVariant)
 {
-  TMapStrMapStrPtrShapeIt fitPart = mMapNamePart_MapNameVariantShape.find(namePart); 
-  if( fitPart==mMapNamePart_MapNameVariantShape.end() )
+  TMapStrPtrDesc* pMap = FindMapByNamePart(namePart);
+  if( pMap==NULL )
     return NULL;
-  TMapStrPtrShapeIt fitVariant = fitPart->second.find(nameVariant);
-  if( fitVariant==fitPart->second.end() )
+  TMapStrPtrDescIt fitVariant = pMap->find(nameVariant);
+  if( fitVariant==pMap->end() )
     return NULL;
   return fitVariant->second;
-}
-//--------------------------------------------------------------------------
-void TPatternContext_Model::AddContextModel(std::string name, TPatternContext_Model* pContextModel)
-{
-  mMapNameContextModel.insert(TMMapStrPtrContextModelVT(name, pContextModel));
 }
 //--------------------------------------------------------------------------
 void TPatternContext_Model::SetNameGameItem(std::string& name)
@@ -79,5 +91,54 @@ void TPatternContext_Model::SetMobility(bool v)
 bool TPatternContext_Model::GetMobility()
 {
   return flgMobility;
+}
+//--------------------------------------------------------------------------
+int TPatternContext_Model::GetCountPart()
+{
+  return mMapNamePart_NameVariantDesc.size();
+}
+//--------------------------------------------------------------------------
+std::string TPatternContext_Model::GetNamePart(int index)
+{
+  std::string namePart = "";
+  if( index >= GetCountPart() || index < 0 )
+    return namePart;
+  TMapStr_StrPtrDescIt bit = mMapNamePart_NameVariantDesc.begin();
+  for( int i = 0 ; i <= index ; i++ )
+    bit++;
+  namePart = bit->first;
+  return namePart;
+}
+//--------------------------------------------------------------------------
+int TPatternContext_Model::GetCountVariant(std::string& namePart)
+{
+  TMapStrPtrDesc* pMap = FindMapByNamePart(namePart);
+  if( pMap==NULL )
+    return 0;
+  return pMap->size();
+}
+//--------------------------------------------------------------------------
+std::string TPatternContext_Model::GetNameVariant(std::string& namePart, int index)
+{
+  std::string nameVariant = "";
+  TMapStrPtrDesc* pMap = FindMapByNamePart(namePart);
+  if( pMap==NULL )
+    return nameVariant;
+  if( index >= GetCountVariant(namePart) || index < 0 )
+    return nameVariant;
+
+  TMapStrPtrDescIt bit = pMap->begin();
+  for( int i = 0 ; i <= index ; i++ )
+    bit++;
+  nameVariant = bit->first;
+  return nameVariant;
+}
+//--------------------------------------------------------------------------
+TPatternContext_Model::TMapStrPtrDesc* TPatternContext_Model::FindMapByNamePart(std::string& namePart)
+{
+  TMapStr_StrPtrDescIt fit = mMapNamePart_NameVariantDesc.find(namePart);
+  if( fit==mMapNamePart_NameVariantDesc.end() )
+    return NULL;
+  return &(fit->second);
 }
 //--------------------------------------------------------------------------

@@ -384,14 +384,6 @@
 			Name="ManagementObjects"
 			>
 			<File
-				RelativePath=".\ManagementObjects\ManagerGameMap.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ManagementObjects\ManagerGameMap.h"
-				>
-			</File>
-			<File
 				RelativePath=".\ManagementObjects\ManagerGraphicObject.cpp"
 				>
 			</File>
@@ -499,19 +491,35 @@
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\ManagerCacheItemXML.cpp"
+					RelativePath=".\GameItems\ManagerCacheItem_XML.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\ManagerCacheItemXML.h"
+					RelativePath=".\GameItems\ManagerCacheItem_XML.h"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\ManagerSerializerItem.cpp"
+					RelativePath=".\GameItems\ManagerSerializerItem_Binary.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GameItems\ManagerSerializerItem.h"
+					RelativePath=".\GameItems\ManagerSerializerItem_Binary.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\ManagerSerializerItem_XML.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\ManagerSerializerItem_XML.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\StorageGameItem_XML.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\StorageGameItem_XML.h"
 					>
 				</File>
 			</Filter>
@@ -596,6 +604,74 @@
 				</File>
 				<File
 					RelativePath=".\GameItems\SerializerTerrainItem_XML.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="SerializerBinary"
+				>
+				<File
+					RelativePath=".\GameItems\BaseSerializerItem_Binary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\BaseSerializerItem_Binary.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerMapItem_Binary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerMapItem_Binary.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerMaterialItem_Binary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerMaterialItem_Binary.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerModelItem_Binary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerModelItem_Binary.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerPatternConfigItem_Binary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerPatternConfigItem_Binary.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerShapeItem_Binary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerShapeItem_Binary.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerTableSoundItem_Binary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerTableSoundItem_Binary.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerTerrainItem_Binary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameItems\SerializerTerrainItem_Binary.h"
 					>
 				</File>
 			</Filter>
@@ -939,27 +1015,27 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject\GameObjectComponent_Graphic.cpp"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Bullet.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject\GameObjectComponent_Graphic.h"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Bullet.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject\GameObjectComponent_Physic.cpp"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Ogre.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject\GameObjectComponent_Physic.h"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_Ogre.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject\GameObjectComponent_Sound.cpp"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_OpenAL.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\GameObject\GameObjectComponent_Sound.h"
+					RelativePath=".\Scene\GameObject\GameObjectComponent_OpenAL.h"
 					>
 				</File>
 			</Filter>
@@ -968,124 +1044,44 @@
 			Name="Destructor"
 			>
 			<Filter
-				Name="PreDestructor"
+				Name="Tools"
 				>
 				<Filter
-					Name="Common"
+					Name="Bullet"
 					>
 					<File
-						RelativePath=".\Destructor\PreDestructor.cpp"
+						RelativePath=".\Destructor\Destructor_Bullet.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Destructor\PreDestructor.h"
+						RelativePath=".\Destructor\Destructor_Bullet.h"
 						>
 					</File>
 				</Filter>
 				<Filter
-					Name="GameObject"
+					Name="Ogre"
 					>
 					<File
-						RelativePath=".\Destructor\FactoryPreDestructorGameObject.cpp"
+						RelativePath=".\Destructor\Destructor_Ogre.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Destructor\FactoryPreDestructorGameObject.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Animated.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Animated.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Light.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Light.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Model.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Model.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Skybox.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Skybox.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Sound.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Sound.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Terrain.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Terrain.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Zone.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Destructor\PreDestructorGameObject_Zone.h"
+						RelativePath=".\Destructor\Destructor_Ogre.h"
 						>
 					</File>
 				</Filter>
-			</Filter>
-			<Filter
-				Name="Task"
-				>
-				<File
-					RelativePath=".\Destructor\TaskForDestructor.cpp"
+				<Filter
+					Name="OpenAL"
 					>
-				</File>
-				<File
-					RelativePath=".\Destructor\TaskForDestructor.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Destructor\TaskForDestructor_Bullet.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Destructor\TaskForDestructor_Bullet.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Destructor\TaskForDestructor_Ogre.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Destructor\TaskForDestructor_Ogre.h"
-					>
-				</File>
+					<File
+						RelativePath=".\Destructor\Destructor_OpenAL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Destructor\Destructor_OpenAL.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Common"
@@ -1098,14 +1094,6 @@
 					RelativePath=".\Destructor\DestructorGameObject.h"
 					>
 				</File>
-			</Filter>
-			<Filter
-				Name="Bullet"
-				>
-			</Filter>
-			<Filter
-				Name="Ogre"
-				>
 			</Filter>
 		</Filter>
 		<Filter
@@ -1303,6 +1291,10 @@
 				RelativePath=".\Test\ShowTankWoT_test.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Updater"
+			>
 		</Filter>
 	</Files>
 	<Globals>

@@ -10,15 +10,13 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
-class TTaskForBuilder_OpenAL;
-
 class DllExport TBuilder_OpenAL
 {
 public:
   TBuilder_OpenAL();
   virtual ~TBuilder_OpenAL();
   
-  void Work(TTaskForBuilder_OpenAL* pTask);
+  //void Work(TTaskForBuilder_OpenAL* pTask);
 
 };
 

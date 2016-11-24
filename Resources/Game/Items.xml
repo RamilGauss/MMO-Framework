@@ -23,13 +23,13 @@
         <LOD distance="100">
 					<Property key="Width"  value="1"/>
 					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_00.png"/>
+          <Property key="Color"  value="Iron_00.jpg"/>
           <Property key="Normal" value="NormalIron_00.png"/>
         </LOD>
         <LOD distance="1000">
 					<Property key="Width"  value="1"/>
 					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_00.png"/>
+          <Property key="Color"  value="Iron_00.jpg"/>
           <Property key="Normal" value="NormalIron_00.png"/>
         </LOD>
       </Variant>
@@ -37,13 +37,13 @@
         <LOD distance="100">
 					<Property key="Width"  value="1"/>
 					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_01.png"/>
+          <Property key="Color"  value="Iron_01.jpg"/>
           <Property key="Normal" value="NormalIron_01.png"/>
         </LOD>
         <LOD distance="1000">
 					<Property key="Width"  value="1"/>
 					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_01.png"/>
+          <Property key="Color"  value="Iron_01.jpg"/>
           <Property key="Normal" value="NormalIron_01.png"/>
         </LOD>
       </Variant>
@@ -1620,7 +1620,7 @@
       </Formation>
     </Hierarchy>
     <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Down" patternModel=""><!-- Корень есть всегда -->
+      <Part name="Down"><!-- Корень есть всегда -->
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -1644,7 +1644,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Left" patternModel="">
+      <Part name="Left">
         <Joining>
           <Joint name="0"/>
           <Joint name="1"/>
@@ -1663,7 +1663,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Up" patternModel="">
+      <Part name="Up">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -1682,7 +1682,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Right" patternModel="">
+      <Part name="Right">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -1701,7 +1701,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Forward" patternModel="">
+      <Part name="Forward">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -1720,7 +1720,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Backward" patternModel="">
+      <Part name="Backward">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -1928,7 +1928,7 @@
       </Formation>
     </Hierarchy>
     <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Down" patternModel=""><!-- Корень есть всегда -->
+      <Part name="Down"><!-- Корень есть всегда -->
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -1951,7 +1951,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Left" patternModel="">
+      <Part name="Left">
         <Joining>
           <Joint name="0"/>
           <Joint name="1"/>
@@ -1970,7 +1970,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Up" patternModel="">
+      <Part name="Up">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -1989,7 +1989,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Right" patternModel="">
+      <Part name="Right">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -2008,7 +2008,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Forward" patternModel="">
+      <Part name="Forward">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -2027,7 +2027,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Backward" patternModel="">
+      <Part name="Backward">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -2263,7 +2263,7 @@
       </Formation>
     </Hierarchy>
     <Collection type="Shape"><!-- Набор частей -->
-      <Part name="AxisLF" patternModel=""><!-- Корень есть всегда -->
+      <Part name="AxisLF"><!-- Корень есть всегда -->
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -2282,7 +2282,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="AxisRF" patternModel="">
+      <Part name="AxisRF">
         <Joining>
           <Joint name="0"/>
           <Joint name="1"/>
@@ -2301,13 +2301,13 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="AxisLB" patternModel=""><!-- Корень есть всегда -->
+      <Part name="AxisLB">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
         </Joining>
         <Incarnation>
-          <Variant  name="0"nameItem="KingTiger_Chassis_AxisLB">
+          <Variant  name="0" nameItem="KingTiger_Chassis_AxisLB">
             <Translation>
               <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
               <Joint external="1" part="" internal="1"/>
@@ -2320,7 +2320,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="AxisRB" patternModel="">
+      <Part name="AxisRB">
         <Joining>
           <Joint name="0"/>
           <Joint name="1"/>
@@ -2339,7 +2339,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="WheelLF" patternModel="">
+      <Part name="WheelLF">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
         </Joining>
@@ -2356,7 +2356,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="WheelRF" patternModel="">
+      <Part name="WheelRF">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
         </Joining>
@@ -2373,7 +2373,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="WheelLB" patternModel="">
+      <Part name="WheelLB">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
         </Joining>
@@ -2390,7 +2390,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="WheelRB" patternModel="">
+      <Part name="WheelRB">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
         </Joining>
@@ -2428,7 +2428,7 @@
       </Formation>
     </Hierarchy>
     <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Barrel" patternModel="">
+      <Part name="Barrel">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
         </Joining>
@@ -2466,7 +2466,7 @@
       </Formation>
     </Hierarchy>
     <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Barrel" patternModel="">
+      <Part name="Barrel">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
         </Joining>
@@ -2634,7 +2634,7 @@
       </Formation>
     </Hierarchy>
     <Collection type="Model"><!-- Набор частей -->
-      <Part name="Hull"    patternModel="Hull"><!-- Корень есть всегда -->
+      <Part name="Hull"><!-- Корень есть всегда -->
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -2653,7 +2653,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Chassis" patternModel="Chassis">
+      <Part name="Chassis">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -2676,7 +2676,7 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Turret"  patternModel="Turret">
+      <Part name="Turret">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
           <Joint name="1"/>
@@ -2695,14 +2695,14 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Gun"     patternModel="Gun">
+      <Part name="Gun">
         <Joining>
           <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
         </Joining>
         <Incarnation>
           <Variant name="0" nameItem="KingTiger_Gun_0">
             <Translation>
-              <Joint external="0" part="0" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
+              <Joint external="0" part="Barrel" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
             </Translation>
             <Scale>
               <Property key="x" value="1"/>
@@ -2712,7 +2712,7 @@
           </Variant>
           <Variant name="1" nameItem="KingTiger_Gun_1">
             <Translation>
-              <Joint external="0" part="0" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
+              <Joint external="0" part="Barrel" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
             </Translation>
             <Scale>
               <Property key="x" value="1"/>
@@ -2740,7 +2740,19 @@
 			</LOD>
 		</Graphic>
     <HeightMap><!-- Карта высот -->
-		  <Point x="0" y="0" h="0" u="0" v="0"/>
+		  <Point x="0" y="0" h="110" u="0" v="0"/>
+		  <Point x="1" y="0" h="1" u="0" v="0"/>
+		  <Point x="2" y="0" h="10" u="0" v="0"/>
+		  <Point x="3" y="0" h="10" u="0" v="0"/>
+		  <Point x="4" y="0" h="1" u="0" v="0"/>
+		  <Point x="5" y="0" h="11" u="0" v="0"/>
+		  <Point x="6" y="0" h="10" u="0" v="0"/>
+		  <Point x="7" y="0" h="10" u="0" v="0"/>
+		  <Point x="8" y="0" h="10" u="0" v="0"/>
+		  <Point x="9" y="0" h="10" u="0" v="0"/>
+		  <Point x="10" y="0" h="0" u="0" v="0"/>
+		  <Point x="11" y="0" h="10" u="0" v="0"/>
+		  <Point x="12" y="0" h="0" u="0" v="0"/>
 		</HeightMap>
   </Terrain>
   <Map name="Field">
@@ -2827,7 +2839,7 @@
           <!-- Адресуется Паттерну -->
           <Property key="NameGameItem" value="KingTiger"/><!-- Какую модель выбрать -->
           <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
-          <Property key="Variant"  value="1"/>
+          <Property key="VariantPatternConfig" value="1"/>
         </ParameterMap>
 			</Object>
 		  <Object>

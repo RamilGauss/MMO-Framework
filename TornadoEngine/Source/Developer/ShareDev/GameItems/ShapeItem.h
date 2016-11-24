@@ -18,6 +18,10 @@ See for more information License.h.
 #include "ParamBuilderShape.h"
 #include "MathTools.h"
 
+#ifdef WIN32
+#pragma pack(push, 1)
+#endif
+
 struct DllExport TShapeItem : public TBaseItem
 {
   struct DllExport TJoint
@@ -48,6 +52,10 @@ struct DllExport TShapeItem : public TBaseItem
   boost::scoped_ptr<nsParamBuilderShape::TBaseParam> mPtrGeometry;
 
   TShapeItem(std::string& name);
-};
+}_PACKED;
+
+#if defined( WIN32 )
+#pragma pack(pop)
+#endif
 
 #endif

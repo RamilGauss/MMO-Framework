@@ -48,16 +48,6 @@ void TBehaviourPatternModel::GetDefaultParameterMap(TMapItem::TMapStrStr& m)
 
 }
 //------------------------------------------------------------------------
-//void TBehaviourPatternModel::SetParameterMap(TMapItem::TMapStrStr& m)
-//{
-//  mParameterMap = m;
-//}
-////------------------------------------------------------------------------
-//void TBehaviourPatternModel::GetDefualtParameterMap(TMapItem::TMapStrStr& m)
-//{
-//  m = mDefaultParameterMap;
-//}
-//------------------------------------------------------------------------
 bool TBehaviourPatternModel::SetParameterFromPattern(TBehaviourPatternContext* pContext, TContainer c)
 {
   return false;

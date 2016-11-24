@@ -24,7 +24,6 @@ See for more information License.h.
 TEditorMapLogic::TEditorMapLogic()
 {
   mID_TimerTryMoveCamera = -1;
-  mAggregationScenario_Client.reset(new TGP_AggregationScenario_Client);
   mPtrShowTank.reset(new TShowTankWoT_test);
   mPtrControlCamera.reset(new TControlCamera);
 }

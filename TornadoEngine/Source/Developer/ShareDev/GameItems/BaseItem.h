@@ -12,12 +12,20 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "FactoryGameItem.h"
 
+#ifdef WIN32
+#pragma pack(push, 1)
+#endif
+
 struct DllExport TBaseItem
 {
   std::string mName;
   int mType;
 
   TBaseItem(std::string& name, int type);
-};
+}_PACKED;
+
+#if defined( WIN32 )
+#pragma pack(pop)
+#endif
 
 #endif

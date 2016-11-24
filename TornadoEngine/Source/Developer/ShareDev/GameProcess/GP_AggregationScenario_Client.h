@@ -31,7 +31,7 @@ public:
 
   virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP);
   virtual void LoadMap(std::string nameMap);
-  virtual bool AddGameObject(TMapItem::TObject& desc);
+  virtual bool AddGameObject(std::list<TMapItem::TObject>& listObject);
   virtual int  GetPhysicWorldID();
 
   virtual void SetEnable(int id, bool v);

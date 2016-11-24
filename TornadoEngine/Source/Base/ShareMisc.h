@@ -10,9 +10,11 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
+// когда нужно проверить выражение и тут же выйти в случае отрицательного результата
 #define RET_FALSE(f) \
-  if(f==false) \
+if( f==false ) \
   return false;
+
 //--------------------------------------------------
 #ifdef WIN32
 #pragma pack(push, 1)

@@ -12,14 +12,13 @@ See for more information License.h.
 #include "ModuleGraphicEngine.h"
 #include "FactoryGameItem.h"
 
-#include "PatternContext_Model.h"
 #include "ShapeItem.h"
 
 namespace nsPatternModel_Model
 {
-  const char* sNameGameItem = "NameGameItem";
-  const char* sVariant      = "Variant";
-  const char* sMobility     = "Mobility";
+  const char* sNameGameItem         = "NameGameItem";
+  const char* sVariantPatternConfig = "VariantPatternConfig";
+  const char* sMobility             = "Mobility";
 }
 
 using namespace nsPatternModel_Model;
@@ -27,7 +26,7 @@ using namespace nsPatternModel_Model;
 TPatternModel_Model::TPatternModel_Model()
 {
   mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sNameGameItem,""));
-  mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sVariant,""));
+  mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sVariantPatternConfig,""));
   mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sMobility,""));
 }
 //---------------------------------------------------------------------------
@@ -125,23 +124,23 @@ void TPatternModel_Model::LoadFromThread_Logic(TBehaviourPatternContext* pContex
     nameGameItem = itNameGameItem->second;
     pContextModel->SetNameGameItem(nameGameItem);
   }
-
+  // найти вариант настроек паттерна
   std::string variantPatternConfig = pContextModel->GetNameVariantPatternConfig();
   if( variantPatternConfig.length()==0 )
   {
-    TMapItem::TMapStrStrConstIt itVariant = pContext->GetParameterMap()->find(sVariant);
-    if( itVariant!=pContext->GetParameterMap()->end() )
+    TMapItem::TMapStrStrConstIt itVariant = pContext->GetParameterMap()->find(sVariantPatternConfig);
+    if( itVariant!=pContext->GetParameterMap()->end() )// если нет настройки, ничего не делать
     {
-      variantPatternConfig = itVariant->second;// если нет настройки, ничего не делать
+      variantPatternConfig = itVariant->second;
       pContextModel->SetNameVariantPatternConfig(variantPatternConfig);
     }
   }
-
+  // найти будет ли модель мобильной
   TMapItem::TMapStrStrConstIt itMobility = pContext->GetParameterMap()->find(sMobility);
-  if( itMobility!=pContext->GetParameterMap()->end() )
+  if( itMobility!=pContext->GetParameterMap()->end() )// если нет, то ничего не делать
   {
     bool mobility = itMobility->second=="true" ? true : false;
-    pContextModel->SetMobility(mobility);// если нет настройки, ничего не делать
+    pContextModel->SetMobility(mobility);
   }
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
 
@@ -158,75 +157,39 @@ void TPatternModel_Model::LoadFromThread_Logic(TBehaviourPatternContext* pContex
   }
 
   // задача: создать модели по имени. При синхронизации менять положение и ориентацию форм или моделей
+  pContextModel->SetTypeContent(pModel->mTypeCollection);
   if( pModel->mTypeCollection==TModelItem::eModel )
-    LoadModelsFromThread_Logic(pContext, pModel->mMapNamePart);
+    LoadModelsFromThread_Logic(pContextModel, pModel->mMapNamePart);
   else
-    LoadShapesFromThread_Logic(pContext, pModel->mMapNamePart);
+    LoadShapesFromThread_Logic(pContextModel, pModel->mMapNamePart);
 }
 //---------------------------------------------------------------------------
 void TPatternModel_Model::LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast)
 {
-  Ogre::Root* pRoot = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetRoot();
-#if 0
-  //mGO->GetGraphic();
-
-  // найти имя модели
-  TMapItem::TMapStrStrIt itName = mParameterMap.find(sNameGameItem);
-  if( itName==mParameterMap.end() )
-    return;
-  std::string nameGameItem = itName->second;
-
-  TModelItem* pModel = (TModelItem*)mFGI->Get(TFactoryGameItem::Model, nameGameItem);
-  if( pModel==NULL )
-    return;
-  
-  // задача: создать карту форм и моделей по имени. При синхронизации менять положение и ориентацию
-  // форм и моделей
-
-
-  // раскрыть ветку всех форм.
-  // моделей быть не должно, они должны замениться на формы,
-  // входящие в состав моделей
-
-  // по описанию форм нужно в Ogre создать графическое представление
-
-  // нужно анализировать констрейнты для нужного порядка соединения и применять
-  // к ним параметры по-умолчанию
-
-  // встретили форму - превратили в OgreObject
-  // встретили модель - разлагаем на составляющие -> итерация для модели (если есть)
-
-  // имея список форм и моделей -> можем соединить констрейнтами
-  // параметры констрейнта берем
-
-  BOOST_FOREACH( TModelItem::TMapStrPartVT& vtPart, pModel->mMapNamePart )
+  TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
+  int cntPart = pContextModel->GetCountPart();
+  for( int iPart = 0 ; iPart < cntPart ; iPart++ )
   {
-    std::string namePart = vtPart.first;
-    BOOST_FOREACH( TModelItem::TVariant& variant, vtPart.second.vecVariant )
+    std::string namePart = pContextModel->GetNamePart(iPart);
+    int cntVariant = pContextModel->GetCountVariant(namePart);
+    for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
     {
-      if( variant.type=="model")
+      std::string nameVariant = pContextModel->GetNameVariant(namePart, iVariant);
+      TPatternContext_Model::TBaseDesc* pDesc = pContextModel->GetDesc(namePart, nameVariant);
+      if( pDesc==NULL )
+        continue;
+      if( pDesc->type==TModelItem::eModel )
       {
-        // модель, перейти по итерации дальше в разбор модели
-        variant.name;
+        TPatternContext_Model::TModelDesc* pModelDesc = (TPatternContext_Model::TModelDesc*)pDesc;
+        pModelDesc->pCtxModel->GetModel()->LoadFromThread_Ogre(pModelDesc->pCtxModel);
       }
-      else// shape
+      else
       {
-        // создать форму
+        TPatternContext_Model::TShapeDesc* pShapeDesc = (TPatternContext_Model::TShapeDesc*)pDesc;
+        LoadShapesFromThread_Ogre(pContextModel, pShapeDesc);
       }
-      variant.name.data();
-
-      variant.redefinitionMaterial.data();
-      BOOST_FOREACH( TModelItem::TMapExternalInternalVT& vtExtInt, variant.mapExternalInternal )
-      {
-        vtExtInt.first.data();
-        TModelItem::TJoint joint = vtExtInt.second;
-        joint.nameJoint.data();
-        joint.namePart.data();
-      }
-      variant.scale;
     }
   }
-#endif
 }
 //---------------------------------------------------------------------------
 void TPatternModel_Model::LoadFromThread_Bullet( TBehaviourPatternContext* pContext, bool fast )
@@ -279,9 +242,8 @@ void TPatternModel_Model::SynchroFromThread_OpenAL(TBehaviourPatternContext* pCo
 
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadModelsFromThread_Logic(TBehaviourPatternContext* pContext, TModelItem::TMapStrPart& mapNamePart)
+void TPatternModel_Model::LoadModelsFromThread_Logic(TPatternContext_Model* pContextModel, TModelItem::TMapStrPart& mapNamePart)
 {
-  TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
   TFactoryBehaviourPatternModel* pFBPM = TModuleLogic::Get()->GetFBPM();
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   // создать другие модели и сохранить в контексте
@@ -297,19 +259,21 @@ void TPatternModel_Model::LoadModelsFromThread_Logic(TBehaviourPatternContext* p
       if( pBPM==NULL )
         continue;
 
-      TPatternContext_Model* pNewContextModel = (TPatternContext_Model*)pBPM->MakeNewConext();
-      pNewContextModel->SetNameGameItem(variant.nameItem);
-      pNewContextModel->SetMobility(pContextModel->GetMobility());// мобильность наследуется
-      pContextModel->AddContextModel(namePart, pNewContextModel);
+      TPatternContext_Model::TModelDesc* pModelDesc = new TPatternContext_Model::TModelDesc;
+      pModelDesc->namePart    = namePart;
+      pModelDesc->nameVariant = variant.name;
+      pModelDesc->pCtxModel = (TPatternContext_Model*)pBPM->MakeNewConext();
+      pModelDesc->pCtxModel->SetNameGameItem(variant.nameItem);
+      pModelDesc->pCtxModel->SetMobility(pContextModel->GetMobility());// мобильность наследуется
+      pContextModel->AddDesc(pModelDesc);
 
-      pBPM->LoadFromThread_Logic(pNewContextModel);// дальше по итерации
+      pBPM->LoadFromThread_Logic(pModelDesc->pCtxModel);// дальше по итерации
     }
   }
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadShapesFromThread_Logic(TBehaviourPatternContext* pContext, TModelItem::TMapStrPart& mapNamePart)
+void TPatternModel_Model::LoadShapesFromThread_Logic(TPatternContext_Model* pContextModel, TModelItem::TMapStrPart& mapNamePart)
 {
-  TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   
   BOOST_FOREACH( TModelItem::TMapStrPartVT& vtPart, mapNamePart )
@@ -322,7 +286,7 @@ void TPatternModel_Model::LoadShapesFromThread_Logic(TBehaviourPatternContext* p
       if( pShapeItem==NULL )
         continue;
 
-      TPatternContext_Model::TShape* pShape = new TPatternContext_Model::TShape;
+      TPatternContext_Model::TShapeDesc* pShape = new TPatternContext_Model::TShapeDesc;
       pShape->namePart      = namePart;
       pShape->nameVariant   = variant.name;
       pShape->nameShapeItem = variant.nameItem;
@@ -330,8 +294,20 @@ void TPatternModel_Model::LoadShapesFromThread_Logic(TBehaviourPatternContext* p
         pShape->nameMaterial = variant.redefinitionMaterial;
       else
         pShape->nameMaterial = pShapeItem->mNameMaterial;
-      pContextModel->AddShape(pShape);
+      pContextModel->AddDesc(pShape);
     }
   }
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Model::LoadShapesFromThread_Ogre(TPatternContext_Model* pContextModel, 
+                                                    TPatternContext_Model::TShapeDesc* pShapeDesc)
+{
+  TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
+  TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
+  if( pShapeItem==NULL )
+    return;
+
+  //mBuilderOgre.GetShapeMaker();
+  Ogre::Root* pRoot = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetRoot();
 }
 //---------------------------------------------------------------------------

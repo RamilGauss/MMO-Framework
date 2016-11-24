@@ -15,6 +15,9 @@ See for more information License.h.
   Контекст: данные для модели для текущего вызова функции.
   GameObject: данные только Ogre, Bullet, OpenAL.
   Контекст: надстройка данных над Ogre, Bullet, OpenAL.
+
+  Реализация класса предполагает: данные, которые используются для загрузки объекта не меняются
+  в процессе загрузки. В частности это FactoryGameItem.
 */
 
 #include "TypeDef.h"
@@ -22,13 +25,39 @@ See for more information License.h.
 #include "MathTools.h"
 #include "MapItem.h"
 
+#include "Builder_Ogre.h"
+#include "Destructor_Ogre.h"
+//#include "Updater_Ogre.h"
+
+#include "Builder_Bullet.h"
+#include "Destructor_Bullet.h"
+//#include "Updater_Bullet.h"
+
+#include "Builder_OpenAL.h"
+#include "Destructor_OpenAL.h"
+//#include "Updater_OpenAL.h"
+
 class TFactoryGameItem;
 class TFactoryBehaviourPatternModel;
 class TBehaviourPatternContext;
 
 class DllExport TBehaviourPatternModel
 {
-  std::string mName;// Debug 
+  std::string mName;
+protected:
+  // вспомогательные классы для построения, разрушения и синхронизации игровых объектов
+  // Builder
+  static TBuilder_Ogre   mBuilderOgre;
+  static TBuilder_Bullet mBuilderBullet;
+  static TBuilder_OpenAL mBuilderOpenAL;
+  // Destructor
+  static TDestructor_Ogre   mDestructorOgre;
+  static TDestructor_Bullet mDestructorBullet;
+  static TDestructor_OpenAL mDestructorOpenAL;
+  // Synchro нужна ли она вообще???
+  //static TSynchro_Ogre   mSynchroOgre;
+  //static TSynchro_Bullet mSynchroBullet;
+  //static TSynchro_OpenAL mSynchroOpenAL;
 public:
   TBehaviourPatternModel();
   virtual ~TBehaviourPatternModel();

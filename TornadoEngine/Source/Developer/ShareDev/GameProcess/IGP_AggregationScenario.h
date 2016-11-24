@@ -18,7 +18,6 @@ class IGP_AggregationScenario : public virtual IGP_Scenario_General
 {
 protected:
   // для смены указателя только в потоке Логики
-  //void* mPtrCurrentScenario;
   IGP_Scenario_General* mPtrCurrentScenario_General;
   TGP_Scenario*         mPtrCurrentScenario_Scenario;
 public:

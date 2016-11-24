@@ -10,8 +10,6 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
-class TTaskForBuilder_Bullet;
-
 class DllExport TBuilder_Bullet 
 {
   int mID_PhysicWorld;
@@ -21,7 +19,7 @@ public:
 
   void SetID_PhysicWorld( int id );
 
-  void Work(TTaskForBuilder_Bullet* pTask);
+  //void Work(TTaskForBuilder_Bullet* pTask);
 };
 
 #endif

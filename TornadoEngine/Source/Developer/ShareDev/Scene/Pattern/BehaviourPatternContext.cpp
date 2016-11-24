@@ -8,6 +8,10 @@ See for more information License.h.
 #include "BehaviourPatternContext.h"
 #include <boost/foreach.hpp>
 
+#include "GameObjectComponent_Ogre.h"
+#include "GameObjectComponent_Bullet.h"
+#include "GameObjectComponent_OpenAL.h"
+
 //namespace nsBehaviourPatternContext
 //{
 //  const char* sMobility     = "Mobility";
@@ -23,6 +27,10 @@ TBehaviourPatternContext::TBehaviourPatternContext(TBehaviourPatternModel* pMode
 
   mGO  = NULL;
   mPhysicWorldID = -1;
+
+  mPtrGraphic.reset(new TGameObjectComponent_Ogre);
+  mPtrPhysic.reset(new  TGameObjectComponent_Bullet);
+  mPtrSound.reset(new   TGameObjectComponent_OpenAL);
 }
 //------------------------------------------------------------------------
 TBehaviourPatternContext::~TBehaviourPatternContext()

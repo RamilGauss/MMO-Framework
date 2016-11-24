@@ -84,6 +84,24 @@ void TFactoryBehaviourPatternModel::AddPattern(TMapStrCBVT& vt_cb)
   mMapNameMakerPattern.insert(vt_cb);
 }
 //----------------------------------------------------------------------------
+int TFactoryBehaviourPatternModel::GetCount()
+{
+  return mMapNamePtrModel.size();
+}
+//----------------------------------------------------------------------------
+std::string TFactoryBehaviourPatternModel::GetNameByIndex(int index)
+{
+  std::string name = "";
+  if( index >= GetCount() || index < 0 )
+    return name;
+
+  TMapStrPtrModelIt bit = mMapNamePtrModel.begin();
+  for( int i = 0 ; i <= index ; i++)
+    bit++;
+  name = bit->first;
+  return name;
+}
+//----------------------------------------------------------------------------
 void TFactoryBehaviourPatternModel::MakeAnimated(TBehaviourPatternModel*& p)
 {
   p = new TPatternModel_Animated();

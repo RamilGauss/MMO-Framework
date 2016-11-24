@@ -114,7 +114,6 @@ void IGP_AggregationScenario::Thread_Logic()
     pGP_General->Thread_Logic();
 }
 //---------------------------------------------------------------------------------------------
-#include "GP_Scenario_Builder.h"
 void IGP_AggregationScenario::Thread_OpenAL()
 {
   IGP_Scenario_General* pGP_General = GetCurrentScGeneral();
