@@ -44,20 +44,6 @@ class TBehaviourPatternContext;
 class DllExport TBehaviourPatternModel
 {
   std::string mName;
-protected:
-  // вспомогательные классы для построения, разрушения и синхронизации игровых объектов
-  // Builder
-  static TBuilder_Ogre   mBuilderOgre;
-  static TBuilder_Bullet mBuilderBullet;
-  static TBuilder_OpenAL mBuilderOpenAL;
-  // Destructor
-  static TDestructor_Ogre   mDestructorOgre;
-  static TDestructor_Bullet mDestructorBullet;
-  static TDestructor_OpenAL mDestructorOpenAL;
-  // Synchro нужна ли она вообще???
-  //static TSynchro_Ogre   mSynchroOgre;
-  //static TSynchro_Bullet mSynchroBullet;
-  //static TSynchro_OpenAL mSynchroOpenAL;
 public:
   TBehaviourPatternModel();
   virtual ~TBehaviourPatternModel();
@@ -99,6 +85,14 @@ public:
   virtual void SynchroFromThread_Bullet(TBehaviourPatternContext* pContext);// внутренняя синхронизация
   virtual void SynchroFromThread_OpenAL(TBehaviourPatternContext* pContext);// звук от физики
 protected:
+  TBuilder_Ogre*   GetBuilderOgre();
+  TBuilder_Bullet* GetBuilderBullet();
+  TBuilder_OpenAL* GetBuilderOpenAL();
+
+  TDestructor_Ogre*   GetDestructorOgre();
+  TDestructor_Bullet* GetDestructorBullet();
+  TDestructor_OpenAL* GetDestructorOpenAL();
+
 };
 
 #endif

@@ -20,7 +20,7 @@ public:
   virtual ~TBuilder_Ogre();
 
   //void Work(TTaskForBuilder_Ogre* pTask);
-  const TBuilderShape_Ogre* GetShapeMaker()const;
+  TBuilderShape_Ogre* GetShapeMaker();
 };
 
 #endif

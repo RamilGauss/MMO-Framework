@@ -17,7 +17,7 @@ TBuilder_Ogre::~TBuilder_Ogre()
 
 }
 //---------------------------------------------------------------------------------
-const TBuilderShape_Ogre* TBuilder_Ogre::GetShapeMaker() const
+TBuilderShape_Ogre* TBuilder_Ogre::GetShapeMaker()
 {
   return &mBuilderShape_Ogre;
 }

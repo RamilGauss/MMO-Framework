@@ -9,14 +9,20 @@ See for more information License.h.
 #include "BehaviourPatternContext.h"
 
 #include <boost/foreach.hpp>
-//namespace nsBehaviourPatternModel
-//{
-//  const char* sMobility     = "Mobility";
-//  const char* sNameGameItem = "NameGameItem";
-//  const char* sVariant      = "Variant";
-//};
-//
-//using namespace nsBehaviourPatternModel;
+
+// вспомогательные классы для построения, разрушения и синхронизации игровых объектов
+// Builder
+static TBuilder_Ogre   g_BuilderOgre;
+static TBuilder_Bullet g_BuilderBullet;
+static TBuilder_OpenAL g_BuilderOpenAL;
+// Destructor
+static TDestructor_Ogre   g_DestructorOgre;
+static TDestructor_Bullet g_DestructorBullet;
+static TDestructor_OpenAL g_DestructorOpenAL;
+// Synchro нужна ли она вообще???
+//static TSynchro_Ogre   mSynchroOgre;
+//static TSynchro_Bullet mSynchroBullet;
+//static TSynchro_OpenAL mSynchroOpenAL;
 
 TBehaviourPatternModel::TBehaviourPatternModel()
 {
@@ -128,4 +134,33 @@ void TBehaviourPatternModel::SynchroFromThread_OpenAL(TBehaviourPatternContext* 
 
 }
 //------------------------------------------------------------------------
-
+TBuilder_Ogre*   TBehaviourPatternModel::GetBuilderOgre()
+{
+  return &g_BuilderOgre;
+}
+//------------------------------------------------------------------------
+TBuilder_Bullet* TBehaviourPatternModel::GetBuilderBullet()
+{
+  return &g_BuilderBullet;
+}
+//------------------------------------------------------------------------
+TBuilder_OpenAL* TBehaviourPatternModel::GetBuilderOpenAL()
+{
+  return &g_BuilderOpenAL;
+}
+//------------------------------------------------------------------------
+TDestructor_Ogre*   TBehaviourPatternModel::GetDestructorOgre()
+{
+  return &g_DestructorOgre;
+}
+//------------------------------------------------------------------------
+TDestructor_Bullet* TBehaviourPatternModel::GetDestructorBullet()
+{
+  return &g_DestructorBullet;
+}
+//------------------------------------------------------------------------
+TDestructor_OpenAL* TBehaviourPatternModel::GetDestructorOpenAL()
+{
+  return &g_DestructorOpenAL;
+}
+//------------------------------------------------------------------------

@@ -64,6 +64,10 @@ Ogre::MeshPtr TBuilderShape_Ogre::Build(TShapeItem* pShape)
 //-----------------------------------------------------------------------------
 void TBuilderShape_Ogre::BuildPlate()
 {
+  //!!!
+  // OgreSDK_vc9_v1-9-0\Samples\DeferredShading\src\GeomUtils.cpp
+  //!!!
+
   //TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager()->MaterialManager
 
   // материал создается как фантом - не надо его сохранять
@@ -74,6 +78,8 @@ void TBuilderShape_Ogre::BuildPlate()
   //matSer.exportMaterial(mMaterialPtr, "file");
   //Ogre::MeshSerializer meshSer;
   //meshSer.exportMesh()
+  //Ogre::PatchMesh
+
 
   // взять геометрическую форму
   const float size = 60;

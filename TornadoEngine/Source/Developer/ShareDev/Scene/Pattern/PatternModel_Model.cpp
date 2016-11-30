@@ -186,7 +186,7 @@ void TPatternModel_Model::LoadFromThread_Ogre(TBehaviourPatternContext* pContext
       else
       {
         TPatternContext_Model::TShapeDesc* pShapeDesc = (TPatternContext_Model::TShapeDesc*)pDesc;
-        LoadShapesFromThread_Ogre(pContextModel, pShapeDesc);
+        LoadShapeFromThread_Ogre(pContextModel, pShapeDesc);
       }
     }
   }
@@ -299,15 +299,21 @@ void TPatternModel_Model::LoadShapesFromThread_Logic(TPatternContext_Model* pCon
   }
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadShapesFromThread_Ogre(TPatternContext_Model* pContextModel, 
-                                                    TPatternContext_Model::TShapeDesc* pShapeDesc)
+void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model* pContextModel, 
+                                                   TPatternContext_Model::TShapeDesc* pShapeDesc)
 {
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
   if( pShapeItem==NULL )
     return;
 
-  //mBuilderOgre.GetShapeMaker();
+  TBuilder_Ogre* pBOgre = GetBuilderOgre();
+
+  Ogre::MeshPtr pMesh = pBOgre->GetShapeMaker()->Build( pShapeItem );
+  //pMesh->
+  // доступ
+  //Ogre::MeshManager::getSingleton().getByName( const String& name ); 	
   Ogre::Root* pRoot = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetRoot();
+
 }
 //---------------------------------------------------------------------------

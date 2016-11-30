@@ -26,6 +26,8 @@ mMapNameType_Handler.insert(TMapStrHandlerVT(#NAME_TYPE, handler));
   const char* sRadius             = "Radius";
   const char* sHeight             = "Height";
   const char* sCut                = "Cut";
+  const char* sCut0               = "Cut0";
+  const char* sCut1               = "Cut1";
   const char* sCntPointsPerCircle = "CntPointsPerCircle";
   const char* sLength             = "Length";
   const char* sWidth              = "Width";
@@ -152,7 +154,8 @@ void TSerializerParamBuilderShape::HandlerSphereToStruct()
 {
   nsParamBuilderShape::TSphere* pSphere = new nsParamBuilderShape::TSphere;
   pSphere->cnt_points_per_circle = GetValueByName(sCntPointsPerCircle);
-  pSphere->cut                   = GetValueByName(sCut);
+  pSphere->cut0                  = GetValueByName(sCut0);
+  pSphere->cut1                  = GetValueByName(sCut1);
   pSphere->radius_max            = GetValueByName(sRadiusMax);
   pSphere->radius_min            = GetValueByName(sRadiusMin);
 
@@ -197,7 +200,8 @@ void TSerializerParamBuilderShape::HandlerTriangularPyramidToStruct()
 void TSerializerParamBuilderShape::HandlerQuadrangularPyramidToStruct()
 {
   nsParamBuilderShape::TQuadrangularPyramid* pQuadrangularPyramid = new nsParamBuilderShape::TQuadrangularPyramid;
-  pQuadrangularPyramid->base   = GetValueByName(sBase);
+  pQuadrangularPyramid->width  = GetValueByName(sWidth);
+  pQuadrangularPyramid->length = GetValueByName(sLength);
   pQuadrangularPyramid->cut    = GetValueByName(sCut);
   pQuadrangularPyramid->height = GetValueByName(sHeight);
 
@@ -294,8 +298,11 @@ void TSerializerParamBuilderShape::HandlerSphereToStr()
   value = boost::lexical_cast<std::string>(pSphere->radius_min);
   mMapKeyValue->insert(TMapStrStrVT(sRadiusMin, value));
 
-  value = boost::lexical_cast<std::string>(pSphere->cut);
-  mMapKeyValue->insert(TMapStrStrVT(sCut, value));
+  value = boost::lexical_cast<std::string>(pSphere->cut0);
+  mMapKeyValue->insert(TMapStrStrVT(sCut0, value));
+
+  value = boost::lexical_cast<std::string>(pSphere->cut1);
+  mMapKeyValue->insert(TMapStrStrVT(sCut1, value));
 
   value = boost::lexical_cast<std::string>(pSphere->cnt_points_per_circle);
   mMapKeyValue->insert(TMapStrStrVT(sCntPointsPerCircle, value));
@@ -382,8 +389,11 @@ void TSerializerParamBuilderShape::HandlerQuadrangularPyramidToStr()
 
   std::string value;
 
-  value = boost::lexical_cast<std::string>(pQuadrangularPyramid->base);
-  mMapKeyValue->insert(TMapStrStrVT(sBase, value));
+  value = boost::lexical_cast<std::string>(pQuadrangularPyramid->width);
+  mMapKeyValue->insert(TMapStrStrVT(sWidth, value));
+
+  value = boost::lexical_cast<std::string>(pQuadrangularPyramid->length);
+  mMapKeyValue->insert(TMapStrStrVT(sLength, value));
 
   value = boost::lexical_cast<std::string>(pQuadrangularPyramid->cut);
   mMapKeyValue->insert(TMapStrStrVT(sCut, value));

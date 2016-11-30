@@ -62,7 +62,9 @@ namespace nsParamBuilderShape
     int cnt_points_per_circle;// точность описания круговых поверхностей
     float radius_max;
     float radius_min;
-    float cut;// срезка плоскостью - получится круг
+    // срезка плоскостью - получится круг
+    float cut0;// первый срез
+    float cut1;// второй срез
   }_PACKED;
   struct DllExport TCone : public TBaseParam
   {
@@ -93,9 +95,11 @@ namespace nsParamBuilderShape
   struct DllExport TQuadrangularPyramid : public TBaseParam
   {
     TQuadrangularPyramid();
-    float base;
-    float height;
-    float cut;
+    // основание - прямоугольник
+    float width;// ширина
+    float length;// длина
+    float height;// высота
+    float cut;// срез
   }_PACKED;
   struct DllExport TCylinder : public TBaseParam
   {
