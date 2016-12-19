@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="DeveloperDLL"
+	Name="GameImpl"
 	ProjectGUID="{73534D02-D7A8-4D08-8A8A-187CEE536C3F}"
 	RootNamespace="ViewerModel"
 	Keyword="Win32Proj"

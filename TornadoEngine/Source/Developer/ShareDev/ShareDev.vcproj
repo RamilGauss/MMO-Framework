@@ -769,6 +769,14 @@
 						RelativePath=".\Builder\BuilderShape_Ogre.h"
 						>
 					</File>
+					<File
+						RelativePath=".\Builder\GeomUtils.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\GeomUtils.h"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="Bullet"

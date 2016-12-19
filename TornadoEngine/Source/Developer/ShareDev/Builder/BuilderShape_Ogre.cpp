@@ -11,6 +11,7 @@ See for more information License.h.
 #include <OgreManualObject.h>
 
 #include "ShapeItem.h"
+#include "GeomUtils.h"
 //#include "ModuleLogic.h"
 //#include "Components.h"
 
@@ -64,6 +65,12 @@ Ogre::MeshPtr TBuilderShape_Ogre::Build(TShapeItem* pShape)
 //-----------------------------------------------------------------------------
 void TBuilderShape_Ogre::BuildPlate()
 {
+  nsParamBuilderShape::TPlate* pPlate = (nsParamBuilderShape::TPlate*)mShape->mPtrGeometry.get();
+  pPlate->length;
+  pPlate->height;
+  pPlate->width;
+
+  //MeshPtr Ogre::MeshManager::createPlane(,,,,);
   //!!!
   // OgreSDK_vc9_v1-9-0\Samples\DeferredShading\src\GeomUtils.cpp
   //!!!
@@ -140,7 +147,15 @@ void TBuilderShape_Ogre::BuildPlateVarGeom()
 //-----------------------------------------------------------------------------
 void TBuilderShape_Ogre::BuildSphere()
 {
+  nsParamBuilderShape::TSphere* pSphere = (nsParamBuilderShape::TSphere*)mShape->mPtrGeometry.get();
 
+  Ogre::String strName = mShape->mName;
+  float radius = pSphere->radius_max;
+  int nRings = pSphere->cnt_points_per_circle; 
+  int nSegments = pSphere->cnt_points_per_circle; 
+  bool bNormals = true;
+  bool bTexCoords = true;
+  GeomUtils::createSphere(strName, radius, nRings, nSegments, bNormals, bTexCoords);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShape_Ogre::BuildCone()
