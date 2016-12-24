@@ -2,18 +2,15 @@
 
   Два варианта решения:
 1. Скачать все зависимости с оффициальных сайтов, скомпилировать.
-2. Скачать из облака (https://cloud.mail.ru/public/a69136fbab85%2FDependency.rar, 
-                      https://cloud.mail.ru/public/594080076bcd%2FDependency.zip,
-                      https://cloud.mail.ru/public/bde5f1031ef5%2Fboost_1_54_0.zip,
-                      https://cloud.mail.ru/public/e5f237ddeb4d%2Fboost_1_54_0.rar,
-                      https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe,
-                      https://cloud.mail.ru/public/3GYW/9huRk9uNT - EnterpriseArchitect,
-                      https://cloud.mail.ru/public/e9b8aec7f670/qt-win-opensource-4.8.5-vs2008.exe,
-                      https://cloud.mail.ru/public/19dc30beeff2/qt-vs-addin-1.1.11-opensource.exe,
-                      https://cloud.mail.ru/public/KTAG/UV4942Avh - VC_Addons,
-                      https://cloud.mail.ru/public/B7EE/mS2NPExCd - lua,
-                      https://cloud.mail.ru/public/8E7U/UpsmjKpCm - полезная книга по LUA,
-                      https://cloud.mail.ru/public/LG5Q/WzvUsn8Rz - ZeroBrainStudio.exe
+2. Скачать из облака (https://cloud.mail.ru/public/BRMU/qfUXgYozr,                                  - Dependency.rar
+                      https://cloud.mail.ru/public/EnCa/GnVpRaQPs,                                  - Dependency.zip
+                      https://cloud.mail.ru/public/8UQz/szykxVvVY,                                  - boost_1_60_0.zip
+                      https://cloud.mail.ru/public/KZhe/2jR34jiJn,                                  - boost_1_60_0.rar
+                      https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe,                  - DirectX_SDK.exe
+                      https://cloud.mail.ru/public/3GYW/9huRk9uNT                                   - EnterpriseArchitect,
+                      https://cloud.mail.ru/public/e9b8aec7f670/qt-win-opensource-4.8.5-vs2008.exe, - Installer Qt-4.8.5
+                      https://cloud.mail.ru/public/19dc30beeff2/qt-vs-addin-1.1.11-opensource.exe,  - Addin Qt
+                      https://cloud.mail.ru/public/KTAG/UV4942Avh                                   - VC_Addons,
                     Visual Studio 2008 частями:
                       https://cloud.mail.ru/public/Lk5Y/P193qZ78u - vs 2008.z01,
                       https://cloud.mail.ru/public/7AQS/9ZNYR9TN7 - vs 2008.z02,
@@ -22,23 +19,36 @@
   Далее прописать в Visual Studio пути:
 1. Tools->Options->Projects and Solutions
 	1.1. VC++ Directories->Include files - добавить путь, примерно так:
-	  - "C:\Program Files (x86)\boost\boost_1_54_0",
+	  - "C:\Program Files (x86)\boost\boost_1_60_0",
 		- "E:\Temp\Dependency\Include",
 		- "E:\Temp\Dependency\Include\MyGUIEngine\include",
-		- "E:\Temp\Dependency\Include\OGRE\include\OGRE",
-		- "E:\Temp\Dependency\Include\OGRE\include\OIS",
+    - "E:\Temp\Dependency\Include\OGRE_dep",
+		- "E:\Temp\Dependency\Include\OGRE_dep\OIS",
+    - "E:\Temp\Dependency\Include\OGRE\OgreMain\include    
+    - "E:\Temp\Dependency\Include\OGRE\Components\Overlay\include",
+    - "E:\Temp\Dependency\Include\OGRE\Components\Paging\include",
+    - "E:\Temp\Dependency\Include\OGRE\Components\Property\include",
+    - "E:\Temp\Dependency\Include\OGRE\Components\RTShaderSystem\include",
+    - "E:\Temp\Dependency\Include\OGRE\Components\Terrain\include",
+    - "E:\Temp\Dependency\Include\OGRE\Components\Volume\include",
+    - "E:\Temp\Dependency\Include\OGRE\PlugIns\BSPSceneManager\include",
+    - "E:\Temp\Dependency\Include\OGRE\PlugIns\CgProgramManager\include",
+    - "E:\Temp\Dependency\Include\OGRE\PlugIns\OctreeSceneManager\include",
+    - "E:\Temp\Dependency\Include\OGRE\PlugIns\OctreeZone\include",
+    - "E:\Temp\Dependency\Include\OGRE\PlugIns\ParticleFX\include",
+    - "E:\Temp\Dependency\Include\OGRE\PlugIns\PCZSceneManager\include",
 		- "E:\Temp\Dependency\Include\Bullet",
 		- "E:\Temp\Dependency\Include\Bullet\BulletCollision",
 		- "E:\Temp\Dependency\Include\Bullet\BulletDynamics",
 		- "E:\Temp\Dependency\Include\Bullet\BulletSoftBody",
 		- "E:\Temp\Dependency\Include\Bullet\LinearMath",
 		- "E:\Temp\Dependency\Include\Bullet\Extras",
-                - "E:\Temp\Dependency\Include\Bullet\Extras\ConvexDecomposition".
+    - "E:\Temp\Dependency\Include\Bullet\Extras\ConvexDecomposition".
 	1.2. VC++ Directories->Library files - добавить, примерно так:
-	  - "C:\Program Files (x86)\boost\boost_1_54_0\stage\lib",
+	  - "C:\Program Files (x86)\boost\boost_1_60_0\stage\lib",
 		- "E:\Temp\Dependency\Lib".
 2. Прописать путь к DLL в переменные среды (Win+Break->Дополнительно->Переменные среды): 
-например, PATH += D:\MyProjects\Dependency\Bin;
+например, PATH += E:\Temp\Dependency\Bin;
 //---------------------------------------------------------------------------------------
     Linux (mainly Ubuntu)
 
@@ -47,9 +57,9 @@ You are lucky! Just download and install by Synaptic next packet of libraries.
 //---------------------------------------------------------------------------------------
 
   Список зависимостей:
-Boost   1.54, 
-OpenSSL 1.0.1E, 
+Boost   1.54+, 
+OpenSSL 1.0.1E+, 
 Qt      4.8.5, 
 MyGUI   3.2.0, 
 OGRE    1.9, 
-Bullet  2.82.
+Bullet  2.81+.
