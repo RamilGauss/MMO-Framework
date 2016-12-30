@@ -100,7 +100,7 @@ void ViewHowUse()
     "Ключ -p строка, адресованная воплощению игры.\n"
     "\n"
     "Например:\n"
-    "Tornado.exe -v 0 -d DeveloperDLL.dll -p port_src 1234 port_self 7777\n";
+    "Tornado.exe -v 0 -d GameImpl.dll -p port_src 1234 port_self 7777\n";
 #ifdef WIN32
   size_t lenMsgUtf8 = strlen(sMsgUtf8);
   TContainer cUtf8;

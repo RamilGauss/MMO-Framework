@@ -2,8 +2,8 @@
 
   Два варианта решения:
 1. Скачать все зависимости с оффициальных сайтов, скомпилировать.
-2. Скачать из облака (https://cloud.mail.ru/public/BRMU/qfUXgYozr,                                  - Dependency.rar
-                      https://cloud.mail.ru/public/EnCa/GnVpRaQPs,                                  - Dependency.zip
+2. Скачать из облака (https://cloud.mail.ru/public/AyvH/xQAda9ch4,                                  - Dependency.rar
+                      https://cloud.mail.ru/public/Lsy8/iGJi82LoD,                                  - Dependency.zip
                       https://cloud.mail.ru/public/8UQz/szykxVvVY,                                  - boost_1_60_0.zip
                       https://cloud.mail.ru/public/KZhe/2jR34jiJn,                                  - boost_1_60_0.rar
                       https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe,                  - DirectX_SDK.exe
@@ -20,6 +20,7 @@
 1. Tools->Options->Projects and Solutions
 	1.1. VC++ Directories->Include files - добавить путь, примерно так:
 	  - "C:\Program Files (x86)\boost\boost_1_60_0",
+		- "$(DXSDK_DIR)\Include", ( DXSDK_DIR - путь установки DirectX SDK ),
 		- "E:\Temp\Dependency\Include",
 		- "E:\Temp\Dependency\Include\MyGUIEngine\include",
     - "E:\Temp\Dependency\Include\OGRE_dep",
@@ -45,6 +46,7 @@
 		- "E:\Temp\Dependency\Include\Bullet\Extras",
     - "E:\Temp\Dependency\Include\Bullet\Extras\ConvexDecomposition".
 	1.2. VC++ Directories->Library files - добавить, примерно так:
+	  - "$(DXSDK_DIR)\Lib\x86", ( DXSDK_DIR - путь установки DirectX SDK ),
 	  - "C:\Program Files (x86)\boost\boost_1_60_0\stage\lib",
 		- "E:\Temp\Dependency\Lib".
 2. Прописать путь к DLL в переменные среды (Win+Break->Дополнительно->Переменные среды): 

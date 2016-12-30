@@ -21,7 +21,7 @@
 			OutputDirectory="..\..\Exe"
 			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
-			CharacterSet="1"
+			CharacterSet="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
