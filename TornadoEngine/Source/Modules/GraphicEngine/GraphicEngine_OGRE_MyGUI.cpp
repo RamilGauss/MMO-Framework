@@ -35,12 +35,6 @@ TGraphicEngine_Ogre_MyGUI::~TGraphicEngine_Ogre_MyGUI()
 //---------------------------------------------------------------------
 bool TGraphicEngine_Ogre_MyGUI::InitOGRE(const std::string& pathPluginCfg)
 {
-#ifdef WIN32
-  ShowCursor(false);
-#else
-
-#endif
-
 	try
 	{
 		return mGE->InitOGRE(pathPluginCfg);

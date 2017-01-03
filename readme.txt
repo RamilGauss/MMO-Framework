@@ -10,9 +10,18 @@ The module is a graphical, physical, network, GUI, etc engines.
   MMO (network) component can work with more than one million Clients.
 This is achieved by using the cluster organization within the Server.
 
-  For compiling requires: see files dependency.txt and todo.txt.
-To view the architectural decisions need Enterprise Architect 7.0.
+  For compiling requires: see file HowToCompile_Win.txt.
+To view the architectural decisions need Enterprise Architect 7.0+.
 Article on habrahabr: http://habrahabr.ru/post/233915/
+
+		DEPENDENCY:
+	Boost   1.54+, 
+	OpenSSL 1.0.1E+, 
+	Qt      4.8.5, 
+	MyGUI   3.2.0, 
+	OGRE    1.9, 
+	Bullet  2.81+.
+
 //------------------------------------------------------------------------------------------
     Russian
     
@@ -24,7 +33,17 @@ Article on habrahabr: http://habrahabr.ru/post/233915/
   ММО(сетевой) компонент может работать с более чем миллионом Клиентов.
 Это достигается с помощью кластерной организации внутри Сервера.
 
-  Для компиляции требуется: смотри файлы dependency.txt и todo.txt.
+  Для компиляции требуется: смотри HowToCompile_Win.txt.
   
-Для просмотра архитектурных решений потребуется Enterprise Architect 7.0.
+Для просмотра архитектурных решений потребуется Enterprise Architect 7.0+.
 Статья на хабре: http://habrahabr.ru/post/233915/
+
+
+		Список зависимостей:
+	Boost   1.54+, 
+	OpenSSL 1.0.1E+, 
+	Qt      4.8.5, 
+	MyGUI   3.2.0, 
+	OGRE    1.9, 
+	Bullet  2.81+.
+//------------------------------------------------------------------------------------------

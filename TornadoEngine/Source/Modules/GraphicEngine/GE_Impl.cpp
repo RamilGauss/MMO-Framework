@@ -79,6 +79,13 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg)
   {
     if(!mRoot->showConfigDialog()) return false;// ничего не получилось, покажем диалог
   }
+
+#ifdef WIN32
+  ShowCursor(false);
+#else
+
+#endif
+
   mWindow = mRoot->initialise(true);
   // вытаскиваем дискриптор окна
   size_t handle = GetWindowHandle();
