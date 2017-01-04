@@ -66,6 +66,7 @@
 				AdditionalLibraryDirectories="../../Lib;&quot;../../Lib\$(ConfigurationName)&quot;;&quot;$(QTDIR)/lib&quot;;&quot;$(BOOST_PATH)\stage\lib&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
+				ImportLibrary="..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -143,6 +144,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				ImportLibrary="..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool

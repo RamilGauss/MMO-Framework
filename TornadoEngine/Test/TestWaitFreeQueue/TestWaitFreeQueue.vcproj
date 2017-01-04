@@ -67,6 +67,7 @@
 				AdditionalLibraryDirectories="..\..\Lib;&quot;..\..\Lib\$(ConfigurationName)&quot;;$(BOOST_PATH)\stage\lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
+				ImportLibrary="..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -145,6 +146,7 @@
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				ImportLibrary="..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool

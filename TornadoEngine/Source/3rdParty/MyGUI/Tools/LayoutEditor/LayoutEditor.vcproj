@@ -69,7 +69,7 @@
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="..\..\..\..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
+				ImportLibrary="..\..\..\..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -148,7 +148,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="..\..\..\..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
+				ImportLibrary="..\..\..\..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
