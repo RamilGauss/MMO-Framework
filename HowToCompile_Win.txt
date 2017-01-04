@@ -3,7 +3,6 @@
 	Установка зависимостей и компиляция проекта под Windows XP/7 x86/64.
 	
 1. Итак, Архив MMO-Framework.zip скачан с github.com и распакован.
-
 2. В системе должно быть установлено: 
 	2.1. Opera/Firefox/Chrome для скачивания зависимостей.
 	2.2. VisulaStudio 2008 + ServicePack 1. - ОБЯЗАТЕЛЬНО
@@ -15,20 +14,20 @@
 	2.4. По возможности, либо Total Commander, либо Far - для удобства манипуляций с файлами.
 	
 3. По ссылке необходимо скачать следующие архивы и исполняемые файлы: 
-	( Для dependency и boost_1_60_0 есть два варианта: rar или zip, на выбор, но лучше скачать rar. 
-	  Архив zip нужен для тех компьютеров, на которых не установлен WinRar.)
+	Для dependency и boost_1_60_0 есть два варианта: rar или zip, на выбор, но лучше скачать rar. 
+  Архив zip нужен для тех компьютеров, на которых не установлен WinRar.
 	При скачивании исполняемых файлов ставить галку "Я хочу скачать этот файл".
-	https://cloud.mail.ru/public/AyvH/xQAda9ch4,                                  - Dependency.rar,
-	https://cloud.mail.ru/public/Lsy8/iGJi82LoD,                                  - Dependency.zip,
-	https://cloud.mail.ru/public/KZhe/2jR34jiJn,                                  - boost_1_60_0.rar,
-	https://cloud.mail.ru/public/8UQz/szykxVvVY,                                  - boost_1_60_0.zip,	
-	https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe,                  - DirectX_SDK.exe,
-	https://cloud.mail.ru/public/e9b8aec7f670/qt-win-opensource-4.8.5-vs2008.exe, - Installer Qt-4.8.5,
-	https://cloud.mail.ru/public/19dc30beeff2/qt-vs-addin-1.1.11-opensource.exe,  - Addin Qt.
+		https://cloud.mail.ru/public/AyvH/xQAda9ch4,                                  - Dependency.rar,
+		https://cloud.mail.ru/public/Lsy8/iGJi82LoD,                                  - Dependency.zip,
+		https://cloud.mail.ru/public/KZhe/2jR34jiJn,                                  - boost_1_60_0.rar,
+		https://cloud.mail.ru/public/8UQz/szykxVvVY,                                  - boost_1_60_0.zip,	
+		https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe,                  - DirectX_SDK.exe,
+		https://cloud.mail.ru/public/e9b8aec7f670/qt-win-opensource-4.8.5-vs2008.exe, - Installer Qt-4.8.5,
+		https://cloud.mail.ru/public/19dc30beeff2/qt-vs-addin-1.1.11-opensource.exe,  - Addin Qt.
 
 	В облаке также можно скачать (необязательно):
-	https://cloud.mail.ru/public/3GYW/9huRk9uNT                                   - EnterpriseArchitect,
-	https://cloud.mail.ru/public/KTAG/UV4942Avh                                   - VC_Addons.
+		https://cloud.mail.ru/public/3GYW/9huRk9uNT                                   - EnterpriseArchitect,
+		https://cloud.mail.ru/public/KTAG/UV4942Avh                                   - VC_Addons.
 	EnterpriseArchitect - нужен для просмотра архитектурных решений. VC_Addons содержит полезные аддоны для Visual Studio 2008.
 	
 4. Установка DirectX SDK. Запустить DXSDK_Jun10.exe и следовать инструкциям.
@@ -37,50 +36,19 @@
 7. Распаковка архива dependency. Распаковать в C:\ или другое удобное место.
 8. Распаковка архива boost. Распаковать в C:\Program Files (x86) или другое удобное место.
 
-9. Настройка Visual Studio 2008.
-  Прописать в Visual Studio пути: Tools->Options->Projects and Solutions.
-	9.1. VC++ Directories->Include files - добавить путь, примерно так:
-		- "C:\Program Files (x86)\boost_1_60_0",
-		- "$(DXSDK_DIR)\Include", ( DXSDK_DIR - путь установки DirectX SDK ),
-		- "C:\Dependency\Include",
-		- "C:\Dependency\Include\MyGUIEngine\include",
-		- "C:\Dependency\Include\OGRE_dep",
-		- "C:\Dependency\Include\OGRE_dep\OIS",
-		- "C:\Dependency\Include\OGRE\OgreMain\include",    
-		- "C:\Dependency\Include\OGRE\Components\Overlay\include",
-		- "C:\Dependency\Include\OGRE\Components\Paging\include",
-		- "C:\Dependency\Include\OGRE\Components\Property\include",
-		- "C:\Dependency\Include\OGRE\Components\RTShaderSystem\include",
-		- "C:\Dependency\Include\OGRE\Components\Terrain\include",
-		- "C:\Dependency\Include\OGRE\Components\Volume\include",
-		- "C:\Dependency\Include\OGRE\PlugIns\BSPSceneManager\include",
-		- "C:\Dependency\Include\OGRE\PlugIns\CgProgramManager\include",
-		- "C:\Dependency\Include\OGRE\PlugIns\OctreeSceneManager\include",
-		- "C:\Dependency\Include\OGRE\PlugIns\OctreeZone\include",
-		- "C:\Dependency\Include\OGRE\PlugIns\ParticleFX\include",
-		- "C:\Dependency\Include\OGRE\PlugIns\PCZSceneManager\include",
-		- "C:\Dependency\Include\Bullet",
-		- "C:\Dependency\Include\Bullet\BulletCollision",
-		- "C:\Dependency\Include\Bullet\BulletDynamics",
-		- "C:\Dependency\Include\Bullet\BulletSoftBody",
-		- "C:\Dependency\Include\Bullet\LinearMath",
-		- "C:\Dependency\Include\Bullet\Extras",
-		- "C:\Dependency\Include\Bullet\Extras\ConvexDecomposition".
-	9.2. VC++ Directories->Library files - добавить, примерно так:
-		- "$(DXSDK_DIR)\Lib\x86", ( DXSDK_DIR - путь установки DirectX SDK ),
-		- "C:\Program Files (x86)\boost_1_60_0\stage\lib",
-		- "C:\Dependency\Lib".
-		
-10. Переменные среды.
-	Добавить к переменной Path значение пути к DLL.
-	Windows XP: Win+Break->Дополнительно->Переменные среды.
+9. Переменные среды.
+  Windows XP: Win+Break->Дополнительно->Переменные среды.
 	Windows 7:  Win+Break->Дополнительные параметры системы->Переменные среды.
-	PATH += C:\Dependency\Bin;
-	Примечание: после добавления пути закрыть все оконные приложения. Старым значения переменной Path захватываются
-	открытыми приложениями. Закрыв их, система применит новое значение Path.
+	Добавить переменные:
+	DEP_PATH_MMO_FRAMEWORK = C:\Dependency           - путь, куда распакованы зависимости.
+	QTDIR = C:\Qt\4.8.5
+	BOOST_PATH = C:\Program Files (x86)\boost_1_60_0 - путь, куда распакован boost.
 	
-11. Запустить openSolution.bat. Кликнуть правой кнопкой мыши по проекту GameImpl -> Build.
-12. После сборки, клик правой кнопкой мыши по проекту Game -> Properties -> Debugging -> Command Arguments задать
+	Примечание: после добавления закрыть все оконные приложения. Старые значения переменных захватываются
+	открытыми приложениями. Закрыв их, система применит новое значение.
+	
+10. Запустить openSolution.bat. Кликнуть правой кнопкой мыши по проекту GameImpl -> Build.
+11. После сборки, клик правой кнопкой мыши по проекту Game -> Properties -> Debugging -> Command Arguments задать
 значения, описывающих версию и название dll, например, -v 8 -d GameImpl_d.dll.
 -v - номер версии (см. файл DefMainFunc_DeveloperDLL.cpp).
 P.S. для настройки сочетаний клавиш Visual Studio 2008 см. файл .\TornadoEngine\Source\Настройки для создания проекта.txt

@@ -1,5 +1,12 @@
 ﻿    Russian
-Способ увеличения количества соединений.
+		
+	sudo apt-get install xinit
+	sudo apt-get install kubuntu-desktop
+	sudo apt-get install kde-workspace-randr // выбор разрешения экрана
+	sudo apt-get install synaptic // лучше ставить через установщик программ
+		
+		
+	Способ увеличения количества соединений.
 
 В файле /etc/sysctl.conf добавить строки:
 

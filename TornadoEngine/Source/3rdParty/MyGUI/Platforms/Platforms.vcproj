@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common"
+				AdditionalIncludeDirectories=".\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -107,7 +107,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common"
+				AdditionalIncludeDirectories=".\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"

@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include"
+				AdditionalIncludeDirectories="..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,7 +64,7 @@
 				AdditionalDependencies="Common_d.lib Platforms_d.lib MyGUIEngine_d.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib EditorFramework_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\..\..\..\Lib;&quot;..\..\..\..\..\Lib\$(ConfigurationName)&quot;;&quot;..\..\..\..\..\Exe\$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="..\..\..\..\..\Lib;&quot;..\..\..\..\..\Lib\$(ConfigurationName)&quot;;&quot;..\..\..\..\..\Exe\$(ConfigurationName)&quot;;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				ImportLibrary="..\..\..\..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
@@ -94,8 +94,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="..\..\..\..\..\Exe"
+			IntermediateDirectory="..\..\..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -119,13 +119,14 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\3rdParty\MyGUI\Common;..\..\3rdParty\MyGUI\MyGUIEngine\include;..\..\3rdParty\MyGUI\MyGUIEngine\src;..\..\3rdParty\MyGUI\Common\Base;..\..\3rdParty\MyGUI\Common\Base\DirectX;..\..\3rdParty\MyGUI\Common\Input\Win32;..\EditorFramework"
+				AdditionalIncludeDirectories="..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
+				DisableSpecificWarnings="4275;4150"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -138,11 +139,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="Common.lib Platforms.lib MyGUIEngine.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib EditorFramework.lib"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="..\..\..\..\..\Lib;&quot;..\..\..\..\..\Lib\$(ConfigurationName)&quot;;&quot;..\..\..\..\..\Exe\$(ConfigurationName)&quot;;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				ImportLibrary="..\..\..\..\..\Lib\$(ConfigurationName)\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
