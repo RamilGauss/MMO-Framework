@@ -1,4 +1,4 @@
 set QMAKESPEC=win32-msvc2008
-set PATH += %DEP_PATH_MMO_FRAMEWORK%\bin;
+set PATH=%PATH%;%DEP_PATH_MMO_FRAMEWORK%\Bin
 
 start MMOFramework.sln

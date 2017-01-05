@@ -77,7 +77,8 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg)
 	mRoot = new Ogre::Root(pathPluginCfg, "ogre.cfg", "Ogre.log");
   if( !mRoot->restoreConfig() )// попробуем завестись на дефолтных
   {
-    if(!mRoot->showConfigDialog()) return false;// ничего не получилось, покажем диалог
+    if(!mRoot->showConfigDialog()) 
+			return false;// ничего не получилось, покажем диалог
   }
 
 #ifdef WIN32

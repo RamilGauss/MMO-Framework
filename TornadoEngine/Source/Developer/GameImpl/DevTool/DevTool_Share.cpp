@@ -28,6 +28,11 @@ See for more information License.h.
 #include "GraphicEngine_Ogre_MyGUI.h"
 #include "EventGameEngine.h"
 
+#ifndef WIN32
+	#include <unistd.h>
+#endif
+
+
 namespace nsDevTool_Share
 {
   // для именования модулей в конвейере для Ядра
@@ -191,7 +196,11 @@ void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
 {
   TModuleGraphicEngine* pGE = (TModuleGraphicEngine*)pModule;
   // настройка перед запуском
-  pGE->GetGE()->InitOGRE(mPluginsCfg);
+  if( pGE->GetGE()->InitOGRE(mPluginsCfg)==false )
+	{
+		_exit(-1);// либо ошибка, либо пользователь не хочет запускать приложение
+		return;
+	}
   // пути для ресурсов графического движка
   BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGraphicEngine)
     pGE->GetGE()->AddResource(pairNameType.first, pairNameType.second);
