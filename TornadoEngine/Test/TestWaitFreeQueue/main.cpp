@@ -11,6 +11,7 @@ See for more information License.h.
 #include "HiTimer.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <boost/atomic/fences.hpp>
 
 TDataExchange2Thread<int> g_List2Thread;
 //---------------------------------------------------------------------------------------
@@ -61,6 +62,13 @@ protected:
 //---------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
+	//memory_order_relaxed = 0,
+	//memory_order_consume = 1,
+	//memory_order_acquire = 2,
+	//memory_order_release = 4,
+	//memory_order_acq_rel = 6, // acquire | release
+	//memory_order_seq_cst = 14 // acq_rel | 8
+
   TTestProducer producer;
   TTestConsumer consumer;
   

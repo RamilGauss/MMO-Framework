@@ -260,8 +260,12 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
   }
 }
 //---------------------------------------------------------------------------------------------
+#include "Plane_Test.h"
 void TEditorMapLogic::ShowTanks()
 {
   mPtrShowTank->ShowTanks(4);
+
+	//TPlane_Test plane;
+	//plane.ShowPlane(10,10,100,100,1,1);
 }
 //---------------------------------------------------------------------------------------------

@@ -22,7 +22,7 @@
     <Resource Name = "MyGUI_Core.xml"           Type = "Core" />
     <Resource Name = "MyGUI_BlackBlueTheme.xml" Type = "Skin" />
   </GUI>
-  <Game Comment = "MetaMorf" >
+  <Game Comment = "Evolution of War Machines" >
     <Resource Name = "../../Resources/Game/Items.xml"    Type = "Items"  />
     <Resource Name = "../../Resources/Game/Settings.xml" Type = "Settings"/>
   </Game>

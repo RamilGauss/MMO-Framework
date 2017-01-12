@@ -32,7 +32,7 @@ class TDevTool_Share : public IDevTool
   std::string mPluginsCfg;
   std::string mPathItems;
 
-  TResources::TListPairNameType mListRGame; 
+  TResources::TListPairNameType mListRGame; // ListPairStrStr => MultiMapStrStr ?
   TResources::TListPairNameType mListRGUI; 
   TResources::TListPairNameType mListRGameEngine;
   TResources::TListPairNameType mListRGraphicEngine;
