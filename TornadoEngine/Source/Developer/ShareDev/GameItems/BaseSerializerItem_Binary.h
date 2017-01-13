@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -30,14 +30,14 @@ public:
 
   int Type();
 
-  // упаковать итэм в контейнер
+  // СѓРїР°РєРѕРІР°С‚СЊ РёС‚СЌРј РІ РєРѕРЅС‚РµР№РЅРµСЂ
   virtual void PackItem(TBaseItem* pItem, TContainer& cBinOut)    = 0;
-  // распаковать упакованный в итэм
+  // СЂР°СЃРїР°РєРѕРІР°С‚СЊ СѓРїР°РєРѕРІР°РЅРЅС‹Р№ РІ РёС‚СЌРј
   virtual bool UnpackItem(TBaseItem* pItem, void* pIn, int sizeIn) = 0;
 
   static bool ResolveType(void* pIn, int sizeIn, int& type);
 protected:
-  // базовые операции
+  // Р±Р°Р·РѕРІС‹Рµ РѕРїРµСЂР°С†РёРё
   void UnlinkCollect();
 
   template <typename T>
@@ -52,7 +52,7 @@ protected:
 
   void Collect(TContainer& cOut);
 protected:
-  // производные
+  // РїСЂРѕРёР·РІРѕРґРЅС‹Рµ
   void PushType();
   void PushStr(std::string& s);
 

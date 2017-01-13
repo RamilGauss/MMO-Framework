@@ -1,29 +1,33 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Все ресурсы игры, движков, 3rdParty, etc. -->
+<!-- All possible resources. -->
 <Resources>
   <GameEngine Comment = "TornadoEngine">
-    <Resource Name = "Conveyer.xml" Type = "Conveyer" />
+    <Resource Path = "../../Resources/Game/Conveyer.xml" Type = "Conveyer" />
   </GameEngine>
   <GraphicEngine Comment = "OGRE" >
-    <PluginsCfg Name = "plugins.cfg" Variant = "Release"/>
-    <PluginsCfg Name = "plugins_d.cfg"   Variant = "Debug"  />
-    <Resource Name = "../../Resources/GUI/MyGUI_Media"            Type = "FileSystem" />
-    <Resource Name = "../../Resources/GUI/Demos/Demo_Themes"      Type = "FileSystem" />
-    <Resource Name = "../../Resources/GUI/Common/Base"            Type = "FileSystem" />
-    <Resource Name = "../../Resources/GUI/Common/Themes"          Type = "FileSystem" />
-    <Resource Name = "../../Resources/GUI/Tools/LayoutEditor"     Type = "FileSystem" />
-    <Resource Name = "../../Resources/GUI_forms"                  Type = "FileSystem" />
-    <Resource Name = "../../Resources/Graphic/materials/programs" Type = "FileSystem" />
-    <Resource Name = "../../Resources/Graphic/materials/scripts"  Type = "FileSystem" />
-    <Resource Name = "../../Resources/Graphic/materials/textures" Type = "FileSystem" />
-    <Resource Name = "../../Resources/Graphic/models"             Type = "FileSystem" />
-    <Resource Name = "../../Resources/Graphic/packs/SdkTrays.zip" Type = "Zip"        />
+    <PluginsCfg Path = "../../Resources/Graphic/cfg/plugins.cfg"   Variant = "Release"/>
+    <PluginsCfg Path = "../../Resources/Graphic/cfg/plugins_d.cfg" Variant = "Debug"  />
+    <OgreCfg Path = "../../Resources/Graphic/cfg/ogre.cfg"   Variant = "Release"/>
+    <OgreCfg Path = "../../Resources/Graphic/cfg/ogre_d.cfg" Variant = "Debug"  />
+    <Resource Path = "../../Resources/GUI/MyGUI_Media"            Type = "FileSystem" />
+    <Resource Path = "../../Resources/GUI/Demos/Demo_Themes"      Type = "FileSystem" />
+    <Resource Path = "../../Resources/GUI/Common/Base"            Type = "FileSystem" />
+    <Resource Path = "../../Resources/GUI/Common/Themes"          Type = "FileSystem" />
+    <Resource Path = "../../Resources/GUI/Tools/LayoutEditor"     Type = "FileSystem" />
+    <Resource Path = "../../Resources/GUI_forms"                  Type = "FileSystem" />
+    <Resource Path = "../../Resources/Graphic/materials/programs" Type = "FileSystem" />
+    <Resource Path = "../../Resources/Graphic/materials/scripts"  Type = "FileSystem" />
+    <Resource Path = "../../Resources/Graphic/materials/textures" Type = "FileSystem" />
+    <Resource Path = "../../Resources/Graphic/models"             Type = "FileSystem" />
+    <Resource Path = "../../Resources/Graphic/packs/SdkTrays.zip" Type = "Zip"        />
   </GraphicEngine>
   <GUI Comment = "MyGUI" >
-    <Resource Name = "MyGUI_Core.xml"           Type = "Core" />
-    <Resource Name = "MyGUI_BlackBlueTheme.xml" Type = "Skin" />
+    <Resource Path = "MyGUI_Core.xml"           Type = "Core" />
+    <Resource Path = "MyGUI_BlackBlueTheme.xml" Type = "Skin" />
   </GUI>
   <Game Comment = "Evolution of War Machines" >
-    <Resource Name = "../../Resources/Game/Items.xml"    Type = "Items"  />
-    <Resource Name = "../../Resources/Game/Settings.xml" Type = "Settings"/>
+    <Resource Path = "../../Resources/Game/Items.xml"    Type = "Items"  />
+    <Resource Path = "../../Resources/Game/Settings.xml" Type = "Settings"/>
   </Game>
 </Resources>

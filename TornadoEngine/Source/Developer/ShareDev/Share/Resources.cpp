@@ -13,7 +13,7 @@ namespace nsResources
 {
   const char* sResource = "Resource";
 
-  const char* sName = "Name";
+  const char* sPath = "Path";
   const char* sType = "Type";
 }
 
@@ -31,7 +31,7 @@ TResources::~TResources()
 //--------------------------------------------------------------------------
 bool TResources::Work(IXML* pXML)
 {
-  mListNameType.clear();
+	mMapTypePath.clear();
   strError = "";
   mXML = pXML;
 
@@ -40,13 +40,12 @@ bool TResources::Work(IXML* pXML)
     strError = "Resources";
     return false;
   }
-
   return true;
 }
 //--------------------------------------------------------------------------
-void TResources::GetResource(TListPairNameType& listPair)
+void TResources::GetResource(TMMapStrStr& mapTypePath)
 {
-  listPair = mListNameType;
+	mapTypePath = mMapTypePath;
 }
 //--------------------------------------------------------------------------
 std::string TResources::GetStrError()
@@ -66,10 +65,10 @@ bool TResources::LoadResources()
   int cntResource = mXML->GetCountSection(sResource);
   for( int iResource = 0 ; iResource < cntResource ; iResource++ )
   {
-    std::string name = mXML->ReadSectionAttr(sResource, iResource, sName);
+    std::string path = mXML->ReadSectionAttr(sResource, iResource, sPath);
     std::string type = mXML->ReadSectionAttr(sResource, iResource, sType);
 
-    mListNameType.push_back(TPairStrStr(name,type));
+		mMapTypePath.insert(TMMapStrStrVT(type,path));
   }
   return true;
 }

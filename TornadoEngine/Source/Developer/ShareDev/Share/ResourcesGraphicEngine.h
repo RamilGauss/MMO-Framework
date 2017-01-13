@@ -15,6 +15,7 @@ class IXML;
 class DllExport TResourcesGraphicEngine : public TResources
 {
   std::string mPluginsCfg;
+	std::string mOgreCfg;
 
 public:
   TResourcesGraphicEngine();
@@ -23,8 +24,12 @@ public:
   virtual bool Work(IXML* pXML);
   
   std::string GetPluginsCfg();
+	std::string GetOgreCfg();
 protected:
   bool LoadPluginsCfg();
+	bool LoadOgreCfg();
+
+	bool Load(const char* section, std::string& result);
 };
 
 #endif

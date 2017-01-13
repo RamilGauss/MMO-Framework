@@ -29,7 +29,7 @@ public:
 	TGE_Impl();
 	virtual ~TGE_Impl();
 
-  bool InitOGRE(const std::string& pathPluginCfg);
+	bool InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg);
   void AddResource(const std::string& name, const std::string& type);
   bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
 

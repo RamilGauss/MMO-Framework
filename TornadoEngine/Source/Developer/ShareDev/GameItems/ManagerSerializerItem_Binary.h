@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -25,7 +25,7 @@ struct TBaseItem;
 
 class DllExport TManagerSerializerItem_Binary
 {
-  // сериализаторы
+  // СЃРµСЂРёР°Р»РёР·Р°С‚РѕСЂС‹
   typedef std::map<int,TBaseSerializerItem_Binary*> TMapIntPtrSerilizer;
   typedef TMapIntPtrSerilizer::iterator             TMapIntPtrSerilizerIt;
   typedef TMapIntPtrSerilizer::value_type           TMapIntPtrSerilizerVT;
@@ -38,7 +38,7 @@ class DllExport TManagerSerializerItem_Binary
   boost::scoped_ptr<TSerializerMapItem_Binary>           mSerializerMap;
 	boost::scoped_ptr<TSerializerTableSoundItem_Binary>    mSerializerTableSound;
 
-  TMapIntPtrSerilizer mMapTypeSerializer;// каждому типу итэма - свой сериализатор
+  TMapIntPtrSerilizer mMapTypeSerializer;// РєР°Р¶РґРѕРјСѓ С‚РёРїСѓ РёС‚СЌРјР° - СЃРІРѕР№ СЃРµСЂРёР°Р»РёР·Р°С‚РѕСЂ
 
 public:
   TManagerSerializerItem_Binary();

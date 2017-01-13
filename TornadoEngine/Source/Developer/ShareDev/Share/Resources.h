@@ -8,9 +8,8 @@ See for more information License.h.
 #ifndef ResourcesH
 #define ResourcesH
 
-#include <list>
+#include <map>
 #include <string>
-#include <utility>
 #include "TypeDef.h"
 
 class IXML;
@@ -20,15 +19,16 @@ class DllExport TResources
   std::string strError;
 
 public:
-  typedef std::pair<std::string,std::string> TPairStrStr;
-  typedef std::list<TPairStrStr> TListPairNameType;
+	typedef std::multimap<std::string,std::string> TMMapStrStr;
+	typedef TMMapStrStr::iterator   TMMapStrStrIt;
+	typedef TMMapStrStr::value_type TMMapStrStrVT;
 
   TResources();
   virtual ~TResources();
 
   virtual bool Work(IXML* pXML);
 
-  void GetResource(TListPairNameType& listPair);
+  void GetResource(TMMapStrStr& mapTypePath);
 
   std::string GetStrError();
 protected:
@@ -37,7 +37,7 @@ protected:
   bool LoadResources();
 
 private:
-  TListPairNameType mListNameType;
+	TMMapStrStr mMapTypePath;
 protected:
   IXML* mXML;
 };

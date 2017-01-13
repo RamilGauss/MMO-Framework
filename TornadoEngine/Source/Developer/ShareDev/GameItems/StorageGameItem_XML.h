@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -30,7 +30,7 @@ public:
   
   bool Init(std::string& name_file_xml);
   
-  // Save == Add, что добавить, что сохранить - это то же самое
+  // Save == Add, С‡С‚Рѕ РґРѕР±Р°РІРёС‚СЊ, С‡С‚Рѕ СЃРѕС…СЂР°РЅРёС‚СЊ - СЌС‚Рѕ С‚Рѕ Р¶Рµ СЃР°РјРѕРµ
   bool Save(TBaseItem* pItem);
   bool Delete(int type, std::string& name);
   bool Delete(TBaseItem* pItem);

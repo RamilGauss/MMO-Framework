@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -108,7 +108,7 @@ void TPlane_Test::CreateMaterial(int widthPxTexture, int heightPxTexture, int wi
 //-----------------------------------------------------------------------------
 void TPlane_Test::CreateMesh(int widthNumPoints, int heightNumPoints)
 {
-	// взять геометрическую форму
+	// РІР·СЏС‚СЊ РіРµРѕРјРµС‚СЂРёС‡РµСЃРєСѓСЋ С„РѕСЂРјСѓ
 	const float size = 60;
 	Ogre::ManualObject mo("");
 

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Paths>
+  <Path root = "true">../../../../../../Resources/GUI</Path>
+  <Path>../../../../../../Resources/GUI/MyGUI_Media</Path>
+  <Path>../../../../../../Resources/GUI/Demos/Demo_Themes</Path>
+  <Path>../../../../../../Resources/GUI/Common/Base</Path>
+  <Path>../../../../../../Resources/GUI/Common/Demos</Path>
+  <Path>../../../../../../Resources/GUI/Common/MessageBox</Path>
+  <Path>../../../../../../Resources/GUI/Common/Themes</Path>
+  <Path>../../../../../../Resources/GUI/Common/Tools</Path>
+  <Path>../../../../../../Resources/GUI/Tools/LayoutEditor</Path>
+  <Path>../../../../../../Resources/GUI_forms</Path>
+  <Path>../../../../../../Resources/Graphic/materials/programs</Path>
+  <Path>../../../../../../Resources/Graphic/materials/scripts</Path>
+  <Path>../../../../../../Resources/Graphic/materials/textures</Path>
+  <Path>../../../../../../Resources/Graphic/models</Path>
+  <Path>../../../../../../Resources/Graphic/packs/SdkTrays.zip</Path>
+</Paths>

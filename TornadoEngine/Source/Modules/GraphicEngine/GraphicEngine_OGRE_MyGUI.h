@@ -44,7 +44,7 @@ public:
   virtual ~TGraphicEngine_Ogre_MyGUI();
 /* Order of calls:
    1. InitOGRE, 2. AddResource, 3. InitMyGUI */
-	bool InitOGRE(const std::string& pathPluginCfg);
+	bool InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg);
   void AddResource(const std::string& name, const std::string& type);
   bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
   // return false - need exit

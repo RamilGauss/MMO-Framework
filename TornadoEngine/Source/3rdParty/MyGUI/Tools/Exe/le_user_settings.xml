@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+	<Controls>
+		<WidgetsWindow>
+			<LastSkinGroup>Default</LastSkinGroup>
+		</WidgetsWindow>
+		<Main>
+			<Maximized>false</Maximized>
+			<Coord>0 0 640 480</Coord>
+		</Main>
+	</Controls>
+	<Settings>
+		<LayoutVersion>3.2.0</LayoutVersion>
+		<GridStep>5</GridStep>
+		<LoadLastProject>true</LoadLastProject>
+		<InterfaceLanguage>Russian</InterfaceLanguage>
+		<WorkspaceTextureSize>1024 1024</WorkspaceTextureSize>
+		<ShowName>true</ShowName>
+		<ShowType>true</ShowType>
+		<ShowSkin>true</ShowSkin>
+	</Settings>
+	<Files>
+		<RecentFolder>d:\MyProjects\MMOFramework\Resources\GUI_forms</RecentFolder>
+		<RecentFolder.List>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\EditorFramework</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\Panels</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_Themes</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_Pointers</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_PluginBerkeliumWidget</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_Console</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_Gui</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_PanelView</Value>
+		</RecentFolder.List>
+		<RecentFile.List>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorMap.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\ClientMain.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\PlastinaVarGeomParam.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\PlastinaParam.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\EditorFramework\OpenSaveFileDialog2.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\CodeGeneratorWindow.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\Background.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\ToolsControl.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\SettingsGeneralControl.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorShape.layout</Value>
+		</RecentFile.List>
+		<RecentProject.List>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorShape.project</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorShape</Value>
+		</RecentProject.List>
+		<LastProjectName>EditorShape.project</LastProjectName>
+		<LastProjectPath>d:\MyProjects\MMOFramework\Resources\GUI_forms</LastProjectPath>
+	</Files>
+	<Resources>
+		<AdditionalPath.List>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms</Value>
+		</AdditionalPath.List>
+		<AdditionalResource.List />
+		<UpdateResource.List />
+	</Resources>
+	<Workspace>
+		<Colours>
+			<ColourSelector>0 1 0 1</ColourSelector>
+			<ColourBackground>0 0 0 0</ColourBackground>
+		</Colours>
+	</Workspace>
+</Settings>

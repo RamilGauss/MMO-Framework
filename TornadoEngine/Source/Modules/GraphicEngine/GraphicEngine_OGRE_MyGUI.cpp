@@ -33,11 +33,11 @@ TGraphicEngine_Ogre_MyGUI::~TGraphicEngine_Ogre_MyGUI()
 
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_Ogre_MyGUI::InitOGRE(const std::string& pathPluginCfg)
+bool TGraphicEngine_Ogre_MyGUI::InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg)
 {
 	try
 	{
-		return mGE->InitOGRE(pathPluginCfg);
+		return mGE->InitOGRE(pathPluginCfg, pathOgreCfg);
 	}
 	catch(MyGUI::Exception& _e)
 	{

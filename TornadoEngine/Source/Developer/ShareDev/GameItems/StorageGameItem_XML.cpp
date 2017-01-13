@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -48,8 +48,8 @@ bool TStorageGameItem_XML::Save(TBaseItem* pItem)
     return false;
   bool isExist = mMngCache->IsExist(strType, pItem->mName);
   bool res = mMngSerializer->Save(pItem);
-  // åñëè óäàëîñü ñîõðàíèòü è èòýìà ðàíüøå íå áûëî, òî çíà÷èò ïðîèçîøëî äîáàâëåíèå
-  // íóæíî ïåðåêåøèðîâàòü çàíîâî
+  // ÐµÑÐ»Ð¸ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ Ð¸ Ð¸Ñ‚ÑÐ¼Ð° Ñ€Ð°Ð½ÑŒÑˆÐµ Ð½Ðµ Ð±Ñ‹Ð»Ð¾, Ñ‚Ð¾ Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ Ð¿Ñ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ
+  // Ð½ÑƒÐ¶Ð½Ð¾ Ð¿ÐµÑ€ÐµÐºÐµÑˆÐ¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð·Ð°Ð½Ð¾Ð²Ð¾
   if( res && (isExist==false) )
     mMngCache->Init(mXML);
   return res;

@@ -30,12 +30,13 @@ class TDevTool_Share : public IDevTool
   TMapIntPtrModule mMapID_PtrModules;
 
   std::string mPluginsCfg;
+	std::string mOgreCfg;
   std::string mPathItems;
 
-  TResources::TListPairNameType mListRGame; // ListPairStrStr => MultiMapStrStr ?
-  TResources::TListPairNameType mListRGUI; 
-  TResources::TListPairNameType mListRGameEngine;
-  TResources::TListPairNameType mListRGraphicEngine;
+	TResources::TMMapStrStr mMapRGame;
+	TResources::TMMapStrStr mMapRGUI; 
+	TResources::TMMapStrStr mMapRGameEngine;
+	TResources::TMMapStrStr mMapRGraphicEngine;
 
   std::vector<std::string> mVecArg;
 public:
@@ -57,6 +58,23 @@ protected:
   
   void Add(int id, TModuleDev* pModule);
   void Add(std::string name, int id);
+protected:
+	int GetCountPathInMap(const char* path, TResources::TMMapStrStr& mapResource);
+	bool FindPath(const char* path, TResources::TMMapStrStr& mapResource, 
+		int index, std::string& result);
+private:
+	// Resource map{Type,Path}
+	int GetCountPathInMap_Game(const char* type);
+	bool FindPath_Game(const char* type, int index, std::string& result);
+
+	int GetCountPathInMap_GUI(const char* type);
+	bool FindPath_GUI(const char* type, int index, std::string& result);
+
+	int GetCountPathInMap_GameEngine(const char* type);
+	bool FindPath_GameEngine(const char* type, int index, std::string& result);
+
+	int GetCountPathInMap_GraphicEngine(const char* type);
+	bool FindPath_GraphicEngine(const char* type, int index, std::string& result);
 private:
   void SetupGraphicEngine(TModuleDev* pModule);
 

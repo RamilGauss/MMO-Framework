@@ -1,1 +1,1 @@
-start Tornado_d.exe -v 3 -d DeveloperDLL_d.dll
+start Tornado_d.exe -v 3 -d GameImpl_d.dll

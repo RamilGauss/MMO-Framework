@@ -80,20 +80,14 @@ void TDevTool_Share::Init()
   parser.GetResultGraphicEngine(mGraphicEngine_Resources);
   
   mPluginsCfg = mGraphicEngine_Resources.GetPluginsCfg();
+	mOgreCfg    = mGraphicEngine_Resources.GetOgreCfg();
 
-  mGame_Resources.GetResource(mListRGame);
-  mGameEngine_Resources.GetResource(mListRGameEngine);
-  mGUI_Resources.GetResource(mListRGUI);
-  mGraphicEngine_Resources.GetResource(mListRGraphicEngine);
+	mGame_Resources.GetResource(mMapRGame);
+	mGameEngine_Resources.GetResource(mMapRGameEngine);
+	mGUI_Resources.GetResource(mMapRGUI);
+	mGraphicEngine_Resources.GetResource(mMapRGraphicEngine);
 
-  BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGame)
-  {
-    if(pairNameType.second==nsDevTool_Share::sItems)
-    {
-      mPathItems = pairNameType.first;
-      break;
-    }
-  }
+	FindPath_Game(nsDevTool_Share::sItems, 0, mPathItems);
 }
 //-----------------------------------------------------------------------
 IModule* TDevTool_Share::GetModuleByName(const char* sName)
@@ -154,11 +148,10 @@ void TDevTool_Share::Add(std::string name, int id)
 //-----------------------------------------------------------------------
 std::string TDevTool_Share::GetFileDescConveyer()
 {
-  BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGameEngine)
-  {
-    if(pairNameType.second==nsDevTool_Share::sConveyer)
-      return pairNameType.first;
-  }
+	std::string pathConveyer;
+	if( FindPath_GameEngine(nsDevTool_Share::sConveyer, 0, pathConveyer)==true )
+		return pathConveyer;
+
   BL_FIX_BUG();
   return "";
 }
@@ -196,24 +189,18 @@ void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
 {
   TModuleGraphicEngine* pGE = (TModuleGraphicEngine*)pModule;
   // настройка перед запуском
-  if( pGE->GetGE()->InitOGRE(mPluginsCfg)==false )
+  if( pGE->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg)==false )
 	{
 		_exit(-1);// либо ошибка, либо пользователь не хочет запускать приложение
 		return;
 	}
   // пути для ресурсов графического движка
-  BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGraphicEngine)
-    pGE->GetGE()->AddResource(pairNameType.first, pairNameType.second);
+  BOOST_FOREACH(TResources::TMMapStrStrVT& vtTypePath, mMapRGraphicEngine)
+    pGE->GetGE()->AddResource(vtTypePath.second, vtTypePath.first);
   // оболочка и ядро для GUI
   std::string sSkin, sCore;
-  std::set<std::string> setXmlDelegate;
-  BOOST_FOREACH(TResources::TPairStrStr& pairNameType, mListRGUI)
-  {
-    if(pairNameType.second==nsDevTool_Share::sCore)
-      sCore = pairNameType.first;
-    if(pairNameType.second==nsDevTool_Share::sSkin)
-      sSkin = pairNameType.first;
-  }
+	FindPath_GUI(nsDevTool_Share::sCore, 0, sCore);
+	FindPath_GUI(nsDevTool_Share::sSkin, 0, sSkin);
   BL_ASSERT(sCore.length() && sSkin.length());
   pGE->GetGE()->InitMyGUI(sCore, sSkin);
 }
@@ -283,5 +270,64 @@ TModuleDev* TDevTool_Share::GetModuleByID(int id)
     default:BL_FIX_BUG();
   }
   return pModule;
+}
+//-----------------------------------------------------------------------
+int TDevTool_Share::GetCountPathInMap(const char* type, TResources::TMMapStrStr& mapResource)
+{
+	return mapResource.count(type);
+}
+//-----------------------------------------------------------------------
+bool TDevTool_Share::FindPath(const char* type, TResources::TMMapStrStr& mapResource, 
+															int index, std::string& result)
+{
+	TResources::TMMapStrStrIt fit = mapResource.find(type);
+	for( int i = 0 ; i < index ; i++ )
+	{
+		fit++;
+		if( fit==mapResource.end() )
+			return false;
+	}
+	result = fit->second;
+	return true;
+}
+//-----------------------------------------------------------------------
+int TDevTool_Share::GetCountPathInMap_Game(const char* type)
+{
+	return GetCountPathInMap(type, mMapRGame);
+}
+//-----------------------------------------------------------------------
+bool TDevTool_Share::FindPath_Game(const char* type, int index, std::string& result)
+{
+	return FindPath(type, mMapRGame, index, result);
+}
+//-----------------------------------------------------------------------
+int TDevTool_Share::GetCountPathInMap_GUI(const char* type)
+{
+	return GetCountPathInMap(type, mMapRGUI);
+}
+//-----------------------------------------------------------------------
+bool TDevTool_Share::FindPath_GUI(const char* type, int index, std::string& result)
+{
+	return FindPath(type, mMapRGUI, index, result);
+}
+//-----------------------------------------------------------------------
+int TDevTool_Share::GetCountPathInMap_GameEngine(const char* type)
+{
+	return GetCountPathInMap(type, mMapRGameEngine);
+}
+//-----------------------------------------------------------------------
+bool TDevTool_Share::FindPath_GameEngine(const char* type, int index, std::string& result)
+{
+	return FindPath(type, mMapRGameEngine, index, result);
+}
+//-----------------------------------------------------------------------
+int TDevTool_Share::GetCountPathInMap_GraphicEngine(const char* type)
+{
+	return GetCountPathInMap(type, mMapRGraphicEngine);
+}
+//-----------------------------------------------------------------------
+bool TDevTool_Share::FindPath_GraphicEngine(const char* type, int index, std::string& result)
+{
+	return FindPath(type, mMapRGraphicEngine, index, result);
 }
 //-----------------------------------------------------------------------
