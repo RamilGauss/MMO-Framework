@@ -48,4 +48,17 @@ See for more information License.h.
   #define DECLARATION_ATOMIC_POINTER_STORE(X,Y,TYPE) X = Y;FLUSH_FROM_CACHE
 #endif
 
+#define USE_BOOST_MEMORY_POOL
+#ifdef USE_BOOST_MEMORY_POOL
+  #include <boost/pool/singleton_pool.hpp>
+
+  #define DECLARATION_ALLOCATOR_MEMORY(Type) struct Foo{};typedef boost::singleton_pool<Foo, sizeof(Type)> mAlloc;
+  #define ALLOC_MEMORY(Type)                 (Type*)mAlloc::malloc()
+  #define DEALLOC_MEMORY(ptr)                mAlloc::free(ptr)
+#else
+  #define DECLARATION_ALLOCATOR_MEMORY(Type) 
+  #define ALLOC_MEMORY(Type)                 new Type
+  #define DEALLOC_MEMORY(ptr)                delete ptr
+#endif
+
 #endif
