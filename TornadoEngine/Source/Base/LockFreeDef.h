@@ -9,7 +9,6 @@ See for more information License.h.
 #define LockFreeDefH
 
 //#define BOOST_ATOMIC_OPERATION
-
 #ifdef BOOST_ATOMIC_OPERATION
   #include <boost/atomic/atomic.hpp>
   #define DECLARATION_ATOMIC_BOOL(X)                 boost::atomics::atomic_bool X;

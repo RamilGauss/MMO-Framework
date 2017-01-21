@@ -32,9 +32,13 @@ unsigned int g_Start;
 boost::pool<> g_Allocator(sizeof(TypeStream));
 TCallBackRegistrator1<TypeStream*> g_CB_Delete;
 
-#define CNT_PRINT_SPEED 500000
+#define CNT_PRINT_SPEED 1000000
 #define USE_BOOST_POOL
 //#define TESTING_ONE_THREAD
+//#define WITHOUT_ALLOCATE_TEST
+#ifdef WITHOUT_ALLOCATE_TEST
+TypeStream g_ValueExchange;
+#endif
 //---------------------------------------------------------------------------------------
 class TTestProducer : public TThreadBoost
 {
@@ -52,10 +56,14 @@ protected:
       g_Start = ht_GetMSCount();
 
 		TypeStream* pData = 
-#ifdef USE_BOOST_POOL
-      (TypeStream*)g_Allocator.malloc();
+#ifdef WITHOUT_ALLOCATE_TEST
+    &g_ValueExchange;
 #else
-      new TypeStream(0);
+  #ifdef USE_BOOST_POOL
+        (TypeStream*)g_Allocator.malloc();
+  #else
+        new TypeStream(0);
+  #endif
 #endif
     g_List2Thread.Add(pData);
 		mSizeSend++;
@@ -77,12 +85,16 @@ protected:
 		if( pp )
 		{
       TypeStream* pData = *pp;
-#ifdef USE_BOOST_POOL
+#ifdef WITHOUT_ALLOCATE_TEST
+      g_List2Thread.UnlinkData(pp);
+#else
+  #ifdef USE_BOOST_POOL
       //g_List2Thread.UnlinkData(pp);
       //g_SAllocator::free(pData);
-#else
+  #else
+  #endif
 #endif
-			g_List2Thread.RemoveFirst();
+      g_List2Thread.RemoveFirst();
       mSizeRecv++;
       if( mSizeRecv%CNT_PRINT_SPEED==0 )
       {
@@ -159,5 +171,6 @@ int main(int argc, char** argv)
 
 
   TESTING_ONE_THREAD
+  
 
 */
