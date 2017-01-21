@@ -50,13 +50,15 @@ See for more information License.h.
 
 #define USE_BOOST_MEMORY_POOL
 #ifdef USE_BOOST_MEMORY_POOL
-  #include <boost/pool/singleton_pool.hpp>
+  #include <boost/pool/pool.hpp>
 
-  #define DECLARATION_ALLOCATOR_MEMORY(Type) struct Foo{};typedef boost::singleton_pool<Foo, sizeof(Type)> mAlloc;
-  #define ALLOC_MEMORY(Type)                 (Type*)mAlloc::malloc()
-  #define DEALLOC_MEMORY(ptr)                mAlloc::free(ptr)
+  #define DECLARATION_ALLOCATOR_MEMORY       boost::pool<> mAlloc;
+  #define CONSTRUCTOR_ALLOCATOR_MEMORY(Type) mAlloc(sizeof(Type))
+  #define ALLOC_MEMORY(Type)                 (Type*)mAlloc.malloc()
+  #define DEALLOC_MEMORY(ptr)                mAlloc.free(ptr)
 #else
-  #define DECLARATION_ALLOCATOR_MEMORY(Type) 
+  #define DECLARATION_ALLOCATOR_MEMORY       int mTemp_NotUseMe_IamGhost;
+	#define CONSTRUCTOR_ALLOCATOR_MEMORY(Type) mTemp_NotUseMe_IamGhost(sizeof(Type))
   #define ALLOC_MEMORY(Type)                 new Type
   #define DEALLOC_MEMORY(ptr)                delete ptr
 #endif

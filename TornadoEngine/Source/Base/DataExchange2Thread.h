@@ -59,7 +59,7 @@ template <typename TClass> class TDataExchange2Thread
 
   TCallBackRegistrator1<TClass*>* mCB_DeleteData;
   
-  DECLARATION_ALLOCATOR_MEMORY(TElement)
+  DECLARATION_ALLOCATOR_MEMORY
 public:
   TDataExchange2Thread();
 	~TDataExchange2Thread();
@@ -174,6 +174,7 @@ void TDataExchange2Thread<TClass>::CntDecr()
 //--------------------------------------------------------------------------------------
 template<typename TClass>
 TDataExchange2Thread<TClass>::TDataExchange2Thread()// Producer/Consumer
+:CONSTRUCTOR_ALLOCATOR_MEMORY(TElement)
 {
   mCB_DeleteData = NULL;
 
