@@ -1,0 +1,98 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Гудаков Рамиль Сергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
+#include <conio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string>
+#include <boost/lexical_cast.hpp>
+
+#include "ThreadBoost.h"
+#include "BL_Debug.h"
+#include "HiTimer.h"
+
+typedef unsigned int Type;
+Type g_ArrInitValue[8];
+
+#define COUNT_CALCULATE 20000
+#define COUNT_MEASURE_SPEED 10000
+//---------------------------------------------------------------------------------------
+class TThread : public TThreadBoost
+{
+  Type* pPtr;
+  float mRes;
+  int mCountWork;
+  unsigned int mStart;
+  bool mFlgPrintf;
+  float mSpeed;
+public:
+	void Setup(Type* p, bool isPrintf = false)
+	{
+		pPtr = p;
+    mRes = 1.0f;
+    mCountWork = 0;
+    mStart = 0;
+    mFlgPrintf = isPrintf;
+	}
+protected:
+	virtual void Work()
+	{
+    if(mCountWork==0)
+      mStart = ht_GetMSCount();
+
+    for( int i = 0 ; i < COUNT_CALCULATE ; i++ )
+      mRes = sinf(mRes*pPtr[0])*cosf(mRes*pPtr[0]);
+    mCountWork++;
+
+    if(mFlgPrintf)
+    if(mCountWork%COUNT_MEASURE_SPEED==0)
+    {
+      unsigned int now = ht_GetMSCount();
+      mSpeed = COUNT_MEASURE_SPEED/(0.1f*(now - mStart));
+      mStart = now;
+      printf("speed=%f\n", mSpeed);
+    }
+  }
+};
+//---------------------------------------------------------------------------------------
+int main(int argc, char** argv)
+{
+  printf("Input parameter: number of threads\n");
+  if(argc!=2)
+  {
+    _getch();
+    return -1;
+  }
+
+  int cntThread = boost::lexical_cast<int>(argv[1]);
+  printf("Arguments number of threads = %d\n", cntThread);
+  TThread arrThread[8];
+
+	for( int i = 0 ; i < cntThread ; i++ )
+  {
+    if(i==0)
+      arrThread[i].Setup(&g_ArrInitValue[i], true);
+    else
+      arrThread[i].Setup(&g_ArrInitValue[i]);
+    arrThread[i].Start();
+  }
+  printf("All threads started.\n");
+  _getch();
+
+  for( int i = 0 ; i < cntThread ; i++ )
+    arrThread[i].Stop();
+
+  _getch();
+	return 0;
+}
+//---------------------------------------------------------------------------------------
+/*
+  1 - 26.7 - 100% - 100%
+  2 - 26.2 - 173% - 200%
+  3 - 25.7 - 289% - 300%
+  4 - 25.4 - 381% - 400%
+*/
