@@ -28,6 +28,14 @@ uint64_t ht_GetUSCount()
   return t.time_since_epoch().count();
 }
 //------------------------------------------------------------------------------
+uint64_t ht_GetCycleCPUCount()
+{
+	typedef chrono::high_resolution_clock type_clock;
+
+	type_clock::time_point t = type_clock::now();
+	return t.time_since_epoch().count();
+}
+//------------------------------------------------------------------------------
 // Задержка на миллисекунды
 void ht_msleep( unsigned int ms )
 {

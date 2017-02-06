@@ -19,6 +19,8 @@ See for more information License.h.
 // Получение тиков процессора (с тактовой частотой процессора)
 boost::uint64_t DllExport ht_GetUSCount();
 
+boost::uint64_t DllExport ht_GetCycleCPUCount();
+
 // Задержка на микросекунды
 void DllExport ht_usleep( unsigned int us );
 

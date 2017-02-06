@@ -1,5 +1,7 @@
 ﻿	Russian
 	
+	https://www.youtube.com/watch?v=THlyFhoqoec
+	
 	Установка зависимостей и компиляция проекта под Windows XP/7 x86/64.
 	
 1. Итак, Архив MMO-Framework.zip скачан с github.com и распакован.
