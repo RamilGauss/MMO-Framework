@@ -9,6 +9,7 @@ See for more information License.h.
 #define ShareMiscH
 
 #include "TypeDef.h"
+#include <string>
 
 // когда нужно проверить выражение и тут же выйти в случае отрицательного результата
 #define RET_FALSE(f) \
@@ -52,6 +53,7 @@ struct TIP_Port
 #endif
 
 extern int DllExport GetCountCoreCPU();
+extern bool DllExport GetBrandCPU(std::string& CPUBrandString);
 
 // NOT Thread Safe!
 extern void DllExport CreateConsole();

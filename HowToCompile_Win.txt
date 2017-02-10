@@ -1,6 +1,6 @@
 ﻿	Russian
 	
-	https://www.youtube.com/watch?v=THlyFhoqoec
+	https://www.youtube.com/watch?v=UuwobuPw3ns
 	
 	Установка зависимостей и компиляция проекта под Windows XP/7 x86/64.
 	

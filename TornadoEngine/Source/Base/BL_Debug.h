@@ -24,6 +24,9 @@ See for more information License.h.
 DllExport bool BL_MessageBug( const char* lpszMsg );
 
 // Вывести на экран сообщение об отказе.
+DllExport bool BL_MessageBug_Utf8( const char* sMsgUtf8 );
+
+// Вывести на экран сообщение об отказе.
 DllExport void BL_MessageBug( const char* lpszFileName, int nLine );
 
 #ifdef _DEBUG

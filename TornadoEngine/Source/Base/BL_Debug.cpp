@@ -7,6 +7,9 @@ See for more information License.h.
 
 #include <stdio.h>
 #include <string>
+#include "ContainerTypes.h"
+#include "ConverterLocale.h"
+
 using namespace std;
 
 //------------------------------------------------------------------------------
@@ -18,6 +21,16 @@ using namespace std;
 	#pragma link "shlwapi.lib"     
 #endif
 
+bool BL_MessageBug_Utf8( const char* sMsgUtf8 )
+{
+	size_t lenMsgUtf8 = strlen(sMsgUtf8);
+	TContainer cUtf8;
+	cUtf8.SetData((char*)sMsgUtf8, lenMsgUtf8);
+	TConverterLocale cnvUtf8ToWin1251;
+	cnvUtf8ToWin1251.Setup("utf-8", "windows-1251");
+	TContainer cWin1251 = cnvUtf8ToWin1251.Convert(cUtf8);
+	return BL_MessageBug(cWin1251.GetPtr());
+}
 //-----------------------------------------------------------------------------
 // Сообщение об ошибке зафиксированной в теле программы
 // lpszMsg - текст сообщения

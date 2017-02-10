@@ -8,6 +8,8 @@ See for more information License.h.
 #include "ShareMisc.h"
 #include "BL_Debug.h"
 #include "FileOperation.h"
+#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/trim.hpp>
 #ifdef WIN32
 	#include <windows.h>
 	#include <conio.h>
@@ -15,9 +17,10 @@ See for more information License.h.
 	#include <io.h>
 	#include <wchar.h>
 	#include <stdio.h>
+	#include <intrin.h>
 #else
 #endif
-
+//---------------------------------------------------------------------------
 int GetCountCoreCPU()
 {
 	int countCore = 1;
@@ -30,7 +33,66 @@ int GetCountCoreCPU()
 #endif
 	return countCore;
 }
-//--------------------------------------------------
+//---------------------------------------------------------------------------
+void cpuid_Crossplatform(int* CPUInfo, unsigned int inputVal)
+{
+#ifdef WIN32
+	__cpuid(CPUInfo, inputVal);
+	//__asm
+	//{
+	//	mov    eax, dword ptr [inputVal] 
+	//	xor    ecx, ecx 
+	//	cpuid       
+	//	mov    esi, dword ptr [CPUInfo] 
+	//	mov    dword ptr [esi],    eax 
+	//	mov    dword ptr [esi+0x4],ebx 
+	//	mov    dword ptr [esi+0x8],ecx 
+	//	mov    dword ptr [esi+0xc],edx 
+	//}
+#else// linux
+	//__asm
+	{
+		//mov    eax, dword ptr [inputVal] 
+		//xor    ecx, ecx 
+		//cpuid       
+		//mov    esi, dword ptr [CPUInfo] 
+		//mov    dword ptr [esi],    eax 
+		//mov    dword ptr [esi+0x4],ebx 
+		//mov    dword ptr [esi+0x8],ecx 
+		//mov    dword ptr [esi+0xc],edx 
+	}
+#endif
+}
+//---------------------------------------------------------------------------
+bool GetBrandCPU(std::string& CPUBrandString)
+{
+	int CPUInfo[4] = {-1};
+	const int sizeCPUInfo = sizeof(CPUInfo);
+	char sCPUInfo[sizeCPUInfo+1];
+	cpuid_Crossplatform( &CPUInfo[0], 0x80000000);
+	unsigned nExIds = CPUInfo[0];
+	if( nExIds < 0x80000002 )
+		return false;
+	for( unsigned int i = 0x80000002 ; i < nExIds ; i++ )
+	{
+		cpuid_Crossplatform(&CPUInfo[0], i);
+		memcpy( sCPUInfo, CPUInfo, sizeCPUInfo);
+		sCPUInfo[sizeCPUInfo] = '\0';
+		CPUBrandString += sCPUInfo;
+	}
+	int intel = CPUBrandString.find("Intel");
+	if( intel!=-1 )
+	{
+		int findDog = CPUBrandString.find("@");
+		if( findDog!=-1 )
+		{
+			boost::erase_tail(CPUBrandString, CPUBrandString.length() - findDog);
+			boost::trim_right(CPUBrandString);
+		}
+	}
+	return true;
+}
+//---------------------------------------------------------------------------
 static bool g_flgConsoleExist = false;
 void CreateConsole()
 {

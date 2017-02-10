@@ -102,15 +102,7 @@ void ViewHowUse()
     "Например:\n"
     "Tornado.exe -v 0 -d GameImpl.dll -p port_src 1234 port_self 7777\n";
 #ifdef WIN32
-  size_t lenMsgUtf8 = strlen(sMsgUtf8);
-  TContainer cUtf8;
-  cUtf8.SetData(sMsgUtf8, lenMsgUtf8);
-
-  TConverterLocale cnvUtf8ToWin1251;
-  cnvUtf8ToWin1251.Setup("utf-8", "windows-1251");
-  TContainer cWin1251 = cnvUtf8ToWin1251.Convert(cUtf8);
-
-  BL_MessageBug(cWin1251.GetPtr());
+  BL_MessageBug_Utf8(sMsgUtf8);
 #else
   BL_MessageBug(sMsgUtf8);
 #endif

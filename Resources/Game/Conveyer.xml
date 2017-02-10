@@ -211,7 +211,7 @@
     </CPU>
   </Variant>
   <Variant Name = "EditorMap">
-    <CPU CountCore = "1" >
+  	<CPU CountCore = "1" >
       <Thread>
         <Module Name = "GraphicEngine"  />
         <Module Name = "Logic"          />
@@ -266,4 +266,24 @@
       </Thread>
     </CPU>
   </Variant>
+	<Experiment>
+		<!-- Экспериментальная секция, подстройка к процессору, по сути оптимизация -->
+		<CPU Brand = "Intel(R) Core(TM)2 Duo CPU E4600">
+		<!-- При первой загрузке программа определит название процессора и произведёт тест производитетельности -->
+			<MultiThreadEfficiency>
+				<Thread Count="1" Efficiency="100"/>
+				<Thread Count="2" Efficiency="120"/>
+				<Thread Count="3" Efficiency="200"/>
+				<Thread Count="4" Efficiency="300"/>
+			</MultiThreadEfficiency>
+		</CPU>
+		<Variant Name = "EditorTableSound">
+			<!-- Расчет времени использования процессора программист должен расчитать сам -->
+			<Module Name = "GraphicEngine" PartTimeCPU="40" />
+			<Module Name = "Logic"         PartTimeCPU="6" />
+			<Module Name = "PhysicEngine"  PartTimeCPU="40" />
+			<Module Name = "SoundEngine"   PartTimeCPU="6" />
+			<Module Name = "Timer"         PartTimeCPU="7" />
+		</Variant>
+	</Experiment>
 </Conveyer>
