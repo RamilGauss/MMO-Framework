@@ -15,8 +15,10 @@ See for more information License.h.
 #include "ModuleSoundEngine.h"
 
 #include "EditorMap.h"
-#include "ShowTankWoT_test.h"
 #include "ControlCamera.h"
+
+#include "ShowTankWoT_test.h"
+#include "Plane_Test.h"
 
 #include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
@@ -43,7 +45,7 @@ void TEditorMapLogic::StartEvent()
 
   CallBackModule(nsListModules::Timer, &TEditorMapLogic::StartTimer);
   CallBackModule(nsListModules::GraphicEngine, &TEditorMapLogic::InitForms);
-  CallBackModule(nsListModules::GraphicEngine, &TEditorMapLogic::ShowTanks);
+  CallBackModule(nsListModules::GraphicEngine, &TEditorMapLogic::ShowTest);
 
   mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorMapLogic::FreeGraphicResource,this);
   mComp.pGraphicEngine->GetCBEndWork()->Register( &TEditorMapLogic::GraphicEndWork ,this);
@@ -260,12 +262,64 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
   }
 }
 //---------------------------------------------------------------------------------------------
-#include "Plane_Test.h"
-void TEditorMapLogic::ShowTanks()
+void TEditorMapLogic::ShowTest()
 {
-  mPtrShowTank->ShowTanks(4);
+	TPlane_Test plane;
+	//----------------------------------------------------------
+	Ogre::String nameMaterial    = "Ground";
+	Ogre::String nameFileTexture = "Ground.png";
+	plane.Setup(10000,1.0f,10000, nameMaterial, nameFileTexture, 100, 100);
+	Ogre::String namePlaneEntity = "Plane0";
+	Ogre::Entity* pEntity = plane.CreateEntity(namePlaneEntity);
+	Ogre::Vector3 vPos(-5000,-23,-5000);
+	pEntity->getParentSceneNode()->setPosition(vPos);
+	pEntity->setCastShadows(true);
+	//----------------------------------------------------------
+	nameMaterial    = "Iron";
+	nameFileTexture = "Iron_00.jpg";
+	plane.Setup(100,100,10, nameMaterial, nameFileTexture, 50, 50);
+	namePlaneEntity = "Plane1";
+	pEntity = plane.CreateEntity(namePlaneEntity);
+	vPos.x = -10;
+	vPos.y = -25;
+	vPos.z = -100;
+	pEntity->getParentSceneNode()->setPosition(vPos);
+	pEntity->setCastShadows(true);
+	//----------------------------------------------------------
+	mPtrShowTank->ShowTanks(10);
 
-	//TPlane_Test plane;
-	//plane.ShowPlane(10,10,100,100,1,1);
+	TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager()
+		->setSkyBox(true, "Skybox/Hills", 100);
+
+	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
+	pCamera->setPosition(160,160,160);
+	pCamera->lookAt(0,0,0);
+
+	SetupLight();
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::SetupLight()
+{
+	Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
+	pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+
+	Ogre::String nameLight = "mainLight";
+	Ogre::Light* pLight = NULL;
+	if( pSM->hasLight(nameLight) )
+		pLight = pSM->getLight(nameLight);
+	else
+		pLight = pSM->createLight(nameLight);
+
+	pLight->setType(Ogre::Light::LT_SPOTLIGHT);
+	pLight->setCastShadows(false);
+	pLight->setVisible(true);
+	Ogre::Vector3 posLight(0,200,0);
+	pLight->setPosition(posLight);
+	Ogre::Vector3 dirLight(1,0,0);
+	dirLight.normalise();
+	pLight->setDirection(dirLight);
+
+	pLight->setDiffuseColour(1.0f, 1.0f, 1.0f);
+	pLight->setSpecularColour(1.0f, 1.0f, 1.0f);	
 }
 //---------------------------------------------------------------------------------------------

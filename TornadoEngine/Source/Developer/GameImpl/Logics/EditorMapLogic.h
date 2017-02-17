@@ -57,7 +57,8 @@ private:
   void InitForms();
 
   //void InitPhysic();
-  void ShowTanks();
+  void ShowTest();
+	void SetupLight();
 
   void SoundEndWork();
   void GraphicEndWork();

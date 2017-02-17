@@ -17,9 +17,8 @@ See for more information License.h.
 
 struct DllExport TMaterialItem : public TBaseItem
 {
-  struct DllExport TLOD
+  struct DllExport TVariant
   {
-    float distance;// максимальная дистанция
     // размеры текстуры для воссоздания внешнего вида
     float width; 
     float length;
@@ -27,8 +26,7 @@ struct DllExport TMaterialItem : public TBaseItem
     std::string color;
     std::string normal;
   };
-  typedef std::vector<TLOD>    TVecLOD;
-  typedef std::vector<TVecLOD> TVecVariant;
+  typedef std::vector<TVariant> TVecVariant;
 
   struct DllExport TPhysic
   {
@@ -37,6 +35,7 @@ struct DllExport TMaterialItem : public TBaseItem
     float friction;
   };
 
+	std::string mNameOgreMaterial;
   TVecVariant mGraphic;
   TPhysic mPhysic;
 

@@ -18,34 +18,20 @@
     </Variant>
   </PatternConfig>
   <Material name="Iron">
-    <Graphic>
-      <Variant><!-- выбор случайным образом текстуры в движке, что бы не было "близнецов"-->
-        <LOD distance="100">
-					<Property key="Width"  value="1"/>
-					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_00.jpg"/>
-          <Property key="Normal" value="NormalIron_00.png"/>
-        </LOD>
-        <LOD distance="1000">
-					<Property key="Width"  value="1"/>
-					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_00.jpg"/>
-          <Property key="Normal" value="NormalIron_00.png"/>
-        </LOD>
+    <Graphic OgreMaterial="Iron">
+			<!-- выбор случайным образом текстуры в движке, что бы не было "близнецов". -->
+			<!-- В Огре ищем материал (в основном нужно для доступа к шейдерам), но текстуру в xxx.material не задаём. -->
+      <Variant>
+				<Property key="Width"  value="1"/>
+				<Property key="Length" value="1"/>
+				<Property key="Color"  value="Iron_00.jpg"/>
+				<Property key="Normal" value="NormalIron_00.png"/>
       </Variant>
       <Variant>
-        <LOD distance="100">
-					<Property key="Width"  value="1"/>
-					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_01.jpg"/>
-          <Property key="Normal" value="NormalIron_01.png"/>
-        </LOD>
-        <LOD distance="1000">
-					<Property key="Width"  value="1"/>
-					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_01.jpg"/>
-          <Property key="Normal" value="NormalIron_01.png"/>
-        </LOD>
+				<Property key="Width"  value="1"/>
+				<Property key="Length" value="1"/>
+				<Property key="Color"  value="Iron_01.jpg"/>
+				<Property key="Normal" value="NormalIron_01.png"/>
       </Variant>
     </Graphic>
     <Physic>
@@ -55,34 +41,20 @@
     </Physic>
   </Material>
   <Material name="Wood">
-    <Graphic>
-      <Variant><!-- выбор случайным образом текстуры в движке, что бы не было "близнецов"-->
-        <LOD distance="100">
-					<Property key="Width"  value="1"/>
-					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_00.png"/>
-          <Property key="Normal" value="NormalIron_00.png"/>
-        </LOD>
-        <LOD distance="1000">
-					<Property key="Width"  value="1"/>
-					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_00.png"/>
-          <Property key="Normal" value="NormalIron_00.png"/>
-        </LOD>
+    <Graphic OgreMaterial="Wood">
+			<!-- выбор случайным образом текстуры в движке, что бы не было "близнецов". -->
+			<!-- В Огре ищем материал (в основном нужно для доступа к шейдерам), но текстуру не задаём. -->
+			<Variant>
+				<Property key="Width"  value="1"/>
+				<Property key="Length" value="1"/>
+				<Property key="Color"  value="Iron_00.png"/>
+				<Property key="Normal" value="NormalIron_00.png"/>
       </Variant>
       <Variant>
-        <LOD distance="100">
-					<Property key="Width"  value="1"/>
-					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_01.png"/>
-          <Property key="Normal" value="NormalIron_01.png"/>
-        </LOD>
-        <LOD distance="1000">
-					<Property key="Width"  value="1"/>
-					<Property key="Length" value="1"/>
-          <Property key="Color"  value="Iron_01.png"/>
-          <Property key="Normal" value="NormalIron_01.png"/>
-        </LOD>
+				<Property key="Width"  value="1"/>
+				<Property key="Length" value="1"/>
+				<Property key="Color"  value="Iron_01.png"/>
+				<Property key="Normal" value="NormalIron_01.png"/>
       </Variant>
     </Graphic>
     <Physic>
@@ -2813,9 +2785,7 @@
 					</Rotation>
 				</BaseProperty>
 				<ParameterMap>
-          <Property key="Width"  value="1000"/>
-          <Property key="Length" value="1000"/>
-          <Property key="Type"   value="Quad"/>
+					<Property key="NameOgreMaterial" value="Skybox/Hills"/>
 				</ParameterMap>
 			</Object>
 		  <Object>

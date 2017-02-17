@@ -108,6 +108,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphicEngine", "Modules\Gr
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtEngine", "Modules\QtEngine\QtEngine.vcproj", "{C1A5B535-5413-4F22-A18E-275004C098A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestQtEngine", "..\Test\TestQtEngine\TestQtEngine.vcproj", "{DDA36DE3-6451-4160-A59F-5D5CB8750DB6}"
 EndProject
@@ -119,6 +122,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestTransport", "..\Test\Te
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicEngine", "Modules\PhysicEngine\PhysicEngine.vcproj", "{4540BC7A-5138-426F-B74C-EDFBD5348645}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestWaitFreeQueue", "..\Test\TestWaitFreeQueue\TestWaitFreeQueue.vcproj", "{A5854403-96C6-46DA-821B-82F51C9067F8}"
 	ProjectSection(ProjectDependencies) = postProject

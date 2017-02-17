@@ -28,18 +28,14 @@ void TSerializerMaterialItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBin
 
   PushType();
   PushStr(pMaterialItem->mName);
+  PushStr(pMaterialItem->mNameOgreMaterial);
   Push(pMaterialItem->mGraphic.size());
-  BOOST_FOREACH( TMaterialItem::TVecLOD& vecLod, pMaterialItem->mGraphic )
+  BOOST_FOREACH( TMaterialItem::TVariant& variant, pMaterialItem->mGraphic )
   {
-    Push(vecLod.size());
-    BOOST_FOREACH( TMaterialItem::TLOD& lod, vecLod)
-    {
-      Push(lod.distance);
-      Push(lod.length);
-      Push(lod.width);
-      PushStr(lod.normal);
-      PushStr(lod.color);
-    }
+    Push(variant.length);
+    Push(variant.width);
+    PushStr(variant.normal);
+    PushStr(variant.color);
   }
 
   Push(pMaterialItem->mPhysic);
@@ -55,26 +51,19 @@ bool TSerializerMaterialItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int
 
   RET_FALSE( PopType() )
   RET_FALSE( PopStr(pMaterialItem->mName) )
+	RET_FALSE( PopStr(pMaterialItem->mNameOgreMaterial) )
 
   pMaterialItem->mGraphic.clear();
-  TMaterialItem::TVecVariant::size_type cntVecLod;
-  RET_FALSE( Pop(cntVecLod) )
-  for( int iVecLod = 0 ; iVecLod < int(cntVecLod) ; iVecLod++ )
+  TMaterialItem::TVecVariant::size_type cntVariant;
+  RET_FALSE( Pop(cntVariant) )
+  for( int iVariant = 0 ; iVariant < int(cntVariant) ; iVariant++ )
   {
-    TMaterialItem::TVecLOD::size_type cntLod;
-    TMaterialItem::TVecLOD vecLod;
-    RET_FALSE( Pop(cntLod) )
-    for( int iLod = 0 ; iLod < int(cntLod) ; iLod++ )
-    {
-      TMaterialItem::TLOD lod;
-      RET_FALSE( Pop(lod.distance) )
-      RET_FALSE( Pop(lod.length) )
-      RET_FALSE( Pop(lod.width) )
-      RET_FALSE( PopStr(lod.normal) )
-      RET_FALSE( PopStr(lod.color) )
-      vecLod.push_back(lod);
-    }
-    pMaterialItem->mGraphic.push_back(vecLod);
+    TMaterialItem::TVariant variant;
+    RET_FALSE( Pop(variant.length) )
+    RET_FALSE( Pop(variant.width) )
+    RET_FALSE( PopStr(variant.normal) )
+    RET_FALSE( PopStr(variant.color) )
+    pMaterialItem->mGraphic.push_back(variant);
   }
   
   RET_FALSE( Pop(pMaterialItem->mPhysic) )

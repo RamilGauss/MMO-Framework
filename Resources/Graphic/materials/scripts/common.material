@@ -23,19 +23,77 @@ material KingTiger/Track
 				texture Tiger_II_track.dds
 			}
 			scene_blend alpha_blend
+			depth_write off
+			cull_software none
+			cull_hardware none
 		}
 	}
 }
 
-material Cube
+vertex_program ModelPhong_vp glsl
+{
+	source ModelPhong_vp.glsl
+}
+fragment_program ModelPhong_fp glsl
+{
+	source ModelPhong_fp.glsl
+}
+material Iron
 {
 	technique
 	{
 		pass
 		{
+			//ambient 0 0 0 0
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			//specular 0 0 0
+			specular 1.0 1.0 1.0 
+			//specular 0.6 0.6 0.6 0.6
+			emissive 0 0 0
+			//scene_blend alpha_blend
+			// scene_blend modulate
+			// scene_blend add
+			//depth_write off
+			//cull_software none
+			//cull_hardware none
+			// texture_unit
+			//{
+			//	texture Iron_01.jpg
+			//}
+			vertex_program_ref ModelPhong_vp
+			{
+			}
+			fragment_program_ref ModelPhong_fp
+			{
+				param_named tex0 int 0
+			}
+		}
+	}
+}
+
+material Ground
+{
+	technique
+	{
+		pass
+		{
+		}
+	}
+}
+
+material Skybox/Hills
+{
+	technique
+	{
+		pass
+		{
+			lighting on
+			depth_write off
 			texture_unit
 			{
-				texture Cube.png
+			  cubic_texture hills_ft.tga hills_bk.tga hills_rt.tga hills_lf.tga hills_up.tga hills_dn.tga separateUV
+				tex_address_mode clamp
 			}
 		}
 	}

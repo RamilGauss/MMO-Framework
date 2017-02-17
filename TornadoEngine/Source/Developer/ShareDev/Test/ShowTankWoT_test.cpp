@@ -17,7 +17,7 @@ TShowTankWoT_test::TShowTankWoT_test()
 //---------------------------------------------------------------------------------------------
 void TShowTankWoT_test::AddEntity(Ogre::Entity* pEnt, TOrient& orient, Ogre::SceneManager* pSM)
 {
-  pEnt->setCastShadows(false);
+  pEnt->setCastShadows(true);
   Ogre::SceneNode* pNode = pSM->getRootSceneNode()->createChildSceneNode();
   pNode->attachObject(pEnt);
 
@@ -62,31 +62,6 @@ void TShowTankWoT_test::ShowTanks(int cnt)
   Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
   pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
   
-  // light
-  Ogre::String nameLight = "mainLight";
-  Ogre::Light* pLight = NULL;
-  if( pSM->hasLight(nameLight) )
-    pLight = pSM->getLight(nameLight);
-  else
-    pLight = pSM->createLight(nameLight);
-
-  pLight->setType(Ogre::Light::LT_SPOTLIGHT);
-	pLight->setCastShadows(false);
-  pLight->setVisible(true);
-  Ogre::Vector3 posLight(0,0,0);
-  pLight->setPosition(posLight);
-  Ogre::Vector3 dirLight(1,0,0);
-  dirLight.normalise();
-  pLight->setDirection(dirLight);
-
-  //pLight->setSpotlightRange(Ogre::Degree(20.0f), Ogre::Degree(25.0f), 0.95f);
-	pLight->setDiffuseColour(1.0f, 1.0f, 1.0f);
-
-	pLight->setDiffuseColour(1.0f, 1.0f, 1.0f);
-	pLight->setSpecularColour(1.0f, 1.0f, 1.0f);	
-	//pLight->setAttenuation(1000.0f, 1.0f, 0.0005f, 0.0f);
-  // light
-
   Ogre::Vector3 pos;
   pos.y = 0;
   pos.z = 0;
