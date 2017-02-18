@@ -19,8 +19,8 @@
 	Для dependency и boost_1_60_0 есть два варианта: rar или zip, на выбор, но лучше скачать rar. 
   Архив zip нужен для тех компьютеров, на которых не установлен WinRar.
 	При скачивании исполняемых файлов ставить галку "Я хочу скачать этот файл".
-		https://cloud.mail.ru/public/HG3h/5nHbqKC1p,                                  - Dependency.rar,
-		https://cloud.mail.ru/public/PGaW/4TEr4rP9p,                                  - Dependency.zip,
+		https://cloud.mail.ru/public/392X/mtsWcvNbV,                                  - Dependency.rar,
+		https://cloud.mail.ru/public/Hiff/ZN8gfR19U,                                  - Dependency.zip,
 		https://cloud.mail.ru/public/8UQz/szykxVvVY,                                  - boost_1_60_0.rar,
 		https://cloud.mail.ru/public/KZhe/2jR34jiJn,                                  - boost_1_60_0.zip,
 		https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe,                  - DirectX_SDK.exe,

@@ -3,3 +3,4 @@
 3. OgreMemoryNedPooling.cpp 42 #include <nedmalloc.c> -> #include <nedmalloc.h>
 4. RenderSystem_Direct3D11.project: OgreD3D11RenderSystem.cpp 3610 CreateDXGIFactory1 -> CreateDXGIFactory.
 5. В коде, который использует Ogre: char* resLocale = setlocale( LC_ALL, "russian"); 
+6. OgreString.h добавить строку 33 #include <hash_map> // для совместимости с Visual Studio 2015.
