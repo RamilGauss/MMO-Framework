@@ -8,41 +8,46 @@ See for more information License.h.
 #include <math.h>
 #include "OgreMath.h"
 
-#include "Plane_test.h"
+#include "BuilderShapePlate_Ogre.h"
 #include "ModuleLogic.h"
 #include "GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleGraphicEngine.h"
 
 #include "BL_Debug.h"
+#include "MaterialItem.h"
+#include "ShapeItem.h"
+#include "ParamBuilderShape.h"
+#include <boost/lexical_cast.hpp>
 
-TPlane_Test::TPlane_Test()
+TBuilderShapePlate_Ogre::TBuilderShapePlate_Ogre()
 {
-	mPtrSceneMng  	 = NULL;
-	mPtrEntity       = NULL;
 }
 //-------------------------------------------------------------------------
-void TPlane_Test::Setup(Ogre::Real width, Ogre::Real height, Ogre::Real depth, 
-												Ogre::String& nameMaterial, Ogre::String& nameFileTexture, 
-												Ogre::Real widthTexture, Ogre::Real lenghtTexture)
+std::string TBuilderShapePlate_Ogre::GetNameType()
 {
-	mWidth  				 = width;
-	mHeight 				 = height;
-	mDepth  				 = depth;
-	mWidthTexture    = widthTexture;
-	mLenghtTexture   = lenghtTexture;
-	mNameMaterial 	 = nameMaterial;
-	mNameFileTexture = nameFileTexture;
-
-	char s[400];
-	sprintf(s, "PlaneMesh_%f_%f_%f", mWidth, mHeight, mDepth);
-	mNameMesh = s;
+	return "Plate";
 }
 //-------------------------------------------------------------------------
-Ogre::Entity* TPlane_Test::CreateEntity(Ogre::String& nameEntity)
+void TBuilderShapePlate_Ogre::SetNameMesh()
+{
+	mNameMesh = GetNameType();
+	mNameMesh += "_";
+	mNameMesh += boost::lexical_cast<std::string>(mPSh->width);
+	mNameMesh += "_";
+	mNameMesh += boost::lexical_cast<std::string>(mPSh->height);
+	mNameMesh += "_";
+	mNameMesh += boost::lexical_cast<std::string>(mPSh->length);
+}
+//-------------------------------------------------------------------------
+void TBuilderShapePlate_Ogre::SetParamShape( nsParamBuilderShape::TBaseParam* pShape )
+{
+	mPSh = (nsParamBuilderShape::TPlate*)pShape;
+}
+//-------------------------------------------------------------------------
+Ogre::Entity* TBuilderShapePlate_Ogre::CreateEntity(std::string& nameEntity)
 {
 	mMeshPtr.setNull();
 	mNameEntity = nameEntity;
-	mPtrSceneMng = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
 
 	CreateMaterial();
 	CreateMesh();
@@ -50,23 +55,23 @@ Ogre::Entity* TPlane_Test::CreateEntity(Ogre::String& nameEntity)
 	return mPtrEntity;
 }
 //-------------------------------------------------------------------------
-void TPlane_Test::SetupEntity()
+void TBuilderShapePlate_Ogre::SetupEntity()
 {
 	mPtrEntity = mPtrSceneMng->createEntity(mNameEntity, mMeshPtr);
 	Ogre::SceneNode* pNode = mPtrSceneMng->getRootSceneNode()->createChildSceneNode();
 	pNode->attachObject(mPtrEntity);
 }
 //-------------------------------------------------------------------------
-void TPlane_Test::CreateMaterial()
+void TBuilderShapePlate_Ogre::CreateMaterial()
 {
 	// загрузка текстуры
 	Ogre::TexturePtr texturePtr = 
 		Ogre::TextureManager::getSingletonPtr()->
-		load(mNameFileTexture, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+		load(mPtrMaterialVariant->color, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	
 	// получить материал от Огра
 	mMaterialPtr = Ogre::MaterialManager::getSingletonPtr()->
-		getByName(mNameMaterial, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+		getByName(mPtrMaterialVariant->ogreMaterial, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 	// настройка 
 	Ogre::Technique* pTech = mMaterialPtr->getTechnique(0);
@@ -75,25 +80,25 @@ void TPlane_Test::CreateMaterial()
 	pTexUS->setTexture(texturePtr);
 }
 //-----------------------------------------------------------------------------
-void TPlane_Test::CreateMesh()
+void TBuilderShapePlate_Ogre::CreateMesh()
 {
 	mCntQuad = 0;
 	// взять геометрическую форму
 	Ogre::ManualObject mo("");
 	mPtrMO = &mo;
-	mo.begin(mNameMaterial, Ogre::RenderOperation::OT_TRIANGLE_LIST);
-	CreateSheetY( mWidth,  0,       mDepth, 0,       0);      // основание / bottom, 0-3
-	CreateSheetZ( 0,       mWidth,  0,      mHeight, mDepth); // бок, фронт / front, 4-7
-	CreateSheetZ( mWidth,  0,       0, 		  mHeight, 0);		  // бок, зад / back, 8-11
-	CreateSheetX( mHeight, 0,       0, 		  mDepth,  0);		  // бок, лево / left, 12-15
-	CreateSheetX( 0,       mHeight, 0, 		  mDepth,  mWidth); // бок, право / right, 16-19
-	CreateSheetY( mWidth,  0,       0, 		  mDepth,  mHeight);// крыша / top, 20-23
+	mo.begin(mPtrMaterialVariant->ogreMaterial, Ogre::RenderOperation::OT_TRIANGLE_LIST);
+	CreateSheetY( mPSh->width, 0,  	        mPSh->length, 0,            0);//основание/bottom
+	CreateSheetZ( 0,           mPSh->width, 0,            mPSh->height, mPSh->length);// бок, фронт/front
+	CreateSheetZ( mPSh->width, 0,           0, 		  			mPSh->height, 0);//бок, зад/back
+	CreateSheetX( mPSh->height,0,           0, 		  			mPSh->length, 0);//бок, лево/left
+	CreateSheetX( 0,           mPSh->height,0, 		  			mPSh->length, mPSh->width);//бок, право/right
+	CreateSheetY( mPSh->width, 0,           0, 		  			mPSh->length, mPSh->height);//крыша/top
 	//------------------------------------------------
 	for( int i = 0 ; i < mCntQuad ; i++)
 	{
 		unsigned int index = i*4;
-		mo.triangle(index,index+1,index+2);// обход против часовой стрелки
-		mo.triangle(index,index+2,index+3);
+		// обход против часовой стрелки
+		mo.quad(index,index+1,index+2,index+3);
 	}
 	mo.end();
 
@@ -105,10 +110,10 @@ void TPlane_Test::CreateMesh()
 		return;
 	}
 	Ogre::SubMesh* pSubMesh = mMeshPtr->getSubMesh(0);
-	pSubMesh->setMaterialName(mNameMaterial);
+	pSubMesh->setMaterialName(mPtrMaterialVariant->ogreMaterial);
 }
 //-----------------------------------------------------------------------------
-void TPlane_Test::CreateSheetY(Ogre::Real x_min, Ogre::Real x_max, 
+void TBuilderShapePlate_Ogre::CreateSheetY(Ogre::Real x_min, Ogre::Real x_max, 
 									Ogre::Real z_min, Ogre::Real z_max, 
 									Ogre::Real y )
 {
@@ -117,7 +122,7 @@ void TPlane_Test::CreateSheetY(Ogre::Real x_min, Ogre::Real x_max,
 	CreateSheet(x_min, x_max, z_min, z_max, useX, useZ, y, normal);
 }
 //-----------------------------------------------------------------------------
-void TPlane_Test::CreateSheetZ(Ogre::Real x_min, Ogre::Real x_max, 
+void TBuilderShapePlate_Ogre::CreateSheetZ(Ogre::Real x_min, Ogre::Real x_max, 
 									Ogre::Real y_min, Ogre::Real y_max, 
 									Ogre::Real z )
 {
@@ -126,7 +131,7 @@ void TPlane_Test::CreateSheetZ(Ogre::Real x_min, Ogre::Real x_max,
 	CreateSheet(x_min, x_max, y_min, y_max, useX, useY, z, normal);
 }
 //-----------------------------------------------------------------------------
-void TPlane_Test::CreateSheetX(Ogre::Real y_min, Ogre::Real y_max, 
+void TBuilderShapePlate_Ogre::CreateSheetX(Ogre::Real y_min, Ogre::Real y_max, 
 									Ogre::Real z_min, Ogre::Real z_max, 
 									Ogre::Real x )
 {
@@ -135,7 +140,7 @@ void TPlane_Test::CreateSheetX(Ogre::Real y_min, Ogre::Real y_max,
 	CreateSheet(y_min, y_max, z_min, z_max, useY, useZ, x, normal);
 }
 //-----------------------------------------------------------------------------
-void TPlane_Test::SetVector3ByUse(Ogre::Vector3& pos, Ogre::Real v, eUseAxe use)
+void TBuilderShapePlate_Ogre::SetVector3ByUse(Ogre::Vector3& pos, Ogre::Real v, eUseAxe use)
 {
 	switch(use)
 	{
@@ -151,7 +156,7 @@ void TPlane_Test::SetVector3ByUse(Ogre::Vector3& pos, Ogre::Real v, eUseAxe use)
 	}
 }
 //-----------------------------------------------------------------------------
-void TPlane_Test::CreateSheet(Ogre::Real a_min, Ogre::Real a_max, 
+void TBuilderShapePlate_Ogre::CreateSheet(Ogre::Real a_min, Ogre::Real a_max, 
 															Ogre::Real b_min, Ogre::Real b_max,
 															eUseAxe useA, eUseAxe useB,
 															Ogre::Real unuse, Ogre::Vector3& normal)
@@ -161,15 +166,15 @@ void TPlane_Test::CreateSheet(Ogre::Real a_min, Ogre::Real a_max,
 	Ogre::Real absA = abs(a_max-a_min);
 	Ogre::Real absB = abs(b_max-b_min);
 
-	int cntA = int(absA/mWidthTexture);
-	if(cntA*mWidthTexture < absA)
+	int cntA = int(absA/mPtrMaterialVariant->width);
+	if(cntA*mPtrMaterialVariant->width < absA)
 		cntA++;
-	int cntB = int(absB/mLenghtTexture);
-	if(cntB*mLenghtTexture < absB)
+	int cntB = int(absB/mPtrMaterialVariant->length);
+	if(cntB*mPtrMaterialVariant->length < absB)
 		cntB++;
 	Ogre::Real a_begin = a_min, a_end, b_begin,	b_end;
-	Ogre::Real stepA = flgA_rise ? mWidthTexture  : -mWidthTexture;
-	Ogre::Real stepB = flgB_rise ? mLenghtTexture : -mLenghtTexture;
+	Ogre::Real stepA = flgA_rise ? mPtrMaterialVariant->width  : -mPtrMaterialVariant->width;
+	Ogre::Real stepB = flgB_rise ? mPtrMaterialVariant->length : -mPtrMaterialVariant->length;
 	for( int iA = 0 ; iA < cntA ; iA++ )
 	{
 		b_begin = b_min;
@@ -200,7 +205,7 @@ void TPlane_Test::CreateSheet(Ogre::Real a_min, Ogre::Real a_max,
 	}
 }
 //-----------------------------------------------------------------------------
-void TPlane_Test::CreateQuad(Ogre::Real a_min, Ogre::Real a_max, 
+void TBuilderShapePlate_Ogre::CreateQuad(Ogre::Real a_min, Ogre::Real a_max, 
 								Ogre::Real b_min, Ogre::Real b_max,
 								eUseAxe useA, eUseAxe useB,
 								Ogre::Real unuse, Ogre::Vector3& normal,

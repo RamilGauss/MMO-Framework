@@ -69,8 +69,6 @@ bool TSerializerMaterialItem_XML::Save(TBaseItem* pItem)
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMaterialItem_XML::LoadGraphic()
 {
-	mMaterial->mNameOgreMaterial = mXML->ReadSectionAttr( sGraphic, 0, sOgreMaterial);
-
   if(mXML->EnterSection(sGraphic, 0))// начало секции Графика
   {
     mMaterial->mGraphic.clear();
@@ -93,6 +91,8 @@ void TSerializerMaterialItem_XML::LoadGraphic()
             variant.width  = boost::lexical_cast<float>(value.data());
           if(key==sLength)
             variant.length = boost::lexical_cast<float>(value.data());
+					if(key==sOgreMaterial)
+						variant.ogreMaterial = value;
         }
         mXML->LeaveSection();
       }
@@ -123,10 +123,7 @@ void TSerializerMaterialItem_XML::LoadPhysic()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMaterialItem_XML::SaveGraphic()
 {
-	TAttrInfo attrOgreMaterial;
-	attrOgreMaterial.Name  = sOgreMaterial;
-	attrOgreMaterial.Value = mMaterial->mNameOgreMaterial;
-  if(mXML->AddSectionAndEnter(sGraphic, 1, &attrOgreMaterial))// начало секции Графика
+  if(mXML->AddSectionAndEnter(sGraphic))// начало секции Графика
   {
     int cntVariant = mMaterial->mGraphic.size();
     for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )// добавление Вариантов
@@ -137,6 +134,7 @@ void TSerializerMaterialItem_XML::SaveGraphic()
 
         std::string key = sColor;  SaveProperty(key, variant.color);
                     key = sNormal; SaveProperty(key, variant.normal);
+                    key = sOgreMaterial; SaveProperty(key, variant.ogreMaterial);
         key = sWidth; 
         std::string value = boost::lexical_cast<std::string>(variant.width);
         SaveProperty(key, value);

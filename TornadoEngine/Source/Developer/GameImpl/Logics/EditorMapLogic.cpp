@@ -18,10 +18,15 @@ See for more information License.h.
 #include "ControlCamera.h"
 
 #include "ShowTankWoT_test.h"
-#include "Plane_Test.h"
 
 #include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
+
+//###
+#include "BuilderShapePlate_Ogre.h"
+#include "MaterialItem.h"
+#include "ShapeItem.h"
+//###
 
 TEditorMapLogic::TEditorMapLogic()
 {
@@ -264,22 +269,38 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowTest()
 {
-	TPlane_Test plane;
+	TBuilderShapePlate_Ogre builder;
+	std::string nameShape;
+	TShapeItem    shItem(nameShape);
+	std::string nameMaterial;
+	TMaterialItem matItem(nameMaterial);
+	TMaterialItem::TVariant variant;
+	matItem.mGraphic.push_back(variant);
+	matItem.mGraphic[0].width  = 50;
+	matItem.mGraphic[0].length = 50;
+	nsParamBuilderShape::TPlate* pPlate = new nsParamBuilderShape::TPlate;
+	shItem.mPtrGeometry.reset(pPlate);
 	//----------------------------------------------------------
-	Ogre::String nameMaterial    = "Ground";
-	Ogre::String nameFileTexture = "Ground.png";
-	plane.Setup(10000,1.0f,10000, nameMaterial, nameFileTexture, 100, 100);
-	Ogre::String namePlaneEntity = "Plane0";
-	Ogre::Entity* pEntity = plane.CreateEntity(namePlaneEntity);
+	pPlate->width  = 10000;
+	pPlate->height = 1;
+	pPlate->length = 10000;
+	matItem.mGraphic[0].ogreMaterial = "Ground";
+	matItem.mGraphic[0].color = "Ground.png";
+	builder.Setup(&shItem, &matItem);
+	std::string namePlaneEntity = "Plane0";
+	Ogre::Entity* pEntity = builder.CreateEntity(namePlaneEntity);
 	Ogre::Vector3 vPos(-5000,-23,-5000);
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
 	//----------------------------------------------------------
-	nameMaterial    = "Iron";
-	nameFileTexture = "Iron_00.jpg";
-	plane.Setup(100,100,10, nameMaterial, nameFileTexture, 50, 50);
+	pPlate->width  = 100;
+	pPlate->height = 100;
+	pPlate->length = 10;
+	matItem.mGraphic[0].ogreMaterial = "Iron";
+	matItem.mGraphic[0].color = "Iron_00.jpg";
+	builder.Setup(&shItem, &matItem);
 	namePlaneEntity = "Plane1";
-	pEntity = plane.CreateEntity(namePlaneEntity);
+	pEntity = builder.CreateEntity(namePlaneEntity);
 	vPos.x = -10;
 	vPos.y = -25;
 	vPos.z = -100;
@@ -289,7 +310,7 @@ void TEditorMapLogic::ShowTest()
 	mPtrShowTank->ShowTanks(10);
 
 	TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager()
-		->setSkyBox(true, "Skybox/Hills", 100);
+		->setSkyBox(true, "Skybox/Hills");
 
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 	pCamera->setPosition(160,160,160);

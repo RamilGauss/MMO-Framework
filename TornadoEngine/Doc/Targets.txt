@@ -1,0 +1,11 @@
+1. BuilderPlate_Ogre
+2. BuilderCylinder_Ogre
+3. Terrain Ogre
+4. BuildPlate_Bullet
+5. BuildCylinder_Bullet
+6. Terrain Bullet
+7. Synchro
+8. Сборка танка
+9. Подвеска танка
+10. Гусеница с помощью шейдера, а в физике области.
+11. Снять видео и статья на хабре.

@@ -770,27 +770,27 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Builder\FactoryModelLOD_Ogre.cpp"
+						RelativePath=".\Builder\BuilderShapeBase_Ogre.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Builder\FactoryModelLOD_Ogre.h"
+						RelativePath=".\Builder\BuilderShapeBase_Ogre.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Builder\GeomUtils.cpp"
+						RelativePath=".\Builder\BuilderShapeCylinder_Ogre.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Builder\GeomUtils.h"
+						RelativePath=".\Builder\BuilderShapeCylinder_Ogre.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Builder\ModelLOD_Ogre.cpp"
+						RelativePath=".\Builder\BuilderShapePlate_Ogre.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Builder\ModelLOD_Ogre.h"
+						RelativePath=".\Builder\BuilderShapePlate_Ogre.h"
 						>
 					</File>
 				</Filter>
@@ -1307,14 +1307,6 @@
 		<Filter
 			Name="Test"
 			>
-			<File
-				RelativePath=".\Test\Plane_Test.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Test\Plane_Test.h"
-				>
-			</File>
 			<File
 				RelativePath=".\Test\ShowTankWoT_test.cpp"
 				>

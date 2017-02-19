@@ -18,7 +18,7 @@
     </Variant>
   </PatternConfig>
   <Material name="Iron">
-    <Graphic OgreMaterial="Iron">
+    <Graphic>
 			<!-- выбор случайным образом текстуры в движке, что бы не было "близнецов". -->
 			<!-- В Огре ищем материал (в основном нужно для доступа к шейдерам), но текстуру в xxx.material не задаём. -->
       <Variant>
@@ -26,12 +26,14 @@
 				<Property key="Length" value="1"/>
 				<Property key="Color"  value="Iron_00.jpg"/>
 				<Property key="Normal" value="NormalIron_00.png"/>
+				<Property key="OgreMaterial" value="Iron"/>
       </Variant>
       <Variant>
 				<Property key="Width"  value="1"/>
 				<Property key="Length" value="1"/>
 				<Property key="Color"  value="Iron_01.jpg"/>
 				<Property key="Normal" value="NormalIron_01.png"/>
+				<Property key="OgreMaterial" value="Iron"/>
       </Variant>
     </Graphic>
     <Physic>
@@ -41,7 +43,7 @@
     </Physic>
   </Material>
   <Material name="Wood">
-    <Graphic OgreMaterial="Wood">
+    <Graphic>
 			<!-- выбор случайным образом текстуры в движке, что бы не было "близнецов". -->
 			<!-- В Огре ищем материал (в основном нужно для доступа к шейдерам), но текстуру не задаём. -->
 			<Variant>
@@ -49,12 +51,14 @@
 				<Property key="Length" value="1"/>
 				<Property key="Color"  value="Iron_00.png"/>
 				<Property key="Normal" value="NormalIron_00.png"/>
+				<Property key="OgreMaterial" value="Wood"/>
       </Variant>
       <Variant>
 				<Property key="Width"  value="1"/>
 				<Property key="Length" value="1"/>
 				<Property key="Color"  value="Iron_01.png"/>
 				<Property key="Normal" value="NormalIron_01.png"/>
+				<Property key="OgreMaterial" value="Wood"/>
       </Variant>
     </Graphic>
     <Physic>

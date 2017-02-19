@@ -28,7 +28,6 @@ void TSerializerMaterialItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBin
 
   PushType();
   PushStr(pMaterialItem->mName);
-  PushStr(pMaterialItem->mNameOgreMaterial);
   Push(pMaterialItem->mGraphic.size());
   BOOST_FOREACH( TMaterialItem::TVariant& variant, pMaterialItem->mGraphic )
   {
@@ -36,6 +35,7 @@ void TSerializerMaterialItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBin
     Push(variant.width);
     PushStr(variant.normal);
     PushStr(variant.color);
+		PushStr(variant.ogreMaterial);
   }
 
   Push(pMaterialItem->mPhysic);
@@ -51,7 +51,6 @@ bool TSerializerMaterialItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int
 
   RET_FALSE( PopType() )
   RET_FALSE( PopStr(pMaterialItem->mName) )
-	RET_FALSE( PopStr(pMaterialItem->mNameOgreMaterial) )
 
   pMaterialItem->mGraphic.clear();
   TMaterialItem::TVecVariant::size_type cntVariant;
@@ -63,6 +62,7 @@ bool TSerializerMaterialItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int
     RET_FALSE( Pop(variant.width) )
     RET_FALSE( PopStr(variant.normal) )
     RET_FALSE( PopStr(variant.color) )
+		RET_FALSE( PopStr(variant.ogreMaterial) )
     pMaterialItem->mGraphic.push_back(variant);
   }
   

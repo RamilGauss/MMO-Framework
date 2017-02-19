@@ -19,6 +19,7 @@ struct DllExport TMaterialItem : public TBaseItem
 {
   struct DllExport TVariant
   {
+		std::string ogreMaterial;
     // размеры текстуры для воссоздания внешнего вида
     float width; 
     float length;
@@ -34,8 +35,6 @@ struct DllExport TMaterialItem : public TBaseItem
     float elasticity;
     float friction;
   };
-
-	std::string mNameOgreMaterial;
   TVecVariant mGraphic;
   TPhysic mPhysic;
 

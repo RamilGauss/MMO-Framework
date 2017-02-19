@@ -5,41 +5,27 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef Plane_TestH
-#define Plane_TestH
+#ifndef BuilderShapePlate_OgreH
+#define BuilderShapePlate_OgreH
 
 #include "TypeDef.h"
 #include <Ogre.h>
+#include "BuilderShapeBase_Ogre.h"
 
-class DllExport TPlane_Test
+struct TShapeItem;
+
+class DllExport TBuilderShapePlate_Ogre : public TBuilderShapeBase_Ogre
 {
-	Ogre::SceneManager* mPtrSceneMng;
-	Ogre::String mNameMesh;
-	Ogre::String mNameMaterial;
-	Ogre::String mNameFileTexture;
-
-	Ogre::String mNameEntity;
-
-	Ogre::MeshPtr mMeshPtr;
-	Ogre::MaterialPtr mMaterialPtr;
-
-	Ogre::Entity* mPtrEntity;
-
-	Ogre::Real mWidthTexture;
-	Ogre::Real mLenghtTexture;
-	Ogre::Real mWidth;
-	Ogre::Real mHeight;
-	Ogre::Real mDepth;
-
+	nsParamBuilderShape::TPlate* mPSh;
 	int mCntQuad;
 public:
-	TPlane_Test();
+	TBuilderShapePlate_Ogre();
 
-	void Setup(Ogre::Real width, Ogre::Real height, Ogre::Real depth,
-		Ogre::String& nameMaterial, Ogre::String& nameFileTexture,
-		Ogre::Real widthTexture, Ogre::Real lenghtTexture);// px
-
-	Ogre::Entity* CreateEntity(Ogre::String& nameEntity);// Ogre thread only
+	virtual Ogre::Entity* CreateEntity(std::string& nameEntity);
+	virtual std::string GetNameType();
+protected:
+	virtual void SetNameMesh();
+	virtual void SetParamShape( nsParamBuilderShape::TBaseParam* pShape );
 protected:
 	void CreateMaterial();
 	void CreateMesh();

@@ -11,30 +11,37 @@ See for more information License.h.
 
 #include <OgrePrerequisites.h>
 #include <OgreMesh.h>
+#include <map>
+#include "ParamBuilderShape.h"
 
 struct TShapeItem;
+struct TMaterialItem;
+class TBuilderShapeBase_Ogre;
 
 class DllExport TBuilderShape_Ogre
 {
-  TShapeItem* mShape;
+  TShapeItem*    mShape;
+	TMaterialItem* mMaterial;
+	
+	Ogre::Entity* mPtrEntity;
 
-  Ogre::MeshPtr mMeshPtr;
+	std::string mNameEntity;
+
+	int mCntShape;
+
+	typedef std::map<nsParamBuilderShape::eType,TBuilderShapeBase_Ogre*> TMapTypePtr;
+	typedef TMapTypePtr::iterator   					 TMapTypePtrIt;
+	typedef TMapTypePtr::value_type 					 TMapTypePtrVT;
+
+	TMapTypePtr mMapTypeBuilder;
 public:
   TBuilderShape_Ogre();
   ~TBuilderShape_Ogre();
 
-  Ogre::MeshPtr Build(TShapeItem* pShape);
-private:
-  void BuildPlate();
-  void BuildPlateVarGeom();
-  void BuildSphere();
-  void BuildCone();
-  void BuildTrapezium();
-  void BuildTriangularPyramid();
-  void BuildQuadrangularPyramid();
-  void BuildCylinder();
-  void BuildTriangularPrism();
-
+	Ogre::Entity* Build(TShapeItem* pShape);
+protected:
+	void FindMaterialByShape();
+	void SetupBuilderMap();
 };
 
 #endif

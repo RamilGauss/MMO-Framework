@@ -127,14 +127,15 @@ void TEditorShape::OpenShape()
   std::string name = "PlateVarGeom";//###
 
   TShapeItem* pItem = (TShapeItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Shape, name);
-  Ogre::MeshPtr ptr = mBuilder.Build(pItem);
+  Ogre::Entity* pEnt = mBuilder.Build(pItem);
+	if( pEnt==NULL )
+		return;
 
-  Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
-  pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
-  Ogre::Entity* pEnt = pSM->createEntity(ptr);
-  pEnt->setCastShadows(false);
+	Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
+	pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 
-  Ogre::SceneNode* pNode = pSM->getRootSceneNode()->createChildSceneNode();
+	pEnt->setCastShadows(false);
+  Ogre::SceneNode* pNode = pEnt->getParentSceneNode();
   pNode->attachObject(pEnt);
 
   const Ogre::Vector3 pos(0,0,0);

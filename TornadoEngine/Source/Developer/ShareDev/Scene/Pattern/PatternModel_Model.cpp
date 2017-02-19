@@ -309,11 +309,8 @@ void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model* pConte
 
   TBuilder_Ogre* pBOgre = GetBuilderOgre();
 
-  Ogre::MeshPtr pMesh = pBOgre->GetShapeMaker()->Build( pShapeItem );
-  //pMesh->
-  // доступ
-  //Ogre::MeshManager::getSingleton().getByName( const String& name ); 	
-  Ogre::Root* pRoot = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetRoot();
+  Ogre::Entity* pEntity = pBOgre->GetShapeMaker()->Build( pShapeItem );
 
+	//Ogre::Root* pRoot = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetRoot();
 }
 //---------------------------------------------------------------------------
