@@ -98,3 +98,24 @@ material Skybox/Hills
 		}
 	}
 }
+
+material Test
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.3 0.3 0.3 1 
+			specular 0.3 0.3 0.3 
+			emissive 0 0 0
+			vertex_program_ref ModelPhong_vp
+			{
+			}
+			fragment_program_ref ModelPhong_fp
+			{
+				param_named tex0 int 0
+			}
+		}
+	}
+}

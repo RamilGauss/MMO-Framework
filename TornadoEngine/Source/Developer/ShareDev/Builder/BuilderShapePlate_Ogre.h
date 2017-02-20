@@ -27,7 +27,7 @@ protected:
 	virtual void SetNameMesh();
 	virtual void SetParamShape( nsParamBuilderShape::TBaseParam* pShape );
 protected:
-	void CreateMaterial();
+	//void CreateMaterial();
 	void CreateMesh();
 	void SetupEntity();
 

@@ -45,6 +45,7 @@ protected:
 	virtual void SetParamShape( nsParamBuilderShape::TBaseParam* pShape) = 0;
 protected:
 	void SetRandomVariant();
+	void CreateMaterial();
 };
 
 #endif

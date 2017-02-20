@@ -62,24 +62,6 @@ void TBuilderShapePlate_Ogre::SetupEntity()
 	pNode->attachObject(mPtrEntity);
 }
 //-------------------------------------------------------------------------
-void TBuilderShapePlate_Ogre::CreateMaterial()
-{
-	// загрузка текстуры
-	Ogre::TexturePtr texturePtr = 
-		Ogre::TextureManager::getSingletonPtr()->
-		load(mPtrMaterialVariant->color, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-	
-	// получить материал от Огра
-	mMaterialPtr = Ogre::MaterialManager::getSingletonPtr()->
-		getByName(mPtrMaterialVariant->ogreMaterial, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
-	// настройка 
-	Ogre::Technique* pTech = mMaterialPtr->getTechnique(0);
-	Ogre::Pass* pPass = pTech->getPass(0);
-	Ogre::TextureUnitState* pTexUS = pPass->createTextureUnitState();
-	pTexUS->setTexture(texturePtr);
-}
-//-----------------------------------------------------------------------------
 void TBuilderShapePlate_Ogre::CreateMesh()
 {
 	mCntQuad = 0;
@@ -144,15 +126,15 @@ void TBuilderShapePlate_Ogre::SetVector3ByUse(Ogre::Vector3& pos, Ogre::Real v, 
 {
 	switch(use)
 	{
-	case useX:
-		pos.x = v;
-		break;
-	case useY:
-		pos.y = v;
-		break;
-	case useZ:
-		pos.z = v;
-		break;
+		case useX:
+			pos.x = v;
+			break;
+		case useY:
+			pos.y = v;
+			break;
+		case useZ:
+			pos.z = v;
+			break;
 	}
 }
 //-----------------------------------------------------------------------------

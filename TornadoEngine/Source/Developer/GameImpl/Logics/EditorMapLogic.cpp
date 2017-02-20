@@ -26,6 +26,7 @@ See for more information License.h.
 #include "BuilderShapePlate_Ogre.h"
 #include "MaterialItem.h"
 #include "ShapeItem.h"
+#include "BuilderShapeCylinder_Ogre.h"
 //###
 
 TEditorMapLogic::TEditorMapLogic()
@@ -269,6 +270,47 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowTest()
 {
+	ShowPlate();
+	ShowCylinder();
+	mPtrShowTank->ShowTanks(10);
+
+	TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager()
+		->setSkyBox(true, "Skybox/Hills");
+
+	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
+	pCamera->setPosition(160,160,160);
+	pCamera->lookAt(0,0,0);
+
+	SetupLight();
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::SetupLight()
+{
+	Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
+	pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+
+	Ogre::String nameLight = "mainLight";
+	Ogre::Light* pLight = NULL;
+	if( pSM->hasLight(nameLight) )
+		pLight = pSM->getLight(nameLight);
+	else
+		pLight = pSM->createLight(nameLight);
+
+	pLight->setType(Ogre::Light::LT_SPOTLIGHT);
+	pLight->setCastShadows(false);
+	pLight->setVisible(true);
+	Ogre::Vector3 posLight(0,200,0);
+	pLight->setPosition(posLight);
+	Ogre::Vector3 dirLight(1,0,0);
+	dirLight.normalise();
+	pLight->setDirection(dirLight);
+
+	pLight->setDiffuseColour(1.0f, 1.0f, 1.0f);
+	pLight->setSpecularColour(1.0f, 1.0f, 1.0f);	
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::ShowPlate()
+{
 	TBuilderShapePlate_Ogre builder;
 	std::string nameShape;
 	TShapeItem    shItem(nameShape);
@@ -306,41 +348,33 @@ void TEditorMapLogic::ShowTest()
 	vPos.z = -100;
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
-	//----------------------------------------------------------
-	mPtrShowTank->ShowTanks(10);
-
-	TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager()
-		->setSkyBox(true, "Skybox/Hills");
-
-	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
-	pCamera->setPosition(160,160,160);
-	pCamera->lookAt(0,0,0);
-
-	SetupLight();
 }
 //---------------------------------------------------------------------------------------------
-void TEditorMapLogic::SetupLight()
+void TEditorMapLogic::ShowCylinder()
 {
-	Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
-	pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
-
-	Ogre::String nameLight = "mainLight";
-	Ogre::Light* pLight = NULL;
-	if( pSM->hasLight(nameLight) )
-		pLight = pSM->getLight(nameLight);
-	else
-		pLight = pSM->createLight(nameLight);
-
-	pLight->setType(Ogre::Light::LT_SPOTLIGHT);
-	pLight->setCastShadows(false);
-	pLight->setVisible(true);
-	Ogre::Vector3 posLight(0,200,0);
-	pLight->setPosition(posLight);
-	Ogre::Vector3 dirLight(1,0,0);
-	dirLight.normalise();
-	pLight->setDirection(dirLight);
-
-	pLight->setDiffuseColour(1.0f, 1.0f, 1.0f);
-	pLight->setSpecularColour(1.0f, 1.0f, 1.0f);	
+	TBuilderShapeCylinder_Ogre builder;
+	std::string nameShape;
+	TShapeItem  shItem(nameShape);
+	std::string nameMaterial;
+	TMaterialItem matItem(nameMaterial);
+	TMaterialItem::TVariant variant;
+	matItem.mGraphic.push_back(variant);
+	matItem.mGraphic[0].width  = 50;
+	matItem.mGraphic[0].length = 50;
+	nsParamBuilderShape::TCylinder* pCylinder = new nsParamBuilderShape::TCylinder;
+	shItem.mPtrGeometry.reset(pCylinder);
+	//----------------------------------------------------------
+	pCylinder->cnt_points_per_circle = 3000;
+	pCylinder->radius_max = 50;
+	pCylinder->radius_min = 0;
+	pCylinder->length = 100;
+	matItem.mGraphic[0].ogreMaterial = /*"Test";//*/"Iron";
+	matItem.mGraphic[0].color = /*"color.jpg";//*/"Iron_00.jpg";
+	builder.Setup(&shItem, &matItem);
+	std::string nameCylinderEntity = "Cylinder0";
+	Ogre::Entity* pEntity = builder.CreateEntity(nameCylinderEntity);
+	Ogre::Vector3 vPos(-10,-10,-10);
+	pEntity->getParentSceneNode()->setPosition(vPos);
+	pEntity->setCastShadows(true);
 }
 //---------------------------------------------------------------------------------------------

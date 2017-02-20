@@ -27,7 +27,7 @@ protected:
 	virtual void SetNameMesh();
 	virtual void SetParamShape( nsParamBuilderShape::TBaseParam* pShape );
 protected:
-	void CreateMaterial();
+	//void CreateMaterial();
 	void CreateMesh();
 	void SetupEntity();
 
@@ -40,6 +40,11 @@ protected:
 	void CreateCircleSheetUp();
 	void CreateCircleSheetDown();
 
+	void CreateQuad( Ogre::Real x_0, Ogre::Real x_1, 
+									 Ogre::Real y_0, Ogre::Real y_1,
+									 Ogre::Real z_0, Ogre::Real z_1,
+									 Ogre::Real u_0, Ogre::Real u_1,
+									 Ogre::Real v_0, Ogre::Real v_1);
 };
 
 #endif

@@ -47,3 +47,29 @@ void TBuilderShapeBase_Ogre::SetRandomVariant()
 	mPtrMaterialVariant = &(mPtrMaterial->mGraphic[randomIndexGraphic]);
 }
 //-------------------------------------------------------------------------
+void TBuilderShapeBase_Ogre::CreateMaterial()
+{
+	// загрузка текстуры
+	Ogre::TexturePtr texturePtr = 
+		Ogre::TextureManager::getSingletonPtr()->
+		load(mPtrMaterialVariant->color, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
+	// получить материал от Огра
+	mMaterialPtr = Ogre::MaterialManager::getSingletonPtr()->
+		getByName(mPtrMaterialVariant->ogreMaterial, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
+	// настройка 
+	Ogre::Technique* pTech = mMaterialPtr->getTechnique(0);
+	if( pTech==NULL )
+		return;
+	Ogre::Pass* pPass = pTech->getPass(0);
+	if( pPass==NULL )
+		return;
+
+	if( pPass->getNumTextureUnitStates()==0 )
+	{
+		Ogre::TextureUnitState* pTexUS = pPass->createTextureUnitState();
+		pTexUS->setTexture(texturePtr);
+	}
+}
+//-----------------------------------------------------------------------------
