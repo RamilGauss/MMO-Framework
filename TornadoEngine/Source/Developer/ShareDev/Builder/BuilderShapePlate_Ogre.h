@@ -17,7 +17,6 @@ struct TShapeItem;
 class DllExport TBuilderShapePlate_Ogre : public TBuilderShapeBase_Ogre
 {
 	nsParamBuilderShape::TPlate* mPSh;
-	int mCntQuad;
 public:
 	TBuilderShapePlate_Ogre();
 
@@ -27,11 +26,9 @@ protected:
 	virtual void SetNameMesh();
 	virtual void SetParamShape( nsParamBuilderShape::TBaseParam* pShape );
 protected:
-	//void CreateMaterial();
 	void CreateMesh();
 	void SetupEntity();
 
-	Ogre::ManualObject* mPtrMO;
 	void CreateSheetY(Ogre::Real x_min, Ogre::Real x_max, 
 		Ogre::Real z_min, Ogre::Real z_max, 
 		Ogre::Real y);

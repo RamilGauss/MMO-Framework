@@ -31,6 +31,43 @@ protected:
 
 	Ogre::String mNameMesh;
 	Ogre::String mNameEntity;
+
+	struct TTriangle
+	{
+		TTriangle(){}
+		TTriangle( int begin )
+		{
+			_0 = begin+0;
+			_1 = begin+1;
+			_2 = begin+2;
+		}
+		int _0;
+		int _1;
+		int _2;
+	};
+	struct TQuad
+	{
+		TQuad(){}
+		TQuad(int begin)
+		{
+			_0 = begin+0;
+			_1 = begin+1;
+			_2 = begin+2;
+			_3 = begin+3;
+		}
+		int _0;
+		int _1;
+		int _2;
+		int _3;
+	};
+
+	//typedef std::list<TTriangle> TListTriangle;
+	//typedef std::list<TQuad>     TListQuad;
+
+	//TListTriangle mListIndexTriangle;
+	//TListQuad     mListIndexQuad;
+
+	Ogre::ManualObject* mPtrMO;
 public:
 	TBuilderShapeBase_Ogre();
 	virtual ~TBuilderShapeBase_Ogre();
@@ -46,6 +83,9 @@ protected:
 protected:
 	void SetRandomVariant();
 	void CreateMaterial();
+
+	void ApplyQuad(TQuad& quad);
+	void ApplyTriangle(TTriangle& triangle);
 };
 
 #endif

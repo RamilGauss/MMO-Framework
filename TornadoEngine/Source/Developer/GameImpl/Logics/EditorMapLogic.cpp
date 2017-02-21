@@ -364,16 +364,16 @@ void TEditorMapLogic::ShowCylinder()
 	nsParamBuilderShape::TCylinder* pCylinder = new nsParamBuilderShape::TCylinder;
 	shItem.mPtrGeometry.reset(pCylinder);
 	//----------------------------------------------------------
-	pCylinder->cnt_points_per_circle = 3000;
-	pCylinder->radius_max = 50;
+	pCylinder->cnt_points_per_circle = 100;
+	pCylinder->radius_max = 100;
 	pCylinder->radius_min = 0;
-	pCylinder->length = 100;
+	pCylinder->length = 10;
 	matItem.mGraphic[0].ogreMaterial = /*"Test";//*/"Iron";
 	matItem.mGraphic[0].color = /*"color.jpg";//*/"Iron_00.jpg";
 	builder.Setup(&shItem, &matItem);
 	std::string nameCylinderEntity = "Cylinder0";
 	Ogre::Entity* pEntity = builder.CreateEntity(nameCylinderEntity);
-	Ogre::Vector3 vPos(-10,-10,-10);
+	Ogre::Vector3 vPos(-10,100,-10);
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
 }

@@ -17,7 +17,6 @@ struct TShapeItem;
 class DllExport TBuilderShapeCylinder_Ogre : public TBuilderShapeBase_Ogre
 {
 	nsParamBuilderShape::TCylinder* mPSh;
-	int mCntQuad;
 public:
 	TBuilderShapeCylinder_Ogre();
 
@@ -27,11 +26,8 @@ protected:
 	virtual void SetNameMesh();
 	virtual void SetParamShape( nsParamBuilderShape::TBaseParam* pShape );
 protected:
-	//void CreateMaterial();
 	void CreateMesh();
 	void SetupEntity();
-
-	Ogre::ManualObject* mPtrMO;
 
 	void CreateExternalTube();
 	void CreateInternalTube();
@@ -40,11 +36,17 @@ protected:
 	void CreateCircleSheetUp();
 	void CreateCircleSheetDown();
 
+	void CreateCircleSheet(Ogre::Real y, bool x_y);
+
 	void CreateQuad( Ogre::Real x_0, Ogre::Real x_1, 
 									 Ogre::Real y_0, Ogre::Real y_1,
 									 Ogre::Real z_0, Ogre::Real z_1,
 									 Ogre::Real u_0, Ogre::Real u_1,
 									 Ogre::Real v_0, Ogre::Real v_1);
+	void CreateTriangleY( Ogre::Vector3& x, Ogre::Vector3& z, 
+												Ogre::Vector3& u, Ogre::Vector3& v, 
+												Ogre::Real y,     Ogre::Real normAxesY, 
+												bool x_y);
 };
 
 #endif

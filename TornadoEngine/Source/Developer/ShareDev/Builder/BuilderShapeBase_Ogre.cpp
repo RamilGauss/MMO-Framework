@@ -14,6 +14,7 @@ See for more information License.h.
 //-------------------------------------------------------------------------------
 TBuilderShapeBase_Ogre::TBuilderShapeBase_Ogre()
 {
+	mPtrMO              = NULL;
 	mPtrShape    				= NULL;
 	mPtrMaterial 				= NULL;
 	mPtrMaterialVariant = NULL;
@@ -71,5 +72,15 @@ void TBuilderShapeBase_Ogre::CreateMaterial()
 		Ogre::TextureUnitState* pTexUS = pPass->createTextureUnitState();
 		pTexUS->setTexture(texturePtr);
 	}
+}
+//-----------------------------------------------------------------------------
+void TBuilderShapeBase_Ogre::ApplyQuad(TQuad& quad)
+{
+  mPtrMO->quad(quad._0, quad._1, quad._2, quad._3);
+}
+//-----------------------------------------------------------------------------
+void TBuilderShapeBase_Ogre::ApplyTriangle(TTriangle& triangle)
+{
+  mPtrMO->triangle(triangle._0, triangle._1, triangle._2);
 }
 //-----------------------------------------------------------------------------

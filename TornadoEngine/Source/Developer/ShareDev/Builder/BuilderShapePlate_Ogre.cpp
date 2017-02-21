@@ -64,7 +64,6 @@ void TBuilderShapePlate_Ogre::SetupEntity()
 //-------------------------------------------------------------------------
 void TBuilderShapePlate_Ogre::CreateMesh()
 {
-	mCntQuad = 0;
 	// взять геометрическую форму
 	Ogre::ManualObject mo("");
 	mPtrMO = &mo;
@@ -76,12 +75,6 @@ void TBuilderShapePlate_Ogre::CreateMesh()
 	CreateSheetX( 0,           mPSh->height,0, 		  			mPSh->length, mPSh->width);//бок, право/right
 	CreateSheetY( mPSh->width, 0,           0, 		  			mPSh->length, mPSh->height);//крыша/top
 	//------------------------------------------------
-	for( int i = 0 ; i < mCntQuad ; i++)
-	{
-		unsigned int index = i*4;
-		// обход против часовой стрелки
-		mo.quad(index,index+1,index+2,index+3);
-	}
 	mo.end();
 
 	mMeshPtr = mo.convertToMesh(mNameMesh);
@@ -194,6 +187,8 @@ void TBuilderShapePlate_Ogre::CreateQuad(Ogre::Real a_min, Ogre::Real a_max,
 								Ogre::Real u_min, Ogre::Real u_max, 
 								Ogre::Real v_min, Ogre::Real v_max)
 {
+	TQuad quad(mPtrMO->getCurrentVertexCount());
+
 	Ogre::Vector3 pos(unuse,unuse,unuse);
 
 	SetVector3ByUse(pos, a_min, useA);
@@ -220,6 +215,6 @@ void TBuilderShapePlate_Ogre::CreateQuad(Ogre::Real a_min, Ogre::Real a_max,
 	mPtrMO->textureCoord(u_min, v_max);
 	mPtrMO->normal(normal);
 
-	mCntQuad++;
+	ApplyQuad(quad);
 }
 //-----------------------------------------------------------------------------
