@@ -127,8 +127,8 @@ void TSerializerParamBuilderShape::HandlerPlateVarGeomToStruct()
   int cnt = GetValueByName(sCntCoord);
   for(int i = 0 ; i < cnt ; i++ )
   {
-    char strCoord[100];
-    sprintf(strCoord, "%s%d", sCoord, i);
+		std::string strCoord = sCoord;
+		strCoord += boost::lexical_cast<std::string>(i);
 
     TMapStrStrIt fit = mMapKeyValue->find(strCoord);
     if(fit==mMapKeyValue->end()) 
@@ -270,8 +270,8 @@ void TSerializerParamBuilderShape::HandlerPlateVarGeomToStr()
 
   for(int i = 0 ; i < cnt ; i++ )
   {
-    char strCoord[100];
-    sprintf(strCoord, "%s%d", sCoord, i);
+		std::string strCoord = sCoord;
+		strCoord += boost::lexical_cast<std::string>(i);
 
     std::string strValue;
 

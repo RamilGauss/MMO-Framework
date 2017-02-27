@@ -104,78 +104,31 @@ void TBuilderShapeCylinder_Ogre::CreateExternalTube()
 	if( mPSh->cnt_points_per_circle < 3 )
 		return;
 
-	Ogre::Real v_min = 0;
-	Ogre::Real v_max = 0;
-	Ogre::Real y_min = 0;
-	Ogre::Real y_max = 0;
+	Ogre::Real u_0 = 0;
+	Ogre::Real u_1 = 0;
+	Ogre::Real v_0 = 0;
+	Ogre::Real v_1 = mPSh->length/mPtrMaterialVariant->width;
 
-	Ogre::Real ratio_V = mPSh->length/mPtrMaterialVariant->length;
-	int cntBreakQuad_V = int(ratio_V);
-	cntBreakQuad_V += (ratio_V==int(ratio_V)) ? 0 : 1;
-	for( int iBreakQuad_V = 0 ; iBreakQuad_V < cntBreakQuad_V ; iBreakQuad_V++ )
+	Ogre::Real x_0 = 0;
+	Ogre::Real y_0 = 0;
+	Ogre::Real y_1 = mPSh->length;
+	Ogre::Real z_0 = mPSh->radius_max;
+	Ogre::Real perimetr = Ogre::Math::TWO_PI*mPSh->radius_max;
+	for( int i = 0 ; i <= mPSh->cnt_points_per_circle ; i++ )
 	{
-		if(iBreakQuad_V==cntBreakQuad_V-1)
-		{
-			if(ratio_V==int(ratio_V))
-				v_max = 1.0;
-			else
-				v_max = ratio_V - int(ratio_V);
-		}
-		else
-			v_max = 1.0;
+		Ogre::Real angle = (Ogre::Math::TWO_PI*(i+1))/(mPSh->cnt_points_per_circle);
+		Ogre::Real x_1 = mPSh->radius_max*sin(angle);
+		Ogre::Real z_1 = mPSh->radius_max*cos(angle);
 
-		y_max += v_max*mPtrMaterialVariant->length;
+		Ogre::Real u_1 = perimetr*(i+1)/mPSh->cnt_points_per_circle;
+		u_1 /= mPtrMaterialVariant->width;
 
-		Ogre::Real x_0 = 0;
-		Ogre::Real z_0 = mPSh->radius_max;
-		Ogre::Real u_0 = 0;
-		Ogre::Real perimetr = Ogre::Math::TWO_PI*mPSh->radius_max;
-		for( int i = 0 ; i <= mPSh->cnt_points_per_circle ; i++ )
-		{
-			Ogre::Real angle = (Ogre::Math::TWO_PI*i)/(mPSh->cnt_points_per_circle);
-			Ogre::Real x_1 = mPSh->radius_max*sin(angle);
-			Ogre::Real z_1 = mPSh->radius_max*cos(angle);
+		CreateQuad(x_0, x_1, y_0, y_1, z_0, z_1, 
+				u_0, u_1, v_0, v_1);
 
-			Ogre::Real u_1 = perimetr*(i+1)/mPSh->cnt_points_per_circle;
-			u_1 /= mPtrMaterialVariant->width;
-
-			Ogre::Real ceil_u_0;
-			Ogre::Real frac_u_0 = modf(u_0, &ceil_u_0);
-			Ogre::Real ceil_u_1;
-			Ogre::Real frac_u_1 = modf(u_1, &ceil_u_1);
-
-			int cntBreakQuad_U = ceil_u_1 - ceil_u_0 + 1;
-			if( ceil_u_1==u_1)
-				cntBreakQuad_U--;
-			Ogre::Real param_U_0 = 0;
-			Ogre::Real delta_u = u_1 - u_0;
-			
-			for( int iBreakQuad_U = 0 ; iBreakQuad_U < cntBreakQuad_U ; iBreakQuad_U++ )
-			{
-				Ogre::Real param_U_1;
-				if(iBreakQuad_U==cntBreakQuad_U-1)
-					param_U_1 = 1.0;
-				else
-					param_U_1 = (ceil_u_0 + iBreakQuad_U + 1 - u_0)/delta_u;
-				Ogre::Real x_min = x_0 + param_U_0*(x_1 - x_0);
-				Ogre::Real x_max = x_0 + param_U_1*(x_1 - x_0);
-				Ogre::Real z_min = z_0 + param_U_0*(z_1 - z_0);
-				Ogre::Real z_max = z_0 + param_U_1*(z_1 - z_0);
-				Ogre::Real u_min = u_0 + param_U_0*(u_1 - u_0);
-				u_min = u_min - int(u_min);
-				Ogre::Real u_max = u_0 + param_U_1*(u_1 - u_0);
-				u_max = u_max - int(u_max);
-				if( u_max==0 )// не может быть равно нулю
-					u_max = 1.0;
-				CreateQuad(x_min, x_max, y_min, y_max, z_min, z_max, 
-					u_min, u_max, v_min, v_max);
-				param_U_0 = param_U_1;
-			}
-			x_0 = x_1;
-			z_0 = z_1;
-			u_0 = u_1;
-  	}
-		y_min = y_max;
+		x_0 = x_1;
+		z_0 = z_1;
+		u_0 = u_1;
 	}
 }
 //-----------------------------------------------------------------------------
@@ -186,12 +139,14 @@ void TBuilderShapeCylinder_Ogre::CreateInternalTube()// внутренняя т�
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheetUp_Cut()
 {
-
+	Ogre::Real y = mPSh->length;
+	CreateCircleSheet_Cut( y, true);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheetDown_Cut()
 {
-
+	Ogre::Real y = 0;
+	CreateCircleSheet_Cut(y, false);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheetUp()
@@ -208,28 +163,79 @@ void TBuilderShapeCylinder_Ogre::CreateCircleSheetDown()
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheet(Ogre::Real y, bool x_y)
 {
-	Ogre::Vector3 x, z, u, v;
-	x.z = 0;
-	z.z = 0;
-	u.z = 0.5;// центр
-	v.z = 0.5;
+	//int i_0 = 0;
+	//int i_1 = 1;
+	//if( x_y==false )
+	//{
+	//	i_0 = 1;
+	//	i_1 = 0;
+	//}
 
-	x.x = 0;
-	z.x = mPSh->radius_max;
-	u.x = 0.5;
-	v.x = 0.0;
+	Ogre::Real sizeU = mPSh->radius_max*2/mPtrMaterialVariant->width;
+	Ogre::Real sizeV = mPSh->radius_max*2/mPtrMaterialVariant->length;
+
+	nsStructBuilder_Ogre::TTriVertex tVertex;
+	tVertex.p[2].y = tVertex.p[1].y = tVertex.p[0].y = y;
+	tVertex.p[2].x = 0;
+	tVertex.p[2].z = 0;
+	tVertex.p[2].u = sizeU/2;
+	tVertex.p[2].v = sizeV/2;
+
+	tVertex.p[0].x = 0;
+	tVertex.p[0].z = mPSh->radius_max;
+	tVertex.p[0].u = sizeU/2;
+	tVertex.p[0].v = 0.0;
 	for( int i = 0 ; i <= mPSh->cnt_points_per_circle ; i++ )
 	{
 		Ogre::Real angle = (Ogre::Math::TWO_PI*(i+1))/(mPSh->cnt_points_per_circle);
-		x.y = mPSh->radius_max*sin(angle);
-		z.y = mPSh->radius_max*cos(angle);
-		u.y = 0.5 - 0.5*sin(angle);
-		v.y = 0.5 - 0.5*cos(angle);
-		CreateTriangleY(x, z, u, v, y, 1, x_y);
-		x.x = x.y;
-		z.x = z.y;
-		u.x = u.y;
-		v.x = v.y;
+		tVertex.p[1].x = mPSh->radius_max*sin(angle);
+		tVertex.p[1].z = mPSh->radius_max*cos(angle);
+		tVertex.p[1].u = sizeU/2*(1 - sin(angle));
+		tVertex.p[1].v = sizeV/2*(1 - cos(angle));
+		CreateTriangle(tVertex);
+		tVertex.p[0] = tVertex.p[1];
+	}
+}
+//-----------------------------------------------------------------------------
+void TBuilderShapeCylinder_Ogre::CreateCircleSheet_Cut(Ogre::Real y, bool x_y)
+{
+	Ogre::Real dRadius = mPSh->radius_max - mPSh->radius_min;
+	Ogre::Real sizeU = dRadius/mPtrMaterialVariant->width;
+	Ogre::Real sizeV = dRadius/mPtrMaterialVariant->length;
+	Ogre::Real ratioRadius = mPSh->radius_min/mPSh->radius_max;
+
+	nsStructBuilder_Ogre::TQuadVertex qVertex;
+	qVertex.p[1].y = y;
+	qVertex.p[2].y = y;
+
+	qVertex.p[0].x = 0;
+	qVertex.p[0].y = y;
+	qVertex.p[0].z = mPSh->radius_max;
+	qVertex.p[0].u = sizeU/2;
+	qVertex.p[0].v = 0;
+
+	qVertex.p[3].x = 0;
+	qVertex.p[3].y = y;
+	qVertex.p[3].z = mPSh->radius_min;
+	qVertex.p[3].u = sizeU/2;
+	qVertex.p[3].v = sizeV/2*(1 - ratioRadius);
+	for( int i = 0 ; i <= mPSh->cnt_points_per_circle ; i++ )
+	{
+		Ogre::Real angle = (Ogre::Math::TWO_PI*(i+1))/(mPSh->cnt_points_per_circle);
+		Ogre::Real sinA = sin(angle);
+		Ogre::Real cosA = cos(angle);
+		qVertex.p[1].x = mPSh->radius_max*sinA;
+		qVertex.p[1].z = mPSh->radius_max*cosA;
+		qVertex.p[1].u = qVertex.p[1].x/mPtrMaterialVariant->width;
+		qVertex.p[1].v = qVertex.p[1].z/mPtrMaterialVariant->length;
+		
+		qVertex.p[2].x = mPSh->radius_min*sinA;
+		qVertex.p[2].z = mPSh->radius_min*cosA;
+		qVertex.p[2].u = qVertex.p[2].x/mPtrMaterialVariant->width;
+		qVertex.p[2].v = qVertex.p[2].z/mPtrMaterialVariant->length;
+		TBuilderShapeBase_Ogre::CreateQuad(qVertex);
+		qVertex.p[0] = qVertex.p[1];
+		qVertex.p[3] = qVertex.p[2];
 	}
 }
 //-----------------------------------------------------------------------------
@@ -239,63 +245,18 @@ void TBuilderShapeCylinder_Ogre::CreateQuad( Ogre::Real x_0, Ogre::Real x_1,
 																						 Ogre::Real u_0, Ogre::Real u_1,
 																						 Ogre::Real v_0, Ogre::Real v_1)
 {
-	TQuad quad(mPtrMO->getCurrentVertexCount());
-	mPtrMO->position(x_0, y_0, z_0);
-	mPtrMO->textureCoord(u_0, v_0);
-	//mPtrMO->normal(normal);
-
-	mPtrMO->position(x_1, y_0, z_1);
-	mPtrMO->textureCoord(u_1, v_0);
-	//mPtrMO->normal(normal);
-
-	mPtrMO->position(x_1, y_1, z_1);
-	mPtrMO->textureCoord(u_1, v_1);
-	//mPtrMO->normal(normal);
-
-	mPtrMO->position(x_0, y_1, z_0);
-	mPtrMO->textureCoord(u_0, v_1);
-	//mPtrMO->normal(normal);
-
-	ApplyQuad(quad);
-}
-//-----------------------------------------------------------------------------
-void TBuilderShapeCylinder_Ogre::CreateTriangleY( Ogre::Vector3& x, Ogre::Vector3& z, 
-																								  Ogre::Vector3& u, Ogre::Vector3& v, 
-																									Ogre::Real y,     Ogre::Real normAxesY, 
-																									bool x_y/*порядок обхода*/ )
-{
-  TTriangle triangle(mPtrMO->getCurrentVertexCount());
-	Ogre::Vector3 normal(0, normAxesY, 0);
-
-	Ogre::Vector3 pos_0, pos_1;
-	Ogre::Vector2 coord_0, coord_1;
-	if( x_y )
-	{
-		pos_0 = Ogre::Vector3(x.x, y, z.x);
-		pos_1 = Ogre::Vector3(x.y, y, z.y);
-		coord_0 = Ogre::Vector2(u.x, v.x);
-		coord_1 = Ogre::Vector2(u.y, v.y);
-	}
-	else
-	{
-		pos_1 = Ogre::Vector3(x.x, y, z.x);
-		pos_0 = Ogre::Vector3(x.y, y, z.y);
-		coord_1 = Ogre::Vector2(u.x, v.x);
-		coord_0 = Ogre::Vector2(u.y, v.y);
-	}
-
-	mPtrMO->position(pos_0);
-	mPtrMO->textureCoord(coord_0);
-	mPtrMO->normal(normal);
-
-	mPtrMO->position(pos_1);
-	mPtrMO->textureCoord(coord_1);
-	mPtrMO->normal(normal);
-
-	mPtrMO->position(x.z, y, z.z);
-	mPtrMO->textureCoord(u.z, v.z);
-	mPtrMO->normal(normal);
-
-	ApplyTriangle(triangle);
+	nsStructBuilder_Ogre::TQuadVertex qVertex;
+	qVertex.p[0].x = x_0;	qVertex.p[0].y = y_0; qVertex.p[0].z = z_0;
+	qVertex.p[0].u = u_0;	qVertex.p[0].v = v_0;
+	
+	qVertex.p[1].x = x_1;	qVertex.p[1].y = y_0; qVertex.p[1].z = z_1;
+	qVertex.p[1].u = u_1;	qVertex.p[1].v = v_0;
+	
+	qVertex.p[2].x = x_1;	qVertex.p[2].y = y_1;	qVertex.p[2].z = z_1;
+	qVertex.p[2].u = u_1;	qVertex.p[2].v = v_1;
+	
+	qVertex.p[3].x = x_0;	qVertex.p[3].y = y_1;	qVertex.p[3].z = z_0;
+	qVertex.p[3].u = u_0;	qVertex.p[3].v = v_1;
+	TBuilderShapeBase_Ogre::CreateQuad(qVertex);
 }
 //-----------------------------------------------------------------------------

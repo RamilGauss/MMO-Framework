@@ -359,14 +359,14 @@ void TEditorMapLogic::ShowCylinder()
 	TMaterialItem matItem(nameMaterial);
 	TMaterialItem::TVariant variant;
 	matItem.mGraphic.push_back(variant);
-	matItem.mGraphic[0].width  = 50;
+	matItem.mGraphic[0].width  = 40;
 	matItem.mGraphic[0].length = 50;
 	nsParamBuilderShape::TCylinder* pCylinder = new nsParamBuilderShape::TCylinder;
 	shItem.mPtrGeometry.reset(pCylinder);
 	//----------------------------------------------------------
 	pCylinder->cnt_points_per_circle = 100;
 	pCylinder->radius_max = 100;
-	pCylinder->radius_min = 0;
+	pCylinder->radius_min = 50;
 	pCylinder->length = 10;
 	matItem.mGraphic[0].ogreMaterial = /*"Test";//*/"Iron";
 	matItem.mGraphic[0].color = /*"color.jpg";//*/"Iron_00.jpg";

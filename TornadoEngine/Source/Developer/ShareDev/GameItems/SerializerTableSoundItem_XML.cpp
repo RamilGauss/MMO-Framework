@@ -14,7 +14,6 @@ See for more information License.h.
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 
-
 namespace nsSerializerTableSoundItem_XML
 {
 	const char* sTableSound  = "TableSound";
@@ -268,11 +267,9 @@ void TSerializerTableSoundItem_XML::SaveRangeMaterial()
   {
     BOOST_FOREACH(TTableSoundItem::TMapStrIntVT& vt, mTableSound->mMapMaterial)
     {
-      char strValue[50];
       std::string key, value;
       value = vt.first;
-      sprintf(strValue, "%d", vt.second);
-      key = strValue; 
+      key = boost::lexical_cast<std::string>(vt.second);
       SaveProperty(key, value);
     }
     mXML->LeaveSection();
@@ -399,10 +396,8 @@ void TSerializerTableSoundItem_XML::SaveCombination(TTableSoundItem::TMapStrInt&
   BOOST_FOREACH(TTableSoundItem::TMapStrIntVT& vt, mapCombination)
   {
     std::string key, value;
-    char str[50];
     key = vt.first;
-    sprintf(str, "%d", vt.second);
-    value = str;
+    value = boost::lexical_cast<std::string>(vt.second);
     SaveProperty(key, value);
   }
 }

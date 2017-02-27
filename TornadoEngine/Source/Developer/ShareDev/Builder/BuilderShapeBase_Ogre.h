@@ -13,6 +13,7 @@ See for more information License.h.
 
 #include "ParamBuilderShape.h"
 #include "MaterialItem.h"
+#include "StructBuilder_Ogre.h"
 
 struct TShapeItem;
 
@@ -61,12 +62,6 @@ protected:
 		int _3;
 	};
 
-	//typedef std::list<TTriangle> TListTriangle;
-	//typedef std::list<TQuad>     TListQuad;
-
-	//TListTriangle mListIndexTriangle;
-	//TListQuad     mListIndexQuad;
-
 	Ogre::ManualObject* mPtrMO;
 public:
 	TBuilderShapeBase_Ogre();
@@ -86,6 +81,11 @@ protected:
 
 	void ApplyQuad(TQuad& quad);
 	void ApplyTriangle(TTriangle& triangle);
+public:
+	void CreateTriangle(nsStructBuilder_Ogre::TTriVertex& tVertex);
+	void CreateQuad(nsStructBuilder_Ogre::TQuadVertex& qVertex);
+
+	void AddPosition( nsStructBuilder_Ogre::TVertex* p, int cnt);
 };
 
 #endif

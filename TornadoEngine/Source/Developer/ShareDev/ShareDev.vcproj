@@ -793,6 +793,10 @@
 						RelativePath=".\Builder\BuilderShapePlate_Ogre.h"
 						>
 					</File>
+					<File
+						RelativePath=".\Builder\StructBuilder_Ogre.h"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="Bullet"

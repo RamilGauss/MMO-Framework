@@ -10,6 +10,8 @@ See for more information License.h.
 #include "GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleGraphicEngine.h"
 
+#include <boost/lexical_cast.hpp>
+
 TShowTankWoT_test::TShowTankWoT_test()
 {
 
@@ -39,14 +41,14 @@ void TShowTankWoT_test::ShowTank(int index, Ogre::Vector3& pos)
   TOrient orTrackL  (Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10, 10,10), Ogre::Vector3(0, -20,-10) + pos);
   TOrient orTrackR  (Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10, 10,10), Ogre::Vector3(0, -20,-10) + pos);
 
-  char sHull[50], sTurret[50], sChassisL[50], sChassisR[50], sGun[50], sTrackL[50], sTrackR[50];
-  sprintf(sHull,     "Hull%d",     index); 
-  sprintf(sTurret,   "Turret%d",   index); 
-  sprintf(sChassisL, "ChassisL%d", index); 
-  sprintf(sChassisR, "ChassisR%d", index); 
-  sprintf(sGun,      "Gun%d",      index); 
-  sprintf(sTrackL,   "TrackL%d",   index); 
-  sprintf(sTrackR,   "TrackR%d",   index); 
+	std::string sIndex = boost::lexical_cast<std::string>(index);
+	std::string sHull     = "Hull"     + sIndex;
+	std::string sTurret   = "Turret"   + sIndex;
+	std::string sChassisL = "ChassisL" + sIndex;
+	std::string sChassisR = "ChassisR" + sIndex;
+	std::string sGun      = "Gun"      + sIndex;
+	std::string sTrackL   = "TrackL"   + sIndex;
+	std::string sTrackR   = "TrackR"   + sIndex;
 
   AddEntity(pSM->createEntity(sHull,     "KingTiger/Hull.mesh"),    orHull,     pSM);
   AddEntity(pSM->createEntity(sTurret,   "KingTiger/Turret.mesh"),  orTurret,   pSM);

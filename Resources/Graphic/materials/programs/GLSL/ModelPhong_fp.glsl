@@ -7,7 +7,7 @@ varying vec2 texcoord;
 void main(void)
 {
 	vec4 result = vec4(0.0);
-	for( int li = 0; li < 1/*gl_MaxLights*/; ++li )
+	for( int li = 0; li < gl_MaxLights; ++li )
 	{
 		vec3 l;
 		if( gl_LightSource[li].position.w != 0.0 )

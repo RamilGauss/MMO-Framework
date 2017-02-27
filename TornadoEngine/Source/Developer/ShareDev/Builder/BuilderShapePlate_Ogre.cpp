@@ -92,27 +92,21 @@ void TBuilderShapePlate_Ogre::CreateSheetY(Ogre::Real x_min, Ogre::Real x_max,
 									Ogre::Real z_min, Ogre::Real z_max, 
 									Ogre::Real y )
 {
-	Ogre::Vector3 normal( 0, 0, 0);
-	normal.y = ( x_min < x_max ) ? -1 : 1;
-	CreateSheet(x_min, x_max, z_min, z_max, useX, useZ, y, normal);
+	CreateSheet(x_min, x_max, z_min, z_max, useX, useZ, y);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapePlate_Ogre::CreateSheetZ(Ogre::Real x_min, Ogre::Real x_max, 
 									Ogre::Real y_min, Ogre::Real y_max, 
 									Ogre::Real z )
 {
-	Ogre::Vector3 normal( 0, 0, 0);
-	normal.z = ( x_min < x_max ) ? -1 : 1;
-	CreateSheet(x_min, x_max, y_min, y_max, useX, useY, z, normal);
+	CreateSheet(x_min, x_max, y_min, y_max, useX, useY, z);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapePlate_Ogre::CreateSheetX(Ogre::Real y_min, Ogre::Real y_max, 
 									Ogre::Real z_min, Ogre::Real z_max, 
 									Ogre::Real x )
 {
-	Ogre::Vector3 normal( 0, 0, 0);
-	normal.x = ( y_min < y_max ) ? -1 : 1;
-	CreateSheet(y_min, y_max, z_min, z_max, useY, useZ, x, normal);
+	CreateSheet(y_min, y_max, z_min, z_max, useY, useZ, x);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapePlate_Ogre::SetVector3ByUse(Ogre::Vector3& pos, Ogre::Real v, eUseAxe use)
@@ -134,87 +128,46 @@ void TBuilderShapePlate_Ogre::SetVector3ByUse(Ogre::Vector3& pos, Ogre::Real v, 
 void TBuilderShapePlate_Ogre::CreateSheet(Ogre::Real a_min, Ogre::Real a_max, 
 															Ogre::Real b_min, Ogre::Real b_max,
 															eUseAxe useA, eUseAxe useB,
-															Ogre::Real unuse, Ogre::Vector3& normal)
+															Ogre::Real unuse)
 {
-	bool flgA_rise = bool(a_max - a_min > 0);
-	bool flgB_rise = bool(b_max - b_min > 0);
 	Ogre::Real absA = abs(a_max-a_min);
 	Ogre::Real absB = abs(b_max-b_min);
-
-	int cntA = int(absA/mPtrMaterialVariant->width);
-	if(cntA*mPtrMaterialVariant->width < absA)
-		cntA++;
-	int cntB = int(absB/mPtrMaterialVariant->length);
-	if(cntB*mPtrMaterialVariant->length < absB)
-		cntB++;
-	Ogre::Real a_begin = a_min, a_end, b_begin,	b_end;
-	Ogre::Real stepA = flgA_rise ? mPtrMaterialVariant->width  : -mPtrMaterialVariant->width;
-	Ogre::Real stepB = flgB_rise ? mPtrMaterialVariant->length : -mPtrMaterialVariant->length;
-	for( int iA = 0 ; iA < cntA ; iA++ )
-	{
-		b_begin = b_min;
-		a_end = a_begin + stepA;
-		if( flgA_rise )
-			a_end = std::min(a_end,a_max);
-		else
-			a_end = std::max(a_end,a_max);
-		Ogre::Real u_max = (a_end - a_begin)/stepA;
-		if( u_max==0 )
-			u_max = 1.0;
-		for( int iB = 0 ; iB < cntB ; iB++ )
-		{
-			b_end = b_begin + stepB;
-			if( flgB_rise )
-				b_end = std::min(b_end, b_max);
-			else
-				b_end = std::max(b_end, b_max);
-			Ogre::Real v_max = (b_end - b_begin)/stepB;
-			if( v_max==0 )
-				v_max = 1.0;
-			CreateQuad(a_begin, a_end, b_begin, b_end,
-				useA, useB, unuse, normal,
-				0, u_max, 0, v_max);
-			b_begin += stepB;
-		}
-		a_begin += stepA;
-	}
+	Ogre::Real u_max = absA/mPtrMaterialVariant->width;
+	Ogre::Real v_max = absB/mPtrMaterialVariant->length;
+	CreateQuad(a_min, a_max, b_min, b_max,
+		useA, useB, unuse, 0, u_max, 0, v_max);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapePlate_Ogre::CreateQuad(Ogre::Real a_min, Ogre::Real a_max, 
 								Ogre::Real b_min, Ogre::Real b_max,
 								eUseAxe useA, eUseAxe useB,
-								Ogre::Real unuse, Ogre::Vector3& normal,
+								Ogre::Real unuse,
 								Ogre::Real u_min, Ogre::Real u_max, 
 								Ogre::Real v_min, Ogre::Real v_max)
 {
-	TQuad quad(mPtrMO->getCurrentVertexCount());
-
+	nsStructBuilder_Ogre::TQuadVertex qVertex;
 	Ogre::Vector3 pos(unuse,unuse,unuse);
 
 	SetVector3ByUse(pos, a_min, useA);
 	SetVector3ByUse(pos, b_min, useB);
-	mPtrMO->position(pos);
-	mPtrMO->textureCoord(u_min, v_min);
-	mPtrMO->normal(normal);
+	qVertex.p[0].x = pos.x; qVertex.p[0].y = pos.y; qVertex.p[0].z = pos.z;
+	qVertex.p[0].u = u_min; qVertex.p[0].v = v_min;
 
 	SetVector3ByUse(pos, a_max, useA);
 	SetVector3ByUse(pos, b_min, useB);
-	mPtrMO->position(pos);
-	mPtrMO->textureCoord(u_max, v_min);
-	mPtrMO->normal(normal);
+	qVertex.p[1].x = pos.x; qVertex.p[1].y = pos.y; qVertex.p[1].z = pos.z;
+	qVertex.p[1].u = u_max; qVertex.p[1].v = v_min;
 
 	SetVector3ByUse(pos, a_max, useA);
 	SetVector3ByUse(pos, b_max, useB);
-	mPtrMO->position(pos);
-	mPtrMO->textureCoord(u_max, v_max);
-	mPtrMO->normal(normal);
+	qVertex.p[2].x = pos.x; qVertex.p[2].y = pos.y; qVertex.p[2].z = pos.z;
+	qVertex.p[2].u = u_max; qVertex.p[2].v = v_max;
 
 	SetVector3ByUse(pos, a_min, useA);
 	SetVector3ByUse(pos, b_max, useB);
-	mPtrMO->position(pos);
-	mPtrMO->textureCoord(u_min, v_max);
-	mPtrMO->normal(normal);
+	qVertex.p[3].x = pos.x; qVertex.p[3].y = pos.y; qVertex.p[3].z = pos.z;
+	qVertex.p[3].u = u_min; qVertex.p[3].v = v_max;
 
-	ApplyQuad(quad);
+	TBuilderShapeBase_Ogre::CreateQuad(qVertex);
 }
 //-----------------------------------------------------------------------------

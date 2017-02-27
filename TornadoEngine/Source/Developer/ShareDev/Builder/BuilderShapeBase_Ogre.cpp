@@ -84,3 +84,28 @@ void TBuilderShapeBase_Ogre::ApplyTriangle(TTriangle& triangle)
   mPtrMO->triangle(triangle._0, triangle._1, triangle._2);
 }
 //-----------------------------------------------------------------------------
+void TBuilderShapeBase_Ogre::CreateTriangle(nsStructBuilder_Ogre::TTriVertex& tVertex)
+{
+	TTriangle triangle(mPtrMO->getCurrentVertexCount());
+	AddPosition(&(tVertex.p[0]), 3);
+	ApplyTriangle(triangle);
+}
+//-----------------------------------------------------------------------------
+void TBuilderShapeBase_Ogre::CreateQuad(nsStructBuilder_Ogre::TQuadVertex& qVertex)
+{
+	TQuad quad(mPtrMO->getCurrentVertexCount());
+	AddPosition(&(qVertex.p[0]), 4);
+	ApplyQuad(quad);
+}
+//-----------------------------------------------------------------------------
+void TBuilderShapeBase_Ogre::AddPosition( nsStructBuilder_Ogre::TVertex* p, int cnt)
+{
+	for( int i = 0 ; i < cnt ; i++ )
+	{
+		mPtrMO->position(p[i].x, p[i].y, p[i].z);
+		mPtrMO->textureCoord(p[i].u, p[i].v);
+		//### TODO расчет нормалей, а вот надо ли это для затенения по Фонгу?
+		//mPtrMO->normal(normal);
+	}
+}
+//-----------------------------------------------------------------------------

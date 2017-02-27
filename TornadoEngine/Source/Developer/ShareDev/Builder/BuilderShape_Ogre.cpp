@@ -15,6 +15,8 @@ See for more information License.h.
 #include "BuilderShapePlate_Ogre.h"
 #include "BuilderShapeCylinder_Ogre.h"
 
+#include <boost/lexical_cast.hpp>
+
 TBuilderShape_Ogre::TBuilderShape_Ogre()
 {
   mShape    = NULL;
@@ -42,9 +44,9 @@ Ogre::Entity* TBuilderShape_Ogre::Build(TShapeItem* pShape)
 	if( pBuilder==NULL )
 		return NULL;
 
-	char s[400];
-	sprintf(s, "_%d", mCntShape);
-	mNameEntity = pBuilder->GetNameType() + s;
+	mNameEntity  = pBuilder->GetNameType();
+	mNameEntity += "_";
+	mNameEntity += boost::lexical_cast<std::string>(mCntShape);
 	mCntShape++;
 
 	pBuilder->Setup(mShape, mMaterial);

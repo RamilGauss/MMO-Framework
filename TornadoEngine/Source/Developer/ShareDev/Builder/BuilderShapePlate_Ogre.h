@@ -45,12 +45,12 @@ protected:
 	void CreateSheet(Ogre::Real a_min, Ogre::Real a_max, 
 		Ogre::Real b_min, Ogre::Real b_max,
 		eUseAxe useA, eUseAxe useB,
-		Ogre::Real unuse, Ogre::Vector3& normal);
+		Ogre::Real unuse/*, Ogre::Vector3& normal*/);
 
 	void CreateQuad(Ogre::Real a_min, Ogre::Real a_max, 
 		Ogre::Real b_min, Ogre::Real b_max,
 		eUseAxe useA, eUseAxe useB,
-		Ogre::Real unuse, Ogre::Vector3& normal,
+		Ogre::Real unuse/*, Ogre::Vector3& normal*/,
 		Ogre::Real u_min, Ogre::Real u_max, 
 		Ogre::Real v_min, Ogre::Real v_max);
 };

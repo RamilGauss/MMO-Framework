@@ -14,6 +14,7 @@ See for more information License.h.
 #include "ModuleMMOEngineSuperServer.h"
 #include "Events.h"
 
+#include <boost/lexical_cast.hpp>
 
 TSuperServerLogic::TSuperServerLogic()
 {
@@ -94,10 +95,9 @@ void TSuperServerLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
       break;
     case nsMMOEngine::eError:
     {
-      char sError[300];
       nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
-      sprintf(sError, "Error code=%u", pEr->code);
-      sEvent = sError;
+			sEvent = "Error code=";
+			sEvent = boost::lexical_cast<std::string>(pEr->code);
     }
       break;
     case nsMMOEngine::eRecvFromDown:

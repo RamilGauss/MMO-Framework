@@ -55,9 +55,8 @@ std::string TResources::GetStrError()
 //--------------------------------------------------------------------------
 void TResources::ErrorNoSection(const char* section)
 {
-  char s[200];
-  sprintf(s, "Нет секции %s", section);
-  strError = s;
+  strError = "Нет секции ";
+	strError += section;
 }
 //--------------------------------------------------------------------------
 bool TResources::LoadResources()
