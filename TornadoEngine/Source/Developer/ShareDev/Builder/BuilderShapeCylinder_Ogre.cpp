@@ -101,8 +101,17 @@ void TBuilderShapeCylinder_Ogre::CreateMesh()
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateExternalTube()
 {
+	CreateTube( mPSh->radius_max, true);
+}
+//-----------------------------------------------------------------------------
+void TBuilderShapeCylinder_Ogre::CreateTube(Ogre::Real radius, bool x_y)
+{
 	if( mPSh->cnt_points_per_circle < 3 )
 		return;
+
+	Ogre::Real mul = 1.0;
+	if( x_y==false )
+		mul = -1.0;
 
 	Ogre::Real u_0 = 0;
 	Ogre::Real u_1 = 0;
@@ -112,13 +121,14 @@ void TBuilderShapeCylinder_Ogre::CreateExternalTube()
 	Ogre::Real x_0 = 0;
 	Ogre::Real y_0 = 0;
 	Ogre::Real y_1 = mPSh->length;
-	Ogre::Real z_0 = mPSh->radius_max;
-	Ogre::Real perimetr = Ogre::Math::TWO_PI*mPSh->radius_max;
-	for( int i = 0 ; i <= mPSh->cnt_points_per_circle ; i++ )
+	Ogre::Real z_0 = radius;
+	Ogre::Real perimetr = Ogre::Math::TWO_PI*radius;
+	for( int i = 0 ; i < mPSh->cnt_points_per_circle ; i++ )
 	{
 		Ogre::Real angle = (Ogre::Math::TWO_PI*(i+1))/(mPSh->cnt_points_per_circle);
-		Ogre::Real x_1 = mPSh->radius_max*sin(angle);
-		Ogre::Real z_1 = mPSh->radius_max*cos(angle);
+		angle *= mul;
+		Ogre::Real x_1 = radius*sin(angle);
+		Ogre::Real z_1 = radius*cos(angle);
 
 		Ogre::Real u_1 = perimetr*(i+1)/mPSh->cnt_points_per_circle;
 		u_1 /= mPtrMaterialVariant->width;
@@ -134,7 +144,7 @@ void TBuilderShapeCylinder_Ogre::CreateExternalTube()
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateInternalTube()// внутренняя труба
 {
-	
+	CreateTube( mPSh->radius_min, false);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheetUp_Cut()
@@ -163,13 +173,9 @@ void TBuilderShapeCylinder_Ogre::CreateCircleSheetDown()
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheet(Ogre::Real y, bool x_y)
 {
-	//int i_0 = 0;
-	//int i_1 = 1;
-	//if( x_y==false )
-	//{
-	//	i_0 = 1;
-	//	i_1 = 0;
-	//}
+	Ogre::Real mul = 1.0;
+	if( x_y==false )
+		mul = -1.0;
 
 	Ogre::Real sizeU = mPSh->radius_max*2/mPtrMaterialVariant->width;
 	Ogre::Real sizeV = mPSh->radius_max*2/mPtrMaterialVariant->length;
@@ -185,9 +191,10 @@ void TBuilderShapeCylinder_Ogre::CreateCircleSheet(Ogre::Real y, bool x_y)
 	tVertex.p[0].z = mPSh->radius_max;
 	tVertex.p[0].u = sizeU/2;
 	tVertex.p[0].v = 0.0;
-	for( int i = 0 ; i <= mPSh->cnt_points_per_circle ; i++ )
+	for( int i = 0 ; i < mPSh->cnt_points_per_circle ; i++ )
 	{
 		Ogre::Real angle = (Ogre::Math::TWO_PI*(i+1))/(mPSh->cnt_points_per_circle);
+		angle *= mul;
 		tVertex.p[1].x = mPSh->radius_max*sin(angle);
 		tVertex.p[1].z = mPSh->radius_max*cos(angle);
 		tVertex.p[1].u = sizeU/2*(1 - sin(angle));
@@ -199,10 +206,9 @@ void TBuilderShapeCylinder_Ogre::CreateCircleSheet(Ogre::Real y, bool x_y)
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheet_Cut(Ogre::Real y, bool x_y)
 {
-	Ogre::Real dRadius = mPSh->radius_max - mPSh->radius_min;
-	Ogre::Real sizeU = dRadius/mPtrMaterialVariant->width;
-	Ogre::Real sizeV = dRadius/mPtrMaterialVariant->length;
-	Ogre::Real ratioRadius = mPSh->radius_min/mPSh->radius_max;
+	Ogre::Real mul = 1.0;
+	if( x_y==false )
+		mul = -1.0;
 
 	nsStructBuilder_Ogre::TQuadVertex qVertex;
 	qVertex.p[1].y = y;
@@ -211,17 +217,18 @@ void TBuilderShapeCylinder_Ogre::CreateCircleSheet_Cut(Ogre::Real y, bool x_y)
 	qVertex.p[0].x = 0;
 	qVertex.p[0].y = y;
 	qVertex.p[0].z = mPSh->radius_max;
-	qVertex.p[0].u = sizeU/2;
-	qVertex.p[0].v = 0;
+	qVertex.p[0].u = 0;
+	qVertex.p[0].v = mPSh->radius_max/mPtrMaterialVariant->length;
 
 	qVertex.p[3].x = 0;
 	qVertex.p[3].y = y;
 	qVertex.p[3].z = mPSh->radius_min;
-	qVertex.p[3].u = sizeU/2;
-	qVertex.p[3].v = sizeV/2*(1 - ratioRadius);
-	for( int i = 0 ; i <= mPSh->cnt_points_per_circle ; i++ )
+	qVertex.p[3].u = 0;
+	qVertex.p[3].v = mPSh->radius_min/mPtrMaterialVariant->length;
+	for( int i = 0 ; i < mPSh->cnt_points_per_circle ; i++ )
 	{
 		Ogre::Real angle = (Ogre::Math::TWO_PI*(i+1))/(mPSh->cnt_points_per_circle);
+		angle *= mul;
 		Ogre::Real sinA = sin(angle);
 		Ogre::Real cosA = cos(angle);
 		qVertex.p[1].x = mPSh->radius_max*sinA;

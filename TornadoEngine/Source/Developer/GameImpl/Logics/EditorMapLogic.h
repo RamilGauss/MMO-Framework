@@ -60,6 +60,7 @@ private:
   void ShowTest();
 	void ShowPlate();
 	void ShowCylinder();
+	void ShowTerrain();
 	void SetupLight();
 
   void SoundEndWork();

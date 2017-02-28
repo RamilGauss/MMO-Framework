@@ -31,6 +31,16 @@ void main(void)
 	}
 	gl_FragColor = gl_FrontMaterial.emission + gl_FrontMaterial.ambient * gl_LightModel.ambient + result;
 	gl_FragColor *= texture2D(tex0, texcoord);
-	
+
+  //###
+	/*if( gl_FragColor.x >= 0.9 && 
+	    gl_FragColor.y >= 0.9 && 
+			gl_FragColor.z >= 0.9)
+	{
+		gl_FragColor.x = 0.0;
+		gl_FragColor.y = 1.0;
+		gl_FragColor.z = 0.0;
+	}*/
+	//###
 	//gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
 }

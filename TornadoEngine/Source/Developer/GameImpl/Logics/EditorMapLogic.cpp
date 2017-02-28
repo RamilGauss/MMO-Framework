@@ -27,6 +27,7 @@ See for more information License.h.
 #include "MaterialItem.h"
 #include "ShapeItem.h"
 #include "BuilderShapeCylinder_Ogre.h"
+#include "BuilderTerrain_Ogre.h"
 //###
 
 TEditorMapLogic::TEditorMapLogic()
@@ -273,9 +274,7 @@ void TEditorMapLogic::ShowTest()
 	ShowPlate();
 	ShowCylinder();
 	mPtrShowTank->ShowTanks(10);
-
-	TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager()
-		->setSkyBox(true, "Skybox/Hills");
+	ShowTerrain();
 
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 	pCamera->setPosition(160,160,160);
@@ -376,5 +375,11 @@ void TEditorMapLogic::ShowCylinder()
 	Ogre::Vector3 vPos(-10,100,-10);
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::ShowTerrain()
+{
+	TBuilderTerrain_Ogre builder;
+	builder.Show();
 }
 //---------------------------------------------------------------------------------------------

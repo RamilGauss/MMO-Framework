@@ -2706,14 +2706,8 @@
       <Property key="Width"    value="1.5"/>
     </Geometry>
 		<Graphic>
-		  <LOD distance="100">
-				<Property key="Color"  value="ColorGrass00.png"/>
-				<Property key="Normal" value="NormalGrass00.png"/>
-			</LOD>
-		  <LOD distance="1000">
-				<Property key="Color"  value="ColorGrass01.png"/>
-				<Property key="Normal" value="NormalGrass01.png"/>
-			</LOD>
+			<Property key="Color"  value="ColorGrass00.png"/>
+			<Property key="Normal" value="NormalGrass00.png"/>
 		</Graphic>
     <HeightMap><!-- Карта высот -->
 		  <Point x="0" y="0" h="110" u="0" v="0"/>
@@ -2743,6 +2737,13 @@
       <Property key="y" value="1"/>
       <Property key="z" value="0"/>
     </CameraUp>
+		<Fog>
+			<Property key="mode" value="3"/>
+			<Property key="color" value="0"/>
+			<Property key="expDensity" value="0"/>
+			<Property key="linearStart" value="0"/>
+			<Property key="linearEnd" value="0"/>
+		</Fog>
 	  <Set><!-- Набор объектов сцены -->
 		  <Object>
 				<BaseProperty>

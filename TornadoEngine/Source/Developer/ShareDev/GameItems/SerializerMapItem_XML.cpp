@@ -19,6 +19,12 @@ namespace nsSerializerMapItem_XML
   const char* sGravity        = "Gravity";
   const char* sCameraUp       = "CameraUp";
   const char* sNameTableSound = "name";
+	const char* sFog         		= "Fog";
+	const char* sMode				 		= "mode";
+	const char* sColor			 		= "color";
+	const char* sExpDensity	 		= "expDensity";
+	const char* sLinearStart 		= "linearStart";
+	const char* sLinearEnd	 		= "linearEnd";
 	const char* sSet					  = "Set";
 	const char* sObject				  = "Object";
 	const char* sBaseProperty	  = "BaseProperty";
@@ -56,6 +62,7 @@ bool TSerializerMapItem_XML::Load(TBaseItem* pItem)
 	LoadTableSound();
   LoadGravity();
   LoadCameraUp();
+	LoadFog();
   LoadSet();
 	LoadScenario();
   return true;
@@ -73,6 +80,7 @@ bool TSerializerMapItem_XML::Save(TBaseItem* pItem)
 	SaveTableSound();
   SaveGravity();
   SaveCameraUp();
+	SaveFog();
 	SaveSet();
 	SaveScenario();
   return mXML->Save();
@@ -99,6 +107,31 @@ void TSerializerMapItem_XML::LoadCameraUp()
     LoadVector3ByProperty(mMapItem->mCameraUp);
     mXML->LeaveSection();
   }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerMapItem_XML::LoadFog()
+{
+	if(mXML->EnterSection(sFog, 0))
+	{
+		int cntProperty = GetCountProperty();
+		for( int i = 0 ; i < cntProperty ; i++ )
+		{
+			std::string key, value;
+			if( LoadProperty(i,key, value)==false )
+				continue;
+			if( key==sMode )
+				mMapItem->mFog.mode = boost::lexical_cast<int>(value);
+			if( key==sColor)
+				mMapItem->mFog.color = boost::lexical_cast<unsigned int>(value);
+			if( key==sExpDensity)
+				mMapItem->mFog.expDensity = boost::lexical_cast<float>(value);
+			if( key==sLinearStart)
+				mMapItem->mFog.linearStart = boost::lexical_cast<float>(value);
+			if( key==sLinearEnd)
+				mMapItem->mFog.linearEnd = boost::lexical_cast<float>(value);
+		}
+		mXML->LeaveSection();
+	}
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadSet()
@@ -155,6 +188,31 @@ void TSerializerMapItem_XML::SaveCameraUp()
     SaveVector3ByProperty(mMapItem->mCameraUp);
     mXML->LeaveSection();
   }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerMapItem_XML::SaveFog()
+{
+	if(mXML->AddSectionAndEnter(sFog))
+	{
+		std::string key, value;
+		key   = sMode;
+		value = boost::lexical_cast<std::string>(mMapItem->mFog.mode);
+		SaveProperty(key, value);
+		key   = sColor;
+		value = boost::lexical_cast<std::string>(mMapItem->mFog.color);
+		SaveProperty(key, value);
+		key   = sExpDensity;
+		value = boost::lexical_cast<std::string>(mMapItem->mFog.expDensity);
+		SaveProperty(key, value);
+		key   = sLinearStart;
+		value = boost::lexical_cast<std::string>(mMapItem->mFog.linearStart);
+		SaveProperty(key, value);
+		key   = sLinearEnd;
+		value = boost::lexical_cast<std::string>(mMapItem->mFog.linearEnd);
+		SaveProperty(key, value);
+
+		mXML->LeaveSection();
+	}
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::SaveSet()

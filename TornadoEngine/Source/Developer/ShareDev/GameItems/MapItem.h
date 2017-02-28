@@ -35,13 +35,22 @@ struct DllExport TMapItem : public TBaseItem
 
 		TMapStrStr parameterMap;
 	};
-
   typedef std::list<TObject> TListObject;
 
-	TListObject mListObject;
+	struct TFog
+	{
+		int mode;
+		unsigned int color;
+		float expDensity;
+		float linearStart;
+    float linearEnd;
+	};
+
 	std::string mNameTableSound;
-  nsMathTools::TVector3 mGravity;
-  nsMathTools::TVector3 mCameraUp;
+	nsMathTools::TVector3 mGravity;
+	nsMathTools::TVector3 mCameraUp;
+	TFog mFog;
+	TListObject mListObject;
 
   TMapItem(std::string& name);
 }_PACKED;

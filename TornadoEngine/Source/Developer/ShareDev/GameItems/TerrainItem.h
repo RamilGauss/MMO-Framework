@@ -17,14 +17,11 @@ See for more information License.h.
 
 struct DllExport TTerrainItem : public TBaseItem
 {
-  struct DllExport TLOD
+  struct DllExport TGraphic
   {
-    float distance;// максимальная дистанция
     std::string color;
     std::string normal;
   };
-  typedef std::vector<TLOD> TVecLOD;
-
   struct DllExport TPoint
   {
     float x;
@@ -36,11 +33,10 @@ struct DllExport TTerrainItem : public TBaseItem
 
   typedef std::vector<TPoint> TVecPoint;
 
-
   float mWidth;
   float mLength;
 
-  TVecLOD   mGraphic;
+  TGraphic  mGraphic;
   TVecPoint mHeightMap;
 
   TTerrainItem(std::string& name);

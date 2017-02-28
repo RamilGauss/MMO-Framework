@@ -44,6 +44,7 @@ protected:
 									 Ogre::Real z_0, Ogre::Real z_1,
 									 Ogre::Real u_0, Ogre::Real u_1,
 									 Ogre::Real v_0, Ogre::Real v_1);
+	void CreateTube(Ogre::Real radius, bool x_y);
 };
 
 #endif

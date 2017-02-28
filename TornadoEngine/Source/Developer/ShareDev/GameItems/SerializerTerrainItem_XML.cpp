@@ -9,6 +9,7 @@ See for more information License.h.
 #include "TerrainItem.h"
 #include "IXML.h"
 #include <boost/lexical_cast.hpp>
+#include "boost/foreach.hpp"
 
 namespace nsSerializerTerrainItem_XML
 {
@@ -17,8 +18,6 @@ namespace nsSerializerTerrainItem_XML
   const char* sLength    = "Length";
   const char* sWidth     = "Width";
   const char* sGraphic   = "Graphic";
-  const char* sLOD       = "LOD"; 
-  const char* sDistance  = "distance";
   const char* sColor     = "Color";
   const char* sNormal    = "Normal";
   const char* sHeightMap = "HeightMap";
@@ -93,27 +92,15 @@ void TSerializerTerrainItem_XML::LoadGraphic()
 {
   if(mXML->EnterSection(sGraphic,0))
   {
-    int cntLOD = mXML->GetCountSection(sLOD);
-    for( int iLOD = 0 ; iLOD < cntLOD ; iLOD++ )
+    std::string key, value;
+    int cntProperty = GetCountProperty();
+    for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
     {
-      TTerrainItem::TLOD lod;
-      std::string distance = mXML->ReadSectionAttr(sLOD, iLOD, sDistance);
-      lod.distance = boost::lexical_cast<float>(distance.data());
-      if(mXML->EnterSection(sLOD, iLOD))// ЛОД
-      {
-        std::string key, value;
-        int cntProperty = GetCountProperty();
-        for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
-        {
-          LoadProperty(iProperty, key, value);
-          if(key==sColor)
-            lod.color  = value;
-          if(key==sNormal)
-            lod.normal = value;
-        }
-        mTerrain->mGraphic.push_back(lod);
-        mXML->LeaveSection();
-      }
+      LoadProperty(iProperty, key, value);
+      if(key==sColor)
+        mTerrain->mGraphic.color  = value;
+      if(key==sNormal)
+        mTerrain->mGraphic.normal = value;
     }
     mXML->LeaveSection();
   }
@@ -147,16 +134,53 @@ void TSerializerTerrainItem_XML::LoadHeightMap()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTerrainItem_XML::SaveGeometry()
 {
-
+	if(mXML->AddSectionAndEnter(sGeometry))
+	{
+		std::string key   = sLength;
+		std::string value = boost::lexical_cast<std::string>(mTerrain->mLength);
+		SaveProperty(key, value);
+		key   = sWidth;
+		value = boost::lexical_cast<std::string>(mTerrain->mWidth);
+		SaveProperty(key, value);
+		mXML->LeaveSection();
+	}
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTerrainItem_XML::SaveGraphic()
 {
-
+	if(mXML->AddSectionAndEnter(sGraphic))
+	{
+		std::string key   = sColor;
+		std::string value = mTerrain->mGraphic.color;
+		SaveProperty(key, value);
+		key   = sNormal;
+		value = mTerrain->mGraphic.normal;
+		SaveProperty(key, value);
+		mXML->LeaveSection();
+	}
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTerrainItem_XML::SaveHeightMap()
 {
+	if(mXML->AddSectionAndEnter(sHeightMap))
+	{
+		BOOST_FOREACH(TTerrainItem::TPoint& point, mTerrain->mHeightMap)
+		{
+			TAttrInfo attr[5];
+			attr[0].Name  = sX;
+			attr[0].Value = boost::lexical_cast<std::string>(point.x);
+			attr[1].Name  = sY;
+			attr[1].Value = boost::lexical_cast<std::string>(point.y);
+			attr[2].Name  = sH;
+			attr[2].Value = boost::lexical_cast<std::string>(point.h);
+			attr[3].Name  = sU;
+			attr[3].Value = boost::lexical_cast<std::string>(point.u);
+			attr[4].Name  = sV;
+			attr[4].Value = boost::lexical_cast<std::string>(point.v);
 
+			mXML->AddSection(sPoint, 5, &attr[0]);
+		}
+		mXML->LeaveSection();
+	}
 }
 //-------------------------------------------------------------------------------------------------------

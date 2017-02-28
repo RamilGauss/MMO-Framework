@@ -29,6 +29,7 @@ protected:
 	void LoadTableSound();
   void LoadGravity();
   void LoadCameraUp();
+  void LoadFog();
 	void LoadSet();
 	void LoadScenario();
 
@@ -37,6 +38,7 @@ protected:
 	void SaveTableSound();
   void SaveGravity();
   void SaveCameraUp();
+	void SaveFog();
 	void SaveSet();
 	void SaveScenario();
 	
