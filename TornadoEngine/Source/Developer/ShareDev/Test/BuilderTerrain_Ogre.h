@@ -15,12 +15,27 @@ See for more information License.h.
 
 class DllExport TBuilderTerrain_Ogre
 {
-	Ogre::TerrainGroup* mTerrainGroup;
-	Ogre::TerrainGlobalOptions* mTerrainGlobals;
+	Ogre::Root* mRoot;
+	Ogre::SceneManager* mSceneMgr;
+	Ogre::RenderWindow* mWindow;
 public:
 	TBuilderTerrain_Ogre();
+	~TBuilderTerrain_Ogre();
 
 	void Show();
+
+protected:
+	void Init();
+
+	void SetupShadow();
+
+	void defineTerrain(long x, long y);
+	void initBlendMaps(Ogre::Terrain* terrain);
+	void configureTerrainDefaults();
+
+	bool mTerrainsImported;
+	Ogre::TerrainGroup* mTerrainGroup;
+	Ogre::TerrainGlobalOptions* mTerrainGlobals;
 };
 
 #endif

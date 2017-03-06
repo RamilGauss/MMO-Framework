@@ -8,6 +8,7 @@ See for more information License.h.
 #ifndef GRAPHIC_ENGINE_IMPLEMENTATION_H
 #define GRAPHIC_ENGINE_IMPLEMENTATION_H
 
+#include <OgreTerrainGroup.h>
 #include <Ogre.h>
 #include <MyGUI.h>
 
@@ -29,7 +30,7 @@ public:
 	TGE_Impl();
 	virtual ~TGE_Impl();
 
-	bool InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg);
+	bool InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg, const std::string& terLMPath);
   void AddResource(const std::string& name, const std::string& type);
   bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
 
@@ -50,6 +51,11 @@ public:
 	Ogre::Root*         GetRoot();
 	Ogre::Camera*       GetCamera();
   Ogre::RenderWindow* GetWindow();
+
+	Ogre::TerrainGroup* GetTerrainGroup();
+	Ogre::TerrainGlobalOptions* GetTerrainGlobals();
+
+	std::string GetTerrainLightMapPath();
 protected:
   void ClipCursor();
   void UnclipCursor();
@@ -82,6 +88,11 @@ private:
 	Ogre::Camera* mCamera;
 	Ogre::SceneManager* mSceneManager;
 	Ogre::RenderWindow* mWindow;
+
+	Ogre::TerrainGroup* mTerrainGroup;
+	Ogre::TerrainGlobalOptions* mTerrainGlobals;
+
+	std::string mTerrainLightMapPath;
 
 	bool mExit;
 

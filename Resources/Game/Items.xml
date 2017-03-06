@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TornadoEngine version="1.0" name="Bonobo">
+<TornadoEngine version="1.0" name="Homo habilis">
   <PatternConfig name="Tank"><!-- параметры танка на карте, например, какая скорость и ориентация в пространстве -->
     <Variant name="0">
       <Property key="variant0" value="ModelPlate"/><!-- Из нескольких вариантов части нужно выбрать один -->
@@ -2700,31 +2700,15 @@
       </Part>
     </Collection>
   </Model>
-  <Terrain name="Grass">
+	<!-- экспериментальная часть Земли, в будущем поправить ExperimentalTerrain->Terrain -->
+  <ExperimentalTerrain name="Grass">
     <Geometry>
-      <Property key="Length"   value="1.01"/>
-      <Property key="Width"    value="1.5"/>
+      <Property key="TerrainSize" value="1.01"/><!-- Quadratic shape -->
+      <Property key="WorldSize"   value="1.50"/>
+			<Property key="Scale"       value="1.50"/>
     </Geometry>
-		<Graphic>
-			<Property key="Color"  value="ColorGrass00.png"/>
-			<Property key="Normal" value="NormalGrass00.png"/>
-		</Graphic>
-    <HeightMap><!-- Карта высот -->
-		  <Point x="0" y="0" h="110" u="0" v="0"/>
-		  <Point x="1" y="0" h="1" u="0" v="0"/>
-		  <Point x="2" y="0" h="10" u="0" v="0"/>
-		  <Point x="3" y="0" h="10" u="0" v="0"/>
-		  <Point x="4" y="0" h="1" u="0" v="0"/>
-		  <Point x="5" y="0" h="11" u="0" v="0"/>
-		  <Point x="6" y="0" h="10" u="0" v="0"/>
-		  <Point x="7" y="0" h="10" u="0" v="0"/>
-		  <Point x="8" y="0" h="10" u="0" v="0"/>
-		  <Point x="9" y="0" h="10" u="0" v="0"/>
-		  <Point x="10" y="0" h="0" u="0" v="0"/>
-		  <Point x="11" y="0" h="10" u="0" v="0"/>
-		  <Point x="12" y="0" h="0" u="0" v="0"/>
-		</HeightMap>
-  </Terrain>
+    <!-- Карта высот берётся из файла Ogre до начала загрузки графики и физики -->
+  </ExperimentalTerrain>
   <Map name="Field">
 	  <TableSound name="0"/>
     <Gravity><!-- Ускорение свободного падения -->
@@ -2857,7 +2841,7 @@
 					</Rotation>
 				</BaseProperty>
 				<ParameterMap>
-					<Property key="NameGameItem" value="0_0"/>
+					<Property key="NameGameItem" value="Grass"/>
 				</ParameterMap>
 			</Object>
 		  <Object>

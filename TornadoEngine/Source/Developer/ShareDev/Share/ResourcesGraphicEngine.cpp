@@ -11,7 +11,8 @@ See for more information License.h.
 
 namespace nsResourcesGraphicEngine
 {
-  const char* sPluginsCfg = "PluginsCfg";
+	const char* sTerrainLightMap = "TerrainLightMap";
+	const char* sPluginsCfg = "PluginsCfg";
   const char* sOgreCfg    = "OgreCfg";
 
   const char* sPath       = "Path";
@@ -45,12 +46,19 @@ bool TResourcesGraphicEngine::Work(IXML* pXML)
   if(TResources::Work(pXML)==false)
     return false;
 
-  if(LoadPluginsCfg()==false)
-    return false;
-	if(LoadOgreCfg()==false)
-		return false;
+  RET_FALSE(LoadPluginsCfg())
+	RET_FALSE(LoadOgreCfg())
+	RET_FALSE(LoadTerrainLightMap())
 
-  return true;
+	return true;
+}
+//--------------------------------------------------------------------------
+bool TResourcesGraphicEngine::LoadTerrainLightMap()
+{
+	mTerrainLightMapPath = mXML->ReadSectionAttr(sTerrainLightMap, 0, sPath);
+	if(mTerrainLightMapPath.length()==0)
+		mTerrainLightMapPath = "./";
+	return true;
 }
 //--------------------------------------------------------------------------
 bool TResourcesGraphicEngine::LoadPluginsCfg()
@@ -89,5 +97,10 @@ std::string TResourcesGraphicEngine::GetPluginsCfg()
 std::string TResourcesGraphicEngine::GetOgreCfg()
 {
 	return mOgreCfg;
+}
+//--------------------------------------------------------------------------
+std::string TResourcesGraphicEngine::GetTerrainLightMapPath()
+{
+	return mTerrainLightMapPath;
 }
 //--------------------------------------------------------------------------

@@ -882,6 +882,22 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Skydome.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Skydome.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Skyplane.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternModel_Skyplane.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Scene\Pattern\PatternModel_Sound.cpp"
 						>
 					</File>
@@ -947,6 +963,22 @@
 					</File>
 					<File
 						RelativePath=".\Scene\Pattern\PatternContext_Skybox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Skydome.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Skydome.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Skyplane.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\PatternContext_Skyplane.h"
 						>
 					</File>
 					<File

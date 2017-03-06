@@ -45,13 +45,15 @@ std::string macBundlePath()
 
 TGE_Impl::TGE_Impl()
 {
-  mGUI          = NULL;
-  mPlatform     = NULL;
-  mRoot         = NULL;
-  mCamera       = NULL;
-  mSceneManager = NULL;
-  mWindow       = NULL;
-  mExit         = false;
+  mGUI            = NULL;
+  mPlatform       = NULL;
+  mRoot           = NULL;
+  mCamera         = NULL;
+  mSceneManager   = NULL;
+  mWindow         = NULL;
+	mTerrainGlobals = NULL;
+	mTerrainGroup   = NULL;
+  mExit           = false;
 
   mCBKeyBoard  = NULL;
   mCBMouse     = NULL;
@@ -72,7 +74,7 @@ TGE_Impl::~TGE_Impl()
   Done();
 }
 //------------------------------------------------------------------------------------------
-bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg)
+bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg, const std::string& terLMPath)
 {
 	mRoot = new Ogre::Root(pathPluginCfg, ogreCfg, "Ogre.log");
   if( !mRoot->restoreConfig() )// попробуем завестись на дефолтных
@@ -105,6 +107,11 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogr
   }
 #endif
   mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "BaseSceneManager");
+
+	mTerrainLightMapPath = terLMPath;
+	mTerrainGlobals = new Ogre::TerrainGlobalOptions();
+	// всегда плоскость X<-o->Z
+	mTerrainGroup   = new Ogre::TerrainGroup(	mSceneManager, Ogre::Terrain::ALIGN_X_Z, 0, 0);
 
   mCamera = mSceneManager->createCamera("BaseCamera");
   mCamera->setNearClipDistance(5);
@@ -151,6 +158,12 @@ void TGE_Impl::Done()
 	DestroyInput();
 	DestroyGui();
 
+	// terrain
+	delete mTerrainGroup;
+	mTerrainGroup = NULL;
+	delete mTerrainGlobals;
+	mTerrainGlobals = NULL;
+
 	// очищаем сцену
 	if(mSceneManager)
 	{
@@ -166,7 +179,7 @@ void TGE_Impl::Done()
 		mWindow = nullptr;
 	}
 
-	if(mRoot)
+  if(mRoot)
 	{
 		Ogre::RenderWindow* window = mRoot->getAutoCreatedWindow();
 		if(window)
@@ -286,6 +299,21 @@ Ogre::Camera* TGE_Impl::GetCamera()
 Ogre::RenderWindow* TGE_Impl::GetWindow()
 {
   return mWindow;
+}
+//------------------------------------------------------------------------------------------
+Ogre::TerrainGroup* TGE_Impl::GetTerrainGroup()
+{
+	return mTerrainGroup;
+}
+//------------------------------------------------------------------------------------------
+Ogre::TerrainGlobalOptions* TGE_Impl::GetTerrainGlobals()
+{
+	return mTerrainGlobals;
+}
+//------------------------------------------------------------------------------------------
+std::string TGE_Impl::GetTerrainLightMapPath()
+{
+	return mTerrainLightMapPath;
 }
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::Work()

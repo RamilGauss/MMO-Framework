@@ -79,6 +79,7 @@ void TDevTool_Share::Init()
   parser.GetResultGUI(mGUI_Resources);
   parser.GetResultGraphicEngine(mGraphicEngine_Resources);
   
+	mTerrainLightMapPath = mGraphicEngine_Resources.GetTerrainLightMapPath();
   mPluginsCfg = mGraphicEngine_Resources.GetPluginsCfg();
 	mOgreCfg    = mGraphicEngine_Resources.GetOgreCfg();
 
@@ -185,7 +186,7 @@ void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
 {
   TModuleGraphicEngine* pGE = (TModuleGraphicEngine*)pModule;
   // настройка перед запуском
-  if( pGE->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg)==false )
+  if( pGE->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg, mTerrainLightMapPath)==false )
 	{
 		_exit(-1);// либо ошибка, либо пользователь не хочет запускать приложение
 		return;

@@ -32,6 +32,8 @@ See for more information License.h.
 
 TEditorMapLogic::TEditorMapLogic()
 {
+	flgIsTerrainGroupUpdate = false;
+
   mID_TimerTryMoveCamera = -1;
   mPtrShowTank.reset(new TShowTankWoT_test);
   mPtrControlCamera.reset(new TControlCamera);
@@ -142,6 +144,8 @@ void TEditorMapLogic::GraphicEndWork()
     mAggregationScenario_Client->Thread_Ogre();
   
   //mPtrControlCamera->CameraTryMove();
+
+	CheckTerrainGroupUpdateForSave();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::SoundEndWork()
@@ -271,6 +275,8 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowTest()
 {
+	SetupLight();
+
 	ShowPlate();
 	ShowCylinder();
 	mPtrShowTank->ShowTanks(10);
@@ -279,8 +285,6 @@ void TEditorMapLogic::ShowTest()
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 	pCamera->setPosition(160,160,160);
 	pCamera->lookAt(0,0,0);
-
-	SetupLight();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::SetupLight()
@@ -321,18 +325,22 @@ void TEditorMapLogic::ShowPlate()
 	matItem.mGraphic[0].length = 50;
 	nsParamBuilderShape::TPlate* pPlate = new nsParamBuilderShape::TPlate;
 	shItem.mPtrGeometry.reset(pPlate);
+	
+	std::string namePlaneEntity;
+	Ogre::Entity* pEntity = NULL;
+	Ogre::Vector3 vPos;
 	//----------------------------------------------------------
-	pPlate->width  = 10000;
-	pPlate->height = 1;
-	pPlate->length = 10000;
-	matItem.mGraphic[0].ogreMaterial = "Ground";
-	matItem.mGraphic[0].color = "Ground.png";
-	builder.Setup(&shItem, &matItem);
-	std::string namePlaneEntity = "Plane0";
-	Ogre::Entity* pEntity = builder.CreateEntity(namePlaneEntity);
-	Ogre::Vector3 vPos(-5000,-23,-5000);
-	pEntity->getParentSceneNode()->setPosition(vPos);
-	pEntity->setCastShadows(true);
+	//pPlate->width  = 10000;
+	//pPlate->height = 1;
+	//pPlate->length = 10000;
+	//matItem.mGraphic[0].ogreMaterial = "Ground";
+	//matItem.mGraphic[0].color = "Ground.png";
+	//builder.Setup(&shItem, &matItem);
+	//namePlaneEntity = "Plane0";
+	//pEntity = builder.CreateEntity(namePlaneEntity);
+	//vPos = Ogre::Vector3(-5000,0,-5000);
+	//pEntity->getParentSceneNode()->setPosition(vPos);
+	//pEntity->setCastShadows(true);
 	//----------------------------------------------------------
 	pPlate->width  = 100;
 	pPlate->height = 100;
@@ -342,9 +350,7 @@ void TEditorMapLogic::ShowPlate()
 	builder.Setup(&shItem, &matItem);
 	namePlaneEntity = "Plane1";
 	pEntity = builder.CreateEntity(namePlaneEntity);
-	vPos.x = -10;
-	vPos.y = -25;
-	vPos.z = -100;
+	vPos = Ogre::Vector3(-10,0,-100);
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
 }
@@ -372,7 +378,7 @@ void TEditorMapLogic::ShowCylinder()
 	builder.Setup(&shItem, &matItem);
 	std::string nameCylinderEntity = "Cylinder0";
 	Ogre::Entity* pEntity = builder.CreateEntity(nameCylinderEntity);
-	Ogre::Vector3 vPos(-10,100,-10);
+	Ogre::Vector3 vPos(-10,120,-10);
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
 }
@@ -381,5 +387,29 @@ void TEditorMapLogic::ShowTerrain()
 {
 	TBuilderTerrain_Ogre builder;
 	builder.Show();
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::CheckTerrainGroupUpdateForSave()
+{
+	Ogre::TerrainGroup* pTG = GetC()->pGraphicEngine->GetGE()->GetTerrainGroup();
+	// проверка: идёт ли создание данных для теней и света для земли
+	if( pTG->isDerivedDataUpdateInProgress() )
+	{
+		if( flgIsTerrainGroupUpdate==false )
+		{
+			// начался процесс создания, TODO: вывести сообщение в GUI?
+			flgIsTerrainGroupUpdate = true;
+		}
+	}
+	else
+	{
+		if( flgIsTerrainGroupUpdate )
+		{
+			// закончился процесс создания, TODO: вывести сообщение в GUI?
+			pTG->saveAllTerrains(false);
+			flgIsTerrainGroupUpdate = false;
+		}
+	}
+	// README: флаг flgIsTerrainGroupUpdate надо учитывать при попытке загрузки карты.
 }
 //---------------------------------------------------------------------------------------------

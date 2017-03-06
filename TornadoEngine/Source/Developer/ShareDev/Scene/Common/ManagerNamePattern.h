@@ -24,6 +24,8 @@ public:
   static std::string Light();
   static std::string Model();
   static std::string Skybox();
+  static std::string Skydome();
+  static std::string Skyplane();
   static std::string Sound();
   static std::string Terrain();
   static std::string Zone();

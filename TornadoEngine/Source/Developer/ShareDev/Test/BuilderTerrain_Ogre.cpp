@@ -11,41 +11,271 @@ See for more information License.h.
 #include "GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleGraphicEngine.h"
 
+#include <OgreTerrainQuadTreeNode.h>
+#include <OgreTerrainMaterialGeneratorA.h>
 
+//---------------------------------------------------------------------
 TBuilderTerrain_Ogre::TBuilderTerrain_Ogre()
+{
+	mRoot     = NULL;
+	mSceneMgr = NULL;
+	mWindow   = NULL;
+
+	mTerrainGroup     = NULL;
+	mTerrainGlobals   = NULL;
+	mTerrainsImported = false;
+
+	std::string s = "";
+	TTerrainItem tItem(s);
+	//tItem.mGraphic[0].
+}
+//--------------------------------------------------------------------
+TBuilderTerrain_Ogre::~TBuilderTerrain_Ogre()
 {
 
 }
 //--------------------------------------------------------------------
 void TBuilderTerrain_Ogre::Show()
 {
-	Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
-	Ogre::RenderWindow* pW  = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetWindow();
-	//pSM->setFog(Ogre::FOG_EXP, Ogre::ColourValue(0.7, 0.7, 0.8));//, 0, 10000, 25000);
-	//pSM->setFog(Ogre::FOG_LINEAR, Ogre::ColourValue(0.7, 0.7, 0.8), 0, 5000, 6000);
+	mRoot     = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetRoot();
+	mSceneMgr = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
+	mWindow   = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetWindow();
 
-	Ogre::ColourValue fadeColour(0.8, 0.8, 0.8);
-	pSM->setFog(Ogre::FOG_LINEAR, fadeColour, 0.0, 4000, 6000);
-	pW->getViewport(0)->setBackgroundColour(fadeColour);
+	Ogre::ColourValue fadeColour(0.8f, 0.8f, 0.8f);
+	mSceneMgr->setFog(Ogre::FOG_LINEAR, fadeColour, 0.0, 4000, 10000);
+	mWindow->getViewport(0)->setBackgroundColour(fadeColour);
 
 	Ogre::Plane plane;
 	plane.d = 1000;
 	plane.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
 
-	pSM->setSkyPlane(true, plane, "Examples/CloudySky", 500, 20, true, 0.5, 150, 150);
+	mSceneMgr->setSkyPlane(true, plane, "Examples/CloudySky", 500, 20, true, 0.5, 150, 150);
 
-	//TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager()
-	//	->setSkyBox(true, "Skybox/Hills");
+	Init();
+	//SetupShadow();
+	//mTerrainGroup->saveAllTerrains(true);
 
+	// достать карту высот для физики TODO оформить в виде класса
+	Ogre::TerrainGroup::TerrainIterator tit = mTerrainGroup->getTerrainIterator();
+	Ogre::TerrainGroup::TerrainIterator::iterator cit = tit.current();
+	cit = tit.begin();
+	const Ogre::TerrainGroup::TerrainIterator::iterator& eit = tit.end();
+	while( cit!=eit )
+	{
+		Ogre::Terrain* pTerrain = cit->second->instance;
+		unsigned short size  = pTerrain->getWorldSize();
+		unsigned short wSize = pTerrain->getSize();
 
-	std::string s = "";
-	TTerrainItem tItem(s);
-	//tItem.mGraphic[0].
+		float* pHeight = pTerrain->getHeightData();
+		tit.moveNext();
+	}
+}
+//--------------------------------------------------------------------
+void TBuilderTerrain_Ogre::Init()
+{
+	// Terrain
+	mTerrainGlobals = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetTerrainGlobals();
+  mTerrainGroup   = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetTerrainGroup();
 
-	//mTerrainGlobals = new Ogre::TerrainGlobalOptions();
-	//
-	//mTerrainGroup = new Ogre::TerrainGroup( pSM, Ogre::Terrain::ALIGN_X_Z, 513, 12000.0);
-	//mTerrainGroup->setFilenameConvention(Ogre::String("terrain"), Ogre::String("dat"));
-	//mTerrainGroup->setOrigin(Ogre::Vector3::ZERO);
+	mTerrainGroup->setTerrainSize(129);//513
+	mTerrainGroup->setTerrainWorldSize(1000.0);//12000
+
+	Ogre::String prefixterrainPath = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetTerrainLightMapPath();
+	prefixterrainPath += "/mapFlat";
+	mTerrainGroup->setFilenameConvention(prefixterrainPath, Ogre::String("dat"));
+	mTerrainGroup->setOrigin(Ogre::Vector3::ZERO);
+
+	configureTerrainDefaults();
+
+	for( long x = 0; x <= 0; ++x )
+		for( long y = 0; y <= 0; ++y )
+			defineTerrain(x, y);
+
+	mTerrainGroup->loadAllTerrains(true);
+
+	if( mTerrainsImported )
+	{
+		Ogre::TerrainGroup::TerrainIterator ti = mTerrainGroup->getTerrainIterator();
+		while( ti.hasMoreElements() )
+		{
+			Ogre::Terrain* t = ti.getNext()->instance;
+			initBlendMaps(t);
+		}
+	}
+	mTerrainGroup->freeTemporaryResources();
+}
+//--------------------------------------------------------------------
+void TBuilderTerrain_Ogre::defineTerrain(long x, long y)
+{
+	Ogre::String filename = mTerrainGroup->generateFilename(x, y);
+	bool exists =
+		Ogre::ResourceGroupManager::getSingleton().resourceExists(
+		mTerrainGroup->getResourceGroup(),
+		filename);
+
+	if( exists )
+		mTerrainGroup->defineTerrain(x, y);
+	else
+	{
+		unsigned short terrainSize = mTerrainGroup->getTerrainSize();
+		float* pHeight = new float[terrainSize*terrainSize];
+		float h_max = 10;
+		float h_min = 0;
+		int index = 0;
+		for(int i = 0 ; i < terrainSize ; i++ )
+		{
+			for(int j = 0 ; j < terrainSize ; j++ )
+			{
+				pHeight[index+j] = j%2 ? h_min : h_max;
+			}
+			index += terrainSize;
+		}
+		mTerrainGroup->defineTerrain(x, y, pHeight);
+		mTerrainsImported = true;
+	}
+}
+//--------------------------------------------------------------------
+void TBuilderTerrain_Ogre::initBlendMaps(Ogre::Terrain* terrain)
+{
+	Ogre::Real minHeight0 = 70;
+	Ogre::Real fadeDist0 = 40;
+	Ogre::Real minHeight1 = 70;
+	Ogre::Real fadeDist1 = 15;
+
+	Ogre::TerrainLayerBlendMap* blendMap0 = terrain->getLayerBlendMap(1);
+	Ogre::TerrainLayerBlendMap* blendMap1 = terrain->getLayerBlendMap(2);
+
+	float* pBlend0 = blendMap0->getBlendPointer();
+	float* pBlend1 = blendMap1->getBlendPointer();
+
+	for( Ogre::uint16 y = 0; y < terrain->getLayerBlendMapSize(); ++y)
+	{
+		for( Ogre::uint16 x = 0; x < terrain->getLayerBlendMapSize(); ++x)
+		{
+			Ogre::Real tx, ty;
+
+			blendMap0->convertImageToTerrainSpace(x, y, &tx, &ty);
+			Ogre::Real height = terrain->getHeightAtTerrainPosition(tx, ty);
+			Ogre::Real val = (height - minHeight0) / fadeDist0;
+			val = Ogre::Math::Clamp(val, (Ogre::Real)0, (Ogre::Real)1);
+			*pBlend0++ = val;
+
+			val = (height - minHeight1) / fadeDist1;
+			val = Ogre::Math::Clamp(val, (Ogre::Real)0, (Ogre::Real)1);
+			*pBlend1++ = val;
+		}
+	}
+
+	blendMap0->dirty();
+	blendMap1->dirty();
+	blendMap0->update();
+	blendMap1->update();
+}
+//--------------------------------------------------------------------
+void TBuilderTerrain_Ogre::configureTerrainDefaults()
+{
+	Ogre::Light* light = mSceneMgr->getLight("mainLight");
+	if( light==NULL )
+		return;
+
+	mTerrainGlobals->setMaxPixelError(8);
+	mTerrainGlobals->setCompositeMapDistance(3000);
+
+#if OGRE_NO_GLES3_SUPPORT == 1
+	// Disable the lightmap for OpenGL ES 2.0. The minimum number of samplers allowed is 8(as opposed to 16 on desktop).
+	// Otherwise we will run over the limit by just one. The minimum was raised to 16 in GL ES 3.0.
+	if( mRoot->getRenderSystem()->getName().find("OpenGL ES 2")!=Ogre::String::npos)
+	{
+		Ogre::TerrainMaterialGeneratorA::SM2Profile* matProfile =
+			static_cast<Ogre::TerrainMaterialGeneratorA::SM2Profile*>
+			(mTerrainGlobals->getDefaultMaterialGenerator()->getActiveProfile());
+		matProfile->setLightmapEnabled(false);
+	}
+#endif
+
+	mTerrainGlobals->setLightMapDirection(light->getDerivedDirection());
+	mTerrainGlobals->setCompositeMapAmbient(mSceneMgr->getAmbientLight());
+	mTerrainGlobals->setCompositeMapDiffuse(light->getDiffuseColour());
+
+	Ogre::Terrain::ImportData& importData = mTerrainGroup->getDefaultImportSettings();
+	importData.terrainSize = 129;
+	importData.worldSize = 500;//12000;
+	importData.inputScale = 1;//600;
+	importData.minBatchSize = 33;
+	importData.maxBatchSize = 65;
+
+	importData.layerList.resize(3);
+	importData.layerList[0].worldSize = 100;
+	importData.layerList[0].textureNames.push_back(
+		"dirt_grayrocky_diffusespecular.dds");
+	importData.layerList[0].textureNames.push_back(
+		"dirt_grayrocky_normalheight.dds");
+	importData.layerList[1].worldSize = 30;
+	importData.layerList[1].textureNames.push_back(
+		"grass_green-01_diffusespecular.dds");
+	importData.layerList[1].textureNames.push_back(
+		"grass_green-01_normalheight.dds");
+	importData.layerList[2].worldSize = 200;
+	importData.layerList[2].textureNames.push_back(
+		"growth_weirdfungus-03_diffusespecular.dds");
+	importData.layerList[2].textureNames.push_back(
+		"growth_weirdfungus-03_normalheight.dds");
+}
+//--------------------------------------------------------------------
+void TBuilderTerrain_Ogre::SetupShadow()
+{
+	// General scene setup
+	mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+	mSceneMgr->setShadowFarDistance(3000);
+
+	// 3 textures per directional light (PSSM)
+	mSceneMgr->setShadowTextureCountPerLightType(Ogre::Light::LT_DIRECTIONAL, 3);
+
+	//if (mPSSMSetup.isNull())
+	//{
+	//	// shadow camera setup
+	//	PSSMShadowCameraSetup* pssmSetup = new PSSMShadowCameraSetup();
+	//	pssmSetup->setSplitPadding(mCamera->getNearClipDistance());
+	//	pssmSetup->calculateSplitPoints(3, mCamera->getNearClipDistance(), mSceneMgr->getShadowFarDistance());
+	//	pssmSetup->setOptimalAdjustFactor(0, 2);
+	//	pssmSetup->setOptimalAdjustFactor(1, 1);
+	//	pssmSetup->setOptimalAdjustFactor(2, 0.5);
+
+	//	mPSSMSetup.bind(pssmSetup);
+
+	//}
+	//mSceneMgr->setShadowCameraSetup(mPSSMSetup);
+
+	//if (depthShadows)
+	/*{
+		mSceneMgr->setShadowTextureCount(3);
+		mSceneMgr->setShadowTextureConfig(0, 2048, 2048, PF_FLOAT32_R);
+		mSceneMgr->setShadowTextureConfig(1, 1024, 1024, PF_FLOAT32_R);
+		mSceneMgr->setShadowTextureConfig(2, 1024, 1024, PF_FLOAT32_R);
+		mSceneMgr->setShadowTextureSelfShadow(true);
+		mSceneMgr->setShadowCasterRenderBackFaces(true);
+
+		MaterialPtr houseMat = buildDepthShadowMaterial("fw12b.jpg");
+		for (EntityList::iterator i = mHouseList.begin(); i != mHouseList.end(); ++i)
+		{
+			(*i)->setMaterial(houseMat);
+		}
+
+	}
+	else*/
+	{
+		mSceneMgr->setShadowTextureCount(3);
+		mSceneMgr->setShadowTextureConfig(0, 2048, 2048, Ogre::PF_X8B8G8R8);
+		mSceneMgr->setShadowTextureConfig(1, 1024, 1024, Ogre::PF_X8B8G8R8);
+		mSceneMgr->setShadowTextureConfig(2, 1024, 1024, Ogre::PF_X8B8G8R8);
+		mSceneMgr->setShadowTextureSelfShadow(false);
+		mSceneMgr->setShadowCasterRenderBackFaces(false);
+		mSceneMgr->setShadowTextureCasterMaterial(Ogre::StringUtil::BLANK);
+	}
+
+	//matProfile->setReceiveDynamicShadowsDepth(depthShadows);
+	//matProfile->setReceiveDynamicShadowsPSSM(static_cast<PSSMShadowCameraSetup*>(mPSSMSetup.get()));
+
+	//addTextureShadowDebugOverlay(TL_RIGHT, 3);
 }
 //--------------------------------------------------------------------

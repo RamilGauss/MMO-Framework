@@ -65,7 +65,7 @@ void TShowTankWoT_test::ShowTanks(int cnt)
   pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
   
   Ogre::Vector3 pos;
-  pos.y = 0;
+  pos.y = 20;
   pos.z = 0;
   for( int i = 0 ; i < cnt ; i++ )
   {

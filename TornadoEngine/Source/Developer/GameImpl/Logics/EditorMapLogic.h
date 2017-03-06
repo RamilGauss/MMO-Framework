@@ -33,6 +33,11 @@ class TEditorMapLogic : public TModuleClientLogic
   boost::scoped_ptr<TControlCamera>                 mPtrControlCamera;
 
   unsigned int mID_TimerTryMoveCamera;
+
+	//### прототипы TODO перенос в базовый класс?
+	bool flgIsTerrainGroupUpdate;
+	void CheckTerrainGroupUpdateForSave();
+	//###
 public:
   TEditorMapLogic();
   virtual ~TEditorMapLogic();

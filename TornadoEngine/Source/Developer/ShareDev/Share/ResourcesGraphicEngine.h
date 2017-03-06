@@ -14,6 +14,7 @@ class IXML;
 
 class DllExport TResourcesGraphicEngine : public TResources
 {
+	std::string mTerrainLightMapPath;
   std::string mPluginsCfg;
 	std::string mOgreCfg;
 
@@ -23,9 +24,11 @@ public:
 
   virtual bool Work(IXML* pXML);
   
+	std::string GetTerrainLightMapPath();
   std::string GetPluginsCfg();
 	std::string GetOgreCfg();
 protected:
+	bool LoadTerrainLightMap();
   bool LoadPluginsCfg();
 	bool LoadOgreCfg();
 

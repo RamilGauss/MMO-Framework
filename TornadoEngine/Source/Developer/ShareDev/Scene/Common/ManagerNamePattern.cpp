@@ -13,6 +13,8 @@ namespace nsManagerNameTypeObjectMap
   const char* sLight    = "Light";
   const char* sModel    = "Model";
   const char* sSkybox   = "Skybox";
+	const char* sSkydome  = "Skydome";
+	const char* sSkyplane = "Skyplane";
   const char* sSound    = "Sound";
   const char* sTerrain  = "Terrain";
   const char* sZone     = "Zone";
@@ -26,6 +28,8 @@ TManagerNamePattern::TManagerNamePattern()
   mVecNameType.push_back(sLight);
   mVecNameType.push_back(sModel);
   mVecNameType.push_back(sSkybox);
+	mVecNameType.push_back(sSkydome);
+	mVecNameType.push_back(sSkyplane);
   mVecNameType.push_back(sSound);
   mVecNameType.push_back(sTerrain);
   mVecNameType.push_back(sZone);
@@ -61,6 +65,16 @@ std::string TManagerNamePattern::Model()
 std::string TManagerNamePattern::Skybox()
 {
   return sSkybox;
+}
+//-----------------------------------------------------------------------
+std::string TManagerNamePattern::Skydome()
+{
+	return sSkybox;
+}
+//-----------------------------------------------------------------------
+std::string TManagerNamePattern::Skyplane()
+{
+	return sSkybox;
 }
 //-----------------------------------------------------------------------
 std::string TManagerNamePattern::Sound()
