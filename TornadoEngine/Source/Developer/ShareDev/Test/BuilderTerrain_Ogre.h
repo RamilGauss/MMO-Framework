@@ -33,6 +33,9 @@ protected:
 	void initBlendMaps(Ogre::Terrain* terrain);
 	void configureTerrainDefaults();
 
+	void AnalizHeightMap();
+	void HeightMapTerrainGroup();
+
 	bool mTerrainsImported;
 	Ogre::TerrainGroup* mTerrainGroup;
 	Ogre::TerrainGlobalOptions* mTerrainGlobals;

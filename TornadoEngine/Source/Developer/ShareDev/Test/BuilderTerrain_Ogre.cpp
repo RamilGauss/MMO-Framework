@@ -13,6 +13,8 @@ See for more information License.h.
 
 #include <OgreTerrainQuadTreeNode.h>
 #include <OgreTerrainMaterialGeneratorA.h>
+#include <OgreResourceGroupManager.h>
+#include <OgreStreamSerialiser.h>
 
 //---------------------------------------------------------------------
 TBuilderTerrain_Ogre::TBuilderTerrain_Ogre()
@@ -56,19 +58,7 @@ void TBuilderTerrain_Ogre::Show()
 	//mTerrainGroup->saveAllTerrains(true);
 
 	// достать карту высот для физики TODO оформить в виде класса
-	Ogre::TerrainGroup::TerrainIterator tit = mTerrainGroup->getTerrainIterator();
-	Ogre::TerrainGroup::TerrainIterator::iterator cit = tit.current();
-	cit = tit.begin();
-	const Ogre::TerrainGroup::TerrainIterator::iterator& eit = tit.end();
-	while( cit!=eit )
-	{
-		Ogre::Terrain* pTerrain = cit->second->instance;
-		unsigned short size  = pTerrain->getWorldSize();
-		unsigned short wSize = pTerrain->getSize();
-
-		float* pHeight = pTerrain->getHeightData();
-		tit.moveNext();
-	}
+	//AnalizHeightMap();
 }
 //--------------------------------------------------------------------
 void TBuilderTerrain_Ogre::Init()
@@ -92,6 +82,7 @@ void TBuilderTerrain_Ogre::Init()
 			defineTerrain(x, y);
 
 	mTerrainGroup->loadAllTerrains(true);
+	//HeightMapTerrainGroup();//###
 
 	if( mTerrainsImported )
 	{
@@ -277,5 +268,85 @@ void TBuilderTerrain_Ogre::SetupShadow()
 	//matProfile->setReceiveDynamicShadowsPSSM(static_cast<PSSMShadowCameraSetup*>(mPSSMSetup.get()));
 
 	//addTextureShadowDebugOverlay(TL_RIGHT, 3);
+}
+//--------------------------------------------------------------------
+void TBuilderTerrain_Ogre::AnalizHeightMap()
+{
+	Ogre::String filename = "../../Resources/Graphic/terrainLightMap/mapFlat_00000000.dat";
+	Ogre::String groupResource = "General";
+	Ogre::DataStreamPtr dataStream = 
+		Ogre::ResourceGroupManager::getSingleton().openResource(filename, groupResource);
+
+	Ogre::StreamSerialiser stream(dataStream);
+
+	unsigned short WORKQUEUE_LOAD_LOD_DATA_REQUEST = 1;
+	unsigned int   TERRAINLODDATA_CHUNK_ID = Ogre::StreamSerialiser::makeIdentifier("TLDA");
+	unsigned short TERRAINLODDATA_CHUNK_VERSION = 1;
+
+	// reach and read the target lod data
+	const Ogre::StreamSerialiser::Chunk *c = 
+		stream.readChunkBegin(TERRAINLODDATA_CHUNK_ID, TERRAINLODDATA_CHUNK_VERSION);
+	stream.startDeflate(c->length);
+	//stream.read(lodData, dataSize);
+	stream.stopDeflate();
+	stream.readChunkEnd(TERRAINLODDATA_CHUNK_ID);
+
+
+	unsigned int   TERRAIN_CHUNK_ID = Ogre::StreamSerialiser::makeIdentifier("TERR");
+  unsigned short TERRAIN_CHUNK_VERSION = 2;
+	unsigned int   TERRAINGENERALINFO_CHUNK_ID = Ogre::StreamSerialiser::makeIdentifier("TGIN");
+	unsigned short TERRAINGENERALINFO_CHUNK_VERSION = 1;
+	const Ogre::StreamSerialiser::Chunk *mainChunk = stream.readChunkBegin(TERRAIN_CHUNK_ID, TERRAIN_CHUNK_VERSION);
+	if( !mainChunk )
+		return;
+
+	if(mainChunk->version > 1)
+		stream.readChunkBegin(TERRAINGENERALINFO_CHUNK_ID, TERRAINGENERALINFO_CHUNK_VERSION);
+
+	unsigned char align = 0;
+	unsigned short mSize = 0;
+	unsigned short mMaxBatchSize = 0;
+	unsigned short mMinBatchSize = 0;
+	Ogre::Real mWorldSize = 0;
+	Ogre::Vector3 mPos(0,0,0);
+
+	stream.read(&align);
+	stream.read(&mSize);
+	stream.read(&mWorldSize);
+
+	stream.read(&mMaxBatchSize);
+	stream.read(&mMinBatchSize);
+	stream.read(&mPos);
+
+	if( mainChunk->version > 1 )
+		stream.readChunkEnd(TERRAINGENERALINFO_CHUNK_ID);
+
+	size_t numVertices = mSize * mSize;
+	float* mHeightData = new float[numVertices];
+	memset(mHeightData, 0, sizeof(float)*numVertices);
+	if(mainChunk->version > 1)
+	{
+	}
+	else
+		stream.read(mHeightData, numVertices);
+
+	int abc = 0;
+}
+//--------------------------------------------------------------------
+void TBuilderTerrain_Ogre::HeightMapTerrainGroup()
+{
+	Ogre::TerrainGroup::TerrainIterator tit = mTerrainGroup->getTerrainIterator();
+	Ogre::TerrainGroup::TerrainIterator::iterator cit = tit.current();
+	cit = tit.begin();
+	const Ogre::TerrainGroup::TerrainIterator::iterator& eit = tit.end();
+	while( cit!=eit )
+	{
+		Ogre::Terrain* pTerrain = cit->second->instance;
+		unsigned short size  = pTerrain->getWorldSize();
+		unsigned short wSize = pTerrain->getSize();
+
+		float* pHeight = pTerrain->getHeightData();
+		tit.moveNext();
+	}
 }
 //--------------------------------------------------------------------
