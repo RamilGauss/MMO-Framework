@@ -30,7 +30,7 @@ public:
 	TGE_Impl();
 	virtual ~TGE_Impl();
 
-	bool InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg, const std::string& terLMPath);
+	bool InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg);
   void AddResource(const std::string& name, const std::string& type);
   bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
 
@@ -54,8 +54,6 @@ public:
 
 	Ogre::TerrainGroup* GetTerrainGroup();
 	Ogre::TerrainGlobalOptions* GetTerrainGlobals();
-
-	std::string GetTerrainLightMapPath();
 protected:
   void ClipCursor();
   void UnclipCursor();
@@ -91,8 +89,6 @@ private:
 
 	Ogre::TerrainGroup* mTerrainGroup;
 	Ogre::TerrainGlobalOptions* mTerrainGlobals;
-
-	std::string mTerrainLightMapPath;
 
 	bool mExit;
 

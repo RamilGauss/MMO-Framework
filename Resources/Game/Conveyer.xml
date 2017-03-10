@@ -235,8 +235,6 @@
         <Module Name = "Timer"          />
         <Module Name = "Logic"          />
         <Module Name = "SoundEngine"    />
-      </Thread>
-      <Thread>
         <Module Name = "PhysicEngine"   />
       </Thread>
     </CPU>

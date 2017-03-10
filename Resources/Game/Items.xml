@@ -2701,12 +2701,16 @@
     </Collection>
   </Model>
 	<!-- экспериментальная часть Земли, в будущем поправить ExperimentalTerrain->Terrain -->
-  <ExperimentalTerrain name="Grass">
-    <Geometry>
-      <Property key="TerrainSize" value="1.01"/><!-- Quadratic shape -->
-      <Property key="WorldSize"   value="1.50"/>
-			<Property key="Scale"       value="1.50"/>
-    </Geometry>
+  <ExperimentalTerrain name="000000.terrain">
+		<Graphic>
+			<Property key="MaxPixelError"        value="8.0"/>
+			<Property key="CompositeMapDistance" value="3000"/>
+		</Graphic>
+		<Position>
+      <Property key="x" value="0"/>
+      <Property key="y" value="0"/>
+      <Property key="z" value="0"/>
+		</Position>
     <!-- Карта высот берётся из файла Ogre до начала загрузки графики и физики -->
   </ExperimentalTerrain>
   <Map name="Field">
@@ -2728,6 +2732,11 @@
 			<Property key="linearStart" value="0"/>
 			<Property key="linearEnd" value="0"/>
 		</Fog>
+		<BackgroundColour>
+      <Property key="r" value="0.8"/>
+      <Property key="g" value="0.8"/>
+      <Property key="b" value="0.8"/>
+		</BackgroundColour>
 	  <Set><!-- Набор объектов сцены -->
 		  <Object>
 				<BaseProperty>

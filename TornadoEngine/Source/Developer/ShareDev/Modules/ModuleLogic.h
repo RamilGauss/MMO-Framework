@@ -18,6 +18,7 @@ class DllExport TModuleLogic : public TModuleDev
 {
   volatile bool flgNeedExit;
 
+	std::string mTerrainPath;
   TFactoryBehaviourPatternModel mFBPM;
 protected:
   TComponents      mComp;
@@ -26,6 +27,9 @@ public:
   TModuleLogic();
   virtual void ParseCmd(std::vector<std::string>& arg) = 0;
   virtual void InitLog();
+
+	void SetTerrainPath(std::string& path);
+	std::string GetTerrainPath();
 
   void SetComponents(TComponents components);
   TComponents* GetC();

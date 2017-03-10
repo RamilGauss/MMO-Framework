@@ -29,7 +29,7 @@ class TDevTool_Share : public IDevTool
   typedef TMapIntPtrModule::iterator   TMapIntPtrModuleIt;
   TMapIntPtrModule mMapID_PtrModules;
 
-	std::string mTerrainLightMapPath;
+	std::string mTerrainPath;
   std::string mPluginsCfg;
 	std::string mOgreCfg;
   std::string mPathItems;

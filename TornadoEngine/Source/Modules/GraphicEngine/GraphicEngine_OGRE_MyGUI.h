@@ -45,7 +45,7 @@ public:
   virtual ~TGraphicEngine_Ogre_MyGUI();
 /* Order of calls:
    1. InitOGRE, 2. AddResource, 3. InitMyGUI */
-	bool InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg, const std::string& terLMPath);
+	bool InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg);
   void AddResource(const std::string& name, const std::string& type);
   bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
   // return false - need exit
@@ -69,7 +69,6 @@ public:
 	Ogre::TerrainGroup* GetTerrainGroup();
 	Ogre::TerrainGlobalOptions* GetTerrainGlobals();
 
-	std::string GetTerrainLightMapPath();
 private:
 	boost::scoped_ptr<TGE_Impl> mGE;
   void MsgException(MyGUI::Exception& _e);

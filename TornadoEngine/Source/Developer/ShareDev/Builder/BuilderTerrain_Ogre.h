@@ -12,12 +12,17 @@ See for more information License.h.
 #include <Ogre.h>
 #include <OgreTerrain.h>
 #include <OgreTerrainGroup.h>
+#include "HeightMapFromOgre.h"
+
+// задача класса - загрузка графической составляющей TerrainItem
 
 class DllExport TBuilderTerrain_Ogre
 {
 	Ogre::Root* mRoot;
 	Ogre::SceneManager* mSceneMgr;
 	Ogre::RenderWindow* mWindow;
+
+	THeightMapFromOgre mHMF_Ogre;
 public:
 	TBuilderTerrain_Ogre();
 	~TBuilderTerrain_Ogre();
@@ -25,16 +30,13 @@ public:
 	void Show();
 
 protected:
+	void InitOgrePtr();
 	void Init();
 
 	void SetupShadow();
 
 	void defineTerrain(long x, long y);
-	void initBlendMaps(Ogre::Terrain* terrain);
 	void configureTerrainDefaults();
-
-	void AnalizHeightMap();
-	void HeightMapTerrainGroup();
 
 	bool mTerrainsImported;
 	Ogre::TerrainGroup* mTerrainGroup;

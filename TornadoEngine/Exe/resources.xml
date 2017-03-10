@@ -6,7 +6,7 @@
     <Resource Path = "../../Resources/Game/Conveyer.xml" Type = "Conveyer" />
   </GameEngine>
   <GraphicEngine Comment = "OGRE" >
-		<TerrainLightMap Path = "../../Resources/Graphic/terrainLightMap"/>
+		<TerrainPath Path = "../../Resources/Graphic/terrain"/>
 		<PluginsCfg Path = "../../Resources/Graphic/cfg/plugins.cfg"   Variant = "Release"/>
     <PluginsCfg Path = "../../Resources/Graphic/cfg/plugins_d.cfg" Variant = "Debug"  />
     <OgreCfg Path = "../../Resources/Graphic/cfg/ogre.cfg"   Variant = "Release"/>

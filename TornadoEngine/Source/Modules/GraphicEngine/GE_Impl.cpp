@@ -74,7 +74,7 @@ TGE_Impl::~TGE_Impl()
   Done();
 }
 //------------------------------------------------------------------------------------------
-bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg, const std::string& terLMPath)
+bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg)
 {
 	mRoot = new Ogre::Root(pathPluginCfg, ogreCfg, "Ogre.log");
   if( !mRoot->restoreConfig() )// попробуем завестись на дефолтных
@@ -82,7 +82,6 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogr
     if(!mRoot->showConfigDialog()) 
 			return false;// ничего не получилось, покажем диалог
   }
-
 #ifdef WIN32
   ShowCursor(false);
 #else
@@ -108,7 +107,6 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogr
 #endif
   mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "BaseSceneManager");
 
-	mTerrainLightMapPath = terLMPath;
 	mTerrainGlobals = new Ogre::TerrainGlobalOptions();
 	// всегда плоскость X<-o->Z
 	mTerrainGroup   = new Ogre::TerrainGroup(	mSceneManager, Ogre::Terrain::ALIGN_X_Z, 0, 0);
@@ -309,11 +307,6 @@ Ogre::TerrainGroup* TGE_Impl::GetTerrainGroup()
 Ogre::TerrainGlobalOptions* TGE_Impl::GetTerrainGlobals()
 {
 	return mTerrainGlobals;
-}
-//------------------------------------------------------------------------------------------
-std::string TGE_Impl::GetTerrainLightMapPath()
-{
-	return mTerrainLightMapPath;
 }
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::Work()

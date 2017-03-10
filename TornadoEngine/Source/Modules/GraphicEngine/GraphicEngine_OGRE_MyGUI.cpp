@@ -33,11 +33,11 @@ TGraphicEngine_Ogre_MyGUI::~TGraphicEngine_Ogre_MyGUI()
 
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_Ogre_MyGUI::InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg, const std::string& terLMPath)
+bool TGraphicEngine_Ogre_MyGUI::InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg)
 {
 	try
 	{
-		return mGE->InitOGRE(pathPluginCfg, pathOgreCfg, terLMPath);
+		return mGE->InitOGRE(pathPluginCfg, pathOgreCfg);
 	}
 	catch(MyGUI::Exception& _e)
 	{
@@ -108,11 +108,6 @@ Ogre::TerrainGroup* TGraphicEngine_Ogre_MyGUI::GetTerrainGroup()
 Ogre::TerrainGlobalOptions* TGraphicEngine_Ogre_MyGUI::GetTerrainGlobals()
 {
 	return mGE->GetTerrainGlobals();
-}
-//---------------------------------------------------------------------
-std::string TGraphicEngine_Ogre_MyGUI::GetTerrainLightMapPath()
-{
-	return mGE->GetTerrainLightMapPath();
 }
 //---------------------------------------------------------------------
 void TGraphicEngine_Ogre_MyGUI::MsgException(MyGUI::Exception& _e)

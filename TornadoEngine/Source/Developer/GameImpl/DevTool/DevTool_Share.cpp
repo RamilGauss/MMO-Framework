@@ -79,7 +79,7 @@ void TDevTool_Share::Init()
   parser.GetResultGUI(mGUI_Resources);
   parser.GetResultGraphicEngine(mGraphicEngine_Resources);
   
-	mTerrainLightMapPath = mGraphicEngine_Resources.GetTerrainLightMapPath();
+	mTerrainPath = mGraphicEngine_Resources.GetTerrainPath();
   mPluginsCfg = mGraphicEngine_Resources.GetPluginsCfg();
 	mOgreCfg    = mGraphicEngine_Resources.GetOgreCfg();
 
@@ -186,7 +186,7 @@ void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
 {
   TModuleGraphicEngine* pGE = (TModuleGraphicEngine*)pModule;
   // настройка перед запуском
-  if( pGE->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg, mTerrainLightMapPath)==false )
+  if( pGE->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg)==false )
 	{
 		_exit(-1);// либо ошибка, либо пользователь не хочет запускать приложение
 		return;
@@ -250,7 +250,7 @@ TModuleDev* TDevTool_Share::GetModuleByID(int id)
   switch(id)
   {
     // ядро
-    case Logic: pModule = GetModuleLogic();                                      break;
+    case Logic: pModule = GetModuleLogic(); ((TModuleLogic*)pModule)->SetTerrainPath(mTerrainPath); break;
     // периферия
     case GraphicEngine:          pModule = new TModuleGraphicEngine;// единственный модуль, который требуется настраивать в том же потоке
       ((TModuleGraphicEngine*)pModule)->GetCBSetup()->Register(&TDevTool_Share::SetupGraphicEngine,this);

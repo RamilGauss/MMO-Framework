@@ -794,6 +794,22 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Builder\BuilderTerrain_Ogre.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderTerrain_Ogre.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\HeightMapFromOgre.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\HeightMapFromOgre.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Builder\StructBuilder_Ogre.h"
 						>
 					</File>
@@ -1343,14 +1359,6 @@
 		<Filter
 			Name="Test"
 			>
-			<File
-				RelativePath=".\Test\BuilderTerrain_Ogre.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Test\BuilderTerrain_Ogre.h"
-				>
-			</File>
 			<File
 				RelativePath=".\Test\ShowTankWoT_test.cpp"
 				>

@@ -55,3 +55,13 @@ void TModuleLogic::InitLog()
 
 }
 //--------------------------------------------------------------------
+std::string TModuleLogic::GetTerrainPath()
+{
+	return mTerrainPath;
+}
+//--------------------------------------------------------------------
+void TModuleLogic::SetTerrainPath(std::string& path)
+{
+	mTerrainPath = path;
+}
+//--------------------------------------------------------------------
