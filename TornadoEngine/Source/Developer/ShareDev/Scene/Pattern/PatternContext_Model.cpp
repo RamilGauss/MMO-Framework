@@ -104,7 +104,7 @@ std::string TPatternContext_Model::GetNamePart(int index)
   if( index >= GetCountPart() || index < 0 )
     return namePart;
   TMapStr_StrPtrDescIt bit = mMapNamePart_NameVariantDesc.begin();
-  for( int i = 0 ; i <= index ; i++ )
+  for( int i = 0 ; i < index ; i++ )
     bit++;
   namePart = bit->first;
   return namePart;
@@ -128,7 +128,7 @@ std::string TPatternContext_Model::GetNameVariant(std::string& namePart, int ind
     return nameVariant;
 
   TMapStrPtrDescIt bit = pMap->begin();
-  for( int i = 0 ; i <= index ; i++ )
+  for( int i = 0 ; i < index ; i++ )
     bit++;
   nameVariant = bit->first;
   return nameVariant;

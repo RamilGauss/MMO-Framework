@@ -41,10 +41,13 @@ protected:
   int mPhysicWorldID;
 
   // данные
-  boost::scoped_ptr<TGameObjectComponent_Ogre> mPtrGraphic;
-  boost::scoped_ptr<TGameObjectComponent_Bullet>  mPtrPhysic;
-  boost::scoped_ptr<TGameObjectComponent_OpenAL>   mPtrSound;
+  boost::scoped_ptr<TGameObjectComponent_Ogre>   mPtrGraphic;
+  boost::scoped_ptr<TGameObjectComponent_Bullet> mPtrPhysic;
+  boost::scoped_ptr<TGameObjectComponent_OpenAL> mPtrSound;
 
+	std::string mNameMap;
+
+	nsMathTools::TVector3 mPosition;
 public:
   TBehaviourPatternContext(TBehaviourPatternModel* pModel);
   virtual ~TBehaviourPatternContext();
@@ -55,6 +58,9 @@ public:
   TBehaviourPatternModel* GetModel();
 
   void SetGameObject(TGameObject* p);
+
+	void SetNameMap(std::string nameMap);
+	std::string GetNameMap();
 
   // при загрузке карты/объекта
   virtual void SetParameterMap(TMapItem::TMapStrStr& m);// L

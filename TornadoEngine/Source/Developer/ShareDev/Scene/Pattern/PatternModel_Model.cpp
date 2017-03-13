@@ -164,7 +164,7 @@ void TPatternModel_Model::LoadFromThread_Logic(TBehaviourPatternContext* pContex
     LoadShapesFromThread_Logic(pContextModel, pModel->mMapNamePart);
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast)
+bool TPatternModel_Model::LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast)
 {
   TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
   int cntPart = pContextModel->GetCountPart();
@@ -190,16 +190,17 @@ void TPatternModel_Model::LoadFromThread_Ogre(TBehaviourPatternContext* pContext
       }
     }
   }
+	return true;
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadFromThread_Bullet( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::LoadFromThread_Bullet( TBehaviourPatternContext* pContext, bool fast )
 {
-
+	return true;
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadFromThread_OpenAL( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::LoadFromThread_OpenAL( TBehaviourPatternContext* pContext, bool fast )
 {
-
+	return true;
 }
 //---------------------------------------------------------------------------
 void TPatternModel_Model::UnloadFromThread_Logic(TBehaviourPatternContext* pContext)
@@ -207,19 +208,19 @@ void TPatternModel_Model::UnloadFromThread_Logic(TBehaviourPatternContext* pCont
 
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::UnloadFromThread_Ogre( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::UnloadFromThread_Ogre( TBehaviourPatternContext* pContext, bool fast )
 {
-
+	return true;
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::UnloadFromThread_Bullet( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::UnloadFromThread_Bullet( TBehaviourPatternContext* pContext, bool fast )
 {
-
+	return true;
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::UnloadFromThread_OpenAL( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::UnloadFromThread_OpenAL( TBehaviourPatternContext* pContext, bool fast )
 {
-
+	return true;
 }
 //---------------------------------------------------------------------------
 void TPatternModel_Model::SynchroFromThread_Logic(TBehaviourPatternContext* pContext)

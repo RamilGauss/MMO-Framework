@@ -11,6 +11,7 @@ See for more information License.h.
 #include <string>
 #include "TypeDef.h"
 #include "BaseSerializerItem_XML.h"
+#include "TerrainItem.h"
 
 struct TTerrainItem;
 
@@ -24,13 +25,13 @@ public:
   virtual bool Load(TBaseItem* pItem);
   virtual bool Save(TBaseItem* pItem);
 protected:
-  void LoadGeometry();
+  void LoadConvention();
+	void LoadConventionArg(const char* sArg, TTerrainItem::TConvention& conv);
   void LoadGraphic();
-  void LoadHeightMap();
 
-  void SaveGeometry();
+  void SaveConvention();
+	void SaveConventionArg(const char* sArg, TTerrainItem::TConvention& conv);
   void SaveGraphic();
-  void SaveHeightMap();
 };
 
 #endif

@@ -2700,19 +2700,17 @@
       </Part>
     </Collection>
   </Model>
-	<!-- экспериментальная часть Земли, в будущем поправить ExperimentalTerrain->Terrain -->
-  <ExperimentalTerrain name="000000.terrain">
+  <Terrain name="Field">
+    <!-- Карта высот берётся из файла Ogre до начала загрузки графики и физики -->
+		<Convention><!-- Расположение слотов относительно центра -->
+			<x min="0" max="0"/>
+			<y min="0" max="0"/>
+		</Convention>
 		<Graphic>
 			<Property key="MaxPixelError"        value="8.0"/>
 			<Property key="CompositeMapDistance" value="3000"/>
 		</Graphic>
-		<Position>
-      <Property key="x" value="0"/>
-      <Property key="y" value="0"/>
-      <Property key="z" value="0"/>
-		</Position>
-    <!-- Карта высот берётся из файла Ogre до начала загрузки графики и физики -->
-  </ExperimentalTerrain>
+  </Terrain>
   <Map name="Field">
 	  <TableSound name="0"/>
     <Gravity><!-- Ускорение свободного падения -->
@@ -2721,7 +2719,7 @@
       <Property key="z" value="0"/>
     </Gravity>
     <CameraUp><!-- Как ориентирована камера, где у нее верх -->
-      <Property key="x" value="0"/>
+      <Property key="x" value="0"/><!-- На хрен нужно? -->
       <Property key="y" value="1"/>
       <Property key="z" value="0"/>
     </CameraUp>
@@ -2839,18 +2837,18 @@
             <Property key="ID"   value="5"/>
 					</Identity>
 					<Position><!-- Координаты центра -->
-						<Property key="x" value="0"/>
+						<Property key="x" value="0"/><!-- Origin OgreTerrainGroup -->
 						<Property key="y" value="0"/>
 						<Property key="z" value="0"/>
 					</Position>
 					<Rotation><!-- Ориентация -->
-						<Property key="x" value="0"/>
+						<Property key="x" value="0"/><!-- Не влияет на ориентацию земли -->
 						<Property key="y" value="0"/>
 						<Property key="z" value="0"/>
 					</Rotation>
 				</BaseProperty>
 				<ParameterMap>
-					<Property key="NameGameItem" value="Grass"/>
+					<Property key="NameGameItem" value="Field"/>
 				</ParameterMap>
 			</Object>
 		  <Object>

@@ -11,11 +11,22 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "BehaviourPatternModel.h"
 
+class TPatternContext_Terrain;
+
 class DllExport TPatternModel_Terrain : public TBehaviourPatternModel
 {
 public:
   TPatternModel_Terrain();
   virtual ~TPatternModel_Terrain();
+
+  virtual TBehaviourPatternContext* MakeNewConext();
+
+	virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual bool LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
+
+protected:
+	void Begin(TPatternContext_Terrain* pContextTerrain);
+	bool TryLoad(TPatternContext_Terrain* pContextTerrain);
 };
 
 #endif

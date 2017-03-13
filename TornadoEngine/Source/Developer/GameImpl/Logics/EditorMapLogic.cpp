@@ -17,15 +17,15 @@ See for more information License.h.
 #include "EditorMap.h"
 #include "ControlCamera.h"
 
-#include "ShowTankWoT_test.h"
-
 #include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
 
 //###
+#include "ShowTankWoT_test.h"
 #include "BuilderShapePlate_Ogre.h"
 #include "MaterialItem.h"
 #include "ShapeItem.h"
+#include "TerrainItem.h"
 #include "BuilderShapeCylinder_Ogre.h"
 #include "BuilderTerrain_Ogre.h"
 //###
@@ -275,12 +275,26 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowTest()
 {
+	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
+	Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();
+	Ogre::RenderWindow* mWindow   = pGE->GetWindow();
+	// BackGroundColour
+	Ogre::ColourValue fadeColour(0.8f, 0.8f, 0.8f);
+	mWindow->getViewport(0)->setBackgroundColour(fadeColour);
+	// Fog
+	mSceneMgr->setFog(Ogre::FOG_LINEAR, fadeColour, 0.0, 4000, 10000);
+	// SkyPlane
+	Ogre::Plane plane;
+	plane.d = 1000;
+	plane.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
+	mSceneMgr->setSkyPlane(true, plane, "Examples/CloudySky", 500, 20, true, 0.5, 150, 150);
+
 	SetupLight();
 
 	ShowPlate();
 	ShowCylinder();
 	mPtrShowTank->ShowTanks(10);
-	ShowTerrain();
+	//ShowTerrain();
 
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 	pCamera->setPosition(160,160,160);
@@ -385,8 +399,26 @@ void TEditorMapLogic::ShowCylinder()
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowTerrain()
 {
+	std::string name = "mapFlat";
+	TMapItem mapItem(name);
+	name = "";
+	TTerrainItem terrainItem(name);
+	Ogre::Vector3 origin = Ogre::Vector3::ZERO;
+
+	terrainItem.mX.min = 0;
+	terrainItem.mX.max = 0;
+	terrainItem.mY.min = 0;
+	terrainItem.mY.max = 0;
+	
+	terrainItem.mMapProperty.insert(TTerrainItem::TMapStrStrVT("MaxPixelError","8.0"));
+	terrainItem.mMapProperty.insert(TTerrainItem::TMapStrStrVT("CompositeMapDistance","3000"));
+
 	TBuilderTerrain_Ogre builder;
-	builder.Show();
+	builder.Begin(&mapItem, &terrainItem, origin);
+	for( int iX = terrainItem.mX.min ; iX <= terrainItem.mX.max ; iX++ )
+		for( int iY = terrainItem.mY.min ; iY <= terrainItem.mY.max ; iY++ )
+		builder.Load(iX,iY);
+	builder.End();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::CheckTerrainGroupUpdateForSave()

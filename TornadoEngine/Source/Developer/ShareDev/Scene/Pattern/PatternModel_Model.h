@@ -45,14 +45,14 @@ public:
 
   // Выполнить задания в каждом из потоков
   virtual void LoadFromThread_Logic(TBehaviourPatternContext* pContext);
-  virtual void LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual void LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual void LoadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual bool LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual bool LoadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
 
   virtual void UnloadFromThread_Logic(TBehaviourPatternContext* pContext);
-  virtual void UnloadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual void UnloadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual void UnloadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual bool UnloadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual bool UnloadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual bool UnloadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
 
   virtual void SynchroFromThread_Logic(TBehaviourPatternContext* pContext); // внешняя синхронизация
   virtual void SynchroFromThread_Ogre(TBehaviourPatternContext* pContext);  // графика от физики

@@ -58,6 +58,16 @@ void TBehaviourPatternContext::SetGameObject(TGameObject* p)
   mGO = p;
 }
 //------------------------------------------------------------------------
+void TBehaviourPatternContext::SetNameMap(std::string nameMap)
+{
+	mNameMap = nameMap;
+}
+//------------------------------------------------------------------------
+std::string TBehaviourPatternContext::GetNameMap()
+{
+	return mNameMap;
+}
+//------------------------------------------------------------------------
 void TBehaviourPatternContext::SetParameterMap(TMapItem::TMapStrStr& m)
 {
   mParameterMap = m;
@@ -65,12 +75,13 @@ void TBehaviourPatternContext::SetParameterMap(TMapItem::TMapStrStr& m)
 //------------------------------------------------------------------------
 void TBehaviourPatternContext::SetPosition(nsMathTools::TVector3& v)
 {
-
+	mPosition = v;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPatternContext::GetPosition(nsMathTools::TVector3& v)
 {
-  return false;
+	v = mPosition;
+  return true;
 }
 //------------------------------------------------------------------------
 void TBehaviourPatternContext::SetOrientation(nsMathTools::TVector3& v)

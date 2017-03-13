@@ -802,14 +802,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Builder\HeightMapFromOgre.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Builder\HeightMapFromOgre.h"
-						>
-					</File>
-					<File
 						RelativePath=".\Builder\StructBuilder_Ogre.h"
 						>
 					</File>
@@ -823,6 +815,14 @@
 					</File>
 					<File
 						RelativePath=".\Builder\Builder_Bullet.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\HeightMapFromOgre.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\HeightMapFromOgre.h"
 						>
 					</File>
 					<File

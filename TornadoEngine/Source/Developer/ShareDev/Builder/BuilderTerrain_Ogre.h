@@ -12,35 +12,39 @@ See for more information License.h.
 #include <Ogre.h>
 #include <OgreTerrain.h>
 #include <OgreTerrainGroup.h>
-#include "HeightMapFromOgre.h"
+
+struct TMapItem;
+struct TTerrainItem;
 
 // задача класса - загрузка графической составляющей TerrainItem
 
 class DllExport TBuilderTerrain_Ogre
 {
-	Ogre::Root* mRoot;
-	Ogre::SceneManager* mSceneMgr;
-	Ogre::RenderWindow* mWindow;
+	TMapItem*     mMapItem;
+	TTerrainItem* mTerrainItem;
 
-	THeightMapFromOgre mHMF_Ogre;
+	Ogre::Vector3 mTerrainOrigin;
+
+	bool mTerrainsImported;
+
+	Ogre::SceneManager* mSceneMgr;
+	Ogre::TerrainGroup* mTerrainGroup;
+	Ogre::TerrainGlobalOptions* mTerrainGlobals;
 public:
 	TBuilderTerrain_Ogre();
 	~TBuilderTerrain_Ogre();
 
-	void Show();
+	void Begin(TMapItem* pMapItem, TTerrainItem* pTerrainItem, Ogre::Vector3& terrainOrigin);
+	void Load( int x, int y );
+	void End();
 
 protected:
 	void InitOgrePtr();
-	void Init();
 
 	void SetupShadow();
 
 	void defineTerrain(long x, long y);
 	void configureTerrainDefaults();
-
-	bool mTerrainsImported;
-	Ogre::TerrainGroup* mTerrainGroup;
-	Ogre::TerrainGlobalOptions* mTerrainGlobals;
 };
 
 #endif

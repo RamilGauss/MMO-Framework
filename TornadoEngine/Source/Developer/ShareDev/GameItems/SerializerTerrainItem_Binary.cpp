@@ -30,20 +30,18 @@ void TSerializerTerrainItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinO
 	PushType();
 	PushStr(pTerrainItem->mName);
 
-	Push(pTerrainItem->mLength);
-	Push(pTerrainItem->mWidth);
+	Push(pTerrainItem->mX.min);
+	Push(pTerrainItem->mX.max);
+	Push(pTerrainItem->mY.min);
+	Push(pTerrainItem->mY.max);
 
-	PushStr(pTerrainItem->mGraphic.color);
-	PushStr(pTerrainItem->mGraphic.normal);
-
-	Push(pTerrainItem->mHeightMap.size());
-	BOOST_FOREACH( TTerrainItem::TPoint& point, pTerrainItem->mHeightMap )
+	Push(pTerrainItem->mMapProperty.size());
+	BOOST_FOREACH( TTerrainItem::TMapStrStrVT& vt, pTerrainItem->mMapProperty )
 	{
-		Push(point.x);
-		Push(point.y);
-		Push(point.h);
-		Push(point.u);
-		Push(point.v);
+		std::string value = vt.first;
+		PushStr(value);
+		value = vt.second;
+		PushStr(value);
 	}
 	Collect(cBinOut);
 }
@@ -57,23 +55,20 @@ bool TSerializerTerrainItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int 
 	RET_FALSE( PopType() )
 	RET_FALSE( PopStr(pTerrainItem->mName) )
 
-	RET_FALSE(Pop(pTerrainItem->mLength))
-	RET_FALSE(Pop(pTerrainItem->mWidth))
+	RET_FALSE(Pop(pTerrainItem->mX.min))
+	RET_FALSE(Pop(pTerrainItem->mX.max))
+	RET_FALSE(Pop(pTerrainItem->mY.min))
+	RET_FALSE(Pop(pTerrainItem->mY.max))
 
-	RET_FALSE(PopStr(pTerrainItem->mGraphic.color))
-	RET_FALSE(PopStr(pTerrainItem->mGraphic.normal))
-
-	TTerrainItem::TVecPoint::size_type cntPoint;
-	RET_FALSE( Pop(cntPoint) )
-	for( int iPoint = 0 ; iPoint < int(cntPoint) ; iPoint++ )
+	TTerrainItem::TMapStrStr::size_type cntProperty;
+	RET_FALSE( Pop(cntProperty) )
+	for( int iPoint = 0 ; iPoint < int(cntProperty) ; iPoint++ )
 	{
-		TTerrainItem::TPoint point;
-		RET_FALSE( Pop(point.x) )
-		RET_FALSE( Pop(point.y) )
-		RET_FALSE( Pop(point.x) )
-		RET_FALSE( Pop(point.y) )
-		RET_FALSE( Pop(point.y) )
-		pTerrainItem->mHeightMap.push_back(point);
+		std::string key;
+		RET_FALSE( PopStr(key) )
+		std::string value;
+		RET_FALSE( PopStr(value) )
+		pTerrainItem->mMapProperty.insert(TTerrainItem::TMapStrStrVT(key,value));
 	}
 	return true;
 }

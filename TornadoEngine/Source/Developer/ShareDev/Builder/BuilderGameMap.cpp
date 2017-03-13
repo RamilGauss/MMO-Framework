@@ -111,6 +111,7 @@ void TBuilderGameMap::BuildFromThread_Logic()
     pGO->GetContext()->SetPosition(mBeginIteratorMapObject->position);
     pGO->GetContext()->SetOrientation(mBeginIteratorMapObject->rotation);
     pGO->GetContext()->SetParameterMap(mBeginIteratorMapObject->parameterMap);
+		pGO->GetContext()->SetNameMap(mMapItem->mName);
     pGO->GetModel()->LoadFromThread_Logic(pGO->GetContext());
 
     mListGameObject.push_back(pGO);

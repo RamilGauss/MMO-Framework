@@ -11,6 +11,7 @@ See for more information License.h.
 #include "Events.h"
 
 #include <MyGUI_OgrePlatform.h>
+#include <OgreTerrainMaterialGeneratorA.h>
 
 using namespace std;
 
@@ -130,6 +131,18 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogr
 
   mClipCursor.Init(GetWindowHandle());
   ClipCursor();
+
+#if OGRE_NO_GLES3_SUPPORT == 1
+	// Disable the lightmap for OpenGL ES 2.0. The minimum number of samplers allowed is 8(as opposed to 16 on desktop).
+	// Otherwise we will run over the limit by just one. The minimum was raised to 16 in GL ES 3.0.
+	if( mRoot->getRenderSystem()->getName().find("OpenGL ES 2")!=Ogre::String::npos)
+	{
+		Ogre::TerrainMaterialGeneratorA::SM2Profile* matProfile =
+			static_cast<Ogre::TerrainMaterialGeneratorA::SM2Profile*>
+			(mTerrainGlobals->getDefaultMaterialGenerator()->getActiveProfile());
+		matProfile->setLightmapEnabled(false);
+	}
+#endif
   return true;
 }
 //------------------------------------------------------------------------------------------

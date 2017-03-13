@@ -9,7 +9,7 @@ See for more information License.h.
 #define TerrainItemH
 
 #include "BaseItem.h"
-#include <vector>
+#include <map>
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -17,27 +17,19 @@ See for more information License.h.
 
 struct DllExport TTerrainItem : public TBaseItem
 {
-  struct DllExport TGraphic
-  {
-    std::string color;
-    std::string normal;
-  };
-  struct DllExport TPoint
-  {
-    float x;
-    float y;
-    float h;
-    float u;
-    float v;
-  };
+	typedef std::map<std::string,std::string> TMapStrStr;
+	typedef TMapStrStr::iterator   TMapStrStrIt;
+	typedef TMapStrStr::value_type TMapStrStrVT;
 
-  typedef std::vector<TPoint> TVecPoint;
+	TMapStrStr mMapProperty;
 
-  float mWidth;
-  float mLength;
-
-  TGraphic  mGraphic;
-  TVecPoint mHeightMap;
+	struct TConvention
+	{
+		int min;
+		int max;
+	}_PACKED;
+	TConvention mX;
+	TConvention mY;
 
   TTerrainItem(std::string& name);
 }_PACKED;

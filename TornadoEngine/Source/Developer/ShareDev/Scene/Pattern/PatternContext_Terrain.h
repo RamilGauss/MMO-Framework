@@ -10,12 +10,34 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "BehaviourPatternContext.h"
+#include "OgreVector3.h"
+#include "BuilderTerrain_Ogre.h"
 
 class DllExport TPatternContext_Terrain : public TBehaviourPatternContext
 {
+	bool flgIsLoad_Ogre;
+
+	int mNeedLoadX_Ogre;
+	int mNeedLoadY_Ogre;
+
+	TBuilderTerrain_Ogre mBuilderTerrain_Ogre;
 public:
   TPatternContext_Terrain(TBehaviourPatternModel* pModel);
   virtual ~TPatternContext_Terrain();
+
+	void SetIsLoad_Ogre(bool v);
+	bool IsLoad_Ogre();
+
+	void SetLoad_X_Ogre(int v);
+	int GetLoad_X_Ogre();
+
+	void SetLoad_Y_Ogre(int v);
+	int GetLoad_Y_Ogre();
+
+	std::string GetNameTerrainItem();
+	Ogre::Vector3 GetOrigin();
+
+	TBuilderTerrain_Ogre* GetBuilderTerrain_Ogre();
 };
 
 #endif
