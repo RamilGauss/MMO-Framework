@@ -22,7 +22,7 @@ struct TTableSoundItem;
 
 class TCacheTableSound;
 class TApplySetup_GravityVector;
-class TApplySetup_CameraUp;
+class TApplySetup_MapGraphicConfig;
 class TFactoryBehaviourPatternModel;
 
 
@@ -48,7 +48,7 @@ class DllExport TBuilderGameMap
 
   boost::scoped_ptr<TCacheTableSound>          mCTableSound;
   boost::scoped_ptr<TApplySetup_GravityVector> mAS_GravityVector;
-  boost::scoped_ptr<TApplySetup_CameraUp>      mAS_CameraUp;
+  boost::scoped_ptr<TApplySetup_MapGraphicConfig>      mAS_CameraUp;
 
   bool flgNeedInitPhysic;
 

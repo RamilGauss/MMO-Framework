@@ -23,6 +23,11 @@ namespace nsBaseSerializerItem_XML
   const char* sAxeZ     = "z";
 
   const int CountAxes3  = 3;
+
+	const char* sColourRed   = "r";
+	const char* sColourGreen = "g";
+	const char* sColourBlue  = "b";
+	const char* sColourAlpha = "a";
 }
 
 using namespace nsBaseSerializerItem_XML;
@@ -140,6 +145,56 @@ bool TBaseSerializerItem_XML::SaveVector3ByProperty(nsMathTools::TVector3& v3)
     return false;
 
   return true;
+}
+//------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::LoadColour(nsMathTools::TVector3& v3)
+{
+	std::string key, value;
+	int cnt = GetCountProperty();
+
+	if(cnt<CountAxes3)// кол-во компонентов в векторе
+		return false;
+
+	for( int i = 0 ; i < cnt ; i++ )
+	{
+		if(LoadProperty(i,key,value))
+		{
+			if(key==sColourRed)
+				v3.x = boost::lexical_cast<float>(value.data());
+			else if(key==sColourGreen)
+				v3.y = boost::lexical_cast<float>(value.data());
+			else if(key==sColourBlue)
+				v3.z = boost::lexical_cast<float>(value.data());
+
+			if(errno==ERANGE)
+				return false;
+		}
+		else 
+			return false;
+	}
+	return true;
+}
+//------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::SaveColour(nsMathTools::TVector3& v3)
+{
+	std::string key, value;
+
+	key = sColourRed;
+	value = boost::lexical_cast<std::string>(v3.x);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	key = sColourGreen;
+	value = boost::lexical_cast<std::string>(v3.y);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	key = sColourBlue;
+	value = boost::lexical_cast<std::string>(v3.z);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::EnterRoot()

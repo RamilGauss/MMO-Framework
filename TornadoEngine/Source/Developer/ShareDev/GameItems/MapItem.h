@@ -40,7 +40,7 @@ struct DllExport TMapItem : public TBaseItem
 	struct TFog
 	{
 		int mode;
-		unsigned int color;
+		nsMathTools::TVector3 colour;
 		float expDensity;
 		float linearStart;
     float linearEnd;
@@ -48,9 +48,10 @@ struct DllExport TMapItem : public TBaseItem
 
 	std::string mNameTableSound;
 	nsMathTools::TVector3 mGravity;
-	nsMathTools::TVector3 mCameraUp;
 	TFog mFog;
 	TListObject mListObject;
+	nsMathTools::TVector3 mBackgroundColour;
+	nsMathTools::TVector3 mAmbientLight;
 
   TMapItem(std::string& name);
 }_PACKED;

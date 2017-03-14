@@ -17,14 +17,17 @@ namespace nsSerializerMapItem_XML
   const char* sMap            = "Map";
 	const char* sTableSound     = "TableSound";
   const char* sGravity        = "Gravity";
-  const char* sCameraUp       = "CameraUp";
   const char* sNameTableSound = "name";
 	const char* sFog         		= "Fog";
 	const char* sMode				 		= "mode";
-	const char* sColor			 		= "color";
+	const char* sColourRed   		= "colourRed";
+	const char* sColourGreen 		= "colourGreen";
+	const char* sColourBlue  		= "colourBlue";
 	const char* sExpDensity	 		= "expDensity";
 	const char* sLinearStart 		= "linearStart";
 	const char* sLinearEnd	 		= "linearEnd";
+  const char* sBackgroundColour = "BackgroundColour";
+	const char* sAmbientLight   = "AmbientLight";
 	const char* sSet					  = "Set";
 	const char* sObject				  = "Object";
 	const char* sBaseProperty	  = "BaseProperty";
@@ -61,8 +64,9 @@ bool TSerializerMapItem_XML::Load(TBaseItem* pItem)
 
 	LoadTableSound();
   LoadGravity();
-  LoadCameraUp();
 	LoadFog();
+  LoadBackgroundColour();
+  LoadAmbientLight();
   LoadSet();
 	LoadScenario();
   return true;
@@ -79,8 +83,9 @@ bool TSerializerMapItem_XML::Save(TBaseItem* pItem)
 
 	SaveTableSound();
   SaveGravity();
-  SaveCameraUp();
 	SaveFog();
+  SaveBackgroundColour();
+	SaveAmbientLight();
 	SaveSet();
 	SaveScenario();
   return mXML->Save();
@@ -100,13 +105,22 @@ void TSerializerMapItem_XML::LoadGravity()
   }
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::LoadCameraUp()
+void TSerializerMapItem_XML::LoadBackgroundColour()
 {
-  if(mXML->EnterSection(sCameraUp, 0))
+  if(mXML->EnterSection(sBackgroundColour, 0))
   {
-    LoadVector3ByProperty(mMapItem->mCameraUp);
+    LoadColour(mMapItem->mBackgroundColour);
     mXML->LeaveSection();
   }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerMapItem_XML::LoadAmbientLight()
+{
+	if(mXML->EnterSection(sAmbientLight, 0))
+	{
+		LoadColour(mMapItem->mAmbientLight);
+		mXML->LeaveSection();
+	}
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadFog()
@@ -121,8 +135,12 @@ void TSerializerMapItem_XML::LoadFog()
 				continue;
 			if( key==sMode )
 				mMapItem->mFog.mode = boost::lexical_cast<int>(value);
-			if( key==sColor)
-				mMapItem->mFog.color = boost::lexical_cast<unsigned int>(value);
+			if( key==sColourRed)
+				mMapItem->mFog.colour.x = boost::lexical_cast<float>(value);
+			if( key==sColourGreen)
+				mMapItem->mFog.colour.y = boost::lexical_cast<float>(value);
+			if( key==sColourBlue)
+				mMapItem->mFog.colour.z = boost::lexical_cast<float>(value);
 			if( key==sExpDensity)
 				mMapItem->mFog.expDensity = boost::lexical_cast<float>(value);
 			if( key==sLinearStart)
@@ -181,13 +199,22 @@ void TSerializerMapItem_XML::SaveGravity()
   }
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::SaveCameraUp()
+void TSerializerMapItem_XML::SaveBackgroundColour()
 {
-  if(mXML->AddSectionAndEnter(sCameraUp))
+  if(mXML->AddSectionAndEnter(sBackgroundColour))
   {
-    SaveVector3ByProperty(mMapItem->mCameraUp);
+    SaveVector3ByProperty(mMapItem->mBackgroundColour);
     mXML->LeaveSection();
   }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerMapItem_XML::SaveAmbientLight()
+{
+	if(mXML->AddSectionAndEnter(sAmbientLight))
+	{
+		SaveVector3ByProperty(mMapItem->mAmbientLight);
+		mXML->LeaveSection();
+	}
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::SaveFog()
@@ -198,8 +225,14 @@ void TSerializerMapItem_XML::SaveFog()
 		key   = sMode;
 		value = boost::lexical_cast<std::string>(mMapItem->mFog.mode);
 		SaveProperty(key, value);
-		key   = sColor;
-		value = boost::lexical_cast<std::string>(mMapItem->mFog.color);
+		key   = sColourRed;
+		value = boost::lexical_cast<std::string>(mMapItem->mFog.colour.x);
+		SaveProperty(key, value);
+		key   = sColourGreen;
+		value = boost::lexical_cast<std::string>(mMapItem->mFog.colour.y);
+		SaveProperty(key, value);
+		key   = sColourBlue;
+		value = boost::lexical_cast<std::string>(mMapItem->mFog.colour.z);
 		SaveProperty(key, value);
 		key   = sExpDensity;
 		value = boost::lexical_cast<std::string>(mMapItem->mFog.expDensity);

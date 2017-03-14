@@ -19,6 +19,8 @@ See for more information License.h.
 #include "ContainerTypes.h"
 #include "MathTools.h"
 #include "MapItem.h"
+#include "BL_Debug.h"
+#include <boost/lexical_cast.hpp>
 
 class TGameObject;
 class TFactoryGameItem;
@@ -82,17 +84,26 @@ public:
   TGameObjectComponent_Bullet*  GetPhysic();
   TGameObjectComponent_OpenAL*   GetSound();
 protected:
-  //struct TParameterMap
-  //{
-  //  bool flgMobility;
-  //  std::string nameGameItem;
-  //  std::string nameVariant;
-  //  TParameterMap(){flgMobility=false;}
-  //};
-  //TParameterMap mStructParameterMap;
 
-  //virtual void ParseParameterMap(TMapItem::TMapStrStr& m);
+	template<typename T>
+	bool GetFromParameterMap(std::string name, T& result)
+	{
+		TMapItem::TMapStrStr* pMap = (TMapItem::TMapStrStr*)GetParameterMap();
+		if( pMap==NULL )
+		{
+			BL_FIX_BUG();
+			return false;
+		}
 
+		TMapItem::TMapStrStrIt fit = pMap->find(name);
+		if( fit==pMap->end() )
+		{
+			BL_FIX_BUG();
+			return false;
+		}
+		result = boost::lexical_cast<T>(fit->second);
+		return true;
+	}
 };
 
 #endif

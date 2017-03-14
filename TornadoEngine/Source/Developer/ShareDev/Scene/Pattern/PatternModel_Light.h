@@ -16,6 +16,10 @@ class DllExport TPatternModel_Light : public TBehaviourPatternModel
 public:
   TPatternModel_Light();
   virtual ~TPatternModel_Light();
+
+	virtual TBehaviourPatternContext* MakeNewConext();
+
+	virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
 };
 
 #endif

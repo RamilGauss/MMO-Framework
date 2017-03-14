@@ -703,19 +703,19 @@
 				Name="ApplySetup"
 				>
 				<File
-					RelativePath=".\Builder\ApplySetup_CameraUp.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Builder\ApplySetup_CameraUp.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Builder\ApplySetup_GravityVector.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\Builder\ApplySetup_GravityVector.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\ApplySetup_MapGraphicConfig.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Builder\ApplySetup_MapGraphicConfig.h"
 					>
 				</File>
 				<File

@@ -16,6 +16,7 @@ class DllExport TPatternContext_Skybox : public TBehaviourPatternContext
 public:
   TPatternContext_Skybox(TBehaviourPatternModel* pModel);
   virtual ~TPatternContext_Skybox();
+
 };
 
 #endif

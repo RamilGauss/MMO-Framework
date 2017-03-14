@@ -6,8 +6,11 @@ See for more information License.h.
 */
 
 #include "PatternModel_Model.h"
+
 #include <boost/foreach.hpp>
 #include <OgreRoot.h>
+#include <OgreEntity.h>
+
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
 #include "FactoryGameItem.h"
@@ -311,7 +314,15 @@ void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model* pConte
   TBuilder_Ogre* pBOgre = GetBuilderOgre();
 
   Ogre::Entity* pEntity = pBOgre->GetShapeMaker()->Build( pShapeItem );
+	pShapeDesc->nameEntityOgre = pEntity->getName();
 
-	//Ogre::Root* pRoot = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetRoot();
+	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
+	// сделано временно для визуализации (отладка)
+	nsMathTools::TVector3 pos;
+	pContextModel->GetPosition(pos);
+	Ogre::Vector3 vPos(pos.x, pos.y, pos.z);
+	pEntity->getParentSceneNode()->setPosition(vPos);
+	pEntity->setCastShadows(true);
+	//###
 }
 //---------------------------------------------------------------------------

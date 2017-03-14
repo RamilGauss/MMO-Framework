@@ -69,12 +69,12 @@ std::string TManagerNamePattern::Skybox()
 //-----------------------------------------------------------------------
 std::string TManagerNamePattern::Skydome()
 {
-	return sSkybox;
+	return sSkydome;
 }
 //-----------------------------------------------------------------------
 std::string TManagerNamePattern::Skyplane()
 {
-	return sSkybox;
+	return sSkyplane;
 }
 //-----------------------------------------------------------------------
 std::string TManagerNamePattern::Sound()

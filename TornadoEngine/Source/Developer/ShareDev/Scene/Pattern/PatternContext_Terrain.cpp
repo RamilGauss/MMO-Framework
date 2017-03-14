@@ -9,6 +9,13 @@ See for more information License.h.
 #include "ManagerNamePattern.h"
 #include "BL_Debug.h"
 
+namespace nsPatternContext_Terrain
+{
+	const char* sNameGameItem = "NameGameItem";
+}
+
+using namespace nsPatternContext_Terrain;
+
 TPatternContext_Terrain::TPatternContext_Terrain(TBehaviourPatternModel* pModel):
 TBehaviourPatternContext(pModel)
 {
@@ -54,21 +61,8 @@ int TPatternContext_Terrain::GetLoad_Y_Ogre()
 //---------------------------------------------------------------------------
 std::string TPatternContext_Terrain::GetNameTerrainItem()
 {
-	std::string name = "";
-	TMapItem::TMapStrStr* pMap = (TMapItem::TMapStrStr*)GetParameterMap();
-	if( pMap==NULL )
-	{
-		BL_FIX_BUG();
-		return name;
-	}
-
-	TMapItem::TMapStrStrIt fit = pMap->find("NameGameItem");
-	if( fit==pMap->end() )
-	{
-		BL_FIX_BUG();
-		return name;
-	}
-	name = fit->second;
+	std::string name;
+	GetFromParameterMap<std::string>(sNameGameItem, name);
 	return name;
 }
 //---------------------------------------------------------------------------

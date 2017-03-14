@@ -16,6 +16,16 @@ class DllExport TPatternContext_Skyplane : public TBehaviourPatternContext
 public:
 	TPatternContext_Skyplane(TBehaviourPatternModel* pModel);
 	virtual ~TPatternContext_Skyplane();
+
+	float GetPlane_D();
+	nsMathTools::TVector3 GetPlane_Normal();
+	std::string GetNameMaterialOgre();
+	float GetScale();
+	float GetTiling();
+	bool  GetDrawFirst();
+	float GetBow();
+	float GetXsegments();
+	float GetYsegments();
 };
 
 #endif

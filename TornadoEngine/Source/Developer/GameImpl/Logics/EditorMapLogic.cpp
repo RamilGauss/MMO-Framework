@@ -275,55 +275,13 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowTest()
 {
-	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
-	Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();
-	Ogre::RenderWindow* mWindow   = pGE->GetWindow();
-	// BackGroundColour
-	Ogre::ColourValue fadeColour(0.8f, 0.8f, 0.8f);
-	mWindow->getViewport(0)->setBackgroundColour(fadeColour);
-	// Fog
-	mSceneMgr->setFog(Ogre::FOG_LINEAR, fadeColour, 0.0, 4000, 10000);
-	// SkyPlane
-	Ogre::Plane plane;
-	plane.d = 1000;
-	plane.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
-	mSceneMgr->setSkyPlane(true, plane, "Examples/CloudySky", 500, 20, true, 0.5, 150, 150);
-
-	SetupLight();
-
-	ShowPlate();
-	ShowCylinder();
-	mPtrShowTank->ShowTanks(10);
-	//ShowTerrain();
+	//ShowPlate();
+	//ShowCylinder();
+	//mPtrShowTank->ShowTanks(10);
 
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 	pCamera->setPosition(160,160,160);
 	pCamera->lookAt(0,0,0);
-}
-//---------------------------------------------------------------------------------------------
-void TEditorMapLogic::SetupLight()
-{
-	Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
-	pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
-
-	Ogre::String nameLight = "mainLight";
-	Ogre::Light* pLight = NULL;
-	if( pSM->hasLight(nameLight) )
-		pLight = pSM->getLight(nameLight);
-	else
-		pLight = pSM->createLight(nameLight);
-
-	pLight->setType(Ogre::Light::LT_SPOTLIGHT);
-	pLight->setCastShadows(false);
-	pLight->setVisible(true);
-	Ogre::Vector3 posLight(0,200,0);
-	pLight->setPosition(posLight);
-	Ogre::Vector3 dirLight(1,0,0);
-	dirLight.normalise();
-	pLight->setDirection(dirLight);
-
-	pLight->setDiffuseColour(1.0f, 1.0f, 1.0f);
-	pLight->setSpecularColour(1.0f, 1.0f, 1.0f);	
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowPlate()
@@ -395,30 +353,6 @@ void TEditorMapLogic::ShowCylinder()
 	Ogre::Vector3 vPos(-10,120,-10);
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
-}
-//---------------------------------------------------------------------------------------------
-void TEditorMapLogic::ShowTerrain()
-{
-	std::string name = "mapFlat";
-	TMapItem mapItem(name);
-	name = "";
-	TTerrainItem terrainItem(name);
-	Ogre::Vector3 origin = Ogre::Vector3::ZERO;
-
-	terrainItem.mX.min = 0;
-	terrainItem.mX.max = 0;
-	terrainItem.mY.min = 0;
-	terrainItem.mY.max = 0;
-	
-	terrainItem.mMapProperty.insert(TTerrainItem::TMapStrStrVT("MaxPixelError","8.0"));
-	terrainItem.mMapProperty.insert(TTerrainItem::TMapStrStrVT("CompositeMapDistance","3000"));
-
-	TBuilderTerrain_Ogre builder;
-	builder.Begin(&mapItem, &terrainItem, origin);
-	for( int iX = terrainItem.mX.min ; iX <= terrainItem.mX.max ; iX++ )
-		for( int iY = terrainItem.mY.min ; iY <= terrainItem.mY.max ; iY++ )
-		builder.Load(iX,iY);
-	builder.End();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::CheckTerrainGroupUpdateForSave()

@@ -62,7 +62,7 @@ void TShowTankWoT_test::ShowTank(int index, Ogre::Vector3& pos)
 void TShowTankWoT_test::ShowTanks(int cnt)
 {
   Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
-  pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+  //pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
   
   Ogre::Vector3 pos;
   pos.y = 20;

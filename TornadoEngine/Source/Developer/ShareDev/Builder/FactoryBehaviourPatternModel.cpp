@@ -36,8 +36,8 @@ TFactoryBehaviourPatternModel::TFactoryBehaviourPatternModel()
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Light(),    &mCB_Light));
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Model(),    &mCB_Model));
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skybox(),   &mCB_Skybox));
-	mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skydome(),   &mCB_Skydome));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skyplane(),  &mCB_Skyplane));
+	mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skydome(),  &mCB_Skydome));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skyplane(), &mCB_Skyplane));
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Sound(),    &mCB_Sound));
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Terrain(),  &mCB_Terrain));
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Zone(),     &mCB_Zone));

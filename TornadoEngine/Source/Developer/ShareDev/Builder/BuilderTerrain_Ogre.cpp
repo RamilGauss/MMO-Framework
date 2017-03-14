@@ -97,13 +97,6 @@ void TBuilderTerrain_Ogre::configureTerrainDefaults()
 	}
 
 	mTerrainGroup->setOrigin(mTerrainOrigin);
-
-	Ogre::Light* light = mSceneMgr->getLight("mainLight");
-	if( light==NULL )
-		return;
-	mTerrainGlobals->setLightMapDirection(light->getDerivedDirection());
-	mTerrainGlobals->setCompositeMapAmbient(mSceneMgr->getAmbientLight());
-	mTerrainGlobals->setCompositeMapDiffuse(light->getDiffuseColour());
 }
 //--------------------------------------------------------------------
 void TBuilderTerrain_Ogre::InitOgrePtr()

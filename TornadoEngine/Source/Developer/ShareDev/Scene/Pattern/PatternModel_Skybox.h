@@ -16,6 +16,10 @@ class DllExport TPatternModel_Skybox : public TBehaviourPatternModel
 public:
   TPatternModel_Skybox();
   virtual ~TPatternModel_Skybox();
+
+	virtual TBehaviourPatternContext* MakeNewConext();
+
+	virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
 };
 
 #endif

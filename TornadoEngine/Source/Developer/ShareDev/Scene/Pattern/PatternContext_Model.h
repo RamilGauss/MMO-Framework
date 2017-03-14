@@ -35,9 +35,10 @@ public:
     std::string  nameShapeItem;
     std::string  nameMaterial; // реальный материал и переопределенный могут не совпадать
     // результат создания формы:
-    unsigned int id_mesh_ogre;
-    unsigned int id_mesh_bullet;
-    TShapeDesc(){type=TModelItem::eShape;id_mesh_ogre=0;id_mesh_bullet=0;}
+		std::string  nameEntityOgre;
+    //unsigned int id_entity_ogre;
+    unsigned int id_entity_bullet;
+    TShapeDesc(){type=TModelItem::eShape;id_entity_bullet=0;}
   };
 protected:
   TPatternConfigItem::TMapStrStr mMapVariantPatternConfig;

@@ -44,6 +44,9 @@ protected:
 
   bool LoadVector3ByProperty(nsMathTools::TVector3& v3);
   bool SaveVector3ByProperty(nsMathTools::TVector3& v3);
+
+	bool LoadColour(nsMathTools::TVector3& v3);
+	bool SaveColour(nsMathTools::TVector3& v3);
 private:
   bool EnterRoot();
 protected:

@@ -14,7 +14,7 @@ See for more information License.h.
 
 #include "CacheTableSound.h"
 #include "ApplySetup_GravityVector.h"
-#include "ApplySetup_CameraUp.h"
+#include "ApplySetup_MapGraphicConfig.h"
 
 #include "PhysicEngine_Bullet.h"
 #include "ModuleLogic.h"
@@ -38,7 +38,7 @@ TBuilderGameMap::TBuilderGameMap()
 
   mCTableSound.reset(new TCacheTableSound);
   mAS_GravityVector.reset(new TApplySetup_GravityVector);
-  mAS_CameraUp.reset(new TApplySetup_CameraUp);
+  mAS_CameraUp.reset(new TApplySetup_MapGraphicConfig);
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::Init(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP)
@@ -208,7 +208,7 @@ void TBuilderGameMap::InitMapFrom_Bullet()
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::InitMapFrom_Ogre()
 {
-  mAS_CameraUp->Set(mMapItem->mCameraUp);
+  mAS_CameraUp->Set(mMapItem->mBackgroundColour, mMapItem->mFog, mMapItem->mAmbientLight);
   mAS_CameraUp->WorkFromThread_Ogre();
 }
 //--------------------------------------------------------------------------------------------
@@ -229,37 +229,30 @@ void TBuilderGameMap::BuildFromThread_XXX( TTaskForThread& task,
     task.flgNeedInit = false;
   }
 
-  int cntDone = 0;
-  TGameObject** ppGO = NULL;
-  while(1)
-  {
-    ppGO = task.pipe.GetFirst();
-    if( ppGO==NULL )
-    {
-      ht_msleep(eTimeWaitObject);
-      break;
-    }
+  TGameObject** ppGO = task.pipe.GetFirst();
+  if( ppGO==NULL )
+		return;
 
-    TGameObject* pGO = *ppGO;
-    TBehaviourPatternContext* pContext = pGO->GetContext();
-    switch(typeThread)
-    {
-      case eBulletThread:
-        pGO->GetModel()->LoadFromThread_Bullet(pContext);
-        break;
-      case eOgreThread:
-        pGO->GetModel()->LoadFromThread_Ogre(pContext);
-        break;
-      case eOpenALThread:
-        pGO->GetModel()->LoadFromThread_OpenAL(pContext);
-        break;
-    }
-    task.pipe.UnlinkData(ppGO);// отцепиться прежде, чем уничтожить первый из списка
-    task.pipe.RemoveFirst();
-    cntDone++;
-    progress.mCurIndex++;
-    if( cntDone > eMaxCountBuildObject )
+  TGameObject* pGO = *ppGO;
+  TBehaviourPatternContext* pContext = pGO->GetContext();
+	bool resultLoad = true;
+  switch(typeThread)
+  {
+    case eBulletThread:
+      resultLoad = pGO->GetModel()->LoadFromThread_Bullet(pContext);
+      break;
+    case eOgreThread:
+      resultLoad = pGO->GetModel()->LoadFromThread_Ogre(pContext);
+      break;
+    case eOpenALThread:
+      resultLoad = pGO->GetModel()->LoadFromThread_OpenAL(pContext);
       break;
   }
+	if( resultLoad )
+	{
+		task.pipe.UnlinkData(ppGO);// отцепиться прежде, чем уничтожить первый из списка
+		task.pipe.RemoveFirst();
+		progress.mCurIndex++;
+	}
 }
 //--------------------------------------------------------------------------------------------
