@@ -1,288 +1,77 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- WARNING! Number of threads must be equal 1 -->
 <!-- Name of variant defines in virtual TDevTool_Share::GetVariantConveyer(). -->
 <!-- Name of module see in file ListModules.h. -->
-<!-- Result is better when: the number of threads is equal the number of cores CPU minus one. -->
-<!-- Except, if number of cores CPU is equal one, then number of threads must equal one. -->
 <Conveyer>
   <Variant Name = "Client">
-    <CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Logic"          />
-        <Module Name = "MMOEngineClient"/>
-        <Module Name = "PhysicEngine"   />
-        <Module Name = "SoundEngine"    />
-        <Module Name = "Timer"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "MMOEngineClient"/>
-        <Module Name = "Logic"          />
-        <Module Name = "SoundEngine"    />
-        <Module Name = "Timer"          />
-        <Module Name = "PhysicEngine"   />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-        <Module Name = "Logic"          />
-        <Module Name = "SoundEngine"    />
-      </Thread>
-      <Thread>
-        <Module Name = "MMOEngineClient"/>
-      </Thread>
-      <Thread>
-        <Module Name = "PhysicEngine"   />
-      </Thread>
-    </CPU>
+		<Thread>
+			<Module Name = "GraphicEngine"  />
+			<Module Name = "Logic"          />
+			<Module Name = "MMOEngineClient"/>
+			<Module Name = "PhysicEngine"   />
+			<Module Name = "SoundEngine"    />
+			<Module Name = "Timer"          />
+		</Thread>
   </Variant>
   <Variant Name = "Slave" >
-    <CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "AloneGUI"         />
-        <Module Name = "DataBase"         />
-        <Module Name = "Logic"            />
-        <Module Name = "MMOEngineSlave"   />
-        <Module Name = "PhysicEngine"     />
-        <Module Name = "Timer"            />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "AloneGUI"         />
-        <Module Name = "DataBase"         />
-        <Module Name = "Logic"            />
-        <Module Name = "MMOEngineSlave"   />
-        <Module Name = "PhysicEngine"     />
-        <Module Name = "Timer"            />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "AloneGUI"         />
-      </Thread>
-      <Thread>
-        <Module Name = "DataBase"         />
-      </Thread>
-      <Thread>
-        <Module Name = "Logic"            />
-        <Module Name = "MMOEngineSlave"   />
-        <Module Name = "PhysicEngine"     />
-        <Module Name = "Timer"            />
-      </Thread>
-    </CPU>
+		<Thread>
+			<Module Name = "DataBase"         />
+			<Module Name = "Logic"            />
+			<Module Name = "MMOEngineSlave"   />
+			<Module Name = "PhysicEngine"     />
+			<Module Name = "Timer"            />
+		</Thread>
   </Variant>
   <Variant Name = "Master" >
-    <CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "AloneGUI"         />
-        <Module Name = "DataBase"         />
-        <Module Name = "Logic"            />
-        <Module Name = "MMOEngineMaster"  />
-        <Module Name = "Timer"            />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "AloneGUI"         />
-        <Module Name = "DataBase"         />
-        <Module Name = "Logic"            />
-        <Module Name = "MMOEngineMaster"  />
-        <Module Name = "Timer"            />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "AloneGUI"         />
-        <Module Name = "DataBase"         />
-      </Thread>
-      <Thread>
-        <Module Name = "Logic"            />
-        <Module Name = "MMOEngineMaster"  />
-        <Module Name = "Timer"            />
-      </Thread>
-    </CPU>
+		<Thread>
+			<Module Name = "DataBase"         />
+			<Module Name = "Logic"            />
+			<Module Name = "MMOEngineMaster"  />
+			<Module Name = "Timer"            />
+		</Thread>
   </Variant>
   <Variant Name = "SuperServer" >
-    <CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "AloneGUI"         />
-        <Module Name = "Logic"                />
-        <Module Name = "MMOEngineSuperServer" />
-        <Module Name = "Timer"                />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "AloneGUI"         />
-        <Module Name = "Logic"                />
-        <Module Name = "MMOEngineSuperServer" />
-        <Module Name = "Timer"                />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "AloneGUI"         />
-      </Thread>
-      <Thread>
-        <Module Name = "Logic"                />
-        <Module Name = "MMOEngineSuperServer" />
-        <Module Name = "Timer"                />
-      </Thread>
-    </CPU>
+		<Thread>
+			<Module Name = "Logic"                />
+			<Module Name = "MMOEngineSuperServer" />
+			<Module Name = "Timer"                />
+		</Thread>
   </Variant>
   <Variant Name = "EditorMaterial">
-    <CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Logic"          />
-        <Module Name = "Timer"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-      </Thread>
-      <Thread>
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
+		<Thread>
+			<Module Name = "GraphicEngine"  />
+			<Module Name = "Logic"          />
+			<Module Name = "Timer"          />
+		</Thread>
   </Variant>
   <Variant Name = "EditorShape">
-    <CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Logic"          />
-        <Module Name = "Timer"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-      </Thread>
-      <Thread>
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
+		<Thread>
+			<Module Name = "GraphicEngine"  />
+			<Module Name = "Logic"          />
+			<Module Name = "Timer"          />
+		</Thread>
   </Variant>
   <Variant Name = "EditorModel">
-    <CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Logic"          />
-        <Module Name = "Timer"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-      </Thread>
-      <Thread>
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
+		<Thread>
+			<Module Name = "GraphicEngine"  />
+			<Module Name = "Logic"          />
+			<Module Name = "Timer"          />
+		</Thread>
   </Variant>
   <Variant Name = "EditorMap">
-  	<CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Logic"          />
-        <Module Name = "PhysicEngine"   />
-        <Module Name = "SoundEngine"    />
-        <Module Name = "Timer"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Logic"          />
-        <Module Name = "SoundEngine"    />
-        <Module Name = "Timer"          />
-        <Module Name = "PhysicEngine"   />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-        <Module Name = "Logic"          />
-        <Module Name = "SoundEngine"    />
-        <Module Name = "PhysicEngine"   />
-      </Thread>
-    </CPU>
+		<Thread>
+			<Module Name = "GraphicEngine"  />
+			<Module Name = "Logic"          />
+			<Module Name = "PhysicEngine"   />
+			<Module Name = "SoundEngine"    />
+			<Module Name = "Timer"          />
+		</Thread>
   </Variant>
   <Variant Name = "EditorTableSound">
-    <CPU CountCore = "1" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Logic"          />
-        <Module Name = "Timer"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "2" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
-    <CPU CountCore = "4" >
-      <Thread>
-        <Module Name = "GraphicEngine"  />
-        <Module Name = "Timer"          />
-      </Thread>
-      <Thread>
-        <Module Name = "Logic"          />
-      </Thread>
-    </CPU>
+		<Thread>
+			<Module Name = "GraphicEngine"  />
+			<Module Name = "Logic"          />
+			<Module Name = "Timer"          />
+		</Thread>
   </Variant>
-	<Experiment>
-		<!-- Экспериментальная секция, подстройка к процессору, по сути оптимизация -->
-		<CPU Brand = "Intel(R) Core(TM)2 Duo CPU E4600">
-		<!-- При первой загрузке программа определит название процессора и произведёт тест производитетельности -->
-		<!-- Если название процессора другое, то производим тест снова и затираем -->
-			<MultiThreadEfficiency>
-				<Thread Count="1" Efficiency="100"/>
-				<Thread Count="2" Efficiency="120"/>
-				<Thread Count="3" Efficiency="200"/>
-				<Thread Count="4" Efficiency="300"/>
-			</MultiThreadEfficiency>
-		</CPU>
-		<Variant Name = "EditorTableSound">
-			<!-- Расчет времени использования процессора программист должен расчитать сам -->
-			<Module Name = "GraphicEngine" PartTimeCPU="40" />
-			<Module Name = "Logic"         PartTimeCPU="6" />
-			<Module Name = "PhysicEngine"  PartTimeCPU="40" />
-			<Module Name = "SoundEngine"   PartTimeCPU="6" />
-			<Module Name = "Timer"         PartTimeCPU="7" />
-		</Variant>
-	</Experiment>
 </Conveyer>

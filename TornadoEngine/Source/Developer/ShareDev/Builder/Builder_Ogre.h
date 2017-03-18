@@ -19,7 +19,6 @@ public:
   TBuilder_Ogre();
   virtual ~TBuilder_Ogre();
 
-  //void Work(TTaskForBuilder_Ogre* pTask);
   TBuilderShape_Ogre* GetShapeMaker();
 };
 

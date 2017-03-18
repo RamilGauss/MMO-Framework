@@ -9,17 +9,20 @@ See for more information License.h.
 #define Builder_BulletH
 
 #include "TypeDef.h"
+#include "BuilderShape_Bullet.h"
 
 class DllExport TBuilder_Bullet 
 {
   int mID_PhysicWorld;
+
+  TBuilderShape_Bullet mBuilderShape_Bullet;
 public:
   TBuilder_Bullet();
   virtual ~TBuilder_Bullet();
 
   void SetID_PhysicWorld( int id );
 
-  //void Work(TTaskForBuilder_Bullet* pTask);
+  TBuilderShape_Bullet* GetShapeMaker();
 };
 
 #endif

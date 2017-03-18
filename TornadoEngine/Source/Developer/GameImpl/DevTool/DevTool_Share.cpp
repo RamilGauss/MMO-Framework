@@ -11,7 +11,6 @@ See for more information License.h.
 #include "Components.h"
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
-#include "ModuleAloneGUI.h"
 #include "ModuleMMOEngineClient.h"
 #include "ModuleMMOEngineSlave.h"
 #include "ModuleMMOEngineMaster.h"
@@ -108,7 +107,6 @@ IModule* TDevTool_Share::GetModuleByName(const char* sName)
 void TDevTool_Share::InitMapModules()
 {
   Add(NAME_ID(GraphicEngine)       );
-  Add(NAME_ID(AloneGUI)            );
   Add(NAME_ID(MMOEngineClient)     );
   Add(NAME_ID(MMOEngineSlave)      );
   Add(NAME_ID(MMOEngineMaster)     );
@@ -206,7 +204,6 @@ void TDevTool_Share::SetComponentsForLogic()
 {
   TComponents components;
   components.pGraphicEngine   		 = (TModuleGraphicEngine*)  		 FindPtrModuleByID(GraphicEngine);
-  components.pAloneGUI        		 = (TModuleAloneGUI*)  		       FindPtrModuleByID(AloneGUI);;
   components.pMMOEngineClient 		 = (TModuleMMOEngineClient*)		 FindPtrModuleByID(MMOEngineClient);
   components.pMMOEngineSlave  		 = (TModuleMMOEngineSlave*) 		 FindPtrModuleByID(MMOEngineSlave);
   components.pMMOEngineMaster 		 = (TModuleMMOEngineMaster*)		 FindPtrModuleByID(MMOEngineMaster);
@@ -255,7 +252,6 @@ TModuleDev* TDevTool_Share::GetModuleByID(int id)
     case GraphicEngine:          pModule = new TModuleGraphicEngine;// единственный модуль, который требуется настраивать в том же потоке
       ((TModuleGraphicEngine*)pModule)->GetCBSetup()->Register(&TDevTool_Share::SetupGraphicEngine,this);
       break;
-    case AloneGUI:               pModule = new TModuleAloneGUI;                  break;
     case PhysicEngine:           pModule = new TModulePhysicEngine;              break;
     case MMOEngineClient:        pModule = new TModuleMMOEngineClient;           break;
     case MMOEngineSlave:         pModule = new TModuleMMOEngineSlave;            break;

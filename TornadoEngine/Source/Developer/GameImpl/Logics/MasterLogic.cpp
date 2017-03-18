@@ -18,7 +18,7 @@ TMasterLogic::TMasterLogic()
 {
   SetCycleTime(100);
 
-  mMasterForm = NULL;
+  //mMasterForm = NULL;
   // значения по-умолчанию для параметров командной строки
   std::string sLocalHost;
   TResolverSelf_IP_v4 resolver;
@@ -46,8 +46,8 @@ void TMasterLogic::Input(int id, void* p, int size)
 {
   switch(id)
   {
-    case nsListModules::AloneGUI:
-      break;
+    //case nsListModules::AloneGUI:
+      //break;
     case nsListModules::MMOEngineMaster:
       HandleFromMMOEngine((nsMMOEngine::TBaseEvent*)p);
       break;
@@ -61,13 +61,13 @@ void TMasterLogic::Input(int id, void* p, int size)
 //------------------------------------------------------------------------------
 void TMasterLogic::InitForms()
 {
-  mMasterForm = new TMasterForm;
-  mMasterForm->show();
+  //mMasterForm = new TMasterForm;
+  //mMasterForm->show();
 }
 //------------------------------------------------------------------------------
 void TMasterLogic::StartEvent()
 {
-  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::InitForms);
+  //CallBackModule(nsListModules::AloneGUI, &TMasterLogic::InitForms);
   CallBackModule(nsListModules::MMOEngineMaster, &TMasterLogic::ConnectToSuperServer);
 }
 //----------------------------------------------------------
@@ -142,22 +142,22 @@ void TMasterLogic::InitLog()
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
-  TSessionOperation* pSO = new TSessionOperation;
-  pSO->desc.id_session = pEvent->id_session;
-  pSO->typeEvent = eAdd;
-  mListSlaveSessionOperation.Add(pSO);
+  //TSessionOperation* pSO = new TSessionOperation;
+  //pSO->desc.id_session = pEvent->id_session;
+  //pSO->typeEvent = eAdd;
+  //mListSlaveSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::OperationSessionQt);
+  //CallBackModule(nsListModules::AloneGUI, &TMasterLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
-  TSessionOperation* pSO = new TSessionOperation;
-  pSO->desc.id_session = pEvent->id_session;
-  pSO->typeEvent = eDelete;
-  mListSlaveSessionOperation.Add(pSO);
+  //TSessionOperation* pSO = new TSessionOperation;
+  //pSO->desc.id_session = pEvent->id_session;
+  //pSO->typeEvent = eDelete;
+  //mListSlaveSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::OperationSessionQt);
+  //CallBackModule(nsListModules::AloneGUI, &TMasterLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::TryLogin(nsMMOEngine::TEventTryLogin* pEvent)
@@ -181,24 +181,24 @@ void TMasterLogic::TryLoginMMOEngine(unsigned int* pID)
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::ConnectUp(nsMMOEngine::TEventConnectUp* pBE)
 {
-  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::ConnectUpQt);
+  //CallBackModule(nsListModules::AloneGUI, &TMasterLogic::ConnectUpQt);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE)
 {
-  CallBackModule(nsListModules::AloneGUI, &TMasterLogic::DisconnectUpQt);
+  //CallBackModule(nsListModules::AloneGUI, &TMasterLogic::DisconnectUpQt);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::ConnectUpQt()
 {
-  if(mMasterForm)
-    mMasterForm->SetConnect(true);
+  //if(mMasterForm)
+  //  mMasterForm->SetConnect(true);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::DisconnectUpQt()
 {
-  if(mMasterForm)
-    mMasterForm->SetConnect(false);
+  //if(mMasterForm)
+  //  mMasterForm->SetConnect(false);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::CreateGroup()
@@ -214,17 +214,17 @@ void TMasterLogic::OperationSessionQt()
   while(ppOperation)
   {
     TSessionOperation* pOperation = *ppOperation;
-    switch(pOperation->typeEvent)
-    {
-    case eAdd:
-      if(mMasterForm)
-        mMasterForm->Add(pOperation->desc);
-      break;
-    case eDelete:
-      if(mMasterForm)
-        mMasterForm->Delete(pOperation->desc.id_session);
-      break;
-    }
+    //switch(pOperation->typeEvent)
+    //{
+    //case eAdd:
+    //  if(mMasterForm)
+    //    mMasterForm->Add(pOperation->desc);
+    //  break;
+    //case eDelete:
+    //  if(mMasterForm)
+    //    mMasterForm->Delete(pOperation->desc.id_session);
+    //  break;
+    //}
     // следующий ID
     mListSlaveSessionOperation.RemoveFirst();
     ppOperation = mListSlaveSessionOperation.GetFirst();

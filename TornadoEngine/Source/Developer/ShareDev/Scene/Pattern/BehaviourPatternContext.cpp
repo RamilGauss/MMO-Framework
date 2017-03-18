@@ -43,6 +43,11 @@ void TBehaviourPatternContext::SetPhysicWorld(int id_physic_world)
   mPhysicWorldID = id_physic_world;
 }
 //------------------------------------------------------------------------
+int TBehaviourPatternContext::GetPhysicWorld()
+{
+	return mPhysicWorldID;
+}
+//------------------------------------------------------------------------
 void TBehaviourPatternContext::SetModel(TBehaviourPatternModel* pModel)
 {
   mModel = pModel;

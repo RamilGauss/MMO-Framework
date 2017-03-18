@@ -12,11 +12,11 @@ See for more information License.h.
 #include "BaseEvent.h"
 #include "Events.h"
 
-#include "MasterForm.h"
+//#include "MasterForm.h"
 
 class TMasterLogic : public TModuleServerLogic
 {
-  TMasterForm* mMasterForm;
+  //TMasterForm* mMasterForm;
     
   unsigned int mCounterClient;
 
@@ -26,7 +26,7 @@ class TMasterLogic : public TModuleServerLogic
   typedef enum{eAdd,eDelete}TypeEvent;
   struct TSessionOperation
   {
-    TMasterForm::TDesc desc;
+    //TMasterForm::TDesc desc;
     TypeEvent typeEvent;
   };
   TDataExchange2Thread<TSessionOperation> mListSlaveSessionOperation;

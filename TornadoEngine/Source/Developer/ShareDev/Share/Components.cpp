@@ -11,7 +11,6 @@ See for more information License.h.
 #include <boost/foreach.hpp>
 
 #include "ModuleGraphicEngine.h"
-#include "ModuleAloneGUI.h"
 #include "ModuleMMOEngineClient.h"
 #include "ModuleMMOEngineSlave.h"
 #include "ModuleMMOEngineMaster.h"
@@ -23,7 +22,6 @@ See for more information License.h.
 
 TComponents::TComponents()
 {
-  pAloneGUI             = NULL;
   pDataBase             = NULL;
   pGraphicEngine        = NULL;
   pMMOEngineClient      = NULL;
@@ -37,7 +35,6 @@ TComponents::TComponents()
 //------------------------------------------------------------------------------------------
 void TComponents::SetLogicID(int id)
 {
-  mVecComp.push_back(pAloneGUI);
   mVecComp.push_back(pDataBase);
   mVecComp.push_back(pGraphicEngine);
   mVecComp.push_back(pMMOEngineClient);

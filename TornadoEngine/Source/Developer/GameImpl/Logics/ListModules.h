@@ -16,7 +16,7 @@ namespace nsListModules
     Undef               = 0,
     // visual
     GraphicEngine,      // client
-    AloneGUI,           // server
+    //AloneGUI,         // server have not gui
     // network
     MMOEngineClient,
     MMOEngineSlave,

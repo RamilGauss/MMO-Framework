@@ -25,8 +25,11 @@ public:
   virtual bool LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
 
 protected:
-	void Begin(TPatternContext_Terrain* pContextTerrain);
-	bool TryLoad(TPatternContext_Terrain* pContextTerrain);
+	void BeginLoad_Bullet(TPatternContext_Terrain* pContextTerrain);
+	bool TryLoad_Bullet(TPatternContext_Terrain* pContextTerrain);
+
+	void BeginLoad_Ogre(TPatternContext_Terrain* pContextTerrain);
+	bool TryLoad_Ogre(TPatternContext_Terrain* pContextTerrain);
 };
 
 #endif

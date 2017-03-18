@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib Base_d.lib GameEngine_d.lib PhysicEngine_d.lib QtEngine_d.lib Common_d.lib Platforms_d.lib NetTransport_d.lib MMOEngine_d.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib BulletDynamics_d.lib BulletCollision_d.lib LinearMath_d.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib Base_d.lib GameEngine_d.lib PhysicEngine_d.lib Common_d.lib Platforms_d.lib NetTransport_d.lib MMOEngine_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine.lib QtCore4.lib QtGui4.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib Base.lib GameEngine.lib PhysicEngine.lib QtEngine.lib Common.lib Platforms.lib NetTransport.lib MMOEngine.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine.lib BulletDynamics.lib BulletCollision.lib LinearMath.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib Base.lib GameEngine.lib PhysicEngine.lib Common.lib Platforms.lib NetTransport.lib MMOEngine.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
 				GenerateDebugInformation="true"
@@ -298,10 +298,6 @@
 					Name="Header Files"
 					>
 					<File
-						RelativePath=".\Modules\ModuleAloneGUI.h"
-						>
-					</File>
-					<File
 						RelativePath=".\Modules\ModuleComponent.h"
 						>
 					</File>
@@ -349,10 +345,6 @@
 				<Filter
 					Name="Source Files"
 					>
-					<File
-						RelativePath=".\Modules\ModuleAloneGUI.cpp"
-						>
-					</File>
 					<File
 						RelativePath=".\Modules\ModuleComponent.cpp"
 						>
@@ -815,6 +807,46 @@
 					</File>
 					<File
 						RelativePath=".\Builder\Builder_Bullet.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShape_Bullet.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShape_Bullet.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShapeBase_Bullet.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShapeBase_Bullet.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShapeCylinder_Bullet.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShapeCylinder_Bullet.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShapePlate_Bullet.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderShapePlate_Bullet.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderTerrain_Bullet.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Builder\BuilderTerrain_Bullet.h"
 						>
 					</File>
 					<File

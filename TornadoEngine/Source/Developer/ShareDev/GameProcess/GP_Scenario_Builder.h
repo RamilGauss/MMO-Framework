@@ -63,6 +63,8 @@ private:
   void Leave(TypeActive t);
   
   void SetActiveTask(TypeActive t, bool v);
+
+	void DumpGameObjectToScene();
 };
 
 #endif

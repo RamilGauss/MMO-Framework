@@ -17,6 +17,7 @@ See for more information License.h.
 #include "EditorMapLogic.h"
 
 #include <OgreManualObject.h>
+#include "ProtocolGUI2Logic.h"
 
 TEditorMap::TEditorMap() 
 {
@@ -27,6 +28,7 @@ TEditorMap::TEditorMap()
   miOpen                     = nullptr;
   miSave                     = nullptr;
   miExit                     = nullptr;
+	cbUsePhysic                = nullptr;
 }
 //------------------------------------------------------
 TEditorMap::~TEditorMap()
@@ -47,6 +49,10 @@ void TEditorMap::Activate()
 
   miOpen->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Open);
   miExit->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Exit);
+
+	assignWidget(cbUsePhysic, "cbUsePhysic");
+
+	cbUsePhysic->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_ToggleUsePhysic);
 }
 //-------------------------------------------------------------------------------------
 const char* TEditorMap::GetNameLayout()
@@ -77,13 +83,29 @@ void TEditorMap::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Ch
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Open(MyGUI::Widget* _sender)
 {
-  std::string nameMap = "Field";
-  TModuleLogic::Get()->AddEventCopy(nsListModules::FromSomeToLogic, 
-    (void*)nameMap.data(), nameMap.length() );
+	nsProtocolGUI2Logic::TLoadMap* pPacket = new nsProtocolGUI2Logic::TLoadMap;
+	pPacket->nameMap = "Field";
+  TModuleLogic::Get()->
+		AddEventWithoutCopy<nsProtocolGUI2Logic::TLoadMap>(nsListModules::FromSomeToLogic, pPacket );
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Exit(MyGUI::Widget* _sender)
 {
   TModuleLogic::Get()->Exit();
+}
+//-------------------------------------------------------------------------------------
+void TEditorMap::sl_ToggleUsePhysic(MyGUI::Widget* _sender)
+{
+	bool state = cbUsePhysic->getStateSelected();
+	state = !state;
+	cbUsePhysic->setStateSelected(state);
+
+	nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld* pPacket = new nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld;
+
+	pPacket->stateWorld = 
+		state ? TPhysicEngine_Bullet::eStateRealTime : TPhysicEngine_Bullet::eStatePause;
+
+	TModuleLogic::Get()->AddEventWithoutCopy
+		<nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld>(nsListModules::FromSomeToLogic, pPacket );
 }
 //-------------------------------------------------------------------------------------

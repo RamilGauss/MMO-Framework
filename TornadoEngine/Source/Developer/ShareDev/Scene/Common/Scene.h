@@ -38,12 +38,12 @@ public:
   void UpdateToSound();   // убрать???
   //---------------------------------------------------------------------------
   // выборка
-  virtual int GetCountUsing();                    // mainly for debug
-  virtual TGameObject* GetUsingByIndex(int index);// mainly for debug
+  virtual int GetCountUsing();
+  virtual TGameObject* GetUsingByIndex(int index);
   virtual TGameObject* GetUsingByID(int id);
 
-  virtual int GetCountNotUsing();                    // mainly for debug
-  virtual TGameObject* GetNotUsingByIndex(int index);// mainly for debug
+  virtual int GetCountNotUsing();
+  virtual TGameObject* GetNotUsingByIndex(int index);
   virtual TGameObject* GetNotUsingByID(int id);
 
   // манипуляции

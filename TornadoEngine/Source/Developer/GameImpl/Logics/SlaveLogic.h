@@ -11,11 +11,11 @@ See for more information License.h.
 #include "ModuleServerLogic.h"
 #include "BaseEvent.h"
 #include "Events.h"
-#include "SlaveForm.h"
+//#include "SlaveForm.h"
 
 class TSlaveLogic : public TModuleServerLogic
 {
-  TSlaveForm* mSlaveForm;
+  //TSlaveForm* mSlaveForm;
 
   enum
   {
@@ -25,7 +25,7 @@ class TSlaveLogic : public TModuleServerLogic
   typedef enum{eAdd,eDelete}TypeEvent;
   struct TSessionOperation
   {
-    TSlaveForm::TDesc desc;
+    //TSlaveForm::TDesc desc;
     TypeEvent typeEvent;
   };
   TDataExchange2Thread<TSessionOperation> mListClientSessionOperation;

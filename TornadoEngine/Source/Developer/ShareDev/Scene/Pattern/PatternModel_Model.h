@@ -66,7 +66,10 @@ protected:
   void LoadShapesFromThread_Logic(TPatternContext_Model* pContextModel, TModelItem::TMapStrPart& mapNamePart);
 
   void LoadShapeFromThread_Ogre(TPatternContext_Model* pContextModel, TPatternContext_Model::TShapeDesc* pShapeDesc);
+	void PostLoadFromThread_Ogre(TBehaviourPatternContext* pContext);
 
+	void LoadShapeFromThread_Bullet(TPatternContext_Model* pContextModel, TPatternContext_Model::TShapeDesc* pShapeDesc);
+	void PostLoadFromThread_Bullet(TBehaviourPatternContext* pContext);
 protected:
 
 };

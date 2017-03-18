@@ -67,7 +67,9 @@ public:
   //virtual bool LoadFromParameterMap();// L
   virtual bool UpdateFromGameItem(TBehaviourPatternContext* pContext, TBaseItem* pBI);// L
 
-  // Выполнить задания в каждом из потоков
+	// разделение по модулям нужно потому что у разных реализаций разное кол-во модулей
+
+	// Выполнить задания в каждом из потоков
   // Правило(загрузка,синхронизация,выгрузка): 
   // сначала отрабатывает поток Логики, потом уже все остальные потоки
   virtual void LoadFromThread_Logic(TBehaviourPatternContext* pContext);
@@ -80,9 +82,9 @@ public:
   virtual bool UnloadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
   virtual bool UnloadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
 
-  virtual void SynchroFromThread_Logic(TBehaviourPatternContext* pContext); // внешняя синхронизация
+  virtual void SynchroFromThread_Logic(TBehaviourPatternContext* pContext); // внешняя синхронизация от сервера(MMO)
   virtual void SynchroFromThread_Ogre(TBehaviourPatternContext* pContext);  // графика от физики
-  virtual void SynchroFromThread_Bullet(TBehaviourPatternContext* pContext);// внутренняя синхронизация
+  virtual void SynchroFromThread_Bullet(TBehaviourPatternContext* pContext);// внутренняя синхронизация (коллизии, у клиента тут пусто)
   virtual void SynchroFromThread_OpenAL(TBehaviourPatternContext* pContext);// звук от физики
 protected:
   TBuilder_Ogre*   GetBuilderOgre();

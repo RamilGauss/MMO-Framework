@@ -13,13 +13,9 @@ See for more information License.h.
 const char* sConveyer = "Conveyer";
 
 const char* sVariant     = "Variant";
-const char* sCPU         = "CPU";
 const char* sThread      = "Thread";
 const char* sModule      = "Module";
-const char* sCountCore   = "CountCore";
 const char* sName        = "Name";
-
-using namespace std;
 
 TParserXMLConveyer::TParserXMLConveyer()
 {
@@ -34,10 +30,9 @@ TParserXMLConveyer::~TParserXMLConveyer()
   mXML = NULL;
 }
 //---------------------------------------------------------------------------------------
-bool TParserXMLConveyer::Work(string& fileDescConveyer, string& variantConveyer)
+bool TParserXMLConveyer::Work(std::string& fileDescConveyer, std::string& variantConveyer)
 {
   mVariantConveyer = variantConveyer;
-  mCountCore = GetCountCoreCPU();
   strError = "";
 
   if(mXML->Load(fileDescConveyer.data())==false)
@@ -57,12 +52,6 @@ bool TParserXMLConveyer::Work(string& fileDescConveyer, string& variantConveyer)
     strError = "Нет такого Варианта";
     return false;
   }
-
-	if(SearchCountCore()==false)
-  {
-    strError = "Нет такого количества ядер процессора";
-    return false;
-  }
   // потоки и модули
   if(MakeStrModule()==false)
     return false;
@@ -70,12 +59,12 @@ bool TParserXMLConveyer::Work(string& fileDescConveyer, string& variantConveyer)
   return true;
 }
 //---------------------------------------------------------------------------------------
-string TParserXMLConveyer::GetStrError()
+std::string TParserXMLConveyer::GetStrError()
 {
   return strError;
 }
 //---------------------------------------------------------------------------------------
-void TParserXMLConveyer::GetResult(vector< vector<string > >& vecVecStrModule)
+void TParserXMLConveyer::GetResult(std::vector< std::vector<std::string > >& vecVecStrModule)
 {
   vecVecStrModule  = mVecVecStrModule;
 }
@@ -86,8 +75,8 @@ bool TParserXMLConveyer::SearchVariant()
   int cntVariant = mXML->GetCountSection(sVariant);
   for( int iVariant = 0; iVariant < cntVariant ; iVariant++ )
   {
-    string nameVariant = mXML->ReadSectionAttr(sVariant, iVariant, sName);
-    if(nameVariant==mVariantConveyer)
+    std::string nameVariant = mXML->ReadSectionAttr(sVariant, iVariant, sName);
+    if( nameVariant==mVariantConveyer )
       return mXML->EnterSection(sVariant, iVariant);
   }
 
@@ -96,19 +85,23 @@ bool TParserXMLConveyer::SearchVariant()
 //---------------------------------------------------------------------------------------
 void TParserXMLConveyer::ErrorNoSection(const char* section)
 {
-  char s[200];
-  sprintf(s, "Нет секции %s", section);
-  strError = s;
+  strError = "Нет секции ";
+	strError += section;
 }
 //---------------------------------------------------------------------------------------
 bool TParserXMLConveyer::MakeStrModule()
 {
   int cntThread = mXML->GetCountSection(sThread);
-  if(cntThread==0)
+  if( cntThread==0 )
   {
     ErrorNoSection(sThread);
     return false;
   }
+	if( cntThread!=1 )
+	{
+		strError = "Количество потоков должно быть равно 1";
+		return false;
+	}
 
   for( int iThread = 0 ; iThread < cntThread ; iThread++ )
   {
@@ -118,7 +111,7 @@ bool TParserXMLConveyer::MakeStrModule()
       int cntModule = mXML->GetCountSection(sModule);
       for( int iModule = 0 ; iModule < cntModule ; iModule++ )
       {
-        string nameModule = mXML->ReadSectionAttr(sModule, iModule, sName);
+        std::string nameModule = mXML->ReadSectionAttr(sModule, iModule, sName);
         vecStr.push_back(nameModule);
       }
       mVecVecStrModule.push_back(vecStr);
@@ -126,23 +119,5 @@ bool TParserXMLConveyer::MakeStrModule()
     }
   }
   return true;
-}
-//---------------------------------------------------------------------------------------
-bool TParserXMLConveyer::SearchCountCore()
-{
-  char arrSearchCount[100];
-  sprintf(arrSearchCount, "%d", mCountCore);
-  string sSearchCount = arrSearchCount;
-
-  // ищем вариант
-  int cntCPU = mXML->GetCountSection(sCPU);
-  for( int iCPU = 0; iCPU < cntCPU ; iCPU++ )
-  {
-    string countCoreCPU = mXML->ReadSectionAttr(sCPU, iCPU, sCountCore);
-    if(countCoreCPU==sSearchCount)
-      return mXML->EnterSection(sCPU, iCPU);
-  }
-
-  return false;
 }
 //---------------------------------------------------------------------------------------

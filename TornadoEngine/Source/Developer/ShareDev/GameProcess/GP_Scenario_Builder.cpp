@@ -10,6 +10,10 @@ See for more information License.h.
 #include "ModuleLogic.h"
 #include "HiTimer.h"
 
+#include "GameObject.h"
+#include "Scene.h"
+#include <boost/foreach.hpp>
+
 TGP_Scenario_Builder::TGP_Scenario_Builder()
 {
   mLastProgressEvent = 0;
@@ -136,6 +140,8 @@ void TGP_Scenario_Builder::Thread_Logic()
 
   if(progress==100)
   {
+		DumpGameObjectToScene();
+
     flgProgressComplete = true;
     mCB_End.Notify(GetType());
     flgActiveTask_ThreadLogic = false;
@@ -221,5 +227,16 @@ void TGP_Scenario_Builder::SetActiveTask(TypeActive t, bool v)
       flgActive_ThreadOpenAL = v;
       break;
   }
+}
+//-----------------------------------------------------------------------------
+void TGP_Scenario_Builder::DumpGameObjectToScene()
+{
+	TBuilderGameMap::TListPtrGameObject listGO;
+	mBuilder.GetResult(listGO);
+
+	BOOST_FOREACH(TGameObject* pGO,listGO)
+	{
+		mPtrScene->Include(pGO);
+	}
 }
 //-----------------------------------------------------------------------------

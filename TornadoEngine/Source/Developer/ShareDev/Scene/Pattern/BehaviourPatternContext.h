@@ -55,6 +55,7 @@ public:
   virtual ~TBehaviourPatternContext();
 
   void SetPhysicWorld(int id_physic_world);
+  int GetPhysicWorld();
 
   void SetModel(TBehaviourPatternModel* pModel);
   TBehaviourPatternModel* GetModel();

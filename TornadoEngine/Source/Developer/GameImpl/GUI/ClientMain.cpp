@@ -12,8 +12,8 @@ See for more information License.h.
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include <boost/lexical_cast.hpp>
 
-#include <QString>
-#include <QSettings>
+//#include <QString>
+//#include <QSettings>
 
 #include "GlobalParam.h"
 #include "ResolverSelf_IP_v4.h"
@@ -101,34 +101,34 @@ void TClientMain::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::C
 //-------------------------------------------------------------------------------------
 void TClientMain::SaveInputParam(unsigned int ip, unsigned int port, const char* sLogin)
 {
-  QSettings settings("RUSSIA","ClientMain");
-  settings.setValue("ip",   ip);
-  settings.setValue("port", port);
-  settings.setValue("Login",QString(sLogin));
+  //QSettings settings("RUSSIA","ClientMain");
+  //settings.setValue("ip",   ip);
+  //settings.setValue("port", port);
+  //settings.setValue("Login",QString(sLogin));
 }
 //-------------------------------------------------------------------------------------
 void TClientMain::LoadInputParam()
 {
-  QSettings settings("RUSSIA","ClientMain");
-  bool ok = false;
-  unsigned char sIP4[4];
-  *(unsigned int*)(&sIP4[0]) = settings.value("ip", 0).toUInt(&ok);
-  if(ok==false) return;
-  unsigned int port = settings.value("port",0).toUInt(&ok);
-  if(ok==false) return;
-  QString sLogin    = settings.value("Login",QString()).toString();
+  //QSettings settings("RUSSIA","ClientMain");
+  //bool ok = false;
+  //unsigned char sIP4[4];
+  //*(unsigned int*)(&sIP4[0]) = settings.value("ip", 0).toUInt(&ok);
+  //if(ok==false) return;
+  //unsigned int port = settings.value("port",0).toUInt(&ok);
+  //if(ok==false) return;
+  //QString sLogin    = settings.value("Login",QString()).toString();
 
-  char sIP[100];
-  sprintf(sIP, "%u.%u.%u.%u", 
-     sIP4[3], sIP4[2], sIP4[1], sIP4[0]);
-  ebIP->setOnlyText(sIP);
+  //char sIP[100];
+  //sprintf(sIP, "%u.%u.%u.%u", 
+  //   sIP4[3], sIP4[2], sIP4[1], sIP4[0]);
+  //ebIP->setOnlyText(sIP);
 
-  char sPort[100];
-  sprintf(sPort,"%u",port);
-  ebPort->setOnlyText(sPort);
+  //char sPort[100];
+  //sprintf(sPort,"%u",port);
+  //ebPort->setOnlyText(sPort);
 
-  QByteArray ba = sLogin.toLocal8Bit();
-  ebLogin->setOnlyText(ba.data());
+  //QByteArray ba = sLogin.toLocal8Bit();
+  //ebLogin->setOnlyText(ba.data());
 }
 //-------------------------------------------------------------------------------------
 void TClientMain::EnterServer()

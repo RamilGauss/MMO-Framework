@@ -22,7 +22,7 @@ TSlaveLogic::TSlaveLogic()
 {
   SetCycleTime(eCycleTime);
 
-  mSlaveForm = NULL;
+  //mSlaveForm = NULL;
 
   // значения по-умолчанию для параметров командной строки
   std::string sLocalHost;
@@ -51,8 +51,8 @@ void TSlaveLogic::Input(int id, void* p, int size)
 {
   switch(id)
   {
-    case nsListModules::AloneGUI:
-      break;
+    //case nsListModules::AloneGUI:
+      //break;
     case nsListModules::MMOEngineSlave:
       HandleFromMMOEngine((nsMMOEngine::TBaseEvent*)p);
       break;
@@ -68,13 +68,13 @@ void TSlaveLogic::Input(int id, void* p, int size)
 //------------------------------------------------------------------------------
 void TSlaveLogic::InitForms()
 {
-  mSlaveForm = new TSlaveForm;
-  mSlaveForm->show();
+  //mSlaveForm = new TSlaveForm;
+  //mSlaveForm->show();
 }
 //------------------------------------------------------------------------------
 void TSlaveLogic::StartEvent()
 {
-  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::InitForms);
+  //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::InitForms);
   CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::ConnectToMaster);
   CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::InitMMOSlave);
 }
@@ -151,44 +151,44 @@ void TSlaveLogic::InitLog()
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::ConnectUp(nsMMOEngine::TEventConnectUp* pBE)
 {
-  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::ConnectUpQt);
+  //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::ConnectUpQt);
 }
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE)
 {
-  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::DisconnectUpQt);
+  //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::DisconnectUpQt);
 }
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::ConnectUpQt()
 {
-  if(mSlaveForm)
-    mSlaveForm->SetConnect(true);
+  //if(mSlaveForm)
+    //mSlaveForm->SetConnect(true);
 }
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::DisconnectUpQt()
 {
-  if(mSlaveForm)
-    mSlaveForm->SetConnect(false);
+  //if(mSlaveForm)
+    //mSlaveForm->SetConnect(false);
 }
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
-  TSessionOperation* pSO = new TSessionOperation;
-  pSO->typeEvent = eAdd;
-  pSO->desc.id_session = pEvent->id_session;
-  mListClientSessionOperation.Add(pSO);
+  //TSessionOperation* pSO = new TSessionOperation;
+  //pSO->typeEvent = eAdd;
+  //pSO->desc.id_session = pEvent->id_session;
+  //mListClientSessionOperation.Add(pSO);
   
-  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
+  //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
-  TSessionOperation* pSO = new TSessionOperation;
-  pSO->typeEvent = eDelete;
-  pSO->desc.id_session = pEvent->id_session;
-  mListClientSessionOperation.Add(pSO);
+  //TSessionOperation* pSO = new TSessionOperation;
+  //pSO->typeEvent = eDelete;
+  //pSO->desc.id_session = pEvent->id_session;
+  //mListClientSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
+  //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::OperationSessionQt()
@@ -197,17 +197,17 @@ void TSlaveLogic::OperationSessionQt()
   while(ppOperation)
   {
     TSessionOperation* pOperation = *ppOperation;
-    switch(pOperation->typeEvent)
-    {
-      case eAdd:
-        if(mSlaveForm)
-          mSlaveForm->Add(pOperation->desc);
-        break;
-      case eDelete:
-        if(mSlaveForm)
-          mSlaveForm->Delete(pOperation->desc.id_session);
-        break;
-    }
+    //switch(pOperation->typeEvent)
+    //{
+    //  case eAdd:
+    //    if(mSlaveForm)
+    //      mSlaveForm->Add(pOperation->desc);
+    //    break;
+    //  case eDelete:
+    //    if(mSlaveForm)
+    //      mSlaveForm->Delete(pOperation->desc.id_session);
+    //    break;
+    //}
     // следующий ID
     mListClientSessionOperation.RemoveFirst();
     ppOperation = mListClientSessionOperation.GetFirst();
@@ -220,12 +220,12 @@ void TSlaveLogic::SaveContextClient(nsMMOEngine::TEventSaveContext* pEvent)
   CallBackModuleParam(nsListModules::MMOEngineSlave, &TSlaveLogic::SaveContextClientMMOEngine, pID);
 
   // удалить из списка этого Клиента
-  TSessionOperation* pSO = new TSessionOperation;
-  pSO->typeEvent = eDelete;
-  pSO->desc.id_session = pEvent->id_session;
-  mListClientSessionOperation.Add(pSO);
+  //TSessionOperation* pSO = new TSessionOperation;
+  //pSO->typeEvent = eDelete;
+  //pSO->desc.id_session = pEvent->id_session;
+  //mListClientSessionOperation.Add(pSO);
   
-  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
+  //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::SaveContextClientMMOEngine(unsigned int* pID)
@@ -235,12 +235,12 @@ void TSlaveLogic::SaveContextClientMMOEngine(unsigned int* pID)
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent)
 {
-  TSessionOperation* pSO = new TSessionOperation;
-  pSO->typeEvent = eAdd;
-  pSO->desc.id_session = pEvent->id_session;
-  mListClientSessionOperation.Add(pSO);
+  //TSessionOperation* pSO = new TSessionOperation;
+  //pSO->typeEvent = eAdd;
+  //pSO->desc.id_session = pEvent->id_session;
+  //mListClientSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
+  //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::InitMMOSlave()

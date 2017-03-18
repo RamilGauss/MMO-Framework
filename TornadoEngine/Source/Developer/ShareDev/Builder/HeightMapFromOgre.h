@@ -29,9 +29,9 @@ class DllExport THeightMapFromOgre
 	unsigned int   TERRAINLODDATA_CHUNK_ID;
 	unsigned short TERRAINLODDATA_CHUNK_VERSION;
 
-	int mTargetLodLevel;    /// Which LOD level is demanded
-	int mHighestLodPrepared;  /// Highest LOD level stored in memory i.e. mHeightData/mDeltaData
-	int mHighestLodLoaded;  /// Highest LOD level loaded in GPU
+	int mTargetLodLevel;    // Which LOD level is demanded
+	int mHighestLodPrepared;// Highest LOD level stored in memory i.e. mHeightData/mDeltaData
+	int mHighestLodLoaded;  // Highest LOD level loaded in GPU
 
 	std::string mFileName;
 

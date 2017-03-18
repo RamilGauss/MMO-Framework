@@ -137,7 +137,7 @@ int TScene::GetCount(TMapIntPtr& m)
 //-----------------------------------------------------------------------------
 TGameObject* TScene::GetByIndex(TMapIntPtr& m, int index)
 {
-  if( index < 0 || index >= GetCountNotUsing() )
+  if( index < 0 || index >= int(m.size()) )
     return NULL;
   TMapIntPtrIt bit = m.begin();
   for( int i = 0 ; i < index ; i++ )

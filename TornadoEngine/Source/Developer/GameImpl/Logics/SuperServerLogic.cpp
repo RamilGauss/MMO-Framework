@@ -20,7 +20,7 @@ TSuperServerLogic::TSuperServerLogic()
 {
   SetCycleTime(100);
 
-  mSuperServerForm = NULL;
+  //mSuperServerForm = NULL;
   // значения по-умолчанию для параметров командной строки
   TInputCmdDevTool::TInput input;
   input.port_self = SUPER_SERVER_PORT;
@@ -42,8 +42,8 @@ void TSuperServerLogic::Input(int id, void* p, int size)
 {
   switch(id)
   {
-    case nsListModules::AloneGUI:
-      break;
+    //case nsListModules::AloneGUI:
+      //break;
     case nsListModules::MMOEngineSuperServer:
       HandleFromMMOEngine((nsMMOEngine::TBaseEvent*)p);
       break;
@@ -55,13 +55,12 @@ void TSuperServerLogic::Input(int id, void* p, int size)
 //------------------------------------------------------------------------------
 void TSuperServerLogic::InitForms()
 {
-  mSuperServerForm = new TSuperServerForm;
-  mSuperServerForm->show();
+  //mSuperServerForm = new TSuperServerForm;
+  //mSuperServerForm->show();
 }
 //------------------------------------------------------------------------------
 void TSuperServerLogic::StartEvent()
 {
-  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::InitForms);
   CallBackModule(nsListModules::MMOEngineSuperServer, &TSuperServerLogic::OpenPort);
 }
 //----------------------------------------------------------
@@ -124,22 +123,22 @@ void TSuperServerLogic::InitLog()
 //---------------------------------------------------------------------------------------------
 void TSuperServerLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
 {
-  TSessionOperation* pSO = new TSessionOperation;
-  pSO->typeEvent = eAdd;
-  pSO->desc.id_session = pEvent->id_session;
-  mListMasterSessionOperation.Add(pSO);
+  //TSessionOperation* pSO = new TSessionOperation;
+  //pSO->typeEvent = eAdd;
+  //pSO->desc.id_session = pEvent->id_session;
+  //mListMasterSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::OperationSessionQt);
+  //CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TSuperServerLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 {
-  TSessionOperation* pSO = new TSessionOperation;
-  pSO->typeEvent = eDelete;
-  pSO->desc.id_session = pEvent->id_session;
-  mListMasterSessionOperation.Add(pSO);
+  //TSessionOperation* pSO = new TSessionOperation;
+  //pSO->typeEvent = eDelete;
+  //pSO->desc.id_session = pEvent->id_session;
+  //mListMasterSessionOperation.Add(pSO);
 
-  CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::OperationSessionQt);
+  //CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
 void TSuperServerLogic::OperationSessionQt()
@@ -148,17 +147,17 @@ void TSuperServerLogic::OperationSessionQt()
   while(ppOperation)
   {
     TSessionOperation* pOperation = *ppOperation;
-    switch(pOperation->typeEvent)
-    {
-    case eAdd:
-      if(mSuperServerForm)
-        mSuperServerForm->Add(pOperation->desc);
-      break;
-    case eDelete:
-      if(mSuperServerForm)
-        mSuperServerForm->Delete(pOperation->desc.id_session);
-      break;
-    }
+    //switch(pOperation->typeEvent)
+    //{
+    //case eAdd:
+    //  if(mSuperServerForm)
+    //    mSuperServerForm->Add(pOperation->desc);
+    //  break;
+    //case eDelete:
+    //  if(mSuperServerForm)
+    //    mSuperServerForm->Delete(pOperation->desc.id_session);
+    //  break;
+    //}
     // следующий ID
     mListMasterSessionOperation.RemoveFirst();
     ppOperation = mListMasterSessionOperation.GetFirst();

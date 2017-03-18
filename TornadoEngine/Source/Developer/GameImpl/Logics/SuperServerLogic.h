@@ -10,17 +10,17 @@ See for more information License.h.
 
 #include "ModuleServerLogic.h"
 #include "BaseEvent.h"
-#include "SuperServerForm.h"
+//#include "SuperServerForm.h"
 #include "Events.h"
 
 class TSuperServerLogic : public TModuleServerLogic
 {
-  TSuperServerForm* mSuperServerForm;
+  //TSuperServerForm* mSuperServerForm;
 
   typedef enum{eAdd,eDelete}TypeEvent;
   struct TSessionOperation
   {
-    TSuperServerForm::TDesc desc;
+    //TSuperServerForm::TDesc desc;
     TypeEvent typeEvent;
   };
   TDataExchange2Thread<TSessionOperation> mListMasterSessionOperation;

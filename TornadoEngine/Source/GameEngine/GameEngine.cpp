@@ -22,10 +22,13 @@ See for more information License.h.
 #include "MakerLoaderDLL.h"
 #include "ILoaderDLL.h"
 
-using namespace std;
+#include <boost/lexical_cast.hpp>
 
 #define STR_GAME "GameEngine"
-#define VERSION_GAME_ENGINE 7
+#define VERSION_GAME_ENGINE 8// надеюсь последняя версия :)
+
+#define GAME_ENGINE_MODE_WORK "Single thread mode"
+//#define GAME_ENGINE_MODE_WORK "Multi  thread mode"
 
 TGameEngine::TGameEngine()
 {
@@ -117,10 +120,13 @@ void TGameEngine::Work(int variant_use, const char* sNameDLL, std::vector<std::s
   Done();
 }
 //------------------------------------------------------------------------
-string TGameEngine::GetVersion()
+std::string TGameEngine::GetVersion()
 {
-  char s[100];
-  sprintf(s, "Tornado Game Engine, Version %d", VERSION_GAME_ENGINE);
+	std::string s = "Tornado Game Engine, Version ";
+	s += boost::lexical_cast<std::string>(VERSION_GAME_ENGINE);
+	s += ", mode \"";
+	s += GAME_ENGINE_MODE_WORK;
+	s += "\"";
   return s;
 }
 //------------------------------------------------------------------------
@@ -134,17 +140,16 @@ void TGameEngine::StopThreadByModule(std::string sNameModule)
 //------------------------------------------------------------------------
 bool TGameEngine::PrepareConveyer()
 {
-  string sFileDescConveyer = mDevTool->GetFileDescConveyer();
-  string sVariantConveyer  = mDevTool->GetVariantConveyer();
+  std::string sFileDescConveyer = mDevTool->GetFileDescConveyer();
+  std::string sVariantConveyer  = mDevTool->GetVariantConveyer();
   TParserXMLConveyer parser;
   if(parser.Work(sFileDescConveyer, sVariantConveyer)==false)
   {
-    string sError = parser.GetStrError();
+    std::string sError = parser.GetStrError();
     Event(nsGameEngine::eParseFileConveyerError, sError.data());
     return false;
   }
   parser.GetResult(mVecVecStrModule);
-
   return true;
 }
 //------------------------------------------------------------------------
@@ -231,16 +236,16 @@ bool TGameEngine::CreateModules()
 //------------------------------------------------------------------------
 void TGameEngine::Event(int id, std::string param)
 {
-  string sEvent;
+	std::string sEvent;
   if(nsGameEngine::GetStrEventsByID(id, sEvent)==false)
     return;
 
   char sError[10000]; 
-  const char* format = sEvent.data();
-  if(param.length())
-    sprintf(sError, format, param.data()); 
+	const char* format = sEvent.data();
+  if( param.length() )
+    sprintf(sError, format, param.data());
   else
-    sprintf(sError, format); 
+    sprintf(sError, format);
 
   mDevTool->EventGameEngine(id, sError);
 }
@@ -261,10 +266,10 @@ void TGameEngine::LinkModulesToSynchroPoint()
 	mSynchroPoint->SetupAfterRegister();
 }
 //------------------------------------------------------------------------
-bool TGameEngine::FindIDByNameModule(string& nameSrc, int& id)
+bool TGameEngine::FindIDByNameModule(std::string& nameSrc, int& id)
 {
   TMapStrIntIt fit = mMapName_IDModule.find(nameSrc);
-  if(fit==mMapName_IDModule.end())
+  if( fit==mMapName_IDModule.end() )
     return false;
 
   id = fit->second;

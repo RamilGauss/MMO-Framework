@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./BehaviourPattern;./DevTool;./GameParam;./GUI;./Logics;./Protocols;../ShareDev/Builder;../ShareDev/Destructor;../ShareDev/GameItems;../ShareDev/GameProcess;../ShareDev/Modules;../ShareDev/ManagementObjects;../ShareDev/ProtocolClientSlave;../ShareDev/ProtocolSlaveMaster;../ShareDev/Scene/Common;../ShareDev/Scene/GameObject;../ShareDev/Scene/Pattern;../ShareDev/Share;../ShareDev/Test;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;../../Base;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;../../Modules;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./BehaviourPattern;./DevTool;./GameParam;./GUI;./Logics;./Protocols;../ShareDev/Builder;../ShareDev/Destructor;../ShareDev/GameItems;../ShareDev/GameProcess;../ShareDev/Modules;../ShareDev/ManagementObjects;../ShareDev/ProtocolClientSlave;../ShareDev/ProtocolSlaveMaster;../ShareDev/Scene/Common;../ShareDev/Scene/GameObject;../ShareDev/Scene/Pattern;../ShareDev/Share;../ShareDev/Test;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;../../Base;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;../../Modules;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib QtCored4.lib QtGuid4.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib BulletCollision_d.lib BulletDynamics_d.lib BulletSoftBody_d.lib LinearMath_d.lib Base_d.lib GameEngine_d.lib QtEngine_d.lib Common_d.lib Platforms_d.lib GraphicEngine_d.lib PhysicEngine_d.lib NetTransport_d.lib MMOEngine_d.lib ShareDev_d.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine_d.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib BulletCollision_d.lib BulletDynamics_d.lib BulletSoftBody_d.lib LinearMath_d.lib Base_d.lib GameEngine_d.lib Common_d.lib Platforms_d.lib GraphicEngine_d.lib PhysicEngine_d.lib NetTransport_d.lib MMOEngine_d.lib ShareDev_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
@@ -121,7 +121,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;./BehaviourPattern;./DevTool;./GameParam;./GUI;./Logics;./Protocols;../ShareDev/Builder;../ShareDev/Destructor;../ShareDev/GameItems;../ShareDev/GameProcess;../ShareDev/Modules;../ShareDev/ManagementObjects;../ShareDev/ProtocolClientSlave;../ShareDev/ProtocolSlaveMaster;../ShareDev/Scene/Common;../ShareDev/Scene/GameObject;../ShareDev/Scene/Pattern;../ShareDev/Share;../ShareDev/Test;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;../../Base;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;./GeneratedFiles;&quot;./GeneratedFiles/$(ConfigurationName)&quot;;&quot;$(QTDIR)\include&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;&quot;$(QTDIR)\include\QtOpenGl&quot;;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;../../Modules;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./BehaviourPattern;./DevTool;./GameParam;./GUI;./Logics;./Protocols;../ShareDev/Builder;../ShareDev/Destructor;../ShareDev/GameItems;../ShareDev/GameProcess;../ShareDev/Modules;../ShareDev/ManagementObjects;../ShareDev/ProtocolClientSlave;../ShareDev/ProtocolSlaveMaster;../ShareDev/Scene/Common;../ShareDev/Scene/GameObject;../ShareDev/Scene/Pattern;../ShareDev/Share;../ShareDev/Test;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;../../Base;../../GameEngine;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty\MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/Win32;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;../../Modules/QtEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;../../Modules;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -141,7 +141,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine.lib QtCore4.lib QtGui4.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib BulletCollision.lib BulletDynamics.lib BulletSoftBody.lib LinearMath.lib Base.lib GameEngine.lib QtEngine.lib Common.lib Platforms.lib GraphicEngine.lib PhysicEngine.lib NetTransport.lib MMOEngine.lib ShareDev.lib"
+				AdditionalDependencies="shlwapi.lib ws2_32.lib winmm.lib MyGUIEngine.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib BulletCollision.lib BulletDynamics.lib BulletSoftBody.lib LinearMath.lib Base.lib GameEngine.lib Common.lib Platforms.lib GraphicEngine.lib PhysicEngine.lib NetTransport.lib MMOEngine.lib ShareDev.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="../../../Lib;&quot;$(QTDIR)\lib&quot;;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
 				GenerateDebugInformation="true"
@@ -361,380 +361,112 @@
 			Name="GUI"
 			>
 			<Filter
-				Name="QtForms"
+				Name="ProtocolGUI2Logic"
 				>
 				<File
-					RelativePath=".\GUI\MasterForm.cpp"
+					RelativePath=".\GUI\ProtocolGUI2Logic.h"
 					>
-				</File>
-				<File
-					RelativePath=".\GUI\MasterForm.h"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Moc&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
-							Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Moc&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
-							Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\GUI\SlaveForm.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\SlaveForm.h"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Moc&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
-							Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Moc&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
-							Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\GUI\SuperServerForm.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GUI\SuperServerForm.h"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Moc&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
-							Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Moc&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
-							Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
-						/>
-					</FileConfiguration>
 				</File>
 			</Filter>
 			<Filter
-				Name="QtUi"
+				Name="Main"
 				>
 				<File
-					RelativePath=".\GUI\MasterForm.ui"
+					RelativePath=".\GUI\ClientMain.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Uic&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\uic.exe&quot; -o &quot;.\GeneratedFiles\ui_$(InputName).h&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="$(QTDIR)\bin\uic.exe"
-							Outputs="&quot;.\GeneratedFiles\ui_$(InputName).h&quot;"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Uic&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\uic.exe&quot; -o &quot;.\GeneratedFiles\ui_$(InputName).h&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="$(QTDIR)\bin\uic.exe"
-							Outputs="&quot;.\GeneratedFiles\ui_$(InputName).h&quot;"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\GUI\SlaveForm.ui"
+					RelativePath=".\GUI\ClientMain.h"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Uic&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\uic.exe&quot; -o &quot;.\GeneratedFiles\ui_$(InputName).h&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="$(QTDIR)\bin\uic.exe"
-							Outputs="&quot;.\GeneratedFiles\ui_$(InputName).h&quot;"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Uic&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\uic.exe&quot; -o &quot;.\GeneratedFiles\ui_$(InputName).h&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="$(QTDIR)\bin\uic.exe"
-							Outputs="&quot;.\GeneratedFiles\ui_$(InputName).h&quot;"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\GUI\SuperServerForm.ui"
+					RelativePath=".\GUI\DebugPanel.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Uic&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\uic.exe&quot; -o &quot;.\GeneratedFiles\ui_$(InputName).h&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="$(QTDIR)\bin\uic.exe"
-							Outputs="&quot;.\GeneratedFiles\ui_$(InputName).h&quot;"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-							Description="Uic&apos;ing $(InputFileName)..."
-							CommandLine="&quot;$(QTDIR)\bin\uic.exe&quot; -o &quot;.\GeneratedFiles\ui_$(InputName).h&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
-							AdditionalDependencies="$(QTDIR)\bin\uic.exe"
-							Outputs="&quot;.\GeneratedFiles\ui_$(InputName).h&quot;"
-						/>
-					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\GUI\DebugPanel.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\GameRoomPrepare.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\GameRoomPrepare.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\WaitForm.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\WaitForm.h"
+					>
 				</File>
 			</Filter>
 			<Filter
-				Name="MyGUIForms"
+				Name="Secondary"
 				>
-				<Filter
-					Name="Secondary"
+				<File
+					RelativePath=".\GUI\PlateParam.cpp"
 					>
-					<File
-						RelativePath=".\GUI\PlateParam.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\PlateParam.h"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\PlateVarGeomParam.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\PlateVarGeomParam.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Tools"
+				</File>
+				<File
+					RelativePath=".\GUI\PlateParam.h"
 					>
-					<File
-						RelativePath=".\GUI\EditorMap.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorMap.h"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorMaterial.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorMaterial.h"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorModel.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorModel.h"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorShape.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorShape.h"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorTableSound.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\EditorTableSound.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Main"
+				</File>
+				<File
+					RelativePath=".\GUI\PlateVarGeomParam.cpp"
 					>
-					<File
-						RelativePath=".\GUI\ClientMain.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\ClientMain.h"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\DebugPanel.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\DebugPanel.h"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\GameRoomPrepare.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\GameRoomPrepare.h"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\WaitForm.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\GUI\WaitForm.h"
-						>
-					</File>
-				</Filter>
+				</File>
+				<File
+					RelativePath=".\GUI\PlateVarGeomParam.h"
+					>
+				</File>
 			</Filter>
 			<Filter
-				Name="Generated Files"
+				Name="Tools"
 				>
 				<File
-					RelativePath=".\GeneratedFiles\ui_MasterForm.h"
+					RelativePath=".\GUI\EditorMap.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GeneratedFiles\ui_SlaveForm.h"
+					RelativePath=".\GUI\EditorMap.h"
 					>
 				</File>
 				<File
-					RelativePath=".\GeneratedFiles\ui_SuperServerForm.h"
+					RelativePath=".\GUI\EditorMaterial.cpp"
 					>
 				</File>
-				<Filter
-					Name="Debug"
+				<File
+					RelativePath=".\GUI\EditorMaterial.h"
 					>
-					<File
-						RelativePath=".\GeneratedFiles\Debug\moc_MasterForm.cpp"
-						>
-						<FileConfiguration
-							Name="Release|Win32"
-							ExcludedFromBuild="true"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath=".\GeneratedFiles\Debug\moc_SlaveForm.cpp"
-						>
-						<FileConfiguration
-							Name="Release|Win32"
-							ExcludedFromBuild="true"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath=".\GeneratedFiles\Debug\moc_SuperServerForm.cpp"
-						>
-						<FileConfiguration
-							Name="Release|Win32"
-							ExcludedFromBuild="true"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-					</File>
-				</Filter>
-				<Filter
-					Name="Release"
+				</File>
+				<File
+					RelativePath=".\GUI\EditorModel.cpp"
 					>
-					<File
-						RelativePath=".\GeneratedFiles\Release\moc_MasterForm.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							ExcludedFromBuild="true"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath=".\GeneratedFiles\Release\moc_SlaveForm.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							ExcludedFromBuild="true"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath=".\GeneratedFiles\Release\moc_SuperServerForm.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							ExcludedFromBuild="true"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-					</File>
-				</Filter>
+				</File>
+				<File
+					RelativePath=".\GUI\EditorModel.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\EditorShape.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\EditorShape.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\EditorTableSound.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\EditorTableSound.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter

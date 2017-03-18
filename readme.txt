@@ -4,7 +4,7 @@
 	
     Engine features:
 
-  Multi-threaded game engine - the ability to control the initial number of threads and the number of modules in the thread.
+  The ability to control the initial number of modules.
 The module is a graphical, physical, network, GUI, etc engines.
     
   MMO (network) component can work with more than one million Clients.
@@ -17,7 +17,6 @@ Article on habrahabr: http://habrahabr.ru/post/233915/
 		DEPENDENCY:
 	Boost   1.54+, 
 	OpenSSL 1.0.1E+, 
-	Qt      4.8.5, 
 	MyGUI   3.2.0, 
 	OGRE    1.9, 
 	Bullet  2.81+.
@@ -27,7 +26,7 @@ Article on habrahabr: http://habrahabr.ru/post/233915/
     
     Возможности движка:
 
-  Многопоточный игровой движок - возможность управления начальным количеством потоков и количеством модулей в потоке.
+  Возможность управления количеством модулей.
 Модуль это графический, физический, сетевой, GUI и т.д движки.
     
   ММО(сетевой) компонент может работать с более чем миллионом Клиентов.
@@ -42,7 +41,6 @@ Article on habrahabr: http://habrahabr.ru/post/233915/
 		Список зависимостей:
 	Boost   1.54+, 
 	OpenSSL 1.0.1E+, 
-	Qt      4.8.5, 
 	MyGUI   3.2.0, 
 	OGRE    1.9, 
 	Bullet  2.81+.

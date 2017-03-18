@@ -15,6 +15,7 @@ See for more information License.h.
 #include "GP_AggregationScenario_Client.h"
 
 #include "./GraphicEngine/Events.h"
+#include "PhysicEngine_Bullet.h"
 
 class TEditorMap;
 class TShowTankWoT_test;
@@ -24,6 +25,8 @@ class TEditorMapLogic : public TModuleClientLogic
 {
   int mID_PhysicWorld;
   TEditorMap* mEditorMap;
+
+	TPhysicEngine_Bullet::eStateWorld mStatePhysicWorld;
 
   TUsePattern                   mUsePattern;
   TFactoryBehaviourPatternModel_EoWM mFBP_EoWM;
@@ -57,6 +60,7 @@ protected:
   void HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent* pMouseGE);
   void HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pKeyGE);
 
+	void HandlePacketFromGUI(void* p, int size);
 private:
   void StartTimer();
   void InitForms();

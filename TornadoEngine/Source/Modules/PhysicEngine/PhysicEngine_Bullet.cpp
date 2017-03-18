@@ -105,21 +105,19 @@ void TPhysicEngine_Bullet::Work()
   BOOST_FOREACH(TMapIntPtrWorldVT& ID_World, mMapIDWorld)
   {
     TWorld* pWorld = ID_World.second;
-    if(pWorld->state==eStateRealTime || pWorld->state==eStateControlTime)
+    if( pWorld->state==eStateRealTime || pWorld->state==eStateControlTime )
     {
       unsigned int now_ms = ht_GetMSCount();
       unsigned int dt = now_ms - pWorld->prevTimeWork;
 
-      bool first_start = pWorld->state != pWorld->prevState;
-      float dt_sec = first_start ? 0 : dt/1000.0f;
+      float dt_sec = dt/1000.0f;
       
-      if(pWorld->state==eStateControlTime)
+      if( pWorld->state==eStateControlTime )
         dt_sec /= pWorld->ratioRealTimeToControl;
 
       pWorld->pWorld->stepSimulation(dt_sec, 1, dt_sec);
       
       pWorld->prevTimeWork = now_ms;
-      pWorld->prevState = pWorld->state;
     }
   }
 }
@@ -131,7 +129,12 @@ void TPhysicEngine_Bullet::Setup(int id_world, eStateWorld state,
   if(pWorld==NULL)
     return;
 
-  pWorld->state                  = state;
-  pWorld->ratioRealTimeToControl = ratioRealTimeToControl;
+  pWorld->prevState              = pWorld->state;
+	pWorld->state                  = state;
+	pWorld->ratioRealTimeToControl = ratioRealTimeToControl;
+
+	if( pWorld->prevState==eStatePause  )
+	if( pWorld->state==eStateRealTime || pWorld->state==eStateControlTime )
+		pWorld->prevTimeWork = ht_GetMSCount();
 }
 //----------------------------------------------------------------------------------------------

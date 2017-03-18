@@ -2943,7 +2943,7 @@
 					</Rotation>
 				</BaseProperty>
 				<ParameterMap>
-          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
+          <Property key="NameGameItem" value="SimplePlate"/><!-- Какую модель выбрать -->
           <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
         </ParameterMap>
 			</Object>
@@ -2955,7 +2955,7 @@
 					</Identity>
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="50"/>
-						<Property key="y" value="20"/>
+						<Property key="y" value="50"/>
 						<Property key="z" value="-170"/>
 					</Position>
 					<Rotation><!-- Ориентация -->
@@ -2978,7 +2978,7 @@
 					<Position><!-- Координаты центра -->
 						<Property key="x" value="-10"/>
 						<Property key="y" value="160"/>
-						<Property key="z" value="-10"/>
+						<Property key="z" value="-50"/>
 					</Position>
 					<Rotation><!-- Ориентация -->
 						<Property key="x" value="0"/>
@@ -2987,7 +2987,7 @@
 					</Rotation>
 				</BaseProperty>
 				<ParameterMap>
-          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
+          <Property key="NameGameItem" value="SimplePlate"/><!-- Какую модель выбрать -->
           <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
         </ParameterMap>
 			</Object>

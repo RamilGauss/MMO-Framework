@@ -37,6 +37,7 @@ protected:
 protected:
   void sl_Open(MyGUI::Widget* _sender);
   void sl_Exit(MyGUI::Widget* _sender);
+	void sl_ToggleUsePhysic(MyGUI::Widget* _sender);
 protected:
   MyGUI::MenuBar*     mBar;
   MyGUI::MenuControl* mPopupMenu_File;
@@ -46,6 +47,8 @@ protected:
   MyGUI::MenuItem* miOpen;
   MyGUI::MenuItem* miSave;
   MyGUI::MenuItem* miExit;
+
+	MyGUI::Button* cbUsePhysic;
 };
 
 #endif 

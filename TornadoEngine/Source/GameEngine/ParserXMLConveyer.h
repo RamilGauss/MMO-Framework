@@ -17,7 +17,6 @@ class IXML;
 class TParserXMLConveyer
 {
   std::string mVariantConveyer;
-  int mCountCore;
 
   IXML* mXML;
 
@@ -37,7 +36,6 @@ public:
   void GetResult(std::vector< std::vector<std::string > >& vecVecStrModule);
 protected:
   bool SearchVariant();
-  bool SearchCountCore();
   bool MakeStrModule();
 
   void ErrorNoSection(const char* section);

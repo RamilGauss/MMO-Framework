@@ -22,8 +22,8 @@ void TBuilder_Bullet::SetID_PhysicWorld( int id )
   mID_PhysicWorld = id;
 }
 //---------------------------------------------------------------------------------
-//void TBuilder_Bullet::Work(TTaskForBuilder_Bullet* pTask)
-//{
-//
-//}
-////---------------------------------------------------------------------------------
+TBuilderShape_Bullet* TBuilder_Bullet::GetShapeMaker()
+{
+	return &mBuilderShape_Bullet;
+}
+//---------------------------------------------------------------------------------

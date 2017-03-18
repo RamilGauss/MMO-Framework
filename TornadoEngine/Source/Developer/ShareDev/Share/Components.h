@@ -11,7 +11,6 @@ See for more information License.h.
 #include "TypeDef.h"
 #include <vector>
 
-class TModuleAloneGUI;
 class TModuleDataBase;
 class TModuleGraphicEngine;
 class TModuleMMOEngineClient;
@@ -32,7 +31,6 @@ public:
 
   void SetLogicID(int id);
 
-  TModuleAloneGUI*             pAloneGUI;
   TModuleDataBase*             pDataBase;
   TModuleGraphicEngine*        pGraphicEngine;
   TModuleMMOEngineClient*      pMMOEngineClient;

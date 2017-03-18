@@ -16,6 +16,7 @@ See for more information License.h.
 
 #include "EditorMap.h"
 #include "ControlCamera.h"
+#include "ProtocolGUI2Logic.h"
 
 #include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
@@ -32,6 +33,8 @@ See for more information License.h.
 
 TEditorMapLogic::TEditorMapLogic()
 {
+	mStatePhysicWorld = TPhysicEngine_Bullet::eStatePause;
+
 	flgIsTerrainGroupUpdate = false;
 
   mID_TimerTryMoveCamera = -1;
@@ -50,6 +53,8 @@ void TEditorMapLogic::StartEvent()
   {
     mAggregationScenario_Client->GetCB_Progress()->Register( &TEditorMapLogic::ProgressScenario, this);
     mAggregationScenario_Client->GetCB_End()->Register( &TEditorMapLogic::EndScenario, this);
+
+		mAggregationScenario_Client->SetScene(mScene.get());
   }
 
   CallBackModule(nsListModules::Timer, &TEditorMapLogic::StartTimer);
@@ -95,24 +100,14 @@ void TEditorMapLogic::Input(int id_sender, void* p, int size)
     case nsListModules::PhysicEngine:
       break;
     case nsListModules::Timer:
-      {
-        TModuleTimer::TEvent* pTE = (TModuleTimer::TEvent*)p;
-        if(pTE->id==mID_TimerTryMoveCamera)
-          mPtrControlCamera->CameraTryMove(); 
-      }
-      break;
-    case nsListModules::FromSomeToLogic:// EditorMap
     {
-      //### пока через строку, потом должен быть протокол
-      char* pLMP = (char*)p;
-      char s[300];
-      strncpy(s, pLMP, size);
-      s[size] = '\0';
-      std::string sNameMap;
-      sNameMap = s;
-      LoadGameMap(sNameMap);
-      //### пока через строку, потом должен быть протокол
+      TModuleTimer::TEvent* pTE = (TModuleTimer::TEvent*)p;
+      if(pTE->id==mID_TimerTryMoveCamera)
+        mPtrControlCamera->CameraTryMove(); 
     }
+    break;
+    case nsListModules::FromSomeToLogic:// EditorMap
+			HandlePacketFromGUI(p, size);
       break;
     default:BL_FIX_BUG();
   }
@@ -194,11 +189,10 @@ void TEditorMapLogic::EndScenario(nsGameProcess::GP_TypeScenario type)
       {
         BL_FIX_BUG();
       }
-      // ??? вызов из физического потока?
       if(type==nsGameProcess::eBuilder)
-        mComp.pPhysicEngine->GetPE()->Setup( mAggregationScenario_Client->GetPhysicWorldID(), 
-                                             TPhysicEngine_Bullet::eStatePause );
-      // ???
+        mComp.pPhysicEngine->GetPE()->
+				Setup( mAggregationScenario_Client->GetPhysicWorldID(), 
+				 mStatePhysicWorld );
       break;
     case nsGameProcess::eSynchroClient:
       break;
@@ -275,13 +269,11 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowTest()
 {
-	//ShowPlate();
-	//ShowCylinder();
-	//mPtrShowTank->ShowTanks(10);
-
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 	pCamera->setPosition(160,160,160);
-	pCamera->lookAt(0,0,0);
+	pCamera->lookAt(0,50,0);
+	Ogre::Radian fovy(3.14f/3);// масштаб относительно 1 у.е.
+	//pCamera->setFOVy(fovy);
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowPlate()
@@ -377,5 +369,33 @@ void TEditorMapLogic::CheckTerrainGroupUpdateForSave()
 		}
 	}
 	// README: флаг flgIsTerrainGroupUpdate надо учитывать при попытке загрузки карты.
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::HandlePacketFromGUI(void* p, int size)
+{
+	nsProtocolGUI2Logic::TBaseProtocolGUI2Logic* pBase = (nsProtocolGUI2Logic::TBaseProtocolGUI2Logic*)p;
+	switch( pBase->type )
+	{
+		case nsProtocolGUI2Logic::eLoadMap:
+		{
+			nsProtocolGUI2Logic::TLoadMap* pLoadMap = (nsProtocolGUI2Logic::TLoadMap*)p;
+			LoadGameMap(pLoadMap->nameMap);
+		}
+			break;
+		case nsProtocolGUI2Logic::eSetupStateCurrentPhysicWorld:
+		{
+			nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld* pSetupPhysicWorld = 
+				(nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld*)p;
+			mStatePhysicWorld = pSetupPhysicWorld->stateWorld;
+			int id = mAggregationScenario_Client->GetPhysicWorldID();
+			if( id!=-1 )
+			{
+				mComp.pPhysicEngine->GetPE()->
+					Setup( id, mStatePhysicWorld );
+			}
+		}
+			break;
+		default:BL_FIX_BUG();
+	}
 }
 //---------------------------------------------------------------------------------------------

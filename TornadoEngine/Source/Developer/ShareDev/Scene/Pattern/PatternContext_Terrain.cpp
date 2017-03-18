@@ -19,6 +19,7 @@ using namespace nsPatternContext_Terrain;
 TPatternContext_Terrain::TPatternContext_Terrain(TBehaviourPatternModel* pModel):
 TBehaviourPatternContext(pModel)
 {
+	flgIsLoad_Bullet = false;
 	flgIsLoad_Ogre = false;
 	mNeedLoadX_Ogre = 0;
 	mNeedLoadY_Ogre = 0;
@@ -29,6 +30,16 @@ TPatternContext_Terrain::~TPatternContext_Terrain()
 
 }
 //---------------------------------------------------------------------------
+void TPatternContext_Terrain::SetIsLoad_Bullet(bool v)
+{
+	flgIsLoad_Bullet = v;
+}
+//---------------------------------------------------------------------------
+bool TPatternContext_Terrain::IsLoad_Bullet()
+{
+	return flgIsLoad_Bullet;
+}
+//---------------------------------------------------------------------------
 void TPatternContext_Terrain::SetIsLoad_Ogre(bool v)
 {
 	flgIsLoad_Ogre = v;
@@ -37,6 +48,26 @@ void TPatternContext_Terrain::SetIsLoad_Ogre(bool v)
 bool TPatternContext_Terrain::IsLoad_Ogre()
 {
 	return flgIsLoad_Ogre;
+}
+//---------------------------------------------------------------------------
+void TPatternContext_Terrain::SetLoad_X_Bullet(int v)
+{
+	mNeedLoadX_Bullet = v;
+}
+//---------------------------------------------------------------------------
+int TPatternContext_Terrain::GetLoad_X_Bullet()
+{
+	return mNeedLoadX_Bullet;
+}
+//---------------------------------------------------------------------------
+void TPatternContext_Terrain::SetLoad_Y_Bullet(int v)
+{
+	mNeedLoadY_Bullet = v;
+}
+//---------------------------------------------------------------------------
+int TPatternContext_Terrain::GetLoad_Y_Bullet()
+{
+	return mNeedLoadY_Bullet;
 }
 //---------------------------------------------------------------------------
 void TPatternContext_Terrain::SetLoad_X_Ogre(int v)
@@ -81,6 +112,11 @@ Ogre::Vector3 TPatternContext_Terrain::GetOrigin()
 	originOgre.y = pos.y;
 	originOgre.z = pos.z;
 	return originOgre;
+}
+//---------------------------------------------------------------------------
+TBuilderTerrain_Bullet* TPatternContext_Terrain::GetBuilderTerrain_Bullet()
+{
+	return &mBuilderTerrain_Bullet;
 }
 //---------------------------------------------------------------------------
 TBuilderTerrain_Ogre* TPatternContext_Terrain::GetBuilderTerrain_Ogre()

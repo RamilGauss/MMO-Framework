@@ -13,6 +13,9 @@ See for more information License.h.
 
 #include "PatternConfigItem.h"
 #include "ModelItem.h"
+#include <OgreEntity.h>
+
+class btRigidBody;
 
 class DllExport TPatternContext_Model : public TBehaviourPatternContext
 {
@@ -35,10 +38,12 @@ public:
     std::string  nameShapeItem;
     std::string  nameMaterial; // реальный материал и переопределенный могут не совпадать
     // результат создания формы:
-		std::string  nameEntityOgre;
+		//std::string  nameEntityOgre;
+		Ogre::Entity* pEntity;
     //unsigned int id_entity_ogre;
-    unsigned int id_entity_bullet;
-    TShapeDesc(){type=TModelItem::eShape;id_entity_bullet=0;}
+		btRigidBody* pRigidBody;
+    //unsigned int id_entity_bullet;
+    TShapeDesc(){type=TModelItem::eShape;pRigidBody=NULL;pEntity=NULL;}
   };
 protected:
   TPatternConfigItem::TMapStrStr mMapVariantPatternConfig;

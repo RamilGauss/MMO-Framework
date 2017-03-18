@@ -17,6 +17,8 @@ See for more information License.h.
 
 #include "ShapeItem.h"
 
+#include <btBulletDynamicsCommon.h>
+
 namespace nsPatternModel_Model
 {
   const char* sNameGameItem         = "NameGameItem";
@@ -193,11 +195,36 @@ bool TPatternModel_Model::LoadFromThread_Ogre(TBehaviourPatternContext* pContext
       }
     }
   }
+	PostLoadFromThread_Ogre(pContext);
 	return true;
 }
 //---------------------------------------------------------------------------
 bool TPatternModel_Model::LoadFromThread_Bullet( TBehaviourPatternContext* pContext, bool fast )
 {
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
+	int cntPart = pContextModel->GetCountPart();
+	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
+	{
+		std::string namePart = pContextModel->GetNamePart(iPart);
+		int cntVariant = pContextModel->GetCountVariant(namePart);
+		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
+		{
+			std::string nameVariant = pContextModel->GetNameVariant(namePart, iVariant);
+			TPatternContext_Model::TBaseDesc* pDesc = pContextModel->GetDesc(namePart, nameVariant);
+			if( pDesc==NULL )
+				continue;
+			if( pDesc->type==TModelItem::eModel )
+			{
+				TPatternContext_Model::TModelDesc* pModelDesc = (TPatternContext_Model::TModelDesc*)pDesc;
+				pModelDesc->pCtxModel->GetModel()->LoadFromThread_Bullet(pModelDesc->pCtxModel);
+			}
+			else
+			{
+				TPatternContext_Model::TShapeDesc* pShapeDesc = (TPatternContext_Model::TShapeDesc*)pDesc;
+				LoadShapeFromThread_Bullet(pContextModel, pShapeDesc);
+			}
+		}
+	}
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -233,7 +260,52 @@ void TPatternModel_Model::SynchroFromThread_Logic(TBehaviourPatternContext* pCon
 //---------------------------------------------------------------------------
 void TPatternModel_Model::SynchroFromThread_Ogre(TBehaviourPatternContext* pContext)
 {
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
+	// синхронизируем всё!
+	int cntPart = pContextModel->GetCountPart();
+	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
+	{
+		std::string namePart = pContextModel->GetNamePart(iPart);
+		int cntVariant = pContextModel->GetCountVariant(namePart);
+		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
+		{
+			std::string nameVariant = pContextModel->GetNameVariant(namePart, iVariant);
+			TPatternContext_Model::TBaseDesc* pDesc = pContextModel->GetDesc(namePart, nameVariant);
+			if( pDesc==NULL )
+				continue;
+			if( pDesc->type==TModelItem::eModel )
+			{
+				TPatternContext_Model::TModelDesc* pDescModel = 
+					(TPatternContext_Model::TModelDesc*)pDesc;
+				SynchroFromThread_Ogre(pDescModel->pCtxModel);
+			}
+			else
+			{
+				TPatternContext_Model::TShapeDesc* pShapeDesc = 
+					(TPatternContext_Model::TShapeDesc*)pDesc;
 
+				btMotionState* pMS = pShapeDesc->pRigidBody->getMotionState();
+				btTransform trans;
+				pMS->getWorldTransform(trans);
+				btVector3& posBullet = trans.getOrigin();
+				
+				Ogre::Entity* pEntity = pShapeDesc->pEntity;
+	
+				Ogre::Vector3 posOgre;
+				posOgre.x = posBullet.x();
+				posOgre.y = posBullet.y();
+				posOgre.z = posBullet.z();
+				pEntity->getParentSceneNode()->setPosition(posOgre);
+
+				btQuaternion quat = trans.getRotation();
+				Ogre::Real w = quat.w(); 
+				Ogre::Real x = quat.x(); 
+				Ogre::Real y = quat.y();
+				Ogre::Real z = quat.z();
+				pEntity->getParentSceneNode()->setOrientation( w, x, y, z);
+			}
+		}
+	}
 }
 //---------------------------------------------------------------------------
 void TPatternModel_Model::SynchroFromThread_Bullet(TBehaviourPatternContext* pContext)
@@ -314,7 +386,7 @@ void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model* pConte
   TBuilder_Ogre* pBOgre = GetBuilderOgre();
 
   Ogre::Entity* pEntity = pBOgre->GetShapeMaker()->Build( pShapeItem );
-	pShapeDesc->nameEntityOgre = pEntity->getName();
+	pShapeDesc->pEntity = pEntity;
 
 	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
 	// сделано временно для визуализации (отладка)
@@ -324,5 +396,45 @@ void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model* pConte
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
 	//###
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model* pContextModel, 
+																									   TPatternContext_Model::TShapeDesc* pShapeDesc)
+{
+	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
+	TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
+	if( pShapeItem==NULL )
+		return;
+
+	int id_world = pContextModel->GetPhysicWorld();
+
+	TBuilder_Bullet* pBBullet = GetBuilderBullet();
+	btRigidBody* pRB = pBBullet->GetShapeMaker()->Build( id_world, pShapeItem );
+	pShapeDesc->pRigidBody = pRB;
+
+	//###
+	nsMathTools::TVector3 pos;
+	pContextModel->GetPosition(pos);
+	//btMotionState* pMS = pShapeDesc->pRigidBody->getMotionState();
+	btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();
+	//pMS->getWorldTransform(trans);
+	btVector3& posBullet = trans.getOrigin();
+	posBullet.setX(pos.x);
+	posBullet.setY(pos.y);
+	posBullet.setZ(pos.z);
+	//pMS->setWorldTransform(trans);
+
+	pShapeDesc->pRigidBody->setWorldTransform(trans);
+	//###
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Model::PostLoadFromThread_Ogre(TBehaviourPatternContext* pContext)
+{
+
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Model::PostLoadFromThread_Bullet(TBehaviourPatternContext* pContext)
+{
+
 }
 //---------------------------------------------------------------------------

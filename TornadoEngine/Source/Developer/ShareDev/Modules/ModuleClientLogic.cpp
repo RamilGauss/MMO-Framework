@@ -10,6 +10,7 @@ See for more information License.h.
 TModuleClientLogic::TModuleClientLogic()
 {
   mAggregationScenario_Client.reset(new TGP_AggregationScenario_Client);
+	mScene.reset(new TScene);
 }
 //----------------------------------------------------------------
 bool TModuleClientLogic::WorkInherit()
