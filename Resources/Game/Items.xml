@@ -73,9 +73,9 @@
     <Geometry>
       <Property key="Type"     value="Cylinder"/>
       <Property key="Length"   value="10.01"/>
-      <Property key="CntPointsPerCircle" value="100"/>
-      <Property key="RadiusMax"   value="100"/>
-      <Property key="RadiusMin"   value="50"/>
+      <Property key="CntPointsPerCircle" value="40"/>
+      <Property key="RadiusMax"   value="40"/>
+      <Property key="RadiusMin"   value="0"/>
     </Geometry>
     <Material name="Iron"/>
     <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
@@ -86,9 +86,9 @@
     </Joining>
     <Geometry>
       <Property key="Type"   value="Plate"/>
-      <Property key="Length" value="10.01"/>
-      <Property key="Width"  value="100"/>
-      <Property key="Height" value="100"/>
+      <Property key="Length" value="20"/>
+      <Property key="Width"  value="20"/>
+      <Property key="Height" value="20"/>
     </Geometry>
     <Material name="Iron"/>
     <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
@@ -2943,7 +2943,7 @@
 					</Rotation>
 				</BaseProperty>
 				<ParameterMap>
-          <Property key="NameGameItem" value="SimplePlate"/><!-- Какую модель выбрать -->
+          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
           <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
         </ParameterMap>
 			</Object>
@@ -2965,7 +2965,7 @@
 					</Rotation>
 				</BaseProperty>
 				<ParameterMap>
-          <Property key="NameGameItem" value="SimplePlate"/><!-- Какую модель выбрать -->
+          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
           <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
         </ParameterMap>
 			</Object>
@@ -2987,7 +2987,7 @@
 					</Rotation>
 				</BaseProperty>
 				<ParameterMap>
-          <Property key="NameGameItem" value="SimplePlate"/><!-- Какую модель выбрать -->
+          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
           <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
         </ParameterMap>
 			</Object>

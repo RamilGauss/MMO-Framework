@@ -85,7 +85,7 @@ void TBuilderTerrain_Bullet::Load( int x, int y )
 	tr.setIdentity();
 	btVector3 pos;
 	pos.setX(0);//-result.pData->worldSize/2);
-	pos.setY(-(m_minHeight+m_maxHeight)/2.0);
+	pos.setY(0);//-(m_minHeight+m_maxHeight)/2.0);
 	pos.setZ(0);//-result.pData->worldSize/2);
 	tr.setOrigin(pos);
 
