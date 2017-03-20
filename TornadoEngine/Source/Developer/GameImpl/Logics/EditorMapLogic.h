@@ -67,8 +67,6 @@ private:
 
   //void InitPhysic();
   void ShowTest();
-	void ShowPlate();
-	void ShowCylinder();
 
   void SoundEndWork();
   void GraphicEndWork();

@@ -109,7 +109,7 @@ void TBuilderGameMap::BuildFromThread_Logic()
     pGO->SetModel(pModel);
     pGO->SetContext( pGO->GetModel()->MakeNewConext() );
     pGO->GetContext()->SetPosition(mBeginIteratorMapObject->position);
-    pGO->GetContext()->SetOrientation(mBeginIteratorMapObject->rotation);
+    pGO->GetContext()->SetOrientation(mBeginIteratorMapObject->rotationQuaternion);
     pGO->GetContext()->SetParameterMap(mBeginIteratorMapObject->parameterMap);
 		pGO->GetContext()->SetNameMap(mMapItem->mName);
 		pGO->GetContext()->SetPhysicWorld(mPhysicWorldID);

@@ -17,6 +17,8 @@ See for more information License.h.
 
 struct TShapeItem;
 
+// При формировании меша учитывать то как формируется форма в Bullet-е.
+
 class DllExport TBuilderShapeBase_Ogre
 {
 protected:

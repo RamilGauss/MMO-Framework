@@ -21,7 +21,7 @@ btRigidBody* TBuilderShapeCylinder_Bullet::CreateRigidBody()
 	nsParamBuilderShape::TCylinder* pCylinder = (nsParamBuilderShape::TCylinder*)mShape->mPtrGeometry.get();
 
   //btCylinderShape* shape = new btCylinderShape(btVector3(radius,height*0.5,radius));
-	btVector3 geom(pCylinder->radius_max, pCylinder->length*0.5, pCylinder->radius_max);
+	btVector3 geom(pCylinder->radius_max, pCylinder->length/2, pCylinder->radius_max);
 	btCollisionShape* shape = new btCylinderShape(geom);
 
 	// Create Dynamic Objects

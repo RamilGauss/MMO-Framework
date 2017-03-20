@@ -45,6 +45,9 @@ protected:
   bool LoadVector3ByProperty(nsMathTools::TVector3& v3);
   bool SaveVector3ByProperty(nsMathTools::TVector3& v3);
 
+	bool LoadVector4ByProperty(nsMathTools::TVector4& v4);
+	bool SaveVector4ByProperty(nsMathTools::TVector4& v4);
+
 	bool LoadColour(nsMathTools::TVector3& v3);
 	bool SaveColour(nsMathTools::TVector3& v3);
 private:

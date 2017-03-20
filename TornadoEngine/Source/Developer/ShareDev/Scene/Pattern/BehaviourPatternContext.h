@@ -50,6 +50,7 @@ protected:
 	std::string mNameMap;
 
 	nsMathTools::TVector3 mPosition;
+	nsMathTools::TVector4 mOrientQuaternion;
 public:
   TBehaviourPatternContext(TBehaviourPatternModel* pModel);
   virtual ~TBehaviourPatternContext();
@@ -74,8 +75,8 @@ public:
   // меняет физику
   virtual void SetPosition(nsMathTools::TVector3& v);// L
   virtual bool GetPosition(nsMathTools::TVector3& v);// B, мгновенное значение
-  virtual void SetOrientation(nsMathTools::TVector3& v);// L
-  virtual bool GetOrientation(nsMathTools::TVector3& v);// B, мгновенное значение
+  virtual void SetOrientation(nsMathTools::TVector4& v);// L
+  virtual bool GetOrientation(nsMathTools::TVector4& v);// B, мгновенное значение
 
   virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
 

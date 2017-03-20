@@ -61,9 +61,10 @@ void TSerializerMapItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
 		Push(object.position.y);
 		Push(object.position.z);
 
-		Push(object.rotation.x);
-		Push(object.rotation.y);
-		Push(object.rotation.z);
+		Push(object.rotationQuaternion.x);
+		Push(object.rotationQuaternion.y);
+		Push(object.rotationQuaternion.z);
+		Push(object.rotationQuaternion.w);
 
 		Push(object.parameterMap.size());
 		BOOST_FOREACH(TMapItem::TMapStrStrVT& vt ,object.parameterMap)
@@ -119,9 +120,10 @@ bool TSerializerMapItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int size
 		RET_FALSE( Pop(object.position.y) )
 		RET_FALSE( Pop(object.position.z) )
 
-		RET_FALSE( Pop(object.rotation.x) )
-		RET_FALSE( Pop(object.rotation.y) )
-		RET_FALSE( Pop(object.rotation.z) )
+		RET_FALSE( Pop(object.rotationQuaternion.x) )
+		RET_FALSE( Pop(object.rotationQuaternion.y) )
+		RET_FALSE( Pop(object.rotationQuaternion.z) )
+		RET_FALSE( Pop(object.rotationQuaternion.w) )
 
 		TMapItem::TMapStrStr::size_type cntParam;
 		RET_FALSE( Pop(cntParam) )

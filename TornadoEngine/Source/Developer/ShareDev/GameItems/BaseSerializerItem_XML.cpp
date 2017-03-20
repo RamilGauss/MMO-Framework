@@ -21,8 +21,10 @@ namespace nsBaseSerializerItem_XML
   const char* sAxeX     = "x";
   const char* sAxeY     = "y";
   const char* sAxeZ     = "z";
+  const char* sAxeW     = "w";
 
   const int CountAxes3  = 3;
+  const int CountAxes4  = 4;
 
 	const char* sColourRed   = "r";
 	const char* sColourGreen = "g";
@@ -145,6 +147,63 @@ bool TBaseSerializerItem_XML::SaveVector3ByProperty(nsMathTools::TVector3& v3)
     return false;
 
   return true;
+}
+//------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::LoadVector4ByProperty(nsMathTools::TVector4& v4)
+{
+	std::string key, value;
+	int cnt = GetCountProperty();
+
+	if(cnt!=CountAxes4)// кол-во компонентов в векторе
+		return false;
+
+	for( int i = 0 ; i < cnt ; i++ )
+	{
+		if(LoadProperty(i,key,value))
+		{
+			if(key==sAxeX)
+				v4.x = boost::lexical_cast<float>(value.data());
+			else if(key==sAxeY)
+				v4.y = boost::lexical_cast<float>(value.data());
+			else if(key==sAxeZ)
+				v4.z = boost::lexical_cast<float>(value.data());
+			else if(key==sAxeW)
+				v4.w = boost::lexical_cast<float>(value.data());
+
+			if(errno==ERANGE)
+				return false;
+		}
+		else 
+			return false;
+	}
+	return true;
+}
+//------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::SaveVector4ByProperty(nsMathTools::TVector4& v4)
+{
+	std::string key, value;
+
+	key = sAxeX;
+	value = boost::lexical_cast<std::string>(v4.x);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	key = sAxeY;
+	value = boost::lexical_cast<std::string>(v4.y);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	key = sAxeZ;
+	value = boost::lexical_cast<std::string>(v4.z);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	key = sAxeW;
+	value = boost::lexical_cast<std::string>(v4.w);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::LoadColour(nsMathTools::TVector3& v3)

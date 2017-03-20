@@ -119,8 +119,8 @@ void TBuilderShapeCylinder_Ogre::CreateTube(Ogre::Real radius, bool x_y)
 	Ogre::Real v_1 = mPSh->length/mPtrMaterialVariant->width;
 
 	Ogre::Real x_0 = 0;
-	Ogre::Real y_0 = 0;
-	Ogre::Real y_1 = mPSh->length;
+	Ogre::Real y_0 = -mPSh->length/2;
+	Ogre::Real y_1 = +mPSh->length/2;
 	Ogre::Real z_0 = radius;
 	Ogre::Real perimetr = Ogre::Math::TWO_PI*radius;
 	for( int i = 0 ; i < mPSh->cnt_points_per_circle ; i++ )
@@ -149,25 +149,25 @@ void TBuilderShapeCylinder_Ogre::CreateInternalTube()// внутренняя т�
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheetUp_Cut()
 {
-	Ogre::Real y = mPSh->length;
+	Ogre::Real y = mPSh->length/2;
 	CreateCircleSheet_Cut( y, true);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheetDown_Cut()
 {
-	Ogre::Real y = 0;
+	Ogre::Real y = -mPSh->length/2;
 	CreateCircleSheet_Cut(y, false);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheetUp()
 {
-	Ogre::Real y = mPSh->length;
+	Ogre::Real y = mPSh->length/2;
 	CreateCircleSheet(y, true);
 }
 //-----------------------------------------------------------------------------
 void TBuilderShapeCylinder_Ogre::CreateCircleSheetDown()
 {
-	Ogre::Real y = 0;
+	Ogre::Real y = -mPSh->length/2;
 	CreateCircleSheet(y, false);
 }
 //-----------------------------------------------------------------------------

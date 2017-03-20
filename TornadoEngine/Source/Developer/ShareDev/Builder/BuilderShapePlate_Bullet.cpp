@@ -26,7 +26,7 @@ btRigidBody* TBuilderShapePlate_Bullet::CreateRigidBody()
 {
 	nsParamBuilderShape::TPlate* pPlate = (nsParamBuilderShape::TPlate*)mShape->mPtrGeometry.get();
 
-	btVector3 geom(pPlate->length,pPlate->height,pPlate->width);
+	btVector3 geom(pPlate->width/2,pPlate->height/2,pPlate->length/2);
 
 	btCollisionShape* shape = new btBoxShape(geom);
 
@@ -34,7 +34,10 @@ btRigidBody* TBuilderShapePlate_Bullet::CreateRigidBody()
 	btTransform startTransform;
 	startTransform.setIdentity();
 
-	btScalar mass(100.f);// calculate!
+	float volume = pPlate->height*pPlate->length*pPlate->width;
+	
+	btScalar mass;//(100.f);// calculate!
+	mass = volume*7810;
 
 	btVector3 localInertia(0,0,0);
 	shape->calculateLocalInertia(mass, localInertia);
@@ -51,8 +54,11 @@ btRigidBody* TBuilderShapePlate_Bullet::CreateRigidBody()
 		btCollisionObject::CF_ANISOTROPIC_ROLLING_FRICTION);
 	//body->setFriction(0.5f);// from material
 
-	//body->setCcdMotionThreshold(1);
-	//body->setCcdSweptSphereRadius(0.9f);
+	body->setCcdMotionThreshold(1);//100
+
+	float maxSize = std::max( pPlate->height, pPlate->length );
+	maxSize = std::max(maxSize, pPlate->width);
+	body->setCcdSweptSphereRadius(maxSize);
 	return body;
 }
 //-------------------------------------------------------------------

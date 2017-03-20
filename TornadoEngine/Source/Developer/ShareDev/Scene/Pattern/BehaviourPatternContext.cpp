@@ -89,14 +89,15 @@ bool TBehaviourPatternContext::GetPosition(nsMathTools::TVector3& v)
   return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternContext::SetOrientation(nsMathTools::TVector3& v)
+void TBehaviourPatternContext::SetOrientation(nsMathTools::TVector4& v)
 {
-
+	mOrientQuaternion = v;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternContext::GetOrientation(nsMathTools::TVector3& v)
+bool TBehaviourPatternContext::GetOrientation(nsMathTools::TVector4& v)
 {
-  return false;
+	v = mOrientQuaternion;
+  return true;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPatternContext::UpdateFromGameItem(TBaseItem* pBI)

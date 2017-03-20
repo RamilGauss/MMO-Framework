@@ -395,6 +395,10 @@ void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model* pConte
 	Ogre::Vector3 vPos(pos.x, pos.y, pos.z);
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
+
+	nsMathTools::TVector4 orient;
+	pContextModel->GetOrientation(orient);
+	pEntity->getParentSceneNode()->setOrientation(orient.w, orient.x, orient.y, orient.z);
 	//###
 }
 //---------------------------------------------------------------------------
@@ -412,19 +416,28 @@ void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model* pCon
 	btRigidBody* pRB = pBBullet->GetShapeMaker()->Build( id_world, pShapeItem );
 	pShapeDesc->pRigidBody = pRB;
 
-	//###
+	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
+	// сделано временно для визуализации (отладка)
 	nsMathTools::TVector3 pos;
 	pContextModel->GetPosition(pos);
-	//btMotionState* pMS = pShapeDesc->pRigidBody->getMotionState();
 	btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();
-	//pMS->getWorldTransform(trans);
 	btVector3& posBullet = trans.getOrigin();
 	posBullet.setX(pos.x);
 	posBullet.setY(pos.y);
 	posBullet.setZ(pos.z);
-	//pMS->setWorldTransform(trans);
+
+	nsMathTools::TVector4 orient;
+	pContextModel->GetOrientation(orient);
+	btQuaternion quat;
+	quat.setX(orient.x);
+	quat.setY(orient.y);
+	quat.setZ(orient.z);
+	quat.setW(orient.w);
+	trans.setRotation(quat);
 
 	pShapeDesc->pRigidBody->setWorldTransform(trans);
+
+	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,-1000,0));
 	//###
 }
 //---------------------------------------------------------------------------

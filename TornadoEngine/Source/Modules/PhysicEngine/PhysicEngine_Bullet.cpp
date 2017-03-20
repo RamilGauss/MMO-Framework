@@ -10,6 +10,7 @@ See for more information License.h.
 #include "HiTimer.h"
 
 
+
 TPhysicEngine_Bullet::TPhysicEngine_Bullet()
 {
   mLastID = 0;
@@ -30,11 +31,11 @@ int TPhysicEngine_Bullet::AddWorld()
   pWorld->pBroadphase = new btDbvtBroadphase;
   pWorld->pCollisionConfiguration = new btDefaultCollisionConfiguration;
   pWorld->pDispatcher = new btCollisionDispatcher(pWorld->pCollisionConfiguration);
-  pWorld->pSolver = new btSequentialImpulseConstraintSolver;
-  pWorld->pWorld = new btDiscreteDynamicsWorld(pWorld->pDispatcher, pWorld->pBroadphase, 
+  pWorld->pSolver 		= new btSequentialImpulseConstraintSolver;
+  pWorld->pWorld  		= new btDiscreteDynamicsWorld(pWorld->pDispatcher, pWorld->pBroadphase, 
     pWorld->pSolver, pWorld->pCollisionConfiguration);
 
-  mMapIDWorld.insert(TMapIntPtrWorldVT(mLastID, pWorld));
+	mMapIDWorld.insert(TMapIntPtrWorldVT(mLastID, pWorld));
   return mLastID;
 }
 //----------------------------------------------------------------------------------------------

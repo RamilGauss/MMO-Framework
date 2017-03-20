@@ -270,81 +270,10 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
 void TEditorMapLogic::ShowTest()
 {
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
-	pCamera->setPosition(160,160,160);
-	pCamera->lookAt(0,50,0);
+	pCamera->setPosition(60,60,60);
+	pCamera->lookAt(0,30,0);
 	Ogre::Radian fovy(3.14f/3);// масштаб относительно 1 у.е.
 	//pCamera->setFOVy(fovy);
-}
-//---------------------------------------------------------------------------------------------
-void TEditorMapLogic::ShowPlate()
-{
-	TBuilderShapePlate_Ogre builder;
-	std::string nameShape;
-	TShapeItem    shItem(nameShape);
-	std::string nameMaterial;
-	TMaterialItem matItem(nameMaterial);
-	TMaterialItem::TVariant variant;
-	matItem.mGraphic.push_back(variant);
-	matItem.mGraphic[0].width  = 50;
-	matItem.mGraphic[0].length = 50;
-	nsParamBuilderShape::TPlate* pPlate = new nsParamBuilderShape::TPlate;
-	shItem.mPtrGeometry.reset(pPlate);
-	
-	std::string namePlaneEntity;
-	Ogre::Entity* pEntity = NULL;
-	Ogre::Vector3 vPos;
-	//----------------------------------------------------------
-	//pPlate->width  = 10000;
-	//pPlate->height = 1;
-	//pPlate->length = 10000;
-	//matItem.mGraphic[0].ogreMaterial = "Ground";
-	//matItem.mGraphic[0].color = "Ground.png";
-	//builder.Setup(&shItem, &matItem);
-	//namePlaneEntity = "Plane0";
-	//pEntity = builder.CreateEntity(namePlaneEntity);
-	//vPos = Ogre::Vector3(-5000,0,-5000);
-	//pEntity->getParentSceneNode()->setPosition(vPos);
-	//pEntity->setCastShadows(true);
-	//----------------------------------------------------------
-	pPlate->width  = 100;
-	pPlate->height = 100;
-	pPlate->length = 10;
-	matItem.mGraphic[0].ogreMaterial = "Iron";
-	matItem.mGraphic[0].color = "Iron_00.jpg";
-	builder.Setup(&shItem, &matItem);
-	namePlaneEntity = "Plane1";
-	pEntity = builder.CreateEntity(namePlaneEntity);
-	vPos = Ogre::Vector3(-10,0,-100);
-	pEntity->getParentSceneNode()->setPosition(vPos);
-	pEntity->setCastShadows(true);
-}
-//---------------------------------------------------------------------------------------------
-void TEditorMapLogic::ShowCylinder()
-{
-	TBuilderShapeCylinder_Ogre builder;
-	std::string nameShape;
-	TShapeItem  shItem(nameShape);
-	std::string nameMaterial;
-	TMaterialItem matItem(nameMaterial);
-	TMaterialItem::TVariant variant;
-	matItem.mGraphic.push_back(variant);
-	matItem.mGraphic[0].width  = 40;
-	matItem.mGraphic[0].length = 50;
-	nsParamBuilderShape::TCylinder* pCylinder = new nsParamBuilderShape::TCylinder;
-	shItem.mPtrGeometry.reset(pCylinder);
-	//----------------------------------------------------------
-	pCylinder->cnt_points_per_circle = 100;
-	pCylinder->radius_max = 100;
-	pCylinder->radius_min = 50;
-	pCylinder->length = 10;
-	matItem.mGraphic[0].ogreMaterial = /*"Test";//*/"Iron";
-	matItem.mGraphic[0].color = /*"color.jpg";//*/"Iron_00.jpg";
-	builder.Setup(&shItem, &matItem);
-	std::string nameCylinderEntity = "Cylinder0";
-	Ogre::Entity* pEntity = builder.CreateEntity(nameCylinderEntity);
-	Ogre::Vector3 vPos(-10,120,-10);
-	pEntity->getParentSceneNode()->setPosition(vPos);
-	pEntity->setCastShadows(true);
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::CheckTerrainGroupUpdateForSave()

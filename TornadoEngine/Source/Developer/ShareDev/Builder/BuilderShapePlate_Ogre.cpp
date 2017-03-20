@@ -68,13 +68,20 @@ void TBuilderShapePlate_Ogre::CreateMesh()
 	Ogre::ManualObject mo("");
 	mPtrMO = &mo;
 	mo.begin(mPtrMaterialVariant->ogreMaterial, Ogre::RenderOperation::OT_TRIANGLE_LIST);
-	CreateSheetY( mPSh->width, 0,  	        mPSh->length, 0,            0);//основание/bottom
-	CreateSheetZ( 0,           mPSh->width, 0,            mPSh->height, mPSh->length);// бок, фронт/front
-	CreateSheetZ( mPSh->width, 0,           0, 		  			mPSh->height, 0);//бок, зад/back
-	CreateSheetX( mPSh->height,0,           0, 		  			mPSh->length, 0);//бок, лево/left
-	CreateSheetX( 0,           mPSh->height,0, 		  			mPSh->length, mPSh->width);//бок, право/right
-	CreateSheetY( mPSh->width, 0,           0, 		  			mPSh->length, mPSh->height);//крыша/top
-	//------------------------------------------------
+	//----------------------------------------------------------------------------------------------
+	//основание/bottom
+	CreateSheetY(+mPSh->width/2,  -mPSh->width/2,  +mPSh->length/2, -mPSh->length/2, -mPSh->height/2);
+	// бок, фронт/front
+	CreateSheetZ(-mPSh->width/2,  +mPSh->width/2,  -mPSh->height/2, +mPSh->height/2, +mPSh->length/2);
+	//бок, зад/back
+	CreateSheetZ(+mPSh->width/2,  -mPSh->width/2,  -mPSh->height/2, +mPSh->height/2, -mPSh->length/2);
+	//бок, лево/left
+	CreateSheetX(+mPSh->height/2, -mPSh->height/2, -mPSh->length/2, +mPSh->length/2, -mPSh->width/2);
+	//бок, право/right
+	CreateSheetX(-mPSh->height/2, +mPSh->height/2, -mPSh->length/2, +mPSh->length/2, +mPSh->width/2);
+	//крыша/top
+	CreateSheetY(+mPSh->width/2,  -mPSh->width/2,  -mPSh->length/2, +mPSh->length/2, +mPSh->height/2);
+	//----------------------------------------------------------------------------------------------
 	mo.end();
 
 	mMeshPtr = mo.convertToMesh(mNameMesh);

@@ -61,10 +61,10 @@ void TBuilderTerrain_Bullet::Load( int x, int y )
 
   int width  = result.pData->size;
   int lenght = result.pData->size;
-	float s_gridHeightScale = 0.01f;
+	float s_gridHeightScale = 1.0f;
 	int m_upAxis            = 1;
 	PHY_ScalarType m_type   = PHY_FLOAT;
-	bool flipQuadEdges      = false;
+	bool flipQuadEdges      = true;//true
 	
 	btHeightfieldTerrainShape* pHeightfieldShape = new btHeightfieldTerrainShape(
 		width, lenght,
@@ -73,7 +73,8 @@ void TBuilderTerrain_Bullet::Load( int x, int y )
 		m_minHeight, m_maxHeight,
 		m_upAxis, m_type, flipQuadEdges);
 
-	//pHeightfieldShape->setUseZigzagSubdivision(true);
+	pHeightfieldShape->setUseZigzagSubdivision(true);
+
   float scaleAxe = result.pData->worldSize/result.pData->size;
   btVector3 scale;
   scale.setX(scaleAxe);
@@ -85,7 +86,7 @@ void TBuilderTerrain_Bullet::Load( int x, int y )
 	tr.setIdentity();
 	btVector3 pos;
 	pos.setX(0);//-result.pData->worldSize/2);
-	pos.setY(0);//-(m_minHeight+m_maxHeight)/2.0);
+	pos.setY((m_minHeight+m_maxHeight)/2.0);
 	pos.setZ(0);//-result.pData->worldSize/2);
 	tr.setOrigin(pos);
 
