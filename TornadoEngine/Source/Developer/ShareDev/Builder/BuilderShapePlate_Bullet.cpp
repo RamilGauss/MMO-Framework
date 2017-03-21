@@ -37,7 +37,7 @@ btRigidBody* TBuilderShapePlate_Bullet::CreateRigidBody()
 	float volume = pPlate->height*pPlate->length*pPlate->width;
 	
 	btScalar mass;//(100.f);// calculate!
-	mass = volume*7810;
+	mass = volume*10000;//7810;
 
 	btVector3 localInertia(0,0,0);
 	shape->calculateLocalInertia(mass, localInertia);
@@ -54,7 +54,7 @@ btRigidBody* TBuilderShapePlate_Bullet::CreateRigidBody()
 		btCollisionObject::CF_ANISOTROPIC_ROLLING_FRICTION);
 	//body->setFriction(0.5f);// from material
 
-	body->setCcdMotionThreshold(1);//100
+	body->setCcdMotionThreshold(300);//100
 
 	float maxSize = std::max( pPlate->height, pPlate->length );
 	maxSize = std::max(maxSize, pPlate->width);

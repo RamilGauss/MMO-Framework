@@ -225,6 +225,7 @@ bool TPatternModel_Model::LoadFromThread_Bullet( TBehaviourPatternContext* pCont
 			}
 		}
 	}
+	PostLoadFromThread_Bullet(pContext);
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -437,7 +438,7 @@ void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model* pCon
 
 	pShapeDesc->pRigidBody->setWorldTransform(trans);
 
-	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,-1000,0));
+	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,-500,0));
 	//###
 }
 //---------------------------------------------------------------------------

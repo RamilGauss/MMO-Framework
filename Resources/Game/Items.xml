@@ -86,8 +86,8 @@
     </Joining>
     <Geometry>
       <Property key="Type"   value="Plate"/>
-      <Property key="Length" value="1.0"/>
-      <Property key="Width"  value="1"/>
+      <Property key="Length" value="10"/>
+      <Property key="Width"  value="100"/>
       <Property key="Height" value="10"/>
     </Geometry>
     <Material name="Iron"/>
@@ -2820,7 +2820,7 @@
 	  <TableSound name="0"/>
     <Gravity><!-- Ускорение свободного падения -->
       <Property key="x" value="0"/>
-      <Property key="y" value="-9.81"/>
+      <Property key="y" value="-98.1"/>
       <Property key="z" value="0"/>
     </Gravity>
 		<Fog>
@@ -2934,8 +2934,8 @@
             <Property key="ID"      value="3"/><!-- Уникален в пределах карты -->
 					</Identity>
 					<Position><!-- Координаты центра -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="121"/>
+						<Property key="x" value="1010"/>
+						<Property key="y" value="421"/>
 						<Property key="z" value="0"/>
 					</Position>
 					<RotationQuaternion><!-- Ориентация -->
@@ -2957,9 +2957,9 @@
             <Property key="ID"      value="777"/><!-- Уникален в пределах карты -->
 					</Identity>
 					<Position><!-- Координаты центра -->
-						<Property key="x" value="1"/>
-						<Property key="y" value="121"/>
-						<Property key="z" value="20"/>
+						<Property key="x" value="1010"/>
+						<Property key="y" value="421"/>
+						<Property key="z" value="0"/>
 					</Position>
 					<RotationQuaternion><!-- Ориентация -->
 						<Property key="x" value="0"/>
@@ -2980,8 +2980,54 @@
             <Property key="ID"      value="33"/><!-- Уникален в пределах карты -->
 					</Identity>
 					<Position><!-- Координаты центра -->
-						<Property key="x" value="20"/>
-						<Property key="y" value="121"/>
+						<Property key="x" value="1020"/>
+						<Property key="y" value="421"/>
+						<Property key="z" value="0"/>
+					</Position>
+					<RotationQuaternion><!-- Ориентация -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="1"/>
+						<Property key="w" value="2"/>						
+					</RotationQuaternion>
+				</BaseProperty>
+				<ParameterMap>
+          <Property key="NameGameItem" value="SimplePlate"/><!-- Какую модель выбрать -->
+          <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
+        </ParameterMap>
+			</Object>
+		  <Object>
+				<BaseProperty>
+				  <Identity>
+						<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
+            <Property key="ID"      value="34"/><!-- Уникален в пределах карты -->
+					</Identity>
+					<Position><!-- Координаты центра -->
+						<Property key="x" value="1020"/>
+						<Property key="y" value="421"/>
+						<Property key="z" value="0"/>
+					</Position>
+					<RotationQuaternion><!-- Ориентация -->
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="1"/>
+						<Property key="w" value="2"/>						
+					</RotationQuaternion>
+				</BaseProperty>
+				<ParameterMap>
+          <Property key="NameGameItem" value="SimplePlate"/><!-- Какую модель выбрать -->
+          <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
+        </ParameterMap>
+			</Object>
+		  <Object>
+				<BaseProperty>
+				  <Identity>
+						<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
+            <Property key="ID"      value="35"/><!-- Уникален в пределах карты -->
+					</Identity>
+					<Position><!-- Координаты центра -->
+						<Property key="x" value="1000"/>
+						<Property key="y" value="521"/>
 						<Property key="z" value="0"/>
 					</Position>
 					<RotationQuaternion><!-- Ориентация -->

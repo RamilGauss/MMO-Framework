@@ -4,7 +4,7 @@
 ===========================================================================
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Гудаков Рамиль Сергеевич 
-2011, 2012, 2013, 2014, 2015, 2016
+2011, 2012, 2013, 2014, 2015, 2016, 2017
 ===========================================================================
                         Common Information
 "TornadoEngine" GPL Source Code
@@ -34,4 +34,5 @@ If you have questions concerning this license or the applicable additional terms
 you may contact in writing [ramil2085@mail.ru, ramil2085@gmail.com].
 ===========================================================================
 */ 
+
 #endif

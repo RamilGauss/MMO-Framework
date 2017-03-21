@@ -12,6 +12,7 @@ See for more information License.h.
 #include <OgreVector3.h>
 #include <OgreDataStream.h>
 #include "ContainerArrObj.h"
+#include "MathTools.h"
 
 #if defined( WIN32 )
 #pragma pack(push, 1)
@@ -68,6 +69,7 @@ public:
 		float worldSize;
 		float inputScale;
 		float inputBias;
+		nsMathTools::TVector3 pos;
 	}_PACKED;
 	bool Setup(std::string& pathFile, TDataOut& data);
 protected:

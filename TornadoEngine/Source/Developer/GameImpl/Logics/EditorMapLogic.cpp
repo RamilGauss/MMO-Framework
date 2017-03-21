@@ -274,6 +274,8 @@ void TEditorMapLogic::ShowTest()
 	pCamera->lookAt(0,30,0);
 	Ogre::Radian fovy(3.14f/3);// масштаб относительно 1 у.е.
 	//pCamera->setFOVy(fovy);
+
+	//mPtrShowTank->ShowTanks(10);
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::CheckTerrainGroupUpdateForSave()

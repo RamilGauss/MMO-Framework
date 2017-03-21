@@ -58,6 +58,9 @@ bool THeightMapFromOgre::Setup(std::string& filename, TDataOut& data)
 	Done();
 	RET_FALSE(Prepare())
 
+	data.pos.x     = mTerrainProperty.mPos.x;
+	data.pos.y     = mTerrainProperty.mPos.y;
+	data.pos.z     = mTerrainProperty.mPos.z;
 	data.worldSize = mTerrainProperty.mWorldSize;
 	data.size      = mTerrainProperty.mSize;
 	data.cHeight.EntrustByCount( (char*)mTerrainProperty.mHeightData, data.size*data.size);

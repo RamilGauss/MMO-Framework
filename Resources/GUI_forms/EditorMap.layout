@@ -15,10 +15,14 @@
                         <Property key="Caption" value="Открыть"/>
                     </Widget>
                     <Widget type="MenuItem" skin="" position="0 19 109 19">
+                        <Property key="Caption" value="Новая карта"/>
+                        <Property key="MenuItemId" value="Command_FileNew"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 38 109 19">
                         <Property key="Caption" value="Сохранить"/>
                         <Property key="MenuItemId" value="Command_FileSave"/>
                     </Widget>
-                    <Widget type="MenuItem" skin="" position="0 38 109 19">
+                    <Widget type="MenuItem" skin="" position="0 57 109 19">
                         <Property key="Caption" value="Выход"/>
                         <Property key="MenuItemId" value="Command_FileExit"/>
                     </Widget>
