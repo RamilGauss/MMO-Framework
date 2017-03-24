@@ -110,6 +110,16 @@ Ogre::TerrainGlobalOptions* TGraphicEngine_Ogre_MyGUI::GetTerrainGlobals()
 	return mGE->GetTerrainGlobals();
 }
 //---------------------------------------------------------------------
+void TGraphicEngine_Ogre_MyGUI::SetGUIEnableEvent(bool v)
+{
+	mGE->SetGUIEnableEvent(v);
+}
+//---------------------------------------------------------------------
+bool TGraphicEngine_Ogre_MyGUI::GetGUIEnableEvent()
+{
+	return mGE->GetGUIEnableEvent();
+}
+//---------------------------------------------------------------------
 void TGraphicEngine_Ogre_MyGUI::MsgException(MyGUI::Exception& _e)
 {
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32

@@ -68,6 +68,8 @@ TGE_Impl::TGE_Impl()
   flgRShift_Press = false;
   
   flgCenterClippingCursor = false;
+
+	flgGUIEnableEvent = true;
 }
 //------------------------------------------------------------------------------------------
 TGE_Impl::~TGE_Impl()
@@ -143,6 +145,8 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogr
 		matProfile->setLightmapEnabled(false);
 	}
 #endif
+
+	mOverlaySystem = new Ogre::OverlaySystem();
   return true;
 }
 //------------------------------------------------------------------------------------------
@@ -195,6 +199,10 @@ void TGE_Impl::Done()
 		Ogre::RenderWindow* window = mRoot->getAutoCreatedWindow();
 		if(window)
 			window->removeAllViewports();
+
+		delete mOverlaySystem;
+		mOverlaySystem = NULL;
+
 		delete mRoot;
 		mRoot = nullptr;
 	}
@@ -322,6 +330,16 @@ Ogre::TerrainGlobalOptions* TGE_Impl::GetTerrainGlobals()
 	return mTerrainGlobals;
 }
 //------------------------------------------------------------------------------------------
+void TGE_Impl::SetGUIEnableEvent(bool v)
+{
+	flgGUIEnableEvent = v;
+}
+//------------------------------------------------------------------------------------------
+bool TGE_Impl::GetGUIEnableEvent()
+{
+	return flgGUIEnableEvent;
+}
+//------------------------------------------------------------------------------------------
 bool TGE_Impl::Work()
 {
   Ogre::WindowEventUtilities::messagePump();
@@ -338,11 +356,14 @@ bool TGE_Impl::mouseMoved( const OIS::MouseEvent &arg )
   ClipCursor();
 
   bool unused = true;
-  if(mGUI)
-    unused = !MyGUI::InputManager::getInstance().injectMouseMove(
-      arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs);
+	if( mGUI )
+	{
+		if( flgGUIEnableEvent )
+			unused = !MyGUI::InputManager::getInstance().injectMouseMove(
+			arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs);
+	}
   
-  if(unused)
+  if( unused )
   {
     // транслировать разработчику как событие
     mCBMouse->Notify( arg, OIS::MB_Left/*nevermind*/, nsGraphicEngine::eMove);
@@ -353,11 +374,15 @@ bool TGE_Impl::mouseMoved( const OIS::MouseEvent &arg )
 bool TGE_Impl::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
   bool unused = true;
-  if(mGUI)
-    unused = !MyGUI::InputManager::getInstance().injectMousePress(
-      arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
 
-  if(unused)
+	if( mGUI )
+	{
+		if( flgGUIEnableEvent )
+			unused = !MyGUI::InputManager::getInstance().injectMousePress(
+			arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+	}
+
+  if( unused )
   {
     // транслировать разработчику как событие
     mCBMouse->Notify( arg, id, nsGraphicEngine::eButtonDown);
@@ -368,11 +393,14 @@ bool TGE_Impl::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 bool TGE_Impl::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
   bool unused = true;
-  if(mGUI)
-    unused = !MyGUI::InputManager::getInstance().injectMouseRelease(
-      arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+	if( mGUI )
+	{
+		if( flgGUIEnableEvent )
+			unused = !MyGUI::InputManager::getInstance().injectMouseRelease(
+			arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+	}
 
-  if(unused)
+  if( unused )
   {
     // транслировать разработчику как событие
     mCBMouse->Notify( arg, id, nsGraphicEngine::eButtonUp );
@@ -389,10 +417,13 @@ bool TGE_Impl::keyPressed(const OIS::KeyEvent &arg)
   ConvertOIS2MyGUI(arg, text, key);
 
   bool unused = true;
-  if(mGUI)
-    unused = !MyGUI::InputManager::getInstance().injectKeyPress(key, text);
+	if( mGUI )
+	{
+		if( flgGUIEnableEvent )
+	    unused = !MyGUI::InputManager::getInstance().injectKeyPress(key, text);
+	}
 
-  if(unused)
+  if( unused )
   {
     // транслировать разработчику как событие
     mCBKeyBoard->Notify( arg, true);
@@ -409,9 +440,11 @@ bool TGE_Impl::keyReleased(const OIS::KeyEvent &arg)
   ConvertOIS2MyGUI(arg, text, key);
 
   bool unused = true;
-  if(mGUI)
-    unused = !MyGUI::InputManager::getInstance().injectKeyRelease(key);
-
+	if( mGUI )
+	{
+		if( flgGUIEnableEvent )
+		  unused = !MyGUI::InputManager::getInstance().injectKeyRelease(key);
+	}
   if(unused)
   {
     // транслировать разработчику как событие

@@ -214,6 +214,11 @@ void TEditorMapLogic::HandleFromGraphicEngine(nsGraphicEngine::TBaseEvent* pBase
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent* pMouseGE)
 {
+	//if( pMouseGE->pressedButtons&(1<<OIS::MB_Left) )
+	//	mComp.pGraphicEngine->GetGE()->SetGUIEnableEvent( false );
+	//else
+	//	mComp.pGraphicEngine->GetGE()->SetGUIEnableEvent( true );
+
   switch( pMouseGE->typeEvent )
   {
     case nsGraphicEngine::eButtonDown:
@@ -241,7 +246,15 @@ void TEditorMapLogic::HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pKeyGE)
 {
-  switch( pKeyGE->key )
+	//if( pKeyGE->key==OIS::KC_W ||
+	//		pKeyGE->key==OIS::KC_S ||
+	//		pKeyGE->key==OIS::KC_A ||
+	//		pKeyGE->key==OIS::KC_D ||
+	//		pKeyGE->key==OIS::KC_Q ||
+	//		pKeyGE->key==OIS::KC_E )
+	//	mComp.pGraphicEngine->GetGE()->SetGUIEnableEvent( !pKeyGE->pressed );
+
+	switch( pKeyGE->key )
   {
     case OIS::KC_W:
       mPtrControlCamera->SetMoveForward(pKeyGE->pressed);

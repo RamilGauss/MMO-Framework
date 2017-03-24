@@ -116,7 +116,9 @@ void TPhysicEngine_Bullet::Work()
       if( pWorld->state==eStateControlTime )
         dt_sec /= pWorld->ratioRealTimeToControl;
 
-      pWorld->pWorld->stepSimulation(dt_sec, 1, dt_sec);
+			int maxSubSteps = 5000;//1;
+			float fixedTimeStep = dt_sec/10;
+      pWorld->pWorld->stepSimulation(dt_sec, maxSubSteps, /*dt_sec*/fixedTimeStep);
       
       pWorld->prevTimeWork = now_ms;
     }

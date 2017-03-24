@@ -18,6 +18,7 @@ See for more information License.h.
 #include "CallBackRegistrator.h"
 #include "Events.h"
 #include "ControlClippingCursor.h"
+#include <OgreOverlaySystem.h>
 
 class TGE_Impl :
   public TInputManagerOIS,
@@ -26,6 +27,8 @@ class TGE_Impl :
 {
   TControlClippingCursor mClipCursor;
   volatile bool flgCenterClippingCursor;
+
+	volatile bool flgGUIEnableEvent;
 public:
 	TGE_Impl();
 	virtual ~TGE_Impl();
@@ -54,6 +57,9 @@ public:
 
 	Ogre::TerrainGroup* GetTerrainGroup();
 	Ogre::TerrainGlobalOptions* GetTerrainGlobals();
+
+	void SetGUIEnableEvent(bool v);
+	bool GetGUIEnableEvent();
 protected:
   void ClipCursor();
   void UnclipCursor();
@@ -86,6 +92,7 @@ private:
 	Ogre::Camera* mCamera;
 	Ogre::SceneManager* mSceneManager;
 	Ogre::RenderWindow* mWindow;
+	Ogre::OverlaySystem* mOverlaySystem;  // Overlay system
 
 	Ogre::TerrainGroup* mTerrainGroup;
 	Ogre::TerrainGlobalOptions* mTerrainGlobals;

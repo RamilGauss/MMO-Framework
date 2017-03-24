@@ -69,6 +69,8 @@ public:
 	Ogre::TerrainGroup* GetTerrainGroup();
 	Ogre::TerrainGlobalOptions* GetTerrainGlobals();
 
+	void SetGUIEnableEvent(bool v);
+	bool GetGUIEnableEvent();
 private:
 	boost::scoped_ptr<TGE_Impl> mGE;
   void MsgException(MyGUI::Exception& _e);

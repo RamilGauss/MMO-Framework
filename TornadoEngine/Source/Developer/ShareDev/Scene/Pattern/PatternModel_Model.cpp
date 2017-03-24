@@ -438,7 +438,7 @@ void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model* pCon
 
 	pShapeDesc->pRigidBody->setWorldTransform(trans);
 
-	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,-500,0));
+	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,-20,0));
 	//###
 }
 //---------------------------------------------------------------------------

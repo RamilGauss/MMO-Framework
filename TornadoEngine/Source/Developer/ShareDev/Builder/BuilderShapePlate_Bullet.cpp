@@ -37,7 +37,7 @@ btRigidBody* TBuilderShapePlate_Bullet::CreateRigidBody()
 	float volume = pPlate->height*pPlate->length*pPlate->width;
 	
 	btScalar mass;//(100.f);// calculate!
-	mass = volume*10000;//7810;
+	mass = volume*7810;
 
 	btVector3 localInertia(0,0,0);
 	shape->calculateLocalInertia(mass, localInertia);
