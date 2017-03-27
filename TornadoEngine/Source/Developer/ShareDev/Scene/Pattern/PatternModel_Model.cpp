@@ -19,6 +19,9 @@ See for more information License.h.
 
 #include <btBulletDynamicsCommon.h>
 
+#include "ModulePhysicEngine.h"
+#include "Dynamics/btDiscreteDynamicsWorld.h"
+
 namespace nsPatternModel_Model
 {
   const char* sNameGameItem         = "NameGameItem";
@@ -312,6 +315,32 @@ void TPatternModel_Model::SynchroFromThread_Ogre(TBehaviourPatternContext* pCont
 void TPatternModel_Model::SynchroFromThread_Bullet(TBehaviourPatternContext* pContext)
 {
   // проверка на изменение позиции и ориентации
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
+	int cntPart = pContextModel->GetCountPart();
+	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
+	{
+		std::string namePart = pContextModel->GetNamePart(iPart);
+		int cntVariant = pContextModel->GetCountVariant(namePart);
+		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
+		{
+			std::string nameVariant = pContextModel->GetNameVariant(namePart, iVariant);
+			TPatternContext_Model::TBaseDesc* pDesc = pContextModel->GetDesc(namePart, nameVariant);
+			if( pDesc==NULL )
+				continue;
+			if( pDesc->type==TModelItem::eShape )
+			{
+				TPatternContext_Model::TShapeDesc* pShapeDesc = 
+					(TPatternContext_Model::TShapeDesc*)pDesc;
+
+				const btVector3& velocity = pShapeDesc->pRigidBody->getLinearVelocity();
+				float speed = velocity.length();
+				if( speed > 15.0f )
+				{
+					int a = 0;
+				}
+			}
+		}
+	}
 }
 //---------------------------------------------------------------------------
 void TPatternModel_Model::SynchroFromThread_OpenAL(TBehaviourPatternContext* pContext)
@@ -438,7 +467,10 @@ void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model* pCon
 
 	pShapeDesc->pRigidBody->setWorldTransform(trans);
 
-	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,-20,0));
+	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,-10,0));
+	//pShapeDesc->pRigidBody->setAngularVelocity(btVector3(0,10,0));
+
+	//btDiscreteDynamicsWorld* pWorld = TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(id_world);
 	//###
 }
 //---------------------------------------------------------------------------

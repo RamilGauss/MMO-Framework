@@ -28,7 +28,8 @@ btRigidBody* TBuilderShapeCylinder_Bullet::CreateRigidBody()
 	btTransform startTransform;
 	startTransform.setIdentity();
 
-	btScalar mass(100.f);// calculate!
+	float volume = pCylinder->radius_max*pCylinder->radius_max*3.14f*pCylinder->length;
+	btScalar mass = volume*7800;// calculate!
 
 	btVector3 localInertia(0,0,0);
 	shape->calculateLocalInertia(mass, localInertia);
@@ -43,10 +44,13 @@ btRigidBody* TBuilderShapeCylinder_Bullet::CreateRigidBody()
 	btRigidBody* body = localCreateRigidBody(mass,trans,shape);
 	body->setAnisotropicFriction(shape->getAnisotropicRollingFrictionDirection(),
 		btCollisionObject::CF_ANISOTROPIC_ROLLING_FRICTION);
-	body->setFriction(0.5);// from material
+	body->setFriction(0.5f);// from material
 
-	body->setCcdMotionThreshold(1);
-	body->setCcdSweptSphereRadius(0.9f);
+	body->setCcdMotionThreshold(40.0f);
+	float maxSize = sqrt( pCylinder->radius_max*pCylinder->radius_max + 
+		                    pCylinder->length/2*pCylinder->length/2 );
+	maxSize *= 1.1f;
+	body->setCcdSweptSphereRadius(maxSize*0.9);
 	return body;
 }
 //------------------------------------------------------------------------

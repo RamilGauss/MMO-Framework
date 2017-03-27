@@ -87,6 +87,10 @@ void TEditorMap::sl_Open(MyGUI::Widget* _sender)
 	pPacket->nameMap = "Field";
   TModuleLogic::Get()->
 		AddEventWithoutCopy<nsProtocolGUI2Logic::TLoadMap>(nsListModules::FromSomeToLogic, pPacket );
+
+	// так можно скрывать мышку. Создатели MyGUI, не надо называть так мышиный курсор, я чтобы догадаться
+	// до этого названия неделю потратил! PointerManager -> MouseCursorManager
+	//MyGUI::PointerManager::getInstance().setVisible(false);
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Exit(MyGUI::Widget* _sender)

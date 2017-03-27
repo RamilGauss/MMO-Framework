@@ -115,7 +115,7 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogr
 	mTerrainGroup   = new Ogre::TerrainGroup(	mSceneManager, Ogre::Terrain::ALIGN_X_Z, 0, 0);
 
   mCamera = mSceneManager->createCamera("BaseCamera");
-  mCamera->setNearClipDistance(5);
+  mCamera->setNearClipDistance(1);
   mCamera->setPosition(400, 400, 400);
   mCamera->lookAt(0, 150, 0);
 

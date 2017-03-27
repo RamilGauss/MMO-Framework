@@ -43,7 +43,17 @@ void TGP_Scenario_SynchroClient::SetScene(TScene* pScene)
 //----------------------------------------------------------------------------------
 void TGP_Scenario_SynchroClient::Thread_Bullet()
 {
-  
+	int cnt = mPtrScene->GetCountUsing();
+	for( int i = 0 ; i < cnt ; i++ )
+	{
+		TGameObject* pGO = mPtrScene->GetUsingByIndex(i);
+		if( pGO==NULL )
+		{
+			BL_FIX_BUG();
+			continue;
+		}
+		pGO->GetModel()->SynchroFromThread_Bullet(pGO->GetContext());
+	}
 }
 //----------------------------------------------------------------------------------
 void TGP_Scenario_SynchroClient::Thread_Ogre()

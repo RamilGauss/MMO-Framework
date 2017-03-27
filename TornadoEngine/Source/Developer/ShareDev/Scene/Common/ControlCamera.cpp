@@ -14,7 +14,7 @@ See for more information License.h.
 #define MOUSE_X_AMP 0.004f
 #define MOUSE_Y_AMP 0.004f
 
-#define DELTA_MOVE_CAMERA 3.5f
+#define DELTA_MOVE_CAMERA 0.6f//3.5f
 
 #define DELTA_CAMERA_FORWARD  DELTA_MOVE_CAMERA
 #define DELTA_CAMERA_BACKWARD DELTA_MOVE_CAMERA

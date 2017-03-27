@@ -52,12 +52,14 @@ btRigidBody* TBuilderShapePlate_Bullet::CreateRigidBody()
 	btRigidBody* body = localCreateRigidBody(mass,trans,shape);
 	body->setAnisotropicFriction(shape->getAnisotropicRollingFrictionDirection(),
 		btCollisionObject::CF_ANISOTROPIC_ROLLING_FRICTION);
-	//body->setFriction(0.5f);// from material
+	body->setFriction(0.5f);// from material
 
-	body->setCcdMotionThreshold(300);//100
+	body->setCcdMotionThreshold(40.0f);
 
-	float maxSize = std::max( pPlate->height, pPlate->length );
-	maxSize = std::max(maxSize, pPlate->width);
+	float h_l_sqr = pPlate->height*pPlate->height/4 + pPlate->length*pPlate->length/4;
+	float maxSize = sqrt(h_l_sqr + pPlate->width*pPlate->width/4);
+	maxSize *= 1.1f;
+
 	body->setCcdSweptSphereRadius(maxSize);
 	return body;
 }

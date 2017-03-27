@@ -19,6 +19,7 @@
     <Resource Path = "../../Resources/GUI_forms"                  Type = "FileSystem" />
     <Resource Path = "../../Resources/Graphic/materials/programs" Type = "FileSystem" />
     <Resource Path = "../../Resources/Graphic/materials/programs/GLSL" Type = "FileSystem" />
+    <Resource Path = "../../Resources/Graphic/materials/programs/HLSL" Type = "FileSystem" />
     <Resource Path = "../../Resources/Graphic/materials/scripts"  Type = "FileSystem" />
     <Resource Path = "../../Resources/Graphic/materials/textures" Type = "FileSystem" />
     <Resource Path = "../../Resources/Graphic/models"             Type = "FileSystem" />
