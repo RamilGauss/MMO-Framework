@@ -64,10 +64,10 @@ private:
   TGameObject* GetByIndex(TMapIntPtr& m, int index);
   TGameObject* GetByID(TMapIntPtr& m, int id);
 
-  void Thread_Logic();
-  void Thread_Ogre();
-  void Thread_Bullet();
-  void Thread_OpenAL();
+  void WorkByModule_Logic();
+  void WorkByModule_Graphic();
+  void WorkByModule_Physic();
+  void WorkByModule_Sound();
 };
 
 #endif

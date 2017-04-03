@@ -40,6 +40,8 @@ void TGameObject::SetModel(TBehaviourPatternModel* p)
 //----------------------------------------------------------------
 TBehaviourPatternModel* TGameObject::GetModel()
 {
+	// начать работу с контекстом этого объекта
+	mPtrModel->SetContext(mPtrContext);
   return mPtrModel;
 }
 //----------------------------------------------------------------

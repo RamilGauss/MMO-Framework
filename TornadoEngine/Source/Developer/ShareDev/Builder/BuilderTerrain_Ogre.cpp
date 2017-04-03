@@ -77,6 +77,8 @@ void TBuilderTerrain_Ogre::defineTerrain(long x, long y)
 		mTerrainGroup->getResourceGroup(),
 		filename);
 
+	BL_ASSERT(exists);
+
 	if( exists )
 		mTerrainGroup->defineTerrain(x, y);
 }

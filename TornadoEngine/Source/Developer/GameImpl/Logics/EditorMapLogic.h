@@ -12,7 +12,7 @@ See for more information License.h.
 #include "UsePattern.h"
 #include "FactoryBehaviourPatternModel_EoWM.h"
 
-#include "GP_AggregationScenario_Client.h"
+#include "GP_AggregationScenario_GameMap.h"
 
 #include "./GraphicEngine/Events.h"
 #include "PhysicEngine_Bullet.h"
@@ -31,6 +31,7 @@ class TEditorMapLogic : public TModuleClientLogic
   TUsePattern                   mUsePattern;
   TFactoryBehaviourPatternModel_EoWM mFBP_EoWM;
 
+	std::set<int> mSetUseModule;
   //boost::scoped_ptr<TGP_AggregationScenario_Client> mAggregationScenario_Client;
   boost::scoped_ptr<TShowTankWoT_test>              mPtrShowTank;
   boost::scoped_ptr<TControlCamera>                 mPtrControlCamera;

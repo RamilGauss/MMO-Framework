@@ -70,6 +70,7 @@ TGE_Impl::TGE_Impl()
   flgCenterClippingCursor = false;
 
 	flgGUIEnableEvent = true;
+	flgUseClipCursor = true;
 }
 //------------------------------------------------------------------------------------------
 TGE_Impl::~TGE_Impl()
@@ -132,7 +133,7 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogr
   Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
   mClipCursor.Init(GetWindowHandle());
-  ClipCursor();
+  TryClipCursor();
 
 #if OGRE_NO_GLES3_SUPPORT == 1
 	// Disable the lightmap for OpenGL ES 2.0. The minimum number of samplers allowed is 8(as opposed to 16 on desktop).
@@ -353,7 +354,7 @@ Ogre::Root* TGE_Impl::GetRoot()
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::mouseMoved( const OIS::MouseEvent &arg )
 {
-  ClipCursor();
+  TryClipCursor();
 
   bool unused = true;
 	if( mGUI )
@@ -535,7 +536,7 @@ void TGE_Impl::ClipCursor()
 void TGE_Impl::windowFocusChange(Ogre::RenderWindow* rw)
 {
   if( !IsWindowFocus() )
-    ClipCursor();
+    TryClipCursor();
   else
     UnclipCursor();
 }
@@ -553,5 +554,25 @@ bool TGE_Impl::IsWindowFocus()
 #else
 #endif
   return res;
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::SetUseClipCursor(bool v)
+{
+	flgUseClipCursor = v;
+
+	TryClipCursor();
+	if( GetUseClipCursor()==false )
+		UnclipCursor();
+}
+//------------------------------------------------------------------------------------------
+bool TGE_Impl::GetUseClipCursor()
+{
+	return flgUseClipCursor;
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::TryClipCursor()
+{
+	if( GetUseClipCursor() )
+		ClipCursor();
 }
 //------------------------------------------------------------------------------------------

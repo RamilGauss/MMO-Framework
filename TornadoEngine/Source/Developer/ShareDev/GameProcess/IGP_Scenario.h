@@ -5,19 +5,18 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef GP_ScenarioH
-#define GP_ScenarioH
+#ifndef IGP_ScenarioH
+#define IGP_ScenarioH
 
 #include "TypeDef.h"
 #include "GP_TypeScenario.h"
+#include "IGP_General.h"
 
-class TScene;
-
-class DllExport TGP_Scenario
+class DllExport IGP_Scenario : public IGP_General
 {
 public:
-  TGP_Scenario();
-  virtual ~TGP_Scenario();
+  IGP_Scenario();
+  virtual ~IGP_Scenario();
 
   virtual nsGameProcess::GP_TypeScenario GetType() = 0;
   virtual bool IsActive();

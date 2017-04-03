@@ -9,12 +9,16 @@ See for more information License.h.
 #define BuilderGameMapH
 
 #include "TypeDef.h"
-#include <string>
-#include <vector>
+
 #include "MapItem.h"
 #include "DataExchange2Thread.h"
 #include "GameObject.h"
 #include "CallBackRegistrator.h"
+#include "ListModules.h"
+
+#include <string>
+#include <vector>
+#include <set>
 
 class TFactoryGameItem;
 class TUsePattern;
@@ -46,9 +50,11 @@ class DllExport TBuilderGameMap
   TMapItem*                 mMapItem;
   TTableSoundItem*          mTableSound;
 
-  boost::scoped_ptr<TCacheTableSound>          mCTableSound;
-  boost::scoped_ptr<TApplySetup_GravityVector> mAS_GravityVector;
-  boost::scoped_ptr<TApplySetup_MapGraphicConfig>      mAS_CameraUp;
+  boost::scoped_ptr<TCacheTableSound>          		mCTableSound;
+  boost::scoped_ptr<TApplySetup_GravityVector> 		mAS_GravityVector;
+  boost::scoped_ptr<TApplySetup_MapGraphicConfig> mAS_CameraUp;
+
+	std::set<int> mUseID_Module;
 
   bool flgNeedInitPhysic;
 
@@ -67,22 +73,19 @@ public:
   TBuilderGameMap();
   virtual ~TBuilderGameMap();
 
-  void Init(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP);
+  void Init(std::set<int>& useID_Module, TFactoryBehaviourPatternModel* pFBP);
   bool BuildMap( TMapItem* pMI );// вызывать только если состояние eIdle
-  bool BuildObject( std::list<TMapItem::TObject>& listObject, 
-    bool fast = false );// вызывать только если состояние eIdle
 
   typedef enum{eBuildMap,     // полностью требуется отдать квант
-               eBuildObject,  // сначало отдать квант движкам, потом загрузчику
                eBuildComplete,// сборка завершена, можно забрать результат, фактически это eIdle
                eIdle,         // не требуется квант
   }State;
   State GetState();
   int GetProgress();
-  void BuildFromThread_Logic();
-  void BuildFromThread_Ogre();
-  void BuildFromThread_Bullet();
-  void BuildFromThread_OpenAL();
+  void BuildByModule_Logic();
+  void BuildByModule_Ogre();
+  void BuildByModule_Bullet();
+  void BuildByModule_OpenAL();
 
   typedef std::list<TGameObject*> TListPtrGameObject;
   typedef TListPtrGameObject::iterator TListPtrGameObjectIt;
@@ -96,14 +99,14 @@ private:
   void InitPhysic();
 
   typedef TDataExchange2Thread<TGameObject> TPipeToThreadFromLogic;
-  struct TTaskForThread
+  struct TTaskForModule
   {
     volatile bool flgNeedInit;
     TPipeToThreadFromLogic pipe;
   };
-  TTaskForThread mTask_Ogre;
-  TTaskForThread mTask_Bullet;
-  TTaskForThread mTask_OpenAL;
+  TTaskForModule mTask_Ogre;
+  TTaskForModule mTask_Bullet;
+  TTaskForModule mTask_OpenAL;
 
   void InitMapFrom_Bullet();
   void InitMapFrom_Ogre();
@@ -121,9 +124,9 @@ private:
 
   volatile int mAllCount;
 
-  void BuildFromThread_XXX( 
-    TTaskForThread& task, TCallBackRegistrator0& cbInit, 
-    TProgressTask& progress, TypeThread typeThread );
+  void BuildByModule_XXX( 
+    TTaskForModule& task, TCallBackRegistrator0& cbInit, 
+		TProgressTask& progress, nsListModules::ID_Modules id_module);
 
   void CalcStatisticForProgress();
 
@@ -131,21 +134,4 @@ private:
 };
 
 #endif
-  //----------------------------------------
-#if 0
-  TBuilderGameMap builder;
-  builder.Init(NULL,NULL,0);
-  //----------------------------------------
-  bool resBuildMap = builder.BuildMap(NULL);
-  BL_ASSERT(resBuildMap);
-  //----------------------------------------
-  builder.BuildFromThread_Ogre();
-  builder.BuildFromThread_Bullet();
-  builder.BuildFromThread_OpenAL();
 
-  if( builder.GetState()==eBuildComplete )//
-  {
-    // переход на другой сценарий
-    builder.GetResult();// сбор данных
-  }
-#endif

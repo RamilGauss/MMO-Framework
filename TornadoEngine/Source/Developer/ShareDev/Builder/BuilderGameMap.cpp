@@ -41,9 +41,9 @@ TBuilderGameMap::TBuilderGameMap()
   mAS_CameraUp.reset(new TApplySetup_MapGraphicConfig);
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::Init(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP)
+void TBuilderGameMap::Init(std::set<int>& useID_Module, TFactoryBehaviourPatternModel* pFBP)
 {
-  mUsePattern              = pUsePattern;
+  mUseID_Module            = useID_Module;
   mFactoryBehaviourPattern = pFBP;
   mFactoryGameItem         = TModuleLogic::Get()->GetFGI();
 
@@ -85,17 +85,7 @@ bool TBuilderGameMap::BuildMap( TMapItem* pMI )
   return true;
 }
 //--------------------------------------------------------------------------------------------
-bool TBuilderGameMap::BuildObject( std::list<TMapItem::TObject>& listObject, bool fast )
-{
-  //### in process...
-  mState = eIdle;
-  mListGameObject.clear();
-  mState = eBuildObject;
-  //###
-  return true;
-}
-//--------------------------------------------------------------------------------------------
-void TBuilderGameMap::BuildFromThread_Logic()
+void TBuilderGameMap::BuildByModule_Logic()
 {
   int cnt = 0;
   // создание и настройка игровых объектов
@@ -117,9 +107,14 @@ void TBuilderGameMap::BuildFromThread_Logic()
 
     mListGameObject.push_back(pGO);
 
-    mTask_Ogre.pipe.Add(pGO);
-    mTask_Bullet.pipe.Add(pGO);
-    mTask_OpenAL.pipe.Add(pGO);
+		if( mUseID_Module.find(nsListModules::GraphicEngine)!=mUseID_Module.end() )
+			mTask_Ogre.pipe.Add(pGO);
+
+		if( mUseID_Module.find(nsListModules::PhysicEngine)!=mUseID_Module.end() )
+	    mTask_Bullet.pipe.Add(pGO);
+    
+		if( mUseID_Module.find(nsListModules::SoundEngine)!=mUseID_Module.end() )
+			mTask_OpenAL.pipe.Add(pGO);
 
     mBeginIteratorMapObject++;
     cnt++;
@@ -128,33 +123,33 @@ void TBuilderGameMap::BuildFromThread_Logic()
   }
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::BuildFromThread_Ogre()
+void TBuilderGameMap::BuildByModule_Ogre()
 {
   TCallBackRegistrator0 cbInit;
   cbInit.Register( &TBuilderGameMap::InitMapFrom_Ogre,this);
   TProgressTask progress;
   progress = mProgressTask_Ogre;
-  BuildFromThread_XXX(mTask_Ogre, cbInit, progress, eOgreThread);
+  BuildByModule_XXX(mTask_Ogre, cbInit, progress, nsListModules::GraphicEngine);
   mProgressTask_Ogre.mCurIndex = progress.mCurIndex;
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::BuildFromThread_Bullet()
+void TBuilderGameMap::BuildByModule_Bullet()
 {
   TCallBackRegistrator0 cbInit;
   cbInit.Register( &TBuilderGameMap::InitMapFrom_Bullet,this);
   TProgressTask progress;
   progress = mProgressTask_Bullet;
-  BuildFromThread_XXX(mTask_Bullet, cbInit, progress, eBulletThread);
+  BuildByModule_XXX(mTask_Bullet, cbInit, progress, nsListModules::PhysicEngine);
   mProgressTask_Bullet.mCurIndex = progress.mCurIndex;
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::BuildFromThread_OpenAL()
+void TBuilderGameMap::BuildByModule_OpenAL()
 {
   TCallBackRegistrator0 cbInit;
   cbInit.Register( &TBuilderGameMap::InitMapFrom_OpenAL,this);
   TProgressTask progress;
   progress = mProgressTask_OpenAL;
-  BuildFromThread_XXX(mTask_OpenAL, cbInit, progress, eOpenALThread);
+	BuildByModule_XXX(mTask_OpenAL, cbInit, progress, nsListModules::SoundEngine);
   mProgressTask_OpenAL.mCurIndex = progress.mCurIndex;
 }
 //--------------------------------------------------------------------------------------------
@@ -219,10 +214,10 @@ void TBuilderGameMap::InitMapFrom_OpenAL()
   mCTableSound->WorkFromThread_OpenAL();
 }
 //--------------------------------------------------------------------------------------------
-void TBuilderGameMap::BuildFromThread_XXX( TTaskForThread& task, 
-                                           TCallBackRegistrator0& cbInit, 
-                                           TProgressTask& progress, 
-                                           TypeThread typeThread)
+void TBuilderGameMap::BuildByModule_XXX( TTaskForModule& task, 
+                                         TCallBackRegistrator0& cbInit, 
+                                         TProgressTask& progress, 
+																				 nsListModules::ID_Modules id_module)
 {
   if( task.flgNeedInit )
   {
@@ -237,15 +232,15 @@ void TBuilderGameMap::BuildFromThread_XXX( TTaskForThread& task,
   TGameObject* pGO = *ppGO;
   TBehaviourPatternContext* pContext = pGO->GetContext();
 	bool resultLoad = true;
-  switch(typeThread)
+  switch( id_module )
   {
-    case eBulletThread:
+		case nsListModules::PhysicEngine:
       resultLoad = pGO->GetModel()->LoadFromThread_Bullet(pContext);
       break;
-    case eOgreThread:
+    case nsListModules::GraphicEngine:
       resultLoad = pGO->GetModel()->LoadFromThread_Ogre(pContext);
       break;
-    case eOpenALThread:
+    case nsListModules::SoundEngine:
       resultLoad = pGO->GetModel()->LoadFromThread_OpenAL(pContext);
       break;
   }

@@ -25,7 +25,7 @@ class DllExport TGameObject
 {
   int mID;
 
-  // поведение - зависит от типа (Model, Terrain, Zone, Light, Sound, Animated, Skybox)
+  // поведение - зависит от типа (Model, Terrain, Zone, Light, Sound, Animated, Sky)
   TBehaviourPatternModel*   mPtrModel;
   TBehaviourPatternContext* mPtrContext;
 
@@ -37,6 +37,7 @@ public:
   void SetID( int id );
 
   void SetModel(TBehaviourPatternModel* p);
+	// нельзя хранить указатель на модель объекта, всегда делать запрос перед использованием 
   TBehaviourPatternModel* GetModel();
 
   void SetContext(TBehaviourPatternContext* p);

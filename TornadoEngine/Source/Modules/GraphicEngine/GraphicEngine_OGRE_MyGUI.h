@@ -71,6 +71,9 @@ public:
 
 	void SetGUIEnableEvent(bool v);
 	bool GetGUIEnableEvent();
+
+	void SetUseClipCursor(bool v);
+	bool GetUseClipCursor();
 private:
 	boost::scoped_ptr<TGE_Impl> mGE;
   void MsgException(MyGUI::Exception& _e);

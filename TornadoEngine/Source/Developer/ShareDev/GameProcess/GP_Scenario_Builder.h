@@ -10,60 +10,37 @@ See for more information License.h.
 
 #include "IGP_Scenario_Builder.h"
 #include "BuilderGameMap.h"
-#include "GP_Scenario.h"
+#include "IGP_Scenario.h"
 
 class DllExport TGP_Scenario_Builder : 
-  public IGP_Scenario_Builder, public TGP_Scenario
+  public IGP_Scenario_Builder, public IGP_Scenario
 {
-  int mLastProgressEvent;
+  int mLastCountStepProgress;
   TBuilderGameMap mBuilder;
 
-  volatile bool flgProgressComplete;
-  volatile bool flgActive;
-
-  // активна ли функция
-  volatile bool flgActive_ThreadBullet;
-  volatile bool flgActive_ThreadOgre;
-  volatile bool flgActive_ThreadOpenAL;
-
-  // требуется ли получать квант для выполнения задания
-  volatile bool flgActiveTask_ThreadLogic;
-  volatile bool flgActiveTask_ThreadBullet;
-  volatile bool flgActiveTask_ThreadOgre;
-  volatile bool flgActiveTask_ThreadOpenAL;
-  enum
-  {
-    eTimeFeedBackThread = 1, // мс
-  };
+  bool flgActive;
+	bool flgNeedWorkByModule;
 public:
   TGP_Scenario_Builder();
   virtual ~TGP_Scenario_Builder();
 
-  virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP);
+	// IGP_Builder
   virtual void LoadMap(std::string nameMap);
-  virtual bool AddGameObject(std::list<TMapItem::TObject>& listDesc);
   virtual int GetPhysicWorldID();
 
-  virtual void SetScene(TScene* pScene);
-  virtual void Thread_Bullet();
-  virtual void Thread_Ogre();
-  virtual void Thread_Logic();
-  virtual void Thread_OpenAL();
+	// IGP_General
+  virtual void WorkByModule_Physic();
+  virtual void WorkByModule_Graphic();
+  virtual void WorkByModule_Logic();
+  virtual void WorkByModule_Sound();
 
+	// IGP_Scenario
   virtual nsGameProcess::GP_TypeScenario GetType();
   virtual bool IsActive();
 
   virtual void Activate();
   virtual void Deactivate();
 private:
-  bool IsAnyThreadActive();
-
-  typedef enum{eOgreActive, eBulletActive, eOpenALActive}TypeActive;
-  void Enter(TypeActive t);
-  void Leave(TypeActive t);
-  
-  void SetActiveTask(TypeActive t, bool v);
-
 	void DumpGameObjectToScene();
 };
 

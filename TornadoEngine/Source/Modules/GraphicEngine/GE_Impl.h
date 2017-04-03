@@ -29,6 +29,7 @@ class TGE_Impl :
   volatile bool flgCenterClippingCursor;
 
 	volatile bool flgGUIEnableEvent;
+	volatile bool flgUseClipCursor;
 public:
 	TGE_Impl();
 	virtual ~TGE_Impl();
@@ -60,8 +61,12 @@ public:
 
 	void SetGUIEnableEvent(bool v);
 	bool GetGUIEnableEvent();
+
+	void SetUseClipCursor(bool v);
+	bool GetUseClipCursor();
 protected:
-  void ClipCursor();
+	void TryClipCursor();
+	void ClipCursor();
   void UnclipCursor();
 
   bool IsWindowFocus();

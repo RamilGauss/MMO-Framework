@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "IGP_Scenario_SynchroClient.h"
+#include "IGP_Scenario_Synchro.h"
 
-IGP_Scenario_SynchroClient::IGP_Scenario_SynchroClient()
+IGP_Scenario_Synchro::IGP_Scenario_Synchro()
 {
 
 }
 //-------------------------------------------------------------------
-IGP_Scenario_SynchroClient::~IGP_Scenario_SynchroClient()
+IGP_Scenario_Synchro::~IGP_Scenario_Synchro()
 {
 
 }

@@ -9,7 +9,7 @@ See for more information License.h.
 
 TModuleClientLogic::TModuleClientLogic()
 {
-  mAggregationScenario_Client.reset(new TGP_AggregationScenario_Client);
+  mAggregationScenario_Client.reset(new TGP_AggregationScenario_GameMap);
 	mScene.reset(new TScene);
 }
 //----------------------------------------------------------------

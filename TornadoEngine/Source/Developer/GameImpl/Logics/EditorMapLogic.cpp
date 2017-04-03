@@ -40,6 +40,10 @@ TEditorMapLogic::TEditorMapLogic()
   mID_TimerTryMoveCamera = -1;
   mPtrShowTank.reset(new TShowTankWoT_test);
   mPtrControlCamera.reset(new TControlCamera);
+
+	mSetUseModule.insert(nsListModules::GraphicEngine);
+	mSetUseModule.insert(nsListModules::PhysicEngine);
+	mSetUseModule.insert(nsListModules::SoundEngine);
 }
 //-------------------------------------------------------------------
 TEditorMapLogic::~TEditorMapLogic()
@@ -54,7 +58,7 @@ void TEditorMapLogic::StartEvent()
     mAggregationScenario_Client->GetCB_Progress()->Register( &TEditorMapLogic::ProgressScenario, this);
     mAggregationScenario_Client->GetCB_End()->Register( &TEditorMapLogic::EndScenario, this);
 
-		mAggregationScenario_Client->SetScene(mScene.get());
+		mAggregationScenario_Client->Setup( mSetUseModule, GetFBPM(), mScene.get());
   }
 
   CallBackModule(nsListModules::Timer, &TEditorMapLogic::StartTimer);
@@ -86,7 +90,7 @@ TFactoryBehaviourPatternModel* TEditorMapLogic::GetFBPM()
 bool TEditorMapLogic::WorkClient()
 {
   if(mAggregationScenario_Client.get())
-    mAggregationScenario_Client->Thread_Logic();
+    mAggregationScenario_Client->WorkByModule_Logic();
   return true;
 }
 //-------------------------------------------------------------------
@@ -130,13 +134,13 @@ void TEditorMapLogic::InitForms()
 void TEditorMapLogic::PhysicEndWork()
 {
   if(mAggregationScenario_Client.get())
-    mAggregationScenario_Client->Thread_Bullet();
+    mAggregationScenario_Client->WorkByModule_Physic();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::GraphicEndWork()
 {
   if(mAggregationScenario_Client.get())
-    mAggregationScenario_Client->Thread_Ogre();
+    mAggregationScenario_Client->WorkByModule_Graphic();
   
   //mPtrControlCamera->CameraTryMove();
 
@@ -146,7 +150,7 @@ void TEditorMapLogic::GraphicEndWork()
 void TEditorMapLogic::SoundEndWork()
 {
   if(mAggregationScenario_Client.get())
-    mAggregationScenario_Client->Thread_OpenAL();
+    mAggregationScenario_Client->WorkByModule_Sound();
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::FreeGraphicResource()
@@ -159,7 +163,6 @@ void TEditorMapLogic::LoadGameMap(std::string& nameMap)
   if(mAggregationScenario_Client.get())
     if(mAggregationScenario_Client->Activate(nsGameProcess::eBuilder))
   {
-    mAggregationScenario_Client->Setup( &mUsePattern, &mFBP_EoWM );
     mAggregationScenario_Client->LoadMap(nameMap);
   }
 }
@@ -172,7 +175,7 @@ void TEditorMapLogic::ProgressScenario(nsGameProcess::GP_TypeScenario type, int 
     case nsGameProcess::eDestructor:
       // отрисовка прогресса загрузки или выгрузки
       break;
-    case nsGameProcess::eSynchroClient:
+    case nsGameProcess::eSynchro:
       // не должны сюда попасть
       BL_FIX_BUG();
       break;
@@ -185,7 +188,7 @@ void TEditorMapLogic::EndScenario(nsGameProcess::GP_TypeScenario type)
   {
     case nsGameProcess::eBuilder:
     case nsGameProcess::eDestructor:
-      if( mAggregationScenario_Client->Activate(nsGameProcess::eSynchroClient)==false )
+      if( mAggregationScenario_Client->Activate(nsGameProcess::eSynchro)==false )
       {
         BL_FIX_BUG();
       }
@@ -194,7 +197,7 @@ void TEditorMapLogic::EndScenario(nsGameProcess::GP_TypeScenario type)
 				Setup( mAggregationScenario_Client->GetPhysicWorldID(), 
 				 mStatePhysicWorld );
       break;
-    case nsGameProcess::eSynchroClient:
+    case nsGameProcess::eSynchro:
       break;
   }
 }
@@ -282,6 +285,8 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowTest()
 {
+	//TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->SetUseClipCursor(false);
+
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 	pCamera->setPosition(60,60,60);
 	pCamera->lookAt(0,30,0);

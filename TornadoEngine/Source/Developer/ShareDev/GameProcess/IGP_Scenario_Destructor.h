@@ -9,17 +9,15 @@ See for more information License.h.
 #define IGP_Scenario_DestructorH
 
 #include "TypeDef.h"
-#include "IGP_Scenario_General.h"
+#include "IGP_General.h"
 
-class DllExport IGP_Scenario_Destructor : public virtual IGP_Scenario_General
+class DllExport IGP_Scenario_Destructor
 {
 public:
   IGP_Scenario_Destructor();
   virtual ~IGP_Scenario_Destructor();
 
-  virtual void UnloadAll() = 0;// L
-  // запустить инициализацию процесса уничтожения объекта
-  virtual bool DeleteGameObject(int id) = 0;// L
+  virtual void UnloadAll() = 0;
 };
 
 #endif

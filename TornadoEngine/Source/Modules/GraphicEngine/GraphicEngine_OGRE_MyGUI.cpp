@@ -120,6 +120,16 @@ bool TGraphicEngine_Ogre_MyGUI::GetGUIEnableEvent()
 	return mGE->GetGUIEnableEvent();
 }
 //---------------------------------------------------------------------
+void TGraphicEngine_Ogre_MyGUI::SetUseClipCursor(bool v)
+{
+	mGE->SetUseClipCursor(v);
+}
+//---------------------------------------------------------------------
+bool TGraphicEngine_Ogre_MyGUI::GetUseClipCursor()
+{
+	return mGE->GetUseClipCursor();
+}
+//---------------------------------------------------------------------
 void TGraphicEngine_Ogre_MyGUI::MsgException(MyGUI::Exception& _e)
 {
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32

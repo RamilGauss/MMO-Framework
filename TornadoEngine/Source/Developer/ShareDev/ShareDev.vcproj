@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./TerrainTech;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modify/TerrainTech;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./TerrainTech;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./Builder;./Destructor;./GameItems;./GameProcess;./ManagementObjects;./Modify/TerrainTech;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/GameObject;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -197,6 +197,10 @@
 			</File>
 			<File
 				RelativePath=".\Share\InputCmdDevTool.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Share\ListModules.h"
 				>
 			</File>
 			<File
@@ -1259,59 +1263,15 @@
 		<Filter
 			Name="GameProcess"
 			>
-			<File
-				RelativePath=".\GameProcess\GP_TypeScenario.h"
-				>
-			</File>
 			<Filter
-				Name="Client"
+				Name="Implementation"
 				>
 				<File
-					RelativePath=".\GameProcess\GP_AggregationScenario_Client.cpp"
+					RelativePath=".\GameProcess\GP_AggregationScenario_GameMap.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GameProcess\GP_AggregationScenario_Client.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\GP_Scenario_SynchroClient.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\GP_Scenario_SynchroClient.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Slave"
-				>
-				<File
-					RelativePath=".\GameProcess\GP_AggregationScenario_Slave.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\GP_AggregationScenario_Slave.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\GP_Scenario_GameProcessSlave.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\GP_Scenario_GameProcessSlave.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="GeneralImpl"
-				>
-				<File
-					RelativePath=".\GameProcess\GP_Scenario.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\GP_Scenario.h"
+					RelativePath=".\GameProcess\GP_AggregationScenario_GameMap.h"
 					>
 				</File>
 				<File
@@ -1330,9 +1290,21 @@
 					RelativePath=".\GameProcess\GP_Scenario_Destructor.h"
 					>
 				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_Synchro.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_Scenario_Synchro.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\GP_TypeScenario.h"
+					>
+				</File>
 			</Filter>
 			<Filter
-				Name="GeneralAbstract"
+				Name="Abstract"
 				>
 				<File
 					RelativePath=".\GameProcess\IGP_AggregationScenario.cpp"
@@ -1340,6 +1312,22 @@
 				</File>
 				<File
 					RelativePath=".\GameProcess\IGP_AggregationScenario.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_General.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_General.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameProcess\IGP_Scenario.h"
 					>
 				</File>
 				<File
@@ -1359,27 +1347,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\GameProcess\IGP_Scenario_GameProcessSlave.cpp"
+					RelativePath=".\GameProcess\IGP_Scenario_Synchro.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\GameProcess\IGP_Scenario_GameProcessSlave.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\IGP_Scenario_General.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\IGP_Scenario_General.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\IGP_Scenario_SynchroClient.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameProcess\IGP_Scenario_SynchroClient.h"
+					RelativePath=".\GameProcess\IGP_Scenario_Synchro.h"
 					>
 				</File>
 			</Filter>
@@ -1405,32 +1377,36 @@
 			>
 		</Filter>
 		<Filter
-			Name="TerrainTech"
+			Name="Modify"
 			>
-			<File
-				RelativePath=".\TerrainTech\CreaterTerrain.cpp"
+			<Filter
+				Name="TerrainTech"
 				>
-			</File>
-			<File
-				RelativePath=".\TerrainTech\CreaterTerrain.h"
-				>
-			</File>
-			<File
-				RelativePath=".\TerrainTech\ModifyTerrain_Blender.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\TerrainTech\ModifyTerrain_Blender.h"
-				>
-			</File>
-			<File
-				RelativePath=".\TerrainTech\ModifyTerrain_Painter.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\TerrainTech\ModifyTerrain_Painter.h"
-				>
-			</File>
+				<File
+					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Blender.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Blender.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Extent.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Extent.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Painter.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Painter.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

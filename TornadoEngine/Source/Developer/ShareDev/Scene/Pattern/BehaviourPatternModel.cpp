@@ -19,14 +19,11 @@ static TBuilder_OpenAL g_BuilderOpenAL;
 static TDestructor_Ogre   g_DestructorOgre;
 static TDestructor_Bullet g_DestructorBullet;
 static TDestructor_OpenAL g_DestructorOpenAL;
-// Synchro нужна ли она вообще???
-//static TSynchro_Ogre   mSynchroOgre;
-//static TSynchro_Bullet mSynchroBullet;
-//static TSynchro_OpenAL mSynchroOpenAL;
+
 
 TBehaviourPatternModel::TBehaviourPatternModel()
 {
-
+	mCurCtx = NULL;
 }
 //------------------------------------------------------------------------
 TBehaviourPatternModel::~TBehaviourPatternModel()
@@ -162,5 +159,15 @@ TDestructor_Bullet* TBehaviourPatternModel::GetDestructorBullet()
 TDestructor_OpenAL* TBehaviourPatternModel::GetDestructorOpenAL()
 {
   return &g_DestructorOpenAL;
+}
+//------------------------------------------------------------------------
+int TBehaviourPatternModel::GetBaseType()
+{
+	return 0;
+}
+//------------------------------------------------------------------------
+void TBehaviourPatternModel::SetContext(TBehaviourPatternContext* pContext)
+{
+	mCurCtx = pContext;
 }
 //------------------------------------------------------------------------

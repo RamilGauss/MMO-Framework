@@ -5,15 +5,20 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "CreaterTerrain.h"
+#include "ModifyTerrain_Extent.h"
 
-TCreaterTerrain::TCreaterTerrain()
+TModifyTerrain_Extent::TDescTarget::TDescTarget()
+{
+
+}
+//------------------------------------------------------------------------
+TModifyTerrain_Extent::TModifyTerrain_Extent()
 {
 	mTerrainGroup   = NULL;
 	mTerrainOptions = NULL;
 }
 //------------------------------------------------------------------------
-void TCreaterTerrain::Create(TDescTarget& descTarget, 
+void TModifyTerrain_Extent::Setup(TDescTarget& descTarget, 
 						Ogre::TerrainGroup* pTG, Ogre::TerrainGlobalOptions* pTGO)
 {
 	mTerrainGroup   = pTG;
@@ -21,8 +26,9 @@ void TCreaterTerrain::Create(TDescTarget& descTarget,
 
 }
 //------------------------------------------------------------------------
-void TCreaterTerrain::setupContent()
+void TModifyTerrain_Extent::setupContent()
 {
+
 }
 	/*
 	bool blankTerrain = false;
@@ -136,5 +142,58 @@ mTerrainsImported = true;
 }
 
 }
+}
+*/
+
+
+
+
+/*
+void configureTerrainDefaults(Light* l)
+{
+// Configure global
+mTerrainGlobals->setMaxPixelError(8);
+// testing composite map
+mTerrainGlobals->setCompositeMapDistance(3000);
+//mTerrainGlobals->setUseRayBoxDistanceCalculation(true);
+//mTerrainGlobals->getDefaultMaterialGenerator()->setDebugLevel(1);
+//mTerrainGlobals->setLightMapSize(256);
+
+#if OGRE_NO_GLES3_SUPPORT == 1
+// Disable the lightmap for OpenGL ES 2.0. The minimum number of samplers allowed is 8(as opposed to 16 on desktop).
+// Otherwise we will run over the limit by just one. The minimum was raised to 16 in GL ES 3.0.
+if (Ogre::Root::getSingletonPtr()->getRenderSystem()->getName().find("OpenGL ES 2") != String::npos)
+{
+TerrainMaterialGeneratorA::SM2Profile* matProfile =
+static_cast<TerrainMaterialGeneratorA::SM2Profile*>(mTerrainGlobals->getDefaultMaterialGenerator()->getActiveProfile());
+matProfile->setLightmapEnabled(false);
+}
+#endif
+// Important to set these so that the terrain knows what to use for derived (non-realtime) data
+mTerrainGlobals->setLightMapDirection(l->getDerivedDirection());
+mTerrainGlobals->setCompositeMapAmbient(mSceneMgr->getAmbientLight());
+//mTerrainGlobals->setCompositeMapAmbient(ColourValue::Red);
+mTerrainGlobals->setCompositeMapDiffuse(l->getDiffuseColour());
+
+// Configure default import settings for if we use imported image
+Terrain::ImportData& defaultimp = mTerrainGroup->getDefaultImportSettings();
+defaultimp.terrainSize = TERRAIN_SIZE;
+defaultimp.worldSize = TERRAIN_WORLD_SIZE;
+defaultimp.inputScale = 600;
+defaultimp.minBatchSize = 33;
+defaultimp.maxBatchSize = 65;
+// textures
+defaultimp.layerList.resize(3);
+defaultimp.layerList[0].worldSize = 100;
+defaultimp.layerList[0].textureNames.push_back("dirt_grayrocky_diffusespecular.dds");
+defaultimp.layerList[0].textureNames.push_back("dirt_grayrocky_normalheight.dds");
+defaultimp.layerList[1].worldSize = 30;
+defaultimp.layerList[1].textureNames.push_back("grass_green-01_diffusespecular.dds");
+defaultimp.layerList[1].textureNames.push_back("grass_green-01_normalheight.dds");
+defaultimp.layerList[2].worldSize = 200;
+defaultimp.layerList[2].textureNames.push_back("growth_weirdfungus-03_diffusespecular.dds");
+defaultimp.layerList[2].textureNames.push_back("growth_weirdfungus-03_normalheight.dds");
+
+
 }
 */

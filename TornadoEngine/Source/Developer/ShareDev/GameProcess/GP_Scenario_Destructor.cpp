@@ -32,22 +32,22 @@ void TGP_Scenario_Destructor::SetScene(TScene* pScene)
 
 }
 //---------------------------------------------------------------------------------
-void TGP_Scenario_Destructor::Thread_Bullet()
+void TGP_Scenario_Destructor::WorkByModule_Physic()
 {
 
 }
 //---------------------------------------------------------------------------------
-void TGP_Scenario_Destructor::Thread_Ogre()
+void TGP_Scenario_Destructor::WorkByModule_Graphic()
 {
 
 }
 //---------------------------------------------------------------------------------
-void TGP_Scenario_Destructor::Thread_Logic()
+void TGP_Scenario_Destructor::WorkByModule_Logic()
 {
 
 }
 //---------------------------------------------------------------------------------
-void TGP_Scenario_Destructor::Thread_OpenAL()
+void TGP_Scenario_Destructor::WorkByModule_Sound()
 {
 
 }

@@ -1,5 +1,3 @@
-set QMAKESPEC=win32-msvc2008
-set QTDIR=C:\qt\4.5.0.vc2008
-set PATH=%PATH%;%QTDIR%\bin;
+set PATH=%PATH%;%DEP_PATH_MMO_FRAMEWORK%\bin;
 
-start Tornado_d.exe -v 0 -d GameImpl_d.dll
+start Tornado.exe -v 8 -d GameImpl.dll

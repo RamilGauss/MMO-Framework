@@ -15,8 +15,7 @@ namespace nsGameProcess
     eUndef   = 0,
     eBuilder,
     eDestructor, 
-    eSynchroClient, 
-    eGameProcessSlave, 
+    eSynchro, 
   }GP_TypeScenario;
 }
 

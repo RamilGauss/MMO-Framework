@@ -272,10 +272,6 @@
 		<Filter
 			Name="Logics"
 			>
-			<File
-				RelativePath=".\Logics\ListModules.h"
-				>
-			</File>
 			<Filter
 				Name="Main"
 				>

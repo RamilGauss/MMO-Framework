@@ -8,44 +8,41 @@ See for more information License.h.
 #ifndef IGP_AggregationScenarioH
 #define IGP_AggregationScenarioH
 
+#include "TypeDef.h"
 #include "GP_TypeScenario.h"
-#include "IGP_Scenario_General.h"
+#include "IGP_General.h"
 
-class IGP_Scenario_General;
-class TGP_Scenario;
+class IGP_Scenario;
 
-class IGP_AggregationScenario : public virtual IGP_Scenario_General
+class DllExport IGP_AggregationScenario : public IGP_General
 {
 protected:
-  // для смены указателя только в потоке Логики
-  IGP_Scenario_General* mPtrCurrentScenario_General;
-  TGP_Scenario*         mPtrCurrentScenario_Scenario;
+  IGP_Scenario* mPtrCurrentScenario;
 public:
   IGP_AggregationScenario();
   virtual ~IGP_AggregationScenario();
 
-  virtual void Thread_Logic();
-  virtual void Thread_Bullet();
-  virtual void Thread_Ogre();
-  virtual void Thread_OpenAL();
-
-  nsGameProcess::GP_TypeScenario GetCurrentScenarioType();// L
+  nsGameProcess::GP_TypeScenario GetCurrentScenarioType();
   
-  virtual bool Activate(nsGameProcess::GP_TypeScenario type);// L
-protected:
-  virtual void GetByType(nsGameProcess::GP_TypeScenario type, 
-    IGP_Scenario_General*& pGeneral, TGP_Scenario*& pScenario) = 0;
+  virtual bool Activate(nsGameProcess::GP_TypeScenario type);
 
-  void Begin( IGP_Scenario_General* pNew_General, TGP_Scenario* pNew_Scenario );
+	// IGP_General
+	virtual void WorkByModule_Logic();
+	virtual void WorkByModule_Physic();
+	virtual void WorkByModule_Graphic();
+	virtual void WorkByModule_Sound();
+protected:
+  virtual IGP_Scenario* GetByType(nsGameProcess::GP_TypeScenario type) = 0;
+
+  void Begin( IGP_Scenario* pNew_General );
   void End();
 
-  IGP_Scenario_General* GetCurrentScGeneral();
-  TGP_Scenario*         GetCurrentSc();
+  IGP_Scenario* GetCurrentScenario();
 
-  void RegisterScenarioOnEvent(IGP_Scenario_General* pSc);
+  void RegisterScenarioOnEvent(IGP_General* pSc);
   
   bool IsActive(nsGameProcess::GP_TypeScenario type);
-private:
+protected:
   void EndEventScenario(nsGameProcess::GP_TypeScenario type);
   void ProgressEventScenario(nsGameProcess::GP_TypeScenario type, int progress);
 };

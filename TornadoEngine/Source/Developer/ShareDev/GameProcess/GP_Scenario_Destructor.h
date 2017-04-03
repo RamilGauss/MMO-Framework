@@ -9,10 +9,10 @@ See for more information License.h.
 #define GP_Scenario_DestructorH
 
 #include "IGP_Scenario_Destructor.h"
-#include "GP_Scenario.h"
+#include "IGP_Scenario.h"
 
 class DllExport TGP_Scenario_Destructor : 
-  public IGP_Scenario_Destructor, public TGP_Scenario
+  public IGP_Scenario_Destructor, public IGP_Scenario
 {
   volatile bool flgActive;
 public:
@@ -23,10 +23,10 @@ public:
   virtual bool DeleteGameObject(int id);
 
   virtual void SetScene(TScene* pScene);
-  virtual void Thread_Bullet();
-  virtual void Thread_Ogre();
-  virtual void Thread_Logic();
-  virtual void Thread_OpenAL();
+  virtual void WorkByModule_Physic();
+  virtual void WorkByModule_Graphic();
+  virtual void WorkByModule_Logic();
+  virtual void WorkByModule_Sound();
 
   virtual nsGameProcess::GP_TypeScenario GetType();
   virtual bool IsActive();

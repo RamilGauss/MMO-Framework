@@ -29,6 +29,19 @@ public:
   static std::string Sound();
   static std::string Terrain();
   static std::string Zone();
+
+	typedef enum
+	{
+		eBase = 0,
+
+		eAnimated,
+		eLight,
+		eModel,
+		eSky,
+		eSound,
+		eTerrain,
+		eZone,
+	}eBaseType;
 };
 
 #endif

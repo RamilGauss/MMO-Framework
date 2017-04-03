@@ -97,24 +97,24 @@ bool TScene::GetUsing(int id)
   return false;
 }
 //-----------------------------------------------------------------------------
-void TScene::Thread_Logic()
+void TScene::WorkByModule_Logic()
 {
   // ВНЕШНЯЯ синхронизация
 }
 //-----------------------------------------------------------------------------
-void TScene::Thread_Ogre()
+void TScene::WorkByModule_Graphic()
 {
 
 }
 //-----------------------------------------------------------------------------
-void TScene::Thread_Bullet()
+void TScene::WorkByModule_Physic()
 {
   // ВНУТРЕННЯЯ синхронизация
 
   // пробежка по подвижным объектам и создание их паттернами событий через внутренние "трубы" паттерна
 }
 //-----------------------------------------------------------------------------
-void TScene::Thread_OpenAL()
+void TScene::WorkByModule_Sound()
 {
 
 }

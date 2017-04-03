@@ -8,24 +8,16 @@ See for more information License.h.
 #ifndef IGP_Scenario_BuilderH
 #define IGP_Scenario_BuilderH
 
-#include "IGP_Scenario_General.h"
+#include "TypeDef.h"
 #include <string>
-#include "MathTools.h"
-#include "ContainerTypes.h"
-#include "MapItem.h"
 
-class TFactoryBehaviourPatternModel;
-class TUsePattern;
-
-class DllExport IGP_Scenario_Builder : public virtual IGP_Scenario_General
+class DllExport IGP_Scenario_Builder
 {
 public:
   IGP_Scenario_Builder();
   virtual ~IGP_Scenario_Builder();
 
-  virtual void Setup(TUsePattern* pUsePattern, TFactoryBehaviourPatternModel* pFBP) = 0;
   virtual void LoadMap(std::string nameMap)  = 0;
-  virtual bool AddGameObject(std::list<TMapItem::TObject>& listDesc) = 0;
   virtual int GetPhysicWorldID() = 0;
 };
 

@@ -27,15 +27,12 @@ See for more information License.h.
 
 #include "Builder_Ogre.h"
 #include "Destructor_Ogre.h"
-//#include "Updater_Ogre.h"
 
 #include "Builder_Bullet.h"
 #include "Destructor_Bullet.h"
-//#include "Updater_Bullet.h"
 
 #include "Builder_OpenAL.h"
 #include "Destructor_OpenAL.h"
-//#include "Updater_OpenAL.h"
 
 class TFactoryGameItem;
 class TFactoryBehaviourPatternModel;
@@ -44,6 +41,8 @@ class TBehaviourPatternContext;
 class DllExport TBehaviourPatternModel
 {
   std::string mName;
+protected:
+	TBehaviourPatternContext* mCurCtx;// текущий контекст для работы
 public:
   TBehaviourPatternModel();
   virtual ~TBehaviourPatternModel();
@@ -54,11 +53,11 @@ public:
   virtual TBehaviourPatternContext* MakeNewConext();
   // при сохранении карты/объекта,
   // что бы знать какие ключи вообще возможны, проектирование новых карт
-  virtual void GetDefaultParameterMap(TMapItem::TMapStrStr& m);// L
+  virtual void GetDefaultParameterMap(TMapItem::TMapStrStr& m);
 
   // от одного Паттерна другому, упаковано 
-  virtual bool SetParameterFromPattern(TBehaviourPatternContext* pContext, TContainer c);// L
-  virtual TContainer GetParameterToPattern(TBehaviourPatternContext* pContext);// B - Slave
+  virtual bool SetParameterFromPattern(TBehaviourPatternContext* pContext, TContainer c);
+  virtual TContainer GetParameterToPattern(TBehaviourPatternContext* pContext);// Slave
 
   // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
   // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
@@ -73,19 +72,25 @@ public:
   // Правило(загрузка,синхронизация,выгрузка): 
   // сначала отрабатывает поток Логики, потом уже все остальные потоки
   virtual void LoadFromThread_Logic(TBehaviourPatternContext* pContext);
-  virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual bool LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual bool LoadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext,   bool fast = false);
+  virtual bool LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = false);
+  virtual bool LoadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = false);
 
   virtual void UnloadFromThread_Logic(TBehaviourPatternContext* pContext);
-  virtual bool UnloadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual bool UnloadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual bool UnloadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual bool UnloadFromThread_Ogre(TBehaviourPatternContext* pContext,   bool fast = false);
+  virtual bool UnloadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = false);
+  virtual bool UnloadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = false);
 
   virtual void SynchroFromThread_Logic(TBehaviourPatternContext* pContext); // внешняя синхронизация от сервера(MMO)
   virtual void SynchroFromThread_Ogre(TBehaviourPatternContext* pContext);  // графика от физики
   virtual void SynchroFromThread_Bullet(TBehaviourPatternContext* pContext);// внутренняя синхронизация (коллизии, у клиента тут пусто)
   virtual void SynchroFromThread_OpenAL(TBehaviourPatternContext* pContext);// звук от физики
+
+	virtual int GetBaseType();
+
+	//###
+	virtual void SetContext(TBehaviourPatternContext* pContext);
+	//###
 protected:
   TBuilder_Ogre*   GetBuilderOgre();
   TBuilder_Bullet* GetBuilderBullet();

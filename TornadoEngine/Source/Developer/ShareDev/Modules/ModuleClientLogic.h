@@ -12,17 +12,17 @@ See for more information License.h.
 #include "InputCmdDevTool.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
-#include "GP_AggregationScenario_Client.h"
+#include "GP_AggregationScenario_GameMap.h"
 #include "Scene.h"
 
 class DllExport TModuleClientLogic : public TModuleLogic
 {
 protected:
-  TInputCmdDevTool               mInputCmd;
+  TInputCmdDevTool                                   mInputCmd;
 
-  boost::scoped_ptr<TGP_AggregationScenario_Client> mAggregationScenario_Client;
+  boost::scoped_ptr<TGP_AggregationScenario_GameMap> mAggregationScenario_Client;
 
-	boost::scoped_ptr<TScene> mScene;
+	boost::scoped_ptr<TScene>                          mScene;
 
 public:
   TModuleClientLogic();

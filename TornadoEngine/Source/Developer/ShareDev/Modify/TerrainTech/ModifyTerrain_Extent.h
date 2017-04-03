@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CreaterTerrainH
-#define CreaterTerrainH
+#ifndef ModifyTerrain_ExtentH
+#define ModifyTerrain_ExtentH
 
 #include "TypeDef.h"
 #include <string>
@@ -15,29 +15,41 @@ See for more information License.h.
 #include "OgreTerrainGroup.h"
 #include "OgreTerrain.h"
 
-class DllExport TCreaterTerrain
+class DllExport TModifyTerrain_Extent
 {
 	Ogre::TerrainGroup*         mTerrainGroup;
 	Ogre::TerrainGlobalOptions* mTerrainOptions;
 public:
-	TCreaterTerrain();
+	TModifyTerrain_Extent();
+
+	struct TLayer
+	{
+		float worldSize;
+		std::string textureNames_Color;
+		std::string textureNames_Normal;
+	};
 
 	struct TDescTarget
 	{
 		// нужно для имени
 		std::string nameMap;
-		int iX;
-		int iY;
+		short iX;// [-32000..32000]
+		short iY;// [-32000..32000]
 
+		// геометрические параметры
 		nsMathTools::TVector3 position;// by center
 		// квадратная плоскость
-		float worldSize;
+		float worldSize;// 0.. 10000 у.е. (в разумных пределах)
 		int   size;// must be 2^n + 1, [2,3,5,9,17,33,65,129,257,513,1025,2049,..]
 		// высота 
 		float heightFlat;
+
+		// графические параметры
+		std::list<TLayer> listLayer;
+		TDescTarget();
 	};
 
-	void Create(TDescTarget& descTarget, 
+	void Setup(TDescTarget& descTarget, 
 		Ogre::TerrainGroup* pTG, Ogre::TerrainGlobalOptions* pTGO);
 private:
 	void setupContent();
