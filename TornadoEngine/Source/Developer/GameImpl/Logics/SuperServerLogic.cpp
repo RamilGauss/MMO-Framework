@@ -61,7 +61,7 @@ void TSuperServerLogic::InitForms()
 //------------------------------------------------------------------------------
 void TSuperServerLogic::StartEvent()
 {
-  CallBackModule(nsListModules::MMOEngineSuperServer, &TSuperServerLogic::OpenPort);
+  OpenPort();
 }
 //----------------------------------------------------------
 void TSuperServerLogic::StopEvent()

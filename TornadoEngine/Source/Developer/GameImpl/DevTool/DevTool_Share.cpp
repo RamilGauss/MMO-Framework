@@ -180,24 +180,23 @@ void TDevTool_Share::EventGameEngine(int id, const char* sDesc)
   }
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::SetupGraphicEngine(TModuleDev* pModule)
+void TDevTool_Share::SetupGraphicEngine()
 {
-  TModuleGraphicEngine* pGE = (TModuleGraphicEngine*)pModule;
   // настройка перед запуском
-  if( pGE->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg)==false )
+  if( mGE_ForSetup->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg)==false )
 	{
 		_exit(-1);// либо ошибка, либо пользователь не хочет запускать приложение
 		return;
 	}
   // пути для ресурсов графического движка
   BOOST_FOREACH(TResources::TMMapStrStrVT& vtTypePath, mMapRGraphicEngine)
-    pGE->GetGE()->AddResource(vtTypePath.second, vtTypePath.first);
+    mGE_ForSetup->GetGE()->AddResource(vtTypePath.second, vtTypePath.first);
   // оболочка и ядро для GUI
   std::string sSkin, sCore;
 	FindPath_GUI(nsDevTool_Share::sCore, 0, sCore);
 	FindPath_GUI(nsDevTool_Share::sSkin, 0, sSkin);
   BL_ASSERT(sCore.length() && sSkin.length());
-  pGE->GetGE()->InitMyGUI(sCore, sSkin);
+  mGE_ForSetup->GetGE()->InitMyGUI(sCore, sSkin);
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetComponentsForLogic()
@@ -249,8 +248,12 @@ TModuleDev* TDevTool_Share::GetModuleByID(int id)
     // ядро
     case Logic: pModule = GetModuleLogic(); ((TModuleLogic*)pModule)->SetTerrainPath(mTerrainPath); break;
     // периферия
-    case GraphicEngine:          pModule = new TModuleGraphicEngine;// единственный модуль, который требуется настраивать в том же потоке
-      ((TModuleGraphicEngine*)pModule)->GetCBSetup()->Register(&TDevTool_Share::SetupGraphicEngine,this);
+    case GraphicEngine:          
+			// графический движок требуется настраивать в том же потоке, в котором он работает
+			// единственный модуль, который требуется настраивать в том же потоке
+			pModule = new TModuleGraphicEngine;
+			mGE_ForSetup = (TModuleGraphicEngine*)pModule;
+      ((TModuleGraphicEngine*)pModule)->GetCBStartEvent()->Register(&TDevTool_Share::SetupGraphicEngine,this);
       break;
     case PhysicEngine:           pModule = new TModulePhysicEngine;              break;
     case MMOEngineClient:        pModule = new TModuleMMOEngineClient;           break;

@@ -44,32 +44,32 @@ public:
   virtual bool Unload();// L
 
   // Выполнить задания в каждом из потоков
-  virtual void LoadFromThread_Logic(TBehaviourPatternContext* pContext);
-  virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual bool LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual bool LoadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual void LoadByModule_Logic();
+  virtual bool LoadByModule_Graphic(bool fast = false);
+  virtual bool LoadByModule_Physic(bool fast = false);
+  virtual bool LoadByModule_Sound(bool fast = false);
 
-  virtual void UnloadFromThread_Logic(TBehaviourPatternContext* pContext);
-  virtual bool UnloadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual bool UnloadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual bool UnloadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = true);
+  virtual void UnloadByModule_Logic();
+  virtual bool UnloadByModule_Graphic(bool fast = false);
+  virtual bool UnloadByModule_Physic(bool fast = false);
+  virtual bool UnloadByModule_Sound(bool fast = false);
 
-  virtual void SynchroFromThread_Logic(TBehaviourPatternContext* pContext); // внешняя синхронизация
-  virtual void SynchroFromThread_Ogre(TBehaviourPatternContext* pContext);  // графика от физики
-  virtual void SynchroFromThread_Bullet(TBehaviourPatternContext* pContext);// внутренняя синхронизация
-  virtual void SynchroFromThread_OpenAL(TBehaviourPatternContext* pContext);// звук от физики
+  virtual void SynchroByModule_Logic();  // внешняя синхронизация
+  virtual void SynchroByModule_Graphic();// графика от физики
+  virtual void SynchroByModule_Physic(); // внутренняя синхронизация
+  virtual void SynchroByModule_Sound();  // звук от физики
 protected:
 
   bool GetFromPipe(nsMathTools::TVector3& v, TDataExchange2Thread<nsMathTools::TVector3>* pPipe);
 
-  void LoadModelsFromThread_Logic(TPatternContext_Model* pContextModel, TModelItem::TMapStrPart& mapNamePart);
-  void LoadShapesFromThread_Logic(TPatternContext_Model* pContextModel, TModelItem::TMapStrPart& mapNamePart);
+  void LoadModelsFromThread_Logic(TModelItem::TMapStrPart& mapNamePart);
+  void LoadShapesFromThread_Logic(TModelItem::TMapStrPart& mapNamePart);
 
-  void LoadShapeFromThread_Ogre(TPatternContext_Model* pContextModel, TPatternContext_Model::TShapeDesc* pShapeDesc);
-	void PostLoadFromThread_Ogre(TBehaviourPatternContext* pContext);
+  void LoadShapeFromThread_Ogre(TPatternContext_Model::TShapeDesc* pShapeDesc);
+	void PostLoadFromThread_Ogre();
 
-	void LoadShapeFromThread_Bullet(TPatternContext_Model* pContextModel, TPatternContext_Model::TShapeDesc* pShapeDesc);
-	void PostLoadFromThread_Bullet(TBehaviourPatternContext* pContext);
+	void LoadShapeFromThread_Bullet(TPatternContext_Model::TShapeDesc* pShapeDesc);
+	void PostLoadFromThread_Bullet();
 protected:
 
 };

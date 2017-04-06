@@ -26,11 +26,11 @@ bool TModuleDataBase::WorkInherit()
 //----------------------------------------------------------------------
 void TModuleDataBase::StartEvent()
 {
-
+	mCBStartEvent.Notify();
 }
 //----------------------------------------------------------------------
 void TModuleDataBase::StopEvent()
 {
-
+	mCBStopEvent.Notify();
 }
 //----------------------------------------------------------------------

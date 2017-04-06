@@ -8,6 +8,7 @@ See for more information License.h.
 #include "PatternContext_Model.h"
 #include "ManagerNamePattern.h"
 #include "BL_Debug.h"
+#include "PatternModel_Model.h"
 
 TPatternContext_Model::TPatternContext_Model(TBehaviourPatternModel* pModel):
 TBehaviourPatternContext(pModel)
@@ -140,5 +141,10 @@ TPatternContext_Model::TMapStrPtrDesc* TPatternContext_Model::FindMapByNamePart(
   if( fit==mMapNamePart_NameVariantDesc.end() )
     return NULL;
   return &(fit->second);
+}
+//--------------------------------------------------------------------------
+TPatternContext_Model::TModelDesc::~TModelDesc()
+{
+	delete pModel;
 }
 //--------------------------------------------------------------------------

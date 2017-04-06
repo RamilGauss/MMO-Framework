@@ -20,7 +20,7 @@ public:
   virtual ~TCacheTableSound();
 
   void Set(TTableSoundItem* pTableSoundItem);
-  void WorkFromThread_OpenAL();
+  void WorkByModule_Sound();
 };
 
 #endif

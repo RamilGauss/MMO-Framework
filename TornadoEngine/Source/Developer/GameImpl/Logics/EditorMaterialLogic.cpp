@@ -26,11 +26,11 @@ TEditorMaterialLogic::~TEditorMaterialLogic()
 //-------------------------------------------------------------------
 void TEditorMaterialLogic::StartEvent()
 {
-  CallBackModule(nsListModules::Timer, &TEditorMaterialLogic::StartTimer);
-  CallBackModule(nsListModules::GraphicEngine, &TEditorMaterialLogic::InitForms);
+  StartTimer();
+  InitForms();
 
-  mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorMaterialLogic::GraphicBeginWork ,this);
-  mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorMaterialLogic::FreeGraphicResource,this);
+  //mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorMaterialLogic::GraphicBeginWork ,this);
+  //mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorMaterialLogic::FreeGraphicResource,this);
 }
 //-------------------------------------------------------------------
 void TEditorMaterialLogic::InitLog()

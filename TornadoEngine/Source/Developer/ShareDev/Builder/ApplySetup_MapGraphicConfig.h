@@ -24,7 +24,7 @@ public:
 	void Set(nsMathTools::TVector3& backgroundColour, 
 		TMapItem::TFog& fog, nsMathTools::TVector3& ambientLight);
   
-  void WorkFromThread_Ogre();
+  void WorkByModule_Graphic();
 };
 
 #endif

@@ -19,7 +19,7 @@ public:
 
   virtual TBehaviourPatternContext* MakeNewConext();
 
-	virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
+	virtual bool LoadByModule_Graphic(bool fast = false);
 };
 
 #endif

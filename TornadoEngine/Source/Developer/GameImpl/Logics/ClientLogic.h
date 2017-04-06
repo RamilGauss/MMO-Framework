@@ -35,6 +35,7 @@ public:
   virtual ~TClientLogic();
 
   virtual void StartEvent();
+  virtual void StopEvent();
   virtual void InitLog();
 protected:
   virtual bool WorkClient();
@@ -57,8 +58,8 @@ private:
   void GraphicBeginWork();
   void FreeGraphicResource();
   
-  void PhysicBeginWork();
-  void PhysicEndWork();
+  //void PhysicBeginWork();
+  //void PhysicEndWork();
 };
 
 #endif

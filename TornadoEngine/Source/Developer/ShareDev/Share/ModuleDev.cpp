@@ -7,8 +7,6 @@ See for more information License.h.
 
 #include "ModuleDev.h"
 
-using namespace std;
-
 TModuleDev::TModuleDev()
 {
   mID   = -1;
@@ -17,20 +15,8 @@ TModuleDev::TModuleDev()
 //----------------------------------------------------------------------
 bool TModuleDev::Work()
 {
-  mCBBeginWork.Notify();
   bool res = WorkInherit();
-  mCBEndWork.Notify();
   return res;
-}
-//----------------------------------------------------------------------
-TCallBackRegistrator0* TModuleDev::GetCBEndWork()
-{
-  return &mCBEndWork;
-}
-//----------------------------------------------------------------------
-TCallBackRegistrator0* TModuleDev::GetCBBeginWork()
-{
-  return &mCBBeginWork;
 }
 //----------------------------------------------------------------------
 int TModuleDev::GetID()
@@ -38,7 +24,7 @@ int TModuleDev::GetID()
   return mID;
 }
 //----------------------------------------------------------------------
-string TModuleDev::GetName()
+std::string TModuleDev::GetName()
 {
   return mName;
 }

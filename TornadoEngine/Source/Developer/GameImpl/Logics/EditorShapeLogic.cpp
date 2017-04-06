@@ -26,11 +26,16 @@ TEditorShapeLogic::~TEditorShapeLogic()
 //-------------------------------------------------------------------
 void TEditorShapeLogic::StartEvent()
 {
-  CallBackModule(nsListModules::Timer, &TEditorShapeLogic::StartTimer);
-  CallBackModule(nsListModules::GraphicEngine, &TEditorShapeLogic::InitForms);
+  StartTimer();
+  InitForms();
 
-  mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorShapeLogic::GraphicBeginWork ,this);
-  mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorShapeLogic::FreeGraphicResource,this);
+  //mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorShapeLogic::GraphicBeginWork ,this);
+  //mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorShapeLogic::FreeGraphicResource,this);
+}
+//-------------------------------------------------------------------
+void TEditorShapeLogic::StopEvent()
+{
+
 }
 //-------------------------------------------------------------------
 void TEditorShapeLogic::InitLog()

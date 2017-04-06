@@ -39,6 +39,7 @@ public:
   virtual ~TEditorShapeLogic();
 
   virtual void StartEvent();
+  virtual void StopEvent();
   virtual void InitLog();
 protected:
   virtual bool WorkClient();

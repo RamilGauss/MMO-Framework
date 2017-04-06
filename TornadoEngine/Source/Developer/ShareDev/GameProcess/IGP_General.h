@@ -29,6 +29,8 @@ protected:
   TCallBackRegistrator1<nsGameProcess::GP_TypeScenario> mCB_End;
   int mProgressStep;
   TCallBackRegistrator2<nsGameProcess::GP_TypeScenario,int> mCB_Progress;
+
+	int mPhysicWorldID;
 public:
   IGP_General();
   virtual ~IGP_General();
@@ -38,12 +40,17 @@ public:
   TCallBackRegistrator2<nsGameProcess::GP_TypeScenario,int>* GetCB_Progress();
 
 	virtual void Setup(std::set<int>& setID_Module, 
-		TFactoryBehaviourPatternModel* pFBP, TScene* pScene);
+		TFactoryBehaviourPatternModel* pFBP, TScene* pScene, int id_world);
 
-  virtual void WorkByModule_Logic()  = 0;
-  virtual void WorkByModule_Physic() = 0;
-  virtual void WorkByModule_Graphic()   = 0;
-  virtual void WorkByModule_Sound() = 0;
+	virtual void Work() = 0;
+
+	bool UsePhysic();
+	bool UseGraphic();
+	bool UseSound();
+private:
+	bool flgUsePhysic;
+	bool flgUseGraphic;
+	bool flgUseSound;
 };
 
 #endif

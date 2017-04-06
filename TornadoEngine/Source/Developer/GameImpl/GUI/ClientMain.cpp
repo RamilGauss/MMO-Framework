@@ -62,7 +62,7 @@ void TClientMain::sl_Enter(MyGUI::Widget* _sender)
 
   // настройка сети
   if(IsOpen==false)
-    TModuleLogic::Get()->CallBackModule(nsListModules::MMOEngineClient, &TClientMain::EnterServer, this );
+    EnterServer();
 }
 //-------------------------------------------------------------------------------------
 void TClientMain::sl_Exit(MyGUI::Widget* _sender)

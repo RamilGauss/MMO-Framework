@@ -16,6 +16,7 @@ See for more information License.h.
 #include <OgreEntity.h>
 
 class btRigidBody;
+class TPatternModel_Model;
 
 class DllExport TPatternContext_Model : public TBehaviourPatternContext
 {
@@ -29,20 +30,17 @@ public:
   };
   struct TModelDesc : public TBaseDesc
   {
-    TPatternContext_Model* pCtxModel;
-    TModelDesc(){type=TModelItem::eModel;pCtxModel=NULL;}
-    ~TModelDesc(){delete pCtxModel;}
+    TPatternModel_Model* pModel;
+    TModelDesc(){type=TModelItem::eModel;pModel=NULL;}
+    ~TModelDesc();
   };
   struct TShapeDesc : public TBaseDesc
   {
     std::string  nameShapeItem;
     std::string  nameMaterial; // реальный материал и переопределенный могут не совпадать
     // результат создания формы:
-		//std::string  nameEntityOgre;
 		Ogre::Entity* pEntity;
-    //unsigned int id_entity_ogre;
 		btRigidBody* pRigidBody;
-    //unsigned int id_entity_bullet;
     TShapeDesc(){type=TModelItem::eShape;pRigidBody=NULL;pEntity=NULL;}
   };
 protected:

@@ -22,12 +22,12 @@ bool TModulePhysicEngine::WorkInherit()
 //---------------------------------------------------------------------------------
 void TModulePhysicEngine::StartEvent()
 {
-  
+	mCBStartEvent.Notify();
 }
 //---------------------------------------------------------------------------------
 void TModulePhysicEngine::StopEvent()
 {
-
+	mCBStopEvent.Notify();
 }
 //---------------------------------------------------------------------------------
 TPhysicEngine_Bullet* TModulePhysicEngine::GetPE()

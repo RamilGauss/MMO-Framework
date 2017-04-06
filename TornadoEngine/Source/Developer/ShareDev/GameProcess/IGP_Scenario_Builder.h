@@ -18,7 +18,6 @@ public:
   virtual ~IGP_Scenario_Builder();
 
   virtual void LoadMap(std::string nameMap)  = 0;
-  virtual int GetPhysicWorldID() = 0;
 };
 
 #endif

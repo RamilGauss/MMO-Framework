@@ -11,124 +11,55 @@ See for more information License.h.
 #include "TypeDef.h"
 
 #include "MapItem.h"
-#include "DataExchange2Thread.h"
-#include "GameObject.h"
+//#include "DataExchange2Thread.h"
+//#include "GameObject.h"
 #include "CallBackRegistrator.h"
-#include "ListModules.h"
+//#include "ListModules.h"
 
 #include <string>
 #include <vector>
 #include <set>
 
-class TFactoryGameItem;
-class TUsePattern;
-struct TTableSoundItem;
+#include "BuilderGameMap_Object.h"
+#include "BuilderGameMap_Param.h"
 
-class TCacheTableSound;
-class TApplySetup_GravityVector;
-class TApplySetup_MapGraphicConfig;
 class TFactoryBehaviourPatternModel;
-
-
-/*
-  Алгоритм работы с классом:
-    Настройка - Init.
-    
-    1. Дать задание
-    2. Дать квант через потоки
-    3. Проверка GetState.
-
-    N. Логике вывести физический мир из паузы.
-*/
 
 class DllExport TBuilderGameMap
 {
   TFactoryBehaviourPatternModel* mFactoryBehaviourPattern;
-  TFactoryGameItem*         mFactoryGameItem;
-  TUsePattern*              mUsePattern;
   int                       mPhysicWorldID;
   TMapItem*                 mMapItem;
-  TTableSoundItem*          mTableSound;
-
-  boost::scoped_ptr<TCacheTableSound>          		mCTableSound;
-  boost::scoped_ptr<TApplySetup_GravityVector> 		mAS_GravityVector;
-  boost::scoped_ptr<TApplySetup_MapGraphicConfig> mAS_CameraUp;
 
 	std::set<int> mUseID_Module;
 
-  bool flgNeedInitPhysic;
+	TBuilderGameMap_Param mBuilderGameMap_Param;
 
-  enum
-  {
-    eMaxCountBuildObject = 10,
-    eTimeWaitObject = 1,
-  };
-  typedef enum
-  {
-    eBulletThread, 
-    eOgreThread, 
-    eOpenALThread
-  }TypeThread;
+	TBuilderGameMap_Object mBuilderGameObject;
+
+	typedef std::list<int> TListInt;
+	typedef TListInt::iterator TListIntIt;
+	
+	TListInt mListID_BuiltObject;
 public:
   TBuilderGameMap();
   virtual ~TBuilderGameMap();
 
-  void Init(std::set<int>& useID_Module, TFactoryBehaviourPatternModel* pFBP);
-  bool BuildMap( TMapItem* pMI );// вызывать только если состояние eIdle
+	void Init(std::set<int>& useID_Module, TFactoryBehaviourPatternModel* pFBP, int id_world);
+  bool BuildMap( TMapItem* pMI );
 
-  typedef enum{eBuildMap,     // полностью требуется отдать квант
-               eBuildComplete,// сборка завершена, можно забрать результат, фактически это eIdle
-               eIdle,         // не требуется квант
-  }State;
-  State GetState();
   int GetProgress();
-  void BuildByModule_Logic();
-  void BuildByModule_Ogre();
-  void BuildByModule_Bullet();
-  void BuildByModule_OpenAL();
+
+	void Build();
 
   typedef std::list<TGameObject*> TListPtrGameObject;
   typedef TListPtrGameObject::iterator TListPtrGameObjectIt;
   void GetResult(TListPtrGameObject& listPtrGameObject);
-  int GetPhysicWorldID();
 private:
 
   TListPtrGameObject mListGameObject;
-  volatile State mState;
   
   void InitPhysic();
-
-  typedef TDataExchange2Thread<TGameObject> TPipeToThreadFromLogic;
-  struct TTaskForModule
-  {
-    volatile bool flgNeedInit;
-    TPipeToThreadFromLogic pipe;
-  };
-  TTaskForModule mTask_Ogre;
-  TTaskForModule mTask_Bullet;
-  TTaskForModule mTask_OpenAL;
-
-  void InitMapFrom_Bullet();
-  void InitMapFrom_Ogre();
-  void InitMapFrom_OpenAL();
-
-  struct TProgressTask
-  {
-    int mCurIndex;
-    int mCount;
-  };
-
-  TProgressTask mProgressTask_Bullet;
-  TProgressTask mProgressTask_Ogre;
-  TProgressTask mProgressTask_OpenAL;
-
-  volatile int mAllCount;
-
-  void BuildByModule_XXX( 
-    TTaskForModule& task, TCallBackRegistrator0& cbInit, 
-		TProgressTask& progress, nsListModules::ID_Modules id_module);
-
-  void CalcStatisticForProgress();
 
   TMapItem::TListObject::iterator mBeginIteratorMapObject;
 };

@@ -42,7 +42,7 @@ class DllExport TBehaviourPatternModel
 {
   std::string mName;
 protected:
-	TBehaviourPatternContext* mCurCtx;// текущий контекст для работы
+	TBehaviourPatternContext* mContext;// текущий контекст для работы
 public:
   TBehaviourPatternModel();
   virtual ~TBehaviourPatternModel();
@@ -50,48 +50,47 @@ public:
   void SetName(std::string v);
   std::string GetName();
 
-  virtual TBehaviourPatternContext* MakeNewConext();
   // при сохранении карты/объекта,
   // что бы знать какие ключи вообще возможны, проектирование новых карт
   virtual void GetDefaultParameterMap(TMapItem::TMapStrStr& m);
 
   // от одного Паттерна другому, упаковано 
-  virtual bool SetParameterFromPattern(TBehaviourPatternContext* pContext, TContainer c);
-  virtual TContainer GetParameterToPattern(TBehaviourPatternContext* pContext);// Slave
+  virtual bool SetParameterFromPattern(TContainer c);
+  virtual TContainer GetParameterToPattern();// Slave
 
   // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
   // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
-  virtual bool GetNeedSynchro(TBehaviourPatternContext* pContext);// B
+  virtual bool GetNeedSynchro();// B
 
   //virtual bool LoadFromParameterMap();// L
-  virtual bool UpdateFromGameItem(TBehaviourPatternContext* pContext, TBaseItem* pBI);// L
+  virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
 
 	// разделение по модулям нужно потому что у разных реализаций разное кол-во модулей
 
-	// Выполнить задания в каждом из потоков
   // Правило(загрузка,синхронизация,выгрузка): 
-  // сначала отрабатывает поток Логики, потом уже все остальные потоки
-  virtual void LoadFromThread_Logic(TBehaviourPatternContext* pContext);
-  virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext,   bool fast = false);
-  virtual bool LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = false);
-  virtual bool LoadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = false);
+  // сначала отрабатывает функция Логики, потом уже все остальные
+  virtual void LoadByModule_Logic();// инициализация внутренней структуры
+  virtual bool LoadByModule_Graphic(bool fast = false);
+  virtual bool LoadByModule_Physic( bool fast = false);
+  virtual bool LoadByModule_Sound(  bool fast = false);
 
-  virtual void UnloadFromThread_Logic(TBehaviourPatternContext* pContext);
-  virtual bool UnloadFromThread_Ogre(TBehaviourPatternContext* pContext,   bool fast = false);
-  virtual bool UnloadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = false);
-  virtual bool UnloadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast = false);
+  virtual void UnloadByModule_Logic();// подготовка к освобождению ресурсов
+  virtual bool UnloadByModule_Graphic(bool fast = false);
+  virtual bool UnloadByModule_Physic( bool fast = false);
+  virtual bool UnloadByModule_Sound(  bool fast = false);
 
-  virtual void SynchroFromThread_Logic(TBehaviourPatternContext* pContext); // внешняя синхронизация от сервера(MMO)
-  virtual void SynchroFromThread_Ogre(TBehaviourPatternContext* pContext);  // графика от физики
-  virtual void SynchroFromThread_Bullet(TBehaviourPatternContext* pContext);// внутренняя синхронизация (коллизии, у клиента тут пусто)
-  virtual void SynchroFromThread_OpenAL(TBehaviourPatternContext* pContext);// звук от физики
+  virtual void SynchroByModule_Logic();  // внешняя синхронизация от сервера(например,MMO)
+  virtual void SynchroByModule_Graphic();// графика от физики
+  virtual void SynchroByModule_Physic(); // внутренняя синхронизация (физика влияет сама на себя)
+  virtual void SynchroByModule_Sound();  // звук от физики
 
 	virtual int GetBaseType();
 
-	//###
-	virtual void SetContext(TBehaviourPatternContext* pContext);
-	//###
+	virtual void SetContext();
+	virtual TBehaviourPatternContext* GetContext();
 protected:
+  virtual TBehaviourPatternContext* MakeNewConext();
+
   TBuilder_Ogre*   GetBuilderOgre();
   TBuilder_Bullet* GetBuilderBullet();
   TBuilder_OpenAL* GetBuilderOpenAL();

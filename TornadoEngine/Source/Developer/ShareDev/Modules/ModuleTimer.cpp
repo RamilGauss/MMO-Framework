@@ -112,11 +112,11 @@ void TModuleTimer::Done()
 //-----------------------------------------------------------------
 void TModuleTimer::StartEvent()
 {
-
+	mCBStartEvent.Notify();
 }
 //-----------------------------------------------------------------
 void TModuleTimer::StopEvent()
 {
-
+	mCBStopEvent.Notify();
 }
 //-----------------------------------------------------------------

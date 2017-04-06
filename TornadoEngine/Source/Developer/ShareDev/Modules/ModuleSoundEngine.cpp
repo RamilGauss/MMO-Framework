@@ -19,11 +19,11 @@ bool TModuleSoundEngine::WorkInherit()
 //----------------------------------------------------------------------
 void TModuleSoundEngine::StartEvent()
 {
-
+	mCBStartEvent.Notify();
 }
 //----------------------------------------------------------------------
 void TModuleSoundEngine::StopEvent()
 {
-
+	mCBStopEvent.Notify();
 }
 //----------------------------------------------------------------------

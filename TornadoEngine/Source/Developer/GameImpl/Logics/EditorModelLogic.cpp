@@ -25,17 +25,17 @@ TEditorModelLogic::~TEditorModelLogic()
 //-------------------------------------------------------------------
 void TEditorModelLogic::StartEvent()
 {
-  CallBackModule(nsListModules::Timer, &TEditorModelLogic::StartTimer);
-  CallBackModule(nsListModules::GraphicEngine, &TEditorModelLogic::InitForms);
+  StartTimer();
+  InitForms();
 
-  CallBackModule(nsListModules::PhysicEngine, &TEditorModelLogic::InitPhysic);
+  InitPhysic();
 
-  mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorModelLogic::GraphicBeginWork ,this);
+  //mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorModelLogic::GraphicBeginWork ,this);
 
-  mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorModelLogic::FreeGraphicResource,this);
+  //mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorModelLogic::FreeGraphicResource,this);
 
-  mComp.pPhysicEngine->GetCBBeginWork()->Register( &TEditorModelLogic::PhysicBeginWork ,this);
-  mComp.pPhysicEngine->GetCBEndWork()->Register( &TEditorModelLogic::PhysicEndWork ,this);
+  //mComp.pPhysicEngine->GetCBBeginWork()->Register( &TEditorModelLogic::PhysicBeginWork ,this);
+  //mComp.pPhysicEngine->GetCBEndWork()->Register( &TEditorModelLogic::PhysicEndWork ,this);
 }
 //-------------------------------------------------------------------
 void TEditorModelLogic::InitLog()

@@ -26,7 +26,7 @@ void TApplySetup_GravityVector::Set(nsMathTools::TVector3& vGravity, int id_Phys
   mID_PhysicWorld = id_PhysicWorld;
 }
 //-----------------------------------------------------------------------
-void TApplySetup_GravityVector::WorkFromThread_Bullet()
+void TApplySetup_GravityVector::WorkByModule_Physic()
 {
   btDiscreteDynamicsWorld* dynamicsWorld = 
     TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(mID_PhysicWorld);

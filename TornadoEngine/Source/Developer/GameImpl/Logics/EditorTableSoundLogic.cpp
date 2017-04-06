@@ -27,15 +27,15 @@ TEditorTableSoundLogic::~TEditorTableSoundLogic()
 //-------------------------------------------------------------------
 void TEditorTableSoundLogic::StartEvent()
 {
-	CallBackModule(nsListModules::Timer,         &TEditorTableSoundLogic::StartTimer);
-	CallBackModule(nsListModules::GraphicEngine, &TEditorTableSoundLogic::InitForms);
-	CallBackModule(nsListModules::PhysicEngine,  &TEditorTableSoundLogic::InitPhysic);
+	StartTimer();
+	InitForms();
+	InitPhysic();
 
-	mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::GraphicBeginWork ,this);
-	mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorTableSoundLogic::FreeGraphicResource,this);
+	//mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::GraphicBeginWork ,this);
+	//mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorTableSoundLogic::FreeGraphicResource,this);
 
-	mComp.pPhysicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::PhysicBeginWork ,this);
-	mComp.pPhysicEngine->GetCBEndWork()  ->Register( &TEditorTableSoundLogic::PhysicEndWork ,this);
+	//mComp.pPhysicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::PhysicBeginWork ,this);
+	//mComp.pPhysicEngine->GetCBEndWork()  ->Register( &TEditorTableSoundLogic::PhysicEndWork ,this);
 }
 //-------------------------------------------------------------------
 void TEditorTableSoundLogic::InitLog()

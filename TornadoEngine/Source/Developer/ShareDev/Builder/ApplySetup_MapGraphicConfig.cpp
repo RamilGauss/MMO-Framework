@@ -29,7 +29,7 @@ void TApplySetup_MapGraphicConfig::Set(nsMathTools::TVector3& backgroundColour,
 	mAmbientLight = ambientLight;
 }
 //------------------------------------------------------------------------
-void TApplySetup_MapGraphicConfig::WorkFromThread_Ogre()
+void TApplySetup_MapGraphicConfig::WorkByModule_Graphic()
 {
 	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
 	Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();

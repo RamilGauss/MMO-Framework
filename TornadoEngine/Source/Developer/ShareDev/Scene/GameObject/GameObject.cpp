@@ -8,19 +8,20 @@ See for more information License.h.
 #include "GameObject.h"
 
 #include "BehaviourPatternModel.h"
-#include "BehaviourPatternContext.h"
+//#include "BehaviourPatternContext.h"
 
 TGameObject::TGameObject()
 {
   mPtrModel   = NULL;
-  mPtrContext = NULL;
+  //mPtrContext = NULL;
 
   mID = 0;
 }
 //----------------------------------------------------------------
 TGameObject::~TGameObject()
 {
-  delete mPtrContext;
+  //delete mPtrContext;
+	delete mPtrModel;
 }
 //----------------------------------------------------------------
 int TGameObject::GetID() const
@@ -41,20 +42,20 @@ void TGameObject::SetModel(TBehaviourPatternModel* p)
 TBehaviourPatternModel* TGameObject::GetModel()
 {
 	// начать работу с контекстом этого объекта
-	mPtrModel->SetContext(mPtrContext);
+	//mPtrModel->SetContext(mPtrContext);
   return mPtrModel;
 }
 //----------------------------------------------------------------
-void TGameObject::SetContext(TBehaviourPatternContext* p)
-{
-  delete mPtrContext;
-  mPtrContext = p;
-  if( mPtrContext )
-    mPtrContext->SetGameObject(this);
-}
-//----------------------------------------------------------------
-TBehaviourPatternContext* TGameObject::GetContext()
-{
-  return mPtrContext;
-}
-//----------------------------------------------------------------
+//void TGameObject::SetContext(TBehaviourPatternContext* p)
+//{
+//  delete mPtrContext;
+//  mPtrContext = p;
+//  if( mPtrContext )
+//    mPtrContext->SetGameObject(this);
+//}
+////----------------------------------------------------------------
+//TBehaviourPatternContext* TGameObject::GetContext()
+//{
+//  return mPtrContext;
+//}
+////----------------------------------------------------------------

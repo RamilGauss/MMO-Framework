@@ -9,7 +9,6 @@ See for more information License.h.
 #define EditorMapLogicH
 
 #include "ModuleClientLogic.h"
-#include "UsePattern.h"
 #include "FactoryBehaviourPatternModel_EoWM.h"
 
 #include "GP_AggregationScenario_GameMap.h"
@@ -23,15 +22,14 @@ class TControlCamera;
 
 class TEditorMapLogic : public TModuleClientLogic
 {
-  int mID_PhysicWorld;
+  int mPhysicWorldID;
   TEditorMap* mEditorMap;
 
 	TPhysicEngine_Bullet::eStateWorld mStatePhysicWorld;
 
-  TUsePattern                   mUsePattern;
   TFactoryBehaviourPatternModel_EoWM mFBP_EoWM;
 
-	std::set<int> mSetUseModule;
+	//std::set<int> mSetUseModule;
   //boost::scoped_ptr<TGP_AggregationScenario_Client> mAggregationScenario_Client;
   boost::scoped_ptr<TShowTankWoT_test>              mPtrShowTank;
   boost::scoped_ptr<TControlCamera>                 mPtrControlCamera;
@@ -69,12 +67,7 @@ private:
   //void InitPhysic();
   void ShowTest();
 
-  void SoundEndWork();
-  void GraphicEndWork();
   void FreeGraphicResource();
-
-  //void PhysicBeginWork();
-  void PhysicEndWork();
 
   void ProgressScenario(nsGameProcess::GP_TypeScenario type, int progress);
   void EndScenario(nsGameProcess::GP_TypeScenario type);

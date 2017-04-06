@@ -21,7 +21,7 @@ public:
 
 	// atomic operation, результат сразу после вызова методов
 	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject) = 0;
-	virtual void UpdateGameObjectByGameItem(int id, bool force = false) = 0;
+	virtual void UpdateGameObjectByMapParam(int id, bool force = false) = 0;
 	virtual void UpdateGameMapParam() = 0;
 	virtual bool DeleteGameObject(int id) = 0;
 

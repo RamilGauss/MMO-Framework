@@ -22,15 +22,13 @@ public:
   IGP_AggregationScenario();
   virtual ~IGP_AggregationScenario();
 
+
   nsGameProcess::GP_TypeScenario GetCurrentScenarioType();
   
   virtual bool Activate(nsGameProcess::GP_TypeScenario type);
 
 	// IGP_General
-	virtual void WorkByModule_Logic();
-	virtual void WorkByModule_Physic();
-	virtual void WorkByModule_Graphic();
-	virtual void WorkByModule_Sound();
+	virtual void Work();
 protected:
   virtual IGP_Scenario* GetByType(nsGameProcess::GP_TypeScenario type) = 0;
 

@@ -16,11 +16,6 @@ class TBehaviourPatternModel;
 
 class DllExport TFactoryBehaviourPatternModel
 {
-  typedef std::map<std::string,TBehaviourPatternModel*> TMapStrPtrModel;
-  typedef TMapStrPtrModel::iterator   TMapStrPtrModelIt;
-  typedef TMapStrPtrModel::value_type TMapStrPtrModelVT;
-
-  TMapStrPtrModel mMapNamePtrModel;
 protected:
   typedef std::map<std::string,TCallBackRegistrator1<TBehaviourPatternModel*&>* > TMapStrCB;
   typedef TMapStrCB::iterator                                                TMapStrCBIt;

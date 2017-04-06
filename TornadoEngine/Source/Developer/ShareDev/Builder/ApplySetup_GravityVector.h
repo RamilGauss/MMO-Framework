@@ -21,7 +21,7 @@ public:
 
   void Set(nsMathTools::TVector3& vGravity, int id_PhysicWorld);
 
-  void WorkFromThread_Bullet();
+  void WorkByModule_Physic();
 };
 
 #endif

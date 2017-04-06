@@ -26,9 +26,9 @@ TBehaviourPatternContext* TPatternModel_Light::MakeNewConext()
 	return new TPatternContext_Light(this);
 }
 //---------------------------------------------------------------------------
-bool TPatternModel_Light::LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Light::LoadByModule_Graphic(bool fast)
 {
-	TPatternContext_Light* pLightContext = (TPatternContext_Light*)pContext;
+	TPatternContext_Light* pLightContext = (TPatternContext_Light*)mContext;
 
 	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
 	Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();

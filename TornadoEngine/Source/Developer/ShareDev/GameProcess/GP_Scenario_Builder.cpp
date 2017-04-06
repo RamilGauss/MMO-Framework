@@ -31,40 +31,17 @@ void TGP_Scenario_Builder::LoadMap(std::string nameMap)
   TBaseItem* pBI = 
     TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map,nameMap);
   TMapItem* pMI = (TMapItem*)pBI;
-  if(mBuilder.BuildMap(pMI))
+  if( mBuilder.BuildMap(pMI) )
     flgNeedWorkByModule = true;
 }
 //---------------------------------------------------------------------------------
-int TGP_Scenario_Builder::GetPhysicWorldID()
-{
-  return mBuilder.GetPhysicWorldID();
-}
-//---------------------------------------------------------------------------------
-void TGP_Scenario_Builder::WorkByModule_Physic()
+void TGP_Scenario_Builder::Work()
 {
   if( IsActive()==false )
     return;
 	if( flgNeedWorkByModule==false )
 		return;
-  mBuilder.BuildByModule_Bullet();
-}
-//---------------------------------------------------------------------------------
-void TGP_Scenario_Builder::WorkByModule_Graphic()
-{
-	if( IsActive()==false )
-		return;
-	if( flgNeedWorkByModule==false )
-		return;
-	mBuilder.BuildByModule_Ogre();
-}
-//---------------------------------------------------------------------------------
-void TGP_Scenario_Builder::WorkByModule_Logic()
-{
-  if( IsActive()==false )
-    return;
-	if( flgNeedWorkByModule==false )
-		return;
-  mBuilder.BuildByModule_Logic();
+  mBuilder.Build();
   // анализ прогресса
   int progress = mBuilder.GetProgress();// например 13%
 	int cntStep = progress/mProgressStep;// 13/10 = 1
@@ -84,15 +61,6 @@ void TGP_Scenario_Builder::WorkByModule_Logic()
   }
 }
 //---------------------------------------------------------------------------------
-void TGP_Scenario_Builder::WorkByModule_Sound()
-{
-	if( IsActive()==false )
-		return;
-	if( flgNeedWorkByModule==false )
-		return;
-	mBuilder.BuildByModule_OpenAL();
-}
-//---------------------------------------------------------------------------------
 bool TGP_Scenario_Builder::IsActive()
 {
   return flgActive;
@@ -108,7 +76,7 @@ void TGP_Scenario_Builder::Activate()
 	mLastCountStepProgress = 0;
 	flgNeedWorkByModule = false;
   flgActive = true;
-	mBuilder.Init(mSetID_Module, mFBP);
+	mBuilder.Init(mSetID_Module, mFBP, mPhysicWorldID);
 }
 //-----------------------------------------------------------------------------
 void TGP_Scenario_Builder::Deactivate()

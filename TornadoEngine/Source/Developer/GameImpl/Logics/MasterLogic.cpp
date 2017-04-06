@@ -68,7 +68,7 @@ void TMasterLogic::InitForms()
 void TMasterLogic::StartEvent()
 {
   //CallBackModule(nsListModules::AloneGUI, &TMasterLogic::InitForms);
-  CallBackModule(nsListModules::MMOEngineMaster, &TMasterLogic::ConnectToSuperServer);
+  ConnectToSuperServer();
 }
 //----------------------------------------------------------
 void TMasterLogic::StopEvent()
@@ -163,7 +163,7 @@ void TMasterLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
 void TMasterLogic::TryLogin(nsMMOEngine::TEventTryLogin* pEvent)
 {
   unsigned int* pID = new unsigned int(pEvent->id_session);
-  CallBackModuleParam(nsListModules::MMOEngineMaster, &TMasterLogic::TryLoginMMOEngine, pID);
+  TryLoginMMOEngine(pID);
 }
 //---------------------------------------------------------------------------------------------
 void TMasterLogic::TryLoginMMOEngine(unsigned int* pID)

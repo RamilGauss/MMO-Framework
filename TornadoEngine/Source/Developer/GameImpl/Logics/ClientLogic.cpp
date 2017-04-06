@@ -52,7 +52,7 @@ void TClientLogic::Input(int id, void* p, int size)
     case nsListModules::SoundEngine:
       break;
     case nsListModules::Timer:
-      CallBackModule(nsListModules::GraphicEngine, &TClientLogic::ShowFPS);
+      ShowFPS();
       break;
     default:BL_FIX_BUG();
   }
@@ -60,16 +60,21 @@ void TClientLogic::Input(int id, void* p, int size)
 //----------------------------------------------------------
 void TClientLogic::StartEvent()
 {
-  CallBackModule(nsListModules::Timer, &TClientLogic::StartTimer);
-  CallBackModule(nsListModules::GraphicEngine, &TClientLogic::InitForms);
-  CallBackModule(nsListModules::GraphicEngine, &TClientLogic::ShowTanks);
-  CallBackModule(nsListModules::PhysicEngine, &TClientLogic::InitPhysic);
+  StartTimer();
+  InitForms();
+  ShowTanks();
+  InitPhysic();
 
-  mComp.pGraphicEngine->GetCBBeginWork()->Register( &TClientLogic::GraphicBeginWork ,this);
-  mComp.pGraphicEngine->GetCBStopEvent()->Register( &TClientLogic::FreeGraphicResource,this);
+  //mComp.pGraphicEngine->GetCBBeginWork()->Register( &TClientLogic::GraphicBeginWork ,this);
+  //mComp.pGraphicEngine->GetCBStopEvent()->Register( &TClientLogic::FreeGraphicResource,this);
 
-  mComp.pPhysicEngine->GetCBBeginWork()->Register( &TClientLogic::PhysicBeginWork ,this);
-  mComp.pPhysicEngine->GetCBEndWork()->Register( &TClientLogic::PhysicEndWork ,this);
+  //mComp.pPhysicEngine->GetCBBeginWork()->Register( &TClientLogic::PhysicBeginWork ,this);
+  //mComp.pPhysicEngine->GetCBEndWork()->Register( &TClientLogic::PhysicEndWork ,this);
+}
+//----------------------------------------------------------
+void TClientLogic::StopEvent()
+{
+	FreeGraphicResource();
 }
 //----------------------------------------------------------
 void TClientLogic::StartTimer()
@@ -115,7 +120,7 @@ void TClientLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
       break;
     case nsMMOEngine::eResultLogin:
       sEvent = "ResultLogin";
-      CallBackModule(nsListModules::GraphicEngine, &TClientLogic::LoginOnServer);
+      LoginOnServer();
       break;
     default:BL_FIX_BUG();
   }
@@ -148,19 +153,19 @@ void TClientLogic::ShowTanks()
   mPtrShowTank->ShowTanks();
 }
 //---------------------------------------------------------------------------------------------
-void TClientLogic::PhysicEndWork()
-{
-  if(fallMotionState)
-  {
-    static float minY = 100000;
-    btTransform trans;
-    fallMotionState->getWorldTransform(trans);
-    x = trans.getOrigin().getX();
-    minY = std::min(minY, trans.getOrigin().getY());
-    y = minY;
-    z = trans.getOrigin().getZ();
-  }
-}
+//void TClientLogic::PhysicEndWork()
+//{
+//  if(fallMotionState)
+//  {
+//    static float minY = 100000;
+//    btTransform trans;
+//    fallMotionState->getWorldTransform(trans);
+//    x = trans.getOrigin().getX();
+//    minY = std::min(minY, trans.getOrigin().getY());
+//    y = minY;
+//    z = trans.getOrigin().getZ();
+//  }
+//}
 //---------------------------------------------------------------------------------------------
 void TClientLogic::InitPhysic()
 {
@@ -200,11 +205,11 @@ void TClientLogic::GraphicBeginWork()
 
 }
 //---------------------------------------------------------------------------------------------
-void TClientLogic::PhysicBeginWork()
-{
-
-}
-//---------------------------------------------------------------------------------------------
+//void TClientLogic::PhysicBeginWork()
+//{
+//
+//}
+////---------------------------------------------------------------------------------------------
 void TClientLogic::FreeGraphicResource()
 {
   delete mClientMain;

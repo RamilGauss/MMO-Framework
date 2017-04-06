@@ -27,7 +27,7 @@ struct DllExport TMapItem : public TBaseItem
 
 	struct DllExport TObject
 	{
-		// base parameters
+		// generic parameters
     std::string namePattern;
     int         id;
 		nsMathTools::TVector3 position;

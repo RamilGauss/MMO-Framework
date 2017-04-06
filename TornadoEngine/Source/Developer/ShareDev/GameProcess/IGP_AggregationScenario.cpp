@@ -24,7 +24,7 @@ void IGP_AggregationScenario::Begin( IGP_Scenario* pScenario )
 {
   mPtrCurrentScenario = pScenario;
 	// перед началом работы по сценарию необходимо обновить параметры работы
-	mPtrCurrentScenario->Setup(mSetID_Module,mFBP,mPtrScene);
+	mPtrCurrentScenario->Setup(mSetID_Module,mFBP,mPtrScene,mPhysicWorldID);
 	mPtrCurrentScenario->SetProgressStep(mProgressStep);
 }
 //-----------------------------------------------------------------
@@ -87,32 +87,11 @@ void IGP_AggregationScenario::RegisterScenarioOnEvent(IGP_General* pSc)
   pSc->GetCB_Progress()->Register(&IGP_AggregationScenario::ProgressEventScenario, this);
 }
 //---------------------------------------------------------------------------------------------
-void IGP_AggregationScenario::WorkByModule_Physic()
+void IGP_AggregationScenario::Work()
 {
   IGP_Scenario* pScenario = GetCurrentScenario();
   if( pScenario )
-    pScenario->WorkByModule_Physic();
-}
-//---------------------------------------------------------------------------------------------
-void IGP_AggregationScenario::WorkByModule_Graphic()
-{
-	IGP_Scenario* pScenario = GetCurrentScenario();
-	if( pScenario )
-		pScenario->WorkByModule_Graphic();
-}
-//---------------------------------------------------------------------------------------------
-void IGP_AggregationScenario::WorkByModule_Logic()
-{
-	IGP_Scenario* pScenario = GetCurrentScenario();
-	if( pScenario )
-    pScenario->WorkByModule_Logic();
-}
-//---------------------------------------------------------------------------------------------
-void IGP_AggregationScenario::WorkByModule_Sound()
-{
-	IGP_Scenario* pScenario = GetCurrentScenario();
-	if( pScenario )
-    pScenario->WorkByModule_Sound();
+    pScenario->Work();
 }
 //---------------------------------------------------------------------------------------------
 bool IGP_AggregationScenario::IsActive(nsGameProcess::GP_TypeScenario type)

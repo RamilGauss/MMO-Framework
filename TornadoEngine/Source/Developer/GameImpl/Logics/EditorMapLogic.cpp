@@ -34,16 +34,13 @@ See for more information License.h.
 TEditorMapLogic::TEditorMapLogic()
 {
 	mStatePhysicWorld = TPhysicEngine_Bullet::eStatePause;
+	mPhysicWorldID    = -1;
 
 	flgIsTerrainGroupUpdate = false;
 
   mID_TimerTryMoveCamera = -1;
   mPtrShowTank.reset(new TShowTankWoT_test);
   mPtrControlCamera.reset(new TControlCamera);
-
-	mSetUseModule.insert(nsListModules::GraphicEngine);
-	mSetUseModule.insert(nsListModules::PhysicEngine);
-	mSetUseModule.insert(nsListModules::SoundEngine);
 }
 //-------------------------------------------------------------------
 TEditorMapLogic::~TEditorMapLogic()
@@ -55,20 +52,20 @@ void TEditorMapLogic::StartEvent()
 {
   if(mAggregationScenario_Client.get())
   {
+		// Создание физического мира.
+		if( mPhysicWorldID==-1 )
+			mPhysicWorldID = TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->AddWorld();
+
     mAggregationScenario_Client->GetCB_Progress()->Register( &TEditorMapLogic::ProgressScenario, this);
     mAggregationScenario_Client->GetCB_End()->Register( &TEditorMapLogic::EndScenario, this);
-
-		mAggregationScenario_Client->Setup( mSetUseModule, GetFBPM(), mScene.get());
+		mAggregationScenario_Client->Setup( GetUseID_Module(), GetFBPM(), mScene.get(), mPhysicWorldID);
   }
 
-  CallBackModule(nsListModules::Timer, &TEditorMapLogic::StartTimer);
-  CallBackModule(nsListModules::GraphicEngine, &TEditorMapLogic::InitForms);
-  CallBackModule(nsListModules::GraphicEngine, &TEditorMapLogic::ShowTest);
+	StartTimer();
+	InitForms();
+	ShowTest();
 
-  mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorMapLogic::FreeGraphicResource,this);
-  mComp.pGraphicEngine->GetCBEndWork()->Register( &TEditorMapLogic::GraphicEndWork ,this);
-  mComp.pPhysicEngine->GetCBEndWork()->Register( &TEditorMapLogic::PhysicEndWork ,this);
-  mComp.pSoundEngine->GetCBEndWork()->Register( &TEditorMapLogic::SoundEndWork ,this);
+	mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorMapLogic::FreeGraphicResource,this);
 }
 //-------------------------------------------------------------------
 void TEditorMapLogic::StopEvent()
@@ -90,8 +87,10 @@ TFactoryBehaviourPatternModel* TEditorMapLogic::GetFBPM()
 bool TEditorMapLogic::WorkClient()
 {
   if(mAggregationScenario_Client.get())
-    mAggregationScenario_Client->WorkByModule_Logic();
-  return true;
+		mAggregationScenario_Client->Work();
+
+	CheckTerrainGroupUpdateForSave();
+	return true;
 }
 //-------------------------------------------------------------------
 void TEditorMapLogic::Input(int id_sender, void* p, int size)
@@ -119,40 +118,17 @@ void TEditorMapLogic::Input(int id_sender, void* p, int size)
 //-------------------------------------------------------------------
 void TEditorMapLogic::StartTimer()
 {
-  // вызовется из потока таймера
   mID_TimerTryMoveCamera = mComp.pTimer->New(30);
 }
 //----------------------------------------------------------
 void TEditorMapLogic::InitForms()
-{ //mComp.pGraphicEngine->GetGE()->GetWindow()->setFullscreen(true, 1280, 1024);
+{ 
   mEditorMap = new TEditorMap;
   mEditorMap->Show();
 
   mComp.pGraphicEngine->GetGE()->SetWindowCaptionUtf8("Редактор карт");
 }
 //----------------------------------------------------------
-void TEditorMapLogic::PhysicEndWork()
-{
-  if(mAggregationScenario_Client.get())
-    mAggregationScenario_Client->WorkByModule_Physic();
-}
-//---------------------------------------------------------------------------------------------
-void TEditorMapLogic::GraphicEndWork()
-{
-  if(mAggregationScenario_Client.get())
-    mAggregationScenario_Client->WorkByModule_Graphic();
-  
-  //mPtrControlCamera->CameraTryMove();
-
-	CheckTerrainGroupUpdateForSave();
-}
-//---------------------------------------------------------------------------------------------
-void TEditorMapLogic::SoundEndWork()
-{
-  if(mAggregationScenario_Client.get())
-    mAggregationScenario_Client->WorkByModule_Sound();
-}
-//---------------------------------------------------------------------------------------------
 void TEditorMapLogic::FreeGraphicResource()
 {
   delete mEditorMap;
@@ -194,8 +170,7 @@ void TEditorMapLogic::EndScenario(nsGameProcess::GP_TypeScenario type)
       }
       if(type==nsGameProcess::eBuilder)
         mComp.pPhysicEngine->GetPE()->
-				Setup( mAggregationScenario_Client->GetPhysicWorldID(), 
-				 mStatePhysicWorld );
+				Setup( mPhysicWorldID, mStatePhysicWorld );
       break;
     case nsGameProcess::eSynchro:
       break;
@@ -249,15 +224,7 @@ void TEditorMapLogic::HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pKeyGE)
 {
-	//if( pKeyGE->key==OIS::KC_W ||
-	//		pKeyGE->key==OIS::KC_S ||
-	//		pKeyGE->key==OIS::KC_A ||
-	//		pKeyGE->key==OIS::KC_D ||
-	//		pKeyGE->key==OIS::KC_Q ||
-	//		pKeyGE->key==OIS::KC_E )
-	//	mComp.pGraphicEngine->GetGE()->SetGUIEnableEvent( !pKeyGE->pressed );
-
-	switch( pKeyGE->key )
+  switch( pKeyGE->key )
   {
     case OIS::KC_W:
       mPtrControlCamera->SetMoveForward(pKeyGE->pressed);
@@ -280,6 +247,18 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
     case OIS::KC_ESCAPE:
       Exit();
       break;
+		case OIS::KC_RETURN:// experimental
+		{
+			if( OIS::Keyboard::Alt & pKeyGE->modifier )
+			{
+				Ogre::RenderWindow* pRW = mComp.pGraphicEngine->GetGE()->GetWindow();
+				int width  = pRW->getWidth();
+				int height = pRW->getHeight();
+				bool isFullScreen = pRW->isFullScreen();
+				pRW->setFullscreen(!isFullScreen, width, height);
+			}
+		}
+		break;
   }
 }
 //---------------------------------------------------------------------------------------------
@@ -336,11 +315,10 @@ void TEditorMapLogic::HandlePacketFromGUI(void* p, int size)
 			nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld* pSetupPhysicWorld = 
 				(nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld*)p;
 			mStatePhysicWorld = pSetupPhysicWorld->stateWorld;
-			int id = mAggregationScenario_Client->GetPhysicWorldID();
-			if( id!=-1 )
+			if( mPhysicWorldID!=-1 )
 			{
 				mComp.pPhysicEngine->GetPE()->
-					Setup( id, mStatePhysicWorld );
+					Setup( mPhysicWorldID, mStatePhysicWorld );
 			}
 		}
 			break;

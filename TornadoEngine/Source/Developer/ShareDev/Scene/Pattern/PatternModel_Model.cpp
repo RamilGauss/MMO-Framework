@@ -119,15 +119,15 @@ bool TPatternModel_Model::Unload()
   return true;
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadFromThread_Logic(TBehaviourPatternContext* pContext)
+void TPatternModel_Model::LoadByModule_Logic()
 {
-  TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
+  TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
   // найти имя модели
   std::string nameGameItem = pContextModel->GetNameGameItem();
   if( nameGameItem.length()==0 )
   {
-    TMapItem::TMapStrStrConstIt itNameGameItem = pContext->GetParameterMap()->find(sNameGameItem);
-    if( itNameGameItem==pContext->GetParameterMap()->end() )
+    TMapItem::TMapStrStrConstIt itNameGameItem = pContextModel->GetParameterMap()->find(sNameGameItem);
+    if( itNameGameItem==pContextModel->GetParameterMap()->end() )
       return;
     nameGameItem = itNameGameItem->second;
     pContextModel->SetNameGameItem(nameGameItem);
@@ -136,16 +136,16 @@ void TPatternModel_Model::LoadFromThread_Logic(TBehaviourPatternContext* pContex
   std::string variantPatternConfig = pContextModel->GetNameVariantPatternConfig();
   if( variantPatternConfig.length()==0 )
   {
-    TMapItem::TMapStrStrConstIt itVariant = pContext->GetParameterMap()->find(sVariantPatternConfig);
-    if( itVariant!=pContext->GetParameterMap()->end() )// если нет настройки, ничего не делать
+    TMapItem::TMapStrStrConstIt itVariant = pContextModel->GetParameterMap()->find(sVariantPatternConfig);
+    if( itVariant!=pContextModel->GetParameterMap()->end() )// если нет настройки, ничего не делать
     {
       variantPatternConfig = itVariant->second;
       pContextModel->SetNameVariantPatternConfig(variantPatternConfig);
     }
   }
   // найти будет ли модель мобильной
-  TMapItem::TMapStrStrConstIt itMobility = pContext->GetParameterMap()->find(sMobility);
-  if( itMobility!=pContext->GetParameterMap()->end() )// если нет, то ничего не делать
+  TMapItem::TMapStrStrConstIt itMobility = pContextModel->GetParameterMap()->find(sMobility);
+  if( itMobility!=pContextModel->GetParameterMap()->end() )// если нет, то ничего не делать
   {
     bool mobility = itMobility->second=="true" ? true : false;
     pContextModel->SetMobility(mobility);
@@ -167,14 +167,14 @@ void TPatternModel_Model::LoadFromThread_Logic(TBehaviourPatternContext* pContex
   // задача: создать модели по имени. При синхронизации менять положение и ориентацию форм или моделей
   pContextModel->SetTypeContent(pModel->mTypeCollection);
   if( pModel->mTypeCollection==TModelItem::eModel )
-    LoadModelsFromThread_Logic(pContextModel, pModel->mMapNamePart);
+    LoadModelsFromThread_Logic(pModel->mMapNamePart);
   else
-    LoadShapesFromThread_Logic(pContextModel, pModel->mMapNamePart);
+    LoadShapesFromThread_Logic(pModel->mMapNamePart);
 }
 //---------------------------------------------------------------------------
-bool TPatternModel_Model::LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast)
+bool TPatternModel_Model::LoadByModule_Graphic(bool fast)
 {
-  TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
+  TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
   int cntPart = pContextModel->GetCountPart();
   for( int iPart = 0 ; iPart < cntPart ; iPart++ )
   {
@@ -189,22 +189,22 @@ bool TPatternModel_Model::LoadFromThread_Ogre(TBehaviourPatternContext* pContext
       if( pDesc->type==TModelItem::eModel )
       {
         TPatternContext_Model::TModelDesc* pModelDesc = (TPatternContext_Model::TModelDesc*)pDesc;
-        pModelDesc->pCtxModel->GetModel()->LoadFromThread_Ogre(pModelDesc->pCtxModel);
+        pModelDesc->pModel->LoadByModule_Graphic();
       }
       else
       {
         TPatternContext_Model::TShapeDesc* pShapeDesc = (TPatternContext_Model::TShapeDesc*)pDesc;
-        LoadShapeFromThread_Ogre(pContextModel, pShapeDesc);
+        LoadShapeFromThread_Ogre(pShapeDesc);
       }
     }
   }
-	PostLoadFromThread_Ogre(pContext);
+	PostLoadFromThread_Ogre();
 	return true;
 }
 //---------------------------------------------------------------------------
-bool TPatternModel_Model::LoadFromThread_Bullet( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::LoadByModule_Physic( bool fast )
 {
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
 	int cntPart = pContextModel->GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
@@ -219,52 +219,52 @@ bool TPatternModel_Model::LoadFromThread_Bullet( TBehaviourPatternContext* pCont
 			if( pDesc->type==TModelItem::eModel )
 			{
 				TPatternContext_Model::TModelDesc* pModelDesc = (TPatternContext_Model::TModelDesc*)pDesc;
-				pModelDesc->pCtxModel->GetModel()->LoadFromThread_Bullet(pModelDesc->pCtxModel);
+				pModelDesc->pModel->LoadByModule_Physic();
 			}
 			else
 			{
 				TPatternContext_Model::TShapeDesc* pShapeDesc = (TPatternContext_Model::TShapeDesc*)pDesc;
-				LoadShapeFromThread_Bullet(pContextModel, pShapeDesc);
+				LoadShapeFromThread_Bullet(pShapeDesc);
 			}
 		}
 	}
-	PostLoadFromThread_Bullet(pContext);
+	PostLoadFromThread_Bullet();
 	return true;
 }
 //---------------------------------------------------------------------------
-bool TPatternModel_Model::LoadFromThread_OpenAL( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::LoadByModule_Sound( bool fast )
 {
 	return true;
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::UnloadFromThread_Logic(TBehaviourPatternContext* pContext)
+void TPatternModel_Model::UnloadByModule_Logic()
 {
 
 }
 //---------------------------------------------------------------------------
-bool TPatternModel_Model::UnloadFromThread_Ogre( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::UnloadByModule_Graphic( bool fast )
 {
 	return true;
 }
 //---------------------------------------------------------------------------
-bool TPatternModel_Model::UnloadFromThread_Bullet( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::UnloadByModule_Physic( bool fast )
 {
 	return true;
 }
 //---------------------------------------------------------------------------
-bool TPatternModel_Model::UnloadFromThread_OpenAL( TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Model::UnloadByModule_Sound( bool fast )
 {
 	return true;
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::SynchroFromThread_Logic(TBehaviourPatternContext* pContext)
+void TPatternModel_Model::SynchroByModule_Logic()
 {
 
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::SynchroFromThread_Ogre(TBehaviourPatternContext* pContext)
+void TPatternModel_Model::SynchroByModule_Graphic()
 {
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
 	// синхронизируем всё!
 	int cntPart = pContextModel->GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
@@ -281,7 +281,7 @@ void TPatternModel_Model::SynchroFromThread_Ogre(TBehaviourPatternContext* pCont
 			{
 				TPatternContext_Model::TModelDesc* pDescModel = 
 					(TPatternContext_Model::TModelDesc*)pDesc;
-				SynchroFromThread_Ogre(pDescModel->pCtxModel);
+				pDescModel->pModel->SynchroByModule_Graphic();
 			}
 			else
 			{
@@ -312,10 +312,10 @@ void TPatternModel_Model::SynchroFromThread_Ogre(TBehaviourPatternContext* pCont
 	}
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::SynchroFromThread_Bullet(TBehaviourPatternContext* pContext)
+void TPatternModel_Model::SynchroByModule_Physic()
 {
   // проверка на изменение позиции и ориентации
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)pContext;
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
 	int cntPart = pContextModel->GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
@@ -343,13 +343,15 @@ void TPatternModel_Model::SynchroFromThread_Bullet(TBehaviourPatternContext* pCo
 	}
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::SynchroFromThread_OpenAL(TBehaviourPatternContext* pContext)
+void TPatternModel_Model::SynchroByModule_Sound()
 {
 
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadModelsFromThread_Logic(TPatternContext_Model* pContextModel, TModelItem::TMapStrPart& mapNamePart)
+void TPatternModel_Model::LoadModelsFromThread_Logic(TModelItem::TMapStrPart& mapNamePart)
 {
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
+
   TFactoryBehaviourPatternModel* pFBPM = TModuleLogic::Get()->GetFBPM();
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   // создать другие модели и сохранить в контексте
@@ -368,18 +370,22 @@ void TPatternModel_Model::LoadModelsFromThread_Logic(TPatternContext_Model* pCon
       TPatternContext_Model::TModelDesc* pModelDesc = new TPatternContext_Model::TModelDesc;
       pModelDesc->namePart    = namePart;
       pModelDesc->nameVariant = variant.name;
-      pModelDesc->pCtxModel = (TPatternContext_Model*)pBPM->MakeNewConext();
-      pModelDesc->pCtxModel->SetNameGameItem(variant.nameItem);
-      pModelDesc->pCtxModel->SetMobility(pContextModel->GetMobility());// мобильность наследуется
+			pModelDesc->pModel = (TPatternModel_Model*)pBPM;
+			TPatternContext_Model* pContext = (TPatternContext_Model*)pModelDesc->pModel->GetContext();
+      //pModelDesc->pCtxModel = (TPatternContext_Model*)pBPM->MakeNewConext();
+      pContext->SetNameGameItem(variant.nameItem);
+      pContext->SetMobility(pContextModel->GetMobility());// мобильность наследуется
       pContextModel->AddDesc(pModelDesc);
 
-      pBPM->LoadFromThread_Logic(pModelDesc->pCtxModel);// дальше по итерации
+      pBPM->LoadByModule_Logic();// дальше по итерации
     }
   }
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadShapesFromThread_Logic(TPatternContext_Model* pContextModel, TModelItem::TMapStrPart& mapNamePart)
+void TPatternModel_Model::LoadShapesFromThread_Logic(TModelItem::TMapStrPart& mapNamePart)
 {
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
+
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   
   BOOST_FOREACH( TModelItem::TMapStrPartVT& vtPart, mapNamePart )
@@ -405,9 +411,9 @@ void TPatternModel_Model::LoadShapesFromThread_Logic(TPatternContext_Model* pCon
   }
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model* pContextModel, 
-                                                   TPatternContext_Model::TShapeDesc* pShapeDesc)
+void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model::TShapeDesc* pShapeDesc)
 {
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
   if( pShapeItem==NULL )
@@ -432,9 +438,10 @@ void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model* pConte
 	//###
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model* pContextModel, 
-																									   TPatternContext_Model::TShapeDesc* pShapeDesc)
+void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model::TShapeDesc* pShapeDesc)
 {
+	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
+
 	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
 	TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
 	if( pShapeItem==NULL )
@@ -474,12 +481,12 @@ void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model* pCon
 	//###
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::PostLoadFromThread_Ogre(TBehaviourPatternContext* pContext)
+void TPatternModel_Model::PostLoadFromThread_Ogre()
 {
 
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::PostLoadFromThread_Bullet(TBehaviourPatternContext* pContext)
+void TPatternModel_Model::PostLoadFromThread_Bullet()
 {
 
 }

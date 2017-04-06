@@ -30,11 +30,6 @@ void TGP_AggregationScenario_GameMap::LoadMap(std::string nameMap)
   mBuilder.LoadMap(nameMap);
 }
 //---------------------------------------------------------------------------------------------
-int TGP_AggregationScenario_GameMap::GetPhysicWorldID()
-{
-  return mID_World;
-}
-//---------------------------------------------------------------------------------------------
 TGameObject* TGP_AggregationScenario_GameMap::AddGameObject(TMapItem::TObject* pObject)
 {
 	if(IsActive(nsGameProcess::eSynchro)==false)
@@ -42,7 +37,7 @@ TGameObject* TGP_AggregationScenario_GameMap::AddGameObject(TMapItem::TObject* p
 	return mSynchro.AddGameObject(pObject);
 }
 //---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_GameMap::UpdateGameObjectByGameItem(int id, bool force)
+void TGP_AggregationScenario_GameMap::UpdateGameObjectByMapParam(int id, bool force)
 {
 
 }
@@ -87,8 +82,6 @@ void TGP_AggregationScenario_GameMap::End_BuildGameMap(nsGameProcess::GP_TypeSce
 	if( type!=nsGameProcess::eBuilder )
 		return;
 
-	mID_World = mBuilder.GetPhysicWorldID();
-	
 	EndEventScenario(type);
 }
 //---------------------------------------------------------------------------------------------

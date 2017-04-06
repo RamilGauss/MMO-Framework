@@ -27,9 +27,9 @@ TBehaviourPatternContext* TPatternModel_Skybox::MakeNewConext()
 	return new TPatternContext_Skybox(this);
 }
 //---------------------------------------------------------------------------
-bool TPatternModel_Skybox::LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Skybox::LoadByModule_Graphic(bool fast)
 {
-	TPatternContext_Skybox* pSkyBoxContext = (TPatternContext_Skybox*)pContext;
+	TPatternContext_Skybox* pSkyBoxContext = (TPatternContext_Skybox*)mContext;
 
 	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
 	Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();

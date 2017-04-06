@@ -31,11 +31,10 @@ public:
 
 	// Builder
   virtual void LoadMap(std::string nameMap);
-  virtual int  GetPhysicWorldID();
 
 	// Synchro
 	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
-	virtual void UpdateGameObjectByGameItem(int id, bool force = false);
+	virtual void UpdateGameObjectByMapParam(int id, bool force = false);
 	virtual void UpdateGameMapParam();
 	virtual bool DeleteGameObject(int id);
 

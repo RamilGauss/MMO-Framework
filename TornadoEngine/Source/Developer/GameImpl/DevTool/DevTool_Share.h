@@ -16,6 +16,7 @@ See for more information License.h.
 
 class TModuleLogic;
 class TModuleDev;
+class TModuleGraphicEngine;
 
 class TDevTool_Share : public IDevTool
 { 
@@ -40,6 +41,8 @@ class TDevTool_Share : public IDevTool
 	TResources::TMMapStrStr mMapRGraphicEngine;
 
   std::vector<std::string> mVecArg;
+
+	TModuleGraphicEngine* mGE_ForSetup;
 public:
   TDevTool_Share();
   virtual ~TDevTool_Share();
@@ -77,7 +80,7 @@ private:
 	int GetCountPathInMap_GraphicEngine(const char* type);
 	bool FindPath_GraphicEngine(const char* type, int index, std::string& result);
 private:
-  void SetupGraphicEngine(TModuleDev* pModule);
+  void SetupGraphicEngine();
 
 private:
 	// реакции на события

@@ -23,12 +23,12 @@ static TDestructor_OpenAL g_DestructorOpenAL;
 
 TBehaviourPatternModel::TBehaviourPatternModel()
 {
-	mCurCtx = NULL;
+	mContext = NULL;
 }
 //------------------------------------------------------------------------
 TBehaviourPatternModel::~TBehaviourPatternModel()
 {
-
+	delete mContext;
 }
 //------------------------------------------------------------------------
 std::string TBehaviourPatternModel::GetName()
@@ -51,82 +51,82 @@ void TBehaviourPatternModel::GetDefaultParameterMap(TMapItem::TMapStrStr& m)
 
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::SetParameterFromPattern(TBehaviourPatternContext* pContext, TContainer c)
+bool TBehaviourPatternModel::SetParameterFromPattern(TContainer c)
 {
   return false;
 }
 //------------------------------------------------------------------------
-TContainer TBehaviourPatternModel::GetParameterToPattern(TBehaviourPatternContext* pContext )
+TContainer TBehaviourPatternModel::GetParameterToPattern()
 {
   return TContainer();
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::GetNeedSynchro(TBehaviourPatternContext* pContext)
+bool TBehaviourPatternModel::GetNeedSynchro()
 {
   return true;//mStructParameterMap.flgMobility;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::UpdateFromGameItem(TBehaviourPatternContext* pContext, TBaseItem* pBI)
+bool TBehaviourPatternModel::UpdateFromGameItem(TBaseItem* pBI)
 {
   return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternModel::LoadFromThread_Logic(TBehaviourPatternContext* pContext)
+void TBehaviourPatternModel::LoadByModule_Logic()
 {
 
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast)
+bool TBehaviourPatternModel::LoadByModule_Graphic(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast)
+bool TBehaviourPatternModel::LoadByModule_Physic(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::LoadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast)
+bool TBehaviourPatternModel::LoadByModule_Sound(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternModel::UnloadFromThread_Logic(TBehaviourPatternContext* pContext)
+void TBehaviourPatternModel::UnloadByModule_Logic()
 {
 
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::UnloadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast)
+bool TBehaviourPatternModel::UnloadByModule_Graphic(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::UnloadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast)
+bool TBehaviourPatternModel::UnloadByModule_Physic(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::UnloadFromThread_OpenAL(TBehaviourPatternContext* pContext, bool fast)
+bool TBehaviourPatternModel::UnloadByModule_Sound(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternModel::SynchroFromThread_Logic(TBehaviourPatternContext* pContext)
+void TBehaviourPatternModel::SynchroByModule_Logic()
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternModel::SynchroFromThread_Ogre(TBehaviourPatternContext* pContext)
+void TBehaviourPatternModel::SynchroByModule_Graphic()
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternModel::SynchroFromThread_Bullet(TBehaviourPatternContext* pContext)
+void TBehaviourPatternModel::SynchroByModule_Physic()
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternModel::SynchroFromThread_OpenAL(TBehaviourPatternContext* pContext)
+void TBehaviourPatternModel::SynchroByModule_Sound()
 {
 
 }
@@ -166,8 +166,16 @@ int TBehaviourPatternModel::GetBaseType()
 	return 0;
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternModel::SetContext(TBehaviourPatternContext* pContext)
+void TBehaviourPatternModel::SetContext()
 {
-	mCurCtx = pContext;
+	if( mContext )
+		return;
+	mContext = MakeNewConext();
+	mContext->SetModel(this);
+}
+//------------------------------------------------------------------------
+TBehaviourPatternContext* TBehaviourPatternModel::GetContext()
+{
+	return mContext;
 }
 //------------------------------------------------------------------------

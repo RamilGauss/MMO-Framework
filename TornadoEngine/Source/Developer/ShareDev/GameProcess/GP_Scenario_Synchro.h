@@ -20,15 +20,12 @@ public:
 
 	// IGP_Scenario_Synchro
 	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
-	virtual void UpdateGameObjectByGameItem(int id, bool force = false);
+	virtual void UpdateGameObjectByMapParam(int id, bool force = false);
 	virtual void UpdateGameMapParam();
 	virtual bool DeleteGameObject(int id);
 
 	// IGP_General
-  virtual void WorkByModule_Physic();
-  virtual void WorkByModule_Graphic();
-  virtual void WorkByModule_Logic();
-  virtual void WorkByModule_Sound();
+  virtual void Work();
 
 	// IGP_Scenario
   virtual nsGameProcess::GP_TypeScenario GetType();

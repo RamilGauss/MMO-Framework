@@ -20,13 +20,8 @@ public:
   virtual ~TGP_Scenario_Destructor();
 
   virtual void UnloadAll();
-  virtual bool DeleteGameObject(int id);
 
-  virtual void SetScene(TScene* pScene);
-  virtual void WorkByModule_Physic();
-  virtual void WorkByModule_Graphic();
-  virtual void WorkByModule_Logic();
-  virtual void WorkByModule_Sound();
+  virtual void Work();
 
   virtual nsGameProcess::GP_TypeScenario GetType();
   virtual bool IsActive();

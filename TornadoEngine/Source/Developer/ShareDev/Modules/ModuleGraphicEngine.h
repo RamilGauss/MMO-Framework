@@ -19,9 +19,6 @@ class TGraphicEngine_Ogre_MyGUI;
 class DllExport TModuleGraphicEngine : public TModuleComponent
 {
 	boost::scoped_ptr<TGraphicEngine_Ogre_MyGUI> mGE;
-
-  TCallBackRegistrator1<TModuleDev*> mCBSetup;
-  TCallBackRegistrator0              mCBStopEvent; 
 public:
   TModuleGraphicEngine();
 
@@ -30,11 +27,6 @@ public:
   virtual void StopEvent();
 
   TGraphicEngine_Ogre_MyGUI* GetGE();
-
-  // графический движок требуется настраивать в том же потоке, в котором он работает
-  TCallBackRegistrator1<TModuleDev*>* GetCBSetup();
-
-  TCallBackRegistrator0* GetCBStopEvent();
 protected:
 };
 

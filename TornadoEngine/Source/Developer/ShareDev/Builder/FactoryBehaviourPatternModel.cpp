@@ -50,28 +50,19 @@ TFactoryBehaviourPatternModel::~TFactoryBehaviourPatternModel()
 //----------------------------------------------------------------------------
 void TFactoryBehaviourPatternModel::Done()
 {
-  BOOST_FOREACH( TMapStrPtrModelVT& vt, mMapNamePtrModel )
-    delete vt.second;
-  mMapNamePtrModel.clear();
+
 }
 //----------------------------------------------------------------------------
 TBehaviourPatternModel* TFactoryBehaviourPatternModel::GetPatternByName(std::string name)
 {
-  TBehaviourPatternModel* pBPM = NULL;
-  TMapStrPtrModelIt fit = mMapNamePtrModel.find(name);
-  if( fit==mMapNamePtrModel.end() )
+  TBehaviourPatternModel* pBPM = MakePatternByName(name);
+  if( pBPM==NULL )
   {
-    pBPM = MakePatternByName(name);
-    if( pBPM==NULL )
-    {
-      BL_FIX_BUG();
-      return NULL;
-    }
-    pBPM->SetName(name);
-    mMapNamePtrModel.insert(TMapStrPtrModelVT(name,pBPM));
+    BL_FIX_BUG();
+    return NULL;
   }
-  else
-    pBPM = fit->second;
+	pBPM->SetContext();
+  pBPM->SetName(name);
   return pBPM;
 }
 //----------------------------------------------------------------------------
@@ -92,7 +83,7 @@ void TFactoryBehaviourPatternModel::AddPattern(TMapStrCBVT& vt_cb)
 //----------------------------------------------------------------------------
 int TFactoryBehaviourPatternModel::GetCount()
 {
-  return mMapNamePtrModel.size();
+  return mMapNameMakerPattern.size();
 }
 //----------------------------------------------------------------------------
 std::string TFactoryBehaviourPatternModel::GetNameByIndex(int index)
@@ -101,7 +92,7 @@ std::string TFactoryBehaviourPatternModel::GetNameByIndex(int index)
   if( index >= GetCount() || index < 0 )
     return name;
 
-  TMapStrPtrModelIt bit = mMapNamePtrModel.begin();
+  TMapStrCBIt bit = mMapNameMakerPattern.begin();
   for( int i = 0 ; i <= index ; i++)
     bit++;
   name = bit->first;

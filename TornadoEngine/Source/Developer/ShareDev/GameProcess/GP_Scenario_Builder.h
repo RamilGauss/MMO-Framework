@@ -26,13 +26,9 @@ public:
 
 	// IGP_Builder
   virtual void LoadMap(std::string nameMap);
-  virtual int GetPhysicWorldID();
 
 	// IGP_General
-  virtual void WorkByModule_Physic();
-  virtual void WorkByModule_Graphic();
-  virtual void WorkByModule_Logic();
-  virtual void WorkByModule_Sound();
+  virtual void Work();
 
 	// IGP_Scenario
   virtual nsGameProcess::GP_TypeScenario GetType();

@@ -75,8 +75,8 @@ void TSlaveLogic::InitForms()
 void TSlaveLogic::StartEvent()
 {
   //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::InitForms);
-  CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::ConnectToMaster);
-  CallBackModule(nsListModules::MMOEngineSlave, &TSlaveLogic::InitMMOSlave);
+  ConnectToMaster();
+  InitMMOSlave();
 }
 //----------------------------------------------------------
 void TSlaveLogic::StopEvent()
@@ -217,7 +217,7 @@ void TSlaveLogic::OperationSessionQt()
 void TSlaveLogic::SaveContextClient(nsMMOEngine::TEventSaveContext* pEvent)
 {
   unsigned int* pID = new unsigned int(pEvent->id_session);
-  CallBackModuleParam(nsListModules::MMOEngineSlave, &TSlaveLogic::SaveContextClientMMOEngine, pID);
+  SaveContextClientMMOEngine(pID);
 
   // удалить из списка этого Клиента
   //TSessionOperation* pSO = new TSessionOperation;
@@ -245,7 +245,7 @@ void TSlaveLogic::RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::InitMMOSlave()
 {
-  mComp.pMMOEngineSlave->GetCBBeginWork()->Register( &TSlaveLogic::BeginWorkMMOSlave, this );
+  BeginWorkMMOSlave();
 }
 //---------------------------------------------------------------------------------------------
 void TSlaveLogic::BeginWorkMMOSlave()

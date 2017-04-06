@@ -21,15 +21,15 @@ public:
 
   virtual TBehaviourPatternContext* MakeNewConext();
 
-	virtual bool LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast = true);
-  virtual bool LoadFromThread_Bullet(TBehaviourPatternContext* pContext, bool fast = true);
+	virtual bool LoadByModule_Graphic(bool fast = false);
+  virtual bool LoadByModule_Physic(bool fast = false);
 
 protected:
-	void BeginLoad_Bullet(TPatternContext_Terrain* pContextTerrain);
-	bool TryLoad_Bullet(TPatternContext_Terrain* pContextTerrain);
+	void BeginLoad_Bullet();
+	bool TryLoad_Bullet();
 
-	void BeginLoad_Ogre(TPatternContext_Terrain* pContextTerrain);
-	bool TryLoad_Ogre(TPatternContext_Terrain* pContextTerrain);
+	void BeginLoad_Ogre();
+	bool TryLoad_Ogre();
 };
 
 #endif

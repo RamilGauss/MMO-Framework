@@ -22,32 +22,7 @@ void TGP_Scenario_Destructor::UnloadAll()
 
 }
 //---------------------------------------------------------------------------------
-bool TGP_Scenario_Destructor::DeleteGameObject(int id)
-{
-  return false;
-}
-//---------------------------------------------------------------------------------
-void TGP_Scenario_Destructor::SetScene(TScene* pScene)
-{
-
-}
-//---------------------------------------------------------------------------------
-void TGP_Scenario_Destructor::WorkByModule_Physic()
-{
-
-}
-//---------------------------------------------------------------------------------
-void TGP_Scenario_Destructor::WorkByModule_Graphic()
-{
-
-}
-//---------------------------------------------------------------------------------
-void TGP_Scenario_Destructor::WorkByModule_Logic()
-{
-
-}
-//---------------------------------------------------------------------------------
-void TGP_Scenario_Destructor::WorkByModule_Sound()
+void TGP_Scenario_Destructor::Work()
 {
 
 }

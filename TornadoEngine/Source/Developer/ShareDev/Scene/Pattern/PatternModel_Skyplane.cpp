@@ -26,9 +26,9 @@ TBehaviourPatternContext* TPatternModel_Skyplane::MakeNewConext()
 	return new TPatternContext_Skyplane(this);
 }
 //---------------------------------------------------------------------------
-bool TPatternModel_Skyplane::LoadFromThread_Ogre(TBehaviourPatternContext* pContext, bool fast )
+bool TPatternModel_Skyplane::LoadByModule_Graphic(bool fast)
 {
-	TPatternContext_Skyplane* pSkyPlaneContext = (TPatternContext_Skyplane*)pContext;
+	TPatternContext_Skyplane* pSkyPlaneContext = (TPatternContext_Skyplane*)mContext;
 
 	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
 	Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();
