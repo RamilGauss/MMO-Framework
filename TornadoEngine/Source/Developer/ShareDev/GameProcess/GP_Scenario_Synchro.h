@@ -20,7 +20,7 @@ public:
 
 	// IGP_Scenario_Synchro
 	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
-	virtual void UpdateGameObjectByMapParam(int id, bool force = false);
+	virtual void UpdateGameObjectByGameItem(int id, bool force = false);
 	virtual void UpdateGameMapParam();
 	virtual bool DeleteGameObject(int id);
 

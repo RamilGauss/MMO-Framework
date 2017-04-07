@@ -26,7 +26,7 @@ TGameObject* TGP_Scenario_SynchroClient::AddGameObject(TMapItem::TObject* pObjec
 	return NULL;
 }
 //----------------------------------------------------------------------------------
-void TGP_Scenario_SynchroClient::UpdateGameObjectByMapParam(int id, bool force)
+void TGP_Scenario_SynchroClient::UpdateGameObjectByGameItem(int id, bool force)
 {
 
 }
