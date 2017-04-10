@@ -13,6 +13,8 @@ See for more information License.h.
 #include "BehaviourPatternModel.h"
 
 #include <boost/foreach.hpp>
+#include "ModuleLogic.h"
+#include "FactoryGameItem.h"
 
 TBuilderGameMap_Object::TBuilderGameMap_Object()
 {
@@ -56,8 +58,14 @@ int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 		pModel->GetContext();
 	pContext->SetPosition(pObj->position);
 	pContext->SetOrientation(pObj->rotationQuaternion);
-	pContext->SetParameterMap(pObj->parameterMap);
-	pContext->SetNameMap(mNameMap);
+
+	TPatternConfigItem* pPatternConfig = 
+		(TPatternConfigItem*)TModuleLogic::Get()->GetFGI()->
+		Get(TFactoryGameItem::PatternConfig, pObj->patternConfig.name);
+	TPatternConfigItem::TMapStrMapIt fitPC = pPatternConfig->mMapVariant.find(pObj->patternConfig.nameVariant);
+	if( fitPC!=pPatternConfig->mMapVariant.end() )
+		pContext->SetParameterMap( fitPC->second );
+	pContext->SetNameMapItem(mNameMap);
 	pContext->SetPhysicWorld(mID_World);
 	
 	pGO->GetModel()->LoadByModule_Logic();

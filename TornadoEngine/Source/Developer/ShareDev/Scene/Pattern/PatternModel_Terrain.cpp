@@ -53,7 +53,7 @@ void TPatternModel_Terrain::BeginLoad_Bullet()
 	TTerrainItem* pTerrainItem = 
 		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
 	TMapItem*     pMapItem     = 
-		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, pContextTerrain->GetNameMap());
+		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, pContextTerrain->GetNameMapItem());
 
 	pContextTerrain->GetBuilderTerrain_Bullet()->Setup(pContextTerrain->GetPhysicWorld(),NULL,NULL);
 	pContextTerrain->GetBuilderTerrain_Bullet()->Begin(pMapItem, pTerrainItem);
@@ -69,7 +69,7 @@ void TPatternModel_Terrain::BeginLoad_Ogre()
 	TTerrainItem* pTerrainItem = 
 		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
 	TMapItem*     pMapItem     = 
-		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, pContextTerrain->GetNameMap());
+		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, pContextTerrain->GetNameMapItem());
 	Ogre::Vector3 originOgre = pContextTerrain->GetOrigin();
 
 	pContextTerrain->GetBuilderTerrain_Ogre()->Begin(pMapItem, pTerrainItem, originOgre);

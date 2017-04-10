@@ -37,12 +37,12 @@ TGameObject* TGP_AggregationScenario_GameMap::AddGameObject(TMapItem::TObject* p
 	return mSynchro.AddGameObject(pObject);
 }
 //---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_GameMap::UpdateGameObjectByGameItem(int id, bool force)
+void TGP_AggregationScenario_GameMap::UpdateGameObjectByGameItem(int id, bool updatePatternConfig)
 {
 
 }
 //---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_GameMap::UpdateGameMapParam()
+void TGP_AggregationScenario_GameMap::UpdateGameMapParamByMapItem()
 {
 
 }

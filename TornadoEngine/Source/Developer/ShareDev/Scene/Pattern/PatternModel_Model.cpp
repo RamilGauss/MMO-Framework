@@ -27,15 +27,17 @@ namespace nsPatternModel_Model
   const char* sNameGameItem         = "NameGameItem";
   const char* sVariantPatternConfig = "VariantPatternConfig";
   const char* sMobility             = "Mobility";
+
+  static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPatternModel_Model;
 
 TPatternModel_Model::TPatternModel_Model()
 {
-  mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sNameGameItem,""));
-  mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sVariantPatternConfig,""));
-  mDefaultParameterMap.insert(TMapItem::TMapStrStrVT(sMobility,""));
+  g_DefaultParameterMap.insert(TPatternConfigItem::TMapStrStrVT(sNameGameItem,""));
+  g_DefaultParameterMap.insert(TPatternConfigItem::TMapStrStrVT(sVariantPatternConfig,""));
+  g_DefaultParameterMap.insert(TPatternConfigItem::TMapStrStrVT(sMobility,""));
 }
 //---------------------------------------------------------------------------
 TPatternModel_Model::~TPatternModel_Model()
@@ -48,9 +50,9 @@ TBehaviourPatternContext* TPatternModel_Model::MakeNewConext()
   return new TPatternContext_Model(this);
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::GetDefaultParameterMap(TMapItem::TMapStrStr& m)
+const TPatternConfigItem::TMapStrStr* TPatternModel_Model::GetDefaultParameterMap()
 {
-  m = mDefaultParameterMap;
+  return &g_DefaultParameterMap;
 }
 //---------------------------------------------------------------------------
 bool TPatternModel_Model::SetParameterFromPattern(TContainer c)
@@ -122,11 +124,12 @@ bool TPatternModel_Model::Unload()
 void TPatternModel_Model::LoadByModule_Logic()
 {
   TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
-  // найти имя модели
+	const TPatternConfigItem::TMapStrStr* pMap = pContextModel->GetParameterMap();
+	// найти имя модели
   std::string nameGameItem = pContextModel->GetNameGameItem();
   if( nameGameItem.length()==0 )
   {
-    TMapItem::TMapStrStrConstIt itNameGameItem = pContextModel->GetParameterMap()->find(sNameGameItem);
+    TPatternConfigItem::TMapStrStrConstIt itNameGameItem = pMap->find(sNameGameItem);
     if( itNameGameItem==pContextModel->GetParameterMap()->end() )
       return;
     nameGameItem = itNameGameItem->second;
@@ -136,7 +139,7 @@ void TPatternModel_Model::LoadByModule_Logic()
   std::string variantPatternConfig = pContextModel->GetNameVariantPatternConfig();
   if( variantPatternConfig.length()==0 )
   {
-    TMapItem::TMapStrStrConstIt itVariant = pContextModel->GetParameterMap()->find(sVariantPatternConfig);
+    TPatternConfigItem::TMapStrStrConstIt itVariant = pMap->find(sVariantPatternConfig);
     if( itVariant!=pContextModel->GetParameterMap()->end() )// если нет настройки, ничего не делать
     {
       variantPatternConfig = itVariant->second;
@@ -144,7 +147,7 @@ void TPatternModel_Model::LoadByModule_Logic()
     }
   }
   // найти будет ли модель мобильной
-  TMapItem::TMapStrStrConstIt itMobility = pContextModel->GetParameterMap()->find(sMobility);
+  TPatternConfigItem::TMapStrStrConstIt itMobility = pMap->find(sMobility);
   if( itMobility!=pContextModel->GetParameterMap()->end() )// если нет, то ничего не делать
   {
     bool mobility = itMobility->second=="true" ? true : false;

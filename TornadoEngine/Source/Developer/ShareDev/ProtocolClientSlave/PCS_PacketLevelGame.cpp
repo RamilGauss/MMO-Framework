@@ -81,7 +81,7 @@ TPacket_AddGameObjects::TPacket_AddGameObjects() : TBasePacket_PCS(ePacket_AddGa
 TContainer TPacket_AddGameObjects::PackInherit()
 {
   TContainer result;
-  TBreakPacket bp;
+  /*TBreakPacket bp;
   BOOST_FOREACH(TMapItem::TObject& object, mVectorObject)
   {
     TypeSizeNamePattern sizeNamePattern = object.namePattern.length();
@@ -109,13 +109,13 @@ TContainer TPacket_AddGameObjects::PackInherit()
   }
   bp.Collect();
   result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
-  bp.UnlinkCollect();
+  bp.UnlinkCollect();*/
   return result;
 }
 //-----------------------------------------------------------------
 void TPacket_AddGameObjects::UnpackInherit( char* p, int size )
 {
-  mVectorObject.clear();
+  /*mVectorObject.clear();
   while( size > 0)
   {
     TMapItem::TObject object;
@@ -214,7 +214,7 @@ void TPacket_AddGameObjects::UnpackInherit( char* p, int size )
     }
     //---------------------------------------------------------------------
     mVectorObject.push_back(object);
-  }
+  }*/
 }
 //-----------------------------------------------------------------
 TPacket_EnableGameObjects::TPacket_EnableGameObjects() : TBasePacket_PCS(ePacket_EnableGameObjects)

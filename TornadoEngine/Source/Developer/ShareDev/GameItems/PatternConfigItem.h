@@ -21,6 +21,7 @@ struct DllExport TPatternConfigItem : public TBaseItem
 {
   typedef std::map<std::string,std::string> TMapStrStr;
   typedef TMapStrStr::iterator              TMapStrStrIt;
+  typedef TMapStrStr::const_iterator        TMapStrStrConstIt;
   typedef TMapStrStr::value_type            TMapStrStrVT;
   //---------------------------------------------------------
   typedef std::map<std::string,TMapStrStr> TMapStrMap;// для объекта-поведения
@@ -28,6 +29,8 @@ struct DllExport TPatternConfigItem : public TBaseItem
   typedef TMapStrMap::value_type TMapStrMapVT;
   //---------------------------------------------------------
   TMapStrMap mMapVariant;
+
+	std::string mComment;
 
   TPatternConfigItem(std::string& name);
 }_PACKED;

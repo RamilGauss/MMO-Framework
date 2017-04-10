@@ -46,9 +46,9 @@ TBehaviourPatternContext* TBehaviourPatternModel::MakeNewConext()
   return new TBehaviourPatternContext(this);
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternModel::GetDefaultParameterMap(TMapItem::TMapStrStr& m)
+const TPatternConfigItem::TMapStrStr* TBehaviourPatternModel::GetDefaultParameterMap()
 {
-
+	return NULL;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPatternModel::SetParameterFromPattern(TContainer c)
@@ -66,7 +66,7 @@ bool TBehaviourPatternModel::GetNeedSynchro()
   return true;//mStructParameterMap.flgMobility;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::UpdateFromGameItem(TBaseItem* pBI)
+bool TBehaviourPatternModel::UpdateFromGameItem()
 {
   return true;
 }

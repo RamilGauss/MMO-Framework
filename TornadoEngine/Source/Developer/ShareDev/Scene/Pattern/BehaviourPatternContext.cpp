@@ -11,18 +11,11 @@ See for more information License.h.
 #include "GameObjectComponent_Ogre.h"
 #include "GameObjectComponent_Bullet.h"
 #include "GameObjectComponent_OpenAL.h"
-
-//namespace nsBehaviourPatternContext
-//{
-//  const char* sMobility     = "Mobility";
-//  const char* sNameGameItem = "NameGameItem";
-//  const char* sVariant      = "Variant";
-//};
-//
-//using namespace nsBehaviourPatternContext;
+#include "BehaviourPatternModel.h"
 
 TBehaviourPatternContext::TBehaviourPatternContext(TBehaviourPatternModel* pModel)
 {
+	mDefaultParameterMap = NULL;
   mModel = pModel;
 
   mGO  = NULL;
@@ -51,6 +44,7 @@ int TBehaviourPatternContext::GetPhysicWorld()
 void TBehaviourPatternContext::SetModel(TBehaviourPatternModel* pModel)
 {
   mModel = pModel;
+	SetDefaultParameterMap(pModel->GetDefaultParameterMap());
 }
 //------------------------------------------------------------------------
 TBehaviourPatternModel* TBehaviourPatternContext::GetModel()
@@ -63,17 +57,17 @@ void TBehaviourPatternContext::SetGameObject(TGameObject* p)
   mGO = p;
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternContext::SetNameMap(std::string nameMap)
+void TBehaviourPatternContext::SetNameMapItem(std::string nameMap)
 {
-	mNameMap = nameMap;
+	mNameMapItem = nameMap;
 }
 //------------------------------------------------------------------------
-std::string TBehaviourPatternContext::GetNameMap()
+std::string TBehaviourPatternContext::GetNameMapItem()
 {
-	return mNameMap;
+	return mNameMapItem;
 }
 //------------------------------------------------------------------------
-void TBehaviourPatternContext::SetParameterMap(TMapItem::TMapStrStr& m)
+void TBehaviourPatternContext::SetParameterMap(TPatternConfigItem::TMapStrStr& m)
 {
   mParameterMap = m;
 }
@@ -100,35 +94,13 @@ bool TBehaviourPatternContext::GetOrientation(nsMathTools::TVector4& v)
   return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternContext::UpdateFromGameItem(TBaseItem* pBI)
+const TPatternConfigItem::TMapStrStr* TBehaviourPatternContext::GetParameterMap()
 {
-  return true;
+	return &mParameterMap;
 }
 //------------------------------------------------------------------------
-//void TBehaviourPatternContext::ParseParameterMap(TMapItem::TMapStrStr& m)
-//{
-//  BOOST_FOREACH(TMapItem::TMapStrStrVT& vt, m)
-//  {
-//    if(vt.first==sMobility)
-//    {
-//      if(vt.second=="true")
-//        mStructParameterMap.flgMobility = true;
-//      else
-//        mStructParameterMap.flgMobility = false;
-//    }
-//    else if(vt.first==sNameGameItem)
-//    {
-//      mStructParameterMap.nameGameItem = vt.second;
-//    }
-//    else if(vt.first==sVariant)
-//    {
-//      mStructParameterMap.nameVariant = vt.second;
-//    }
-//  }
-//}
-//------------------------------------------------------------------------
-const TMapItem::TMapStrStr* TBehaviourPatternContext::GetParameterMap()
+void TBehaviourPatternContext::SetDefaultParameterMap(const TPatternConfigItem::TMapStrStr* pMap)
 {
-  return &mParameterMap;
+	mDefaultParameterMap = pMap;
 }
 //------------------------------------------------------------------------

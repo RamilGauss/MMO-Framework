@@ -28,7 +28,10 @@ protected:
   void SavePropertyPattern();
 
 private:
+	void LoadComment();
   void LoadVariant(TPatternConfigItem::TMapStrStr& mapStrStr, int iVariant );
+
+	void SaveComment();
   void SaveVariant(TPatternConfigItem::TMapStrStr& mapStrStr );
 };
 

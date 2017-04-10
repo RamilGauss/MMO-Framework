@@ -23,7 +23,7 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "ContainerTypes.h"
 #include "MathTools.h"
-#include "MapItem.h"
+#include "PatternConfigItem.h"
 
 #include "Builder_Ogre.h"
 #include "Destructor_Ogre.h"
@@ -52,22 +52,19 @@ public:
 
   // при сохранении карты/объекта,
   // что бы знать какие ключи вообще возможны, проектирование новых карт
-  virtual void GetDefaultParameterMap(TMapItem::TMapStrStr& m);
+  virtual const TPatternConfigItem::TMapStrStr* GetDefaultParameterMap();
 
   // от одного Паттерна другому, упаковано 
-  virtual bool SetParameterFromPattern(TContainer c);
-  virtual TContainer GetParameterToPattern();// Slave
+  virtual bool SetParameterFromPattern(TContainer c);// to Client
+  virtual TContainer GetParameterToPattern();// from Slave
 
   // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
   // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
   virtual bool GetNeedSynchro();// B
 
-  //virtual bool LoadFromParameterMap();// L
-  virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
+  virtual bool UpdateFromGameItem();
 
 	// разделение по модулям нужно потому что у разных реализаций разное кол-во модулей
-
-  // Правило(загрузка,синхронизация,выгрузка): 
   // сначала отрабатывает функция Логики, потом уже все остальные
   virtual void LoadByModule_Logic();// инициализация внутренней структуры
   virtual bool LoadByModule_Graphic(bool fast = false);

@@ -8,19 +8,15 @@ See for more information License.h.
 #include "GameObject.h"
 
 #include "BehaviourPatternModel.h"
-//#include "BehaviourPatternContext.h"
 
 TGameObject::TGameObject()
 {
   mPtrModel   = NULL;
-  //mPtrContext = NULL;
-
   mID = 0;
 }
 //----------------------------------------------------------------
 TGameObject::~TGameObject()
 {
-  //delete mPtrContext;
 	delete mPtrModel;
 }
 //----------------------------------------------------------------
@@ -41,21 +37,6 @@ void TGameObject::SetModel(TBehaviourPatternModel* p)
 //----------------------------------------------------------------
 TBehaviourPatternModel* TGameObject::GetModel()
 {
-	// начать работу с контекстом этого объекта
-	//mPtrModel->SetContext(mPtrContext);
   return mPtrModel;
 }
 //----------------------------------------------------------------
-//void TGameObject::SetContext(TBehaviourPatternContext* p)
-//{
-//  delete mPtrContext;
-//  mPtrContext = p;
-//  if( mPtrContext )
-//    mPtrContext->SetGameObject(this);
-//}
-////----------------------------------------------------------------
-//TBehaviourPatternContext* TGameObject::GetContext()
-//{
-//  return mPtrContext;
-//}
-////----------------------------------------------------------------

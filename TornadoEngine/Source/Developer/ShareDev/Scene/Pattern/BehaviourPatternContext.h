@@ -18,9 +18,9 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "ContainerTypes.h"
 #include "MathTools.h"
-#include "MapItem.h"
 #include "BL_Debug.h"
 #include <boost/lexical_cast.hpp>
+#include "PatternConfigItem.h"
 
 class TGameObject;
 class TFactoryGameItem;
@@ -37,8 +37,10 @@ class DllExport TBehaviourPatternContext
 protected:
   TGameObject*            mGO;
   
-  TMapItem::TMapStrStr mParameterMap;
-  TMapItem::TMapStrStr mDefaultParameterMap;
+  //TMapItem::TMapStrStr mDefaultParameterMap;
+	const TPatternConfigItem::TMapStrStr* mDefaultParameterMap;// from MapItem
+
+	TPatternConfigItem::TMapStrStr mParameterMap;// from MapItem
 
   int mPhysicWorldID;
 
@@ -47,7 +49,7 @@ protected:
   boost::scoped_ptr<TGameObjectComponent_Bullet> mPtrPhysic;
   boost::scoped_ptr<TGameObjectComponent_OpenAL> mPtrSound;
 
-	std::string mNameMap;
+	std::string mNameMapItem;
 
 	nsMathTools::TVector3 mPosition;
 	nsMathTools::TVector4 mOrientQuaternion;
@@ -63,45 +65,43 @@ public:
 
   void SetGameObject(TGameObject* p);
 
-	void SetNameMap(std::string nameMap);
-	std::string GetNameMap();
-
-  // при загрузке карты/объекта
-  virtual void SetParameterMap(TMapItem::TMapStrStr& m);// L
-  // при сохранении карты/объекта,
-  // что бы знать какие ключи вообще возможны, проектирование новых карт
-  //virtual void GetDefaultParameterMap(TMapItem::TMapStrStr& m);// L
+	void SetNameMapItem(std::string nameMap);
+	std::string GetNameMapItem();
 
   // меняет физику
-  virtual void SetPosition(nsMathTools::TVector3& v);// L
-  virtual bool GetPosition(nsMathTools::TVector3& v);// B, мгновенное значение
-  virtual void SetOrientation(nsMathTools::TVector4& v);// L
-  virtual bool GetOrientation(nsMathTools::TVector4& v);// B, мгновенное значение
+  virtual void SetPosition(nsMathTools::TVector3& v);
+  virtual bool GetPosition(nsMathTools::TVector3& v);// мгновенное значение
+  virtual void SetOrientation(nsMathTools::TVector4& v);
+  virtual bool GetOrientation(nsMathTools::TVector4& v);// мгновенное значение
 
-  virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
+	// при загрузке карты/объекта
+	void SetDefaultParameterMap(const TPatternConfigItem::TMapStrStr* pMap);
 
-  const TMapItem::TMapStrStr* GetParameterMap();
+	virtual const TPatternConfigItem::TMapStrStr* GetParameterMap();
+	virtual void SetParameterMap(TPatternConfigItem::TMapStrStr& m);
 
-  TGameObjectComponent_Ogre* GetGraphic();
-  TGameObjectComponent_Bullet*  GetPhysic();
-  TGameObjectComponent_OpenAL*   GetSound();
+  TGameObjectComponent_Ogre*   GetGraphic();
+  TGameObjectComponent_Bullet* GetPhysic();
+  TGameObjectComponent_OpenAL* GetSound();
 protected:
 
 	template<typename T>
 	bool GetFromParameterMap(std::string name, T& result)
 	{
-		TMapItem::TMapStrStr* pMap = (TMapItem::TMapStrStr*)GetParameterMap();
-		if( pMap==NULL )
+		TPatternConfigItem::TMapStrStrConstIt fit = mParameterMap.find(name);
+		if( fit==mParameterMap.end() )
 		{
-			BL_FIX_BUG();
-			return false;
-		}
-
-		TMapItem::TMapStrStrIt fit = pMap->find(name);
-		if( fit==pMap->end() )
-		{
-			BL_FIX_BUG();
-			return false;
+			if( mDefaultParameterMap==NULL )
+			{
+				BL_FIX_BUG();
+				return false;
+			}
+			fit = mDefaultParameterMap->find(name);
+			if( fit==mDefaultParameterMap->end() )
+			{
+				BL_FIX_BUG();
+				return false;
+			}
 		}
 		result = boost::lexical_cast<T>(fit->second);
 		return true;

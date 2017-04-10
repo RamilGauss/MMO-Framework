@@ -9,25 +9,14 @@ See for more information License.h.
 #define GameObjectH
 
 #include "TypeDef.h"
-//#include <string>
-//#include <boost/smart_ptr/scoped_ptr.hpp>
 
 class TBehaviourPatternModel;
-//class TBehaviourPatternContext;
-
-/*
-  Содержит данные, которые не зависят от типа Паттерна.
-  Зависит только от Ogre, Bullet и OpenAL.
-  Класс-контейнер для наследуемого контекста.
-*/
 
 class DllExport TGameObject
 {
   int mID;
-
   // поведение - зависит от типа (Model, Terrain, Zone, Light, Sound, Animated, Sky)
   TBehaviourPatternModel* mPtrModel;
-  //TBehaviourPatternContext* mPtrContext;
 
 public:
   TGameObject();
@@ -37,11 +26,7 @@ public:
   void SetID( int id );
 
   void SetModel(TBehaviourPatternModel* p);
-	// нельзя хранить указатель на модель объекта, всегда делать запрос перед использованием 
   TBehaviourPatternModel* GetModel();
-
-  //void SetContext(TBehaviourPatternContext* p);
-  //TBehaviourPatternContext* GetContext();
 };
 
 #endif

@@ -66,14 +66,8 @@ void TSerializerMapItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
 		Push(object.rotationQuaternion.z);
 		Push(object.rotationQuaternion.w);
 
-		Push(object.parameterMap.size());
-		BOOST_FOREACH(TMapItem::TMapStrStrVT& vt ,object.parameterMap)
-		{
-			std::string key = vt.first;
-			PushStr(key);
-			std::string value = vt.second;
-			PushStr(value);
-		}
+		PushStr(object.patternConfig.name);
+		PushStr(object.patternConfig.nameVariant);
 	}
 	Collect(cBinOut);
 }
@@ -125,16 +119,10 @@ bool TSerializerMapItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int size
 		RET_FALSE( Pop(object.rotationQuaternion.z) )
 		RET_FALSE( Pop(object.rotationQuaternion.w) )
 
-		TMapItem::TMapStrStr::size_type cntParam;
-		RET_FALSE( Pop(cntParam) )
-		for( int iParam = 0 ; iParam < int(cntParam) ; iParam++ )
-		{
-			std::string key;
-			RET_FALSE( PopStr(key) )
-			std::string value;
-			RET_FALSE( PopStr(value) )
-			object.parameterMap.insert(TMapItem::TMapStrStrVT(key,value));
-		}
+
+		RET_FALSE( Pop(object.patternConfig.name) )
+		RET_FALSE( Pop(object.patternConfig.nameVariant) )
+
 		pMapItem->mListObject.push_back(object);
 	}
 	return true;

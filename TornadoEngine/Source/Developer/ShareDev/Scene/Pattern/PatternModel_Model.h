@@ -11,7 +11,7 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "BehaviourPatternModel.h"
 #include "DataExchange2Thread.h"
-#include "ModelItem.h"
+#include "PatternConfigItem.h"
 #include "PatternContext_Model.h"
 
 class DllExport TPatternModel_Model : public TBehaviourPatternModel
@@ -19,7 +19,6 @@ class DllExport TPatternModel_Model : public TBehaviourPatternModel
   TDataExchange2Thread<nsMathTools::TVector3> mPipePositionLogic2Bullet;
   TDataExchange2Thread<nsMathTools::TVector3> mPipeOrientationLogic2Bullet;
 
-  TMapItem::TMapStrStr mDefaultParameterMap;
 public:
   TPatternModel_Model();
   virtual ~TPatternModel_Model();
@@ -27,7 +26,7 @@ public:
   // создать контекст для работы с этой моделью
   virtual TBehaviourPatternContext* MakeNewConext();
     
-  virtual void GetDefaultParameterMap(TMapItem::TMapStrStr& m);// L
+  virtual const TPatternConfigItem::TMapStrStr* GetDefaultParameterMap();
 
   // от одного Паттерна другому, упаковано 
   virtual bool SetParameterFromPattern(TContainer c);// L

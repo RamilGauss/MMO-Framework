@@ -1,6 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TornadoEngine version="1.0" name="Homo Habilis">
+  <PatternConfig name="Model">
+		<Comment value=""/>
+		<Variant name="SimpleCylinder">
+			<Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
+			<Property key="Mobility"     value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
+		</Variant>
+  </PatternConfig>
+  <PatternConfig name="Light">
+		<Comment value=""/>
+		<Variant name="0">
+			<Property key="Name" value="mainLight"/>
+			<Property key="Type" value="0"/>
+			<Property key="IsCastShadow" value="true"/>
+			<Property key="IsVisible" value="true"/>
+			<Property key="Dir_x" value="0"/>
+			<Property key="Dir_y" value="0"/>
+			<Property key="Dir_z" value="1"/>
+			<Property key="DiffuseColour_R" value="1.0"/>
+			<Property key="DiffuseColour_G" value="1.0"/>
+			<Property key="DiffuseColour_B" value="1.0"/>
+			<Property key="SpecularColour_R" value="1.0"/>
+			<Property key="SpecularColour_G" value="1.0"/>
+			<Property key="SpecularColour_B" value="1.0"/>
+		</Variant>
+  </PatternConfig>
+  <PatternConfig name="Terrain">
+		<Comment value=""/>
+		<Variant name="Field_Terrain">
+			<Property key="NameGameItem" value="Field"/>
+		</Variant>
+  </PatternConfig>
+  <PatternConfig name="Animated">
+		<Comment value=""/>
+		<Variant name="0">
+			<Property key="Name" value="BirdFly"/>
+		</Variant>
+  </PatternConfig>
+  <PatternConfig name="Sound">
+		<Comment value=""/>
+		<Variant name="Wind">
+			<Property key="file" value="wind.mp3"/>
+			<Property key="Name" value="Wind"/>
+		</Variant>
+  </PatternConfig>
+  <PatternConfig name="Skyplane">
+		<Comment value=""/>
+		<Variant name="Field_Skyplane_1">
+			<Property key="Plane_D" value="1000"/>
+			<Property key="Plane_normal_x" value="0.0"/>
+			<Property key="Plane_normal_y" value="-1.0"/>
+			<Property key="Plane_normal_z" value="0.0"/>
+			<Property key="NameOgreMaterial" value="Examples/CloudySky"/>
+			<Property key="scale" value="500"/>
+			<Property key="tiling" value="20"/>
+			<Property key="drawFirst" value="true"/>
+			<Property key="bow" value="0.5"/>
+			<Property key="xsegments" value="150"/>
+			<Property key="ysegments" value="150"/>
+		</Variant>
+  </PatternConfig>
+  <PatternConfig name="Zone">
+		<Comment value=""/>
+		<Variant name="Field_Zone_1">
+			<Property key="Type"     value="GraphicEffect"/>
+			<Property key="Height"   value="10.01"/>				
+			<Property key="CntCoord" value="4"/>
+			<Property key="Coord0"   value="0.0000012;0.0001212"/>
+			<Property key="Coord1"   value="0;1.56"/>
+			<Property key="Coord2"   value="1;1.3456"/>
+			<Property key="Coord3"   value="1;-0.123"/>
+		</Variant>
+  </PatternConfig>
   <PatternConfig name="Tank"><!-- параметры танка на карте, например, какая скорость и ориентация в пространстве -->
+		<Comment value="Tank only!"/>
     <Variant name="0">
       <Property key="variant0" value="ModelPlate"/><!-- Из нескольких вариантов части нужно выбрать один -->
       <Property key="variant1" value="PlateVarGeom"/>
@@ -2844,304 +2917,235 @@
 		</AmbientLight>
 	  <Set><!-- Набор объектов сцены -->
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Zone"/>
-            <Property key="ID"      value="1"/>     <!-- Уникальный в пределах карты идентификатор -->
-          </Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="1"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-          <Property key="Type" value="GraphicEffect"/>
-					<Property key="Height" value="10.01"/>				
-					<Property key="CntCoord" value="4"/>
-					<Property key="Coord0"   value="0.0000012;0.0001212"/>
-					<Property key="Coord1"   value="0;1.56"/>
-					<Property key="Coord2"   value="1;1.3456"/>
-					<Property key="Coord3"   value="1;-0.123"/>
-				</ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Zone"/>
+					<Property key="ID"      value="1"/><!-- Уникальный в пределах карты идентификатор -->
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="1"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Zone"/>
+					<Property key="Variant" value="Field_Zone_1"/>
+				</PatternConfig>
 			</Object>
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Skyplane"/>
-            <Property key="ID"   value="2"/>
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="1"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-					<Property key="Plane_D" value="1000"/>
-					<Property key="Plane_normal_x" value="0.0"/>
-					<Property key="Plane_normal_y" value="-1.0"/>
-					<Property key="Plane_normal_z" value="0.0"/>
-					<Property key="NameOgreMaterial" value="Examples/CloudySky"/>
-					<Property key="scale" value="500"/>
-					<Property key="tiling" value="20"/>
-					<Property key="drawFirst" value="true"/>
-					<Property key="bow" value="0.5"/>
-					<Property key="xsegments" value="150"/>
-					<Property key="ysegments" value="150"/>
-				</ParameterMap>
-			</Object>
-		  <!-- <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Tank"/><!-- Переопределение Паттерна ->
-            <Property key="ID"      value="3"/><!-- Уникален в пределах карты ->
-					</Identity>
-					<Position><!-- Координаты центра ->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<Rotation><!-- Ориентация ->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-					</Rotation>
-				</BaseProperty>
-				<ParameterMap>
-          <!-- Адресуется Паттерну ->
-          <Property key="NameGameItem" value="KingTiger"/><!-- Какую модель выбрать ->
-          <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику ->
-          <Property key="VariantPatternConfig" value="1"/>
-        </ParameterMap>
-			</Object> -->
-		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
-            <Property key="ID"      value="3"/><!-- Уникален в пределах карты -->
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="-3"/>
-						<Property key="y" value="20"/>
-						<Property key="z" value="-3"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="1"/>
-						<Property key="w" value="2"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
-          <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
-        </ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Skyplane"/>
+					<Property key="ID"   value="2"/>
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="1"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Skyplane"/>
+					<Property key="Variant" value="Field_Skyplane_1"/>
+				</PatternConfig>
 			</Object>
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
-            <Property key="ID"      value="777"/><!-- Уникален в пределах карты -->
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="3"/>
-						<Property key="y" value="20"/>
-						<Property key="z" value="3"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="1"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="2"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
-          <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
-        </ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
+					<Property key="ID"      value="3"/><!-- Уникален в пределах карты -->
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="-3"/>
+					<Property key="y" value="20"/>
+					<Property key="z" value="-3"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="1"/>
+					<Property key="w" value="2"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Model"/>
+					<Property key="Variant" value="SimpleCylinder"/>
+				</PatternConfig>
 			</Object>
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
-            <Property key="ID"      value="33"/><!-- Уникален в пределах карты -->
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="-3"/>
-						<Property key="y" value="20"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="1"/>
-						<Property key="w" value="2"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
-          <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
-        </ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
+					<Property key="ID"      value="777"/><!-- Уникален в пределах карты -->
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="3"/>
+					<Property key="y" value="20"/>
+					<Property key="z" value="3"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="1"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="2"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Model"/>
+					<Property key="Variant" value="SimpleCylinder"/>
+				</PatternConfig>
 			</Object>
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
-            <Property key="ID"      value="34"/><!-- Уникален в пределах карты -->
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="3"/>
-						<Property key="y" value="20"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="1"/>
-						<Property key="w" value="2"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
-          <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
-        </ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
+					<Property key="ID"      value="33"/><!-- Уникален в пределах карты -->
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="-3"/>
+					<Property key="y" value="20"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="1"/>
+					<Property key="w" value="2"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Model"/>
+					<Property key="Variant" value="SimpleCylinder"/>
+				</PatternConfig>
 			</Object>
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
-            <Property key="ID"      value="35"/><!-- Уникален в пределах карты -->
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="20"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="1"/>
-						<Property key="w" value="2"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-          <Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
-          <Property key="Mobility" value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
-        </ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
+					<Property key="ID"      value="34"/><!-- Уникален в пределах карты -->
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="3"/>
+					<Property key="y" value="20"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="1"/>
+					<Property key="w" value="2"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Model"/>
+					<Property key="Variant" value="SimpleCylinder"/>
+				</PatternConfig>
 			</Object>
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Light"/>
-            <Property key="ID"   value="4"/>
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="1"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-					<Property key="Name" value="mainLight"/>
-					<Property key="Type" value="0"/>
-					<Property key="IsCastShadow" value="true"/>
-					<Property key="IsVisible" value="true"/>
-					<Property key="Dir_x" value="0"/>
-					<Property key="Dir_y" value="0"/>
-					<Property key="Dir_z" value="1"/>
-					<Property key="DiffuseColour_R" value="1.0"/>
-					<Property key="DiffuseColour_G" value="1.0"/>
-					<Property key="DiffuseColour_B" value="1.0"/>
-					<Property key="SpecularColour_R" value="1.0"/>
-					<Property key="SpecularColour_G" value="1.0"/>
-					<Property key="SpecularColour_B" value="1.0"/>
-        </ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
+					<Property key="ID"      value="35"/><!-- Уникален в пределах карты -->
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="20"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="1"/>
+					<Property key="w" value="2"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Model"/>
+					<Property key="Variant" value="SimpleCylinder"/>
+				</PatternConfig>
 			</Object>
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Terrain"/>
-            <Property key="ID"   value="5"/>
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="0"/><!-- Origin OgreTerrainGroup -->
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="1"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-					<Property key="NameGameItem" value="Field"/>
-				</ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Light"/>
+					<Property key="ID"   value="4"/>
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="1"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Light"/>
+					<Property key="Variant" value="0"/>
+				</PatternConfig>
 			</Object>
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Animated"/>
-            <Property key="ID"   value="6"/>
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="1"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-					<Property key="Name" value="BirdFly"/>
-				</ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Terrain"/>
+					<Property key="ID"   value="5"/>
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="0"/><!-- Origin OgreTerrainGroup -->
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="1"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Terrain"/>
+					<Property key="Variant" value="Field_Terrain"/>
+				</PatternConfig>
 			</Object>
 		  <Object>
-				<BaseProperty>
-				  <Identity>
-						<Property key="Pattern" value="Sound"/><!-- Звук ветра в определенном месте. -->
-            <Property key="ID"   value="7"/>
-					</Identity>
-					<Position><!-- Координаты центра -->
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-					</Position>
-					<RotationQuaternion><!-- Ориентация -->
-						<Property key="x" value="1"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>						
-					</RotationQuaternion>
-				</BaseProperty>
-				<ParameterMap>
-				  <Property key="file" value="wind.mp3"/>
-					<Property key="Name" value="Wind"/>
-				</ParameterMap>
+				<Identity>
+					<Property key="Pattern" value="Animated"/>
+					<Property key="ID"   value="6"/>
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="1"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Animated"/>
+					<Property key="Variant" value="0"/>
+				</PatternConfig>
+			</Object>
+		  <Object>
+				<Identity>
+					<Property key="Pattern" value="Sound"/><!-- Звук ветра в определенном месте. -->
+					<Property key="ID"   value="7"/>
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="1"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="Sound"/>
+					<Property key="Variant" value="Wind"/>
+				</PatternConfig>
 			</Object>
 		</Set>
 		<Scenario> <!-- Операции с объектами сцены -->

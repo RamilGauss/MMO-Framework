@@ -20,20 +20,19 @@ See for more information License.h.
 
 struct DllExport TMapItem : public TBaseItem
 {
-	typedef std::map<std::string,std::string> TMapStrStr;
-	typedef TMapStrStr::iterator   						TMapStrStrIt;
-	typedef TMapStrStr::const_iterator   			TMapStrStrConstIt;
-	typedef TMapStrStr::value_type 						TMapStrStrVT;
-
+	struct DllExport TPatternConfig
+	{
+		std::string name;
+		std::string nameVariant;
+	};
 	struct DllExport TObject
 	{
-		// generic parameters
     std::string namePattern;
     int         id;
 		nsMathTools::TVector3 position;
 		nsMathTools::TVector4 rotationQuaternion;
 
-		TMapStrStr parameterMap;
+		TPatternConfig patternConfig;
 	};
   typedef std::list<TObject> TListObject;
 

@@ -14,31 +14,32 @@ See for more information License.h.
 
 namespace nsSerializerMapItem_XML
 {
-  const char* sMap            = "Map";
-	const char* sTableSound     = "TableSound";
-  const char* sGravity        = "Gravity";
-  const char* sNameTableSound = "name";
-	const char* sFog         		= "Fog";
-	const char* sMode				 		= "mode";
-	const char* sColourRed   		= "colourRed";
-	const char* sColourGreen 		= "colourGreen";
-	const char* sColourBlue  		= "colourBlue";
-	const char* sExpDensity	 		= "expDensity";
-	const char* sLinearStart 		= "linearStart";
-	const char* sLinearEnd	 		= "linearEnd";
-  const char* sBackgroundColour = "BackgroundColour";
-	const char* sAmbientLight   = "AmbientLight";
-	const char* sSet					  = "Set";
-	const char* sObject				  = "Object";
-	const char* sBaseProperty	  = "BaseProperty";
-	const char* sIdentity			  = "Identity";
-	const char* sID  					  = "ID";
-  const char* sPattern        = "Pattern";
-	const char* sPosition			  = "Position";
-	const char* sRotationQuaternion = "RotationQuaternion";
-	const char* sParameterMap   = "ParameterMap";
+  const char* sMap            			= "Map";
+	const char* sTableSound     			= "TableSound";
+  const char* sGravity        			= "Gravity";
+  const char* sNameTableSound 			= "name";
+	const char* sFog         					= "Fog";
+	const char* sMode				 					= "mode";
+	const char* sColourRed   					= "colourRed";
+	const char* sColourGreen 					= "colourGreen";
+	const char* sColourBlue  					= "colourBlue";
+	const char* sExpDensity	 					= "expDensity";
+	const char* sLinearStart 					= "linearStart";
+	const char* sLinearEnd	 					= "linearEnd";
+  const char* sBackgroundColour   	= "BackgroundColour";
+	const char* sAmbientLight   			= "AmbientLight";
+	const char* sSet					  			= "Set";
+	const char* sObject				  			= "Object";
+	const char* sIdentity			  			= "Identity";
+	const char* sID  					  			= "ID";
+  const char* sPattern        			= "Pattern";
+	const char* sPosition			  			= "Position";
+  const char* sPatternConfig   			= "PatternConfig";
+  const char* sNamePattern     			= "Name";
+  const char* sVariantPatternConfig	= "Variant";
+	const char* sRotationQuaternion 	= "RotationQuaternion";
   // reserve
-	const char* sScenario       = "Scenario";
+	const char* sScenario           	= "Scenario";
 }
 
 using namespace nsSerializerMapItem_XML;
@@ -275,54 +276,52 @@ void TSerializerMapItem_XML::SaveScenario()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
 {
-	if(mXML->EnterSection(sBaseProperty,0))
-	{
-    // базовые свойства
-    if(mXML->EnterSection(sIdentity,0)) 
-    {
-      int cntProperty = GetCountProperty();
-      for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
-      {
-        std::string key, value;
-        if(LoadProperty(iProperty, key, value))
-        {
-          if(key==sPattern)
-            object.namePattern = value;
-          if(key==sID)
-            object.id = boost::lexical_cast<int>(value.data());
-        }
-      }
-      mXML->LeaveSection();
-    }
-    // позиция и ориентация
-    if(mXML->EnterSection(sPosition,0))
-    {
-      nsMathTools::TVector3 pos;
-      if(LoadVector3ByProperty(pos))
-        object.position = pos;
-
-      mXML->LeaveSection();
-    }
-    if(mXML->EnterSection(sRotationQuaternion,0))
-    {
-      nsMathTools::TVector4 rot;
-      if(LoadVector4ByProperty(rot))
-        object.rotationQuaternion = rot;
-
-      mXML->LeaveSection();
-    }
-		mXML->LeaveSection();
-	}
-
-  // внутренние состояние
-  if(mXML->EnterSection(sParameterMap,0))
+  if(mXML->EnterSection(sIdentity,0)) 
   {
     int cntProperty = GetCountProperty();
     for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
     {
       std::string key, value;
       if(LoadProperty(iProperty, key, value))
-        object.parameterMap.insert(TMapItem::TMapStrStrVT(key,value));
+      {
+        if(key==sPattern)
+          object.namePattern = value;
+        if(key==sID)
+          object.id = boost::lexical_cast<int>(value.data());
+      }
+    }
+    mXML->LeaveSection();
+  }
+  // позиция и ориентация
+  if(mXML->EnterSection(sPosition,0))
+  {
+    nsMathTools::TVector3 pos;
+    if(LoadVector3ByProperty(pos))
+      object.position = pos;
+
+    mXML->LeaveSection();
+  }
+  if(mXML->EnterSection(sRotationQuaternion,0))
+  {
+    nsMathTools::TVector4 rot;
+    if(LoadVector4ByProperty(rot))
+      object.rotationQuaternion = rot;
+
+    mXML->LeaveSection();
+  }
+
+	// patternConfig
+  if(mXML->EnterSection(sPatternConfig,0))
+  {
+    int cntProperty = GetCountProperty();
+    for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
+    {
+      std::string key, value;
+      LoadProperty(iProperty, key, value);
+			if( key==sNamePattern )
+				object.patternConfig.name = value;
+			if( key==sVariantPatternConfig )
+				object.patternConfig.nameVariant = value;
     }
     mXML->LeaveSection();
   }
@@ -330,46 +329,43 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
 {
-  if(mXML->AddSectionAndEnter(sBaseProperty))
+  if(mXML->AddSectionAndEnter(sIdentity)) 
   {
-    // базовые свойства
-    if(mXML->AddSectionAndEnter(sIdentity)) 
-    {
-      std::string key, value;
-      key   = sPattern;
-      value = object.namePattern;
-      SaveProperty(key, value);
+    std::string key, value;
+    key   = sPattern;
+    value = object.namePattern;
+    SaveProperty(key, value);
 
-      key   = sID;
-      value = boost::lexical_cast<std::string>(object.id);
-      SaveProperty(key, value);
-      mXML->LeaveSection();
-    }
-    // позиция и ориентация
-    if(mXML->AddSectionAndEnter(sPosition))
-    {
-      SaveVector3ByProperty(object.position);
-      mXML->LeaveSection();
-    }
-    if(mXML->AddSectionAndEnter(sRotationQuaternion))
-    {
-      SaveVector4ByProperty(object.rotationQuaternion);
-      mXML->LeaveSection();
-    }
+    key   = sID;
+    value = boost::lexical_cast<std::string>(object.id);
+    SaveProperty(key, value);
+    mXML->LeaveSection();
+  }
+  // позиция и ориентация
+  if(mXML->AddSectionAndEnter(sPosition))
+  {
+    SaveVector3ByProperty(object.position);
+    mXML->LeaveSection();
+  }
+  if(mXML->AddSectionAndEnter(sRotationQuaternion))
+  {
+    SaveVector4ByProperty(object.rotationQuaternion);
     mXML->LeaveSection();
   }
 
   // внутренние свойства
-  if(mXML->AddSectionAndEnter(sParameterMap))
+  if(mXML->AddSectionAndEnter(sPatternConfig))
   {
-    BOOST_FOREACH(TMapItem::TMapStrStrVT& KeyValue, object.parameterMap)
-    {
-      std::string key, value;
-      key   = KeyValue.first;
-      value = KeyValue.second;
-      SaveProperty(key, value);
-    }
-    mXML->LeaveSection();
+		std::string key, value;
+		key   = sNamePattern;
+		value = object.patternConfig.name;
+		SaveProperty(key, value);
+
+		key   = sVariantPatternConfig;
+		value = object.patternConfig.nameVariant;
+		SaveProperty(key, value);
+
+		mXML->LeaveSection();
   }
 }
 //-------------------------------------------------------------------------------------------------------
