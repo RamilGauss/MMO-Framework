@@ -17,8 +17,6 @@ public:
   TPatternModel_Skybox();
   virtual ~TPatternModel_Skybox();
 
-	virtual TBehaviourPatternContext* MakeNewConext();
-
 	virtual bool LoadByModule_Graphic(bool fast = false);
 };
 

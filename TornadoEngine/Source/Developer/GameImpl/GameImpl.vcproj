@@ -492,106 +492,62 @@
 				Name="Patterns"
 				>
 				<File
-					RelativePath=".\BehaviourPattern\TankTower.cpp"
+					RelativePath=".\BehaviourPattern\PatternModel_Chassis.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\TankTower.h"
+					RelativePath=".\BehaviourPattern\PatternModel_Chassis.h"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\TestControlTank.cpp"
+					RelativePath=".\BehaviourPattern\PatternModel_Gun.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\TestControlTank.h"
+					RelativePath=".\BehaviourPattern\PatternModel_Gun.h"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\PatternModel_Hull.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\PatternModel_Hull.h"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\PatternModel_Tank.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\PatternModel_Tank.h"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\PatternModel_Turret.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\BehaviourPattern\PatternModel_Turret.h"
 					>
 				</File>
 				<Filter
-					Name="Model"
+					Name="Trash"
 					>
 					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Chassis.cpp"
+						RelativePath=".\BehaviourPattern\TankTower.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Chassis.h"
+						RelativePath=".\BehaviourPattern\TankTower.h"
 						>
 					</File>
 					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Gun.cpp"
+						RelativePath=".\BehaviourPattern\TestControlTank.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Gun.h"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Hull.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Hull.h"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Tank.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Tank.h"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Turret.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternModel_Turret.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Context"
-					>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Chassis.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Chassis.h"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Gun.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Gun.h"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Hull.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Hull.h"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Tank.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Tank.h"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Turret.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\BehaviourPattern\PatternContext_Turret.h"
+						RelativePath=".\BehaviourPattern\TestControlTank.h"
 						>
 					</File>
 				</Filter>

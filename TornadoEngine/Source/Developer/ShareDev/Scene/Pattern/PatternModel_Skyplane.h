@@ -17,9 +17,20 @@ public:
 	TPatternModel_Skyplane();
 	virtual ~TPatternModel_Skyplane();
 
-  virtual TBehaviourPatternContext* MakeNewConext();
+  //virtual TBehaviourPatternContext* MakeNewConext();
 
 	virtual bool LoadByModule_Graphic(bool fast = false);
+
+protected:
+	float GetPlane_D();
+	nsMathTools::TVector3 GetPlane_Normal();
+	std::string GetNameMaterialOgre();
+	float GetScale();
+	float GetTiling();
+	bool  GetDrawFirst();
+	float GetBow();
+	float GetXsegments();
+	float GetYsegments();
 };
 
 #endif

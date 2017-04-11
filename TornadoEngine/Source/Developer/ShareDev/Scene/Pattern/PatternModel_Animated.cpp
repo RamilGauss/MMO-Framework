@@ -7,7 +7,15 @@ See for more information License.h.
 
 #include "PatternModel_Animated.h"
 
-TPatternModel_Animated::TPatternModel_Animated()
+namespace nsPatternModel_Light
+{
+	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+}
+
+using namespace nsPatternModel_Light;
+
+TPatternModel_Animated::TPatternModel_Animated() : 
+	TBehaviourPatternModel(&g_DefaultParameterMap)
 {
 
 }

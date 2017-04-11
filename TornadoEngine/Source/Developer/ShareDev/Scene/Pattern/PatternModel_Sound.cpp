@@ -7,7 +7,15 @@ See for more information License.h.
 
 #include "PatternModel_Sound.h"
 
-TPatternModel_Sound::TPatternModel_Sound()
+namespace nsPatternModel_Sound
+{
+	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+}
+
+using namespace nsPatternModel_Sound;
+
+TPatternModel_Sound::TPatternModel_Sound() :
+	TBehaviourPatternModel(&g_DefaultParameterMap)
 {
 
 }

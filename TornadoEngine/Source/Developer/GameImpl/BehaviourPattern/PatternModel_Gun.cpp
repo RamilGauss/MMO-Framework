@@ -7,7 +7,15 @@ See for more information License.h.
 
 #include "PatternModel_Gun.h"
 
-TPatternModel_Gun::TPatternModel_Gun()
+namespace nsPatternModel_Gun
+{
+	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+}
+
+using namespace nsPatternModel_Gun;
+
+TPatternModel_Gun::TPatternModel_Gun() : 
+	TPatternModel_Model(&g_DefaultParameterMap)
 {
 
 }

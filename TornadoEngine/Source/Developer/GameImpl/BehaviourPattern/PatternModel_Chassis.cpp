@@ -7,7 +7,15 @@ See for more information License.h.
 
 #include "PatternModel_Chassis.h"
 
-TPatternModel_Chassis::TPatternModel_Chassis()
+namespace nsPatternModel_Chassis
+{
+	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+}
+
+using namespace nsPatternModel_Chassis;
+
+TPatternModel_Chassis::TPatternModel_Chassis() :
+	TPatternModel_Model(&g_DefaultParameterMap)
 {
 
 }

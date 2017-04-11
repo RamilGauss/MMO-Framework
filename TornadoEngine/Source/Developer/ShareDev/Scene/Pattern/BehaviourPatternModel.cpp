@@ -6,7 +6,6 @@ See for more information License.h.
 */
 
 #include "BehaviourPatternModel.h"
-#include "BehaviourPatternContext.h"
 
 #include <boost/foreach.hpp>
 
@@ -20,15 +19,16 @@ static TDestructor_Ogre   g_DestructorOgre;
 static TDestructor_Bullet g_DestructorBullet;
 static TDestructor_OpenAL g_DestructorOpenAL;
 
-
-TBehaviourPatternModel::TBehaviourPatternModel()
+TBehaviourPatternModel::TBehaviourPatternModel(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 {
-	mContext = NULL;
+	mGO            = NULL;
+	mPhysicWorldID = -1;
+	mPtrDefaultParameterMap = pDefaultParameterMap;
 }
 //------------------------------------------------------------------------
 TBehaviourPatternModel::~TBehaviourPatternModel()
 {
-	delete mContext;
+
 }
 //------------------------------------------------------------------------
 std::string TBehaviourPatternModel::GetName()
@@ -41,14 +41,66 @@ void TBehaviourPatternModel::SetName(std::string v)
   mName = v;
 }
 //----------------------------------------------------------------
-TBehaviourPatternContext* TBehaviourPatternModel::MakeNewConext()
+void TBehaviourPatternModel::SetPosition(nsMathTools::TVector3& v)
 {
-  return new TBehaviourPatternContext(this);
+	mPosition = v;
+}
+//------------------------------------------------------------------------
+bool TBehaviourPatternModel::GetPosition(nsMathTools::TVector3& v)
+{
+	v = mPosition;
+	return true;
+}
+//------------------------------------------------------------------------
+void TBehaviourPatternModel::SetOrientation(nsMathTools::TVector4& v)
+{
+	mOrientQuaternion = v;
+}
+//------------------------------------------------------------------------
+bool TBehaviourPatternModel::GetOrientation(nsMathTools::TVector4& v)
+{
+	v = mOrientQuaternion;
+	return true;
+}
+//------------------------------------------------------------------------
+TPatternConfigItem::TMapStrStr* TBehaviourPatternModel::GetParameterMap()
+{
+	return &mParameterMap;
+}
+//------------------------------------------------------------------------
+void TBehaviourPatternModel::SetParameterMap(TPatternConfigItem::TMapStrStr& m)
+{
+	mParameterMap = m;
+}
+//------------------------------------------------------------------------
+void TBehaviourPatternModel::SetGameObject(TGameObject* p)
+{
+	mGO = p;
+}
+//------------------------------------------------------------------------
+void TBehaviourPatternModel::SetNameMapItem(std::string nameMap)
+{
+	mNameMapItem = nameMap;
+}
+//------------------------------------------------------------------------
+std::string TBehaviourPatternModel::GetNameMapItem()
+{
+	return mNameMapItem;
+}
+//------------------------------------------------------------------------
+void TBehaviourPatternModel::SetPhysicWorld(int id_physic_world)
+{
+	mPhysicWorldID = id_physic_world;
+}
+//------------------------------------------------------------------------
+int TBehaviourPatternModel::GetPhysicWorld()
+{
+	return mPhysicWorldID;
 }
 //------------------------------------------------------------------------
 const TPatternConfigItem::TMapStrStr* TBehaviourPatternModel::GetDefaultParameterMap()
 {
-	return NULL;
+	return mPtrDefaultParameterMap;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPatternModel::SetParameterFromPattern(TContainer c)
@@ -66,7 +118,7 @@ bool TBehaviourPatternModel::GetNeedSynchro()
   return true;//mStructParameterMap.flgMobility;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPatternModel::UpdateFromGameItem()
+bool TBehaviourPatternModel::UpdateFromGameItem(bool updateByMapParam)
 {
   return true;
 }
@@ -131,7 +183,7 @@ void TBehaviourPatternModel::SynchroByModule_Sound()
 
 }
 //------------------------------------------------------------------------
-TBuilder_Ogre*   TBehaviourPatternModel::GetBuilderOgre()
+TBuilder_Ogre* TBehaviourPatternModel::GetBuilderOgre()
 {
   return &g_BuilderOgre;
 }
@@ -164,18 +216,5 @@ TDestructor_OpenAL* TBehaviourPatternModel::GetDestructorOpenAL()
 int TBehaviourPatternModel::GetBaseType()
 {
 	return 0;
-}
-//------------------------------------------------------------------------
-void TBehaviourPatternModel::SetContext()
-{
-	if( mContext )
-		return;
-	mContext = MakeNewConext();
-	mContext->SetModel(this);
-}
-//------------------------------------------------------------------------
-TBehaviourPatternContext* TBehaviourPatternModel::GetContext()
-{
-	return mContext;
 }
 //------------------------------------------------------------------------

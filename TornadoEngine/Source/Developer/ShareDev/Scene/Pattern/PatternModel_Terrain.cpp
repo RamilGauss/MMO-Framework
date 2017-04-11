@@ -6,16 +6,28 @@ See for more information License.h.
 */
 
 #include "PatternModel_Terrain.h"
-#include "PatternContext_Terrain.h"
 #include "BL_Debug.h"
 #include "TerrainItem.h"
 #include "FactoryGameItem.h"
 #include "ModuleLogic.h"
 #include "BuilderTerrain_Ogre.h"
 
-TPatternModel_Terrain::TPatternModel_Terrain()
+namespace nsPatternModel_Terrain
 {
+	const char* sNameGameItem = "NameGameItem";
 
+	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+}
+
+using namespace nsPatternModel_Terrain;
+
+TPatternModel_Terrain::TPatternModel_Terrain() :
+	TBehaviourPatternModel(&g_DefaultParameterMap)
+{
+	flgIsLoad_Bullet = false;
+	flgIsLoad_Ogre = false;
+	mNeedLoadX_Ogre = 0;
+	mNeedLoadY_Ogre = 0;
 }
 //---------------------------------------------------------------------------
 TPatternModel_Terrain::~TPatternModel_Terrain()
@@ -23,15 +35,9 @@ TPatternModel_Terrain::~TPatternModel_Terrain()
 
 }
 //---------------------------------------------------------------------------
-TBehaviourPatternContext* TPatternModel_Terrain::MakeNewConext()
-{
-	return new TPatternContext_Terrain(this);
-}
-//---------------------------------------------------------------------------
 bool TPatternModel_Terrain::LoadByModule_Graphic(bool fast)
 {
-  TPatternContext_Terrain* pContextTerrain = (TPatternContext_Terrain*)mContext;
-	if( pContextTerrain->IsLoad_Ogre()==false )
+	if( IsLoad_Ogre()==false )
 		BeginLoad_Ogre();
 
 	return TryLoad_Ogre();
@@ -39,8 +45,7 @@ bool TPatternModel_Terrain::LoadByModule_Graphic(bool fast)
 //---------------------------------------------------------------------------
 bool TPatternModel_Terrain::LoadByModule_Physic(bool fast)
 {
-	TPatternContext_Terrain* pContextTerrain = (TPatternContext_Terrain*)mContext;
-	if( pContextTerrain->IsLoad_Bullet()==false )
+	if( IsLoad_Bullet()==false )
 		BeginLoad_Bullet();
 
 	return TryLoad_Bullet();
@@ -48,40 +53,37 @@ bool TPatternModel_Terrain::LoadByModule_Physic(bool fast)
 //---------------------------------------------------------------------------
 void TPatternModel_Terrain::BeginLoad_Bullet()
 {
-	TPatternContext_Terrain* pContextTerrain = (TPatternContext_Terrain*)mContext;
-	std::string nameTerrainItem = pContextTerrain->GetNameTerrainItem();
+	std::string nameTerrainItem = GetNameTerrainItem();
 	TTerrainItem* pTerrainItem = 
 		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
-	TMapItem*     pMapItem     = 
-		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, pContextTerrain->GetNameMapItem());
+	TMapItem* pMapItem = 
+		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, GetNameMapItem());
 
-	pContextTerrain->GetBuilderTerrain_Bullet()->Setup(pContextTerrain->GetPhysicWorld(),NULL,NULL);
-	pContextTerrain->GetBuilderTerrain_Bullet()->Begin(pMapItem, pTerrainItem);
-	pContextTerrain->SetIsLoad_Bullet(true);
-	pContextTerrain->SetLoad_X_Bullet(pTerrainItem->mX.min);
-	pContextTerrain->SetLoad_Y_Bullet(pTerrainItem->mY.min);
+	GetBuilderTerrain_Bullet()->Setup(GetPhysicWorld(),NULL,NULL);
+	GetBuilderTerrain_Bullet()->Begin(pMapItem, pTerrainItem);
+	SetIsLoad_Bullet(true);
+	SetLoad_X_Bullet(pTerrainItem->mX.min);
+	SetLoad_Y_Bullet(pTerrainItem->mY.min);
 }
 //---------------------------------------------------------------------------
 void TPatternModel_Terrain::BeginLoad_Ogre()
 {
-	TPatternContext_Terrain* pContextTerrain = (TPatternContext_Terrain*)mContext;
-	std::string nameTerrainItem = pContextTerrain->GetNameTerrainItem();
+	std::string nameTerrainItem = GetNameTerrainItem();
 	TTerrainItem* pTerrainItem = 
 		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
 	TMapItem*     pMapItem     = 
-		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, pContextTerrain->GetNameMapItem());
-	Ogre::Vector3 originOgre = pContextTerrain->GetOrigin();
+		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, GetNameMapItem());
+	Ogre::Vector3 originOgre = GetOrigin();
 
-	pContextTerrain->GetBuilderTerrain_Ogre()->Begin(pMapItem, pTerrainItem, originOgre);
-	pContextTerrain->SetIsLoad_Ogre(true);
-	pContextTerrain->SetLoad_X_Ogre(pTerrainItem->mX.min);
-	pContextTerrain->SetLoad_Y_Ogre(pTerrainItem->mY.min);
+	GetBuilderTerrain_Ogre()->Begin(pMapItem, pTerrainItem, originOgre);
+	SetIsLoad_Ogre(true);
+	SetLoad_X_Ogre(pTerrainItem->mX.min);
+	SetLoad_Y_Ogre(pTerrainItem->mY.min);
 }
 //---------------------------------------------------------------------------
 bool TPatternModel_Terrain::TryLoad_Bullet()
 {
-	TPatternContext_Terrain* pContextTerrain = (TPatternContext_Terrain*)mContext;
-	std::string nameTerrainItem = pContextTerrain->GetNameTerrainItem();
+	std::string nameTerrainItem = GetNameTerrainItem();
 	TTerrainItem* pTerrainItem = 
 		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
 
@@ -89,10 +91,10 @@ bool TPatternModel_Terrain::TryLoad_Bullet()
 	int maxX = pTerrainItem->mX.max;
 	int minY = pTerrainItem->mY.min;
 	int maxY = pTerrainItem->mY.max;
-	int x = pContextTerrain->GetLoad_X_Bullet();
-	int y = pContextTerrain->GetLoad_Y_Bullet();
+	int x = GetLoad_X_Bullet();
+	int y = GetLoad_Y_Bullet();
 	
-	pContextTerrain->GetBuilderTerrain_Bullet()->Load(x,y);
+	GetBuilderTerrain_Bullet()->Load(x,y);
 	x++;
 	if( x > maxX)
 	{
@@ -102,20 +104,18 @@ bool TPatternModel_Terrain::TryLoad_Bullet()
 
 	if( y > maxY )
 	{
-		pContextTerrain->GetBuilderTerrain_Bullet()->End();
-		pContextTerrain->SetIsLoad_Bullet(false);
+		GetBuilderTerrain_Bullet()->End();
+		SetIsLoad_Bullet(false);
 		return true;
 	}
-	pContextTerrain->SetLoad_X_Bullet(x);
-	pContextTerrain->SetLoad_Y_Bullet(y);
+	SetLoad_X_Bullet(x);
+	SetLoad_Y_Bullet(y);
 	return false;
 }
 //---------------------------------------------------------------------------
 bool TPatternModel_Terrain::TryLoad_Ogre()
 {
-	TPatternContext_Terrain* pContextTerrain = (TPatternContext_Terrain*)mContext;
-
-	std::string nameTerrainItem = pContextTerrain->GetNameTerrainItem();
+	std::string nameTerrainItem = GetNameTerrainItem();
 	TTerrainItem* pTerrainItem = 
 		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
 
@@ -123,10 +123,10 @@ bool TPatternModel_Terrain::TryLoad_Ogre()
 	int maxX = pTerrainItem->mX.max;
 	int minY = pTerrainItem->mY.min;
 	int maxY = pTerrainItem->mY.max;
-	int x = pContextTerrain->GetLoad_X_Ogre();
-	int y = pContextTerrain->GetLoad_Y_Ogre();
+	int x = GetLoad_X_Ogre();
+	int y = GetLoad_Y_Ogre();
 
-	pContextTerrain->GetBuilderTerrain_Ogre()->Load(x,y);
+	GetBuilderTerrain_Ogre()->Load(x,y);
 	x++;
 	if( x > maxX)
 	{
@@ -136,12 +136,106 @@ bool TPatternModel_Terrain::TryLoad_Ogre()
 
 	if( y > maxY )
 	{
-		pContextTerrain->GetBuilderTerrain_Ogre()->End();
-		pContextTerrain->SetIsLoad_Ogre(false);
+		GetBuilderTerrain_Ogre()->End();
+		SetIsLoad_Ogre(false);
 		return true;
 	}
-	pContextTerrain->SetLoad_X_Ogre(x);
-	pContextTerrain->SetLoad_Y_Ogre(y);
+	SetLoad_X_Ogre(x);
+	SetLoad_Y_Ogre(y);
 	return false;
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Terrain::SetIsLoad_Bullet(bool v)
+{
+	flgIsLoad_Bullet = v;
+}
+//---------------------------------------------------------------------------
+bool TPatternModel_Terrain::IsLoad_Bullet()
+{
+	return flgIsLoad_Bullet;
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Terrain::SetIsLoad_Ogre(bool v)
+{
+	flgIsLoad_Ogre = v;
+}
+//---------------------------------------------------------------------------
+bool TPatternModel_Terrain::IsLoad_Ogre()
+{
+	return flgIsLoad_Ogre;
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Terrain::SetLoad_X_Bullet(int v)
+{
+	mNeedLoadX_Bullet = v;
+}
+//---------------------------------------------------------------------------
+int TPatternModel_Terrain::GetLoad_X_Bullet()
+{
+	return mNeedLoadX_Bullet;
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Terrain::SetLoad_Y_Bullet(int v)
+{
+	mNeedLoadY_Bullet = v;
+}
+//---------------------------------------------------------------------------
+int TPatternModel_Terrain::GetLoad_Y_Bullet()
+{
+	return mNeedLoadY_Bullet;
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Terrain::SetLoad_X_Ogre(int v)
+{
+	mNeedLoadX_Ogre = v;
+}
+//---------------------------------------------------------------------------
+int TPatternModel_Terrain::GetLoad_X_Ogre()
+{
+	return mNeedLoadX_Ogre;
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Terrain::SetLoad_Y_Ogre(int v)
+{
+	mNeedLoadY_Ogre = v;
+}
+//---------------------------------------------------------------------------
+int TPatternModel_Terrain::GetLoad_Y_Ogre()
+{
+	return mNeedLoadY_Ogre;
+}
+//---------------------------------------------------------------------------
+std::string TPatternModel_Terrain::GetNameTerrainItem()
+{
+	std::string name;
+	GetFromParameterMap<std::string>(sNameGameItem, name);
+	return name;
+}
+//---------------------------------------------------------------------------
+Ogre::Vector3 TPatternModel_Terrain::GetOrigin()
+{
+	Ogre::Vector3 originOgre = Ogre::Vector3::ZERO;
+
+	nsMathTools::TVector3 pos;
+	if( GetPosition(pos)==false )
+	{
+		BL_FIX_BUG();
+		return originOgre;
+	}
+
+	originOgre.x = pos.x;
+	originOgre.y = pos.y;
+	originOgre.z = pos.z;
+	return originOgre;
+}
+//---------------------------------------------------------------------------
+TBuilderTerrain_Bullet* TPatternModel_Terrain::GetBuilderTerrain_Bullet()
+{
+	return &mBuilderTerrain_Bullet;
+}
+//---------------------------------------------------------------------------
+TBuilderTerrain_Ogre* TPatternModel_Terrain::GetBuilderTerrain_Ogre()
+{
+	return &mBuilderTerrain_Ogre;
 }
 //---------------------------------------------------------------------------

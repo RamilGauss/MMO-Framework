@@ -7,37 +7,39 @@ See for more information License.h.
 
 #include "PatternModel_Model.h"
 
-#include <boost/foreach.hpp>
-#include <OgreRoot.h>
-#include <OgreEntity.h>
-
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
+#include "ModulePhysicEngine.h"
 #include "FactoryGameItem.h"
 
 #include "ShapeItem.h"
 
 #include <btBulletDynamicsCommon.h>
-
-#include "ModulePhysicEngine.h"
-#include "Dynamics/btDiscreteDynamicsWorld.h"
+#include <Dynamics/btDiscreteDynamicsWorld.h>
+#include <boost/foreach.hpp>
+#include <OgreRoot.h>
+#include <OgreEntity.h>
 
 namespace nsPatternModel_Model
 {
-  const char* sNameGameItem         = "NameGameItem";
-  const char* sVariantPatternConfig = "VariantPatternConfig";
-  const char* sMobility             = "Mobility";
+  const char* sNameGameItem = "NameGameItem";
+  const char* sMobility     = "Mobility";
 
   static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPatternModel_Model;
 
-TPatternModel_Model::TPatternModel_Model()
+TPatternModel_Model::TPatternModel_Model() : 
+	TBehaviourPatternModel(&g_DefaultParameterMap)
 {
-  g_DefaultParameterMap.insert(TPatternConfigItem::TMapStrStrVT(sNameGameItem,""));
-  g_DefaultParameterMap.insert(TPatternConfigItem::TMapStrStrVT(sVariantPatternConfig,""));
-  g_DefaultParameterMap.insert(TPatternConfigItem::TMapStrStrVT(sMobility,""));
+	Init(&g_DefaultParameterMap);
+}
+//---------------------------------------------------------------------------
+TPatternModel_Model::TPatternModel_Model(TPatternConfigItem::TMapStrStr* pDefaultParameterMap) : 
+	TBehaviourPatternModel(pDefaultParameterMap)
+{
+	Init(pDefaultParameterMap);
 }
 //---------------------------------------------------------------------------
 TPatternModel_Model::~TPatternModel_Model()
@@ -45,14 +47,12 @@ TPatternModel_Model::~TPatternModel_Model()
 
 }
 //---------------------------------------------------------------------------
-TBehaviourPatternContext* TPatternModel_Model::MakeNewConext()
-{ 
-  return new TPatternContext_Model(this);
-}
-//---------------------------------------------------------------------------
-const TPatternConfigItem::TMapStrStr* TPatternModel_Model::GetDefaultParameterMap()
+void TPatternModel_Model::Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 {
-  return &g_DefaultParameterMap;
+	pDefaultParameterMap->insert(TPatternConfigItem::TMapStrStrVT(sNameGameItem,""));
+	pDefaultParameterMap->insert(TPatternConfigItem::TMapStrStrVT(sMobility,"true"));
+
+	mTypeContent = TModelItem::eModel;
 }
 //---------------------------------------------------------------------------
 bool TPatternModel_Model::SetParameterFromPattern(TContainer c)
@@ -66,172 +66,84 @@ TContainer TPatternModel_Model::GetParameterToPattern()
   return c;
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::SetPosition(nsMathTools::TVector3& v)
-{
-  // подготовить задание для физики
-  nsMathTools::TVector3* pV = new nsMathTools::TVector3(v);
-  mPipePositionLogic2Bullet.Add(pV);
-}
-//---------------------------------------------------------------------------
-bool TPatternModel_Model::GetPosition(nsMathTools::TVector3& v)
-{
-  return GetFromPipe(v, &mPipePositionLogic2Bullet);
-}
-//---------------------------------------------------------------------------
-void TPatternModel_Model::SetOrientation(nsMathTools::TVector3& v)
-{
-  // подготовить задание для физики
-  nsMathTools::TVector3* pV = new nsMathTools::TVector3(v);
-  mPipeOrientationLogic2Bullet.Add(pV);
-}
-//---------------------------------------------------------------------------
-bool TPatternModel_Model::GetOrientation(nsMathTools::TVector3& v)
-{
-  return GetFromPipe(v, &mPipeOrientationLogic2Bullet);
-}
-//---------------------------------------------------------------------------
-bool TPatternModel_Model::GetFromPipe(nsMathTools::TVector3& v, TDataExchange2Thread<nsMathTools::TVector3>* pPipe)
-{
-  nsMathTools::TVector3** ppV = pPipe->GetFirst();
-  if( ppV==NULL )
-    return false;
-  while(1)
-  {
-    v = *(*ppV);
-    pPipe->RemoveFirst();
-    ppV = pPipe->GetFirst();
-    if( ppV==NULL )
-      return true;
-  }
-  return false;
-}
-//---------------------------------------------------------------------------
-bool TPatternModel_Model::LoadFromParameterMap()
-{
-  return true;
-}
-//---------------------------------------------------------------------------
 bool TPatternModel_Model::UpdateFromGameItem(TBaseItem* pBI)
-{
-  return true;
-}
-//---------------------------------------------------------------------------
-bool TPatternModel_Model::Unload()
 {
   return true;
 }
 //---------------------------------------------------------------------------
 void TPatternModel_Model::LoadByModule_Logic()
 {
-  TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
-	const TPatternConfigItem::TMapStrStr* pMap = pContextModel->GetParameterMap();
 	// найти имя модели
-  std::string nameGameItem = pContextModel->GetNameGameItem();
-  if( nameGameItem.length()==0 )
-  {
-    TPatternConfigItem::TMapStrStrConstIt itNameGameItem = pMap->find(sNameGameItem);
-    if( itNameGameItem==pContextModel->GetParameterMap()->end() )
-      return;
-    nameGameItem = itNameGameItem->second;
-    pContextModel->SetNameGameItem(nameGameItem);
-  }
-  // найти вариант настроек паттерна
-  std::string variantPatternConfig = pContextModel->GetNameVariantPatternConfig();
-  if( variantPatternConfig.length()==0 )
-  {
-    TPatternConfigItem::TMapStrStrConstIt itVariant = pMap->find(sVariantPatternConfig);
-    if( itVariant!=pContextModel->GetParameterMap()->end() )// если нет настройки, ничего не делать
-    {
-      variantPatternConfig = itVariant->second;
-      pContextModel->SetNameVariantPatternConfig(variantPatternConfig);
-    }
-  }
-  // найти будет ли модель мобильной
-  TPatternConfigItem::TMapStrStrConstIt itMobility = pMap->find(sMobility);
-  if( itMobility!=pContextModel->GetParameterMap()->end() )// если нет, то ничего не делать
-  {
-    bool mobility = itMobility->second=="true" ? true : false;
-    pContextModel->SetMobility(mobility);
-  }
-  TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
+  std::string nameGameItem = GetNameGameItem();
+	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
 
   TModelItem* pModel = (TModelItem*)pFGI->Get(TFactoryGameItem::Model, nameGameItem);
   if( pModel==NULL )
     return;
   
-  TPatternConfigItem* pPattern = (TPatternConfigItem*)pFGI->Get(TFactoryGameItem::PatternConfig, GetName());
-  if( pPattern )
-  {
-    TPatternConfigItem::TMapStrMapIt itMapVariant = pPattern->mMapVariant.find(variantPatternConfig);
-    if( itMapVariant!=pPattern->mMapVariant.end() )
-      pContextModel->SetMapVariant(itMapVariant->second);// использовать в конце загрузки в каждом из потоков (графика,звук,физика)
-  }
-
   // задача: создать модели по имени. При синхронизации менять положение и ориентацию форм или моделей
-  pContextModel->SetTypeContent(pModel->mTypeCollection);
+  SetTypeContent(pModel->mTypeCollection);
   if( pModel->mTypeCollection==TModelItem::eModel )
-    LoadModelsFromThread_Logic(pModel->mMapNamePart);
+    LoadModelsByModule_Logic(pModel->mMapNamePart);
   else
-    LoadShapesFromThread_Logic(pModel->mMapNamePart);
+    LoadShapesByModule_Logic(pModel->mMapNamePart);
 }
 //---------------------------------------------------------------------------
 bool TPatternModel_Model::LoadByModule_Graphic(bool fast)
 {
-  TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
-  int cntPart = pContextModel->GetCountPart();
+  int cntPart = GetCountPart();
   for( int iPart = 0 ; iPart < cntPart ; iPart++ )
   {
-    std::string namePart = pContextModel->GetNamePart(iPart);
-    int cntVariant = pContextModel->GetCountVariant(namePart);
+    std::string namePart = GetNamePart(iPart);
+    int cntVariant = GetCountVariant(namePart);
     for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
     {
-      std::string nameVariant = pContextModel->GetNameVariant(namePart, iVariant);
-      TPatternContext_Model::TBaseDesc* pDesc = pContextModel->GetDesc(namePart, nameVariant);
+      std::string nameVariant = GetNameVariant(namePart, iVariant);
+      TBaseDesc* pDesc = GetDesc(namePart, nameVariant);
       if( pDesc==NULL )
         continue;
       if( pDesc->type==TModelItem::eModel )
       {
-        TPatternContext_Model::TModelDesc* pModelDesc = (TPatternContext_Model::TModelDesc*)pDesc;
+        TModelDesc* pModelDesc = (TModelDesc*)pDesc;
         pModelDesc->pModel->LoadByModule_Graphic();
       }
       else
       {
-        TPatternContext_Model::TShapeDesc* pShapeDesc = (TPatternContext_Model::TShapeDesc*)pDesc;
-        LoadShapeFromThread_Ogre(pShapeDesc);
+        TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
+        LoadShapeByModule_Graphic(pShapeDesc);
       }
     }
   }
-	PostLoadFromThread_Ogre();
+	PostLoadByModule_Graphic();
 	return true;
 }
 //---------------------------------------------------------------------------
 bool TPatternModel_Model::LoadByModule_Physic( bool fast )
 {
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
-	int cntPart = pContextModel->GetCountPart();
+	int cntPart = GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
-		std::string namePart = pContextModel->GetNamePart(iPart);
-		int cntVariant = pContextModel->GetCountVariant(namePart);
+		std::string namePart = GetNamePart(iPart);
+		int cntVariant = GetCountVariant(namePart);
 		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
 		{
-			std::string nameVariant = pContextModel->GetNameVariant(namePart, iVariant);
-			TPatternContext_Model::TBaseDesc* pDesc = pContextModel->GetDesc(namePart, nameVariant);
+			std::string nameVariant = GetNameVariant(namePart, iVariant);
+			TBaseDesc* pDesc = GetDesc(namePart, nameVariant);
 			if( pDesc==NULL )
 				continue;
 			if( pDesc->type==TModelItem::eModel )
 			{
-				TPatternContext_Model::TModelDesc* pModelDesc = (TPatternContext_Model::TModelDesc*)pDesc;
+				TModelDesc* pModelDesc = (TModelDesc*)pDesc;
 				pModelDesc->pModel->LoadByModule_Physic();
 			}
 			else
 			{
-				TPatternContext_Model::TShapeDesc* pShapeDesc = (TPatternContext_Model::TShapeDesc*)pDesc;
-				LoadShapeFromThread_Bullet(pShapeDesc);
+				TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
+				LoadShapeByModule_Physic(pShapeDesc);
 			}
 		}
 	}
-	PostLoadFromThread_Bullet();
+	PostLoadByModule_Physic();
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -267,29 +179,26 @@ void TPatternModel_Model::SynchroByModule_Logic()
 //---------------------------------------------------------------------------
 void TPatternModel_Model::SynchroByModule_Graphic()
 {
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
 	// синхронизируем всё!
-	int cntPart = pContextModel->GetCountPart();
+	int cntPart = GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
-		std::string namePart = pContextModel->GetNamePart(iPart);
-		int cntVariant = pContextModel->GetCountVariant(namePart);
+		std::string namePart = GetNamePart(iPart);
+		int cntVariant = GetCountVariant(namePart);
 		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
 		{
-			std::string nameVariant = pContextModel->GetNameVariant(namePart, iVariant);
-			TPatternContext_Model::TBaseDesc* pDesc = pContextModel->GetDesc(namePart, nameVariant);
+			std::string nameVariant = GetNameVariant(namePart, iVariant);
+			TBaseDesc* pDesc = GetDesc(namePart, nameVariant);
 			if( pDesc==NULL )
 				continue;
 			if( pDesc->type==TModelItem::eModel )
 			{
-				TPatternContext_Model::TModelDesc* pDescModel = 
-					(TPatternContext_Model::TModelDesc*)pDesc;
+				TModelDesc* pDescModel = (TModelDesc*)pDesc;
 				pDescModel->pModel->SynchroByModule_Graphic();
 			}
 			else
 			{
-				TPatternContext_Model::TShapeDesc* pShapeDesc = 
-					(TPatternContext_Model::TShapeDesc*)pDesc;
+				TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
 
 				btMotionState* pMS = pShapeDesc->pRigidBody->getMotionState();
 				btTransform trans;
@@ -318,22 +227,20 @@ void TPatternModel_Model::SynchroByModule_Graphic()
 void TPatternModel_Model::SynchroByModule_Physic()
 {
   // проверка на изменение позиции и ориентации
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
-	int cntPart = pContextModel->GetCountPart();
+	int cntPart = GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
-		std::string namePart = pContextModel->GetNamePart(iPart);
-		int cntVariant = pContextModel->GetCountVariant(namePart);
+		std::string namePart = GetNamePart(iPart);
+		int cntVariant = GetCountVariant(namePart);
 		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
 		{
-			std::string nameVariant = pContextModel->GetNameVariant(namePart, iVariant);
-			TPatternContext_Model::TBaseDesc* pDesc = pContextModel->GetDesc(namePart, nameVariant);
+			std::string nameVariant = GetNameVariant(namePart, iVariant);
+			TBaseDesc* pDesc = GetDesc(namePart, nameVariant);
 			if( pDesc==NULL )
 				continue;
 			if( pDesc->type==TModelItem::eShape )
 			{
-				TPatternContext_Model::TShapeDesc* pShapeDesc = 
-					(TPatternContext_Model::TShapeDesc*)pDesc;
+				TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
 
 				const btVector3& velocity = pShapeDesc->pRigidBody->getLinearVelocity();
 				float speed = velocity.length();
@@ -351,10 +258,8 @@ void TPatternModel_Model::SynchroByModule_Sound()
 
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadModelsFromThread_Logic(TModelItem::TMapStrPart& mapNamePart)
+void TPatternModel_Model::LoadModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePart)
 {
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
-
   TFactoryBehaviourPatternModel* pFBPM = TModuleLogic::Get()->GetFBPM();
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   // создать другие модели и сохранить в контексте
@@ -370,27 +275,22 @@ void TPatternModel_Model::LoadModelsFromThread_Logic(TModelItem::TMapStrPart& ma
       if( pBPM==NULL )
         continue;
 
-      TPatternContext_Model::TModelDesc* pModelDesc = new TPatternContext_Model::TModelDesc;
+      TModelDesc* pModelDesc = new TModelDesc;
       pModelDesc->namePart    = namePart;
       pModelDesc->nameVariant = variant.name;
 			pModelDesc->pModel = (TPatternModel_Model*)pBPM;
-			TPatternContext_Model* pContext = (TPatternContext_Model*)pModelDesc->pModel->GetContext();
-      //pModelDesc->pCtxModel = (TPatternContext_Model*)pBPM->MakeNewConext();
-      pContext->SetNameGameItem(variant.nameItem);
-      pContext->SetMobility(pContextModel->GetMobility());// мобильность наследуется
-      pContextModel->AddDesc(pModelDesc);
+      pModelDesc->pModel->SetNameGameItem(variant.nameItem);
+      pModelDesc->pModel->SetMobility(GetMobility());// мобильность наследуется
+      AddDesc(pModelDesc);
 
       pBPM->LoadByModule_Logic();// дальше по итерации
     }
   }
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadShapesFromThread_Logic(TModelItem::TMapStrPart& mapNamePart)
+void TPatternModel_Model::LoadShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePart)
 {
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
-
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-  
   BOOST_FOREACH( TModelItem::TMapStrPartVT& vtPart, mapNamePart )
   {
     std::string namePart = vtPart.first;
@@ -401,7 +301,7 @@ void TPatternModel_Model::LoadShapesFromThread_Logic(TModelItem::TMapStrPart& ma
       if( pShapeItem==NULL )
         continue;
 
-      TPatternContext_Model::TShapeDesc* pShape = new TPatternContext_Model::TShapeDesc;
+      TShapeDesc* pShape = new TShapeDesc;
       pShape->namePart      = namePart;
       pShape->nameVariant   = variant.name;
       pShape->nameShapeItem = variant.nameItem;
@@ -409,14 +309,13 @@ void TPatternModel_Model::LoadShapesFromThread_Logic(TModelItem::TMapStrPart& ma
         pShape->nameMaterial = variant.redefinitionMaterial;
       else
         pShape->nameMaterial = pShapeItem->mNameMaterial;
-      pContextModel->AddDesc(pShape);
+      AddDesc(pShape);
     }
   }
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model::TShapeDesc* pShapeDesc)
+void TPatternModel_Model::LoadShapeByModule_Graphic(TShapeDesc* pShapeDesc)
 {
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
   if( pShapeItem==NULL )
@@ -430,27 +329,25 @@ void TPatternModel_Model::LoadShapeFromThread_Ogre(TPatternContext_Model::TShape
 	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
 	// сделано временно для визуализации (отладка)
 	nsMathTools::TVector3 pos;
-	pContextModel->GetPosition(pos);
+	GetPosition(pos);
 	Ogre::Vector3 vPos(pos.x, pos.y, pos.z);
 	pEntity->getParentSceneNode()->setPosition(vPos);
 	pEntity->setCastShadows(true);
 
 	nsMathTools::TVector4 orient;
-	pContextModel->GetOrientation(orient);
+	GetOrientation(orient);
 	pEntity->getParentSceneNode()->setOrientation(orient.w, orient.x, orient.y, orient.z);
 	//###
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model::TShapeDesc* pShapeDesc)
+void TPatternModel_Model::LoadShapeByModule_Physic(TShapeDesc* pShapeDesc)
 {
-	TPatternContext_Model* pContextModel = (TPatternContext_Model*)mContext;
-
 	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
 	TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
 	if( pShapeItem==NULL )
 		return;
 
-	int id_world = pContextModel->GetPhysicWorld();
+	int id_world = GetPhysicWorld();
 
 	TBuilder_Bullet* pBBullet = GetBuilderBullet();
 	btRigidBody* pRB = pBBullet->GetShapeMaker()->Build( id_world, pShapeItem );
@@ -459,7 +356,7 @@ void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model::TSha
 	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
 	// сделано временно для визуализации (отладка)
 	nsMathTools::TVector3 pos;
-	pContextModel->GetPosition(pos);
+	GetPosition(pos);
 	btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();
 	btVector3& posBullet = trans.getOrigin();
 	posBullet.setX(pos.x);
@@ -467,7 +364,7 @@ void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model::TSha
 	posBullet.setZ(pos.z);
 
 	nsMathTools::TVector4 orient;
-	pContextModel->GetOrientation(orient);
+	GetOrientation(orient);
 	btQuaternion quat;
 	quat.setX(orient.x);
 	quat.setY(orient.y);
@@ -484,13 +381,130 @@ void TPatternModel_Model::LoadShapeFromThread_Bullet(TPatternContext_Model::TSha
 	//###
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::PostLoadFromThread_Ogre()
+void TPatternModel_Model::PostLoadByModule_Graphic()
 {
 
 }
 //---------------------------------------------------------------------------
-void TPatternModel_Model::PostLoadFromThread_Bullet()
+void TPatternModel_Model::PostLoadByModule_Physic()
 {
 
 }
 //---------------------------------------------------------------------------
+TModelItem::eType TPatternModel_Model::GetTypeContent()
+{
+	return mTypeContent;
+}
+//--------------------------------------------------------------------------
+void TPatternModel_Model::SetTypeContent(TModelItem::eType type)
+{
+	mTypeContent = type;
+}
+//--------------------------------------------------------------------------
+void TPatternModel_Model::AddDesc(TBaseDesc* pDesc)
+{
+	TMapStrPtrDesc* pMap = FindMapByNamePart(pDesc->namePart);
+	if( pMap==NULL )
+	{
+		mMapNamePart_NameVariantDesc.insert(TMapStr_StrPtrDescVT(pDesc->namePart, TMapStrPtrDesc()));
+		pMap = FindMapByNamePart(pDesc->namePart);
+	}
+	if( pMap->find(pDesc->nameVariant)==pMap->end() )
+		pMap->insert(TMapStrPtrDescVT(pDesc->nameVariant, pDesc));
+	else
+	{
+		BL_FIX_BUG();
+	}
+}
+//--------------------------------------------------------------------------
+TPatternModel_Model::TBaseDesc* TPatternModel_Model::GetDesc(std::string& namePart, std::string& nameVariant)
+{
+	TMapStrPtrDesc* pMap = FindMapByNamePart(namePart);
+	if( pMap==NULL )
+		return NULL;
+	TMapStrPtrDescIt fitVariant = pMap->find(nameVariant);
+	if( fitVariant==pMap->end() )
+		return NULL;
+	return fitVariant->second;
+}
+//--------------------------------------------------------------------------
+void TPatternModel_Model::SetNameGameItem(std::string& name)
+{
+	SetFromParameterMap<std::string>(sNameGameItem, name);
+}
+//--------------------------------------------------------------------------
+std::string TPatternModel_Model::GetNameGameItem()
+{
+	std::string nameGameItem;
+	GetFromParameterMap<std::string>(sNameGameItem,nameGameItem);
+	return nameGameItem;
+}
+//--------------------------------------------------------------------------
+void TPatternModel_Model::SetMobility(bool v)
+{
+	std::string mobility = v ? "true" : "false";
+	SetFromParameterMap<std::string>(sMobility, mobility);
+}
+//--------------------------------------------------------------------------
+bool TPatternModel_Model::GetMobility()
+{
+	std::string mobility;
+	GetFromParameterMap<std::string>(sMobility, mobility);
+  bool flgMobility = mobility=="true" ? true : false;
+	return flgMobility;
+}
+//--------------------------------------------------------------------------
+int TPatternModel_Model::GetCountPart()
+{
+	return mMapNamePart_NameVariantDesc.size();
+}
+//--------------------------------------------------------------------------
+std::string TPatternModel_Model::GetNamePart(int index)
+{
+	std::string namePart = "";
+	if( index >= GetCountPart() || index < 0 )
+		return namePart;
+	TMapStr_StrPtrDescIt bit = mMapNamePart_NameVariantDesc.begin();
+	for( int i = 0 ; i < index ; i++ )
+		bit++;
+	namePart = bit->first;
+	return namePart;
+}
+//--------------------------------------------------------------------------
+int TPatternModel_Model::GetCountVariant(std::string& namePart)
+{
+	TMapStrPtrDesc* pMap = FindMapByNamePart(namePart);
+	if( pMap==NULL )
+		return 0;
+	return pMap->size();
+}
+//--------------------------------------------------------------------------
+std::string TPatternModel_Model::GetNameVariant(std::string& namePart, int index)
+{
+	std::string nameVariant = "";
+	TMapStrPtrDesc* pMap = FindMapByNamePart(namePart);
+	if( pMap==NULL )
+		return nameVariant;
+	if( index >= GetCountVariant(namePart) || index < 0 )
+		return nameVariant;
+
+	TMapStrPtrDescIt bit = pMap->begin();
+	for( int i = 0 ; i < index ; i++ )
+		bit++;
+	nameVariant = bit->first;
+	return nameVariant;
+}
+//--------------------------------------------------------------------------
+TPatternModel_Model::TMapStrPtrDesc* TPatternModel_Model::FindMapByNamePart(std::string& namePart)
+{
+	TMapStr_StrPtrDescIt fit = mMapNamePart_NameVariantDesc.find(namePart);
+	if( fit==mMapNamePart_NameVariantDesc.end() )
+		return NULL;
+	return &(fit->second);
+}
+//--------------------------------------------------------------------------
+TPatternModel_Model::TModelDesc::~TModelDesc()
+{
+	delete pModel;
+}
+//--------------------------------------------------------------------------

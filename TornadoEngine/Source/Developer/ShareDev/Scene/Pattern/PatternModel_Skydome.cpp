@@ -7,7 +7,15 @@ See for more information License.h.
 
 #include "PatternModel_Skydome.h"
 
-TPatternModel_Skydome::TPatternModel_Skydome()
+namespace nsPatternModel_Skypdome
+{
+	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+}
+
+using namespace nsPatternModel_Skypdome;
+
+TPatternModel_Skydome::TPatternModel_Skydome() :
+	TBehaviourPatternModel(&g_DefaultParameterMap)
 {
 
 }

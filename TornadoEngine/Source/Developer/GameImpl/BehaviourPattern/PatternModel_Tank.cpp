@@ -7,7 +7,15 @@ See for more information License.h.
 
 #include "PatternModel_Tank.h"
 
-TPatternModel_Tank::TPatternModel_Tank()
+namespace nsPatternModel_Tank
+{
+	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+}
+
+using namespace nsPatternModel_Tank;
+
+TPatternModel_Tank::TPatternModel_Tank() :
+	TPatternModel_Model(&g_DefaultParameterMap)
 {
 
 }

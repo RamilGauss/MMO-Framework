@@ -10,37 +10,56 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "BehaviourPatternModel.h"
-#include "DataExchange2Thread.h"
 #include "PatternConfigItem.h"
-#include "PatternContext_Model.h"
+#include "ModelItem.h"
 
 class DllExport TPatternModel_Model : public TBehaviourPatternModel
 {
-  TDataExchange2Thread<nsMathTools::TVector3> mPipePositionLogic2Bullet;
-  TDataExchange2Thread<nsMathTools::TVector3> mPipeOrientationLogic2Bullet;
+	TModelItem::eType mTypeContent;
 
+	struct TBaseDesc
+	{
+		TModelItem::eType type;
+		std::string  namePart;
+		std::string  nameVariant;
+	};
+	struct TModelDesc : public TBaseDesc
+	{
+		TPatternModel_Model* pModel;
+		TModelDesc(){type=TModelItem::eModel;pModel=NULL;}
+		~TModelDesc();
+	};
+	struct TShapeDesc : public TBaseDesc
+	{
+		std::string  nameShapeItem;
+		std::string  nameMaterial; // реальный материал и переопределенный могут не совпадать
+		// результат создания формы:
+		Ogre::Entity* pEntity;
+		btRigidBody* pRigidBody;
+		TShapeDesc(){type=TModelItem::eShape;pRigidBody=NULL;pEntity=NULL;}
+	};
+
+protected:
+	typedef std::map<std::string,TBaseDesc*> TMapStrPtrDesc;
+	typedef TMapStrPtrDesc::iterator         TMapStrPtrDescIt;
+	typedef TMapStrPtrDesc::value_type       TMapStrPtrDescVT;
+
+	typedef std::map<std::string,TMapStrPtrDesc> TMapStr_StrPtrDesc;
+	typedef TMapStr_StrPtrDesc::iterator        TMapStr_StrPtrDescIt;
+	typedef TMapStr_StrPtrDesc::value_type      TMapStr_StrPtrDescVT;
+
+	// набор форм или моделей
+	TMapStr_StrPtrDesc mMapNamePart_NameVariantDesc;
 public:
   TPatternModel_Model();
+  TPatternModel_Model(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
   virtual ~TPatternModel_Model();
-
-  // создать контекст для работы с этой моделью
-  virtual TBehaviourPatternContext* MakeNewConext();
-    
-  virtual const TPatternConfigItem::TMapStrStr* GetDefaultParameterMap();
 
   // от одного Паттерна другому, упаковано 
   virtual bool SetParameterFromPattern(TContainer c);// L
   virtual TContainer GetParameterToPattern();// B - Slave
 
-  // меняет физику
-  virtual void SetPosition(nsMathTools::TVector3& v);// L
-  virtual bool GetPosition(nsMathTools::TVector3& v);// B, мгновенное значение
-  virtual void SetOrientation(nsMathTools::TVector3& v);// L
-  virtual bool GetOrientation(nsMathTools::TVector3& v);// B, мгновенное значение
-
-  virtual bool LoadFromParameterMap();// L
   virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
-  virtual bool Unload();// L
 
   // Выполнить задания в каждом из потоков
   virtual void LoadByModule_Logic();
@@ -58,19 +77,39 @@ public:
   virtual void SynchroByModule_Physic(); // внутренняя синхронизация
   virtual void SynchroByModule_Sound();  // звук от физики
 protected:
+	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
 
-  bool GetFromPipe(nsMathTools::TVector3& v, TDataExchange2Thread<nsMathTools::TVector3>* pPipe);
+  void LoadModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
+  void LoadShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
 
-  void LoadModelsFromThread_Logic(TModelItem::TMapStrPart& mapNamePart);
-  void LoadShapesFromThread_Logic(TModelItem::TMapStrPart& mapNamePart);
+  void LoadShapeByModule_Graphic(TShapeDesc* pShapeDesc);
+	void PostLoadByModule_Graphic();
 
-  void LoadShapeFromThread_Ogre(TPatternContext_Model::TShapeDesc* pShapeDesc);
-	void PostLoadFromThread_Ogre();
+	void LoadShapeByModule_Physic(TShapeDesc* pShapeDesc);
+	void PostLoadByModule_Physic();
 
-	void LoadShapeFromThread_Bullet(TPatternContext_Model::TShapeDesc* pShapeDesc);
-	void PostLoadFromThread_Bullet();
 protected:
+	TModelItem::eType GetTypeContent();
+	void SetTypeContent(TModelItem::eType type);
 
+	// игровой итэм для загрузки и управления частями
+	void SetNameGameItem(std::string& name);
+	std::string GetNameGameItem();
+	// подвижность
+	void SetMobility(bool v);
+	bool GetMobility();
+
+	void AddDesc(TBaseDesc* pDesc);
+	TBaseDesc* GetDesc(std::string& namePart, std::string& nameVariant);
+
+	int GetCountPart();
+	std::string GetNamePart(int index);
+
+	int GetCountVariant(std::string& namePart);
+	std::string GetNameVariant(std::string& namePart, int index);
+
+protected:
+	TMapStrPtrDesc* FindMapByNamePart(std::string& namePart);
 };
 
 #endif

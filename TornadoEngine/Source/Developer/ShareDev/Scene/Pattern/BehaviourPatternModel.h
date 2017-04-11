@@ -24,35 +24,70 @@ See for more information License.h.
 #include "ContainerTypes.h"
 #include "MathTools.h"
 #include "PatternConfigItem.h"
+#include "BL_Debug.h"
 
 #include "Builder_Ogre.h"
-#include "Destructor_Ogre.h"
-
-#include "Builder_Bullet.h"
-#include "Destructor_Bullet.h"
-
 #include "Builder_OpenAL.h"
+#include "Builder_Bullet.h"
+
+#include "Destructor_Bullet.h"
+#include "Destructor_Ogre.h"
 #include "Destructor_OpenAL.h"
+
+#include <boost/lexical_cast.hpp>
+
+/*
+  Базовый тип поведения игрового объекта.
+*/
 
 class TFactoryGameItem;
 class TFactoryBehaviourPatternModel;
-class TBehaviourPatternContext;
+class TGameObject;
 
 class DllExport TBehaviourPatternModel
 {
   std::string mName;
+	
+	TPatternConfigItem::TMapStrStr* mPtrDefaultParameterMap;
 protected:
-	TBehaviourPatternContext* mContext;// текущий контекст для работы
+	TGameObject*                   mGO;
+
+	TPatternConfigItem::TMapStrStr mParameterMap;// from MapItem
+	std::string 									 mNameMapItem;
+	int         									 mPhysicWorldID;
+
+	nsMathTools::TVector3 mPosition;
+	nsMathTools::TVector4 mOrientQuaternion;
 public:
-  TBehaviourPatternModel();
+  TBehaviourPatternModel(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
   virtual ~TBehaviourPatternModel();
 
-  void SetName(std::string v);
-  std::string GetName();
+	// при сохранении карты/объекта,
+	// что бы знать какие ключи вообще возможны, проектирование новых карт
+	/*nonvirtual!*/const TPatternConfigItem::TMapStrStr* GetDefaultParameterMap();
 
-  // при сохранении карты/объекта,
-  // что бы знать какие ключи вообще возможны, проектирование новых карт
-  virtual const TPatternConfigItem::TMapStrStr* GetDefaultParameterMap();
+  virtual void SetName(std::string v);
+  virtual std::string GetName();
+
+	virtual void SetPhysicWorld(int id_physic_world);
+	virtual int GetPhysicWorld();
+
+	virtual void SetGameObject(TGameObject* p);
+
+	virtual void SetNameMapItem(std::string nameMap);
+	virtual std::string GetNameMapItem();
+
+	// для поиска в редакторе объекта для редактирования
+	virtual int GetBaseType();
+
+	// меняет физику
+	virtual void SetPosition(nsMathTools::TVector3& v);
+	virtual bool GetPosition(nsMathTools::TVector3& v);// мгновенное значение
+	virtual void SetOrientation(nsMathTools::TVector4& v);
+	virtual bool GetOrientation(nsMathTools::TVector4& v);// мгновенное значение
+
+	virtual TPatternConfigItem::TMapStrStr* GetParameterMap();
+	virtual void SetParameterMap(TPatternConfigItem::TMapStrStr& m);
 
   // от одного Паттерна другому, упаковано 
   virtual bool SetParameterFromPattern(TContainer c);// to Client
@@ -62,7 +97,7 @@ public:
   // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
   virtual bool GetNeedSynchro();// B
 
-  virtual bool UpdateFromGameItem();
+  virtual bool UpdateFromGameItem(bool updateByMapParam = false);
 
 	// разделение по модулям нужно потому что у разных реализаций разное кол-во модулей
   // сначала отрабатывает функция Логики, потом уже все остальные
@@ -81,13 +116,7 @@ public:
   virtual void SynchroByModule_Physic(); // внутренняя синхронизация (физика влияет сама на себя)
   virtual void SynchroByModule_Sound();  // звук от физики
 
-	virtual int GetBaseType();
-
-	virtual void SetContext();
-	virtual TBehaviourPatternContext* GetContext();
 protected:
-  virtual TBehaviourPatternContext* MakeNewConext();
-
   TBuilder_Ogre*   GetBuilderOgre();
   TBuilder_Bullet* GetBuilderBullet();
   TBuilder_OpenAL* GetBuilderOpenAL();
@@ -96,6 +125,56 @@ protected:
   TDestructor_Bullet* GetDestructorBullet();
   TDestructor_OpenAL* GetDestructorOpenAL();
 
+protected:
+	template<typename T>
+	bool GetFromParameterMap(std::string name, T& result);
+
+	template<typename T>
+	bool SetFromParameterMap(std::string name, T& value);
 };
 
+//----------------------------------------------------------------------------
+template<typename T>
+bool TBehaviourPatternModel::GetFromParameterMap(std::string name, T& result)
+{
+	TPatternConfigItem::TMapStrStrIt fit = mParameterMap.find(name);
+	if( fit==mParameterMap.end() )
+	{
+		if( mPtrDefaultParameterMap==NULL )
+		{
+			BL_FIX_BUG();
+			return false;
+		}
+		// хоть это и не страшно, но такого быть все-равно не должно
+		fit = mPtrDefaultParameterMap->find(name);
+		if( fit==mPtrDefaultParameterMap->end() )
+		{
+			BL_FIX_BUG();
+			return false;
+		}
+	}
+	result = boost::lexical_cast<T>(fit->second);
+	return true;
+}
+//----------------------------------------------------------------------------
+template<typename T>
+bool TBehaviourPatternModel::SetFromParameterMap(std::string name, T& value)
+{
+	TPatternConfigItem::TMapStrStrIt fit = mParameterMap.find(name);
+	if( fit==mParameterMap.end() )
+	{
+		// проверить есть ли в дефолтной карте
+		fit = mPtrDefaultParameterMap->find(name);
+		if( fit==mPtrDefaultParameterMap->end() )
+		{
+			BL_FIX_BUG();
+			return false;
+		}
+		mParameterMap.insert(TPatternConfigItem::TMapStrStrVT(name,value));
+		return true;
+	}
+	fit->second = boost::lexical_cast<std::string>(value);
+	return true;
+}
+//----------------------------------------------------------------------------
 #endif

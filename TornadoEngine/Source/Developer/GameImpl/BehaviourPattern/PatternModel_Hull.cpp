@@ -7,7 +7,15 @@ See for more information License.h.
 
 #include "PatternModel_Hull.h"
 
-TPatternModel_Hull::TPatternModel_Hull()
+namespace nsPatternModel_Hull
+{
+	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+}
+
+using namespace nsPatternModel_Hull;
+
+TPatternModel_Hull::TPatternModel_Hull() :
+	TPatternModel_Model(&g_DefaultParameterMap)
 {
 
 }

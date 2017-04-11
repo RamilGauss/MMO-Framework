@@ -7,7 +7,15 @@ See for more information License.h.
 
 #include "PatternModel_Zone.h"
 
-TPatternModel_Zone::TPatternModel_Zone()
+namespace nsPatternModel_Zone
+{
+	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+}
+
+using namespace nsPatternModel_Zone;
+
+TPatternModel_Zone::TPatternModel_Zone() :
+	TBehaviourPatternModel(&g_DefaultParameterMap)
 {
 
 }

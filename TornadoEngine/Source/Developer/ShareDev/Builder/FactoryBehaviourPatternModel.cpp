@@ -61,7 +61,7 @@ TBehaviourPatternModel* TFactoryBehaviourPatternModel::GetPatternByName(std::str
     BL_FIX_BUG();
     return NULL;
   }
-	pBPM->SetContext();
+	//pBPM->SetContext();
   pBPM->SetName(name);
   return pBPM;
 }

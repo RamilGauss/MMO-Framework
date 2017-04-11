@@ -9,7 +9,6 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "GameObject.h"
 #include "FactoryBehaviourPatternModel.h"
-#include "BehaviourPatternContext.h"
 #include "BehaviourPatternModel.h"
 
 #include <boost/foreach.hpp>
@@ -54,19 +53,17 @@ int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 	TBehaviourPatternModel* pModel = 
 		mFBP->GetPatternByName(pObj->namePattern);
 	pGO->SetModel(pModel);
-	TBehaviourPatternContext* pContext =
-		pModel->GetContext();
-	pContext->SetPosition(pObj->position);
-	pContext->SetOrientation(pObj->rotationQuaternion);
+	pModel->SetPosition(pObj->position);
+	pModel->SetOrientation(pObj->rotationQuaternion);
 
 	TPatternConfigItem* pPatternConfig = 
 		(TPatternConfigItem*)TModuleLogic::Get()->GetFGI()->
 		Get(TFactoryGameItem::PatternConfig, pObj->patternConfig.name);
 	TPatternConfigItem::TMapStrMapIt fitPC = pPatternConfig->mMapVariant.find(pObj->patternConfig.nameVariant);
 	if( fitPC!=pPatternConfig->mMapVariant.end() )
-		pContext->SetParameterMap( fitPC->second );
-	pContext->SetNameMapItem(mNameMap);
-	pContext->SetPhysicWorld(mID_World);
+		pModel->SetParameterMap( fitPC->second );
+	pModel->SetNameMapItem(mNameMap);
+	pModel->SetPhysicWorld(mID_World);
 	
 	pGO->GetModel()->LoadByModule_Logic();
 

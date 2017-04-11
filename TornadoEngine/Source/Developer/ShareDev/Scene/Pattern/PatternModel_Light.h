@@ -17,9 +17,20 @@ public:
   TPatternModel_Light();
   virtual ~TPatternModel_Light();
 
-	virtual TBehaviourPatternContext* MakeNewConext();
+	//virtual TBehaviourPatternContext* MakeNewConext();
 
 	virtual bool LoadByModule_Graphic(bool fast = false);
+
+protected:
+
+	std::string GetNameLight();
+	int GetType();
+	bool GetIsCastShadow();
+	bool GetIsVisible();
+	nsMathTools::TVector3 GetDirVector();
+	nsMathTools::TVector3 GetDiffuseColour();
+	nsMathTools::TVector3 GetSpecularColour();
+
 };
 
 #endif
