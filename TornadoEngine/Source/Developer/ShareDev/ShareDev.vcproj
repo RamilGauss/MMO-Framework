@@ -1275,19 +1275,19 @@
 				Name="TerrainTech"
 				>
 				<File
-					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Blender.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Blender.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Extent.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Extent.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Height.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Height.h"
 					>
 				</File>
 				<File

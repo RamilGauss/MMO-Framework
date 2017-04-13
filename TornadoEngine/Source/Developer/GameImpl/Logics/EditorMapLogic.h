@@ -22,17 +22,14 @@ class TControlCamera;
 
 class TEditorMapLogic : public TModuleClientLogic
 {
-  int mPhysicWorldID;
+  int         mPhysicWorldID;
   TEditorMap* mEditorMap;
 
-	TPhysicEngine_Bullet::eStateWorld mStatePhysicWorld;
+	TPhysicEngine_Bullet::eStateWorld    mStatePhysicWorld;
+  TFactoryBehaviourPatternModel_EoWM   mFBP_EoWM;
 
-  TFactoryBehaviourPatternModel_EoWM mFBP_EoWM;
-
-	//std::set<int> mSetUseModule;
-  //boost::scoped_ptr<TGP_AggregationScenario_Client> mAggregationScenario_Client;
-  boost::scoped_ptr<TShowTankWoT_test>              mPtrShowTank;
-  boost::scoped_ptr<TControlCamera>                 mPtrControlCamera;
+  boost::scoped_ptr<TShowTankWoT_test> mPtrShowTank;
+  boost::scoped_ptr<TControlCamera>    mPtrControlCamera;
 
   unsigned int mID_TimerTryMoveCamera;
 
@@ -52,7 +49,6 @@ public:
 
 protected:
   virtual bool WorkClient();
-
   virtual void Input(int id_sender, void* p, int size);
 protected:
   void HandleFromGraphicEngine(nsGraphicEngine::TBaseEvent* pBaseGE);
@@ -77,5 +73,7 @@ public:
 protected:
   void CameraTryMove();
 };
+
+extern DllExport TEditorMapLogic* g_EditorMapLogic;
 
 #endif

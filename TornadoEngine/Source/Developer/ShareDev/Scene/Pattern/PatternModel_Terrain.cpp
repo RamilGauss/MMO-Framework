@@ -239,3 +239,18 @@ TBuilderTerrain_Ogre* TPatternModel_Terrain::GetBuilderTerrain_Ogre()
 	return &mBuilderTerrain_Ogre;
 }
 //---------------------------------------------------------------------------
+void TPatternModel_Terrain::ModifyExtent()
+{
+	
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Terrain::ModifyBlend()
+{
+
+}
+//---------------------------------------------------------------------------
+void TPatternModel_Terrain::ModifyPaint()
+{
+
+}
+//---------------------------------------------------------------------------

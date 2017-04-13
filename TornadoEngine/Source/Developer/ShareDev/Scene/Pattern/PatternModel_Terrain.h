@@ -32,11 +32,13 @@ public:
   TPatternModel_Terrain();
   virtual ~TPatternModel_Terrain();
 
-  //virtual TBehaviourPatternContext* MakeNewConext();
-
 	virtual bool LoadByModule_Graphic(bool fast = false);
   virtual bool LoadByModule_Physic(bool fast = false);
 
+	// модификация
+	void ModifyExtent();
+	void ModifyBlend();
+	void ModifyPaint();
 protected:
 	void BeginLoad_Bullet();
 	bool TryLoad_Bullet();

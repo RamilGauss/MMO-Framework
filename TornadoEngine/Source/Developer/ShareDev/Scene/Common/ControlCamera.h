@@ -12,17 +12,16 @@ See for more information License.h.
 
 class DllExport TControlCamera
 {
-  //int mOldX;
-  //int mOldY;
+  bool flgMovedCamera;
 
-  volatile bool flgMovedCamera;
+  bool flgMoveForward;
+  bool flgMoveBackward;
+  bool flgMoveRight;
+  bool flgMoveLeft;
+  bool flgMoveUp;
+  bool flgMoveDown;
 
-  volatile bool flgMoveForward;
-  volatile bool flgMoveBackward;
-  volatile bool flgMoveRight;
-  volatile bool flgMoveLeft;
-  volatile bool flgMoveUp;
-  volatile bool flgMoveDown;
+	bool flgFastMove;
 
 public:
   TControlCamera();
@@ -34,12 +33,20 @@ public:
   void SetMoveUp(bool v);
   void SetMoveDown(bool v);
 
+	void SetFast(bool v);
+
   void CameraTryMove();
 
-  //void MouseLeftButtonDown( int x, int y);
-  //void MouseLeftButtonUp();
   void MoveMouse(int dX, int dY);
 protected:
+	float GetMove();
+
+	float GetMoveForward();
+	float GetMoveBackward();
+	float GetMoveRight();
+	float GetMoveLeft();
+	float GetMoveUp();
+	float GetMoveDown();
 
 };
 

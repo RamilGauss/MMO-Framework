@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ModifyTerrain_Blender.h"
+#include "ModifyTerrain_Height.h"
 
-TModifyTerrain_Blender::TModifyTerrain_Blender()
+TModifyTerrain_Height::TModifyTerrain_Height()
 {
 
 }

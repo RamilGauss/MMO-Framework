@@ -16,14 +16,16 @@ See for more information License.h.
 
 class DllExport TConverterLocale
 {
-  std::auto_ptr<boost::locale::util::base_converter> mConvFrom;
-  std::auto_ptr<boost::locale::util::base_converter> mConvTo;
-
 public:
-  bool Setup(std::string coderFrom, std::string coderTo);
-  TContainer Convert(TContainer& cFrom);
+  TContainer Convert(std::string coderFrom, std::string coderTo, TContainer& cFrom);
+
+	static TContainer ToUicode(std::string coderFrom, TContainer& cFrom);
+	static TContainer FromUicode(std::string coderTo, TContainer& cTo);
+
+	static std::wstring ConvertUtf8ToUnicode(std::string utf8);
 private:
-  std::auto_ptr<boost::locale::util::base_converter> MakeCode(std::string code);
+  static std::auto_ptr<boost::locale::util::base_converter> MakeCode(std::string code);
 };
+
 
 #endif

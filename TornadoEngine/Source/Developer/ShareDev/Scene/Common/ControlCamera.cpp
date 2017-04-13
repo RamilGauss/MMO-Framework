@@ -14,14 +14,8 @@ See for more information License.h.
 #define MOUSE_X_AMP 0.004f
 #define MOUSE_Y_AMP 0.004f
 
-#define DELTA_MOVE_CAMERA 0.6f//3.5f
-
-#define DELTA_CAMERA_FORWARD  DELTA_MOVE_CAMERA
-#define DELTA_CAMERA_BACKWARD DELTA_MOVE_CAMERA
-#define DELTA_CAMERA_LEFT     DELTA_MOVE_CAMERA
-#define DELTA_CAMERA_RIGHT    DELTA_MOVE_CAMERA
-#define DELTA_CAMERA_DOWN     DELTA_MOVE_CAMERA
-#define DELTA_CAMERA_UP       DELTA_MOVE_CAMERA
+#define DELTA_MOVE_CAMERA      0.05f
+#define DELTA_FAST_MOVE_CAMERA 2.0f
 
 TControlCamera::TControlCamera()
 {
@@ -32,6 +26,8 @@ TControlCamera::TControlCamera()
   flgMoveLeft     = false;
   flgMoveUp       = false;
   flgMoveDown     = false;
+
+	flgFastMove     = false;
 }
 //-------------------------------------------------------------------
 void TControlCamera::SetMoveForward(bool v)
@@ -64,6 +60,11 @@ void TControlCamera::SetMoveDown(bool v)
   flgMoveDown = v;
 }
 //-------------------------------------------------------------------
+void TControlCamera::SetFast(bool v)
+{
+	flgFastMove = v;
+}
+//-------------------------------------------------------------------
 void TControlCamera::CameraTryMove()
 {
   if( flgMoveForward==false )
@@ -76,55 +77,24 @@ void TControlCamera::CameraTryMove()
 
   Ogre::Vector3 v(0,0,0);
   if( flgMoveForward )
-    v.z = -DELTA_CAMERA_FORWARD;
+    v.z = GetMoveForward();
   if( flgMoveBackward )
-    v.z = DELTA_CAMERA_BACKWARD;
+    v.z = GetMoveBackward();
   if( flgMoveLeft )
-    v.x = -DELTA_CAMERA_LEFT;
+    v.x = GetMoveLeft();
   if( flgMoveRight )
-    v.x = DELTA_CAMERA_RIGHT;
+    v.x = GetMoveRight();
   if( flgMoveDown )
-    v.y = -DELTA_CAMERA_DOWN;
+    v.y = GetMoveDown();
   if( flgMoveUp )
-    v.y = DELTA_CAMERA_UP;
+    v.y = GetMoveUp();
 
   Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
   pCamera->moveRelative(v);
 }
 //---------------------------------------------------------------------------------------------
-//void TControlCamera::MouseLeftButtonDown( int x, int y)
-//{
-  //mOldX = x;
-  //mOldY = y;
-//}
-//---------------------------------------------------------------------------------------------
-//void TControlCamera::MouseLeftButtonUp()
-//{
-  //flgMovedCamera = false;
-//}
-//---------------------------------------------------------------------------------------------
-// передавать разницу в координатах! а не сами координаты
-//void TControlCamera::MoveMouse(int new_x, int new_y)
-//{
-//  flgMovedCamera = true;
-//
-//  Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
-//
-//  Ogre::Radian angle;
-//  angle = mOldY - new_y;
-//  pCamera->pitch(MOUSE_Y_AMP*angle);
-//
-//  angle = mOldX - new_x;
-//  pCamera->yaw(MOUSE_X_AMP*angle);
-//
-//  mOldX = new_x;
-//  mOldY = new_y;
-//}
-//---------------------------------------------------------------------------------------------
 void TControlCamera::MoveMouse(int dX, int dY)
 {
-  //flgMovedCamera = true;
-
   Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 
   Ogre::Radian angle;
@@ -133,5 +103,40 @@ void TControlCamera::MoveMouse(int dX, int dY)
 
   angle = -dX;
   pCamera->yaw(MOUSE_X_AMP*angle);
+}
+//---------------------------------------------------------------------------------------------
+float TControlCamera::GetMove()
+{
+	return flgFastMove ? DELTA_FAST_MOVE_CAMERA : DELTA_MOVE_CAMERA;
+}
+//---------------------------------------------------------------------------------------------
+float TControlCamera::GetMoveForward()
+{
+	return -GetMove();
+}
+//---------------------------------------------------------------------------------------------
+float TControlCamera::GetMoveBackward()
+{
+	return GetMove();
+}
+//---------------------------------------------------------------------------------------------
+float TControlCamera::GetMoveRight()
+{
+	return GetMove();
+}
+//---------------------------------------------------------------------------------------------
+float TControlCamera::GetMoveLeft()
+{
+	return -GetMove();
+}
+//---------------------------------------------------------------------------------------------
+float TControlCamera::GetMoveUp()
+{
+	return GetMove();
+}
+//---------------------------------------------------------------------------------------------
+float TControlCamera::GetMoveDown()
+{
+	return -GetMove();
 }
 //---------------------------------------------------------------------------------------------

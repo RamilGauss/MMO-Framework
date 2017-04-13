@@ -17,8 +17,6 @@ public:
 	TPatternModel_Skyplane();
 	virtual ~TPatternModel_Skyplane();
 
-  //virtual TBehaviourPatternContext* MakeNewConext();
-
 	virtual bool LoadByModule_Graphic(bool fast = false);
 
 protected:

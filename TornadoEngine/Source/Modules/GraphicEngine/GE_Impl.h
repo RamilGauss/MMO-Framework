@@ -45,6 +45,7 @@ public:
 
   int GetModifierKeyBoard();
 
+	void GetWindowCaption(std::wstring& _text);
 	void SetWindowCaption(const std::wstring& _text);
 	size_t GetWindowHandle();
 

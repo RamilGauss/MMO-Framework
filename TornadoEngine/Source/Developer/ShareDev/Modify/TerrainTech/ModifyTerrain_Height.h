@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModifyTerrain_BlenderH
-#define ModifyTerrain_BlenderH
+#ifndef ModifyTerrain_HeightH
+#define ModifyTerrain_HeightH
 
 #include "TypeDef.h"
 
-class DllExport TModifyTerrain_Blender
+class DllExport TModifyTerrain_Height
 {
 public:
-	TModifyTerrain_Blender();
+	TModifyTerrain_Height();
 
 
 };

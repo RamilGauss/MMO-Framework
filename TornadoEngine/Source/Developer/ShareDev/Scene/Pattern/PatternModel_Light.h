@@ -17,8 +17,6 @@ public:
   TPatternModel_Light();
   virtual ~TPatternModel_Light();
 
-	//virtual TBehaviourPatternContext* MakeNewConext();
-
 	virtual bool LoadByModule_Graphic(bool fast = false);
 
 protected:

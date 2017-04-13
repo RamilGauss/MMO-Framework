@@ -276,6 +276,28 @@ size_t TGE_Impl::GetWindowHandle()
 	return handle;
 }
 //------------------------------------------------------------------------------------------
+void TGE_Impl::GetWindowCaption(std::wstring& _text)
+{
+#if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
+	int len = ::GetWindowTextLengthW((HWND)GetWindowHandle());
+	_text.resize(len+1);
+	int result = ::GetWindowTextW((HWND)GetWindowHandle(), (wchar_t*)_text.data(), _text.length());
+#elif MYGUI_PLATFORM == MYGUI_PLATFORM_LINUX
+	//Display* xDisplay = nullptr;
+	//unsigned long windowHandle = 0;
+	//mWindow->getCustomAttribute("XDISPLAY", &xDisplay);
+	//mWindow->getCustomAttribute("WINDOW", &windowHandle);
+	//Window win = (Window)windowHandle;
+
+	//XTextProperty windowName;
+	//windowName.value    = (unsigned char *)(MyGUI::UString(_text).asUTF8_c_str());
+	//windowName.encoding = XA_STRING;
+	//windowName.format   = 8;
+	//windowName.nitems   = strlen((char *)(windowName.value));
+	//XSetWMName(xDisplay, win, &windowName);
+#endif
+}
+//------------------------------------------------------------------------------------------
 void TGE_Impl::SetWindowCaption(const std::wstring& _text)
 {
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32

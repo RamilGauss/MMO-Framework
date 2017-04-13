@@ -39,12 +39,13 @@ public:
 		// геометрические параметры
 		nsMathTools::TVector3 position;// by center
 		// квадратная плоскость
-		float worldSize;// 0.. 10000 у.е. (в разумных пределах)
+		float worldSize;// 0..10000 у.е. (в разумных пределах)
 		int   size;// must be 2^n + 1, [2,3,5,9,17,33,65,129,257,513,1025,2049,..]
 		// высота 
 		float heightFlat;
 
 		// графические параметры
+		// меньше 2 слоёв быть не может, один слой - минимум, 2 - максимум на границе высот
 		std::list<TLayer> listLayer;
 		TDescTarget();
 	};

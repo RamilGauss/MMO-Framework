@@ -17,6 +17,7 @@ See for more information License.h.
 #include "EditorMap.h"
 #include "ControlCamera.h"
 #include "ProtocolGUI2Logic.h"
+#include "ConverterLocale.h"
 
 #include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
@@ -29,10 +30,15 @@ See for more information License.h.
 #include "TerrainItem.h"
 #include "BuilderShapeCylinder_Ogre.h"
 #include "BuilderTerrain_Ogre.h"
+
 //###
+
+TEditorMapLogic* g_EditorMapLogic = NULL;
 
 TEditorMapLogic::TEditorMapLogic()
 {
+	g_EditorMapLogic = this;
+
 	mStatePhysicWorld = TPhysicEngine_Bullet::eStatePause;
 	mPhysicWorldID    = -1;
 
@@ -50,9 +56,9 @@ TEditorMapLogic::~TEditorMapLogic()
 //-------------------------------------------------------------------
 void TEditorMapLogic::StartEvent()
 {
-  if(mAggregationScenario_Client.get())
+  if( mAggregationScenario_Client.get() )
   {
-		// Создание физического мира.
+		// Создание физического мира
 		if( mPhysicWorldID==-1 )
 			mPhysicWorldID = TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->AddWorld();
 
@@ -125,8 +131,6 @@ void TEditorMapLogic::InitForms()
 { 
   mEditorMap = new TEditorMap;
   mEditorMap->Show();
-
-  mComp.pGraphicEngine->GetGE()->SetWindowCaptionUtf8("Редактор карт");
 }
 //----------------------------------------------------------
 void TEditorMapLogic::FreeGraphicResource()
@@ -224,6 +228,9 @@ void TEditorMapLogic::HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pKeyGE)
 {
+	bool fast = bool(pKeyGE->modifier & OIS::Keyboard::Shift);
+	mPtrControlCamera->SetFast(fast); 
+
   switch( pKeyGE->key )
   {
     case OIS::KC_W:
@@ -272,6 +279,10 @@ void TEditorMapLogic::ShowTest()
 	Ogre::Radian fovy(3.14f/3);// масштаб относительно 1 у.е.
 	//pCamera->setFOVy(fovy);
 
+	Ogre::Real f = pCamera->getFarClipDistance();
+	Ogre::Real n = pCamera->getNearClipDistance();
+	pCamera->setNearClipDistance(0.01f);
+	n = pCamera->getNearClipDistance();
 	//mPtrShowTank->ShowTanks(10);
 }
 //---------------------------------------------------------------------------------------------
