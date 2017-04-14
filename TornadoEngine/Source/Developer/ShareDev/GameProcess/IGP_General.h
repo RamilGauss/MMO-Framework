@@ -15,16 +15,16 @@ See for more information License.h.
 #include <set>
 
 class TScene;
-class TFactoryBehaviourPatternModel;
+class TFactoryBehaviourPattern;
 
 class DllExport IGP_General
 {
 protected:
 	enum{eDefaultProgressStep = 10};
 
-  TScene*                        mPtrScene;
-	TFactoryBehaviourPatternModel* mFBP;
-	std::set<int>                  mSetID_Module;
+  TScene*                   mPtrScene;
+	TFactoryBehaviourPattern* mFBP;
+	std::set<int>             mSetID_Module;
 
   TCallBackRegistrator1<nsGameProcess::GP_TypeScenario> mCB_End;
   int mProgressStep;
@@ -40,7 +40,7 @@ public:
   TCallBackRegistrator2<nsGameProcess::GP_TypeScenario,int>* GetCB_Progress();
 
 	virtual void Setup(std::set<int>& setID_Module, 
-		TFactoryBehaviourPatternModel* pFBP, TScene* pScene, int id_world);
+		TFactoryBehaviourPattern* pFBP, TScene* pScene, int id_world);
 
 	virtual void Work() = 0;
 

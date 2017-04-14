@@ -10,13 +10,13 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
-class TBehaviourPatternModel;
+class TBehaviourPattern;
 
 class DllExport TGameObject
 {
   int mID;
   // поведение - зависит от типа (Model, Terrain, Zone, Light, Sound, Animated, Sky)
-  TBehaviourPatternModel* mPtrModel;
+  TBehaviourPattern* mPtrPattern;
 
 public:
   TGameObject();
@@ -25,8 +25,8 @@ public:
   int GetID() const;
   void SetID( int id );
 
-  void SetModel(TBehaviourPatternModel* p);
-  TBehaviourPatternModel* GetModel();
+  void SetPattern(TBehaviourPattern* p);
+  TBehaviourPattern* GetPattern();
 };
 
 #endif

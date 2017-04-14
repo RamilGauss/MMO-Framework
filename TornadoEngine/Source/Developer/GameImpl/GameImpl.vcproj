@@ -480,11 +480,11 @@
 				Name="Factory"
 				>
 				<File
-					RelativePath=".\BehaviourPattern\FactoryBehaviourPatternModel_EoWM.cpp"
+					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_EoWM.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\FactoryBehaviourPatternModel_EoWM.h"
+					RelativePath=".\BehaviourPattern\FactoryBehaviourPattern_EoWM.h"
 					>
 				</File>
 			</Filter>
@@ -492,43 +492,43 @@
 				Name="Patterns"
 				>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Chassis.cpp"
+					RelativePath=".\BehaviourPattern\Pattern_Chassis.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Chassis.h"
+					RelativePath=".\BehaviourPattern\Pattern_Chassis.h"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Gun.cpp"
+					RelativePath=".\BehaviourPattern\Pattern_Gun.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Gun.h"
+					RelativePath=".\BehaviourPattern\Pattern_Gun.h"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Hull.cpp"
+					RelativePath=".\BehaviourPattern\Pattern_Hull.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Hull.h"
+					RelativePath=".\BehaviourPattern\Pattern_Hull.h"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Tank.cpp"
+					RelativePath=".\BehaviourPattern\Pattern_Tank.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Tank.h"
+					RelativePath=".\BehaviourPattern\Pattern_Tank.h"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Turret.cpp"
+					RelativePath=".\BehaviourPattern\Pattern_Turret.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\BehaviourPattern\PatternModel_Turret.h"
+					RelativePath=".\BehaviourPattern\Pattern_Turret.h"
 					>
 				</File>
 				<Filter

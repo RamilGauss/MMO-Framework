@@ -8,8 +8,8 @@ See for more information License.h.
 #include "BuilderGameMap_Object.h"
 #include "BL_Debug.h"
 #include "GameObject.h"
-#include "FactoryBehaviourPatternModel.h"
-#include "BehaviourPatternModel.h"
+#include "FactoryBehaviourPattern.h"
+#include "BehaviourPattern.h"
 
 #include <boost/foreach.hpp>
 #include "ModuleLogic.h"
@@ -32,7 +32,7 @@ TBuilderGameMap_Object::~TBuilderGameMap_Object()
 }
 //------------------------------------------------------------------------------
 void TBuilderGameMap_Object::Init(std::set<int>& useID_Module, 
-				TFactoryBehaviourPatternModel* pFBP, int id_world)
+				TFactoryBehaviourPattern* pFBP, int id_world)
 {
 	mID_World 		= id_world;
 	mFBP      		= pFBP;
@@ -50,22 +50,29 @@ int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 
 	TGameObject* pGO = new TGameObject;
 	pGO->SetID(pObj->id);
-	TBehaviourPatternModel* pModel = 
+	TBehaviourPattern* pPattern = 
 		mFBP->GetPatternByName(pObj->namePattern);
-	pGO->SetModel(pModel);
-	pModel->SetPosition(pObj->position);
-	pModel->SetOrientation(pObj->rotationQuaternion);
+	pGO->SetPattern(pPattern);
+	pPattern->SetPosition(pObj->position);
+	pPattern->SetOrientation(pObj->rotationQuaternion);
 
+	// ищем настройку паттерна
 	TPatternConfigItem* pPatternConfig = 
 		(TPatternConfigItem*)TModuleLogic::Get()->GetFGI()->
 		Get(TFactoryGameItem::PatternConfig, pObj->patternConfig.name);
-	TPatternConfigItem::TMapStrMapIt fitPC = pPatternConfig->mMapVariant.find(pObj->patternConfig.nameVariant);
-	if( fitPC!=pPatternConfig->mMapVariant.end() )
-		pModel->SetParameterMap( fitPC->second );
-	pModel->SetNameMapItem(mNameMap);
-	pModel->SetPhysicWorld(mID_World);
+	BL_ASSERT(pPatternConfig);
+	// вариант из настроек
+	if( pPatternConfig )
+	{
+		TPatternConfigItem::TMapStrMapIt fitPC = 
+			pPatternConfig->mMapVariant.find(pObj->patternConfig.nameVariant);
+		if( fitPC!=pPatternConfig->mMapVariant.end() )
+			pPattern->SetParameterMap( fitPC->second );
+	}
+	pPattern->SetNameMapItem(mNameMap);
+	pPattern->SetPhysicWorld(mID_World);
 	
-	pGO->GetModel()->LoadByModule_Logic();
+	pGO->GetPattern()->LoadByModule_Logic();
 
 	TObject object;
 	object.ptrGameObject = pGO;
@@ -83,18 +90,18 @@ TGameObject* TBuilderGameMap_Object::Build(int idObject, bool fast)
 		return NULL;
 	}
 	TObject* pObj = &(fit->second);
-	TBehaviourPatternModel* pModel = pObj->ptrGameObject->GetModel();
-	if( pModel==NULL )
+	TBehaviourPattern* pPattern = pObj->ptrGameObject->GetPattern();
+	if( pPattern==NULL )
 	{
 		BL_FIX_BUG();
 		return NULL;
 	}
 	if( pObj->flgLoadPhysic==false )
-		pObj->flgLoadPhysic = pModel->LoadByModule_Physic(fast);
+		pObj->flgLoadPhysic = pPattern->LoadByModule_Physic(fast);
 	if( pObj->flgLoadGraphic==false )
-		pObj->flgLoadGraphic = pModel->LoadByModule_Graphic(fast);
+		pObj->flgLoadGraphic = pPattern->LoadByModule_Graphic(fast);
 	if( pObj->flgLoadSound==false )
-		pObj->flgLoadSound = pModel->LoadByModule_Sound(fast);
+		pObj->flgLoadSound = pPattern->LoadByModule_Sound(fast);
 	
 	if( pObj->IsComplete() )
 	{

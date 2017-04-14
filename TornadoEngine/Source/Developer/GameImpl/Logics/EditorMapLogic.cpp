@@ -64,7 +64,7 @@ void TEditorMapLogic::StartEvent()
 
     mAggregationScenario_Client->GetCB_Progress()->Register( &TEditorMapLogic::ProgressScenario, this);
     mAggregationScenario_Client->GetCB_End()->Register( &TEditorMapLogic::EndScenario, this);
-		mAggregationScenario_Client->Setup( GetUseID_Module(), GetFBPM(), mScene.get(), mPhysicWorldID);
+		mAggregationScenario_Client->Setup( GetUseID_Module(), GetFBP(), mScene.get(), mPhysicWorldID);
   }
 
 	StartTimer();
@@ -85,7 +85,7 @@ void TEditorMapLogic::InitLog()
   GetLogger()->Init("EditorMap");
 }
 //-------------------------------------------------------------------
-TFactoryBehaviourPatternModel* TEditorMapLogic::GetFBPM()
+TFactoryBehaviourPattern* TEditorMapLogic::GetFBP()
 {
   return &mFBP_EoWM;
 }

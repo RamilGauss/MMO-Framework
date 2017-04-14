@@ -40,7 +40,7 @@ TBuilderGameMap_Param::~TBuilderGameMap_Param()
 }
 //-------------------------------------------------------------------
 void TBuilderGameMap_Param::Init(std::set<int>& useID_Module, 
-	TFactoryBehaviourPatternModel* pFBP, int id_world)
+	TFactoryBehaviourPattern* pFBP, int id_world)
 {
 	mSetUseID_Module = useID_Module;
 	mFBP      			 = pFBP;

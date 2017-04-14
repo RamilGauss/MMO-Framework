@@ -9,7 +9,7 @@ See for more information License.h.
 #define EditorMapLogicH
 
 #include "ModuleClientLogic.h"
-#include "FactoryBehaviourPatternModel_EoWM.h"
+#include "FactoryBehaviourPattern_EoWM.h"
 
 #include "GP_AggregationScenario_GameMap.h"
 
@@ -26,7 +26,7 @@ class TEditorMapLogic : public TModuleClientLogic
   TEditorMap* mEditorMap;
 
 	TPhysicEngine_Bullet::eStateWorld    mStatePhysicWorld;
-  TFactoryBehaviourPatternModel_EoWM   mFBP_EoWM;
+  TFactoryBehaviourPattern_EoWM   mFBP_EoWM;
 
   boost::scoped_ptr<TShowTankWoT_test> mPtrShowTank;
   boost::scoped_ptr<TControlCamera>    mPtrControlCamera;
@@ -45,7 +45,7 @@ public:
   virtual void StopEvent();
   virtual void InitLog();
 
-  virtual TFactoryBehaviourPatternModel* GetFBPM();
+  virtual TFactoryBehaviourPattern* GetFBP();
 
 protected:
   virtual bool WorkClient();

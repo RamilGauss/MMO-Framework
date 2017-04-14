@@ -715,11 +715,11 @@
 				Name="BehaviourPattern"
 				>
 				<File
-					RelativePath=".\Builder\FactoryBehaviourPatternModel.cpp"
+					RelativePath=".\Builder\FactoryBehaviourPattern.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Builder\FactoryBehaviourPatternModel.h"
+					RelativePath=".\Builder\FactoryBehaviourPattern.h"
 					>
 				</File>
 			</Filter>
@@ -871,83 +871,83 @@
 				Name="Pattern"
 				>
 				<File
-					RelativePath=".\Scene\Pattern\BehaviourPatternModel.cpp"
+					RelativePath=".\Scene\Pattern\BehaviourPattern.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\BehaviourPatternModel.h"
+					RelativePath=".\Scene\Pattern\BehaviourPattern.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Animated.cpp"
+					RelativePath=".\Scene\Pattern\Pattern_Animated.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Animated.h"
+					RelativePath=".\Scene\Pattern\Pattern_Animated.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Light.cpp"
+					RelativePath=".\Scene\Pattern\Pattern_Light.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Light.h"
+					RelativePath=".\Scene\Pattern\Pattern_Light.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Model.cpp"
+					RelativePath=".\Scene\Pattern\Pattern_Model.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Model.h"
+					RelativePath=".\Scene\Pattern\Pattern_Model.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Skybox.cpp"
+					RelativePath=".\Scene\Pattern\Pattern_Skybox.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Skybox.h"
+					RelativePath=".\Scene\Pattern\Pattern_Skybox.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Skydome.cpp"
+					RelativePath=".\Scene\Pattern\Pattern_Skydome.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Skydome.h"
+					RelativePath=".\Scene\Pattern\Pattern_Skydome.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Skyplane.cpp"
+					RelativePath=".\Scene\Pattern\Pattern_Skyplane.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Skyplane.h"
+					RelativePath=".\Scene\Pattern\Pattern_Skyplane.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Sound.cpp"
+					RelativePath=".\Scene\Pattern\Pattern_Sound.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Sound.h"
+					RelativePath=".\Scene\Pattern\Pattern_Sound.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Terrain.cpp"
+					RelativePath=".\Scene\Pattern\Pattern_Terrain.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Terrain.h"
+					RelativePath=".\Scene\Pattern\Pattern_Terrain.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Zone.cpp"
+					RelativePath=".\Scene\Pattern\Pattern_Zone.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Scene\Pattern\PatternModel_Zone.h"
+					RelativePath=".\Scene\Pattern\Pattern_Zone.h"
 					>
 				</File>
 			</Filter>

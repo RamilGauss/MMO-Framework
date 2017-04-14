@@ -13,14 +13,14 @@ See for more information License.h.
 #include <set>
 #include <map>
 
-class TFactoryBehaviourPatternModel;
+class TFactoryBehaviourPattern;
 class TGameObject;
 
 class DllExport TBuilderGameMap_Object
 {
-	int                            mID_World;
-	TFactoryBehaviourPatternModel* mFBP;
-	std::set<int>                  mSetID_Module;
+	int                       mID_World;
+	TFactoryBehaviourPattern* mFBP;
+	std::set<int>             mSetID_Module;
 
 	struct TObject
 	{
@@ -48,7 +48,7 @@ public:
   virtual ~TBuilderGameMap_Object();
 
 	void Init(std::set<int>& useID_Module, 
-		TFactoryBehaviourPatternModel* pFBP, int id_world);
+		TFactoryBehaviourPattern* pFBP, int id_world);
 	void SetNameMap(std::string nameMap);
 
 	// return id built object

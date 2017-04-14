@@ -41,7 +41,7 @@ TCallBackRegistrator2<nsGameProcess::GP_TypeScenario,int>* IGP_General::GetCB_Pr
 }
 //------------------------------------------------------------------------
 void IGP_General::Setup(std::set<int>& setID_Module, 
-									 TFactoryBehaviourPatternModel* pFBP, TScene* pScene, int id_world)
+									 TFactoryBehaviourPattern* pFBP, TScene* pScene, int id_world)
 {
 	mPtrScene      = pScene;
 	mFBP           = pFBP;

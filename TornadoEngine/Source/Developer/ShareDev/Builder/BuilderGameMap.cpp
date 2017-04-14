@@ -10,7 +10,7 @@ See for more information License.h.
 
 #include "MapItem.h"
 
-#include "FactoryBehaviourPatternModel.h"
+#include "FactoryBehaviourPattern.h"
 
 TBuilderGameMap::TBuilderGameMap()
 {
@@ -18,7 +18,7 @@ TBuilderGameMap::TBuilderGameMap()
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::Init(std::set<int>& useID_Module, 
-					 TFactoryBehaviourPatternModel* pFBP, int id_world)
+					 TFactoryBehaviourPattern* pFBP, int id_world)
 {
   mUseID_Module            = useID_Module;
   mFactoryBehaviourPattern = pFBP;

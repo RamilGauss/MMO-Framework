@@ -19,7 +19,7 @@ class TApplySetup_MapGraphicConfig;
 class TFactoryGameItem;
 struct TTableSoundItem;
 struct TMapItem;
-class TFactoryBehaviourPatternModel;
+class TFactoryBehaviourPattern;
 
 class DllExport TBuilderGameMap_Param
 {
@@ -27,12 +27,12 @@ class DllExport TBuilderGameMap_Param
 	boost::scoped_ptr<TApplySetup_GravityVector> 		mAS_GravityVector;
 	boost::scoped_ptr<TApplySetup_MapGraphicConfig> mAS_CameraUp;
 
-	std::set<int>                  mSetUseID_Module; 
-	TFactoryBehaviourPatternModel* mFBP; 
-  TFactoryGameItem*              mFactoryGameItem;
-	int                            mPhysicWorldID;
-	TMapItem*                      mMapItem;
-  TTableSoundItem*               mTableSound;
+	std::set<int>             mSetUseID_Module; 
+	TFactoryBehaviourPattern* mFBP; 
+  TFactoryGameItem*         mFactoryGameItem;
+	int                       mPhysicWorldID;
+	TMapItem*                 mMapItem;
+  TTableSoundItem*          mTableSound;
 
 	bool flgUsePhysic;
 	bool flgUseGraphic;
@@ -42,7 +42,7 @@ public:
   virtual ~TBuilderGameMap_Param();
 
 	void Init(std::set<int>& useID_Module, 
-		TFactoryBehaviourPatternModel* pFBP, int id_world);
+		TFactoryBehaviourPattern* pFBP, int id_world);
 	void Build( TMapItem* pMI );
 private:
 	bool UsePhysic();

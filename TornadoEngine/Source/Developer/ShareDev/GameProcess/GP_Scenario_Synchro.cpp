@@ -9,7 +9,7 @@ See for more information License.h.
 #include "Scene.h"
 #include "BL_Debug.h"
 #include "GameObject.h"
-#include "BehaviourPatternModel.h"
+#include "BehaviourPattern.h"
 
 TGP_Scenario_SynchroClient::TGP_Scenario_SynchroClient()
 {
@@ -52,7 +52,7 @@ void TGP_Scenario_SynchroClient::Work()
 			BL_FIX_BUG();
 			continue;
 		}
-		TBehaviourPatternModel* pModel = pGO->GetModel();
+		TBehaviourPattern* pModel = pGO->GetPattern();
 		if( pModel==NULL )
 			continue;
 

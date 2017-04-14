@@ -11,10 +11,7 @@ See for more information License.h.
 #include "TypeDef.h"
 
 #include "MapItem.h"
-//#include "DataExchange2Thread.h"
-//#include "GameObject.h"
 #include "CallBackRegistrator.h"
-//#include "ListModules.h"
 
 #include <string>
 #include <vector>
@@ -23,11 +20,11 @@ See for more information License.h.
 #include "BuilderGameMap_Object.h"
 #include "BuilderGameMap_Param.h"
 
-class TFactoryBehaviourPatternModel;
+class TFactoryBehaviourPattern;
 
 class DllExport TBuilderGameMap
 {
-  TFactoryBehaviourPatternModel* mFactoryBehaviourPattern;
+  TFactoryBehaviourPattern* mFactoryBehaviourPattern;
   int                       mPhysicWorldID;
   TMapItem*                 mMapItem;
 
@@ -45,7 +42,7 @@ public:
   TBuilderGameMap();
   virtual ~TBuilderGameMap();
 
-	void Init(std::set<int>& useID_Module, TFactoryBehaviourPatternModel* pFBP, int id_world);
+	void Init(std::set<int>& useID_Module, TFactoryBehaviourPattern* pFBP, int id_world);
   bool BuildMap( TMapItem* pMI );
 
   int GetProgress();

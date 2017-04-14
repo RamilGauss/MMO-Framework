@@ -7,17 +7,17 @@ See for more information License.h.
 
 #include "GameObject.h"
 
-#include "BehaviourPatternModel.h"
+#include "BehaviourPattern.h"
 
 TGameObject::TGameObject()
 {
-  mPtrModel   = NULL;
+  mPtrPattern   = NULL;
   mID = 0;
 }
 //----------------------------------------------------------------
 TGameObject::~TGameObject()
 {
-	delete mPtrModel;
+	delete mPtrPattern;
 }
 //----------------------------------------------------------------
 int TGameObject::GetID() const
@@ -30,13 +30,13 @@ void TGameObject::SetID( int id )
   mID = id;
 }
 //----------------------------------------------------------------
-void TGameObject::SetModel(TBehaviourPatternModel* p)
+void TGameObject::SetPattern(TBehaviourPattern* p)
 {
-  mPtrModel = p;
+  mPtrPattern = p;
 }
 //----------------------------------------------------------------
-TBehaviourPatternModel* TGameObject::GetModel()
+TBehaviourPattern* TGameObject::GetPattern()
 {
-  return mPtrModel;
+  return mPtrPattern;
 }
 //----------------------------------------------------------------

@@ -12,7 +12,7 @@ See for more information License.h.
 #include "Components.h"
 #include "LogicEventCallBack.h"
 #include "FactoryGameItem.h"
-#include "FactoryBehaviourPatternModel.h"
+#include "FactoryBehaviourPattern.h"
 #include <set>
 
 class DllExport TModuleLogic : public TModuleDev
@@ -20,7 +20,7 @@ class DllExport TModuleLogic : public TModuleDev
   volatile bool flgNeedExit;
 
 	std::string mTerrainPath;
-  TFactoryBehaviourPatternModel mFBPM;
+  TFactoryBehaviourPattern mFBP;
 protected:
   TComponents      mComp;
   TFactoryGameItem mFGI;
@@ -39,7 +39,7 @@ public:
   void SetComponents(TComponents components);
   TComponents* GetC();
   TFactoryGameItem* GetFGI();
-  virtual TFactoryBehaviourPatternModel* GetFBPM();
+  virtual TFactoryBehaviourPattern* GetFBP();
 
   static TModuleLogic* Get();
 
