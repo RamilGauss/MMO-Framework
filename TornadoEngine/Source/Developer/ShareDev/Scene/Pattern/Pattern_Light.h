@@ -17,7 +17,7 @@ public:
   TPattern_Light();
   virtual ~TPattern_Light();
 
-	virtual bool LoadByModule_Graphic(bool fast = false);
+	virtual bool BuildByModule_Graphic(bool fast = false);
 
 protected:
 

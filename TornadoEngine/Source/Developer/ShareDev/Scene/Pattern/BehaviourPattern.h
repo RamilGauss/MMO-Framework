@@ -102,15 +102,15 @@ public:
 
 	// разделение по модулям нужно потому что у разных реализаций разное кол-во модулей
   // сначала отрабатывает функция Логики, потом уже все остальные
-  virtual void LoadByModule_Logic();// инициализация внутренней структуры
-  virtual bool LoadByModule_Graphic(bool fast = false);
-  virtual bool LoadByModule_Physic( bool fast = false);
-  virtual bool LoadByModule_Sound(  bool fast = false);
+  virtual void BuildByModule_Logic();// инициализация внутренней структуры
+  virtual bool BuildByModule_Graphic(bool fast = false);
+  virtual bool BuildByModule_Physic( bool fast = false);
+  virtual bool BuildByModule_Sound(  bool fast = false);
 
-  virtual void UnloadByModule_Logic();// подготовка к освобождению ресурсов
-  virtual bool UnloadByModule_Graphic(bool fast = false);
-  virtual bool UnloadByModule_Physic( bool fast = false);
-  virtual bool UnloadByModule_Sound(  bool fast = false);
+  virtual void DestructByModule_Logic();// подготовка к освобождению ресурсов
+  virtual bool DestructByModule_Graphic(bool fast = false);
+  virtual bool DestructByModule_Physic( bool fast = false);
+  virtual bool DestructByModule_Sound(  bool fast = false);
 
   virtual void SynchroByModule_Logic();  // внешняя синхронизация от сервера(например,MMO)
   virtual void SynchroByModule_Graphic();// графика от физики

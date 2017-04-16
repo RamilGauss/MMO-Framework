@@ -72,7 +72,7 @@ int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 	pPattern->SetNameMapItem(mNameMap);
 	pPattern->SetPhysicWorld(mID_World);
 	
-	pGO->GetPattern()->LoadByModule_Logic();
+	pGO->GetPattern()->BuildByModule_Logic();
 
 	TObject object;
 	object.ptrGameObject = pGO;
@@ -97,11 +97,11 @@ TGameObject* TBuilderGameMap_Object::Build(int idObject, bool fast)
 		return NULL;
 	}
 	if( pObj->flgLoadPhysic==false )
-		pObj->flgLoadPhysic = pPattern->LoadByModule_Physic(fast);
+		pObj->flgLoadPhysic = pPattern->BuildByModule_Physic(fast);
 	if( pObj->flgLoadGraphic==false )
-		pObj->flgLoadGraphic = pPattern->LoadByModule_Graphic(fast);
+		pObj->flgLoadGraphic = pPattern->BuildByModule_Graphic(fast);
 	if( pObj->flgLoadSound==false )
-		pObj->flgLoadSound = pPattern->LoadByModule_Sound(fast);
+		pObj->flgLoadSound = pPattern->BuildByModule_Sound(fast);
 	
 	if( pObj->IsComplete() )
 	{

@@ -16,7 +16,6 @@ See for more information License.h.
 
 #include "EditorMap.h"
 #include "ControlCamera.h"
-#include "ProtocolGUI2Logic.h"
 #include "ConverterLocale.h"
 
 #include <boost/locale/util.hpp>
@@ -30,7 +29,6 @@ See for more information License.h.
 #include "TerrainItem.h"
 #include "BuilderShapeCylinder_Ogre.h"
 #include "BuilderTerrain_Ogre.h"
-
 //###
 
 TEditorMapLogic* g_EditorMapLogic = NULL;
@@ -114,10 +112,7 @@ void TEditorMapLogic::Input(int id_sender, void* p, int size)
       if(pTE->id==mID_TimerTryMoveCamera)
         mPtrControlCamera->CameraTryMove(); 
     }
-    break;
-    case nsListModules::FromSomeToLogic:// EditorMap
-			HandlePacketFromGUI(p, size);
-      break;
+	    break;
     default:BL_FIX_BUG();
   }
 }
@@ -310,30 +305,13 @@ void TEditorMapLogic::CheckTerrainGroupUpdateForSave()
 	// README: флаг flgIsTerrainGroupUpdate надо учитывать при попытке загрузки карты.
 }
 //---------------------------------------------------------------------------------------------
-void TEditorMapLogic::HandlePacketFromGUI(void* p, int size)
+void TEditorMapLogic::TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld)
 {
-	nsProtocolGUI2Logic::TBaseProtocolGUI2Logic* pBase = (nsProtocolGUI2Logic::TBaseProtocolGUI2Logic*)p;
-	switch( pBase->type )
+	mStatePhysicWorld = stateWorld;
+	if( mPhysicWorldID!=-1 )
 	{
-		case nsProtocolGUI2Logic::eLoadMap:
-		{
-			nsProtocolGUI2Logic::TLoadMap* pLoadMap = (nsProtocolGUI2Logic::TLoadMap*)p;
-			LoadGameMap(pLoadMap->nameMap);
-		}
-			break;
-		case nsProtocolGUI2Logic::eSetupStateCurrentPhysicWorld:
-		{
-			nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld* pSetupPhysicWorld = 
-				(nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld*)p;
-			mStatePhysicWorld = pSetupPhysicWorld->stateWorld;
-			if( mPhysicWorldID!=-1 )
-			{
-				mComp.pPhysicEngine->GetPE()->
-					Setup( mPhysicWorldID, mStatePhysicWorld );
-			}
-		}
-			break;
-		default:BL_FIX_BUG();
+		mComp.pPhysicEngine->GetPE()->
+			Setup( mPhysicWorldID, mStatePhysicWorld );
 	}
 }
 //---------------------------------------------------------------------------------------------

@@ -357,14 +357,6 @@
 			Name="GUI"
 			>
 			<Filter
-				Name="ProtocolGUI2Logic"
-				>
-				<File
-					RelativePath=".\GUI\ProtocolGUI2Logic.h"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="Main"
 				>
 				<File

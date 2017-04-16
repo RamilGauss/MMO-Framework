@@ -51,7 +51,7 @@ TPattern_Skyplane::~TPattern_Skyplane()
 
 }
 //---------------------------------------------------------------------------
-bool TPattern_Skyplane::LoadByModule_Graphic(bool fast)
+bool TPattern_Skyplane::BuildByModule_Graphic(bool fast)
 {
 	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
 	Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();

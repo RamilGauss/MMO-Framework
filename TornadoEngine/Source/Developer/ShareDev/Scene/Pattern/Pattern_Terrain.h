@@ -32,8 +32,8 @@ public:
   TPattern_Terrain();
   virtual ~TPattern_Terrain();
 
-	virtual bool LoadByModule_Graphic(bool fast = false);
-  virtual bool LoadByModule_Physic(bool fast = false);
+	virtual bool BuildByModule_Graphic(bool fast = false);
+  virtual bool BuildByModule_Physic(bool fast = false);
 
 	// модификация
 	void ModifyExtent();

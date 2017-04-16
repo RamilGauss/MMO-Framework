@@ -29,11 +29,6 @@ namespace nsListModules
     SoundEngine,        // client
     DataBase,           // common
     Timer,              // common
-
-    // сама логика себе ничего не присылает, значит другие модули (например, MyGUI из потока графики)
-    // смогут отправить событие Логике только через этот идентификатор
-    // для понимания этого - Логика дает квант другим модулям из своих функций, модули дают Логике пакеты-события.
-    FromSomeToLogic = Logic,// if wants send event from unusual source, such as GUI etc.
   }ID_Modules;
 }
 

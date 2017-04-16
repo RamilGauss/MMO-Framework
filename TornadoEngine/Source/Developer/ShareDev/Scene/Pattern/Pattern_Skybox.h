@@ -17,7 +17,7 @@ public:
   TPattern_Skybox();
   virtual ~TPattern_Skybox();
 
-	virtual bool LoadByModule_Graphic(bool fast = false);
+	virtual bool BuildByModule_Graphic(bool fast = false);
 };
 
 #endif

@@ -46,6 +46,9 @@ public:
   virtual void InitLog();
 
   virtual TFactoryBehaviourPattern* GetFBP();
+public:// TEditorMapLogic for GUI
+	void TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld);
+	void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic
 
 protected:
   virtual bool WorkClient();
@@ -54,22 +57,16 @@ protected:
   void HandleFromGraphicEngine(nsGraphicEngine::TBaseEvent* pBaseGE);
   void HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent* pMouseGE);
   void HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pKeyGE);
-
-	void HandlePacketFromGUI(void* p, int size);
 private:
   void StartTimer();
   void InitForms();
 
-  //void InitPhysic();
   void ShowTest();
 
   void FreeGraphicResource();
 
   void ProgressScenario(nsGameProcess::GP_TypeScenario type, int progress);
   void EndScenario(nsGameProcess::GP_TypeScenario type);
-public:
-  void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic
-
 protected:
   void CameraTryMove();
 };

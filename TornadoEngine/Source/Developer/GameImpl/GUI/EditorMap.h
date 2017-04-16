@@ -14,15 +14,8 @@ See for more information License.h.
 
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
-#define TypeEvent_EditorMap 999
-struct DllExport TLoadMapParam
-{
-  char/*std::string*/ nameMap[100];
-};
-
 class TEditorMap : public TBaseGUI
 {
-  TLoadMapParam mLMP;
 public:
   TEditorMap();
   virtual ~TEditorMap();

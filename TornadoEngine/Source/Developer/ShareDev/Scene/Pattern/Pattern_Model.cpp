@@ -71,7 +71,7 @@ bool TPattern_Model::UpdateFromGameItem(TBaseItem* pBI)
   return true;
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::LoadByModule_Logic()
+void TPattern_Model::BuildByModule_Logic()
 {
 	// найти имя модели
   std::string nameGameItem = GetNameGameItem();
@@ -89,7 +89,7 @@ void TPattern_Model::LoadByModule_Logic()
     LoadShapesByModule_Logic(pModel->mMapNamePart);
 }
 //---------------------------------------------------------------------------
-bool TPattern_Model::LoadByModule_Graphic(bool fast)
+bool TPattern_Model::BuildByModule_Graphic(bool fast)
 {
   int cntPart = GetCountPart();
   for( int iPart = 0 ; iPart < cntPart ; iPart++ )
@@ -105,7 +105,7 @@ bool TPattern_Model::LoadByModule_Graphic(bool fast)
       if( pDesc->type==TModelItem::eModel )
       {
         TModelDesc* pModelDesc = (TModelDesc*)pDesc;
-        pModelDesc->pModel->LoadByModule_Graphic();
+        pModelDesc->pModel->BuildByModule_Graphic();
       }
       else
       {
@@ -118,7 +118,7 @@ bool TPattern_Model::LoadByModule_Graphic(bool fast)
 	return true;
 }
 //---------------------------------------------------------------------------
-bool TPattern_Model::LoadByModule_Physic( bool fast )
+bool TPattern_Model::BuildByModule_Physic( bool fast )
 {
 	int cntPart = GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
@@ -134,7 +134,7 @@ bool TPattern_Model::LoadByModule_Physic( bool fast )
 			if( pDesc->type==TModelItem::eModel )
 			{
 				TModelDesc* pModelDesc = (TModelDesc*)pDesc;
-				pModelDesc->pModel->LoadByModule_Physic();
+				pModelDesc->pModel->BuildByModule_Physic();
 			}
 			else
 			{
@@ -147,27 +147,27 @@ bool TPattern_Model::LoadByModule_Physic( bool fast )
 	return true;
 }
 //---------------------------------------------------------------------------
-bool TPattern_Model::LoadByModule_Sound( bool fast )
+bool TPattern_Model::BuildByModule_Sound( bool fast )
 {
 	return true;
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::UnloadByModule_Logic()
+void TPattern_Model::DestructByModule_Logic()
 {
 
 }
 //---------------------------------------------------------------------------
-bool TPattern_Model::UnloadByModule_Graphic( bool fast )
+bool TPattern_Model::DestructByModule_Graphic( bool fast )
 {
 	return true;
 }
 //---------------------------------------------------------------------------
-bool TPattern_Model::UnloadByModule_Physic( bool fast )
+bool TPattern_Model::DestructByModule_Physic( bool fast )
 {
 	return true;
 }
 //---------------------------------------------------------------------------
-bool TPattern_Model::UnloadByModule_Sound( bool fast )
+bool TPattern_Model::DestructByModule_Sound( bool fast )
 {
 	return true;
 }
@@ -283,7 +283,7 @@ void TPattern_Model::LoadModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePa
       pModelDesc->pModel->SetMobility(GetMobility());// мобильность наследуется
       AddDesc(pModelDesc);
 
-      pPattern->LoadByModule_Logic();// дальше по итерации
+      pPattern->BuildByModule_Logic();// дальше по итерации
     }
   }
 }

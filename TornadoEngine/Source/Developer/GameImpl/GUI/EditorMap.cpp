@@ -7,25 +7,23 @@ See for more information License.h.
 
 #include "EditorMap.h"
 
-#include "Precompiled.h"
+#include <Precompiled.h>
 #include <atlconv.h>
+#include <OgreManualObject.h>
 
 #include "ListModules.h"
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
 #include "LogicEventCallBack.h"
 #include "EditorMapLogic.h"
-
-#include <OgreManualObject.h>
-#include "ProtocolGUI2Logic.h"
 #include "ConverterLocale.h"
+
 
 TEditorMap::TEditorMap() 
 {
   mBar                       = nullptr;
   mPopupMenu_File            = nullptr;
   mPopupMenu_Mode            = nullptr;
-  //mPopupMenu_Instruments     = nullptr;
   miOpen                     = nullptr;
   miSave                     = nullptr;
   miExit                     = nullptr;
@@ -109,11 +107,8 @@ void TEditorMap::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Ch
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Open(MyGUI::Widget* _sender)
 {
-	nsProtocolGUI2Logic::TLoadMap* pPacket = new nsProtocolGUI2Logic::TLoadMap;
-	pPacket->nameMap = "Field";
-  TModuleLogic::Get()->
-		AddEventWithoutCopy<nsProtocolGUI2Logic::TLoadMap>(nsListModules::FromSomeToLogic, pPacket );
-
+	std::string nameMap = "Field";
+	g_EditorMapLogic->LoadGameMap(nameMap);
 	// так можно скрывать мышку. Создатели MyGUI, не надо называть так мышиный курсор, я чтобы догадаться
 	// до этого названия неделю потратил! PointerManager -> MouseCursorManager
 	//MyGUI::PointerManager::getInstance().setVisible(false);
@@ -135,13 +130,9 @@ void TEditorMap::sl_ToggleUsePhysic(MyGUI::Widget* _sender)
 	state = !state;
 	cbUsePhysic->setStateSelected(state);
 
-	nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld* pPacket = new nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld;
-
-	pPacket->stateWorld = 
-		state ? TPhysicEngine_Bullet::eStateRealTime : TPhysicEngine_Bullet::eStatePause;
-
-	TModuleLogic::Get()->AddEventWithoutCopy
-		<nsProtocolGUI2Logic::TSetupStateCurrentPhysicWorld>(nsListModules::FromSomeToLogic, pPacket );
+	TPhysicEngine_Bullet::eStateWorld stateWorld = 
+	 state ? TPhysicEngine_Bullet::eStateRealTime : TPhysicEngine_Bullet::eStatePause;
+	g_EditorMapLogic->TogglePhysicState(stateWorld);
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::SetNameMode(std::string sMode)

@@ -35,7 +35,7 @@ TPattern_Terrain::~TPattern_Terrain()
 
 }
 //---------------------------------------------------------------------------
-bool TPattern_Terrain::LoadByModule_Graphic(bool fast)
+bool TPattern_Terrain::BuildByModule_Graphic(bool fast)
 {
 	if( IsLoad_Ogre()==false )
 		BeginLoad_Ogre();
@@ -43,7 +43,7 @@ bool TPattern_Terrain::LoadByModule_Graphic(bool fast)
 	return TryLoad_Ogre();
 }
 //---------------------------------------------------------------------------
-bool TPattern_Terrain::LoadByModule_Physic(bool fast)
+bool TPattern_Terrain::BuildByModule_Physic(bool fast)
 {
 	if( IsLoad_Bullet()==false )
 		BeginLoad_Bullet();

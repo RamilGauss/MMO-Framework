@@ -62,15 +62,15 @@ public:
   virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
 
   // Выполнить задания в каждом из потоков
-  virtual void LoadByModule_Logic();
-  virtual bool LoadByModule_Graphic(bool fast = false);
-  virtual bool LoadByModule_Physic(bool fast = false);
-  virtual bool LoadByModule_Sound(bool fast = false);
+  virtual void BuildByModule_Logic();
+  virtual bool BuildByModule_Graphic(bool fast = false);
+  virtual bool BuildByModule_Physic(bool fast = false);
+  virtual bool BuildByModule_Sound(bool fast = false);
 
-  virtual void UnloadByModule_Logic();
-  virtual bool UnloadByModule_Graphic(bool fast = false);
-  virtual bool UnloadByModule_Physic(bool fast = false);
-  virtual bool UnloadByModule_Sound(bool fast = false);
+  virtual void DestructByModule_Logic();
+  virtual bool DestructByModule_Graphic(bool fast = false);
+  virtual bool DestructByModule_Physic(bool fast = false);
+  virtual bool DestructByModule_Sound(bool fast = false);
 
   virtual void SynchroByModule_Logic();  // внешняя синхронизация
   virtual void SynchroByModule_Graphic();// графика от физики

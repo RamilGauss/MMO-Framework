@@ -123,42 +123,42 @@ bool TBehaviourPattern::UpdateFromGameItem(bool updateByMapParam)
   return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::LoadByModule_Logic()
+void TBehaviourPattern::BuildByModule_Logic()
 {
 
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::LoadByModule_Graphic(bool fast)
+bool TBehaviourPattern::BuildByModule_Graphic(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::LoadByModule_Physic(bool fast)
+bool TBehaviourPattern::BuildByModule_Physic(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::LoadByModule_Sound(bool fast)
+bool TBehaviourPattern::BuildByModule_Sound(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::UnloadByModule_Logic()
+void TBehaviourPattern::DestructByModule_Logic()
 {
 
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::UnloadByModule_Graphic(bool fast)
+bool TBehaviourPattern::DestructByModule_Graphic(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::UnloadByModule_Physic(bool fast)
+bool TBehaviourPattern::DestructByModule_Physic(bool fast)
 {
 	return true;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::UnloadByModule_Sound(bool fast)
+bool TBehaviourPattern::DestructByModule_Sound(bool fast)
 {
 	return true;
 }

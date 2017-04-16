@@ -29,7 +29,7 @@ TPattern_Skybox::~TPattern_Skybox()
 
 }
 //---------------------------------------------------------------------------
-bool TPattern_Skybox::LoadByModule_Graphic(bool fast)
+bool TPattern_Skybox::BuildByModule_Graphic(bool fast)
 {
 	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
 	Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();

@@ -17,7 +17,7 @@ public:
 	TPattern_Skyplane();
 	virtual ~TPattern_Skyplane();
 
-	virtual bool LoadByModule_Graphic(bool fast = false);
+	virtual bool BuildByModule_Graphic(bool fast = false);
 
 protected:
 	float GetPlane_D();
