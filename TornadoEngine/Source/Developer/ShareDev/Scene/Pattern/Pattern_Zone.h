@@ -16,6 +16,8 @@ class DllExport TPattern_Zone : public TBehaviourPattern
 public:
   TPattern_Zone();
   virtual ~TPattern_Zone();
+
+	virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

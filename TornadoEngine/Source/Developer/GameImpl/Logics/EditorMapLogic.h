@@ -17,6 +17,7 @@ See for more information License.h.
 #include "PhysicEngine_Bullet.h"
 
 class TEditorMap;
+class TStatusBar;
 class TShowTankWoT_test;
 class TControlCamera;
 
@@ -24,9 +25,10 @@ class TEditorMapLogic : public TModuleClientLogic
 {
   int         mPhysicWorldID;
   TEditorMap* mEditorMap;
+  TStatusBar* mStatusBar;
 
 	TPhysicEngine_Bullet::eStateWorld    mStatePhysicWorld;
-  TFactoryBehaviourPattern_EoWM   mFBP_EoWM;
+  TFactoryBehaviourPattern_EoWM        mFBP_EoWM;
 
   boost::scoped_ptr<TShowTankWoT_test> mPtrShowTank;
   boost::scoped_ptr<TControlCamera>    mPtrControlCamera;
@@ -49,6 +51,7 @@ public:
 public:// TEditorMapLogic for GUI
 	void TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld);
 	void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic
+	void ModifyTerrain_Extent();
 
 protected:
   virtual bool WorkClient();

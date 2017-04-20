@@ -95,22 +95,17 @@ bool TPattern_Light::BuildByModule_Graphic(bool fast)
 //---------------------------------------------------------------------------
 std::string TPattern_Light::GetNameLight()
 {
-	std::string nameMaterial;
-	GetFromParameterMap<std::string>(sName, nameMaterial);
-	return nameMaterial;
+	return GetFromParameterMap<std::string>(sName);
 }
 //---------------------------------------------------------------------------
 int TPattern_Light::GetType()
 {
-	int type;
-	GetFromParameterMap<int>(sType, type);
-	return type;
+	return GetFromParameterMap<int>(sType);
 }
 //---------------------------------------------------------------------------
 bool TPattern_Light::GetIsCastShadow()
 {
-	std::string v;
-	GetFromParameterMap<std::string>(sIsCastShadow, v);
+	std::string v = GetFromParameterMap<std::string>(sIsCastShadow);
 	if( v=="true" )
 		return true;
 	return false;
@@ -118,8 +113,7 @@ bool TPattern_Light::GetIsCastShadow()
 //---------------------------------------------------------------------------
 bool TPattern_Light::GetIsVisible()
 {
-	std::string v;
-	GetFromParameterMap<std::string>(sIsVisible, v);
+	std::string v = GetFromParameterMap<std::string>(sIsVisible);
 	if( v=="true" )
 		return true;
 	return false;
@@ -128,39 +122,32 @@ bool TPattern_Light::GetIsVisible()
 nsMathTools::TVector3 TPattern_Light::GetDirVector()
 {
 	nsMathTools::TVector3 result;
-	float v;
-	GetFromParameterMap<float>(sDir_x, v);
-	result.x = v;
-	GetFromParameterMap<float>(sDir_y, v);
-	result.y = v;
-	GetFromParameterMap<float>(sDir_z, v);
-	result.z = v;
+	result.x = GetFromParameterMap<float>(sDir_x);
+	result.y = GetFromParameterMap<float>(sDir_y);
+	result.z = GetFromParameterMap<float>(sDir_z);
 	return result;
 }
 //---------------------------------------------------------------------------
 nsMathTools::TVector3 TPattern_Light::GetDiffuseColour()
 {
 	nsMathTools::TVector3 result;
-	float v;
-	GetFromParameterMap<float>(sDiffuseColour_R, v);
-	result.x = v;
-	GetFromParameterMap<float>(sDiffuseColour_G, v);
-	result.y = v;
-	GetFromParameterMap<float>(sDiffuseColour_B, v);
-	result.z = v;
+	result.x = GetFromParameterMap<float>(sDiffuseColour_R);
+	result.y = GetFromParameterMap<float>(sDiffuseColour_G);
+	result.z = GetFromParameterMap<float>(sDiffuseColour_B);
 	return result;
 }
 //---------------------------------------------------------------------------
 nsMathTools::TVector3 TPattern_Light::GetSpecularColour()
 {
 	nsMathTools::TVector3 result;
-	float v;
-	GetFromParameterMap<float>(sSpecularColour_R, v);
-	result.x = v;
-	GetFromParameterMap<float>(sSpecularColour_G, v);
-	result.y = v;
-	GetFromParameterMap<float>(sSpecularColour_B, v);
-	result.z = v;
+	result.x = GetFromParameterMap<float>(sSpecularColour_R);
+	result.y = GetFromParameterMap<float>(sSpecularColour_G);
+	result.z = GetFromParameterMap<float>(sSpecularColour_B);
 	return result;
 }
 //---------------------------------------------------------------------------
+TManagerNamePattern::eBaseType TPattern_Light::GetBaseType()
+{
+	return TManagerNamePattern::eLight;
+}
+//------------------------------------------------------------------------

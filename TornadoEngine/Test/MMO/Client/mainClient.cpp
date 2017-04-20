@@ -57,7 +57,7 @@ int main(int argc, char** argv)
   const char* sLocalHost = inputArg.ip_server.data();
   unsigned int masterIP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
   int indexClientOnLogin = 0;
-  while(true)
+  while( true )
   {
     unsigned int startTime = ht_GetMSCount();
     // Login
@@ -84,8 +84,9 @@ int main(int argc, char** argv)
       printf("dTime=%d\n", deltaTime);
       old_delta_time = deltaTime;
     }
-    if(deltaTime < CLIENT_QUANT_TIME)
-      ht_msleep(CLIENT_QUANT_TIME-deltaTime);
+    if( deltaTime < CLIENT_QUANT_TIME )
+			ht_msleep(1);
+      //ht_msleep(CLIENT_QUANT_TIME-deltaTime);
   }
 
   return 0;

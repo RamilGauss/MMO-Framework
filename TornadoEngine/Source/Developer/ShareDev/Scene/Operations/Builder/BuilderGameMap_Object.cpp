@@ -46,16 +46,22 @@ void TBuilderGameMap_Object::SetNameMap(std::string nameMap)
 //------------------------------------------------------------------------------
 int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 {
+	if( mMapID_BuildObject.find(pObj->id)!=mMapID_BuildObject.end() )
+	{
+		BL_FIX_BUG();
+		return -1;
+	}
 	BL_ASSERT(pObj);
 
+	// неизменяемые параметры
 	TGameObject* pGO = new TGameObject;
 	pGO->SetID(pObj->id);
-	TBehaviourPattern* pPattern = 
-		mFBP->GetPatternByName(pObj->namePattern);
+	TBehaviourPattern* pPattern = mFBP->GetPatternByName(pObj->namePattern);
 	pGO->SetPattern(pPattern);
-	pPattern->SetPosition(pObj->position);
-	pPattern->SetOrientation(pObj->rotationQuaternion);
+	pPattern->SetNameMapItem(mNameMap);
+	pPattern->SetPhysicWorld(mID_World);
 
+	// далее идут параметры, которые могут меняться в процессе
 	// ищем настройку паттерна
 	TPatternConfigItem* pPatternConfig = 
 		(TPatternConfigItem*)TModuleLogic::Get()->GetFGI()->
@@ -69,10 +75,10 @@ int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 		if( fitPC!=pPatternConfig->mMapVariant.end() )
 			pPattern->SetParameterMap( fitPC->second );
 	}
-	pPattern->SetNameMapItem(mNameMap);
-	pPattern->SetPhysicWorld(mID_World);
-	
-	pGO->GetPattern()->BuildByModule_Logic();
+	pPattern->SetPosition(pObj->position);
+	pPattern->SetOrientation(pObj->rotationQuaternion);
+
+	pPattern->BuildByModule_Logic();
 
 	TObject object;
 	object.ptrGameObject = pGO;
@@ -91,11 +97,6 @@ TGameObject* TBuilderGameMap_Object::Build(int idObject, bool fast)
 	}
 	TObject* pObj = &(fit->second);
 	TBehaviourPattern* pPattern = pObj->ptrGameObject->GetPattern();
-	if( pPattern==NULL )
-	{
-		BL_FIX_BUG();
-		return NULL;
-	}
 	if( pObj->flgLoadPhysic==false )
 		pObj->flgLoadPhysic = pPattern->BuildByModule_Physic(fast);
 	if( pObj->flgLoadGraphic==false )

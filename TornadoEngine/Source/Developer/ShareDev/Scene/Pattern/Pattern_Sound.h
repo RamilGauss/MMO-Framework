@@ -16,6 +16,8 @@ class DllExport TPattern_Sound : public TBehaviourPattern
 public:
   TPattern_Sound();
   virtual ~TPattern_Sound();
+
+	virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

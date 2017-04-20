@@ -36,21 +36,7 @@ struct DllExport TMapItem : public TBaseItem
 	};
   typedef std::list<TObject> TListObject;
 
-	struct TFog
-	{
-		int mode;
-		nsMathTools::TVector3 colour;
-		float expDensity;
-		float linearStart;
-    float linearEnd;
-	};
-
-	std::string mNameTableSound;
-	nsMathTools::TVector3 mGravity;
-	TFog mFog;
 	TListObject mListObject;
-	nsMathTools::TVector3 mBackgroundColour;
-	nsMathTools::TVector3 mAmbientLight;
 
   TMapItem(std::string& name);
 }_PACKED;

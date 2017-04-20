@@ -23,6 +23,7 @@ protected:
 private:
   TMapStrCB mMapNameMakerPattern;
 
+  TCallBackRegistrator1<TBehaviourPattern*&> mCB_MapParameter;
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Animated;
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Light;
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Model;
@@ -43,6 +44,7 @@ public:
 protected:
   void AddPattern(TMapStrCBVT& vt_cb);
 private:
+  void MakeMapParameter(TBehaviourPattern*& p);
   void MakeAnimated(TBehaviourPattern*& p);
   void MakeLight(TBehaviourPattern*& p);
   void MakeModel(TBehaviourPattern*& p);

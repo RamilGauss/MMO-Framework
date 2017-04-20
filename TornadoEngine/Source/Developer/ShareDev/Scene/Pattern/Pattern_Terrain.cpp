@@ -28,6 +28,9 @@ TPattern_Terrain::TPattern_Terrain() :
 	flgIsLoad_Ogre = false;
 	mNeedLoadX_Ogre = 0;
 	mNeedLoadY_Ogre = 0;
+
+	mTerrainGroup         = NULL;
+	mTerrainGlobalOptions = NULL;
 }
 //---------------------------------------------------------------------------
 TPattern_Terrain::~TPattern_Terrain()
@@ -207,9 +210,7 @@ int TPattern_Terrain::GetLoad_Y_Ogre()
 //---------------------------------------------------------------------------
 std::string TPattern_Terrain::GetNameTerrainItem()
 {
-	std::string name;
-	GetFromParameterMap<std::string>(sNameGameItem, name);
-	return name;
+	return GetFromParameterMap<std::string>(sNameGameItem);
 }
 //---------------------------------------------------------------------------
 Ogre::Vector3 TPattern_Terrain::GetOrigin()
@@ -241,7 +242,25 @@ TBuilderTerrain_Ogre* TPattern_Terrain::GetBuilderTerrain_Ogre()
 //---------------------------------------------------------------------------
 void TPattern_Terrain::ModifyExtent()
 {
-	
+	TModifyTerrain_Extent::TDescTarget descTarget;
+	descTarget.nameMap = GetNameMapItem();
+	descTarget.iX = 0;
+	descTarget.iY = 0;
+	descTarget.position.x = 0;
+	descTarget.position.y = 0;
+	descTarget.position.z = 0;
+	descTarget.worldSize = 10;
+	descTarget.size = 3;
+	descTarget.heightFlat = 0;
+
+	TModifyTerrain_Extent::TLayer layer;
+	layer.worldSize           = 2;
+	layer.textureNames_Color  = "grass_green-01_diffusespecular.dds";
+	layer.textureNames_Normal = "grass_green-01_normalheight.dds";
+	descTarget.listLayer.push_back(layer);
+	descTarget.listLayer.push_back(layer);
+
+  mModifyExtent.Setup(descTarget, mTerrainGroup, mTerrainGlobalOptions);
 }
 //---------------------------------------------------------------------------
 void TPattern_Terrain::ModifyBlend()
@@ -254,3 +273,8 @@ void TPattern_Terrain::ModifyPaint()
 
 }
 //---------------------------------------------------------------------------
+TManagerNamePattern::eBaseType TPattern_Terrain::GetBaseType()
+{
+	return TManagerNamePattern::eTerrain;
+}
+//------------------------------------------------------------------------

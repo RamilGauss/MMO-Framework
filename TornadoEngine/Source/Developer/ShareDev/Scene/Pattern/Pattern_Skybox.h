@@ -18,6 +18,8 @@ public:
   virtual ~TPattern_Skybox();
 
 	virtual bool BuildByModule_Graphic(bool fast = false);
+	
+	virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

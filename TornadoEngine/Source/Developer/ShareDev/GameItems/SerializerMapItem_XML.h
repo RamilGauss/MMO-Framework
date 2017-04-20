@@ -26,21 +26,21 @@ public:
   virtual bool Save(TBaseItem* pItem);
 protected:
 
-	void LoadTableSound();
-  void LoadGravity();
-  void LoadFog();
-  void LoadBackgroundColour();
-	void LoadAmbientLight();
+	//void LoadTableSound();
+ // void LoadGravity();
+ // void LoadFog();
+ // void LoadBackgroundColour();
+	//void LoadAmbientLight();
 	void LoadSet();
 	void LoadScenario();
 
 	void LoadObject(TMapItem::TObject& object);
 
-	void SaveTableSound();
-  void SaveGravity();
-	void SaveFog();
-  void SaveBackgroundColour();
-	void SaveAmbientLight();
+	//void SaveTableSound();
+ // void SaveGravity();
+	//void SaveFog();
+ // void SaveBackgroundColour();
+	//void SaveAmbientLight();
 	void SaveSet();
 	void SaveScenario();
 	

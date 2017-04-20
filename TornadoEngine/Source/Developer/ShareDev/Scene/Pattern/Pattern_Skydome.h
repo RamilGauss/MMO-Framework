@@ -16,6 +16,8 @@ class DllExport TPattern_Skydome : public TBehaviourPattern
 public:
 	TPattern_Skydome();
 	virtual ~TPattern_Skydome();
+
+	virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

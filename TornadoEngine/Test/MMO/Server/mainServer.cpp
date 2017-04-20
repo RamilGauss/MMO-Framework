@@ -119,10 +119,11 @@ int main(int argc, char** argv)
     // burn rest time
     // замер времени слэйва
     unsigned int deltaTime = ht_GetMSCount() - startTime;
-    if(deltaTime>20)
+    if( deltaTime > 20 )
       printf("dTime=%d\n", deltaTime);
-    if(deltaTime < SERVER_QUANT_TIME)
-      ht_msleep(SERVER_QUANT_TIME-deltaTime);
+    if( deltaTime < SERVER_QUANT_TIME )
+			ht_msleep(1);
+      //ht_msleep(SERVER_QUANT_TIME-deltaTime);
   }
   return 0;
 }

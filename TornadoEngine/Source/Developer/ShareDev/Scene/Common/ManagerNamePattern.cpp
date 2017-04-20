@@ -9,21 +9,23 @@ See for more information License.h.
 
 namespace nsManagerNameTypeObjectMap
 {
-  const char* sAnimated = "Animated";
-  const char* sLight    = "Light";
-  const char* sModel    = "Model";
-  const char* sSkybox   = "Skybox";
-	const char* sSkydome  = "Skydome";
-	const char* sSkyplane = "Skyplane";
-  const char* sSound    = "Sound";
-  const char* sTerrain  = "Terrain";
-  const char* sZone     = "Zone";
+  const char* sMapParameter = "MapParameter";
+  const char* sAnimated 		= "Animated";
+  const char* sLight    		= "Light";
+  const char* sModel    		= "Model";
+  const char* sSkybox   		= "Skybox";
+	const char* sSkydome  		= "Skydome";
+	const char* sSkyplane 		= "Skyplane";
+  const char* sSound    		= "Sound";
+  const char* sTerrain  		= "Terrain";
+  const char* sZone     		= "Zone";
 }
 
 using namespace nsManagerNameTypeObjectMap;
 
 TManagerNamePattern::TManagerNamePattern()
 {
+  mVecNameType.push_back(sMapParameter);
   mVecNameType.push_back(sAnimated);
   mVecNameType.push_back(sLight);
   mVecNameType.push_back(sModel);
@@ -45,6 +47,11 @@ std::string TManagerNamePattern::Get(int index)
   if( index < 0 || index >= GetCount() )
     return "";
   return mVecNameType[index];
+}
+//-----------------------------------------------------------------------
+std::string TManagerNamePattern::MapParameter()
+{
+	return sMapParameter;
 }
 //-----------------------------------------------------------------------
 std::string TManagerNamePattern::Animated()

@@ -34,8 +34,8 @@ public:
 
 	// Synchro
 	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
-	virtual void UpdateGameObjectByGameItem(int id, bool updatePatternConfig = false);
-	virtual void UpdateGameMapParamByMapItem();
+	virtual void UpdateResourcesByGameObject(int id);
+	virtual void UpdateGameObjectByResources(int id);
 	virtual bool DeleteGameObject(int id);
 
 	// Destructor

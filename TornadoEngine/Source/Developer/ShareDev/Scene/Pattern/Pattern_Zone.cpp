@@ -25,3 +25,8 @@ TPattern_Zone::~TPattern_Zone()
 
 }
 //---------------------------------------------------------------------------
+TManagerNamePattern::eBaseType TPattern_Zone::GetBaseType()
+{
+	return TManagerNamePattern::eZone;
+}
+//------------------------------------------------------------------------

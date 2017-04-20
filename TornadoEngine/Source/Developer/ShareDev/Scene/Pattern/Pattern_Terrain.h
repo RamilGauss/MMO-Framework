@@ -10,9 +10,13 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "BehaviourPattern.h"
-#include <OgreVector3.h>
 #include "BuilderTerrain_Ogre.h"
 #include "BuilderTerrain_Bullet.h"
+#include "ModifyTerrain_Extent.h"
+
+#include <OgreVector3.h>
+#include <OgreTerrainGroup.h>
+#include <OgreTerrain.h>
 
 class DllExport TPattern_Terrain : public TBehaviourPattern
 {
@@ -28,12 +32,19 @@ class DllExport TPattern_Terrain : public TBehaviourPattern
 
 	TBuilderTerrain_Bullet mBuilderTerrain_Bullet;
 	TBuilderTerrain_Ogre   mBuilderTerrain_Ogre;
+
+	TModifyTerrain_Extent  mModifyExtent;
+
+	Ogre::TerrainGroup*         mTerrainGroup;
+	Ogre::TerrainGlobalOptions* mTerrainGlobalOptions;
 public:
   TPattern_Terrain();
   virtual ~TPattern_Terrain();
 
 	virtual bool BuildByModule_Graphic(bool fast = false);
   virtual bool BuildByModule_Physic(bool fast = false);
+
+	virtual TManagerNamePattern::eBaseType GetBaseType();
 
 	// модификация
 	void ModifyExtent();

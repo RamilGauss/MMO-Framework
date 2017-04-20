@@ -25,3 +25,8 @@ TPattern_Animated::~TPattern_Animated()
 
 }
 //---------------------------------------------------------------------------
+TManagerNamePattern::eBaseType TPattern_Animated::GetBaseType()
+{
+	return TManagerNamePattern::eAnimated;
+}
+//------------------------------------------------------------------------

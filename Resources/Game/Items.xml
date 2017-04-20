@@ -1,5 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TornadoEngine version="1.0" name="Homo Habilis">
+  <PatternConfig name="MapParameter">
+		<Comment value=""/>
+		<Variant name="Field">
+			<Property key="TableSound" value="0"/>
+			<Property key="Gravity_x" value="0"/>
+			<Property key="Gravity_y" value="-9.81"/>
+			<Property key="Gravity_z" value="0"/>
+			<Property key="Fog_mode"        value="3"/>
+			<Property key="Fog_colourRed"   value="0.8"/>
+			<Property key="Fog_colourGreen" value="0.8"/>
+			<Property key="Fog_colourBlue"  value="0.8"/>
+			<Property key="Fog_expDensity"  value="0"/>
+			<Property key="Fog_linearStart" value="4000"/>
+			<Property key="Fog_linearEnd"   value="10000"/>
+			<Property key="BackgroundColour_r" value="0.8"/>
+			<Property key="BackgroundColour_g" value="0.8"/>
+			<Property key="BackgroundColour_b" value="0.8"/>
+			<Property key="AmbientLight_r" value="1.0"/>
+			<Property key="AmbientLight_g" value="1.0"/>
+			<Property key="AmbientLight_b" value="1.0"/>
+		</Variant>
+  </PatternConfig>
   <PatternConfig name="Model">
 		<Comment value=""/>
 		<Variant name="SimpleCylinder">
@@ -2890,32 +2912,28 @@
 		</Graphic>
   </Terrain>
   <Map name="Field">
-	  <TableSound name="0"/>
-    <Gravity><!-- Ускорение свободного падения -->
-      <Property key="x" value="0"/>
-      <Property key="y" value="-9.81"/>
-      <Property key="z" value="0"/>
-    </Gravity>
-		<Fog>
-			<Property key="mode" value="3"/>
-			<Property key="colourRed" value="0.8"/>
-			<Property key="colourGreen" value="0.8"/>
-			<Property key="colourBlue" value="0.8"/>
-			<Property key="expDensity" value="0"/>
-			<Property key="linearStart" value="4000"/>
-			<Property key="linearEnd" value="10000"/>
-		</Fog>
-		<BackgroundColour>
-      <Property key="r" value="0.8"/>
-      <Property key="g" value="0.8"/>
-      <Property key="b" value="0.8"/>
-		</BackgroundColour>
-		<AmbientLight>
-      <Property key="r" value="1.0"/>
-      <Property key="g" value="1.0"/>
-      <Property key="b" value="1.0"/>
-		</AmbientLight>
 	  <Set><!-- Набор объектов сцены -->
+		  <Object>
+				<Identity>
+					<Property key="Pattern" value="MapParameter"/>
+					<Property key="ID"      value="0"/><!-- для параметров карты всегда id = 0 -->
+				</Identity>
+				<Position><!-- Координаты центра -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<RotationQuaternion><!-- Ориентация -->
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>						
+				</RotationQuaternion>
+				<PatternConfig>
+					<Property key="Name"    value="MapParameter"/>
+					<Property key="Variant" value="Field"/>
+				</PatternConfig>
+			</Object>
 		  <Object>
 				<Identity>
 					<Property key="Pattern" value="Zone"/>

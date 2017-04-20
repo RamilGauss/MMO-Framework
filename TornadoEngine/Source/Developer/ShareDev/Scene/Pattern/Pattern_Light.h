@@ -19,6 +19,7 @@ public:
 
 	virtual bool BuildByModule_Graphic(bool fast = false);
 
+	virtual TManagerNamePattern::eBaseType GetBaseType();
 protected:
 
 	std::string GetNameLight();

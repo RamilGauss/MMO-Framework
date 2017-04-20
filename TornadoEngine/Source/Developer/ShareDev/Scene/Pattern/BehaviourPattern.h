@@ -25,6 +25,7 @@ See for more information License.h.
 #include "MathTools.h"
 #include "PatternConfigItem.h"
 #include "BL_Debug.h"
+#include "ManagerNamePattern.h"
 
 #include "Builder_Ogre.h"
 #include "Builder_OpenAL.h"
@@ -79,7 +80,7 @@ public:
 	virtual std::string GetNameMapItem();
 
 	// для поиска в редакторе объекта для редактирования
-	virtual int GetBaseType();
+	virtual TManagerNamePattern::eBaseType GetBaseType();
 
 	// меняет физику
 	virtual void SetPosition(nsMathTools::TVector3& v);
@@ -92,13 +93,7 @@ public:
 
   // от одного Паттерна другому, упаковано 
   virtual bool SetParameterFromPattern(TContainer c);// to Client
-  virtual TContainer GetParameterToPattern();// from Slave
-
-  // тип - подвижный, неподвижный - для оптимизации (в основном для моделей)
-  // требуется ли каждый физ. кадр синхронизировать с графикой и звуком
-  virtual bool GetNeedSynchro();// B
-
-  virtual bool UpdateFromGameItem(bool updateByMapParam = false);
+  virtual TContainer GetParameterToPattern(bool full = false);// from Slave
 
 	// разделение по модулям нужно потому что у разных реализаций разное кол-во модулей
   // сначала отрабатывает функция Логики, потом уже все остальные
@@ -117,6 +112,16 @@ public:
   virtual void SynchroByModule_Physic(); // внутренняя синхронизация (физика влияет сама на себя)
   virtual void SynchroByModule_Sound();  // звук от физики
 
+	// обновить все ресурсы, на основании которых строится объект на карте
+	// учитывает изменения, совершённые через интерфейс паттерна
+	// то есть паттерн копит все изменения
+	virtual void UpdateResources();
+	
+	// обновить внутренности по ресурсам
+	virtual void UpdateByResourcesByModule_Logic();
+	virtual void UpdateByResourcesByModule_Graphic();
+	virtual void UpdateByResourcesByModule_Physic();
+	virtual void UpdateByResourcesByModule_Sound();
 protected:
   TBuilder_Ogre*   GetBuilderOgre();
   TBuilder_Bullet* GetBuilderBullet();
@@ -128,12 +133,27 @@ protected:
 
 protected:
 	template<typename T>
+	T GetFromParameterMap(std::string name, T* defaultT = NULL );
+
+	template<typename T>
 	bool GetFromParameterMap(std::string name, T& result);
 
 	template<typename T>
 	bool SetFromParameterMap(std::string name, T& value);
 };
 
+//----------------------------------------------------------------------------
+template<typename T>
+T TBehaviourPattern::GetFromParameterMap(std::string name, T* defaultT )
+{
+	T result;
+	bool flgResult = GetFromParameterMap(name, result);
+	if( flgResult )
+		return result;
+	if( defaultT )
+		result = *defaultT;
+	return result;
+}
 //----------------------------------------------------------------------------
 template<typename T>
 bool TBehaviourPattern::GetFromParameterMap(std::string name, T& result)

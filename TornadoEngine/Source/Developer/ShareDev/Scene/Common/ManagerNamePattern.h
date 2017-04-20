@@ -20,6 +20,7 @@ public:
   int GetCount();
   std::string Get(int index);
 
+  static std::string MapParameter();
   static std::string Animated();
   static std::string Light();
   static std::string Model();
@@ -33,7 +34,8 @@ public:
 	typedef enum
 	{
 		eBase = 0,
-
+		
+		eMapParameter,
 		eAnimated,
 		eLight,
 		eModel,

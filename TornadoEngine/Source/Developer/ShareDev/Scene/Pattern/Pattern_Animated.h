@@ -16,6 +16,8 @@ class DllExport TPattern_Animated : public TBehaviourPattern
 public:
   TPattern_Animated();
   virtual ~TPattern_Animated();
+
+	virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

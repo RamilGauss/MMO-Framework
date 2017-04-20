@@ -108,19 +108,9 @@ bool TBehaviourPattern::SetParameterFromPattern(TContainer c)
   return false;
 }
 //------------------------------------------------------------------------
-TContainer TBehaviourPattern::GetParameterToPattern()
+TContainer TBehaviourPattern::GetParameterToPattern(bool full)
 {
   return TContainer();
-}
-//------------------------------------------------------------------------
-bool TBehaviourPattern::GetNeedSynchro()
-{
-  return true;//mStructParameterMap.flgMobility;
-}
-//------------------------------------------------------------------------
-bool TBehaviourPattern::UpdateFromGameItem(bool updateByMapParam)
-{
-  return true;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::BuildByModule_Logic()
@@ -183,6 +173,31 @@ void TBehaviourPattern::SynchroByModule_Sound()
 
 }
 //------------------------------------------------------------------------
+void TBehaviourPattern::UpdateResources()
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::UpdateByResourcesByModule_Logic()
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::UpdateByResourcesByModule_Graphic()
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::UpdateByResourcesByModule_Physic()
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::UpdateByResourcesByModule_Sound()
+{
+
+}
+//------------------------------------------------------------------------
 TBuilder_Ogre* TBehaviourPattern::GetBuilderOgre()
 {
   return &g_BuilderOgre;
@@ -213,8 +228,8 @@ TDestructor_OpenAL* TBehaviourPattern::GetDestructorOpenAL()
   return &g_DestructorOpenAL;
 }
 //------------------------------------------------------------------------
-int TBehaviourPattern::GetBaseType()
+TManagerNamePattern::eBaseType TBehaviourPattern::GetBaseType()
 {
-	return 0;
+	return TManagerNamePattern::eBase;
 }
 //------------------------------------------------------------------------

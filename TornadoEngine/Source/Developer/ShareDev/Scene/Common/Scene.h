@@ -31,12 +31,6 @@ public:
   TScene();
   virtual ~TScene();
 
-  // квантование
-  // дать квант для внутренней синхронизации
-  void UpdateFromPhysic();// убрать???
-  void UpdateToGraphic(); // убрать???
-  void UpdateToSound();   // убрать???
-  //---------------------------------------------------------------------------
   // выборка
   virtual int GetCountUsing();
   virtual TGameObject* GetUsingByIndex(int index);

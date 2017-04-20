@@ -76,45 +76,36 @@ bool TPattern_Skyplane::BuildByModule_Graphic(bool fast)
 //---------------------------------------------------------------------------
 float TPattern_Skyplane::GetPlane_D()
 {
-	float v = 0;
-	GetFromParameterMap<float>(sPlane_D, v);
-	return v;
+	return GetFromParameterMap<float>(sPlane_D);
 }
 //---------------------------------------------------------------------------
 nsMathTools::TVector3 TPattern_Skyplane::GetPlane_Normal()
 {
 	nsMathTools::TVector3 normal(0,0,0);
-	GetFromParameterMap<float>(sPlane_normal_x, normal.x);
-	GetFromParameterMap<float>(sPlane_normal_y, normal.y);
-	GetFromParameterMap<float>(sPlane_normal_z, normal.z);
+	normal.x = GetFromParameterMap<float>(sPlane_normal_x);
+	normal.y = GetFromParameterMap<float>(sPlane_normal_y);
+	normal.z = GetFromParameterMap<float>(sPlane_normal_z);
 	return normal;
 }
 //---------------------------------------------------------------------------
 std::string TPattern_Skyplane::GetNameMaterialOgre()
 {
-	std::string v;
-	GetFromParameterMap<std::string>(sNameOgreMaterial, v);
-	return v;
+	return GetFromParameterMap<std::string>(sNameOgreMaterial);
 }
 //---------------------------------------------------------------------------
 float TPattern_Skyplane::GetScale()
 {
-	float v = 0;
-	GetFromParameterMap<float>(sScale, v);
-	return v;
+	return GetFromParameterMap<float>(sScale);
 }
 //---------------------------------------------------------------------------
 float TPattern_Skyplane::GetTiling()
 {
-	float v = 0;
-	GetFromParameterMap<float>(sTiling, v);
-	return v;
+	return GetFromParameterMap<float>(sTiling);
 }
 //---------------------------------------------------------------------------
 bool TPattern_Skyplane::GetDrawFirst()
 {
-	std::string drawFirst;
-	GetFromParameterMap<std::string>(sDrawFirst, drawFirst);
+	std::string drawFirst = GetFromParameterMap<std::string>(sDrawFirst);
 	if(drawFirst=="true")
 		return true;
 	return false;
@@ -122,22 +113,21 @@ bool TPattern_Skyplane::GetDrawFirst()
 //---------------------------------------------------------------------------
 float TPattern_Skyplane::GetBow()
 {
-	float v = 0;
-	GetFromParameterMap<float>(sBow, v);
-	return v;
+	return GetFromParameterMap<float>(sBow);
 }
 //---------------------------------------------------------------------------
 float TPattern_Skyplane::GetXsegments()
 {
-	float v = 0;
-	GetFromParameterMap<float>(sXsegments, v);
-	return v;
+	return GetFromParameterMap<float>(sXsegments);
 }
 //---------------------------------------------------------------------------
 float TPattern_Skyplane::GetYsegments()
 {
-	float v = 0;
-	GetFromParameterMap<float>(sYsegments, v);
-	return v;
+	return GetFromParameterMap<float>(sYsegments);
 }
 //---------------------------------------------------------------------------
+TManagerNamePattern::eBaseType TPattern_Skyplane::GetBaseType()
+{
+	return TManagerNamePattern::eSky;
+}
+//------------------------------------------------------------------------

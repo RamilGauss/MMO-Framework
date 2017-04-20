@@ -59,7 +59,7 @@ public:
   virtual bool SetParameterFromPattern(TContainer c);// L
   virtual TContainer GetParameterToPattern();// B - Slave
 
-  virtual bool UpdateFromGameItem(TBaseItem* pBI);// L
+	virtual TManagerNamePattern::eBaseType GetBaseType();
 
   // Выполнить задания в каждом из потоков
   virtual void BuildByModule_Logic();

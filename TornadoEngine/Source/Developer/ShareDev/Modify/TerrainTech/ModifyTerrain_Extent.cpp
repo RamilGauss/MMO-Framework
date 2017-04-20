@@ -9,7 +9,14 @@ See for more information License.h.
 
 TModifyTerrain_Extent::TDescTarget::TDescTarget()
 {
-
+	iX = 0;
+	iY = 0;
+	position.x = 0;
+	position.y = 0;
+	position.z = 0;
+	worldSize = 1;
+	size = 3;
+	heightFlat = 0;
 }
 //------------------------------------------------------------------------
 TModifyTerrain_Extent::TModifyTerrain_Extent()
@@ -23,13 +30,19 @@ void TModifyTerrain_Extent::Setup(TDescTarget& descTarget,
 {
 	mTerrainGroup   = pTG;
 	mTerrainOptions = pTGO;
-
 }
 //------------------------------------------------------------------------
 void TModifyTerrain_Extent::setupContent()
 {
+	// если все новые параметры совпадают со старыми, то не делать апдейт и выйти.
+
+	// грохнуть все старые данные
+
+	// создать заново
+	
 
 }
+//------------------------------------------------------------------------
 	/*
 	bool blankTerrain = false;
 	//blankTerrain = true;

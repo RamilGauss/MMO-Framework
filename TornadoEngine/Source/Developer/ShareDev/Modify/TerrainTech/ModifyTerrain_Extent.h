@@ -15,6 +15,9 @@ See for more information License.h.
 #include "OgreTerrainGroup.h"
 #include "OgreTerrain.h"
 
+// ћодификаци€ в отличии от Builder и Destruct не раздел€етс€ на физику и графику.
+// ѕотому что это используетс€ в редакторе, который всегда использует графику и физику.
+
 class DllExport TModifyTerrain_Extent
 {
 	Ogre::TerrainGroup*         mTerrainGroup;
@@ -28,14 +31,11 @@ public:
 		std::string textureNames_Color;
 		std::string textureNames_Normal;
 	};
-
 	struct TDescTarget
-	{
-		// нужно дл€ имени
+	{// нужно дл€ имени
 		std::string nameMap;
 		short iX;// [-32000..32000]
 		short iY;// [-32000..32000]
-
 		// геометрические параметры
 		nsMathTools::TVector3 position;// by center
 		// квадратна€ плоскость
@@ -43,9 +43,8 @@ public:
 		int   size;// must be 2^n + 1, [2,3,5,9,17,33,65,129,257,513,1025,2049,..]
 		// высота 
 		float heightFlat;
-
-		// графические параметры
-		// меньше 2 слоЄв быть не может, один слой - минимум, 2 - максимум на границе высот
+		// графические параметры, меньше 2 слоЄв быть не может, 
+		// один слой - дл€ минимума высоты, последний - дл€ максимума высоты
 		std::list<TLayer> listLayer;
 		TDescTarget();
 	};

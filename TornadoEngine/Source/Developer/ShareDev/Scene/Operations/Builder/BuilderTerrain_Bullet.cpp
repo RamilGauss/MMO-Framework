@@ -18,7 +18,7 @@ See for more information License.h.
 #include <ios>
 #include <iostream>
 
-#include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
+#include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
 
 TBuilderTerrain_Bullet::TBuilderTerrain_Bullet()
 {

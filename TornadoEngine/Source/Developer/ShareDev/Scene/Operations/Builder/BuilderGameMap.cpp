@@ -24,7 +24,6 @@ void TBuilderGameMap::Init(std::set<int>& useID_Module,
   mFactoryBehaviourPattern = pFBP;
 	mPhysicWorldID           = id_world;
 
-	mBuilderGameMap_Param.Init(mUseID_Module, mFactoryBehaviourPattern, mPhysicWorldID);
   mBuilderGameObject.Init(mUseID_Module, mFactoryBehaviourPattern, mPhysicWorldID);
 }
 //--------------------------------------------------------------------------------------------
@@ -45,7 +44,6 @@ bool TBuilderGameMap::BuildMap( TMapItem* pMI )
   mBeginIteratorMapObject = mMapItem->mListObject.begin();
 
 	mBuilderGameObject.SetNameMap(mMapItem->mName);
-	mBuilderGameMap_Param.Build(mMapItem);
 	return true;
 }
 //--------------------------------------------------------------------------------------------

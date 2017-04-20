@@ -15,19 +15,7 @@ See for more information License.h.
 namespace nsSerializerMapItem_XML
 {
   const char* sMap            			= "Map";
-	const char* sTableSound     			= "TableSound";
-  const char* sGravity        			= "Gravity";
   const char* sNameTableSound 			= "name";
-	const char* sFog         					= "Fog";
-	const char* sMode				 					= "mode";
-	const char* sColourRed   					= "colourRed";
-	const char* sColourGreen 					= "colourGreen";
-	const char* sColourBlue  					= "colourBlue";
-	const char* sExpDensity	 					= "expDensity";
-	const char* sLinearStart 					= "linearStart";
-	const char* sLinearEnd	 					= "linearEnd";
-  const char* sBackgroundColour   	= "BackgroundColour";
-	const char* sAmbientLight   			= "AmbientLight";
 	const char* sSet					  			= "Set";
 	const char* sObject				  			= "Object";
 	const char* sIdentity			  			= "Identity";
@@ -63,11 +51,6 @@ bool TSerializerMapItem_XML::Load(TBaseItem* pItem)
   if(resEnter==false)
     return false;
 
-	LoadTableSound();
-  LoadGravity();
-	LoadFog();
-  LoadBackgroundColour();
-  LoadAmbientLight();
   LoadSet();
 	LoadScenario();
   return true;
@@ -82,75 +65,9 @@ bool TSerializerMapItem_XML::Save(TBaseItem* pItem)
   if(resEnter==false)
     return false;
 
-	SaveTableSound();
-  SaveGravity();
-	SaveFog();
-  SaveBackgroundColour();
-	SaveAmbientLight();
 	SaveSet();
 	SaveScenario();
   return mXML->Save();
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::LoadTableSound()
-{
-  mMapItem->mNameTableSound = mXML->ReadSectionAttr(sTableSound, 0, sNameTableSound);
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::LoadGravity()
-{
-  if(mXML->EnterSection(sGravity, 0))
-  {
-    LoadVector3ByProperty(mMapItem->mGravity);
-    mXML->LeaveSection();
-  }
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::LoadBackgroundColour()
-{
-  if(mXML->EnterSection(sBackgroundColour, 0))
-  {
-    LoadColour(mMapItem->mBackgroundColour);
-    mXML->LeaveSection();
-  }
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::LoadAmbientLight()
-{
-	if(mXML->EnterSection(sAmbientLight, 0))
-	{
-		LoadColour(mMapItem->mAmbientLight);
-		mXML->LeaveSection();
-	}
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::LoadFog()
-{
-	if(mXML->EnterSection(sFog, 0))
-	{
-		int cntProperty = GetCountProperty();
-		for( int i = 0 ; i < cntProperty ; i++ )
-		{
-			std::string key, value;
-			if( LoadProperty(i,key, value)==false )
-				continue;
-			if( key==sMode )
-				mMapItem->mFog.mode = boost::lexical_cast<int>(value);
-			if( key==sColourRed)
-				mMapItem->mFog.colour.x = boost::lexical_cast<float>(value);
-			if( key==sColourGreen)
-				mMapItem->mFog.colour.y = boost::lexical_cast<float>(value);
-			if( key==sColourBlue)
-				mMapItem->mFog.colour.z = boost::lexical_cast<float>(value);
-			if( key==sExpDensity)
-				mMapItem->mFog.expDensity = boost::lexical_cast<float>(value);
-			if( key==sLinearStart)
-				mMapItem->mFog.linearStart = boost::lexical_cast<float>(value);
-			if( key==sLinearEnd)
-				mMapItem->mFog.linearEnd = boost::lexical_cast<float>(value);
-		}
-		mXML->LeaveSection();
-	}
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadSet()
@@ -180,73 +97,6 @@ void TSerializerMapItem_XML::LoadScenario()
     // reserve
     mXML->LeaveSection();
   }
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::SaveTableSound()
-{
-  TAttrInfo attr;
-  attr.Name  = sNameTableSound;
-  attr.Value = mMapItem->mNameTableSound;
-
-  mXML->AddSection(sTableSound, 1, &attr);
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::SaveGravity()
-{
-  if(mXML->AddSectionAndEnter(sGravity))
-  {
-    SaveVector3ByProperty(mMapItem->mGravity);
-    mXML->LeaveSection();
-  }
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::SaveBackgroundColour()
-{
-  if(mXML->AddSectionAndEnter(sBackgroundColour))
-  {
-    SaveVector3ByProperty(mMapItem->mBackgroundColour);
-    mXML->LeaveSection();
-  }
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::SaveAmbientLight()
-{
-	if(mXML->AddSectionAndEnter(sAmbientLight))
-	{
-		SaveVector3ByProperty(mMapItem->mAmbientLight);
-		mXML->LeaveSection();
-	}
-}
-//-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_XML::SaveFog()
-{
-	if(mXML->AddSectionAndEnter(sFog))
-	{
-		std::string key, value;
-		key   = sMode;
-		value = boost::lexical_cast<std::string>(mMapItem->mFog.mode);
-		SaveProperty(key, value);
-		key   = sColourRed;
-		value = boost::lexical_cast<std::string>(mMapItem->mFog.colour.x);
-		SaveProperty(key, value);
-		key   = sColourGreen;
-		value = boost::lexical_cast<std::string>(mMapItem->mFog.colour.y);
-		SaveProperty(key, value);
-		key   = sColourBlue;
-		value = boost::lexical_cast<std::string>(mMapItem->mFog.colour.z);
-		SaveProperty(key, value);
-		key   = sExpDensity;
-		value = boost::lexical_cast<std::string>(mMapItem->mFog.expDensity);
-		SaveProperty(key, value);
-		key   = sLinearStart;
-		value = boost::lexical_cast<std::string>(mMapItem->mFog.linearStart);
-		SaveProperty(key, value);
-		key   = sLinearEnd;
-		value = boost::lexical_cast<std::string>(mMapItem->mFog.linearEnd);
-		SaveProperty(key, value);
-
-		mXML->LeaveSection();
-	}
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::SaveSet()

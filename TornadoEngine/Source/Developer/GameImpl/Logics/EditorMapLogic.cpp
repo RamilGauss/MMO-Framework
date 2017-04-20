@@ -17,18 +17,15 @@ See for more information License.h.
 #include "EditorMap.h"
 #include "ControlCamera.h"
 #include "ConverterLocale.h"
+#include "GameObject.h"
+#include "Pattern_Terrain.h"
 
 #include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
 
 //###
 #include "ShowTankWoT_test.h"
-#include "BuilderShapePlate_Ogre.h"
-#include "MaterialItem.h"
-#include "ShapeItem.h"
-#include "TerrainItem.h"
-#include "BuilderShapeCylinder_Ogre.h"
-#include "BuilderTerrain_Ogre.h"
+#include "StatusBar.h"
 //###
 
 TEditorMapLogic* g_EditorMapLogic = NULL;
@@ -45,6 +42,9 @@ TEditorMapLogic::TEditorMapLogic()
   mID_TimerTryMoveCamera = -1;
   mPtrShowTank.reset(new TShowTankWoT_test);
   mPtrControlCamera.reset(new TControlCamera);
+
+	mEditorMap = NULL;
+	mStatusBar = NULL;
 }
 //-------------------------------------------------------------------
 TEditorMapLogic::~TEditorMapLogic()
@@ -126,11 +126,20 @@ void TEditorMapLogic::InitForms()
 { 
   mEditorMap = new TEditorMap;
   mEditorMap->Show();
+
+	mStatusBar = new TStatusBar;
+	mStatusBar->Show();
+
+	mStatusBar->ClearText();
+	mStatusBar->AddText("Editor Game Map.");
+	
+	mStatusBar->AddText("----------------------------------------");
 }
 //----------------------------------------------------------
 void TEditorMapLogic::FreeGraphicResource()
 {
   delete mEditorMap;
+	delete mStatusBar;
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::LoadGameMap(std::string& nameMap)
@@ -271,7 +280,7 @@ void TEditorMapLogic::ShowTest()
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
 	pCamera->setPosition(60,60,60);
 	pCamera->lookAt(0,30,0);
-	Ogre::Radian fovy(3.14f/3);// масштаб относительно 1 у.е.
+	//Ogre::Radian fovy(3.14f/3);// масштаб относительно 1 у.е.
 	//pCamera->setFOVy(fovy);
 
 	Ogre::Real f = pCamera->getFarClipDistance();
@@ -312,6 +321,28 @@ void TEditorMapLogic::TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateW
 	{
 		mComp.pPhysicEngine->GetPE()->
 			Setup( mPhysicWorldID, mStatePhysicWorld );
+	}
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::ModifyTerrain_Extent()
+{
+	if( mAggregationScenario_Client.get()==NULL )
+		return;
+	if( mAggregationScenario_Client->GetCurrentScenarioType()!=nsGameProcess::eSynchro )
+		return;
+
+	int cnt = mScene->GetCountUsing();
+	for( int i = 0 ; i < cnt ; i++ )
+	{
+		TGameObject* pGO = mScene->GetUsingByIndex(i);
+		if( pGO==NULL )
+			continue;
+		if( pGO->GetPattern()->GetBaseType()!=TManagerNamePattern::eTerrain )
+			continue;
+		TPattern_Terrain* pTerrain = (TPattern_Terrain*)pGO->GetPattern();
+		pTerrain->ModifyExtent();
+		break;
+		//mScene->GetUsingByID(id);
 	}
 }
 //---------------------------------------------------------------------------------------------

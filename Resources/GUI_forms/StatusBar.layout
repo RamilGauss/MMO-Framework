@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Window" skin="WindowCS" position="215 610 440 105" layer="Main" name="_Main">
+        <Property key="Caption" value="StatusBar"/>
+        <Property key="MinSize" value="400 100"/>
+        <Property key="Movable" value="true"/>
+        <Property key="Snap" value="true"/>
+        <Widget type="EditBox" skin="EditBoxStretch" position="0 25 430 42" align="Stretch" name="TextView">
+            <Property key="Caption" value="Текст сообщения об ошибках в программе"/>
+            <Property key="ReadOnly" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="365 0 65 25" align="Right Top" name="bClear">
+            <Property key="Caption" value="Clear"/>
+        </Widget>
+    </Widget>
+</MyGUI>

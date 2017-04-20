@@ -150,6 +150,7 @@ void TEditorMap::sl_Mode_Fly(MyGUI::Widget* _sender)
 void TEditorMap::sl_Mode_TerrainExtent(MyGUI::Widget* _sender)
 {
 	SetNameMode("Переопределить параметры земли");
+	g_EditorMapLogic->ModifyTerrain_Extent();
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Mode_TerrainHeight(MyGUI::Widget* _sender)

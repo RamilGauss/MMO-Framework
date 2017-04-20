@@ -18,7 +18,6 @@ See for more information License.h.
 #include <set>
 
 #include "BuilderGameMap_Object.h"
-#include "BuilderGameMap_Param.h"
 
 class TFactoryBehaviourPattern;
 
@@ -29,8 +28,6 @@ class DllExport TBuilderGameMap
   TMapItem*                 mMapItem;
 
 	std::set<int> mUseID_Module;
-
-	TBuilderGameMap_Param mBuilderGameMap_Param;
 
 	TBuilderGameMap_Object mBuilderGameObject;
 
@@ -56,8 +53,6 @@ private:
 
   TListPtrGameObject mListGameObject;
   
-  void InitPhysic();
-
   TMapItem::TListObject::iterator mBeginIteratorMapObject;
 };
 

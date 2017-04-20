@@ -66,11 +66,11 @@ TContainer TPattern_Model::GetParameterToPattern()
   return c;
 }
 //---------------------------------------------------------------------------
-bool TPattern_Model::UpdateFromGameItem(TBaseItem* pBI)
-{
-  return true;
-}
-//---------------------------------------------------------------------------
+//bool TPattern_Model::UpdateFromGameItem(TBaseItem* pBI)
+//{
+//  return true;
+//}
+////---------------------------------------------------------------------------
 void TPattern_Model::BuildByModule_Logic()
 {
 	// найти имя модели
@@ -435,9 +435,7 @@ void TPattern_Model::SetNameGameItem(std::string& name)
 //--------------------------------------------------------------------------
 std::string TPattern_Model::GetNameGameItem()
 {
-	std::string nameGameItem;
-	GetFromParameterMap<std::string>(sNameGameItem,nameGameItem);
-	return nameGameItem;
+	return GetFromParameterMap<std::string>(sNameGameItem);
 }
 //--------------------------------------------------------------------------
 void TPattern_Model::SetMobility(bool v)
@@ -448,8 +446,7 @@ void TPattern_Model::SetMobility(bool v)
 //--------------------------------------------------------------------------
 bool TPattern_Model::GetMobility()
 {
-	std::string mobility;
-	GetFromParameterMap<std::string>(sMobility, mobility);
+	std::string mobility = GetFromParameterMap<std::string>(sMobility);
   bool flgMobility = mobility=="true" ? true : false;
 	return flgMobility;
 }
@@ -508,3 +505,8 @@ TPattern_Model::TModelDesc::~TModelDesc()
 	delete pModel;
 }
 //--------------------------------------------------------------------------
+TManagerNamePattern::eBaseType TPattern_Model::GetBaseType()
+{
+	return TManagerNamePattern::eModel;
+}
+//------------------------------------------------------------------------
