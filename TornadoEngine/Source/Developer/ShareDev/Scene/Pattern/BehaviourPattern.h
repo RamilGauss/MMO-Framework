@@ -10,14 +10,6 @@ See for more information License.h.
 
 /*
   Базовый тип поведения игрового объекта.
-
-  Идеология: модель-логика без данных.
-  Контекст: данные для модели для текущего вызова функции.
-  GameObject: данные только Ogre, Bullet, OpenAL.
-  Контекст: надстройка данных над Ogre, Bullet, OpenAL.
-
-  Реализация класса предполагает: данные, которые используются для загрузки объекта не меняются
-  в процессе загрузки. В частности это FactoryGameItem.
 */
 
 #include "TypeDef.h"
@@ -26,14 +18,6 @@ See for more information License.h.
 #include "PatternConfigItem.h"
 #include "BL_Debug.h"
 #include "ManagerNamePattern.h"
-
-#include "Builder_Ogre.h"
-#include "Builder_OpenAL.h"
-#include "Builder_Bullet.h"
-
-#include "Destructor_Bullet.h"
-#include "Destructor_Ogre.h"
-#include "Destructor_OpenAL.h"
 
 #include <boost/lexical_cast.hpp>
 
@@ -82,7 +66,6 @@ public:
 	// для поиска в редакторе объекта для редактирования
 	virtual TManagerNamePattern::eBaseType GetBaseType();
 
-	// меняет физику
 	virtual void SetPosition(nsMathTools::TVector3& v);
 	virtual bool GetPosition(nsMathTools::TVector3& v);// мгновенное значение
 	virtual void SetOrientation(nsMathTools::TVector4& v);
@@ -91,11 +74,14 @@ public:
 	virtual TPatternConfigItem::TMapStrStr* GetParameterMap();
 	virtual void SetParameterMap(TPatternConfigItem::TMapStrStr& m);
 
+	// любые изменения (Физикой, самим паттерном или извне)
   // от одного Паттерна другому, упаковано 
   virtual bool SetParameterFromPattern(TContainer c);// to Client
+	// full==true - все изменения после Build, иначе относительно последнего вызова
   virtual TContainer GetParameterToPattern(bool full = false);// from Slave
 
-	// разделение по модулям нужно потому что у разных реализаций разное кол-во модулей
+	// разделение по модулям нужно потому что у разных реализаций(Клиент, Сервер) 
+	// разное кол-во модулей,
   // сначала отрабатывает функция Логики, потом уже все остальные
   virtual void BuildByModule_Logic();// инициализация внутренней структуры
   virtual bool BuildByModule_Graphic(bool fast = false);
@@ -113,24 +99,15 @@ public:
   virtual void SynchroByModule_Sound();  // звук от физики
 
 	// обновить все ресурсы, на основании которых строится объект на карте
-	// учитывает изменения, совершённые через интерфейс паттерна
-	// то есть паттерн копит все изменения
+	// учитывает изменения, совершённые через интерфейс паттерна, Физику и внутренние изменения Логикой
 	virtual void UpdateResources();
 	
-	// обновить внутренности по ресурсам
+	// обновить внутренности по ресурсам, результат такой же как при вызове Build
+	// отличие от Build - вызов атомарен, то же самое что BuildXXX(fast)
 	virtual void UpdateByResourcesByModule_Logic();
 	virtual void UpdateByResourcesByModule_Graphic();
 	virtual void UpdateByResourcesByModule_Physic();
 	virtual void UpdateByResourcesByModule_Sound();
-protected:
-  TBuilder_Ogre*   GetBuilderOgre();
-  TBuilder_Bullet* GetBuilderBullet();
-  TBuilder_OpenAL* GetBuilderOpenAL();
-
-  TDestructor_Ogre*   GetDestructorOgre();
-  TDestructor_Bullet* GetDestructorBullet();
-  TDestructor_OpenAL* GetDestructorOpenAL();
-
 protected:
 	template<typename T>
 	T GetFromParameterMap(std::string name, T* defaultT = NULL );

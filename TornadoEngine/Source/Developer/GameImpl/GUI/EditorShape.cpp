@@ -123,6 +123,7 @@ void TEditorShape::sl_WidgetsSelect(MyGUI::MenuControl* _sender, MyGUI::MenuItem
 //-------------------------------------------------------------------------------------
 void TEditorShape::OpenShape()
 {
+#if 0
   // взять имя из предложенных
   std::string name = "PlateVarGeom";//###
 
@@ -140,6 +141,7 @@ void TEditorShape::OpenShape()
 
   const Ogre::Vector3 pos(0,0,0);
   pNode->setPosition(pos);
+#endif
 }
 //---------------------------------------------------------------------------------------------
 void TEditorShape::NewShape()

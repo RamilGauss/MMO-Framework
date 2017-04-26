@@ -10,9 +10,12 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "BehaviourPattern.h"
-#include "BuilderTerrain_Ogre.h"
-#include "BuilderTerrain_Bullet.h"
-#include "ModifyTerrain_Extent.h"
+
+#include "Builder_Terrain_Bullet.h"
+#include "Builder_Terrain_Ogre.h"
+
+#include "Modify_Terrain_Bullet.h"
+#include "Modify_Terrain_Ogre.h"
 
 #include <OgreVector3.h>
 #include <OgreTerrainGroup.h>
@@ -20,23 +23,44 @@ See for more information License.h.
 
 class DllExport TPattern_Terrain : public TBehaviourPattern
 {
-	bool flgIsLoad_Bullet;
+	// temp data for Build
+	struct TProgressBuild
+	{
+		bool flgIsBuild;
+		int mNeedBuildX;
+		int mNeedBuildY;
+		TProgressBuild(){flgIsBuild=false;mNeedBuildX=0;mNeedBuildY=0;}
+	};
+	TProgressBuild mProgressBullet;
+	TProgressBuild mProgressOgre;
 
-	int mNeedLoadX_Bullet;
-	int mNeedLoadY_Bullet;
-
-	bool flgIsLoad_Ogre;
-
-	int mNeedLoadX_Ogre;
-	int mNeedLoadY_Ogre;
-
-	TBuilderTerrain_Bullet mBuilderTerrain_Bullet;
-	TBuilderTerrain_Ogre   mBuilderTerrain_Ogre;
-
-	TModifyTerrain_Extent  mModifyExtent;
-
+	// in Resources
 	Ogre::TerrainGroup*         mTerrainGroup;
 	Ogre::TerrainGlobalOptions* mTerrainGlobalOptions;
+
+	// out Resources
+	//...
+protected:
+	// helper operations
+	// build
+	//TBuilderTerrain_Bullet mBuilderTerrain_Bullet;//### убрать
+	//TBuilderTerrain_Ogre   mBuilderTerrain_Ogre;  //### убрать
+	
+	TBuilder_Terrain_Bullet mBuilderBullet;
+	TBuilder_Terrain_Ogre   mBuilderOgre;
+	// modify
+	TModify_Terrain_Bullet mModifyBullet;
+	TModify_Terrain_Ogre   mModifyOgre;
+	// update
+	//###TUpdaterResources_Terrain_Bullet mUpdaterResourcesBullet;
+	//###TUpdaterResources_Terrain_Ogre   mUpdaterResourcesOgre;
+	// update by
+	//###TUpdaterByResources_Terrain_Bullet mUpdaterByResourcesBullet;
+	//###TUpdaterByResources_Terrain_Ogre   mUpdaterByResourcesOgre;
+	// destruct
+	//###TDestructor_Terrain_Bullet mDestructorBullet;
+	//###TDestructor_Terrain_Ogre   mDestructorOgre;
+
 public:
   TPattern_Terrain();
   virtual ~TPattern_Terrain();
@@ -46,41 +70,24 @@ public:
 
 	virtual TManagerNamePattern::eBaseType GetBaseType();
 
+public:
+	// terrain interface
+	TMapItem*     GetMapItem();
+	TTerrainItem* GetTerrainItem();
+	Ogre::Vector3 GetOrigin();
+
 	// модификация
 	void ModifyExtent();
 	void ModifyBlend();
 	void ModifyPaint();
 protected:
-	void BeginLoad_Bullet();
-	bool TryLoad_Bullet();
+	void BeginBuild_Bullet();
+	bool TryBuild_Bullet();
 
-	void BeginLoad_Ogre();
-	bool TryLoad_Ogre();
+	void BeginBuild_Ogre();
+	bool TryBuild_Ogre();
 protected:
-	void SetIsLoad_Bullet(bool v);
-	bool IsLoad_Bullet();
-
-	void SetLoad_X_Bullet(int v);
-	int GetLoad_X_Bullet();
-
-	void SetLoad_Y_Bullet(int v);
-	int GetLoad_Y_Bullet();
-
-
-	void SetIsLoad_Ogre(bool v);
-	bool IsLoad_Ogre();
-
-	void SetLoad_X_Ogre(int v);
-	int GetLoad_X_Ogre();
-
-	void SetLoad_Y_Ogre(int v);
-	int GetLoad_Y_Ogre();
-
 	std::string GetNameTerrainItem();
-	Ogre::Vector3 GetOrigin();
-
-	TBuilderTerrain_Bullet* GetBuilderTerrain_Bullet();
-	TBuilderTerrain_Ogre* GetBuilderTerrain_Ogre();
 
 };
 

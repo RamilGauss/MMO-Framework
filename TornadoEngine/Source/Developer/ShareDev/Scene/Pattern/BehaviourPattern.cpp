@@ -9,16 +9,6 @@ See for more information License.h.
 
 #include <boost/foreach.hpp>
 
-// вспомогательные классы для построения, разрушения и синхронизации игровых объектов
-// Builder
-static TBuilder_Ogre   g_BuilderOgre;
-static TBuilder_Bullet g_BuilderBullet;
-static TBuilder_OpenAL g_BuilderOpenAL;
-// Destructor
-static TDestructor_Ogre   g_DestructorOgre;
-static TDestructor_Bullet g_DestructorBullet;
-static TDestructor_OpenAL g_DestructorOpenAL;
-
 TBehaviourPattern::TBehaviourPattern(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 {
 	mGO            = NULL;
@@ -196,36 +186,6 @@ void TBehaviourPattern::UpdateByResourcesByModule_Physic()
 void TBehaviourPattern::UpdateByResourcesByModule_Sound()
 {
 
-}
-//------------------------------------------------------------------------
-TBuilder_Ogre* TBehaviourPattern::GetBuilderOgre()
-{
-  return &g_BuilderOgre;
-}
-//------------------------------------------------------------------------
-TBuilder_Bullet* TBehaviourPattern::GetBuilderBullet()
-{
-  return &g_BuilderBullet;
-}
-//------------------------------------------------------------------------
-TBuilder_OpenAL* TBehaviourPattern::GetBuilderOpenAL()
-{
-  return &g_BuilderOpenAL;
-}
-//------------------------------------------------------------------------
-TDestructor_Ogre*   TBehaviourPattern::GetDestructorOgre()
-{
-  return &g_DestructorOgre;
-}
-//------------------------------------------------------------------------
-TDestructor_Bullet* TBehaviourPattern::GetDestructorBullet()
-{
-  return &g_DestructorBullet;
-}
-//------------------------------------------------------------------------
-TDestructor_OpenAL* TBehaviourPattern::GetDestructorOpenAL()
-{
-  return &g_DestructorOpenAL;
 }
 //------------------------------------------------------------------------
 TManagerNamePattern::eBaseType TBehaviourPattern::GetBaseType()

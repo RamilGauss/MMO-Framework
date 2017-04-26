@@ -11,6 +11,8 @@ See for more information License.h.
 #include "ModuleGraphicEngine.h"
 #include "ModulePhysicEngine.h"
 #include "FactoryGameItem.h"
+#include "FactoryBuilderTool_Shape_Ogre.h"
+#include "FactoryBuilderTool_Shape_Bullet.h"
 
 #include "ShapeItem.h"
 
@@ -53,6 +55,22 @@ void TPattern_Model::Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 	pDefaultParameterMap->insert(TPatternConfigItem::TMapStrStrVT(sMobility,"true"));
 
 	mTypeContent = TModelItem::eModel;
+
+	mBuilderBullet.SetPattern(this);
+	mBuilderOgre.SetPattern(this);
+
+	//mDestructorBullet.SetPattern(this);
+	//mDestructorOgre.SetPattern(this);
+
+	//mModifyBullet.SetPattern(this);
+	//mModifyOgre.SetPattern(this);
+
+	//mUpdaterByResourcesBullet.SetPattern(this);
+	//mUpdaterByResourcesOgre.SetPattern(this);
+
+	//mUpdaterResourcesBullet.SetPattern(this);
+	//mUpdaterResourcesOgre.SetPattern(this);
+
 }
 //---------------------------------------------------------------------------
 bool TPattern_Model::SetParameterFromPattern(TContainer c)
@@ -66,11 +84,6 @@ TContainer TPattern_Model::GetParameterToPattern()
   return c;
 }
 //---------------------------------------------------------------------------
-//bool TPattern_Model::UpdateFromGameItem(TBaseItem* pBI)
-//{
-//  return true;
-//}
-////---------------------------------------------------------------------------
 void TPattern_Model::BuildByModule_Logic()
 {
 	// найти имя модели
@@ -84,9 +97,9 @@ void TPattern_Model::BuildByModule_Logic()
   // задача: создать модели по имени. При синхронизации менять положение и ориентацию форм или моделей
   SetTypeContent(pModel->mTypeCollection);
   if( pModel->mTypeCollection==TModelItem::eModel )
-    LoadModelsByModule_Logic(pModel->mMapNamePart);
+    BuildModelsByModule_Logic(pModel->mMapNamePart);
   else
-    LoadShapesByModule_Logic(pModel->mMapNamePart);
+    BuildShapesByModule_Logic(pModel->mMapNamePart);
 }
 //---------------------------------------------------------------------------
 bool TPattern_Model::BuildByModule_Graphic(bool fast)
@@ -110,11 +123,11 @@ bool TPattern_Model::BuildByModule_Graphic(bool fast)
       else
       {
         TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
-        LoadShapeByModule_Graphic(pShapeDesc);
+        BuildShapeByModule_Graphic(pShapeDesc);
       }
     }
   }
-	PostLoadByModule_Graphic();
+	PostBuildByModule_Graphic();
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -139,11 +152,11 @@ bool TPattern_Model::BuildByModule_Physic( bool fast )
 			else
 			{
 				TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
-				LoadShapeByModule_Physic(pShapeDesc);
+				BuildShapeByModule_Physic(pShapeDesc);
 			}
 		}
 	}
-	PostLoadByModule_Physic();
+	PostBuildByModule_Physic();
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -258,7 +271,7 @@ void TPattern_Model::SynchroByModule_Sound()
 
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::LoadModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePart)
+void TPattern_Model::BuildModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePart)
 {
   TFactoryBehaviourPattern* pFBP = TModuleLogic::Get()->GetFBP();
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
@@ -288,7 +301,7 @@ void TPattern_Model::LoadModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePa
   }
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::LoadShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePart)
+void TPattern_Model::BuildShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePart)
 {
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   BOOST_FOREACH( TModelItem::TMapStrPartVT& vtPart, mapNamePart )
@@ -314,16 +327,14 @@ void TPattern_Model::LoadShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePa
   }
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::LoadShapeByModule_Graphic(TShapeDesc* pShapeDesc)
+void TPattern_Model::BuildShapeByModule_Graphic(TShapeDesc* pShapeDesc)
 {
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
   TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
   if( pShapeItem==NULL )
     return;
 
-  TBuilder_Ogre* pBOgre = GetBuilderOgre();
-
-  Ogre::Entity* pEntity = pBOgre->GetShapeMaker()->Build( pShapeItem );
+  Ogre::Entity* pEntity = mBuilderOgre.GetShapeMaker()->Build( pShapeItem );
 	pShapeDesc->pEntity = pEntity;
 
 	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
@@ -340,7 +351,7 @@ void TPattern_Model::LoadShapeByModule_Graphic(TShapeDesc* pShapeDesc)
 	//###
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::LoadShapeByModule_Physic(TShapeDesc* pShapeDesc)
+void TPattern_Model::BuildShapeByModule_Physic(TShapeDesc* pShapeDesc)
 {
 	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
 	TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
@@ -349,8 +360,7 @@ void TPattern_Model::LoadShapeByModule_Physic(TShapeDesc* pShapeDesc)
 
 	int id_world = GetPhysicWorld();
 
-	TBuilder_Bullet* pBBullet = GetBuilderBullet();
-	btRigidBody* pRB = pBBullet->GetShapeMaker()->Build( id_world, pShapeItem );
+	btRigidBody* pRB = mBuilderBullet.GetShapeMaker()->Build( id_world, pShapeItem );
 	pShapeDesc->pRigidBody = pRB;
 
 	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
@@ -381,12 +391,12 @@ void TPattern_Model::LoadShapeByModule_Physic(TShapeDesc* pShapeDesc)
 	//###
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::PostLoadByModule_Graphic()
+void TPattern_Model::PostBuildByModule_Graphic()
 {
 
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::PostLoadByModule_Physic()
+void TPattern_Model::PostBuildByModule_Physic()
 {
 
 }

@@ -74,6 +74,7 @@ protected:
   void CameraTryMove();
 };
 
+// uses in GUI
 extern DllExport TEditorMapLogic* g_EditorMapLogic;
 
 #endif

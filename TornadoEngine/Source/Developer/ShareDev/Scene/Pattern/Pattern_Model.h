@@ -12,6 +12,12 @@ See for more information License.h.
 #include "BehaviourPattern.h"
 #include "PatternConfigItem.h"
 #include "ModelItem.h"
+#include "ModulePhysicEngine.h"
+
+#include <OgreEntity.h>
+
+#include "Builder_Model_Bullet.h"
+#include "Builder_Model_Ogre.h"
 
 class DllExport TPattern_Model : public TBehaviourPattern
 {
@@ -38,6 +44,21 @@ class DllExport TPattern_Model : public TBehaviourPattern
 		btRigidBody* pRigidBody;
 		TShapeDesc(){type=TModelItem::eShape;pRigidBody=NULL;pEntity=NULL;}
 	};
+
+	TBuilder_Model_Bullet mBuilderBullet;
+	TBuilder_Model_Ogre   mBuilderOgre;
+
+	//TDestructor_Shape_Bullet mDestructorBullet;
+	//TDestructor_Shape_Ogre   mDestructorOgre;
+
+	//TModify_Shape_Bullet mModifyBullet;
+	//TModify_Shape_Ogre   mModifyOgre;
+
+	//TUpdaterByResources_Shape_Bullet mUpdaterByResourcesBullet;
+	//TUpdaterByResources_Shape_Ogre   mUpdaterByResourcesOgre;
+
+	//TUpdaterResources_Shape_Bullet mUpdaterResourcesBullet;
+	//TUpdaterResources_Shape_Ogre   mUpdaterResourcesOgre;
 
 protected:
 	typedef std::map<std::string,TBaseDesc*> TMapStrPtrDesc;
@@ -79,14 +100,14 @@ public:
 protected:
 	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
 
-  void LoadModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
-  void LoadShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
+  void BuildModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
+  void BuildShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
 
-  void LoadShapeByModule_Graphic(TShapeDesc* pShapeDesc);
-	void PostLoadByModule_Graphic();
+  void BuildShapeByModule_Graphic(TShapeDesc* pShapeDesc);
+	void PostBuildByModule_Graphic();
 
-	void LoadShapeByModule_Physic(TShapeDesc* pShapeDesc);
-	void PostLoadByModule_Physic();
+	void BuildShapeByModule_Physic(TShapeDesc* pShapeDesc);
+	void PostBuildByModule_Physic();
 
 protected:
 	TModelItem::eType GetTypeContent();

@@ -8,9 +8,10 @@ See for more information License.h.
 #include "Pattern_Terrain.h"
 #include "BL_Debug.h"
 #include "TerrainItem.h"
+
 #include "FactoryGameItem.h"
 #include "ModuleLogic.h"
-#include "BuilderTerrain_Ogre.h"
+
 
 namespace nsPattern_Terrain
 {
@@ -24,13 +25,25 @@ using namespace nsPattern_Terrain;
 TPattern_Terrain::TPattern_Terrain() :
 	TBehaviourPattern(&g_DefaultParameterMap)
 {
-	flgIsLoad_Bullet = false;
-	flgIsLoad_Ogre = false;
-	mNeedLoadX_Ogre = 0;
-	mNeedLoadY_Ogre = 0;
+	g_DefaultParameterMap.insert(TPatternConfigItem::TMapStrStrVT(sNameGameItem,""));
 
 	mTerrainGroup         = NULL;
 	mTerrainGlobalOptions = NULL;
+
+	mBuilderBullet.SetPattern(this);
+	mBuilderOgre	.SetPattern(this);
+
+	mModifyBullet.SetPattern(this);
+	mModifyOgre	 .SetPattern(this);
+
+	//mUpdaterResourcesBullet.SetPattern(this);
+	//mUpdaterResourcesOgre	 .SetPattern(this);
+
+	//mUpdaterByResourcesBullet.SetPattern(this);
+	//mUpdaterByResourcesOgre	 .SetPattern(this);
+
+	//mDestructorBullet.SetPattern(this);
+	//mDestructorOgre	 .SetPattern(this);
 }
 //---------------------------------------------------------------------------
 TPattern_Terrain::~TPattern_Terrain()
@@ -40,64 +53,53 @@ TPattern_Terrain::~TPattern_Terrain()
 //---------------------------------------------------------------------------
 bool TPattern_Terrain::BuildByModule_Graphic(bool fast)
 {
-	if( IsLoad_Ogre()==false )
-		BeginLoad_Ogre();
+	if( mProgressOgre.flgIsBuild==false )
+		BeginBuild_Ogre();
 
-	return TryLoad_Ogre();
+	return TryBuild_Ogre();
 }
 //---------------------------------------------------------------------------
 bool TPattern_Terrain::BuildByModule_Physic(bool fast)
 {
-	if( IsLoad_Bullet()==false )
-		BeginLoad_Bullet();
+	if( mProgressBullet.flgIsBuild==false )
+		BeginBuild_Bullet();
 
-	return TryLoad_Bullet();
+	return TryBuild_Bullet();
 }
 //---------------------------------------------------------------------------
-void TPattern_Terrain::BeginLoad_Bullet()
+void TPattern_Terrain::BeginBuild_Bullet()
 {
-	std::string nameTerrainItem = GetNameTerrainItem();
-	TTerrainItem* pTerrainItem = 
-		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
-	TMapItem* pMapItem = 
-		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, GetNameMapItem());
+	mBuilderBullet.Begin();
 
-	GetBuilderTerrain_Bullet()->Setup(GetPhysicWorld(),NULL,NULL);
-	GetBuilderTerrain_Bullet()->Begin(pMapItem, pTerrainItem);
-	SetIsLoad_Bullet(true);
-	SetLoad_X_Bullet(pTerrainItem->mX.min);
-	SetLoad_Y_Bullet(pTerrainItem->mY.min);
+	TTerrainItem* pTerrainItem = GetTerrainItem();
+	mProgressBullet.flgIsBuild = true;
+	mProgressBullet.mNeedBuildX = pTerrainItem->mX.min;
+	mProgressBullet.mNeedBuildY = pTerrainItem->mY.min;
 }
 //---------------------------------------------------------------------------
-void TPattern_Terrain::BeginLoad_Ogre()
+void TPattern_Terrain::BeginBuild_Ogre()
 {
-	std::string nameTerrainItem = GetNameTerrainItem();
-	TTerrainItem* pTerrainItem = 
-		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
-	TMapItem*     pMapItem     = 
-		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, GetNameMapItem());
-	Ogre::Vector3 originOgre = GetOrigin();
+	mBuilderOgre.Begin();
 
-	GetBuilderTerrain_Ogre()->Begin(pMapItem, pTerrainItem, originOgre);
-	SetIsLoad_Ogre(true);
-	SetLoad_X_Ogre(pTerrainItem->mX.min);
-	SetLoad_Y_Ogre(pTerrainItem->mY.min);
+	TTerrainItem* pTerrainItem = GetTerrainItem();
+	mProgressOgre.flgIsBuild = true;
+	mProgressOgre.mNeedBuildX = pTerrainItem->mX.min;
+	mProgressOgre.mNeedBuildY = pTerrainItem->mY.min;
 }
 //---------------------------------------------------------------------------
-bool TPattern_Terrain::TryLoad_Bullet()
+bool TPattern_Terrain::TryBuild_Bullet()
 {
-	std::string nameTerrainItem = GetNameTerrainItem();
-	TTerrainItem* pTerrainItem = 
-		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
+	TTerrainItem* pTerrainItem = GetTerrainItem();
 
 	int minX = pTerrainItem->mX.min;
 	int maxX = pTerrainItem->mX.max;
 	int minY = pTerrainItem->mY.min;
 	int maxY = pTerrainItem->mY.max;
-	int x = GetLoad_X_Bullet();
-	int y = GetLoad_Y_Bullet();
+
+	int x = mProgressBullet.mNeedBuildX;
+	int y = mProgressBullet.mNeedBuildY;
 	
-	GetBuilderTerrain_Bullet()->Load(x,y);
+	mBuilderBullet.Load(x,y);
 	x++;
 	if( x > maxX)
 	{
@@ -107,29 +109,27 @@ bool TPattern_Terrain::TryLoad_Bullet()
 
 	if( y > maxY )
 	{
-		GetBuilderTerrain_Bullet()->End();
-		SetIsLoad_Bullet(false);
+		mBuilderBullet.End();
+	  mProgressBullet.flgIsBuild = false;
 		return true;
 	}
-	SetLoad_X_Bullet(x);
-	SetLoad_Y_Bullet(y);
+	mProgressBullet.mNeedBuildX = x;
+	mProgressBullet.mNeedBuildY = y;
 	return false;
 }
 //---------------------------------------------------------------------------
-bool TPattern_Terrain::TryLoad_Ogre()
+bool TPattern_Terrain::TryBuild_Ogre()
 {
-	std::string nameTerrainItem = GetNameTerrainItem();
-	TTerrainItem* pTerrainItem = 
-		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
+	TTerrainItem* pTerrainItem = GetTerrainItem();
 
 	int minX = pTerrainItem->mX.min;
 	int maxX = pTerrainItem->mX.max;
 	int minY = pTerrainItem->mY.min;
 	int maxY = pTerrainItem->mY.max;
-	int x = GetLoad_X_Ogre();
-	int y = GetLoad_Y_Ogre();
+	int x = mProgressOgre.mNeedBuildX;
+	int y = mProgressOgre.mNeedBuildY;
 
-	GetBuilderTerrain_Ogre()->Load(x,y);
+	mBuilderOgre.Load(x,y);
 	x++;
 	if( x > maxX)
 	{
@@ -139,73 +139,13 @@ bool TPattern_Terrain::TryLoad_Ogre()
 
 	if( y > maxY )
 	{
-		GetBuilderTerrain_Ogre()->End();
-		SetIsLoad_Ogre(false);
+		mBuilderOgre.End();
+		mProgressOgre.flgIsBuild = false;
 		return true;
 	}
-	SetLoad_X_Ogre(x);
-	SetLoad_Y_Ogre(y);
+	mProgressOgre.mNeedBuildX = x;
+	mProgressOgre.mNeedBuildY = y;
 	return false;
-}
-//---------------------------------------------------------------------------
-void TPattern_Terrain::SetIsLoad_Bullet(bool v)
-{
-	flgIsLoad_Bullet = v;
-}
-//---------------------------------------------------------------------------
-bool TPattern_Terrain::IsLoad_Bullet()
-{
-	return flgIsLoad_Bullet;
-}
-//---------------------------------------------------------------------------
-void TPattern_Terrain::SetIsLoad_Ogre(bool v)
-{
-	flgIsLoad_Ogre = v;
-}
-//---------------------------------------------------------------------------
-bool TPattern_Terrain::IsLoad_Ogre()
-{
-	return flgIsLoad_Ogre;
-}
-//---------------------------------------------------------------------------
-void TPattern_Terrain::SetLoad_X_Bullet(int v)
-{
-	mNeedLoadX_Bullet = v;
-}
-//---------------------------------------------------------------------------
-int TPattern_Terrain::GetLoad_X_Bullet()
-{
-	return mNeedLoadX_Bullet;
-}
-//---------------------------------------------------------------------------
-void TPattern_Terrain::SetLoad_Y_Bullet(int v)
-{
-	mNeedLoadY_Bullet = v;
-}
-//---------------------------------------------------------------------------
-int TPattern_Terrain::GetLoad_Y_Bullet()
-{
-	return mNeedLoadY_Bullet;
-}
-//---------------------------------------------------------------------------
-void TPattern_Terrain::SetLoad_X_Ogre(int v)
-{
-	mNeedLoadX_Ogre = v;
-}
-//---------------------------------------------------------------------------
-int TPattern_Terrain::GetLoad_X_Ogre()
-{
-	return mNeedLoadX_Ogre;
-}
-//---------------------------------------------------------------------------
-void TPattern_Terrain::SetLoad_Y_Ogre(int v)
-{
-	mNeedLoadY_Ogre = v;
-}
-//---------------------------------------------------------------------------
-int TPattern_Terrain::GetLoad_Y_Ogre()
-{
-	return mNeedLoadY_Ogre;
 }
 //---------------------------------------------------------------------------
 std::string TPattern_Terrain::GetNameTerrainItem()
@@ -230,19 +170,10 @@ Ogre::Vector3 TPattern_Terrain::GetOrigin()
 	return originOgre;
 }
 //---------------------------------------------------------------------------
-TBuilderTerrain_Bullet* TPattern_Terrain::GetBuilderTerrain_Bullet()
-{
-	return &mBuilderTerrain_Bullet;
-}
-//---------------------------------------------------------------------------
-TBuilderTerrain_Ogre* TPattern_Terrain::GetBuilderTerrain_Ogre()
-{
-	return &mBuilderTerrain_Ogre;
-}
-//---------------------------------------------------------------------------
 void TPattern_Terrain::ModifyExtent()
 {
-	TModifyTerrain_Extent::TDescTarget descTarget;
+	//### берём простые входные данные
+	TModify_Terrain::TDescTarget descTarget;
 	descTarget.nameMap = GetNameMapItem();
 	descTarget.iX = 0;
 	descTarget.iY = 0;
@@ -253,14 +184,16 @@ void TPattern_Terrain::ModifyExtent()
 	descTarget.size = 3;
 	descTarget.heightFlat = 0;
 
-	TModifyTerrain_Extent::TLayer layer;
+	TModify_Terrain::TLayer layer;
 	layer.worldSize           = 2;
 	layer.textureNames_Color  = "grass_green-01_diffusespecular.dds";
 	layer.textureNames_Normal = "grass_green-01_normalheight.dds";
 	descTarget.listLayer.push_back(layer);
 	descTarget.listLayer.push_back(layer);
+	//###
 
-  mModifyExtent.Setup(descTarget, mTerrainGroup, mTerrainGlobalOptions);
+  mModifyBullet.Setup(descTarget);
+	mModifyOgre.Setup(descTarget);
 }
 //---------------------------------------------------------------------------
 void TPattern_Terrain::ModifyBlend()
@@ -278,3 +211,19 @@ TManagerNamePattern::eBaseType TPattern_Terrain::GetBaseType()
 	return TManagerNamePattern::eTerrain;
 }
 //------------------------------------------------------------------------
+TMapItem* TPattern_Terrain::GetMapItem()
+{
+	std::string nameMapItem = GetNameMapItem();
+	TMapItem* pMapItem = 
+		(TMapItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map, nameMapItem);
+	return pMapItem;
+}
+//---------------------------------------------------------------------------
+TTerrainItem* TPattern_Terrain::GetTerrainItem()
+{
+	std::string nameTerrainItem = GetNameTerrainItem();
+	TTerrainItem* pTerrainItem = 
+		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
+	return pTerrainItem;
+}
+//---------------------------------------------------------------------------

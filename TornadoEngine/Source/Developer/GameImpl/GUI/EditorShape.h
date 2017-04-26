@@ -13,7 +13,7 @@ See for more information License.h.
 #include <Ogre.h>
 
 #include <memory>
-#include "BuilderShape_Ogre.h"
+//#include "BuilderTool_Shape_Ogre.h"
 
 class TPlateParam;
 class TPlateVarGeomParam;
@@ -29,7 +29,7 @@ class TEditorShape : public TBaseGUI
 
   Ogre::MeshPtr mCurMesh;
 
-  TBuilderShape_Ogre mBuilder;
+  //TBuilderTool_Shape_Ogre mBuilder;
 public:
   TEditorShape();
   virtual ~TEditorShape();

@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./GameItems;./GameProcess;./Modify/TerrainTech;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Destructor;./Scene/Operations/UpdaterByResources;./Scene/Operations/UpdaterResources;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Destructor;./Scene/Operations/Common;./Scene/Operations/Modify;./Scene/Operations/UpdaterByResources;./Scene/Operations/UpdaterResources;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;./GameItems;./GameProcess;./Modify/TerrainTech;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Destructor;./Scene/Operations/UpdaterByResources;./Scene/Operations/UpdaterResources;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Destructor;./Scene/Operations/Common;./Scene/Operations/Modify;./Scene/Operations/UpdaterByResources;./Scene/Operations/UpdaterResources;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -820,154 +820,242 @@
 					<Filter
 						Name="Common"
 						>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderGameMap.cpp"
+						<Filter
+							Name="helper"
 							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderGameMap.h"
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Model.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Model.h"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Terrain.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Terrain.h"
+								>
+							</File>
+						</Filter>
+						<Filter
+							Name="tools"
 							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderGameMap_Object.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderGameMap_Object.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\ParamBuilderShape.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\ParamBuilderShape.h"
-							>
-						</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\BuilderGameMap.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\BuilderGameMap.h"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\BuilderGameMap_Object.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\BuilderGameMap_Object.h"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\ParamBuilderShape.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\ParamBuilderShape.h"
+								>
+							</File>
+						</Filter>
 					</Filter>
 					<Filter
 						Name="Bullet"
 						>
-						<File
-							RelativePath=".\Scene\Operations\Builder\Builder_Bullet.cpp"
+						<Filter
+							Name="helper"
 							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\Builder_Bullet.h"
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Model_Bullet.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Model_Bullet.h"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Terrain_Bullet.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Terrain_Bullet.h"
+								>
+							</File>
+						</Filter>
+						<Filter
+							Name="tools"
 							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShape_Bullet.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShape_Bullet.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapeBase_Bullet.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapeBase_Bullet.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapeCylinder_Bullet.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapeCylinder_Bullet.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapePlate_Bullet.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapePlate_Bullet.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderTerrain_Bullet.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderTerrain_Bullet.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\HeightMapFromOgre.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\HeightMapFromOgre.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\ParamBuilderConstraint.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\ParamBuilderConstraint.h"
-							>
-						</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\ParamBuilderConstraint.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\ParamBuilderConstraint.h"
+								>
+							</File>
+							<Filter
+								Name="shape"
+								>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapeBase_Bullet.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapeBase_Bullet.h"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapeCylinder_Bullet.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapeCylinder_Bullet.h"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapePlate_Bullet.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapePlate_Bullet.h"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\FactoryBuilderTool_Shape_Bullet.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\FactoryBuilderTool_Shape_Bullet.h"
+									>
+								</File>
+							</Filter>
+							<Filter
+								Name="terrain"
+								>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_Terrain_Bullet.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_Terrain_Bullet.h"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\HeightMapTerrainFromOgre.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\HeightMapTerrainFromOgre.h"
+									>
+								</File>
+							</Filter>
+							<Filter
+								Name="base"
+								>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_Bullet.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_Bullet.h"
+									>
+								</File>
+							</Filter>
+						</Filter>
 					</Filter>
 					<Filter
 						Name="Ogre"
 						>
-						<File
-							RelativePath=".\Scene\Operations\Builder\Builder_Ogre.cpp"
+						<Filter
+							Name="helper"
 							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\Builder_Ogre.h"
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Model_Ogre.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Model_Ogre.h"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Terrain_Ogre.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\Builder\Builder_Terrain_Ogre.h"
+								>
+							</File>
+						</Filter>
+						<Filter
+							Name="tools"
 							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShape_Ogre.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShape_Ogre.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapeBase_Ogre.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapeBase_Ogre.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapeCylinder_Ogre.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapeCylinder_Ogre.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapePlate_Ogre.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderShapePlate_Ogre.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderTerrain_Ogre.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\BuilderTerrain_Ogre.h"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Builder\StructBuilder_Ogre.h"
-							>
-						</File>
+							<Filter
+								Name="shape"
+								>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapeBase_Ogre.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapeBase_Ogre.h"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapeCylinder_Ogre.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapeCylinder_Ogre.h"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapePlate_Ogre.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_ShapePlate_Ogre.h"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\FactoryBuilderTool_Shape_Ogre.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\FactoryBuilderTool_Shape_Ogre.h"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\StructBuilderTool_Ogre.h"
+									>
+								</File>
+							</Filter>
+							<Filter
+								Name="base"
+								>
+							</Filter>
+							<Filter
+								Name="terrain"
+								>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_Terrain_Ogre.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\Scene\Operations\Builder\BuilderTool_Terrain_Ogre.h"
+									>
+								</File>
+							</Filter>
+						</Filter>
 					</Filter>
 					<Filter
 						Name="OpenAL"
@@ -1042,59 +1130,75 @@
 					Name="UpdaterResources"
 					>
 				</Filter>
+				<Filter
+					Name="Modify"
+					>
+					<Filter
+						Name="Common"
+						>
+						<File
+							RelativePath=".\Scene\Operations\Modify\Modify_Terrain.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Scene\Operations\Modify\Modify_Terrain.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="Bullet"
+						>
+						<File
+							RelativePath=".\Scene\Operations\Modify\Modify_Terrain_Bullet.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Scene\Operations\Modify\Modify_Terrain_Bullet.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="Ogre"
+						>
+						<File
+							RelativePath=".\Scene\Operations\Modify\Modify_Terrain_Ogre.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Scene\Operations\Modify\Modify_Terrain_Ogre.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="OpenAL"
+						>
+					</Filter>
+				</Filter>
+				<Filter
+					Name="Common"
+					>
+					<File
+						RelativePath=".\Scene\Operations\Common\BaseOperation_Pattern.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Operations\Common\Operation_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Operations\Common\Operation_Model.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Operations\Common\Operation_Terrain.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Operations\Common\Operation_Terrain.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
-		</Filter>
-		<Filter
-			Name="ProtocolClientSlave"
-			>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_HandlerClient.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_HandlerClient.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_HandlerSlave.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_HandlerSlave.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_IHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_IHandler.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_PacketLevelGame.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_PacketLevelGame.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_TypePacket.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ProtocolClientSlave\PCS_TypePacket.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="ProtocolSlaveMaster"
-			>
-			<File
-				RelativePath=".\ProtocolSlaveMaster\PSM_TypePacket.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="GameProcess"
@@ -1209,33 +1313,57 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Modify"
+			Name="Protocol"
 			>
 			<Filter
-				Name="TerrainTech"
+				Name="ClientSlave"
 				>
 				<File
-					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Extent.cpp"
+					RelativePath=".\Protocol\ClientSlave\PCS_HandlerClient.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Extent.h"
+					RelativePath=".\Protocol\ClientSlave\PCS_HandlerClient.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Height.cpp"
+					RelativePath=".\Protocol\ClientSlave\PCS_HandlerSlave.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Height.h"
+					RelativePath=".\Protocol\ClientSlave\PCS_HandlerSlave.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Painter.cpp"
+					RelativePath=".\Protocol\ClientSlave\PCS_IHandler.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Modify\TerrainTech\ModifyTerrain_Painter.h"
+					RelativePath=".\Protocol\ClientSlave\PCS_IHandler.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Protocol\ClientSlave\PCS_PacketLevelGame.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Protocol\ClientSlave\PCS_PacketLevelGame.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Protocol\ClientSlave\PCS_TypePacket.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Protocol\ClientSlave\PCS_TypePacket.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="SlaveMaster"
+				>
+				<File
+					RelativePath=".\Protocol\SlaveMaster\PSM_TypePacket.h"
 					>
 				</File>
 			</Filter>
