@@ -13,9 +13,11 @@ See for more information License.h.
 #include "HeightMapTerrainFromOgre.h"
 
 #include <map>
+#include "StructPattern_Terrain.h"
 
 struct TTerrainItem;
 struct TMapItem;
+class btHeightfieldTerrainShape;
 
 class DllExport TBuilderTool_Terrain_Bullet : public TBuilderTool_Bullet
 {
@@ -23,16 +25,14 @@ class DllExport TBuilderTool_Terrain_Bullet : public TBuilderTool_Bullet
 	TTerrainItem* mTerrainItem;
 	THeightMapTerrainFromOgre mLoader;
 
-	struct TResult
+	/*struct TResult
 	{
 		THeightMapTerrainFromOgre::TDataOut* pData;
-		btHeightfieldTerrainShape*           pHeightfieldTerrainShape;
 		btRigidBody*                         pRB;
 		TResult()
 		{
-			pData 									 = NULL;
-			pRB   									 = NULL;
-			pHeightfieldTerrainShape = NULL;
+			pData = NULL;
+			pRB   = NULL;
 		}
 	};
 
@@ -43,7 +43,7 @@ class DllExport TBuilderTool_Terrain_Bullet : public TBuilderTool_Bullet
 	typedef std::map<int,TMapIntPtrData> TMapIntMap;
 	typedef TMapIntMap::iterator   			 TMapIntMapIt;
 	typedef TMapIntMap::value_type 			 TMapIntMapVT;
-	TMapIntMap mX_Y_Data;
+	TMapIntMap mX_Y_Data;*/
 
 	std::string mPathTerrain;
 public:
@@ -51,12 +51,12 @@ public:
 	~TBuilderTool_Terrain_Bullet();
 
 	void Begin(TMapItem* pMapItem, TTerrainItem* pTerrainItem);
-	void Load( int x, int y );
+	void Load( int x, int y, nsStructPattern_Terrain::TTerrainPart_Physic* pPartPhysic);
 	void End();
 protected:
 
-	bool LoadData( int x, int y, TResult& result );
-	void FindMinMax(THeightMapTerrainFromOgre::TDataOut* pData, 
+	bool LoadData( int x, int y, nsStructPattern_Terrain::THeightMapTerrain* pHMT );
+	void FindMinMax(nsStructPattern_Terrain::THeightMapTerrain* pHMT, 
 		float& m_minHeight, float& m_maxHeight);
 
 };

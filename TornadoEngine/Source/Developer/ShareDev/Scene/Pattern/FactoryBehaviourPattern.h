@@ -32,7 +32,7 @@ private:
 	TCallBackRegistrator1<TBehaviourPattern*&> mCB_Skydome;
 	TCallBackRegistrator1<TBehaviourPattern*&> mCB_Skyplane;
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Terrain;
-  TCallBackRegistrator1<TBehaviourPattern*&> mCB_Zone;
+  TCallBackRegistrator1<TBehaviourPattern*&> mCB_Volume;
 public:
   TFactoryBehaviourPattern();
   virtual ~TFactoryBehaviourPattern();
@@ -53,7 +53,7 @@ private:
 	void MakeSkyplane(TBehaviourPattern*& p);
   void MakeSound(TBehaviourPattern*& p);
   void MakeTerrain(TBehaviourPattern*& p);
-  void MakeZone(TBehaviourPattern*& p);
+  void MakeVolume(TBehaviourPattern*& p);
 private:
   TBehaviourPattern* MakePatternByName(std::string name);
   void Done();

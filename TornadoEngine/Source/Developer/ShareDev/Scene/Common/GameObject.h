@@ -15,7 +15,7 @@ class TBehaviourPattern;
 class DllExport TGameObject
 {
   int mID;
-  // поведение - зависит от типа (Model, Terrain, Zone, Light, Sound, Animated, Sky)
+  // поведение - зависит от типа (Model, Terrain, Volume, Light, Sound, Animated, Sky)
   TBehaviourPattern* mPtrPattern;
 
 public:

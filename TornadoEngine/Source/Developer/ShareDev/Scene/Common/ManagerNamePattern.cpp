@@ -18,7 +18,7 @@ namespace nsManagerNameTypeObjectMap
 	const char* sSkyplane 		= "Skyplane";
   const char* sSound    		= "Sound";
   const char* sTerrain  		= "Terrain";
-  const char* sZone     		= "Zone";
+  const char* sVolume     	= "Volume";
 }
 
 using namespace nsManagerNameTypeObjectMap;
@@ -34,7 +34,7 @@ TManagerNamePattern::TManagerNamePattern()
 	mVecNameType.push_back(sSkyplane);
   mVecNameType.push_back(sSound);
   mVecNameType.push_back(sTerrain);
-  mVecNameType.push_back(sZone);
+  mVecNameType.push_back(sVolume);
 }
 //-----------------------------------------------------------------------
 int TManagerNamePattern::GetCount()
@@ -94,8 +94,8 @@ std::string TManagerNamePattern::Terrain()
   return sTerrain;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Zone()
+std::string TManagerNamePattern::Volume()
 {
-  return sZone;
+  return sVolume;
 }
 //-----------------------------------------------------------------------

@@ -13,6 +13,7 @@ See for more information License.h.
 #include <OgreDataStream.h>
 #include "ContainerArrObj.h"
 #include "MathTools.h"
+#include "StructPattern_Terrain.h"
 
 #if defined( WIN32 )
 #pragma pack(push, 1)
@@ -62,16 +63,16 @@ public:
 	THeightMapTerrainFromOgre();
 	~THeightMapTerrainFromOgre();
 
-	struct TDataOut
-	{
-		TContainerArrObj<float> cHeight;
-		unsigned short size;
-		float worldSize;
-		float inputScale;
-		float inputBias;
-		nsMathTools::TVector3 pos;
-	}_PACKED;
-	bool Setup(std::string& pathFile, TDataOut& data);
+	//struct TDataOut
+	//{
+	//	TContainerArrObj<float> cHeight;
+	//	unsigned short size;
+	//	float worldSize;
+	//	float inputScale;
+	//	float inputBias;
+	//	nsMathTools::TVector3 pos;
+	//}_PACKED;
+	bool Setup(std::string& pathFile, nsStructPattern_Terrain::THeightMapTerrain* pHMT);
 protected:
 	void readLodData(unsigned short lowerLodBound, unsigned short higherLodBound);
 	void fillBufferAtLod(unsigned int lodLevel, const float* data, unsigned int dataSize );

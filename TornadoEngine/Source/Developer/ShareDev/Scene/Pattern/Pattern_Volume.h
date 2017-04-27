@@ -5,17 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef Pattern_ZoneH
-#define Pattern_ZoneH
+#ifndef Pattern_VolumeH
+#define Pattern_VolumeH
 
 #include "TypeDef.h"
 #include "BehaviourPattern.h"
 
-class DllExport TPattern_Zone : public TBehaviourPattern
+class DllExport TPattern_Volume : public TBehaviourPattern
 {
 public:
-  TPattern_Zone();
-  virtual ~TPattern_Zone();
+  TPattern_Volume();
+  virtual ~TPattern_Volume();
 
 	virtual TManagerNamePattern::eBaseType GetBaseType();
 };

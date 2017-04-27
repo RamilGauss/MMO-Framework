@@ -51,19 +51,20 @@ void THeightMapTerrainFromOgre::Done()
 	mDataStream.setNull();
 }
 //---------------------------------------------------------------------
-bool THeightMapTerrainFromOgre::Setup(std::string& filename, TDataOut& data)
+bool THeightMapTerrainFromOgre::Setup(std::string& filename, 
+	nsStructPattern_Terrain::THeightMapTerrain* pHMT)
 {
 	mFileName = filename;
 
 	Done();
 	RET_FALSE(Prepare())
 
-	data.pos.x     = mTerrainProperty.mPos.x;
-	data.pos.y     = mTerrainProperty.mPos.y;
-	data.pos.z     = mTerrainProperty.mPos.z;
-	data.worldSize = mTerrainProperty.mWorldSize;
-	data.size      = mTerrainProperty.mSize;
-	data.cHeight.EntrustByCount( (char*)mTerrainProperty.mHeightData, data.size*data.size);
+	pHMT->pos.x     = mTerrainProperty.mPos.x;
+	pHMT->pos.y     = mTerrainProperty.mPos.y;
+	pHMT->pos.z     = mTerrainProperty.mPos.z;
+	pHMT->worldSize = mTerrainProperty.mWorldSize;
+	pHMT->size      = mTerrainProperty.mSize;
+	pHMT->cHeight.EntrustByCount( (char*)mTerrainProperty.mHeightData, pHMT->size*pHMT->size);
 	mTerrainProperty.mHeightData = NULL;
 	return true;
 }

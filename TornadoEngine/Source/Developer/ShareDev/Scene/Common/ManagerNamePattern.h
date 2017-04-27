@@ -29,7 +29,7 @@ public:
   static std::string Skyplane();
   static std::string Sound();
   static std::string Terrain();
-  static std::string Zone();
+  static std::string Volume();
 
 	typedef enum
 	{
@@ -42,7 +42,7 @@ public:
 		eSky,
 		eSound,
 		eTerrain,
-		eZone,
+		eVolume,
 	}eBaseType;
 };
 

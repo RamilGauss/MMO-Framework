@@ -82,9 +82,9 @@
 			<Property key="ysegments" value="150"/>
 		</Variant>
   </PatternConfig>
-  <PatternConfig name="Zone">
+  <PatternConfig name="Volume">
 		<Comment value=""/>
-		<Variant name="Field_Zone_1">
+		<Variant name="Field_Volume_1">
 			<Property key="Type"     value="GraphicEffect"/>
 			<Property key="Height"   value="10.01"/>				
 			<Property key="CntCoord" value="4"/>
@@ -2936,7 +2936,7 @@
 			</Object>
 		  <Object>
 				<Identity>
-					<Property key="Pattern" value="Zone"/>
+					<Property key="Pattern" value="Volume"/>
 					<Property key="ID"      value="1"/><!-- Уникальный в пределах карты идентификатор -->
 				</Identity>
 				<Position><!-- Координаты центра -->
@@ -2951,8 +2951,8 @@
 					<Property key="w" value="0"/>						
 				</RotationQuaternion>
 				<PatternConfig>
-					<Property key="Name"    value="Zone"/>
-					<Property key="Variant" value="Field_Zone_1"/>
+					<Property key="Name"    value="Volume"/>
+					<Property key="Variant" value="Field_Volume_1"/>
 				</PatternConfig>
 			</Object>
 		  <Object>

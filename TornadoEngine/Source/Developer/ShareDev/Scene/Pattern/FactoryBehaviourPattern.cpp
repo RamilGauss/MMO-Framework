@@ -16,7 +16,7 @@ See for more information License.h.
 #include "Pattern_Skyplane.h"
 #include "Pattern_Sound.h"
 #include "Pattern_Terrain.h"
-#include "Pattern_Zone.h"
+#include "Pattern_Volume.h"
 
 #include "ManagerNamePattern.h"
 #include <boost/foreach.hpp>
@@ -32,7 +32,7 @@ TFactoryBehaviourPattern::TFactoryBehaviourPattern()
 	mCB_Skyplane.		 Register(&TFactoryBehaviourPattern::MakeSkyplane, 		 this);
   mCB_Sound.   		 Register(&TFactoryBehaviourPattern::MakeSound,    		 this);
   mCB_Terrain. 		 Register(&TFactoryBehaviourPattern::MakeTerrain,  		 this);
-  mCB_Zone.    		 Register(&TFactoryBehaviourPattern::MakeZone,     		 this);
+  mCB_Volume.  		 Register(&TFactoryBehaviourPattern::MakeVolume,     		 this);
 
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::MapParameter(), &mCB_MapParameter));
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Animated(), 		 &mCB_Animated));
@@ -43,7 +43,7 @@ TFactoryBehaviourPattern::TFactoryBehaviourPattern()
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skyplane(), 		 &mCB_Skyplane));
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Sound(),    		 &mCB_Sound));
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Terrain(),  		 &mCB_Terrain));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Zone(),     		 &mCB_Zone));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Volume(),     		 &mCB_Volume));
 }
 //----------------------------------------------------------------------------
 TFactoryBehaviourPattern::~TFactoryBehaviourPattern()
@@ -146,8 +146,8 @@ void TFactoryBehaviourPattern::MakeTerrain(TBehaviourPattern*& p)
   p = new TPattern_Terrain();
 }
 //----------------------------------------------------------------------------
-void TFactoryBehaviourPattern::MakeZone(TBehaviourPattern*& p)
+void TFactoryBehaviourPattern::MakeVolume(TBehaviourPattern*& p)
 {
-  p = new TPattern_Zone();
+  p = new TPattern_Volume();
 }
 //----------------------------------------------------------------------------

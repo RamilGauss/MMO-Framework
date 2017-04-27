@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "BehaviourPattern.h"
+#include "StructPattern_Terrain.h"
 
 #include "Builder_Terrain_Bullet.h"
 #include "Builder_Terrain_Ogre.h"
@@ -39,7 +40,18 @@ class DllExport TPattern_Terrain : public TBehaviourPattern
 	Ogre::TerrainGlobalOptions* mTerrainGlobalOptions;
 
 	// out Resources
-	//...
+public:
+	// физика
+	typedef std::map<int,nsStructPattern_Terrain::TTerrainPart_Physic> TMapIntPartPhysic;
+	typedef TMapIntPartPhysic::iterator   														 TMapIntPartPhysicIt;
+	typedef TMapIntPartPhysic::value_type 														 TMapIntPartPhysicVT;
+
+	typedef std::map<int,TMapIntPartPhysic>  TMapIntMapPartPhysic;
+	typedef TMapIntMapPartPhysic::iterator   TMapIntMapPartPhysicIt;
+	typedef TMapIntMapPartPhysic::value_type TMapIntMapPartPhysicVT;
+
+	TMapIntMapPartPhysic mX_Y_PartPhysic;
+
 protected:
 	// helper operations
 	// build

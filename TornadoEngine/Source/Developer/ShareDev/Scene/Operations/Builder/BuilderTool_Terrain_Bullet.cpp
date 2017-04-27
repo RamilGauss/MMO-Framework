@@ -38,7 +38,7 @@ void TBuilderTool_Terrain_Bullet::Begin(TMapItem* pMapItem, TTerrainItem* pTerra
 	mTerrainItem = pTerrainItem;
 	mPathTerrain = TModuleLogic::Get()->GetTerrainPath();
 
-	for( int iX = mTerrainItem->mX.min ; iX <= mTerrainItem->mX.max ; iX++ )
+	/*for( int iX = mTerrainItem->mX.min ; iX <= mTerrainItem->mX.max ; iX++ )
 	{
 		TMapIntPtrData mapData;
 		for( int iY = mTerrainItem->mY.min ; iY <= mTerrainItem->mY.max ; iY++ )
@@ -48,20 +48,22 @@ void TBuilderTool_Terrain_Bullet::Begin(TMapItem* pMapItem, TTerrainItem* pTerra
 			mapData.insert(TMapIntPtrDataVT(iY,result));
 		}
 		mX_Y_Data.insert(TMapIntMapVT(iX,mapData));
-	}
+	}*/
 }
 //--------------------------------------------------------------------
-void TBuilderTool_Terrain_Bullet::Load( int x, int y )
+void TBuilderTool_Terrain_Bullet::Load( int x, int y, 
+		 nsStructPattern_Terrain::TTerrainPart_Physic* pPartPhysic )
 {
-	TResult result;
-	if( LoadData(x, y, result)==false )
+	//TResult result;
+	pPartPhysic->pData = new nsStructPattern_Terrain::THeightMapTerrain;
+	if( LoadData(x, y, pPartPhysic->pData)==false )
 		return;
 
 	float m_minHeight, m_maxHeight;
-	FindMinMax(result.pData, m_minHeight, m_maxHeight);
+	FindMinMax(pPartPhysic->pData, m_minHeight, m_maxHeight);
 
-  int width  = result.pData->size;
-  int lenght = result.pData->size;
+  int width  = pPartPhysic->pData->size;
+  int lenght = pPartPhysic->pData->size;
 	float s_gridHeightScale = 1.0f;
 	int m_upAxis            = 1;
 	PHY_ScalarType m_type   = PHY_FLOAT;
@@ -69,13 +71,13 @@ void TBuilderTool_Terrain_Bullet::Load( int x, int y )
 	
 	btHeightfieldTerrainShape* pHeightfieldShape = new btHeightfieldTerrainShape(
 		width, lenght,
-		result.pData->cHeight.GetPtr(),
+		pPartPhysic->pData->cHeight.GetPtr(),
 		s_gridHeightScale,
 		m_minHeight, m_maxHeight,
 		m_upAxis, m_type, flipQuadEdges);
 
 	pHeightfieldShape->setUseZigzagSubdivision(true);
-	float scaleAxe = result.pData->worldSize/result.pData->size;
+	float scaleAxe = pPartPhysic->pData->worldSize/pPartPhysic->pData->size;
 	btVector3 scale;
 	scale.setX(scaleAxe);
 	scale.setY(1);
@@ -86,30 +88,31 @@ void TBuilderTool_Terrain_Bullet::Load( int x, int y )
 	tr.setIdentity();
 	btVector3 pos;
 	pos.setX(0/*-result.pData->pos.x*/);//-result.pData->worldSize/2);
-	pos.setY(result.pData->pos.y +(m_minHeight+m_maxHeight)/2.0);
+	pos.setY(pPartPhysic->pData->pos.y +(m_minHeight+m_maxHeight)/2.0);
 	pos.setZ(0/*-result.pData->pos.z*/);//-result.pData->worldSize/2);
 	tr.setOrigin(pos);
 
 	// create ground object
 	float mass = 0.0;
-	result.pRB = localCreateRigidBody(mass, tr, pHeightfieldShape);
+	pPartPhysic->pRB = localCreateRigidBody(mass, tr, pHeightfieldShape);
 }
 //--------------------------------------------------------------------
-bool TBuilderTool_Terrain_Bullet::LoadData( int x, int y, TResult& result )
+bool TBuilderTool_Terrain_Bullet::LoadData( int x, int y, 
+	nsStructPattern_Terrain::THeightMapTerrain* pHMT )
 {
-	TMapIntMapIt fitByX = mX_Y_Data.find(x);
-	if( fitByX==mX_Y_Data.end() )
-	{
-		BL_FIX_BUG();
-		return false;
-	}
-	TMapIntPtrDataIt fitByY = fitByX->second.find(y);
-	if( fitByY==fitByX->second.end() )
-	{
-		BL_FIX_BUG();
-		return false;
-	}
-	result = fitByY->second;
+	//TMapIntMapIt fitByX = mX_Y_Data.find(x);
+	//if( fitByX==mX_Y_Data.end() )
+	//{
+	//	BL_FIX_BUG();
+	//	return false;
+	//}
+	//TMapIntPtrDataIt fitByY = fitByX->second.find(y);
+	//if( fitByY==fitByX->second.end() )
+	//{
+	//	BL_FIX_BUG();
+	//	return false;
+	//}
+	//result = fitByY->second;
 
 	std::string path = mPathTerrain + "/" + mMapItem->mName + "_";
 	// Convert to signed 16-bit so sign bit is in bit 15
@@ -127,7 +130,7 @@ bool TBuilderTool_Terrain_Bullet::LoadData( int x, int y, TResult& result )
 	str << std::setw(8) << std::setfill('0') << std::hex << key;
 	path += str.str();
 
-	return mLoader.Setup(path, *(result.pData) );
+	return mLoader.Setup(path, pHMT );
 }
 //--------------------------------------------------------------------
 void TBuilderTool_Terrain_Bullet::End()
@@ -135,14 +138,14 @@ void TBuilderTool_Terrain_Bullet::End()
 	
 }
 //--------------------------------------------------------------------
-void TBuilderTool_Terrain_Bullet::FindMinMax(THeightMapTerrainFromOgre::TDataOut* pData, 
+void TBuilderTool_Terrain_Bullet::FindMinMax(nsStructPattern_Terrain::THeightMapTerrain* pHMT, 
 																				float& m_minHeight, float& m_maxHeight)
 {
-	float* p = (float*)pData->cHeight.GetPtr();
+	float* p = (float*)pHMT->cHeight.GetPtr();
 
 	m_minHeight = p[0];
 	m_maxHeight = p[0];
-	int cnt = pData->cHeight.GetCount();
+	int cnt = pHMT->cHeight.GetCount();
 	for( int i = 0 ; i < cnt ; i++ )
 	{
 		if( p[i] > m_maxHeight )
