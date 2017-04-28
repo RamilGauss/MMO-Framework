@@ -27,9 +27,6 @@ TPattern_Terrain::TPattern_Terrain() :
 {
 	g_DefaultParameterMap.insert(TPatternConfigItem::TMapStrStrVT(sNameGameItem,""));
 
-	mTerrainGroup         = NULL;
-	mTerrainGlobalOptions = NULL;
-
 	mBuilderBullet.SetPattern(this);
 	mBuilderOgre	.SetPattern(this);
 
@@ -192,8 +189,8 @@ void TPattern_Terrain::ModifyExtent()
 	descTarget.listLayer.push_back(layer);
 	//###
 
-  mModifyBullet.Setup(descTarget);
-	mModifyOgre.Setup(descTarget);
+  mModifyBullet.SetFormat(descTarget);
+	mModifyOgre.SetFormat(descTarget);
 }
 //---------------------------------------------------------------------------
 void TPattern_Terrain::ModifyBlend()

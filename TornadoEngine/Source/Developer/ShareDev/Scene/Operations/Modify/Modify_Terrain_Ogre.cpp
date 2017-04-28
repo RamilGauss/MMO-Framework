@@ -12,7 +12,7 @@ TModify_Terrain_Ogre::TModify_Terrain_Ogre()
 
 }
 //-------------------------------------------------------------------------
-void TModify_Terrain_Ogre::Setup(TDescTarget& descTarget)
+void TModify_Terrain_Ogre::SetFormat(TDescTarget& descTarget)
 {
 
 }

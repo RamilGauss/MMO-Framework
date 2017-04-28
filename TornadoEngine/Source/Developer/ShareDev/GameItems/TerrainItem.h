@@ -17,11 +17,13 @@ See for more information License.h.
 
 struct DllExport TTerrainItem : public TBaseItem
 {
-	typedef std::map<std::string,std::string> TMapStrStr;
-	typedef TMapStrStr::iterator   TMapStrStrIt;
-	typedef TMapStrStr::value_type TMapStrStrVT;
+	struct TGraphic
+	{
+		float maxPixelError;
+		float compositeMapDistance;
+	}_PACKED;
 
-	TMapStrStr mMapProperty;
+	TGraphic mGraphic;
 
 	struct TConvention
 	{

@@ -12,7 +12,7 @@ TModify_Terrain_Bullet::TModify_Terrain_Bullet()
 
 }
 //-------------------------------------------------------------------------
-void TModify_Terrain_Bullet::Setup(TDescTarget& descTarget)
+void TModify_Terrain_Bullet::SetFormat(TDescTarget& descTarget)
 {
 
 }
@@ -30,33 +30,6 @@ void TModify_Terrain_Bullet::setupContent()
 //------------------------------------------------------------------------
 // from TerrainDemo.cpp Bullet SDK 2.82
 #if 0
-
-/*
-Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006,2008 Erwin Coumans  http://continuousphysics.com/Bullet/
-
-This software is provided 'as-is', without any express or implied warranty.
-In no event will the authors be held liable for any damages arising from the use of this software.
-Permission is granted to anyone to use this software for any purpose, 
-including commercial applications, and to alter it and redistribute it freely, 
-subject to the following restrictions:
-
-1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
-2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
-3. This notice may not be removed or altered from any source distribution.
-*/
-
-#include "TerrainDemo.h"		// always include our own header first!
-
-#include "btBulletDynamicsCommon.h"
-#include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
-
-#include "GLDebugDrawer.h"
-
-#include "GL_ShapeDrawer.h"
-
-#include "GlutStuff.h"
-#include "GLDebugFont.h"
 
 // constants -------------------------------------------------------------------
 static const float s_gravity			= 9.8;		// 9.8 m/s^2
@@ -82,14 +55,6 @@ enum eTerrainModel {
 };
 
 typedef unsigned char byte_t;
-
-////////////////////////////////////////////////////////////////////////////////
-//
-//	static helper methods
-//
-//	Only used within this file (helpers and terrain generation, etc)
-//
-////////////////////////////////////////////////////////////////////////////////
 
 static const char *getTerrainTypeName(eTerrainModel model)
 {
@@ -332,10 +297,7 @@ static void dumpGrid(
 										 PHY_ScalarType type,
 										 int max )
 {
-	//std::cerr << "Grid:\n";
-
 	char buffer[32];
-
 	for (int j = 0; j < max; ++j) {
 		for (int i = 0; i < max; ++i) {
 			long offset = j * s_gridSize + i;
@@ -343,13 +305,9 @@ static void dumpGrid(
 			sprintf(buffer, "%6.2f", z);
 			//std::cerr << "  " << buffer;
 		}
-		//std::cerr << "\n";
 	}
 }
-
-
-static void updateHeight(
-												 byte_t * p,
+static void updateHeight(byte_t * p,
 												 float new_val,
 												 PHY_ScalarType type)
 {
@@ -359,10 +317,8 @@ static void updateHeight(
 		convertFromFloat(p, new_val, type);
 	}
 }
-
 // creates a random, fractal heightfield
-static void setFractal(
-											 byte_t * grid,
+static void setFractal(byte_t * grid,
 											 int bytesPerElement,
 											 PHY_ScalarType type,
 											 int step )
@@ -422,36 +378,23 @@ static void setFractal(
 	setFractal(grid + (newStep * s_gridSize) * bytesPerElement, bytesPerElement, type, newStep);
 	setFractal(grid + ((newStep * s_gridSize) + newStep) * bytesPerElement, bytesPerElement, type, newStep);
 }
-
-
-
-static byte_t *getRawHeightfieldData(
-																		 eTerrainModel model,
+static byte_t *getRawHeightfieldData(eTerrainModel model,
 																		 PHY_ScalarType type,
 																		 btScalar& minHeight,
 																		 btScalar& maxHeight)
 {
-	//	std::cerr << "\nRegenerating terrain\n";
-	//	std::cerr << "  model = " << model << "\n";
-	//	std::cerr << "  type = " << type << "\n";
-
 	long nElements = ((long) s_gridSize) * s_gridSize;
-	//	std::cerr << "  nElements = " << nElements << "\n";
 
 	int bytesPerElement = getByteSize(type);
-	//	std::cerr << "  bytesPerElement = " << bytesPerElement << "\n";
 	btAssert(bytesPerElement > 0 && "bad bytes per element");
 
 	long nBytes = nElements * bytesPerElement;
-	//	std::cerr << "  nBytes = " << nBytes << "\n";
 	byte_t * raw = new byte_t[nBytes];
 	btAssert(raw && "out of memory");
 
-	// reseed randomization every 30 seconds
-	//	srand(time(NULL) / 30);
-
 	// populate based on model
-	switch (model) {
+	switch (model) 
+	{
 	case eRadial:
 		setRadial(raw, bytesPerElement, type);
 		break;
@@ -508,11 +451,8 @@ static byte_t *getRawHeightfieldData(
 
 	return raw;
 }
-////////////////////////////////////////////////////////////////////////////////
-//	TerrainDemo class
-////////////////////////////////////////////////////////////////////////////////
-/// class that demonstrates the btHeightfieldTerrainShape object
-class TerrainDemo : public GlutDemoApplication {
+class TerrainDemo : public GlutDemoApplication 
+{
 public:
 	// constructor, destructor ---------------------------------------------
 	TerrainDemo(void);
@@ -549,10 +489,7 @@ private:
 	bool					m_isDynamic;
 };
 
-
-
-TerrainDemo::TerrainDemo(void)
-:
+TerrainDemo::TerrainDemo(void):
 m_collisionConfiguration(NULL),
 m_dispatcher(NULL),
 m_overlappingPairCache(NULL),
@@ -584,14 +521,8 @@ TerrainDemo::~TerrainDemo(void)
 
 	delete m_collisionConfiguration;
 }
-////////////////////////////////////////////////////////////////////////////////
-//	TerrainDemo -- public class methods
-////////////////////////////////////////////////////////////////////////////////
-/// one-time class and physics initialization
 void TerrainDemo::initialize(void)
 {
-	//	std::cerr << "initializing...\n";
-
 	// set up basic state
 	m_upAxis = 1;		// start with Y-axis as "up"
 	m_type = PHY_FLOAT;
@@ -610,9 +541,6 @@ void TerrainDemo::initialize(void)
 	// initialize axis- or type-dependent physics from here
 	this->resetPhysics();
 }
-////////////////////////////////////////////////////////////////////////////////
-//	TerrainDemo -- DemoApplication class interface methods
-////////////////////////////////////////////////////////////////////////////////
 void TerrainDemo::clientMoveAndDisplay(void)
 {
 	// elapsed time
@@ -701,18 +629,12 @@ void TerrainDemo::keyboardCallback(unsigned char key, int x, int y) {
 	// let demo base class handle!
 	DemoApplication::keyboardCallback(key, x, y);
 }
-
-
-
 static void doPrint(int x,int& y,int dy,const char * text)
 {
 	GLDebugDrawString(x,y, text);
 	y += dy;
 }
-
-
-
-/// override the default display just so we can overlay a bit more text
+// override the default display just so we can overlay a bit more text
 void TerrainDemo::renderme(void)
 {
 	// give base class a shot
@@ -754,16 +676,6 @@ void TerrainDemo::renderme(void)
 		doPrint(xStart, yStart, lineHeight, "Press '[' to toggle dynamics");
 	}
 }
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-//
-//	TerrainDemo -- private helper methods
-//
-////////////////////////////////////////////////////////////////////////////////
-
-/// called whenever key terrain attribute is changed
 void TerrainDemo::resetPhysics(void)
 {
 	// remove old heightfield
@@ -802,8 +714,6 @@ void TerrainDemo::resetPhysics(void)
 	float mass = 0.0;
 	localCreateRigidBody(mass, tr, heightfieldShape);
 }
-
-
 /// removes all objects and shapes from the world
 void TerrainDemo::clearWorld(void)
 {
@@ -833,10 +743,6 @@ void TerrainDemo::clearWorld(void)
 	delete m_rawHeightfieldData;
 	m_rawHeightfieldData = NULL;
 }
-////////////////////////////////////////////////////////////////////////////////
-//	TerrainDemo -- public API (exposed in header)
-////////////////////////////////////////////////////////////////////////////////
-/// creates an object that demonstrates terrain
 GlutDemoApplication * btCreateTerrainDemo(void)
 {
 	TerrainDemo * demo = new TerrainDemo;

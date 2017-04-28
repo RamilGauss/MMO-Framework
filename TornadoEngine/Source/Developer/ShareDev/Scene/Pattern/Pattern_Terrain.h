@@ -18,10 +18,6 @@ See for more information License.h.
 #include "Modify_Terrain_Bullet.h"
 #include "Modify_Terrain_Ogre.h"
 
-#include <OgreVector3.h>
-#include <OgreTerrainGroup.h>
-#include <OgreTerrain.h>
-
 class DllExport TPattern_Terrain : public TBehaviourPattern
 {
 	// temp data for Build
@@ -35,13 +31,14 @@ class DllExport TPattern_Terrain : public TBehaviourPattern
 	TProgressBuild mProgressBullet;
 	TProgressBuild mProgressOgre;
 
-	// in Resources
-	Ogre::TerrainGroup*         mTerrainGroup;
-	Ogre::TerrainGlobalOptions* mTerrainGlobalOptions;
-
 	// out Resources
+
+	// in Resources
 public:
+	// создание, уничтожение и модификация - ответственность несут сценарии
+
 	// физика
+	// НЕ как указатель, потому что уничтожение данных НЕ должно производится в конструкторе
 	typedef std::map<int,nsStructPattern_Terrain::TTerrainPart_Physic> TMapIntPartPhysic;
 	typedef TMapIntPartPhysic::iterator   														 TMapIntPartPhysicIt;
 	typedef TMapIntPartPhysic::value_type 														 TMapIntPartPhysicVT;
@@ -51,13 +48,14 @@ public:
 	typedef TMapIntMapPartPhysic::value_type TMapIntMapPartPhysicVT;
 
 	TMapIntMapPartPhysic mX_Y_PartPhysic;
+	// доступ к графике:
+	// pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()
+	// Ogre::TerrainGroup* pTG = pGE->GetTerrainGroup();
+	// Ogre::TerrainGlobalOptions* pTGO = pGE->GetTerrainGlobals();
 
 protected:
 	// helper operations
 	// build
-	//TBuilderTerrain_Bullet mBuilderTerrain_Bullet;//### убрать
-	//TBuilderTerrain_Ogre   mBuilderTerrain_Ogre;  //### убрать
-	
 	TBuilder_Terrain_Bullet mBuilderBullet;
 	TBuilder_Terrain_Ogre   mBuilderOgre;
 	// modify

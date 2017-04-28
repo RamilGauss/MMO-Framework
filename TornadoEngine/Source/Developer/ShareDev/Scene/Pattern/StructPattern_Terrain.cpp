@@ -13,5 +13,6 @@ TTerrainPart_Physic::TTerrainPart_Physic()
 {
 	pData = NULL;
 	pRB   = NULL;
+	pHeightfieldShape = NULL;
 }
 //--------------------------------------------------------------------------------

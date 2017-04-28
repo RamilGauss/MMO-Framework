@@ -14,14 +14,6 @@ See for more information License.h.
 #include "TerrainItem.h"
 #include <boost/lexical_cast.hpp>
 
-namespace nsBuilderTool_Terrain_Ogre
-{
-	const char* sMaxPixelError        = "MaxPixelError";
-	const char* sCompositeMapDistance = "CompositeMapDistance";
-}
-
-using namespace nsBuilderTool_Terrain_Ogre;
-//---------------------------------------------------------------------
 TBuilderTool_Terrain_Ogre::TBuilderTool_Terrain_Ogre()
 {
 	mMapItem     = NULL;
@@ -31,7 +23,6 @@ TBuilderTool_Terrain_Ogre::TBuilderTool_Terrain_Ogre()
 
 	mTerrainGroup     = NULL;
 	mTerrainGlobals   = NULL;
-	mTerrainsImported = false;
 }
 //--------------------------------------------------------------------
 TBuilderTool_Terrain_Ogre::~TBuilderTool_Terrain_Ogre()
@@ -78,6 +69,7 @@ void TBuilderTool_Terrain_Ogre::defineTerrain(long x, long y)
 		filename);
 
 	BL_ASSERT(exists);
+	// фатально если такого файла нет, кошмар!
 
 	if( exists )
 		mTerrainGroup->defineTerrain(x, y);
@@ -85,18 +77,8 @@ void TBuilderTool_Terrain_Ogre::defineTerrain(long x, long y)
 //--------------------------------------------------------------------
 void TBuilderTool_Terrain_Ogre::configureTerrainDefaults()
 {
-	TTerrainItem::TMapStrStrIt fit = mTerrainItem->mMapProperty.find(sMaxPixelError);
-	if( fit!=mTerrainItem->mMapProperty.end() )
-	{
-		float maxPixelError = boost::lexical_cast<float>(fit->second);
-		mTerrainGlobals->setMaxPixelError(maxPixelError);
-	}
-	fit = mTerrainItem->mMapProperty.find(sCompositeMapDistance);
-	if( fit!=mTerrainItem->mMapProperty.end() )
-	{
-		float compositeMapDistance = boost::lexical_cast<float>(fit->second);
-		mTerrainGlobals->setCompositeMapDistance(compositeMapDistance);
-	}
+	mTerrainGlobals->setMaxPixelError(mTerrainItem->mGraphic.maxPixelError);
+	mTerrainGlobals->setCompositeMapDistance(mTerrainItem->mGraphic.compositeMapDistance);
 
 	mTerrainGroup->setOrigin(mTerrainOrigin);
 }

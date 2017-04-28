@@ -18,6 +18,7 @@ See for more information License.h.
 #include "EditorMapLogic.h"
 #include "ConverterLocale.h"
 
+#include "StatusBar.h"
 
 TEditorMap::TEditorMap() 
 {
@@ -108,6 +109,9 @@ void TEditorMap::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Ch
 void TEditorMap::sl_Open(MyGUI::Widget* _sender)
 {
 	std::string nameMap = "Field";
+
+	g_StatusBar->AddText("Открытие карты \"" + nameMap + "\"");
+
 	g_EditorMapLogic->LoadGameMap(nameMap);
 	// так можно скрывать мышку. Создатели MyGUI, не надо называть так мышиный курсор, я чтобы догадаться
 	// до этого названия неделю потратил! PointerManager -> MouseCursorManager
@@ -116,7 +120,9 @@ void TEditorMap::sl_Open(MyGUI::Widget* _sender)
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Save(MyGUI::Widget* _sender)
 {
-
+	g_StatusBar->AddText("Сохранение карты...");
+	//g_EditorMapLogic->Save();
+	g_StatusBar->AddText("Сохранение карты завершено.");
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Exit(MyGUI::Widget* _sender)

@@ -21,6 +21,8 @@ TBuilder_Terrain_Bullet::~TBuilder_Terrain_Bullet()
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Bullet::Begin()
 {
+	BL_ASSERT(mPatternTerrain->mX_Y_PartPhysic.size()==0);
+
 	TMapItem*     pMapItem     = mPatternTerrain->GetMapItem();
 	TTerrainItem* pTerrainItem = mPatternTerrain->GetTerrainItem();
 
@@ -42,14 +44,25 @@ void TBuilder_Terrain_Bullet::Begin()
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Bullet::Load( int x, int y )
 {
-	nsStructPattern_Terrain::TTerrainPart_Physic* pPart = 
-		&(mPatternTerrain->mX_Y_PartPhysic[x][y]);
+	TPattern_Terrain::TMapIntMapPartPhysicIt fitX = mPatternTerrain->mX_Y_PartPhysic.find(x);
+  if( fitX==mPatternTerrain->mX_Y_PartPhysic.end() )
+	{
+		BL_FIX_BUG();
+		return;
+	}
+	TPattern_Terrain::TMapIntPartPhysicIt fitY = fitX->second.find(y);
+	if( fitY==fitX->second.end() )
+	{
+		BL_FIX_BUG();
+		return;
+	}
+
+	nsStructPattern_Terrain::TTerrainPart_Physic* pPart = &(fitY->second);
 	mBuilder.Load(x,y,pPart);
 }
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Bullet::End()
 {
-	// поместить загруженные данные в паттерн
 
 }
 //--------------------------------------------------------------------

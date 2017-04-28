@@ -35,14 +35,9 @@ void TSerializerTerrainItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinO
 	Push(pTerrainItem->mY.min);
 	Push(pTerrainItem->mY.max);
 
-	Push(pTerrainItem->mMapProperty.size());
-	BOOST_FOREACH( TTerrainItem::TMapStrStrVT& vt, pTerrainItem->mMapProperty )
-	{
-		std::string value = vt.first;
-		PushStr(value);
-		value = vt.second;
-		PushStr(value);
-	}
+	Push(pTerrainItem->mGraphic.maxPixelError);
+	Push(pTerrainItem->mGraphic.compositeMapDistance);
+
 	Collect(cBinOut);
 }
 //-------------------------------------------------------------------------------------------------------
@@ -60,16 +55,9 @@ bool TSerializerTerrainItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int 
 	RET_FALSE(Pop(pTerrainItem->mY.min))
 	RET_FALSE(Pop(pTerrainItem->mY.max))
 
-	TTerrainItem::TMapStrStr::size_type cntProperty;
-	RET_FALSE( Pop(cntProperty) )
-	for( int iPoint = 0 ; iPoint < int(cntProperty) ; iPoint++ )
-	{
-		std::string key;
-		RET_FALSE( PopStr(key) )
-		std::string value;
-		RET_FALSE( PopStr(value) )
-		pTerrainItem->mMapProperty.insert(TTerrainItem::TMapStrStrVT(key,value));
-	}
+	RET_FALSE( Pop(pTerrainItem->mGraphic.maxPixelError) )
+	RET_FALSE( Pop(pTerrainItem->mGraphic.compositeMapDistance) )
+
 	return true;
 }
 //-------------------------------------------------------------------------------------------------------

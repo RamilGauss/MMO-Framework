@@ -17,7 +17,7 @@ public:
 	TStatusBar();
 	virtual ~TStatusBar();
 
-	void AddText(std::string text);
+	void AddText(std::string text, bool appendLineFolding = true);
 	void ClearText();
 
 	void ResizeWindowEvent();

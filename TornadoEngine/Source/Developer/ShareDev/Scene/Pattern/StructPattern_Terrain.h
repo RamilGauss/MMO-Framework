@@ -13,10 +13,7 @@ See for more information License.h.
 #include "MathTools.h"
 
 class btRigidBody;
-
-#ifdef WIN32
-#pragma pack(push, 1)
-#endif
+class btHeightfieldTerrainShape;
 
 namespace nsStructPattern_Terrain
 {
@@ -29,18 +26,15 @@ namespace nsStructPattern_Terrain
 		float inputScale;
 		float inputBias;
 		nsMathTools::TVector3 pos;
-	}_PACKED;
+	};
 
 	struct DllExport TTerrainPart_Physic
 	{
-		THeightMapTerrain* pData;
-		btRigidBody*       pRB;
+		THeightMapTerrain* 				 pData;
+		btRigidBody*       				 pRB;
+		btHeightfieldTerrainShape* pHeightfieldShape;
 		TTerrainPart_Physic();
-	}_PACKED;
+	};
 };
-
-#ifdef WIN32
-#pragma pack(pop)
-#endif
 
 #endif

@@ -17,7 +17,7 @@ class DllExport TModify_Terrain_Ogre : public TModify_Terrain
 public:
 	TModify_Terrain_Ogre();
 
-	virtual void Setup(TDescTarget& descTarget);
+	virtual void SetFormat(TDescTarget& descTarget);
 protected:
 	void setupContent();
 

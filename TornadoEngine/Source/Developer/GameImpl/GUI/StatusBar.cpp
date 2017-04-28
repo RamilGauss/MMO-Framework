@@ -65,9 +65,14 @@ void TStatusBar::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Ch
 	}
 }
 //-------------------------------------------------------------------------------------
-void TStatusBar::AddText(std::string text)
+void TStatusBar::AddText(std::string text, bool appendLineFolding)
 {
-	MyGUI::UString ustr = text + "\n";
+	MyGUI::UString ustr;
+	if( appendLineFolding )
+		ustr = text + "\n";
+	else
+		ustr = text;
+
 	mTextView->addText(ustr);
 }
 //-------------------------------------------------------------------------------------

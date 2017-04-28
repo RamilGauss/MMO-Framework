@@ -45,7 +45,7 @@ public:
 		TDescTarget();
 	};
 
-	virtual void Setup(TDescTarget& descTarget) = 0;
+	virtual void SetFormat(TDescTarget& descTarget) = 0;
 private:
 };
 

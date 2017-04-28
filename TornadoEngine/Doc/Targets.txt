@@ -1,17 +1,21 @@
-1. BuilderPlate_Ogre
-2. BuilderCylinder_Ogre
-3. Terrain Ogre
-4. BuildPlate_Bullet
-5. BuildCylinder_Bullet
-6. Terrain Bullet
-7. Synchro
-8. Сборка танка
-9. Подвеска танка
-10. Гусеница с помощью шейдера, а в физике области.
-11. Снять видео и статья на хабре.
+1. Modify_Terrain_Bullet ( Extent )
+2. Modify_Terrain_Ogre ( Extent )
+3. UpdaterResources_Terrain_Bullet
+4. UpdaterResources_Terrain_Ogre
+5. Map Save (Terrain)
+
+6. Иерархия модели - продумать как отображать, строить, модифицировать и т.д.
+7. Builder_Model_Bullet
+8. Builder_Model_Ogre
+9. Modify_Model_Bullet
+10. Modify_Model_Ogre
+11. UpdaterResources_Model_Bullet
+12. UpdaterResources_Model_Ogre
+13. Map Save (Model)
+
+14. Сборка танка
+15. Подвеска танка
+16. Гусеница с помощью шейдера, а в физике области.
+17. Снять видео и статья на хабре.
 
 
-1. Extent height map по кнопке в редакторе карты.
-2. Вообще лучше переделать интерфейс окна Редактора карты.
- Предусмотреть  Меню: Файл, Режим, Физика (галочка).
-3. 

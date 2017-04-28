@@ -25,8 +25,6 @@ class DllExport TBuilderTool_Terrain_Ogre
 
 	Ogre::Vector3 mTerrainOrigin;
 
-	bool mTerrainsImported;
-
 	Ogre::SceneManager* mSceneMgr;
 	Ogre::TerrainGroup* mTerrainGroup;
 	Ogre::TerrainGlobalOptions* mTerrainGlobals;

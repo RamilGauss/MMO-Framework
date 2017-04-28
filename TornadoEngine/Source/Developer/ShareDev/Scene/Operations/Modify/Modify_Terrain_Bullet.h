@@ -17,7 +17,7 @@ class DllExport TModify_Terrain_Bullet : public TModify_Terrain
 public:
 	TModify_Terrain_Bullet();
 
-	virtual void Setup(TDescTarget& descTarget);
+	virtual void SetFormat(TDescTarget& descTarget);
 protected:
 	void setupContent();
 

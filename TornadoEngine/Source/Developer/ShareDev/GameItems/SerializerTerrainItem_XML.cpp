@@ -19,6 +19,9 @@ namespace nsSerializerTerrainItem_XML
 	const char* sMin 		 		= "min";
 	const char* sMax 		 		= "max";
 	const char* sGraphic 		= "Graphic";
+
+	const char* sMaxPixelError        = "MaxPixelError";
+	const char* sCompositeMapDistance = "CompositeMapDistance";
 }
 
 using namespace nsSerializerTerrainItem_XML;
@@ -85,7 +88,6 @@ void TSerializerTerrainItem_XML::LoadConventionArg(const char* sArg, TTerrainIte
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTerrainItem_XML::LoadGraphic()
 {
-	mTerrain->mMapProperty.clear();
   if(mXML->EnterSection(sGraphic,0))
   {
     std::string key, value;
@@ -93,7 +95,10 @@ void TSerializerTerrainItem_XML::LoadGraphic()
     for( int iProperty = 0 ; iProperty < cntProperty ; iProperty++ )
     {
       LoadProperty(iProperty, key, value);
-			mTerrain->mMapProperty.insert(TTerrainItem::TMapStrStrVT(key,value));
+			if( key==sMaxPixelError )
+				mTerrain->mGraphic.maxPixelError = boost::lexical_cast<float>(value);
+			if( key==sCompositeMapDistance )
+				mTerrain->mGraphic.compositeMapDistance = boost::lexical_cast<float>(value);
     }
     mXML->LeaveSection();
   }
@@ -124,12 +129,14 @@ void TSerializerTerrainItem_XML::SaveGraphic()
 {
 	if(mXML->AddSectionAndEnter(sGraphic))
 	{
-		BOOST_FOREACH( TTerrainItem::TMapStrStrVT& vt, mTerrain->mMapProperty )
-		{
- 			std::string key   = vt.first;
-    	std::string value = vt.second;
-			SaveProperty(key, value);
-		}
+		std::string key   = sMaxPixelError;
+		std::string value = boost::lexical_cast<std::string>(mTerrain->mGraphic.maxPixelError);
+		SaveProperty(key, value);
+
+		key   = sCompositeMapDistance;
+		value = boost::lexical_cast<std::string>(mTerrain->mGraphic.compositeMapDistance);
+		SaveProperty(key, value);
+
 		mXML->LeaveSection();
 	}
 }
