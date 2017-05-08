@@ -9,14 +9,8 @@ See for more information License.h.
 
 TModify_Terrain::TDescTarget::TDescTarget()
 {
-	iX = 0;
-	iY = 0;
-	position.x = 0;
-	position.y = 0;
-	position.z = 0;
-	worldSize = 1;
-	size = 3;
-	heightFlat = 0;
+	worldSizePart = 1;
+	sizePart = 3;
 }
 //------------------------------------------------------------------------
 TModify_Terrain::TModify_Terrain()

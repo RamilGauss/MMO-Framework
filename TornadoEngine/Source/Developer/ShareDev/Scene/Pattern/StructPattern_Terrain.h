@@ -26,6 +26,7 @@ namespace nsStructPattern_Terrain
 		float inputScale;
 		float inputBias;
 		nsMathTools::TVector3 pos;
+		THeightMapTerrain();
 	};
 
 	struct DllExport TTerrainPart_Physic

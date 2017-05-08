@@ -12,6 +12,7 @@ See for more information License.h.
 #include "MathTools.h"
 
 #include "Operation_Terrain.h"
+#include "TerrainItem.h"
 
 #include <string>
 #include <list>
@@ -28,17 +29,12 @@ public:
 		std::string textureNames_Normal;
 	};
 	struct TDescTarget
-	{// нужно для имени
-		std::string nameMap;
-		short iX;// [-32000..32000]
-		short iY;// [-32000..32000]
-		// геометрические параметры
-		nsMathTools::TVector3 position;// by center
+	{
+		TTerrainItem::TConvention diapX_Part;
+		TTerrainItem::TConvention diapY_Part;
 		// квадратная плоскость
-		float worldSize;// 0..10000 у.е. (в разумных пределах)
-		int   size;// must be 2^n + 1, [2,3,5,9,17,33,65,129,257,513,1025,2049,..]
-		// высота 
-		float heightFlat;
+		float worldSizePart;// 0..10000 у.е. (в разумных пределах)
+		int   sizePart;// must be 2^n + 1, [2,3,5,9,17,33,65,129,257,513,1025,2049,..]
 		// графические параметры, меньше 2 слоёв быть не может, 
 		// один слой - для минимума высоты, последний - для максимума высоты
 		std::list<TLayer> listLayer;

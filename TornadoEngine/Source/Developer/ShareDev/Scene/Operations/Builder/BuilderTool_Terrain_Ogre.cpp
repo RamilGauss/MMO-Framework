@@ -68,8 +68,7 @@ void TBuilderTool_Terrain_Ogre::defineTerrain(long x, long y)
 		mTerrainGroup->getResourceGroup(),
 		filename);
 
-	BL_ASSERT(exists);
-	// фатально если такого файла нет, кошмар!
+	// если нет файла, то ничего не делать, возможно, Terrain только что добавили.
 
 	if( exists )
 		mTerrainGroup->defineTerrain(x, y);

@@ -171,15 +171,12 @@ void TPattern_Terrain::ModifyExtent()
 {
 	//### берём простые входные данные
 	TModify_Terrain::TDescTarget descTarget;
-	descTarget.nameMap = GetNameMapItem();
-	descTarget.iX = 0;
-	descTarget.iY = 0;
-	descTarget.position.x = 0;
-	descTarget.position.y = 0;
-	descTarget.position.z = 0;
-	descTarget.worldSize = 10;
-	descTarget.size = 3;
-	descTarget.heightFlat = 0;
+	descTarget.diapX_Part.min = 0;
+	descTarget.diapX_Part.max = 0;
+	descTarget.diapY_Part.min = 0;
+	descTarget.diapY_Part.max = 0;
+	descTarget.worldSizePart = 10;
+	descTarget.sizePart = 3;
 
 	TModify_Terrain::TLayer layer;
 	layer.worldSize           = 2;
