@@ -15,8 +15,8 @@ See for more information License.h.
 #include "Builder_Terrain_Bullet.h"
 #include "Builder_Terrain_Ogre.h"
 
-#include "Modify_Terrain_Bullet.h"
-#include "Modify_Terrain_Ogre.h"
+#include "Modifier_Terrain_Bullet.h"
+#include "Modifier_Terrain_Ogre.h"
 
 class DllExport TPattern_Terrain : public TBehaviourPattern
 {
@@ -59,8 +59,8 @@ protected:
 	TBuilder_Terrain_Bullet mBuilderBullet;
 	TBuilder_Terrain_Ogre   mBuilderOgre;
 	// modify
-	TModify_Terrain_Bullet mModifyBullet;
-	TModify_Terrain_Ogre   mModifyOgre;
+	TModifier_Terrain_Bullet mModifierBullet;
+	TModifier_Terrain_Ogre   mModifierOgre;
 	// update
 	//###TUpdaterResources_Terrain_Bullet mUpdaterResourcesBullet;
 	//###TUpdaterResources_Terrain_Ogre   mUpdaterResourcesOgre;

@@ -5,17 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef Modify_Terrain_OgreH
-#define Modify_Terrain_OgreH
+#ifndef Modifier_Terrain_OgreH
+#define Modifier_Terrain_OgreH
 
 #include "TypeDef.h"
 
-#include "Modify_Terrain.h"
+#include "Modifier_Terrain.h"
 
-class DllExport TModify_Terrain_Ogre : public TModify_Terrain
+class DllExport TModifier_Terrain_Ogre : public TModifier_Terrain
 {
 public:
-	TModify_Terrain_Ogre();
+	TModifier_Terrain_Ogre();
 
 	virtual void SetFormat(TDescTarget& descTarget);
 protected:

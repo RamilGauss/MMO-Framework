@@ -5,19 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "Modify_Terrain_Bullet.h"
+#include "Modifier_Terrain_Bullet.h"
 
-TModify_Terrain_Bullet::TModify_Terrain_Bullet()
+TModifier_Terrain_Bullet::TModifier_Terrain_Bullet()
 {
 
 }
 //-------------------------------------------------------------------------
-void TModify_Terrain_Bullet::SetFormat(TDescTarget& descTarget)
+void TModifier_Terrain_Bullet::SetFormat(TDescTarget& descTarget)
 {
 
 }
 //------------------------------------------------------------------------
-void TModify_Terrain_Bullet::setupContent()
+void TModifier_Terrain_Bullet::setupContent()
 {
 	// если все новые параметры совпадают со старыми, то не делать апдейт и выйти.
 

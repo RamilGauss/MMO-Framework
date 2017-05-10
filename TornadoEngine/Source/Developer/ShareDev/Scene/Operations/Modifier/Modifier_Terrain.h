@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef Modify_TerrainH
-#define Modify_TerrainH
+#ifndef Modifier_TerrainH
+#define Modifier_TerrainH
 
 #include "TypeDef.h"
 #include "MathTools.h"
@@ -17,10 +17,10 @@ See for more information License.h.
 #include <string>
 #include <list>
 
-class DllExport TModify_Terrain : public TOperation_Terrain
+class DllExport TModifier_Terrain : public TOperation_Terrain
 {
 public:
-	TModify_Terrain();
+	TModifier_Terrain();
 
 	struct TLayer
 	{

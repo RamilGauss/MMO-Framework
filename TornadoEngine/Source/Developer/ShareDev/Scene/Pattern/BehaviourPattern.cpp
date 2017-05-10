@@ -163,27 +163,37 @@ void TBehaviourPattern::SynchroByModule_Sound()
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::UpdateResources()
+void TBehaviourPattern::UpdateGameItem()
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::UpdateByResourcesByModule_Logic()
+void TBehaviourPattern::UpdateByGameItemByModule_Logic()
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::UpdateByResourcesByModule_Graphic()
+void TBehaviourPattern::UpdateByGameItemByModule_Graphic()
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::UpdateByResourcesByModule_Physic()
+void TBehaviourPattern::UpdateByGameItemByModule_Physic()
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::UpdateByResourcesByModule_Sound()
+void TBehaviourPattern::UpdateByGameItemByModule_Sound()
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::SaveGameItemOnHDD()
+{
+
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::SaveOutDataOnHDD()
 {
 
 }

@@ -30,8 +30,8 @@ TPattern_Terrain::TPattern_Terrain() :
 	mBuilderBullet.SetPattern(this);
 	mBuilderOgre	.SetPattern(this);
 
-	mModifyBullet.SetPattern(this);
-	mModifyOgre	 .SetPattern(this);
+	mModifierBullet.SetPattern(this);
+	mModifierOgre	 .SetPattern(this);
 
 	//mUpdaterResourcesBullet.SetPattern(this);
 	//mUpdaterResourcesOgre	 .SetPattern(this);
@@ -170,7 +170,7 @@ Ogre::Vector3 TPattern_Terrain::GetOrigin()
 void TPattern_Terrain::ModifyExtent()
 {
 	//### берём простые входные данные
-	TModify_Terrain::TDescTarget descTarget;
+	TModifier_Terrain::TDescTarget descTarget;
 	descTarget.diapX_Part.min = 0;
 	descTarget.diapX_Part.max = 0;
 	descTarget.diapY_Part.min = 0;
@@ -178,7 +178,7 @@ void TPattern_Terrain::ModifyExtent()
 	descTarget.worldSizePart = 10;
 	descTarget.sizePart = 3;
 
-	TModify_Terrain::TLayer layer;
+	TModifier_Terrain::TLayer layer;
 	layer.worldSize           = 2;
 	layer.textureNames_Color  = "grass_green-01_diffusespecular.dds";
 	layer.textureNames_Normal = "grass_green-01_normalheight.dds";
@@ -186,8 +186,8 @@ void TPattern_Terrain::ModifyExtent()
 	descTarget.listLayer.push_back(layer);
 	//###
 
-  mModifyBullet.SetFormat(descTarget);
-	mModifyOgre.SetFormat(descTarget);
+  mModifierBullet.SetFormat(descTarget);
+	mModifierOgre.SetFormat(descTarget);
 }
 //---------------------------------------------------------------------------
 void TPattern_Terrain::ModifyBlend()

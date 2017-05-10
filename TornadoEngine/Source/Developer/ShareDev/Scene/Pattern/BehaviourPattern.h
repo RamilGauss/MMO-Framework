@@ -100,14 +100,17 @@ public:
 
 	// обновить все ресурсы, на основании которых строится объект на карте
 	// учитывает изменения, совершённые через интерфейс паттерна, Физику и внутренние изменения Логикой
-	virtual void UpdateResources();
+	virtual void UpdateGameItem();
 	
 	// обновить внутренности по ресурсам, результат такой же как при вызове Build
 	// отличие от Build - вызов атомарен, то же самое что BuildXXX(fast)
-	virtual void UpdateByResourcesByModule_Logic();
-	virtual void UpdateByResourcesByModule_Graphic();
-	virtual void UpdateByResourcesByModule_Physic();
-	virtual void UpdateByResourcesByModule_Sound();
+	virtual void UpdateByGameItemByModule_Logic();
+	virtual void UpdateByGameItemByModule_Graphic();
+	virtual void UpdateByGameItemByModule_Physic();
+	virtual void UpdateByGameItemByModule_Sound();
+
+  virtual void SaveGameItemOnHDD();
+  virtual void SaveOutDataOnHDD();
 protected:
 	template<typename T>
 	T GetFromParameterMap(std::string name, T* defaultT = NULL );

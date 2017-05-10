@@ -5,19 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "Modify_Terrain_Ogre.h"
+#include "Modifier_Terrain_Ogre.h"
 
-TModify_Terrain_Ogre::TModify_Terrain_Ogre()
+TModifier_Terrain_Ogre::TModifier_Terrain_Ogre()
 {
 
 }
 //-------------------------------------------------------------------------
-void TModify_Terrain_Ogre::SetFormat(TDescTarget& descTarget)
+void TModifier_Terrain_Ogre::SetFormat(TDescTarget& descTarget)
 {
 
 }
 //------------------------------------------------------------------------
-void TModify_Terrain_Ogre::setupContent()
+void TModifier_Terrain_Ogre::setupContent()
 {
 	// если все новые параметры совпадают со старыми, то не делать апдейт и выйти.
 
@@ -28,7 +28,7 @@ void TModify_Terrain_Ogre::setupContent()
 
 }
 //------------------------------------------------------------------------
-	/*
+#if 0
 	bool blankTerrain = false;
 	//blankTerrain = true;
 
@@ -141,12 +141,7 @@ mTerrainsImported = true;
 
 }
 }
-*/
 
-
-
-
-/*
 void configureTerrainDefaults(Light* l)
 {
 // Configure global
@@ -194,4 +189,4 @@ defaultimp.layerList[2].textureNames.push_back("growth_weirdfungus-03_normalheig
 
 
 }
-*/
+#endif
