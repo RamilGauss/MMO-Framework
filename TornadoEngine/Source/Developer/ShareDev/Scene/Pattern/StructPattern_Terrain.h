@@ -35,6 +35,8 @@ namespace nsStructPattern_Terrain
 		btRigidBody*       				 pRB;
 		btHeightfieldTerrainShape* pHeightfieldShape;
 		TTerrainPart_Physic();
+
+		void Init();
 	};
 };
 

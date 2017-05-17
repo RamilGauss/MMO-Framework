@@ -1093,11 +1093,11 @@
 						Name="Common"
 						>
 						<File
-							RelativePath=".\Scene\Operations\Destructor\DestructorGameObject.cpp"
+							RelativePath=".\Scene\Operations\Destructor\Destructor_Terrain.cpp"
 							>
 						</File>
 						<File
-							RelativePath=".\Scene\Operations\Destructor\DestructorGameObject.h"
+							RelativePath=".\Scene\Operations\Destructor\Destructor_Terrain.h"
 							>
 						</File>
 					</Filter>
@@ -1105,11 +1105,11 @@
 						Name="Bullet"
 						>
 						<File
-							RelativePath=".\Scene\Operations\Destructor\Destructor_Bullet.cpp"
+							RelativePath=".\Scene\Operations\Destructor\Destructor_Terrain_Bullet.cpp"
 							>
 						</File>
 						<File
-							RelativePath=".\Scene\Operations\Destructor\Destructor_Bullet.h"
+							RelativePath=".\Scene\Operations\Destructor\Destructor_Terrain_Bullet.h"
 							>
 						</File>
 					</Filter>
@@ -1117,25 +1117,17 @@
 						Name="Ogre"
 						>
 						<File
-							RelativePath=".\Scene\Operations\Destructor\Destructor_Ogre.cpp"
+							RelativePath=".\Scene\Operations\Destructor\Destructor_Terrain_Ogre.cpp"
 							>
 						</File>
 						<File
-							RelativePath=".\Scene\Operations\Destructor\Destructor_Ogre.h"
+							RelativePath=".\Scene\Operations\Destructor\Destructor_Terrain_Ogre.h"
 							>
 						</File>
 					</Filter>
 					<Filter
 						Name="OpenAL"
 						>
-						<File
-							RelativePath=".\Scene\Operations\Destructor\Destructor_OpenAL.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\Scene\Operations\Destructor\Destructor_OpenAL.h"
-							>
-						</File>
 					</Filter>
 				</Filter>
 				<Filter
@@ -1213,6 +1205,14 @@
 						RelativePath=".\Scene\Operations\Common\Operation_Terrain.h"
 						>
 					</File>
+				</Filter>
+				<Filter
+					Name="SaverGameItem"
+					>
+				</Filter>
+				<Filter
+					Name="SaverOutData"
+					>
 				</Filter>
 			</Filter>
 		</Filter>

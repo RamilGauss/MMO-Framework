@@ -33,14 +33,20 @@ TPattern_Terrain::TPattern_Terrain() :
 	mModifierBullet.SetPattern(this);
 	mModifierOgre	 .SetPattern(this);
 
-	//mUpdaterResourcesBullet.SetPattern(this);
-	//mUpdaterResourcesOgre	 .SetPattern(this);
+	//mUpdaterGameItemBullet.SetPattern(this);
+	//mUpdaterGameItemOgre	.SetPattern(this);
 
-	//mUpdaterByResourcesBullet.SetPattern(this);
-	//mUpdaterByResourcesOgre	 .SetPattern(this);
+  //mUpdaterByGameItemBullet.SetPattern(this);
+  //mUpdaterByGameItemOgre	.SetPattern(this);
 
-	//mDestructorBullet.SetPattern(this);
-	//mDestructorOgre	 .SetPattern(this);
+  //mSaverGameItemBullet.SetPattern(this);
+  //mSaverGameItemOgre  .SetPattern(this);
+
+  //mSaverOutDataBullet.SetPattern(this);
+  //mSaverOutDataOgre  .SetPattern(this);
+
+	mDestructorBullet.SetPattern(this);
+	mDestructorOgre	 .SetPattern(this);
 }
 //---------------------------------------------------------------------------
 TPattern_Terrain::~TPattern_Terrain()

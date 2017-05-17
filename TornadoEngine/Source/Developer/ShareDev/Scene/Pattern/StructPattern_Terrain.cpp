@@ -20,6 +20,11 @@ THeightMapTerrain::THeightMapTerrain()
 //--------------------------------------------------------------------------------
 TTerrainPart_Physic::TTerrainPart_Physic()
 {
+	Init();
+}
+//--------------------------------------------------------------------------------
+void TTerrainPart_Physic::Init()
+{
 	pData = NULL;
 	pRB   = NULL;
 	pHeightfieldShape = NULL;

@@ -5,15 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "Destructor_Bullet.h"
+#include "Destructor_Terrain_Bullet.h"
 
-
-TDestructor_Bullet::TDestructor_Bullet()
+TDestructor_Terrain_Bullet::TDestructor_Terrain_Bullet()
 {
 
 }
 //--------------------------------------------------------------------------------------------
-TDestructor_Bullet::~TDestructor_Bullet()
+TDestructor_Terrain_Bullet::~TDestructor_Terrain_Bullet()
 {
 
 }

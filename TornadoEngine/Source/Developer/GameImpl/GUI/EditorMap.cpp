@@ -139,6 +139,9 @@ void TEditorMap::sl_ToggleUsePhysic(MyGUI::Widget* _sender)
 	TPhysicEngine_Bullet::eStateWorld stateWorld = 
 	 state ? TPhysicEngine_Bullet::eStateRealTime : TPhysicEngine_Bullet::eStatePause;
 	g_EditorMapLogic->TogglePhysicState(stateWorld);
+
+	std::string sMsgUsePhysic = state ? "Физика вкл." : "Физика выкл.";
+	g_StatusBar->AddText(sMsgUsePhysic);
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::SetNameMode(std::string sMode)

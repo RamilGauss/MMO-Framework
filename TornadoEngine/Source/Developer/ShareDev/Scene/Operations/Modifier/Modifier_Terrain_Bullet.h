@@ -14,13 +14,19 @@ See for more information License.h.
 
 class DllExport TModifier_Terrain_Bullet : public TModifier_Terrain
 {
+	TDescTarget mDescTarget;
+
 public:
 	TModifier_Terrain_Bullet();
 
 	virtual void SetFormat(TDescTarget& descTarget);
 protected:
-	void setupContent();
+	void Clear();
 
+	void ModifyExtent();
+	
+	void InitGrid();
+	void SetupContentParts();
 };
 
 #endif

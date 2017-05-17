@@ -18,6 +18,9 @@ See for more information License.h.
 #include "Modifier_Terrain_Bullet.h"
 #include "Modifier_Terrain_Ogre.h"
 
+#include "Destructor_Terrain_Bullet.h"
+#include "Destructor_Terrain_Ogre.h"
+
 class DllExport TPattern_Terrain : public TBehaviourPattern
 {
 	// temp data for Build
@@ -62,14 +65,20 @@ protected:
 	TModifier_Terrain_Bullet mModifierBullet;
 	TModifier_Terrain_Ogre   mModifierOgre;
 	// update
-	//###TUpdaterResources_Terrain_Bullet mUpdaterResourcesBullet;
-	//###TUpdaterResources_Terrain_Ogre   mUpdaterResourcesOgre;
+	//###TUpdaterGameItem_Terrain_Bullet mUpdaterGameItemBullet;
+	//###TUpdaterGameItem_Terrain_Ogre   mUpdaterGameItemOgre;
 	// update by
-	//###TUpdaterByResources_Terrain_Bullet mUpdaterByResourcesBullet;
-	//###TUpdaterByResources_Terrain_Ogre   mUpdaterByResourcesOgre;
+	//###TUpdaterByGameItem_Terrain_Bullet mUpdaterByGameItemBullet;
+	//###TUpdaterByGameItem_Terrain_Ogre   mUpdaterByGameItemOgre;
+  // save game item
+  //###TSaverGameItem_Terrain_Bullet mSaverGameItemBullet;
+  //###TSaverGameItem_Terrain_Ogre   mSaverGameItemOgre;
+  // save out data
+  //###TSaverOutData_Terrain_Bullet mSaverOutDataBullet;
+  //###TSaverOutData_Terrain_Ogre   mSaverOutDataOgre;
 	// destruct
-	//###TDestructor_Terrain_Bullet mDestructorBullet;
-	//###TDestructor_Terrain_Ogre   mDestructorOgre;
+	TDestructor_Terrain_Bullet mDestructorBullet;
+	TDestructor_Terrain_Ogre   mDestructorOgre;
 
 public:
   TPattern_Terrain();
