@@ -2982,15 +2982,15 @@
 					<Property key="ID"      value="3"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="-3"/>
-					<Property key="y" value="20"/>
-					<Property key="z" value="-3"/>
+					<Property key="x" value="-2"/>
+					<Property key="y" value="40"/>
+					<Property key="z" value="-2"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="1"/>
-					<Property key="w" value="2"/>						
+					<Property key="y" value="1"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>
 				</RotationQuaternion>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>
@@ -3003,15 +3003,15 @@
 					<Property key="ID"      value="777"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="3"/>
-					<Property key="y" value="20"/>
-					<Property key="z" value="3"/>
+					<Property key="x" value="-3"/>
+					<Property key="y" value="40"/>
+					<Property key="z" value="-3"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
 					<Property key="y" value="1"/>
 					<Property key="z" value="0"/>
-					<Property key="w" value="2"/>						
+					<Property key="w" value="0"/>
 				</RotationQuaternion>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>
@@ -3024,15 +3024,15 @@
 					<Property key="ID"      value="33"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="-3"/>
-					<Property key="y" value="20"/>
-					<Property key="z" value="0"/>
+					<Property key="x" value="-2"/>
+					<Property key="y" value="40"/>
+					<Property key="z" value="-4"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="1"/>
-					<Property key="w" value="2"/>						
+					<Property key="y" value="1"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>
 				</RotationQuaternion>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>
@@ -3045,15 +3045,15 @@
 					<Property key="ID"      value="34"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="3"/>
-					<Property key="y" value="20"/>
-					<Property key="z" value="0"/>
+					<Property key="x" value="-4"/>
+					<Property key="y" value="40"/>
+					<Property key="z" value="-2"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="1"/>
-					<Property key="w" value="2"/>						
+					<Property key="y" value="1"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>
 				</RotationQuaternion>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>
@@ -3066,15 +3066,15 @@
 					<Property key="ID"      value="35"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="20"/>
-					<Property key="z" value="0"/>
+					<Property key="x" value="-4"/>
+					<Property key="y" value="40"/>
+					<Property key="z" value="-4"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="1"/>
-					<Property key="w" value="2"/>						
+					<Property key="y" value="1"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>
 				</RotationQuaternion>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>

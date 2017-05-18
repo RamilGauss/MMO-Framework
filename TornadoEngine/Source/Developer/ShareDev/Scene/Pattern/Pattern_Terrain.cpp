@@ -181,8 +181,8 @@ void TPattern_Terrain::ModifyExtent()
 	descTarget.diapX_Part.max = 0;
 	descTarget.diapY_Part.min = 0;
 	descTarget.diapY_Part.max = 0;
-	descTarget.worldSizePart = 10;
-	descTarget.sizePart = 3;
+	descTarget.worldSizePart  = 8.4;
+	descTarget.sizePart       = 33;
 
 	TModifier_Terrain::TLayer layer;
 	layer.worldSize           = 2;

@@ -396,6 +396,14 @@
 				Name="Secondary"
 				>
 				<File
+					RelativePath=".\GUI\DialogHeightmapParam.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\DialogHeightmapParam.h"
+					>
+				</File>
+				<File
 					RelativePath=".\GUI\PlateParam.cpp"
 					>
 				</File>

@@ -278,8 +278,8 @@ void TEditorMapLogic::ShowTest()
 	//TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->SetUseClipCursor(false);
 
 	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
-	pCamera->setPosition(60,60,60);
-	pCamera->lookAt(0,30,0);
+	pCamera->setPosition(-10,40,-10);
+	pCamera->lookAt(-4,40,-4);
 	//Ogre::Radian fovy(3.14f/3);// масштаб относительно 1 у.е.
 	//pCamera->setFOVy(fovy);
 

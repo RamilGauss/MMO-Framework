@@ -11,11 +11,13 @@ See for more information License.h.
 #include "TypeDef.h"
 
 #include "Modifier_Terrain.h"
+#include "BuilderTool_Bullet.h"
 
 class DllExport TModifier_Terrain_Bullet : public TModifier_Terrain
 {
 	TDescTarget mDescTarget;
 
+	TBuilderTool_Bullet mBuilderTool_Bullet;
 public:
 	TModifier_Terrain_Bullet();
 

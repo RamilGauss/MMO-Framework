@@ -384,7 +384,7 @@ void TPattern_Model::BuildShapeByModule_Physic(TShapeDesc* pShapeDesc)
 
 	pShapeDesc->pRigidBody->setWorldTransform(trans);
 
-	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,-10,0));
+	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,0,0));
 	//pShapeDesc->pRigidBody->setAngularVelocity(btVector3(0,10,0));
 
 	//btDiscreteDynamicsWorld* pWorld = TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(id_world);

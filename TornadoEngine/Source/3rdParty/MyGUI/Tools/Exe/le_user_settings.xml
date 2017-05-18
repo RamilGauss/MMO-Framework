@@ -6,7 +6,7 @@
 		</WidgetsWindow>
 		<Main>
 			<Maximized>false</Maximized>
-			<Coord>0 0 640 480</Coord>
+			<Coord>0 20514168 0 0</Coord>
 		</Main>
 	</Controls>
 	<Settings>
@@ -34,16 +34,16 @@
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_PanelView</Value>
 		</RecentFolder.List>
 		<RecentFile.List>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\DialogHeightmapParam.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\ClientMain.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\PlastinaVarGeomParam.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\WaitForm.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\PlastinaParam.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\StatusBar.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\StatusBar</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorMap.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\ClientMain.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\PlastinaVarGeomParam.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\PlastinaParam.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\EditorFramework\OpenSaveFileDialog2.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\CodeGeneratorWindow.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\Background.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\ToolsControl.layout</Value>
 		</RecentFile.List>
 		<RecentProject.List>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorShape.project</Value>

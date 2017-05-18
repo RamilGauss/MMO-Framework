@@ -37,6 +37,10 @@ public:
 		int   sizePart;// must be 2^n + 1, [2,3,5,9,17,33,65,129,257,513,1025,2049,..]
 		// графические параметры, меньше 2 слоёв быть не может, 
 		// один слой - для минимума высоты, последний - для максимума высоты
+
+		float inputScale;
+		float inputBias;
+
 		std::list<TLayer> listLayer;
 		TDescTarget();
 	};

@@ -14,8 +14,13 @@ See for more information License.h.
 
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
+class TDialogHeightmapParam;
+
 class TEditorMap : public TBaseGUI
 {
+	
+	TDialogHeightmapParam* mDialogHeightmapParam;
+
 public:
   TEditorMap();
   virtual ~TEditorMap();

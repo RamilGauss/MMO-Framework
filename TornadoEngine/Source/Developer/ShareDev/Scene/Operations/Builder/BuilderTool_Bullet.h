@@ -28,7 +28,8 @@ public:
 
   void SetID_PhysicWorld(int id);
   int GetID_PhysicWorld();
-protected:
+
+public:
 	btRigidBody* localCreateRigidBody(float mass, 
 		const btTransform& startTransform, btCollisionShape* shape);
 };

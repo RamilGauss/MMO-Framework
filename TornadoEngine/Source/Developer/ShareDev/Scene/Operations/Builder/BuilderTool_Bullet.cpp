@@ -41,11 +41,9 @@ btRigidBody* TBuilderTool_Bullet::localCreateRigidBody(float mass,
 
 	// rigidbody is dynamic if and only if mass is non zero, otherwise static
 	bool isDynamic = (mass != 0.f);
-
 	btVector3 localInertia(0,0,0);
 	if( isDynamic )
 		shape->calculateLocalInertia(mass,localInertia);
-
 	// using motionstate is recommended, it provides interpolation capabilities, 
 	// and only synchronizes 'active' objects
 	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);

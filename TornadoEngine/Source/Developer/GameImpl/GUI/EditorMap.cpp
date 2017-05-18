@@ -19,6 +19,7 @@ See for more information License.h.
 #include "ConverterLocale.h"
 
 #include "StatusBar.h"
+#include "DialogHeightmapParam.h"
 
 TEditorMap::TEditorMap() 
 {
@@ -36,11 +37,13 @@ TEditorMap::TEditorMap()
 	miMode_Objects             = nullptr;
 
 	cbUsePhysic                = nullptr;
+
+	mDialogHeightmapParam = new TDialogHeightmapParam;
 }
 //------------------------------------------------------
 TEditorMap::~TEditorMap()
 {
-
+	delete mDialogHeightmapParam;
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::Activate()
@@ -159,7 +162,7 @@ void TEditorMap::sl_Mode_Fly(MyGUI::Widget* _sender)
 void TEditorMap::sl_Mode_TerrainExtent(MyGUI::Widget* _sender)
 {
 	SetNameMode("Переопределить параметры земли");
-	g_EditorMapLogic->ModifyTerrain_Extent();
+	mDialogHeightmapParam->Show();
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Mode_TerrainHeight(MyGUI::Widget* _sender)
