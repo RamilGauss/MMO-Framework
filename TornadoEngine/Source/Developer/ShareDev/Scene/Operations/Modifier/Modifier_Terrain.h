@@ -22,13 +22,13 @@ class DllExport TModifier_Terrain : public TOperation_Terrain
 public:
 	TModifier_Terrain();
 
-	struct TLayer
+	struct DllExport TLayer
 	{
 		float worldSize;
 		std::string textureNames_Color;
 		std::string textureNames_Normal;
 	};
-	struct TDescTarget
+	struct DllExport TDescTarget
 	{
 		TTerrainItem::TConvention diapX_Part;
 		TTerrainItem::TConvention diapY_Part;
@@ -37,6 +37,8 @@ public:
 		int   sizePart;// must be 2^n + 1, [2,3,5,9,17,33,65,129,257,513,1025,2049,..]
 		// графические параметры, меньше 2 слоёв быть не может, 
 		// один слой - для минимума высоты, последний - для максимума высоты
+
+		float height;
 
 		float inputScale;
 		float inputBias;

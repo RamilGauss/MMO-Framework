@@ -15,6 +15,7 @@ See for more information License.h.
 
 #include "./GraphicEngine/Events.h"
 #include "PhysicEngine_Bullet.h"
+#include "Modifier_Terrain.h"
 
 class TEditorMap;
 class TStatusBar;
@@ -51,7 +52,8 @@ public:
 public:// TEditorMapLogic for GUI
 	void TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld);
 	void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic
-	void ModifyTerrain_Extent();
+	
+	void ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descTarget);
 
 protected:
   virtual bool WorkClient();

@@ -213,9 +213,12 @@ void TPattern_Model::SynchroByModule_Graphic()
 			{
 				TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
 
-				btMotionState* pMS = pShapeDesc->pRigidBody->getMotionState();
-				btTransform trans;
-				pMS->getWorldTransform(trans);
+				//###
+				btTransform transMotionState;
+				pShapeDesc->pRigidBody->getMotionState()->getWorldTransform(transMotionState);
+				//###
+
+				btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();//###
 				btVector3& posBullet = trans.getOrigin();
 				
 				Ogre::Entity* pEntity = pShapeDesc->pEntity;
@@ -384,6 +387,7 @@ void TPattern_Model::BuildShapeByModule_Physic(TShapeDesc* pShapeDesc)
 
 	pShapeDesc->pRigidBody->setWorldTransform(trans);
 
+	//###
 	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,0,0));
 	//pShapeDesc->pRigidBody->setAngularVelocity(btVector3(0,10,0));
 

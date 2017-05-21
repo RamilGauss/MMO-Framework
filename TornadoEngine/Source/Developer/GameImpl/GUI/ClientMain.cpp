@@ -12,9 +12,6 @@ See for more information License.h.
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include <boost/lexical_cast.hpp>
 
-//#include <QString>
-//#include <QSettings>
-
 #include "GlobalParam.h"
 #include "ResolverSelf_IP_v4.h"
 #include "ModuleLogic.h"

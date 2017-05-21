@@ -173,10 +173,10 @@ Ogre::Vector3 TPattern_Terrain::GetOrigin()
 	return originOgre;
 }
 //---------------------------------------------------------------------------
-void TPattern_Terrain::ModifyExtent()
+void TPattern_Terrain::ModifyExtent(TModifier_Terrain::TDescTarget& descTarget)
 {
 	//### берём простые входные данные
-	TModifier_Terrain::TDescTarget descTarget;
+	/*TModifier_Terrain::TDescTarget descTarget;
 	descTarget.diapX_Part.min = 0;
 	descTarget.diapX_Part.max = 0;
 	descTarget.diapY_Part.min = 0;
@@ -189,7 +189,7 @@ void TPattern_Terrain::ModifyExtent()
 	layer.textureNames_Color  = "grass_green-01_diffusespecular.dds";
 	layer.textureNames_Normal = "grass_green-01_normalheight.dds";
 	descTarget.listLayer.push_back(layer);
-	descTarget.listLayer.push_back(layer);
+	descTarget.listLayer.push_back(layer);*/
 	//###
 
   mModifierBullet.SetFormat(descTarget);

@@ -39,6 +39,7 @@ protected:
 	MyGUI::EditBox* ebX_max;
 	MyGUI::EditBox* ebY_min;
 	MyGUI::EditBox* ebY_max;
+	MyGUI::EditBox* ebHeight;
 
 };
 

@@ -97,7 +97,7 @@ void TModifier_Terrain_Bullet::SetupContentParts()
 			// расчет позиции
 			//###
 			// регулирование высоты
-			const float default_height = 39.5f;
+			float default_height = mDescTarget.height;// 39.5f;
 			//###
 			pPart->pData->pos.x = x_map.first*pPart->pData->worldSize;
 			pPart->pData->pos.y = default_height;

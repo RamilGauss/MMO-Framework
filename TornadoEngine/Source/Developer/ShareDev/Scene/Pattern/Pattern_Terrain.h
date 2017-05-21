@@ -96,7 +96,7 @@ public:
 	Ogre::Vector3 GetOrigin();
 
 	// модификация
-	void ModifyExtent();
+	void ModifyExtent(TModifier_Terrain::TDescTarget& descTarget);
 	void ModifyBlend();
 	void ModifyPaint();
 protected:

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Window" skin="WindowC" position="250 120 195 250" align="Right Top" layer="Main" name="_Main">
+    <Widget type="Window" skin="WindowC" position="250 120 190 285" align="Right Top" layer="Main" name="_Main">
         <Property key="Caption" value="HeightmapParam"/>
         <Property key="MinSize" value="200 160"/>
         <Property key="Movable" value="true"/>
-        <Widget type="Button" skin="Button" position="100 185 80 25" align="Right Bottom" name="bClose">
+        <Widget type="Button" skin="Button" position="95 220 80 25" align="Right Bottom" name="bClose">
             <Property key="Caption" value="Закрыть"/>
         </Widget>
         <Widget type="EditBox" skin="EditBox" position="85 5 95 25" name="ebWorldSize"/>
@@ -19,7 +19,7 @@
         </Widget>
         <Widget type="EditBox" skin="EditBox" position="85 35 95 25" name="ebSize"/>
         <Widget type="EditBox" skin="EditBox" position="85 65 95 25" name="ebX_min"/>
-        <Widget type="Button" skin="Button" position="5 185 85 25" align="Left Bottom" name="bApply">
+        <Widget type="Button" skin="Button" position="5 220 85 25" align="Left Bottom" name="bApply">
             <Property key="Caption" value="Применить"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="5 95 75 23">
@@ -34,5 +34,9 @@
         </Widget>
         <Widget type="EditBox" skin="EditBox" position="85 125 95 25" name="ebY_min"/>
         <Widget type="EditBox" skin="EditBox" position="85 155 95 25" name="ebY_max"/>
+        <Widget type="TextBox" skin="TextBox" position="5 185 75 23">
+            <Property key="Caption" value="height"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="85 185 95 25" name="ebHeight"/>
     </Widget>
 </MyGUI>

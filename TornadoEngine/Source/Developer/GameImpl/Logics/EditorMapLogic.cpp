@@ -324,7 +324,7 @@ void TEditorMapLogic::TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateW
 	}
 }
 //---------------------------------------------------------------------------------------------
-void TEditorMapLogic::ModifyTerrain_Extent()
+void TEditorMapLogic::ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descTarget)
 {
 	if( mAggregationScenario_Client.get()==NULL )
 		return;
@@ -340,7 +340,7 @@ void TEditorMapLogic::ModifyTerrain_Extent()
 		if( pGO->GetPattern()->GetBaseType()!=TManagerNamePattern::eTerrain )
 			continue;
 		TPattern_Terrain* pTerrain = (TPattern_Terrain*)pGO->GetPattern();
-		pTerrain->ModifyExtent();
+		pTerrain->ModifyExtent(descTarget);
 		break;
 		//mScene->GetUsingByID(id);
 	}

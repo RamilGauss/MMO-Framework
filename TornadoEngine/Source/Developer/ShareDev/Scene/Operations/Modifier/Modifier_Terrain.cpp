@@ -12,6 +12,7 @@ TModifier_Terrain::TDescTarget::TDescTarget()
 	worldSizePart = 1;
 	sizePart = 3;
 	
+	height     = 0;
 	inputScale = 33;
 	inputBias  = 33;
 }
