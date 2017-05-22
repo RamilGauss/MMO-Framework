@@ -213,11 +213,6 @@ void TPattern_Model::SynchroByModule_Graphic()
 			{
 				TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
 
-				//###
-				btTransform transMotionState;
-				pShapeDesc->pRigidBody->getMotionState()->getWorldTransform(transMotionState);
-				//###
-
 				btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();//###
 				btVector3& posBullet = trans.getOrigin();
 				
@@ -522,5 +517,28 @@ TPattern_Model::TModelDesc::~TModelDesc()
 TManagerNamePattern::eBaseType TPattern_Model::GetBaseType()
 {
 	return TManagerNamePattern::eModel;
+}
+//------------------------------------------------------------------------
+void TPattern_Model::ActivatePhysicBody(bool force)
+{
+	int cntPart = GetCountPart();
+	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
+	{
+		std::string namePart = GetNamePart(iPart);
+		int cntVariant = GetCountVariant(namePart);
+		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
+		{
+			std::string nameVariant = GetNameVariant(namePart, iVariant);
+			TBaseDesc* pDesc = GetDesc(namePart, nameVariant);
+			if( pDesc==NULL )
+				continue;
+			if( pDesc->type==TModelItem::eShape )
+			{
+				TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
+				if( pShapeDesc->pRigidBody )
+					pShapeDesc->pRigidBody->activate(force);
+			}
+		}
+	}
 }
 //------------------------------------------------------------------------

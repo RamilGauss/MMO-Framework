@@ -97,6 +97,15 @@ public:
   virtual void SynchroByModule_Graphic();// графика от физики
   virtual void SynchroByModule_Physic(); // внутренняя синхронизация
   virtual void SynchroByModule_Sound();  // звук от физики
+
+	// model interface
+
+	// активировать все физические тела
+	// btRigidBody.h:
+	// Bullet automatically deactivates dynamic rigid bodies, when the velocity is below a threshold for a given time.
+	// Deactivated (sleeping) rigid bodies don't take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)
+	virtual void ActivatePhysicBody(bool force = true);
+
 protected:
 	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
 

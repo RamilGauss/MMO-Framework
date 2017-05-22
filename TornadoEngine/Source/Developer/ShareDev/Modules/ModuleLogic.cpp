@@ -25,6 +25,8 @@ if( MODULE ) mSetUseID_Module.insert(MODULE->GetID());
 
 TModuleLogic::TModuleLogic()
 {
+	mSettingXML = NULL;
+
   g_ptrModuleLogic = this;
   flgNeedExit = false;
 }
@@ -96,5 +98,20 @@ void TModuleLogic::SetTerrainPath(std::string& path)
 std::set<int> TModuleLogic::GetUseID_Module()
 {
 	return mSetUseID_Module;
+}
+//--------------------------------------------------------------------
+std::string TModuleLogic::GetNameFileSettingXML()
+{
+	return "";
+}
+//--------------------------------------------------------------------
+void TModuleLogic::SetXML(IXML* pXML)
+{
+	mSettingXML = pXML;
+}
+//--------------------------------------------------------------------
+IXML* TModuleLogic::GetXML()
+{
+	return mSettingXML;
 }
 //--------------------------------------------------------------------

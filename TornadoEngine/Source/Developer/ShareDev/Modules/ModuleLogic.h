@@ -15,12 +15,16 @@ See for more information License.h.
 #include "FactoryBehaviourPattern.h"
 #include <set>
 
+class IXML;
+
 class DllExport TModuleLogic : public TModuleDev
 {
   volatile bool flgNeedExit;
 
 	std::string mTerrainPath;
   TFactoryBehaviourPattern mFBP;
+
+	IXML* mSettingXML;
 protected:
   TComponents      mComp;
   TFactoryGameItem mFGI;
@@ -46,6 +50,12 @@ public:
   static TModuleLogic* Get();
 
   void Exit( int reason = 0);
+
+	// settings, любое приложение - есть логика, значит и файл настроек тоже один на логику
+	virtual std::string GetNameFileSettingXML();
+	
+	void SetXML(IXML* pXML);
+	IXML* GetXML();
 
 protected:
   bool NeedExit();

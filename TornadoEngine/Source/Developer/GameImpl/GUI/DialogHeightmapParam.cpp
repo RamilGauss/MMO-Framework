@@ -35,6 +35,8 @@ void TDialogHeightmapParam::Activate()
 
 	bApply->eventMouseButtonClick += MyGUI::newDelegate(this, &TDialogHeightmapParam::sl_Apply);
 	bClose->eventMouseButtonClick += MyGUI::newDelegate(this, &TDialogHeightmapParam::sl_Close);
+
+	LoadSetting();
 }
 //---------------------------------------------------------------------------------------------
 void* TDialogHeightmapParam::GetParent()
@@ -107,5 +109,22 @@ void TDialogHeightmapParam::sl_Apply(MyGUI::Widget* _sender)
 void TDialogHeightmapParam::sl_Close(MyGUI::Widget* _sender)
 {
 	//Hide();
+}
+//---------------------------------------------------------------------------------------------
+void TDialogHeightmapParam::LoadSetting()
+{
+	USES_CONVERSION;
+
+	std::string sWorldSize = boost::lexical_cast<std::string>(10.0f);
+	LPWSTR wWorldSize = A2W(sWorldSize.data());
+	ebWorldSize->setOnlyText(wWorldSize);
+
+	std::string sSize = boost::lexical_cast<std::string>(33);
+	LPWSTR wSize = A2W(sSize.data());
+	ebSize->setOnlyText(sSize);
+
+	std::string sHeight = boost::lexical_cast<std::string>(39.60000f);
+	LPWSTR wHeight = A2W(sHeight.data());
+	ebHeight->setOnlyText(wHeight);
 }
 //---------------------------------------------------------------------------------------------

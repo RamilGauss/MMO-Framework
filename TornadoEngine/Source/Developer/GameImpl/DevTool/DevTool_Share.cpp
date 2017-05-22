@@ -27,10 +27,12 @@ See for more information License.h.
 #include "GraphicEngine_Ogre_MyGUI.h"
 #include "EventGameEngine.h"
 
+#include "MakerXML.h"
+#include "IXML.h"
+
 #ifndef WIN32
 	#include <unistd.h>
 #endif
-
 
 namespace nsDevTool_Share
 {
@@ -42,10 +44,10 @@ namespace nsDevTool_Share
 
   const char* sFileResources = "Resources.xml";
 
-  const char* sCore           = "Core";
-  const char* sSkin           = "Skin";
-  const char* sConveyer       = "Conveyer";
-  const char* sItems          = "Items";
+  const char* sCore          = "Core";
+  const char* sSkin          = "Skin";
+  const char* sConveyer      = "Conveyer";
+  const char* sItems         = "Items";
 }
 
 using namespace nsListModules;
@@ -57,6 +59,17 @@ TDevTool_Share::TDevTool_Share()
 //-----------------------------------------------------------------------
 TDevTool_Share::~TDevTool_Share()
 {
+	TModuleLogic* pLogic = (TModuleLogic*)FindPtrModuleByID(Logic);
+	if(pLogic)
+	{
+		IXML* pXML = pLogic->GetXML();
+		if( pXML )
+		{
+			TMakerXML makerXML;
+			makerXML.Delete(pXML);
+		}
+	}
+	// уничтожить все модули
   BOOST_FOREACH(TMapIntPtrModuleVT& vtID_Ptr, mMapID_PtrModules)
     delete vtID_Ptr.second;
 }
@@ -230,9 +243,20 @@ void TDevTool_Share::SetComponentsForLogic()
 #endif
     pLogic->InitLog();
     pLogic->ParseCmd(mVecArg);
+
+		// загрузка для использования XML
+		TMakerXML makerXML;
+		std::string nameXML = pLogic->GetNameFileSettingXML();
+		IXML* pXML = makerXML.New();
+		if( pXML->Load(nameXML.data())==false )
+			makerXML.Delete(pXML);
+		else
+			pLogic->SetXML(pXML);
   }
   else 
-    {BL_FIX_BUG();}
+  {
+		BL_FIX_BUG();
+	}
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetVectorParam(std::vector<std::string>& vecArg)

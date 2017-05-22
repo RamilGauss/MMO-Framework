@@ -15,9 +15,13 @@ See for more information License.h.
 #include "ModuleSoundEngine.h"
 
 #include "EditorMap.h"
+#include "StatusBar.h"
+
 #include "ControlCamera.h"
 #include "ConverterLocale.h"
 #include "GameObject.h"
+
+#include "Pattern_Model.h"
 #include "Pattern_Terrain.h"
 
 #include <boost/locale/util.hpp>
@@ -25,7 +29,6 @@ See for more information License.h.
 
 //###
 #include "ShowTankWoT_test.h"
-#include "StatusBar.h"
 //###
 
 TEditorMapLogic* g_EditorMapLogic = NULL;
@@ -337,12 +340,21 @@ void TEditorMapLogic::ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descT
 		TGameObject* pGO = mScene->GetUsingByIndex(i);
 		if( pGO==NULL )
 			continue;
-		if( pGO->GetPattern()->GetBaseType()!=TManagerNamePattern::eTerrain )
-			continue;
-		TPattern_Terrain* pTerrain = (TPattern_Terrain*)pGO->GetPattern();
-		pTerrain->ModifyExtent(descTarget);
-		break;
-		//mScene->GetUsingByID(id);
+		switch( pGO->GetPattern()->GetBaseType() )
+		{
+			case TManagerNamePattern::eTerrain:
+			{ // модификация земли (форматирование)
+				TPattern_Terrain* pTerrain = (TPattern_Terrain*)pGO->GetPattern();
+				pTerrain->ModifyExtent(descTarget);
+				break;
+			}
+			case TManagerNamePattern::eModel:
+			{	// активировать все модели
+				TPattern_Model* pModel = (TPattern_Model*)pGO->GetPattern();
+				pModel->ActivatePhysicBody();
+				break;
+			}
+		}
 	}
 }
 //---------------------------------------------------------------------------------------------

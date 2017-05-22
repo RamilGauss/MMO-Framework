@@ -30,6 +30,8 @@ protected:
 	void sl_Apply(MyGUI::Widget* _sender);
 	void sl_Close(MyGUI::Widget* _sender);
 protected:
+	void LoadSetting();
+protected:
 	MyGUI::Button*  bApply;
 	MyGUI::Button*  bClose;
 
