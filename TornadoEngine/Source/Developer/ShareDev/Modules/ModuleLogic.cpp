@@ -25,10 +25,10 @@ if( MODULE ) mSetUseID_Module.insert(MODULE->GetID());
 
 TModuleLogic::TModuleLogic()
 {
-	mSettingXML = NULL;
-
   g_ptrModuleLogic = this;
   flgNeedExit = false;
+
+	mPtrSettings = NULL;
 }
 //--------------------------------------------------------------------
 void TModuleLogic::SetComponents(TComponents components)
@@ -100,18 +100,13 @@ std::set<int> TModuleLogic::GetUseID_Module()
 	return mSetUseID_Module;
 }
 //--------------------------------------------------------------------
-std::string TModuleLogic::GetNameFileSettingXML()
+void TModuleLogic::SetSettings(TSettings* pSettings)
 {
-	return "";
+	mPtrSettings = pSettings;
 }
 //--------------------------------------------------------------------
-void TModuleLogic::SetXML(IXML* pXML)
+TSettings* TModuleLogic::GetSettings()
 {
-	mSettingXML = pXML;
-}
-//--------------------------------------------------------------------
-IXML* TModuleLogic::GetXML()
-{
-	return mSettingXML;
+	return mPtrSettings;
 }
 //--------------------------------------------------------------------

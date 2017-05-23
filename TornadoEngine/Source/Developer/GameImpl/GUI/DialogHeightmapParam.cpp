@@ -7,6 +7,7 @@ See for more information License.h.
 
 #include "DialogHeightmapParam.h"
 #include "EditorMapLogic.h"
+#include "Settings.h"
 
 #include <atlconv.h>
 #include <boost/lexical_cast.hpp>
@@ -85,6 +86,13 @@ void TDialogHeightmapParam::sl_Apply(MyGUI::Widget* _sender)
 	std::string sHeight = W2A((LPCWSTR)ebHeight->getOnlyText().data());
 	float height = boost::lexical_cast<float>(sHeight.data());
 
+	// save settings
+	g_EditorMapLogic->GetSettings()->BeginGroup("DialogHeightmapParam");
+
+	g_EditorMapLogic->GetSettings()->WriteEntry("WorldSize", worldSize);
+	g_EditorMapLogic->GetSettings()->WriteEntry("Size",   size);
+	g_EditorMapLogic->GetSettings()->WriteEntry("Height", height);
+
 	//### берём простые входные данные
 	TModifier_Terrain::TDescTarget descTarget;
 	descTarget.diapX_Part.min = 0;
@@ -113,17 +121,28 @@ void TDialogHeightmapParam::sl_Close(MyGUI::Widget* _sender)
 //---------------------------------------------------------------------------------------------
 void TDialogHeightmapParam::LoadSetting()
 {
+	g_EditorMapLogic->GetSettings()->BeginGroup("DialogHeightmapParam");
+
+	float worldSize = 10.0f;
+	int size = 33;
+	float height = 39.6f;
+
+	worldSize = g_EditorMapLogic->GetSettings()->ReadEntry("WorldSize", &worldSize);
+	size      = g_EditorMapLogic->GetSettings()->ReadEntry("Size",   &size);
+	height    = g_EditorMapLogic->GetSettings()->ReadEntry("Height", &height);
+
+
 	USES_CONVERSION;
 
-	std::string sWorldSize = boost::lexical_cast<std::string>(10.0f);
+	std::string sWorldSize = boost::lexical_cast<std::string>(worldSize);
 	LPWSTR wWorldSize = A2W(sWorldSize.data());
 	ebWorldSize->setOnlyText(wWorldSize);
 
-	std::string sSize = boost::lexical_cast<std::string>(33);
+	std::string sSize = boost::lexical_cast<std::string>(size);
 	LPWSTR wSize = A2W(sSize.data());
 	ebSize->setOnlyText(sSize);
 
-	std::string sHeight = boost::lexical_cast<std::string>(39.60000f);
+	std::string sHeight = boost::lexical_cast<std::string>(height);
 	LPWSTR wHeight = A2W(sHeight.data());
 	ebHeight->setOnlyText(wHeight);
 }

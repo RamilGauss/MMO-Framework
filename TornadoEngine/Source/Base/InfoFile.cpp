@@ -17,6 +17,20 @@ InfoFile::~InfoFile()
 	Close();
 }
 //------------------------------------------------------------------
+bool InfoFile::IsExist(char* path)
+{
+	if( path==NULL )
+		return false;
+
+  const char* sMode = "r";
+  FILE* pTmpFile = fopen(path, sMode);
+	if( pTmpFile==NULL )
+		return false;
+
+	fclose(pTmpFile);
+	return true;
+}
+//------------------------------------------------------------------
 bool InfoFile::IsOpen()
 {
   return (pFile!=NULL);

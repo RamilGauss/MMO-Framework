@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Qt-style, типа запись в реестр, но в XML -->
+<Content>
+	<Application name="EditorMap">
+		<Group name="DialogHeightmapParam">
+			<Entry key="WorldSize" value="21"/>
+			<Entry key="Size"      value="3"/>
+			<Entry key="Height"    value="38"/>
+		</Group>
+	</Application>
+</Content>

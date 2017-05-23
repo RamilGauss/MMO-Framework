@@ -358,3 +358,8 @@ void TEditorMapLogic::ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descT
 	}
 }
 //---------------------------------------------------------------------------------------------
+//std::string TEditorMapLogic::GetNameApplication()
+//{
+//	return "EditorMap";
+//}
+//---------------------------------------------------------------------------------------------

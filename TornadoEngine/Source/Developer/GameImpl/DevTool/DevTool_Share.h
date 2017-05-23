@@ -13,6 +13,7 @@ See for more information License.h.
 #include "IDevTool.h"
 #include "Resources.h"
 #include "CallBackRegistrator.h"
+#include "Settings.h"
 
 class TModuleLogic;
 class TModuleDev;
@@ -43,6 +44,8 @@ class TDevTool_Share : public IDevTool
   std::vector<std::string> mVecArg;
 
 	TModuleGraphicEngine* mGE_ForSetup;
+
+	TSettings mSettings;
 public:
   TDevTool_Share();
   virtual ~TDevTool_Share();

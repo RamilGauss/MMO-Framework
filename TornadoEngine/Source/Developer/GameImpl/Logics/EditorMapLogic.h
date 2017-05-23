@@ -49,6 +49,8 @@ public:
   virtual void InitLog();
 
   virtual TFactoryBehaviourPattern* GetFBP();
+
+	//virtual std::string GetNameApplication();
 public:// TEditorMapLogic for GUI
 	void TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld);
 	void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic

@@ -24,6 +24,8 @@ public:
 	InfoFile();
 	virtual ~InfoFile();
 
+	static bool IsExist(char* path);
+
 	virtual bool ReOpen(char* path, bool append = false) = 0;
 	virtual bool IsOpen();
  	virtual void Close();

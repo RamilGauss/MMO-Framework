@@ -23,7 +23,7 @@ public:
 
   virtual void SetVectorParam(std::vector<std::string>& vecArg) = 0;
   virtual std::string GetFileDescConveyer()                     = 0;
-  virtual std::string GetVariantConveyer()                      = 0;
+  virtual std::string GetVariantConveyer()                      = 0;// equal name application
   virtual IModule* GetModuleByName(const char* sName)           = 0;
   virtual void EventGameEngine(int id, const char* sDesc)       = 0;
 };

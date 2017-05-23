@@ -320,6 +320,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Settings.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\SHA256.cpp"
 				>
 			</File>
@@ -551,6 +555,10 @@
 			</File>
 			<File
 				RelativePath=".\SetOrderElement.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Settings.h"
 				>
 			</File>
 			<File

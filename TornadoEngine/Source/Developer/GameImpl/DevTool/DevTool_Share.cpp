@@ -43,6 +43,7 @@ namespace nsDevTool_Share
 #define NAME_ID(X) NAME_MODULE(X),X
 
   const char* sFileResources = "Resources.xml";
+  const char* sFileSettings  = "Settings.xml";
 
   const char* sCore          = "Core";
   const char* sSkin          = "Skin";
@@ -59,16 +60,6 @@ TDevTool_Share::TDevTool_Share()
 //-----------------------------------------------------------------------
 TDevTool_Share::~TDevTool_Share()
 {
-	TModuleLogic* pLogic = (TModuleLogic*)FindPtrModuleByID(Logic);
-	if(pLogic)
-	{
-		IXML* pXML = pLogic->GetXML();
-		if( pXML )
-		{
-			TMakerXML makerXML;
-			makerXML.Delete(pXML);
-		}
-	}
 	// уничтожить все модули
   BOOST_FOREACH(TMapIntPtrModuleVT& vtID_Ptr, mMapID_PtrModules)
     delete vtID_Ptr.second;
@@ -244,14 +235,33 @@ void TDevTool_Share::SetComponentsForLogic()
     pLogic->InitLog();
     pLogic->ParseCmd(mVecArg);
 
-		// загрузка для использования XML
-		TMakerXML makerXML;
-		std::string nameXML = pLogic->GetNameFileSettingXML();
-		IXML* pXML = makerXML.New();
-		if( pXML->Load(nameXML.data())==false )
-			makerXML.Delete(pXML);
+		// настройки приложения
+		mSettings.Init(nsDevTool_Share::sFileSettings);
+		std::string nameApp = GetVariantConveyer();
+		if( nameApp.length() )
+			mSettings.BeginApplication(nameApp);
 		else
-			pLogic->SetXML(pXML);
+		{
+			BL_FIX_BUG();
+		}
+		pLogic->SetSettings(&mSettings);
+		//###
+		//mSettings.BeginGroup("DialogHeightmapParam");
+		//mSettings.WriteEntry("WorldSize", 10.0f);
+		//mSettings.WriteEntry("Size",   33);
+		//mSettings.WriteEntry("Height", 39.6f);
+
+		//float worldSize = mSettings.ReadEntry<float>("WorldSize");
+		//int   size      = mSettings.ReadEntry<int>("Size");
+		//float height    = mSettings.ReadEntry<float>("Height");
+
+		//mSettings.BeginGroup("EditorMap");
+		//mSettings.WriteEntry("some", false);
+		//mSettings.WriteEntry("what?", "12345678");
+
+		//bool some = mSettings.ReadEntry<bool>("some");
+		//std::string what = mSettings.ReadEntry<std::string>("what?");
+		//###
   }
   else 
   {

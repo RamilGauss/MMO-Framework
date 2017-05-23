@@ -16,6 +16,7 @@ See for more information License.h.
 #include <set>
 
 class IXML;
+class TSettings;
 
 class DllExport TModuleLogic : public TModuleDev
 {
@@ -24,7 +25,7 @@ class DllExport TModuleLogic : public TModuleDev
 	std::string mTerrainPath;
   TFactoryBehaviourPattern mFBP;
 
-	IXML* mSettingXML;
+	TSettings* mPtrSettings;
 protected:
   TComponents      mComp;
   TFactoryGameItem mFGI;
@@ -51,12 +52,8 @@ public:
 
   void Exit( int reason = 0);
 
-	// settings, любое приложение - есть логика, значит и файл настроек тоже один на логику
-	virtual std::string GetNameFileSettingXML();
-	
-	void SetXML(IXML* pXML);
-	IXML* GetXML();
-
+	void SetSettings(TSettings* pSettings);
+	TSettings* GetSettings();
 protected:
   bool NeedExit();
 };
