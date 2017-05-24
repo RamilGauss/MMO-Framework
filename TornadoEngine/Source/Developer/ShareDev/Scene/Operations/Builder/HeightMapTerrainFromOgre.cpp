@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -110,7 +110,7 @@ bool THeightMapTerrainFromOgre::Prepare()
 
 	memset(mTerrainProperty.mHeightData, 0, sizeof(float)*numVertices);
 	//memset(mTerrainProperty.mDeltaData,  0, sizeof(float)*numVertices);
-	if( mainChunk->version > 1 )// есть ли компрессия?
+	if( mainChunk->version > 1 )// РµСЃС‚СЊ Р»Рё РєРѕРјРїСЂРµСЃСЃРёСЏ?
 	{
 		for( int i = 0; i < mTerrainProperty.mNumLodLevels; i++ )
 		{

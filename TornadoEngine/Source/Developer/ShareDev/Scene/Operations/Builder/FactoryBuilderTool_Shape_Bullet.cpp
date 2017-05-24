@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,7 +11,7 @@ See for more information License.h.
 #include "ModuleLogic.h"
 #include "FactoryGameItem.h"
 
-// классы для создания форм
+// РєР»Р°СЃСЃС‹ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ С„РѕСЂРј
 #include "BuilderTool_ShapePlate_Bullet.h"
 #include "BuilderTool_ShapeCylinder_Bullet.h"
 

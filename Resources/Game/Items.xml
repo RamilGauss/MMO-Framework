@@ -2982,9 +2982,9 @@
 					<Property key="ID"      value="3"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="-2"/>
+					<Property key="x" value="1"/>
 					<Property key="y" value="40"/>
-					<Property key="z" value="-2"/>
+					<Property key="z" value="1"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
@@ -3003,9 +3003,9 @@
 					<Property key="ID"      value="777"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="-3"/>
+					<Property key="x" value="0"/>
 					<Property key="y" value="40"/>
-					<Property key="z" value="-3"/>
+					<Property key="z" value="0"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
@@ -3024,9 +3024,9 @@
 					<Property key="ID"      value="33"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="-2"/>
+					<Property key="x" value="1"/>
 					<Property key="y" value="40"/>
-					<Property key="z" value="-4"/>
+					<Property key="z" value="-1"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
@@ -3045,9 +3045,9 @@
 					<Property key="ID"      value="34"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="-4"/>
+					<Property key="x" value="-1"/>
 					<Property key="y" value="40"/>
-					<Property key="z" value="-2"/>
+					<Property key="z" value="1"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
@@ -3066,9 +3066,9 @@
 					<Property key="ID"      value="35"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="-4"/>
+					<Property key="x" value="-1"/>
 					<Property key="y" value="40"/>
-					<Property key="z" value="-4"/>
+					<Property key="z" value="-1"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>

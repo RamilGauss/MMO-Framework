@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -23,28 +23,28 @@ class DllExport TSettings
 {
 	IXML* mXML;
 
-	// есть всегда
+	// РµСЃС‚СЊ РІСЃРµРіРґР°
 	std::string mNameApplication;
-	// если нет, то не входили в группу, 
-	// если есть, то сам выйдет и войдёт в нужную
+	// РµСЃР»Рё РЅРµС‚, С‚Рѕ РЅРµ РІС…РѕРґРёР»Рё РІ РіСЂСѓРїРїСѓ, 
+	// РµСЃР»Рё РµСЃС‚СЊ, С‚Рѕ СЃР°Рј РІС‹Р№РґРµС‚ Рё РІРѕР№РґС‘С‚ РІ РЅСѓР¶РЅСѓСЋ
 	std::string mNameCurrentGroup;
 
 public:
 	TSettings();
 	virtual ~TSettings();
 
-	// если не найдёт, то создаст
+	// РµСЃР»Рё РЅРµ РЅР°Р№РґС‘С‚, С‚Рѕ СЃРѕР·РґР°СЃС‚
 	void Init(std::string pathFileXML);
 
-	// если не найдёт, то создаст
+	// РµСЃР»Рё РЅРµ РЅР°Р№РґС‘С‚, С‚Рѕ СЃРѕР·РґР°СЃС‚
 	void BeginApplication(std::string nameApp);
 	std::string GetNameApplication();
 
-	// если не найдёт, то создаст
+	// РµСЃР»Рё РЅРµ РЅР°Р№РґС‘С‚, С‚Рѕ СЃРѕР·РґР°СЃС‚
 	void BeginGroup(std::string nameGroup);
 	std::string GetNameCurrentGroup();
 	
-	// если не найдёт, то создаст
+	// РµСЃР»Рё РЅРµ РЅР°Р№РґС‘С‚, С‚Рѕ СЃРѕР·РґР°СЃС‚
 	template <typename T>
 	void WriteEntry(std::string key, T value);
 

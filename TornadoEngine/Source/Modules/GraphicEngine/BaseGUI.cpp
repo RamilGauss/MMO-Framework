@@ -27,6 +27,13 @@ void TBaseGUI::Hide()
   mMainWidget->setVisible(false);
 }
 //--------------------------------------------------------------
+bool TBaseGUI::IsVisible()
+{
+	if( mMainWidget==NULL )
+		return false;
+	return mMainWidget->getVisible();
+}
+//--------------------------------------------------------------
 void TBaseGUI::InitTabJump()
 {
   mVectorChild_Tab.clear();

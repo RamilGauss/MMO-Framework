@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -31,6 +31,16 @@ protected:
 	void sl_Close(MyGUI::Widget* _sender);
 protected:
 	void LoadSetting();
+	void SaveSetting();
+
+	float GetWorldSize();
+	int   GetSize();
+	float GetHeight();
+
+	void SetWorldSize(float v);
+	void SetSize(int v);
+	void SetHeight(float v);
+
 protected:
 	MyGUI::Button*  bApply;
 	MyGUI::Button*  bClose;
@@ -44,5 +54,4 @@ protected:
 	MyGUI::EditBox* ebHeight;
 
 };
-
 #endif 

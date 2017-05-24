@@ -50,7 +50,6 @@ public:
 
   virtual TFactoryBehaviourPattern* GetFBP();
 
-	//virtual std::string GetNameApplication();
 public:// TEditorMapLogic for GUI
 	void TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld);
 	void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic
@@ -67,6 +66,9 @@ protected:
 private:
   void StartTimer();
   void InitForms();
+
+	void LoadSettingCamera();
+	void SaveSettingCamera();
 
   void ShowTest();
 

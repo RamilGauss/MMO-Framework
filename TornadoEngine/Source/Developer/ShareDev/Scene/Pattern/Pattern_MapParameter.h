@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,8 +11,8 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "BehaviourPattern.h"
 
-// "вечный объект"
-// в сцене он есть всегда, нельзя удалять, при создании карты добавляется сразу
+// "РІРµС‡РЅС‹Р№ РѕР±СЉРµРєС‚"
+// РІ СЃС†РµРЅРµ РѕРЅ РµСЃС‚СЊ РІСЃРµРіРґР°, РЅРµР»СЊР·СЏ СѓРґР°Р»СЏС‚СЊ, РїСЂРё СЃРѕР·РґР°РЅРёРё РєР°СЂС‚С‹ РґРѕР±Р°РІР»СЏРµС‚СЃСЏ СЃСЂР°Р·Сѓ
 
 class DllExport TPattern_MapParameter : public TBehaviourPattern
 {

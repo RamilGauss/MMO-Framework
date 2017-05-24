@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -29,7 +29,7 @@ void TBuilder_Terrain_Ogre::Begin()
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Ogre::Load( int x, int y )
 {
-	// поместить загруженные данные в паттерн, но не для Terrain
+	// РїРѕРјРµСЃС‚РёС‚СЊ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РІ РїР°С‚С‚РµСЂРЅ, РЅРѕ РЅРµ РґР»СЏ Terrain
 	mBuilder.Load(x,y);
 }
 //--------------------------------------------------------------------

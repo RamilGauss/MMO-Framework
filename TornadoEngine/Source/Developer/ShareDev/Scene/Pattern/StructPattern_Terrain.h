@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -17,7 +17,7 @@ class btHeightfieldTerrainShape;
 
 namespace nsStructPattern_Terrain
 {
-	// физика
+	// С„РёР·РёРєР°
 	struct DllExport THeightMapTerrain
 	{
 		TContainerArrObj<float> cHeight;

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -24,8 +24,8 @@ class DllExport TBuilderGameMap_Object
 
 	struct TObject
 	{
-		TGameObject*       ptrGameObject;// результат/result
-		TMapItem::TObject* ptrMapObject; // задание/task
+		TGameObject*       ptrGameObject;// СЂРµР·СѓР»СЊС‚Р°С‚/result
+		TMapItem::TObject* ptrMapObject; // Р·Р°РґР°РЅРёРµ/task
 
 		bool flgLoadPhysic;
 		bool flgLoadGraphic;

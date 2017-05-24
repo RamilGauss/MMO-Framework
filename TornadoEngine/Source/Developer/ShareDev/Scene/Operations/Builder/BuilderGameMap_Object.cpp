@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -53,7 +53,7 @@ int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 	}
 	BL_ASSERT(pObj);
 
-	// неизменяемые параметры
+	// РЅРµРёР·РјРµРЅСЏРµРјС‹Рµ РїР°СЂР°РјРµС‚СЂС‹
 	TGameObject* pGO = new TGameObject;
 	pGO->SetID(pObj->id);
 	TBehaviourPattern* pPattern = mFBP->GetPatternByName(pObj->namePattern);
@@ -61,13 +61,13 @@ int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 	pPattern->SetNameMapItem(mNameMap);
 	pPattern->SetPhysicWorld(mID_World);
 
-	// далее идут параметры, которые могут меняться в процессе
-	// ищем настройку паттерна
+	// РґР°Р»РµРµ РёРґСѓС‚ РїР°СЂР°РјРµС‚СЂС‹, РєРѕС‚РѕСЂС‹Рµ РјРѕРіСѓС‚ РјРµРЅСЏС‚СЊСЃСЏ РІ РїСЂРѕС†РµСЃСЃРµ
+	// РёС‰РµРј РЅР°СЃС‚СЂРѕР№РєСѓ РїР°С‚С‚РµСЂРЅР°
 	TPatternConfigItem* pPatternConfig = 
 		(TPatternConfigItem*)TModuleLogic::Get()->GetFGI()->
 		Get(TFactoryGameItem::PatternConfig, pObj->patternConfig.name);
 	BL_ASSERT(pPatternConfig);
-	// вариант из настроек
+	// РІР°СЂРёР°РЅС‚ РёР· РЅР°СЃС‚СЂРѕРµРє
 	if( pPatternConfig )
 	{
 		TPatternConfigItem::TMapStrMapIt fitPC = 

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -38,11 +38,11 @@ TSettings::~TSettings()
 //-----------------------------------------------------------------------
 void TSettings::Init(std::string pathFileXML)
 {
-	// пытаемся загрузить
+	// РїС‹С‚Р°РµРјСЃСЏ Р·Р°РіСЂСѓР·РёС‚СЊ
 	if( TryLoad(pathFileXML) )
 		return;// OK
 
-	// либо файл некорректен, либо не существует
+	// Р»РёР±Рѕ С„Р°Р№Р» РЅРµРєРѕСЂСЂРµРєС‚РµРЅ, Р»РёР±Рѕ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
 	if( CreateDefault((char*)pathFileXML.data())==false )
 	{
 		BL_FIX_BUG();
@@ -120,7 +120,7 @@ bool TSettings::CreateDefault(char* sPath)
 
 	std::string content;
 	content  = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-	content += "<!-- Qt-style, типа запись в реестр, но в XML -->\n";
+	content += "<!-- Qt-style, С‚РёРїР° Р·Р°РїРёСЃСЊ РІ СЂРµРµСЃС‚СЂ, РЅРѕ РІ XML -->\n";
 	content += "<Content>\n";
 	content += "</Content>\n";
 
@@ -147,7 +147,7 @@ void TSettings::WriteEntryPrivate(std::string key, std::string value)
 			return;
 		}
 	}
-	// не нашли
+	// РЅРµ РЅР°С€Р»Рё
 	TAttrInfo attr[2];
 	attr[0].Name  = sKey;
 	attr[0].Value = key;

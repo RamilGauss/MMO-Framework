@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -22,9 +22,9 @@ TModifier_Terrain_Bullet::TModifier_Terrain_Bullet()
 void TModifier_Terrain_Bullet::SetFormat(TDescTarget& descTarget)
 {
 	mDescTarget = descTarget;
-	// ãðîõíóòü âñå ñòàðûå äàííûå
+	// Ð³Ñ€Ð¾Ñ…Ð½ÑƒÑ‚ÑŒ Ð²ÑÐµ ÑÑ‚Ð°Ñ€Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ
 	Clear();
-	// ñîçäàòü çàíîâî
+	// ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ð·Ð°Ð½Ð¾Ð²Ð¾
 	ModifyExtent();
 }
 //------------------------------------------------------------------------
@@ -41,12 +41,12 @@ void TModifier_Terrain_Bullet::Clear()
 		BOOST_FOREACH( TPattern_Terrain::TMapIntPartPhysicVT& y_part, x_map.second )
 		{
 		  nsStructPattern_Terrain::TTerrainPart_Physic* pPart = &(y_part.second);
-			// óíè÷òîæèòü âíóòðåííåå ñîñòîÿíèå
+			// ÑƒÐ½Ð¸Ñ‡Ñ‚Ð¾Ð¶Ð¸Ñ‚ÑŒ Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÐµÐµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ
 			delete pPart->pRB->getMotionState();
 			pPart->pRB->setMotionState(NULL);
-			// óäàëèòü èç Ìèðà 
+			// ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¸Ð· ÐœÐ¸Ñ€Ð° 
 			pWorld->removeCollisionObject(pPart->pRB);
-			// îñâîáîäèòü ïàìÿòü
+			// Ð¾ÑÐ²Ð¾Ð±Ð¾Ð´Ð¸Ñ‚ÑŒ Ð¿Ð°Ð¼ÑÑ‚ÑŒ
 			delete pPart->pRB;
 			pPart->pRB = NULL;
 			//delete collision shapes
@@ -59,9 +59,9 @@ void TModifier_Terrain_Bullet::Clear()
 //------------------------------------------------------------------------
 void TModifier_Terrain_Bullet::ModifyExtent()
 {
-	// ñîçäàòü ñåòêó èç ÷àñòåé
+	// ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ ÑÐµÑ‚ÐºÑƒ Ð¸Ð· Ñ‡Ð°ÑÑ‚ÐµÐ¹
 	InitGrid();
-	// çàäàòü ñâîéñòâà êàæäîé ÷àñòè èç ñåòêè
+	// Ð·Ð°Ð´Ð°Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð° ÐºÐ°Ð¶Ð´Ð¾Ð¹ Ñ‡Ð°ÑÑ‚Ð¸ Ð¸Ð· ÑÐµÑ‚ÐºÐ¸
 	SetupContentParts();
 }
 //------------------------------------------------------------------------
@@ -94,9 +94,9 @@ void TModifier_Terrain_Bullet::SetupContentParts()
 			pPart->pData->worldSize  = mDescTarget.worldSizePart;
 			pPart->pData->inputScale = mDescTarget.inputScale;
 			pPart->pData->inputBias  = mDescTarget.inputBias;
-			// ðàñ÷åò ïîçèöèè
+			// Ñ€Ð°ÑÑ‡ÐµÑ‚ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸
 			//###
-			// ðåãóëèðîâàíèå âûñîòû
+			// Ñ€ÐµÐ³ÑƒÐ»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð²Ñ‹ÑÐ¾Ñ‚Ñ‹
 			float default_height = mDescTarget.height;// 39.5f;
 			//###
 			pPart->pData->pos.x = x_map.first*pPart->pData->worldSize;
@@ -105,7 +105,7 @@ void TModifier_Terrain_Bullet::SetupContentParts()
 
 			int cntPoint = pPart->pData->size*pPart->pData->size;
 			pPart->pData->cHeight.SetData(NULL, sizeof(float)*cntPoint);
-			// âûñîòà ðàâíà 0
+			// Ð²Ñ‹ÑÐ¾Ñ‚Ð° Ñ€Ð°Ð²Ð½Ð° 0
 			memset(pPart->pData->cHeight.GetPtr(),0,sizeof(float)*cntPoint);
 			// make collision shape	
 			int width  = pPart->pData->size;

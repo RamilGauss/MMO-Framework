@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ğàìèëü Ñåğãååâè÷ 
+Ğ“ÑƒĞ´Ğ°ĞºĞ¾Ğ² Ğ Ğ°Ğ¼Ğ¸Ğ»ÑŒ Ğ¡ĞµÑ€Ğ³ĞµĞµĞ²Ğ¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -68,7 +68,7 @@ void TBuilderTool_Terrain_Ogre::defineTerrain(long x, long y)
 		mTerrainGroup->getResourceGroup(),
 		filename);
 
-	// åñëè íåò ôàéëà, òî íè÷åãî íå äåëàòü, âîçìîæíî, Terrain òîëüêî ÷òî äîáàâèëè.
+	// ĞµÑĞ»Ğ¸ Ğ½ĞµÑ‚ Ñ„Ğ°Ğ¹Ğ»Ğ°, Ñ‚Ğ¾ Ğ½Ğ¸Ñ‡ĞµĞ³Ğ¾ Ğ½Ğµ Ğ´ĞµĞ»Ğ°Ñ‚ÑŒ, Ğ²Ğ¾Ğ·Ğ¼Ğ¾Ğ¶Ğ½Ğ¾, Terrain Ñ‚Ğ¾Ğ»ÑŒĞºĞ¾ Ñ‡Ñ‚Ğ¾ Ğ´Ğ¾Ğ±Ğ°Ğ²Ğ¸Ğ»Ğ¸.
 
 	if( exists )
 		mTerrainGroup->defineTerrain(x, y);

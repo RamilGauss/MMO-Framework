@@ -8,21 +8,21 @@ See for more information License.h.
 #include "EditorMapLogic.h"
 #include "ListModules.h"
 #include "Logger.h"
+#include "Settings.h"
 
+#include "ControlCamera.h"
+#include "ConverterLocale.h"
+#include "GameObject.h"
 #include "ModuleTimer.h"
 #include "ModuleGraphicEngine.h"
 #include "ModulePhysicEngine.h"
 #include "ModuleSoundEngine.h"
 
-#include "EditorMap.h"
-#include "StatusBar.h"
-
-#include "ControlCamera.h"
-#include "ConverterLocale.h"
-#include "GameObject.h"
-
 #include "Pattern_Model.h"
 #include "Pattern_Terrain.h"
+
+#include "EditorMap.h"
+#include "StatusBar.h"
 
 #include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
@@ -70,7 +70,8 @@ void TEditorMapLogic::StartEvent()
 
 	StartTimer();
 	InitForms();
-	ShowTest();
+	//ShowTest();
+	LoadSettingCamera();
 
 	mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorMapLogic::FreeGraphicResource,this);
 }
@@ -141,6 +142,8 @@ void TEditorMapLogic::InitForms()
 //----------------------------------------------------------
 void TEditorMapLogic::FreeGraphicResource()
 {
+	SaveSettingCamera();
+
   delete mEditorMap;
 	delete mStatusBar;
 }
@@ -278,18 +281,6 @@ void TEditorMapLogic::HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pK
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ShowTest()
 {
-	//TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->SetUseClipCursor(false);
-
-	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
-	pCamera->setPosition(-10,40,-10);
-	pCamera->lookAt(-4,40,-4);
-	//Ogre::Radian fovy(3.14f/3);// масштаб относительно 1 у.е.
-	//pCamera->setFOVy(fovy);
-
-	Ogre::Real f = pCamera->getFarClipDistance();
-	Ogre::Real n = pCamera->getNearClipDistance();
-	pCamera->setNearClipDistance(0.01f);
-	n = pCamera->getNearClipDistance();
 	//mPtrShowTank->ShowTanks(10);
 }
 //---------------------------------------------------------------------------------------------
@@ -358,8 +349,44 @@ void TEditorMapLogic::ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descT
 	}
 }
 //---------------------------------------------------------------------------------------------
-//std::string TEditorMapLogic::GetNameApplication()
-//{
-//	return "EditorMap";
-//}
+void TEditorMapLogic::LoadSettingCamera()
+{
+	Ogre::Vector3 pos(-4.225f,44.0f,-6.4f);
+	Ogre::Quaternion dir(0.279825151f,-0.0655403361f,-0.932625532f,-0.218426302f);
+
+	GetSettings()->BeginGroup("SettingCamera");
+
+	pos.x = GetSettings()->ReadEntry<float>("pos_x", &pos.x);
+	pos.y = GetSettings()->ReadEntry<float>("pos_y", &pos.y);
+	pos.z = GetSettings()->ReadEntry<float>("pos_z", &pos.z);
+
+	dir.x = GetSettings()->ReadEntry<float>("dir_x", &dir.x);
+	dir.y = GetSettings()->ReadEntry<float>("dir_y", &dir.y);
+	dir.z = GetSettings()->ReadEntry<float>("dir_z", &dir.z);
+	dir.w = GetSettings()->ReadEntry<float>("dir_w", &dir.w);
+
+	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
+	pCamera->setPosition(pos);
+	pCamera->setOrientation(dir);
+
+	pCamera->setNearClipDistance(0.01f);
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::SaveSettingCamera()
+{
+	Ogre::Camera* pCamera = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetCamera();
+	const Ogre::Vector3& pos = pCamera->getPosition();
+	const Ogre::Quaternion& dir = pCamera->getOrientation();
+
+	GetSettings()->BeginGroup("SettingCamera");
+	
+	GetSettings()->WriteEntry("pos_x", pos.x);
+	GetSettings()->WriteEntry("pos_y", pos.y);
+	GetSettings()->WriteEntry("pos_z", pos.z);
+
+	GetSettings()->WriteEntry("dir_x", dir.x);
+	GetSettings()->WriteEntry("dir_y", dir.y);
+	GetSettings()->WriteEntry("dir_z", dir.z);
+	GetSettings()->WriteEntry("dir_w", dir.w);
+}
 //---------------------------------------------------------------------------------------------
