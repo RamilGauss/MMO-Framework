@@ -64,7 +64,7 @@ void TBuilderTool_Terrain_Bullet::Load( int x, int y,
 		m_upAxis, m_type, flipQuadEdges);
 
 	pPartPhysic->pHeightfieldShape->setUseZigzagSubdivision(true);
-	float scaleAxe = pPartPhysic->pData->worldSize/pPartPhysic->pData->size;
+	float scaleAxe = pPartPhysic->pData->worldSize/(pPartPhysic->pData->size-1);
 	btVector3 scale;
 	scale.setX(scaleAxe);
 	scale.setY(1);

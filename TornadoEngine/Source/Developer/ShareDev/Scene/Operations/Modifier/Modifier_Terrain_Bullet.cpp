@@ -95,10 +95,8 @@ void TModifier_Terrain_Bullet::SetupContentParts()
 			pPart->pData->inputScale = mDescTarget.inputScale;
 			pPart->pData->inputBias  = mDescTarget.inputBias;
 			// расчет позиции
-			//###
 			// регулирование высоты
 			float default_height = mDescTarget.height;// 39.5f;
-			//###
 			pPart->pData->pos.x = x_map.first*pPart->pData->worldSize;
 			pPart->pData->pos.y = default_height;
 			pPart->pData->pos.z = y_part.first*pPart->pData->worldSize;
@@ -125,7 +123,7 @@ void TModifier_Terrain_Bullet::SetupContentParts()
 
 			pPart->pHeightfieldShape->setUseZigzagSubdivision(true);
 
-			float scaleAxe = pPart->pData->worldSize/pPart->pData->size;
+			float scaleAxe = pPart->pData->worldSize/(pPart->pData->size-1);
 			btVector3 scale;
 			scale.setX(scaleAxe);
 			scale.setY(1);

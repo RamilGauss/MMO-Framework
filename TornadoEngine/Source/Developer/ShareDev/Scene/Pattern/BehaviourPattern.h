@@ -21,10 +21,6 @@ See for more information License.h.
 
 #include <boost/lexical_cast.hpp>
 
-/*
-  Базовый тип поведения игрового объекта.
-*/
-
 class TFactoryGameItem;
 class TFactoryBehaviourPattern;
 class TGameObject;
