@@ -72,56 +72,35 @@ bool TPattern_Terrain::BuildByModule_Physic(bool fast)
 //---------------------------------------------------------------------------
 void TPattern_Terrain::BeginBuild_Bullet()
 {
-	mBuilderBullet.Begin();
-
-	TTerrainItem* pTerrainItem = GetTerrainItem();
-	mProgressBullet.flgIsBuild = true;
-	mProgressBullet.mNeedBuildX = pTerrainItem->mX.min;
-	mProgressBullet.mNeedBuildY = pTerrainItem->mY.min;
+	BeginBuild( &mBuilderBullet, &mProgressBullet);
 }
 //---------------------------------------------------------------------------
 void TPattern_Terrain::BeginBuild_Ogre()
 {
-	mBuilderOgre.Begin();
+	BeginBuild( &mBuilderOgre, &mProgressOgre);
+}
+//---------------------------------------------------------------------------
+void TPattern_Terrain::BeginBuild( TBuilder_Terrain* pBuilder, TProgressBuild* pProgress)
+{
+	pBuilder->Begin();
 
 	TTerrainItem* pTerrainItem = GetTerrainItem();
-	mProgressOgre.flgIsBuild = true;
-	mProgressOgre.mNeedBuildX = pTerrainItem->mX.min;
-	mProgressOgre.mNeedBuildY = pTerrainItem->mY.min;
+	pProgress->flgIsBuild = true;
+	pProgress->mNeedBuildX = pTerrainItem->mX.min;
+	pProgress->mNeedBuildY = pTerrainItem->mY.min;
 }
 //---------------------------------------------------------------------------
 bool TPattern_Terrain::TryBuild_Bullet()
 {
-	TTerrainItem* pTerrainItem = GetTerrainItem();
-
-	int minX = pTerrainItem->mX.min;
-	int maxX = pTerrainItem->mX.max;
-	int minY = pTerrainItem->mY.min;
-	int maxY = pTerrainItem->mY.max;
-
-	int x = mProgressBullet.mNeedBuildX;
-	int y = mProgressBullet.mNeedBuildY;
-	
-	mBuilderBullet.Load(x,y);
-	x++;
-	if( x > maxX)
-	{
-		x = minX;
-		y++;
-	}
-
-	if( y > maxY )
-	{
-		mBuilderBullet.End();
-	  mProgressBullet.flgIsBuild = false;
-		return true;
-	}
-	mProgressBullet.mNeedBuildX = x;
-	mProgressBullet.mNeedBuildY = y;
-	return false;
+	return TryBuild( &mBuilderBullet, &mProgressBullet);
 }
 //---------------------------------------------------------------------------
 bool TPattern_Terrain::TryBuild_Ogre()
+{
+	return TryBuild( &mBuilderOgre, &mProgressOgre);
+}
+//---------------------------------------------------------------------------
+bool TPattern_Terrain::TryBuild(TBuilder_Terrain* pBuilder, TProgressBuild* pProgress)
 {
 	TTerrainItem* pTerrainItem = GetTerrainItem();
 
@@ -129,25 +108,25 @@ bool TPattern_Terrain::TryBuild_Ogre()
 	int maxX = pTerrainItem->mX.max;
 	int minY = pTerrainItem->mY.min;
 	int maxY = pTerrainItem->mY.max;
-	int x = mProgressOgre.mNeedBuildX;
-	int y = mProgressOgre.mNeedBuildY;
 
-	mBuilderOgre.Load(x,y);
+	int x = pProgress->mNeedBuildX;
+	int y = pProgress->mNeedBuildY;
+
+	pBuilder->Load(x,y);
 	x++;
 	if( x > maxX)
 	{
 		x = minX;
 		y++;
 	}
-
 	if( y > maxY )
 	{
-		mBuilderOgre.End();
-		mProgressOgre.flgIsBuild = false;
+		pBuilder->End();
+		pProgress->flgIsBuild = false;
 		return true;
 	}
-	mProgressOgre.mNeedBuildX = x;
-	mProgressOgre.mNeedBuildY = y;
+	pProgress->mNeedBuildX = x;
+	pProgress->mNeedBuildY = y;
 	return false;
 }
 //---------------------------------------------------------------------------
@@ -175,23 +154,6 @@ Ogre::Vector3 TPattern_Terrain::GetOrigin()
 //---------------------------------------------------------------------------
 void TPattern_Terrain::ModifyExtent(TModifier_Terrain::TDescTarget& descTarget)
 {
-	//### берём простые входные данные
-	/*TModifier_Terrain::TDescTarget descTarget;
-	descTarget.diapX_Part.min = 0;
-	descTarget.diapX_Part.max = 0;
-	descTarget.diapY_Part.min = 0;
-	descTarget.diapY_Part.max = 0;
-	descTarget.worldSizePart  = 8.4;
-	descTarget.sizePart       = 33;
-
-	TModifier_Terrain::TLayer layer;
-	layer.worldSize           = 2;
-	layer.textureNames_Color  = "grass_green-01_diffusespecular.dds";
-	layer.textureNames_Normal = "grass_green-01_normalheight.dds";
-	descTarget.listLayer.push_back(layer);
-	descTarget.listLayer.push_back(layer);*/
-	//###
-
   mModifierBullet.SetFormat(descTarget);
 	mModifierOgre.SetFormat(descTarget);
 }

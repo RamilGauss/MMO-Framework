@@ -1214,6 +1214,26 @@
 					Name="SaverOutData"
 					>
 				</Filter>
+				<Filter
+					Name="Synchro"
+					>
+					<Filter
+						Name="Common"
+						>
+					</Filter>
+					<Filter
+						Name="Bullet"
+						>
+					</Filter>
+					<Filter
+						Name="Ogre"
+						>
+					</Filter>
+					<Filter
+						Name="OpenAL"
+						>
+					</Filter>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter

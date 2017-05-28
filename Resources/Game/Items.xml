@@ -167,9 +167,9 @@
     </Joining>
     <Geometry>
       <Property key="Type"     value="Cylinder"/>
-      <Property key="Length"   value="0.3"/>
+      <Property key="Length"   value="3"/>
       <Property key="CntPointsPerCircle" value="40"/>
-      <Property key="RadiusMax"   value="0.3"/>
+      <Property key="RadiusMax"   value="4"/>
       <Property key="RadiusMin"   value="0"/>
     </Geometry>
     <Material name="Iron"/>
@@ -2982,9 +2982,9 @@
 					<Property key="ID"      value="3"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="-1"/>
-					<Property key="y" value="40"/>
-					<Property key="z" value="-1"/>
+					<Property key="x" value="6000"/>
+					<Property key="y" value="270"/>
+					<Property key="z" value="6000"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
@@ -3003,9 +3003,9 @@
 					<Property key="ID"      value="777"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="40"/>
-					<Property key="z" value="0"/>
+					<Property key="x" value="5990"/>
+					<Property key="y" value="270"/>
+					<Property key="z" value="5990"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
@@ -3024,9 +3024,9 @@
 					<Property key="ID"      value="33"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="1"/>
-					<Property key="y" value="40"/>
-					<Property key="z" value="-1"/>
+					<Property key="x" value="6010"/>
+					<Property key="y" value="270"/>
+					<Property key="z" value="6010"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
@@ -3045,9 +3045,9 @@
 					<Property key="ID"      value="34"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="-1"/>
-					<Property key="y" value="40"/>
-					<Property key="z" value="1"/>
+					<Property key="x" value="5990"/>
+					<Property key="y" value="270"/>
+					<Property key="z" value="6010"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>
@@ -3066,9 +3066,9 @@
 					<Property key="ID"      value="35"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
-					<Property key="x" value="1"/>
-					<Property key="y" value="40"/>
-					<Property key="z" value="1"/>
+					<Property key="x" value="6010"/>
+					<Property key="y" value="270"/>
+					<Property key="z" value="5990"/>
 				</Position>
 				<RotationQuaternion><!-- Ориентация -->
 					<Property key="x" value="0"/>

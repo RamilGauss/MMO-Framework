@@ -105,6 +105,9 @@ protected:
 
 	void BeginBuild_Ogre();
 	bool TryBuild_Ogre();
+
+	void BeginBuild(TBuilder_Terrain* pBuilder, TProgressBuild* pProgress);
+	bool TryBuild(TBuilder_Terrain* pBuilder, TProgressBuild* pProgress);
 protected:
 	std::string GetNameTerrainItem();
 

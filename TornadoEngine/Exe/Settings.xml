@@ -3,18 +3,18 @@
 <Content>
 	<Application name="EditorMap">
 		<Group name="DialogHeightmapParam">
-			<Entry key="WorldSize" value="2.0006001"/>
+			<Entry key="WorldSize" value="2.0999999"/>
 			<Entry key="Size"      value="5"/>
-			<Entry key="Height"    value="39.8499985"/>
+			<Entry key="Height"    value="39.8300018"/>
 		</Group>
 		<Group name="SettingCamera"> 
-			<Entry key="pos_x" value="10.2620173"/>
-			<Entry key="pos_y" value="46.9988289"/>
-			<Entry key="pos_z" value="23.8145199"/>
-			<Entry key="dir_x" value="0.35995549"/>
-			<Entry key="dir_y" value="-0.0926562548"/>
-			<Entry key="dir_z" value="-0.0357564799"/>
-			<Entry key="dir_w" value="-0.927693665"/>
+			<Entry key="pos_x" value="5990.44287"/>
+			<Entry key="pos_y" value="243.741257"/>
+			<Entry key="pos_z" value="5989.73291"/>
+			<Entry key="dir_x" value="0.199478045"/>
+			<Entry key="dir_y" value="0.719536901"/>
+			<Entry key="dir_z" value="-0.624090493"/>
+			<Entry key="dir_w" value="0.230480537"/>
 		</Group>
 	</Application>
 </Content>
