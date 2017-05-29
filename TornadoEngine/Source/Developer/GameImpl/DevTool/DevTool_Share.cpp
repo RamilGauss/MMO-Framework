@@ -43,12 +43,12 @@ namespace nsDevTool_Share
 #define NAME_ID(X) NAME_MODULE(X),X
 
   const char* sFileResources = "Resources.xml";
-  const char* sFileSettings  = "Settings.xml";
 
   const char* sCore          = "Core";
   const char* sSkin          = "Skin";
   const char* sConveyer      = "Conveyer";
   const char* sItems         = "Items";
+  const char* sSettings      = "Settings";
 }
 
 using namespace nsListModules;
@@ -91,7 +91,8 @@ void TDevTool_Share::Init()
 	mGUI_Resources.GetResource(mMapRGUI);
 	mGraphicEngine_Resources.GetResource(mMapRGraphicEngine);
 
-	FindPath_Game(nsDevTool_Share::sItems, 0, mPathItems);
+	FindPath_Game(nsDevTool_Share::sItems,    0, mPathItems);
+	FindPath_Game(nsDevTool_Share::sSettings, 0, mPathSettings);
 }
 //-----------------------------------------------------------------------
 IModule* TDevTool_Share::GetModuleByName(const char* sName)
@@ -236,7 +237,7 @@ void TDevTool_Share::SetComponentsForLogic()
     pLogic->ParseCmd(mVecArg);
 
 		// настройки приложения
-		mSettings.Init(nsDevTool_Share::sFileSettings);
+		mSettings.Init(mPathSettings);
 		std::string nameApp = GetVariantConveyer();
 		if( nameApp.length() )
 			mSettings.BeginApplication(nameApp);
@@ -245,23 +246,6 @@ void TDevTool_Share::SetComponentsForLogic()
 			BL_FIX_BUG();
 		}
 		pLogic->SetSettings(&mSettings);
-		//###
-		//mSettings.BeginGroup("DialogHeightmapParam");
-		//mSettings.WriteEntry("WorldSize", 10.0f);
-		//mSettings.WriteEntry("Size",   33);
-		//mSettings.WriteEntry("Height", 39.6f);
-
-		//float worldSize = mSettings.ReadEntry<float>("WorldSize");
-		//int   size      = mSettings.ReadEntry<int>("Size");
-		//float height    = mSettings.ReadEntry<float>("Height");
-
-		//mSettings.BeginGroup("EditorMap");
-		//mSettings.WriteEntry("some", false);
-		//mSettings.WriteEntry("what?", "12345678");
-
-		//bool some = mSettings.ReadEntry<bool>("some");
-		//std::string what = mSettings.ReadEntry<std::string>("what?");
-		//###
   }
   else 
   {

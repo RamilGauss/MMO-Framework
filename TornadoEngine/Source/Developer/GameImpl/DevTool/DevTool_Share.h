@@ -35,6 +35,7 @@ class TDevTool_Share : public IDevTool
   std::string mPluginsCfg;
 	std::string mOgreCfg;
   std::string mPathItems;
+	std::string mPathSettings;
 
 	TResources::TMMapStrStr mMapRGame;
 	TResources::TMMapStrStr mMapRGUI; 

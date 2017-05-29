@@ -77,6 +77,7 @@ protected:
 	void readLodData(unsigned short lowerLodBound, unsigned short higherLodBound);
 	void fillBufferAtLod(unsigned int lodLevel, const float* data, unsigned int dataSize );
 	bool Prepare();
+	void PrepareForBullet(float* pData, int extent);
 	void Done();
 protected:
 	TTerrainProperty mTerrainProperty;

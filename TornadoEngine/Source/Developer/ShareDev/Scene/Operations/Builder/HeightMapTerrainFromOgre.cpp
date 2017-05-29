@@ -59,6 +59,8 @@ bool THeightMapTerrainFromOgre::Setup(std::string& filename,
 	Done();
 	RET_FALSE(Prepare())
 
+  PrepareForBullet(mTerrainProperty.mHeightData, mTerrainProperty.mSize);
+
 	pHMT->pos.x     = mTerrainProperty.mPos.x;
 	pHMT->pos.y     = mTerrainProperty.mPos.y;
 	pHMT->pos.z     = mTerrainProperty.mPos.z;
@@ -195,22 +197,44 @@ void THeightMapTerrainFromOgre::fillBufferAtLod(unsigned int lodLevel, const flo
 
 	const float* heightDataPtr = data;
 	//const float* deltaDataPtr = data+dataSize/2;
-
 	for( unsigned short y = 0; y < size; y += inc )
 	{
 		for( unsigned short x = 0; x < size-1; x += inc)
-			if((lodLevel == numLodLevels - static_cast<unsigned int>(1)) || (x % prev) || (y % prev))
+		{
+			if( (lodLevel == numLodLevels - static_cast<unsigned int>(1)) || (x % prev) || (y % prev))
 			{
 				mTerrainProperty.mHeightData[y*size + x] = *(heightDataPtr++);
 				//mTerrainProperty.mDeltaData[y*size + x] = *(deltaDataPtr++);
 			}
-			if ((lodLevel == numLodLevels - static_cast<unsigned int>(1)) || (y % prev))
-			{
-				mTerrainProperty.mHeightData[y*size + size-1] = *(heightDataPtr++);
-				//mTerrainProperty.mDeltaData[y*size + size-1] = *(deltaDataPtr++);
-			}
-			if (y+inc > size)
-				break;
+		}
+		if( (lodLevel == numLodLevels - static_cast<unsigned int>(1)) || (y % prev))
+		{
+			mTerrainProperty.mHeightData[y*size + size-1] = *(heightDataPtr++);
+			//mTerrainProperty.mDeltaData[y*size + size-1] = *(deltaDataPtr++);
+		}
+		if( y+inc > size )
+			break;
+	}
+}
+//---------------------------------------------------------------------
+// первая линия [0..mTerrainProperty.mSize]
+// и последняя  [cnt - mTerrainProperty.mSize - 1..cnt-1],
+// где cnt = mTerrainProperty.mSize*mTerrainProperty.mSize
+// и так далее в направлении середины
+void THeightMapTerrainFromOgre::PrepareForBullet(float* pData, int extent)
+{
+	int cnt = extent*extent;
+	int cntRow = extent/2;// 2/2 = 1, 3/2 = 1
+	for( int iRow = 0 ; iRow < cntRow ; iRow++ )
+	{
+		for( int i = 0 ; i < extent ; i++ )
+		{
+			int indexBegin = iRow*extent + i;
+			int indexEnd   = cnt - (iRow+1)*extent + i;
+			float temp = pData[indexBegin];
+			pData[indexBegin] = pData[indexEnd];
+			pData[indexEnd]   = temp;
+		}
 	}
 }
 //---------------------------------------------------------------------
@@ -240,7 +264,7 @@ THeightMapTerrainFromOgre::TTerrainProperty::TTerrainProperty()
 void THeightMapTerrainFromOgre::TTerrainProperty::determineLodLevels()
 {
 	mNumLodLevelsPerLeafNode = (unsigned short)(Ogre::Math::Log2(mMaxBatchSize - 1.0f) - Ogre::Math::Log2(mMinBatchSize - 1.0f) + 1.0f);
-	mNumLodLevels =         		(unsigned short) (Ogre::Math::Log2(mSize - 1.0f) - Ogre::Math::Log2(mMinBatchSize - 1.0f) + 1.0f);
-	mTreeDepth = mNumLodLevels - mNumLodLevelsPerLeafNode + 1;
+	mNumLodLevels =         	 (unsigned short)(Ogre::Math::Log2(mSize - 1.0f) - Ogre::Math::Log2(mMinBatchSize - 1.0f) + 1.0f);
+	mTreeDepth    = mNumLodLevels - mNumLodLevelsPerLeafNode + 1;
 }
 //---------------------------------------------------------------------

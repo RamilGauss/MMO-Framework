@@ -6,6 +6,11 @@ See for more information License.h.
 */
 
 #include "Modifier_Terrain_Ogre.h"
+#include "ModuleLogic.h"
+#include "GraphicEngine_Ogre_MyGUI.h"
+#include "ModuleGraphicEngine.h"
+#include "Pattern_Terrain.h"
+#include "MapItem.h"
 
 TModifier_Terrain_Ogre::TModifier_Terrain_Ogre()
 {
@@ -14,20 +19,52 @@ TModifier_Terrain_Ogre::TModifier_Terrain_Ogre()
 //-------------------------------------------------------------------------
 void TModifier_Terrain_Ogre::SetFormat(TDescTarget& descTarget)
 {
+	mDescTarget = descTarget;
 
+	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
+	mSceneMgr = pGE->GetSceneManager();
+	// Terrain
+	mTerrainGlobals = pGE->GetTerrainGlobals();
+	mTerrainGroup   = pGE->GetTerrainGroup();
+	mTerrainItem    = mPatternTerrain->GetTerrainItem();
+
+	return;
+	setupContent();
 }
 //------------------------------------------------------------------------
 void TModifier_Terrain_Ogre::setupContent()
 {
 	// если все новые параметры совпадают со старыми, то не делать апдейт и выйти.
+	Ogre::String filename = mPatternTerrain->GetMapItem()->mName;
+	Ogre::String prefixterrainPath = TModuleLogic::Get()->GetTerrainPath() + "/" + filename;
+	Ogre::String suffix = "";
+	mTerrainGroup->setFilenameConvention(prefixterrainPath, suffix);
 
-	// грохнуть все старые данные
+	configureTerrainDefaults();
 
-	// создать заново
+	for( int iX = mTerrainItem->mX.min ; iX <= mTerrainItem->mX.max ; iX++ )
+		for( int iY = mTerrainItem->mY.min ; iY <= mTerrainItem->mY.max ; iY++ )
+			defineTerrain(iX, iY);
+
 	
-
+	mTerrainGroup->freeTemporaryResources();
 }
 //------------------------------------------------------------------------
+void TModifier_Terrain_Ogre::configureTerrainDefaults()
+{
+	mTerrainGlobals->setMaxPixelError(mTerrainItem->mGraphic.maxPixelError);
+	mTerrainGlobals->setCompositeMapDistance(mTerrainItem->mGraphic.compositeMapDistance);
+
+	//mTerrainGroup->setOrigin(mTerrainOrigin);
+}
+//--------------------------------------------------------------------
+void TModifier_Terrain_Ogre::defineTerrain(long x, long y)
+{
+	Ogre::String filename = mTerrainGroup->generateFilename(x, y);
+	mTerrainGroup->defineTerrain(x, y, mDescTarget.height);
+}
+//--------------------------------------------------------------------
+
 #if 0
 //#define PAGING
 
@@ -55,7 +92,7 @@ void TModifier_Terrain_Ogre::setupContent()
 using namespace Ogre;
 using namespace OgreBites;
 
-class _OgreSampleClassExport Sample_Terrain : public SdkSample
+class Sample_Terrain : public SdkSample
 {
 public:
 

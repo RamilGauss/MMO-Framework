@@ -1,7 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TornadoEngine version="1.0" name="Bonobo">
-  <KeyMap name="ViewerModel">
-    <Property key="W" value="1" comment="Forward" />
-    <Property key="S" value="2" comment="Backward"/>
-  </KeyMap>
-</TornadoEngine>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Qt-style, типа запись в реестр, но в XML -->
+<Content>
+	<Application name="EditorMap">
+		<Group name="DialogHeightmapParam">
+			<Entry key="WorldSize" value="2.0999999"/>
+			<Entry key="Size"      value="5"/>
+			<Entry key="Height"    value="39.8300018"/>
+		</Group>
+		<Group name="SettingCamera"> 
+			<Entry key="pos_x" value="9.03320503"/>
+			<Entry key="pos_y" value="6.33087683"/>
+			<Entry key="pos_z" value="9.66331577"/>
+			<Entry key="dir_x" value="-0.284799725"/>
+			<Entry key="dir_y" value="0.0406061821"/>
+			<Entry key="dir_z" value="0.0117226336"/>
+			<Entry key="dir_w" value="0.957759023"/>
+		</Group>
+	</Application>
+</Content>
