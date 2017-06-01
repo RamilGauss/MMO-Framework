@@ -31,6 +31,7 @@ void TGP_Scenario_Builder::LoadMap(std::string nameMap)
   TBaseItem* pBI = 
     TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map,nameMap);
   TMapItem* pMI = (TMapItem*)pBI;
+	if( pMI )
   if( mBuilder.BuildMap(pMI) )
     flgNeedWorkByModule = true;
 }

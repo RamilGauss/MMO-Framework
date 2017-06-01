@@ -41,6 +41,15 @@ protected:
 	void SetSize(int v);
 	void SetHeight(float v);
 
+	int GetMinX();
+	int GetMaxX();
+	int GetMinY();
+	int GetMaxY();
+	void SetMinX(int v);
+	void SetMaxX(int v);
+	void SetMinY(int v);
+	void SetMaxY(int v);
+
 protected:
 	MyGUI::Button*  bApply;
 	MyGUI::Button*  bClose;

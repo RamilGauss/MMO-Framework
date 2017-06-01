@@ -15,11 +15,14 @@ See for more information License.h.
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
 class TDialogHeightmapParam;
+class TDialogOpenSave;
 
 class TEditorMap : public TBaseGUI
 {
 	
 	TDialogHeightmapParam* mDialogHeightmapParam;
+
+	TDialogOpenSave*       mDialogOpenSave;
 
 public:
   TEditorMap();
@@ -34,6 +37,9 @@ protected:
   virtual void KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char);
 protected:
 	void SetNameMode(std::string sMode);
+
+	void Open(std::string nameMap);
+	void HideDialogOpenSave();
 protected:
   void sl_Open(MyGUI::Widget* _sender);
 	void sl_Save(MyGUI::Widget* _sender);

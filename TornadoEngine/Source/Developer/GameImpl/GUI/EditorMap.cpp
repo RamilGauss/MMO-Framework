@@ -20,6 +20,7 @@ See for more information License.h.
 
 #include "StatusBar.h"
 #include "DialogHeightmapParam.h"
+#include "DialogOpenSave.h"
 
 TEditorMap::TEditorMap() 
 {
@@ -39,11 +40,15 @@ TEditorMap::TEditorMap()
 	cbUsePhysic                = nullptr;
 
 	mDialogHeightmapParam = new TDialogHeightmapParam;
+	mDialogOpenSave       = new TDialogOpenSave;
+
+	mDialogOpenSave->GetCB_Hide()->Register( &TEditorMap::HideDialogOpenSave, this);
 }
 //------------------------------------------------------
 TEditorMap::~TEditorMap()
 {
 	delete mDialogHeightmapParam;
+	delete mDialogOpenSave;
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::Activate()
@@ -111,10 +116,30 @@ void TEditorMap::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Ch
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Open(MyGUI::Widget* _sender)
 {
-	std::string nameMap = "Field";
+	mDialogOpenSave->Show();
+	TDialogOpenSave::TInitStruct initStruct;
+	initStruct.caption    		 = "Открытие карты";
+	initStruct.nameButton 		 = "Открыть";
+	initStruct.readOnly_ebName = true;
+	initStruct.currentItem     = 0;
+
+	int cntMap = TModuleLogic::Get()->GetFGI()->GetCountByType(TFactoryGameItem::Map);
+	for( int i = 0 ; i < cntMap ; i++ )
+	{
+		std::string name;
+		if( TModuleLogic::Get()->GetFGI()->GetNameByType(TFactoryGameItem::Map, i, name) )
+			initStruct.vecItems.push_back(name);
+	}
+
+	mDialogOpenSave->Init(initStruct);
+}
+//-------------------------------------------------------------------------------------
+void TEditorMap::Open(std::string nameMap)
+{
+	if( nameMap.length()==0 )
+		return;
 
 	g_StatusBar->AddText("Открытие карты \"" + nameMap + "\"");
-
 	g_EditorMapLogic->LoadGameMap(nameMap);
 	// так можно скрывать мышку. Создатели MyGUI, не надо называть так мышиный курсор, я чтобы догадаться
 	// до этого названия неделю потратил! PointerManager -> MouseCursorManager
@@ -183,5 +208,14 @@ void TEditorMap::sl_Mode_MapParameter(MyGUI::Widget* _sender)
 void TEditorMap::sl_Mode_Objects(MyGUI::Widget* _sender)
 {
 	SetNameMode("Объекты");
+}
+//-------------------------------------------------------------------------------------
+void TEditorMap::HideDialogOpenSave()
+{
+	if( mDialogOpenSave->GetResult()==TDialogOpenSave::eAccept )
+	{
+  	std::string nameMap = mDialogOpenSave->GetResultName();
+		Open(nameMap);
+	}
 }
 //-------------------------------------------------------------------------------------

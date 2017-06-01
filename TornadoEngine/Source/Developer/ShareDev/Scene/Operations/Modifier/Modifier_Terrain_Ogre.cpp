@@ -12,6 +12,8 @@ See for more information License.h.
 #include "Pattern_Terrain.h"
 #include "MapItem.h"
 
+#include <boost/foreach.hpp>
+
 TModifier_Terrain_Ogre::TModifier_Terrain_Ogre()
 {
 
@@ -28,13 +30,13 @@ void TModifier_Terrain_Ogre::SetFormat(TDescTarget& descTarget)
 	mTerrainGroup   = pGE->GetTerrainGroup();
 	mTerrainItem    = mPatternTerrain->GetTerrainItem();
 
-	return;
+	mTerrainGroup->removeAllTerrains();
+
 	setupContent();
 }
 //------------------------------------------------------------------------
 void TModifier_Terrain_Ogre::setupContent()
 {
-	// если все новые параметры совпадают со старыми, то не делать апдейт и выйти.
 	Ogre::String filename = mPatternTerrain->GetMapItem()->mName;
 	Ogre::String prefixterrainPath = TModuleLogic::Get()->GetTerrainPath() + "/" + filename;
 	Ogre::String suffix = "";
@@ -46,7 +48,8 @@ void TModifier_Terrain_Ogre::setupContent()
 		for( int iY = mTerrainItem->mY.min ; iY <= mTerrainItem->mY.max ; iY++ )
 			defineTerrain(iX, iY);
 
-	
+	mTerrainGroup->loadAllTerrains(true);
+
 	mTerrainGroup->freeTemporaryResources();
 }
 //------------------------------------------------------------------------
@@ -55,13 +58,37 @@ void TModifier_Terrain_Ogre::configureTerrainDefaults()
 	mTerrainGlobals->setMaxPixelError(mTerrainItem->mGraphic.maxPixelError);
 	mTerrainGlobals->setCompositeMapDistance(mTerrainItem->mGraphic.compositeMapDistance);
 
-	//mTerrainGroup->setOrigin(mTerrainOrigin);
+	Ogre::Terrain::ImportData& defaultimp = mTerrainGroup->getDefaultImportSettings();
+	defaultimp.terrainSize  = mDescTarget.sizePart;
+	defaultimp.worldSize    = mDescTarget.worldSizePart;
+	defaultimp.inputScale   = 1;
+	defaultimp.minBatchSize = mDescTarget.sizePart;//33;
+	defaultimp.maxBatchSize = mDescTarget.sizePart;//65;
+	defaultimp.terrainAlign = Ogre::Terrain::ALIGN_X_Z;
+	// textures
+	BOOST_FOREACH( TModifier_Terrain::TLayer& layer, mDescTarget.listLayer )
+	{
+		Ogre::Terrain::LayerInstance ogreLayer;
+		ogreLayer.worldSize = layer.worldSize;
+		ogreLayer.textureNames.push_back(layer.textureNames_Color);
+		ogreLayer.textureNames.push_back(layer.textureNames_Normal);
+		defaultimp.layerList.push_back(ogreLayer);
+	}
+	mTerrainGroup->setTerrainSize(mDescTarget.sizePart);
+	mTerrainGroup->setTerrainWorldSize(mDescTarget.worldSizePart);
 }
 //--------------------------------------------------------------------
 void TModifier_Terrain_Ogre::defineTerrain(long x, long y)
 {
+	Ogre::Vector3 origin;
+	origin.x = mDescTarget.worldSizePart*x;
+	origin.y = mDescTarget.height;//*/0;// ???
+	origin.z = mDescTarget.worldSizePart*y;
+	mTerrainGroup->setOrigin(origin);
+
 	Ogre::String filename = mTerrainGroup->generateFilename(x, y);
-	mTerrainGroup->defineTerrain(x, y, mDescTarget.height);
+
+	mTerrainGroup->defineTerrain(x, y, /*mDescTarget.height*/0.0f);
 }
 //--------------------------------------------------------------------
 

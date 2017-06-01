@@ -14,6 +14,7 @@ See for more information License.h.
 
 #include "BaseLayout/BaseLayout.h"
 #include "TypeDef.h"
+#include "CallBackRegistrator.h"
 
 #ifdef WIN32
 #pragma warning(disable: 4275)
@@ -24,6 +25,9 @@ assignWidget(name,#name);
 
 class DllExport TBaseGUI : public wraps::BaseLayout
 {
+	TCallBackRegistrator0 mCB_Show;
+	TCallBackRegistrator0 mCB_Hide;
+
 protected:
   MyGUI::VectorWidgetPtr mVectorChild_Tab;
 
@@ -33,6 +37,9 @@ public:
 
   virtual void Show();
   virtual void Hide();
+
+	TCallBackRegistrator0* GetCB_Show();
+	TCallBackRegistrator0* GetCB_Hide();
 
 	bool IsVisible();
 

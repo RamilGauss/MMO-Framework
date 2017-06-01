@@ -97,7 +97,7 @@ bool TEditorMapLogic::WorkClient()
   if(mAggregationScenario_Client.get())
 		mAggregationScenario_Client->Work();
 
-	CheckTerrainGroupUpdateForSave();
+	//### CheckTerrainGroupUpdateForSave();
 	return true;
 }
 //-------------------------------------------------------------------

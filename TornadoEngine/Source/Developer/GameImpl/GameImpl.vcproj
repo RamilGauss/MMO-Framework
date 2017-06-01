@@ -404,6 +404,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\GUI\DialogOpenSave.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GUI\DialogOpenSave.h"
+					>
+				</File>
+				<File
 					RelativePath=".\GUI\PlateParam.cpp"
 					>
 				</File>

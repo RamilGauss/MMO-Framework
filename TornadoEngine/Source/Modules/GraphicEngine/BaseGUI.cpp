@@ -20,11 +20,15 @@ void TBaseGUI::Show()
   }
 
   mMainWidget->setVisible(true);
+
+	mCB_Show.Notify();
 }
 //--------------------------------------------------------------
 void TBaseGUI::Hide()
 {
   mMainWidget->setVisible(false);
+
+	mCB_Hide.Notify();
 }
 //--------------------------------------------------------------
 bool TBaseGUI::IsVisible()
@@ -85,3 +89,14 @@ void TBaseGUI::Shutdown()
   shutdown();
 }
 //--------------------------------------------------------------
+TCallBackRegistrator0* TBaseGUI::GetCB_Show()
+{
+	return &mCB_Show;
+}
+//--------------------------------------------------------------
+TCallBackRegistrator0* TBaseGUI::GetCB_Hide()
+{
+	return &mCB_Hide;
+}
+//--------------------------------------------------------------
+
