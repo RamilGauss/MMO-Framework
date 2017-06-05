@@ -29,6 +29,7 @@ TEditorMap::TEditorMap()
   mPopupMenu_Mode            = nullptr;
   miOpen                     = nullptr;
   miSave                     = nullptr;
+	miSaveAs                   = nullptr;
   miExit                     = nullptr;
 	miMode_Fly                 = nullptr;
 	miMode_TerrainExtent			 = nullptr;
@@ -40,15 +41,18 @@ TEditorMap::TEditorMap()
 	cbUsePhysic                = nullptr;
 
 	mDialogHeightmapParam = new TDialogHeightmapParam;
-	mDialogOpenSave       = new TDialogOpenSave;
+	mDialogOpen           = new TDialogOpenSave;
+	mDialogSaveAs         = new TDialogOpenSave;
 
-	mDialogOpenSave->GetCB_Hide()->Register( &TEditorMap::HideDialogOpenSave, this);
+	mDialogOpen  ->GetCB_Hide()->Register( &TEditorMap::HideDialogOpen,   this);
+	mDialogSaveAs->GetCB_Hide()->Register( &TEditorMap::HideDialogSaveAs, this);
 }
 //------------------------------------------------------
 TEditorMap::~TEditorMap()
 {
 	delete mDialogHeightmapParam;
-	delete mDialogOpenSave;
+	delete mDialogOpen;
+	delete mDialogSaveAs;
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::Activate()
@@ -58,13 +62,15 @@ void TEditorMap::Activate()
 	// file
 	mPopupMenu_File = mBar->findItemById("File", true)->getItemChild();
 
-  miOpen = mPopupMenu_File->findItemById("Command_FileOpen");
-  miSave = mPopupMenu_File->findItemById("Command_FileSave");
-  miExit = mPopupMenu_File->findItemById("Command_FileExit");
+  miOpen   = mPopupMenu_File->findItemById("Command_FileOpen");
+  miSave   = mPopupMenu_File->findItemById("Command_FileSave");
+  miSaveAs = mPopupMenu_File->findItemById("Command_FileSaveAs");
+  miExit   = mPopupMenu_File->findItemById("Command_FileExit");
 
-  miOpen->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Open);
-	miSave->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Save);
-  miExit->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Exit);
+  miOpen  ->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Open);
+	miSave  ->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Save);
+	miSaveAs->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_SaveAs);
+  miExit  ->eventMouseButtonClick += MyGUI::newDelegate(this, &TEditorMap::sl_Exit);
 	
 	mPopupMenu_Mode = mBar->findItemById("Mode", true)->getItemChild();
 
@@ -116,7 +122,7 @@ void TEditorMap::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Ch
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Open(MyGUI::Widget* _sender)
 {
-	mDialogOpenSave->Show();
+	mDialogOpen->Show();
 	TDialogOpenSave::TInitStruct initStruct;
 	initStruct.caption    		 = "Открытие карты";
 	initStruct.nameButton 		 = "Открыть";
@@ -131,7 +137,7 @@ void TEditorMap::sl_Open(MyGUI::Widget* _sender)
 			initStruct.vecItems.push_back(name);
 	}
 
-	mDialogOpenSave->Init(initStruct);
+	mDialogOpen->Init(initStruct);
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::Open(std::string nameMap)
@@ -146,11 +152,45 @@ void TEditorMap::Open(std::string nameMap)
 	//MyGUI::PointerManager::getInstance().setVisible(false);
 }
 //-------------------------------------------------------------------------------------
+void TEditorMap::SaveAs(std::string nameMap)
+{
+	if( nameMap.length()==0 )
+		return;
+
+	g_StatusBar->AddText("Сохранение карты как \"" + nameMap + "\"...");
+	g_EditorMapLogic->SaveAsGameMap(nameMap);
+	g_StatusBar->AddText("Сохранение карты как завершено.");
+}
+//-------------------------------------------------------------------------------------
 void TEditorMap::sl_Save(MyGUI::Widget* _sender)
 {
 	g_StatusBar->AddText("Сохранение карты...");
-	//g_EditorMapLogic->Save();
+	g_EditorMapLogic->SaveGameMap();
 	g_StatusBar->AddText("Сохранение карты завершено.");
+}
+//-------------------------------------------------------------------------------------
+void TEditorMap::sl_SaveAs(MyGUI::Widget* _sender)
+{
+	short rand_id_map = rand();
+
+	// диалог для выбора нового имени
+	mDialogSaveAs->Show();
+	TDialogOpenSave::TInitStruct initStruct;
+	initStruct.caption    		 = "Сохранение карты как";
+	initStruct.nameButton 		 = "Сохранить как";
+	initStruct.readOnly_ebName = false;
+	initStruct.currentItem     = -1;
+	initStruct.nameCurrentItem = "newMap_" + boost::lexical_cast<std::string>(rand_id_map);
+
+	int cntMap = TModuleLogic::Get()->GetFGI()->GetCountByType(TFactoryGameItem::Map);
+	for( int i = 0 ; i < cntMap ; i++ )
+	{
+		std::string name;
+		if( TModuleLogic::Get()->GetFGI()->GetNameByType(TFactoryGameItem::Map, i, name) )
+			initStruct.vecItems.push_back(name);
+	}
+
+	mDialogSaveAs->Init(initStruct);
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Exit(MyGUI::Widget* _sender)
@@ -210,12 +250,21 @@ void TEditorMap::sl_Mode_Objects(MyGUI::Widget* _sender)
 	SetNameMode("Объекты");
 }
 //-------------------------------------------------------------------------------------
-void TEditorMap::HideDialogOpenSave()
+void TEditorMap::HideDialogOpen()
 {
-	if( mDialogOpenSave->GetResult()==TDialogOpenSave::eAccept )
+	if( mDialogOpen->GetResult()==TDialogOpenSave::eAccept )
 	{
-  	std::string nameMap = mDialogOpenSave->GetResultName();
+  	std::string nameMap = mDialogOpen->GetResultName();
 		Open(nameMap);
+	}
+}
+//-------------------------------------------------------------------------------------
+void TEditorMap::HideDialogSaveAs()
+{
+	if( mDialogSaveAs->GetResult()==TDialogOpenSave::eAccept )
+	{
+		std::string nameMap = mDialogSaveAs->GetResultName();
+		SaveAs(nameMap);
 	}
 }
 //-------------------------------------------------------------------------------------

@@ -5,26 +5,24 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef GP_Scenario_SynchroClientH
-#define GP_Scenario_SynchroClientH
+#ifndef GP_Scenario_SynchroH
+#define GP_Scenario_SynchroH
 
 #include "IGP_Scenario_Synchro.h"
 #include "IGP_Scenario.h"
 
-class DllExport TGP_Scenario_SynchroClient : 
+class DllExport TGP_Scenario_Synchro : 
 	public IGP_Scenario_Synchro, public IGP_Scenario
 {
 public:
-  TGP_Scenario_SynchroClient();
-  virtual ~TGP_Scenario_SynchroClient();
+  TGP_Scenario_Synchro();
+  virtual ~TGP_Scenario_Synchro();
 
 	// IGP_Scenario_Synchro
 	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
-
-	virtual void UpdateResourcesByGameObject(int id);
-	virtual void UpdateGameObjectByResources(int id);
-
 	virtual bool DeleteGameObject(int id);
+
+	virtual void SaveMap(std::string nameMap);
 
 	// IGP_General
   virtual void Work();

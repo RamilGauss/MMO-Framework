@@ -2,8 +2,8 @@
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="Window" skin="WindowCSX" position="235 155 400 352" layer="Overlapped" name="_Main">
         <Property key="MinSize" value="200 200"/>
-        <Widget type="EditBox" skin="EditBox" position="2 286 286 28" align="HStretch Bottom" name="ebName"/>
+        <Widget type="EditBox" skin="EditBox" position="2 286 258 28" align="HStretch Bottom" name="ebName"/>
         <Widget type="ListBox" skin="ListBox" position="2 0 388 285" align="Stretch" name="lbItems"/>
-        <Widget type="Button" skin="Button" position="289 287 100 27" align="Right Bottom" name="bAction"/>
+        <Widget type="Button" skin="Button" position="260 287 127 28" align="Right Bottom" name="bAction"/>
     </Widget>
 </MyGUI>

@@ -96,10 +96,11 @@ public:
 
 	// обновить все ресурсы, на основании которых строится объект на карте
 	// учитывает изменения, совершённые через интерфейс паттерна, Физику и внутренние изменения Логикой
-	virtual void UpdateGameItem();
+	// если были изменения, то вернет true
+	virtual bool UpdateGameItem();
 	
 	// обновить внутренности по ресурсам, результат такой же как при вызове Build
-	// отличие от Build - вызов атомарен, то же самое что BuildXXX(fast)
+	// отличие от Build - вызов атомарен, то же самое что BuildXXX(fast=true)
 	virtual void UpdateByGameItemByModule_Logic();
 	virtual void UpdateByGameItemByModule_Graphic();
 	virtual void UpdateByGameItemByModule_Physic();

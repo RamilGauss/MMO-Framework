@@ -36,6 +36,7 @@ class TEditorMapLogic : public TModuleClientLogic
 
   unsigned int mID_TimerTryMoveCamera;
 
+	std::string mCurrentGameMap;
 	//### прототипы TODO перенос в базовый класс?
 	bool flgIsTerrainGroupUpdate;
 	void CheckTerrainGroupUpdateForSave();
@@ -52,7 +53,11 @@ public:
 
 public:// TEditorMapLogic for GUI
 	void TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld);
-	void LoadGameMap(std::string& nameMap);// in future should be locate in ClientLogic
+
+	// in future should be locate in ClientLogic
+	void LoadGameMap(std::string& nameMap);
+	void SaveAsGameMap(std::string& nameMap);
+	void SaveGameMap();
 	
 	void ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descTarget);
 

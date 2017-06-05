@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -35,8 +35,11 @@ void TDialogOpenSave::Init(TInitStruct& initStruct)
 	BOOST_FOREACH( std::string& item, mInitStruct.vecItems )
 		lbItems->addItem(item);
 	
-	if( mInitStruct.readOnly_ebName && mInitStruct.vecItems.size() )
-		ebName->setCaption(mInitStruct.vecItems[mInitStruct.currentItem]);
+	if( mInitStruct.currentItem==-1 )
+		ebName->setCaption(mInitStruct.nameCurrentItem);
+	else
+		if( mInitStruct.readOnly_ebName && mInitStruct.vecItems.size() )
+			ebName->setCaption(mInitStruct.vecItems[mInitStruct.currentItem]);
 	
 	ebName->setEditReadOnly(mInitStruct.readOnly_ebName);
 }

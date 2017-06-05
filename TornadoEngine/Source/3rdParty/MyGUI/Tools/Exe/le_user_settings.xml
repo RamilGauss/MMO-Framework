@@ -6,7 +6,7 @@
 		</WidgetsWindow>
 		<Main>
 			<Maximized>false</Maximized>
-			<Coord>-858993460 -858993460 0 0</Coord>
+			<Coord>26 20514168 0 0</Coord>
 		</Main>
 	</Controls>
 	<Settings>
@@ -34,6 +34,8 @@
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Demos\Demo_Gui</Value>
 		</RecentFolder.List>
 		<RecentFile.List>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\DialogOpenSave.layout</Value>
+			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorMap.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\OpenSaveDialog.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\OpenSaveFileDialog.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Common\Tools\OpenSaveFileDialog.layout</Value>
@@ -42,8 +44,6 @@
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\ProjectControl.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\MainPane.layout</Value>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\MainMenuControl.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\EditorToolTip.layout</Value>
-			<Value>d:\MyProjects\MMOFramework\Resources\GUI\Tools\LayoutEditor\CodeGeneratorWindow.layout</Value>
 		</RecentFile.List>
 		<RecentProject.List>
 			<Value>d:\MyProjects\MMOFramework\Resources\GUI_forms\EditorShape.project</Value>

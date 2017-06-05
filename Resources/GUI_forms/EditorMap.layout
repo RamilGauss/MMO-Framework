@@ -23,6 +23,10 @@
                         <Property key="MenuItemId" value="Command_FileSave"/>
                     </Widget>
                     <Widget type="MenuItem" skin="" position="0 57 123 19">
+                        <Property key="Caption" value="Сохранить как"/>
+                        <Property key="MenuItemId" value="Command_FileSaveAs"/>
+                    </Widget>
+                    <Widget type="MenuItem" skin="" position="0 76 123 19">
                         <Property key="Caption" value="Выход"/>
                         <Property key="MenuItemId" value="Command_FileExit"/>
                     </Widget>

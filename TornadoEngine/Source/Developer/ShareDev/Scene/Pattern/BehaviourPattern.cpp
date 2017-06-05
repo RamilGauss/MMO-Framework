@@ -163,9 +163,9 @@ void TBehaviourPattern::SynchroByModule_Sound()
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::UpdateGameItem()
+bool TBehaviourPattern::UpdateGameItem()
 {
-
+	return false;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::UpdateByGameItemByModule_Logic()

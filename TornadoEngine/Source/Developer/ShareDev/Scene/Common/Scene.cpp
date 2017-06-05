@@ -48,6 +48,31 @@ TGameObject* TScene::GetNotUsingByID(int id)
   return GetByID(mMapID_NotUsingGO, id);
 }
 //-----------------------------------------------------------------------------
+int TScene::GetCount()
+{
+	return GetCountUsing() + GetCountNotUsing();
+}
+//-----------------------------------------------------------------------------
+TGameObject* TScene::GetByIndex(int index)
+{
+	TGameObject* pGO = NULL;
+	int cntUsing = GetCountUsing();
+	if( index < cntUsing )
+		pGO = GetUsingByIndex(index);
+	else
+		pGO = GetNotUsingByIndex(index - cntUsing );
+	return pGO;
+}
+//-----------------------------------------------------------------------------
+TGameObject* TScene::GetByID(int id)
+{
+	TGameObject* pGO = NULL;
+	pGO = GetUsingByID(id);
+	if( pGO==NULL )
+		pGO = GetNotUsingByIndex(id);
+	return pGO;
+}
+//-----------------------------------------------------------------------------
 void TScene::Include(TGameObject* pGO)
 {
   mMapID_UsingGO.insert(TMapIntPtrVT(pGO->GetID(), pGO));

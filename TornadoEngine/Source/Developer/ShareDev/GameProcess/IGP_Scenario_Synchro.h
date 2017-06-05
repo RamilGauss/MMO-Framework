@@ -21,12 +21,14 @@ public:
 
 	// atomic operation, результат сразу после вызова методов
 	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject) = 0;
-	// любая сущность сцены может быть выражена с помощью ресурсов (частный случай - игровой итэм)
-	virtual void UpdateResourcesByGameObject(int id) = 0;
-	virtual void UpdateGameObjectByResources(int id) = 0;
-
 	virtual bool DeleteGameObject(int id) = 0;
 
+  // сохранить любые изменения в карте
+  virtual void SaveMap(std::string nameMap) = 0;
+
+  // ниже реализуется только через сам объект
+	//virtual void UpdateGameItemByGameObject(int id) = 0;
+	//virtual void UpdateGameObjectByGameItem(int id) = 0;
 };
 
 #endif

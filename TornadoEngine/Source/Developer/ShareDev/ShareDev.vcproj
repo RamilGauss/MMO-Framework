@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Destructor;./Scene/Operations/Common;./Scene/Operations/Modifier;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchro;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Destructor;./Scene/Operations/Common;./Scene/Operations/Modifier;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				AdditionalIncludeDirectories="./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchro;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;../../Base;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -1137,6 +1137,54 @@
 				<Filter
 					Name="UpdaterGameItem"
 					>
+					<Filter
+						Name="Common"
+						>
+						<Filter
+							Name="tools"
+							>
+						</Filter>
+						<Filter
+							Name="helper"
+							>
+							<File
+								RelativePath=".\Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain.h"
+								>
+							</File>
+						</Filter>
+					</Filter>
+					<Filter
+						Name="Bullet"
+						>
+						<File
+							RelativePath=".\Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain_Bullet.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain_Bullet.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="Ogre"
+						>
+						<File
+							RelativePath=".\Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain_Ogre.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain_Ogre.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="OpenAL"
+						>
+					</Filter>
 				</Filter>
 				<Filter
 					Name="Modifier"
@@ -1209,10 +1257,106 @@
 				<Filter
 					Name="SaverGameItem"
 					>
+					<Filter
+						Name="Common"
+						>
+						<Filter
+							Name="helper"
+							>
+							<File
+								RelativePath=".\Scene\Operations\SaverGameItem\SaverGameItem_Terrain.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\SaverGameItem\SaverGameItem_Terrain.h"
+								>
+							</File>
+						</Filter>
+						<Filter
+							Name="tools"
+							>
+						</Filter>
+					</Filter>
+					<Filter
+						Name="Bullet"
+						>
+						<File
+							RelativePath=".\Scene\Operations\SaverGameItem\SaverGameItem_Terrain_Bullet.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Scene\Operations\SaverGameItem\SaverGameItem_Terrain_Bullet.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="Ogre"
+						>
+						<File
+							RelativePath=".\Scene\Operations\SaverGameItem\SaverGameItem_Terrain_Ogre.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Scene\Operations\SaverGameItem\SaverGameItem_Terrain_Ogre.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="OpenAL"
+						>
+					</Filter>
 				</Filter>
 				<Filter
 					Name="SaverOutData"
 					>
+					<Filter
+						Name="OpenAL"
+						>
+					</Filter>
+					<Filter
+						Name="Common"
+						>
+						<Filter
+							Name="helper"
+							>
+							<File
+								RelativePath=".\Scene\Operations\SaverOutData\SaverOutData_Terrain.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\Scene\Operations\SaverOutData\SaverOutData_Terrain.h"
+								>
+							</File>
+						</Filter>
+						<Filter
+							Name="tools"
+							>
+						</Filter>
+					</Filter>
+					<Filter
+						Name="Bullet"
+						>
+						<File
+							RelativePath=".\Scene\Operations\SaverOutData\SaverOutData_Terrain_Bullet.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Scene\Operations\SaverOutData\SaverOutData_Terrain_Bullet.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="Ogre"
+						>
+						<File
+							RelativePath=".\Scene\Operations\SaverOutData\SaverOutData_Terrain_Ogre.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Scene\Operations\SaverOutData\SaverOutData_Terrain_Ogre.h"
+							>
+						</File>
+					</Filter>
 				</Filter>
 				<Filter
 					Name="Synchro"
@@ -1220,6 +1364,14 @@
 					<Filter
 						Name="Common"
 						>
+						<Filter
+							Name="helper"
+							>
+						</Filter>
+						<Filter
+							Name="tools"
+							>
+						</Filter>
 					</Filter>
 					<Filter
 						Name="Bullet"

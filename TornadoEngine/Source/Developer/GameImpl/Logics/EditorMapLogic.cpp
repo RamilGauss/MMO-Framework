@@ -150,11 +150,27 @@ void TEditorMapLogic::FreeGraphicResource()
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::LoadGameMap(std::string& nameMap)
 {
+	mCurrentGameMap = nameMap;
   if(mAggregationScenario_Client.get())
     if(mAggregationScenario_Client->Activate(nsGameProcess::eBuilder))
   {
     mAggregationScenario_Client->LoadMap(nameMap);
   }
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::SaveGameMap()
+{
+	if( mCurrentGameMap.length() )
+		SaveAsGameMap(mCurrentGameMap);
+}
+//---------------------------------------------------------------------------------------------
+void TEditorMapLogic::SaveAsGameMap(std::string& nameMap)
+{
+	if(mAggregationScenario_Client.get())
+		if(mAggregationScenario_Client->Activate(nsGameProcess::eBuilder))
+	{
+		mAggregationScenario_Client->SaveMap(nameMap);
+	}
 }
 //---------------------------------------------------------------------------------------------
 void TEditorMapLogic::ProgressScenario(nsGameProcess::GP_TypeScenario type, int progress)

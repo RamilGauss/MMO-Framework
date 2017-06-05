@@ -11,37 +11,69 @@ See for more information License.h.
 #include "GameObject.h"
 #include "BehaviourPattern.h"
 
-TGP_Scenario_SynchroClient::TGP_Scenario_SynchroClient()
+#include "ModuleLogic.h"
+#include "FactoryGameItem.h"
+
+TGP_Scenario_Synchro::TGP_Scenario_Synchro()
 {
 
 }
 //----------------------------------------------------------------------------------
-TGP_Scenario_SynchroClient::~TGP_Scenario_SynchroClient()
+TGP_Scenario_Synchro::~TGP_Scenario_Synchro()
 {
 
 }
 //----------------------------------------------------------------------------------
-TGameObject* TGP_Scenario_SynchroClient::AddGameObject(TMapItem::TObject* pObject)
+TGameObject* TGP_Scenario_Synchro::AddGameObject(TMapItem::TObject* pObject)
 {
 	return NULL;
 }
 //----------------------------------------------------------------------------------
-void TGP_Scenario_SynchroClient::UpdateResourcesByGameObject(int id)
-{
-
-}
-//----------------------------------------------------------------------------------
-void TGP_Scenario_SynchroClient::UpdateGameObjectByResources(int id)
-{
-
-}
-//----------------------------------------------------------------------------------
-bool TGP_Scenario_SynchroClient::DeleteGameObject(int id)
+bool TGP_Scenario_Synchro::DeleteGameObject(int id)
 {
 	return false;
 }
 //----------------------------------------------------------------------------------
-void TGP_Scenario_SynchroClient::Work()
+void TGP_Scenario_Synchro::SaveMap(std::string nameMap)
+{
+	// карта может и не существовать
+	// тогда нужно создать в FGI
+	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
+	TMapItem* pMapITem = (TMapItem*)pFGI->Get(TFactoryGameItem::Map, nameMap);
+	if( pMapITem==NULL )
+	{
+		pMapITem = (TMapItem*)pFGI->Add(TFactoryGameItem::Map, nameMap);
+		if( pMapITem==NULL )
+		{
+			BL_FIX_BUG();
+			return;
+		}
+	}
+	
+
+	// сброс данных всех объектов на HDD
+	int cnt = mPtrScene->GetCount();
+	for( int i = 0 ; i < cnt ; i++ )
+	{
+		TGameObject* pGO = mPtrScene->GetByIndex(i);
+		if( pGO==NULL )
+		{
+			BL_FIX_BUG();
+			continue;
+		}
+		TBehaviourPattern* pPattern = pGO->GetPattern();
+		if( pPattern==NULL )
+			continue;
+
+		if( pPattern->UpdateGameItem() )
+		{
+			pPattern->SaveGameItemOnHDD();
+			pPattern->SaveOutDataOnHDD();
+		}
+	}
+}
+//----------------------------------------------------------------------------------
+void TGP_Scenario_Synchro::Work()
 {
 	int cnt = mPtrScene->GetCountUsing();
 	for( int i = 0 ; i < cnt ; i++ )
@@ -52,31 +84,31 @@ void TGP_Scenario_SynchroClient::Work()
 			BL_FIX_BUG();
 			continue;
 		}
-		TBehaviourPattern* pModel = pGO->GetPattern();
-		if( pModel==NULL )
+		TBehaviourPattern* pPattern = pGO->GetPattern();
+		if( pPattern==NULL )
 			continue;
 
-		pModel->SynchroByModule_Logic();
+		pPattern->SynchroByModule_Logic();
 		if( UsePhysic() )
-			pModel->SynchroByModule_Physic();
+			pPattern->SynchroByModule_Physic();
 		if( UseGraphic() )
-			pModel->SynchroByModule_Graphic();
+			pPattern->SynchroByModule_Graphic();
 		if( UseSound() )	
-			pModel->SynchroByModule_Sound();
+			pPattern->SynchroByModule_Sound();
 	}
 }
 //----------------------------------------------------------------------------------
-nsGameProcess::GP_TypeScenario TGP_Scenario_SynchroClient::GetType()
+nsGameProcess::GP_TypeScenario TGP_Scenario_Synchro::GetType()
 {
   return nsGameProcess::eSynchro;
 }
 //-----------------------------------------------------------------------------
-void TGP_Scenario_SynchroClient::Activate()
+void TGP_Scenario_Synchro::Activate()
 {
 
 }
 //-----------------------------------------------------------------------------
-void TGP_Scenario_SynchroClient::Deactivate()
+void TGP_Scenario_Synchro::Deactivate()
 {
 
 }

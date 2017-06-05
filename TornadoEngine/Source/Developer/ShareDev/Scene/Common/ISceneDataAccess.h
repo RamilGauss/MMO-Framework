@@ -24,6 +24,10 @@ public:
   virtual TGameObject* GetNotUsingByIndex(int index) = 0;// mainly for debug
   virtual TGameObject* GetNotUsingByID(int id) = 0;
 
+	virtual int GetCount() = 0;
+	virtual TGameObject* GetByIndex(int index) = 0;
+	virtual TGameObject* GetByID(int id) = 0;
+
   // манипуляции
   virtual void Include(TGameObject* pGO) = 0;
   virtual void Exclude(int id) = 0;

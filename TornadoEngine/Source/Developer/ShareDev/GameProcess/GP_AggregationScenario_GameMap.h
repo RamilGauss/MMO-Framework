@@ -21,7 +21,7 @@ class DllExport TGP_AggregationScenario_GameMap :
 	public IGP_Scenario_Destructor 
 {
   TGP_Scenario_Builder       mBuilder;
-  TGP_Scenario_SynchroClient mSynchro;
+  TGP_Scenario_Synchro mSynchro;
   TGP_Scenario_Destructor    mDestructor;
 
 	int mID_World;
@@ -34,9 +34,9 @@ public:
 
 	// Synchro
 	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
-	virtual void UpdateResourcesByGameObject(int id);
-	virtual void UpdateGameObjectByResources(int id);
 	virtual bool DeleteGameObject(int id);
+
+	virtual void SaveMap(std::string nameMap);
 
 	// Destructor
   virtual void UnloadAll();

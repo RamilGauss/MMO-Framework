@@ -22,7 +22,8 @@ class TEditorMap : public TBaseGUI
 	
 	TDialogHeightmapParam* mDialogHeightmapParam;
 
-	TDialogOpenSave*       mDialogOpenSave;
+	TDialogOpenSave*       mDialogOpen;
+	TDialogOpenSave*       mDialogSaveAs;
 
 public:
   TEditorMap();
@@ -39,11 +40,16 @@ protected:
 	void SetNameMode(std::string sMode);
 
 	void Open(std::string nameMap);
-	void HideDialogOpenSave();
+	void SaveAs(std::string nameMap);
+
+	void HideDialogOpen();
+	void HideDialogSaveAs();
 protected:
   void sl_Open(MyGUI::Widget* _sender);
 	void sl_Save(MyGUI::Widget* _sender);
+	void sl_SaveAs(MyGUI::Widget* _sender);
   void sl_Exit(MyGUI::Widget* _sender);
+
 	void sl_ToggleUsePhysic(MyGUI::Widget* _sender);
   
 	void sl_Mode_Fly(MyGUI::Widget* _sender);
@@ -63,6 +69,7 @@ protected:
 	// File
   MyGUI::MenuItem* miOpen;
   MyGUI::MenuItem* miSave;
+  MyGUI::MenuItem* miSaveAs;
   MyGUI::MenuItem* miExit;
 	// Mode
 	MyGUI::MenuItem* miMode_Fly;

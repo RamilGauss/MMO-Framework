@@ -12,7 +12,6 @@ See for more information License.h.
 #include "FactoryGameItem.h"
 #include "ModuleLogic.h"
 
-
 namespace nsPattern_Terrain
 {
 	const char* sNameGameItem = "NameGameItem";
@@ -187,5 +186,22 @@ TTerrainItem* TPattern_Terrain::GetTerrainItem()
 	TTerrainItem* pTerrainItem = 
 		(TTerrainItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Terrain, nameTerrainItem);
 	return pTerrainItem;
+}
+//---------------------------------------------------------------------------
+bool TPattern_Terrain::UpdateGameItem()
+{
+	return mUpdaterGameItemBullet.Update() || mUpdaterGameItemOgre.Update();
+}
+//---------------------------------------------------------------------------
+void TPattern_Terrain::SaveGameItemOnHDD()
+{
+	mSaverGameItemBullet.Save();
+	mSaverGameItemOgre.Save();
+}
+//---------------------------------------------------------------------------
+void TPattern_Terrain::SaveOutDataOnHDD()
+{
+	mSaverOutDataBullet.Save();
+	mSaverOutDataOgre.Save();
 }
 //---------------------------------------------------------------------------

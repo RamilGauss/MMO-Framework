@@ -9,17 +9,27 @@ See for more information License.h.
 #define Pattern_TerrainH
 
 #include "TypeDef.h"
+
 #include "BehaviourPattern.h"
 #include "StructPattern_Terrain.h"
 
 #include "Builder_Terrain_Bullet.h"
 #include "Builder_Terrain_Ogre.h"
 
+#include "Destructor_Terrain_Bullet.h"
+#include "Destructor_Terrain_Ogre.h"
+
 #include "Modifier_Terrain_Bullet.h"
 #include "Modifier_Terrain_Ogre.h"
 
-#include "Destructor_Terrain_Bullet.h"
-#include "Destructor_Terrain_Ogre.h"
+#include "SaverGameItem_Terrain_Bullet.h"
+#include "SaverGameItem_Terrain_Ogre.h"
+
+#include "SaverOutData_Terrain_Bullet.h"
+#include "SaverOutData_Terrain_Ogre.h"
+
+#include "UpdaterGameItem_Terrain_Bullet.h"
+#include "UpdaterGameItem_Terrain_Ogre.h"
 
 class DllExport TPattern_Terrain : public TBehaviourPattern
 {
@@ -65,17 +75,17 @@ protected:
 	TModifier_Terrain_Bullet mModifierBullet;
 	TModifier_Terrain_Ogre   mModifierOgre;
 	// update
-	//###TUpdaterGameItem_Terrain_Bullet mUpdaterGameItemBullet;
-	//###TUpdaterGameItem_Terrain_Ogre   mUpdaterGameItemOgre;
+	TUpdaterGameItem_Terrain_Bullet mUpdaterGameItemBullet;
+	TUpdaterGameItem_Terrain_Ogre   mUpdaterGameItemOgre;
 	// update by
 	//###TUpdaterByGameItem_Terrain_Bullet mUpdaterByGameItemBullet;
 	//###TUpdaterByGameItem_Terrain_Ogre   mUpdaterByGameItemOgre;
   // save game item
-  //###TSaverGameItem_Terrain_Bullet mSaverGameItemBullet;
-  //###TSaverGameItem_Terrain_Ogre   mSaverGameItemOgre;
+  TSaverGameItem_Terrain_Bullet mSaverGameItemBullet;
+  TSaverGameItem_Terrain_Ogre   mSaverGameItemOgre;
   // save out data
-  //###TSaverOutData_Terrain_Bullet mSaverOutDataBullet;
-  //###TSaverOutData_Terrain_Ogre   mSaverOutDataOgre;
+  TSaverOutData_Terrain_Bullet mSaverOutDataBullet;
+  TSaverOutData_Terrain_Ogre   mSaverOutDataOgre;
 	// destruct
 	TDestructor_Terrain_Bullet mDestructorBullet;
 	TDestructor_Terrain_Ogre   mDestructorOgre;
@@ -86,6 +96,10 @@ public:
 
 	virtual bool BuildByModule_Graphic(bool fast = false);
   virtual bool BuildByModule_Physic(bool fast = false);
+
+	virtual bool UpdateGameItem();
+	virtual void SaveGameItemOnHDD();
+	virtual void SaveOutDataOnHDD();
 
 	virtual TManagerNamePattern::eBaseType GetBaseType();
 

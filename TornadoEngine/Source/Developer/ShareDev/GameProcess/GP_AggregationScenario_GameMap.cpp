@@ -37,19 +37,14 @@ TGameObject* TGP_AggregationScenario_GameMap::AddGameObject(TMapItem::TObject* p
 	return mSynchro.AddGameObject(pObject);
 }
 //---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_GameMap::UpdateResourcesByGameObject(int id)
-{
-
-}
-//---------------------------------------------------------------------------------------------
-void TGP_AggregationScenario_GameMap::UpdateGameObjectByResources(int id)
-{
-
-}
-//---------------------------------------------------------------------------------------------
 bool TGP_AggregationScenario_GameMap::DeleteGameObject(int id)
 {
 	return false;
+}
+//---------------------------------------------------------------------------------------------
+void TGP_AggregationScenario_GameMap::SaveMap(std::string nameMap)
+{
+	mSynchro.SaveMap(nameMap);
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_GameMap::UnloadAll()

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -25,7 +25,8 @@ public:
 	{
 		bool readOnly_ebName;
 
-		int currentItem;
+		int         currentItem;
+		std::string nameCurrentItem;
 		std::vector<std::string> vecItems;
 
 		std::string caption;
