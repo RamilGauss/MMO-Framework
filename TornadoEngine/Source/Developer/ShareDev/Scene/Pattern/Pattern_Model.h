@@ -26,23 +26,23 @@ class DllExport TPattern_Model : public TBehaviourPattern
 	struct TBaseDesc
 	{
 		TModelItem::eType type;
-		std::string  namePart;
-		std::string  nameVariant;
+		std::string namePart;
+		std::string nameVariant;
 	};
 	struct TModelDesc : public TBaseDesc
 	{
 		TPattern_Model* pModel;
-		TModelDesc(){type=TModelItem::eModel;pModel=NULL;}
+		TModelDesc();
 		~TModelDesc();
 	};
 	struct TShapeDesc : public TBaseDesc
 	{
-		std::string  nameShapeItem;
-		std::string  nameMaterial; // реальный материал и переопределенный могут не совпадать
+		std::string nameShapeItem;
+		std::string nameMaterial; // реальный материал и переопределенный могут не совпадать
 		// результат создания формы:
 		Ogre::Entity* pEntity;
 		btRigidBody* pRigidBody;
-		TShapeDesc(){type=TModelItem::eShape;pRigidBody=NULL;pEntity=NULL;}
+		TShapeDesc();
 	};
 
 	TBuilder_Model_Bullet mBuilderBullet;
@@ -71,6 +71,8 @@ protected:
 
 	// набор форм или моделей
 	TMapStr_StrPtrDesc mMapNamePart_NameVariantDesc;
+
+	TBaseDesc* mRoot;
 public:
   TPattern_Model();
   TPattern_Model(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
@@ -106,6 +108,11 @@ public:
 	// Deactivated (sleeping) rigid bodies don't take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)
 	virtual void ActivatePhysicBody(bool force = true);
 
+	// всё относительно Root
+	virtual void SetPosition(nsMathTools::TVector3& v);
+	virtual bool GetPosition(nsMathTools::TVector3& v);
+	virtual void SetOrientation(nsMathTools::TVector4& v);
+	virtual bool GetOrientation(nsMathTools::TVector4& v);
 protected:
 	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
 

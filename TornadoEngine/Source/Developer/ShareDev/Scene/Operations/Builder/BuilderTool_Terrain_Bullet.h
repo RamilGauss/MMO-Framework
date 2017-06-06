@@ -16,12 +16,10 @@ See for more information License.h.
 #include "StructPattern_Terrain.h"
 
 struct TTerrainItem;
-struct TMapItem;
 class btHeightfieldTerrainShape;
 
 class DllExport TBuilderTool_Terrain_Bullet : public TBuilderTool_Bullet
 {
-	TMapItem*     mMapItem;
 	TTerrainItem* mTerrainItem;
 	THeightMapTerrainFromOgre mLoader;
 
@@ -30,7 +28,7 @@ public:
 	TBuilderTool_Terrain_Bullet();
 	~TBuilderTool_Terrain_Bullet();
 
-	void Begin(TMapItem* pMapItem, TTerrainItem* pTerrainItem);
+	void Begin(TTerrainItem* pTerrainItem);
 	void Load( int x, int y, nsStructPattern_Terrain::TTerrainPart_Physic* pPartPhysic);
 	void End();
 protected:

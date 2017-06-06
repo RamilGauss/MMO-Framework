@@ -13,6 +13,9 @@ See for more information License.h.
 namespace nsSerializerTerrainItem_XML
 {
   const char* sTerrain    = "Terrain";
+
+	const char* sName       = "name";
+	const char* sHeightData = "HeightData";
   const char* sConvention = "Convention";
   const char* sX 			    = "x";
   const char* sY 			 		= "y";
@@ -44,6 +47,8 @@ bool TSerializerTerrainItem_XML::Load(TBaseItem* pItem)
   bool resEnter = EnterByType(mTerrain->mName);
   if(resEnter==false)
     return false;
+	
+	LoadNameHeightData();
   LoadGraphic();
   LoadConvention();
   return true;
@@ -58,9 +63,15 @@ bool TSerializerTerrainItem_XML::Save(TBaseItem* pItem)
   if(resEnter==false)
     return false;
 
-  SaveGraphic();
+ 	SaveNameHeightData();
+	SaveGraphic();
   SaveConvention();
   return mXML->Save();
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerTerrainItem_XML::LoadNameHeightData()
+{
+	mTerrain->mNameHeightData = mXML->ReadSectionAttr(sHeightData, 0, sName);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTerrainItem_XML::LoadConvention()
@@ -102,6 +113,14 @@ void TSerializerTerrainItem_XML::LoadGraphic()
     }
     mXML->LeaveSection();
   }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerTerrainItem_XML::SaveNameHeightData()
+{
+	TAttrInfo attr;
+	attr.Name  = sHeightData;
+	attr.Value = mTerrain->mNameHeightData;
+	mXML->AddSection(sHeightData,1,&attr);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTerrainItem_XML::SaveConvention()

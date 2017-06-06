@@ -8,6 +8,8 @@ See for more information License.h.
 #include "BehaviourPattern.h"
 
 #include <boost/foreach.hpp>
+#include "ModuleLogic.h"
+#include "FactoryGameItem.h"
 
 TBehaviourPattern::TBehaviourPattern(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 {
@@ -19,6 +21,42 @@ TBehaviourPattern::TBehaviourPattern(TPatternConfigItem::TMapStrStr* pDefaultPar
 TBehaviourPattern::~TBehaviourPattern()
 {
 
+}
+//------------------------------------------------------------------------
+const TPatternConfigItem::TMapStrStr* TBehaviourPattern::GetDefaultParameterMap()
+{
+	return mPtrDefaultParameterMap;
+}
+//------------------------------------------------------------------------
+void TBehaviourPattern::SetPatternConfig(std::string& namePatternConfig, 
+												           			 std::string& nameVariantPatternConfig)
+{
+	mNamePatternConfig        = namePatternConfig;
+	mNameVariantPatternConfig = nameVariantPatternConfig;
+
+	// ищем настройку паттерна
+	TPatternConfigItem* pPatternConfig = 
+		(TPatternConfigItem*)TModuleLogic::Get()->GetFGI()->
+		Get(TFactoryGameItem::PatternConfig, mNamePatternConfig);
+	BL_ASSERT(pPatternConfig);
+	// вариант из настроек
+	if( pPatternConfig==NULL )
+		return;
+
+	TPatternConfigItem::TMapStrMapIt fitPC = 
+		pPatternConfig->mMapVariant.find(mNameVariantPatternConfig);
+	if( fitPC!=pPatternConfig->mMapVariant.end() )
+		SetParameterMap( fitPC->second );
+}
+//------------------------------------------------------------------------
+std::string TBehaviourPattern::GetNamePatternConfig()
+{
+	return mNamePatternConfig;
+}
+//------------------------------------------------------------------------
+std::string TBehaviourPattern::GetNameVariantPatternConfig()
+{
+	return mNameVariantPatternConfig;
 }
 //------------------------------------------------------------------------
 std::string TBehaviourPattern::GetName()
@@ -86,11 +124,6 @@ void TBehaviourPattern::SetPhysicWorld(int id_physic_world)
 int TBehaviourPattern::GetPhysicWorld()
 {
 	return mPhysicWorldID;
-}
-//------------------------------------------------------------------------
-const TPatternConfigItem::TMapStrStr* TBehaviourPattern::GetDefaultParameterMap()
-{
-	return mPtrDefaultParameterMap;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::SetParameterFromPattern(TContainer c)

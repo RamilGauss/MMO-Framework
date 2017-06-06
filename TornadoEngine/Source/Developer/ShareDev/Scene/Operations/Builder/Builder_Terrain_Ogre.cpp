@@ -20,11 +20,10 @@ TBuilder_Terrain_Ogre::~TBuilder_Terrain_Ogre()
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Ogre::Begin()
 {
-	TMapItem*     pMapItem     = mPatternTerrain->GetMapItem();
 	TTerrainItem* pTerrainItem = mPatternTerrain->GetTerrainItem();
 	Ogre::Vector3 origin       = mPatternTerrain->GetOrigin();
 
-	mBuilder.Begin(pMapItem,pTerrainItem,origin);
+	mBuilder.Begin(pTerrainItem,origin);
 }
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Ogre::Load( int x, int y )

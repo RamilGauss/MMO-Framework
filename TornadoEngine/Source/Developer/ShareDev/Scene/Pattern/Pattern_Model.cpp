@@ -51,6 +51,8 @@ TPattern_Model::~TPattern_Model()
 //---------------------------------------------------------------------------
 void TPattern_Model::Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 {
+	mRoot = NULL;
+
 	pDefaultParameterMap->insert(TPatternConfigItem::TMapStrStrVT(sNameGameItem,""));
 	pDefaultParameterMap->insert(TPatternConfigItem::TMapStrStrVT(sMobility,"true"));
 
@@ -70,7 +72,6 @@ void TPattern_Model::Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 
 	//mUpdaterResourcesBullet.SetPattern(this);
 	//mUpdaterResourcesOgre.SetPattern(this);
-
 }
 //---------------------------------------------------------------------------
 bool TPattern_Model::SetParameterFromPattern(TContainer c)
@@ -509,11 +510,6 @@ TPattern_Model::TMapStrPtrDesc* TPattern_Model::FindMapByNamePart(std::string& n
 	return &(fit->second);
 }
 //--------------------------------------------------------------------------
-TPattern_Model::TModelDesc::~TModelDesc()
-{
-	delete pModel;
-}
-//--------------------------------------------------------------------------
 TManagerNamePattern::eBaseType TPattern_Model::GetBaseType()
 {
 	return TManagerNamePattern::eModel;
@@ -542,3 +538,59 @@ void TPattern_Model::ActivatePhysicBody(bool force)
 	}
 }
 //------------------------------------------------------------------------
+void TPattern_Model::SetPosition(nsMathTools::TVector3& v)
+{
+	TBehaviourPattern::SetPosition(v);
+}
+//---------------------------------------------------------------------------
+bool TPattern_Model::GetPosition(nsMathTools::TVector3& v)
+{
+	// если есть корень, то выдать его позицию
+/*	TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
+	btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();
+	btVector3& posBullet = trans.getOrigin();
+	v.x = posBullet.x();
+	v.y = posBullet.y();
+	v.z = posBullet.z();
+	return true;//TBehaviourPattern::GetPosition(v);
+*/
+	// иначе выдать то что задали
+	return TBehaviourPattern::GetPosition(v);
+}
+//---------------------------------------------------------------------------
+void TPattern_Model::SetOrientation(nsMathTools::TVector4& v)
+{
+	TBehaviourPattern::SetOrientation(v);
+}
+//---------------------------------------------------------------------------
+bool TPattern_Model::GetOrientation(nsMathTools::TVector4& v)
+{
+	/*TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
+	btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();
+	btQuaternion quat = trans.getRotation();
+	v.w = quat.w(); 
+	v.x = quat.x(); 
+	v.y = quat.y();
+	v.z = quat.z();*/
+	
+	return TBehaviourPattern::GetOrientation(v);
+}
+//---------------------------------------------------------------------------
+TPattern_Model::TModelDesc::TModelDesc()
+{
+	type = TModelItem::eModel;
+	pModel = NULL;
+}
+//---------------------------------------------------------------------------
+TPattern_Model::TModelDesc::~TModelDesc()
+{
+	delete pModel;
+}
+//--------------------------------------------------------------------------
+TPattern_Model::TShapeDesc::TShapeDesc()
+{
+	type = TModelItem::eShape;
+	pRigidBody = NULL;
+	pEntity = NULL;
+}
+//--------------------------------------------------------------------------

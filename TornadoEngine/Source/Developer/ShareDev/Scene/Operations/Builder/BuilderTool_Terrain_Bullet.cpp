@@ -23,7 +23,6 @@ See for more information License.h.
 
 TBuilderTool_Terrain_Bullet::TBuilderTool_Terrain_Bullet()
 {
-	mMapItem     = NULL;
 	mTerrainItem = NULL;
 }
 //--------------------------------------------------------------------
@@ -32,9 +31,8 @@ TBuilderTool_Terrain_Bullet::~TBuilderTool_Terrain_Bullet()
 
 }
 //--------------------------------------------------------------------
-void TBuilderTool_Terrain_Bullet::Begin(TMapItem* pMapItem, TTerrainItem* pTerrainItem)
+void TBuilderTool_Terrain_Bullet::Begin(TTerrainItem* pTerrainItem)
 {
-	mMapItem     = pMapItem;
 	mTerrainItem = pTerrainItem;
 	mPathTerrain = TModuleLogic::Get()->GetTerrainPath();
 }
@@ -87,7 +85,7 @@ void TBuilderTool_Terrain_Bullet::Load( int x, int y,
 bool TBuilderTool_Terrain_Bullet::LoadData( int x, int y, 
 	nsStructPattern_Terrain::THeightMapTerrain* pHMT )
 {
-	std::string path = mPathTerrain + "/" + mMapItem->mName + "_";
+	std::string path = mPathTerrain + "/" + mTerrainItem->mNameHeightData + "_";
 	// Convert to signed 16-bit so sign bit is in bit 15
 	short xs16 = static_cast<short>(x);
 	short ys16 = static_cast<short>(y);

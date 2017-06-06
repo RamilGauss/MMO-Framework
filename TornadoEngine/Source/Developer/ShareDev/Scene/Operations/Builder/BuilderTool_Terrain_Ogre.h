@@ -20,7 +20,6 @@ struct TTerrainItem;
 
 class DllExport TBuilderTool_Terrain_Ogre
 {
-	TMapItem*     mMapItem;
 	TTerrainItem* mTerrainItem;
 
 	Ogre::Vector3 mTerrainOrigin;
@@ -32,7 +31,7 @@ public:
 	TBuilderTool_Terrain_Ogre();
 	~TBuilderTool_Terrain_Ogre();
 
-	void Begin(TMapItem* pMapItem, TTerrainItem* pTerrainItem, Ogre::Vector3& terrainOrigin);
+	void Begin(TTerrainItem* pTerrainItem, Ogre::Vector3& terrainOrigin);
 	void Load( int x, int y );
 	void End();
 

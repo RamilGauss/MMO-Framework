@@ -16,7 +16,6 @@ See for more information License.h.
 
 TBuilderTool_Terrain_Ogre::TBuilderTool_Terrain_Ogre()
 {
-	mMapItem     = NULL;
 	mTerrainItem = NULL;
 
 	mSceneMgr = NULL;
@@ -30,15 +29,14 @@ TBuilderTool_Terrain_Ogre::~TBuilderTool_Terrain_Ogre()
 
 }
 //--------------------------------------------------------------------
-void TBuilderTool_Terrain_Ogre::Begin(TMapItem* pMapItem, TTerrainItem* pTerrainItem, Ogre::Vector3& terrainOrigin)
+void TBuilderTool_Terrain_Ogre::Begin(TTerrainItem* pTerrainItem, Ogre::Vector3& terrainOrigin)
 {
-	mMapItem     	 = pMapItem;
 	mTerrainItem 	 = pTerrainItem;
 	mTerrainOrigin = terrainOrigin;
 
 	InitOgrePtr();
 
-	Ogre::String filename = mMapItem->mName;
+	Ogre::String filename = mTerrainItem->mNameHeightData;
 	Ogre::String prefixterrainPath = TModuleLogic::Get()->GetTerrainPath() + "/" + filename;
 	Ogre::String suffix = "";
 	mTerrainGroup->setFilenameConvention(prefixterrainPath, suffix);

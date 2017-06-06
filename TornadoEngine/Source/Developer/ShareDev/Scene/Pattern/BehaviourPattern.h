@@ -30,6 +30,9 @@ class DllExport TBehaviourPattern
   std::string mName;
 	
 	TPatternConfigItem::TMapStrStr* mPtrDefaultParameterMap;
+
+	nsMathTools::TVector3 mPosition;
+	nsMathTools::TVector4 mOrientQuaternion;
 protected:
 	TGameObject*                   mGO;
 
@@ -38,12 +41,18 @@ protected:
 	std::string 									 mNameMapItem;
 	int         									 mPhysicWorldID;
 
-	nsMathTools::TVector3 mPosition;
-	nsMathTools::TVector4 mOrientQuaternion;
+	std::string mNamePatternConfig; 
+	std::string mNameVariantPatternConfig;
+
 public:
   TBehaviourPattern(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
   virtual ~TBehaviourPattern();
 
+	/*nonvirtual*/void SetPatternConfig(std::string& namePatternConfig, 
+																			std::string& nameVariantPatternConfig);
+
+	virtual std::string GetNamePatternConfig();
+	virtual std::string GetNameVariantPatternConfig();
 	// при сохранении карты/объекта,
 	// что бы знать какие ключи вообще возможны, проектирование новых карт
 	/*nonvirtual!*/const TPatternConfigItem::TMapStrStr* GetDefaultParameterMap();

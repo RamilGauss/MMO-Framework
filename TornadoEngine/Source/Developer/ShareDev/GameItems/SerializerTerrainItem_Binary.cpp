@@ -30,6 +30,8 @@ void TSerializerTerrainItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinO
 	PushType();
 	PushStr(pTerrainItem->mName);
 
+	PushStr(pTerrainItem->mNameHeightData);
+
 	Push(pTerrainItem->mX.min);
 	Push(pTerrainItem->mX.max);
 	Push(pTerrainItem->mY.min);
@@ -49,6 +51,8 @@ bool TSerializerTerrainItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int 
 
 	RET_FALSE( PopType() )
 	RET_FALSE( PopStr(pTerrainItem->mName) )
+
+	RET_FALSE( PopStr(pTerrainItem->mNameHeightData) )
 
 	RET_FALSE(Pop(pTerrainItem->mX.min))
 	RET_FALSE(Pop(pTerrainItem->mX.max))

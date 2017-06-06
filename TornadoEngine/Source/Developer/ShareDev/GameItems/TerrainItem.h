@@ -17,6 +17,8 @@ See for more information License.h.
 
 struct DllExport TTerrainItem : public TBaseItem
 {
+	std::string mNameHeightData;
+
 	struct TGraphic
 	{
 		float maxPixelError;

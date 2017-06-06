@@ -13,6 +13,7 @@ See for more information License.h.
 
 #include "ModuleLogic.h"
 #include "FactoryGameItem.h"
+#include "StorageGameItem_XML.h"
 
 TGP_Scenario_Synchro::TGP_Scenario_Synchro()
 {
@@ -50,6 +51,7 @@ void TGP_Scenario_Synchro::SaveMap(std::string nameMap)
 		}
 	}
 	
+	pMapITem->mListObject.clear();
 
 	// сброс данных всех объектов на HDD
 	int cnt = mPtrScene->GetCount();
@@ -70,7 +72,19 @@ void TGP_Scenario_Synchro::SaveMap(std::string nameMap)
 			pPattern->SaveGameItemOnHDD();
 			pPattern->SaveOutDataOnHDD();
 		}
+
+		TMapItem::TObject object;
+		object.id                        = pGO->GetID();
+		object.namePattern               = pPattern->GetName();
+		object.patternConfig.name        = pPattern->GetNamePatternConfig();
+		object.patternConfig.nameVariant = pPattern->GetNameVariantPatternConfig();
+		pPattern->GetPosition(object.position);
+		pPattern->GetOrientation(object.rotationQuaternion);
+
+		pMapITem->mListObject.push_back(object);
 	}
+
+	pFGI->GetStorage_XML()->Save(pMapITem);
 }
 //----------------------------------------------------------------------------------
 void TGP_Scenario_Synchro::Work()

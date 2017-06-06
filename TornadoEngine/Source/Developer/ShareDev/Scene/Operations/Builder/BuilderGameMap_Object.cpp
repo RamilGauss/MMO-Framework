@@ -62,19 +62,7 @@ int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 	pPattern->SetPhysicWorld(mID_World);
 
 	// далее идут параметры, которые могут меняться в процессе
-	// ищем настройку паттерна
-	TPatternConfigItem* pPatternConfig = 
-		(TPatternConfigItem*)TModuleLogic::Get()->GetFGI()->
-		Get(TFactoryGameItem::PatternConfig, pObj->patternConfig.name);
-	BL_ASSERT(pPatternConfig);
-	// вариант из настроек
-	if( pPatternConfig )
-	{
-		TPatternConfigItem::TMapStrMapIt fitPC = 
-			pPatternConfig->mMapVariant.find(pObj->patternConfig.nameVariant);
-		if( fitPC!=pPatternConfig->mMapVariant.end() )
-			pPattern->SetParameterMap( fitPC->second );
-	}
+	pPattern->SetPatternConfig(pObj->patternConfig.name, pObj->patternConfig.nameVariant);
 	pPattern->SetPosition(pObj->position);
 	pPattern->SetOrientation(pObj->rotationQuaternion);
 

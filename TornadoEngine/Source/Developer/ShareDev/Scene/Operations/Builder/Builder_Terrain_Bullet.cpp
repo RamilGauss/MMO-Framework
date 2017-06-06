@@ -39,7 +39,7 @@ void TBuilder_Terrain_Bullet::Begin()
 	}
 
 	mBuilder.SetID_PhysicWorld(mPatternTerrain->GetPhysicWorld());
-	mBuilder.Begin(pMapItem,pTerrainItem);
+	mBuilder.Begin(pTerrainItem);
 }
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Bullet::Load( int x, int y )
