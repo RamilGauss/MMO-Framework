@@ -18,61 +18,62 @@ See for more information License.h.
 
 #include "Builder_Model_Bullet.h"
 #include "Builder_Model_Ogre.h"
+#include "ManagerNode_Model.h"
+
+class TShapeNode_Model;
 
 class DllExport TPattern_Model : public TBehaviourPattern
 {
+	// набор узлов
+	TManagerNode_Model mMngNode_Collection;
+
+	// узлы из иерархии
+	// THierarchyNode_Model mHierarchy;
+
 	TModelItem::eType mTypeContent;
 
-	struct TBaseDesc
-	{
-		TModelItem::eType type;
-		std::string namePart;
-		std::string nameVariant;
-	};
-	struct TModelDesc : public TBaseDesc
-	{
-		TPattern_Model* pModel;
-		TModelDesc();
-		~TModelDesc();
-	};
-	struct TShapeDesc : public TBaseDesc
-	{
-		std::string nameShapeItem;
-		std::string nameMaterial; // реальный материал и переопределенный могут не совпадать
-		// результат создания формы:
-		Ogre::Entity* pEntity;
-		btRigidBody* pRigidBody;
-		TShapeDesc();
-	};
+	TBaseNode_Model* mRootNode;
+
+	//struct TBaseDesc
+	//{
+	//	TModelItem::eType type;
+	//	std::string namePart;
+	//	std::string nameVariant;
+	//};
+	//struct TModelDesc : public TBaseDesc
+	//{
+	//	TPattern_Model* pModel;
+	//	TModelDesc();
+	//	~TModelDesc();
+	//};
+	//struct TShapeDesc : public TBaseDesc
+	//{
+	//	std::string nameShapeItem;
+	//	std::string nameMaterial; // реальный материал и переопределенный могут не совпадать
+	//	// результат создания формы:
+	//	Ogre::Entity* pEntity;
+	//	btRigidBody* pRigidBody;
+	//	TShapeDesc();
+	//};
 
 	TBuilder_Model_Bullet mBuilderBullet;
 	TBuilder_Model_Ogre   mBuilderOgre;
 
-	//TDestructor_Shape_Bullet mDestructorBullet;
-	//TDestructor_Shape_Ogre   mDestructorOgre;
+	//TDestructor_Model_Bullet 			mDestructorBullet;
+	//TDestructor_Model_Ogre   			mDestructorOgre;
 
-	//TModify_Shape_Bullet mModifyBullet;
-	//TModify_Shape_Ogre   mModifyOgre;
+	//TModify_Model_Bullet  			  mModifyBullet;
+	//TModify_Model_Ogre    			  mModifyOgre;
 
-	//TUpdaterByResources_Shape_Bullet mUpdaterByResourcesBullet;
-	//TUpdaterByResources_Shape_Ogre   mUpdaterByResourcesOgre;
+	//TUpdaterGameItem_Model_Bullet mUpdaterGameItemBullet;
+	//TUpdaterGameItem_Model_Ogre   mUpdaterGameItemOgre;
 
-	//TUpdaterResources_Shape_Bullet mUpdaterResourcesBullet;
-	//TUpdaterResources_Shape_Ogre   mUpdaterResourcesOgre;
+	//TSaverGameItem_Model_Bullet   mSaverGameItem_Bullet;
+	//TSaverGameItem_Model_Ogre     mSaverGameItem_Ogre;
 
-protected:
-	typedef std::map<std::string,TBaseDesc*> TMapStrPtrDesc;
-	typedef TMapStrPtrDesc::iterator         TMapStrPtrDescIt;
-	typedef TMapStrPtrDesc::value_type       TMapStrPtrDescVT;
+	//TSaverOutData_Model_Bullet    mSaverOutData_Bullet;
+	//TSaverOutData_Model_Ogre      mSaverOutData_Ogre;
 
-	typedef std::map<std::string,TMapStrPtrDesc> TMapStr_StrPtrDesc;
-	typedef TMapStr_StrPtrDesc::iterator        TMapStr_StrPtrDescIt;
-	typedef TMapStr_StrPtrDesc::value_type      TMapStr_StrPtrDescVT;
-
-	// набор форм или моделей
-	TMapStr_StrPtrDesc mMapNamePart_NameVariantDesc;
-
-	TBaseDesc* mRoot;
 public:
   TPattern_Model();
   TPattern_Model(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
@@ -106,7 +107,7 @@ public:
 	// btRigidBody.h:
 	// Bullet automatically deactivates dynamic rigid bodies, when the velocity is below a threshold for a given time.
 	// Deactivated (sleeping) rigid bodies don't take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)
-	virtual void ActivatePhysicBody(bool force = true);
+	virtual void ActivatePhysicBody();
 
 	// всё относительно Root
 	virtual void SetPosition(nsMathTools::TVector3& v);
@@ -119,10 +120,10 @@ protected:
   void BuildModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
   void BuildShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
 
-  void BuildShapeByModule_Graphic(TShapeDesc* pShapeDesc);
+  void BuildShapeByModule_Graphic(TShapeNode_Model* pShapeNode);
 	void PostBuildByModule_Graphic();
 
-	void BuildShapeByModule_Physic(TShapeDesc* pShapeDesc);
+	void BuildShapeByModule_Physic(TShapeNode_Model* pShapeNode);
 	void PostBuildByModule_Physic();
 
 protected:
@@ -136,17 +137,7 @@ protected:
 	void SetMobility(bool v);
 	bool GetMobility();
 
-	void AddDesc(TBaseDesc* pDesc);
-	TBaseDesc* GetDesc(std::string& namePart, std::string& nameVariant);
-
-	int GetCountPart();
-	std::string GetNamePart(int index);
-
-	int GetCountVariant(std::string& namePart);
-	std::string GetNameVariant(std::string& namePart, int index);
-
 protected:
-	TMapStrPtrDesc* FindMapByNamePart(std::string& namePart);
 };
 
 #endif

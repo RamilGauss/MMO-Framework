@@ -15,6 +15,8 @@ See for more information License.h.
 #include "FactoryBuilderTool_Shape_Bullet.h"
 
 #include "ShapeItem.h"
+#include "ShapeNode_Model.h"
+#include "ModelNode_Model.h"
 
 #include <btBulletDynamicsCommon.h>
 #include <Dynamics/btDiscreteDynamicsWorld.h>
@@ -51,7 +53,7 @@ TPattern_Model::~TPattern_Model()
 //---------------------------------------------------------------------------
 void TPattern_Model::Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 {
-	mRoot = NULL;
+	mRootNode = NULL;
 
 	pDefaultParameterMap->insert(TPatternConfigItem::TMapStrStrVT(sNameGameItem,""));
 	pDefaultParameterMap->insert(TPatternConfigItem::TMapStrStrVT(sMobility,"true"));
@@ -66,9 +68,6 @@ void TPattern_Model::Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 
 	//mModifyBullet.SetPattern(this);
 	//mModifyOgre.SetPattern(this);
-
-	//mUpdaterByResourcesBullet.SetPattern(this);
-	//mUpdaterByResourcesOgre.SetPattern(this);
 
 	//mUpdaterResourcesBullet.SetPattern(this);
 	//mUpdaterResourcesOgre.SetPattern(this);
@@ -105,26 +104,26 @@ void TPattern_Model::BuildByModule_Logic()
 //---------------------------------------------------------------------------
 bool TPattern_Model::BuildByModule_Graphic(bool fast)
 {
-  int cntPart = GetCountPart();
+  int cntPart = mMngNode_Collection.GetCountPart();
   for( int iPart = 0 ; iPart < cntPart ; iPart++ )
   {
-    std::string namePart = GetNamePart(iPart);
-    int cntVariant = GetCountVariant(namePart);
+    std::string namePart = mMngNode_Collection.GetNamePart(iPart);
+    int cntVariant = mMngNode_Collection.GetCountVariant(namePart);
     for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
     {
-      std::string nameVariant = GetNameVariant(namePart, iVariant);
-      TBaseDesc* pDesc = GetDesc(namePart, nameVariant);
-      if( pDesc==NULL )
+      std::string nameVariant = mMngNode_Collection.GetNameVariant(namePart, iVariant);
+      TBaseNode_Model* pNode = mMngNode_Collection.Get(namePart, nameVariant);
+      if( pNode==NULL )
         continue;
-      if( pDesc->type==TModelItem::eModel )
+      if( pNode->type==TModelItem::eModel )
       {
-        TModelDesc* pModelDesc = (TModelDesc*)pDesc;
-        pModelDesc->pModel->BuildByModule_Graphic();
+        TModelNode_Model* pModelNode = (TModelNode_Model*)pNode;
+        //pModelNode->pModel->BuildByModule_Graphic();
       }
       else
       {
-        TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
-        BuildShapeByModule_Graphic(pShapeDesc);
+        TShapeNode_Model* pShapeNode = (TShapeNode_Model*)pNode;
+        BuildShapeByModule_Graphic(pShapeNode);
       }
     }
   }
@@ -134,26 +133,26 @@ bool TPattern_Model::BuildByModule_Graphic(bool fast)
 //---------------------------------------------------------------------------
 bool TPattern_Model::BuildByModule_Physic( bool fast )
 {
-	int cntPart = GetCountPart();
+	int cntPart = mMngNode_Collection.GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
-		std::string namePart = GetNamePart(iPart);
-		int cntVariant = GetCountVariant(namePart);
+		std::string namePart = mMngNode_Collection.GetNamePart(iPart);
+		int cntVariant = mMngNode_Collection.GetCountVariant(namePart);
 		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
 		{
-			std::string nameVariant = GetNameVariant(namePart, iVariant);
-			TBaseDesc* pDesc = GetDesc(namePart, nameVariant);
-			if( pDesc==NULL )
+			std::string nameVariant = mMngNode_Collection.GetNameVariant(namePart, iVariant);
+			TBaseNode_Model* pNode = mMngNode_Collection.Get(namePart, nameVariant);
+			if( pNode==NULL )
 				continue;
-			if( pDesc->type==TModelItem::eModel )
+			if( pNode->type==TModelItem::eModel )
 			{
-				TModelDesc* pModelDesc = (TModelDesc*)pDesc;
-				pModelDesc->pModel->BuildByModule_Physic();
+				TModelNode_Model* pModelNode = (TModelNode_Model*)pNode;
+				//pModelNode->pModel->BuildByModule_Physic();
 			}
 			else
 			{
-				TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
-				BuildShapeByModule_Physic(pShapeDesc);
+				TShapeNode_Model* pShapeNode = (TShapeNode_Model*)pNode;
+				BuildShapeByModule_Physic(pShapeNode);
 			}
 		}
 	}
@@ -194,7 +193,7 @@ void TPattern_Model::SynchroByModule_Logic()
 void TPattern_Model::SynchroByModule_Graphic()
 {
 	// синхронизируем всё!
-	int cntPart = GetCountPart();
+/*	int cntPart = GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
 		std::string namePart = GetNamePart(iPart);
@@ -233,13 +232,13 @@ void TPattern_Model::SynchroByModule_Graphic()
 				pEntity->getParentSceneNode()->setOrientation( w, x, y, z);
 			}
 		}
-	}
+	}*/
 }
 //---------------------------------------------------------------------------
 void TPattern_Model::SynchroByModule_Physic()
 {
   // проверка на изменение позиции и ориентации
-	int cntPart = GetCountPart();
+/*	int cntPart = GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
 		std::string namePart = GetNamePart(iPart);
@@ -262,7 +261,7 @@ void TPattern_Model::SynchroByModule_Physic()
 				}
 			}
 		}
-	}
+	}*/
 }
 //---------------------------------------------------------------------------
 void TPattern_Model::SynchroByModule_Sound()
@@ -287,13 +286,13 @@ void TPattern_Model::BuildModelsByModule_Logic(TModelItem::TMapStrPart& mapNameP
       if( pPattern==NULL )
         continue;
 
-      TModelDesc* pModelDesc = new TModelDesc;
+/*      TModelDesc* pModelDesc = new TModelDesc;
       pModelDesc->namePart    = namePart;
       pModelDesc->nameVariant = variant.name;
 			pModelDesc->pModel = (TPattern_Model*)pPattern;
       pModelDesc->pModel->SetNameGameItem(variant.nameItem);
       pModelDesc->pModel->SetMobility(GetMobility());// мобильность наследуется
-      AddDesc(pModelDesc);
+  */    //AddDesc(pModelDesc);
 
       pPattern->BuildByModule_Logic();// дальше по итерации
     }
@@ -313,28 +312,29 @@ void TPattern_Model::BuildShapesByModule_Logic(TModelItem::TMapStrPart& mapNameP
       if( pShapeItem==NULL )
         continue;
 
-      TShapeDesc* pShape = new TShapeDesc;
-      pShape->namePart      = namePart;
-      pShape->nameVariant   = variant.name;
-      pShape->nameShapeItem = variant.nameItem;
+      TShapeNode_Model* pShape = new TShapeNode_Model;
+      pShape->namePart         = namePart;
+      pShape->nameVariant      = variant.name;
+      pShape->nameShapeItem    = variant.nameItem;
       if( variant.redefinitionMaterial.length() )
         pShape->nameMaterial = variant.redefinitionMaterial;
       else
         pShape->nameMaterial = pShapeItem->mNameMaterial;
-      AddDesc(pShape);
+			// наполнить менеджер узлов данными (но не выделять память под физический и графический объекты)
+			mMngNode_Collection.Add(pShape);
     }
   }
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::BuildShapeByModule_Graphic(TShapeDesc* pShapeDesc)
+void TPattern_Model::BuildShapeByModule_Graphic(TShapeNode_Model* pShapeNode)
 {
   TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-  TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
+  TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeNode->nameShapeItem);
   if( pShapeItem==NULL )
     return;
 
   Ogre::Entity* pEntity = mBuilderOgre.GetShapeMaker()->Build( pShapeItem );
-	pShapeDesc->pEntity = pEntity;
+	pShapeNode->mPtrEntity = pEntity;
 
 	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
 	// сделано временно для визуализации (отладка)
@@ -350,23 +350,23 @@ void TPattern_Model::BuildShapeByModule_Graphic(TShapeDesc* pShapeDesc)
 	//###
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::BuildShapeByModule_Physic(TShapeDesc* pShapeDesc)
+void TPattern_Model::BuildShapeByModule_Physic(TShapeNode_Model* pShapeNode)
 {
 	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-	TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeDesc->nameShapeItem);
+	TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeNode->nameShapeItem);
 	if( pShapeItem==NULL )
 		return;
 
 	int id_world = GetPhysicWorld();
 
 	btRigidBody* pRB = mBuilderBullet.GetShapeMaker()->Build( id_world, pShapeItem );
-	pShapeDesc->pRigidBody = pRB;
+	pShapeNode->mPtrRigidBody = pRB;
 
 	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
 	// сделано временно для визуализации (отладка)
 	nsMathTools::TVector3 pos;
 	GetPosition(pos);
-	btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();
+	btTransform& trans = pShapeNode->mPtrRigidBody->getWorldTransform();
 	btVector3& posBullet = trans.getOrigin();
 	posBullet.setX(pos.x);
 	posBullet.setY(pos.y);
@@ -381,10 +381,10 @@ void TPattern_Model::BuildShapeByModule_Physic(TShapeDesc* pShapeDesc)
 	quat.setW(orient.w);
 	trans.setRotation(quat);
 
-	pShapeDesc->pRigidBody->setWorldTransform(trans);
+	pShapeNode->mPtrRigidBody->setWorldTransform(trans);
 
 	//###
-	pShapeDesc->pRigidBody->setLinearVelocity(btVector3(0,0,0));
+	pShapeNode->mPtrRigidBody->setLinearVelocity(btVector3(0,0,0));
 	//pShapeDesc->pRigidBody->setAngularVelocity(btVector3(0,10,0));
 
 	//btDiscreteDynamicsWorld* pWorld = TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(id_world);
@@ -411,33 +411,6 @@ void TPattern_Model::SetTypeContent(TModelItem::eType type)
 	mTypeContent = type;
 }
 //--------------------------------------------------------------------------
-void TPattern_Model::AddDesc(TBaseDesc* pDesc)
-{
-	TMapStrPtrDesc* pMap = FindMapByNamePart(pDesc->namePart);
-	if( pMap==NULL )
-	{
-		mMapNamePart_NameVariantDesc.insert(TMapStr_StrPtrDescVT(pDesc->namePart, TMapStrPtrDesc()));
-		pMap = FindMapByNamePart(pDesc->namePart);
-	}
-	if( pMap->find(pDesc->nameVariant)==pMap->end() )
-		pMap->insert(TMapStrPtrDescVT(pDesc->nameVariant, pDesc));
-	else
-	{
-		BL_FIX_BUG();
-	}
-}
-//--------------------------------------------------------------------------
-TPattern_Model::TBaseDesc* TPattern_Model::GetDesc(std::string& namePart, std::string& nameVariant)
-{
-	TMapStrPtrDesc* pMap = FindMapByNamePart(namePart);
-	if( pMap==NULL )
-		return NULL;
-	TMapStrPtrDescIt fitVariant = pMap->find(nameVariant);
-	if( fitVariant==pMap->end() )
-		return NULL;
-	return fitVariant->second;
-}
-//--------------------------------------------------------------------------
 void TPattern_Model::SetNameGameItem(std::string& name)
 {
 	SetFromParameterMap<std::string>(sNameGameItem, name);
@@ -461,63 +434,14 @@ bool TPattern_Model::GetMobility()
 	return flgMobility;
 }
 //--------------------------------------------------------------------------
-int TPattern_Model::GetCountPart()
-{
-	return mMapNamePart_NameVariantDesc.size();
-}
-//--------------------------------------------------------------------------
-std::string TPattern_Model::GetNamePart(int index)
-{
-	std::string namePart = "";
-	if( index >= GetCountPart() || index < 0 )
-		return namePart;
-	TMapStr_StrPtrDescIt bit = mMapNamePart_NameVariantDesc.begin();
-	for( int i = 0 ; i < index ; i++ )
-		bit++;
-	namePart = bit->first;
-	return namePart;
-}
-//--------------------------------------------------------------------------
-int TPattern_Model::GetCountVariant(std::string& namePart)
-{
-	TMapStrPtrDesc* pMap = FindMapByNamePart(namePart);
-	if( pMap==NULL )
-		return 0;
-	return pMap->size();
-}
-//--------------------------------------------------------------------------
-std::string TPattern_Model::GetNameVariant(std::string& namePart, int index)
-{
-	std::string nameVariant = "";
-	TMapStrPtrDesc* pMap = FindMapByNamePart(namePart);
-	if( pMap==NULL )
-		return nameVariant;
-	if( index >= GetCountVariant(namePart) || index < 0 )
-		return nameVariant;
-
-	TMapStrPtrDescIt bit = pMap->begin();
-	for( int i = 0 ; i < index ; i++ )
-		bit++;
-	nameVariant = bit->first;
-	return nameVariant;
-}
-//--------------------------------------------------------------------------
-TPattern_Model::TMapStrPtrDesc* TPattern_Model::FindMapByNamePart(std::string& namePart)
-{
-	TMapStr_StrPtrDescIt fit = mMapNamePart_NameVariantDesc.find(namePart);
-	if( fit==mMapNamePart_NameVariantDesc.end() )
-		return NULL;
-	return &(fit->second);
-}
-//--------------------------------------------------------------------------
 TManagerNamePattern::eBaseType TPattern_Model::GetBaseType()
 {
 	return TManagerNamePattern::eModel;
 }
 //------------------------------------------------------------------------
-void TPattern_Model::ActivatePhysicBody(bool force)
+void TPattern_Model::ActivatePhysicBody()
 {
-	int cntPart = GetCountPart();
+/*	int cntPart = GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
 		std::string namePart = GetNamePart(iPart);
@@ -535,7 +459,7 @@ void TPattern_Model::ActivatePhysicBody(bool force)
 					pShapeDesc->pRigidBody->activate(force);
 			}
 		}
-	}
+	}*/
 }
 //------------------------------------------------------------------------
 void TPattern_Model::SetPosition(nsMathTools::TVector3& v)
@@ -576,21 +500,3 @@ bool TPattern_Model::GetOrientation(nsMathTools::TVector4& v)
 	return TBehaviourPattern::GetOrientation(v);
 }
 //---------------------------------------------------------------------------
-TPattern_Model::TModelDesc::TModelDesc()
-{
-	type = TModelItem::eModel;
-	pModel = NULL;
-}
-//---------------------------------------------------------------------------
-TPattern_Model::TModelDesc::~TModelDesc()
-{
-	delete pModel;
-}
-//--------------------------------------------------------------------------
-TPattern_Model::TShapeDesc::TShapeDesc()
-{
-	type = TModelItem::eShape;
-	pRigidBody = NULL;
-	pEntity = NULL;
-}
-//--------------------------------------------------------------------------

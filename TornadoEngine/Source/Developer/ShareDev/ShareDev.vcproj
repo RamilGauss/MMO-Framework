@@ -762,6 +762,50 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="NodeModel"
+					>
+					<File
+						RelativePath=".\Scene\Pattern\BaseNode_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\BaseNode_Model.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\HierarchyNode_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\HierarchyNode_Model.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\ManagerNode_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\ManagerNode_Model.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\ModelNode_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\ModelNode_Model.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\ShapeNode_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\ShapeNode_Model.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Common"

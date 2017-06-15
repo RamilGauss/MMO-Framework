@@ -26,17 +26,6 @@ See for more information License.h.
 
 struct DllExport TModelItem : public TBaseItem
 {
-  struct DllExport TJoint
-  {
-    std::string namePart;
-    std::string nameJoint;
-    bool operator < (const TJoint& right) const;
-    bool operator > (const TJoint& right) const;
-  };
-  //---------------------------------------------------------
-  typedef std::map<std::string,TJoint>     TMapExternalInternal;
-  typedef TMapExternalInternal::iterator   TMapExternalInternalIt;
-  typedef TMapExternalInternal::value_type TMapExternalInternalVT;
   //---------------------------------------------------------  
   struct DllExport TVariant
   {
@@ -44,13 +33,14 @@ struct DllExport TModelItem : public TBaseItem
     std::string nameItem;// имя модели/формы
 
     std::string           redefinitionMaterial;// переопределение материала действует только для формы
-    TMapExternalInternal  mapExternalInternal;
     nsMathTools::TVector3 scale;
   };
   //---------------------------------------------------------  
   struct DllExport TPart
   {
+		// список видимых как снаружи так и внутри соединений
     std::vector<std::string> vecNameJoint;
+		// какой вариант выбрать - решает сам паттерн (определять либо через сервер, либо что в модели выбрали)
     std::vector<TVariant>    vecVariant;
   };
   //---------------------------------------------------------  
@@ -101,8 +91,20 @@ struct DllExport TModelItem : public TBaseItem
   typedef TMapStrStr::iterator              TMapStrStrIt;
   typedef TMapStrStr::value_type            TMapStrStrVT;
   //---------------------------------------------------------
+	struct DllExport TJoint
+	{
+		std::string namePart;
+		std::string nameInternalJoint;
+		bool operator < (const TJoint& right) const;
+		bool operator > (const TJoint& right) const;
+	};
+	//---------------------------------------------------------
+	typedef std::map<std::string,TJoint>    TMapExternalJoining;
+	typedef TMapExternalJoining::iterator   TMapExternalJoiningIt;
+	typedef TMapExternalJoining::value_type TMapExternalJoiningVT;
   //---------------------------------------------------------
-  std::string      mNamePattern;        // модель поведения
+  //---------------------------------------------------------
+	std::string      mNamePattern;        // модель поведения
 
   TRoot            mRoot;
   TMMapStrLocation mMapNameBaseLocation;// иерархия
@@ -111,6 +113,8 @@ struct DllExport TModelItem : public TBaseItem
   eType            mTypeCollection;
   TMapStrPart      mMapNamePart;        // набор
   
+	TMapExternalJoining  mMapExternalJoining;
+
   TModelItem(std::string& name);
 }_PACKED;
 

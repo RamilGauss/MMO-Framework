@@ -189,7 +189,21 @@
     <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
     </Paint>
   </Shape>
-  <Shape name="KingTiger_Hull_Down">
+	<Shape name="Wheel">
+    <Joining>
+    </Joining>
+    <Geometry>
+      <Property key="Type"     value="Cylinder"/>
+      <Property key="Length"   value="0.3"/>
+      <Property key="CntPointsPerCircle" value="40"/>
+      <Property key="RadiusMax"   value="0.3"/>
+      <Property key="RadiusMin"   value="0"/>
+    </Geometry>
+    <Material name="Iron"/>
+    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
+    </Paint>
+  </Shape>
+  <Shape name="Hull">
     <Joining>
       <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
         <Position>
@@ -215,16 +229,60 @@
           <Property key="z" value="0"/>
         </Rotation>
       </Joint>
+      <Joint name="2">
+        <Position>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Position>
+        <Rotation>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Rotation>
+      </Joint>
+      <Joint name="3">
+        <Position>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Position>
+        <Rotation>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Rotation>
+      </Joint>
+      <Joint name="4"><!-- для сцепки типа вагончик -->
+        <Position>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Position>
+        <Rotation>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Rotation>
+      </Joint>
+      <Joint name="5"><!-- для сцепки типа вагончик -->
+        <Position>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Position>
+        <Rotation>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Rotation>
+      </Joint>
     </Joining>
     <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
+      <Property key="Type"   value="Plate"/>
+      <Property key="Length" value="2"/>
+      <Property key="Width"  value="0.3"/>
+      <Property key="Height" value="2"/>
     </Geometry>
     <Material name="Iron"/>
     <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
@@ -250,1291 +308,10 @@
       </Layer>
     </Paint>
   </Shape>
-  <Shape name="KingTiger_Hull_Left">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Hull_Up">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Hull_Right">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Hull_Forward">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Hull_Backward">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Turret_Down">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Turret_Left">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Turret_Up">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Turret_Right">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Turret_Forward">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Turret_Backward">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Chassis_AxisLF">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Chassis_AxisRF">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Chassis_AxisLB">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Chassis_AxisRB">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Chassis_WheelLF">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Chassis_WheelRF">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Chassis_WheelLB">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Chassis_WheelRB">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Gun_0_Barrel">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Shape name="KingTiger_Gun_1_Barrel">
-    <Joining>
-      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-      <Joint name="1">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Joint>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="PlateVarGeom"/>
-      <Property key="Height"   value="10.01"/>
-      <Property key="Width"    value="11"/>
-      <Property key="CntCoord" value="4"/>
-      <Property key="Coord0"   value="0.0000012;0.0001212"/>
-      <Property key="Coord1"   value="0;1.56"/>
-      <Property key="Coord2"   value="1;1.3456"/>
-      <Property key="Coord3"   value="1;-0.123"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
-    </Paint>
-  </Shape>
-  <Model name="KingTiger_Hull">
+  <Model name="Cart_Hull">
     <Pattern name="Hull"/>
     <Hierarchy>
-      <Root name="Down">
+      <Root name="Root">
         <Position>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
@@ -1547,288 +324,13 @@
         </Rotation>
       </Root>
       <Formation>
-        <Location> <!-- Ветка, кто относительно кого соориентирован -->
-          <Base part="Down"/>
-          <Branch part="Left"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location>
-          <Base part="Left"/>
-          <Branch part="Up"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>              
-          </Link>
-        </Location>
-        <Location>
-          <Base   part="Up"/>
-          <Branch part="Right"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location>
-          <Base   part="Right" />
-          <Branch part="Down"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>  
-        </Location>
-        <Location>
-          <Base   part="Down"/>
-          <Branch part="Forward"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>              
-          </Link>
-        </Location>
-        <Location>
-          <Base   part="Down"/>
-          <Branch part="Backward"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>              
-          </Link>
-        </Location>
       </Formation>
     </Hierarchy>
     <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Down"><!-- Корень есть всегда -->
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-          <Joint name="2"/>
-          <Joint name="3"/>
-        </Joining>
+      <Part name="Root"><!-- Корень есть всегда -->
         <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Hull_Down">
+          <Variant name="0" nameItem="Hull">
             <Material name="Wood"/> <!-- Переопределение материала, действует только для Shape -->          
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-              <Joint external="2" part="" internal="2"/>
-              <Joint external="3" part="" internal="3"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Left">
-        <Joining>
-          <Joint name="0"/>
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Hull_Left">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Up">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Hull_Up">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Right">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Hull_Right">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Forward">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Hull_Forward">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Backward">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Hull_Backward">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
             <Scale>
               <Property key="x" value="1"/>
               <Property key="y" value="1"/>
@@ -1838,11 +340,19 @@
         </Incarnation>
       </Part>
     </Collection>
+		<ExternalJoining>
+			<Joint external="0" part="Root" internal="0"/>
+			<Joint external="1" part="Root" internal="1"/>
+			<Joint external="2" part="Root" internal="2"/>
+			<Joint external="3" part="Root" internal="3"/>
+			<Joint external="4" part="Root" internal="4"/>
+			<Joint external="5" part="Root" internal="5"/>
+		</ExternalJoining>
   </Model>
-  <Model name="KingTiger_Turret">
-    <Pattern name="Turret"/>
+  <Model name="Cart_Wheel">
+    <Pattern name="Model"/>
     <Hierarchy>
-      <Root name="Down">
+      <Root name="Root">
         <Position>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
@@ -1855,174 +365,6 @@
         </Rotation>
       </Root>
       <Formation>
-        <Location> <!-- Ветка, кто относительно кого соориентирован -->
-          <Base part="Down"/>
-          <Branch part="Left"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location>
-          <Base part="Left"/>
-          <Branch part="Up"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>              
-          </Link>
-        </Location>
-        <Location>
-          <Base   part="Up"/>
-          <Branch part="Right"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location>
-          <Base   part="Right" />
-          <Branch part="Down"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>  
-        </Location>
-        <Location>
-          <Base   part="Down"/>
-          <Branch part="Forward"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>              
-          </Link>
-        </Location>
-        <Location>
-          <Base   part="Down"/>
-          <Branch part="Backward"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>              
-          </Link>
-        </Location>
       </Formation>
     </Hierarchy>
     <Collection type="Shape"><!-- Набор частей -->
@@ -2145,468 +487,30 @@
         </Incarnation>
       </Part>
     </Collection>
-  </Model>
-  <Model name="KingTiger_Chassis">
-    <Pattern name="Chassis"/>
+		<ExternalJoining>
+			<Joint external="0" part="Root" internal="0"/>
+		</ExternalJoining>
+	</Model>
+  <Model name="Cart_S">
+    <Pattern name="Model"/>
     <Hierarchy>
-      <Root name="AxisLF">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Root>
-      <Formation>
-        <Location> <!-- Главная ось к колесу -->
-          <Base part="AxisLF"/>
-          <Branch part="WheelLF"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> <!-- Правая ось относительно левой (Root) -->
-          <Base part="AxisLF"/>
-          <Branch part="AxisRF"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> <!-- Задние оси относительно корня -->
-          <Base part="AxisLF"/>
-          <Branch part="AxisLB"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> <!-- Задние оси относительно корня -->
-          <Base part="AxisLF"/>
-          <Branch part="AxisRB"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> <!-- Колёса относительно осей -->
-          <Base part="AxisRF"/>
-          <Branch part="WheelRF"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>              
-          </Link>
-        </Location>
-        <Location> <!-- Колёса относительно осей -->
-          <Base part="AxisLB"/>
-          <Branch part="WheelLB"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>              
-          </Link>
-        </Location>
-        <Location> <!-- Колёса относительно осей -->
-          <Base part="AxisRB"/>
-          <Branch part="WheelRB"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>              
-          </Link>
-        </Location>
-      </Formation>
-    </Hierarchy>
-    <Collection type="Shape"><!-- Набор частей -->
-      <Part name="AxisLF"><!-- Корень есть всегда -->
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Chassis_AxisLF">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="AxisRF">
-        <Joining>
-          <Joint name="0"/>
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Chassis_AxisRF">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="AxisLB">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant  name="0" nameItem="KingTiger_Chassis_AxisLB">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="AxisRB">
-        <Joining>
-          <Joint name="0"/>
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Chassis_AxisRB">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="WheelLF">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Chassis_WheelLF">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="WheelRF">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Chassis_WheelRF">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="WheelLB">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Chassis_WheelLB">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="WheelRB">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Chassis_WheelRB">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-    </Collection>
-  </Model>
-  <Model name="KingTiger_Gun_0">
-    <Pattern name="Gun"/>
-    <Hierarchy>
-      <Root name="Barrel">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Root>
-      <Formation>
-      </Formation>
-    </Hierarchy>
-    <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Barrel">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Gun_0_Barrel">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-    </Collection>
-  </Model>
-  <Model name="KingTiger_Gun_1">
-    <Pattern name="Gun"/>
-    <Hierarchy>
-      <Root name="Barrel">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Root>
-      <Formation>
-      </Formation>
-    </Hierarchy>
-    <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Barrel">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Gun_1_Barrel">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-    </Collection>
-  </Model>
-  <Model name="KingTiger">
-    <Pattern name="Tank"/>
-    <!-- Используемая модель может содержать в себе как Shape, так и готовые Model -->
-    <!-- Задать видимость частей для физики (главный конвейер обрабатывает только коробку, остальные части
-    находятся в обработчике, когда происходит коллизия коробки с другими объектами - идет вызов
-    обработчика и проверяются коллизии с остальными частями). -->
-    <Hierarchy><!-- Как части соединяются -->
       <Root name="Hull">
         <Position>
-          <Property key="x" value="1"/>
-          <Property key="y" value="2"/>
-          <Property key="z" value="3"/>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
         </Position>
         <Rotation>
-          <Property key="x" value="1"/>
-          <Property key="y" value="2"/>
-          <Property key="z" value="3"/>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
         </Rotation>
       </Root>
       <Formation>
-        <Location><!-- Ветка, кто относительно кого соориентирован должен разобрать сериализатор -->
-          <Base   part="Hull"/><!-- Основа -->
-          <Branch part="Chassis"/><!-- Относительно основы крепится ветка -->
-          <Position><!-- Как ветка расположена и ориентирована относительно базы -->
+        <Location> <!-- Ветка, кто относительно кого соориентирован -->
+          <Base part="Hull"/>
+          <Branch part="Wheel_LF"/>
+          <Position>
             <Property key="x" value="1"/>
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
@@ -2616,10 +520,10 @@
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
           </Rotation>
-          <Link><!-- Описание сцепки -->
+          <Link>
             <JointBase   name="0"/>
             <JointBranch name="0"/>
-            <Constraint><!-- Как соединить -->
+            <Constraint>
               <Property key="Type" value="Fixed"/>
               <Property key="BreakImpulse" value="1"/>
               <Property key="PointA_X" value="1"/>
@@ -2628,54 +532,12 @@
               <Property key="PointB_X" value="4"/>
               <Property key="PointB_Y" value="5"/>
               <Property key="PointB_Z" value="6"/>
-            </Constraint>    
-          </Link>
-          <Link><!-- Описание сцепки -->
-            <JointBase   name="1"/>
-            <JointBranch name="1"/>
-            <Constraint><!-- Как соединить -->
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>    
-          </Link>
-          <Link><!-- Описание сцепки -->
-            <JointBase   name="2"/>
-            <JointBranch name="2"/>
-            <Constraint><!-- Как соединить -->
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>    
-          </Link>
-          <Link><!-- Описание сцепки -->
-            <JointBase   name="3"/>
-            <JointBranch name="3"/>
-            <Constraint><!-- Как соединить -->
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>    
+            </Constraint>
           </Link>
         </Location>
-        <Location>
-          <Base   part="Hull"/>
-          <Branch part="Turret"/>
+        <Location> 
+          <Base part="Hull"/>
+          <Branch part="Wheel_RF"/>
           <Position>
             <Property key="x" value="1"/>
             <Property key="y" value="2"/>
@@ -2687,11 +549,11 @@
             <Property key="z" value="3"/>
           </Rotation>
           <Link>
-            <JointBase   name="4"/>
+            <JointBase   name="0"/>
             <JointBranch name="0"/>
             <Constraint>
               <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
+              <Property key="BreakImpulse" value="1"/>
               <Property key="PointA_X" value="1"/>
               <Property key="PointA_Y" value="2"/>
               <Property key="PointA_Z" value="3"/>
@@ -2701,9 +563,9 @@
             </Constraint>
           </Link>
         </Location>
-        <Location>
-          <Base   part="Turret"/>
-          <Branch part="Gun"/>
+        <Location> 
+          <Base part="Hull"/>
+          <Branch part="Wheel_LB"/>
           <Position>
             <Property key="x" value="1"/>
             <Property key="y" value="2"/>
@@ -2715,11 +577,11 @@
             <Property key="z" value="3"/>
           </Rotation>
           <Link>
-            <JointBase   name="1"/>
+            <JointBase   name="0"/>
             <JointBranch name="0"/>
             <Constraint>
               <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="2"/>
+              <Property key="BreakImpulse" value="1"/>
               <Property key="PointA_X" value="1"/>
               <Property key="PointA_Y" value="2"/>
               <Property key="PointA_Z" value="3"/>
@@ -2727,22 +589,234 @@
               <Property key="PointB_Y" value="5"/>
               <Property key="PointB_Z" value="6"/>
             </Constraint>
-          </Link>  
+          </Link>
+        </Location>
+        <Location> 
+          <Base part="Hull"/>
+          <Branch part="Wheel_RB"/>
+          <Position>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Position>
+          <Rotation>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Rotation>
+          <Link>
+            <JointBase   name="0"/>
+            <JointBranch name="0"/>
+            <Constraint>
+              <Property key="Type" value="Fixed"/>
+              <Property key="BreakImpulse" value="1"/>
+              <Property key="PointA_X" value="1"/>
+              <Property key="PointA_Y" value="2"/>
+              <Property key="PointA_Z" value="3"/>
+              <Property key="PointB_X" value="4"/>
+              <Property key="PointB_Y" value="5"/>
+              <Property key="PointB_Z" value="6"/>
+            </Constraint>
+          </Link>
+        </Location>
+      </Formation>
+    </Hierarchy>
+    <Collection type="Shape"><!-- Набор частей -->
+      <Part name="Hull"><!-- Корень есть всегда -->
+        <Incarnation>
+          <Variant name="0" nameItem="Hull">
+            <Scale>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
+            </Scale>
+          </Variant>
+        </Incarnation>
+      </Part>
+      <Part name="Wheel_LF">
+        <Incarnation>
+          <Variant name="0" nameItem="Wheel">
+            <Scale>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
+            </Scale>
+          </Variant>
+        </Incarnation>
+      </Part>
+      <Part name="Wheel_RF">
+        <Incarnation>
+          <Variant name="0" nameItem="Wheel">
+            <Scale>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
+            </Scale>
+          </Variant>
+        </Incarnation>
+      </Part>
+      <Part name="Wheel_LB">
+        <Incarnation>
+          <Variant name="0" nameItem="Wheel">
+            <Scale>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
+            </Scale>
+          </Variant>
+        </Incarnation>
+      </Part>
+      <Part name="Wheel_RB">
+        <Incarnation>
+          <Variant name="0" nameItem="Wheel">
+            <Scale>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
+            </Scale>
+          </Variant>
+        </Incarnation>
+      </Part>
+    </Collection>
+		<ExternalJoining>
+			<Joint external="0" part="Root" internal="4"/>
+			<Joint external="1" part="Root" internal="5"/>
+		</ExternalJoining>
+	</Model>
+  <Model name="Cart_M">
+    <Pattern name="Model"/>
+    <Hierarchy>
+      <Root name="Hull">
+        <Position>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Position>
+        <Rotation>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Rotation>
+      </Root>
+      <Formation>
+        <Location> <!-- Ветка, кто относительно кого соориентирован -->
+          <Base part="Hull"/>
+          <Branch part="Wheel_LF"/>
+          <Position>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Position>
+          <Rotation>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Rotation>
+          <Link>
+            <JointBase   name="0"/>
+            <JointBranch name="0"/>
+            <Constraint>
+              <Property key="Type" value="Fixed"/>
+              <Property key="BreakImpulse" value="1"/>
+              <Property key="PointA_X" value="1"/>
+              <Property key="PointA_Y" value="2"/>
+              <Property key="PointA_Z" value="3"/>
+              <Property key="PointB_X" value="4"/>
+              <Property key="PointB_Y" value="5"/>
+              <Property key="PointB_Z" value="6"/>
+            </Constraint>
+          </Link>
+        </Location>
+        <Location> 
+          <Base part="Hull"/>
+          <Branch part="Wheel_RF"/>
+          <Position>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Position>
+          <Rotation>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Rotation>
+          <Link>
+            <JointBase   name="0"/>
+            <JointBranch name="0"/>
+            <Constraint>
+              <Property key="Type" value="Fixed"/>
+              <Property key="BreakImpulse" value="1"/>
+              <Property key="PointA_X" value="1"/>
+              <Property key="PointA_Y" value="2"/>
+              <Property key="PointA_Z" value="3"/>
+              <Property key="PointB_X" value="4"/>
+              <Property key="PointB_Y" value="5"/>
+              <Property key="PointB_Z" value="6"/>
+            </Constraint>
+          </Link>
+        </Location>
+        <Location> 
+          <Base part="Hull"/>
+          <Branch part="Wheel_LB"/>
+          <Position>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Position>
+          <Rotation>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Rotation>
+          <Link>
+            <JointBase   name="0"/>
+            <JointBranch name="0"/>
+            <Constraint>
+              <Property key="Type" value="Fixed"/>
+              <Property key="BreakImpulse" value="1"/>
+              <Property key="PointA_X" value="1"/>
+              <Property key="PointA_Y" value="2"/>
+              <Property key="PointA_Z" value="3"/>
+              <Property key="PointB_X" value="4"/>
+              <Property key="PointB_Y" value="5"/>
+              <Property key="PointB_Z" value="6"/>
+            </Constraint>
+          </Link>
+        </Location>
+        <Location> 
+          <Base part="Hull"/>
+          <Branch part="Wheel_RB"/>
+          <Position>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Position>
+          <Rotation>
+            <Property key="x" value="1"/>
+            <Property key="y" value="2"/>
+            <Property key="z" value="3"/>
+          </Rotation>
+          <Link>
+            <JointBase   name="0"/>
+            <JointBranch name="0"/>
+            <Constraint>
+              <Property key="Type" value="Fixed"/>
+              <Property key="BreakImpulse" value="1"/>
+              <Property key="PointA_X" value="1"/>
+              <Property key="PointA_Y" value="2"/>
+              <Property key="PointA_Z" value="3"/>
+              <Property key="PointB_X" value="4"/>
+              <Property key="PointB_Y" value="5"/>
+              <Property key="PointB_Z" value="6"/>
+            </Constraint>
+          </Link>
         </Location>
       </Formation>
     </Hierarchy>
     <Collection type="Model"><!-- Набор частей -->
       <Part name="Hull"><!-- Корень есть всегда -->
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
         <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Hull">
-            <Translation>
-              <Joint external="0" part="Down" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="Up" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
+          <Variant name="0" nameItem="Cart_Hull">
             <Scale>
               <Property key="x" value="1"/>
               <Property key="y" value="1"/>
@@ -2751,21 +825,9 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Chassis">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-          <Joint name="2"/>
-          <Joint name="3"/>
-        </Joining>
+      <Part name="Wheel_LF">
         <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Chassis">
-            <Translation>
-              <Joint external="0" part="axisLF" internal="1"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="axisRF" internal="1"/>
-              <Joint external="2" part="axisLB" internal="1"/>
-              <Joint external="3" part="axisRB" internal="1"/>
-            </Translation>
+          <Variant name="0" nameItem="Cart_Wheel">
             <Scale>
               <Property key="x" value="1"/>
               <Property key="y" value="1"/>
@@ -2774,17 +836,9 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Turret">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
+      <Part name="Wheel_RF">
         <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Turret">
-            <Translation>
-              <Joint external="0" part="Down" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="Forward" internal="0"/>
-            </Translation>
+          <Variant name="0" nameItem="Cart_Wheel">
             <Scale>
               <Property key="x" value="1"/>
               <Property key="y" value="1"/>
@@ -2793,25 +847,20 @@
           </Variant>
         </Incarnation>
       </Part>
-      <Part name="Gun">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-        </Joining>
+      <Part name="Wheel_LB">
         <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Gun_0">
-            <Translation>
-              <Joint external="0" part="Barrel" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
+          <Variant name="0" nameItem="Cart_Wheel">
             <Scale>
               <Property key="x" value="1"/>
               <Property key="y" value="1"/>
               <Property key="z" value="1"/>
             </Scale>
           </Variant>
-          <Variant name="1" nameItem="KingTiger_Gun_1">
-            <Translation>
-              <Joint external="0" part="Barrel" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
+        </Incarnation>
+      </Part>
+      <Part name="Wheel_RB">
+        <Incarnation>
+          <Variant name="0" nameItem="Cart_Wheel">
             <Scale>
               <Property key="x" value="1"/>
               <Property key="y" value="1"/>
@@ -2821,85 +870,11 @@
         </Incarnation>
       </Part>
     </Collection>
-  </Model>
-  <Model name="SimpleCylinder">
-    <Pattern name="Model"/>
-    <Hierarchy>
-      <Root name="Cylinder">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Root>
-      <Formation>
-        <Location> <!-- Ветка, кто относительно кого соориентирован -->
-        </Location>
-      </Formation>
-    </Hierarchy>
-    <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Cylinder"><!-- Корень есть всегда -->
-        <Joining>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="Cylinder">
-            <Material name=""/> <!-- Переопределение материала, действует только для Shape -->          
-            <Translation>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-    </Collection>
-  </Model>
-  <Model name="SimplePlate">
-    <Pattern name="Model"/>
-    <Hierarchy>
-      <Root name="Plate">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
-      </Root>
-      <Formation>
-        <Location> <!-- Ветка, кто относительно кого соориентирован -->
-        </Location>
-      </Formation>
-    </Hierarchy>
-    <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Plate"><!-- Корень есть всегда -->
-        <Joining>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="Plate">
-            <Material name=""/> <!-- Переопределение материала, действует только для Shape -->          
-            <Translation>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-    </Collection>
-  </Model>
+		<ExternalJoining>
+			<Joint external="0" part="Root" internal="4"/>
+			<Joint external="1" part="Root" internal="5"/>
+		</ExternalJoining>
+	</Model>
 	<Terrain name="Field">
     <!-- Карта высот берётся из файла Ogre до начала загрузки графики и физики -->
 		<HeightData name="Field"/>

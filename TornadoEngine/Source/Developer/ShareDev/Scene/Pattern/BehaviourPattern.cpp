@@ -201,25 +201,25 @@ bool TBehaviourPattern::UpdateGameItem()
 	return false;
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::UpdateByGameItemByModule_Logic()
-{
-
-}
-//------------------------------------------------------------------------
-void TBehaviourPattern::UpdateByGameItemByModule_Graphic()
-{
-
-}
-//------------------------------------------------------------------------
-void TBehaviourPattern::UpdateByGameItemByModule_Physic()
-{
-
-}
-//------------------------------------------------------------------------
-void TBehaviourPattern::UpdateByGameItemByModule_Sound()
-{
-
-}
+//void TBehaviourPattern::UpdateByGameItemByModule_Logic()
+//{
+//
+//}
+////------------------------------------------------------------------------
+//void TBehaviourPattern::UpdateByGameItemByModule_Graphic()
+//{
+//
+//}
+////------------------------------------------------------------------------
+//void TBehaviourPattern::UpdateByGameItemByModule_Physic()
+//{
+//
+//}
+////------------------------------------------------------------------------
+//void TBehaviourPattern::UpdateByGameItemByModule_Sound()
+//{
+//
+//}
 //------------------------------------------------------------------------
 void TBehaviourPattern::SaveGameItemOnHDD()
 {

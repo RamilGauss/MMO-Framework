@@ -32,19 +32,19 @@ namespace nsSerializerModelItem_XML
   const char* sConstraint     = "Constraint";
   const char* sCollection     = "Collection";
   const char* sPart           = "Part";
-  const char* sJoining        = "Joining";
- 
-  const char* sJoint          = "Joint";
-  const char* sIncarnation    = "Incarnation";
+
+	const char* sIncarnation    = "Incarnation";
   const char* sVariant        = "Variant";
   const char* sNameItem       = "nameItem";
   const char* sMaterial       = "Material";
   const char* sType           = "type";
 
-  const char* sTranslation    = "Translation";
-  const char* sExternal       = "external";
-  const char* sInternal       = "internal";
   const char* sScale          = "Scale";
+
+	const char* sExternalJoining = "ExternalJoining";
+	const char* sJoint           = "Joint";
+  const char* sExternal        = "external";
+  const char* sInternal        = "internal";
 
   const char* sTypeModel      = "Model";
   const char* sTypeShape      = "Shape";
@@ -74,6 +74,7 @@ bool TSerializerModelItem_XML::Load(TBaseItem* pItem)
   LoadPattern();
   LoadHierarchy();
   LoadCollection();
+	LoadExternalJoining();
 
   return true;
 }
@@ -90,6 +91,8 @@ bool TSerializerModelItem_XML::Save(TBaseItem* pItem)
   SavePattern();
   SaveHierarchy();
   SaveCollection();
+	SaveExternalJoining();
+
   return mXML->Save();
 }
 //-------------------------------------------------------------------------------------------------------
@@ -139,6 +142,23 @@ void TSerializerModelItem_XML::LoadCollection()
     }
     mXML->LeaveSection();
   }
+}
+//-------------------------------------------------------------------------------------------------------
+void TSerializerModelItem_XML::LoadExternalJoining()
+{
+	if( mXML->EnterSection(sExternalJoining,0) )
+	{
+		int cntJoint = mXML->GetCountSection(sJoint);
+		for( int iJoint = 0 ; iJoint < cntJoint ; iJoint++ )
+		{
+			std::string external = mXML->ReadSectionAttr(sJoint, iJoint, sExternal);
+			TModelItem::TJoint joint;
+			joint.nameInternalJoint = mXML->ReadSectionAttr(sJoint, iJoint, sInternal);
+			joint.namePart          = mXML->ReadSectionAttr(sJoint, iJoint, sNamePart);
+			mModel->mMapExternalJoining.insert(TModelItem::TMapExternalJoiningVT(external,joint));
+		}
+		mXML->LeaveSection();
+	}
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SavePattern()
@@ -191,20 +211,31 @@ void TSerializerModelItem_XML::SaveCollection()
   }
 }
 //-------------------------------------------------------------------------------------------------------
+void TSerializerModelItem_XML::SaveExternalJoining()
+{
+	if( mXML->AddSectionAndEnter(sExternalJoining) )
+	{
+		int iJoint = 0;
+		BOOST_FOREACH( TModelItem::TMapExternalJoiningVT& extJoint , mModel->mMapExternalJoining )
+		{
+			TAttrInfo attr[3];
+			attr[0].Name  = sExternal;
+			attr[0].Value = extJoint.first;
+			attr[1].Name  = sNamePart;
+			attr[1].Value = extJoint.second.namePart;
+			attr[2].Name  = sInternal;
+			attr[2].Value = extJoint.second.nameInternalJoint;
+			mXML->AddSection(sJoint, iJoint, &attr[0]);
+			iJoint++;
+		}
+		mXML->LeaveSection();
+	}
+}
+//-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadPart(TModelItem::TPart& part, int iPart)
 {
   if(mXML->EnterSection(sPart,iPart))
   {
-    if(mXML->EnterSection(sJoining,0))
-    {
-      int cntJoint = mXML->GetCountSection(sJoint);
-      for( int iJoint = 0 ; iJoint < cntJoint ; iJoint++ )
-      {
-        std::string nameJoint = mXML->ReadSectionAttr(sJoint, iJoint, sName);
-        part.vecNameJoint.push_back(nameJoint);
-      }
-      mXML->LeaveSection();
-    }
     if(mXML->EnterSection(sIncarnation,0))
     {
       int cntVariant = mXML->GetCountSection(sVariant);
@@ -231,19 +262,6 @@ void TSerializerModelItem_XML::LoadVariant(TModelItem::TVariant& variant, int iV
     if(mXML->EnterSection(sScale,0))
     {
       LoadVector3ByProperty( variant.scale );
-      mXML->LeaveSection();
-    }
-    if(mXML->EnterSection(sTranslation,0))
-    {
-      int cntTransJoint = mXML->GetCountSection(sJoint);
-      for( int iTransJoint = 0 ; iTransJoint < cntTransJoint ; iTransJoint++ )
-      {
-        TModelItem::TJoint internalJoint;
-        std::string external    = mXML->ReadSectionAttr(sJoint, iTransJoint, sExternal);
-        internalJoint.namePart  = mXML->ReadSectionAttr(sJoint, iTransJoint, sNamePart);
-        internalJoint.nameJoint = mXML->ReadSectionAttr(sJoint, iTransJoint, sInternal);
-        variant.mapExternalInternal.insert(TModelItem::TMapExternalInternalVT(external, internalJoint));
-      }
       mXML->LeaveSection();
     }
     mXML->LeaveSection();
@@ -404,17 +422,6 @@ void TSerializerModelItem_XML::SaveLink(TModelItem::TLink& link)
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SavePart(TModelItem::TPart& part)
 {
-  if(mXML->AddSectionAndEnter(sJoining))
-  {
-    BOOST_FOREACH(std::string& nameJoint, part.vecNameJoint)
-    {
-      TAttrInfo attr;
-      attr.Name  = sName;
-      attr.Value = nameJoint;
-      mXML->AddSection(sJoint, 1, &attr);
-    }
-    mXML->LeaveSection();
-  }
   if(mXML->AddSectionAndEnter(sIncarnation))
   {
     BOOST_FOREACH(TModelItem::TVariant& variant, part.vecVariant)
@@ -444,21 +451,6 @@ void TSerializerModelItem_XML::SaveVariant(TModelItem::TVariant& variant)
     mXML->AddSection(sMaterial, 1, &attr);
   }
 
-  if(mXML->AddSectionAndEnter(sTranslation))
-  {
-    BOOST_FOREACH(TModelItem::TMapExternalInternalVT& bit, variant.mapExternalInternal)
-    {
-      TAttrInfo attr[3];
-      attr[0].Name  = sExternal;
-      attr[0].Value = bit.first;
-      attr[1].Name  = sNamePart;
-      attr[1].Value = bit.second.namePart;
-      attr[2].Name  = sInternal;
-      attr[2].Value = bit.second.nameJoint;
-      mXML->AddSection(sJoint, 3, &attr[0]);
-    }
-    mXML->LeaveSection();
-  }
   if(mXML->AddSectionAndEnter(sScale))
   {
     SaveVector3ByProperty(variant.scale);

@@ -110,10 +110,11 @@ public:
 	
 	// обновить внутренности по ресурсам, результат такой же как при вызове Build
 	// отличие от Build - вызов атомарен, то же самое что BuildXXX(fast=true)
-	virtual void UpdateByGameItemByModule_Logic();
-	virtual void UpdateByGameItemByModule_Graphic();
-	virtual void UpdateByGameItemByModule_Physic();
-	virtual void UpdateByGameItemByModule_Sound();
+	// данные функции не имеют применения
+	//### virtual void UpdateByGameItemByModule_Logic();
+	//### virtual void UpdateByGameItemByModule_Graphic();
+	//### virtual void UpdateByGameItemByModule_Physic();
+	//### virtual void UpdateByGameItemByModule_Sound();
 
   virtual void SaveGameItemOnHDD();
   virtual void SaveOutDataOnHDD();

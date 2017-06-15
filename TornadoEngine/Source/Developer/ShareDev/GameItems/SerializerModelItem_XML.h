@@ -29,6 +29,7 @@ protected:
   void LoadPattern();
   void LoadHierarchy();
   void LoadCollection();
+  void LoadExternalJoining();
 
   void LoadRoot();
   void LoadLocation(TModelItem::TLocation& location, int iLocation);
@@ -39,6 +40,7 @@ protected:
   void SavePattern();
   void SaveHierarchy();
   void SaveCollection();
+  void SaveExternalJoining();
 
   void SaveRoot();
   void SaveLocation(TModelItem::TLocation& location);
