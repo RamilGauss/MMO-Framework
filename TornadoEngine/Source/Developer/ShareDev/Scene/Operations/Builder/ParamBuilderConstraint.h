@@ -22,14 +22,16 @@ namespace nsParamBuilderConstraint
   typedef enum
   {
     Generic6Dof,
-    Generic6DofSpring,
-    Fixed,
+		Universal,// non standard in bullet (has type Generic6DofSpring)
+		Generic6DofSpring,
+    Hinge2,   // non standard in bullet (has type Generic6DofSpring)
+		Fixed,
     Slider,
     ConeTwist,
     Hinge,
-    Hinge2,
     Point2Point,
     Gear,
+		Contact,
   }eType;
   //--------------------------------------------------
   struct DllExport TBaseParam
@@ -50,6 +52,11 @@ namespace nsParamBuilderConstraint
     TGeneric6Dof();
   }_PACKED;
   //--------------------------------------------------
+	struct DllExport TUniversal : public TGeneric6Dof
+	{
+		TUniversal();
+	}_PACKED;
+	//--------------------------------------------------
   struct DllExport TGeneric6DofSpring : public TBaseParam
   {
     nsMathTools::TVector3 pointA;
@@ -62,6 +69,18 @@ namespace nsParamBuilderConstraint
     TGeneric6DofSpring();
   }_PACKED;
   //--------------------------------------------------
+	struct DllExport THinge2 : public TBaseParam
+	{
+		nsMathTools::TVector3 pointA;
+		nsMathTools::TVector3 pointB;
+		nsMathTools::TVector3 axeA;
+		nsMathTools::TVector3 axeB;
+		float limitAngle_Min;
+		float limitAngle_Max;
+		float springStiffness;
+		THinge2();
+	}_PACKED;
+	//--------------------------------------------------
   struct DllExport TFixed : public TBaseParam
   {
     nsMathTools::TVector3 pointA;
@@ -101,18 +120,6 @@ namespace nsParamBuilderConstraint
     THinge();
   }_PACKED;
   //--------------------------------------------------
-  struct DllExport THinge2 : public TBaseParam
-  {
-    nsMathTools::TVector3 pointA;
-    nsMathTools::TVector3 pointB;
-    nsMathTools::TVector3 axeA;
-    nsMathTools::TVector3 axeB;
-    float limitAngle_Min;
-    float limitAngle_Max;
-    float springStiffness;
-    THinge2();
-  }_PACKED;
-  //--------------------------------------------------
   struct DllExport TPoint2Point : public TBaseParam
   {
     nsMathTools::TVector3 pointA;
@@ -128,6 +135,13 @@ namespace nsParamBuilderConstraint
     TGear();
   }_PACKED;
   //--------------------------------------------------
+	struct DllExport TContact : public TBaseParam
+	{
+		nsMathTools::TVector3 axeA;
+		nsMathTools::TVector3 axeB;
+		TContact();
+	}_PACKED;
+	//--------------------------------------------------
 }
 
 #ifdef WIN32

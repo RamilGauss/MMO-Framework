@@ -22,14 +22,6 @@ public:
 	std::string namePart;
 	std::string nameVariant;
 
-	TBaseNode_Model* mNodeUp;
-
-	typedef std::map<std::string,TBaseNode_Model*> TMapStrPtr;
-	typedef TMapStrPtr::iterator   TMapStrPtrIt;
-	typedef TMapStrPtr::value_type TMapStrPtrVT;
-
-	TMapStrPtr mNameNodeDown;
-
 	// расположение относительно Up
 	nsMathTools::TVector3 mPos;
 	nsMathTools::TVector4 mOrient;

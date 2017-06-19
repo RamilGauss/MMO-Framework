@@ -28,6 +28,10 @@
 			<Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
 			<Property key="Mobility"     value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
 		</Variant>
+		<Variant name="Cart_S">
+			<Property key="NameGameItem" value="Cart_S"/><!-- Какую модель выбрать -->
+			<Property key="Mobility"     value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
+		</Variant>
   </PatternConfig>
   <PatternConfig name="Light">
 		<Comment value=""/>
@@ -162,7 +166,7 @@
       <Property key="Friction"   value="1.6"/>
     </Physic>
   </Material>
-	<Shape name="Cylinder">
+  <Shape name="Cylinder">
     <Joining>
     </Joining>
     <Geometry>
@@ -176,7 +180,7 @@
     <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
     </Paint>
   </Shape>
-	<Shape name="Plate">
+  <Shape name="Plate">
     <Joining>
     </Joining>
     <Geometry>
@@ -189,7 +193,7 @@
     <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
     </Paint>
   </Shape>
-	<Shape name="Wheel">
+  <Shape name="Wheel">
     <Joining>
     </Joining>
     <Geometry>
@@ -308,6 +312,84 @@
       </Layer>
     </Paint>
   </Shape>
+  <Model name="SimpleCylinder">
+    <Pattern name="Model"/>
+    <Hierarchy>
+      <Root name="Cylinder">
+        <Position>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Position>
+        <Rotation>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Rotation>
+      </Root>
+      <Formation>
+        <Location> <!-- Ветка, кто относительно кого соориентирован -->
+        </Location>
+      </Formation>
+    </Hierarchy>
+    <Collection type="Shape"><!-- Набор частей -->
+      <Part name="Cylinder"><!-- Корень есть всегда -->
+        <Joining>
+        </Joining>
+        <Incarnation>
+          <Variant name="0" nameItem="Cylinder">
+            <Material name=""/> <!-- Переопределение материала, действует только для Shape -->          
+            <Translation>
+            </Translation>
+            <Scale>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
+            </Scale>
+          </Variant>
+        </Incarnation>
+      </Part>
+    </Collection>
+  </Model>
+  <Model name="SimplePlate">
+    <Pattern name="Model"/>
+    <Hierarchy>
+      <Root name="Plate">
+        <Position>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Position>
+        <Rotation>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="0"/>
+        </Rotation>
+      </Root>
+      <Formation>
+        <Location> <!-- Ветка, кто относительно кого соориентирован -->
+        </Location>
+      </Formation>
+    </Hierarchy>
+    <Collection type="Shape"><!-- Набор частей -->
+      <Part name="Plate"><!-- Корень есть всегда -->
+        <Joining>
+        </Joining>
+        <Incarnation>
+          <Variant name="0" nameItem="Plate">
+            <Material name=""/> <!-- Переопределение материала, действует только для Shape -->          
+            <Translation>
+            </Translation>
+            <Scale>
+              <Property key="x" value="1"/>
+              <Property key="y" value="1"/>
+              <Property key="z" value="1"/>
+            </Scale>
+          </Variant>
+        </Incarnation>
+      </Part>
+    </Collection>
+  </Model>
   <Model name="Cart_Hull">
     <Pattern name="Hull"/>
     <Hierarchy>
@@ -875,7 +957,7 @@
 			<Joint external="1" part="Root" internal="5"/>
 		</ExternalJoining>
 	</Model>
-	<Terrain name="Field">
+  <Terrain name="Field">
     <!-- Карта высот берётся из файла Ogre до начала загрузки графики и физики -->
 		<HeightData name="Field"/>
 		<Convention><!-- Расположение слотов относительно центра -->
@@ -955,90 +1037,6 @@
 		  <Object>
 				<Identity>
 					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
-					<Property key="ID"      value="3"/><!-- Уникален в пределах карты -->
-				</Identity>
-				<Position><!-- Координаты центра -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="40"/>
-					<Property key="z" value="0"/>
-				</Position>
-				<RotationQuaternion><!-- Ориентация -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="1"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>
-				</RotationQuaternion>
-				<PatternConfig>
-					<Property key="Name"    value="Model"/>
-					<Property key="Variant" value="SimpleCylinder"/>
-				</PatternConfig>
-			</Object>
-		  <Object>
-				<Identity>
-					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
-					<Property key="ID"      value="777"/><!-- Уникален в пределах карты -->
-				</Identity>
-				<Position><!-- Координаты центра -->
-					<Property key="x" value="1"/>
-					<Property key="y" value="40"/>
-					<Property key="z" value="1"/>
-				</Position>
-				<RotationQuaternion><!-- Ориентация -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="1"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>
-				</RotationQuaternion>
-				<PatternConfig>
-					<Property key="Name"    value="Model"/>
-					<Property key="Variant" value="SimpleCylinder"/>
-				</PatternConfig>
-			</Object>
-		  <Object>
-				<Identity>
-					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
-					<Property key="ID"      value="33"/><!-- Уникален в пределах карты -->
-				</Identity>
-				<Position><!-- Координаты центра -->
-					<Property key="x" value="-1"/>
-					<Property key="y" value="40"/>
-					<Property key="z" value="-1"/>
-				</Position>
-				<RotationQuaternion><!-- Ориентация -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="1"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>
-				</RotationQuaternion>
-				<PatternConfig>
-					<Property key="Name"    value="Model"/>
-					<Property key="Variant" value="SimpleCylinder"/>
-				</PatternConfig>
-			</Object>
-		  <Object>
-				<Identity>
-					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
-					<Property key="ID"      value="34"/><!-- Уникален в пределах карты -->
-				</Identity>
-				<Position><!-- Координаты центра -->
-					<Property key="x" value="-1"/>
-					<Property key="y" value="40"/>
-					<Property key="z" value="1"/>
-				</Position>
-				<RotationQuaternion><!-- Ориентация -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="1"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>
-				</RotationQuaternion>
-				<PatternConfig>
-					<Property key="Name"    value="Model"/>
-					<Property key="Variant" value="SimpleCylinder"/>
-				</PatternConfig>
-			</Object>
-		  <Object>
-				<Identity>
-					<Property key="Pattern" value="Model"/><!-- Переопределение Паттерна -->
 					<Property key="ID"      value="35"/><!-- Уникален в пределах карты -->
 				</Identity>
 				<Position><!-- Координаты центра -->
@@ -1054,7 +1052,7 @@
 				</RotationQuaternion>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>
-					<Property key="Variant" value="SimpleCylinder"/>
+					<Property key="Variant" value="Cart_S"/>
 				</PatternConfig>
 			</Object>
 		  <Object>
@@ -1145,7 +1143,7 @@
 		<Scenario> <!-- Операции с объектами сцены -->
 		</Scenario>
   </Map>
-	<TableSound name="0">
+  <TableSound name="0">
 		<Range>
       <Velocity><!-- Относительная скорость двух объектов -->
         <Property key="0" value="10"/>

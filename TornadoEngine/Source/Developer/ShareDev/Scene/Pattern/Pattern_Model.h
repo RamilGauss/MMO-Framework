@@ -19,6 +19,7 @@ See for more information License.h.
 #include "Builder_Model_Bullet.h"
 #include "Builder_Model_Ogre.h"
 #include "ManagerNode_Model.h"
+#include "HierarchyNode_Model.h"
 
 class TShapeNode_Model;
 
@@ -28,33 +29,9 @@ class DllExport TPattern_Model : public TBehaviourPattern
 	TManagerNode_Model mMngNode_Collection;
 
 	// узлы из иерархии
-	// THierarchyNode_Model mHierarchy;
+	THierarchyNode_Model mHierarchy;
 
 	TModelItem::eType mTypeContent;
-
-	TBaseNode_Model* mRootNode;
-
-	//struct TBaseDesc
-	//{
-	//	TModelItem::eType type;
-	//	std::string namePart;
-	//	std::string nameVariant;
-	//};
-	//struct TModelDesc : public TBaseDesc
-	//{
-	//	TPattern_Model* pModel;
-	//	TModelDesc();
-	//	~TModelDesc();
-	//};
-	//struct TShapeDesc : public TBaseDesc
-	//{
-	//	std::string nameShapeItem;
-	//	std::string nameMaterial; // реальный материал и переопределенный могут не совпадать
-	//	// результат создания формы:
-	//	Ogre::Entity* pEntity;
-	//	btRigidBody* pRigidBody;
-	//	TShapeDesc();
-	//};
 
 	TBuilder_Model_Bullet mBuilderBullet;
 	TBuilder_Model_Ogre   mBuilderOgre;
@@ -107,7 +84,7 @@ public:
 	// btRigidBody.h:
 	// Bullet automatically deactivates dynamic rigid bodies, when the velocity is below a threshold for a given time.
 	// Deactivated (sleeping) rigid bodies don't take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)
-	virtual void ActivatePhysicBody();
+	virtual void ActivatePhysicBody(bool force = true);
 
 	// всё относительно Root
 	virtual void SetPosition(nsMathTools::TVector3& v);

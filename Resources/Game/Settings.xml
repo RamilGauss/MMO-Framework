@@ -8,13 +8,13 @@
 			<Entry key="Height"    value="38.0001793"/>
 		</Group>
 		<Group name="SettingCamera"> 
-			<Entry key="pos_x" value="-0.707357347"/>
-			<Entry key="pos_y" value="61.6614456"/>
-			<Entry key="pos_z" value="37.076149"/>
-			<Entry key="dir_x" value="0.121061675"/>
-			<Entry key="dir_y" value="0.0100371437"/>
-			<Entry key="dir_z" value="0.00140347518"/>
-			<Entry key="dir_w" value="-0.992605984"/>
+			<Entry key="pos_x" value="-0.314707428"/>
+			<Entry key="pos_y" value="42.0389366"/>
+			<Entry key="pos_z" value="9.19094753"/>
+			<Entry key="dir_x" value="0.60698545"/>
+			<Entry key="dir_y" value="0.0428551659"/>
+			<Entry key="dir_z" value="0.0330336578"/>
+			<Entry key="dir_w" value="-0.792912483"/>
 		</Group>
 	</Application>
 </Content>
