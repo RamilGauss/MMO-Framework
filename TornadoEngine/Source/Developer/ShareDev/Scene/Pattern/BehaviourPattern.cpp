@@ -80,12 +80,12 @@ bool TBehaviourPattern::GetPosition(nsMathTools::TVector3& v)
 	return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::SetOrientation(nsMathTools::TVector4& v)
+void TBehaviourPattern::SetOrientation(nsMathTools::TQuaternion& v)
 {
 	mOrientQuaternion = v;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::GetOrientation(nsMathTools::TVector4& v)
+bool TBehaviourPattern::GetOrientation(nsMathTools::TQuaternion& v)
 {
 	v = mOrientQuaternion;
 	return true;
@@ -196,37 +196,17 @@ void TBehaviourPattern::SynchroByModule_Sound()
 
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::UpdateGameItem()
+bool TBehaviourPattern::UpdateGameItem(TFactoryGameItem::TypeGameItem type)
 {
 	return false;
 }
 //------------------------------------------------------------------------
-//void TBehaviourPattern::UpdateByGameItemByModule_Logic()
-//{
-//
-//}
-////------------------------------------------------------------------------
-//void TBehaviourPattern::UpdateByGameItemByModule_Graphic()
-//{
-//
-//}
-////------------------------------------------------------------------------
-//void TBehaviourPattern::UpdateByGameItemByModule_Physic()
-//{
-//
-//}
-////------------------------------------------------------------------------
-//void TBehaviourPattern::UpdateByGameItemByModule_Sound()
-//{
-//
-//}
-//------------------------------------------------------------------------
-void TBehaviourPattern::SaveGameItemOnHDD()
+void TBehaviourPattern::SaveGameItemOnHDD(TFactoryGameItem::TypeGameItem type)
 {
 
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::SaveOutDataOnHDD()
+void TBehaviourPattern::SaveOutDataOnHDD(TFactoryGameItem::TypeGameItem type)
 {
 
 }

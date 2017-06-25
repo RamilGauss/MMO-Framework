@@ -5,19 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef Builder_ModelH
-#define Builder_ModelH
+#ifndef Synchronizer_Model_LogicH
+#define Synchronizer_Model_LogicH
 
 #include "TypeDef.h"
 
-#include "Operation_Model.h"
+#include "Synchronizer_Model.h"
 
-class DllExport TBuilder_Model : public TOperation_Model
+class DllExport TSynchronizer_Model_Logic : public TSynchronizer_Model
 {
 public:
-	TBuilder_Model();
-  
-	virtual void Build();
+	TSynchronizer_Model_Logic();
+
+	virtual void Synchro();
 private:
 };
 

@@ -12,6 +12,7 @@ See for more information License.h.
 #include "Builder_Model.h"
 
 class TFactoryBuilderTool_Shape_Ogre;
+class TShapeNode_Model;
 
 class DllExport TBuilder_Model_Ogre : public TBuilder_Model
 {
@@ -20,7 +21,12 @@ public:
 	virtual ~TBuilder_Model_Ogre();
 
 	TFactoryBuilderTool_Shape_Ogre* GetShapeMaker();
+
+	virtual void Build();
 protected:
+	void BuildShape(TShapeNode_Model* pShapeNode);
+
+	void PostBuild();
 };
 
 #endif

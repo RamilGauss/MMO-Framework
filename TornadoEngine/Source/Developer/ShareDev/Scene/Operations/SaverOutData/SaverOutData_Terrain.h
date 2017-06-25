@@ -10,12 +10,14 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "Operation_Terrain.h"
+#include "FactoryGameItem.h"
 
 class DllExport TSaverOutData_Terrain : public TOperation_Terrain
 {
 public:
 	TSaverOutData_Terrain();
 
+	virtual void Save(TFactoryGameItem::TypeGameItem type) = 0;
 private:
 };
 

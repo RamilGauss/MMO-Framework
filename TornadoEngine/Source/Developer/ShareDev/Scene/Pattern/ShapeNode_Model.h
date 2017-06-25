@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -19,8 +19,8 @@ class DllExport TShapeNode_Model : public TBaseNode_Model
 {
 public:
 	std::string nameShapeItem;
-	std::string nameMaterial; // реальный материал и переопределенный могут не совпадать
-	// результат создания формы:
+	std::string nameMaterial; // СЂРµР°Р»СЊРЅС‹Р№ РјР°С‚РµСЂРёР°Р» Рё РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РјРѕРіСѓС‚ РЅРµ СЃРѕРІРїР°РґР°С‚СЊ
+	// СЂРµР·СѓР»СЊС‚Р°С‚ СЃРѕР·РґР°РЅРёСЏ С„РѕСЂРјС‹:
 	Ogre::Entity* mPtrEntity;
 	btRigidBody*  mPtrRigidBody;
 public:

@@ -206,6 +206,28 @@ bool TBaseSerializerItem_XML::SaveVector4ByProperty(nsMathTools::TVector4& v4)
 	return true;
 }
 //------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::LoadQuaternionByProperty(nsMathTools::TQuaternion& q)
+{
+	nsMathTools::TVector4 v4;
+	bool res = LoadVector4ByProperty(v4);
+	q.x = v4.x;
+	q.y = v4.y;
+	q.z = v4.z;
+	q.w = v4.w;
+	return res;
+}
+//------------------------------------------------------------------------------
+bool TBaseSerializerItem_XML::SaveQuaternionByProperty(nsMathTools::TQuaternion& q)
+{
+	nsMathTools::TVector4 v4;
+	v4.x = q.x;
+	v4.y = q.y;
+	v4.z = q.z;
+	v4.w = q.w;
+	bool res = SaveVector4ByProperty(v4);
+	return res;
+}
+//------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::LoadColour(nsMathTools::TVector3& v3)
 {
 	std::string key, value;

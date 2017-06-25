@@ -17,7 +17,7 @@ public:
 	TSaverOutData_Terrain_Ogre();
 	virtual ~TSaverOutData_Terrain_Ogre();
 
-	virtual void Save();
+	virtual void Save(TFactoryGameItem::TypeGameItem type);
 private:
 };
 

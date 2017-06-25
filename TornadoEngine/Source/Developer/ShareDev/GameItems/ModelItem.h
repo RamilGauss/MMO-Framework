@@ -67,8 +67,8 @@ struct DllExport TModelItem : public TBaseItem
   {
     std::string nameBase;
     std::string nameBranch;
-    nsMathTools::TVector3 position;
-    nsMathTools::TVector3 rotation;
+    nsMathTools::TVector3    position;
+    nsMathTools::TQuaternion orientation;
     TListLink listLink;
 
     TLocation(){}
@@ -82,9 +82,9 @@ struct DllExport TModelItem : public TBaseItem
   //---------------------------------------------------------
   struct DllExport TRoot
   {
-    std::string           name;
-    nsMathTools::TVector3 position;
-    nsMathTools::TVector3 rotation;
+    std::string              name;
+    nsMathTools::TVector3    position;
+    nsMathTools::TQuaternion orientation;
   };
   //---------------------------------------------------------
   typedef std::map<std::string,std::string> TMapStrStr;
@@ -107,11 +107,12 @@ struct DllExport TModelItem : public TBaseItem
 	std::string      mNamePattern;        // модель поведения
 
   TRoot            mRoot;
-  TMMapStrLocation mMapNameBaseLocation;// иерархия
+  //TMMapStrLocation mMapNameBaseLocation;// иерархия
+  TMMapStrLocation mMapNameBranchLocation;// иерархия
 
   typedef enum{eModel,eShape}eType;// либо модель, либо форма
   eType            mTypeCollection;
-  TMapStrPart      mMapNamePart;        // набор
+  TMapStrPart      mMapNamePart;   // набор
   
 	TMapExternalJoining  mMapExternalJoining;
 

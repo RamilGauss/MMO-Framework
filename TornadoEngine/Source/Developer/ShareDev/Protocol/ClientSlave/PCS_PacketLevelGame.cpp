@@ -91,7 +91,7 @@ TContainer TPacket_AddGameObjects::PackInherit()
     bp.PushBack( (char*)&(object.id), sizeof(TypeID_GameMap));
 
     bp.PushBack( (char*)&object.position, sizeof(nsMathTools::TVector3));
-    bp.PushBack( (char*)&object.rotationQuaternion, sizeof(nsMathTools::TVector4));
+    bp.PushBack( (char*)&object.orientation, sizeof(nsMathTools::TQuternion));
 
     TypeCountParameterMap cntParameter = object.parameterMap.size();
     bp.PushBack( (char*)&cntParameter, sizeof(TypeCountParameterMap), true);
@@ -164,7 +164,7 @@ void TPacket_AddGameObjects::UnpackInherit( char* p, int size )
       BL_FIX_BUG();
       return;
     }
-    object.rotationQuaternion = *((nsMathTools::TVector4*)p);
+    object.orientation = *((nsMathTools::TQuaternion*)p);
     p    += sizeof(nsMathTools::TVector3);
     size -= sizeof(nsMathTools::TVector3);
     //---------------------------------------------------------------------

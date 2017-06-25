@@ -18,7 +18,7 @@ namespace nsSerializerModelItem_XML
   const char* sRoot           = "Root";
   
   const char* sPosition       = "Position";
-  const char* sRotation       = "Rotation";
+  const char* sOrientation    = "Orientation";
   const char* sFormation      = "Formation";
   const char* sLocation       = "Location";
   const char* sBase           = "Base";
@@ -113,7 +113,7 @@ void TSerializerModelItem_XML::LoadHierarchy()
       {
         TModelItem::TLocation location;
         LoadLocation(location, iLocation);
-        mModel->mMapNameBaseLocation.insert(TModelItem::TMMapStrLocationVT(location.nameBase, location));
+        mModel->mMapNameBranchLocation.insert(TModelItem::TMMapStrLocationVT(location.nameBranch, location));
       }
       mXML->LeaveSection();
     }
@@ -176,7 +176,7 @@ void TSerializerModelItem_XML::SaveHierarchy()
     SaveRoot();
     if(mXML->AddSectionAndEnter(sFormation))
     {
-      BOOST_FOREACH(TModelItem::TMMapStrLocationVT& bit, mModel->mMapNameBaseLocation)
+      BOOST_FOREACH(TModelItem::TMMapStrLocationVT& bit, mModel->mMapNameBranchLocation)
         SaveLocation(bit.second);
 
       mXML->LeaveSection();
@@ -278,9 +278,9 @@ void TSerializerModelItem_XML::LoadRoot()
       LoadVector3ByProperty( mModel->mRoot.position );
       mXML->LeaveSection();
     }
-    if(mXML->EnterSection(sRotation,0))
+    if(mXML->EnterSection(sOrientation,0))
     {
-      LoadVector3ByProperty( mModel->mRoot.rotation );
+      LoadQuaternionByProperty( mModel->mRoot.orientation );
       mXML->LeaveSection();
     }
     mXML->LeaveSection();
@@ -299,9 +299,9 @@ void TSerializerModelItem_XML::LoadLocation(TModelItem::TLocation& location, int
       LoadVector3ByProperty( location.position );
       mXML->LeaveSection();
     }
-    if(mXML->EnterSection(sRotation,0))
+    if(mXML->EnterSection(sOrientation,0))
     {
-      LoadVector3ByProperty( location.rotation );
+      LoadQuaternionByProperty( location.orientation );
       mXML->LeaveSection();
     }
     int cntLink = mXML->GetCountSection(sLink);
@@ -351,9 +351,9 @@ void TSerializerModelItem_XML::SaveRoot()
       SaveVector3ByProperty( mModel->mRoot.position );
       mXML->LeaveSection();
     }
-    if(mXML->AddSectionAndEnter(sRotation))
+    if(mXML->AddSectionAndEnter(sOrientation))
     {
-      SaveVector3ByProperty( mModel->mRoot.rotation );
+      SaveQuaternionByProperty( mModel->mRoot.orientation );
       mXML->LeaveSection();
     }
     mXML->LeaveSection();
@@ -378,9 +378,9 @@ void TSerializerModelItem_XML::SaveLocation(TModelItem::TLocation& location)
       SaveVector3ByProperty( location.position );
       mXML->LeaveSection();
     }
-    if(mXML->AddSectionAndEnter(sRotation))
+    if(mXML->AddSectionAndEnter(sOrientation))
     {
-      SaveVector3ByProperty( location.rotation );
+      SaveQuaternionByProperty( location.orientation );
       mXML->LeaveSection();
     }
     BOOST_FOREACH(TModelItem::TLink& link, location.listLink)

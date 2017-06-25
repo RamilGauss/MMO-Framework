@@ -29,8 +29,8 @@ struct DllExport TMapItem : public TBaseItem
 	{
     std::string namePattern;
     int         id;
-		nsMathTools::TVector3 position;
-		nsMathTools::TVector4 rotationQuaternion;
+		nsMathTools::TVector3    position;
+		nsMathTools::TQuaternion orientation;
 
 		TPatternConfig patternConfig;
 	};

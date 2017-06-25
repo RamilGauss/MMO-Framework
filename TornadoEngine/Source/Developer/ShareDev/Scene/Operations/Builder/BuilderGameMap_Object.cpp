@@ -64,7 +64,7 @@ int TBuilderGameMap_Object::Begin(TMapItem::TObject* pObj)
 	// далее идут параметры, которые могут меняться в процессе
 	pPattern->SetPatternConfig(pObj->patternConfig.name, pObj->patternConfig.nameVariant);
 	pPattern->SetPosition(pObj->position);
-	pPattern->SetOrientation(pObj->rotationQuaternion);
+	pPattern->SetOrientation(pObj->orientation);
 
 	pPattern->BuildByModule_Logic();
 

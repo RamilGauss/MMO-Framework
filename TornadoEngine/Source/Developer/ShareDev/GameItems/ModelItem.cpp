@@ -15,22 +15,22 @@ TBaseItem(name, TFactoryGameItem::Model)
 //--------------------------------------------------------------------------------
 TModelItem::TLocation::TLocation(const TLocation& c)
 {
-  nameBase   = c.nameBase;
-  nameBranch = c.nameBranch;
-  position   = c.position;
-  rotation   = c.rotation;
-  listLink   = c.listLink;
+  nameBase    = c.nameBase;
+  nameBranch  = c.nameBranch;
+  position    = c.position;
+  orientation = c.orientation;
+  listLink    = c.listLink;
 }
 //--------------------------------------------------------------------------------
 TModelItem::TLocation& TModelItem::TLocation::operator = (const TLocation& c)
 {
   TLocation* pC = (TLocation*)&c;
 
-  pC->nameBase = nameBase;
-  pC->nameBranch = nameBranch;
-  pC->position = position;
-  pC->rotation = rotation;
-  pC->listLink = listLink;
+  pC->nameBase    = nameBase;
+  pC->nameBranch  = nameBranch;
+  pC->position    = position;
+  pC->orientation = orientation;
+  pC->listLink    = listLink;
 
   return *this;
 }
@@ -48,7 +48,7 @@ TModelItem::TLink& TModelItem::TLink::operator = (const TLink& c)
 {
   TLink* pC = (TLink*)&c;
 
-  pC->nameJointBase = nameJointBase;
+  pC->nameJointBase   = nameJointBase;
   pC->nameJointBranch = nameJointBranch;
 
   pC->mPtrConstraint = mPtrConstraint;

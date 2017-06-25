@@ -215,11 +215,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Joint>
       <Joint name="1">
         <Position>
@@ -227,11 +228,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Joint>
       <Joint name="2">
         <Position>
@@ -239,11 +241,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Joint>
       <Joint name="3">
         <Position>
@@ -251,11 +254,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Joint>
       <Joint name="4"><!-- для сцепки типа вагончик -->
         <Position>
@@ -263,11 +267,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Joint>
       <Joint name="5"><!-- для сцепки типа вагончик -->
         <Position>
@@ -275,11 +280,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Joint>
     </Joining>
     <Geometry>
@@ -321,11 +327,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Root>
       <Formation>
         <Location> <!-- Ветка, кто относительно кого соориентирован -->
@@ -360,11 +367,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Root>
       <Formation>
         <Location> <!-- Ветка, кто относительно кого соориентирован -->
@@ -399,11 +407,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Root>
       <Formation>
       </Formation>
@@ -440,11 +449,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Root>
       <Formation>
       </Formation>
@@ -582,11 +592,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Rotation>
+        <Orientation>
+					<Property key="x" value="0.4551968870"/>
+					<Property key="y" value="0.0923423171"/>
+					<Property key="z" value="0.0477437563"/>
+					<Property key="w" value="-0.884370446"/>
+        </Orientation>
       </Root>
       <Formation>
         <Location> <!-- Ветка, кто относительно кого соориентирован -->
@@ -597,11 +608,12 @@
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
           </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
+					<Orientation>
+						<Property key="x" value="0.4551968870"/>
+						<Property key="y" value="0.0923423171"/>
+						<Property key="z" value="0.0477437563"/>
+						<Property key="w" value="-0.884370446"/>
+					</Orientation>
           <Link>
             <JointBase   name="0"/>
             <JointBranch name="0"/>
@@ -625,11 +637,12 @@
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
           </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
+					<Orientation>
+						<Property key="x" value="0.4551968870"/>
+						<Property key="y" value="0.0923423171"/>
+						<Property key="z" value="0.0477437563"/>
+						<Property key="w" value="-0.884370446"/>
+					</Orientation>
           <Link>
             <JointBase   name="0"/>
             <JointBranch name="0"/>
@@ -653,11 +666,12 @@
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
           </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
+					<Orientation>
+						<Property key="x" value="0.4551968870"/>
+						<Property key="y" value="0.0923423171"/>
+						<Property key="z" value="0.0477437563"/>
+						<Property key="w" value="-0.884370446"/>
+					</Orientation>
           <Link>
             <JointBase   name="0"/>
             <JointBranch name="0"/>
@@ -681,11 +695,12 @@
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
           </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
+					<Orientation>
+						<Property key="x" value="0.4551968870"/>
+						<Property key="y" value="0.0923423171"/>
+						<Property key="z" value="0.0477437563"/>
+						<Property key="w" value="-0.884370446"/>
+					</Orientation>
           <Link>
             <JointBase   name="0"/>
             <JointBranch name="0"/>
@@ -774,11 +789,12 @@
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
         </Position>
-        <Rotation>
+        <Orientation>
           <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-        </Rotation>
+          <Property key="w" value="0"/>					
+        </Orientation>
       </Root>
       <Formation>
         <Location> <!-- Ветка, кто относительно кого соориентирован -->
@@ -789,11 +805,12 @@
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
           </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
+					<Orientation>
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+						<Property key="w" value="0"/>					
+					</Orientation>
           <Link>
             <JointBase   name="0"/>
             <JointBranch name="0"/>
@@ -817,11 +834,12 @@
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
           </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
+					<Orientation>
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+						<Property key="w" value="0"/>					
+					</Orientation>
           <Link>
             <JointBase   name="0"/>
             <JointBranch name="0"/>
@@ -845,11 +863,12 @@
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
           </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
+					<Orientation>
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+						<Property key="w" value="0"/>					
+					</Orientation>
           <Link>
             <JointBase   name="0"/>
             <JointBranch name="0"/>
@@ -873,11 +892,12 @@
             <Property key="y" value="2"/>
             <Property key="z" value="3"/>
           </Position>
-          <Rotation>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Rotation>
+					<Orientation>
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+						<Property key="w" value="0"/>					
+					</Orientation>
           <Link>
             <JointBase   name="0"/>
             <JointBranch name="0"/>
@@ -981,12 +1001,12 @@
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 				</Position>
-				<RotationQuaternion><!-- Ориентация -->
+				<Orientation><!-- Ориентация -->
 					<Property key="x" value="0"/>
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 					<Property key="w" value="0"/>						
-				</RotationQuaternion>
+				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="MapParameter"/>
 					<Property key="Variant" value="Field"/>
@@ -1002,12 +1022,12 @@
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 				</Position>
-				<RotationQuaternion><!-- Ориентация -->
+				<Orientation><!-- Ориентация -->
 					<Property key="x" value="1"/>
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 					<Property key="w" value="0"/>						
-				</RotationQuaternion>
+				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Volume"/>
 					<Property key="Variant" value="Field_Volume_1"/>
@@ -1023,12 +1043,12 @@
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 				</Position>
-				<RotationQuaternion><!-- Ориентация -->
+				<Orientation><!-- Ориентация -->
 					<Property key="x" value="1"/>
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 					<Property key="w" value="0"/>						
-				</RotationQuaternion>
+				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Skyplane"/>
 					<Property key="Variant" value="Field_Skyplane_1"/>
@@ -1044,12 +1064,12 @@
 					<Property key="y" value="40"/>
 					<Property key="z" value="-1"/>
 				</Position>
-				<RotationQuaternion><!-- Ориентация -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="1"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>
-				</RotationQuaternion>
+				<Orientation><!-- Ориентация -->
+					<Property key="x" value="0.4551968870"/>
+					<Property key="y" value="0.0923423171"/>
+					<Property key="z" value="0.0477437563"/>
+					<Property key="w" value="-0.884370446"/>
+				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>
 					<Property key="Variant" value="Cart_S"/>
@@ -1065,12 +1085,12 @@
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 				</Position>
-				<RotationQuaternion><!-- Ориентация -->
+				<Orientation><!-- Ориентация -->
 					<Property key="x" value="1"/>
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 					<Property key="w" value="0"/>						
-				</RotationQuaternion>
+				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Light"/>
 					<Property key="Variant" value="0"/>
@@ -1086,12 +1106,12 @@
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 				</Position>
-				<RotationQuaternion><!-- Ориентация -->
+				<Orientation><!-- Ориентация -->
 					<Property key="x" value="1"/>
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 					<Property key="w" value="0"/>						
-				</RotationQuaternion>
+				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Terrain"/>
 					<Property key="Variant" value="Field_Terrain"/>
@@ -1107,12 +1127,12 @@
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 				</Position>
-				<RotationQuaternion><!-- Ориентация -->
+				<Orientation><!-- Ориентация -->
 					<Property key="x" value="1"/>
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 					<Property key="w" value="0"/>						
-				</RotationQuaternion>
+				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Animated"/>
 					<Property key="Variant" value="0"/>
@@ -1128,12 +1148,12 @@
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 				</Position>
-				<RotationQuaternion><!-- Ориентация -->
+				<Orientation><!-- Ориентация -->
 					<Property key="x" value="1"/>
 					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
 					<Property key="w" value="0"/>						
-				</RotationQuaternion>
+				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Sound"/>
 					<Property key="Variant" value="Wind"/>

@@ -13,8 +13,6 @@ See for more information License.h.
 #include <OgreEntity.h>
 #include "ModelItem.h"
 
-// TODO требует доработки! ->ShapeNode_Model + ModelNode_Model
-
 class DllExport TBaseNode_Model
 {
 public:
@@ -22,13 +20,21 @@ public:
 	std::string namePart;
 	std::string nameVariant;
 
-	// расположение относительно Up
-	nsMathTools::TVector3 mPos;
-	nsMathTools::TVector4 mOrient;
+	struct TLocation
+	{
+		nsMathTools::TVector3    mPos;
+		nsMathTools::TQuaternion mOrient;
+	};
+	// расположение относительно Parent
+	TLocation mLocal;
+	// помощник для построения модели
+	TLocation mGlobal;
 public:
 	TBaseNode_Model();
 	virtual ~TBaseNode_Model();
 
+	// globalParent - глобальное положение и ориентация родителя, к которому цепляется данный нод
+	void CalcGlobal(TLocation& globalParent);
 };
 
 #endif

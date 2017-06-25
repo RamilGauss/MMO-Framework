@@ -188,20 +188,20 @@ TTerrainItem* TPattern_Terrain::GetTerrainItem()
 	return pTerrainItem;
 }
 //---------------------------------------------------------------------------
-bool TPattern_Terrain::UpdateGameItem()
+bool TPattern_Terrain::UpdateGameItem(TFactoryGameItem::TypeGameItem type)
 {
-	return mUpdaterGameItemBullet.Update() || mUpdaterGameItemOgre.Update();
+  return mUpdaterGameItemBullet.Update(type) || mUpdaterGameItemOgre.Update(type);
 }
 //---------------------------------------------------------------------------
-void TPattern_Terrain::SaveGameItemOnHDD()
+void TPattern_Terrain::SaveGameItemOnHDD(TFactoryGameItem::TypeGameItem type)
 {
-	mSaverGameItemBullet.Save();
-	mSaverGameItemOgre.Save();
+	mSaverGameItemBullet.Save(type);
+	mSaverGameItemOgre.Save(type);
 }
 //---------------------------------------------------------------------------
-void TPattern_Terrain::SaveOutDataOnHDD()
+void TPattern_Terrain::SaveOutDataOnHDD(TFactoryGameItem::TypeGameItem type)
 {
-	mSaverOutDataBullet.Save();
-	mSaverOutDataOgre.Save();
+	mSaverOutDataBullet.Save(type);
+	mSaverOutDataOgre.Save(type);
 }
 //---------------------------------------------------------------------------

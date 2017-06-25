@@ -10,13 +10,14 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "Operation_Terrain.h"
+#include "FactoryGameItem.h"
 
 class DllExport TUpdaterGameItem_Terrain : public TOperation_Terrain
 {
 public:
 	TUpdaterGameItem_Terrain();
 
-	virtual bool Update() = 0;
+	virtual bool Update( TFactoryGameItem::TypeGameItem type ) = 0;
 private:
 };
 

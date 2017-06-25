@@ -48,6 +48,9 @@ protected:
 	bool LoadVector4ByProperty(nsMathTools::TVector4& v4);
 	bool SaveVector4ByProperty(nsMathTools::TVector4& v4);
 
+	bool LoadQuaternionByProperty(nsMathTools::TQuaternion& q);
+	bool SaveQuaternionByProperty(nsMathTools::TQuaternion& q);
+
 	bool LoadColour(nsMathTools::TVector3& v3);
 	bool SaveColour(nsMathTools::TVector3& v3);
 private:

@@ -17,7 +17,7 @@ TSaverGameItem_Terrain_Ogre::~TSaverGameItem_Terrain_Ogre()
 
 }
 //---------------------------------------------------------------------
-void TSaverGameItem_Terrain_Ogre::Save()
+void TSaverGameItem_Terrain_Ogre::Save( TFactoryGameItem::TypeGameItem type )
 {
 
 }

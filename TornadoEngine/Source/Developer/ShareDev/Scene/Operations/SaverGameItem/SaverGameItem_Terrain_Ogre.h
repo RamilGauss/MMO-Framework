@@ -17,7 +17,7 @@ public:
 	TSaverGameItem_Terrain_Ogre();
 	virtual ~TSaverGameItem_Terrain_Ogre();
 
-	virtual void Save();
+	virtual void Save( TFactoryGameItem::TypeGameItem type );
 private:
 };
 

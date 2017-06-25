@@ -40,10 +40,10 @@ void TSerializerMapItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
 		Push(object.position.y);
 		Push(object.position.z);
 
-		Push(object.rotationQuaternion.x);
-		Push(object.rotationQuaternion.y);
-		Push(object.rotationQuaternion.z);
-		Push(object.rotationQuaternion.w);
+		Push(object.orientation.x);
+		Push(object.orientation.y);
+		Push(object.orientation.z);
+		Push(object.orientation.w);
 
 		PushStr(object.patternConfig.name);
 		PushStr(object.patternConfig.nameVariant);
@@ -72,10 +72,10 @@ bool TSerializerMapItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int size
 		RET_FALSE( Pop(object.position.y) )
 		RET_FALSE( Pop(object.position.z) )
 
-		RET_FALSE( Pop(object.rotationQuaternion.x) )
-		RET_FALSE( Pop(object.rotationQuaternion.y) )
-		RET_FALSE( Pop(object.rotationQuaternion.z) )
-		RET_FALSE( Pop(object.rotationQuaternion.w) )
+		RET_FALSE( Pop(object.orientation.x) )
+		RET_FALSE( Pop(object.orientation.y) )
+		RET_FALSE( Pop(object.orientation.z) )
+		RET_FALSE( Pop(object.orientation.w) )
 
 
 		RET_FALSE( Pop(object.patternConfig.name) )

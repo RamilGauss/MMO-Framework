@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -73,6 +73,8 @@ void THierarchyNode_Model::SetRoot(std::string namePart)
 //-----------------------------------------------------------------------------
 TBaseNode_Model* THierarchyNode_Model::GetRoot()
 {
+	if( mRoot==NULL )
+		return NULL;
 	return mRoot->pNode;
 }
 //-----------------------------------------------------------------------------

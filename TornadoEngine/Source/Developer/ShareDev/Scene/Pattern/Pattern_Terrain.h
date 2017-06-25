@@ -97,9 +97,9 @@ public:
 	virtual bool BuildByModule_Graphic(bool fast = false);
   virtual bool BuildByModule_Physic(bool fast = false);
 
-	virtual bool UpdateGameItem();
-	virtual void SaveGameItemOnHDD();
-	virtual void SaveOutDataOnHDD();
+	virtual bool UpdateGameItem(TFactoryGameItem::TypeGameItem type);
+	virtual void SaveGameItemOnHDD(TFactoryGameItem::TypeGameItem type);
+	virtual void SaveOutDataOnHDD(TFactoryGameItem::TypeGameItem type);
 
 	virtual TManagerNamePattern::eBaseType GetBaseType();
 

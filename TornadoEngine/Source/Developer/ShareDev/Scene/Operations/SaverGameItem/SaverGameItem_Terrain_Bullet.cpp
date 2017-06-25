@@ -17,7 +17,7 @@ TSaverGameItem_Terrain_Bullet::~TSaverGameItem_Terrain_Bullet()
 
 }
 //---------------------------------------------------------------------
-void TSaverGameItem_Terrain_Bullet::Save()
+void TSaverGameItem_Terrain_Bullet::Save(TFactoryGameItem::TypeGameItem type)
 {
 
 }

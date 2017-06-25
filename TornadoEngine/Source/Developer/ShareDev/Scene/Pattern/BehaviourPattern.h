@@ -31,8 +31,8 @@ class DllExport TBehaviourPattern
 	
 	TPatternConfigItem::TMapStrStr* mPtrDefaultParameterMap;
 
-	nsMathTools::TVector3 mPosition;
-	nsMathTools::TVector4 mOrientQuaternion;
+	nsMathTools::TVector3    mPosition;
+	nsMathTools::TQuaternion mOrientQuaternion;
 protected:
 	TGameObject*                   mGO;
 
@@ -73,8 +73,8 @@ public:
 
 	virtual void SetPosition(nsMathTools::TVector3& v);
 	virtual bool GetPosition(nsMathTools::TVector3& v);// мгновенное значение
-	virtual void SetOrientation(nsMathTools::TVector4& v);
-	virtual bool GetOrientation(nsMathTools::TVector4& v);// мгновенное значение
+	virtual void SetOrientation(nsMathTools::TQuaternion& v);
+	virtual bool GetOrientation(nsMathTools::TQuaternion& v);// мгновенное значение
 
 	virtual TPatternConfigItem::TMapStrStr* GetParameterMap();
 	virtual void SetParameterMap(TPatternConfigItem::TMapStrStr& m);
@@ -103,21 +103,15 @@ public:
   virtual void SynchroByModule_Physic(); // внутренняя синхронизация (физика влияет сама на себя)
   virtual void SynchroByModule_Sound();  // звук от физики
 
-	// обновить все ресурсы, на основании которых строится объект на карте
-	// учитывает изменения, совершённые через интерфейс паттерна, Физику и внутренние изменения Логикой
 	// если были изменения, то вернет true
-	virtual bool UpdateGameItem();
-	
-	// обновить внутренности по ресурсам, результат такой же как при вызове Build
-	// отличие от Build - вызов атомарен, то же самое что BuildXXX(fast=true)
-	// данные функции не имеют применения
-	//### virtual void UpdateByGameItemByModule_Logic();
-	//### virtual void UpdateByGameItemByModule_Graphic();
-	//### virtual void UpdateByGameItemByModule_Physic();
-	//### virtual void UpdateByGameItemByModule_Sound();
+	// обновить все GameItem данного типа
+	virtual bool UpdateGameItem(TFactoryGameItem::TypeGameItem type);
+	// описание конкретного объекта. PatternConfig описывает как объект на карте сконфигурирован.
+	// сохранить все GameItem данного типа
+	virtual void SaveGameItemOnHDD(TFactoryGameItem::TypeGameItem type);
+	// сохранить все данные, на которые ссылаются GameItem данного типа
+	virtual void SaveOutDataOnHDD(TFactoryGameItem::TypeGameItem type);
 
-  virtual void SaveGameItemOnHDD();
-  virtual void SaveOutDataOnHDD();
 protected:
 	template<typename T>
 	T GetFromParameterMap(std::string name, T* defaultT = NULL );

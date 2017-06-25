@@ -25,7 +25,7 @@ namespace nsSerializerMapItem_XML
   const char* sPatternConfig   			= "PatternConfig";
   const char* sNamePattern     			= "Name";
   const char* sVariantPatternConfig	= "Variant";
-	const char* sRotationQuaternion 	= "RotationQuaternion";
+	const char* sOrientation         	= "Orientation";
   // reserve
 	const char* sScenario           	= "Scenario";
 }
@@ -151,12 +151,9 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
 
     mXML->LeaveSection();
   }
-  if(mXML->EnterSection(sRotationQuaternion,0))
+  if(mXML->EnterSection(sOrientation,0))
   {
-    nsMathTools::TVector4 rot;
-    if(LoadVector4ByProperty(rot))
-      object.rotationQuaternion = rot;
-
+    LoadQuaternionByProperty(object.orientation);
     mXML->LeaveSection();
   }
 
@@ -197,9 +194,9 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
     SaveVector3ByProperty(object.position);
     mXML->LeaveSection();
   }
-  if(mXML->AddSectionAndEnter(sRotationQuaternion))
+  if(mXML->AddSectionAndEnter(sOrientation))
   {
-    SaveVector4ByProperty(object.rotationQuaternion);
+    SaveQuaternionByProperty(object.orientation);
     mXML->LeaveSection();
   }
 

@@ -22,7 +22,6 @@ See for more information License.h.
 #include <Dynamics/btDiscreteDynamicsWorld.h>
 #include <boost/foreach.hpp>
 #include <OgreRoot.h>
-#include <OgreEntity.h>
 
 namespace nsPattern_Model
 {
@@ -60,6 +59,7 @@ void TPattern_Model::Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 
 	mBuilderBullet.SetPattern(this);
 	mBuilderOgre.SetPattern(this);
+	mBuilderLogic.SetPattern(this);
 
 	//mDestructorBullet.SetPattern(this);
 	//mDestructorOgre.SetPattern(this);
@@ -67,8 +67,12 @@ void TPattern_Model::Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 	//mModifyBullet.SetPattern(this);
 	//mModifyOgre.SetPattern(this);
 
-	//mUpdaterResourcesBullet.SetPattern(this);
-	//mUpdaterResourcesOgre.SetPattern(this);
+	//mUpdaterGIBullet.SetPattern(this);
+	//mUpdaterGIOgre.SetPattern(this);
+
+	mSynchronizerBullet.SetPattern(this);
+	mSynchronizerLogic.SetPattern(this);
+	mSynchronizerOgre.SetPattern(this);
 }
 //---------------------------------------------------------------------------
 bool TPattern_Model::SetParameterFromPattern(TContainer c)
@@ -84,77 +88,18 @@ TContainer TPattern_Model::GetParameterToPattern()
 //---------------------------------------------------------------------------
 void TPattern_Model::BuildByModule_Logic()
 {
-	// найти имя модели
-  std::string nameGameItem = GetNameGameItem();
-	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-
-  TModelItem* pModel = (TModelItem*)pFGI->Get(TFactoryGameItem::Model, nameGameItem);
-  if( pModel==NULL )
-    return;
-  
-  // задача: создать модели по имени. При синхронизации менять положение и ориентацию форм или моделей
-  SetTypeContent(pModel->mTypeCollection);
-  if( pModel->mTypeCollection==TModelItem::eModel )
-    BuildModelsByModule_Logic(pModel->mMapNamePart);
-  else
-    BuildShapesByModule_Logic(pModel->mMapNamePart);
+	mBuilderLogic.Build();
 }
 //---------------------------------------------------------------------------
 bool TPattern_Model::BuildByModule_Graphic(bool fast)
 {
-  int cntPart = mMngNode_Collection.GetCountPart();
-  for( int iPart = 0 ; iPart < cntPart ; iPart++ )
-  {
-    std::string namePart = mMngNode_Collection.GetNamePart(iPart);
-    int cntVariant = mMngNode_Collection.GetCountVariant(namePart);
-    for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
-    {
-      std::string nameVariant = mMngNode_Collection.GetNameVariant(namePart, iVariant);
-      TBaseNode_Model* pNode = mMngNode_Collection.Get(namePart, nameVariant);
-      if( pNode==NULL )
-        continue;
-      if( pNode->type==TModelItem::eModel )
-      {
-        TModelNode_Model* pModelNode = (TModelNode_Model*)pNode;
-        pModelNode->mPtrModel->BuildByModule_Graphic();
-      }
-      else
-      {
-        TShapeNode_Model* pShapeNode = (TShapeNode_Model*)pNode;
-        BuildShapeByModule_Graphic(pShapeNode);
-      }
-    }
-  }
-	PostBuildByModule_Graphic();
+	mBuilderOgre.Build();
 	return true;
 }
 //---------------------------------------------------------------------------
 bool TPattern_Model::BuildByModule_Physic( bool fast )
 {
-	int cntPart = mMngNode_Collection.GetCountPart();
-	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
-	{
-		std::string namePart = mMngNode_Collection.GetNamePart(iPart);
-		int cntVariant = mMngNode_Collection.GetCountVariant(namePart);
-		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
-		{
-			std::string nameVariant = mMngNode_Collection.GetNameVariant(namePart, iVariant);
-			TBaseNode_Model* pNode = mMngNode_Collection.Get(namePart, nameVariant);
-			if( pNode==NULL )
-				continue;
-			if( pNode->type==TModelItem::eModel )
-			{
-				TModelNode_Model* pModelNode = (TModelNode_Model*)pNode;
-				//pModelNode->pModel->BuildByModule_Physic();
-			}
-			else
-			{
-				TShapeNode_Model* pShapeNode = (TShapeNode_Model*)pNode;
-				BuildShapeByModule_Physic(pShapeNode);
-			}
-		}
-	}
-	PostBuildByModule_Physic();
+	mBuilderBullet.Build();
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -185,238 +130,22 @@ bool TPattern_Model::DestructByModule_Sound( bool fast )
 //---------------------------------------------------------------------------
 void TPattern_Model::SynchroByModule_Logic()
 {
-
+	mSynchronizerLogic.Synchro();
 }
 //---------------------------------------------------------------------------
 void TPattern_Model::SynchroByModule_Graphic()
 {
-	// синхронизируем всё!
-	int cntPart = mHierarchy.GetCount();
-	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
-	{
-		TBaseNode_Model* pNode = mHierarchy.Get(iPart);
-		if( pNode==NULL )
-			continue;
-		if( pNode->type==TModelItem::eModel )
-		{
-			TModelNode_Model* pModelNode = (TModelNode_Model*)pNode;
-			pModelNode->mPtrModel->SynchroByModule_Graphic();
-		}
-		else
-		{
-			TShapeNode_Model* pShapeNode = (TShapeNode_Model*)pNode;
-
-			btTransform& trans = pShapeNode->mPtrRigidBody->getWorldTransform();//###
-			btVector3& posBullet = trans.getOrigin();
-			
-			Ogre::Entity* pEntity = pShapeNode->mPtrEntity;
-
-			Ogre::Vector3 posOgre;
-			posOgre.x = posBullet.x();
-			posOgre.y = posBullet.y();
-			posOgre.z = posBullet.z();
-			pEntity->getParentSceneNode()->setPosition(posOgre);
-
-			btQuaternion quat = trans.getRotation();
-			Ogre::Real w = quat.w(); 
-			Ogre::Real x = quat.x(); 
-			Ogre::Real y = quat.y();
-			Ogre::Real z = quat.z();
-			pEntity->getParentSceneNode()->setOrientation( w, x, y, z);
-		}
-	}
+	mSynchronizerOgre.Synchro();
 }
 //---------------------------------------------------------------------------
 void TPattern_Model::SynchroByModule_Physic()
 {
-  // проверка на изменение позиции и ориентации
-/*	int cntPart = GetCountPart();
-	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
-	{
-		std::string namePart = GetNamePart(iPart);
-		int cntVariant = GetCountVariant(namePart);
-		for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
-		{
-			std::string nameVariant = GetNameVariant(namePart, iVariant);
-			TBaseDesc* pDesc = GetDesc(namePart, nameVariant);
-			if( pDesc==NULL )
-				continue;
-			if( pDesc->type==TModelItem::eShape )
-			{
-				TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
-
-				const btVector3& velocity = pShapeDesc->pRigidBody->getLinearVelocity();
-				float speed = velocity.length();
-				if( speed > 15.0f )
-				{
-					int a = 0;
-				}
-			}
-		}
-	}*/
+	mSynchronizerBullet.Synchro();
 }
 //---------------------------------------------------------------------------
 void TPattern_Model::SynchroByModule_Sound()
 {
 
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::BuildModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePart)
-{
-  TFactoryBehaviourPattern* pFBP = TModuleLogic::Get()->GetFBP();
-  TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-  // создать другие модели и сохранить в контексте
-  BOOST_FOREACH( TModelItem::TMapStrPartVT& vtPart, mapNamePart )
-  {
-    std::string namePart = vtPart.first;
-    BOOST_FOREACH( TModelItem::TVariant& variant, vtPart.second.vecVariant )
-    {
-      TModelItem* pModel = (TModelItem*)pFGI->Get( TFactoryGameItem::Model, variant.nameItem);
-      if( pModel==NULL )
-        continue;
-      TBehaviourPattern* pPattern = pFBP->GetPatternByName(pModel->mNamePattern);
-      if( pPattern==NULL )
-        continue;
-
-/*      TModelDesc* pModelDesc = new TModelDesc;
-      pModelDesc->namePart    = namePart;
-      pModelDesc->nameVariant = variant.name;
-			pModelDesc->pModel = (TPattern_Model*)pPattern;
-      pModelDesc->pModel->SetNameGameItem(variant.nameItem);
-      pModelDesc->pModel->SetMobility(GetMobility());// мобильность наследуется
-  */    //AddDesc(pModelDesc);
-
-      pPattern->BuildByModule_Logic();// дальше по итерации
-    }
-  }
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::BuildShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePart)
-{
-  TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-  BOOST_FOREACH( TModelItem::TMapStrPartVT& vtPart, mapNamePart )
-  {
-    std::string namePart = vtPart.first;
-    BOOST_FOREACH( TModelItem::TVariant& variant, vtPart.second.vecVariant )
-    {
-      // передача данных от Логики к Физике и Графике для каждого потока ( создание формы )
-      TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get( TFactoryGameItem::Shape, variant.nameItem);
-      if( pShapeItem==NULL )
-        continue;
-
-      TShapeNode_Model* pShape = new TShapeNode_Model;
-      pShape->namePart         = namePart;
-      pShape->nameVariant      = variant.name;
-      pShape->nameShapeItem    = variant.nameItem;
-      if( variant.redefinitionMaterial.length() )
-        pShape->nameMaterial = variant.redefinitionMaterial;
-      else
-        pShape->nameMaterial = pShapeItem->mNameMaterial;
-			// наполнить менеджер узлов данными (но не выделять память под физический и графический объекты)
-			mMngNode_Collection.Add(pShape);
-    }
-		std::string nameVariant = mMngNode_Collection.GetNameVariant(namePart, 0);
-		TBaseNode_Model* p = mMngNode_Collection.Get(namePart,nameVariant);
-		if( p )
-			mHierarchy.Add(p);
-  }
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::BuildShapeByModule_Graphic(TShapeNode_Model* pShapeNode)
-{
-  TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-  TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeNode->nameShapeItem);
-  if( pShapeItem==NULL )
-    return;
-
-  Ogre::Entity* pEntity = mBuilderOgre.GetShapeMaker()->Build( pShapeItem );
-	pShapeNode->mPtrEntity = pEntity;
-
-	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
-	// сделано временно для визуализации (отладка)
-	nsMathTools::TVector3 pos;
-	GetPosition(pos);
-	Ogre::Vector3 vPos(pos.x, pos.y, pos.z);
-	pEntity->getParentSceneNode()->setPosition(vPos);
-	pEntity->setCastShadows(true);
-
-	nsMathTools::TVector4 orient;
-	GetOrientation(orient);
-	pEntity->getParentSceneNode()->setOrientation(orient.w, orient.x, orient.y, orient.z);
-	//###
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::BuildShapeByModule_Physic(TShapeNode_Model* pShapeNode)
-{
-	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-	TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeNode->nameShapeItem);
-	if( pShapeItem==NULL )
-		return;
-
-	int id_world = GetPhysicWorld();
-
-	btRigidBody* pRB = mBuilderBullet.GetShapeMaker()->Build( id_world, pShapeItem );
-	pShapeNode->mPtrRigidBody = pRB;
-
-	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
-	// сделано временно для визуализации (отладка)
-	nsMathTools::TVector3 pos;
-	GetPosition(pos);
-	btTransform& trans = pShapeNode->mPtrRigidBody->getWorldTransform();
-	btVector3& posBullet = trans.getOrigin();
-	posBullet.setX(pos.x);
-	posBullet.setY(pos.y);
-	posBullet.setZ(pos.z);
-
-	nsMathTools::TVector4 orient;
-	GetOrientation(orient);
-	btQuaternion quat;
-	quat.setX(orient.x);
-	quat.setY(orient.y);
-	quat.setZ(orient.z);
-	quat.setW(orient.w);
-	trans.setRotation(quat);
-
-	pShapeNode->mPtrRigidBody->setWorldTransform(trans);
-
-	//###
-	pShapeNode->mPtrRigidBody->setLinearVelocity(btVector3(0,0,0));
-	//pShapeDesc->pRigidBody->setAngularVelocity(btVector3(0,10,0));
-
-	//btDiscreteDynamicsWorld* pWorld = 
-	// TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(id_world);
-	//###
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::PostBuildByModule_Graphic()
-{
-
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::PostBuildByModule_Physic()
-{
-	std::string nameGameItem = GetNameGameItem();
-	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-
-	TModelItem* pModel = (TModelItem*)pFGI->Get(TFactoryGameItem::Model, nameGameItem);
-	if( pModel==NULL )
-		return;
-
-	mHierarchy.SetRoot(pModel->mRoot.name);
-	BOOST_FOREACH( TModelItem::TMMapStrLocationVT& vtLocation, pModel->mMapNameBaseLocation )
-	{
-		mHierarchy.Link(vtLocation.second.nameBranch,vtLocation.second.nameBase);
-	}
-
-	// расположить части в соответствии с описанием внутри ModelItem
-
-
-	// найти координаты крючков, для этого надо перемножить кватернионы вращения
-	// потом сдвинуть относительно Parent
-
-
-
-	// соединить части через крючки через constraint
 }
 //---------------------------------------------------------------------------
 TModelItem::eType TPattern_Model::GetTypeContent()
@@ -476,30 +205,37 @@ void TPattern_Model::ActivatePhysicBody(bool force)
 //------------------------------------------------------------------------
 void TPattern_Model::SetPosition(nsMathTools::TVector3& v)
 {
+	// поменять положение корня и пробежаться по иерархии, меняя положение детей
+	//TBaseNode_Model* pRoot = mHierarchy.GetRoot();
+	//if( pRoot )
+	//{
+	//	pRoot->mGlobal.mPos = v;
+	//	return;
+	//}
 	TBehaviourPattern::SetPosition(v);
 }
 //---------------------------------------------------------------------------
 bool TPattern_Model::GetPosition(nsMathTools::TVector3& v)
 {
 	// если есть корень, то выдать его позицию
-/*	TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
-	btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();
-	btVector3& posBullet = trans.getOrigin();
-	v.x = posBullet.x();
-	v.y = posBullet.y();
-	v.z = posBullet.z();
-	return true;//TBehaviourPattern::GetPosition(v);
-*/
+	//TBaseNode_Model* pRoot = mHierarchy.GetRoot();
+	//if( pRoot )
+	//{
+	//	v = pRoot->mGlobal.mPos;
+	//	return true;
+	//}
 	// иначе выдать то что задали
 	return TBehaviourPattern::GetPosition(v);
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::SetOrientation(nsMathTools::TVector4& v)
+void TPattern_Model::SetOrientation(nsMathTools::TQuaternion& v)
 {
+	// поменять ориентацию корня и пробежаться по иерархии, меняя ориентации детей
+
 	TBehaviourPattern::SetOrientation(v);
 }
 //---------------------------------------------------------------------------
-bool TPattern_Model::GetOrientation(nsMathTools::TVector4& v)
+bool TPattern_Model::GetOrientation(nsMathTools::TQuaternion& v)
 {
 	/*TShapeDesc* pShapeDesc = (TShapeDesc*)pDesc;
 	btTransform& trans = pShapeDesc->pRigidBody->getWorldTransform();

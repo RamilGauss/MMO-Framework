@@ -20,7 +20,7 @@ namespace nsShapeItem
   const char* sJoining        = "Joining";
   const char* sJoint          = "Joint";
   const char* sPosition       = "Position";
-  const char* sRotation       = "Rotation";
+  const char* sOrientation    = "Orientation";
 
   const char* sMaterial       = "Material";
   const char* sPaint          = "Paint"; 
@@ -87,17 +87,14 @@ void TSerializerShapeItem_XML::LoadJoining()
       TShapeItem::TJoint joint;
       if(mXML->EnterSection(sJoint,iJoint))
       {
-        nsMathTools::TVector3 v3;
         if(mXML->EnterSection(sPosition,0))
         {
-          LoadVector3ByProperty(v3);
-          joint.position = v3;
+          LoadVector3ByProperty(joint.position);
           mXML->LeaveSection();
         }
-        if(mXML->EnterSection(sRotation,0))
+        if(mXML->EnterSection(sOrientation,0))
         {
-          LoadVector3ByProperty(v3);
-          joint.rotation = v3;
+          LoadQuaternionByProperty(joint.orientation);
           mXML->LeaveSection();
         }
         mXML->LeaveSection();
@@ -204,9 +201,9 @@ void TSerializerShapeItem_XML::SaveJoining()
           SaveVector3ByProperty(bit.second.position);
           mXML->LeaveSection();
         }
-        if(mXML->AddSectionAndEnter(sRotation))
+        if(mXML->AddSectionAndEnter(sOrientation))
         {
-          SaveVector3ByProperty(bit.second.rotation);
+          SaveQuaternionByProperty(bit.second.orientation);
           mXML->LeaveSection();
         }
         mXML->LeaveSection();

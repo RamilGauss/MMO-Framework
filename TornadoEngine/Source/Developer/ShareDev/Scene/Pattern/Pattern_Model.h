@@ -14,25 +14,30 @@ See for more information License.h.
 #include "ModelItem.h"
 #include "ModulePhysicEngine.h"
 
-#include <OgreEntity.h>
-
 #include "Builder_Model_Bullet.h"
+#include "Builder_Model_Logic.h"
 #include "Builder_Model_Ogre.h"
+
 #include "ManagerNode_Model.h"
 #include "HierarchyNode_Model.h"
+
+#include "Synchronizer_Model_Bullet.h"
+#include "Synchronizer_Model_Logic.h"
+#include "Synchronizer_Model_Ogre.h"
 
 class TShapeNode_Model;
 
 class DllExport TPattern_Model : public TBehaviourPattern
 {
+public:// for using by scenarios
 	// набор узлов
 	TManagerNode_Model mMngNode_Collection;
-
 	// узлы из иерархии
 	THierarchyNode_Model mHierarchy;
 
 	TModelItem::eType mTypeContent;
-
+protected:
+	TBuilder_Model_Logic  mBuilderLogic;
 	TBuilder_Model_Bullet mBuilderBullet;
 	TBuilder_Model_Ogre   mBuilderOgre;
 
@@ -42,8 +47,8 @@ class DllExport TPattern_Model : public TBehaviourPattern
 	//TModify_Model_Bullet  			  mModifyBullet;
 	//TModify_Model_Ogre    			  mModifyOgre;
 
-	//TUpdaterGameItem_Model_Bullet mUpdaterGameItemBullet;
-	//TUpdaterGameItem_Model_Ogre   mUpdaterGameItemOgre;
+	//TUpdaterGameItem_Model_Bullet mUpdaterGIBullet;
+	//TUpdaterGameItem_Model_Ogre   mUpdaterGIOgre;
 
 	//TSaverGameItem_Model_Bullet   mSaverGameItem_Bullet;
 	//TSaverGameItem_Model_Ogre     mSaverGameItem_Ogre;
@@ -51,6 +56,9 @@ class DllExport TPattern_Model : public TBehaviourPattern
 	//TSaverOutData_Model_Bullet    mSaverOutData_Bullet;
 	//TSaverOutData_Model_Ogre      mSaverOutData_Ogre;
 
+	TSynchronizer_Model_Bullet mSynchronizerBullet;
+	TSynchronizer_Model_Logic  mSynchronizerLogic;
+	TSynchronizer_Model_Ogre   mSynchronizerOgre;
 public:
   TPattern_Model();
   TPattern_Model(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
@@ -89,21 +97,12 @@ public:
 	// всё относительно Root
 	virtual void SetPosition(nsMathTools::TVector3& v);
 	virtual bool GetPosition(nsMathTools::TVector3& v);
-	virtual void SetOrientation(nsMathTools::TVector4& v);
-	virtual bool GetOrientation(nsMathTools::TVector4& v);
+	virtual void SetOrientation(nsMathTools::TQuaternion& v);
+	virtual bool GetOrientation(nsMathTools::TQuaternion& v);
 protected:
 	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
 
-  void BuildModelsByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
-  void BuildShapesByModule_Logic(TModelItem::TMapStrPart& mapNamePart);
-
-  void BuildShapeByModule_Graphic(TShapeNode_Model* pShapeNode);
-	void PostBuildByModule_Graphic();
-
-	void BuildShapeByModule_Physic(TShapeNode_Model* pShapeNode);
-	void PostBuildByModule_Physic();
-
-protected:
+public:// for using by scenarios
 	TModelItem::eType GetTypeContent();
 	void SetTypeContent(TModelItem::eType type);
 

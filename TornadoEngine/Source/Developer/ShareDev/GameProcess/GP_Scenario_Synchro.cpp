@@ -67,10 +67,18 @@ void TGP_Scenario_Synchro::SaveMap(std::string nameMap)
 		if( pPattern==NULL )
 			continue;
 
-		if( pPattern->UpdateGameItem() )
+		if( pPattern->UpdateGameItem(TFactoryGameItem::PatternConfig) )
 		{
-			pPattern->SaveGameItemOnHDD();
-			pPattern->SaveOutDataOnHDD();
+			pPattern->SaveGameItemOnHDD(TFactoryGameItem::PatternConfig);
+			pPattern->SaveOutDataOnHDD(TFactoryGameItem::PatternConfig);
+		}
+		if( pPattern->GetBaseType()==TManagerNamePattern::eTerrain )
+		{
+			if( pPattern->UpdateGameItem(TFactoryGameItem::Terrain) )
+			{
+				pPattern->SaveGameItemOnHDD(TFactoryGameItem::Terrain);
+				pPattern->SaveOutDataOnHDD(TFactoryGameItem::Terrain);
+			}
 		}
 
 		TMapItem::TObject object;
@@ -79,7 +87,7 @@ void TGP_Scenario_Synchro::SaveMap(std::string nameMap)
 		object.patternConfig.name        = pPattern->GetNamePatternConfig();
 		object.patternConfig.nameVariant = pPattern->GetNameVariantPatternConfig();
 		pPattern->GetPosition(object.position);
-		pPattern->GetOrientation(object.rotationQuaternion);
+		pPattern->GetOrientation(object.orientation);
 
 		pMapITem->mListObject.push_back(object);
 	}

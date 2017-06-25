@@ -17,7 +17,7 @@ public:
 	TUpdaterGameItem_Terrain_Ogre();
 	virtual ~TUpdaterGameItem_Terrain_Ogre();
 
-	virtual bool Update();
+	virtual bool Update( TFactoryGameItem::TypeGameItem type );
 protected:
 };
 
