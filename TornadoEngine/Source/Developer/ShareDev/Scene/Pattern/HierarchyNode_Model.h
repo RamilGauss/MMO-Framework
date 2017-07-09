@@ -12,8 +12,10 @@ See for more information License.h.
 #include <map>
 #include <vector>
 
-class T;
 class TBaseNode_Model;
+
+// Задача класса:
+// иерархия насыщается нодами, потом располагаем их
 
 class DllExport THierarchyNode_Model
 {
@@ -25,6 +27,7 @@ class DllExport THierarchyNode_Model
 		TBaseNode_Model* pNode;
 
 		std::string nameParent;
+
 		TVecStr vecNameChild;
 		THierarchyNode(){pNode=NULL;}
 	};
@@ -39,30 +42,37 @@ public:
 	THierarchyNode_Model();
 	virtual ~THierarchyNode_Model();
 
+	// насыщение данными
 	void Add(TBaseNode_Model* pNode);
 	void Remove(std::string namePart);
-	TBaseNode_Model* Get(std::string namePart);
+	void Clear();
 
+	// доступ
 	int GetCount();
 	TBaseNode_Model* Get(int index);
+	TBaseNode_Model* Get(std::string namePart);
 
+	// установка корня
 	void SetRoot(std::string namePart);
 	TBaseNode_Model* GetRoot();
-
+	
+	// кто родитель?
 	TBaseNode_Model* GetParent(std::string namePart);
-
+	// список детей
 	int GetCountChild(std::string namePart);
 	TBaseNode_Model* GetChild(std::string namePart, int index);
 
+	// цепляем кого-то к кому-то
 	void LinkToRoot(std::string namePart);
 	void Link(std::string namePartChild, std::string namePartParent);
+	// отцепиться
 	void UnlinkFromParent(std::string namePart);
+	void UnlinkAll();
 
 protected:
 	THierarchyNode* Get_private(std::string namePart);
 
 	void RemoveChild(THierarchyNode* pHNode, std::string nameChild);
-
 };
 
 #endif

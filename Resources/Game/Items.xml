@@ -28,8 +28,8 @@
 			<Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
 			<Property key="Mobility"     value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
 		</Variant>
-		<Variant name="Cart_S">
-			<Property key="NameGameItem" value="Cart_S"/><!-- Какую модель выбрать -->
+		<Variant name="Cart">
+			<Property key="NameGameItem" value="Cart_M"/><!-- Какую модель выбрать -->
 			<Property key="Mobility"     value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
 		</Variant>
   </PatternConfig>
@@ -168,6 +168,19 @@
   </Material>
   <Shape name="Cylinder">
     <Joining>
+      <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
+        <Position>
+          <Property key="x" value="0"/>
+          <Property key="y" value="0.15"/>
+          <Property key="z" value="0"/>
+        </Position>
+        <Orientation>
+          <Property key="x" value="0"/>
+          <Property key="y" value="1"/>
+          <Property key="z" value="0"/>
+          <Property key="w" value="0"/>					
+        </Orientation>
+      </Joint>
     </Joining>
     <Geometry>
       <Property key="Type"     value="Cylinder"/>
@@ -182,107 +195,80 @@
   </Shape>
   <Shape name="Plate">
     <Joining>
-    </Joining>
-    <Geometry>
-      <Property key="Type"   value="Plate"/>
-      <Property key="Length" value="2"/>
-      <Property key="Width"  value="0.3"/>
-      <Property key="Height" value="2"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-    </Paint>
-  </Shape>
-  <Shape name="Wheel">
-    <Joining>
-    </Joining>
-    <Geometry>
-      <Property key="Type"     value="Cylinder"/>
-      <Property key="Length"   value="0.3"/>
-      <Property key="CntPointsPerCircle" value="40"/>
-      <Property key="RadiusMax"   value="0.3"/>
-      <Property key="RadiusMin"   value="0"/>
-    </Geometry>
-    <Material name="Iron"/>
-    <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-    </Paint>
-  </Shape>
-  <Shape name="Hull">
-    <Joining>
       <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
         <Position>
           <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
+          <Property key="y" value="0.15"/>
           <Property key="z" value="0"/>
         </Position>
         <Orientation>
           <Property key="x" value="0"/>
+          <Property key="y" value="1"/>
+          <Property key="z" value="0"/>
+          <Property key="w" value="0"/>
+        </Orientation>
+      </Joint>
+      <Joint name="1"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
+        <Position>
+          <Property key="x" value="-1"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="-1"/>
+        </Position>
+        <Orientation>
+          <Property key="x" value="-1"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
           <Property key="w" value="0"/>					
         </Orientation>
       </Joint>
-      <Joint name="1">
+      <Joint name="2"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
         <Position>
-          <Property key="x" value="0"/>
+          <Property key="x" value="1"/>
           <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
+          <Property key="z" value="-1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
+          <Property key="x" value="1"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
           <Property key="w" value="0"/>					
         </Orientation>
       </Joint>
-      <Joint name="2">
+      <Joint name="3"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
         <Position>
-          <Property key="x" value="0"/>
+          <Property key="x" value="-1"/>
           <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
+          <Property key="z" value="1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
+          <Property key="x" value="-1"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
           <Property key="w" value="0"/>					
         </Orientation>
       </Joint>
-      <Joint name="3">
+      <Joint name="4"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
         <Position>
-          <Property key="x" value="0"/>
+          <Property key="x" value="1"/>
           <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
+          <Property key="z" value="1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
+          <Property key="x" value="1"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
           <Property key="w" value="0"/>					
         </Orientation>
       </Joint>
-      <Joint name="4"><!-- для сцепки типа вагончик -->
+      <Joint name="5"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
         <Position>
           <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
+          <Property key="y" value="-0.15"/>
           <Property key="z" value="0"/>
         </Position>
         <Orientation>
           <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
-        </Orientation>
-      </Joint>
-      <Joint name="5"><!-- для сцепки типа вагончик -->
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
+          <Property key="y" value="-1"/>
           <Property key="z" value="0"/>
           <Property key="w" value="0"/>					
         </Orientation>
@@ -290,145 +276,28 @@
     </Joining>
     <Geometry>
       <Property key="Type"   value="Plate"/>
-      <Property key="Length" value="2"/>
-      <Property key="Width"  value="0.3"/>
-      <Property key="Height" value="2"/>
+      <Property key="Length" value="3"/>
+      <Property key="Width"  value="2"/>
+      <Property key="Height" value="0.3"/>
     </Geometry>
     <Material name="Iron"/>
     <Paint use_nature_color="true"><!-- Для оптимизации - если полностью закрашен предмет, то цвет материала неважен. -->
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="a.png"/>
-          <Property key="Normal" value="Normal_a.png"/>
-        </LOD>
-      </Layer>
-      <Layer>
-        <LOD distance="100">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-        <LOD distance="1000">
-          <Property key="Color"  value="b.png"/>
-          <Property key="Normal" value="Normal_b.png"/>
-        </LOD>
-      </Layer>
     </Paint>
   </Shape>
-  <Model name="SimpleCylinder">
+  <Model name="Plate">
     <Pattern name="Model"/>
-    <Hierarchy>
-      <Root name="Cylinder">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
-        </Orientation>
-      </Root>
-      <Formation>
-        <Location> <!-- Ветка, кто относительно кого соориентирован -->
-        </Location>
-      </Formation>
-    </Hierarchy>
-    <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Cylinder"><!-- Корень есть всегда -->
-        <Joining>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="Cylinder">
-            <Material name=""/> <!-- Переопределение материала, действует только для Shape -->          
-            <Translation>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-    </Collection>
-  </Model>
-  <Model name="SimplePlate">
-    <Pattern name="Model"/>
-    <Hierarchy>
-      <Root name="Plate">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
-        </Orientation>
-      </Root>
-      <Formation>
-        <Location> <!-- Ветка, кто относительно кого соориентирован -->
-        </Location>
-      </Formation>
-    </Hierarchy>
-    <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Plate"><!-- Корень есть всегда -->
-        <Joining>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="Plate">
-            <Material name=""/> <!-- Переопределение материала, действует только для Shape -->          
-            <Translation>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-    </Collection>
-  </Model>
-  <Model name="Cart_Hull">
-    <Pattern name="Hull"/>
-    <Hierarchy>
-      <Root name="Root">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
-        </Orientation>
-      </Root>
-      <Formation>
-      </Formation>
+    <Hierarchy nameRoot="Root">
     </Hierarchy>
     <Collection type="Shape"><!-- Набор частей -->
       <Part name="Root"><!-- Корень есть всегда -->
-        <Incarnation>
-          <Variant name="0" nameItem="Hull">
-            <Material name="Wood"/> <!-- Переопределение материала, действует только для Shape -->          
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
+				<Variant name="0" nameItem="Plate">
+					<Material name="Wood"/> <!-- Переопределение материала, действует только для Shape -->          
+					<Scale>
+						<Property key="x" value="1"/>
+						<Property key="y" value="1"/>
+						<Property key="z" value="1"/>
+					</Scale>
+				</Variant>
       </Part>
     </Collection>
 		<ExternalJoining>
@@ -440,541 +309,257 @@
 			<Joint external="5" part="Root" internal="5"/>
 		</ExternalJoining>
   </Model>
-  <Model name="Cart_Wheel">
+  <Model name="Hull">
     <Pattern name="Model"/>
-    <Hierarchy>
-      <Root name="Root">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
-        </Orientation>
-      </Root>
-      <Formation>
-      </Formation>
+    <Hierarchy nameRoot="Root">
+			<Location> <!-- Ветка, кто относительно кого соориентирован -->
+				<Base   part="Root" nameJoint="5"/>
+				<Branch part="Down" nameJoint="0"/>
+				<Position>
+					<Property key="x" value="0"/>
+					<Property key="y" value="-4"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<Orientation>
+					<Property key="x" value="0"/>
+					<Property key="y" value="1"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="0"/>					
+				</Orientation>
+				<Link>
+					<JointBase   name="5"/>
+					<JointBranch name="0"/>
+					<Constraint>
+						<Property key="Type" value="Fixed"/>
+						<Property key="BreakImpulse" value="1"/>
+						<Property key="PointA_X" value="1"/>
+						<Property key="PointA_Y" value="2"/>
+						<Property key="PointA_Z" value="3"/>
+						<Property key="PointB_X" value="4"/>
+						<Property key="PointB_Y" value="5"/>
+						<Property key="PointB_Z" value="6"/>
+					</Constraint>
+				</Link>
+			</Location>
+    </Hierarchy>
+    <Collection type="Model"><!-- Набор частей -->
+      <Part name="Root"><!-- Корень есть всегда -->
+				<Variant name="0" nameItem="Plate">
+					<Material name="Wood"/> <!-- Переопределение материала, действует только для Shape -->          
+					<Scale>
+						<Property key="x" value="1"/>
+						<Property key="y" value="1"/>
+						<Property key="z" value="1"/>
+					</Scale>
+				</Variant>
+      </Part>
+      <Part name="Down"><!-- Корень есть всегда -->
+				<Variant name="0" nameItem="Plate">
+					<Material name="Wood"/> <!-- Переопределение материала, действует только для Shape -->          
+					<Scale>
+						<Property key="x" value="1"/>
+						<Property key="y" value="1"/>
+						<Property key="z" value="1"/>
+					</Scale>
+				</Variant>
+      </Part>
+    </Collection>
+		<ExternalJoining>
+			<Joint external="0" part="Root" internal="0"/>
+			<Joint external="1" part="Down" internal="1"/>
+			<Joint external="2" part="Down" internal="2"/>
+			<Joint external="3" part="Down" internal="3"/>
+			<Joint external="4" part="Down" internal="4"/>
+		</ExternalJoining>
+  </Model>
+  <Model name="Wheel">
+    <Pattern name="Model"/>
+    <Hierarchy nameRoot="Root">
     </Hierarchy>
     <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Down"><!-- Корень есть всегда -->
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-          <Joint name="2"/>
-          <Joint name="3"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Turret_Down">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-              <Joint external="2" part="" internal="2"/>
-              <Joint external="3" part="" internal="3"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Left">
-        <Joining>
-          <Joint name="0"/>
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Turret_Left">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/><!-- external должен совпадать с одним из имен Joint корня -->
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Up">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Turret_Up">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Right">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Turret_Right">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Forward">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Turret_Forward">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Backward">
-        <Joining>
-          <Joint name="0"/><!-- Видим как снаружи, так и внутри модели для соединения между частями -->
-          <Joint name="1"/>
-        </Joining>
-        <Incarnation>
-          <Variant name="0" nameItem="KingTiger_Turret_Backward">
-            <Translation>
-              <Joint external="0" part="" internal="0"/><!-- external должен совпадать с одним из имен Joint корня -->
-              <Joint external="1" part="" internal="1"/>
-            </Translation>
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
+      <Part name="Root"><!-- Корень есть всегда -->
+				<Variant name="0" nameItem="Cylinder">
+					<Scale>
+						<Property key="x" value="1"/>
+						<Property key="y" value="1"/>
+						<Property key="z" value="1"/>
+					</Scale>
+				</Variant>
       </Part>
     </Collection>
 		<ExternalJoining>
 			<Joint external="0" part="Root" internal="0"/>
 		</ExternalJoining>
 	</Model>
-  <Model name="Cart_S">
-    <Pattern name="Model"/>
-    <Hierarchy>
-      <Root name="Hull">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Orientation>
-					<Property key="x" value="0.4551968870"/>
-					<Property key="y" value="0.0923423171"/>
-					<Property key="z" value="0.0477437563"/>
-					<Property key="w" value="-0.884370446"/>
-        </Orientation>
-      </Root>
-      <Formation>
-        <Location> <!-- Ветка, кто относительно кого соориентирован -->
-          <Base part="Hull"/>
-          <Branch part="Wheel_LF"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-					<Orientation>
-						<Property key="x" value="0.4551968870"/>
-						<Property key="y" value="0.0923423171"/>
-						<Property key="z" value="0.0477437563"/>
-						<Property key="w" value="-0.884370446"/>
-					</Orientation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> 
-          <Base part="Hull"/>
-          <Branch part="Wheel_RF"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-					<Orientation>
-						<Property key="x" value="0.4551968870"/>
-						<Property key="y" value="0.0923423171"/>
-						<Property key="z" value="0.0477437563"/>
-						<Property key="w" value="-0.884370446"/>
-					</Orientation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> 
-          <Base part="Hull"/>
-          <Branch part="Wheel_LB"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-					<Orientation>
-						<Property key="x" value="0.4551968870"/>
-						<Property key="y" value="0.0923423171"/>
-						<Property key="z" value="0.0477437563"/>
-						<Property key="w" value="-0.884370446"/>
-					</Orientation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> 
-          <Base part="Hull"/>
-          <Branch part="Wheel_RB"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-					<Orientation>
-						<Property key="x" value="0.4551968870"/>
-						<Property key="y" value="0.0923423171"/>
-						<Property key="z" value="0.0477437563"/>
-						<Property key="w" value="-0.884370446"/>
-					</Orientation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-      </Formation>
-    </Hierarchy>
-    <Collection type="Shape"><!-- Набор частей -->
-      <Part name="Hull"><!-- Корень есть всегда -->
-        <Incarnation>
-          <Variant name="0" nameItem="Hull">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Wheel_LF">
-        <Incarnation>
-          <Variant name="0" nameItem="Wheel">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Wheel_RF">
-        <Incarnation>
-          <Variant name="0" nameItem="Wheel">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Wheel_LB">
-        <Incarnation>
-          <Variant name="0" nameItem="Wheel">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-      <Part name="Wheel_RB">
-        <Incarnation>
-          <Variant name="0" nameItem="Wheel">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
-      </Part>
-    </Collection>
-		<ExternalJoining>
-			<Joint external="0" part="Root" internal="4"/>
-			<Joint external="1" part="Root" internal="5"/>
-		</ExternalJoining>
-	</Model>
   <Model name="Cart_M">
     <Pattern name="Model"/>
-    <Hierarchy>
-      <Root name="Hull">
-        <Position>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-        </Position>
-        <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
-        </Orientation>
-      </Root>
-      <Formation>
-        <Location> <!-- Ветка, кто относительно кого соориентирован -->
-          <Base part="Hull"/>
-          <Branch part="Wheel_LF"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-					<Orientation>
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>					
-					</Orientation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> 
-          <Base part="Hull"/>
-          <Branch part="Wheel_RF"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-					<Orientation>
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>					
-					</Orientation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> 
-          <Base part="Hull"/>
-          <Branch part="Wheel_LB"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-					<Orientation>
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>					
-					</Orientation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-        <Location> 
-          <Base part="Hull"/>
-          <Branch part="Wheel_RB"/>
-          <Position>
-            <Property key="x" value="1"/>
-            <Property key="y" value="2"/>
-            <Property key="z" value="3"/>
-          </Position>
-					<Orientation>
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="0"/>					
-					</Orientation>
-          <Link>
-            <JointBase   name="0"/>
-            <JointBranch name="0"/>
-            <Constraint>
-              <Property key="Type" value="Fixed"/>
-              <Property key="BreakImpulse" value="1"/>
-              <Property key="PointA_X" value="1"/>
-              <Property key="PointA_Y" value="2"/>
-              <Property key="PointA_Z" value="3"/>
-              <Property key="PointB_X" value="4"/>
-              <Property key="PointB_Y" value="5"/>
-              <Property key="PointB_Z" value="6"/>
-            </Constraint>
-          </Link>
-        </Location>
-      </Formation>
+    <Hierarchy nameRoot="Root">
+			<Location> <!-- Ветка, кто относительно кого соориентирован -->
+				<Base part="Root"       nameJoint="1"/>
+				<Branch part="Wheel_LF" nameJoint="0"/>
+				<Position>
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<Orientation>
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="1"/>					
+				</Orientation>
+				<Link>
+					<JointBase   name="1"/>
+					<JointBranch name="0"/>
+					<Constraint>
+						<Property key="Type" value="Fixed"/>
+						<Property key="BreakImpulse" value="1"/>
+						<Property key="PointA_X" value="1"/>
+						<Property key="PointA_Y" value="2"/>
+						<Property key="PointA_Z" value="3"/>
+						<Property key="PointB_X" value="4"/>
+						<Property key="PointB_Y" value="5"/>
+						<Property key="PointB_Z" value="6"/>
+					</Constraint>
+				</Link>
+			</Location>
+			<Location> 
+				<Base part="Root"       nameJoint="2"/>
+				<Branch part="Wheel_RF" nameJoint="0"/>
+				<Position>
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<Orientation>
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="1"/>					
+				</Orientation>
+				<Link>
+					<JointBase   name="2"/>
+					<JointBranch name="0"/>
+					<Constraint>
+						<Property key="Type" value="Fixed"/>
+						<Property key="BreakImpulse" value="1"/>
+						<Property key="PointA_X" value="1"/>
+						<Property key="PointA_Y" value="2"/>
+						<Property key="PointA_Z" value="3"/>
+						<Property key="PointB_X" value="4"/>
+						<Property key="PointB_Y" value="5"/>
+						<Property key="PointB_Z" value="6"/>
+					</Constraint>
+				</Link>
+			</Location>
+			<Location> 
+				<Base part="Root"       nameJoint="3"/>
+				<Branch part="Wheel_LB" nameJoint="0"/>
+				<Position>
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<Orientation>
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="1"/>					
+				</Orientation>
+				<Link>
+					<JointBase   name="3"/>
+					<JointBranch name="0"/>
+					<Constraint>
+						<Property key="Type" value="Fixed"/>
+						<Property key="BreakImpulse" value="1"/>
+						<Property key="PointA_X" value="1"/>
+						<Property key="PointA_Y" value="2"/>
+						<Property key="PointA_Z" value="3"/>
+						<Property key="PointB_X" value="4"/>
+						<Property key="PointB_Y" value="5"/>
+						<Property key="PointB_Z" value="6"/>
+					</Constraint>
+				</Link>
+			</Location>
+			<Location> 
+				<Base part="Root"       nameJoint="4"/>
+				<Branch part="Wheel_RB" nameJoint="0"/>
+				<Position>
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+				</Position>
+				<Orientation>
+					<Property key="x" value="0"/>
+					<Property key="y" value="0"/>
+					<Property key="z" value="0"/>
+					<Property key="w" value="1"/>					
+				</Orientation>
+				<Link>
+					<JointBase   name="4"/>
+					<JointBranch name="0"/>
+					<Constraint>
+						<Property key="Type" value="Fixed"/>
+						<Property key="BreakImpulse" value="1"/>
+						<Property key="PointA_X" value="1"/>
+						<Property key="PointA_Y" value="2"/>
+						<Property key="PointA_Z" value="3"/>
+						<Property key="PointB_X" value="4"/>
+						<Property key="PointB_Y" value="5"/>
+						<Property key="PointB_Z" value="6"/>
+					</Constraint>
+				</Link>
+			</Location>
     </Hierarchy>
     <Collection type="Model"><!-- Набор частей -->
-      <Part name="Hull"><!-- Корень есть всегда -->
-        <Incarnation>
-          <Variant name="0" nameItem="Cart_Hull">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
+      <Part name="Root"><!-- Корень есть всегда -->
+				<Variant name="0" nameItem="Hull">
+					<Scale>
+						<Property key="x" value="1"/>
+						<Property key="y" value="1"/>
+						<Property key="z" value="1"/>
+					</Scale>
+				</Variant>
       </Part>
       <Part name="Wheel_LF">
-        <Incarnation>
-          <Variant name="0" nameItem="Cart_Wheel">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
+				<Variant name="0" nameItem="Wheel">
+					<Scale>
+						<Property key="x" value="1"/>
+						<Property key="y" value="1"/>
+						<Property key="z" value="1"/>
+					</Scale>
+				</Variant>
       </Part>
       <Part name="Wheel_RF">
-        <Incarnation>
-          <Variant name="0" nameItem="Cart_Wheel">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
+				<Variant name="0" nameItem="Wheel">
+					<Scale>
+						<Property key="x" value="1"/>
+						<Property key="y" value="1"/>
+						<Property key="z" value="1"/>
+					</Scale>
+				</Variant>
       </Part>
       <Part name="Wheel_LB">
-        <Incarnation>
-          <Variant name="0" nameItem="Cart_Wheel">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
+				<Variant name="0" nameItem="Wheel">
+					<Scale>
+						<Property key="x" value="1"/>
+						<Property key="y" value="1"/>
+						<Property key="z" value="1"/>
+					</Scale>
+				</Variant>
       </Part>
       <Part name="Wheel_RB">
-        <Incarnation>
-          <Variant name="0" nameItem="Cart_Wheel">
-            <Scale>
-              <Property key="x" value="1"/>
-              <Property key="y" value="1"/>
-              <Property key="z" value="1"/>
-            </Scale>
-          </Variant>
-        </Incarnation>
+				<Variant name="0" nameItem="Wheel">
+					<Scale>
+						<Property key="x" value="1"/>
+						<Property key="y" value="1"/>
+						<Property key="z" value="1"/>
+					</Scale>
+				</Variant>
       </Part>
     </Collection>
 		<ExternalJoining>
-			<Joint external="0" part="Root" internal="4"/>
-			<Joint external="1" part="Root" internal="5"/>
+			<Joint external="0" part="Root" internal="0"/>
 		</ExternalJoining>
 	</Model>
   <Terrain name="Field">
@@ -1072,7 +657,7 @@
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>
-					<Property key="Variant" value="Cart_S"/>
+					<Property key="Variant" value="Cart"/>
 				</PatternConfig>
 			</Object>
 		  <Object>

@@ -39,6 +39,12 @@ void THierarchyNode_Model::Remove(std::string namePart)
 	mMapNamePart_Node.erase(namePart);
 }
 //-----------------------------------------------------------------------------
+void THierarchyNode_Model::Clear()
+{
+	mRoot = NULL;
+	mMapNamePart_Node.clear();
+}
+//-----------------------------------------------------------------------------
 TBaseNode_Model* THierarchyNode_Model::Get(std::string namePart)
 {
 	TMapStrPtrIt fit = mMapNamePart_Node.find(namePart);

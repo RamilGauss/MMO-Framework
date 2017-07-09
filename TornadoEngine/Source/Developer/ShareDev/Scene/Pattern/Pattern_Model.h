@@ -14,12 +14,13 @@ See for more information License.h.
 #include "ModelItem.h"
 #include "ModulePhysicEngine.h"
 
+#include "ManagerNode_Model.h"
+#include "HierarchyNode_Model.h"
+#include "ManagerNodeLocation_Model.h"
+
 #include "Builder_Model_Bullet.h"
 #include "Builder_Model_Logic.h"
 #include "Builder_Model_Ogre.h"
-
-#include "ManagerNode_Model.h"
-#include "HierarchyNode_Model.h"
 
 #include "Synchronizer_Model_Bullet.h"
 #include "Synchronizer_Model_Logic.h"
@@ -34,6 +35,8 @@ public:// for using by scenarios
 	TManagerNode_Model mMngNode_Collection;
 	// узлы из иерархии
 	THierarchyNode_Model mHierarchy;
+	// узлы из иерархии для расчета позиционирования узлов и крючков
+	TManagerNodeLocation_Model mMngNodeLocation;
 
 	TModelItem::eType mTypeContent;
 protected:
@@ -94,11 +97,10 @@ public:
 	// Deactivated (sleeping) rigid bodies don't take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)
 	virtual void ActivatePhysicBody(bool force = true);
 
-	// всё относительно Root
-	virtual void SetPosition(nsMathTools::TVector3& v);
-	virtual bool GetPosition(nsMathTools::TVector3& v);
-	virtual void SetOrientation(nsMathTools::TQuaternion& v);
-	virtual bool GetOrientation(nsMathTools::TQuaternion& v);
+	//virtual void SetPosition(nsMathTools::TVector3& v);
+	//virtual bool GetPosition(nsMathTools::TVector3& v);
+	//virtual void SetOrientation(nsMathTools::TQuaternion& v);
+	//virtual bool GetOrientation(nsMathTools::TQuaternion& v);
 protected:
 	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
 
@@ -113,7 +115,35 @@ public:// for using by scenarios
 	void SetMobility(bool v);
 	bool GetMobility();
 
+	// является ли объект самостоятельным игровым (или часть игрового или другого неигрового)
+	virtual void SetIsGameObject(bool v);
+	virtual bool IsGameObject();
+
+	//btRigidBody* GetRigidBody(std::string namePart);
+
+	void CalcGlobal();
+public:
+	struct DllExport TExternalJoint
+	{
+		std::string              name;
+		nsMathTools::TVector3    pos;
+		nsMathTools::TQuaternion orient;
+	};
+
+	void ClearListExternalJoint();
+	void AddExternalJoint(std::string name);
+	int GetCountExternalJoint();
+	TExternalJoint* GetExternalJoint(int index);
+	TExternalJoint* GetExternalJoint(std::string name);
+
 protected:
+	typedef std::map<std::string,TExternalJoint> TMapStrExternalJoint;
+	typedef TMapStrExternalJoint::iterator   		 TMapStrExternalJointIt;
+	typedef TMapStrExternalJoint::value_type 		 TMapStrExternalJointVT;
+
+	TMapStrExternalJoint mMapNameExternalJoint;
+
+	bool mIsGameObject;
 };
 
 #endif

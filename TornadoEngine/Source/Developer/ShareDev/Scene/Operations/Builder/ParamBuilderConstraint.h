@@ -142,6 +142,8 @@ namespace nsParamBuilderConstraint
 		TContact();
 	}_PACKED;
 	//--------------------------------------------------
+	DllExport bool CopyConstraint(TBaseParam* pFrom, TBaseParam*& pTo);
+	//--------------------------------------------------
 }
 
 #ifdef WIN32

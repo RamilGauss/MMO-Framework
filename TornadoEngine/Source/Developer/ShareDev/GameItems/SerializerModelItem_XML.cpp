@@ -15,16 +15,16 @@ namespace nsSerializerModelItem_XML
   const char* sName           = "name";
   const char* sPattern        = "Pattern";
   const char* sHierarchy      = "Hierarchy";
-  const char* sRoot           = "Root";
+	const char* sNameRoot       = "nameRoot";
   
   const char* sPosition       = "Position";
   const char* sOrientation    = "Orientation";
-  const char* sFormation      = "Formation";
   const char* sLocation       = "Location";
-  const char* sBase           = "Base";
-
+  
+	const char* sBase           = "Base";
   const char* sNamePart       = "part";
   const char* sBranch         = "Branch";
+	const char* sNameJoint      = "nameJoint";
   const char* sLink           = "Link";
   const char* sJointBase      = "JointBase";
   const char* sJointBranch    = "JointBranch";
@@ -33,8 +33,7 @@ namespace nsSerializerModelItem_XML
   const char* sCollection     = "Collection";
   const char* sPart           = "Part";
 
-	const char* sIncarnation    = "Incarnation";
-  const char* sVariant        = "Variant";
+	const char* sVariant        = "Variant";
   const char* sNameItem       = "nameItem";
   const char* sMaterial       = "Material";
   const char* sType           = "type";
@@ -103,19 +102,15 @@ void TSerializerModelItem_XML::LoadPattern()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadHierarchy()
 {
-  if(mXML->EnterSection(sHierarchy,0))
+  mModel->mNameRoot = mXML->ReadSectionAttr(sHierarchy, 0, sNameRoot);
+	if(mXML->EnterSection(sHierarchy,0))
   {
-    LoadRoot();
-    if(mXML->EnterSection(sFormation,0))
+    int cntLocation = mXML->GetCountSection(sLocation);
+    for( int iLocation = 0 ; iLocation < cntLocation ; iLocation++ )
     {
-      int cntLocation = mXML->GetCountSection(sLocation);
-      for( int iLocation = 0 ; iLocation < cntLocation ; iLocation++ )
-      {
-        TModelItem::TLocation location;
-        LoadLocation(location, iLocation);
-        mModel->mMapNameBranchLocation.insert(TModelItem::TMMapStrLocationVT(location.nameBranch, location));
-      }
-      mXML->LeaveSection();
+      TModelItem::TLocation location;
+      LoadLocation(location, iLocation);
+      mModel->mMapNameBranchLocation.insert(TModelItem::TMMapStrLocationVT(location.nameBranch, location));
     }
     mXML->LeaveSection();
   }
@@ -155,7 +150,7 @@ void TSerializerModelItem_XML::LoadExternalJoining()
 			TModelItem::TJoint joint;
 			joint.nameInternalJoint = mXML->ReadSectionAttr(sJoint, iJoint, sInternal);
 			joint.namePart          = mXML->ReadSectionAttr(sJoint, iJoint, sNamePart);
-			mModel->mMapExternalJoining.insert(TModelItem::TMapExternalJoiningVT(external,joint));
+			mModel->mMapExternalJoint.insert(TModelItem::TMapExternalJointVT(external,joint));
 		}
 		mXML->LeaveSection();
 	}
@@ -171,16 +166,14 @@ void TSerializerModelItem_XML::SavePattern()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SaveHierarchy()
 {
-  if( mXML->AddSectionAndEnter(sHierarchy) )
+	TAttrInfo attr;
+	attr.Name  = sNameRoot;
+	attr.Value = mModel->mNameRoot;
+	if( mXML->AddSectionAndEnter(sHierarchy, 1, &attr) )
   {
-    SaveRoot();
-    if(mXML->AddSectionAndEnter(sFormation))
-    {
-      BOOST_FOREACH(TModelItem::TMMapStrLocationVT& bit, mModel->mMapNameBranchLocation)
-        SaveLocation(bit.second);
+    BOOST_FOREACH(TModelItem::TMMapStrLocationVT& bit, mModel->mMapNameBranchLocation)
+      SaveLocation(bit.second);
 
-      mXML->LeaveSection();
-    }
     mXML->LeaveSection();
   }
 }
@@ -216,7 +209,7 @@ void TSerializerModelItem_XML::SaveExternalJoining()
 	if( mXML->AddSectionAndEnter(sExternalJoining) )
 	{
 		int iJoint = 0;
-		BOOST_FOREACH( TModelItem::TMapExternalJoiningVT& extJoint , mModel->mMapExternalJoining )
+		BOOST_FOREACH( TModelItem::TMapExternalJointVT& extJoint , mModel->mMapExternalJoint )
 		{
 			TAttrInfo attr[3];
 			attr[0].Name  = sExternal;
@@ -236,16 +229,12 @@ void TSerializerModelItem_XML::LoadPart(TModelItem::TPart& part, int iPart)
 {
   if(mXML->EnterSection(sPart,iPart))
   {
-    if(mXML->EnterSection(sIncarnation,0))
+    int cntVariant = mXML->GetCountSection(sVariant);
+    for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
     {
-      int cntVariant = mXML->GetCountSection(sVariant);
-      for( int iVariant = 0 ; iVariant < cntVariant ; iVariant++ )
-      {
-        TModelItem::TVariant variant;
-        LoadVariant(variant, iVariant);
-        part.vecVariant.push_back(variant);
-      }
-      mXML->LeaveSection();
+      TModelItem::TVariant variant;
+      LoadVariant(variant, iVariant);
+      part.vecVariant.push_back(variant);
     }
     mXML->LeaveSection();
   }
@@ -268,31 +257,14 @@ void TSerializerModelItem_XML::LoadVariant(TModelItem::TVariant& variant, int iV
   }
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerModelItem_XML::LoadRoot()
-{
-  mModel->mRoot.name = mXML->ReadSectionAttr(sRoot, 0, sName);
-  if(mXML->EnterSection(sRoot,0))
-  {
-    if(mXML->EnterSection(sPosition,0))
-    {
-      LoadVector3ByProperty( mModel->mRoot.position );
-      mXML->LeaveSection();
-    }
-    if(mXML->EnterSection(sOrientation,0))
-    {
-      LoadQuaternionByProperty( mModel->mRoot.orientation );
-      mXML->LeaveSection();
-    }
-    mXML->LeaveSection();
-  }
-}
-//-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadLocation(TModelItem::TLocation& location, int iLocation)
 {
   if(mXML->EnterSection(sLocation, iLocation))
   {
-    location.nameBase   = mXML->ReadSectionAttr(sBase, 0, sNamePart);
-    location.nameBranch = mXML->ReadSectionAttr(sBranch, 0, sNamePart);
+    location.nameBase        = mXML->ReadSectionAttr(sBase, 0, sNamePart);
+    location.nameJointBase   = mXML->ReadSectionAttr(sBase, 0, sNameJoint);
+    location.nameBranch      = mXML->ReadSectionAttr(sBranch, 0, sNamePart);
+    location.nameJointBranch = mXML->ReadSectionAttr(sBranch, 0, sNameJoint);
 
     if(mXML->EnterSection(sPosition,0))
     {
@@ -339,39 +311,22 @@ void TSerializerModelItem_XML::LoadLink(TModelItem::TLink& link, int iLink)
   MakeConstraintByMap(link);
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerModelItem_XML::SaveRoot()
-{
-  TAttrInfo attr;
-  attr.Name  = sName;
-  attr.Value = mModel->mRoot.name;
-  if(mXML->AddSectionAndEnter(sRoot, 1, &attr))
-  {
-    if(mXML->AddSectionAndEnter(sPosition))
-    {
-      SaveVector3ByProperty( mModel->mRoot.position );
-      mXML->LeaveSection();
-    }
-    if(mXML->AddSectionAndEnter(sOrientation))
-    {
-      SaveQuaternionByProperty( mModel->mRoot.orientation );
-      mXML->LeaveSection();
-    }
-    mXML->LeaveSection();
-  }
-}
-//--------------------------------------------------------------------------------  
 void TSerializerModelItem_XML::SaveLocation(TModelItem::TLocation& location)
 {
   if( mXML->AddSectionAndEnter(sLocation) )
   {
-    TAttrInfo attr;
-    attr.Name  = sName;
-    attr.Value = location.nameBase;
-    mXML->AddSection(sJointBase, 1, &attr);
+    TAttrInfo attr[2];
+    attr[0].Name  = sNamePart;
+    attr[0].Value = location.nameBase;
+		attr[1].Name  = sNameJoint;
+		attr[1].Value = location.nameJointBase;
+    mXML->AddSection(sBase, 2, &attr[0]);
 
-    attr.Name  = sName;
-    attr.Value = location.nameBranch;
-    mXML->AddSection(sJointBranch, 1, &attr);
+		attr[0].Name  = sNamePart;
+		attr[0].Value = location.nameBranch;
+		attr[1].Name  = sNameJoint;
+		attr[1].Value = location.nameJointBranch;
+    mXML->AddSection(sBranch, 2, &attr[0]);
 
     if(mXML->AddSectionAndEnter(sPosition))
     {
@@ -422,22 +377,18 @@ void TSerializerModelItem_XML::SaveLink(TModelItem::TLink& link)
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SavePart(TModelItem::TPart& part)
 {
-  if(mXML->AddSectionAndEnter(sIncarnation))
+  BOOST_FOREACH(TModelItem::TVariant& variant, part.vecVariant)
   {
-    BOOST_FOREACH(TModelItem::TVariant& variant, part.vecVariant)
+    TAttrInfo attr[2];
+    attr[0].Name  = sName;
+    attr[0].Value = variant.name;
+    attr[1].Name  = sNameItem;
+    attr[1].Value = variant.nameItem;
+    if(mXML->AddSectionAndEnter(sVariant, 2, &attr[0]))
     {
-      TAttrInfo attr[2];
-      attr[0].Name  = sName;
-      attr[0].Value = variant.name;
-      attr[1].Name  = sNameItem;
-      attr[1].Value = variant.nameItem;
-      if(mXML->AddSectionAndEnter(sVariant, 2, &attr[0]))
-      {
-        SaveVariant(variant);
-        mXML->LeaveSection();
-      }
+      SaveVariant(variant);
+      mXML->LeaveSection();
     }
-    mXML->LeaveSection();
   }
 }
 //-------------------------------------------------------------------------------------------------------

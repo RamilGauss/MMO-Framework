@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include "ParamBuilderConstraint.h"
+#include "BL_Debug.h"
 
 using namespace nsParamBuilderConstraint;
 
@@ -15,7 +16,17 @@ TGeneric6Dof::TGeneric6Dof():TBaseParam(Generic6Dof)
 
 }
 //-------------------------------------------------------------------------------------------
+TUniversal::TUniversal()
+{
+	type = Universal;
+}
+//-------------------------------------------------------------------------------------------
 TGeneric6DofSpring::TGeneric6DofSpring():TBaseParam(Generic6DofSpring)
+{
+
+}
+//-------------------------------------------------------------------------------------------
+THinge2::THinge2():TBaseParam(Hinge2)
 {
 
 }
@@ -40,11 +51,6 @@ THinge::THinge():TBaseParam(Hinge)
 
 }
 //-------------------------------------------------------------------------------------------
-THinge2::THinge2():TBaseParam(Hinge2)
-{
-
-}
-//-------------------------------------------------------------------------------------------
 TPoint2Point::TPoint2Point():TBaseParam(Point2Point)
 {
 
@@ -55,4 +61,42 @@ TGear::TGear():TBaseParam(Gear)
 
 }
 //-------------------------------------------------------------------------------------------
+TContact::TContact():TBaseParam(Contact)
+{
+
+}
+//-------------------------------------------------------------------------------------------
+namespace nsParamBuilderConstraint
+{
+#define COPY_CONSTRAINT(TypeConstraint) \
+	case TypeConstraint: \
+	pTo = new T##TypeConstraint; \
+	memcpy(pTo, pFrom, sizeof(T##TypeConstraint)); \
+	break;
+
+	bool CopyConstraint(TBaseParam* pFrom, TBaseParam*& pTo)
+	{
+		pTo = NULL;
+		switch(pFrom->type)
+		{
+			COPY_CONSTRAINT(Generic6Dof)
+			COPY_CONSTRAINT(Universal)
+			COPY_CONSTRAINT(Generic6DofSpring)
+			COPY_CONSTRAINT(Hinge2)
+			COPY_CONSTRAINT(Fixed)
+			COPY_CONSTRAINT(Slider)
+			COPY_CONSTRAINT(ConeTwist)
+			COPY_CONSTRAINT(Hinge)
+			COPY_CONSTRAINT(Point2Point)
+			COPY_CONSTRAINT(Gear)
+			COPY_CONSTRAINT(Contact)
+			default:
+			{
+				BL_FIX_BUG();
+				return false;
+			}
+		}
+		return true;
+	}
+}
 //-------------------------------------------------------------------------------------------

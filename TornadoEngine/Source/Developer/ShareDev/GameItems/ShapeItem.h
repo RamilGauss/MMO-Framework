@@ -45,10 +45,10 @@ struct DllExport TShapeItem : public TBaseItem
   typedef TMapStrJoint::value_type     TMapStrJointVT;
   //---------------------------------------------------------
   //---------------------------------------------------------
-  std::map<std::string,TJoint> mMapNameJoint;    // места подсоединения других форм
-  std::vector<TMapFloatLayer>  mVecPaint;        // слои краски
-  std::string                  mNameMaterial;    // имя материала
-  bool                         flgUseNatureColor;// использовать ли цвет материала
+  TMapStrJoint                mMapNameJoint;    // места подсоединения других форм
+  std::vector<TMapFloatLayer> mVecPaint;        // слои краски
+  std::string                 mNameMaterial;    // имя материала
+  bool                        flgUseNatureColor;// использовать ли цвет материала
   boost::scoped_ptr<nsParamBuilderShape::TBaseParam> mPtrGeometry;
 
   TShapeItem(std::string& name);

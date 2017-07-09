@@ -38,22 +38,20 @@ struct DllExport TModelItem : public TBaseItem
   //---------------------------------------------------------  
   struct DllExport TPart
   {
-		// список видимых как снаружи так и внутри соединений
-    std::vector<std::string> vecNameJoint;
 		// какой вариант выбрать - решает сам паттерн (определять либо через сервер, либо что в модели выбрали)
-    std::vector<TVariant>    vecVariant;
+    std::vector<TVariant> vecVariant;
   };
   //---------------------------------------------------------  
   typedef std::map<std::string,TPart> TMapStrPart;
-  typedef TMapStrPart::iterator   TMapStrPartIt;
-  typedef TMapStrPart::value_type TMapStrPartVT;
+  typedef TMapStrPart::iterator   		TMapStrPartIt;
+  typedef TMapStrPart::value_type 		TMapStrPartVT;
   //---------------------------------------------------------  
   typedef std::auto_ptr<nsParamBuilderConstraint::TBaseParam> TAutoPtrConstraint;
   //---------------------------------------------------------  
   struct DllExport TLink
   {
-    std::string nameJointBase;
-    std::string nameJointBranch;
+    std::string 			 nameJointBase;
+    std::string 			 nameJointBranch;
     TAutoPtrConstraint mPtrConstraint;
 
     TLink(){}
@@ -66,10 +64,14 @@ struct DllExport TModelItem : public TBaseItem
   struct DllExport TLocation
   {
     std::string nameBase;
+		std::string nameJointBase;
+
     std::string nameBranch;
+		std::string nameJointBranch;
+		// один относительно другого крючка расположен так:
     nsMathTools::TVector3    position;
     nsMathTools::TQuaternion orientation;
-    TListLink listLink;
+    TListLink                listLink;
 
     TLocation(){}
     TLocation(const TLocation& c);
@@ -79,13 +81,6 @@ struct DllExport TModelItem : public TBaseItem
   typedef std::multimap<std::string,TLocation> TMMapStrLocation;
   typedef TMMapStrLocation::iterator           TMMapStrLocationIt;
   typedef TMMapStrLocation::value_type         TMMapStrLocationVT;
-  //---------------------------------------------------------
-  struct DllExport TRoot
-  {
-    std::string              name;
-    nsMathTools::TVector3    position;
-    nsMathTools::TQuaternion orientation;
-  };
   //---------------------------------------------------------
   typedef std::map<std::string,std::string> TMapStrStr;
   typedef TMapStrStr::iterator              TMapStrStrIt;
@@ -99,22 +94,23 @@ struct DllExport TModelItem : public TBaseItem
 		bool operator > (const TJoint& right) const;
 	};
 	//---------------------------------------------------------
-	typedef std::map<std::string,TJoint>    TMapExternalJoining;
-	typedef TMapExternalJoining::iterator   TMapExternalJoiningIt;
-	typedef TMapExternalJoining::value_type TMapExternalJoiningVT;
+	typedef std::map<std::string,TJoint>  TMapExternalJoint;
+	typedef TMapExternalJoint::iterator   TMapExternalJointIt;
+	typedef TMapExternalJoint::value_type TMapExternalJointVT;
   //---------------------------------------------------------
   //---------------------------------------------------------
-	std::string      mNamePattern;        // модель поведения
-
-  TRoot            mRoot;
-  //TMMapStrLocation mMapNameBaseLocation;// иерархия
+	std::string      mNamePattern;          // модель поведения
+	std::string      mNameRoot;             // часть, которая ни к кому не подсоединена и корень должен быть всегда
   TMMapStrLocation mMapNameBranchLocation;// иерархия
 
   typedef enum{eModel,eShape}eType;// либо модель, либо форма
   eType            mTypeCollection;
   TMapStrPart      mMapNamePart;   // набор
   
-	TMapExternalJoining  mMapExternalJoining;
+	// Правило:
+	// если часть не имеет родителя (корень), то только он может подсоединиться к другой модели
+	// если часть не имеет детей, то только к ней могут подсоединиться из других моделей
+	TMapExternalJoint mMapExternalJoint;
 
   TModelItem(std::string& name);
 }_PACKED;

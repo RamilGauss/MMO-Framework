@@ -13,6 +13,7 @@ See for more information License.h.
 #include "ModelItem.h"
 
 class TBaseNode_Model;
+class TNodeLocation_Model;
 class TFactoryBehaviourPattern;
 class TFactoryGameItem;
 
@@ -27,14 +28,24 @@ public:
 	virtual ~TBuilder_Model_Logic();
 
 	virtual void Build();
-protected:
-	void Build_Private(TModelItem::TMapStrPart& mapNamePart);
-
-	void BuildModels(std::string& namePart, TModelItem::TVariant& variant);
-	void BuildShapes(std::string& namePart, TModelItem::TVariant& variant);
 
 	void CalcGlobal(TBaseNode_Model* pNode);
-	void CalcLocal();
+protected:
+	void SetupCollectionNode();
+
+	TBaseNode_Model* BuildModels(TModelItem::TVariant& variant);
+	TBaseNode_Model* BuildShapes(TModelItem::TVariant& variant);
+
+	void SetupHierarchyLocation();
+
+	void SetupNodeLocation(TBaseNode_Model* pNode, TNodeLocation_Model* pNodeLocation);
+
+	void LinkHierarchy();
+
+	void SetupInnerJoint();
+	void SetupExternalJoint();
+
+	void TryCalcGlobal();
 };
 
 #endif

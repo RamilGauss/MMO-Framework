@@ -31,7 +31,6 @@ protected:
   void LoadCollection();
   void LoadExternalJoining();
 
-  void LoadRoot();
   void LoadLocation(TModelItem::TLocation& location, int iLocation);
   void LoadLink(TModelItem::TLink& link, int iLink);
   void LoadPart(TModelItem::TPart& part, int iPart);
@@ -42,7 +41,6 @@ protected:
   void SaveCollection();
   void SaveExternalJoining();
 
-  void SaveRoot();
   void SaveLocation(TModelItem::TLocation& location);
   void SaveLink(TModelItem::TLink& link);
   void SavePart(TModelItem::TPart& part);

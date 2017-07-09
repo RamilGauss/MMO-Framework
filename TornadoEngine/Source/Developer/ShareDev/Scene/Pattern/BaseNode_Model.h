@@ -20,21 +20,9 @@ public:
 	std::string namePart;
 	std::string nameVariant;
 
-	struct TLocation
-	{
-		nsMathTools::TVector3    mPos;
-		nsMathTools::TQuaternion mOrient;
-	};
-	// расположение относительно Parent
-	TLocation mLocal;
-	// помощник для построения модели
-	TLocation mGlobal;
 public:
 	TBaseNode_Model();
 	virtual ~TBaseNode_Model();
-
-	// globalParent - глобальное положение и ориентация родителя, к которому цепляется данный нод
-	void CalcGlobal(TLocation& globalParent);
 };
 
 #endif

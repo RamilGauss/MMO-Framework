@@ -312,7 +312,7 @@ class DllExport TQuaternion
 public:
   float x, y, z, w;
 
-  TQuaternion() {}
+  TQuaternion() {x=0;y=0;z=0;w=1;}
   TQuaternion( const float * );
   TQuaternion( float x, float y, float z, float w );
 

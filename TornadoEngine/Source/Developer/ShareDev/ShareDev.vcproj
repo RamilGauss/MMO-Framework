@@ -790,6 +790,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Scene\Pattern\ManagerNodeLocation_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\ManagerNodeLocation_Model.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Scene\Pattern\ModelNode_Model.cpp"
 						>
 					</File>
@@ -798,11 +806,35 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Scene\Pattern\NodeLocation_Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\NodeLocation_Model.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Scene\Pattern\ShapeNode_Model.cpp"
 						>
 					</File>
 					<File
 						RelativePath=".\Scene\Pattern\ShapeNode_Model.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\UpdaterNodeByGameItem.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\UpdaterNodeByGameItem.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\UpdaterNodeByPhysic.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scene\Pattern\UpdaterNodeByPhysic.h"
 						>
 					</File>
 				</Filter>
