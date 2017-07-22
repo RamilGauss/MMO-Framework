@@ -39,8 +39,10 @@ public:
 	// как соединить
 	struct TLink
 	{
+		// геометрия
 		std::string nameMyJointToParent;
 		std::string nameJointParent;
+		// настройка констрейнта
 		nsParamBuilderConstraint::TBaseParam* mPtrConstraintToParent;
 
 		TLink(){mPtrConstraintToParent=NULL;}
@@ -64,7 +66,9 @@ public:
 	// ориентир как соединять
 	std::string nameMyJointToParent;
 	std::string nameJointParent;
-	TLocation   mLocalRelativeJointToJointParent;
+	// параметры соединения
+	nsMathTools::TQuaternion mOrientRelativeJointToJointParent;
+	float mDistanceRelativeJointToJointParent;
 
 	// описание констрейнтов как физически соединить с родителем
 	TListPtrLink mListLink;

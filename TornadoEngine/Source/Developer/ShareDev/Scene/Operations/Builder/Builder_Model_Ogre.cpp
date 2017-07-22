@@ -66,6 +66,8 @@ void TBuilder_Model_Ogre::BuildShape(TShapeNode_Model* pShapeNode)
 
 	Ogre::Entity* pEntity = GetShapeMaker()->Build( pShapeItem );
 	pShapeNode->mPtrEntity = pEntity;
+	// каждый вариант части будет виден в PostBuild
+	pShapeNode->mPtrEntity->setVisible(false);
 
 	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
 	// сделано временно для визуализации (отладка)
@@ -83,6 +85,20 @@ void TBuilder_Model_Ogre::BuildShape(TShapeNode_Model* pShapeNode)
 //---------------------------------------------------------------------------
 void TBuilder_Model_Ogre::PostBuild()
 {
+	//// каждый вариант части будет виден в PostBuild
+	//pShapeNode->mPtrEntity->setVisible(false);
 
+	////### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
+	//// сделано временно для визуализации (отладка)
+	//nsMathTools::TVector3 pos;
+	//mPatternModel->GetPosition(pos);
+	//Ogre::Vector3 vPos(pos.x, pos.y, pos.z);
+	//pEntity->getParentSceneNode()->setPosition(vPos);
+	//pEntity->setCastShadows(true);
+
+	//nsMathTools::TQuaternion orient;
+	//mPatternModel->GetOrientation(orient);
+	//pEntity->getParentSceneNode()->setOrientation(orient.w, orient.x, orient.y, orient.z);
+	//###
 }
 //---------------------------------------------------------------------------

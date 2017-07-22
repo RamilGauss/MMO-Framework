@@ -31,7 +31,7 @@ public:
 
 public:
 	btRigidBody* localCreateRigidBody(float mass, 
-		const btTransform& startTransform, btCollisionShape* shape);
+		const btTransform& startTransform, btCollisionShape* shape, bool addInWorld = true);
 };
 
 #endif

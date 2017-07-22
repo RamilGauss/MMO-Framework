@@ -5,8 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
+#define _USE_MATH_DEFINES
+
+#include <cmath>
+
 #include "NodeLocation_Model.h"
 #include <boost/foreach.hpp>
+#include "BL_Debug.h"
 
 TNodeLocation_Model::TNodeLocation_Model()
 {
@@ -89,8 +94,85 @@ void TNodeLocation_Model::CalcGlobalJoint()
 	}
 }
 //---------------------------------------------------------------------------------
+// по правилам математики поворот против часовой стрелки - положительный
 void TNodeLocation_Model::CalcGlobal(TNodeLocation_Model* pNodeLocationParent)
 {
+	TJoint* pJointParent = pNodeLocationParent->GetJoint(nameJointParent);
+	TJoint* pMyJoint     = GetJoint(nameMyJointToParent);
+	if( pJointParent==NULL || pMyJoint==NULL )
+	{
+		BL_FIX_BUG();
+		return;
+	}
 
+	// вращение крючка родител€ с учетом параметров соединени€
+	nsMathTools::TQuaternion qJointParentConnection = 
+		pJointParent->mGlobal.mOrient * mOrientRelativeJointToJointParent;
+	
+	nsMathTools::TQuaternion qUp_JointParent(0,1,0,0), qForward_JointParent(1,0,0,0);
+
+	nsMathTools::TQuaternion qUpGlobal      = qUp_JointParent      * qJointParentConnection;
+	nsMathTools::TQuaternion qForwardGlobal = qForward_JointParent * qJointParentConnection;
+
+	nsMathTools::TVector3 vUpRelativeJointParent(0,0,0);// локальные координаты вектора ¬верх с учЄтом вращени€
+	float angleTemp = 0;
+	SetQuaternionToAxisAngle(&qUpGlobal, &vUpRelativeJointParent, &angleTemp);
+
+	nsMathTools::TVector3 vForwardRelativeJointParent(0,0,0);// локальные координаты вектора ¬перед с учЄтом вращени€
+	SetQuaternionToAxisAngle(&qForwardGlobal, &vForwardRelativeJointParent, &angleTemp);
+	
+	vForwardRelativeJointParent *= mDistanceRelativeJointToJointParent;// раст€гиваем до рассто€ни€ между крючками
+
+	nsMathTools::TVector3 globalPosJointChild = 
+		pJointParent->mGlobal.mPos + vForwardRelativeJointParent;
+
+	nsMathTools::TQuaternion rotAboutUp;
+	SetQuaternionRotationAxis( &rotAboutUp, &vUpRelativeJointParent, float(M_PI*2));
+	nsMathTools::TQuaternion qJointChild = qJointParentConnection*rotAboutUp;
+
+	mGlobal.mOrient = qJointChild*pMyJoint->mLocalRelativeNode.mOrient;
+
+	nsMathTools::TQuaternion qMyJointRelativeChild;
+	qMyJointRelativeChild.x = -pMyJoint->mLocalRelativeNode.mPos.x;// обратный сдвиг порождает знак минуса
+	qMyJointRelativeChild.y = -pMyJoint->mLocalRelativeNode.mPos.y;// во всех ос€х
+	qMyJointRelativeChild.z = -pMyJoint->mLocalRelativeNode.mPos.z;// 
+	qMyJointRelativeChild.w = 0;
+
+	nsMathTools::TQuaternion qMyJointGlobal = qMyJointRelativeChild*mGlobal.mOrient;
+
+	nsMathTools::TVector3 posChildRelativeJoint;
+	SetQuaternionToAxisAngle( &qMyJointGlobal, &posChildRelativeJoint, &angleTemp);
+	mGlobal.mPos = globalPosJointChild + posChildRelativeJoint;
 }
 //---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+#if 0
+void Test()
+{	// разбор конкретного случа€
+	TNodeLocation_Model parent, child;
+	parent.name            = "Parent";
+	parent.mGlobal.mPos    = nsMathTools::TVector3(0,0,0);
+	parent.mGlobal.mOrient = nsMathTools::TQuaternion(0,0,0,-1);
+	parent.AddJoint("0");
+	TNodeLocation_Model::TJoint* pJointParent = parent.GetJoint("0");
+	pJointParent->mLocalRelativeNode.mPos    = nsMathTools::TVector3(1,0,0);
+	pJointParent->mLocalRelativeNode.mOrient = nsMathTools::TQuaternion(0,0,0,1);
+
+	parent.CalcGlobalJoint();
+
+	child.name                = "Child";
+	child.nameMyJointToParent = "0";
+	child.nameJointParent     = "0";
+	child.mDistanceRelativeJointToJointParent = 3;
+	child.mOrientRelativeJointToJointParent   = nsMathTools::TQuaternion(0,0,0,1);
+
+	child.AddJoint("0");
+	TNodeLocation_Model::TJoint* pJointChild = child.GetJoint("0");
+	pJointChild->mLocalRelativeNode.mPos    = nsMathTools::TVector3(1,0,0);
+	pJointChild->mLocalRelativeNode.mOrient = nsMathTools::TQuaternion(0,0,0,1);
+
+	child.CalcGlobal(&parent);
+	child.CalcGlobalJoint();
+}
+#endif
+//--------------------------------------------------------------------

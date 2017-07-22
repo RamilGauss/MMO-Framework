@@ -205,38 +205,6 @@ void TPattern_Model::ActivatePhysicBody(bool force)
 	}
 }
 //------------------------------------------------------------------------
-//void TPattern_Model::SetPosition(nsMathTools::TVector3& v)
-//{
-//	// поменять положение корня и пробежаться по иерархии, меняя положение детей
-//
-//
-//	TBehaviourPattern::SetPosition(v);
-//}
-////---------------------------------------------------------------------------
-//bool TPattern_Model::GetPosition(nsMathTools::TVector3& v)
-//{
-//	// если есть корень, то выдать его позицию
-//	// найти физическую часть
-//
-//	// иначе выдать то что задали
-//	return TBehaviourPattern::GetPosition(v);
-//}
-////---------------------------------------------------------------------------
-//void TPattern_Model::SetOrientation(nsMathTools::TQuaternion& v)
-//{
-//	// поменять ориентацию корня и пробежаться по иерархии, меняя ориентации детей
-//
-//	TBehaviourPattern::SetOrientation(v);
-//}
-////---------------------------------------------------------------------------
-//bool TPattern_Model::GetOrientation(nsMathTools::TQuaternion& v)
-//{
-//	// если есть корень, то выдать его позицию
-//	// найти физическую часть
-//	
-//	return TBehaviourPattern::GetOrientation(v);
-//}
-//---------------------------------------------------------------------------
 void TPattern_Model::SetIsGameObject(bool v)
 {
 	mIsGameObject = v;
@@ -247,51 +215,8 @@ bool TPattern_Model::IsGameObject()
 	return mIsGameObject;
 }
 //---------------------------------------------------------------------------
-void TPattern_Model::ClearListExternalJoint()
+void TPattern_Model::CalcGlobalLocation_Parts()
 {
-	mMapNameExternalJoint.clear();
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::AddExternalJoint(std::string name)
-{
-	TExternalJoint externalJoint;
-	externalJoint.name = name;
-	mMapNameExternalJoint.insert(TMapStrExternalJointVT(name,externalJoint));
-}
-//---------------------------------------------------------------------------
-int TPattern_Model::GetCountExternalJoint()
-{
-	return mMapNameExternalJoint.size();
-}
-//---------------------------------------------------------------------------
-TPattern_Model::TExternalJoint* TPattern_Model::GetExternalJoint(int index)
-{
-	if( index < 0 ||
-		  index >= GetCountExternalJoint() )
-	{
-		BL_FIX_BUG();
-		return NULL;
-	}
-	TMapStrExternalJointIt bit = mMapNameExternalJoint.begin();
-	for( int i = 0 ; i < index ; i++ )
-		bit++;
-	return &(bit->second);
-}
-//---------------------------------------------------------------------------
-TPattern_Model::TExternalJoint* TPattern_Model::GetExternalJoint(std::string name)
-{
-	TMapStrExternalJointIt fit = mMapNameExternalJoint.find(name);
-	if( fit==mMapNameExternalJoint.end() )
-	{
-		BL_FIX_BUG();
-		return NULL;
-	}
-	return &(fit->second);
-}
-//---------------------------------------------------------------------------
-void TPattern_Model::CalcGlobal()
-{
-	TBaseNode_Model* pNode = mHierarchy.GetRoot();
-	mBuilderLogic.CalcGlobal(pNode);
+	mBuilderLogic.CalcGlobalLocation();
 }
 //---------------------------------------------------------------------------

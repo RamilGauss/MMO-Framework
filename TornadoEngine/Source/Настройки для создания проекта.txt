@@ -21,8 +21,8 @@ Additional Library Directories = $(SolutionDir)\$(ConfigurationName)
 Если назначаемый акселератор уже приписан к какой либо команде - найти ее и снять с нее акселератор (Remove)
 
 1)  Переключение из *.cpp в *.h: "GotoHeaderFile" : "Ctrl+F6"       (см. ниже Visual Assist !)
-2)  Закомментировать блок:  Edit.CommentSection:    "Ctrl+R"
-3)  Раскомментировать блок: Edit.UncommentSection:  "Ctrl+T"
+2)  Закомментировать блок:  Edit.CommentSelection:    "Ctrl+R"
+3)  Раскомментировать блок: Edit.UncommentSelection:  "Ctrl+T"
 
 Переопределения акселераторов Visual Assist под Borland keymapping:
 

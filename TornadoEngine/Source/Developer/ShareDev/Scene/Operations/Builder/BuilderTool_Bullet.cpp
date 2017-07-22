@@ -32,7 +32,8 @@ int TBuilderTool_Bullet::GetID_PhysicWorld()
 }
 //---------------------------------------------------------------------------------
 btRigidBody* TBuilderTool_Bullet::localCreateRigidBody(float mass, 
-					const btTransform& startTransform, btCollisionShape* shape)
+					const btTransform& startTransform, btCollisionShape* shape, 
+					bool addInWorld)
 {
 	btDiscreteDynamicsWorld* pWorld = 
 		TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(mID_PhysicWorld);
@@ -51,7 +52,8 @@ btRigidBody* TBuilderTool_Bullet::localCreateRigidBody(float mass,
 
 	btRigidBody* body = new btRigidBody(cInfo);
 	body->setContactProcessingThreshold(mDefaultContactProcessingThreshold);
-	pWorld->addRigidBody(body);
+	if( addInWorld )
+		pWorld->addRigidBody(body);
 	return body;
 }
 //-------------------------------------------------------------------

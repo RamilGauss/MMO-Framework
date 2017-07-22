@@ -97,10 +97,6 @@ public:
 	// Deactivated (sleeping) rigid bodies don't take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)
 	virtual void ActivatePhysicBody(bool force = true);
 
-	//virtual void SetPosition(nsMathTools::TVector3& v);
-	//virtual bool GetPosition(nsMathTools::TVector3& v);
-	//virtual void SetOrientation(nsMathTools::TQuaternion& v);
-	//virtual bool GetOrientation(nsMathTools::TQuaternion& v);
 protected:
 	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
 
@@ -119,30 +115,10 @@ public:// for using by scenarios
 	virtual void SetIsGameObject(bool v);
 	virtual bool IsGameObject();
 
+	void CalcGlobalLocation_Parts();
+
 	//btRigidBody* GetRigidBody(std::string namePart);
-
-	void CalcGlobal();
-public:
-	struct DllExport TExternalJoint
-	{
-		std::string              name;
-		nsMathTools::TVector3    pos;
-		nsMathTools::TQuaternion orient;
-	};
-
-	void ClearListExternalJoint();
-	void AddExternalJoint(std::string name);
-	int GetCountExternalJoint();
-	TExternalJoint* GetExternalJoint(int index);
-	TExternalJoint* GetExternalJoint(std::string name);
-
 protected:
-	typedef std::map<std::string,TExternalJoint> TMapStrExternalJoint;
-	typedef TMapStrExternalJoint::iterator   		 TMapStrExternalJointIt;
-	typedef TMapStrExternalJoint::value_type 		 TMapStrExternalJointVT;
-
-	TMapStrExternalJoint mMapNameExternalJoint;
-
 	bool mIsGameObject;
 };
 

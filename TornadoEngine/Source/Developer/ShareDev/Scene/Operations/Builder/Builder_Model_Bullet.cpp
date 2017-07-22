@@ -69,7 +69,6 @@ void TBuilder_Model_Bullet::BuildShape(TShapeNode_Model* pShapeNode)
 
 	btRigidBody* pRB = GetShapeMaker()->Build( id_world, pShapeItem );
 	pShapeNode->mPtrRigidBody = pRB;
-
 #if 0
 	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
 	// сделано временно для визуализации (отладка)
@@ -104,9 +103,6 @@ void TBuilder_Model_Bullet::BuildShape(TShapeNode_Model* pShapeNode)
 //---------------------------------------------------------------------------
 void TBuilder_Model_Bullet::PostBuild()
 {
-	if( mPatternModel->GetTypeContent()==TModelItem::eModel )
-		return;//### доделать позже
-
 	// расположить части в соответствии с описанием внутри ModelItem
 	TShapeNode_Model* pShapeNode = (TShapeNode_Model*)mPatternModel->mHierarchy.GetRoot();
 	nsMathTools::TVector3 pos;
@@ -127,6 +123,14 @@ void TBuilder_Model_Bullet::PostBuild()
 	trans.setRotation(quat);
 
 	pShapeNode->mPtrRigidBody->setWorldTransform(trans);
+
+	btDiscreteDynamicsWorld* pWorld = 
+		TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(mPatternModel->GetPhysicWorld());
+	if( pWorld==NULL )
+		return;
+	if( pShapeNode->mPtrRigidBody->isInWorld() )
+		pWorld->removeRigidBody(pShapeNode->mPtrRigidBody);
+
 
 	// соединить части через крючки через constraint
 }

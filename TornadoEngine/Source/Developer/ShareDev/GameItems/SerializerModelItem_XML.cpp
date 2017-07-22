@@ -8,6 +8,7 @@ See for more information License.h.
 #include "SerializerModelItem_XML.h"
 #include "IXML.h"
 #include <boost/foreach.hpp>
+#include <boost/lexical_cast.hpp>
 
 namespace nsSerializerModelItem_XML
 {
@@ -20,7 +21,11 @@ namespace nsSerializerModelItem_XML
   const char* sPosition       = "Position";
   const char* sOrientation    = "Orientation";
   const char* sLocation       = "Location";
-  
+
+	const char* sDistance   		= "Distance";
+	const char* sConnection 		= "Connection";
+	const char* sValue      		= "value";
+
 	const char* sBase           = "Base";
   const char* sNamePart       = "part";
   const char* sBranch         = "Branch";
@@ -266,16 +271,16 @@ void TSerializerModelItem_XML::LoadLocation(TModelItem::TLocation& location, int
     location.nameBranch      = mXML->ReadSectionAttr(sBranch, 0, sNamePart);
     location.nameJointBranch = mXML->ReadSectionAttr(sBranch, 0, sNameJoint);
 
-    if(mXML->EnterSection(sPosition,0))
-    {
-      LoadVector3ByProperty( location.position );
-      mXML->LeaveSection();
-    }
-    if(mXML->EnterSection(sOrientation,0))
-    {
-      LoadQuaternionByProperty( location.orientation );
-      mXML->LeaveSection();
-    }
+		if(mXML->EnterSection(sConnection, 0))
+		{
+			location.distance = boost::lexical_cast<float>(mXML->ReadSectionAttr(sDistance, 0, sValue));
+			if(mXML->EnterSection(sOrientation,0))
+			{
+				LoadQuaternionByProperty( location.orientation );
+				mXML->LeaveSection();
+			}
+			mXML->LeaveSection();
+		}
     int cntLink = mXML->GetCountSection(sLink);
     for( int iLink = 0 ; iLink < cntLink ; iLink++ )
     {
@@ -328,16 +333,20 @@ void TSerializerModelItem_XML::SaveLocation(TModelItem::TLocation& location)
 		attr[1].Value = location.nameJointBranch;
     mXML->AddSection(sBranch, 2, &attr[0]);
 
-    if(mXML->AddSectionAndEnter(sPosition))
-    {
-      SaveVector3ByProperty( location.position );
-      mXML->LeaveSection();
-    }
-    if(mXML->AddSectionAndEnter(sOrientation))
-    {
-      SaveQuaternionByProperty( location.orientation );
-      mXML->LeaveSection();
-    }
+		if( mXML->AddSectionAndEnter(sConnection) )
+		{
+			TAttrInfo attrDistance;
+			attrDistance.Name  = sValue;
+			attrDistance.Value = boost::lexical_cast<std::string>(location.distance);
+			mXML->AddSection(sDistance, 1, &attrDistance);
+
+			if(mXML->AddSectionAndEnter(sOrientation))
+			{
+				SaveQuaternionByProperty( location.orientation );
+				mXML->LeaveSection();
+			}
+			mXML->LeaveSection();
+		}
     BOOST_FOREACH(TModelItem::TLink& link, location.listLink)
       SaveLink(link);
 

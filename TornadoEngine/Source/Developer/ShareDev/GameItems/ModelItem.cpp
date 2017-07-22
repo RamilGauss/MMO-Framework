@@ -19,7 +19,7 @@ TModelItem::TLocation::TLocation(const TLocation& c)
 	nameJointBase   = c.nameJointBase;
   nameBranch      = c.nameBranch;
 	nameJointBranch = c.nameJointBranch;
-  position    		= c.position;
+  distance    		= c.distance;
   orientation 		= c.orientation;
   listLink    		= c.listLink;
 }
@@ -32,7 +32,7 @@ TModelItem::TLocation& TModelItem::TLocation::operator = (const TLocation& c)
 	pC->nameJointBase   = nameJointBase;
   pC->nameBranch      = nameBranch;
 	pC->nameJointBranch = nameJointBranch;
-  pC->position    		= position;
+  pC->distance    		= distance;
   pC->orientation 		= orientation;
   pC->listLink    		= listLink;
 

@@ -176,9 +176,9 @@
         </Position>
         <Orientation>
           <Property key="x" value="0"/>
-          <Property key="y" value="1"/>
+          <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
+          <Property key="w" value="1"/>					
         </Orientation>
       </Joint>
     </Joining>
@@ -203,8 +203,8 @@
         </Position>
         <Orientation>
           <Property key="x" value="0"/>
-          <Property key="y" value="1"/>
-          <Property key="z" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="1"/>
           <Property key="w" value="0"/>
         </Orientation>
       </Joint>
@@ -215,10 +215,10 @@
           <Property key="z" value="-1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="-1"/>
+          <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
+          <Property key="w" value="-1"/>					
         </Orientation>
       </Joint>
       <Joint name="2"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -228,10 +228,10 @@
           <Property key="z" value="-1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="1"/>
+          <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
+          <Property key="w" value="1"/>					
         </Orientation>
       </Joint>
       <Joint name="3"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -241,10 +241,10 @@
           <Property key="z" value="1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="-1"/>
+          <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
+          <Property key="w" value="-1"/>					
         </Orientation>
       </Joint>
       <Joint name="4"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -254,10 +254,10 @@
           <Property key="z" value="1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="1"/>
+          <Property key="x" value="0"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-          <Property key="w" value="0"/>					
+          <Property key="w" value="1"/>					
         </Orientation>
       </Joint>
       <Joint name="5"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -268,8 +268,8 @@
         </Position>
         <Orientation>
           <Property key="x" value="0"/>
-          <Property key="y" value="-1"/>
-          <Property key="z" value="0"/>
+          <Property key="y" value="0"/>
+          <Property key="z" value="-1"/>
           <Property key="w" value="0"/>					
         </Orientation>
       </Joint>
@@ -315,17 +315,15 @@
 			<Location> <!-- Ветка, кто относительно кого соориентирован -->
 				<Base   part="Root" nameJoint="5"/>
 				<Branch part="Down" nameJoint="0"/>
-				<Position>
-					<Property key="x" value="0"/>
-					<Property key="y" value="-4"/>
-					<Property key="z" value="0"/>
-				</Position>
-				<Orientation>
-					<Property key="x" value="0"/>
-					<Property key="y" value="1"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>					
-				</Orientation>
+				<Connection>
+					<Distance value="2" />
+					<Orientation>
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+						<Property key="w" value="1"/>					
+					</Orientation>
+				</Connection>
 				<Link>
 					<JointBase   name="5"/>
 					<JointBranch name="0"/>
@@ -397,17 +395,15 @@
 			<Location> <!-- Ветка, кто относительно кого соориентирован -->
 				<Base part="Root"       nameJoint="1"/>
 				<Branch part="Wheel_LF" nameJoint="0"/>
-				<Position>
-					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-				</Position>
-				<Orientation>
-					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="1"/>					
-				</Orientation>
+				<Connection>
+					<Distance value="0.05" />
+					<Orientation>
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+						<Property key="w" value="1"/>					
+					</Orientation>
+				</Connection>
 				<Link>
 					<JointBase   name="1"/>
 					<JointBranch name="0"/>
@@ -426,17 +422,15 @@
 			<Location> 
 				<Base part="Root"       nameJoint="2"/>
 				<Branch part="Wheel_RF" nameJoint="0"/>
-				<Position>
-					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-				</Position>
-				<Orientation>
-					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="1"/>					
-				</Orientation>
+				<Connection>
+					<Distance value="0.05" />
+					<Orientation>
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+						<Property key="w" value="1"/>					
+					</Orientation>
+				</Connection>
 				<Link>
 					<JointBase   name="2"/>
 					<JointBranch name="0"/>
@@ -455,17 +449,15 @@
 			<Location> 
 				<Base part="Root"       nameJoint="3"/>
 				<Branch part="Wheel_LB" nameJoint="0"/>
-				<Position>
-					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-				</Position>
-				<Orientation>
-					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="1"/>					
-				</Orientation>
+				<Connection>
+					<Distance value="0.05" />
+					<Orientation>
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+						<Property key="w" value="1"/>					
+					</Orientation>
+				</Connection>
 				<Link>
 					<JointBase   name="3"/>
 					<JointBranch name="0"/>
@@ -484,17 +476,15 @@
 			<Location> 
 				<Base part="Root"       nameJoint="4"/>
 				<Branch part="Wheel_RB" nameJoint="0"/>
-				<Position>
-					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-				</Position>
-				<Orientation>
-					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="1"/>					
-				</Orientation>
+				<Connection>
+					<Distance value="0.05" />
+					<Orientation>
+						<Property key="x" value="0"/>
+						<Property key="y" value="0"/>
+						<Property key="z" value="0"/>
+						<Property key="w" value="1"/>					
+					</Orientation>
+				</Connection>
 				<Link>
 					<JointBase   name="4"/>
 					<JointBranch name="0"/>

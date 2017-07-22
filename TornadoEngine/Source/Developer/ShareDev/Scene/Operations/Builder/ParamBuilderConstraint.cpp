@@ -70,8 +70,12 @@ namespace nsParamBuilderConstraint
 {
 #define COPY_CONSTRAINT(TypeConstraint) \
 	case TypeConstraint: \
-	pTo = new T##TypeConstraint; \
-	memcpy(pTo, pFrom, sizeof(T##TypeConstraint)); \
+	{ \
+		T##TypeConstraint* pToTemp = new T##TypeConstraint; \
+		T##TypeConstraint* pFromTemp = (T##TypeConstraint*)pFrom; \
+		pTo = pToTemp; \
+		*pToTemp = *pFromTemp; \
+	} \
 	break;
 
 	bool CopyConstraint(TBaseParam* pFrom, TBaseParam*& pTo)

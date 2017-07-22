@@ -11,11 +11,15 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "Builder_Model.h"
 #include "ModelItem.h"
+#include "NodeLocation_Model.h"
 
 class TBaseNode_Model;
 class TNodeLocation_Model;
 class TFactoryBehaviourPattern;
 class TFactoryGameItem;
+
+class TModelNode_Model;
+class TShapeNode_Model;
 
 class DllExport TBuilder_Model_Logic : public TBuilder_Model
 {
@@ -29,23 +33,31 @@ public:
 
 	virtual void Build();
 
-	void CalcGlobal(TBaseNode_Model* pNode);
+	void CalcGlobalLocation();
 protected:
+	bool Init();
+
 	void SetupCollectionNode();
 
 	TBaseNode_Model* BuildModels(TModelItem::TVariant& variant);
 	TBaseNode_Model* BuildShapes(TModelItem::TVariant& variant);
 
-	void SetupHierarchyLocation();
-
-	void SetupNodeLocation(TBaseNode_Model* pNode, TNodeLocation_Model* pNodeLocation);
-
 	void LinkHierarchy();
+	void SetupJoint();
 
-	void SetupInnerJoint();
-	void SetupExternalJoint();
+	void SetupJointForNode(TBaseNode_Model* pNode, TNodeLocation_Model* pNodeLocation);
+	void SetupJointForNode_Model(TModelNode_Model* pModelNode, TNodeLocation_Model* pNodeLocation);
+	void SetupJointForNode_Shape(TShapeNode_Model* pShapeNode, TNodeLocation_Model* pNodeLocation);
 
-	void TryCalcGlobal();
+	void CalcLocation();
+	void CalcLocalLocation();
+
+	void CalcGlobalNode(TNodeLocation_Model* pNodeLocation);
+
+	void RankBuildVariant();
+	void DefineLocalLocationJoint();
+
+	void RankGlobalLocationCorrection();
 };
 
 #endif
