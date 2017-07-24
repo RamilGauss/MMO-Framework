@@ -102,6 +102,11 @@ TBaseNode_Model* TBuilder_Model_Logic::BuildModels(TModelItem::TVariant& variant
 
   TModelNode_Model* pModelNode = new TModelNode_Model;
 	pModelNode->mPtrModel        = (TPattern_Model*)pPattern;
+	// физ. мир наследуется
+	pModelNode->mPtrModel->SetNameMapItem(mPatternModel->GetNameMapItem());
+	pModelNode->mPtrModel->SetPhysicWorld(mPatternModel->GetPhysicWorld());
+	// какие настройки брать должен определять сам паттерн
+	//### pModelNode->mPtrModel->SetPatternConfig(patternConfig.name, patternConfig.nameVariant);
 	pModelNode->mPtrModel->SetNameGameItem(variant.nameItem);
 	// выставить что не является игровым объектом, то есть является составной частью
 	pModelNode->mPtrModel->SetIsGameObject(false);
@@ -260,6 +265,8 @@ void TBuilder_Model_Logic::CalcLocalLocation()
 //---------------------------------------------------------------------------
 void TBuilder_Model_Logic::CalcGlobalNode(TNodeLocation_Model* pNodeLocation)
 {
+	// рассчитать свои крючки
+	pNodeLocation->CalcGlobalJoint();
 	// пробежка по детям
 	int cntChild = mPatternModel->mHierarchy.GetCountChild(pNodeLocation->name);
 	for( int i = 0 ; i < cntChild ; i++ )
@@ -301,12 +308,14 @@ void TBuilder_Model_Logic::RankBuildVariant()
 //---------------------------------------------------------------------------
 void TBuilder_Model_Logic::DefineLocalLocationJoint()
 {
+	// пробежка по всем частям
 	int cntPart = mPatternModel->mMngNode_Collection.GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
 		TNodeLocation_Model* pNodeLocation = mPatternModel->mMngNodeLocation.Get(iPart);
 		TModelNode_Model* pNodeModel = (TModelNode_Model*)mPatternModel->mHierarchy.Get(pNodeLocation->name);
 
+		// поиск внутри части, поэтому вместо mPatternModel нужно использовать pNodeModel->mPtrModel
 		std::string nameModelItem = pNodeModel->mPtrModel->GetNameGameItem();
 		TModelItem* pModelItem = (TModelItem*)mFGI->Get(TFactoryGameItem::Model,nameModelItem);
 		if( pModelItem==NULL )
@@ -317,7 +326,7 @@ void TBuilder_Model_Logic::DefineLocalLocationJoint()
 			TModelItem::TMapExternalJointIt fit = pModelItem->mMapExternalJoint.find(pJoint->name);
 			if( fit==pModelItem->mMapExternalJoint.end() )
 				continue;
-			TNodeLocation_Model* pNodeOwnerJoint = mPatternModel->mMngNodeLocation.Get(fit->second.namePart);
+			TNodeLocation_Model* pNodeOwnerJoint = pNodeModel->mPtrModel->mMngNodeLocation.Get(fit->second.namePart);
 			if( pNodeOwnerJoint==NULL )
 			{
 				BL_FIX_BUG();
@@ -353,6 +362,8 @@ void TBuilder_Model_Logic::RankGlobalLocationCorrection()
 		pModelNode->mPtrModel->SetPosition(pNodeLocation->mGlobal.mPos);
 		pModelNode->mPtrModel->SetOrientation(pNodeLocation->mGlobal.mOrient);
 		pModelNode->mPtrModel->CalcGlobalLocation_Parts();
+		// и скорректировать дальше
+		pModelNode->mPtrModel->RankGlobalLocationCorrection();
 	}
 }
 //---------------------------------------------------------------------------

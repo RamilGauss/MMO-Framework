@@ -30,6 +30,7 @@ class TShapeNode_Model;
 
 class DllExport TPattern_Model : public TBehaviourPattern
 {
+	bool mIsGameObject;
 public:// for using by scenarios
 	// набор узлов
 	TManagerNode_Model mMngNode_Collection;
@@ -97,9 +98,6 @@ public:
 	// Deactivated (sleeping) rigid bodies don't take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)
 	virtual void ActivatePhysicBody(bool force = true);
 
-protected:
-	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
-
 public:// for using by scenarios
 	TModelItem::eType GetTypeContent();
 	void SetTypeContent(TModelItem::eType type);
@@ -115,11 +113,16 @@ public:// for using by scenarios
 	virtual void SetIsGameObject(bool v);
 	virtual bool IsGameObject();
 
+	// Logic feedback
 	void CalcGlobalLocation_Parts();
+	void RankGlobalLocationCorrection();
 
-	//btRigidBody* GetRigidBody(std::string namePart);
+	// Physic feedback
+	btRigidBody* GetRigidBody(std::string namePart);
+	void AddRigidBody(btRigidBody*);
 protected:
-	bool mIsGameObject;
+	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
+
 };
 
 #endif

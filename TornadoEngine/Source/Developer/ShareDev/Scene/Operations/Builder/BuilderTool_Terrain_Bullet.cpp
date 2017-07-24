@@ -79,7 +79,7 @@ void TBuilderTool_Terrain_Bullet::Load( int x, int y,
 
 	// create ground object
 	float mass = 0.0;
-	pPartPhysic->pRB = localCreateRigidBody(mass, tr, pPartPhysic->pHeightfieldShape);
+	pPartPhysic->pRB = localCreateRigidBody(mass, tr, pPartPhysic->pHeightfieldShape,true);
 }
 //--------------------------------------------------------------------
 bool TBuilderTool_Terrain_Bullet::LoadData( int x, int y, 

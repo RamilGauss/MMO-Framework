@@ -196,11 +196,16 @@ void TPattern_Model::ActivatePhysicBody(bool force)
 		TBaseNode_Model* pNode = mHierarchy.Get(iPart);
 		if( pNode==NULL )
 			continue;
-		if( pNode->type==TModelItem::eShape )
+		if( GetTypeContent()==TModelItem::eShape )
 		{
 			TShapeNode_Model* pShapeNode = (TShapeNode_Model*)pNode;
 			if( pShapeNode->mPtrRigidBody )
 				pShapeNode->mPtrRigidBody->activate(force);
+		}
+		else
+		{
+			TModelNode_Model* pModelNode = (TModelNode_Model*)pNode;
+			pModelNode->mPtrModel->ActivatePhysicBody();
 		}
 	}
 }
@@ -218,5 +223,10 @@ bool TPattern_Model::IsGameObject()
 void TPattern_Model::CalcGlobalLocation_Parts()
 {
 	mBuilderLogic.CalcGlobalLocation();
+}
+//---------------------------------------------------------------------------
+void TPattern_Model::RankGlobalLocationCorrection()
+{
+	mBuilderLogic.RankGlobalLocationCorrection();
 }
 //---------------------------------------------------------------------------

@@ -140,7 +140,7 @@ void TModifier_Terrain_Bullet::SetupContentParts()
 
 			// create ground object
 			float mass = 0.0;
-			pPart->pRB = mBuilderTool_Bullet.localCreateRigidBody(mass, tr, pPart->pHeightfieldShape);
+			pPart->pRB = mBuilderTool_Bullet.localCreateRigidBody(mass, tr, pPart->pHeightfieldShape,true);
 		}
 	}
 }

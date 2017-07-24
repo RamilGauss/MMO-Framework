@@ -40,7 +40,7 @@ btRigidBody* TBuilderTool_ShapeCylinder_Bullet::CreateRigidBody()
 	trans.setOrigin(pos);
 	//trans.setRotation(
 
-	btRigidBody* body = localCreateRigidBody(mass,trans,shape);
+	btRigidBody* body = localCreateRigidBody(mass,trans,shape,false);
 	body->setAnisotropicFriction(shape->getAnisotropicRollingFrictionDirection(),
 		btCollisionObject::CF_ANISOTROPIC_ROLLING_FRICTION);
 	body->setFriction(0.5f);// from material

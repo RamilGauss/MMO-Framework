@@ -34,6 +34,7 @@ public:
 	virtual void Build();
 
 	void CalcGlobalLocation();
+	void RankGlobalLocationCorrection();
 protected:
 	bool Init();
 
@@ -56,8 +57,6 @@ protected:
 
 	void RankBuildVariant();
 	void DefineLocalLocationJoint();
-
-	void RankGlobalLocationCorrection();
 };
 
 #endif

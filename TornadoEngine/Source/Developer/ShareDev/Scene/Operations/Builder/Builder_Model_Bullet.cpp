@@ -17,7 +17,8 @@ See for more information License.h.
 
 TBuilder_Model_Bullet::TBuilder_Model_Bullet()
 {
-
+	mFGI   = NULL;
+	mWorld = NULL;
 }
 //--------------------------------------------------------------------
 TBuilder_Model_Bullet::~TBuilder_Model_Bullet()
@@ -32,6 +33,9 @@ TFactoryBuilderTool_Shape_Bullet* TBuilder_Model_Bullet::GetShapeMaker()
 //--------------------------------------------------------------------
 void TBuilder_Model_Bullet::Build()
 {
+	mWorld = TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(mPatternModel->GetPhysicWorld());
+	mFGI = TModuleLogic::Get()->GetFGI();
+
 	int cntPart = mPatternModel->mMngNode_Collection.GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
@@ -43,10 +47,10 @@ void TBuilder_Model_Bullet::Build()
 			TBaseNode_Model* pNode = mPatternModel->mMngNode_Collection.Get(namePart, nameVariant);
 			if( pNode==NULL )
 				continue;
-			if( pNode->type==TModelItem::eModel )
+			if( mPatternModel->GetTypeContent()==TModelItem::eModel )
 			{
 				TModelNode_Model* pModelNode = (TModelNode_Model*)pNode;
-				pModelNode->mPtrModel->BuildByModule_Physic();
+				pModelNode->mPtrModel->BuildByModule_Physic();// RANK
 			}
 			else
 			{
@@ -60,78 +64,82 @@ void TBuilder_Model_Bullet::Build()
 //---------------------------------------------------------------------------
 void TBuilder_Model_Bullet::BuildShape(TShapeNode_Model* pShapeNode)
 {
-	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-	TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeNode->nameShapeItem);
+	TShapeItem* pShapeItem = (TShapeItem*)mFGI->Get(TFactoryGameItem::Shape,pShapeNode->nameShapeItem);
 	if( pShapeItem==NULL )
 		return;
 
-	int id_world = mPatternModel->GetPhysicWorld();
-
-	btRigidBody* pRB = GetShapeMaker()->Build( id_world, pShapeItem );
+	btRigidBody* pRB = GetShapeMaker()->Build( mPatternModel->GetPhysicWorld(), pShapeItem );
 	pShapeNode->mPtrRigidBody = pRB;
-#if 0
-	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
-	// сделано временно для визуализации (отладка)
-	nsMathTools::TVector3 pos;
-	GetPosition(pos);
-	btTransform& trans = pShapeNode->mPtrRigidBody->getWorldTransform();
-	btVector3& posBullet = trans.getOrigin();
-	posBullet.setX(pos.x);
-	posBullet.setY(pos.y);
-	posBullet.setZ(pos.z);
-
-	nsMathTools::TQuaternion orient;
-	GetOrientation(orient);
-	btQuaternion quat;
-	quat.setX(orient.x);
-	quat.setY(orient.y);
-	quat.setZ(orient.z);
-	quat.setW(orient.w);
-	trans.setRotation(quat);
-
-	pShapeNode->mPtrRigidBody->setWorldTransform(trans);
-
-	//###
-	pShapeNode->mPtrRigidBody->setLinearVelocity(btVector3(0,0,0));
-	//pShapeDesc->pRigidBody->setAngularVelocity(btVector3(0,10,0));
-
-	//btDiscreteDynamicsWorld* pWorld = 
-	// TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(id_world);
-	//###
-#endif
 }
 //---------------------------------------------------------------------------
 void TBuilder_Model_Bullet::PostBuild()
 {
-	// расположить части в соответствии с описанием внутри ModelItem
-	TShapeNode_Model* pShapeNode = (TShapeNode_Model*)mPatternModel->mHierarchy.GetRoot();
-	nsMathTools::TVector3 pos;
-	mPatternModel->GetPosition(pos);
-	btTransform& trans = pShapeNode->mPtrRigidBody->getWorldTransform();
-	btVector3& posBullet = trans.getOrigin();
-	posBullet.setX(pos.x);
-	posBullet.setY(pos.y);
-	posBullet.setZ(pos.z);
-
-	nsMathTools::TQuaternion orient;
-	mPatternModel->GetOrientation(orient);
-	btQuaternion quat;
-	quat.setX(orient.x);
-	quat.setY(orient.y);
-	quat.setZ(orient.z);
-	quat.setW(orient.w);
-	trans.setRotation(quat);
-
-	pShapeNode->mPtrRigidBody->setWorldTransform(trans);
-
-	btDiscreteDynamicsWorld* pWorld = 
-		TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(mPatternModel->GetPhysicWorld());
-	if( pWorld==NULL )
+	if( mPatternModel->GetTypeContent()==TModelItem::eShape )
+		PostBuild_Shape();
+	else
+		PostBuild_Model();
+}
+//---------------------------------------------------------------------------
+void TBuilder_Model_Bullet::PostBuild_Shape()
+{
+	TShapeNode_Model* pRoot = (TShapeNode_Model*)mPatternModel->mHierarchy.GetRoot();
+	if( pRoot==NULL )
+	{
+		BL_FIX_BUG();
 		return;
-	if( pShapeNode->mPtrRigidBody->isInWorld() )
-		pWorld->removeRigidBody(pShapeNode->mPtrRigidBody);
+	}
+	SetLocation_Shape(pRoot);
+}
+//---------------------------------------------------------------------------
+void TBuilder_Model_Bullet::SetLocation_Shape(TShapeNode_Model* pNode)
+{
+	mWorld->addRigidBody(pNode->mPtrRigidBody);
+	TNodeLocation_Model* pNodeLocation = mPatternModel->mMngNodeLocation.Get(pNode->namePart);
 
+	// позиционирование
+	btTransform& trans = pNode->mPtrRigidBody->getWorldTransform();
+	btVector3& posBullet = trans.getOrigin();
+	posBullet.setX(pNodeLocation->mGlobal.mPos.x);
+	posBullet.setY(pNodeLocation->mGlobal.mPos.y);
+	posBullet.setZ(pNodeLocation->mGlobal.mPos.z);
+
+	btQuaternion quat;
+	quat.setX(pNodeLocation->mGlobal.mOrient.x);
+	quat.setY(pNodeLocation->mGlobal.mOrient.y);
+	quat.setZ(pNodeLocation->mGlobal.mOrient.z);
+	quat.setW(pNodeLocation->mGlobal.mOrient.w);
+	trans.setRotation(quat);
+	pNode->mPtrRigidBody->setWorldTransform(trans);
+
+	//### future features
+	//pShapeNode->mPtrRigidBody->setLinearVelocity(btVector3(0,0,0)); 
+	//pShapeDesc->pRigidBody->setAngularVelocity(btVector3(0,10,0));
+	//### future features
 
 	// соединить части через крючки через constraint
+	int cntPart = mPatternModel->mHierarchy.GetCountChild(pNode->namePart);
+	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
+	{
+		TShapeNode_Model* pNodeChild = 
+			(TShapeNode_Model*)mPatternModel->mHierarchy.GetChild(pNode->namePart,iPart);
+		if( pNodeChild==NULL )
+			continue;
+		SetLocation_Shape(pNodeChild);
+
+		// установить констрейнты между телами
+		//SetConstraint(pNode->mPtrRigidBody,pNodeChild->mPtrRigidBody);
+	}
+}
+//---------------------------------------------------------------------------
+void TBuilder_Model_Bullet::PostBuild_Model()
+{
+	TModelNode_Model* pRoot = (TModelNode_Model*)mPatternModel->mHierarchy.GetRoot();
+	if( pRoot==NULL )
+	{
+		BL_FIX_BUG();
+		return;
+	}
+	// соединить части через крючки через constraint
+
 }
 //---------------------------------------------------------------------------

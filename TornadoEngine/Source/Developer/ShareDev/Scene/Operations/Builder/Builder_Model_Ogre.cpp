@@ -16,7 +16,7 @@ See for more information License.h.
 
 TBuilder_Model_Ogre::TBuilder_Model_Ogre()
 {
-
+	mFGI = NULL;
 }
 //--------------------------------------------------------------------
 TBuilder_Model_Ogre::~TBuilder_Model_Ogre()
@@ -31,6 +31,8 @@ TFactoryBuilderTool_Shape_Ogre* TBuilder_Model_Ogre::GetShapeMaker()
 //------------------------------------------------------------------------
 void TBuilder_Model_Ogre::Build()
 {
+	mFGI = TModuleLogic::Get()->GetFGI();
+
 	int cntPart = mPatternModel->mMngNode_Collection.GetCountPart();
 	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
 	{
@@ -42,7 +44,7 @@ void TBuilder_Model_Ogre::Build()
 			TBaseNode_Model* pNode = mPatternModel->mMngNode_Collection.Get(namePart, nameVariant);
 			if( pNode==NULL )
 				continue;
-			if( pNode->type==TModelItem::eModel )
+			if( mPatternModel->GetTypeContent()==TModelItem::eModel )
 			{
 				TModelNode_Model* pModelNode = (TModelNode_Model*)pNode;
 				pModelNode->mPtrModel->BuildByModule_Graphic();
@@ -59,8 +61,7 @@ void TBuilder_Model_Ogre::Build()
 //---------------------------------------------------------------------------
 void TBuilder_Model_Ogre::BuildShape(TShapeNode_Model* pShapeNode)
 {
-	TFactoryGameItem* pFGI = TModuleLogic::Get()->GetFGI();
-	TShapeItem* pShapeItem = (TShapeItem*)pFGI->Get(TFactoryGameItem::Shape,pShapeNode->nameShapeItem);
+	TShapeItem* pShapeItem = (TShapeItem*)mFGI->Get(TFactoryGameItem::Shape,pShapeNode->nameShapeItem);
 	if( pShapeItem==NULL )
 		return;
 
@@ -68,37 +69,53 @@ void TBuilder_Model_Ogre::BuildShape(TShapeNode_Model* pShapeNode)
 	pShapeNode->mPtrEntity = pEntity;
 	// каждый вариант части будет виден в PostBuild
 	pShapeNode->mPtrEntity->setVisible(false);
-
-	//### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
-	// сделано временно для визуализации (отладка)
-	nsMathTools::TVector3 pos;
-	mPatternModel->GetPosition(pos);
-	Ogre::Vector3 vPos(pos.x, pos.y, pos.z);
-	pEntity->getParentSceneNode()->setPosition(vPos);
-	pEntity->setCastShadows(true);
-
-	nsMathTools::TQuaternion orient;
-	mPatternModel->GetOrientation(orient);
-	pEntity->getParentSceneNode()->setOrientation(orient.w, orient.x, orient.y, orient.z);
-	//###
 }
 //---------------------------------------------------------------------------
 void TBuilder_Model_Ogre::PostBuild()
 {
-	//// каждый вариант части будет виден в PostBuild
-	//pShapeNode->mPtrEntity->setVisible(false);
+	if( mPatternModel->GetTypeContent()==TModelItem::eShape )
+		PostBuild_Shape();
+}
+//---------------------------------------------------------------------------
+void TBuilder_Model_Ogre::PostBuild_Shape()
+{
+	TShapeNode_Model* pRoot = (TShapeNode_Model*)mPatternModel->mHierarchy.GetRoot();
+	if( pRoot==NULL )
+	{
+		BL_FIX_BUG();
+		return;
+	}
+	SetLocation_Shape(pRoot);
+}
+//---------------------------------------------------------------------------
+void TBuilder_Model_Ogre::SetLocation_Shape(TShapeNode_Model* pNode)
+{
+	TNodeLocation_Model* pNodeLocation = mPatternModel->mMngNodeLocation.Get(pNode->namePart);
 
-	////### TODO убрать, всё позиционирование производится после загрузки всех форм (PostLoad)
-	//// сделано временно для визуализации (отладка)
-	//nsMathTools::TVector3 pos;
-	//mPatternModel->GetPosition(pos);
-	//Ogre::Vector3 vPos(pos.x, pos.y, pos.z);
-	//pEntity->getParentSceneNode()->setPosition(vPos);
-	//pEntity->setCastShadows(true);
+	// позиционирование
+	// каждый вариант части будет виден в PostBuild
+	pNode->mPtrEntity->setVisible(true);
 
-	//nsMathTools::TQuaternion orient;
-	//mPatternModel->GetOrientation(orient);
-	//pEntity->getParentSceneNode()->setOrientation(orient.w, orient.x, orient.y, orient.z);
-	//###
+	Ogre::Vector3 vPos(pNodeLocation->mGlobal.mPos.x,
+		pNodeLocation->mGlobal.mPos.y, pNodeLocation->mGlobal.mPos.z);
+	pNode->mPtrEntity->getParentSceneNode()->setPosition(vPos);
+	pNode->mPtrEntity->setCastShadows(true);
+
+	pNode->mPtrEntity->getParentSceneNode()->
+		setOrientation(pNodeLocation->mGlobal.mOrient.w, 
+  								 pNodeLocation->mGlobal.mOrient.x, 
+									 pNodeLocation->mGlobal.mOrient.y, 
+									 pNodeLocation->mGlobal.mOrient.z);
+
+	// соединить части через крючки через constraint
+	int cntPart = mPatternModel->mHierarchy.GetCountChild(pNode->namePart);
+	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
+	{
+		TShapeNode_Model* pNodeChild = 
+			(TShapeNode_Model*)mPatternModel->mHierarchy.GetChild(pNode->namePart,iPart);
+		if( pNodeChild==NULL )
+			continue;
+		SetLocation_Shape(pNodeChild);
+	}
 }
 //---------------------------------------------------------------------------
