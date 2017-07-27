@@ -99,6 +99,12 @@ public:
 	virtual void ActivatePhysicBody(bool force = true);
 
 public:// for using by scenarios
+	// является ли объект самостоятельным игровым (или часть игрового или другого неигрового)
+	virtual void SetIsGameObject(bool v);
+	virtual bool IsGameObject();
+
+	virtual void Event_AddModelNode(TModelNode_Model* p);
+
 	TModelItem::eType GetTypeContent();
 	void SetTypeContent(TModelItem::eType type);
 
@@ -108,10 +114,6 @@ public:// for using by scenarios
 	// подвижность
 	void SetMobility(bool v);
 	bool GetMobility();
-
-	// является ли объект самостоятельным игровым (или часть игрового или другого неигрового)
-	virtual void SetIsGameObject(bool v);
-	virtual bool IsGameObject();
 
 	// Logic feedback
 	void CalcGlobalLocation_Parts();

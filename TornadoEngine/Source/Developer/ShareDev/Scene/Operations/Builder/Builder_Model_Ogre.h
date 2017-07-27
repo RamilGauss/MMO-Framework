@@ -13,11 +13,9 @@ See for more information License.h.
 
 class TFactoryBuilderTool_Shape_Ogre;
 class TShapeNode_Model;
-class TFactoryGameItem;
 
 class DllExport TBuilder_Model_Ogre : public TBuilder_Model
 {
-	TFactoryGameItem* mFGI;
 public:
 	TBuilder_Model_Ogre();
 	virtual ~TBuilder_Model_Ogre();

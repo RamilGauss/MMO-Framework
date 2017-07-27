@@ -24,12 +24,16 @@
   </PatternConfig>
   <PatternConfig name="Model">
 		<Comment value=""/>
-		<Variant name="SimpleCylinder">
-			<Property key="NameGameItem" value="SimpleCylinder"/><!-- Какую модель выбрать -->
+		<Variant name="Wheel">
+			<Property key="NameGameItem" value="Wheel"/><!-- Какую модель выбрать -->
 			<Property key="Mobility"     value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
 		</Variant>
 		<Variant name="Cart">
 			<Property key="NameGameItem" value="Cart_M"/><!-- Какую модель выбрать -->
+			<Property key="Mobility"     value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
+		</Variant>
+		<Variant name="Hull">
+			<Property key="NameGameItem" value="Hull"/><!-- Какую модель выбрать -->
 			<Property key="Mobility"     value="true"/><!-- Свойства Model при загрузке, влияет на физику -->
 		</Variant>
   </PatternConfig>
@@ -171,14 +175,19 @@
       <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
         <Position>
           <Property key="x" value="0"/>
-          <Property key="y" value="0.15"/>
+          <Property key="y" value="0.35"/>
           <Property key="z" value="0"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="1"/>					
+          <Property key="00" value="0"/>
+          <Property key="01" value="1"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="-1"/>
+          <Property key="11" value="0"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
         </Orientation>
       </Joint>
     </Joining>
@@ -198,14 +207,19 @@
       <Joint name="0"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
         <Position>
           <Property key="x" value="0"/>
-          <Property key="y" value="0.15"/>
+          <Property key="y" value="0.05"/>
           <Property key="z" value="0"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="1"/>
-          <Property key="w" value="0"/>
+          <Property key="00" value="0"/>
+          <Property key="01" value="1"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="-1"/>
+          <Property key="11" value="0"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
         </Orientation>
       </Joint>
       <Joint name="1"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -215,10 +229,15 @@
           <Property key="z" value="-1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="-1"/>					
+          <Property key="00" value="-1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="-1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
         </Orientation>
       </Joint>
       <Joint name="2"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -228,10 +247,15 @@
           <Property key="z" value="-1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="1"/>					
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
         </Orientation>
       </Joint>
       <Joint name="3"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -241,10 +265,15 @@
           <Property key="z" value="1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="-1"/>					
+          <Property key="00" value="-1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="-1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
         </Orientation>
       </Joint>
       <Joint name="4"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -254,23 +283,33 @@
           <Property key="z" value="1"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="0"/>
-          <Property key="w" value="1"/>					
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
         </Orientation>
       </Joint>
       <Joint name="5"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
         <Position>
           <Property key="x" value="0"/>
-          <Property key="y" value="-0.15"/>
+          <Property key="y" value="-0.05"/>
           <Property key="z" value="0"/>
         </Position>
         <Orientation>
-          <Property key="x" value="0"/>
-          <Property key="y" value="0"/>
-          <Property key="z" value="-1"/>
-          <Property key="w" value="0"/>					
+          <Property key="00" value="0"/>
+          <Property key="01" value="-1"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="1"/>
+          <Property key="11" value="0"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
         </Orientation>
       </Joint>
     </Joining>
@@ -316,12 +355,17 @@
 				<Base   part="Root" nameJoint="5"/>
 				<Branch part="Down" nameJoint="0"/>
 				<Connection>
-					<Distance value="2" />
+					<Distance value="3.0" />
 					<Orientation>
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="1"/>					
+						<Property key="00" value="1"/>
+						<Property key="01" value="0"/>
+						<Property key="02" value="0"/>
+						<Property key="10" value="0"/>
+						<Property key="11" value="1"/>
+						<Property key="12" value="0"/>
+						<Property key="20" value="0"/>
+						<Property key="21" value="0"/>
+						<Property key="22" value="1"/>
 					</Orientation>
 				</Connection>
 				<Link>
@@ -395,13 +439,18 @@
 			<Location> <!-- Ветка, кто относительно кого соориентирован -->
 				<Base part="Root"       nameJoint="1"/>
 				<Branch part="Wheel_LF" nameJoint="0"/>
-				<Connection>
+				<Connection> 
 					<Distance value="0.05" />
 					<Orientation>
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="1"/>					
+						<Property key="00" value="1"/>
+						<Property key="01" value="0"/>
+						<Property key="02" value="0"/>
+						<Property key="10" value="0"/>
+						<Property key="11" value="1"/>
+						<Property key="12" value="0"/>
+						<Property key="20" value="0"/>
+						<Property key="21" value="0"/>
+						<Property key="22" value="1"/>
 					</Orientation>
 				</Connection>
 				<Link>
@@ -425,10 +474,15 @@
 				<Connection>
 					<Distance value="0.05" />
 					<Orientation>
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="1"/>					
+						<Property key="00" value="1"/>
+						<Property key="01" value="0"/>
+						<Property key="02" value="0"/>
+						<Property key="10" value="0"/>
+						<Property key="11" value="1"/>
+						<Property key="12" value="0"/>
+						<Property key="20" value="0"/>
+						<Property key="21" value="0"/>
+						<Property key="22" value="1"/>
 					</Orientation>
 				</Connection>
 				<Link>
@@ -452,10 +506,15 @@
 				<Connection>
 					<Distance value="0.05" />
 					<Orientation>
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="1"/>					
+						<Property key="00" value="1"/>
+						<Property key="01" value="0"/>
+						<Property key="02" value="0"/>
+						<Property key="10" value="0"/>
+						<Property key="11" value="1"/>
+						<Property key="12" value="0"/>
+						<Property key="20" value="0"/>
+						<Property key="21" value="0"/>
+						<Property key="22" value="1"/>
 					</Orientation>
 				</Connection>
 				<Link>
@@ -479,10 +538,15 @@
 				<Connection>
 					<Distance value="0.05" />
 					<Orientation>
-						<Property key="x" value="0"/>
-						<Property key="y" value="0"/>
-						<Property key="z" value="0"/>
-						<Property key="w" value="1"/>					
+						<Property key="00" value="1"/>
+						<Property key="01" value="0"/>
+						<Property key="02" value="0"/>
+						<Property key="10" value="0"/>
+						<Property key="11" value="1"/>
+						<Property key="12" value="0"/>
+						<Property key="20" value="0"/>
+						<Property key="21" value="0"/>
+						<Property key="22" value="1"/>
 					</Orientation>
 				</Connection>
 				<Link>
@@ -577,10 +641,15 @@
 					<Property key="z" value="0"/>
 				</Position>
 				<Orientation><!-- Ориентация -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>						
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="MapParameter"/>
@@ -598,10 +667,15 @@
 					<Property key="z" value="0"/>
 				</Position>
 				<Orientation><!-- Ориентация -->
-					<Property key="x" value="1"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>						
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Volume"/>
@@ -619,10 +693,15 @@
 					<Property key="z" value="0"/>
 				</Position>
 				<Orientation><!-- Ориентация -->
-					<Property key="x" value="1"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>						
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Skyplane"/>
@@ -640,14 +719,19 @@
 					<Property key="z" value="-1"/>
 				</Position>
 				<Orientation><!-- Ориентация -->
-					<Property key="x" value="0.4551968870"/>
-					<Property key="y" value="0.0923423171"/>
-					<Property key="z" value="0.0477437563"/>
-					<Property key="w" value="-0.884370446"/>
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>
-					<Property key="Variant" value="Cart"/>
+					<Property key="Variant" value="Hull"/>
 				</PatternConfig>
 			</Object>
 		  <Object>
@@ -661,10 +745,15 @@
 					<Property key="z" value="0"/>
 				</Position>
 				<Orientation><!-- Ориентация -->
-					<Property key="x" value="1"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>						
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Light"/>
@@ -682,10 +771,15 @@
 					<Property key="z" value="0"/>
 				</Position>
 				<Orientation><!-- Ориентация -->
-					<Property key="x" value="1"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>						
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Terrain"/>
@@ -703,10 +797,15 @@
 					<Property key="z" value="0"/>
 				</Position>
 				<Orientation><!-- Ориентация -->
-					<Property key="x" value="1"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>						
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Animated"/>
@@ -724,10 +823,15 @@
 					<Property key="z" value="0"/>
 				</Position>
 				<Orientation><!-- Ориентация -->
-					<Property key="x" value="1"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="w" value="0"/>						
+          <Property key="00" value="1"/>
+          <Property key="01" value="0"/>
+          <Property key="02" value="0"/>
+          <Property key="10" value="0"/>
+          <Property key="11" value="1"/>
+          <Property key="12" value="0"/>
+          <Property key="20" value="0"/>
+          <Property key="21" value="0"/>
+          <Property key="22" value="1"/>
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Sound"/>

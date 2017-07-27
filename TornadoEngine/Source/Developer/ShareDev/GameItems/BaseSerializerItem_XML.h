@@ -19,6 +19,18 @@ struct TBaseItem;
 
 class DllExport TBaseSerializerItem_XML
 {
+	struct TIndex
+	{
+		int i;
+		int j;
+		TIndex(){i=0;j=0;}
+		TIndex(int _i, int _j){i=_i;j=_j;}
+	};
+	typedef std::map<std::string,TIndex>  TMapStrIndex;
+	typedef TMapStrIndex::iterator   TMapStrIndexIt;
+	typedef TMapStrIndex::value_type TMapStrIndexVT;
+
+	TMapStrIndex mMapNameIndex_m3x3;
 protected:
   IXML* mXML;
   std::string mType;
@@ -48,13 +60,16 @@ protected:
 	bool LoadVector4ByProperty(nsMathTools::TVector4& v4);
 	bool SaveVector4ByProperty(nsMathTools::TVector4& v4);
 
-	bool LoadQuaternionByProperty(nsMathTools::TQuaternion& q);
-	bool SaveQuaternionByProperty(nsMathTools::TQuaternion& q);
+	bool LoadOrientationByProperty(nsMathTools::TMatrix16& m4x4);
+	bool SaveOrientationByProperty(nsMathTools::TMatrix16& m4x4);
 
 	bool LoadColour(nsMathTools::TVector3& v3);
 	bool SaveColour(nsMathTools::TVector3& v3);
 private:
   bool EnterRoot();
+
+	TIndex* FindIndex(std::string name);
+
 protected:
   typedef std::map<std::string,std::string> TMapStrStr;
   typedef TMapStrStr::iterator              TMapStrStrIt;

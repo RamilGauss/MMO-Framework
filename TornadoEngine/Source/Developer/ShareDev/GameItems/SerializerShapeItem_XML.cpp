@@ -94,7 +94,7 @@ void TSerializerShapeItem_XML::LoadJoining()
         }
         if(mXML->EnterSection(sOrientation,0))
         {
-          LoadQuaternionByProperty(joint.orientation);
+          LoadOrientationByProperty(joint.orientation);
           mXML->LeaveSection();
         }
         mXML->LeaveSection();
@@ -203,7 +203,7 @@ void TSerializerShapeItem_XML::SaveJoining()
         }
         if(mXML->AddSectionAndEnter(sOrientation))
         {
-          SaveQuaternionByProperty(bit.second.orientation);
+          SaveOrientationByProperty(bit.second.orientation);
           mXML->LeaveSection();
         }
         mXML->LeaveSection();

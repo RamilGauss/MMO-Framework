@@ -230,3 +230,9 @@ void TPattern_Model::RankGlobalLocationCorrection()
 	mBuilderLogic.RankGlobalLocationCorrection();
 }
 //---------------------------------------------------------------------------
+void TPattern_Model::Event_AddModelNode(TModelNode_Model* p)
+{	
+	// сам паттерн должен подобрать своим частям настройки
+	//p->mPtrModel->SetPatternConfig(patternConfig.name, patternConfig.nameVariant);
+}
+//---------------------------------------------------------------------------

@@ -13,13 +13,9 @@ See for more information License.h.
 
 class TFactoryBuilderTool_Shape_Bullet;
 class TShapeNode_Model;
-class TFactoryGameItem;
-class btDiscreteDynamicsWorld;
 
 class DllExport TBuilder_Model_Bullet : public TBuilder_Model
 {
-	TFactoryGameItem* mFGI;
-	btDiscreteDynamicsWorld* mWorld;
 public:
 	TBuilder_Model_Bullet();
 	virtual ~TBuilder_Model_Bullet();

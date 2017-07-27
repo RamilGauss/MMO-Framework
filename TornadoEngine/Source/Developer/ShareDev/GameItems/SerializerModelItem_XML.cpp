@@ -276,7 +276,7 @@ void TSerializerModelItem_XML::LoadLocation(TModelItem::TLocation& location, int
 			location.distance = boost::lexical_cast<float>(mXML->ReadSectionAttr(sDistance, 0, sValue));
 			if(mXML->EnterSection(sOrientation,0))
 			{
-				LoadQuaternionByProperty( location.orientation );
+				LoadOrientationByProperty( location.orientation );
 				mXML->LeaveSection();
 			}
 			mXML->LeaveSection();
@@ -342,7 +342,7 @@ void TSerializerModelItem_XML::SaveLocation(TModelItem::TLocation& location)
 
 			if(mXML->AddSectionAndEnter(sOrientation))
 			{
-				SaveQuaternionByProperty( location.orientation );
+				SaveOrientationByProperty( location.orientation );
 				mXML->LeaveSection();
 			}
 			mXML->LeaveSection();

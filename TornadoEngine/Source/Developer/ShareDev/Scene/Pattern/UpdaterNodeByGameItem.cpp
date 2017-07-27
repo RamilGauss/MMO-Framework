@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -23,7 +23,7 @@ TUpdaterNodeByGameItem::~TUpdaterNodeByGameItem()
 /*
 void TBaseNode_Model::CalcGlobal(TLocation& globalParent)
 {
-	// позиция нода рассчитывается с учётом крючков своих и родителя
+	// РїРѕР·РёС†РёСЏ РЅРѕРґР° СЂР°СЃСЃС‡РёС‚С‹РІР°РµС‚СЃСЏ СЃ СѓС‡С‘С‚РѕРј РєСЂСЋС‡РєРѕРІ СЃРІРѕРёС… Рё СЂРѕРґРёС‚РµР»СЏ
 	nsMathTools::TQuaternion qPoint;
 	qPoint.x = mLocal.mPos.x;
 	qPoint.y = mLocal.mPos.y;

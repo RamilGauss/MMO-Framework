@@ -80,14 +80,14 @@ bool TBehaviourPattern::GetPosition(nsMathTools::TVector3& v)
 	return true;
 }
 //------------------------------------------------------------------------
-void TBehaviourPattern::SetOrientation(nsMathTools::TQuaternion& v)
+void TBehaviourPattern::SetOrientation(nsMathTools::TMatrix16& v)
 {
-	mOrientQuaternion = v;
+	mOrientation = v;
 }
 //------------------------------------------------------------------------
-bool TBehaviourPattern::GetOrientation(nsMathTools::TQuaternion& v)
+bool TBehaviourPattern::GetOrientation(nsMathTools::TMatrix16& v)
 {
-	v = mOrientQuaternion;
+	v = mOrientation;
 	return true;
 }
 //------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-������� ������ ��������� 
+Гудаков Рамиль Сергеевич 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -73,28 +73,30 @@ void TNodeLocation_Model::ClearListLink()
 //---------------------------------------------------------------------------------
 void TNodeLocation_Model::CalcGlobalJoint()
 {
-	BOOST_FOREACH( TMapStrJointVT& vtNameJoint, mMapNameJoint )
+	/*BOOST_FOREACH( TMapStrJointVT& vtNameJoint, mMapNameJoint )
 	{
 		TJoint* pJoint = &(vtNameJoint.second);
-		// ������� ���� �������������� � ������ ������� ����� � ��������
-		nsMathTools::TQuaternion qPoint;
-		qPoint.x = pJoint->mLocalRelativeNode.mPos.x;
-		qPoint.y = pJoint->mLocalRelativeNode.mPos.y;
-		qPoint.z = pJoint->mLocalRelativeNode.mPos.z;
-		qPoint.w = 0;
-
-		nsMathTools::TQuaternion qResult = qPoint*mGlobal.mOrient;
-
-		nsMathTools::TVector3 vResult(0,0,0);
-		float AngleResult = 0;
-		SetQuaternionToAxisAngle(&qResult, &vResult, &AngleResult);
+		// позиция нода рассчитывается с учётом крючков своих и родителя
+		nsMathTools::TVector3 vResult;
+		SetRotatePoint(&mGlobal.mOrient, &pJoint->mLocalRelativeNode.mPos, &vResult);
 
 		pJoint->mGlobal.mPos    = mGlobal.mPos    + vResult;
 		pJoint->mGlobal.mOrient = mGlobal.mOrient * pJoint->mLocalRelativeNode.mOrient;
+	}*/
+	BOOST_FOREACH( TMapStrJointVT& vtNameJoint, mMapNameJoint )
+	{
+		TJoint* pJoint = &(vtNameJoint.second);
+		// позиция нода рассчитывается с учётом крючков своих и родителя
+		nsMathTools::TVector3 vResult;
+		SetVec3TransformCoord(&vResult, &pJoint->mLocalRelativeNode.mPos, &mGlobal.mOrient);
+
+		pJoint->mGlobal.mPos    = mGlobal.mPos + vResult;
+		// домножить на вращение относительно родителя
+		pJoint->mGlobal.mOrient *= pJoint->mLocalRelativeNode.mOrient;
 	}
 }
 //---------------------------------------------------------------------------------
-// �� �������� ���������� ������� ������ ������� ������� - �������������
+// по правилам математики поворот против часовой стрелки - положительный
 void TNodeLocation_Model::CalcGlobal(TNodeLocation_Model* pNodeLocationParent)
 {
 	TJoint* pJointParent = pNodeLocationParent->GetJoint(nameJointParent);
@@ -105,58 +107,96 @@ void TNodeLocation_Model::CalcGlobal(TNodeLocation_Model* pNodeLocationParent)
 		return;
 	}
 
-	// �������� ������ �������� � ������ ���������� ����������
+	// вращение крючка родителя с учетом параметров соединения
+	nsMathTools::TMatrix16 qJointParentConnection = 
+		pJointParent->mGlobal.mOrient * mOrientRelativeJointToJointParent;
+
+	nsMathTools::TVector3 Up_JointParent(0,1,0);
+	nsMathTools::TVector3 vUpRelativeJointParent(0,0,0);// локальные координаты вектора Вверх с учётом вращения
+
+	nsMathTools::TVector3 Forward_JointParent(1,0,0);
+	nsMathTools::TVector3 vForwardRelativeJointParent(0,0,0);// локальные координаты вектора Вперед с учётом вращения
+
+	SetVec3TransformCoord(&vUpRelativeJointParent,     &Up_JointParent,     &qJointParentConnection);
+	SetVec3TransformCoord(&vForwardRelativeJointParent,&Forward_JointParent,&qJointParentConnection);
+
+	vForwardRelativeJointParent *= mDistanceRelativeJointToJointParent;// растягиваем до расстояния между крючками
+	
+	nsMathTools::TVector3 globalPosJointChild = 
+		pJointParent->mGlobal.mPos + vForwardRelativeJointParent;
+
+	// повернуть направление на 180 градусов, потому что нужно ориентироваться
+	// относительно родителя, т.к. крючки смотрят друг на друга
+	nsMathTools::TMatrix16 rotAboutUp;
+	SetMatrixRotationAxis( &rotAboutUp, &vUpRelativeJointParent, float(M_PI));
+	
+	nsMathTools::TMatrix16 qJointChild = qJointParentConnection*rotAboutUp;
+
+	mGlobal.mOrient = qJointChild*pMyJoint->mLocalRelativeNode.mOrient;
+
+	nsMathTools::TVector3 MyJointRelativeChild;
+	MyJointRelativeChild.x = -pMyJoint->mLocalRelativeNode.mPos.x;// обратный сдвиг порождает знак минуса
+	MyJointRelativeChild.y = -pMyJoint->mLocalRelativeNode.mPos.y;// во всех осях
+	MyJointRelativeChild.z = -pMyJoint->mLocalRelativeNode.mPos.z;// 
+
+	nsMathTools::TVector3 posChildRelativeJoint;
+	SetVec3TransformCoord(&posChildRelativeJoint, &MyJointRelativeChild, &mGlobal.mOrient);
+
+	mGlobal.mPos = globalPosJointChild + posChildRelativeJoint;
+/*
+	// вращение крючка родителя с учетом параметров соединения
 	nsMathTools::TQuaternion qJointParentConnection = 
 		pJointParent->mGlobal.mOrient * mOrientRelativeJointToJointParent;
-	
-	nsMathTools::TQuaternion qUp_JointParent(0,1,0,0), qForward_JointParent(1,0,0,0);
 
-	nsMathTools::TQuaternion qUpGlobal      = qUp_JointParent      * qJointParentConnection;
-	nsMathTools::TQuaternion qForwardGlobal = qForward_JointParent * qJointParentConnection;
-
-	nsMathTools::TVector3 vUpRelativeJointParent(0,0,0);// ��������� ���������� ������� ����� � ������ ��������
 	float angleTemp = 0;
-	SetQuaternionToAxisAngle(&qUpGlobal, &vUpRelativeJointParent, &angleTemp);
+	nsMathTools::TVector3 Up_JointParent(0,1,0);
+	nsMathTools::TVector3 vUpRelativeJointParent(0,0,0);// локальные координаты вектора Вверх с учётом вращения
 
-	nsMathTools::TVector3 vForwardRelativeJointParent(0,0,0);// ��������� ���������� ������� ������ � ������ ��������
-	SetQuaternionToAxisAngle(&qForwardGlobal, &vForwardRelativeJointParent, &angleTemp);
-	
-	vForwardRelativeJointParent *= mDistanceRelativeJointToJointParent;// ����������� �� ���������� ����� ��������
+	nsMathTools::TVector3 Forward_JointParent(1,0,0);
+	nsMathTools::TVector3 vForwardRelativeJointParent(0,0,0);// локальные координаты вектора Вперед с учётом вращения
+
+	SetRotatePoint(&qJointParentConnection, &Up_JointParent,      &vUpRelativeJointParent);
+	SetRotatePoint(&qJointParentConnection, &Forward_JointParent, &vForwardRelativeJointParent);
+
+	vForwardRelativeJointParent *= mDistanceRelativeJointToJointParent;// растягиваем до расстояния между крючками
 
 	nsMathTools::TVector3 globalPosJointChild = 
 		pJointParent->mGlobal.mPos + vForwardRelativeJointParent;
 
+	// повернуть направление на 180 градусов, потому что нужно ориентироваться
+	// относительно родителя, т.к. крючки смотрят друг на друга
 	nsMathTools::TQuaternion rotAboutUp;
 	SetQuaternionRotationAxis( &rotAboutUp, &vUpRelativeJointParent, float(M_PI*2));
 	nsMathTools::TQuaternion qJointChild = qJointParentConnection*rotAboutUp;
 
 	mGlobal.mOrient = qJointChild*pMyJoint->mLocalRelativeNode.mOrient;
 
-	nsMathTools::TQuaternion qMyJointRelativeChild;
-	qMyJointRelativeChild.x = -pMyJoint->mLocalRelativeNode.mPos.x;// �������� ����� ��������� ���� ������
-	qMyJointRelativeChild.y = -pMyJoint->mLocalRelativeNode.mPos.y;// �� ���� ����
-	qMyJointRelativeChild.z = -pMyJoint->mLocalRelativeNode.mPos.z;// 
-	qMyJointRelativeChild.w = 0;
-
-	nsMathTools::TQuaternion qMyJointGlobal = qMyJointRelativeChild*mGlobal.mOrient;
+	nsMathTools::TVector3 MyJointRelativeChild;
+	MyJointRelativeChild.x = -pMyJoint->mLocalRelativeNode.mPos.x;// обратный сдвиг порождает знак минуса
+	MyJointRelativeChild.y = -pMyJoint->mLocalRelativeNode.mPos.y;// во всех осях
+	MyJointRelativeChild.z = -pMyJoint->mLocalRelativeNode.mPos.z;// 
 
 	nsMathTools::TVector3 posChildRelativeJoint;
-	SetQuaternionToAxisAngle( &qMyJointGlobal, &posChildRelativeJoint, &angleTemp);
-	mGlobal.mPos = globalPosJointChild + posChildRelativeJoint;
+	SetRotatePoint(&mGlobal.mOrient, &MyJointRelativeChild, &posChildRelativeJoint);
+
+	mGlobal.mPos = globalPosJointChild + posChildRelativeJoint;*/
 }
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
-#if 0
-void Test()
-{	// ������ ����������� ������
+void TestNodeLocation()
+{	
+#if 1
+	// разбор конкретного случая
 	TNodeLocation_Model parent, child;
 	parent.name            = "Parent";
 	parent.mGlobal.mPos    = nsMathTools::TVector3(0,0,0);
-	parent.mGlobal.mOrient = nsMathTools::TQuaternion(0,0,0,-1);
+	nsMathTools::TVector3 axis_Z(0,0,1);
+	SetMatrixRotationAxis(&parent.mGlobal.mOrient, &axis_Z, float(M_PI));// подготовка
+
 	parent.AddJoint("0");
 	TNodeLocation_Model::TJoint* pJointParent = parent.GetJoint("0");
 	pJointParent->mLocalRelativeNode.mPos    = nsMathTools::TVector3(1,0,0);
-	pJointParent->mLocalRelativeNode.mOrient = nsMathTools::TQuaternion(0,0,0,1);
+	SetMatrixRotationAxis(&pJointParent->mLocalRelativeNode.mOrient, &axis_Z, 0);// подготовка
 
 	parent.CalcGlobalJoint();
 
@@ -164,15 +204,15 @@ void Test()
 	child.nameMyJointToParent = "0";
 	child.nameJointParent     = "0";
 	child.mDistanceRelativeJointToJointParent = 3;
-	child.mOrientRelativeJointToJointParent   = nsMathTools::TQuaternion(0,0,0,1);
+	SetMatrixRotationAxis(&child.mOrientRelativeJointToJointParent, &axis_Z, 0);// подготовка
 
 	child.AddJoint("0");
 	TNodeLocation_Model::TJoint* pJointChild = child.GetJoint("0");
 	pJointChild->mLocalRelativeNode.mPos    = nsMathTools::TVector3(1,0,0);
-	pJointChild->mLocalRelativeNode.mOrient = nsMathTools::TQuaternion(0,0,0,1);
+	SetMatrixRotationAxis(&pJointChild->mLocalRelativeNode.mOrient, &axis_Z, 0);// подготовка
 
 	child.CalcGlobal(&parent);
 	child.CalcGlobalJoint();
-}
 #endif
+}
 //--------------------------------------------------------------------

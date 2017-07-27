@@ -22,6 +22,62 @@ TBuilder_Model_Logic::TBuilder_Model_Logic()
 	mFBP = NULL;
 	mFGI = NULL;
 	mModelItem = NULL;
+
+	//###
+	//TestNodeLocation();
+	nsMathTools::TMatrix16 m16;
+	nsMathTools::TVector3 axis;
+
+	axis = nsMathTools::TVector3(0,1,0);
+	SetMatrixRotationAxis(&m16, &axis, M_PI-0.0000124f);// подготовка
+
+	nsMathTools::TVector3 searchAxis;
+	float searchAngle;
+	SetMatrixToAxisAngle(&m16, &searchAxis, &searchAngle);
+
+	axis = nsMathTools::TVector3(0,0,1);
+	SetMatrixRotationAxis(&m16, &axis, float(M_PI/2));// подготовка
+	//<Property key="00" value="0"/>
+	//<Property key="01" value="1"/>
+	//<Property key="02" value="0"/>
+	//<Property key="10" value="-1"/>
+	//<Property key="11" value="0"/>
+	//<Property key="12" value="0"/>
+	//<Property key="20" value="0"/>
+	//<Property key="21" value="0"/>
+	//<Property key="22" value="1"/>
+
+
+	axis = nsMathTools::TVector3(0,0,1);
+	SetMatrixRotationAxis(&m16, &axis, float(M_PI));// подготовка
+	//<Property key="00" value="-1"/>
+	//<Property key="01" value="0"/>
+	//<Property key="02" value="0"/>
+	//<Property key="10" value="0"/>
+	//<Property key="11" value="-1"/>
+	//<Property key="12" value="0"/>
+	//<Property key="20" value="0"/>
+	//<Property key="21" value="0"/>
+	//<Property key="22" value="1"/>
+
+	axis = nsMathTools::TVector3(0,0,1);
+	SetMatrixRotationAxis(&m16, &axis, -float(M_PI/2));// подготовка
+	//<Property key="00" value="0"/>
+	//<Property key="01" value="-1"/>
+	//<Property key="02" value="0"/>
+	//<Property key="10" value="1"/>
+	//<Property key="11" value="0"/>
+	//<Property key="12" value="0"/>
+	//<Property key="20" value="0"/>
+	//<Property key="21" value="0"/>
+	//<Property key="22" value="1"/>
+
+	nsMathTools::TVector3 point(1,0,0);
+	nsMathTools::TVector3 pointResult;
+	SetVec3TransformCoord(&pointResult, &point, &m16);
+
+	int a = 0;
+	//###
 }
 //--------------------------------------------------------------------
 TBuilder_Model_Logic::~TBuilder_Model_Logic()
@@ -106,7 +162,7 @@ TBaseNode_Model* TBuilder_Model_Logic::BuildModels(TModelItem::TVariant& variant
 	pModelNode->mPtrModel->SetNameMapItem(mPatternModel->GetNameMapItem());
 	pModelNode->mPtrModel->SetPhysicWorld(mPatternModel->GetPhysicWorld());
 	// какие настройки брать должен определять сам паттерн
-	//### pModelNode->mPtrModel->SetPatternConfig(patternConfig.name, patternConfig.nameVariant);
+	mPatternModel->Event_AddModelNode(pModelNode);
 	pModelNode->mPtrModel->SetNameGameItem(variant.nameItem);
 	// выставить что не является игровым объектом, то есть является составной частью
 	pModelNode->mPtrModel->SetIsGameObject(false);
@@ -257,7 +313,7 @@ void TBuilder_Model_Logic::CalcLocalLocation()
 		return;
 	}
 	pNodeLocation->mGlobal.mPos    = nsMathTools::TVector3(0,0,0);
-	pNodeLocation->mGlobal.mOrient = nsMathTools::TQuaternion(0,0,0,1);
+	SetMatrixIdentity(&(pNodeLocation->mGlobal.mOrient));// не вращать
 	// рассчитать глобальное позиционирование детей и как побочный продукт
 	// глобальное позиционирование крючка относительно корня для каждого нода
 	CalcGlobalNode(pNodeLocation);
@@ -280,7 +336,6 @@ void TBuilder_Model_Logic::CalcGlobalNode(TNodeLocation_Model* pNodeLocation)
 			continue;
 
 		pNodeLocationChild->CalcGlobal(pNodeLocation);
-		pNodeLocationChild->CalcGlobalJoint();
 		CalcGlobalNode(pNodeLocationChild);
 	}
 }

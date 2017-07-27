@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,34 +15,34 @@ See for more information License.h.
 #include <list>
 #include "ParamBuilderConstraint.h"
 
-// хотя лучше бы это была структура
+// С…РѕС‚СЏ Р»СѓС‡С€Рµ Р±С‹ СЌС‚Рѕ Р±С‹Р»Р° СЃС‚СЂСѓРєС‚СѓСЂР°
 
 class DllExport TNodeLocation_Model
 {
 public:
 	struct DllExport TLocation
 	{
-		nsMathTools::TVector3    mPos;
-		nsMathTools::TQuaternion mOrient;
+		nsMathTools::TVector3  mPos;
+		nsMathTools::TMatrix16 mOrient;
 	};
 	struct DllExport TJoint
 	{
 		std::string name;
 		TLocation mLocalRelativeNode;
-		TLocation mGlobal;// результат для позиционирования
+		TLocation mGlobal;// СЂРµР·СѓР»СЊС‚Р°С‚ РґР»СЏ РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёСЏ
 	};
 	//------------------------------------------------------
 	typedef std::map<std::string,TJoint> TMapStrJoint;
 	typedef TMapStrJoint::iterator   		 TMapStrJointIt;
 	typedef TMapStrJoint::value_type 		 TMapStrJointVT;
 
-	// как соединить
+	// РєР°Рє СЃРѕРµРґРёРЅРёС‚СЊ
 	struct TLink
 	{
-		// геометрия
+		// РіРµРѕРјРµС‚СЂРёСЏ
 		std::string nameMyJointToParent;
 		std::string nameJointParent;
-		// настройка констрейнта
+		// РЅР°СЃС‚СЂРѕР№РєР° РєРѕРЅСЃС‚СЂРµР№РЅС‚Р°
 		nsParamBuilderConstraint::TBaseParam* mPtrConstraintToParent;
 
 		TLink(){mPtrConstraintToParent=NULL;}
@@ -63,23 +63,23 @@ public:
 	typedef TListPtrLink::iterator TListPtrLinkIt;
 
 	std::string name;
-	// ориентир как соединять
+	// РѕСЂРёРµРЅС‚РёСЂ РєР°Рє СЃРѕРµРґРёРЅСЏС‚СЊ
 	std::string nameMyJointToParent;
 	std::string nameJointParent;
-	// параметры соединения
-	nsMathTools::TQuaternion mOrientRelativeJointToJointParent;
-	float mDistanceRelativeJointToJointParent;
+	// РїР°СЂР°РјРµС‚СЂС‹ СЃРѕРµРґРёРЅРµРЅРёСЏ
+	nsMathTools::TMatrix16 mOrientRelativeJointToJointParent;
+	float                  mDistanceRelativeJointToJointParent;
 
-	// описание констрейнтов как физически соединить с родителем
+	// РѕРїРёСЃР°РЅРёРµ РєРѕРЅСЃС‚СЂРµР№РЅС‚РѕРІ РєР°Рє С„РёР·РёС‡РµСЃРєРё СЃРѕРµРґРёРЅРёС‚СЊ СЃ СЂРѕРґРёС‚РµР»РµРј
 	TListPtrLink mListLink;
 
-	TMapStrJoint mMapNameJoint;   // набор всех крючков
-	TLocation    mGlobal;         // результат для позиционирования
+	TMapStrJoint mMapNameJoint;   // РЅР°Р±РѕСЂ РІСЃРµС… РєСЂСЋС‡РєРѕРІ
+	TLocation    mGlobal;         // СЂРµР·СѓР»СЊС‚Р°С‚ РґР»СЏ РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёСЏ
 public:
 	TNodeLocation_Model();
 	virtual ~TNodeLocation_Model();
 
-	// для быстрых манипуляций с крючками
+	// РґР»СЏ Р±С‹СЃС‚СЂС‹С… РјР°РЅРёРїСѓР»СЏС†РёР№ СЃ РєСЂСЋС‡РєР°РјРё
 	void AddJoint(std::string nameJoint);
 	int GetCountJoint();
 	TJoint* GetJoint(int index);
@@ -93,5 +93,7 @@ public:
 	void CalcGlobalJoint();
 	void CalcGlobal(TNodeLocation_Model* pNodeLocationParent);
 };
+
+extern void TestNodeLocation();
 
 #endif

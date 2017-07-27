@@ -12,8 +12,14 @@ See for more information License.h.
 
 #include "Operation_Model.h"
 
+class TFactoryGameItem;
+class btDiscreteDynamicsWorld;
+
 class DllExport TBuilder_Model : public TOperation_Model
 {
+protected:
+	TFactoryGameItem*        mFGI;
+	btDiscreteDynamicsWorld* mWorld;
 public:
 	TBuilder_Model();
   

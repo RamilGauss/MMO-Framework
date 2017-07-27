@@ -69,8 +69,8 @@ struct DllExport TModelItem : public TBaseItem
     std::string nameBranch;
 		std::string nameJointBranch;
 		// один относительно другого крючка расположен так:
-		float                    distance; // сдвиг по вектору крючка на такое расстояние
-    nsMathTools::TQuaternion orientation;
+		float                  distance; // сдвиг по вектору крючка на такое расстояние
+    nsMathTools::TMatrix16 orientation;
 
 		TListLink                listLink;
 

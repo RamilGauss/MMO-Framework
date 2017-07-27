@@ -17,6 +17,11 @@ See for more information License.h.
 #include <stddef.h>
 #include "BL_Debug.h"
 
+namespace nsMathTools
+{
+	const float msEpsilon = 1e-05f;// максимальная погрешность
+}
+
 using namespace nsMathTools;
 
 //-------------------------------------------------------------------------
@@ -125,18 +130,113 @@ TMatrix16* SetMatrixRotationAxis(TMatrix16 *pOut,
 
 	TVector3 v;
 
+	float cosA = cos(Angle);
+	float sinA = sin(Angle);
+
+	float _1_cosA = 1.0f - cosA;
+
 	SetVec3Normalize(&v, pV);
 	SetMatrixIdentity(pOut);
-	pOut->m[0][0] = (1.0f - cos(Angle)) * v.x * v.x + cos(Angle);
-	pOut->m[1][0] = (1.0f - cos(Angle)) * v.x * v.y - sin(Angle) * v.z;
-	pOut->m[2][0] = (1.0f - cos(Angle)) * v.x * v.z + sin(Angle) * v.y;
-	pOut->m[0][1] = (1.0f - cos(Angle)) * v.y * v.x + sin(Angle) * v.z;
-	pOut->m[1][1] = (1.0f - cos(Angle)) * v.y * v.y + cos(Angle);
-	pOut->m[2][1] = (1.0f - cos(Angle)) * v.y * v.z - sin(Angle) * v.x;
-	pOut->m[0][2] = (1.0f - cos(Angle)) * v.z * v.x - sin(Angle) * v.y;
-	pOut->m[1][2] = (1.0f - cos(Angle)) * v.z * v.y + sin(Angle) * v.x;
-	pOut->m[2][2] = (1.0f - cos(Angle)) * v.z * v.z + cos(Angle);
+	pOut->m[0][0] = _1_cosA * v.x * v.x + cosA;
+	pOut->m[1][0] = _1_cosA * v.x * v.y - sinA * v.z;
+	pOut->m[2][0] = _1_cosA * v.x * v.z + sinA * v.y;
+	pOut->m[0][1] = _1_cosA * v.y * v.x + sinA * v.z;
+	pOut->m[1][1] = _1_cosA * v.y * v.y + cosA;
+	pOut->m[2][1] = _1_cosA * v.y * v.z - sinA * v.x;
+	pOut->m[0][2] = _1_cosA * v.z * v.x - sinA * v.y;
+	pOut->m[1][2] = _1_cosA * v.z * v.y + sinA * v.x;
+	pOut->m[2][2] = _1_cosA * v.z * v.z + cosA;
 	return pOut;
+}
+//-------------------------------------------------------------------------
+void SetMatrixToAxisAngle(const TMatrix16 *pM, TVector3 *pVOut, float* pAngleOut)
+{
+	float cosA = ( pM->m[0][0] + pM->m[1][1] + pM->m[2][2] - 1)/2;
+
+	// возможно два варианта
+	float plusAngle  =  acos(cosA);
+	// проверка на ноль о окрестности Пи
+	if( plusAngle <= msEpsilon )
+	{
+		*pAngleOut = 0;
+		pVOut->x = 1;// не имеет значения какая ось
+		pVOut->y = 0;
+		pVOut->z = 0;
+		return;
+	}
+
+	if( plusAngle >= M_PI - msEpsilon )
+	{// в окрестностях ПИ
+		TVector3 point(1,0,0);
+		TVector3 rotPoint;
+		SetVec3TransformCoord(&rotPoint, &point, pM);
+		TVector3 d = rotPoint - point;// куда повернулись?
+
+		*pVOut = point + d/2.0f;
+		*pAngleOut = float(M_PI);
+		return;
+	}
+
+	float _21_12 = (pM->m[2][1] - pM->m[1][2]);
+	float _02_20 = (pM->m[0][2] - pM->m[2][0]);
+	float _10_01 = (pM->m[1][0] - pM->m[0][1]);
+	float sinA = sqrt(_21_12*_21_12+_02_20*_02_20+_10_01*_10_01);
+
+	float plusX = (pM->m[2][1] - pM->m[1][2])/sinA;
+	float plusY = (pM->m[0][2] - pM->m[2][0])/sinA;
+	float plusZ = (pM->m[1][0] - pM->m[0][1])/sinA;
+
+	float minusX 		 = -plusX;
+	float minusY 	 	 = -plusY;
+	float minusZ 	 	 = -plusZ;
+
+	const int countVariant = 8;
+	TVector3 axis[countVariant];
+	axis[0] = TVector3(plusX, plusY,  plusZ);
+	axis[1] = TVector3(plusX, plusY,  minusZ);
+	axis[2] = TVector3(plusX, minusY, plusZ);
+	axis[3] = TVector3(plusX, minusY, minusZ);
+
+	axis[4] = TVector3(minusX, plusY,  plusZ);
+	axis[5] = TVector3(minusX, plusY,  minusZ);
+	axis[6] = TVector3(minusX, minusY, plusZ);
+	axis[7] = TVector3(minusX, minusY, minusZ);
+
+	float diff = 1000.0f;
+	int searchIndex = -1;
+	for( int i = 0 ; i < countVariant ; i++ )
+	{
+		TMatrix16 maybeM;
+		SetMatrixRotationAxis(&maybeM, &axis[i], plusAngle);
+
+		float sumDiff = 0;
+		for( int iColumn = 0 ; iColumn < 3 ; iColumn++ )
+		{
+			for( int iRow = 0 ; iRow < 3 ; iRow++ )
+				sumDiff += abs(pM->m[iColumn][iRow] - maybeM.m[iColumn][iRow]);
+		}
+		if( diff > sumDiff )
+		{
+			diff = sumDiff;
+			searchIndex = i;
+		}
+	}
+	if( searchIndex==-1 )
+	{
+		// не нашли
+		BL_FIX_BUG();
+		return;
+	}
+	*pVOut = axis[searchIndex];
+	*pAngleOut = plusAngle;
+/*
+	from David
+
+	angle = ( m00 + m11 + m22 - 1)/2;
+	x = (m21 - m12)/sqrt((m21 - m12)2+(m02 - m20)2+(m10 - m01)2);
+	y = (m02 - m20)/√((m21 - m12)2+(m02 - m20)2+(m10 - m01)2);
+	z = (m10 - m01)/√((m21 - m12)2+(m02 - m20)2+(m10 - m01)2);
+*/
 }
 //-------------------------------------------------------------------------
 TMatrix16* SetMatrixMultiply(TMatrix16 *pOut,
@@ -418,43 +518,45 @@ void SetQuaternionToAxisAngle(const TQuaternion *pQ,
                               float *pAngle)
 {
   float angle = atan2(sqrt(pQ->x*pQ->x + pQ->y*pQ->y + pQ->z*pQ->z), pQ->w);
-  if(angle!=0)
+  float sinAngle = sin(angle);
+  if( fabs(sinAngle) >= msEpsilon )// Gauss 26.07.2017
   {
-    float sinAngle = sin(angle);
     pAxis->x = pQ->x/sinAngle;
     pAxis->y = pQ->y/sinAngle;
     pAxis->z = pQ->z/sinAngle;
   }
   else
   {
+		// correct angle
+		// Pi or 0
+		float cosAngle = cos(angle);
+		if( cosAngle < 0 )
+			angle = float(M_PI);// но точно ось вращения не найти (полный бред)
+		else
+			angle = 0.0f;
     pAxis->x = 0;
     pAxis->y = 0;
     pAxis->z = 0;
   }
   *pAngle = angle;
-
-	/*float norm;
-
-	*pAngle = 0.0f;
-	norm = SetQuaternionLength(pQ);
-	if ( norm )
-	{
-		pAxis->x = pQ->x / norm;
-		pAxis->y = pQ->y / norm;
-		pAxis->z = pQ->z / norm;
-		if ( fabs( pQ->w ) <= 1.0f ) *pAngle = 2.0f * acos(pQ->w);
-	}
-	else
-	{
-		pAxis->x = 1.0f;
-		pAxis->y = 0.0f;
-		pAxis->z = 0.0f;
-	}*/
+}
+//-------------------------------------------------------------------------
+void SetRotatePoint(nsMathTools::TOrientation* pO,
+										nsMathTools::TVector3* pPointIn, nsMathTools::TVector3* pPointOut)
+{
+	TMatrix16 m16;
+	SetMatrixRotationAxis(&m16, &(pO->axis), pO->angle);
+	SetVec3TransformCoord(pPointOut, pPointIn, &m16);
 }
 //-------------------------------------------------------------------------
 float SetQuaternionLength(const TQuaternion *pQ)
 {
 	return sqrt(pQ->x*pQ->x + pQ->y*pQ->y + pQ->z*pQ->z + pQ->w*pQ->w);
+}
+//-------------------------------------------------------------------------
+TMatrix16::TMatrix16()
+{
+	SetMatrixIdentity(this);
 }
 //-------------------------------------------------------------------------
 TMatrix16::TMatrix16( float _11, float _12, float _13, float _14,
@@ -1113,5 +1215,16 @@ bool TQuaternion::operator == ( const TQuaternion& q) const
 bool TQuaternion::operator != ( const TQuaternion& q) const
 {
   return ((q.x!=x)||(q.y!=y)||(q.z!=z)||(q.w!=w));
+}
+//-------------------------------------------------------------------------
+TOrientation::TOrientation() 
+{
+	angle = 0;
+}
+//-------------------------------------------------------------------------
+TOrientation::TOrientation( float x, float y, float z, float a ):
+axis(x,y,z), angle(a)
+{
+
 }
 //-------------------------------------------------------------------------

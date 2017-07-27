@@ -215,7 +215,7 @@ public:
     }s;
     float m[4][4];
   };
-  TMatrix16(){};
+  TMatrix16();
   TMatrix16( float _11, float _12, float _13, float _14,
              float _21, float _22, float _23, float _24,
              float _31, float _32, float _33, float _34,
@@ -343,6 +343,16 @@ public:
   bool operator == ( const TQuaternion& ) const;
   bool operator != ( const TQuaternion& ) const;
 }_PACKED;
+//----------------------------------------------------------------------------------------
+class DllExport TOrientation
+{
+public:
+	TVector3 axis;
+	float angle;
+	TOrientation();
+	TOrientation( float x, float y, float z, float a );
+	
+}_PACKED;
 #ifdef WIN32 
 #pragma pack(pop)
 #endif
@@ -368,8 +378,11 @@ DllExport extern nsMathTools::TMatrix16* SetMatrixRotationYawPitchRoll(nsMathToo
                                                                      float Roll );
 
 DllExport extern nsMathTools::TMatrix16* SetMatrixRotationAxis(nsMathTools::TMatrix16 *pOut,
-                                                             const nsMathTools::TVector3 *pV,
-                                                             float Angle);
+																 const nsMathTools::TVector3 *pV, float Angle);
+
+DllExport extern void SetMatrixToAxisAngle(const nsMathTools::TMatrix16 *pM, 
+																					 nsMathTools::TVector3 *pVOut, float* pAngleOut);
+
 
 DllExport extern nsMathTools::TMatrix16* SetMatrixMultiply(nsMathTools::TMatrix16 *pOut,
                                                          const nsMathTools::TMatrix16 *pM1,
@@ -473,5 +486,16 @@ DllExport extern void SetQuaternionToAxisAngle(const nsMathTools::TQuaternion *p
                                               float *pAngle);
 
 DllExport extern float SetQuaternionLength(const nsMathTools::TQuaternion *pQ);
+
+// повернуть точку вокруг оси, точка НЕ обязана быть ортонормированной к оси поворота
+//DllExport extern void SetRotatePoint(nsMathTools::TOrientation* pO,
+																		 //nsMathTools::TVector3* pPointIn, nsMathTools::TVector3* pPointOut);
+
+// довращать ориентацию другой
+//DllExport extern void SetMultiplyOrientation(nsMathTools::TOrientation* pOrOut, 
+						//nsMathTools::TOrientation* pOr1, nsMathTools::TOrientation* pOr2);
+
+DllExport extern void SetRotatePoint(nsMathTools::TOrientation* pO,
+																		 nsMathTools::TVector3* pPointIn, nsMathTools::TVector3* pPointOut);
 
 #endif

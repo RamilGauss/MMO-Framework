@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -23,12 +23,12 @@ public:
 	TManagerNodeLocation_Model();
 	virtual ~TManagerNodeLocation_Model();
 
-	// насыщение данными
+	// РЅР°СЃС‹С‰РµРЅРёРµ РґР°РЅРЅС‹РјРё
 	void Add(std::string namePart);
 	void Remove(std::string namePart);
 	void Clear();
 
-	// доступ
+	// РґРѕСЃС‚СѓРї
 	int GetCount();
 	TNodeLocation_Model* Get(int index);
 	TNodeLocation_Model* Get(std::string namePart);

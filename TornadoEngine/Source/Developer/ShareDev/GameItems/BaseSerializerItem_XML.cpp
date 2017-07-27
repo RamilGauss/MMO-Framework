@@ -9,6 +9,8 @@ See for more information License.h.
 #include "IXML.h"
 #include <errno.h>
 #include <boost/lexical_cast.hpp>
+#include <boost/foreach.hpp>
+#include "BL_Debug.h"
 
 namespace nsBaseSerializerItem_XML
 {
@@ -23,8 +25,9 @@ namespace nsBaseSerializerItem_XML
   const char* sAxeZ     = "z";
   const char* sAxeW     = "w";
 
-  const int CountAxes3  = 3;
-  const int CountAxes4  = 4;
+  const int CountAxes3       = 3;
+  const int CountAxes4       = 4;
+  const int CountOrientation = 9;
 
 	const char* sColourRed   = "r";
 	const char* sColourGreen = "g";
@@ -37,6 +40,15 @@ using namespace nsBaseSerializerItem_XML;
 TBaseSerializerItem_XML::TBaseSerializerItem_XML(std::string type)
 {
   mType = type;
+
+	for( int i = 0 ; i < 3 ; i++)
+	{
+		for( int j = 0 ; j < 3 ; j++)
+		{
+			std::string name = boost::lexical_cast<std::string>(i) + boost::lexical_cast<std::string>(j);
+			mMapNameIndex_m3x3.insert(TMapStrIndexVT(name,TIndex(i,j)));
+		}
+	}
 }
 //------------------------------------------------------------------------------
 TBaseSerializerItem_XML::~TBaseSerializerItem_XML()
@@ -206,26 +218,44 @@ bool TBaseSerializerItem_XML::SaveVector4ByProperty(nsMathTools::TVector4& v4)
 	return true;
 }
 //------------------------------------------------------------------------------
-bool TBaseSerializerItem_XML::LoadQuaternionByProperty(nsMathTools::TQuaternion& q)
+bool TBaseSerializerItem_XML::LoadOrientationByProperty(nsMathTools::TMatrix16& m4x4)
 {
-	nsMathTools::TVector4 v4;
-	bool res = LoadVector4ByProperty(v4);
-	q.x = v4.x;
-	q.y = v4.y;
-	q.z = v4.z;
-	q.w = v4.w;
-	return res;
+	std::string key, value;
+	int cnt = GetCountProperty();
+
+	if(cnt!=CountOrientation)
+		return false;
+
+	SetMatrixIdentity(&m4x4);
+
+	for( int i = 0 ; i < cnt ; i++ )
+	{
+		if(LoadProperty(i,key,value))
+		{
+			TIndex* pIndex = FindIndex(key);
+			if( pIndex==NULL )
+				continue;
+			m4x4.m[pIndex->i][pIndex->j] = boost::lexical_cast<float>(value.data());
+		}
+		else 
+			return false;
+	}
+	if(errno==ERANGE)
+		return false;
+
+	return true;
 }
 //------------------------------------------------------------------------------
-bool TBaseSerializerItem_XML::SaveQuaternionByProperty(nsMathTools::TQuaternion& q)
+bool TBaseSerializerItem_XML::SaveOrientationByProperty(nsMathTools::TMatrix16& m4x4)
 {
-	nsMathTools::TVector4 v4;
-	v4.x = q.x;
-	v4.y = q.y;
-	v4.z = q.z;
-	v4.w = q.w;
-	bool res = SaveVector4ByProperty(v4);
-	return res;
+	BOOST_FOREACH( TMapStrIndexVT& vt, mMapNameIndex_m3x3 )
+	{
+		std::string key = vt.first;
+		std::string value = boost::lexical_cast<std::string>(m4x4.m[vt.second.i][vt.second.j]);
+		if(SaveProperty(key,value)==false)
+			return false;
+	}
+	return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::LoadColour(nsMathTools::TVector3& v3)
@@ -310,5 +340,16 @@ bool TBaseSerializerItem_XML::RemoveSection(std::string& name)
 std::string TBaseSerializerItem_XML::Type()
 {
   return mType;
+}
+//------------------------------------------------------------------------------
+TBaseSerializerItem_XML::TIndex* TBaseSerializerItem_XML::FindIndex(std::string name)
+{
+	TMapStrIndexIt fit = mMapNameIndex_m3x3.find(name);
+	if( fit==mMapNameIndex_m3x3.end() )
+	{
+		BL_FIX_BUG();
+		return NULL;
+	}
+	return &(fit->second);
 }
 //------------------------------------------------------------------------------

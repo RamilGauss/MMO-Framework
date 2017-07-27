@@ -31,8 +31,8 @@ class DllExport TBehaviourPattern
 	
 	TPatternConfigItem::TMapStrStr* mPtrDefaultParameterMap;
 
-	nsMathTools::TVector3    mPosition;
-	nsMathTools::TQuaternion mOrientQuaternion;
+	nsMathTools::TVector3  mPosition;
+	nsMathTools::TMatrix16 mOrientation;
 protected:
 	TGameObject*                   mGO;
 
@@ -73,8 +73,8 @@ public:
 
 	virtual void SetPosition(nsMathTools::TVector3& v);
 	virtual bool GetPosition(nsMathTools::TVector3& v);// мгновенное значение
-	virtual void SetOrientation(nsMathTools::TQuaternion& v);
-	virtual bool GetOrientation(nsMathTools::TQuaternion& v);// мгновенное значение
+	virtual void SetOrientation(nsMathTools::TMatrix16& v);
+	virtual bool GetOrientation(nsMathTools::TMatrix16& v);// мгновенное значение
 
 	virtual TPatternConfigItem::TMapStrStr* GetParameterMap();
 	virtual void SetParameterMap(TPatternConfigItem::TMapStrStr& m);

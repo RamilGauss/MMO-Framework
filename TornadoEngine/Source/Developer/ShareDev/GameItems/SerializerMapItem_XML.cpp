@@ -153,7 +153,7 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
   }
   if(mXML->EnterSection(sOrientation,0))
   {
-    LoadQuaternionByProperty(object.orientation);
+    LoadOrientationByProperty(object.orientation);
     mXML->LeaveSection();
   }
 
@@ -196,7 +196,7 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
   }
   if(mXML->AddSectionAndEnter(sOrientation))
   {
-    SaveQuaternionByProperty(object.orientation);
+    SaveOrientationByProperty(object.orientation);
     mXML->LeaveSection();
   }
 
