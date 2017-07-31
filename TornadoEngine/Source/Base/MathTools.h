@@ -166,7 +166,7 @@ public:
   bool operator > ( const TVector3& ) const;
   bool operator < ( const TVector3& ) const;
 
-  float length();
+  float length() const;
 }_PACKED;
 //-----------------------------------------------------------------
 class DllExport TVector4
@@ -203,6 +203,8 @@ public:
 //-----------------------------------------------------------------
 class DllExport TMatrix16
 {
+	nsMathTools::TVector3 axis;
+	float                 angle;
 public:
   union 
   {
@@ -246,6 +248,8 @@ public:
 
   bool operator == ( const TMatrix16& ) const;
   bool operator != ( const TMatrix16& ) const;
+
+	void CalcAxisAngle();
 }_PACKED;
 //----------------------------------------------------------------------------------------
 class DllExport TPlane
@@ -358,6 +362,8 @@ public:
 #endif
 }
 //----------------------------------------------------------------------------------------
+DllExport extern float GetMathToolsEpsilon();
+
 DllExport extern void CopyMatrix16(float* pSrc, float* pDst);
 
 DllExport extern float CalcDist(const nsMathTools::TMatrix16* m1,const nsMathTools::TMatrix16* m2);
@@ -383,6 +389,10 @@ DllExport extern nsMathTools::TMatrix16* SetMatrixRotationAxis(nsMathTools::TMat
 DllExport extern void SetMatrixToAxisAngle(const nsMathTools::TMatrix16 *pM, 
 																					 nsMathTools::TVector3 *pVOut, float* pAngleOut);
 
+DllExport extern void SetMatrixToQuaternion(const nsMathTools::TMatrix16 *pM, 
+																					 nsMathTools::TQuaternion *pQOut, bool correctPI = true);
+
+DllExport extern void SetMatrixInfoDebug(const nsMathTools::TMatrix16 *pM);
 
 DllExport extern nsMathTools::TMatrix16* SetMatrixMultiply(nsMathTools::TMatrix16 *pOut,
                                                          const nsMathTools::TMatrix16 *pM1,
@@ -417,7 +427,10 @@ DllExport extern nsMathTools::TVector3*  SetVec3Cross( nsMathTools::TVector3* pO
                                                      const nsMathTools::TVector3* pV2);
 
 DllExport extern float SetVec3Dot( const nsMathTools::TVector3* pV1,
-                                  const nsMathTools::TVector3* pV2);
+                                   const nsMathTools::TVector3* pV2);
+
+DllExport extern float SetVec3Angle( const nsMathTools::TVector3* pV1,
+																	   const nsMathTools::TVector3* pV2);
 
 DllExport extern nsMathTools::TVector3* SetVec3Normalize(nsMathTools::TVector3* pOut,
                                                        const nsMathTools::TVector3* pV);
@@ -487,15 +500,11 @@ DllExport extern void SetQuaternionToAxisAngle(const nsMathTools::TQuaternion *p
 
 DllExport extern float SetQuaternionLength(const nsMathTools::TQuaternion *pQ);
 
-// повернуть точку вокруг оси, точка НЕ обязана быть ортонормированной к оси поворота
-//DllExport extern void SetRotatePoint(nsMathTools::TOrientation* pO,
-																		 //nsMathTools::TVector3* pPointIn, nsMathTools::TVector3* pPointOut);
-
-// довращать ориентацию другой
-//DllExport extern void SetMultiplyOrientation(nsMathTools::TOrientation* pOrOut, 
-						//nsMathTools::TOrientation* pOr1, nsMathTools::TOrientation* pOr2);
-
 DllExport extern void SetRotatePoint(nsMathTools::TOrientation* pO,
 																		 nsMathTools::TVector3* pPointIn, nsMathTools::TVector3* pPointOut);
+
+DllExport extern void CalcMatrixByMoveVectors(nsMathTools::TMatrix16* pM, 
+																							nsMathTools::TVector3* pUpTo, nsMathTools::TVector3* pForwardTo,
+																              nsMathTools::TVector3* pUpFrom, nsMathTools::TVector3* pForwardFrom);
 
 #endif

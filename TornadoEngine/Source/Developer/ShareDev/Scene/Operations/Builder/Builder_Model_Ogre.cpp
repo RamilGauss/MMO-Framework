@@ -103,16 +103,18 @@ void TBuilder_Model_Ogre::SetLocation_Shape(TShapeNode_Model* pNode)
 
 	//=================================================================
 	//### потом переделать на поиск своей функцией
-	nsMathTools::TMatrix16* m = &(pNodeLocation->mGlobal.mOrient);
-	btMatrix3x3 btM3x3;
-	btM3x3.setValue(
-		m->m[0][0], m->m[0][1], m->m[0][2], 
-		m->m[1][0], m->m[1][1], m->m[1][2],
-		m->m[2][0], m->m[2][1], m->m[2][2]);
-	//### потом переделать на поиск своей функцией
-	btQuaternion q;
-	btM3x3.getRotation(q);
-	pNode->mPtrEntity->getParentSceneNode()->setOrientation(q.getW(), q.getX(), q.getY(), q.getZ());
+	nsMathTools::TQuaternion q;
+	SetMatrixToQuaternion(&(pNodeLocation->mGlobal.mOrient), &q);
+	//nsMathTools::TMatrix16* m = &(pNodeLocation->mGlobal.mOrient);
+	//btMatrix3x3 btM3x3;
+	//btM3x3.setValue(
+	//	m->m[0][0], m->m[0][1], m->m[0][2], 
+	//	m->m[1][0], m->m[1][1], m->m[1][2],
+	//	m->m[2][0], m->m[2][1], m->m[2][2]);
+	////### потом переделать на поиск своей функцией
+	//btQuaternion q;
+	//btM3x3.getRotation(q);
+	pNode->mPtrEntity->getParentSceneNode()->setOrientation(-q.w, q.x, q.y, q.z);
 	//=================================================================
 
 	// соединить части через крючки через constraint

@@ -102,6 +102,7 @@ void TBuilder_Model_Bullet::SetLocation_Shape(TShapeNode_Model* pNode)
 	posBullet.setY(pNodeLocation->mGlobal.mPos.y);
 	posBullet.setZ(pNodeLocation->mGlobal.mPos.z);
 
+	SetMatrixInfoDebug(&(pNodeLocation->mGlobal.mOrient));
 	// по непонятным мне причинам Bullet и Ogre умножают угол вращения кватерниона на 2. Why?
 	nsMathTools::TMatrix16* m = &(pNodeLocation->mGlobal.mOrient);
 	btMatrix3x3 btM3x3;

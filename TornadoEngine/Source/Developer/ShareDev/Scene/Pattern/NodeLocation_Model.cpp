@@ -73,16 +73,6 @@ void TNodeLocation_Model::ClearListLink()
 //---------------------------------------------------------------------------------
 void TNodeLocation_Model::CalcGlobalJoint()
 {
-	/*BOOST_FOREACH( TMapStrJointVT& vtNameJoint, mMapNameJoint )
-	{
-		TJoint* pJoint = &(vtNameJoint.second);
-		// позиция нода рассчитывается с учётом крючков своих и родителя
-		nsMathTools::TVector3 vResult;
-		SetRotatePoint(&mGlobal.mOrient, &pJoint->mLocalRelativeNode.mPos, &vResult);
-
-		pJoint->mGlobal.mPos    = mGlobal.mPos    + vResult;
-		pJoint->mGlobal.mOrient = mGlobal.mOrient * pJoint->mLocalRelativeNode.mOrient;
-	}*/
 	BOOST_FOREACH( TMapStrJointVT& vtNameJoint, mMapNameJoint )
 	{
 		TJoint* pJoint = &(vtNameJoint.second);
@@ -92,7 +82,12 @@ void TNodeLocation_Model::CalcGlobalJoint()
 
 		pJoint->mGlobal.mPos    = mGlobal.mPos + vResult;
 		// домножить на вращение относительно родителя
-		pJoint->mGlobal.mOrient *= pJoint->mLocalRelativeNode.mOrient;
+		pJoint->mGlobal.mOrient = mGlobal.mOrient * pJoint->mLocalRelativeNode.mOrient;
+
+		//###
+		pJoint->mGlobal.mOrient.CalcAxisAngle();
+		int a = 0;
+		//###
 	}
 }
 //---------------------------------------------------------------------------------
@@ -111,28 +106,47 @@ void TNodeLocation_Model::CalcGlobal(TNodeLocation_Model* pNodeLocationParent)
 	nsMathTools::TMatrix16 qJointParentConnection = 
 		pJointParent->mGlobal.mOrient * mOrientRelativeJointToJointParent;
 
-	nsMathTools::TVector3 Up_JointParent(0,1,0);
+	nsMathTools::TVector3 Up(0,1,0);
 	nsMathTools::TVector3 vUpRelativeJointParent(0,0,0);// локальные координаты вектора Вверх с учётом вращения
 
-	nsMathTools::TVector3 Forward_JointParent(1,0,0);
+	nsMathTools::TVector3 Forward(1,0,0);
 	nsMathTools::TVector3 vForwardRelativeJointParent(0,0,0);// локальные координаты вектора Вперед с учётом вращения
 
-	SetVec3TransformCoord(&vUpRelativeJointParent,     &Up_JointParent,     &qJointParentConnection);
-	SetVec3TransformCoord(&vForwardRelativeJointParent,&Forward_JointParent,&qJointParentConnection);
+	SetVec3TransformCoord(&vUpRelativeJointParent,     &Up,     &qJointParentConnection);
+	SetVec3TransformCoord(&vForwardRelativeJointParent,&Forward,&qJointParentConnection);
 
-	vForwardRelativeJointParent *= mDistanceRelativeJointToJointParent;// растягиваем до расстояния между крючками
+	nsMathTools::TVector3 lineHointToJoint = vForwardRelativeJointParent * mDistanceRelativeJointToJointParent;// растягиваем до расстояния между крючками
 	
 	nsMathTools::TVector3 globalPosJointChild = 
-		pJointParent->mGlobal.mPos + vForwardRelativeJointParent;
+		pJointParent->mGlobal.mPos + lineHointToJoint;
 
-	// повернуть направление на 180 градусов, потому что нужно ориентироваться
-	// относительно родителя, т.к. крючки смотрят друг на друга
-	nsMathTools::TMatrix16 rotAboutUp;
-	SetMatrixRotationAxis( &rotAboutUp, &vUpRelativeJointParent, float(M_PI));
+	nsMathTools::TVector3 vUpRelativeJointChild(0,0,0);// локальные координаты вектора Вверх с учётом вращения
+	nsMathTools::TVector3 vForwardRelativeJointChild(0,0,0);// локальные координаты вектора Вперед с учётом вращения
+
+	SetVec3TransformCoord(&vUpRelativeJointChild,     &Up,     &pMyJoint->mLocalRelativeNode.mOrient);
+	SetVec3TransformCoord(&vForwardRelativeJointChild,&Forward,&pMyJoint->mLocalRelativeNode.mOrient);
+	// найти матрицу вращения так что бы vUpRelativeJointChild и vUpRelativeJointParent были равны
+	// а vForwardRelativeJointParent и vForwardRelativeJointChild были полностью противоположны
+	nsMathTools::TVector3 negativevForwardRelativeJointParent = vForwardRelativeJointParent*-1;// к этому вектору нужно попасть
 	
-	nsMathTools::TMatrix16 qJointChild = qJointParentConnection*rotAboutUp;
+	CalcMatrixByMoveVectors(&mGlobal.mOrient, 
+		&vUpRelativeJointParent, &negativevForwardRelativeJointParent,
+		&vUpRelativeJointChild,  &vForwardRelativeJointChild);
 
-	mGlobal.mOrient = qJointChild*pMyJoint->mLocalRelativeNode.mOrient;
+	//mGlobal.mOrient = calcMatrix;
+	// проверка
+	{
+		mGlobal.mOrient.CalcAxisAngle();
+		nsMathTools::TMatrix16 m = mGlobal.mOrient*pMyJoint->mLocalRelativeNode.mOrient;
+		m.CalcAxisAngle();
+
+		nsMathTools::TVector3 tempUp;
+		SetVec3TransformCoord(&tempUp,      &Up, &m);
+		nsMathTools::TVector3 tempForward;
+		SetVec3TransformCoord(&tempForward, &Forward, &m);
+		int a = 0;
+	}
+
 
 	nsMathTools::TVector3 MyJointRelativeChild;
 	MyJointRelativeChild.x = -pMyJoint->mLocalRelativeNode.mPos.x;// обратный сдвиг порождает знак минуса
@@ -143,76 +157,169 @@ void TNodeLocation_Model::CalcGlobal(TNodeLocation_Model* pNodeLocationParent)
 	SetVec3TransformCoord(&posChildRelativeJoint, &MyJointRelativeChild, &mGlobal.mOrient);
 
 	mGlobal.mPos = globalPosJointChild + posChildRelativeJoint;
-/*
-	// вращение крючка родителя с учетом параметров соединения
-	nsMathTools::TQuaternion qJointParentConnection = 
-		pJointParent->mGlobal.mOrient * mOrientRelativeJointToJointParent;
-
-	float angleTemp = 0;
-	nsMathTools::TVector3 Up_JointParent(0,1,0);
-	nsMathTools::TVector3 vUpRelativeJointParent(0,0,0);// локальные координаты вектора Вверх с учётом вращения
-
-	nsMathTools::TVector3 Forward_JointParent(1,0,0);
-	nsMathTools::TVector3 vForwardRelativeJointParent(0,0,0);// локальные координаты вектора Вперед с учётом вращения
-
-	SetRotatePoint(&qJointParentConnection, &Up_JointParent,      &vUpRelativeJointParent);
-	SetRotatePoint(&qJointParentConnection, &Forward_JointParent, &vForwardRelativeJointParent);
-
-	vForwardRelativeJointParent *= mDistanceRelativeJointToJointParent;// растягиваем до расстояния между крючками
-
-	nsMathTools::TVector3 globalPosJointChild = 
-		pJointParent->mGlobal.mPos + vForwardRelativeJointParent;
-
-	// повернуть направление на 180 градусов, потому что нужно ориентироваться
-	// относительно родителя, т.к. крючки смотрят друг на друга
-	nsMathTools::TQuaternion rotAboutUp;
-	SetQuaternionRotationAxis( &rotAboutUp, &vUpRelativeJointParent, float(M_PI*2));
-	nsMathTools::TQuaternion qJointChild = qJointParentConnection*rotAboutUp;
-
-	mGlobal.mOrient = qJointChild*pMyJoint->mLocalRelativeNode.mOrient;
-
-	nsMathTools::TVector3 MyJointRelativeChild;
-	MyJointRelativeChild.x = -pMyJoint->mLocalRelativeNode.mPos.x;// обратный сдвиг порождает знак минуса
-	MyJointRelativeChild.y = -pMyJoint->mLocalRelativeNode.mPos.y;// во всех осях
-	MyJointRelativeChild.z = -pMyJoint->mLocalRelativeNode.mPos.z;// 
-
-	nsMathTools::TVector3 posChildRelativeJoint;
-	SetRotatePoint(&mGlobal.mOrient, &MyJointRelativeChild, &posChildRelativeJoint);
-
-	mGlobal.mPos = globalPosJointChild + posChildRelativeJoint;*/
 }
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
-void TestNodeLocation()
-{	
-#if 1
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+struct TDescTestPoint
+{
+	nsMathTools::TVector3 pos;
+	nsMathTools::TOrientation orient;
+};
+//---------------------------------------------------------------------------------
+struct TTestData
+{
+	TDescTestPoint testParent;
+	TDescTestPoint testJointParent;
+	TDescTestPoint testJointChild;
+};
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+void TestParam(TDescTestPoint* pTestParent, TDescTestPoint* pTestJointParent, 
+							 TDescTestPoint* pTestJointChild)
+{
 	// разбор конкретного случая
 	TNodeLocation_Model parent, child;
 	parent.name            = "Parent";
-	parent.mGlobal.mPos    = nsMathTools::TVector3(0,0,0);
-	nsMathTools::TVector3 axis_Z(0,0,1);
-	SetMatrixRotationAxis(&parent.mGlobal.mOrient, &axis_Z, float(M_PI));// подготовка
+	parent.mGlobal.mPos    = pTestParent->pos;
+	SetMatrixRotationAxis(&parent.mGlobal.mOrient, 
+		&pTestParent->orient.axis, pTestParent->orient.angle);
 
 	parent.AddJoint("0");
 	TNodeLocation_Model::TJoint* pJointParent = parent.GetJoint("0");
-	pJointParent->mLocalRelativeNode.mPos    = nsMathTools::TVector3(1,0,0);
-	SetMatrixRotationAxis(&pJointParent->mLocalRelativeNode.mOrient, &axis_Z, 0);// подготовка
+	pJointParent->mLocalRelativeNode.mPos     = pTestJointParent->pos;
+	SetMatrixRotationAxis(&pJointParent->mLocalRelativeNode.mOrient, 
+		&pTestJointParent->orient.axis, pTestJointParent->orient.angle);// подготовка
 
 	parent.CalcGlobalJoint();
 
 	child.name                = "Child";
 	child.nameMyJointToParent = "0";
 	child.nameJointParent     = "0";
-	child.mDistanceRelativeJointToJointParent = 3;
-	SetMatrixRotationAxis(&child.mOrientRelativeJointToJointParent, &axis_Z, 0);// подготовка
+	child.mDistanceRelativeJointToJointParent = 4;
+	nsMathTools::TVector3 axisOrientRelativeJointToJointParent(1,0,0);
+	float angleOrientRelativeJointToJointParent = 0;
+	SetMatrixRotationAxis(&child.mOrientRelativeJointToJointParent, 
+		&axisOrientRelativeJointToJointParent, angleOrientRelativeJointToJointParent);// подготовка
 
 	child.AddJoint("0");
 	TNodeLocation_Model::TJoint* pJointChild = child.GetJoint("0");
-	pJointChild->mLocalRelativeNode.mPos    = nsMathTools::TVector3(1,0,0);
-	SetMatrixRotationAxis(&pJointChild->mLocalRelativeNode.mOrient, &axis_Z, 0);// подготовка
+	pJointChild->mLocalRelativeNode.mPos    = pTestJointChild->pos;
+	SetMatrixRotationAxis(&pJointChild->mLocalRelativeNode.mOrient, 
+		&pTestJointChild->orient.axis, pTestJointChild->orient.angle);// подготовка
 
 	child.CalcGlobal(&parent);
 	child.CalcGlobalJoint();
-#endif
+}
+//---------------------------------------------------------------------------------
+void TestNodeLocation()
+{	
+	const int countTest = 8;
+	TTestData td[countTest];
+	//====================================
+	td[0].testParent.pos          = nsMathTools::TVector3(0,0,0);
+	td[0].testParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[0].testParent.orient.angle = 0;
+
+	td[0].testJointParent.pos          = nsMathTools::TVector3(1,0,0);
+	td[0].testJointParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[0].testJointParent.orient.angle = 0;
+
+	td[0].testJointChild.pos          = nsMathTools::TVector3(1,0,0);
+	td[0].testJointChild.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[0].testJointChild.orient.angle = 0;
+	//====================================
+	td[1].testParent.pos          = nsMathTools::TVector3(0,0,0);
+	td[1].testParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[1].testParent.orient.angle = 0;
+
+	td[1].testJointParent.pos          = nsMathTools::TVector3(1,0,0);
+	td[1].testJointParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[1].testJointParent.orient.angle = 0;
+
+	td[1].testJointChild.pos          = nsMathTools::TVector3(-1,0,0);
+	td[1].testJointChild.orient.axis  = nsMathTools::TVector3(0,1,0);
+	td[1].testJointChild.orient.angle = float(M_PI);
+	//====================================
+	td[2].testParent.pos          = nsMathTools::TVector3(0,0,0);
+	td[2].testParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[2].testParent.orient.angle = 0;
+
+	td[2].testJointParent.pos          = nsMathTools::TVector3(1,0,0);
+	td[2].testJointParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[2].testJointParent.orient.angle = 0;
+
+	td[2].testJointChild.pos          = nsMathTools::TVector3(-1,0,0);
+	td[2].testJointChild.orient.axis  = nsMathTools::TVector3(0,0,1);
+	td[2].testJointChild.orient.angle = float(M_PI);
+	//====================================
+	td[3].testParent.pos          = nsMathTools::TVector3(1,40,1);
+	td[3].testParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[3].testParent.orient.angle = 0;
+
+	td[3].testJointParent.pos          = nsMathTools::TVector3(0,0,1);
+	td[3].testJointParent.orient.axis  = nsMathTools::TVector3(0,1,0);
+	td[3].testJointParent.orient.angle = -float(M_PI/2);
+
+	td[3].testJointChild.pos          = nsMathTools::TVector3(1,0,0);
+	td[3].testJointChild.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[3].testJointChild.orient.angle = 0;
+	//====================================
+	td[4].testParent.pos          = nsMathTools::TVector3(0,0,0);
+	td[4].testParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[4].testParent.orient.angle = 0;
+
+	td[4].testJointParent.pos          = nsMathTools::TVector3(-1,0,0);
+	td[4].testJointParent.orient.axis  = nsMathTools::TVector3(0,1,0);
+	td[4].testJointParent.orient.angle = float(M_PI);
+
+	td[4].testJointChild.pos          = nsMathTools::TVector3(1,0,0);
+	td[4].testJointChild.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[4].testJointChild.orient.angle = 0;
+	//====================================
+	td[5].testParent.pos          = nsMathTools::TVector3(0,0,0);
+	td[5].testParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[5].testParent.orient.angle = 0;
+
+	td[5].testJointParent.pos          = nsMathTools::TVector3(-1,0,0);
+	td[5].testJointParent.orient.axis  = nsMathTools::TVector3(0,1,0);
+	td[5].testJointParent.orient.angle = float(M_PI);
+
+	td[5].testJointChild.pos          = nsMathTools::TVector3(-1,0,0);
+	td[5].testJointChild.orient.axis  = nsMathTools::TVector3(0,1,0);
+	td[5].testJointChild.orient.angle = float(M_PI);
+	//====================================
+	td[6].testParent.pos          = nsMathTools::TVector3(0,0,0);
+	td[6].testParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[6].testParent.orient.angle = 0;
+
+	td[6].testJointParent.pos          = nsMathTools::TVector3(1,0,0);
+	td[6].testJointParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[6].testJointParent.orient.angle = 0;
+
+	td[6].testJointChild.pos          = nsMathTools::TVector3(0,1,0);
+	td[6].testJointChild.orient.axis  = nsMathTools::TVector3(0,0,1);
+	td[6].testJointChild.orient.angle = float(M_PI/2);
+	//====================================
+	td[7].testParent.pos          = nsMathTools::TVector3(0,0,0);
+	td[7].testParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[7].testParent.orient.angle = 0;
+
+	td[7].testJointParent.pos          = nsMathTools::TVector3(1,0,0);
+	td[7].testJointParent.orient.axis  = nsMathTools::TVector3(1,0,0);
+	td[7].testJointParent.orient.angle = float(M_PI);
+
+	td[7].testJointChild.pos          = nsMathTools::TVector3(0,1,0);
+	td[7].testJointChild.orient.axis  = nsMathTools::TVector3(0,0,1);
+	td[7].testJointChild.orient.angle = float(M_PI/2);
+	//====================================
+	int targetIndex = 0;
+	//TestParam(&td[targetIndex].testParent, &td[targetIndex].testJointParent, 
+		//&td[targetIndex].testJointChild);
+	targetIndex = 7;
+	TestParam(&td[targetIndex].testParent, &td[targetIndex].testJointParent, 
+		&td[targetIndex].testJointChild);
 }
 //--------------------------------------------------------------------
+

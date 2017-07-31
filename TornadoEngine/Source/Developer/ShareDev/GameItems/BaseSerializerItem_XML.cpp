@@ -25,9 +25,12 @@ namespace nsBaseSerializerItem_XML
   const char* sAxeZ     = "z";
   const char* sAxeW     = "w";
 
+  const char* sAngle    = "angle";
+
   const int CountAxes3       = 3;
   const int CountAxes4       = 4;
-  const int CountOrientation = 9;
+  //const int CountOrientation = 9;
+	const int CountOrientation = 4;
 
 	const char* sColourRed   = "r";
 	const char* sColourGreen = "g";
@@ -227,15 +230,21 @@ bool TBaseSerializerItem_XML::LoadOrientationByProperty(nsMathTools::TMatrix16& 
 		return false;
 
 	SetMatrixIdentity(&m4x4);
+	nsMathTools::TVector3 axis;
+	float angle;
 
 	for( int i = 0 ; i < cnt ; i++ )
 	{
 		if(LoadProperty(i,key,value))
 		{
-			TIndex* pIndex = FindIndex(key);
-			if( pIndex==NULL )
-				continue;
-			m4x4.m[pIndex->i][pIndex->j] = boost::lexical_cast<float>(value.data());
+			if(key==sAxeX)
+				axis.x = boost::lexical_cast<float>(value.data());
+			else if(key==sAxeY)
+				axis.y = boost::lexical_cast<float>(value.data());
+			else if(key==sAxeZ)
+				axis.z = boost::lexical_cast<float>(value.data());
+			else if(key==sAngle)
+				angle = boost::lexical_cast<float>(value.data());
 		}
 		else 
 			return false;
@@ -243,18 +252,38 @@ bool TBaseSerializerItem_XML::LoadOrientationByProperty(nsMathTools::TMatrix16& 
 	if(errno==ERANGE)
 		return false;
 
+	SetMatrixRotationAxis(&m4x4, &axis, angle);
 	return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::SaveOrientationByProperty(nsMathTools::TMatrix16& m4x4)
 {
-	BOOST_FOREACH( TMapStrIndexVT& vt, mMapNameIndex_m3x3 )
-	{
-		std::string key = vt.first;
-		std::string value = boost::lexical_cast<std::string>(m4x4.m[vt.second.i][vt.second.j]);
-		if(SaveProperty(key,value)==false)
-			return false;
-	}
+	nsMathTools::TVector3 axis;
+	float angle;
+	SetMatrixToAxisAngle(&m4x4, &axis, &angle);
+
+	std::string key, value;
+
+	key = sAxeX;
+	value = boost::lexical_cast<std::string>(axis.x);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	key = sAxeY;
+	value = boost::lexical_cast<std::string>(axis.y);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	key = sAxeZ;
+	value = boost::lexical_cast<std::string>(axis.z);
+	if(SaveProperty(key,value)==false)
+		return false;
+
+	key = sAngle;
+	value = boost::lexical_cast<std::string>(angle);
+	if(SaveProperty(key,value)==false)
+		return false;
+
 	return true;
 }
 //------------------------------------------------------------------------------

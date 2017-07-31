@@ -24,6 +24,10 @@ namespace nsMathTools
 
 using namespace nsMathTools;
 
+float GetMathToolsEpsilon()
+{
+	return msEpsilon;
+}
 //-------------------------------------------------------------------------
 void CopyMatrix16(float* pSrc, float* pDst)
 {
@@ -152,9 +156,13 @@ TMatrix16* SetMatrixRotationAxis(TMatrix16 *pOut,
 void SetMatrixToAxisAngle(const TMatrix16 *pM, TVector3 *pVOut, float* pAngleOut)
 {
 	float cosA = ( pM->m[0][0] + pM->m[1][1] + pM->m[2][2] - 1)/2;
+	float _21_12 = (pM->m[2][1] - pM->m[1][2]);
+	float _02_20 = (pM->m[0][2] - pM->m[2][0]);
+	float _10_01 = (pM->m[1][0] - pM->m[0][1]);
+	float sinA = sqrt(_21_12*_21_12+_02_20*_02_20+_10_01*_10_01);
 
 	// возможно два варианта
-	float plusAngle  =  acos(cosA);
+	float plusAngle  =  atan2(sinA/2.0f,cosA);
 	// проверка на ноль о окрестности Пи
 	if( plusAngle <= msEpsilon )
 	{
@@ -167,20 +175,50 @@ void SetMatrixToAxisAngle(const TMatrix16 *pM, TVector3 *pVOut, float* pAngleOut
 
 	if( plusAngle >= M_PI - msEpsilon )
 	{// в окрестностях ПИ
-		TVector3 point(1,0,0);
-		TVector3 rotPoint;
-		SetVec3TransformCoord(&rotPoint, &point, pM);
-		TVector3 d = rotPoint - point;// куда повернулись?
+		// численный метод, конкурс на лучший результат.
+		const int countCheckAxis = 14;
+		TVector3 checkAxis[countCheckAxis];
+		// орто
+		checkAxis[0] = TVector3(1,0,0);
+		checkAxis[1] = TVector3(0,1,0);		
+		checkAxis[2] = TVector3(0,0,1);
+		checkAxis[3] = TVector3(-1,0,0);
+		checkAxis[4] = TVector3(0,-1,0);
+		checkAxis[5] = TVector3(0,0,-1);
+		// по углам
+		checkAxis[6] = TVector3(1,1,1);
+		checkAxis[7] = TVector3(1,1,-1);
+		checkAxis[8] = TVector3(1,-1,1);
+		checkAxis[9] = TVector3(1,-1,-1);
+		checkAxis[10] = TVector3(-1,1,1);
+		checkAxis[11] = TVector3(-1,1,-1);
+		checkAxis[12] = TVector3(-1,-1,1);
+		checkAxis[13] = TVector3(-1,-1,-1);
 
-		*pVOut = point + d/2.0f;
+		float diffDelta = 10000.0f;
+		TVector3 searchDelta;
+		int searchIndexAxis = -1;
+		for( int iCheckAxis = 0 ; iCheckAxis < countCheckAxis ; iCheckAxis++ )
+		{
+			TVector3 rotPoint;
+			SetVec3TransformCoord(&rotPoint, &checkAxis[iCheckAxis], pM);
+			TVector3 d = rotPoint - checkAxis[iCheckAxis];// куда повернулись?
+			if( diffDelta > d.length() )
+			{
+				searchDelta = d;
+				diffDelta = d.length();
+				searchIndexAxis = iCheckAxis;
+			}
+		}
+		if( searchIndexAxis==-1 )
+		{
+			BL_FIX_BUG();
+			return;
+		}
+		*pVOut = checkAxis[searchIndexAxis] + searchDelta/2.0f;
 		*pAngleOut = float(M_PI);
 		return;
 	}
-
-	float _21_12 = (pM->m[2][1] - pM->m[1][2]);
-	float _02_20 = (pM->m[0][2] - pM->m[2][0]);
-	float _10_01 = (pM->m[1][0] - pM->m[0][1]);
-	float sinA = sqrt(_21_12*_21_12+_02_20*_02_20+_10_01*_10_01);
 
 	float plusX = (pM->m[2][1] - pM->m[1][2])/sinA;
 	float plusY = (pM->m[0][2] - pM->m[2][0])/sinA;
@@ -230,13 +268,39 @@ void SetMatrixToAxisAngle(const TMatrix16 *pM, TVector3 *pVOut, float* pAngleOut
 	*pVOut = axis[searchIndex];
 	*pAngleOut = plusAngle;
 /*
-	from David
+	from Martin Baker
 
 	angle = ( m00 + m11 + m22 - 1)/2;
 	x = (m21 - m12)/sqrt((m21 - m12)2+(m02 - m20)2+(m10 - m01)2);
 	y = (m02 - m20)/√((m21 - m12)2+(m02 - m20)2+(m10 - m01)2);
 	z = (m10 - m01)/√((m21 - m12)2+(m02 - m20)2+(m10 - m01)2);
 */
+}
+//-------------------------------------------------------------------------
+void SetMatrixToQuaternion(const TMatrix16 *pM, TQuaternion *pQOut, bool correctPI)
+{
+	TVector3 axis;
+	float angle;
+	SetMatrixToAxisAngle(pM, &axis, &angle);
+	if( correctPI )// коррекция в окрестностях
+	{
+		float broad = float(M_PI - msEpsilon);
+		float setAngle = float(M_PI - 2*msEpsilon);
+		if( angle > broad )
+			angle = setAngle;
+		else if( angle < -broad )
+			angle = -setAngle;
+	}
+	
+	SetQuaternionRotationAxis(pQOut, &axis, angle);
+}
+//-------------------------------------------------------------------------
+void SetMatrixInfoDebug(const TMatrix16 *pM)
+{
+	TVector3 axis; 
+	float angle;
+	SetMatrixToAxisAngle(pM, &axis, &angle);
+	int a = 0;
 }
 //-------------------------------------------------------------------------
 TMatrix16* SetMatrixMultiply(TMatrix16 *pOut,
@@ -317,6 +381,23 @@ float SetVec3Dot( const TVector3* pV1,
 {
   float res = pV1->x * pV2->x + pV1->y * pV2->y + pV1->z * pV2->z;
   return res;
+}
+//-------------------------------------------------------------------------
+float SetVec3Angle( const nsMathTools::TVector3* pV1,
+										const nsMathTools::TVector3* pV2)
+{
+	float len1 = pV1->length();
+	float len2 = pV2->length();
+	if( len1 <= msEpsilon || len2<=msEpsilon )
+		return 0;
+	float dot = SetVec3Dot(pV1,pV2);
+	float cosAngle = dot/(len1*len2);
+	if( cosAngle > 1.0f )// может возникать как правило как погрешность вычисления
+		cosAngle = 1.0f;
+	if( cosAngle < -1.0f )// может возникать как правило как погрешность вычисления
+		cosAngle = -1.0f;
+	float angle = acos(cosAngle);
+	return angle;
 }
 //-------------------------------------------------------------------------
 TVector3* SetVec3Normalize(TVector3* pOut,
@@ -549,6 +630,51 @@ void SetRotatePoint(nsMathTools::TOrientation* pO,
 	SetVec3TransformCoord(pPointOut, pPointIn, &m16);
 }
 //-------------------------------------------------------------------------
+void CalcMatrixByMoveVectors(nsMathTools::TMatrix16* pM, 
+														 nsMathTools::TVector3* pUpTo,   nsMathTools::TVector3* pForwardTo,
+														 nsMathTools::TVector3* pUpFrom, nsMathTools::TVector3* pForwardFrom)
+{
+	SetMatrixIdentity(pM);
+
+	// найти угол между векторами
+	float angleForward = SetVec3Angle(pForwardTo,pForwardFrom);
+	BL_ASSERT( angleForward >= 0.0f );
+	nsMathTools::TVector3 normalForward;
+	if( angleForward > M_PI - msEpsilon )
+	{
+		angleForward = float(M_PI);
+		normalForward = *pUpFrom;
+	}
+	else
+	{
+		SetVec3Cross(&normalForward, pForwardFrom, pForwardTo);
+	}
+	SetVec3Normalize(&normalForward,&normalForward);
+
+	nsMathTools::TMatrix16 calcMatrixForward;
+	SetMatrixRotationAxis(&calcMatrixForward, &normalForward, angleForward);
+
+	nsMathTools::TVector3 rotUpFrom;
+	SetVec3TransformCoord(&rotUpFrom, pUpFrom, &calcMatrixForward);
+
+	float angleUp = SetVec3Angle(&rotUpFrom,pUpTo);
+	nsMathTools::TVector3 normalUp;
+	if( angleUp > M_PI - msEpsilon )
+	{
+		angleUp = float(M_PI);
+		normalUp = *pForwardTo;
+	}
+	else
+	{
+		SetVec3Cross(&normalUp, &rotUpFrom, pUpTo);
+	}
+	SetVec3Normalize(&normalUp,&normalUp);
+	nsMathTools::TMatrix16 calcMatrixUp;
+	SetMatrixRotationAxis(&calcMatrixUp, &normalUp, angleUp);
+
+	*pM = calcMatrixForward*calcMatrixUp;
+}
+//-------------------------------------------------------------------------
 float SetQuaternionLength(const TQuaternion *pQ)
 {
 	return sqrt(pQ->x*pQ->x + pQ->y*pQ->y + pQ->z*pQ->z + pQ->w*pQ->w);
@@ -664,6 +790,11 @@ TMatrix16 TMatrix16::operator * ( const TMatrix16& v) const
   TMatrix16 res;
   SetMatrixMultiply(&res, this, &v);
   return res;
+}
+//-------------------------------------------------------------------------
+void TMatrix16::CalcAxisAngle()
+{
+	SetMatrixToAxisAngle(this, &axis, &angle);
 }
 //-------------------------------------------------------------------------
 TVector2::operator float* ()
@@ -894,7 +1025,7 @@ bool TVector3::operator < ( const TVector3& v) const
   return false;
 }
 //-------------------------------------------------------------------------
-float TVector3::length()
+float TVector3::length() const
 {
   return sqrt(x*x+y*y+z*z);
 }
