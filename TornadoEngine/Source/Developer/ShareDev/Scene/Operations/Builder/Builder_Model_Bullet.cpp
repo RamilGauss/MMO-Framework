@@ -106,10 +106,14 @@ void TBuilder_Model_Bullet::SetLocation_Shape(TShapeNode_Model* pNode)
 	// по непонятным мне причинам Bullet и Ogre умножают угол вращения кватерниона на 2. Why?
 	nsMathTools::TMatrix16* m = &(pNodeLocation->mGlobal.mOrient);
 	btMatrix3x3 btM3x3;
+	//btM3x3.setValue(
+	//	m->m[0][0], m->m[0][1], m->m[0][2], 
+	//	m->m[1][0], m->m[1][1], m->m[1][2],
+	//	m->m[2][0], m->m[2][1], m->m[2][2]);
 	btM3x3.setValue(
-		m->m[0][0], m->m[0][1], m->m[0][2], 
-		m->m[1][0], m->m[1][1], m->m[1][2],
-		m->m[2][0], m->m[2][1], m->m[2][2]);
+		m->m[0][0], m->m[1][0], m->m[2][0], 
+		m->m[0][1], m->m[1][1], m->m[2][1],
+		m->m[0][2], m->m[1][2], m->m[2][2]);
 	trans.setBasis(btM3x3);
 
 	pNode->mPtrRigidBody->setWorldTransform(trans);

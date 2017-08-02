@@ -64,80 +64,6 @@ TBuilder_Model_Logic::TBuilder_Model_Logic()
 	SetMatrixToAxisAngle(&m16, &searchAxis, &searchAngle);
 	SetVec3Normalize(&searchAxis,&searchAxis);
 
-	axis = nsMathTools::TVector3(0,1,0);
-	SetMatrixRotationAxis(&m16, &axis, float(M_PI));// подготовка
-	//<Property key="00" value="-1"/>
-	//<Property key="01" value="0"/>
-	//<Property key="02" value="0"/>
-	//<Property key="10" value="0"/>
-	//<Property key="11" value="1"/>
-	//<Property key="12" value="0"/>
-	//<Property key="20" value="0"/>
-	//<Property key="21" value="0"/>
-	//<Property key="22" value="-1"/>
-
-
-	axis = nsMathTools::TVector3(0,0,1);
-	SetMatrixRotationAxis(&m16, &axis, float(M_PI/2));// подготовка
-	//<Property key="00" value="0"/>
-	//<Property key="01" value="1"/>
-	//<Property key="02" value="0"/>
-	//<Property key="10" value="-1"/>
-	//<Property key="11" value="0"/>
-	//<Property key="12" value="0"/>
-	//<Property key="20" value="0"/>
-	//<Property key="21" value="0"/>
-	//<Property key="22" value="1"/>
-
-
-	axis = nsMathTools::TVector3(0,0,1);
-	SetMatrixRotationAxis(&m16, &axis, float(M_PI));// подготовка
-	//<Property key="00" value="-1"/>
-	//<Property key="01" value="0"/>
-	//<Property key="02" value="0"/>
-	//<Property key="10" value="0"/>
-	//<Property key="11" value="-1"/>
-	//<Property key="12" value="0"/>
-	//<Property key="20" value="0"/>
-	//<Property key="21" value="0"/>
-	//<Property key="22" value="1"/>
-	nsMathTools::TVector3 ppp(1,0,1);
-	nsMathTools::TVector3 pppResult;
-	SetVec3TransformCoord(&pppResult, &ppp, &m16);
-
-
-
-	nsMathTools::TMatrix16 m16_Z;
-	nsMathTools::TVector3 axisZ(0,0,1);
-	SetMatrixRotationAxis(&m16_Z, &axisZ, float(M_PI/2));// подготовка
-	nsMathTools::TMatrix16 m16_Y;
-	nsMathTools::TVector3 axisY(0,1,0);
-	SetMatrixRotationAxis(&m16_Y, &axisY, float(M_PI));// подготовка
-	nsMathTools::TMatrix16 m16_ZY = m16_Z*m16_Y;
-	//<Property key="00" value="0"/>
-	//<Property key="01" value="1"/>
-	//<Property key="02" value="0"/>
-		//<Property key="10" value="-0.70710677"/>
-		//<Property key="11" value="0"/>
-		//<Property key="12" value="0.70710677"/>
-			//<Property key="20" value="0.70710671"/>
-			//<Property key="21" value="0"/>
-			//<Property key="22" value="0.70710671"/>
-
-
-
-	axis = nsMathTools::TVector3(0,0,1);
-	SetMatrixRotationAxis(&m16, &axis, -float(M_PI/2));// подготовка
-	//<Property key="00" value="0"/>
-	//<Property key="01" value="-1"/>
-	//<Property key="02" value="0"/>
-	//<Property key="10" value="1"/>
-	//<Property key="11" value="0"/>
-	//<Property key="12" value="0"/>
-	//<Property key="20" value="0"/>
-	//<Property key="21" value="0"/>
-	//<Property key="22" value="1"/>
-
 	nsMathTools::TVector3 point(1,0,0);
 	nsMathTools::TVector3 pointResult;
 	SetVec3TransformCoord(&pointResult, &point, &m16);
@@ -342,10 +268,6 @@ void TBuilder_Model_Logic::SetupJointForNode_Shape(TShapeNode_Model* pShapeNode,
 			continue;
 		pJoint->mLocalRelativeNode.mPos    = vtJoint.second.position;
 		pJoint->mLocalRelativeNode.mOrient = vtJoint.second.orientation;
-
-		//###
-		SetMatrixInfoDebug(&pJoint->mLocalRelativeNode.mOrient);
-		//###
 	}
 }
 //---------------------------------------------------------------------------
@@ -466,9 +388,6 @@ void TBuilder_Model_Logic::DefineLocalLocationJoint()
 			}
 			// глобальное позиционирование внутреннего крючка - это локальное позиционирование внешнего крючка
 			pJoint->mLocalRelativeNode = pInternalJoint->mGlobal;
-			//###
-			SetMatrixInfoDebug(&pJoint->mLocalRelativeNode.mOrient);
-			//###
 		}
 	}
 }

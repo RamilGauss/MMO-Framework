@@ -82,12 +82,7 @@ void TNodeLocation_Model::CalcGlobalJoint()
 
 		pJoint->mGlobal.mPos    = mGlobal.mPos + vResult;
 		// домножить на вращение относительно родителя
-		pJoint->mGlobal.mOrient = mGlobal.mOrient * pJoint->mLocalRelativeNode.mOrient;
-
-		//###
-		pJoint->mGlobal.mOrient.CalcAxisAngle();
-		int a = 0;
-		//###
+		pJoint->mGlobal.mOrient = pJoint->mLocalRelativeNode.mOrient*mGlobal.mOrient;// такой порядок
 	}
 }
 //---------------------------------------------------------------------------------
@@ -106,10 +101,11 @@ void TNodeLocation_Model::CalcGlobal(TNodeLocation_Model* pNodeLocationParent)
 	nsMathTools::TMatrix16 qJointParentConnection = 
 		pJointParent->mGlobal.mOrient * mOrientRelativeJointToJointParent;
 
-	nsMathTools::TVector3 Up(0,1,0);
-	nsMathTools::TVector3 vUpRelativeJointParent(0,0,0);// локальные координаты вектора Вверх с учётом вращения
-
 	nsMathTools::TVector3 Forward(1,0,0);
+	nsMathTools::TVector3 Up(0,1,0);
+	nsMathTools::TVector3 Right(0,0,1);
+
+	nsMathTools::TVector3 vUpRelativeJointParent(0,0,0);// локальные координаты вектора Вверх с учётом вращения
 	nsMathTools::TVector3 vForwardRelativeJointParent(0,0,0);// локальные координаты вектора Вперед с учётом вращения
 
 	SetVec3TransformCoord(&vUpRelativeJointParent,     &Up,     &qJointParentConnection);
@@ -130,33 +126,13 @@ void TNodeLocation_Model::CalcGlobal(TNodeLocation_Model* pNodeLocationParent)
 	nsMathTools::TVector3 negativevForwardRelativeJointParent = vForwardRelativeJointParent*-1;// к этому вектору нужно попасть
 	
 	CalcMatrixByMoveVectors(&mGlobal.mOrient, 
-		&vUpRelativeJointParent, &negativevForwardRelativeJointParent,
-		&vUpRelativeJointChild,  &vForwardRelativeJointChild);
-
-	//mGlobal.mOrient = calcMatrix;
-	// проверка
-	{
-		mGlobal.mOrient.CalcAxisAngle();
-		nsMathTools::TMatrix16 m = mGlobal.mOrient*pMyJoint->mLocalRelativeNode.mOrient;
-		m.CalcAxisAngle();
-
-		nsMathTools::TVector3 tempUp;
-		SetVec3TransformCoord(&tempUp,      &Up, &m);
-		nsMathTools::TVector3 tempForward;
-		SetVec3TransformCoord(&tempForward, &Forward, &m);
-		int a = 0;
-	}
-
-
-	nsMathTools::TVector3 MyJointRelativeChild;
-	MyJointRelativeChild.x = -pMyJoint->mLocalRelativeNode.mPos.x;// обратный сдвиг порождает знак минуса
-	MyJointRelativeChild.y = -pMyJoint->mLocalRelativeNode.mPos.y;// во всех осях
-	MyJointRelativeChild.z = -pMyJoint->mLocalRelativeNode.mPos.z;// 
+	&vUpRelativeJointParent, &negativevForwardRelativeJointParent,
+	&vUpRelativeJointChild,  &vForwardRelativeJointChild);
 
 	nsMathTools::TVector3 posChildRelativeJoint;
-	SetVec3TransformCoord(&posChildRelativeJoint, &MyJointRelativeChild, &mGlobal.mOrient);
+	SetVec3TransformCoord(&posChildRelativeJoint, &pMyJoint->mLocalRelativeNode.mPos, &mGlobal.mOrient);
 
-	mGlobal.mPos = globalPosJointChild + posChildRelativeJoint;
+	mGlobal.mPos = globalPosJointChild - posChildRelativeJoint;
 }
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------

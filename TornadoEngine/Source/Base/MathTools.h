@@ -392,8 +392,6 @@ DllExport extern void SetMatrixToAxisAngle(const nsMathTools::TMatrix16 *pM,
 DllExport extern void SetMatrixToQuaternion(const nsMathTools::TMatrix16 *pM, 
 																					 nsMathTools::TQuaternion *pQOut, bool correctPI = true);
 
-DllExport extern void SetMatrixInfoDebug(const nsMathTools::TMatrix16 *pM);
-
 DllExport extern nsMathTools::TMatrix16* SetMatrixMultiply(nsMathTools::TMatrix16 *pOut,
                                                          const nsMathTools::TMatrix16 *pM1,
                                                          const nsMathTools::TMatrix16 *pM2);
@@ -502,6 +500,9 @@ DllExport extern float SetQuaternionLength(const nsMathTools::TQuaternion *pQ);
 
 DllExport extern void SetRotatePoint(nsMathTools::TOrientation* pO,
 																		 nsMathTools::TVector3* pPointIn, nsMathTools::TVector3* pPointOut);
+
+DllExport extern void CalcMatrix(nsMathTools::TMatrix16* pOut, 
+																 nsMathTools::TMatrix16* pTo, nsMathTools::TMatrix16* pFrom);
 
 DllExport extern void CalcMatrixByMoveVectors(nsMathTools::TMatrix16* pM, 
 																							nsMathTools::TVector3* pUpTo, nsMathTools::TVector3* pForwardTo,

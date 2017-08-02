@@ -186,7 +186,7 @@
 					<Property key="x" value="0"/>
 					<Property key="y" value="0"/>
 					<Property key="z" value="1"/>
-					<Property key="angle" value="1.5707963267948"/>
+					<Property key="angle" value="1.5707963267948"/><!-- 1.5707963267948 -->
         </Orientation>
       </Joint>
     </Joining>
@@ -239,7 +239,7 @@
           <Property key="x" value="1"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-          <Property key="angle" value="3.1415926535897"/>
+          <Property key="angle" value="0"/>
         </Orientation>
       </Joint>
       <Joint name="3"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -265,7 +265,7 @@
           <Property key="x" value="1"/>
           <Property key="y" value="0"/>
           <Property key="z" value="0"/>
-          <Property key="angle" value="3.1415926535897"/>
+          <Property key="angle" value="0"/>
         </Orientation>
       </Joint>
       <Joint name="5"> <!-- "Крючки", куда можно цепляться другими "крючками" -->
@@ -810,10 +810,10 @@
 					<Property key="z" value="0"/>
 				</Position>
 				<Orientation><!-- Ориентация -->
-					<Property key="x" value="0"/>
-					<Property key="y" value="1"/>
+					<Property key="x" value="1"/>
+					<Property key="y" value="0"/>
 					<Property key="z" value="0"/>
-					<Property key="angle" value="1.57"/>
+					<Property key="angle" value="0.14"/><!-- 1.5707963267948 -->
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>

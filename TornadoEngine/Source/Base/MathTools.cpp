@@ -295,14 +295,6 @@ void SetMatrixToQuaternion(const TMatrix16 *pM, TQuaternion *pQOut, bool correct
 	SetQuaternionRotationAxis(pQOut, &axis, angle);
 }
 //-------------------------------------------------------------------------
-void SetMatrixInfoDebug(const TMatrix16 *pM)
-{
-	TVector3 axis; 
-	float angle;
-	SetMatrixToAxisAngle(pM, &axis, &angle);
-	int a = 0;
-}
-//-------------------------------------------------------------------------
 TMatrix16* SetMatrixMultiply(TMatrix16 *pOut,
                              const TMatrix16 *pM1,
                              const TMatrix16 *pM2)
@@ -673,6 +665,25 @@ void CalcMatrixByMoveVectors(nsMathTools::TMatrix16* pM,
 	SetMatrixRotationAxis(&calcMatrixUp, &normalUp, angleUp);
 
 	*pM = calcMatrixForward*calcMatrixUp;
+}
+//-------------------------------------------------------------------------
+void CalcMatrix(nsMathTools::TMatrix16* pOut, 
+							  nsMathTools::TMatrix16* pTo, nsMathTools::TMatrix16* pFrom)
+{
+	nsMathTools::TVector3 Up(0,1,0);
+	nsMathTools::TVector3 Forward(1,0,0);
+
+	nsMathTools::TVector3 UpTo;
+	nsMathTools::TVector3 ForwardTo;
+	nsMathTools::TVector3 UpFrom;
+	nsMathTools::TVector3 ForwardFrom;
+
+	SetVec3TransformCoord(&UpTo,        &Up,      pTo);
+	SetVec3TransformCoord(&ForwardTo,   &Forward, pTo);
+	SetVec3TransformCoord(&UpFrom,      &Up,      pFrom);
+	SetVec3TransformCoord(&ForwardFrom, &Forward, pFrom);
+
+	CalcMatrixByMoveVectors(pOut, &UpTo, &ForwardTo, &UpFrom, &ForwardFrom);
 }
 //-------------------------------------------------------------------------
 float SetQuaternionLength(const TQuaternion *pQ)
