@@ -811,13 +811,13 @@
 				</Position>
 				<Orientation><!-- Ориентация -->
 					<Property key="x" value="1"/>
-					<Property key="y" value="0"/>
-					<Property key="z" value="0"/>
-					<Property key="angle" value="0.14"/><!-- 1.5707963267948 -->
+					<Property key="y" value="1"/>
+					<Property key="z" value="1"/>
+					<Property key="angle" value="1.14"/><!-- 1.5707963267948 -->
 				</Orientation>
 				<PatternConfig>
 					<Property key="Name"    value="Model"/>
-					<Property key="Variant" value="Cart_S"/>
+					<Property key="Variant" value="Cart_M"/>
 				</PatternConfig>
 			</Object>
 		  <Object>

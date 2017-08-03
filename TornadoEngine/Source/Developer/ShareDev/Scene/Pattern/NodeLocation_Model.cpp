@@ -98,8 +98,10 @@ void TNodeLocation_Model::CalcGlobal(TNodeLocation_Model* pNodeLocationParent)
 	}
 
 	// вращение крючка родителя с учетом параметров соединения
-	nsMathTools::TMatrix16 qJointParentConnection = 
-		pJointParent->mGlobal.mOrient * mOrientRelativeJointToJointParent;
+	nsMathTools::TMatrix16 qJointParentConnection = pJointParent->mLocalRelativeNode.mOrient*mOrientRelativeJointToJointParent;
+	qJointParentConnection = qJointParentConnection * pNodeLocationParent->mGlobal.mOrient;
+//	nsMathTools::TMatrix16 qJointParentConnection = 
+	//	pJointParent->mGlobal.mOrient * mOrientRelativeJointToJointParent;
 
 	nsMathTools::TVector3 Forward(1,0,0);
 	nsMathTools::TVector3 Up(0,1,0);
