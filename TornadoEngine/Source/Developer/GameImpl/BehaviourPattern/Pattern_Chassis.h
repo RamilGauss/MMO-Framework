@@ -16,6 +16,12 @@ public:
   TPattern_Chassis();
   virtual ~TPattern_Chassis();
 
+	// side = 0..1
+	void SetTorque(float torque, int side);
+
+	// side = 0..1
+	float GetAngleVelosity(int side);
+	float GetLinearVelosity(int side);
 };
 
 #endif

@@ -25,3 +25,20 @@ TPattern_Tank::~TPattern_Tank()
 
 }
 //-------------------------------------------------------------------
+void TPattern_Tank::SetAccelerate(float power, float speedLinim)
+{
+	// внутренняя логика расчета крутящего момента для шасси
+	// все зависит от скорости и кол-ва передач в коробке
+
+}
+//-------------------------------------------------------------------
+void TPattern_Tank::SetMouseAim(nsMathTools::TOrientation& orient)
+{
+
+}
+//-------------------------------------------------------------------
+bool TPattern_Tank::GetRealMouseAim(nsMathTools::TOrientation& orient)
+{
+	return false;
+}
+//-------------------------------------------------------------------

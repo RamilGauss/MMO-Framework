@@ -25,3 +25,18 @@ TPattern_Chassis::~TPattern_Chassis()
 
 }
 //-------------------------------------------------------------------
+void TPattern_Chassis::SetTorque(float torque, int side)
+{
+
+}
+//-------------------------------------------------------------------
+float TPattern_Chassis::GetAngleVelosity(int side)
+{
+	return 0;
+}
+//-------------------------------------------------------------------
+float TPattern_Chassis::GetLinearVelosity(int side)
+{
+	return 0;
+}
+//-------------------------------------------------------------------
