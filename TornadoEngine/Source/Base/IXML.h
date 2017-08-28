@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include <stddef.h>
 #include <string>
+
 #include "TypeDef.h"
 #include "ShareMisc.h"
 

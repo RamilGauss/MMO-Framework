@@ -25,7 +25,7 @@ void TCmdParam::SetArg(vector<string>& vecArgv)
   mSetFoundKey.clear();
 
   int cnt = vecArgv.size();
-  for( int iKey = 0 ; iKey < cnt ; iKey++)
+  for( int iKey = 0 ; iKey < cnt ; iKey++ )
   {
     bool resFoundKey = FindInDefKey( vecArgv[iKey] );
     if(resFoundKey)
@@ -33,10 +33,10 @@ void TCmdParam::SetArg(vector<string>& vecArgv)
       mSetFoundKey.insert(vecArgv[iKey]);
       // ищем значения после ключа
       int iValue = iKey + 1;
-      while(iValue < cnt)
+      while( iValue < cnt )
       {
         resFoundKey = FindInDefKey( vecArgv[iValue] );
-        if(resFoundKey==false)
+        if( resFoundKey==false )
           mMapKey.insert(TMultiMapStrStr::value_type(vecArgv[iKey],vecArgv[iValue]));
         else
           break;
@@ -52,11 +52,12 @@ int TCmdParam::GetCountValueByKey(string& sKey)
   return mMapKey.count(sKey);
 }
 //-------------------------------------------------------------------------------
-bool TCmdParam::GetByKey(string& sKey, int index, string& sOut)
+bool TCmdParam::GetByKey( string& sKey, int index, string& sOut)
 {
   TMultiMapStrStrIt fit = mMapKey.lower_bound(sKey);
-  if(fit==mMapKey.end()) return false;
-  for(int i = 0 ; i < index ; i++)
+  if( fit==mMapKey.end() )
+		return false;
+  for( int i = 0 ; i < index ; i++ )
     fit++;
   sOut = fit->second;
   return true;

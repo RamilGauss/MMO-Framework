@@ -16,22 +16,22 @@ public:
   IContainer(){};
   virtual ~IContainer(){};
   
-  // отдать под контроль ресурсы, типа, "на, это теперь твое"
+  // отдать под контроль ресурсы
   virtual void Entrust(char* p, int size) = 0;
   virtual void EntrustByCount(char* p, int count) = 0;
 
-  // задать, "получи, попользуйся, но отдай мне обратно" (копирование)
+  // задать (копирование)
   virtual void SetData(char* p, int size) = 0;
   virtual void SetDataByCount(char* p, int count) = 0;
-  // для получения доступа, "чем владеешь?"
+  // для получения доступа
   virtual char* GetPtr()const = 0;
   // полный размер хранимых ресурсов
   virtual int GetSize()const = 0;
-  // "сколько элементов у тебя?"
+  // кол-во элементов
   virtual int GetCount()const = 0;
-  // отцепиться от ресурсов, "забудь, что у тебя есть"
+  // отцепиться от ресурсов
   virtual void Unlink() = 0;
-  // освободить ресурсы, "приберись за собой"
+  // освободить ресурсы
   virtual void Done() = 0;
 };
 

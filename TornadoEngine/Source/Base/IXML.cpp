@@ -34,11 +34,11 @@ bool IXML::RemoveChildSection(const char* childName, int numChild, const char* n
 bool IXML::ReadDouble(const char* name, int num, double& v)
 {
   string s = ReadSection(name, num);
-  if(s.length()==0)
+  if( s.length()==0 )
     return false;
   v = boost::lexical_cast<double>(s.data());
 
-  if(errno==ERANGE)
+  if( errno==ERANGE )
     return false;
   return true;
 }
@@ -46,7 +46,7 @@ bool IXML::ReadDouble(const char* name, int num, double& v)
 bool IXML::ReadFloat(const char* name, int num, float & v)
 {
   string s = ReadSection(name, num);
-  if(s.length()==0)
+  if( s.length()==0 )
     return false;
   v = boost::lexical_cast<float>(s.data());
 
@@ -58,7 +58,7 @@ bool IXML::ReadFloat(const char* name, int num, float & v)
 bool IXML::ReadInt(const char* name, int num, int & v)
 {
   string s = ReadSection(name, num);
-  if(s.length()==0)
+  if( s.length()==0 )
     return false;
   v = boost::lexical_cast<int>(s.data());
   return true;
@@ -77,9 +77,10 @@ bool IXML::ReadFloat3(const char* name, int num, float * v3)// разделит�
 {
   string s = ReadSection(name, num);
   int size = s.length();
-  if(size==0)
+  if( size==0 )
     return false;
-  if(sscanf(s.data(),"%f;%f;%f",&v3[0],&v3[1],&v3[2])!=3) return false;
+  if( sscanf(s.data(),"%f;%f;%f",&v3[0],&v3[1],&v3[2])!=3) 
+		return false;
 
   return true;
 }
@@ -88,9 +89,10 @@ bool IXML::ReadFloat4(const char* name, int num, float * v4)
 {
   string s = ReadSection(name, num);
   int size = s.length();
-  if(size==0)
+  if( size==0 )
     return false;
-  if(sscanf(s.data(),"%f;%f;%f;%f",&v4[0],&v4[1],&v4[2],&v4[3])!=4) return false;
+  if( sscanf(s.data(),"%f;%f;%f;%f",&v4[0],&v4[1],&v4[2],&v4[3])!=4 ) 
+		return false;
 
   return true;
 }
@@ -98,7 +100,7 @@ bool IXML::ReadFloat4(const char* name, int num, float * v4)
 bool IXML::ReadDouble(int index, double& v)
 {
   string s = ReadSection(index);
-  if(s.length()==0)
+  if( s.length()==0 )
     return false;
   v = boost::lexical_cast<double>(s.data());
   return true;
@@ -107,7 +109,7 @@ bool IXML::ReadDouble(int index, double& v)
 bool IXML::ReadFloat(int index, float & v)
 {
   string s = ReadSection(index);
-  if(s.length()==0)
+  if( s.length()==0 )
     return false;
   v = boost::lexical_cast<float>(s.data());
   return true;
