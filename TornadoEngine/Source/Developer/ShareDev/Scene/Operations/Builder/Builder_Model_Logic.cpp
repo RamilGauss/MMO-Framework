@@ -157,7 +157,7 @@ TBaseNode_Model* TBuilder_Model_Logic::BuildModels(TModelItem::TVariant& variant
 	// какие настройки брать должен определять сам паттерн
 	mPatternModel->Event_AddModelNode(pModelNode);
 	pModelNode->mPtrModel->SetNameGameItem(variant.nameItem);
-	// выставить что не является игровым объектом, то есть является составной частью
+	// выставить, что не является игровым объектом, то есть является составной частью
 	pModelNode->mPtrModel->SetIsGameObject(false);
 	return pModelNode;
 }
