@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\;.\Boost_Implementation;..\..\Base;..\..\Modules\MMOEngine\Include;$(BOOST_PATH)"
+				AdditionalIncludeDirectories=".\;.\Boost_Implementation;../../Base/Headers;..\..\Modules\MMOEngine\Include;&quot;$(BOOST_PATH)&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;TD_CROSSPLATFORM;NET_TRANSPORT_EI=__declspec(dllexport);NET_TRANSPORT_EXPORTS;FAST_NET_TRANSPORT;_WIN32_WINNT=0x0501"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".\;.\Boost_Implementation;..\..\Base;..\..\Modules\MMOEngine\Include;$(BOOST_PATH)"
+				AdditionalIncludeDirectories=".\;.\Boost_Implementation;../../Base/Headers;..\..\Modules\MMOEngine\Include;&quot;$(BOOST_PATH)&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;NET_TRANSPORT_EI=__declspec(dllexport);NET_TRANSPORT_EXPORTS;FAST_NET_TRANSPORT;_WIN32_WINNT=0x0501"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"

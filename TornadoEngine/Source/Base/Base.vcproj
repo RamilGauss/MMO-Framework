@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;"
+				AdditionalIncludeDirectories="&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;./Headers;./Sources"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"
@@ -122,7 +122,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="3"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;"
+				AdditionalIncludeDirectories="&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;;./Headers;./Sources"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -184,179 +184,179 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\ArrContainer.cpp"
+				RelativePath=".\Sources\ArrContainer.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\BL_Debug.cpp"
+				RelativePath=".\Sources\BL_Debug.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\BreakPacket.cpp"
+				RelativePath=".\Sources\BreakPacket.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CmdParam.cpp"
+				RelativePath=".\Sources\CmdParam.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ContainerRise.cpp"
+				RelativePath=".\Sources\ContainerRise.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ConverterLocale.cpp"
+				RelativePath=".\Sources\ConverterLocale.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CRC8.cpp"
+				RelativePath=".\Sources\CRC8.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CryptoAES_Impl.cpp"
+				RelativePath=".\Sources\CryptoAES_Impl.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CryptoRSA_Impl.cpp"
+				RelativePath=".\Sources\CryptoRSA_Impl.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\DescCallBack.cpp"
+				RelativePath=".\Sources\DescCallBack.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\DstEvent.cpp"
+				RelativePath=".\Sources\DstEvent.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\FileOperation.cpp"
+				RelativePath=".\Sources\FileOperation.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\HiTimer.cpp"
+				RelativePath=".\Sources\HiTimer.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\InfoFile.cpp"
+				RelativePath=".\Sources\InfoFile.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\IXML.cpp"
+				RelativePath=".\Sources\IXML.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderDLL_Unix.cpp"
+				RelativePath=".\Sources\LoaderDLL_Unix.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderDLL_Win32.cpp"
+				RelativePath=".\Sources\LoaderDLL_Win32.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\LoadFromFile.cpp"
+				RelativePath=".\Sources\LoadFromFile.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Logger.cpp"
+				RelativePath=".\Sources\Logger.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\MakerLoaderDLL.cpp"
+				RelativePath=".\Sources\MakerLoaderDLL.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\MakerXML.cpp"
+				RelativePath=".\Sources\MakerXML.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ManagerForm.cpp"
+				RelativePath=".\Sources\ManagerForm.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ManagerStateMachine.cpp"
+				RelativePath=".\Sources\ManagerStateMachine.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ManagerTime.cpp"
+				RelativePath=".\Sources\ManagerTime.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\MapCallBack.cpp"
+				RelativePath=".\Sources\MapCallBack.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\MapXML_Field.cpp"
+				RelativePath=".\Sources\MapXML_Field.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Markup.cpp"
+				RelativePath=".\Sources\Markup.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\MathTools.cpp"
+				RelativePath=".\Sources\MathTools.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\MD5.cpp"
+				RelativePath=".\Sources\MD5.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Mutex.cpp"
+				RelativePath=".\Sources\Mutex.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Only_N_Object.cpp"
+				RelativePath=".\Sources\Only_N_Object.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ResolverSelf_IP_v4.cpp"
+				RelativePath=".\Sources\ResolverSelf_IP_v4.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\SaveToFile.cpp"
+				RelativePath=".\Sources\SaveToFile.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\SetOrderElement.cpp"
+				RelativePath=".\Sources\SetOrderElement.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Settings.cpp"
+				RelativePath=".\Sources\Settings.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\SHA256.cpp"
+				RelativePath=".\Sources\SHA256.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ShareLibWin.cpp"
+				RelativePath=".\Sources\ShareLibWin.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ShareMisc.cpp"
+				RelativePath=".\Sources\ShareMisc.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\SrcEvent.cpp"
+				RelativePath=".\Sources\SrcEvent.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\StorePathResources.cpp"
+				RelativePath=".\Sources\StorePathResources.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\SynchroAbonent.cpp"
+				RelativePath=".\Sources\SynchroAbonent.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\SynchroPoint.cpp"
+				RelativePath=".\Sources\SynchroPoint.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ThreadBoost.cpp"
+				RelativePath=".\Sources\ThreadBoost.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\XML_Markup.cpp"
+				RelativePath=".\Sources\XML_Markup.cpp"
 				>
 			</File>
 		</Filter>
@@ -366,11 +366,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\ArrContainer.h"
+				RelativePath=".\Headers\ArrContainer.h"
 				>
 			</File>
 			<File
-				RelativePath=".\BL_Debug.h"
+				RelativePath=".\Headers\BL_Debug.h"
 				>
 			</File>
 			<File
@@ -378,235 +378,235 @@
 				>
 			</File>
 			<File
-				RelativePath=".\BreakPacket.h"
+				RelativePath=".\Headers\BreakPacket.h"
 				>
 			</File>
 			<File
-				RelativePath=".\CallBackRegistrator.h"
+				RelativePath=".\Headers\CallBackRegistrator.h"
 				>
 			</File>
 			<File
-				RelativePath=".\CmdParam.h"
+				RelativePath=".\Headers\CmdParam.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ContainerArrObj.h"
+				RelativePath=".\Headers\ContainerArrObj.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ContainerPtrArrObj.h"
+				RelativePath=".\Headers\ContainerPtrArrObj.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ContainerRise.h"
+				RelativePath=".\Headers\ContainerRise.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ContainerTypes.h"
+				RelativePath=".\Headers\ContainerTypes.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ConverterLocale.h"
+				RelativePath=".\Headers\ConverterLocale.h"
 				>
 			</File>
 			<File
-				RelativePath=".\CRC8.h"
+				RelativePath=".\Headers\CRC8.h"
 				>
 			</File>
 			<File
-				RelativePath=".\CryptoAES_Impl.h"
+				RelativePath=".\Headers\CryptoAES_Impl.h"
 				>
 			</File>
 			<File
-				RelativePath=".\CryptoRSA_Impl.h"
+				RelativePath=".\Headers\CryptoRSA_Impl.h"
 				>
 			</File>
 			<File
-				RelativePath=".\DataExchange2Thread.h"
+				RelativePath=".\Headers\DataExchange2Thread.h"
 				>
 			</File>
 			<File
-				RelativePath=".\DescCallBack.h"
+				RelativePath=".\Headers\DescCallBack.h"
 				>
 			</File>
 			<File
-				RelativePath=".\DescEvent.h"
+				RelativePath=".\Headers\DescEvent.h"
 				>
 			</File>
 			<File
-				RelativePath=".\DstEvent.h"
+				RelativePath=".\Headers\DstEvent.h"
 				>
 			</File>
 			<File
-				RelativePath=".\FileOperation.h"
+				RelativePath=".\Headers\FileOperation.h"
 				>
 			</File>
 			<File
-				RelativePath=".\HiTimer.h"
+				RelativePath=".\Headers\HiTimer.h"
 				>
 			</File>
 			<File
-				RelativePath=".\IContainer.h"
+				RelativePath=".\Headers\IContainer.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ILoaderDLL.h"
+				RelativePath=".\Headers\ILoaderDLL.h"
 				>
 			</File>
 			<File
-				RelativePath=".\InfoFile.h"
+				RelativePath=".\Headers\InfoFile.h"
 				>
 			</File>
 			<File
-				RelativePath=".\IXML.h"
+				RelativePath=".\Headers\IXML.h"
 				>
 			</File>
 			<File
-				RelativePath=".\License.h"
+				RelativePath=".\Headers\License.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ListPtr.h"
+				RelativePath=".\Headers\ListPtr.h"
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderDLL_Unix.h"
+				RelativePath=".\Headers\LoaderDLL_Unix.h"
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderDLL_Win32.h"
+				RelativePath=".\Headers\LoaderDLL_Win32.h"
 				>
 			</File>
 			<File
-				RelativePath=".\LoadFromFile.h"
+				RelativePath=".\Headers\LoadFromFile.h"
 				>
 			</File>
 			<File
-				RelativePath=".\LockFreeDef.h"
+				RelativePath=".\Headers\LockFreeDef.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Logger.h"
+				RelativePath=".\Headers\Logger.h"
 				>
 			</File>
 			<File
-				RelativePath=".\MacroMaker.h"
+				RelativePath=".\Headers\MacroMaker.h"
 				>
 			</File>
 			<File
-				RelativePath=".\MacroMaker_Prepare.h"
+				RelativePath=".\Headers\MacroMaker_Prepare.h"
 				>
 			</File>
 			<File
-				RelativePath=".\MakerLoaderDLL.h"
+				RelativePath=".\Headers\MakerLoaderDLL.h"
 				>
 			</File>
 			<File
-				RelativePath=".\MakerXML.h"
+				RelativePath=".\Headers\MakerXML.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ManagerForm.h"
+				RelativePath=".\Headers\ManagerForm.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ManagerStateMachine.h"
+				RelativePath=".\Headers\ManagerStateMachine.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ManagerTime.h"
+				RelativePath=".\Headers\ManagerTime.h"
 				>
 			</File>
 			<File
-				RelativePath=".\MapCallBack.h"
+				RelativePath=".\Headers\MapCallBack.h"
 				>
 			</File>
 			<File
-				RelativePath=".\MapXML_Field.h"
+				RelativePath=".\Headers\MapXML_Field.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Markup.h"
+				RelativePath=".\Headers\Markup.h"
 				>
 			</File>
 			<File
-				RelativePath=".\MathTools.h"
+				RelativePath=".\Headers\MathTools.h"
 				>
 			</File>
 			<File
-				RelativePath=".\MD5.h"
+				RelativePath=".\Headers\MD5.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Mutex.h"
+				RelativePath=".\Headers\Mutex.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Only_N_Object.h"
+				RelativePath=".\Headers\Only_N_Object.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ResolverSelf_IP_v4.h"
+				RelativePath=".\Headers\ResolverSelf_IP_v4.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SaveToFile.h"
+				RelativePath=".\Headers\SaveToFile.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SetOrderElement.h"
+				RelativePath=".\Headers\SetOrderElement.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Settings.h"
+				RelativePath=".\Headers\Settings.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SHA256.h"
+				RelativePath=".\Headers\SHA256.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ShareMisc.h"
+				RelativePath=".\Headers\ShareMisc.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SrcEvent.h"
+				RelativePath=".\Headers\SrcEvent.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SrcEvent_ex.h"
+				RelativePath=".\Headers\SrcEvent_ex.h"
 				>
 			</File>
 			<File
-				RelativePath=".\StateMachine.h"
+				RelativePath=".\Headers\StateMachine.h"
 				>
 			</File>
 			<File
-				RelativePath=".\StatisticValue.h"
+				RelativePath=".\Headers\StatisticValue.h"
 				>
 			</File>
 			<File
-				RelativePath=".\StorePathResources.h"
+				RelativePath=".\Headers\StorePathResources.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SynchroAbonent.h"
+				RelativePath=".\Headers\SynchroAbonent.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SynchroPoint.h"
+				RelativePath=".\Headers\SynchroPoint.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ThreadBoost.h"
+				RelativePath=".\Headers\ThreadBoost.h"
 				>
 			</File>
 			<File
-				RelativePath=".\TypeDef.h"
+				RelativePath=".\Headers\TypeDef.h"
 				>
 			</File>
 			<File
-				RelativePath=".\XML_Markup.h"
+				RelativePath=".\Headers\XML_Markup.h"
 				>
 			</File>
 		</Filter>

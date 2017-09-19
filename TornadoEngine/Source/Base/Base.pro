@@ -5,7 +5,10 @@ CONFIG += dll qt warn_on
 
 TARGET = /usr/lib/Base_d
 
-INCLUDEPATH = .
+INCLUDEPATH = \
+. \
+./Headers \
+./Sources \
 
 DEFINES += _DEBUG
 DEFINES += _USRDLL
@@ -27,103 +30,105 @@ LIBS += -lboost_chrono
 LIBS += -lboost_locale
 
 
-SOURCES = ArrContainer.cpp \
-BL_Debug.cpp \
-BreakPacket.cpp \
-CmdParam.cpp \
-ConverterLocale.cpp \
-ContainerRise.cpp \
-CRC8.cpp \
-CryptoAES_Impl.cpp \
-CryptoRSA_Impl.cpp \
-DescCallBack.cpp \
-DstEvent.cpp \
-FileOperation.cpp \
-HiTimer.cpp \
-InfoFile.cpp \
-IXML.cpp \
-LoaderDLL_Unix.cpp \
-LoaderDLL_Win32.cpp \
-LoadFromFile.cpp \
-Logger.cpp \
-MakerLoaderDLL.cpp \
-MakerXML.cpp \
-ManagerForm.cpp \
-ManagerStateMachine.cpp \
-ManagerTime.cpp \
-MapCallBack.cpp \
-MapXML_Field.cpp \
-Markup.cpp \
-MathTools.cpp \
-MD5.cpp \
-Mutex.cpp \
-Only_N_Object.cpp \
-ResolverSelf_IP_v4.cpp \
-SaveToFile.cpp \
-SetOrderElement.cpp \
-SHA256.cpp \
-ShareLibWin.cpp \
-ShareMisc.cpp \
-SrcEvent.cpp \
-StorePathResources.cpp \
-ThreadBoost.cpp \
-XML_Markup.cpp
+SOURCES = \
+./Sources/ArrContainer.cpp \
+./Sources/BL_Debug.cpp \
+./Sources/BreakPacket.cpp \
+./Sources/CmdParam.cpp \
+./Sources/ConverterLocale.cpp \
+./Sources/ContainerRise.cpp \
+./Sources/CRC8.cpp \
+./Sources/CryptoAES_Impl.cpp \
+./Sources/CryptoRSA_Impl.cpp \
+./Sources/DescCallBack.cpp \
+./Sources/DstEvent.cpp \
+./Sources/FileOperation.cpp \
+./Sources/HiTimer.cpp \
+./Sources/InfoFile.cpp \
+./Sources/IXML.cpp \
+./Sources/LoaderDLL_Unix.cpp \
+./Sources/LoaderDLL_Win32.cpp \
+./Sources/LoadFromFile.cpp \
+./Sources/Logger.cpp \
+./Sources/MakerLoaderDLL.cpp \
+./Sources/MakerXML.cpp \
+./Sources/ManagerForm.cpp \
+./Sources/ManagerStateMachine.cpp \
+./Sources/ManagerTime.cpp \
+./Sources/MapCallBack.cpp \
+./Sources/MapXML_Field.cpp \
+./Sources/Markup.cpp \
+./Sources/MathTools.cpp \
+./Sources/MD5.cpp \
+./Sources/Mutex.cpp \
+./Sources/Only_N_Object.cpp \
+./Sources/ResolverSelf_IP_v4.cpp \
+./Sources/SaveToFile.cpp \
+./Sources/SetOrderElement.cpp \
+./Sources/SHA256.cpp \
+./Sources/ShareLibWin.cpp \
+./Sources/ShareMisc.cpp \
+./Sources/SrcEvent.cpp \
+./Sources/StorePathResources.cpp \
+./Sources/ThreadBoost.cpp \
+./Sources/XML_Markup.cpp
 
 
-HEADERS = ArrContainer.h\
-BL_Debug.h \
-BreakPacket.h \
-CallBackRegistrator.h \
-CmdParam.h \
-ConverterLocale.h \
-ContainerArrObj.h \
-ContainerPtrArrObj.h \
-ContainerRise.h \
-ContainerTypes.h \
-CRC8.h \
-CryptoAES_Impl.h \
-CryptoRSA_Impl.h \
-DataExchange2Thread.h \
-DescCallBack.h \
-DescEvent.h \
-DstEvent.h \
-FileOperation.h \
-HiTimer.h \
-IContainer.h \
-ILoaderDLL.h \
-InfoFile.h \
-IXML.h \
-License.h \
-ListPtr.h \
-LoaderDLL_Unix.h \
-LoaderDLL_Win32.h \
-LoadFromFile.h \
-LockFreeDef.h \
-Logger.h \
-MacroMaker.h \
-MacroMaker_Prepare.h \
-MakerLoaderDLL.h \
-MakerXML.h \
-ManagerForm.h \
-ManagerStateMachine.h \
-ManagerTime.h \
-MapCallBack.h \
-MapXML_Field.h \
-Markup.h \
-MathTools.h \
-MD5.h \
-Mutex.h \
-Only_N_Object.h \
-ResolverSelf_IP_v4.h \
-SaveToFile.h \
-SetOrderElement.h \
-SHA256.h \
-ShareMisc.h \
-SrcEvent_ex.h \
-SrcEvent.h \
-StateMachine.h \
-StatisticValue.h \
-StorePathResources.h \
-TypeDef.h \
-ThreadBoost.h \
-XML_Markup.h
+HEADERS = \
+./Headers/ArrContainer.h\
+./Headers/BL_Debug.h \
+./Headers/BreakPacket.h \
+./Headers/CallBackRegistrator.h \
+./Headers/CmdParam.h \
+./Headers/ConverterLocale.h \
+./Headers/ContainerArrObj.h \
+./Headers/ContainerPtrArrObj.h \
+./Headers/ContainerRise.h \
+./Headers/ContainerTypes.h \
+./Headers/CRC8.h \
+./Headers/CryptoAES_Impl.h \
+./Headers/CryptoRSA_Impl.h \
+./Headers/DataExchange2Thread.h \
+./Headers/DescCallBack.h \
+./Headers/DescEvent.h \
+./Headers/DstEvent.h \
+./Headers/FileOperation.h \
+./Headers/HiTimer.h \
+./Headers/IContainer.h \
+./Headers/ILoaderDLL.h \
+./Headers/InfoFile.h \
+./Headers/IXML.h \
+./Headers/License.h \
+./Headers/ListPtr.h \
+./Headers/LoaderDLL_Unix.h \
+./Headers/LoaderDLL_Win32.h \
+./Headers/LoadFromFile.h \
+./Headers/LockFreeDef.h \
+./Headers/Logger.h \
+./Headers/MacroMaker.h \
+./Headers/MacroMaker_Prepare.h \
+./Headers/MakerLoaderDLL.h \
+./Headers/MakerXML.h \
+./Headers/ManagerForm.h \
+./Headers/ManagerStateMachine.h \
+./Headers/ManagerTime.h \
+./Headers/MapCallBack.h \
+./Headers/MapXML_Field.h \
+./Headers/Markup.h \
+./Headers/MathTools.h \
+./Headers/MD5.h \
+./Headers/Mutex.h \
+./Headers/Only_N_Object.h \
+./Headers/ResolverSelf_IP_v4.h \
+./Headers/SaveToFile.h \
+./Headers/SetOrderElement.h \
+./Headers/SHA256.h \
+./Headers/ShareMisc.h \
+./Headers/SrcEvent_ex.h \
+./Headers/SrcEvent.h \
+./Headers/StateMachine.h \
+./Headers/StatisticValue.h \
+./Headers/StorePathResources.h \
+./Headers/TypeDef.h \
+./Headers/ThreadBoost.h \
+./Headers/XML_Markup.h

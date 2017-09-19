@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\Base;.\Include;.\Source;.\SubSystem;.\Scenario;.\ContextScenario;$(BOOST_PATH)"
+				AdditionalIncludeDirectories="../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ContextScenario;&quot;$(BOOST_PATH)&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="3"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\Base;.\Include;.\Source;.\SubSystem;.\Scenario;.\ContextScenario;$(BOOST_PATH)"
+				AdditionalIncludeDirectories="../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ContextScenario;&quot;$(BOOST_PATH)&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"

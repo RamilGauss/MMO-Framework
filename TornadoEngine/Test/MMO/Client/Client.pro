@@ -10,7 +10,7 @@ INCLUDEPATH = \
 ../Share \
 ../../../Source/Modules/MMOEngine/Include \
 ../../../Source/Modules/NetTransport \
-../../../Source/Base
+../../../Source/Base/Headers
 
 DEFINES += _DEBUG
 DEFINES += _USRDLL

@@ -12,7 +12,7 @@ INCLUDEPATH = \
 ./ContextScenario \
 ./Scenario \
 ./SubSystem \
-../../Base
+../../Base/Headers
 
 LIBS += -lBase_d
 

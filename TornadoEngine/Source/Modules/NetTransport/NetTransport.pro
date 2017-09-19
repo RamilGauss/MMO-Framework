@@ -9,7 +9,7 @@ INCLUDEPATH = \
 . \
 ./Boost_Implementation \
 ../MMOEngine/Include \
-../../Base
+../../Base/Headers
 
 DEFINES += _DEBUG
 DEFINES += _USRDLL

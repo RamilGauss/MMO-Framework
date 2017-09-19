@@ -1,0 +1,111 @@
+				Изменения для успешной компиляции.
+Старался свести их к минимуму. Ну, уж так получилось.
+1. Файл «MyGUI_Singleton.h» строки 28-30 - Engine
+	#if MYGUI_COMPILER == MYGUI_COMPILER_MSVC
+	#pragma warning (disable:4661)
+	#endif
+2. Файл «ResourceW32Pointer.cpp» строка 12 - Common
+	#include "MyGUI_DataManager.h"
+3. Правка, характерная только для машины на работе (встроенная видеокарта). Замена D3DCREATE_HARDWARE_VERTEXPROCESSING на D3DCREATE_SOFTWARE_VERTEXPROCESSING. - Common
+Файл «BaseManager.cpp» строка 402
+	if (FAILED(mD3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
+			D3DCREATE_HARDWARE_VERTEXPROCESSING, &mD3dpp, &mDevice)))
+	{
+		if (FAILED(mD3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
+				D3DCREATE_SOFTWARE_VERTEXPROCESSING, &mD3dpp, &mDevice)))
+		{
+			//OutException("fatal error!", "failed create d3d9 mDevice");
+			return false;
+		}
+	}
+4. Файл «BaseLayout.h» строка 144.
+
+	if (mListWindowRoot.size())	
+
+			Изменения для использования в GraphicEngine.
+1. BaseManager – добавлены методы:
+	addWindow(…), render(), lostDevice(), addRender(…), destroyPartly(), 
+	resizeRenderPartly(…), windowResizedPartly (). 
+	Т.о. совместимость сохранена.
+
+			Как использовать в сторонних движках.
+1. Сначала встраивание в конвейер событий:
+//------------------------CORE----------------------
+  // добавить окно, созданное движком в GUI
+  TGUIDescWindow descWindow;
+  descWindow.hwnd       = hWnd;
+  descWindow.pD3D       = pD3D;
+  descWindow.pD3DDevice = pD3DDevice;
+  descWindow.pD3DPP     = pD3DPP;
+  descWindow.windowed   = true/false;
+  pGUI->AddWindow(&descWindow);
+
+  //---------------------------------------------------
+2. Дополнительные пути (например, для форм), это нужно сделать до вызова метода Show формы, иначе будет крах или форма отрисуется стандартным скином:
+  pGUI->AddResourceLocation("/Demos/Demo_Themes");
+  pGUI->AddResourceLocation("/Common/Demos");
+  pGUI->AddResourceLocation("/Common/Themes");
+MyGUI::ResourceManager::getInstance().load("MyGUI_BlackBlueTheme.xml");//загрузка скина
+  //------------------------CORE----------------------
+3. Инициализация формы.
+		Первый вариант:
+  //------------------------INIT_DEV_TOOL-----------------------
+  // создание форм
+  pForm = new TGameRoomPrepare;
+  // добавить в менеджер для общего доступа
+  pGUI->Add(std::string("pForm"),pForm);
+  // показать форму
+  pForm->Show();
+  // подстроиться
+  pGUI->Resize();
+  //------------------------INIT_DEV_TOOL-----------------------
+		Второй вариант:
+  //------------------------INIT_DEV_TOOL-----------------------
+  // добавить в менеджер для общего доступа
+  pGUI->Add(std::string("oForm"),&oForm);
+  // показать форму
+  oForm.Show();
+  // подстроиться
+  pGUI->Resize();
+  //------------------------INIT_DEV_TOOL-----------------------
+4. Окончание работы с GUI. 
+		Первый вариант:
+  delete pForm;
+  pForm = nullptr;
+
+  pGUI->Clear();
+  pGUI->Destroy();
+		Второй вариант:
+  oForm.Shutdown();
+  pGUI->Clear();
+  pGUI->Destroy();
+5. События
+	switch(msg)
+	{
+		case WM_SIZE:
+			pGUI->Resize();
+			break;
+	}
+Важно:  в случае потери устройства
+if(g_pD3DDevice->Present(0,0,0,0) == D3DERR_DEVICELOST)
+    pGUI->LostDevice();
+6. Ну и самое главное – рендер GUI.
+pGUI->Render();  
+P.S. создавать так: 
+TMakerGUI makerGUI;
+pGUI = makerGUI.New();
+
+
+			Правки для OGRE:
+1. Вставка нового метода в BaseManager.h,cpp – Common/OGRE/
+bool BaseManager::work()
+{
+  Ogre::WindowEventUtilities::messagePump();
+  return mRoot->renderOneFrame();
+}
+2. Вставка нового метода в BaseManager.h,cpp – Common/OGRE/
+Ogre::Root* BaseManager::getRoot()
+{
+  return mRoot;
+}
+
