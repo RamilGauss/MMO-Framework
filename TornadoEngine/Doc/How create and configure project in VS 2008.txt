@@ -1,4 +1,4 @@
-ТИП проекта - Win32 Project(VC2008).
+РўРРџ РїСЂРѕРµРєС‚Р° - Win32 Project(VC2008).
 
 ===========================================================================================
 Project property\AllConfiguration:
@@ -16,59 +16,59 @@ Linker->General:
 Additional Library Directories = $(SolutionDir)\$(ConfigurationName)
 ===========================================================================================
 
-Настройки интерфейса работы с VC2008:    (Tools->Customize->Keyboard )
-В строке Show commands containing производим поиск соответствующей команды и назначаем акселератор (Assign)
-Если назначаемый акселератор уже приписан к какой либо команде - найти ее и снять с нее акселератор (Remove)
+РќР°СЃС‚СЂРѕР№РєРё РёРЅС‚РµСЂС„РµР№СЃР° СЂР°Р±РѕС‚С‹ СЃ VC2008:    (Tools->Customize->Keyboard )
+Р’ СЃС‚СЂРѕРєРµ Show commands containing РїСЂРѕРёР·РІРѕРґРёРј РїРѕРёСЃРє СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµР№ РєРѕРјР°РЅРґС‹ Рё РЅР°Р·РЅР°С‡Р°РµРј Р°РєСЃРµР»РµСЂР°С‚РѕСЂ (Assign)
+Р•СЃР»Рё РЅР°Р·РЅР°С‡Р°РµРјС‹Р№ Р°РєСЃРµР»РµСЂР°С‚РѕСЂ СѓР¶Рµ РїСЂРёРїРёСЃР°РЅ Рє РєР°РєРѕР№ Р»РёР±Рѕ РєРѕРјР°РЅРґРµ - РЅР°Р№С‚Рё РµРµ Рё СЃРЅСЏС‚СЊ СЃ РЅРµРµ Р°РєСЃРµР»РµСЂР°С‚РѕСЂ (Remove)
 
-1)  Переключение из *.cpp в *.h: "GotoHeaderFile" : "Ctrl+F6"       (см. ниже Visual Assist !)
-2)  Закомментировать блок:  Edit.CommentSelection:    "Ctrl+R"
-3)  Раскомментировать блок: Edit.UncommentSelection:  "Ctrl+T"
+1)  РџРµСЂРµРєР»СЋС‡РµРЅРёРµ РёР· *.cpp РІ *.h: "GotoHeaderFile" : "Ctrl+F6"       (СЃРј. РЅРёР¶Рµ Visual Assist !)
+2)  Р—Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ Р±Р»РѕРє:  Edit.CommentSelection:    "Ctrl+R"
+3)  Р Р°СЃРєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ Р±Р»РѕРє: Edit.UncommentSelection:  "Ctrl+T"
 
-Переопределения акселераторов Visual Assist под Borland keymapping:
+РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёСЏ Р°РєСЃРµР»РµСЂР°С‚РѕСЂРѕРІ Visual Assist РїРѕРґ Borland keymapping:
 
-1) Переключение между *.cpp и *.h:   VAssistX.OpenCorrespondingFile = Ctrl+F6
-2) Диалог со всеми файлами solution: VAssistX.OpenFileInSolutionDialog = Ctrl+F12
+1) РџРµСЂРµРєР»СЋС‡РµРЅРёРµ РјРµР¶РґСѓ *.cpp Рё *.h:   VAssistX.OpenCorrespondingFile = Ctrl+F6
+2) Р”РёР°Р»РѕРі СЃРѕ РІСЃРµРјРё С„Р°Р№Р»Р°РјРё solution: VAssistX.OpenFileInSolutionDialog = Ctrl+F12
 ===========================================================================================
 
-Настройки для подключения библиотеки плагинов PluginWidgets
+РќР°СЃС‚СЂРѕР№РєРё РґР»СЏ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Р±РёР±Р»РёРѕС‚РµРєРё РїР»Р°РіРёРЅРѕРІ PluginWidgets
 
-Для VC2008:
-1) Для использования заголовочных файлов плагина: Project->Properties->Configuration Properties->C/C++->General:
-	в строку Additional Include Directories добавить:
-		..\PluginWidgets\MessageLine и/или
+Р”Р»СЏ VC2008:
+1) Р”Р»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹С… С„Р°Р№Р»РѕРІ РїР»Р°РіРёРЅР°: Project->Properties->Configuration Properties->C/C++->General:
+	РІ СЃС‚СЂРѕРєСѓ Additional Include Directories РґРѕР±Р°РІРёС‚СЊ:
+		..\PluginWidgets\MessageLine Рё/РёР»Рё
 		..\PluginWidgets\ModSpinBox
-	в строку Preprocessor добавить:
+	РІ СЃС‚СЂРѕРєСѓ Preprocessor РґРѕР±Р°РІРёС‚СЊ:
 		TD_CROSSPLATFORM
 
-2) Для использования библиотеки PluginWidgets:
+2) Р”Р»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ Р±РёР±Р»РёРѕС‚РµРєРё PluginWidgets:
 	- Project->Properties->Configuration Properties->Linker->General:
-		 в строку Additional Library Directories добавить 			
+		 РІ СЃС‚СЂРѕРєСѓ Additional Library Directories РґРѕР±Р°РІРёС‚СЊ 			
 		 $(SolutionDir)\$(ConfigurationName)
 	- Project->Properties->Configuration Properties->Linker->Input:
-		в строку Additional Dependencies добавить PluginWidgets.lib
+		РІ СЃС‚СЂРѕРєСѓ Additional Dependencies РґРѕР±Р°РІРёС‚СЊ PluginWidgets.lib
 
-Для GCC:
-в файл *.pro добавить:
+Р”Р»СЏ GCC:
+РІ С„Р°Р№Р» *.pro РґРѕР±Р°РІРёС‚СЊ:
 		DEFINES += TD_CROSSPLATFORM
-		- в секцию INCLUDEPATH:
-			./../PluginWidgets/ModSpinBox \ и/или
+		- РІ СЃРµРєС†РёСЋ INCLUDEPATH:
+			./../PluginWidgets/ModSpinBox \ Рё/РёР»Рё
 			./../PluginWidgets/MessageLine \
-		- в секцию LIBS:
+		- РІ СЃРµРєС†РёСЋ LIBS:
 			-lPluginWidgets 	
 
-P.S. - пример использования данной библиотеки плагинов см. в шаблонном проекте TestTemplate
+P.S. - РїСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РґР°РЅРЅРѕР№ Р±РёР±Р»РёРѕС‚РµРєРё РїР»Р°РіРёРЅРѕРІ СЃРј. РІ С€Р°Р±Р»РѕРЅРЅРѕРј РїСЂРѕРµРєС‚Рµ TestTemplate
 
 
 ===========================================================================================
-Настройка ToolBar в Designer QT4:
-	Для неиспользования строки в ниспадающем меню (QAction) необходимо (для Qt Designer):
-	1)В свойствах объекта класса QMenu изменить "palette"->"ChangePalette".
-	2)Выбрать "Show Details".
-	3)Для "text"-"disabled" назначить цвет (например, синий).
-	4)Для "Highlight"-"disabled" назначить цвет (например, белый).
-  5)Для самой QAction выставить флаги font.Bold и font.Underline
+РќР°СЃС‚СЂРѕР№РєР° ToolBar РІ Designer QT4:
+	Р”Р»СЏ РЅРµРёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЃС‚СЂРѕРєРё РІ РЅРёСЃРїР°РґР°СЋС‰РµРј РјРµРЅСЋ (QAction) РЅРµРѕР±С…РѕРґРёРјРѕ (РґР»СЏ Qt Designer):
+	1)Р’ СЃРІРѕР№СЃС‚РІР°С… РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР° QMenu РёР·РјРµРЅРёС‚СЊ "palette"->"ChangePalette".
+	2)Р’С‹Р±СЂР°С‚СЊ "Show Details".
+	3)Р”Р»СЏ "text"-"disabled" РЅР°Р·РЅР°С‡РёС‚СЊ С†РІРµС‚ (РЅР°РїСЂРёРјРµСЂ, СЃРёРЅРёР№).
+	4)Р”Р»СЏ "Highlight"-"disabled" РЅР°Р·РЅР°С‡РёС‚СЊ С†РІРµС‚ (РЅР°РїСЂРёРјРµСЂ, Р±РµР»С‹Р№).
+  5)Р”Р»СЏ СЃР°РјРѕР№ QAction РІС‹СЃС‚Р°РІРёС‚СЊ С„Р»Р°РіРё font.Bold Рё font.Underline
 
-	Для настройки в тексте программы необходимо вставить код вида:
+	Р”Р»СЏ РЅР°СЃС‚СЂРѕР№РєРё РІ С‚РµРєСЃС‚Рµ РїСЂРѕРіСЂР°РјРјС‹ РЅРµРѕР±С…РѕРґРёРјРѕ РІСЃС‚Р°РІРёС‚СЊ РєРѕРґ РІРёРґР°:
 		QMenu* menu = new QMenu;
 		QPalette disablePalette( menu->palette() );
 		disablePalette.setBrush ( QPalette::Disabled, QPalette::Text, QBrush( QColor(0, 0, 95) ) );
@@ -76,28 +76,28 @@ P.S. - пример использования данной библиотеки плагинов см. в шаблонном проекте T
 		menu->setPalette( disablePalette );
 
 ===========================================================================================
-Использование предкомпилированных заголовков:
+РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РїСЂРµРґРєРѕРјРїРёР»РёСЂРѕРІР°РЅРЅС‹С… Р·Р°РіРѕР»РѕРІРєРѕРІ:
 
-1) Каждый .cpp файл должен начинаться с #include "stdafx.h"
-2) Состав "stdafx.h":
-    #include "TypeDef.h"          - блокирует нестандартные объявления макросов TRUE и FALSE в qXXX.h
+1) РљР°Р¶РґС‹Р№ .cpp С„Р°Р№Р» РґРѕР»Р¶РµРЅ РЅР°С‡РёРЅР°С‚СЊСЃСЏ СЃ #include "stdafx.h"
+2) РЎРѕСЃС‚Р°РІ "stdafx.h":
+    #include "TypeDef.h"          - Р±Р»РѕРєРёСЂСѓРµС‚ РЅРµСЃС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РѕР±СЉСЏРІР»РµРЅРёСЏ РјР°РєСЂРѕСЃРѕРІ TRUE Рё FALSE РІ qXXX.h
     #include <QtCore/QVariant>
     #include <QtGui/QAction>
     #include <QtGui/QApplication>
     #include <QtGui/QWidget>
-3) В опциях C\C++\Precompiled header:
+3) Р’ РѕРїС†РёСЏС… C\C++\Precompiled header:
     Precompiled Header Files    = stdafx.h
     Create/Use PCH Through File = $(OutDir)\$(ProjectName).pch
 
-4) В опциях C\C++\Precompiled header:
+4) Р’ РѕРїС†РёСЏС… C\C++\Precompiled header:
 
-   а) Выставить Create/Use Precompiled Header = Create Precompiled Header (/Yc)
-   б) Собрать проект 
-   в) Выставить Create/Use Precompiled Header = Use Precompiled Header (/Yu)
-   г) Собрать проект 
+   Р°) Р’С‹СЃС‚Р°РІРёС‚СЊ Create/Use Precompiled Header = Create Precompiled Header (/Yc)
+   Р±) РЎРѕР±СЂР°С‚СЊ РїСЂРѕРµРєС‚ 
+   РІ) Р’С‹СЃС‚Р°РІРёС‚СЊ Create/Use Precompiled Header = Use Precompiled Header (/Yu)
+   Рі) РЎРѕР±СЂР°С‚СЊ РїСЂРѕРµРєС‚ 
 
 ===========================================================================================
-Настройки IncrediBuild:
+РќР°СЃС‚СЂРѕР№РєРё IncrediBuild:
 
 IncrediBuild.DebugProject = F5
 IncrediBuild.BuildSolution = F7
