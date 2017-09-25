@@ -20,9 +20,9 @@ class DllExport TGP_AggregationScenario_GameMap :
 	public IGP_Scenario_Synchro, 
 	public IGP_Scenario_Destructor 
 {
-  TGP_Scenario_Builder       mBuilder;
-  TGP_Scenario_Synchro mSynchro;
-  TGP_Scenario_Destructor    mDestructor;
+  TGP_Scenario_Builder    mBuilder;
+  TGP_Scenario_Synchro    mSynchro;
+  TGP_Scenario_Destructor mDestructor;
 
 	int mID_World;
 public:
