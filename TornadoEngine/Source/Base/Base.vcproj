@@ -458,6 +458,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Headers\ISerializable.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Headers\IXML.h"
 				>
 			</File>
