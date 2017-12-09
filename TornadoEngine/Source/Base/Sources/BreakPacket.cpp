@@ -34,7 +34,7 @@ TBreakPacket::~TBreakPacket()
   UnlinkPart();
 }
 //-----------------------------------------------------------------
-TBreakPacket::TDescContainer TBreakPacket::PushData(char* p,int size, bool copyData )
+TBreakPacket::TDescContainer TBreakPacket::PushData( char* p,int size, bool copyData )
 {
   TDescContainer desc;
   if( copyData )
@@ -46,13 +46,13 @@ TBreakPacket::TDescContainer TBreakPacket::PushData(char* p,int size, bool copyD
   return desc;
 }
 //-----------------------------------------------------------------
-void TBreakPacket::PushBack(char* p,int size, bool copyData)
+void TBreakPacket::PushBack( char* p,int size, bool copyData )
 {
   TDescContainer desc = PushData(p, size, copyData);
   mList.push_back(desc);
 }
 //-----------------------------------------------------------------
-void TBreakPacket::PushFront(char* p,int size, bool copyData)
+void TBreakPacket::PushFront( char* p,int size, bool copyData )
 {
   TDescContainer desc = PushData(p, size, copyData);
   mList.push_front(desc);

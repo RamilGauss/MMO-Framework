@@ -308,6 +308,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Sources\PopMaster.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Sources\PushMaster.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Sources\ResolverSelf_IP_v4.cpp"
 				>
 			</File>
@@ -547,6 +555,14 @@
 			</File>
 			<File
 				RelativePath=".\Headers\Only_N_Object.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Headers\PopMaster.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Headers\PushMaster.h"
 				>
 			</File>
 			<File

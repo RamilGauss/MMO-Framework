@@ -22,7 +22,7 @@ See for more information License.h.
 class DllExport TBreakPacket
 {
 public:
-  struct TDescContainer
+  struct DllExport TDescContainer
   {
     typedef enum{eContainer, eContainerPtr}TypeContainer;
     TypeContainer type;

@@ -87,6 +87,10 @@ public:
   {
     mMapObjFunc.erase(pObject);
   }
+	int RegisteredCount()
+	{
+		return mMapObjFunc.size();
+	}
   void Clear()
   {
     mMapObjFunc.clear();

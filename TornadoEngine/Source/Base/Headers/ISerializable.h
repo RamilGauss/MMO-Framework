@@ -8,14 +8,19 @@ See for more information License.h.
 #ifndef ISerializableH
 #define ISerializableH
 
-#include "ContainerTypes.h"
+#include "TypeDef.h"
 
-class ISerializable
+class TPushMaster;
+class TPopMaster;
+
+class DllExport ISerializable
 {
 public:
-	virtual ~ISerializable() = 0;
-	virtual TContainer Serialize() = 0;
-	virtual bool Deserialize( TContainer& c ) = 0;
-}
+  virtual ~ISerializable(){}
+
+	virtual void Serialize( TPushMaster* pPushMaster ) = 0;
+	virtual void Deserialize( TPopMaster* pPopMaster ) = 0;
+	virtual short GetSerializableUniqueID() = 0;
+};
 
 #endif
