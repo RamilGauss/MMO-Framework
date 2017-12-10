@@ -9,20 +9,20 @@ See for more information License.h.
 
 #include "PushMaster.h"
 #include "PopMaster.h"
-#include "SerializableUniqueIDType.h"
+#include "SerializableUniqueIdentity.h"
 
 void TestClass::Serialize( TPushMaster* pPushMaster )
 {
-  //pPushMaster->PushArraySer<ParamClass>( vParam );
+  pPushMaster->PushArraySer<ParamClass>( vParam );
 }
 //--------------------------------------------------------------------
 void TestClass::Deserialize( TPopMaster* pPopMaster )
 {
-  //pPopMaster->PopVectorSer<ParamClass>( vParam );
+  pPopMaster->PopVectorSer<ParamClass>( vParam );
 }
 //--------------------------------------------------------------------
 short TestClass::GetSerializableUniqueID()
 {
-  return nsSerializableUniqueIDType::TestClass_SerializableUniqueID; 
+  return nsSerializableUniqueIdentity::eTestClass; 
 }
 //--------------------------------------------------------------------

@@ -236,6 +236,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Sources\IMarshallizator.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Sources\InfoFile.cpp"
 				>
 			</File>

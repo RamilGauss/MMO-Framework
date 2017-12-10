@@ -96,11 +96,11 @@ void Benchmark()
 
   ParamClass param;
   TestClass* objSer = new TestClass();
-  //objSer->vParam.push_back(param);
-  //objSer->vParam.push_back(param);
-  //objSer->vParam.push_back(param);
+  objSer->vParam.push_back(param);
+  objSer->vParam.push_back(param);
+  objSer->vParam.push_back(param);
   TMarshallizator marsh;
-  int cnt = 50000000;
+  int cnt = 100000;
   unsigned int start = ht_GetMSCount();
   for( int i = 0 ; i < cnt ; i++ )
     networkPacket = marsh.Serialize( objSer );
@@ -112,7 +112,7 @@ void Benchmark()
 
   start = ht_GetMSCount();
   for( int i = 0 ; i < cnt ; i++ )
-    marsh.Deserialize( &networkPacket, false );
+    marsh.DeserializeCallback( &networkPacket, false );
   end = ht_GetMSCount();
   speed = (float)(end - start)/cnt;
   printf("deser speed = %f\n",speed);
@@ -144,3 +144,6 @@ int main( int argc, char** argv)
 	}
 	return 0;
 }
+
+// IMarshallizator
+// compression -> bit compression

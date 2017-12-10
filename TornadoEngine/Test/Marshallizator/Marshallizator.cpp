@@ -10,37 +10,30 @@ See for more information License.h.
 // Дата создания: XXXXXXXXXXXX
 
 #include "Marshallizator.h"
-#include "SerializableUniqueIDType.h"
+#include "SerializableUniqueIdentity.h"
 
-using namespace nsSerializableUniqueIDType;
+using namespace nsSerializableUniqueIdentity;
 
-TContainer TMarshallizator::Serialize( ISerializable* pSer )
-{
-	mPushMaster.Clear();
-	short id = pSer->GetSerializableUniqueID();
-	mPushMaster.Push( id, true );
-	pSer->Serialize( &mPushMaster );
-	return mPushMaster.GetBuffer();
-}
-//---------------------------------------------------------------------------------------
-void TMarshallizator::Deserialize( TContainer* pContainer, bool newObject )
+ISerializable* TMarshallizator::PrivateDeserialize( TContainer* pContainer, bool newObject, bool useCallback )
 {
 	mPopMaster.SetBuffer( pContainer, 0 );
 	mPopMaster.Pop( mID );// calculate ID
+  ISerializable* pSer = NULL;
 	switch( mID )
 	{
-		case MyClass_SerializableUniqueID:
-			CommonDeserialize( newObject, &mCBMyClass, &mMyClass );
+		case eMyClass:
+			pSer = CommonDeserialize( newObject, &mCBMyClass, &mMyClass, useCallback );
 			break;
-		case GeneratedClass_SerializableUniqueID:
-			CommonDeserialize( newObject, &mCBGeneratedClass, &mGeneratedClass );
+		case eGeneratedClass:
+			pSer = CommonDeserialize( newObject, &mCBGeneratedClass, &mGeneratedClass, useCallback );
 			break;
-    case TestClass_SerializableUniqueID:
-      CommonDeserialize( newObject, &mCBTestClass, &mTestClass );
+    case eTestClass:
+      pSer = CommonDeserialize( newObject, &mCBTestClass, &mTestClass, useCallback );
       break;
-    case ParamClass_SerializableUniqueID:
-      CommonDeserialize( newObject, &mCBParamClass, &mParamClass );
+    case eParamClass:
+      pSer = CommonDeserialize( newObject, &mCBParamClass, &mParamClass, useCallback );
       break;
 	}
+  return pSer;
 }
 //---------------------------------------------------------------------------------------

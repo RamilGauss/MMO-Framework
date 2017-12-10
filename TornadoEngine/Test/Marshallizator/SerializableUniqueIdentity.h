@@ -9,17 +9,17 @@ See for more information License.h.
 // Изменения будут потеряны. Изменять бессмысленно!
 // Дата создания: XXXXXXXXXXXX
 
-#ifndef SerializableUniqueIDTypeH
-#define SerializableUniqueIDTypeH
+#ifndef SerializableUniqueIdentityH
+#define SerializableUniqueIdentityH
 
-namespace nsSerializableUniqueIDType
+namespace nsSerializableUniqueIdentity
 {
 	enum
 	{
-		MyClass_SerializableUniqueID = 10,
-		GeneratedClass_SerializableUniqueID,
-    TestClass_SerializableUniqueID,
-    ParamClass_SerializableUniqueID,
+		eMyClass,
+		eGeneratedClass,
+    eTestClass,
+    eParamClass,
 	};
 }
 

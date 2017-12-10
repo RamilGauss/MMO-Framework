@@ -236,7 +236,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\SerializableUniqueIDType.h"
+					RelativePath=".\SerializableUniqueIdentity.h"
 					>
 				</File>
 				<File

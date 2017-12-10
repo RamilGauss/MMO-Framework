@@ -13,7 +13,6 @@ See for more information License.h.
 #include <set>
 #include <vector>
 #include <list>
-#include <boost/foreach.hpp>
 
 #include "BreakPacket.h"
 #include "TypeDef.h"

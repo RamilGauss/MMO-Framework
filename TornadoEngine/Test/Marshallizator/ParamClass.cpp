@@ -9,7 +9,7 @@ See for more information License.h.
 
 #include "PushMaster.h"
 #include "PopMaster.h"
-#include "SerializableUniqueIDType.h"
+#include "SerializableUniqueIdentity.h"
 
 void ParamClass::Serialize( TPushMaster* pPushMaster )
 {
@@ -41,6 +41,6 @@ void ParamClass::Deserialize( TPopMaster* pPopMaster )
 //--------------------------------------------------------------------
 short ParamClass::GetSerializableUniqueID()
 {
-  return nsSerializableUniqueIDType::ParamClass_SerializableUniqueID; 
+  return nsSerializableUniqueIdentity::eParamClass; 
 }
 //--------------------------------------------------------------------

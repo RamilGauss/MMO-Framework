@@ -1,0 +1,45 @@
+﻿{
+	"classPrefix" : "T"
+	"class" : 
+	{
+		"MyClass":
+		{
+			"bool"           : [ "a" ],
+			"unsigned char"  : [ "b" ],
+			"char"           : [ "c" ],
+			"unsigned short" : [ "d" ],
+			"short"          : [ "e" ],
+			"unsigned int"   : [ "f" ],
+			"int"            : [ "h" ],
+			"float"          : [ "g" ],
+			"double"         : [ "k" ],
+			"string"         : [ "s" ],
+			"vector" : 
+			{
+				"string" : [ "mVecStr" ]
+			},
+			"list" : 
+			{
+				"string" : [ "mListStr" ]
+			},
+			"set" : 
+			{
+				"string" : [ "mSetStr" ]
+			},
+			"map" : 
+			{
+				"int" :
+				{
+					"int"    : [ "mMapID_Index" ], // value
+					"string" : [ "mMapID_Name" ]// value
+				}
+			},
+			"OtherClass" : [ "other" ],
+			"OtherClass*" : [ "pOther" ]
+		},
+		"OtherClass":
+		{
+			"bool" : [ "flagA", "flagB" ]
+		}
+	}
+}
