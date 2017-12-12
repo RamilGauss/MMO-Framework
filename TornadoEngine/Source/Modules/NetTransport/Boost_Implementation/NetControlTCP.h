@@ -24,7 +24,7 @@ class TNetControlTCP : public INetControl
   enum{
        eSizeBuffer = 64000,  
        eWaitConnect = 40,// мс
-			 eTimeRepeatSend = 20,// мс
+       eTimeRepeatSend = 20,// мс
   };
 
   char mBuffer[eSizeBuffer];

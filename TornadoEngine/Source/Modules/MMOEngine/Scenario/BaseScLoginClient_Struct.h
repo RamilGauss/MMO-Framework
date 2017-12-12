@@ -52,22 +52,22 @@ namespace nsMMOEngine
       unsigned char from;
       unsigned int  id_client;
     }_PACKED;
-	  //-------------------------------------------------
+    //-------------------------------------------------
     struct THeaderC  : public THeader{ THeaderC (){from=eClient;}}_PACKED;
     struct THeaderM  : public THeader{ THeaderM (){from=eMaster;}}_PACKED;
     struct THeaderS  : public THeader{ THeaderS (){from=eSlave; }}_PACKED;
     struct THeaderSS : public THeader{ THeaderSS(){from=eSuperServer;}}_PACKED;
     //-------------------------------------------------
-	  struct THeaderTryLoginC2M : THeaderC
-	  {
+    struct THeaderTryLoginC2M : THeaderC
+    {
       THeaderTryLoginC2M();
-	  }_PACKED;
-	  //-------------------------------------------------
-	  struct THeaderRequestM2SS : THeaderM
-	  {
-		  THeaderRequestM2SS();
-	  }_PACKED;
-	  //-------------------------------------------------
+    }_PACKED;
+    //-------------------------------------------------
+    struct THeaderRequestM2SS : THeaderM
+    {
+      THeaderRequestM2SS();
+    }_PACKED;
+    //-------------------------------------------------
     struct THeaderCheckRequestSS2M : THeaderSS
     {
       THeaderCheckRequestSS2M();
@@ -83,53 +83,53 @@ namespace nsMMOEngine
       int sizeResClient;
     }_PACKED;
     //-------------------------------------------------
-	  struct THeaderLeaveQueueC2M : public THeaderC
-	  {
+    struct THeaderLeaveQueueC2M : public THeaderC
+    {
       THeaderLeaveQueueC2M();
-	  }_PACKED;
-	  //------------------------------------------------------------------------------------------------
-	  //------------------------------------------------------------------------------------------------
-	  struct THeaderInfoClientM2S : public THeaderM
-	  {
+    }_PACKED;
+    //------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------
+    struct THeaderInfoClientM2S : public THeaderM
+    {
       THeaderInfoClientM2S();
-	  }_PACKED;
-	  //-------------------------------------------------
+    }_PACKED;
+    //-------------------------------------------------
     struct THeaderCheckInfoClientS2M : public THeaderS
     {
       THeaderCheckInfoClientS2M();
     }_PACKED;
-	  //-------------------------------------------------
-	  struct THeaderInfoSlaveM2C : public THeaderM
-	  {
+    //-------------------------------------------------
+    struct THeaderInfoSlaveM2C : public THeaderM
+    {
       THeaderInfoSlaveM2C();
       TIP_Port ip_port_slave;
-	  }_PACKED;
-	  //-------------------------------------------------
+    }_PACKED;
+    //-------------------------------------------------
     struct THeaderCheckInfoSlaveC2M : public THeaderC
     {
       THeaderCheckInfoSlaveC2M();
     }_PACKED;
     //-------------------------------------------------
-	  struct THeaderConnectToSlaveC2S : public THeaderC
-	  {
+    struct THeaderConnectToSlaveC2S : public THeaderC
+    {
       THeaderConnectToSlaveC2S();
-	  }_PACKED;
-	  //-------------------------------------------------
-	  struct THeaderClientConnectS2M : public THeaderS
-	  {
+    }_PACKED;
+    //-------------------------------------------------
+    struct THeaderClientConnectS2M : public THeaderS
+    {
       THeaderClientConnectS2M();
-	  }_PACKED;
-	  //-------------------------------------------------
-	  struct THeaderCheckClientConnectM2S : public THeaderM
-	  {
+    }_PACKED;
+    //-------------------------------------------------
+    struct THeaderCheckClientConnectM2S : public THeaderM
+    {
       THeaderCheckClientConnectM2S();
-	  }_PACKED;
-	  //-------------------------------------------------
-	  struct THeaderCheckConnectToSlaveS2C : public THeaderS
-	  {
+    }_PACKED;
+    //-------------------------------------------------
+    struct THeaderCheckConnectToSlaveS2C : public THeaderS
+    {
       THeaderCheckConnectToSlaveS2C();
-	  }_PACKED;
-	  //-------------------------------------------------
+    }_PACKED;
+    //-------------------------------------------------
     struct THeaderDisconnectClientM2S : public THeaderM
     {
       THeaderDisconnectClientM2S();

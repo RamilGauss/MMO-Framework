@@ -16,13 +16,13 @@ See for more information License.h.
 class DllExport TBaseNode_Model
 {
 public:
-	TModelItem::eType type;
-	std::string namePart;
-	std::string nameVariant;
+  TModelItem::eType type;
+  std::string namePart;
+  std::string nameVariant;
 
 public:
-	TBaseNode_Model();
-	virtual ~TBaseNode_Model();
+  TBaseNode_Model();
+  virtual ~TBaseNode_Model();
 };
 
 #endif

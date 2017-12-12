@@ -25,14 +25,14 @@ public:
   virtual bool Load(TBaseItem* pItem);
   virtual bool Save(TBaseItem* pItem);
 protected:
- 	void LoadNameHeightData();
+   void LoadNameHeightData();
   void LoadConvention();
-	void LoadConventionArg(const char* sArg, TTerrainItem::TConvention& conv);
+  void LoadConventionArg(const char* sArg, TTerrainItem::TConvention& conv);
   void LoadGraphic();
 
- 	void SaveNameHeightData();
+   void SaveNameHeightData();
   void SaveConvention();
-	void SaveConventionArg(const char* sArg, TTerrainItem::TConvention& conv);
+  void SaveConventionArg(const char* sArg, TTerrainItem::TConvention& conv);
   void SaveGraphic();
 };
 

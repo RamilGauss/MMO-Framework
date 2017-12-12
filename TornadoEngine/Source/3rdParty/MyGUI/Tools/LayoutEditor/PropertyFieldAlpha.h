@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		12/2010
+  @file
+  @author    Albert Semenov
+  @date    12/2010
 */
 
 #ifndef _2cac608a_8e33_486a_b195_4f8735950207_
@@ -13,16 +13,16 @@
 namespace tools
 {
 
-	class PropertyFieldAlpha :
-		public PropertyFieldEditBox
-	{
-	public:
-		PropertyFieldAlpha(MyGUI::Widget* _parent);
-		virtual ~PropertyFieldAlpha();
+  class PropertyFieldAlpha :
+    public PropertyFieldEditBox
+  {
+  public:
+    PropertyFieldAlpha(MyGUI::Widget* _parent);
+    virtual ~PropertyFieldAlpha();
 
-	protected:
-		virtual bool onCheckValue();
-	};
+  protected:
+    virtual bool onCheckValue();
+  };
 
 }
 

@@ -41,7 +41,7 @@ namespace nsMMOEngine
     TCallBackRegistrator1<unsigned int> mCBTimeClientElapsed;
 
     TScRecommutationClient_ClientImpl mClient;
-		TScRecommutationClient_SlaveImpl  mSlave;// Donor/Recipient
+    TScRecommutationClient_SlaveImpl  mSlave;// Donor/Recipient
     TScRecommutationClient_MasterImpl mMaster;
 
     TBaseScRecommutationClient*       mCurBehavior;

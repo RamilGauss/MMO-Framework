@@ -14,13 +14,13 @@ See for more information License.h.
 
 namespace nsSerializableUniqueIdentity
 {
-	enum
-	{
-		eMyClass,
-		eGeneratedClass,
+  enum
+  {
+    eMyClass,
+    eGeneratedClass,
     eTestClass,
     eParamClass,
-	};
+  };
 }
 
 #endif

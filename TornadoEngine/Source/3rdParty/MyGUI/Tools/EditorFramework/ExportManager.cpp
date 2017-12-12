@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -15,41 +15,41 @@ template <> const char* MyGUI::Singleton<tools::ExportManager>::mClassTypeName =
 namespace tools
 {
 
-	ExportManager::ExportManager() :
-		mExportSerializer(nullptr)
-	{
-	}
+  ExportManager::ExportManager() :
+    mExportSerializer(nullptr)
+  {
+  }
 
-	ExportManager::~ExportManager()
-	{
-	}
+  ExportManager::~ExportManager()
+  {
+  }
 
-	void ExportManager::initialise()
-	{
-		std::string serializer = SettingsManager::getInstance().getValue("Editor/ExportSerializer");
-		mExportSerializer = components::FactoryManager::GetInstance().CreateItem<IExportSerializer>(serializer);
-	}
+  void ExportManager::initialise()
+  {
+    std::string serializer = SettingsManager::getInstance().getValue("Editor/ExportSerializer");
+    mExportSerializer = components::FactoryManager::GetInstance().CreateItem<IExportSerializer>(serializer);
+  }
 
-	void ExportManager::shutdown()
-	{
-		if (mExportSerializer != nullptr)
-		{
-			delete mExportSerializer;
-			mExportSerializer = nullptr;
-		}
-	}
+  void ExportManager::shutdown()
+  {
+    if (mExportSerializer != nullptr)
+    {
+      delete mExportSerializer;
+      mExportSerializer = nullptr;
+    }
+  }
 
-	void ExportManager::serialization(pugi::xml_document& _doc)
-	{
-		if (mExportSerializer != nullptr)
-			mExportSerializer->serialization(_doc);
-	}
+  void ExportManager::serialization(pugi::xml_document& _doc)
+  {
+    if (mExportSerializer != nullptr)
+      mExportSerializer->serialization(_doc);
+  }
 
-	bool ExportManager::deserialization(pugi::xml_document& _doc)
-	{
-		if (mExportSerializer != nullptr)
-			return mExportSerializer->deserialization(_doc);
-		return false;
-	}
+  bool ExportManager::deserialization(pugi::xml_document& _doc)
+  {
+    if (mExportSerializer != nullptr)
+      return mExportSerializer->deserialization(_doc);
+    return false;
+  }
 
 }

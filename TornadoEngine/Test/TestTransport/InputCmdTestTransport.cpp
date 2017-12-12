@@ -19,11 +19,11 @@ string KEY_TIME_SEND ("time_send");
 
 TInputCmdTestTransport::TInputCmdTestTransport()
 {
-	mVecDefKey.push_back(KEY_PORT_SRC);
-	mVecDefKey.push_back(KEY_PORT_DST);
+  mVecDefKey.push_back(KEY_PORT_SRC);
+  mVecDefKey.push_back(KEY_PORT_DST);
   mVecDefKey.push_back(KEY_TIME_SEND);
 
-	mCmdParam.SetDefKey(mVecDefKey);
+  mCmdParam.SetDefKey(mVecDefKey);
 }
 //-------------------------------------------------------------------------------
 TInputCmdTestTransport::~TInputCmdTestTransport()
@@ -41,35 +41,35 @@ bool TInputCmdTestTransport::SetArg(int argc, char** argv)
 //-------------------------------------------------------------------------------
 bool TInputCmdTestTransport::SetArg(vector<string>& vecArgv)
 {
-	mCmdParam.SetArg(vecArgv);
+  mCmdParam.SetArg(vecArgv);
 
-	int cBP = mCmdParam.GetCountValueByKey(KEY_PORT_SRC);
-	if(cBP)
+  int cBP = mCmdParam.GetCountValueByKey(KEY_PORT_SRC);
+  if(cBP)
   {
     string sPortSrc;
     mCmdParam.GetByKey(KEY_PORT_SRC, 0, sPortSrc);
     mInput.port_src = boost::lexical_cast<int>(sPortSrc.data());
   }
-	//-------------------------------------------------
-	int cV = mCmdParam.GetCountValueByKey(KEY_PORT_DST);
-	if(cV==1)
-	{
-		string sPortDst;
-		mCmdParam.GetByKey(KEY_PORT_DST, 0, sPortDst);
-		mInput.port_dst = boost::lexical_cast<int>(sPortDst.data());
-	}
+  //-------------------------------------------------
+  int cV = mCmdParam.GetCountValueByKey(KEY_PORT_DST);
+  if(cV==1)
+  {
+    string sPortDst;
+    mCmdParam.GetByKey(KEY_PORT_DST, 0, sPortDst);
+    mInput.port_dst = boost::lexical_cast<int>(sPortDst.data());
+  }
   int cL = mCmdParam.GetCountValueByKey(KEY_TIME_SEND);
   if(cL==1)
   {
     string sTime;
     mCmdParam.GetByKey(KEY_TIME_SEND, 0, sTime);
-		mInput.timer_send = boost::lexical_cast<int>(sTime.data());
+    mInput.timer_send = boost::lexical_cast<int>(sTime.data());
   }
-	return true;
+  return true;
 }
 //-------------------------------------------------------------------------------
 void TInputCmdTestTransport::Get(TInputCmdTestTransport::TInput& v_out)
 {
-	v_out = mInput;
+  v_out = mInput;
 }
 //-------------------------------------------------------------------------------

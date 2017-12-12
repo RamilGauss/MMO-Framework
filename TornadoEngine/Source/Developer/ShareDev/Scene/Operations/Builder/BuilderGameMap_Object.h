@@ -18,43 +18,43 @@ class TGameObject;
 
 class DllExport TBuilderGameMap_Object
 {
-	int                       mID_World;
-	TFactoryBehaviourPattern* mFBP;
-	std::set<int>             mSetID_Module;
+  int                       mID_World;
+  TFactoryBehaviourPattern* mFBP;
+  std::set<int>             mSetID_Module;
 
-	struct TObject
-	{
-		TGameObject*       ptrGameObject;// результат/result
-		TMapItem::TObject* ptrMapObject; // задание/task
+  struct TObject
+  {
+    TGameObject*       ptrGameObject;// результат/result
+    TMapItem::TObject* ptrMapObject; // задание/task
 
-		bool flgLoadPhysic;
-		bool flgLoadGraphic;
-		bool flgLoadSound;
+    bool flgLoadPhysic;
+    bool flgLoadGraphic;
+    bool flgLoadSound;
 
-		TObject();
+    TObject();
 
-		bool IsComplete();
-	};
+    bool IsComplete();
+  };
 
-	typedef std::map<int,TObject>     TMapIntObject;
-	typedef TMapIntObject::iterator   TMapIntObjectIt;
-	typedef TMapIntObject::value_type TMapIntObjectVT;
+  typedef std::map<int,TObject>     TMapIntObject;
+  typedef TMapIntObject::iterator   TMapIntObjectIt;
+  typedef TMapIntObject::value_type TMapIntObjectVT;
 
-	TMapIntObject mMapID_BuildObject;
+  TMapIntObject mMapID_BuildObject;
 
-	std::string mNameMap;
+  std::string mNameMap;
 public:
   TBuilderGameMap_Object();
   virtual ~TBuilderGameMap_Object();
 
-	void Init(std::set<int>& useID_Module, 
-		TFactoryBehaviourPattern* pFBP, int id_world);
-	void SetNameMap(std::string nameMap);
+  void Init(std::set<int>& useID_Module, 
+    TFactoryBehaviourPattern* pFBP, int id_world);
+  void SetNameMap(std::string nameMap);
 
-	// return id built object
-	int Begin(TMapItem::TObject* pObj);
-	// return NULL or pointer of a built object by id
-	TGameObject* Build(int idObject, bool fast = false);
+  // return id built object
+  int Begin(TMapItem::TObject* pObj);
+  // return NULL or pointer of a built object by id
+  TGameObject* Build(int idObject, bool fast = false);
 private:
 };
 

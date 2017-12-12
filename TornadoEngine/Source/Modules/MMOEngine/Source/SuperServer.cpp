@@ -41,7 +41,7 @@ TSuperServer::~TSuperServer()
 //-------------------------------------------------------------------------
 void TSuperServer::SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket& bp)
 {
-	mControlSc->mSendToClient->SendFromSuperServer(lKey, bp);
+  mControlSc->mSendToClient->SendFromSuperServer(lKey, bp);
 }
 //-------------------------------------------------------------------------
 void TSuperServer::DisconnectInherit(unsigned int id_session)
@@ -69,7 +69,7 @@ void TSuperServer::DisconnectInherit(unsigned int id_session)
 //-------------------------------------------------------------------------
 int TSuperServer::GetCountDown()
 {
-	return mMngContextMaster->GetCountSession();
+  return mMngContextMaster->GetCountSession();
 }
 //-------------------------------------------------------------------------
 bool TSuperServer::GetDescDown(int index, void* pDesc, int& sizeDesc)
@@ -165,10 +165,10 @@ void TSuperServer::EndDisconnectClient(IScenario* pSc)
 //-------------------------------------------------------------------------
 void TSuperServer::NeedContextSendToClient(unsigned int id_client)
 {
-	TContainerContextSc* pContext = mMngContextClient->FindContextByClientKey(id_client);
-	if(pContext)
-		mControlSc->mSendToClient->SetContext(&pContext->mSendToClient);
-	else
-		mControlSc->mSendToClient->SetContext(NULL);
+  TContainerContextSc* pContext = mMngContextClient->FindContextByClientKey(id_client);
+  if(pContext)
+    mControlSc->mSendToClient->SetContext(&pContext->mSendToClient);
+  else
+    mControlSc->mSendToClient->SetContext(NULL);
 }
 //-------------------------------------------------------------------------

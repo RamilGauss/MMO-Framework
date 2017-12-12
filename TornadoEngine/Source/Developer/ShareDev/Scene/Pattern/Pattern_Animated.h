@@ -17,7 +17,7 @@ public:
   TPattern_Animated();
   virtual ~TPattern_Animated();
 
-	virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

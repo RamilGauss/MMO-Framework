@@ -17,8 +17,8 @@ class TContextCrypto
   TCryptoAES_Impl mAES;
 
 public:
-	TContextCrypto();
-	~TContextCrypto();
+  TContextCrypto();
+  ~TContextCrypto();
 
   TCryptoRSA_Impl* GetRSA();
   TCryptoAES_Impl* GetAES();

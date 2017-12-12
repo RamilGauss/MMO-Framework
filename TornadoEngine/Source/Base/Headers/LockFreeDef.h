@@ -28,7 +28,7 @@ See for more information License.h.
   #define DECLARATION_ATOMIC_POINTER_STORE(X,Y,TYPE) {TYPE* ptr_type = Y; X.store(ptr_type);}
 #else
   #define VOLATILE_DEF volatile
-	#define FLUSH_FROM_CACHE// __asm{sfence}//??? возможно дело в высокой оптимизации, а не устаревших данных в ОЗУ
+  #define FLUSH_FROM_CACHE// __asm{sfence}//??? возможно дело в высокой оптимизации, а не устаревших данных в ОЗУ
 
   #define DECLARATION_ATOMIC_BOOL(X)                 VOLATILE_DEF bool X;
   #define DECLARATION_ATOMIC_BOOL_LOAD(X)            X
@@ -57,7 +57,7 @@ See for more information License.h.
   #define DEALLOC_MEMORY(ptr)                mAlloc.free(ptr)
 #else
   #define DECLARATION_ALLOCATOR_MEMORY       int mTemp_NotUseMe_IamGhost;
-	#define CONSTRUCTOR_ALLOCATOR_MEMORY(Type) mTemp_NotUseMe_IamGhost(sizeof(Type))
+  #define CONSTRUCTOR_ALLOCATOR_MEMORY(Type) mTemp_NotUseMe_IamGhost(sizeof(Type))
   #define ALLOC_MEMORY(Type)                 new Type
   #define DEALLOC_MEMORY(ptr)                delete ptr
 #endif

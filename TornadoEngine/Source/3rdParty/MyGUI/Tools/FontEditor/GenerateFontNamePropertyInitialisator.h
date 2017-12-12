@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #ifndef _2e0cd43f_7d3e_4e45_abd7_8a1a47c55275_
@@ -13,15 +13,15 @@
 namespace tools
 {
 
-	class GenerateFontNamePropertyInitialisator :
-		public IPropertyInitialisator
-	{
-	public:
-		GenerateFontNamePropertyInitialisator();
-		virtual ~GenerateFontNamePropertyInitialisator();
+  class GenerateFontNamePropertyInitialisator :
+    public IPropertyInitialisator
+  {
+  public:
+    GenerateFontNamePropertyInitialisator();
+    virtual ~GenerateFontNamePropertyInitialisator();
 
-		virtual void initialise(PropertyPtr _property);
-	};
+    virtual void initialise(PropertyPtr _property);
+  };
 
 }
 

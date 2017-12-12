@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2010
+  @file
+  @author    Albert Semenov
+  @date    08/2010
 */
 
 #include "Precompiled.h"
@@ -17,87 +17,87 @@
 namespace tools
 {
 
-	FACTORY_ITEM_ATTRIBUTE(TestState)
+  FACTORY_ITEM_ATTRIBUTE(TestState)
 
-	TestState::TestState() :
-		mTestLayout(nullptr),
-		mBackgroundControl(nullptr)
-	{
-		CommandManager::getInstance().getEvent("Command_Quit")->connect(this, &TestState::commandQuit);
-		CommandManager::getInstance().getEvent("Command_Test")->connect(this, &TestState::command_Test);
-	}
+  TestState::TestState() :
+    mTestLayout(nullptr),
+    mBackgroundControl(nullptr)
+  {
+    CommandManager::getInstance().getEvent("Command_Quit")->connect(this, &TestState::commandQuit);
+    CommandManager::getInstance().getEvent("Command_Test")->connect(this, &TestState::command_Test);
+  }
 
-	TestState::~TestState()
-	{
-		deleteTestLayout();
-	}
+  TestState::~TestState()
+  {
+    deleteTestLayout();
+  }
 
-	void TestState::initState()
-	{
-		WidgetSelectorManager::getInstance().saveSelectedWidget();
-		WidgetSelectorManager::getInstance().setSelectedWidget(nullptr);
+  void TestState::initState()
+  {
+    WidgetSelectorManager::getInstance().saveSelectedWidget();
+    WidgetSelectorManager::getInstance().setSelectedWidget(nullptr);
 
-		mTestLayout = EditorWidgets::getInstance().savexmlDocument();
-		EditorWidgets::getInstance().clear();
-		EditorWidgets::getInstance().loadxmlDocument(mTestLayout, true);
+    mTestLayout = EditorWidgets::getInstance().savexmlDocument();
+    EditorWidgets::getInstance().clear();
+    EditorWidgets::getInstance().loadxmlDocument(mTestLayout, true);
 
-		mBackgroundControl = new BackgroundControl();
-	}
+    mBackgroundControl = new BackgroundControl();
+  }
 
-	void TestState::cleanupState()
-	{
-		EditorWidgets::getInstance().clear();
-		EditorWidgets::getInstance().loadxmlDocument(mTestLayout, false);
+  void TestState::cleanupState()
+  {
+    EditorWidgets::getInstance().clear();
+    EditorWidgets::getInstance().loadxmlDocument(mTestLayout, false);
 
-		deleteTestLayout();
+    deleteTestLayout();
 
-		WidgetSelectorManager::getInstance().restoreSelectedWidget();
+    WidgetSelectorManager::getInstance().restoreSelectedWidget();
 
-		delete mBackgroundControl;
-		mBackgroundControl = nullptr;
-	}
+    delete mBackgroundControl;
+    mBackgroundControl = nullptr;
+  }
 
-	void TestState::pauseState()
-	{
-	}
+  void TestState::pauseState()
+  {
+  }
 
-	void TestState::resumeState()
-	{
-	}
+  void TestState::resumeState()
+  {
+  }
 
-	void TestState::commandQuit(const MyGUI::UString& _commandName, bool& _result)
-	{
-		if (MessageBoxManager::getInstance().hasAny())
-			return;
+  void TestState::commandQuit(const MyGUI::UString& _commandName, bool& _result)
+  {
+    if (MessageBoxManager::getInstance().hasAny())
+      return;
 
-		if (!StateManager::getInstance().getStateActivate(this))
-			return;
+    if (!StateManager::getInstance().getStateActivate(this))
+      return;
 
-		StateManager::getInstance().stateEvent("TestState", "Exit");
+    StateManager::getInstance().stateEvent("TestState", "Exit");
 
-		_result = true;
-	}
+    _result = true;
+  }
 
-	void TestState::deleteTestLayout()
-	{
-		if (mTestLayout != nullptr)
-		{
-			delete mTestLayout;
-			mTestLayout = nullptr;
-		}
-	}
+  void TestState::deleteTestLayout()
+  {
+    if (mTestLayout != nullptr)
+    {
+      delete mTestLayout;
+      mTestLayout = nullptr;
+    }
+  }
 
-	void TestState::command_Test(const MyGUI::UString& _commandName, bool& _result)
-	{
-		if (DialogManager::getInstance().getAnyDialog())
-			return;
+  void TestState::command_Test(const MyGUI::UString& _commandName, bool& _result)
+  {
+    if (DialogManager::getInstance().getAnyDialog())
+      return;
 
-		if (MessageBoxManager::getInstance().hasAny())
-			return;
+    if (MessageBoxManager::getInstance().hasAny())
+      return;
 
-		StateManager::getInstance().stateEvent("EditorState", "Test");
+    StateManager::getInstance().stateEvent("EditorState", "Test");
 
-		_result = true;
-	}
+    _result = true;
+  }
 
 }

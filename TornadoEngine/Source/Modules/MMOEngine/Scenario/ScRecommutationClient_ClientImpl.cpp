@@ -135,6 +135,6 @@ void TScRecommutationClient_ClientImpl::DisconnectClient(unsigned char subNet)
   }
   // запомнить на будущее
   Context()->SetSessionRecipient(id_session_recipient);
-	Context()->SetID_Session(id_session_recipient);
+  Context()->SetID_Session(id_session_recipient);
 }
 //--------------------------------------------------------------

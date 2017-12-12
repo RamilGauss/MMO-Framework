@@ -47,7 +47,7 @@ TMaster::TMaster()
   mMngRcm.reset(new TManagerRecommutation);
 
   mControlSc->mLoginClient->SetBehavior(TScenarioLoginClient::eMaster);
-	mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eMaster);
+  mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eMaster);
 }
 //-------------------------------------------------------------------------
 TMaster::~TMaster()
@@ -118,7 +118,7 @@ void TMaster::SetResultLogin(bool res, unsigned int id_session_client,
   mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
   if(res==false)
   {
-		// отказ
+    // отказ
     mControlSc->mLoginClient->Reject(resForClient, sizeResClient);
     return;
   }
@@ -178,7 +178,7 @@ void TMaster::DisconnectInherit(unsigned int id_session)
 //-------------------------------------------------------------------------
 int TMaster::GetCountDown()
 {
-	return mMngContextSlave->GetCountSession();
+  return mMngContextSlave->GetCountSession();
 }
 //-------------------------------------------------------------------------
 bool TMaster::GetDescDown(int index, void* pDesc, int& sizeDesc)
@@ -255,9 +255,9 @@ void TMaster::EndLoginClient(IScenario* pSc)
   // либо время вышло, либо отказали в авторизации
   if(pContextLoginClient->IsReject())
   {
-		// удалить из списка авторизующихся
-		mMngContextClientLogining->DeleteBySession(id_session_client);
-		if(pContainer)
+    // удалить из списка авторизующихся
+    mMngContextClientLogining->DeleteBySession(id_session_client);
+    if(pContainer)
     {
       vector<unsigned int> vecID_Client;
       vecID_Client.push_back(pContextLoginClient->GetClientKey());
@@ -270,9 +270,9 @@ void TMaster::EndLoginClient(IScenario* pSc)
   // тут если авторизация закончилась удачно
   if(pContextLoginClient->IsAccept())
   {
-		// удалить из списка авторизующихся
-		mMngContextClientLogining->UnlinkContextBySession(id_session_client);
-		// ID Клиента
+    // удалить из списка авторизующихся
+    mMngContextClientLogining->UnlinkContextBySession(id_session_client);
+    // ID Клиента
     unsigned int id_client = pContextLoginClient->GetClientKey();
     // найти сессию Slave
     unsigned int id_session_slave = pContextLoginClient->GetID_SessionMasterSlave();
@@ -313,8 +313,8 @@ bool TMaster::DisconnectClientWait(unsigned int id_session)
   unsigned int id_client;
   if(mMngContextClientLogining->FindClientKeyBySession(id_session,id_client))
   {
-		// возможно клиент в очереди, удалим на всякий случай
-		mSetClientKeyInQueue->DeleteKey(id_client);
+    // возможно клиент в очереди, удалим на всякий случай
+    mSetClientKeyInQueue->DeleteKey(id_client);
     // закончить с Клиентом на Slave
     mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
     // в EndLoginClient в случае не принятия клиента будет рассылка уведомления выше
@@ -423,14 +423,14 @@ bool TMaster::EvalCreateGroupNow(list<unsigned int>& l_id_client, unsigned int& 
   BOOST_FOREACH(unsigned int id_client, l_id_client)
   {
     TContainerContextSc* pC = mMngContextClient->FindContextByClientKey(id_client);
-		if(pC==NULL)
-		{
-			unsigned int id_session_client = INVALID_HANDLE_SESSION;
-			mMngContextClientLogining->FindSessionByClientKey(id_client, id_session_client);
-			pC = mMngContextClientLogining->FindContextBySession(id_session_client);
-			if(pC==NULL)
-				continue;
-		}
+    if(pC==NULL)
+    {
+      unsigned int id_session_client = INVALID_HANDLE_SESSION;
+      mMngContextClientLogining->FindSessionByClientKey(id_client, id_session_client);
+      pC = mMngContextClientLogining->FindContextBySession(id_session_client);
+      if(pC==NULL)
+        continue;
+    }
     SolveExchangeClient(id_client, pC, id_session_slave);
   }
   return true;
@@ -454,7 +454,7 @@ void TMaster::NeedContextLoginSlave(unsigned int id_session)
 //-------------------------------------------------------------------------
 void TMaster::NeedContextSynchroSlave(unsigned int id_session)
 {
-	TContainerContextSc* pC = mMngContextSlave->FindContextBySession(id_session);
+  TContainerContextSc* pC = mMngContextSlave->FindContextBySession(id_session);
   if(pC==NULL)
     return;
   mControlSc->mSynchroSlave->SetContext(&pC->mSynchroSlave);
@@ -463,13 +463,13 @@ void TMaster::NeedContextSynchroSlave(unsigned int id_session)
 void TMaster::EndSynchroSlave(IScenario* pSc)
 {
   TContextScSynchroSlave* pContextSynchroSlave = (TContextScSynchroSlave*)pSc->GetContext();
-	mMngContextSlave->SetLoadBySession(pContextSynchroSlave->GetID_Session(), 
-		                                 pContextSynchroSlave->GetLoadProcent());
+  mMngContextSlave->SetLoadBySession(pContextSynchroSlave->GetID_Session(), 
+                                     pContextSynchroSlave->GetLoadProcent());
 }
 //-------------------------------------------------------------------------
 void TMaster::SendByClientKey(list<unsigned int>& lKey, TBreakPacket& bp)
 {
-	mControlSc->mSendToClient->SendFromMaster(lKey, bp);
+  mControlSc->mSendToClient->SendFromMaster(lKey, bp);
 }
 //-------------------------------------------------------------------------
 void TMaster::NeedContextLoginClientBySessionAfterAuthorised(unsigned int id_session)
@@ -502,7 +502,7 @@ void TMaster::NeedContextLoginClientBySession(unsigned int id_session)
 {
   // если это повторная авторизация, то Begin по данному контексту клиента
   // вернет false и в сценарии обработка пакета не продолжится
-	TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession(id_session);
+  TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession(id_session);
   if(pC)
   {
     // внутренняя ошибка
@@ -513,7 +513,7 @@ void TMaster::NeedContextLoginClientBySession(unsigned int id_session)
   }
   else
   {
-		pC = mMngContextClientLogining->AddContext(id_session);
+    pC = mMngContextClientLogining->AddContext(id_session);
   }
   // назначить контекст
   mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
@@ -597,7 +597,7 @@ void TMaster::NeedContextDisconnectClient(unsigned int id_client)
     {
       NotifyRecipientAboutDisconnectClient(id_client, pC, id_session_slave);
       // удалять из менеджера Групп нельзя(!), т.к. Клиента может и не быть, но он может быть в Группе
-			mMngContextSlave->DeleteByClientKey(id_session_slave, id_client);
+      mMngContextSlave->DeleteByClientKey(id_session_slave, id_client);
       
       // удалить из статистики
       mStatisticaClientInGroup->DeleteByClientKey(id_session_slave, id_client);
@@ -605,7 +605,7 @@ void TMaster::NeedContextDisconnectClient(unsigned int id_client)
     mMngContextClient->DeleteByKey(id_client);
   }
 
-	TryAddClientFromQueue();
+  TryAddClientFromQueue();
 }
 //-------------------------------------------------------------------------
 void TMaster::EndDisconnectClient(IScenario* pSc)
@@ -633,8 +633,8 @@ void TMaster::TryAddClientFromQueue()
   }
 
   void* resForClient = pC->mLoginClient.GetSaveQueueDataPtr();
-	int sizeResClient  = pC->mLoginClient.GetSaveQueueDataSize();
-	// начали процесс авторизации
+  int sizeResClient  = pC->mLoginClient.GetSaveQueueDataSize();
+  // начали процесс авторизации
   mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
   AddClientBySlaveSession(id_client,id_session_slave,resForClient,sizeResClient);
 }
@@ -675,11 +675,11 @@ bool TMaster::TryAddClient(unsigned int id_client,
   unsigned char load_procent;
   if(mMngContextSlave->FindMinimumLoad(id_session_slave,load_procent)==false)
   {
-  	// генерация ошибки
-  	GetLogger(STR_NAME_MMO_ENGINE)->
-  		WriteF_time("TMaster::SetResultLogin() count slave = 0.\n");
-  	BL_FIX_BUG();
-  	return false;
+    // генерация ошибки
+    GetLogger(STR_NAME_MMO_ENGINE)->
+      WriteF_time("TMaster::SetResultLogin() count slave = 0.\n");
+    BL_FIX_BUG();
+    return false;
   }
   unsigned char limitLoadProcent = GetLimitLoadProcentByKey(id_client);
   if(load_procent<limitLoadProcent)
@@ -807,9 +807,9 @@ void TMaster::SolveExchangeClient(unsigned int id_client,
   unsigned int id_session_slave_donor;
   if(mMngContextClient->FindSessionByClientKey(id_client, id_session_slave_donor)==false)
   {
-		// клиент авторизуется. Может быть либо уже назначен на какой-то слэйв, либо в очереди (нет слэйва), либо не дошел до принятия решения мастером о входе в кластер
-		if(mMngContextSlave->FindSessionByClientKey(id_client, id_session_slave_donor)==false)
-			return;
+    // клиент авторизуется. Может быть либо уже назначен на какой-то слэйв, либо в очереди (нет слэйва), либо не дошел до принятия решения мастером о входе в кластер
+    if(mMngContextSlave->FindSessionByClientKey(id_client, id_session_slave_donor)==false)
+      return;
   }
   if(id_session_slave_donor==id_session_slave_recipient)
     return;
@@ -872,11 +872,11 @@ void TMaster::RcmByClientKeyContextSlaveSessionRecipient(unsigned int id_client,
 //-------------------------------------------------------------------------
 void TMaster::NeedContextSendToClient(unsigned int id_client)
 {
-	TContainerContextSc* pContext = mMngContextClient->FindContextByClientKey(id_client);
-	if(pContext)
-		mControlSc->mSendToClient->SetContext(&pContext->mSendToClient);
-	else
-		mControlSc->mSendToClient->SetContext(NULL);
+  TContainerContextSc* pContext = mMngContextClient->FindContextByClientKey(id_client);
+  if(pContext)
+    mControlSc->mSendToClient->SetContext(&pContext->mSendToClient);
+  else
+    mControlSc->mSendToClient->SetContext(NULL);
 }
 //-------------------------------------------------------------------------
 void TMaster::EndRcm(IScenario* pSc)

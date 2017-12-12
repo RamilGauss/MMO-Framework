@@ -30,7 +30,7 @@ TManagerSerializerItem_XML::TManagerSerializerItem_XML()
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Model,        mSerializerModel.get()));
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Terrain,      mSerializerTerrain.get()));
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Map,          mSerializerMap.get()));
-	mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::TableSound,   mSerializerTableSound.get()));
+  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::TableSound,   mSerializerTableSound.get()));
 
   BOOST_FOREACH( TMapIntPtrSerilizerVT& vtTypePtrSer, mMapTypeSerializer)
     mMapStrType.insert(bmStrIntVT(vtTypePtrSer.second->Type(), vtTypePtrSer.first));

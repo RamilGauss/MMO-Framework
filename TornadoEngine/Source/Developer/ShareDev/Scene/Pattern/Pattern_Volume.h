@@ -17,7 +17,7 @@ public:
   TPattern_Volume();
   virtual ~TPattern_Volume();
 
-	virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

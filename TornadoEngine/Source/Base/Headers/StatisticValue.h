@@ -164,22 +164,22 @@ public:
   //  return false;
   //}
 
-	// кол-во элементов накопления статистики
-	TCount GetCount()	    { return mCount; }
+  // кол-во элементов накопления статистики
+  TCount GetCount()      { return mCount; }
 
-	// мах кол-во элементов накопления статистики
-	TCount GetMaxCount()	{ return mMaxCount; }
-	
-	void SetMaxCount( TCount cnt )
-	{
-		mMaxCount = cnt;
-		if( mCount >= mMaxCount )
-		{
-			int delta = mCount - mMaxCount + 1;
-			mSum -= mAverage*delta;
-			mSum2 -= (mSum2/mCount)*delta;
-		}
-	}
+  // мах кол-во элементов накопления статистики
+  TCount GetMaxCount()  { return mMaxCount; }
+  
+  void SetMaxCount( TCount cnt )
+  {
+    mMaxCount = cnt;
+    if( mCount >= mMaxCount )
+    {
+      int delta = mCount - mMaxCount + 1;
+      mSum -= mAverage*delta;
+      mSum2 -= (mSum2/mCount)*delta;
+    }
+  }
 };
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -337,10 +337,10 @@ public:
   //}
 
   // кол-во элементов накопления статистики
-  TCount GetCount()	{ return mCount; }
+  TCount GetCount()  { return mCount; }
 
   // мах кол-во элементов накопления статистики
-  TCount GetMaxCount()	{ return mMaxCount; }
+  TCount GetMaxCount()  { return mMaxCount; }
 
   void SetMaxCount(TCount cnt)
   {
@@ -416,10 +416,10 @@ public:
   }
 
   // кол-во элементов накопления статистики
-  TCount GetCount()	    { return mCount; }
+  TCount GetCount()      { return mCount; }
 
   // мах кол-во элементов накопления статистики
-  TCount GetMaxCount()	{ return mMaxCount; }
+  TCount GetMaxCount()  { return mMaxCount; }
 
   void SetMaxCount(TCount cnt)
   {

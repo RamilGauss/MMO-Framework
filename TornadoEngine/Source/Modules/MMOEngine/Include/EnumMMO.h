@@ -12,8 +12,8 @@ namespace nsMMOEngine
 {
   typedef enum
   {
-		// open
-		OpenClient_MoreThenOneSubNet,
+    // open
+    OpenClient_MoreThenOneSubNet,
     // CreateGroup
     CreateGroup_ClientNotExist,
     // LoginSlave

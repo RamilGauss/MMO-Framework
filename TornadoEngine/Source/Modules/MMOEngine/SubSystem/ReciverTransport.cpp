@@ -15,26 +15,26 @@ using namespace nsMMOEngine;
 
 TReciverTransport::TReciverTransport(INetTransport* pTransport, TManagerSession* pMS)
 {
-	mTransport  = pTransport;
-	mMngSession = pMS;
+  mTransport  = pTransport;
+  mMngSession = pMS;
 
-	mTransport->GetCallbackRecv()->Register(&TReciverTransport::Recv, this);
-	mTransport->GetCallbackDisconnect()->Register(&TReciverTransport::Disconnect, this);
+  mTransport->GetCallbackRecv()->Register(&TReciverTransport::Recv, this);
+  mTransport->GetCallbackDisconnect()->Register(&TReciverTransport::Disconnect, this);
 }
 //----------------------------------------------------------------------
 TReciverTransport::~TReciverTransport()
 {
-	//mTransport->GetCallbackRecv()->Unregister(this);
-	//mTransport->GetCallbackDisconnect()->Unregister(this);
+  //mTransport->GetCallbackRecv()->Unregister(this);
+  //mTransport->GetCallbackDisconnect()->Unregister(this);
 }
 //----------------------------------------------------------------------
 void TReciverTransport::Recv( INetTransport::TDescRecv* pDescRecv)
 {
-	mMngSession->Recv(pDescRecv, mTransport);
+  mMngSession->Recv(pDescRecv, mTransport);
 }
 //----------------------------------------------------------------------
 void TReciverTransport::Disconnect(TIP_Port* ip_port)
 {
-	mMngSession->Disconnect(ip_port);
+  mMngSession->Disconnect(ip_port);
 }
 //----------------------------------------------------------------------

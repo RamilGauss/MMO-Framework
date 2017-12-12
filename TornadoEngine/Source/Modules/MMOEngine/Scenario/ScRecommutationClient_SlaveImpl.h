@@ -14,13 +14,13 @@ namespace nsMMOEngine
 {
   class TScRecommutationClient_SlaveImpl : public TBaseScRecommutationClient
   {
-	protected:
-		enum
+  protected:
+    enum
     {
-		  eTimeWait = 10000,
-		};
+      eTimeWait = 10000,
+    };
   public:
-	  TScRecommutationClient_SlaveImpl(IScenario* pSc);
+    TScRecommutationClient_SlaveImpl(IScenario* pSc);
 
     virtual void Work(unsigned int time_ms);
     

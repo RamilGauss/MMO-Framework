@@ -21,17 +21,17 @@ protected:
   FILE* pFile;
 public:
 
-	InfoFile();
-	virtual ~InfoFile();
+  InfoFile();
+  virtual ~InfoFile();
 
-	static bool IsExist(char* path);
+  static bool IsExist(char* path);
 
-	virtual bool ReOpen(char* path, bool append = false) = 0;
-	virtual bool IsOpen();
- 	virtual void Close();
+  virtual bool ReOpen(char* path, bool append = false) = 0;
+  virtual bool IsOpen();
+   virtual void Close();
 
-	void GetName(std::string& path_name);
-	void GetPath(std::string& path_name);
+  void GetName(std::string& path_name);
+  void GetPath(std::string& path_name);
 };
 
 #endif

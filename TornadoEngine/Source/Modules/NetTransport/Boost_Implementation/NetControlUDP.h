@@ -17,19 +17,19 @@ See for more information License.h.
 
 class TNetControlUDP : public INetControl
 {
-	enum{
-		eSizeBuffer = 64000,
-		eTimeRepeatSend = 20,
-	};
+  enum{
+    eSizeBuffer = 64000,
+    eTimeRepeatSend = 20,
+  };
 
-	int mReadSize;
-	char mBuffer[eSizeBuffer];
+  int mReadSize;
+  char mBuffer[eSizeBuffer];
 
   volatile bool flgWaitSend;
   int mSended;
 
   TNetDeviceUDP mDevice;
-	//-----------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------
   struct TInfoConnect
   {
     unsigned short cnt_in; // определить свежесть пакета по входным данным
@@ -40,10 +40,10 @@ class TNetControlUDP : public INetControl
       cnt_out = 0;
     }
   };
-	typedef std::map<TIP_Port, TInfoConnect> TMapIP_IC;
-	typedef TMapIP_IC::iterator TMapIP_ICIt;
+  typedef std::map<TIP_Port, TInfoConnect> TMapIP_IC;
+  typedef TMapIP_IC::iterator TMapIP_ICIt;
 
-	TMapIP_IC mMapInfoConnect;
+  TMapIP_IC mMapInfoConnect;
 public:
 
   TNetControlUDP(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service);
@@ -60,12 +60,12 @@ public:
   virtual char* GetBuffer(){return &mBuffer[0];}
   virtual int   GetSize()  {return eSizeBuffer;}
 protected:
-	bool IsStreamFresh(TIP_Port& ip_port);
-	bool A_more_B(unsigned short A, unsigned short B);
+  bool IsStreamFresh(TIP_Port& ip_port);
+  bool A_more_B(unsigned short A, unsigned short B);
 
   unsigned short IncreaseCntOut(TIP_Port& ip_port);
-	void GetInfoConnect(TIP_Port& v, TInfoConnect& info_out);
-	void SetCntInByIP_Port(TIP_Port& ip_port, unsigned short cnt_in);
+  void GetInfoConnect(TIP_Port& v, TInfoConnect& info_out);
+  void SetCntInByIP_Port(TIP_Port& ip_port, unsigned short cnt_in);
 
   void Done();
   // asio event

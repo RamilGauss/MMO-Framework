@@ -55,16 +55,16 @@ bool TNetDeviceUDP::Open( unsigned short port, unsigned char numNetWork )
 //--------------------------------------------------------------------------------
 void TNetDeviceUDP::Close()
 {
-	if(mSocket.is_open()==false) return;
-	try
-	{
-		mSocket.close();
-	}
-	catch(std::exception& e)
-	{
-		GetLogger(STR_NAME_NET_TRANSPORT)->
-			WriteF_time("Close UDP FAIL: %s.\n", e.what());
-	}
+  if(mSocket.is_open()==false) return;
+  try
+  {
+    mSocket.close();
+  }
+  catch(std::exception& e)
+  {
+    GetLogger(STR_NAME_NET_TRANSPORT)->
+      WriteF_time("Close UDP FAIL: %s.\n", e.what());
+  }
 }
 //--------------------------------------------------------------------------------
 bool TNetDeviceUDP::SetRecvBuffer(unsigned int size)

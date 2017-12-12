@@ -18,12 +18,12 @@ class btDiscreteDynamicsWorld;
 class DllExport TBuilder_Model : public TOperation_Model
 {
 protected:
-	TFactoryGameItem*        mFGI;
-	btDiscreteDynamicsWorld* mWorld;
+  TFactoryGameItem*        mFGI;
+  btDiscreteDynamicsWorld* mWorld;
 public:
-	TBuilder_Model();
+  TBuilder_Model();
   
-	virtual void Build();
+  virtual void Build();
 private:
 };
 

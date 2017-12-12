@@ -36,7 +36,7 @@ bool TNetControlUDP::Open( unsigned short port, unsigned char numNetWork )
   if(res==false)
     return false;
 
-	res &= mDevice.SetRecvBuffer(eSystemSizeForRecvBuffer_Socket);
+  res &= mDevice.SetRecvBuffer(eSystemSizeForRecvBuffer_Socket);
   res &= mDevice.SetSendBuffer(eSystemSizeForSendBuffer_Socket);
 
   return res;
@@ -50,44 +50,44 @@ bool TNetControlUDP::Connect(unsigned int ip, unsigned short port)
 //------------------------------------------------------------------------------
 bool TNetControlUDP::IsStreamFresh( TIP_Port& ip_port)
 {
-	TInfoConnect infoConnect;
-	GetInfoConnect(ip_port, infoConnect);
+  TInfoConnect infoConnect;
+  GetInfoConnect(ip_port, infoConnect);
 
-	unsigned short cnt_in = ((unsigned short*)mBuffer)[0];
-	if(A_more_B( cnt_in, infoConnect.cnt_in))
-	{
-		SetCntInByIP_Port(ip_port, cnt_in);
-		return true;
-	}
-	return false;
+  unsigned short cnt_in = ((unsigned short*)mBuffer)[0];
+  if(A_more_B( cnt_in, infoConnect.cnt_in))
+  {
+    SetCntInByIP_Port(ip_port, cnt_in);
+    return true;
+  }
+  return false;
 }
 //----------------------------------------------------------------------------------
 bool TNetControlUDP::A_more_B(unsigned short A, unsigned short B)
 {
-	return ::A_more_B_cycle<unsigned short>(A,B);
+  return ::A_more_B_cycle<unsigned short>(A,B);
 }
 //----------------------------------------------------------------------------------
 void TNetControlUDP::GetInfoConnect(TIP_Port& ip_port, TInfoConnect& info_out)
 {
-	TMapIP_ICIt fit = mMapInfoConnect.find(ip_port);
-	if(fit==mMapInfoConnect.end())
-	{
-		mMapInfoConnect.insert(TMapIP_IC::value_type(ip_port,TInfoConnect()));
-		fit = mMapInfoConnect.find(ip_port);
-	}
-	info_out = fit->second;
+  TMapIP_ICIt fit = mMapInfoConnect.find(ip_port);
+  if(fit==mMapInfoConnect.end())
+  {
+    mMapInfoConnect.insert(TMapIP_IC::value_type(ip_port,TInfoConnect()));
+    fit = mMapInfoConnect.find(ip_port);
+  }
+  info_out = fit->second;
 }
 //----------------------------------------------------------------------------------
 void TNetControlUDP::SetCntInByIP_Port(TIP_Port& ip_port, unsigned short cnt_in)
 {
-	TMapIP_ICIt fit = mMapInfoConnect.find(ip_port);
-	if(fit==mMapInfoConnect.end())
-	{
+  TMapIP_ICIt fit = mMapInfoConnect.find(ip_port);
+  if(fit==mMapInfoConnect.end())
+  {
     GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("SetCntInByIP_Port not found info connect.\n");
-		return;
-	}
-	fit->second.cnt_in = cnt_in;
+    return;
+  }
+  fit->second.cnt_in = cnt_in;
 }
 //----------------------------------------------------------------------------------
 unsigned short TNetControlUDP::IncreaseCntOut(TIP_Port& ip_port)
@@ -114,7 +114,7 @@ void TNetControlUDP::Done()
 void TNetControlUDP::Send(unsigned int ip, unsigned short port, TBreakPacket& bp)
 {
   // формируем заголовок
-	TIP_Port ip_port(ip,port);
+  TIP_Port ip_port(ip,port);
   unsigned short count_out = IncreaseCntOut(ip_port);
   bp.PushFront( (char*)&count_out, sizeof(count_out));
   bp.Collect();
@@ -140,7 +140,7 @@ void TNetControlUDP::RecvFromEvent(const boost::system::error_code& error,size_t
     {
       INetTransport::TDescRecv descRecv;
       descRecv.ip_port      = ip_port;
-      descRecv.type					= INetTransport::eUdp;
+      descRecv.type          = INetTransport::eUdp;
       descRecv.data         = mBuffer   + sizeof(unsigned short);
       descRecv.sizeData     = mReadSize - sizeof(unsigned short);
       NotifyRecv(&descRecv);
@@ -185,16 +185,16 @@ l_repeat:
   boost::system::error_code ec;
   ip::udp::endpoint sender_end_point(boost::asio::ip::address_v4(ip_port.ip),ip_port.port);
   int resSend = mDevice.GetSocket()->send_to(boost::asio::buffer(data, size),sender_end_point,flags, ec);
-	if(ec||resSend==0)
+  if(ec||resSend==0)
     GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("RequestSendTo UDP error=%s.\n",ec.message().data());
-	if(resSend<size)
-	{
-		ht_msleep(eTimeRepeatSend);
-		size -= resSend;
-		data += resSend;
-		goto l_repeat;
-	}
+  if(resSend<size)
+  {
+    ht_msleep(eTimeRepeatSend);
+    size -= resSend;
+    data += resSend;
+    goto l_repeat;
+  }
 }
 //----------------------------------------------------------------------------------
 

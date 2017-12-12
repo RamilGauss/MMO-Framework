@@ -27,13 +27,13 @@ bool TBaseServer::IsSessionSecurity(unsigned int id_session, void* crypt, int si
 {
   TContainer cRSA;
   // получить по сессии RSA от транспорта
-  if(mManagerSession->GetRSAPublicKey(id_session, cRSA)==false)
+  if( mManagerSession->GetRSAPublicKey(id_session, cRSA)==false )
     return false;
 
   TCryptMITM cryptMITM;
   TContainer cMITM;
-  if(cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
-    pLogin, sizeLogin, pPassword, sizePassword, cMITM)==false)
+  if( cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
+    pLogin, sizeLogin, pPassword, sizePassword, cMITM)==false )
     return false;
   // сравнить по размеру
   if(size_crypt!=cMITM.GetSize())

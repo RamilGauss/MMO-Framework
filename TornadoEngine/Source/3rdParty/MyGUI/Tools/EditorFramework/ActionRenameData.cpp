@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -13,26 +13,26 @@
 namespace tools
 {
 
-	ActionRenameData::ActionRenameData()
-	{
-	}
+  ActionRenameData::ActionRenameData()
+  {
+  }
 
-	ActionRenameData::~ActionRenameData()
-	{
-	}
+  ActionRenameData::~ActionRenameData()
+  {
+  }
 
-	void ActionRenameData::doAction()
-	{
-		mOldValues.push_back(std::make_pair(getProperty(), getProperty()->getValue()));
-		getProperty()->setValue(getValue());
+  void ActionRenameData::doAction()
+  {
+    mOldValues.push_back(std::make_pair(getProperty(), getProperty()->getValue()));
+    getProperty()->setValue(getValue());
 
-		DataPtr parent = getProperty()->getOwner()->getParent();
-		PropertyUtility::storeUniqueNameProperty("Name", "UniqueName", parent, mOldValues);
-	}
+    DataPtr parent = getProperty()->getOwner()->getParent();
+    PropertyUtility::storeUniqueNameProperty("Name", "UniqueName", parent, mOldValues);
+  }
 
-	void ActionRenameData::undoAction()
-	{
-		PropertyUtility::restoreUniqueNameProperty(mOldValues);
-	}
+  void ActionRenameData::undoAction()
+  {
+    PropertyUtility::restoreUniqueNameProperty(mOldValues);
+  }
 
 }

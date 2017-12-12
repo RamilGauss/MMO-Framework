@@ -21,23 +21,23 @@ class DllExport TInputCmdDevTool
  TVectorStr mVecDefKey;
 
 public:
-	struct TInput
-	{
+  struct TInput
+  {
     unsigned int   ip_dst;
     unsigned short port_dst;
     unsigned short port_self;
-	};
+  };
 
   TInputCmdDevTool();
   ~TInputCmdDevTool();
 
   void SetDefParam(TInput& defInput);
 
-	bool SetArg(std::vector<std::string>& vecArgv);
-	void Get(TInput& v_out);
+  bool SetArg(std::vector<std::string>& vecArgv);
+  void Get(TInput& v_out);
 
 protected:
-	TInput mInput;
+  TInput mInput;
 };
 
 #endif

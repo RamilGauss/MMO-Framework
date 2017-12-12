@@ -117,11 +117,11 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S(TDescRecvSession* pDesc)
   bp.PushFront((char*)&h, sizeof(h));
 
   Context()->GetMS()->Send(GetID_SessionMasterSlave(),bp);
-	// сохранить информацию о логине и пароле клиента
-	char* data   = pDesc->data     + sizeof(THeaderConnectToSlaveC2S);
-	int sizeData = pDesc->sizeData - sizeof(THeaderConnectToSlaveC2S);
+  // сохранить информацию о логине и пароле клиента
+  char* data   = pDesc->data     + sizeof(THeaderConnectToSlaveC2S);
+  int sizeData = pDesc->sizeData - sizeof(THeaderConnectToSlaveC2S);
 
-	Context()->Set_L_AES_RSA(data, sizeData);
+  Context()->Set_L_AES_RSA(data, sizeData);
 }
 //--------------------------------------------------------------
 void TScLoginClient_SlaveImpl::InfoClientM2S(TDescRecvSession* pDesc)
@@ -135,28 +135,28 @@ void TScLoginClient_SlaveImpl::InfoClientM2S(TDescRecvSession* pDesc)
   }
   //--------------------------------------------
   // начало сценария
-	if(Context()->WasBegin()==false)
-	{
-		// стартовали впервые
-		Context()->SetWasBegin();
-		if(Begin()==false)
-		{
-			// генерация ошибки
-			GetLogger(STR_NAME_MMO_ENGINE)->
-				WriteF_time("TScLoginClient_SlaveImpl::InfoClientM2S() scenario is not active.\n");
-			BL_FIX_BUG();
-			return;
-		}
-	}
-	// Если WasBegin==true - старт уже был, Мастер не дождался Клиент, остановил у себя сценарий
-	// потом Клиент еще раз попытался авторизоваться, а Slave еще его ждет, т.е. это уже
-	// вторая попытка войти. Что ж продолжим авторизацию.
+  if(Context()->WasBegin()==false)
+  {
+    // стартовали впервые
+    Context()->SetWasBegin();
+    if(Begin()==false)
+    {
+      // генерация ошибки
+      GetLogger(STR_NAME_MMO_ENGINE)->
+        WriteF_time("TScLoginClient_SlaveImpl::InfoClientM2S() scenario is not active.\n");
+      BL_FIX_BUG();
+      return;
+    }
+  }
+  // Если WasBegin==true - старт уже был, Мастер не дождался Клиент, остановил у себя сценарий
+  // потом Клиент еще раз попытался авторизоваться, а Slave еще его ждет, т.е. это уже
+  // вторая попытка войти. Что ж продолжим авторизацию.
 
-	SetTimeWaitForNow();
-	// запомнить сессию
+  SetTimeWaitForNow();
+  // запомнить сессию
   SetID_SessionMasterSlave(pDesc->id_session);
   
-	Context()->SetClientKey(pHeader->id_client);
+  Context()->SetClientKey(pHeader->id_client);
   // сформировать квитанцию
   TBreakPacket bp;
   THeaderCheckInfoClientS2M h;
@@ -173,13 +173,13 @@ void TScLoginClient_SlaveImpl::CheckClientConnectM2S(TDescRecvSession* pDesc)
   if(Context()==NULL)
     return;
   //--------------------------------------------
-	// отсылка уведомления Developer Slave события Connect
+  // отсылка уведомления Developer Slave события Connect
   TEventConnectDown* pEvent = new TEventConnectDown;
   pEvent->id_session = GetID_SessionClientSlave();
-	pEvent->c.SetData(Context()->GetPtr_L_AES_RSA(),
-		                Context()->GetSize_L_AES_RSA());
-	
-	Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
+  pEvent->c.SetData(Context()->GetPtr_L_AES_RSA(),
+                    Context()->GetSize_L_AES_RSA());
+  
+  Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
   // отослать клиенту уведомление
   THeaderCheckConnectToSlaveS2C h;
   TBreakPacket bp;

@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		1/2009
+  @file
+  @author    Albert Semenov
+  @date    1/2009
 */
 
 #include "Precompiled.h"
@@ -11,34 +11,34 @@
 namespace input
 {
 
-	PointerManager::PointerManager()
-	{
-	}
+  PointerManager::PointerManager()
+  {
+  }
 
-	PointerManager::~PointerManager()
-	{
-	}
+  PointerManager::~PointerManager()
+  {
+  }
 
-	void PointerManager::createPointerManager(size_t _handle)
-	{
-	}
+  void PointerManager::createPointerManager(size_t _handle)
+  {
+  }
 
-	void PointerManager::destroyPointerManager()
-	{
-	}
+  void PointerManager::destroyPointerManager()
+  {
+  }
 
-	void PointerManager::setPointerVisible(bool _value)
-	{
-		MyGUI::PointerManager::getInstance().setVisible(_value);
-	}
+  void PointerManager::setPointerVisible(bool _value)
+  {
+    MyGUI::PointerManager::getInstance().setVisible(_value);
+  }
 
-	void PointerManager::setPointerName(const std::string& _name)
-	{
-		MyGUI::PointerManager::getInstance().setPointer(_name);
-	}
+  void PointerManager::setPointerName(const std::string& _name)
+  {
+    MyGUI::PointerManager::getInstance().setPointer(_name);
+  }
 
-	void PointerManager::loadPointerResources()
-	{
-	}
+  void PointerManager::loadPointerResources()
+  {
+  }
 
 } // namespace input

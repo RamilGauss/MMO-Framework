@@ -22,56 +22,56 @@ class TTestControlTank
 #if defined( WIN32 )
 #pragma pack(push, 1)
 #endif
-	struct TDesc
-	{
-		float mSpeedRotateTurret;
-		float mAngleTurret;
+  struct TDesc
+  {
+    float mSpeedRotateTurret;
+    float mAngleTurret;
 
-		float mSpeedRotateGun;
-		float mAngleGun;
+    float mSpeedRotateGun;
+    float mAngleGun;
 
-		TDesc()
-		{
-			mSpeedRotateTurret = 0;
-			mAngleTurret    	 = 0;
-			mSpeedRotateGun 	 = 0;
-			mAngleGun       	 = 0;
-		}
-	}_PACKED;
+    TDesc()
+    {
+      mSpeedRotateTurret = 0;
+      mAngleTurret       = 0;
+      mSpeedRotateGun    = 0;
+      mAngleGun          = 0;
+    }
+  }_PACKED;
 #if defined( WIN32 )
 #pragma pack(pop)
 #endif
 
-	TTankTower* mTank;
+  TTankTower* mTank;
 
-	unsigned int mTimeRecv_ms;
-	unsigned int mTimeLastUpdate_ms;
-	
-	TDesc mDesc;
+  unsigned int mTimeRecv_ms;
+  unsigned int mTimeLastUpdate_ms;
+  
+  TDesc mDesc;
 
-	TMutex mMutexQtSend;
+  TMutex mMutexQtSend;
 
-	void lockQtSend()  {mMutexQtSend.lock();}
-	void unlockQtSend(){mMutexQtSend.unlock();}
+  void lockQtSend()  {mMutexQtSend.lock();}
+  void unlockQtSend(){mMutexQtSend.unlock();}
 
 public:
   TTestControlTank();
 
-	// назначить объект
-	void SetTank(TTankTower* pTank);
-	// вызывать для аппроксимации параметров и применения для объекта
-	void SetupParamForNow();
-	
+  // назначить объект
+  void SetTank(TTankTower* pTank);
+  // вызывать для аппроксимации параметров и применения для объекта
+  void SetupParamForNow();
+  
 public:
-	void Recv(void* data, int size);
-	void Send();
+  void Recv(void* data, int size);
+  void Send();
 
-	// реакция на нажатие кнопок в форме
-	// задать скорость
-	void SetSpeedRotateTurret(float v);
-	void SetSpeedRotateGun(float v);
+  // реакция на нажатие кнопок в форме
+  // задать скорость
+  void SetSpeedRotateTurret(float v);
+  void SetSpeedRotateGun(float v);
 private:
-	void UpdateAngle();
+  void UpdateAngle();
 };
 
 

@@ -12,9 +12,9 @@ TGP_AggregationScenario_GameMap::TGP_AggregationScenario_GameMap()
   RegisterScenarioOnEvent(&mSynchro);
   RegisterScenarioOnEvent(&mDestructor);
 
-	mBuilder.GetCB_Progress()->Register(&TGP_AggregationScenario_GameMap::Progress_BuildGameMap, this);
-	mBuilder.GetCB_End()->Register(&TGP_AggregationScenario_GameMap::End_BuildGameMap, this);
-	mID_World = -1;
+  mBuilder.GetCB_Progress()->Register(&TGP_AggregationScenario_GameMap::Progress_BuildGameMap, this);
+  mBuilder.GetCB_End()->Register(&TGP_AggregationScenario_GameMap::End_BuildGameMap, this);
+  mID_World = -1;
 }
 //---------------------------------------------------------------------------------------------
 TGP_AggregationScenario_GameMap::~TGP_AggregationScenario_GameMap()
@@ -32,19 +32,19 @@ void TGP_AggregationScenario_GameMap::LoadMap(std::string nameMap)
 //---------------------------------------------------------------------------------------------
 TGameObject* TGP_AggregationScenario_GameMap::AddGameObject(TMapItem::TObject* pObject)
 {
-	if(IsActive(nsGameProcess::eSynchro)==false)
-		return NULL;
-	return mSynchro.AddGameObject(pObject);
+  if(IsActive(nsGameProcess::eSynchro)==false)
+    return NULL;
+  return mSynchro.AddGameObject(pObject);
 }
 //---------------------------------------------------------------------------------------------
 bool TGP_AggregationScenario_GameMap::DeleteGameObject(int id)
 {
-	return false;
+  return false;
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_GameMap::SaveMap(std::string nameMap)
 {
-	mSynchro.SaveMap(nameMap);
+  mSynchro.SaveMap(nameMap);
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_GameMap::UnloadAll()
@@ -56,7 +56,7 @@ void TGP_AggregationScenario_GameMap::UnloadAll()
 //---------------------------------------------------------------------------------------------
 IGP_Scenario* TGP_AggregationScenario_GameMap::GetByType(nsGameProcess::GP_TypeScenario type)
 {
-	IGP_Scenario* pScenario = NULL;
+  IGP_Scenario* pScenario = NULL;
   switch(type)
   {
     case nsGameProcess::eBuilder:
@@ -69,22 +69,22 @@ IGP_Scenario* TGP_AggregationScenario_GameMap::GetByType(nsGameProcess::GP_TypeS
       pScenario = &mDestructor;
       break;
   }
-	return pScenario;
+  return pScenario;
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_GameMap::End_BuildGameMap(nsGameProcess::GP_TypeScenario type)
 {
-	if( type!=nsGameProcess::eBuilder )
-		return;
+  if( type!=nsGameProcess::eBuilder )
+    return;
 
-	EndEventScenario(type);
+  EndEventScenario(type);
 }
 //---------------------------------------------------------------------------------------------
 void TGP_AggregationScenario_GameMap::Progress_BuildGameMap(nsGameProcess::GP_TypeScenario type, int progress)
 {
-	if( type!=nsGameProcess::eBuilder )
-		return;
+  if( type!=nsGameProcess::eBuilder )
+    return;
 
-	ProgressEventScenario(type, progress);
+  ProgressEventScenario(type, progress);
 }
 //---------------------------------------------------------------------------------------------

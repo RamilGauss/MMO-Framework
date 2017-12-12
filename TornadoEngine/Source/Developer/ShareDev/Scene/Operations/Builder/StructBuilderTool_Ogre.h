@@ -11,21 +11,21 @@ See for more information License.h.
 namespace nsStructBuilderTool_Ogre
 {
   struct TVertex
-	{
-		Ogre::Real x;
-		Ogre::Real y; 
-		Ogre::Real z;
-		Ogre::Real u;
-		Ogre::Real v;
-	};
-	struct TTriVertex
-	{
-		TVertex p[3];
-	};
-	struct TQuadVertex
-	{
-		TVertex p[4];
-	};
+  {
+    Ogre::Real x;
+    Ogre::Real y; 
+    Ogre::Real z;
+    Ogre::Real u;
+    Ogre::Real v;
+  };
+  struct TTriVertex
+  {
+    TVertex p[3];
+  };
+  struct TQuadVertex
+  {
+    TVertex p[4];
+  };
 }
 
 #endif

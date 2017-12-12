@@ -14,7 +14,7 @@ See for more information License.h.
 namespace nsMMOEngine
 {
   class TContainerContextSc;
-	class TManagerContextMoreDownClientConnection : public TDelegateManagerContextSc
+  class TManagerContextMoreDownClientConnection : public TDelegateManagerContextSc
   {
     typedef std::map<unsigned int, TContainerContextSc*> TMapUintPtr;
     typedef TMapUintPtr::iterator TMapUintPtrIt;
@@ -38,12 +38,12 @@ namespace nsMMOEngine
     // добавление/удаление
     TContainerContextSc* AddContext(unsigned int id_client, 
                                     unsigned int id_session);
-		void EntrustContext(unsigned int id_client, 
-										    unsigned int id_session,
-												TContainerContextSc* pContext);
+    void EntrustContext(unsigned int id_client, 
+                        unsigned int id_session,
+                        TContainerContextSc* pContext);
     // удаление
     void DeleteByKey(unsigned int key);
-	private:
+  private:
     void Clear();
   };
 }

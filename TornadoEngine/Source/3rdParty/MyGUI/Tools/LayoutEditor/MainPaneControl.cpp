@@ -4,22 +4,22 @@
 namespace tools
 {
 
-	MainPaneControl::MainPaneControl() :
-		wraps::BaseLayout("MainPane.layout"),
-		mMainMenuControl(nullptr),
-		mMainWorkspaceControl(nullptr)
-	{
-		assignBase(mMainMenuControl, "MainMenuControl");
-		assignBase(mMainWorkspaceControl, "MainWorkspaceControl");
-	}
+  MainPaneControl::MainPaneControl() :
+    wraps::BaseLayout("MainPane.layout"),
+    mMainMenuControl(nullptr),
+    mMainWorkspaceControl(nullptr)
+  {
+    assignBase(mMainMenuControl, "MainMenuControl");
+    assignBase(mMainWorkspaceControl, "MainWorkspaceControl");
+  }
 
-	MainPaneControl::~MainPaneControl()
-	{
-	}
+  MainPaneControl::~MainPaneControl()
+  {
+  }
 
-	void MainPaneControl::setVisible(bool _value)
-	{
-		mMainWidget->setVisible(_value);
-	}
+  void MainPaneControl::setVisible(bool _value)
+  {
+    mMainWidget->setVisible(_value);
+  }
 
 }

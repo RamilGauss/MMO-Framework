@@ -15,7 +15,7 @@ See for more information License.h.
 namespace nsMMOEngine
 {
   class TContextScRecommutationClient : public IContextScenario
-	{
+  {
     unsigned int mID_SessionMasterSlave;
 
     unsigned int mClientKey;
@@ -24,22 +24,22 @@ namespace nsMMOEngine
 
     TContainer mContextData;
 
-		// для самоопределения на Slave
-		typedef enum
-		{
-			eUndef,
-			eDonor,
-			eRecipient,
-		}TypeSlave;
-		TypeSlave mTypeSlave;
+    // для самоопределения на Slave
+    typedef enum
+    {
+      eUndef,
+      eDonor,
+      eRecipient,
+    }TypeSlave;
+    TypeSlave mTypeSlave;
 
     unsigned int mTimeWaitAnswer;
 
     TIP_Port mIP_PortRecipient;
 
     unsigned int mRandomNum;
-	public:
-		TContextScRecommutationClient();
+  public:
+    TContextScRecommutationClient();
     virtual ~TContextScRecommutationClient();
 
     // сессии для Slave, в остальных случаях для Мастера и Клиента использовать G(S)etID_Session
@@ -63,11 +63,11 @@ namespace nsMMOEngine
     int   GetContextDataSize();
     void  CleanContextData();
 
-		// необходимо для определения поведения при Дисконнекте Клиента
-		void SetRoleAsDonor();
-		bool IsDonor();
-		void SetRoleAsRecipient();
-		bool IsRecipient();
+    // необходимо для определения поведения при Дисконнекте Клиента
+    void SetRoleAsDonor();
+    bool IsDonor();
+    void SetRoleAsRecipient();
+    bool IsRecipient();
 
     void SetTimeWait(unsigned int v);
     unsigned int GetTimeWait();
@@ -78,6 +78,6 @@ namespace nsMMOEngine
     void SetRandomNum(unsigned int random_num);
     unsigned int GetRandomNum();
   private:
-	};
+  };
 }  
 #endif

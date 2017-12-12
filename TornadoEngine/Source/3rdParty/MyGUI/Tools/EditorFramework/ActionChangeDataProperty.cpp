@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -12,33 +12,33 @@
 namespace tools
 {
 
-	ActionChangeDataProperty::ActionChangeDataProperty() :
-		mProperty(nullptr)
-	{
-	}
+  ActionChangeDataProperty::ActionChangeDataProperty() :
+    mProperty(nullptr)
+  {
+  }
 
-	ActionChangeDataProperty::~ActionChangeDataProperty()
-	{
-	}
+  ActionChangeDataProperty::~ActionChangeDataProperty()
+  {
+  }
 
-	void ActionChangeDataProperty::setProperty(PropertyPtr _value)
-	{
-		mProperty = _value;
-	}
+  void ActionChangeDataProperty::setProperty(PropertyPtr _value)
+  {
+    mProperty = _value;
+  }
 
-	PropertyPtr ActionChangeDataProperty::getProperty()
-	{
-		return mProperty;
-	}
+  PropertyPtr ActionChangeDataProperty::getProperty()
+  {
+    return mProperty;
+  }
 
-	void ActionChangeDataProperty::setValue(const std::string& _value)
-	{
-		mValue = _value;
-	}
+  void ActionChangeDataProperty::setValue(const std::string& _value)
+  {
+    mValue = _value;
+  }
 
-	const std::string& ActionChangeDataProperty::getValue() const
-	{
-		return mValue;
-	}
+  const std::string& ActionChangeDataProperty::getValue() const
+  {
+    return mValue;
+  }
 
 }

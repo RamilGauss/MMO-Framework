@@ -28,7 +28,7 @@ TManagerSession::TManagerSession()
   mNavigateSession = new TNavigateSession;
   mMngTransport = new TManagerTransport(this);
 
-	flgStart = false;
+  flgStart = false;
   mTimeLiveSession  = eDefTimeLive;
   mLastID_Session   = 0;
 }
@@ -46,28 +46,28 @@ TManagerSession::~TManagerSession()
 //--------------------------------------------------------------------------------------------
 void TManagerSession::SetMakerTransport(IMakerTransport* pMakerTransport)
 {
-	mMngTransport->SetTransport(pMakerTransport);
+  mMngTransport->SetTransport(pMakerTransport);
 }
 //--------------------------------------------------------------------------------------------
 bool TManagerSession::Start(TDescOpen* pDesc, int count)
 {
-	if(flgStart)
-	{
-		GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TManagerSession::Start() restart.\n");
-		BL_FIX_BUG();
-		return false;
-	}
-	flgStart = true;
+  if(flgStart)
+  {
+    GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TManagerSession::Start() restart.\n");
+    BL_FIX_BUG();
+    return false;
+  }
+  flgStart = true;
 
-	for(int i = 0 ; i < count ; i++ )
-		if(StartTransport(pDesc[i].port, pDesc[i].subNet)==false)
-			return false;
-	return true;
+  for(int i = 0 ; i < count ; i++ )
+    if(StartTransport(pDesc[i].port, pDesc[i].subNet)==false)
+      return false;
+  return true;
 }
 //--------------------------------------------------------------------------------------------
 bool TManagerSession::StartTransport(unsigned short port, unsigned char subNet)
 {
-	INetTransport* pTransport = mMngTransport->Add(subNet);
+  INetTransport* pTransport = mMngTransport->Add(subNet);
   bool resOpen = pTransport->Open(port,subNet);
   if(resOpen==false) 
   {
@@ -116,7 +116,7 @@ unsigned int TManagerSession::Send(unsigned int ip, unsigned short port, TBreakP
   lockConnectUp();
 
   INetTransport* pTransport = mMngTransport->FindBySubNet(subNet);
-	if(pTransport==NULL)
+  if(pTransport==NULL)
   {
     unlockConnectUp();
     return INVALID_HANDLE_SESSION;
@@ -150,11 +150,11 @@ unsigned int TManagerSession::Send(unsigned int ip, unsigned short port, TBreakP
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TManagerSession::Send(0x%X,%u) sending to IP with exist session.\n", ip, port);
     BL_FIX_BUG();
-		return INVALID_HANDLE_SESSION;
+    return INVALID_HANDLE_SESSION;
   }
   unsigned int id_session = pSession->GetID();
   // отсылка запроса на AES ключ
-	SendKeyRSA_Up(pSession);
+  SendKeyRSA_Up(pSession);
 
   unlockAccessSession();
   //===================================================================
@@ -164,8 +164,8 @@ unsigned int TManagerSession::Send(unsigned int ip, unsigned short port, TBreakP
   if(res==false)
   {
     unlockConnectUp();
-		GetLogger(STR_NAME_MMO_ENGINE)->
-			WriteF_time("Wait Answer From Up don't recv answer.\n");
+    GetLogger(STR_NAME_MMO_ENGINE)->
+      WriteF_time("Wait Answer From Up don't recv answer.\n");
     return INVALID_HANDLE_SESSION;
   }
   //===================================================================
@@ -401,14 +401,14 @@ void TManagerSession::RecvPacket(TDescRecvSession& descRecvSession, TSession* pS
     {
       FixHack("Using crypt for UDP");
       BL_FIX_BUG();
-			return;
+      return;
     }
     // попытка расшифровать
     if(mMngCtxCrypto.Recv(descRecvSession.ip_port, descRecvSession.data,
                           descRecvSession.sizeData,c_decrypt)==false)
     {
       FixHack("Can't decrypt packet");
-	    BL_FIX_BUG();
+      BL_FIX_BUG();
       return;
     }
     // поместить результат

@@ -22,7 +22,7 @@ TGraphicEngine_Ogre_MyGUI::TGraphicEngine_Ogre_MyGUI()
   mCBKeyBoard.Register( &TGraphicEngine_Ogre_MyGUI::KeyBoardEvent, this);
   mCBMouse.Register( &TGraphicEngine_Ogre_MyGUI::MouseEvent, this);
 
-	mGE.reset(new TGE_Impl);
+  mGE.reset(new TGE_Impl);
   
   mGE->SetCallBackKeyBoard(&mCBKeyBoard);
   mGE->SetCallBackMouse(&mCBMouse);
@@ -35,16 +35,16 @@ TGraphicEngine_Ogre_MyGUI::~TGraphicEngine_Ogre_MyGUI()
 //---------------------------------------------------------------------
 bool TGraphicEngine_Ogre_MyGUI::InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg)
 {
-	try
-	{
-		return mGE->InitOGRE(pathPluginCfg, pathOgreCfg);
-	}
-	catch(MyGUI::Exception& _e)
-	{
+  try
+  {
+    return mGE->InitOGRE(pathPluginCfg, pathOgreCfg);
+  }
+  catch(MyGUI::Exception& _e)
+  {
     MsgException(_e);
-		throw;
-	}
-	return false;
+    throw;
+  }
+  return false;
 }
 //---------------------------------------------------------------------
 void TGraphicEngine_Ogre_MyGUI::AddResource(const std::string& name, const std::string& type)
@@ -97,37 +97,37 @@ Ogre::Camera* TGraphicEngine_Ogre_MyGUI::GetCamera()
 //---------------------------------------------------------------------
 Ogre::RenderWindow* TGraphicEngine_Ogre_MyGUI::GetWindow()
 {
-	return mGE->GetWindow();
+  return mGE->GetWindow();
 }
 //---------------------------------------------------------------------
 Ogre::TerrainGroup* TGraphicEngine_Ogre_MyGUI::GetTerrainGroup()
 {
-	return mGE->GetTerrainGroup();
+  return mGE->GetTerrainGroup();
 }
 //---------------------------------------------------------------------
 Ogre::TerrainGlobalOptions* TGraphicEngine_Ogre_MyGUI::GetTerrainGlobals()
 {
-	return mGE->GetTerrainGlobals();
+  return mGE->GetTerrainGlobals();
 }
 //---------------------------------------------------------------------
 void TGraphicEngine_Ogre_MyGUI::SetGUIEnableEvent(bool v)
 {
-	mGE->SetGUIEnableEvent(v);
+  mGE->SetGUIEnableEvent(v);
 }
 //---------------------------------------------------------------------
 bool TGraphicEngine_Ogre_MyGUI::GetGUIEnableEvent()
 {
-	return mGE->GetGUIEnableEvent();
+  return mGE->GetGUIEnableEvent();
 }
 //---------------------------------------------------------------------
 void TGraphicEngine_Ogre_MyGUI::SetUseClipCursor(bool v)
 {
-	mGE->SetUseClipCursor(v);
+  mGE->SetUseClipCursor(v);
 }
 //---------------------------------------------------------------------
 bool TGraphicEngine_Ogre_MyGUI::GetUseClipCursor()
 {
-	return mGE->GetUseClipCursor();
+  return mGE->GetUseClipCursor();
 }
 //---------------------------------------------------------------------
 void TGraphicEngine_Ogre_MyGUI::MsgException(MyGUI::Exception& _e)

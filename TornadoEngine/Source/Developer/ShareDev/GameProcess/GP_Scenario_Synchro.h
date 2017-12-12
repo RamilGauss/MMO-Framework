@@ -12,22 +12,22 @@ See for more information License.h.
 #include "IGP_Scenario.h"
 
 class DllExport TGP_Scenario_Synchro : 
-	public IGP_Scenario_Synchro, public IGP_Scenario
+  public IGP_Scenario_Synchro, public IGP_Scenario
 {
 public:
   TGP_Scenario_Synchro();
   virtual ~TGP_Scenario_Synchro();
 
-	// IGP_Scenario_Synchro
-	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
-	virtual bool DeleteGameObject(int id);
+  // IGP_Scenario_Synchro
+  virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
+  virtual bool DeleteGameObject(int id);
 
-	virtual void SaveMap(std::string nameMap);
+  virtual void SaveMap(std::string nameMap);
 
-	// IGP_General
+  // IGP_General
   virtual void Work();
 
-	// IGP_Scenario
+  // IGP_Scenario
   virtual nsGameProcess::GP_TypeScenario GetType();
 
   virtual void Activate();

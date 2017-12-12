@@ -15,7 +15,7 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-	class TSession;
+  class TSession;
   class TNavigateSession
   {
     typedef std::map<unsigned int,TSession*> TMapUintPtr;
@@ -36,13 +36,13 @@ namespace nsMMOEngine
   public:
     TNavigateSession();
     ~TNavigateSession();
-		
+    
     void Add(TSession* pSession);
     void Delete(TSession* pSession);
-		TSession* FindSessionByIP(TIP_Port& ip_port);
-		TSession* FindSessionByID(unsigned int id);
+    TSession* FindSessionByIP(TIP_Port& ip_port);
+    TSession* FindSessionByID(unsigned int id);
 
-		bool IsExist(TSession* pSession);
+    bool IsExist(TSession* pSession);
 
     std::set<TSession*>::iterator Begin();
     std::set<TSession*>::iterator End();

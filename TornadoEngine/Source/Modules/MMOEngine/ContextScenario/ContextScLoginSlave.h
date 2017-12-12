@@ -16,11 +16,11 @@ namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
   class TContextScLoginSlave : public IContextScenario
-	{
+  {
     unsigned int mTimeWaitAnswerFromMaster;
     bool flgConnectToMaster;
-	public:
-		TContextScLoginSlave();
+  public:
+    TContextScLoginSlave();
     virtual ~TContextScLoginSlave();
 
     void SetConnect(bool v);
@@ -29,6 +29,6 @@ namespace nsMMOEngine
     unsigned int GetTimeWait();
     void SetTimeWait(unsigned int v);
   private:
-	};
+  };
 }  
 #endif

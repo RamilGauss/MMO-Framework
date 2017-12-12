@@ -19,26 +19,26 @@ class btRigidBody;
 
 class DllExport TFactoryBuilderTool_Shape_Bullet
 {
-	TShapeItem*    mShape;
-	TMaterialItem* mMaterial;
+  TShapeItem*    mShape;
+  TMaterialItem* mMaterial;
 
-	std::string mNameEntity;
+  std::string mNameEntity;
 
-	typedef std::map<nsParamBuilderShape::eType,TBuilderTool_ShapeBase_Bullet*> TMapTypePtr;
-	typedef TMapTypePtr::iterator   					 TMapTypePtrIt;
-	typedef TMapTypePtr::value_type 					 TMapTypePtrVT;
+  typedef std::map<nsParamBuilderShape::eType,TBuilderTool_ShapeBase_Bullet*> TMapTypePtr;
+  typedef TMapTypePtr::iterator              TMapTypePtrIt;
+  typedef TMapTypePtr::value_type            TMapTypePtrVT;
 
-	TMapTypePtr mMapTypeBuilder;
+  TMapTypePtr mMapTypeBuilder;
 protected:
-	TFactoryBuilderTool_Shape_Bullet();
-	virtual ~TFactoryBuilderTool_Shape_Bullet();
+  TFactoryBuilderTool_Shape_Bullet();
+  virtual ~TFactoryBuilderTool_Shape_Bullet();
 public:
-	btRigidBody* Build(int id_world, TShapeItem* pShape);
+  btRigidBody* Build(int id_world, TShapeItem* pShape);
 
   static TFactoryBuilderTool_Shape_Bullet* Get();
 protected:
-	void FindMaterialByShape();
-	void SetupBuilderMap();
+  void FindMaterialByShape();
+  void SetupBuilderMap();
 };
 
 #endif

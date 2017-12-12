@@ -21,9 +21,9 @@ using namespace nsMMOEngine;
 
 TClient::TClient()
 {
-	mSubNet = 0;
+  mSubNet = 0;
   mControlSc->mLoginClient->SetBehavior(TScenarioLoginClient::eClient);
-	mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eClient);
+  mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eClient);
 }
 //-------------------------------------------------------------------------
 TClient::~TClient()
@@ -33,16 +33,16 @@ TClient::~TClient()
 //-------------------------------------------------------------------------
 bool TClient::Open(TDescOpen* pDesc, int count)
 {
-	if(count!=1)
-	{
-		TEventError event;
-		event.code = OpenClient_MoreThenOneSubNet;
-		AddEventCopy(&event, sizeof(event));
-		BL_FIX_BUG();
-		return false;
-	}
-	mSubNet = pDesc[0].subNet;
-	return mManagerSession->Start(pDesc, 1);
+  if(count!=1)
+  {
+    TEventError event;
+    event.code = OpenClient_MoreThenOneSubNet;
+    AddEventCopy(&event, sizeof(event));
+    BL_FIX_BUG();
+    return false;
+  }
+  mSubNet = pDesc[0].subNet;
+  return mManagerSession->Start(pDesc, 1);
 }
 //-------------------------------------------------------------------------
 void TClient::Login(unsigned int ip, unsigned short port, 
@@ -55,15 +55,15 @@ void TClient::Login(unsigned int ip, unsigned short port,
     AddEventCopy(&event, sizeof(event));
     return;
   }
-	if((pLogin   ==NULL)||(sizeLogin   ==0)||
+  if((pLogin   ==NULL)||(sizeLogin   ==0)||
      (pPassword==NULL)||(sizePassword==0))
-	{
-		TEventError event;
-		event.code = LoginClient_EmptyLoginPassword;
-		AddEventCopy(&event, sizeof(event));
-		return;
-	}
-	
+  {
+    TEventError event;
+    event.code = LoginClient_EmptyLoginPassword;
+    AddEventCopy(&event, sizeof(event));
+    return;
+  }
+  
   mControlSc->mLoginClient->TryLogin(ip, port, mSubNet, 
             pLogin, sizeLogin, pPassword, sizePassword);
 }
@@ -87,8 +87,8 @@ void TClient::DisconnectInherit(unsigned int id_session)
   }
   // в остальных случаях это действительно потеря связи
   mID_SessionUp = INVALID_HANDLE_SESSION;
-	TEventDisconnectUp event;
-	event.id_session = id_session;
+  TEventDisconnectUp event;
+  event.id_session = id_session;
   AddEventCopy(&event, sizeof(event));
 }
 //-------------------------------------------------------------------------

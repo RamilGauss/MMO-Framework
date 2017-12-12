@@ -20,20 +20,20 @@ TBuilder_Terrain_Ogre::~TBuilder_Terrain_Ogre()
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Ogre::Begin()
 {
-	TTerrainItem* pTerrainItem = mPatternTerrain->GetTerrainItem();
-	Ogre::Vector3 origin       = mPatternTerrain->GetOrigin();
+  TTerrainItem* pTerrainItem = mPatternTerrain->GetTerrainItem();
+  Ogre::Vector3 origin       = mPatternTerrain->GetOrigin();
 
-	mBuilder.Begin(pTerrainItem,origin);
+  mBuilder.Begin(pTerrainItem,origin);
 }
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Ogre::Load( int x, int y )
 {
-	// поместить загруженные данные в паттерн, но не для Terrain
-	mBuilder.Load(x,y);
+  // поместить загруженные данные в паттерн, но не для Terrain
+  mBuilder.Load(x,y);
 }
 //--------------------------------------------------------------------
 void TBuilder_Terrain_Ogre::End()
 {
-	mBuilder.End();
+  mBuilder.End();
 }
 //--------------------------------------------------------------------

@@ -31,19 +31,19 @@ public:
   static std::string Terrain();
   static std::string Volume();
 
-	typedef enum
-	{
-		eBase = 0,
-		
-		eMapParameter,
-		eAnimated,
-		eLight,
-		eModel,
-		eSky,
-		eSound,
-		eTerrain,
-		eVolume,
-	}eBaseType;
+  typedef enum
+  {
+    eBase = 0,
+    
+    eMapParameter,
+    eAnimated,
+    eLight,
+    eModel,
+    eSky,
+    eSound,
+    eTerrain,
+    eVolume,
+  }eBaseType;
 };
 
 #endif

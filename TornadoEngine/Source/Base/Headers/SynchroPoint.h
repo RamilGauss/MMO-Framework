@@ -50,7 +50,7 @@ protected:
 
   // Добавить событие с/без копирования
   void AddEventCopy(int id_sender, int id_recv, void* data, int size);
-	template <typename T>
+  template <typename T>
   void AddEventWithoutCopy(int id_sender, int id_recv, T* pObject);
   void AddEventWithoutCopy(int id_sender, int id_recv, IContainer* pC);
 

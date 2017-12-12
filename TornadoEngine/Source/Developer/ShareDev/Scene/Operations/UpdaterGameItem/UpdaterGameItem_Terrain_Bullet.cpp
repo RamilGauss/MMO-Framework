@@ -19,7 +19,7 @@ TUpdaterGameItem_Terrain_Bullet::~TUpdaterGameItem_Terrain_Bullet()
 //-------------------------------------------------------------------------
 bool TUpdaterGameItem_Terrain_Bullet::Update( TFactoryGameItem::TypeGameItem type )
 {
-	return false;
+  return false;
 }
 //-------------------------------------------------------------------------
 

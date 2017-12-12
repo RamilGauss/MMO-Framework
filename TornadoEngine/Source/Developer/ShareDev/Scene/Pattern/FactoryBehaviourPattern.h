@@ -29,8 +29,8 @@ private:
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Model;
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Sound;
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Skybox;
-	TCallBackRegistrator1<TBehaviourPattern*&> mCB_Skydome;
-	TCallBackRegistrator1<TBehaviourPattern*&> mCB_Skyplane;
+  TCallBackRegistrator1<TBehaviourPattern*&> mCB_Skydome;
+  TCallBackRegistrator1<TBehaviourPattern*&> mCB_Skyplane;
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Terrain;
   TCallBackRegistrator1<TBehaviourPattern*&> mCB_Volume;
 public:
@@ -49,8 +49,8 @@ private:
   void MakeLight(TBehaviourPattern*& p);
   void MakeModel(TBehaviourPattern*& p);
   void MakeSkybox(TBehaviourPattern*& p);
-	void MakeSkydome(TBehaviourPattern*& p);
-	void MakeSkyplane(TBehaviourPattern*& p);
+  void MakeSkydome(TBehaviourPattern*& p);
+  void MakeSkyplane(TBehaviourPattern*& p);
   void MakeSound(TBehaviourPattern*& p);
   void MakeTerrain(TBehaviourPattern*& p);
   void MakeVolume(TBehaviourPattern*& p);

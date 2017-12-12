@@ -19,8 +19,8 @@ See for more information License.h.
 
 class DllExport TLogger : public TOnly_N_Object
 {
-	typedef std::vector<TSaveToFile*> TVectorPtr;
-	TVectorPtr mVecPtr;
+  typedef std::vector<TSaveToFile*> TVectorPtr;
+  TVectorPtr mVecPtr;
 
   struct TDescFile
   {
@@ -65,8 +65,8 @@ public:
   void SetBufferization(bool val);
   bool GetBufferization();
 
-	int GetCount();
-	TSaveToFile* GetByIndex( int index);
+  int GetCount();
+  TSaveToFile* GetByIndex( int index);
 
 protected:
   void InitLogger(TSaveToFile* saver, const char* sName, const char* extension);

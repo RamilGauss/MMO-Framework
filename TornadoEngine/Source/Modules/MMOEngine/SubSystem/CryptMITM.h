@@ -14,10 +14,10 @@ See for more information License.h.
 class TCryptMITM
 {
 public:
-	bool Calc(void* rsa, int size_rsa, 
-		        void* pLogin, int sizeLogin,        
+  bool Calc(void* rsa, int size_rsa, 
+            void* pLogin, int sizeLogin,        
             void* pPassword, int sizePassword, 
-						TContainer& c_result);
+            TContainer& c_result);
 };
 
 #endif

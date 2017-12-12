@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2010
+  @file
+  @author    Albert Semenov
+  @date    08/2010
 */
 
 #ifndef _1ff1ce31_9c20_47d9_ab7e_79bf431cc819_
@@ -12,27 +12,27 @@
 namespace tools
 {
 
-	class MYGUI_EXPORT_DLL PropertyBoolControl :
-		public PropertyControl
-	{
-	public:
-		PropertyBoolControl();
-		virtual ~PropertyBoolControl();
+  class MYGUI_EXPORT_DLL PropertyBoolControl :
+    public PropertyControl
+  {
+  public:
+    PropertyBoolControl();
+    virtual ~PropertyBoolControl();
 
-	protected:
-		virtual void updateCaption();
-		virtual void updateProperty();
-		virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
+  protected:
+    virtual void updateCaption();
+    virtual void updateProperty();
+    virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
 
-	private:
-		void notifyComboChangePosition(MyGUI::ComboBox* _sender, size_t _index);
+  private:
+    void notifyComboChangePosition(MyGUI::ComboBox* _sender, size_t _index);
 
-		size_t getComboIndex(const MyGUI::UString& _name);
+    size_t getComboIndex(const MyGUI::UString& _name);
 
-	private:
-		MyGUI::TextBox* mName;
-		MyGUI::ComboBox* mComboBox;
-	};
+  private:
+    MyGUI::TextBox* mName;
+    MyGUI::ComboBox* mComboBox;
+  };
 
 }
 

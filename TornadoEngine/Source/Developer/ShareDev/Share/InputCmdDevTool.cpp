@@ -18,10 +18,10 @@ using namespace std;
 TInputCmdDevTool::TInputCmdDevTool()
 {
   mVecDefKey.push_back(KEY_IP_SRC);
-	mVecDefKey.push_back(KEY_PORT_SRC);
+  mVecDefKey.push_back(KEY_PORT_SRC);
   mVecDefKey.push_back(KEY_PORT_SELF);
 
-	mCmdParam.SetDefKey(mVecDefKey);
+  mCmdParam.SetDefKey(mVecDefKey);
 }
 //-------------------------------------------------------------------------------
 TInputCmdDevTool::~TInputCmdDevTool()
@@ -36,24 +36,24 @@ void TInputCmdDevTool::SetDefParam(TInput& defInput)
 //-------------------------------------------------------------------------------
 bool TInputCmdDevTool::SetArg(vector<string>& vecArgv)
 {
-	mCmdParam.SetArg(vecArgv);
+  mCmdParam.SetArg(vecArgv);
 
-	int cIP = mCmdParam.GetCountValueByKey(KEY_IP_SRC);
-	if(cIP)
+  int cIP = mCmdParam.GetCountValueByKey(KEY_IP_SRC);
+  if(cIP)
   {
     string sIP;
     mCmdParam.GetByKey(KEY_IP_SRC, 0, sIP);
     mInput.ip_dst = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
   }
-	//-------------------------------------------------
-	int cPort = mCmdParam.GetCountValueByKey(KEY_PORT_SRC);
-	if(cPort)
+  //-------------------------------------------------
+  int cPort = mCmdParam.GetCountValueByKey(KEY_PORT_SRC);
+  if(cPort)
   {
     string sPort;
     mCmdParam.GetByKey(KEY_PORT_SRC, 0, sPort);
     mInput.port_dst = boost::lexical_cast<int>(sPort.data());
   }
-	//-------------------------------------------------
+  //-------------------------------------------------
   cPort = mCmdParam.GetCountValueByKey(KEY_PORT_SELF);
   if(cPort)
   {
@@ -62,11 +62,11 @@ bool TInputCmdDevTool::SetArg(vector<string>& vecArgv)
     mInput.port_self = boost::lexical_cast<int>(sPort.data());
   }
   //-------------------------------------------------
-	return true;
+  return true;
 }
 //-------------------------------------------------------------------------------
 void TInputCmdDevTool::Get(TInputCmdDevTool::TInput& v_out)
 {
-	v_out = mInput;
+  v_out = mInput;
 }
 //-------------------------------------------------------------------------------

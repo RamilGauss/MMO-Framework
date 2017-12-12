@@ -42,11 +42,11 @@ TypeStream g_ValueExchange;
 //---------------------------------------------------------------------------------------
 class TTestProducer : public TThreadBoost
 {
-	int mSizeSend;
+  int mSizeSend;
 public:
   TTestProducer()
   {
-		mSizeSend = 0;
+    mSizeSend = 0;
 
   }
 protected:
@@ -55,7 +55,7 @@ protected:
     if( mSizeSend==0 )
       g_Start = ht_GetMSCount();
 
-		TypeStream* pData = 
+    TypeStream* pData = 
 #ifdef WITHOUT_ALLOCATE_TEST
     &g_ValueExchange;
 #else
@@ -66,7 +66,7 @@ protected:
   #endif
 #endif
     g_List2Thread.Add(pData);
-		mSizeSend++;
+    mSizeSend++;
   }
 };
 //---------------------------------------------------------------------------------------
@@ -82,8 +82,8 @@ protected:
   virtual void Work()
   {
     TypeStream** pp = g_List2Thread.GetFirst();
-		if( pp )
-		{
+    if( pp )
+    {
       TypeStream* pData = *pp;
 #ifdef WITHOUT_ALLOCATE_TEST
       g_List2Thread.UnlinkData(pp);
@@ -105,7 +105,7 @@ protected:
           (mSizeRecv*sizeof(TypeStream))/((now - g_Start)*1000.0f),
           mSizeRecv/((now - g_Start)*1000.0f));
       }
-		}
+    }
   }
 };
 //---------------------------------------------------------------------------------------
@@ -133,20 +133,20 @@ int main(int argc, char** argv)
   {
     TypeStream* p = 
 #ifdef USE_BOOST_POOL
-			(TypeStream*)g_Allocator.malloc();
+      (TypeStream*)g_Allocator.malloc();
 #else
-			new TypeStream;
+      new TypeStream;
 #endif
     g_List2Thread.Add(p);
     TypeStream** pp = g_List2Thread.GetFirst();
     g_List2Thread.UnlinkData(pp);
     g_List2Thread.RemoveFirst();
 #ifdef USE_BOOST_POOL
-		g_Allocator.free(p);
+    g_Allocator.free(p);
 #else
-		delete p;
+    delete p;
 #endif
-	}
+  }
   unsigned int end = ht_GetMSCount();
   printf("%f kilo\n", cnt/((end - start)/1.0f));
   _getch();

@@ -9,13 +9,13 @@ See for more information License.h.
 
 namespace nsPattern_Gun
 {
-	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+  static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPattern_Gun;
 
 TPattern_Gun::TPattern_Gun() : 
-	TPattern_Model(&g_DefaultParameterMap)
+  TPattern_Model(&g_DefaultParameterMap)
 {
 
 }

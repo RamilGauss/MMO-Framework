@@ -17,23 +17,23 @@ See for more information License.h.
 
 struct DllExport TTerrainItem : public TBaseItem
 {
-	std::string mNameHeightData;
+  std::string mNameHeightData;
 
-	struct TGraphic
-	{
-		float maxPixelError;
-		float compositeMapDistance;
-	}_PACKED;
+  struct TGraphic
+  {
+    float maxPixelError;
+    float compositeMapDistance;
+  }_PACKED;
 
-	TGraphic mGraphic;
+  TGraphic mGraphic;
 
-	struct TConvention
-	{
-		int min;
-		int max;
-	}_PACKED;
-	TConvention mX;
-	TConvention mY;
+  struct TConvention
+  {
+    int min;
+    int max;
+  }_PACKED;
+  TConvention mX;
+  TConvention mY;
 
   TTerrainItem(std::string& name);
 }_PACKED;

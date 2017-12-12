@@ -16,17 +16,17 @@ class DllExport TOperation_Terrain : public TBaseOperation_Pattern
 {
 protected:
 
-	TPattern_Terrain* mPatternTerrain;
+  TPattern_Terrain* mPatternTerrain;
 public:
 
-	TOperation_Terrain();
-	virtual ~TOperation_Terrain();
+  TOperation_Terrain();
+  virtual ~TOperation_Terrain();
 
-	virtual void SetPattern(TBehaviourPattern* pPattern);
-	// концепция работы с Operation: 
-	//       вызов метода операции (поэтому интерфейс должен быть сформирован), 
-	//       операция берёт данные из паттерна, производит работу,
-	//       результат помещает в паттерн.
+  virtual void SetPattern(TBehaviourPattern* pPattern);
+  // концепция работы с Operation: 
+  //       вызов метода операции (поэтому интерфейс должен быть сформирован), 
+  //       операция берёт данные из паттерна, производит работу,
+  //       результат помещает в паттерн.
 };
 
 #endif

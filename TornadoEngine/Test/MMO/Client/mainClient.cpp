@@ -85,7 +85,7 @@ int main(int argc, char** argv)
       old_delta_time = deltaTime;
     }
     if( deltaTime < CLIENT_QUANT_TIME )
-			ht_msleep(1);
+      ht_msleep(1);
       //ht_msleep(CLIENT_QUANT_TIME-deltaTime);
   }
 

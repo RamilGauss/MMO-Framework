@@ -15,15 +15,15 @@ namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
   class TContextScSynchroSlave : public IContextScenario
-	{
+  {
     unsigned char mLoadProcent;
-	public:
-		TContextScSynchroSlave();
+  public:
+    TContextScSynchroSlave();
     virtual ~TContextScSynchroSlave();
 
     void SetLoadProcent(unsigned char v);
     unsigned char GetLoadProcent();
   private:
-	};
+  };
 }  
 #endif

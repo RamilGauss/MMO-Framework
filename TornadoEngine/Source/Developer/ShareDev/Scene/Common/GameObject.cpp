@@ -17,7 +17,7 @@ TGameObject::TGameObject()
 //----------------------------------------------------------------
 TGameObject::~TGameObject()
 {
-	delete mPtrPattern;
+  delete mPtrPattern;
 }
 //----------------------------------------------------------------
 int TGameObject::GetID() const

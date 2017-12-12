@@ -14,14 +14,14 @@ See for more information License.h.
 
 class DllExport TBuilder_Terrain_Bullet : public TBuilder_Terrain
 {
-	TBuilderTool_Terrain_Bullet mBuilder;
+  TBuilderTool_Terrain_Bullet mBuilder;
 public:
-	TBuilder_Terrain_Bullet();
-	virtual ~TBuilder_Terrain_Bullet();
+  TBuilder_Terrain_Bullet();
+  virtual ~TBuilder_Terrain_Bullet();
 
-	virtual void Begin();
-	virtual void Load(int x, int y);
-	virtual void End();
+  virtual void Begin();
+  virtual void Load(int x, int y);
+  virtual void End();
 protected:
 };
 

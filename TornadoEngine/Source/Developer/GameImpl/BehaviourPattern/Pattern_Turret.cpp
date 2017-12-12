@@ -9,13 +9,13 @@ See for more information License.h.
 
 namespace nsPattern_Turret
 {
-	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+  static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPattern_Turret;
 
 TPattern_Turret::TPattern_Turret() :
-	TPattern_Model(&g_DefaultParameterMap)
+  TPattern_Model(&g_DefaultParameterMap)
 {
 
 }

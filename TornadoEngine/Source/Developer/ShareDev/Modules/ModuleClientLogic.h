@@ -22,7 +22,7 @@ protected:
 
   boost::scoped_ptr<TGP_AggregationScenario_GameMap> mAggregationScenario_Client;
 
-	boost::scoped_ptr<TScene>                          mScene;
+  boost::scoped_ptr<TScene>                          mScene;
 
 public:
   TModuleClientLogic();

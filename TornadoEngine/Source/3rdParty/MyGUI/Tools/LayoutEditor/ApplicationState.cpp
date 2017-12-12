@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -12,31 +12,31 @@
 namespace tools
 {
 
-	FACTORY_ITEM_ATTRIBUTE(ApplicationState)
+  FACTORY_ITEM_ATTRIBUTE(ApplicationState)
 
-	ApplicationState::ApplicationState()
-	{
-	}
+  ApplicationState::ApplicationState()
+  {
+  }
 
-	ApplicationState::~ApplicationState()
-	{
-	}
+  ApplicationState::~ApplicationState()
+  {
+  }
 
-	void ApplicationState::initState()
-	{
-	}
+  void ApplicationState::initState()
+  {
+  }
 
-	void ApplicationState::cleanupState()
-	{
-	}
+  void ApplicationState::cleanupState()
+  {
+  }
 
-	void ApplicationState::pauseState()
-	{
-	}
+  void ApplicationState::pauseState()
+  {
+  }
 
-	void ApplicationState::resumeState()
-	{
-		Application::getInstance().quit();
-	}
+  void ApplicationState::resumeState()
+  {
+    Application::getInstance().quit();
+  }
 
 }

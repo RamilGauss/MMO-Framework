@@ -15,22 +15,22 @@ class DllExport TThreadBoost
   volatile bool flgActive;
   volatile bool flgNeedStop;
 
-	volatile unsigned int mTimeStart;
+  volatile unsigned int mTimeStart;
   enum
   {
     eWaitFeedBack = 50, // ждать пока активизируется двигатель, мс
   };
 
 public:
-	TThreadBoost();
-	virtual ~TThreadBoost();
+  TThreadBoost();
+  virtual ~TThreadBoost();
 
   virtual bool IsActive();
   virtual void Start();
   virtual void Stop();
 
-	virtual unsigned int GetTimeLastStart();
-	virtual unsigned int GetTimeWork();
+  virtual unsigned int GetTimeLastStart();
+  virtual unsigned int GetTimeWork();
 protected:
   void Engine();
 protected:

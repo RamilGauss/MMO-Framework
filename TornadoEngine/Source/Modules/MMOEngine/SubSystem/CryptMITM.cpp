@@ -11,9 +11,9 @@ See for more information License.h.
 #include "MD5.h"
 
 bool TCryptMITM::Calc(void* rsa, int size_rsa, 
-											void* pLogin, int sizeLogin,
+                      void* pLogin, int sizeLogin,
                       void* pPassword, int sizePassword, 
-											TContainer& c_result)
+                      TContainer& c_result)
 {
   TContainer cAES_RSA;
   // зашифровать публичный ключ RSA с помощью AES, используя в качестве ключа пароль
@@ -39,6 +39,6 @@ bool TCryptMITM::Calc(void* rsa, int size_rsa,
   c_result.Entrust((char*)bp.GetCollectPtr(), bp.GetSize());
   // отцепиться
   bp.UnlinkCollect();
-	return true;
+  return true;
 }
 //-------------------------------------------------------------------------------------------------------

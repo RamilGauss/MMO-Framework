@@ -12,8 +12,8 @@ See for more information License.h.
 
 TBuilderTool_Bullet::TBuilderTool_Bullet()
 {
-	mDefaultContactProcessingThreshold = BT_LARGE_FLOAT;
-	mID_PhysicWorld = -1;
+  mDefaultContactProcessingThreshold = BT_LARGE_FLOAT;
+  mID_PhysicWorld = -1;
 }
 //---------------------------------------------------------------------------------
 TBuilderTool_Bullet::~TBuilderTool_Bullet()
@@ -32,29 +32,29 @@ int TBuilderTool_Bullet::GetID_PhysicWorld()
 }
 //---------------------------------------------------------------------------------
 btRigidBody* TBuilderTool_Bullet::localCreateRigidBody(float mass, 
-					const btTransform& startTransform, btCollisionShape* shape, 
-					bool addInWorld)
+          const btTransform& startTransform, btCollisionShape* shape, 
+          bool addInWorld)
 {
-	btDiscreteDynamicsWorld* pWorld = 
-		TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(mID_PhysicWorld);
-	if( pWorld==NULL )
-		return NULL;
+  btDiscreteDynamicsWorld* pWorld = 
+    TModuleLogic::Get()->GetC()->pPhysicEngine->GetPE()->GetWorld(mID_PhysicWorld);
+  if( pWorld==NULL )
+    return NULL;
 
-	// rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (mass != 0.f);
-	btVector3 localInertia(0,0,0);
-	if( isDynamic )
-		shape->calculateLocalInertia(mass,localInertia);
-	// using motionstate is recommended, it provides interpolation capabilities, 
-	// and only synchronizes 'active' objects
-	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
-	btRigidBody::btRigidBodyConstructionInfo cInfo(mass,myMotionState,shape,localInertia);
+  // rigidbody is dynamic if and only if mass is non zero, otherwise static
+  bool isDynamic = (mass != 0.f);
+  btVector3 localInertia(0,0,0);
+  if( isDynamic )
+    shape->calculateLocalInertia(mass,localInertia);
+  // using motionstate is recommended, it provides interpolation capabilities, 
+  // and only synchronizes 'active' objects
+  btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
+  btRigidBody::btRigidBodyConstructionInfo cInfo(mass,myMotionState,shape,localInertia);
 
-	btRigidBody* body = new btRigidBody(cInfo);
-	body->setContactProcessingThreshold(mDefaultContactProcessingThreshold);
-	if( addInWorld )
-		pWorld->addRigidBody(body);
-	return body;
+  btRigidBody* body = new btRigidBody(cInfo);
+  body->setContactProcessingThreshold(mDefaultContactProcessingThreshold);
+  if( addInWorld )
+    pWorld->addRigidBody(body);
+  return body;
 }
 //-------------------------------------------------------------------
 

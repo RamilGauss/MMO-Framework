@@ -18,11 +18,11 @@ TBuilderGameMap::TBuilderGameMap()
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::Init(std::set<int>& useID_Module, 
-					 TFactoryBehaviourPattern* pFBP, int id_world)
+           TFactoryBehaviourPattern* pFBP, int id_world)
 {
   mUseID_Module            = useID_Module;
   mFactoryBehaviourPattern = pFBP;
-	mPhysicWorldID           = id_world;
+  mPhysicWorldID           = id_world;
 
   mBuilderGameObject.Init(mUseID_Module, mFactoryBehaviourPattern, mPhysicWorldID);
 }
@@ -43,35 +43,35 @@ bool TBuilderGameMap::BuildMap( TMapItem* pMI )
 
   mBeginIteratorMapObject = mMapItem->mListObject.begin();
 
-	mBuilderGameObject.SetNameMap(mMapItem->mName);
-	return true;
+  mBuilderGameObject.SetNameMap(mMapItem->mName);
+  return true;
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::Build()
 {
-	// создание и настройка игровых объектов
-	TMapItem::TListObject::iterator eit = mMapItem->mListObject.end();
-	if( mBeginIteratorMapObject!=eit )
-	{
-		TMapItem::TObject* pObject = &(*mBeginIteratorMapObject);
-		int id = mBuilderGameObject.Begin(pObject);
-		mListID_BuiltObject.push_back(id);
-		mBeginIteratorMapObject++;
-	}
-	if( mListID_BuiltObject.size()==0 )
-		return;
-	TListIntIt bitID = mListID_BuiltObject.begin();
-	TGameObject* pGO = mBuilderGameObject.Build(*bitID);
-	if( pGO )
-	{
-		mListGameObject.push_back(pGO);
-		mListID_BuiltObject.pop_front();
-	}
+  // создание и настройка игровых объектов
+  TMapItem::TListObject::iterator eit = mMapItem->mListObject.end();
+  if( mBeginIteratorMapObject!=eit )
+  {
+    TMapItem::TObject* pObject = &(*mBeginIteratorMapObject);
+    int id = mBuilderGameObject.Begin(pObject);
+    mListID_BuiltObject.push_back(id);
+    mBeginIteratorMapObject++;
+  }
+  if( mListID_BuiltObject.size()==0 )
+    return;
+  TListIntIt bitID = mListID_BuiltObject.begin();
+  TGameObject* pGO = mBuilderGameObject.Build(*bitID);
+  if( pGO )
+  {
+    mListGameObject.push_back(pGO);
+    mListID_BuiltObject.pop_front();
+  }
 }
 //--------------------------------------------------------------------------------------------
 int TBuilderGameMap::GetProgress()
 {
-	return (mListGameObject.size()*100)/mMapItem->mListObject.size();
+  return (mListGameObject.size()*100)/mMapItem->mListObject.size();
 }
 //--------------------------------------------------------------------------------------------
 void TBuilderGameMap::GetResult(TListPtrGameObject& listPtrGameObject)

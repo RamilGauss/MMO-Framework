@@ -8,42 +8,42 @@
 namespace tools
 {
 
-	class WidgetTypes :
-		public MyGUI::Singleton<WidgetTypes>
-	{
-	public:
-		void initialise();
-		void shutdown();
+  class WidgetTypes :
+    public MyGUI::Singleton<WidgetTypes>
+  {
+  public:
+    void initialise();
+    void shutdown();
 
-		WidgetStyle* findWidgetStyle(const std::string& _type);
-		WidgetStyle* findWidgetStyleBySkin(const std::string& _skinName);
-		typedef std::vector<std::string> VectorString;
-		VectorString findPossibleValues(const std::string& _name);
+    WidgetStyle* findWidgetStyle(const std::string& _type);
+    WidgetStyle* findWidgetStyleBySkin(const std::string& _skinName);
+    typedef std::vector<std::string> VectorString;
+    VectorString findPossibleValues(const std::string& _name);
 
-		void clearAllSkins();
+    void clearAllSkins();
 
-		void addWidgetSkinType(const std::string& _type, const std::string& _skin, const std::string& _group, const std::string& _button_name);
+    void addWidgetSkinType(const std::string& _type, const std::string& _skin, const std::string& _group, const std::string& _button_name);
 
-		const SkinGroups& getSkinGroups() const;
+    const SkinGroups& getSkinGroups() const;
 
-		VectorWidgetType getWidgetTypes() const;
+    VectorWidgetType getWidgetTypes() const;
 
-	private:
-		void loadWidgets(MyGUI::xml::ElementPtr _node, const std::string& _file, MyGUI::Version _version);
-		void loadValues(MyGUI::xml::ElementPtr _node, const std::string& _file, MyGUI::Version _version);
+  private:
+    void loadWidgets(MyGUI::xml::ElementPtr _node, const std::string& _file, MyGUI::Version _version);
+    void loadValues(MyGUI::xml::ElementPtr _node, const std::string& _file, MyGUI::Version _version);
 
-		WidgetStyle* getWidgetType(const std::string& _name);
+    WidgetStyle* getWidgetType(const std::string& _name);
 
-		PossibleValue* getPossibleValue(const std::string& _name);
+    PossibleValue* getPossibleValue(const std::string& _name);
 
-		void updateDeep();
-		size_t updateDeep(WidgetStyle* _style);
+    void updateDeep();
+    size_t updateDeep(WidgetStyle* _style);
 
-	private:
-		VectorWidgetType mWidgetTypes;
-		SkinGroups mSkinGroups;
-		VectorPossibleValue mPossibleValues;
-	};
+  private:
+    VectorWidgetType mWidgetTypes;
+    SkinGroups mSkinGroups;
+    VectorPossibleValue mPossibleValues;
+  };
 
 }
 

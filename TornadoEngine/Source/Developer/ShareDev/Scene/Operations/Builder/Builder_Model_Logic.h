@@ -23,40 +23,40 @@ class TShapeNode_Model;
 
 class DllExport TBuilder_Model_Logic : public TBuilder_Model
 {
-	TFactoryBehaviourPattern* mFBP;
-	TFactoryGameItem*         mFGI;
+  TFactoryBehaviourPattern* mFBP;
+  TFactoryGameItem*         mFGI;
 
-	TModelItem*               mModelItem;
+  TModelItem*               mModelItem;
 public:
-	TBuilder_Model_Logic();
-	virtual ~TBuilder_Model_Logic();
+  TBuilder_Model_Logic();
+  virtual ~TBuilder_Model_Logic();
 
-	virtual void Build();
+  virtual void Build();
 
-	void CalcGlobalLocation();
-	void RankGlobalLocationCorrection();
+  void CalcGlobalLocation();
+  void RankGlobalLocationCorrection();
 protected:
-	bool Init();
+  bool Init();
 
-	void SetupCollectionNode();
+  void SetupCollectionNode();
 
-	TBaseNode_Model* BuildModels(TModelItem::TVariant& variant);
-	TBaseNode_Model* BuildShapes(TModelItem::TVariant& variant);
+  TBaseNode_Model* BuildModels(TModelItem::TVariant& variant);
+  TBaseNode_Model* BuildShapes(TModelItem::TVariant& variant);
 
-	void LinkHierarchy();
-	void SetupJoint();
+  void LinkHierarchy();
+  void SetupJoint();
 
-	void SetupJointForNode(TBaseNode_Model* pNode, TNodeLocation_Model* pNodeLocation);
-	void SetupJointForNode_Model(TModelNode_Model* pModelNode, TNodeLocation_Model* pNodeLocation);
-	void SetupJointForNode_Shape(TShapeNode_Model* pShapeNode, TNodeLocation_Model* pNodeLocation);
+  void SetupJointForNode(TBaseNode_Model* pNode, TNodeLocation_Model* pNodeLocation);
+  void SetupJointForNode_Model(TModelNode_Model* pModelNode, TNodeLocation_Model* pNodeLocation);
+  void SetupJointForNode_Shape(TShapeNode_Model* pShapeNode, TNodeLocation_Model* pNodeLocation);
 
-	void CalcLocation();
-	void CalcLocalLocation();
+  void CalcLocation();
+  void CalcLocalLocation();
 
-	void CalcGlobalNode(TNodeLocation_Model* pNodeLocation);
+  void CalcGlobalNode(TNodeLocation_Model* pNodeLocation);
 
-	void RankBuildVariant();
-	void DefineLocalLocationJoint();
+  void RankBuildVariant();
+  void DefineLocalLocationJoint();
 };
 
 #endif

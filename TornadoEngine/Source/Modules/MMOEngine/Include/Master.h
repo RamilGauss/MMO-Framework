@@ -18,7 +18,7 @@ namespace nsMMOEngine
   class TManagerContextDownConnection_Slave;
   class TManagerContextClientLogining;
   class TManagerGroupClient;
-	class TStatisticaClientInGroup;
+  class TStatisticaClientInGroup;
   class TContextScRecommutationClient;
   class TManagerRecommutation;
   class DllExport TMaster : public TActiveServer
@@ -41,8 +41,8 @@ namespace nsMMOEngine
     boost::scoped_ptr<TManagerGroupClient>                     mMngGroup;
     // ID клиентов, которые ожидают в очереди, по причине загруженности Slave
     boost::scoped_ptr<TSetOrderElement>                        mSetClientKeyInQueue;
-		// для создания группы, нужна статистика по клиентам, которые уже в группе
-		boost::scoped_ptr<TStatisticaClientInGroup>                mStatisticaClientInGroup;
+    // для создания группы, нужна статистика по клиентам, которые уже в группе
+    boost::scoped_ptr<TStatisticaClientInGroup>                mStatisticaClientInGroup;
     // какой клиент с какими Slave связан в процессе перекоммутации
     // необходимо знать если произошел Дисконнект с Клиентом, Донором или Реципиентом, что бы 
     // уведомить оставшихся на связи об этом Дисконнекте.
@@ -66,14 +66,14 @@ namespace nsMMOEngine
                                 void* resForClient, int sizeResClient);
     virtual bool FindSlaveSessionByGroup(unsigned int id_group, unsigned int& id_session);
    
-		// BaseServer
+    // BaseServer
     virtual void SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket& bp);
-		struct TDescDownMaster
-		{
-			unsigned int id_session;
-		};
-		virtual int  GetCountDown();
-		virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc имеет тип TDescDownMaster*
+    struct TDescDownMaster
+    {
+      unsigned int id_session;
+    };
+    virtual int  GetCountDown();
+    virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc имеет тип TDescDownMaster*
 
     virtual void SendDown(unsigned int id_session, TBreakPacket& bp, bool check = true);
 
@@ -81,12 +81,12 @@ namespace nsMMOEngine
     virtual void ConnectUp(unsigned int ip, unsigned short port, 
                            void* pLogin, int sizeLogin, void* pPassword, int sizePassword, 
                            unsigned char subNet = 0 );
-	protected:
+  protected:
     // Base
     virtual void DisconnectInherit(unsigned int id_session);
-		virtual void WorkInherit();
+    virtual void WorkInherit();
 
-	protected:// like slots
+  protected:// like slots
     virtual void NeedContextDisconnectClient(unsigned int id_client);
     virtual void NeedContextLoginClientBySessionLeaveQueue(unsigned int id_session);
     virtual void NeedContextLoginClientBySession(unsigned int id_session);
@@ -94,15 +94,15 @@ namespace nsMMOEngine
     virtual void NeedContextLoginClientByClientKey(unsigned int id_key_client);
     virtual void NeedNumInQueueLoginClient(unsigned int id_session);
     //--------------------------------------------------------------------------
-		// RCM
+    // RCM
     virtual void NeedContextByClientKeyRcm(unsigned int key);
     virtual void NeedSlaveSessionDonorRcm(IScenario* pSc);//M
     virtual void EventActivateRcm(IScenario* pSc);//M
-		//----------------------------------------------------
+    //----------------------------------------------------
     virtual void NeedContextLoginSlave(unsigned int id_session);
     virtual void NeedContextSynchroSlave(unsigned int id_session);
     virtual void NeedContextSendToClient(unsigned int id_client);
-	protected:
+  protected:
     virtual void EndDisconnectClient(IScenario*);
     virtual void EndLoginMaster(IScenario* pSc);
     virtual void EndLoginSlave(IScenario* pSc);
@@ -136,9 +136,9 @@ namespace nsMMOEngine
                                  unsigned int id_session_slave, 
                                  void* resForClient, int sizeResClient);
     void AddInQueue(unsigned int id_client, void* resForClient, int sizeResClient);
-		// при освобождении места на Slave попытаться добавить Клиента, который ждет в очереди
+    // при освобождении места на Slave попытаться добавить Клиента, который ждет в очереди
     bool TryFindClientForAdd(unsigned int& id_client, unsigned int& id_session_slave);
-		void TryAddClientFromQueue();
+    void TryAddClientFromQueue();
     void Done();
 
     // находится ли Клиент в процессе перекоммутации

@@ -32,7 +32,7 @@ public:
   virtual void SetDataByCount(char* p, int count = 1);
   virtual char* GetPtr()const;
   virtual int GetCount()const;
-	virtual int GetSize()const;
+  virtual int GetSize()const;
   virtual void Unlink();
   virtual void Done();
 };
@@ -85,7 +85,7 @@ int TContainerPtrArrObj<T>::GetCount() const
 template <typename T>
 int TContainerPtrArrObj<T>::GetSize() const
 {
-	return mCount*sizeof(T);
+  return mCount*sizeof(T);
 }
 //---------------------------------------------------------------
 template <typename T>

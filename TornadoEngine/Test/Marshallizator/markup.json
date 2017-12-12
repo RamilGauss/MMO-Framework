@@ -1,5 +1,5 @@
 ﻿{
-	"classPrefix" : "T"
+	"classPrefix" : "T",
 	"class" : 
 	{
 		"MyClass":
@@ -30,8 +30,8 @@
 			{
 				"int" :
 				{
-					"int"    : [ "mMapID_Index" ], // value
-					"string" : [ "mMapID_Name" ]// value
+					"int"    : [ "mMapID_Index" ],
+					"string" : [ "mMapID_Name" ]
 				}
 			},
 			"OtherClass" : [ "other" ],

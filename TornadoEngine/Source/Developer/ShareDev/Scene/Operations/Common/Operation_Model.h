@@ -16,17 +16,17 @@ class DllExport TOperation_Model : public TBaseOperation_Pattern
 {
 protected:
 
-	TPattern_Model* mPatternModel;
+  TPattern_Model* mPatternModel;
 public:
 
-	TOperation_Model();
-	virtual ~TOperation_Model();
+  TOperation_Model();
+  virtual ~TOperation_Model();
 
-	virtual void SetPattern(TBehaviourPattern* pPattern);
-	// концепция работы с Operation: 
-	//       вызов метода операции (поэтому интерфейс должен быть сформирован), 
-	//       операция берёт данные из паттерна, производит работу,
-	//       результат помещает в паттерн.
+  virtual void SetPattern(TBehaviourPattern* pPattern);
+  // концепция работы с Operation: 
+  //       вызов метода операции (поэтому интерфейс должен быть сформирован), 
+  //       операция берёт данные из паттерна, производит работу,
+  //       результат помещает в паттерн.
 };
 
 #endif

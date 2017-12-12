@@ -27,24 +27,24 @@ class DllExport TBuilderGameMap
   int                       mPhysicWorldID;
   TMapItem*                 mMapItem;
 
-	std::set<int> mUseID_Module;
+  std::set<int> mUseID_Module;
 
-	TBuilderGameMap_Object mBuilderGameObject;
+  TBuilderGameMap_Object mBuilderGameObject;
 
-	typedef std::list<int> TListInt;
-	typedef TListInt::iterator TListIntIt;
-	
-	TListInt mListID_BuiltObject;
+  typedef std::list<int> TListInt;
+  typedef TListInt::iterator TListIntIt;
+  
+  TListInt mListID_BuiltObject;
 public:
   TBuilderGameMap();
   virtual ~TBuilderGameMap();
 
-	void Init(std::set<int>& useID_Module, TFactoryBehaviourPattern* pFBP, int id_world);
+  void Init(std::set<int>& useID_Module, TFactoryBehaviourPattern* pFBP, int id_world);
   bool BuildMap( TMapItem* pMI );
 
   int GetProgress();
 
-	void Build();
+  void Build();
 
   typedef std::list<TGameObject*> TListPtrGameObject;
   typedef TListPtrGameObject::iterator TListPtrGameObjectIt;

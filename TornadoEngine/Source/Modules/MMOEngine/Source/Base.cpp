@@ -82,12 +82,12 @@ void TBase::SetLoad(int procent)
 //-------------------------------------------------------------------------
 void TBase::DisconnectUp()
 {
-	if(mID_SessionUp==INVALID_HANDLE_SESSION)
-		return;
-	
-	mManagerSession->CloseSession(mID_SessionUp);
-	
-	mID_SessionUp = INVALID_HANDLE_SESSION;
+  if(mID_SessionUp==INVALID_HANDLE_SESSION)
+    return;
+  
+  mManagerSession->CloseSession(mID_SessionUp);
+  
+  mID_SessionUp = INVALID_HANDLE_SESSION;
   // событие НЕ создавать, т.к. процесс синхронный
 }
 //-------------------------------------------------------------------------
@@ -99,7 +99,7 @@ void TBase::SendUp(TBreakPacket& bp, bool check)
 //-------------------------------------------------------------------------
 bool TBase::IsConnectUp()
 {
-	return mManagerSession->IsExist(mID_SessionUp);
+  return mManagerSession->IsExist(mID_SessionUp);
 }
 //-------------------------------------------------------------------------
 bool TBase::IsConnect(unsigned int id)
@@ -126,15 +126,15 @@ void TBase::Work()
   mManagerSession->Work();
   // обработать полученные данные соответствующим сценарием
   HandleListRecv();
-	// отреагировать на событие дисконнект сессий
-	HandleListDisconnect();
+  // отреагировать на событие дисконнект сессий
+  HandleListDisconnect();
   // дать отработать всем сценариям по своим задачам 
   // порядок вызовов здесь не случаен, сначала должен быть вызов HandleListRecv
   mMngMngContextSc->Work();
   // те сценарии которые должны были быть удалены, но были активны (нельзя было явно удалять)
   DeleteContainerScenario();
-	// например, Slave должен отсылать отчет по своей нагрузке CPU на Master
-	WorkInherit();
+  // например, Slave должен отсылать отчет по своей нагрузке CPU на Master
+  WorkInherit();
 }
 //-------------------------------------------------------------------------
 void TBase::SetTimeLiveSession(unsigned int time_ms)

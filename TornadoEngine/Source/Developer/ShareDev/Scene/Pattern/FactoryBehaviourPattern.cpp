@@ -24,26 +24,26 @@ See for more information License.h.
 TFactoryBehaviourPattern::TFactoryBehaviourPattern()
 {
   mCB_MapParameter.Register(&TFactoryBehaviourPattern::MakeMapParameter, this);
-  mCB_Animated.		 Register(&TFactoryBehaviourPattern::MakeAnimated, 		 this);
-  mCB_Light.   		 Register(&TFactoryBehaviourPattern::MakeLight,    		 this);
-  mCB_Model.   		 Register(&TFactoryBehaviourPattern::MakeModel,    		 this);
-  mCB_Skybox.  		 Register(&TFactoryBehaviourPattern::MakeSkybox,   		 this);
-	mCB_Skydome. 		 Register(&TFactoryBehaviourPattern::MakeSkydome,  		 this);
-	mCB_Skyplane.		 Register(&TFactoryBehaviourPattern::MakeSkyplane, 		 this);
-  mCB_Sound.   		 Register(&TFactoryBehaviourPattern::MakeSound,    		 this);
-  mCB_Terrain. 		 Register(&TFactoryBehaviourPattern::MakeTerrain,  		 this);
-  mCB_Volume.  		 Register(&TFactoryBehaviourPattern::MakeVolume,     		 this);
+  mCB_Animated.     Register(&TFactoryBehaviourPattern::MakeAnimated,      this);
+  mCB_Light.        Register(&TFactoryBehaviourPattern::MakeLight,         this);
+  mCB_Model.        Register(&TFactoryBehaviourPattern::MakeModel,         this);
+  mCB_Skybox.       Register(&TFactoryBehaviourPattern::MakeSkybox,        this);
+  mCB_Skydome.      Register(&TFactoryBehaviourPattern::MakeSkydome,       this);
+  mCB_Skyplane.     Register(&TFactoryBehaviourPattern::MakeSkyplane,      this);
+  mCB_Sound.        Register(&TFactoryBehaviourPattern::MakeSound,         this);
+  mCB_Terrain.      Register(&TFactoryBehaviourPattern::MakeTerrain,       this);
+  mCB_Volume.       Register(&TFactoryBehaviourPattern::MakeVolume,          this);
 
   mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::MapParameter(), &mCB_MapParameter));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Animated(), 		 &mCB_Animated));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Light(),    		 &mCB_Light));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Model(),    		 &mCB_Model));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skybox(),   		 &mCB_Skybox));
-	mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skydome(),  		 &mCB_Skydome));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skyplane(), 		 &mCB_Skyplane));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Sound(),    		 &mCB_Sound));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Terrain(),  		 &mCB_Terrain));
-  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Volume(),     		 &mCB_Volume));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Animated(),      &mCB_Animated));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Light(),         &mCB_Light));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Model(),         &mCB_Model));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skybox(),        &mCB_Skybox));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skydome(),       &mCB_Skydome));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Skyplane(),      &mCB_Skyplane));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Sound(),         &mCB_Sound));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Terrain(),       &mCB_Terrain));
+  mMapNameMakerPattern.insert(TMapStrCBVT(TManagerNamePattern::Volume(),          &mCB_Volume));
 }
 //----------------------------------------------------------------------------
 TFactoryBehaviourPattern::~TFactoryBehaviourPattern()
@@ -103,7 +103,7 @@ std::string TFactoryBehaviourPattern::GetNameByIndex(int index)
 //----------------------------------------------------------------------------
 void TFactoryBehaviourPattern::MakeMapParameter(TBehaviourPattern*& p)
 {
-	p = new TPattern_MapParameter();
+  p = new TPattern_MapParameter();
 }
 //----------------------------------------------------------------------------
 void TFactoryBehaviourPattern::MakeAnimated(TBehaviourPattern*& p)
@@ -128,12 +128,12 @@ void TFactoryBehaviourPattern::MakeSkybox(TBehaviourPattern*& p)
 //----------------------------------------------------------------------------
 void TFactoryBehaviourPattern::MakeSkydome(TBehaviourPattern*& p)
 {
-	p = new TPattern_Skydome();
+  p = new TPattern_Skydome();
 }
 //----------------------------------------------------------------------------
 void TFactoryBehaviourPattern::MakeSkyplane(TBehaviourPattern*& p)
 {
-	p = new TPattern_Skyplane();
+  p = new TPattern_Skyplane();
 }
 //----------------------------------------------------------------------------
 void TFactoryBehaviourPattern::MakeSound(TBehaviourPattern*& p)

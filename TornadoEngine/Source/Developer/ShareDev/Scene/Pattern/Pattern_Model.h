@@ -30,39 +30,39 @@ class TShapeNode_Model;
 
 class DllExport TPattern_Model : public TBehaviourPattern
 {
-	bool mIsGameObject;
+  bool mIsGameObject;
 public:// for using by scenarios
-	// набор узлов
-	TManagerNode_Model mMngNode_Collection;
-	// узлы из иерархии
-	THierarchyNode_Model mHierarchy;
-	// узлы из иерархии для расчета позиционирования узлов и крючков
-	TManagerNodeLocation_Model mMngNodeLocation;
+  // набор узлов
+  TManagerNode_Model mMngNode_Collection;
+  // узлы из иерархии
+  THierarchyNode_Model mHierarchy;
+  // узлы из иерархии для расчета позиционирования узлов и крючков
+  TManagerNodeLocation_Model mMngNodeLocation;
 
-	TModelItem::eType mTypeContent;
+  TModelItem::eType mTypeContent;
 protected:
-	TBuilder_Model_Logic  mBuilderLogic;
-	TBuilder_Model_Bullet mBuilderBullet;
-	TBuilder_Model_Ogre   mBuilderOgre;
+  TBuilder_Model_Logic  mBuilderLogic;
+  TBuilder_Model_Bullet mBuilderBullet;
+  TBuilder_Model_Ogre   mBuilderOgre;
 
-	//TDestructor_Model_Bullet 			mDestructorBullet;
-	//TDestructor_Model_Ogre   			mDestructorOgre;
+  //TDestructor_Model_Bullet       mDestructorBullet;
+  //TDestructor_Model_Ogre         mDestructorOgre;
 
-	//TModify_Model_Bullet  			  mModifyBullet;
-	//TModify_Model_Ogre    			  mModifyOgre;
+  //TModify_Model_Bullet          mModifyBullet;
+  //TModify_Model_Ogre            mModifyOgre;
 
-	//TUpdaterGameItem_Model_Bullet mUpdaterGIBullet;
-	//TUpdaterGameItem_Model_Ogre   mUpdaterGIOgre;
+  //TUpdaterGameItem_Model_Bullet mUpdaterGIBullet;
+  //TUpdaterGameItem_Model_Ogre   mUpdaterGIOgre;
 
-	//TSaverGameItem_Model_Bullet   mSaverGameItem_Bullet;
-	//TSaverGameItem_Model_Ogre     mSaverGameItem_Ogre;
+  //TSaverGameItem_Model_Bullet   mSaverGameItem_Bullet;
+  //TSaverGameItem_Model_Ogre     mSaverGameItem_Ogre;
 
-	//TSaverOutData_Model_Bullet    mSaverOutData_Bullet;
-	//TSaverOutData_Model_Ogre      mSaverOutData_Ogre;
+  //TSaverOutData_Model_Bullet    mSaverOutData_Bullet;
+  //TSaverOutData_Model_Ogre      mSaverOutData_Ogre;
 
-	TSynchronizer_Model_Bullet mSynchronizerBullet;
-	TSynchronizer_Model_Logic  mSynchronizerLogic;
-	TSynchronizer_Model_Ogre   mSynchronizerOgre;
+  TSynchronizer_Model_Bullet mSynchronizerBullet;
+  TSynchronizer_Model_Logic  mSynchronizerLogic;
+  TSynchronizer_Model_Ogre   mSynchronizerOgre;
 public:
   TPattern_Model();
   TPattern_Model(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
@@ -72,7 +72,7 @@ public:
   virtual bool SetParameterFromPattern(TContainer c);// L
   virtual TContainer GetParameterToPattern();// B - Slave
 
-	virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TManagerNamePattern::eBaseType GetBaseType();
 
   // Выполнить задания в каждом из потоков
   virtual void BuildByModule_Logic();
@@ -90,40 +90,40 @@ public:
   virtual void SynchroByModule_Physic(); // внутренняя синхронизация
   virtual void SynchroByModule_Sound();  // звук от физики
 
-	// model interface
+  // model interface
 
-	// активировать все физические тела
-	// btRigidBody.h:
-	// Bullet automatically deactivates dynamic rigid bodies, when the velocity is below a threshold for a given time.
-	// Deactivated (sleeping) rigid bodies don't take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)
-	virtual void ActivatePhysicBody(bool force = true);
+  // активировать все физические тела
+  // btRigidBody.h:
+  // Bullet automatically deactivates dynamic rigid bodies, when the velocity is below a threshold for a given time.
+  // Deactivated (sleeping) rigid bodies don't take any processing time, except a minor broadphase collision detection impact (to allow active objects to activate/wake up sleeping objects)
+  virtual void ActivatePhysicBody(bool force = true);
 
 public:// for using by scenarios
-	// является ли объект самостоятельным игровым (или часть игрового или другого неигрового)
-	virtual void SetIsGameObject(bool v);
-	virtual bool IsGameObject();
+  // является ли объект самостоятельным игровым (или часть игрового или другого неигрового)
+  virtual void SetIsGameObject(bool v);
+  virtual bool IsGameObject();
 
-	virtual void Event_AddModelNode(TModelNode_Model* p);
+  virtual void Event_AddModelNode(TModelNode_Model* p);
 
-	TModelItem::eType GetTypeContent();
-	void SetTypeContent(TModelItem::eType type);
+  TModelItem::eType GetTypeContent();
+  void SetTypeContent(TModelItem::eType type);
 
-	// игровой итэм для загрузки и управления частями
-	void SetNameGameItem(std::string& name);
-	std::string GetNameGameItem();
-	// подвижность
-	void SetMobility(bool v);
-	bool GetMobility();
+  // игровой итэм для загрузки и управления частями
+  void SetNameGameItem(std::string& name);
+  std::string GetNameGameItem();
+  // подвижность
+  void SetMobility(bool v);
+  bool GetMobility();
 
-	// Logic feedback
-	void CalcGlobalLocation_Parts();
-	void RankGlobalLocationCorrection();
+  // Logic feedback
+  void CalcGlobalLocation_Parts();
+  void RankGlobalLocationCorrection();
 
-	// Physic feedback
-	btRigidBody* GetRigidBody(std::string namePart);
-	void AddRigidBody(btRigidBody*);
+  // Physic feedback
+  btRigidBody* GetRigidBody(std::string namePart);
+  void AddRigidBody(btRigidBody*);
 protected:
-	void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
+  void Init(TPatternConfigItem::TMapStrStr* pDefaultParameterMap);
 
 };
 

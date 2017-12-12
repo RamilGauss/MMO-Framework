@@ -8,17 +8,17 @@
 namespace tools
 {
 
-	class MainWorkspaceControl :
-		public SeparatorPartControl
-	{
-	public:
-		MainWorkspaceControl(MyGUI::Widget* _parent);
-		virtual ~MainWorkspaceControl();
+  class MainWorkspaceControl :
+    public SeparatorPartControl
+  {
+  public:
+    MainWorkspaceControl(MyGUI::Widget* _parent);
+    virtual ~MainWorkspaceControl();
 
-	private:
-		ToolsControl* mToolsControl;
-		WorkspaceControl* mWorkspaceControl;
-	};
+  private:
+    ToolsControl* mToolsControl;
+    WorkspaceControl* mWorkspaceControl;
+  };
 
 }
 

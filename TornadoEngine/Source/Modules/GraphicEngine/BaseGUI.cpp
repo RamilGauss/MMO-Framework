@@ -21,21 +21,21 @@ void TBaseGUI::Show()
 
   mMainWidget->setVisible(true);
 
-	mCB_Show.Notify();
+  mCB_Show.Notify();
 }
 //--------------------------------------------------------------
 void TBaseGUI::Hide()
 {
   mMainWidget->setVisible(false);
 
-	mCB_Hide.Notify();
+  mCB_Hide.Notify();
 }
 //--------------------------------------------------------------
 bool TBaseGUI::IsVisible()
 {
-	if( mMainWidget==NULL )
-		return false;
-	return mMainWidget->getVisible();
+  if( mMainWidget==NULL )
+    return false;
+  return mMainWidget->getVisible();
 }
 //--------------------------------------------------------------
 void TBaseGUI::InitTabJump()
@@ -91,12 +91,12 @@ void TBaseGUI::Shutdown()
 //--------------------------------------------------------------
 TCallBackRegistrator0* TBaseGUI::GetCB_Show()
 {
-	return &mCB_Show;
+  return &mCB_Show;
 }
 //--------------------------------------------------------------
 TCallBackRegistrator0* TBaseGUI::GetCB_Hide()
 {
-	return &mCB_Hide;
+  return &mCB_Hide;
 }
 //--------------------------------------------------------------
 

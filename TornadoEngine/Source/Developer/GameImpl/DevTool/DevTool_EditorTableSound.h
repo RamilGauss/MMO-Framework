@@ -13,12 +13,12 @@ See for more information License.h.
 class TDevTool_EditorTableSound : public TDevTool_Share
 {
 public:
-	TDevTool_EditorTableSound();
-	virtual ~TDevTool_EditorTableSound();
+  TDevTool_EditorTableSound();
+  virtual ~TDevTool_EditorTableSound();
 
-	virtual std::string GetVariantConveyer();
+  virtual std::string GetVariantConveyer();
 protected:
-	virtual TModuleDev* GetModuleLogic();
+  virtual TModuleDev* GetModuleLogic();
 };
 
 #endif

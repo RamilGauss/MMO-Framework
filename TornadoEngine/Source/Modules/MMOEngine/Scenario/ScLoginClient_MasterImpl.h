@@ -23,7 +23,7 @@ namespace nsMMOEngine
       eDeltaTimeNumInQueue_ms = 1000,
     };
   public:
-	  TScLoginClient_MasterImpl(IScenario* pSc);
+    TScLoginClient_MasterImpl(IScenario* pSc);
 
     virtual void Work(unsigned int time_ms);
 

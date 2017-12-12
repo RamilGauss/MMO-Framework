@@ -34,7 +34,7 @@ TContextScLoginClient::TContextScLoginClient()
 
   flgNeedLeaveQueue = false;
 
-	flgWasBegin = false;
+  flgWasBegin = false;
 }
 //------------------------------------------------------------------
 TContextScLoginClient::~TContextScLoginClient()
@@ -74,11 +74,11 @@ void TContextScLoginClient::Reject()
 //------------------------------------------------------------------
 void TContextScLoginClient::SetID_Session(std::string& name, unsigned int id)
 {
-	TMapStrUintIt fit = mMapStrID_Session.find(name);
-	if(fit==mMapStrID_Session.end())
-		mMapStrID_Session.insert(TMapStrUint::value_type(name,id));
-	else
-		fit->second = id;
+  TMapStrUintIt fit = mMapStrID_Session.find(name);
+  if(fit==mMapStrID_Session.end())
+    mMapStrID_Session.insert(TMapStrUint::value_type(name,id));
+  else
+    fit->second = id;
 }
 //--------------------------------------------------------------
 unsigned int TContextScLoginClient::GetID_Session(std::string& name)
@@ -166,17 +166,17 @@ int TContextScLoginClient::GetSaveAcceptDataSize()
 //--------------------------------------------------------------
 void TContextScLoginClient::SaveQueueData(void* resForClient, int sizeResClient)
 {
-	mQueueData.SetDataByCount((char*)resForClient, sizeResClient);
+  mQueueData.SetDataByCount((char*)resForClient, sizeResClient);
 }
 //--------------------------------------------------------------
 void* TContextScLoginClient::GetSaveQueueDataPtr()
 {
-	return mQueueData.GetPtr();
+  return mQueueData.GetPtr();
 }
 //--------------------------------------------------------------
 int TContextScLoginClient::GetSaveQueueDataSize()
 {
-	return mQueueData.GetSize();
+  return mQueueData.GetSize();
 }
 //--------------------------------------------------------------
 unsigned int TContextScLoginClient::GetClientKey()
@@ -221,12 +221,12 @@ void TContextScLoginClient::SetFakeClient(bool val)
 //--------------------------------------------------------------
 void TContextScLoginClient::SetSubNet(unsigned char v)
 {
-	mSubNet = v;
+  mSubNet = v;
 }
 //--------------------------------------------------------------
 unsigned char TContextScLoginClient::GetSubNet()
 {
-	return mSubNet;
+  return mSubNet;
 }
 //--------------------------------------------------------------
 unsigned int TContextScLoginClient::GetDeltaTimeWaitMS()
@@ -241,26 +241,26 @@ void TContextScLoginClient::SetDeltaTimeWaitMS(unsigned int v)
 //--------------------------------------------------------------
 bool TContextScLoginClient::WasBegin()
 {
-	return flgWasBegin;
+  return flgWasBegin;
 }
 //--------------------------------------------------------------
 void TContextScLoginClient::SetWasBegin()
 {
-	flgWasBegin = true;
+  flgWasBegin = true;
 }
 //--------------------------------------------------------------
 void TContextScLoginClient::Set_L_AES_RSA(char* p, int size)
 {
-	mC_L_AES_RSA.SetData(p, size);
+  mC_L_AES_RSA.SetData(p, size);
 }
 //--------------------------------------------------------------
 char* TContextScLoginClient::GetPtr_L_AES_RSA()
 {
-	return (char*)mC_L_AES_RSA.GetPtr();
+  return (char*)mC_L_AES_RSA.GetPtr();
 }
 //--------------------------------------------------------------
 int TContextScLoginClient::GetSize_L_AES_RSA()
 {
-	return mC_L_AES_RSA.GetSize();
+  return mC_L_AES_RSA.GetSize();
 }
 //--------------------------------------------------------------

@@ -19,9 +19,9 @@ class DllExport TResources
   std::string strError;
 
 public:
-	typedef std::multimap<std::string,std::string> TMMapStrStr;
-	typedef TMMapStrStr::iterator   TMMapStrStrIt;
-	typedef TMMapStrStr::value_type TMMapStrStrVT;
+  typedef std::multimap<std::string,std::string> TMMapStrStr;
+  typedef TMMapStrStr::iterator   TMMapStrStrIt;
+  typedef TMMapStrStr::value_type TMMapStrStrVT;
 
   TResources();
   virtual ~TResources();
@@ -37,7 +37,7 @@ protected:
   bool LoadResources();
 
 private:
-	TMMapStrStr mMapTypePath;
+  TMMapStrStr mMapTypePath;
 protected:
   IXML* mXML;
 };

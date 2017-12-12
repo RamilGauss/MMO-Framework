@@ -33,17 +33,17 @@ class TThread : public TThreadBoost
   bool mFlgPrintf;
   float mSpeed;
 public:
-	void Setup(Type* p, bool isPrintf = false)
-	{
-		pPtr = p;
+  void Setup(Type* p, bool isPrintf = false)
+  {
+    pPtr = p;
     mRes = 1.0f;
     mCountWork = 0;
     mStart = 0;
     mFlgPrintf = isPrintf;
-	}
+  }
 protected:
-	virtual void Work()
-	{
+  virtual void Work()
+  {
     if(mCountWork==0)
       mStart = ht_GetMSCount();
 
@@ -64,9 +64,9 @@ protected:
 //---------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-	std::string CPUBrandString;
-	GetBrandCPU(CPUBrandString);
-	printf("CPU Brand Name \"%s\"\n", CPUBrandString.data() );
+  std::string CPUBrandString;
+  GetBrandCPU(CPUBrandString);
+  printf("CPU Brand Name \"%s\"\n", CPUBrandString.data() );
 
   printf("Input parameter: number of threads\n");
   if(argc!=2)
@@ -79,7 +79,7 @@ int main(int argc, char** argv)
   printf("Arguments number of threads = %d\n", cntThread);
   TThread arrThread[8];
 
-	for( int i = 0 ; i < cntThread ; i++ )
+  for( int i = 0 ; i < cntThread ; i++ )
   {
     if(i==0)
       arrThread[i].Setup(&g_ArrInitValue[i], true);
@@ -94,32 +94,32 @@ int main(int argc, char** argv)
     arrThread[i].Stop();
 
   _getch();
-	return 0;
+  return 0;
 }
 //---------------------------------------------------------------------------------------
 /*
-	Intel(R) Core(TM) i5 4430 @ 3.00GHz
-	Кол-во потоков, Производительность, Относительно 1 потока
+  Intel(R) Core(TM) i5 4430 @ 3.00GHz
+  Кол-во потоков, Производительность, Относительно 1 потока
   1                    26.7                 100%
-  2 									 26.2 								173%
-  3 									 25.7 								289%
-  4 									 25.4 								381%
+  2                    26.2                 173%
+  3                    25.7                 289%
+  4                    25.4                 381%
 
   Intel(R) Core(TM)2 Duo CPU E4600  @ 2.40GHz
-	1 									 8.91 								100%
-	2 									 8.56 								192%
-	3 									 4.4  								148%
-	4 									 4.35 								195%
+  1                    8.91                 100%
+  2                    8.56                 192%
+  3                    4.4                  148%
+  4                    4.35                 195%
 
-	Intel(R) Core(TM) i3 4030 @ 3.00GHz
-	1 									 6.6                  100% 
-	2 									 3.1                  94 % Intel, что за наебалово?
-	3 									 2.8                  127%
-	4 									 2.7                  164%
+  Intel(R) Core(TM) i3 4030 @ 3.00GHz
+  1                    6.6                  100% 
+  2                    3.1                  94 % Intel, что за наебалово?
+  3                    2.8                  127%
+  4                    2.7                  164%
 
-	AMD FX(tm)-4100 Quad-Core Processor @ 3.8GHz (скорость нестабильна)
-	1 									 14.3                 100%
-	2 								   6.1                  85%
-	3 									 6.5                  136%
-	4 									 6.0                  168%
+  AMD FX(tm)-4100 Quad-Core Processor @ 3.8GHz (скорость нестабильна)
+  1                    14.3                 100%
+  2                    6.1                  85%
+  3                    6.5                  136%
+  4                    6.0                  168%
 */

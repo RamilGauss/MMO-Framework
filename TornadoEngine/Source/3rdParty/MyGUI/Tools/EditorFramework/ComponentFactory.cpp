@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -40,44 +40,44 @@
 namespace tools
 {
 
-	void ComponentFactory::Initialise()
-	{
-		FACTORY_ITEM(Control)
-		FACTORY_ITEM(FocusInfoControl)
-		FACTORY_ITEM(DataListBaseControl)
-		FACTORY_ITEM(ColourPanel)
-		FACTORY_ITEM(BackgroundControl)
-		FACTORY_ITEM(TextureBrowseControl)
-		FACTORY_ITEM(TextFieldControl)
-		FACTORY_ITEM(SettingsWindow)
-		FACTORY_ITEM(ScopeTextureControl)
-		FACTORY_ITEM(PropertyTexturesControl)
-		FACTORY_ITEM(PropertyStringControl)
-		FACTORY_ITEM(PropertyPanelControl)
-		FACTORY_ITEM(PropertyIntControl)
-		FACTORY_ITEM(PropertyInt4Control)
-		FACTORY_ITEM(PropertyInt2Control)
-		FACTORY_ITEM(PropertyFloatControl)
-		FACTORY_ITEM(PropertyColourControl)
-		FACTORY_ITEM(PropertyBoolControl)
-		FACTORY_ITEM(OpenSaveFileDialog)
-		FACTORY_ITEM(MessageBoxFadeControl)
-		FACTORY_ITEM(MainMenuControl)
-		FACTORY_ITEM(ListBoxDataControl)
-		FACTORY_ITEM(SeparatePanel)
+  void ComponentFactory::Initialise()
+  {
+    FACTORY_ITEM(Control)
+    FACTORY_ITEM(FocusInfoControl)
+    FACTORY_ITEM(DataListBaseControl)
+    FACTORY_ITEM(ColourPanel)
+    FACTORY_ITEM(BackgroundControl)
+    FACTORY_ITEM(TextureBrowseControl)
+    FACTORY_ITEM(TextFieldControl)
+    FACTORY_ITEM(SettingsWindow)
+    FACTORY_ITEM(ScopeTextureControl)
+    FACTORY_ITEM(PropertyTexturesControl)
+    FACTORY_ITEM(PropertyStringControl)
+    FACTORY_ITEM(PropertyPanelControl)
+    FACTORY_ITEM(PropertyIntControl)
+    FACTORY_ITEM(PropertyInt4Control)
+    FACTORY_ITEM(PropertyInt2Control)
+    FACTORY_ITEM(PropertyFloatControl)
+    FACTORY_ITEM(PropertyColourControl)
+    FACTORY_ITEM(PropertyBoolControl)
+    FACTORY_ITEM(OpenSaveFileDialog)
+    FACTORY_ITEM(MessageBoxFadeControl)
+    FACTORY_ITEM(MainMenuControl)
+    FACTORY_ITEM(ListBoxDataControl)
+    FACTORY_ITEM(SeparatePanel)
 
-		FACTORY_ITEM(PropertyPanelController)
+    FACTORY_ITEM(PropertyPanelController)
 
-		FACTORY_ITEM(UniqueNamePropertyInitialisator)
-		FACTORY_ITEM(TexturePropertyInitialisator)
+    FACTORY_ITEM(UniqueNamePropertyInitialisator)
+    FACTORY_ITEM(TexturePropertyInitialisator)
 
-		FACTORY_ITEM(ChangeValueAction)
-		FACTORY_ITEM(ActionRenameData)
-		FACTORY_ITEM(ActionChangeDataProperty)
-	}
+    FACTORY_ITEM(ChangeValueAction)
+    FACTORY_ITEM(ActionRenameData)
+    FACTORY_ITEM(ActionChangeDataProperty)
+  }
 
-	void ComponentFactory::Shutdown()
-	{
-		::components::FactoryManager::GetInstancePtr()->UnregisterAllFactories();
-	}
+  void ComponentFactory::Shutdown()
+  {
+    ::components::FactoryManager::GetInstancePtr()->UnregisterAllFactories();
+  }
 }

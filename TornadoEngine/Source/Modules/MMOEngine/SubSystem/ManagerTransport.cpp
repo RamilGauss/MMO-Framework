@@ -20,67 +20,67 @@ using namespace std;
 
 TManagerTransport::TManagerTransport(TManagerSession* pMS)
 {
-	mMakerTransport = NULL;
-	mMngSession     = pMS;
+  mMakerTransport = NULL;
+  mMngSession     = pMS;
 }
 //------------------------------------------------------------------------------------
 TManagerTransport::~TManagerTransport()
 {
-	Done();
+  Done();
 }
 //------------------------------------------------------------------------------------
 void TManagerTransport::SetTransport(IMakerTransport* pMT)
 {
-	mMakerTransport = pMT;
+  mMakerTransport = pMT;
 }
 //------------------------------------------------------------------------------------
 INetTransport* TManagerTransport::FindBySubNet( unsigned char v)
 {
-	TMapUcharPtrIt fit = mMapSubNetTransport.find(v);
-	if(fit==mMapSubNetTransport.end())
-	{
-		GetLogger(STR_NAME_MMO_ENGINE)->
-			WriteF_time("TManagerTransport::FindBySubNet(%u) not found.\n", v);
-		BL_FIX_BUG();
-		return NULL;
-	}
-	return fit->second;
+  TMapUcharPtrIt fit = mMapSubNetTransport.find(v);
+  if(fit==mMapSubNetTransport.end())
+  {
+    GetLogger(STR_NAME_MMO_ENGINE)->
+      WriteF_time("TManagerTransport::FindBySubNet(%u) not found.\n", v);
+    BL_FIX_BUG();
+    return NULL;
+  }
+  return fit->second;
 }
 //------------------------------------------------------------------------------------
 INetTransport* TManagerTransport::FindByReciver( TReciverTransport* pRT)
 {
-	TMapPtrPtrIt fit = mMapReciverTransport.find(pRT);
-	if(fit==mMapReciverTransport.end())
-	{
-		GetLogger(STR_NAME_MMO_ENGINE)->
-			WriteF_time("TManagerTransport::FindByReciver(0x%X) not found.\n", pRT);
-		BL_FIX_BUG();
-		return NULL;
-	}
-	return fit->second;
+  TMapPtrPtrIt fit = mMapReciverTransport.find(pRT);
+  if(fit==mMapReciverTransport.end())
+  {
+    GetLogger(STR_NAME_MMO_ENGINE)->
+      WriteF_time("TManagerTransport::FindByReciver(0x%X) not found.\n", pRT);
+    BL_FIX_BUG();
+    return NULL;
+  }
+  return fit->second;
 }
 //------------------------------------------------------------------------------------
 INetTransport* TManagerTransport::Add(unsigned char subNet)
 {
-	BL_ASSERT(mMakerTransport);
-	INetTransport* pTransport = mMakerTransport->New();
-	TReciverTransport* pRT = new TReciverTransport(pTransport, mMngSession);
+  BL_ASSERT(mMakerTransport);
+  INetTransport* pTransport = mMakerTransport->New();
+  TReciverTransport* pRT = new TReciverTransport(pTransport, mMngSession);
 
-	mMapSubNetTransport. insert(TMapUcharPtr::value_type(subNet,pTransport));
-	mMapReciverTransport.insert(TMapPtrPtr::value_type(pRT,pTransport));
+  mMapSubNetTransport. insert(TMapUcharPtr::value_type(subNet,pTransport));
+  mMapReciverTransport.insert(TMapPtrPtr::value_type(pRT,pTransport));
 
-	return pTransport;
+  return pTransport;
 }
 //------------------------------------------------------------------------------------
 void TManagerTransport::Done()
 {
-	BOOST_FOREACH(TMapPtrPtr::value_type& it, mMapReciverTransport)
-	{
-		it.second->Stop();// stop transport
-		mMakerTransport->Delete(it.second);// transport
-		
+  BOOST_FOREACH(TMapPtrPtr::value_type& it, mMapReciverTransport)
+  {
+    it.second->Stop();// stop transport
+    mMakerTransport->Delete(it.second);// transport
+    
     delete it.first;// reciver
-	}
+  }
 
   mMapSubNetTransport.clear();
   mMapReciverTransport.clear();

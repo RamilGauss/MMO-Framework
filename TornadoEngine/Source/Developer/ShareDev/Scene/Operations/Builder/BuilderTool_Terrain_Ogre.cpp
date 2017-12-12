@@ -16,12 +16,12 @@ See for more information License.h.
 
 TBuilderTool_Terrain_Ogre::TBuilderTool_Terrain_Ogre()
 {
-	mTerrainItem = NULL;
+  mTerrainItem = NULL;
 
-	mSceneMgr = NULL;
+  mSceneMgr = NULL;
 
-	mTerrainGroup     = NULL;
-	mTerrainGlobals   = NULL;
+  mTerrainGroup     = NULL;
+  mTerrainGlobals   = NULL;
 }
 //--------------------------------------------------------------------
 TBuilderTool_Terrain_Ogre::~TBuilderTool_Terrain_Ogre()
@@ -31,61 +31,61 @@ TBuilderTool_Terrain_Ogre::~TBuilderTool_Terrain_Ogre()
 //--------------------------------------------------------------------
 void TBuilderTool_Terrain_Ogre::Begin(TTerrainItem* pTerrainItem, Ogre::Vector3& terrainOrigin)
 {
-	mTerrainItem 	 = pTerrainItem;
-	mTerrainOrigin = terrainOrigin;
+  mTerrainItem    = pTerrainItem;
+  mTerrainOrigin = terrainOrigin;
 
-	InitOgrePtr();
+  InitOgrePtr();
 
-	Ogre::String filename = mTerrainItem->mNameHeightData;
-	Ogre::String prefixterrainPath = TModuleLogic::Get()->GetTerrainPath() + "/" + filename;
-	Ogre::String suffix = "";
-	mTerrainGroup->setFilenameConvention(prefixterrainPath, suffix);
+  Ogre::String filename = mTerrainItem->mNameHeightData;
+  Ogre::String prefixterrainPath = TModuleLogic::Get()->GetTerrainPath() + "/" + filename;
+  Ogre::String suffix = "";
+  mTerrainGroup->setFilenameConvention(prefixterrainPath, suffix);
 
-	configureTerrainDefaults();
+  configureTerrainDefaults();
 
-	for( int iX = mTerrainItem->mX.min ; iX <= mTerrainItem->mX.max ; iX++ )
-		for( int iY = mTerrainItem->mY.min ; iY <= mTerrainItem->mY.max ; iY++ )
-			defineTerrain(iX, iY);
+  for( int iX = mTerrainItem->mX.min ; iX <= mTerrainItem->mX.max ; iX++ )
+    for( int iY = mTerrainItem->mY.min ; iY <= mTerrainItem->mY.max ; iY++ )
+      defineTerrain(iX, iY);
 }
 //--------------------------------------------------------------------
 void TBuilderTool_Terrain_Ogre::Load( int x, int y )
 {
-	mTerrainGroup->loadTerrain(x,y, true);// false?
+  mTerrainGroup->loadTerrain(x,y, true);// false?
 }
 //--------------------------------------------------------------------
 void TBuilderTool_Terrain_Ogre::End()
 {
-	mTerrainGroup->freeTemporaryResources();
+  mTerrainGroup->freeTemporaryResources();
 }
 //--------------------------------------------------------------------
 void TBuilderTool_Terrain_Ogre::defineTerrain(long x, long y)
 {
-	Ogre::String filename = mTerrainGroup->generateFilename(x, y);
-	bool exists =
-		Ogre::ResourceGroupManager::getSingleton().resourceExists(
-		mTerrainGroup->getResourceGroup(),
-		filename);
+  Ogre::String filename = mTerrainGroup->generateFilename(x, y);
+  bool exists =
+    Ogre::ResourceGroupManager::getSingleton().resourceExists(
+    mTerrainGroup->getResourceGroup(),
+    filename);
 
-	// если нет файла, то ничего не делать, возможно, Terrain только что добавили.
+  // если нет файла, то ничего не делать, возможно, Terrain только что добавили.
 
-	if( exists )
-		mTerrainGroup->defineTerrain(x, y);
+  if( exists )
+    mTerrainGroup->defineTerrain(x, y);
 }
 //--------------------------------------------------------------------
 void TBuilderTool_Terrain_Ogre::configureTerrainDefaults()
 {
-	mTerrainGlobals->setMaxPixelError(mTerrainItem->mGraphic.maxPixelError);
-	mTerrainGlobals->setCompositeMapDistance(mTerrainItem->mGraphic.compositeMapDistance);
+  mTerrainGlobals->setMaxPixelError(mTerrainItem->mGraphic.maxPixelError);
+  mTerrainGlobals->setCompositeMapDistance(mTerrainItem->mGraphic.compositeMapDistance);
 
-	mTerrainGroup->setOrigin(mTerrainOrigin);
+  mTerrainGroup->setOrigin(mTerrainOrigin);
 }
 //--------------------------------------------------------------------
 void TBuilderTool_Terrain_Ogre::InitOgrePtr()
 {
-	TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
-	mSceneMgr = pGE->GetSceneManager();
-	// Terrain
-	mTerrainGlobals = pGE->GetTerrainGlobals();
-	mTerrainGroup   = pGE->GetTerrainGroup();
+  TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
+  mSceneMgr = pGE->GetSceneManager();
+  // Terrain
+  mTerrainGlobals = pGE->GetTerrainGlobals();
+  mTerrainGroup   = pGE->GetTerrainGroup();
 }
 //--------------------------------------------------------------------

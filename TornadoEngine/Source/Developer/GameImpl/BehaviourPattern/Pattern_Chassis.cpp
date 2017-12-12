@@ -9,13 +9,13 @@ See for more information License.h.
 
 namespace nsPattern_Chassis
 {
-	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+  static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPattern_Chassis;
 
 TPattern_Chassis::TPattern_Chassis() :
-	TPattern_Model(&g_DefaultParameterMap)
+  TPattern_Model(&g_DefaultParameterMap)
 {
 
 }
@@ -32,11 +32,11 @@ void TPattern_Chassis::SetTorque(float torque, int side)
 //-------------------------------------------------------------------
 float TPattern_Chassis::GetAngleVelosity(int side)
 {
-	return 0;
+  return 0;
 }
 //-------------------------------------------------------------------
 float TPattern_Chassis::GetLinearVelosity(int side)
 {
-	return 0;
+  return 0;
 }
 //-------------------------------------------------------------------

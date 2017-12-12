@@ -16,28 +16,28 @@ namespace nsMMOEngine
 {
   class TStatisticaClientInGroup
   {
-		struct TDesc
-		{
-			unsigned int countClient;
-			unsigned int id_session;
+    struct TDesc
+    {
+      unsigned int countClient;
+      unsigned int id_session;
 
-			TDesc(unsigned int cc,unsigned int is)
-			{
-				countClient = cc;
-				id_session  = is;
-			}
-			bool operator <(const TDesc& right) const
-			{
-				if(countClient < right.countClient)
-					return true;
-				return false;
-			}
-		};
+      TDesc(unsigned int cc,unsigned int is)
+      {
+        countClient = cc;
+        id_session  = is;
+      }
+      bool operator <(const TDesc& right) const
+      {
+        if(countClient < right.countClient)
+          return true;
+        return false;
+      }
+    };
 
-		typedef std::vector<TDesc> TVectorDesc;
-		typedef TVectorDesc::iterator TVectorDescIt;
+    typedef std::vector<TDesc> TVectorDesc;
+    typedef TVectorDesc::iterator TVectorDescIt;
 
-		TVectorDesc mVecDesc;
+    TVectorDesc mVecDesc;
 
     typedef std::set<unsigned int> TSetUint;
     typedef TSetUint::iterator TSetUintIt;
@@ -47,7 +47,7 @@ namespace nsMMOEngine
     
     TMapUintSetUint mMapSlaveSessionClientKey;
 
-	public:
+  public:
     TStatisticaClientInGroup();
     ~TStatisticaClientInGroup();
     
@@ -61,7 +61,7 @@ namespace nsMMOEngine
 
     // удаление
     void DeleteBySlaveSession(unsigned int id_session_slave);
-		void DeleteByClientKey(unsigned int id_session_slave, unsigned int key);
+    void DeleteByClientKey(unsigned int id_session_slave, unsigned int key);
   private:
   };
 }

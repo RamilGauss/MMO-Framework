@@ -15,11 +15,15 @@ class ParamClass : public ISerializable
 {
 public:// member region
   int id;
+
   float x;
   float y;
   float z;
 
-  float angle;
+  float rw;
+  float rx;
+  float ry;
+  float rz;
 
   float vx;
   float vy;

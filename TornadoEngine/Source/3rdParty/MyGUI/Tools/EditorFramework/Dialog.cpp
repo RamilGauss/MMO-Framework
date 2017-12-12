@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2008
+  @file
+  @author    Albert Semenov
+  @date    08/2008
 */
 
 #include "Precompiled.h"
@@ -11,52 +11,52 @@
 namespace tools
 {
 
-	Dialog::Dialog() :
-		mModal(false),
-		mRootWidget(nullptr)
-	{
-	}
+  Dialog::Dialog() :
+    mModal(false),
+    mRootWidget(nullptr)
+  {
+  }
 
-	Dialog::~Dialog()
-	{
-	}
+  Dialog::~Dialog()
+  {
+  }
 
-	void Dialog::doModal()
-	{
-		MYGUI_ASSERT(mModal != true, "Already modal mode");
-		mModal = true;
+  void Dialog::doModal()
+  {
+    MYGUI_ASSERT(mModal != true, "Already modal mode");
+    mModal = true;
 
-		MyGUI::InputManager::getInstance().addWidgetModal(mRootWidget);
-		MyGUI::LayerManager::getInstance().upLayerItem(mRootWidget);
+    MyGUI::InputManager::getInstance().addWidgetModal(mRootWidget);
+    MyGUI::LayerManager::getInstance().upLayerItem(mRootWidget);
 
-		onDoModal();
+    onDoModal();
 
-		mRootWidget->setVisible(true);
+    mRootWidget->setVisible(true);
 
-		DialogManager::getInstance()._addDialog(this);
-	}
+    DialogManager::getInstance()._addDialog(this);
+  }
 
-	void Dialog::endModal()
-	{
-		MYGUI_ASSERT(mModal != false, "Already modal mode");
-		mModal = false;
+  void Dialog::endModal()
+  {
+    MYGUI_ASSERT(mModal != false, "Already modal mode");
+    mModal = false;
 
-		mRootWidget->setVisible(false);
+    mRootWidget->setVisible(false);
 
-		MyGUI::InputManager::getInstance().removeWidgetModal(mRootWidget);
-		DialogManager::getInstance()._removeDialog(this);
+    MyGUI::InputManager::getInstance().removeWidgetModal(mRootWidget);
+    DialogManager::getInstance()._removeDialog(this);
 
-		onEndModal();
-	}
+    onEndModal();
+  }
 
-	void Dialog::setDialogRoot(MyGUI::Widget* _root)
-	{
-		mRootWidget = _root;
-	}
+  void Dialog::setDialogRoot(MyGUI::Widget* _root)
+  {
+    mRootWidget = _root;
+  }
 
-	bool Dialog::isDialogModal()
-	{
-		return mModal;
-	}
+  bool Dialog::isDialogModal()
+  {
+    return mModal;
+  }
 
 }

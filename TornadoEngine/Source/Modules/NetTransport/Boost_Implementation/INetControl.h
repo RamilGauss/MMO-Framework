@@ -36,7 +36,7 @@ public:
   virtual bool Open( unsigned short port, unsigned char numNetWork = 0) = 0;
   virtual bool Connect(unsigned int ip, unsigned short port) = 0;              // blocking
   virtual void Send(unsigned int ip, unsigned short port, TBreakPacket& bp) = 0;
-	virtual void Close() = 0;
+  virtual void Close() = 0;
 
   virtual char* GetBuffer(){return NULL;}
   virtual int   GetSize(){return 0;}
@@ -44,7 +44,7 @@ protected:
   TNetTransport_Boost* GetNetBoost();
 
   void NotifyRecv(INetTransport::TDescRecv* p);
-	void NotifyDisconnect(TIP_Port* p, TNetTransport_Boost* pNetTransportBoost);
+  void NotifyDisconnect(TIP_Port* p, TNetTransport_Boost* pNetTransportBoost);
 };
 
 #endif

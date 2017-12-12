@@ -10,41 +10,41 @@ See for more information License.h.
 
 void TPopMaster::SetBuffer( TContainer* pC, int offset )
 {
-	mPtrData = pC->GetPtr();
-	mSizeData = pC->GetSize();
-	mOffset = offset;
+  mPtrData = pC->GetPtr();
+  mSizeData = pC->GetSize();
+  mOffset = offset;
 }
 //------------------------------------------------------------------------
 int TPopMaster::GetOffset()
 {
-	return mOffset;
+  return mOffset;
 }
 //------------------------------------------------------------------------
 void TPopMaster::PopSize( int& size)
 {
-	Pop( size );
+  Pop( size );
 }
 //------------------------------------------------------------------------
 void TPopMaster::PopStr( std::string& str )
 {
-	int len = 0;
-	PopSize( len );
+  int len = 0;
+  PopSize( len );
   if( len == 0 )
     return;
-	char* pStr = mPtrData + mOffset;
-	str.assign( pStr, len );
+  char* pStr = mPtrData + mOffset;
+  str.assign( pStr, len );
   mOffset += len;
 }
 //------------------------------------------------------------------------
 void TPopMaster::PopStrByInsert( std::set<std::string>* pSetStr )
 {
-	int size;
-	PopSize( size );
-	for( int i = 0 ; i < size ; i++ )
-	{
-		std::string str;
-		PopStr( str );
-		pSetStr->insert( str );
-	}
+  int size;
+  PopSize( size );
+  for( int i = 0 ; i < size ; i++ )
+  {
+    std::string str;
+    PopStr( str );
+    pSetStr->insert( str );
+  }
 }
 //------------------------------------------------------------------------

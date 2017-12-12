@@ -45,16 +45,16 @@ public:
   virtual ~TGraphicEngine_Ogre_MyGUI();
 /* Order of calls:
    1. InitOGRE, 2. AddResource, 3. InitMyGUI */
-	bool InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg);
+  bool InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg);
   void AddResource(const std::string& name, const std::string& type);
   bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
   // return false - need exit
-	bool Work();
+  bool Work();
 
-	void GetWindowCaption(std::wstring& _text);
+  void GetWindowCaption(std::wstring& _text);
   void SetWindowCaption(const std::wstring& _text);
 
-	size_t GetWindowHandle();
+  size_t GetWindowHandle();
 
   void SetTimeoutDblClick(int t_ms);
 
@@ -67,16 +67,16 @@ public:
   Ogre::Camera*       GetCamera();
   Ogre::RenderWindow* GetWindow();
 
-	Ogre::TerrainGroup* GetTerrainGroup();
-	Ogre::TerrainGlobalOptions* GetTerrainGlobals();
+  Ogre::TerrainGroup* GetTerrainGroup();
+  Ogre::TerrainGlobalOptions* GetTerrainGlobals();
 
-	void SetGUIEnableEvent(bool v);
-	bool GetGUIEnableEvent();
+  void SetGUIEnableEvent(bool v);
+  bool GetGUIEnableEvent();
 
-	void SetUseClipCursor(bool v);
-	bool GetUseClipCursor();
+  void SetUseClipCursor(bool v);
+  bool GetUseClipCursor();
 private:
-	boost::scoped_ptr<TGE_Impl> mGE;
+  boost::scoped_ptr<TGE_Impl> mGE;
   void MsgException(MyGUI::Exception& _e);
 
   void KeyBoardEvent(const OIS::KeyEvent & k, bool pressed);

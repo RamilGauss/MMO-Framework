@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		09/2008
+  @file
+  @author    Albert Semenov
+  @date    09/2008
 */
 
 #ifndef _dec67650_6f1e_40e7_95a3_8311e4727290_
@@ -13,13 +13,13 @@
 namespace tools
 {
 
-	class BackgroundControl :
-		public wraps::BaseLayout
-	{
-	public:
-		BackgroundControl();
-		virtual ~BackgroundControl();
-	};
+  class BackgroundControl :
+    public wraps::BaseLayout
+  {
+  public:
+    BackgroundControl();
+    virtual ~BackgroundControl();
+  };
 
 }
 

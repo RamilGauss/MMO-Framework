@@ -22,16 +22,16 @@ class btRigidBody;
 class DllExport TBuilderTool_ShapeBase_Bullet : public TBuilderTool_Bullet
 {
 protected:
-	TShapeItem* mShape;
-	TMaterialItem* mMaterial;
+  TShapeItem* mShape;
+  TMaterialItem* mMaterial;
 public:
-	TBuilderTool_ShapeBase_Bullet();
-	virtual ~TBuilderTool_ShapeBase_Bullet();
+  TBuilderTool_ShapeBase_Bullet();
+  virtual ~TBuilderTool_ShapeBase_Bullet();
 
-	virtual void SetShape(TShapeItem* pShape);
-	virtual void SetMaterial(TMaterialItem* pMaterial);
+  virtual void SetShape(TShapeItem* pShape);
+  virtual void SetMaterial(TMaterialItem* pMaterial);
 
-	virtual btRigidBody* CreateRigidBody() = 0;
+  virtual btRigidBody* CreateRigidBody() = 0;
 protected:
 };
 

@@ -20,13 +20,13 @@ namespace nsMMOEngine
 #endif
 
   struct DllExport TEventRecv : public TBaseEvent
-	{
-		TEventRecv();
-		unsigned int id_session;
-		void* data;
-		int sizeData;
-	}_PACKED;
-	//-------------------------------------------------------------
+  {
+    TEventRecv();
+    unsigned int id_session;
+    void* data;
+    int sizeData;
+  }_PACKED;
+  //-------------------------------------------------------------
   struct DllExport TEventRecvFromDown : public TEventRecv
   {
     TEventRecvFromDown();
@@ -60,7 +60,7 @@ namespace nsMMOEngine
   {
     TEventConnectDown();
     unsigned int id_session;
-		bool use_crypt;
+    bool use_crypt;
   }_PACKED;
   //-------------------------------------------------------------
   struct DllExport TEventDestroyGroup : public TBaseEvent
@@ -91,7 +91,7 @@ namespace nsMMOEngine
   {
     TEventTryLogin();
     unsigned int id_session;
-		bool use_crypt;
+    bool use_crypt;
   }_PACKED;
   //-------------------------------------------------------------
   struct DllExport TEventSaveContext : public TBaseEvent

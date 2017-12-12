@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #ifndef _1628df4a_ba95_4128_a0af_236fa36a402b_
@@ -13,15 +13,15 @@
 namespace tools
 {
 
-	class MYGUI_EXPORT_DLL TexturePropertyInitialisator :
-		public IPropertyInitialisator
-	{
-	public:
-		TexturePropertyInitialisator();
-		virtual ~TexturePropertyInitialisator();
+  class MYGUI_EXPORT_DLL TexturePropertyInitialisator :
+    public IPropertyInitialisator
+  {
+  public:
+    TexturePropertyInitialisator();
+    virtual ~TexturePropertyInitialisator();
 
-		virtual void initialise(PropertyPtr _property);
-	};
+    virtual void initialise(PropertyPtr _property);
+  };
 
 }
 

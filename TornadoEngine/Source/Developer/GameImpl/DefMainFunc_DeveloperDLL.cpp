@@ -36,7 +36,7 @@ DllExport_C IDevTool* GetDevTool(int variant_use)
     case 6:
       return new TDevTool_EditorModel;
     case 7:
-			return new TDevTool_EditorTableSound;
+      return new TDevTool_EditorTableSound;
     case 8:
       return new TDevTool_EditorMap;
   }

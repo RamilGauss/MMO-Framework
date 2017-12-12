@@ -42,8 +42,8 @@ void TScLoginClient_ClientImpl::RecvInherit(TDescRecvSession* pDesc)
 //-----------------------------------------------------------------------------
 void TScLoginClient_ClientImpl::Work(unsigned int time_ms)
 {
-	unsigned int time_end_ms = Context()->GetTimeWait() + eTimeWait;
-	if(time_end_ms < time_ms)
+  unsigned int time_end_ms = Context()->GetTimeWait() + eTimeWait;
+  if(time_end_ms < time_ms)
   {
     // ошибка на той стороне
     TEventError event;
@@ -56,7 +56,7 @@ void TScLoginClient_ClientImpl::Work(unsigned int time_ms)
 void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port, unsigned char subNet,
                                          void* pLogin, int sizeLogin, void* pPassword, int sizePassword)
 {
-	if(Begin()==false)
+  if(Begin()==false)
   {
     // генерация ошибки
     GetLogger(STR_NAME_MMO_ENGINE)->
@@ -82,8 +82,8 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port, u
     BL_ASSERT(res);
 
     bpLP.PushFront(cMITM.GetPtr(), cMITM.GetSize());
-		// сохранить на будущее
-		Context()->Set_L_AES_RSA(cMITM.GetPtr(), cMITM.GetSize());
+    // сохранить на будущее
+    Context()->Set_L_AES_RSA(cMITM.GetPtr(), cMITM.GetSize());
   }
   else
   {
@@ -173,12 +173,12 @@ void TScLoginClient_ClientImpl::ResultLoginM2C(TDescRecvSession* pDesc)
     {
       CloseSessionMaster();
 
-			TEventResultLogin* pEvent = new TEventResultLogin;
-			pEvent->res = TMaster::eReject;
-			// поместить данные, которые поясняют причину отказа
-			char* pDataResClient = pDesc->data + sizeof(THeaderResultLoginM2C);
-			pEvent->c.SetDataByCount( pDataResClient, pH->sizeResClient);
-			Context()->GetSE()->AddEventWithoutCopy<TEventResultLogin>(pEvent);
+      TEventResultLogin* pEvent = new TEventResultLogin;
+      pEvent->res = TMaster::eReject;
+      // поместить данные, которые поясняют причину отказа
+      char* pDataResClient = pDesc->data + sizeof(THeaderResultLoginM2C);
+      pEvent->c.SetDataByCount( pDataResClient, pH->sizeResClient);
+      Context()->GetSE()->AddEventWithoutCopy<TEventResultLogin>(pEvent);
       End();
     }
       break;

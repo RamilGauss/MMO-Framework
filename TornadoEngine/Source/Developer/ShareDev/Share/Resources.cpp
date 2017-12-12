@@ -31,7 +31,7 @@ TResources::~TResources()
 //--------------------------------------------------------------------------
 bool TResources::Work(IXML* pXML)
 {
-	mMapTypePath.clear();
+  mMapTypePath.clear();
   strError = "";
   mXML = pXML;
 
@@ -45,7 +45,7 @@ bool TResources::Work(IXML* pXML)
 //--------------------------------------------------------------------------
 void TResources::GetResource(TMMapStrStr& mapTypePath)
 {
-	mapTypePath = mMapTypePath;
+  mapTypePath = mMapTypePath;
 }
 //--------------------------------------------------------------------------
 std::string TResources::GetStrError()
@@ -56,7 +56,7 @@ std::string TResources::GetStrError()
 void TResources::ErrorNoSection(const char* section)
 {
   strError = "Нет секции ";
-	strError += section;
+  strError += section;
 }
 //--------------------------------------------------------------------------
 bool TResources::LoadResources()
@@ -67,7 +67,7 @@ bool TResources::LoadResources()
     std::string path = mXML->ReadSectionAttr(sResource, iResource, sPath);
     std::string type = mXML->ReadSectionAttr(sResource, iResource, sType);
 
-		mMapTypePath.insert(TMMapStrStrVT(type,path));
+    mMapTypePath.insert(TMMapStrStrVT(type,path));
   }
   return true;
 }

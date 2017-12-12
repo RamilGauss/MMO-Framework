@@ -23,27 +23,27 @@ class TInputCmdTornado
 
 public:
 
-	struct TInput
-	{
-		std::string              libName;
+  struct TInput
+  {
+    std::string              libName;
     std::vector<std::string> param;
     int                      variant_use;
     bool                     useConsole;
-		TInput()
-		{
-			variant_use = 0;
+    TInput()
+    {
+      variant_use = 0;
       useConsole  = false;
-		}
-	};
+    }
+  };
 
   TInputCmdTornado();
   ~TInputCmdTornado();
 
-	bool SetArg(std::vector<std::string>& vecArgv);
-	void Get(TInput& v_out);
+  bool SetArg(std::vector<std::string>& vecArgv);
+  void Get(TInput& v_out);
 
 protected:
-	TInput mInput;
+  TInput mInput;
 };
 
 #endif

@@ -13,16 +13,16 @@ See for more information License.h.
 
 void GeneratedClass::Serialize( TPushMaster* pPushMaster )
 {
-	pPushMaster->Push( mID );
+  pPushMaster->Push( mID );
 }
 //--------------------------------------------------------------------
 void GeneratedClass::Deserialize( TPopMaster* pPopMaster )
 {
-	pPopMaster->Pop( mID );
+  pPopMaster->Pop( mID );
 }
 //--------------------------------------------------------------------
 short GeneratedClass::GetSerializableUniqueID()
 {
-	return nsSerializableUniqueIdentity::eGeneratedClass; 
+  return nsSerializableUniqueIdentity::eGeneratedClass; 
 }
 //--------------------------------------------------------------------

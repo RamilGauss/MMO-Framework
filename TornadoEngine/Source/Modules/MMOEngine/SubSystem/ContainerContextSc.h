@@ -24,14 +24,14 @@ namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
   class TContainerContextSc
-	{
+  {
     typedef std::list<IContextScenario*> TListPtr;
     TListPtr mListContext;
   
     unsigned int mID_Session;
   protected:
     TManagerContextSc* mManagerContextSc;
-	public:
+  public:
     TContextScDisconnectClient    mDisClient;
     TContextScFlow                mFlow;
     TContextScLoginClient         mLoginClient;
@@ -41,7 +41,7 @@ namespace nsMMOEngine
     TContextScSynchroSlave        mSynchroSlave;
     TContextScSendToClient        mSendToClient;
 
-		TContainerContextSc();
+    TContainerContextSc();
 
     void SetMCSc(TManagerContextSc* pMCSc);
     TManagerContextSc* GetMCSc();
@@ -54,6 +54,6 @@ namespace nsMMOEngine
 
     bool IsRcmActive();
     bool IsLoginClientActive();
-	};
+  };
 }  
 #endif

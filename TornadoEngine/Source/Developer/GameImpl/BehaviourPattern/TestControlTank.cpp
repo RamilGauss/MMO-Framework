@@ -22,7 +22,7 @@ See for more information License.h.
 //---------------------------------------------------------------------------
 TTestControlTank::TTestControlTank()
 {
-  mTank	             = NULL;
+  mTank               = NULL;
   mTimeLastUpdate_ms = 0;
   mTimeRecv_ms       = 0;
 }
@@ -58,36 +58,36 @@ void TTestControlTank::Recv(void* data, int size)
 //---------------------------------------------------------------------------
 void TTestControlTank::Send()
 {
-	//lockQtSend();
-	////----------------------------
-	//UpdateAngle();
-	//TBreakPacket bp;
-	//bp.PushFront((char*)mDesc.get(), sizeof(TDesc));
+  //lockQtSend();
+  ////----------------------------
+  //UpdateAngle();
+  //TBreakPacket bp;
+  //bp.PushFront((char*)mDesc.get(), sizeof(TDesc));
 
-	//TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
+  //TDevTool_Share::TComponent* pComponent = TDevTool_Share::Singleton()->GetComponent();
  // nsMMOEngine::TBaseServer* pBS = (nsMMOEngine::TBaseServer*)pComponent->mMMO;
 
-	//std::list<unsigned int> listKey;
-	////###
-	//// рассылка всем клиентам
-	//nsMMOEngine::TSlave::TDescDownSlave descDown;
-	//int sizeDesc = sizeof(descDown);
-	//int countClient = pComponent->mSlave->Get()->GetCountDown();
-	//for( int iClient = 0 ; iClient < countClient ; iClient++)
-	//{
-	//	//if(pComponent->mNet.Slave->GetDescDown(iClient, (void*)&descDown, sizeDesc))
-	//		//pBS->SendDown( descDown.id_session, bp);
-	//	if(pComponent->mSlave->Get()->GetDescDown(iClient, (void*)&descDown, sizeDesc))
-	//	{
-	//		unsigned int id_client;
-	//		if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.id_session,id_client))
-	//			listKey.push_back(id_client);
-	//	}
-	//}
-	//pBS->SendByClientKey( listKey, bp);
-	////###
+  //std::list<unsigned int> listKey;
+  ////###
+  //// рассылка всем клиентам
+  //nsMMOEngine::TSlave::TDescDownSlave descDown;
+  //int sizeDesc = sizeof(descDown);
+  //int countClient = pComponent->mSlave->Get()->GetCountDown();
+  //for( int iClient = 0 ; iClient < countClient ; iClient++)
+  //{
+  //  //if(pComponent->mNet.Slave->GetDescDown(iClient, (void*)&descDown, sizeDesc))
+  //    //pBS->SendDown( descDown.id_session, bp);
+  //  if(pComponent->mSlave->Get()->GetDescDown(iClient, (void*)&descDown, sizeDesc))
+  //  {
+  //    unsigned int id_client;
+  //    if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.id_session,id_client))
+  //      listKey.push_back(id_client);
+  //  }
+  //}
+  //pBS->SendByClientKey( listKey, bp);
+  ////###
  // //----------------------------
-	//unlockQtSend();
+  //unlockQtSend();
 }
 //---------------------------------------------------------------------------
 void TTestControlTank::SetSpeedRotateTurret(float v)
@@ -108,7 +108,7 @@ void TTestControlTank::UpdateAngle()
 {
   unsigned int now_ms = ht_GetMSCount();
   unsigned int delta = (mTimeLastUpdate_ms==0) ? 0 : now_ms - mTimeLastUpdate_ms;
-	
+  
   mDesc.mAngleGun    = mDesc.mAngleGun    + delta * mDesc.mSpeedRotateGun;
   mDesc.mAngleTurret = mDesc.mAngleTurret + delta * mDesc.mSpeedRotateTurret;
 

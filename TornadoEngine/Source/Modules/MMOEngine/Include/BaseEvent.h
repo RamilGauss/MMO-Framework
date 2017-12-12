@@ -21,7 +21,7 @@ namespace nsMMOEngine
   {
     // переназначить в наследуемом классе
     tTypeEvent mType;
-		TContainer c;
+    TContainer c;
   }_PACKED;
 #if defined( WIN32 )
 #pragma pack(pop)

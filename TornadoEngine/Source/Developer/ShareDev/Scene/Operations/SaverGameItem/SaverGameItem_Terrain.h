@@ -15,9 +15,9 @@ See for more information License.h.
 class DllExport TSaverGameItem_Terrain : public TOperation_Terrain
 {
 public:
-	TSaverGameItem_Terrain();
+  TSaverGameItem_Terrain();
 
-	virtual void Save(TFactoryGameItem::TypeGameItem type) = 0;
+  virtual void Save(TFactoryGameItem::TypeGameItem type) = 0;
 
 private:
 };

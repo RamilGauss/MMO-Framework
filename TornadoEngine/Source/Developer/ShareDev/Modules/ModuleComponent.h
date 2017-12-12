@@ -14,17 +14,17 @@ See for more information License.h.
 class DllExport TModuleComponent : public TModuleDev, public TDstEvent
 {
 protected:
-	int mLogicID;
+  int mLogicID;
 
-	TCallBackRegistrator0 mCBStartEvent;
-	TCallBackRegistrator0 mCBStopEvent;
+  TCallBackRegistrator0 mCBStartEvent;
+  TCallBackRegistrator0 mCBStopEvent;
 public:
   TModuleComponent();
 
   void SetLogicID(int id);
 
-	TCallBackRegistrator0* GetCBStartEvent();
-	TCallBackRegistrator0* GetCBStopEvent();
+  TCallBackRegistrator0* GetCBStartEvent();
+  TCallBackRegistrator0* GetCBStopEvent();
 protected:
   virtual void Input(int id_sender, void* p, int size);
 protected:

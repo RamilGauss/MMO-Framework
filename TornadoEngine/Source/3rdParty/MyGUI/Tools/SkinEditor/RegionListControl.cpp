@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -23,33 +23,33 @@
 namespace tools
 {
 
-	FACTORY_ITEM_ATTRIBUTE(RegionListControl)
+  FACTORY_ITEM_ATTRIBUTE(RegionListControl)
 
-	RegionListControl::RegionListControl() :
-		mListBoxControl(nullptr)
-	{
-	}
+  RegionListControl::RegionListControl() :
+    mListBoxControl(nullptr)
+  {
+  }
 
-	RegionListControl::~RegionListControl()
-	{
-	}
+  RegionListControl::~RegionListControl()
+  {
+  }
 
-	void RegionListControl::OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName)
-	{
-		Control::OnInitialise(_parent, _place, _layoutName);
+  void RegionListControl::OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName)
+  {
+    Control::OnInitialise(_parent, _place, _layoutName);
 
-		mListBoxControl = findControl<ListBoxDataControl>();
+    mListBoxControl = findControl<ListBoxDataControl>();
 
-		if (mListBoxControl != nullptr)
-		{
-			mListBoxControl->setEnableChangePosition(false);
-			mListBoxControl->setReplaceColourName("ColourDisabled");
+    if (mListBoxControl != nullptr)
+    {
+      mListBoxControl->setEnableChangePosition(false);
+      mListBoxControl->setReplaceColourName("ColourDisabled");
 
-			mListBoxControl->addPropertyNameEnabled("Visible");
-			mListBoxControl->addPropertyNameEnabled("Enable");
+      mListBoxControl->addPropertyNameEnabled("Visible");
+      mListBoxControl->addPropertyNameEnabled("Enable");
 
-			mListBoxControl->setDataInfo("Skin", "Region", "Name");
-		}
-	}
+      mListBoxControl->setDataInfo("Skin", "Region", "Name");
+    }
+  }
 
 }

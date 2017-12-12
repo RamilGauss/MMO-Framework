@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -23,32 +23,32 @@
 namespace tools
 {
 
-	FACTORY_ITEM_ATTRIBUTE(StateListControl)
+  FACTORY_ITEM_ATTRIBUTE(StateListControl)
 
-	StateListControl::StateListControl() :
-		mListBoxControl(nullptr)
-	{
-	}
+  StateListControl::StateListControl() :
+    mListBoxControl(nullptr)
+  {
+  }
 
-	StateListControl::~StateListControl()
-	{
-	}
+  StateListControl::~StateListControl()
+  {
+  }
 
-	void StateListControl::OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName)
-	{
-		Control::OnInitialise(_parent, _place, _layoutName);
+  void StateListControl::OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName)
+  {
+    Control::OnInitialise(_parent, _place, _layoutName);
 
-		mListBoxControl = findControl<ListBoxDataControl>();
+    mListBoxControl = findControl<ListBoxDataControl>();
 
-		if (mListBoxControl != nullptr)
-		{
-			mListBoxControl->setEnableChangePosition(false);
-			mListBoxControl->setReplaceColourName("ColourDisabled");
+    if (mListBoxControl != nullptr)
+    {
+      mListBoxControl->setEnableChangePosition(false);
+      mListBoxControl->setReplaceColourName("ColourDisabled");
 
-			mListBoxControl->addPropertyNameEnabled("Visible");
+      mListBoxControl->addPropertyNameEnabled("Visible");
 
-			mListBoxControl->setDataInfo("Skin", "State", "Name");
-		}
-	}
+      mListBoxControl->setDataInfo("Skin", "State", "Name");
+    }
+  }
 
 }

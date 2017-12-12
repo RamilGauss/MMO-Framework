@@ -25,8 +25,8 @@ assignWidget(name,#name);
 
 class DllExport TBaseGUI : public wraps::BaseLayout
 {
-	TCallBackRegistrator0 mCB_Show;
-	TCallBackRegistrator0 mCB_Hide;
+  TCallBackRegistrator0 mCB_Show;
+  TCallBackRegistrator0 mCB_Hide;
 
 protected:
   MyGUI::VectorWidgetPtr mVectorChild_Tab;
@@ -38,18 +38,18 @@ public:
   virtual void Show();
   virtual void Hide();
 
-	TCallBackRegistrator0* GetCB_Show();
-	TCallBackRegistrator0* GetCB_Hide();
+  TCallBackRegistrator0* GetCB_Show();
+  TCallBackRegistrator0* GetCB_Hide();
 
-	bool IsVisible();
+  bool IsVisible();
 
   void Shutdown();
 
-	template <typename T>
-	T GetValueFromEditBox(MyGUI::EditBox* pEB);
+  template <typename T>
+  T GetValueFromEditBox(MyGUI::EditBox* pEB);
 
-	template <typename T>
-	void SetValueFromEditBox(MyGUI::EditBox* pEB, T& t);
+  template <typename T>
+  void SetValueFromEditBox(MyGUI::EditBox* pEB, T& t);
 protected:
   virtual void Activate() = 0;
   virtual const char* GetNameLayout() = 0;
@@ -71,20 +71,20 @@ private:
 template <typename T>
 T TBaseGUI::GetValueFromEditBox(MyGUI::EditBox* pEB)
 {
-	USES_CONVERSION;
-	std::string s = W2A((LPCWSTR)pEB->getOnlyText().data());
-	T retValue = s.length() ? boost::lexical_cast<T>(s.data()) : T();
-	return retValue;
+  USES_CONVERSION;
+  std::string s = W2A((LPCWSTR)pEB->getOnlyText().data());
+  T retValue = s.length() ? boost::lexical_cast<T>(s.data()) : T();
+  return retValue;
 }
 //-------------------------------------------------------------------------------
 template <typename T>
 void TBaseGUI::SetValueFromEditBox(MyGUI::EditBox* pEB, T& t)
 {
-	USES_CONVERSION;
+  USES_CONVERSION;
 
-	std::string sValue = boost::lexical_cast<std::string>(t);
-	LPWSTR wValue = A2W(sValue.data());
-	pEB->setOnlyText(wValue);
+  std::string sValue = boost::lexical_cast<std::string>(t);
+  LPWSTR wValue = A2W(sValue.data());
+  pEB->setOnlyText(wValue);
 }
 //-------------------------------------------------------------------------------
 #endif // BaseGUI

@@ -83,8 +83,8 @@ string TParserXMLResource::GetStrError()
 //---------------------------------------------------------------------------------------
 void TParserXMLResource::ErrorNoSection(const char* section)
 {
-	strError = "Нет секции ";
-	strError += section;
+  strError = "Нет секции ";
+  strError += section;
 }
 //---------------------------------------------------------------------------------------
 bool TParserXMLResource::LoadGraphicEngine()

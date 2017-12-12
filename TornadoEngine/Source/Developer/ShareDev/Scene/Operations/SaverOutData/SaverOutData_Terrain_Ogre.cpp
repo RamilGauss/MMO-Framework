@@ -26,21 +26,21 @@ TSaverOutData_Terrain_Ogre::~TSaverOutData_Terrain_Ogre()
 //---------------------------------------------------------------------
 void TSaverOutData_Terrain_Ogre::Save(TFactoryGameItem::TypeGameItem type)
 {
-	if( type==TFactoryGameItem::Terrain )
-	{
-		TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
-		Ogre::TerrainGroup* pTerrainGlobals = pGE->GetTerrainGroup();
+  if( type==TFactoryGameItem::Terrain )
+  {
+    TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
+    Ogre::TerrainGroup* pTerrainGlobals = pGE->GetTerrainGroup();
 
-		if( pTerrainGlobals==NULL )
-			return;
+    if( pTerrainGlobals==NULL )
+      return;
 
-		if( pTerrainGlobals->isDerivedDataUpdateInProgress() )
-		{
-			BL_FIX_BUG();
-			return;
-		}
+    if( pTerrainGlobals->isDerivedDataUpdateInProgress() )
+    {
+      BL_FIX_BUG();
+      return;
+    }
 
-		pTerrainGlobals->saveAllTerrains(true);
-	}
+    pTerrainGlobals->saveAllTerrains(true);
+  }
 }
 //---------------------------------------------------------------------

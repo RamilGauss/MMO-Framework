@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		George Evmenov
-	@date		03/2011
+  @file
+  @author    George Evmenov
+  @date    03/2011
 */
 
 #ifndef _8ff292d0_326a_4105_8cf2_e1648d87659e_
@@ -13,25 +13,25 @@
 namespace tools
 {
 
-	class MYGUI_EXPORT_DLL GridManager :
-		public MyGUI::Singleton<GridManager>,
-		public sigslot::has_slots<>
-	{
-	public:
-		GridManager();
-		virtual ~GridManager();
+  class MYGUI_EXPORT_DLL GridManager :
+    public MyGUI::Singleton<GridManager>,
+    public sigslot::has_slots<>
+  {
+  public:
+    GridManager();
+    virtual ~GridManager();
 
-		void initialise();
-		void shutdown();
+    void initialise();
+    void shutdown();
 
-		enum GridLine { Previous, Closest, Next };
-		int toGrid(int _value, GridLine _line = Closest) const;
+    enum GridLine { Previous, Closest, Next };
+    int toGrid(int _value, GridLine _line = Closest) const;
 
-	private:
-		void notifySettingsChanged(const std::string& _path);
+  private:
+    void notifySettingsChanged(const std::string& _path);
 
-		int mGridStep;
-	};
+    int mGridStep;
+  };
 
 }
 

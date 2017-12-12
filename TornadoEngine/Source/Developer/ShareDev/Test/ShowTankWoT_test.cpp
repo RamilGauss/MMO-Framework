@@ -41,14 +41,14 @@ void TShowTankWoT_test::ShowTank(int index, Ogre::Vector3& pos)
   TOrient orTrackL  (Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10, 10,10), Ogre::Vector3(0, -20,-10) + pos);
   TOrient orTrackR  (Ogre::Vector3(1,0,0), Ogre::Radian(-3.14f/2), Ogre::Vector3(10, 10,10), Ogre::Vector3(0, -20,-10) + pos);
 
-	std::string sIndex = boost::lexical_cast<std::string>(index);
-	std::string sHull     = "Hull"     + sIndex;
-	std::string sTurret   = "Turret"   + sIndex;
-	std::string sChassisL = "ChassisL" + sIndex;
-	std::string sChassisR = "ChassisR" + sIndex;
-	std::string sGun      = "Gun"      + sIndex;
-	std::string sTrackL   = "TrackL"   + sIndex;
-	std::string sTrackR   = "TrackR"   + sIndex;
+  std::string sIndex = boost::lexical_cast<std::string>(index);
+  std::string sHull     = "Hull"     + sIndex;
+  std::string sTurret   = "Turret"   + sIndex;
+  std::string sChassisL = "ChassisL" + sIndex;
+  std::string sChassisR = "ChassisR" + sIndex;
+  std::string sGun      = "Gun"      + sIndex;
+  std::string sTrackL   = "TrackL"   + sIndex;
+  std::string sTrackR   = "TrackR"   + sIndex;
 
   AddEntity(pSM->createEntity(sHull,     "KingTiger/Hull.mesh"),    orHull,     pSM);
   AddEntity(pSM->createEntity(sTurret,   "KingTiger/Turret.mesh"),  orTurret,   pSM);

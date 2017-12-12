@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #ifndef _b80becd5_97bb_4126_acb5_348f9b926682_
@@ -13,36 +13,36 @@
 namespace tools
 {
 
-	class IndexTextureController :
-		public IControlController,
-		public sigslot::has_slots<>
-	{
-	public:
-		IndexTextureController();
-		virtual ~IndexTextureController();
+  class IndexTextureController :
+    public IControlController,
+    public sigslot::has_slots<>
+  {
+  public:
+    IndexTextureController();
+    virtual ~IndexTextureController();
 
-		virtual void setTarget(Control* _control);
+    virtual void setTarget(Control* _control);
 
-		virtual void activate();
-		virtual void deactivate();
+    virtual void activate();
+    virtual void deactivate();
 
-	private:
-		void notifyChangeDataSelector(DataPtr _data, bool _changeOnlySelection);
-		void notifyChangeProperty(PropertyPtr _sender);
-		void notifyChangeScope(const std::string& _scope);
+  private:
+    void notifyChangeDataSelector(DataPtr _data, bool _changeOnlySelection);
+    void notifyChangeProperty(PropertyPtr _sender);
+    void notifyChangeScope(const std::string& _scope);
 
-		void updateCoords(const std::string& _value);
-		void updateFrames();
+    void updateCoords(const std::string& _value);
+    void updateFrames();
 
-	private:
-		ScopeTextureControl* mControl;
-		std::string mParentTypeName;
-		std::string mScopeName;
-		DataPtr mParentData;
-		bool mActivated;
-		MyGUI::IntSize mSize;
-		ScopeTextureControl::VectorCoord mFrames;
-	};
+  private:
+    ScopeTextureControl* mControl;
+    std::string mParentTypeName;
+    std::string mScopeName;
+    DataPtr mParentData;
+    bool mActivated;
+    MyGUI::IntSize mSize;
+    ScopeTextureControl::VectorCoord mFrames;
+  };
 
 }
 

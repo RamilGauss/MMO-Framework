@@ -20,9 +20,9 @@ namespace nsMMOEngine
   class TBaseScLoginClient
   {
   protected:
-	  IScenario* mScenario;
+    IScenario* mScenario;
   public:
-	  TBaseScLoginClient(IScenario* pSc);
+    TBaseScLoginClient(IScenario* pSc);
     virtual ~TBaseScLoginClient();
 
     void Recv(TDescRecvSession* pDesc);

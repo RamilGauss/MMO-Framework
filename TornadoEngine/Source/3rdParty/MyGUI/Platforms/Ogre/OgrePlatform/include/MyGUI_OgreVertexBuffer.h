@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		04/2009
+  @file
+  @author    Albert Semenov
+  @date    04/2009
 */
 
 #ifndef __MYGUI_OGRE_VERTEX_BUFFER_H__
@@ -23,36 +23,36 @@
 namespace MyGUI
 {
 
-	class OgreVertexBuffer :
-		public IVertexBuffer
-	{
-	public:
-		OgreVertexBuffer();
-		virtual ~OgreVertexBuffer();
+  class OgreVertexBuffer :
+    public IVertexBuffer
+  {
+  public:
+    OgreVertexBuffer();
+    virtual ~OgreVertexBuffer();
 
-		virtual void setVertexCount(size_t _count);
-		virtual size_t getVertexCount();
+    virtual void setVertexCount(size_t _count);
+    virtual size_t getVertexCount();
 
-		virtual Vertex* lock();
-		virtual void unlock();
+    virtual Vertex* lock();
+    virtual void unlock();
 
-		Ogre::RenderOperation* getRenderOperation()
-		{
-			return &mRenderOperation;
-		}
+    Ogre::RenderOperation* getRenderOperation()
+    {
+      return &mRenderOperation;
+    }
 
-	private:
-		void createVertexBuffer();
-		void destroyVertexBuffer();
-		void resizeVertexBuffer();
+  private:
+    void createVertexBuffer();
+    void destroyVertexBuffer();
+    void resizeVertexBuffer();
 
-	private:
-		size_t mVertexCount;
-		size_t mNeedVertexCount;
+  private:
+    size_t mVertexCount;
+    size_t mNeedVertexCount;
 
-		Ogre::RenderOperation mRenderOperation;
-		Ogre::HardwareVertexBufferSharedPtr mVertexBuffer;
-	};
+    Ogre::RenderOperation mRenderOperation;
+    Ogre::HardwareVertexBufferSharedPtr mVertexBuffer;
+  };
 
 } // namespace MyGUI
 

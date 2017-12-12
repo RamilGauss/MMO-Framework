@@ -14,8 +14,8 @@ namespace nsSerializerPatternItem_XML
   const char* sPatternConfig = "PatternConfig";
   const char* sName          = "name";
   const char* sVariant       = "Variant";
-	const char* sComment       = "Comment";
-	const char* sValue         = "value";
+  const char* sComment       = "Comment";
+  const char* sValue         = "value";
 }
 
 using namespace nsSerializerPatternItem_XML;
@@ -39,7 +39,7 @@ bool TSerializerPatternConfigItem_XML::Load(TBaseItem* pItem)
   if( resEnter==false )
     return false;
 
-	LoadComment();
+  LoadComment();
   LoadPropertyPattern();
   return true;
 }
@@ -59,7 +59,7 @@ bool TSerializerPatternConfigItem_XML::Save(TBaseItem* pItem)
 //-------------------------------------------------------------------------------------------------------
 void TSerializerPatternConfigItem_XML::LoadComment()
 {
-	mPattern->mComment = mXML->ReadSectionAttr(sComment, 0, sValue);
+  mPattern->mComment = mXML->ReadSectionAttr(sComment, 0, sValue);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerPatternConfigItem_XML::LoadPropertyPattern()
@@ -93,10 +93,10 @@ void TSerializerPatternConfigItem_XML::LoadVariant(TPatternConfigItem::TMapStrSt
 //-------------------------------------------------------------------------------------------------------
 void TSerializerPatternConfigItem_XML::SaveComment()
 {
-	TAttrInfo attr;
-	attr.Name  = sComment;
-	attr.Value = mPattern->mComment;
-	mXML->AddSection(sComment, 1, &attr);
+  TAttrInfo attr;
+  attr.Name  = sComment;
+  attr.Value = mPattern->mComment;
+  mXML->AddSection(sComment, 1, &attr);
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerPatternConfigItem_XML::SavePropertyPattern()

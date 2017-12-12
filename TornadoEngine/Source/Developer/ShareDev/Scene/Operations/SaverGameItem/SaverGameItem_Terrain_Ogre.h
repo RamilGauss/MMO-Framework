@@ -14,10 +14,10 @@ See for more information License.h.
 class DllExport TSaverGameItem_Terrain_Ogre : public TSaverGameItem_Terrain
 {
 public:
-	TSaverGameItem_Terrain_Ogre();
-	virtual ~TSaverGameItem_Terrain_Ogre();
+  TSaverGameItem_Terrain_Ogre();
+  virtual ~TSaverGameItem_Terrain_Ogre();
 
-	virtual void Save( TFactoryGameItem::TypeGameItem type );
+  virtual void Save( TFactoryGameItem::TypeGameItem type );
 private:
 };
 

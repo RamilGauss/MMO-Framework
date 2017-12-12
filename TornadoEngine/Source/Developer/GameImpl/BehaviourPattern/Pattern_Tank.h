@@ -16,10 +16,10 @@ public:
   TPattern_Tank();
   virtual ~TPattern_Tank();
 
-	void SetAccelerate(float power, float speedLinim);
-	void SetMouseAim(nsMathTools::TOrientation& orient);
+  void SetAccelerate(float power, float speedLinim);
+  void SetMouseAim(nsMathTools::TOrientation& orient);
 
-	bool GetRealMouseAim(nsMathTools::TOrientation& orient);
+  bool GetRealMouseAim(nsMathTools::TOrientation& orient);
 };
 
 #endif

@@ -15,15 +15,15 @@ See for more information License.h.
 namespace nsMMOEngine
 {
   class TContextScDisconnectClient : public IContextScenario
-	{
+  {
     unsigned int mIDClient;
-	public:
-		TContextScDisconnectClient();
+  public:
+    TContextScDisconnectClient();
     virtual ~TContextScDisconnectClient();
 
     unsigned int GetIDClient();
     void SetIDClient(unsigned int val);
   private:
-	};
+  };
 }  
 #endif

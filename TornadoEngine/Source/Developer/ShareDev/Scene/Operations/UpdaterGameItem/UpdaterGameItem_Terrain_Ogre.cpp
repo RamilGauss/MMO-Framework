@@ -19,7 +19,7 @@ TUpdaterGameItem_Terrain_Ogre::~TUpdaterGameItem_Terrain_Ogre()
 //-------------------------------------------------------------------------
 bool TUpdaterGameItem_Terrain_Ogre::Update( TFactoryGameItem::TypeGameItem type )
 {
-	return false;
+  return false;
 }
 //-------------------------------------------------------------------------
 

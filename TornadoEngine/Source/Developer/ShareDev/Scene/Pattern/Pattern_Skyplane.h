@@ -14,23 +14,23 @@ See for more information License.h.
 class DllExport TPattern_Skyplane : public TBehaviourPattern
 {
 public:
-	TPattern_Skyplane();
-	virtual ~TPattern_Skyplane();
+  TPattern_Skyplane();
+  virtual ~TPattern_Skyplane();
 
-	virtual bool BuildByModule_Graphic(bool fast = false);
+  virtual bool BuildByModule_Graphic(bool fast = false);
 
-	virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TManagerNamePattern::eBaseType GetBaseType();
 
 protected:
-	float GetPlane_D();
-	nsMathTools::TVector3 GetPlane_Normal();
-	std::string GetNameMaterialOgre();
-	float GetScale();
-	float GetTiling();
-	bool  GetDrawFirst();
-	float GetBow();
-	float GetXsegments();
-	float GetYsegments();
+  float GetPlane_D();
+  nsMathTools::TVector3 GetPlane_Normal();
+  std::string GetNameMaterialOgre();
+  float GetScale();
+  float GetTiling();
+  bool  GetDrawFirst();
+  float GetBow();
+  float GetXsegments();
+  float GetYsegments();
 };
 
 #endif

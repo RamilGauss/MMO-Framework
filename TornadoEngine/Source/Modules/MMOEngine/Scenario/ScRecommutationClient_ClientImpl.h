@@ -21,7 +21,7 @@ namespace nsMMOEngine
     };
 
   public:
-	  TScRecommutationClient_ClientImpl(IScenario* pSc);
+    TScRecommutationClient_ClientImpl(IScenario* pSc);
 
     virtual void Work(unsigned int time_ms);
 

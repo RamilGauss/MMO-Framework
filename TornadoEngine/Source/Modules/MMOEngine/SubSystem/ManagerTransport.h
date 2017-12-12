@@ -15,35 +15,35 @@ class IMakerTransport;
 
 namespace nsMMOEngine
 {
-	class TReciverTransport;
-	class TManagerSession;
+  class TReciverTransport;
+  class TManagerSession;
   class TManagerTransport
   {
-		typedef std::map<unsigned char,INetTransport*> TMapUcharPtr;
-		typedef TMapUcharPtr::iterator TMapUcharPtrIt;
-	
-		typedef std::map<TReciverTransport*,INetTransport*> TMapPtrPtr;
-		typedef TMapPtrPtr::iterator TMapPtrPtrIt;
+    typedef std::map<unsigned char,INetTransport*> TMapUcharPtr;
+    typedef TMapUcharPtr::iterator TMapUcharPtrIt;
+  
+    typedef std::map<TReciverTransport*,INetTransport*> TMapPtrPtr;
+    typedef TMapPtrPtr::iterator TMapPtrPtrIt;
 
-		TMapUcharPtr mMapSubNetTransport;
-		TMapPtrPtr   mMapReciverTransport;
+    TMapUcharPtr mMapSubNetTransport;
+    TMapPtrPtr   mMapReciverTransport;
 
-		IMakerTransport* mMakerTransport;
-		TManagerSession* mMngSession;
+    IMakerTransport* mMakerTransport;
+    TManagerSession* mMngSession;
 
   public:
     TManagerTransport(TManagerSession* pMS);
     ~TManagerTransport();
 
-		void SetTransport(IMakerTransport* pMT);
+    void SetTransport(IMakerTransport* pMT);
 
-		INetTransport* FindBySubNet( unsigned char v);
-		INetTransport* FindByReciver( TReciverTransport* pRT);
+    INetTransport* FindBySubNet( unsigned char v);
+    INetTransport* FindByReciver( TReciverTransport* pRT);
 
-		INetTransport* Add(unsigned char subNet);
-	private:
+    INetTransport* Add(unsigned char subNet);
+  private:
 
-		void Done();
+    void Done();
   };
 }
 

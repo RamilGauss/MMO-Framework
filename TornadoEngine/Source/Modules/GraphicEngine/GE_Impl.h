@@ -22,19 +22,19 @@ See for more information License.h.
 
 class TGE_Impl :
   public TInputManagerOIS,
-	public Ogre::FrameListener,
-	public Ogre::WindowEventListener
+  public Ogre::FrameListener,
+  public Ogre::WindowEventListener
 {
   TControlClippingCursor mClipCursor;
   volatile bool flgCenterClippingCursor;
 
-	volatile bool flgGUIEnableEvent;
-	volatile bool flgUseClipCursor;
+  volatile bool flgGUIEnableEvent;
+  volatile bool flgUseClipCursor;
 public:
-	TGE_Impl();
-	virtual ~TGE_Impl();
+  TGE_Impl();
+  virtual ~TGE_Impl();
 
-	bool InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg);
+  bool InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg);
   void AddResource(const std::string& name, const std::string& type);
   bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
 
@@ -45,29 +45,29 @@ public:
 
   int GetModifierKeyBoard();
 
-	void GetWindowCaption(std::wstring& _text);
-	void SetWindowCaption(const std::wstring& _text);
-	size_t GetWindowHandle();
+  void GetWindowCaption(std::wstring& _text);
+  void SetWindowCaption(const std::wstring& _text);
+  size_t GetWindowHandle();
 
   void SetCenterClippingCursor(bool v);
   bool GetCenterClippingCursor();
 
-	Ogre::SceneManager* GetSceneManager();
-	Ogre::Root*         GetRoot();
-	Ogre::Camera*       GetCamera();
+  Ogre::SceneManager* GetSceneManager();
+  Ogre::Root*         GetRoot();
+  Ogre::Camera*       GetCamera();
   Ogre::RenderWindow* GetWindow();
 
-	Ogre::TerrainGroup* GetTerrainGroup();
-	Ogre::TerrainGlobalOptions* GetTerrainGlobals();
+  Ogre::TerrainGroup* GetTerrainGroup();
+  Ogre::TerrainGlobalOptions* GetTerrainGlobals();
 
-	void SetGUIEnableEvent(bool v);
-	bool GetGUIEnableEvent();
+  void SetGUIEnableEvent(bool v);
+  bool GetGUIEnableEvent();
 
-	void SetUseClipCursor(bool v);
-	bool GetUseClipCursor();
+  void SetUseClipCursor(bool v);
+  bool GetUseClipCursor();
 protected:
-	void TryClipCursor();
-	void ClipCursor();
+  void TryClipCursor();
+  void ClipCursor();
   void UnclipCursor();
 
   bool IsWindowFocus();
@@ -75,35 +75,35 @@ protected:
   void SetKeyBoardModifier(const OIS::KeyEvent &arg, bool pressed);
 
   void Done();
-	void DestroyGui();
+  void DestroyGui();
 
   virtual bool mouseMoved( const OIS::MouseEvent &arg );
   virtual bool mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
   virtual bool mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id );
   virtual bool keyPressed(const OIS::KeyEvent &arg);
-  virtual bool keyReleased(const OIS::KeyEvent &arg);		
+  virtual bool keyReleased(const OIS::KeyEvent &arg);    
 private:
-	virtual bool frameStarted(const Ogre::FrameEvent& _evt);
-	virtual bool frameEnded(const Ogre::FrameEvent& _evt);
+  virtual bool frameStarted(const Ogre::FrameEvent& _evt);
+  virtual bool frameEnded(const Ogre::FrameEvent& _evt);
   virtual void windowMoved(Ogre::RenderWindow* rw);
-	virtual void windowResized(Ogre::RenderWindow* _rw);
-	virtual void windowClosed(Ogre::RenderWindow* _rw);
+  virtual void windowResized(Ogre::RenderWindow* _rw);
+  virtual void windowClosed(Ogre::RenderWindow* _rw);
   virtual void windowFocusChange(Ogre::RenderWindow* rw);
 
 private:
-	MyGUI::Gui* mGUI;
-	MyGUI::OgrePlatform* mPlatform;
+  MyGUI::Gui* mGUI;
+  MyGUI::OgrePlatform* mPlatform;
 
-	Ogre::Root* mRoot;
-	Ogre::Camera* mCamera;
-	Ogre::SceneManager* mSceneManager;
-	Ogre::RenderWindow* mWindow;
-	Ogre::OverlaySystem* mOverlaySystem;  // Overlay system
+  Ogre::Root* mRoot;
+  Ogre::Camera* mCamera;
+  Ogre::SceneManager* mSceneManager;
+  Ogre::RenderWindow* mWindow;
+  Ogre::OverlaySystem* mOverlaySystem;  // Overlay system
 
-	Ogre::TerrainGroup* mTerrainGroup;
-	Ogre::TerrainGlobalOptions* mTerrainGlobals;
+  Ogre::TerrainGroup* mTerrainGroup;
+  Ogre::TerrainGlobalOptions* mTerrainGlobals;
 
-	bool mExit;
+  bool mExit;
 
   int mKeyModifier;
 

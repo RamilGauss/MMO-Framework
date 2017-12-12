@@ -9,13 +9,13 @@ See for more information License.h.
 
 namespace nsPattern_Volume
 {
-	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+  static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPattern_Volume;
 
 TPattern_Volume::TPattern_Volume() :
-	TBehaviourPattern(&g_DefaultParameterMap)
+  TBehaviourPattern(&g_DefaultParameterMap)
 {
 
 }
@@ -27,6 +27,6 @@ TPattern_Volume::~TPattern_Volume()
 //---------------------------------------------------------------------------
 TManagerNamePattern::eBaseType TPattern_Volume::GetBaseType()
 {
-	return TManagerNamePattern::eVolume;
+  return TManagerNamePattern::eVolume;
 }
 //------------------------------------------------------------------------

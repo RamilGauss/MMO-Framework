@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Georgiy Evmenov
-	@date		08/2008
+  @file
+  @author    Georgiy Evmenov
+  @date    08/2008
 */
 
 #ifndef _5482c1d8_6662_4c64_b13b_1781d34ea0b5_
@@ -13,31 +13,31 @@
 namespace tools
 {
 
-	class EditorToolTip :
-		public wraps::BaseLayout,
-		public MyGUI::Singleton<EditorToolTip>
-	{
-	public:
-		EditorToolTip();
-		virtual ~EditorToolTip();
+  class EditorToolTip :
+    public wraps::BaseLayout,
+    public MyGUI::Singleton<EditorToolTip>
+  {
+  public:
+    EditorToolTip();
+    virtual ~EditorToolTip();
 
-		void initialise();
-		void shutdown();
+    void initialise();
+    void shutdown();
 
-		void show(const SkinInfo& _data);
-		void hide();
-		void move(const MyGUI::IntPoint& _point);
+    void show(const SkinInfo& _data);
+    void hide();
+    void move(const MyGUI::IntPoint& _point);
 
-	private:
-		void setPosition(const MyGUI::IntPoint& _point);
+  private:
+    void setPosition(const MyGUI::IntPoint& _point);
 
-	private:
-		MyGUI::EditBox* mText;
-		MyGUI::Widget* mLastWidget;
+  private:
+    MyGUI::EditBox* mText;
+    MyGUI::Widget* mLastWidget;
 
-		int mMinWidth;
-		int mMinHeight;
-	};
+    int mMinWidth;
+    int mMinHeight;
+  };
 
 }
 

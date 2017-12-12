@@ -31,12 +31,12 @@ TGraphicEngine_Ogre_MyGUI* TModuleGraphicEngine::GetGE()
 //---------------------------------------------------------------------------------
 void TModuleGraphicEngine::StartEvent()
 {
-	mCBStartEvent.Notify();
+  mCBStartEvent.Notify();
 }
 //---------------------------------------------------------------------------------
 void TModuleGraphicEngine::StopEvent()
 {
-	mCBStopEvent.Notify();
+  mCBStopEvent.Notify();
 
   mGE.reset(NULL);
 }

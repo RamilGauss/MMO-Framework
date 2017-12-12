@@ -273,10 +273,10 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
 
   Context()->GetMS()->Send(GetID_SessionMasterSlave(), bpMaster);
   // разработчику
-	TEventRestoreContext* pEvent = new TEventRestoreContext;
-	pEvent->id_session = pDesc->id_session;
-	pEvent->c.SetDataByCount(Context()->GetContextDataPtr(), Context()->GetContextDataSize());
-	Context()->GetSE()->AddEventWithoutCopy<TEventRestoreContext>(pEvent);
+  TEventRestoreContext* pEvent = new TEventRestoreContext;
+  pEvent->id_session = pDesc->id_session;
+  pEvent->c.SetDataByCount(Context()->GetContextDataPtr(), Context()->GetContextDataSize());
+  Context()->GetSE()->AddEventWithoutCopy<TEventRestoreContext>(pEvent);
   // завершить сценарий
   End();
 }

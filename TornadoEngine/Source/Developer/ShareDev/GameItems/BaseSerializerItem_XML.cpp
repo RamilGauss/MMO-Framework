@@ -30,12 +30,12 @@ namespace nsBaseSerializerItem_XML
   const int CountAxes3       = 3;
   const int CountAxes4       = 4;
   //const int CountOrientation = 9;
-	const int CountOrientation = 4;
+  const int CountOrientation = 4;
 
-	const char* sColourRed   = "r";
-	const char* sColourGreen = "g";
-	const char* sColourBlue  = "b";
-	const char* sColourAlpha = "a";
+  const char* sColourRed   = "r";
+  const char* sColourGreen = "g";
+  const char* sColourBlue  = "b";
+  const char* sColourAlpha = "a";
 }
 
 using namespace nsBaseSerializerItem_XML;
@@ -44,14 +44,14 @@ TBaseSerializerItem_XML::TBaseSerializerItem_XML(std::string type)
 {
   mType = type;
 
-	for( int i = 0 ; i < 3 ; i++)
-	{
-		for( int j = 0 ; j < 3 ; j++)
-		{
-			std::string name = boost::lexical_cast<std::string>(i) + boost::lexical_cast<std::string>(j);
-			mMapNameIndex_m3x3.insert(TMapStrIndexVT(name,TIndex(i,j)));
-		}
-	}
+  for( int i = 0 ; i < 3 ; i++)
+  {
+    for( int j = 0 ; j < 3 ; j++)
+    {
+      std::string name = boost::lexical_cast<std::string>(i) + boost::lexical_cast<std::string>(j);
+      mMapNameIndex_m3x3.insert(TMapStrIndexVT(name,TIndex(i,j)));
+    }
+  }
 }
 //------------------------------------------------------------------------------
 TBaseSerializerItem_XML::~TBaseSerializerItem_XML()
@@ -166,175 +166,175 @@ bool TBaseSerializerItem_XML::SaveVector3ByProperty(nsMathTools::TVector3& v3)
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::LoadVector4ByProperty(nsMathTools::TVector4& v4)
 {
-	std::string key, value;
-	int cnt = GetCountProperty();
+  std::string key, value;
+  int cnt = GetCountProperty();
 
-	if(cnt!=CountAxes4)// кол-во компонентов в векторе
-		return false;
+  if(cnt!=CountAxes4)// кол-во компонентов в векторе
+    return false;
 
-	for( int i = 0 ; i < cnt ; i++ )
-	{
-		if(LoadProperty(i,key,value))
-		{
-			if(key==sAxeX)
-				v4.x = boost::lexical_cast<float>(value.data());
-			else if(key==sAxeY)
-				v4.y = boost::lexical_cast<float>(value.data());
-			else if(key==sAxeZ)
-				v4.z = boost::lexical_cast<float>(value.data());
-			else if(key==sAxeW)
-				v4.w = boost::lexical_cast<float>(value.data());
+  for( int i = 0 ; i < cnt ; i++ )
+  {
+    if(LoadProperty(i,key,value))
+    {
+      if(key==sAxeX)
+        v4.x = boost::lexical_cast<float>(value.data());
+      else if(key==sAxeY)
+        v4.y = boost::lexical_cast<float>(value.data());
+      else if(key==sAxeZ)
+        v4.z = boost::lexical_cast<float>(value.data());
+      else if(key==sAxeW)
+        v4.w = boost::lexical_cast<float>(value.data());
 
-			if(errno==ERANGE)
-				return false;
-		}
-		else 
-			return false;
-	}
-	return true;
+      if(errno==ERANGE)
+        return false;
+    }
+    else 
+      return false;
+  }
+  return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::SaveVector4ByProperty(nsMathTools::TVector4& v4)
 {
-	std::string key, value;
+  std::string key, value;
 
-	key = sAxeX;
-	value = boost::lexical_cast<std::string>(v4.x);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sAxeX;
+  value = boost::lexical_cast<std::string>(v4.x);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	key = sAxeY;
-	value = boost::lexical_cast<std::string>(v4.y);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sAxeY;
+  value = boost::lexical_cast<std::string>(v4.y);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	key = sAxeZ;
-	value = boost::lexical_cast<std::string>(v4.z);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sAxeZ;
+  value = boost::lexical_cast<std::string>(v4.z);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	key = sAxeW;
-	value = boost::lexical_cast<std::string>(v4.w);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sAxeW;
+  value = boost::lexical_cast<std::string>(v4.w);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	return true;
+  return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::LoadOrientationByProperty(nsMathTools::TMatrix16& m4x4)
 {
-	std::string key, value;
-	int cnt = GetCountProperty();
+  std::string key, value;
+  int cnt = GetCountProperty();
 
-	if(cnt!=CountOrientation)
-		return false;
+  if(cnt!=CountOrientation)
+    return false;
 
-	SetMatrixIdentity(&m4x4);
-	nsMathTools::TVector3 axis;
-	float angle;
+  SetMatrixIdentity(&m4x4);
+  nsMathTools::TVector3 axis;
+  float angle;
 
-	for( int i = 0 ; i < cnt ; i++ )
-	{
-		if(LoadProperty(i,key,value))
-		{
-			if(key==sAxeX)
-				axis.x = boost::lexical_cast<float>(value.data());
-			else if(key==sAxeY)
-				axis.y = boost::lexical_cast<float>(value.data());
-			else if(key==sAxeZ)
-				axis.z = boost::lexical_cast<float>(value.data());
-			else if(key==sAngle)
-				angle = boost::lexical_cast<float>(value.data());
-		}
-		else 
-			return false;
-	}
-	if(errno==ERANGE)
-		return false;
+  for( int i = 0 ; i < cnt ; i++ )
+  {
+    if(LoadProperty(i,key,value))
+    {
+      if(key==sAxeX)
+        axis.x = boost::lexical_cast<float>(value.data());
+      else if(key==sAxeY)
+        axis.y = boost::lexical_cast<float>(value.data());
+      else if(key==sAxeZ)
+        axis.z = boost::lexical_cast<float>(value.data());
+      else if(key==sAngle)
+        angle = boost::lexical_cast<float>(value.data());
+    }
+    else 
+      return false;
+  }
+  if(errno==ERANGE)
+    return false;
 
-	SetMatrixRotationAxis(&m4x4, &axis, angle);
-	return true;
+  SetMatrixRotationAxis(&m4x4, &axis, angle);
+  return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::SaveOrientationByProperty(nsMathTools::TMatrix16& m4x4)
 {
-	nsMathTools::TVector3 axis;
-	float angle;
-	SetMatrixToAxisAngle(&m4x4, &axis, &angle);
+  nsMathTools::TVector3 axis;
+  float angle;
+  SetMatrixToAxisAngle(&m4x4, &axis, &angle);
 
-	std::string key, value;
+  std::string key, value;
 
-	key = sAxeX;
-	value = boost::lexical_cast<std::string>(axis.x);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sAxeX;
+  value = boost::lexical_cast<std::string>(axis.x);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	key = sAxeY;
-	value = boost::lexical_cast<std::string>(axis.y);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sAxeY;
+  value = boost::lexical_cast<std::string>(axis.y);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	key = sAxeZ;
-	value = boost::lexical_cast<std::string>(axis.z);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sAxeZ;
+  value = boost::lexical_cast<std::string>(axis.z);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	key = sAngle;
-	value = boost::lexical_cast<std::string>(angle);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sAngle;
+  value = boost::lexical_cast<std::string>(angle);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	return true;
+  return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::LoadColour(nsMathTools::TVector3& v3)
 {
-	std::string key, value;
-	int cnt = GetCountProperty();
+  std::string key, value;
+  int cnt = GetCountProperty();
 
-	if(cnt<CountAxes3)// кол-во компонентов в векторе
-		return false;
+  if(cnt<CountAxes3)// кол-во компонентов в векторе
+    return false;
 
-	for( int i = 0 ; i < cnt ; i++ )
-	{
-		if(LoadProperty(i,key,value))
-		{
-			if(key==sColourRed)
-				v3.x = boost::lexical_cast<float>(value.data());
-			else if(key==sColourGreen)
-				v3.y = boost::lexical_cast<float>(value.data());
-			else if(key==sColourBlue)
-				v3.z = boost::lexical_cast<float>(value.data());
+  for( int i = 0 ; i < cnt ; i++ )
+  {
+    if(LoadProperty(i,key,value))
+    {
+      if(key==sColourRed)
+        v3.x = boost::lexical_cast<float>(value.data());
+      else if(key==sColourGreen)
+        v3.y = boost::lexical_cast<float>(value.data());
+      else if(key==sColourBlue)
+        v3.z = boost::lexical_cast<float>(value.data());
 
-			if(errno==ERANGE)
-				return false;
-		}
-		else 
-			return false;
-	}
-	return true;
+      if(errno==ERANGE)
+        return false;
+    }
+    else 
+      return false;
+  }
+  return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::SaveColour(nsMathTools::TVector3& v3)
 {
-	std::string key, value;
+  std::string key, value;
 
-	key = sColourRed;
-	value = boost::lexical_cast<std::string>(v3.x);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sColourRed;
+  value = boost::lexical_cast<std::string>(v3.x);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	key = sColourGreen;
-	value = boost::lexical_cast<std::string>(v3.y);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sColourGreen;
+  value = boost::lexical_cast<std::string>(v3.y);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	key = sColourBlue;
-	value = boost::lexical_cast<std::string>(v3.z);
-	if(SaveProperty(key,value)==false)
-		return false;
+  key = sColourBlue;
+  value = boost::lexical_cast<std::string>(v3.z);
+  if(SaveProperty(key,value)==false)
+    return false;
 
-	return true;
+  return true;
 }
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_XML::EnterRoot()
@@ -373,12 +373,12 @@ std::string TBaseSerializerItem_XML::Type()
 //------------------------------------------------------------------------------
 TBaseSerializerItem_XML::TIndex* TBaseSerializerItem_XML::FindIndex(std::string name)
 {
-	TMapStrIndexIt fit = mMapNameIndex_m3x3.find(name);
-	if( fit==mMapNameIndex_m3x3.end() )
-	{
-		BL_FIX_BUG();
-		return NULL;
-	}
-	return &(fit->second);
+  TMapStrIndexIt fit = mMapNameIndex_m3x3.find(name);
+  if( fit==mMapNameIndex_m3x3.end() )
+  {
+    BL_FIX_BUG();
+    return NULL;
+  }
+  return &(fit->second);
 }
 //------------------------------------------------------------------------------

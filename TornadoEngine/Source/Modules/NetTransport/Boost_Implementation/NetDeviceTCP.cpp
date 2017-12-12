@@ -60,16 +60,16 @@ bool TNetDeviceTCP::Open( unsigned short port, unsigned char numNetWork )
 //--------------------------------------------------------------------------------
 void TNetDeviceTCP::Close()
 {
-	if(mSocket.is_open()==false) return;
-	try
-	{
-		mSocket.close();
-	}
-	catch(std::exception& e)
-	{
-		GetLogger(STR_NAME_NET_TRANSPORT)->
-			WriteF_time("Close TCP FAIL: %s.\n", e.what());
-	}
+  if(mSocket.is_open()==false) return;
+  try
+  {
+    mSocket.close();
+  }
+  catch(std::exception& e)
+  {
+    GetLogger(STR_NAME_NET_TRANSPORT)->
+      WriteF_time("Close TCP FAIL: %s.\n", e.what());
+  }
 }
 //--------------------------------------------------------------------------------
 void TNetDeviceTCP::OffNagl()

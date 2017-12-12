@@ -25,32 +25,32 @@ class TInputCmdTestMMO_Client
 
 public:
 
-	struct TInput
-	{
-		unsigned short begin_port;
+  struct TInput
+  {
+    unsigned short begin_port;
     int            count;
     int            begin_id;
     std::string    ip_server;
-		TInput()
-		{
+    TInput()
+    {
       begin_port = CLIENT_PORT;
-			count      = 1;
+      count      = 1;
       begin_id   = 0;
 
       TResolverSelf_IP_v4 resolver;
       resolver.Get(ip_server, 0);
     }
-	};
+  };
 
   TInputCmdTestMMO_Client();
   ~TInputCmdTestMMO_Client();
 
-	bool SetArg(int argc, char** argv);
-	bool SetArg(std::vector<std::string>& vecArgv);
-	void Get(TInput& v_out);
+  bool SetArg(int argc, char** argv);
+  bool SetArg(std::vector<std::string>& vecArgv);
+  void Get(TInput& v_out);
 
 protected:
-	TInput mInput;
+  TInput mInput;
 };
 
 #endif

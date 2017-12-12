@@ -15,7 +15,7 @@ class TBehaviourPattern;
 class DllExport TBaseOperation_Pattern
 {
 public:
-	virtual void SetPattern(TBehaviourPattern* pPattern) = 0;
+  virtual void SetPattern(TBehaviourPattern* pPattern) = 0;
 };
 
 #endif

@@ -15,37 +15,37 @@ See for more information License.h.
 #include "GP_Scenario_Destructor.h"
 
 class DllExport TGP_AggregationScenario_GameMap : 
-	public IGP_AggregationScenario,
-	public IGP_Scenario_Builder, 
-	public IGP_Scenario_Synchro, 
-	public IGP_Scenario_Destructor 
+  public IGP_AggregationScenario,
+  public IGP_Scenario_Builder, 
+  public IGP_Scenario_Synchro, 
+  public IGP_Scenario_Destructor 
 {
   TGP_Scenario_Builder    mBuilder;
   TGP_Scenario_Synchro    mSynchro;
   TGP_Scenario_Destructor mDestructor;
 
-	int mID_World;
+  int mID_World;
 public:
   TGP_AggregationScenario_GameMap();
   virtual ~TGP_AggregationScenario_GameMap();
 
-	// Builder
+  // Builder
   virtual void LoadMap(std::string nameMap);
 
-	// Synchro
-	virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
-	virtual bool DeleteGameObject(int id);
+  // Synchro
+  virtual TGameObject* AddGameObject(TMapItem::TObject* pObject);
+  virtual bool DeleteGameObject(int id);
 
-	virtual void SaveMap(std::string nameMap);
+  virtual void SaveMap(std::string nameMap);
 
-	// Destructor
+  // Destructor
   virtual void UnloadAll();
 protected:
   virtual IGP_Scenario* GetByType(nsGameProcess::GP_TypeScenario type);
 
 private:
-	void End_BuildGameMap(nsGameProcess::GP_TypeScenario type);
-	void Progress_BuildGameMap(nsGameProcess::GP_TypeScenario type, int progress);
+  void End_BuildGameMap(nsGameProcess::GP_TypeScenario type);
+  void Progress_BuildGameMap(nsGameProcess::GP_TypeScenario type, int progress);
 };
 
 #endif

@@ -22,8 +22,8 @@ struct DllExport TTableSoundItem : public TBaseItem
 {
   // внутреннее наполнение
   typedef std::map<std::string,std::string> TMapStrStr;
-  typedef TMapStrStr::iterator   						TMapStrStrIt;
-  typedef TMapStrStr::value_type 						TMapStrStrVT;
+  typedef TMapStrStr::iterator               TMapStrStrIt;
+  typedef TMapStrStr::value_type             TMapStrStrVT;
 
   typedef std::vector<TMapStrStr> TVectorMapStrStr;
 
@@ -50,7 +50,7 @@ struct DllExport TTableSoundItem : public TBaseItem
   TVecVelocityVec mVecParam;
 
 public:
-	TTableSoundItem(std::string& name);
+  TTableSoundItem(std::string& name);
 
   // использование 
   struct DllExport TIn

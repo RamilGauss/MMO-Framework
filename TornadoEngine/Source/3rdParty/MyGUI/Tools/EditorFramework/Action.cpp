@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -9,35 +9,35 @@
 
 namespace tools
 {
-	Action::Action() :
-		mMerge(false)
-	{
-	}
+  Action::Action() :
+    mMerge(false)
+  {
+  }
 
-	Action::~Action()
-	{
-	}
+  Action::~Action()
+  {
+  }
 
-	void Action::doAction()
-	{
-	}
+  void Action::doAction()
+  {
+  }
 
-	void Action::undoAction()
-	{
-	}
+  void Action::undoAction()
+  {
+  }
 
-	bool Action::doMerge(Action* _action)
-	{
-		return false;
-	}
+  bool Action::doMerge(Action* _action)
+  {
+    return false;
+  }
 
-	void Action::setMerge(bool _value)
-	{
-		mMerge = _value;
-	}
+  void Action::setMerge(bool _value)
+  {
+    mMerge = _value;
+  }
 
-	bool Action::getMerge() const
-	{
-		return mMerge;
-	}
+  bool Action::getMerge() const
+  {
+    return mMerge;
+  }
 }

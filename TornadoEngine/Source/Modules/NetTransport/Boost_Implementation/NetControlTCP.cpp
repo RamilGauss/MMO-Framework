@@ -42,7 +42,7 @@ bool TNetControlTCP::Connect(unsigned int ip, unsigned short port)
 {
   flgWaitConnect = true;
   flgResConnect  = false;
-	TIP_Port ip_port(ip, port);
+  TIP_Port ip_port(ip, port);
   RequestConnect(ip_port);
   
   while(flgWaitConnect)
@@ -62,7 +62,7 @@ void TNetControlTCP::Send(unsigned int ip, unsigned short port, TBreakPacket& bp
   char* data = (char*)bp.GetCollectPtr();
   int size   = bp.GetSize();
 
-	RequestSend(data,size);
+  RequestSend(data,size);
 }
 //----------------------------------------------------------------------------------
 void TNetControlTCP::Close()
@@ -97,7 +97,7 @@ void TNetControlTCP::RecvEvent(const boost::system::error_code& error,size_t byt
     {
       INetTransport::TDescRecv descRecv;
       descRecv.ip_port      = *(mDevice.GetIP_Port());
-      descRecv.type					= INetTransport::eTcp;
+      descRecv.type          = INetTransport::eTcp;
       descRecv.data         = res.buffer;
       descRecv.sizeData     = res.size;
       NotifyRecv(&descRecv);
@@ -146,18 +146,18 @@ l_repeat:
   boost::system::error_code ec;
   int resSend = mDevice.GetSocket()->send(boost::asio::buffer(data, size), flags, ec);
   if(ec)
-	{
-		GetLogger(STR_NAME_NET_TRANSPORT)->
-			WriteF_time("RequestSend TCP error=%s.\n",ec.message().data());
-		return;
-	}
-	if(resSend<size)
-	{
-		ht_msleep(eTimeRepeatSend);
-		size -= resSend;
-		data += resSend;
-		goto l_repeat;
-	}
+  {
+    GetLogger(STR_NAME_NET_TRANSPORT)->
+      WriteF_time("RequestSend TCP error=%s.\n",ec.message().data());
+    return;
+  }
+  if(resSend<size)
+  {
+    ht_msleep(eTimeRepeatSend);
+    size -= resSend;
+    data += resSend;
+    goto l_repeat;
+  }
 }
 //----------------------------------------------------------------------------------
 void TNetControlTCP::RequestConnect(TIP_Port& ip_port)

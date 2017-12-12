@@ -25,11 +25,11 @@ TDevTool_EditorTableSound::~TDevTool_EditorTableSound()
 //-------------------------------------------------------------
 std::string TDevTool_EditorTableSound::GetVariantConveyer()
 {
-	return "EditorTableSound";
+  return "EditorTableSound";
 }
 //-------------------------------------------------------------
 TModuleDev* TDevTool_EditorTableSound::GetModuleLogic()
 {
-	return new TEditorTableSoundLogic;
+  return new TEditorTableSoundLogic;
 }
 //-----------------------------------------------------------------------

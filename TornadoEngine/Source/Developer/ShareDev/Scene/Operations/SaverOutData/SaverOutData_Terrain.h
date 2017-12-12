@@ -15,9 +15,9 @@ See for more information License.h.
 class DllExport TSaverOutData_Terrain : public TOperation_Terrain
 {
 public:
-	TSaverOutData_Terrain();
+  TSaverOutData_Terrain();
 
-	virtual void Save(TFactoryGameItem::TypeGameItem type) = 0;
+  virtual void Save(TFactoryGameItem::TypeGameItem type) = 0;
 private:
 };
 

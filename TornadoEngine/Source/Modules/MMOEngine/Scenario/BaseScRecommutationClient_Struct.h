@@ -71,17 +71,17 @@ namespace nsMMOEngine
       unsigned char from;
       unsigned int  id_client;
     }_PACKED;
-	  //-------------------------------------------------
+    //-------------------------------------------------
     struct THeaderC  : public THeader{ THeaderC (){from=eClient;}}_PACKED;
     struct THeaderM  : public THeader{ THeaderM (){from=eMaster;}}_PACKED;
     struct THeaderSD : public THeader{ THeaderSD (){from=eSlaveDonor;}}_PACKED;
     struct THeaderSR : public THeader{ THeaderSR (){from=eSlaveRecipient;}}_PACKED;
     //-------------------------------------------------
-	  struct THeaderBeginDonor : THeaderM
-	  {
+    struct THeaderBeginDonor : THeaderM
+    {
       THeaderBeginDonor();
-	  }_PACKED;
-	  //-------------------------------------------------
+    }_PACKED;
+    //-------------------------------------------------
     struct THeaderBeginClient : THeaderSD
     {
       THeaderBeginClient();

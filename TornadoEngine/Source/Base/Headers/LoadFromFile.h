@@ -23,12 +23,12 @@ See for more information License.h.
 class DllExport TLoadFromFile : public InfoFile
 {
 public:
-	TLoadFromFile(char* path = NULL);
-	virtual ~TLoadFromFile();
+  TLoadFromFile(char* path = NULL);
+  virtual ~TLoadFromFile();
 
-	virtual bool ReOpen(char* path, bool append = false);
+  virtual bool ReOpen(char* path, bool append = false);
 
-	unsigned int Size();
+  unsigned int Size();
   unsigned int Read(void* buffer, unsigned int size, unsigned int offset = 0);
   int ReadSmall(TContainer& c);
 };

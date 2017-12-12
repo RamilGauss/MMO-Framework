@@ -18,7 +18,7 @@ namespace nsMMOEngine
       eTimeWait = 20000,
     };
   public:
-	  TScLoginClient_SlaveImpl(IScenario* pSc);
+    TScLoginClient_SlaveImpl(IScenario* pSc);
 
     virtual void Work(unsigned int time_ms);
   protected:

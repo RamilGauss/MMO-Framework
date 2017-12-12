@@ -11,14 +11,14 @@ See for more information License.h.
 
 namespace nsResourcesGraphicEngine
 {
-	const char* sTerrainPath = "TerrainPath";
-	const char* sPluginsCfg  = "PluginsCfg";
+  const char* sTerrainPath = "TerrainPath";
+  const char* sPluginsCfg  = "PluginsCfg";
   const char* sOgreCfg     = "OgreCfg";
 
   const char* sPath       = "Path";
   const char* sVariant    = "Variant";
 
-	const char* sValueVariant = 
+  const char* sValueVariant = 
 #ifdef _DEBUG
   "Debug";
 #else
@@ -41,52 +41,52 @@ TResourcesGraphicEngine::~TResourcesGraphicEngine()
 bool TResourcesGraphicEngine::Work(IXML* pXML)
 {
   mPluginsCfg = "";
-	mOgreCfg    = "";
+  mOgreCfg    = "";
 
   if(TResources::Work(pXML)==false)
     return false;
 
   RET_FALSE(LoadPluginsCfg())
-	RET_FALSE(LoadOgreCfg())
-	RET_FALSE(LoadTerrainLightMap())
+  RET_FALSE(LoadOgreCfg())
+  RET_FALSE(LoadTerrainLightMap())
 
-	return true;
+  return true;
 }
 //--------------------------------------------------------------------------
 bool TResourcesGraphicEngine::LoadTerrainLightMap()
 {
-	mTerrainPath = mXML->ReadSectionAttr(sTerrainPath, 0, sPath);
-	if( mTerrainPath.length()==0)
-		mTerrainPath = "./";
-	return true;
+  mTerrainPath = mXML->ReadSectionAttr(sTerrainPath, 0, sPath);
+  if( mTerrainPath.length()==0)
+    mTerrainPath = "./";
+  return true;
 }
 //--------------------------------------------------------------------------
 bool TResourcesGraphicEngine::LoadPluginsCfg()
 {
-	return Load(sPluginsCfg, mPluginsCfg);
+  return Load(sPluginsCfg, mPluginsCfg);
 }
 //--------------------------------------------------------------------------
 bool TResourcesGraphicEngine::LoadOgreCfg()
 {
-	return Load(sOgreCfg, mOgreCfg);
+  return Load(sOgreCfg, mOgreCfg);
 }
 //--------------------------------------------------------------------------
 bool TResourcesGraphicEngine::Load(const char* section, std::string& result)
 {
-	int cntSection = mXML->GetCountSection(section);
-	for( int iSection = 0 ; iSection < cntSection ; iSection++ )
-	{
-		std::string path    = mXML->ReadSectionAttr(section, iSection, sPath);
-		std::string variant = mXML->ReadSectionAttr(section, iSection, sVariant);
+  int cntSection = mXML->GetCountSection(section);
+  for( int iSection = 0 ; iSection < cntSection ; iSection++ )
+  {
+    std::string path    = mXML->ReadSectionAttr(section, iSection, sPath);
+    std::string variant = mXML->ReadSectionAttr(section, iSection, sVariant);
 
-		if(variant==sValueVariant)
-		{
-			result = path;
-			return true;
-		}
-	}
-	ErrorNoSection(section);
-	return false;
+    if(variant==sValueVariant)
+    {
+      result = path;
+      return true;
+    }
+  }
+  ErrorNoSection(section);
+  return false;
 }
 //--------------------------------------------------------------------------
 std::string TResourcesGraphicEngine::GetPluginsCfg()
@@ -96,11 +96,11 @@ std::string TResourcesGraphicEngine::GetPluginsCfg()
 //--------------------------------------------------------------------------
 std::string TResourcesGraphicEngine::GetOgreCfg()
 {
-	return mOgreCfg;
+  return mOgreCfg;
 }
 //--------------------------------------------------------------------------
 std::string TResourcesGraphicEngine::GetTerrainPath()
 {
-	return mTerrainPath;
+  return mTerrainPath;
 }
 //--------------------------------------------------------------------------

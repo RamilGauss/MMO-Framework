@@ -14,22 +14,22 @@ See for more information License.h.
 class DllExport TContainerRise
 {
 
-	TContainer mC;
-	int  mSizeUse;
+  TContainer mC;
+  int  mSizeUse;
 
 public:
-	TContainerRise();
-	
-	void SetData(char* p, int size);// установит размер и скопирует внутрь
-	// для частичного копирования используй memcpy
+  TContainerRise();
+  
+  void SetData(char* p, int size);// установит размер и скопирует внутрь
+  // для частичного копирования используй memcpy
 
   void AddData(char*p, int size);
 
-	char* GetPtr();
-	int GetSize();
+  char* GetPtr();
+  int GetSize();
 
-	void Alloc(int new_size);   // не копирует 
-	void Realloc( int new_size);// копирует старый кусок
+  void Alloc(int new_size);   // не копирует 
+  void Realloc( int new_size);// копирует старый кусок
 };
 
 

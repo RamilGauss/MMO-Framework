@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2012
+  @file
+  @author    Albert Semenov
+  @date    08/2012
 */
 
 #ifndef _09fd0384_b601_4697_9fd3_c105b4fe2058_
@@ -11,16 +11,16 @@
 
 namespace tools
 {
-	class MYGUI_EXPORT_DLL ControlDebug :
-		public Control
-	{
-	public:
-		ControlDebug();
-		virtual ~ControlDebug();
+  class MYGUI_EXPORT_DLL ControlDebug :
+    public Control
+  {
+  public:
+    ControlDebug();
+    virtual ~ControlDebug();
 
-	protected:
-		virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
-	};
+  protected:
+    virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
+  };
 
 }
 

@@ -27,7 +27,7 @@ TManagerSerializerItem_Binary::TManagerSerializerItem_Binary()
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Model,        mSerializerModel.get()));
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Terrain,      mSerializerTerrain.get()));
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Map,          mSerializerMap.get()));
-	mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::TableSound,   mSerializerTableSound.get()));
+  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::TableSound,   mSerializerTableSound.get()));
 }
 //--------------------------------------------------------------------------------------
 void TManagerSerializerItem_Binary::Pack(TBaseItem* pItem, TContainer& cBinOut)

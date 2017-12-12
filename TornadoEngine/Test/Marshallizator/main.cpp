@@ -14,11 +14,11 @@ See for more information License.h.
 class TDeserializeHandler
 {
 public:
-	// handle MyClass packet
-	void MyClassHandler( MyClass* p )
-	{
+  // handle MyClass packet
+  void MyClassHandler( MyClass* p )
+  {
     delete p;
-	}
+  }
   // handle MyClass packet
   void TestClassHandler( TestClass* p )
   {
@@ -100,15 +100,17 @@ void Benchmark()
   objSer->vParam.push_back(param);
   objSer->vParam.push_back(param);
   TMarshallizator marsh;
-  int cnt = 100000;
+  int cnt = 5000000;
+  printf("cnt=%d\n", cnt);
   unsigned int start = ht_GetMSCount();
   for( int i = 0 ; i < cnt ; i++ )
     networkPacket = marsh.Serialize( objSer );
   unsigned int end = ht_GetMSCount();
   float speed = (float)(end - start)/cnt;
   printf("ser speed = %f\n",speed);
+  printf("size=%d\n", networkPacket.GetSize());
 
-	marsh.mCBTestClass.Register( &TDeserializeHandler::TestClassHandler, &handler );
+  marsh.mCBTestClass.Register( &TDeserializeHandler::TestClassHandler, &handler );
 
   start = ht_GetMSCount();
   for( int i = 0 ; i < cnt ; i++ )
@@ -124,25 +126,25 @@ int main( int argc, char** argv)
   Benchmark();
   return 0;
 
-	// Marshalling
-	TContainer networkPacket;// transport simulation 
+  // Marshalling
+  TContainer networkPacket;// transport simulation 
   {
-		// side A
+    // side A
     ParamClass param;
     MyClass* objSer = new MyClass();
     FillMyClass( objSer );
-		TMarshallizator marsh;
-	  networkPacket = marsh.Serialize( objSer );
-		delete objSer;
-	}
+    TMarshallizator marsh;
+    networkPacket = marsh.Serialize( objSer );
+    delete objSer;
+  }
 
-	{
-		// side B
-		TMarshallizator marsh;
-		marsh.mCBMyClass.Register( &TDeserializeHandler::MyClassHandler, &handler );
-		marsh.Deserialize( &networkPacket, true/*newObj*/ );// want new object
-	}
-	return 0;
+  {
+    // side B
+    TMarshallizator marsh;
+    marsh.mCBMyClass.Register( &TDeserializeHandler::MyClassHandler, &handler );
+    marsh.Deserialize( &networkPacket, true/*newObj*/ );// want new object
+  }
+  return 0;
 }
 
 // IMarshallizator

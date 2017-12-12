@@ -34,7 +34,7 @@ public:
   bool Load(const char* sAbsPath);
 
   // вернуть по ключу значение 
-	const char* GetSecond(const char* name, unsigned int index = 0);
+  const char* GetSecond(const char* name, unsigned int index = 0);
   unsigned int GetCount(const char* name);
 
 protected:

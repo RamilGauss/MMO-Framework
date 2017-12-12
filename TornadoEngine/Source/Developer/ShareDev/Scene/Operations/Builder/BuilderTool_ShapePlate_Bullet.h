@@ -20,11 +20,11 @@ class btRigidBody;
 class DllExport TBuilderTool_ShapePlate_Bullet : public TBuilderTool_ShapeBase_Bullet
 {
 public:
-	TBuilderTool_ShapePlate_Bullet();
-	virtual ~TBuilderTool_ShapePlate_Bullet();
+  TBuilderTool_ShapePlate_Bullet();
+  virtual ~TBuilderTool_ShapePlate_Bullet();
 
-	// Bullet thread only
-	virtual btRigidBody* CreateRigidBody();
+  // Bullet thread only
+  virtual btRigidBody* CreateRigidBody();
 protected:
 };
 

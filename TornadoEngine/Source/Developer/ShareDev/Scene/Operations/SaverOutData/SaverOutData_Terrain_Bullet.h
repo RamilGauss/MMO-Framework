@@ -14,10 +14,10 @@ See for more information License.h.
 class DllExport TSaverOutData_Terrain_Bullet : public TSaverOutData_Terrain
 {
 public:
-	TSaverOutData_Terrain_Bullet();
-	virtual ~TSaverOutData_Terrain_Bullet();
+  TSaverOutData_Terrain_Bullet();
+  virtual ~TSaverOutData_Terrain_Bullet();
 
-	virtual void Save(TFactoryGameItem::TypeGameItem type);
+  virtual void Save(TFactoryGameItem::TypeGameItem type);
 private:
 };
 

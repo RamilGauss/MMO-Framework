@@ -25,7 +25,7 @@ TNetTransport_Boost* INetControl::GetNetBoost()
 //------------------------------------------------------------------------------
 void INetControl::NotifyRecv(INetTransport::TDescRecv* p)
 {
-	mNetTransportBoost->GetCallbackRecv()->Notify(p);
+  mNetTransportBoost->GetCallbackRecv()->Notify(p);
 }
 //------------------------------------------------------------------------------
 void INetControl::NotifyDisconnect(TIP_Port* p, TNetTransport_Boost* pNetTransportBoost)
@@ -36,6 +36,6 @@ void INetControl::NotifyDisconnect(TIP_Port* p, TNetTransport_Boost* pNetTranspo
   // Но удалять позже самого уведомления нельзя, потому что другой поток,
   // который использует данное событие опередит удаление объекта
   // и удаление произойдет в процессе работы с объектом.
-	pNetTransportBoost->GetCallbackDisconnect()->Notify(p);
+  pNetTransportBoost->GetCallbackDisconnect()->Notify(p);
 }
 //------------------------------------------------------------------------------

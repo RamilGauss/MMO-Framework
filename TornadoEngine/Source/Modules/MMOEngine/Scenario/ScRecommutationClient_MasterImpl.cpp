@@ -69,26 +69,26 @@ void TScRecommutationClient_MasterImpl::Start(unsigned int id_session_recipient,
                                               unsigned int id_client)
 {
   Context()->SetClientKey(id_client);
-	Context()->SetSessionRecipient(id_session_recipient);
-	if(Begin()==false)
-	{
-		return;
-	}
-	SendFirstPacket();
+  Context()->SetSessionRecipient(id_session_recipient);
+  if(Begin()==false)
+  {
+    return;
+  }
+  SendFirstPacket();
 }
 //--------------------------------------------------------------
 void TScRecommutationClient_MasterImpl::DelayBegin()
 {
-	SendFirstPacket();
+  SendFirstPacket();
 }
 //--------------------------------------------------------------
 void TScRecommutationClient_MasterImpl::SendFirstPacket()
 {
-	// откуда уходим?
+  // откуда уходим?
   NeedSessionDonorByClientKey(mScenario);
   // сценарий активен
   EventActivate();
-  // проверка на совпадение	Донора с Реципиентом
+  // проверка на совпадение  Донора с Реципиентом
   if(Context()->GetSessionDonor()==Context()->GetSessionRecipient())
   {
     End();

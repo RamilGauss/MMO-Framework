@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2010
+  @file
+  @author    Albert Semenov
+  @date    08/2010
 */
 
 #ifndef _48318828_b4a4_495c_a50f_73a810b59e74_
@@ -12,16 +12,16 @@
 namespace tools
 {
 
-	class MYGUI_EXPORT_DLL VerticalSelectorControl :
-		public SelectorControl
-	{
-	public:
-		VerticalSelectorControl();
-		virtual ~VerticalSelectorControl();
+  class MYGUI_EXPORT_DLL VerticalSelectorControl :
+    public SelectorControl
+  {
+  public:
+    VerticalSelectorControl();
+    virtual ~VerticalSelectorControl();
 
-	protected:
-		virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
-	};
+  protected:
+    virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
+  };
 
 }
 

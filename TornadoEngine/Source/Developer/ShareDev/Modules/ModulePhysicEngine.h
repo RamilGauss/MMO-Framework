@@ -14,7 +14,7 @@ See for more information License.h.
 
 class DllExport TModulePhysicEngine : public TModuleComponent
 {
-	boost::scoped_ptr<TPhysicEngine_Bullet> mPE;
+  boost::scoped_ptr<TPhysicEngine_Bullet> mPE;
 public:
   TModulePhysicEngine();
 

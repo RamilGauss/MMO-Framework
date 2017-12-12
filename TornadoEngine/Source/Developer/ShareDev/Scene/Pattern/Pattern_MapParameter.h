@@ -17,14 +17,14 @@ See for more information License.h.
 class DllExport TPattern_MapParameter : public TBehaviourPattern
 {
 public:
-	TPattern_MapParameter();
-	virtual ~TPattern_MapParameter();
+  TPattern_MapParameter();
+  virtual ~TPattern_MapParameter();
 
-	virtual bool BuildByModule_Graphic(bool fast = false);
-	virtual bool BuildByModule_Physic( bool fast = false);
-	virtual bool BuildByModule_Sound(  bool fast = false);
+  virtual bool BuildByModule_Graphic(bool fast = false);
+  virtual bool BuildByModule_Physic( bool fast = false);
+  virtual bool BuildByModule_Sound(  bool fast = false);
 
-	virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TManagerNamePattern::eBaseType GetBaseType();
 protected:
 
 };

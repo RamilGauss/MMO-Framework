@@ -14,24 +14,24 @@ See for more information License.h.
 
 class DllExport TManagerNodeLocation_Model
 {
-	typedef std::map<std::string,TNodeLocation_Model> TMapStrNodeLocation;
-	typedef TMapStrNodeLocation::iterator   					TMapStrNodeLocationIt;
-	typedef TMapStrNodeLocation::value_type 					TMapStrNodeLocationVT;
+  typedef std::map<std::string,TNodeLocation_Model> TMapStrNodeLocation;
+  typedef TMapStrNodeLocation::iterator             TMapStrNodeLocationIt;
+  typedef TMapStrNodeLocation::value_type           TMapStrNodeLocationVT;
 
-	TMapStrNodeLocation mMapNamePart_NodeLocation;
+  TMapStrNodeLocation mMapNamePart_NodeLocation;
 public:
-	TManagerNodeLocation_Model();
-	virtual ~TManagerNodeLocation_Model();
+  TManagerNodeLocation_Model();
+  virtual ~TManagerNodeLocation_Model();
 
-	// насыщение данными
-	void Add(std::string namePart);
-	void Remove(std::string namePart);
-	void Clear();
+  // насыщение данными
+  void Add(std::string namePart);
+  void Remove(std::string namePart);
+  void Clear();
 
-	// доступ
-	int GetCount();
-	TNodeLocation_Model* Get(int index);
-	TNodeLocation_Model* Get(std::string namePart);
+  // доступ
+  int GetCount();
+  TNodeLocation_Model* Get(int index);
+  TNodeLocation_Model* Get(std::string namePart);
 };
 
 #endif

@@ -17,21 +17,21 @@ class TShapeNode_Model;
 class DllExport TBuilder_Model_Bullet : public TBuilder_Model
 {
 public:
-	TBuilder_Model_Bullet();
-	virtual ~TBuilder_Model_Bullet();
+  TBuilder_Model_Bullet();
+  virtual ~TBuilder_Model_Bullet();
 
   TFactoryBuilderTool_Shape_Bullet* GetShapeMaker();
 
-	virtual void Build();
+  virtual void Build();
 protected:
 
-	void BuildShape(TShapeNode_Model* pShapeNode);
-	void PostBuild();
+  void BuildShape(TShapeNode_Model* pShapeNode);
+  void PostBuild();
 
-	void PostBuild_Shape();
-	void PostBuild_Model();
+  void PostBuild_Shape();
+  void PostBuild_Model();
 
-	void SetLocation_Shape(TShapeNode_Model* pNode);
+  void SetLocation_Shape(TShapeNode_Model* pNode);
 };
 
 #endif

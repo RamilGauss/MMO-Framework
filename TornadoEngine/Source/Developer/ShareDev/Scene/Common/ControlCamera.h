@@ -21,7 +21,7 @@ class DllExport TControlCamera
   bool flgMoveUp;
   bool flgMoveDown;
 
-	bool flgFastMove;
+  bool flgFastMove;
 
 public:
   TControlCamera();
@@ -33,20 +33,20 @@ public:
   void SetMoveUp(bool v);
   void SetMoveDown(bool v);
 
-	void SetFast(bool v);
+  void SetFast(bool v);
 
   void CameraTryMove();
 
   void MoveMouse(int dX, int dY);
 protected:
-	float GetMove();
+  float GetMove();
 
-	float GetMoveForward();
-	float GetMoveBackward();
-	float GetMoveRight();
-	float GetMoveLeft();
-	float GetMoveUp();
-	float GetMoveDown();
+  float GetMoveForward();
+  float GetMoveBackward();
+  float GetMoveRight();
+  float GetMoveLeft();
+  float GetMoveUp();
+  float GetMoveDown();
 
 };
 

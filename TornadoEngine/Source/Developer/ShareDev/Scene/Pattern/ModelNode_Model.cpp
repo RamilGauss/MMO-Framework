@@ -9,8 +9,8 @@ See for more information License.h.
 
 TModelNode_Model::TModelNode_Model()
 {
-	type = TModelItem::eModel;
-	mPtrModel = NULL;
+  type = TModelItem::eModel;
+  mPtrModel = NULL;
 }
 //---------------------------------------------------------------
 TModelNode_Model::~TModelNode_Model()

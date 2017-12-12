@@ -13,7 +13,7 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-	class IScenario;
+  class IScenario;
   class TScenarioDisconnectClient;
   class TScenarioFlow;
   class TScenarioLoginClient;

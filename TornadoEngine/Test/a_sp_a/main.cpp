@@ -175,9 +175,9 @@ void WorkThread0()
 int main()
 {
   boost::mutex::scoped_lock lock(io_mutex);
-	boost::thread workThread(&WorkThread0);
-	condition.wait(lock);
+  boost::thread workThread(&WorkThread0);
+  condition.wait(lock);
   for( int i = 0 ; i < 4 ; i++)
     arrThread[i].Stop();
-	return 0;
+  return 0;
 }*/

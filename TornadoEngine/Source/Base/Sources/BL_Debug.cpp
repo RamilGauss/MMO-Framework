@@ -18,17 +18,17 @@ using namespace std;
 #include <shlwapi.h>
 #include "BL_Debug.h"
 #if defined(__BORLANDC__)
-	#pragma link "shlwapi.lib"     
+  #pragma link "shlwapi.lib"     
 #endif
 
 bool BL_MessageBug_Utf8( const char* sMsgUtf8 )
 {
-	size_t lenMsgUtf8 = strlen(sMsgUtf8);
-	TContainer cUtf8;
-	cUtf8.SetData((char*)sMsgUtf8, lenMsgUtf8);
-	TConverterLocale cnvUtf8ToWin1251;
-	TContainer cWin1251 = cnvUtf8ToWin1251.Convert("utf-8", "windows-1251", cUtf8);
-	return BL_MessageBug(cWin1251.GetPtr());
+  size_t lenMsgUtf8 = strlen(sMsgUtf8);
+  TContainer cUtf8;
+  cUtf8.SetData((char*)sMsgUtf8, lenMsgUtf8);
+  TConverterLocale cnvUtf8ToWin1251;
+  TContainer cWin1251 = cnvUtf8ToWin1251.Convert("utf-8", "windows-1251", cUtf8);
+  return BL_MessageBug(cWin1251.GetPtr());
 }
 //-----------------------------------------------------------------------------
 // Сообщение об ошибке зафиксированной в теле программы

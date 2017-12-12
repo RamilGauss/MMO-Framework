@@ -14,10 +14,10 @@ See for more information License.h.
 class DllExport TUpdaterGameItem_Terrain_Ogre : public TUpdaterGameItem_Terrain
 {
 public:
-	TUpdaterGameItem_Terrain_Ogre();
-	virtual ~TUpdaterGameItem_Terrain_Ogre();
+  TUpdaterGameItem_Terrain_Ogre();
+  virtual ~TUpdaterGameItem_Terrain_Ogre();
 
-	virtual bool Update( TFactoryGameItem::TypeGameItem type );
+  virtual bool Update( TFactoryGameItem::TypeGameItem type );
 protected:
 };
 

@@ -27,7 +27,7 @@ TControlCamera::TControlCamera()
   flgMoveUp       = false;
   flgMoveDown     = false;
 
-	flgFastMove     = false;
+  flgFastMove     = false;
 }
 //-------------------------------------------------------------------
 void TControlCamera::SetMoveForward(bool v)
@@ -62,7 +62,7 @@ void TControlCamera::SetMoveDown(bool v)
 //-------------------------------------------------------------------
 void TControlCamera::SetFast(bool v)
 {
-	flgFastMove = v;
+  flgFastMove = v;
 }
 //-------------------------------------------------------------------
 void TControlCamera::CameraTryMove()
@@ -107,36 +107,36 @@ void TControlCamera::MoveMouse(int dX, int dY)
 //---------------------------------------------------------------------------------------------
 float TControlCamera::GetMove()
 {
-	return flgFastMove ? DELTA_FAST_MOVE_CAMERA : DELTA_MOVE_CAMERA;
+  return flgFastMove ? DELTA_FAST_MOVE_CAMERA : DELTA_MOVE_CAMERA;
 }
 //---------------------------------------------------------------------------------------------
 float TControlCamera::GetMoveForward()
 {
-	return -GetMove();
+  return -GetMove();
 }
 //---------------------------------------------------------------------------------------------
 float TControlCamera::GetMoveBackward()
 {
-	return GetMove();
+  return GetMove();
 }
 //---------------------------------------------------------------------------------------------
 float TControlCamera::GetMoveRight()
 {
-	return GetMove();
+  return GetMove();
 }
 //---------------------------------------------------------------------------------------------
 float TControlCamera::GetMoveLeft()
 {
-	return -GetMove();
+  return -GetMove();
 }
 //---------------------------------------------------------------------------------------------
 float TControlCamera::GetMoveUp()
 {
-	return GetMove();
+  return GetMove();
 }
 //---------------------------------------------------------------------------------------------
 float TControlCamera::GetMoveDown()
 {
-	return -GetMove();
+  return -GetMove();
 }
 //---------------------------------------------------------------------------------------------

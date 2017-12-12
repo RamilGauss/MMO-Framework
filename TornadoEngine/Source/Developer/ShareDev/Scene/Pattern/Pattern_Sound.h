@@ -17,7 +17,7 @@ public:
   TPattern_Sound();
   virtual ~TPattern_Sound();
 
-	virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

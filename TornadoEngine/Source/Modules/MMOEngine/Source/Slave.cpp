@@ -35,7 +35,7 @@ TSlave::TSlave()
 
   mTimeNeedSendSynchro = 0;
   mControlSc->mLoginClient->SetBehavior(TScenarioLoginClient::eSlave);
-	mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eSlave);
+  mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eSlave);
 }
 //-------------------------------------------------------------------------
 TSlave::~TSlave()
@@ -106,7 +106,7 @@ void TSlave::DisconnectInherit(unsigned int id_session)
 //-------------------------------------------------------------------------
 int TSlave::GetCountDown()
 {
-	return mMngContextClient->GetCountSession();
+  return mMngContextClient->GetCountSession();
 }
 //-------------------------------------------------------------------------
 bool TSlave::GetDescDown(int index, void* pDesc, int& sizeDesc)
@@ -125,7 +125,7 @@ bool TSlave::GetDescDown(int index, void* pDesc, int& sizeDesc)
   TDescDownSlave* pDescDownSlave = (TDescDownSlave*)pDesc;
   pDescDownSlave->id_session = id_session;
   sizeDesc = sizeof(TDescDownSlave);
-	return true;
+  return true;
 }
 //-------------------------------------------------------------------------
 void TSlave::ConnectUp(unsigned int ip, unsigned short port, 
@@ -250,15 +250,15 @@ void TSlave::NeedContextSendToClient(unsigned int id_client)
 {
   // запрос на отправку какому-то клиенту
   TContainerContextSc* pContext = mMngContextClient->FindContextByKey(id_client);
-	if(pContext)
-		mControlSc->mSendToClient->SetContext(&pContext->mSendToClient);
-	else
-		mControlSc->mSendToClient->SetContext(NULL);
+  if(pContext)
+    mControlSc->mSendToClient->SetContext(&pContext->mSendToClient);
+  else
+    mControlSc->mSendToClient->SetContext(NULL);
 }
 //-------------------------------------------------------------------------
 void TSlave::SendByClientKey(list<unsigned int>& lKey, TBreakPacket& bp)
 {
-	mControlSc->mSendToClient->SendFromSlave(lKey, bp);
+  mControlSc->mSendToClient->SendFromSlave(lKey, bp);
 }
 //-------------------------------------------------------------------------
 void TSlave::NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_session_client,

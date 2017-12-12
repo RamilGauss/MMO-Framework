@@ -64,8 +64,8 @@ namespace nsMMOEngine
       pDesc->c.Unlink();
       // отдать память под контроль события
       pEvent->c.Entrust(pDesc->data, pDesc->sizeData);
-			pEvent->data     = pDesc->data     + sizeof(THeaderFlow);
-			pEvent->sizeData = pDesc->sizeData - sizeof(THeaderFlow);
+      pEvent->data     = pDesc->data     + sizeof(THeaderFlow);
+      pEvent->sizeData = pDesc->sizeData - sizeof(THeaderFlow);
       // откуда пришел пакет - сессия
       pEvent->id_session = pDesc->id_session;
       // добавить событие без копирования и указать истинное время создания события в транспорте

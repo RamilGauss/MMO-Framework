@@ -41,10 +41,10 @@ void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port,
   Context()->GetMS()->CloseSession(Context()->GetID_Session());
   TContainer cMITM;
   TBreakPacket bp;
-	if((Context()->GetMS()->GetUseCryptTCP())&&
-		 (pLogin!=NULL)&&(sizeLogin>0)&&(pPassword!=NULL)&&(sizePassword>0))
-	{
-		// если данные шифруются, то формировать так:
+  if((Context()->GetMS()->GetUseCryptTCP())&&
+     (pLogin!=NULL)&&(sizeLogin>0)&&(pPassword!=NULL)&&(sizePassword>0))
+  {
+    // если данные шифруются, то формировать так:
     TContainer cRSA;
     bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
     BL_ASSERT(resRSA);
@@ -54,7 +54,7 @@ void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port,
     BL_ASSERT(res);
 
     bp.PushFront(cMITM.GetPtr(), cMITM.GetSize());
-	}
+  }
   THeaderFromSlave h;
   bp.PushFront((char*)&h, sizeof(h));
 
@@ -104,14 +104,14 @@ void TScenarioLoginSlave::RecvFromSlave(TDescRecvSession* pDesc)
   }
   Context()->SetID_Session(pDesc->id_session);
 
-	// событие наружу
+  // событие наружу
   TEventConnectDown* pEvent = new TEventConnectDown;
-	pEvent->id_session = pDesc->id_session;
-	// сохранить информацию о логине и пароле клиента
-	char* data   = pDesc->data     + sizeof(THeaderFromSlave);
-	int sizeData = pDesc->sizeData - sizeof(THeaderFromSlave);
-	pEvent->c.SetData(data,sizeData);
-	Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
+  pEvent->id_session = pDesc->id_session;
+  // сохранить информацию о логине и пароле клиента
+  char* data   = pDesc->data     + sizeof(THeaderFromSlave);
+  int sizeData = pDesc->sizeData - sizeof(THeaderFromSlave);
+  pEvent->c.SetData(data,sizeData);
+  Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
 
   TBreakPacket bp;
   THeaderAnswerMaster h;

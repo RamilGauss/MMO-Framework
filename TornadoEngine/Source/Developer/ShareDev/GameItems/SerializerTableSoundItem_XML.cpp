@@ -16,17 +16,17 @@ See for more information License.h.
 
 namespace nsSerializerTableSoundItem_XML
 {
-	const char* sTableSound  = "TableSound";
-	const char* sRange       = "Range";
-	const char* sVelocity    = "Velocity";
-	const char* sAngle       = "Angle";
-	const char* sMass        = "Mass";
-	const char* sMaterial    = "Material";
-	const char* sCollision   = "Collision";
-	const char* sSound       = "Sound";
-	const char* sCombination = "Combination";
-	const char* sParam       = "Param";
-	const char* sVariant     = "Variant";
+  const char* sTableSound  = "TableSound";
+  const char* sRange       = "Range";
+  const char* sVelocity    = "Velocity";
+  const char* sAngle       = "Angle";
+  const char* sMass        = "Mass";
+  const char* sMaterial    = "Material";
+  const char* sCollision   = "Collision";
+  const char* sSound       = "Sound";
+  const char* sCombination = "Combination";
+  const char* sParam       = "Param";
+  const char* sVariant     = "Variant";
 
   const char* sMass0       = "Mass0";
   const char* sMaterial0   = "Material0";
@@ -39,7 +39,7 @@ using namespace nsSerializerTableSoundItem_XML;
 TSerializerTableSoundItem_XML::TSerializerTableSoundItem_XML():
 TBaseSerializerItem_XML(sTableSound)
 {
-	mTableSound = NULL;
+  mTableSound = NULL;
 }
 //-------------------------------------------------------------------------------------------------------
 TSerializerTableSoundItem_XML::~TSerializerTableSoundItem_XML()
@@ -49,30 +49,30 @@ TSerializerTableSoundItem_XML::~TSerializerTableSoundItem_XML()
 //-------------------------------------------------------------------------------------------------------
 bool TSerializerTableSoundItem_XML::Load(TBaseItem* pItem)
 {
-	mTableSound = (TTableSoundItem*)pItem;
+  mTableSound = (TTableSoundItem*)pItem;
 
-	bool resEnter = EnterByType(mTableSound->mName);
-	if(resEnter==false)
-		return false;
+  bool resEnter = EnterByType(mTableSound->mName);
+  if(resEnter==false)
+    return false;
 
   LoadRange();
   LoadCollision();
 
-	return true;
+  return true;
 }
 //-------------------------------------------------------------------------------------------------------
 bool TSerializerTableSoundItem_XML::Save(TBaseItem* pItem)
 {
-	mTableSound = (TTableSoundItem*)pItem;
-	RemoveSection(mTableSound->mName);// грохнуть всю запись, связанную с данным item
+  mTableSound = (TTableSoundItem*)pItem;
+  RemoveSection(mTableSound->mName);// грохнуть всю запись, связанную с данным item
 
-	bool resEnter = AddAndEnterByType(mTableSound->mName);
-	if(resEnter==false)
-		return false;
+  bool resEnter = AddAndEnterByType(mTableSound->mName);
+  if(resEnter==false)
+    return false;
 
   SaveRange();
   SaveCollision();
-	return mXML->Save();
+  return mXML->Save();
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTableSoundItem_XML::LoadRange()

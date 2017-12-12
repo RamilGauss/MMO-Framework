@@ -37,13 +37,13 @@ class DllExport TSaveToFile : public InfoFile
 
 public:
 
-	TSaveToFile(char* path = NULL);
-	virtual ~TSaveToFile();
+  TSaveToFile(char* path = NULL);
+  virtual ~TSaveToFile();
 
   // в случае append==false - стирает содержимое файла
-	virtual bool ReOpen(char* path, bool append = false );
+  virtual bool ReOpen(char* path, bool append = false );
 
-	virtual void Write(void* buffer, int size);
+  virtual void Write(void* buffer, int size);
   // форматированная строка, по типу printf(...)
   virtual void WriteF(const char* format, ... );
   virtual void WriteF_time(const char* format, ... );

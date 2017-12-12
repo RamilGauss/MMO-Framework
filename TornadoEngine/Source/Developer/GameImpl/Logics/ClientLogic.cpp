@@ -74,7 +74,7 @@ void TClientLogic::StartEvent()
 //----------------------------------------------------------
 void TClientLogic::StopEvent()
 {
-	FreeGraphicResource();
+  FreeGraphicResource();
 }
 //----------------------------------------------------------
 void TClientLogic::StartTimer()

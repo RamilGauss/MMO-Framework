@@ -9,13 +9,13 @@ See for more information License.h.
 
 namespace nsPattern_Skypdome
 {
-	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+  static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPattern_Skypdome;
 
 TPattern_Skydome::TPattern_Skydome() :
-	TBehaviourPattern(&g_DefaultParameterMap)
+  TBehaviourPattern(&g_DefaultParameterMap)
 {
 
 }
@@ -27,6 +27,6 @@ TPattern_Skydome::~TPattern_Skydome()
 //---------------------------------------------------------------------------
 TManagerNamePattern::eBaseType TPattern_Skydome::GetBaseType()
 {
-	return TManagerNamePattern::eSky;
+  return TManagerNamePattern::eSky;
 }
 //------------------------------------------------------------------------

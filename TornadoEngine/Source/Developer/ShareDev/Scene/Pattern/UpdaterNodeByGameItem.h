@@ -14,8 +14,8 @@ class DllExport TUpdaterNodeByGameItem
 {
 public:
 
-	TUpdaterNodeByGameItem();
-	virtual ~TUpdaterNodeByGameItem();
+  TUpdaterNodeByGameItem();
+  virtual ~TUpdaterNodeByGameItem();
 };
 
 #endif

@@ -35,7 +35,7 @@ namespace nsMMOEngine
     
     // навигация
     TContainerContextSc* FindContextBySession(unsigned int id_session);
-		bool FindSessionByClientKey(unsigned int id_client, unsigned int &id_session_slave);
+    bool FindSessionByClientKey(unsigned int id_client, unsigned int &id_session_slave);
     
     int GetCountSession();
     bool GetSessionByIndex( int index, unsigned int& id_session);
@@ -53,10 +53,10 @@ namespace nsMMOEngine
     // удаление
     void DeleteByClientKey(unsigned int id_session, unsigned int id_client);
     void DeleteContextBySession(unsigned int id_session);
-	protected:
-		virtual void AddSessionEvent(unsigned int id_session){}
-		virtual void DeleteSessionEvent(unsigned int id_session){}
-	private:
+  protected:
+    virtual void AddSessionEvent(unsigned int id_session){}
+    virtual void DeleteSessionEvent(unsigned int id_session){}
+  private:
     void Clear();
   };
 }

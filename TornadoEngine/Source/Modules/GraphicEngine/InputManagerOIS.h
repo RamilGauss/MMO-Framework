@@ -15,13 +15,13 @@ See for more information License.h.
 class TInputManagerOIS : public OIS::MouseListener, public OIS::KeyListener
 {
 public:
-	TInputManagerOIS();
-	virtual ~TInputManagerOIS();
+  TInputManagerOIS();
+  virtual ~TInputManagerOIS();
 
-	void CreateInput(size_t _handle);
-	void DestroyInput();
-	void CaptureInput();
-	void SetInputViewSize(int _width, int _height);
+  void CreateInput(size_t _handle);
+  void DestroyInput();
+  void CaptureInput();
+  void SetInputViewSize(int _width, int _height);
 
   void SetMousePosition(int _x, int _y);
 
@@ -29,17 +29,17 @@ public:
   static std::string ConvertKey2Str(const OIS::KeyCode key);
 
 protected:
-	void CheckPosition();
+  void CheckPosition();
 
   void ConvertOIS2MyGUI(const OIS::KeyEvent &arg, MyGUI::Char& text, MyGUI::KeyCode& key );
 
 private:
-	OIS::InputManager* mInputManager;
-	OIS::Keyboard* mKeyboard;
-	OIS::Mouse* mMouse;
+  OIS::InputManager* mInputManager;
+  OIS::Keyboard* mKeyboard;
+  OIS::Mouse* mMouse;
 
-	int mCursorX;
-	int mCursorY;
+  int mCursorX;
+  int mCursorY;
 };
 
 #endif 

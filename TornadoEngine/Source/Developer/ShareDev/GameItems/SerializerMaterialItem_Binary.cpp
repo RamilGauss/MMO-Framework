@@ -35,7 +35,7 @@ void TSerializerMaterialItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBin
     Push(variant.width);
     PushStr(variant.normal);
     PushStr(variant.color);
-		PushStr(variant.ogreMaterial);
+    PushStr(variant.ogreMaterial);
   }
 
   Push(pMaterialItem->mPhysic);
@@ -62,7 +62,7 @@ bool TSerializerMaterialItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int
     RET_FALSE( Pop(variant.width) )
     RET_FALSE( PopStr(variant.normal) )
     RET_FALSE( PopStr(variant.color) )
-		RET_FALSE( PopStr(variant.ogreMaterial) )
+    RET_FALSE( PopStr(variant.ogreMaterial) )
     pMaterialItem->mGraphic.push_back(variant);
   }
   

@@ -1,8 +1,7 @@
 -- where is json file markup
-local jsonPath = "..\\json\\markup.json";
+local jsonPath = "..\\..\\Test\\Marshallizator\\markup.json";
 -- destination 
--- local dstPath  = "..\\TestCode\\";
-local dstPath  = "..\\..\\..\\TornadoEngine\\Source\\MMOFramework\\TornadoEngine\\Test\\serializator\\";
+local dstPath  = "..\\..\\Test\\Marshallizator\\";
 -- 
 local generator = require('generatorSerializable');
 generator.generate( jsonPath, dstPath );

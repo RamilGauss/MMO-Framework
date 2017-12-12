@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -11,21 +11,21 @@
 namespace tools
 {
 
-	TexturePropertyInitialisator::TexturePropertyInitialisator()
-	{
-	}
+  TexturePropertyInitialisator::TexturePropertyInitialisator()
+  {
+  }
 
-	TexturePropertyInitialisator::~TexturePropertyInitialisator()
-	{
-	}
+  TexturePropertyInitialisator::~TexturePropertyInitialisator()
+  {
+  }
 
-	void TexturePropertyInitialisator::initialise(PropertyPtr _property)
-	{
-		if (SettingsManager::getInstance().getValue<bool>("Settings/SaveLastTexture"))
-		{
-			std::string texture = SettingsManager::getInstance().getValue("Resources/LastTextureName");
-			_property->setValue(texture);
-		}
-	}
+  void TexturePropertyInitialisator::initialise(PropertyPtr _property)
+  {
+    if (SettingsManager::getInstance().getValue<bool>("Settings/SaveLastTexture"))
+    {
+      std::string texture = SettingsManager::getInstance().getValue("Resources/LastTextureName");
+      _property->setValue(texture);
+    }
+  }
 
 }

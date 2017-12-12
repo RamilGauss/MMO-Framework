@@ -9,13 +9,13 @@ See for more information License.h.
 
 namespace nsPattern_Hull
 {
-	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+  static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPattern_Hull;
 
 TPattern_Hull::TPattern_Hull() :
-	TPattern_Model(&g_DefaultParameterMap)
+  TPattern_Model(&g_DefaultParameterMap)
 {
 
 }

@@ -129,13 +129,13 @@ void TEditorShape::OpenShape()
 
   TShapeItem* pItem = (TShapeItem*)TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Shape, name);
   Ogre::Entity* pEnt = mBuilder.Build(pItem);
-	if( pEnt==NULL )
-		return;
+  if( pEnt==NULL )
+    return;
 
-	Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
-	pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+  Ogre::SceneManager* pSM = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->GetSceneManager();
+  pSM->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 
-	pEnt->setCastShadows(false);
+  pEnt->setCastShadows(false);
   Ogre::SceneNode* pNode = pEnt->getParentSceneNode();
   pNode->attachObject(pEnt);
 

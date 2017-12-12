@@ -20,23 +20,23 @@ See for more information License.h.
 
 struct DllExport TMapItem : public TBaseItem
 {
-	struct DllExport TPatternConfig
-	{
-		std::string name;
-		std::string nameVariant;
-	};
-	struct DllExport TObject
-	{
+  struct DllExport TPatternConfig
+  {
+    std::string name;
+    std::string nameVariant;
+  };
+  struct DllExport TObject
+  {
     std::string namePattern;
     int         id;
-		nsMathTools::TVector3  position;
-		nsMathTools::TMatrix16 orientation;
+    nsMathTools::TVector3  position;
+    nsMathTools::TMatrix16 orientation;
 
-		TPatternConfig patternConfig;
-	};
+    TPatternConfig patternConfig;
+  };
   typedef std::list<TObject> TListObject;
 
-	TListObject mListObject;
+  TListObject mListObject;
 
   TMapItem(std::string& name);
 }_PACKED;

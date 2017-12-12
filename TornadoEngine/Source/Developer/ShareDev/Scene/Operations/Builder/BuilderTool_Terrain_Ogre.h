@@ -20,28 +20,28 @@ struct TTerrainItem;
 
 class DllExport TBuilderTool_Terrain_Ogre
 {
-	TTerrainItem* mTerrainItem;
+  TTerrainItem* mTerrainItem;
 
-	Ogre::Vector3 mTerrainOrigin;
+  Ogre::Vector3 mTerrainOrigin;
 
-	Ogre::SceneManager* mSceneMgr;
-	Ogre::TerrainGroup* mTerrainGroup;
-	Ogre::TerrainGlobalOptions* mTerrainGlobals;
+  Ogre::SceneManager* mSceneMgr;
+  Ogre::TerrainGroup* mTerrainGroup;
+  Ogre::TerrainGlobalOptions* mTerrainGlobals;
 public:
-	TBuilderTool_Terrain_Ogre();
-	~TBuilderTool_Terrain_Ogre();
+  TBuilderTool_Terrain_Ogre();
+  ~TBuilderTool_Terrain_Ogre();
 
-	void Begin(TTerrainItem* pTerrainItem, Ogre::Vector3& terrainOrigin);
-	void Load( int x, int y );
-	void End();
+  void Begin(TTerrainItem* pTerrainItem, Ogre::Vector3& terrainOrigin);
+  void Load( int x, int y );
+  void End();
 
 protected:
-	void InitOgrePtr();
+  void InitOgrePtr();
 
-	void SetupShadow();
+  void SetupShadow();
 
-	void defineTerrain(long x, long y);
-	void configureTerrainDefaults();
+  void defineTerrain(long x, long y);
+  void configureTerrainDefaults();
 };
 
 #endif

@@ -24,12 +24,12 @@ namespace nsMMOEngine
   class TScenarioSendToClient : public IScenario
   {
     enum
-		{
-			eSuperServer,
-			eMaster,
-			eSlave,
-		};
-		//-------------------------------------------------
+    {
+      eSuperServer,
+      eMaster,
+      eSlave,
+    };
+    //-------------------------------------------------
     struct THeader : public IScenario::TBaseHeader
     {
       THeader(){type = TMakerScenario::eSendToClient;id_client=0;}
@@ -46,11 +46,11 @@ namespace nsMMOEngine
       THeaderMaster(){subType = eMaster;}
     }_PACKED;
     //-------------------------------------------------
-		struct THeaderSlave : public THeader
-		{
-			THeaderSlave(){subType = eSlave;}
-		}_PACKED;
-		//-------------------------------------------------
+    struct THeaderSlave : public THeader
+    {
+      THeaderSlave(){subType = eSlave;}
+    }_PACKED;
+    //-------------------------------------------------
   public:
     TScenarioSendToClient();
     virtual ~TScenarioSendToClient();
@@ -68,53 +68,53 @@ namespace nsMMOEngine
 
   protected:
     TContextScSendToClient* Context(){return (TContextScSendToClient*)mCurContext;}
-    virtual void DelayBegin();		
-	private:
-		template <class T>
-		void SendAll(std::list<unsigned int>& lKey, TBreakPacket& bp);
+    virtual void DelayBegin();    
+  private:
+    template <class T>
+    void SendAll(std::list<unsigned int>& lKey, TBreakPacket& bp);
 
-		template <class T>
-		void Send(unsigned int id_client, TBreakPacket& bp);
+    template <class T>
+    void Send(unsigned int id_client, TBreakPacket& bp);
   };
-	//------------------------------------------------------------------------------
-	template <class T>
-	void TScenarioSendToClient::Send(unsigned int id_client, TBreakPacket& bp)
-	{
-		T h;
-		h.id_client = id_client;
-		bp.PushFront((char*)&h, sizeof(h));
+  //------------------------------------------------------------------------------
+  template <class T>
+  void TScenarioSendToClient::Send(unsigned int id_client, TBreakPacket& bp)
+  {
+    T h;
+    h.id_client = id_client;
+    bp.PushFront((char*)&h, sizeof(h));
 
-		unsigned int id_session = Context()->GetID_Session();
-		Context()->GetMS()->Send(id_session, bp);
-	}
-	//------------------------------------------------------------------------------
-	template <class T>
-	void TScenarioSendToClient::SendAll(std::list<unsigned int>& lKey, TBreakPacket& bp)
-	{
-		if(bp.GetSize()==0)
-			return;// нельзя передавать нулевые пакеты
-		BOOST_FOREACH(unsigned int id_client, lKey)
-		{
-			NeedContextByClientKey(id_client);
-			if(Context())
-			{
-				if(Begin()==false)
-				{
+    unsigned int id_session = Context()->GetID_Session();
+    Context()->GetMS()->Send(id_session, bp);
+  }
+  //------------------------------------------------------------------------------
+  template <class T>
+  void TScenarioSendToClient::SendAll(std::list<unsigned int>& lKey, TBreakPacket& bp)
+  {
+    if(bp.GetSize()==0)
+      return;// нельзя передавать нулевые пакеты
+    BOOST_FOREACH(unsigned int id_client, lKey)
+    {
+      NeedContextByClientKey(id_client);
+      if(Context())
+      {
+        if(Begin()==false)
+        {
           TBreakPacket bpForSave;
           bpForSave = bp;
-					T h;
-					h.id_client = id_client;
-					bpForSave.PushFront((char*)&h, sizeof(h));
-					// пока отослать нельзя, сохранить пакет до момента возможности
-					Context()->SaveBreakPacket(bpForSave);
-					continue;
-				}
-				Send<T>(id_client, bp);
-				End();
-			}
-		}
-	}
-	//-------------------------------------------------------------------
+          T h;
+          h.id_client = id_client;
+          bpForSave.PushFront((char*)&h, sizeof(h));
+          // пока отослать нельзя, сохранить пакет до момента возможности
+          Context()->SaveBreakPacket(bpForSave);
+          continue;
+        }
+        Send<T>(id_client, bp);
+        End();
+      }
+    }
+  }
+  //-------------------------------------------------------------------
 }
 
 #ifdef WIN32

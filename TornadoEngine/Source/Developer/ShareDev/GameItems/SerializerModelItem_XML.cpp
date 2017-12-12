@@ -16,20 +16,20 @@ namespace nsSerializerModelItem_XML
   const char* sName           = "name";
   const char* sPattern        = "Pattern";
   const char* sHierarchy      = "Hierarchy";
-	const char* sNameRoot       = "nameRoot";
+  const char* sNameRoot       = "nameRoot";
   
   const char* sPosition       = "Position";
   const char* sOrientation    = "Orientation";
   const char* sLocation       = "Location";
 
-	const char* sDistance   		= "Distance";
-	const char* sConnection 		= "Connection";
-	const char* sValue      		= "value";
+  const char* sDistance       = "Distance";
+  const char* sConnection     = "Connection";
+  const char* sValue          = "value";
 
-	const char* sBase           = "Base";
+  const char* sBase           = "Base";
   const char* sNamePart       = "part";
   const char* sBranch         = "Branch";
-	const char* sNameJoint      = "nameJoint";
+  const char* sNameJoint      = "nameJoint";
   const char* sLink           = "Link";
   const char* sJointBase      = "JointBase";
   const char* sJointBranch    = "JointBranch";
@@ -38,15 +38,15 @@ namespace nsSerializerModelItem_XML
   const char* sCollection     = "Collection";
   const char* sPart           = "Part";
 
-	const char* sVariant        = "Variant";
+  const char* sVariant        = "Variant";
   const char* sNameItem       = "nameItem";
   const char* sMaterial       = "Material";
   const char* sType           = "type";
 
   const char* sScale          = "Scale";
 
-	const char* sExternalJoining = "ExternalJoining";
-	const char* sJoint           = "Joint";
+  const char* sExternalJoining = "ExternalJoining";
+  const char* sJoint           = "Joint";
   const char* sExternal        = "external";
   const char* sInternal        = "internal";
 
@@ -78,7 +78,7 @@ bool TSerializerModelItem_XML::Load(TBaseItem* pItem)
   LoadPattern();
   LoadHierarchy();
   LoadCollection();
-	LoadExternalJoining();
+  LoadExternalJoining();
 
   return true;
 }
@@ -95,7 +95,7 @@ bool TSerializerModelItem_XML::Save(TBaseItem* pItem)
   SavePattern();
   SaveHierarchy();
   SaveCollection();
-	SaveExternalJoining();
+  SaveExternalJoining();
 
   return mXML->Save();
 }
@@ -108,7 +108,7 @@ void TSerializerModelItem_XML::LoadPattern()
 void TSerializerModelItem_XML::LoadHierarchy()
 {
   mModel->mNameRoot = mXML->ReadSectionAttr(sHierarchy, 0, sNameRoot);
-	if(mXML->EnterSection(sHierarchy,0))
+  if(mXML->EnterSection(sHierarchy,0))
   {
     int cntLocation = mXML->GetCountSection(sLocation);
     for( int iLocation = 0 ; iLocation < cntLocation ; iLocation++ )
@@ -146,19 +146,19 @@ void TSerializerModelItem_XML::LoadCollection()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadExternalJoining()
 {
-	if( mXML->EnterSection(sExternalJoining,0) )
-	{
-		int cntJoint = mXML->GetCountSection(sJoint);
-		for( int iJoint = 0 ; iJoint < cntJoint ; iJoint++ )
-		{
-			std::string external = mXML->ReadSectionAttr(sJoint, iJoint, sExternal);
-			TModelItem::TJoint joint;
-			joint.nameInternalJoint = mXML->ReadSectionAttr(sJoint, iJoint, sInternal);
-			joint.namePart          = mXML->ReadSectionAttr(sJoint, iJoint, sNamePart);
-			mModel->mMapExternalJoint.insert(TModelItem::TMapExternalJointVT(external,joint));
-		}
-		mXML->LeaveSection();
-	}
+  if( mXML->EnterSection(sExternalJoining,0) )
+  {
+    int cntJoint = mXML->GetCountSection(sJoint);
+    for( int iJoint = 0 ; iJoint < cntJoint ; iJoint++ )
+    {
+      std::string external = mXML->ReadSectionAttr(sJoint, iJoint, sExternal);
+      TModelItem::TJoint joint;
+      joint.nameInternalJoint = mXML->ReadSectionAttr(sJoint, iJoint, sInternal);
+      joint.namePart          = mXML->ReadSectionAttr(sJoint, iJoint, sNamePart);
+      mModel->mMapExternalJoint.insert(TModelItem::TMapExternalJointVT(external,joint));
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SavePattern()
@@ -171,10 +171,10 @@ void TSerializerModelItem_XML::SavePattern()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SaveHierarchy()
 {
-	TAttrInfo attr;
-	attr.Name  = sNameRoot;
-	attr.Value = mModel->mNameRoot;
-	if( mXML->AddSectionAndEnter(sHierarchy, 1, &attr) )
+  TAttrInfo attr;
+  attr.Name  = sNameRoot;
+  attr.Value = mModel->mNameRoot;
+  if( mXML->AddSectionAndEnter(sHierarchy, 1, &attr) )
   {
     BOOST_FOREACH(TModelItem::TMMapStrLocationVT& bit, mModel->mMapNameBranchLocation)
       SaveLocation(bit.second);
@@ -211,23 +211,23 @@ void TSerializerModelItem_XML::SaveCollection()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::SaveExternalJoining()
 {
-	if( mXML->AddSectionAndEnter(sExternalJoining) )
-	{
-		int iJoint = 0;
-		BOOST_FOREACH( TModelItem::TMapExternalJointVT& extJoint , mModel->mMapExternalJoint )
-		{
-			TAttrInfo attr[3];
-			attr[0].Name  = sExternal;
-			attr[0].Value = extJoint.first;
-			attr[1].Name  = sNamePart;
-			attr[1].Value = extJoint.second.namePart;
-			attr[2].Name  = sInternal;
-			attr[2].Value = extJoint.second.nameInternalJoint;
-			mXML->AddSection(sJoint, iJoint, &attr[0]);
-			iJoint++;
-		}
-		mXML->LeaveSection();
-	}
+  if( mXML->AddSectionAndEnter(sExternalJoining) )
+  {
+    int iJoint = 0;
+    BOOST_FOREACH( TModelItem::TMapExternalJointVT& extJoint , mModel->mMapExternalJoint )
+    {
+      TAttrInfo attr[3];
+      attr[0].Name  = sExternal;
+      attr[0].Value = extJoint.first;
+      attr[1].Name  = sNamePart;
+      attr[1].Value = extJoint.second.namePart;
+      attr[2].Name  = sInternal;
+      attr[2].Value = extJoint.second.nameInternalJoint;
+      mXML->AddSection(sJoint, iJoint, &attr[0]);
+      iJoint++;
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerModelItem_XML::LoadPart(TModelItem::TPart& part, int iPart)
@@ -271,16 +271,16 @@ void TSerializerModelItem_XML::LoadLocation(TModelItem::TLocation& location, int
     location.nameBranch      = mXML->ReadSectionAttr(sBranch, 0, sNamePart);
     location.nameJointBranch = mXML->ReadSectionAttr(sBranch, 0, sNameJoint);
 
-		if(mXML->EnterSection(sConnection, 0))
-		{
-			location.distance = boost::lexical_cast<float>(mXML->ReadSectionAttr(sDistance, 0, sValue));
-			if(mXML->EnterSection(sOrientation,0))
-			{
-				LoadOrientationByProperty( location.orientation );
-				mXML->LeaveSection();
-			}
-			mXML->LeaveSection();
-		}
+    if(mXML->EnterSection(sConnection, 0))
+    {
+      location.distance = boost::lexical_cast<float>(mXML->ReadSectionAttr(sDistance, 0, sValue));
+      if(mXML->EnterSection(sOrientation,0))
+      {
+        LoadOrientationByProperty( location.orientation );
+        mXML->LeaveSection();
+      }
+      mXML->LeaveSection();
+    }
     int cntLink = mXML->GetCountSection(sLink);
     for( int iLink = 0 ; iLink < cntLink ; iLink++ )
     {
@@ -323,30 +323,30 @@ void TSerializerModelItem_XML::SaveLocation(TModelItem::TLocation& location)
     TAttrInfo attr[2];
     attr[0].Name  = sNamePart;
     attr[0].Value = location.nameBase;
-		attr[1].Name  = sNameJoint;
-		attr[1].Value = location.nameJointBase;
+    attr[1].Name  = sNameJoint;
+    attr[1].Value = location.nameJointBase;
     mXML->AddSection(sBase, 2, &attr[0]);
 
-		attr[0].Name  = sNamePart;
-		attr[0].Value = location.nameBranch;
-		attr[1].Name  = sNameJoint;
-		attr[1].Value = location.nameJointBranch;
+    attr[0].Name  = sNamePart;
+    attr[0].Value = location.nameBranch;
+    attr[1].Name  = sNameJoint;
+    attr[1].Value = location.nameJointBranch;
     mXML->AddSection(sBranch, 2, &attr[0]);
 
-		if( mXML->AddSectionAndEnter(sConnection) )
-		{
-			TAttrInfo attrDistance;
-			attrDistance.Name  = sValue;
-			attrDistance.Value = boost::lexical_cast<std::string>(location.distance);
-			mXML->AddSection(sDistance, 1, &attrDistance);
+    if( mXML->AddSectionAndEnter(sConnection) )
+    {
+      TAttrInfo attrDistance;
+      attrDistance.Name  = sValue;
+      attrDistance.Value = boost::lexical_cast<std::string>(location.distance);
+      mXML->AddSection(sDistance, 1, &attrDistance);
 
-			if(mXML->AddSectionAndEnter(sOrientation))
-			{
-				SaveOrientationByProperty( location.orientation );
-				mXML->LeaveSection();
-			}
-			mXML->LeaveSection();
-		}
+      if(mXML->AddSectionAndEnter(sOrientation))
+      {
+        SaveOrientationByProperty( location.orientation );
+        mXML->LeaveSection();
+      }
+      mXML->LeaveSection();
+    }
     BOOST_FOREACH(TModelItem::TLink& link, location.listLink)
       SaveLink(link);
 

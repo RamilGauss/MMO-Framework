@@ -80,7 +80,7 @@ bool IXML::ReadFloat3(const char* name, int num, float * v3)// разделит�
   if( size==0 )
     return false;
   if( sscanf(s.data(),"%f;%f;%f",&v3[0],&v3[1],&v3[2])!=3) 
-		return false;
+    return false;
 
   return true;
 }
@@ -92,7 +92,7 @@ bool IXML::ReadFloat4(const char* name, int num, float * v4)
   if( size==0 )
     return false;
   if( sscanf(s.data(),"%f;%f;%f;%f",&v4[0],&v4[1],&v4[2],&v4[3])!=4 ) 
-		return false;
+    return false;
 
   return true;
 }

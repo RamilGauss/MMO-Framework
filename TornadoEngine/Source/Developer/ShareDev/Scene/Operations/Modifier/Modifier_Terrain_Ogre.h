@@ -17,21 +17,21 @@ See for more information License.h.
 
 class DllExport TModifier_Terrain_Ogre : public TModifier_Terrain
 {
-	Ogre::SceneManager* mSceneMgr;
-	Ogre::TerrainGroup* mTerrainGroup;
-	Ogre::TerrainGlobalOptions* mTerrainGlobals;
+  Ogre::SceneManager* mSceneMgr;
+  Ogre::TerrainGroup* mTerrainGroup;
+  Ogre::TerrainGlobalOptions* mTerrainGlobals;
 
-	TTerrainItem* mTerrainItem;
+  TTerrainItem* mTerrainItem;
 
-	TDescTarget mDescTarget;
+  TDescTarget mDescTarget;
 public:
-	TModifier_Terrain_Ogre();
+  TModifier_Terrain_Ogre();
 
-	virtual void SetFormat(TDescTarget& descTarget);
+  virtual void SetFormat(TDescTarget& descTarget);
 protected:
-	void setupContent();
-	void configureTerrainDefaults();
-	void defineTerrain(long x, long y);
+  void setupContent();
+  void configureTerrainDefaults();
+  void defineTerrain(long x, long y);
 };
 
 #endif

@@ -27,9 +27,9 @@ struct DllExport TEvent
   IContainer* pContainer;
   TEvent(){ptr_object=NULL;pContainer=NULL;}
   ~TEvent()
-	{
-		delete pContainer;
-	}
+  {
+    delete pContainer;
+  }
   void Init(unsigned int time_create_ms)
   {
     pContainer = new TContainer;

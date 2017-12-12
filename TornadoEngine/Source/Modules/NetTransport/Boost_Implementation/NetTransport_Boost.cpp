@@ -57,14 +57,14 @@ bool TNetTransport_Boost::Open(unsigned short port, unsigned char numNetWork)
 }
 //----------------------------------------------------------------------------------
 void TNetTransport_Boost::Send(unsigned int ip, unsigned short port, 
-							                   TBreakPacket& packet, bool check)
+                                 TBreakPacket& packet, bool check)
 {
   mMutexSend.lock();
   if(check)
   {
     mMutexMapIP_TCP.lock();
     //---------------------
-		TIP_Port ip_port(ip,port);
+    TIP_Port ip_port(ip,port);
     TNetControlTCP* pControl = GetTCP_ByIP(ip_port);
     if(pControl)
       pControl->Send(ip,port,packet);
@@ -92,7 +92,7 @@ void TNetTransport_Boost::Stop()
 //----------------------------------------------------------------------------------
 bool TNetTransport_Boost::IsActive()
 {
-	return mNetWorkThread.IsActive();
+  return mNetWorkThread.IsActive();
 }
 //--------------------------------------------------------------------------
 bool TNetTransport_Boost::Connect(unsigned int ip, unsigned short port)
@@ -128,7 +128,7 @@ void TNetTransport_Boost::Close(unsigned int ip, unsigned short port)
 {
   mMutexMapIP_TCP.lock();
   //---------------------
-	TIP_Port ip_port(ip,port);
+  TIP_Port ip_port(ip,port);
   TNetControlTCP* pControl = GetTCP_ByIP(ip_port);
   if(pControl)
     pControl->Close();
@@ -172,7 +172,7 @@ void TNetTransport_Boost::CloseAll()
 
   mMutexMapIP_TCP.lock();
   //---------------------
-	BOOST_FOREACH( TMapIP_Ptr::value_type &bit, mMapIP_TCP )
+  BOOST_FOREACH( TMapIP_Ptr::value_type &bit, mMapIP_TCP )
     bit.second->Close();
   //---------------------
   mMutexMapIP_TCP.unlock();

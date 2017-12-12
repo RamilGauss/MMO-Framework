@@ -38,7 +38,7 @@ using namespace std;
 
 TSaveToFile::TSaveToFile(char* path)
 {
-	ReOpen(path);
+  ReOpen(path);
   
   flgPrintf = false;
   flgEnable = true;
@@ -52,33 +52,33 @@ TSaveToFile::~TSaveToFile()
 //---------------------------------------------------------------
 bool TSaveToFile::ReOpen(char* path, bool append )
 {
-	Close();
+  Close();
 
-	if(path!=NULL)
-		sPath = path;
+  if(path!=NULL)
+    sPath = path;
 
-	if(sPath.length()==0) return false;
+  if(sPath.length()==0) return false;
 
   const char* sMode = (append)?"ab":"wb";
   pFile = fopen(sPath.data(),sMode);
-	if(pFile!=NULL) 
+  if(pFile!=NULL) 
   {
     FlushBuffer();
     return true;
   }
 
-	char sErr[1000];
-	sprintf(sErr,"fopen Error: %s path=\"%s\"",strerror(errno),path);
-	BL_MessageBug(sErr);
+  char sErr[1000];
+  sprintf(sErr,"fopen Error: %s path=\"%s\"",strerror(errno),path);
+  BL_MessageBug(sErr);
 
-	return false;
+  return false;
 }
 //---------------------------------------------------------------
 void TSaveToFile::Write(void* buffer, int size)
 {
   if(flgEnable==false) return;
 
-	if(pFile)
+  if(pFile)
   {
     fwrite(buffer, size,1,pFile);
     fflush(pFile);
@@ -94,13 +94,13 @@ void TSaveToFile::WriteF(const char* format, ... )
 {
   if(flgEnable==false) return;
 
-	va_list list;
-	va_start(list,format);
+  va_list list;
+  va_start(list,format);
 
   char s[10000]; 
   CHECK_LEN(s);
-	int res = vsprintf(s,format,list); 
-	
+  int res = vsprintf(s,format,list); 
+  
   va_end(list);
   if(res==-1)
   {

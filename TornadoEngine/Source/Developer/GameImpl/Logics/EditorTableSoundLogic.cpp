@@ -27,52 +27,52 @@ TEditorTableSoundLogic::~TEditorTableSoundLogic()
 //-------------------------------------------------------------------
 void TEditorTableSoundLogic::StartEvent()
 {
-	StartTimer();
-	InitForms();
-	InitPhysic();
+  StartTimer();
+  InitForms();
+  InitPhysic();
 
-	//mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::GraphicBeginWork ,this);
-	//mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorTableSoundLogic::FreeGraphicResource,this);
+  //mComp.pGraphicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::GraphicBeginWork ,this);
+  //mComp.pGraphicEngine->GetCBStopEvent()->Register( &TEditorTableSoundLogic::FreeGraphicResource,this);
 
-	//mComp.pPhysicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::PhysicBeginWork ,this);
-	//mComp.pPhysicEngine->GetCBEndWork()  ->Register( &TEditorTableSoundLogic::PhysicEndWork ,this);
+  //mComp.pPhysicEngine->GetCBBeginWork()->Register( &TEditorTableSoundLogic::PhysicBeginWork ,this);
+  //mComp.pPhysicEngine->GetCBEndWork()  ->Register( &TEditorTableSoundLogic::PhysicEndWork ,this);
 }
 //-------------------------------------------------------------------
 void TEditorTableSoundLogic::InitLog()
 {
-	GetLogger()->Register("Inner");// для логирования внутренних событий
-	GetLogger()->Init("EditorTableSound");
+  GetLogger()->Register("Inner");// для логирования внутренних событий
+  GetLogger()->Init("EditorTableSound");
 }
 //-------------------------------------------------------------------
 bool TEditorTableSoundLogic::WorkClient()
 {
-	return true;
+  return true;
 }
 //-------------------------------------------------------------------
 void TEditorTableSoundLogic::Input(int id_sender, void* p, int size)
 {
-	switch(id_sender)
-	{
-		case nsListModules::GraphicEngine:
-			break;
-		case nsListModules::PhysicEngine:
-			break;
-		case nsListModules::Timer:
-			break;
-		default:BL_FIX_BUG();
-	}
+  switch(id_sender)
+  {
+    case nsListModules::GraphicEngine:
+      break;
+    case nsListModules::PhysicEngine:
+      break;
+    case nsListModules::Timer:
+      break;
+    default:BL_FIX_BUG();
+  }
 }
 //-------------------------------------------------------------------
 void TEditorTableSoundLogic::StartTimer()
 {
-	// вызовется из потока таймера
-	unsigned int mID_Timer = mComp.pTimer->New(10);
+  // вызовется из потока таймера
+  unsigned int mID_Timer = mComp.pTimer->New(10);
 }
 //----------------------------------------------------------
 void TEditorTableSoundLogic::InitForms()
 {
-	mEditorTableSound = new TEditorTableSound;
-	mEditorTableSound->Show();
+  mEditorTableSound = new TEditorTableSound;
+  mEditorTableSound->Show();
 }
 //----------------------------------------------------------
 void TEditorTableSoundLogic::PhysicEndWork()
@@ -97,6 +97,6 @@ void TEditorTableSoundLogic::PhysicBeginWork()
 //---------------------------------------------------------------------------------------------
 void TEditorTableSoundLogic::FreeGraphicResource()
 {
-	delete mEditorTableSound;
+  delete mEditorTableSound;
 }
 //---------------------------------------------------------------------------------------------

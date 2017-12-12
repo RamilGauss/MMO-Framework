@@ -38,20 +38,20 @@ struct DllExport TModelItem : public TBaseItem
   //---------------------------------------------------------  
   struct DllExport TPart
   {
-		// какой вариант выбрать - решает сам паттерн (определять либо через сервер, либо что в модели выбрали)
+    // какой вариант выбрать - решает сам паттерн (определять либо через сервер, либо что в модели выбрали)
     std::vector<TVariant> vecVariant;
   };
   //---------------------------------------------------------  
   typedef std::map<std::string,TPart> TMapStrPart;
-  typedef TMapStrPart::iterator   		TMapStrPartIt;
-  typedef TMapStrPart::value_type 		TMapStrPartVT;
+  typedef TMapStrPart::iterator       TMapStrPartIt;
+  typedef TMapStrPart::value_type     TMapStrPartVT;
   //---------------------------------------------------------  
   typedef std::auto_ptr<nsParamBuilderConstraint::TBaseParam> TAutoPtrConstraint;
   //---------------------------------------------------------  
   struct DllExport TLink
   {
-    std::string 			 nameJointBase;
-    std::string 			 nameJointBranch;
+    std::string        nameJointBase;
+    std::string        nameJointBranch;
     TAutoPtrConstraint mPtrConstraint;
 
     TLink(){}
@@ -64,15 +64,15 @@ struct DllExport TModelItem : public TBaseItem
   struct DllExport TLocation
   {
     std::string nameBase;
-		std::string nameJointBase;
+    std::string nameJointBase;
 
     std::string nameBranch;
-		std::string nameJointBranch;
-		// один относительно другого крючка расположен так:
-		float                  distance; // сдвиг по вектору крючка на такое расстояние
+    std::string nameJointBranch;
+    // один относительно другого крючка расположен так:
+    float                  distance; // сдвиг по вектору крючка на такое расстояние
     nsMathTools::TMatrix16 orientation;
 
-		TListLink                listLink;
+    TListLink                listLink;
 
     TLocation(){}
     TLocation(const TLocation& c);
@@ -87,31 +87,31 @@ struct DllExport TModelItem : public TBaseItem
   typedef TMapStrStr::iterator              TMapStrStrIt;
   typedef TMapStrStr::value_type            TMapStrStrVT;
   //---------------------------------------------------------
-	struct DllExport TJoint
-	{
-		std::string namePart;
-		std::string nameInternalJoint;
-		bool operator < (const TJoint& right) const;
-		bool operator > (const TJoint& right) const;
-	};
-	//---------------------------------------------------------
-	typedef std::map<std::string,TJoint>  TMapExternalJoint;
-	typedef TMapExternalJoint::iterator   TMapExternalJointIt;
-	typedef TMapExternalJoint::value_type TMapExternalJointVT;
+  struct DllExport TJoint
+  {
+    std::string namePart;
+    std::string nameInternalJoint;
+    bool operator < (const TJoint& right) const;
+    bool operator > (const TJoint& right) const;
+  };
+  //---------------------------------------------------------
+  typedef std::map<std::string,TJoint>  TMapExternalJoint;
+  typedef TMapExternalJoint::iterator   TMapExternalJointIt;
+  typedef TMapExternalJoint::value_type TMapExternalJointVT;
   //---------------------------------------------------------
   //---------------------------------------------------------
-	std::string      mNamePattern;          // модель поведения
-	std::string      mNameRoot;             // часть, которая ни к кому не подсоединена и корень должен быть всегда
+  std::string      mNamePattern;          // модель поведения
+  std::string      mNameRoot;             // часть, которая ни к кому не подсоединена и корень должен быть всегда
   TMMapStrLocation mMapNameBranchLocation;// иерархия
 
   typedef enum{eModel,eShape}eType;// либо модель, либо форма
   eType            mTypeCollection;
   TMapStrPart      mMapNamePart;   // набор
   
-	// Правило:
-	// если часть не имеет родителя (корень), то только он может подсоединиться к другой модели
-	// если часть не имеет детей, то только к ней могут подсоединиться из других моделей
-	TMapExternalJoint mMapExternalJoint;
+  // Правило:
+  // если часть не имеет родителя (корень), то только он может подсоединиться к другой модели
+  // если часть не имеет детей, то только к ней могут подсоединиться из других моделей
+  TMapExternalJoint mMapExternalJoint;
 
   TModelItem(std::string& name);
 }_PACKED;

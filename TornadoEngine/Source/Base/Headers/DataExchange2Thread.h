@@ -33,7 +33,7 @@ template <typename TClass> class TDataExchange2Thread
 #pragma pack(push, 1)
 #endif
   struct TElement
-	{
+  {
     DECLARATION_ATOMIC_POINTER(pNext, TElement);// change by Producer
     // data и ThisPointer местами не менять!
     TClass*   data;//new/delete                 // change by Producer
@@ -53,8 +53,8 @@ template <typename TClass> class TDataExchange2Thread
   DECLARATION_ATOMIC_INT(cnt);                  // change by Producer
 #endif
 
-	TElement* pFirstConsumer; // change by Consumer
-	TElement* pFirstProducer; // change by Producer
+  TElement* pFirstConsumer; // change by Consumer
+  TElement* pFirstProducer; // change by Producer
   TElement* pLastProducer;  // change by Producer
 
   TCallBackRegistrator1<TClass*>* mCB_DeleteData;
@@ -62,14 +62,14 @@ template <typename TClass> class TDataExchange2Thread
   DECLARATION_ALLOCATOR_MEMORY
 public:
   TDataExchange2Thread();
-	~TDataExchange2Thread();
+  ~TDataExchange2Thread();
   // удалять тем способом, которым создали, или по-умолчанию new/delete
   // setup method of allocate memory, default new/delete.
   void SetCB_DeleteData(TCallBackRegistrator1<TClass*>* pCB){mCB_DeleteData=pCB;}
   //==============================INTERFACE=============================
   // Consumer
   TClass** GetFirst();
-	TClass** Next(TClass** d);
+  TClass** Next(TClass** d);
   void RemoveFirst();// вызывать только если нет указателей на элемент
   void UnlinkData(TClass** d);
   // Producer

@@ -61,15 +61,15 @@ void TNetControlAcceptor::AcceptEvent(const boost::system::error_code& error)
     pNewControlTCP->Init();// готов к чтению
   }
   else
-	{
-		delete pNewControlTCP;
-		pNewControlTCP = NULL;
-		GetLogger(STR_NAME_NET_TRANSPORT)->
+  {
+    delete pNewControlTCP;
+    pNewControlTCP = NULL;
+    GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("Acceptor AcceptEvent FAIL: %s.\n", error.message().data());
 
     flgReadyAccept = false;
-		return;
-	}
+    return;
+  }
 
   ReadyAccept();
 }

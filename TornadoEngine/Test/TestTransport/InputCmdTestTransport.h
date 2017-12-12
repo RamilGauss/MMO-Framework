@@ -24,26 +24,26 @@ class TInputCmdTestTransport
 
 public:
 
-	struct TInput
-	{
-		unsigned short port_src;
+  struct TInput
+  {
+    unsigned short port_src;
     unsigned short port_dst;
     int            timer_send; // ms
     TInput()
     {
       timer_send = 1000000000;
     }
-	};
+  };
 
   TInputCmdTestTransport();
   ~TInputCmdTestTransport();
 
-	bool SetArg(int argc, char** argv);
-	bool SetArg(std::vector<std::string>& vecArgv);
-	void Get(TInput& v_out);
+  bool SetArg(int argc, char** argv);
+  bool SetArg(std::vector<std::string>& vecArgv);
+  void Get(TInput& v_out);
 
 protected:
-	TInput mInput;
+  TInput mInput;
 };
 
 #endif

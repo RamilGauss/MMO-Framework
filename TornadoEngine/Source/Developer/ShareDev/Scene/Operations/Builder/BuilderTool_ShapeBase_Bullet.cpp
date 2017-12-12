@@ -10,8 +10,8 @@ See for more information License.h.
 //-------------------------------------------------------------------------------
 TBuilderTool_ShapeBase_Bullet::TBuilderTool_ShapeBase_Bullet()
 {
-	mShape    = NULL;
-	mMaterial = NULL;
+  mShape    = NULL;
+  mMaterial = NULL;
 }
 //-------------------------------------------------------------------------------
 TBuilderTool_ShapeBase_Bullet::~TBuilderTool_ShapeBase_Bullet()
@@ -21,11 +21,11 @@ TBuilderTool_ShapeBase_Bullet::~TBuilderTool_ShapeBase_Bullet()
 //-------------------------------------------------------------------------------
 void TBuilderTool_ShapeBase_Bullet::SetShape(TShapeItem* pShape)
 {
-	mShape = pShape;
+  mShape = pShape;
 }
 //-------------------------------------------------------------------------
 void TBuilderTool_ShapeBase_Bullet::SetMaterial(TMaterialItem* pMaterial)
 {
-	mMaterial = pMaterial;
+  mMaterial = pMaterial;
 }
 //-------------------------------------------------------------------------

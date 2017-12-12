@@ -13,8 +13,8 @@ using namespace nsMMOEngine;
 TEventRecv::TEventRecv()
 {
   id_session = INVALID_HANDLE_SESSION;
-	data = NULL;
-	sizeData = 0;
+  data = NULL;
+  sizeData = 0;
 }
 //-------------------------------------------------------------
 TEventRecvFromDown::TEventRecvFromDown()
@@ -54,7 +54,7 @@ TEventConnectDown::TEventConnectDown()
 {
   mType = eConnectDown;
   id_session = INVALID_HANDLE_SESSION;
-	use_crypt = true;
+  use_crypt = true;
 }
 //-------------------------------------------------------------
 TEventDestroyGroup::TEventDestroyGroup()
@@ -84,7 +84,7 @@ TEventTryLogin::TEventTryLogin()
 {
   mType = eTryLogin;
   id_session = INVALID_HANDLE_SESSION;
-	use_crypt = true;
+  use_crypt = true;
 }
 //-------------------------------------------------------------
 TEventSaveContext::TEventSaveContext()

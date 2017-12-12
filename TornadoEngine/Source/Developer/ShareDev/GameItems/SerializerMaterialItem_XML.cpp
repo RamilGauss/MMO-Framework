@@ -13,19 +13,19 @@ See for more information License.h.
 
 namespace nsSerializerMaterialItem_XML
 {
-  const char* sMaterial   	= "Material";
-  const char* sGraphic    	= "Graphic";
-	const char* sOgreMaterial = "OgreMaterial";
-  const char* sVariant    	= "Variant";
-  const char* sWidth      	= "Width";
-  const char* sLength     	= "Length";
-  const char* sColor      	= "Color";
-  const char* sNormal     	= "Normal";
+  const char* sMaterial     = "Material";
+  const char* sGraphic      = "Graphic";
+  const char* sOgreMaterial = "OgreMaterial";
+  const char* sVariant      = "Variant";
+  const char* sWidth        = "Width";
+  const char* sLength       = "Length";
+  const char* sColor        = "Color";
+  const char* sNormal       = "Normal";
 
-  const char* sPhysic     	= "Physic";
-  const char* sDensity    	= "Density";
-  const char* sElasticity 	= "Elasticity";
-  const char* sFriction   	= "Friction";
+  const char* sPhysic       = "Physic";
+  const char* sDensity      = "Density";
+  const char* sElasticity   = "Elasticity";
+  const char* sFriction     = "Friction";
 }
 
 using namespace nsSerializerMaterialItem_XML;
@@ -91,8 +91,8 @@ void TSerializerMaterialItem_XML::LoadGraphic()
             variant.width  = boost::lexical_cast<float>(value.data());
           if(key==sLength)
             variant.length = boost::lexical_cast<float>(value.data());
-					if(key==sOgreMaterial)
-						variant.ogreMaterial = value;
+          if(key==sOgreMaterial)
+            variant.ogreMaterial = value;
         }
         mXML->LeaveSection();
       }

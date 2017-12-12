@@ -6,8 +6,8 @@ See for more information License.h.
 */
 
 #ifdef WIN32
-	#include <windows.h>
-	#include <atlconv.h>
+  #include <windows.h>
+  #include <atlconv.h>
 #endif 
 
 #include <string>
@@ -54,7 +54,7 @@ int main(int argc, char** argv){
 
   TInputCmdTornado cmdTornado;
   if((resGet==false)||
-	   (cmdTornado.SetArg(vec_argv)==false))
+     (cmdTornado.SetArg(vec_argv)==false))
   {
     ViewHowUse();
     return -1;

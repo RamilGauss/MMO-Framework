@@ -10,8 +10,8 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-	class TContainerContextSc;
-	class TBase;
+  class TContainerContextSc;
+  class TBase;
   class TDelegateManagerContextSc
   {
     TBase* mBase;
@@ -19,9 +19,9 @@ namespace nsMMOEngine
     TDelegateManagerContextSc(TBase* pBase);
     virtual ~TDelegateManagerContextSc();
 
-	protected:
-		TContainerContextSc* AddContainer();
-		void DeleteContainer(TContainerContextSc* pC);
+  protected:
+    TContainerContextSc* AddContainer();
+    void DeleteContainer(TContainerContextSc* pC);
   };
 }
 

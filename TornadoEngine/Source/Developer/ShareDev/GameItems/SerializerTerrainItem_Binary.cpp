@@ -24,44 +24,44 @@ TSerializerTerrainItem_Binary::~TSerializerTerrainItem_Binary()
 //-------------------------------------------------------------------------------------------------------
 void TSerializerTerrainItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
 {
-	TTerrainItem* pTerrainItem = (TTerrainItem*)pItem;
-	UnlinkCollect();
+  TTerrainItem* pTerrainItem = (TTerrainItem*)pItem;
+  UnlinkCollect();
 
-	PushType();
-	PushStr(pTerrainItem->mName);
+  PushType();
+  PushStr(pTerrainItem->mName);
 
-	PushStr(pTerrainItem->mNameHeightData);
+  PushStr(pTerrainItem->mNameHeightData);
 
-	Push(pTerrainItem->mX.min);
-	Push(pTerrainItem->mX.max);
-	Push(pTerrainItem->mY.min);
-	Push(pTerrainItem->mY.max);
+  Push(pTerrainItem->mX.min);
+  Push(pTerrainItem->mX.max);
+  Push(pTerrainItem->mY.min);
+  Push(pTerrainItem->mY.max);
 
-	Push(pTerrainItem->mGraphic.maxPixelError);
-	Push(pTerrainItem->mGraphic.compositeMapDistance);
+  Push(pTerrainItem->mGraphic.maxPixelError);
+  Push(pTerrainItem->mGraphic.compositeMapDistance);
 
-	Collect(cBinOut);
+  Collect(cBinOut);
 }
 //-------------------------------------------------------------------------------------------------------
 bool TSerializerTerrainItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int sizeIn)
 {
-	TTerrainItem* pTerrainItem = (TTerrainItem*)pItem;
+  TTerrainItem* pTerrainItem = (TTerrainItem*)pItem;
 
-	BeginUnpack((char*)pIn, sizeIn);
+  BeginUnpack((char*)pIn, sizeIn);
 
-	RET_FALSE( PopType() )
-	RET_FALSE( PopStr(pTerrainItem->mName) )
+  RET_FALSE( PopType() )
+  RET_FALSE( PopStr(pTerrainItem->mName) )
 
-	RET_FALSE( PopStr(pTerrainItem->mNameHeightData) )
+  RET_FALSE( PopStr(pTerrainItem->mNameHeightData) )
 
-	RET_FALSE(Pop(pTerrainItem->mX.min))
-	RET_FALSE(Pop(pTerrainItem->mX.max))
-	RET_FALSE(Pop(pTerrainItem->mY.min))
-	RET_FALSE(Pop(pTerrainItem->mY.max))
+  RET_FALSE(Pop(pTerrainItem->mX.min))
+  RET_FALSE(Pop(pTerrainItem->mX.max))
+  RET_FALSE(Pop(pTerrainItem->mY.min))
+  RET_FALSE(Pop(pTerrainItem->mY.max))
 
-	RET_FALSE( Pop(pTerrainItem->mGraphic.maxPixelError) )
-	RET_FALSE( Pop(pTerrainItem->mGraphic.compositeMapDistance) )
+  RET_FALSE( Pop(pTerrainItem->mGraphic.maxPixelError) )
+  RET_FALSE( Pop(pTerrainItem->mGraphic.compositeMapDistance) )
 
-	return true;
+  return true;
 }
 //-------------------------------------------------------------------------------------------------------

@@ -15,9 +15,9 @@ See for more information License.h.
 class DllExport TUpdaterGameItem_Terrain : public TOperation_Terrain
 {
 public:
-	TUpdaterGameItem_Terrain();
+  TUpdaterGameItem_Terrain();
 
-	virtual bool Update( TFactoryGameItem::TypeGameItem type ) = 0;
+  virtual bool Update( TFactoryGameItem::TypeGameItem type ) = 0;
 private:
 };
 

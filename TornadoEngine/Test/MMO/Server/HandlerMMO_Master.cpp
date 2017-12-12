@@ -92,7 +92,7 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       unsigned int ID_Client = boost::lexical_cast<int>(s);
       pMaster->SetResultLogin(true, pETL->id_session, ID_Client, (void*)"Wellcome", strlen("Wellcome"));
       //mListClient.push_back(ID_Client);
-			//if(mListClient.size()>19)
+      //if(mListClient.size()>19)
       //{
         //unsigned int id_group;
         //bool res = pMaster->TryCreateGroup(mListClient, id_group);

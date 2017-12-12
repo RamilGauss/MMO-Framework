@@ -15,25 +15,25 @@ namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
   class TContextScSendToClient : public IContextScenario
-	{
-		struct TSavePacket
-		{
-			TBreakPacket bp;
-			TContainer c;
-		};
+  {
+    struct TSavePacket
+    {
+      TBreakPacket bp;
+      TContainer c;
+    };
 
-		typedef std::list<TSavePacket*> TListPtr;
-		TListPtr mListSave;
+    typedef std::list<TSavePacket*> TListPtr;
+    TListPtr mListSave;
 
-	public:
-		TContextScSendToClient();
+  public:
+    TContextScSendToClient();
     virtual ~TContextScSendToClient();
 
-		void SaveBreakPacket(TBreakPacket& bp);
-		void SendAndRemoveFirst();
+    void SaveBreakPacket(TBreakPacket& bp);
+    void SendAndRemoveFirst();
 
   private:
-		void Done();
-	};
+    void Done();
+  };
 }  
 #endif

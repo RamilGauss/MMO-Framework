@@ -9,13 +9,13 @@ See for more information License.h.
 
 namespace nsPattern_Sound
 {
-	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+  static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPattern_Sound;
 
 TPattern_Sound::TPattern_Sound() :
-	TBehaviourPattern(&g_DefaultParameterMap)
+  TBehaviourPattern(&g_DefaultParameterMap)
 {
 
 }
@@ -27,6 +27,6 @@ TPattern_Sound::~TPattern_Sound()
 //---------------------------------------------------------------------------
 TManagerNamePattern::eBaseType TPattern_Sound::GetBaseType()
 {
-	return TManagerNamePattern::eSound;
+  return TManagerNamePattern::eSound;
 }
 //------------------------------------------------------------------------

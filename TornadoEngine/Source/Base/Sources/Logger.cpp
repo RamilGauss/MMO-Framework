@@ -45,7 +45,7 @@ bool TLogger::Register(const char* nameLogger, const char* extension)
   pDF->sExtension = extension;
 
   mMapNamePtr.insert(TMapStrPtr::value_type(nameLogger,pDF));
-	mVecPtr.push_back(&pDF->stf);
+  mVecPtr.push_back(&pDF->stf);
   if(sPrefix.length())
   {
     InitLogger(&pDF->stf, nameLogger, pDF->sExtension.data());
@@ -75,7 +75,7 @@ void TLogger::Done()
   BOOST_FOREACH(TMapStrPtr::value_type& bit,mMapNamePtr)
     delete bit.second;
   mMapNamePtr.clear();
-	mVecPtr.clear();
+  mVecPtr.clear();
 }
 //-----------------------------------------------------------------------
 TLogger::~TLogger()
@@ -130,14 +130,14 @@ bool TLogger::GetBufferization()
 //-----------------------------------------------------------------------
 int TLogger::GetCount()
 {
-	return mVecPtr.size();
+  return mVecPtr.size();
 }
 //-----------------------------------------------------------------------
 TSaveToFile* TLogger::GetByIndex( int index )
 {
-	if((index >= GetCount()) ||
-		 (index < 0          ))
-		return NULL;
-	return mVecPtr[index];
+  if((index >= GetCount()) ||
+     (index < 0          ))
+    return NULL;
+  return mVecPtr[index];
 }
 //-----------------------------------------------------------------------

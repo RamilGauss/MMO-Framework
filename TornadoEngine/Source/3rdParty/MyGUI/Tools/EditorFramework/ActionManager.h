@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #ifndef _897c30fe_12de_4067_91d0_a2a336a18f83_
@@ -14,49 +14,49 @@
 namespace tools
 {
 
-	class MYGUI_EXPORT_DLL ActionManager
-	{
-	public:
-		ActionManager();
-		~ActionManager();
+  class MYGUI_EXPORT_DLL ActionManager
+  {
+  public:
+    ActionManager();
+    ~ActionManager();
 
-		static ActionManager& getInstance();
-		static ActionManager* getInstancePtr();
+    static ActionManager& getInstance();
+    static ActionManager* getInstancePtr();
 
-		void initialise();
-		void shutdown();
+    void initialise();
+    void shutdown();
 
-		void doAction(Action* _command);
+    void doAction(Action* _command);
 
-		void undoAction();
-		void redoAction();
+    void undoAction();
+    void redoAction();
 
-		void saveChanges();
-		bool getChanges();
+    void saveChanges();
+    bool getChanges();
 
-		void setMaxActions(size_t _value);
-		size_t getMaxActions() const;
+    void setMaxActions(size_t _value);
+    size_t getMaxActions() const;
 
-		void reset();
+    void reset();
 
-		sigslot::signal0<> eventChanges;
+    sigslot::signal0<> eventChanges;
 
-	private:
-		void clear();
+  private:
+    void clear();
 
-		bool updateMaxActions();
-		void removeRedo();
+    bool updateMaxActions();
+    void removeRedo();
 
-		void onChangeActions();
+    void onChangeActions();
 
-	private:
-		static ActionManager* mInstance;
-		typedef std::list<Action*> ListAction;
-		ListAction mActions;
-		ListAction::iterator mCurrentAction;
-		ListAction::iterator mActionAsSave;
-		size_t mMaxActions;
-	};
+  private:
+    static ActionManager* mInstance;
+    typedef std::list<Action*> ListAction;
+    ListAction mActions;
+    ListAction::iterator mCurrentAction;
+    ListAction::iterator mActionAsSave;
+    size_t mMaxActions;
+  };
 
 }
 

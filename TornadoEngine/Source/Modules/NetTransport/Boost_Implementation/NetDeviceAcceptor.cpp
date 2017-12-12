@@ -65,7 +65,7 @@ bool TNetDeviceAcceptor::Open( unsigned short port, unsigned char numNetWork )
 //--------------------------------------------------------------------------------
 void TNetDeviceAcceptor::Close()
 {
-	if(mSocket.is_open()==false) return;
+  if(mSocket.is_open()==false) return;
   try
   {
     mSocket.close();

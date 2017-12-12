@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -14,43 +14,43 @@
 namespace tools
 {
 
-	FACTORY_ITEM_ATTRIBUTE(ChangeTextureValueAction)
+  FACTORY_ITEM_ATTRIBUTE(ChangeTextureValueAction)
 
-	ChangeTextureValueAction::ChangeTextureValueAction()
-	{
-	}
+  ChangeTextureValueAction::ChangeTextureValueAction()
+  {
+  }
 
-	ChangeTextureValueAction::~ChangeTextureValueAction()
-	{
-	}
+  ChangeTextureValueAction::~ChangeTextureValueAction()
+  {
+  }
 
-	void ChangeTextureValueAction::doAction()
-	{
-		mOldValue = getProperty()->getValue();
-		getProperty()->setValue(getValue());
+  void ChangeTextureValueAction::doAction()
+  {
+    mOldValue = getProperty()->getValue();
+    getProperty()->setValue(getValue());
 
-		if (SettingsManager::getInstance().getValue<bool>("Settings/SaveLastTexture"))
-			SettingsManager::getInstance().setValue("Resources/LastTextureName", getValue());
-	}
+    if (SettingsManager::getInstance().getValue<bool>("Settings/SaveLastTexture"))
+      SettingsManager::getInstance().setValue("Resources/LastTextureName", getValue());
+  }
 
-	void ChangeTextureValueAction::undoAction()
-	{
-		getProperty()->setValue(mOldValue);
-	}
+  void ChangeTextureValueAction::undoAction()
+  {
+    getProperty()->setValue(mOldValue);
+  }
 
-	bool ChangeTextureValueAction::doMerge(Action* _action)
-	{
-		ChangeTextureValueAction* action = dynamic_cast<ChangeTextureValueAction*>(_action);
-		if (action != nullptr)
-		{
-			if (action->getProperty() == getProperty())
-			{
-				getProperty()->setValue(action->getValue());
-				return true;
-			}
-		}
+  bool ChangeTextureValueAction::doMerge(Action* _action)
+  {
+    ChangeTextureValueAction* action = dynamic_cast<ChangeTextureValueAction*>(_action);
+    if (action != nullptr)
+    {
+      if (action->getProperty() == getProperty())
+      {
+        getProperty()->setValue(action->getValue());
+        return true;
+      }
+    }
 
-		return false;
-	}
+    return false;
+  }
 
 }

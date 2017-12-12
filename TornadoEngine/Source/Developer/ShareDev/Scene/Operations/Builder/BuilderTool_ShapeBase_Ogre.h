@@ -22,72 +22,72 @@ struct TShapeItem;
 class DllExport TBuilderTool_ShapeBase_Ogre
 {
 protected:
-	TShapeItem*    mPtrShape;
-	TMaterialItem* mPtrMaterial;
+  TShapeItem*    mPtrShape;
+  TMaterialItem* mPtrMaterial;
 
-	TMaterialItem::TVariant* mPtrMaterialVariant;
-	Ogre::SceneManager*      mPtrSceneMng;
-	Ogre::Entity*            mPtrEntity;
+  TMaterialItem::TVariant* mPtrMaterialVariant;
+  Ogre::SceneManager*      mPtrSceneMng;
+  Ogre::Entity*            mPtrEntity;
 
-	Ogre::MeshPtr     mMeshPtr;
-	Ogre::MaterialPtr mMaterialPtr;
+  Ogre::MeshPtr     mMeshPtr;
+  Ogre::MaterialPtr mMaterialPtr;
 
-	Ogre::String mNameMesh;
-	Ogre::String mNameEntity;
+  Ogre::String mNameMesh;
+  Ogre::String mNameEntity;
 
-	struct TTriangle
-	{
-		TTriangle(){}
-		TTriangle( int begin )
-		{
-			_0 = begin+0;
-			_1 = begin+1;
-			_2 = begin+2;
-		}
-		int _0;
-		int _1;
-		int _2;
-	};
-	struct TQuad
-	{
-		TQuad(){}
-		TQuad(int begin)
-		{
-			_0 = begin+0;
-			_1 = begin+1;
-			_2 = begin+2;
-			_3 = begin+3;
-		}
-		int _0;
-		int _1;
-		int _2;
-		int _3;
-	};
+  struct TTriangle
+  {
+    TTriangle(){}
+    TTriangle( int begin )
+    {
+      _0 = begin+0;
+      _1 = begin+1;
+      _2 = begin+2;
+    }
+    int _0;
+    int _1;
+    int _2;
+  };
+  struct TQuad
+  {
+    TQuad(){}
+    TQuad(int begin)
+    {
+      _0 = begin+0;
+      _1 = begin+1;
+      _2 = begin+2;
+      _3 = begin+3;
+    }
+    int _0;
+    int _1;
+    int _2;
+    int _3;
+  };
 
-	Ogre::ManualObject* mPtrMO;
+  Ogre::ManualObject* mPtrMO;
 public:
-	TBuilderTool_ShapeBase_Ogre();
-	virtual ~TBuilderTool_ShapeBase_Ogre();
+  TBuilderTool_ShapeBase_Ogre();
+  virtual ~TBuilderTool_ShapeBase_Ogre();
 
-	// Ogre thread only
-	virtual void Setup(TShapeItem* pShape, TMaterialItem* pMaterial);
-	// Ogre thread only
-	virtual Ogre::Entity* CreateEntity(std::string& nameEntity) = 0;
-	virtual std::string GetNameType() = 0;
+  // Ogre thread only
+  virtual void Setup(TShapeItem* pShape, TMaterialItem* pMaterial);
+  // Ogre thread only
+  virtual Ogre::Entity* CreateEntity(std::string& nameEntity) = 0;
+  virtual std::string GetNameType() = 0;
 protected:
-	virtual void SetNameMesh() = 0;
-	virtual void SetParamShape( nsParamBuilderShape::TBaseParam* pShape) = 0;
+  virtual void SetNameMesh() = 0;
+  virtual void SetParamShape( nsParamBuilderShape::TBaseParam* pShape) = 0;
 protected:
-	void SetRandomVariant();
-	void CreateMaterial();
+  void SetRandomVariant();
+  void CreateMaterial();
 
-	void ApplyQuad(TQuad& quad);
-	void ApplyTriangle(TTriangle& triangle);
+  void ApplyQuad(TQuad& quad);
+  void ApplyTriangle(TTriangle& triangle);
 public:
-	void CreateTriangle(nsStructBuilderTool_Ogre::TTriVertex& tVertex);
-	void CreateQuad(nsStructBuilderTool_Ogre::TQuadVertex& qVertex);
+  void CreateTriangle(nsStructBuilderTool_Ogre::TTriVertex& tVertex);
+  void CreateQuad(nsStructBuilderTool_Ogre::TQuadVertex& qVertex);
 
-	void AddPosition( nsStructBuilderTool_Ogre::TVertex* p, int cnt);
+  void AddPosition( nsStructBuilderTool_Ogre::TVertex* p, int cnt);
 };
 
 #endif

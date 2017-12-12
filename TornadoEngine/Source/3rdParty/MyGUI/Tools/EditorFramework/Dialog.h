@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		09/2008
+  @file
+  @author    Albert Semenov
+  @date    09/2008
 */
 
 #ifndef _1b12f1d3_3f8d_4436_a78b_bac3214b47db_
@@ -13,28 +13,28 @@
 namespace tools
 {
 
-	class MYGUI_EXPORT_DLL Dialog
-	{
-	public:
-		Dialog();
-		virtual ~Dialog();
+  class MYGUI_EXPORT_DLL Dialog
+  {
+  public:
+    Dialog();
+    virtual ~Dialog();
 
-		void setDialogRoot(MyGUI::Widget* _root);
-		bool isDialogModal();
+    void setDialogRoot(MyGUI::Widget* _root);
+    bool isDialogModal();
 
-		void doModal();
-		void endModal();
+    void doModal();
+    void endModal();
 
-		sigslot::signal2<Dialog*, bool> eventEndDialog;
+    sigslot::signal2<Dialog*, bool> eventEndDialog;
 
-	protected:
-		virtual void onDoModal() { }
-		virtual void onEndModal() { }
+  protected:
+    virtual void onDoModal() { }
+    virtual void onEndModal() { }
 
-	private:
-		bool mModal;
-		MyGUI::Widget* mRootWidget;
-	};
+  private:
+    bool mModal;
+    MyGUI::Widget* mRootWidget;
+  };
 
 }
 

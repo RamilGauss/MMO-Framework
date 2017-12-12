@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2010
+  @file
+  @author    Albert Semenov
+  @date    08/2010
 */
 
 #ifndef _05ab6d18_ce9a_43df_93dc_98653055410f_
@@ -12,22 +12,22 @@
 namespace tools
 {
 
-	class MYGUI_EXPORT_DLL MessageBoxFadeControl :
-		public Control
-	{
-	public:
-		MessageBoxFadeControl();
-		virtual ~MessageBoxFadeControl();
+  class MYGUI_EXPORT_DLL MessageBoxFadeControl :
+    public Control
+  {
+  public:
+    MessageBoxFadeControl();
+    virtual ~MessageBoxFadeControl();
 
-	protected:
-		virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
+  protected:
+    virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
 
-	private:
-		void notifyFrameStart(float _time);
+  private:
+    void notifyFrameStart(float _time);
 
-	private:
-		float mMaxAlpha;
-	};
+  private:
+    float mMaxAlpha;
+  };
 
 }
 

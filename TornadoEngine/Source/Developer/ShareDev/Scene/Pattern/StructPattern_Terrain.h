@@ -17,27 +17,27 @@ class btHeightfieldTerrainShape;
 
 namespace nsStructPattern_Terrain
 {
-	// физика
-	struct DllExport THeightMapTerrain
-	{
-		TContainerArrObj<float> cHeight;
-		unsigned short size;
-		float worldSize;
-		float inputScale;
-		float inputBias;
-		nsMathTools::TVector3 pos;
-		THeightMapTerrain();
-	};
+  // физика
+  struct DllExport THeightMapTerrain
+  {
+    TContainerArrObj<float> cHeight;
+    unsigned short size;
+    float worldSize;
+    float inputScale;
+    float inputBias;
+    nsMathTools::TVector3 pos;
+    THeightMapTerrain();
+  };
 
-	struct DllExport TTerrainPart_Physic
-	{
-		THeightMapTerrain* 				 pData;
-		btRigidBody*       				 pRB;
-		btHeightfieldTerrainShape* pHeightfieldShape;
-		TTerrainPart_Physic();
+  struct DllExport TTerrainPart_Physic
+  {
+    THeightMapTerrain*          pData;
+    btRigidBody*                pRB;
+    btHeightfieldTerrainShape* pHeightfieldShape;
+    TTerrainPart_Physic();
 
-		void Init();
-	};
+    void Init();
+  };
 };
 
 #endif

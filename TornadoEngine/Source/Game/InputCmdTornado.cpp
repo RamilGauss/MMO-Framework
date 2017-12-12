@@ -17,12 +17,12 @@ string KEY_CONSOLE("-c");
 
 TInputCmdTornado::TInputCmdTornado()
 {
-	mVecDefKey.push_back(KEY_VARIANT);
-	mVecDefKey.push_back(KEY_LIB    );
-	mVecDefKey.push_back(KEY_PARAM  );
-	mVecDefKey.push_back(KEY_CONSOLE);
+  mVecDefKey.push_back(KEY_VARIANT);
+  mVecDefKey.push_back(KEY_LIB    );
+  mVecDefKey.push_back(KEY_PARAM  );
+  mVecDefKey.push_back(KEY_CONSOLE);
 
-	mCmdParam.SetDefKey(mVecDefKey);
+  mCmdParam.SetDefKey(mVecDefKey);
 }
 //-------------------------------------------------------------------------------
 TInputCmdTornado::~TInputCmdTornado()
@@ -32,22 +32,22 @@ TInputCmdTornado::~TInputCmdTornado()
 //-------------------------------------------------------------------------------
 bool TInputCmdTornado::SetArg(vector<string>& vecArgv)
 {
-	mCmdParam.SetArg(vecArgv);
+  mCmdParam.SetArg(vecArgv);
 
-	int cD = mCmdParam.GetCountValueByKey(KEY_LIB);
-	if(cD==0) return false;
-	mCmdParam.GetByKey(KEY_LIB, 0, mInput.libName);
-	//-------------------------------------------------
-	int cV = mCmdParam.GetCountValueByKey(KEY_VARIANT);
-	if(cV==1)
-	{
-		string sVariant;
-		mCmdParam.GetByKey(KEY_VARIANT, 0, sVariant);
-		mInput.variant_use = boost::lexical_cast<int>(sVariant.data());
-	}
-	//-------------------------------------------------
-	int cP = mCmdParam.GetCountValueByKey(KEY_PARAM);
-	for(int i = 0 ; i < cP ; i++ )
+  int cD = mCmdParam.GetCountValueByKey(KEY_LIB);
+  if(cD==0) return false;
+  mCmdParam.GetByKey(KEY_LIB, 0, mInput.libName);
+  //-------------------------------------------------
+  int cV = mCmdParam.GetCountValueByKey(KEY_VARIANT);
+  if(cV==1)
+  {
+    string sVariant;
+    mCmdParam.GetByKey(KEY_VARIANT, 0, sVariant);
+    mInput.variant_use = boost::lexical_cast<int>(sVariant.data());
+  }
+  //-------------------------------------------------
+  int cP = mCmdParam.GetCountValueByKey(KEY_PARAM);
+  for(int i = 0 ; i < cP ; i++ )
   {
     string sParam;
     mCmdParam.GetByKey(KEY_PARAM, i, sParam);
@@ -57,11 +57,11 @@ bool TInputCmdTornado::SetArg(vector<string>& vecArgv)
   if(mCmdParam.IsKey(KEY_CONSOLE))
     mInput.useConsole = true;
   //-------------------------------------------------
-	return true;
+  return true;
 }
 //-------------------------------------------------------------------------------
 void TInputCmdTornado::Get(TInputCmdTornado::TInput& v_out)
 {
-	v_out = mInput;
+  v_out = mInput;
 }
 //-------------------------------------------------------------------------------

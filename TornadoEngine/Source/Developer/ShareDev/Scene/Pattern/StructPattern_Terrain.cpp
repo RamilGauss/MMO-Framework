@@ -11,22 +11,22 @@ using namespace nsStructPattern_Terrain;
 
 THeightMapTerrain::THeightMapTerrain()
 {
-	size = 0;
-	worldSize =0;
-	inputScale = 0;
-	inputBias = 0;
-	pos = nsMathTools::TVector3(0,0,0);
+  size = 0;
+  worldSize =0;
+  inputScale = 0;
+  inputBias = 0;
+  pos = nsMathTools::TVector3(0,0,0);
 }
 //--------------------------------------------------------------------------------
 TTerrainPart_Physic::TTerrainPart_Physic()
 {
-	Init();
+  Init();
 }
 //--------------------------------------------------------------------------------
 void TTerrainPart_Physic::Init()
 {
-	pData = NULL;
-	pRB   = NULL;
-	pHeightfieldShape = NULL;
+  pData = NULL;
+  pRB   = NULL;
+  pHeightfieldShape = NULL;
 }
 //--------------------------------------------------------------------------------

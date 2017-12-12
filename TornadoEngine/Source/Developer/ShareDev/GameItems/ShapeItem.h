@@ -27,7 +27,7 @@ struct DllExport TShapeItem : public TBaseItem
   struct DllExport TJoint
   {
     nsMathTools::TVector3  position;
-		nsMathTools::TMatrix16 orientation;
+    nsMathTools::TMatrix16 orientation;
   };
   //---------------------------------------------------------
   struct DllExport TLOD

@@ -16,9 +16,9 @@ struct TShapeItem;
 class DllExport TBuilderTool_ShapeCylinder_Bullet : public TBuilderTool_ShapeBase_Bullet
 {
 public:
-	TBuilderTool_ShapeCylinder_Bullet();
+  TBuilderTool_ShapeCylinder_Bullet();
 
-	virtual btRigidBody* CreateRigidBody();
+  virtual btRigidBody* CreateRigidBody();
 protected:
 
 };

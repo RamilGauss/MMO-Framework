@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2008
+  @file
+  @author    Albert Semenov
+  @date    08/2008
 */
 
 #ifndef __BASE_MANAGER_H__
@@ -16,89 +16,89 @@
 
 namespace MyGUI
 {
-	class OgrePlatform;
+  class OgrePlatform;
 }
 
 namespace base
 {
 
-	class BaseManager :
-		public input::InputManager,
-		public input::PointerManager,
-		public Ogre::FrameListener,
-		public Ogre::WindowEventListener
-	{
-	public:
-		BaseManager();
-		virtual ~BaseManager();
+  class BaseManager :
+    public input::InputManager,
+    public input::PointerManager,
+    public Ogre::FrameListener,
+    public Ogre::WindowEventListener
+  {
+  public:
+    BaseManager();
+    virtual ~BaseManager();
 
-		virtual void prepare();
-		bool create();
-		void destroy();
-		void run();
-		void quit();
+    virtual void prepare();
+    bool create();
+    void destroy();
+    void run();
+    void quit();
 
     //###
     bool work();
     //###
 
-		void setWindowCaption(const std::wstring& _text);
-		void makeScreenShot();
+    void setWindowCaption(const std::wstring& _text);
+    void makeScreenShot();
 
-		const std::string& getRootMedia();
-		void setResourceFilename(const std::string& _flename);
-		void addResourceLocation(const std::string& _name, bool _recursive = false);
+    const std::string& getRootMedia();
+    void setResourceFilename(const std::string& _flename);
+    void addResourceLocation(const std::string& _name, bool _recursive = false);
 
-		size_t getWindowHandle();
+    size_t getWindowHandle();
 
-		typedef std::map<std::string, std::string> MapString;
-		MapString getStatistic();
+    typedef std::map<std::string, std::string> MapString;
+    MapString getStatistic();
 
-	/*internal:*/
-		Ogre::SceneManager* getSceneManager();
-		Ogre::Root* getRoot();
-		Ogre::Camera* getCamera();
+  /*internal:*/
+    Ogre::SceneManager* getSceneManager();
+    Ogre::Root* getRoot();
+    Ogre::Camera* getCamera();
 
-	protected:
-		virtual void createScene() { }
-		virtual void destroyScene() { }
+  protected:
+    virtual void createScene() { }
+    virtual void destroyScene() { }
 
-		virtual void setupResources();
+    virtual void setupResources();
 
-		virtual void injectMouseMove(int _absx, int _absy, int _absz);
-		virtual void injectMousePress(int _absx, int _absy, MyGUI::MouseButton _id);
-		virtual void injectMouseRelease(int _absx, int _absy, MyGUI::MouseButton _id);
-		virtual void injectKeyPress(MyGUI::KeyCode _key, MyGUI::Char _text);
-		virtual void injectKeyRelease(MyGUI::KeyCode _key);
+    virtual void injectMouseMove(int _absx, int _absy, int _absz);
+    virtual void injectMousePress(int _absx, int _absy, MyGUI::MouseButton _id);
+    virtual void injectMouseRelease(int _absx, int _absy, MyGUI::MouseButton _id);
+    virtual void injectKeyPress(MyGUI::KeyCode _key, MyGUI::Char _text);
+    virtual void injectKeyRelease(MyGUI::KeyCode _key);
 
-		virtual void createGui();
-		virtual void destroyGui();
+    virtual void createGui();
+    virtual void destroyGui();
 
-	private:
-		virtual bool frameStarted(const Ogre::FrameEvent& _evt);
-		virtual bool frameEnded(const Ogre::FrameEvent& _evt);
-		virtual void windowResized(Ogre::RenderWindow* _rw);
-		virtual void windowClosed(Ogre::RenderWindow* _rw);
+  private:
+    virtual bool frameStarted(const Ogre::FrameEvent& _evt);
+    virtual bool frameEnded(const Ogre::FrameEvent& _evt);
+    virtual void windowResized(Ogre::RenderWindow* _rw);
+    virtual void windowClosed(Ogre::RenderWindow* _rw);
 
-		void addResourceLocation(const std::string& _name, const std::string& _group, const std::string& _type, bool _recursive);
+    void addResourceLocation(const std::string& _name, const std::string& _group, const std::string& _type, bool _recursive);
 
-	private:
-		MyGUI::Gui* mGUI;
-		MyGUI::OgrePlatform* mPlatform;
+  private:
+    MyGUI::Gui* mGUI;
+    MyGUI::OgrePlatform* mPlatform;
 
-		Ogre::Root* mRoot;
-		Ogre::Camera* mCamera;
-		Ogre::SceneManager* mSceneManager;
-		Ogre::RenderWindow* mWindow;
+    Ogre::Root* mRoot;
+    Ogre::Camera* mCamera;
+    Ogre::SceneManager* mSceneManager;
+    Ogre::RenderWindow* mWindow;
 
-		bool mExit;
+    bool mExit;
 
-		Ogre::String mResourcePath;
-		std::string mPluginCfgName;
-		std::string mResourceXMLName;
-		std::string mResourceFileName;
-		std::string mRootMedia;
-	};
+    Ogre::String mResourcePath;
+    std::string mPluginCfgName;
+    std::string mResourceXMLName;
+    std::string mResourceFileName;
+    std::string mRootMedia;
+  };
 
 } // namespace base
 

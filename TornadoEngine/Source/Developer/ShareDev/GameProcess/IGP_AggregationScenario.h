@@ -27,8 +27,8 @@ public:
   
   virtual bool Activate(nsGameProcess::GP_TypeScenario type);
 
-	// IGP_General
-	virtual void Work();
+  // IGP_General
+  virtual void Work();
 protected:
   virtual IGP_Scenario* GetByType(nsGameProcess::GP_TypeScenario type) = 0;
 

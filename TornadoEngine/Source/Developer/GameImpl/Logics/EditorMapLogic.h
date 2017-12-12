@@ -28,7 +28,7 @@ class TEditorMapLogic : public TModuleClientLogic
   TEditorMap* mEditorMap;
   TStatusBar* mStatusBar;
 
-	TPhysicEngine_Bullet::eStateWorld    mStatePhysicWorld;
+  TPhysicEngine_Bullet::eStateWorld    mStatePhysicWorld;
   TFactoryBehaviourPattern_EoWM        mFBP_EoWM;
 
   boost::scoped_ptr<TShowTankWoT_test> mPtrShowTank;
@@ -36,11 +36,11 @@ class TEditorMapLogic : public TModuleClientLogic
 
   unsigned int mID_TimerTryMoveCamera;
 
-	std::string mCurrentGameMap;
-	//### прототипы TODO перенос в базовый класс?
-	bool flgIsTerrainGroupUpdate;
-	void CheckTerrainGroupUpdateForSave();
-	//###
+  std::string mCurrentGameMap;
+  //### прототипы TODO перенос в базовый класс?
+  bool flgIsTerrainGroupUpdate;
+  void CheckTerrainGroupUpdateForSave();
+  //###
 public:
   TEditorMapLogic();
   virtual ~TEditorMapLogic();
@@ -52,14 +52,14 @@ public:
   virtual TFactoryBehaviourPattern* GetFBP();
 
 public:// TEditorMapLogic for GUI
-	void TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld);
+  void TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld);
 
-	// in future should be locate in ClientLogic
-	void LoadGameMap(std::string& nameMap);
-	void SaveAsGameMap(std::string& nameMap);
-	void SaveGameMap();
-	
-	void ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descTarget);
+  // in future should be locate in ClientLogic
+  void LoadGameMap(std::string& nameMap);
+  void SaveAsGameMap(std::string& nameMap);
+  void SaveGameMap();
+  
+  void ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descTarget);
 
 protected:
   virtual bool WorkClient();
@@ -72,8 +72,8 @@ private:
   void StartTimer();
   void InitForms();
 
-	void LoadSettingCamera();
-	void SaveSettingCamera();
+  void LoadSettingCamera();
+  void SaveSettingCamera();
 
   void ShowTest();
 

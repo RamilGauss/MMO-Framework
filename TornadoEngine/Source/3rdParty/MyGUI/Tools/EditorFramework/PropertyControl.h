@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2010
+  @file
+  @author    Albert Semenov
+  @date    08/2010
 */
 
 #ifndef _e14ab35f_103d_4acf_ab0e_643de48cf55f_
@@ -14,32 +14,32 @@
 namespace tools
 {
 
-	class MYGUI_EXPORT_DLL PropertyControl :
-		public Control,
-		public sigslot::has_slots<>
-	{
-	public:
-		PropertyControl();
-		virtual ~PropertyControl();
+  class MYGUI_EXPORT_DLL PropertyControl :
+    public Control,
+    public sigslot::has_slots<>
+  {
+  public:
+    PropertyControl();
+    virtual ~PropertyControl();
 
-		void setProperty(PropertyPtr _value);
-		PropertyPtr getProperty();
+    void setProperty(PropertyPtr _value);
+    PropertyPtr getProperty();
 
-		void executeAction(const std::string& _value, bool _merge = false);
+    void executeAction(const std::string& _value, bool _merge = false);
 
-	protected:
-		virtual void updateProperty();
-		virtual void updateCaption();
+  protected:
+    virtual void updateProperty();
+    virtual void updateCaption();
 
-	private:
-		void notifyChangeProperty(PropertyPtr _sender);
+  private:
+    void notifyChangeProperty(PropertyPtr _sender);
 
-		void advice();
-		void unadvice();
+    void advice();
+    void unadvice();
 
-	private:
-		PropertyPtr mProperty;
-	};
+  private:
+    PropertyPtr mProperty;
+  };
 
 }
 

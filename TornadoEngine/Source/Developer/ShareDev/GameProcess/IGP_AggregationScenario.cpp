@@ -23,9 +23,9 @@ IGP_AggregationScenario::~IGP_AggregationScenario()
 void IGP_AggregationScenario::Begin( IGP_Scenario* pScenario )
 {
   mPtrCurrentScenario = pScenario;
-	// перед началом работы по сценарию необходимо обновить параметры работы
-	mPtrCurrentScenario->Setup(mSetID_Module,mFBP,mPtrScene,mPhysicWorldID);
-	mPtrCurrentScenario->SetProgressStep(mProgressStep);
+  // перед началом работы по сценарию необходимо обновить параметры работы
+  mPtrCurrentScenario->Setup(mSetID_Module,mFBP,mPtrScene,mPhysicWorldID);
+  mPtrCurrentScenario->SetProgressStep(mProgressStep);
 }
 //-----------------------------------------------------------------
 void IGP_AggregationScenario::End()
@@ -47,13 +47,13 @@ IGP_Scenario* IGP_AggregationScenario::GetCurrentScenario()
 //-----------------------------------------------------------------
 bool IGP_AggregationScenario::Activate(nsGameProcess::GP_TypeScenario type)
 {
-	IGP_Scenario* pCurrentScenario = GetCurrentScenario();
+  IGP_Scenario* pCurrentScenario = GetCurrentScenario();
   if( pCurrentScenario )
   {// сценарий может быть заблокирован, например, идёт загрузка карты
     if( pCurrentScenario->IsActive())
       return false;
   }
-	IGP_Scenario* pNewScenario = GetByType(type);
+  IGP_Scenario* pNewScenario = GetByType(type);
   // нет такого типа
   if( pNewScenario==NULL )
     return false;
@@ -61,8 +61,8 @@ bool IGP_AggregationScenario::Activate(nsGameProcess::GP_TypeScenario type)
   if( type==GetCurrentScenarioType() )
     return true;
   // деактивация старого
-	if( pCurrentScenario )
-		pCurrentScenario->Deactivate();// синхронизация и остановка всех потоков
+  if( pCurrentScenario )
+    pCurrentScenario->Deactivate();// синхронизация и остановка всех потоков
   // смена текущего
   End();
   Begin( pNewScenario );

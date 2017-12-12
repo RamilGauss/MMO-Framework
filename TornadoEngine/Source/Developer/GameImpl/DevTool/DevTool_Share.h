@@ -31,22 +31,22 @@ class TDevTool_Share : public IDevTool
   typedef TMapIntPtrModule::iterator   TMapIntPtrModuleIt;
   TMapIntPtrModule mMapID_PtrModules;
 
-	std::string mTerrainPath;
+  std::string mTerrainPath;
   std::string mPluginsCfg;
-	std::string mOgreCfg;
+  std::string mOgreCfg;
   std::string mPathItems;
-	std::string mPathSettings;
+  std::string mPathSettings;
 
-	TResources::TMMapStrStr mMapRGame;
-	TResources::TMMapStrStr mMapRGUI; 
-	TResources::TMMapStrStr mMapRGameEngine;
-	TResources::TMMapStrStr mMapRGraphicEngine;
+  TResources::TMMapStrStr mMapRGame;
+  TResources::TMMapStrStr mMapRGUI; 
+  TResources::TMMapStrStr mMapRGameEngine;
+  TResources::TMMapStrStr mMapRGraphicEngine;
 
   std::vector<std::string> mVecArg;
 
-	TModuleGraphicEngine* mGE_ForSetup;
+  TModuleGraphicEngine* mGE_ForSetup;
 
-	TSettings mSettings;
+  TSettings mSettings;
 public:
   TDevTool_Share();
   virtual ~TDevTool_Share();
@@ -59,7 +59,7 @@ protected:
   virtual TModuleDev* GetModuleByID(int id);
   virtual TModuleDev* GetModuleLogic() = 0;
 protected:
-	void InitMapModules();
+  void InitMapModules();
   // навигация
   int FindIDByNameModule(std::string name);
   TModuleDev* FindPtrModuleByID(int id);
@@ -67,27 +67,27 @@ protected:
   void Add(int id, TModuleDev* pModule);
   void Add(std::string name, int id);
 protected:
-	int GetCountPathInMap(const char* path, TResources::TMMapStrStr& mapResource);
-	bool FindPath(const char* path, TResources::TMMapStrStr& mapResource, 
-		int index, std::string& result);
+  int GetCountPathInMap(const char* path, TResources::TMMapStrStr& mapResource);
+  bool FindPath(const char* path, TResources::TMMapStrStr& mapResource, 
+    int index, std::string& result);
 private:
-	// Resource map{Type,Path}
-	int GetCountPathInMap_Game(const char* type);
-	bool FindPath_Game(const char* type, int index, std::string& result);
+  // Resource map{Type,Path}
+  int GetCountPathInMap_Game(const char* type);
+  bool FindPath_Game(const char* type, int index, std::string& result);
 
-	int GetCountPathInMap_GUI(const char* type);
-	bool FindPath_GUI(const char* type, int index, std::string& result);
+  int GetCountPathInMap_GUI(const char* type);
+  bool FindPath_GUI(const char* type, int index, std::string& result);
 
-	int GetCountPathInMap_GameEngine(const char* type);
-	bool FindPath_GameEngine(const char* type, int index, std::string& result);
+  int GetCountPathInMap_GameEngine(const char* type);
+  bool FindPath_GameEngine(const char* type, int index, std::string& result);
 
-	int GetCountPathInMap_GraphicEngine(const char* type);
-	bool FindPath_GraphicEngine(const char* type, int index, std::string& result);
+  int GetCountPathInMap_GraphicEngine(const char* type);
+  bool FindPath_GraphicEngine(const char* type, int index, std::string& result);
 private:
   void SetupGraphicEngine();
 
 private:
-	// реакции на события
+  // реакции на события
   void Init();
   void SetComponentsForLogic();
 };

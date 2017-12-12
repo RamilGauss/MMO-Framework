@@ -16,26 +16,26 @@ class TEditorTableSoundLogic : public TModuleClientLogic
 {
   TEditorTableSound* mEditorTableSound;
 public:
-	TEditorTableSoundLogic();
-	virtual ~TEditorTableSoundLogic();
+  TEditorTableSoundLogic();
+  virtual ~TEditorTableSoundLogic();
 
-	virtual void StartEvent();
-	virtual void InitLog();
+  virtual void StartEvent();
+  virtual void InitLog();
 protected:
-	virtual bool WorkClient();
+  virtual bool WorkClient();
 
-	virtual void Input(int id_sender, void* p, int size);
+  virtual void Input(int id_sender, void* p, int size);
 private:
-	void StartTimer();
-	void InitForms();
+  void StartTimer();
+  void InitForms();
 
-	void InitPhysic();
+  void InitPhysic();
 
-	void GraphicBeginWork();
-	void FreeGraphicResource();
+  void GraphicBeginWork();
+  void FreeGraphicResource();
 
-	void PhysicBeginWork();
-	void PhysicEndWork();
+  void PhysicBeginWork();
+  void PhysicEndWork();
 };
 
 #endif

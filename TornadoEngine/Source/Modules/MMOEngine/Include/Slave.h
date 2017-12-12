@@ -24,7 +24,7 @@ namespace nsMMOEngine
 
     unsigned int mTimeNeedSendSynchro;
     boost::scoped_ptr<TManagerContextClient_slave> mMngContextClient;
-		// только для Клиентов, которые считают текущий Slave реципиентом
+    // только для Клиентов, которые считают текущий Slave реципиентом
     boost::scoped_ptr<TManagerContextClient_slave> mMngContextClientSlaveRecipient;
   public:
     TSlave();
@@ -37,12 +37,12 @@ namespace nsMMOEngine
     // BaseServer
     virtual void SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket& bp);
 
-		struct TDescDownSlave // для GetDescDown
-		{
-			unsigned int id_session;
-		};
-		virtual int  GetCountDown();
-		virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc имеет тип TDescDownSlave
+    struct TDescDownSlave // для GetDescDown
+    {
+      unsigned int id_session;
+    };
+    virtual int  GetCountDown();
+    virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);// pDesc имеет тип TDescDownSlave
     virtual void SendDown(unsigned int id_session, TBreakPacket& bp, bool check = true);
     // ActiveServer      
     virtual void ConnectUp(unsigned int ip, unsigned short port, 
@@ -50,10 +50,10 @@ namespace nsMMOEngine
                            unsigned char subNet = 0);
   protected:
     // Base
-		virtual void WorkInherit();
+    virtual void WorkInherit();
     virtual void DisconnectInherit(unsigned int id_session);
     
-	protected:
+  protected:
     virtual void NeedContextLoginClientByClientKey(unsigned int id_client);
     virtual void NeedContextLoginClientByClientKey_SecondCallSlave(unsigned int id_client);
     virtual void NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_session_client,

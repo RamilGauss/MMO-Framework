@@ -14,20 +14,20 @@ See for more information License.h.
 
 namespace nsSerializerMapItem_XML
 {
-  const char* sMap            			= "Map";
-  const char* sNameTableSound 			= "name";
-	const char* sSet					  			= "Set";
-	const char* sObject				  			= "Object";
-	const char* sIdentity			  			= "Identity";
-	const char* sID  					  			= "ID";
-  const char* sPattern        			= "Pattern";
-	const char* sPosition			  			= "Position";
-  const char* sPatternConfig   			= "PatternConfig";
-  const char* sNamePattern     			= "Name";
-  const char* sVariantPatternConfig	= "Variant";
-	const char* sOrientation         	= "Orientation";
+  const char* sMap                  = "Map";
+  const char* sNameTableSound       = "name";
+  const char* sSet                  = "Set";
+  const char* sObject                = "Object";
+  const char* sIdentity              = "Identity";
+  const char* sID                    = "ID";
+  const char* sPattern              = "Pattern";
+  const char* sPosition              = "Position";
+  const char* sPatternConfig         = "PatternConfig";
+  const char* sNamePattern           = "Name";
+  const char* sVariantPatternConfig  = "Variant";
+  const char* sOrientation           = "Orientation";
   // reserve
-	const char* sScenario           	= "Scenario";
+  const char* sScenario             = "Scenario";
 }
 
 using namespace nsSerializerMapItem_XML;
@@ -52,7 +52,7 @@ bool TSerializerMapItem_XML::Load(TBaseItem* pItem)
     return false;
 
   LoadSet();
-	LoadScenario();
+  LoadScenario();
   return true;
 }
 //-------------------------------------------------------------------------------------------------------
@@ -65,29 +65,29 @@ bool TSerializerMapItem_XML::Save(TBaseItem* pItem)
   if(resEnter==false)
     return false;
 
-	SaveSet();
-	SaveScenario();
+  SaveSet();
+  SaveScenario();
   return mXML->Save();
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadSet()
 {
-	if(mXML->EnterSection(sSet,0))
-	{
-		int cntObject = mXML->GetCountSection(sObject);
-		for( int iObject = 0 ; iObject < cntObject ; iObject++ )
-		{
-			if(mXML->EnterSection(sObject, iObject))
-			{
+  if(mXML->EnterSection(sSet,0))
+  {
+    int cntObject = mXML->GetCountSection(sObject);
+    for( int iObject = 0 ; iObject < cntObject ; iObject++ )
+    {
+      if(mXML->EnterSection(sObject, iObject))
+      {
         TMapItem::TObject object;
-				LoadObject(object);
+        LoadObject(object);
         mMapItem->mListObject.push_back(object);
 
         mXML->LeaveSection();
-			}
-		}
-		mXML->LeaveSection();
-	}
+      }
+    }
+    mXML->LeaveSection();
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 void TSerializerMapItem_XML::LoadScenario()
@@ -157,7 +157,7 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
     mXML->LeaveSection();
   }
 
-	// patternConfig
+  // patternConfig
   if(mXML->EnterSection(sPatternConfig,0))
   {
     int cntProperty = GetCountProperty();
@@ -165,10 +165,10 @@ void TSerializerMapItem_XML::LoadObject(TMapItem::TObject& object)
     {
       std::string key, value;
       LoadProperty(iProperty, key, value);
-			if( key==sNamePattern )
-				object.patternConfig.name = value;
-			if( key==sVariantPatternConfig )
-				object.patternConfig.nameVariant = value;
+      if( key==sNamePattern )
+        object.patternConfig.name = value;
+      if( key==sVariantPatternConfig )
+        object.patternConfig.nameVariant = value;
     }
     mXML->LeaveSection();
   }
@@ -203,16 +203,16 @@ void TSerializerMapItem_XML::SaveObject(TMapItem::TObject& object)
   // внутренние свойства
   if(mXML->AddSectionAndEnter(sPatternConfig))
   {
-		std::string key, value;
-		key   = sNamePattern;
-		value = object.patternConfig.name;
-		SaveProperty(key, value);
+    std::string key, value;
+    key   = sNamePattern;
+    value = object.patternConfig.name;
+    SaveProperty(key, value);
 
-		key   = sVariantPatternConfig;
-		value = object.patternConfig.nameVariant;
-		SaveProperty(key, value);
+    key   = sVariantPatternConfig;
+    value = object.patternConfig.nameVariant;
+    SaveProperty(key, value);
 
-		mXML->LeaveSection();
+    mXML->LeaveSection();
   }
 }
 //-------------------------------------------------------------------------------------------------------

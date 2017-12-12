@@ -13,7 +13,7 @@ using namespace nsMMOEngine;
 
 TDelegateManagerContextSc::TDelegateManagerContextSc(TBase* pBase)
 {
-	mBase = pBase;
+  mBase = pBase;
 }
 //--------------------------------------------------------------------------
 TDelegateManagerContextSc::~TDelegateManagerContextSc()
@@ -23,13 +23,13 @@ TDelegateManagerContextSc::~TDelegateManagerContextSc()
 //--------------------------------------------------------------------------
 TContainerContextSc* TDelegateManagerContextSc::AddContainer()
 {
-	TContainerContextSc* pC = new TContainerContextSc;
-	mBase->SetupScForContext(pC);
-	return pC;
+  TContainerContextSc* pC = new TContainerContextSc;
+  mBase->SetupScForContext(pC);
+  return pC;
 }
 //--------------------------------------------------------------------------
 void TDelegateManagerContextSc::DeleteContainer(TContainerContextSc* pC)
 {
-	mBase->DelayDeleteContainerScenario(pC);
+  mBase->DelayDeleteContainerScenario(pC);
 }
 //--------------------------------------------------------------------------

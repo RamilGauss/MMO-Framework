@@ -16,8 +16,8 @@ class TNetWorkThread : public TThreadBoost
   boost::asio::io_service mIO_Service;
 
 public:
-	TNetWorkThread();
-	virtual ~TNetWorkThread();
+  TNetWorkThread();
+  virtual ~TNetWorkThread();
 
   boost::asio::io_service* GetIO_Service(){return &mIO_Service;}
 

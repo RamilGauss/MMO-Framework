@@ -9,13 +9,13 @@ See for more information License.h.
 
 namespace nsPattern_Light
 {
-	static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
+  static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
 using namespace nsPattern_Light;
 
 TPattern_Animated::TPattern_Animated() : 
-	TBehaviourPattern(&g_DefaultParameterMap)
+  TBehaviourPattern(&g_DefaultParameterMap)
 {
 
 }
@@ -27,6 +27,6 @@ TPattern_Animated::~TPattern_Animated()
 //---------------------------------------------------------------------------
 TManagerNamePattern::eBaseType TPattern_Animated::GetBaseType()
 {
-	return TManagerNamePattern::eAnimated;
+  return TManagerNamePattern::eAnimated;
 }
 //------------------------------------------------------------------------

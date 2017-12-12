@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Georgiy Evmenov
-	@date		09/2008
+  @file
+  @author    Georgiy Evmenov
+  @date    09/2008
 */
 
 #ifndef _2a91cb5d_1a78_495b_8cb7_e46b12a29395_
@@ -21,38 +21,38 @@
 namespace tools
 {
 
-	class PropertiesPanelView :
-		public wraps::BaseLayout
-	{
-	public:
-		PropertiesPanelView(MyGUI::Widget* _parent = nullptr);
-		virtual ~PropertiesPanelView();
+  class PropertiesPanelView :
+    public wraps::BaseLayout
+  {
+  public:
+    PropertiesPanelView(MyGUI::Widget* _parent = nullptr);
+    virtual ~PropertiesPanelView();
 
-	private:
-		void notifyChangeSelectedWidget(MyGUI::Widget* _currentWidget);
-		void notifyWindowChangeCoord(MyGUI::Window* _sender);
+  private:
+    void notifyChangeSelectedWidget(MyGUI::Widget* _currentWidget);
+    void notifyWindowChangeCoord(MyGUI::Window* _sender);
 
-		PanelProperties* getPropertyWindow(WidgetStyle* _style, size_t _deep);
-		size_t getIndexByDeep(size_t _deep);
-		size_t getIndexPanel(PanelProperties* _panel);
+    PanelProperties* getPropertyWindow(WidgetStyle* _style, size_t _deep);
+    size_t getIndexByDeep(size_t _deep);
+    size_t getIndexPanel(PanelProperties* _panel);
 
-	private:
-		MyGUI::IntSize mOldSize;
-		PanelView* mPanelView;
+  private:
+    MyGUI::IntSize mOldSize;
+    PanelView* mPanelView;
 
-		PanelMainProperties* mPanelMainProperties;
+    PanelMainProperties* mPanelMainProperties;
 
-		typedef std::map<WidgetStyle*, PanelProperties*> MapPropertyWindow;
-		MapPropertyWindow mMapPropertyWindow;
+    typedef std::map<WidgetStyle*, PanelProperties*> MapPropertyWindow;
+    MapPropertyWindow mMapPropertyWindow;
 
-		PanelItems* mPanelItems;
-		PanelUserData* mPanelUserData;
-		PanelControllers* mPanelControllers;
-		PanelTemplateProperties* mPanelTemplateProperties;
-		PanelExtensionProperties* mPanelExtensionProperties;
+    PanelItems* mPanelItems;
+    PanelUserData* mPanelUserData;
+    PanelControllers* mPanelControllers;
+    PanelTemplateProperties* mPanelTemplateProperties;
+    PanelExtensionProperties* mPanelExtensionProperties;
 
-		MyGUI::Widget* mCurrentWidget;
-	};
+    MyGUI::Widget* mCurrentWidget;
+  };
 
 }
 

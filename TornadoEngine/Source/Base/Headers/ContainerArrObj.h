@@ -33,8 +33,8 @@ public:
   virtual void SetData(char* p, int size);
   virtual void SetDataByCount(char* p, int count = 1);
   virtual char* GetPtr()const;
-	virtual int GetSize() const;
-	virtual int GetCount()const;
+  virtual int GetSize() const;
+  virtual int GetCount()const;
   virtual void Unlink();
   virtual void Done();
 
@@ -57,10 +57,10 @@ TContainerArrObj<T>::~TContainerArrObj()
 template <class T>
 void TContainerArrObj<T>::Done()
 {
-	if(mCount==1)
-		delete pData;
-	else
-		delete[] pData;
+  if(mCount==1)
+    delete pData;
+  else
+    delete[] pData;
   pData  = NULL;
   mCount = 0;
 }
@@ -82,23 +82,23 @@ void TContainerArrObj<T>::SetDataByCount(char* p, int count)
   }
   
   if(p)
-	{
-		if((typeid(T)==typeid(char)          )||
-			 (typeid(T)==typeid(unsigned char) )||
-			 (typeid(T)==typeid(short)         )||
-			 (typeid(T)==typeid(unsigned short))||
-			 (typeid(T)==typeid(int)           )||
-			 (typeid(T)==typeid(unsigned int)  ))
-		{
-			int size = GetSize();
-			memcpy(pData, p, size);
-		}
-		else
-		{
-			for( int i = 0 ; i < mCount ; i++)
-				pData[i] = ((T*)p)[i];
-		}
-	}
+  {
+    if((typeid(T)==typeid(char)          )||
+       (typeid(T)==typeid(unsigned char) )||
+       (typeid(T)==typeid(short)         )||
+       (typeid(T)==typeid(unsigned short))||
+       (typeid(T)==typeid(int)           )||
+       (typeid(T)==typeid(unsigned int)  ))
+    {
+      int size = GetSize();
+      memcpy(pData, p, size);
+    }
+    else
+    {
+      for( int i = 0 ; i < mCount ; i++)
+        pData[i] = ((T*)p)[i];
+    }
+  }
 }
 //---------------------------------------------------------------
 template <class T>
@@ -116,7 +116,7 @@ int TContainerArrObj<T>::GetCount()const
 template <class T>
 int TContainerArrObj<T>::GetSize() const
 {
-	return mCount*sizeof(T);
+  return mCount*sizeof(T);
 }
 //---------------------------------------------------------------
 template <class T>

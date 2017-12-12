@@ -17,9 +17,9 @@ public:
   TPattern_Skybox();
   virtual ~TPattern_Skybox();
 
-	virtual bool BuildByModule_Graphic(bool fast = false);
-	
-	virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual bool BuildByModule_Graphic(bool fast = false);
+  
+  virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

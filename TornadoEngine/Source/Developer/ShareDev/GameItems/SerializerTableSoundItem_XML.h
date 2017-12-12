@@ -18,7 +18,7 @@ struct TTableSoundItem;
 
 class DllExport TSerializerTableSoundItem_XML : public TBaseSerializerItem_XML
 {
-	TTableSoundItem* mTableSound;
+  TTableSoundItem* mTableSound;
 
   TTableSoundItem::TMapStrInt       mMapCombination;
   TTableSoundItem::TVectorMapStrStr mVecMapStrStr;
@@ -27,11 +27,11 @@ class DllExport TSerializerTableSoundItem_XML : public TBaseSerializerItem_XML
 
   enum{MinIndex = 0, MaxIndex = 10,};
 public:
-	TSerializerTableSoundItem_XML();
-	virtual ~TSerializerTableSoundItem_XML();
+  TSerializerTableSoundItem_XML();
+  virtual ~TSerializerTableSoundItem_XML();
 
-	virtual bool Load(TBaseItem* pItem);
-	virtual bool Save(TBaseItem* pItem);
+  virtual bool Load(TBaseItem* pItem);
+  virtual bool Save(TBaseItem* pItem);
 protected:
 
   void LoadRange();

@@ -16,10 +16,10 @@ class TPattern_Model;
 class DllExport TModelNode_Model : public TBaseNode_Model
 {
 public:
-		TPattern_Model* mPtrModel;
+    TPattern_Model* mPtrModel;
 public:
-	TModelNode_Model();
-	virtual ~TModelNode_Model();
+  TModelNode_Model();
+  virtual ~TModelNode_Model();
 
 };
 

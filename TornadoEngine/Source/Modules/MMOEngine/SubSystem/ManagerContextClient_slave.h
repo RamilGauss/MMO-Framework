@@ -52,7 +52,7 @@ namespace nsMMOEngine
 
     // удаление
     void DeleteByKey(unsigned int key);
-	private:
+  private:
     void Clear();
 
     bool FindInMapUintUint(TMapUintUint& map, 

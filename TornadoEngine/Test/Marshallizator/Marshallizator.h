@@ -28,9 +28,9 @@ class TMarshallizator : public IMarshallizator
   ParamClass     mParamClass;
 public:
   // регистрация на получения события десериализации соответсвующего типа (см. DeserializeCallback)
-	// generated list of types
-	TCallBackRegistrator1<MyClass*>        mCBMyClass;
-	TCallBackRegistrator1<GeneratedClass*> mCBGeneratedClass;
+  // generated list of types
+  TCallBackRegistrator1<MyClass*>        mCBMyClass;
+  TCallBackRegistrator1<GeneratedClass*> mCBGeneratedClass;
   TCallBackRegistrator1<TestClass*>      mCBTestClass;
   TCallBackRegistrator1<ParamClass*>     mCBParamClass;
 protected:

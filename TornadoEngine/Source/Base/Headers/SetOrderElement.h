@@ -21,7 +21,7 @@ See for more information License.h.
 
 class DllExport TSetOrderElement
 {
-	typedef boost::bimaps::bimap<unsigned int,unsigned int> bmUintUint;
+  typedef boost::bimaps::bimap<unsigned int,unsigned int> bmUintUint;
 
   typedef std::vector<unsigned int> TVectorUint;
 
@@ -40,14 +40,14 @@ public:
   // добавление/удаление
   void AddKeyAtEnd(unsigned int key);
   void DeleteKey(unsigned int key);
-	bool DeleteFirst(unsigned int& key);
+  bool DeleteFirst(unsigned int& key);
 
   void Clear();
 private:
   bool FindByKey(unsigned int key);
   void ReserveForVector();
   void DeleteFromVectorByInnerIndex(unsigned int val);
-	bool FindKeyByInnerIndex(unsigned int inner_index, unsigned int& key);
+  bool FindKeyByInnerIndex(unsigned int inner_index, unsigned int& key);
 };
 
 #endif

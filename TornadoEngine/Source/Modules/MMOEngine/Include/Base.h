@@ -31,8 +31,8 @@ namespace nsMMOEngine
   class TContainerContextSc;
   class TControlScenario;
   class IScenario;
-	class TDelegateManagerContextSc;
-	struct TDescRecvSession;
+  class TDelegateManagerContextSc;
+  struct TDescRecvSession;
   struct TDescRequestConnectForRecipient;
   class DllExport TBase : public TSrcEvent
   {
@@ -41,16 +41,16 @@ namespace nsMMOEngine
     boost::scoped_ptr<TControlScenario>    mControlSc;
     boost::scoped_ptr<TContainerContextSc> mContainerUp;
 
-		// уведомления о разрыве связи
+    // уведомления о разрыве связи
     typedef TDataExchange2Thread<unsigned int> TListUint;
     TListUint mIDSessionDisconnect;
-		// полученные пакеты от mManagerSession
+    // полученные пакеты от mManagerSession
     typedef TDataExchange2Thread<TDescRecvSession> TListRecvPacket;
     TListRecvPacket mRecvPacket;
 
-		// транспорт
+    // транспорт
     boost::scoped_ptr<TManagerSession> mManagerSession;
-		// загрузка CPU
+    // загрузка CPU
     int mLoadProcent;// затраченное время/выделенное, %
 
     unsigned int mID_SessionUp;
@@ -70,17 +70,17 @@ namespace nsMMOEngine
     void Work();
     virtual bool IsConnectUp();
     virtual bool IsConnect(unsigned int id);
-		virtual void SetLoad(int procent);
+    virtual void SetLoad(int procent);
 
     virtual void SetTimeLiveSession(unsigned int time_ms);
 
     bool GetInfoSession(unsigned int id_session, TIP_Port& ip_port);
-	protected:
+  protected:
     void Recv( TDescRecvSession* pDescRecvSession );
     void Disconnect(unsigned int id);
 
     virtual void DisconnectInherit(unsigned int id) = 0;
-		virtual void WorkInherit(){};
+    virtual void WorkInherit(){};
     // события сценариев
     virtual void NeedContextDisconnectClient(unsigned int id_client){}
     //----------------------------------------------------
@@ -119,14 +119,14 @@ namespace nsMMOEngine
     virtual void EndLoginMaster(IScenario*){}
     virtual void EndRcm(IScenario*){}
     virtual void EndSynchroSlave(IScenario*){}
-	private:    
-		TManagerContextSc* AddManagerContextSc();
-		void RemoveManagerContextSc(TManagerContextSc* pMCSc);
-	protected:
-		friend class TDelegateManagerContextSc;
+  private:    
+    TManagerContextSc* AddManagerContextSc();
+    void RemoveManagerContextSc(TManagerContextSc* pMCSc);
+  protected:
+    friend class TDelegateManagerContextSc;
     void SetupScForContext(TContainerContextSc* pCCSc);
     void DelayDeleteContainerScenario(TContainerContextSc* pCCSc);
-	private:
+  private:
     void HandleListDisconnect();
     void HandleListRecv();
 

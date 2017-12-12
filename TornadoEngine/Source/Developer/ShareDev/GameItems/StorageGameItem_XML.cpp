@@ -28,13 +28,13 @@ TStorageGameItem_XML::~TStorageGameItem_XML()
 bool TStorageGameItem_XML::Init(std::string& name_file_xml)
 {
   bool resLoad = mXML->Load(name_file_xml.data());
-	if(resLoad==false)
-	{
-		std::string sError = "Incorrect structure of XML file \"";
-		sError += name_file_xml;
-		sError += "\"";
-		BL_MessageBug_Utf8(sError.data());
-	}
+  if(resLoad==false)
+  {
+    std::string sError = "Incorrect structure of XML file \"";
+    sError += name_file_xml;
+    sError += "\"";
+    BL_MessageBug_Utf8(sError.data());
+  }
 
   mMngSerializer.reset(new TManagerSerializerItem_XML);
   mMngCache.reset(new TManagerCacheItem_XML);

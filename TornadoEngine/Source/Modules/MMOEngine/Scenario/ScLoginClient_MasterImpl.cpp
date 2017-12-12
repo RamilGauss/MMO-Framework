@@ -19,7 +19,7 @@ using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;
 
 #ifdef WIN32
-#	pragma warning(disable: 4800)
+#  pragma warning(disable: 4800)
 #endif
 
 TScLoginClient_MasterImpl::TScLoginClient_MasterImpl(IScenario* pSc):
@@ -136,7 +136,7 @@ void TScLoginClient_MasterImpl::Accept(unsigned int key, void* resForClient, int
 void TScLoginClient_MasterImpl::Queue(int num, void* resForClient, int sizeResClient)
 {
   Context()->SetNumInQueue(num);
-	Context()->SaveQueueData(resForClient, sizeResClient);
+  Context()->SaveQueueData(resForClient, sizeResClient);
 
   TBreakPacket bp;
   THeaderResultLoginM2C h;
@@ -253,22 +253,22 @@ void TScLoginClient_MasterImpl::TryLoginC2M(TDescRecvSession* pDesc)
     BL_FIX_BUG();
     return;
   }
-	SetWaitSS();// ждем
+  SetWaitSS();// ждем
   SetTimeWaitForNow();
   // новая сессия, сохранить
   SetID_SessionClientMaster(pDesc->id_session);
   // в буфере, который передали, содержится заголовок и блок
   // размер блока прописан в заголовке
   
-	THeaderTryLoginC2M* pPacket = (THeaderTryLoginC2M*)pDesc->data;
-	char* data   = pDesc->data     + sizeof(THeaderTryLoginC2M);
-	int sizeData = pDesc->sizeData - sizeof(THeaderTryLoginC2M);
-	// генерация события о попытке авторизации
-	TEventTryLogin* pEvent = new TEventTryLogin;
-	pEvent->use_crypt  = bool(pDesc->use_crypt);
-	pEvent->id_session = GetID_SessionClientMaster();
-	pEvent->c.SetDataByCount(data,sizeData);
-	Context()->GetSE()->AddEventWithoutCopy<TEventTryLogin>(pEvent);
+  THeaderTryLoginC2M* pPacket = (THeaderTryLoginC2M*)pDesc->data;
+  char* data   = pDesc->data     + sizeof(THeaderTryLoginC2M);
+  int sizeData = pDesc->sizeData - sizeof(THeaderTryLoginC2M);
+  // генерация события о попытке авторизации
+  TEventTryLogin* pEvent = new TEventTryLogin;
+  pEvent->use_crypt  = bool(pDesc->use_crypt);
+  pEvent->id_session = GetID_SessionClientMaster();
+  pEvent->c.SetDataByCount(data,sizeData);
+  Context()->GetSE()->AddEventWithoutCopy<TEventTryLogin>(pEvent);
 }
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::LeaveQueueC2M(TDescRecvSession* pDesc)

@@ -18,7 +18,7 @@ TContextScRecommutationClient::TContextScRecommutationClient()
 
   mID_SessionMasterSlave = INVALID_HANDLE_SESSION;
 
-	mTypeSlave = eUndef;
+  mTypeSlave = eUndef;
 
   mTimeWaitAnswer = 0;
 
@@ -102,22 +102,22 @@ void TContextScRecommutationClient::CleanContextData()
 //------------------------------------------------------------------
 void TContextScRecommutationClient::SetRoleAsDonor()
 {
-	mTypeSlave = eDonor;
+  mTypeSlave = eDonor;
 }
 //------------------------------------------------------------------
 bool TContextScRecommutationClient::IsDonor()
 {
-	return (mTypeSlave==eDonor);
+  return (mTypeSlave==eDonor);
 }
 //------------------------------------------------------------------
 void TContextScRecommutationClient::SetRoleAsRecipient()
 {
-	mTypeSlave = eRecipient;
+  mTypeSlave = eRecipient;
 }
 //------------------------------------------------------------------
 bool TContextScRecommutationClient::IsRecipient()
 {
-	return (mTypeSlave==eRecipient);
+  return (mTypeSlave==eRecipient);
 }
 //------------------------------------------------------------------
 void TContextScRecommutationClient::SetTimeWait(unsigned int v)

@@ -18,7 +18,7 @@ class TGraphicEngine_Ogre_MyGUI;
 
 class DllExport TModuleGraphicEngine : public TModuleComponent
 {
-	boost::scoped_ptr<TGraphicEngine_Ogre_MyGUI> mGE;
+  boost::scoped_ptr<TGraphicEngine_Ogre_MyGUI> mGE;
 public:
   TModuleGraphicEngine();
 

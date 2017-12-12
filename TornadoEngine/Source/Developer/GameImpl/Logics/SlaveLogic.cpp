@@ -119,8 +119,8 @@ void TSlaveLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
     case nsMMOEngine::eError:
     {
       nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
-			sEvent = "Error code=";
-			sEvent = boost::lexical_cast<std::string>(pEr->code);
+      sEvent = "Error code=";
+      sEvent = boost::lexical_cast<std::string>(pEr->code);
     }
       break;
     case nsMMOEngine::eRecvFromDown:

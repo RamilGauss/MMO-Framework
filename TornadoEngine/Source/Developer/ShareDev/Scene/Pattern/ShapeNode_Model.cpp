@@ -9,9 +9,9 @@ See for more information License.h.
 
 TShapeNode_Model::TShapeNode_Model()
 {
-	type = TModelItem::eShape;
-	mPtrEntity    = NULL;
-	mPtrRigidBody = NULL;
+  type = TModelItem::eShape;
+  mPtrEntity    = NULL;
+  mPtrRigidBody = NULL;
 }
 //---------------------------------------------------------------
 TShapeNode_Model::~TShapeNode_Model()

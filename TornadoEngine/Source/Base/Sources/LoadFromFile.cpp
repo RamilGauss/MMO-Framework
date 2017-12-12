@@ -18,7 +18,7 @@ using namespace std;
 
 TLoadFromFile::TLoadFromFile(char* path)
 {
- 	ReOpen(path);
+   ReOpen(path);
 }
 //---------------------------------------------------------------
 TLoadFromFile::~TLoadFromFile()
@@ -30,22 +30,22 @@ bool TLoadFromFile::ReOpen(char* path, bool /*append*/)
 {
   Close();
 
-	if(path!=NULL)
+  if(path!=NULL)
     sPath = path;
 
-	if(sPath.size()==0) 
+  if(sPath.size()==0) 
     return false;
 
-	pFile = fopen(sPath.data(), "rb");
-	if(pFile!=NULL) return true;
+  pFile = fopen(sPath.data(), "rb");
+  if(pFile!=NULL) return true;
 
-	return false;
+  return false;
 }
 //---------------------------------------------------------------
 unsigned int TLoadFromFile::Size()
 {
 #ifdef WIN32
-	int fd = _fileno(pFile);
+  int fd = _fileno(pFile);
 
   if(fd<0) return 0;
 

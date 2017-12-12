@@ -19,17 +19,17 @@ class DllExport INetTransport
 {
 public:
   //типы callback вызовов
-	typedef enum{
-		eTcp  = 0,		   
-		eUdp  = 1,
-	}eTypeRecv;
+  typedef enum{
+    eTcp  = 0,       
+    eUdp  = 1,
+  }eTypeRecv;
   // callback вернет данную структуру
   struct TDescRecv
   {
     TIP_Port ip_port;
     char* data;
     int   sizeData;
-		eTypeRecv type;
+    eTypeRecv type;
   };
 
   INetTransport();
@@ -39,24 +39,24 @@ public:
 
   // в качестве передаваемых данных выступает объект, который
   // содержит цепочку данных
-	virtual void Send(unsigned int ip, unsigned short port,
+  virtual void Send(unsigned int ip, unsigned short port,
                     TBreakPacket& packet, bool check = true) = 0;
 
-	// чтение - зарегистрируйся
+  // чтение - зарегистрируйся
   // вызывается из потока транспорта, поэтому ЗАПРЕЩАЕТСЯ вызывать методы транспорта по данным событиям
   virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv()       = 0;
   virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect() = 0;
 
-	// старт и стоп движка
-	virtual void Start() = 0;
-	virtual void Stop()  = 0;
-	virtual bool IsActive() = 0;
+  // старт и стоп движка
+  virtual void Start() = 0;
+  virtual void Stop()  = 0;
+  virtual bool IsActive() = 0;
 
   // синхронная функция
-	// вызывать до вызова Start()
+  // вызывать до вызова Start()
   virtual bool Connect(unsigned int ip, unsigned short port) = 0; // вызов только для клиента
 
-	virtual void Close(unsigned int ip, unsigned short port) = 0;
+  virtual void Close(unsigned int ip, unsigned short port) = 0;
 };
 
 

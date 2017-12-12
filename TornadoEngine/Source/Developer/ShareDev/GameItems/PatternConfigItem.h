@@ -30,7 +30,7 @@ struct DllExport TPatternConfigItem : public TBaseItem
   //---------------------------------------------------------
   TMapStrMap mMapVariant;
 
-	std::string mComment;
+  std::string mComment;
 
   TPatternConfigItem(std::string& name);
 }_PACKED;

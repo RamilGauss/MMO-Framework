@@ -18,10 +18,10 @@ See for more information License.h.
 namespace nsMMOEngine
 {
   class IContextScenario;
-	class TManagerSession;
+  class TManagerSession;
   class IScenario : public TMapCallBack
   {
-		TCallBackRegistrator1<unsigned int> mCBNeedContextBySession;
+    TCallBackRegistrator1<unsigned int> mCBNeedContextBySession;
     TCallBackRegistrator1<IScenario*>   mCBEnd;
     // запрос на контекст по ключу клиента
     TCallBackRegistrator1<unsigned int> mCBContextByClientKey;
@@ -52,10 +52,10 @@ namespace nsMMOEngine
     void SetContext(IContextScenario* pCSc);
     IContextScenario* GetContext();
 
-		unsigned char GetType();
-		void SetType(unsigned char type);
+    unsigned char GetType();
+    void SetType(unsigned char type);
 
-		virtual void Recv(TDescRecvSession* pDesc) = 0;
+    virtual void Recv(TDescRecvSession* pDesc) = 0;
   protected:
     friend class IContextScenario;
     // если нельзя было начать сценарий сразу, то когда будет такая возможность произойдет этот вызов

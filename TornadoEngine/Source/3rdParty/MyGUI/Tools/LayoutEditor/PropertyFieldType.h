@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		12/2010
+  @file
+  @author    Albert Semenov
+  @date    12/2010
 */
 
 #ifndef _b79d1db2_c5f8_4f31_a1d9_346610d012f5_
@@ -13,16 +13,16 @@
 namespace tools
 {
 
-	class PropertyFieldType :
-		public PropertyFieldComboBox
-	{
-	public:
-		PropertyFieldType(MyGUI::Widget* _parent);
-		virtual ~PropertyFieldType();
+  class PropertyFieldType :
+    public PropertyFieldComboBox
+  {
+  public:
+    PropertyFieldType(MyGUI::Widget* _parent);
+    virtual ~PropertyFieldType();
 
-	protected:
-		virtual void onFillValues();
-	};
+  protected:
+    virtual void onFillValues();
+  };
 
 }
 

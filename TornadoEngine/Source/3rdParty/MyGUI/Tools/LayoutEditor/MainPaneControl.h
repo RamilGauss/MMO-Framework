@@ -8,19 +8,19 @@
 namespace tools
 {
 
-	class MainPaneControl :
-		public wraps::BaseLayout
-	{
-	public:
-		MainPaneControl();
-		virtual ~MainPaneControl();
+  class MainPaneControl :
+    public wraps::BaseLayout
+  {
+  public:
+    MainPaneControl();
+    virtual ~MainPaneControl();
 
-		void setVisible(bool _value);
+    void setVisible(bool _value);
 
-	private:
-		MainMenuControl* mMainMenuControl;
-		MainWorkspaceControl* mMainWorkspaceControl;
-	};
+  private:
+    MainMenuControl* mMainMenuControl;
+    MainWorkspaceControl* mMainWorkspaceControl;
+  };
 
 }
 

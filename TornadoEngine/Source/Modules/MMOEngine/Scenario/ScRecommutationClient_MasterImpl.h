@@ -21,12 +21,12 @@ namespace nsMMOEngine
     //};
 
   public:
-	  TScRecommutationClient_MasterImpl(IScenario* pSc);
+    TScRecommutationClient_MasterImpl(IScenario* pSc);
 
     virtual void Work(unsigned int time_ms);
     void Start(unsigned int id_session_recipient,
                unsigned int id_client);
-		void DelayBegin();
+    void DelayBegin();
 
     void DisconnectClient();
 
@@ -40,7 +40,7 @@ namespace nsMMOEngine
     void CheckBeginRecipient(TDescRecvSession* pDesc);
     void ClientConnect(TDescRecvSession* pDesc);
   private:
-		void SendFirstPacket();
+    void SendFirstPacket();
   };
 }
 #endif

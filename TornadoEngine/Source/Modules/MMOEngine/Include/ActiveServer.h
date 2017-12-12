@@ -23,9 +23,9 @@ namespace nsMMOEngine
                            void* pLogin, int sizeLogin, void* pPassword, int sizePassword,
                            unsigned char subNet = 0) = 0;
 
-	protected:
+  protected:
 
-	private:
+  private:
 
   };
 }

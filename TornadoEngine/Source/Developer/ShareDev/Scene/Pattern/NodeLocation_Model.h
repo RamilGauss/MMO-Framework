@@ -20,78 +20,78 @@ See for more information License.h.
 class DllExport TNodeLocation_Model
 {
 public:
-	struct DllExport TLocation
-	{
-		nsMathTools::TVector3  mPos;
-		nsMathTools::TMatrix16 mOrient;
-	};
-	struct DllExport TJoint
-	{
-		std::string name;
-		TLocation mLocalRelativeNode;
-		TLocation mGlobal;// результат для позиционирования
-	};
-	//------------------------------------------------------
-	typedef std::map<std::string,TJoint> TMapStrJoint;
-	typedef TMapStrJoint::iterator   		 TMapStrJointIt;
-	typedef TMapStrJoint::value_type 		 TMapStrJointVT;
+  struct DllExport TLocation
+  {
+    nsMathTools::TVector3  mPos;
+    nsMathTools::TMatrix16 mOrient;
+  };
+  struct DllExport TJoint
+  {
+    std::string name;
+    TLocation mLocalRelativeNode;
+    TLocation mGlobal;// результат для позиционирования
+  };
+  //------------------------------------------------------
+  typedef std::map<std::string,TJoint> TMapStrJoint;
+  typedef TMapStrJoint::iterator        TMapStrJointIt;
+  typedef TMapStrJoint::value_type      TMapStrJointVT;
 
-	// как соединить
-	struct TLink
-	{
-		// геометрия
-		std::string nameMyJointToParent;
-		std::string nameJointParent;
-		// настройка констрейнта
-		nsParamBuilderConstraint::TBaseParam* mPtrConstraintToParent;
+  // как соединить
+  struct TLink
+  {
+    // геометрия
+    std::string nameMyJointToParent;
+    std::string nameJointParent;
+    // настройка констрейнта
+    nsParamBuilderConstraint::TBaseParam* mPtrConstraintToParent;
 
-		TLink(){mPtrConstraintToParent=NULL;}
-		~TLink(){DoneConstraint();}
-		void SetConstraint(nsParamBuilderConstraint::TBaseParam* pConstraint)
-		{
-			DoneConstraint();
-			nsParamBuilderConstraint::CopyConstraint(pConstraint,mPtrConstraintToParent);
-		}
-		void DoneConstraint()
-		{
-			delete mPtrConstraintToParent;
-			mPtrConstraintToParent = NULL;
-		}
-	};
+    TLink(){mPtrConstraintToParent=NULL;}
+    ~TLink(){DoneConstraint();}
+    void SetConstraint(nsParamBuilderConstraint::TBaseParam* pConstraint)
+    {
+      DoneConstraint();
+      nsParamBuilderConstraint::CopyConstraint(pConstraint,mPtrConstraintToParent);
+    }
+    void DoneConstraint()
+    {
+      delete mPtrConstraintToParent;
+      mPtrConstraintToParent = NULL;
+    }
+  };
 
-	typedef std::list<TLink*>      TListPtrLink;
-	typedef TListPtrLink::iterator TListPtrLinkIt;
+  typedef std::list<TLink*>      TListPtrLink;
+  typedef TListPtrLink::iterator TListPtrLinkIt;
 
-	std::string name;
-	// ориентир как соединять
-	std::string nameMyJointToParent;
-	std::string nameJointParent;
-	// параметры соединения
-	nsMathTools::TMatrix16 mOrientRelativeJointToJointParent;
-	float                  mDistanceRelativeJointToJointParent;
+  std::string name;
+  // ориентир как соединять
+  std::string nameMyJointToParent;
+  std::string nameJointParent;
+  // параметры соединения
+  nsMathTools::TMatrix16 mOrientRelativeJointToJointParent;
+  float                  mDistanceRelativeJointToJointParent;
 
-	// описание констрейнтов как физически соединить с родителем
-	TListPtrLink mListLink;
+  // описание констрейнтов как физически соединить с родителем
+  TListPtrLink mListLink;
 
-	TMapStrJoint mMapNameJoint;   // набор всех крючков
-	TLocation    mGlobal;         // результат для позиционирования
+  TMapStrJoint mMapNameJoint;   // набор всех крючков
+  TLocation    mGlobal;         // результат для позиционирования
 public:
-	TNodeLocation_Model();
-	virtual ~TNodeLocation_Model();
+  TNodeLocation_Model();
+  virtual ~TNodeLocation_Model();
 
-	// для быстрых манипуляций с крючками
-	void AddJoint(std::string nameJoint);
-	int GetCountJoint();
-	TJoint* GetJoint(int index);
-	TJoint* GetJoint(std::string nameJoint);
+  // для быстрых манипуляций с крючками
+  void AddJoint(std::string nameJoint);
+  int GetCountJoint();
+  TJoint* GetJoint(int index);
+  TJoint* GetJoint(std::string nameJoint);
 
-	void RemoveJoint(std::string nameJoint);
-	void RemoveAllJoint();
+  void RemoveJoint(std::string nameJoint);
+  void RemoveAllJoint();
 
-	void ClearListLink();
+  void ClearListLink();
 
-	void CalcGlobalJoint();
-	void CalcGlobal(TNodeLocation_Model* pNodeLocationParent);
+  void CalcGlobalJoint();
+  void CalcGlobal(TNodeLocation_Model* pNodeLocationParent);
 };
 
 extern void TestNodeLocation();

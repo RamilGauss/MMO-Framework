@@ -21,30 +21,30 @@ class TBuilderTool_ShapeBase_Ogre;
 class DllExport TFactoryBuilderTool_Shape_Ogre
 {
   TShapeItem*    mShape;
-	TMaterialItem* mMaterial;
-	
-	Ogre::Entity* mPtrEntity;
+  TMaterialItem* mMaterial;
+  
+  Ogre::Entity* mPtrEntity;
 
-	std::string mNameEntity;
+  std::string mNameEntity;
 
-	int mCntShape;
+  int mCntShape;
 
-	typedef std::map<nsParamBuilderShape::eType,TBuilderTool_ShapeBase_Ogre*> TMapTypePtr;
-	typedef TMapTypePtr::iterator   					 TMapTypePtrIt;
-	typedef TMapTypePtr::value_type 					 TMapTypePtrVT;
+  typedef std::map<nsParamBuilderShape::eType,TBuilderTool_ShapeBase_Ogre*> TMapTypePtr;
+  typedef TMapTypePtr::iterator              TMapTypePtrIt;
+  typedef TMapTypePtr::value_type            TMapTypePtrVT;
 
-	TMapTypePtr mMapTypeBuilder;
+  TMapTypePtr mMapTypeBuilder;
 
 protected:
   TFactoryBuilderTool_Shape_Ogre();
   virtual ~TFactoryBuilderTool_Shape_Ogre();
 public:
-	static TFactoryBuilderTool_Shape_Ogre* Get();
+  static TFactoryBuilderTool_Shape_Ogre* Get();
 
-	Ogre::Entity* Build(TShapeItem* pShape);
+  Ogre::Entity* Build(TShapeItem* pShape);
 protected:
-	void FindMaterialByShape();
-	void SetupBuilderMap();
+  void FindMaterialByShape();
+  void SetupBuilderMap();
 };
 
 #endif

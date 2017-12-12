@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2010
+  @file
+  @author    Albert Semenov
+  @date    08/2010
 */
 
 #include "Precompiled.h"
@@ -11,97 +11,97 @@
 namespace tools
 {
 
-	PropertyIntControl::PropertyIntControl() :
-		mName(nullptr),
-		mEdit(nullptr)
-	{
-	}
+  PropertyIntControl::PropertyIntControl() :
+    mName(nullptr),
+    mEdit(nullptr)
+  {
+  }
 
-	PropertyIntControl::~PropertyIntControl()
-	{
-		mEdit->eventEditTextChange -= MyGUI::newDelegate(this, &PropertyIntControl::notifyEditTextChange);
-	}
+  PropertyIntControl::~PropertyIntControl()
+  {
+    mEdit->eventEditTextChange -= MyGUI::newDelegate(this, &PropertyIntControl::notifyEditTextChange);
+  }
 
-	void PropertyIntControl::OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName)
-	{
-		PropertyControl::OnInitialise(_parent, _place, "PropertyEditControl.layout");
+  void PropertyIntControl::OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName)
+  {
+    PropertyControl::OnInitialise(_parent, _place, "PropertyEditControl.layout");
 
-		assignWidget(mName, "Name", false);
-		assignWidget(mEdit, "Edit");
+    assignWidget(mName, "Name", false);
+    assignWidget(mEdit, "Edit");
 
-		mEdit->eventEditTextChange += MyGUI::newDelegate(this, &PropertyIntControl::notifyEditTextChange);
-	}
+    mEdit->eventEditTextChange += MyGUI::newDelegate(this, &PropertyIntControl::notifyEditTextChange);
+  }
 
-	void PropertyIntControl::updateCaption()
-	{
-		PropertyPtr proper = getProperty();
-		if (proper != nullptr)
-			mName->setCaption(proper->getType()->getName());
-	}
+  void PropertyIntControl::updateCaption()
+  {
+    PropertyPtr proper = getProperty();
+    if (proper != nullptr)
+      mName->setCaption(proper->getType()->getName());
+  }
 
-	void PropertyIntControl::updateProperty()
-	{
-		PropertyPtr proper = getProperty();
-		if (proper != nullptr)
-		{
-			mEdit->setEnabled(!proper->getType()->getReadOnly());
-			if (mEdit->getOnlyText() != proper->getValue())
-				mEdit->setCaption(proper->getValue());
+  void PropertyIntControl::updateProperty()
+  {
+    PropertyPtr proper = getProperty();
+    if (proper != nullptr)
+    {
+      mEdit->setEnabled(!proper->getType()->getReadOnly());
+      if (mEdit->getOnlyText() != proper->getValue())
+        mEdit->setCaption(proper->getValue());
 
-			bool validate = isValidate();
-			setColour(validate);
-		}
-		else
-		{
-			mEdit->setCaption("");
-			mEdit->setEnabled(false);
-		}
-	}
+      bool validate = isValidate();
+      setColour(validate);
+    }
+    else
+    {
+      mEdit->setCaption("");
+      mEdit->setEnabled(false);
+    }
+  }
 
-	void PropertyIntControl::notifyEditTextChange(MyGUI::EditBox* _sender)
-	{
-		PropertyPtr proper = getProperty();
-		if (proper != nullptr)
-		{
-			bool validate = isValidate();
-			if (validate)
-				executeAction(getClearValue());
+  void PropertyIntControl::notifyEditTextChange(MyGUI::EditBox* _sender)
+  {
+    PropertyPtr proper = getProperty();
+    if (proper != nullptr)
+    {
+      bool validate = isValidate();
+      if (validate)
+        executeAction(getClearValue());
 
-			setColour(validate);
-		}
-	}
+      setColour(validate);
+    }
+  }
 
-	bool PropertyIntControl::isValidate()
-	{
-		MyGUI::UString value = mEdit->getOnlyText();
+  bool PropertyIntControl::isValidate()
+  {
+    MyGUI::UString value = mEdit->getOnlyText();
 
-		int value1 = 0;
-		if (!MyGUI::utility::parseComplex(value, value1))
-			return false;
+    int value1 = 0;
+    if (!MyGUI::utility::parseComplex(value, value1))
+      return false;
 
-		return true;
-	}
+    return true;
+  }
 
-	MyGUI::UString PropertyIntControl::getClearValue()
-	{
-		MyGUI::UString value = mEdit->getOnlyText();
+  MyGUI::UString PropertyIntControl::getClearValue()
+  {
+    MyGUI::UString value = mEdit->getOnlyText();
 
-		int value1 = 0;
-		if (MyGUI::utility::parseComplex(value, value1))
-			return MyGUI::utility::toString(value1);
+    int value1 = 0;
+    if (MyGUI::utility::parseComplex(value, value1))
+      return MyGUI::utility::toString(value1);
 
-		return "";
-	}
+    return "";
+  }
 
-	void PropertyIntControl::setColour(bool _validate)
-	{
-		MyGUI::UString value = mEdit->getOnlyText();
-		if (!_validate)
-			value = replaceTags("ColourError") + value;
+  void PropertyIntControl::setColour(bool _validate)
+  {
+    MyGUI::UString value = mEdit->getOnlyText();
+    if (!_validate)
+      value = replaceTags("ColourError") + value;
 
-		size_t index = mEdit->getTextCursor();
-		mEdit->setCaption(value);
-		mEdit->setTextCursor(index);
-	}
+    size_t index = mEdit->getTextCursor();
+    mEdit->setCaption(value);
+    mEdit->setTextCursor(index);
+  }
 
 }

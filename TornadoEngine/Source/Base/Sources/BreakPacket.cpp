@@ -25,7 +25,7 @@ TBreakPacket::TBreakPacket(const TBreakPacket& bp)
 TBreakPacket& TBreakPacket::operator =( const TBreakPacket& bp )
 {
   CopyFrom(bp);
-	return *this;
+  return *this;
 }
 //-----------------------------------------------------------------
 TBreakPacket::~TBreakPacket()
@@ -109,7 +109,7 @@ void TBreakPacket::UnlinkPart()
     delete desc.pC;
   mList.clear();
 }
-//-----------------------------------------------------------------	
+//-----------------------------------------------------------------  
 void TBreakPacket::UnlinkCollect()
 {
   mCollect.Unlink();

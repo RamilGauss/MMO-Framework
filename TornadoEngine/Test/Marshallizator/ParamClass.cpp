@@ -18,7 +18,10 @@ void ParamClass::Serialize( TPushMaster* pPushMaster )
   pPushMaster->Push(y);
   pPushMaster->Push(z);
 
-  pPushMaster->Push(angle);
+  pPushMaster->Push(rw);
+  pPushMaster->Push(rx);
+  pPushMaster->Push(ry);
+  pPushMaster->Push(rz);
 
   pPushMaster->Push(vx);
   pPushMaster->Push(vy);
@@ -32,7 +35,10 @@ void ParamClass::Deserialize( TPopMaster* pPopMaster )
   pPopMaster->Pop(y);
   pPopMaster->Pop(z);
 
-  pPopMaster->Pop(angle);
+  pPopMaster->Pop(rw);
+  pPopMaster->Pop(rx);
+  pPopMaster->Pop(ry);
+  pPopMaster->Pop(rz);
 
   pPopMaster->Pop(vx);
   pPopMaster->Pop(vy);

@@ -13,11 +13,11 @@ See for more information License.h.
 class GeneratedClass : public ISerializable
 {
 public:// member region
-	int mID;
+  int mID;
 public:
-	virtual void Serialize( TPushMaster* pPushMaster );
-	virtual void Deserialize( TPopMaster* pPopMaster );
-	virtual short GetSerializableUniqueID();
+  virtual void Serialize( TPushMaster* pPushMaster );
+  virtual void Deserialize( TPopMaster* pPopMaster );
+  virtual short GetSerializableUniqueID();
 };
 
 #endif

@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2009
+  @file
+  @author    Albert Semenov
+  @date    08/2009
 */
 
 #ifndef __MYGUI_OGRE_DATA_STREAM_H__
@@ -17,21 +17,21 @@
 namespace MyGUI
 {
 
-	class OgreDataStream :
-		public IDataStream
-	{
-	public:
-		OgreDataStream(Ogre::DataStreamPtr _stream);
-		virtual ~OgreDataStream();
+  class OgreDataStream :
+    public IDataStream
+  {
+  public:
+    OgreDataStream(Ogre::DataStreamPtr _stream);
+    virtual ~OgreDataStream();
 
-		virtual bool eof();
-		virtual size_t size();
-		virtual void readline(std::string& _source, Char _delim);
-		virtual size_t read(void* _buf, size_t _count);
+    virtual bool eof();
+    virtual size_t size();
+    virtual void readline(std::string& _source, Char _delim);
+    virtual size_t read(void* _buf, size_t _count);
 
-	private:
-		Ogre::DataStreamPtr mStream;
-	};
+  private:
+    Ogre::DataStreamPtr mStream;
+  };
 
 } // namespace MyGUI
 

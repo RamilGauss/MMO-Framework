@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #ifndef _f1059563_afa2_4c08_ba11_3a60f1c91967_
@@ -12,16 +12,16 @@
 namespace tools
 {
 
-	class FontListControl :
-		public DataListBaseControl
-	{
-	public:
-		FontListControl();
-		virtual ~FontListControl();
+  class FontListControl :
+    public DataListBaseControl
+  {
+  public:
+    FontListControl();
+    virtual ~FontListControl();
 
-	protected:
-		virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
-	};
+  protected:
+    virtual void OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName);
+  };
 
 }
 

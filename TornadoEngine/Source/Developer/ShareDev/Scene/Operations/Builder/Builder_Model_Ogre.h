@@ -17,19 +17,19 @@ class TShapeNode_Model;
 class DllExport TBuilder_Model_Ogre : public TBuilder_Model
 {
 public:
-	TBuilder_Model_Ogre();
-	virtual ~TBuilder_Model_Ogre();
+  TBuilder_Model_Ogre();
+  virtual ~TBuilder_Model_Ogre();
 
-	TFactoryBuilderTool_Shape_Ogre* GetShapeMaker();
+  TFactoryBuilderTool_Shape_Ogre* GetShapeMaker();
 
-	virtual void Build();
+  virtual void Build();
 protected:
-	void BuildShape(TShapeNode_Model* pShapeNode);
+  void BuildShape(TShapeNode_Model* pShapeNode);
 
-	void PostBuild();
+  void PostBuild();
 
-	void PostBuild_Shape();
-	void SetLocation_Shape(TShapeNode_Model* pNode);
+  void PostBuild_Shape();
+  void SetLocation_Shape(TShapeNode_Model* pNode);
 };
 
 #endif

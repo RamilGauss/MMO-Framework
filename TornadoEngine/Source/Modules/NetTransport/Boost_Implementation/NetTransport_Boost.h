@@ -42,29 +42,29 @@ class TNetTransport_Boost : public INetTransport
   TCallBackRegistrator1<TIP_Port*>                 mCallBackDisconnect;
 
 public:
-	TNetTransport_Boost();
-	virtual ~TNetTransport_Boost();
+  TNetTransport_Boost();
+  virtual ~TNetTransport_Boost();
 
   virtual bool Open(unsigned short port, unsigned char numNetWork = 0);
 
-	virtual void Send(unsigned int ip, unsigned short port, 
+  virtual void Send(unsigned int ip, unsigned short port, 
                     TBreakPacket& packet, bool check = true);
 
   virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv(){return &mCallBackRecv;}
   virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect(){return &mCallBackDisconnect;}
 
-	virtual void Start();
-	virtual void Stop();
-	virtual bool IsActive();
+  virtual void Start();
+  virtual void Stop();
+  virtual bool IsActive();
 
   // синхронная функция
   virtual bool Connect(unsigned int ip, unsigned short port); // вызов только для клиента
 
-	virtual void Close(unsigned int ip, unsigned short port);
+  virtual void Close(unsigned int ip, unsigned short port);
 public:
 
   void AddInMapTCP(TIP_Port& ip_port, TNetControlTCP* pNetControl);
-	void RemoveFromMapTCP(TIP_Port* ip_port, TNetControlTCP* pControl);
+  void RemoveFromMapTCP(TIP_Port* ip_port, TNetControlTCP* pControl);
 
 protected:
   void CloseAll();

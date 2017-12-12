@@ -20,22 +20,22 @@ class btHeightfieldTerrainShape;
 
 class DllExport TBuilderTool_Terrain_Bullet : public TBuilderTool_Bullet
 {
-	TTerrainItem* mTerrainItem;
-	THeightMapTerrainFromOgre mLoader;
+  TTerrainItem* mTerrainItem;
+  THeightMapTerrainFromOgre mLoader;
 
-	std::string mPathTerrain;
+  std::string mPathTerrain;
 public:
-	TBuilderTool_Terrain_Bullet();
-	~TBuilderTool_Terrain_Bullet();
+  TBuilderTool_Terrain_Bullet();
+  ~TBuilderTool_Terrain_Bullet();
 
-	void Begin(TTerrainItem* pTerrainItem);
-	void Load( int x, int y, nsStructPattern_Terrain::TTerrainPart_Physic* pPartPhysic);
-	void End();
+  void Begin(TTerrainItem* pTerrainItem);
+  void Load( int x, int y, nsStructPattern_Terrain::TTerrainPart_Physic* pPartPhysic);
+  void End();
 protected:
 
-	bool LoadData( int x, int y, nsStructPattern_Terrain::THeightMapTerrain* pHMT );
-	void FindMinMax(nsStructPattern_Terrain::THeightMapTerrain* pHMT, 
-		float& m_minHeight, float& m_maxHeight);
+  bool LoadData( int x, int y, nsStructPattern_Terrain::THeightMapTerrain* pHMT );
+  void FindMinMax(nsStructPattern_Terrain::THeightMapTerrain* pHMT, 
+    float& m_minHeight, float& m_maxHeight);
 
 };
 

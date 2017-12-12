@@ -17,7 +17,7 @@ TContainerRise::TContainerRise()
 //----------------------------------------------------------
 char* TContainerRise::GetPtr()
 {
-	return (char*)mC.GetPtr();
+  return (char*)mC.GetPtr();
 }
 //----------------------------------------------------------
 int TContainerRise::GetSize()
@@ -40,14 +40,14 @@ void TContainerRise::Realloc( int new_size)
     if(oldSize)
     {
       void* pOld = mC.GetPtr();
-			mC.Unlink();
-			mC.SetDataByCount(NULL, new_size);
-			void* pNew = mC.GetPtr();
-			memcpy(pNew, pOld, mSizeUse);
-			if(oldSize==1)
-				delete  (char*)pOld;
-			else
-				delete[](char*)pOld;
+      mC.Unlink();
+      mC.SetDataByCount(NULL, new_size);
+      void* pNew = mC.GetPtr();
+      memcpy(pNew, pOld, mSizeUse);
+      if(oldSize==1)
+        delete  (char*)pOld;
+      else
+        delete[](char*)pOld;
     }
     else
       mC.SetDataByCount(NULL, new_size);
@@ -57,12 +57,12 @@ void TContainerRise::Realloc( int new_size)
 //----------------------------------------------------------
 void TContainerRise::SetData(char* p, int size)
 {
-	if(size>mSizeUse)
-		Alloc(size);
-	else
-		mSizeUse = size;
+  if(size>mSizeUse)
+    Alloc(size);
+  else
+    mSizeUse = size;
   if(p)
-	  memcpy(mC.GetPtr(), p, mSizeUse);
+    memcpy(mC.GetPtr(), p, mSizeUse);
 }
 //----------------------------------------------------------
 void TContainerRise::AddData(char*p, int size)

@@ -14,14 +14,14 @@ See for more information License.h.
 
 class DllExport TBuilder_Terrain_Ogre : public TBuilder_Terrain
 {
-	TBuilderTool_Terrain_Ogre mBuilder;
+  TBuilderTool_Terrain_Ogre mBuilder;
 public:
-	TBuilder_Terrain_Ogre();
-	virtual ~TBuilder_Terrain_Ogre();
+  TBuilder_Terrain_Ogre();
+  virtual ~TBuilder_Terrain_Ogre();
 
-	virtual void Begin();
-	virtual void Load(int x, int y);
-	virtual void End();
+  virtual void Begin();
+  virtual void Load(int x, int y);
+  virtual void End();
 protected:
 };
 

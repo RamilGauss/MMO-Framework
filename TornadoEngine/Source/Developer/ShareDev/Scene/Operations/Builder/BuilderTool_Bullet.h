@@ -21,7 +21,7 @@ class DllExport TBuilderTool_Bullet
 {
 protected:
   int      mID_PhysicWorld;
-	btScalar mDefaultContactProcessingThreshold;
+  btScalar mDefaultContactProcessingThreshold;
 public:
   TBuilderTool_Bullet();
   virtual ~TBuilderTool_Bullet();
@@ -30,8 +30,8 @@ public:
   int GetID_PhysicWorld();
 
 public:
-	btRigidBody* localCreateRigidBody(float mass, 
-		const btTransform& startTransform, btCollisionShape* shape, bool addInWorld);
+  btRigidBody* localCreateRigidBody(float mass, 
+    const btTransform& startTransform, btCollisionShape* shape, bool addInWorld);
 };
 
 #endif

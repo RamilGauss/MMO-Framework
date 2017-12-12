@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		08/2012
+  @file
+  @author    Albert Semenov
+  @date    08/2012
 */
 
 #include "Precompiled.h"
@@ -11,19 +11,19 @@
 namespace tools
 {
 
-	FACTORY_ITEM_ATTRIBUTE(ControlDebug)
+  FACTORY_ITEM_ATTRIBUTE(ControlDebug)
 
-	ControlDebug::ControlDebug()
-	{
-	}
+  ControlDebug::ControlDebug()
+  {
+  }
 
-	ControlDebug::~ControlDebug()
-	{
-	}
+  ControlDebug::~ControlDebug()
+  {
+  }
 
-	void ControlDebug::OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName)
-	{
-		Control::OnInitialise(_parent, _place, _layoutName);
-	}
+  void ControlDebug::OnInitialise(Control* _parent, MyGUI::Widget* _place, const std::string& _layoutName)
+  {
+    Control::OnInitialise(_parent, _place, _layoutName);
+  }
 
 }

@@ -122,11 +122,11 @@ void TGameEngine::Work(int variant_use, const char* sNameDLL, std::vector<std::s
 //------------------------------------------------------------------------
 std::string TGameEngine::GetVersion()
 {
-	std::string s = "Tornado Game Engine, Version ";
-	s += boost::lexical_cast<std::string>(VERSION_GAME_ENGINE);
-	s += ", mode \"";
-	s += GAME_ENGINE_MODE_WORK;
-	s += "\"";
+  std::string s = "Tornado Game Engine, Version ";
+  s += boost::lexical_cast<std::string>(VERSION_GAME_ENGINE);
+  s += ", mode \"";
+  s += GAME_ENGINE_MODE_WORK;
+  s += "\"";
   return s;
 }
 //------------------------------------------------------------------------
@@ -226,7 +226,7 @@ bool TGameEngine::CreateModules()
       mVecVecModule.push_back(vecPtrModule);
   }
 
-	Event(nsGameEngine::eAfterCreateModules);
+  Event(nsGameEngine::eAfterCreateModules);
 
   if(mVecVecStrModule.size()==0)
     return false;
@@ -236,12 +236,12 @@ bool TGameEngine::CreateModules()
 //------------------------------------------------------------------------
 void TGameEngine::Event(int id, std::string param)
 {
-	std::string sEvent;
+  std::string sEvent;
   if(nsGameEngine::GetStrEventsByID(id, sEvent)==false)
     return;
 
   char sError[10000]; 
-	const char* format = sEvent.data();
+  const char* format = sEvent.data();
   if( param.length() )
     sprintf(sError, format, param.data());
   else
@@ -263,7 +263,7 @@ void TGameEngine::LinkModulesToSynchroPoint()
       vecModule[iModule]->SetSelfID(vecModule[iModule]->GetID());
     }
   }
-	mSynchroPoint->SetupAfterRegister();
+  mSynchroPoint->SetupAfterRegister();
 }
 //------------------------------------------------------------------------
 bool TGameEngine::FindIDByNameModule(std::string& nameSrc, int& id)

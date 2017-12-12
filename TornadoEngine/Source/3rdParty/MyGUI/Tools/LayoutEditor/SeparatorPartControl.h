@@ -6,31 +6,31 @@
 namespace tools
 {
 
-	class SeparatorPartControl :
-		public wraps::BaseLayout
-	{
-	public:
-		SeparatorPartControl(const std::string& _layout, MyGUI::Widget* _parent);
-		virtual ~SeparatorPartControl();
+  class SeparatorPartControl :
+    public wraps::BaseLayout
+  {
+  public:
+    SeparatorPartControl(const std::string& _layout, MyGUI::Widget* _parent);
+    virtual ~SeparatorPartControl();
 
-	private:
-		void notifyMouseButtonPressed(MyGUI::Widget* _sender, int _left, int _top, MyGUI::MouseButton _id);
-		void notifyMouseDrag(MyGUI::Widget* _sender, int _left, int _top, MyGUI::MouseButton _id);
+  private:
+    void notifyMouseButtonPressed(MyGUI::Widget* _sender, int _left, int _top, MyGUI::MouseButton _id);
+    void notifyMouseDrag(MyGUI::Widget* _sender, int _left, int _top, MyGUI::MouseButton _id);
 
-	private:
-		MyGUI::Widget* mLeftPanel;
-		MyGUI::Widget* mRightPanel;
-		MyGUI::Widget* mSeparatorH;
+  private:
+    MyGUI::Widget* mLeftPanel;
+    MyGUI::Widget* mRightPanel;
+    MyGUI::Widget* mSeparatorH;
 
-		int mMinSizeLeft;
-		int mMinSizeRight;
+    int mMinSizeLeft;
+    int mMinSizeRight;
 
-		MyGUI::IntCoord mStartLeftPanel;
-		MyGUI::IntCoord mStartRightPanel;
-		MyGUI::IntCoord mStartSeparatorH;
+    MyGUI::IntCoord mStartLeftPanel;
+    MyGUI::IntCoord mStartRightPanel;
+    MyGUI::IntCoord mStartSeparatorH;
 
-		MyGUI::IntPoint mStartMousePosition;
-	};
+    MyGUI::IntPoint mStartMousePosition;
+  };
 
 }
 

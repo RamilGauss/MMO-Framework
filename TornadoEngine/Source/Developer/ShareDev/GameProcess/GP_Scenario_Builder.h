@@ -19,25 +19,25 @@ class DllExport TGP_Scenario_Builder :
   TBuilderGameMap mBuilder;
 
   bool flgActive;
-	bool flgNeedWorkByModule;
+  bool flgNeedWorkByModule;
 public:
   TGP_Scenario_Builder();
   virtual ~TGP_Scenario_Builder();
 
-	// IGP_Builder
+  // IGP_Builder
   virtual void LoadMap(std::string nameMap);
 
-	// IGP_General
+  // IGP_General
   virtual void Work();
 
-	// IGP_Scenario
+  // IGP_Scenario
   virtual nsGameProcess::GP_TypeScenario GetType();
   virtual bool IsActive();
 
   virtual void Activate();
   virtual void Deactivate();
 private:
-	void DumpGameObjectToScene();
+  void DumpGameObjectToScene();
 };
 
 #endif

@@ -15,9 +15,9 @@ See for more information License.h.
 class DllExport TSynchronizer_Model_Ogre : public TSynchronizer_Model
 {
 public:
-	TSynchronizer_Model_Ogre();
+  TSynchronizer_Model_Ogre();
 
-	virtual void Synchro();
+  virtual void Synchro();
 private:
 };
 

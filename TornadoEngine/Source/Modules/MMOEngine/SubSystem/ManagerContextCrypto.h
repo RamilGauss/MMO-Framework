@@ -50,8 +50,8 @@ class TManagerContextCrypto
   TCryptoRSA_Impl mRSA_ForUpConnection;
 
 public:
-	TManagerContextCrypto();
-	~TManagerContextCrypto();
+  TManagerContextCrypto();
+  ~TManagerContextCrypto();
   
   void SendRSA_PublicKey(TIP_Port& ip_port, TContainer& c_key);
   bool RecvRSA_PublicKey(TIP_Port& ip_port, void* pKey, int sizeKey);

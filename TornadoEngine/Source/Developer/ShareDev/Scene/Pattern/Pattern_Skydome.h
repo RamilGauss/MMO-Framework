@@ -14,10 +14,10 @@ See for more information License.h.
 class DllExport TPattern_Skydome : public TBehaviourPattern
 {
 public:
-	TPattern_Skydome();
-	virtual ~TPattern_Skydome();
+  TPattern_Skydome();
+  virtual ~TPattern_Skydome();
 
-	virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TManagerNamePattern::eBaseType GetBaseType();
 };
 
 #endif

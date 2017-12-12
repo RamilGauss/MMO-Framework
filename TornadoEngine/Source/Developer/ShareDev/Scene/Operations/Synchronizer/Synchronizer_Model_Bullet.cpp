@@ -19,23 +19,23 @@ TSynchronizer_Model_Bullet::TSynchronizer_Model_Bullet()
 void TSynchronizer_Model_Bullet::Synchro()
 {
   // проверка на изменение позиции и ориентации
-	int cntPart = mPatternModel->mHierarchy.GetCount();
-	for( int iPart = 0 ; iPart < cntPart ; iPart++ )
-	{
-		TBaseNode_Model* pNode = mPatternModel->mHierarchy.Get(iPart);
-		if( pNode==NULL )
-			continue;
-		if( pNode->type==TModelItem::eShape )
-		{
-			TShapeNode_Model* pShapeNode = (TShapeNode_Model*)pNode;
+  int cntPart = mPatternModel->mHierarchy.GetCount();
+  for( int iPart = 0 ; iPart < cntPart ; iPart++ )
+  {
+    TBaseNode_Model* pNode = mPatternModel->mHierarchy.Get(iPart);
+    if( pNode==NULL )
+      continue;
+    if( pNode->type==TModelItem::eShape )
+    {
+      TShapeNode_Model* pShapeNode = (TShapeNode_Model*)pNode;
 
-			const btVector3& velocity = pShapeNode->mPtrRigidBody->getLinearVelocity();
-			float speed = velocity.length();
-			if( speed > 15.0f )
-			{
-				int a = 0;
-			}
-		}
-	}
+      const btVector3& velocity = pShapeNode->mPtrRigidBody->getLinearVelocity();
+      float speed = velocity.length();
+      if( speed > 15.0f )
+      {
+        int a = 0;
+      }
+    }
+  }
 }
 //---------------------------------------------------------------------------

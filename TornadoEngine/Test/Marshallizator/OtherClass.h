@@ -13,12 +13,12 @@ See for more information License.h.
 class OtherClass : public GeneratedClass
 {
 public:
-	bool operator < ( const OtherClass& right ) const
-	{
-		if( mID < right.mID )
-			return true;
-		return false;
-	}
+  bool operator < ( const OtherClass& right ) const
+  {
+    if( mID < right.mID )
+      return true;
+    return false;
+  }
 };
 
 #endif

@@ -86,7 +86,7 @@ bool TParserXMLConveyer::SearchVariant()
 void TParserXMLConveyer::ErrorNoSection(const char* section)
 {
   strError = "Нет секции ";
-	strError += section;
+  strError += section;
 }
 //---------------------------------------------------------------------------------------
 bool TParserXMLConveyer::MakeStrModule()
@@ -97,11 +97,11 @@ bool TParserXMLConveyer::MakeStrModule()
     ErrorNoSection(sThread);
     return false;
   }
-	if( cntThread!=1 )
-	{
-		strError = "Количество потоков должно быть равно 1";
-		return false;
-	}
+  if( cntThread!=1 )
+  {
+    strError = "Количество потоков должно быть равно 1";
+    return false;
+  }
 
   for( int iThread = 0 ; iThread < cntThread ; iThread++ )
   {

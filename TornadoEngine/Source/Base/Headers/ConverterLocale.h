@@ -19,10 +19,10 @@ class DllExport TConverterLocale
 public:
   TContainer Convert(std::string coderFrom, std::string coderTo, TContainer& cFrom);
 
-	static TContainer ToUicode(std::string coderFrom, TContainer& cFrom);
-	static TContainer FromUicode(std::string coderTo, TContainer& cTo);
+  static TContainer ToUicode(std::string coderFrom, TContainer& cFrom);
+  static TContainer FromUicode(std::string coderTo, TContainer& cTo);
 
-	static std::wstring ConvertUtf8ToUnicode(std::string utf8);
+  static std::wstring ConvertUtf8ToUnicode(std::string utf8);
 private:
   static std::auto_ptr<boost::locale::util::base_converter> MakeCode(std::string code);
 };

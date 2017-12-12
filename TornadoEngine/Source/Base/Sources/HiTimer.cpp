@@ -30,20 +30,20 @@ uint64_t ht_GetUSCount()
 //------------------------------------------------------------------------------
 uint64_t ht_GetCycleCPUCount()
 {
-	typedef chrono::high_resolution_clock type_clock;
+  typedef chrono::high_resolution_clock type_clock;
 
-	type_clock::time_point t = type_clock::now();
-	return t.time_since_epoch().count();
+  type_clock::time_point t = type_clock::now();
+  return t.time_since_epoch().count();
 }
 //------------------------------------------------------------------------------
 // Задержка на миллисекунды
 void ht_msleep( unsigned int ms )
 {
-	// в силу того что под Windows XP boost кидается ассертом (см. chrono)
+  // в силу того что под Windows XP boost кидается ассертом (см. chrono)
 #ifdef WIN32
-	Sleep(ms);
+  Sleep(ms);
 #else
-	chrono::milliseconds time_sleep(ms);
+  chrono::milliseconds time_sleep(ms);
   this_thread::sleep_for( time_sleep );
 #endif
 }

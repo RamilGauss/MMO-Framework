@@ -50,12 +50,12 @@ void TModuleComponent::OutputToSynchroPoint()
 //---------------------------------------------------------------------------------
 TCallBackRegistrator0* TModuleComponent::GetCBStartEvent()
 {
-	return &mCBStartEvent;
+  return &mCBStartEvent;
 }
 //---------------------------------------------------------------------------------
 TCallBackRegistrator0* TModuleComponent::GetCBStopEvent()
 {
-	return &mCBStopEvent;
+  return &mCBStopEvent;
 }
 //---------------------------------------------------------------------------------
 

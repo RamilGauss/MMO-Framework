@@ -13,9 +13,9 @@ See for more information License.h.
 
 TBehaviourPattern::TBehaviourPattern(TPatternConfigItem::TMapStrStr* pDefaultParameterMap)
 {
-	mGO            = NULL;
-	mPhysicWorldID = -1;
-	mPtrDefaultParameterMap = pDefaultParameterMap;
+  mGO            = NULL;
+  mPhysicWorldID = -1;
+  mPtrDefaultParameterMap = pDefaultParameterMap;
 }
 //------------------------------------------------------------------------
 TBehaviourPattern::~TBehaviourPattern()
@@ -25,38 +25,38 @@ TBehaviourPattern::~TBehaviourPattern()
 //------------------------------------------------------------------------
 const TPatternConfigItem::TMapStrStr* TBehaviourPattern::GetDefaultParameterMap()
 {
-	return mPtrDefaultParameterMap;
+  return mPtrDefaultParameterMap;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::SetPatternConfig(std::string& namePatternConfig, 
-												           			 std::string& nameVariantPatternConfig)
+                                          std::string& nameVariantPatternConfig)
 {
-	mNamePatternConfig        = namePatternConfig;
-	mNameVariantPatternConfig = nameVariantPatternConfig;
+  mNamePatternConfig        = namePatternConfig;
+  mNameVariantPatternConfig = nameVariantPatternConfig;
 
-	// ищем настройку паттерна
-	TPatternConfigItem* pPatternConfig = 
-		(TPatternConfigItem*)TModuleLogic::Get()->GetFGI()->
-		Get(TFactoryGameItem::PatternConfig, mNamePatternConfig);
-	BL_ASSERT(pPatternConfig);
-	// вариант из настроек
-	if( pPatternConfig==NULL )
-		return;
+  // ищем настройку паттерна
+  TPatternConfigItem* pPatternConfig = 
+    (TPatternConfigItem*)TModuleLogic::Get()->GetFGI()->
+    Get(TFactoryGameItem::PatternConfig, mNamePatternConfig);
+  BL_ASSERT(pPatternConfig);
+  // вариант из настроек
+  if( pPatternConfig==NULL )
+    return;
 
-	TPatternConfigItem::TMapStrMapIt fitPC = 
-		pPatternConfig->mMapVariant.find(mNameVariantPatternConfig);
-	if( fitPC!=pPatternConfig->mMapVariant.end() )
-		SetParameterMap( fitPC->second );
+  TPatternConfigItem::TMapStrMapIt fitPC = 
+    pPatternConfig->mMapVariant.find(mNameVariantPatternConfig);
+  if( fitPC!=pPatternConfig->mMapVariant.end() )
+    SetParameterMap( fitPC->second );
 }
 //------------------------------------------------------------------------
 std::string TBehaviourPattern::GetNamePatternConfig()
 {
-	return mNamePatternConfig;
+  return mNamePatternConfig;
 }
 //------------------------------------------------------------------------
 std::string TBehaviourPattern::GetNameVariantPatternConfig()
 {
-	return mNameVariantPatternConfig;
+  return mNameVariantPatternConfig;
 }
 //------------------------------------------------------------------------
 std::string TBehaviourPattern::GetName()
@@ -71,59 +71,59 @@ void TBehaviourPattern::SetName(std::string v)
 //----------------------------------------------------------------
 void TBehaviourPattern::SetPosition(nsMathTools::TVector3& v)
 {
-	mPosition = v;
+  mPosition = v;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::GetPosition(nsMathTools::TVector3& v)
 {
-	v = mPosition;
-	return true;
+  v = mPosition;
+  return true;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::SetOrientation(nsMathTools::TMatrix16& v)
 {
-	mOrientation = v;
+  mOrientation = v;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::GetOrientation(nsMathTools::TMatrix16& v)
 {
-	v = mOrientation;
-	return true;
+  v = mOrientation;
+  return true;
 }
 //------------------------------------------------------------------------
 TPatternConfigItem::TMapStrStr* TBehaviourPattern::GetParameterMap()
 {
-	return &mParameterMap;
+  return &mParameterMap;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::SetParameterMap(TPatternConfigItem::TMapStrStr& m)
 {
-	mParameterMap = m;
+  mParameterMap = m;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::SetGameObject(TGameObject* p)
 {
-	mGO = p;
+  mGO = p;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::SetNameMapItem(std::string nameMap)
 {
-	mNameMapItem = nameMap;
+  mNameMapItem = nameMap;
 }
 //------------------------------------------------------------------------
 std::string TBehaviourPattern::GetNameMapItem()
 {
-	return mNameMapItem;
+  return mNameMapItem;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::SetPhysicWorld(int id_physic_world)
 {
-	mPhysicWorldID = id_physic_world;
+  mPhysicWorldID = id_physic_world;
 }
 //------------------------------------------------------------------------
 int TBehaviourPattern::GetPhysicWorld()
 {
-	return mPhysicWorldID;
+  return mPhysicWorldID;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::SetParameterFromPattern(TContainer c)
@@ -143,17 +143,17 @@ void TBehaviourPattern::BuildByModule_Logic()
 //------------------------------------------------------------------------
 bool TBehaviourPattern::BuildByModule_Graphic(bool fast)
 {
-	return true;
+  return true;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::BuildByModule_Physic(bool fast)
 {
-	return true;
+  return true;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::BuildByModule_Sound(bool fast)
 {
-	return true;
+  return true;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::DestructByModule_Logic()
@@ -163,17 +163,17 @@ void TBehaviourPattern::DestructByModule_Logic()
 //------------------------------------------------------------------------
 bool TBehaviourPattern::DestructByModule_Graphic(bool fast)
 {
-	return true;
+  return true;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::DestructByModule_Physic(bool fast)
 {
-	return true;
+  return true;
 }
 //------------------------------------------------------------------------
 bool TBehaviourPattern::DestructByModule_Sound(bool fast)
 {
-	return true;
+  return true;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::SynchroByModule_Logic()
@@ -198,7 +198,7 @@ void TBehaviourPattern::SynchroByModule_Sound()
 //------------------------------------------------------------------------
 bool TBehaviourPattern::UpdateGameItem(TFactoryGameItem::TypeGameItem type)
 {
-	return false;
+  return false;
 }
 //------------------------------------------------------------------------
 void TBehaviourPattern::SaveGameItemOnHDD(TFactoryGameItem::TypeGameItem type)
@@ -213,6 +213,6 @@ void TBehaviourPattern::SaveOutDataOnHDD(TFactoryGameItem::TypeGameItem type)
 //------------------------------------------------------------------------
 TManagerNamePattern::eBaseType TBehaviourPattern::GetBaseType()
 {
-	return TManagerNamePattern::eBase;
+  return TManagerNamePattern::eBase;
 }
 //------------------------------------------------------------------------

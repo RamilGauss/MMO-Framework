@@ -50,27 +50,27 @@ TGameObject* TScene::GetNotUsingByID(int id)
 //-----------------------------------------------------------------------------
 int TScene::GetCount()
 {
-	return GetCountUsing() + GetCountNotUsing();
+  return GetCountUsing() + GetCountNotUsing();
 }
 //-----------------------------------------------------------------------------
 TGameObject* TScene::GetByIndex(int index)
 {
-	TGameObject* pGO = NULL;
-	int cntUsing = GetCountUsing();
-	if( index < cntUsing )
-		pGO = GetUsingByIndex(index);
-	else
-		pGO = GetNotUsingByIndex(index - cntUsing );
-	return pGO;
+  TGameObject* pGO = NULL;
+  int cntUsing = GetCountUsing();
+  if( index < cntUsing )
+    pGO = GetUsingByIndex(index);
+  else
+    pGO = GetNotUsingByIndex(index - cntUsing );
+  return pGO;
 }
 //-----------------------------------------------------------------------------
 TGameObject* TScene::GetByID(int id)
 {
-	TGameObject* pGO = NULL;
-	pGO = GetUsingByID(id);
-	if( pGO==NULL )
-		pGO = GetNotUsingByIndex(id);
-	return pGO;
+  TGameObject* pGO = NULL;
+  pGO = GetUsingByID(id);
+  if( pGO==NULL )
+    pGO = GetNotUsingByIndex(id);
+  return pGO;
 }
 //-----------------------------------------------------------------------------
 void TScene::Include(TGameObject* pGO)

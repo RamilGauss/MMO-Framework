@@ -21,9 +21,9 @@ namespace nsMMOEngine
   class TBaseScRecommutationClient
   {
   protected:
-	  IScenario* mScenario;
+    IScenario* mScenario;
   public:
-	  TBaseScRecommutationClient(IScenario* pSc);
+    TBaseScRecommutationClient(IScenario* pSc);
     virtual ~TBaseScRecommutationClient();
 
     void Recv(TDescRecvSession* pDesc);

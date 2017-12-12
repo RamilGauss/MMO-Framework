@@ -18,7 +18,7 @@ TGP_Scenario_Builder::TGP_Scenario_Builder()
 {
   mLastCountStepProgress = 0;
   flgActive           = false;
-	flgNeedWorkByModule = false;
+  flgNeedWorkByModule = false;
 }
 //---------------------------------------------------------------------------------
 TGP_Scenario_Builder::~TGP_Scenario_Builder()
@@ -31,7 +31,7 @@ void TGP_Scenario_Builder::LoadMap(std::string nameMap)
   TBaseItem* pBI = 
     TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map,nameMap);
   TMapItem* pMI = (TMapItem*)pBI;
-	if( pMI )
+  if( pMI )
   if( mBuilder.BuildMap(pMI) )
     flgNeedWorkByModule = true;
 }
@@ -40,12 +40,12 @@ void TGP_Scenario_Builder::Work()
 {
   if( IsActive()==false )
     return;
-	if( flgNeedWorkByModule==false )
-		return;
+  if( flgNeedWorkByModule==false )
+    return;
   mBuilder.Build();
   // анализ прогресса
   int progress = mBuilder.GetProgress();// например 13%
-	int cntStep = progress/mProgressStep;// 13/10 = 1
+  int cntStep = progress/mProgressStep;// 13/10 = 1
   if( mLastCountStepProgress!=cntStep )// 0!=1
   {
     mCB_Progress.Notify(GetType(), progress);
@@ -54,11 +54,11 @@ void TGP_Scenario_Builder::Work()
 
   if(progress==100)
   {
-		DumpGameObjectToScene();
-		flgNeedWorkByModule = false;
-		flgActive           = false;
+    DumpGameObjectToScene();
+    flgNeedWorkByModule = false;
+    flgActive           = false;
 
-		mCB_End.Notify(GetType());
+    mCB_End.Notify(GetType());
   }
 }
 //---------------------------------------------------------------------------------
@@ -74,10 +74,10 @@ nsGameProcess::GP_TypeScenario TGP_Scenario_Builder::GetType()
 //-----------------------------------------------------------------------------
 void TGP_Scenario_Builder::Activate()
 {
-	mLastCountStepProgress = 0;
-	flgNeedWorkByModule = false;
+  mLastCountStepProgress = 0;
+  flgNeedWorkByModule = false;
   flgActive = true;
-	mBuilder.Init(mSetID_Module, mFBP, mPhysicWorldID);
+  mBuilder.Init(mSetID_Module, mFBP, mPhysicWorldID);
 }
 //-----------------------------------------------------------------------------
 void TGP_Scenario_Builder::Deactivate()
@@ -88,12 +88,12 @@ void TGP_Scenario_Builder::Deactivate()
 //-----------------------------------------------------------------------------
 void TGP_Scenario_Builder::DumpGameObjectToScene()
 {
-	TBuilderGameMap::TListPtrGameObject listGO;
-	mBuilder.GetResult(listGO);
+  TBuilderGameMap::TListPtrGameObject listGO;
+  mBuilder.GetResult(listGO);
 
-	BOOST_FOREACH(TGameObject* pGO,listGO)
-	{
-		mPtrScene->Include(pGO);
-	}
+  BOOST_FOREACH(TGameObject* pGO,listGO)
+  {
+    mPtrScene->Include(pGO);
+  }
 }
 //-----------------------------------------------------------------------------

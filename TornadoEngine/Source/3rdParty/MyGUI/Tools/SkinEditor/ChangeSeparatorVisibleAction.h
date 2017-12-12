@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #ifndef _24534531_49fc_4c89_8389_7dbc5b17de06_
@@ -13,27 +13,27 @@
 namespace tools
 {
 
-	class ChangeSeparatorVisibleAction :
-		public ActionChangeDataProperty
-	{
-	public:
-		ChangeSeparatorVisibleAction();
-		virtual ~ChangeSeparatorVisibleAction();
+  class ChangeSeparatorVisibleAction :
+    public ActionChangeDataProperty
+  {
+  public:
+    ChangeSeparatorVisibleAction();
+    virtual ~ChangeSeparatorVisibleAction();
 
-		virtual void doAction();
-		virtual void undoAction();
+    virtual void doAction();
+    virtual void undoAction();
 
-	private:
-		typedef std::pair<PropertyPtr, std::string> PairProprty;
-		typedef std::vector<PairProprty> VectorPairProperty;
-		void storeRegionValues(DataPtr _skinData, VectorPairProperty& _store);
+  private:
+    typedef std::pair<PropertyPtr, std::string> PairProprty;
+    typedef std::vector<PairProprty> VectorPairProperty;
+    void storeRegionValues(DataPtr _skinData, VectorPairProperty& _store);
 
-		void storeOldValues();
-		void setNewValues();
+    void storeOldValues();
+    void setNewValues();
 
-	private:
-		VectorPairProperty mOldValues;
-	};
+  private:
+    VectorPairProperty mOldValues;
+  };
 
 }
 

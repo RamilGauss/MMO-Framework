@@ -40,10 +40,10 @@ public:
   virtual TGameObject* GetNotUsingByIndex(int index);
   virtual TGameObject* GetNotUsingByID(int id);
 
-	// сначала using, потом notUsing
-	virtual int GetCount();
-	virtual TGameObject* GetByIndex(int index);
-	virtual TGameObject* GetByID(int id);
+  // сначала using, потом notUsing
+  virtual int GetCount();
+  virtual TGameObject* GetByIndex(int index);
+  virtual TGameObject* GetByID(int id);
 
   // манипуляции
   virtual void Include(TGameObject* pGO);

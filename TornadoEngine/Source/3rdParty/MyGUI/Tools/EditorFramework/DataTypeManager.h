@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #ifndef _ccf347aa_fadc_4b79_8b3b_73475259614d_
@@ -14,29 +14,29 @@
 namespace tools
 {
 
-	class MYGUI_EXPORT_DLL DataTypeManager
-	{
-	public:
-		DataTypeManager();
-		~DataTypeManager();
+  class MYGUI_EXPORT_DLL DataTypeManager
+  {
+  public:
+    DataTypeManager();
+    ~DataTypeManager();
 
-		static DataTypeManager& getInstance();
-		static DataTypeManager* getInstancePtr();
+    static DataTypeManager& getInstance();
+    static DataTypeManager* getInstancePtr();
 
-		void initialise();
-		void shutdown();
+    void initialise();
+    void shutdown();
 
-		void load(const std::string& _fileName);
-		void clear();
+    void load(const std::string& _fileName);
+    void clear();
 
-		DataTypePtr getType(const std::string& _type);
-		DataTypePtr getParentType(const std::string& _type);
+    DataTypePtr getType(const std::string& _type);
+    DataTypePtr getParentType(const std::string& _type);
 
-	private:
-		static DataTypeManager* mInstance;
-		typedef std::vector<DataTypePtr> VectorDataInfo;
-		VectorDataInfo mDataInfos;
-	};
+  private:
+    static DataTypeManager* mInstance;
+    typedef std::vector<DataTypePtr> VectorDataInfo;
+    VectorDataInfo mDataInfos;
+  };
 
 }
 

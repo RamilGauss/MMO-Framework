@@ -10,7 +10,7 @@ See for more information License.h.
 
 TOperation_Model::TOperation_Model()
 {
-	mPatternModel = NULL;
+  mPatternModel = NULL;
 }
 //-----------------------------------------------------------------------------------
 TOperation_Model::~TOperation_Model()
@@ -20,6 +20,6 @@ TOperation_Model::~TOperation_Model()
 //-----------------------------------------------------------------------------------
 void TOperation_Model::SetPattern(TBehaviourPattern* pPattern)
 {
-	mPatternModel = (TPattern_Model*)pPattern;
+  mPatternModel = (TPattern_Model*)pPattern;
 }
 //-----------------------------------------------------------------------------------

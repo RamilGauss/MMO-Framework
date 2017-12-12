@@ -41,7 +41,7 @@ class DllExport TFactoryGameItem
   TMapStrPtrItem mMapNameModel;
   TMapStrPtrItem mMapNameTerrain;
   TMapStrPtrItem mMapNameMap;
-	TMapStrPtrItem mMapNameTableSound;
+  TMapStrPtrItem mMapNameTableSound;
 
   typedef std::map<int,TMapStrPtrItem*>    TMapInt_PtrMapStrPtr;
   typedef TMapInt_PtrMapStrPtr::iterator   TMapInt_PtrMapStrPtrIt;

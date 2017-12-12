@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -19,154 +19,154 @@
 namespace tools
 {
 
-	FACTORY_ITEM_ATTRIBUTE(FontTextureController)
+  FACTORY_ITEM_ATTRIBUTE(FontTextureController)
 
-	FontTextureController::FontTextureController() :
-		mControl(nullptr),
-		mParentData(nullptr),
-		mActivated(false)
-	{
-	}
+  FontTextureController::FontTextureController() :
+    mControl(nullptr),
+    mParentData(nullptr),
+    mActivated(false)
+  {
+  }
 
-	FontTextureController::~FontTextureController()
-	{
-	}
+  FontTextureController::~FontTextureController()
+  {
+  }
 
-	void FontTextureController::setTarget(Control* _control)
-	{
-		mControl = _control->findControl<ScopeTextureControl>();
-	}
+  void FontTextureController::setTarget(Control* _control)
+  {
+    mControl = _control->findControl<ScopeTextureControl>();
+  }
 
-	void FontTextureController::activate()
-	{
-		mParentTypeName = "Root";
-		mScopeName = "Font";
+  void FontTextureController::activate()
+  {
+    mParentTypeName = "Root";
+    mScopeName = "Font";
 
-		ScopeManager::getInstance().eventChangeScope.connect(this, &FontTextureController::notifyChangeScope);
-		notifyChangeScope(ScopeManager::getInstance().getCurrentScope());
+    ScopeManager::getInstance().eventChangeScope.connect(this, &FontTextureController::notifyChangeScope);
+    notifyChangeScope(ScopeManager::getInstance().getCurrentScope());
 
-		CommandManager::getInstance().getEvent("Command_GenerateFont")->connect(this, &FontTextureController::commandGenerateFont);
-	}
+    CommandManager::getInstance().getEvent("Command_GenerateFont")->connect(this, &FontTextureController::commandGenerateFont);
+  }
 
-	void FontTextureController::deactivate()
-	{
-		ScopeManager::getInstance().eventChangeScope.disconnect(this);
-		CommandManager::getInstance().getEvent("Command_GenerateFont")->disconnect(this);
-	}
+  void FontTextureController::deactivate()
+  {
+    ScopeManager::getInstance().eventChangeScope.disconnect(this);
+    CommandManager::getInstance().getEvent("Command_GenerateFont")->disconnect(this);
+  }
 
-	void FontTextureController::notifyChangeDataSelector(DataPtr _data, bool _changeOnlySelection)
-	{
-		mParentData = _data;
-		if (mParentData != nullptr && mParentData->getType()->getName() != mParentTypeName)
-			mParentData = nullptr;
+  void FontTextureController::notifyChangeDataSelector(DataPtr _data, bool _changeOnlySelection)
+  {
+    mParentData = _data;
+    if (mParentData != nullptr && mParentData->getType()->getName() != mParentTypeName)
+      mParentData = nullptr;
 
-		std::string texture;
-		PropertyPtr property = PropertyUtility::getPropertyByName("Font", "FontName");
-		if (property != nullptr)
-		{
-			texture = property->getValue();
-		}
+    std::string texture;
+    PropertyPtr property = PropertyUtility::getPropertyByName("Font", "FontName");
+    if (property != nullptr)
+    {
+      texture = property->getValue();
+    }
 
-		updateTexture(texture);
-	}
+    updateTexture(texture);
+  }
 
-	void FontTextureController::notifyChangeProperty(PropertyPtr _sender)
-	{
-		if (!mActivated || !PropertyUtility::isDataSelected(_sender->getOwner()))
-			return;
+  void FontTextureController::notifyChangeProperty(PropertyPtr _sender)
+  {
+    if (!mActivated || !PropertyUtility::isDataSelected(_sender->getOwner()))
+      return;
 
-		if (_sender->getOwner()->getType()->getName() == "Font")
-		{
-			if (_sender->getType()->getName() == "FontName")
-				updateTexture(_sender->getValue());
-		}
-	}
+    if (_sender->getOwner()->getType()->getName() == "Font")
+    {
+      if (_sender->getType()->getName() == "FontName")
+        updateTexture(_sender->getValue());
+    }
+  }
 
-	void FontTextureController::notifyChangeScope(const std::string& _scope)
-	{
-		if (mControl == nullptr)
-			return;
+  void FontTextureController::notifyChangeScope(const std::string& _scope)
+  {
+    if (mControl == nullptr)
+      return;
 
-		if (_scope == mScopeName)
-		{
-			if (!mActivated)
-			{
-				mControl->clearAll();
+    if (_scope == mScopeName)
+    {
+      if (!mActivated)
+      {
+        mControl->clearAll();
 
-				DataSelectorManager::getInstance().getEvent(mParentTypeName)->connect(this, &FontTextureController::notifyChangeDataSelector);
-				mParentData = DataUtility::getSelectedDataByType(mParentTypeName);
-				notifyChangeDataSelector(mParentData, false);
+        DataSelectorManager::getInstance().getEvent(mParentTypeName)->connect(this, &FontTextureController::notifyChangeDataSelector);
+        mParentData = DataUtility::getSelectedDataByType(mParentTypeName);
+        notifyChangeDataSelector(mParentData, false);
 
-				mControl->getRoot()->setUserString("CurrentScopeController", mScopeName);
+        mControl->getRoot()->setUserString("CurrentScopeController", mScopeName);
 
-				mActivated = true;
-			}
-		}
-		else
-		{
-			if (mActivated)
-			{
-				DataSelectorManager::getInstance().getEvent(mParentTypeName)->disconnect(this);
-				mParentData = nullptr;
+        mActivated = true;
+      }
+    }
+    else
+    {
+      if (mActivated)
+      {
+        DataSelectorManager::getInstance().getEvent(mParentTypeName)->disconnect(this);
+        mParentData = nullptr;
 
-				// мы еще владельцы контрола сбрасываем его
-				std::string value = mControl->getRoot()->getUserString("CurrentScopeController");
-				if (value == mScopeName)
-				{
-					mControl->getRoot()->setUserString("CurrentScopeController", "");
-					notifyChangeDataSelector(mParentData, false);
+        // мы еще владельцы контрола сбрасываем его
+        std::string value = mControl->getRoot()->getUserString("CurrentScopeController");
+        if (value == mScopeName)
+        {
+          mControl->getRoot()->setUserString("CurrentScopeController", "");
+          notifyChangeDataSelector(mParentData, false);
 
-					mControl->clearAll();
-				}
+          mControl->clearAll();
+        }
 
-				mActivated = false;
-			}
-		}
-	}
+        mActivated = false;
+      }
+    }
+  }
 
-	void FontTextureController::updateTexture(const std::string& _value)
-	{
-		MyGUI::IResource* resource = MyGUI::ResourceManager::getInstance().findByName(_value);
-		MyGUI::ResourceTrueTypeFont* font = resource != nullptr ? resource->castType<MyGUI::ResourceTrueTypeFont>(false) : nullptr;
-		
-		MyGUI::ITexture* texture = font != nullptr ? font->getTextureFont() : nullptr;
-		std::string value = texture != nullptr ? texture->getName() : "";
+  void FontTextureController::updateTexture(const std::string& _value)
+  {
+    MyGUI::IResource* resource = MyGUI::ResourceManager::getInstance().findByName(_value);
+    MyGUI::ResourceTrueTypeFont* font = resource != nullptr ? resource->castType<MyGUI::ResourceTrueTypeFont>(false) : nullptr;
+    
+    MyGUI::ITexture* texture = font != nullptr ? font->getTextureFont() : nullptr;
+    std::string value = texture != nullptr ? texture->getName() : "";
 
-		mControl->setTextureValue(value);
-		mControl->resetTextureRegion();
-	}
+    mControl->setTextureValue(value);
+    mControl->resetTextureRegion();
+  }
 
-	void FontTextureController::commandGenerateFont(const MyGUI::UString& _commandName, bool& _result)
-	{
-		if (mParentData != nullptr)
-		{
-			DataPtr font = (mParentData != nullptr) ? mParentData->getChildSelected() : nullptr;
-			if (font != nullptr)
-			{
-				FontExportSerializer::generateFont(font);
-				notifyChangeDataSelector(mParentData, false);
-				updateResultPropery(font);
+  void FontTextureController::commandGenerateFont(const MyGUI::UString& _commandName, bool& _result)
+  {
+    if (mParentData != nullptr)
+    {
+      DataPtr font = (mParentData != nullptr) ? mParentData->getChildSelected() : nullptr;
+      if (font != nullptr)
+      {
+        FontExportSerializer::generateFont(font);
+        notifyChangeDataSelector(mParentData, false);
+        updateResultPropery(font);
 
-				CommandManager::getInstance().executeCommand("Command_OnGenerateFont");
-			}
-		}
-	}
+        CommandManager::getInstance().executeCommand("Command_OnGenerateFont");
+      }
+    }
+  }
 
-	void FontTextureController::updateResultPropery(DataPtr _data)
-	{
-		MyGUI::IResource* resource = MyGUI::ResourceManager::getInstance().findByName(_data->getPropertyValue("FontName"));
-		MyGUI::ResourceTrueTypeFont* font = resource != nullptr ? resource->castType<MyGUI::ResourceTrueTypeFont>(false) : nullptr;
-		MyGUI::ITexture* texture = font != nullptr ? font->getTextureFont() : nullptr;
+  void FontTextureController::updateResultPropery(DataPtr _data)
+  {
+    MyGUI::IResource* resource = MyGUI::ResourceManager::getInstance().findByName(_data->getPropertyValue("FontName"));
+    MyGUI::ResourceTrueTypeFont* font = resource != nullptr ? resource->castType<MyGUI::ResourceTrueTypeFont>(false) : nullptr;
+    MyGUI::ITexture* texture = font != nullptr ? font->getTextureFont() : nullptr;
 
-		if (texture != nullptr)
-			_data->setPropertyValue("TextureSizeResult", MyGUI::utility::toString(texture->getWidth(), " ", texture->getHeight()));
-		else
-			_data->setPropertyValue("TextureSizeResult", "0 0");
+    if (texture != nullptr)
+      _data->setPropertyValue("TextureSizeResult", MyGUI::utility::toString(texture->getWidth(), " ", texture->getHeight()));
+    else
+      _data->setPropertyValue("TextureSizeResult", "0 0");
 
-		if (font != nullptr)
-			_data->setPropertyValue("FontHeightPix", font->getDefaultHeight());
-		else
-			_data->setPropertyValue("FontHeightPix", "0");
-	}
+    if (font != nullptr)
+      _data->setPropertyValue("FontHeightPix", font->getDefaultHeight());
+    else
+      _data->setPropertyValue("FontHeightPix", "0");
+  }
 
 }

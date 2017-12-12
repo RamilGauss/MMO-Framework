@@ -19,7 +19,7 @@ namespace nsMMOEngine
     };
     
   public:
-	  TScLoginClient_ClientImpl(IScenario* pSc);
+    TScLoginClient_ClientImpl(IScenario* pSc);
 
     virtual void Work(unsigned int time_ms);
 

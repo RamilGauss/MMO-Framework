@@ -15,22 +15,22 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-	struct TDescRecvSession : public INetTransport::TDescRecv
-	{
+  struct TDescRecvSession : public INetTransport::TDescRecv
+  {
     TContainer c;
 
     unsigned int time_ms;
-		unsigned int id_session;
+    unsigned int id_session;
     char use_crypt;
-		TDescRecvSession()
-		{
+    TDescRecvSession()
+    {
       id_session = INVALID_HANDLE_SESSION;
-			time_ms    = ht_GetMSCount();
+      time_ms    = ht_GetMSCount();
       use_crypt  = false;
-		}
+    }
     void Assign(TDescRecvSession* p)
     {
-			time_ms    = p->time_ms;
+      time_ms    = p->time_ms;
       id_session = p->id_session;
       ip_port    = p->ip_port;
       type       = p->type;
@@ -39,6 +39,6 @@ namespace nsMMOEngine
       sizeData = p->sizeData;
       data     = (char*)c.GetPtr();
     }
-	};
+  };
 }
 #endif

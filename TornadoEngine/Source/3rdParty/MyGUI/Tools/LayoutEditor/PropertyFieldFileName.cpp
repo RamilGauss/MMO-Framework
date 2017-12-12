@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		12/2010
+  @file
+  @author    Albert Semenov
+  @date    12/2010
 */
 
 #include "Precompiled.h"
@@ -11,20 +11,20 @@
 namespace tools
 {
 
-	PropertyFieldFileName::PropertyFieldFileName(MyGUI::Widget* _parent) :
-		PropertyFieldEditBox(_parent)
-	{
-	}
+  PropertyFieldFileName::PropertyFieldFileName(MyGUI::Widget* _parent) :
+    PropertyFieldEditBox(_parent)
+  {
+  }
 
-	PropertyFieldFileName::~PropertyFieldFileName()
-	{
-	}
+  PropertyFieldFileName::~PropertyFieldFileName()
+  {
+  }
 
-	bool PropertyFieldFileName::onCheckValue()
-	{
-		bool success = utility::checkParseFileName(mField);
+  bool PropertyFieldFileName::onCheckValue()
+  {
+    bool success = utility::checkParseFileName(mField);
 
-		return success;
-	}
+    return success;
+  }
 
 }

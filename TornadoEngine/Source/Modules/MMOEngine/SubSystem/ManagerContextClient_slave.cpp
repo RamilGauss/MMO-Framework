@@ -140,15 +140,15 @@ void TManagerContextClient_slave::DeleteByKey(unsigned int key)
     return;
 
   DeleteContainer(pC);
-	
-	unsigned int id_session;
-	bool findSession = FindSessionByKey(key,id_session);
-	
-	mMapKeyContext.erase(key);
+  
+  unsigned int id_session;
+  bool findSession = FindSessionByKey(key,id_session);
+  
+  mMapKeyContext.erase(key);
   mMapKeySession.erase(key);
 
-	if(findSession)
-		mMapSessionKey.erase(id_session);
+  if(findSession)
+    mMapSessionKey.erase(id_session);
 }
 //-------------------------------------------------------------------------
 void TManagerContextClient_slave::Clear()

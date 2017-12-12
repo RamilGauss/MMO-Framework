@@ -1,7 +1,7 @@
 /*!
-	@file
-	@author		Albert Semenov
-	@date		07/2012
+  @file
+  @author    Albert Semenov
+  @date    07/2012
 */
 
 #include "Precompiled.h"
@@ -12,51 +12,51 @@
 namespace tools
 {
 
-	DataManager* DataManager::mInstance = nullptr;
+  DataManager* DataManager::mInstance = nullptr;
 
-	DataManager::DataManager() :
-		mRoot(nullptr)
-	{
-		mInstance = this;
-	}
+  DataManager::DataManager() :
+    mRoot(nullptr)
+  {
+    mInstance = this;
+  }
 
-	DataManager::~DataManager()
-	{
-		mInstance = nullptr;
-	}
+  DataManager::~DataManager()
+  {
+    mInstance = nullptr;
+  }
 
-	DataManager& DataManager::getInstance()
-	{
-		return *mInstance;
-	}
+  DataManager& DataManager::getInstance()
+  {
+    return *mInstance;
+  }
 
-	DataManager* DataManager::getInstancePtr()
-	{
-		return mInstance;
-	}
+  DataManager* DataManager::getInstancePtr()
+  {
+    return mInstance;
+  }
 
-	void DataManager::initialise()
-	{
-		mRoot = Data::CreateInstance();
-		mRoot->setType(DataTypeManager::getInstance().getType("Root"));
-	}
+  void DataManager::initialise()
+  {
+    mRoot = Data::CreateInstance();
+    mRoot->setType(DataTypeManager::getInstance().getType("Root"));
+  }
 
-	void DataManager::shutdown()
-	{
-	}
+  void DataManager::shutdown()
+  {
+  }
 
-	void DataManager::clear()
-	{
-		while (!mRoot->getChilds().empty())
-		{
-			DataPtr child = mRoot->getChilds().back();
-			mRoot->removeChild(child);
-		}
-	}
+  void DataManager::clear()
+  {
+    while (!mRoot->getChilds().empty())
+    {
+      DataPtr child = mRoot->getChilds().back();
+      mRoot->removeChild(child);
+    }
+  }
 
-	DataPtr DataManager::getRoot()
-	{
-		return mRoot;
-	}
-	
+  DataPtr DataManager::getRoot()
+  {
+    return mRoot;
+  }
+  
 }

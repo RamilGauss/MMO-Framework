@@ -32,7 +32,7 @@ protected:
 
   void sl_Enter(MyGUI::Widget* _sender);
   void sl_Exit(MyGUI::Widget* _sender);
-	
+  
   MyGUI::Button* bEnter;
   MyGUI::Button* bExit;
 

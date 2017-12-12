@@ -48,7 +48,7 @@ class DllExport TManagerSerializerItem_XML
   boost::scoped_ptr<TSerializerMaterialItem_XML>      mSerializerMaterial;
   boost::scoped_ptr<TSerializerTerrainItem_XML>       mSerializerTerrain;
   boost::scoped_ptr<TSerializerMapItem_XML>           mSerializerMap;
-	boost::scoped_ptr<TSerializerTableSoundItem_XML>    mSerializerTableSound;
+  boost::scoped_ptr<TSerializerTableSoundItem_XML>    mSerializerTableSound;
 
   TMapIntPtrSerilizer mMapTypeSerializer;// каждому типу итэма - свой сериализатор
 

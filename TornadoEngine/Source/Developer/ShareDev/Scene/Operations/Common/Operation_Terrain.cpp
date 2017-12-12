@@ -10,7 +10,7 @@ See for more information License.h.
 
 TOperation_Terrain::TOperation_Terrain()
 {
-	mPatternTerrain = NULL;
+  mPatternTerrain = NULL;
 }
 //-----------------------------------------------------------------------------------
 TOperation_Terrain::~TOperation_Terrain()
@@ -20,6 +20,6 @@ TOperation_Terrain::~TOperation_Terrain()
 //-----------------------------------------------------------------------------------
 void TOperation_Terrain::SetPattern(TBehaviourPattern* pPattern)
 {
-	mPatternTerrain = (TPattern_Terrain*)pPattern;
+  mPatternTerrain = (TPattern_Terrain*)pPattern;
 }
 //-----------------------------------------------------------------------------------

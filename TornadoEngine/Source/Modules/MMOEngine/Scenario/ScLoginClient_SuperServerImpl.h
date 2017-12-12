@@ -16,7 +16,7 @@ namespace nsMMOEngine
   class TScLoginClient_SuperServerImpl : public TBaseScLoginClient
   {
   public:
-	  TScLoginClient_SuperServerImpl(IScenario* pSc);
+    TScLoginClient_SuperServerImpl(IScenario* pSc);
 
     virtual void Work(unsigned int time_ms);
 

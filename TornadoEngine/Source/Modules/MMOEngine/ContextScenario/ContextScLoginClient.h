@@ -20,7 +20,7 @@ namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
   class TContextScLoginClient : public IContextScenario
-	{
+  {
   public:
     typedef enum
     {
@@ -54,18 +54,18 @@ namespace nsMMOEngine
 
     bool flgNeedLeaveQueue;
 
-		unsigned char mSubNet;
+    unsigned char mSubNet;
 
-		// используется на стороне Slave для определения стартовал ли контекст
-		bool flgWasBegin;
+    // используется на стороне Slave для определения стартовал ли контекст
+    bool flgWasBegin;
 
-		TContainer mC_L_AES_RSA;
-	public:
-		TContextScLoginClient();
+    TContainer mC_L_AES_RSA;
+  public:
+    TContextScLoginClient();
     virtual ~TContextScLoginClient();
 
-		bool WasBegin();
-		void SetWasBegin();
+    bool WasBegin();
+    void SetWasBegin();
 
     unsigned int GetClientKey();
     void SetClientKey(unsigned int id);
@@ -101,9 +101,9 @@ namespace nsMMOEngine
     void* GetSaveAcceptDataPtr();
     int   GetSaveAcceptDataSize();
 
-		void SaveQueueData(void* resForClient, int sizeResClient);
-		void* GetSaveQueueDataPtr();
-		int   GetSaveQueueDataSize();
+    void SaveQueueData(void* resForClient, int sizeResClient);
+    void* GetSaveQueueDataPtr();
+    int   GetSaveQueueDataSize();
 
     void SetNeedLeaveQueue(bool val);
     bool NeedLeaveQueue();
@@ -115,15 +115,15 @@ namespace nsMMOEngine
     bool GetFakeClient();
     void SetFakeClient(bool val);
 
-		void SetSubNet(unsigned char v);
-		unsigned char GetSubNet();
+    void SetSubNet(unsigned char v);
+    unsigned char GetSubNet();
 
-		void Set_L_AES_RSA(char* p, int size);
-		char* GetPtr_L_AES_RSA();
-		int GetSize_L_AES_RSA();
+    void Set_L_AES_RSA(char* p, int size);
+    char* GetPtr_L_AES_RSA();
+    int GetSize_L_AES_RSA();
   private:
     void SetID_Session(std::string& name, unsigned int id);
     unsigned int GetID_Session(std::string& name);
-	};
+  };
 }  
 #endif

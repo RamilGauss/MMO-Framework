@@ -15,11 +15,11 @@ See for more information License.h.
 class DllExport TBuilder_Terrain : public TOperation_Terrain
 {
 public:
-	TBuilder_Terrain();
+  TBuilder_Terrain();
 
-	virtual void Begin() = 0;
-	virtual void Load(int x, int y) = 0;
-	virtual void End() = 0;
+  virtual void Begin() = 0;
+  virtual void Load(int x, int y) = 0;
+  virtual void End() = 0;
 private:
 };
 
