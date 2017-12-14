@@ -196,6 +196,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Sources\BreakPacketFast.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Sources\CmdParam.cpp"
 				>
 			</File>
@@ -391,6 +395,10 @@
 			</File>
 			<File
 				RelativePath=".\Headers\BreakPacket.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Headers\BreakPacketFast.h"
 				>
 			</File>
 			<File

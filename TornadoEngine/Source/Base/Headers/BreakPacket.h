@@ -21,7 +21,7 @@ See for more information License.h.
 
 class DllExport TBreakPacket
 {
-public:
+protected:
   struct DllExport TDescContainer
   {
     typedef enum{eContainer, eContainerPtr}TypeContainer;
@@ -37,10 +37,14 @@ public:
         pC = new TContainerPtr;
     }
   };
-  typedef std::list<TDescContainer> TListPtrContainer;
-  typedef TListPtrContainer::iterator TListPtrContainerIt;
+  typedef std::list<TDescContainer*> TListPtrDescContainer;
+  typedef TListPtrDescContainer::iterator TListPtrDescContainerIt;
+
 protected:
-  TListPtrContainer mList;
+  TListPtrDescContainer mList;
+
+  TListPtrDescContainer mCacheContainerList;
+  TListPtrDescContainer mCacheContainerPtrList;
 
   TContainer mCollect;
 public:
@@ -50,30 +54,27 @@ public:
 
   // добавить кусок памяти
   // copyData=true - например если в цикле используется стековая переменная
-  void PushBack(char* p,int size, bool copyData = false);
-  void PushFront(char* p,int size, bool copyData = false);
+  void PushBack( char* p, int size, bool copyData = false);
+  void PushFront( char* p, int size, bool copyData = false);
   // собрать кусочки в одно целое (копированием), 
   // теперь можно получить указатель на собранный пакет через GetPtr
   // если кол-во частей равно 1, то сборки не будет.
   void Collect();
   void* GetCollectPtr();
   int GetSize();
-  // кол-во частей
-  int GetCountPart();
-
-  // освободить память, которая использовалась под собранный пакет
-  void DeleteCollect();
 
   void UnlinkPart();
-
   void UnlinkCollect();
 
   TBreakPacket& operator =( const TBreakPacket& b );
-
-  TListPtrContainer* GetList(){return &mList;}
 protected:
-  TDescContainer PushData(char* p,int size, bool copyData);
+  TDescContainer* PushData(char* p,int size, bool copyData);
   void CopyFrom(const TBreakPacket& bp);
+
+  TDescContainer* GetDescContainer( bool copyData );
+  TDescContainer* FindInCache( bool copyData );
+  void AddInCache( TDescContainer* pDesc );
+  void DeleteCache();
 };
 
 

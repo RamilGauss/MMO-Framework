@@ -13,10 +13,8 @@ See for more information License.h.
 
 class DllExport TContainerRise
 {
-
   TContainer mC;
   int  mSizeUse;
-
 public:
   TContainerRise();
   

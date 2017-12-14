@@ -28,7 +28,7 @@ TContainer TPushMaster::GetBuffer()
 //-----------------------------------------------------------------------
 void TPushMaster::PushSize( int& size )
 {
-  Push( size, true );
+  Push( size );
 }
 //-----------------------------------------------------------------------
 void TPushMaster::PushStr( std::string& str )
@@ -44,7 +44,7 @@ void TPushMaster::PushPtrSer( ISerializable* ser )
   unsigned char isNotNULL = 1;
   if( ser == NULL )
     isNotNULL = 0;
-  Push( isNotNULL, true );
+  Push( isNotNULL );
   if( ser )
     ser->Serialize( this );
 }

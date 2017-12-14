@@ -16,7 +16,7 @@ TContainer IMarshallizator::Serialize( ISerializable* pSer )
 {
   mPushMaster.Clear();
   short id = pSer->GetSerializableUniqueID();
-  mPushMaster.Push( id, true );
+  mPushMaster.Push( id );
   pSer->Serialize( &mPushMaster );
   return mPushMaster.GetBuffer();
 }

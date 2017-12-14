@@ -16,19 +16,21 @@ See for more information License.h.
 
 #include "BreakPacket.h"
 #include "TypeDef.h"
+#include "BreakPacketFast.h"
 
 class ISerializable;
 
 class DllExport TPushMaster
 {
-  TBreakPacket mCollectorMember;
+  //TBreakPacket mCollectorMember;
+  TBreakPacketFast mCollectorMember;
 public:
   void Clear();
   TContainer GetBuffer();
 public:
   //bool, unsigned char, char, unsigned short, short, unsigned int, int, float, double
   template<typename T>
-  void Push( T& t, bool copy = false );
+  void Push( T& t );
   //std::string
   void PushStr( std::string& str );
   //ISerializable
@@ -83,9 +85,9 @@ private:
 };
 //------------------------------------------------------------------------
 template<typename T>
-void TPushMaster::Push( T& t, bool copy )
+void TPushMaster::Push( T& t )
 { 
-  mCollectorMember.PushBack((char*)&t, sizeof(T), copy);
+  mCollectorMember.PushBack((char*)&t, sizeof(T));
 }
 //------------------------------------------------------------------------
 template<typename T>

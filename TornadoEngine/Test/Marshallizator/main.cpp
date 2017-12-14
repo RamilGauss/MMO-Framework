@@ -22,6 +22,7 @@ public:
   // handle MyClass packet
   void TestClassHandler( TestClass* p )
   {
+    int a = 0;
   }
   // handle MyClass packet
   void ParamClassHandler( ParamClass* p )
@@ -99,6 +100,14 @@ void Benchmark()
   objSer->vParam.push_back(param);
   objSer->vParam.push_back(param);
   objSer->vParam.push_back(param);
+  objSer->vParam[0].id = 1;
+  objSer->vParam[0].rw = 2;
+  objSer->vParam[0].rx = 3;
+  objSer->vParam[0].ry = 4;
+  objSer->vParam[0].rz = 5;
+  objSer->vParam[0].vx = 6;
+  objSer->vParam[0].vy = 7;
+  objSer->vParam[0].vz = 8;
   TMarshallizator marsh;
   int cnt = 5000000;
   printf("cnt=%d\n", cnt);
@@ -114,7 +123,7 @@ void Benchmark()
 
   start = ht_GetMSCount();
   for( int i = 0 ; i < cnt ; i++ )
-    marsh.DeserializeCallback( &networkPacket, false );
+    marsh.Deserialize( &networkPacket, false );
   end = ht_GetMSCount();
   speed = (float)(end - start)/cnt;
   printf("deser speed = %f\n",speed);
