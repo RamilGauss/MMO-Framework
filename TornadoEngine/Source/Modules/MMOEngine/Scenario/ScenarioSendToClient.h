@@ -100,13 +100,12 @@ namespace nsMMOEngine
       {
         if(Begin()==false)
         {
-          TBreakPacket bpForSave;
-          bpForSave = bp;
+          mBP = bp;
           T h;
           h.id_client = id_client;
-          bpForSave.PushFront((char*)&h, sizeof(h));
+          mBP.PushFront((char*)&h, sizeof(h));
           // пока отослать нельзя, сохранить пакет до момента возможности
-          Context()->SaveBreakPacket(bpForSave);
+          Context()->SaveBreakPacket(mBP);
           continue;
         }
         Send<T>(id_client, bp);

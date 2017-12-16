@@ -196,7 +196,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Sources\BreakPacketFast.cpp"
+				RelativePath=".\Sources\BreakPacketOld.cpp"
 				>
 			</File>
 			<File
@@ -398,7 +398,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Headers\BreakPacketFast.h"
+				RelativePath=".\Headers\BreakPacketOld.h"
 				>
 			</File>
 			<File

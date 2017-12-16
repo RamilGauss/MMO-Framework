@@ -46,6 +46,8 @@ namespace nsMMOEngine
     bool flgGetAnswerFromUp;
     TIP_Port mIP_PortUp;
 
+    TBreakPacket mEncryptBP;
+
     TCallBackRegistrator1<int>               mCallBackDiconnect;
     TCallBackRegistrator1<TDescRecvSession*> mCallBackRecv;
 

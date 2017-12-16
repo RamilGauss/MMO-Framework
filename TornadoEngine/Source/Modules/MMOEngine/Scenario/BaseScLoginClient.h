@@ -13,6 +13,7 @@ See for more information License.h.
 #include "BaseScLoginClient_Struct.h"
 #include "DescCallBack.h"
 #include "MapCallBack.h"
+#include "CryptMITM.h"
 
 namespace nsMMOEngine
 {
@@ -21,6 +22,9 @@ namespace nsMMOEngine
   {
   protected:
     IScenario* mScenario;
+
+    TBreakPacket mBP;
+    TCryptMITM mCryptMITM;
   public:
     TBaseScLoginClient(IScenario* pSc);
     virtual ~TBaseScLoginClient();

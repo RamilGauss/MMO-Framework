@@ -25,7 +25,7 @@ TSerializerPatternConfigItem_Binary::~TSerializerPatternConfigItem_Binary()
 void TSerializerPatternConfigItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
 {
   TPatternConfigItem* pPatternConfigItem = (TPatternConfigItem*)pItem;
-  UnlinkCollect();
+  Reset();
 
   PushType();
   PushStr(pPatternConfigItem->mName);

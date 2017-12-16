@@ -44,24 +44,24 @@ void TScenarioDisconnectClient::Work()
 void TScenarioDisconnectClient::DisconnectFromSlave(unsigned int id_client)
 {
   // формирование пакета
-  TBreakPacket bp;// контейнер для всего пакета
+  mBP.Reset();
   THeaderFromSlave h;
   h.id_client = id_client;
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
   // отослать пакет для попытки авторизации
-  Context()->GetMS()->Send(Context()->GetID_Session(), bp);
+  Context()->GetMS()->Send(Context()->GetID_Session(), mBP);
 }
 //---------------------------------------------------------------
 void TScenarioDisconnectClient::DisconnectFromMaster(vector<unsigned int>& vecID_client)
 {
   // формирование пакета
-  TBreakPacket bp;// контейнер для всего пакета
-  bp.PushFront((char*)&vecID_client[0],vecID_client.size()*sizeof(unsigned int));
+  mBP.Reset();
+  mBP.PushFront((char*)&vecID_client[0],vecID_client.size()*sizeof(unsigned int));
   THeaderFromMaster h;
   h.countID = vecID_client.size();
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
   // отослать пакет для попытки авторизации
-  Context()->GetMS()->Send(Context()->GetID_Session(), bp);
+  Context()->GetMS()->Send(Context()->GetID_Session(), mBP);
 }
 //---------------------------------------------------------------
 void TScenarioDisconnectClient::RecvFromMaster(TDescRecvSession* pDesc)
@@ -79,7 +79,6 @@ void TScenarioDisconnectClient::RecvFromMaster(TDescRecvSession* pDesc)
 void TScenarioDisconnectClient::RecvFromSlave(TDescRecvSession* pDesc)
 {
   THeaderFromSlave* pH = (THeaderFromSlave*)pDesc->data;
-
   NeedContextByClientKey(pH->id_client);
 }
 //---------------------------------------------------------------

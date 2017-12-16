@@ -503,7 +503,7 @@ void TManagerSession::SendKeyRSA_Up(TSession* pSession)
 void TManagerSession::Send(TSession* pSession, TBreakPacket& bp, bool check)
 {
   if(check==true)// TCP
-  if(GetUseCryptTCP())  
+  if( GetUseCryptTCP() )  
   {
     // достать ip и порт
     TIP_Port ip_port;
@@ -515,10 +515,10 @@ void TManagerSession::Send(TSession* pSession, TBreakPacket& bp, bool check)
     TContainer c_encrypt;
     mMngCtxCrypto.Send(ip_port, bp, c_encrypt);
     // создать новый пакет
-    TBreakPacket encrypt_bp;
-    encrypt_bp.PushFront((char*)c_encrypt.GetPtr(), c_encrypt.GetSize());
+    mEncryptBP.Reset();
+    mEncryptBP.PushFront((char*)c_encrypt.GetPtr(), c_encrypt.GetSize());
     // отослать с параметром "шифруется"
-    pSession->Send(encrypt_bp, true, true);
+    pSession->Send(mEncryptBP, true, true);
     return;
   }
   // либо UDP, либо не шифрованный TCP
@@ -535,7 +535,7 @@ bool TManagerSession::GetRSAPublicKey(unsigned int id_session, TContainer& cRSA)
   bool res = false;
   TIP_Port ip_port;
   lockAccessSession();
-  if(mNavigateSession==NULL)
+  if( mNavigateSession == NULL )
   {
     unlockAccessSession();
     return res;

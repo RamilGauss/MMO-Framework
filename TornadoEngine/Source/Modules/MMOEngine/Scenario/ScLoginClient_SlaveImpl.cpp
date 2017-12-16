@@ -113,10 +113,10 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S(TDescRecvSession* pDesc)
   // уведомить Мастера о запросе от клиента
   THeaderClientConnectS2M h;
   h.id_client = Context()->GetClientKey();// указать какой клиент захотел соединиться
-  TBreakPacket bp;
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.Reset();
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionMasterSlave(),bp);
+  Context()->GetMS()->Send(GetID_SessionMasterSlave(), mBP);
   // сохранить информацию о логине и пароле клиента
   char* data   = pDesc->data     + sizeof(THeaderConnectToSlaveC2S);
   int sizeData = pDesc->sizeData - sizeof(THeaderConnectToSlaveC2S);
@@ -148,7 +148,7 @@ void TScLoginClient_SlaveImpl::InfoClientM2S(TDescRecvSession* pDesc)
       return;
     }
   }
-  // Если WasBegin==true - старт уже был, Мастер не дождался Клиент, остановил у себя сценарий
+  // Если WasBegin==true - старт уже был, Мастер не дождался, Клиент остановил у себя сценарий
   // потом Клиент еще раз попытался авторизоваться, а Slave еще его ждет, т.е. это уже
   // вторая попытка войти. Что ж продолжим авторизацию.
 
@@ -158,12 +158,12 @@ void TScLoginClient_SlaveImpl::InfoClientM2S(TDescRecvSession* pDesc)
   
   Context()->SetClientKey(pHeader->id_client);
   // сформировать квитанцию
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderCheckInfoClientS2M h;
   h.id_client = Context()->GetClientKey();
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionMasterSlave(), bp);
+  Context()->GetMS()->Send(GetID_SessionMasterSlave(), mBP);
 }
 //--------------------------------------------------------------
 void TScLoginClient_SlaveImpl::CheckClientConnectM2S(TDescRecvSession* pDesc)
@@ -182,10 +182,10 @@ void TScLoginClient_SlaveImpl::CheckClientConnectM2S(TDescRecvSession* pDesc)
   Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
   // отослать клиенту уведомление
   THeaderCheckConnectToSlaveS2C h;
-  TBreakPacket bp;
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.Reset();
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionClientSlave(),bp);
+  Context()->GetMS()->Send(GetID_SessionClientSlave(), mBP);
   Context()->Accept();
   End();
 }

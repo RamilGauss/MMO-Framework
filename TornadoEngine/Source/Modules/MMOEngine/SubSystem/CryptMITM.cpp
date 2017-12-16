@@ -25,20 +25,20 @@ bool TCryptMITM::Calc(void* rsa, int size_rsa,
   if(crypt_aes.Encrypt(rsa, size_rsa, cAES_RSA)==false)
     return false;
 
-  TBreakPacket bp;
+  mResultBP.Reset();
   // зашифрованный RSA
-  bp.PushFront(cAES_RSA.GetPtr(), cAES_RSA.GetSize());
+  mResultBP.PushFront(cAES_RSA.GetPtr(), cAES_RSA.GetSize());
   // Login
-  bp.PushFront((char*)pLogin, sizeLogin);
+  mResultBP.PushFront((char*)pLogin, sizeLogin);
   // длина логина
   char lenLogin = sizeLogin;
-  bp.PushFront(&lenLogin, sizeof(lenLogin));
+  mResultBP.PushFront(&lenLogin, sizeof(lenLogin));
   // собрать
-  bp.Collect();
+  mResultBP.Collect();
   // отдать собранный пакет
-  c_result.Entrust((char*)bp.GetCollectPtr(), bp.GetSize());
+  c_result.Entrust((char*)mResultBP.GetCollectPtr(), mResultBP.GetSize());
   // отцепиться
-  bp.UnlinkCollect();
+  mResultBP.UnlinkCollect();
   return true;
 }
 //-------------------------------------------------------------------------------------------------------

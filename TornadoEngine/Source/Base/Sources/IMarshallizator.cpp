@@ -1,13 +1,13 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 // Generated file!
-// Изменения будут потеряны. Изменять бессмысленно!
-// Дата создания: XXXXXXXXXXXX
+// РР·РјРµРЅРµРЅРёСЏ Р±СѓРґСѓС‚ РїРѕС‚РµСЂСЏРЅС‹. РР·РјРµРЅСЏС‚СЊ Р±РµСЃСЃРјС‹СЃР»РµРЅРЅРѕ!
+// Р”Р°С‚Р° СЃРѕР·РґР°РЅРёСЏ: XXXXXXXXXXXX
 
 #include "IMarshallizator.h"
 #include "ISerializable.h"

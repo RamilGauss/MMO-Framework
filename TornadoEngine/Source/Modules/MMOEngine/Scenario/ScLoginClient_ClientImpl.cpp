@@ -14,7 +14,6 @@ See for more information License.h.
 #include "EnumMMO.h"
 #include "SrcEvent_ex.h"
 #include "MD5.h"
-#include "CryptMITM.h"
 
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;
@@ -68,20 +67,20 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port, u
   Context()->SetSubNet(subNet);
 
   TContainer cMITM;
-  TBreakPacket bpLP;// контейнер для всего пакета
-  if(Context()->GetMS()->GetUseCryptTCP())
+  // контейнер для всего пакета
+  mBP.Reset();
+  if( Context()->GetMS()->GetUseCryptTCP() )
   {
     // если данные шифруются, то формировать так:
     // получить RSA public key от ManagerSession
     TContainer cRSA;
     bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
     BL_ASSERT(resRSA);
-    TCryptMITM cryptMITM;
-    bool res = cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
+    bool res = mCryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
       pLogin, sizeLogin, pPassword, sizePassword, cMITM);
     BL_ASSERT(res);
 
-    bpLP.PushFront(cMITM.GetPtr(), cMITM.GetSize());
+    mBP.PushFront(cMITM.GetPtr(), cMITM.GetSize());
     // сохранить на будущее
     Context()->Set_L_AES_RSA(cMITM.GetPtr(), cMITM.GetSize());
   }
@@ -89,14 +88,14 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port, u
   {
     // иначе просто отправить данные:
     // формирование пакета
-    bpLP.PushFront((char*)pLogin,    sizeLogin);
-    bpLP.PushFront((char*)pPassword, sizePassword);
+    mBP.PushFront((char*)pLogin,    sizeLogin);
+    mBP.PushFront((char*)pPassword, sizePassword);
   }
   THeaderTryLoginC2M h;
-  bpLP.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
   // отослать пакет для попытки авторизации
-  SetID_SessionClientMaster(Context()->GetMS()->Send(ip, port, bpLP, subNet));
+  SetID_SessionClientMaster(Context()->GetMS()->Send(ip, port, mBP, subNet));
   if(GetID_SessionClientMaster()==INVALID_HANDLE_SESSION)
   {
     // Генерация ошибки
@@ -210,12 +209,12 @@ void TScLoginClient_ClientImpl::InfoSlaveM2C(TDescRecvSession* pDesc)
   EventSetClientKey(pInfoSlave->id_client);
 
   // формируем пакет для Master
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderCheckInfoSlaveC2M h;
   h.id_client = Context()->GetClientKey();// равнозначно - pInfoSlave->id_client;
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionClientMaster(),bp);
+  Context()->GetMS()->Send(GetID_SessionClientMaster(),mBP);
 }
 //--------------------------------------------------------------
 void TScLoginClient_ClientImpl::LeaveQueue()
@@ -224,16 +223,16 @@ void TScLoginClient_ClientImpl::LeaveQueue()
   if(Context()->GetNumInQueue()==0)
     return;
 
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderLeaveQueueC2M h;
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
   unsigned int id_master = GetID_SessionClientMaster();
   if(id_master==INVALID_HANDLE_SESSION)
     return;
 
-  Context()->SetNeedLeaveQueue(true);
-  Context()->GetMS()->Send(id_master,bp);
+  Context()->SetNeedLeaveQueue( true );
+  Context()->GetMS()->Send( id_master, mBP );
 }
 //--------------------------------------------------------------
 void TScLoginClient_ClientImpl::CloseSessionMaster()
@@ -252,22 +251,23 @@ void TScLoginClient_ClientImpl::Disconnect()
     End();
     return;
   }
-  // пере подключить транспорт с мастера на Slave
+  // переподключить транспорт с мастера на Slave
   // формируем пакет для Slave
-  TBreakPacket bp;
+  //TBreakPacket bp;
+  mBP.Reset();
   THeaderConnectToSlaveC2S h;
   // для Slave отдать свой ID, он по нему нас зарегистрирует  
   h.id_client = Context()->GetClientKey();
   // для проверки на надежность нашего канала 
   if(Context()->GetMS()->GetUseCryptTCP())
-    bp.PushFront(Context()->GetPtr_L_AES_RSA(),Context()->GetSize_L_AES_RSA());
-  bp.PushFront((char*)&h, sizeof(h));
+    mBP.PushFront(Context()->GetPtr_L_AES_RSA(),Context()->GetSize_L_AES_RSA());
+  mBP.PushFront((char*)&h, sizeof(h));
   // открыть сессию по IP:port
   TIP_Port ip_port_slave = Context()->GetSlaveIP_Port();
   unsigned int id_slave = 
     Context()->GetMS()->Send(ip_port_slave.ip,
                              ip_port_slave.port,
-                             bp, Context()->GetSubNet());
+                             mBP, Context()->GetSubNet());
   // проверка на наличие готовности Slave
   if(id_slave==INVALID_HANDLE_SESSION)
   {

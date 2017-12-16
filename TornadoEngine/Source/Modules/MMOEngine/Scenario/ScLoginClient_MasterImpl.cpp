@@ -60,12 +60,12 @@ void TScLoginClient_MasterImpl::Work(unsigned int now_ms)
       NeedNumInQueueByClientKey(Context()->GetID_SessionClientMaster());
       Context()->SetTimeLastNeedNumInQueue(now_ms);
 
-      TBreakPacket bp;
+      mBP.Reset();
       THeaderResultLoginM2C h;
       h.result     = THeaderResultLoginM2C::eQueue;
       h.numInQueue = Context()->GetNumInQueue();
-      bp.PushFront((char*)&h, sizeof(h));
-      Context()->GetMS()->Send(GetID_SessionClientMaster(), bp);
+      mBP.PushFront((char*)&h, sizeof(h));
+      Context()->GetMS()->Send(GetID_SessionClientMaster(), mBP);
     }
     return;
   }
@@ -90,11 +90,11 @@ void TScLoginClient_MasterImpl::Reject(void* resForClient, int sizeResClient)
   h.result = THeaderResultLoginM2C::eReject;
   h.sizeResClient = sizeResClient;
 
-  TBreakPacket bp;
-  bp.PushFront((char*)resForClient, sizeResClient);
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.Reset();
+  mBP.PushFront((char*)resForClient, sizeResClient);
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionClientMaster(), bp);
+  Context()->GetMS()->Send(GetID_SessionClientMaster(), mBP);
 
   End();
 }
@@ -124,11 +124,11 @@ void TScLoginClient_MasterImpl::Accept(unsigned int key, void* resForClient, int
   
   Context()->SaveAcceptData(resForClient, sizeResClient);
   // SuperServer
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderRequestM2SS h;
   h.id_client = key;
-  bp.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(GetID_SessionMasterSS(), bp);
+  mBP.PushFront((char*)&h, sizeof(h));
+  Context()->GetMS()->Send(GetID_SessionMasterSS(), mBP);
   // ждем ответ от SuperServer
   SetWaitSS();
 }
@@ -138,12 +138,12 @@ void TScLoginClient_MasterImpl::Queue(int num, void* resForClient, int sizeResCl
   Context()->SetNumInQueue(num);
   Context()->SaveQueueData(resForClient, sizeResClient);
 
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderResultLoginM2C h;
   h.result     = THeaderResultLoginM2C::eQueue;
   h.numInQueue = num;
-  bp.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(GetID_SessionClientMaster(), bp);
+  mBP.PushFront((char*)&h, sizeof(h));
+  Context()->GetMS()->Send(GetID_SessionClientMaster(), mBP);
 }
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::RecvFromClient(TDescRecvSession* pDesc)
@@ -214,11 +214,11 @@ void TScLoginClient_MasterImpl::CheckRequestSS2M(TDescRecvSession* pDesc)
     h.result = THeaderResultLoginM2C::eReject;
     h.sizeResClient = sReject.length();
     
-    TBreakPacket bp;
-    bp.PushFront((char*)sReject.data(), sReject.length());
-    bp.PushFront((char*)&h, sizeof(h));
+    mBP.Reset();
+    mBP.PushFront((char*)sReject.data(), sReject.length());
+    mBP.PushFront((char*)&h, sizeof(h));
 
-    Context()->GetMS()->Send(GetID_SessionClientMaster(), bp);
+    Context()->GetMS()->Send(GetID_SessionClientMaster(), mBP);
     End();
     return;
   }
@@ -302,9 +302,9 @@ void TScLoginClient_MasterImpl::ClientConnectS2M(TDescRecvSession* pDesc)
   // квитанция о запросе
   THeaderCheckClientConnectM2S h;
   h.id_client = pHeader->id_client;
-  TBreakPacket bp;
-  bp.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(GetID_SessionMasterSlave(), bp);
+  mBP.Reset();
+  mBP.PushFront((char*)&h, sizeof(h));
+  Context()->GetMS()->Send(GetID_SessionMasterSlave(), mBP);
 
   // конец сценария
   End();
@@ -328,9 +328,9 @@ void TScLoginClient_MasterImpl::CheckInfoClientS2M(TDescRecvSession* pDesc)
   THeaderInfoSlaveM2C h;
   h.id_client     = Context()->GetClientKey();
   h.ip_port_slave = ip_port_slave;
-  TBreakPacket bp;
-  bp.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(GetID_SessionClientMaster(), bp);
+  mBP.Reset();
+  mBP.PushFront((char*)&h, sizeof(h));
+  Context()->GetMS()->Send(GetID_SessionClientMaster(), mBP);
 }
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::SendResultAccept2ClientAndSlave(unsigned int key, 
@@ -338,20 +338,20 @@ void TScLoginClient_MasterImpl::SendResultAccept2ClientAndSlave(unsigned int key
                                                                 int sizeResClient)
 {
   // Client
-  TBreakPacket bp;
-  bp.PushFront((char*)resForClient, sizeResClient);
+  mBP.Reset();
+  mBP.PushFront((char*)resForClient, sizeResClient);
   THeaderResultLoginM2C hForClient;
   hForClient.id_client     = key;
   hForClient.result        = THeaderResultLoginM2C::eAccept;
   hForClient.sizeResClient = sizeResClient;
-  bp.PushFront((char*)&hForClient, sizeof(hForClient));
-  Context()->GetMS()->Send(GetID_SessionClientMaster(), bp);
-  bp.UnlinkPart();// очистить от частей
+  mBP.PushFront((char*)&hForClient, sizeof(hForClient));
+  Context()->GetMS()->Send(GetID_SessionClientMaster(), mBP);
   // Slave
+  mBP.Reset();// очистить от частей
   THeaderInfoClientM2S hForSlave;
   hForSlave.id_client = key;
-  bp.PushFront((char*)&hForSlave, sizeof(hForSlave));
-  Context()->GetMS()->Send(GetID_SessionMasterSlave(), bp);
+  mBP.PushFront((char*)&hForSlave, sizeof(hForSlave));
+  Context()->GetMS()->Send(GetID_SessionMasterSlave(), mBP);
 
   // ждем ответ от Slave
   SetWaitSlave();
@@ -361,9 +361,9 @@ void TScLoginClient_MasterImpl::Disconnect()
 {
   THeaderDisconnectClientM2S h;
   h.id_client = Context()->GetClientKey();
-  TBreakPacket bp;
-  bp.PushFront((char*)&h,sizeof(h));
-  Context()->GetMS()->Send(GetID_SessionMasterSlave(), bp);
+  mBP.Reset();
+  mBP.PushFront((char*)&h,sizeof(h));
+  Context()->GetMS()->Send(GetID_SessionMasterSlave(), mBP);
   End();
 }
 //--------------------------------------------------------------

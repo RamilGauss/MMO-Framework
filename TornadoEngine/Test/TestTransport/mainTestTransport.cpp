@@ -50,6 +50,8 @@ THandler g_Handler;
 
 int main(int argc, char** argv)
 {
+  TBreakPacket g_BP;
+
   SetCurrentPathByFile(argv[0]);
 
   TInputCmdTestTransport inputCmd;
@@ -94,9 +96,9 @@ int main(int argc, char** argv)
     {
       inputArg.timer_send += 1000;
       char* msg = "1";
-      TBreakPacket bp;
-      bp.PushBack( msg, strlen(msg));
-      g_pTransport->Send(IP, inputArg.port_dst, bp);
+      g_BP.Reset();
+      g_BP.PushBack( msg, strlen(msg));
+      g_pTransport->Send(IP, inputArg.port_dst, g_BP);
     }
 
     TIP_Port** ppFisrt = g_Handler.mListDisc.GetFirst();

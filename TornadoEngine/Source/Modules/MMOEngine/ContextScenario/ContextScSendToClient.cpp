@@ -40,8 +40,6 @@ void TContextScSendToClient::SaveBreakPacket(TBreakPacket& bp)
   bp.UnlinkCollect();
   // отдать на хранение память пакета в контейнер
   pSP->c.EntrustByCount(p, size);
-  // теперь когда память хранится в контейнере добавить в break packet
-  pSP->bp.PushFront(p, size);
 
   mListSave.push_back(pSP);
 }
@@ -59,7 +57,10 @@ void TContextScSendToClient::SendAndRemoveFirst()
   mListSave.pop_front();
 
   unsigned int id_session = GetID_Session();
-  GetMS()->Send(id_session, pSP->bp);
+
+  mBP.Reset();
+  mBP.PushFront( pSP->c.GetPtr(), pSP->c.GetSize());
+  GetMS()->Send( id_session, mBP );
 
   delete pSP;
 }

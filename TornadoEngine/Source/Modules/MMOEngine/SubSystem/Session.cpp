@@ -73,8 +73,8 @@ void TSession::Recv()
 //---------------------------------------------------------------------
 void TSession::SendEcho()
 {
-  TBreakPacket bp;
-  SendData(eEcho, bp);
+  mBP.Reset();
+  SendData(eEcho, mBP);
 }
 //---------------------------------------------------------------------
 void TSession::RefreshLastTime()
@@ -97,19 +97,19 @@ void TSession::Close()
 //---------------------------------------------------------------------
 void TSession::SendKeyRSA(TContainer& c_keyRSA)
 {
-  TBreakPacket bp;
-  bp.PushFront((char*)c_keyRSA.GetPtr(), c_keyRSA.GetSize());
+  mBP.Reset();
+  mBP.PushFront((char*)c_keyRSA.GetPtr(), c_keyRSA.GetSize());
 
-  SendData(eKeyRSA, bp, true);
+  SendData(eKeyRSA, mBP, true);
   RefreshLastTime();
 }
 //---------------------------------------------------------------------
 void TSession::SendKeyAES(TContainer& c_keyAES)
 {
-  TBreakPacket bp;
-  bp.PushFront((char*)c_keyAES.GetPtr(), c_keyAES.GetSize());
+  mBP.Reset();
+  mBP.PushFront((char*)c_keyAES.GetPtr(), c_keyAES.GetSize());
 
-  SendData(eKeyAES, bp, true);
+  SendData(eKeyAES, mBP, true);
   RefreshLastTime();
 }
 //---------------------------------------------------------------------

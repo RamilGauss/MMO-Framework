@@ -25,7 +25,7 @@ TSerializerMapItem_Binary::~TSerializerMapItem_Binary()
 void TSerializerMapItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
 {
   TMapItem* pMapItem = (TMapItem*)pItem;
-  UnlinkCollect();
+  Reset();
 
   PushType();
   PushStr(pMapItem->mName);

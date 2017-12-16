@@ -14,6 +14,7 @@ See for more information License.h.
 #include "CallBackRegistrator.h"
 
 #include "MapCallBack.h"
+#include "CryptMITM.h"
 
 namespace nsMMOEngine
 {
@@ -29,6 +30,9 @@ namespace nsMMOEngine
     unsigned char mType;
   protected:
     IContextScenario* mCurContext;
+  protected:
+    TBreakPacket mBP;
+    TCryptMITM mCryptMITM;
   public:
     // типы CallBack
     enum

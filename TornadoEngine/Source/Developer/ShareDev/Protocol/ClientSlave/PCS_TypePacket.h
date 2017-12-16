@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
+#include "BreakPacket.h"
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -50,6 +51,8 @@ namespace nsPCS
   class DllExport TBasePacket_PCS
   {
     unsigned char mType;
+  protected:
+    TBreakPacket mBP;
   public:
     TBasePacket_PCS(unsigned char _type);
 

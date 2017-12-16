@@ -8,6 +8,8 @@ See for more information License.h.
 #ifndef ICONTEXT_SCENARIO_H
 #define ICONTEXT_SCENARIO_H
 
+#include "BreakPacket.h"
+
 class TSrcEvent;
 namespace nsMMOEngine
 {
@@ -23,6 +25,8 @@ namespace nsMMOEngine
     TSrcEvent*         mSrcEvent;
 
     IScenario* mScenario;
+  protected:
+    TBreakPacket mBP;
   public:
     IContextScenario();
     virtual ~IContextScenario();

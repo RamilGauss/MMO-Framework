@@ -11,6 +11,7 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "ContainerTypes.h"
 #include "BreakPacket.h"
+#include <string>
 
 struct TBaseItem;
 
@@ -38,12 +39,12 @@ public:
   static bool ResolveType(void* pIn, int sizeIn, int& type);
 protected:
   // базовые операции
-  void UnlinkCollect();
+  void Reset();
 
   template <typename T>
   void Push(T v);
   template <typename T>
-  void Push(T* pT, bool copyData = false);
+  void Push(T* pT);
 
   template <typename T>
   bool Pop(T& t);
@@ -63,13 +64,13 @@ protected:
 template <typename T>
 void TBaseSerializerItem_Binary::Push(T t)
 {
-  mCollect.PushBack((char*)&t, sizeof(T), true);
+  mCollect.PushBack((char*)&t, sizeof(T));
 }
 //------------------------------------------------------------------------------
 template <typename T>
-void TBaseSerializerItem_Binary::Push(T* pT, bool copyData)
+void TBaseSerializerItem_Binary::Push(T* pT)
 {
-  mCollect.PushBack((char*)pT, sizeof(T), copyData);
+  mCollect.PushBack((char*)pT, sizeof(T));
 }
 //------------------------------------------------------------------------------
 template <typename T>

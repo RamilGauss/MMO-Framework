@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -21,16 +21,16 @@ protected:
 
   short mID;
 
-  // минимальный размер сериализованного контейнера, при котором используется компрессия LZ4
+  // РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ СЃРµСЂРёР°Р»РёР·РѕРІР°РЅРЅРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР°, РїСЂРё РєРѕС‚РѕСЂРѕРј РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РєРѕРјРїСЂРµСЃСЃРёСЏ LZ4
   int mMinSizeUseLZ4;
 public:
   TContainer Serialize( ISerializable* pSer );
-  // newObject - возвращаемый объект создан new, не забудь вызвать delete!
+  // newObject - РІРѕР·РІСЂР°С‰Р°РµРјС‹Р№ РѕР±СЉРµРєС‚ СЃРѕР·РґР°РЅ new, РЅРµ Р·Р°Р±СѓРґСЊ РІС‹Р·РІР°С‚СЊ delete!
   ISerializable* Deserialize( TContainer* pContainer, bool newObject );
 
-  // При десериализации будет вызван соответсвующий callback
-  // Warning! Если использовать этот метод, то другим программистам будет сложно отследить логику программы.
-  // Использовать только если без этого никак.
+  // РџСЂРё РґРµСЃРµСЂРёР°Р»РёР·Р°С†РёРё Р±СѓРґРµС‚ РІС‹Р·РІР°РЅ СЃРѕРѕС‚РІРµС‚СЃРІСѓСЋС‰РёР№ callback
+  // Warning! Р•СЃР»Рё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌС‚РѕС‚ РјРµС‚РѕРґ, С‚Рѕ РґСЂСѓРіРёРј РїСЂРѕРіСЂР°РјРјРёСЃС‚Р°Рј Р±СѓРґРµС‚ СЃР»РѕР¶РЅРѕ РѕС‚СЃР»РµРґРёС‚СЊ Р»РѕРіРёРєСѓ РїСЂРѕРіСЂР°РјРјС‹.
+  // РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РµСЃР»Рё Р±РµР· СЌС‚РѕРіРѕ РЅРёРєР°Рє.
   void DeserializeCallback( TContainer* pContainer, bool newObject );
 protected:
   virtual ISerializable* PrivateDeserialize( TContainer* pContainer, bool newObject, bool useCallback ) = 0;
@@ -43,7 +43,7 @@ template<typename T>
 ISerializable* IMarshallizator::CommonDeserialize( bool newObject, TCallBackRegistrator1<T*>* pCB, T* pObj, bool useCallback )
 {
   if( useCallback && pCB->RegisteredCount()==0 )
-    return pObj;// нет потребителя события
+    return pObj;// РЅРµС‚ РїРѕС‚СЂРµР±РёС‚РµР»СЏ СЃРѕР±С‹С‚РёСЏ
 
   if( newObject )
     pObj = new T();

@@ -64,10 +64,10 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       // получили пакет от Slave с id_client
       std::list<unsigned int> l_id;
       l_id.push_front(boost::lexical_cast<int>(s));
-      TBreakPacket bp;
+      mBP.Reset();
       char* sMsgFromMaster = "Master say hello!";
-      bp.PushFront(sMsgFromMaster, strlen(sMsgFromMaster));
-      pMaster->SendByClientKey(l_id, bp);
+      mBP.PushFront(sMsgFromMaster, strlen(sMsgFromMaster));
+      pMaster->SendByClientKey(l_id, mBP);
     }
       break;
     case nsMMOEngine::eRecvFromUp:

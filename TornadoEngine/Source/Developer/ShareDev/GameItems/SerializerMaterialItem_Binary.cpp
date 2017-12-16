@@ -24,7 +24,7 @@ TSerializerMaterialItem_Binary::~TSerializerMaterialItem_Binary()
 void TSerializerMaterialItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
 {
   TMaterialItem* pMaterialItem = (TMaterialItem*)pItem;
-  UnlinkCollect();
+  Reset();
 
   PushType();
   PushStr(pMaterialItem->mName);

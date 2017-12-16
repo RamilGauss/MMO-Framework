@@ -12,6 +12,7 @@ See for more information License.h.
 
 class THandlerMMO_Slave : public THandlerMMO
 {
+  TBreakPacket mBP;
 public:
   THandlerMMO_Slave();
 protected:

@@ -33,6 +33,8 @@ namespace nsMMOEngine
     TIP_Port mIP_Port;
     unsigned int mLastTimeActive;
     INetTransport* mTransport;
+
+    TBreakPacket mBP;
   protected:
     friend class TManagerSession;
 

@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include "IContextScenario.h"
 #include "BreakPacket.h"
+#include <list>
 
 namespace nsMMOEngine
 {
@@ -18,7 +19,6 @@ namespace nsMMOEngine
   {
     struct TSavePacket
     {
-      TBreakPacket bp;
       TContainer c;
     };
 

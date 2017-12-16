@@ -9,10 +9,11 @@ See for more information License.h.
 #define CryptMITM_H
 
 #include "ContainerTypes.h"
-
+#include "BreakPacket.h"
 
 class TCryptMITM
 {
+  TBreakPacket mResultBP;
 public:
   bool Calc(void* rsa, int size_rsa, 
             void* pLogin, int sizeLogin,        

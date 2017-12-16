@@ -11,8 +11,8 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
-
-TBaseServer::TBaseServer()
+TBaseServer::TBaseServer():
+mCryptMITM(new TCryptMITM)
 {
 
 }
@@ -30,9 +30,8 @@ bool TBaseServer::IsSessionSecurity(unsigned int id_session, void* crypt, int si
   if( mManagerSession->GetRSAPublicKey(id_session, cRSA)==false )
     return false;
 
-  TCryptMITM cryptMITM;
   TContainer cMITM;
-  if( cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
+  if( mCryptMITM->Calc(cRSA.GetPtr(), cRSA.GetSize(),
     pLogin, sizeLogin, pPassword, sizePassword, cMITM)==false )
     return false;
   // сравнить по размеру

@@ -122,12 +122,12 @@ void TScRecommutationClient_SlaveImpl::BeginDonor(TDescRecvSession* pDesc)
     return;    
   }
   // сформировать пакет далее для Клиента
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderBeginClient h;
   h.id_client = Context()->GetClientKey();
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionClientSlave(), bp);
+  Context()->GetMS()->Send(GetID_SessionClientSlave(), mBP);
 
   SetTimeWaitForNow();
 }
@@ -144,14 +144,14 @@ void TScRecommutationClient_SlaveImpl::InfoRecipientToDonor(TDescRecvSession* pD
     return;
   }
   //--------------------------------------------
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderInfoRecipientToClient h;
   h.id_client         = pHeader->id_client;
   h.ip_port_recipient = pHeader->ip_port_recipient;
   h.random_num        = pHeader->random_num;
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionClientSlave(), bp);
+  Context()->GetMS()->Send(GetID_SessionClientSlave(), mBP);
 
   SetTimeWaitForNow();
 }
@@ -186,12 +186,12 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient(TDescRecvSession* pDesc)
   Context()->SaveContextData(pDesc->data + sizeof(THeaderBeginRecipient), 
                              pDesc->sizeData - sizeof(THeaderBeginRecipient));
   // сформировать пакет далее для Мастера
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderCheckBeginRecipient h;
   h.id_client = Context()->GetClientKey();
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionMasterSlave(), bp);
+  Context()->GetMS()->Send(GetID_SessionMasterSlave(), mBP);
 
   SetTimeWaitForNow();
 }
@@ -258,20 +258,20 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
   // запомнить сессию
   SetID_SessionClientSlave(pDesc->id_session);
   // Клиенту
-  TBreakPacket bpClient;
+  mBP.Reset();
   THeaderCheckRequestConnect hClient;
   hClient.id_client = Context()->GetClientKey();
-  bpClient.PushFront((char*)&hClient, sizeof(hClient));
+  mBP.PushFront((char*)&hClient, sizeof(hClient));
 
-  Context()->GetMS()->Send(GetID_SessionClientSlave(), bpClient);
+  Context()->GetMS()->Send(GetID_SessionClientSlave(), mBP);
 
   // Мастеру
-  TBreakPacket bpMaster;
+  mBP.Reset();
   THeaderClientConnect hMaster;
   hMaster.id_client = Context()->GetClientKey();
-  bpMaster.PushFront((char*)&hMaster, sizeof(hMaster));
+  mBP.PushFront((char*)&hMaster, sizeof(hMaster));
 
-  Context()->GetMS()->Send(GetID_SessionMasterSlave(), bpMaster);
+  Context()->GetMS()->Send(GetID_SessionMasterSlave(), mBP);
   // разработчику
   TEventRestoreContext* pEvent = new TEventRestoreContext;
   pEvent->id_session = pDesc->id_session;
@@ -283,14 +283,14 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
 //--------------------------------------------------------------
 void TScRecommutationClient_SlaveImpl::SaveContext(void* data, int size)
 {
-  TBreakPacket bp;
-  if(data && size)
-    bp.PushFront((char*)data, size);
+  mBP.Reset();
+  if( data && size )
+    mBP.PushFront((char*)data, size);
 
   THeaderCheckBeginDonor h;
-  h.id_client   = Context()->GetClientKey();
-  bp.PushFront((char*)&h, sizeof(h));
+  h.id_client = Context()->GetClientKey();
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionMasterSlave(), bp);
+  Context()->GetMS()->Send(GetID_SessionMasterSlave(), mBP);
 }
 //--------------------------------------------------------------

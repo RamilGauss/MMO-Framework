@@ -14,6 +14,8 @@ See for more information License.h.
 class THandlerMMO_Master : public THandlerMMO
 {
   std::list<unsigned int> mListClient;
+
+  TBreakPacket mBP;
 public:
   THandlerMMO_Master();
 protected:

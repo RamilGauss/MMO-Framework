@@ -12,7 +12,6 @@ See for more information License.h.
 #include "HiTimer.h"
 #include "Events.h"
 #include "EnumMMO.h"
-#include "CryptMITM.h"
 
 #include "SrcEvent_ex.h"
 
@@ -40,7 +39,7 @@ void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port,
   // закрыть соединение
   Context()->GetMS()->CloseSession(Context()->GetID_Session());
   TContainer cMITM;
-  TBreakPacket bp;
+  mBP.Reset();
   if((Context()->GetMS()->GetUseCryptTCP())&&
      (pLogin!=NULL)&&(sizeLogin>0)&&(pPassword!=NULL)&&(sizePassword>0))
   {
@@ -48,17 +47,16 @@ void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port,
     TContainer cRSA;
     bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
     BL_ASSERT(resRSA);
-    TCryptMITM cryptMITM;
-    bool res = cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
+    bool res = mCryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
       pLogin, sizeLogin, pPassword, sizePassword, cMITM);
     BL_ASSERT(res);
 
-    bp.PushFront(cMITM.GetPtr(), cMITM.GetSize());
+    mBP.PushFront(cMITM.GetPtr(), cMITM.GetSize());
   }
   THeaderFromSlave h;
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->SetID_Session( Context()->GetMS()->Send(ip, port, bp, subNet) );
+  Context()->SetID_Session( Context()->GetMS()->Send(ip, port, mBP, subNet) );
   if(Context()->GetID_Session()==INVALID_HANDLE_SESSION)
   {
     // Генерация ошибки
@@ -113,10 +111,10 @@ void TScenarioLoginSlave::RecvFromSlave(TDescRecvSession* pDesc)
   pEvent->c.SetData(data,sizeData);
   Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
 
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderAnswerMaster h;
-  bp.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(Context()->GetID_Session(), bp);
+  mBP.PushFront((char*)&h, sizeof(h));
+  Context()->GetMS()->Send(Context()->GetID_Session(), mBP);
 
   End();
 }

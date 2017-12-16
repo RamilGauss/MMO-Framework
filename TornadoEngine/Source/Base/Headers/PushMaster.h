@@ -16,14 +16,12 @@ See for more information License.h.
 
 #include "BreakPacket.h"
 #include "TypeDef.h"
-#include "BreakPacketFast.h"
 
 class ISerializable;
 
 class DllExport TPushMaster
 {
-  //TBreakPacket mCollectorMember;
-  TBreakPacketFast mCollectorMember;
+  TBreakPacket mCollectorMember;
 public:
   void Clear();
   TContainer GetBuffer();

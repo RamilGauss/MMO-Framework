@@ -84,12 +84,12 @@ void TScRecommutationClient_ClientImpl::BeginClient(TDescRecvSession* pDesc)
     return;    
   }
   // сформировать пакет далее для Slave
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderCheckBeginClient h;
   h.id_client = Context()->GetClientKey();
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionClientSlave(), bp);
+  Context()->GetMS()->Send(GetID_SessionClientSlave(), mBP);
 }
 //--------------------------------------------------------------
 void TScRecommutationClient_ClientImpl::InfoRecipientToClient(TDescRecvSession* pDesc)
@@ -99,12 +99,12 @@ void TScRecommutationClient_ClientImpl::InfoRecipientToClient(TDescRecvSession* 
   // запомнить число, пригодится при запросе к реципиенту
   Context()->SetRandomNum(pHeader->random_num);
   // сформировать пакет далее для Slave
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderCheckInfoRecipient h;
   h.id_client = Context()->GetClientKey();
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->GetMS()->Send(GetID_SessionClientSlave(), bp);
+  Context()->GetMS()->Send(GetID_SessionClientSlave(), mBP);
   // ждем дисконнекта
 }
 //--------------------------------------------------------------
@@ -115,17 +115,17 @@ void TScRecommutationClient_ClientImpl::CheckRequestConnect(TDescRecvSession* pD
 //--------------------------------------------------------------
 void TScRecommutationClient_ClientImpl::DisconnectClient(unsigned char subNet)
 {
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderRequestConnect h;
   h.id_client  = Context()->GetClientKey();
   h.random_num = Context()->GetRandomNum();
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
   TIP_Port ip_port_recipient;
   Context()->GetIP_PortRecipient(ip_port_recipient);
 
   unsigned int id_session_recipient = 
-    Context()->GetMS()->Send(ip_port_recipient.ip, ip_port_recipient.port, bp, subNet);
+    Context()->GetMS()->Send(ip_port_recipient.ip, ip_port_recipient.port, mBP, subNet);
   // подсоединились?
   if(id_session_recipient==INVALID_HANDLE_SESSION)
   {

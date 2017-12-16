@@ -10,15 +10,15 @@ See for more information License.h.
 
 #include "IContextScenario.h"
 #include "BreakPacket.h"
+#include <list>
 
 namespace nsMMOEngine
 {
-  // сценарии, содержащиеся в контейнере взаимно блокируются
+  // сценарии, содержащиеся в контейнере, взаимно блокируются
   class TContextScFlow : public IContextScenario
   {
     struct TSavePacket
     {
-      TBreakPacket bp;
       bool check;
       TContainer c;
     };

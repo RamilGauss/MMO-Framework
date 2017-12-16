@@ -8,73 +8,47 @@ See for more information License.h.
 #ifndef BreakPacketH
 #define BreakPacketH
 
-#include <list>
-
 #include "TypeDef.h"
 #include "ContainerTypes.h"
 
-/*
-  Разбитый на части пакет. Например, когда нужно добавлять на каждом уровне 
-  иерархии новый заголовок, вместо выделения новой памяти (+ размер заголовка)и копирования
-  туда данных, можно накапливать данные, а на последнем этапе агрегировать данные в пакет.
-*/
+// Разбитый на части пакет. Например, когда нужно добавлять на каждом уровне иерархии новый заголовок.
+// РЕКОМЕНДАЦИИ по использованию:
+// НЕ использовать на стеке, тяжелый конструктор.
+// Лучше не копировать объект.
+// После внесения внутрь, менять внесенные переменные снаружи бессмысленно, внутри буфера они не поменяются.
 
 class DllExport TBreakPacket
 {
-protected:
-  struct DllExport TDescContainer
-  {
-    typedef enum{eContainer, eContainerPtr}TypeContainer;
-    TypeContainer type;
-    IContainer* pC;
-    TDescContainer(){pC=NULL;}
-    void Init(TypeContainer t)
-    {
-      type = t;
-      if(type==eContainer)
-        pC = new TContainer;
-      else
-        pC = new TContainerPtr;
-    }
-  };
-  typedef std::list<TDescContainer*> TListPtrDescContainer;
-  typedef TListPtrDescContainer::iterator TListPtrDescContainerIt;
+  int mSizeBuffer;
 
-protected:
-  TListPtrDescContainer mList;
+  TContainer mBackBuffer;
+  int mBackOffset;
 
-  TListPtrDescContainer mCacheContainerList;
-  TListPtrDescContainer mCacheContainerPtrList;
+  TContainer mFrontBuffer;
+  int mFrontOffset;
 
   TContainer mCollect;
 public:
-  TBreakPacket();
+  TBreakPacket( int sizeBuffer = 0xFFFF );
   TBreakPacket(const TBreakPacket& bp);
   virtual ~TBreakPacket();
 
-  // добавить кусок памяти
-  // copyData=true - например если в цикле используется стековая переменная
-  void PushBack( char* p, int size, bool copyData = false);
-  void PushFront( char* p, int size, bool copyData = false);
-  // собрать кусочки в одно целое (копированием), 
+  // копировать кусок памяти
+  void PushBack(char* p,int size);
+  void PushFront(char* p,int size);
+  // собрать кусочки в одно целое
   // теперь можно получить указатель на собранный пакет через GetPtr
-  // если кол-во частей равно 1, то сборки не будет.
   void Collect();
   void* GetCollectPtr();
   int GetSize();
 
-  void UnlinkPart();
+  // отцепиться от памяти под собранный пакет
   void UnlinkCollect();
+  void Reset();
 
   TBreakPacket& operator =( const TBreakPacket& b );
 protected:
-  TDescContainer* PushData(char* p,int size, bool copyData);
   void CopyFrom(const TBreakPacket& bp);
-
-  TDescContainer* GetDescContainer( bool copyData );
-  TDescContainer* FindInCache( bool copyData );
-  void AddInCache( TDescContainer* pDesc );
-  void DeleteCache();
 };
 
 

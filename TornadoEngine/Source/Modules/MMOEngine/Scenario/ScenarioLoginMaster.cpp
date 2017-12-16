@@ -11,8 +11,6 @@ See for more information License.h.
 #include "ManagerSession.h"
 #include "Events.h"
 #include "EnumMMO.h"
-#include "CryptMITM.h"
-#include "MD5.h"
 #include "SrcEvent_ex.h"
 
 using namespace nsMMOEngine;
@@ -45,7 +43,7 @@ void TScenarioLoginMaster::ConnectToSuperServer(unsigned int ip, unsigned short 
   Context()->GetMS()->CloseSession(Context()->GetID_Session());
   // создать пакет
   TContainer cMITM;
-  TBreakPacket bp;
+  mBP.Reset();
   if((Context()->GetMS()->GetUseCryptTCP())&&
      (pLogin!=NULL)&&(sizeLogin>0)&&(pPassword!=NULL)&&(sizePassword>0))
   {
@@ -53,17 +51,17 @@ void TScenarioLoginMaster::ConnectToSuperServer(unsigned int ip, unsigned short 
     TContainer cRSA;
     bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
     BL_ASSERT(resRSA);
-    TCryptMITM cryptMITM;
-    bool res = cryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
+    //TCryptMITM cryptMITM;
+    bool res = mCryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
       pLogin, sizeLogin, pPassword, sizePassword, cMITM);
     BL_ASSERT(res);
 
-    bp.PushFront(cMITM.GetPtr(), cMITM.GetSize());
+    mBP.PushFront(cMITM.GetPtr(), cMITM.GetSize());
   }
   THeaderFromMaster h;
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->SetID_Session( Context()->GetMS()->Send(ip, port, bp, subNet));
+  Context()->SetID_Session( Context()->GetMS()->Send(ip, port, mBP, subNet));
   if(Context()->GetID_Session()==INVALID_HANDLE_SESSION)
   {
     // Генерация ошибки
@@ -118,10 +116,10 @@ void TScenarioLoginMaster::RecvFromMaster(TDescRecvSession* pDesc)
   pEvent->c.SetDataByCount(data,sizeData);
   Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
 
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderAnswerFromSS h;
-  bp.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(Context()->GetID_Session(), bp);
+  mBP.PushFront((char*)&h, sizeof(h));
+  Context()->GetMS()->Send(Context()->GetID_Session(), mBP);
   End();
 }
 //-------------------------------------------------------------------------------------

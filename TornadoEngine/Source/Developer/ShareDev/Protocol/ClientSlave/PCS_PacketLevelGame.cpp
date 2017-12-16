@@ -225,13 +225,13 @@ TPacket_EnableGameObjects::TPacket_EnableGameObjects() : TBasePacket_PCS(ePacket
 TContainer TPacket_EnableGameObjects::PackInherit()
 {
   TContainer result;
-  TBreakPacket bp;
+  mBP.Reset();
   BOOST_FOREACH( TypeID_GameMap& id, mVectorID_Object )
-    bp.PushBack( (char*)&id, sizeof(TypeID_GameMap));
+    mBP.PushBack( (char*)&id, sizeof(TypeID_GameMap));
 
-  bp.Collect();
-  result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
-  bp.UnlinkCollect();
+  mBP.Collect();
+  result.SetData( (char*)mBP.GetCollectPtr(), mBP.GetSize() );
+  mBP.UnlinkCollect();
   return result;
 }
 //-----------------------------------------------------------------
@@ -262,13 +262,13 @@ TPacket_DisableGameObjects::TPacket_DisableGameObjects() : TBasePacket_PCS(ePack
 TContainer TPacket_DisableGameObjects::PackInherit()
 {
   TContainer result;
-  TBreakPacket bp;
+  mBP.Reset();
   BOOST_FOREACH( TypeID_GameMap& id, mVectorID_Object)
-    bp.PushBack( (char*)&id, sizeof(TypeID_GameMap));
+    mBP.PushBack( (char*)&id, sizeof(TypeID_GameMap));
 
-  bp.Collect();
-  result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
-  bp.UnlinkCollect();
+  mBP.Collect();
+  result.SetData( (char*)mBP.GetCollectPtr(), mBP.GetSize() );
+  mBP.UnlinkCollect();
   return result;
 }
 //-----------------------------------------------------------------
@@ -298,21 +298,21 @@ TPacket_AddGameItem::TPacket_AddGameItem() : TBasePacket_PCS(ePacket_AddGameItem
 //-----------------------------------------------------------------
 TContainer TPacket_AddGameItem::PackInherit()
 {
-  TBreakPacket bp;
-  bp.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
+  mBP.Reset();
+  mBP.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
 
   TypeSizeNameFGIObject sizeName = mNameObject.length();
-  bp.PushBack( (char*)&sizeName, sizeof(TypeSizeNameFGIObject));
-  bp.PushBack( (char*)mNameObject.data(), sizeName);
+  mBP.PushBack( (char*)&sizeName, sizeof(TypeSizeNameFGIObject));
+  mBP.PushBack( (char*)mNameObject.data(), sizeName);
 
   TypeSizeDescFGIObject sizeDesc = mDesc.GetSize();
-  bp.PushBack( (char*)&sizeDesc, sizeof(TypeSizeDescFGIObject));
-  bp.PushBack( (char*)mDesc.GetPtr(), sizeDesc);
+  mBP.PushBack( (char*)&sizeDesc, sizeof(TypeSizeDescFGIObject));
+  mBP.PushBack( (char*)mDesc.GetPtr(), sizeDesc);
 
-  bp.Collect();
+  mBP.Collect();
   TContainer result;
-  result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
-  bp.UnlinkCollect();
+  result.SetData( (char*)mBP.GetCollectPtr(), mBP.GetSize() );
+  mBP.UnlinkCollect();
   return result;
 }
 //-----------------------------------------------------------------
@@ -376,21 +376,21 @@ TPacket_ModifyGameItem::TPacket_ModifyGameItem() : TBasePacket_PCS(ePacket_Modif
 //-----------------------------------------------------------------
 TContainer TPacket_ModifyGameItem::PackInherit()
 {
-  TBreakPacket bp;
-  bp.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
+  mBP.Reset();
+  mBP.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
 
   TypeSizeNameFGIObject sizeName = mNameObject.length();
-  bp.PushBack( (char*)&sizeName, sizeof(TypeSizeNameFGIObject));
-  bp.PushBack( (char*)mNameObject.data(), sizeName);
+  mBP.PushBack( (char*)&sizeName, sizeof(TypeSizeNameFGIObject));
+  mBP.PushBack( (char*)mNameObject.data(), sizeName);
 
   TypeSizeDescFGIObject sizeDesc = mDesc.GetSize();
-  bp.PushBack( (char*)&sizeDesc, sizeof(TypeSizeDescFGIObject));
-  bp.PushBack( (char*)mDesc.GetPtr(), sizeDesc);
+  mBP.PushBack( (char*)&sizeDesc, sizeof(TypeSizeDescFGIObject));
+  mBP.PushBack( (char*)mDesc.GetPtr(), sizeDesc);
 
-  bp.Collect();
+  mBP.Collect();
   TContainer result;
-  result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
-  bp.UnlinkCollect();
+  result.SetData( (char*)mBP.GetCollectPtr(), mBP.GetSize() );
+  mBP.UnlinkCollect();
   return result;
 }
 //-----------------------------------------------------------------
@@ -454,17 +454,17 @@ TPacket_DeleteGameItem::TPacket_DeleteGameItem() : TBasePacket_PCS(ePacket_Delet
 //-----------------------------------------------------------------
 TContainer TPacket_DeleteGameItem::PackInherit()
 {
-  TBreakPacket bp;
-  bp.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
+  mBP.Reset();
+  mBP.PushBack( (char*)&mTypeFGIObject, sizeof(TypeFGIObject));
 
   TypeSizeNameFGIObject sizeName = mNameObject.length();
-  bp.PushBack( (char*)&sizeName, sizeof(TypeSizeNameFGIObject));
-  bp.PushBack( (char*)mNameObject.data(), sizeName);
+  mBP.PushBack( (char*)&sizeName, sizeof(TypeSizeNameFGIObject));
+  mBP.PushBack( (char*)mNameObject.data(), sizeName);
 
-  bp.Collect();
+  mBP.Collect();
   TContainer result;
-  result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
-  bp.UnlinkCollect();
+  result.SetData( (char*)mBP.GetCollectPtr(), mBP.GetSize() );
+  mBP.UnlinkCollect();
   return result;
 }
 //-----------------------------------------------------------------
@@ -512,17 +512,17 @@ TPacket_UpdateGameObjectByPattern::TPacket_UpdateGameObjectByPattern() : TBasePa
 TContainer TPacket_UpdateGameObjectByPattern::PackInherit()
 {
   TContainer result;
-  TBreakPacket bp;
+  mBP.Reset();
   BOOST_FOREACH( TDescCorrection& desc,  mVector )
   {
-    bp.PushBack( (char*)&(desc.mID_Object), sizeof(TypeID_GameMap));
+    mBP.PushBack( (char*)&(desc.mID_Object), sizeof(TypeID_GameMap));
     TypeSizeParameter sizeParameter = desc.mParameter.GetSize();
-    bp.PushBack( (char*)&sizeParameter, sizeof(TypeSizeParameter), true);
-    bp.PushBack( (char*)desc.mParameter.GetPtr(), sizeParameter);
+    mBP.PushBack( (char*)&sizeParameter, sizeof(TypeSizeParameter));
+    mBP.PushBack( (char*)desc.mParameter.GetPtr(), sizeParameter);
   }
-  bp.Collect();
-  result.SetData( (char*)bp.GetCollectPtr(), bp.GetSize() );
-  bp.UnlinkCollect();
+  mBP.Collect();
+  result.SetData( (char*)mBP.GetCollectPtr(), mBP.GetSize() );
+  mBP.UnlinkCollect();
   return result;
 }
 //-----------------------------------------------------------------

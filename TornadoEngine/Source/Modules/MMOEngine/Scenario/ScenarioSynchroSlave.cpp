@@ -22,11 +22,11 @@ TScenarioSynchroSlave::~TScenarioSynchroSlave()
 //---------------------------------------------------------------------
 void TScenarioSynchroSlave::SendSynchro(int loadProcent)
 {
-  TBreakPacket bp;
+  mBP.Reset();
   THeaderSynchroSlave h;
   h.loadProcent = loadProcent;
-  bp.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(Context()->GetID_Session(), bp);
+  mBP.PushFront((char*)&h, sizeof(h));
+  Context()->GetMS()->Send(Context()->GetID_Session(), mBP);
 }
 //---------------------------------------------------------------------
 void TScenarioSynchroSlave::Recv(TDescRecvSession* pDesc)

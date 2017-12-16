@@ -105,7 +105,7 @@ void TManagerContextCrypto::Send(TIP_Port& ip_port, TBreakPacket& bp, TContainer
   c_original.EntrustByCount((char*)bp.GetCollectPtr(), bp.GetSize());
   // освободить break packet от памяти
   bp.UnlinkCollect();
-  bp.UnlinkPart();
+  bp.Reset();
 
   Encrypt(pCtx->GetAES(), c_original, c_encrypt);
 }

@@ -25,7 +25,7 @@ TSerializerTerrainItem_Binary::~TSerializerTerrainItem_Binary()
 void TSerializerTerrainItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
 {
   TTerrainItem* pTerrainItem = (TTerrainItem*)pItem;
-  UnlinkCollect();
+  Reset();
 
   PushType();
   PushStr(pTerrainItem->mName);

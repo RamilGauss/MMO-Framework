@@ -36,11 +36,11 @@ void THandlerMMO_Slave::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       unsigned int id_client;
       bool res = pSlave->FindClientKeyBySession(
         ((nsMMOEngine::TEventConnectDown*)pBE)->id_session, id_client);
-      TBreakPacket bp;
+      mBP.Reset();
       char s[100];
       sprintf(s,"%d",id_client);
-      bp.PushFront(s, strlen(s));
-      pSlave->SendUp(bp);
+      mBP.PushFront(s, strlen(s));
+      pSlave->SendUp(mBP);
       // при авторизации клиента выставить нагрузку
       pSlave->SetLoad(40);
     }

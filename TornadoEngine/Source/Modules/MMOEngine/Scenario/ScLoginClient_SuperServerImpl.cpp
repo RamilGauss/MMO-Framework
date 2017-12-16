@@ -65,13 +65,13 @@ void TScLoginClient_SuperServerImpl::RequestM2SS(TDescRecvSession* pDesc)
     {BL_FIX_BUG();}
   End();
   // формирование пакета
-  TBreakPacket bp;// контейнер для всего пакета
+  mBP.Reset();
   THeaderCheckRequestSS2M h;
   h.id_client       = pRequest->id_client;
   h.isExistInSystem = isExist;
-  bp.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront((char*)&h, sizeof(h));
   // отослать пакет для попытки авторизации
-  Context()->GetMS()->Send(id_session_master, bp);
+  Context()->GetMS()->Send(id_session_master, mBP);
 }
 //--------------------------------------------------------------
 void TScLoginClient_SuperServerImpl::SetFakeClient(bool val)

@@ -44,8 +44,6 @@ void TContextScFlow::SaveBreakPacket(TBreakPacket& bp, bool check)
   bp.UnlinkCollect();
   // отдать на хранение память пакета в контейнер
   pSP->c.EntrustByCount(p, size);
-  // теперь когда память хранится в контейнере добавить в break packet
-  pSP->bp.PushFront(p, size);
   pSP->check = check;
 
   mListSave.push_back(pSP);
@@ -62,7 +60,10 @@ void TContextScFlow::SendAndRemoveFirst()
 
   TSavePacket* pSP = mListSave.front();
   mListSave.pop_front();
-  Send(pSP->bp, pSP->check);
+
+  mBP.Reset();
+  mBP.PushFront( pSP->c.GetPtr(), pSP->c.GetSize() );
+  Send( mBP, pSP->check);
   delete pSP;
 }
 //-------------------------------------------------------------------------

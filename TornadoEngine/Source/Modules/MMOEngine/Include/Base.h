@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef BASE_H
-#define BASE_H
+#ifndef MMOEngineBaseH
+#define MMOEngineBaseH
 
 #include "TypeDef.h"
 
@@ -16,7 +16,6 @@ See for more information License.h.
 #include "Structs.h"
 #include "SrcEvent.h"
 #include "IMakerTransport.h"
-#include "BreakPacket.h"
 #include "DataExchange2Thread.h"
 
 #define STR_NAME_MMO_ENGINE "MMOEngine"

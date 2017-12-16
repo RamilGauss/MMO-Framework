@@ -35,9 +35,9 @@ bool TBaseSerializerItem_Binary::ResolveType(void* pIn, int sizeIn, int& type)
   return true;
 }
 //--------------------------------------------------------------------------------------
-void TBaseSerializerItem_Binary::UnlinkCollect()
+void TBaseSerializerItem_Binary::Reset()
 {
-  mCollect.UnlinkPart();
+  mCollect.Reset();
 }
 //--------------------------------------------------------------------------------------
 void TBaseSerializerItem_Binary::Collect(TContainer& cOut)

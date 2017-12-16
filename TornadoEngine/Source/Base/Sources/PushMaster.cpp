@@ -10,7 +10,7 @@ See for more information License.h.
 
 void TPushMaster::Clear()
 {
-  mCollectorMember.UnlinkPart();
+  mCollectorMember.Reset();
 }
 //-----------------------------------------------------------------------
 TContainer TPushMaster::GetBuffer()

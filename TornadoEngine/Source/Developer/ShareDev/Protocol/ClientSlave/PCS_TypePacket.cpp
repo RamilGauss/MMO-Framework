@@ -17,14 +17,14 @@ TBasePacket_PCS::TBasePacket_PCS(unsigned char _type)
 //----------------------------------------------------------------------------------
 TContainer TBasePacket_PCS::Pack()
 {
-  TBreakPacket bp;
-  bp.PushBack( (char*)&mType, sizeof(mType));
+  mBP.Reset();
+  mBP.PushBack( (char*)&mType, sizeof(mType));
   TContainer fromInherit = PackInherit();
-  bp.PushBack( fromInherit.GetPtr(), fromInherit.GetSize() );
-  bp.Collect();
+  mBP.PushBack( fromInherit.GetPtr(), fromInherit.GetSize() );
+  mBP.Collect();
   TContainer result;
-  result.Entrust( (char*)bp.GetCollectPtr(), bp.GetSize() );
-  bp.UnlinkCollect();
+  result.Entrust( (char*)mBP.GetCollectPtr(), mBP.GetSize() );
+  mBP.UnlinkCollect();
   return result;
 }
 //----------------------------------------------------------------------------------

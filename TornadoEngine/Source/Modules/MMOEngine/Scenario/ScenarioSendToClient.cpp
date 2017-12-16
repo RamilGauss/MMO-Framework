@@ -60,11 +60,11 @@ void TScenarioSendToClient::RecvFromSuperServer(TDescRecvSession* pDesc)
   NeedContextByClientKey(pH->id_client);
   if(Context())
   {
-    TBreakPacket bp;
-    bp.PushFront(pDesc->data + sizeof(THeaderSuperServer), 
+    mBP.Reset();
+    mBP.PushFront(pDesc->data + sizeof(THeaderSuperServer), 
                  pDesc->sizeData - sizeof(THeaderSuperServer) );
 
-    Send<THeaderMaster>(pH->id_client, bp);
+    Send<THeaderMaster>(pH->id_client, mBP);
   }
 }
 //-------------------------------------------------------------------
@@ -74,11 +74,11 @@ void TScenarioSendToClient::RecvFromMaster(TDescRecvSession* pDesc)
   NeedContextByClientKey(pH->id_client);
   if(Context())
   {
-    TBreakPacket bp;
-    bp.PushFront(pDesc->data + sizeof(THeaderMaster), 
+    mBP.Reset();
+    mBP.PushFront(pDesc->data + sizeof(THeaderMaster), 
                  pDesc->sizeData - sizeof(THeaderMaster) );
     
-    Send<THeaderSlave>(pH->id_client, bp);
+    Send<THeaderSlave>(pH->id_client, mBP);
   }
 }
 //-------------------------------------------------------------------

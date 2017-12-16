@@ -10,11 +10,13 @@ See for more information License.h.
 
 #include "Base.h"
 
+class TCryptMITM;
+
 namespace nsMMOEngine
 {
   class DllExport TBaseServer : public TBase
   {
-
+    boost::scoped_ptr<TCryptMITM> mCryptMITM;
   public:
     TBaseServer();
     virtual ~TBaseServer();

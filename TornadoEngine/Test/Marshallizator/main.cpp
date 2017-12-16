@@ -109,7 +109,7 @@ void Benchmark()
   objSer->vParam[0].vy = 7;
   objSer->vParam[0].vz = 8;
   TMarshallizator marsh;
-  int cnt = 5000000;
+  int cnt = 1000000;
   printf("cnt=%d\n", cnt);
   unsigned int start = ht_GetMSCount();
   for( int i = 0 ; i < cnt ; i++ )

@@ -53,8 +53,8 @@ namespace nsParamBuilderShape
     struct coord{float x;float y;};
     std::vector<coord> vecCoord;
 
-    TContainer Get();
-    bool Set(TContainer& c);
+    //TContainer Get();
+    //bool Set(TContainer& c);
   }_PACKED;
   struct DllExport TSphere : public TBaseParam
   {
