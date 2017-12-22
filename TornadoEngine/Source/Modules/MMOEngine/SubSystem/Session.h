@@ -44,6 +44,10 @@ namespace nsMMOEngine
       // для процедуры обмена ключами шифрования
       eKeyRSA = 'r',
       eKeyAES = 'a',
+
+      //eClientHello = 'c',
+      //eServerHello = 's',
+      //eClientCryptRandom = 'x',
     };
 #if defined( WIN32 )
 #pragma pack(push, 1)

@@ -56,7 +56,7 @@ void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port,
   THeaderFromSlave h;
   mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->SetID_Session( Context()->GetMS()->Send(ip, port, mBP, subNet) );
+  Context()->SetID_Session( Context()->GetMS()->Connect(ip, port, mBP, subNet) );
   if(Context()->GetID_Session()==INVALID_HANDLE_SESSION)
   {
     // Генерация ошибки

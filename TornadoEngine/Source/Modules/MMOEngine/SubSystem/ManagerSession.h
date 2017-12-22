@@ -71,7 +71,7 @@ namespace nsMMOEngine
     bool Start(TDescOpen* pDesc, int count = 1);
     void Work();
     // для работы с сетью
-    unsigned int Send(unsigned int ip, unsigned short port, TBreakPacket& bp, unsigned char subNet, bool check = true);// только если не установлено соединение
+    unsigned int Connect(unsigned int ip, unsigned short port, TBreakPacket& bp, unsigned char subNet, bool check = true);// только если не установлено соединение
     void Send(unsigned int id_session, TBreakPacket& bp, bool check = true);
     unsigned int GetSessionID(unsigned int ip, unsigned short port);
     bool GetInfo(unsigned int id_session, TIP_Port& ip_port_out);

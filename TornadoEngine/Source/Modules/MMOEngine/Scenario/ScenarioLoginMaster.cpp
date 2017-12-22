@@ -51,7 +51,6 @@ void TScenarioLoginMaster::ConnectToSuperServer(unsigned int ip, unsigned short 
     TContainer cRSA;
     bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
     BL_ASSERT(resRSA);
-    //TCryptMITM cryptMITM;
     bool res = mCryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
       pLogin, sizeLogin, pPassword, sizePassword, cMITM);
     BL_ASSERT(res);
@@ -61,7 +60,7 @@ void TScenarioLoginMaster::ConnectToSuperServer(unsigned int ip, unsigned short 
   THeaderFromMaster h;
   mBP.PushFront((char*)&h, sizeof(h));
 
-  Context()->SetID_Session( Context()->GetMS()->Send(ip, port, mBP, subNet));
+  Context()->SetID_Session( Context()->GetMS()->Connect(ip, port, mBP, subNet));
   if(Context()->GetID_Session()==INVALID_HANDLE_SESSION)
   {
     // Генерация ошибки

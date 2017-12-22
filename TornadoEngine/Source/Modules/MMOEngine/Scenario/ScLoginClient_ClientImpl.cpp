@@ -95,7 +95,7 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port, u
   mBP.PushFront((char*)&h, sizeof(h));
 
   // отослать пакет для попытки авторизации
-  SetID_SessionClientMaster(Context()->GetMS()->Send(ip, port, mBP, subNet));
+  SetID_SessionClientMaster(Context()->GetMS()->Connect(ip, port, mBP, subNet));
   if(GetID_SessionClientMaster()==INVALID_HANDLE_SESSION)
   {
     // Генерация ошибки
@@ -265,7 +265,7 @@ void TScLoginClient_ClientImpl::Disconnect()
   // открыть сессию по IP:port
   TIP_Port ip_port_slave = Context()->GetSlaveIP_Port();
   unsigned int id_slave = 
-    Context()->GetMS()->Send(ip_port_slave.ip,
+    Context()->GetMS()->Connect(ip_port_slave.ip,
                              ip_port_slave.port,
                              mBP, Context()->GetSubNet());
   // проверка на наличие готовности Slave

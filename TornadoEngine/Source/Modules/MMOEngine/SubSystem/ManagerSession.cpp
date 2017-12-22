@@ -111,7 +111,7 @@ void TManagerSession::Send(unsigned int id_session, TBreakPacket& bp, bool check
   unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
-unsigned int TManagerSession::Send(unsigned int ip, unsigned short port, TBreakPacket& bp, unsigned char subNet, bool check)
+unsigned int TManagerSession::Connect(unsigned int ip, unsigned short port, TBreakPacket& bp, unsigned char subNet, bool check)
 {
   lockConnectUp();
 
@@ -517,7 +517,7 @@ void TManagerSession::Send(TSession* pSession, TBreakPacket& bp, bool check)
     // создать новый пакет
     mEncryptBP.Reset();
     mEncryptBP.PushFront((char*)c_encrypt.GetPtr(), c_encrypt.GetSize());
-    // отослать с параметром "шифруется"
+    // отправить с параметром "шифруется"
     pSession->Send(mEncryptBP, true, true);
     return;
   }

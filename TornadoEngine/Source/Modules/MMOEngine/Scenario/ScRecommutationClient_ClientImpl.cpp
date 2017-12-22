@@ -125,7 +125,7 @@ void TScRecommutationClient_ClientImpl::DisconnectClient(unsigned char subNet)
   Context()->GetIP_PortRecipient(ip_port_recipient);
 
   unsigned int id_session_recipient = 
-    Context()->GetMS()->Send(ip_port_recipient.ip, ip_port_recipient.port, mBP, subNet);
+    Context()->GetMS()->Connect(ip_port_recipient.ip, ip_port_recipient.port, mBP, subNet);
   // подсоединились?
   if(id_session_recipient==INVALID_HANDLE_SESSION)
   {
