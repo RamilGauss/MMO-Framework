@@ -18,7 +18,7 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  struct TDescRequestConnectForRecipient
+  struct DllExport TDescRequestConnectForRecipient
   {
     unsigned int key;
     unsigned int random_num;

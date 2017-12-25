@@ -39,8 +39,8 @@ void THandlerMMO_Slave::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       mBP.Reset();
       char s[100];
       sprintf(s,"%d",id_client);
-      mBP.PushFront(s, strlen(s));
-      pSlave->SendUp(mBP);
+      int sizeMsg = strlen(s);
+      pSlave->SendUp(s, sizeMsg);
       // при авторизации клиента выставить нагрузку
       pSlave->SetLoad(40);
     }

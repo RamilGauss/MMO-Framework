@@ -20,7 +20,7 @@ namespace nsMMOEngine
 {
   class IContextScenario;
   class TManagerSession;
-  class IScenario : public TMapCallBack
+  class DllExport IScenario : public TMapCallBack
   {
     TCallBackRegistrator1<unsigned int> mCBNeedContextBySession;
     TCallBackRegistrator1<IScenario*>   mCBEnd;

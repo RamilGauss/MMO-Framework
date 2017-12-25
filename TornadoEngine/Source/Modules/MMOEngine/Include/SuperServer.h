@@ -28,7 +28,7 @@ namespace nsMMOEngine
     virtual ~TSuperServer();
     
     // BaseServer
-    virtual void SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket& bp);
+    virtual void SendByClientKey(std::list<unsigned int>& lKey, char* p, int size);
 
     struct TDescDownSuperServer
     {
@@ -37,7 +37,7 @@ namespace nsMMOEngine
     };
     virtual int  GetCountDown();
     virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);
-    virtual void SendDown(unsigned int id_session, TBreakPacket& bp, bool check = true);
+    virtual void SendDown(unsigned int id_session, char* p, int size, bool check = true);
 
   protected:
     // Base

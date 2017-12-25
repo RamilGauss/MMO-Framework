@@ -39,9 +39,10 @@ TSuperServer::~TSuperServer()
 
 }
 //-------------------------------------------------------------------------
-void TSuperServer::SendByClientKey(std::list<unsigned int>& lKey, TBreakPacket& bp)
+void TSuperServer::SendByClientKey(std::list<unsigned int>& lKey, char* p, int size)
 {
-  mControlSc->mSendToClient->SendFromSuperServer(lKey, bp);
+  SetupBP(p, size);
+  mControlSc->mSendToClient->SendFromSuperServer(lKey, mBP);
 }
 //-------------------------------------------------------------------------
 void TSuperServer::DisconnectInherit(unsigned int id_session)
@@ -96,13 +97,15 @@ bool TSuperServer::GetDescDown(int index, void* pDesc, int& sizeDesc)
   return true;
 }
 //-------------------------------------------------------------------------
-void TSuperServer::SendDown(unsigned int id_session, TBreakPacket& bp, bool check)
+void TSuperServer::SendDown(unsigned int id_session, char* p, int size, bool check)
 {
   TContainerContextSc* pC = mMngContextMaster->FindContextBySession(id_session);
   if(pC==NULL)
     return;
   mControlSc->mFlow->SetContext(&pC->mFlow);
-  mControlSc->mFlow->SendDown(bp,check);
+
+  SetupBP(p, size);
+  mControlSc->mFlow->SendDown(mBP, check);
 }
 //-------------------------------------------------------------------------
 void TSuperServer::NeedContextLoginMaster(unsigned int id_session)

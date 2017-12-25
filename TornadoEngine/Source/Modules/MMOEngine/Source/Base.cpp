@@ -91,10 +91,11 @@ void TBase::DisconnectUp()
   // событие НЕ создавать, т.к. процесс синхронный
 }
 //-------------------------------------------------------------------------
-void TBase::SendUp(TBreakPacket& bp, bool check)
+void TBase::SendUp( char* p, int size, bool check)
 {
+  SetupBP( p, size );
   // устанавливать для сценария контекст не требуется
-  mControlSc->mFlow->SendUp(bp, check);
+  mControlSc->mFlow->SendUp( mBP, check );
 }
 //-------------------------------------------------------------------------
 bool TBase::IsConnectUp()
@@ -306,5 +307,11 @@ void TBase::RegisterOnScenarioEvent()
   mControlSc->mLoginMaster ->Register<IScenario*>(IScenario::eEnd,&TBase::EndLoginMaster, this);
   mControlSc->mRcm         ->Register<IScenario*>(IScenario::eEnd,&TBase::EndRcm,         this);
   mControlSc->mSynchroSlave->Register<IScenario*>(IScenario::eEnd,&TBase::EndSynchroSlave,this);
+}
+//-------------------------------------------------------------------------
+void TBase::SetupBP( char* p, int size )
+{
+  mBP.Reset();
+  mBP.PushBack(p,size);
 }
 //-------------------------------------------------------------------------

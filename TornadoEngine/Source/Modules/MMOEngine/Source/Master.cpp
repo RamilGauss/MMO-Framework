@@ -230,13 +230,15 @@ void TMaster::EndLoginSlave(IScenario* pSc)
   
 }
 //-------------------------------------------------------------------------
-void TMaster::SendDown(unsigned int id_session, TBreakPacket& bp, bool check)
+void TMaster::SendDown(unsigned int id_session, char* p, int size, bool check)
 {
   TContainerContextSc* pC = mMngContextSlave->FindContextBySession(id_session);
   if(pC==NULL)
     return;
   mControlSc->mFlow->SetContext(&pC->mFlow);
-  mControlSc->mFlow->SendDown(bp,check);
+  
+  SetupBP(p,size);
+  mControlSc->mFlow->SendDown(/*bp*/mBP,check);
 }
 //-------------------------------------------------------------------------
 void TMaster::WorkInherit()
@@ -467,9 +469,10 @@ void TMaster::EndSynchroSlave(IScenario* pSc)
                                      pContextSynchroSlave->GetLoadProcent());
 }
 //-------------------------------------------------------------------------
-void TMaster::SendByClientKey(list<unsigned int>& lKey, TBreakPacket& bp)
+void TMaster::SendByClientKey(list<unsigned int>& lKey, char* p, int size)
 {
-  mControlSc->mSendToClient->SendFromMaster(lKey, bp);
+  SetupBP(p, size);
+  mControlSc->mSendToClient->SendFromMaster(lKey, mBP);
 }
 //-------------------------------------------------------------------------
 void TMaster::NeedContextLoginClientBySessionAfterAuthorised(unsigned int id_session)
