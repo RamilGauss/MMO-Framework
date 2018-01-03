@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include "INetDevice.h"
 #include <boost/asio/ip/tcp.hpp>
+#include <boost/asio/io_service.hpp>
 
 class TNetDeviceTCP : public INetDevice
 {

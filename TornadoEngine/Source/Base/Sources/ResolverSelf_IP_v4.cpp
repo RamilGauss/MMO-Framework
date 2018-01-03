@@ -10,6 +10,7 @@ See for more information License.h.
 #ifdef WIN32
   #include <boost/asio/ip/tcp.hpp>
   #include <boost/asio/ip/impl/host_name.ipp>
+  #include <boost/asio/io_service.hpp>
 #else
   #include <arpa/inet.h>
   #include <sys/socket.h>

@@ -26,7 +26,6 @@ class TSrcEvent;
 class DllExport TDstEvent
 {
   TDataExchange2Thread<nsEvent::TEvent>* pListEvent;
-
 public:
 
   TDstEvent();

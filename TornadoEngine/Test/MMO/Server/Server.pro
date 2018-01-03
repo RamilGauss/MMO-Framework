@@ -32,13 +32,11 @@ mainServer.cpp \
 HandlerMMO_Master.cpp \
 HandlerMMO_Slave.cpp \
 HandlerMMO_SuperServer.cpp \
-../Share/HandlerMMO.cpp \
-../Share/MakerTransport.cpp
+../Share/HandlerMMO.cpp
 
 HEADERS = \
 HandlerMMO_Master.h \
 HandlerMMO_Slave.h \
 HandlerMMO_SuperServer.h \
 ../Share/CommonParam.h \
-../Share/HandlerMMO.h \
-../Share/MakerTransport.h
+../Share/HandlerMMO.h

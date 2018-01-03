@@ -36,10 +36,10 @@ void TModuleComponent::Input(int id_sender, void* p, int size)
 //--------------------------------------------------------------
 void TModuleComponent::OutputToSynchroPoint()
 {
-  while(1)
+  while( true )
   { // модуль создал события
     nsEvent::TEvent* pEvent = TDstEvent::GetEvent();
-    if(pEvent==NULL)
+    if( pEvent==NULL )
       break;
 
     TSynchroAbonent::AddEventWithoutCopy(mLogicID, pEvent->pContainer);

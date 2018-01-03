@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef EVENTS_H
-#define EVENTS_H
+#ifndef MMOEngineEventsH
+#define MMOEngineEventsH
 
 #include "BaseEvent.h"
 #include "Master.h"
@@ -35,7 +35,6 @@ namespace nsMMOEngine
   struct DllExport TEventRecvFromUp : public TEventRecv
   {
     TEventRecvFromUp();
-    ~TEventRecvFromUp();
   }_PACKED;
   //-------------------------------------------------------------
   struct DllExport TEventDisconnectUp : public TBaseEvent

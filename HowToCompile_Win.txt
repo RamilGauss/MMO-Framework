@@ -1,37 +1,37 @@
-﻿	Russian
-	
-	https://www.youtube.com/watch?v=UuwobuPw3ns
-	
-	Установка зависимостей и компиляция проекта под Windows XP/7 x86/64.
-	
+﻿    Russian
+    
+    https://www.youtube.com/watch?v=UuwobuPw3ns
+    
+    Установка зависимостей и компиляция проекта под Windows XP/7 x86/64.
+    
 1. Итак, Архив MMO-Framework.zip скачан с github.com и распакован.
 2. В системе должно быть установлено: 
-	2.1. Opera/Firefox/Chrome для скачивания зависимостей.
-	2.2. VisulaStudio 2008 + ServicePack 1. - ОБЯЗАТЕЛЬНО
-			Visual Studio 2008 + SP1 частями:
-		https://cloud.mail.ru/public/Lk5Y/P193qZ78u - vs 2008.z01,
-		https://cloud.mail.ru/public/7AQS/9ZNYR9TN7 - vs 2008.z02,
-		https://cloud.mail.ru/public/LVj6/Ly5d84BCJ - vs 2008.zip.
-	2.3. Daemon Tools (или любой другой эмулятор) - для установки Service Pack 1 Visual Studio 2008. - ОБЯЗАТЕЛЬНО
-	2.4. По возможности, либо Total Commander, либо Far - для удобства манипуляций с файлами.
-	
+    2.1. Opera/Firefox/Chrome для скачивания зависимостей.
+    2.2. VisulaStudio 2008 + ServicePack 1. - ОБЯЗАТЕЛЬНО
+            Visual Studio 2008 + SP1 частями:
+        https://cloud.mail.ru/public/Lk5Y/P193qZ78u - vs 2008.z01,
+        https://cloud.mail.ru/public/7AQS/9ZNYR9TN7 - vs 2008.z02,
+        https://cloud.mail.ru/public/LVj6/Ly5d84BCJ - vs 2008.zip.
+    2.3. Daemon Tools (или любой другой эмулятор) - для установки Service Pack 1 Visual Studio 2008. - ОБЯЗАТЕЛЬНО
+    2.4. По возможности, либо Total Commander, либо Far - для удобства манипуляций с файлами.
+    
 3. По ссылке необходимо скачать следующие архивы и исполняемые файлы: 
-	Для dependency и boost_1_60_0 есть два варианта: rar или zip, на выбор, но лучше скачать rar. 
+    Для dependency и boost_1_60_0 есть два варианта: rar или zip, на выбор, но лучше скачать rar. 
   Архив zip нужен для тех компьютеров, на которых не установлен WinRar.
-	При скачивании исполняемых файлов ставить галку "Я хочу скачать этот файл".
-		https://cloud.mail.ru/public/392X/mtsWcvNbV,                                  - Dependency.rar,
-		https://cloud.mail.ru/public/Hiff/ZN8gfR19U,                                  - Dependency.zip,
-		https://cloud.mail.ru/public/8UQz/szykxVvVY,                                  - boost_1_60_0.rar,
-		https://cloud.mail.ru/public/KZhe/2jR34jiJn,                                  - boost_1_60_0.zip,
-		https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe,                  - DirectX_SDK.exe,
-		https://cloud.mail.ru/public/e9b8aec7f670/qt-win-opensource-4.8.5-vs2008.exe, - Installer Qt-4.8.5,
-		https://cloud.mail.ru/public/19dc30beeff2/qt-vs-addin-1.1.11-opensource.exe,  - Addin Qt.
+    При скачивании исполняемых файлов ставить галку "Я хочу скачать этот файл".
+        https://cloud.mail.ru/public/392X/mtsWcvNbV,                                  - Dependency.rar,
+        https://cloud.mail.ru/public/Hiff/ZN8gfR19U,                                  - Dependency.zip,
+        https://cloud.mail.ru/public/DUK2/XwGHLghb9,                                  - boost_1_66_0-msvc-9.0-32.exe,
+        https://cloud.mail.ru/public/7rNU/Hr7mi6AY6,                                  - boost_1_66_0-msvc-9.0-64.exe,
+        https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe,                  - DirectX_SDK.exe,
+        https://cloud.mail.ru/public/e9b8aec7f670/qt-win-opensource-4.8.5-vs2008.exe, - Installer Qt-4.8.5,
+        https://cloud.mail.ru/public/19dc30beeff2/qt-vs-addin-1.1.11-opensource.exe,  - Addin Qt.
 
-	В облаке также можно скачать (необязательно):
-		https://cloud.mail.ru/public/3GYW/9huRk9uNT                                   - EnterpriseArchitect,
-		https://cloud.mail.ru/public/KTAG/UV4942Avh                                   - VC_Addons.
-	EnterpriseArchitect - нужен для просмотра архитектурных решений. VC_Addons содержит полезные аддоны для Visual Studio 2008.
-	
+    В облаке также можно скачать (необязательно):
+        https://cloud.mail.ru/public/3GYW/9huRk9uNT                                   - EnterpriseArchitect,
+        https://cloud.mail.ru/public/KTAG/UV4942Avh                                   - VC_Addons.
+    EnterpriseArchitect - нужен для просмотра архитектурных решений. VC_Addons содержит полезные аддоны для Visual Studio 2008.
+    
 4. Установка DirectX SDK. Запустить DXSDK_Jun10.exe и следовать инструкциям.
 5. Установка Qt. Запустить qt-win-opensource-4.8.5-vs2008.exe и следовать инструкциям.
 6. Установка Addin. Запустить qt-vs-addin-1.1.11-opensource.exe и следовать инструкциям.
@@ -40,15 +40,16 @@
 
 9. Переменные среды.
   Windows XP: Win+Break->Дополнительно->Переменные среды.
-	Windows 7:  Win+Break->Дополнительные параметры системы->Переменные среды.
-	Добавить переменные:
-	DEP_PATH_MMO_FRAMEWORK = C:\Dependency           - путь, куда распакованы зависимости.
-	QTDIR = C:\Qt\4.8.5
-	BOOST_PATH = C:\Program Files (x86)\boost_1_60_0 - путь, куда распакован boost.
-	
-	Примечание: после добавления закрыть все оконные приложения. Старые значения переменных захватываются
-	открытыми приложениями. Закрыв их, система применит новое значение.
-	
+    Windows 7:  Win+Break->Дополнительные параметры системы->Переменные среды.
+    Добавить переменные:
+    DEP_PATH_MMO_FRAMEWORK = C:\Dependency           - путь, куда распакованы зависимости.
+    QTDIR = C:\Qt\4.8.5
+    BOOST_PATH   = C:\Program Files (x86)\boost_1_66_0 - путь, куда распакован 32-битный boost.
+    BOOST_PATH64 = C:\Program Files\boost_1_66_0 - путь, куда распакован 64-битный boost.
+    
+    Примечание: после добавления закрыть все оконные приложения. Старые значения переменных захватываются
+    открытыми приложениями. Закрыв их, система применит новое значение.
+    
 10. Запустить openSolution.bat. Кликнуть правой кнопкой мыши по проекту GameImpl -> Build.
 11. После сборки, клик правой кнопкой мыши по проекту Game -> Properties -> Debugging -> Command Arguments задать
 значения, описывающих версию и название dll, например, -v 8 -d GameImpl_d.dll.

@@ -33,8 +33,7 @@ ScenarioStressTestClient.cpp \
 HandlerMMO_Client.cpp \
 InputCmdTestMMO_Client.cpp \
 mainClient.cpp \
-../Share/HandlerMMO.cpp \
-../Share/MakerTransport.cpp
+../Share/HandlerMMO.cpp
 
 HEADERS = \
 BehaviourClient.h \
@@ -42,5 +41,4 @@ ScenarioStressTestClient.h \
 HandlerMMO_Client.h \
 InputCmdTestMMO_Client.h \
 ../Share/CommonParam.h \
-../Share/HandlerMMO.h \
-../Share/MakerTransport.h
+../Share/HandlerMMO.h

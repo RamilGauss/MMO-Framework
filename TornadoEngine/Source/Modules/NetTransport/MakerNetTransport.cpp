@@ -6,7 +6,15 @@ See for more information License.h.
 */
 
 #include "MakerNetTransport.h"
-
 #include "NetTransport_Boost.h"
 
-MACRO_MAKER_CPP_USE(NetTransport, NetTransport_Boost, NetTransport_Boost)
+INetTransport* TMakerNetTransport::New()
+{
+  return new TNetTransport_Boost();
+}
+//-----------------------------------------------------------------------------
+void TMakerNetTransport::Delete(INetTransport* pTransport)
+{
+  delete pTransport;
+}
+//-----------------------------------------------------------------------------

@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef IMAKERTRANSPORT_H
-#define IMAKERTRANSPORT_H
+#ifndef MMOEngineIMakerTransportH
+#define MMOEngineIMakerTransportH
 
 #include "INetTransport.h"
 

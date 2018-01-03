@@ -15,7 +15,6 @@ See for more information License.h.
 #include "Client.h"
 #include "CommonParam.h"
 #include "InputCmdTestMMO_Client.h"
-#include "MakerTransport.h"
 #include "HiTimer.h"
 #include "ResolverSelf_IP_v4.h"
 #include "Logger.h"

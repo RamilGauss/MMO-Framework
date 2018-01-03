@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SUPERSERVER_H
-#define SUPERSERVER_H
+#ifndef MMOEngineSuperServerH
+#define MMOEngineSuperServerH
 
 #include "BaseServer.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>

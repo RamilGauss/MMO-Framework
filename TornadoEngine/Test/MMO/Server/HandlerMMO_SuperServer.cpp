@@ -55,7 +55,7 @@ void THandlerMMO_SuperServer::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       break;
     default:BL_FIX_BUG();
   }
-  printf("MMOEngine SS(0x%X): %s.\t\t", pSuperServer, sEvent.data());
+  printf("MMOEngine SS(0x%p): %s.\t\t", pSuperServer, sEvent.data());
   printf("CC=%d\n",GetCountConnection());
 }
 //---------------------------------------------------------------------------------------------

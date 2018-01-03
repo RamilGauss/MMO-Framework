@@ -53,7 +53,7 @@ INetTransport* TManagerTransport::FindByReciver( TReciverTransport* pRT)
   if(fit==mMapReciverTransport.end())
   {
     GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TManagerTransport::FindByReciver(0x%X) not found.\n", pRT);
+      WriteF_time("TManagerTransport::FindByReciver(0x%p) not found.\n", pRT);
     BL_FIX_BUG();
     return NULL;
   }

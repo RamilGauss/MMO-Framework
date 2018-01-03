@@ -16,11 +16,11 @@ See for more information License.h.
 #include "Client.h"
 #include "CommonParam.h"
 #include "InputCmdTestMMO_Client.h"
-#include "MakerTransport.h"
 #include "HiTimer.h"
 #include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
 #include "HandlerMMO_Client.h"
+#include "MakerNetTransport.h"
 
 int main(int argc, char** argv)
 {
@@ -39,7 +39,7 @@ int main(int argc, char** argv)
   TInputCmdTestMMO_Client::TInput inputArg;
   inputCmd.Get(inputArg);
 
-  TMakerTransport makerTransport;
+  TMakerNetTransport makerTransport;
   std::vector<nsMMOEngine::TClient*> pArrClient;
   for( int i = 0 ; i < inputArg.count ; i++ )
   {

@@ -27,11 +27,6 @@ TEventRecvFromUp::TEventRecvFromUp()
   mType = eRecvFromUp;
 }
 //-------------------------------------------------------------
-TEventRecvFromUp::~TEventRecvFromUp()
-{
-
-}
-//-------------------------------------------------------------
 TEventDisconnectUp::TEventDisconnectUp()
 {
   mType = eDisconnectUp;

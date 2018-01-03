@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef BASE_EVENT_H
-#define BASE_EVENT_H
+#ifndef MMOEngineBaseEventH
+#define MMOEngineBaseEventH
 
 #include "Base.h"
 #include "ContainerTypes.h"
@@ -20,7 +20,7 @@ namespace nsMMOEngine
   struct DllExport TBaseEvent
   {
     // переназначить в наследуемом классе
-    tTypeEvent mType;
+    EventType mType;
     TContainer c;
   }_PACKED;
 #if defined( WIN32 )

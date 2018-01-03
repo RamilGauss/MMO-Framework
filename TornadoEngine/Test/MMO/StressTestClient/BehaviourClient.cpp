@@ -8,7 +8,7 @@ See for more information License.h.
 #include "BehaviourClient.h"
 #include <stdlib.h>
 #include <time.h>
-#include "MakerTransport.h"
+#include "MakerNetTransport.h"
 
 TBehaviourClient::TBehaviourClient()
 {
@@ -27,7 +27,7 @@ void TBehaviourClient::SetTimeNextStep(unsigned int timeNextState)
   mTimeNextState = (timeNextState!=-1) ? timeNextState : RandomTime();
 }
 //------------------------------------------------------------------------------------
-void TBehaviourClient::Init(TMakerTransport* pMakerTransport, TInputCmdTestMMO_Client::TInput &inputArg)
+void TBehaviourClient::Init(TMakerNetTransport* pMakerTransport, TInputCmdTestMMO_Client::TInput &inputArg)
 {
   mInputArg = inputArg;
 

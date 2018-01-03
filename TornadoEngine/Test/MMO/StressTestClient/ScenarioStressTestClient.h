@@ -9,7 +9,7 @@ See for more information License.h.
 #define ScenarioStressTestClientH
 
 #include "InputCmdTestMMO_Client.h"
-#include "MakerTransport.h"
+#include "MakerNetTransport.h"
 #include "BehaviourClient.h"
 #include <vector>
 
@@ -23,7 +23,7 @@ class TScenarioStressTestClient
 
   TInputCmdTestMMO_Client mInputCmd;
   TInputCmdTestMMO_Client::TInput mInputArg;
-  TMakerTransport mMakerTransport;
+  TMakerNetTransport mMakerTransport;
   std::vector<TBehaviourClient*> pArrClient;
 public:
   void Init(int argc, char** argv);

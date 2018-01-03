@@ -8,11 +8,15 @@ See for more information License.h.
 #ifndef MakerNetTransportH
 #define MakerNetTransportH
 
-#include <stddef.h>
-#include "MacroMaker.h"
 #include "TypeDef.h"
+#include "IMakerTransport.h"
 
-MACRO_MAKER_H_EXPORT_USE(DllExport,NetTransport,NetTransport_Boost)
+class DllExport TMakerNetTransport : public IMakerTransport
+{
+public:
+  virtual INetTransport* New();
+  virtual void Delete(INetTransport* pTransport);
+};
 
 #endif
 

@@ -5,11 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef STRUCTS_H
-#define STRUCTS_H
+#ifndef MMOEngineStructsH
+#define MMOEngineStructsH
 
 #include "TypeDef.h"
-
 
 namespace nsMMOEngine
 {

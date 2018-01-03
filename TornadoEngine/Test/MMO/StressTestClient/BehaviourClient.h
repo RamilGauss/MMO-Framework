@@ -12,7 +12,7 @@ See for more information License.h.
 #include "Client.h"
 #include "InputCmdTestMMO_Client.h"
 
-class TMakerTransport;
+class TMakerNetTransport;
 
 class TBehaviourClient
 {
@@ -39,7 +39,7 @@ class TBehaviourClient
 public:
   TBehaviourClient();
   ~TBehaviourClient();
-  void Init(TMakerTransport* pMakerTransport, 
+  void Init(TMakerNetTransport* pMakerTransport, 
             TInputCmdTestMMO_Client::TInput &inputArg);// начальная настройка
   void SetTimeNextStep(unsigned int timeNextState = -1);
   void Work();// работа по своему сценарию

@@ -35,7 +35,9 @@ void TDstEvent::AddEventInQueueCopy(int type_object, void* ptr_src, void* data, 
 TEvent* TDstEvent::GetEvent()
 {
   TEvent** ppEvent = pListEvent->GetFirst();
-  if(ppEvent==NULL) return NULL;
+  if(ppEvent==NULL) 
+    return NULL;
+
   TEvent* pEvent = *(ppEvent);
   pListEvent->UnlinkData(ppEvent);
   pListEvent->RemoveFirst();

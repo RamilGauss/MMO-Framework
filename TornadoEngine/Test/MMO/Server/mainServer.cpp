@@ -11,7 +11,7 @@ See for more information License.h.
 
 #include "BL_Debug.h"
 #include "CommonParam.h"
-#include "MakerTransport.h"
+#include "MakerNetTransport.h"
 #include "HiTimer.h"
 #include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 
   std::vector<THandlerMMO_Slave*> arrHandlerSlave;
 
-  TMakerTransport makerTransport;
+  TMakerNetTransport makerTransport;
 
   nsMMOEngine::TDescOpen descOpen;
   std::vector<nsMMOEngine::TSlave*> arrSlave;

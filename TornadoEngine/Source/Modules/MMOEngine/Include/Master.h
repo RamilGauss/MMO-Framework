@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MASTER_H
-#define MASTER_H
+#ifndef MMOEngineMasterH
+#define MMOEngineMasterH
 
 #include "ActiveServer.h"
 

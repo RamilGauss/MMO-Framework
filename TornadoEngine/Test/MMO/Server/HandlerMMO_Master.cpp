@@ -103,7 +103,7 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
       break;
     default:BL_FIX_BUG();
   }
-  printf("MMOEngine M (0x%X): %s.\t\t", pMaster, sEvent.data());
+  printf("MMOEngine M (0x%p): %s.\t\t", pMaster, sEvent.data());
   printf("CC=%d\n",GetCountConnection());
 }
 //---------------------------------------------------------------------------------------------

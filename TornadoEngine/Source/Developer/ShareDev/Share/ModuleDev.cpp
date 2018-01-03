@@ -41,12 +41,12 @@ void TModuleDev::SetName(const char* name)
 //----------------------------------------------------------------------
 void TModuleDev::InputFromSynchroPoint()
 {
-  while(1) 
+  while( true ) 
   {
     int id_sender = 0;
     IContainer* pCInput = NULL;
     pCInput = GetEvent(id_sender);
-    if(pCInput==NULL)
+    if( pCInput==NULL )
       break;
     Input(id_sender, pCInput->GetPtr(), pCInput->GetSize());
   }

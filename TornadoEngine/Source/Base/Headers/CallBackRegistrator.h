@@ -89,7 +89,7 @@ public:
   }
   int RegisteredCount()
   {
-    return mMapObjFunc.size();
+    return (int)mMapObjFunc.size();
   }
   void Clear()
   {

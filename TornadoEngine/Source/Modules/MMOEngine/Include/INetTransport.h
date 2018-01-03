@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef INetTransportH
-#define INetTransportH
+#ifndef MMOEngineINetTransportH
+#define MMOEngineINetTransportH
 
 #include "CallBackRegistrator.h"
 #include "ShareMisc.h"

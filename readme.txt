@@ -15,8 +15,8 @@ To view the architectural decisions need Enterprise Architect 7.0+.
 Article on habrahabr: http://habrahabr.ru/post/233915/
 
 		DEPENDENCY:
-	Boost   1.54+, 
-	OpenSSL 1.0.1E+, 
+	Boost   1.66+, 
+	OpenSSL 1.0.1u, 
 	MyGUI   3.2.0, 
 	OGRE    1.9, 
 	Bullet  2.81+.
@@ -39,8 +39,8 @@ Article on habrahabr: http://habrahabr.ru/post/233915/
 
 
 		Список зависимостей:
-	Boost   1.54+, 
-	OpenSSL 1.0.1E+, 
+	Boost   1.66+, 
+	OpenSSL 1.0.1u, 
 	MyGUI   3.2.0, 
 	OGRE    1.9, 
 	Bullet  2.81+.

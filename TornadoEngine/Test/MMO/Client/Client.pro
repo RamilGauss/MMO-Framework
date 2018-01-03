@@ -31,12 +31,10 @@ SOURCES = \
 HandlerMMO_Client.cpp \
 InputCmdTestMMO_Client.cpp \
 mainClient.cpp \
-../Share/HandlerMMO.cpp \
-../Share/MakerTransport.cpp
+../Share/HandlerMMO.cpp
 
 HEADERS = \
 HandlerMMO_Client.h \
 InputCmdTestMMO_Client.h \
 ../Share/CommonParam.h \
-../Share/HandlerMMO.h \
-../Share/MakerTransport.h
+../Share/HandlerMMO.h
