@@ -5,11 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef BASE_SC_LOGIN_CLIENT_STRUCT_H
-#define BASE_SC_LOGIN_CLIENT_STRUCT_H
+#ifndef MMOEngineBaseScLoginClientStructH
+#define MMOEngineBaseScLoginClientStructH
 
 #include "IScenario.h"
 #include "DescRecvSession.h"
+#include "ScenarioBaseHeader.h"
 
 namespace nsMMOEngine
 {
@@ -46,7 +47,7 @@ namespace nsMMOEngine
 #ifdef WIN32
 #pragma pack(push, 1)
 #endif
-    struct THeader : public IScenario::TBaseHeader
+    struct THeader : public TScenarioBaseHeader
     {
       THeader();
       unsigned char from;

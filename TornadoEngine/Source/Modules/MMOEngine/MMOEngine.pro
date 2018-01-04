@@ -40,6 +40,7 @@ SOURCES = \
 ./Scenario/BaseScLoginClient_Struct.cpp \
 ./Scenario/BaseScRecommutationClient.cpp \
 ./Scenario/BaseScRecommutationClient_Struct.cpp \
+./Scenario/DescRequestConnectForRecipient.cpp \
 ./Scenario/ScenarioDisconnectClient.cpp \
 ./Scenario/ScenarioFlow.cpp \
 ./Scenario/ScenarioLoginClient.cpp \
@@ -59,6 +60,7 @@ SOURCES = \
 ./Source/Base.cpp \
 ./Source/BaseServer.cpp \
 ./Source/Client.cpp \
+./Source/EnumMMO.cpp \
 ./Source/Events.cpp \
 ./Source/IMakerTransport.cpp \
 ./Source/INetTransport.cpp \
@@ -118,6 +120,7 @@ HEADERS = \
 ./Scenario/BaseScLoginClient_Struct.h \
 ./Scenario/BaseScRecommutationClient.h \
 ./Scenario/BaseScRecommutationClient_Struct.h \
+./Scenario/DescRequestConnectForRecipient.h \
 ./Scenario/ScenarioDisconnectClient.h \
 ./Scenario/ScenarioFlow.h \
 ./Scenario/ScenarioLoginClient.h \
@@ -157,4 +160,6 @@ HEADERS = \
 ./SubSystem/NavigateSession.h \
 ./SubSystem/ReciverTransport.h \
 ./SubSystem/Session.h \
+./SubSystem/ScenarioBaseHeader.h \
 ./SubSystem/StatisticaClientInGroup.h
+

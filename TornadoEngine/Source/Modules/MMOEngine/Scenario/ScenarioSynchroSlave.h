@@ -5,12 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SCENARIO_SYNCHRO_SLAVE_H
-#define SCENARIO_SYNCHRO_SLAVE_H
+#ifndef MMOEngineScenarioSynchroSlaveH
+#define MMOEngineScenarioSynchroSlaveH
 
 #include "IScenario.h"
 #include "ContextScSynchroSlave.h"
 #include "MakerScenario.h"
+#include "ScenarioBaseHeader.h"
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -21,7 +22,7 @@ namespace nsMMOEngine
   class TScenarioSynchroSlave : public IScenario
   {
     enum{eFromSlave,};
-    struct THeaderSynchroSlave : public IScenario::TBaseHeader
+    struct THeaderSynchroSlave : public TScenarioBaseHeader
     {
       unsigned char loadProcent;
       THeaderSynchroSlave(){type=TMakerScenario::eSynchroSlave;subType=eFromSlave;}

@@ -10,27 +10,27 @@ See for more information License.h.
 
 #include "WIP_Port.h"
 
-class IMakerTransport;
-class TDstEvent;
+//class IMakerTransport;
+//class TDstEvent;
 
-namespace nsMMOEngine
-{
-  class TBase;
-}
+//namespace nsMMOEngine
+//{
+//  class TBase;
+//}
 
 namespace WrapperMMOEngine
 {
   class WDescOpen;
-  class WBaseEvent;
+  //class WBaseEvent;
 
   public ref class WBase
   {
-    nsMMOEngine::TBase* mBase;
-    IMakerTransport* mMakerTransport;
+    //nsMMOEngine::TBase* mBase;
+    //IMakerTransport* mMakerTransport;
 
-    TDstEvent* mDstEvent;
+    //TDstEvent* mDstEvent;
   public:
-    WBase( nsMMOEngine::TBase* pBase );
+    WBase( /*nsMMOEngine::TBase* pBase*/ );
     virtual ~WBase();
 
     void Init();
@@ -42,11 +42,11 @@ namespace WrapperMMOEngine
     bool IsConnect( unsigned int id );
     void SetLoad( int procent );
     void SetTimeLiveSession( unsigned int time_ms );
-    bool GetInfoSession( unsigned int id_session, WrapperBase::WIP_Port^ ip_port );
+    bool GetInfoSession( unsigned int id_session, WIP_Port^ ip_port );
   public:
-    WBaseEvent* GetEvent();
+    //WBaseEvent* GetEvent();
   protected:
-    nsMMOEngine::TBase* GetBase();
+    //nsMMOEngine::TBase* GetBase();
   };
 }
 

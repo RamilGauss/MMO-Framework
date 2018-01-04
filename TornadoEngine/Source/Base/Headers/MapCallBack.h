@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MAP_CALL_BACK_H
-#define MAP_CALL_BACK_H
+#ifndef MapCallBackH
+#define MapCallBackH
 
 #include "DescCallBack.h"
 #include <map>

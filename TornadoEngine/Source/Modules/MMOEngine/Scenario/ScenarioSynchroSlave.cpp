@@ -7,6 +7,7 @@ See for more information License.h.
 
 #include "ScenarioSynchroSlave.h"
 #include "ManagerSession.h"
+#include "BL_Debug.h"
 
 using namespace nsMMOEngine;
 

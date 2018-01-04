@@ -5,12 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef BASE_SC_RECOMMUTATION_CLIENT_STRUCT_H
-#define BASE_SC_RECOMMUTATION_CLIENT_STRUCT_H
+#ifndef MMOEngineBaseScRecommutationClientStructH
+#define MMOEngineBaseScRecommutationClientStructH
 
-#include "IScenario.h"
-#include "DescRecvSession.h"
 #include <time.h>
+
+#include "DescRecvSession.h"
+#include "ScenarioBaseHeader.h"
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -18,25 +19,25 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  struct DllExport TDescRequestConnectForRecipient
-  {
-    unsigned int key;
-    unsigned int random_num;
-    unsigned int id_session;
-    TDescRequestConnectForRecipient()
-    {
-      key        = 0;
-      random_num = 0;
-      id_session = 0;
-    }
-    void Generate()
-    {
-      srand( (unsigned)time( NULL ) );
-      short* pShort = (short*)&random_num;
-      pShort[0] = rand();
-      pShort[1] = rand();
-    }
-  }_PACKED;
+  //struct TDescRequestConnectForRecipient
+  //{
+  //  unsigned int key;
+  //  unsigned int random_num;
+  //  unsigned int id_session;
+  //  TDescRequestConnectForRecipient()
+  //  {
+  //    key        = 0;
+  //    random_num = 0;
+  //    id_session = 0;
+  //  }
+  //  void Generate()
+  //  {
+  //    srand( (unsigned)time( NULL ) );
+  //    short* pShort = (short*)&random_num;
+  //    pShort[0] = rand();
+  //    pShort[1] = rand();
+  //  }
+  //}_PACKED;
 
   namespace nsRecommutationClientStruct
   {
@@ -65,7 +66,7 @@ namespace nsMMOEngine
       eMaster,
     };
     //-------------------------------------------------
-    struct THeader : public IScenario::TBaseHeader
+    struct THeader : public TScenarioBaseHeader
     {
       THeader();
       unsigned char from;

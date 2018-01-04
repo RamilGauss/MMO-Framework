@@ -18,6 +18,7 @@ See for more information License.h.
 #include "DescRecvSession.h"
 #include "ManagerTransport.h"
 #include "ManagerContextCrypto.h"
+#include "Structs.h"
 
 namespace nsMMOEngine
 {

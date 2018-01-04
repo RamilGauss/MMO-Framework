@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ISCENARIO_H
-#define ISCENARIO_H
+#ifndef MMOEngineIScenarioH
+#define MMOEngineIScenarioH
 
 #include "SrcEvent.h"
 
@@ -20,6 +20,7 @@ namespace nsMMOEngine
 {
   class IContextScenario;
   class TManagerSession;
+  struct TDescRecvSession;
   class DllExport IScenario : public TMapCallBack
   {
     TCallBackRegistrator1<unsigned int> mCBNeedContextBySession;
@@ -42,14 +43,6 @@ namespace nsMMOEngine
       eContextByClientKey,
       eCountCallBack,
     };
-
-#if defined( WIN32 )
-#pragma pack(push, 1)
-#endif
-    struct TBaseHeader{char type;char subType;}_PACKED;
-#if defined( WIN32 )
-#pragma pack(pop)
-#endif
     IScenario();
     virtual ~IScenario();
     

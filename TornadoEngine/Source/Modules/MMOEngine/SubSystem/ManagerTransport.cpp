@@ -12,7 +12,7 @@ See for more information License.h.
 #include "INetTransport.h"
 #include "BL_Debug.h"
 #include "Logger.h"
-#include "Base.h"
+#include "EnumMMO.h"
 #include <boost/foreach.hpp>
 
 using namespace nsMMOEngine;

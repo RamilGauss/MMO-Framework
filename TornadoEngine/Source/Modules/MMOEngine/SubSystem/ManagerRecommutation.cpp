@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "ManagerRecommutation.h"
 #include "BL_Debug.h"
-#include "Base.h"
+#include "EnumMMO.h"
 #include "Logger.h"
 
 using namespace nsMMOEngine;

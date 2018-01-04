@@ -24,6 +24,7 @@ See for more information License.h.
 #include "ScenarioRecommutationClient.h"
 #include "ScenarioSendToClient.h"
 #include "ScenarioSynchroSlave.h"
+#include "DescRequestConnectForRecipient.h"
 
 using namespace nsMMOEngine;
 using namespace std;

@@ -8,7 +8,6 @@ See for more information License.h.
 #include "IScenario.h"
 #include <stddef.h>
 #include "BL_Debug.h"
-#include "Base.h"
 #include "IContextScenario.h"
 
 using namespace nsMMOEngine;

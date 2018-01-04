@@ -54,7 +54,7 @@ void TControlScenario::Add(IScenario* pSc)
 //----------------------------------------------------------------------
 void TControlScenario::Work(TDescRecvSession* pDesc)
 {
-  IScenario::TBaseHeader* pPacket = (IScenario::TBaseHeader*)pDesc->data;
+  TScenarioBaseHeader* pPacket = (TScenarioBaseHeader*)pDesc->data;
   TMapIntPtrIt fit = mMapTypeSc.find(pPacket->type);
   if(fit!=mMapTypeSc.end())
   {

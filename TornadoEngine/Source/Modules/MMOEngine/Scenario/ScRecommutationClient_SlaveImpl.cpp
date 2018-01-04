@@ -12,6 +12,7 @@ See for more information License.h.
 #include "ContextScRecommutationClient.h"
 #include "Events.h"
 #include "SrcEvent_ex.h"
+#include "DescRequestConnectForRecipient.h"
 
 using namespace nsMMOEngine;
 using namespace nsRecommutationClientStruct;

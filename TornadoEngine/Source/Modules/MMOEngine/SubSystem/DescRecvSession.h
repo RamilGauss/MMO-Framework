@@ -5,13 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef DESC_RECV_SESSION_H
-#define DESC_RECV_SESSION_H
+#ifndef MMOEngineDescRecvSessionH
+#define MMOEngineDescRecvSessionH
 
 #include "INetTransport.h"
-#include "Base.h"
 #include "ContainerTypes.h"
 #include "HiTimer.h"
+#include "EnumMMO.h"
 
 namespace nsMMOEngine
 {

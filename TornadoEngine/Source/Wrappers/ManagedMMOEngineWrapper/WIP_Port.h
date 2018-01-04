@@ -8,24 +8,16 @@ See for more information License.h.
 #ifndef WrapperBaseIP_PortH
 #define WrapperBaseIP_PortH
 
-namespace WrapperBase
+namespace WrapperMMOEngine
 {
   public ref class WIP_Port
   {
   public:
     unsigned int ip;
     unsigned short port;
-    WIP_Port(){}
-    WIP_Port(unsigned int _ip, unsigned short _port)
-    {
-      ip   = _ip;
-      port = _port;
-    }
-    void Set(unsigned int _ip, unsigned short _port)
-    {
-      ip   = _ip;
-      port = _port;
-    }
+    WIP_Port();
+    WIP_Port(unsigned int _ip, unsigned short _port);
+    void Set(unsigned int _ip, unsigned short _port);
   };
 }
 

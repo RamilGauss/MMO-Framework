@@ -5,13 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SCENARIO_FLOW_H
-#define SCENARIO_FLOW_H
+#ifndef MMOEngineScenarioFlowH
+#define MMOEngineScenarioFlowH
 
 #include "IScenario.h"
 #include "ContextScFlow.h"
 #include "MakerScenario.h"
 #include "SrcEvent_ex.h"
+#include "ScenarioBaseHeader.h"
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -22,7 +23,7 @@ namespace nsMMOEngine
   class TScenarioFlow : public IScenario
   {
     enum{eUp,eDown};
-    struct THeaderFlow : public IScenario::TBaseHeader
+    struct THeaderFlow : public TScenarioBaseHeader
     {
       THeaderFlow(){type = TMakerScenario::eFlow;}
     }_PACKED;

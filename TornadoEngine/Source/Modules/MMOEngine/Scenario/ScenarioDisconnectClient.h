@@ -5,15 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SCENARIO_DISCONNECT_CLIENT_H
-#define SCENARIO_DISCONNECT_CLIENT_H
+#ifndef MMOEngineScenarioDisconnectClientH
+#define MMOEngineScenarioDisconnectClientH
+
+#include <vector>
 
 #include "IScenario.h"
 #include "ContextScDisconnectClient.h"
 #include "MakerScenario.h"
 #include "CallBackRegistrator.h"
-
-#include <vector>
+#include "ScenarioBaseHeader.h"
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -28,7 +29,7 @@ namespace nsMMOEngine
       eFromSlave,
     };
 
-    struct THeaderDisconnectClient : public IScenario::TBaseHeader
+    struct THeaderDisconnectClient : public TScenarioBaseHeader
     {
       THeaderDisconnectClient(){type=TMakerScenario::eDisconnectClient;} 
     }_PACKED;

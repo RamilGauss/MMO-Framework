@@ -363,6 +363,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Source\EnumMMO.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\MMOEngine\Source\Events.cpp"
 				>
 			</File>
@@ -643,6 +647,10 @@
 					RelativePath="..\MMOEngine\SubSystem\ManagerManagerContextSc.h"
 					>
 				</File>
+				<File
+					RelativePath=".\SubSystem\ScenarioBaseHeader.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Crypto"
@@ -823,6 +831,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Scenario\DescRequestConnectForRecipient.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Scenario\ScRecommutationClient_ClientImpl.h"
 						>
 					</File>
@@ -844,6 +856,10 @@
 					</File>
 					<File
 						RelativePath=".\Scenario\BaseScRecommutationClient_Struct.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Scenario\DescRequestConnectForRecipient.cpp"
 						>
 					</File>
 					<File

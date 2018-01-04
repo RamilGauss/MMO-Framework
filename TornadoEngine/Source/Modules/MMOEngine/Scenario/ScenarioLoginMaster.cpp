@@ -5,7 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-
 #include "ScenarioLoginMaster.h"
 #include "Logger.h"
 #include "ManagerSession.h"

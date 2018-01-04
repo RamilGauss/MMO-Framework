@@ -5,15 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SCENARIO_SEND_TO_CLIENT_H
-#define SCENARIO_SEND_TO_CLIENT_H
+#ifndef MMOEngineScenarioSendToClientH
+#define MMOEngineScenarioSendToClientH
+
+#include <boost/foreach.hpp>
 
 #include "IScenario.h"
 #include "ContextScSendToClient.h"
 #include "MakerScenario.h"
 #include "ManagerSession.h"
-
-#include <boost/foreach.hpp>
+#include "ScenarioBaseHeader.h"
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -30,7 +31,7 @@ namespace nsMMOEngine
       eSlave,
     };
     //-------------------------------------------------
-    struct THeader : public IScenario::TBaseHeader
+    struct THeader : public TScenarioBaseHeader
     {
       THeader(){type = TMakerScenario::eSendToClient;id_client=0;}
       unsigned int id_client;

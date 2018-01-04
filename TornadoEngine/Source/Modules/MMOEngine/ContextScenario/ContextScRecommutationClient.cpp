@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include "ContextScRecommutationClient.h"
-#include "Base.h"
+#include "EnumMMO.h"
 
 using namespace nsMMOEngine;
 

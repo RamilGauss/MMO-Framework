@@ -5,12 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SCENARIO_LOGIN_SLAVE_H
-#define SCENARIO_LOGIN_SLAVE_H
+#ifndef MMOEngineScenarioLoginSlaveH
+#define MMOEngineScenarioLoginSlaveH
 
 #include "IScenario.h"
 #include "ContextScLoginSlave.h"
 #include "MakerScenario.h"
+#include "ScenarioBaseHeader.h"
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -21,7 +22,7 @@ namespace nsMMOEngine
   class TScenarioLoginSlave : public IScenario
   {
     enum{eFromSlave,eAnswerMaster,};
-    struct THeaderLoginSlave : public IScenario::TBaseHeader
+    struct THeaderLoginSlave : public TScenarioBaseHeader
     {
       THeaderLoginSlave(){type=TMakerScenario::eLoginSlave;} 
     }_PACKED;

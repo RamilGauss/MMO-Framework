@@ -18,10 +18,6 @@ See for more information License.h.
 #include "IMakerTransport.h"
 #include "DataExchange2Thread.h"
 
-#define STR_NAME_MMO_ENGINE "MMOEngine"
-
-#define INVALID_HANDLE_SESSION 0
-
 namespace nsMMOEngine
 {
   class TManagerSession;
@@ -29,8 +25,8 @@ namespace nsMMOEngine
   class TManagerManagerContextSc;
   class TContainerContextSc;
   class TControlScenario;
-  class IScenario;
   class TDelegateManagerContextSc;
+  class IScenario;
   struct TDescRecvSession;
   struct TDescRequestConnectForRecipient;
   class DllExport TBase : public TSrcEvent
@@ -99,7 +95,7 @@ namespace nsMMOEngine
                                                                   unsigned int id_client){}//S
     //----------------------------------------------------
     // RCM
-    virtual void NeedContextByRequestForRecipient(TDescRequestConnectForRecipient*){}// Slave
+    virtual void NeedContextByRequestForRecipient(TDescRequestConnectForRecipient* p){}// Slave
     virtual void NeedContextByClientSessionForSlaveRcm(unsigned id_session, bool donor){}
     virtual void NeedContextByClientForSlaveKeyRcm(unsigned int key, bool donor){}
     virtual void NeedContextByClientKeyRcm(unsigned int key){}
@@ -113,13 +109,13 @@ namespace nsMMOEngine
     virtual void NeedContextSendToClient(unsigned int id_client){}
     virtual void NeedContextSynchroSlave(unsigned int id_session){}
 
-    virtual void EndDisconnectClient(IScenario*){}
-    virtual void EndDisconnectSlave(IScenario*){}
-    virtual void EndLoginClient(IScenario*){}
-    virtual void EndLoginSlave(IScenario*){}
-    virtual void EndLoginMaster(IScenario*){}
-    virtual void EndRcm(IScenario*){}
-    virtual void EndSynchroSlave(IScenario*){}
+    virtual void EndDisconnectClient(IScenario* p){}
+    virtual void EndDisconnectSlave(IScenario* p){}
+    virtual void EndLoginClient(IScenario* p){}
+    virtual void EndLoginSlave(IScenario* p){}
+    virtual void EndLoginMaster(IScenario* p){}
+    virtual void EndRcm(IScenario* p){}
+    virtual void EndSynchroSlave(IScenario* p){}
   private:    
     TManagerContextSc* AddManagerContextSc();
     void RemoveManagerContextSc(TManagerContextSc* pMCSc);

@@ -10,7 +10,7 @@ See for more information License.h.
 #include <boost/foreach.hpp>
 
 #include "Logger.h"
-#include "Base.h"
+#include "EnumMMO.h"
 #include <list>
 
 using namespace nsMMOEngine;

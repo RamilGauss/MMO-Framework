@@ -11,7 +11,7 @@ See for more information License.h.
 
 #include "Logger.h"
 #include "ContainerContextSc.h"
-#include "Base.h"
+#include "EnumMMO.h"
 
 using namespace nsMMOEngine;
 using namespace std;

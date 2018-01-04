@@ -8,6 +8,8 @@ See for more information License.h.
 #include "ScRecommutationClient_MasterImpl.h"
 #include "ContextScRecommutationClient.h"
 #include "ManagerSession.h"
+#include "BL_Debug.h"
+#include "DescRequestConnectForRecipient.h"
 
 using namespace nsMMOEngine;
 using namespace nsRecommutationClientStruct;
