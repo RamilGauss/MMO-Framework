@@ -60,7 +60,6 @@ SOURCES = \
 ./Source/Base.cpp \
 ./Source/BaseServer.cpp \
 ./Source/Client.cpp \
-./Source/EnumMMO.cpp \
 ./Source/Events.cpp \
 ./Source/IMakerTransport.cpp \
 ./Source/INetTransport.cpp \

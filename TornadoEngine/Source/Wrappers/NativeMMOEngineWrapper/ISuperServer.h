@@ -10,7 +10,7 @@ See for more information License.h.
 
 namespace NativeMMOEngineWrapper
 {
-  class DllExport ISuperServer
+  class DllExport ISuperServer : public IBaseServer
   {};
 }
 

@@ -10,7 +10,7 @@ See for more information License.h.
 
 namespace NativeMMOEngineWrapper
 {
-  class DllExport ISlave
+  class DllExport ISlave : public IActiveServer
   {
   public:
     virtual void SaveContext(unsigned int id_session, void* data, int size) = 0;

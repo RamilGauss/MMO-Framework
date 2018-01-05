@@ -363,10 +363,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Source\EnumMMO.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\MMOEngine\Source\Events.cpp"
 				>
 			</File>

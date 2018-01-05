@@ -10,7 +10,7 @@ See for more information License.h.
 
 namespace NativeMMOEngineWrapper
 {
-  class DllExport IBaseServer
+  class DllExport IBaseServer : public IBase
   {
   public:
     virtual bool IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 

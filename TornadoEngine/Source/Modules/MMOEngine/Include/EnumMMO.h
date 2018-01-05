@@ -10,8 +10,9 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  static const char* STR_NAME_MMO_ENGINE;
-  static const int INVALID_HANDLE_SESSION;
+  static const char* STR_NAME_MMO_ENGINE = "MMOEngine";
+
+  enum{ INVALID_HANDLE_SESSION = 0 };
 
   typedef enum
   {

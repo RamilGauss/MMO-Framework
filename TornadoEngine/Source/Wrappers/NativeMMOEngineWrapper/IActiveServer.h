@@ -10,7 +10,7 @@ See for more information License.h.
 
 namespace NativeMMOEngineWrapper
 {
-  class DllExport IActiveServer
+  class DllExport IActiveServer : public IBaseServer
   {
   public:
     virtual void ConnectUp(unsigned int ip, unsigned short port,  

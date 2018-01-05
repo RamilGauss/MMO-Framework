@@ -10,7 +10,7 @@ See for more information License.h.
 
 namespace NativeMMOEngineWrapper
 {
-  class DllExport IMaster
+  class DllExport IMaster : public IActiveServer
   {
   public:
     virtual bool TryCreateGroup(std::list<unsigned int>& l_id_client, unsigned int& id_group) = 0;
