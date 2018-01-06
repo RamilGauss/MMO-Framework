@@ -6,13 +6,14 @@ See for more information License.h.
 */
 
 #include "WMaster.h"
-#include "Master.h"
+#include "ImplementationProvider.h"
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
-  WMaster::WMaster() : WActiveServer( new nsMMOEngine::TMaster() )
+  WMaster::WMaster()
+    : WActiveServer((NativeMMOEngineWrapper::IActiveServer*)NativeMMOEngineWrapper::TImplementationProvider::MakeMaster() )
   {
-    mMaster = (nsMMOEngine::TMaster*)GetBase();
+    mMaster = (NativeMMOEngineWrapper::IMaster*)GetBase();
   }
   //------------------------------------------------------------------------------------------
   bool WMaster::TryCreateGroup(std::list<unsigned int>& l_id_client, unsigned int& id_group)

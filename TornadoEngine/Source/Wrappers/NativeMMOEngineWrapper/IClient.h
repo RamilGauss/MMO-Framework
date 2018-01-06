@@ -8,9 +8,11 @@ See for more information License.h.
 #ifndef NativeMMOEngineWrapperIClientH
 #define NativeMMOEngineWrapperIClientH
 
+#include "TypeDef.h"
+
 namespace NativeMMOEngineWrapper
 {
-  class DllExport IClient : public IBase
+  class DllExport IClient
   {
   public:
     virtual void Login(unsigned int ip, unsigned short port, 

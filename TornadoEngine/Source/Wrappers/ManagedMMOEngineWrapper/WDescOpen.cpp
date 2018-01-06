@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "WDescOpen.h"
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   WDescOpen::WDescOpen()
   {

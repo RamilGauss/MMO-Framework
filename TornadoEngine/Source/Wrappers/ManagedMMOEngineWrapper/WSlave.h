@@ -5,17 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperMMOEngineSlaveH
-#define WrapperMMOEngineSlaveH
+#ifndef ManagedMMOEngineWrapperWSlaveH
+#define ManagedMMOEngineWrapperWSlaveH
 
 #include "WActiveServer.h"
+#include "ISlave.h"
 
-namespace nsMMOEngine
-{
-  class TSlave;
-}
-
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   public ref struct WDescDownSlave // для GetDescDown
   {
@@ -24,7 +20,7 @@ namespace WrapperMMOEngine
 
   public ref class WSlave : public WActiveServer
   {
-    nsMMOEngine::TSlave* mSlave;
+    NativeMMOEngineWrapper::ISlave* mSlave;
   public:
     WSlave();
 

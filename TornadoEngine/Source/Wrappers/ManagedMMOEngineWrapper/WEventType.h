@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperMMOEngineEventTypeH
-#define WrapperMMOEngineEventTypeH
+#ifndef ManagedMMOEngineWrapperWEventTypeH
+#define ManagedMMOEngineWrapperWEventTypeH
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   typedef enum
   {

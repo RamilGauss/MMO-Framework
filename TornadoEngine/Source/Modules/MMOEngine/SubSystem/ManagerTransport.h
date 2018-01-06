@@ -10,11 +10,10 @@ See for more information License.h.
 
 #include <map>
 
-class INetTransport;
-class IMakerTransport;
-
 namespace nsMMOEngine
 {
+  class INetTransport;
+  class IMakerTransport;
   class TReciverTransport;
   class TManagerSession;
   class TManagerTransport

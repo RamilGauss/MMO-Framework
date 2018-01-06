@@ -68,7 +68,7 @@
 				AdditionalDependencies="shlwapi.lib ws2_32.lib Base_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\..\Lib;$(BOOST_PATH)\lib32-msvc-9.0"
+				AdditionalLibraryDirectories="..\..\..\Lib;&quot;$(BOOST_PATH)\lib32-msvc-9.0&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				ImportLibrary="..\..\..\Lib\$(TargetName).lib"

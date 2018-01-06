@@ -5,15 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef RECIVER_TRANSPORT_H
-#define RECIVER_TRANSPORT_H
+#ifndef MMOEngineReciverTransportH
+#define MMOEngineReciverTransportH
 
 #include "INetTransport.h"
 
-class INetTransport;
-
 namespace nsMMOEngine
 {
+  class INetTransport;
   class TManagerSession;
   class TReciverTransport
   {

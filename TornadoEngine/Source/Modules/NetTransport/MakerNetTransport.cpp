@@ -8,12 +8,12 @@ See for more information License.h.
 #include "MakerNetTransport.h"
 #include "NetTransport_Boost.h"
 
-INetTransport* TMakerNetTransport::New()
+nsMMOEngine::INetTransport* TMakerNetTransport::New()
 {
   return new TNetTransport_Boost();
 }
 //-----------------------------------------------------------------------------
-void TMakerNetTransport::Delete(INetTransport* pTransport)
+void TMakerNetTransport::Delete(nsMMOEngine::INetTransport* pTransport)
 {
   delete pTransport;
 }

@@ -8,9 +8,11 @@ See for more information License.h.
 #ifndef NativeMMOEngineWrapperIActiveServerH
 #define NativeMMOEngineWrapperIActiveServerH
 
+#include "TypeDef.h"
+
 namespace NativeMMOEngineWrapper
 {
-  class DllExport IActiveServer : public IBaseServer
+  class DllExport IActiveServer
   {
   public:
     virtual void ConnectUp(unsigned int ip, unsigned short port,  

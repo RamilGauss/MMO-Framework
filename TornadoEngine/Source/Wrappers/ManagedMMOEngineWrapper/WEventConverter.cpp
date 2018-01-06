@@ -8,7 +8,7 @@ See for more information License.h.
 #include "WEventConverter.h"
 #include <stddef.h>
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   WEventConverter::WEventConverter()
   {

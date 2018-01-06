@@ -5,23 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperMMOEngineActiveServerH
-#define WrapperMMOEngineActiveServerH
+#ifndef ManagedMMOEngineWrapperWActiveServerH
+#define ManagedMMOEngineWrapperWActiveServerH
 
 #include "WBaseServer.h"
+#include "IActiveServer.h"
 
-namespace nsMMOEngine
-{
-  class TActiveServer;
-}
-
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   public ref class WActiveServer : public WBaseServer
   {
-    nsMMOEngine::TActiveServer* mActiveServer;
+    NativeMMOEngineWrapper::IActiveServer* mActiveServer;
   public:
-    WActiveServer(nsMMOEngine::TActiveServer* pActiveServer);
+    WActiveServer( NativeMMOEngineWrapper::IActiveServer* pActiveServer );
 
     void ConnectUp(unsigned int ip, unsigned short port,  
       void* pLogin, int sizeLogin, void* pPassword, int sizePassword,

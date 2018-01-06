@@ -13,6 +13,7 @@ See for more information License.h.
 #include "INetTransport.h"
 #include "ResolverSelf_IP_v4.h"
 #include "NetControlTCP.h"
+#include "EnumMMO.h"
 
 using namespace boost::asio;
 using namespace std;
@@ -57,7 +58,7 @@ bool TNetDeviceAcceptor::Open( unsigned short port, unsigned char numNetWork )
   }
   catch(std::exception& e)
   {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("Open Acceptor (%d,%d) FAIL: %s.\n", port, numNetWork, e.what());
   }
   return res;
@@ -72,7 +73,7 @@ void TNetDeviceAcceptor::Close()
   }
   catch(std::exception& e)
   {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("Close Acceptor FAIL: %s.\n", e.what());
   }
 }

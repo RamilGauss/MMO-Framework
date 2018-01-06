@@ -8,9 +8,11 @@ See for more information License.h.
 #ifndef NativeMMOEngineWrapperISuperServerH
 #define NativeMMOEngineWrapperISuperServerH
 
+#include "TypeDef.h"
+
 namespace NativeMMOEngineWrapper
 {
-  class DllExport ISuperServer : public IBaseServer
+  class DllExport ISuperServer
   {};
 }
 

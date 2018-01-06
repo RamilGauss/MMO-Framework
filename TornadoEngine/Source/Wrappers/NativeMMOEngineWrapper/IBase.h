@@ -8,13 +8,18 @@ See for more information License.h.
 #ifndef NativeMMOEngineWrapperIBaseH
 #define NativeMMOEngineWrapperIBaseH
 
+#include "TypeDef.h"
+#include "ShareMisc.h"
+#include "Structs.h"
+#include "IMakerTransport.h"
+
 namespace NativeMMOEngineWrapper
 {
   class DllExport IBase
   {
   public:
-    virtual void Init(IMakerTransport* pMakerTransport) = 0;
-    virtual bool Open(TDescOpen* pDesc, int count = 1) = 0;
+    virtual void Init(nsMMOEngine::IMakerTransport* pMakerTransport) = 0;
+    virtual bool Open(nsMMOEngine::TDescOpen* pDesc, int count = 1) = 0;
     virtual void DisconnectUp() = 0;
     virtual void SendUp(char* p, int size, bool check = true) = 0;
     virtual void Work() = 0;

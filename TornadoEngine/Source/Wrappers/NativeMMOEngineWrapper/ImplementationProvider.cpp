@@ -6,34 +6,36 @@ See for more information License.h.
 */
 
 #include "ImplementationProvider.h"
+#include "ClientImpl.h"
+#include "SlaveImpl.h"
+#include "MasterImpl.h"
+#include "SuperServerImpl.h"
 
 namespace NativeMMOEngineWrapper
 {
-  TImplementationProvider::TImplementationProvider()
-  {
-
-  }
-  //-----------------------------------------------------------------
   IClient* TImplementationProvider::MakeClient()
   {
-
+    return new TClientImpl();
   }
   //-----------------------------------------------------------------
   ISlave* TImplementationProvider::MakeSlave()
   {
-
+    return new TSlaveImpl();
   }
   //-----------------------------------------------------------------
   IMaster* TImplementationProvider::MakeMaster()
   {
-
+    return new TMasterImpl();
   }
   //-----------------------------------------------------------------
   ISuperServer* TImplementationProvider::MakeSuperServer()
   {
-
+    return new TSuperServerImpl();
+  }
+  //-----------------------------------------------------------------
+  void TImplementationProvider::Delete(IBase* pBase)
+  {
+    delete pBase;
   }
   //-----------------------------------------------------------------
 }
-
-#endif

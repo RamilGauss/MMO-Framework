@@ -6,13 +6,13 @@ See for more information License.h.
 */
 
 #include "WBaseServer.h"
-#include "BaseServer.h"
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
-  WBaseServer::WBaseServer( nsMMOEngine::TBaseServer* pBaseServer ) : WBase( pBaseServer )
+  WBaseServer::WBaseServer( NativeMMOEngineWrapper::IBaseServer* pBaseServer ) 
+    : WBase( (NativeMMOEngineWrapper::IBase*) pBaseServer)
   {
-    mBaseServer = (nsMMOEngine::TBaseServer*)GetBase();
+    mBaseServer = pBaseServer;
   }
   //-------------------------------------------------------------------------------
   bool WBaseServer::IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 

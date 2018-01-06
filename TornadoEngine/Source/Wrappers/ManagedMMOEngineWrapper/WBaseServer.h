@@ -5,24 +5,20 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperMMOEngineBaseServerH
-#define WrapperMMOEngineBaseServerH
+#ifndef ManagedMMOEngineWrapperWBaseServerH
+#define ManagedMMOEngineWrapperWBaseServerH
 
 #include "WBase.h"
 #include <list>
+#include "IBaseServer.h"
 
-namespace nsMMOEngine
-{
-  class TBaseServer;
-}
-
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   public ref class WBaseServer : public WBase
   {
-    nsMMOEngine::TBaseServer* mBaseServer;
+    NativeMMOEngineWrapper::IBaseServer* mBaseServer;
   public:
-    WBaseServer( nsMMOEngine::TBaseServer* pBaseServer );
+    WBaseServer( NativeMMOEngineWrapper::IBaseServer* pBaseServer );
 
     // проверить на доверие сессию
     bool IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 

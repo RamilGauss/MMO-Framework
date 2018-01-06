@@ -8,9 +8,12 @@ See for more information License.h.
 #ifndef NativeMMOEngineWrapperIBaseServerH
 #define NativeMMOEngineWrapperIBaseServerH
 
+#include "TypeDef.h"
+#include <list>
+
 namespace NativeMMOEngineWrapper
 {
-  class DllExport IBaseServer : public IBase
+  class DllExport IBaseServer
   {
   public:
     virtual bool IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 

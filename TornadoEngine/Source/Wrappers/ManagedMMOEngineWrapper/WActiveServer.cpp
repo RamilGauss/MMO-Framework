@@ -6,14 +6,14 @@ See for more information License.h.
 */
 
 #include "WBaseServer.h"
-#include "ActiveServer.h"
 #include "WActiveServer.h"
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
-  WActiveServer::WActiveServer( nsMMOEngine::TActiveServer* pActiveServer ) : WBaseServer( pActiveServer )
+  WActiveServer::WActiveServer( NativeMMOEngineWrapper::IActiveServer* pActiveServer  ) 
+    : WBaseServer( (NativeMMOEngineWrapper::IBaseServer*)pActiveServer )
   {
-    mActiveServer = (nsMMOEngine::TActiveServer*)GetBase();
+    mActiveServer = pActiveServer;
   }
   //------------------------------------------------------------------------------
   void WActiveServer::ConnectUp(unsigned int ip, unsigned short port,  

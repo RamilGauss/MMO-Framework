@@ -6,12 +6,13 @@ See for more information License.h.
 */
 
 #include "WSuperServer.h"
-#include "SuperServer.h"
+#include "ImplementationProvider.h"
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
-  WSuperServer::WSuperServer() : WBaseServer( new nsMMOEngine::TSuperServer() )
+  WSuperServer::WSuperServer() 
+    : WBaseServer( (NativeMMOEngineWrapper::IBaseServer*)NativeMMOEngineWrapper::TImplementationProvider::MakeSuperServer() )
   {
-    mSuperServer = (nsMMOEngine::TSuperServer*)GetBase();
+    mSuperServer = (NativeMMOEngineWrapper::ISuperServer*)GetBase();
   }
 }

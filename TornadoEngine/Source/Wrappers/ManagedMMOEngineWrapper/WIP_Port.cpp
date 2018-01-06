@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "WIP_Port.h"
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   WIP_Port::WIP_Port()
   {

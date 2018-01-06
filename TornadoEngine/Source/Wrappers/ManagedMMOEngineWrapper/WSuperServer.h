@@ -5,17 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperMMOEngineSuperServerH
-#define WrapperMMOEngineSuperServerH
+#ifndef ManagedMMOEngineWrapperWSuperServerH
+#define ManagedMMOEngineWrapperWSuperServerH
 
 #include "WBaseServer.h"
+#include "ISuperServer.h"
 
-namespace nsMMOEngine
-{
-  class TSuperServer;
-}
-
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   public ref class WDescDownSuperServer
   {
@@ -25,7 +21,7 @@ namespace WrapperMMOEngine
 
   public ref class WSuperServer : public WBaseServer
   {
-    nsMMOEngine::TSuperServer* mSuperServer;
+    NativeMMOEngineWrapper::ISuperServer* mSuperServer;
   public:
     WSuperServer();
   };

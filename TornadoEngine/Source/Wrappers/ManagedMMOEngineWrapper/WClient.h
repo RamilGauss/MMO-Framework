@@ -5,21 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperMMOEngineClientH
-#define WrapperMMOEngineClientH
+#ifndef ManagedMMOEngineWrapperWClientH
+#define ManagedMMOEngineWrapperWClientH
 
 #include "WBase.h"
+#include "IClient.h"
 
-namespace nsMMOEngine
-{
-  class TClient;
-}
-
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   public ref class WClient : public WBase
   {
-    nsMMOEngine::TClient* mClient;
+    NativeMMOEngineWrapper::IClient* mClient;
   public:
     WClient();
 

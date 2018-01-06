@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using WrapperMMOEngine;
+using ManagedMMOEngineWrapper;
 
 namespace Client
 {
@@ -9,9 +9,10 @@ namespace Client
   {
     static void Main(string[] args)
     {
-      //unsafe
+      unsafe
       {
         var ip_port = new WIP_Port();
+        //var client = new WClient();
 
         //var client = new WClient();
         //client.Init();

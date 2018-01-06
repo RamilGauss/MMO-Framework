@@ -11,11 +11,11 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "IMakerTransport.h"
 
-class DllExport TMakerNetTransport : public IMakerTransport
+class DllExport TMakerNetTransport : public nsMMOEngine::IMakerTransport
 {
 public:
-  virtual INetTransport* New();
-  virtual void Delete(INetTransport* pTransport);
+  virtual nsMMOEngine::INetTransport* New();
+  virtual void Delete(nsMMOEngine::INetTransport* pTransport);
 };
 
 #endif

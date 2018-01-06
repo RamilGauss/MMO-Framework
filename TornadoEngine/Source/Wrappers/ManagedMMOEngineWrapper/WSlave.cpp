@@ -6,13 +6,14 @@ See for more information License.h.
 */
 
 #include "WSlave.h"
-#include "Slave.h"
+#include "ImplementationProvider.h"
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
-  WSlave::WSlave() : WActiveServer( new nsMMOEngine::TSlave() )
+  WSlave::WSlave()
+    : WActiveServer((NativeMMOEngineWrapper::IActiveServer*)NativeMMOEngineWrapper::TImplementationProvider::MakeSlave() )
   {
-    mSlave = (nsMMOEngine::TSlave*)GetBase();
+    mSlave = (NativeMMOEngineWrapper::ISlave*)GetBase();
   }
   //-----------------------------------------------------------------------------------
   void WSlave::SaveContext(unsigned int id_session, void* data, int size)

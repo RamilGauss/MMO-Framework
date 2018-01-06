@@ -8,9 +8,11 @@ See for more information License.h.
 #ifndef NativeMMOEngineWrapperISlaveH
 #define NativeMMOEngineWrapperISlaveH
 
+#include "TypeDef.h"
+
 namespace NativeMMOEngineWrapper
 {
-  class DllExport ISlave : public IActiveServer
+  class DllExport ISlave
   {
   public:
     virtual void SaveContext(unsigned int id_session, void* data, int size) = 0;

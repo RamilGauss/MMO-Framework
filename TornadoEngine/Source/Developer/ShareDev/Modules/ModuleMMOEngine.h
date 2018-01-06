@@ -11,19 +11,17 @@ See for more information License.h.
 #include "ModuleComponent.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
 
-#include "WrapperMakerTransport.h"
 #include "SrcEvent_ex.h"
 
 #include "Base.h"
 #include "INetTransport.h"
-
-class TWrapperMakerTransport;
+#include "MakerNetTransport.h"
 
 template <typename T>
 class DllExport TModuleMMOEngine : public TModuleComponent
 {
-  boost::scoped_ptr<TWrapperMakerTransport> mMakerTransport;
-  boost::scoped_ptr<T>                      mPtrMMO;
+  boost::scoped_ptr<TMakerNetTransport> mMakerTransport;
+  boost::scoped_ptr<T>                  mPtrMMO;
 public:
   TModuleMMOEngine();
   virtual void StartEvent();
@@ -43,7 +41,7 @@ template <typename T>
 void TModuleMMOEngine<T>::StartEvent()
 {
   mPtrMMO.reset(new T);
-  mMakerTransport.reset(new TWrapperMakerTransport);
+  mMakerTransport.reset(new TMakerNetTransport);
 
   mPtrMMO->Init(mMakerTransport.get());
 

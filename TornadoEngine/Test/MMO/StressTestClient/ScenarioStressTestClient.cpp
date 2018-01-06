@@ -27,7 +27,7 @@ See for more information License.h.
 void TScenarioStressTestClient::Init(int argc, char** argv)
 {
   GetLogger()->Register(nsMMOEngine::STR_NAME_MMO_ENGINE);
-  GetLogger()->Register(STR_NAME_NET_TRANSPORT);
+  GetLogger()->Register(nsMMOEngine::STR_NAME_NET_TRANSPORT);
   GetLogger()->Init("StressTestClient");
   GetLogger()->SetPrintf(false);
   GetLogger()->SetEnable(false);

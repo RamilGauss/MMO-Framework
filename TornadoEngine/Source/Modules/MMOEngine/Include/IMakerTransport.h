@@ -10,14 +10,17 @@ See for more information License.h.
 
 #include "INetTransport.h"
 
-class DllExport IMakerTransport
+namespace nsMMOEngine
 {
-public:
-  IMakerTransport();
-  virtual ~IMakerTransport();
-  
-  virtual INetTransport* New() = 0;
-  virtual void Delete(INetTransport* pTransport)= 0;
-};
+  class DllExport IMakerTransport
+  {
+  public:
+    //IMakerTransport();
+    //virtual ~IMakerTransport();
+    
+    virtual INetTransport* New() = 0;
+    virtual void Delete(INetTransport* pTransport)= 0;
+  };
+}
 
 #endif

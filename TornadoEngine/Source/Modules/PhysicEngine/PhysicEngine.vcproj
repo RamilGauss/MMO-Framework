@@ -68,88 +68,9 @@
 				AdditionalDependencies="Base_d.lib BulletCollision_d.lib BulletDynamics_d.lib BulletSoftBody_d.lib LinearMath_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\..\Lib;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
+				AdditionalLibraryDirectories="..\..\..\Lib;&quot;$(BOOST_PATH)\lib32-msvc-9.0&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="..\..\..\Exe"
-			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="2"
-			CharacterSet="1"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;../../Base/Headers;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				DebugInformationFormat="3"
-				DisableSpecificWarnings="4251;4275;4005;4244;4250"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="Base.lib BulletCollision.lib BulletDynamics.lib BulletSoftBody.lib LinearMath.lib"
-				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\..\Lib;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
-				GenerateDebugInformation="true"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
 				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
@@ -230,6 +151,85 @@
 				SubSystem="2"
 				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
 				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="..\..\..\Exe"
+			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="./;../../Base/Headers;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+				DisableSpecificWarnings="4251;4275;4005;4244;4250"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="Base.lib BulletCollision.lib BulletDynamics.lib BulletSoftBody.lib LinearMath.lib"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="..\..\..\Lib;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"

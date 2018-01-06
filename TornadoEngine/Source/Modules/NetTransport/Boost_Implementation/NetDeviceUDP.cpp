@@ -13,6 +13,7 @@ See for more information License.h.
 #include "ResolverSelf_IP_v4.h"
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/socket_base.hpp>
+#include "EnumMMO.h"
 
 using namespace boost::asio;
 
@@ -47,7 +48,7 @@ bool TNetDeviceUDP::Open( unsigned short port, unsigned char numNetWork )
   }
   catch(std::exception& e)
   {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("Open UDP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what());
   }
   return res;
@@ -62,7 +63,7 @@ void TNetDeviceUDP::Close()
   }
   catch(std::exception& e)
   {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("Close UDP FAIL: %s.\n", e.what());
   }
 }

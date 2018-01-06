@@ -5,20 +5,26 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef NativeMMOEngineWrapperISlaveH
-#define NativeMMOEngineWrapperISlaveH
+#ifndef NativeMMOEngineWrapperImplementationProviderH
+#define NativeMMOEngineWrapperImplementationProviderH
+
+#include "IBase.h"
+#include "IClient.h"
+#include "ISlave.h"
+#include "IMaster.h"
+#include "ISuperServer.h"
 
 namespace NativeMMOEngineWrapper
 {
   class DllExport TImplementationProvider
   {
   public:
-    TImplementationProvider();
+    static IClient* MakeClient();
+    static ISlave* MakeSlave();
+    static IMaster* MakeMaster();
+    static ISuperServer* MakeSuperServer();
 
-    IClient* MakeClient();
-    ISlave* MakeSlave();
-    IMaster* MakeMaster();
-    ISuperServer* MakeSuperServer();
+    static void Delete(IBase* pBase);
   };
 }
 

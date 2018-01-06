@@ -14,6 +14,7 @@ See for more information License.h.
 #include <boost/asio/placeholders.hpp>
 #include <boost/asio/buffer.hpp>
 #include <boost/bind.hpp>
+#include "EnumMMO.h"
 
 using namespace std;
 using namespace boost::asio;
@@ -44,7 +45,7 @@ bool TNetControlUDP::Open( unsigned short port, unsigned char numNetWork )
 //------------------------------------------------------------------------------
 bool TNetControlUDP::Connect(unsigned int ip, unsigned short port)
 {
-  GetLogger(STR_NAME_NET_TRANSPORT)->WriteF_time("Try connect on UDP.\n");
+  GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->WriteF_time("Try connect on UDP.\n");
   return false;// нельзя, только TCP
 }
 //------------------------------------------------------------------------------
@@ -83,7 +84,7 @@ void TNetControlUDP::SetCntInByIP_Port(TIP_Port& ip_port, unsigned short cnt_in)
   TMapIP_ICIt fit = mMapInfoConnect.find(ip_port);
   if(fit==mMapInfoConnect.end())
   {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("SetCntInByIP_Port not found info connect.\n");
     return;
   }
@@ -138,23 +139,23 @@ void TNetControlUDP::RecvFromEvent(const boost::system::error_code& error,size_t
     ip_port.port = mSenderEndpoint.port();
     if(IsStreamFresh(ip_port))
     {
-      INetTransport::TDescRecv descRecv;
-      descRecv.ip_port      = ip_port;
-      descRecv.type          = INetTransport::eUdp;
-      descRecv.data         = mBuffer   + sizeof(unsigned short);
-      descRecv.sizeData     = mReadSize - sizeof(unsigned short);
+      nsMMOEngine::INetTransport::TDescRecv descRecv;
+      descRecv.ip_port  = ip_port;
+      descRecv.type     = nsMMOEngine::INetTransport::eUdp;
+      descRecv.data     = mBuffer   + sizeof(unsigned short);
+      descRecv.sizeData = mReadSize - sizeof(unsigned short);
       NotifyRecv(&descRecv);
     }
     else
     {
-      GetLogger(STR_NAME_NET_TRANSPORT)->
+      GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
         WriteF_time("ReadFromEvent UDP recv not fresh packet.\n");
     }
     ReadyRecvFrom();
   }
   else
   {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("ReadFromEvent UDP error=%s.\n",error.message().data());
   }
 }
@@ -162,7 +163,7 @@ void TNetControlUDP::RecvFromEvent(const boost::system::error_code& error,size_t
 void TNetControlUDP::SendToEvent(const boost::system::error_code& error, size_t bytes_transferred)
 {
   if(error)
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("SendToEvent UDP error=%s.\n",error.message().data());
   
   mSended = bytes_transferred;
@@ -186,7 +187,7 @@ l_repeat:
   ip::udp::endpoint sender_end_point(boost::asio::ip::address_v4(ip_port.ip),ip_port.port);
   int resSend = mDevice.GetSocket()->send_to(boost::asio::buffer(data, size),sender_end_point,flags, ec);
   if(ec||resSend==0)
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("RequestSendTo UDP error=%s.\n",ec.message().data());
   if(resSend<size)
   {

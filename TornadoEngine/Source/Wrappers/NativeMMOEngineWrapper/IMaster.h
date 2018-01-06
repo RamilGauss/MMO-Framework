@@ -8,9 +8,12 @@ See for more information License.h.
 #ifndef NativeMMOEngineWrapperIMasterH
 #define NativeMMOEngineWrapperIMasterH
 
+#include "TypeDef.h"
+#include <list>
+
 namespace NativeMMOEngineWrapper
 {
-  class DllExport IMaster : public IActiveServer
+  class DllExport IMaster
   {
   public:
     virtual bool TryCreateGroup(std::list<unsigned int>& l_id_client, unsigned int& id_group) = 0;

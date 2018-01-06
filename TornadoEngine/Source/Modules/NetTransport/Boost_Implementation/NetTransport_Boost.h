@@ -19,7 +19,7 @@ See for more information License.h.
 
 // Thread safe - Send поддерживает.
 
-class TNetTransport_Boost : public INetTransport
+class TNetTransport_Boost : public nsMMOEngine::INetTransport
 {
   unsigned short mLocalPort;
   unsigned char  mNumNetWork;
@@ -38,8 +38,8 @@ class TNetTransport_Boost : public INetTransport
   
   TMapIP_Ptr mMapIP_TCP;
 
-  TCallBackRegistrator1<INetTransport::TDescRecv*> mCallBackRecv;
-  TCallBackRegistrator1<TIP_Port*>                 mCallBackDisconnect;
+  TCallBackRegistrator1<nsMMOEngine::INetTransport::TDescRecv*> mCallBackRecv;
+  TCallBackRegistrator1<TIP_Port*>                              mCallBackDisconnect;
 
 public:
   TNetTransport_Boost();

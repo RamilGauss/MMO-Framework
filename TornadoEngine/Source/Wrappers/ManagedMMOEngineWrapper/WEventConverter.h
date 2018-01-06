@@ -5,13 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperMMOEngineEventConverterH
-#define WrapperMMOEngineEventConverterH
+#ifndef ManagedMMOEngineWrapperWEventConverterH
+#define ManagedMMOEngineWrapperWEventConverterH
 
 #include "DstEvent.h"
 #include "WBaseEvent.h"
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   public class WEventConverter : public TDstEvent
   {

@@ -5,17 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperMMOEngineMasterH
-#define WrapperMMOEngineMasterH
+#ifndef ManagedMMOEngineWrapperWMasterH
+#define ManagedMMOEngineWrapperWMasterH
 
 #include "WActiveServer.h"
+#include "IMaster.h"
 
-namespace nsMMOEngine
-{
-  class TMaster;
-}
-
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   public ref class WDescDownMaster
   {
@@ -30,7 +26,7 @@ namespace WrapperMMOEngine
 
   public ref class WMaster : public WActiveServer
   {
-    nsMMOEngine::TMaster* mMaster;
+    NativeMMOEngineWrapper::IMaster* mMaster;
   public:
     WMaster();
 

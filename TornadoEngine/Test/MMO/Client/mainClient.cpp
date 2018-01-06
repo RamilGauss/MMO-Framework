@@ -25,7 +25,7 @@ See for more information License.h.
 int main(int argc, char** argv)
 {
   GetLogger()->Register(nsMMOEngine::STR_NAME_MMO_ENGINE);
-  GetLogger()->Register(STR_NAME_NET_TRANSPORT);
+  GetLogger()->Register(nsMMOEngine::STR_NAME_NET_TRANSPORT);
   GetLogger()->Init("Client_Test");
   GetLogger()->SetPrintf(false);
   GetLogger()->SetEnable(false);

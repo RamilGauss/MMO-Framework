@@ -13,6 +13,7 @@ See for more information License.h.
 #include "INetControl.h"
 #include "BL_Debug.h"
 #include "Logger.h"
+#include "EnumMMO.h"
 
 TNetWorkThread::TNetWorkThread()
 {
@@ -29,7 +30,7 @@ void TNetWorkThread::Work()
   boost::system::error_code ec;
   mIO_Service.run_one(ec);
   if(ec)
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("TNetWorkThread::Engine FAIL %d\n",ec.value());
 }
 //----------------------------------------------------------------------------------

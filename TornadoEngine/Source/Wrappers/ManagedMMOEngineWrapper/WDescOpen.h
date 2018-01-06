@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperMMOEngineDescOpenH
-#define WrapperMMOEngineDescOpenH
+#ifndef ManagedMMOEngineWrapperWDescOpenH
+#define ManagedMMOEngineWrapperWDescOpenH
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   public ref class WDescOpen
   {

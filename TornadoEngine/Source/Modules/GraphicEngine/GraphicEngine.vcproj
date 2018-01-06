@@ -67,88 +67,9 @@
 				AdditionalDependencies="Base_d.lib MyGUIEngine_d.lib OgreProperty_d.lib OgreRTShaderSystem_d.lib OgreTerrain_d.lib OgreVolume_d.lib OgreOverlay_d.lib OgrePaging_d.lib OgreMain_d.lib OIS_d.lib cg.lib Common_d.lib Platforms_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\..\Lib;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
+				AdditionalLibraryDirectories="..\..\..\Lib;&quot;$(BOOST_PATH)\lib32-msvc-9.0&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="..\..\..\Exe"
-			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="2"
-			CharacterSet="1"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="./;../../Base/Headers;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty/MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/OIS;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Overlay\include&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICENGINE_EXPORTS"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				DebugInformationFormat="3"
-				DisableSpecificWarnings="4251;4275;4005;4244;4250"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="Base.lib MyGUIEngine.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib Common.lib Platforms.lib"
-				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\..\Lib;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
-				GenerateDebugInformation="true"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
 				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
 				TargetMachine="1"
 			/>
@@ -228,6 +149,85 @@
 				SubSystem="2"
 				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
 				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="..\..\..\Exe"
+			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="./;../../Base/Headers;../../3rdParty/MyGUI/Common;../../3rdParty/MyGUI/Common/Base;../../3rdParty/MyGUI/Common/Base/Ogre;../../3rdParty/MyGUI/Common/Input/OIS;../../3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Overlay\include&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICENGINE_EXPORTS"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+				DisableSpecificWarnings="4251;4275;4005;4244;4250"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="Base.lib MyGUIEngine.lib OgreProperty.lib OgreRTShaderSystem.lib OgreTerrain.lib OgreVolume.lib OgreOverlay.lib OgrePaging.lib OgreMain.lib OIS.lib cg.lib Common.lib Platforms.lib"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="..\..\..\Lib;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"

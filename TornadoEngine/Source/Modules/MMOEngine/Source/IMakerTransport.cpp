@@ -7,13 +7,13 @@ See for more information License.h.
 
 #include "IMakerTransport.h"
 
-IMakerTransport::IMakerTransport()
-{
-
-}
-//------------------------------------------------------------------------
-IMakerTransport::~IMakerTransport()
-{
-
-}
-//------------------------------------------------------------------------
+//IMakerTransport::IMakerTransport()
+//{
+//
+//}
+////------------------------------------------------------------------------
+//IMakerTransport::~IMakerTransport()
+//{
+//
+//}
+////------------------------------------------------------------------------

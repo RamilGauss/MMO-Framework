@@ -69,7 +69,7 @@
 				AdditionalDependencies="shlwapi.lib ws2_32.lib libeay32.lib ssleay32.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(BOOST_PATH)\lib32-msvc-9.0&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32&quot;"
+				AdditionalLibraryDirectories="$(BOOST_PATH)\lib32-msvc-9.0;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
 				SubSystem="2"

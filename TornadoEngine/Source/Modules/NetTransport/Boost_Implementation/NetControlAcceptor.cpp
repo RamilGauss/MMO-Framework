@@ -6,14 +6,17 @@ See for more information License.h.
 */
 
 #include "NetControlAcceptor.h"
+
+#include <boost/asio/placeholders.hpp>
+#include <boost/system/error_code.hpp>
+#include <boost/bind.hpp>
+
 #include "BL_Debug.h"
 
 #include "Logger.h"
 #include "NetTransport_Boost.h"
 #include "NetControlTCP.h"
-#include <boost/asio/placeholders.hpp>
-#include <boost/system/error_code.hpp>
-#include <boost/bind.hpp>
+#include "EnumMMO.h"
 
 using namespace std;
 
@@ -64,7 +67,7 @@ void TNetControlAcceptor::AcceptEvent(const boost::system::error_code& error)
   {
     delete pNewControlTCP;
     pNewControlTCP = NULL;
-    GetLogger(STR_NAME_NET_TRANSPORT)->
+    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
       WriteF_time("Acceptor AcceptEvent FAIL: %s.\n", error.message().data());
 
     flgReadyAccept = false;

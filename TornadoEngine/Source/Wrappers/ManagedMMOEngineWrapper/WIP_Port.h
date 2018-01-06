@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WrapperBaseIP_PortH
-#define WrapperBaseIP_PortH
+#ifndef ManagedMMOEngineWrapperWIP_PortH
+#define ManagedMMOEngineWrapperWIP_PortH
 
-namespace WrapperMMOEngine
+namespace ManagedMMOEngineWrapper
 {
   public ref class WIP_Port
   {

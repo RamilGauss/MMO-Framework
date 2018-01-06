@@ -23,7 +23,7 @@ TNetTransport_Boost* INetControl::GetNetBoost()
   return mNetTransportBoost;
 }
 //------------------------------------------------------------------------------
-void INetControl::NotifyRecv(INetTransport::TDescRecv* p)
+void INetControl::NotifyRecv(nsMMOEngine::INetTransport::TDescRecv* p)
 {
   mNetTransportBoost->GetCallbackRecv()->Notify(p);
 }
