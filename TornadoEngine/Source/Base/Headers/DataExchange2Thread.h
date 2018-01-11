@@ -135,7 +135,7 @@ void TDataExchange2Thread<TClass>::Clear()
 }
 //--------------------------------------------------------------------------------------
 template<typename TClass> 
-typename /*TDataExchange2Thread<TClass>::*/TElement* TDataExchange2Thread<TClass>::GetElement(TClass** d)
+/*typename*/ /*TDataExchange2Thread<TClass>::*/TElement* TDataExchange2Thread<TClass>::GetElement(TClass** d)
 {
   char* pAddress  = ((char*)d+sizeof(TClass*));
   TElement** ppEl = (TElement**)pAddress;
