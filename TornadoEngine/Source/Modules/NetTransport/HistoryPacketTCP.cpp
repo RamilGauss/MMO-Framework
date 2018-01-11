@@ -54,7 +54,7 @@ int THistoryPacketTCP::SearchBegin(int readSize, char* buffer, TResult& res, int
   // в случае хака, Взломанный Клиент, может прислать некорректный пакет
   if(pHeader->header!=header.header)
   {
-    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
+    GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("THistoryPacketTCP::SearchBegin header don't have correct preambula.\n");
     res.parse_error = true;
     return 0;// сдвиг на 1 байт и поиск дальше
@@ -62,7 +62,7 @@ int THistoryPacketTCP::SearchBegin(int readSize, char* buffer, TResult& res, int
   // проверка корректности предполагаемого размера пакета
   if(pHeader->size > eMaxSize)
   {
-    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
+    GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("THistoryPacketTCP::SearchBegin expect very large size of packet.\n");
     // обмен нарушен канал скоро умрет, админ, проверяя логи, забанит "хака".
     // ну, по крайней мере так должно быть.
@@ -92,7 +92,7 @@ int THistoryPacketTCP::SearchSize(int readSize, char* buffer, TResult& res, int 
   // в случае хака, Взломанный Клиент, может прислать некорректный пакет
   if(pHeader->header!=header.header)
   {
-    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
+    GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("THistoryPacketTCP::SearchSize expect very large size of packet.\n");
     res.parse_error = true;
     return 0;
@@ -100,7 +100,7 @@ int THistoryPacketTCP::SearchSize(int readSize, char* buffer, TResult& res, int 
   // проверка корректности предполагаемого размера пакета
   if(pHeader->size > eMaxSize)
   {
-    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
+    GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("THistoryPacketTCP::SearchBegin expect very large size of packet.\n");
     // сдвиг на 1 байт и поиск дальше, но фактически обмен нарушен
     // канал скоро умрет, админ, проверяя логи, забанит "хака".

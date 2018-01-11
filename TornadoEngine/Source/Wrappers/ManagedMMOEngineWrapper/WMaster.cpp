@@ -11,9 +11,9 @@ See for more information License.h.
 namespace ManagedMMOEngineWrapper
 {
   WMaster::WMaster()
-    : WActiveServer((NativeMMOEngineWrapper::IActiveServer*)NativeMMOEngineWrapper::TImplementationProvider::MakeMaster() )
+    : WActiveServer( new nsMMOEngine::TMaster() )
   {
-    mMaster = (NativeMMOEngineWrapper::IMaster*)GetBase();
+    mMaster = (nsMMOEngine::TMaster*)GetBase();
   }
   //------------------------------------------------------------------------------------------
   bool WMaster::TryCreateGroup(std::list<unsigned int>& l_id_client, unsigned int& id_group)

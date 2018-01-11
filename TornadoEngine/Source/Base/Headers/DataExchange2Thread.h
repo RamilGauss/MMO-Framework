@@ -11,8 +11,12 @@ See for more information License.h.
 #include <stddef.h>
 
 #include "BL_Debug.h"
-#include "LockFreeDef.h"
-#include "CallBackRegistrator.h"
+//#include "LockFreeDef.h"
+//#include "CallBackRegistrator.h"
+#include "DataExchange2ThreadElement.h"
+#include "AllocatorPool.h"
+
+using namespace DataExchange2Thread;
 
 //#define USE_COUNT_FOR_DEBUG
 /*
@@ -29,26 +33,26 @@ See for more information License.h.
 */
 template <typename TClass> class TDataExchange2Thread
 {
-#ifdef WIN32
-#pragma pack(push, 1)
-#endif
-  struct TElement
-  {
-    DECLARATION_ATOMIC_POINTER(pNext, TElement);// change by Producer
-    // data и ThisPointer местами не менять!
-    TClass*   data;//new/delete                 // change by Producer
-    TElement* ThisPointer;                      // change by Producer
-
-    DECLARATION_ATOMIC_CHAR(needRemove);   // change by Consumer
-    DECLARATION_ATOMIC_CHAR(prepareRemove);// change by Consumer
-    DECLARATION_ATOMIC_CHAR(dummy);        // change by Consumer
-
-    void Init();
-    void Done(TCallBackRegistrator1<TClass*>* pCB);
-  }_PACKED;
-#ifdef WIN32
-#pragma pack(pop)
-#endif
+//#ifdef WIN32
+//#pragma pack(push, 1)
+//#endif
+//  struct TElement
+//  {
+//    DECLARATION_ATOMIC_POINTER(pNext, TElement);// change by Producer
+//    // data и ThisPointer местами не менять!
+//    void*   data;//new/delete                 // change by Producer
+//    TElement* ThisPointer;                      // change by Producer
+//
+//    DECLARATION_ATOMIC_CHAR(needRemove);   // change by Consumer
+//    DECLARATION_ATOMIC_CHAR(prepareRemove);// change by Consumer
+//    DECLARATION_ATOMIC_CHAR(dummy);        // change by Consumer
+//
+//    void Init();
+//    void Done(TCallBackRegistrator1</*TClass*/void*>* pCB);
+//  }_PACKED;
+//#ifdef WIN32
+//#pragma pack(pop)
+//#endif
 #ifdef USE_COUNT_FOR_DEBUG
   DECLARATION_ATOMIC_INT(cnt);                  // change by Producer
 #endif
@@ -57,15 +61,16 @@ template <typename TClass> class TDataExchange2Thread
   TElement* pFirstProducer; // change by Producer
   TElement* pLastProducer;  // change by Producer
 
-  TCallBackRegistrator1<TClass*>* mCB_DeleteData;
+  TCallBackRegistrator1<void*>* mCB_DeleteData;
   
-  DECLARATION_ALLOCATOR_MEMORY
+  //DECLARATION_ALLOCATOR_MEMORY
+  TAllocatorPool mAlloactorElement;
 public:
   TDataExchange2Thread();
   ~TDataExchange2Thread();
   // удалять тем способом, которым создали, или по-умолчанию new/delete
   // setup method of allocate memory, default new/delete.
-  void SetCB_DeleteData(TCallBackRegistrator1<TClass*>* pCB){mCB_DeleteData=pCB;}
+  void SetCB_DeleteData(TCallBackRegistrator1<void*>* pCB){mCB_DeleteData=pCB;}
   //==============================INTERFACE=============================
   // Consumer
   TClass** GetFirst();
@@ -88,28 +93,28 @@ protected:
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
-template<typename TClass> 
-void TDataExchange2Thread<TClass>::TElement::Init()
-{
-  ThisPointer   = this;
-  data          = NULL;
-  DECLARATION_ATOMIC_POINTER_STORE(pNext, NULL, TElement);
-
-  DECLARATION_ATOMIC_CHAR_STORE(needRemove, false);
-  DECLARATION_ATOMIC_CHAR_STORE(prepareRemove, false);
-  DECLARATION_ATOMIC_CHAR_STORE(dummy, false);
-}
-//--------------------------------------------------------------------------------------
-template<typename TClass> 
-void TDataExchange2Thread<TClass>::TElement::Done(TCallBackRegistrator1<TClass*>* pCB)
-{
-  if( data==NULL )
-    return;
-  if( pCB )
-    pCB->Notify(data);
-  else
-    delete data;// don't touch! pair new/delete
-}
+//template<typename TClass> 
+//void TDataExchange2Thread<TClass>::TElement::Init()
+//{
+//  ThisPointer   = this;
+//  data          = NULL;
+//  DECLARATION_ATOMIC_POINTER_STORE(pNext, NULL, TElement);
+//
+//  DECLARATION_ATOMIC_CHAR_STORE(needRemove, false);
+//  DECLARATION_ATOMIC_CHAR_STORE(prepareRemove, false);
+//  DECLARATION_ATOMIC_CHAR_STORE(dummy, false);
+//}
+////--------------------------------------------------------------------------------------
+//template<typename TClass> 
+//void TDataExchange2Thread<TClass>::TElement::Done(TCallBackRegistrator1</*TClass*/void*>* pCB)
+//{
+//  if( data==NULL )
+//    return;
+//  if( pCB )
+//    pCB->Notify((TClass*)data);
+//  else
+//    delete (TClass*)data;// don't touch! pair new/delete
+//}
 //--------------------------------------------------------------------------------------
 template<typename TClass> 
 void TDataExchange2Thread<TClass>::Clear()
@@ -119,7 +124,7 @@ void TDataExchange2Thread<TClass>::Clear()
     TElement* temp = pFirstProducer;
     pFirstProducer = DECLARATION_ATOMIC_POINTER_LOAD(pFirstProducer->pNext);
     temp->Done(mCB_DeleteData);
-    DEALLOC_MEMORY(temp);
+    mAlloactorElement.Deallocate(temp);// DEALLOC_MEMORY(temp);
 #ifdef USE_COUNT_FOR_DEBUG
     CntDecr();
 #endif
@@ -130,7 +135,7 @@ void TDataExchange2Thread<TClass>::Clear()
 }
 //--------------------------------------------------------------------------------------
 template<typename TClass> 
-typename TDataExchange2Thread<TClass>::TElement* TDataExchange2Thread<TClass>::GetElement(TClass** d)
+typename /*TDataExchange2Thread<TClass>::*/TElement* TDataExchange2Thread<TClass>::GetElement(TClass** d)
 {
   char* pAddress  = ((char*)d+sizeof(TClass*));
   TElement** ppEl = (TElement**)pAddress;
@@ -174,11 +179,11 @@ void TDataExchange2Thread<TClass>::CntDecr()
 //--------------------------------------------------------------------------------------
 template<typename TClass>
 TDataExchange2Thread<TClass>::TDataExchange2Thread()// Producer/Consumer
-:CONSTRUCTOR_ALLOCATOR_MEMORY(TElement)
+//:mAlloactorElement(TElement)
 {
   mCB_DeleteData = NULL;
 
-  pFirstConsumer = ALLOC_MEMORY(TElement);
+  pFirstConsumer = mAlloactorElement.Allocate();//(TElement);
   pFirstConsumer->Init();
   pFirstProducer = pFirstConsumer;
   pLastProducer  = pFirstConsumer;
@@ -205,7 +210,7 @@ TClass** TDataExchange2Thread<TClass>::GetFirst()// Consumer
         DECLARATION_ATOMIC_CHAR_LOAD(pFirstConsumer->prepareRemove) )
       return NULL;
 
-    return &(pFirstConsumer->data);
+    return (TClass**)&(pFirstConsumer->data);
   }
   // cnt > 1
   if( DECLARATION_ATOMIC_CHAR_LOAD(pFirstConsumer->dummy)        || 
@@ -215,7 +220,7 @@ TClass** TDataExchange2Thread<TClass>::GetFirst()// Consumer
     pFirstConsumer = DECLARATION_ATOMIC_POINTER_LOAD(pFirstConsumer->pNext);// pNext != NULL
     DECLARATION_ATOMIC_CHAR_STORE(temp->needRemove, true);
   }
-  return &(pFirstConsumer->data);
+  return (TClass**)&(pFirstConsumer->data);
 }
 //--------------------------------------------------------------------------------------
 template<typename TClass>
@@ -250,7 +255,7 @@ TClass** TDataExchange2Thread<TClass>::Add(TClass* d)// Producer
 {
   if( d==NULL ) {BL_FIX_BUG();return NULL;}
 
-  TElement* pEl = ALLOC_MEMORY(TElement);
+  TElement* pEl = mAlloactorElement.Allocate();// ALLOC_MEMORY(TElement);
   pEl->Init();
 
   pEl->data = d;
@@ -262,7 +267,7 @@ TClass** TDataExchange2Thread<TClass>::Add(TClass* d)// Producer
 #endif
 
   LatencyRemove();
-  return &(pEl->data);
+  return (TClass**)&(pEl->data);
 }
 //--------------------------------------------------------------------------------------
 template<typename TClass>
@@ -276,7 +281,7 @@ void TDataExchange2Thread<TClass>::LatencyRemove()// Producer
     TElement* pEl = pFirstProducer;
     pFirstProducer = DECLARATION_ATOMIC_POINTER_LOAD(pFirstProducer->pNext);
     pEl->Done(mCB_DeleteData);
-    DEALLOC_MEMORY(pEl);
+    mAlloactorElement.Deallocate(pEl);// DEALLOC_MEMORY(pEl);
 
 #ifdef USE_COUNT_FOR_DEBUG
     CntDecr();
@@ -285,4 +290,4 @@ void TDataExchange2Thread<TClass>::LatencyRemove()// Producer
 }
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
-#endif // List2ThreadH
+#endif

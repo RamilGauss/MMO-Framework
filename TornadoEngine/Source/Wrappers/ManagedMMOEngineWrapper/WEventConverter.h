@@ -8,8 +8,8 @@ See for more information License.h.
 #ifndef ManagedMMOEngineWrapperWEventConverterH
 #define ManagedMMOEngineWrapperWEventConverterH
 
-#include "DstEvent.h"
 #include "WBaseEvent.h"
+#include "DstEvent.h"
 
 namespace ManagedMMOEngineWrapper
 {

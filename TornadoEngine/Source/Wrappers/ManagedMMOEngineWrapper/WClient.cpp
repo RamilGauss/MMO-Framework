@@ -11,9 +11,9 @@ See for more information License.h.
 namespace ManagedMMOEngineWrapper
 {
   WClient::WClient() 
-    : WBase( (NativeMMOEngineWrapper::IBase*)NativeMMOEngineWrapper::TImplementationProvider::MakeClient() )
+    : WBase( new nsMMOEngine::TClient() )
   {
-    mClient = (NativeMMOEngineWrapper::IClient*)GetBase();
+    mClient = (nsMMOEngine::TClient*)GetBase();
   }
   //---------------------------------------------------------------
   void WClient::Login(unsigned int ip, unsigned short port, void* pLogin, int sizeLogin, void* pPassword, int sizePassword)

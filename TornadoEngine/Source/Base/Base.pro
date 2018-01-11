@@ -31,6 +31,7 @@ LIBS += -lboost_locale
 
 
 SOURCES = \
+./Sources/AllocatorPool.cpp \
 ./Sources/ArrContainer.cpp \
 ./Sources/BL_Debug.cpp \
 ./Sources/BreakPacket.cpp \
@@ -40,6 +41,7 @@ SOURCES = \
 ./Sources/CRC8.cpp \
 ./Sources/CryptoAES_Impl.cpp \
 ./Sources/CryptoRSA_Impl.cpp \
+./Sources/DataExchange2ThreadElement.cpp \
 ./Sources/DescCallBack.cpp \
 ./Sources/DstEvent.cpp \
 ./Sources/FileOperation.cpp \
@@ -75,6 +77,7 @@ SOURCES = \
 
 
 HEADERS = \
+./Headers/AllocatorPool.h \
 ./Headers/ArrContainer.h\
 ./Headers/BL_Debug.h \
 ./Headers/BreakPacket.h \
@@ -89,6 +92,7 @@ HEADERS = \
 ./Headers/CryptoAES_Impl.h \
 ./Headers/CryptoRSA_Impl.h \
 ./Headers/DataExchange2Thread.h \
+./Headers/DataExchange2ThreadElement.h \
 ./Headers/DescCallBack.h \
 ./Headers/DescEvent.h \
 ./Headers/DstEvent.h \

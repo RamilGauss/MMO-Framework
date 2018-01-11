@@ -9,15 +9,15 @@ See for more information License.h.
 #define ManagedMMOEngineWrapperWActiveServerH
 
 #include "WBaseServer.h"
-#include "IActiveServer.h"
+#include "ActiveServer.h"
 
 namespace ManagedMMOEngineWrapper
 {
   public ref class WActiveServer : public WBaseServer
   {
-    NativeMMOEngineWrapper::IActiveServer* mActiveServer;
+    nsMMOEngine::TActiveServer* mActiveServer;
   public:
-    WActiveServer( NativeMMOEngineWrapper::IActiveServer* pActiveServer );
+    WActiveServer( nsMMOEngine::TActiveServer* pActiveServer );
 
     void ConnectUp(unsigned int ip, unsigned short port,  
       void* pLogin, int sizeLogin, void* pPassword, int sizePassword,

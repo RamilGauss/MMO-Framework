@@ -9,7 +9,7 @@ See for more information License.h.
 #define ManagedMMOEngineWrapperWSlaveH
 
 #include "WActiveServer.h"
-#include "ISlave.h"
+#include "Slave.h"
 
 namespace ManagedMMOEngineWrapper
 {
@@ -20,7 +20,7 @@ namespace ManagedMMOEngineWrapper
 
   public ref class WSlave : public WActiveServer
   {
-    NativeMMOEngineWrapper::ISlave* mSlave;
+    nsMMOEngine::TSlave* mSlave;
   public:
     WSlave();
 

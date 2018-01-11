@@ -7,12 +7,15 @@ See for more information License.h.
 
 #include "WBase.h"
 #include <stddef.h>
+
+#include "Logger.h"
 #include "MakerNetTransport.h"
-#include "ImplementationProvider.h"
+//#include "ImplementationProvider.h"
+#include "EnumMMO.h"
 
 namespace ManagedMMOEngineWrapper
 {
-  WBase::WBase( NativeMMOEngineWrapper::IBase* pBase )
+  WBase::WBase( nsMMOEngine::TBase* pBase )
   {
     mBase = pBase;
     mMakerTransport = new TMakerNetTransport();
@@ -20,11 +23,31 @@ namespace ManagedMMOEngineWrapper
   //-----------------------------------------------------------------------------------------
   WBase::~WBase()
   {
-    NativeMMOEngineWrapper::TImplementationProvider::Delete( mBase );
+    delete mBase;
   }
   //-----------------------------------------------------------------------------------------
-  void WBase::Init()
+  void WBase::Init( System::String^ logName )
   {
+    pin_ptr<const wchar_t> wch = PtrToStringChars( logName );
+    size_t convertedChars = 0;  
+    size_t  sizeInBytes = ((logName->Length + 1) * 2);  
+    errno_t err = 0;  
+    char    *ch = (char *)malloc(sizeInBytes);  
+
+    err = wcstombs_s(&convertedChars,   
+      ch, sizeInBytes,  
+      wch, sizeInBytes);  
+    if (err != 0)  
+      printf_s("wcstombs_s  failed!\n");  
+
+    printf_s("%s\n", ch);  
+
+    GetLogger()->Register(STR_NAME_MMO_ENGINE);
+    GetLogger()->Register(STR_NAME_NET_TRANSPORT);
+    GetLogger()->Init( ch );
+    GetLogger()->SetPrintf(false);
+    GetLogger()->SetEnable(false);
+
     mBase->Init( mMakerTransport );
   }
   //-----------------------------------------------------------------------------------------
@@ -77,7 +100,6 @@ namespace ManagedMMOEngineWrapper
 
     ip_port->Set(native_ip_port.ip, native_ip_port.port);
     return result;
-    return false;
   }
   //-----------------------------------------------------------------------------------------
   WBaseEvent^ WBase::GetEvent()
@@ -85,12 +107,7 @@ namespace ManagedMMOEngineWrapper
     return nullptr;
   }
   //-----------------------------------------------------------------------------------------
-  void WBase::SetBase(NativeMMOEngineWrapper::IBase* pBase)
-  {
-    mBase = pBase;
-  }
-  //-----------------------------------------------------------------------------------------
-  NativeMMOEngineWrapper::IBase* WBase::GetBase()
+  nsMMOEngine::TBase* WBase::GetBase()
   {
     return mBase;
   }

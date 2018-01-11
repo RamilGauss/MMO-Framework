@@ -9,7 +9,7 @@ See for more information License.h.
 #define ManagedMMOEngineWrapperWSuperServerH
 
 #include "WBaseServer.h"
-#include "ISuperServer.h"
+#include "SuperServer.h"
 
 namespace ManagedMMOEngineWrapper
 {
@@ -21,7 +21,7 @@ namespace ManagedMMOEngineWrapper
 
   public ref class WSuperServer : public WBaseServer
   {
-    NativeMMOEngineWrapper::ISuperServer* mSuperServer;
+    nsMMOEngine::TSuperServer* mSuperServer;
   public:
     WSuperServer();
   };

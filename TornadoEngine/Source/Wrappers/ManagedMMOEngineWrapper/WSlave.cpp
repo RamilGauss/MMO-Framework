@@ -11,9 +11,9 @@ See for more information License.h.
 namespace ManagedMMOEngineWrapper
 {
   WSlave::WSlave()
-    : WActiveServer((NativeMMOEngineWrapper::IActiveServer*)NativeMMOEngineWrapper::TImplementationProvider::MakeSlave() )
+    : WActiveServer( new nsMMOEngine::TSlave() )
   {
-    mSlave = (NativeMMOEngineWrapper::ISlave*)GetBase();
+    mSlave = (nsMMOEngine::TSlave*)GetBase();
   }
   //-----------------------------------------------------------------------------------
   void WSlave::SaveContext(unsigned int id_session, void* data, int size)

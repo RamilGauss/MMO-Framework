@@ -8,13 +8,13 @@ See for more information License.h.
 #ifndef MMOEngineEnumMMOH
 #define MMOEngineEnumMMOH
 
+static const char* STR_NAME_MMO_ENGINE    = "MMOEngine";
+static const char* STR_NAME_NET_TRANSPORT = "NetTransport";
+
+static const int INVALID_HANDLE_SESSION = 0;
+
 namespace nsMMOEngine
 {
-  static const char* STR_NAME_MMO_ENGINE    = "MMOEngine";
-  static const char* STR_NAME_NET_TRANSPORT = "NetTransport";
-
-  enum{ INVALID_HANDLE_SESSION = 0 };
-
   typedef enum
   {
     // open

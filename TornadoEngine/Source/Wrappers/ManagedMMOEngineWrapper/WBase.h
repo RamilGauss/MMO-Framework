@@ -8,24 +8,29 @@ See for more information License.h.
 #ifndef ManagedMMOEngineWrapperWBaseH
 #define ManagedMMOEngineWrapperWBaseH
 
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <vcclr.h>  
+
 #include "IBase.h"
 #include "IMakerTransport.h"
 
 #include "WIP_Port.h"
 #include "WBaseEvent.h"
+#include "Base.h"
 
 namespace ManagedMMOEngineWrapper
 {
   class WDescOpen;
   public ref class WBase
   {
-    NativeMMOEngineWrapper::IBase* mBase;
+    nsMMOEngine::TBase* mBase;
     nsMMOEngine::IMakerTransport* mMakerTransport;
   public:
-    WBase( NativeMMOEngineWrapper::IBase* pBase );
+    WBase( nsMMOEngine::TBase* pBase );
     virtual ~WBase();
 
-    void Init();
+    void Init( System::String^ logName );
     bool Open( WDescOpen* pDesc, int count );
     void DisconnectUp();
     void SendUp( char* p, int size, bool check );
@@ -38,8 +43,7 @@ namespace ManagedMMOEngineWrapper
   public:
     WBaseEvent^ GetEvent();
   protected:
-    void SetBase(NativeMMOEngineWrapper::IBase* pBase);
-    NativeMMOEngineWrapper::IBase* GetBase();
+    nsMMOEngine::TBase* GetBase();
   };
 }
 

@@ -14,8 +14,6 @@ See for more information License.h.
 #include "DescEvent.h"
 #include "DataExchange2Thread.h"
 
-class TSrcEvent;
-
 /*
   поглотитель событий. работает в связке с TSrcEvent
   пронаследоваться,
@@ -25,9 +23,8 @@ class TSrcEvent;
 
 class DllExport TDstEvent
 {
-  TDataExchange2Thread<nsEvent::TEvent>* pListEvent;
+  TDataExchange2Thread<nsEvent::TEvent>* mListEvent;
 public:
-
   TDstEvent();
   virtual ~TDstEvent();
 
@@ -37,11 +34,9 @@ public:
   void AddEventInQueueWithoutCopy(int type_object, void* ptr_src, T* data, unsigned int time_create_ms);
 
   void Translate(nsEvent::TEvent* pEvent);
-protected:
+public:
   // забрал объект - уничтожь с помощью delete
   nsEvent::TEvent* GetEvent();
-  
-  void AddSrcEvent(TSrcEvent* pSrcEvent);
 };
 //-------------------------------------------------------------------------------------
 template<typename T>
@@ -53,7 +48,8 @@ void TDstEvent::AddEventInQueueWithoutCopy(int type_object, void* ptr_src, T* da
   pEvent->type_object = type_object;
   pEvent->ptr_object = ptr_src;
   pEvent->pContainer->EntrustByCount((char*)data,1);
-  pListEvent->Add(pEvent);
+  
+  mListEvent->Add(pEvent);
 }
 //-------------------------------------------------------------------------------------
 

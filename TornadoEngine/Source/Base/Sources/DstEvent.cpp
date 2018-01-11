@@ -6,19 +6,17 @@ See for more information License.h.
 */
 
 #include "DstEvent.h"
-#include "SrcEvent.h"
-#include "DataExchange2Thread.h"
 
 using namespace nsEvent;
 
 TDstEvent::TDstEvent()
 {
-  pListEvent = new TDataExchange2Thread<TEvent>;
+  mListEvent = new TDataExchange2Thread<TEvent>;
 }
 //------------------------------------------------------------
 TDstEvent::~TDstEvent()
 {
-  delete pListEvent;
+  delete mListEvent;
 }
 //------------------------------------------------------------
 void TDstEvent::AddEventInQueueCopy(int type_object, void* ptr_src, void* data, int size, unsigned int time_create_ms)
@@ -29,28 +27,24 @@ void TDstEvent::AddEventInQueueCopy(int type_object, void* ptr_src, void* data, 
   pEvent->ptr_object  = ptr_src;
   pEvent->type_object = type_object;
   pEvent->pContainer->SetDataByCount((char*)data, size);// sizeof(char)==1, поэтому size
-  pListEvent->Add(pEvent);
+  
+  mListEvent->Add(pEvent);
 }
 //------------------------------------------------------------
 TEvent* TDstEvent::GetEvent()
 {
-  TEvent** ppEvent = pListEvent->GetFirst();
+  TEvent** ppEvent = mListEvent->GetFirst();
   if(ppEvent==NULL) 
     return NULL;
 
   TEvent* pEvent = *(ppEvent);
-  pListEvent->UnlinkData(ppEvent);
-  pListEvent->RemoveFirst();
+  mListEvent->UnlinkData(ppEvent);
+  mListEvent->RemoveFirst();
   return pEvent;
-}
-//------------------------------------------------------------
-void TDstEvent::AddSrcEvent(TSrcEvent* pSrcEvent)
-{
-  pSrcEvent->SetDstObject(this);
 }
 //------------------------------------------------------------
 void TDstEvent::Translate(nsEvent::TEvent* pEvent)
 {
-  pListEvent->Add(pEvent);
+  mListEvent->Add(pEvent);
 }
 //------------------------------------------------------------

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ManagedMMOEngineWrapper;
+using System.Globalization;
 
 namespace Client
 {
@@ -11,11 +12,9 @@ namespace Client
     {
       unsafe
       {
-        var ip_port = new WIP_Port();
-        //var client = new WClient();
-
-        //var client = new WClient();
-        //client.Init();
+        var client = new WClient();
+        string logName = "asdaa";
+        client.Init( logName );
       }
     }
   }

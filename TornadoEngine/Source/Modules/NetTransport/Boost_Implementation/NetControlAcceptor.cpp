@@ -67,7 +67,7 @@ void TNetControlAcceptor::AcceptEvent(const boost::system::error_code& error)
   {
     delete pNewControlTCP;
     pNewControlTCP = NULL;
-    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
+    GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("Acceptor AcceptEvent FAIL: %s.\n", error.message().data());
 
     flgReadyAccept = false;

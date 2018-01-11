@@ -9,13 +9,13 @@ See for more information License.h.
 #define ManagedMMOEngineWrapperWClientH
 
 #include "WBase.h"
-#include "IClient.h"
+#include "Client.h"
 
 namespace ManagedMMOEngineWrapper
 {
   public ref class WClient : public WBase
   {
-    NativeMMOEngineWrapper::IClient* mClient;
+    nsMMOEngine::TClient* mClient;
   public:
     WClient();
 

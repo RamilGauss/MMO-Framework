@@ -30,7 +30,7 @@ char sErr[300];
 unsigned int g_Start;
 
 boost::pool<> g_Allocator(sizeof(TypeStream));
-TCallBackRegistrator1<TypeStream*> g_CB_Delete;
+TCallBackRegistrator1<void*> g_CB_Delete;
 
 #define CNT_PRINT_SPEED 1000000
 #define USE_BOOST_POOL
@@ -120,6 +120,19 @@ public:
 //---------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
+  TDataExchange2Thread<int> list;
+  list.Add( new int(0) );
+  list.Add( new int(1) );
+  list.Add( new int(2) );
+
+  while( list.GetFirst() )
+  {
+    int** ppInt = list.GetFirst();
+    list.RemoveFirst();
+  }
+  list.Add( new int(3) );
+
+
 #ifdef USE_BOOST_POOL
   TDeleter deleter;
   g_CB_Delete.Register(&TDeleter::Delete, &deleter);

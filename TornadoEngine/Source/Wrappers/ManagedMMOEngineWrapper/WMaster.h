@@ -9,7 +9,7 @@ See for more information License.h.
 #define ManagedMMOEngineWrapperWMasterH
 
 #include "WActiveServer.h"
-#include "IMaster.h"
+#include "Master.h"
 
 namespace ManagedMMOEngineWrapper
 {
@@ -26,7 +26,7 @@ namespace ManagedMMOEngineWrapper
 
   public ref class WMaster : public WActiveServer
   {
-    NativeMMOEngineWrapper::IMaster* mMaster;
+    nsMMOEngine::TMaster* mMaster;
   public:
     WMaster();
 

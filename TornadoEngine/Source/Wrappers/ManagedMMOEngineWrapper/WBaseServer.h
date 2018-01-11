@@ -10,15 +10,15 @@ See for more information License.h.
 
 #include "WBase.h"
 #include <list>
-#include "IBaseServer.h"
+#include "BaseServer.h"
 
 namespace ManagedMMOEngineWrapper
 {
   public ref class WBaseServer : public WBase
   {
-    NativeMMOEngineWrapper::IBaseServer* mBaseServer;
+    nsMMOEngine::TBaseServer* mBaseServer;
   public:
-    WBaseServer( NativeMMOEngineWrapper::IBaseServer* pBaseServer );
+    WBaseServer( nsMMOEngine::TBaseServer* pBaseServer );
 
     // проверить на доверие сессию
     bool IsSessionSecurity(unsigned int id_session, void* crypt, int size_crypt, 

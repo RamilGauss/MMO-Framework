@@ -53,7 +53,7 @@ bool TNetDeviceTCP::Open( unsigned short port, unsigned char numNetWork )
   }
   catch(std::exception& e)
   {
-    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
+    GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("Open TCP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what());
   }
   return res;
@@ -68,7 +68,7 @@ void TNetDeviceTCP::Close()
   }
   catch(std::exception& e)
   {
-    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
+    GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("Close TCP FAIL: %s.\n", e.what());
   }
 }

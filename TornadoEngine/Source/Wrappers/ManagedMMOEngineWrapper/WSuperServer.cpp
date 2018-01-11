@@ -11,8 +11,8 @@ See for more information License.h.
 namespace ManagedMMOEngineWrapper
 {
   WSuperServer::WSuperServer() 
-    : WBaseServer( (NativeMMOEngineWrapper::IBaseServer*)NativeMMOEngineWrapper::TImplementationProvider::MakeSuperServer() )
+    : WBaseServer( new nsMMOEngine::TSuperServer() )
   {
-    mSuperServer = (NativeMMOEngineWrapper::ISuperServer*)GetBase();
+    mSuperServer = (nsMMOEngine::TSuperServer*)GetBase();
   }
 }

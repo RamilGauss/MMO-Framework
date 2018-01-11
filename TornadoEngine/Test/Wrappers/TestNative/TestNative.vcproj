@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="GameEngine"
-	ProjectGUID="{73A4EF05-62AA-4529-8C04-0529ABFF8DCC}"
-	RootNamespace="GameEngine"
+	Name="TestNative"
+	ProjectGUID="{440D6AB8-E46A-4433-A072-054A2E174FC8}"
+	RootNamespace="TestNative"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -21,9 +21,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\Exe"
-			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="2"
+			OutputDirectory="..\..\..\Exe"
+			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			ConfigurationType="1"
 			CharacterSet="1"
 			>
 			<Tool
@@ -44,15 +44,15 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../Base/Headers;../Developer/Source;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GAME_ENGINE_EXPORTS;GAME_ENGINE_EI=__declspec(dllexport);_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="&quot;$(BOOST_PATH)&quot;;../../../Source/Base/Headers;../../../Source/Modules/NetTransport;../../../Source/Modules/MMOEngine/Include;../../../Source/Wrappers/NativeMMOEngineWrapper"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
-				DisableSpecificWarnings="4251"
+				DisableSpecificWarnings="4251; 4267"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -65,13 +65,86 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib comctl32.lib Base_d.lib"
-				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
+				AdditionalDependencies="Base_d.lib NetTransport_d.lib MMOEngine_d.lib NativeMMOEngineWrapper_d.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\Lib;&quot;$(BOOST_PATH)\lib32-msvc-9.0&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32&quot;"
+				AdditionalLibraryDirectories="..\..\..\Lib;$(BOOST_PATH)\lib32-msvc-9.0"
 				GenerateDebugInformation="true"
-				SubSystem="2"
-				ImportLibrary="..\..\Lib\$(TargetName).lib"
+				SubSystem="1"
+				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -98,9 +171,9 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
-			ConfigurationType="2"
+			OutputDirectory="..\..\..\Exe"
+			IntermediateDirectory="..\..\..\Temp\$(ConfigurationName)\$(ProjectName)"
+			ConfigurationType="1"
 			CharacterSet="1"
 			>
 			<Tool
@@ -122,15 +195,15 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../Base/Headers;../Developer/Source;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GAME_ENGINE_EXPORTS;GAME_ENGINE_EI=__declspec(dllexport);_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="&quot;$(BOOST_PATH64)&quot;;../../../Source/Base/Headers;../../../Source/Modules/NetTransport;../../../Source/Modules/MMOEngine/Include;../../../Source/Wrappers/NativeMMOEngineWrapper"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				DisableSpecificWarnings="4251;4267"
+				DisableSpecificWarnings="4251; 4267"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -143,13 +216,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib comctl32.lib Base_d.lib"
-				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
+				AdditionalDependencies="Base_d.lib NetTransport_d.lib MMOEngine_d.lib NativeMMOEngineWrapper_d.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\Lib;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
+				AdditionalLibraryDirectories="..\..\..\Lib;$(BOOST_PATH64)\lib64-msvc-9.0"
 				GenerateDebugInformation="true"
-				SubSystem="2"
-				ImportLibrary="..\..\Lib\$(TargetName).lib"
+				SubSystem="1"
+				ImportLibrary="..\..\..\Lib\$(TargetName).lib"
 				TargetMachine="17"
 			/>
 			<Tool
@@ -175,89 +247,10 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="..\..\Exe"
-			IntermediateDirectory="..\..\Temp\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="2"
-			CharacterSet="1"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;../Base/Headers;../Developer/Source;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;GAMEENGINE_EXPORTS"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				DebugInformationFormat="3"
-				DisableSpecificWarnings="4251"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib comctl32.lib Base.lib"
-				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\Lib;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
-				GenerateDebugInformation="true"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				ImportLibrary="..\..\Lib\$(TargetName).lib"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -281,14 +274,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;../Base/Headers;../Developer/Source;&quot;$(BOOST_PATH)&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Include&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;GAMEENGINE_EXPORTS"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				DisableSpecificWarnings="4251"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -301,14 +292,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib ws2_32.lib comctl32.lib Base.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\Lib;&quot;$(BOOST_PATH)\stage\lib&quot;;&quot;$(DEP_PATH_MMO_FRAMEWORK)\Lib&quot;"
 				GenerateDebugInformation="true"
-				SubSystem="2"
+				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="..\..\Lib\$(TargetName).lib"
 				TargetMachine="17"
 			/>
 			<Tool
@@ -337,66 +325,10 @@
 	<References>
 	</References>
 	<Files>
-		<Filter
-			Name="Source Files"
+		<File
+			RelativePath=".\main.cpp"
 			>
-			<File
-				RelativePath=".\EventGameEngine.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GameEngine.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ManagerThreadModules.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ParserXMLConveyer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ThreadModules.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			>
-			<File
-				RelativePath=".\DeveloperTool_DLL.h"
-				>
-			</File>
-			<File
-				RelativePath=".\EventGameEngine.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GameEngine.h"
-				>
-			</File>
-			<File
-				RelativePath=".\IDevTool.h"
-				>
-			</File>
-			<File
-				RelativePath=".\IModule.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ManagerThreadModules.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ParserXMLConveyer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ThreadModules.h"
-				>
-			</File>
-		</Filter>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -10,8 +10,7 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "DescEvent.h"
-
-class TDstEvent;
+#include "DstEvent.h"
 
 /*
   источник событий. работает в связке с TDstEvent

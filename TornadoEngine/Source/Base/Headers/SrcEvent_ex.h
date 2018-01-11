@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include "DstEvent.h"
 #include "SrcEvent.h"
+#include "BL_Debug.h"
 
 //-------------------------------------------------------------------------------
 template<typename T>

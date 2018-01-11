@@ -30,7 +30,7 @@ void TNetWorkThread::Work()
   boost::system::error_code ec;
   mIO_Service.run_one(ec);
   if(ec)
-    GetLogger(nsMMOEngine::STR_NAME_NET_TRANSPORT)->
+    GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("TNetWorkThread::Engine FAIL %d\n",ec.value());
 }
 //----------------------------------------------------------------------------------

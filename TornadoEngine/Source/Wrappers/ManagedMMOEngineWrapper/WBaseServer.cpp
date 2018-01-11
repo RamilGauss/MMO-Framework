@@ -9,8 +9,8 @@ See for more information License.h.
 
 namespace ManagedMMOEngineWrapper
 {
-  WBaseServer::WBaseServer( NativeMMOEngineWrapper::IBaseServer* pBaseServer ) 
-    : WBase( (NativeMMOEngineWrapper::IBase*) pBaseServer)
+  WBaseServer::WBaseServer( nsMMOEngine::TBaseServer* pBaseServer ) 
+    : WBase( pBaseServer)
   {
     mBaseServer = pBaseServer;
   }

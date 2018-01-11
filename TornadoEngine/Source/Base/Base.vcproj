@@ -347,6 +347,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\Sources\AllocatorPool.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Sources\ArrContainer.cpp"
 				>
 			</File>
@@ -384,6 +388,10 @@
 			</File>
 			<File
 				RelativePath=".\Sources\CryptoRSA_Impl.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Sources\DataExchange2ThreadElement.cpp"
 				>
 			</File>
 			<File
@@ -545,15 +553,15 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\Headers\AllocatorPool.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Headers\ArrContainer.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Headers\BL_Debug.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Blog.txt"
 				>
 			</File>
 			<File
@@ -606,6 +614,10 @@
 			</File>
 			<File
 				RelativePath=".\Headers\DataExchange2Thread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Headers\DataExchange2ThreadElement.h"
 				>
 			</File>
 			<File
@@ -805,6 +817,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\Blog.txt"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
