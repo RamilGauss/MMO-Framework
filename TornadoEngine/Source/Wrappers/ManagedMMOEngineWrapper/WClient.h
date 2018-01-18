@@ -13,7 +13,7 @@ See for more information License.h.
 
 namespace ManagedMMOEngineWrapper
 {
-  public ref class WClient : public WBase
+  public ref class WClient : public WBase, public DotNET_MMOEngineWrapper::IClient
   {
     nsMMOEngine::TClient* mClient;
   public:

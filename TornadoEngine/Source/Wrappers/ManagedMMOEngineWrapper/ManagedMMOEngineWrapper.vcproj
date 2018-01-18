@@ -125,7 +125,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(BOOST_PATH64)&quot;;../../Base/Headers;../../Modules/NetTransport;../../Modules/MMOEngine/Include;../NativeMMOEngineWrapper"
+				AdditionalIncludeDirectories="&quot;$(BOOST_PATH64)&quot;;../../Base/Headers;../../Modules/NetTransport;../../Modules/MMOEngine/Include;../DotNET_MMOEngineWrapper"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;MANAGEDMMOENGINEWRAPPER_EXPORTS"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"

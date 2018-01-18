@@ -5,18 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ImplementationProvider.h"
-#include "MakerNetTransport.h"
+#include "DllExport.h"
 
 int main(int argc, char** argv)
 {
-  NativeMMOEngineWrapper::IBase* pClient = (NativeMMOEngineWrapper::IBase*)NativeMMOEngineWrapper::TImplementationProvider::MakeClient(); 
-  TMakerNetTransport* pMaker = new TMakerNetTransport();
-  pClient->Init(pMaker);
-
-  NativeMMOEngineWrapper::TImplementationProvider::Delete(pClient);
-  delete pMaker;
-
+  char* p = "logName";
+  InitLib( p );
+  int id = MakeClient();
+  Init( id );
+  DoneLib();
   return 0;
 }
 //-----------------------------------------------------------------------

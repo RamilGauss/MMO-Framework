@@ -15,7 +15,7 @@ See for more information License.h.
 
 namespace NativeMMOEngineWrapper
 {
-  class DllExport IBase
+  interface class DllExport IBase
   {
   public:
     virtual void Init(nsMMOEngine::IMakerTransport* pMakerTransport) = 0;

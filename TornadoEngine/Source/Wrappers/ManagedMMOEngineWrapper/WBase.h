@@ -12,7 +12,6 @@ See for more information License.h.
 #include <stdlib.h>  
 #include <vcclr.h>  
 
-#include "IBase.h"
 #include "IMakerTransport.h"
 
 #include "WIP_Port.h"
@@ -22,7 +21,7 @@ See for more information License.h.
 namespace ManagedMMOEngineWrapper
 {
   class WDescOpen;
-  public ref class WBase
+  public ref class WBase : public DotNET_MMOEngineWrapper::IBase
   {
     nsMMOEngine::TBase* mBase;
     nsMMOEngine::IMakerTransport* mMakerTransport;
