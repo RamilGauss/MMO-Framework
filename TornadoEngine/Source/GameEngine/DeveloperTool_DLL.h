@@ -8,13 +8,9 @@ See for more information License.h.
 #ifndef DeveloperTool_DLLH
 #define DeveloperTool_DLLH
 
-class IDevTool;
+#include "TypeDef.h"
 
-#if defined(WIN32)
-  #define DllExport_C  extern "C" __declspec( dllexport )
-#else
-  #define DllExport_C extern "C"
-#endif
+class IDevTool;
 
 #define StrGetDevTool  "GetDevTool"
 #define StrFreeDevTool "FreeDevTool"

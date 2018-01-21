@@ -1,18 +1,15 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef DllExportH
-#define DllExportH
+#ifndef NativeMMOEngineWrapperFunctionsH
+#define NativeMMOEngineWrapperFunctionsH
 
-#if defined(WIN32)
-  #define DllExport_C  extern "C" __declspec( dllexport )
-#else
-  #define DllExport_C extern "C"
-#endif
+#include "TypeDef.h"
+#include "Structs.h"//###
 
 // 
 DllExport_C void InitLib( char* logName );
@@ -26,7 +23,7 @@ DllExport_C int MakeSuperServer();
 DllExport_C void Destroy( int implID );
 
 // Event
-DllExport_C void* GetEvent( int implID, int& size );
+DllExport_C void* GetEvent( int& type, int& size );
 
 // Base
 DllExport_C void Init( int implID );

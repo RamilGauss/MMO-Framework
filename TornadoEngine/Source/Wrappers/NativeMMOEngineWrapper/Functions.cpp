@@ -1,11 +1,12 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷ 
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡ 
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "DllExport.h"
+#include "Functions.h"
+#include "EventPool.h"
 
 #include "MakerNetTransport.h"
 #include "Client.h"
@@ -15,6 +16,7 @@ See for more information License.h.
 #include "Master.h"
 #include "SuperServer.h"
 
+#pragma region Private
 namespace nsImplimentation
 {
   typedef enum{Client,Slave,Master,SuperServer}Type;
@@ -22,8 +24,9 @@ namespace nsImplimentation
 
 struct TDesc
 {
-  nsMMOEngine::TBase* pBase;
   nsImplimentation::Type implType;
+  nsMMOEngine::TBase* pBase;
+  TEventPool mEventPool;
   TDesc()
   {
     pBase = NULL;
@@ -45,26 +48,32 @@ static bool                g_NeedInit = true;
 static TMapIntPtr          g_ID_ptrBase;
 static int                 g_LastID = 1;
 static TMakerNetTransport* g_MakerNetTransport = NULL;
+static TDstEvent           g_DstEvent;
 
 int Make( nsImplimentation::Type type )
 {
   TDesc* pDesc = new TDesc();
   pDesc->implType = type;
+  nsMMOEngine::TBase* pBase = NULL;
   switch(type)
   {
     case nsImplimentation::Client:
-      pDesc->pBase = new nsMMOEngine::TClient();
+      pBase = new nsMMOEngine::TClient();
       break;
     case nsImplimentation::Slave:
-      pDesc->pBase = new nsMMOEngine::TSlave();
+      pBase = new nsMMOEngine::TSlave();
       break;
     case nsImplimentation::Master:
-      pDesc->pBase = new nsMMOEngine::TMaster();
+      pBase = new nsMMOEngine::TMaster();
       break;
     case nsImplimentation::SuperServer:
-      pDesc->pBase = new nsMMOEngine::TSuperServer();
+      pBase = new nsMMOEngine::TSuperServer();
       break;
   }
+  pBase->SetDstObject(&g_DstEvent);
+  pBase->SetSelfID(g_LastID);
+
+  pDesc->pBase = pBase;
   g_ID_ptrBase.insert( TMapIntPtrVT(g_LastID, pDesc));
   return g_LastID++;
 }
@@ -76,7 +85,9 @@ T* Get( int implID )
     return NULL;
   return (T*)(g_ID_ptrBase[implID]->pBase);
 }
+#pragma endregion 
 //--------------------------------------------------------------------
+#pragma region LibraryFunc
 void InitLib( char* logName )
 {
   if( g_NeedInit == false )
@@ -112,7 +123,9 @@ void DoneLib()
   }
   g_ID_ptrBase.clear();
 }
+#pragma endregion 
 //--------------------------------------------------------------------
+#pragma region Make
 int MakeClient() 
 {
   return Make( nsImplimentation::Client );
@@ -138,8 +151,18 @@ void Destroy( int implID )
   delete g_ID_ptrBase[implID];
   g_ID_ptrBase.erase(implID);
 }
+#pragma endregion
 //--------------------------------------------------------------------
 #pragma region Event
+//###
+void* GetEvent( int& type, int& size )
+{
+  type = 0;
+  size = 0;
+  return NULL;
+}
+//###
+//--------------------------------------------------------------------
 void* GetEvent( int implID, int& size )
 {
   return NULL;

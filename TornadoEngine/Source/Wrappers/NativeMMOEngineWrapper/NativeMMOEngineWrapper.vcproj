@@ -328,11 +328,23 @@
 	</References>
 	<Files>
 		<File
-			RelativePath=".\DllExport.cpp"
+			RelativePath=".\EventPool.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\DllExport.h"
+			RelativePath=".\EventPool.h"
+			>
+		</File>
+		<File
+			RelativePath=".\Events.h"
+			>
+		</File>
+		<File
+			RelativePath=".\Functions.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Functions.h"
 			>
 		</File>
 	</Files>

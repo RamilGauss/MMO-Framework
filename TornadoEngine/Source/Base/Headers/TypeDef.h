@@ -12,11 +12,19 @@ See for more information License.h.
 //-----------   Определение макросов экспорта/импорта функций    ---------------
 //------------------------------------------------------------------------------
 #ifdef WIN32
+  #ifndef DllExport_C
+    #define DllExport_C extern "C" __declspec( dllexport )
+  #endif
   #ifndef DllExport
     #define DllExport __declspec( dllexport )
   #endif
 #else// Linux
-  #define   DllExport
+  #ifndef DllExport_C
+    #define DllExport_C
+  #endif
+  #ifndef DllExport
+    #define DllExport
+  #endif
 #endif
 //------------------------------------------------------------------------------
 //-------------------   Управление байтовой упаковкой структур   ---------------
