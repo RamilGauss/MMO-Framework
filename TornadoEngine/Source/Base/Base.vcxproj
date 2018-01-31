@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4FE15A87-875C-41AB-B100-317EAA0A9E5A}</ProjectGuid>
+    <RootNamespace>Share</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.27130.2020</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\Exe\</OutDir>
+    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\Exe\</OutDir>
+    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\Exe\</OutDir>
+    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\Exe\</OutDir>
+    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4996;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>..\..\Lib\$(TargetName)_d.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4996;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>..\..\Lib\$(TargetName)_d.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4996;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4996;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\AllocatorPool.cpp" />
+    <ClCompile Include="Sources\ArrContainer.cpp" />
+    <ClCompile Include="Sources\BL_Debug.cpp" />
+    <ClCompile Include="Sources\BreakPacket.cpp" />
+    <ClCompile Include="Sources\BreakPacketOld.cpp" />
+    <ClCompile Include="Sources\CmdParam.cpp" />
+    <ClCompile Include="Sources\ContainerRise.cpp" />
+    <ClCompile Include="Sources\ConverterLocale.cpp" />
+    <ClCompile Include="Sources\CRC8.cpp" />
+    <ClCompile Include="Sources\CryptoAES_Impl.cpp" />
+    <ClCompile Include="Sources\CryptoRSA_Impl.cpp" />
+    <ClCompile Include="Sources\DataExchange2ThreadElement.cpp" />
+    <ClCompile Include="Sources\DescCallBack.cpp" />
+    <ClCompile Include="Sources\DstEvent.cpp" />
+    <ClCompile Include="Sources\FileOperation.cpp" />
+    <ClCompile Include="Sources\HiTimer.cpp" />
+    <ClCompile Include="Sources\IMarshallizator.cpp" />
+    <ClCompile Include="Sources\InfoFile.cpp" />
+    <ClCompile Include="Sources\IXML.cpp" />
+    <ClCompile Include="Sources\LoaderDLL_Unix.cpp" />
+    <ClCompile Include="Sources\LoaderDLL_Win32.cpp" />
+    <ClCompile Include="Sources\LoadFromFile.cpp" />
+    <ClCompile Include="Sources\Logger.cpp" />
+    <ClCompile Include="Sources\MakerLoaderDLL.cpp" />
+    <ClCompile Include="Sources\MakerXML.cpp" />
+    <ClCompile Include="Sources\ManagerForm.cpp" />
+    <ClCompile Include="Sources\ManagerStateMachine.cpp" />
+    <ClCompile Include="Sources\ManagerTime.cpp" />
+    <ClCompile Include="Sources\MapCallBack.cpp" />
+    <ClCompile Include="Sources\MapXML_Field.cpp" />
+    <ClCompile Include="Sources\Markup.cpp" />
+    <ClCompile Include="Sources\MathTools.cpp" />
+    <ClCompile Include="Sources\MD5.cpp" />
+    <ClCompile Include="Sources\Mutex.cpp" />
+    <ClCompile Include="Sources\Only_N_Object.cpp" />
+    <ClCompile Include="Sources\PopMaster.cpp" />
+    <ClCompile Include="Sources\PushMaster.cpp" />
+    <ClCompile Include="Sources\ResolverSelf_IP_v4.cpp" />
+    <ClCompile Include="Sources\SaveToFile.cpp" />
+    <ClCompile Include="Sources\SetOrderElement.cpp" />
+    <ClCompile Include="Sources\Settings.cpp" />
+    <ClCompile Include="Sources\SHA256.cpp" />
+    <ClCompile Include="Sources\ShareLibWin.cpp" />
+    <ClCompile Include="Sources\ShareMisc.cpp" />
+    <ClCompile Include="Sources\SrcEvent.cpp" />
+    <ClCompile Include="Sources\StorePathResources.cpp" />
+    <ClCompile Include="Sources\SynchroAbonent.cpp" />
+    <ClCompile Include="Sources\SynchroPoint.cpp" />
+    <ClCompile Include="Sources\ThreadBoost.cpp" />
+    <ClCompile Include="Sources\XML_Markup.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Headers\AllocatorPool.h" />
+    <ClInclude Include="Headers\ArrContainer.h" />
+    <ClInclude Include="Headers\BL_Debug.h" />
+    <ClInclude Include="Headers\BreakPacket.h" />
+    <ClInclude Include="Headers\BreakPacketOld.h" />
+    <ClInclude Include="Headers\CallBackRegistrator.h" />
+    <ClInclude Include="Headers\CmdParam.h" />
+    <ClInclude Include="Headers\ContainerArrObj.h" />
+    <ClInclude Include="Headers\ContainerPtrArrObj.h" />
+    <ClInclude Include="Headers\ContainerRise.h" />
+    <ClInclude Include="Headers\ContainerTypes.h" />
+    <ClInclude Include="Headers\ConverterLocale.h" />
+    <ClInclude Include="Headers\CRC8.h" />
+    <ClInclude Include="Headers\CryptoAES_Impl.h" />
+    <ClInclude Include="Headers\CryptoRSA_Impl.h" />
+    <ClInclude Include="Headers\DataExchange2Thread.h" />
+    <ClInclude Include="Headers\DataExchange2ThreadElement.h" />
+    <ClInclude Include="Headers\DescCallBack.h" />
+    <ClInclude Include="Headers\DescEvent.h" />
+    <ClInclude Include="Headers\DstEvent.h" />
+    <ClInclude Include="Headers\FileOperation.h" />
+    <ClInclude Include="Headers\HiTimer.h" />
+    <ClInclude Include="Headers\IContainer.h" />
+    <ClInclude Include="Headers\ILoaderDLL.h" />
+    <ClInclude Include="Headers\InfoFile.h" />
+    <ClInclude Include="Headers\ISerializable.h" />
+    <ClInclude Include="Headers\IXML.h" />
+    <ClInclude Include="Headers\License.h" />
+    <ClInclude Include="Headers\ListPtr.h" />
+    <ClInclude Include="Headers\LoaderDLL_Unix.h" />
+    <ClInclude Include="Headers\LoaderDLL_Win32.h" />
+    <ClInclude Include="Headers\LoadFromFile.h" />
+    <ClInclude Include="Headers\LockFreeDef.h" />
+    <ClInclude Include="Headers\Logger.h" />
+    <ClInclude Include="Headers\MacroMaker.h" />
+    <ClInclude Include="Headers\MacroMaker_Prepare.h" />
+    <ClInclude Include="Headers\MakerLoaderDLL.h" />
+    <ClInclude Include="Headers\MakerXML.h" />
+    <ClInclude Include="Headers\ManagerForm.h" />
+    <ClInclude Include="Headers\ManagerStateMachine.h" />
+    <ClInclude Include="Headers\ManagerTime.h" />
+    <ClInclude Include="Headers\MapCallBack.h" />
+    <ClInclude Include="Headers\MapXML_Field.h" />
+    <ClInclude Include="Headers\Markup.h" />
+    <ClInclude Include="Headers\MathTools.h" />
+    <ClInclude Include="Headers\MD5.h" />
+    <ClInclude Include="Headers\Mutex.h" />
+    <ClInclude Include="Headers\Only_N_Object.h" />
+    <ClInclude Include="Headers\PopMaster.h" />
+    <ClInclude Include="Headers\PushMaster.h" />
+    <ClInclude Include="Headers\ResolverSelf_IP_v4.h" />
+    <ClInclude Include="Headers\SaveToFile.h" />
+    <ClInclude Include="Headers\SetOrderElement.h" />
+    <ClInclude Include="Headers\Settings.h" />
+    <ClInclude Include="Headers\SHA256.h" />
+    <ClInclude Include="Headers\ShareMisc.h" />
+    <ClInclude Include="Headers\SrcEvent.h" />
+    <ClInclude Include="Headers\SrcEvent_ex.h" />
+    <ClInclude Include="Headers\StateMachine.h" />
+    <ClInclude Include="Headers\StatisticValue.h" />
+    <ClInclude Include="Headers\StorePathResources.h" />
+    <ClInclude Include="Headers\SynchroAbonent.h" />
+    <ClInclude Include="Headers\SynchroPoint.h" />
+    <ClInclude Include="Headers\ThreadBoost.h" />
+    <ClInclude Include="Headers\TypeDef.h" />
+    <ClInclude Include="Headers\XML_Markup.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Blog.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

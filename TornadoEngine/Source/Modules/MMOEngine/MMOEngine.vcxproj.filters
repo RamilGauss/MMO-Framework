@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="SubSystem">
+      <UniqueIdentifier>{275c9fa9-db80-459e-8462-0887fc16e38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SubSystem\MappingDownConnection">
+      <UniqueIdentifier>{6edf5ffe-70cd-411b-81a7-0a09173d746c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SubSystem\MappingDownConnection\Master">
+      <UniqueIdentifier>{9c0edc4e-37f4-4f81-8c3b-12579add0ccf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SubSystem\MappingDownConnection\Slave">
+      <UniqueIdentifier>{34b91e61-a767-459b-b7a1-3cb883ec4b81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SubSystem\Session">
+      <UniqueIdentifier>{a44023d1-3aa5-476e-b624-b0c2e6baf117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SubSystem\Scenario">
+      <UniqueIdentifier>{46861c48-652c-43e5-9677-38acb07b199f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SubSystem\Crypto">
+      <UniqueIdentifier>{6802ba5d-0369-4451-8f5a-a6b30b0e30ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenario">
+      <UniqueIdentifier>{3e6ff5e3-a48e-4553-b540-bf42caea6021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenario\Header Files">
+      <UniqueIdentifier>{8b4e1589-7ecb-4f1e-a7be-2c79e41b1381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenario\Source Files">
+      <UniqueIdentifier>{6a3c7bcb-0460-4fac-852d-5e1f57526ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenario\LoginClient">
+      <UniqueIdentifier>{a59a1fdc-2fb5-4611-a18c-8172c58998e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenario\LoginClient\Header">
+      <UniqueIdentifier>{b194620f-9a83-499c-ace2-707e2f16c6e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenario\LoginClient\Source">
+      <UniqueIdentifier>{e095c88e-0033-4ff2-9d29-bdee20408be3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenario\RecommutationClient">
+      <UniqueIdentifier>{dd16d11b-a0f2-40e8-8c5c-edbea8795e03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenario\RecommutationClient\Header">
+      <UniqueIdentifier>{f8746f58-208f-4bfe-8755-9ffbf6fc964c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenario\RecommutationClient\Source">
+      <UniqueIdentifier>{532f0c10-8448-4dc0-b4aa-f7a91fb0d425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContextScenario">
+      <UniqueIdentifier>{d2eef2a0-6b19-4469-8830-4b65d4f0e329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContextScenario\Header Files">
+      <UniqueIdentifier>{6c1b51ef-d7da-401f-b7c3-83267d6fcb84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContextScenario\Source Files">
+      <UniqueIdentifier>{4a467f13-9444-4641-8e0a-a8d96ebcba09}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\ActiveServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BaseServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\IMakerTransport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\INetTransport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Master.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Slave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Structs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SuperServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\DelegateManagerContextSc.cpp">
+      <Filter>SubSystem\MappingDownConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerContextDownConnection.cpp">
+      <Filter>SubSystem\MappingDownConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerContextMoreDownClientConnection.cpp">
+      <Filter>SubSystem\MappingDownConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerContextClientLogining.cpp">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerContextDownConnection_Slave.cpp">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerGroupClient.cpp">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerRecommutation.cpp">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\StatisticaClientInGroup.cpp">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerContextClient_slave.cpp">
+      <Filter>SubSystem\MappingDownConnection\Slave</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerSession.cpp">
+      <Filter>SubSystem\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerTransport.cpp">
+      <Filter>SubSystem\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\NavigateSession.cpp">
+      <Filter>SubSystem\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ReciverTransport.cpp">
+      <Filter>SubSystem\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\Session.cpp">
+      <Filter>SubSystem\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ContainerContextSc.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ControlScenario.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\IContextScenario.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\IScenario.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\MakerScenario.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerContextSc.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerManagerContextSc.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ContextCrypto.cpp">
+      <Filter>SubSystem\Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\CryptMITM.cpp">
+      <Filter>SubSystem\Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerContextCrypto.cpp">
+      <Filter>SubSystem\Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScenarioDisconnectClient.cpp">
+      <Filter>Scenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScenarioFlow.cpp">
+      <Filter>Scenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScenarioLoginClient.cpp">
+      <Filter>Scenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScenarioLoginMaster.cpp">
+      <Filter>Scenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScenarioLoginSlave.cpp">
+      <Filter>Scenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScenarioRecommutationClient.cpp">
+      <Filter>Scenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScenarioSendToClient.cpp">
+      <Filter>Scenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScenarioSynchroSlave.cpp">
+      <Filter>Scenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\BaseScLoginClient.cpp">
+      <Filter>Scenario\LoginClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\BaseScLoginClient_Struct.cpp">
+      <Filter>Scenario\LoginClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScLoginClient_ClientImpl.cpp">
+      <Filter>Scenario\LoginClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScLoginClient_MasterImpl.cpp">
+      <Filter>Scenario\LoginClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScLoginClient_SlaveImpl.cpp">
+      <Filter>Scenario\LoginClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScLoginClient_SuperServerImpl.cpp">
+      <Filter>Scenario\LoginClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\BaseScRecommutationClient.cpp">
+      <Filter>Scenario\RecommutationClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\BaseScRecommutationClient_Struct.cpp">
+      <Filter>Scenario\RecommutationClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\DescRequestConnectForRecipient.cpp">
+      <Filter>Scenario\RecommutationClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScRecommutationClient_ClientImpl.cpp">
+      <Filter>Scenario\RecommutationClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScRecommutationClient_MasterImpl.cpp">
+      <Filter>Scenario\RecommutationClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenario\ScRecommutationClient_SlaveImpl.cpp">
+      <Filter>Scenario\RecommutationClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextScenario\ContextScDisconnectClient.cpp">
+      <Filter>ContextScenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextScenario\ContextScFlow.cpp">
+      <Filter>ContextScenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextScenario\ContextScLoginClient.cpp">
+      <Filter>ContextScenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextScenario\ContextScLoginMaster.cpp">
+      <Filter>ContextScenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextScenario\ContextScLoginSlave.cpp">
+      <Filter>ContextScenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextScenario\ContextScRecommutationClient.cpp">
+      <Filter>ContextScenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextScenario\ContextScSendToClient.cpp">
+      <Filter>ContextScenario\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextScenario\ContextScSynchroSlave.cpp">
+      <Filter>ContextScenario\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\ActiveServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\BaseEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\BaseServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EnumMMO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Events.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\IMakerTransport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\INetTransport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Master.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Slave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SuperServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\DelegateManagerContextSc.h">
+      <Filter>SubSystem\MappingDownConnection</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerContextDownConnection.h">
+      <Filter>SubSystem\MappingDownConnection</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerContextMoreDownClientConnection.h">
+      <Filter>SubSystem\MappingDownConnection</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerContextClientLogining.h">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerContextDownConnection_Slave.h">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerGroupClient.h">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerRecommutation.h">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\StatisticaClientInGroup.h">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerContextClient_slave.h">
+      <Filter>SubSystem\MappingDownConnection\Slave</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\DescRecvSession.h">
+      <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerSession.h">
+      <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerTransport.h">
+      <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\NavigateSession.h">
+      <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ReciverTransport.h">
+      <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\Session.h">
+      <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ContainerContextSc.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ControlScenario.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\IContextScenario.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\IScenario.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\MakerScenario.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerContextSc.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerManagerContextSc.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ScenarioBaseHeader.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ContextCrypto.h">
+      <Filter>SubSystem\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\CryptMITM.h">
+      <Filter>SubSystem\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerContextCrypto.h">
+      <Filter>SubSystem\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScenarioDisconnectClient.h">
+      <Filter>Scenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScenarioFlow.h">
+      <Filter>Scenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScenarioLoginClient.h">
+      <Filter>Scenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScenarioLoginMaster.h">
+      <Filter>Scenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScenarioLoginSlave.h">
+      <Filter>Scenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScenarioRecommutationClient.h">
+      <Filter>Scenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScenarioSendToClient.h">
+      <Filter>Scenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScenarioSynchroSlave.h">
+      <Filter>Scenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\BaseScLoginClient.h">
+      <Filter>Scenario\LoginClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\BaseScLoginClient_Struct.h">
+      <Filter>Scenario\LoginClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScLoginClient_ClientImpl.h">
+      <Filter>Scenario\LoginClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScLoginClient_MasterImpl.h">
+      <Filter>Scenario\LoginClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScLoginClient_SlaveImpl.h">
+      <Filter>Scenario\LoginClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScLoginClient_SuperServerImpl.h">
+      <Filter>Scenario\LoginClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\BaseScRecommutationClient.h">
+      <Filter>Scenario\RecommutationClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\BaseScRecommutationClient_Struct.h">
+      <Filter>Scenario\RecommutationClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\DescRequestConnectForRecipient.h">
+      <Filter>Scenario\RecommutationClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScRecommutationClient_ClientImpl.h">
+      <Filter>Scenario\RecommutationClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScRecommutationClient_MasterImpl.h">
+      <Filter>Scenario\RecommutationClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario\ScRecommutationClient_SlaveImpl.h">
+      <Filter>Scenario\RecommutationClient\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextScenario\ContextScDisconnectClient.h">
+      <Filter>ContextScenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextScenario\ContextScFlow.h">
+      <Filter>ContextScenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextScenario\ContextScLoginClient.h">
+      <Filter>ContextScenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextScenario\ContextScLoginMaster.h">
+      <Filter>ContextScenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextScenario\ContextScLoginSlave.h">
+      <Filter>ContextScenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextScenario\ContextScRecommutationClient.h">
+      <Filter>ContextScenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextScenario\ContextScSendToClient.h">
+      <Filter>ContextScenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextScenario\ContextScSynchroSlave.h">
+      <Filter>ContextScenario\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

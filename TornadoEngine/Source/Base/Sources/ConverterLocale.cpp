@@ -86,8 +86,11 @@ TContainer TConverterLocale::FromUicode(std::string coderFrom, TContainer& cFrom
     boost::uint32_t result = coder->from_unicode(u, pCurTo + shiftTo, pEndTo);
     shiftTo += result;
   }
+  shiftTo += 1;
   TContainer cResult;
   cResult.SetData(cTemp.GetPtr(), shiftTo);
+  char* p = cResult.GetPtr();
+  p[shiftTo - 1] = 0;
   return cResult;
 }
 //------------------------------------------------------------------------------------------

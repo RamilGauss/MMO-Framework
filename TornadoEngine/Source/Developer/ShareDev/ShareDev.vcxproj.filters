@@ -1,0 +1,1128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Share">
+      <UniqueIdentifier>{b1ea3285-a336-472b-ba58-5b9e220bf77d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{de01d69c-69e2-4911-9504-190d1dd0e8bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Logic">
+      <UniqueIdentifier>{b1c0cc38-d085-414c-ac7f-21e7e9202351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Components">
+      <UniqueIdentifier>{c52387a7-fc71-40a5-8e09-9d25681e088c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Components\Header Files">
+      <UniqueIdentifier>{e36810af-984c-4bfe-903d-ed026dffa1a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Components\Source Files">
+      <UniqueIdentifier>{b62bc2d4-64ff-4ea4-a6e3-56a5f2fc9309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameItems">
+      <UniqueIdentifier>{7968781e-81c9-4145-8c9d-bb3af869173a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameItems\Structs">
+      <UniqueIdentifier>{358ca553-174f-4117-81d4-ca4a0eeebf5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameItems\ManagerItem">
+      <UniqueIdentifier>{9e6fe8d8-1628-4a27-91f6-76cb515b2b13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameItems\SerializerXML">
+      <UniqueIdentifier>{dd00e285-8f73-40c0-a271-fb7d0a9d545f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameItems\SerializerBinary">
+      <UniqueIdentifier>{a24f79db-5b82-4ea8-86b1-01caa6746129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{c61e56bf-c664-4839-903a-05c1868b9f9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Pattern">
+      <UniqueIdentifier>{c90f7f10-b5b7-4bc1-9be4-2cd84782da4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Pattern\struct">
+      <UniqueIdentifier>{5c787fd2-b076-4c83-8755-b53a9496257b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Pattern\model">
+      <UniqueIdentifier>{99c1577f-dee7-4e4d-a7c6-c74aba726284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Pattern\NodeModel">
+      <UniqueIdentifier>{c5e7e49d-3144-405f-b498-3764b61c2e73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Common">
+      <UniqueIdentifier>{ece65142-63b4-41d6-b613-0d9ce0d2677f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations">
+      <UniqueIdentifier>{225d3176-0225-4488-97ef-15e1527424f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder">
+      <UniqueIdentifier>{ed7ba28f-bd94-43b1-9c7c-f2ab91cbf7fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Common">
+      <UniqueIdentifier>{1873713e-207e-4629-8b6b-4c2a98001378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Common\helper">
+      <UniqueIdentifier>{89c7107b-d639-4b48-a82f-627ae1e6a304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Common\tools">
+      <UniqueIdentifier>{cba05a9c-4cff-4886-bb7f-5531228cc190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Bullet">
+      <UniqueIdentifier>{a9bd94ad-70e8-4874-a20a-f14f99c02208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Bullet\helper">
+      <UniqueIdentifier>{b444dd26-7521-4f0c-bf9c-ecd839778988}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Bullet\tools">
+      <UniqueIdentifier>{64a08b36-bd1f-4015-99f6-d182026e2277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Bullet\tools\shape">
+      <UniqueIdentifier>{b7462d21-b058-4932-85c4-4637e2d35117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Bullet\tools\terrain">
+      <UniqueIdentifier>{67b8e0a0-0a48-429b-9892-ce1f2ca5b173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Bullet\tools\base">
+      <UniqueIdentifier>{206d1829-2c1b-41a5-8df5-3a6de65b4f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Ogre">
+      <UniqueIdentifier>{6460a6c6-e23a-4027-bae3-6d0cd1465a84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Ogre\helper">
+      <UniqueIdentifier>{4577e931-a3c0-404e-9934-8cddd926a2d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Ogre\tools">
+      <UniqueIdentifier>{dfa7b64f-c3c8-4a7d-b870-e06004d33b10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Ogre\tools\shape">
+      <UniqueIdentifier>{ec0f50ea-9216-4844-84b3-ab036027d744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Ogre\tools\base">
+      <UniqueIdentifier>{eb0a4c03-368f-4854-89fa-623a0d93080e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Ogre\tools\terrain">
+      <UniqueIdentifier>{7f7dfe73-5cd9-4e84-a6bd-a57a4423eeb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\OpenAL">
+      <UniqueIdentifier>{0e87ceb8-a411-4ed4-bd05-94782e5e6833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Builder\Logic">
+      <UniqueIdentifier>{1faeadc6-8e1e-4b01-83fe-28d2650353b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Destructor">
+      <UniqueIdentifier>{aa1df04c-93f5-4ff5-acaa-dcd1dbd635cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Destructor\Common">
+      <UniqueIdentifier>{917bd683-bd06-46b4-9444-726f96c33475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Destructor\Bullet">
+      <UniqueIdentifier>{ddaa891a-ce3e-46af-bad1-6065a4dfbb24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Destructor\Ogre">
+      <UniqueIdentifier>{d52e6219-fcde-4e03-9b96-6485a8a4b997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Destructor\OpenAL">
+      <UniqueIdentifier>{efb1de74-1fb0-456d-86d8-ae514358170a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\UpdaterGameItem">
+      <UniqueIdentifier>{fd607c2f-6a38-4a1d-98de-8f60d122784f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\UpdaterGameItem\Common">
+      <UniqueIdentifier>{b74ba2cf-c7d4-4f98-ae01-138f85a0b22d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\UpdaterGameItem\Common\tools">
+      <UniqueIdentifier>{c4584f53-b3a3-4689-b4cf-2f1a6489a10e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\UpdaterGameItem\Common\helper">
+      <UniqueIdentifier>{e5e326da-e552-4ab4-b4c7-0cb4e18cced4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\UpdaterGameItem\Bullet">
+      <UniqueIdentifier>{54e2480c-4cc4-4292-8994-0f82ba06a4e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\UpdaterGameItem\Ogre">
+      <UniqueIdentifier>{dbaf0028-dd6a-4f1e-8d23-d043d093c8d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\UpdaterGameItem\OpenAL">
+      <UniqueIdentifier>{ab408500-89bc-41cf-8149-2dc81527cdd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Modifier">
+      <UniqueIdentifier>{c3009d22-20b1-4a16-81a4-28ca6fe9ae90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Modifier\Common">
+      <UniqueIdentifier>{ae22ffb9-b9b1-47a1-a97d-79a259f35adf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Modifier\Bullet">
+      <UniqueIdentifier>{e0e6c5c3-d082-47b6-8182-74f861754503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Modifier\Ogre">
+      <UniqueIdentifier>{7870bead-29be-46ff-8a7b-16afd6d13715}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Modifier\OpenAL">
+      <UniqueIdentifier>{86337ec6-b7a5-4810-8147-08fdad330c78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Common">
+      <UniqueIdentifier>{82d6430d-fc48-492b-a8cc-8e6e63d069a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverGameItem">
+      <UniqueIdentifier>{195ed47c-f6e7-46be-a5f3-46ccad503113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverGameItem\Common">
+      <UniqueIdentifier>{652d8a9a-f951-46e2-aae6-55347f7ba0d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverGameItem\Common\helper">
+      <UniqueIdentifier>{69e65098-9905-40af-b5af-248485ebd225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverGameItem\Common\tools">
+      <UniqueIdentifier>{66015378-702e-4f78-94c1-08e86dc693ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverGameItem\Bullet">
+      <UniqueIdentifier>{c4406e33-9be4-44b2-b1d3-81ae1eb54029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverGameItem\Ogre">
+      <UniqueIdentifier>{baf70a9c-b684-4dce-98cc-e4aca5901381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverGameItem\OpenAL">
+      <UniqueIdentifier>{725eab02-747b-47c6-8224-3b658b133f9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverOutData">
+      <UniqueIdentifier>{1f6514f1-2110-4a89-be22-979d61f97213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverOutData\OpenAL">
+      <UniqueIdentifier>{08020e5c-7131-4dd3-873b-9841e70f599c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverOutData\Common">
+      <UniqueIdentifier>{4ce694fd-bbd6-4d56-b070-431e34fd500c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverOutData\Common\helper">
+      <UniqueIdentifier>{f571cfc0-b7cb-4489-8597-c5a4b24a85f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverOutData\Common\tools">
+      <UniqueIdentifier>{e3cd3bb5-8022-49fe-8e45-7e6448a14b02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverOutData\Bullet">
+      <UniqueIdentifier>{34578404-2f1f-4dd6-a98d-1d6beeb42e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\SaverOutData\Ogre">
+      <UniqueIdentifier>{6df1e278-54fd-49f1-bd15-95a1d39ec977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Synchronizer">
+      <UniqueIdentifier>{37de33df-f8eb-4e4e-976f-fcf562804b37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Synchronizer\Common">
+      <UniqueIdentifier>{45dd93ce-7c44-4b74-aa1c-7a0b217e91ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Synchronizer\Common\helper">
+      <UniqueIdentifier>{1ff7c4cc-ebd8-4565-b474-2b3ec798e607}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Synchronizer\Common\tools">
+      <UniqueIdentifier>{047426d5-8068-465e-8592-5e8d87702087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Synchronizer\Bullet">
+      <UniqueIdentifier>{66281494-4823-416d-aea2-3728b7497c58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Synchronizer\Ogre">
+      <UniqueIdentifier>{088264ef-ed42-46ab-9eac-69e5a2583a08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Synchronizer\OpenAL">
+      <UniqueIdentifier>{20d42b56-c21f-4053-9131-3e6ec6acd167}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Operations\Synchronizer\Logic">
+      <UniqueIdentifier>{c8ffb294-627f-483a-82ad-f2b3fc7ff978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameProcess">
+      <UniqueIdentifier>{9c770208-b621-4aaa-8f3d-f2888bc7c2ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameProcess\Implementation">
+      <UniqueIdentifier>{9e30642e-613d-4d74-ac7d-4932808a48cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameProcess\Abstract">
+      <UniqueIdentifier>{2743302a-71ff-4bfa-b08e-dea08b513d21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SystemCollision">
+      <UniqueIdentifier>{ad11dfd6-6792-4680-8029-86d80418f223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{cfd12457-37ce-48ee-8d6a-9fd4886999c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol">
+      <UniqueIdentifier>{2b405f47-ba9a-4571-9386-7defbda2e757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol\ClientSlave">
+      <UniqueIdentifier>{1a409e54-509c-47a4-a891-22be8e656e0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol\SlaveMaster">
+      <UniqueIdentifier>{55ae9396-cb39-4bc5-b694-d71f2cbe84bb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Share\Components.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\InputCmdDevTool.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\ManagerRoom.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\ModuleDev.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\ParserXMLResource.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\Resources.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\ResourcesGraphicEngine.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\BaseLogicPacket.cpp">
+      <Filter>Modules\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleClientLogic.cpp">
+      <Filter>Modules\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleLogic.cpp">
+      <Filter>Modules\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleServerLogic.cpp">
+      <Filter>Modules\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleComponent.cpp">
+      <Filter>Modules\Components\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleDataBase.cpp">
+      <Filter>Modules\Components\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleGraphicEngine.cpp">
+      <Filter>Modules\Components\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModulePhysicEngine.cpp">
+      <Filter>Modules\Components\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleSoundEngine.cpp">
+      <Filter>Modules\Components\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleTimer.cpp">
+      <Filter>Modules\Components\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\BaseItem.cpp">
+      <Filter>GameItems\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\MapItem.cpp">
+      <Filter>GameItems\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\MaterialItem.cpp">
+      <Filter>GameItems\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\ModelItem.cpp">
+      <Filter>GameItems\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\PatternConfigItem.cpp">
+      <Filter>GameItems\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\ShapeItem.cpp">
+      <Filter>GameItems\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\TableSoundItem.cpp">
+      <Filter>GameItems\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\TerrainItem.cpp">
+      <Filter>GameItems\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\FactoryGameItem.cpp">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\ManagerCacheItem_XML.cpp">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\ManagerSerializerItem_Binary.cpp">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\ManagerSerializerItem_XML.cpp">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\StorageGameItem_XML.cpp">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\BaseSerializerItem_XML.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerMapItem_XML.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerMaterialItem_XML.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerModelItem_XML.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerParamBuilderConstraint.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerParamBuilderShape.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerPatternConfigItem_XML.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerShapeItem_XML.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerTableSoundItem_XML.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerTerrainItem_XML.cpp">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\BaseSerializerItem_Binary.cpp">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerMapItem_Binary.cpp">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerMaterialItem_Binary.cpp">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerModelItem_Binary.cpp">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerPatternConfigItem_Binary.cpp">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerShapeItem_Binary.cpp">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerTableSoundItem_Binary.cpp">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItems\SerializerTerrainItem_Binary.cpp">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\FactoryBehaviourPattern.cpp">
+      <Filter>Scene\Pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\StructPattern_Terrain.cpp">
+      <Filter>Scene\Pattern\struct</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\BehaviourPattern.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_Animated.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_Light.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_MapParameter.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_Model.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_Skybox.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_Skydome.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_Skyplane.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_Sound.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_Terrain.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\Pattern_Volume.cpp">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\BaseNode_Model.cpp">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\HierarchyNode_Model.cpp">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\ManagerNode_Model.cpp">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\ManagerNodeLocation_Model.cpp">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\ModelNode_Model.cpp">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\NodeLocation_Model.cpp">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\ShapeNode_Model.cpp">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\UpdaterNodeByGameItem.cpp">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pattern\UpdaterNodeByPhysic.cpp">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Common\ControlCamera.cpp">
+      <Filter>Scene\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Common\GameObject.cpp">
+      <Filter>Scene\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Common\IHandlerScene.cpp">
+      <Filter>Scene\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Common\ISceneDataAccess.cpp">
+      <Filter>Scene\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Common\ISceneSystemCollision.cpp">
+      <Filter>Scene\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Common\ManagerNamePattern.cpp">
+      <Filter>Scene\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Common\Scene.cpp">
+      <Filter>Scene\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\Builder_Model.cpp">
+      <Filter>Scene\Operations\Builder\Common\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\Builder_Terrain.cpp">
+      <Filter>Scene\Operations\Builder\Common\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderGameMap.cpp">
+      <Filter>Scene\Operations\Builder\Common\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderGameMap_Object.cpp">
+      <Filter>Scene\Operations\Builder\Common\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\ParamBuilderShape.cpp">
+      <Filter>Scene\Operations\Builder\Common\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\Builder_Model_Bullet.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\Builder_Terrain_Bullet.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\ParamBuilderConstraint.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderTool_ShapeBase_Bullet.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\tools\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderTool_ShapeCylinder_Bullet.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\tools\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderTool_ShapePlate_Bullet.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\tools\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\FactoryBuilderTool_Shape_Bullet.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\tools\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderTool_Terrain_Bullet.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\tools\terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\HeightMapTerrainFromOgre.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\tools\terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderTool_Bullet.cpp">
+      <Filter>Scene\Operations\Builder\Bullet\tools\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\Builder_Model_Ogre.cpp">
+      <Filter>Scene\Operations\Builder\Ogre\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\Builder_Terrain_Ogre.cpp">
+      <Filter>Scene\Operations\Builder\Ogre\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderTool_ShapeBase_Ogre.cpp">
+      <Filter>Scene\Operations\Builder\Ogre\tools\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderTool_ShapeCylinder_Ogre.cpp">
+      <Filter>Scene\Operations\Builder\Ogre\tools\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderTool_ShapePlate_Ogre.cpp">
+      <Filter>Scene\Operations\Builder\Ogre\tools\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\FactoryBuilderTool_Shape_Ogre.cpp">
+      <Filter>Scene\Operations\Builder\Ogre\tools\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\BuilderTool_Terrain_Ogre.cpp">
+      <Filter>Scene\Operations\Builder\Ogre\tools\terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\Builder_OpenAL.cpp">
+      <Filter>Scene\Operations\Builder\OpenAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Builder\Builder_Model_Logic.cpp">
+      <Filter>Scene\Operations\Builder\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Destructor\Destructor_Terrain.cpp">
+      <Filter>Scene\Operations\Destructor\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Destructor\Destructor_Terrain_Bullet.cpp">
+      <Filter>Scene\Operations\Destructor\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Destructor\Destructor_Terrain_Ogre.cpp">
+      <Filter>Scene\Operations\Destructor\Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain.cpp">
+      <Filter>Scene\Operations\UpdaterGameItem\Common\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain_Bullet.cpp">
+      <Filter>Scene\Operations\UpdaterGameItem\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain_Ogre.cpp">
+      <Filter>Scene\Operations\UpdaterGameItem\Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Modifier\Modifier_Terrain.cpp">
+      <Filter>Scene\Operations\Modifier\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Modifier\Modifier_Terrain_Bullet.cpp">
+      <Filter>Scene\Operations\Modifier\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Modifier\Modifier_Terrain_Ogre.cpp">
+      <Filter>Scene\Operations\Modifier\Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Common\Operation_Model.cpp">
+      <Filter>Scene\Operations\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Common\Operation_Terrain.cpp">
+      <Filter>Scene\Operations\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\SaverGameItem\SaverGameItem_Terrain.cpp">
+      <Filter>Scene\Operations\SaverGameItem\Common\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\SaverGameItem\SaverGameItem_Terrain_Bullet.cpp">
+      <Filter>Scene\Operations\SaverGameItem\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\SaverGameItem\SaverGameItem_Terrain_Ogre.cpp">
+      <Filter>Scene\Operations\SaverGameItem\Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\SaverOutData\SaverOutData_Terrain.cpp">
+      <Filter>Scene\Operations\SaverOutData\Common\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\SaverOutData\SaverOutData_Terrain_Bullet.cpp">
+      <Filter>Scene\Operations\SaverOutData\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\SaverOutData\SaverOutData_Terrain_Ogre.cpp">
+      <Filter>Scene\Operations\SaverOutData\Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Synchronizer\Synchronizer_Model.cpp">
+      <Filter>Scene\Operations\Synchronizer\Common\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Synchronizer\Synchronizer_Model_Bullet.cpp">
+      <Filter>Scene\Operations\Synchronizer\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Synchronizer\Synchronizer_Model_Ogre.cpp">
+      <Filter>Scene\Operations\Synchronizer\Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Operations\Synchronizer\Synchronizer_Model_Logic.cpp">
+      <Filter>Scene\Operations\Synchronizer\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\GP_AggregationScenario_GameMap.cpp">
+      <Filter>GameProcess\Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\GP_Scenario_Builder.cpp">
+      <Filter>GameProcess\Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\GP_Scenario_Destructor.cpp">
+      <Filter>GameProcess\Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\GP_Scenario_Synchro.cpp">
+      <Filter>GameProcess\Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\IGP_AggregationScenario.cpp">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\IGP_General.cpp">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\IGP_Scenario.cpp">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\IGP_Scenario_Builder.cpp">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\IGP_Scenario_Destructor.cpp">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcess\IGP_Scenario_Synchro.cpp">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\ShowTankWoT_test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ClientSlave\PCS_HandlerClient.cpp">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ClientSlave\PCS_HandlerSlave.cpp">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ClientSlave\PCS_IHandler.cpp">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ClientSlave\PCS_PacketLevelGame.cpp">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ClientSlave\PCS_TypePacket.cpp">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Share\Components.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\IGameLogicRoom.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\InputCmdDevTool.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\ListModules.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\ManagerRoom.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\ModuleDev.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\ParserXMLResource.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\Resources.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\ResourcesGraphicEngine.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\BaseLogicPacket.h">
+      <Filter>Modules\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\LogicEventCallBack.h">
+      <Filter>Modules\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleClientLogic.h">
+      <Filter>Modules\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleLogic.h">
+      <Filter>Modules\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleServerLogic.h">
+      <Filter>Modules\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleComponent.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleDataBase.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleGraphicEngine.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngine.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngineClient.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngineMaster.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngineSlave.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngineSuperServer.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModulePhysicEngine.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleSoundEngine.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleTimer.h">
+      <Filter>Modules\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\BaseItem.h">
+      <Filter>GameItems\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\MapItem.h">
+      <Filter>GameItems\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\MaterialItem.h">
+      <Filter>GameItems\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\ModelItem.h">
+      <Filter>GameItems\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\PatternConfigItem.h">
+      <Filter>GameItems\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\ShapeItem.h">
+      <Filter>GameItems\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\TableSoundItem.h">
+      <Filter>GameItems\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\TerrainItem.h">
+      <Filter>GameItems\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\FactoryGameItem.h">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\ManagerCacheItem_XML.h">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\ManagerSerializerItem_Binary.h">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\ManagerSerializerItem_XML.h">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\StorageGameItem_XML.h">
+      <Filter>GameItems\ManagerItem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\BaseSerializerItem_XML.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerMapItem_XML.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerMaterialItem_XML.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerModelItem_XML.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerParamBuilderConstraint.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerParamBuilderShape.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerPatternConfigItem_XML.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerShapeItem_XML.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerTableSoundItem_XML.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerTerrainItem_XML.h">
+      <Filter>GameItems\SerializerXML</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\BaseSerializerItem_Binary.h">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerMapItem_Binary.h">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerMaterialItem_Binary.h">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerModelItem_Binary.h">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerPatternConfigItem_Binary.h">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerShapeItem_Binary.h">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerTableSoundItem_Binary.h">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItems\SerializerTerrainItem_Binary.h">
+      <Filter>GameItems\SerializerBinary</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\FactoryBehaviourPattern.h">
+      <Filter>Scene\Pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\StructPattern_Terrain.h">
+      <Filter>Scene\Pattern\struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\BehaviourPattern.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_Animated.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_Light.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_MapParameter.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_Model.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_Skybox.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_Skydome.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_Skyplane.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_Sound.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_Terrain.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\Pattern_Volume.h">
+      <Filter>Scene\Pattern\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\BaseNode_Model.h">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\HierarchyNode_Model.h">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\ManagerNode_Model.h">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\ManagerNodeLocation_Model.h">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\ModelNode_Model.h">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\NodeLocation_Model.h">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\ShapeNode_Model.h">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\UpdaterNodeByGameItem.h">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pattern\UpdaterNodeByPhysic.h">
+      <Filter>Scene\Pattern\NodeModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Common\ControlCamera.h">
+      <Filter>Scene\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Common\GameObject.h">
+      <Filter>Scene\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Common\IHandlerScene.h">
+      <Filter>Scene\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Common\ISceneDataAccess.h">
+      <Filter>Scene\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Common\ISceneSystemCollision.h">
+      <Filter>Scene\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Common\ManagerNamePattern.h">
+      <Filter>Scene\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Common\Scene.h">
+      <Filter>Scene\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Common\TypeEventScene.h">
+      <Filter>Scene\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\Builder_Model.h">
+      <Filter>Scene\Operations\Builder\Common\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\Builder_Terrain.h">
+      <Filter>Scene\Operations\Builder\Common\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderGameMap.h">
+      <Filter>Scene\Operations\Builder\Common\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderGameMap_Object.h">
+      <Filter>Scene\Operations\Builder\Common\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\ParamBuilderShape.h">
+      <Filter>Scene\Operations\Builder\Common\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\Builder_Model_Bullet.h">
+      <Filter>Scene\Operations\Builder\Bullet\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\Builder_Terrain_Bullet.h">
+      <Filter>Scene\Operations\Builder\Bullet\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\ParamBuilderConstraint.h">
+      <Filter>Scene\Operations\Builder\Bullet\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderTool_ShapeBase_Bullet.h">
+      <Filter>Scene\Operations\Builder\Bullet\tools\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderTool_ShapeCylinder_Bullet.h">
+      <Filter>Scene\Operations\Builder\Bullet\tools\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderTool_ShapePlate_Bullet.h">
+      <Filter>Scene\Operations\Builder\Bullet\tools\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\FactoryBuilderTool_Shape_Bullet.h">
+      <Filter>Scene\Operations\Builder\Bullet\tools\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderTool_Terrain_Bullet.h">
+      <Filter>Scene\Operations\Builder\Bullet\tools\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\HeightMapTerrainFromOgre.h">
+      <Filter>Scene\Operations\Builder\Bullet\tools\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderTool_Bullet.h">
+      <Filter>Scene\Operations\Builder\Bullet\tools\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\Builder_Model_Ogre.h">
+      <Filter>Scene\Operations\Builder\Ogre\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\Builder_Terrain_Ogre.h">
+      <Filter>Scene\Operations\Builder\Ogre\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderTool_ShapeBase_Ogre.h">
+      <Filter>Scene\Operations\Builder\Ogre\tools\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderTool_ShapeCylinder_Ogre.h">
+      <Filter>Scene\Operations\Builder\Ogre\tools\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderTool_ShapePlate_Ogre.h">
+      <Filter>Scene\Operations\Builder\Ogre\tools\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\FactoryBuilderTool_Shape_Ogre.h">
+      <Filter>Scene\Operations\Builder\Ogre\tools\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\StructBuilderTool_Ogre.h">
+      <Filter>Scene\Operations\Builder\Ogre\tools\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\BuilderTool_Terrain_Ogre.h">
+      <Filter>Scene\Operations\Builder\Ogre\tools\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\Builder_OpenAL.h">
+      <Filter>Scene\Operations\Builder\OpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Builder\Builder_Model_Logic.h">
+      <Filter>Scene\Operations\Builder\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Destructor\Destructor_Terrain.h">
+      <Filter>Scene\Operations\Destructor\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Destructor\Destructor_Terrain_Bullet.h">
+      <Filter>Scene\Operations\Destructor\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Destructor\Destructor_Terrain_Ogre.h">
+      <Filter>Scene\Operations\Destructor\Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain.h">
+      <Filter>Scene\Operations\UpdaterGameItem\Common\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain_Bullet.h">
+      <Filter>Scene\Operations\UpdaterGameItem\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\UpdaterGameItem\UpdaterGameItem_Terrain_Ogre.h">
+      <Filter>Scene\Operations\UpdaterGameItem\Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Modifier\Modifier_Terrain.h">
+      <Filter>Scene\Operations\Modifier\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Modifier\Modifier_Terrain_Bullet.h">
+      <Filter>Scene\Operations\Modifier\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Modifier\Modifier_Terrain_Ogre.h">
+      <Filter>Scene\Operations\Modifier\Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Common\BaseOperation_Pattern.h">
+      <Filter>Scene\Operations\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Common\Operation_Model.h">
+      <Filter>Scene\Operations\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Common\Operation_Terrain.h">
+      <Filter>Scene\Operations\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\SaverGameItem\SaverGameItem_Terrain.h">
+      <Filter>Scene\Operations\SaverGameItem\Common\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\SaverGameItem\SaverGameItem_Terrain_Bullet.h">
+      <Filter>Scene\Operations\SaverGameItem\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\SaverGameItem\SaverGameItem_Terrain_Ogre.h">
+      <Filter>Scene\Operations\SaverGameItem\Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\SaverOutData\SaverOutData_Terrain.h">
+      <Filter>Scene\Operations\SaverOutData\Common\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\SaverOutData\SaverOutData_Terrain_Bullet.h">
+      <Filter>Scene\Operations\SaverOutData\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\SaverOutData\SaverOutData_Terrain_Ogre.h">
+      <Filter>Scene\Operations\SaverOutData\Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Synchronizer\Synchronizer_Model.h">
+      <Filter>Scene\Operations\Synchronizer\Common\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Synchronizer\Synchronizer_Model_Bullet.h">
+      <Filter>Scene\Operations\Synchronizer\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Synchronizer\Synchronizer_Model_Ogre.h">
+      <Filter>Scene\Operations\Synchronizer\Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Operations\Synchronizer\Synchronizer_Model_Logic.h">
+      <Filter>Scene\Operations\Synchronizer\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\GP_AggregationScenario_GameMap.h">
+      <Filter>GameProcess\Implementation</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\GP_Scenario_Builder.h">
+      <Filter>GameProcess\Implementation</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\GP_Scenario_Destructor.h">
+      <Filter>GameProcess\Implementation</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\GP_Scenario_Synchro.h">
+      <Filter>GameProcess\Implementation</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\GP_TypeScenario.h">
+      <Filter>GameProcess\Implementation</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\IGP_AggregationScenario.h">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\IGP_General.h">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\IGP_Scenario.h">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\IGP_Scenario_Builder.h">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\IGP_Scenario_Destructor.h">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess\IGP_Scenario_Synchro.h">
+      <Filter>GameProcess\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\ShowTankWoT_test.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ClientSlave\PCS_HandlerClient.h">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ClientSlave\PCS_HandlerSlave.h">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ClientSlave\PCS_IHandler.h">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ClientSlave\PCS_PacketLevelGame.h">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ClientSlave\PCS_TypePacket.h">
+      <Filter>Protocol\ClientSlave</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\SlaveMaster\PSM_TypePacket.h">
+      <Filter>Protocol\SlaveMaster</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

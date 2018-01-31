@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DevTool">
+      <UniqueIdentifier>{3f40a18e-108a-4bed-a0be-d04c2c020370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DevTool\Header Files">
+      <UniqueIdentifier>{2cb77f14-ba20-4e74-8329-491678905775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DevTool\Source Files">
+      <UniqueIdentifier>{61f9d3b6-edf4-4dfc-8e41-f6007b313d66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logics">
+      <UniqueIdentifier>{ef7603bd-149b-4be9-8e8e-2cef7c446298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logics\Main">
+      <UniqueIdentifier>{8baf62ad-e618-45fd-8a82-8eab0e36496b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logics\Tools">
+      <UniqueIdentifier>{bdfa0507-9733-4a5a-8925-734eec6c2120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{f01afcfe-d496-468c-8562-abe40b18d3d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Main">
+      <UniqueIdentifier>{988b7f36-ae6d-44c7-9c02-73bbf23f6d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Secondary">
+      <UniqueIdentifier>{ca060bbb-19e8-4523-b3e3-f3a2dba91bd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Tools">
+      <UniqueIdentifier>{5a6b9dd4-9ffd-4009-ab39-0fbab60212d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocols">
+      <UniqueIdentifier>{ef3ef0b8-2cf9-4670-9b48-281156ae25d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BehaviourPattern">
+      <UniqueIdentifier>{53f62a4b-465e-4cbf-9703-009b36f06454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BehaviourPattern\Factory">
+      <UniqueIdentifier>{f2add80e-ea16-44c2-b5cc-37fe3c889cde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BehaviourPattern\Patterns">
+      <UniqueIdentifier>{1dc36a65-025c-4585-8fc7-7eece0176fd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BehaviourPattern\Patterns\Trash">
+      <UniqueIdentifier>{92d7a262-e464-4b89-a329-b1310b5c5304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameParam">
+      <UniqueIdentifier>{33c48721-55dd-41f4-af20-021b56edccb3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DevTool\DevTool_Client.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_EditorMap.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_EditorMaterial.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_EditorModel.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_EditorShape.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_EditorTableSound.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_Master.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_Share.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_Slave.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_SuperServer.h">
+      <Filter>DevTool\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logics\ClientLogic.h">
+      <Filter>Logics\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Logics\MasterLogic.h">
+      <Filter>Logics\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Logics\SlaveLogic.h">
+      <Filter>Logics\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Logics\SuperServerLogic.h">
+      <Filter>Logics\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Logics\EditorMapLogic.h">
+      <Filter>Logics\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Logics\EditorMaterialLogic.h">
+      <Filter>Logics\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Logics\EditorModelLogic.h">
+      <Filter>Logics\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Logics\EditorShapeLogic.h">
+      <Filter>Logics\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Logics\EditorTableSoundLogic.h">
+      <Filter>Logics\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\ClientMain.h">
+      <Filter>GUI\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\DebugPanel.h">
+      <Filter>GUI\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\GameRoomPrepare.h">
+      <Filter>GUI\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\WaitForm.h">
+      <Filter>GUI\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\DialogHeightmapParam.h">
+      <Filter>GUI\Secondary</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\DialogOpenSave.h">
+      <Filter>GUI\Secondary</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\PlateParam.h">
+      <Filter>GUI\Secondary</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\PlateVarGeomParam.h">
+      <Filter>GUI\Secondary</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\StatusBar.h">
+      <Filter>GUI\Secondary</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\EditorMap.h">
+      <Filter>GUI\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\EditorMaterial.h">
+      <Filter>GUI\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\EditorModel.h">
+      <Filter>GUI\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\EditorShape.h">
+      <Filter>GUI\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\EditorTableSound.h">
+      <Filter>GUI\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocols\GlobalParam.h">
+      <Filter>Protocols</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourPattern\FactoryBehaviourPattern_EoWM.h">
+      <Filter>BehaviourPattern\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourPattern\Pattern_Chassis.h">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourPattern\Pattern_Gun.h">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourPattern\Pattern_Hull.h">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourPattern\Pattern_Tank.h">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourPattern\Pattern_Turret.h">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourPattern\TankTower.h">
+      <Filter>BehaviourPattern\Patterns\Trash</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourPattern\TestControlTank.h">
+      <Filter>BehaviourPattern\Patterns\Trash</Filter>
+    </ClInclude>
+    <ClInclude Include="GameParam\GameParam.h">
+      <Filter>GameParam</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DevTool\DevTool_Client.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_EditorMap.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_EditorMaterial.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_EditorModel.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_EditorShape.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_EditorTableSound.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_Master.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_Share.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_Slave.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_SuperServer.cpp">
+      <Filter>DevTool\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Logics\ClientLogic.cpp">
+      <Filter>Logics\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Logics\MasterLogic.cpp">
+      <Filter>Logics\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Logics\SlaveLogic.cpp">
+      <Filter>Logics\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Logics\SuperServerLogic.cpp">
+      <Filter>Logics\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Logics\EditorMapLogic.cpp">
+      <Filter>Logics\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Logics\EditorMaterialLogic.cpp">
+      <Filter>Logics\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Logics\EditorModelLogic.cpp">
+      <Filter>Logics\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Logics\EditorShapeLogic.cpp">
+      <Filter>Logics\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Logics\EditorTableSoundLogic.cpp">
+      <Filter>Logics\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\ClientMain.cpp">
+      <Filter>GUI\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\DebugPanel.cpp">
+      <Filter>GUI\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\GameRoomPrepare.cpp">
+      <Filter>GUI\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\WaitForm.cpp">
+      <Filter>GUI\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\DialogHeightmapParam.cpp">
+      <Filter>GUI\Secondary</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\DialogOpenSave.cpp">
+      <Filter>GUI\Secondary</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\PlateParam.cpp">
+      <Filter>GUI\Secondary</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\PlateVarGeomParam.cpp">
+      <Filter>GUI\Secondary</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\StatusBar.cpp">
+      <Filter>GUI\Secondary</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\EditorMap.cpp">
+      <Filter>GUI\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\EditorMaterial.cpp">
+      <Filter>GUI\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\EditorModel.cpp">
+      <Filter>GUI\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\EditorShape.cpp">
+      <Filter>GUI\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\EditorTableSound.cpp">
+      <Filter>GUI\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourPattern\FactoryBehaviourPattern_EoWM.cpp">
+      <Filter>BehaviourPattern\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourPattern\Pattern_Chassis.cpp">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourPattern\Pattern_Gun.cpp">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourPattern\Pattern_Hull.cpp">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourPattern\Pattern_Tank.cpp">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourPattern\Pattern_Turret.cpp">
+      <Filter>BehaviourPattern\Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourPattern\TankTower.cpp">
+      <Filter>BehaviourPattern\Patterns\Trash</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourPattern\TestControlTank.cpp">
+      <Filter>BehaviourPattern\Patterns\Trash</Filter>
+    </ClCompile>
+    <ClCompile Include="GameParam\GameParam.cpp">
+      <Filter>GameParam</Filter>
+    </ClCompile>
+    <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
+  </ItemGroup>
+</Project>
