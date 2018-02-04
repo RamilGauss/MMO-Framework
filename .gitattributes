@@ -4,10 +4,11 @@
 *.layout binary
 *.xml    binary
 
-*.sln    eol=crlf
-*.vcproj eol=crlf
-*.cpp    eol=crlf
-*.h      eol=crlf
+*.sln     eol=crlf
+*.vcproj  eol=crlf
+*.vcxproj eol=crlf
+*.cpp     eol=crlf
+*.h       eol=crlf
 
 # Custom for Visual Studio
 *.cs     diff=csharp

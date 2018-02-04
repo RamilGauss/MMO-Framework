@@ -12,11 +12,8 @@
     2.3. По возможности, либо Total Commander, либо Far - для удобства манипуляций с файлами.
     
 3. По ссылке необходимо скачать следующие архивы и исполняемые файлы: 
-    Для dependency есть два варианта: rar или zip, на выбор, но лучше скачать rar. 
-  Архив zip нужен для тех компьютеров, на которых не установлен WinRar.
+        https://github.com/RamilGauss/MMO-FrameworkDependency       - скачать архив репоизтория (зависимости проекта).
     При скачивании исполняемых файлов ставить галку "Я хочу скачать этот файл".
-        https://cloud.mail.ru/public/5jTy/Dmueds6sb                 - Dependency.rar,
-        https://cloud.mail.ru/public/Cjk9/Uw4XPSyZ7                 - Dependency.zip,
         https://cloud.mail.ru/public/DUK2/XwGHLghb9                 - boost_1_66_0-msvc-14.1-32.exe,
         https://cloud.mail.ru/public/7rNU/Hr7mi6AY6                 - boost_1_66_0-msvc-14.1-64.exe,
         https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe - DirectX_SDK.exe.
