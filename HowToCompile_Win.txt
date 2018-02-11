@@ -2,9 +2,9 @@
     
     https://www.youtube.com/watch?v=UuwobuPw3ns
     
-    Установка зависимостей и компиляция проекта под Windows 7/8/10 x86/64.
+    Установка зависимостей и компиляция проекта под Windows 7/8/10 x86/x64.
     
-1. Итак, Архив MMO-Framework.zip скачан с github.com и распакован.
+1. Итак, архив MMO-Framework.zip скачан с github.com и распакован.
 2. В системе должно быть установлено: 
     2.1. Opera/Firefox/Chrome для скачивания зависимостей.
     2.2. VisulaStudio 2017 Community - ОБЯЗАТЕЛЬНО
@@ -39,38 +39,59 @@
     
 8. Запустить openSolution.bat. Кликнуть правой кнопкой мыши по проекту GameImpl -> Build.
 9. После сборки, клик правой кнопкой мыши по проекту Game -> Properties -> Debugging -> Command Arguments задать
-значения, описывающих версию и название dll, например, -v 8 -d GameImpl_d.dll.
--v - номер версии (см. файл DefMainFunc_DeveloperDLL.cpp).
+	значения, описывающих версию и название dll, например, -v 8 -d GameImpl_d.dll.
+	-v - номер версии (см. файл DefMainFunc_DeveloperDLL.cpp).
 
-	P.S. Для настройки сочетаний клавиш Visual Studio 2008 см. файл .\TornadoEngine\Source\Настройки для создания проекта.txt
-
-	P.P.S. Настройка Boost под VS 2017 ( убирает warning Boost_Config )
+	P.S. Настройка Boost под VS 2017 ( убирает warning Boost_Config )
 	В файле boost_1_65_1\boost\config\compiler\visualc.hpp ищем строку 330.
 	Меняем 1911 на 1912 что бы было так:
 	#if (_MSC_VER > 1912)
 	
+--------------------------------------------------------------------------------------------------------------------------------
+    English
+    
+    https://www.youtube.com/watch?v=UuwobuPw3ns
+    
+    Setting dependencies and compiling the project under Windows 7/8/10 x86/x64.
+    
+1. So, the MMO-Framework.zip archive has been downloaded from github.com and unpacked.
+2. In the operating system must be installed:
+    2.1. Opera / Firefox / Chrome for downloading dependencies.
+    2.2. Visual Studio 2017 Community - MANDATORY for installation
+            Visual Studio 2017: https://www.visualstudio.com
 
+3. Following link should download the following archives and executable files:
+        https://github.com/RamilGauss/MMO-FrameworkDependency       - download archive repository (project dependencies).
+	When downloading executable files, check "Я хочу скачать этот файл"("I want to download this file").
+        https://cloud.mail.ru/public/DUK2/XwGHLghb9                 - boost_1_66_0-msvc-14.1-32.exe,
+        https://cloud.mail.ru/public/7rNU/Hr7mi6AY6                 - boost_1_66_0-msvc-14.1-64.exe,
+        https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe - DirectX_SDK.exe.
 
+    In the cloud, you can also download (optional):
+        https://cloud.mail.ru/public/3GYW/9huRk9uNT                 - EnterpriseArchitect,
+    EnterpriseArchitect - is needed for viewing architectural solutions.
+    
+4. Install DirectX SDK. Run DXSDK_Jun10.exe and follow the instructions.
+5. Unpacking the dependency file. Unpack in C:\ or another convenient place.
+6. Unpacking the archive boost. Unpack to C:\Program Files (x86) or other convenient place.
 
+7. Environment Variables.
+	Windows XP: Win+Break->Additionally->Environment Variables.
+    Windows 7:  Win+Break->Additional system parameters->Environment Variables.
+		Add Variables:
+    DEP_PATH_MMO_FRAMEWORK = C:\Dependency             - the path to which dependencies are unpacked.
+    BOOST_PATH   = C:\Program Files (x86)\boost_1_66_0 - The path to which 32-bit boost is unpacked.
+    BOOST_PATH64 = C:\Program Files\boost_1_66_0       - The path to which 64-bit boost is unpacked.
+    
+	Note: after adding, close all window applications. Old variable values are captured
+     open applications. Closing them, the system will apply a new value.
+    
+8. Run openSolution.bat. Right-click on the project GameImpl -> Build.
+9. After assembly, right-click on the project Game -> Properties -> Debugging -> Command Arguments set values 
+	that describe the version and name of the dll, for example, -v 8 -d GameImpl_d.dll.
+	-v - version number (see file DefMainFunc_DeveloperDLL.cpp).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	P.S. Configuring Boost for VS 2017 (clearing the warning Boost_Config)
+	In file boost_1_65_1\boost\config\compiler\visualc.hpp find line 330.
+	Change 1911 to 1912 what would it be like:
+	#if (_MSC_VER > 1912)

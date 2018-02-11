@@ -87,13 +87,27 @@ bool GetArgvArgcConsole(int argc, char** argv, TVectorStr& vec_argv)
 //-------------------------------------------------------------------------------
 void ViewHowUse()
 {
+  char* sMsgUtf8_En =
+    "Invalid parameter input.\n"
+    "The -d string is the name of the loadable library (required parameter).\n"
+    "\n"
+    "The -v string is option to be used from the library,\n"
+    "by default use 0, (see GetDevTool(int variant)).\n"
+    "\n"
+    "The -c string is the key for showing console. The key is relevant only for Windows.\n"
+    "\n"
+    "The -p string is the key to the embodiment of the game.\n"
+    "\n"
+    "For example:\n"
+    "Tornado.exe -v 0 -d GameImpl.dll -p port_src 1234 port_self 7777\n";
+
   // Ввиду того, что весь исходный код я переконвертировал в utf-8.
-  char* sMsgUtf8 = 
+  char* sMsgUtf8_Ru = 
     "Некорректный ввод параметров.\n"
     "Ключ -d имя загружаемой библиотеки (обязательный параметр).\n"
     "\n"
     "Ключ -v вариант, который будет использован из библиотеки,\n"
-    "по-умолчанию используется 0, (см. GetDevTool(int variant).\n"
+    "по-умолчанию используется 0, (см. GetDevTool(int variant)).\n"
     "\n"
     "Ключ -c показывает консоль. Ключ актуален только для Windows.\n"
     "\n"
@@ -101,6 +115,13 @@ void ViewHowUse()
     "\n"
     "Например:\n"
     "Tornado.exe -v 0 -d GameImpl.dll -p port_src 1234 port_self 7777\n";
+
+  int ret = 0;
+#ifdef WIN32  
+  ret = GetSystemDefaultLangID();
+#endif
+  char* sMsgUtf8 = ( ret == 1049 ) ? sMsgUtf8_Ru : sMsgUtf8_En;
+
 #ifdef WIN32
   BL_MessageBug_Utf8(sMsgUtf8);
 #else
