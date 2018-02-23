@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -13,132 +13,115 @@ See for more information License.h.
 
 THistoryPacketTCP::THistoryPacketTCP()
 {
-  state = eSearchBegin;
-  sizePacket = 0;
+  Clear();
 }
 //------------------------------------------------------------------------
 void THistoryPacketTCP::Clear()
 {
-  state      = eSearchBegin;
-  sizePacket = 0;
+  mState = eSearchSize;
+  mSizePacket = 0;
+  flgNewPacket = true;
 }
 //------------------------------------------------------------------------
-void THistoryPacketTCP::Analiz(int& beginPos, TResult& res, 
-                               int readSize, char* buffer)
+void THistoryPacketTCP::PackForSend(TBreakPacket& bp)
 {
-  switch(state)
-  {
-    case eSearchBegin:
-      beginPos += SearchBegin(readSize,buffer,res,beginPos);
-      break;
-    case eSearchSize:
-      beginPos += SearchSize(readSize,buffer,res,beginPos);
-      break;
-    case eSearchEnd:
-      beginPos += SearchEnd(readSize,buffer,res,beginPos);
-      break;
-  }
-}
-//----------------------------------------------------------------------------------
-int THistoryPacketTCP::SearchBegin(int readSize, char* buffer, TResult& res, int beginPos)
-{
-  if( readSize - beginPos < sizeof(THeaderTCP) )
-  {
-    state = eSearchSize;
-    c.SetData(&buffer[beginPos], readSize - beginPos);
-    return readSize - beginPos;// вернуть сколько истратили
-  }
-  // ищем в буфере начало
+  // добавить заголовки в начало
   THeaderTCP header;
-  THeaderTCP* pHeader = (THeaderTCP*)&buffer[beginPos];
-  // в случае хака, Взломанный Клиент, может прислать некорректный пакет
-  if(pHeader->header!=header.header)
+  header.size = bp.GetSize();
+  bp.PushFront((char*)&header, sizeof(header));
+}
+//------------------------------------------------------------------------
+void THistoryPacketTCP::Analiz(int& beginPos, TResult& res, int readSize, char* buffer)
+{
+  switch (mState)
   {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
-      WriteF_time("THistoryPacketTCP::SearchBegin header don't have correct preambula.\n");
-    res.parse_error = true;
-    return 0;// сдвиг на 1 байт и поиск дальше
+  case eSearchSize:
+    beginPos += SearchSize(readSize, buffer, res, beginPos);
+    break;
+  case eSearchData:
+    beginPos += SearchData(readSize, buffer, res, beginPos);
+    break;
   }
-  // проверка корректности предполагаемого размера пакета
-  if(pHeader->size > eMaxSize)
-  {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
-      WriteF_time("THistoryPacketTCP::SearchBegin expect very large size of packet.\n");
-    // обмен нарушен канал скоро умрет, админ, проверяя логи, забанит "хака".
-    // ну, по крайней мере так должно быть.
-    res.parse_error = true;
-    return 0;
-  }
-  state      = THistoryPacketTCP::eSearchEnd;
-  sizePacket = pHeader->size;
-
-  c.SetData(&buffer[beginPos], sizeof(THeaderTCP));
-  return sizeof(THeaderTCP);// вернуть сколько истратили
 }
 //----------------------------------------------------------------------------------
 int THistoryPacketTCP::SearchSize(int readSize, char* buffer, TResult& res, int beginPos)
 {
-  if(readSize - beginPos + c.GetSize() < sizeof(THeaderTCP))
+  return flgNewPacket ?
+    BeginSearchSize(readSize, buffer, res, beginPos) :
+    ContinueSearchSize(readSize, buffer, res, beginPos);
+}
+//----------------------------------------------------------------------------------
+int THistoryPacketTCP::BeginSearchSize(int readSize, char* buffer, TResult& res, int beginPos)
+{
+  int size = readSize - beginPos;
+  if (size >= sizeof(THeaderTCP))
   {
-    // так и не нашли заголовок полностью
-    c.AddData(&buffer[beginPos], readSize - beginPos);
-    return readSize - beginPos;// вернуть сколько истратили
+    size = sizeof(THeaderTCP);
+    THeaderTCP* pHeader = (THeaderTCP*)buffer;
+    mState = THistoryPacketTCP::eSearchData;
+    mSizePacket = pHeader->size;
+    CheckSize(res);
   }
-  int needCopy = sizeof(THeaderTCP) - c.GetSize();
-  c.AddData(&buffer[beginPos], needCopy);
 
-  THeaderTCP header;
-  THeaderTCP* pHeader = (THeaderTCP*)c.GetPtr();
-  // в случае хака, Взломанный Клиент, может прислать некорректный пакет
-  if(pHeader->header!=header.header)
+  mCollectorPacket.SetData(&buffer[beginPos], size);
+  flgNewPacket = false;
+  return size;
+}
+//----------------------------------------------------------------------------------
+int THistoryPacketTCP::ContinueSearchSize(int readSize, char* buffer, TResult& res, int beginPos)
+{
+  int sizeNewData = readSize - beginPos;// размер новых данных
+  int sizeFound = sizeNewData + mCollectorPacket.GetSize();
+  if (sizeFound < sizeof(THeaderTCP))
+  {
+    mCollectorPacket.AddData(&buffer[beginPos], sizeNewData);
+    return sizeNewData;
+  }
+
+  int needCopy = sizeof(THeaderTCP) - mCollectorPacket.GetSize();
+  mCollectorPacket.AddData(&buffer[beginPos], needCopy);
+
+  THeaderTCP* pHeader = (THeaderTCP*)mCollectorPacket.GetPtr();
+  mState = THistoryPacketTCP::eSearchData;
+  mSizePacket = pHeader->size;
+
+  CheckSize(res);
+  return needCopy;// вернуть сколько истратили
+}
+//----------------------------------------------------------------------------------
+int THistoryPacketTCP::SearchData(int readSize, char* buffer, TResult& res, int beginPos)
+{
+  int sizeNewData = readSize - beginPos;
+
+  int mustSize = mSizePacket + sizeof(THeaderTCP);// предполагаемый размер
+  // не хватает до полного размера
+  if (mustSize > sizeNewData + mCollectorPacket.GetSize()/*остаток внутри истории*/)
+  {
+    // скопировать внутрь и выйти
+    mCollectorPacket.AddData(&buffer[beginPos], sizeNewData);
+    return sizeNewData;
+  }
+
+  // пакет собран
+  int packetRest = mustSize - mCollectorPacket.GetSize();// остаток пакета
+  mCollectorPacket.AddData(&buffer[beginPos], packetRest);
+
+  res.Set(sizeof(THeaderTCP) + mCollectorPacket.GetPtr(), mSizePacket);
+  Clear();
+  return packetRest;
+}
+//----------------------------------------------------------------------------------
+void THistoryPacketTCP::CheckSize(TResult& res)
+{
+  // проверка корректности предполагаемого размера пакета
+  if (mSizePacket > eMaxSize)
   {
     GetLogger(STR_NAME_NET_TRANSPORT)->
       WriteF_time("THistoryPacketTCP::SearchSize expect very large size of packet.\n");
-    res.parse_error = true;
-    return 0;
-  }
-  // проверка корректности предполагаемого размера пакета
-  if(pHeader->size > eMaxSize)
-  {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
-      WriteF_time("THistoryPacketTCP::SearchBegin expect very large size of packet.\n");
     // сдвиг на 1 байт и поиск дальше, но фактически обмен нарушен
     // канал скоро умрет, админ, проверяя логи, забанит "хака".
     // ну, по крайней мере так должно быть.
     res.parse_error = true;
-    return 0;
   }
-
-  state      = THistoryPacketTCP::eSearchEnd;
-  sizePacket = pHeader->size;
-  return needCopy;// вернуть сколько истратили
-}
-//----------------------------------------------------------------------------------
-int THistoryPacketTCP::SearchEnd(int readSize, char* buffer,
-                                 TResult& res, int beginPos)
-{
-  int mustSize = sizePacket + sizeof(THeaderTCP);// предполагаемый размер
-  // не хватает до полного размера
-  if( mustSize > readSize - beginPos + c.GetSize()/*остаток внутри истории*/)
-  {
-    // скопировать внутрь и выйти
-    c.AddData(&buffer[beginPos], readSize - beginPos);
-    return readSize - beginPos;
-  }
-  if( mustSize == readSize - beginPos + c.GetSize())// полный пакет
-  {
-    c.AddData(&buffer[beginPos], readSize - beginPos);
-
-    res.Set(sizeof(THeaderTCP)+c.GetPtr(),sizePacket);
-    Clear();
-    return readSize - beginPos;
-  }
-  // пакет собран
-  int needSize = mustSize - c.GetSize();// не хватает до полного пакета
-  c.AddData(&buffer[beginPos], needSize );
-
-  res.Set(sizeof(THeaderTCP)+c.GetPtr(),sizePacket);
-  Clear();
-  return needSize;
 }
 //----------------------------------------------------------------------------------

@@ -54,10 +54,7 @@ bool TNetControlTCP::Connect(unsigned int ip, unsigned short port)
 //----------------------------------------------------------------------------------
 void TNetControlTCP::Send(unsigned int ip, unsigned short port, TBreakPacket& bp)
 {
-  // добавить заголовки в начало  - 2 байт под заголовок + 4 байта - размер данных
-  THeaderTCP header;
-  header.size = bp.GetSize();
-  bp.PushFront((char*)&header, sizeof(header));
+  THistoryPacketTCP::PackForSend( bp );
   bp.Collect();
 
   char* data = (char*)bp.GetCollectPtr();
@@ -86,7 +83,7 @@ void TNetControlTCP::RecvEvent(const boost::system::error_code& error,size_t byt
   while( beginPos < mReadSize )
   {
     THistoryPacketTCP::TResult res;
-    mHistory.Analiz(beginPos, res, mReadSize, mBuffer);
+    mHistory.Analiz( beginPos, res, mReadSize, mBuffer );
     // если ошибка парсинга - удалить и выйти
     if(res.parse_error)
     {

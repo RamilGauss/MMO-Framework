@@ -32,7 +32,7 @@ void TContainerRise::Alloc(int new_size)
   mSizeUse = new_size;
 }
 //----------------------------------------------------------
-void TContainerRise::Realloc( int new_size)
+void TContainerRise::Realloc( int new_size )
 {
   if(mC.GetSize() < new_size)
   {
@@ -65,7 +65,7 @@ void TContainerRise::SetData(char* p, int size)
     memcpy(mC.GetPtr(), p, mSizeUse);
 }
 //----------------------------------------------------------
-void TContainerRise::AddData(char*p, int size)
+void TContainerRise::AddData(char* p, int size)
 {
   int oldSize = GetSize();
   int newSize = oldSize + size;

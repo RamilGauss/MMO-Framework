@@ -8,19 +8,12 @@ See for more information License.h.
 #ifndef HeaderTCPH
 #define HeaderTCPH
 
-enum
-  {
-    eHeader = 0xCC5C,
-  };
-
 #ifdef WIN32
 #pragma pack(push, 1)
 #endif
 struct THeaderTCP
 {
-  short header;
   int   size;
-  THeaderTCP(){header = short(eHeader);}
 }_PACKED;
 #ifdef WIN32
 #pragma pack(pop)

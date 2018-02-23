@@ -12,6 +12,7 @@ See for more information License.h.
 
 #include "ContainerRise.h"
 #include "ShareMisc.h"
+#include "BreakPacket.h"
 
 class THistoryPacketTCP
 {
@@ -23,7 +24,7 @@ public:
       complete=false;
       parse_error = false;
     }
-    void Set(char* b, int s)
+    void Set( char* b, int s )
     {
       buffer      = b;
       size        = s;
@@ -35,25 +36,33 @@ public:
 
     bool parse_error;// обнаружена ошибка, при парсинге пакета
   };
-
+protected:
   typedef enum
   {
-    eSearchBegin,
     eSearchSize,
-    eSearchEnd,
+    eSearchData,
   }eStatePacket;
 
-  int sizePacket;// предполагаемый размер пакета
-  TContainerRise c;    
-  eStatePacket   state;
+  int mSizePacket;// предполагаемый размер пакета
+  TContainerRise mCollectorPacket;    
+  eStatePacket   mState;
+  bool flgNewPacket;// начало нового пакета
+public:
   THistoryPacketTCP();
   void Clear();
+  static void PackForSend( TBreakPacket& bp );
 
   void Analiz(int& beginPos, TResult& res, int readSize, char* buffer);
 protected:
-  int SearchBegin(int readSize, char* buffer, TResult& res, int beginPos);
-  int SearchSize(int readSize, char* buffer, TResult& res, int beginPos);
-  int SearchEnd(int readSize, char* buffer, TResult& res, int beginPos);
+
+  int SearchSize( int readSize, char* buffer, TResult& res, int beginPos );
+  
+  int BeginSearchSize(int readSize, char* buffer, TResult& res, int beginPos);
+  int ContinueSearchSize(int readSize, char* buffer, TResult& res, int beginPos);
+  
+  int SearchData( int readSize, char* buffer, TResult& res, int beginPos );
+
+  void CheckSize( TResult& res );
 
   enum
   {
