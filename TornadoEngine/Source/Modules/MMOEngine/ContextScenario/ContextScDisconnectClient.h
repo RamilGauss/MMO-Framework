@@ -8,13 +8,13 @@ See for more information License.h.
 #ifndef CONTEXT_SC_DISCONECT_CLIENT_H
 #define CONTEXT_SC_DISCONECT_CLIENT_H
 
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 #include "BreakPacket.h"
 #include "ShareMisc.h"
 
 namespace nsMMOEngine
 {
-  class TContextScDisconnectClient : public IContextScenario
+  class TContextScDisconnectClient : public IScenarioContext
   {
     unsigned int mIDClient;
   public:

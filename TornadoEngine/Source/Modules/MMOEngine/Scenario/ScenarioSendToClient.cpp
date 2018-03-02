@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include "ScenarioSendToClient.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "Events.h"
 #include "SrcEvent_ex.h"
 

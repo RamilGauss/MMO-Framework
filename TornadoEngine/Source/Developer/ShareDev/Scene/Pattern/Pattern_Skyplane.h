@@ -19,7 +19,7 @@ public:
 
   virtual bool BuildByModule_Graphic(bool fast = false);
 
-  virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TPatternNameManager::eBaseType GetBaseType();
 
 protected:
   float GetPlane_D();

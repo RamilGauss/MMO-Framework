@@ -5,45 +5,45 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerTime.h"
+#include "TimeManager.h"
 
 
-TManagerTime::TManagerTime()
+TTimeManager::TTimeManager()
 {
 
 }
 //------------------------------------------------------------------------
-TManagerTime::~TManagerTime()
+TTimeManager::~TTimeManager()
 {
 
 }
 //------------------------------------------------------------------------
-void TManagerTime::SetTimeSpeed(float relative)// отношение реального к игровому
+void TTimeManager::SetTimeSpeed(float relative)// отношение реального к игровому
 {
 
 }
 //------------------------------------------------------------------------
-void TManagerTime::SetTimeToBegin()
+void TTimeManager::SetTimeToBegin()
 {
 
 }
 //------------------------------------------------------------------------
-void TManagerTime::SetTimeToEnd()
+void TTimeManager::SetTimeToEnd()
 {
 
 }
 //------------------------------------------------------------------------
-int TManagerTime::GetCountTimeStamp()
+int TTimeManager::GetCountTimeStamp()
 {
   return 0;
 } 
 //------------------------------------------------------------------------
-void TManagerTime::SetTimeStamp(int stamp)
+void TTimeManager::SetTimeStamp(int stamp)
 {
 
 }
 //------------------------------------------------------------------------
-unsigned int TManagerTime::GetTime()
+unsigned int TTimeManager::GetTime()
 {
   return 0;
 }

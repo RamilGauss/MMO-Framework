@@ -10,11 +10,11 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
-class DllExport TManagerTime
+class DllExport TTimeManager
 {
 public:
-  TManagerTime();
-  virtual ~TManagerTime();
+  TTimeManager();
+  virtual ~TTimeManager();
 
   // управление игровым временем
   virtual void SetTimeSpeed(float relative = 1.0f);// отношение реального к игровому

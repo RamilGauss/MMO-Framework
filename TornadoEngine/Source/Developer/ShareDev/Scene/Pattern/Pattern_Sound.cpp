@@ -25,8 +25,8 @@ TPattern_Sound::~TPattern_Sound()
 
 }
 //---------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TPattern_Sound::GetBaseType()
+TPatternNameManager::eBaseType TPattern_Sound::GetBaseType()
 {
-  return TManagerNamePattern::eSound;
+  return TPatternNameManager::eSound;
 }
 //------------------------------------------------------------------------

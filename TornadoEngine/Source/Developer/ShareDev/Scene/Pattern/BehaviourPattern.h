@@ -17,7 +17,7 @@ See for more information License.h.
 #include "MathTools.h"
 #include "PatternConfigItem.h"
 #include "BL_Debug.h"
-#include "ManagerNamePattern.h"
+#include "PatternNameManager.h"
 
 #include <boost/lexical_cast.hpp>
 
@@ -69,7 +69,7 @@ public:
   virtual std::string GetNameMapItem();
 
   // для поиска в редакторе объекта для редактирования
-  virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TPatternNameManager::eBaseType GetBaseType();
 
   virtual void SetPosition(nsMathTools::TVector3& v);
   virtual bool GetPosition(nsMathTools::TVector3& v);// мгновенное значение

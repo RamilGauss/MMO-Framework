@@ -8,7 +8,7 @@ See for more information License.h.
 #include "IScenario.h"
 #include <stddef.h>
 #include "BL_Debug.h"
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 
 using namespace nsMMOEngine;
 
@@ -49,12 +49,12 @@ void IScenario::Work()
 
 }
 //---------------------------------------------------------------------
-void IScenario::SetContext(IContextScenario* pCSc)
+void IScenario::SetContext(IScenarioContext* pCSc)
 {
   mCurContext = pCSc;
 }
 //---------------------------------------------------------------------
-IContextScenario* IScenario::GetContext()
+IScenarioContext* IScenario::GetContext()
 {
   return mCurContext;
 }

@@ -17,7 +17,7 @@ public:
   TPattern_Skydome();
   virtual ~TPattern_Skydome();
 
-  virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TPatternNameManager::eBaseType GetBaseType();
 };
 
 #endif

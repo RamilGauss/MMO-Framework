@@ -5,22 +5,22 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ManagerFormH
-#define ManagerFormH
+#ifndef FormManagerH
+#define FormManagerH
 
 #include <string>
 #include <boost/bimap/bimap.hpp>
 #include "TypeDef.h"
 
-class DllExport TManagerForm
+class DllExport TFormManager
 {
   typedef boost::bimaps::bimap< std::string, void* > bmStrPtr;
   bmStrPtr mMapNameForm;
 public:
 
   // реализация класса не зависит от GUI
-  TManagerForm();
-  virtual ~TManagerForm();
+  TFormManager();
+  virtual ~TFormManager();
 
   // добавление
   void Add(std::string& name, void* pForm);

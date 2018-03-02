@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerStateMachine.h"
+#include "StateMachineManager.h"
 #include "MakerXML.h"
 #include "IXML.h"
 
@@ -19,13 +19,13 @@ const char* sKey     = "key";
 const char* sValue   = "value";
 const char* sComment = "comment";
 
-TManagerStateMachine::TManagerStateMachine()
+TStateMachineManager::TStateMachineManager()
 {
   TMakerXML maker;
   pXML = maker.New();
 }
 //---------------------------------------------------------------------------------
-TManagerStateMachine::~TManagerStateMachine()
+TStateMachineManager::~TStateMachineManager()
 {
   Done();
 }
@@ -46,7 +46,7 @@ TManagerStateMachine::~TManagerStateMachine()
     </desc>
   </state>
 */
-bool TManagerStateMachine::Load(const char* sPath,unsigned int& id)
+bool TStateMachineManager::Load(const char* sPath,unsigned int& id)
 {
   TSM_UintUint* pSM = new TSM_UintUint;
   mVecSM.push_back(pSM);
@@ -85,7 +85,7 @@ bool TManagerStateMachine::Load(const char* sPath,unsigned int& id)
   return true;
 }
 //---------------------------------------------------------------------------------
-bool TManagerStateMachine::GetValue(unsigned int id, unsigned int k, unsigned int& v)
+bool TStateMachineManager::GetValue(unsigned int id, unsigned int k, unsigned int& v)
 {
   if(mVecSM.size()<=id) return false;
 
@@ -98,7 +98,7 @@ bool TManagerStateMachine::GetValue(unsigned int id, unsigned int k, unsigned in
   return false;
 }
 //---------------------------------------------------------------------------------
-void TManagerStateMachine::Done()
+void TStateMachineManager::Done()
 {
   int cnt = mVecSM.size();
   for(int i = 0 ; i < cnt ; i++ )
@@ -112,7 +112,7 @@ void TManagerStateMachine::Done()
   pXML = NULL;
 }
 //---------------------------------------------------------------------------------
-bool TManagerStateMachine::SetState(const char* sNewStateName, unsigned int id )
+bool TStateMachineManager::SetState(const char* sNewStateName, unsigned int id )
 {
   if(id==eAll)
   {
@@ -127,7 +127,7 @@ bool TManagerStateMachine::SetState(const char* sNewStateName, unsigned int id )
   return mVecSM.at(id)->Init(sNewStateName);
 }
 //---------------------------------------------------------------------------------
-bool TManagerStateMachine::GetComment(unsigned int id, unsigned int k, string& comment)
+bool TStateMachineManager::GetComment(unsigned int id, unsigned int k, string& comment)
 {
   TMapUintPtr::iterator fit = mVecSM.at(id)->GetDataCurrent()->find(k);
   if(fit!=mVecSM.at(id)->GetDataCurrent()->end())

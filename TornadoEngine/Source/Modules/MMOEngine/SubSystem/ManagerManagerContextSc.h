@@ -9,13 +9,13 @@ See for more information License.h.
 #define MANAGER_MANAGER_CONTEXT_SC_H
 
 #include <set>
-#include "ManagerContextSc.h"
+#include "ScContextManager.h"
 
 namespace nsMMOEngine
 {
   class TManagerManagerContextSc
   {
-    typedef std::set<TManagerContextSc*> TSetPtr;
+    typedef std::set<TScContextManager*> TSetPtr;
     TSetPtr mSetManagerContextSc;
 
     TSetPtr mSetActiveManagerContextSc;
@@ -23,13 +23,13 @@ namespace nsMMOEngine
     TManagerManagerContextSc();
     ~TManagerManagerContextSc();
 
-    TManagerContextSc* Add();
-    void Remove(TManagerContextSc* pMCSc);
+    TScContextManager* Add();
+    void Remove(TScContextManager* pMCSc);
     // для обработки внутренних событий
     void Work();
   protected:
-    void ActiveEvent(TManagerContextSc* pMCSc);
-    void DisactiveEvent(TManagerContextSc* pMCSc);
+    void ActiveEvent(TScContextManager* pMCSc);
+    void DisactiveEvent(TScContextManager* pMCSc);
   };
 }
 

@@ -87,7 +87,7 @@ bool TGameEngine::LoadDLL(int variant_use, const char* sNameDLL)
   if(mDevTool==NULL)// нет DLL - нет движка.
     return false;
 
-  mMngThreadModules.reset(new TManagerThreadModules);
+  mMngThreadModules.reset(new TModulesThreadManager);
 
   Event(nsGameEngine::eAfterCreateDevTool);
   return true;

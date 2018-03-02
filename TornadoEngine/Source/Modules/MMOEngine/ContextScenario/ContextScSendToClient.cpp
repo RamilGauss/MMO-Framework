@@ -8,7 +8,7 @@ See for more information License.h.
 #include "ContextScSendToClient.h"
 #include <boost/foreach.hpp>
 #include "BL_Debug.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 
 using namespace nsMMOEngine;
 

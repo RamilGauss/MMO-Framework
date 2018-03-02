@@ -8,14 +8,14 @@ See for more information License.h.
 #ifndef CONTEXT_SC_LOGIN_SLAVE_H
 #define CONTEXT_SC_LOGIN_SLAVE_H
 
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 #include "BreakPacket.h"
 #include "ShareMisc.h"
 
 namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
-  class TContextScLoginSlave : public IContextScenario
+  class TContextScLoginSlave : public IScenarioContext
   {
     unsigned int mTimeWaitAnswerFromMaster;
     bool flgConnectToMaster;

@@ -5,26 +5,26 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerContextSc.h"
+#include "ScContextManager.h"
 #include "IScenario.h"
 #include "BL_Debug.h"
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 
 
 using namespace std;
 using namespace nsMMOEngine;
 
-TManagerContextSc::TManagerContextSc()
+TScContextManager::TScContextManager()
 {
   pActiveContextSc = NULL;
 }
 //---------------------------------------------------------------------
-TManagerContextSc::~TManagerContextSc()
+TScContextManager::~TScContextManager()
 {
 
 }
 //---------------------------------------------------------------------
-bool TManagerContextSc::Activate(IContextScenario* pCSc)
+bool TScContextManager::Activate(IScenarioContext* pCSc)
 {
   bool res;
   if(pActiveContextSc)// если есть активный, то поместить в очередь на активацию
@@ -43,7 +43,7 @@ bool TManagerContextSc::Activate(IContextScenario* pCSc)
   return res;
 }
 //---------------------------------------------------------------------
-void TManagerContextSc::Disactivate()
+void TScContextManager::Disactivate()
 {
   BL_ASSERT(pActiveContextSc);
   // следующий сценарий
@@ -60,38 +60,38 @@ void TManagerContextSc::Disactivate()
   NotifyDisactiveEvent();
 }
 //---------------------------------------------------------------------
-void TManagerContextSc::Work()
+void TScContextManager::Work()
 {
   if(pActiveContextSc)
     pActiveContextSc->Work();
 }
 //---------------------------------------------------------------------
-bool TManagerContextSc::IsActive()
+bool TScContextManager::IsActive()
 {
   return pActiveContextSc!=NULL;
 }
 //---------------------------------------------------------------------
-TCallBackRegistrator1<TManagerContextSc*>* TManagerContextSc::GetCallBackActivate()
+TCallBackRegistrator1<TScContextManager*>* TScContextManager::GetCallBackActivate()
 {
   return &mCallBackActivateEvent;
 }
 //---------------------------------------------------------------------
-TCallBackRegistrator1<TManagerContextSc*>* TManagerContextSc::GetCallBackDisactivate()
+TCallBackRegistrator1<TScContextManager*>* TScContextManager::GetCallBackDisactivate()
 {
   return &mCallBackDisactivateEvent;
 }
 //---------------------------------------------------------------------
-void TManagerContextSc::NotifyActiveEvent()
+void TScContextManager::NotifyActiveEvent()
 {
   mCallBackActivateEvent.Notify(this);
 }
 //---------------------------------------------------------------------
-void TManagerContextSc::NotifyDisactiveEvent()
+void TScContextManager::NotifyDisactiveEvent()
 {
   mCallBackDisactivateEvent.Notify(this);
 }
 //---------------------------------------------------------------------
-IContextScenario* TManagerContextSc::GetActive()
+IScenarioContext* TScContextManager::GetActive()
 {
   return pActiveContextSc;
 }

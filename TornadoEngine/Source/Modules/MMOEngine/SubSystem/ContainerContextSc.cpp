@@ -30,7 +30,7 @@ TContainerContextSc::TContainerContextSc()
 void TContainerContextSc::SetID_Session(unsigned int id_session)
 {
   mID_Session = id_session;
-  BOOST_FOREACH(IContextScenario* p,mListContext)
+  BOOST_FOREACH(IScenarioContext* p,mListContext)
     p->SetID_Session(id_session);
 }
 //------------------------------------------------------------
@@ -39,33 +39,33 @@ unsigned int TContainerContextSc::GetID_Session()
   return mID_Session;
 }
 //------------------------------------------------------------
-void TContainerContextSc::SetMCSc(TManagerContextSc* pMCSc)
+void TContainerContextSc::SetMCSc(TScContextManager* pMCSc)
 {
   mManagerContextSc = pMCSc;
 
-  BOOST_FOREACH(IContextScenario* p,mListContext)
+  BOOST_FOREACH(IScenarioContext* p,mListContext)
     p->SetMSc(mManagerContextSc);
 }
 //------------------------------------------------------------
-void TContainerContextSc::SetMS(TManagerSession* pMS)
+void TContainerContextSc::SetMS(TSessionManager* pMS)
 {
-  BOOST_FOREACH(IContextScenario* p,mListContext)
+  BOOST_FOREACH(IScenarioContext* p,mListContext)
     p->SetMS(pMS);
 }
 //------------------------------------------------------------
 void TContainerContextSc::SetSE(TSrcEvent* pSE)
 {
-  BOOST_FOREACH(IContextScenario* p,mListContext)
+  BOOST_FOREACH(IScenarioContext* p,mListContext)
     p->SetSE(pSE);
 }
 //------------------------------------------------------------
 void TContainerContextSc::SetUserPtr(void* p)
 {
-  BOOST_FOREACH(IContextScenario* p,mListContext)
+  BOOST_FOREACH(IScenarioContext* p,mListContext)
     p->SetUserPtr(p);
 }
 //------------------------------------------------------------
-TManagerContextSc* TContainerContextSc::GetMCSc()
+TScContextManager* TContainerContextSc::GetMCSc()
 {
   return mManagerContextSc;
 }

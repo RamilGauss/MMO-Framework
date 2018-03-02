@@ -5,51 +5,51 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerThreadModules.h"
+#include "ModulesThreadManager.h"
 
 #include "ThreadModules.h"
 #include <boost/foreach.hpp>
 
-TManagerThreadModules::TManagerThreadModules()
+TModulesThreadManager::TModulesThreadManager()
 {
 
 }
 //---------------------------------------------------------------------------------
-TManagerThreadModules::~TManagerThreadModules()
+TModulesThreadManager::~TModulesThreadManager()
 {
   Done();
 }
 //---------------------------------------------------------------------------------
-void TManagerThreadModules::SetCountThread(int cnt)
+void TModulesThreadManager::SetCountThread(int cnt)
 {
   for( int i = 0 ; i < cnt ; i++)
     mVecThread.push_back(new TThreadModules);
 }
 //---------------------------------------------------------------------------------
-void TManagerThreadModules::AddModuleByThread(int indexThread, IModule* pModule)
+void TModulesThreadManager::AddModuleByThread(int indexThread, IModule* pModule)
 {
   mVecThread[indexThread]->AddModule(pModule);
 }
 //---------------------------------------------------------------------------------
-void TManagerThreadModules::SetCallbackStop(TCallBackRegistrator1<std::string>* pCB)
+void TModulesThreadManager::SetCallbackStop(TCallBackRegistrator1<std::string>* pCB)
 {
   BOOST_FOREACH(TThreadModules*& pThread, mVecThread)
     pThread->SetCallbackStop(pCB);
 }
 //---------------------------------------------------------------------------------
-void TManagerThreadModules::Start()
+void TModulesThreadManager::Start()
 {
   BOOST_FOREACH(TThreadModules*& pThread, mVecThread)
     pThread->Start();
 }
 //---------------------------------------------------------------------------------
-void TManagerThreadModules::Stop()
+void TModulesThreadManager::Stop()
 {
   BOOST_FOREACH(TThreadModules*& pThread, mVecThread)
     pThread->Stop();
 }
 //---------------------------------------------------------------------------------
-void TManagerThreadModules::Done()
+void TModulesThreadManager::Done()
 {
   BOOST_FOREACH(TThreadModules*& pThread, mVecThread)
     delete pThread;

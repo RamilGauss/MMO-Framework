@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ManagerThreadModulesH
-#define ManagerThreadModulesH
+#ifndef ModulesThreadManagerH
+#define ModulesThreadManagerH
 
 #include <vector>
 #include "CallBackRegistrator.h"
@@ -15,14 +15,14 @@ See for more information License.h.
 class IModule;
 class TThreadModules;
 
-class DllExport TManagerThreadModules
+class DllExport TModulesThreadManager
 {
   typedef std::vector<TThreadModules*> TVecPtrThread;
   TVecPtrThread mVecThread;
 
 public:
-  TManagerThreadModules();
-  ~TManagerThreadModules();
+  TModulesThreadManager();
+  ~TModulesThreadManager();
 
   void SetCountThread(int cnt);
   void AddModuleByThread(int indexThread, IModule* pModule);

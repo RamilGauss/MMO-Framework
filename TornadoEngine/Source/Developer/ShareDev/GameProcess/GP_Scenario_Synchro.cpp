@@ -72,7 +72,7 @@ void TGP_Scenario_Synchro::SaveMap(std::string nameMap)
       pPattern->SaveGameItemOnHDD(TFactoryGameItem::PatternConfig);
       pPattern->SaveOutDataOnHDD(TFactoryGameItem::PatternConfig);
     }
-    if( pPattern->GetBaseType()==TManagerNamePattern::eTerrain )
+    if( pPattern->GetBaseType()==TPatternNameManager::eTerrain )
     {
       if( pPattern->UpdateGameItem(TFactoryGameItem::Terrain) )
       {

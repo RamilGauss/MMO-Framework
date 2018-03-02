@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ManagerStateMachineH
-#define ManagerStateMachineH
+#ifndef StateMachineManagerH
+#define StateMachineManagerH
 
 #include "StateMachine.h"
 #include <vector>
@@ -15,7 +15,7 @@ See for more information License.h.
 
 class IXML;
 
-class DllExport TManagerStateMachine
+class DllExport TStateMachineManager
 {
   struct TDesc
   {
@@ -40,8 +40,8 @@ class DllExport TManagerStateMachine
 
 public:
 
-  TManagerStateMachine();
-  virtual ~TManagerStateMachine();
+  TStateMachineManager();
+  virtual ~TStateMachineManager();
   enum{eAll=-1};
   // загрузить и вернуть id для доступа
   virtual bool Load(const char* sPath, unsigned int &id);

@@ -183,9 +183,9 @@ bool TPattern_Model::GetMobility()
   return flgMobility;
 }
 //--------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TPattern_Model::GetBaseType()
+TPatternNameManager::eBaseType TPattern_Model::GetBaseType()
 {
-  return TManagerNamePattern::eModel;
+  return TPatternNameManager::eModel;
 }
 //------------------------------------------------------------------------
 void TPattern_Model::ActivatePhysicBody(bool force)

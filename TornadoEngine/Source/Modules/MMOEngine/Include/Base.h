@@ -20,8 +20,8 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  class TManagerSession;
-  class TManagerContextSc;
+  class TSessionManager;
+  class TScContextManager;
   class TManagerManagerContextSc;
   class TContainerContextSc;
   class TControlScenario;
@@ -44,7 +44,7 @@ namespace nsMMOEngine
     TListRecvPacket mRecvPacket;
 
     // транспорт
-    boost::scoped_ptr<TManagerSession> mManagerSession;
+    boost::scoped_ptr<TSessionManager> mManagerSession;
     // загрузка CPU
     int mLoadProcent;// затраченное время/выделенное, %
 
@@ -117,8 +117,8 @@ namespace nsMMOEngine
     virtual void EndRcm(IScenario* p){}
     virtual void EndSynchroSlave(IScenario* p){}
   private:    
-    TManagerContextSc* AddManagerContextSc();
-    void RemoveManagerContextSc(TManagerContextSc* pMCSc);
+    TScContextManager* AddManagerContextSc();
+    void RemoveManagerContextSc(TScContextManager* pMCSc);
   protected:
     friend class TDelegateManagerContextSc;
     void SetupScForContext(TContainerContextSc* pCCSc);

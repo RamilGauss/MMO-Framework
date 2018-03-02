@@ -25,8 +25,8 @@ TPattern_Volume::~TPattern_Volume()
 
 }
 //---------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TPattern_Volume::GetBaseType()
+TPatternNameManager::eBaseType TPattern_Volume::GetBaseType()
 {
-  return TManagerNamePattern::eVolume;
+  return TPatternNameManager::eVolume;
 }
 //------------------------------------------------------------------------

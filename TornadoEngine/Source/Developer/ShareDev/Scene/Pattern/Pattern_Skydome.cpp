@@ -25,8 +25,8 @@ TPattern_Skydome::~TPattern_Skydome()
 
 }
 //---------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TPattern_Skydome::GetBaseType()
+TPatternNameManager::eBaseType TPattern_Skydome::GetBaseType()
 {
-  return TManagerNamePattern::eSky;
+  return TPatternNameManager::eSky;
 }
 //------------------------------------------------------------------------

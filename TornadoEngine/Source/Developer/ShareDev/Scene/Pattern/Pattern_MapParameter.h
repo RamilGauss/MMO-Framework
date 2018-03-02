@@ -24,7 +24,7 @@ public:
   virtual bool BuildByModule_Physic( bool fast = false);
   virtual bool BuildByModule_Sound(  bool fast = false);
 
-  virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TPatternNameManager::eBaseType GetBaseType();
 protected:
 
 };

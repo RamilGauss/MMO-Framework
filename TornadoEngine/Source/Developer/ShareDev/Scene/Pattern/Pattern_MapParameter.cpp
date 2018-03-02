@@ -124,8 +124,8 @@ bool TPattern_MapParameter::BuildByModule_Sound(bool fast)
   return true;
 }
 //---------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TPattern_MapParameter::GetBaseType()
+TPatternNameManager::eBaseType TPattern_MapParameter::GetBaseType()
 {
-  return TManagerNamePattern::eMapParameter;
+  return TPatternNameManager::eMapParameter;
 }
 //------------------------------------------------------------------------

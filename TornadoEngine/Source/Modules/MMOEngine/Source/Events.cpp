@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include "Events.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 
 using namespace nsMMOEngine;
 

@@ -8,13 +8,13 @@ See for more information License.h.
 #ifndef CONTEXT_SC_SYNCHRO_SLAVE_H
 #define CONTEXT_SC_SYNCHRO_SLAVE_H
 
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 #include "BreakPacket.h"
 
 namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
-  class TContextScSynchroSlave : public IContextScenario
+  class TContextScSynchroSlave : public IScenarioContext
   {
     unsigned char mLoadProcent;
   public:

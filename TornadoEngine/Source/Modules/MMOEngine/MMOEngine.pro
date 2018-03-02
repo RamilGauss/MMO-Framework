@@ -70,27 +70,28 @@ SOURCES = \
 ./SubSystem/ContainerContextSc.cpp \
 ./SubSystem/ContextCrypto.cpp \
 ./SubSystem/ControlScenario.cpp \
+./SubSystem/CryptoContextManager.cpp \
 ./SubSystem/CryptMITM.cpp \
 ./SubSystem/DelegateManagerContextSc.cpp \
-./SubSystem/IContextScenario.cpp \
+./SubSystem/IScenarioContext.cpp \
 ./SubSystem/IScenario.cpp \
 ./SubSystem/MakerScenario.cpp \
 ./SubSystem/ManagerContextClientLogining.cpp \
 ./SubSystem/ManagerContextClient_slave.cpp \
-./SubSystem/ManagerContextCrypto.cpp \
 ./SubSystem/ManagerContextDownConnection.cpp \
 ./SubSystem/ManagerContextDownConnection_Slave.cpp \
 ./SubSystem/ManagerContextMoreDownClientConnection.cpp \
-./SubSystem/ManagerContextSc.cpp \
 ./SubSystem/ManagerGroupClient.cpp \
 ./SubSystem/ManagerManagerContextSc.cpp \
 ./SubSystem/ManagerRecommutation.cpp \
-./SubSystem/ManagerSession.cpp \
-./SubSystem/ManagerTransport.cpp \
-./SubSystem/NavigateSession.cpp \
+./SubSystem/TransportManager.cpp \
 ./SubSystem/ReciverTransport.cpp \
+./SubSystem/ScContextManager.cpp \
 ./SubSystem/Session.cpp \
-./SubSystem/StatisticaClientInGroup.cpp
+./SubSystem/SessionManager.cpp \
+./SubSystem/SessionNavigator.cpp \
+./SubSystem/StatisticaClientInGroup.cpp \
+./SubSystem/TransportManager.cpp
 
 HEADERS = \
 ./ContextScenario/ContextScDisconnectClient.h \
@@ -139,26 +140,25 @@ HEADERS = \
 ./SubSystem/ContextCrypto.h \
 ./SubSystem/ControlScenario.h \
 ./SubSystem/CryptMITM.h \
+./SubSystem/CryptoContextManager.h \
 ./SubSystem/DelegateManagerContextSc.h \
 ./SubSystem/DescRecvSession.h \
-./SubSystem/IContextScenario.h \
+./SubSystem/IScenarioContext.h \
 ./SubSystem/IScenario.h \
 ./SubSystem/MakerScenario.h \
 ./SubSystem/ManagerContextClientLogining.h \
 ./SubSystem/ManagerContextClient_slave.h \
-./SubSystem/ManagerContextCrypto.h \
 ./SubSystem/ManagerContextDownConnection.h \
 ./SubSystem/ManagerContextDownConnection_Slave.h \
 ./SubSystem/ManagerContextMoreDownClientConnection.h \
-./SubSystem/ManagerContextSc.h \
 ./SubSystem/ManagerGroupClient.h \
 ./SubSystem/ManagerManagerContextSc.h \
 ./SubSystem/ManagerRecommutation.h \
-./SubSystem/ManagerSession.h \
-./SubSystem/ManagerTransport.h \
-./SubSystem/NavigateSession.h \
 ./SubSystem/ReciverTransport.h \
+./SubSystem/ScContextManager.h \
 ./SubSystem/Session.h \
+./SubSystem/SessionManager.h \
+./SubSystem/SessionNavigator.h \
 ./SubSystem/ScenarioBaseHeader.h \
-./SubSystem/StatisticaClientInGroup.h
-
+./SubSystem/StatisticaClientInGroup.h \
+./SubSystem/TransportManager.h

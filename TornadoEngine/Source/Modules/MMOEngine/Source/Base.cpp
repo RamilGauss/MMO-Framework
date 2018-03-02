@@ -9,7 +9,7 @@ See for more information License.h.
 #include <boost/foreach.hpp>
 
 #include "Logger.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "DescRecvSession.h"
 #include "ManagerManagerContextSc.h"
 #include "ControlScenario.h"
@@ -32,7 +32,7 @@ using namespace nsMMOEngine;
 
 //-------------------------------------------------------------------------
 TBase::TBase():
-mManagerSession(new TManagerSession),
+mManagerSession(new TSessionManager),
 mControlSc(new TControlScenario),
 mContainerUp(new TContainerContextSc),
 mMngMngContextSc(new TManagerManagerContextSc)
@@ -172,12 +172,12 @@ void TBase::HandleListRecv()
   }
 }
 //-------------------------------------------------------------------------
-TManagerContextSc* TBase::AddManagerContextSc()
+TScContextManager* TBase::AddManagerContextSc()
 {
   return mMngMngContextSc->Add();
 }
 //-------------------------------------------------------------------------
-void TBase::RemoveManagerContextSc(TManagerContextSc* pMCSc)
+void TBase::RemoveManagerContextSc(TScContextManager* pMCSc)
 {
   return mMngMngContextSc->Remove(pMCSc);
 }

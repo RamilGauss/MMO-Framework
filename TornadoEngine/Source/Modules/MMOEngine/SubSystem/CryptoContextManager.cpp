@@ -5,24 +5,24 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerContextCrypto.h"
+#include "CryptoContextManager.h"
 
 #include <boost/foreach.hpp>
 
 #include "ContextCrypto.h"
 #include "BL_Debug.h"
 
-TManagerContextCrypto::TManagerContextCrypto()
+TCryptoContextManager::TCryptoContextManager()
 {
   mRSA_ForUpConnection.GenerateKey_OnlyOneExample();
 }
 //-----------------------------------------------------------------
-TManagerContextCrypto::~TManagerContextCrypto()
+TCryptoContextManager::~TCryptoContextManager()
 {
   Done();
 }
 //-----------------------------------------------------------------
-void TManagerContextCrypto::SendRSA_PublicKey(TIP_Port& ip_port, TContainer& c_public_key)
+void TCryptoContextManager::SendRSA_PublicKey(TIP_Port& ip_port, TContainer& c_public_key)
 {
   if(Get(ip_port))
   {
@@ -42,7 +42,7 @@ void TManagerContextCrypto::SendRSA_PublicKey(TIP_Port& ip_port, TContainer& c_p
                                (char*)c_public_key.GetPtr(),  c_public_key.GetSize());
 }
 //-----------------------------------------------------------------
-bool TManagerContextCrypto::RecvRSA_PublicKey(TIP_Port& ip_port, void* pKey, int sizeKey)
+bool TCryptoContextManager::RecvRSA_PublicKey(TIP_Port& ip_port, void* pKey, int sizeKey)
 {
   if(Get(ip_port))
   {
@@ -55,7 +55,7 @@ bool TManagerContextCrypto::RecvRSA_PublicKey(TIP_Port& ip_port, void* pKey, int
   return pCtx->GetRSA()->SetPublicKey(pKey, sizeKey);
 }
 //-----------------------------------------------------------------
-void TManagerContextCrypto::SendAES_Key(TIP_Port& ip_port, TContainer& c_encrypt_key)
+void TCryptoContextManager::SendAES_Key(TIP_Port& ip_port, TContainer& c_encrypt_key)
 {
   TContextCrypto* pCtx = Get(ip_port);
   if(pCtx==NULL)
@@ -71,7 +71,7 @@ void TManagerContextCrypto::SendAES_Key(TIP_Port& ip_port, TContainer& c_encrypt
   Encrypt(pCtx->GetRSA(), c_key, c_encrypt_key);
 }
 //-----------------------------------------------------------------
-bool TManagerContextCrypto::RecvAES_Key(TIP_Port& ip_port, void* pKey, int sizeKey)
+bool TCryptoContextManager::RecvAES_Key(TIP_Port& ip_port, void* pKey, int sizeKey)
 {
   TContextCrypto* pCtx = Get(ip_port);
   if(pCtx==NULL)
@@ -87,7 +87,7 @@ bool TManagerContextCrypto::RecvAES_Key(TIP_Port& ip_port, void* pKey, int sizeK
   return true;
 }
 //-----------------------------------------------------------------
-void TManagerContextCrypto::Send(TIP_Port& ip_port, TBreakPacket& bp, TContainer& c_encrypt)
+void TCryptoContextManager::Send(TIP_Port& ip_port, TBreakPacket& bp, TContainer& c_encrypt)
 {
   TContextCrypto* pCtx = Get(ip_port);
   if(pCtx==NULL)
@@ -110,7 +110,7 @@ void TManagerContextCrypto::Send(TIP_Port& ip_port, TBreakPacket& bp, TContainer
   Encrypt(pCtx->GetAES(), c_original, c_encrypt);
 }
 //-----------------------------------------------------------------
-bool TManagerContextCrypto::Recv(TIP_Port& ip_port, 
+bool TCryptoContextManager::Recv(TIP_Port& ip_port, 
                                  void* pEncrypt, int sizeEncrypt, 
                                  TContainerPtr& c_decrypt)
 {
@@ -124,12 +124,12 @@ bool TManagerContextCrypto::Recv(TIP_Port& ip_port,
   return Decrypt(pCtx->GetAES(), pEncrypt, sizeEncrypt, c_decrypt);
 }
 //-----------------------------------------------------------------
-void TManagerContextCrypto::Close(TIP_Port& ip_port)
+void TCryptoContextManager::Close(TIP_Port& ip_port)
 {
   Remove(ip_port);
 }
 //-----------------------------------------------------------------
-void TManagerContextCrypto::Done()
+void TCryptoContextManager::Done()
 {
   BOOST_FOREACH( TMapIP_Ptr::value_type& it, mMapIP_TCP)
     delete it.second;
@@ -137,7 +137,7 @@ void TManagerContextCrypto::Done()
   mMapIP_TCP.clear();
 }
 //-----------------------------------------------------------------
-TContextCrypto* TManagerContextCrypto::Get(TIP_Port& ip_port)
+TContextCrypto* TCryptoContextManager::Get(TIP_Port& ip_port)
 {
   TMapIP_PtrIt fit = mMapIP_TCP.find(ip_port);
   if(mMapIP_TCP.end()==fit)
@@ -146,31 +146,31 @@ TContextCrypto* TManagerContextCrypto::Get(TIP_Port& ip_port)
   return fit->second;
 }
 //-----------------------------------------------------------------
-void TManagerContextCrypto::Add(TIP_Port& ip_port, TContextCrypto* pCtx)
+void TCryptoContextManager::Add(TIP_Port& ip_port, TContextCrypto* pCtx)
 {
   mMapIP_TCP.insert(TMapIP_Ptr::value_type(ip_port,pCtx));
 }
 //-----------------------------------------------------------------
-void TManagerContextCrypto::Remove(TIP_Port& ip_port)
+void TCryptoContextManager::Remove(TIP_Port& ip_port)
 {
   delete Get(ip_port);
   mMapIP_TCP.erase(ip_port);
 }
 //-----------------------------------------------------------------
-void TManagerContextCrypto::Encrypt(TCryptoRSA_Impl* pRSA, 
+void TCryptoContextManager::Encrypt(TCryptoRSA_Impl* pRSA, 
                                     TContainer& c_original, TContainer& c_encrypt)
 {
   pRSA->Encrypt(c_original.GetPtr(), c_original.GetSize(), c_encrypt);
 }
 //-----------------------------------------------------------------
-bool TManagerContextCrypto::Decrypt(TCryptoRSA_Impl* pRSA, 
+bool TCryptoContextManager::Decrypt(TCryptoRSA_Impl* pRSA, 
                                     void* pEncrypt, int sizeEncrypt,  
                                     TContainer& c_decrypt)
 {
   return pRSA->Decrypt(pEncrypt, sizeEncrypt, c_decrypt);
 }
 //-----------------------------------------------------------------
-void TManagerContextCrypto::Encrypt(TCryptoAES_Impl* pAES, 
+void TCryptoContextManager::Encrypt(TCryptoAES_Impl* pAES, 
                                     TContainer& c_original, TContainer& c_encrypt)
 {
   // c_original содержит данные и 1 байт под контрольную сумму,
@@ -183,7 +183,7 @@ void TManagerContextCrypto::Encrypt(TCryptoAES_Impl* pAES,
   pAES->Encrypt(c_original.GetPtr(), c_original.GetSize(), c_encrypt);
 }
 //-----------------------------------------------------------------
-bool TManagerContextCrypto::Decrypt(TCryptoAES_Impl* pAES, 
+bool TCryptoContextManager::Decrypt(TCryptoAES_Impl* pAES, 
                                     void*  pEncrypt, int  sizeEncrypt,  
                                     TContainerPtr& c_decrypt_ptr)
 {
@@ -211,12 +211,12 @@ bool TManagerContextCrypto::Decrypt(TCryptoAES_Impl* pAES,
   return true;
 }
 //-----------------------------------------------------------------
-bool TManagerContextCrypto::GetRSAkeyForUp(TContainer& RSAkey)
+bool TCryptoContextManager::GetRSAkeyForUp(TContainer& RSAkey)
 {
   return mRSA_ForUpConnection.GetPublicKey(RSAkey);
 }
 //-----------------------------------------------------------------
-bool TManagerContextCrypto::GetRSAkeyByIP(TIP_Port& ip_port, TContainer& RSAkey)
+bool TCryptoContextManager::GetRSAkeyByIP(TIP_Port& ip_port, TContainer& RSAkey)
 {
   TContextCrypto* pCtx = Get(ip_port); 
   if(pCtx==NULL)

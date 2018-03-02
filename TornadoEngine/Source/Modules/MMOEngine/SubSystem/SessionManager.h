@@ -5,24 +5,24 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MANAGER_SESSION_H
-#define MANAGER_SESSION_H
+#ifndef MMOEngineSessionManagerH
+#define MMOEngineSessionManagerH
 
 #include <map>
 
 #include "ShareMisc.h"
 #include "Session.h"
 #include "Mutex.h"
-#include "NavigateSession.h"
+#include "SessionNavigator.h"
 #include "CallBackRegistrator.h"
 #include "DescRecvSession.h"
-#include "ManagerTransport.h"
-#include "ManagerContextCrypto.h"
+#include "TransportManager.h"
+#include "CryptoContextManager.h"
 #include "Structs.h"
 
 namespace nsMMOEngine
 {
-  class TManagerSession
+  class TSessionManager
   {
     enum
     {
@@ -35,12 +35,12 @@ namespace nsMMOEngine
     unsigned int mLastID_Session;
    
     // должен быть как указатель, что бы контролировать порядок уничтожения объектов
-    TNavigateSession  *mNavigateSession;
-    TManagerTransport *mMngTransport;
+    TSessionNavigator  *mNavigateSession;
+    TTransportManager *mMngTransport;
     bool flgStart;
 
     bool flgUseCryptTCP;
-    TManagerContextCrypto mMngCtxCrypto;
+    TCryptoContextManager mMngCtxCrypto;
 
     // один менеджер - одно верхнее соединение
     bool flgNeedAnswerFromUp;
@@ -61,8 +61,8 @@ namespace nsMMOEngine
     void lockConnectUp(){mMutexConnectUp.lock();}
     void unlockConnectUp(){mMutexConnectUp.unlock();}
   public:
-    TManagerSession();
-    ~TManagerSession();
+    TSessionManager();
+    ~TSessionManager();
     // для поддержания работы
     void SetMakerTransport(IMakerTransport* pMakerTransport);
 

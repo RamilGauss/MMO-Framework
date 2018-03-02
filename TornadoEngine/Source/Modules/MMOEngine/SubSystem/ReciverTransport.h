@@ -13,13 +13,13 @@ See for more information License.h.
 namespace nsMMOEngine
 {
   class INetTransport;
-  class TManagerSession;
+  class TSessionManager;
   class TReciverTransport
   {
     INetTransport*   mTransport;
-    TManagerSession* mMngSession;
+    TSessionManager* mMngSession;
   public:
-    TReciverTransport(INetTransport* pTransport, TManagerSession* pMS);
+    TReciverTransport(INetTransport* pTransport, TSessionManager* pMS);
     ~TReciverTransport();
   private:
     void Recv( INetTransport::TDescRecv* pDescRecv);

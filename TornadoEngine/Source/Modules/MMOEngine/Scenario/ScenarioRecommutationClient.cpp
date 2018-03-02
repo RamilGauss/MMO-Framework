@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include "ScenarioRecommutationClient.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 
 #pragma warning(disable:4355)
 

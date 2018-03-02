@@ -41,8 +41,8 @@ bool TPattern_Skybox::BuildByModule_Graphic(bool fast)
   return true;
 }
 //---------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TPattern_Skybox::GetBaseType()
+TPatternNameManager::eBaseType TPattern_Skybox::GetBaseType()
 {
-  return TManagerNamePattern::eSky;
+  return TPatternNameManager::eSky;
 }
 //------------------------------------------------------------------------

@@ -11,7 +11,7 @@ See for more information License.h.
 
 #include "ScenarioDisconnectClient.h"
 #include "Logger.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 
 using namespace std;
 using namespace nsMMOEngine;

@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MANAGER_TRANSPORT_H
-#define MANAGER_TRANSPORT_H
+#ifndef MMOEngineTransportManagerH
+#define MMOEngineTransportManagerH
 
 #include <map>
 
@@ -15,8 +15,8 @@ namespace nsMMOEngine
   class INetTransport;
   class IMakerTransport;
   class TReciverTransport;
-  class TManagerSession;
-  class TManagerTransport
+  class TSessionManager;
+  class TTransportManager
   {
     typedef std::map<unsigned char,INetTransport*> TMapUcharPtr;
     typedef TMapUcharPtr::iterator TMapUcharPtrIt;
@@ -28,11 +28,11 @@ namespace nsMMOEngine
     TMapPtrPtr   mMapReciverTransport;
 
     IMakerTransport* mMakerTransport;
-    TManagerSession* mMngSession;
+    TSessionManager* mMngSession;
 
   public:
-    TManagerTransport(TManagerSession* pMS);
-    ~TManagerTransport();
+    TTransportManager(TSessionManager* pMS);
+    ~TTransportManager();
 
     void SetTransport(IMakerTransport* pMT);
 

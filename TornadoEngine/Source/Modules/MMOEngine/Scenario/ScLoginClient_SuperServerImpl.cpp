@@ -8,7 +8,7 @@ See for more information License.h.
 #include "ScLoginClient_SuperServerImpl.h"
 #include "Logger.h"
 #include "ContextScLoginClient.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "Events.h"
 #include "EnumMMO.h"
 

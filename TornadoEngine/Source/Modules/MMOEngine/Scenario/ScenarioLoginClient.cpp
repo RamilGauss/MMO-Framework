@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "ScenarioLoginClient.h"
 #include "HiTimer.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "Logger.h"
 #include "Base.h"
 #include "Events.h"

@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "ScRecommutationClient_SlaveImpl.h"
 #include "Logger.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "BaseScRecommutationClient_Struct.h"
 #include "ContextScRecommutationClient.h"
 #include "Events.h"

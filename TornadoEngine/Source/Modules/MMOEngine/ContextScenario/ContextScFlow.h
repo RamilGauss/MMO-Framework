@@ -8,14 +8,14 @@ See for more information License.h.
 #ifndef CONTEXT_SC_FLOW_H
 #define CONTEXT_SC_FLOW_H
 
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 #include "BreakPacket.h"
 #include <list>
 
 namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере, взаимно блокируются
-  class TContextScFlow : public IContextScenario
+  class TContextScFlow : public IScenarioContext
   {
     struct TSavePacket
     {

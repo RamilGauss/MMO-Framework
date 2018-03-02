@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "ScenarioLoginMaster.h"
 #include "Logger.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "Events.h"
 #include "EnumMMO.h"
 #include "SrcEvent_ex.h"

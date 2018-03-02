@@ -216,9 +216,9 @@
     <ClCompile Include="Sources\Logger.cpp" />
     <ClCompile Include="Sources\MakerLoaderDLL.cpp" />
     <ClCompile Include="Sources\MakerXML.cpp" />
-    <ClCompile Include="Sources\ManagerForm.cpp" />
-    <ClCompile Include="Sources\ManagerStateMachine.cpp" />
-    <ClCompile Include="Sources\ManagerTime.cpp" />
+    <ClCompile Include="Sources\FormManager.cpp" />
+    <ClCompile Include="Sources\StateMachineManager.cpp" />
+    <ClCompile Include="Sources\TimeManager.cpp" />
     <ClCompile Include="Sources\MapCallBack.cpp" />
     <ClCompile Include="Sources\MapXML_Field.cpp" />
     <ClCompile Include="Sources\Markup.cpp" />
@@ -281,9 +281,9 @@
     <ClInclude Include="Headers\MacroMaker_Prepare.h" />
     <ClInclude Include="Headers\MakerLoaderDLL.h" />
     <ClInclude Include="Headers\MakerXML.h" />
-    <ClInclude Include="Headers\ManagerForm.h" />
-    <ClInclude Include="Headers\ManagerStateMachine.h" />
-    <ClInclude Include="Headers\ManagerTime.h" />
+    <ClInclude Include="Headers\FormManager.h" />
+    <ClInclude Include="Headers\StateMachineManager.h" />
+    <ClInclude Include="Headers\TimeManager.h" />
     <ClInclude Include="Headers\MapCallBack.h" />
     <ClInclude Include="Headers\MapXML_Field.h" />
     <ClInclude Include="Headers\Markup.h" />

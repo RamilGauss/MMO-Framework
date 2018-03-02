@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef CONTEXT_SC_LOGIN_CLIENT_H
 #define CONTEXT_SC_LOGIN_CLIENT_H
 
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 
 #include <map>
 #include <string>
@@ -19,7 +19,7 @@ See for more information License.h.
 namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
-  class TContextScLoginClient : public IContextScenario
+  class TContextScLoginClient : public IScenarioContext
   {
   public:
     typedef enum

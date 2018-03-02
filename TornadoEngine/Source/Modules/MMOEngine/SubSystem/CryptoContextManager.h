@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ManagerContextCryptoH
-#define ManagerContextCryptoH
+#ifndef CryptoContextManagerH
+#define CryptoContextManagerH
 
 #include <map>
 
@@ -21,7 +21,7 @@ class TContextCrypto;
 class TCryptoRSA_Impl;
 class TCryptoAES_Impl;
 
-class TManagerContextCrypto
+class TCryptoContextManager
 {
   typedef std::map<TIP_Port,TContextCrypto*> TMapIP_Ptr;
   typedef TMapIP_Ptr::iterator TMapIP_PtrIt;
@@ -50,8 +50,8 @@ class TManagerContextCrypto
   TCryptoRSA_Impl mRSA_ForUpConnection;
 
 public:
-  TManagerContextCrypto();
-  ~TManagerContextCrypto();
+  TCryptoContextManager();
+  ~TCryptoContextManager();
   
   void SendRSA_PublicKey(TIP_Port& ip_port, TContainer& c_key);
   bool RecvRSA_PublicKey(TIP_Port& ip_port, void* pKey, int sizeKey);

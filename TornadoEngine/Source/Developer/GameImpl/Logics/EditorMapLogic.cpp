@@ -349,13 +349,13 @@ void TEditorMapLogic::ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descT
       continue;
     switch( pGO->GetPattern()->GetBaseType() )
     {
-      case TManagerNamePattern::eTerrain:
+      case TPatternNameManager::eTerrain:
       { // модификация земли (форматирование)
         TPattern_Terrain* pTerrain = (TPattern_Terrain*)pGO->GetPattern();
         pTerrain->ModifyExtent(descTarget);
         break;
       }
-      case TManagerNamePattern::eModel:
+      case TPatternNameManager::eModel:
       {  // активировать все модели
         TPattern_Model* pModel = (TPattern_Model*)pGO->GetPattern();
         pModel->ActivatePhysicBody();

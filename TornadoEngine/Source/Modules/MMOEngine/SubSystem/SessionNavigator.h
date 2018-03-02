@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef NAVIGATE_SESSION_H
-#define NAVIGATE_SESSION_H
+#ifndef MMOEngineSessionNavigatorH
+#define MMOEngineSessionNavigatorH
 
 #include <map>
 #include <set>
@@ -16,7 +16,7 @@ See for more information License.h.
 namespace nsMMOEngine
 {
   class TSession;
-  class TNavigateSession
+  class TSessionNavigator
   {
     typedef std::map<unsigned int,TSession*> TMapUintPtr;
     typedef TMapUintPtr::iterator TMapUintPtrIt;
@@ -34,8 +34,8 @@ namespace nsMMOEngine
     TSetPtr     mSetSession;
 
   public:
-    TNavigateSession();
-    ~TNavigateSession();
+    TSessionNavigator();
+    ~TSessionNavigator();
     
     void Add(TSession* pSession);
     void Delete(TSession* pSession);

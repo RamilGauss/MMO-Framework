@@ -8,13 +8,13 @@ See for more information License.h.
 #ifndef CONTEXT_SC_LOGIN_MASTER_H
 #define CONTEXT_SC_LOGIN_MASTER_H
 
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 #include "BreakPacket.h"
 
 namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
-  class TContextScLoginMaster : public IContextScenario
+  class TContextScLoginMaster : public IScenarioContext
   {
     bool flgConnect;
     unsigned int mTimeWait;

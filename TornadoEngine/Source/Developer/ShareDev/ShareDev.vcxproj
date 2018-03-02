@@ -247,7 +247,7 @@
     <ClCompile Include="Scene\Common\IHandlerScene.cpp" />
     <ClCompile Include="Scene\Common\ISceneDataAccess.cpp" />
     <ClCompile Include="Scene\Common\ISceneSystemCollision.cpp" />
-    <ClCompile Include="Scene\Common\ManagerNamePattern.cpp" />
+    <ClCompile Include="Scene\Common\PatternNameManager.cpp" />
     <ClCompile Include="Scene\Common\Scene.cpp" />
     <ClCompile Include="Scene\Operations\Builder\BuilderGameMap.cpp" />
     <ClCompile Include="Scene\Operations\Builder\BuilderGameMap_Object.cpp" />
@@ -318,7 +318,7 @@
     <ClCompile Include="Scene\Pattern\UpdaterNodeByPhysic.cpp" />
     <ClCompile Include="Share\Components.cpp" />
     <ClCompile Include="Share\InputCmdDevTool.cpp" />
-    <ClCompile Include="Share\ManagerRoom.cpp" />
+    <ClCompile Include="Share\RoomManager.cpp" />
     <ClCompile Include="Share\ModuleDev.cpp" />
     <ClCompile Include="Share\ParserXMLResource.cpp" />
     <ClCompile Include="Share\Resources.cpp" />
@@ -395,7 +395,7 @@
     <ClInclude Include="Scene\Common\IHandlerScene.h" />
     <ClInclude Include="Scene\Common\ISceneDataAccess.h" />
     <ClInclude Include="Scene\Common\ISceneSystemCollision.h" />
-    <ClInclude Include="Scene\Common\ManagerNamePattern.h" />
+    <ClInclude Include="Scene\Common\PatternNameManager.h" />
     <ClInclude Include="Scene\Common\Scene.h" />
     <ClInclude Include="Scene\Common\TypeEventScene.h" />
     <ClInclude Include="Scene\Operations\Builder\BuilderGameMap.h" />
@@ -471,7 +471,7 @@
     <ClInclude Include="Share\IGameLogicRoom.h" />
     <ClInclude Include="Share\InputCmdDevTool.h" />
     <ClInclude Include="Share\ListModules.h" />
-    <ClInclude Include="Share\ManagerRoom.h" />
+    <ClInclude Include="Share\RoomManager.h" />
     <ClInclude Include="Share\ModuleDev.h" />
     <ClInclude Include="Share\ParserXMLResource.h" />
     <ClInclude Include="Share\Resources.h" />

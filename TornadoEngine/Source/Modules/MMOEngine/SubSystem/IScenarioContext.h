@@ -5,31 +5,31 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineIContextScenarioH
-#define MMOEngineIContextScenarioH
+#ifndef MMOEngineIScenarioContextH
+#define MMOEngineIScenarioContextH
 
 #include "BreakPacket.h"
 
 class TSrcEvent;
 namespace nsMMOEngine
 {
-  class TManagerContextSc;
-  class TManagerSession;
+  class TScContextManager;
+  class TSessionManager;
   class IScenario;
-  class IContextScenario
+  class IScenarioContext
   {
     void*              mUserPtr;
     unsigned int       mID_Session;
-    TManagerContextSc* mManagerContextSc;
-    TManagerSession*   mManagerSession;
+    TScContextManager* mManagerContextSc;
+    TSessionManager*   mManagerSession;
     TSrcEvent*         mSrcEvent;
 
     IScenario* mScenario;
   protected:
     TBreakPacket mBP;
   public:
-    IContextScenario();
-    virtual ~IContextScenario();
+    IScenarioContext();
+    virtual ~IScenarioContext();
 
     bool Activate();
     void Disactivate();
@@ -43,11 +43,11 @@ namespace nsMMOEngine
     void SetID_Session(unsigned int id);
     unsigned int GetID_Session();
 
-    void SetMSc(TManagerContextSc* pMSc);
-    TManagerContextSc* GetMSc();
+    void SetMSc(TScContextManager* pMSc);
+    TScContextManager* GetMSc();
 
-    void SetMS(TManagerSession* pMS);
-    TManagerSession* GetMS();
+    void SetMS(TSessionManager* pMS);
+    TSessionManager* GetMS();
 
     void SetSE(TSrcEvent* pMS);
     TSrcEvent* GetSE();

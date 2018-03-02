@@ -31,7 +31,7 @@ See for more information License.h.
 
 #include "ContainerContextSc.h"
 #include "EnumMMO.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 
 using namespace std;
 using namespace nsMMOEngine;

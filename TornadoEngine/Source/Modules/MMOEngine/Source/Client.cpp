@@ -6,9 +6,9 @@ See for more information License.h.
 */
 
 #include "Client.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "ControlScenario.h"
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 #include "ContainerContextSc.h"
 #include "ScenarioFlow.h"
 #include "ScenarioLoginClient.h"

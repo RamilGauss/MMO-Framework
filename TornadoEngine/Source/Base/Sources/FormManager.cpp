@@ -5,25 +5,25 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerForm.h"
+#include "FormManager.h"
 
 using namespace std;
 
-TManagerForm::TManagerForm()
+TFormManager::TFormManager()
 {
 }
 //-------------------------------------------------------------------
-TManagerForm::~TManagerForm()
+TFormManager::~TFormManager()
 {
   Clear();
 }
 //-------------------------------------------------------------------
-void TManagerForm::Add(std::string& name, void* pForm)
+void TFormManager::Add(std::string& name, void* pForm)
 {
   mMapNameForm.insert( bmStrPtr::value_type(name, pForm) );
 }
 //-------------------------------------------------------------------
-void* TManagerForm::GetFormByName(string& name)
+void* TFormManager::GetFormByName(string& name)
 {
   void* p = NULL;
   const bmStrPtr::left_iterator fit = mMapNameForm.left.find(name);
@@ -32,7 +32,7 @@ void* TManagerForm::GetFormByName(string& name)
   return p;
 }
 //-------------------------------------------------------------------
-string TManagerForm::GetNameForm(void* pForm)
+string TFormManager::GetNameForm(void* pForm)
 {
   string str;
   const bmStrPtr::right_iterator fit = mMapNameForm.right.find(pForm);
@@ -41,17 +41,17 @@ string TManagerForm::GetNameForm(void* pForm)
   return str;
 }
 //-------------------------------------------------------------------
-void TManagerForm::RemoveFormByName(string name)
+void TFormManager::RemoveFormByName(string name)
 {
   mMapNameForm.left.erase(name);
 }
 //-------------------------------------------------------------------
-void TManagerForm::RemoveForm(void* pForm)
+void TFormManager::RemoveForm(void* pForm)
 {
   mMapNameForm.right.erase(pForm);
 }
 //-------------------------------------------------------------------
-void TManagerForm::Clear()
+void TFormManager::Clear()
 {
   mMapNameForm.clear();
 }

@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "ScLoginClient_ClientImpl.h"
 #include "ContextScLoginClient.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "Base.h"
 #include "Logger.h"
 #include "Events.h"
@@ -146,7 +146,7 @@ void TScLoginClient_ClientImpl::CheckConnectToSlaveS2C(TDescRecvSession* pDesc)
   pEvent->c.SetDataByCount( pDataResClient, sizeResClient);
   Context()->GetSE()->AddEventWithoutCopy<TEventResultLogin>(pEvent);
 
-  ((IContextScenario*)Context())->SetID_Session(pDesc->id_session);
+  ((IScenarioContext*)Context())->SetID_Session(pDesc->id_session);
   End();
 }
 //--------------------------------------------------------------

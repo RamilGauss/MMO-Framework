@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerTransport.h"
+#include "TransportManager.h"
 
 #include "ReciverTransport.h"
 #include "IMakerTransport.h"
@@ -18,49 +18,49 @@ See for more information License.h.
 using namespace nsMMOEngine;
 using namespace std;
 
-TManagerTransport::TManagerTransport(TManagerSession* pMS)
+TTransportManager::TTransportManager(TSessionManager* pMS)
 {
   mMakerTransport = NULL;
   mMngSession     = pMS;
 }
 //------------------------------------------------------------------------------------
-TManagerTransport::~TManagerTransport()
+TTransportManager::~TTransportManager()
 {
   Done();
 }
 //------------------------------------------------------------------------------------
-void TManagerTransport::SetTransport(IMakerTransport* pMT)
+void TTransportManager::SetTransport(IMakerTransport* pMT)
 {
   mMakerTransport = pMT;
 }
 //------------------------------------------------------------------------------------
-INetTransport* TManagerTransport::FindBySubNet( unsigned char v)
+INetTransport* TTransportManager::FindBySubNet( unsigned char v)
 {
   TMapUcharPtrIt fit = mMapSubNetTransport.find(v);
   if(fit==mMapSubNetTransport.end())
   {
     GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TManagerTransport::FindBySubNet(%u) not found.\n", v);
+      WriteF_time("TTransportManager::FindBySubNet(%u) not found.\n", v);
     BL_FIX_BUG();
     return NULL;
   }
   return fit->second;
 }
 //------------------------------------------------------------------------------------
-INetTransport* TManagerTransport::FindByReciver( TReciverTransport* pRT)
+INetTransport* TTransportManager::FindByReciver( TReciverTransport* pRT)
 {
   TMapPtrPtrIt fit = mMapReciverTransport.find(pRT);
   if(fit==mMapReciverTransport.end())
   {
     GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TManagerTransport::FindByReciver(0x%p) not found.\n", pRT);
+      WriteF_time("TTransportManager::FindByReciver(0x%p) not found.\n", pRT);
     BL_FIX_BUG();
     return NULL;
   }
   return fit->second;
 }
 //------------------------------------------------------------------------------------
-INetTransport* TManagerTransport::Add(unsigned char subNet)
+INetTransport* TTransportManager::Add(unsigned char subNet)
 {
   BL_ASSERT(mMakerTransport);
   INetTransport* pTransport = mMakerTransport->New();
@@ -72,7 +72,7 @@ INetTransport* TManagerTransport::Add(unsigned char subNet)
   return pTransport;
 }
 //------------------------------------------------------------------------------------
-void TManagerTransport::Done()
+void TTransportManager::Done()
 {
   BOOST_FOREACH(TMapPtrPtr::value_type& it, mMapReciverTransport)
   {

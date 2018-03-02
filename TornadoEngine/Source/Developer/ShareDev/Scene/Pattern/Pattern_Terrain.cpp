@@ -167,9 +167,9 @@ void TPattern_Terrain::ModifyPaint()
 
 }
 //---------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TPattern_Terrain::GetBaseType()
+TPatternNameManager::eBaseType TPattern_Terrain::GetBaseType()
 {
-  return TManagerNamePattern::eTerrain;
+  return TPatternNameManager::eTerrain;
 }
 //------------------------------------------------------------------------
 TMapItem* TPattern_Terrain::GetMapItem()

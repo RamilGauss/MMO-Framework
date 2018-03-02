@@ -45,6 +45,7 @@ SOURCES = \
 ./Sources/DescCallBack.cpp \
 ./Sources/DstEvent.cpp \
 ./Sources/FileOperation.cpp \
+./Sources/FormManager.cpp \
 ./Sources/HiTimer.cpp \
 ./Sources/InfoFile.cpp \
 ./Sources/IXML.cpp \
@@ -54,9 +55,6 @@ SOURCES = \
 ./Sources/Logger.cpp \
 ./Sources/MakerLoaderDLL.cpp \
 ./Sources/MakerXML.cpp \
-./Sources/ManagerForm.cpp \
-./Sources/ManagerStateMachine.cpp \
-./Sources/ManagerTime.cpp \
 ./Sources/MapCallBack.cpp \
 ./Sources/MapXML_Field.cpp \
 ./Sources/Markup.cpp \
@@ -71,7 +69,9 @@ SOURCES = \
 ./Sources/ShareLibWin.cpp \
 ./Sources/ShareMisc.cpp \
 ./Sources/SrcEvent.cpp \
+./Sources/StateMachineManager.cpp \
 ./Sources/StorePathResources.cpp \
+./Sources/TimeManager.cpp \
 ./Sources/ThreadBoost.cpp \
 ./Sources/XML_Markup.cpp
 
@@ -97,6 +97,7 @@ HEADERS = \
 ./Headers/DescEvent.h \
 ./Headers/DstEvent.h \
 ./Headers/FileOperation.h \
+./Headers/FormManager.h \
 ./Headers/HiTimer.h \
 ./Headers/IContainer.h \
 ./Headers/ILoaderDLL.h \
@@ -113,9 +114,6 @@ HEADERS = \
 ./Headers/MacroMaker_Prepare.h \
 ./Headers/MakerLoaderDLL.h \
 ./Headers/MakerXML.h \
-./Headers/ManagerForm.h \
-./Headers/ManagerStateMachine.h \
-./Headers/ManagerTime.h \
 ./Headers/MapCallBack.h \
 ./Headers/MapXML_Field.h \
 ./Headers/Markup.h \
@@ -131,8 +129,10 @@ HEADERS = \
 ./Headers/SrcEvent_ex.h \
 ./Headers/SrcEvent.h \
 ./Headers/StateMachine.h \
+./Headers/StateMachineManager.h \
 ./Headers/StatisticValue.h \
 ./Headers/StorePathResources.h \
+./Headers/TimeManager.h \
 ./Headers/TypeDef.h \
 ./Headers/ThreadBoost.h \
 ./Headers/XML_Markup.h

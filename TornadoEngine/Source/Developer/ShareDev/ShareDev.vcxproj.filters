@@ -261,9 +261,6 @@
     <ClCompile Include="Share\InputCmdDevTool.cpp">
       <Filter>Share</Filter>
     </ClCompile>
-    <ClCompile Include="Share\ManagerRoom.cpp">
-      <Filter>Share</Filter>
-    </ClCompile>
     <ClCompile Include="Share\ModuleDev.cpp">
       <Filter>Share</Filter>
     </ClCompile>
@@ -480,9 +477,6 @@
     <ClCompile Include="Scene\Common\ISceneSystemCollision.cpp">
       <Filter>Scene\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Common\ManagerNamePattern.cpp">
-      <Filter>Scene\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Common\Scene.cpp">
       <Filter>Scene\Common</Filter>
     </ClCompile>
@@ -669,6 +663,12 @@
     <ClCompile Include="Protocol\ClientSlave\PCS_TypePacket.cpp">
       <Filter>Protocol\ClientSlave</Filter>
     </ClCompile>
+    <ClCompile Include="Share\RoomManager.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Common\PatternNameManager.cpp">
+      <Filter>Scene\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\Components.h">
@@ -681,9 +681,6 @@
       <Filter>Share</Filter>
     </ClInclude>
     <ClInclude Include="Share\ListModules.h">
-      <Filter>Share</Filter>
-    </ClInclude>
-    <ClInclude Include="Share\ManagerRoom.h">
       <Filter>Share</Filter>
     </ClInclude>
     <ClInclude Include="Share\ModuleDev.h">
@@ -920,9 +917,6 @@
     <ClInclude Include="Scene\Common\ISceneSystemCollision.h">
       <Filter>Scene\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Common\ManagerNamePattern.h">
-      <Filter>Scene\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Common\Scene.h">
       <Filter>Scene\Common</Filter>
     </ClInclude>
@@ -1123,6 +1117,12 @@
     </ClInclude>
     <ClInclude Include="Protocol\SlaveMaster\PSM_TypePacket.h">
       <Filter>Protocol\SlaveMaster</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\RoomManager.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Common\PatternNameManager.h">
+      <Filter>Scene\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,13 +8,13 @@ See for more information License.h.
 #ifndef CONTEXT_SC_RECOMMUTATION_CLIENT_H
 #define CONTEXT_SC_RECOMMUTATION_CLIENT_H
 
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 #include "ContainerTypes.h"
 #include "ShareMisc.h"
 
 namespace nsMMOEngine
 {
-  class TContextScRecommutationClient : public IContextScenario
+  class TContextScRecommutationClient : public IScenarioContext
   {
     unsigned int mID_SessionMasterSlave;
 

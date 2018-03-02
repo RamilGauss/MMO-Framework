@@ -9,7 +9,7 @@ See for more information License.h.
 #include "GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
-#include "ManagerNamePattern.h"
+#include "PatternNameManager.h"
 
 namespace nsPattern_Skyplane
 {
@@ -126,8 +126,8 @@ float TPattern_Skyplane::GetYsegments()
   return GetFromParameterMap<float>(sYsegments);
 }
 //---------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TPattern_Skyplane::GetBaseType()
+TPatternNameManager::eBaseType TPattern_Skyplane::GetBaseType()
 {
-  return TManagerNamePattern::eSky;
+  return TPatternNameManager::eSky;
 }
 //------------------------------------------------------------------------

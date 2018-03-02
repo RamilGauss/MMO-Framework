@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "ScLoginClient_MasterImpl.h"
 #include "ContextScLoginClient.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "Base.h"
 #include "Logger.h"
 #include "Events.h"

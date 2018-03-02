@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "NavigateSession.h"
+#include "SessionNavigator.h"
 #include "Session.h"
 #include "Logger.h"
 #include "Base.h"
@@ -16,17 +16,17 @@ using namespace std;
 
 using namespace nsMMOEngine;
 
-TNavigateSession::TNavigateSession()
+TSessionNavigator::TSessionNavigator()
 {
 
 }
 //--------------------------------------------------------------
-TNavigateSession::~TNavigateSession()
+TSessionNavigator::~TSessionNavigator()
 {
   Clear();
 }
 //--------------------------------------------------------------
-void TNavigateSession::Add(TSession* pSession)
+void TSessionNavigator::Add(TSession* pSession)
 {
   TIP_Port ip_port;
   pSession->GetInfo(ip_port);
@@ -35,7 +35,7 @@ void TNavigateSession::Add(TSession* pSession)
   mSetSession.insert(pSession);
 }
 //--------------------------------------------------------------
-void TNavigateSession::Delete(TSession* pSession)
+void TSessionNavigator::Delete(TSession* pSession)
 {
   TIP_Port ip_port;
   pSession->GetInfo(ip_port);
@@ -45,7 +45,7 @@ void TNavigateSession::Delete(TSession* pSession)
   delete pSession;
 }
 //--------------------------------------------------------------
-TSession* TNavigateSession::FindSessionByIP(TIP_Port& ip_port)
+TSession* TSessionNavigator::FindSessionByIP(TIP_Port& ip_port)
 {
   TSession* pSession = NULL;
   TMapIP_PtrIt fit = mMapIP_Session.find(ip_port);
@@ -54,7 +54,7 @@ TSession* TNavigateSession::FindSessionByIP(TIP_Port& ip_port)
   return pSession;
 }
 //--------------------------------------------------------------
-TSession* TNavigateSession::FindSessionByID(unsigned int id)
+TSession* TSessionNavigator::FindSessionByID(unsigned int id)
 {
   TSession* pSession = NULL;
   TMapUintPtrIt fit = mMapID_Session.find(id);
@@ -63,28 +63,28 @@ TSession* TNavigateSession::FindSessionByID(unsigned int id)
   return pSession;
 }
 //--------------------------------------------------------------
-bool TNavigateSession::IsExist(TSession* pSession)
+bool TSessionNavigator::IsExist(TSession* pSession)
 {
   return (mSetSession.find(pSession)!=mSetSession.end());
 }
 //--------------------------------------------------------------
-set<TSession*>::iterator TNavigateSession::Begin()
+set<TSession*>::iterator TSessionNavigator::Begin()
 {
   return mSetSession.begin();
 }
 //--------------------------------------------------------------
-set<TSession*>::iterator TNavigateSession::End()
+set<TSession*>::iterator TSessionNavigator::End()
 {
   return mSetSession.end();
 }
 //--------------------------------------------------------------
-void TNavigateSession::Work()
+void TSessionNavigator::Work()
 {
   BOOST_FOREACH(TSession* pSession, mSetSession)
     pSession->Work();
 }
 //--------------------------------------------------------------
-void TNavigateSession::Clear()
+void TSessionNavigator::Clear()
 {
   BOOST_FOREACH(TSession* pSession,mSetSession)
     delete pSession;

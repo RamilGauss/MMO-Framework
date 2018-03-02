@@ -72,7 +72,7 @@ public:
   virtual bool SetParameterFromPattern(TContainer c);// L
   virtual TContainer GetParameterToPattern();// B - Slave
 
-  virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TPatternNameManager::eBaseType GetBaseType();
 
   // Выполнить задания в каждом из потоков
   virtual void BuildByModule_Logic();

@@ -15,13 +15,13 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ManagerThreadModules.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ParserXMLConveyer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ThreadModules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulesThreadManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,13 +41,13 @@
     <ClInclude Include="IModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ManagerThreadModules.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ParserXMLConveyer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ThreadModules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulesThreadManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

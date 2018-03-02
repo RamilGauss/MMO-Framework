@@ -6,14 +6,14 @@ See for more information License.h.
 */
 
 #include "ReciverTransport.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "INetTransport.h"
 #include "CallBackRegistrator.h"
 
 using namespace nsMMOEngine;
 
 
-TReciverTransport::TReciverTransport(INetTransport* pTransport, TManagerSession* pMS)
+TReciverTransport::TReciverTransport(INetTransport* pTransport, TSessionManager* pMS)
 {
   mTransport  = pTransport;
   mMngSession = pMS;

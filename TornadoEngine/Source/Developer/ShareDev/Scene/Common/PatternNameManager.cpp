@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerNamePattern.h"
+#include "PatternNameManager.h"
 
 namespace nsManagerNameTypeObjectMap
 {
@@ -23,7 +23,7 @@ namespace nsManagerNameTypeObjectMap
 
 using namespace nsManagerNameTypeObjectMap;
 
-TManagerNamePattern::TManagerNamePattern()
+TPatternNameManager::TPatternNameManager()
 {
   mVecNameType.push_back(sMapParameter);
   mVecNameType.push_back(sAnimated);
@@ -37,64 +37,64 @@ TManagerNamePattern::TManagerNamePattern()
   mVecNameType.push_back(sVolume);
 }
 //-----------------------------------------------------------------------
-int TManagerNamePattern::GetCount()
+int TPatternNameManager::GetCount()
 {
   return mVecNameType.size();
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Get(int index)
+std::string TPatternNameManager::Get(int index)
 {
   if( index < 0 || index >= GetCount() )
     return "";
   return mVecNameType[index];
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::MapParameter()
+std::string TPatternNameManager::MapParameter()
 {
   return sMapParameter;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Animated()
+std::string TPatternNameManager::Animated()
 {
   return sAnimated;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Light()
+std::string TPatternNameManager::Light()
 {
   return sLight;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Model()
+std::string TPatternNameManager::Model()
 {
   return sModel;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Skybox()
+std::string TPatternNameManager::Skybox()
 {
   return sSkybox;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Skydome()
+std::string TPatternNameManager::Skydome()
 {
   return sSkydome;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Skyplane()
+std::string TPatternNameManager::Skyplane()
 {
   return sSkyplane;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Sound()
+std::string TPatternNameManager::Sound()
 {
   return sSound;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Terrain()
+std::string TPatternNameManager::Terrain()
 {
   return sTerrain;
 }
 //-----------------------------------------------------------------------
-std::string TManagerNamePattern::Volume()
+std::string TPatternNameManager::Volume()
 {
   return sVolume;
 }

@@ -11,7 +11,7 @@ See for more information License.h.
 
 #include "Logger.h"
 #include "ControlScenario.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "Events.h"
 
 #include "ManagerContextClient_slave.h"

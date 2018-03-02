@@ -131,15 +131,6 @@
     <ClCompile Include="SubSystem\ManagerContextClient_slave.cpp">
       <Filter>SubSystem\MappingDownConnection\Slave</Filter>
     </ClCompile>
-    <ClCompile Include="SubSystem\ManagerSession.cpp">
-      <Filter>SubSystem\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="SubSystem\ManagerTransport.cpp">
-      <Filter>SubSystem\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="SubSystem\NavigateSession.cpp">
-      <Filter>SubSystem\Session</Filter>
-    </ClCompile>
     <ClCompile Include="SubSystem\ReciverTransport.cpp">
       <Filter>SubSystem\Session</Filter>
     </ClCompile>
@@ -152,16 +143,10 @@
     <ClCompile Include="SubSystem\ControlScenario.cpp">
       <Filter>SubSystem\Scenario</Filter>
     </ClCompile>
-    <ClCompile Include="SubSystem\IContextScenario.cpp">
-      <Filter>SubSystem\Scenario</Filter>
-    </ClCompile>
     <ClCompile Include="SubSystem\IScenario.cpp">
       <Filter>SubSystem\Scenario</Filter>
     </ClCompile>
     <ClCompile Include="SubSystem\MakerScenario.cpp">
-      <Filter>SubSystem\Scenario</Filter>
-    </ClCompile>
-    <ClCompile Include="SubSystem\ManagerContextSc.cpp">
       <Filter>SubSystem\Scenario</Filter>
     </ClCompile>
     <ClCompile Include="SubSystem\ManagerManagerContextSc.cpp">
@@ -171,9 +156,6 @@
       <Filter>SubSystem\Crypto</Filter>
     </ClCompile>
     <ClCompile Include="SubSystem\CryptMITM.cpp">
-      <Filter>SubSystem\Crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="SubSystem\ManagerContextCrypto.cpp">
       <Filter>SubSystem\Crypto</Filter>
     </ClCompile>
     <ClCompile Include="Scenario\ScenarioDisconnectClient.cpp">
@@ -260,6 +242,24 @@
     <ClCompile Include="ContextScenario\ContextScSynchroSlave.cpp">
       <Filter>ContextScenario\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SubSystem\IScenarioContext.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\SessionManager.cpp">
+      <Filter>SubSystem\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\CryptoContextManager.cpp">
+      <Filter>SubSystem\Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\SessionNavigator.cpp">
+      <Filter>SubSystem\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ScContextManager.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\TransportManager.cpp">
+      <Filter>SubSystem\Session</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\ActiveServer.h">
@@ -331,15 +331,6 @@
     <ClInclude Include="SubSystem\DescRecvSession.h">
       <Filter>SubSystem\Session</Filter>
     </ClInclude>
-    <ClInclude Include="SubSystem\ManagerSession.h">
-      <Filter>SubSystem\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="SubSystem\ManagerTransport.h">
-      <Filter>SubSystem\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="SubSystem\NavigateSession.h">
-      <Filter>SubSystem\Session</Filter>
-    </ClInclude>
     <ClInclude Include="SubSystem\ReciverTransport.h">
       <Filter>SubSystem\Session</Filter>
     </ClInclude>
@@ -352,16 +343,10 @@
     <ClInclude Include="SubSystem\ControlScenario.h">
       <Filter>SubSystem\Scenario</Filter>
     </ClInclude>
-    <ClInclude Include="SubSystem\IContextScenario.h">
-      <Filter>SubSystem\Scenario</Filter>
-    </ClInclude>
     <ClInclude Include="SubSystem\IScenario.h">
       <Filter>SubSystem\Scenario</Filter>
     </ClInclude>
     <ClInclude Include="SubSystem\MakerScenario.h">
-      <Filter>SubSystem\Scenario</Filter>
-    </ClInclude>
-    <ClInclude Include="SubSystem\ManagerContextSc.h">
       <Filter>SubSystem\Scenario</Filter>
     </ClInclude>
     <ClInclude Include="SubSystem\ManagerManagerContextSc.h">
@@ -374,9 +359,6 @@
       <Filter>SubSystem\Crypto</Filter>
     </ClInclude>
     <ClInclude Include="SubSystem\CryptMITM.h">
-      <Filter>SubSystem\Crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="SubSystem\ManagerContextCrypto.h">
       <Filter>SubSystem\Crypto</Filter>
     </ClInclude>
     <ClInclude Include="Scenario\ScenarioDisconnectClient.h">
@@ -462,6 +444,24 @@
     </ClInclude>
     <ClInclude Include="ContextScenario\ContextScSynchroSlave.h">
       <Filter>ContextScenario\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\IScenarioContext.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\SessionManager.h">
+      <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\CryptoContextManager.h">
+      <Filter>SubSystem\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\SessionNavigator.h">
+      <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ScContextManager.h">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\TransportManager.h">
+      <Filter>SubSystem\Session</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

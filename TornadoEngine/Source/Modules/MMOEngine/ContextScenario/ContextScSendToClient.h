@@ -8,14 +8,14 @@ See for more information License.h.
 #ifndef CONTEXT_SC_SEND_TO_CLIENT_H
 #define CONTEXT_SC_SEND_TO_CLIENT_H
 
-#include "IContextScenario.h"
+#include "IScenarioContext.h"
 #include "BreakPacket.h"
 #include <list>
 
 namespace nsMMOEngine
 {
   // сценарии, содержащиеся в контейнере взаимно блокируются
-  class TContextScSendToClient : public IContextScenario
+  class TContextScSendToClient : public IScenarioContext
   {
     struct TSavePacket
     {

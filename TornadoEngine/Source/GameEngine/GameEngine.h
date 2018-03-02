@@ -17,7 +17,7 @@ See for more information License.h.
 
 #include "CallBackRegistrator.h"
 #include "SynchroPoint.h"
-#include "ManagerThreadModules.h"
+#include "ModulesThreadManager.h"
 #include "DeveloperTool_DLL.h"
 
 class ILoaderDLL;
@@ -47,7 +47,7 @@ class DllExport TGameEngine
 
   IDevTool* mDevTool;
 
-  boost::scoped_ptr<TManagerThreadModules> mMngThreadModules;
+  boost::scoped_ptr<TModulesThreadManager> mMngThreadModules;
 
   boost::scoped_ptr<TSynchroPoint> mSynchroPoint;
 

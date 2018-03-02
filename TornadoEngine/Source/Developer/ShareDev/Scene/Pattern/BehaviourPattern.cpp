@@ -211,8 +211,8 @@ void TBehaviourPattern::SaveOutDataOnHDD(TFactoryGameItem::TypeGameItem type)
 
 }
 //------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TBehaviourPattern::GetBaseType()
+TPatternNameManager::eBaseType TBehaviourPattern::GetBaseType()
 {
-  return TManagerNamePattern::eBase;
+  return TPatternNameManager::eBase;
 }
 //------------------------------------------------------------------------

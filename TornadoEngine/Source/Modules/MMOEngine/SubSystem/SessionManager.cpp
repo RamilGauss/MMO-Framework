@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "Logger.h"
 #include "Base.h"
 
@@ -16,7 +16,7 @@ See for more information License.h.
 using namespace std;
 using namespace nsMMOEngine;
 
-TManagerSession::TManagerSession()
+TSessionManager::TSessionManager()
 {
   CleanFlagsForWaitUp();
 
@@ -25,15 +25,15 @@ TManagerSession::TManagerSession()
 #else
   SetUseCryptTCP(false);
 #endif
-  mNavigateSession = new TNavigateSession;
-  mMngTransport = new TManagerTransport(this);
+  mNavigateSession = new TSessionNavigator;
+  mMngTransport = new TTransportManager(this);
 
   flgStart = false;
   mTimeLiveSession  = eDefTimeLive;
   mLastID_Session   = 0;
 }
 //--------------------------------------------------------------------------------------------
-TManagerSession::~TManagerSession()
+TSessionManager::~TSessionManager()
 {
   // сначала уничтожить сессии, важно вызвать до уничтожения Менеджера транспорта
   lockAccessSession();
@@ -44,16 +44,16 @@ TManagerSession::~TManagerSession()
   delete mMngTransport;
 }
 //--------------------------------------------------------------------------------------------
-void TManagerSession::SetMakerTransport(IMakerTransport* pMakerTransport)
+void TSessionManager::SetMakerTransport(IMakerTransport* pMakerTransport)
 {
   mMngTransport->SetTransport(pMakerTransport);
 }
 //--------------------------------------------------------------------------------------------
-bool TManagerSession::Start(TDescOpen* pDesc, int count)
+bool TSessionManager::Start(TDescOpen* pDesc, int count)
 {
   if(flgStart)
   {
-    GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TManagerSession::Start() restart.\n");
+    GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TSessionManager::Start() restart.\n");
     BL_FIX_BUG();
     return false;
   }
@@ -65,14 +65,14 @@ bool TManagerSession::Start(TDescOpen* pDesc, int count)
   return true;
 }
 //--------------------------------------------------------------------------------------------
-bool TManagerSession::StartTransport(unsigned short port, unsigned char subNet)
+bool TSessionManager::StartTransport(unsigned short port, unsigned char subNet)
 {
   INetTransport* pTransport = mMngTransport->Add(subNet);
   bool resOpen = pTransport->Open(port,subNet);
   if(resOpen==false) 
   {
     char s[100];
-    sprintf(s,"TManagerSession::Start() open port %u FAIL.\n", port);
+    sprintf(s,"TSessionManager::Start() open port %u FAIL.\n", port);
     GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time(s);
     BL_MessageBug(s);
     return false;
@@ -82,7 +82,7 @@ bool TManagerSession::StartTransport(unsigned short port, unsigned char subNet)
   return resOpen;
 }
 //--------------------------------------------------------------------------------------------
-void TManagerSession::Work()
+void TSessionManager::Work()
 {
   lockAccessSession();
   if(mNavigateSession==NULL)
@@ -95,7 +95,7 @@ void TManagerSession::Work()
   unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
-void TManagerSession::Send(unsigned int id_session, TBreakPacket& bp, bool check)
+void TSessionManager::Send(unsigned int id_session, TBreakPacket& bp, bool check)
 {
   lockAccessSession();
   if(mNavigateSession==NULL)
@@ -111,7 +111,7 @@ void TManagerSession::Send(unsigned int id_session, TBreakPacket& bp, bool check
   unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
-unsigned int TManagerSession::Connect(unsigned int ip, unsigned short port, TBreakPacket& bp, unsigned char subNet, bool check)
+unsigned int TSessionManager::Connect(unsigned int ip, unsigned short port, TBreakPacket& bp, unsigned char subNet, bool check)
 {
   lockConnectUp();
 
@@ -148,7 +148,7 @@ unsigned int TManagerSession::Connect(unsigned int ip, unsigned short port, TBre
     unlockAccessSession();
     unlockConnectUp();
     GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TManagerSession::Send(0x%X,%u) sending to IP with exist session.\n", ip, port);
+      WriteF_time("TSessionManager::Send(0x%X,%u) sending to IP with exist session.\n", ip, port);
     BL_FIX_BUG();
     return INVALID_HANDLE_SESSION;
   }
@@ -189,7 +189,7 @@ unsigned int TManagerSession::Connect(unsigned int ip, unsigned short port, TBre
   return id_session;
 }
 //--------------------------------------------------------------------------------------------
-unsigned int TManagerSession::GetSessionID(unsigned int ip, unsigned short port)
+unsigned int TSessionManager::GetSessionID(unsigned int ip, unsigned short port)
 {
   unsigned int id = INVALID_HANDLE_SESSION;
   lockAccessSession();
@@ -207,7 +207,7 @@ unsigned int TManagerSession::GetSessionID(unsigned int ip, unsigned short port)
   return id;
 }
 //--------------------------------------------------------------------------------------------
-void TManagerSession::CloseSession(unsigned int ID_Session)
+void TSessionManager::CloseSession(unsigned int ID_Session)
 {
   if(ID_Session==INVALID_HANDLE_SESSION) 
     return;
@@ -231,7 +231,7 @@ void TManagerSession::CloseSession(unsigned int ID_Session)
   unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
-void TManagerSession::Recv( INetTransport::TDescRecv* pDescRecv, INetTransport* pTransport)
+void TSessionManager::Recv( INetTransport::TDescRecv* pDescRecv, INetTransport* pTransport)
 {
   lockAccessSession();
   if(mNavigateSession==NULL)
@@ -282,7 +282,7 @@ void TManagerSession::Recv( INetTransport::TDescRecv* pDescRecv, INetTransport* 
   unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
-void TManagerSession::Disconnect(TIP_Port* ip_port)
+void TSessionManager::Disconnect(TIP_Port* ip_port)
 {
   lockAccessSession();
   if(mNavigateSession==NULL)
@@ -303,7 +303,7 @@ void TManagerSession::Disconnect(TIP_Port* ip_port)
   unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
-TSession* TManagerSession::NewSession(TIP_Port& ip_port, INetTransport* pTransport)
+TSession* TSessionManager::NewSession(TIP_Port& ip_port, INetTransport* pTransport)
 {
   mLastID_Session++;// нет проверки на совпадение, unsigned int 4 млрд - слишком много
   TSession* pSession = new TSession(mTimeLiveSession);
@@ -315,7 +315,7 @@ TSession* TManagerSession::NewSession(TIP_Port& ip_port, INetTransport* pTranspo
   return pSession;
 }
 //--------------------------------------------------------------------------------------------
-bool TManagerSession::IsExist(unsigned int ID_Session)
+bool TSessionManager::IsExist(unsigned int ID_Session)
 {
   lockAccessSession();
   if(mNavigateSession==NULL)
@@ -329,12 +329,12 @@ bool TManagerSession::IsExist(unsigned int ID_Session)
   return (pSession!=NULL);
 }
 //--------------------------------------------------------------------------------------------
-void TManagerSession::SetTimeLiveSession(unsigned int time_ms)
+void TSessionManager::SetTimeLiveSession(unsigned int time_ms)
 {
   mTimeLiveSession = time_ms;
 }
 //-------------------------------------------------------------------------
-bool TManagerSession::GetInfo(unsigned int ID_Session, TIP_Port& ip_port_out)
+bool TSessionManager::GetInfo(unsigned int ID_Session, TIP_Port& ip_port_out)
 {
   bool res = false;
   lockAccessSession();
@@ -354,17 +354,17 @@ bool TManagerSession::GetInfo(unsigned int ID_Session, TIP_Port& ip_port_out)
   return res;
 }
 //-------------------------------------------------------------------------
-void TManagerSession::SetUseCryptTCP(bool v)
+void TSessionManager::SetUseCryptTCP(bool v)
 {
   flgUseCryptTCP = v;
 }
 //-------------------------------------------------------------------------
-bool TManagerSession::GetUseCryptTCP()
+bool TSessionManager::GetUseCryptTCP()
 {
   return flgUseCryptTCP;
 }
 //-------------------------------------------------------------------------
-void TManagerSession::RecvPacket(TDescRecvSession& descRecvSession, TSession* pSession)
+void TSessionManager::RecvPacket(TDescRecvSession& descRecvSession, TSession* pSession)
 {
   // вся система должна обмениваться либо шифрованными либо не шифрованными пакетами
   if(GetUseCryptTCP())
@@ -427,7 +427,7 @@ void TManagerSession::RecvPacket(TDescRecvSession& descRecvSession, TSession* pS
   mCallBackRecv.Notify(&descRecvSession);
 }
 //-------------------------------------------------------------------------
-void TManagerSession::RecvKeyRSA(TDescRecvSession& descRecvSession, TSession* pSession)
+void TSessionManager::RecvKeyRSA(TDescRecvSession& descRecvSession, TSession* pSession)
 {
   char* pKey  = descRecvSession.data     + sizeof(TSession::THeader);
   int sizeKey = descRecvSession.sizeData - sizeof(TSession::THeader);
@@ -443,7 +443,7 @@ void TManagerSession::RecvKeyRSA(TDescRecvSession& descRecvSession, TSession* pS
   pSession->SendKeyAES(c_AESkey);
 }
 //-------------------------------------------------------------------------
-void TManagerSession::RecvKeyAES(TDescRecvSession& descRecvSession)
+void TSessionManager::RecvKeyAES(TDescRecvSession& descRecvSession)
 {
   char* pKey  = descRecvSession.data     + sizeof(TSession::THeader);
   int sizeKey = descRecvSession.sizeData - sizeof(TSession::THeader);
@@ -457,12 +457,12 @@ void TManagerSession::RecvKeyAES(TDescRecvSession& descRecvSession)
   flgGetAnswerFromUp = true;
 }
 //-------------------------------------------------------------------------
-void TManagerSession::FixHack(char* sMsg)
+void TSessionManager::FixHack(char* sMsg)
 {
   GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("Try hack: %s.\n", sMsg);
 }
 //-------------------------------------------------------------------------
-bool TManagerSession::WaitAnswerFromUp()
+bool TSessionManager::WaitAnswerFromUp()
 {
   unsigned int start_ms = ht_GetMSCount();
   unsigned int delta    = 0;
@@ -478,19 +478,19 @@ bool TManagerSession::WaitAnswerFromUp()
   return false;
 }
 //-------------------------------------------------------------------------
-void TManagerSession::SetupFlagsForWaitUp()
+void TSessionManager::SetupFlagsForWaitUp()
 {
   flgNeedAnswerFromUp = true;
   flgGetAnswerFromUp  = false;
 }
 //-------------------------------------------------------------------------
-void TManagerSession::CleanFlagsForWaitUp()
+void TSessionManager::CleanFlagsForWaitUp()
 {
   flgNeedAnswerFromUp = false;
   flgGetAnswerFromUp  = false;
 }
 //-------------------------------------------------------------------------
-void TManagerSession::SendKeyRSA_Up(TSession* pSession)
+void TSessionManager::SendKeyRSA_Up(TSession* pSession)
 {
   SetupFlagsForWaitUp();
 
@@ -500,7 +500,7 @@ void TManagerSession::SendKeyRSA_Up(TSession* pSession)
   pSession->SendKeyRSA(c_RSAkey);
 }
 //-------------------------------------------------------------------------
-void TManagerSession::Send(TSession* pSession, TBreakPacket& bp, bool check)
+void TSessionManager::Send(TSession* pSession, TBreakPacket& bp, bool check)
 {
   if(check==true)// TCP
   if( GetUseCryptTCP() )  
@@ -525,12 +525,12 @@ void TManagerSession::Send(TSession* pSession, TBreakPacket& bp, bool check)
   pSession->Send(bp, check);
 }
 //-------------------------------------------------------------------------
-bool TManagerSession::GetRSAPublicKeyForUp(TContainer& cRSA)
+bool TSessionManager::GetRSAPublicKeyForUp(TContainer& cRSA)
 {
   return mMngCtxCrypto.GetRSAkeyForUp(cRSA);
 }
 //-------------------------------------------------------------------------
-bool TManagerSession::GetRSAPublicKey(unsigned int id_session, TContainer& cRSA)
+bool TSessionManager::GetRSAPublicKey(unsigned int id_session, TContainer& cRSA)
 {
   bool res = false;
   TIP_Port ip_port;

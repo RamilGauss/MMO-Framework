@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include "BaseServer.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "CryptMITM.h"
 
 using namespace nsMMOEngine;

@@ -8,7 +8,7 @@ See for more information License.h.
 #ifndef CONTAINER_CONTEXT_SC_H
 #define CONTAINER_CONTEXT_SC_H
 
-#include "ManagerContextSc.h"
+#include "ScContextManager.h"
 #include <list>
 
 #include "ContextScDisconnectClient.h"
@@ -25,12 +25,12 @@ namespace nsMMOEngine
   // сценарии, содержащиеся в контейнере взаимно блокируются
   class TContainerContextSc
   {
-    typedef std::list<IContextScenario*> TListPtr;
+    typedef std::list<IScenarioContext*> TListPtr;
     TListPtr mListContext;
   
     unsigned int mID_Session;
   protected:
-    TManagerContextSc* mManagerContextSc;
+    TScContextManager* mManagerContextSc;
   public:
     TContextScDisconnectClient    mDisClient;
     TContextScFlow                mFlow;
@@ -43,12 +43,12 @@ namespace nsMMOEngine
 
     TContainerContextSc();
 
-    void SetMCSc(TManagerContextSc* pMCSc);
-    TManagerContextSc* GetMCSc();
+    void SetMCSc(TScContextManager* pMCSc);
+    TScContextManager* GetMCSc();
 
     void SetID_Session(unsigned int id_session);
     unsigned int GetID_Session();
-    void SetMS(TManagerSession* pMS);
+    void SetMS(TSessionManager* pMS);
     void SetSE(TSrcEvent* pSE);
     void SetUserPtr(void* p);
 

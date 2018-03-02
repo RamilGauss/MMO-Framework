@@ -18,8 +18,8 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  class IContextScenario;
-  class TManagerSession;
+  class IScenarioContext;
+  class TSessionManager;
   struct TDescRecvSession;
   class DllExport IScenario : public TMapCallBack
   {
@@ -30,7 +30,7 @@ namespace nsMMOEngine
 
     unsigned char mType;
   protected:
-    IContextScenario* mCurContext;
+    IScenarioContext* mCurContext;
   protected:
     TBreakPacket mBP;
     TCryptMITM mCryptMITM;
@@ -46,15 +46,15 @@ namespace nsMMOEngine
     IScenario();
     virtual ~IScenario();
     
-    void SetContext(IContextScenario* pCSc);
-    IContextScenario* GetContext();
+    void SetContext(IScenarioContext* pCSc);
+    IScenarioContext* GetContext();
 
     unsigned char GetType();
     void SetType(unsigned char type);
 
     virtual void Recv(TDescRecvSession* pDesc) = 0;
   protected:
-    friend class IContextScenario;
+    friend class IScenarioContext;
     // если нельзя было начать сценарий сразу, то когда будет такая возможность произойдет этот вызов
     virtual void DelayBegin();
     // отработка своих событий и ожиданий

@@ -8,7 +8,7 @@ See for more information License.h.
 #include "ScRecommutationClient_ClientImpl.h"
 #include "ContextScRecommutationClient.h"
 #include "Logger.h"
-#include "ManagerSession.h"
+#include "SessionManager.h"
 #include "Events.h"
 
 using namespace nsMMOEngine;

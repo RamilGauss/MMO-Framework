@@ -101,7 +101,7 @@ public:
   virtual void SaveGameItemOnHDD(TFactoryGameItem::TypeGameItem type);
   virtual void SaveOutDataOnHDD(TFactoryGameItem::TypeGameItem type);
 
-  virtual TManagerNamePattern::eBaseType GetBaseType();
+  virtual TPatternNameManager::eBaseType GetBaseType();
 
 public:
   // terrain interface

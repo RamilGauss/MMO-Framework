@@ -36,7 +36,7 @@ namespace nsMMOEngine
 
     TBreakPacket mBP;
   protected:
-    friend class TManagerSession;
+    friend class TSessionManager;
 
     enum{
       eEcho   = 'e',

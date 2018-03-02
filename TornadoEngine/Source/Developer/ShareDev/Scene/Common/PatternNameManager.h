@@ -5,18 +5,18 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ManagerNamePatternH
-#define ManagerNamePatternH
+#ifndef PatternNameManagerH
+#define PatternNameManagerH
 
 #include <vector>
 #include <string>
 
-class TManagerNamePattern
+class TPatternNameManager
 {
   typedef std::vector<std::string> TVectorStr;
   TVectorStr mVecNameType;
 public:
-  TManagerNamePattern();
+  TPatternNameManager();
   int GetCount();
   std::string Get(int index);
 

@@ -146,8 +146,8 @@ nsMathTools::TVector3 TPattern_Light::GetSpecularColour()
   return result;
 }
 //---------------------------------------------------------------------------
-TManagerNamePattern::eBaseType TPattern_Light::GetBaseType()
+TPatternNameManager::eBaseType TPattern_Light::GetBaseType()
 {
-  return TManagerNamePattern::eLight;
+  return TPatternNameManager::eLight;
 }
 //------------------------------------------------------------------------

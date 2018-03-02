@@ -188,7 +188,7 @@
   <ItemGroup>
     <ClCompile Include="EventGameEngine.cpp" />
     <ClCompile Include="GameEngine.cpp" />
-    <ClCompile Include="ManagerThreadModules.cpp" />
+    <ClCompile Include="ModulesThreadManager.cpp" />
     <ClCompile Include="ParserXMLConveyer.cpp" />
     <ClCompile Include="ThreadModules.cpp" />
   </ItemGroup>
@@ -198,7 +198,7 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="IDevTool.h" />
     <ClInclude Include="IModule.h" />
-    <ClInclude Include="ManagerThreadModules.h" />
+    <ClInclude Include="ModulesThreadManager.h" />
     <ClInclude Include="ParserXMLConveyer.h" />
     <ClInclude Include="ThreadModules.h" />
   </ItemGroup>
