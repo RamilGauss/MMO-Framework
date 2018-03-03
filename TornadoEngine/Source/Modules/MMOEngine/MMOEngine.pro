@@ -9,8 +9,8 @@ INCLUDEPATH = \
 . \
 ./Include \
 ./Source \
-./ContextScenario \
 ./Scenario \
+./ScenarioContext \
 ./SubSystem \
 ../../Base/Headers
 
@@ -28,7 +28,6 @@ OBJECTS_DIR = ../../../Temp/Debug/MMOEngine
 
 SOURCES = \
 ./ContextScenario/ContextScDisconnectClient.cpp \
-./ContextScenario/ContextScDisconnectSlave.cpp \
 ./ContextScenario/ContextScFlow.cpp \
 ./ContextScenario/ContextScLoginClient.cpp \
 ./ContextScenario/ContextScLoginMaster.cpp \
@@ -84,7 +83,6 @@ SOURCES = \
 ./SubSystem/ManagerGroupClient.cpp \
 ./SubSystem/ManagerManagerContextSc.cpp \
 ./SubSystem/ManagerRecommutation.cpp \
-./SubSystem/TransportManager.cpp \
 ./SubSystem/ReciverTransport.cpp \
 ./SubSystem/ScContextManager.cpp \
 ./SubSystem/Session.cpp \
@@ -95,7 +93,6 @@ SOURCES = \
 
 HEADERS = \
 ./ContextScenario/ContextScDisconnectClient.h \
-./ContextScenario/ContextScDisconnectSlave.h \
 ./ContextScenario/ContextScFlow.h \
 ./ContextScenario/ContextScLoginClient.h \
 ./ContextScenario/ContextScLoginMaster.h \

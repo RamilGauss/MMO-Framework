@@ -57,13 +57,13 @@
     <Filter Include="Scenario\RecommutationClient\Source">
       <UniqueIdentifier>{532f0c10-8448-4dc0-b4aa-f7a91fb0d425}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ContextScenario">
+    <Filter Include="ScenarioContext">
       <UniqueIdentifier>{d2eef2a0-6b19-4469-8830-4b65d4f0e329}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ContextScenario\Header Files">
+    <Filter Include="ScenarioContext\Header Files">
       <UniqueIdentifier>{6c1b51ef-d7da-401f-b7c3-83267d6fcb84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ContextScenario\Source Files">
+    <Filter Include="ScenarioContext\Source Files">
       <UniqueIdentifier>{4a467f13-9444-4641-8e0a-a8d96ebcba09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -218,30 +218,6 @@
     <ClCompile Include="Scenario\ScRecommutationClient_SlaveImpl.cpp">
       <Filter>Scenario\RecommutationClient\Source</Filter>
     </ClCompile>
-    <ClCompile Include="ContextScenario\ContextScDisconnectClient.cpp">
-      <Filter>ContextScenario\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContextScenario\ContextScFlow.cpp">
-      <Filter>ContextScenario\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContextScenario\ContextScLoginClient.cpp">
-      <Filter>ContextScenario\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContextScenario\ContextScLoginMaster.cpp">
-      <Filter>ContextScenario\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContextScenario\ContextScLoginSlave.cpp">
-      <Filter>ContextScenario\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContextScenario\ContextScRecommutationClient.cpp">
-      <Filter>ContextScenario\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContextScenario\ContextScSendToClient.cpp">
-      <Filter>ContextScenario\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContextScenario\ContextScSynchroSlave.cpp">
-      <Filter>ContextScenario\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SubSystem\IScenarioContext.cpp">
       <Filter>SubSystem\Scenario</Filter>
     </ClCompile>
@@ -259,6 +235,30 @@
     </ClCompile>
     <ClCompile Include="SubSystem\TransportManager.cpp">
       <Filter>SubSystem\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioContext\ContextScDisconnectClient.cpp">
+      <Filter>ScenarioContext\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioContext\ContextScFlow.cpp">
+      <Filter>ScenarioContext\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioContext\ContextScLoginClient.cpp">
+      <Filter>ScenarioContext\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioContext\ContextScLoginMaster.cpp">
+      <Filter>ScenarioContext\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioContext\ContextScLoginSlave.cpp">
+      <Filter>ScenarioContext\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioContext\ContextScRecommutationClient.cpp">
+      <Filter>ScenarioContext\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioContext\ContextScSendToClient.cpp">
+      <Filter>ScenarioContext\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioContext\ContextScSynchroSlave.cpp">
+      <Filter>ScenarioContext\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -421,30 +421,6 @@
     <ClInclude Include="Scenario\ScRecommutationClient_SlaveImpl.h">
       <Filter>Scenario\RecommutationClient\Header</Filter>
     </ClInclude>
-    <ClInclude Include="ContextScenario\ContextScDisconnectClient.h">
-      <Filter>ContextScenario\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ContextScenario\ContextScFlow.h">
-      <Filter>ContextScenario\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ContextScenario\ContextScLoginClient.h">
-      <Filter>ContextScenario\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ContextScenario\ContextScLoginMaster.h">
-      <Filter>ContextScenario\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ContextScenario\ContextScLoginSlave.h">
-      <Filter>ContextScenario\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ContextScenario\ContextScRecommutationClient.h">
-      <Filter>ContextScenario\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ContextScenario\ContextScSendToClient.h">
-      <Filter>ContextScenario\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ContextScenario\ContextScSynchroSlave.h">
-      <Filter>ContextScenario\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SubSystem\IScenarioContext.h">
       <Filter>SubSystem\Scenario</Filter>
     </ClInclude>
@@ -462,6 +438,30 @@
     </ClInclude>
     <ClInclude Include="SubSystem\TransportManager.h">
       <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioContext\ContextScDisconnectClient.h">
+      <Filter>ScenarioContext\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioContext\ContextScFlow.h">
+      <Filter>ScenarioContext\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioContext\ContextScLoginClient.h">
+      <Filter>ScenarioContext\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioContext\ContextScLoginMaster.h">
+      <Filter>ScenarioContext\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioContext\ContextScLoginSlave.h">
+      <Filter>ScenarioContext\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioContext\ContextScRecommutationClient.h">
+      <Filter>ScenarioContext\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioContext\ContextScSendToClient.h">
+      <Filter>ScenarioContext\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioContext\ContextScSynchroSlave.h">
+      <Filter>ScenarioContext\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

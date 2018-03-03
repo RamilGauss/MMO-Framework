@@ -89,7 +89,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ContextScenario;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -115,7 +115,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ContextScenario;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -139,7 +139,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ContextScenario;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -166,7 +166,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ContextScenario;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -187,15 +187,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ContextScenario\ContextScDisconnectClient.cpp" />
-    <ClCompile Include="ContextScenario\ContextScFlow.cpp" />
-    <ClCompile Include="ContextScenario\ContextScLoginClient.cpp" />
-    <ClCompile Include="ContextScenario\ContextScLoginMaster.cpp" />
-    <ClCompile Include="ContextScenario\ContextScLoginSlave.cpp" />
-    <ClCompile Include="ContextScenario\ContextScRecommutationClient.cpp" />
-    <ClCompile Include="ContextScenario\ContextScSendToClient.cpp" />
-    <ClCompile Include="ContextScenario\ContextScSynchroSlave.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScDisconnectClient.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScFlow.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScLoginClient.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScLoginMaster.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScLoginSlave.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScRecommutationClient.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScSendToClient.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScSynchroSlave.cpp" />
     <ClCompile Include="Scenario\BaseScLoginClient.cpp" />
     <ClCompile Include="Scenario\BaseScLoginClient_Struct.cpp" />
     <ClCompile Include="Scenario\BaseScRecommutationClient.cpp" />
@@ -253,14 +253,6 @@
     <ClCompile Include="SubSystem\StatisticaClientInGroup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ContextScenario\ContextScDisconnectClient.h" />
-    <ClInclude Include="ContextScenario\ContextScFlow.h" />
-    <ClInclude Include="ContextScenario\ContextScLoginClient.h" />
-    <ClInclude Include="ContextScenario\ContextScLoginMaster.h" />
-    <ClInclude Include="ContextScenario\ContextScLoginSlave.h" />
-    <ClInclude Include="ContextScenario\ContextScRecommutationClient.h" />
-    <ClInclude Include="ContextScenario\ContextScSendToClient.h" />
-    <ClInclude Include="ContextScenario\ContextScSynchroSlave.h" />
     <ClInclude Include="Include\ActiveServer.h" />
     <ClInclude Include="Include\Base.h" />
     <ClInclude Include="Include\BaseEvent.h" />
@@ -274,6 +266,14 @@
     <ClInclude Include="Include\Slave.h" />
     <ClInclude Include="Include\Structs.h" />
     <ClInclude Include="Include\SuperServer.h" />
+    <ClInclude Include="ScenarioContext\ContextScDisconnectClient.h" />
+    <ClInclude Include="ScenarioContext\ContextScFlow.h" />
+    <ClInclude Include="ScenarioContext\ContextScLoginClient.h" />
+    <ClInclude Include="ScenarioContext\ContextScLoginMaster.h" />
+    <ClInclude Include="ScenarioContext\ContextScLoginSlave.h" />
+    <ClInclude Include="ScenarioContext\ContextScRecommutationClient.h" />
+    <ClInclude Include="ScenarioContext\ContextScSendToClient.h" />
+    <ClInclude Include="ScenarioContext\ContextScSynchroSlave.h" />
     <ClInclude Include="Scenario\BaseScLoginClient.h" />
     <ClInclude Include="Scenario\BaseScLoginClient_Struct.h" />
     <ClInclude Include="Scenario\BaseScRecommutationClient.h" />
