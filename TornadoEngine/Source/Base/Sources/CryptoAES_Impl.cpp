@@ -49,13 +49,13 @@ bool TCryptoAES_Impl::GenerateKey( eCountBits c )
   switch(c)
   {
     case e128:
-      mCipher = (void*)EVP_aes_128_cfb();
+      mCipher = (void*)EVP_aes_128_ctr();
       break;
     case e192:
-      mCipher = (void*)EVP_aes_192_cfb();
+      mCipher = (void*)EVP_aes_192_ctr();// cfb
       break;
     case e256:
-      mCipher = (void*)EVP_aes_256_cfb();
+      mCipher = (void*)EVP_aes_256_ctr();// cfb
       break;
   }
   return true;
@@ -145,13 +145,13 @@ void TCryptoAES_Impl::SetPublicKey(void* pKey, int sizeKey)
   switch(sizeCipher)
   {
     case e128:
-      mCipher = (void*)EVP_aes_128_cfb();
+      mCipher = (void*)EVP_aes_128_ctr();
       break;
     case e192:
-      mCipher = (void*)EVP_aes_192_cfb();
+      mCipher = (void*)EVP_aes_192_ctr();
       break;
     case e256:
-      mCipher = (void*)EVP_aes_256_cfb();
+      mCipher = (void*)EVP_aes_256_ctr();
       break;
     default:BL_FIX_BUG();
   }

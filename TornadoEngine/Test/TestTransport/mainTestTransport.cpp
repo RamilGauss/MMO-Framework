@@ -17,6 +17,8 @@ See for more information License.h.
 #include "INetTransport.h"
 #include "DataExchange2Thread.h"
 
+#include "CryptoAES_Impl.h"
+
 nsMMOEngine::INetTransport* g_pTransport = NULL;
 
 class THandler
@@ -50,6 +52,23 @@ THandler g_Handler;
 
 int main(int argc, char** argv)
 {
+  //TCryptoAES_Impl aes0, aes1;
+  //aes0.GenerateKey();
+  //aes1.GenerateKey();
+  //char original[1];
+  //int sizeOriginal = sizeof(original);
+  //for (int i = 0; i < sizeOriginal; i++)
+  //  original[i] = i;
+
+  //TContainer c_out0;
+  //aes0.Encrypt(original, sizeOriginal, c_out0);
+  //TContainer retOriginal0, retOriginal1;
+  //aes0.Decrypt(c_out0.GetPtr(), c_out0.GetSize(), retOriginal0);
+  //auto ret0 = retOriginal0.GetPtr();
+  //aes1.Decrypt(c_out0.GetPtr(), c_out0.GetSize(), retOriginal1);
+  //auto ret1 = retOriginal1.GetPtr();
+
+
   TBreakPacket g_BP;
 
   SetCurrentPathByFile(argv[0]);
@@ -86,12 +105,12 @@ int main(int argc, char** argv)
   bool resConnect = g_pTransport->Connect(IP, inputArg.port_dst);
 
   unsigned int start = ht_GetMSCount();
-  while( true )
+  while (true)
   {
-    ht_msleep( 100 );
+    ht_msleep(100);
     unsigned int now_ms = ht_GetMSCount();
 
-    if( resConnect )
+    if (resConnect)
       if (now_ms > start + inputArg.timer_send)
       {
         inputArg.timer_send += 1000;
@@ -102,7 +121,7 @@ int main(int argc, char** argv)
       }
 
     TIP_Port** ppFisrt = g_Handler.mListDisc.GetFirst();
-    while( ppFisrt )
+    while (ppFisrt)
     {
       TIP_Port* pIP_Port = *ppFisrt;
       if (pIP_Port->port == inputArg.port_dst)
