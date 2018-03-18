@@ -19,14 +19,6 @@ namespace nsMMOEngine
     unsigned int mCounterIn;
     unsigned int mCounterOut;
     //----------------------------------------------------------------
-    // Recv
-    // if(packet->cIn <= mCounterIn)
-      //return; // ignore packet
-    // mCounterIn = packet->cIn;
-    //----------------------------------------------------------------
-    // Send
-    // mCounterOut++;
-    // Send(...);
 
     unsigned int mTimeLive;// мс
     unsigned int mID;
@@ -45,9 +37,10 @@ namespace nsMMOEngine
       eKeyRSA = 'r',
       eKeyAES = 'a',
 
-      //eClientHello = 'c',
-      //eServerHello = 's',
-      //eClientCryptRandom = 'x',
+      // loginHash ->              l
+      // <- [keyAES](passwordHash) k
+      // -> confirmation           c
+      // Packet + Echo           p + e
     };
 #if defined( WIN32 )
 #pragma pack(push, 1)

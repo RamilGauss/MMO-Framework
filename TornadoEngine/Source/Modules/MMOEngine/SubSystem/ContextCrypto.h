@@ -14,15 +14,20 @@ See for more information License.h.
 class TContextCrypto
 {
   TCryptoRSA_Impl mRSA;
-  TCryptoAES_Impl mAES;
+  //TCryptoAES_Impl mAES;
+
+  TCryptoAES_Impl mSendAES;
+  TCryptoAES_Impl mRecvAES;
 
 public:
   TContextCrypto();
   ~TContextCrypto();
 
   TCryptoRSA_Impl* GetRSA();
-  TCryptoAES_Impl* GetAES();
+  TCryptoAES_Impl* GetSendAES();
+  TCryptoAES_Impl* GetRecvAES();
 
+  void SetPublicKey( void* key, int size );
 protected:
 };
 

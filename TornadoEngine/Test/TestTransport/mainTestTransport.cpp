@@ -18,6 +18,7 @@ See for more information License.h.
 #include "DataExchange2Thread.h"
 
 #include "CryptoAES_Impl.h"
+#include "SHA256.h"
 
 nsMMOEngine::INetTransport* g_pTransport = NULL;
 
@@ -50,24 +51,47 @@ public:
 
 THandler g_Handler;
 
+int CRC32( char* data, int size )
+{
+  int crc = 0;
+  for (int i = 0; i < size; i++)
+    crc += (unsigned char)data[i];
+  return crc;
+}
+
 int main(int argc, char** argv)
 {
-  //TCryptoAES_Impl aes0, aes1;
-  //aes0.GenerateKey();
-  //aes1.GenerateKey();
-  //char original[1];
-  //int sizeOriginal = sizeof(original);
-  //for (int i = 0; i < sizeOriginal; i++)
-  //  original[i] = i;
+  //###
+  const char* password = "1234567890";
+  TSHA256 sha256;
+  TContainer hashKey;
+  sha256.FastCalc( (void*)password, strlen(password), hashKey);
+  char* key = hashKey.GetPtr();
+  auto sizeKey = hashKey.GetSize();
 
-  //TContainer c_out0;
-  //aes0.Encrypt(original, sizeOriginal, c_out0);
-  //TContainer retOriginal0, retOriginal1;
-  //aes0.Decrypt(c_out0.GetPtr(), c_out0.GetSize(), retOriginal0);
-  //auto ret0 = retOriginal0.GetPtr();
-  //aes1.Decrypt(c_out0.GetPtr(), c_out0.GetSize(), retOriginal1);
-  //auto ret1 = retOriginal1.GetPtr();
+  TCryptoAES_Impl aes0, aes1;
+  aes0.SetPublicKey(key, sizeKey);
+  aes1.SetPublicKey(key, sizeKey);
+  char original[10];
+  int sizeOriginal = sizeof(original);
+  for (int i = 0; i < sizeOriginal; i++)
+    original[i] = i;
 
+  TContainer crypt0, crypt1, crypt2;
+  aes0.Encrypt(original, sizeOriginal, crypt0);
+  aes0.Encrypt(original, sizeOriginal, crypt1);
+  aes0.Encrypt(original, sizeOriginal, crypt2);
+  TContainer retOriginal0, retOriginal1;
+  aes1.Decrypt(crypt0.GetPtr(), crypt0.GetSize(), retOriginal0);
+  aes1.Decrypt(crypt1.GetPtr(), crypt1.GetSize(), retOriginal1);
+
+  auto crcO = CRC32(original, sizeof(original));
+  auto crcC0 = CRC32(crypt0.GetPtr(), crypt0.GetSize());
+  auto crcC1 = CRC32(crypt1.GetPtr(), crypt1.GetSize());
+  auto crcC2 = CRC32(crypt2.GetPtr(), crypt2.GetSize());
+  auto crcRO0 = CRC32(retOriginal0.GetPtr(), retOriginal0.GetSize());
+  auto crcRO1 = CRC32(retOriginal1.GetPtr(), retOriginal1.GetSize());
+  //###
 
   TBreakPacket g_BP;
 

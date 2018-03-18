@@ -168,7 +168,7 @@ void TSlave::DisconnectAllClient()
     if(mMngContextClient->FindSessionByKey(id, id_session))
     {
       // закрываем сессию
-      mManagerSession->CloseSession(id_session);
+      mSessionManager->CloseSession(id_session);
       // удаляем по ключу
       mMngContextClient->DeleteByKey(id);
       // генерация события о дисконнекте
@@ -355,7 +355,7 @@ void TSlave::EventDisconnectClientRcm(unsigned int key)
     mMngContextClient->DeleteByKey(key);
   }
   unsigned int id_session = pC->mRcm.GetID_SessionClientSlave();
-  mManagerSession->CloseSession(id_session);
+  mSessionManager->CloseSession(id_session);
 }
 //-------------------------------------------------------------------------
 void TSlave::NeedContextByClientSessionForSlaveRcm(unsigned id_session, bool donor)

@@ -32,7 +32,7 @@ using namespace nsMMOEngine;
 
 //-------------------------------------------------------------------------
 TBase::TBase():
-mManagerSession(new TSessionManager),
+mSessionManager(new TSessionManager),
 mControlSc(new TControlScenario),
 mContainerUp(new TContainerContextSc),
 mMngMngContextSc(new TManagerManagerContextSc)
@@ -53,8 +53,8 @@ mMngMngContextSc(new TManagerManagerContextSc)
 //-------------------------------------------------------------------------
 TBase::~TBase()
 {
-  mManagerSession->GetCallbackRecv()->Unregister(this);
-  mManagerSession->GetCallbackDisconnect()->Unregister(this);
+  mSessionManager->GetCallbackRecv()->Unregister(this);
+  mSessionManager->GetCallbackDisconnect()->Unregister(this);
 }
 //-------------------------------------------------------------------------
 void TBase::Init(IMakerTransport* pMakerTransport)
@@ -65,14 +65,14 @@ void TBase::Init(IMakerTransport* pMakerTransport)
     BL_FIX_BUG();
     return;
   }
-  mManagerSession->SetMakerTransport(pMakerTransport);
-  mManagerSession->GetCallbackRecv()->Register(&TBase::Recv, this);
-  mManagerSession->GetCallbackDisconnect()->Register(&TBase::Disconnect, this);
+  mSessionManager->SetMakerTransport(pMakerTransport);
+  mSessionManager->GetCallbackRecv()->Register(&TBase::Recv, this);
+  mSessionManager->GetCallbackDisconnect()->Register(&TBase::Disconnect, this);
 }
 //-------------------------------------------------------------------------
 bool TBase::Open(TDescOpen* pDesc, int count)
 {
-  return mManagerSession->Start(pDesc, count);
+  return mSessionManager->Start(pDesc, count);
 }
 //-------------------------------------------------------------------------
 void TBase::SetLoad(int procent)
@@ -85,7 +85,7 @@ void TBase::DisconnectUp()
   if(mID_SessionUp==INVALID_HANDLE_SESSION)
     return;
   
-  mManagerSession->CloseSession(mID_SessionUp);
+  mSessionManager->CloseSession(mID_SessionUp);
   
   mID_SessionUp = INVALID_HANDLE_SESSION;
   // событие НЕ создавать, т.к. процесс синхронный
@@ -100,12 +100,12 @@ void TBase::SendUp( char* p, int size, bool check)
 //-------------------------------------------------------------------------
 bool TBase::IsConnectUp()
 {
-  return mManagerSession->IsExist(mID_SessionUp);
+  return mSessionManager->IsExist(mID_SessionUp);
 }
 //-------------------------------------------------------------------------
 bool TBase::IsConnect(unsigned int id)
 {
-  return mManagerSession->IsExist(id);
+  return mSessionManager->IsExist(id);
 }
 //-------------------------------------------------------------------------
 void TBase::Recv( TDescRecvSession* pDesc )
@@ -124,7 +124,7 @@ void TBase::Disconnect(unsigned int id)
 void TBase::Work()
 {
   //пробежка по ожидающим разъединения и удаление сессий
-  mManagerSession->Work();
+  mSessionManager->Work();
   // обработать полученные данные соответствующим сценарием
   HandleListRecv();
   // отреагировать на событие дисконнект сессий
@@ -140,7 +140,7 @@ void TBase::Work()
 //-------------------------------------------------------------------------
 void TBase::SetTimeLiveSession(unsigned int time_ms)
 {
-  mManagerSession->SetTimeLiveSession(time_ms);
+  mSessionManager->SetTimeLiveSession(time_ms);
 }
 //-------------------------------------------------------------------------
 void TBase::HandleListDisconnect()
@@ -152,7 +152,7 @@ void TBase::HandleListDisconnect()
     // сообщить о разрыве связи для различных реализаций
     DisconnectInherit(ID);
     // закрыть сессию
-    mManagerSession->CloseSession(ID);
+    mSessionManager->CloseSession(ID);
     // следующий ID
     mIDSessionDisconnect.RemoveFirst();
     ppFirst = mIDSessionDisconnect.GetFirst();
@@ -185,7 +185,7 @@ void TBase::RemoveManagerContextSc(TScContextManager* pMCSc)
 void TBase::SetupScForContext(TContainerContextSc* pCCSc)
 {
   pCCSc->SetMCSc(AddManagerContextSc());
-  pCCSc->SetMS(mManagerSession.get());
+  pCCSc->SetMS(mSessionManager.get());
   pCCSc->SetSE(this);
 
   pCCSc->mDisClient.   SetSc(mControlSc->mDisClient);
@@ -206,7 +206,7 @@ void TBase::DelayDeleteContainerScenario(TContainerContextSc* pCCSc)
 //-------------------------------------------------------------------------
 bool TBase::GetInfoSession(unsigned int id_session, TIP_Port& ip_port)
 {
-  return mManagerSession->GetInfo(id_session, ip_port);
+  return mSessionManager->GetInfo(id_session, ip_port);
 }
 //-------------------------------------------------------------------------
 void TBase::RegisterNeedForLoginClient()

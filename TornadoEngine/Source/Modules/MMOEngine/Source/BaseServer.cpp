@@ -27,7 +27,7 @@ bool TBaseServer::IsSessionSecurity(unsigned int id_session, void* crypt, int si
 {
   TContainer cRSA;
   // получить по сессии RSA от транспорта
-  if( mManagerSession->GetRSAPublicKey(id_session, cRSA)==false )
+  if( mSessionManager->GetRSAPublicKey(id_session, cRSA)==false )
     return false;
 
   TContainer cMITM;

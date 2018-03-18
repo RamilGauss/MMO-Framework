@@ -26,7 +26,7 @@ TCryptoAES_Impl::TCryptoAES_Impl()
 {
   mContext = (EVP_CIPHER_CTX*)new EVP_CIPHER_CTX();
 
-  memset( &iv[0], 0, sizeof(iv));
+  memset( &iv[0], 0, sizeof(iv) );
 }
 //--------------------------------------------------------------------------------
 TCryptoAES_Impl::~TCryptoAES_Impl()
@@ -58,18 +58,13 @@ bool TCryptoAES_Impl::GenerateKey( eCountBits c )
       mCipher = (void*)EVP_aes_256_ctr();// cfb
       break;
   }
+
+  InitContext();
   return true;
 }
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::Encrypt( void* pIn, int sizeIn, TContainer& c_out)
 {
-  // Обнуляем структуру контекста
-  EVP_CIPHER_CTX_init(CONTEXT);
-  // Инициализируем контекст алгоритма
-  int res = EVP_EncryptInit_ex(CONTEXT, CIPHER, NULL, (const unsigned char*)mKey.GetPtr(), iv);
-  if(res==-1)
-    return false;
-
   c_out.SetDataByCount(NULL, sizeIn);
 
   int sizeOut;
@@ -78,53 +73,49 @@ bool TCryptoAES_Impl::Encrypt( void* pIn, int sizeIn, TContainer& c_out)
     return false;
   if(!EVP_EncryptFinal_ex(CONTEXT, (unsigned char*)c_out.GetPtr() + sizeOut, &sizeOut))
     return false;
+  return true;
+}
+//--------------------------------------------------------------------------------
+bool TCryptoAES_Impl::InnerDecrypt( void* pIn, int sizeIn, void* pOut )
+{
+  int sizeOut;
+  // дешифруем данные
+  if (!EVP_DecryptUpdate(CONTEXT, (unsigned char*)pOut, &sizeOut, (const unsigned char *)pIn, sizeIn))
+    return false;
+  // Завершаем процесс дешифрования
+  if (!EVP_DecryptFinal_ex(CONTEXT, (unsigned char*)pOut + sizeOut, &sizeOut))
+    return false;
 
-  EVP_CIPHER_CTX_cleanup(CONTEXT);
   return true;
 }
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::Decrypt(void* pIn, int sizeIn, TContainer& c_out)
 {
-  // Обнуляем структуру контекста
-  EVP_CIPHER_CTX_init(CONTEXT);
-  // Инициализируем контекст алгоритма
-  int res = EVP_DecryptInit_ex(CONTEXT, CIPHER, NULL, (const unsigned char*)mKey.GetPtr(), iv);
-  if(res==-1)
-    return false;
-
   c_out.SetDataByCount(NULL, sizeIn);
-  
-  int sizeOut;
-  // дешифруем данные
-  if(!EVP_DecryptUpdate(CONTEXT, (unsigned char*)c_out.GetPtr(), &sizeOut, (const unsigned char *)pIn, sizeIn)) 
-    return false;
-  // Завершаем процесс дешифрования
-  if(!EVP_DecryptFinal_ex(CONTEXT, (unsigned char*)c_out.GetPtr() + sizeOut, &sizeOut)) 
-    return false; 
+  return InnerDecrypt( pIn, sizeIn, c_out.GetPtr() );
+  //int sizeOut;
+  //// дешифруем данные
+  //if(!EVP_DecryptUpdate(CONTEXT, (unsigned char*)c_out.GetPtr(), &sizeOut, (const unsigned char *)pIn, sizeIn)) 
+  //  return false;
+  //// Завершаем процесс дешифрования
+  //if(!EVP_DecryptFinal_ex(CONTEXT, (unsigned char*)c_out.GetPtr() + sizeOut, &sizeOut)) 
+  //  return false; 
 
-  EVP_CIPHER_CTX_cleanup(CONTEXT);
-  return true;
+  //return true;
 }
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::Decrypt(void* pIn, int sizeIn, TContainerPtr& c_out)
 {
-  // Обнуляем структуру контекста
-  EVP_CIPHER_CTX_init(CONTEXT);
-  // Инициализируем контекст алгоритма
-  int res = EVP_DecryptInit_ex(CONTEXT, CIPHER, NULL, (const unsigned char*)mKey.GetPtr(), iv);
-  if(res==-1)
-    return false;
+  return InnerDecrypt(pIn, sizeIn, c_out.GetPtr());
+  //int sizeOut;
+  //// дешифруем данные
+  //if(!EVP_DecryptUpdate(CONTEXT, (unsigned char*)c_out.GetPtr(), &sizeOut, (const unsigned char *)pIn, sizeIn)) 
+  //  return false;
+  //// Завершаем процесс дешифрования
+  //if(!EVP_DecryptFinal_ex(CONTEXT, (unsigned char*)c_out.GetPtr() + sizeOut, &sizeOut)) 
+  //  return false; 
 
-  int sizeOut;
-  // дешифруем данные
-  if(!EVP_DecryptUpdate(CONTEXT, (unsigned char*)c_out.GetPtr(), &sizeOut, (const unsigned char *)pIn, sizeIn)) 
-    return false;
-  // Завершаем процесс дешифрования
-  if(!EVP_DecryptFinal_ex(CONTEXT, (unsigned char*)c_out.GetPtr() + sizeOut, &sizeOut)) 
-    return false; 
-
-  EVP_CIPHER_CTX_cleanup(CONTEXT);
-  return true;
+  //return true;
 }
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::GetPublicKey(TContainer& c_out)
@@ -155,6 +146,16 @@ void TCryptoAES_Impl::SetPublicKey(void* pKey, int sizeKey)
       break;
     default:BL_FIX_BUG();
   }
+
+  InitContext();
 }
 //--------------------------------------------------------------------------------
-
+void TCryptoAES_Impl::InitContext()
+{
+  // Обнуляем структуру контекста
+  EVP_CIPHER_CTX_init(CONTEXT);
+  // Инициализируем контекст алгоритма
+  int res = EVP_EncryptInit_ex(CONTEXT, CIPHER, NULL, (const unsigned char*)mKey.GetPtr(), iv);
+  BL_ASSERT(res != -1);
+}
+//--------------------------------------------------------------------------------

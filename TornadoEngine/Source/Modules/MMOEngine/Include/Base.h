@@ -39,12 +39,12 @@ namespace nsMMOEngine
     // уведомления о разрыве связи
     typedef TDataExchange2Thread<unsigned int> TListUint;
     TListUint mIDSessionDisconnect;
-    // полученные пакеты от mManagerSession
+    // полученные пакеты от mSessionManager
     typedef TDataExchange2Thread<TDescRecvSession> TListRecvPacket;
     TListRecvPacket mRecvPacket;
 
     // транспорт
-    boost::scoped_ptr<TSessionManager> mManagerSession;
+    boost::scoped_ptr<TSessionManager> mSessionManager;
     // загрузка CPU
     int mLoadProcent;// затраченное время/выделенное, %
 

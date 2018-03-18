@@ -21,7 +21,7 @@ namespace nsMMOEngine
     void*              mUserPtr;
     unsigned int       mID_Session;
     TScContextManager* mManagerContextSc;
-    TSessionManager*   mManagerSession;
+    TSessionManager*   mSessionManager;
     TSrcEvent*         mSrcEvent;
 
     IScenario* mScenario;

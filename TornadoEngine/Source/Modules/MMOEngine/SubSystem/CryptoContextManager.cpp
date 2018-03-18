@@ -65,8 +65,10 @@ void TCryptoContextManager::SendAES_Key(TIP_Port& ip_port, TContainer& c_encrypt
   }
   TContainer c_key;
 
-  pCtx->GetAES()->GenerateKey();
-  pCtx->GetAES()->GetPublicKey(c_key);
+  pCtx->GetSendAES()->GenerateKey();
+  pCtx->GetSendAES()->GetPublicKey( c_key );
+  
+  pCtx->GetRecvAES()->SetPublicKey( c_key.GetPtr(), c_key.GetSize() );
 
   Encrypt(pCtx->GetRSA(), c_key, c_encrypt_key);
 }
@@ -83,7 +85,8 @@ bool TCryptoContextManager::RecvAES_Key(TIP_Port& ip_port, void* pKey, int sizeK
   if(Decrypt(pCtx->GetRSA(), pKey, sizeKey, c_decrypt_key)==false)
     return false;
 
-  pCtx->GetAES()->SetPublicKey(c_decrypt_key.GetPtr(), c_decrypt_key.GetSize());
+  pCtx->GetRecvAES()->SetPublicKey(c_decrypt_key.GetPtr(), c_decrypt_key.GetSize());
+  pCtx->SetPublicKey(c_decrypt_key.GetPtr(), c_decrypt_key.GetSize());
   return true;
 }
 //-----------------------------------------------------------------
@@ -107,7 +110,7 @@ void TCryptoContextManager::Send(TIP_Port& ip_port, TBreakPacket& bp, TContainer
   bp.UnlinkCollect();
   bp.Reset();
 
-  Encrypt(pCtx->GetAES(), c_original, c_encrypt);
+  Encrypt(pCtx->GetSendAES(), c_original, c_encrypt);
 }
 //-----------------------------------------------------------------
 bool TCryptoContextManager::Recv(TIP_Port& ip_port, 
@@ -121,7 +124,7 @@ bool TCryptoContextManager::Recv(TIP_Port& ip_port,
     return false;// ignore
   }
 
-  return Decrypt(pCtx->GetAES(), pEncrypt, sizeEncrypt, c_decrypt);
+  return Decrypt(pCtx->GetRecvAES(), pEncrypt, sizeEncrypt, c_decrypt);
 }
 //-----------------------------------------------------------------
 void TCryptoContextManager::Close(TIP_Port& ip_port)

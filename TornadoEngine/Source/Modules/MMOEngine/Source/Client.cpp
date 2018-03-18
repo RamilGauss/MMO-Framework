@@ -42,7 +42,7 @@ bool TClient::Open(TDescOpen* pDesc, int count)
     return false;
   }
   mSubNet = pDesc[0].subNet;
-  return mManagerSession->Start(pDesc, 1);
+  return mSessionManager->Start(pDesc, 1);
 }
 //-------------------------------------------------------------------------
 void TClient::Login(unsigned int ip, unsigned short port, 

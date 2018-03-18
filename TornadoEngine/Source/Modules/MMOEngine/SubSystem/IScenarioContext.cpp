@@ -18,7 +18,7 @@ IScenarioContext::IScenarioContext()
   mUserPtr          = NULL;
   mID_Session       = INVALID_HANDLE_SESSION;
   mManagerContextSc = NULL;
-  mManagerSession   = NULL;
+  mSessionManager   = NULL;
   mSrcEvent         = NULL;
   mScenario         = NULL;
 }
@@ -50,12 +50,12 @@ TScContextManager* IScenarioContext::GetMSc()
 //-----------------------------------------------------------------
 void IScenarioContext::SetMS(TSessionManager* pMS)
 {
-  mManagerSession = pMS;
+  mSessionManager = pMS;
 }
 //-----------------------------------------------------------------
 TSessionManager* IScenarioContext::GetMS()
 {
-  return mManagerSession;
+  return mSessionManager;
 }
 //-----------------------------------------------------------------
 void IScenarioContext::SetSE(TSrcEvent* pS)
