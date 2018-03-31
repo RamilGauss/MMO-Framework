@@ -158,3 +158,69 @@ int main( int argc, char** argv)
 
 // IMarshallizator
 // compression -> bit compression
+
+
+/*
+Эксперименты с JSON boost
+#include <sstream>
+#include <map>
+#include <set>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+
+using boost::property_tree::ptree;
+using boost::property_tree::read_json;
+using boost::property_tree::write_json;
+
+void example()
+{
+  // Write json.
+  ptree pt;
+  ptree children;
+  ptree child;
+
+  child.put("1", 1);
+  child.put("2", 2);
+  child.put("3", 3);
+
+  children.push_back(std::make_pair("1", child));
+  children.push_back(std::make_pair("2", child));
+  children.push_back(std::make_pair("3", child));
+
+  pt.add_child("MyArray", children);
+
+  std::ostringstream buf;
+  write_json(buf, pt, false);
+  std::string json = buf.str(); // {"foo":"bar"}
+
+  // Read json.
+  ptree pt2;
+  std::istringstream is(json);
+  read_json(is, pt2);
+  std::string foo = pt2.get<std::string>("foo");
+}
+
+std::string map2json(const std::map<std::string, std::string>& map)
+{
+  ptree pt;
+  for (auto& entry : map)
+    pt.put(entry.first, entry.second);
+  std::ostringstream buf;
+  write_json(buf, pt, false);
+  return buf.str();
+}
+
+int main(int argc, char** argv)
+{
+  typedef std::map<std::string, std::string> TMapStrStr;
+  typedef TMapStrStr::value_type TMapStrStrVT;
+  typedef TMapStrStr::iterator TMapStrStrIt;
+  TMapStrStr map;
+  map.insert(TMapStrStrVT("1", "1"));
+  map2json(map);
+
+  example();
+
+  return 0;
+}
+*/

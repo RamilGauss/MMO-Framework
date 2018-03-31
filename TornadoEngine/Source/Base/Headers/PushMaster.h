@@ -37,7 +37,7 @@ public:
   //ISerializable*
   void PushPtrSer( ISerializable* ser );
 
-  //std::vector/list/set
+  //std::vector/list
   // unsigned char, char, unsigned short, short, unsigned int, int, float, double
   template<typename T, typename Array>
   void PushArray( Array& array );
@@ -50,6 +50,20 @@ public:
   //std::vector/list/set<ISerializable*>
   template<typename Array>
   void PushArrayPtrSer( Array& array );
+
+  //std::set
+  // unsigned char, char, unsigned short, short, unsigned int, int, float, double
+  template<typename T, typename Set>
+  void PushSet(Set& s);
+  //std::set<std::string>
+  template<typename Set>
+  void PushSetStr(Set& s);
+  //std::set<ISerializable>
+  template<typename T, typename Set>
+  void PushSetSer(Set& s);
+  //std::set<ISerializable*>
+  template<typename Set>
+  void PushSetPtrSer(Set& s);
 
   // std::map
   template<typename Key, typename Value, typename Map>
@@ -150,6 +164,66 @@ void TPushMaster::PushArrayPtrSer( Array& array )
   {
     ISerializable* t = *bit;
     PushPtrSer( t );
+    bit++;
+  }
+}
+//------------------------------------------------------------------------
+template<typename T, typename Set>
+void TPushMaster::PushSet(Set& s)
+{
+  int size = s.size();
+  PushSize(size);
+  Set::iterator bit = s.begin();
+  Set::iterator eit = s.end();
+  while (bit != eit)
+  {
+    T t = *bit;
+    Push<T>(t);
+    bit++;
+  }
+}
+//------------------------------------------------------------------------
+template<typename Set>
+void TPushMaster::PushSetStr(Set& s)
+{
+  int size = s.size();
+  PushSize(size);
+  Set::iterator bit = s.begin();
+  Set::iterator eit = s.end();
+  while (bit != eit)
+  {
+    std::string t = *bit;
+    PushStr(t);
+    bit++;
+  }
+}
+//------------------------------------------------------------------------
+template<typename T, typename Set>
+void TPushMaster::PushSetSer(Set& s)
+{
+  int size = s.size();
+  PushSize(size);
+  Set::iterator bit = s.begin();
+  Set::iterator eit = s.end();
+  while (bit != eit)
+  {
+    T t = *bit;
+    PushSer<T>(t);
+    bit++;
+  }
+}
+//------------------------------------------------------------------------
+template<typename Set>
+void TPushMaster::PushSetPtrSer(Set& s)
+{
+  int size = s.size();
+  PushSize(size);
+  Set::iterator bit = s.begin();
+  Set::iterator eit = s.end();
+  while (bit != eit)
+  {
+    ISerializable* t = *bit;
+    PushPtrSer(t);
     bit++;
   }
 }

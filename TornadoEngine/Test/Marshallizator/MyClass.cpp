@@ -61,16 +61,16 @@ void MyClass::Serialize( TPushMaster* pPushMaster )
   pPushMaster->PushArraySer<OtherClass>( lSer );//std::list<OtherClass> lSer;//std::list<ISerializable>
   pPushMaster->PushArrayPtrSer( lPtrSer );      //std::list<OtherClass*> lPtrSer;//std::list<ISerializable*>
 
-  pPushMaster->PushArray<unsigned char>( sUc );  //std::set<unsigned char> sUc;
-  pPushMaster->PushArray<char>( sC );            //std::set<char> s;
-  pPushMaster->PushArray<unsigned short>( sUs ); //std::set<unsigned short> s;
-  pPushMaster->PushArray<short>( sS );           //std::set<short> s;
-  pPushMaster->PushArray<unsigned int>( sUi );   //std::set<unsigned int> sUi;
-  pPushMaster->PushArray<int>( sI );             //std::set<int> sI;
-  pPushMaster->PushArray<float>( sF );           //std::set<float> sF;
-  pPushMaster->PushArray<double>( sD );          //std::set<double> sD;
-  pPushMaster->PushArrayStr( sStr );             //std::set<std::string> sStr;
-  pPushMaster->PushArraySer<OtherClass>( sSer );
+  pPushMaster->PushSet<unsigned char>( sUc );  //std::set<unsigned char> sUc;
+  pPushMaster->PushSet<char>( sC );            //std::set<char> s;
+  pPushMaster->PushSet<unsigned short>( sUs ); //std::set<unsigned short> s;
+  pPushMaster->PushSet<short>( sS );           //std::set<short> s;
+  pPushMaster->PushSet<unsigned int>( sUi );   //std::set<unsigned int> sUi;
+  pPushMaster->PushSet<int>( sI );             //std::set<int> sI;
+  pPushMaster->PushSet<float>( sF );           //std::set<float> sF;
+  pPushMaster->PushSet<double>( sD );          //std::set<double> sD;
+  pPushMaster->PushSetStr( sStr );             //std::set<std::string> sStr;
+  pPushMaster->PushSetSer<OtherClass>( sSer );
 
   pPushMaster->PushMap__<unsigned char,bool>( mUcB );         //std::map<unsigned char,bool> mUcB;
   pPushMaster->PushMap__<unsigned char,unsigned char>(mUcUc); //std::map<unsigned char,unsigned char> mUcUc;
