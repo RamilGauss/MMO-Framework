@@ -30,7 +30,7 @@ bool TBaseServer::IsSessionSecurity(unsigned int id_session, void* crypt, int si
   if( mSessionManager->GetRSAPublicKey(id_session, cRSA)==false )
     return false;
 
-  TContainer cMITM;
+  TContainerRise cMITM;
   if( mCryptMITM->Calc(cRSA.GetPtr(), cRSA.GetSize(),
     pLogin, sizeLogin, pPassword, sizePassword, cMITM)==false )
     return false;

@@ -10,6 +10,7 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
+#include "ContainerRise.h"
 
 class DllExport TCryptoAES_Impl
 {
@@ -37,7 +38,7 @@ public:
   bool Decrypt( void* pIn, int sizeIn,  TContainer& c_out);
   bool Decrypt( void* pIn, int sizeIn,  TContainerPtr& c_out);
 
-  bool GetPublicKey(TContainer& c_out);
+  bool GetPublicKey(TContainerRise& c_out);
   void SetPublicKey(void* pKey, int sizeKey);
 
 protected:

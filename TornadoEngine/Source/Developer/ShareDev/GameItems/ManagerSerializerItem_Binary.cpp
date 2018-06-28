@@ -30,7 +30,7 @@ TManagerSerializerItem_Binary::TManagerSerializerItem_Binary()
   mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::TableSound,   mSerializerTableSound.get()));
 }
 //--------------------------------------------------------------------------------------
-void TManagerSerializerItem_Binary::Pack(TBaseItem* pItem, TContainer& cBinOut)
+void TManagerSerializerItem_Binary::Pack(TBaseItem* pItem, TContainerRise& cBinOut)
 {
   TBaseSerializerItem_Binary* pMap = FindMap(pItem->mType);
   if( pMap==NULL ) 

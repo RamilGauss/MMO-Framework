@@ -18,7 +18,7 @@ public:
   TSerializerShapeItem_Binary();
   virtual ~TSerializerShapeItem_Binary();
  
-  virtual void PackItem(TBaseItem* pItem, TContainer& cBinOut);
+  virtual void PackItem(TBaseItem* pItem, TContainerRise& cBinOut);
   virtual bool UnpackItem(TBaseItem* pItem, void* pIn, int sizeIn);
 
 protected:

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{c903c9cc-8bd2-4e3a-8488-cff32d8ab49e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Conveyer">
+      <UniqueIdentifier>{f4b61311-d59e-45ca-af39-aade754e9ae2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeedCalculationSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SpeedCalculationSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Conveyer\ConsumerSystem.h">
+      <Filter>Conveyer</Filter>
+    </ClInclude>
+    <ClInclude Include="Conveyer\GroupedPacketSystem.h">
+      <Filter>Conveyer</Filter>
+    </ClInclude>
+    <ClInclude Include="Conveyer\InitSettingsSystem.h">
+      <Filter>Conveyer</Filter>
+    </ClInclude>
+    <ClInclude Include="Conveyer\MakeShuffleEntitiesSystem.h">
+      <Filter>Conveyer</Filter>
+    </ClInclude>
+    <ClInclude Include="Conveyer\PacketObserverSystem.h">
+      <Filter>Conveyer</Filter>
+    </ClInclude>
+    <ClInclude Include="Conveyer\ProducerFeature.h">
+      <Filter>Conveyer</Filter>
+    </ClInclude>
+    <ClInclude Include="Conveyer\ProducerSystem.h">
+      <Filter>Conveyer</Filter>
+    </ClInclude>
+    <ClInclude Include="Conveyer\ViewShuffleEntitiesSystem.h">
+      <Filter>Conveyer</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\FreshPacket.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PacketData.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ShuffledComponents.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

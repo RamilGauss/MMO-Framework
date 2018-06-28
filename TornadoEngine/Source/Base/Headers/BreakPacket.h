@@ -10,12 +10,17 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
+#include "ContainerRise.h"
 
 // Разбитый на части пакет. Например, когда нужно добавлять на каждом уровне иерархии новый заголовок.
 // РЕКОМЕНДАЦИИ по использованию:
 // НЕ использовать на стеке, тяжелый конструктор.
 // Лучше не копировать объект.
 // После внесения внутрь, менять внесенные переменные снаружи бессмысленно, внутри буфера они не поменяются.
+
+// PushBack, PushFront, ....
+// Collect
+// 
 
 class DllExport TBreakPacket
 {
@@ -27,23 +32,25 @@ class DllExport TBreakPacket
   TContainer mFrontBuffer;
   int mFrontOffset;
 
-  TContainer mCollect;
+  //TContainer mCollect;
+  TContainerRise mCollect;
 public:
   TBreakPacket( int sizeBuffer = 0xFFFF );
   TBreakPacket(const TBreakPacket& bp);
   virtual ~TBreakPacket();
 
   // копировать кусок памяти
-  void PushBack(char* p,int size);
-  void PushFront(char* p,int size);
+  inline void PushBack(char* p,int size);
+  inline void PushFront(char* p,int size);
+
+  inline void CopyInBuffer( TContainerRise& receiveBuffer, int offset = 0);
+
   // собрать кусочки в одно целое
   // теперь можно получить указатель на собранный пакет через GetPtr
   void Collect();
   void* GetCollectPtr();
   int GetSize();
 
-  // отцепиться от памяти под собранный пакет
-  void UnlinkCollect();
   void Reset();
 
   TBreakPacket& operator =( const TBreakPacket& b );

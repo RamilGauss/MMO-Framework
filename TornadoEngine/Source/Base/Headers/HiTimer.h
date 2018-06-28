@@ -10,16 +10,17 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
-#include <boost/cstdint.hpp>
+#include <stdint.h>
+//#include <boost/cstdint.hpp>
 
 //------------------------------------------------------------------------------
 // Модуль работы с таймером высокого разрешения
 //------------------------------------------------------------------------------
 
 // Получение тиков процессора (с тактовой частотой процессора)
-boost::uint64_t DllExport ht_GetUSCount();
+uint64_t DllExport ht_GetUSCount();
 
-boost::uint64_t DllExport ht_GetCycleCPUCount();
+uint64_t DllExport ht_GetCycleCPUCount();
 
 // Задержка на микросекунды
 void DllExport ht_usleep( unsigned int us );

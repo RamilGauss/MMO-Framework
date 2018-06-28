@@ -79,7 +79,7 @@ void TTransportManager::Done()
     it.second->Stop();// stop transport
     mMakerTransport->Delete(it.second);// transport
     
-    delete it.first;// reciver
+    delete it.first;// receiver
   }
 
   mMapSubNetTransport.clear();

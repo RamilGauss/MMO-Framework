@@ -22,7 +22,7 @@ TSerializerTerrainItem_Binary::~TSerializerTerrainItem_Binary()
 
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerTerrainItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
+void TSerializerTerrainItem_Binary::PackItem(TBaseItem* pItem, TContainerRise& cBinOut)
 {
   TTerrainItem* pTerrainItem = (TTerrainItem*)pItem;
   Reset();

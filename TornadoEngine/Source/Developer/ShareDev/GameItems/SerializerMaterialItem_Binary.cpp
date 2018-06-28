@@ -21,7 +21,7 @@ TSerializerMaterialItem_Binary::~TSerializerMaterialItem_Binary()
 
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerMaterialItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
+void TSerializerMaterialItem_Binary::PackItem(TBaseItem* pItem, TContainerRise& cBinOut)
 {
   TMaterialItem* pMaterialItem = (TMaterialItem*)pItem;
   Reset();

@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -27,7 +27,7 @@ int TBaseSerializerItem_Binary::Type()
 //------------------------------------------------------------------------------
 bool TBaseSerializerItem_Binary::ResolveType(void* pIn, int sizeIn, int& type)
 {
-  if( sizeIn < sizeof(TypeType) )
+  if (sizeIn < sizeof(TypeType))
     return false;
 
   TypeType* pType = (TypeType*)pIn;
@@ -40,11 +40,9 @@ void TBaseSerializerItem_Binary::Reset()
   mCollect.Reset();
 }
 //--------------------------------------------------------------------------------------
-void TBaseSerializerItem_Binary::Collect(TContainer& cOut)
+void TBaseSerializerItem_Binary::Collect(TContainerRise& cOut)
 {
-  mCollect.Collect();
-  cOut.Entrust( (char*)mCollect.GetCollectPtr(), mCollect.GetSize());
-  mCollect.UnlinkCollect();
+  mCollect.CopyInBuffer(cOut);
 }
 //--------------------------------------------------------------------------------------
 void TBaseSerializerItem_Binary::PushType()
@@ -72,16 +70,16 @@ bool TBaseSerializerItem_Binary::PopType()
 bool TBaseSerializerItem_Binary::PopStr(std::string& s)
 {
   std::string::size_type len;
-  if( Pop(len)==false )
+  if (Pop(len) == false)
     return false;
 
-  if( int(len) > mUnpackSize )
+  if (int(len) > mUnpackSize)
     return false;
   s.reserve(len);
   s.resize(len);
-  memcpy( (void*)s.data(), mUnpackData, len);
+  memcpy((void*)s.data(), mUnpackData, len);
 
-  mUnpackData += len; 
+  mUnpackData += len;
   mUnpackSize -= len;
   return true;
 }

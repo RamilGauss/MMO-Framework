@@ -56,10 +56,10 @@ namespace nsPCS
   public:
     TBasePacket_PCS(unsigned char _type);
 
-    TContainer Pack();
+    TContainerRise Pack();
     void Unpack(TContainer c);
   protected:
-    virtual TContainer PackInherit() = 0;
+    virtual TContainerRise PackInherit() = 0;
     virtual void UnpackInherit( char* p, int size ) = 0;
   }_PACKED;
 }

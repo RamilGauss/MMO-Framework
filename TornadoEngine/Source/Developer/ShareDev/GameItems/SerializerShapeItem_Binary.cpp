@@ -19,7 +19,7 @@ TSerializerShapeItem_Binary::~TSerializerShapeItem_Binary()
 
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerShapeItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
+void TSerializerShapeItem_Binary::PackItem(TBaseItem* pItem, TContainerRise& cBinOut)
 {
 
 }

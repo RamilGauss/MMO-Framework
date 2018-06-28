@@ -22,6 +22,7 @@
     <ProjectGuid>{4540BC7A-5138-426F-B74C-EDFBD5348645}</ProjectGuid>
     <RootNamespace>PhysicEngine</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -66,23 +67,25 @@
     <_ProjectFileVersion>15.0.27130.2020</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\..\..\Exe\</OutDir>
-    <IntDir>..\..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\..\..\Exe\</OutDir>
-    <IntDir>..\..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -100,11 +103,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base_d.lib;BulletCollision_d.lib;BulletDynamics_d.lib;BulletSoftBody_d.lib;LinearMath_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>..\..\..\Lib\$(TargetName)_d.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -114,7 +117,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;../../Base/Headers;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../../Base/Headers;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -126,11 +129,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base_d.lib;BulletCollision_d.lib;BulletDynamics_d.lib;BulletSoftBody_d.lib;LinearMath_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>..\..\..\Lib\$(TargetName)_d.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -149,12 +152,12 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>..\..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -165,7 +168,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;../../Base/Headers;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../../Base/Headers;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -176,12 +179,12 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>..\..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>

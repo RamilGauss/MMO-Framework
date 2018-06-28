@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,15 +9,29 @@ See for more information License.h.
 #include <memory.h>
 
 #include "ContainerRise.h"
+#include "BL_Debug.h"
 
 TContainerRise::TContainerRise()
 {
   mSizeUse = 0;
 }
 //----------------------------------------------------------
+TContainerRise::TContainerRise( const TContainerRise& c )
+{
+  mSizeUse = 0;
+  *this = c;
+}
+//----------------------------------------------------------
+TContainerRise& TContainerRise::operator = ( const TContainerRise& c )
+{
+  mC = c.mC;
+  mSizeUse = c.mSizeUse;
+  return *this;
+}
+//----------------------------------------------------------
 char* TContainerRise::GetPtr()
 {
-  return (char*)mC.GetPtr();
+  return (char*) mC.GetPtr();
 }
 //----------------------------------------------------------
 int TContainerRise::GetSize()
@@ -25,52 +39,52 @@ int TContainerRise::GetSize()
   return mSizeUse;
 }
 //----------------------------------------------------------
-void TContainerRise::Alloc(int new_size)
+void TContainerRise::Alloc( int new_size )
 {
-  if(mC.GetSize() < new_size)
-    mC.SetDataByCount(NULL, new_size);
+  if( mC.GetSize() < new_size )
+    mC.SetDataByCount( NULL, new_size );
   mSizeUse = new_size;
 }
 //----------------------------------------------------------
 void TContainerRise::Realloc( int new_size )
 {
-  if(mC.GetSize() < new_size)
+  if( mC.GetSize() < new_size )
   {
     int oldSize = mC.GetSize();
-    if(oldSize)
+    if( oldSize )
     {
       void* pOld = mC.GetPtr();
       mC.Unlink();
-      mC.SetDataByCount(NULL, new_size);
+      mC.SetDataByCount( NULL, new_size );
       void* pNew = mC.GetPtr();
-      memcpy(pNew, pOld, mSizeUse);
-      if(oldSize==1)
-        delete  (char*)pOld;
+      memcpy( pNew, pOld, mSizeUse );
+      if( oldSize == 1 )
+        delete  (char*) pOld;
       else
-        delete[](char*)pOld;
+        delete []( char* )pOld;
     }
     else
-      mC.SetDataByCount(NULL, new_size);
+      mC.SetDataByCount( NULL, new_size );
   }
   mSizeUse = new_size;
 }
 //----------------------------------------------------------
-void TContainerRise::SetData(char* p, int size)
+void TContainerRise::Clear()
 {
-  if(size>mSizeUse)
-    Alloc(size);
-  else
-    mSizeUse = size;
-  if(p)
-    memcpy(mC.GetPtr(), p, mSizeUse);
+  mSizeUse = 0;
 }
 //----------------------------------------------------------
-void TContainerRise::AddData(char* p, int size)
+void TContainerRise::Shift( int offset )
 {
-  int oldSize = GetSize();
-  int newSize = oldSize + size;
-  Realloc(newSize);
-  char* pBound = GetPtr();
-  memcpy(pBound + oldSize, p, size);
+  int newSize = mSizeUse + offset; 
+  Realloc( newSize );
+}
+//----------------------------------------------------------
+void TContainerRise::Append( int size, char* p )
+{
+  int oldSize = mSizeUse;
+  int newSize = mSizeUse + size;
+  Realloc( newSize );
+  memcpy( GetPtr() + oldSize, p, size );
 }
 //----------------------------------------------------------

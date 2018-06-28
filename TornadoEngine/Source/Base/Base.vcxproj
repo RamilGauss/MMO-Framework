@@ -69,30 +69,32 @@
     <_ProjectFileVersion>15.0.27130.2020</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\..\Exe\</OutDir>
-    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\Exe\</OutDir>
-    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\..\Exe\</OutDir>
-    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\..\Exe\</OutDir>
-    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -100,15 +102,16 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4996;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AssemblyDebug>true</AssemblyDebug>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>..\..\Lib\$(TargetName)_d.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -119,7 +122,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -127,15 +130,18 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4996;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AssemblyDebug>true</AssemblyDebug>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>..\..\Lib\$(TargetName)_d.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -144,13 +150,14 @@
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4996;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -159,7 +166,7 @@
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -170,14 +177,17 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4996;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -186,7 +196,7 @@
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -195,7 +205,6 @@
     <ClCompile Include="Sources\ArrContainer.cpp" />
     <ClCompile Include="Sources\BL_Debug.cpp" />
     <ClCompile Include="Sources\BreakPacket.cpp" />
-    <ClCompile Include="Sources\BreakPacketOld.cpp" />
     <ClCompile Include="Sources\CmdParam.cpp" />
     <ClCompile Include="Sources\ContainerRise.cpp" />
     <ClCompile Include="Sources\ConverterLocale.cpp" />
@@ -207,13 +216,13 @@
     <ClCompile Include="Sources\DstEvent.cpp" />
     <ClCompile Include="Sources\FileOperation.cpp" />
     <ClCompile Include="Sources\HiTimer.cpp" />
-    <ClCompile Include="Sources\IMarshallizator.cpp" />
     <ClCompile Include="Sources\InfoFile.cpp" />
     <ClCompile Include="Sources\IXML.cpp" />
     <ClCompile Include="Sources\LoaderDLL_Unix.cpp" />
     <ClCompile Include="Sources\LoaderDLL_Win32.cpp" />
     <ClCompile Include="Sources\LoadFromFile.cpp" />
     <ClCompile Include="Sources\Logger.cpp" />
+    <ClCompile Include="Sources\lz4.c" />
     <ClCompile Include="Sources\MakerLoaderDLL.cpp" />
     <ClCompile Include="Sources\MakerXML.cpp" />
     <ClCompile Include="Sources\FormManager.cpp" />
@@ -247,7 +256,6 @@
     <ClInclude Include="Headers\ArrContainer.h" />
     <ClInclude Include="Headers\BL_Debug.h" />
     <ClInclude Include="Headers\BreakPacket.h" />
-    <ClInclude Include="Headers\BreakPacketOld.h" />
     <ClInclude Include="Headers\CallBackRegistrator.h" />
     <ClInclude Include="Headers\CmdParam.h" />
     <ClInclude Include="Headers\ContainerArrObj.h" />
@@ -263,12 +271,13 @@
     <ClInclude Include="Headers\DescCallBack.h" />
     <ClInclude Include="Headers\DescEvent.h" />
     <ClInclude Include="Headers\DstEvent.h" />
+    <ClInclude Include="Headers\ECS_Allocator.h" />
+    <ClInclude Include="Headers\FastUpperBound.h" />
     <ClInclude Include="Headers\FileOperation.h" />
     <ClInclude Include="Headers\HiTimer.h" />
     <ClInclude Include="Headers\IContainer.h" />
     <ClInclude Include="Headers\ILoaderDLL.h" />
     <ClInclude Include="Headers\InfoFile.h" />
-    <ClInclude Include="Headers\ISerializable.h" />
     <ClInclude Include="Headers\IXML.h" />
     <ClInclude Include="Headers\License.h" />
     <ClInclude Include="Headers\ListPtr.h" />
@@ -277,11 +286,17 @@
     <ClInclude Include="Headers\LoadFromFile.h" />
     <ClInclude Include="Headers\LockFreeDef.h" />
     <ClInclude Include="Headers\Logger.h" />
+    <ClInclude Include="Headers\lz4.h" />
     <ClInclude Include="Headers\MacroMaker.h" />
     <ClInclude Include="Headers\MacroMaker_Prepare.h" />
     <ClInclude Include="Headers\MakerLoaderDLL.h" />
     <ClInclude Include="Headers\MakerXML.h" />
     <ClInclude Include="Headers\FormManager.h" />
+    <ClInclude Include="Headers\Marshaller.h" />
+    <ClInclude Include="Headers\MemoryPool.h" />
+    <ClInclude Include="Headers\MemoryPoolAllocator.h" />
+    <ClInclude Include="Headers\BinarySerializer.h" />
+    <ClInclude Include="Headers\MessagePackSerializer.h" />
     <ClInclude Include="Headers\StateMachineManager.h" />
     <ClInclude Include="Headers\TimeManager.h" />
     <ClInclude Include="Headers\MapCallBack.h" />
@@ -308,6 +323,7 @@
     <ClInclude Include="Headers\SynchroPoint.h" />
     <ClInclude Include="Headers\ThreadBoost.h" />
     <ClInclude Include="Headers\TypeDef.h" />
+    <ClInclude Include="Headers\VectorRise.h" />
     <ClInclude Include="Headers\XML_Markup.h" />
   </ItemGroup>
   <ItemGroup>

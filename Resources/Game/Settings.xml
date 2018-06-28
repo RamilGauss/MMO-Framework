@@ -11,10 +11,10 @@
 			<Entry key="pos_x" value="1.86588442"/>
 			<Entry key="pos_y" value="26.8548241"/>
 			<Entry key="pos_z" value="21.0444317"/>
-			<Entry key="dir_x" value="0.30486691"/>
-			<Entry key="dir_y" value="0.0100506656"/>
-			<Entry key="dir_z" value="0.00341548957"/>
-			<Entry key="dir_w" value="-0.952365696"/>
+			<Entry key="dir_x" value="0.328799903"/>
+			<Entry key="dir_y" value="-0.0636369437"/>
+			<Entry key="dir_z" value="-0.022011932"/>
+			<Entry key="dir_w" value="-0.942003548"/>
 		</Group>
 	</Application>
 </Content>

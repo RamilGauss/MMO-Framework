@@ -45,7 +45,7 @@ namespace nsPCS
     // для Slave он ничего не значит, 
     // для Master - правила для создания, балансировки, выбора карты, условий боя (Игровая логика).
   protected:
-    virtual TContainer PackInherit();
+    virtual TContainerRise PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
@@ -54,7 +54,7 @@ namespace nsPCS
   public:
     TPacket_TryEnterGarage();
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
+    virtual TContainerRise PackInherit(){return TContainerRise();}
     virtual void UnpackInherit( char* p, int size ){}
   };
   //-----------------------------------------------------------------
@@ -63,7 +63,7 @@ namespace nsPCS
   public:
     TPacket_EnterGarage();
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
+    virtual TContainerRise PackInherit(){return TContainerRise();}
     virtual void UnpackInherit( char* p, int size ){}
   };
   //-----------------------------------------------------------------
@@ -71,7 +71,7 @@ namespace nsPCS
   {
     TPacket_EnterQueue();
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
+    virtual TContainerRise PackInherit(){return TContainerRise();}
     virtual void UnpackInherit( char* p, int size ){}
   };
   //-----------------------------------------------------------------
@@ -79,7 +79,7 @@ namespace nsPCS
   {
     TPacket_EnterRoom();
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
+    virtual TContainerRise PackInherit(){return TContainerRise();}
     virtual void UnpackInherit( char* p, int size ){}
   };
   //-----------------------------------------------------------------
@@ -89,7 +89,7 @@ namespace nsPCS
     TPacket_LoadMap();
     TypeID_GameMap mID_Map;
   protected:
-    virtual TContainer PackInherit();
+    virtual TContainerRise PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
@@ -98,7 +98,7 @@ namespace nsPCS
   public:
     TPacket_EndLoadMap();
   protected:
-    virtual TContainer PackInherit(){return TContainer();};
+    virtual TContainerRise PackInherit(){return TContainerRise();};
     virtual void UnpackInherit( char* p, int size ){}
   };
   //-----------------------------------------------------------------
@@ -109,7 +109,7 @@ namespace nsPCS
     typedef std::vector<TMapItem::TObject> TVectorMapObject;
     TVectorMapObject mVectorObject;
   protected:
-    virtual TContainer PackInherit();
+    virtual TContainerRise PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
@@ -119,7 +119,7 @@ namespace nsPCS
     TPacket_EnableGameObjects();
     std::vector<TypeID_GameMap> mVectorID_Object;
   protected:
-    virtual TContainer PackInherit();
+    virtual TContainerRise PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
@@ -129,7 +129,7 @@ namespace nsPCS
     TPacket_DisableGameObjects();
     std::vector<TypeID_GameMap> mVectorID_Object;
   protected:
-    virtual TContainer PackInherit();
+    virtual TContainerRise PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
@@ -141,7 +141,7 @@ namespace nsPCS
     TContainer    mDesc;
     TPacket_AddGameItem();
   protected:
-    virtual TContainer PackInherit();
+    virtual TContainerRise PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
@@ -153,7 +153,7 @@ namespace nsPCS
     TContainer    mDesc;
     TPacket_ModifyGameItem();
   protected:
-    virtual TContainer PackInherit();
+    virtual TContainerRise PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
@@ -164,7 +164,7 @@ namespace nsPCS
     std::string   mNameObject;
     TPacket_DeleteGameItem();
   protected:
-    virtual TContainer PackInherit();
+    virtual TContainerRise PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
@@ -181,7 +181,7 @@ namespace nsPCS
 
     TPacket_UpdateGameObjectByPattern();
   protected:
-    virtual TContainer PackInherit();
+    virtual TContainerRise PackInherit();
     virtual void UnpackInherit( char* p, int size );
   };
   //-----------------------------------------------------------------
@@ -191,7 +191,7 @@ namespace nsPCS
     TPacket_GameImpl();
     // empty! add some members!
   protected:
-    virtual TContainer PackInherit(){return TContainer();}
+    virtual TContainerRise PackInherit(){return TContainerRise();}
     virtual void UnpackInherit( char* p, int size ){}
   };
   //-----------------------------------------------------------------

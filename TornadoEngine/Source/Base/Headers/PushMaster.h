@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,6 +16,7 @@ See for more information License.h.
 
 #include "BreakPacket.h"
 #include "TypeDef.h"
+#include "ContainerRise.h"
 
 class ISerializable;
 
@@ -23,153 +24,141 @@ class DllExport TPushMaster
 {
   TBreakPacket mCollectorMember;
 public:
+  void CopyInBuffer( TContainerRise& receiveBuffer, int offset = 0 );
   void Clear();
-  TContainer GetBuffer();
 public:
   //bool, unsigned char, char, unsigned short, short, unsigned int, int, float, double
   template<typename T>
-  void Push( T& t );
+  void Push(const T& t);
   //std::string
-  void PushStr( std::string& str );
+  void PushStr(const std::string& str);
   //ISerializable
   template<typename T>
-  void PushSer( T& serializable );
+  void PushSer(const T& serializable);
   //ISerializable*
-  void PushPtrSer( ISerializable* ser );
+  template<typename Type>
+  void PushPtrSer(const Type* t);
 
   //std::vector/list
   // unsigned char, char, unsigned short, short, unsigned int, int, float, double
   template<typename T, typename Array>
-  void PushArray( Array& array );
+  void PushArray(const Array& array);
   //std::vector/list/set<std::string>
   template<typename Array>
-  void PushArrayStr( Array& array );
+  void PushArrayStr(const Array& array);
   //std::vector/list/set<ISerializable>
   template<typename T, typename Array>
-  void PushArraySer( Array& array );
+  void PushArraySer(const Array& array);
   //std::vector/list/set<ISerializable*>
   template<typename Array>
-  void PushArrayPtrSer( Array& array );
+  void PushArrayPtrSer(const Array& array);
 
   //std::set
   // unsigned char, char, unsigned short, short, unsigned int, int, float, double
   template<typename T, typename Set>
-  void PushSet(Set& s);
+  void PushSet(const Set& s);
   //std::set<std::string>
   template<typename Set>
-  void PushSetStr(Set& s);
+  void PushSetStr(const Set& s);
   //std::set<ISerializable>
   template<typename T, typename Set>
-  void PushSetSer(Set& s);
+  void PushSetSer(const Set& s);
   //std::set<ISerializable*>
   template<typename Set>
-  void PushSetPtrSer(Set& s);
+  void PushSetPtrSer(const Set& s);
 
   // std::map
   template<typename Key, typename Value, typename Map>
-  void PushMap__( Map& m );
+  void PushMap__(const Map& m);
   template<typename Key, typename Map>
-  void PushMap_Str( Map& m );
+  void PushMap_Str(const Map& m);
   template<typename Key, typename Value, typename Map>
-  void PushMap_Ser( Map& m );
+  void PushMap_Ser(const Map& m);
   template<typename Key, typename Map>
-  void PushMap_PtrSer( Map& m );
+  void PushMap_PtrSer(const Map& m);
 
   template<typename Value, typename Map>
-  void PushMapStr_( Map& m );
+  void PushMapStr_(const Map& m);
   template<typename Map>
-  void PushMapStrStr( Map& m );
+  void PushMapStrStr(const Map& m);
   template<typename Value, typename Map>
-  void PushMapStrSer( Map& m );
+  void PushMapStrSer(const Map& m);
   template<typename Map>
-  void PushMapStrPtrSer( Map& m );
+  void PushMapStrPtrSer(const Map& m);
 
   template<typename Key, typename Value, typename Map>
-  void PushMapSer_( Map& m );
+  void PushMapSer_(const Map& m);
   template<typename Key, typename Map>
-  void PushMapSerStr( Map& m );
+  void PushMapSerStr(const Map& m);
   template<typename Key, typename Value, typename Map>
-  void PushMapSerSer( Map& m );
+  void PushMapSerSer(const Map& m);
   template<typename Key, typename Map>
-  void PushMapSerPtrSer( Map& m );
+  void PushMapSerPtrSer(const Map& m);
 private:
-  void PushSize( int& size );
+  void PushSize(const int& size);
 };
 //------------------------------------------------------------------------
 template<typename T>
-void TPushMaster::Push( T& t )
-{ 
+void TPushMaster::Push(const T& t)
+{
   mCollectorMember.PushBack((char*)&t, sizeof(T));
 }
 //------------------------------------------------------------------------
 template<typename T>
-void TPushMaster::PushSer( T& serializable )
+void TPushMaster::PushSer(const T& serializable)
 {
-  serializable.Serialize( this );
+  serializable.Serialize(this);
 }
 //------------------------------------------------------------------------
+template<typename Type>
+void TPushMaster::PushPtrSer(const Type* t)
+{
+  unsigned char isNotNULL = 1;
+  if (t == NULL)
+    isNotNULL = 0;
+  Push(isNotNULL);
+  if (t)
+    t->Serialize(this);
+}
+//-----------------------------------------------------------------------
 template<typename T, typename Array>
-void TPushMaster::PushArray( Array& array )
+void TPushMaster::PushArray(const Array& array)
 {
   int size = array.size();
-  PushSize( size );
-  Array::iterator bit = array.begin();
-  Array::iterator eit = array.end();
-  while( bit != eit )
-  {
-    T& t = *bit;
-    Push<T>( t );
-    bit++;
-  }
+  Push(size);
+  for (auto& el : array)
+    Push(el);
 }
 //------------------------------------------------------------------------
 template<typename Array>
-void TPushMaster::PushArrayStr( Array& array )
+void TPushMaster::PushArrayStr(const Array& array)
 {
   int size = array.size();
-  PushSize( size );
-  Array::iterator bit = array.begin();
-  Array::iterator eit = array.end();
-  while( bit != eit )
-  {
-    std::string& t = *bit;
-    PushStr( t );
-    bit++;
-  }
+  Push(size);
+  for (auto& el : array)
+    PushStr(el);
 }
 //------------------------------------------------------------------------
 template<typename T, typename Array>
-void TPushMaster::PushArraySer( Array& array )
+void TPushMaster::PushArraySer(const Array& array)
 {
   int size = array.size();
-  PushSize( size );
-  Array::iterator bit = array.begin();
-  Array::iterator eit = array.end();
-  while( bit != eit )
-  {
-    T& t = *bit;
-    PushSer<T>( t );
-    bit++;
-  }
+  Push(size);
+  for (auto& el : array)
+    PushSer(el);
 }
 //------------------------------------------------------------------------
 template<typename Array>
-void TPushMaster::PushArrayPtrSer( Array& array )
+void TPushMaster::PushArrayPtrSer(const Array& array)
 {
   int size = array.size();
-  PushSize( size );
-  Array::iterator bit = array.begin();
-  Array::iterator eit = array.end();
-  while( bit != eit )
-  {
-    ISerializable* t = *bit;
-    PushPtrSer( t );
-    bit++;
-  }
+  Push(size);
+  for (auto& el : array)
+    PushPtrSer(el);
 }
 //------------------------------------------------------------------------
 template<typename T, typename Set>
-void TPushMaster::PushSet(Set& s)
+void TPushMaster::PushSet(const Set& s)
 {
   int size = s.size();
   PushSize(size);
@@ -184,7 +173,7 @@ void TPushMaster::PushSet(Set& s)
 }
 //------------------------------------------------------------------------
 template<typename Set>
-void TPushMaster::PushSetStr(Set& s)
+void TPushMaster::PushSetStr(const Set& s)
 {
   int size = s.size();
   PushSize(size);
@@ -199,7 +188,7 @@ void TPushMaster::PushSetStr(Set& s)
 }
 //------------------------------------------------------------------------
 template<typename T, typename Set>
-void TPushMaster::PushSetSer(Set& s)
+void TPushMaster::PushSetSer(const Set& s)
 {
   int size = s.size();
   PushSize(size);
@@ -214,232 +203,181 @@ void TPushMaster::PushSetSer(Set& s)
 }
 //------------------------------------------------------------------------
 template<typename Set>
-void TPushMaster::PushSetPtrSer(Set& s)
+void TPushMaster::PushSetPtrSer(const Set& s)
 {
   int size = s.size();
   PushSize(size);
-  Set::iterator bit = s.begin();
-  Set::iterator eit = s.end();
-  while (bit != eit)
+  for (auto& bit : s)
   {
-    ISerializable* t = *bit;
-    PushPtrSer(t);
-    bit++;
+    PushPtrSer(bit);
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPushMaster::PushMap__( Map& m )
+void TPushMaster::PushMap__(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  Push(size);
+  for (auto& bit : m)
   {
-    Key& key = *((Key*)&(bit->first));
-    Push<Key>( key );
-    Value& value = bit->second;
-    Push<Value>( value );
-    bit++;
+    auto& key = *((Key*)&(bit.first));
+    Push(key);
+    auto& value = bit.second;
+    Push(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Map>
-void TPushMaster::PushMap_Str( Map& m )
+void TPushMaster::PushMap_Str(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    Key& key = *((Key*)&(bit->first));
-    Push<Key>( key );
-    std::string& value = bit->second;
-    PushStr( value );
-    bit++;
+    auto& key = *((Key*)&(bit.first));
+    Push(key);
+    const std::string& value = bit.second;
+    PushStr(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPushMaster::PushMap_Ser( Map& m )
+void TPushMaster::PushMap_Ser(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    Key& key = *((Key*)&(bit->first));
-    Push<Key>( key );
-    Value& value = bit->second;
-    PushSer<Value>( value );
-    bit++;
+    auto& key = *((Key*)&(bit.first));
+    Push(key);
+    auto& value = bit.second;
+    PushSer(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Map>
-void TPushMaster::PushMap_PtrSer( Map& m )
+void TPushMaster::PushMap_PtrSer(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    Key& key = *((Key*)&(bit->first));
-    Push<Key>( key );
-    ISerializable* value = bit->second;
-    PushPtrSer( value );
-    bit++;
+    auto& key = *((Key*)&(bit.first));
+    Push(key);
+    auto* value = bit.second;
+    PushPtrSer(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Value, typename Map>
-void TPushMaster::PushMapStr_( Map& m )
+void TPushMaster::PushMapStr_(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    std::string& key = *((std::string*)&(bit->first));
-    PushStr( key );
-    Value& value = bit->second;
-    Push<Value>( value );
-    bit++;
+    const std::string& key = *((std::string*)&(bit.first));
+    PushStr(key);
+    auto& value = bit.second;
+    Push(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Map>
-void TPushMaster::PushMapStrStr( Map& m )
+void TPushMaster::PushMapStrStr(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto & bit : m)
   {
-    std::string& key = *((std::string*)&(bit->first));
-    PushStr( key );
-    std::string& value = bit->second;
-    PushStr( value );
-    bit++;
+    const std::string& key = *((std::string*)&(bit.first));
+    PushStr(key);
+    const std::string& value = bit.second;
+    PushStr(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Value, typename Map>
-void TPushMaster::PushMapStrSer( Map& m )
+void TPushMaster::PushMapStrSer(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    std::string& key = *((std::string*)&(bit->first));
-    PushStr( key );
-    Value& value = bit->second;
-    PushSer( value );
-    bit++;
+    const std::string& key = *((std::string*)&(bit.first));
+    PushStr(key);
+    auto& value = bit.second;
+    PushSer(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Map>
-void TPushMaster::PushMapStrPtrSer( Map& m )
+void TPushMaster::PushMapStrPtrSer(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    std::string& key = *((std::string*)&(bit->first));
-    PushStr( key );
-    ISerializable* value = bit->second;
-    PushPtrSer( value );
-    bit++;
+    const std::string& key = *((std::string*)&(bit.first));
+    PushStr(key);
+    auto* value = bit.second;
+    PushPtrSer(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPushMaster::PushMapSer_( Map& m )
+void TPushMaster::PushMapSer_(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    Key& key = *((Key*)&(bit->first));
-    PushSer( key );
-    Value& value = bit->second;
-    Push( value );
-    bit++;
+    auto& key = *((Key*)&(bit.first));
+    PushSer(key);
+    auto& value = bit.second;
+    Push(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Map>
-void TPushMaster::PushMapSerStr( Map& m )
+void TPushMaster::PushMapSerStr(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    Key& key = *((Key*)&(bit->first));
-    PushSer( key );
-    std::string& value = bit->second;
-    PushStr( value );
-    bit++;
+    auto& key = *((Key*)&(bit.first));
+    PushSer(key);
+    const std::string& value = bit.second;
+    PushStr(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPushMaster::PushMapSerSer( Map& m )
+void TPushMaster::PushMapSerSer(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    Key& key = *((Key*)&(bit->first));
-    PushSer( key );
-    Value& value = bit->second;
-    PushSer( value );
-    bit++;
+    auto& key = *((Key*)&(bit.first));
+    PushSer(key);
+    auto& value = bit.second;
+    PushSer(value);
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Map>
-void TPushMaster::PushMapSerPtrSer( Map& m )
+void TPushMaster::PushMapSerPtrSer(const Map& m)
 {
   int size = m.size();
-  PushSize( size );
-  typedef Map::iterator MapIt;
-  MapIt bit = m.begin();
-  MapIt eit = m.end();
-  while( bit != eit )
+  PushSize(size);
+  for (auto& bit : m)
   {
-    Key& key = *((Key*)&(bit->first));
-    PushSer( key );
-    ISerializable* value = bit->second;
-    PushPtrSer( value );
+    auto& key = *((Key*)&(bit.first));
+    PushSer(key);
+    auto* value = bit.second;
+    PushPtrSer(value);
   }
 }
 //------------------------------------------------------------------------

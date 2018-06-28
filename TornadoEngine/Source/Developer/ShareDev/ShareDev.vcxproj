@@ -22,6 +22,7 @@
     <ProjectGuid>{59260B4A-EC18-46A5-B8B5-1A77C507BEE9}</ProjectGuid>
     <RootNamespace>ShareDev</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -66,23 +67,25 @@
     <_ProjectFileVersion>15.0.27130.2020</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>../../../Exe\</OutDir>
-    <IntDir>../../../Temp/$(Configuration)/$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>../../../Exe\</OutDir>
-    <IntDir>../../../Temp/$(Configuration)/$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -99,12 +102,12 @@
       <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine_d.lib;BulletDynamics_d.lib;BulletCollision_d.lib;LinearMath_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;cg.lib;Base_d.lib;GameEngine_d.lib;PhysicEngine_d.lib;Common_d.lib;Platforms_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
-      <AdditionalLibraryDirectories>../../../Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine_d.lib;BulletDynamics_d.lib;BulletCollision_d.lib;LinearMath_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;cg.lib;Base_d.lib;GameEngine_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;Common_d.lib;Platforms_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>..\..\..\Lib\$(TargetName)_d.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -114,7 +117,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;../../Base/Headers;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;../../Base/Headers;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -125,12 +128,12 @@
       <DisableSpecificWarnings>4251;4275;4005;4244;4250;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine_d.lib;BulletDynamics_d.lib;BulletCollision_d.lib;LinearMath_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;cg.lib;Base_d.lib;GameEngine_d.lib;PhysicEngine_d.lib;Common_d.lib;Platforms_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
-      <AdditionalLibraryDirectories>../../../Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine_d.lib;BulletDynamics_d.lib;BulletCollision_d.lib;LinearMath_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;cg.lib;Base_d.lib;GameEngine_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;Common_d.lib;Platforms_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>..\..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -148,13 +151,13 @@
       <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;cg.lib;Base.lib;GameEngine.lib;PhysicEngine.lib;Common.lib;Platforms.lib;NetTransport.lib;MMOEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../../Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;cg.lib;Base.lib;GameEngine.lib;GraphicEngine.lib;PhysicEngine.lib;Common.lib;Platforms.lib;NetTransport.lib;MMOEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>..\..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -165,7 +168,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;../../Base/Headers;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;../../Base/Headers;../../GameEngine;../../Modules/MMOEngine/Include;../../Modules/NetTransport;../../Modules/GraphicEngine;../../Modules/PhysicEngine;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -175,13 +178,13 @@
       <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;cg.lib;Base.lib;GameEngine.lib;PhysicEngine.lib;Common.lib;Platforms.lib;NetTransport.lib;MMOEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../../Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;cg.lib;Base.lib;GameEngine.lib;GraphicEngine.lib;PhysicEngine.lib;Common.lib;Platforms.lib;NetTransport.lib;MMOEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>..\..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -477,28 +480,6 @@
     <ClInclude Include="Share\Resources.h" />
     <ClInclude Include="Share\ResourcesGraphicEngine.h" />
     <ClInclude Include="Test\ShowTankWoT_test.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Game\Game.vcxproj">
-      <Project>{d2602f61-b76e-4537-a9a2-1a16d3debba5}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\GraphicEngine\GraphicEngine.vcxproj">
-      <Project>{fb6c35a2-199e-44bc-9995-ecb0975d993f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\MMOEngine\MMOEngine.vcxproj">
-      <Project>{0e4224f3-ae4d-4e4c-914c-800a97aa5594}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\NetTransport\NET_Transport.vcxproj">
-      <Project>{e7924a0d-d904-459d-9a0f-2d3c2f4a9d35}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Modules\PhysicEngine\PhysicEngine.vcxproj">
-      <Project>{4540bc7a-5138-426f-b74c-edfbd5348645}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

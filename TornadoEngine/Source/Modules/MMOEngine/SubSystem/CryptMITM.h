@@ -18,7 +18,7 @@ public:
   bool Calc(void* rsa, int size_rsa, 
             void* pLogin, int sizeLogin,        
             void* pPassword, int sizePassword, 
-            TContainer& c_result);
+            TContainerRise& c_result);
 };
 
 #endif

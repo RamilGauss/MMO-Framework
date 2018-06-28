@@ -6,9 +6,8 @@ See for more information License.h.
 */
 
 #include "PopMaster.h"
-#include "ISerializable.h"
 
-void TPopMaster::SetBuffer( TContainer* pC, int offset )
+void TPopMaster::SetBuffer( TContainerRise* pC, int offset )
 {
   mPtrData = pC->GetPtr();
   mSizeData = pC->GetSize();

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="HistoryPacketTCP.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost_Implementation\INetControl.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MakerNetTransport.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost_Implementation\NetControlAcceptor.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost_Implementation\NetControlTCP.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost_Implementation\NetControlUDP.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost_Implementation\NetDeviceAcceptor.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost_Implementation\NetDeviceTCP.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost_Implementation\NetDeviceUDP.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost_Implementation\NetTransport_Boost.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost_Implementation\NetWorkThread.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HeaderTCP.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="HistoryPacketTCP.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\INetControl.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\INetDevice.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MakerNetTransport.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\NetControlAcceptor.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\NetControlTCP.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\NetControlUDP.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\NetDeviceAcceptor.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\NetDeviceTCP.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\NetDeviceUDP.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\NetTransport_Boost.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost_Implementation\NetWorkThread.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{1c3f9014-df3b-4f64-b25a-7bab31031ace}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{0370391f-85f3-4925-86f4-e894b072dd6f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

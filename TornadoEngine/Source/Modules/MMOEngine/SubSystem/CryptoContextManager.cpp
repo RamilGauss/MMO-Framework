@@ -63,7 +63,7 @@ void TCryptoContextManager::SendAES_Key(TIP_Port& ip_port, TContainer& c_encrypt
     BL_FIX_BUG();
     return;
   }
-  TContainer c_key;
+  TContainerRise c_key;
 
   pCtx->GetSendAES()->GenerateKey();
   pCtx->GetSendAES()->GetPublicKey( c_key );
@@ -102,13 +102,8 @@ void TCryptoContextManager::Send(TIP_Port& ip_port, TBreakPacket& bp, TContainer
   char crc8;
   bp.PushFront(&crc8,sizeof(crc8));
   // собрать все
-  bp.Collect();
-  // отдать под контроль контейнеру
-  TContainer c_original;
-  c_original.EntrustByCount((char*)bp.GetCollectPtr(), bp.GetSize());
-  // освободить break packet от памяти
-  bp.UnlinkCollect();
-  bp.Reset();
+  TContainerRise c_original;
+  bp.CopyInBuffer(c_original);
 
   Encrypt(pCtx->GetSendAES(), c_original, c_encrypt);
 }
@@ -161,7 +156,7 @@ void TCryptoContextManager::Remove(TIP_Port& ip_port)
 }
 //-----------------------------------------------------------------
 void TCryptoContextManager::Encrypt(TCryptoRSA_Impl* pRSA, 
-                                    TContainer& c_original, TContainer& c_encrypt)
+                                    TContainerRise& c_original, TContainer& c_encrypt)
 {
   pRSA->Encrypt(c_original.GetPtr(), c_original.GetSize(), c_encrypt);
 }
@@ -174,7 +169,7 @@ bool TCryptoContextManager::Decrypt(TCryptoRSA_Impl* pRSA,
 }
 //-----------------------------------------------------------------
 void TCryptoContextManager::Encrypt(TCryptoAES_Impl* pAES, 
-                                    TContainer& c_original, TContainer& c_encrypt)
+                                    TContainerRise& c_original, TContainer& c_encrypt)
 {
   // c_original содержит данные и 1 байт под контрольную сумму,
   // c_original.size() - 1 - считаем CRC8 и помещаем в первый байт

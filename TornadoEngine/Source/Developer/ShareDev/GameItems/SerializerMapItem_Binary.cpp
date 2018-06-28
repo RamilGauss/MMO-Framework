@@ -22,7 +22,7 @@ TSerializerMapItem_Binary::~TSerializerMapItem_Binary()
 
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerMapItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
+void TSerializerMapItem_Binary::PackItem(TBaseItem* pItem, TContainerRise& cBinOut)
 {
   TMapItem* pMapItem = (TMapItem*)pItem;
   Reset();

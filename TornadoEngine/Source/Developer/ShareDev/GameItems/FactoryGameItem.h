@@ -13,6 +13,7 @@ See for more information License.h.
 #include "TypeDef.h"
 
 #include "ContainerTypes.h"
+#include "ContainerRise.h"
 
 struct TBaseItem;
 class TStorageGameItem_XML;
@@ -68,8 +69,8 @@ public:
   // из упакованного описания добавить в кэш с заменой, старый итэм уничтожается
   TBaseItem* AddFromBinary(void* pIn, int sizeIn);
   // формирование блока памяти, содержащий упакованное описание итэма
-  bool MakeBinary(TypeGameItem type, std::string& name, TContainer& cBinOut);
-  bool MakeBinary(TBaseItem* pItem, TContainer& cBinOut);
+  bool MakeBinary(TypeGameItem type, std::string& name, TContainerRise& cBinOut);
+  bool MakeBinary(TBaseItem* pItem, TContainerRise& cBinOut);
   // удалить только из кэша
   bool Delete(TypeGameItem type, std::string& name);
   bool Delete(TBaseItem* pItem);

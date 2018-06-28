@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -26,60 +26,60 @@ protected:
 
   TBreakPacket mCollect;
 public:
-  TBaseSerializerItem_Binary(int type);
+  TBaseSerializerItem_Binary( int type );
   virtual ~TBaseSerializerItem_Binary();
 
   int Type();
 
   // упаковать итэм в контейнер
-  virtual void PackItem(TBaseItem* pItem, TContainer& cBinOut)    = 0;
+  virtual void PackItem( TBaseItem* pItem, TContainerRise& cBinOut ) = 0;
   // распаковать упакованный в итэм
-  virtual bool UnpackItem(TBaseItem* pItem, void* pIn, int sizeIn) = 0;
+  virtual bool UnpackItem( TBaseItem* pItem, void* pIn, int sizeIn ) = 0;
 
-  static bool ResolveType(void* pIn, int sizeIn, int& type);
+  static bool ResolveType( void* pIn, int sizeIn, int& type );
 protected:
   // базовые операции
   void Reset();
 
   template <typename T>
-  void Push(T v);
+  void Push( T v );
   template <typename T>
-  void Push(T* pT);
+  void Push( T* pT );
 
   template <typename T>
-  bool Pop(T& t);
+  bool Pop( T& t );
 
-  void BeginUnpack(char* pIn, int sizeIn);
+  void BeginUnpack( char* pIn, int sizeIn );
 
-  void Collect(TContainer& cOut);
+  void Collect( TContainerRise& cOut );
 protected:
   // производные
   void PushType();
-  void PushStr(std::string& s);
+  void PushStr( std::string& s );
 
   bool PopType();
-  bool PopStr(std::string& s);
+  bool PopStr( std::string& s );
 };
 //------------------------------------------------------------------------------
 template <typename T>
-void TBaseSerializerItem_Binary::Push(T t)
+void TBaseSerializerItem_Binary::Push( T t )
 {
-  mCollect.PushBack((char*)&t, sizeof(T));
+  mCollect.PushBack( (char*) &t, sizeof( T ) );
 }
 //------------------------------------------------------------------------------
 template <typename T>
-void TBaseSerializerItem_Binary::Push(T* pT)
+void TBaseSerializerItem_Binary::Push( T* pT )
 {
-  mCollect.PushBack((char*)pT, sizeof(T));
+  mCollect.PushBack( (char*) pT, sizeof( T ) );
 }
 //------------------------------------------------------------------------------
 template <typename T>
-bool TBaseSerializerItem_Binary::Pop(T& t)
+bool TBaseSerializerItem_Binary::Pop( T& t )
 {
-  int sizeT = sizeof(T);
+  int sizeT = sizeof( T );
   if( mUnpackSize < sizeT )
     return false;
-  memcpy(&t, mUnpackData, sizeT);
+  memcpy( &t, mUnpackData, sizeT );
   mUnpackData += sizeT;
   mUnpackSize -= sizeT;
   return true;

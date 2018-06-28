@@ -81,7 +81,7 @@ TBaseItem* TFactoryGameItem::AddFromBinary(void* pIn, int sizeIn)
   return pItem;
 }
 //-----------------------------------------------------------------------------
-bool TFactoryGameItem::MakeBinary(TypeGameItem type, std::string& name, TContainer& cBinOut)
+bool TFactoryGameItem::MakeBinary(TypeGameItem type, std::string& name, TContainerRise& cBinOut)
 {
   TBaseItem* pItem = Get(type, name);
   if( pItem==NULL )
@@ -89,7 +89,7 @@ bool TFactoryGameItem::MakeBinary(TypeGameItem type, std::string& name, TContain
   return MakeBinary(pItem, cBinOut);
 }
 //-----------------------------------------------------------------------------
-bool TFactoryGameItem::MakeBinary(TBaseItem* pItem, TContainer& cBinOut)
+bool TFactoryGameItem::MakeBinary(TBaseItem* pItem, TContainerRise& cBinOut)
 {
   mMngSerBin->Pack(pItem, cBinOut);
   return true;

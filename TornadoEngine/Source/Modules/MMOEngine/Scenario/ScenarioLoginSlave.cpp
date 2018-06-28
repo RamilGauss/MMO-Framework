@@ -38,7 +38,7 @@ void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port,
   }
   // закрыть соединение
   Context()->GetMS()->CloseSession(Context()->GetID_Session());
-  TContainer cMITM;
+  TContainerRise cMITM;
   mBP.Reset();
   if((Context()->GetMS()->GetUseCryptTCP())&&
      (pLogin!=NULL)&&(sizeLogin>0)&&(pPassword!=NULL)&&(sizePassword>0))

@@ -19,7 +19,7 @@ TSerializerTableSoundItem_Binary::~TSerializerTableSoundItem_Binary()
 
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerTableSoundItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
+void TSerializerTableSoundItem_Binary::PackItem(TBaseItem* pItem, TContainerRise& cBinOut)
 {
 
 }

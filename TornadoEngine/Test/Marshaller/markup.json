@@ -1,0 +1,60 @@
+﻿{
+	"classPrefix"       : "T",
+	"serializationType" : [ "JSON", "Binary" ],
+	"pathToSaveGeneratedFiles" : 
+	{ 
+		"headers" : "Headers", 
+		"sources" : "Sources" 
+	},
+	"structs" :
+	{
+		"MyStruct" : 
+		{
+			"bool"           : [ "a" ],
+			"unsigned char"  : [ "b" ],
+			"char"           : [ "c" ]
+		}
+	},
+	"classes" : 
+	{
+		"MyClass":
+		{
+			"bool"           : [ "a" ],
+			"unsigned char"  : [ "b" ],
+			"char"           : [ "c" ],
+			"unsigned short" : [ "d" ],
+			"short"          : [ "e" ],
+			"unsigned int"   : [ "f" ],
+			"int"            : [ "h" ],
+			"float"          : [ "g" ],
+			"double"         : [ "k" ],
+			"string"         : [ "s" ],
+			"vector" : 
+			{
+				"string" : [ "mVecStr" ]
+			},
+			"list" : 
+			{
+				"string" : [ "mListStr" ]
+			},
+			"set" : 
+			{
+				"string" : [ "mSetStr" ]
+			},
+			"map" : 
+			{
+				"int" :
+				{
+					"int"    : [ "mMapID_Index" ],
+					"string" : [ "mMapID_Name" ]
+				}
+			},
+			"OtherClass" : [ "other" ],
+			"OtherClass*" : [ "pOther" ]
+		},
+		"OtherClass":
+		{
+			"bool" : [ "flagA", "flagB" ]
+		}
+	}
+}

@@ -11,6 +11,7 @@ See for more information License.h.
 #include "IScenarioContext.h"
 #include "BreakPacket.h"
 #include <list>
+#include "MemoryPool.h"
 
 namespace nsMMOEngine
 {
@@ -20,21 +21,18 @@ namespace nsMMOEngine
     struct TSavePacket
     {
       bool check;
-      TContainer c;
+      TContainerRise c;
     };
 
-    typedef std::list<TSavePacket*> TListPtr;
+    typedef std::list<TMemoryPool<TSavePacket>::TDescPointer*> TListPtr;
     TListPtr mListSave;
 
   public:
     TContextScFlow();
-    virtual ~TContextScFlow();
 
     void Send( TBreakPacket& bp, bool check);
     void SaveBreakPacket(TBreakPacket& bp, bool check);
     void SendAndRemoveFirst();
-  private:
-    void Done();
   };
 }  
 #endif

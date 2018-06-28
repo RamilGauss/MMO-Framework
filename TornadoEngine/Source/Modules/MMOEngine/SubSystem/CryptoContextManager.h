@@ -76,10 +76,10 @@ protected:
 
   void Done();
 protected:
-  void Encrypt(TCryptoRSA_Impl* pRSA, TContainer& c_original, TContainer& c_encrypt);
+  void Encrypt(TCryptoRSA_Impl* pRSA, TContainerRise& c_original, TContainer& c_encrypt);
   bool Decrypt(TCryptoRSA_Impl* pRSA, void* pEncrypt, int sizeEncrypt,  TContainer& c_decrypt);
   
-  void Encrypt(TCryptoAES_Impl* pAES, TContainer& c_original, TContainer& c_encrypt);
+  void Encrypt(TCryptoAES_Impl* pAES, TContainerRise& c_original, TContainer& c_encrypt);
   bool Decrypt(TCryptoAES_Impl* pAES, 
                void* pEncrypt, int sizeEncrypt,  
                TContainerPtr& c_decrypt);

@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -25,37 +25,37 @@ THandlerMMO::THandlerMMO()
 void THandlerMMO::Work()
 {
   nsEvent::TEvent* pEvent = GetEvent();
-  while(pEvent)
+  while( pEvent )
   {
     // обработать событие
-    HandleFromMMOEngine(pEvent);
+    HandleFromMMOEngine( pEvent );
     delete pEvent;
     pEvent = GetEvent();
   }
 }
 //-----------------------------------------------------------------------------------
-string THandlerMMO::GetStrError(int code)
+string THandlerMMO::GetStrError( int code )
 {
   string s = "\tError ";
-  switch(code)
+  switch( code )
   {
     // open
     case nsMMOEngine::OpenClient_MoreThenOneSubNet:
       s += "OpenClient_MoreThenOneSubNet";
       break;
-    // CreateGroup
+      // CreateGroup
     case nsMMOEngine::CreateGroup_ClientNotExist:
       s += "CreateGroup_ClientNotExist";
       break;
-    // LoginSlave
+      // LoginSlave
     case nsMMOEngine::LoginSlave_MasterNotReady:
       s += "LoginSlave_MasterNotReady";
       break;
     case nsMMOEngine::LoginSlave_NoAnswerFromMaster:
       s += "LoginSlave_NoAnswerFromMaster";
       break;
-    //--------------------------------------
-    // LoginMaster
+      //--------------------------------------
+      // LoginMaster
     case nsMMOEngine::LoginClient_MasterKeyBusy:
       s += "LoginClient_MasterKeyBusy";
       break;
@@ -65,8 +65,8 @@ string THandlerMMO::GetStrError(int code)
     case nsMMOEngine::LoginMaster_NoAnswerFromSS:
       s += "LoginMaster_NoAnswerFromSS";
       break;
-    //--------------------------------------
-    // LoginClient
+      //--------------------------------------
+      // LoginClient
     case nsMMOEngine::LoginClient_EmptyLoginPassword:
       s += "LoginClient_EmptyLoginPassword";
       break;
@@ -91,8 +91,8 @@ string THandlerMMO::GetStrError(int code)
     case nsMMOEngine::LoginClient_SuperServerNoAnswer:
       s += "LoginClient_SuperServerNoAnswer";
       break;
-    //--------------------------------------
-    // RCM
+      //--------------------------------------
+      // RCM
     case nsMMOEngine::RCM_ClientNoAnswer:
       s += "RCM_ClientNoAnswer";
       break;

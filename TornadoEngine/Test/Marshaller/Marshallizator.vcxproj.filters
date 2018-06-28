@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{25584f9f-de6e-4850-a0b8-19d8858aec43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files">
+      <UniqueIdentifier>{a61fe90f-f27d-4ce2-bec7-1411fde4c078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Generated files\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedClass.cpp">
+      <Filter>Generated files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass.cpp">
+      <Filter>Generated files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParamClass.cpp">
+      <Filter>Generated files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestClass.cpp">
+      <Filter>Generated files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Marshaller.cpp">
+      <Filter>Generated files\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedClass.h">
+      <Filter>Generated files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass.h">
+      <Filter>Generated files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherClass.h">
+      <Filter>Generated files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParamClass.h">
+      <Filter>Generated files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializableUniqueIdentity.h">
+      <Filter>Generated files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestClass.h">
+      <Filter>Generated files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Marshaller.h">
+      <Filter>Generated files\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

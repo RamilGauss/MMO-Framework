@@ -176,12 +176,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Source\Wrappers\NativeMMOEngineWrapper\NativeMMOEngineWrapper.vcxproj">
-      <Project>{4009c6e6-028d-4d8f-bc10-469cb7bd9905}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

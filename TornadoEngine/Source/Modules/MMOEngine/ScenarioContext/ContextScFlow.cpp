@@ -17,17 +17,6 @@ TContextScFlow::TContextScFlow()
 
 }  
 //------------------------------------------------------------
-TContextScFlow::~TContextScFlow()
-{
-  Done();
-}  
-//------------------------------------------------------------
-void TContextScFlow::Done()
-{
-  BOOST_FOREACH(TSavePacket* pSP,mListSave)
-    delete pSP;
-}
-//------------------------------------------------------------
 void TContextScFlow::Send( TBreakPacket& bp, bool check)
 {
   GetMS()->Send( GetID_Session(), bp, check);
@@ -35,19 +24,12 @@ void TContextScFlow::Send( TBreakPacket& bp, bool check)
 //------------------------------------------------------------
 void TContextScFlow::SaveBreakPacket(TBreakPacket& bp, bool check)
 {
-  TSavePacket* pSP = new TSavePacket;
-  // собрать пакет
-  bp.Collect();
-  // запомнить где находится собранный пакет
-  char* p  = (char*)bp.GetCollectPtr();
-  int size = bp.GetSize();
-  // отцепиться от собранного пакета
-  bp.UnlinkCollect();
-  // отдать на хранение память пакета в контейнер
-  pSP->c.EntrustByCount(p, size);
-  pSP->check = check;
+  auto pDescSP = TMemoryPool<TSavePacket>::Singleton()->Pop(1);
+  auto pSP = pDescSP->p;
 
-  mListSave.push_back(pSP);
+  // собрать пакет
+  bp.CopyInBuffer(pSP->c);
+  mListSave.push_back(pDescSP);
 }
 //-------------------------------------------------------------------------
 void TContextScFlow::SendAndRemoveFirst()
@@ -59,12 +41,14 @@ void TContextScFlow::SendAndRemoveFirst()
     return;
   }
 
-  TSavePacket* pSP = mListSave.front();
+  auto pDescSP = mListSave.front();
   mListSave.pop_front();
 
   mBP.Reset();
+  auto pSP = pDescSP->p;
   mBP.PushFront( pSP->c.GetPtr(), pSP->c.GetSize() );
   Send( mBP, pSP->check);
-  delete pSP;
+
+  TMemoryPool<TSavePacket>::Singleton()->Push(pDescSP);
 }
 //-------------------------------------------------------------------------

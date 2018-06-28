@@ -43,7 +43,7 @@ class DllExport TManagerSerializerItem_Binary
 public:
   TManagerSerializerItem_Binary();
 
-  void Pack(TBaseItem* pItem, TContainer& cBinOut);
+  void Pack(TBaseItem* pItem, TContainerRise& cBinOut);
   bool Unpack(TBaseItem* pItem, void* pIn, int sizeIn);
 
 protected:

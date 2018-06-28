@@ -15,16 +15,15 @@ TBasePacket_PCS::TBasePacket_PCS(unsigned char _type)
   mType = _type;
 }
 //----------------------------------------------------------------------------------
-TContainer TBasePacket_PCS::Pack()
+TContainerRise TBasePacket_PCS::Pack()
 {
   mBP.Reset();
   mBP.PushBack( (char*)&mType, sizeof(mType));
-  TContainer fromInherit = PackInherit();
+  TContainerRise fromInherit = PackInherit();
   mBP.PushBack( fromInherit.GetPtr(), fromInherit.GetSize() );
-  mBP.Collect();
-  TContainer result;
-  result.Entrust( (char*)mBP.GetCollectPtr(), mBP.GetSize() );
-  mBP.UnlinkCollect();
+  
+  TContainerRise result;
+  mBP.CopyInBuffer(result);
   return result;
 }
 //----------------------------------------------------------------------------------

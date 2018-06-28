@@ -47,6 +47,7 @@ SOURCES = \
 ./Sources/FileOperation.cpp \
 ./Sources/FormManager.cpp \
 ./Sources/HiTimer.cpp \
+./Sources/IMarshaller.cpp \
 ./Sources/InfoFile.cpp \
 ./Sources/IXML.cpp \
 ./Sources/LoaderDLL_Unix.cpp \
@@ -101,6 +102,7 @@ HEADERS = \
 ./Headers/HiTimer.h \
 ./Headers/IContainer.h \
 ./Headers/ILoaderDLL.h \
+./Headers/IMarshaller.h \
 ./Headers/InfoFile.h \
 ./Headers/IXML.h \
 ./Headers/License.h \

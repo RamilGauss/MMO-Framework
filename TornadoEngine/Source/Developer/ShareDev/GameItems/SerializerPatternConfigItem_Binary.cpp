@@ -22,7 +22,7 @@ TSerializerPatternConfigItem_Binary::~TSerializerPatternConfigItem_Binary()
 
 }
 //-------------------------------------------------------------------------------------------------------
-void TSerializerPatternConfigItem_Binary::PackItem(TBaseItem* pItem, TContainer& cBinOut)
+void TSerializerPatternConfigItem_Binary::PackItem(TBaseItem* pItem, TContainerRise& cBinOut)
 {
   TPatternConfigItem* pPatternConfigItem = (TPatternConfigItem*)pItem;
   Reset();

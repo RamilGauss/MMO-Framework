@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -10,21 +10,13 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
-
-#include <boost/locale/util.hpp>
-#include <boost/cstdint.hpp>
+#include <string>
 
 class DllExport TConverterLocale
 {
 public:
-  TContainer Convert(std::string coderFrom, std::string coderTo, TContainer& cFrom);
-
-  static TContainer ToUicode(std::string coderFrom, TContainer& cFrom);
-  static TContainer FromUicode(std::string coderTo, TContainer& cTo);
-
-  static std::wstring ConvertUtf8ToUnicode(std::string utf8);
-private:
-  static std::auto_ptr<boost::locale::util::base_converter> MakeCode(std::string code);
+  static TContainer ConvertUtf8ToCp1251( TContainer& utf8 );
+  static std::wstring ConvertUtf8ToCp1251( std::string& utf8 );
 };
 
 

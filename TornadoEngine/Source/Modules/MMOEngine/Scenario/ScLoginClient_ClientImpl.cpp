@@ -66,7 +66,7 @@ void TScLoginClient_ClientImpl::TryLogin(unsigned int ip, unsigned short port, u
   Context()->SetNeedLeaveQueue(false);
   Context()->SetSubNet(subNet);
 
-  TContainer cMITM;
+  TContainerRise cMITM;
   // контейнер для всего пакета
   mBP.Reset();
   if( Context()->GetMS()->GetUseCryptTCP() )

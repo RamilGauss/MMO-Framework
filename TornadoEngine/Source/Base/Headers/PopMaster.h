@@ -26,7 +26,7 @@ class DllExport TPopMaster
   int mSizeData;
   int mOffset;
 public:
-  void SetBuffer( TContainer* pC, int offset );
+  void SetBuffer(TContainerRise* pC, int offset );
   int GetOffset();
 public:
   //bool, unsigned char, char, unsigned short, short, unsigned int, int, float, double

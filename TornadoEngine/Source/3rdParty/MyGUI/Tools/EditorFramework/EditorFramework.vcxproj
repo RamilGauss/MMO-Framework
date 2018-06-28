@@ -22,6 +22,7 @@
     <ProjectGuid>{79A540B7-3E9D-40FF-9A45-DE21947B54B5}</ProjectGuid>
     <RootNamespace>EditorFramework</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -67,22 +68,24 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\Exe\</OutDir>
-    <IntDir>..\..\..\..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\Exe\</OutDir>
-    <IntDir>..\..\..\..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>..\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>..\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -100,11 +103,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Common_d.lib;Platforms_d.lib;MyGUIEngine_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\..\..\Lib;..\..\..\..\..\Lib\$(Configuration);..\..\..\..\..\Exe\$(Configuration);$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(BOOST_PATH)\lib32-msvc-14.1;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>..\..\..\..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -123,12 +126,12 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Common.lib;Platforms.lib;MyGUIEngine.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\..\..\Lib;..\..\..\..\..\Lib\$(Configuration);..\..\..\..\..\Exe\$(Configuration);$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(BOOST_PATH)\lib32-msvc-14.1;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>..\..\..\..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -138,7 +141,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;EDITORFRAMEWORK_EXPORTS;MYGUI_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -150,11 +153,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Common_d.lib;Platforms_d.lib;MyGUIEngine_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName)_d.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\..\..\Lib;..\..\..\..\..\Lib\$(Configuration);..\..\..\..\..\Exe\$(Configuration);$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>..\..\..\..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -165,7 +168,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;EDITORFRAMEWORK_EXPORTS;MYGUI_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -176,12 +179,12 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Common.lib;Platforms.lib;MyGUIEngine.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\..\..\Lib;..\..\..\..\..\Lib\$(Configuration);..\..\..\..\..\Exe\$(Configuration);$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>..\..\..\..\..\Lib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -349,16 +352,6 @@
     <ClInclude Include="UniqueNamePropertyInitialisator.h" />
     <ClInclude Include="VerticalSelectorBlackControl.h" />
     <ClInclude Include="VerticalSelectorControl.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.vcxproj">
-      <Project>{2effbfcf-e794-43ad-adec-8f0e60a00b66}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Platforms\Platforms.vcxproj">
-      <Project>{d2685f5f-4ec8-4e06-99b5-9db122db9413}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

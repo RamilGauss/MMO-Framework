@@ -13,7 +13,7 @@ See for more information License.h.
 bool TCryptMITM::Calc(void* rsa, int size_rsa, 
                       void* pLogin, int sizeLogin,
                       void* pPassword, int sizePassword, 
-                      TContainer& c_result)
+                      TContainerRise& c_result)
 {
   TContainer cAES_RSA;
   // зашифровать публичный ключ RSA с помощью AES, используя в качестве ключа пароль
@@ -34,11 +34,7 @@ bool TCryptMITM::Calc(void* rsa, int size_rsa,
   char lenLogin = sizeLogin;
   mResultBP.PushFront(&lenLogin, sizeof(lenLogin));
   // собрать
-  mResultBP.Collect();
-  // отдать собранный пакет
-  c_result.Entrust((char*)mResultBP.GetCollectPtr(), mResultBP.GetSize());
-  // отцепиться
-  mResultBP.UnlinkCollect();
+  mResultBP.CopyInBuffer(c_result);
   return true;
 }
 //-------------------------------------------------------------------------------------------------------
