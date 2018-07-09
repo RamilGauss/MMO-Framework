@@ -7,7 +7,6 @@ See for more information License.h.
 
 #include "DialogOpenSave.h"
 #include "Settings.h"
-#include <boost/foreach.hpp>
 
 TDialogOpenSave::TDialogOpenSave()
 {
@@ -32,7 +31,7 @@ void TDialogOpenSave::Init(TInitStruct& initStruct)
   bAction->setCaption(mInitStruct.nameButton.data());
 
   lbItems->removeAllItems();
-  BOOST_FOREACH( std::string& item, mInitStruct.vecItems )
+  for( auto& item : mInitStruct.vecItems )
     lbItems->addItem(item);
   
   if( mInitStruct.currentItem==-1 )

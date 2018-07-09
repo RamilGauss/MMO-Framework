@@ -26,6 +26,9 @@
     <ClCompile Include="..\Share\HandlerMMO.cpp">
       <Filter>Share</Filter>
     </ClCompile>
+    <ClCompile Include="..\Share\CommonParam.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HandlerMMO_Master.h">

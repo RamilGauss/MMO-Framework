@@ -36,9 +36,9 @@ bool TManagerRecommutation::FindSessionByClientKey(unsigned int key,
   return true;
 }
 //----------------------------------------------------------------------------------
-int TManagerRecommutation::GetCountClientBySessionSlave(unsigned int id_session)
+int TManagerRecommutation::GetCountClientBySessionSlave(unsigned int sessionID)
 {
-  TMapUintSetIt fit = mMapSlave_SetClient.find(id_session);
+  TMapUintSetIt fit = mMapSlave_SetClient.find(sessionID);
   if(fit==mMapSlave_SetClient.end())
     return 0;
 
@@ -46,11 +46,11 @@ int TManagerRecommutation::GetCountClientBySessionSlave(unsigned int id_session)
   return count;
 }
 //----------------------------------------------------------------------------------
-bool TManagerRecommutation::GetClientKeyByIndex(unsigned int id_session, 
+bool TManagerRecommutation::GetClientKeyByIndex(unsigned int sessionID, 
                                                 int index, 
                                                 unsigned int& key)
 {
-  TMapUintSetIt fit = mMapSlave_SetClient.find(id_session);
+  TMapUintSetIt fit = mMapSlave_SetClient.find(sessionID);
   if(fit==mMapSlave_SetClient.end())
     return false;
 
@@ -125,14 +125,14 @@ void TManagerRecommutation::DeleteByClientKey(unsigned int key)
 }
 //----------------------------------------------------------------------------------
 void TManagerRecommutation::AddClientKeyBySession(unsigned int key, 
-                                                  unsigned int id_session,
+                                                  unsigned int sessionID,
                                                   Type type)
 {
    //добавить Slave, может его еще не добавляли
    //в случае существования insert проигнорирует попытку вставки
-  mMapSlave_SetClient.insert(TMapUintSet::value_type(id_session, TSetClient()));
+  mMapSlave_SetClient.insert(TMapUintSet::value_type(sessionID, TSetClient()));
 
-  TMapUintSetIt fit = mMapSlave_SetClient.find(id_session);
+  TMapUintSetIt fit = mMapSlave_SetClient.find(sessionID);
   switch(type)
   {
     case eDonor:
@@ -145,14 +145,14 @@ void TManagerRecommutation::AddClientKeyBySession(unsigned int key,
 }
 //----------------------------------------------------------------------------------
 void TManagerRecommutation::DeleteClientKeyBySession(unsigned int key, 
-                                                     unsigned int id_session,     
+                                                     unsigned int sessionID,     
                                                      Type type)
 {
-  TMapUintSetIt fit = mMapSlave_SetClient.find(id_session);
+  TMapUintSetIt fit = mMapSlave_SetClient.find(sessionID);
   if(fit==mMapSlave_SetClient.end())
   {
     GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TManagerRecommutation::DeleteInSessionMapByClientKey(id_session=%u) not found.\n",id_session);
+      WriteF_time("TManagerRecommutation::DeleteInSessionMapByClientKey(sessionID=%u) not found.\n",sessionID);
     BL_FIX_BUG();
     return;
   }

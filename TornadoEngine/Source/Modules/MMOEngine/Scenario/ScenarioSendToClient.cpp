@@ -62,7 +62,7 @@ void TScenarioSendToClient::RecvFromSuperServer(TDescRecvSession* pDesc)
   {
     mBP.Reset();
     mBP.PushFront(pDesc->data + sizeof(THeaderSuperServer), 
-                 pDesc->sizeData - sizeof(THeaderSuperServer) );
+                 pDesc->dataSize - sizeof(THeaderSuperServer) );
 
     Send<THeaderMaster>(pH->id_client, mBP);
   }
@@ -76,7 +76,7 @@ void TScenarioSendToClient::RecvFromMaster(TDescRecvSession* pDesc)
   {
     mBP.Reset();
     mBP.PushFront(pDesc->data + sizeof(THeaderMaster), 
-                 pDesc->sizeData - sizeof(THeaderMaster) );
+                 pDesc->dataSize - sizeof(THeaderMaster) );
     
     Send<THeaderSlave>(pH->id_client, mBP);
   }
@@ -86,17 +86,17 @@ void TScenarioSendToClient::RecvFromSlave(TDescRecvSession* pDesc)
 {
   THeaderSlave* pH = (THeaderSlave*)pDesc->data;
 
-  TEventRecvFromUp* pEvent = new TEventRecvFromUp;
+  TRecvFromUpEvent* pEvent = new TRecvFromUpEvent;
   // отцепиться от памяти, в которой содержится пакет
   pDesc->c.Unlink();
   // отдать память под контроль события
-  pEvent->c.EntrustByCount(pDesc->data, pDesc->sizeData);
+  pEvent->c.EntrustByCount(pDesc->data, pDesc->dataSize);
   pEvent->data     = pDesc->data     + sizeof(THeaderSlave);
-  pEvent->sizeData = pDesc->sizeData - sizeof(THeaderSlave);
+  pEvent->dataSize = pDesc->dataSize - sizeof(THeaderSlave);
   // откуда пришел пакет - сессия
-  pEvent->id_session = pDesc->id_session;
+  pEvent->sessionID = pDesc->sessionID;
   // добавить событие без копирования и указать истинное время создания события в транспорте
-  Context()->GetSE()->AddEventWithoutCopy<TEventRecvFromUp>(pEvent, pDesc->time_ms);
+  Context()->GetSE()->AddEventWithoutCopy<TRecvFromUpEvent>(pEvent, pDesc->time_ms);
 }
 //-------------------------------------------------------------------
 void TScenarioSendToClient::DelayBegin()

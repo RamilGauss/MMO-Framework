@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -20,9 +20,9 @@ See for more information License.h.
 
 using namespace std;
 
-TNetControlAcceptor::TNetControlAcceptor(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service):
-INetControl(pNTB),
-mDevice(io_service)
+TNetControlAcceptor::TNetControlAcceptor( TNetTransport_Boost* pNTB, boost::asio::io_service& io_service ) :
+  INetControl( pNTB ),
+  mDevice( io_service )
 {
   pNewControlTCP = NULL;
   flgReadyAccept = false;
@@ -32,17 +32,17 @@ TNetControlAcceptor::~TNetControlAcceptor()
 {
 }
 //------------------------------------------------------------------------------
-bool TNetControlAcceptor::Open( unsigned short port, unsigned char numNetWork)
+bool TNetControlAcceptor::Open( unsigned short port, unsigned char numNetWork )
 {
-  return mDevice.Open(port,numNetWork);
+  return mDevice.Open( port, numNetWork );
 }
 //------------------------------------------------------------------------------
-bool TNetControlAcceptor::Connect(unsigned int ip, unsigned short port)
+bool TNetControlAcceptor::Connect( unsigned int ip, unsigned short port )
 {
   return false;
 }
 //------------------------------------------------------------------------------
-void TNetControlAcceptor::Send(unsigned int ip, unsigned short port, TBreakPacket& bp)
+void TNetControlAcceptor::Send( unsigned int ip, unsigned short port, TBreakPacket& bp )
 {
 
 }
@@ -52,23 +52,25 @@ void TNetControlAcceptor::Close()
   mDevice.Close();
 }
 //------------------------------------------------------------------------------
-void TNetControlAcceptor::AcceptEvent(const boost::system::error_code& error)
+void TNetControlAcceptor::AcceptEvent( const boost::system::error_code& error )
 {
-  if(error==0)
+  if( error == 0 )
   {
     TIP_Port ip_port;
     ip_port.port = pNewControlTCP->GetDevice()->GetSocket()->remote_endpoint().port();
-    ip_port.ip   = pNewControlTCP->GetDevice()->GetSocket()->remote_endpoint().address().to_v4().to_ulong();
-    pNewControlTCP->GetDevice()->SetIP_Port(ip_port);
-    GetNetBoost()->AddInMapTCP(ip_port,pNewControlTCP);
+    ip_port.ip = pNewControlTCP->GetDevice()->GetSocket()->remote_endpoint().address().to_v4().to_ulong();
+    pNewControlTCP->GetDevice()->SetIP_Port( ip_port );
+    GetNetBoost()->AddInMapTCP( ip_port, pNewControlTCP );
     pNewControlTCP->Init();// готов к чтению
+
+    GetNetBoost()->GetCallbackConnectFrom()->Notify( &ip_port );// уведомить о подсоединившемся
   }
   else
   {
     delete pNewControlTCP;
     pNewControlTCP = NULL;
-    GetLogger(STR_NAME_NET_TRANSPORT)->
-      WriteF_time("Acceptor AcceptEvent FAIL: %s.\n", error.message().data());
+    GetLogger( STR_NAME_NET_TRANSPORT )->
+      WriteF_time( "Acceptor AcceptEvent FAIL: %s.\n", error.message().data() );
 
     flgReadyAccept = false;
     return;
@@ -84,10 +86,10 @@ void TNetControlAcceptor::Done()
 //------------------------------------------------------------------------------
 void TNetControlAcceptor::ReadyAccept()
 {
-  pNewControlTCP = new TNetControlTCP(GetNetBoost(), mDevice.GetSocket()->get_io_service());
-  mDevice.GetSocket()->async_accept(*(pNewControlTCP->GetDevice()->GetSocket()),
-    boost::bind(&TNetControlAcceptor::AcceptEvent, this, 
-    boost::asio::placeholders::error));
+  pNewControlTCP = new TNetControlTCP( GetNetBoost(), mDevice.GetSocket()->get_io_service() );
+  mDevice.GetSocket()->async_accept( *(pNewControlTCP->GetDevice()->GetSocket()),
+    boost::bind( &TNetControlAcceptor::AcceptEvent, this,
+      boost::asio::placeholders::error ) );
 
   flgReadyAccept = true;
 }

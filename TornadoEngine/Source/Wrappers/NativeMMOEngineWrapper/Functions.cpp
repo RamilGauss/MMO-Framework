@@ -219,10 +219,10 @@ void SetTimeLiveSession( int implID, unsigned int time_ms )
   Get<nsMMOEngine::TBase>( implID )->SetTimeLiveSession( time_ms );
 }
 //--------------------------------------------------------------------
-bool GetInfoSession( int implID, unsigned int id_session, unsigned int& ip, unsigned short& port )
+bool GetInfoSession( int implID, unsigned int sessionID, unsigned int& ip, unsigned short& port )
 {
   TIP_Port ip_port;
-  bool result = Get<nsMMOEngine::TBase>( implID )->GetInfoSession( id_session, ip_port);
+  bool result = Get<nsMMOEngine::TBase>( implID )->GetInfoSession( sessionID, ip_port);
   if( result==false )
     return false;
   ip = ip_port.ip;
@@ -245,10 +245,10 @@ void LeaveQueue( int implID )
 #pragma endregion
 //--------------------------------------------------------------------
 #pragma region BaseServer
-bool IsSessionSecurity(int implID, unsigned int id_session, void* crypt, int size_crypt, 
+bool IsSessionSecurity(int implID, unsigned int sessionID, void* crypt, int size_crypt, 
                        void* pLogin, int sizeLogin, void* pPassword, int sizePassword)
 {
-  return Get<nsMMOEngine::TBaseServer>( implID )->IsSessionSecurity( id_session, crypt, size_crypt, 
+  return Get<nsMMOEngine::TBaseServer>( implID )->IsSessionSecurity( sessionID, crypt, size_crypt, 
     pLogin, sizeLogin, pPassword, sizePassword);
 }
 //--------------------------------------------------------------------
@@ -261,9 +261,9 @@ void SendByClientKey(int implID, unsigned int* id_client, int count_client, char
   Get<nsMMOEngine::TBaseServer>( implID )->SendByClientKey( id_client_list, p, size );
 }
 //--------------------------------------------------------------------
-void SendDown(int implID, unsigned int id_session, char* p, int size, bool check )
+void SendDown(int implID, unsigned int sessionID, char* p, int size, bool check )
 {
-  Get<nsMMOEngine::TBaseServer>( implID )->SendDown(id_session, p, size, check);
+  Get<nsMMOEngine::TBaseServer>( implID )->SendDown(sessionID, p, size, check);
 }
 //--------------------------------------------------------------------
 int  GetCountDown(int implID)
@@ -288,35 +288,35 @@ void ConnectUp(int implID, unsigned int ip, unsigned short port,
 #pragma endregion
 //--------------------------------------------------------------------
 #pragma region Slave
-void SaveContext(int implID, unsigned int id_session, void* data, int size)
+void SaveContext(int implID, unsigned int sessionID, void* data, int size)
 {
-  Get<nsMMOEngine::TSlave>( implID )->SaveContext(id_session, data, size);
+  Get<nsMMOEngine::TSlave>( implID )->SaveContext(sessionID, data, size);
 }
 //--------------------------------------------------------------------
-bool FindClientKeyBySession(int implID, unsigned int id_session, unsigned int &id)
+bool FindClientKeyBySession(int implID, unsigned int sessionID, unsigned int &id)
 {
-  return Get<nsMMOEngine::TSlave>( implID )->FindClientKeyBySession(id_session, id);
+  return Get<nsMMOEngine::TSlave>( implID )->FindClientKeyBySession(sessionID, id);
 }
 //--------------------------------------------------------------------
-bool FindSessionByClientKey(int implID, unsigned int id, unsigned int& id_session)
+bool FindSessionByClientKey(int implID, unsigned int id, unsigned int& sessionID)
 {
-  return Get<nsMMOEngine::TSlave>( implID )->FindSessionByClientKey(id, id_session);
+  return Get<nsMMOEngine::TSlave>( implID )->FindSessionByClientKey(id, sessionID);
 }
 #pragma endregion
 //--------------------------------------------------------------------
 #pragma region Master
-bool TryCreateGroup(int implID, unsigned int* l_id_client, int count_id_client, unsigned int& id_group)
+bool TryCreateGroup(int implID, unsigned int* l_id_client, int count_id_client, unsigned int& groupID)
 {
   TListUint id_client_list;
   for( int i = 0 ; i < count_id_client ; i++ )
     id_client_list.push_back(l_id_client[i]);
 
-  return Get<nsMMOEngine::TMaster>( implID )->TryCreateGroup(id_client_list, id_group);
+  return Get<nsMMOEngine::TMaster>( implID )->TryCreateGroup(id_client_list, groupID);
 }
 //--------------------------------------------------------------------
-void DestroyGroup(int implID, unsigned int id_group)
+void DestroyGroup(int implID, unsigned int groupID)
 {
-  Get<nsMMOEngine::TMaster>( implID )->DestroyGroup(id_group);
+  Get<nsMMOEngine::TMaster>( implID )->DestroyGroup(groupID);
 }
 //--------------------------------------------------------------------
 void LeaveGroup(int implID, unsigned int id_client)
@@ -325,14 +325,14 @@ void LeaveGroup(int implID, unsigned int id_client)
 }
 //--------------------------------------------------------------------
 static TListUint g_ListForGroup;
-int GetCountForGroup(int implID, unsigned int id_group)
+int GetCountForGroup(int implID, unsigned int groupID)
 {
   g_ListForGroup.clear();
-  Get<nsMMOEngine::TMaster>( implID )->GetListForGroup(id_group, g_ListForGroup);
+  Get<nsMMOEngine::TMaster>( implID )->GetListForGroup(groupID, g_ListForGroup);
   return g_ListForGroup.size();
 }
 //--------------------------------------------------------------------
-void GetListForGroup(int implID, unsigned int id_group, unsigned int* gc_arr, int& count)
+void GetListForGroup(int implID, unsigned int groupID, unsigned int* gc_arr, int& count)
 {
   count = g_ListForGroup.size();
   int i = 0;
@@ -346,16 +346,16 @@ void GetListForGroup(int implID, unsigned int id_group, unsigned int* gc_arr, in
   }
 }
 //--------------------------------------------------------------------
-void SetResultLogin(int implID, bool res, unsigned int id_session, 
+void SetResultLogin(int implID, bool res, unsigned int sessionID, 
                     unsigned int id_client, void* resForClient, int sizeResClient)
 {
-  Get<nsMMOEngine::TMaster>( implID )->SetResultLogin( res, id_session, 
+  Get<nsMMOEngine::TMaster>( implID )->SetResultLogin( res, sessionID, 
     id_client, resForClient, sizeResClient);
 }
 //--------------------------------------------------------------------
-bool FindSlaveSessionByGroup(int implID, unsigned int id_group, unsigned int& id_session)
+bool FindSlaveSessionByGroup(int implID, unsigned int groupID, unsigned int& sessionID)
 {
-  return Get<nsMMOEngine::TMaster>( implID )->FindSlaveSessionByGroup( id_group, id_session );
+  return Get<nsMMOEngine::TMaster>( implID )->FindSlaveSessionByGroup( groupID, sessionID );
 }
 #pragma endregion
 //--------------------------------------------------------------------

@@ -8,7 +8,6 @@ See for more information License.h.
 #include "SerializerShapeItem_XML.h"
 #include "ShapeItem.h"
 #include "IXML.h"
-#include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 
 namespace nsShapeItem
@@ -177,7 +176,7 @@ void TSerializerShapeItem_XML::SaveGeometry()
 
   if(mXML->AddSectionAndEnter(sGeometry))
   {
-    BOOST_FOREACH(TMapStrStrVT& bit, mMapNameValue_Geometry)
+    for( auto& bit : mMapNameValue_Geometry)
     {
       std::string key, value;
       key   = bit.first; 
@@ -192,7 +191,7 @@ void TSerializerShapeItem_XML::SaveJoining()
 {
   if(mXML->AddSectionAndEnter(sJoining))
   {
-    BOOST_FOREACH( TShapeItem::TMapStrJointVT& bit, mShape->mMapNameJoint )
+    for( auto& bit : mShape->mMapNameJoint )
     {
       if(mXML->AddSectionAndEnter(sJoint))
       {
@@ -225,7 +224,7 @@ void TSerializerShapeItem_XML::SavePaint()
     {
       if(mXML->AddSectionAndEnter(sLayer))
       {
-        BOOST_FOREACH(TShapeItem::TMapFloatLayerVT& bit, mShape->mVecPaint[iLayer])
+        for( auto& bit : mShape->mVecPaint[iLayer])
         {
           attr.Name  = sDistance;
           attr.Value = boost::lexical_cast<std::string>(bit.first);

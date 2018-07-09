@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,12 +15,12 @@ using namespace nsMMOEngine;
 
 IScenarioContext::IScenarioContext()
 {
-  mUserPtr          = NULL;
-  mID_Session       = INVALID_HANDLE_SESSION;
-  mManagerContextSc = NULL;
-  mSessionManager   = NULL;
-  mSrcEvent         = NULL;
-  mScenario         = NULL;
+  mUserPtr = nullptr;
+  mID_Session = INVALID_HANDLE_SESSION;
+  mManagerContextSc = nullptr;
+  mSessionManager = nullptr;
+  mSrcEvent = nullptr;
+  mScenario = nullptr;
 }
 //-----------------------------------------------------------------
 IScenarioContext::~IScenarioContext()
@@ -28,17 +28,17 @@ IScenarioContext::~IScenarioContext()
 
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetID_Session(unsigned int id)
+void IScenarioContext::SetSessionID( unsigned int id )
 {
   mID_Session = id;
 }
 //-----------------------------------------------------------------
-unsigned int IScenarioContext::GetID_Session()
+unsigned int IScenarioContext::GetSessionID()
 {
   return mID_Session;
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetMSc(TScContextManager* pMSc)
+void IScenarioContext::SetMSc( TScContextManager* pMSc )
 {
   mManagerContextSc = pMSc;
 }
@@ -48,7 +48,7 @@ TScContextManager* IScenarioContext::GetMSc()
   return mManagerContextSc;
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetMS(TSessionManager* pMS)
+void IScenarioContext::SetMS( TSessionManager* pMS )
 {
   mSessionManager = pMS;
 }
@@ -58,7 +58,7 @@ TSessionManager* IScenarioContext::GetMS()
   return mSessionManager;
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetSE(TSrcEvent* pS)
+void IScenarioContext::SetSE( TSrcEvent* pS )
 {
   mSrcEvent = pS;
 }
@@ -68,7 +68,7 @@ TSrcEvent* IScenarioContext::GetSE()
   return mSrcEvent;
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetSc(IScenario* pSc)
+void IScenarioContext::SetSc( IScenario* pSc )
 {
   mScenario = pSc;
 }
@@ -80,27 +80,27 @@ IScenario* IScenarioContext::GetSc()
 //-----------------------------------------------------------------
 void IScenarioContext::DelayBegin()
 {
-  mScenario->SetContext(this);
+  mScenario->SetContext( this );
   mScenario->DelayBegin();
 }
 //-----------------------------------------------------------------
 void IScenarioContext::Work()
 {
-  mScenario->SetContext(this);
+  mScenario->SetContext( this );
   mScenario->Work();
 }
 //-----------------------------------------------------------------
 bool IScenarioContext::Activate()
 {
-  return mManagerContextSc->Activate(this);
+  return mManagerContextSc->Activate( this );
 }
 //-----------------------------------------------------------------
-void IScenarioContext::Disactivate()
+void IScenarioContext::Deactivate()
 {
-  mManagerContextSc->Disactivate();
+  mManagerContextSc->Deactivate();
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetUserPtr(void* p)
+void IScenarioContext::SetUserPtr( void* p )
 {
   mUserPtr = p;
 }

@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -18,14 +18,12 @@ class DllExport TSHA256
 public:
   TSHA256();
   ~TSHA256();
-  
-  void Begin();
-  void Calc(void* pIn, int sizeIn);
-  void End(TContainer& result);
 
-  void FastCalc(void* pIn, int sizeIn,TContainer& result);
+  void Begin();
+  void Calc( void* pIn, int sizeIn );
+  void End( TContainer& result );
+
+  void FastCalc( void* pIn, int sizeIn, TContainer& result );
 };
 
-
 #endif
-

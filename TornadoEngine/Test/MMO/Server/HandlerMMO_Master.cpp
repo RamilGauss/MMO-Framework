@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -14,96 +14,130 @@ See for more information License.h.
 #include "CommonParam.h"
 #include "ResolverSelf_IP_v4.h"
 #include "Master.h"
+#include "Logger.h"
+#include "../SubSystem/SessionManager.h"
 
 using namespace std;
 
-THandlerMMO_Master::THandlerMMO_Master()
+THandlerMMO_Master::THandlerMMO_Master() : THandlerMMO( eMaster )
 {
-
+  std::string slaveLogin = SLAVE_LOGIN;
+  mSHA256.FastCalc( (void*) slaveLogin.data(), slaveLogin.length(), mSlaveHashLogin );
 }
 //-----------------------------------------------------------------------------------
-void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
+void THandlerMMO_Master::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
 {
-  nsMMOEngine::TBaseEvent* pBE  = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
+  nsMMOEngine::TBaseEvent* pBE = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
   nsMMOEngine::TMaster* pMaster = (nsMMOEngine::TMaster*)pEvent->ptr_object;
 
-  string sEvent;  
-  switch(pBE->mType)
+  string sEvent;
+  switch( pBE->mType )
   {
+    case nsMMOEngine::eTryConnectDown:
+    {
+      auto pTryConnectDown = (nsMMOEngine::TTryConnectDownEvent*) pBE;
+      sEvent = "TryConnectDown";
+      auto sessionID = pTryConnectDown->sessionID;
+      std::string password = CLIENT_PASSWORD;
+
+      if( memcmp( mSlaveHashLogin.GetPtr(), pTryConnectDown->hashLogin, pTryConnectDown->hashLoginSize ) == 0 )
+        password = SLAVE_PASSWORD;
+      else
+        AddTryConnectClientToMaster( sessionID );
+
+      pMaster->Accept( sessionID, password );
+    }
+    break;
     case nsMMOEngine::eConnectDown:
       sEvent = "ConnectDown";
-      IncreaseCountConnection();
+      AddConnection( ((nsMMOEngine::TConnectDownEvent*) pBE)->sessionID );
       break;
     case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
-      DecreaseCountConnection();
+      RemoveConnection( ((nsMMOEngine::TDisconnectDownEvent*) pBE)->sessionID );
       break;
     case nsMMOEngine::eConnectUp:
       sEvent = "ConnectUp";
-      IncreaseCountConnection();
+      AddConnection( ((nsMMOEngine::TConnectUpEvent*) pBE)->sessionID );
       break;
     case nsMMOEngine::eDisconnectUp:
       sEvent = "DisconnectUp";
-      DecreaseCountConnection();
+      RemoveConnection( ((nsMMOEngine::TDisconnectUpEvent*) pBE)->sessionID );
       break;
     case nsMMOEngine::eError:
     {
-      nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
-      sEvent = GetStrError(pEr->code);
+      nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
+      sEvent = GetStrError( pEr->code );
     }
-      break;
+    break;
     case nsMMOEngine::eRecvFromDown:
     {
       sEvent = "RecvFromDown";
-      nsMMOEngine::TEventRecvFromDown* pR = (nsMMOEngine::TEventRecvFromDown*)pBE;
+      nsMMOEngine::TRecvFromDownEvent* pR = (nsMMOEngine::TRecvFromDownEvent*)pBE;
       char s[200];
-      memcpy(s, pR->data, pR->sizeData);
-      s[pR->sizeData] = '\0';
+      memcpy( s, pR->data, pR->dataSize );
+      s[pR->dataSize] = '\0';
       sEvent += " msg: ";
       sEvent += s;
       // получили пакет от Slave с id_client
       std::list<unsigned int> l_id;
-      l_id.push_front(boost::lexical_cast<int>(s));
+      l_id.push_front( boost::lexical_cast<int>(s) );
       char* sMsgFromMaster = "Master say hello!";
-      int sizeMsg = strlen(sMsgFromMaster);
-      pMaster->SendByClientKey(l_id, sMsgFromMaster, sizeMsg);
+      int sizeMsg = strlen( sMsgFromMaster );
+      pMaster->SendByClientKey( l_id, sMsgFromMaster, sizeMsg );
     }
-      break;
+    break;
     case nsMMOEngine::eRecvFromUp:
     {
       sEvent = "RecvFromUp";
-      nsMMOEngine::TEventRecvFromUp* pR = (nsMMOEngine::TEventRecvFromUp*)pBE;
+      nsMMOEngine::TRecvFromUpEvent* pR = (nsMMOEngine::TRecvFromUpEvent*)pBE;
       char s[200];
-      memcpy(s, pR->data, pR->sizeData);
-      s[pR->sizeData] = '\0';
+      memcpy( s, pR->data, pR->dataSize );
+      s[pR->dataSize] = '\0';
       sEvent += " msg: ";
       sEvent += s;
     }
-      break;
+    break;
     case nsMMOEngine::eTryLogin:
     {
       sEvent = "TryLogin";
-      nsMMOEngine::TEventTryLogin* pETL= (nsMMOEngine::TEventTryLogin*)pBE;
+      nsMMOEngine::TTryLoginEvent* pETL = (nsMMOEngine::TTryLoginEvent*)pBE;
       char lenLogin = *(pETL->c.GetPtr());
       char s[100];
-      memcpy(s, pETL->c.GetPtr()+1, lenLogin);
+      memcpy( s, pETL->c.GetPtr() + 1, lenLogin );
       s[lenLogin] = '\0';
-      unsigned int ID_Client = boost::lexical_cast<int>(s);
-      pMaster->SetResultLogin(true, pETL->id_session, ID_Client, (void*)"Wellcome", strlen("Wellcome"));
-      //mListClient.push_back(ID_Client);
-      //if(mListClient.size()>19)
-      //{
-        //unsigned int id_group;
-        //bool res = pMaster->TryCreateGroup(mListClient, id_group);
-      //}
+      unsigned int clientID = boost::lexical_cast<int>(s);
+      pMaster->SetResultLogin( true, pETL->sessionID, clientID, (void*)"Welcome", strlen( "Welcome" ) );
     }
-      break;
+    break;
+    case nsMMOEngine::eLogin:
+    {
+      sEvent = "Login";
+      auto pLoginEvent = (nsMMOEngine::TLoginEvent*)pBE;
+      unsigned int clientID = pLoginEvent->clientID;
+      AddClient( clientID );
+    }
+    break;
+    case nsMMOEngine::eLogoff:
+    {
+      nsMMOEngine::TLogoffEvent* pLogoff = (nsMMOEngine::TLogoffEvent*)pBE;
+      char s[100];
+      sprintf( s, "%u", pLogoff->clientID );
+      sEvent = "Logoff ";
+      sEvent += s;
+      RemoveClient( pLogoff->clientID );
+    }
+    break;
     case nsMMOEngine::eDestroyGroup:
       sEvent = "DestroyGroup";
       break;
     default:BL_FIX_BUG();
   }
-  printf("MMOEngine M (0x%p): %s.\t\t", pMaster, sEvent.data());
-  printf("CC=%d\n",GetCountConnection());
+
+  if( pBE->mType == nsMMOEngine::eError )
+  {
+    GetLogger( ServerLog )->WriteF( "MMOEngine M (0x%p): %s.\t", pMaster, sEvent.data() );
+    PrintCC( ServerLog );
+  }
 }
 //---------------------------------------------------------------------------------------------

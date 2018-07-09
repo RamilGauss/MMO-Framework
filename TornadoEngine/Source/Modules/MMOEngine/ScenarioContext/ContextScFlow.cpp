@@ -1,13 +1,12 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "ContextScFlow.h"
 #include "SessionManager.h"
-#include <boost/foreach.hpp>
 #include "BL_Debug.h"
 
 using namespace nsMMOEngine;
@@ -15,26 +14,27 @@ using namespace nsMMOEngine;
 TContextScFlow::TContextScFlow()
 {
 
-}  
+}
 //------------------------------------------------------------
-void TContextScFlow::Send( TBreakPacket& bp, bool check)
+void TContextScFlow::Send( TBreakPacket& bp, bool check )
 {
-  GetMS()->Send( GetID_Session(), bp, check);
-}  
+  GetMS()->Send( GetSessionID(), bp, check );
+}
 //------------------------------------------------------------
-void TContextScFlow::SaveBreakPacket(TBreakPacket& bp, bool check)
+void TContextScFlow::SaveBreakPacket( TBreakPacket& bp, bool check )
 {
-  auto pDescSP = TMemoryPool<TSavePacket>::Singleton()->Pop(1);
+  auto pDescSP = TMemoryPool<TSavePacket>::Singleton()->Pop( 1 );
   auto pSP = pDescSP->p;
 
   // собрать пакет
-  bp.CopyInBuffer(pSP->c);
-  mListSave.push_back(pDescSP);
+  bp.CopyInBuffer( pSP->c );
+  pSP->check = check;
+  mListSave.push_back( pDescSP );
 }
 //-------------------------------------------------------------------------
 void TContextScFlow::SendAndRemoveFirst()
 {
-  if(mListSave.size()==0)
+  if( mListSave.size() == 0 )
   {
     // не ожидали
     BL_FIX_BUG();
@@ -47,8 +47,8 @@ void TContextScFlow::SendAndRemoveFirst()
   mBP.Reset();
   auto pSP = pDescSP->p;
   mBP.PushFront( pSP->c.GetPtr(), pSP->c.GetSize() );
-  Send( mBP, pSP->check);
+  Send( mBP, pSP->check );
 
-  TMemoryPool<TSavePacket>::Singleton()->Push(pDescSP);
+  TMemoryPool<TSavePacket>::Singleton()->Push( pDescSP );
 }
 //-------------------------------------------------------------------------

@@ -189,6 +189,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Share\CommonParam.cpp" />
     <ClCompile Include="..\Share\HandlerMMO.cpp" />
     <ClCompile Include="HandlerMMO_Master.cpp" />
     <ClCompile Include="HandlerMMO_Slave.cpp" />

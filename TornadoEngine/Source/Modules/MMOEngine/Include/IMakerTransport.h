@@ -15,9 +15,6 @@ namespace nsMMOEngine
   class DllExport IMakerTransport
   {
   public:
-    //IMakerTransport();
-    //virtual ~IMakerTransport();
-    
     virtual INetTransport* New() = 0;
     virtual void Delete(INetTransport* pTransport)= 0;
   };

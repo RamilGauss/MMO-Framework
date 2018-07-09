@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -22,57 +22,57 @@ namespace nsMMOEngine
 {
   class TScenarioFlow : public IScenario
   {
-    enum{eUp,eDown};
+    enum{ eUp, eDown };
     struct THeaderFlow : public TScenarioBaseHeader
     {
-      THeaderFlow(){type = TMakerScenario::eFlow;}
+      THeaderFlow(){ type = TMakerScenario::eFlow; }
     }_PACKED;
     //-------------------------------------------------
     struct THeaderSendUp : public THeaderFlow
     {
-      THeaderSendUp(){subType = eUp;}
+      THeaderSendUp(){ subType = eUp; }
     }_PACKED;
     //-------------------------------------------------
     struct THeaderSendDown : public THeaderFlow
     {
-      THeaderSendDown(){subType = eDown;}
+      THeaderSendDown(){ subType = eDown; }
     }_PACKED;
     //-------------------------------------------------
   public:
     TScenarioFlow();
     virtual ~TScenarioFlow();
 
-    void SendUp(TBreakPacket& bp, bool check);
-    void SendDown(TBreakPacket& bp, bool check);
+    void SendUp( TBreakPacket& bp, bool check );
+    void SendDown( TBreakPacket& bp, bool check );
 
-    virtual void Recv(TDescRecvSession* pDesc);
+    virtual void Recv( TDescRecvSession* pDesc );
   protected:
     virtual void DelayBegin();
   private:
-    TContextScFlow* Context(){return (TContextScFlow*)mCurContext;}
+    TContextScFlow * Context(){ return (TContextScFlow*) mCurContext; }
     // для Send
-    void HandlePacket(TBreakPacket& bp, bool check);
+    void HandlePacket( TBreakPacket& bp, bool check );
     // для Recv
     template <class TypeSrc>
-    void Recv(TDescRecvSession* pDesc)
+    void Recv( TDescRecvSession* pDesc )
     {
       // защита от хака, могут прислать пакет меньшего размера, сервер выйдет за границы памяти и упадет
-      if(pDesc->sizeData < sizeof(THeaderFlow))
+      if( pDesc->dataSize < sizeof( THeaderFlow ) )
         return;
       // создать событие
       TypeSrc* pEvent = new TypeSrc;
       // отцепиться от памяти, в которой содержится пакет
       pDesc->c.Unlink();
       // отдать память под контроль события
-      pEvent->c.Entrust(pDesc->data, pDesc->sizeData);
-      pEvent->data     = pDesc->data     + sizeof(THeaderFlow);
-      pEvent->sizeData = pDesc->sizeData - sizeof(THeaderFlow);
+      pEvent->c.Entrust( pDesc->data, pDesc->dataSize );
+      pEvent->data = pDesc->data + sizeof( THeaderFlow );
+      pEvent->dataSize = pDesc->dataSize - sizeof( THeaderFlow );
       // откуда пришел пакет - сессия
-      pEvent->id_session = pDesc->id_session;
+      pEvent->sessionID = pDesc->sessionID;
       // добавить событие без копирования и указать истинное время создания события в транспорте
       //Context()->GetSE()->AddEventWithoutCopy(pEvent, sizeof(TypeSrc), pDesc->time_ms);
 
-      Context()->GetSE()->AddEventWithoutCopy<TypeSrc>(pEvent, pDesc->time_ms);
+      Context()->GetSE()->AddEventWithoutCopy<TypeSrc>( pEvent, pDesc->time_ms );
     }
   };
   //-------------------------------------------------------------------

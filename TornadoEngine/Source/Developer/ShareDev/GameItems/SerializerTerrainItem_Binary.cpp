@@ -8,7 +8,6 @@ See for more information License.h.
 #include "SerializerTerrainItem_Binary.h"
 #include "FactoryGameItem.h"
 #include "TerrainItem.h"
-#include <boost/foreach.hpp>
 #include "ShareMisc.h"
 
 TSerializerTerrainItem_Binary::TSerializerTerrainItem_Binary():

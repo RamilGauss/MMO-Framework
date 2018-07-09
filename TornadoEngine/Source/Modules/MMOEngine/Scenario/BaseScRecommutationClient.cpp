@@ -28,6 +28,11 @@ TContextScRecommutationClient* TBaseScRecommutationClient::Context()
   return (TContextScRecommutationClient*)mScenario->GetContext();
 }
 //--------------------------------------------------------------
+void TBaseScRecommutationClient::SetContext( TContextScRecommutationClient* pContext )
+{
+  mScenario->SetContext( pContext );
+}
+//--------------------------------------------------------------
 unsigned int TBaseScRecommutationClient::GetID_SessionClientSlave()
 {
   return Context()->GetID_SessionClientSlave();
@@ -93,12 +98,12 @@ void TBaseScRecommutationClient::EventDisconnectClient(unsigned int key)
     TScenarioRecommutationClient::eEventDisconnectClient, key);
 }
 //--------------------------------------------------------------
-void TBaseScRecommutationClient::NeedContextByClientSessionForSlave(unsigned int id_session, 
+void TBaseScRecommutationClient::NeedContextByClientSessionForSlave(unsigned int sessionID, 
                                                                     bool donor)
 {
   mScenario->Notify<unsigned int,bool>(
     TScenarioRecommutationClient::eNeedContextByClientSessionForSlave,
-    id_session,donor);
+    sessionID,donor);
 }
 //--------------------------------------------------------------
 void TBaseScRecommutationClient::NeedContextByClientKey(unsigned int key)

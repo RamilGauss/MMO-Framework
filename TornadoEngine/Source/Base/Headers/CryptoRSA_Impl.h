@@ -13,7 +13,6 @@ See for more information License.h.
 
 class DllExport TCryptoRSA_Impl
 {
-
   void* mRSAKey;
 
   int mMaxSizePartBeforeCrypt;

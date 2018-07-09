@@ -7,7 +7,6 @@ See for more information License.h.
 
 #include "SerializerPatternConfigItem_Binary.h"
 #include "FactoryGameItem.h"
-#include <boost/foreach.hpp>
 #include "PatternConfigItem.h"
 #include "ShareMisc.h"
 
@@ -31,12 +30,12 @@ void TSerializerPatternConfigItem_Binary::PackItem(TBaseItem* pItem, TContainerR
   PushStr(pPatternConfigItem->mName);
   PushStr(pPatternConfigItem->mComment);
   Push(pPatternConfigItem->mMapVariant.size());
-  BOOST_FOREACH( TPatternConfigItem::TMapStrMapVT& mapVariant, pPatternConfigItem->mMapVariant )
+  for( auto& mapVariant : pPatternConfigItem->mMapVariant )
   {
     std::string nameVariant = mapVariant.first;
     PushStr(nameVariant);
     Push(mapVariant.second.size());
-    BOOST_FOREACH( TPatternConfigItem::TMapStrStrVT& nameValue, mapVariant.second)
+    for( auto& nameValue : mapVariant.second)
     {
       std::string name = nameValue.first;
       PushStr(name);

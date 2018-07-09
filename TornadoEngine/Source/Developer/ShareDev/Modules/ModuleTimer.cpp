@@ -7,7 +7,6 @@ See for more information License.h.
 
 #include "ModuleTimer.h"
 
-#include <boost/foreach.hpp>
 #include "BL_Debug.h"
 #include "SrcEvent.h"
 
@@ -105,7 +104,7 @@ TModuleTimer::TDescTimer* TModuleTimer::Get(unsigned int id)
 //-----------------------------------------------------------------
 void TModuleTimer::Done()
 {
-  BOOST_FOREACH(TDescTimer* pDesc, mVecTimer)
+  for( auto pDesc : mVecTimer)
     delete pDesc;
   mVecTimer.clear();
 }

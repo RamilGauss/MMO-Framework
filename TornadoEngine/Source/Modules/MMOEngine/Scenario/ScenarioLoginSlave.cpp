@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -22,114 +22,116 @@ TScenarioLoginSlave::TScenarioLoginSlave()
 
 }
 //-------------------------------------------------------------------------------------
-void TScenarioLoginSlave::ConnectToMaster( unsigned int ip, unsigned short port, 
-                                           void* pLogin, int sizeLogin, void* pPassword, int sizePassword,
-                                           unsigned char subNet)
+void TScenarioLoginSlave::ConnectToMaster( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet )
 {
-  Context()->SetConnect(false);
-  if(Begin()==false)
+  Context()->SetConnect( false );
+  if( Begin() == false )
   {
     // верхнее соединение занято выполнением другого сценария - такого не должно быть
     // генерация ошибки
-    GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TScenarioLoginSlave::ConnectToMaster() scenario is not active.\n");
+    GetLogger( STR_NAME_MMO_ENGINE )->
+      WriteF_time( "TScenarioLoginSlave::ConnectToMaster() scenario is not active.\n" );
     BL_FIX_BUG();
     return;
   }
   // закрыть соединение
-  Context()->GetMS()->CloseSession(Context()->GetID_Session());
-  TContainerRise cMITM;
-  mBP.Reset();
-  if((Context()->GetMS()->GetUseCryptTCP())&&
-     (pLogin!=NULL)&&(sizeLogin>0)&&(pPassword!=NULL)&&(sizePassword>0))
+  Context()->GetMS()->CloseSession( Context()->GetSessionID() );
+  Context()->SetSessionID( INVALID_HANDLE_SESSION );// пока нет сессии
+  auto scenario = this;
+  auto context = Context();
+  Context()->GetMS()->ConnectAsync( ip_port, login, password, subNet, [scenario, context]( int sessionID )
   {
-    // если данные шифруются, то формировать так:
-    TContainer cRSA;
-    bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp(cRSA);
-    BL_ASSERT(resRSA);
-    bool res = mCryptMITM.Calc(cRSA.GetPtr(), cRSA.GetSize(),
-      pLogin, sizeLogin, pPassword, sizePassword, cMITM);
-    BL_ASSERT(res);
-
-    mBP.PushFront(cMITM.GetPtr(), cMITM.GetSize());
-  }
+    scenario->SetContext( context );
+    scenario->ConnectToMasterAfterConnect( sessionID );
+  } );
+}
+//-------------------------------------------------------------------------------------
+void TScenarioLoginSlave::ConnectToMasterAfterConnect( int sessionID )
+{
+  Context()->SetSessionID( sessionID );
+  mBP.Reset();
   THeaderFromSlave h;
-  mBP.PushFront((char*)&h, sizeof(h));
-
-  Context()->SetID_Session( Context()->GetMS()->Connect(ip, port, mBP, subNet) );
-  if(Context()->GetID_Session()==INVALID_HANDLE_SESSION)
+  mBP.PushFront( (char*) &h, sizeof( h ) );
+  if( sessionID == INVALID_HANDLE_SESSION )
   {
     // Генерация ошибки
-    TEventError event;
+    TErrorEvent event;
     event.code = LoginSlave_MasterNotReady;
-    Context()->GetSE()->AddEventCopy(&event, sizeof(event));
+    Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
     End();
   }
   else
-    Context()->SetTimeWait(ht_GetMSCount() + eTimeoutWait_ms);
+  {
+    Context()->GetMS()->Send( sessionID, mBP, true );
+    Context()->SetTimeWait( ht_GetMSCount() + eTimeoutWait_ms );
+  }
 }
 //-------------------------------------------------------------------------------------
 void TScenarioLoginSlave::Work()
 {
+  // если нет связи с верхним соединением, ждем соединения, если не дождемся нам об этом сообщит SessionManager
+  if( Context()->GetSessionID() == INVALID_HANDLE_SESSION )
+    return;
+
   unsigned int now = ht_GetMSCount();
-  if(Context()->GetTimeWait()<now)
+  if( Context()->GetTimeWait() < now )
   {
     // Генерация ошибки
-    TEventError event;
+    TErrorEvent event;
     event.code = LoginSlave_NoAnswerFromMaster;
-    Context()->GetSE()->AddEventCopy(&event, sizeof(event));
+    Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
     End();
   }
 }
 //-------------------------------------------------------------------------------------
-void TScenarioLoginSlave::RecvFromMaster(TDescRecvSession* pDesc)
+void TScenarioLoginSlave::RecvFromMaster( TDescRecvSession* pDesc )
 {
-  Context()->SetConnect(true);
+  Context()->SetConnect( true );
   End();
 }
 //-------------------------------------------------------------------------------------
-void TScenarioLoginSlave::RecvFromSlave(TDescRecvSession* pDesc)
+void TScenarioLoginSlave::RecvFromSlave( TDescRecvSession* pDesc )
 {
-  if(Begin()==false)
+  if( Begin() == false )
   {
     End();
     // верхнее соединение занято выполнением другого сценария - такого не должно быть
     // внутренняя ошибка
-    GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TScenarioLoginSlave::RecvFromSlave() scenario is not active.\n");
+    GetLogger( STR_NAME_MMO_ENGINE )->
+      WriteF_time( "TScenarioLoginSlave::RecvFromSlave() scenario is not active.\n" );
     BL_FIX_BUG();
     return;
   }
-  Context()->SetID_Session(pDesc->id_session);
+  Context()->SetSessionID( pDesc->sessionID );
 
   // событие наружу
-  TEventConnectDown* pEvent = new TEventConnectDown;
-  pEvent->id_session = pDesc->id_session;
+  TConnectDownEvent* pEvent = new TConnectDownEvent;
+  pEvent->sessionID = pDesc->sessionID;
   // сохранить информацию о логине и пароле клиента
-  char* data   = pDesc->data     + sizeof(THeaderFromSlave);
-  int sizeData = pDesc->sizeData - sizeof(THeaderFromSlave);
-  pEvent->c.SetData(data,sizeData);
-  Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>(pEvent);
+  char* data = pDesc->data + sizeof( THeaderFromSlave );
+  int dataSize = pDesc->dataSize - sizeof( THeaderFromSlave );
+  pEvent->c.SetData( data, dataSize );
+  Context()->GetSE()->AddEventWithoutCopy<TConnectDownEvent>( pEvent );
 
   mBP.Reset();
   THeaderAnswerMaster h;
-  mBP.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(Context()->GetID_Session(), mBP);
+  mBP.PushFront( (char*) &h, sizeof( h ) );
+  Context()->GetMS()->Send( Context()->GetSessionID(), mBP );
 
   End();
 }
 //--------------------------------------------------------------------------
-void TScenarioLoginSlave::Recv(TDescRecvSession* pDesc)
+void TScenarioLoginSlave::Recv( TDescRecvSession* pDesc )
 {
-  NeedContextBySession(pDesc->id_session);
-  THeaderLoginSlave* pPacket = (THeaderLoginSlave*)pDesc->data;
-  switch(pPacket->subType)
+  NeedContextBySession( pDesc->sessionID );
+  THeaderLoginSlave* pPacket = (THeaderLoginSlave*) pDesc->data;
+  switch( pPacket->subType )
   {
     case eFromSlave:
-      RecvFromSlave(pDesc);
+      RecvFromSlave( pDesc );
       break;
     case eAnswerMaster:
-      RecvFromMaster(pDesc);
+      RecvFromMaster( pDesc );
       break;
     default:BL_FIX_BUG();
   }

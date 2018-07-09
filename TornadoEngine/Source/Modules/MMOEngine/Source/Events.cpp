@@ -10,91 +10,109 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
-TEventRecv::TEventRecv()
+TRecvEvent::TRecvEvent()
 {
-  id_session = INVALID_HANDLE_SESSION;
-  data = NULL;
-  sizeData = 0;
+  sessionID = INVALID_HANDLE_SESSION;
+  data = nullptr;
+  dataSize = 0;
 }
 //-------------------------------------------------------------
-TEventRecvFromDown::TEventRecvFromDown()
+TRecvFromDownEvent::TRecvFromDownEvent()
 {
   mType = eRecvFromDown;
 }
 //-------------------------------------------------------------
-TEventRecvFromUp::TEventRecvFromUp()
+TRecvFromUpEvent::TRecvFromUpEvent()
 {
   mType = eRecvFromUp;
 }
 //-------------------------------------------------------------
-TEventDisconnectUp::TEventDisconnectUp()
+TDisconnectUpEvent::TDisconnectUpEvent()
 {
   mType = eDisconnectUp;
-  id_session = INVALID_HANDLE_SESSION;
+  sessionID = INVALID_HANDLE_SESSION;
 }
 //-------------------------------------------------------------
-TEventDisconnectDown::TEventDisconnectDown()
+TDisconnectDownEvent::TDisconnectDownEvent()
 {
   mType = eDisconnectDown;
-  id_session = INVALID_HANDLE_SESSION;
+  sessionID = INVALID_HANDLE_SESSION;
 }
 //-------------------------------------------------------------
-TEventConnectUp::TEventConnectUp()
+TConnectUpEvent::TConnectUpEvent()
 {
   mType = eConnectUp;
-  id_session = INVALID_HANDLE_SESSION;
+  sessionID = INVALID_HANDLE_SESSION;
 }
 //-------------------------------------------------------------
-TEventConnectDown::TEventConnectDown()
+TTryConnectDownEvent::TTryConnectDownEvent()
+{
+  mType = eTryConnectDown;
+  sessionID = INVALID_HANDLE_SESSION;
+  hashLogin = nullptr;
+  hashLoginSize = 0;
+}
+//-------------------------------------------------------------
+TConnectDownEvent::TConnectDownEvent()
 {
   mType = eConnectDown;
-  id_session = INVALID_HANDLE_SESSION;
-  use_crypt = true;
+  sessionID = INVALID_HANDLE_SESSION;
 }
 //-------------------------------------------------------------
-TEventDestroyGroup::TEventDestroyGroup()
+TDestroyGroupEvent::TDestroyGroupEvent()
 {
   mType = eDestroyGroup;
-  id_group = 0;
+  groupID = 0;
 }
 //-------------------------------------------------------------
-TEventResultLogin::TEventResultLogin()
+TResultLoginEvent::TResultLoginEvent()
 {
   mType = eResultLogin;
 }
 //-------------------------------------------------------------
-TEventError::TEventError()
+TErrorEvent::TErrorEvent()
 {
   mType = eError;
   code = 0;
 }
 //-------------------------------------------------------------
-TEventRestoreContext::TEventRestoreContext()
+TRestoreContextEvent::TRestoreContextEvent()
 {
   mType = eRestoreContext;
-  id_session = INVALID_HANDLE_SESSION;
+  sessionID = INVALID_HANDLE_SESSION;
 }
 //-------------------------------------------------------------
-TEventTryLogin::TEventTryLogin()
+TTryLoginEvent::TTryLoginEvent()
 {
   mType = eTryLogin;
-  id_session = INVALID_HANDLE_SESSION;
-  use_crypt = true;
+  sessionID = INVALID_HANDLE_SESSION;
 }
 //-------------------------------------------------------------
-TEventSaveContext::TEventSaveContext()
+TLoginEvent::TLoginEvent()
+{
+  mType = eLogin;
+  clientID = 0;
+}
+//-------------------------------------------------------------
+TLogoffEvent::TLogoffEvent()
+{
+  mType = eLogoff;
+  clientID = 0;
+}
+//-------------------------------------------------------------
+TSaveContextEvent::TSaveContextEvent()
 {
   mType = eSaveContext;
-  id_session = INVALID_HANDLE_SESSION;
+  sessionID = INVALID_HANDLE_SESSION;
 }
 //-------------------------------------------------------------
-TEventEnterInQueue::TEventEnterInQueue()
+TEnterInQueueEvent::TEnterInQueueEvent()
 {
   mType = eEnterInQueue;
   numInQueue = 0;
 }
 //-------------------------------------------------------------
-TEventLeaveQueue::TEventLeaveQueue()
+TLeaveQueueEvent::TLeaveQueueEvent()
 {
   mType = eLeaveQueue;
 }

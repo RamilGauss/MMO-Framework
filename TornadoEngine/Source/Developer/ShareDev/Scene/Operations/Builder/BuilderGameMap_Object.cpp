@@ -11,7 +11,6 @@ See for more information License.h.
 #include "FactoryBehaviourPattern.h"
 #include "BehaviourPattern.h"
 
-#include <boost/foreach.hpp>
 #include "ModuleLogic.h"
 #include "FactoryGameItem.h"
 
@@ -22,7 +21,7 @@ TBuilderGameMap_Object::TBuilderGameMap_Object()
 //------------------------------------------------------------------------------
 TBuilderGameMap_Object::~TBuilderGameMap_Object()
 {
-  BOOST_FOREACH(TMapIntObjectVT& vt, mMapID_BuildObject)
+  for( auto& vt : mMapID_BuildObject)
   {
     TGameObject* pGameObject = vt.second.ptrGameObject;
     delete pGameObject;

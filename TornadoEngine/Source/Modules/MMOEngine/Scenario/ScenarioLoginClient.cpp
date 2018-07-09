@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -18,18 +18,18 @@ using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;
 using namespace std;
 
-TScenarioLoginClient::TScenarioLoginClient():
-mClient(this),mSlave(this),mMaster(this),mSS(this)
+TScenarioLoginClient::TScenarioLoginClient() :
+  mClient( this ), mSlave( this ), mMaster( this ), mSS( this )
 {
   mCurBehavior = NULL;
 
-  AddCallBack(eSetClientKey,                          &mCBSetClientKey);
-  AddCallBack(eContextByMasterSessionByClientKey,     &mCBContextByMasterSessionByClientKey);
-  AddCallBack(eNumInQueueByClientKey,                 &mCBNumInQueueByClientKey);
-  AddCallBack(eContextByClientSessionByClientKey,     &mCBContextByClientSessionByClientKey);
-  AddCallBack(eContextByClientSessionAfterAuthorised, &mCBContextByClientSessionAfterAuthorised);
-  AddCallBack(eContextByClientSessionLeaveQueue,      &mCBContextByClientSessionLeaveQueue);
-  AddCallBack(eContextByClientKey_SecondCallSlave,    &mCBContextByClientKey_SecondCallSlave);
+  AddCallBack( eSetClientKey, &mCBSetClientKey );
+  AddCallBack( eContextByMasterSessionByClientKey, &mCBContextByMasterSessionByClientKey );
+  AddCallBack( eNumInQueueByClientKey, &mCBNumInQueueByClientKey );
+  AddCallBack( eContextByClientSessionByClientKey, &mCBContextByClientSessionByClientKey );
+  AddCallBack( eContextByClientSessionAfterAuthorised, &mCBContextByClientSessionAfterAuthorised );
+  AddCallBack( eContextByClientSessionLeaveQueue, &mCBContextByClientSessionLeaveQueue );
+  AddCallBack( eContextByClientKey_SecondCallSlave, &mCBContextByClientKey_SecondCallSlave );
 }
 //--------------------------------------------------------------
 TScenarioLoginClient::~TScenarioLoginClient()
@@ -39,44 +39,42 @@ TScenarioLoginClient::~TScenarioLoginClient()
 //--------------------------------------------------------------
 void TScenarioLoginClient::Work()
 {
-  if(mCurBehavior)
+  if( mCurBehavior )
   {
     unsigned int time_ms = ht_GetMSCount();
-    mCurBehavior->Work(time_ms);
+    mCurBehavior->Work( time_ms );
   }
 }
 //--------------------------------------------------------------
-void TScenarioLoginClient::TryLogin(unsigned int ip, unsigned short port, unsigned char subNet,
-                                    void* pLogin, int sizeLogin, void* pPassword, int sizePassword)
+void TScenarioLoginClient::TryLogin( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet )
 {
-  mClient.TryLogin(ip, port, subNet, 
-    pLogin, sizeLogin, pPassword, sizePassword);
+  mClient.TryLogin( ip_port, login, password, subNet );
 }
 //--------------------------------------------------------------
-void TScenarioLoginClient::Recv(TDescRecvSession* pDesc)
+void TScenarioLoginClient::Recv( TDescRecvSession* pDesc )
 {
-  mCurBehavior->Recv(pDesc);
+  mCurBehavior->Recv( pDesc );
 }
 //--------------------------------------------------------------
-void TScenarioLoginClient::Reject(void* resForClient, int sizeResClient)
+void TScenarioLoginClient::Reject( void* resForClient, int sizeResClient )
 {
-  mMaster.Reject(resForClient, sizeResClient);
+  mMaster.Reject( resForClient, sizeResClient );
 }
 //--------------------------------------------------------------
-void TScenarioLoginClient::Accept(unsigned int key, void* resForClient, int sizeResClient, 
-                                  unsigned int id_session_slave, unsigned int id_superserver)
+void TScenarioLoginClient::Accept( unsigned int key, void* resForClient, int sizeResClient,
+  unsigned int id_session_slave, unsigned int id_superserver )
 {
-  mMaster.Accept(key, resForClient, sizeResClient, id_session_slave, id_superserver);
+  mMaster.Accept( key, resForClient, sizeResClient, id_session_slave, id_superserver );
 }
 //--------------------------------------------------------------
-void TScenarioLoginClient::Queue(int num,void* resForClient, int sizeResClient)
+void TScenarioLoginClient::Queue( int num, void* resForClient, int sizeResClient )
 {
-  mMaster.Queue(num, resForClient, sizeResClient);
+  mMaster.Queue( num, resForClient, sizeResClient );
 }
 //--------------------------------------------------------------
-void TScenarioLoginClient::SetBehavior(eBehavior v)
+void TScenarioLoginClient::SetBehavior( eBehavior v )
 {
-  switch(v)
+  switch( v )
   {
     case eClient:
       mCurBehavior = &mClient;
@@ -108,8 +106,8 @@ void TScenarioLoginClient::DisconnectFromMaster()
   mMaster.Disconnect();
 }
 //---------------------------------------------------------------------
-void TScenarioLoginClient::SetFakeClient(bool val)
+void TScenarioLoginClient::SetFakeClient( bool val )
 {
-  mSS.SetFakeClient(val);
+  mSS.SetFakeClient( val );
 }
 //---------------------------------------------------------------------

@@ -23,8 +23,8 @@ namespace nsMMOEngine
 
     virtual void Work(unsigned int time_ms);
 
-    void TryLogin(unsigned int ip, unsigned short port, unsigned char subNet,
-                  void* pLogin, int sizeLogin, void* pPassword, int sizePassword);
+    void TryLogin( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet );
+      
     void LeaveQueue();
 
     void Disconnect();
@@ -41,6 +41,9 @@ namespace nsMMOEngine
     void InfoSlaveM2C(TDescRecvSession* pDesc);
   private:
     void CloseSessionMaster();
+
+    void TryLoginAfterConnect( int sessionID );
+    void DisconnectAfterConnect( int sessionID );
   };
   //------------------------------------------------------------
 }

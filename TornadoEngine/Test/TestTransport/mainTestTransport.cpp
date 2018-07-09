@@ -19,6 +19,7 @@ See for more information License.h.
 
 #include "CryptoAES_Impl.h"
 #include "SHA256.h"
+#include "HistoryPacketTCP.h"
 
 nsMMOEngine::INetTransport* g_pTransport = NULL;
 
@@ -32,20 +33,20 @@ public:
   {
     count_recv = 0;
   }
-  void Recv(nsMMOEngine::INetTransport::TDescRecv* p)
+  void Recv( nsMMOEngine::INetTransport::TDescRecv* p )
   {
     count_recv++;
-    printf("Recv event from %u\n", p->ip_port.port);
-    if (count_recv == 1)
-      g_pTransport->Close(p->ip_port.ip, p->ip_port.port);
+    printf( "Recv event from %u\n", p->ip_port.port );
+    if( count_recv == 1 )
+      g_pTransport->Close( p->ip_port.ip, p->ip_port.port );
   }
-  void Disconnect(TIP_Port* p)
+  void Disconnect( TIP_Port* p )
   {
-    printf("Disconnect event from %u\n", p->port);
+    printf( "Disconnect event from %u\n", p->port );
 
     TIP_Port* pNew = new TIP_Port;
     *pNew = *p;
-    mListDisc.Add(pNew);
+    mListDisc.Add( pNew );
   }
 };
 
@@ -54,102 +55,208 @@ THandler g_Handler;
 int CRC32( char* data, int size )
 {
   int crc = 0;
-  for (int i = 0; i < size; i++)
-    crc += (unsigned char)data[i];
+  for( int i = 0; i < size; i++ )
+    crc += (unsigned char) data[i];
   return crc;
 }
 
-int main(int argc, char** argv)
+void TestFusion()
 {
+  // Получение множества пакетов в одном буфере
+
+  char p0 [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+  int size0 = sizeof( p0 );
+  char p1 [] = { 12, 13, 14, 15, 16, 17, 18 };
+  int size1 = sizeof( p1 );
+  char p2 [] = { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 110, 111 };
+  int size2 = sizeof( p2 );
+
+  char* packets [] = { p0,  p1,  p2 };
+  int sizes [] = { size0,  size1,  size2 };
+
+
+  THistoryPacketTCP history;
+  TContainerRise allPackets;
+  for( int iPacket = 0; iPacket < 3; iPacket++ )
+  {// склейка пакетов
+    char* packet = packets[iPacket];
+    int packetSize = sizes[iPacket];
+    TBreakPacket bp;
+    bp.PushBack( packet, packetSize );
+    history.PackForSend( bp );
+
+    bp.CopyInBuffer( allPackets, allPackets.GetSize() );
+  }
+
+  auto recvBuffer = (char*) allPackets.GetPtr();
+  auto recvSize = allPackets.GetSize();
+
+  int beginPos = 0;
+  while( true )
+  {
+    THistoryPacketTCP::TResult parseRes;
+    history.Analiz( beginPos, parseRes, recvSize, recvBuffer );
+
+    if( parseRes.complete )
+    {
+      // callback
+      int aaa = 42;
+    }
+
+    if( parseRes.parse_error )
+      break;
+    if( beginPos >= recvSize )
+      break;
+  }
+}
+
+void TestPerByteRecv()
+{
+  char p0 [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+  int size0 = sizeof( p0 );
+  char p1 [] = { 12, 13, 14, 15, 16, 17, 18 };
+  int size1 = sizeof( p1 );
+  char p2 [] = { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 110, 111 };
+  int size2 = sizeof( p2 );
+
+  char* packets [] = { p0,  p1,  p2 };
+  int sizes [] = { size0,  size1,  size2 };
+
+  THistoryPacketTCP history;
+  TContainerRise allPackets;
+  for( int iPacket = 0; iPacket < 3; iPacket++ )
+  {// склейка пакетов
+    char* packet = packets[iPacket];
+    int packetSize = sizes[iPacket];
+    TBreakPacket bp;
+    bp.PushBack( packet, packetSize );
+    history.PackForSend( bp );
+
+    bp.CopyInBuffer( allPackets, allPackets.GetSize() );
+  }
+
+  auto recvBuffer = (char*) allPackets.GetPtr();
+  auto recvSize = allPackets.GetSize();
+
+  for( int iByte = 0; iByte < recvSize; iByte++ )
+  {
+    auto buffer = &recvBuffer [iByte];
+    int recvSize = sizeof(unsigned char);
+    int beginPos = 0;
+    while( true )
+    {
+      THistoryPacketTCP::TResult parseRes;
+      history.Analiz( beginPos, parseRes, recvSize, buffer );
+
+      if( parseRes.complete )
+      {
+        // callback
+        int aaa = 42;
+      }
+
+      if( parseRes.parse_error )
+        break;
+      if( beginPos >= recvSize )
+        break;
+    }
+  }
+}
+
+int main( int argc, char** argv )
+{
+  // Test: history tcp
+  TestFusion();
+  TestPerByteRecv();
+
   //###
   const char* password = "1234567890";
   TSHA256 sha256;
   TContainer hashKey;
-  sha256.FastCalc( (void*)password, strlen(password), hashKey);
+  sha256.FastCalc( (void*) password, strlen( password ), hashKey );
   char* key = hashKey.GetPtr();
   auto sizeKey = hashKey.GetSize();
 
   TCryptoAES_Impl aes0, aes1;
-  aes0.SetPublicKey(key, sizeKey);
-  aes1.SetPublicKey(key, sizeKey);
+  aes0.SetKey( key, sizeKey );
+  aes1.SetKey( key, sizeKey );
   char original[10];
-  int sizeOriginal = sizeof(original);
-  for (int i = 0; i < sizeOriginal; i++)
+  int sizeOriginal = sizeof( original );
+  for( int i = 0; i < sizeOriginal; i++ )
     original[i] = i;
 
   TContainer crypt0, crypt1, crypt2;
-  aes0.Encrypt(original, sizeOriginal, crypt0);
-  aes0.Encrypt(original, sizeOriginal, crypt1);
-  aes0.Encrypt(original, sizeOriginal, crypt2);
+  aes0.Encrypt( original, sizeOriginal, crypt0 );
+  aes0.Encrypt( original, sizeOriginal, crypt1 );
+  aes0.Encrypt( original, sizeOriginal, crypt2 );
   TContainer retOriginal0, retOriginal1;
-  aes1.Decrypt(crypt0.GetPtr(), crypt0.GetSize(), retOriginal0);
-  aes1.Decrypt(crypt1.GetPtr(), crypt1.GetSize(), retOriginal1);
+  aes1.Decrypt( crypt0.GetPtr(), crypt0.GetSize(), retOriginal0 );
+  aes1.Decrypt( crypt1.GetPtr(), crypt1.GetSize(), retOriginal1 );
 
-  auto crcO = CRC32(original, sizeof(original));
-  auto crcC0 = CRC32(crypt0.GetPtr(), crypt0.GetSize());
-  auto crcC1 = CRC32(crypt1.GetPtr(), crypt1.GetSize());
-  auto crcC2 = CRC32(crypt2.GetPtr(), crypt2.GetSize());
-  auto crcRO0 = CRC32(retOriginal0.GetPtr(), retOriginal0.GetSize());
-  auto crcRO1 = CRC32(retOriginal1.GetPtr(), retOriginal1.GetSize());
+  auto crcO = CRC32( original, sizeof( original ) );
+  auto crcC0 = CRC32( crypt0.GetPtr(), crypt0.GetSize() );
+  auto crcC1 = CRC32( crypt1.GetPtr(), crypt1.GetSize() );
+  auto crcC2 = CRC32( crypt2.GetPtr(), crypt2.GetSize() );
+  auto crcRO0 = CRC32( retOriginal0.GetPtr(), retOriginal0.GetSize() );
+  auto crcRO1 = CRC32( retOriginal1.GetPtr(), retOriginal1.GetSize() );
   //###
 
   TBreakPacket g_BP;
 
-  SetCurrentPathByFile(argv[0]);
+  SetCurrentPathByFile( argv[0] );
 
   TInputCmdTestTransport inputCmd;
-  bool res = inputCmd.SetArg(argc, argv);
-  BL_ASSERT(res);
+  bool res = inputCmd.SetArg( argc, argv );
+  BL_ASSERT( res );
 
   TInputCmdTestTransport::TInput inputArg;
-  inputCmd.Get(inputArg);
+  inputCmd.Get( inputArg );
 
   char sLog[100];
-  sprintf(sLog, "TestTransport%d", inputArg.port_src);
+  sprintf( sLog, "TestTransport%d", inputArg.port_src );
 
-  GetLogger()->Register("TestNetTransport");
-  GetLogger()->Init(sLog);
-  GetLogger()->SetPrintf(false);
+  GetLogger()->Register( "TestNetTransport" );
+  GetLogger()->Init( sLog );
+  GetLogger()->SetPrintf( false );
 
   TMakerNetTransport makerTransport;
   g_pTransport = makerTransport.New();
 
   std::string sLocalHost;
   TResolverSelf_IP_v4 resolver;
-  resolver.Get(sLocalHost, 0);
+  resolver.Get( sLocalHost, 0 );
 
-  unsigned int IP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
+  unsigned int IP = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
 
-  g_pTransport->GetCallbackDisconnect()->Register(&THandler::Disconnect, &g_Handler);
-  g_pTransport->GetCallbackRecv()->Register(&THandler::Recv, &g_Handler);
+  g_pTransport->GetCallbackDisconnect()->Register( &THandler::Disconnect, &g_Handler );
+  g_pTransport->GetCallbackRecv()->Register( &THandler::Recv, &g_Handler );
 
-  g_pTransport->Open(inputArg.port_src);
+  g_pTransport->Open( inputArg.port_src );
   g_pTransport->Start();
 
-  bool resConnect = g_pTransport->Connect(IP, inputArg.port_dst);
+  bool resConnect = g_pTransport->Connect( IP, inputArg.port_dst );
 
   unsigned int start = ht_GetMSCount();
-  while (true)
+  while( true )
   {
-    ht_msleep(100);
+    ht_msleep( 100 );
     unsigned int now_ms = ht_GetMSCount();
 
-    if (resConnect)
-      if (now_ms > start + inputArg.timer_send)
+    if( resConnect )
+      if( now_ms > start + inputArg.timer_send )
       {
         inputArg.timer_send += 1000;
         char* msg = "1";
         g_BP.Reset();
-        g_BP.PushBack(msg, strlen(msg));
-        g_pTransport->Send(IP, inputArg.port_dst, g_BP);
+        g_BP.PushBack( msg, strlen( msg ) );
+        g_pTransport->Send( IP, inputArg.port_dst, g_BP );
       }
 
     TIP_Port** ppFisrt = g_Handler.mListDisc.GetFirst();
-    while (ppFisrt)
+    while( ppFisrt )
     {
       TIP_Port* pIP_Port = *ppFisrt;
-      if (pIP_Port->port == inputArg.port_dst)
-        resConnect = g_pTransport->Connect(IP, inputArg.port_dst);
+      if( pIP_Port->port == inputArg.port_dst )
+        resConnect = g_pTransport->Connect( IP, inputArg.port_dst );
 
       g_Handler.mListDisc.RemoveFirst();
       ppFisrt = g_Handler.mListDisc.GetFirst();

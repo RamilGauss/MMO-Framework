@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -12,103 +12,116 @@ See for more information License.h.
 #include "ResolverSelf_IP_v4.h"
 #include "HandlerMMO_Slave.h"
 #include "Slave.h"
+#include "Logger.h"
 
 using namespace std;
 
-THandlerMMO_Slave::THandlerMMO_Slave()
+THandlerMMO_Slave::THandlerMMO_Slave() : THandlerMMO( eSlave )
 {
 
 }
 //-----------------------------------------------------------------------------------
-void THandlerMMO_Slave::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
+void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
 {
   nsMMOEngine::TBaseEvent* pBE = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
-  nsMMOEngine::TSlave* pSlave  = (nsMMOEngine::TSlave*)pEvent->ptr_object;
+  nsMMOEngine::TSlave* pSlave = (nsMMOEngine::TSlave*)pEvent->ptr_object;
 
-  string sEvent;  
-  switch(pBE->mType)
+  string sEvent;
+  switch( pBE->mType )
   {
+    case nsMMOEngine::eTryConnectDown:
+    {
+      sEvent = "TryConnectDown";
+      std::string password = CLIENT_PASSWORD;
+      auto sessionID = ((nsMMOEngine::TTryConnectDownEvent*) pBE)->sessionID;
+      pSlave->Accept( sessionID, password );
+    }
+    break;
     case nsMMOEngine::eConnectDown:
     {
       sEvent = "ConnectDown";
-      IncreaseCountConnection();
+      auto sessionID = ((nsMMOEngine::TConnectDownEvent*) pBE)->sessionID;
+      AddConnection( sessionID );
       // если это Slave, то отправить пакет Мастеру с ID_Client
       unsigned int id_client;
-      bool res = pSlave->FindClientKeyBySession(
-        ((nsMMOEngine::TEventConnectDown*)pBE)->id_session, id_client);
-      mBP.Reset();
+      bool res = pSlave->FindClientKeyBySession( sessionID, id_client );
       char s[100];
-      sprintf(s,"%d",id_client);
-      int sizeMsg = strlen(s);
-      pSlave->SendUp(s, sizeMsg);
+      sprintf( s, "%d", id_client );
+      int sizeMsg = strlen( s );
+      pSlave->SendUp( s, sizeMsg );
       // при авторизации клиента выставить нагрузку
-      pSlave->SetLoad(40);
+      pSlave->SetLoad( 40 );
     }
-      break;
+    break;
     case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
-      DecreaseCountConnection();
-      pSlave->SetLoad(0);
+      RemoveConnection( ((nsMMOEngine::TDisconnectDownEvent*) pBE)->sessionID );
+      pSlave->SetLoad( 0 );
       break;
     case nsMMOEngine::eConnectUp:
       sEvent = "ConnectUp";
-      IncreaseCountConnection();
+      AddConnection( ((nsMMOEngine::TConnectUpEvent*) pBE)->sessionID );
       break;
     case nsMMOEngine::eDisconnectUp:
       sEvent = "DisconnectUp";
-      DecreaseCountConnection();
+      RemoveConnection( ((nsMMOEngine::TDisconnectUpEvent*) pBE)->sessionID );
       break;
     case nsMMOEngine::eError:
     {
-      nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
-      sEvent = GetStrError(pEr->code);
+      nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
+      sEvent = GetStrError( pEr->code );
     }
-      break;
+    break;
     case nsMMOEngine::eRecvFromDown:
     {
-      sEvent = "RecvFromDown";
-      nsMMOEngine::TEventRecvFromDown* pR = (nsMMOEngine::TEventRecvFromDown*)pBE;
-      char s[200];
-      memcpy(s, pR->data, pR->sizeData);
-      s[pR->sizeData] = '\0';
-      sEvent += " msg: ";
-      sEvent += s;
+      //sEvent = "RecvFromDown";
+      //nsMMOEngine::TRecvFromDownEvent* pR = (nsMMOEngine::TRecvFromDownEvent*)pBE;
+      //char s[200];
+      //memcpy( s, pR->data, pR->dataSize );
+      //s[pR->dataSize] = '\0';
+      //sEvent += " msg: ";
+      //sEvent += s;
+      return;
     }
-      break;
+    break;
     case nsMMOEngine::eRecvFromUp:
     {
       sEvent = "RecvFromUp";
-      nsMMOEngine::TEventRecvFromUp* pR = (nsMMOEngine::TEventRecvFromUp*)pBE;
+      nsMMOEngine::TRecvFromUpEvent* pR = (nsMMOEngine::TRecvFromUpEvent*)pBE;
       char s[200];
-      memcpy(s, pR->data, pR->sizeData);
-      s[pR->sizeData] = '\0';
+      memcpy( s, pR->data, pR->dataSize );
+      s[pR->dataSize] = '\0';
       sEvent += " msg: ";
       sEvent += s;
     }
-      break;
+    break;
     case nsMMOEngine::eSaveContext:
     {
       sEvent = "SaveContext";
-      nsMMOEngine::TEventSaveContext* pSE = (nsMMOEngine::TEventSaveContext*)pBE;
+      nsMMOEngine::TSaveContextEvent* pSE = (nsMMOEngine::TSaveContextEvent*)pBE;
       char* pData = "This is context, motherfucker!";
-      int   size  = strlen(pData);
-      pSlave->SaveContext(pSE->id_session, pData, size);
+      int   size = strlen( pData );
+      pSlave->SaveContext( pSE->sessionID, pData, size );
     }
-      break;
+    break;
     case nsMMOEngine::eRestoreContext:
     {
       sEvent = "RestoreContext";
-      nsMMOEngine::TEventRestoreContext* pRE = (nsMMOEngine::TEventRestoreContext*)pBE;
+      nsMMOEngine::TRestoreContextEvent* pRE = (nsMMOEngine::TRestoreContextEvent*)pBE;
       char sContext[200];
-      memcpy(sContext, pRE->c.GetPtr(), pRE->c.GetSize());
+      memcpy( sContext, pRE->c.GetPtr(), pRE->c.GetSize() );
       sContext[pRE->c.GetSize()] = '\0';
       char s[200];
-      sprintf(s, "id=%d, data=\"%s\" ", pRE->id_session, sContext); 
+      sprintf( s, "id=%d, data=\"%s\" ", pRE->sessionID, sContext );
     }
-      break;
+    break;
     default:BL_FIX_BUG();
   }
-  printf("MMOEngine S (0x%p): %s.\t\t", pSlave, sEvent.data());
-  printf("CC=%d\n",GetCountConnection());
+
+  if( pBE->mType == nsMMOEngine::eError )
+  {
+    GetLogger( ServerLog )->WriteF( "MMOEngine S (0x%p): %s.\t", pSlave, sEvent.data() );
+    PrintCC( ServerLog );
+  }
 }
 //---------------------------------------------------------------------------------------------

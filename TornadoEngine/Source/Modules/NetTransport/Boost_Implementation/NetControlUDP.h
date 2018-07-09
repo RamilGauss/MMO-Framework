@@ -22,7 +22,6 @@ class TNetControlUDP : public INetControl
     eTimeRepeatSend = 20,
   };
 
-  int mReadSize;
   char mBuffer[eSizeBuffer];
 
   volatile bool flgWaitSend;

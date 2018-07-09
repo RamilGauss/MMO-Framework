@@ -29,25 +29,25 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
   {
     case nsMMOEngine::eConnectUp:
       //sEvent = "ConnectUp";
-      IncreaseCountConnection();
+      //IncreaseConnectUpCount();
       break;
     case nsMMOEngine::eDisconnectUp:
       //sEvent = "DisconnectUp";
-      DecreaseCountConnection();
+      //IncreaseDisconnectUpCount();
       break;
     case nsMMOEngine::eError:
     {
-      nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
+      nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
       sEvent = GetStrError(pEr->code);
     }
       break;
     case nsMMOEngine::eRecvFromUp:
     {
       //sEvent = "RecvFromUp";
-      //nsMMOEngine::TEventRecvFromUp* pR = (nsMMOEngine::TEventRecvFromUp*)pBE;
+      //nsMMOEngine::TRecvFromUpEvent* pR = (nsMMOEngine::TRecvFromUpEvent*)pBE;
       //char s[200];
-      //memcpy(s, pR->data, pR->sizeData);
-      //s[pR->sizeData] = '\0';
+      //memcpy(s, pR->data, pR->dataSize);
+      //s[pR->dataSize] = '\0';
       //sEvent += " msg: ";
       //sEvent += s;
     }
@@ -55,7 +55,7 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
     case nsMMOEngine::eResultLogin:
     {
       //sEvent = "ResultLogin";
-      //nsMMOEngine::TEventResultLogin* pRes = (nsMMOEngine::TEventResultLogin*)pBE;
+      //nsMMOEngine::TResultLoginEvent* pRes = (nsMMOEngine::TResultLoginEvent*)pBE;
       //if(pRes->res==nsMMOEngine::TMaster::eAccept)
       //{
       //  sEvent += " Accept ";

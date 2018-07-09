@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,68 +9,67 @@ See for more information License.h.
 
 #include "FactoryGameItem.h"
 
-#include <boost/foreach.hpp>
 #include "IXML.h"
 
 TManagerSerializerItem_XML::TManagerSerializerItem_XML()
 {
-  mSerializerPatternConfig.reset(new TSerializerPatternConfigItem_XML);
-  mSerializerShape.reset(        new TSerializerShapeItem_XML);
-  mSerializerModel.reset(        new TSerializerModelItem_XML);
-  mSerializerMaterial.reset(     new TSerializerMaterialItem_XML);
-  mSerializerTerrain.reset(      new TSerializerTerrainItem_XML);
-  mSerializerMap.reset(          new TSerializerMapItem_XML);
-  mSerializerTableSound.reset(   new TSerializerTableSoundItem_XML);
+  mSerializerPatternConfig.reset( new TSerializerPatternConfigItem_XML );
+  mSerializerShape.reset( new TSerializerShapeItem_XML );
+  mSerializerModel.reset( new TSerializerModelItem_XML );
+  mSerializerMaterial.reset( new TSerializerMaterialItem_XML );
+  mSerializerTerrain.reset( new TSerializerTerrainItem_XML );
+  mSerializerMap.reset( new TSerializerMapItem_XML );
+  mSerializerTableSound.reset( new TSerializerTableSoundItem_XML );
 
   mXML = NULL;
 
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::PatternConfig,mSerializerPatternConfig.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Material,     mSerializerMaterial.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Shape,        mSerializerShape.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Model,        mSerializerModel.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Terrain,      mSerializerTerrain.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::Map,          mSerializerMap.get()));
-  mMapTypeSerializer.insert(TMapIntPtrSerilizerVT(TFactoryGameItem::TableSound,   mSerializerTableSound.get()));
+  mMapTypeSerializer.insert( TMapIntPtrSerilizerVT( TFactoryGameItem::PatternConfig, mSerializerPatternConfig.get() ) );
+  mMapTypeSerializer.insert( TMapIntPtrSerilizerVT( TFactoryGameItem::Material, mSerializerMaterial.get() ) );
+  mMapTypeSerializer.insert( TMapIntPtrSerilizerVT( TFactoryGameItem::Shape, mSerializerShape.get() ) );
+  mMapTypeSerializer.insert( TMapIntPtrSerilizerVT( TFactoryGameItem::Model, mSerializerModel.get() ) );
+  mMapTypeSerializer.insert( TMapIntPtrSerilizerVT( TFactoryGameItem::Terrain, mSerializerTerrain.get() ) );
+  mMapTypeSerializer.insert( TMapIntPtrSerilizerVT( TFactoryGameItem::Map, mSerializerMap.get() ) );
+  mMapTypeSerializer.insert( TMapIntPtrSerilizerVT( TFactoryGameItem::TableSound, mSerializerTableSound.get() ) );
 
-  BOOST_FOREACH( TMapIntPtrSerilizerVT& vtTypePtrSer, mMapTypeSerializer)
-    mMapStrType.insert(bmStrIntVT(vtTypePtrSer.second->Type(), vtTypePtrSer.first));
+  for( auto& vtTypePtrSer : mMapTypeSerializer )
+    mMapStrType.insert( bmStrIntVT( vtTypePtrSer.second->Type(), vtTypePtrSer.first ) );
 }
 //--------------------------------------------------------------------------------------
-void TManagerSerializerItem_XML::Init(IXML* xml)
+void TManagerSerializerItem_XML::Init( IXML* xml )
 {
   mXML = xml;
 
-  BOOST_FOREACH(TMapIntPtrSerilizerVT& vt, mMapTypeSerializer)
-    vt.second->Init(mXML);
+  for( auto& vt : mMapTypeSerializer )
+    vt.second->Init( mXML );
 }
 //--------------------------------------------------------------------------------------
-bool TManagerSerializerItem_XML::Load(TBaseItem* pItem)
+bool TManagerSerializerItem_XML::Load( TBaseItem* pItem )
 {
-  TBaseSerializerItem_XML* p = Find(pItem->mType);
-  if(p==NULL)
+  TBaseSerializerItem_XML* p = Find( pItem->mType );
+  if( p == NULL )
     return false;
-  return p->Load(pItem);
+  return p->Load( pItem );
 }
 //--------------------------------------------------------------------------------------
-bool TManagerSerializerItem_XML::Save(TBaseItem* pItem)
+bool TManagerSerializerItem_XML::Save( TBaseItem* pItem )
 {
-  TBaseSerializerItem_XML* p = Find(pItem->mType);
-  if(p==NULL)
+  TBaseSerializerItem_XML* p = Find( pItem->mType );
+  if( p == NULL )
     return false;
-  return p->Save(pItem);
+  return p->Save( pItem );
 }
 //--------------------------------------------------------------------------------------
-bool TManagerSerializerItem_XML::Remove(int type, std::string& name)
+bool TManagerSerializerItem_XML::Remove( int type, std::string& name )
 {
-  TBaseSerializerItem_XML* p = Find(type);
-  if(p==NULL)
+  TBaseSerializerItem_XML* p = Find( type );
+  if( p == NULL )
     return false;
-  return p->RemoveSection(name);
+  return p->RemoveSection( name );
 }
 //--------------------------------------------------------------------------------------
-bool TManagerSerializerItem_XML::Remove(TBaseItem* pItem)
+bool TManagerSerializerItem_XML::Remove( TBaseItem* pItem )
 {
-  return Remove(pItem->mType, pItem->mName);
+  return Remove( pItem->mType, pItem->mName );
 }
 //--------------------------------------------------------------------------------------
 bool TManagerSerializerItem_XML::Save()
@@ -81,27 +80,27 @@ bool TManagerSerializerItem_XML::Save()
   return res;
 }
 //--------------------------------------------------------------------------------------
-TBaseSerializerItem_XML* TManagerSerializerItem_XML::Find(int type)
+TBaseSerializerItem_XML* TManagerSerializerItem_XML::Find( int type )
 {
-  TMapIntPtrSerilizerIt fit = mMapTypeSerializer.find(type);
-  if(fit==mMapTypeSerializer.end())
+  TMapIntPtrSerilizerIt fit = mMapTypeSerializer.find( type );
+  if( fit == mMapTypeSerializer.end() )
     return NULL;
   return fit->second;
 }
 //--------------------------------------------------------------------------------------
-bool TManagerSerializerItem_XML::Str2Type(std::string& strType, int& type)
+bool TManagerSerializerItem_XML::Str2Type( std::string& strType, int& type )
 {
-  bmStrIntLeftIt fit = mMapStrType.left.find(strType);
-  if( fit==mMapStrType.left.end() )
+  bmStrIntLeftIt fit = mMapStrType.left.find( strType );
+  if( fit == mMapStrType.left.end() )
     return false;
   type = fit->second;
   return true;
 }
 //--------------------------------------------------------------------------------------
-bool TManagerSerializerItem_XML::Type2Str(int type, std::string& strType)
+bool TManagerSerializerItem_XML::Type2Str( int type, std::string& strType )
 {
-  bmStrIntRightIt fit = mMapStrType.right.find(type);
-  if( fit==mMapStrType.right.end() )
+  bmStrIntRightIt fit = mMapStrType.right.find( type );
+  if( fit == mMapStrType.right.end() )
     return false;
   strType = fit->second;
   return true;

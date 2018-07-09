@@ -24,9 +24,7 @@ TScenarioLoginMaster::~TScenarioLoginMaster()
 
 }
 //--------------------------------------------------------------
-void TScenarioLoginMaster::ConnectToSuperServer( unsigned int ip, unsigned short port,
-  void* pLogin, int sizeLogin, void* pPassword, int sizePassword,
-  unsigned char subNet )
+void TScenarioLoginMaster::ConnectToSuperServer( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet )
 {
   Context()->SetConnect( false );
   if( Begin() == false )
@@ -39,46 +37,49 @@ void TScenarioLoginMaster::ConnectToSuperServer( unsigned int ip, unsigned short
     BL_FIX_BUG();
     return;
   }
-  Context()->GetMS()->CloseSession( Context()->GetID_Session() );
-  // создать пакет
-  TContainerRise cMITM;
-  mBP.Reset();
-  if( (Context()->GetMS()->GetUseCryptTCP()) &&
-    (pLogin != NULL) && (sizeLogin > 0) && (pPassword != NULL) && (sizePassword > 0) )
+  Context()->GetMS()->CloseSession( Context()->GetSessionID() );
+  Context()->SetSessionID( INVALID_HANDLE_SESSION );
+
+  auto context = Context();
+  auto scenario = this;
+  Context()->GetMS()->ConnectAsync( ip_port, login, password, subNet, [scenario, context]( int sessionID )
   {
-    // если данные шифруются, то формировать так:
-    TContainer cRSA;
-    bool resRSA = Context()->GetMS()->GetRSAPublicKeyForUp( cRSA );
-    BL_ASSERT( resRSA );
-    bool res = mCryptMITM.Calc( cRSA.GetPtr(), cRSA.GetSize(),
-      pLogin, sizeLogin, pPassword, sizePassword, cMITM );
-    BL_ASSERT( res );
-
-    mBP.PushFront( cMITM.GetPtr(), cMITM.GetSize() );
-  }
-  THeaderFromMaster h;
-  mBP.PushFront( (char*) &h, sizeof( h ) );
-
-  Context()->SetID_Session( Context()->GetMS()->Connect( ip, port, mBP, subNet ) );
-  if( Context()->GetID_Session() == INVALID_HANDLE_SESSION )
+    scenario->SetContext( context );
+    scenario->ConnectToSuperServerAfterConnect( sessionID );
+  } );
+}
+//--------------------------------------------------------------
+void TScenarioLoginMaster::ConnectToSuperServerAfterConnect( int sessionID )// transport thread
+{
+  if( sessionID == INVALID_HANDLE_SESSION )
   {
     // Генерация ошибки
-    TEventError event;
+    TErrorEvent event;
     event.code = LoginMaster_SSNotReady;
     Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
     End();
+    return;
   }
-  else
-    Context()->SetTimeWait( ht_GetMSCount() + eTimeoutWait_ms );
+  Context()->SetSessionID( sessionID );
+  // создать пакет
+  mBP.Reset();
+  THeaderFromMaster h;
+  mBP.PushFront( (char*) &h, sizeof( h ) );
+  Context()->GetMS()->Send( sessionID, mBP, true );
+  Context()->SetTimeWait( ht_GetMSCount() + eTimeoutWait_ms );
 }
 //--------------------------------------------------------------
 void TScenarioLoginMaster::Work()
 {
+  // если нет связи с верхним соединением, ждем соединения, если не дождемся нам об этом сообщит SessionManager
+  if( Context()->GetSessionID() == INVALID_HANDLE_SESSION )
+    return;
+
   unsigned int now = ht_GetMSCount();
   if( Context()->GetTimeWait() < now )
   {
     // ошибка на той стороне
-    TEventError event;
+    TErrorEvent event;
     event.code = LoginMaster_NoAnswerFromSS;
     Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
     End();
@@ -103,27 +104,27 @@ void TScenarioLoginMaster::RecvFromMaster( TDescRecvSession* pDesc )
     BL_FIX_BUG();
     return;
   }
-  Context()->SetID_Session( pDesc->id_session );
+  Context()->SetSessionID( pDesc->sessionID );
 
   // событие наружу
-  TEventConnectDown* pEvent = new TEventConnectDown;
-  pEvent->id_session = pDesc->id_session;
+  TConnectDownEvent* pEvent = new TConnectDownEvent;
+  pEvent->sessionID = pDesc->sessionID;
   // сохранить информацию о логине и пароле клиента
   char* data = pDesc->data + sizeof( THeaderFromMaster );
-  int sizeData = pDesc->sizeData - sizeof( THeaderFromMaster );
-  pEvent->c.SetDataByCount( data, sizeData );
-  Context()->GetSE()->AddEventWithoutCopy<TEventConnectDown>( pEvent );
+  int dataSize = pDesc->dataSize - sizeof( THeaderFromMaster );
+  pEvent->c.SetDataByCount( data, dataSize );
+  Context()->GetSE()->AddEventWithoutCopy<TConnectDownEvent>( pEvent );
 
   mBP.Reset();
   THeaderAnswerFromSS h;
   mBP.PushFront( (char*) &h, sizeof( h ) );
-  Context()->GetMS()->Send( Context()->GetID_Session(), mBP );
+  Context()->GetMS()->Send( Context()->GetSessionID(), mBP );
   End();
 }
 //-------------------------------------------------------------------------------------
 void TScenarioLoginMaster::Recv( TDescRecvSession* pDesc )
 {
-  NeedContextBySession( pDesc->id_session );
+  NeedContextBySession( pDesc->sessionID );
   THeaderLoginMaster* pPacket = (THeaderLoginMaster*) pDesc->data;
   switch( pPacket->subType )
   {

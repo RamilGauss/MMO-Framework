@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,7 +15,7 @@ See for more information License.h.
 class DllExport TCryptoAES_Impl
 {
   TContainer mKey;
-  
+
   unsigned char iv[32]; // вектор инициализации 
 
   void* mCipher;
@@ -24,7 +24,7 @@ class DllExport TCryptoAES_Impl
 public:
   TCryptoAES_Impl();
   ~TCryptoAES_Impl();
-  
+
   typedef enum
   {
     e128 = 128,
@@ -34,17 +34,21 @@ public:
 
   bool GenerateKey( eCountBits c = e256 );
 
-  bool Encrypt( void* pIn, int sizeIn, TContainer& c_out);
-  bool Decrypt( void* pIn, int sizeIn,  TContainer& c_out);
-  bool Decrypt( void* pIn, int sizeIn,  TContainerPtr& c_out);
+  bool Encrypt( void* pIn, int sizeIn, TContainerRise& c_out );
+  bool Encrypt( void* pIn, int sizeIn, TContainer& c_out );
 
-  bool GetPublicKey(TContainerRise& c_out);
-  void SetPublicKey(void* pKey, int sizeKey);
+  bool Decrypt( void* pIn, int sizeIn, TContainerRise& c_out );
+  bool Decrypt( void* pIn, int sizeIn, TContainer& c_out );
+  bool Decrypt( void* pIn, int sizeIn, TContainerPtr& c_out );
+
+  bool GetKey( TContainerRise& c_out );
+  void SetKey( void* pKey, int sizeKey );
 
 protected:
   void InitContext();
 
-  bool InnerDecrypt (void* pIn, int sizeIn, void* pOut );
+  bool InnerEncrypt( void* pIn, int sizeIn, void* pOut );
+  bool InnerDecrypt( void* pIn, int sizeIn, void* pOut );
 };
 
 

@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -26,25 +26,36 @@ struct TIP_Port
   unsigned int ip;
   unsigned short port;
   TIP_Port(){}
-  TIP_Port(unsigned int _ip, unsigned short _port)
+  TIP_Port( unsigned int _ip, unsigned short _port )
   {
-    ip   = _ip;
+    ip = _ip;
     port = _port;
   }
-  void Set(unsigned int _ip, unsigned short _port)
+  void Set( unsigned int _ip, unsigned short _port )
   {
-    ip   = _ip;
+    ip = _ip;
     port = _port;
   }
-  bool operator < (const TIP_Port& right) const
+  bool operator < ( const TIP_Port& right ) const
   {
-    if(ip < right.ip)
+    if( ip < right.ip )
       return true;
     else
-      if(ip == right.ip)
-        if(port < right.port)
+      if( ip == right.ip )
+        if( port < right.port )
           return true;
     return false;
+  }
+
+  const char* ToString()
+  {
+    static std::string _toString;
+
+    char s[100];
+    unsigned char* p = (unsigned char*) &ip;
+    sprintf( s, "%u.%u.%u.%u:%u", p[3], p[2], p[1], p[0], port );
+    _toString = s;
+    return _toString.data();
   }
 }_PACKED;
 
@@ -53,25 +64,25 @@ struct TIP_Port
 #endif
 
 extern int DllExport GetCountCoreCPU();
-extern bool DllExport GetBrandCPU(std::string& CPUBrandString);
+extern bool DllExport GetBrandCPU( std::string& CPUBrandString );
 
 // NOT Thread Safe!
 extern void DllExport CreateConsole();
 extern void DllExport DeleteConsole();
 extern bool DllExport IsConsoleExist();
 
-extern bool DllExport SetCurrentPathByFile(char* sPath);
+extern bool DllExport SetCurrentPathByFile( char* sPath );
 
 template <class Type>
-bool A_more_B_cycle(Type A, Type B)
+bool A_more_B_cycle( Type A, Type B )
 {
-  if(A>B)
+  if( A > B )
   {
-    if(A-B>Type(-1)/2) return false;
+    if( A - B > Type( -1 ) / 2 ) return false;
     else return true;
   }
   else
-    if(B-A>Type(-1)/2) return true;
+    if( B - A > Type( -1 ) / 2 ) return true;
 
   return false;
 }

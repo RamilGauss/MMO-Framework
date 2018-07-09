@@ -33,12 +33,12 @@ namespace nsMMOEngine
     ~TManagerContextClient_slave();
     
     // навигация
-    bool FindSessionByKey(unsigned int id,         unsigned int& id_session);
-    bool FindKeyBySession(unsigned int id_session, unsigned int& id);
+    bool FindSessionByKey(unsigned int id,         unsigned int& sessionID);
+    bool FindKeyBySession(unsigned int sessionID, unsigned int& id);
     TContainerContextSc* FindContextByKey(unsigned int id);
-    TContainerContextSc* FindContextBySession(unsigned int id_session);
+    TContainerContextSc* FindContextBySession(unsigned int sessionID);
     
-    bool GetSessionByIndex(int index, unsigned int& id_session);
+    bool GetSessionByIndex(int index, unsigned int& sessionID);
     int  GetCountSession();
 
     bool GetFirstKey(unsigned int& id);
@@ -48,7 +48,7 @@ namespace nsMMOEngine
     TContainerContextSc* AddContextByKey(unsigned int key);
     
     // изменение
-    void AddSessionByKey(unsigned int key, unsigned int id_session);
+    void AddSessionByKey(unsigned int key, unsigned int sessionID);
 
     // удаление
     void DeleteByKey(unsigned int key);

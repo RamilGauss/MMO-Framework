@@ -20,7 +20,7 @@ namespace nsMMOEngine
   {
     unsigned int key;
     unsigned int random_num;
-    unsigned int id_session;
+    unsigned int sessionID;
     TDescRequestConnectForRecipient();
     void Generate();
   }_PACKED;

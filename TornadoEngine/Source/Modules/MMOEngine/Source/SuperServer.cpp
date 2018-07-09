@@ -45,26 +45,26 @@ void TSuperServer::SendByClientKey(std::list<unsigned int>& lKey, char* p, int s
   mControlSc->mSendToClient->SendFromSuperServer(lKey, mBP);
 }
 //-------------------------------------------------------------------------
-void TSuperServer::DisconnectInherit(unsigned int id_session)
+void TSuperServer::DisconnectInherit(unsigned int sessionID)
 {
-  if(mMngContextMaster->FindContextBySession(id_session)==NULL)
+  if(mMngContextMaster->FindContextBySession(sessionID)==NULL)
     return;
   
   // перечислить всех клиентов, которые сидят на этом мастере и их удаление
   int cClient ;
-  if(mMngContextMaster->GetCountClientKey(id_session, cClient)==false)
+  if(mMngContextMaster->GetCountClientKey(sessionID, cClient)==false)
     return;
   for( int i = 0 ; i < cClient ; i++)
   {
     unsigned int id_client;
-    if(mMngContextMaster->GetClientKeyByIndex(id_session, i, id_client))
+    if(mMngContextMaster->GetClientKeyByIndex(sessionID, i, id_client))
       mMngContextClient->DeleteByKey(id_client);
   }
 
-  mMngContextMaster->DeleteContextBySession(id_session);
+  mMngContextMaster->DeleteContextBySession(sessionID);
 
-  TEventDisconnectDown event;
-  event.id_session = id_session;
+  TDisconnectDownEvent event;
+  event.sessionID = sessionID;
   AddEventCopy(&event, sizeof(event));
 }
 //-------------------------------------------------------------------------
@@ -82,24 +82,24 @@ bool TSuperServer::GetDescDown(int index, void* pDesc, int& sizeDesc)
     return false;
   }
 
-  unsigned int id_session;
-  if(mMngContextMaster->GetSessionByIndex(index, id_session)==false)
+  unsigned int sessionID;
+  if(mMngContextMaster->GetSessionByIndex(index, sessionID)==false)
     return false;
   // кол-во клиентов на одном мастере
   int countClient;
-  if(mMngContextMaster->GetCountClientKey(id_session, countClient)==false)
+  if(mMngContextMaster->GetCountClientKey(sessionID, countClient)==false)
     return false;
 
   TDescDownSuperServer* pD = (TDescDownSuperServer*)pDesc;
-  pD->id_session  = id_session;
+  pD->sessionID  = sessionID;
   pD->countClient = countClient;
   sizeDesc = sizeof(TDescDownSuperServer);
   return true;
 }
 //-------------------------------------------------------------------------
-void TSuperServer::SendDown(unsigned int id_session, char* p, int size, bool check)
+void TSuperServer::SendDown(unsigned int sessionID, char* p, int size, bool check)
 {
-  TContainerContextSc* pC = mMngContextMaster->FindContextBySession(id_session);
+  TContainerContextSc* pC = mMngContextMaster->FindContextBySession(sessionID);
   if(pC==NULL)
     return;
   mControlSc->mFlow->SetContext(&pC->mFlow);
@@ -108,9 +108,9 @@ void TSuperServer::SendDown(unsigned int id_session, char* p, int size, bool che
   mControlSc->mFlow->SendDown(mBP, check);
 }
 //-------------------------------------------------------------------------
-void TSuperServer::NeedContextLoginMaster(unsigned int id_session)
+void TSuperServer::NeedContextLoginMaster(unsigned int sessionID)
 {
-  TContainerContextSc* pC = mMngContextMaster->FindContextBySession(id_session);
+  TContainerContextSc* pC = mMngContextMaster->FindContextBySession(sessionID);
   if(pC)
   {
     // внутренняя ошибка
@@ -118,16 +118,16 @@ void TSuperServer::NeedContextLoginMaster(unsigned int id_session)
       WriteF_time("TSuperServer::LoginMaster() against try authorized.\n");
     return;
   }
-  pC = mMngContextMaster->AddContext(id_session);
+  pC = mMngContextMaster->AddContext(sessionID);
   // назначить контекст для сценария
   mControlSc->mLoginMaster->SetContext(&pC->mLoginMaster);
 }
 //-------------------------------------------------------------------------
-void TSuperServer::NeedContextByMasterSessionByClientKey(unsigned int id_session,
+void TSuperServer::NeedContextByMasterSessionByClientKey(unsigned int sessionID,
                                                          unsigned int id_client)
 {
   // проверка на существование мастера
-  if(mMngContextMaster->FindContextBySession(id_session)==NULL)
+  if(mMngContextMaster->FindContextBySession(sessionID)==NULL)
   {
     BL_FIX_BUG();
     return;
@@ -137,8 +137,8 @@ void TSuperServer::NeedContextByMasterSessionByClientKey(unsigned int id_session
   if(pC==NULL)
   {
     // первый заход
-    mMngContextMaster->AddClientKey(id_session,id_client);
-    pC = mMngContextClient->AddContext(id_client,id_session);
+    mMngContextMaster->AddClientKey(sessionID,id_client);
+    pC = mMngContextClient->AddContext(id_client,sessionID);
     fakeClient = false;
   }
   else

@@ -6,7 +6,6 @@ See for more information License.h.
 */
 
 #include "BuilderGameMap.h"
-#include <boost/foreach.hpp>
 
 #include "MapItem.h"
 

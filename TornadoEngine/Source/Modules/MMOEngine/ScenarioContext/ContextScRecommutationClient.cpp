@@ -32,12 +32,12 @@ TContextScRecommutationClient::~TContextScRecommutationClient()
 //------------------------------------------------------------------
 unsigned int TContextScRecommutationClient::GetID_SessionClientSlave()
 {
-  return GetID_Session();
+  return GetSessionID();
 }
 //------------------------------------------------------------------
-void TContextScRecommutationClient::SetID_SessionClientSlave(unsigned int id_session)
+void TContextScRecommutationClient::SetID_SessionClientSlave(unsigned int sessionID)
 {
-  SetID_Session(id_session);
+  SetSessionID(sessionID);
 }
 //------------------------------------------------------------------
 unsigned int TContextScRecommutationClient::GetID_SessionMasterSlave()
@@ -45,9 +45,9 @@ unsigned int TContextScRecommutationClient::GetID_SessionMasterSlave()
   return mID_SessionMasterSlave;
 }
 //------------------------------------------------------------------
-void TContextScRecommutationClient::SetID_SessionMasterSlave(unsigned int id_session)
+void TContextScRecommutationClient::SetID_SessionMasterSlave(unsigned int sessionID)
 {
-  mID_SessionMasterSlave = id_session;
+  mID_SessionMasterSlave = sessionID;
 }
 //------------------------------------------------------------------
 void TContextScRecommutationClient::SetClientKey(unsigned int v)
@@ -150,3 +150,23 @@ unsigned int TContextScRecommutationClient::GetRandomNum()
   return mRandomNum;
 }
 //------------------------------------------------------------------
+void TContextScRecommutationClient::SetLogin( std::string& login )
+{
+  mLogin = login;
+}
+//--------------------------------------------------------------
+std::string TContextScRecommutationClient::GetLogin()
+{
+  return mLogin;
+}
+//--------------------------------------------------------------
+void TContextScRecommutationClient::SetPassword( std::string& password )
+{
+  mPassword = password;
+}
+//--------------------------------------------------------------
+std::string TContextScRecommutationClient::GetPassword()
+{
+  return mPassword;
+}
+//--------------------------------------------------------------

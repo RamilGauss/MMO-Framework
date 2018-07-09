@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -24,13 +24,13 @@ namespace nsMMOEngine
   class TScenarioLoginClient : public IScenario
   {
     // выдать контекст по сессии Мастера и ключу Клиента
-    TCallBackRegistrator2<unsigned int,unsigned int> mCBContextByMasterSessionByClientKey;
+    TCallBackRegistrator2<unsigned int, unsigned int> mCBContextByMasterSessionByClientKey;
     // запрос к мастеру о номере клиента в очереди
     TCallBackRegistrator1<unsigned int>              mCBNumInQueueByClientKey;
     // уведомить о назначении клиенту ключа Мастером
     TCallBackRegistrator1<unsigned int>              mCBSetClientKey;
     // запрос на контекст по сессии и ключу клиента
-    TCallBackRegistrator2<unsigned int,unsigned int> mCBContextByClientSessionByClientKey;
+    TCallBackRegistrator2<unsigned int, unsigned int> mCBContextByClientSessionByClientKey;
     // запрос на контекст по сессии клиента после авторизации
     TCallBackRegistrator1<unsigned int>              mCBContextByClientSessionAfterAuthorised;
     // запрос на контекст по сессии клиента при желании выхода из очереди на ожидание авторизации
@@ -68,24 +68,24 @@ namespace nsMMOEngine
 
     TScenarioLoginClient();
     virtual ~TScenarioLoginClient();
-    
-    void SetBehavior(eBehavior v);
-    virtual void Recv(TDescRecvSession* pDesc);
+
+    void SetBehavior( eBehavior v );
+    virtual void Recv( TDescRecvSession* pDesc );
   public:
     // от клиента, попытка авторизации
-    void TryLogin(unsigned int ip, unsigned short port, unsigned char subNet,
-                  void* pLogin, int sizeLogin, void* pPassword, int sizePassword);
+    void TryLogin( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet );
+
     void LeaveQueue();
     // решение Мастера
-    void Reject(void* resForClient, int sizeResClient);
-    void Accept(unsigned int key, void* resForClient, int sizeResClient, 
-                unsigned int id_session_slave, unsigned int id_superserver);
-    void Queue(int num,void* resForClient, int sizeResClient);
-    
+    void Reject( void* resForClient, int sizeResClient );
+    void Accept( unsigned int key, void* resForClient, int sizeResClient,
+      unsigned int id_session_slave, unsigned int id_superserver );
+    void Queue( int num, void* resForClient, int sizeResClient );
+
     void DisconnectFromMaster();
     void DisconnectFromClient();
 
-    void SetFakeClient(bool val);
+    void SetFakeClient( bool val );
   protected:
     virtual void Work();
   };

@@ -86,15 +86,15 @@ void TSuperServerLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
   {
     case nsMMOEngine::eConnectDown:
       sEvent = "ConnectDown";
-      ConnectDown((nsMMOEngine::TEventConnectDown*)pBE);
+      ConnectDown((nsMMOEngine::TConnectDownEvent*)pBE);
       break;
     case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
-      DisconnectDown((nsMMOEngine::TEventDisconnectDown*)pBE);
+      DisconnectDown((nsMMOEngine::TDisconnectDownEvent*)pBE);
       break;
     case nsMMOEngine::eError:
     {
-      nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
+      nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
       sEvent = "Error code=";
       sEvent = boost::lexical_cast<std::string>(pEr->code);
     }
@@ -103,11 +103,11 @@ void TSuperServerLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
       sEvent = "RecvFromDown";
       {
         // ###
-        //unsigned int id_session = ((TEventRecvFromDown*)pBE)->id_session;
+        //unsigned int sessionID = ((TRecvFromDownEvent*)pBE)->sessionID;
         //char s = 's';
         //TBreakPacket bp;
         //bp.PushBack(&s, sizeof(s));
-        //mComponent.mNet.SuperServer->SendDown(id_session,bp);
+        //mComponent.mNet.SuperServer->SendDown(sessionID,bp);
       }
       break;
     default:BL_FIX_BUG();
@@ -121,21 +121,21 @@ void TSuperServerLogic::InitLog()
   GetLogger()->Init("SuperServer");
 }
 //---------------------------------------------------------------------------------------------
-void TSuperServerLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
+void TSuperServerLogic::ConnectDown(nsMMOEngine::TConnectDownEvent* pEvent)
 {
   //TSessionOperation* pSO = new TSessionOperation;
   //pSO->typeEvent = eAdd;
-  //pSO->desc.id_session = pEvent->id_session;
+  //pSO->desc.sessionID = pEvent->sessionID;
   //mListMasterSessionOperation.Add(pSO);
 
   //CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
-void TSuperServerLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
+void TSuperServerLogic::DisconnectDown(nsMMOEngine::TDisconnectDownEvent* pEvent)
 {
   //TSessionOperation* pSO = new TSessionOperation;
   //pSO->typeEvent = eDelete;
-  //pSO->desc.id_session = pEvent->id_session;
+  //pSO->desc.sessionID = pEvent->sessionID;
   //mListMasterSessionOperation.Add(pSO);
 
   //CallBackModule(nsListModules::AloneGUI, &TSuperServerLogic::OperationSessionQt);
@@ -155,7 +155,7 @@ void TSuperServerLogic::OperationSessionQt()
     //  break;
     //case eDelete:
     //  if(mSuperServerForm)
-    //    mSuperServerForm->Delete(pOperation->desc.id_session);
+    //    mSuperServerForm->Delete(pOperation->desc.sessionID);
     //  break;
     //}
     // следующий ID

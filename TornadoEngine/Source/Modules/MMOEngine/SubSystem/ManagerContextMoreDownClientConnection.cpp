@@ -1,13 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "ManagerContextMoreDownClientConnection.h"
-
-#include <boost/foreach.hpp>
 
 #include "Logger.h"
 #include "ContainerContextSc.h"
@@ -16,8 +14,8 @@ See for more information License.h.
 using namespace nsMMOEngine;
 using namespace std;
 
-TManagerContextMoreDownClientConnection::TManagerContextMoreDownClientConnection(TBase* pBase):
-TDelegateManagerContextSc(pBase)
+TManagerContextMoreDownClientConnection::TManagerContextMoreDownClientConnection( TBase* pBase ) :
+  TDelegateManagerContextSc( pBase )
 {
 
 }
@@ -27,98 +25,98 @@ TManagerContextMoreDownClientConnection::~TManagerContextMoreDownClientConnectio
   Clear();
 }
 //-------------------------------------------------------------------------
-bool TManagerContextMoreDownClientConnection::FindSessionByClientKey(unsigned int id_client, 
-                                                                     unsigned int &id_session)
+bool TManagerContextMoreDownClientConnection::FindSessionByClientKey( unsigned int id_client,
+  unsigned int &sessionID )
 {
-  TMapUintUintIt fit = mMapKeySession.find(id_client);
-  if(fit==mMapKeySession.end())
+  TMapUintUintIt fit = mMapKeySession.find( id_client );
+  if( fit == mMapKeySession.end() )
   {
-    GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TManagerContextMoreDownClientConnection::FindSessionByClientKey(key=%u) not found.\n",id_client);
+    GetLogger( STR_NAME_MMO_ENGINE )->
+      WriteF_time( "TManagerContextMoreDownClientConnection::FindSessionByClientKey(key=%u) not found.\n", id_client );
     return false;
   }
-  id_session = fit->second;
+  sessionID = fit->second;
   return true;
 }
 //-------------------------------------------------------------------------
-TContainerContextSc* TManagerContextMoreDownClientConnection::FindContextByClientKey(unsigned int id_client)
+TContainerContextSc* TManagerContextMoreDownClientConnection::FindContextByClientKey( unsigned int id_client )
 {
-  TMapUintPtrIt fit = mMapKeyContext.find(id_client);
-  if(fit==mMapKeyContext.end())
+  TMapUintPtrIt fit = mMapKeyContext.find( id_client );
+  if( fit == mMapKeyContext.end() )
   {
-    GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TManagerContextMoreDownClientConnection::FindContextByClientKey(key=%u) not found.\n",id_client);
+    GetLogger( STR_NAME_MMO_ENGINE )->
+      WriteF_time( "TManagerContextMoreDownClientConnection::FindContextByClientKey(key=%u) not found.\n", id_client );
     return NULL;
   }
   return fit->second;
 }
 //-------------------------------------------------------------------------
-TContainerContextSc* TManagerContextMoreDownClientConnection::AddContext(unsigned int id_client, 
-                                                                         unsigned int id_session)
+TContainerContextSc* TManagerContextMoreDownClientConnection::AddContext( unsigned int id_client,
+  unsigned int sessionID )
 {
-  BL_ASSERT(id_session!=INVALID_HANDLE_SESSION);
-  
-  TContainerContextSc* pC = FindContextByClientKey(id_client);
-  if(pC==NULL)
+  BL_ASSERT( sessionID != INVALID_HANDLE_SESSION );
+
+  TContainerContextSc* pC = FindContextByClientKey( id_client );
+  if( pC == NULL )
   {
     pC = AddContainer();
 
-    mMapKeyContext.insert(TMapUintPtr::value_type(id_client,pC));
-    mMapKeySession.insert(TMapUintUint::value_type(id_client,id_session));
+    mMapKeyContext.insert( TMapUintPtr::value_type( id_client, pC ) );
+    mMapKeySession.insert( TMapUintUint::value_type( id_client, sessionID ) );
 
-    pC->SetID_Session(id_session);
+    pC->SetSessionID( sessionID );
   }
   return pC;
 }
 //-------------------------------------------------------------------------
-void TManagerContextMoreDownClientConnection::DeleteByKey(unsigned int key)
+void TManagerContextMoreDownClientConnection::DeleteByKey( unsigned int key )
 {
-  TContainerContextSc* pC = FindContextByClientKey(key);
-  if(pC==NULL)
+  TContainerContextSc* pC = FindContextByClientKey( key );
+  if( pC == NULL )
     return;
 
-  DeleteContainer(pC);
-  mMapKeyContext.erase(key);
-  mMapKeySession.erase(key);
+  DeleteContainer( pC );
+  mMapKeyContext.erase( key );
+  mMapKeySession.erase( key );
 }
 //-------------------------------------------------------------------------
 void TManagerContextMoreDownClientConnection::Clear()
 {
-  BOOST_FOREACH(TMapUintPtr::value_type& bit,mMapKeyContext)
-    DeleteContainer(bit.second);
+  for( auto& bit : mMapKeyContext )
+    DeleteContainer( bit.second );
 
   mMapKeyContext.clear();
   mMapKeySession.clear();
 }
 //-------------------------------------------------------------------------
-bool TManagerContextMoreDownClientConnection::SetSessionByClientKey(unsigned int id_client, 
-                                                                    unsigned int id_session)
+bool TManagerContextMoreDownClientConnection::SetSessionByClientKey( unsigned int id_client,
+  unsigned int sessionID )
 {
-  TMapUintUintIt fit = mMapKeySession.find(id_client);
-  if(fit==mMapKeySession.end())
+  TMapUintUintIt fit = mMapKeySession.find( id_client );
+  if( fit == mMapKeySession.end() )
   {
-    GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TManagerContextMoreDownClientConnection::SetSessionByClientKey(key=%u) not found.\n",id_client);
+    GetLogger( STR_NAME_MMO_ENGINE )->
+      WriteF_time( "TManagerContextMoreDownClientConnection::SetSessionByClientKey(key=%u) not found.\n", id_client );
     return false;
   }
-  fit->second = id_session;
+  fit->second = sessionID;
   // изменить номер сессии для всех контекстов
-  TContainerContextSc* pC = FindContextByClientKey(id_client);
-  if(pC)
-    pC->SetID_Session(id_session);
+  TContainerContextSc* pC = FindContextByClientKey( id_client );
+  if( pC )
+    pC->SetSessionID( sessionID );
 
   return true;
 }
 //-------------------------------------------------------------------------
-void TManagerContextMoreDownClientConnection::EntrustContext(unsigned int id_client, 
-                                                             unsigned int id_session,
-                                                             TContainerContextSc* pContext)
+void TManagerContextMoreDownClientConnection::EntrustContext( unsigned int id_client,
+  unsigned int sessionID,
+  TContainerContextSc* pContext )
 {
-  BL_ASSERT(id_session!=INVALID_HANDLE_SESSION);
+  BL_ASSERT( sessionID != INVALID_HANDLE_SESSION );
 
-  mMapKeyContext.insert(TMapUintPtr::value_type(id_client,  pContext));
-  mMapKeySession.insert(TMapUintUint::value_type(id_client, id_session));
+  mMapKeyContext.insert( TMapUintPtr::value_type( id_client, pContext ) );
+  mMapKeySession.insert( TMapUintUint::value_type( id_client, sessionID ) );
 
-  pContext->SetID_Session(id_session);
+  pContext->SetSessionID( sessionID );
 }
 //-------------------------------------------------------------------------

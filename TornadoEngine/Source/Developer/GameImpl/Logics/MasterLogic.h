@@ -49,18 +49,18 @@ private:
   
   void ConnectToSuperServer();
 
-  void ConnectUp(nsMMOEngine::TEventConnectUp* pBE);
+  void ConnectUp(nsMMOEngine::TConnectUpEvent* pBE);
 
-  void DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE);
+  void DisconnectUp(nsMMOEngine::TDisconnectUpEvent* pBE);
   void ConnectUpQt();
   void DisconnectUpQt();
   void OperationSessionQt();
 
-  void TryLogin(nsMMOEngine::TEventTryLogin* pEvent);
+  void TryLogin(nsMMOEngine::TTryLoginEvent* pEvent);
   void TryLoginMMOEngine(unsigned int* pID);
 
-  void ConnectDown(nsMMOEngine::TEventConnectDown* pEvent);
-  void DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent);
+  void ConnectDown(nsMMOEngine::TConnectDownEvent* pEvent);
+  void DisconnectDown(nsMMOEngine::TDisconnectDownEvent* pEvent);
 
 public:
   void CreateGroup();

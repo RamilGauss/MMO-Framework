@@ -7,7 +7,6 @@ See for more information License.h.
 
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include <string>
-#include <boost/foreach.hpp>
 
 #include "BL_Debug.h"
 #include "CommonParam.h"
@@ -21,11 +20,14 @@ See for more information License.h.
 #include "HandlerMMO_Slave.h"
 #include "HandlerMMO_Master.h"
 #include "HandlerMMO_SuperServer.h"
+#include <iostream>
 
 #define COUNT_SLAVE 1
-//----------------------------------------------
+
 int main( int argc, char** argv )
 {
+  // обязательно инициализировать лог
+  InitLogger( ServerLog );
   {
     std::string sLocalHost;
     TResolverSelf_IP_v4 resolver;
@@ -34,27 +36,21 @@ int main( int argc, char** argv )
     {
       if( resolver.Get( sLocalHost, i ) == false )
         continue;
-      printf( "ip=%s\n", sLocalHost.data() );
+      GetLogger( ServerLog )->WriteF( "ip=%s\n", sLocalHost.data() );
     }
   }
-
-  // обязательно инициализировать лог
-  GetLogger()->Register( STR_NAME_MMO_ENGINE );
-  GetLogger()->Register( STR_NAME_NET_TRANSPORT );
-  GetLogger()->Init( "Server_Test" );
-  GetLogger()->SetPrintf( false );
-  GetLogger()->SetEnable( false );
 
   std::vector<THandlerMMO_Slave*> arrHandlerSlave;
 
   TMakerNetTransport makerTransport;
 
   nsMMOEngine::TDescOpen descOpen;
-  std::vector<nsMMOEngine::TSlave*> arrSlave;
+  typedef std::shared_ptr<nsMMOEngine::TSlave> TShared_Ptr_Slave;
+  std::vector<TShared_Ptr_Slave> arrSlave;
   for( int i = 0; i < COUNT_SLAVE; i++ )
   {
     THandlerMMO_Slave* pHandlerSlave = new THandlerMMO_Slave;
-    nsMMOEngine::TSlave* pSlave = new nsMMOEngine::TSlave;
+    TShared_Ptr_Slave pSlave = TShared_Ptr_Slave( new nsMMOEngine::TSlave );
     pSlave->Init( &makerTransport );
     descOpen.port = SLAVE_PORT + i;
     pSlave->Open( &descOpen );
@@ -65,10 +61,10 @@ int main( int argc, char** argv )
     arrHandlerSlave.push_back( pHandlerSlave );
   }
 
-  boost::scoped_ptr<nsMMOEngine::TMaster>      pMaster( new nsMMOEngine::TMaster );
-  boost::scoped_ptr<nsMMOEngine::TSuperServer> pSuperServer( new nsMMOEngine::TSuperServer );
-  boost::scoped_ptr<THandlerMMO> handlerMaster( new THandlerMMO_Master );
-  boost::scoped_ptr<THandlerMMO> handlerSuperServer( new THandlerMMO_SuperServer );
+  std::shared_ptr<nsMMOEngine::TMaster>      pMaster( new nsMMOEngine::TMaster );
+  std::shared_ptr<nsMMOEngine::TSuperServer> pSuperServer( new nsMMOEngine::TSuperServer );
+  std::shared_ptr<THandlerMMO> handlerMaster( new THandlerMMO_Master );
+  std::shared_ptr<THandlerMMO> handlerSuperServer( new THandlerMMO_SuperServer );
 
   descOpen.port = MASTER_PORT;
   pMaster->Init( &makerTransport );
@@ -89,41 +85,54 @@ int main( int argc, char** argv )
 
   // сначала мастер цепляется к суперсерверу,
   // потом slave-ы
-  unsigned int superserverIP = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
-  pMaster->ConnectUp( superserverIP, SUPER_SERVER_PORT,
-    (void*) LOGIN_MASTER, strlen( LOGIN_MASTER ),
-    (void*) PASSWORD_MASTER, strlen( PASSWORD_MASTER ) );
-  unsigned int masterIP = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
+  TIP_Port ssIP_Port;
+  ssIP_Port.ip = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
+  ssIP_Port.port = SUPER_SERVER_PORT;
+  std::string login = MASTER_LOGIN;
+  std::string password = MASTER_PASSWORD;
+  pMaster->ConnectUp( ssIP_Port, login, password );
+  TIP_Port masterIP_Port;
+  masterIP_Port.ip = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
+  masterIP_Port.port = MASTER_PORT;
+  password = SLAVE_PASSWORD;
   for( int i = 0; i < COUNT_SLAVE; i++ )
   {
     char sLogin[100];
     sprintf( sLogin, "%d", i );
-    arrSlave[i]->ConnectUp( masterIP, MASTER_PORT,
-      sLogin, strlen( sLogin ), (void*) PASSWORD_SLAVE, strlen( PASSWORD_SLAVE ) );
+    login = SLAVE_LOGIN;// sLogin;
+    arrSlave[i]->ConnectUp( masterIP_Port, login, password );
   }
 
+  const unsigned int printInterval = 3000;
+  auto printTime = ht_GetMSCount() + printInterval;
   while( true )
   {
-    unsigned int startTime = ht_GetMSCount();
+    auto now = ht_GetMSCount();
+    if( printTime < now )
+    {
+      THandlerMMO::PrintCC( ServerLog );
+      printTime = now + printInterval;
+    }
+
+    unsigned int startTime = now;
     // Work
-    BOOST_FOREACH( nsMMOEngine::TSlave* pSlave, arrSlave )
-      pSlave->Work();
     // реакции мастера и суперсервера
-    pMaster->Work();
     pSuperServer->Work();
+    pMaster->Work();
+    for( auto pSlave : arrSlave )
+      pSlave->Work();
     // Handle
     handlerMaster->Work();
     handlerSuperServer->Work();
-    BOOST_FOREACH( THandlerMMO* pHandlerSlave, arrHandlerSlave )
+    for( auto pHandlerSlave : arrHandlerSlave )
       pHandlerSlave->Work();
     // burn rest time
     // замер времени слэйва
     unsigned int deltaTime = ht_GetMSCount() - startTime;
     if( deltaTime > 20 )
-      printf( "dTime=%d\n", deltaTime );
+      GetLogger( ServerLog )->WriteF( "dTime=%d\n", deltaTime );
     if( deltaTime < SERVER_QUANT_TIME )
       ht_msleep( 1 );
-    //ht_msleep(SERVER_QUANT_TIME-deltaTime);
   }
   return 0;
 }

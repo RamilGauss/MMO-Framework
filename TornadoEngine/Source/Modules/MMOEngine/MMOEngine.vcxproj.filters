@@ -86,9 +86,6 @@
     <ClCompile Include="Source\Events.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\IMakerTransport.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\INetTransport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -130,9 +127,6 @@
     </ClCompile>
     <ClCompile Include="SubSystem\ManagerContextClient_slave.cpp">
       <Filter>SubSystem\MappingDownConnection\Slave</Filter>
-    </ClCompile>
-    <ClCompile Include="SubSystem\ReciverTransport.cpp">
-      <Filter>SubSystem\Session</Filter>
     </ClCompile>
     <ClCompile Include="SubSystem\Session.cpp">
       <Filter>SubSystem\Session</Filter>
@@ -260,6 +254,9 @@
     <ClCompile Include="ScenarioContext\ContextScSynchroSlave.cpp">
       <Filter>ScenarioContext\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SubSystem\ReceiverTransport.cpp">
+      <Filter>SubSystem\Session</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\ActiveServer.h">
@@ -329,9 +326,6 @@
       <Filter>SubSystem\MappingDownConnection\Slave</Filter>
     </ClInclude>
     <ClInclude Include="SubSystem\DescRecvSession.h">
-      <Filter>SubSystem\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="SubSystem\ReciverTransport.h">
       <Filter>SubSystem\Session</Filter>
     </ClInclude>
     <ClInclude Include="SubSystem\Session.h">
@@ -462,6 +456,9 @@
     </ClInclude>
     <ClInclude Include="ScenarioContext\ContextScSynchroSlave.h">
       <Filter>ScenarioContext\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ReceiverTransport.h">
+      <Filter>SubSystem\Session</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

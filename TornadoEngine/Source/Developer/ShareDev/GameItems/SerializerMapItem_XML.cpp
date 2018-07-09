@@ -9,7 +9,6 @@ See for more information License.h.
 #include "MapItem.h"
 #include "IXML.h"
 
-#include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 
 namespace nsSerializerMapItem_XML
@@ -103,7 +102,7 @@ void TSerializerMapItem_XML::SaveSet()
 {
   if(mXML->AddSectionAndEnter(sSet))
   {
-    BOOST_FOREACH( TMapItem::TObject& object, mMapItem->mListObject )
+    for( auto& object : mMapItem->mListObject )
     {
       if(mXML->AddSectionAndEnter(sObject))
       {

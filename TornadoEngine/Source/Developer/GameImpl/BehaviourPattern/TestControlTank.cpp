@@ -76,11 +76,11 @@ void TTestControlTank::Send()
   //for( int iClient = 0 ; iClient < countClient ; iClient++)
   //{
   //  //if(pComponent->mNet.Slave->GetDescDown(iClient, (void*)&descDown, sizeDesc))
-  //    //pBS->SendDown( descDown.id_session, bp);
+  //    //pBS->SendDown( descDown.sessionID, bp);
   //  if(pComponent->mSlave->Get()->GetDescDown(iClient, (void*)&descDown, sizeDesc))
   //  {
   //    unsigned int id_client;
-  //    if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.id_session,id_client))
+  //    if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.sessionID,id_client))
   //      listKey.push_back(id_client);
   //  }
   //}

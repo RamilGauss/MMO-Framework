@@ -25,9 +25,10 @@ void THistoryPacketTCP::Clear()
 //------------------------------------------------------------------------
 void THistoryPacketTCP::PackForSend( TBreakPacket& bp )
 {
+  int size = bp.GetSize();
   // добавить заголовки в начало
   THeaderTCP header;
-  header.size = bp.GetSize();
+  memcpy( header.size, &size, sizeof( THeaderTCP ) );
   bp.PushFront( (char*) &header, sizeof( header ) );
 }
 //------------------------------------------------------------------------
@@ -57,9 +58,11 @@ int THistoryPacketTCP::BeginSearchSize( int readSize, char* buffer, TResult& res
   if( size >= sizeof( THeaderTCP ) )
   {
     size = sizeof( THeaderTCP );
-    THeaderTCP* pHeader = (THeaderTCP*) buffer;
+    THeaderTCP* pHeader = (THeaderTCP*) &buffer[beginPos];
     mState = THistoryPacketTCP::eSearchData;
-    mSizePacket = pHeader->size;
+
+    mSizePacket = 0;
+    memcpy( &mSizePacket, pHeader->size, sizeof(THeaderTCP));
     CheckSize( res );
   }
 
@@ -84,7 +87,9 @@ int THistoryPacketTCP::ContinueSearchSize( int readSize, char* buffer, TResult& 
 
   THeaderTCP* pHeader = (THeaderTCP*) mCollectorPacket.GetPtr();
   mState = THistoryPacketTCP::eSearchData;
-  mSizePacket = pHeader->size;
+  
+  mSizePacket = 0;
+  memcpy( &mSizePacket, pHeader->size, sizeof(THeaderTCP));
 
   CheckSize( res );
   return needCopy;// вернуть сколько истратили

@@ -63,17 +63,27 @@ bool TCryptoAES_Impl::GenerateKey( eCountBits c )
   return true;
 }
 //--------------------------------------------------------------------------------
+bool TCryptoAES_Impl::InnerEncrypt( void* pIn, int sizeIn, void* pOut )
+{
+  int sizeOut;
+  // Шифруем данные
+  if( !EVP_EncryptUpdate( CONTEXT, (unsigned char*) pOut, &sizeOut, (const unsigned char *) pIn, sizeIn ) )
+    return false;
+  if( !EVP_EncryptFinal_ex( CONTEXT, (unsigned char*) pOut + sizeOut, &sizeOut ) )
+    return false;
+  return true;
+}
+//--------------------------------------------------------------------------------
+bool TCryptoAES_Impl::Encrypt( void* pIn, int sizeIn, TContainerRise& c_out )
+{
+  c_out.Alloc( sizeIn );
+  return InnerEncrypt( pIn, sizeIn, c_out.GetPtr() );
+}
+//--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::Encrypt( void* pIn, int sizeIn, TContainer& c_out )
 {
   c_out.SetDataByCount( NULL, sizeIn );
-
-  int sizeOut;
-  // Шифруем данные
-  if( !EVP_EncryptUpdate( CONTEXT, (unsigned char*) c_out.GetPtr(), &sizeOut, (const unsigned char *) pIn, sizeIn ) )
-    return false;
-  if( !EVP_EncryptFinal_ex( CONTEXT, (unsigned char*) c_out.GetPtr() + sizeOut, &sizeOut ) )
-    return false;
-  return true;
+  return InnerEncrypt( pIn, sizeIn, c_out.GetPtr() );
 }
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::InnerDecrypt( void* pIn, int sizeIn, void* pOut )
@@ -89,6 +99,12 @@ bool TCryptoAES_Impl::InnerDecrypt( void* pIn, int sizeIn, void* pOut )
   return true;
 }
 //--------------------------------------------------------------------------------
+bool TCryptoAES_Impl::Decrypt( void* pIn, int sizeIn, TContainerRise& c_out )
+{
+  c_out.Alloc( sizeIn );
+  return InnerDecrypt( pIn, sizeIn, c_out.GetPtr() );
+}
+//--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::Decrypt( void* pIn, int sizeIn, TContainer& c_out )
 {
   c_out.SetDataByCount( NULL, sizeIn );
@@ -100,7 +116,7 @@ bool TCryptoAES_Impl::Decrypt( void* pIn, int sizeIn, TContainerPtr& c_out )
   return InnerDecrypt( pIn, sizeIn, c_out.GetPtr() );
 }
 //--------------------------------------------------------------------------------
-bool TCryptoAES_Impl::GetPublicKey( TContainerRise& c_out )
+bool TCryptoAES_Impl::GetKey( TContainerRise& c_out )
 {
   if( mKey.GetSize() == 0 )
     return false;
@@ -110,7 +126,7 @@ bool TCryptoAES_Impl::GetPublicKey( TContainerRise& c_out )
   return true;
 }
 //--------------------------------------------------------------------------------
-void TCryptoAES_Impl::SetPublicKey( void* pKey, int sizeKey )
+void TCryptoAES_Impl::SetKey( void* pKey, int sizeKey )
 {
   mKey.SetDataByCount( (char*) pKey, sizeKey );
 

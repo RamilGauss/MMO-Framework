@@ -19,14 +19,7 @@ namespace nsMMOEngine
     TActiveServer();
     virtual ~TActiveServer();
     
-    virtual void ConnectUp(unsigned int ip, unsigned short port,  
-                           void* pLogin, int sizeLogin, void* pPassword, int sizePassword,
-                           unsigned char subNet = 0) = 0;
-
-  protected:
-
-  private:
-
+    virtual void ConnectUp( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet = 0) = 0;
   };
 }
 

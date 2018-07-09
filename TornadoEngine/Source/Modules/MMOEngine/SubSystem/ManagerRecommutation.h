@@ -50,8 +50,8 @@ namespace nsMMOEngine
                                 unsigned int& id_session_donor,
                                 unsigned int& id_session_recipient);
     
-    int GetCountClientBySessionSlave(unsigned int id_session);
-    bool GetClientKeyByIndex(unsigned int id_session, 
+    int GetCountClientBySessionSlave(unsigned int sessionID);
+    bool GetClientKeyByIndex(unsigned int sessionID, 
                              int index, 
                              unsigned int& key);
 
@@ -63,10 +63,10 @@ namespace nsMMOEngine
     void DeleteByClientKey(unsigned int key);
   private:
     void AddClientKeyBySession(unsigned int key, 
-                               unsigned int id_session,
+                               unsigned int sessionID,
                                Type type);
     void DeleteClientKeyBySession(unsigned int key, 
-                                  unsigned int id_session,     
+                                  unsigned int sessionID,     
                                   Type type);
   };
 }

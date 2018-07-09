@@ -30,16 +30,16 @@ namespace nsMMOEngine
     ~TManagerContextMoreDownClientConnection();
     
     // навигация
-    bool FindSessionByClientKey(unsigned int id, unsigned int& id_session);
+    bool FindSessionByClientKey(unsigned int id, unsigned int& sessionID);
     TContainerContextSc* FindContextByClientKey(unsigned int id);
     // изменение сессии    
     bool SetSessionByClientKey(unsigned int id_client, 
-                               unsigned int id_session);
+                               unsigned int sessionID);
     // добавление/удаление
     TContainerContextSc* AddContext(unsigned int id_client, 
-                                    unsigned int id_session);
+                                    unsigned int sessionID);
     void EntrustContext(unsigned int id_client, 
-                        unsigned int id_session,
+                        unsigned int sessionID,
                         TContainerContextSc* pContext);
     // удаление
     void DeleteByKey(unsigned int key);

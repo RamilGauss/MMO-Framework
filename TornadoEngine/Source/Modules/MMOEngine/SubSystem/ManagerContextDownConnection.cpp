@@ -1,13 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "ManagerContextDownConnection.h"
-
-#include <boost/foreach.hpp>
 
 #include "Logger.h"
 #include "ContainerContextSc.h"
@@ -15,8 +13,8 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
-TManagerContextDownConnection::TManagerContextDownConnection(TBase* pBase):
-TDelegateManagerContextSc(pBase)
+TManagerContextDownConnection::TManagerContextDownConnection( TBase* pBase ) :
+  TDelegateManagerContextSc( pBase )
 {
 
 }
@@ -26,14 +24,14 @@ TManagerContextDownConnection::~TManagerContextDownConnection()
   Clear();
 }
 //-----------------------------------------------------------------------------------
-TContainerContextSc* TManagerContextDownConnection::FindContextBySession(unsigned int id_session)
+TContainerContextSc* TManagerContextDownConnection::FindContextBySession( unsigned int sessionID )
 {
-  TMapUintPtrIt fit = mMapSessionContext.find(id_session);
-  if(fit==mMapSessionContext.end())
+  TMapUintPtrIt fit = mMapSessionContext.find( sessionID );
+  if( fit == mMapSessionContext.end() )
   {
-    GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TManagerContextDownConnection::FindContextBySession(id_session=%u) not found.\n",id_session);
-    return NULL;
+    //GetLogger( STR_NAME_MMO_ENGINE )->
+    //  WriteF_time( "TManagerContextDownConnection::FindContextBySession(sessionID=%u) not found.\n", sessionID );
+    return nullptr;
   }
   return fit->second;
 }
@@ -43,121 +41,121 @@ int TManagerContextDownConnection::GetCountSession()
   return mMapSessionContext.size();
 }
 //-----------------------------------------------------------------------------------
-bool TManagerContextDownConnection::GetSessionByIndex( int index, unsigned int& id_session)
+bool TManagerContextDownConnection::GetSessionByIndex( int index, unsigned int& sessionID )
 {
-  if(GetCountSession()<=index)
+  if( GetCountSession() <= index )
     return false;
   TMapUintPtrIt it = mMapSessionContext.begin();
-  for(int i = 0 ; i < index ; i++)
+  for( int i = 0; i < index; i++ )
     it++;
-  id_session = it->first;
-  return true; 
+  sessionID = it->first;
+  return true;
 }
 //-----------------------------------------------------------------------------------
-bool TManagerContextDownConnection::GetCountClientKey(unsigned int id_session, 
-                                                      int &count)
+bool TManagerContextDownConnection::GetCountClientKey( unsigned int sessionID,
+  int &count )
 {
-  TMapUintSetUintIt fit = mMapSessionKey.find(id_session);
-  if(fit==mMapSessionKey.end())
+  TMapUintSetUintIt fit = mMapSessionKey.find( sessionID );
+  if( fit == mMapSessionKey.end() )
     return false;
   count = fit->second.size();
   return true;
 }
 //-----------------------------------------------------------------------------------
-bool TManagerContextDownConnection::GetClientKeyByIndex(unsigned int id_session, 
-                                                   int index, 
-                                                   unsigned int& id_client)
+bool TManagerContextDownConnection::GetClientKeyByIndex( unsigned int sessionID,
+  int index,
+  unsigned int& id_client )
 {
-  TMapUintSetUintIt fit = mMapSessionKey.find(id_session);
-  if(fit==mMapSessionKey.end())
+  TMapUintSetUintIt fit = mMapSessionKey.find( sessionID );
+  if( fit == mMapSessionKey.end() )
     return false;
 
   TSetUintIt it = fit->second.begin();
   int count;
-  if(GetCountClientKey(id_session, count)==false)
+  if( GetCountClientKey( sessionID, count ) == false )
     return false;
-  if(count<=index)
+  if( count <= index )
     return false;
-  for(int i = 0 ; i < index ; i++)
+  for( int i = 0; i < index; i++ )
     it++;
   id_client = *it;
   return true;
 }
 //-----------------------------------------------------------------------------------
-TContainerContextSc* TManagerContextDownConnection::AddContext(unsigned int id_session)
+TContainerContextSc* TManagerContextDownConnection::AddContext( unsigned int sessionID )
 {
-  BL_ASSERT(id_session!=INVALID_HANDLE_SESSION);
+  BL_ASSERT( sessionID != INVALID_HANDLE_SESSION );
 
-  TContainerContextSc* pC = FindContextBySession(id_session);
-  if(pC==NULL)
+  TContainerContextSc* pC = FindContextBySession( sessionID );
+  if( pC == NULL )
   {
     pC = AddContainer();
-    mMapSessionContext.insert(TMapUintPtr::value_type(id_session,pC));
-    mMapSessionKey.insert(TMapUintSetUint::value_type(id_session,TSetUint()));
+    mMapSessionContext.insert( TMapUintPtr::value_type( sessionID, pC ) );
+    mMapSessionKey.insert( TMapUintSetUint::value_type( sessionID, TSetUint() ) );
 
-    AddSessionEvent(id_session);
+    AddSessionEvent( sessionID );
   }
   return pC;
 }
 //-----------------------------------------------------------------------------------
-bool TManagerContextDownConnection::AddClientKey(unsigned int id_session, 
-                                                 unsigned int id_client)
+bool TManagerContextDownConnection::AddClientKey( unsigned int sessionID,
+  unsigned int id_client )
 {
   // проверка на существование такого мастера
-  TContainerContextSc* pC = FindContextBySession(id_session);
-  if(pC==NULL)
+  TContainerContextSc* pC = FindContextBySession( sessionID );
+  if( pC == NULL )
     return false;
-  
-  TMapUintSetUintIt fit = mMapSessionKey.find(id_session);
+
+  TMapUintSetUintIt fit = mMapSessionKey.find( sessionID );
   // создать
-  if(fit==mMapSessionKey.end())
+  if( fit == mMapSessionKey.end() )
   {
-    //mMapSessionKey.insert(TMapUintSetUint::value_type(id_session,TSetUint()));
-    //fit = mMapSessionKey.find(id_session);
+    //mMapSessionKey.insert(TMapUintSetUint::value_type(sessionID,TSetUint()));
+    //fit = mMapSessionKey.find(sessionID);
     BL_FIX_BUG();
   }
 
-  fit->second.insert(TSetUint::value_type(id_client));
+  fit->second.insert( TSetUint::value_type( id_client ) );
   return true;
 }
 //-----------------------------------------------------------------------------------
-void TManagerContextDownConnection::DeleteByClientKey(unsigned int id_session,
-                                                      unsigned int id_client)
+void TManagerContextDownConnection::DeleteByClientKey( unsigned int sessionID,
+  unsigned int id_client )
 {
-  TMapUintSetUintIt fit = mMapSessionKey.find(id_session);
-  if(fit==mMapSessionKey.end())
+  TMapUintSetUintIt fit = mMapSessionKey.find( sessionID );
+  if( fit == mMapSessionKey.end() )
     return;
-  fit->second.erase(id_client);
+  fit->second.erase( id_client );
 }
 //-----------------------------------------------------------------------------------
-void TManagerContextDownConnection::DeleteContextBySession(unsigned int id_session)
+void TManagerContextDownConnection::DeleteContextBySession( unsigned int sessionID )
 {
-  TContainerContextSc* pC = FindContextBySession(id_session);
-  if(pC==NULL)
+  TContainerContextSc* pC = FindContextBySession( sessionID );
+  if( pC == NULL )
     return;
 
-  DeleteContainer(pC);
-  mMapSessionContext.erase(id_session);
-  mMapSessionKey.erase(id_session);
+  DeleteContainer( pC );
+  mMapSessionContext.erase( sessionID );
+  mMapSessionKey.erase( sessionID );
 
-  DeleteSessionEvent(id_session);
+  DeleteSessionEvent( sessionID );
 }
 //-----------------------------------------------------------------------------------
 void TManagerContextDownConnection::Clear()
 {
-  BOOST_FOREACH(TMapUintPtr::value_type& it, mMapSessionContext)
-    DeleteContainer(it.second);
+  for( auto& it : mMapSessionContext )
+    DeleteContainer( it.second );
 
   mMapSessionKey.clear();
   mMapSessionContext.clear();
 }
 //-----------------------------------------------------------------------------------
-bool TManagerContextDownConnection::FindSessionByClientKey(unsigned int id_client, unsigned int &id_session_slave)
+bool TManagerContextDownConnection::FindSessionByClientKey( unsigned int id_client, unsigned int &id_session_slave )
 {
-  BOOST_FOREACH(TMapUintSetUint::value_type& it, mMapSessionKey)
+  for( auto& it : mMapSessionKey )
   {
-    TSetUintIt fit = it.second.find(id_client);
-    if(fit!=it.second.end())
+    TSetUintIt fit = it.second.find( id_client );
+    if( fit != it.second.end() )
     {
       id_session_slave = it.first;
       return true;

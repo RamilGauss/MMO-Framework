@@ -35,30 +35,30 @@ namespace nsMMOEngine
     ~TManagerGroupClient();
     
     // навигация
-    bool FindSessionByID(unsigned int id_group, unsigned int& id_session);
-    bool FindIDByClientKey(unsigned int id_client, unsigned int& id_group);
+    bool FindSessionByID(unsigned int groupID, unsigned int& sessionID);
+    bool FindIDByClientKey(unsigned int id_client, unsigned int& groupID);
     
     int GetCountID();
-    bool GetIDByIndex( int index, unsigned int& id_group);
+    bool GetIDByIndex( int index, unsigned int& groupID);
 
-    int GetCountClientKey(unsigned int id_group);
-    bool GetClientKeyByIndex(unsigned int id_group, 
+    int GetCountClientKey(unsigned int groupID);
+    bool GetClientKeyByIndex(unsigned int groupID, 
                              int index, 
                              unsigned int& id_client);
 
     // добавление/удаление
-    unsigned int AddGroup(unsigned int id_session);
+    unsigned int AddGroup(unsigned int sessionID);
     // добавить в группу клиента
-    bool AddClientKey(unsigned int id_group, unsigned int id_client);
+    bool AddClientKey(unsigned int groupID, unsigned int id_client);
     // для данной группы установить сессию
-    bool SetSessionByID(unsigned int id_group, unsigned int id_session);
+    bool SetSessionByID(unsigned int groupID, unsigned int sessionID);
 
     // удаление
     void DeleteClientKey(unsigned int id_client);
-    void DeleteByID(unsigned int id_group);
+    void DeleteByID(unsigned int groupID);
   private:
     // добавление/удаление
-    void AddGroup(unsigned int id_group, unsigned int id_session);
+    void AddGroup(unsigned int groupID, unsigned int sessionID);
   };
 }
 

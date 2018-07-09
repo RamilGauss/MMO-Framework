@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,8 +9,6 @@ See for more information License.h.
 #include "Session.h"
 #include "Logger.h"
 #include "Base.h"
-
-#include <boost/foreach.hpp>
 
 using namespace std;
 
@@ -26,46 +24,46 @@ TSessionNavigator::~TSessionNavigator()
   Clear();
 }
 //--------------------------------------------------------------
-void TSessionNavigator::Add(TSession* pSession)
+void TSessionNavigator::Add( TSession* pSession )
 {
   TIP_Port ip_port;
-  pSession->GetInfo(ip_port);
-  mMapID_Session.insert(TMapUintPtrVT(pSession->GetID(), pSession));
-  mMapIP_Session.insert(TMapIP_PtrItVT(ip_port,          pSession));
-  mSetSession.insert(pSession);
+  pSession->GetInfo( ip_port );
+  mMapID_Session.insert( TMapUintPtrVT( pSession->GetID(), pSession ) );
+  mMapIP_Session.insert( TMapIP_PtrItVT( ip_port, pSession ) );
+  mSetSession.insert( pSession );
 }
 //--------------------------------------------------------------
-void TSessionNavigator::Delete(TSession* pSession)
+void TSessionNavigator::Delete( TSession* pSession )
 {
   TIP_Port ip_port;
-  pSession->GetInfo(ip_port);
-  mMapIP_Session.erase(ip_port);
-  mMapID_Session.erase(pSession->GetID());
-  mSetSession.erase(pSession);
+  pSession->GetInfo( ip_port );
+  mMapIP_Session.erase( ip_port );
+  mMapID_Session.erase( pSession->GetID() );
+  mSetSession.erase( pSession );
   delete pSession;
 }
 //--------------------------------------------------------------
-TSession* TSessionNavigator::FindSessionByIP(TIP_Port& ip_port)
+TSession* TSessionNavigator::FindSessionByIP( TIP_Port& ip_port )
 {
   TSession* pSession = NULL;
-  TMapIP_PtrIt fit = mMapIP_Session.find(ip_port);
-  if(fit!=mMapIP_Session.end())
+  TMapIP_PtrIt fit = mMapIP_Session.find( ip_port );
+  if( fit != mMapIP_Session.end() )
     pSession = fit->second;
   return pSession;
 }
 //--------------------------------------------------------------
-TSession* TSessionNavigator::FindSessionByID(unsigned int id)
+TSession* TSessionNavigator::FindSessionByID( unsigned int id )
 {
   TSession* pSession = NULL;
-  TMapUintPtrIt fit = mMapID_Session.find(id);
-  if(fit!=mMapID_Session.end())
+  TMapUintPtrIt fit = mMapID_Session.find( id );
+  if( fit != mMapID_Session.end() )
     pSession = fit->second;
   return pSession;
 }
 //--------------------------------------------------------------
-bool TSessionNavigator::IsExist(TSession* pSession)
+bool TSessionNavigator::IsExist( TSession* pSession )
 {
-  return (mSetSession.find(pSession)!=mSetSession.end());
+  return (mSetSession.find( pSession ) != mSetSession.end());
 }
 //--------------------------------------------------------------
 set<TSession*>::iterator TSessionNavigator::Begin()
@@ -80,13 +78,13 @@ set<TSession*>::iterator TSessionNavigator::End()
 //--------------------------------------------------------------
 void TSessionNavigator::Work()
 {
-  BOOST_FOREACH(TSession* pSession, mSetSession)
+  for( TSession* pSession : mSetSession )
     pSession->Work();
 }
 //--------------------------------------------------------------
 void TSessionNavigator::Clear()
 {
-  BOOST_FOREACH(TSession* pSession,mSetSession)
+  for( TSession* pSession : mSetSession )
     delete pSession;
   mSetSession.clear();
 }

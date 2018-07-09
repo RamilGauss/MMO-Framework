@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -12,12 +12,11 @@ See for more information License.h.
 
 #include "GameObject.h"
 #include "Scene.h"
-#include <boost/foreach.hpp>
 
 TGP_Scenario_Builder::TGP_Scenario_Builder()
 {
   mLastCountStepProgress = 0;
-  flgActive           = false;
+  flgActive = false;
   flgNeedWorkByModule = false;
 }
 //---------------------------------------------------------------------------------
@@ -26,39 +25,39 @@ TGP_Scenario_Builder::~TGP_Scenario_Builder()
 
 }
 //---------------------------------------------------------------------------------
-void TGP_Scenario_Builder::LoadMap(std::string nameMap)
+void TGP_Scenario_Builder::LoadMap( std::string nameMap )
 {
-  TBaseItem* pBI = 
-    TModuleLogic::Get()->GetFGI()->Get(TFactoryGameItem::Map,nameMap);
-  TMapItem* pMI = (TMapItem*)pBI;
+  TBaseItem* pBI =
+    TModuleLogic::Get()->GetFGI()->Get( TFactoryGameItem::Map, nameMap );
+  TMapItem* pMI = (TMapItem*) pBI;
   if( pMI )
-  if( mBuilder.BuildMap(pMI) )
-    flgNeedWorkByModule = true;
+    if( mBuilder.BuildMap( pMI ) )
+      flgNeedWorkByModule = true;
 }
 //---------------------------------------------------------------------------------
 void TGP_Scenario_Builder::Work()
 {
-  if( IsActive()==false )
+  if( IsActive() == false )
     return;
-  if( flgNeedWorkByModule==false )
+  if( flgNeedWorkByModule == false )
     return;
   mBuilder.Build();
   // анализ прогресса
   int progress = mBuilder.GetProgress();// например 13%
-  int cntStep = progress/mProgressStep;// 13/10 = 1
-  if( mLastCountStepProgress!=cntStep )// 0!=1
+  int cntStep = progress / mProgressStep;// 13/10 = 1
+  if( mLastCountStepProgress != cntStep )// 0!=1
   {
-    mCB_Progress.Notify(GetType(), progress);
+    mCB_Progress.Notify( GetType(), progress );
     mLastCountStepProgress = cntStep;// cnt = 1
   }
 
-  if(progress==100)
+  if( progress == 100 )
   {
     DumpGameObjectToScene();
     flgNeedWorkByModule = false;
-    flgActive           = false;
+    flgActive = false;
 
-    mCB_End.Notify(GetType());
+    mCB_End.Notify( GetType() );
   }
 }
 //---------------------------------------------------------------------------------
@@ -77,7 +76,7 @@ void TGP_Scenario_Builder::Activate()
   mLastCountStepProgress = 0;
   flgNeedWorkByModule = false;
   flgActive = true;
-  mBuilder.Init(mSetID_Module, mFBP, mPhysicWorldID);
+  mBuilder.Init( mSetID_Module, mFBP, mPhysicWorldID );
 }
 //-----------------------------------------------------------------------------
 void TGP_Scenario_Builder::Deactivate()
@@ -89,11 +88,11 @@ void TGP_Scenario_Builder::Deactivate()
 void TGP_Scenario_Builder::DumpGameObjectToScene()
 {
   TBuilderGameMap::TListPtrGameObject listGO;
-  mBuilder.GetResult(listGO);
+  mBuilder.GetResult( listGO );
 
-  BOOST_FOREACH(TGameObject* pGO,listGO)
+  for( auto* pGO : listGO )
   {
-    mPtrScene->Include(pGO);
+    mPtrScene->Include( pGO );
   }
 }
 //-----------------------------------------------------------------------------

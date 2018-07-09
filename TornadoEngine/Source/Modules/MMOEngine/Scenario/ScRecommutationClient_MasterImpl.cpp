@@ -120,7 +120,7 @@ void TScRecommutationClient_MasterImpl::CheckBeginDonor(TDescRecvSession* pDesc)
   mBP.Reset();
   // поместить контекст Донора в пакет
   mBP.PushFront(pDesc->data + sizeof(THeaderCheckBeginDonor), 
-               pDesc->sizeData - sizeof(THeaderCheckBeginDonor));
+               pDesc->dataSize - sizeof(THeaderCheckBeginDonor));
 
   THeaderBeginRecipient h;
   h.id_client   = Context()->GetClientKey();

@@ -7,7 +7,6 @@ See for more information License.h.
 
 #include "BehaviourPattern.h"
 
-#include <boost/foreach.hpp>
 #include "ModuleLogic.h"
 #include "FactoryGameItem.h"
 

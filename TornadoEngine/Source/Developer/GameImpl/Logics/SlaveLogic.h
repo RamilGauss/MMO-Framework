@@ -53,14 +53,14 @@ private:
 
   void SaveContextClientMMOEngine(unsigned int* pID);
 
-  void ConnectUp(nsMMOEngine::TEventConnectUp* pBE);
-  void DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE);
+  void ConnectUp(nsMMOEngine::TConnectUpEvent* pBE);
+  void DisconnectUp(nsMMOEngine::TDisconnectUpEvent* pBE);
 
-  void ConnectDown(nsMMOEngine::TEventConnectDown* pEvent);
-  void DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent);
+  void ConnectDown(nsMMOEngine::TConnectDownEvent* pEvent);
+  void DisconnectDown(nsMMOEngine::TDisconnectDownEvent* pEvent);
 
-  void SaveContextClient(nsMMOEngine::TEventSaveContext* pEvent);
-  void RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent);
+  void SaveContextClient(nsMMOEngine::TSaveContextEvent* pEvent);
+  void RestoreContextClient(nsMMOEngine::TRestoreContextEvent* pEvent);
 
   void InitMMOSlave();
   void BeginWorkMMOSlave();

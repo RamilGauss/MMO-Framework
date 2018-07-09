@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -22,9 +22,9 @@ namespace nsMMOEngine
   class TScenarioRecommutationClient : public IScenario
   {
     // по ключу дать контекст, с учетом Донор или Реципиент
-    TCallBackRegistrator2<unsigned int,bool> mCBNeedContextByClientKeyForSlave;
+    TCallBackRegistrator2<unsigned int, bool> mCBNeedContextByClientKeyForSlave;
     // по сессии дать контекст, с учетом Донор или Реципиент
-    TCallBackRegistrator2<unsigned int,bool> mCBNeedContextByClientSessionForSlave;
+    TCallBackRegistrator2<unsigned int, bool> mCBNeedContextByClientSessionForSlave;
     // на каком Slave находится Клиент? назначить сессию через Context()->SetSessionDonor()
     TCallBackRegistrator1<IScenario*> mCBNeedSessionDonorByClientKey;
     // при вызове DelayBegin или при (Begin()==true)
@@ -67,17 +67,19 @@ namespace nsMMOEngine
     TScenarioRecommutationClient();
     virtual ~TScenarioRecommutationClient();
 
-    void SetBehavior(eBehavior v);
-    virtual void Recv(TDescRecvSession* pDesc);
+    void SetBehavior( eBehavior v );
+    virtual void Recv( TDescRecvSession* pDesc );
   public:
-    void Start(unsigned int id_session_recipient,
-               unsigned int id_client);
-    
-    void SaveContext(void* data, int size);
+    void Start( unsigned int id_session_recipient,
+      unsigned int id_client );
+
+    void SaveContext( void* data, int size );
 
     void DisconnectClient();
 
-    void DisconnectFromClient(unsigned char subNet);
+    void DisconnectFromClient( unsigned char subNet );
+
+    void SetClientLoginPassword( std::string& login, std::string& password );
 
   protected:
     virtual void Work();

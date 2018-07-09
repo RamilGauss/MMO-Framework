@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -28,7 +28,7 @@ class DllExport TLogger : public TOnly_N_Object
     TSaveToFile stf;
   };
 
-  typedef std::map<std::string,TDescFile*> TMapStrPtr;
+  typedef std::map<std::string, TDescFile*> TMapStrPtr;
   TMapStrPtr mMapNamePtr;
 
   std::string sPrefix;
@@ -38,41 +38,41 @@ class DllExport TLogger : public TOnly_N_Object
   bool flgBuffer;
 
 protected:
-  TLogger():                            // запрет на создание
-         TOnly_N_Object(1,NAME_CLASS)
-         {
-           flgPrintf = true;
-           flgEnable = true;
-           flgBuffer = true;
-         }// только один объект
+  TLogger() :                            // запрет на создание
+    TOnly_N_Object( 1, NAME_CLASS )
+  {
+    flgPrintf = true;
+    flgEnable = true;
+    flgBuffer = true;
+  }// только один объект
 public:
 
   virtual ~TLogger();
 
-  // ret false if name is same
-  bool Register(const char* nameLogger, const char* extension = "log");
+  // return false if name is same
+  bool Register( const char* nameLogger, const char* extension = "log" );
 
-  void Init(char* sPrefix);
+  void Init( char* sPrefix );
   void Done();
-  TSaveToFile* Get(const char* nameLog);
+  TSaveToFile* Get( const char* nameLog );
 
-  void SetPrintf(bool val);
+  void SetPrintf( bool val );
   bool GetPrintf();
 
-  void SetEnable(bool val);
+  void SetEnable( bool val );
   bool GetEnable();
 
-  void SetBufferization(bool val);
+  void SetBufferization( bool val );
   bool GetBufferization();
 
   int GetCount();
-  TSaveToFile* GetByIndex( int index);
+  TSaveToFile* GetByIndex( int index );
 
 protected:
-  void InitLogger(TSaveToFile* saver, const char* sName, const char* extension);
+  void InitLogger( TSaveToFile* saver, const char* sName, const char* extension );
 };
 
 extern DllExport TLogger* GetLogger();
-extern DllExport TSaveToFile* GetLogger(const char* nameLog);
+extern DllExport TSaveToFile* GetLogger( const char* nameLog );
 
 #endif 

@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CryptoContextManagerH
-#define CryptoContextManagerH
+#pragma once
 
 #include <map>
 
@@ -15,17 +14,15 @@ See for more information License.h.
 #include "ContainerTypes.h"
 #include "BreakPacket.h"
 #include "ContainerRise.h"
-#include "CryptoRSA_Impl.h"
 
 class TContextCrypto;
-class TCryptoRSA_Impl;
 class TCryptoAES_Impl;
 
 class TCryptoContextManager
 {
-  typedef std::map<TIP_Port,TContextCrypto*> TMapIP_Ptr;
+  typedef std::map<TIP_Port, TContextCrypto*> TMapIP_Ptr;
   typedef TMapIP_Ptr::iterator TMapIP_PtrIt;
-  
+
   TMapIP_Ptr mMapIP_TCP;
 
   TCRC8 mCRC8;
@@ -46,44 +43,27 @@ class TCryptoContextManager
   // Т.о. можно будет экономить время. К тому же таймаут Мастера очень требователен (5000 мс).
   // Более чем одно соединение наверх запрещено (Идеология).
 
-
-  TCryptoRSA_Impl mRSA_ForUpConnection;
-
-public:
+    public:
   TCryptoContextManager();
   ~TCryptoContextManager();
-  
-  void SendRSA_PublicKey(TIP_Port& ip_port, TContainer& c_key);
-  bool RecvRSA_PublicKey(TIP_Port& ip_port, void* pKey, int sizeKey);
-  
-  void SendAES_Key(TIP_Port& ip_port, TContainer& c_encrypt_key);
-  bool RecvAES_Key(TIP_Port& ip_port, void* pKey, int sizeKey);
 
-  void Send(TIP_Port& ip_port, TBreakPacket& bp, TContainer& c_encrypt);
-  bool Recv(TIP_Port& ip_port, 
-            void* pEncrypt, int sizeEncrypt,
-            TContainerPtr& c_decrypt);
+  void SendAES_Key( TIP_Port& ip_port, TContainer& c_encrypt_key );
+  bool RecvAES_Key( TIP_Port& ip_port, void* pKey, int sizeKey );
 
-  void Close(TIP_Port& ip_port);
+  void Send( TIP_Port& ip_port, TBreakPacket& bp, TContainer& c_encrypt );
+  bool Recv( TIP_Port& ip_port,
+    void* pEncrypt, int sizeEncrypt,
+    TContainerPtr& c_decrypt );
 
-  bool GetRSAkeyForUp(TContainer& RSAkey);
-  bool GetRSAkeyByIP(TIP_Port& ip_port, TContainer& RSAkey);
+  void Close( TIP_Port& ip_port );
 
 protected:
-  TContextCrypto* Get(TIP_Port& ip_port);
-  void Add(TIP_Port& ip_port, TContextCrypto* pCtx);
-  void Remove(TIP_Port& ip_port);
+  TContextCrypto * Get( TIP_Port& ip_port );
+  void Add( TIP_Port& ip_port, TContextCrypto* pCtx );
+  void Remove( TIP_Port& ip_port );
 
   void Done();
 protected:
-  void Encrypt(TCryptoRSA_Impl* pRSA, TContainerRise& c_original, TContainer& c_encrypt);
-  bool Decrypt(TCryptoRSA_Impl* pRSA, void* pEncrypt, int sizeEncrypt,  TContainer& c_decrypt);
-  
-  void Encrypt(TCryptoAES_Impl* pAES, TContainerRise& c_original, TContainer& c_encrypt);
-  bool Decrypt(TCryptoAES_Impl* pAES, 
-               void* pEncrypt, int sizeEncrypt,  
-               TContainerPtr& c_decrypt);
+  void Encrypt( TCryptoAES_Impl* pAES, TContainerRise& c_original, TContainer& c_encrypt );
+  bool Decrypt( TCryptoAES_Impl* pAES, void* pEncrypt, int sizeEncrypt, TContainerPtr& c_decrypt );
 };
-
-
-#endif

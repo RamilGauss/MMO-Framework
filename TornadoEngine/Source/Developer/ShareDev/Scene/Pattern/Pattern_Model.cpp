@@ -20,7 +20,6 @@ See for more information License.h.
 
 #include <btBulletDynamicsCommon.h>
 #include <Dynamics/btDiscreteDynamicsWorld.h>
-#include <boost/foreach.hpp>
 #include <OgreRoot.h>
 
 namespace nsPattern_Model

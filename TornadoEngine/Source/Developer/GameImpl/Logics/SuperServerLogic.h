@@ -43,9 +43,9 @@ private:
 
   void OperationSessionQt();
 
-  void ConnectDown(nsMMOEngine::TEventConnectDown* pEvent);
+  void ConnectDown(nsMMOEngine::TConnectDownEvent* pEvent);
   void ConnectDownMMOEngine();
-  void DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent);
+  void DisconnectDown(nsMMOEngine::TDisconnectDownEvent* pEvent);
 };
 
 #endif

@@ -227,7 +227,6 @@
     <ClCompile Include="Source\BaseServer.cpp" />
     <ClCompile Include="Source\Client.cpp" />
     <ClCompile Include="Source\Events.cpp" />
-    <ClCompile Include="Source\IMakerTransport.cpp" />
     <ClCompile Include="Source\INetTransport.cpp" />
     <ClCompile Include="Source\Master.cpp" />
     <ClCompile Include="Source\Slave.cpp" />
@@ -254,7 +253,7 @@
     <ClCompile Include="SubSystem\SessionManager.cpp" />
     <ClCompile Include="SubSystem\TransportManager.cpp" />
     <ClCompile Include="SubSystem\SessionNavigator.cpp" />
-    <ClCompile Include="SubSystem\ReciverTransport.cpp" />
+    <ClCompile Include="SubSystem\ReceiverTransport.cpp" />
     <ClCompile Include="SubSystem\Session.cpp" />
     <ClCompile Include="SubSystem\StatisticaClientInGroup.cpp" />
   </ItemGroup>
@@ -322,7 +321,7 @@
     <ClInclude Include="SubSystem\SessionManager.h" />
     <ClInclude Include="SubSystem\TransportManager.h" />
     <ClInclude Include="SubSystem\SessionNavigator.h" />
-    <ClInclude Include="SubSystem\ReciverTransport.h" />
+    <ClInclude Include="SubSystem\ReceiverTransport.h" />
     <ClInclude Include="SubSystem\ScenarioBaseHeader.h" />
     <ClInclude Include="SubSystem\Session.h" />
     <ClInclude Include="SubSystem\StatisticaClientInGroup.h" />

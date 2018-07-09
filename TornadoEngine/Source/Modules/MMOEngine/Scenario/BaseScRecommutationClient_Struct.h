@@ -23,12 +23,12 @@ namespace nsMMOEngine
   //{
   //  unsigned int key;
   //  unsigned int random_num;
-  //  unsigned int id_session;
+  //  unsigned int sessionID;
   //  TDescRequestConnectForRecipient()
   //  {
   //    key        = 0;
   //    random_num = 0;
-  //    id_session = 0;
+  //    sessionID = 0;
   //  }
   //  void Generate()
   //  {

@@ -38,16 +38,19 @@ namespace nsMMOEngine
     TIP_Port mIP_PortRecipient;
 
     unsigned int mRandomNum;
+
+    std::string mLogin;
+    std::string mPassword;
   public:
     TContextScRecommutationClient();
     virtual ~TContextScRecommutationClient();
 
     // сессии для Slave, в остальных случаях для Мастера и Клиента использовать G(S)etID_Session
     unsigned int GetID_SessionClientSlave();
-    void SetID_SessionClientSlave(unsigned int id_session);
+    void SetID_SessionClientSlave(unsigned int sessionID);
 
     unsigned int GetID_SessionMasterSlave();
-    void SetID_SessionMasterSlave(unsigned int id_session);
+    void SetID_SessionMasterSlave(unsigned int sessionID);
 
     void SetClientKey(unsigned int v);
     unsigned int GetClientKey();
@@ -77,6 +80,12 @@ namespace nsMMOEngine
 
     void SetRandomNum(unsigned int random_num);
     unsigned int GetRandomNum();
+
+    void SetLogin( std::string& login );
+    std::string GetLogin();
+
+    void SetPassword( std::string& password );
+    std::string GetPassword();
   private:
   };
 }  

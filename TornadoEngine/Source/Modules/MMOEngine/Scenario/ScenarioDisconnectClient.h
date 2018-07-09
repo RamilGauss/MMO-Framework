@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -31,37 +31,37 @@ namespace nsMMOEngine
 
     struct THeaderDisconnectClient : public TScenarioBaseHeader
     {
-      THeaderDisconnectClient(){type=TMakerScenario::eDisconnectClient;} 
+      THeaderDisconnectClient(){ type = TMakerScenario::eDisconnectClient; }
     }_PACKED;
     //-------------------------------------------------
     struct THeaderFromMaster : public THeaderDisconnectClient
     {
-      THeaderFromMaster(){subType=eFromMaster;}
+      THeaderFromMaster(){ subType = eFromMaster; }
       int countID;// далее массив unsigned int
     }_PACKED;
     //-------------------------------------------------
     struct THeaderFromSlave : public THeaderDisconnectClient
     {
-      THeaderFromSlave(){subType=eFromSlave;}
+      THeaderFromSlave(){ subType = eFromSlave; }
       unsigned int id_client;
     }_PACKED;
     //-------------------------------------------------
   public:
     TScenarioDisconnectClient();
 
-    virtual void Recv(TDescRecvSession* pDesc);
+    virtual void Recv( TDescRecvSession* pDesc );
 
-    void DisconnectFromSlave(unsigned int id_client);
-    void DisconnectFromMaster(std::vector<unsigned int>& vecID_client);
+    void DisconnectFromSlave( unsigned int id_client );
+    void DisconnectFromMaster( std::vector<unsigned int>& vecID_client );
 
   protected:
     virtual void Work();
   private:
-    void RecvFromMaster(TDescRecvSession* pDesc);
-    void RecvFromSlave(TDescRecvSession* pDesc);
+    void RecvFromMaster( TDescRecvSession* pDesc );
+    void RecvFromSlave( TDescRecvSession* pDesc );
 
   private:
-    TContextScDisconnectClient* Context(){return (TContextScDisconnectClient*)mCurContext;}
+    TContextScDisconnectClient * Context(){ return (TContextScDisconnectClient*) mCurContext; }
   };
 }
 

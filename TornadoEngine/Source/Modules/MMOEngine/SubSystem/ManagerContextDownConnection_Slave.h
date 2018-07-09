@@ -23,12 +23,12 @@ namespace nsMMOEngine
     struct TDesc
     {
       unsigned char load_procent;
-      unsigned int id_session;
+      unsigned int sessionID;
 
       TDesc(unsigned char lp,unsigned int is)
       {
         load_procent = lp;
-        id_session   = is;
+        sessionID   = is;
       }
       bool operator < (const TDesc& right) const
       {
@@ -46,14 +46,14 @@ namespace nsMMOEngine
     TManagerContextDownConnection_Slave(TBase* pBase);
     virtual ~TManagerContextDownConnection_Slave();
     
-    bool FindMinimumLoad(unsigned int& id_session, unsigned char& load_procent);
-     bool FindLoadBySession(unsigned int id_session, unsigned char& load_procent);
+    bool FindMinimumLoad(unsigned int& sessionID, unsigned char& load_procent);
+     bool FindLoadBySession(unsigned int sessionID, unsigned char& load_procent);
 
     void SetLoadBySession(unsigned int id_Session,unsigned char load_procent);
 
   protected:
-    virtual void AddSessionEvent(unsigned int id_session);
-    virtual void DeleteSessionEvent(unsigned int id_session);
+    virtual void AddSessionEvent(unsigned int sessionID);
+    virtual void DeleteSessionEvent(unsigned int sessionID);
   private:
   };
 }

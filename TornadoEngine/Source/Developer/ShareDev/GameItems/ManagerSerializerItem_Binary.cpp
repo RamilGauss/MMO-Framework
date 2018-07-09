@@ -8,7 +8,6 @@ See for more information License.h.
 #include "ManagerSerializerItem_Binary.h"
 #include "FactoryGameItem.h"
 
-#include <boost/foreach.hpp>
 #include "BaseItem.h"
 
 TManagerSerializerItem_Binary::TManagerSerializerItem_Binary()

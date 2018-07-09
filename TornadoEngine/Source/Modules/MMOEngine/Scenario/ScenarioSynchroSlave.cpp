@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -21,35 +21,35 @@ TScenarioSynchroSlave::~TScenarioSynchroSlave()
 
 }
 //---------------------------------------------------------------------
-void TScenarioSynchroSlave::SendSynchro(int loadProcent)
+void TScenarioSynchroSlave::SendSynchro( int loadProcent )
 {
   mBP.Reset();
   THeaderSynchroSlave h;
   h.loadProcent = loadProcent;
-  mBP.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(Context()->GetID_Session(), mBP);
+  mBP.PushFront( (char*) &h, sizeof( h ) );
+  Context()->GetMS()->Send( Context()->GetSessionID(), mBP );
 }
 //---------------------------------------------------------------------
-void TScenarioSynchroSlave::Recv(TDescRecvSession* pDesc)
+void TScenarioSynchroSlave::Recv( TDescRecvSession* pDesc )
 {
-  NeedContextBySession(pDesc->id_session);
-  THeaderSynchroSlave* pPacket = (THeaderSynchroSlave*)pDesc->data;
-  switch(pPacket->subType)
+  NeedContextBySession( pDesc->sessionID );
+  THeaderSynchroSlave* pPacket = (THeaderSynchroSlave*) pDesc->data;
+  switch( pPacket->subType )
   {
     case eFromSlave:
-      RecvFromSlave(pDesc);
+      RecvFromSlave( pDesc );
       break;
     default:BL_FIX_BUG();
   }
 }
 //---------------------------------------------------------------------
-void TScenarioSynchroSlave::RecvFromSlave(TDescRecvSession* pDesc)
+void TScenarioSynchroSlave::RecvFromSlave( TDescRecvSession* pDesc )
 {
-  THeaderSynchroSlave* pPacket = (THeaderSynchroSlave*)pDesc->data;
+  THeaderSynchroSlave* pPacket = (THeaderSynchroSlave*) pDesc->data;
   bool res = Begin();
-  BL_ASSERT(res);
-  Context()->SetID_Session(pDesc->id_session);
-  Context()->SetLoadProcent(pPacket->loadProcent);
+  BL_ASSERT( res );
+  Context()->SetSessionID( pDesc->sessionID );
+  Context()->SetLoadProcent( pPacket->loadProcent );
   End();
 }
 //--------------------------------------------------------------------------

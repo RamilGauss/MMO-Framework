@@ -19,12 +19,12 @@ namespace nsMMOEngine
     struct TDesc
     {
       unsigned int countClient;
-      unsigned int id_session;
+      unsigned int sessionID;
 
       TDesc(unsigned int cc,unsigned int is)
       {
         countClient = cc;
-        id_session  = is;
+        sessionID  = is;
       }
       bool operator <(const TDesc& right) const
       {
@@ -55,7 +55,7 @@ namespace nsMMOEngine
     bool FindSlaveSessionByMinimumClient(unsigned int &id_session_slave);
     bool FindCountClientBySlaveSession(unsigned int id_session_slave, int& countClient);
     // добавление
-    void AddSlave(unsigned int id_session);
+    void AddSlave(unsigned int sessionID);
     // добавить в группу клиента
     void AddBySlaveSessionClientKey(unsigned int id_session_slave, unsigned int id_client);
 

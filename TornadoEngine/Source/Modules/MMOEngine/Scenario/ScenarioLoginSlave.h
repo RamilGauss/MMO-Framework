@@ -46,9 +46,7 @@ namespace nsMMOEngine
 
     virtual void Recv(TDescRecvSession* pDesc);
 
-    void ConnectToMaster( unsigned int ip, unsigned short port, 
-                          void* pLogin, int sizeLogin, void* pPassword, int sizePassword,
-                          unsigned char subNet);
+    void ConnectToMaster( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet );
   protected:
     virtual void Work();
 
@@ -56,6 +54,8 @@ namespace nsMMOEngine
     void RecvFromSlave(TDescRecvSession* pDesc);
   private:
     TContextScLoginSlave* Context(){return (TContextScLoginSlave*)mCurContext;}
+
+    void ConnectToMasterAfterConnect( int sessionID );
   };
 }
 

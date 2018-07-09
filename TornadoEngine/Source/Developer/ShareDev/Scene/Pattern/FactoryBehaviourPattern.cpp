@@ -19,7 +19,6 @@ See for more information License.h.
 #include "Pattern_Volume.h"
 
 #include "PatternNameManager.h"
-#include <boost/foreach.hpp>
 
 TFactoryBehaviourPattern::TFactoryBehaviourPattern()
 {

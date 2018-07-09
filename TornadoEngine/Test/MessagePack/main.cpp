@@ -82,6 +82,9 @@ int main( void )
   }
   auto stopM = ht_GetMSCount();
   float speedM = (stopM - startM) * 1000.0f / TEST_COUNT;
+
+  marsh.Serialize( &src, c );
+  printf( "size of serialized object = %d\n", c.GetSize());
   printf( "speed = %f us/1 \n", speedM );
   return 0;
   //------------------------------------------------

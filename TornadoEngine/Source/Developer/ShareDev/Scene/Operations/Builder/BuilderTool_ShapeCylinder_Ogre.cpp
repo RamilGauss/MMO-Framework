@@ -19,7 +19,6 @@ See for more information License.h.
 #include "ParamBuilderShape.h"
 
 #include <boost/lexical_cast.hpp>
-#include <boost/foreach.hpp>
 #include "StructBuilderTool_Ogre.h"
 
 TBuilderTool_ShapeCylinder_Ogre::TBuilderTool_ShapeCylinder_Ogre()

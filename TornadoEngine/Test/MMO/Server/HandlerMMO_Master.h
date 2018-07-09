@@ -10,10 +10,12 @@ See for more information License.h.
 
 #include "HandlerMMO.h"
 #include <list>
+#include "SHA256.h"
 
 class THandlerMMO_Master : public THandlerMMO
 {
-  std::list<unsigned int> mListClient;
+  TSHA256 mSHA256;
+  TContainer mSlaveHashLogin;
 public:
   THandlerMMO_Master();
 protected:

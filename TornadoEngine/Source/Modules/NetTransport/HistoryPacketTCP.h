@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -14,27 +14,22 @@ See for more information License.h.
 #include "ShareMisc.h"
 #include "BreakPacket.h"
 
-class THistoryPacketTCP
+class DllExport THistoryPacketTCP
 {
 public:
   struct TResult
   {
-    TResult()
-    {
-      complete=false;
-      parse_error = false;
-    }
     void Set( char* b, int s )
     {
-      buffer      = b;
-      size        = s;
-      complete    = true;
+      buffer = b;
+      size = s;
+      complete = true;
     }
-    bool complete;
-    char* buffer;
-    int size;
+    bool complete = false;
+    char* buffer = nullptr;
+    int size = 0;
 
-    bool parse_error;// обнаружена ошибка, при парсинге пакета
+    bool parse_error = false;// обнаружена ошибка, при парсинге пакета
   };
 protected:
   typedef enum
@@ -44,7 +39,7 @@ protected:
   }eStatePacket;
 
   int mSizePacket;// предполагаемый размер пакета
-  TContainerRise mCollectorPacket;    
+  TContainerRise mCollectorPacket;
   eStatePacket   mState;
   bool flgNewPacket;// начало нового пакета
 public:
@@ -52,14 +47,14 @@ public:
   void Clear();
   static void PackForSend( TBreakPacket& bp );
 
-  void Analiz(int& beginPos, TResult& res, int readSize, char* buffer);
+  void Analiz( int& beginPos, TResult& res, int readSize, char* buffer );
 protected:
 
   int SearchSize( int readSize, char* buffer, TResult& res, int beginPos );
-  
-  int BeginSearchSize(int readSize, char* buffer, TResult& res, int beginPos);
-  int ContinueSearchSize(int readSize, char* buffer, TResult& res, int beginPos);
-  
+
+  int BeginSearchSize( int readSize, char* buffer, TResult& res, int beginPos );
+  int ContinueSearchSize( int readSize, char* buffer, TResult& res, int beginPos );
+
   int SearchData( int readSize, char* buffer, TResult& res, int beginPos );
 
   void CheckSize( TResult& res );

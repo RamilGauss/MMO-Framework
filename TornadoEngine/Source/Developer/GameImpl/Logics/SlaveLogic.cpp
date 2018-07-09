@@ -102,23 +102,23 @@ void TSlaveLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
   {
     case nsMMOEngine::eConnectDown:
       sEvent = "ConnectDown";
-      ConnectDown((nsMMOEngine::TEventConnectDown*)pBE);
+      ConnectDown((nsMMOEngine::TConnectDownEvent*)pBE);
       break;
     case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
-      DisconnectDown((nsMMOEngine::TEventDisconnectDown*)pBE);
+      DisconnectDown((nsMMOEngine::TDisconnectDownEvent*)pBE);
       break;
     case nsMMOEngine::eConnectUp:
       sEvent = "ConnectUp";
-      ConnectUp((nsMMOEngine::TEventConnectUp*)pBE);
+      ConnectUp((nsMMOEngine::TConnectUpEvent*)pBE);
       break;
     case nsMMOEngine::eDisconnectUp:
       sEvent = "DisconnectUp";
-      DisconnectUp((nsMMOEngine::TEventDisconnectUp*)pBE);
+      DisconnectUp((nsMMOEngine::TDisconnectUpEvent*)pBE);
       break;
     case nsMMOEngine::eError:
     {
-      nsMMOEngine::TEventError* pEr = (nsMMOEngine::TEventError*)pBE;
+      nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
       sEvent = "Error code=";
       sEvent = boost::lexical_cast<std::string>(pEr->code);
     }
@@ -132,11 +132,11 @@ void TSlaveLogic::HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE)
     case nsMMOEngine::eSaveContext:
       sEvent = "SaveContext";
       // типа Сохранить данные нашего Клиента и отдать другому Slave
-      SaveContextClient((nsMMOEngine::TEventSaveContext*)pBE);
+      SaveContextClient((nsMMOEngine::TSaveContextEvent*)pBE);
       break;
     case nsMMOEngine::eRestoreContext:
       sEvent = "RestoreContext";
-      RestoreContextClient((nsMMOEngine::TEventRestoreContext*)pBE);
+      RestoreContextClient((nsMMOEngine::TRestoreContextEvent*)pBE);
       break;
     default:BL_FIX_BUG();
   }
@@ -149,12 +149,12 @@ void TSlaveLogic::InitLog()
   GetLogger()->Init("Slave");
 }
 //---------------------------------------------------------------------------------------------
-void TSlaveLogic::ConnectUp(nsMMOEngine::TEventConnectUp* pBE)
+void TSlaveLogic::ConnectUp(nsMMOEngine::TConnectUpEvent* pBE)
 {
   //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::ConnectUpQt);
 }
 //---------------------------------------------------------------------------------------------
-void TSlaveLogic::DisconnectUp(nsMMOEngine::TEventDisconnectUp* pBE)
+void TSlaveLogic::DisconnectUp(nsMMOEngine::TDisconnectUpEvent* pBE)
 {
   //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::DisconnectUpQt);
 }
@@ -171,21 +171,21 @@ void TSlaveLogic::DisconnectUpQt()
     //mSlaveForm->SetConnect(false);
 }
 //---------------------------------------------------------------------------------------------
-void TSlaveLogic::ConnectDown(nsMMOEngine::TEventConnectDown* pEvent)
+void TSlaveLogic::ConnectDown(nsMMOEngine::TConnectDownEvent* pEvent)
 {
   //TSessionOperation* pSO = new TSessionOperation;
   //pSO->typeEvent = eAdd;
-  //pSO->desc.id_session = pEvent->id_session;
+  //pSO->desc.sessionID = pEvent->sessionID;
   //mListClientSessionOperation.Add(pSO);
   
   //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
 }
 //---------------------------------------------------------------------------------------------
-void TSlaveLogic::DisconnectDown(nsMMOEngine::TEventDisconnectDown* pEvent)
+void TSlaveLogic::DisconnectDown(nsMMOEngine::TDisconnectDownEvent* pEvent)
 {
   //TSessionOperation* pSO = new TSessionOperation;
   //pSO->typeEvent = eDelete;
-  //pSO->desc.id_session = pEvent->id_session;
+  //pSO->desc.sessionID = pEvent->sessionID;
   //mListClientSessionOperation.Add(pSO);
 
   //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
@@ -205,7 +205,7 @@ void TSlaveLogic::OperationSessionQt()
     //    break;
     //  case eDelete:
     //    if(mSlaveForm)
-    //      mSlaveForm->Delete(pOperation->desc.id_session);
+    //      mSlaveForm->Delete(pOperation->desc.sessionID);
     //    break;
     //}
     // следующий ID
@@ -214,15 +214,15 @@ void TSlaveLogic::OperationSessionQt()
   }
 }
 //---------------------------------------------------------------------------------------------
-void TSlaveLogic::SaveContextClient(nsMMOEngine::TEventSaveContext* pEvent)
+void TSlaveLogic::SaveContextClient(nsMMOEngine::TSaveContextEvent* pEvent)
 {
-  unsigned int* pID = new unsigned int(pEvent->id_session);
+  unsigned int* pID = new unsigned int(pEvent->sessionID);
   SaveContextClientMMOEngine(pID);
 
   // удалить из списка этого Клиента
   //TSessionOperation* pSO = new TSessionOperation;
   //pSO->typeEvent = eDelete;
-  //pSO->desc.id_session = pEvent->id_session;
+  //pSO->desc.sessionID = pEvent->sessionID;
   //mListClientSessionOperation.Add(pSO);
   
   //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);
@@ -233,11 +233,11 @@ void TSlaveLogic::SaveContextClientMMOEngine(unsigned int* pID)
   mComp.pMMOEngineSlave->Get()->SaveContext( *pID, NULL, 0);    // следующий ID
 }
 //---------------------------------------------------------------------------------------------
-void TSlaveLogic::RestoreContextClient(nsMMOEngine::TEventRestoreContext* pEvent)
+void TSlaveLogic::RestoreContextClient(nsMMOEngine::TRestoreContextEvent* pEvent)
 {
   //TSessionOperation* pSO = new TSessionOperation;
   //pSO->typeEvent = eAdd;
-  //pSO->desc.id_session = pEvent->id_session;
+  //pSO->desc.sessionID = pEvent->sessionID;
   //mListClientSessionOperation.Add(pSO);
 
   //CallBackModule(nsListModules::AloneGUI, &TSlaveLogic::OperationSessionQt);

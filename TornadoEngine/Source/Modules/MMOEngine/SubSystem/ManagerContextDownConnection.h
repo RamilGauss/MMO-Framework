@@ -34,28 +34,28 @@ namespace nsMMOEngine
     virtual ~TManagerContextDownConnection();
     
     // навигация
-    TContainerContextSc* FindContextBySession(unsigned int id_session);
+    TContainerContextSc* FindContextBySession(unsigned int sessionID);
     bool FindSessionByClientKey(unsigned int id_client, unsigned int &id_session_slave);
     
     int GetCountSession();
-    bool GetSessionByIndex( int index, unsigned int& id_session);
+    bool GetSessionByIndex( int index, unsigned int& sessionID);
 
-    bool GetCountClientKey(unsigned int id_session, int &count);
-    bool GetClientKeyByIndex(unsigned int id_session, 
+    bool GetCountClientKey(unsigned int sessionID, int &count);
+    bool GetClientKeyByIndex(unsigned int sessionID, 
                              int index, 
                              unsigned int& id_client);
 
     // добавление/удаление
-    TContainerContextSc* AddContext(unsigned int id_session);
-    bool AddClientKey(unsigned int id_session, 
+    TContainerContextSc* AddContext(unsigned int sessionID);
+    bool AddClientKey(unsigned int sessionID, 
                       unsigned int id_client);
 
     // удаление
-    void DeleteByClientKey(unsigned int id_session, unsigned int id_client);
-    void DeleteContextBySession(unsigned int id_session);
+    void DeleteByClientKey(unsigned int sessionID, unsigned int id_client);
+    void DeleteContextBySession(unsigned int sessionID);
   protected:
-    virtual void AddSessionEvent(unsigned int id_session){}
-    virtual void DeleteSessionEvent(unsigned int id_session){}
+    virtual void AddSessionEvent(unsigned int sessionID){}
+    virtual void DeleteSessionEvent(unsigned int sessionID){}
   private:
     void Clear();
   };

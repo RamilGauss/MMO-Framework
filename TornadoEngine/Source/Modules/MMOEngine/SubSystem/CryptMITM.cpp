@@ -21,7 +21,7 @@ bool TCryptMITM::Calc(void* rsa, int size_rsa,
   TMD5 md5Password;
   md5Password.FastCalc(pPassword, sizePassword, cMD5_Password);
   TCryptoAES_Impl crypt_aes;
-  crypt_aes.SetPublicKey(cMD5_Password.GetPtr(), cMD5_Password.GetSize());
+  crypt_aes.SetKey(cMD5_Password.GetPtr(), cMD5_Password.GetSize());
   if(crypt_aes.Encrypt(rsa, size_rsa, cAES_RSA)==false)
     return false;
 

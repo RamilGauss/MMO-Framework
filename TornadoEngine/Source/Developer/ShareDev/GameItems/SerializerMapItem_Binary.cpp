@@ -31,7 +31,7 @@ void TSerializerMapItem_Binary::PackItem(TBaseItem* pItem, TContainerRise& cBinO
   PushStr(pMapItem->mName);
 
   Push(pMapItem->mListObject.size());
-  BOOST_FOREACH( TMapItem::TObject& object, pMapItem->mListObject )
+  for( auto& object : pMapItem->mListObject )
   {
     PushStr(object.namePattern);
     Push(object.id);

@@ -33,6 +33,7 @@ namespace nsMMOEngine
 
   protected:
     TContextScRecommutationClient* Context();
+    void SetContext( TContextScRecommutationClient* pContext );
 
     unsigned int GetID_SessionClientSlave();
     void SetID_SessionClientSlave(unsigned int id);
@@ -48,7 +49,7 @@ namespace nsMMOEngine
     void End();
   protected:
     void NeedContextByClientKey(unsigned int key);
-    void NeedContextByClientSessionForSlave(unsigned int id_session, bool donor);
+    void NeedContextByClientSessionForSlave(unsigned int sessionID, bool donor);
     void NeedContextByClientKeyForSlave(unsigned int key, bool donor);
     void NeedSessionDonorByClientKey(IScenario* pScenario);
     void EventActivate();

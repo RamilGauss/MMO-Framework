@@ -20,7 +20,7 @@ namespace nsMMOEngine
     typedef TListPtr::iterator TListPtrIt;
 
     TListPtr   mListWaitActivation;
-    IScenarioContext* pActiveContextSc;// активный на данный момент 
+    IScenarioContext* mPtrActiveContextSc;// активный на данный момент 
 
     TCallBackRegistrator1<TScContextManager*> mCallBackActivateEvent;
     TCallBackRegistrator1<TScContextManager*> mCallBackDisactivateEvent;
@@ -32,7 +32,7 @@ namespace nsMMOEngine
     void Work();
 
     bool Activate(IScenarioContext* pCSc);
-    void Disactivate();
+    void Deactivate();
 
     IScenarioContext* GetActive();
 

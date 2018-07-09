@@ -1,13 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "Slave.h"
-
-#include <boost/foreach.hpp>
 
 #include "Logger.h"
 #include "ControlScenario.h"
@@ -31,12 +29,12 @@ using namespace std;
 
 TSlave::TSlave()
 {
-  mMngContextClient.reset(new TManagerContextClient_slave(this));
-  mMngContextClientSlaveRecipient.reset(new TManagerContextClient_slave(this));
+  mMngContextClient.reset( new TManagerContextClient_slave( this ) );
+  mMngContextClientSlaveRecipient.reset( new TManagerContextClient_slave( this ) );
 
   mTimeNeedSendSynchro = 0;
-  mControlSc->mLoginClient->SetBehavior(TScenarioLoginClient::eSlave);
-  mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eSlave);
+  mControlSc->mLoginClient->SetBehavior( TScenarioLoginClient::eSlave );
+  mControlSc->mRcm->SetBehavior( TScenarioRecommutationClient::eSlave );
 }
 //-------------------------------------------------------------------------
 TSlave::~TSlave()
@@ -44,64 +42,64 @@ TSlave::~TSlave()
 
 }
 //-------------------------------------------------------------------------
-void TSlave::SaveContext(unsigned int id_session, void* data, int size)
+void TSlave::SaveContext( unsigned int sessionID, void* data, int size )
 {
-  TContainerContextSc* pC = mMngContextClient->FindContextBySession(id_session);
-  if(pC && pC->IsRcmActive()) // передать контекст в сценарий
+  TContainerContextSc* pC = mMngContextClient->FindContextBySession( sessionID );
+  if( pC && pC->IsRcmActive() ) // передать контекст в сценарий
   {
-    mControlSc->mRcm->SetContext(&pC->mRcm);
-    mControlSc->mRcm->SaveContext(data, size);// это уже вызов функции сценария
+    mControlSc->mRcm->SetContext( &pC->mRcm );
+    mControlSc->mRcm->SaveContext( data, size );// это уже вызов функции сценария
   }
 }
 //-------------------------------------------------------------------------
-bool TSlave::FindClientKeyBySession(unsigned int id_session, unsigned int &id)
+bool TSlave::FindClientKeyBySession( unsigned int sessionID, unsigned int &id )
 {
-  return mMngContextClient->FindKeyBySession(id_session, id);
+  return mMngContextClient->FindKeyBySession( sessionID, id );
 }
 //-------------------------------------------------------------------------
-bool TSlave::FindSessionByClientKey(unsigned int id, unsigned int& id_session)
+bool TSlave::FindSessionByClientKey( unsigned int id, unsigned int& sessionID )
 {
-  return mMngContextClient->FindSessionByKey(id, id_session);
+  return mMngContextClient->FindSessionByKey( id, sessionID );
 }
 //-------------------------------------------------------------------------
-void TSlave::DisconnectInherit(unsigned int id_session)
+void TSlave::DisconnectInherit( unsigned int sessionID )
 {
   // либо обрыв связи с верхним соединением - тогда мы одни, нерабочее состояние
-  if(id_session==mID_SessionUp)
+  if( sessionID == mSessionUpID )
   {
     flgConnectUp = false;
     DisconnectAllClient();// распустить всех клиентов
-    mID_SessionUp = INVALID_HANDLE_SESSION;
-    
-    TEventDisconnectUp event;
-    event.id_session = id_session;
-    AddEventCopy(&event, sizeof(event));
+    mSessionUpID = INVALID_HANDLE_SESSION;
+
+    TDisconnectUpEvent event;
+    event.sessionID = sessionID;
+    AddEventCopy( &event, sizeof( event ) );
     return;
   }
   // либо обрыв с одним из клиентов - уничтожить клиента
   // физический обрыв или сценарий сам оборвал
   unsigned int id_client;
-  if(mMngContextClient->FindKeyBySession(id_session,id_client)==false)
+  if( mMngContextClient->FindKeyBySession( sessionID, id_client ) == false )
     return;
 
-  TContainerContextSc* pC = mMngContextClient->FindContextBySession(id_session);
-  if(pC==NULL)
+  TContainerContextSc* pC = mMngContextClient->FindContextBySession( sessionID );
+  if( pC == NULL )
   {
     BL_FIX_BUG();
     return;
   }
   // если есть активный сценарий, то завершить и начать сценарий дисконнекта
-  mControlSc->mDisClient->SetContext(&pC->mDisClient);
-  pC->mDisClient.SetID_Session(mID_SessionUp);
-  mControlSc->mDisClient->DisconnectFromSlave(id_client);
+  mControlSc->mDisClient->SetContext( &pC->mDisClient );
+  pC->mDisClient.SetSessionID( mSessionUpID );
+  mControlSc->mDisClient->DisconnectFromSlave( id_client );// отправка Мастеру информации о потере связи с Клиентом
 
-  mMngContextClient->DeleteByKey(id_client);
-  
-  if(pC->IsLoginClientActive()==false)
+  mMngContextClient->DeleteByKey( id_client );
+
+  if( pC->IsLoginClientActive() == false )
   {
-    TEventDisconnectDown event;
-    event.id_session = id_session;
-    AddEventCopy(&event, sizeof(event));
+    TDisconnectDownEvent event;
+    event.sessionID = sessionID;
+    AddEventCopy( &event, sizeof( event ) );
   }
 }
 //-------------------------------------------------------------------------
@@ -110,49 +108,46 @@ int TSlave::GetCountDown()
   return mMngContextClient->GetCountSession();
 }
 //-------------------------------------------------------------------------
-bool TSlave::GetDescDown(int index, void* pDesc, int& sizeDesc)
+bool TSlave::GetDescDown( int index, void* pDesc, int& sizeDesc )
 {
-  if(sizeDesc<sizeof(TDescDownSlave))
+  if( sizeDesc < sizeof( TDescDownSlave ) )
   {
-    GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TSlave::GetDescDown() size of buffer less then size of structure.\n");
+    GetLogger( STR_NAME_MMO_ENGINE )->
+      WriteF_time( "TSlave::GetDescDown() size of buffer less then size of structure.\n" );
     return false;
   }
 
-  unsigned int id_session;
-  if(mMngContextClient->GetSessionByIndex(index, id_session)==false)
+  unsigned int sessionID;
+  if( mMngContextClient->GetSessionByIndex( index, sessionID ) == false )
     return false;
 
-  TDescDownSlave* pDescDownSlave = (TDescDownSlave*)pDesc;
-  pDescDownSlave->id_session = id_session;
-  sizeDesc = sizeof(TDescDownSlave);
+  TDescDownSlave* pDescDownSlave = (TDescDownSlave*) pDesc;
+  pDescDownSlave->sessionID = sessionID;
+  sizeDesc = sizeof( TDescDownSlave );
   return true;
 }
 //-------------------------------------------------------------------------
-void TSlave::ConnectUp(unsigned int ip, unsigned short port, 
-                       void* pLogin, int sizeLogin, void* pPassword, int sizePassword,
-                       unsigned char subNet )
+void TSlave::ConnectUp( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet )
 {
   // если сессия жива, то значит либо соединились, либо соединяемся
-  if(mID_SessionUp!=INVALID_HANDLE_SESSION)
+  if( mSessionUpID != INVALID_HANDLE_SESSION )
     return;
 
-  mControlSc->mLoginSlave->ConnectToMaster(ip, port, 
-    pLogin, sizeLogin, pPassword, sizePassword, subNet);
-  // тут же опросить на созданную сессию
-  mID_SessionUp = mContainerUp->mLoginSlave.GetID_Session();
+  mControlSc->mLoginSlave->ConnectToMaster( ip_port, login, password, subNet );
+  //### тут же опросить на созданную сессию
+  //mSessionUpID = mContainerUp->mLoginSlave.GetSessionID();
 }
 //-------------------------------------------------------------------------
 void TSlave::WorkInherit()
 {
   // пока нет связи с Мастером - синхронизацию не проводить
-  if(flgConnectUp==false)
+  if( flgConnectUp == false )
     return;
   //-------------------------------------------------------
   unsigned int now_ms = ht_GetMSCount();
-  if(mTimeNeedSendSynchro<now_ms)
+  if( mTimeNeedSendSynchro < now_ms )
   {
-    mControlSc->mSynchroSlave->SendSynchro(mLoadProcent);
+    mControlSc->mSynchroSlave->SendSynchro( mLoadProcent );
     mTimeNeedSendSynchro = now_ms + eDeltaSynchro;
   }
 }
@@ -161,257 +156,257 @@ void TSlave::DisconnectAllClient()
 {
   unsigned int id;
   // перечисляем всех клиентов и узнаем их ключи
-  while(mMngContextClient->GetFirstKey(id))
+  while( mMngContextClient->GetFirstKey( id ) )
   {
     // по ключу ищем сессию
-    unsigned int id_session;
-    if(mMngContextClient->FindSessionByKey(id, id_session))
+    unsigned int sessionID;
+    if( mMngContextClient->FindSessionByKey( id, sessionID ) )
     {
       // закрываем сессию
-      mSessionManager->CloseSession(id_session);
+      mSessionManager->CloseSession( sessionID );
       // удаляем по ключу
-      mMngContextClient->DeleteByKey(id);
+      mMngContextClient->DeleteByKey( id );
       // генерация события о дисконнекте
-      TEventDisconnectDown event;
-      event.id_session = id_session;
-      AddEventCopy(&event, sizeof(event));
+      TDisconnectDownEvent event;
+      event.sessionID = sessionID;
+      AddEventCopy( &event, sizeof( event ) );
     }
   }
 }
 //-------------------------------------------------------------------------
-void TSlave::SendDown(unsigned int id_session, char* p, int size, bool check)
+void TSlave::SendDown( unsigned int sessionID, char* p, int size, bool check )
 {
-  TContainerContextSc* pC = mMngContextClient->FindContextBySession(id_session);
-  if(pC)
+  TContainerContextSc* pC = mMngContextClient->FindContextBySession( sessionID );
+  if( pC )
   {
-    mControlSc->mFlow->SetContext(&pC->mFlow);
+    mControlSc->mFlow->SetContext( &pC->mFlow );
 
     SetupBP( p, size );
-    mControlSc->mFlow->SendDown(mBP, check);
+    mControlSc->mFlow->SendDown( mBP, check );
   }
 }
 //-------------------------------------------------------------------------
-void TSlave::EndLoginClient(IScenario* pSc)
+void TSlave::EndLoginClient( IScenario* pSc )
 {
-  TContextScLoginClient* pContext = (TContextScLoginClient*)pSc->GetContext();
-  if(pContext->IsAccept())
+  TContextScLoginClient* pContext = (TContextScLoginClient*) pSc->GetContext();
+  if( pContext->IsAccept() )
   {
     // сохранить сессию Клиента
-    TContainerContextSc* pC = mMngContextClient->FindContextByKey(pContext->GetClientKey());
-    BL_ASSERT(pC);
-    pC->SetID_Session(pContext->GetID_SessionClientSlave());
+    TContainerContextSc* pC = mMngContextClient->FindContextByKey( pContext->GetClientKey() );
+    BL_ASSERT( pC );
+    pC->SetSessionID( pContext->GetID_SessionClientSlave() );
     return;
   }
 
-  mMngContextClient->DeleteByKey(pContext->GetClientKey());
+  mMngContextClient->DeleteByKey( pContext->GetClientKey() );
 }
 //-------------------------------------------------------------------------
-void TSlave::EndLoginSlave(IScenario* pSc)
+void TSlave::EndLoginSlave( IScenario* pSc )
 {
   // взять по этому контексту, задать всем контекстам
-  mID_SessionUp = pSc->GetContext()->GetID_Session();
-  mContainerUp->SetID_Session(mID_SessionUp);
+  mSessionUpID = pSc->GetContext()->GetSessionID();
+  mContainerUp->SetSessionID( mSessionUpID );
 
   flgConnectUp = mContainerUp->mLoginSlave.IsConnect();
-  if(flgConnectUp)
+  if( flgConnectUp )
   {
     // вход в кластер закончен
-    TEventConnectUp event;
-    event.id_session = mID_SessionUp;
-    AddEventCopy(&event, sizeof(event));
+    TConnectUpEvent event;
+    event.sessionID = mSessionUpID;
+    AddEventCopy( &event, sizeof( event ) );
   }
 }
 //-------------------------------------------------------------------------
-void TSlave::EndRcm(IScenario* pSc)
+void TSlave::EndRcm( IScenario* pSc )
 {
-  TContextScRecommutationClient* pContext = (TContextScRecommutationClient*)pSc->GetContext();
+  TContextScRecommutationClient* pContext = (TContextScRecommutationClient*) pSc->GetContext();
   unsigned int key = pContext->GetClientKey();
-  if(pContext->IsDonor())
+  if( pContext->IsDonor() )
   {
     // просто удалить  
-    mMngContextClient->DeleteByKey(key);
+    mMngContextClient->DeleteByKey( key );
     return;
   }
-  if(pContext->IsRecipient()==false)
+  if( pContext->IsRecipient() == false )
   {
-    GetLogger(STR_NAME_MMO_ENGINE)->
-      WriteF_time("TSlave::EndRcm() Undef state.\n");
+    GetLogger( STR_NAME_MMO_ENGINE )->
+      WriteF_time( "TSlave::EndRcm() Undef state.\n" );
     BL_FIX_BUG();
     return;
   }
   // переместить из временного хранилища в постоянное
-  mMngContextClientSlaveRecipient->DeleteByKey(key);
+  mMngContextClientSlaveRecipient->DeleteByKey( key );
 
-  unsigned int id_session = pContext->GetID_SessionClientSlave();
-  TContainerContextSc* pC = mMngContextClient->AddContextByKey(key);
-  mMngContextClient->AddSessionByKey(key,id_session);
+  unsigned int sessionID = pContext->GetID_SessionClientSlave();
+  TContainerContextSc* pC = mMngContextClient->AddContextByKey( key );
+  mMngContextClient->AddSessionByKey( key, sessionID );
   // для всех контекстов назначить связь вниз
-  pC->SetID_Session(id_session);
+  pC->SetSessionID( sessionID );
 }
 //-------------------------------------------------------------------------
-void TSlave::NeedContextSendToClient(unsigned int id_client)
+void TSlave::NeedContextSendToClient( unsigned int id_client )
 {
   // запрос на отправку какому-то клиенту
-  TContainerContextSc* pContext = mMngContextClient->FindContextByKey(id_client);
-  if(pContext)
-    mControlSc->mSendToClient->SetContext(&pContext->mSendToClient);
+  TContainerContextSc* pContext = mMngContextClient->FindContextByKey( id_client );
+  if( pContext )
+    mControlSc->mSendToClient->SetContext( &pContext->mSendToClient );
   else
-    mControlSc->mSendToClient->SetContext(NULL);
+    mControlSc->mSendToClient->SetContext( NULL );
 }
 //-------------------------------------------------------------------------
-void TSlave::SendByClientKey(list<unsigned int>& lKey, char* p, int size)
+void TSlave::SendByClientKey( list<unsigned int>& lKey, char* p, int size )
 {
-  SetupBP(p,size);
-  mControlSc->mSendToClient->SendFromSlave(lKey, mBP);
+  SetupBP( p, size );
+  mControlSc->mSendToClient->SendFromSlave( lKey, mBP );
 }
 //-------------------------------------------------------------------------
-void TSlave::NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_session_client,
-                                                              unsigned int id_client)
+void TSlave::NeedContextLoginClientByClientSessionByKeyClient( unsigned int id_session_client,
+  unsigned int id_client )
 {
-  TContainerContextSc* pC = mMngContextClient->FindContextByKey(id_client);
-  if(pC==NULL)
+  TContainerContextSc* pC = mMngContextClient->FindContextByKey( id_client );
+  if( pC == NULL )
   {
-    mControlSc->mLoginClient->SetContext(NULL);
+    mControlSc->mLoginClient->SetContext( NULL );
     return;
   }
   // надо проверить, вдруг клиент решил взять не свой ключ и ключ совпал
   unsigned int id_session_exist;
-  if(mMngContextClient->FindSessionByKey(id_client,id_session_exist)==false)
+  if( mMngContextClient->FindSessionByKey( id_client, id_session_exist ) == false )
   {
-    mControlSc->mLoginClient->SetContext(NULL);
+    mControlSc->mLoginClient->SetContext( NULL );
     return;
   }
   // сессии не должно быть, он ведь впервые соединяется
-  if(id_session_exist!=INVALID_HANDLE_SESSION)
+  if( id_session_exist != INVALID_HANDLE_SESSION )
   {
-    mControlSc->mLoginClient->SetContext(NULL);
+    mControlSc->mLoginClient->SetContext( NULL );
     return;
   }
 
-  mMngContextClient->AddSessionByKey(id_client, id_session_client);
-  mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
+  mMngContextClient->AddSessionByKey( id_client, id_session_client );
+  mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
 }
 //-------------------------------------------------------------------------
-void TSlave::NeedContextLoginClientByClientKey(unsigned int id_client)
+void TSlave::NeedContextLoginClientByClientKey( unsigned int id_client )
 {
-  TContainerContextSc* pC = mMngContextClient->FindContextByKey(id_client);  
-  if(pC==NULL)
-    pC = mMngContextClient->AddContextByKey(id_client);
+  TContainerContextSc* pC = mMngContextClient->FindContextByKey( id_client );
+  if( pC == NULL )
+    pC = mMngContextClient->AddContextByKey( id_client );
 
-  mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
+  mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
 }
 //-------------------------------------------------------------------------
-void TSlave::NeedContextLoginClientByClientKey_SecondCallSlave(unsigned int id_client)
+void TSlave::NeedContextLoginClientByClientKey_SecondCallSlave( unsigned int id_client )
 {
-  TContainerContextSc* pC = mMngContextClient->FindContextByKey(id_client);  
-  if(pC==NULL)
+  TContainerContextSc* pC = mMngContextClient->FindContextByKey( id_client );
+  if( pC == NULL )
   {
-    mControlSc->mLoginClient->SetContext(NULL);
+    mControlSc->mLoginClient->SetContext( NULL );
     return;
   }
-  mControlSc->mLoginClient->SetContext(&pC->mLoginClient);
+  mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
 }
 //-------------------------------------------------------------------------
-void TSlave::NeedContextByClientForSlaveKeyRcm(unsigned int key, bool donor)
+void TSlave::NeedContextByClientForSlaveKeyRcm( unsigned int key, bool donor )
 {
-  if(donor)
+  if( donor )
   {
-    TContainerContextSc* pC = mMngContextClient->FindContextByKey(key);
-    if(pC)
+    TContainerContextSc* pC = mMngContextClient->FindContextByKey( key );
+    if( pC )
     {
       // настроить сессии наверх и вниз
-      pC->mRcm.SetID_SessionClientSlave(pC->GetID_Session());
-      pC->mRcm.SetID_SessionMasterSlave(mID_SessionUp);
+      pC->mRcm.SetID_SessionClientSlave( pC->GetSessionID() );
+      pC->mRcm.SetID_SessionMasterSlave( mSessionUpID );
 
-      mControlSc->mRcm->SetContext(&pC->mRcm);
+      mControlSc->mRcm->SetContext( &pC->mRcm );
     }
     else
-      mControlSc->mRcm->SetContext(NULL);
+      mControlSc->mRcm->SetContext( NULL );
   }
   else
   {
-    TContainerContextSc* pC = mMngContextClientSlaveRecipient->FindContextByKey(key);
-    if(pC==NULL)
-      pC = mMngContextClientSlaveRecipient->AddContextByKey(key);
-    
+    TContainerContextSc* pC = mMngContextClientSlaveRecipient->FindContextByKey( key );
+    if( pC == NULL )
+      pC = mMngContextClientSlaveRecipient->AddContextByKey( key );
+
     // верх и низ сессия назначит сам сценарий
-    mControlSc->mRcm->SetContext(&pC->mRcm);
+    mControlSc->mRcm->SetContext( &pC->mRcm );
   }
 }
 //-------------------------------------------------------------------------
-void TSlave::EventDisconnectClientRcm(unsigned int key)
+void TSlave::EventDisconnectClientRcm( unsigned int key )
 {
   // для подстраховки и там и там удалить
-  TContainerContextSc* pC = mMngContextClientSlaveRecipient->FindContextByKey(key);
-  if(pC)
-    mMngContextClientSlaveRecipient->DeleteByKey(key);
+  TContainerContextSc* pC = mMngContextClientSlaveRecipient->FindContextByKey( key );
+  if( pC )
+    mMngContextClientSlaveRecipient->DeleteByKey( key );
   else
   {
     // если Клиент исхитрился и вместо отсылки "CheckInfoRecipient, ready to disconnect"
     // просто разорвал соединение - удалить из системы
-    pC = mMngContextClient->FindContextByKey(key);
-    if(pC==NULL)
+    pC = mMngContextClient->FindContextByKey( key );
+    if( pC == NULL )
       return;
-    mMngContextClient->DeleteByKey(key);
+    mMngContextClient->DeleteByKey( key );
   }
-  unsigned int id_session = pC->mRcm.GetID_SessionClientSlave();
-  mSessionManager->CloseSession(id_session);
+  unsigned int sessionID = pC->mRcm.GetID_SessionClientSlave();
+  mSessionManager->CloseSession( sessionID );
 }
 //-------------------------------------------------------------------------
-void TSlave::NeedContextByClientSessionForSlaveRcm(unsigned id_session, bool donor)
+void TSlave::NeedContextByClientSessionForSlaveRcm( unsigned sessionID, bool donor )
 {
   TContainerContextSc* pC = NULL;
-  if(donor)
-    pC = mMngContextClient->FindContextBySession(id_session);
+  if( donor )
+    pC = mMngContextClient->FindContextBySession( sessionID );
   else
-    pC = mMngContextClientSlaveRecipient->FindContextBySession(id_session);
+    pC = mMngContextClientSlaveRecipient->FindContextBySession( sessionID );
   //----------
-  if(pC)
-    mControlSc->mRcm->SetContext(&pC->mRcm);
+  if( pC )
+    mControlSc->mRcm->SetContext( &pC->mRcm );
   else
-    mControlSc->mRcm->SetContext(NULL);
+    mControlSc->mRcm->SetContext( NULL );
 }
 //-------------------------------------------------------------------------
-void TSlave::NeedContextByRequestForRecipient(TDescRequestConnectForRecipient* pDescRequest)
+void TSlave::NeedContextByRequestForRecipient( TDescRequestConnectForRecipient* pDescRequest )
 {
-  TContainerContextSc*pC = mMngContextClientSlaveRecipient->FindContextByKey(pDescRequest->key);
-  if(pC)
+  TContainerContextSc*pC = mMngContextClientSlaveRecipient->FindContextByKey( pDescRequest->key );
+  if( pC )
   {
     // проверка числа
-    if(pC->mRcm.GetRandomNum()==pDescRequest->random_num)
+    if( pC->mRcm.GetRandomNum() == pDescRequest->random_num )
     {
-      mControlSc->mRcm->SetContext(&pC->mRcm);
+      mControlSc->mRcm->SetContext( &pC->mRcm );
       // сохранить сессию
       mMngContextClientSlaveRecipient->
-        AddSessionByKey(pDescRequest->key, pDescRequest->id_session);
+        AddSessionByKey( pDescRequest->key, pDescRequest->sessionID );
       // запомнить откуда Клиент вообще
-      pC->SetID_Session(pDescRequest->id_session);
+      pC->SetSessionID( pDescRequest->sessionID );
       return;
     }
   }
-  mControlSc->mRcm->SetContext(NULL);
+  mControlSc->mRcm->SetContext( NULL );
 }
 //-------------------------------------------------------------------------
-void TSlave::EventTimeClientElapsedRcm(unsigned int id_client)
+void TSlave::EventTimeClientElapsedRcm( unsigned int id_client )
 {
   // Донор или Реципиент
-  TContainerContextSc* pC = mMngContextClient->FindContextByKey(id_client);
-  if(pC)
+  TContainerContextSc* pC = mMngContextClient->FindContextByKey( id_client );
+  if( pC )
   {
     // Донор
-    mMngContextClient->DeleteByKey(id_client);
+    mMngContextClient->DeleteByKey( id_client );
   }
   else
   {
-    pC = mMngContextClientSlaveRecipient->FindContextByKey(id_client);
-    if(pC==NULL)
+    pC = mMngContextClientSlaveRecipient->FindContextByKey( id_client );
+    if( pC == NULL )
       return;
     // реципиент
-    mMngContextClientSlaveRecipient->DeleteByKey(id_client);
+    mMngContextClientSlaveRecipient->DeleteByKey( id_client );
   }
   // если есть активный сценарий, то завершить и начать сценарий дисконнекта
-  mControlSc->mDisClient->SetContext(&pC->mDisClient);
-  pC->mDisClient.SetID_Session(mID_SessionUp);
-  mControlSc->mDisClient->DisconnectFromSlave(id_client);
+  mControlSc->mDisClient->SetContext( &pC->mDisClient );
+  pC->mDisClient.SetSessionID( mSessionUpID );
+  mControlSc->mDisClient->DisconnectFromSlave( id_client );
 }
 //-------------------------------------------------------------------------

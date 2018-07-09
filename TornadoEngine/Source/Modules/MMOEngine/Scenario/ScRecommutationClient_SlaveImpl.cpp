@@ -31,8 +31,8 @@ void TScRecommutationClient_SlaveImpl::Work(unsigned int time_ms)
   {
     if(Context()->IsDonor())
     {
-      TEventDisconnectDown event;
-      event.id_session = Context()->GetID_SessionClientSlave();
+      TDisconnectDownEvent event;
+      event.sessionID = Context()->GetID_SessionClientSlave();
       Context()->GetSE()->AddEventCopy(&event, sizeof(event));
     }
 
@@ -80,7 +80,7 @@ void TScRecommutationClient_SlaveImpl::RecvFromMaster(TDescRecvSession* pDesc)
 void TScRecommutationClient_SlaveImpl::RecvFromClient(TDescRecvSession* pDesc)
 {
   // защита от хака
-  if(pDesc->sizeData < sizeof(THeader))
+  if(pDesc->dataSize < sizeof(THeader))
     return;
   //=======================================
   THeader* pHeader = (THeader*)pDesc->data;
@@ -172,7 +172,7 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient(TDescRecvSession* pDesc)
   Context()->SetRandomNum(pHeader->random_num);
   Context()->SetClientKey(pHeader->id_client);
   Context()->SetRoleAsRecipient();// роль Реципиента
-  Context()->SetID_SessionMasterSlave(pDesc->id_session);
+  Context()->SetID_SessionMasterSlave(pDesc->sessionID);
   // начало сценария
   if(Begin()==false)
   {
@@ -185,7 +185,7 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient(TDescRecvSession* pDesc)
   // сохранить Контекст в контекст (извините за каламбур)
   // Slave еще рано отдавать Контекст
   Context()->SaveContextData(pDesc->data + sizeof(THeaderBeginRecipient), 
-                             pDesc->sizeData - sizeof(THeaderBeginRecipient));
+                             pDesc->dataSize - sizeof(THeaderBeginRecipient));
   // сформировать пакет далее для Мастера
   mBP.Reset();
   THeaderCheckBeginRecipient h;
@@ -207,7 +207,7 @@ void TScRecommutationClient_SlaveImpl::DisconnectClientToSlave(TDescRecvSession*
 //--------------------------------------------------------------
 void TScRecommutationClient_SlaveImpl::CheckBeginClient(TDescRecvSession* pDesc)
 {
-  NeedContextByClientSessionForSlave(pDesc->id_session, true);
+  NeedContextByClientSessionForSlave(pDesc->sessionID, true);
   if(Context()==NULL)
   {
     // за то время что ждали ответа от Клиента, Клиент отвалился
@@ -216,8 +216,8 @@ void TScRecommutationClient_SlaveImpl::CheckBeginClient(TDescRecvSession* pDesc)
   }
   //--------------------------------------------
   // Сохранить контекст по данному Клиенту
-  TEventSaveContext event;
-  event.id_session = pDesc->id_session;
+  TSaveContextEvent event;
+  event.sessionID = pDesc->sessionID;
   Context()->GetSE()->AddEventCopy(&event, sizeof(event));
 
   SetTimeWaitForNow();
@@ -225,7 +225,7 @@ void TScRecommutationClient_SlaveImpl::CheckBeginClient(TDescRecvSession* pDesc)
 //--------------------------------------------------------------
 void TScRecommutationClient_SlaveImpl::CheckInfoRecipient(TDescRecvSession* pDesc)
 {
-  NeedContextByClientSessionForSlave(pDesc->id_session, true);
+  NeedContextByClientSessionForSlave(pDesc->sessionID, true);
   if(Context()==NULL)
   {
     // за то время что ждали ответа от Клиента, Клиент отвалился
@@ -234,7 +234,7 @@ void TScRecommutationClient_SlaveImpl::CheckInfoRecipient(TDescRecvSession* pDes
   }
   //--------------------------------------------
   // Клиент готов к дисконнекту, рвем связь
-  Context()->GetMS()->CloseSession(pDesc->id_session);
+  Context()->GetMS()->CloseSession(pDesc->sessionID);
 
   // все, Клиента у нас больше нет
   End();
@@ -244,7 +244,7 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
 {
   THeaderRequestConnect* pHeader = (THeaderRequestConnect*)pDesc->data;
   TDescRequestConnectForRecipient desc;
-  desc.id_session = pDesc  ->id_session;
+  desc.sessionID = pDesc  ->sessionID;
   desc.key        = pHeader->id_client;
   desc.random_num = pHeader->random_num;
   NeedContextByRequestForRecipient(&desc);
@@ -253,11 +253,11 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
   {
     GetLogger(STR_NAME_MMO_ENGINE)->
       WriteF_time("TScRecommutationClient_SlaveImpl::RequestConnect not found session=0x%X, key=%u", 
-                  pDesc->id_session, pHeader->id_client);
+                  pDesc->sessionID, pHeader->id_client);
     return;
   }
   // запомнить сессию
-  SetID_SessionClientSlave(pDesc->id_session);
+  SetID_SessionClientSlave(pDesc->sessionID);
   // Клиенту
   mBP.Reset();
   THeaderCheckRequestConnect hClient;
@@ -274,10 +274,10 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
 
   Context()->GetMS()->Send(GetID_SessionMasterSlave(), mBP);
   // разработчику
-  TEventRestoreContext* pEvent = new TEventRestoreContext;
-  pEvent->id_session = pDesc->id_session;
+  TRestoreContextEvent* pEvent = new TRestoreContextEvent;
+  pEvent->sessionID = pDesc->sessionID;
   pEvent->c.SetDataByCount(Context()->GetContextDataPtr(), Context()->GetContextDataSize());
-  Context()->GetSE()->AddEventWithoutCopy<TEventRestoreContext>(pEvent);
+  Context()->GetSE()->AddEventWithoutCopy<TRestoreContextEvent>(pEvent);
   // завершить сценарий
   End();
 }

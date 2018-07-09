@@ -8,7 +8,6 @@ See for more information License.h.
 #include "PCS_PacketLevelGame.h"
 #include "BreakPacket.h"
 #include "BL_Debug.h"
-#include <boost/foreach.hpp>
 
 using namespace nsPCS;
 
@@ -228,7 +227,7 @@ TContainerRise TPacket_EnableGameObjects::PackInherit()
 {
   TContainerRise result;
   mBP.Reset();
-  BOOST_FOREACH( TypeID_GameMap& id, mVectorID_Object )
+  for( TypeID_GameMap& id : mVectorID_Object )
     mBP.PushBack( (char*) &id, sizeof( TypeID_GameMap ) );
 
   mBP.CopyInBuffer( result );
@@ -263,7 +262,7 @@ TContainerRise TPacket_DisableGameObjects::PackInherit()
 {
   TContainerRise result;
   mBP.Reset();
-  BOOST_FOREACH( TypeID_GameMap& id, mVectorID_Object )
+  for( TypeID_GameMap& id : mVectorID_Object )
     mBP.PushBack( (char*) &id, sizeof( TypeID_GameMap ) );
 
   mBP.CopyInBuffer( result );
@@ -505,7 +504,7 @@ TContainerRise TPacket_UpdateGameObjectByPattern::PackInherit()
 {
   TContainerRise result;
   mBP.Reset();
-  BOOST_FOREACH( TDescCorrection& desc, mVector )
+  for( TDescCorrection& desc : mVector )
   {
     mBP.PushBack( (char*)&(desc.mID_Object), sizeof( TypeID_GameMap ) );
     TypeSizeParameter sizeParameter = desc.mParameter.GetSize();

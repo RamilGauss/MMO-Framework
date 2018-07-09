@@ -16,7 +16,7 @@ namespace nsMMOEngine
   {
     key        = 0;
     random_num = 0;
-    id_session = 0;
+    sessionID = 0;
   }
   void TDescRequestConnectForRecipient::Generate()
   {

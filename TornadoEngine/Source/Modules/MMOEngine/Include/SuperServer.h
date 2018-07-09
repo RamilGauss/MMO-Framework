@@ -32,20 +32,20 @@ namespace nsMMOEngine
 
     struct TDescDownSuperServer
     {
-      unsigned int id_session;
+      unsigned int sessionID;
       int countClient;
     };
     virtual int  GetCountDown();
     virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);
-    virtual void SendDown(unsigned int id_session, char* p, int size, bool check = true);
+    virtual void SendDown(unsigned int sessionID, char* p, int size, bool check = true);
 
   protected:
     // Base
-    virtual void DisconnectInherit(unsigned int id_session);
+    virtual void DisconnectInherit(unsigned int sessionID);
   protected:
     virtual void NeedContextDisconnectClient(unsigned int id_client);
-    virtual void NeedContextLoginMaster(unsigned int id_session);
-    virtual void NeedContextByMasterSessionByClientKey(unsigned int id_session,unsigned int id_client);//SS
+    virtual void NeedContextLoginMaster(unsigned int sessionID);
+    virtual void NeedContextByMasterSessionByClientKey(unsigned int sessionID,unsigned int id_client);//SS
     virtual void NeedContextSendToClient(unsigned int id_client);
   protected:
     virtual void EndDisconnectClient(IScenario*);

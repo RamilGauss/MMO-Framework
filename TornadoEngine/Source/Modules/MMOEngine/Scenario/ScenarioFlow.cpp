@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -21,32 +21,32 @@ TScenarioFlow::~TScenarioFlow()
 
 }
 //-------------------------------------------------------------------------
-void TScenarioFlow::SendUp(TBreakPacket& bp, bool check)
+void TScenarioFlow::SendUp( TBreakPacket& bp, bool check )
 {
   THeaderSendUp h;
-  bp.PushFront((char*)&h, sizeof(h));
-  HandlePacket( bp, check);
+  bp.PushFront( (char*) &h, sizeof( h ) );
+  HandlePacket( bp, check );
 }
 //-------------------------------------------------------------------------
-void TScenarioFlow::SendDown(TBreakPacket& bp, bool check)
+void TScenarioFlow::SendDown( TBreakPacket& bp, bool check )
 {
   THeaderSendDown h;
-  bp.PushFront((char*)&h, sizeof(h));
-  HandlePacket( bp, check);
+  bp.PushFront( (char*) &h, sizeof( h ) );
+  HandlePacket( bp, check );
 }
 //-------------------------------------------------------------------------
-void TScenarioFlow::Recv(TDescRecvSession* pDesc)
+void TScenarioFlow::Recv( TDescRecvSession* pDesc )
 {
-  NeedContextBySession(pDesc->id_session);
+  NeedContextBySession( pDesc->sessionID );
 
-  THeaderFlow* pPacket = (THeaderFlow*)pDesc->data;
-  switch(pPacket->subType)
+  THeaderFlow* pPacket = (THeaderFlow*) pDesc->data;
+  switch( pPacket->subType )
   {
     case eUp:
-      Recv<TEventRecvFromDown>(pDesc);
+      Recv<TRecvFromDownEvent>( pDesc );
       break;
     case eDown:
-      Recv<TEventRecvFromUp>(pDesc);
+      Recv<TRecvFromUpEvent>( pDesc );
       break;
   }
 }
@@ -57,20 +57,20 @@ void TScenarioFlow::DelayBegin()
   End();
 }
 //-------------------------------------------------------------------------
-void TScenarioFlow::HandlePacket(TBreakPacket& bp, bool check)
+void TScenarioFlow::HandlePacket( TBreakPacket& bp, bool check )
 {
   // попытаться активизироваться
-  if(Begin())
+  if( Begin() )
   {
     // отсылка сразу
-    Context()->Send(bp, check);
+    Context()->Send( bp, check );
     // сценарий закончен
     End();
   }
   else
   {
     // пока отослать нельзя, сохранить пакет до момента возможности
-    Context()->SaveBreakPacket(bp, check);
+    Context()->SaveBreakPacket( bp, check );
   }
 }
 //-------------------------------------------------------------------------

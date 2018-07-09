@@ -7,7 +7,6 @@ See for more information License.h.
 
 #include "SerializerMaterialItem_Binary.h"
 #include "MaterialItem.h"
-#include <boost/foreach.hpp>
 #include "ShareMisc.h"
 
 TSerializerMaterialItem_Binary::TSerializerMaterialItem_Binary():
@@ -29,7 +28,7 @@ void TSerializerMaterialItem_Binary::PackItem(TBaseItem* pItem, TContainerRise& 
   PushType();
   PushStr(pMaterialItem->mName);
   Push(pMaterialItem->mGraphic.size());
-  BOOST_FOREACH( TMaterialItem::TVariant& variant, pMaterialItem->mGraphic )
+  for( auto& variant : pMaterialItem->mGraphic )
   {
     Push(variant.length);
     Push(variant.width);

@@ -13,7 +13,6 @@ See for more information License.h.
 #include <set>
 #include <vector>
 #include <list>
-#include <boost/foreach.hpp>
 
 #include "BreakPacket.h"
 #include "TypeDef.h"
@@ -295,7 +294,7 @@ void TPopMaster::PopMap_Ser( Map& m )
 template<typename Key, typename Value, typename Map>
 void TPopMaster::PopMap_PtrSer( Map& m )
 {
-  BOOST_FOREACH( Map::value_type& vt, m)
+  for( auto& vt : m )
     delete vt.second;
   m.clear();
 
@@ -369,7 +368,7 @@ void TPopMaster::PopMapStrSer( Map& m )
 template<typename Value, typename Map>
 void TPopMaster::PopMapStrPtrSer( Map& m )
 {
-  BOOST_FOREACH( Map::value_type& vt, m)
+  for( auto& vt : m )
     delete vt.second;
   m.clear();
 
@@ -443,7 +442,7 @@ void TPopMaster::PopMapSerSer( Map& m )
 template<typename Key, typename Value, typename Map>
 void TPopMaster::PopMapSerPtrSer( Map& m )
 {
-  BOOST_FOREACH( Map::value_type& vt, m)
+  for( auto& vt : m )
     delete vt.second;
   m.clear();
 

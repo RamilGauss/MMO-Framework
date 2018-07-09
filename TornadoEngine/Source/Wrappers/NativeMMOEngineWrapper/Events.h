@@ -23,9 +23,9 @@ typedef struct _TBaseEvent
 DllExport_C 
 typedef struct _TEventRecv : _TBaseEvent
 {
-  unsigned int id_session;
+  unsigned int sessionID;
   void* data;
-  int sizeData;
+  int dataSize;
 }_TEventRecv;
 
 #if defined( WIN32 )

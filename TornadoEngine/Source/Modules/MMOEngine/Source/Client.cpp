@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -22,8 +22,8 @@ using namespace nsMMOEngine;
 TClient::TClient()
 {
   mSubNet = 0;
-  mControlSc->mLoginClient->SetBehavior(TScenarioLoginClient::eClient);
-  mControlSc->mRcm->SetBehavior(TScenarioRecommutationClient::eClient);
+  mControlSc->mLoginClient->SetBehavior( TScenarioLoginClient::eClient );
+  mControlSc->mRcm->SetBehavior( TScenarioRecommutationClient::eClient );
 }
 //-------------------------------------------------------------------------
 TClient::~TClient()
@@ -31,88 +31,87 @@ TClient::~TClient()
 
 }
 //-------------------------------------------------------------------------
-bool TClient::Open(TDescOpen* pDesc, int count)
+bool TClient::Open( TDescOpen* pDesc, int count )
 {
-  if(count!=1)
+  if( count != 1 )
   {
-    TEventError event;
+    TErrorEvent event;
     event.code = OpenClient_MoreThenOneSubNet;
-    AddEventCopy(&event, sizeof(event));
+    AddEventCopy( &event, sizeof( event ) );
     BL_FIX_BUG();
     return false;
   }
   mSubNet = pDesc[0].subNet;
-  return mSessionManager->Start(pDesc, 1);
+  return mSessionManager->Start( pDesc, 1 );
 }
 //-------------------------------------------------------------------------
-void TClient::Login(unsigned int ip, unsigned short port, 
-                    void* pLogin, int sizeLogin, void* pPassword, int sizePassword)
+void TClient::Login( TIP_Port& ip_port, std::string& login, std::string& password )
 {
-  if(IsConnectUp())
+  if( IsConnectUp() )
   {
-    TEventError event;
+    TErrorEvent event;
     event.code = LoginClient_ClientSecondEnter;
-    AddEventCopy(&event, sizeof(event));
+    AddEventCopy( &event, sizeof( event ) );
     return;
   }
-  if((pLogin   ==NULL)||(sizeLogin   ==0)||
-     (pPassword==NULL)||(sizePassword==0))
+  if( login.size() == 0 || password.size() == 0 )
   {
-    TEventError event;
+    TErrorEvent event;
     event.code = LoginClient_EmptyLoginPassword;
-    AddEventCopy(&event, sizeof(event));
+    AddEventCopy( &event, sizeof( event ) );
     return;
   }
-  
-  mControlSc->mLoginClient->TryLogin(ip, port, mSubNet, 
-            pLogin, sizeLogin, pPassword, sizePassword);
+
+  mControlSc->mLoginClient->TryLogin( ip_port, login, password, mSubNet );
+
+  mControlSc->mRcm->SetClientLoginPassword( login, password );
 }
 //-------------------------------------------------------------------------
-void TClient::DisconnectInherit(unsigned int id_session)
+void TClient::DisconnectInherit( unsigned int sessionID )
 {
   // тут проблема в том, что бы различить дисконнект со стороны Мастера при 
   // отработке сценария LoginClient от других
-  if(mContainerUp->IsLoginClientActive())// активен сценарий LoginClient
+  if( mContainerUp->IsLoginClientActive() )// активен сценарий LoginClient
   {
     // возможно это продолжение сценария
     mControlSc->mLoginClient->DisconnectFromClient();
     return;
   }
   // Rcm
-  if(mContainerUp->IsRcmActive())// активен сценарий перекоммутации
+  if( mContainerUp->IsRcmActive() )// активен сценарий перекоммутации
   {
     // возможно это продолжение сценария
-    mControlSc->mRcm->DisconnectFromClient(mSubNet);
+    mControlSc->mRcm->DisconnectFromClient( mSubNet );
     return;
   }
   // в остальных случаях это действительно потеря связи
-  mID_SessionUp = INVALID_HANDLE_SESSION;
-  TEventDisconnectUp event;
-  event.id_session = id_session;
-  AddEventCopy(&event, sizeof(event));
+  mSessionUpID = INVALID_HANDLE_SESSION;
+  TDisconnectUpEvent event;
+  event.sessionID = sessionID;
+  AddEventCopy( &event, sizeof( event ) );
 }
 //-------------------------------------------------------------------------
-void TClient::EndLoginClient(IScenario* pSc)
+void TClient::EndLoginClient( IScenario* pSc )
 {
   // взять по этому контексту, задать всем контекстам
-  mID_SessionUp = pSc->GetContext()->GetID_Session();
-  mContainerUp->SetID_Session(mID_SessionUp);
+  mSessionUpID = pSc->GetContext()->GetSessionID();
+  mContainerUp->SetSessionID( mSessionUpID );
 }
 //-------------------------------------------------------------------------
-void TClient::EndRcm(IScenario* pSc)
+void TClient::EndRcm( IScenario* pSc )
 {
   // взять по этому контексту, задать всем контекстам
-  mID_SessionUp = pSc->GetContext()->GetID_Session();
-  mContainerUp->SetID_Session(mID_SessionUp);
+  mSessionUpID = pSc->GetContext()->GetSessionID();
+  mContainerUp->SetSessionID( mSessionUpID );
 }
 //-------------------------------------------------------------------------
 void TClient::LeaveQueue()
 {
-  if(mContainerUp->IsLoginClientActive())
+  if( mContainerUp->IsLoginClientActive() )
     mControlSc->mLoginClient->LeaveQueue();
 }
 //-------------------------------------------------------------------------
-void TClient::EventSetClientKeyLoginClient(unsigned int id_client)
+void TClient::EventSetClientKeyLoginClient( unsigned int id_client )
 {
   mID = id_client;
 }

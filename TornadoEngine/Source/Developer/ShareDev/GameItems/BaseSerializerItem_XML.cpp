@@ -9,7 +9,6 @@ See for more information License.h.
 #include "IXML.h"
 #include <errno.h>
 #include <boost/lexical_cast.hpp>
-#include <boost/foreach.hpp>
 #include "BL_Debug.h"
 
 namespace nsBaseSerializerItem_XML

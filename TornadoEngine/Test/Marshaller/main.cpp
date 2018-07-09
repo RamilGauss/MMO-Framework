@@ -35,14 +35,14 @@ void Benchmark()
   TMarshaller<TBinarySerializer> marsh;
   marsh.SetLimitForCompression( 10000 );
   marsh.Add<TTestClass>( id++, TMemoryPoolAllocator::AllocateFunc<TTestClass> );
-  TTestClass comp;
+  TTestClass src;
   TParamClass param;
-  comp.vParam.push_back( param );
-  comp.vParam.push_back( param );
-  comp.vParam.push_back( param );
-  comp.vParam[0].id = 1;
-  comp.vParam[1].id = 2;
-  comp.vParam[2].id = 3;
+  src.vParam.push_back( param );
+  src.vParam.push_back( param );
+  src.vParam.push_back( param );
+  src.vParam[0].id = 1;
+  src.vParam[1].id = 2;
+  src.vParam[2].id = 3;
 
   TContainerRise c;
 
@@ -51,12 +51,15 @@ void Benchmark()
   // полный цикл маршаллинга
   for( size_t i = 0; i < MARSHALL_COUNT; i++ )
   {
-    marsh.Serialize( &comp, c );
+    marsh.Serialize( &src, c );
     void* p = marsh.Deserialize( c, type );
     TMemoryPoolAllocator::DeallocateFunc( p );
   }
   auto stopM = ht_GetMSCount();
   float speedM = (stopM - startM) * 1000.0f / MARSHALL_COUNT;
+
+  marsh.Serialize( &src, c );
+  printf( "size of serialized object = %d\n", c.GetSize() );
   printf( "speed = %f us/1 \n", speedM );
   return;
   //------------------------------------------------

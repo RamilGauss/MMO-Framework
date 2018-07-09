@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,7 +9,6 @@ See for more information License.h.
 #include "IScenario.h"
 
 #include <stddef.h>
-#include <boost/foreach.hpp>
 #include "BL_Debug.h"
 
 #include "ScenarioDisconnectClient.h"
@@ -30,52 +29,52 @@ TMakerScenario::TMakerScenario()
 //----------------------------------------------------------------------
 TMakerScenario::~TMakerScenario()
 {
-  BOOST_FOREACH(IScenario* p, mSetMakeSc)
+  for( IScenario* p : mSetMakeSc )
     delete p;
 }
 //----------------------------------------------------------------------
-IScenario* TMakerScenario::New(unsigned int ID_Implementation)
+IScenario* TMakerScenario::New( unsigned int ID_Implementation )
 {
-  IScenario* pSc = NULL;
-  switch(ID_Implementation)
+  IScenario* pSc = nullptr;
+  switch( ID_Implementation )
   {
     case eDisconnectClient:
-      pSc = new TScenarioDisconnectClient; 
+      pSc = new TScenarioDisconnectClient;
       break;
-    case eFlow:                     
-      pSc = new TScenarioFlow; 
+    case eFlow:
+      pSc = new TScenarioFlow;
       break;
-    case eLoginClient:              
+    case eLoginClient:
       pSc = new TScenarioLoginClient;
       break;
-    case eLoginMaster:              
+    case eLoginMaster:
       pSc = new TScenarioLoginMaster;
       break;
-    case eLoginSlave:               
+    case eLoginSlave:
       pSc = new TScenarioLoginSlave;
       break;
-    case eRecommutationClient:      
+    case eRecommutationClient:
       pSc = new TScenarioRecommutationClient;
       break;
-    case eSendToClient:             
+    case eSendToClient:
       pSc = new TScenarioSendToClient;
       break;
-    case eSynchroSlave:            
+    case eSynchroSlave:
       pSc = new TScenarioSynchroSlave;
       break;
     default:BL_FIX_BUG();
   }
-  if(pSc)
+  if( pSc )
   {
-    pSc->SetType(ID_Implementation);
-    mSetMakeSc.insert(pSc);
+    pSc->SetType( ID_Implementation );
+    mSetMakeSc.insert( pSc );
   }
   return pSc;
 }
 //----------------------------------------------------------------------
-void TMakerScenario::Delete(IScenario* p)
+void TMakerScenario::Delete( IScenario* p )
 {
-  mSetMakeSc.erase(p);
+  mSetMakeSc.erase( p );
   delete p;
 }
 //----------------------------------------------------------------------

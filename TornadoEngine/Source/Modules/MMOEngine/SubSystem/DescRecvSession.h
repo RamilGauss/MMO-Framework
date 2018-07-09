@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineDescRecvSessionH
-#define MMOEngineDescRecvSessionH
+#pragma once
 
 #include "INetTransport.h"
 #include "ContainerTypes.h"
@@ -20,25 +19,22 @@ namespace nsMMOEngine
     TContainer c;
 
     unsigned int time_ms;
-    unsigned int id_session;
-    char use_crypt;
+    unsigned int sessionID;
     TDescRecvSession()
     {
-      id_session = INVALID_HANDLE_SESSION;
-      time_ms    = ht_GetMSCount();
-      use_crypt  = false;
+      sessionID = INVALID_HANDLE_SESSION;
+      time_ms = ht_GetMSCount();
     }
-    void Assign(TDescRecvSession* p)
+    void Assign( TDescRecvSession* p )
     {
-      time_ms    = p->time_ms;
-      id_session = p->id_session;
-      ip_port    = p->ip_port;
-      type       = p->type;
+      time_ms = p->time_ms;
+      sessionID = p->sessionID;
+      ip_port = p->ip_port;
+      type = p->type;
       // копирование данных
-      c.SetDataByCount(p->data, p->sizeData);
-      sizeData = p->sizeData;
-      data     = (char*)c.GetPtr();
+      c.SetDataByCount( p->data, p->dataSize );
+      dataSize = p->dataSize;
+      data = (char*) c.GetPtr();
     }
   };
 }
-#endif

@@ -19,95 +19,113 @@ namespace nsMMOEngine
 #pragma pack(push, 1)
 #endif
 
-  struct DllExport TEventRecv : public TBaseEvent
+  struct DllExport TRecvEvent : public TBaseEvent
   {
-    TEventRecv();
-    unsigned int id_session;
+    TRecvEvent();
+    unsigned int sessionID;
     void* data;
-    int sizeData;
+    int dataSize;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventRecvFromDown : public TEventRecv
+  struct DllExport TRecvFromDownEvent : public TRecvEvent
   {
-    TEventRecvFromDown();
+    TRecvFromDownEvent();
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventRecvFromUp : public TEventRecv
+  struct DllExport TRecvFromUpEvent : public TRecvEvent
   {
-    TEventRecvFromUp();
+    TRecvFromUpEvent();
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventDisconnectUp : public TBaseEvent
+  struct DllExport TDisconnectUpEvent : public TBaseEvent
   {
-    TEventDisconnectUp();
-    unsigned int id_session;
+    TDisconnectUpEvent();
+    unsigned int sessionID;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventDisconnectDown : public TBaseEvent
+  struct DllExport TDisconnectDownEvent : public TBaseEvent
   {
-    TEventDisconnectDown();
-    unsigned int id_session;
+    TDisconnectDownEvent();
+    unsigned int sessionID;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventConnectUp : public TBaseEvent
+  struct DllExport TConnectUpEvent : public TBaseEvent
   {
-    TEventConnectUp();
-    unsigned int id_session;
+    TConnectUpEvent();
+    unsigned int sessionID;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventConnectDown : public TBaseEvent
+  struct DllExport TTryConnectDownEvent : public TBaseEvent
   {
-    TEventConnectDown();
-    unsigned int id_session;
-    bool use_crypt;
+    TTryConnectDownEvent();
+    unsigned int sessionID;
+    void* hashLogin;
+    int hashLoginSize;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventDestroyGroup : public TBaseEvent
+  struct DllExport TConnectDownEvent : public TBaseEvent
   {
-    TEventDestroyGroup();
-    unsigned int id_group;
+    TConnectDownEvent();
+    unsigned int sessionID;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventResultLogin : public TBaseEvent
+  struct DllExport TDestroyGroupEvent : public TBaseEvent
   {
-    TEventResultLogin();
+    TDestroyGroupEvent();
+    unsigned int groupID;
+  }_PACKED;
+  //-------------------------------------------------------------
+  struct DllExport TResultLoginEvent : public TBaseEvent
+  {
+    TResultLoginEvent();
     TMaster::tResultLogin res;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventError : public TBaseEvent
+  struct DllExport TErrorEvent : public TBaseEvent
   {
-    TEventError();
+    TErrorEvent();
     unsigned int code;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventRestoreContext : public TBaseEvent
+  struct DllExport TRestoreContextEvent : public TBaseEvent
   {
-    TEventRestoreContext();
-    unsigned int id_session;
+    TRestoreContextEvent();
+    unsigned int sessionID;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventTryLogin : public TBaseEvent
+  struct DllExport TTryLoginEvent : public TBaseEvent
   {
-    TEventTryLogin();
-    unsigned int id_session;
-    bool use_crypt;
+    TTryLoginEvent();
+    unsigned int sessionID;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventSaveContext : public TBaseEvent
+  struct DllExport TLoginEvent : public TBaseEvent
   {
-    TEventSaveContext();
-    unsigned int id_session;
+    TLoginEvent();
+    unsigned int clientID;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventEnterInQueue : public TBaseEvent
+  struct DllExport TLogoffEvent : public TBaseEvent
   {
-    TEventEnterInQueue();
+    TLogoffEvent();
+    unsigned int clientID;
+  }_PACKED;
+  //-------------------------------------------------------------
+  struct DllExport TSaveContextEvent : public TBaseEvent
+  {
+    TSaveContextEvent();
+    unsigned int sessionID;
+  }_PACKED;
+  //-------------------------------------------------------------
+  struct DllExport TEnterInQueueEvent : public TBaseEvent
+  {
+    TEnterInQueueEvent();
     int numInQueue;
   }_PACKED;
   //-------------------------------------------------------------
-  struct DllExport TEventLeaveQueue : public TBaseEvent
+  struct DllExport TLeaveQueueEvent : public TBaseEvent
   {
-    TEventLeaveQueue();
+    TLeaveQueueEvent();
   }_PACKED;
   //-------------------------------------------------------------
 #if defined( WIN32 )

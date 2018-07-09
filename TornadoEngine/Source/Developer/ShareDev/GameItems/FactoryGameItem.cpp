@@ -1,13 +1,12 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "FactoryGameItem.h"
 #include "BL_Debug.h"
-#include <boost/foreach.hpp>
 
 #include "PatternConfigItem.h"
 #include "MaterialItem.h"
@@ -22,7 +21,7 @@ See for more information License.h.
 
 TFactoryGameItem::TFactoryGameItem()
 {
-  mMngSerBin.reset(new TManagerSerializerItem_Binary);
+  mMngSerBin.reset( new TManagerSerializerItem_Binary );
   MakeStr_Map();
 }
 //-----------------------------------------------------------------------------
@@ -37,10 +36,10 @@ void TFactoryGameItem::Done()
   mMapType_StrName_pItem.clear();
 }
 //-----------------------------------------------------------------------------
-bool TFactoryGameItem::Init_XML(std::string& name_file_xml)
+bool TFactoryGameItem::Init_XML( std::string& name_file_xml )
 {
-  mStorageGameItem_XML.reset(new TStorageGameItem_XML);
-  return mStorageGameItem_XML->Init(name_file_xml);
+  mStorageGameItem_XML.reset( new TStorageGameItem_XML );
+  return mStorageGameItem_XML->Init( name_file_xml );
 }
 //-----------------------------------------------------------------------------
 TStorageGameItem_XML* TFactoryGameItem::GetStorage_XML()
@@ -48,109 +47,109 @@ TStorageGameItem_XML* TFactoryGameItem::GetStorage_XML()
   return mStorageGameItem_XML.get();
 }
 //-----------------------------------------------------------------------------
-TBaseItem* TFactoryGameItem::Add(TypeGameItem type, std::string& name)
+TBaseItem* TFactoryGameItem::Add( TypeGameItem type, std::string& name )
 {
-  TBaseItem* pItem = FindItemByTypeByName(type, name);
+  TBaseItem* pItem = FindItemByTypeByName( type, name );
   if( pItem )
-    Delete(pItem);
-  pItem = MakeNewItem(type, name);
-  if( pItem==NULL )
+    Delete( pItem );
+  pItem = MakeNewItem( type, name );
+  if( pItem == NULL )
     return NULL;
-  AddItemInMap(pItem);
+  AddItemInMap( pItem );
   return pItem;
 }
 //-----------------------------------------------------------------------------
-TBaseItem* TFactoryGameItem::AddFromBinary(void* pIn, int sizeIn)
+TBaseItem* TFactoryGameItem::AddFromBinary( void* pIn, int sizeIn )
 {
   int type;
-  if( TBaseSerializerItem_Binary::ResolveType(pIn, sizeIn, type)==false )
+  if( TBaseSerializerItem_Binary::ResolveType( pIn, sizeIn, type ) == false )
     return NULL;
   std::string name = "";
-  TBaseItem* pItem = MakeNewItem(type, name);
-  if( pItem==NULL )
+  TBaseItem* pItem = MakeNewItem( type, name );
+  if( pItem == NULL )
     return NULL;
-  if( mMngSerBin->Unpack(pItem, pIn, sizeIn)==false )
+  if( mMngSerBin->Unpack( pItem, pIn, sizeIn ) == false )
   {
     delete pItem;
     return NULL;
   }
-  TBaseItem* pFindItem = FindItemByTypeByName(pItem->mType, pItem->mName);
+  TBaseItem* pFindItem = FindItemByTypeByName( pItem->mType, pItem->mName );
   if( pFindItem )
-    Delete(pFindItem);
-  AddItemInMap(pItem);
+    Delete( pFindItem );
+  AddItemInMap( pItem );
   return pItem;
 }
 //-----------------------------------------------------------------------------
-bool TFactoryGameItem::MakeBinary(TypeGameItem type, std::string& name, TContainerRise& cBinOut)
+bool TFactoryGameItem::MakeBinary( TypeGameItem type, std::string& name, TContainerRise& cBinOut )
 {
-  TBaseItem* pItem = Get(type, name);
-  if( pItem==NULL )
+  TBaseItem* pItem = Get( type, name );
+  if( pItem == NULL )
     return false;
-  return MakeBinary(pItem, cBinOut);
+  return MakeBinary( pItem, cBinOut );
 }
 //-----------------------------------------------------------------------------
-bool TFactoryGameItem::MakeBinary(TBaseItem* pItem, TContainerRise& cBinOut)
+bool TFactoryGameItem::MakeBinary( TBaseItem* pItem, TContainerRise& cBinOut )
 {
-  mMngSerBin->Pack(pItem, cBinOut);
+  mMngSerBin->Pack( pItem, cBinOut );
   return true;
 }
 //-----------------------------------------------------------------------------
-bool TFactoryGameItem::Delete(TypeGameItem type, std::string& name)
+bool TFactoryGameItem::Delete( TypeGameItem type, std::string& name )
 {
-  TMapStrPtrItem* pMap = FindMap(type);
-  if( pMap==NULL )
+  TMapStrPtrItem* pMap = FindMap( type );
+  if( pMap == NULL )
     return false;
-  TMapStrPtrItemIt fit = pMap->find(name);
-  if(fit==pMap->end())
+  TMapStrPtrItemIt fit = pMap->find( name );
+  if( fit == pMap->end() )
     return false;
   delete fit->second;
-  pMap->erase(name);
+  pMap->erase( name );
   return true;
 }
 //-----------------------------------------------------------------------------
-bool TFactoryGameItem::Delete(TBaseItem* pItem)
+bool TFactoryGameItem::Delete( TBaseItem* pItem )
 {
-  if( pItem==NULL )
+  if( pItem == NULL )
     return false;
-  return Delete((TypeGameItem)pItem->mType, pItem->mName);
+  return Delete( (TypeGameItem) pItem->mType, pItem->mName );
 }
 //-----------------------------------------------------------------------------
-TBaseItem* TFactoryGameItem::Get(TypeGameItem type, std::string& name)
+TBaseItem* TFactoryGameItem::Get( TypeGameItem type, std::string& name )
 {
-  TBaseItem* pItem = FindItemByTypeByName(type,name);
+  TBaseItem* pItem = FindItemByTypeByName( type, name );
   if( pItem )
     return pItem;
-  
-  if( mStorageGameItem_XML->IsExist(type, name)==false )
+
+  if( mStorageGameItem_XML->IsExist( type, name ) == false )
     return NULL;
 
-  pItem = MakeNewItem(type,name);
-  if( mStorageGameItem_XML->Load(pItem)==false )
+  pItem = MakeNewItem( type, name );
+  if( mStorageGameItem_XML->Load( pItem ) == false )
   {
     delete pItem;
     return NULL;
   }
-  AddItemInMap(pItem);
+  AddItemInMap( pItem );
   return pItem;
 }
 //-----------------------------------------------------------------------------
-int TFactoryGameItem::GetCountByType(TypeGameItem type)
+int TFactoryGameItem::GetCountByType( TypeGameItem type )
 {
-  TMapStrPtrItem* pMap = FindMap(type);
-  if( pMap==NULL )
+  TMapStrPtrItem* pMap = FindMap( type );
+  if( pMap == NULL )
     return 0;
   return pMap->size();
 }
 //-----------------------------------------------------------------------------
-bool TFactoryGameItem::GetNameByType(TypeGameItem type, int index, std::string& name)
+bool TFactoryGameItem::GetNameByType( TypeGameItem type, int index, std::string& name )
 {
-  TMapStrPtrItem* pMap = FindMap(type);
-  if( pMap==NULL )
+  TMapStrPtrItem* pMap = FindMap( type );
+  if( pMap == NULL )
     return false;
-  if( int(pMap->size()) <= index )
+  if( int( pMap->size() ) <= index )
     return false;
   TMapStrPtrItemIt bit = pMap->begin();
-  for( int i = 0 ; i < index ; i++ )
+  for( int i = 0; i < index; i++ )
     bit++;
   name = bit->second->mName;
   return true;
@@ -158,41 +157,41 @@ bool TFactoryGameItem::GetNameByType(TypeGameItem type, int index, std::string& 
 //-----------------------------------------------------------------------------
 void TFactoryGameItem::ReloadFromStorageAll_XML()
 {
-  for( int iType = FirstType ; iType < CountType ; iType++ )
-    ReloadFromStorageByType_XML((TypeGameItem)iType);
+  for( int iType = FirstType; iType < CountType; iType++ )
+    ReloadFromStorageByType_XML( (TypeGameItem) iType );
 }
 //-----------------------------------------------------------------------------
 void TFactoryGameItem::ReloadFromStorageByType_XML( TypeGameItem type )
 {
-  int cntItem = mStorageGameItem_XML->GetCountByType(type);
-  for( int iItem = 0 ; iItem < cntItem ; iItem++ )
+  int cntItem = mStorageGameItem_XML->GetCountByType( type );
+  for( int iItem = 0; iItem < cntItem; iItem++ )
   {
     std::string nameItem;
-    if( mStorageGameItem_XML->GetNameByType(type, iItem, nameItem)==false )
+    if( mStorageGameItem_XML->GetNameByType( type, iItem, nameItem ) == false )
       continue;
-    TBaseItem* pItem = FindItemByTypeByName(type, nameItem);
+    TBaseItem* pItem = FindItemByTypeByName( type, nameItem );
     if( pItem )// если с таким именем уже есть - не создавать
       continue;
-    pItem = MakeNewItem(type, nameItem);
-    if( pItem==NULL )
+    pItem = MakeNewItem( type, nameItem );
+    if( pItem == NULL )
       continue;
-    if( mStorageGameItem_XML->Load(pItem)==false )
+    if( mStorageGameItem_XML->Load( pItem ) == false )
     {
       delete pItem;
       continue;
     }
-    if( AddItemInMap(pItem)==false )
+    if( AddItemInMap( pItem ) == false )
       delete pItem;
   }
 }
 //-----------------------------------------------------------------------------
 void TFactoryGameItem::Clear()
 {
-  BOOST_FOREACH( TMapInt_PtrMapStrPtrVT& vtType_PtrMap, mMapType_StrName_pItem)
+  for( auto& vtType_PtrMap : mMapType_StrName_pItem )
   {
     TMapStrPtrItemIt bit = vtType_PtrMap.second->begin();
     TMapStrPtrItemIt eit = vtType_PtrMap.second->end();
-    while( bit!=eit )
+    while( bit != eit )
     {
       delete bit->second;
       bit++;
@@ -201,63 +200,63 @@ void TFactoryGameItem::Clear()
   }
 }
 //-----------------------------------------------------------------------------
-TBaseItem* TFactoryGameItem::FindItemByTypeByName( int type, std::string& name)
+TBaseItem* TFactoryGameItem::FindItemByTypeByName( int type, std::string& name )
 {
-  TMapStrPtrItem* pMap = FindMap(type);
-  if( pMap==NULL )
+  TMapStrPtrItem* pMap = FindMap( type );
+  if( pMap == NULL )
     return NULL;
-  TMapStrPtrItemIt fit = pMap->find(name);
-  if(fit==pMap->end())
+  TMapStrPtrItemIt fit = pMap->find( name );
+  if( fit == pMap->end() )
     return NULL;
   return fit->second;
 }
 //-----------------------------------------------------------------------------
-bool TFactoryGameItem::AddItemInMap(TBaseItem* pItem)
+bool TFactoryGameItem::AddItemInMap( TBaseItem* pItem )
 {
-  TMapStrPtrItem* pMap = FindMap(pItem->mType);
-  if( pMap==NULL )
+  TMapStrPtrItem* pMap = FindMap( pItem->mType );
+  if( pMap == NULL )
   {
     BL_FIX_BUG();
     return false;
   }
-  pMap->insert(TMapStrPtrItemVT(pItem->mName, pItem));
+  pMap->insert( TMapStrPtrItemVT( pItem->mName, pItem ) );
   return true;
 }
 //-----------------------------------------------------------------------------
-TBaseItem* TFactoryGameItem::MakeNewItem(int type, std::string& name)
+TBaseItem* TFactoryGameItem::MakeNewItem( int type, std::string& name )
 {
   TBaseItem* pItem = NULL;
-  switch(type)
+  switch( type )
   {
     case PatternConfig:
-      pItem = new TPatternConfigItem(name);
+      pItem = new TPatternConfigItem( name );
       break;
     case Material:
-      pItem = new TMaterialItem(name);
+      pItem = new TMaterialItem( name );
       break;
     case Shape:
-      pItem = new TShapeItem(name);
+      pItem = new TShapeItem( name );
       break;
     case Model:
-      pItem = new TModelItem(name);
+      pItem = new TModelItem( name );
       break;
     case Map:
-      pItem = new TMapItem(name);
+      pItem = new TMapItem( name );
       break;
     case Terrain:
-      pItem = new TTerrainItem(name);
+      pItem = new TTerrainItem( name );
       break;
     case TableSound:
-      pItem = new TTableSoundItem(name);
+      pItem = new TTableSoundItem( name );
       break;
   }
   return pItem;
 }
 //-----------------------------------------------------------------------------
-TFactoryGameItem::TMapStrPtrItem* TFactoryGameItem::FindMap(int type)
+TFactoryGameItem::TMapStrPtrItem* TFactoryGameItem::FindMap( int type )
 {
-  TMapInt_PtrMapStrPtrIt fit = mMapType_StrName_pItem.find(type);
-  if(fit==mMapType_StrName_pItem.end())
+  TMapInt_PtrMapStrPtrIt fit = mMapType_StrName_pItem.find( type );
+  if( fit == mMapType_StrName_pItem.end() )
     return NULL;
 
   return fit->second;
@@ -265,12 +264,12 @@ TFactoryGameItem::TMapStrPtrItem* TFactoryGameItem::FindMap(int type)
 //-----------------------------------------------------------------------------
 void TFactoryGameItem::MakeStr_Map()
 {
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(PatternConfig, &mMapNamePatternConfig));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Material,      &mMapNameMaterial      ));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Shape,         &mMapNameShape         ));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Model,         &mMapNameModel         ));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Terrain,       &mMapNameTerrain       ));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(Map,           &mMapNameMap           ));
-  mMapType_StrName_pItem.insert(TMapInt_PtrMapStrPtrVT(TableSound,    &mMapNameTableSound   ));
+  mMapType_StrName_pItem.insert( TMapInt_PtrMapStrPtrVT( PatternConfig, &mMapNamePatternConfig ) );
+  mMapType_StrName_pItem.insert( TMapInt_PtrMapStrPtrVT( Material, &mMapNameMaterial ) );
+  mMapType_StrName_pItem.insert( TMapInt_PtrMapStrPtrVT( Shape, &mMapNameShape ) );
+  mMapType_StrName_pItem.insert( TMapInt_PtrMapStrPtrVT( Model, &mMapNameModel ) );
+  mMapType_StrName_pItem.insert( TMapInt_PtrMapStrPtrVT( Terrain, &mMapNameTerrain ) );
+  mMapType_StrName_pItem.insert( TMapInt_PtrMapStrPtrVT( Map, &mMapNameMap ) );
+  mMapType_StrName_pItem.insert( TMapInt_PtrMapStrPtrVT( TableSound, &mMapNameTableSound ) );
 }
 //-----------------------------------------------------------------------------

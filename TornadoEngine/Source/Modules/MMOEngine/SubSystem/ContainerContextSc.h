@@ -46,8 +46,8 @@ namespace nsMMOEngine
     void SetMCSc(TScContextManager* pMCSc);
     TScContextManager* GetMCSc();
 
-    void SetID_Session(unsigned int id_session);
-    unsigned int GetID_Session();
+    void SetSessionID(unsigned int sessionID);
+    unsigned int GetSessionID();
     void SetMS(TSessionManager* pMS);
     void SetSE(TSrcEvent* pSE);
     void SetUserPtr(void* p);

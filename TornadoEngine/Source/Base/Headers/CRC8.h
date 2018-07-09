@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -12,15 +12,11 @@ See for more information License.h.
 
 class DllExport TCRC8
 {
-  unsigned char mReadyCRC;
-
 public:
   TCRC8();
   ~TCRC8();
-  
-  unsigned char Calc(void* pIn, int sizeIn);
+
+  void Calc( void* pIn, int sizeIn, unsigned char& crc );
 };
 
-
 #endif
-

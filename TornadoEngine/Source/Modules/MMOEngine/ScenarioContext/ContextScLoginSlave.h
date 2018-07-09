@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -23,12 +23,12 @@ namespace nsMMOEngine
     TContextScLoginSlave();
     virtual ~TContextScLoginSlave();
 
-    void SetConnect(bool v);
+    void SetConnect( bool v );
     bool IsConnect();
 
     unsigned int GetTimeWait();
-    void SetTimeWait(unsigned int v);
+    void SetTimeWait( unsigned int v );
   private:
   };
-}  
+}
 #endif

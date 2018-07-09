@@ -7,7 +7,6 @@ See for more information License.h.
 
 #include "Modifier_Terrain_Bullet.h"
 
-#include <boost/foreach.hpp>
 #include <CollisionShapes/btHeightfieldTerrainShape.h>
 
 #include "Pattern_Terrain.h"
@@ -36,9 +35,9 @@ void TModifier_Terrain_Bullet::Clear()
   if( pWorld==NULL )
     return;
 
-  BOOST_FOREACH( TPattern_Terrain::TMapIntMapPartPhysicVT& x_map, mPatternTerrain->mX_Y_PartPhysic )
+  for( auto& x_map : mPatternTerrain->mX_Y_PartPhysic )
   {
-    BOOST_FOREACH( TPattern_Terrain::TMapIntPartPhysicVT& y_part, x_map.second )
+    for( auto& y_part : x_map.second )
     {
       nsStructPattern_Terrain::TTerrainPart_Physic* pPart = &(y_part.second);
       // уничтожить внутреннее состояние
@@ -83,9 +82,9 @@ void TModifier_Terrain_Bullet::InitGrid()
 void TModifier_Terrain_Bullet::SetupContentParts()
 {
   mBuilderTool_Bullet.SetID_PhysicWorld(mPatternTerrain->GetPhysicWorld());
-  BOOST_FOREACH( TPattern_Terrain::TMapIntMapPartPhysicVT& x_map, mPatternTerrain->mX_Y_PartPhysic )
+  for( auto& x_map : mPatternTerrain->mX_Y_PartPhysic )
   {
-    BOOST_FOREACH( TPattern_Terrain::TMapIntPartPhysicVT& y_part, x_map.second )
+    for( auto& y_part : x_map.second )
     {
       nsStructPattern_Terrain::TTerrainPart_Physic* pPart = &(y_part.second);
       pPart->pData = new nsStructPattern_Terrain::THeightMapTerrain;
