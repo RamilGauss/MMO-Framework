@@ -32,10 +32,10 @@ namespace nsMMOEngine
   struct TDescRequestConnectForRecipient;
   class DllExport TBase : public TSrcEvent
   {
-    boost::scoped_ptr<TManagerManagerContextSc> mMngMngContextSc;
+    std::shared_ptr<TManagerManagerContextSc> mMngMngContextSc;
   protected:
-    boost::scoped_ptr<TControlScenario>    mControlSc;
-    boost::scoped_ptr<TContainerContextSc> mContainerUp;
+    std::shared_ptr<TControlScenario>    mControlSc;
+    std::shared_ptr<TContainerContextSc> mContainerUp;
 
     // уведомления о разрыве связи
     typedef TDataExchange2Thread<unsigned int> TListUint;
@@ -48,7 +48,7 @@ namespace nsMMOEngine
     TListTryConnectDown mTryConnectDown;
 
     // транспорт
-    boost::scoped_ptr<TSessionManager> mSessionManager;
+    std::shared_ptr<TSessionManager> mSessionManager;
     // загрузка CPU
     int mLoadProcent;// затраченное время/выделенное, %
 
@@ -82,45 +82,75 @@ namespace nsMMOEngine
     void TryConnectDown( TTryConnectDown* pTryConnectDown );
 
     virtual void DisconnectInherit( unsigned int id ) = 0;
-    virtual void WorkInherit(){};
+    virtual void WorkInherit()
+    {};
     // события сценариев
-    virtual void NeedContextDisconnectClient( unsigned int id_client ){}
+    virtual void NeedContextDisconnectClient( unsigned int id_client )
+    {}
     //----------------------------------------------------
     // LoginClient
     virtual void NeedContextByMasterSessionByClientKey( unsigned int sessionID,
-      unsigned int id_client ){}//SS
-    virtual void NeedContextLoginClientBySessionLeaveQueue( unsigned int sessionID ){}// S,M
-    virtual void NeedContextLoginClientBySession( unsigned int sessionID ){}// S,M
-    virtual void NeedContextLoginClientBySessionAfterAuthorised( unsigned int sessionID ){}// M
-    virtual void NeedContextLoginClientByClientKey( unsigned int id_client ){}//S,M,SS
-    virtual void NeedContextLoginClientByClientKey_SecondCallSlave( unsigned int id_client ){}//S
-    virtual void NeedNumInQueueLoginClient( unsigned int sessionID ){}// M
-    virtual void EventSetClientKeyLoginClient( unsigned int id_client ){};//C
+      unsigned int id_client )
+    {}//SS
+    virtual void NeedContextLoginClientBySessionLeaveQueue( unsigned int sessionID )
+    {}// S,M
+    virtual void NeedContextLoginClientBySession( unsigned int sessionID )
+    {}// S,M
+    virtual void NeedContextLoginClientBySessionAfterAuthorised( unsigned int sessionID )
+    {}// M
+    virtual void NeedContextLoginClientByClientKey( unsigned int id_client )
+    {}//S,M,SS
+    virtual void NeedContextLoginClientByClientKey_SecondCallSlave( unsigned int id_client )
+    {}//S
+    virtual void NeedNumInQueueLoginClient( unsigned int sessionID )
+    {}// M
+    virtual void EventSetClientKeyLoginClient( unsigned int id_client )
+    {};//C
     virtual void NeedContextLoginClientByClientSessionByKeyClient( unsigned int id_session_client,
-      unsigned int id_client ){}//S
-//----------------------------------------------------
-// RCM
-    virtual void NeedContextByRequestForRecipient( TDescRequestConnectForRecipient* p ){}// Slave
-    virtual void NeedContextByClientSessionForSlaveRcm( unsigned sessionID, bool donor ){}
-    virtual void NeedContextByClientForSlaveKeyRcm( unsigned int key, bool donor ){}
-    virtual void NeedContextByClientKeyRcm( unsigned int key ){}
-    virtual void NeedSlaveSessionDonorRcm( IScenario* pSc ){}//M
-    virtual void EventActivateRcm( IScenario* pSc ){}//M
-    virtual void EventDisconnectClientRcm( unsigned int key ){}// Slave
-    virtual void EventTimeClientElapsedRcm( unsigned int key ){}// Slave
-    //----------------------------------------------------
-    virtual void NeedContextLoginSlave( unsigned int sessionID ){}
-    virtual void NeedContextLoginMaster( unsigned int sessionID ){}
-    virtual void NeedContextSendToClient( unsigned int id_client ){}
-    virtual void NeedContextSynchroSlave( unsigned int sessionID ){}
+      unsigned int id_client )
+    {}//S
+   //----------------------------------------------------
+   // RCM
+    virtual void NeedContextByRequestForRecipient( TDescRequestConnectForRecipient* p )
+    {}// Slave
+    virtual void NeedContextByClientSessionForSlaveRcm( unsigned sessionID, bool donor )
+    {}
+    virtual void NeedContextByClientForSlaveKeyRcm( unsigned int key, bool donor )
+    {}
+    virtual void NeedContextByClientKeyRcm( unsigned int key )
+    {}
+    virtual void NeedSlaveSessionDonorRcm( IScenario* pSc )
+    {}//M
+    virtual void EventActivateRcm( IScenario* pSc )
+    {}//M
+    virtual void EventDisconnectClientRcm( unsigned int key )
+    {}// Slave
+    virtual void EventTimeClientElapsedRcm( unsigned int key )
+    {}// Slave
+       //----------------------------------------------------
+    virtual void NeedContextLoginSlave( unsigned int sessionID )
+    {}
+    virtual void NeedContextLoginMaster( unsigned int sessionID )
+    {}
+    virtual void NeedContextSendToClient( unsigned int id_client )
+    {}
+    virtual void NeedContextSynchroSlave( unsigned int sessionID )
+    {}
 
-    virtual void EndDisconnectClient( IScenario* p ){}
-    virtual void EndDisconnectSlave( IScenario* p ){}
-    virtual void EndLoginClient( IScenario* p ){}
-    virtual void EndLoginSlave( IScenario* p ){}
-    virtual void EndLoginMaster( IScenario* p ){}
-    virtual void EndRcm( IScenario* p ){}
-    virtual void EndSynchroSlave( IScenario* p ){}
+    virtual void EndDisconnectClient( IScenario* p )
+    {}
+    virtual void EndDisconnectSlave( IScenario* p )
+    {}
+    virtual void EndLoginClient( IScenario* p )
+    {}
+    virtual void EndLoginSlave( IScenario* p )
+    {}
+    virtual void EndLoginMaster( IScenario* p )
+    {}
+    virtual void EndRcm( IScenario* p )
+    {}
+    virtual void EndSynchroSlave( IScenario* p )
+    {}
   private:
     TScContextManager * AddManagerContextSc();
     void RemoveManagerContextSc( TScContextManager* pMCSc );

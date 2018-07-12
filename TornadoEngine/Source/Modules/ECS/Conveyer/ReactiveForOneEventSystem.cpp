@@ -8,7 +8,7 @@ TReactiveForOneEventSystem::TReactiveForOneEventSystem() : TBaseReactiveSystem(f
 //-------------------------------------------------------------------
 void TReactiveForOneEventSystem::Update()
 {
-  // ������� ������ �� entity, ��������� ������ �������
+  // entity
   int filtered = 0;
   for (size_t i = 0; i < mReactionEntities.mCounter; i++)
   {

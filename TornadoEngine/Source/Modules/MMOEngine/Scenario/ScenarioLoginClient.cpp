@@ -21,7 +21,7 @@ using namespace std;
 TScenarioLoginClient::TScenarioLoginClient() :
   mClient( this ), mSlave( this ), mMaster( this ), mSS( this )
 {
-  mCurBehavior = NULL;
+  mCurBehavior = nullptr;
 
   AddCallBack( eSetClientKey, &mCBSetClientKey );
   AddCallBack( eContextByMasterSessionByClientKey, &mCBContextByMasterSessionByClientKey );

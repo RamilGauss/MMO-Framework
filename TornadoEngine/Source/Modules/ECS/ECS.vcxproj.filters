@@ -53,7 +53,7 @@
     <ClInclude Include="Conveyer\World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TypeDef.h">
+    <ClInclude Include="Conveyer\MappedGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

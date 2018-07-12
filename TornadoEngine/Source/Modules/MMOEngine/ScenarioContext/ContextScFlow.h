@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CONTEXT_SC_FLOW_H
-#define CONTEXT_SC_FLOW_H
+#pragma once
 
 #include "IScenarioContext.h"
 #include "BreakPacket.h"
@@ -30,9 +29,8 @@ namespace nsMMOEngine
   public:
     TContextScFlow();
 
-    void Send( TBreakPacket& bp, bool check);
-    void SaveBreakPacket(TBreakPacket& bp, bool check);
+    void Send( TBreakPacket& bp, bool check );
+    void SaveBreakPacket( TBreakPacket& bp, bool check );
     void SendAndRemoveFirst();
   };
-}  
-#endif
+}

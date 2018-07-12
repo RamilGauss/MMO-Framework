@@ -66,21 +66,22 @@ void TScLoginClient_MasterImpl::Work( unsigned int now_ms )
       h.numInQueue = Context()->GetNumInQueue();
       mBP.PushFront( (char*) &h, sizeof( h ) );
       Context()->GetMS()->Send( GetID_SessionClientMaster(), mBP );
+
+      Context()->SetCurrentStateWait( TContextScLoginClient::MasterWaitInQueue );
     }
     return;
   }
   // 
-  auto timeWait = Context()->GetTimeWait();
-  auto delta = Context()->GetDeltaTimeWaitMS();
-  if( timeWait + delta < now_ms )
-  {
-    // ошибка на той стороне
-    TErrorEvent event;
-    event.code = LoginClient_MasterClientNotActive;
-    Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
-    Context()->Reject();
-    End();
-  }
+  if( Context()->IsStateTimeExpired( now_ms ) == false )
+    return;
+
+  auto errorType = Context()->GetCurrentStateErrorCode();
+  // ошибка на той стороне
+  TErrorEvent event;
+  event.code = errorType;
+  Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
+  Context()->Reject();
+  End();
 }
 //-----------------------------------------------------------------------------
 void TScLoginClient_MasterImpl::Reject( void* resForClient, int sizeResClient )
@@ -98,6 +99,7 @@ void TScLoginClient_MasterImpl::Reject( void* resForClient, int sizeResClient )
 
   Context()->GetMS()->Send( GetID_SessionClientMaster(), mBP );
 
+  Context()->SetCurrentStateWait( TContextScLoginClient::NoWait );
   End();
 }
 //--------------------------------------------------------------
@@ -130,7 +132,7 @@ void TScLoginClient_MasterImpl::Accept( unsigned int key, void* resForClient, in
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( GetID_SessionMasterSS(), mBP );
   // ждем ответ от SuperServer
-  SetWaitSS();
+  Context()->SetCurrentStateWait( TContextScLoginClient::MasterWaitSuperServer );
 }
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::Queue( int num, void* resForClient, int sizeResClient )
@@ -144,6 +146,8 @@ void TScLoginClient_MasterImpl::Queue( int num, void* resForClient, int sizeResC
   h.numInQueue = num;
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( GetID_SessionClientMaster(), mBP );
+
+  Context()->SetCurrentStateWait( TContextScLoginClient::MasterWaitInQueue );
 }
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::RecvFromClient( TDescRecvSession* pDesc )
@@ -195,7 +199,7 @@ void TScLoginClient_MasterImpl::CheckRequestSS2M( TDescRecvSession* pDesc )
 {
   THeaderCheckRequestSS2M* pHeader = (THeaderCheckRequestSS2M*) pDesc->data;
   NeedContextByClientKey( pHeader->id_client );
-  if( Context() == NULL )
+  if( Context() == nullptr )
   {
     // такая ситуация вполне возможна, пока SS слал ответ, клиент отвалился, 
     // но под Debug фиксировать это событие
@@ -229,6 +233,8 @@ void TScLoginClient_MasterImpl::CheckRequestSS2M( TDescRecvSession* pDesc )
   Context()->Accept();
 
   SendResultAccept2ClientAndSlave( pHeader->id_client, resForClient, sizeResClient );
+
+  Context()->SetCurrentStateWait( TContextScLoginClient::MasterWaitSlave );
 }
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::TryLoginC2M( TDescRecvSession* pDesc )
@@ -238,7 +244,7 @@ void TScLoginClient_MasterImpl::TryLoginC2M( TDescRecvSession* pDesc )
     return;
   //=====================================
   NeedContextBySession( pDesc->sessionID );
-  if( Context() == NULL )
+  if( Context() == nullptr )
   {
     BL_FIX_BUG();
     return;
@@ -252,8 +258,6 @@ void TScLoginClient_MasterImpl::TryLoginC2M( TDescRecvSession* pDesc )
     BL_FIX_BUG();
     return;
   }
-  SetWaitSS();// ждем (на случай если нет связи с SuperServer)
-  SetTimeWaitForNow();
   // новая сессия, сохранить
   SetClientSessionID_Master( pDesc->sessionID );
   // в буфере, который передали, содержится заголовок и блок
@@ -267,6 +271,8 @@ void TScLoginClient_MasterImpl::TryLoginC2M( TDescRecvSession* pDesc )
   pEvent->sessionID = GetID_SessionClientMaster();
   pEvent->c.SetDataByCount( data, dataSize );
   Context()->GetSE()->AddEventWithoutCopy<TTryLoginEvent>( pEvent );
+
+  Context()->SetCurrentStateWait( TContextScLoginClient::MasterWaitDeveloper );// ждем Accept или Reject
 }
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::LeaveQueueC2M( TDescRecvSession* pDesc )
@@ -274,7 +280,7 @@ void TScLoginClient_MasterImpl::LeaveQueueC2M( TDescRecvSession* pDesc )
   // защита от хака не нужна, данные пакета не используются
   //=====================================
   NeedContextBySessionLeaveQueue( pDesc->sessionID );
-  if( Context() == NULL )
+  if( Context() == nullptr )
   {
     End();
     return;
@@ -304,6 +310,7 @@ void TScLoginClient_MasterImpl::ClientConnectS2M( TDescRecvSession* pDesc )
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
 
+  Context()->SetCurrentStateWait( TContextScLoginClient::NoWait );
   // конец сценария
   End();
 }
@@ -312,7 +319,7 @@ void TScLoginClient_MasterImpl::CheckInfoClientS2M( TDescRecvSession* pDesc )
 {
   THeaderCheckInfoClientS2M* pHeader = (THeaderCheckInfoClientS2M*) pDesc->data;
   NeedContextByClientKey( pHeader->id_client );
-  if( Context() == NULL )
+  if( Context() == nullptr )
   {
     BL_FIX_BUG();
     return;
@@ -329,11 +336,11 @@ void TScLoginClient_MasterImpl::CheckInfoClientS2M( TDescRecvSession* pDesc )
   mBP.Reset();
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( GetID_SessionClientMaster(), mBP );
+
+  Context()->SetCurrentStateWait( TContextScLoginClient::MasterWaitClient );
 }
 //--------------------------------------------------------------
-void TScLoginClient_MasterImpl::SendResultAccept2ClientAndSlave( unsigned int key,
-  void* resForClient,
-  int sizeResClient )
+void TScLoginClient_MasterImpl::SendResultAccept2ClientAndSlave( unsigned int key, void* resForClient, int sizeResClient )
 {
   // Client
   mBP.Reset();
@@ -352,7 +359,7 @@ void TScLoginClient_MasterImpl::SendResultAccept2ClientAndSlave( unsigned int ke
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
 
   // ждем ответ от Slave
-  SetWaitSlave();
+  Context()->SetCurrentStateWait( TContextScLoginClient::MasterWaitSlave );
 }
 //--------------------------------------------------------------
 void TScLoginClient_MasterImpl::Disconnect()
@@ -373,10 +380,8 @@ void TScLoginClient_MasterImpl::CheckInfoSlaveC2M( TDescRecvSession* pDesc )
   //=====================================
   THeaderCheckInfoSlaveC2M* pHeader = (THeaderCheckInfoSlaveC2M*) pDesc->data;
   // в целях безопасности нельзя использовать id_client, потому что клиент может "прикинуться" другим
-  //NeedContextBySession(pDesc->sessionID);
   NeedContextBySessionAfterAuthorised( pDesc->sessionID );
-  //NeedContextByClientKey(pHeader->id_client);
-  if( Context() == NULL )
+  if( Context() == nullptr )
   {
     BL_FIX_BUG();
     return;
@@ -386,21 +391,6 @@ void TScLoginClient_MasterImpl::CheckInfoSlaveC2M( TDescRecvSession* pDesc )
   Context()->GetMS()->CloseSession( pDesc->sessionID );
 
   // и ждем ответа от Slave о том, что Клиент подцепился к Slave
-  SetWaitClient();
-}
-//--------------------------------------------------------------
-void TScLoginClient_MasterImpl::SetWaitSS()
-{
-  Context()->SetDeltaTimeWaitMS( eTimeWaitSS_ms );
-}
-//--------------------------------------------------------------
-void TScLoginClient_MasterImpl::SetWaitSlave()
-{
-  Context()->SetDeltaTimeWaitMS( eTimeWaitSlave_ms );
-}
-//--------------------------------------------------------------
-void TScLoginClient_MasterImpl::SetWaitClient()
-{
-  Context()->SetDeltaTimeWaitMS( eTimeWaitClient_ms );
+  Context()->SetCurrentStateWait( TContextScLoginClient::MasterWaitClientConnectToSlave );
 }
 //--------------------------------------------------------------

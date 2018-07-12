@@ -29,11 +29,11 @@
     <ClInclude Include="Conveyer\GlobalAccess.h" />
     <ClInclude Include="Conveyer\IConveyerPart.h" />
     <ClInclude Include="Conveyer\InitSystem.h" />
+    <ClInclude Include="Conveyer\MappedGroup.h" />
     <ClInclude Include="Conveyer\ReactiveForManyEventsSystem.h" />
     <ClInclude Include="Conveyer\ReactiveForOneEventSystem.h" />
     <ClInclude Include="Conveyer\System.h" />
     <ClInclude Include="Conveyer\World.h" />
-    <ClInclude Include="TypeDef.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Conveyer\ConveyerPartMaster.cpp" />

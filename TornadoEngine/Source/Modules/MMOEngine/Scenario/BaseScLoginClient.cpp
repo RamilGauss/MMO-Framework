@@ -138,8 +138,8 @@ void TBaseScLoginClient::NeedContextBySessionLeaveQueue( unsigned int sessionID 
     TScenarioLoginClient::eContextByClientSessionLeaveQueue, sessionID );
 }
 //--------------------------------------------------------------
-void TBaseScLoginClient::SetTimeWaitForNow()
-{
-  Context()->SetTimeWait( ht_GetMSCount() );
-}
-//--------------------------------------------------------------
+//void TBaseScLoginClient::SetTimeWaitForNow()
+//{
+//  Context()->SetTimeWait( ht_GetMSCount() );
+//}
+////--------------------------------------------------------------

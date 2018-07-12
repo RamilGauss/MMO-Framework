@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,7 +16,8 @@ namespace nsMMOEngine
 {
   namespace nsLoginClientStruct
   {
-    enum{
+    enum
+    {
       // начало, множество ветвлений
       eTryLoginC2M,
       eRequestM2SS,
@@ -54,10 +55,34 @@ namespace nsMMOEngine
       unsigned int  id_client;
     }_PACKED;
     //-------------------------------------------------
-    struct THeaderC  : public THeader{ THeaderC (){from=eClient;}}_PACKED;
-    struct THeaderM  : public THeader{ THeaderM (){from=eMaster;}}_PACKED;
-    struct THeaderS  : public THeader{ THeaderS (){from=eSlave; }}_PACKED;
-    struct THeaderSS : public THeader{ THeaderSS(){from=eSuperServer;}}_PACKED;
+    struct THeaderC : public THeader
+    {
+      THeaderC()
+      {
+        from = eClient;
+      }
+    }_PACKED;
+    struct THeaderM : public THeader
+    {
+      THeaderM()
+      {
+        from = eMaster;
+      }
+    }_PACKED;
+    struct THeaderS : public THeader
+    {
+      THeaderS()
+      {
+        from = eSlave;
+      }
+    }_PACKED;
+    struct THeaderSS : public THeader
+    {
+      THeaderSS()
+      {
+        from = eSuperServer;
+      }
+    }_PACKED;
     //-------------------------------------------------
     struct THeaderTryLoginC2M : THeaderC
     {
@@ -77,7 +102,7 @@ namespace nsMMOEngine
     //-------------------------------------------------
     struct THeaderResultLoginM2C : THeaderM
     {
-      enum{eAccept,eReject,eQueue};
+      enum{ eAccept, eReject, eQueue };
       THeaderResultLoginM2C();
       char result;
       int numInQueue;

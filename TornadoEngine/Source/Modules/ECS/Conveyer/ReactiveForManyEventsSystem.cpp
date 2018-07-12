@@ -14,13 +14,12 @@ void TReactiveForManyEventsSystem::Update()
   mReactionEntities.Shuffle();
   mSortedUniqueEntities.mVec = mReactionEntities.mVec;
 #endif
-  // ������ ��� ������������� entity
-  // � ������������� ������� ������ ������� �����, ������ ��� ��� ����� �����
+  // entity
   mSortedUniqueEntities.Sort();
   mSortedUniqueEntities.DeleteDuplicates();
   mStatistics.Zero(mSortedUniqueEntities.mCounter);
 
-  // �������� ��� ������� ��� �������� �������� �� ������� � �������� �����������
+  //
   auto uniqueCount = 0;
   for (size_t i = 0; i < mReactionEntities.mCounter; i++)
   {
@@ -28,14 +27,14 @@ void TReactiveForManyEventsSystem::Update()
     auto position = fast_upper_bound2<TEntity>(mSortedUniqueEntities.mVec, mSortedUniqueEntities.mCounter, entity);
     position--;
     mStatistics.mVec[position]++;
-    if (mStatistics.mVec[position] == 1)// ��� ���� �����
+    if (mStatistics.mVec[position] == 1)//
     {
       mReactionEntities.mVec[uniqueCount] = entity;
       uniqueCount++;
     }
   }
   mReactionEntities.mCounter = uniqueCount;
-  // ������� ������ �� entity, ��������� ������ �������
+  // entity
   for (size_t i = 0; i < mReactionEntities.mCounter; i++)
   {
     auto& entity = mReactionEntities.mVec[i];

@@ -46,15 +46,15 @@ void TScLoginClient_ClientImpl::Work( unsigned int time_ms )
   if( Context()->IsConnectUp() == false )
     return;
 
-  unsigned int time_end_ms = Context()->GetTimeWait() + eTimeWait;
-  if( time_end_ms < time_ms )
-  {
-    // ошибка на той стороне
-    TErrorEvent event;
-    event.code = LoginClient_ClientNoAnswer;
-    Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
-    End();
-  }
+  if( Context()->IsStateTimeExpired( time_ms ) == false )
+    return;
+
+  auto errorType = Context()->GetCurrentStateErrorCode();
+  // ошибка на той стороне
+  TErrorEvent event;
+  event.code = errorType;
+  Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
+  End();
 }
 //-----------------------------------------------------------------------------
 void TScLoginClient_ClientImpl::TryLogin( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet )
@@ -103,12 +103,13 @@ void TScLoginClient_ClientImpl::TryLoginAfterConnect( int sessionID )
   // формирование пакета
   mBP.PushFront( (char*) login.data(), login.size() );
   unsigned char loginLen = login.size();
-  mBP.PushFront( (char*)&loginLen, sizeof( loginLen ) );
+  mBP.PushFront( (char*) &loginLen, sizeof( loginLen ) );
 
   THeaderTryLoginC2M h;
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( sessionID, mBP, true );
-  SetTimeWaitForNow();
+  
+  Context()->SetCurrentStateWait( TContextScLoginClient::ClientWaitMasterAnswer );
 }
 //-----------------------------------------------------------------------------
 void TScLoginClient_ClientImpl::RecvFromSlave( TDescRecvSession* pDesc )
@@ -149,19 +150,20 @@ void TScLoginClient_ClientImpl::CheckConnectToSlaveS2C( TDescRecvSession* pDesc 
   Context()->GetSE()->AddEventWithoutCopy<TResultLoginEvent>( pEvent );
 
   ((IScenarioContext*) Context())->SetSessionID( pDesc->sessionID );
+  Context()->SetCurrentStateWait( TContextScLoginClient::NoWait );// хотя в End тоже самое
   End();
 }
 //--------------------------------------------------------------
 void TScLoginClient_ClientImpl::ResultLoginM2C( TDescRecvSession* pDesc )
 {
-  // обновить время таймера
-  SetTimeWaitForNow();
-  //==============================
   THeaderResultLoginM2C* pH = (THeaderResultLoginM2C*) pDesc->data;
   switch( pH->result )
   {
     case THeaderResultLoginM2C::eAccept:
     {
+      // обновить время таймера
+      Context()->SetCurrentStateWait( TContextScLoginClient::ClientWaitSlaveInfo );
+
       // сохранить свой ключ и данные авторизации
       Context()->SetClientKey( pH->id_client );
       char* p = ((char*) (pH)) + sizeof( THeaderResultLoginM2C );
@@ -172,6 +174,9 @@ void TScLoginClient_ClientImpl::ResultLoginM2C( TDescRecvSession* pDesc )
     break;
     case THeaderResultLoginM2C::eReject:
     {
+      // обновить время таймера
+      Context()->SetCurrentStateWait( TContextScLoginClient::NoWait );
+
       CloseSessionMaster();
 
       TResultLoginEvent* pEvent = new TResultLoginEvent;
@@ -185,6 +190,9 @@ void TScLoginClient_ClientImpl::ResultLoginM2C( TDescRecvSession* pDesc )
     break;
     case THeaderResultLoginM2C::eQueue:
     {
+      // обновить время таймера
+      Context()->SetCurrentStateWait( TContextScLoginClient::ClientWaitInQueue );
+
       Context()->SetClientKey( pH->id_client );
       EventSetClientKey( pH->id_client );
 
@@ -217,6 +225,8 @@ void TScLoginClient_ClientImpl::InfoSlaveM2C( TDescRecvSession* pDesc )
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionClientMaster(), mBP );
+
+  Context()->SetCurrentStateWait( TContextScLoginClient::ClientWaitDisconnectFromMaster );
 }
 //--------------------------------------------------------------
 void TScLoginClient_ClientImpl::LeaveQueue()
@@ -264,11 +274,11 @@ void TScLoginClient_ClientImpl::Disconnect()
   Context()->GetMS()->ConnectAsync( ip_port_slave, login, password, subNet, [context, scenario]( int sessionID )
   {
     scenario->SetContext( context );
-    scenario->DisconnectAfterConnect( sessionID );
+    scenario->ConnectAfterDisconnect( sessionID );
   } );
 }
 //--------------------------------------------------------------
-void TScLoginClient_ClientImpl::DisconnectAfterConnect( int sessionID )
+void TScLoginClient_ClientImpl::ConnectAfterDisconnect( int sessionID )
 {
   // проверка на наличие готовности Slave
   if( sessionID == INVALID_HANDLE_SESSION )
@@ -289,6 +299,7 @@ void TScLoginClient_ClientImpl::DisconnectAfterConnect( int sessionID )
   Context()->GetMS()->Send( sessionID, mBP, true );
 
   SetID_SessionClientSlave( sessionID );
-  SetTimeWaitForNow();
+
+  Context()->SetCurrentStateWait( TContextScLoginClient::ClientWaitSlaveAnswer );
 }
 //--------------------------------------------------------------

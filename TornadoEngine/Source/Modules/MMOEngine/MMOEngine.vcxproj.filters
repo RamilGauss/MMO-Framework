@@ -257,6 +257,12 @@
     <ClCompile Include="SubSystem\ReceiverTransport.cpp">
       <Filter>SubSystem\Session</Filter>
     </ClCompile>
+    <ClCompile Include="SubSystem\StateTimeWait.cpp">
+      <Filter>SubSystem\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EnumMMO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\ActiveServer.h">
@@ -459,6 +465,9 @@
     </ClInclude>
     <ClInclude Include="SubSystem\ReceiverTransport.h">
       <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\StateTimeWait.h">
+      <Filter>SubSystem\Scenario</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

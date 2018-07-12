@@ -92,6 +92,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NativeMMOEngineWrapper", "Source\Wrappers\NativeMMOEngineWrapper\NativeMMOEngineWrapper.vcxproj", "{4009C6E6-028D-4D8F-BC10-469CB7BD9905}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ECS", "Source\Modules\ECS\ECS.vcxproj", "{3DCD5F9C-9C3B-4DB5-8A64-FE40B69E2083}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ECS_test", "Test\ECS\ECS_test.vcxproj", "{9A1494FD-C0FC-4550-AD89-2D23DFF0A4B3}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -953,7 +956,7 @@ Global
 		{0DCA0554-47F7-4B86-AF5A-4988E705528E} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 EndGlobal

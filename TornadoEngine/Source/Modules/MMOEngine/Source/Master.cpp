@@ -109,11 +109,10 @@ void TMaster::GetListForGroup( unsigned int groupID, std::list<unsigned int>& lC
 }
 //-------------------------------------------------------------------------
 void TMaster::SetResultLogin( bool res, unsigned int id_session_client,
-  unsigned int id_client,
-  void* resForClient, int sizeResClient )
+  unsigned int id_client, void* resForClient, int sizeResClient )
 {
   TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( id_session_client );
-  if( pC == NULL )
+  if( pC == nullptr )
     return;
   mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
   if( res == false )
@@ -157,8 +156,7 @@ void TMaster::SetResultLogin( bool res, unsigned int id_session_client,
     AddInQueue( id_client, resForClient, sizeResClient );
 }
 //-------------------------------------------------------------------------
-bool TMaster::FindSlaveSessionByGroup( unsigned int groupID,
-  unsigned int& sessionID )
+bool TMaster::FindSlaveSessionByGroup( unsigned int groupID, unsigned int& sessionID )
 {
   return mMngGroup->FindSessionByID( groupID, sessionID );
 }
@@ -202,8 +200,6 @@ bool TMaster::GetDescDown( int index, void* pDesc, int& sizeDesc )
 void TMaster::ConnectUp( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet )
 {
   mControlSc->mLoginMaster->ConnectToSuperServer( ip_port, login, password, subNet );
-  //### тут же опросить на созданную сессию
-  //mSessionUpID = mControlSc->mLoginMaster->GetContext()->GetSessionID();
 }
 //-------------------------------------------------------------------------
 void TMaster::EndLoginMaster( IScenario* pSc )
@@ -230,7 +226,7 @@ void TMaster::EndLoginSlave( IScenario* pSc )
 void TMaster::SendDown( unsigned int sessionID, char* p, int size, bool check )
 {
   TContainerContextSc* pC = mMngContextSlave->FindContextBySession( sessionID );
-  if( pC == NULL )
+  if( pC == nullptr )
     return;
   mControlSc->mFlow->SetContext( &pC->mFlow );
 
@@ -310,7 +306,7 @@ bool TMaster::DisconnectSuperServer( unsigned int sessionID )
 bool TMaster::DisconnectClientWait( unsigned int sessionID )
 {
   TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( sessionID );
-  if( pC == NULL )
+  if( pC == nullptr )
     return false;
 
   unsigned int id_client;
@@ -332,7 +328,7 @@ bool TMaster::DisconnectClientWait( unsigned int sessionID )
 //-------------------------------------------------------------------------
 bool TMaster::DisconnectSlave( unsigned int sessionID )
 {
-  if( mMngContextSlave->FindContextBySession( sessionID ) == NULL )
+  if( mMngContextSlave->FindContextBySession( sessionID ) == nullptr )
     return false;
   // составить список клиентов, которые сидели на Slave
   int countClient;
@@ -426,12 +422,12 @@ bool TMaster::EvalCreateGroupNow( list<unsigned int>& l_id_client, unsigned int&
   for( unsigned int id_client : l_id_client )
   {
     TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( id_client );
-    if( pC == NULL )
+    if( pC == nullptr )
     {
       unsigned int id_session_client = INVALID_HANDLE_SESSION;
       mMngContextClientLogining->FindSessionByClientKey( id_client, id_session_client );
       pC = mMngContextClientLogining->FindContextBySession( id_session_client );
-      if( pC == NULL )
+      if( pC == nullptr )
         continue;
     }
     SolveExchangeClient( id_client, pC, id_session_slave );
@@ -458,7 +454,7 @@ void TMaster::NeedContextLoginSlave( unsigned int sessionID )
 void TMaster::NeedContextSynchroSlave( unsigned int sessionID )
 {
   TContainerContextSc* pC = mMngContextSlave->FindContextBySession( sessionID );
-  if( pC == NULL )
+  if( pC == nullptr )
     return;
   mControlSc->mSynchroSlave->SetContext( &pC->mSynchroSlave );
 }
@@ -481,12 +477,12 @@ void TMaster::NeedContextLoginClientBySessionAfterAuthorised( unsigned int sessi
   // после авторизации Клиент получил информацию о Slave. Далее он пришлет Мастеру
   // квитанцию об этом. Значит сессию Мастер должен найти.
   TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( sessionID );
-  if( pC == NULL )
+  if( pC == nullptr )
   {
     // внутренняя ошибка
     GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TMaster::NeedContextLoginClientBySessionAfterAuthorised() context not found.\n" );
-    mControlSc->mLoginClient->SetContext( NULL );
+    mControlSc->mLoginClient->SetContext( nullptr );
     return;
   }
   // назначить контекст
@@ -499,7 +495,7 @@ void TMaster::NeedContextLoginClientBySessionLeaveQueue( unsigned int sessionID 
   if( pC )
     mControlSc->mLoginClient->SetContext( &pC->mLoginClient );// назначить контекст
   else
-    mControlSc->mLoginClient->SetContext( NULL );// сам вышел из очереди, ну и хер с ним
+    mControlSc->mLoginClient->SetContext( nullptr );// сам вышел из очереди, ну и хер с ним
 }
 //-------------------------------------------------------------------------
 void TMaster::NeedContextLoginClientBySession( unsigned int sessionID )
@@ -512,7 +508,7 @@ void TMaster::NeedContextLoginClientBySession( unsigned int sessionID )
     // внутренняя ошибка
     GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TMaster::NeedContextLoginClientBySession() against try authorized.\n" );
-    mControlSc->mLoginClient->SetContext( NULL );
+    mControlSc->mLoginClient->SetContext( nullptr );
     return;
   }
   else
@@ -533,13 +529,13 @@ void TMaster::NeedContextLoginClientByClientKey( unsigned int id_key_client )
       mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
     else
     {
-      mControlSc->mLoginClient->SetContext( NULL );
+      mControlSc->mLoginClient->SetContext( nullptr );
       BL_FIX_BUG();
     }
   }
   else
   {
-    mControlSc->mLoginClient->SetContext( NULL );
+    mControlSc->mLoginClient->SetContext( nullptr );
     //BL_FIX_BUG();
   }
 }
@@ -547,7 +543,7 @@ void TMaster::NeedContextLoginClientByClientKey( unsigned int id_key_client )
 void TMaster::NeedNumInQueueLoginClient( unsigned int sessionID )
 {
   TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( sessionID );
-  if( pC == NULL )
+  if( pC == nullptr )
   {
     BL_FIX_BUG();
     return;
@@ -695,8 +691,7 @@ bool TMaster::TryAddClient( unsigned int id_client,
   return false;
 }
 //-------------------------------------------------------------------------
-void TMaster::AddClientBySlaveSession( unsigned int id_client,
-  unsigned int id_session_slave,
+void TMaster::AddClientBySlaveSession( unsigned int id_client, unsigned int id_session_slave,
   void* resForClient, int sizeResClient )
 {
   // начали процесс авторизации
@@ -757,7 +752,7 @@ bool TMaster::TryFindClientForAdd( unsigned int& id_client, unsigned int& id_ses
 bool TMaster::IsClientRecommutation( unsigned int id_client )
 {
   TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( id_client );
-  if( pC == NULL )
+  if( pC == nullptr )
     return false;
   if( pC->IsRcmActive() )
     return true;
@@ -798,8 +793,7 @@ bool TMaster::LoadInFutureLessLimit( unsigned int id_session_slave,
 }
 //-------------------------------------------------------------------------
 void TMaster::SolveExchangeClient( unsigned int id_client,
-  TContainerContextSc* pC_ClientInGroup,
-  unsigned int id_session_slave_recipient )
+  TContainerContextSc* pC_ClientInGroup, unsigned int id_session_slave_recipient )
 {
   // если текущий сценарий Клиента находится в процессе Перекоммутации,
   // то невозможно определить где он был или будет, обменивать нечего
@@ -848,12 +842,12 @@ void TMaster::SolveExchangeClient( unsigned int id_client,
     if( mMngGroup->FindIDByClientKey( id_client_on_recipient, groupID ) == false )
     {
       TContainerContextSc* pC_client_on_recipient = mMngContextClient->FindContextByClientKey( id_client_on_recipient );
-      if( pC_client_on_recipient == NULL )
+      if( pC_client_on_recipient == nullptr )
       {
         unsigned int id_session_client = INVALID_HANDLE_SESSION;
         mMngContextClientLogining->FindSessionByClientKey( id_client_on_recipient, id_session_client );
         pC_client_on_recipient = mMngContextClientLogining->FindContextBySession( id_session_client );
-        if( pC_client_on_recipient == NULL )
+        if( pC_client_on_recipient == nullptr )
         {
           BL_FIX_BUG();
           return;
@@ -884,7 +878,7 @@ void TMaster::NeedContextSendToClient( unsigned int id_client )
   if( pContext )
     mControlSc->mSendToClient->SetContext( &pContext->mSendToClient );
   else
-    mControlSc->mSendToClient->SetContext( NULL );
+    mControlSc->mSendToClient->SetContext( nullptr );
 }
 //-------------------------------------------------------------------------
 void TMaster::EndRcm( IScenario* pSc )
@@ -905,7 +899,7 @@ void TMaster::NeedContextByClientKeyRcm( unsigned int key )
   if( pC )
     mControlSc->mRcm->SetContext( &pC->mRcm );
   else
-    mControlSc->mRcm->SetContext( NULL );
+    mControlSc->mRcm->SetContext( nullptr );
 }
 //-------------------------------------------------------------------------
 void TMaster::NeedSlaveSessionDonorRcm( IScenario* pSc )
@@ -934,8 +928,7 @@ void TMaster::EventActivateRcm( IScenario* pSc )
 }
 //-------------------------------------------------------------------------
 void TMaster::NotifyRecipientAboutDisconnectClient( unsigned int id_client,
-  TContainerContextSc* pC,
-  unsigned int sessionID )
+  TContainerContextSc* pC, unsigned int sessionID )
 {
   unsigned int id_session_donor, id_session_recipient;
   if( mMngRcm->FindSessionByClientKey( id_client, id_session_donor, id_session_recipient ) == false )

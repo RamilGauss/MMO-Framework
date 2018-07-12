@@ -13,6 +13,7 @@ See for more information License.h.
 #include "ResolverSelf_IP_v4.h"
 #include "Client.h"
 #include "Logger.h"
+#include "EnumMMO.h"
 
 using namespace std;
 
@@ -42,7 +43,7 @@ void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
     case nsMMOEngine::eError:
     {
       nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
-      sEvent = GetStrError( pEr->code );
+      sEvent = nsMMOEngine::GetStrError( pEr->code );
     }
     break;
     case nsMMOEngine::eRecvFromUp:

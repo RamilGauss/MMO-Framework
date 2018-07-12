@@ -24,8 +24,25 @@ using namespace nsContextScLoginClient;
 
 TContextScLoginClient::TContextScLoginClient()
 {
+  const int WAIT_TIME = 400000;
+
+  mStateTimeWait.AddOrUpdateState( MasterWaitDeveloper,            WAIT_TIME, LoginClient_MasterDeveloperNotActive );
+  mStateTimeWait.AddOrUpdateState( MasterWaitSuperServer,          WAIT_TIME, LoginClient_MasterSuperServerNotActive );
+  mStateTimeWait.AddOrUpdateState( MasterWaitSlave,                WAIT_TIME, LoginClient_MasterSlaveNotActive );
+  mStateTimeWait.AddOrUpdateState( MasterWaitInQueue,              WAIT_TIME, LoginClient_MasterForgetUpdateQueue );
+  mStateTimeWait.AddOrUpdateState( MasterWaitClient,               WAIT_TIME, LoginClient_MasterClientNotActive );
+  mStateTimeWait.AddOrUpdateState( MasterWaitClientConnectToSlave, WAIT_TIME, LoginClient_MasterClientNotConnectToSlave );
+
+  mStateTimeWait.AddOrUpdateState( ClientWaitMasterAnswer,         WAIT_TIME, LoginClient_ClientMasterNotActive );
+  mStateTimeWait.AddOrUpdateState( ClientWaitSlaveAnswer,          WAIT_TIME, LoginClient_ClientSlaveNotActive );
+  mStateTimeWait.AddOrUpdateState( ClientWaitSlaveInfo,            WAIT_TIME, LoginClient_ClientMasterNotSendSlaveInfo );
+  mStateTimeWait.AddOrUpdateState( ClientWaitDisconnectFromMaster, WAIT_TIME, LoginClient_ClientMasterNotDisconnect );
+  mStateTimeWait.AddOrUpdateState( ClientWaitInQueue,              WAIT_TIME, LoginClient_ClientMasterForgetUpdateQueue );
+
+  mStateTimeWait.AddOrUpdateState( SlaveWaitClient,                WAIT_TIME, LoginClient_SlaveClientNotActive );
+  mStateTimeWait.AddOrUpdateState( SlaveWaitMaster,                WAIT_TIME, LoginClient_SlaveMasterNotActive );
+
   mNumInQueue = 0;
-  mTimeWaitAnswer = 0;
   mTimeLastNeedNumInQueue = 0;
   mDeltaTimeWait_ms = 0;
   mState = eUndef;
@@ -40,16 +57,6 @@ TContextScLoginClient::TContextScLoginClient()
 TContextScLoginClient::~TContextScLoginClient()
 {
 
-}
-//------------------------------------------------------------------
-void TContextScLoginClient::SetTimeWait( unsigned int v )
-{
-  mTimeWaitAnswer = v;
-}
-//------------------------------------------------------------------
-unsigned int TContextScLoginClient::GetTimeWait()
-{
-  return mTimeWaitAnswer;
 }
 //------------------------------------------------------------------
 void TContextScLoginClient::SetTimeLastNeedNumInQueue( unsigned int v )
@@ -270,8 +277,26 @@ void TContextScLoginClient::SetWasBegin()
 }
 //--------------------------------------------------------------
 bool TContextScLoginClient::IsConnectUp()
-{ 
-  return GetID_SessionClientSlave() != INVALID_HANDLE_SESSION || 
-         GetID_SessionClientSlave() != INVALID_HANDLE_SESSION; 
+{
+  return GetID_SessionClientSlave() != INVALID_HANDLE_SESSION ||
+    GetID_SessionClientSlave() != INVALID_HANDLE_SESSION;
+}
+//--------------------------------------------------------------
+void TContextScLoginClient::SetCurrentStateWait( StateWait state )
+{
+  if( state == NoWait )
+    mStateTimeWait.SetCurrentStateToUndef();
+  else
+    mStateTimeWait.SetCurrentState( state );
+}
+//--------------------------------------------------------------
+bool TContextScLoginClient::IsStateTimeExpired( unsigned int now )
+{
+  return mStateTimeWait.IsStateTimeExpired( now );
+}
+//--------------------------------------------------------------
+unsigned int TContextScLoginClient::GetCurrentStateErrorCode()
+{
+  return mStateTimeWait.ErrorCode();
 }
 //--------------------------------------------------------------

@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CONTEXT_SC_LOGIN_MASTER_H
-#define CONTEXT_SC_LOGIN_MASTER_H
+#pragma once
 
 #include "IScenarioContext.h"
 #include "BreakPacket.h"
@@ -22,13 +21,12 @@ namespace nsMMOEngine
     TContextScLoginMaster();
     virtual ~TContextScLoginMaster();
 
-    void SetConnect(bool v);
+    void SetConnect( bool v );
     bool IsConnect();
 
-    void SetTimeWait(unsigned int v);
+    void SetTimeWait( unsigned int v );
     unsigned int GetTimeWait();
 
   private:
   };
-}  
-#endif
+}

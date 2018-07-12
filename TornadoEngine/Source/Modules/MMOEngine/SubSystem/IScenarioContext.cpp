@@ -97,6 +97,8 @@ bool IScenarioContext::Activate()
 //-----------------------------------------------------------------
 void IScenarioContext::Deactivate()
 {
+  mStateTimeWait.SetCurrentStateToUndef();// окончание должно приводит к неопределенному состоянию контекста
+
   mManagerContextSc->Deactivate();
 }
 //-----------------------------------------------------------------

@@ -49,73 +49,7 @@ void THandlerMMO::Work()
   }
 }
 //-----------------------------------------------------------------------------------
-std::string THandlerMMO::GetStrError( int code )
-{
-  std::string s = "\tError ";
-  switch( code )
-  {
-    // open
-    case nsMMOEngine::OpenClient_MoreThenOneSubNet:
-      s += "OpenClient_MoreThenOneSubNet";
-      break;
-      // CreateGroup
-    case nsMMOEngine::CreateGroup_ClientNotExist:
-      s += "CreateGroup_ClientNotExist";
-      break;
-      // LoginSlave
-    case nsMMOEngine::LoginSlave_MasterNotReady:
-      s += "LoginSlave_MasterNotReady";
-      break;
-    case nsMMOEngine::LoginSlave_NoAnswerFromMaster:
-      s += "LoginSlave_NoAnswerFromMaster";
-      break;
-      //--------------------------------------
-      // LoginMaster
-    case nsMMOEngine::LoginClient_MasterKeyBusy:
-      s += "LoginClient_MasterKeyBusy";
-      break;
-    case nsMMOEngine::LoginMaster_SSNotReady:
-      s += "LoginMaster_SSNotReady";
-      break;
-    case nsMMOEngine::LoginMaster_NoAnswerFromSS:
-      s += "LoginMaster_NoAnswerFromSS";
-      break;
-      //--------------------------------------
-      // LoginClient
-    case nsMMOEngine::LoginClient_EmptyLoginPassword:
-      s += "LoginClient_EmptyLoginPassword";
-      break;
-    case nsMMOEngine::LoginClient_ClientSecondEnter:
-      s += "LoginClient_ClientSecondEnter";
-      break;
-    case nsMMOEngine::LoginClient_ClientMasterNotReady:
-      s += "LoginClient_ClientMasterNotReady";
-      break;
-    case nsMMOEngine::LoginClient_ClientNoAnswer:
-      s += "LoginClient_ClientNoAnswer";
-      break;
-    case nsMMOEngine::LoginClient_ClientNotExistSlave:
-      s += "LoginClient_ClientNotExistSlave";
-      break;
-    case nsMMOEngine::LoginClient_SlaveNoAnswer:
-      s += "LoginClient_SlaveNoAnswer";
-      break;
-    case nsMMOEngine::LoginClient_MasterClientNotActive:
-      s += "LoginClient_MasterClientNotActive";
-      break;
-    case nsMMOEngine::LoginClient_SuperServerNoAnswer:
-      s += "LoginClient_SuperServerNoAnswer";
-      break;
-      //--------------------------------------
-      // RCM
-    case nsMMOEngine::RCM_ClientNoAnswer:
-      s += "RCM_ClientNoAnswer";
-      break;
-  }
-  return s;
-}
-//---------------------------------------------------------------------------------------------
-int THandlerMMO::GetCountConnection()
+auto THandlerMMO::GetCountConnection()
 {
   return mID_ConnectionMap[mType].size();
 }

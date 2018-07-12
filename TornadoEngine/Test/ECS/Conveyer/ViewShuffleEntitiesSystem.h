@@ -35,17 +35,17 @@ public:
 
     Start();
 
-    for (int i = 0; i < groupTestCount; i++)
+    for( int i = 0; i < groupTestCount; i++ )
     {
       auto packetGroup = registry->view<Args ...>();
       auto count = packetGroup.size();
     }
 
     Stop();
-    auto speed = Speed(groupTestCount);
+    auto speed = Speed( groupTestCount );
     auto componentCount = sizeof ... (Args);
     auto speedPerComponent = speed / (componentCount * 1.0f);
     speedPerComponent *= 1000.0f;
-    std::cout << "Make grouped CC=" << componentCount  << " ,speed = " << speedPerComponent << "(" << speed << ") ns per component" << std::endl;
+    std::cout << "Make grouped CC=" << componentCount << " ,speed = " << speedPerComponent << "(" << speed << ") ns per component" << std::endl;
   }
 };

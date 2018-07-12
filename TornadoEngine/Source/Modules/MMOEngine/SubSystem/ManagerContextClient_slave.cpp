@@ -25,14 +25,12 @@ TManagerContextClient_slave::~TManagerContextClient_slave()
   Clear();
 }
 //-------------------------------------------------------------------------
-bool TManagerContextClient_slave::FindSessionByKey( unsigned int id,
-  unsigned int &sessionID )
+bool TManagerContextClient_slave::FindSessionByKey( unsigned int id, unsigned int &sessionID )
 {
   return FindInMapUintUint( mMapKeySession, id, sessionID );
 }
 //-------------------------------------------------------------------------
-bool TManagerContextClient_slave::FindKeyBySession( unsigned int sessionID,
-  unsigned int &id )
+bool TManagerContextClient_slave::FindKeyBySession( unsigned int sessionID, unsigned int &id )
 {
   return FindInMapUintUint( mMapSessionKey, sessionID, id );
 }
@@ -44,7 +42,7 @@ TContainerContextSc* TManagerContextClient_slave::FindContextByKey( unsigned int
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TManagerContextClient_slave::FindContextByKey(key=%u) not found.\n", id );
-    return NULL;
+    return nullptr;
   }
   return fit->second;
 }
@@ -53,7 +51,7 @@ TContainerContextSc* TManagerContextClient_slave::FindContextBySession( unsigned
 {
   unsigned int id;
   if( FindKeyBySession( sessionID, id ) == false )
-    return NULL;
+    return nullptr;
   return FindContextByKey( id );
 }
 //-------------------------------------------------------------------------
@@ -134,7 +132,7 @@ void TManagerContextClient_slave::AddSessionByKey( unsigned int id, unsigned int
 void TManagerContextClient_slave::DeleteByKey( unsigned int key )
 {
   TContainerContextSc* pC = FindContextByKey( key );
-  if( pC == NULL )
+  if( pC == nullptr )
     return;
 
   DeleteContainer( pC );
@@ -159,9 +157,7 @@ void TManagerContextClient_slave::Clear()
   mMapSessionKey.clear();
 }
 //-------------------------------------------------------------------------
-bool TManagerContextClient_slave::FindInMapUintUint( TMapUintUint& map,
-  unsigned int key,
-  unsigned int& value )
+bool TManagerContextClient_slave::FindInMapUintUint( TMapUintUint& map, unsigned int key, unsigned int& value )
 {
   TMapUintUintIt fit = map.find( key );
   if( fit == map.end() )

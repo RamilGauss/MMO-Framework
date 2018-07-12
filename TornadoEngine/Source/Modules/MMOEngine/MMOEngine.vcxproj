@@ -226,6 +226,7 @@
     <ClCompile Include="Source\Base.cpp" />
     <ClCompile Include="Source\BaseServer.cpp" />
     <ClCompile Include="Source\Client.cpp" />
+    <ClCompile Include="Source\EnumMMO.cpp" />
     <ClCompile Include="Source\Events.cpp" />
     <ClCompile Include="Source\INetTransport.cpp" />
     <ClCompile Include="Source\Master.cpp" />
@@ -251,6 +252,7 @@
     <ClCompile Include="SubSystem\ManagerManagerContextSc.cpp" />
     <ClCompile Include="SubSystem\ManagerRecommutation.cpp" />
     <ClCompile Include="SubSystem\SessionManager.cpp" />
+    <ClCompile Include="SubSystem\StateTimeWait.cpp" />
     <ClCompile Include="SubSystem\TransportManager.cpp" />
     <ClCompile Include="SubSystem\SessionNavigator.cpp" />
     <ClCompile Include="SubSystem\ReceiverTransport.cpp" />
@@ -319,6 +321,7 @@
     <ClInclude Include="SubSystem\ManagerManagerContextSc.h" />
     <ClInclude Include="SubSystem\ManagerRecommutation.h" />
     <ClInclude Include="SubSystem\SessionManager.h" />
+    <ClInclude Include="SubSystem\StateTimeWait.h" />
     <ClInclude Include="SubSystem\TransportManager.h" />
     <ClInclude Include="SubSystem\SessionNavigator.h" />
     <ClInclude Include="SubSystem\ReceiverTransport.h" />

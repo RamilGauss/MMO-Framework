@@ -43,7 +43,7 @@ namespace nsMMOEngine
     void CloseSessionMaster();
 
     void TryLoginAfterConnect( int sessionID );
-    void DisconnectAfterConnect( int sessionID );
+    void ConnectAfterDisconnect( int sessionID );
   };
   //------------------------------------------------------------
 }

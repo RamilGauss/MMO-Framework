@@ -17,14 +17,14 @@ public:
     Start();
 
     //entt::View<MWorks::ECS::TEntity, TDataMemoryPoolComponent> packetGroup();
-    for (int i = 0; i < GROUP_TEST_COUNT; i++)
+    for( int i = 0; i < GROUP_TEST_COUNT; i++ )
     {
       auto packetGroup = registry->view<PooledComponents::TUchar>();
       packetGroup.size();
     }
 
     Stop();
-    auto speed = SpeedToStr(GROUP_TEST_COUNT);
+    auto speed = SpeedToStr( GROUP_TEST_COUNT );
     std::cout << "Make grouped speed = " << speed << " us/1" << std::endl;
 
     Start();
@@ -33,15 +33,15 @@ public:
     auto count = packetGroup.size();
     auto entities = packetGroup.data();
     float sum = 0;
-    for (auto i = 0; i < count; i++)
+    for( auto i = 0; i < count; i++ )
     {
       auto entity = entities[i];
-      registry->get<PooledComponents::TUchar>(entity).Done();
-      GetRegistry()->destroy(entity);
+      registry->get<PooledComponents::TUchar>( entity ).Done();
+      GetRegistry()->destroy( entity );
     }
 
     Stop();
-    speed = SpeedToStr(count);
+    speed = SpeedToStr( count );
     std::cout << "GroupedPacketSystem speed = " << speed << " us/1" << std::endl;
   }
 

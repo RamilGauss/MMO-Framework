@@ -45,15 +45,17 @@ void TScLoginClient_SlaveImpl::RecvInherit( TDescRecvSession* pDesc )
 //-----------------------------------------------------------------------------
 void TScLoginClient_SlaveImpl::Work( unsigned int time_ms )
 {
-  if( Context()->GetTimeWait() + eTimeWait < ht_GetMSCount() )
-  {
-    // ошибка на той стороне
-    // непонятно в чем дело, но клиент сдох
-    TErrorEvent event;
-    event.code = LoginClient_SlaveNoAnswer;
-    Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
-    End();
-  }
+  if( Context()->IsStateTimeExpired( time_ms ) == false )
+    return;
+
+  auto errorType = Context()->GetCurrentStateErrorCode();
+
+  // ошибка на той стороне
+  // непонятно в чем дело, но клиент сдох
+  TErrorEvent event;
+  event.code = errorType;
+  Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
+  End();
 }
 //-----------------------------------------------------------------------------
 void TScLoginClient_SlaveImpl::RecvFromClient( TDescRecvSession* pDesc )
@@ -96,10 +98,9 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S( TDescRecvSession* pDesc )
   // существует ли вообще клиент с данным ключом,
   // то есть был ли добавлен на ожидание от Мастера данный Клиент
   // загрузить контекст для работы
-  NeedContextByClientSessionByClientKey( pDesc->sessionID,
-    pHeader->id_client );
+  NeedContextByClientSessionByClientKey( pDesc->sessionID, pHeader->id_client );
 
-  if( Context() == NULL )
+  if( Context() == nullptr )
   {
     // генерация ошибки
     GetLogger( STR_NAME_MMO_ENGINE )->
@@ -117,13 +118,15 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S( TDescRecvSession* pDesc )
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
+
+  Context()->SetCurrentStateWait( TContextScLoginClient::SlaveWaitMaster );
 }
 //--------------------------------------------------------------
 void TScLoginClient_SlaveImpl::InfoClientM2S( TDescRecvSession* pDesc )
 {
   THeaderInfoClientM2S* pHeader = (THeaderInfoClientM2S*) pDesc->data;
   NeedContextByClientKey( pHeader->id_client );
-  if( Context() == NULL )
+  if( Context() == nullptr )
   {
     BL_FIX_BUG();
     return;
@@ -147,7 +150,6 @@ void TScLoginClient_SlaveImpl::InfoClientM2S( TDescRecvSession* pDesc )
   // потом Клиент еще раз попытался авторизоваться, а Slave еще его ждет, т.е. это уже
   // вторая попытка войти. Что ж продолжим авторизацию.
 
-  SetTimeWaitForNow();
   // запомнить сессию
   SetID_SessionMasterSlave( pDesc->sessionID );
 
@@ -159,19 +161,20 @@ void TScLoginClient_SlaveImpl::InfoClientM2S( TDescRecvSession* pDesc )
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
+
+  Context()->SetCurrentStateWait( TContextScLoginClient::SlaveWaitClient );
 }
 //--------------------------------------------------------------
 void TScLoginClient_SlaveImpl::CheckClientConnectM2S( TDescRecvSession* pDesc )
 {
   THeaderCheckClientConnectM2S* pHeader = (THeaderCheckClientConnectM2S*) pDesc->data;
   NeedContextByClientKey_SecondCallSlave( pHeader->id_client );
-  if( Context() == NULL )
+  if( Context() == nullptr )
     return;
   //--------------------------------------------
   // отсылка уведомления Developer Slave события Connect
   TConnectDownEvent* pEvent = new TConnectDownEvent;
   pEvent->sessionID = GetID_SessionClientSlave();
-  //pEvent->c.SetData( Context()->GetPtr_L_AES_RSA(), Context()->GetSize_L_AES_RSA() );
 
   Context()->GetSE()->AddEventWithoutCopy<TConnectDownEvent>( pEvent );
   // отослать клиенту уведомление
@@ -181,6 +184,8 @@ void TScLoginClient_SlaveImpl::CheckClientConnectM2S( TDescRecvSession* pDesc )
 
   Context()->GetMS()->Send( GetID_SessionClientSlave(), mBP );
   Context()->Accept();
+
+  Context()->SetCurrentStateWait( TContextScLoginClient::NoWait );
   End();
 }
 //--------------------------------------------------------------
@@ -189,7 +194,7 @@ void TScLoginClient_SlaveImpl::DisconnectClientM2S( TDescRecvSession* pDesc )
   THeaderDisconnectClientM2S* pH = (THeaderDisconnectClientM2S*) pDesc->data;
   NeedContextByClientKey( pH->id_client );
 
-  if( Context() == NULL )
+  if( Context() == nullptr )
   {
     BL_FIX_BUG();
     return;

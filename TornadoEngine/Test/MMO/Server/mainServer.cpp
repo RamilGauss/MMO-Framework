@@ -21,10 +21,33 @@ See for more information License.h.
 #include "HandlerMMO_Master.h"
 #include "HandlerMMO_SuperServer.h"
 #include <iostream>
+#ifdef WIN32
+#include <conio.h>
+#endif
 
 #define COUNT_SLAVE 1
 
+//#define USE_SLEEP
+
+void StartServer();
+
 int main( int argc, char** argv )
+{
+  try
+  {
+    StartServer();
+  }
+  catch( std::exception* e )
+  {
+    printf( "exception = %s \n", e->what() );
+#ifdef WIN32
+    _getch();
+#endif
+  }
+  return 0;
+}
+
+void StartServer()
 {
   // обязательно инициализировать лог
   InitLogger( ServerLog );
@@ -81,7 +104,7 @@ int main( int argc, char** argv )
   std::string sLocalHost;
   TResolverSelf_IP_v4 resolver;
   if( resolver.Get( sLocalHost, 0 ) == false )
-    return -1;
+    return;
 
   // сначала мастер цепляется к суперсерверу,
   // потом slave-ы
@@ -103,20 +126,27 @@ int main( int argc, char** argv )
     arrSlave[i]->ConnectUp( masterIP_Port, login, password );
   }
 
-  const unsigned int printInterval = 3000;
+  const unsigned int printInterval = 6000;
   auto printTime = ht_GetMSCount() + printInterval;
+
+  unsigned int start = 0;
+  unsigned int limitDeltaTime = 6000;// ms
+  int iCycle = 0;
+
   while( true )
   {
     auto now = ht_GetMSCount();
+
+    if( iCycle == 0 )// начало расчета скорости работы
+      start = now;
+
     if( printTime < now )
     {
       THandlerMMO::PrintCC( ServerLog );
       printTime = now + printInterval;
     }
 
-    unsigned int startTime = now;
-    // Work
-    // реакции мастера и суперсервера
+    // Work - реакции мастера и суперсервера
     pSuperServer->Work();
     pMaster->Work();
     for( auto pSlave : arrSlave )
@@ -126,14 +156,20 @@ int main( int argc, char** argv )
     handlerSuperServer->Work();
     for( auto pHandlerSlave : arrHandlerSlave )
       pHandlerSlave->Work();
+#ifdef USE_SLEEP
     // burn rest time
-    // замер времени слэйва
-    unsigned int deltaTime = ht_GetMSCount() - startTime;
-    if( deltaTime > 20 )
-      GetLogger( ServerLog )->WriteF( "dTime=%d\n", deltaTime );
     if( deltaTime < SERVER_QUANT_TIME )
       ht_msleep( 1 );
+#endif
+
+    iCycle++;
+    auto delta = ht_GetMSCount() - start;
+    if( delta >= limitDeltaTime )
+    {
+      auto speed_ms = delta * 1.0f / iCycle;
+      GetLogger( ServerLog )->WriteF( "speed = %f ms\n", speed_ms );
+      iCycle = 0;
+    }
   }
-  return 0;
 }
 //-----------------------------------------------------------------------

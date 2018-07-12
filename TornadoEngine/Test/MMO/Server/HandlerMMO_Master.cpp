@@ -67,7 +67,7 @@ void THandlerMMO_Master::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
     case nsMMOEngine::eError:
     {
       nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
-      sEvent = GetStrError( pEr->code );
+      sEvent = nsMMOEngine::GetStrError( pEr->code );
     }
     break;
     case nsMMOEngine::eRecvFromDown:

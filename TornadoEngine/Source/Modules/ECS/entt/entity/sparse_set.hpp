@@ -13,6 +13,7 @@
 #include "../config/config.h"
 #include "../core/algorithm.hpp"
 #include "entt_traits.hpp"
+#include "entity.hpp"
 
 
 namespace entt {
@@ -59,19 +60,30 @@ template<typename Entity>
 class SparseSet<Entity> {
     using traits_type = entt_traits<Entity>;
 
-    struct Iterator final {
-        using difference_type = std::size_t;
-        using value_type = Entity;
-        using pointer = const value_type *;
-        using reference = value_type;
-        using iterator_category = std::input_iterator_tag;
+    class Iterator final {
+        friend class SparseSet<Entity>;
 
-        Iterator(pointer direct, std::size_t pos)
-            : direct{direct}, pos{pos}
+        using entity_type = Entity;
+        using index_type = typename traits_type::difference_type;
+
+        Iterator(const entity_type *direct, index_type index) ENTT_NOEXCEPT
+            : direct{direct}, index{index}
         {}
 
+    public:
+        using difference_type = index_type;
+        using value_type = const entity_type;
+        using pointer = value_type *;
+        using reference = value_type &;
+        using iterator_category = std::random_access_iterator_tag;
+
+        Iterator() ENTT_NOEXCEPT = default;
+
+        Iterator(const Iterator &) ENTT_NOEXCEPT = default;
+        Iterator & operator=(const Iterator &) ENTT_NOEXCEPT = default;
+
         Iterator & operator++() ENTT_NOEXCEPT {
-            return --pos, *this;
+            return --index, *this;
         }
 
         Iterator operator++(int) ENTT_NOEXCEPT {
@@ -79,39 +91,80 @@ class SparseSet<Entity> {
             return ++(*this), orig;
         }
 
+        Iterator & operator--() ENTT_NOEXCEPT {
+            return ++index, *this;
+        }
+
+        Iterator operator--(int) ENTT_NOEXCEPT {
+            Iterator orig = *this;
+            return --(*this), orig;
+        }
+
         Iterator & operator+=(const difference_type value) ENTT_NOEXCEPT {
-            pos -= value;
+            index -= value;
             return *this;
         }
 
         Iterator operator+(const difference_type value) const ENTT_NOEXCEPT {
-            return Iterator{direct, pos-value};
+            return Iterator{direct, index-value};
+        }
+
+        inline Iterator & operator-=(const difference_type value) ENTT_NOEXCEPT {
+            return (*this += -value);
+        }
+
+        inline Iterator operator-(const difference_type value) const ENTT_NOEXCEPT {
+            return (*this + -value);
+        }
+
+        difference_type operator-(const Iterator &other) const ENTT_NOEXCEPT {
+            return other.index - index;
+        }
+
+        reference operator[](const difference_type value) const ENTT_NOEXCEPT {
+            return direct[index-value-1];
         }
 
         bool operator==(const Iterator &other) const ENTT_NOEXCEPT {
-            return other.pos == pos;
+            return other.index == index;
         }
 
         inline bool operator!=(const Iterator &other) const ENTT_NOEXCEPT {
             return !(*this == other);
         }
 
-        reference operator*() const ENTT_NOEXCEPT {
-            return direct[pos-1];
+        bool operator<(const Iterator &other) const ENTT_NOEXCEPT {
+            return index > other.index;
+        }
+
+        bool operator>(const Iterator &other) const ENTT_NOEXCEPT {
+            return index < other.index;
+        }
+
+        inline bool operator<=(const Iterator &other) const ENTT_NOEXCEPT {
+            return !(*this > other);
+        }
+
+        inline bool operator>=(const Iterator &other) const ENTT_NOEXCEPT {
+            return !(*this < other);
+        }
+
+        pointer operator->() const ENTT_NOEXCEPT {
+            return (direct+index-1);
+        }
+
+        inline reference operator*() const ENTT_NOEXCEPT {
+            return *operator->();
         }
 
     private:
         pointer direct;
-        std::size_t pos;
+        index_type index;
     };
-
-    static constexpr auto pending = ~typename traits_type::entity_type{};
 
 public:
     /*! @brief Underlying entity identifier. */
     using entity_type = Entity;
-    /*! @brief Entity dependent position type. */
-    using pos_type = entity_type;
     /*! @brief Unsigned integer type. */
     using size_type = std::size_t;
     /*! @brief Input iterator type. */
@@ -145,6 +198,15 @@ public:
      */
     void reserve(const size_type cap) {
         direct.reserve(cap);
+    }
+
+    /**
+     * @brief Returns the number of elements that a sparse set has currently
+     * allocated space for.
+     * @return Capacity of the sparse set.
+     */
+    size_type capacity() const ENTT_NOEXCEPT {
+        return direct.capacity();
     }
 
     /**
@@ -215,7 +277,8 @@ public:
      * @return An iterator to the first entity of the internal packed array.
      */
     const_iterator_type cbegin() const ENTT_NOEXCEPT {
-        return const_iterator_type{direct.data(), direct.size()};
+        const typename traits_type::difference_type pos = direct.size();
+        return const_iterator_type{direct.data(), pos};
     }
 
     /**
@@ -302,14 +365,23 @@ public:
     }
 
     /**
+     * @brief Returns a reference to the element at the given position.
+     * @param pos Position of the element to return.
+     * @return A reference to the requested element.
+     */
+    inline const entity_type & operator[](const size_type pos) const ENTT_NOEXCEPT {
+        return cbegin()[pos];
+    }
+
+    /**
      * @brief Checks if a sparse set contains an entity.
      * @param entity A valid entity identifier.
      * @return True if the sparse set contains the entity, false otherwise.
      */
     bool has(const entity_type entity) const ENTT_NOEXCEPT {
         const auto pos = size_type(entity & traits_type::entity_mask);
-        // testing against pending permits to avoid accessing the direct vector
-        return (pos < reverse.size()) && (reverse[pos] != pending);
+        // testing against null permits to avoid accessing the direct vector
+        return (pos < reverse.size()) && (reverse[pos] != null);
     }
 
     /**
@@ -332,8 +404,8 @@ public:
     bool fast(const entity_type entity) const ENTT_NOEXCEPT {
         const auto pos = size_type(entity & traits_type::entity_mask);
         assert(pos < reverse.size());
-        // testing against pending permits to avoid accessing the direct vector
-        return (reverse[pos] != pending);
+        // testing against null permits to avoid accessing the direct vector
+        return (reverse[pos] != null);
     }
 
     /**
@@ -348,7 +420,7 @@ public:
      * @param entity A valid entity identifier.
      * @return The position of the entity in the sparse set.
      */
-    pos_type get(const entity_type entity) const ENTT_NOEXCEPT {
+    size_type get(const entity_type entity) const ENTT_NOEXCEPT {
         assert(has(entity));
         return reverse[entity & traits_type::entity_mask];
     }
@@ -369,11 +441,11 @@ public:
         const auto pos = size_type(entity & traits_type::entity_mask);
 
         if(!(pos < reverse.size())) {
-            const auto value = pending;
-            reverse.resize(pos+1, value);
+            // null is safe in all cases for our purposes
+            reverse.resize(pos+1, null);
         }
 
-        reverse[pos] = pos_type(direct.size());
+        reverse[pos] = entity_type(direct.size());
         direct.push_back(entity);
     }
 
@@ -395,7 +467,7 @@ public:
         // swapping isn't required here, we are getting rid of the last element
         reverse[back & traits_type::entity_mask] = candidate;
         direct[candidate] = back;
-        candidate = pending;
+        candidate = null;
         direct.pop_back();
     }
 
@@ -414,7 +486,7 @@ public:
      * @param lhs A valid position within the sparse set.
      * @param rhs A valid position within the sparse set.
      */
-    void swap(const pos_type lhs, const pos_type rhs) ENTT_NOEXCEPT {
+    void swap(const size_type lhs, const size_type rhs) ENTT_NOEXCEPT {
         assert(lhs < direct.size());
         assert(rhs < direct.size());
         auto &src = direct[lhs];
@@ -446,7 +518,7 @@ public:
         auto from = other.cbegin();
         auto to = other.cend();
 
-        pos_type pos = direct.size() - 1;
+        size_type pos = direct.size() - 1;
 
         while(pos && from != to) {
             if(has(*from)) {
@@ -470,7 +542,7 @@ public:
     }
 
 private:
-    std::vector<pos_type> reverse;
+    std::vector<entity_type> reverse;
     std::vector<entity_type> direct;
 };
 
@@ -500,21 +572,33 @@ private:
 template<typename Entity, typename Type>
 class SparseSet<Entity, Type>: public SparseSet<Entity> {
     using underlying_type = SparseSet<Entity>;
+    using traits_type = entt_traits<Entity>;
 
     template<bool Const>
-    struct Iterator final {
-        using difference_type = std::size_t;
-        using value_type = std::conditional_t<Const, const Type, Type>;
-        using pointer = value_type *;
-        using reference = value_type &;
-        using iterator_category = std::input_iterator_tag;
+    class Iterator final {
+        friend class SparseSet<Entity, Type>;
 
-        Iterator(pointer instances, std::size_t pos)
-            : instances{instances}, pos{pos}
+        using instance_type = std::conditional_t<Const, const Type, Type>;
+        using index_type = typename traits_type::difference_type;
+
+        Iterator(instance_type *instances, index_type index) ENTT_NOEXCEPT
+            : instances{instances}, index{index}
         {}
 
+    public:
+        using difference_type = index_type;
+        using value_type = instance_type;
+        using pointer = value_type *;
+        using reference = value_type &;
+        using iterator_category = std::random_access_iterator_tag;
+
+        Iterator() ENTT_NOEXCEPT = default;
+
+        Iterator(const Iterator &) ENTT_NOEXCEPT = default;
+        Iterator & operator=(const Iterator &) ENTT_NOEXCEPT = default;
+
         Iterator & operator++() ENTT_NOEXCEPT {
-            return --pos, *this;
+            return --index, *this;
         }
 
         Iterator operator++(int) ENTT_NOEXCEPT {
@@ -522,34 +606,75 @@ class SparseSet<Entity, Type>: public SparseSet<Entity> {
             return ++(*this), orig;
         }
 
+        Iterator & operator--() ENTT_NOEXCEPT {
+            return ++index, *this;
+        }
+
+        Iterator operator--(int) ENTT_NOEXCEPT {
+            Iterator orig = *this;
+            return --(*this), orig;
+        }
+
         Iterator & operator+=(const difference_type value) ENTT_NOEXCEPT {
-            pos -= value;
+            index -= value;
             return *this;
         }
 
         Iterator operator+(const difference_type value) const ENTT_NOEXCEPT {
-            return Iterator{instances, pos-value};
+            return Iterator{instances, index-value};
+        }
+
+        inline Iterator & operator-=(const difference_type value) ENTT_NOEXCEPT {
+            return (*this += -value);
+        }
+
+        inline Iterator operator-(const difference_type value) const ENTT_NOEXCEPT {
+            return (*this + -value);
+        }
+
+        difference_type operator-(const Iterator &other) const ENTT_NOEXCEPT {
+            return other.index - index;
+        }
+
+        reference operator[](const difference_type value) const ENTT_NOEXCEPT {
+            return instances[index-value-1];
         }
 
         bool operator==(const Iterator &other) const ENTT_NOEXCEPT {
-            return other.pos == pos;
+            return other.index == index;
         }
 
         inline bool operator!=(const Iterator &other) const ENTT_NOEXCEPT {
             return !(*this == other);
         }
 
-        reference operator*() const ENTT_NOEXCEPT {
-            return instances[pos-1];
+        bool operator<(const Iterator &other) const ENTT_NOEXCEPT {
+            return index > other.index;
+        }
+
+        bool operator>(const Iterator &other) const ENTT_NOEXCEPT {
+            return index < other.index;
+        }
+
+        inline bool operator<=(const Iterator &other) const ENTT_NOEXCEPT {
+            return !(*this > other);
+        }
+
+        inline bool operator>=(const Iterator &other) const ENTT_NOEXCEPT {
+            return !(*this < other);
         }
 
         pointer operator->() const ENTT_NOEXCEPT {
-            return (instances+pos-1);
+            return (instances+index-1);
+        }
+
+        inline reference operator*() const ENTT_NOEXCEPT {
+            return *operator->();
         }
 
     private:
         pointer instances;
-        std::size_t pos;
+        index_type index;
     };
 
 public:
@@ -557,8 +682,6 @@ public:
     using object_type = Type;
     /*! @brief Underlying entity identifier. */
     using entity_type = typename underlying_type::entity_type;
-    /*! @brief Entity dependent position type. */
-    using pos_type = typename underlying_type::pos_type;
     /*! @brief Unsigned integer type. */
     using size_type = typename underlying_type::size_type;
     /*! @brief Input iterator type. */
@@ -643,7 +766,8 @@ public:
      * @return An iterator to the first instance of the given type.
      */
     const_iterator_type cbegin() const ENTT_NOEXCEPT {
-        return const_iterator_type{instances.data(), instances.size()};
+        const typename traits_type::difference_type pos = instances.size();
+        return const_iterator_type{instances.data(), pos};
     }
 
     /**
@@ -675,7 +799,8 @@ public:
      * @return An iterator to the first instance of the given type.
      */
     iterator_type begin() ENTT_NOEXCEPT {
-        return iterator_type{instances.data(), instances.size()};
+        const typename traits_type::difference_type pos = instances.size();
+        return iterator_type{instances.data(), pos};
     }
 
     /**
@@ -730,6 +855,24 @@ public:
      */
     iterator_type end() ENTT_NOEXCEPT {
         return iterator_type{instances.data(), {}};
+    }
+
+    /**
+     * @brief Returns a reference to the element at the given position.
+     * @param pos Position of the element to return.
+     * @return A reference to the requested element.
+     */
+    inline const object_type & operator[](const size_type pos) const ENTT_NOEXCEPT {
+        return cbegin()[pos];
+    }
+
+    /**
+     * @brief Returns a reference to the element at the given position.
+     * @param pos Position of the element to return.
+     * @return A reference to the requested element.
+     */
+    inline object_type & operator[](const size_type pos) ENTT_NOEXCEPT {
+        return const_cast<object_type &>(const_cast<const SparseSet *>(this)->operator[](pos));
     }
 
     /**
@@ -876,19 +1019,21 @@ public:
      *
      * @tparam Compare Type of comparison function object.
      * @tparam Sort Type of sort function object.
+     * @tparam Args Types of arguments to forward to the sort function object.
      * @param compare A valid comparison function object.
      * @param sort A valid sort function object.
+     * @param args Arguments to forward to the sort function object, if any.
      */
-    template<typename Compare, typename Sort = StdSort>
-    void sort(Compare compare, Sort sort = Sort{}) {
-        std::vector<pos_type> copy(instances.size());
+    template<typename Compare, typename Sort = StdSort, typename... Args>
+    void sort(Compare compare, Sort sort = Sort{}, Args &&... args) {
+        std::vector<size_type> copy(instances.size());
         std::iota(copy.begin(), copy.end(), 0);
 
         sort(copy.begin(), copy.end(), [this, compare = std::move(compare)](const auto lhs, const auto rhs) {
             return compare(const_cast<const object_type &>(instances[rhs]), const_cast<const object_type &>(instances[lhs]));
-        });
+        }, std::forward<Args>(args)...);
 
-        for(pos_type pos = 0, last = copy.size(); pos < last; ++pos) {
+        for(size_type pos = 0, last = copy.size(); pos < last; ++pos) {
             auto curr = pos;
             auto next = copy[curr];
 
@@ -931,7 +1076,7 @@ public:
         auto from = other.cbegin();
         auto to = other.cend();
 
-        pos_type pos = underlying_type::size() - 1;
+        size_type pos = underlying_type::size() - 1;
         const auto *local = underlying_type::data();
 
         while(pos && from != to) {

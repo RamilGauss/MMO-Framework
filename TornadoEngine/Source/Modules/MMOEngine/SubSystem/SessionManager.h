@@ -40,7 +40,7 @@ namespace nsMMOEngine
     {
       eDefTimeLive = 5 * 1000,// мс
       eSleepForWaitUp = 40,  // мс
-      eLimitWaitTimeAnswerFromUp = 10000,// мс
+      eLimitWaitTimeAnswerFromUp = 400000,// мс
     };
 
     unsigned int mTimeLiveSession = eDefTimeLive;

@@ -44,7 +44,7 @@ namespace nsMMOEngine
   protected:
     virtual void RecvInherit( TDescRecvSession* pDesc ) = 0;
   protected:
-    void SetTimeWaitForNow();
+    //void SetTimeWaitForNow();
   protected:
     // от Scenario
     bool Begin();

@@ -5,8 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineEnumMMOH
-#define MMOEngineEnumMMOH
+#pragma once
+#include <string>
+#include "TypeDef.h"
 
 static const char* STR_NAME_MMO_ENGINE = "MMOEngine";
 static const char* STR_NAME_NET_TRANSPORT = "NetTransport";
@@ -15,7 +16,7 @@ static const int INVALID_HANDLE_SESSION = 0;
 
 namespace nsMMOEngine
 {
-  typedef enum
+  enum ErrorCode
   {
     // open
     OpenClient_MoreThenOneSubNet,
@@ -35,20 +36,30 @@ namespace nsMMOEngine
     LoginClient_ClientMasterNotReady,
     LoginClient_ClientNoAnswer,
     LoginClient_ClientNotExistSlave,
-    LoginClient_SlaveNoAnswer,
+    LoginClient_ClientSlaveNotActive,
+    LoginClient_ClientMasterNotSendSlaveInfo,
+    LoginClient_ClientMasterNotDisconnect,
+    LoginClient_ClientMasterNotActive,
+    LoginClient_ClientMasterForgetUpdateQueue,
+    LoginClient_SlaveClientNotActive,
+    LoginClient_SlaveMasterNotActive,
     LoginClient_MasterKeyBusy,
+    LoginClient_MasterDeveloperNotActive,
     LoginClient_MasterClientNotActive,
-    LoginClient_SuperServerNoAnswer,
+    LoginClient_MasterSlaveNotActive,
+    LoginClient_MasterForgetUpdateQueue,
+    LoginClient_MasterSuperServerNotActive,
+    LoginClient_MasterClientNotConnectToSlave,
     //--------------------------------------
     // RCM
     RCM_ClientNoAnswer,
-  }ErrorCode;
+  };
 
   // попытка connect всегда происходит к верхнему объекту
   // если получилось, то получишь ConnectUp, иначе Error
   // если кто-то пытается подключиться к верхнему объекту, то вызовется TryConnectDown
   // далее нужно вызвать Accept или Reject
-  typedef enum
+  enum EventType
   {
     eTryConnectDown,
     eConnectDown,
@@ -67,6 +78,7 @@ namespace nsMMOEngine
     eDestroyGroup,
     eEnterInQueue,
     eLeaveQueue,
-  }EventType;
+  };
+
+  extern DllExport std::string GetStrError( int code );
 }
-#endif

@@ -20,7 +20,7 @@ public:
   THandlerMMO( TypeMMO type );
   void Work();
 
-  int GetCountConnection();
+  auto GetCountConnection();
 
   void AddConnection( unsigned int sessionID );
   void RemoveConnection( unsigned int sessionID );
@@ -31,8 +31,6 @@ public:
   void AddTryConnectClientToMaster( unsigned int sessionID );
 protected:
   virtual void HandleFromMMOEngine( nsEvent::TEvent* pEvent ) = 0;
-  std::string GetStrError( int code );
-
 public:
   static void PrintCC( const char* loggerName );
 private:

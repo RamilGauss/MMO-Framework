@@ -8,6 +8,7 @@ See for more information License.h.
 #pragma once
 
 #include "BreakPacket.h"
+#include "StateTimeWait.h"
 
 class TSrcEvent;
 namespace nsMMOEngine
@@ -26,6 +27,7 @@ namespace nsMMOEngine
     IScenario* mScenario;
   protected:
     TBreakPacket mBP;
+    TStateTimeWait mStateTimeWait;
   public:
     IScenarioContext();
     virtual ~IScenarioContext();
@@ -53,7 +55,6 @@ namespace nsMMOEngine
 
     void SetUserPtr( void* p );
     void* GetUserPtr();
-
   protected:
   };
 }

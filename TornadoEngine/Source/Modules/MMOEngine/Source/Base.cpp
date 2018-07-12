@@ -59,7 +59,7 @@ TBase::~TBase()
 //-------------------------------------------------------------------------
 void TBase::Init( IMakerTransport* pMakerTransport )
 {
-  if( pMakerTransport == NULL )
+  if( pMakerTransport == nullptr )
   {
     GetLogger( STR_NAME_MMO_ENGINE )->WriteF_time( "TBase::Init() pMakerTransport==NULL.\n" );
     BL_FIX_BUG();

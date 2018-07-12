@@ -21,6 +21,11 @@ See for more information License.h.
 #include "Logger.h"
 #include "HandlerMMO_Client.h"
 #include "MakerNetTransport.h"
+#ifdef WIN32
+#include <conio.h>
+#endif
+
+//#define USE_SLEEP
 
 class TClientDesc
 {
@@ -35,8 +40,25 @@ public:
   std::string mMsg = "Hello, from client";
 };
 
+void StartClients( int argc, char** argv );
 
 int main( int argc, char** argv )
+{
+  try
+  {
+    StartClients( argc, argv );
+  }
+  catch( std::exception* e )
+  {
+    printf( "exception = %s \n", e->what() );
+#ifdef WIN32
+    _getch();
+#endif
+  }
+  return 0;
+}
+
+void StartClients( int argc, char** argv )
 {
   TBreakPacket sendBP;
   InitLogger( ClientLog );
@@ -96,11 +118,11 @@ int main( int argc, char** argv )
       auto pClient = pArrClient[i];
       pClient->mClient->Work();
 
-      if( pClient->mLastTimeSendMsg + pClient->mIntervalSendMsg > startTime )
-      {
-        pClient->mClient->SendUp( (char*) pClient->mMsg.data(), pClient->mMsg.size() );
-        pClient->mLastTimeSendMsg = startTime;
-      }
+      //if( pClient->mLastTimeSendMsg + pClient->mIntervalSendMsg > startTime )
+      //{
+      //  pClient->mClient->SendUp( (char*) pClient->mMsg.data(), pClient->mMsg.size() );
+      //  pClient->mLastTimeSendMsg = startTime;
+      //}
     }
     handler.Work();
     // burn rest time
@@ -112,11 +134,10 @@ int main( int argc, char** argv )
       GetLogger( ClientLog )->WriteF( "dTime=%d\n", deltaTime );
       old_delta_time = deltaTime;
     }
+#ifdef USE_SLEEP
     if( deltaTime < CLIENT_QUANT_TIME )
       ht_msleep( 1 );
-    //ht_msleep(CLIENT_QUANT_TIME-deltaTime);
+#endif
   }
-
-  return 0;
 }
 //-----------------------------------------------------------------------

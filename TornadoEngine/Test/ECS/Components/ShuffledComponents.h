@@ -5,6 +5,15 @@ namespace ShuffledComponents
   struct A
   {
     int a;
+    bool operator<( const A &o ) const
+    {
+      return a < o.a;
+    }
+
+    bool operator==( const A &other ) const
+    {
+      return (a == other.a);
+    }
   };
 
   struct B
@@ -30,5 +39,18 @@ namespace ShuffledComponents
   struct F
   {
     int f;
+  };
+}
+
+namespace std
+{
+  template<> struct hash<ShuffledComponents::A>
+  {
+    typedef ShuffledComponents::A argument_type;
+    typedef std::size_t result_type;
+    result_type operator()( argument_type const& s ) const noexcept
+    {
+      return s.a;
+    }
   };
 }

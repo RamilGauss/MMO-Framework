@@ -22,11 +22,11 @@ namespace nsMMOEngine
 
     enum PacketType
     {
-      eLogin          = 'l',// от клиента запрос на авторизацию
-      eKeyAES         = 'k',// ответ от сервера с ключом
+      eLogin = 'l',// от клиента запрос на авторизацию
+      eKeyAES = 'k',// ответ от сервера с ключом
       eIDconfirmation = 'c',// клиент должен подтвердить что понял пакет от сервера
-      eData           = 'd',// обмен данными
-      eEcho           = 'e',// эхо для проверки соединения на физические разрывы
+      eData = 'd',// обмен данными
+      eEcho = 'e',// эхо для проверки соединения на физические разрывы
     };
   public:
     enum State
@@ -46,9 +46,6 @@ namespace nsMMOEngine
 
     TBreakPacket mBP;
 
-    //TBreakPacket mBP;
-    //TBreakPacket mBP;
-
     State mState;
     unsigned int mStateChangeTime = 0;
 
@@ -60,7 +57,7 @@ namespace nsMMOEngine
     TContainer mPasswordHash;
 
     TCryptoAES_Impl mPasswordAES;
-    
+
     TCryptoAES_Impl mRecvAES;
     TCryptoAES_Impl mSendAES;
 
@@ -89,9 +86,9 @@ namespace nsMMOEngine
   public:
     enum Wait
     {
-      WaitConnectFrom = 10000,
-      WaitConfirmation = 10000,
-      WaitKeyAES = 10000,
+      WaitConnectFrom  = 400000,
+      WaitConfirmation = 400000,
+      WaitKeyAES       = 400000,
     };
 
     TSession( State state, unsigned int time_live_ms );
@@ -103,19 +100,19 @@ namespace nsMMOEngine
     void GetInfo( TIP_Port& pDesc );
     void SetInfo( TIP_Port& pDesc );
     void UpdateLastTime();
-    
+
     bool RecvData( void* data, int dataSize, TContainerPtr& result );
     bool RecvKeyAES( void* pKey, int keySize );
     bool RecvIDconfirmation( void* pConfirm, int confirmSize );
-    unsigned int GetID() const{ return mID; }
-    void SetID( unsigned int id ){ mID = id; }
+    unsigned int GetID() const;
+    void SetID( unsigned int id );
     void Close();
 
     void SendLogin();
     void SendKeyAES();
     void SendIDconfirmation();
 
-    void SetState(State state);
+    void SetState( State state );
     State GetState();
 
     unsigned int GetStateChangeTime();
@@ -133,5 +130,7 @@ namespace nsMMOEngine
 
     void SetPassword( std::string& password );
 
+  private:
+    void PrintError();
   };
 }

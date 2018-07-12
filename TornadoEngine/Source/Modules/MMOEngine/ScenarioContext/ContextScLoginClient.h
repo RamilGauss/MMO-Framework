@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CONTEXT_SC_LOGIN_CLIENT_H
-#define CONTEXT_SC_LOGIN_CLIENT_H
+#pragma once
 
 #include "IScenarioContext.h"
 
@@ -18,16 +17,35 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  // сценарии, содержащиеся в контейнере взаимно блокируются
   class TContextScLoginClient : public IScenarioContext
   {
   public:
-    typedef enum
+    enum StateWait
+    {
+      MasterWaitDeveloper,
+      MasterWaitInQueue,
+      MasterWaitSuperServer,
+      MasterWaitSlave,
+      MasterWaitClient,
+      MasterWaitClientConnectToSlave,
+
+      ClientWaitMasterAnswer,
+      ClientWaitSlaveInfo,
+      ClientWaitDisconnectFromMaster,
+      ClientWaitSlaveAnswer,
+      ClientWaitInQueue,
+      
+      SlaveWaitClient,
+      SlaveWaitMaster,
+      
+      NoWait,
+    };
+    enum tStateResult
     {
       eUndef,
       eReject,
       eAccept,
-    }tStateResult;
+    };
   private:
 
     tStateResult mState;
@@ -35,7 +53,6 @@ namespace nsMMOEngine
     int mNumInQueue;
 
     bool flgConnected = false;
-    unsigned int mTimeWaitAnswer;
     unsigned int mTimeLastNeedNumInQueue;
 
     unsigned int mDeltaTimeWait_ms;
@@ -72,9 +89,6 @@ namespace nsMMOEngine
 
     unsigned int GetClientKey();
     void SetClientKey( unsigned int id );
-
-    void SetTimeWait( unsigned int v );
-    unsigned int GetTimeWait();
 
     unsigned int GetDeltaTimeWaitMS();
     void SetDeltaTimeWaitMS( unsigned int delta );
@@ -129,9 +143,13 @@ namespace nsMMOEngine
     void SetPassword( std::string& password );
     std::string GetPassword();
 
+    void SetCurrentStateWait( StateWait state );
+    bool IsStateTimeExpired( unsigned int now );
+
+    unsigned int GetCurrentStateErrorCode();
+
   private:
     void SetSessionID( std::string& name, unsigned int id );
     unsigned int GetSessionID( std::string& name );
   };
 }
-#endif

@@ -38,18 +38,25 @@ void TSession::Work()
     case TSession::eConnectTo:
       break;
     case TSession::eConnectFrom:
-      if( mStateChangeTime + WaitConnectFrom < now_ms )
+      if( GetStateChangeTime() + WaitConnectFrom < now_ms )
+      {
+        PrintError();//###
         Close();
+      }
       break;
     case TSession::eWaitKeyAES:
-      if( mStateChangeTime + WaitKeyAES < now_ms )
+      if( GetStateChangeTime() + WaitKeyAES < now_ms )
       {
+        PrintError();//###
         BL_FIX_BUG();
       }
       break;
     case TSession::eWaitConirmation:
-      if( mStateChangeTime + WaitConfirmation < now_ms )
+      if( GetStateChangeTime() + WaitConfirmation < now_ms )
+      {
+        PrintError();//###
         Close();
+      }
       break;
     case TSession::eWork:
       if( mLastTimeActive + mTimeLive < now_ms )
@@ -139,6 +146,16 @@ bool TSession::RecvKeyAES( void* pKey, int keySize )// Client
   // запомнить пароль для работы
   SetKeyAES( mDecrypt.GetPtr(), mDecrypt.GetSize() );
   return true;
+}
+//---------------------------------------------------------------------
+unsigned int TSession::GetID() const
+{
+  return mID;
+}
+//---------------------------------------------------------------------
+void TSession::SetID( unsigned int id )
+{
+  mID = id;
 }
 //---------------------------------------------------------------------
 bool TSession::RecvIDconfirmation( void* pConfirm, int confirmSize )// Server
@@ -271,5 +288,10 @@ void TSession::SetKeyAES( void* p, int size )
 {
   mSendAES.SetKey( p, size );
   mRecvAES.SetKey( p, size );
+}
+//---------------------------------------------------------------------
+void TSession::PrintError()
+{
+  printf( "Session FAIL at state = %d, ip:port = %s\n", mState, mIP_Port.ToString() );
 }
 //---------------------------------------------------------------------
