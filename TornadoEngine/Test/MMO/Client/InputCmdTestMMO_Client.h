@@ -27,16 +27,13 @@ public:
 
   struct TInput
   {
-    unsigned short begin_port;
-    int            count;
-    int            begin_id;
+    unsigned short begin_port = CLIENT_PORT;
+    int            count = 1;
+    int            begin_id = 0;
     std::string    ip_server;
+    int            ping_time = 0x1FFFFFFF;
     TInput()
     {
-      begin_port = CLIENT_PORT;
-      count      = 1;
-      begin_id   = 0;
-
       TResolverSelf_IP_v4 resolver;
       resolver.Get(ip_server, 0);
     }

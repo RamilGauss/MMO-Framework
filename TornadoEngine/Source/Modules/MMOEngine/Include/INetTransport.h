@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineINetTransportH
-#define MMOEngineINetTransportH
+#pragma once
 
 #include "CallBackRegistrator.h"
 #include "ShareMisc.h"
@@ -61,6 +60,3 @@ namespace nsMMOEngine
     virtual void Close( unsigned int ip, unsigned short port ) = 0;
   };
 }
-
-
-#endif

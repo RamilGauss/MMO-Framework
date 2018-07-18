@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\win">
+      <UniqueIdentifier>{76e03aee-58eb-4186-9741-c8061fadea18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\uv">
+      <UniqueIdentifier>{d483cb3d-bafe-4fbc-8710-a185f162eeb0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\uv.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\aix.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\android-ifaddrs.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\bsd.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\darwin.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\errno.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\linux.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\os390.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\posix.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\pthread-barrier.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\stdint-msvc2008.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\sunos.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\threadpool.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\tree.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\unix.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\version.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uv\win.h">
+      <Filter>include\uv</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win\atomicops-inl.h">
+      <Filter>src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win\handle-inl.h">
+      <Filter>src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win\internal.h">
+      <Filter>src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win\req-inl.h">
+      <Filter>src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win\stream-inl.h">
+      <Filter>src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win\winapi.h">
+      <Filter>src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win\winsock.h">
+      <Filter>src\win</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\fs-poll.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\inet.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\threadpool.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\uv-common.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\uv-data-getter-setters.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\version.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\async.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\core.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\detect-wakeup.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\dl.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\error.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\fs.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\fs-event.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\getaddrinfo.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\getnameinfo.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\handle.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\loop-watcher.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\pipe.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\poll.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\process.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\process-stdio.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\req.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\signal.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\snprintf.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\stream.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\tcp.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\thread.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\tty.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\udp.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\util.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\winapi.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win\winsock.c">
+      <Filter>src\win</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

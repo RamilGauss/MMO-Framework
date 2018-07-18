@@ -20,6 +20,9 @@ public:
   THandlerMMO( TypeMMO type );
   void Work();
 
+  virtual void WorkInherit()
+  {};
+
   auto GetCountConnection();
 
   void AddConnection( unsigned int sessionID );

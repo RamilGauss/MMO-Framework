@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -19,25 +19,25 @@ TMapCallBack::~TMapCallBack()
 
 }
 //--------------------------------------------------------------
-TDescCallBack* TMapCallBack::FindDesc(int type)
+TDescCallBack* TMapCallBack::FindDesc( int type )
 {
-  TMapIntDescCBIt fit = mMapTypeCallBack.find(type);
-  if(fit==mMapTypeCallBack.end())
+  TMapIntDescCBIt fit = mMapTypeCallBack.find( type );
+  if( fit == mMapTypeCallBack.end() )
   {
     BL_FIX_BUG();
-    return NULL;
+    return nullptr;
   }
   return &(fit->second);
 }
 //--------------------------------------------------------------
-void TMapCallBack::AddCallBack(int type, TCallBackRegistrator0* pCB)
+void TMapCallBack::AddCallBack( int type, TCallBackRegistrator0* pCB )
 {
-  mMapTypeCallBack.insert(TMapIntDescCB::value_type(type,TDescCallBack()));
-  FindDesc(type)->Set(pCB);
+  mMapTypeCallBack.insert( TMapIntDescCB::value_type( type, TDescCallBack() ) );
+  FindDesc( type )->Set( pCB );
 }
 //--------------------------------------------------------------
-void TMapCallBack::Notify(int type)
+void TMapCallBack::Notify( int type )
 {
-  FindDesc(type)->Notify();
+  FindDesc( type )->Notify();
 }
 //--------------------------------------------------------------

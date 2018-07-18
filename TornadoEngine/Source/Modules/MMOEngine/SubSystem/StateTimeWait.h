@@ -7,8 +7,7 @@ See for more information License.h.
 
 #pragma once
 #include <map>
-
-/// 
+#include <limits>
 
 class TStateTimeWait
 {

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef NetTransport_BoostH
-#define NetTransport_BoostH
+#pragma once
 
 #include "INetTransport.h"
 #include "Mutex.h"
@@ -78,9 +77,4 @@ protected:
 
   TNetControlTCP* GetTCP_ByIP( TIP_Port &ip_port );
   void Done();
-
-  void ScenarioExchangeCryptKey( TIP_Port& ip_port, TNetControlTCP* pNetControl );// synchro
 };
-
-
-#endif

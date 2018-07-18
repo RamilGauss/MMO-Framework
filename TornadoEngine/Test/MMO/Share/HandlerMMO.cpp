@@ -47,6 +47,8 @@ void THandlerMMO::Work()
     delete pEvent;
     pEvent = GetEvent();
   }
+
+  WorkInherit();
 }
 //-----------------------------------------------------------------------------------
 auto THandlerMMO::GetCountConnection()

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef DescEventH
-#define DescEventH
+#pragma once
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
@@ -25,7 +24,7 @@ struct DllExport TEvent
   int type_object;
   void* ptr_object;
   IContainer* pContainer;
-  TEvent(){ptr_object=NULL;pContainer=NULL;}
+  TEvent(){ptr_object=nullptr;pContainer= nullptr;}
   ~TEvent()
   {
     delete pContainer;
@@ -56,4 +55,3 @@ protected:
 #endif
 
 }
-#endif

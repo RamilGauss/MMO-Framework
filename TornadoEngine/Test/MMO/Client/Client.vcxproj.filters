@@ -39,5 +39,8 @@
     <ClInclude Include="..\Share\HandlerMMO.h">
       <Filter>Share</Filter>
     </ClInclude>
+    <ClInclude Include="ClientDesc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

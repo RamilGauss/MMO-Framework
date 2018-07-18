@@ -28,7 +28,7 @@ TReceiverTransport::~TReceiverTransport()
 //----------------------------------------------------------------------
 void TReceiverTransport::Recv( INetTransport::TDescRecv* pDescRecv )
 {
-  mMngSession->Recv( pDescRecv, mTransport );
+  mMngSession->Recv( pDescRecv );
 }
 //----------------------------------------------------------------------
 void TReceiverTransport::Disconnect( TIP_Port* ip_port )

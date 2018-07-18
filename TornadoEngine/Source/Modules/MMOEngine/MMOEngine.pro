@@ -3,7 +3,7 @@ LANGUAGE = C++
 
 CONFIG += dll qt warn_on
 
-TARGET = /usr/lib/MMOEngine_d
+TARGET = /usr/lib/MMOEngine
 
 INCLUDEPATH = \
 . \
@@ -14,27 +14,27 @@ INCLUDEPATH = \
 ./SubSystem \
 ../../Base/Headers
 
-LIBS += -lBase_d
+LIBS += -lBase
 
-DEFINES += _DEBUG
 DEFINES += _USRDLL
 DEFINES += _CRT_SECURE_NO_WARNINGS
 DEFINES += MARKUP_STL
 DEFINES += USE_MATH_TOOLS
 
 COMPILER_FLAGS = -fPIC
+QMAKE_CXXFLAGS_RELEASE = -O3
 
-OBJECTS_DIR = ../../../Temp/Debug/MMOEngine
+OBJECTS_DIR = ../../../Temp/MMOEngine
 
 SOURCES = \
-./ContextScenario/ContextScDisconnectClient.cpp \
-./ContextScenario/ContextScFlow.cpp \
-./ContextScenario/ContextScLoginClient.cpp \
-./ContextScenario/ContextScLoginMaster.cpp \
-./ContextScenario/ContextScLoginSlave.cpp \
-./ContextScenario/ContextScRecommutationClient.cpp \
-./ContextScenario/ContextScSendToClient.cpp \
-./ContextScenario/ContextScSynchroSlave.cpp \
+./ScenarioContext/ContextScDisconnectClient.cpp \
+./ScenarioContext/ContextScFlow.cpp \
+./ScenarioContext/ContextScLoginClient.cpp \
+./ScenarioContext/ContextScLoginMaster.cpp \
+./ScenarioContext/ContextScLoginSlave.cpp \
+./ScenarioContext/ContextScRecommutationClient.cpp \
+./ScenarioContext/ContextScSendToClient.cpp \
+./ScenarioContext/ContextScSynchroSlave.cpp \
 ./Scenario/BaseScLoginClient.cpp \
 ./Scenario/BaseScLoginClient_Struct.cpp \
 ./Scenario/BaseScRecommutationClient.cpp \
@@ -59,8 +59,8 @@ SOURCES = \
 ./Source/Base.cpp \
 ./Source/BaseServer.cpp \
 ./Source/Client.cpp \
+./Source/EnumMMO.cpp \
 ./Source/Events.cpp \
-./Source/IMakerTransport.cpp \
 ./Source/INetTransport.cpp \
 ./Source/Master.cpp \
 ./Source/Slave.cpp \
@@ -83,23 +83,24 @@ SOURCES = \
 ./SubSystem/ManagerGroupClient.cpp \
 ./SubSystem/ManagerManagerContextSc.cpp \
 ./SubSystem/ManagerRecommutation.cpp \
-./SubSystem/ReciverTransport.cpp \
+./SubSystem/ReceiverTransport.cpp \
 ./SubSystem/ScContextManager.cpp \
 ./SubSystem/Session.cpp \
 ./SubSystem/SessionManager.cpp \
 ./SubSystem/SessionNavigator.cpp \
+./SubSystem/StateTimeWait.cpp \
 ./SubSystem/StatisticaClientInGroup.cpp \
 ./SubSystem/TransportManager.cpp
 
 HEADERS = \
-./ContextScenario/ContextScDisconnectClient.h \
-./ContextScenario/ContextScFlow.h \
-./ContextScenario/ContextScLoginClient.h \
-./ContextScenario/ContextScLoginMaster.h \
-./ContextScenario/ContextScLoginSlave.h \
-./ContextScenario/ContextScRecommutationClient.h \
-./ContextScenario/ContextScSendToClient.h \
-./ContextScenario/ContextScSynchroSlave.h \
+./ScenarioContext/ContextScDisconnectClient.h \
+./ScenarioContext/ContextScFlow.h \
+./ScenarioContext/ContextScLoginClient.h \
+./ScenarioContext/ContextScLoginMaster.h \
+./ScenarioContext/ContextScLoginSlave.h \
+./ScenarioContext/ContextScRecommutationClient.h \
+./ScenarioContext/ContextScSendToClient.h \
+./ScenarioContext/ContextScSynchroSlave.h \
 ./Include/ActiveServer.h \
 ./Include/BaseEvent.h \
 ./Include/Base.h \
@@ -151,11 +152,12 @@ HEADERS = \
 ./SubSystem/ManagerGroupClient.h \
 ./SubSystem/ManagerManagerContextSc.h \
 ./SubSystem/ManagerRecommutation.h \
-./SubSystem/ReciverTransport.h \
+./SubSystem/ReceiverTransport.h \
 ./SubSystem/ScContextManager.h \
 ./SubSystem/Session.h \
 ./SubSystem/SessionManager.h \
 ./SubSystem/SessionNavigator.h \
 ./SubSystem/ScenarioBaseHeader.h \
+./SubSystem/StateTimeWait.h \
 ./SubSystem/StatisticaClientInGroup.h \
 ./SubSystem/TransportManager.h

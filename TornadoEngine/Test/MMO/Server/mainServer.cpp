@@ -24,10 +24,10 @@ See for more information License.h.
 #ifdef WIN32
 #include <conio.h>
 #endif
+#include "ReversedContainerRise.h"
+#include <thread>
 
 #define COUNT_SLAVE 1
-
-//#define USE_SLEEP
 
 void StartServer();
 
@@ -37,9 +37,9 @@ int main( int argc, char** argv )
   {
     StartServer();
   }
-  catch( std::exception* e )
+  catch( ... )
   {
-    printf( "exception = %s \n", e->what() );
+    printf( "exception!!!\n" );
 #ifdef WIN32
     _getch();
 #endif
@@ -55,11 +55,12 @@ void StartServer()
     std::string sLocalHost;
     TResolverSelf_IP_v4 resolver;
     int countIP_v4 = resolver.GetCount();
+    GetLogger( ServerLog )->WriteF( "ip count = %d\n", countIP_v4 );
     for( int i = 0; i < countIP_v4; i++ )
     {
       if( resolver.Get( sLocalHost, i ) == false )
         continue;
-      GetLogger( ServerLog )->WriteF( "ip=%s\n", sLocalHost.data() );
+      GetLogger( ServerLog )->WriteF( "ip = %s\n", sLocalHost.data() );
     }
   }
 
@@ -156,18 +157,13 @@ void StartServer()
     handlerSuperServer->Work();
     for( auto pHandlerSlave : arrHandlerSlave )
       pHandlerSlave->Work();
-#ifdef USE_SLEEP
-    // burn rest time
-    if( deltaTime < SERVER_QUANT_TIME )
-      ht_msleep( 1 );
-#endif
 
     iCycle++;
     auto delta = ht_GetMSCount() - start;
     if( delta >= limitDeltaTime )
     {
       auto speed_ms = delta * 1.0f / iCycle;
-      GetLogger( ServerLog )->WriteF( "speed = %f ms\n", speed_ms );
+      GetLogger( ServerLog )->WriteF( "time of cycle = %f ms\n", speed_ms );
       iCycle = 0;
     }
   }

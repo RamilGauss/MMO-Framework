@@ -469,5 +469,8 @@
     <ClInclude Include="SubSystem\StateTimeWait.h">
       <Filter>SubSystem\Scenario</Filter>
     </ClInclude>
+    <ClInclude Include="SubSystem\TransportEvents.h">
+      <Filter>SubSystem\Session</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

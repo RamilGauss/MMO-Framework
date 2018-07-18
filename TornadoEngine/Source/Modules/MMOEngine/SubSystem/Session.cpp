@@ -29,36 +29,48 @@ TSession::~TSession()
   Close();
 }
 //---------------------------------------------------------------------
-void TSession::Work()
+bool TSession::Work()
 {
   unsigned int now_ms = ht_GetMSCount();
-
-  switch( GetState() )
+  bool result = true;
+  switch( mState )
   {
-    case TSession::eConnectTo:
-      break;
-    case TSession::eConnectFrom:
-      if( GetStateChangeTime() + WaitConnectFrom < now_ms )
+    case TSession::StateWaitConnectTo:
+      if( GetStateChangeTime() + TimeWaitConnectTo < now_ms )
       {
         PrintError();//###
-        Close();
+        result = false;
       }
       break;
-    case TSession::eWaitKeyAES:
-      if( GetStateChangeTime() + WaitKeyAES < now_ms )
+    case TSession::StateWaitLogin:
+      if( GetStateChangeTime() + TimeWaitLogin < now_ms )
       {
         PrintError();//###
-        BL_FIX_BUG();
+        result = false;
       }
       break;
-    case TSession::eWaitConirmation:
-      if( GetStateChangeTime() + WaitConfirmation < now_ms )
+    case TSession::StateWaitDeveloper:
+      if( GetStateChangeTime() + TimeWaitDeveloper < now_ms )
       {
         PrintError();//###
-        Close();
+        result = false;
       }
       break;
-    case TSession::eWork:
+    case TSession::StateWaitKeyAES:
+      if( GetStateChangeTime() + TimeWaitKeyAES < now_ms )
+      {
+        PrintError();//###
+        result = false;
+      }
+      break;
+    case TSession::StateWaitConfirmation:
+      if( GetStateChangeTime() + TimeWaitConfirmation < now_ms )
+      {
+        PrintError();//###
+        result = false;
+      }
+      break;
+    case TSession::StateWork:
       if( mLastTimeActive + mTimeLive < now_ms )
       {
         SendEcho();
@@ -66,6 +78,7 @@ void TSession::Work()
       }
       break;
   }
+  return result;
 }
 //---------------------------------------------------------------------
 void TSession::Send( TBreakPacket& bp, bool check )
@@ -107,11 +120,6 @@ void TSession::SetInfo( TIP_Port& pDesc )
   mIP_Port = pDesc;
 }
 //---------------------------------------------------------------------
-void TSession::UpdateLastTime()
-{
-  RefreshLastTime();
-}
-//---------------------------------------------------------------------
 bool TSession::RecvData( void* data, int dataSize, TContainerPtr& result )
 {
   // Encrypt => Data + crc8(Data)
@@ -129,6 +137,8 @@ bool TSession::RecvData( void* data, int dataSize, TContainerPtr& result )
     return false;
 
   result.SetData( mRecvDataContainer.GetPtr(), sizeWithoutCRC8 );
+  
+  RefreshLastTime();
   return true;
 }
 //---------------------------------------------------------------------

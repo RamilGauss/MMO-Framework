@@ -97,6 +97,7 @@ void TBase::SendUp( char* p, int size, bool check )
 {
   SetupBP( p, size );
   // устанавливать для сценария контекст не требуется
+  mControlSc->mFlow->SetContext( &mContainerUp->mFlow );
   mControlSc->mFlow->SendUp( mBP, check );
 }
 //-------------------------------------------------------------------------

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef DstEventH
-#define DstEventH
+#pragma once
 
 #include <string>
 #include <vector>
@@ -52,5 +51,3 @@ void TDstEvent::AddEventInQueueWithoutCopy( int type_object, void* ptr_src, T* d
   mListEvent->Add( pEvent );
 }
 //-------------------------------------------------------------------------------------
-
-#endif

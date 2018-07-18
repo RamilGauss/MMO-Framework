@@ -9,7 +9,7 @@ See for more information License.h.
 
 TDescCallBack::TDescCallBack()
 {
-  mPtrCallBack = NULL;
+  mPtrCallBack = nullptr;
 }
 //-------------------------------------------------------------------------
 TDescCallBack::~TDescCallBack()

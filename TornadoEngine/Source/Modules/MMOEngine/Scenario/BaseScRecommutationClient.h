@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef BASE_SC_RECOMMUTATION_CLIENT_H
-#define BASE_SC_RECOMMUTATION_CLIENT_H
+#pragma once
 
 #include "IScenario.h"
 #include "DescRecvSession.h"
@@ -59,4 +58,3 @@ namespace nsMMOEngine
     void NeedContextByRequestForRecipient(TDescRequestConnectForRecipient* pDesc);
   };
 }
-#endif

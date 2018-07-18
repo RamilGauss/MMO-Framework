@@ -107,7 +107,7 @@ bool TNetTransport_Boost::IsActive()
 //--------------------------------------------------------------------------
 bool TNetTransport_Boost::Connect( unsigned int ip, unsigned short port )
 {
-  if( mTCP_Up.get() == NULL )
+  if( mTCP_Up.get() == nullptr )
   {
     // порядок открытия портов (сначала TCP_Up, потом Acceptor) под Ubuntu - строгий
     mAcceptor->Close();
@@ -152,7 +152,7 @@ TNetControlTCP* TNetTransport_Boost::GetTCP_ByIP( TIP_Port &ip_port )
 {
   TMapIP_PtrIt fit = mMapIP_TCP.find( ip_port );
   if( fit == mMapIP_TCP.end() )
-    return NULL;
+    return nullptr;
   return fit->second;
 }
 //----------------------------------------------------------------------------------
@@ -200,7 +200,7 @@ void TNetTransport_Boost::DeleteControlTCP( TNetControlTCP* pControl )
 {
   if( mTCP_Up.get() == pControl )
   {
-    mTCP_Up.reset( NULL );
+    mTCP_Up.reset( nullptr );
     return;
   }
   delete pControl;

@@ -15,7 +15,6 @@ namespace nsMMOEngine
   class IScenario;
   class DllExport TClient : public TBase
   {
-
     unsigned char mSubNet;
 
     unsigned int mID;// назначенный Мастером

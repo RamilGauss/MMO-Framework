@@ -19,6 +19,8 @@ See for more information License.h.
 #include "TransportManager.h"
 #include "CryptoContextManager.h"
 #include "Structs.h"
+#include "DataExchange2Thread.h"
+#include "TransportEvents.h"
 
 namespace nsMMOEngine
 {
@@ -63,18 +65,18 @@ namespace nsMMOEngine
     TBreakPacket mEncryptBP;
 
     TCallBackRegistrator1<int>               mCallBackDiconnect;
-    //TCallBackRegistrator1<TDescConnectUp*>   mCallBackConnectUp;
     TCallBackRegistrator1<TDescRecvSession*> mCallBackRecv;
     TCallBackRegistrator1<TTryConnectDown*>  mCallBackTryConnectDown;
-
-    TMutex mMutexAccessMapSession;
-    void lockAccessSession()  { mMutexAccessMapSession.lock(); }
-    void unlockAccessSession(){ mMutexAccessMapSession.unlock(); }
 
     // запрет на попытку соединиться наверх более чем один раз
     TMutex mMutexConnectUp;
     void lockConnectUp(){ mMutexConnectUp.lock(); }
     void unlockConnectUp(){ mMutexConnectUp.unlock(); }
+
+    std::list<TSession*> mSessionListOnDelete;
+
+    typedef TDataExchange2Thread<TBaseTransportEvent> TTransportEventList;
+    TTransportEventList mTransportEventList;
   public:
     TSessionManager();
     ~TSessionManager();
@@ -83,7 +85,6 @@ namespace nsMMOEngine
 
     TCallBackRegistrator1<TDescRecvSession*>* GetCallbackRecv()          { return &mCallBackRecv; }
     TCallBackRegistrator1<int>*               GetCallbackDisconnect()    { return &mCallBackDiconnect; }
-    //TCallBackRegistrator1<TDescConnectUp*>*   GetCallbackConnectUp()     { return &mCallBackConnectUp; }
     TCallBackRegistrator1<TTryConnectDown*>*  GetCallbackTryConnectDown(){ return &mCallBackTryConnectDown; }
 
     bool Start( TDescOpen* pDesc, int count = 1 );
@@ -109,7 +110,7 @@ namespace nsMMOEngine
     friend class TReceiverTransport;
 
     bool StartTransport( unsigned short port, unsigned char subNet );
-    void Recv( INetTransport::TDescRecv* pDescRecv, INetTransport* pTransport );
+    void Recv( INetTransport::TDescRecv* pDescRecv );
     void Disconnect( TIP_Port* ip_port );
     void ConnectFrom( TIP_Port* ip_port, INetTransport* pTransport );
 
@@ -131,6 +132,13 @@ namespace nsMMOEngine
 
     ConnectResultCallback mConnectResult;
     int mSessionID_UP = INVALID_HANDLE_SESSION;
+
+  private:
+    void TransportEventHandler();
+
+    void RecvHandler( TRecvTransportEvent* pEvent );
+    void DisconnectHandler( TDisconnectTransportEvent* pEvent );
+    void ConnectFromHandler( TConnectFromTransportEvent* pEvent );
   };
 }
 

@@ -242,7 +242,6 @@ void TPopMaster::PopMap__( Map& m )
 {
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
@@ -251,7 +250,7 @@ void TPopMaster::PopMap__( Map& m )
     Pop( key );
     Value value;
     Pop( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -260,7 +259,6 @@ void TPopMaster::PopMap_Str( Map& m )
 {
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
@@ -269,7 +267,7 @@ void TPopMaster::PopMap_Str( Map& m )
     Pop( key );
     std::string value;
     PopStr( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -278,7 +276,6 @@ void TPopMaster::PopMap_Ser( Map& m )
 {
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
@@ -287,7 +284,7 @@ void TPopMaster::PopMap_Ser( Map& m )
     Pop( key );
     Value value;
     PopSer( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -298,16 +295,15 @@ void TPopMaster::PopMap_PtrSer( Map& m )
     delete vt.second;
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
   {
     Key key;
     Pop( key );
-    Value* value = NULL;
+    Value* value = nullptr;
     PopPtrSer( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -316,7 +312,6 @@ void TPopMaster::PopMapStr_( Map& m )
 {
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
@@ -325,7 +320,7 @@ void TPopMaster::PopMapStr_( Map& m )
     PopStr( key );
     Value value;
     Pop( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -334,7 +329,6 @@ void TPopMaster::PopMapStrStr( Map& m )
 {
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
@@ -343,7 +337,7 @@ void TPopMaster::PopMapStrStr( Map& m )
     PopStr( key );
     std::string value;
     PopStr( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -352,7 +346,6 @@ void TPopMaster::PopMapStrSer( Map& m )
 {
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
@@ -361,7 +354,7 @@ void TPopMaster::PopMapStrSer( Map& m )
     PopStr( key );
     Value value;
     PopSer( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -372,16 +365,15 @@ void TPopMaster::PopMapStrPtrSer( Map& m )
     delete vt.second;
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
   {
     std::string key;
     PopStr( key );
-    Value* value = NULL;
+    Value* value = nullptr;
     PopPtrSer( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -390,7 +382,6 @@ void TPopMaster::PopMapSer_( Map& m )
 {
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
@@ -399,7 +390,7 @@ void TPopMaster::PopMapSer_( Map& m )
     PopSer( key );
     Value value;
     Pop( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -408,7 +399,6 @@ void TPopMaster::PopMapSerStr( Map& m )
 {
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
@@ -417,7 +407,7 @@ void TPopMaster::PopMapSerStr( Map& m )
     PopSer( key );
     std::string value;
     PopStr( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -426,7 +416,6 @@ void TPopMaster::PopMapSerSer( Map& m )
 {
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
@@ -435,7 +424,7 @@ void TPopMaster::PopMapSerSer( Map& m )
     PopSer( key );
     Value value;
     PopSer( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------
@@ -446,16 +435,15 @@ void TPopMaster::PopMapSerPtrSer( Map& m )
     delete vt.second;
   m.clear();
 
-  typedef Map::value_type MapVT;
   int size;
   PopSize( size );
   for( int i = 0 ; i < size ; i++ )
   {
     Key key;
     PopSer( key );
-    Value* value = NULL;
+    Value* value = nullptr;
     PopPtrSer( value );
-    m.insert( MapVT(key,value) );
+    m.insert( Map::value_type(key,value) );
   }
 }
 //------------------------------------------------------------------------

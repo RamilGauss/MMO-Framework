@@ -14,7 +14,7 @@ using namespace nsMMOEngine;
 
 IScenario::IScenario()
 {
-  mCurContext = NULL;
+  mCurContext = nullptr;
 
   AddCallBack( eContextBySession, &mCBNeedContextBySession );
   AddCallBack( eEnd, &mCBEnd );

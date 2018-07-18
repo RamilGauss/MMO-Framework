@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -12,7 +12,7 @@ See for more information License.h.
 
 TThreadBoost::TThreadBoost()
 {
-  flgActive   = false;
+  flgActive = false;
   flgNeedStop = false;
 
   mTimeStart = -1;
@@ -26,11 +26,11 @@ TThreadBoost::~TThreadBoost()
 void TThreadBoost::Engine()
 {
   flgNeedStop = false;
-  flgActive   = true;
+  flgActive = true;
 
   StartEvent();
 
-  while(flgNeedStop==false)
+  while( flgNeedStop == false )
     Work();
 
   StopEvent();
@@ -40,10 +40,10 @@ void TThreadBoost::Engine()
 //----------------------------------------------------------------------------------
 void TThreadBoost::Start()
 {
-  boost::thread work_thread(boost::bind(&TThreadBoost::Engine, this));
+  boost::thread work_thread( boost::bind( &TThreadBoost::Engine, this ) );
 
-  while(IsActive()==false)
-    ht_msleep(eWaitFeedBack);
+  while( IsActive() == false )
+    ht_msleep( eWaitFeedBack );
 
   mTimeStart = ht_GetMSCount();
 }
@@ -52,8 +52,8 @@ void TThreadBoost::Stop()
 {
   flgNeedStop = true;
 
-  while(IsActive())
-    ht_msleep(eWaitFeedBack);
+  while( IsActive() )
+    ht_msleep( eWaitFeedBack );
 }
 //----------------------------------------------------------------------------------
 bool TThreadBoost::IsActive()
@@ -68,7 +68,7 @@ unsigned int TThreadBoost::GetTimeLastStart()
 //---------------------------------------------------------------------------------
 unsigned int TThreadBoost::GetTimeWork()
 {
-  if(IsActive()==false)
+  if( IsActive() == false )
     return 0;
   unsigned int now_ms = ht_GetMSCount();
   return now_ms - mTimeStart;

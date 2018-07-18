@@ -12,11 +12,11 @@ using namespace std;
 TBreakPacket::TBreakPacket( int sizeBuffer )
 {
   mSizeBuffer = sizeBuffer;
-  mBackBuffer.SetData( NULL, mSizeBuffer );
-  mFrontBuffer.SetData( NULL, mSizeBuffer );
+  mBackBuffer.Alloc( mSizeBuffer );
+  mFrontBuffer.Alloc( mSizeBuffer );
 
-  mBackOffset = 0;
-  mFrontOffset = 0;
+  mBackBuffer.Clear();
+  mFrontBuffer.Clear();
 }
 //-----------------------------------------------------------------
 TBreakPacket::TBreakPacket( const TBreakPacket& bp )
@@ -32,44 +32,23 @@ TBreakPacket& TBreakPacket::operator =( const TBreakPacket& bp )
 //-----------------------------------------------------------------
 TBreakPacket::~TBreakPacket()
 {
-
 }
 //-----------------------------------------------------------------
 void TBreakPacket::PushBack( char* p, int size )
 {
-  char* dst = mBackBuffer.GetPtr();
-  memcpy( dst + mBackOffset, p, size );
-  mBackOffset += size;
+  mBackBuffer.Append( size, p );
 }
 //-----------------------------------------------------------------
 void TBreakPacket::PushFront( char* p, int size )
 {
-  char* dst = mFrontBuffer.GetPtr();
-  int offset = mFrontBuffer.GetSize() - mFrontOffset - size;
-  memcpy( dst + offset, p, size );
-  mFrontOffset += size;
+  mFrontBuffer.Append( size, p );
 }
 //-----------------------------------------------------------------
 void TBreakPacket::Collect()
 {
-  char* src = mFrontBuffer.GetPtr();
-  int offset = mFrontBuffer.GetSize() - mFrontOffset;
   mCollect.Clear();
-  mCollect.Append( mFrontOffset, src + offset );
-
-  src = mBackBuffer.GetPtr();
-  mCollect.Append( mBackOffset, src );
-
-  //int size = mBackOffset + mFrontOffset;
-  //mCollect.SetData( NULL, size );
-  //char* dst = mCollect.GetPtr();
-
-  //char* src = mFrontBuffer.GetPtr();
-  //int offset = mFrontBuffer.GetSize() - mFrontOffset;
-  //memcpy( dst, src + offset, mFrontOffset );
-
-  //src = mBackBuffer.GetPtr();
-  //memcpy( dst + mFrontOffset, src, mBackOffset );
+  mCollect.Append( mFrontBuffer.GetSize(), mFrontBuffer.GetPtr() );
+  mCollect.Append( mBackBuffer.GetSize(), mBackBuffer.GetPtr() );
 }
 //-----------------------------------------------------------------
 void* TBreakPacket::GetCollectPtr()
@@ -79,7 +58,7 @@ void* TBreakPacket::GetCollectPtr()
 //-----------------------------------------------------------------
 int TBreakPacket::GetSize()
 {
-  return mFrontOffset + mBackOffset;
+  return mBackBuffer.GetSize() + mFrontBuffer.GetSize();
 }
 //-----------------------------------------------------------------
 void TBreakPacket::CopyInBuffer( TContainerRise& receiveBuffer, int offset )
@@ -93,23 +72,15 @@ void TBreakPacket::CopyInBuffer( TContainerRise& receiveBuffer, int offset )
 //-----------------------------------------------------------------
 void TBreakPacket::Reset()
 {
-  mBackOffset = 0;
-  mFrontOffset = 0;
+  mBackBuffer.Clear();
+  mFrontBuffer.Clear();
 }
 //-----------------------------------------------------------------
 void TBreakPacket::CopyFrom( const TBreakPacket& bp )
 {
   mSizeBuffer = bp.mSizeBuffer;
 
-  mBackOffset = bp.mBackOffset;
-  mFrontOffset = bp.mFrontOffset;
-
-  mBackBuffer.SetData( NULL, mSizeBuffer );
-  mFrontBuffer.SetData( NULL, mSizeBuffer );
-
-  memcpy( mBackBuffer.GetPtr(), bp.mBackBuffer.GetPtr(), mBackOffset );
-
-  int offset = mFrontBuffer.GetSize() - mFrontOffset;
-  memcpy( mFrontBuffer.GetPtr() + offset, bp.mFrontBuffer.GetPtr() + offset, mFrontOffset );
+  mBackBuffer.Append( bp.mBackBuffer.GetSize(), bp.mBackBuffer.GetPtr() );
+  mFrontBuffer.Append( bp.mFrontBuffer.GetSize(), bp.mFrontBuffer.GetPtr() );
 }
 //-----------------------------------------------------------------

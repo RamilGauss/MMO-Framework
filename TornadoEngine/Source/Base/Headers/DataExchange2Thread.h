@@ -147,7 +147,7 @@ template<typename TClass>
 void TDataExchange2Thread<TClass>::UnlinkData( TClass**d )
 {
   TElement* pEl = GetElement( d );
-  pEl->data = NULL;// отцепиться
+  pEl->data = nullptr;// отцепиться
 }
 //--------------------------------------------------------------------------------------
 template<typename TClass>
@@ -181,7 +181,7 @@ template<typename TClass>
 TDataExchange2Thread<TClass>::TDataExchange2Thread()// Producer/Consumer
 //:mAlloactorElement(TElement)
 {
-  mCB_DeleteData = NULL;
+  mCB_DeleteData = nullptr;
 
   pFirstConsumer = mAlloactorElement.Allocate();//(TElement);
   pFirstConsumer->Init();
@@ -204,7 +204,7 @@ template<typename TClass>
 TClass** TDataExchange2Thread<TClass>::GetFirst()// Consumer
 {
   BL_ASSERT( pFirstConsumer );
-  if( DECLARATION_ATOMIC_POINTER_LOAD( pFirstConsumer->pNext ) == NULL )
+  if( DECLARATION_ATOMIC_POINTER_LOAD( pFirstConsumer->pNext ) == nullptr )
   {
     if( DECLARATION_ATOMIC_CHAR_LOAD( pFirstConsumer->dummy ) ||
       DECLARATION_ATOMIC_CHAR_LOAD( pFirstConsumer->prepareRemove ) )
@@ -228,14 +228,15 @@ TClass** TDataExchange2Thread<TClass>::Next( TClass** d )// Consumer
 {
   TElement* pEl = GetElement( d );
   TElement* pNext = DECLARATION_ATOMIC_POINTER_LOAD( pEl->pNext );
-  if( pNext == NULL ) return NULL;
+  if( pNext == nullptr ) 
+    return nullptr;
   return &(pNext->data);
 }
 //--------------------------------------------------------------------------------------
 template<typename TClass>
 void TDataExchange2Thread<TClass>::RemoveFirst()// Consumer
 {
-  if( pFirstConsumer == NULL )
+  if( pFirstConsumer == nullptr )
   {
     BL_FIX_BUG();
     return;
@@ -253,7 +254,7 @@ void TDataExchange2Thread<TClass>::RemoveFirst()// Consumer
 template<typename TClass>
 TClass** TDataExchange2Thread<TClass>::Add( TClass* d )// Producer
 {
-  if( d == NULL ) { BL_FIX_BUG(); return NULL; }
+  if( d == nullptr ) { BL_FIX_BUG(); return nullptr; }
 
   TElement* pEl = mAlloactorElement.Allocate();// ALLOC_MEMORY(TElement);
   pEl->Init();

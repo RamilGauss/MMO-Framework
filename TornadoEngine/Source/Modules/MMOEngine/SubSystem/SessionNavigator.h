@@ -10,8 +10,10 @@ See for more information License.h.
 
 #include <map>
 #include <set>
+#include <list>
 
 #include "ShareMisc.h"
+#include <functional>
 
 namespace nsMMOEngine
 {
@@ -47,7 +49,8 @@ namespace nsMMOEngine
     std::set<TSession*>::iterator Begin();
     std::set<TSession*>::iterator End();
 
-    void Work();
+    using WorkReturnFalseCallback = std::function<void( TSession* pSession )>;
+    void Work( std::list<TSession*>& sessionListRetFalse );
 
     void Clear();
   protected:

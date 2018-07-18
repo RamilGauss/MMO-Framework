@@ -1,14 +1,13 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "TypeDef.h"
 
-#ifndef ThreadBoostH
-#define ThreadBoostH
+#pragma once
 
 class DllExport TThreadBoost
 {
@@ -18,7 +17,7 @@ class DllExport TThreadBoost
   volatile unsigned int mTimeStart;
   enum
   {
-    eWaitFeedBack = 50, // ждать пока активизируется двигатель, мс
+    eWaitFeedBack = 1, // ждать пока активизируется двигатель, мс
   };
 
 public:
@@ -35,9 +34,8 @@ protected:
   void Engine();
 protected:
   virtual void Work() = 0;
-  virtual void StartEvent(){}
-  virtual void StopEvent(){}
+  virtual void StartEvent()
+  {}
+  virtual void StopEvent()
+  {}
 };
-
-
-#endif

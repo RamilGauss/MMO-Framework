@@ -21,7 +21,7 @@ See for more information License.h.
 #include "SHA256.h"
 #include "HistoryPacketTCP.h"
 
-nsMMOEngine::INetTransport* g_pTransport = NULL;
+nsMMOEngine::INetTransport* g_pTransport = nullptr;
 
 class THandler
 {

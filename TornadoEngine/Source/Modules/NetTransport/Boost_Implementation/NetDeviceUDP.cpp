@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -17,8 +17,8 @@ See for more information License.h.
 
 using namespace boost::asio;
 
-TNetDeviceUDP::TNetDeviceUDP(boost::asio::io_service& io_service):
-mSocket(io_service)
+TNetDeviceUDP::TNetDeviceUDP( boost::asio::io_service& io_service ) :
+  mSocket( io_service )
 {
 
 }
@@ -33,54 +33,54 @@ bool TNetDeviceUDP::Open( unsigned short port, unsigned char numNetWork )
   bool res = false;
   std::string sLocalHost;
   TResolverSelf_IP_v4 resolver;
-  if( resolver.Get(sLocalHost, numNetWork)==false )
+  if( resolver.Get( sLocalHost, numNetWork ) == false )
     return false;
   try
   {
-    const ip::address_v4 ipv4_address_Local = ip::address_v4::from_string(sLocalHost);
-    const ip::address addr_Local(ipv4_address_Local);
-    ip::udp::endpoint endpoint_Local(addr_Local,port);
-    mSocket.open(endpoint_Local.protocol());
-    mSocket.bind(endpoint_Local);
+    const ip::address_v4 ipv4_address_Local = ip::address_v4::from_string( sLocalHost );
+    const ip::address addr_Local( ipv4_address_Local );
+    ip::udp::endpoint endpoint_Local( addr_Local, port );
+    mSocket.open( endpoint_Local.protocol() );
+    mSocket.bind( endpoint_Local );
 
-    mIP_Port.Set( ipv4_address_Local.to_ulong(), port); 
+    mIP_Port.Set( ipv4_address_Local.to_ulong(), port );
     res = true;
   }
-  catch(std::exception& e)
+  catch( std::exception& e )
   {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
-      WriteF_time("Open UDP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what());
+    GetLogger( STR_NAME_NET_TRANSPORT )->
+      WriteF_time( "Open UDP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what() );
   }
   return res;
 }
 //--------------------------------------------------------------------------------
 void TNetDeviceUDP::Close()
 {
-  if(mSocket.is_open()==false) return;
+  if( mSocket.is_open() == false ) return;
   try
   {
     mSocket.close();
   }
-  catch(std::exception& e)
+  catch( std::exception& e )
   {
-    GetLogger(STR_NAME_NET_TRANSPORT)->
-      WriteF_time("Close UDP FAIL: %s.\n", e.what());
+    GetLogger( STR_NAME_NET_TRANSPORT )->
+      WriteF_time( "Close UDP FAIL: %s.\n", e.what() );
   }
 }
 //--------------------------------------------------------------------------------
-bool TNetDeviceUDP::SetRecvBuffer(unsigned int size)
+bool TNetDeviceUDP::SetRecvBuffer( unsigned int size )
 {
   boost::system::error_code ec;
-  boost::asio::socket_base::receive_buffer_size option(size);
-  mSocket.set_option(option,ec);
-  return (ec==0);
+  boost::asio::socket_base::receive_buffer_size option( size );
+  mSocket.set_option( option, ec );
+  return (ec == 0);
 }
 //--------------------------------------------------------------------------------
-bool TNetDeviceUDP::SetSendBuffer(unsigned int size)
+bool TNetDeviceUDP::SetSendBuffer( unsigned int size )
 {
   boost::system::error_code ec;
-  boost::asio::socket_base::send_buffer_size option(size);
-  mSocket.set_option(option,ec);
-  return (ec==0);
+  boost::asio::socket_base::send_buffer_size option( size );
+  mSocket.set_option( option, ec );
+  return (ec == 0);
 }
 //--------------------------------------------------------------------------------

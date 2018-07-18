@@ -24,7 +24,7 @@ TNetControlAcceptor::TNetControlAcceptor( TNetTransport_Boost* pNTB, boost::asio
   INetControl( pNTB ),
   mDevice( io_service )
 {
-  pNewControlTCP = NULL;
+  pNewControlTCP = nullptr;
   flgReadyAccept = false;
 }
 //------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ void TNetControlAcceptor::AcceptEvent( const boost::system::error_code& error )
   else
   {
     delete pNewControlTCP;
-    pNewControlTCP = NULL;
+    pNewControlTCP = nullptr;
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "Acceptor AcceptEvent FAIL: %s.\n", error.message().data() );
 

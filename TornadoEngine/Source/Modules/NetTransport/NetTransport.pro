@@ -3,7 +3,7 @@ LANGUAGE = C++
 
 CONFIG += dll qt warn_on
 
-TARGET = /usr/lib/NetTransport_d
+TARGET = /usr/lib/NetTransport
 
 INCLUDEPATH = \
 . \
@@ -11,16 +11,16 @@ INCLUDEPATH = \
 ../MMOEngine/Include \
 ../../Base/Headers
 
-DEFINES += _DEBUG
 DEFINES += _USRDLL
 DEFINES += _CRT_SECURE_NO_WARNINGS
 DEFINES += MARKUP_STL
 DEFINES += USE_MATH_TOOLS
 
-LIBS += -lMMOEngine_d
-LIBS += -lBase_d
+LIBS += -lMMOEngine
+LIBS += -lBase
 
 COMPILER_FLAGS = -fPIC
+QMAKE_CXXFLAGS_RELEASE = -O3
 
 OBJECTS_DIR = ../../../Temp/Debug/NetTransport
 

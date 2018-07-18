@@ -1,16 +1,22 @@
-cd ../Source/Base
+cd ../Source/3rdParty/libuv
 qmake
 make clean
 make
 cd ../..
 ###########################################################
-cd ./Source/Modules/MMOEngine
+cd ./Base
 qmake
 make clean
 make
-cd ../../..
+cd ..
 ###########################################################
-cd ./Source/Modules/NetTransport
+cd ./Modules/MMOEngine
+qmake
+make clean
+make
+cd ..
+###########################################################
+cd ./NetTransport
 qmake
 make clean
 make

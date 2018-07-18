@@ -18,21 +18,6 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "HiTimer.h"
 
-#ifdef WIN32
-#define CHECK_LEN(buffer) \
-{ \
-  size_t len = _vscprintf( format, list )+ 1; \
-  BL_ASSERT(len<sizeof(buffer)); \
-}
-#else
-#define CHECK_LEN(buffer) \
-{ \
-  size_t len = vprintf( format, list ) + 1; \
-  if(len>=sizeof(buffer)) \
-  printf("SaveOnHDD: Warning, over limit write in buffer!!!\n"); \
-}
-#endif
-
 using namespace std;
 
 TSaveToFile::TSaveToFile( char* path )
@@ -53,14 +38,14 @@ bool TSaveToFile::ReOpen( char* path, bool append )
 {
   Close();
 
-  if( path != NULL )
+  if( path != nullptr )
     sPath = path;
 
   if( sPath.length() == 0 ) return false;
 
   const char* sMode = (append) ? "ab" : "wb";
   pFile = fopen( sPath.data(), sMode );
-  if( pFile != NULL )
+  if( pFile != nullptr )
   {
     FlushBuffer();
     return true;
@@ -75,7 +60,8 @@ bool TSaveToFile::ReOpen( char* path, bool append )
 //---------------------------------------------------------------
 void TSaveToFile::Write( void* buffer, int size )
 {
-  if( flgEnable == false ) return;
+  if( flgEnable == false )
+    return;
 
   if( pFile )
   {
@@ -87,55 +73,6 @@ void TSaveToFile::Write( void* buffer, int size )
     if( flgBuffer )
       FlushInBuffer( (char*) buffer, size );
   }
-}
-//---------------------------------------------------------------
-void TSaveToFile::WriteF( const char* format, ... )
-{
-  if( flgEnable == false ) return;
-
-  va_list list;
-  va_start( list, format );
-
-  char s[10000];
-  CHECK_LEN( s );
-  int res = vsprintf( s, format, list );
-
-  va_end( list );
-  if( res == -1 )
-  {
-    BL_MessageBug( "WriteF Error!" );
-    return;
-  }
-  // делаем то что хотели, будь то запись в файл или в консоль
-  if( flgPrintf )
-    printf( "%s", s );
-  Write( s, strlen( s ) );
-}
-//---------------------------------------------------------------
-void TSaveToFile::WriteF_time( const char* format, ... )
-{
-  if( flgEnable == false ) return;
-
-  Write_Time();
-
-  va_list list;
-  va_start( list, format );
-
-  char s[10000];
-  CHECK_LEN( s );
-  int res = vsprintf( s, format, list );
-
-  va_end( list );
-  if( res == -1 )
-  {
-    BL_MessageBug( "WriteF_time Error!" );
-    return;
-  }
-
-  // делаем то что хотели, будь то запись в файл или в консоль
-  if( flgPrintf )
-    printf( "%s", s );
-  Write( s, strlen( s ) );
 }
 //---------------------------------------------------------------
 void TSaveToFile::Write_Time()
@@ -192,6 +129,35 @@ void TSaveToFile::FlushInBuffer( char* buffer, int size )
   mListBuffer->push_back( v );
 
   BL_ASSERT( mListBuffer->size() <= eMaxNumberForBufferization );
-
+}
+//---------------------------------------------------------------
+void TSaveToFile::SetPrintf( bool val )
+{
+  flgPrintf = val;
+}// все что записывается - дублируется в вывод на консоль
+//---------------------------------------------------------------
+bool TSaveToFile::GetPrintf()
+{
+  return flgPrintf;
+}     // но только для форматированной строки
+//---------------------------------------------------------------
+void TSaveToFile::SetEnable( bool val )
+{
+  flgEnable = val;
+}// отмена применения в Write, WriteF, WriteF_time
+//---------------------------------------------------------------
+bool TSaveToFile::GetEnable()
+{
+  return flgEnable;
+}
+//---------------------------------------------------------------
+void TSaveToFile::SetBufferization( bool val )
+{
+  flgBuffer = val;
+}// буферизация, без открытого файла все складируется в памяти
+//---------------------------------------------------------------
+bool TSaveToFile::GetBufferization()
+{
+  return flgBuffer;
 }
 //---------------------------------------------------------------

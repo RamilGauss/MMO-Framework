@@ -158,6 +158,9 @@
     <ClCompile Include="Sources\lz4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\ReversedContainerRise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\AllocatorPool.h">
@@ -377,6 +380,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\MessagePackSerializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\ReversedContainerRise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

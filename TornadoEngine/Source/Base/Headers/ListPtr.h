@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -13,7 +13,7 @@ See for more information License.h.
   список указателей
   Not Thread safe
 */
-template <class TClass> 
+template <class TClass>
 class TListPtr
 {
 public:
@@ -22,13 +22,19 @@ public:
   {
     Clear();
   }
-  T* Get(){return &mList;}
-  T* operator ->(){return Get();}
+  T* Get()
+  {
+    return &mList;
+  }
+  T* operator ->()
+  {
+    return Get();
+  }
   void Clear()
   {
     typename T::iterator bit = mList.begin();
     typename T::iterator eit = mList.end();
-    while(bit!=eit)
+    while( bit != eit )
     {
       delete *bit;
       bit++;

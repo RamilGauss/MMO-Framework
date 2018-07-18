@@ -81,18 +81,20 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       //s[pR->dataSize] = '\0';
       //sEvent += " msg: ";
       //sEvent += s;
+      nsMMOEngine::TRecvFromDownEvent* pR = (nsMMOEngine::TRecvFromDownEvent*)pBE;
+      pSlave->SendDown( pR->sessionID, (char*)pR->data, pR->dataSize );
       return;
     }
     break;
     case nsMMOEngine::eRecvFromUp:
     {
       sEvent = "RecvFromUp";
-      nsMMOEngine::TRecvFromUpEvent* pR = (nsMMOEngine::TRecvFromUpEvent*)pBE;
-      char s[200];
-      memcpy( s, pR->data, pR->dataSize );
-      s[pR->dataSize] = '\0';
-      sEvent += " msg: ";
-      sEvent += s;
+      //nsMMOEngine::TRecvFromUpEvent* pR = (nsMMOEngine::TRecvFromUpEvent*)pBE;
+      //char s[200];
+      //memcpy( s, pR->data, pR->dataSize );
+      //s[pR->dataSize] = '\0';
+      //sEvent += " msg: ";
+      //sEvent += s;
     }
     break;
     case nsMMOEngine::eSaveContext:

@@ -162,8 +162,8 @@ void TPushMaster::PushSet(const Set& s)
 {
   int size = s.size();
   PushSize(size);
-  Set::iterator bit = s.begin();
-  Set::iterator eit = s.end();
+  typename Set::iterator bit = s.begin();
+  typename Set::iterator eit = s.end();
   while (bit != eit)
   {
     T t = *bit;
@@ -177,8 +177,8 @@ void TPushMaster::PushSetStr(const Set& s)
 {
   int size = s.size();
   PushSize(size);
-  Set::iterator bit = s.begin();
-  Set::iterator eit = s.end();
+  typename Set::iterator bit = s.begin();
+  typename Set::iterator eit = s.end();
   while (bit != eit)
   {
     std::string t = *bit;
@@ -192,8 +192,8 @@ void TPushMaster::PushSetSer(const Set& s)
 {
   int size = s.size();
   PushSize(size);
-  Set::iterator bit = s.begin();
-  Set::iterator eit = s.end();
+  typename Set::iterator bit = s.begin();
+  typename Set::iterator eit = s.end();
   while (bit != eit)
   {
     T t = *bit;

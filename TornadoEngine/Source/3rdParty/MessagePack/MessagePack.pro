@@ -17,7 +17,7 @@ DEFINES += _CRT_SECURE_NO_WARNINGS
 COMPILER_FLAGS         = -fPIC
 QMAKE_CXXFLAGS_RELEASE = -O3
 
-OBJECTS_DIR = ../../Temp/MessagePack
+OBJECTS_DIR = ../../../Temp/MessagePack
 
 SOURCES = \
 ./src/objectc.c \

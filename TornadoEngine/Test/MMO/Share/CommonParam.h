@@ -25,7 +25,7 @@ See for more information License.h.
 #define SERVER_QUANT_TIME 100 // мс
 
 #define CLIENT_QUANT_TIME 100 // мс
-#define STEP_LOGIN        5
+#define STEP_LOGIN        100
 
 #define ServerLog "Server"
 #define ClientLog "Client"

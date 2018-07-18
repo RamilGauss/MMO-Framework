@@ -13,6 +13,7 @@ See for more information License.h.
 #include <openssl/md5.h>
 #include <openssl/rand.h>
 #include "BL_Debug.h"
+#include "openssl/ossl_typ.h"
 
 namespace nsCryptoAES_Impl
 {
@@ -24,7 +25,7 @@ using namespace nsCryptoAES_Impl;
 
 TCryptoAES_Impl::TCryptoAES_Impl()
 {
-  mContext = (EVP_CIPHER_CTX*)new EVP_CIPHER_CTX();
+  mContext = EVP_CIPHER_CTX_new();
 
   memset( &iv[0], 0, sizeof( iv ) );
 }
@@ -33,7 +34,7 @@ TCryptoAES_Impl::~TCryptoAES_Impl()
 {
   EVP_CIPHER_CTX_cleanup( CONTEXT );
 
-  delete CONTEXT;
+  EVP_CIPHER_CTX_free( CONTEXT );
 }
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::GenerateKey( eCountBits c )

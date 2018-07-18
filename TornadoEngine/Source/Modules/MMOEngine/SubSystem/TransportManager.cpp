@@ -19,7 +19,7 @@ using namespace std;
 
 TTransportManager::TTransportManager( TSessionManager* pMS )
 {
-  mMakerTransport = NULL;
+  mMakerTransport = nullptr;
   mMngSession = pMS;
 }
 //------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ INetTransport* TTransportManager::FindBySubNet( unsigned char v )
     GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TTransportManager::FindBySubNet(%u) not found.\n", v );
     BL_FIX_BUG();
-    return NULL;
+    return nullptr;
   }
   return fit->second;
 }
@@ -54,7 +54,7 @@ INetTransport* TTransportManager::FindByReciver( TReceiverTransport* pRT )
     GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TTransportManager::FindByReciver(0x%p) not found.\n", pRT );
     BL_FIX_BUG();
-    return NULL;
+    return nullptr;
   }
   return fit->second;
 }

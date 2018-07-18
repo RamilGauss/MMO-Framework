@@ -24,21 +24,7 @@ See for more information License.h.
 #ifdef WIN32
 #include <conio.h>
 #endif
-
-//#define USE_SLEEP
-
-class TClientDesc
-{
-public:
-  typedef std::shared_ptr<nsMMOEngine::TClient> TShared_PtrClient;
-  TShared_PtrClient mClient = TShared_PtrClient( new nsMMOEngine::TClient );
-
-  // ms
-  unsigned int mIntervalSendMsg = 1000000000;
-  unsigned int mLastTimeSendMsg = ht_GetMSCount();
-
-  std::string mMsg = "Hello, from client";
-};
+#include "ClientDesc.h"
 
 void StartClients( int argc, char** argv );
 
@@ -48,9 +34,9 @@ int main( int argc, char** argv )
   {
     StartClients( argc, argv );
   }
-  catch( std::exception* e )
+  catch( ... )
   {
-    printf( "exception = %s \n", e->what() );
+    printf( "exception!!!\n" );
 #ifdef WIN32
     _getch();
 #endif
@@ -75,19 +61,25 @@ void StartClients( int argc, char** argv )
   inputCmd.Get( inputArg );
 
   TMakerNetTransport makerTransport;
-  std::vector<TClientDesc*> pArrClient;
   for( int i = 0; i < inputArg.count; i++ )
   {
-    auto pClientDesc = new TClientDesc();
-    pClientDesc->mClient->Init( &makerTransport );
     nsMMOEngine::TDescOpen descOpen;
     descOpen.port = inputArg.begin_port + i;
+    auto pClientDesc = new TClientDesc();
+    pClientDesc->mIntervalSendPing = inputArg.ping_time;
+    pClientDesc->mPort = descOpen.port;
+    pClientDesc->mClient->Init( &makerTransport );
     pClientDesc->mClient->Open( &descOpen );
     pClientDesc->mClient->SetDstObject( &handler );
     pClientDesc->mClient->SetSelfID( descOpen.port );
 
-    pArrClient.push_back( pClientDesc );
+    handler.mArrClient.push_back( pClientDesc );
+    handler.mClientDescMap.insert( THandlerMMO_Client::TPtrPtrMapVT( pClientDesc->mClient.get(), pClientDesc ) );
+
+    auto procentage = (i + 1) * 100.0f / inputArg.count;
+    printf( "\b\b\b\b\b\b\b\b\b%02.02f%%", procentage );
   }
+  printf( "\n" );
 
   auto createClientTime = ht_GetMSCount() - start;
   GetLogger( ClientLog )->WriteF( "createClientTime = %d ms\n", createClientTime );
@@ -96,48 +88,63 @@ void StartClients( int argc, char** argv )
   unsigned int masterIP = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
   int indexClientOnLogin = 0;
   TIP_Port masterIP_port( masterIP, MASTER_PORT );
+
+  start = 0;
+  unsigned int limitDeltaTime = 6000;// ms
+  int iCycle = 0;
+  bool flgNeedPrintEndLogin = true;
+
   while( true )
   {
-    unsigned int startTime = ht_GetMSCount();
+    auto now = ht_GetMSCount();
+
+    if( iCycle == 0 )// начало расчета скорости работы
+      start = now;
+
     // Login
+    std::string password = CLIENT_PASSWORD;
     int cnt = std::min( inputArg.count, indexClientOnLogin + STEP_LOGIN );
     for( int i = indexClientOnLogin; i < cnt; i++ )
     {
       char sLogin[100];
       sprintf( sLogin, "%d", inputArg.begin_id + i );
       std::string login = sLogin;
-      std::string password = CLIENT_PASSWORD;
-      pArrClient[i]->mClient->Login( masterIP_port, login, password );
+      handler.mArrClient[i]->mClient->Login( masterIP_port, login, password );
     }
     indexClientOnLogin = cnt;
 
-    // Work
-
-    for( int i = 0; i < indexClientOnLogin; i++ )
+    if( inputArg.count == indexClientOnLogin && flgNeedPrintEndLogin )
     {
-      auto pClient = pArrClient[i];
+      GetLogger( ClientLog )->WriteF( "End login ----------------------------------------------------\n" );
+      flgNeedPrintEndLogin = false;
+    }
+
+    // Work
+    for( auto pClient : handler.mArrClient )
       pClient->mClient->Work();
 
-      //if( pClient->mLastTimeSendMsg + pClient->mIntervalSendMsg > startTime )
-      //{
-      //  pClient->mClient->SendUp( (char*) pClient->mMsg.data(), pClient->mMsg.size() );
-      //  pClient->mLastTimeSendMsg = startTime;
-      //}
-    }
     handler.Work();
-    // burn rest time
-    unsigned int deltaTime = ht_GetMSCount() - startTime;
-    static int old_delta_time = -1;
-    if( (old_delta_time != deltaTime) &&
-      (deltaTime > 70) )
+
+    iCycle++;
+    auto delta = ht_GetMSCount() - start;
+    if( delta >= limitDeltaTime )
     {
-      GetLogger( ClientLog )->WriteF( "dTime=%d\n", deltaTime );
-      old_delta_time = deltaTime;
+      auto speed_ms = delta * 1.0f / iCycle;
+      if( handler.mPingCounter > 0 )
+      {
+        float meanPing = handler.mPingSumma * 1.0f / handler.mPingCounter;
+        GetLogger( ClientLog )->WriteF( "time of cycle = %f ms, mean ping(worth) = %f(%u/%u), indexClientOnLogin = %d\n", 
+          speed_ms, meanPing, handler.mWorthPing, handler.mBestPing, indexClientOnLogin );
+        handler.mWorthPing = 0;
+        handler.mBestPing = 0xFFFFFFFF;
+        handler.mPingSumma = 0;
+        handler.mPingCounter = 0;
+      }
+      else
+        GetLogger( ClientLog )->WriteF( "time of cycle = %f ms\n", speed_ms );
+
+      iCycle = 0;
     }
-#ifdef USE_SLEEP
-    if( deltaTime < CLIENT_QUANT_TIME )
-      ht_msleep( 1 );
-#endif
   }
 }
 //-----------------------------------------------------------------------

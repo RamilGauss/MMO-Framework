@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,6 +11,7 @@ See for more information License.h.
 #include "TypeDef.h"
 #include "ContainerTypes.h"
 #include "ContainerRise.h"
+#include "ReversedContainerRise.h"
 
 // Разбитый на части пакет. Например, когда нужно добавлять на каждом уровне иерархии новый заголовок.
 // РЕКОМЕНДАЦИИ по использованию:
@@ -26,24 +27,29 @@ class DllExport TBreakPacket
 {
   int mSizeBuffer;
 
-  TContainer mBackBuffer;
-  int mBackOffset;
+  //TContainer mBackBuffer;
+  TContainerRise mBackBuffer;
+  //int mBackOffset;
 
-  TContainer mFrontBuffer;
-  int mFrontOffset;
+  //TContainer mFrontBuffer;
+  TReversedContainerRise mFrontBuffer;
+  //int mFrontOffset;
 
-  //TContainer mCollect;
   TContainerRise mCollect;
 public:
-  TBreakPacket( int sizeBuffer = 0xFFFF );
-  TBreakPacket(const TBreakPacket& bp);
+  enum
+  {
+    DEFAULT_MEMORY_SIZE = 100
+  };
+  TBreakPacket( int sizeBuffer = DEFAULT_MEMORY_SIZE/*0xFFFF*/ );
+  TBreakPacket( const TBreakPacket& bp );
   virtual ~TBreakPacket();
 
   // копировать кусок памяти
-  inline void PushBack(char* p,int size);
-  inline void PushFront(char* p,int size);
+  void PushBack( char* p, int size );
+  void PushFront( char* p, int size );
 
-  inline void CopyInBuffer( TContainerRise& receiveBuffer, int offset = 0);
+  void CopyInBuffer( TContainerRise& receiveBuffer, int offset = 0 );
 
   // собрать кусочки в одно целое
   // теперь можно получить указатель на собранный пакет через GetPtr
@@ -55,9 +61,8 @@ public:
 
   TBreakPacket& operator =( const TBreakPacket& b );
 protected:
-  void CopyFrom(const TBreakPacket& bp);
+  void CopyFrom( const TBreakPacket& bp );
 };
-
 
 #endif
 

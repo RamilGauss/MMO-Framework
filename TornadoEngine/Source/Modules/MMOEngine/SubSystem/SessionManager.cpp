@@ -21,10 +21,8 @@ TSessionManager::TSessionManager()
 TSessionManager::~TSessionManager()
 {
   // сначала уничтожить сессии, важно вызвать до уничтожения Менеджера транспорта
-  lockAccessSession();
   delete mNavigateSession;
   mNavigateSession = nullptr;// не готов к приему пакетов
-  unlockAccessSession();
 
   delete mMngTransport;
 }
@@ -69,15 +67,15 @@ bool TSessionManager::StartTransport( unsigned short port, unsigned char subNet 
 //--------------------------------------------------------------------------------------------
 void TSessionManager::Work()
 {
-  lockAccessSession();
   if( mNavigateSession == nullptr )
-  {
-    unlockAccessSession();
     return;
-  }
   //===================================================================
-  mNavigateSession->Work();
-  unlockAccessSession();
+  TransportEventHandler();
+
+  mSessionListOnDelete.clear();
+  mNavigateSession->Work( mSessionListOnDelete );
+  for( auto pSession : mSessionListOnDelete )
+    mNavigateSession->Delete( pSession );
 
   if( flgNeedAnswerFromUp )// ждем ответа
   {
@@ -102,18 +100,11 @@ void TSessionManager::Work()
 //--------------------------------------------------------------------------------------------
 void TSessionManager::Send( unsigned int sessionID, TBreakPacket& bp, bool check )
 {
-  lockAccessSession();
   if( mNavigateSession == nullptr )
-  {
-    unlockAccessSession();
     return;
-  }
-  //===================================================================
   TSession* pSession = mNavigateSession->FindSessionByID( sessionID );
   if( pSession )
     Send( pSession, bp, check );
-
-  unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
 void TSessionManager::ConnectAsync( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet, ConnectResultCallback onResult )
@@ -131,10 +122,8 @@ void TSessionManager::ConnectAsync( TIP_Port& ip_port, std::string& login, std::
     return mConnectResult( INVALID_HANDLE_SESSION );
   }
 
-  lockAccessSession();
   if( mNavigateSession == nullptr )
   {
-    unlockAccessSession();
     unlockConnectUp();
     return mConnectResult( INVALID_HANDLE_SESSION );
   }
@@ -142,7 +131,6 @@ void TSessionManager::ConnectAsync( TIP_Port& ip_port, std::string& login, std::
   // соединиться с сервером (верхнее соединение)
   if( pTransport->Connect( ip_port.ip, ip_port.port ) == false )
   {
-    unlockAccessSession();
     unlockConnectUp();
     return mConnectResult( INVALID_HANDLE_SESSION );// нет такого прослушивающего порта
   }// connect to event
@@ -153,7 +141,6 @@ void TSessionManager::ConnectAsync( TIP_Port& ip_port, std::string& login, std::
     pSession = NewSession( mIP_PortUp, pTransport, true/*connect to*/ );
   else
   {
-    unlockAccessSession();
     unlockConnectUp();
     GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TSessionManager::Send(%s) sending to IP with exist session.\n", ip_port.ToString() );
@@ -163,10 +150,9 @@ void TSessionManager::ConnectAsync( TIP_Port& ip_port, std::string& login, std::
   mSessionID_UP = pSession->GetID();
   pSession->SetLogin( login );
   pSession->SetPassword( password );
-  pSession->SetState( TSession::eWaitKeyAES );
+  pSession->SetState( TSession::StateWaitKeyAES );
   pSession->SendLogin();
 
-  unlockAccessSession();
   unlockConnectUp();
   // waiting recv...
 }
@@ -174,18 +160,12 @@ void TSessionManager::ConnectAsync( TIP_Port& ip_port, std::string& login, std::
 unsigned int TSessionManager::GetSessionID( unsigned int ip, unsigned short port )
 {
   unsigned int id = INVALID_HANDLE_SESSION;
-  lockAccessSession();
   if( mNavigateSession == nullptr )
-  {
-    unlockAccessSession();
     return id;
-  }
-  //===================================================================
   TIP_Port ip_port( ip, port );
   TSession* pSession = mNavigateSession->FindSessionByIP( ip_port );
   if( pSession )
     id = pSession->GetID();
-  unlockAccessSession();
   return id;
 }
 //--------------------------------------------------------------------------------------------
@@ -194,46 +174,42 @@ void TSessionManager::CloseSession( unsigned int ID_Session )
   if( ID_Session == INVALID_HANDLE_SESSION )
     return;
 
-  lockAccessSession();
   if( mNavigateSession == nullptr )
-  {
-    unlockAccessSession();
     return;
-  }
-  //===================================================================
   TSession* pSession = mNavigateSession->FindSessionByID( ID_Session );
   if( pSession )
-  {
-    TIP_Port ip_port;
-    pSession->GetInfo( ip_port );
     mNavigateSession->Delete( pSession );
-  }
-  unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
-void TSessionManager::Recv( INetTransport::TDescRecv* pDescRecv, INetTransport* pTransport )
+void TSessionManager::Recv( INetTransport::TDescRecv* pDescRecv )
 {
-  lockAccessSession();
+  auto transportEvent = new TRecvTransportEvent();
+  transportEvent->ip_port = pDescRecv->ip_port;
+  transportEvent->typeRecv = pDescRecv->type;
+  transportEvent->data.SetData( pDescRecv->data, pDescRecv->dataSize );
+  mTransportEventList.Add( transportEvent );
+}
+//--------------------------------------------------------------------------------------------
+void TSessionManager::RecvHandler( TRecvTransportEvent* pEvent )
+{
   if( mNavigateSession == nullptr )
-  {
-    unlockAccessSession();
     return;
-  }
   //===================================================================
   // данные, пришедшие от сессии содержат заголовок, учесть при формировании
-  auto pHeader = (TSession::THeader*)pDescRecv->data;
+  auto pHeader = (TSession::THeader*)pEvent->data.GetPtr();
   // определить новая сессия или нет
-  TSession* pSession = mNavigateSession->FindSessionByIP( pDescRecv->ip_port );
+  TSession* pSession = mNavigateSession->FindSessionByIP( pEvent->ip_port );
   if( pSession == nullptr )
-  {
-    unlockAccessSession();
     return;
-  }
-  unsigned int id = pSession->GetID();
-  //-----------------------------------------------
+
   TDescRecvSession descRecvSession;
-  *((INetTransport::TDescRecv*)&descRecvSession) = *pDescRecv;
-  descRecvSession.sessionID = id;
+  descRecvSession.c        = pEvent->data;// данные пакета
+  descRecvSession.data     = descRecvSession.c.GetPtr();
+  descRecvSession.dataSize = descRecvSession.c.GetSize();
+
+  descRecvSession.ip_port   = pEvent->ip_port;
+  descRecvSession.type      = pEvent->typeRecv;
+  descRecvSession.sessionID = pSession->GetID();
   // данные, пришедшие от сессии содержат заголовок, учесть при формировании
   switch( pHeader->type )
   {
@@ -257,37 +233,45 @@ void TSessionManager::Recv( INetTransport::TDescRecv* pDescRecv, INetTransport* 
       FixHack( "Undefined type packet" );
     }
   }
-  unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
 void TSessionManager::Disconnect( TIP_Port* ip_port )
 {
-  lockAccessSession();
+  auto disconnectEvent = new TDisconnectTransportEvent();
+  disconnectEvent->ip_port = *ip_port;
+  mTransportEventList.Add( disconnectEvent );
+}
+//--------------------------------------------------------------------------------------------
+void TSessionManager::DisconnectHandler( TDisconnectTransportEvent* pEvent )
+{
   if( mNavigateSession == nullptr )
-  {
-    unlockAccessSession();
     return;
-  }
-  //===================================================================
 
-  TSession* pSession = mNavigateSession->FindSessionByIP( *ip_port );
+  TSession* pSession = mNavigateSession->FindSessionByIP( pEvent->ip_port );
   if( pSession )
   {
     unsigned int id = pSession->GetID();
     mCallBackDiconnect.Notify( id );
     mNavigateSession->Delete( pSession );
   }
-  unlockAccessSession();
 }
 //--------------------------------------------------------------------------------------------
 void TSessionManager::ConnectFrom( TIP_Port* ip_port, INetTransport* pTransport )
 {
-  NewSession( *ip_port, pTransport, false );
+  auto connectFromEvent = new TConnectFromTransportEvent();
+  connectFromEvent->ip_port = *ip_port;
+  connectFromEvent->pTransport = pTransport;
+  mTransportEventList.Add( connectFromEvent );
+}
+//-------------------------------------------------------------------------------------------
+void TSessionManager::ConnectFromHandler( TConnectFromTransportEvent* pEvent )
+{
+  NewSession( pEvent->ip_port, pEvent->pTransport, false );
 }
 //--------------------------------------------------------------------------------------------
 TSession* TSessionManager::NewSession( TIP_Port& ip_port, INetTransport* pTransport, bool connectTo_elseFrom )
 {
-  auto state = connectTo_elseFrom ? TSession::eConnectTo : TSession::eConnectFrom;
+  auto state = connectTo_elseFrom ? TSession::StateWaitConnectTo : TSession::StateWaitLogin;
 
   mLastID_Session++;// нет проверки на совпадение, unsigned int 4 млрд - слишком много
   TSession* pSession = new TSession( state, mTimeLiveSession );
@@ -301,15 +285,10 @@ TSession* TSessionManager::NewSession( TIP_Port& ip_port, INetTransport* pTransp
 //--------------------------------------------------------------------------------------------
 bool TSessionManager::IsExist( unsigned int ID_Session )
 {
-  lockAccessSession();
   if( mNavigateSession == nullptr )
-  {
-    unlockAccessSession();
     return false;
-  }
   //===================================================================
   TSession* pSession = mNavigateSession->FindSessionByID( ID_Session );
-  unlockAccessSession();
   return (pSession != nullptr);
 }
 //--------------------------------------------------------------------------------------------
@@ -321,12 +300,8 @@ void TSessionManager::SetTimeLiveSession( unsigned int time_ms )
 bool TSessionManager::GetInfo( unsigned int ID_Session, TIP_Port& ip_port_out )
 {
   bool res = false;
-  lockAccessSession();
   if( mNavigateSession == nullptr )
-  {
-    unlockAccessSession();
     return false;
-  }
   //===================================================================
   TSession* pSession = mNavigateSession->FindSessionByID( ID_Session );
   if( pSession )
@@ -334,7 +309,6 @@ bool TSessionManager::GetInfo( unsigned int ID_Session, TIP_Port& ip_port_out )
     res = true;
     pSession->GetInfo( ip_port_out );
   }
-  unlockAccessSession();
   return res;
 }
 //-------------------------------------------------------------------------
@@ -371,8 +345,6 @@ void TSessionManager::RecvData( TDescRecvSession& descRecvSession, TSession* pSe
     descRecvSession.dataSize = c_decrypt.GetSize();
   }
   mCallBackRecv.Notify( &descRecvSession );
-
-  pSession->UpdateLastTime();// уведомить сессию о приеме
 }
 //-------------------------------------------------------------------------
 void TSessionManager::RecvLogin( TDescRecvSession& descRecvSession, TSession* pSession )
@@ -382,6 +354,7 @@ void TSessionManager::RecvLogin( TDescRecvSession& descRecvSession, TSession* pS
 
   // запомнить хэш логина
   pSession->SetLoginHash( loginHash, loginHashSize );
+  pSession->SetState( TSession::StateWaitDeveloper );
 
   TTryConnectDown tryConnectDown;
   tryConnectDown.loginHash.SetData( loginHash, loginHashSize );
@@ -396,7 +369,7 @@ void TSessionManager::RecvKeyAES( TDescRecvSession& descRecvSession, TSession* p
 
   if( pSession->RecvKeyAES( pKey, keySize ) )
   {
-    pSession->SetState( TSession::eWork );
+    pSession->SetState( TSession::StateWork );
     pSession->SendIDconfirmation();
   }
   else
@@ -413,7 +386,7 @@ void TSessionManager::RecvIDconfirmation( TDescRecvSession& descRecvSession, TSe
   int confirmSize = descRecvSession.dataSize - sizeof( TSession::THeader );
 
   if( pSession->RecvIDconfirmation( pConfirm, confirmSize ) )
-    pSession->SetState( TSession::eWork );
+    pSession->SetState( TSession::StateWork );
   else
     CloseSession( pSession->GetID() );
 }
@@ -443,29 +416,49 @@ void TSessionManager::Send( TSession* pSession, TBreakPacket& bp, bool check )
 //-------------------------------------------------------------------------
 void TSessionManager::Accept( unsigned int sessionID, std::string& password )
 {
-  lockAccessSession();
   if( mNavigateSession == nullptr )
   {
-    unlockAccessSession();
     BL_FIX_BUG();
     return;
   }
   TSession* pSession = mNavigateSession->FindSessionByID( sessionID );
   if( pSession == nullptr )
   {
-    unlockAccessSession();
     BL_FIX_BUG();
     return;
   }
 
   pSession->SetPassword( password );
-  pSession->SetState( TSession::eWork );
+  pSession->SetState( TSession::StateWaitConfirmation );
   pSession->SendKeyAES();
-  unlockAccessSession();
 }
 //-------------------------------------------------------------------------
 void TSessionManager::Reject( unsigned int sessionID )
 {
   CloseSession( sessionID );
+}
+//-------------------------------------------------------------------------
+void TSessionManager::TransportEventHandler()
+{
+  auto ppFirst = mTransportEventList.GetFirst();
+  while( ppFirst )
+  {
+    auto pFirst = *ppFirst;
+    switch( pFirst->type )
+    {
+      case TBaseTransportEvent::Recv:
+        RecvHandler( (TRecvTransportEvent*)pFirst );
+        break;
+      case TBaseTransportEvent::Disconnect:
+        DisconnectHandler( (TDisconnectTransportEvent*) pFirst );
+        break;
+      case TBaseTransportEvent::ConnectFrom:
+        ConnectFromHandler( (TConnectFromTransportEvent*) pFirst );
+        break;
+    }
+
+    mTransportEventList.RemoveFirst();
+    ppFirst = mTransportEventList.GetFirst();
+  }
 }
 //-------------------------------------------------------------------------

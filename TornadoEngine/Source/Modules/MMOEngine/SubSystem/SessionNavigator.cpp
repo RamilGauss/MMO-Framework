@@ -45,7 +45,7 @@ void TSessionNavigator::Delete( TSession* pSession )
 //--------------------------------------------------------------
 TSession* TSessionNavigator::FindSessionByIP( TIP_Port& ip_port )
 {
-  TSession* pSession = NULL;
+  TSession* pSession = nullptr;
   TMapIP_PtrIt fit = mMapIP_Session.find( ip_port );
   if( fit != mMapIP_Session.end() )
     pSession = fit->second;
@@ -54,7 +54,7 @@ TSession* TSessionNavigator::FindSessionByIP( TIP_Port& ip_port )
 //--------------------------------------------------------------
 TSession* TSessionNavigator::FindSessionByID( unsigned int id )
 {
-  TSession* pSession = NULL;
+  TSession* pSession = nullptr;
   TMapUintPtrIt fit = mMapID_Session.find( id );
   if( fit != mMapID_Session.end() )
     pSession = fit->second;
@@ -76,10 +76,11 @@ set<TSession*>::iterator TSessionNavigator::End()
   return mSetSession.end();
 }
 //--------------------------------------------------------------
-void TSessionNavigator::Work()
+void TSessionNavigator::Work( std::list<TSession*>& sessionListRetFalse )
 {
   for( TSession* pSession : mSetSession )
-    pSession->Work();
+    if( pSession->Work() == false )
+      sessionListRetFalse.push_back( pSession );
 }
 //--------------------------------------------------------------
 void TSessionNavigator::Clear()

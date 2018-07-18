@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ContainerRiseH
-#define ContainerRiseH
+#pragma once
 
 #include "ContainerTypes.h"
 #include "TypeDef.h"
@@ -20,19 +19,16 @@ public:
   TContainerRise( const TContainerRise& c );
   TContainerRise& operator = ( const TContainerRise& c );
 
-  inline void Clear();
+  void Clear();
   // offset > 0
-  inline void Shift( int offset );
+  void Shift( int offset );
   // size > 0,  p != nullptr
   // добавит к размеру и скопирует внутрь
-  inline void Append( int size, char* p );
+  void Append( int size, char* p );
 
-  inline char* GetPtr();
-  inline int GetSize();
+  char* GetPtr() const;
+  int GetSize() const;
 
-  inline void Alloc( int new_size );  // не копирует 
-  inline void Realloc( int new_size );// копирует старый кусок
+  void Alloc( int new_size );  // не копирует 
+  void Realloc( int new_size );// копирует старый кусок
 };
-
-
-#endif

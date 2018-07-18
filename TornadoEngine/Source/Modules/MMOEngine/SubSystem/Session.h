@@ -28,20 +28,31 @@ namespace nsMMOEngine
       eData = 'd',// обмен данными
       eEcho = 'e',// эхо для проверки соединения на физические разрывы
     };
+    enum Wait
+    {
+      TimeWaitConnectTo    = 100000,
+      TimeWaitLogin        = 100000,
+      TimeWaitDeveloper    = 100000,
+      TimeWaitConfirmation = 100000,
+      TimeWaitKeyAES       = 100000,
+    };
   public:
     enum State
     {
-      eConnectTo,       // ждем окончания соединения к кому-то (в данной реализации транспорта этот этап длится несколько мкс)
-      eConnectFrom,     // ждем вызова Accept или Reject - принимает ли сервер входящий запрос на соединение
-      eWaitKeyAES,      // ждем ключ
-      eWaitConirmation, // ждем подтверждения от клиента, что он нас понял
-      eWork,            // обмен данными
+      StateWaitConnectTo,   // ждем окончания соединения к кому-то (в данной реализации транспорта этот этап длится несколько мкс)
+      StateWaitLogin,       // 
+      StateWaitDeveloper,   // ждем вызова Accept или Reject - принимает ли сервер входящий запрос на соединение
+      StateWaitKeyAES,      // ждем ключ
+      StateWaitConfirmation,// ждем подтверждения от клиента, что он нас понял
+      StateWork,            // обмен данными
     };
   private:
     unsigned int mTimeLive;// мс
     unsigned int mID;
     TIP_Port mIP_Port;
-    unsigned int mLastTimeActive;
+    
+    volatile unsigned int mLastTimeActive;
+
     INetTransport* mTransport;
 
     TBreakPacket mBP;
@@ -84,22 +95,14 @@ namespace nsMMOEngine
     TContainerRise mRecvDataContainer;
 
   public:
-    enum Wait
-    {
-      WaitConnectFrom  = 400000,
-      WaitConfirmation = 400000,
-      WaitKeyAES       = 400000,
-    };
-
     TSession( State state, unsigned int time_live_ms );
     ~TSession();
 
-    void Work();
+    bool Work();
     void Send( TBreakPacket& bp, bool check = true );
     void SetTransport( INetTransport* pTransport );
     void GetInfo( TIP_Port& pDesc );
     void SetInfo( TIP_Port& pDesc );
-    void UpdateLastTime();
 
     bool RecvData( void* data, int dataSize, TContainerPtr& result );
     bool RecvKeyAES( void* pKey, int keySize );
@@ -119,9 +122,9 @@ namespace nsMMOEngine
 
     void SetKeyAES( void* p, int size );
 
+    void RefreshLastTime();
   protected:
     void SendEcho();
-    void RefreshLastTime();
     void SendData( char type, TBreakPacket& bp, bool check = true );
 
     void SetLogin( std::string& login );

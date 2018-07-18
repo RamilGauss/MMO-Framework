@@ -15,18 +15,15 @@ See for more information License.h.
 #include "Logger.h"
 #include "EnumMMO.h"
 
-using namespace std;
-
 THandlerMMO_Client::THandlerMMO_Client() : THandlerMMO( eClient )
-{
-}
+{}
 //-----------------------------------------------------------------------------------
 void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
 {
   nsMMOEngine::TBaseEvent* pBE = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
   nsMMOEngine::TClient* pClient = (nsMMOEngine::TClient*)pEvent->ptr_object;
 
-  string sEvent;
+  std::string sEvent;
   switch( pBE->mType )
   {
     case nsMMOEngine::eTryConnectDown:
@@ -50,11 +47,14 @@ void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
     {
       sEvent = "RecvFromUp";
       nsMMOEngine::TRecvFromUpEvent* pR = (nsMMOEngine::TRecvFromUpEvent*)pBE;
-      char s[200];
-      memcpy( s, pR->data, pR->dataSize );
-      s[pR->dataSize] = '\0';
-      sEvent += " msg: ";
-      sEvent += s;
+      int index = std::atoi( (const char*) pR->data );
+      auto desc = mArrClient[index];
+      desc->RecvPong();
+
+      mPingSumma += desc->mLastIntervalPingPongTime;
+      mPingCounter++;
+      mWorthPing = std::max( desc->mLastIntervalPingPongTime, mWorthPing );
+      mBestPing = std::min( desc->mLastIntervalPingPongTime, mBestPing );
     }
     break;
     case nsMMOEngine::eResultLogin:
@@ -64,7 +64,8 @@ void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       if( pRes->res == nsMMOEngine::TMaster::eAccept )
       {
         sEvent += " Accept ";
-        //IncreaseConnectUpCount();
+
+        mClientDescMap[pClient]->flgNeedSendPing = true;
       }
       else
         sEvent += " Reject ";
@@ -85,5 +86,18 @@ void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
 
   if( pBE->mType == nsMMOEngine::eError )
     GetLogger( ClientLog )->WriteF( "MMOEngine: %s.\t\n", sEvent.data() );
+}
+//---------------------------------------------------------------------------------------------
+void THandlerMMO_Client::WorkInherit()
+{
+  for( int i = 0; i < mArrClient.size(); i++ )
+  {
+    auto descClient = mArrClient[i];
+    if( descClient->flgNeedSendPing )
+    {
+      descClient->SendPing( i );
+      continue;
+    }
+  }
 }
 //---------------------------------------------------------------------------------------------

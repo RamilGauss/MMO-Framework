@@ -73,18 +73,18 @@ void THandlerMMO_Master::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
     case nsMMOEngine::eRecvFromDown:
     {
       sEvent = "RecvFromDown";
-      nsMMOEngine::TRecvFromDownEvent* pR = (nsMMOEngine::TRecvFromDownEvent*)pBE;
-      char s[200];
-      memcpy( s, pR->data, pR->dataSize );
-      s[pR->dataSize] = '\0';
-      sEvent += " msg: ";
-      sEvent += s;
-      // получили пакет от Slave с id_client
-      std::list<unsigned int> l_id;
-      l_id.push_front( boost::lexical_cast<int>(s) );
-      char* sMsgFromMaster = "Master say hello!";
-      int sizeMsg = strlen( sMsgFromMaster );
-      pMaster->SendByClientKey( l_id, sMsgFromMaster, sizeMsg );
+      //nsMMOEngine::TRecvFromDownEvent* pR = (nsMMOEngine::TRecvFromDownEvent*)pBE;
+      //char s[200];
+      //memcpy( s, pR->data, pR->dataSize );
+      //s[pR->dataSize] = '\0';
+      //sEvent += " msg: ";
+      //sEvent += s;
+      //// получили пакет от Slave с id_client
+      //std::list<unsigned int> l_id;
+      //l_id.push_front( boost::lexical_cast<int>(s) );
+      //char* sMsgFromMaster = "Master say hello!";
+      //int sizeMsg = strlen( sMsgFromMaster );
+      //pMaster->SendByClientKey( l_id, sMsgFromMaster, sizeMsg );
     }
     break;
     case nsMMOEngine::eRecvFromUp:
