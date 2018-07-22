@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineBaseScRecommutationClientStructH
-#define MMOEngineBaseScRecommutationClientStructH
+#pragma once
 
 #include <time.h>
 
@@ -19,26 +18,6 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  //struct TDescRequestConnectForRecipient
-  //{
-  //  unsigned int key;
-  //  unsigned int random_num;
-  //  unsigned int sessionID;
-  //  TDescRequestConnectForRecipient()
-  //  {
-  //    key        = 0;
-  //    random_num = 0;
-  //    sessionID = 0;
-  //  }
-  //  void Generate()
-  //  {
-  //    srand( (unsigned)time( NULL ) );
-  //    short* pShort = (short*)&random_num;
-  //    pShort[0] = rand();
-  //    pShort[1] = rand();
-  //  }
-  //}_PACKED;
-
   namespace nsRecommutationClientStruct
   {
     enum
@@ -70,7 +49,7 @@ namespace nsMMOEngine
     {
       THeader();
       unsigned char from;
-      unsigned int  id_client;
+      unsigned int  clientID;
     }_PACKED;
     //-------------------------------------------------
     struct THeaderC  : public THeader{ THeaderC (){from=eClient;}}_PACKED;
@@ -155,6 +134,4 @@ namespace nsMMOEngine
 
 #ifdef WIN32
 #pragma pack(pop)
-#endif
-
 #endif

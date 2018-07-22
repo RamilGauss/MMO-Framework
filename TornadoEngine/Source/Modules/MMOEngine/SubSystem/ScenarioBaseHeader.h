@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineScenarioBaseHeaderH
-#define MMOEngineScenarioBaseHeaderH
+#pragma once
 
 #include "TypeDef.h"
 
@@ -24,5 +23,3 @@ namespace nsMMOEngine
 #pragma pack(pop)
 #endif
 }
-
-#endif

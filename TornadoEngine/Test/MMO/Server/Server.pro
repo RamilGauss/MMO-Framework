@@ -31,6 +31,7 @@ mainServer.cpp \
 HandlerMMO_Master.cpp \
 HandlerMMO_Slave.cpp \
 HandlerMMO_SuperServer.cpp \
+InputCmdTestMMO_Server.cpp \
 ../Share/CommonParam.cpp \
 ../Share/HandlerMMO.cpp
 
@@ -38,5 +39,6 @@ HEADERS = \
 HandlerMMO_Master.h \
 HandlerMMO_Slave.h \
 HandlerMMO_SuperServer.h \
+InputCmdTestMMO_Server.h \
 ../Share/CommonParam.h \
 ../Share/HandlerMMO.h

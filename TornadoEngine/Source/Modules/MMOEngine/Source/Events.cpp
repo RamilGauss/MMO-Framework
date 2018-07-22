@@ -10,13 +10,6 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
-TRecvEvent::TRecvEvent()
-{
-  sessionID = INVALID_HANDLE_SESSION;
-  data = nullptr;
-  dataSize = 0;
-}
-//-------------------------------------------------------------
 TRecvFromDownEvent::TRecvFromDownEvent()
 {
   mType = eRecvFromDown;

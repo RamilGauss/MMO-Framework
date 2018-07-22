@@ -24,7 +24,7 @@ THandlerMMO_Slave::THandlerMMO_Slave() : THandlerMMO( eSlave )
 void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
 {
   nsMMOEngine::TBaseEvent* pBE = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
-  nsMMOEngine::TSlave* pSlave = (nsMMOEngine::TSlave*)pEvent->ptr_object;
+  nsMMOEngine::TSlave* pSlave = (nsMMOEngine::TSlave*)pEvent->pSrc;
 
   string sEvent;
   switch( pBE->mType )

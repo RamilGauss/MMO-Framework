@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineEventsH
-#define MMOEngineEventsH
+#pragma once
 
 #include "BaseEvent.h"
 #include "Master.h"
@@ -21,10 +20,9 @@ namespace nsMMOEngine
 
   struct DllExport TRecvEvent : public TBaseEvent
   {
-    TRecvEvent();
-    unsigned int sessionID;
-    void* data;
-    int dataSize;
+    unsigned int sessionID = INVALID_HANDLE_SESSION;
+    void* data = nullptr;
+    int dataSize = 0;
   }_PACKED;
   //-------------------------------------------------------------
   struct DllExport TRecvFromDownEvent : public TRecvEvent
@@ -133,4 +131,3 @@ namespace nsMMOEngine
 #endif
 
 }
-#endif

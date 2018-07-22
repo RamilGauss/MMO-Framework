@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CONTEXT_SC_DISCONECT_CLIENT_H
-#define CONTEXT_SC_DISCONECT_CLIENT_H
+#pragma once
 
 #include "IScenarioContext.h"
 #include "BreakPacket.h"
@@ -26,4 +25,3 @@ namespace nsMMOEngine
   private:
   };
 }
-#endif

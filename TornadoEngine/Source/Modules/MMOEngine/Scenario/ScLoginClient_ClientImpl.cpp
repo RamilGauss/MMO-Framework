@@ -96,7 +96,6 @@ void TScLoginClient_ClientImpl::TryLoginAfterConnect( int sessionID )
   }
 
   auto login = Context()->GetLogin();
-  auto password = Context()->GetPassword();
   // контейнер для всего пакета
   mBP.Reset();
   // иначе просто отправить данные:
@@ -165,11 +164,11 @@ void TScLoginClient_ClientImpl::ResultLoginM2C( TDescRecvSession* pDesc )
       Context()->SetCurrentStateWait( TContextScLoginClient::ClientWaitSlaveInfo );
 
       // сохранить свой ключ и данные авторизации
-      Context()->SetClientKey( pH->id_client );
+      Context()->SetClientKey( pH->clientID );
       char* p = ((char*) (pH)) + sizeof( THeaderResultLoginM2C );
       int size = pH->sizeResClient;
       Context()->SaveAcceptData( p, size );
-      EventSetClientKey( pH->id_client );
+      EventSetClientKey( pH->clientID );
     }
     break;
     case THeaderResultLoginM2C::eReject:
@@ -193,8 +192,8 @@ void TScLoginClient_ClientImpl::ResultLoginM2C( TDescRecvSession* pDesc )
       // обновить время таймера
       Context()->SetCurrentStateWait( TContextScLoginClient::ClientWaitInQueue );
 
-      Context()->SetClientKey( pH->id_client );
-      EventSetClientKey( pH->id_client );
+      Context()->SetClientKey( pH->clientID );
+      EventSetClientKey( pH->clientID );
 
       Context()->SetNumInQueue( pH->numInQueue );
 
@@ -215,13 +214,13 @@ void TScLoginClient_ClientImpl::InfoSlaveM2C( TDescRecvSession* pDesc )
   Context()->SetSlaveIP_Port( pInfoSlave->ip_port_slave );
   // чисто для отладки, что бы удостовериться что назначили
   // в будущем можно будет удалить
-  Context()->SetClientKey( pInfoSlave->id_client );
-  EventSetClientKey( pInfoSlave->id_client );
+  Context()->SetClientKey( pInfoSlave->clientID );
+  EventSetClientKey( pInfoSlave->clientID );
 
   // формируем пакет для Master
   mBP.Reset();
   THeaderCheckInfoSlaveC2M h;
-  h.id_client = Context()->GetClientKey();// равнозначно - pInfoSlave->id_client;
+  h.clientID = Context()->GetClientKey();// равнозначно - pInfoSlave->id_client;
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionClientMaster(), mBP );
@@ -294,7 +293,7 @@ void TScLoginClient_ClientImpl::ConnectAfterDisconnect( int sessionID )
   mBP.Reset();
   THeaderConnectToSlaveC2S h;
   // для Slave отдать свой ID, он по нему нас зарегистрирует  
-  h.id_client = Context()->GetClientKey();
+  h.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( sessionID, mBP, true );
 

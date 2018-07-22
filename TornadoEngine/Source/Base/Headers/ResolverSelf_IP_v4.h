@@ -22,11 +22,13 @@ class DllExport TResolverSelf_IP_v4
 
   typedef std::vector<TDescHost> TVectorDesc;
 
-  TVectorDesc mVecDesc;
+  static inline TVectorDesc* mVecDesc = nullptr;
 public:
   TResolverSelf_IP_v4();
 
   int GetCount();
   bool Get( std::string& sIP, int numNetWork = 0 );
   bool Get( unsigned int& numIP, int numNetWork = 0 );
+private:
+  static void InitVecDesc();
 };

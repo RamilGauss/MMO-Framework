@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CONTAINER_CONTEXT_SC_H
-#define CONTAINER_CONTEXT_SC_H
+#pragma once
 
 #include "ScContextManager.h"
 #include <list>
@@ -27,10 +26,10 @@ namespace nsMMOEngine
   {
     typedef std::list<IScenarioContext*> TListPtr;
     TListPtr mListContext;
-  
-    unsigned int mID_Session;
+
+    unsigned int mSessionID;
   protected:
-    TScContextManager* mManagerContextSc;
+    TScContextManager * mManagerContextSc;
   public:
     TContextScDisconnectClient    mDisClient;
     TContextScFlow                mFlow;
@@ -43,17 +42,16 @@ namespace nsMMOEngine
 
     TContainerContextSc();
 
-    void SetMCSc(TScContextManager* pMCSc);
+    void SetMCSc( TScContextManager* pMCSc );
     TScContextManager* GetMCSc();
 
-    void SetSessionID(unsigned int sessionID);
+    void SetSessionID( unsigned int sessionID );
     unsigned int GetSessionID();
-    void SetMS(TSessionManager* pMS);
-    void SetSE(TSrcEvent* pSE);
-    void SetUserPtr(void* p);
+    void SetMS( TSessionManager* pMS );
+    void SetSE( TSrcEvent* pSE );
+    void SetUserPtr( void* p );
 
     bool IsRcmActive();
     bool IsLoginClientActive();
   };
-}  
-#endif
+}

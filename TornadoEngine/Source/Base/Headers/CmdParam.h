@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CMD_PARAM_H
-#define CMD_PARAM_H
+#pragma once
 
 #include <map>
 #include <string>
@@ -17,7 +16,7 @@ See for more information License.h.
 
 class DllExport TCmdParam
 {
-  typedef std::multimap<std::string,std::string> TMultiMapStrStr;
+  typedef std::multimap<std::string, std::string> TMultiMapStrStr;
   typedef TMultiMapStrStr::iterator TMultiMapStrStrIt;
 
   typedef std::set<std::string> TSetStr;
@@ -30,19 +29,16 @@ public:
   TCmdParam();
   virtual ~TCmdParam();
   // задать список возможных ключей
-  void SetDefKey(std::vector<std::string>& vecKey);
+  void SetDefKey( std::vector<std::string>& vecKey );
   // вставка элементов командной строки, парсинг по заданным ключам
-  void SetArg(std::vector<std::string>& vecArgv);
+  void SetArg( std::vector<std::string>& vecArgv );
   // есть ли такой ключ?
-  bool IsKey(std::string& sKey);
+  bool IsKey( std::string& sKey );
   // определить кол-во значений, идущих после ключа в списке аргументов 
   // до следующего ключа или до окончания списка
-  int  GetCountValueByKey(std::string& sKey);
+  int  GetCountValueByKey( std::string& sKey );
   // получить строку по ключу
-  bool GetByKey(std::string& sKey, int index, std::string& sOut);
+  bool GetByKey( std::string& sKey, int index, std::string& sOut );
 protected:
   bool FindInDefKey( std::string& sKey );
 };
-
-
-#endif

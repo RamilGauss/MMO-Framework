@@ -12,7 +12,7 @@ using namespace nsMMOEngine;
 //------------------------------------------------------------
 TContainerContextSc::TContainerContextSc()
 {
-  mManagerContextSc = NULL;
+  mManagerContextSc = nullptr;
 
   mListContext.push_back( &mDisClient );
   mListContext.push_back( &mFlow );
@@ -23,19 +23,19 @@ TContainerContextSc::TContainerContextSc()
   mListContext.push_back( &mSynchroSlave );
   mListContext.push_back( &mSendToClient );
 
-  mID_Session = 0;
+  mSessionID = 0;
 }
 //------------------------------------------------------------
 void TContainerContextSc::SetSessionID( unsigned int sessionID )
 {
-  mID_Session = sessionID;
+  mSessionID = sessionID;
   for( auto p : mListContext )
     p->SetSessionID( sessionID );
 }
 //------------------------------------------------------------
 unsigned int TContainerContextSc::GetSessionID()
 {
-  return mID_Session;
+  return mSessionID;
 }
 //------------------------------------------------------------
 void TContainerContextSc::SetMCSc( TScContextManager* pMCSc )

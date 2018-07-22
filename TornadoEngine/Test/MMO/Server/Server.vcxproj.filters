@@ -29,6 +29,9 @@
     <ClCompile Include="..\Share\CommonParam.cpp">
       <Filter>Share</Filter>
     </ClCompile>
+    <ClCompile Include="InputCmdTestMMO_Server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HandlerMMO_Master.h">
@@ -45,6 +48,9 @@
     </ClInclude>
     <ClInclude Include="..\Share\HandlerMMO.h">
       <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="InputCmdTestMMO_Server.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

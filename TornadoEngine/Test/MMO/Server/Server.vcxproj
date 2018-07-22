@@ -196,6 +196,7 @@
     <ClCompile Include="HandlerMMO_Master.cpp" />
     <ClCompile Include="HandlerMMO_Slave.cpp" />
     <ClCompile Include="HandlerMMO_SuperServer.cpp" />
+    <ClCompile Include="InputCmdTestMMO_Server.cpp" />
     <ClCompile Include="mainServer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +205,7 @@
     <ClInclude Include="HandlerMMO_Master.h" />
     <ClInclude Include="HandlerMMO_Slave.h" />
     <ClInclude Include="HandlerMMO_SuperServer.h" />
+    <ClInclude Include="InputCmdTestMMO_Server.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Source\Base\Base.vcxproj">

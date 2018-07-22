@@ -14,7 +14,7 @@ using namespace nsRecommutationClientStruct;
 THeader::THeader()
 {
   type      = TMakerScenario::eRecommutationClient;
-  id_client = -1;
+  clientID = -1;
 }
 //---------------------------------------------------------------------------------------
 THeaderBeginDonor::THeaderBeginDonor()

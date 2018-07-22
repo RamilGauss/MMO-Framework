@@ -19,7 +19,7 @@ namespace nsMMOEngine
   class IScenarioContext
   {
     void*              mUserPtr;
-    unsigned int       mID_Session;
+    unsigned int       mSessionID;
     TScContextManager* mManagerContextSc;
     TSessionManager*   mSessionManager;
     TSrcEvent*         mSrcEvent;

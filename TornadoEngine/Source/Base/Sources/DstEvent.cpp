@@ -19,13 +19,13 @@ TDstEvent::~TDstEvent()
   delete mListEvent;
 }
 //------------------------------------------------------------
-void TDstEvent::AddEventInQueueCopy( int type_object, void* ptr_src, void* data, int size, unsigned int time_create_ms )
+void TDstEvent::AddEventInQueueCopy( int srcType, void* ptr_src, void* data, int size, unsigned int time_create_ms )
 {
   TEvent* pEvent = new TEvent;
   pEvent->Init( time_create_ms );
 
-  pEvent->ptr_object = ptr_src;
-  pEvent->type_object = type_object;
+  pEvent->pSrc = ptr_src;
+  pEvent->srcType = srcType;
   pEvent->pContainer->SetDataByCount( (char*) data, size );// sizeof(char)==1, поэтому size
 
   mListEvent->Add( pEvent );

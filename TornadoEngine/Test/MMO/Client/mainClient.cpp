@@ -21,15 +21,21 @@ See for more information License.h.
 #include "Logger.h"
 #include "HandlerMMO_Client.h"
 #include "MakerNetTransport.h"
-#ifdef WIN32
-#include <conio.h>
-#endif
 #include "ClientDesc.h"
 
 void StartClients( int argc, char** argv );
 
 int main( int argc, char** argv )
 {
+  std::string title = "Title Client ";
+  for( int i = 1; i < argc; i++ )
+  {
+    char s[1000];
+    sprintf( s, "%s ", argv[i] );
+    title += s;
+  }
+  system( title.data() );
+
   try
   {
     StartClients( argc, argv );
@@ -37,9 +43,7 @@ int main( int argc, char** argv )
   catch( ... )
   {
     printf( "exception!!!\n" );
-#ifdef WIN32
-    _getch();
-#endif
+    getchar();
   }
   return 0;
 }
@@ -61,9 +65,10 @@ void StartClients( int argc, char** argv )
   inputCmd.Get( inputArg );
 
   TMakerNetTransport makerTransport;
+  nsMMOEngine::TDescOpen descOpen;
+  descOpen.subNet = inputArg.subnet;
   for( int i = 0; i < inputArg.count; i++ )
   {
-    nsMMOEngine::TDescOpen descOpen;
     descOpen.port = inputArg.begin_port + i;
     auto pClientDesc = new TClientDesc();
     pClientDesc->mIntervalSendPing = inputArg.ping_time;
@@ -133,7 +138,7 @@ void StartClients( int argc, char** argv )
       if( handler.mPingCounter > 0 )
       {
         float meanPing = handler.mPingSumma * 1.0f / handler.mPingCounter;
-        GetLogger( ClientLog )->WriteF( "time of cycle = %f ms, mean ping(worth) = %f(%u/%u), indexClientOnLogin = %d\n", 
+        GetLogger( ClientLog )->WriteF( "time of cycle = %f ms, mean ping(worth) = %f(%u/%u), indexClientOnLogin = %d\n",
           speed_ms, meanPing, handler.mWorthPing, handler.mBestPing, indexClientOnLogin );
         handler.mWorthPing = 0;
         handler.mBestPing = 0xFFFFFFFF;

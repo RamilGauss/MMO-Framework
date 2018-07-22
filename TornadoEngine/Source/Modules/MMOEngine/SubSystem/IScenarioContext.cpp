@@ -16,7 +16,7 @@ using namespace nsMMOEngine;
 IScenarioContext::IScenarioContext()
 {
   mUserPtr = nullptr;
-  mID_Session = INVALID_HANDLE_SESSION;
+  mSessionID = INVALID_HANDLE_SESSION;
   mManagerContextSc = nullptr;
   mSessionManager = nullptr;
   mSrcEvent = nullptr;
@@ -30,12 +30,12 @@ IScenarioContext::~IScenarioContext()
 //-----------------------------------------------------------------
 void IScenarioContext::SetSessionID( unsigned int id )
 {
-  mID_Session = id;
+  mSessionID = id;
 }
 //-----------------------------------------------------------------
 unsigned int IScenarioContext::GetSessionID()
 {
-  return mID_Session;
+  return mSessionID;
 }
 //-----------------------------------------------------------------
 void IScenarioContext::SetMSc( TScContextManager* pMSc )

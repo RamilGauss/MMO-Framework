@@ -21,17 +21,16 @@ namespace nsEvent
 struct DllExport TEvent
 {
   unsigned int time_ms;
-  int type_object;
-  void* ptr_object;
-  IContainer* pContainer;
-  TEvent(){ptr_object=nullptr;pContainer= nullptr;}
+  int srcType;
+  void* pSrc = nullptr;
+  IContainer* pContainer = nullptr;
   ~TEvent()
   {
     delete pContainer;
   }
   void Init(unsigned int time_create_ms)
   {
-    pContainer = new TContainer;
+    pContainer = new TContainer();
     InitPrivate(time_create_ms);
   }
   template <typename T>

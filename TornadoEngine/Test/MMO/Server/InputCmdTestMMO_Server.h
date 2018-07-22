@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
-Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,7 +15,7 @@ See for more information License.h.
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "ResolverSelf_IP_v4.h"
 
-class TInputCmdTestMMO_Client
+class TInputCmdTestMMO_Server
 {
   TCmdParam mCmdParam;
 
@@ -26,21 +26,11 @@ public:
 
   struct TInput
   {
-    unsigned short begin_port = CLIENT_PORT;
-    int            count = 1;
-    int            begin_id = 0;
-    std::string    ip_server;
-    int            ping_time = 0x1FFFFFFF;
     unsigned char  subnet = 0;
-    TInput()
-    {
-      TResolverSelf_IP_v4 resolver;
-      resolver.Get( ip_server, 0 );
-    }
   };
 
-  TInputCmdTestMMO_Client();
-  ~TInputCmdTestMMO_Client();
+  TInputCmdTestMMO_Server();
+  ~TInputCmdTestMMO_Server();
 
   bool SetArg( int argc, char** argv );
   bool SetArg( std::vector<std::string>& vecArgv );
@@ -49,4 +39,3 @@ public:
 protected:
   TInput mInput;
 };
-

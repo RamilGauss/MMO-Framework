@@ -22,7 +22,7 @@ THandlerMMO_Client::THandlerMMO_Client()
 void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
 {
   nsMMOEngine::TBaseEvent* pBE  = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
-  nsMMOEngine::TClient* pClient = (nsMMOEngine::TClient*)pEvent->ptr_object;
+  nsMMOEngine::TClient* pClient = (nsMMOEngine::TClient*)pEvent->pSrc;
 
   string sEvent;  
   switch(pBE->mType)

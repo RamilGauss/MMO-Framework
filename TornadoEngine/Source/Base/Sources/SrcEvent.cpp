@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -11,45 +11,34 @@ See for more information License.h.
 
 using namespace std;
 
-
-TSrcEvent::TSrcEvent()
-{
-  pDstEvent = NULL;
-}
-//------------------------------------------------------------
-TSrcEvent::~TSrcEvent()
-{
-
-}
-//------------------------------------------------------------
-void TSrcEvent::SetDstObject(TDstEvent* p)
+void TSrcEvent::SetDstObject( TDstEvent* p )
 {
   pDstEvent = p;
 }
 //------------------------------------------------------------
-void TSrcEvent::AddEventCopy( void* data, int size)
+void TSrcEvent::AddEventCopy( void* data, int size )
 {
-  pDstEvent->AddEventInQueueCopy(mTypeObject, this, data, size, (unsigned int)(-1));
+  pDstEvent->AddEventInQueueCopy( mTypeObject, this, data, size, (unsigned int) (-1) );
 }
 //------------------------------------------------------------
-void TSrcEvent::AddEventCopy( void* data, int size, unsigned int time_create_ms)
+void TSrcEvent::AddEventCopy( void* data, int size, unsigned int time_create_ms )
 {
-  pDstEvent->AddEventInQueueCopy(mTypeObject, this, data, size, time_create_ms);
+  pDstEvent->AddEventInQueueCopy( mTypeObject, this, data, size, time_create_ms );
 }
 //------------------------------------------------------------
-void TSrcEvent::SetSelfID(int type_object)
+void TSrcEvent::SetSelfID( int srcType )
 {
-  mTypeObject = type_object;
+  mTypeObject = srcType;
 }
 //------------------------------------------------------------
-void TSrcEvent::Translate(nsEvent::TEvent* pEvent, bool use_self_info )
+void TSrcEvent::Translate( nsEvent::TEvent* pEvent, bool use_self_info )
 {
-  if(use_self_info)
+  if( use_self_info )
   {
-    pEvent->type_object = mTypeObject;
-    pEvent->ptr_object  = this;
+    pEvent->srcType = mTypeObject;
+    pEvent->pSrc = this;
   }
 
-  pDstEvent->Translate(pEvent);
+  pDstEvent->Translate( pEvent );
 }
 //------------------------------------------------------------

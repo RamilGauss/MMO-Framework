@@ -98,7 +98,7 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S( TDescRecvSession* pDesc )
   // существует ли вообще клиент с данным ключом,
   // то есть был ли добавлен на ожидание от Мастера данный Клиент
   // загрузить контекст для работы
-  NeedContextByClientSessionByClientKey( pDesc->sessionID, pHeader->id_client );
+  NeedContextByClientSessionByClientKey( pDesc->sessionID, pHeader->clientID );
 
   if( Context() == nullptr )
   {
@@ -113,7 +113,7 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S( TDescRecvSession* pDesc )
 
   // уведомить Мастера о запросе от клиента
   THeaderClientConnectS2M h;
-  h.id_client = Context()->GetClientKey();// указать какой клиент захотел соединиться
+  h.clientID = Context()->GetClientKey();// указать какой клиент захотел соединиться
   mBP.Reset();
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
@@ -125,7 +125,7 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S( TDescRecvSession* pDesc )
 void TScLoginClient_SlaveImpl::InfoClientM2S( TDescRecvSession* pDesc )
 {
   THeaderInfoClientM2S* pHeader = (THeaderInfoClientM2S*) pDesc->data;
-  NeedContextByClientKey( pHeader->id_client );
+  NeedContextByClientKey( pHeader->clientID );
   if( Context() == nullptr )
   {
     BL_FIX_BUG();
@@ -153,11 +153,11 @@ void TScLoginClient_SlaveImpl::InfoClientM2S( TDescRecvSession* pDesc )
   // запомнить сессию
   SetID_SessionMasterSlave( pDesc->sessionID );
 
-  Context()->SetClientKey( pHeader->id_client );
+  Context()->SetClientKey( pHeader->clientID );
   // сформировать квитанцию
   mBP.Reset();
   THeaderCheckInfoClientS2M h;
-  h.id_client = Context()->GetClientKey();
+  h.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
@@ -168,7 +168,7 @@ void TScLoginClient_SlaveImpl::InfoClientM2S( TDescRecvSession* pDesc )
 void TScLoginClient_SlaveImpl::CheckClientConnectM2S( TDescRecvSession* pDesc )
 {
   THeaderCheckClientConnectM2S* pHeader = (THeaderCheckClientConnectM2S*) pDesc->data;
-  NeedContextByClientKey_SecondCallSlave( pHeader->id_client );
+  NeedContextByClientKey_SecondCallSlave( pHeader->clientID );
   if( Context() == nullptr )
     return;
   //--------------------------------------------
@@ -192,7 +192,7 @@ void TScLoginClient_SlaveImpl::CheckClientConnectM2S( TDescRecvSession* pDesc )
 void TScLoginClient_SlaveImpl::DisconnectClientM2S( TDescRecvSession* pDesc )
 {
   THeaderDisconnectClientM2S* pH = (THeaderDisconnectClientM2S*) pDesc->data;
-  NeedContextByClientKey( pH->id_client );
+  NeedContextByClientKey( pH->clientID );
 
   if( Context() == nullptr )
   {

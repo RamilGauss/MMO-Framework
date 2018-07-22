@@ -55,7 +55,7 @@ void TScLoginClient_SuperServerImpl::RequestM2SS( TDescRecvSession* pDesc )
   unsigned int id_session_master = pDesc->sessionID;
 
   THeaderRequestM2SS* pRequest = (THeaderRequestM2SS*) pDesc->data;
-  NeedContextByMasterSessionByClientKey( id_session_master, pRequest->id_client );
+  NeedContextByMasterSessionByClientKey( id_session_master, pRequest->clientID );
 
   bool isExist = false;
   if( Context()->GetFakeClient() )
@@ -69,7 +69,7 @@ void TScLoginClient_SuperServerImpl::RequestM2SS( TDescRecvSession* pDesc )
   // формирование пакета
   mBP.Reset();
   THeaderCheckRequestSS2M h;
-  h.id_client = pRequest->id_client;
+  h.clientID = pRequest->clientID;
   h.isExistInSystem = isExist;
   mBP.PushFront( (char*) &h, sizeof( h ) );
   // отослать пакет для попытки авторизации

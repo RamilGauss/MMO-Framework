@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineBaseScLoginClientStructH
-#define MMOEngineBaseScLoginClientStructH
+#pragma once
 
 #include "IScenario.h"
 #include "DescRecvSession.h"
@@ -52,7 +51,7 @@ namespace nsMMOEngine
     {
       THeader();
       unsigned char from;
-      unsigned int  id_client;
+      unsigned int  clientID;
     }_PACKED;
     //-------------------------------------------------
     struct THeaderC : public THeader
@@ -166,4 +165,3 @@ namespace nsMMOEngine
 #endif
   }
 }
-#endif

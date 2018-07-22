@@ -72,7 +72,7 @@ void TScRecommutationClient_ClientImpl::BeginClient( TDescRecvSession* pDesc )
   THeaderBeginClient* pHeader = (THeaderBeginClient*) pDesc->data;
   // запомнить свой ключ, но хотя он и так известен.
   // это нужно для простоты
-  Context()->SetClientKey( pHeader->id_client );
+  Context()->SetClientKey( pHeader->clientID );
   SetID_SessionClientSlave( pDesc->sessionID );
   // начало сценария
   if( Begin() == false )
@@ -86,7 +86,7 @@ void TScRecommutationClient_ClientImpl::BeginClient( TDescRecvSession* pDesc )
   // сформировать пакет далее для Slave
   mBP.Reset();
   THeaderCheckBeginClient h;
-  h.id_client = Context()->GetClientKey();
+  h.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionClientSlave(), mBP );
@@ -101,7 +101,7 @@ void TScRecommutationClient_ClientImpl::InfoRecipientToClient( TDescRecvSession*
   // сформировать пакет далее для Slave
   mBP.Reset();
   THeaderCheckInfoRecipient h;
-  h.id_client = Context()->GetClientKey();
+  h.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionClientSlave(), mBP );
@@ -141,7 +141,7 @@ void TScRecommutationClient_ClientImpl::DisconnectClientAfterConnect( int id_ses
 
   mBP.Reset();
   THeaderRequestConnect h;
-  h.id_client = Context()->GetClientKey();
+  h.clientID = Context()->GetClientKey();
   h.random_num = Context()->GetRandomNum();
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( id_session_recipient, mBP, true );

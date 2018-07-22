@@ -28,7 +28,7 @@ THandlerMMO_Master::THandlerMMO_Master() : THandlerMMO( eMaster )
 void THandlerMMO_Master::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
 {
   nsMMOEngine::TBaseEvent* pBE = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
-  nsMMOEngine::TMaster* pMaster = (nsMMOEngine::TMaster*)pEvent->ptr_object;
+  nsMMOEngine::TMaster* pMaster = (nsMMOEngine::TMaster*)pEvent->pSrc;
 
   string sEvent;
   switch( pBE->mType )

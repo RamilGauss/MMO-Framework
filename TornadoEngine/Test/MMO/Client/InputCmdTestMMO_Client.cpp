@@ -13,19 +13,21 @@ See for more information License.h.
 
 using namespace std;
 
-string KEY_BEGIN_PORT( "begin_port" );
 string KEY_COUNT( "count" );
+string KEY_SUB_NET( "subnet" );
 string KEY_BEGIN_ID( "begin_id" );
 string KEY_IP_SERVER( "ip_server" );
 string KEY_PING_TIME( "ping_time" );
+string KEY_BEGIN_PORT( "begin_port" );
 
 TInputCmdTestMMO_Client::TInputCmdTestMMO_Client()
 {
-  mVecDefKey.push_back( KEY_BEGIN_PORT );
   mVecDefKey.push_back( KEY_COUNT );
+  mVecDefKey.push_back( KEY_SUB_NET );
   mVecDefKey.push_back( KEY_BEGIN_ID );
   mVecDefKey.push_back( KEY_IP_SERVER );
   mVecDefKey.push_back( KEY_PING_TIME );
+  mVecDefKey.push_back( KEY_BEGIN_PORT );
 
   mCmdParam.SetDefKey( mVecDefKey );
 }
@@ -78,6 +80,13 @@ bool TInputCmdTestMMO_Client::SetArg( vector<string>& vecArgv )
     string sPingTime;
     mCmdParam.GetByKey( KEY_PING_TIME, 0, sPingTime );
     mInput.ping_time = boost::lexical_cast<int>(sPingTime.data());
+  }
+  int cSN = mCmdParam.GetCountValueByKey( KEY_SUB_NET );
+  if( cSN == 1 )
+  {
+    string sSubnet;
+    mCmdParam.GetByKey( KEY_SUB_NET, 0, sSubnet );
+    mInput.subnet = boost::lexical_cast<int>(sSubnet.data());
   }
   return true;
 }

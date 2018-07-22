@@ -24,7 +24,7 @@ THandlerMMO_SuperServer::THandlerMMO_SuperServer() : THandlerMMO( eSuperServer )
 void THandlerMMO_SuperServer::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
 {
   nsMMOEngine::TBaseEvent* pBE = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
-  nsMMOEngine::TSuperServer* pSuperServer = (nsMMOEngine::TSuperServer*)pEvent->ptr_object;
+  nsMMOEngine::TSuperServer* pSuperServer = (nsMMOEngine::TSuperServer*)pEvent->pSrc;
 
   string sEvent;
   switch( pBE->mType )

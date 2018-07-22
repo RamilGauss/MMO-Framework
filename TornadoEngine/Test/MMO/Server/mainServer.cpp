@@ -21,39 +21,52 @@ See for more information License.h.
 #include "HandlerMMO_Master.h"
 #include "HandlerMMO_SuperServer.h"
 #include <iostream>
-#ifdef WIN32
-#include <conio.h>
-#endif
 #include "ReversedContainerRise.h"
 #include <thread>
+#include "InputCmdTestMMO_Server.h"
+#include <stdio.h>
 
 #define COUNT_SLAVE 1
 
-void StartServer();
+void StartServer( int argc, char** argv );
 
 int main( int argc, char** argv )
 {
+  std::string title = "Title Server ";
+  for( int i = 1 ; i < argc ; i++ )
+  {
+    char s[1000];
+    sprintf( s, "%s ", argv[i] );
+    title += s;
+  }
+  system( title.data() );
+
   try
   {
-    StartServer();
+    StartServer( argc, argv );
   }
   catch( ... )
   {
     printf( "exception!!!\n" );
-#ifdef WIN32
-    _getch();
-#endif
+    getchar();
   }
   return 0;
 }
 
-void StartServer()
+void StartServer( int argc, char** argv )
 {
+  TInputCmdTestMMO_Server inputCmd;
+  bool res = inputCmd.SetArg( argc, argv );
+  BL_ASSERT( res );
+
+  TInputCmdTestMMO_Server::TInput inputArg;
+  inputCmd.Get( inputArg );
+
   // обязательно инициализировать лог
+  std::string sLocalHost;
+  TResolverSelf_IP_v4 resolver;
   InitLogger( ServerLog );
   {
-    std::string sLocalHost;
-    TResolverSelf_IP_v4 resolver;
     int countIP_v4 = resolver.GetCount();
     GetLogger( ServerLog )->WriteF( "ip count = %d\n", countIP_v4 );
     for( int i = 0; i < countIP_v4; i++ )
@@ -64,11 +77,20 @@ void StartServer()
     }
   }
 
+  if( resolver.Get( sLocalHost, inputArg.subnet ) )
+    GetLogger( ServerLog )->WriteF( "use ip = %s\n", sLocalHost.data() );
+  else
+  {
+    GetLogger( ServerLog )->WriteF( "FAIL subnet = %u\n", inputArg.subnet );
+    return;
+  }
+
   std::vector<THandlerMMO_Slave*> arrHandlerSlave;
 
   TMakerNetTransport makerTransport;
 
   nsMMOEngine::TDescOpen descOpen;
+  descOpen.subNet = inputArg.subnet;
   typedef std::shared_ptr<nsMMOEngine::TSlave> TShared_Ptr_Slave;
   std::vector<TShared_Ptr_Slave> arrSlave;
   for( int i = 0; i < COUNT_SLAVE; i++ )
@@ -102,11 +124,6 @@ void StartServer()
   pSuperServer->SetDstObject( handlerSuperServer.get() );
   pSuperServer->SetSelfID( descOpen.port );
 
-  std::string sLocalHost;
-  TResolverSelf_IP_v4 resolver;
-  if( resolver.Get( sLocalHost, 0 ) == false )
-    return;
-
   // сначала мастер цепляется к суперсерверу,
   // потом slave-ы
   TIP_Port ssIP_Port;
@@ -114,7 +131,7 @@ void StartServer()
   ssIP_Port.port = SUPER_SERVER_PORT;
   std::string login = MASTER_LOGIN;
   std::string password = MASTER_PASSWORD;
-  pMaster->ConnectUp( ssIP_Port, login, password );
+  pMaster->ConnectUp( ssIP_Port, login, password, inputArg.subnet );
   TIP_Port masterIP_Port;
   masterIP_Port.ip = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
   masterIP_Port.port = MASTER_PORT;
@@ -124,7 +141,7 @@ void StartServer()
     char sLogin[100];
     sprintf( sLogin, "%d", i );
     login = SLAVE_LOGIN;// sLogin;
-    arrSlave[i]->ConnectUp( masterIP_Port, login, password );
+    arrSlave[i]->ConnectUp( masterIP_Port, login, password, inputArg.subnet );
   }
 
   const unsigned int printInterval = 6000;

@@ -102,7 +102,7 @@ void TScRecommutationClient_SlaveImpl::RecvFromClient( TDescRecvSession* pDesc )
 void TScRecommutationClient_SlaveImpl::BeginDonor( TDescRecvSession* pDesc )
 {
   THeaderBeginDonor* pHeader = (THeaderBeginDonor*) pDesc->data;
-  NeedContextByClientKeyForSlave( pHeader->id_client, true );
+  NeedContextByClientKeyForSlave( pHeader->clientID, true );
   if( Context() == nullptr )
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
@@ -111,7 +111,7 @@ void TScRecommutationClient_SlaveImpl::BeginDonor( TDescRecvSession* pDesc )
     return;
   }
   //--------------------------------------------
-  Context()->SetClientKey( pHeader->id_client );
+  Context()->SetClientKey( pHeader->clientID );
   Context()->SetRoleAsDonor();// роль Донора
   // начало сценария
   if( Begin() == false )
@@ -125,7 +125,7 @@ void TScRecommutationClient_SlaveImpl::BeginDonor( TDescRecvSession* pDesc )
   // сформировать пакет далее для Клиента
   mBP.Reset();
   THeaderBeginClient h;
-  h.id_client = Context()->GetClientKey();
+  h.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionClientSlave(), mBP );
@@ -136,7 +136,7 @@ void TScRecommutationClient_SlaveImpl::BeginDonor( TDescRecvSession* pDesc )
 void TScRecommutationClient_SlaveImpl::InfoRecipientToDonor( TDescRecvSession* pDesc )
 {
   THeaderInfoRecipientToDonor* pHeader = (THeaderInfoRecipientToDonor*) pDesc->data;
-  NeedContextByClientKeyForSlave( pHeader->id_client, true );
+  NeedContextByClientKeyForSlave( pHeader->clientID, true );
   if( Context() == nullptr )
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
@@ -147,7 +147,7 @@ void TScRecommutationClient_SlaveImpl::InfoRecipientToDonor( TDescRecvSession* p
   //--------------------------------------------
   mBP.Reset();
   THeaderInfoRecipientToClient h;
-  h.id_client = pHeader->id_client;
+  h.clientID = pHeader->clientID;
   h.ip_port_recipient = pHeader->ip_port_recipient;
   h.random_num = pHeader->random_num;
   mBP.PushFront( (char*) &h, sizeof( h ) );
@@ -160,7 +160,7 @@ void TScRecommutationClient_SlaveImpl::InfoRecipientToDonor( TDescRecvSession* p
 void TScRecommutationClient_SlaveImpl::BeginRecipient( TDescRecvSession* pDesc )
 {
   THeaderBeginRecipient* pHeader = (THeaderBeginRecipient*) pDesc->data;
-  NeedContextByClientKeyForSlave( pHeader->id_client, false );
+  NeedContextByClientKeyForSlave( pHeader->clientID, false );
   if( Context() == nullptr )
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
@@ -170,7 +170,7 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient( TDescRecvSession* pDesc )
   }
   //--------------------------------------------
   Context()->SetRandomNum( pHeader->random_num );
-  Context()->SetClientKey( pHeader->id_client );
+  Context()->SetClientKey( pHeader->clientID );
   Context()->SetRoleAsRecipient();// роль Реципиента
   Context()->SetID_SessionMasterSlave( pDesc->sessionID );
   // начало сценария
@@ -189,7 +189,7 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient( TDescRecvSession* pDesc )
   // сформировать пакет далее для Мастера
   mBP.Reset();
   THeaderCheckBeginRecipient h;
-  h.id_client = Context()->GetClientKey();
+  h.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
@@ -200,7 +200,7 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient( TDescRecvSession* pDesc )
 void TScRecommutationClient_SlaveImpl::DisconnectClientToSlave( TDescRecvSession* pDesc )
 {
   THeaderDisconnectClient* pHeader = (THeaderDisconnectClient*) pDesc->data;
-  EventDisconnectClient( pHeader->id_client );
+  EventDisconnectClient( pHeader->clientID );
   // вызывать End(); нельзя, потому что тогда в Slave отработает по окончанию сценария 
   // добавлением Клиента
 }
@@ -245,15 +245,17 @@ void TScRecommutationClient_SlaveImpl::RequestConnect( TDescRecvSession* pDesc )
   THeaderRequestConnect* pHeader = (THeaderRequestConnect*) pDesc->data;
   TDescRequestConnectForRecipient desc;
   desc.sessionID = pDesc->sessionID;
-  desc.key = pHeader->id_client;
+  desc.key = pHeader->clientID;
   desc.random_num = pHeader->random_num;
   NeedContextByRequestForRecipient( &desc );
 
   if( Context() == nullptr )
   {
+    auto clientID = pHeader->clientID;
+
     GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TScRecommutationClient_SlaveImpl::RequestConnect not found session=0x%X, key=%u",
-        pDesc->sessionID, pHeader->id_client );
+        pDesc->sessionID, clientID );
     return;
   }
   // запомнить сессию
@@ -261,7 +263,7 @@ void TScRecommutationClient_SlaveImpl::RequestConnect( TDescRecvSession* pDesc )
   // Клиенту
   mBP.Reset();
   THeaderCheckRequestConnect hClient;
-  hClient.id_client = Context()->GetClientKey();
+  hClient.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &hClient, sizeof( hClient ) );
 
   Context()->GetMS()->Send( GetID_SessionClientSlave(), mBP );
@@ -269,7 +271,7 @@ void TScRecommutationClient_SlaveImpl::RequestConnect( TDescRecvSession* pDesc )
   // Мастеру
   mBP.Reset();
   THeaderClientConnect hMaster;
-  hMaster.id_client = Context()->GetClientKey();
+  hMaster.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &hMaster, sizeof( hMaster ) );
 
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
@@ -289,7 +291,7 @@ void TScRecommutationClient_SlaveImpl::SaveContext( void* data, int size )
     mBP.PushFront( (char*) data, size );
 
   THeaderCheckBeginDonor h;
-  h.id_client = Context()->GetClientKey();
+  h.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
