@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineActiveServerH
-#define MMOEngineActiveServerH
+#pragma once
 
 #include "BaseServer.h"
 
@@ -22,5 +21,3 @@ namespace nsMMOEngine
     virtual void ConnectUp( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet = 0) = 0;
   };
 }
-
-#endif

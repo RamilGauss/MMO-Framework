@@ -279,7 +279,7 @@ void TContextScLoginClient::SetWasBegin()
 bool TContextScLoginClient::IsConnectUp()
 {
   return GetID_SessionClientSlave() != INVALID_HANDLE_SESSION ||
-    GetID_SessionClientSlave() != INVALID_HANDLE_SESSION;
+    GetID_SessionClientMaster() != INVALID_HANDLE_SESSION;
 }
 //--------------------------------------------------------------
 void TContextScLoginClient::SetCurrentStateWait( StateWait state )

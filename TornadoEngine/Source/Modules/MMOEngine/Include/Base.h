@@ -152,7 +152,7 @@ namespace nsMMOEngine
     virtual void EndSynchroSlave( IScenario* p )
     {}
   private:
-    TScContextManager * AddManagerContextSc();
+    TScContextManager* AddManagerContextSc();
     void RemoveManagerContextSc( TScContextManager* pMCSc );
   protected:
     friend class TDelegateManagerContextSc;

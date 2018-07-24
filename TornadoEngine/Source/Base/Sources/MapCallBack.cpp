@@ -8,17 +8,6 @@ See for more information License.h.
 #include "MapCallBack.h"
 #include "BL_Debug.h"
 
-//--------------------------------------------------------------
-TMapCallBack::TMapCallBack()
-{
-
-}
-//--------------------------------------------------------------
-TMapCallBack::~TMapCallBack()
-{
-
-}
-//--------------------------------------------------------------
 TDescCallBack* TMapCallBack::FindDesc( int type )
 {
   TMapIntDescCBIt fit = mMapTypeCallBack.find( type );

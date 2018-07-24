@@ -46,7 +46,7 @@ namespace nsMMOEngine
     TBaseScLoginClient* mCurBehavior;
 
   public:
-    typedef enum
+    enum eTypeCallBack
     {
       eContextByMasterSessionByClientKey = IScenario::eCountCallBack,
       eNumInQueueByClientKey,
@@ -56,7 +56,7 @@ namespace nsMMOEngine
       eContextByClientSessionLeaveQueue,
       eContextByClientKey_SecondCallSlave,
       eCountCallBack,
-    }eTypeCallBack;
+    };
   public:
     typedef enum
     {

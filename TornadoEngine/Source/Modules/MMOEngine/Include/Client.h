@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineClientH
-#define MMOEngineClientH
+#pragma once
 
 #include "Base.h"
 
@@ -37,5 +36,3 @@ namespace nsMMOEngine
 
   };
 }
-
-#endif

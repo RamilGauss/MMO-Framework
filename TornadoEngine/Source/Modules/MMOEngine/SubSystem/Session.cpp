@@ -14,6 +14,13 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
+/* Схема шифрования: 
+   Отправка:
+      Расчет CRC8, зашифровка AES блока данных вместе с CRC8.
+   Приём: 
+      Дешифровка, сравнение с последним байтом суммы данных.
+*/
+
 TSession::TSession( State state, unsigned int time_live_ms )
 {
   mTimeLive = time_live_ms;
@@ -144,17 +151,18 @@ bool TSession::RecvData( void* data, int dataSize, TContainerPtr& result )
 //---------------------------------------------------------------------
 bool TSession::RecvKeyAES( void* pKey, int keySize )// Client
 {
-  unsigned char recvCRC8 = ((unsigned char*) pKey)[keySize - 1];
-
-  mPasswordAES.Decrypt( pKey, keySize - sizeof( unsigned char ), mDecrypt );
+  mPasswordAES.Decrypt( pKey, keySize, mDecrypt );
 
   unsigned char crc8;
-  mCalcCRC8.Calc( mDecrypt.GetPtr(), mDecrypt.GetSize(), crc8 );
+  auto decryptDataSize = mDecrypt.GetSize() - sizeof( unsigned char );
+  mCalcCRC8.Calc( mDecrypt.GetPtr(), decryptDataSize, crc8 );
+
+  unsigned char recvCRC8 = ((unsigned char*) mDecrypt.GetPtr())[decryptDataSize];
   if( crc8 != recvCRC8 )
     return false;
 
   // запомнить пароль для работы
-  SetKeyAES( mDecrypt.GetPtr(), mDecrypt.GetSize() );
+  SetKeyAES( mDecrypt.GetPtr(), decryptDataSize );
   return true;
 }
 //---------------------------------------------------------------------
@@ -170,12 +178,15 @@ void TSession::SetID( unsigned int id )
 //---------------------------------------------------------------------
 bool TSession::RecvIDconfirmation( void* pConfirm, int confirmSize )// Server
 {
-  if( mRecvAES.Decrypt( pConfirm, confirmSize - sizeof( unsigned char ), mDecrypt ) == false )
+  if( mRecvAES.Decrypt( pConfirm, confirmSize, mDecrypt ) == false )
     return false;
 
-  unsigned char recvCRC8 = ((unsigned char*) pConfirm)[confirmSize - 1];
+  auto dataSize = mDecrypt.GetSize() - sizeof( unsigned char );
+
   unsigned char crc8;
-  mCalcCRC8.Calc( mDecrypt.GetPtr(), mDecrypt.GetSize(), crc8 );
+  mCalcCRC8.Calc( mDecrypt.GetPtr(), dataSize, crc8 );
+
+  unsigned char recvCRC8 = ((unsigned char*) mDecrypt.GetPtr())[dataSize];
   if( crc8 != recvCRC8 )
     return false;
 
@@ -231,31 +242,41 @@ void TSession::SendLogin()// Client
 void TSession::SendIDconfirmation()// Client
 {
   mPasswordAES.GetKey( mBuffer );
-  mSendAES.Encrypt( mBuffer.GetPtr(), mBuffer.GetSize(), mEncrypt );
-
   unsigned char crc8;
   mCalcCRC8.Calc( mBuffer.GetPtr(), mBuffer.GetSize(), crc8 );
 
+  mBP.Reset();// склейка CRC8 и ключа
+  mBP.PushBack( (char*) mBuffer.GetPtr(), mBuffer.GetSize() );
+  mBP.PushBack( (char*) &crc8, sizeof( crc8 ) );
+
+  mBP.CopyInBuffer( mBuffer );
+  mSendAES.Encrypt( mBuffer.GetPtr(), mBuffer.GetSize(), mEncrypt );
+
   mBP.Reset();
   mBP.PushBack( (char*) mEncrypt.GetPtr(), mEncrypt.GetSize() );
-  mBP.PushBack( (char*) &crc8, sizeof( crc8 ) );
 
   SendData( eIDconfirmation, mBP, true );
 }
 //---------------------------------------------------------------------
 void TSession::SendKeyAES()// Server
 {
+  // генерация пароля
   mSendAES.GenerateKey();
-
   mSendAES.GetKey( mBuffer );
   mRecvAES.SetKey( mBuffer.GetPtr(), mBuffer.GetSize() );
-  mPasswordAES.Encrypt( mBuffer.GetPtr(), mBuffer.GetSize(), mEncrypt );// шифруем рабочий ключ паролем 
-  unsigned char crc8;
+
+  unsigned char crc8;// расчет контрольной суммы ключа
   mCalcCRC8.Calc( mBuffer.GetPtr(), mBuffer.GetSize(), crc8 );
+  mBP.Reset();// склейка CRC8 и ключа
+  mBP.PushBack( (char*) mBuffer.GetPtr(), mBuffer.GetSize() );
+  mBP.PushBack( (char*) &crc8, sizeof( crc8 ) );
+
+  mBP.CopyInBuffer( mBuffer );
+  // шифрование
+  mPasswordAES.Encrypt( mBuffer.GetPtr(), mBuffer.GetSize(), mEncrypt );// шифруем рабочий ключ паролем 
 
   mBP.Reset();
   mBP.PushBack( (char*) mEncrypt.GetPtr(), mEncrypt.GetSize() );
-  mBP.PushBack( (char*) &crc8, sizeof( crc8 ) );
 
   SendData( eKeyAES, mBP, true );
 }

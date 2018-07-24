@@ -27,6 +27,7 @@ void StartClients( int argc, char** argv );
 
 int main( int argc, char** argv )
 {
+#ifdef WIN32
   std::string title = "Title Client ";
   for( int i = 1; i < argc; i++ )
   {
@@ -35,7 +36,10 @@ int main( int argc, char** argv )
     title += s;
   }
   system( title.data() );
-
+#endif
+#ifdef _DEBUG
+  StartClients( argc, argv );
+#else
   try
   {
     StartClients( argc, argv );
@@ -45,6 +49,7 @@ int main( int argc, char** argv )
     printf( "exception!!!\n" );
     getchar();
   }
+#endif
   return 0;
 }
 

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SCENARIO_RECOMMUTATION_CLIENT_H
-#define SCENARIO_RECOMMUTATION_CLIENT_H
+#pragma once
 
 #include "IScenario.h"
 #include "ContextScRecommutationClient.h"
@@ -46,7 +45,7 @@ namespace nsMMOEngine
 
     TBaseScRecommutationClient*       mCurBehavior;
   public:
-    typedef enum
+    enum eTypeCallBack
     {
       eNeedContextByClientKeyForSlave = IScenario::eCountCallBack,
       eNeedContextByClientSessionForSlave,
@@ -55,7 +54,7 @@ namespace nsMMOEngine
       eEventDisconnectClient,
       eEventTimeClientElapsed,
       eNeedContextByRequestForRecipient,
-    }eTypeCallBack;
+    };
   public:
     typedef enum
     {
@@ -86,4 +85,3 @@ namespace nsMMOEngine
     virtual void DelayBegin();
   };
 }
-#endif

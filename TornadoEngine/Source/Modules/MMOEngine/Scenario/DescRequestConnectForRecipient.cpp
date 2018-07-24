@@ -12,15 +12,9 @@ See for more information License.h.
 
 namespace nsMMOEngine
 {
-  TDescRequestConnectForRecipient::TDescRequestConnectForRecipient()
-  {
-    key        = 0;
-    random_num = 0;
-    sessionID = 0;
-  }
   void TDescRequestConnectForRecipient::Generate()
   {
-    srand( (unsigned)time( NULL ) );
+    srand( (unsigned)time( nullptr ) );
     short* pShort = (short*)&random_num;
     pShort[0] = rand();
     pShort[1] = rand();

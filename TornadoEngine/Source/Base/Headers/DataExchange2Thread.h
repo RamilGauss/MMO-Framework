@@ -57,9 +57,9 @@ template <typename TClass> class TDataExchange2Thread
   DECLARATION_ATOMIC_INT( cnt );                  // change by Producer
 #endif
 
-  TElement* pFirstConsumer; // change by Consumer
-  TElement* pFirstProducer; // change by Producer
-  TElement* pLastProducer;  // change by Producer
+  TElement* pFirstConsumer = nullptr; // change by Consumer
+  TElement* pFirstProducer = nullptr; // change by Producer
+  TElement* pLastProducer  = nullptr;  // change by Producer
 
   TCallBackRegistrator1<void*>* mCB_DeleteData;
 

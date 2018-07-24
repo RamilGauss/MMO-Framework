@@ -18,8 +18,8 @@ class DllExport TMapCallBack
 
   TMapIntDescCB mMapTypeCallBack;
 public:
-  TMapCallBack();
-  virtual ~TMapCallBack();
+  virtual ~TMapCallBack()
+  {}
 
   template <typename F, class C>
   void Register( int type, F f, C pObject );
@@ -46,7 +46,7 @@ public:
   template <typename Type0, typename Type1>
   void AddCallBack( int type, TCallBackRegistrator2<Type0, Type1>* pCB );
 private:
-  TDescCallBack * FindDesc( int type );
+  TDescCallBack* FindDesc( int type );
 };
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------

@@ -1,8 +1,5 @@
 #include <entt/entt.hpp>
 #include <cstdint>
-#ifdef WIN32
-#include <conio.h>
-#endif
 #include <vector>
 #include <iostream>
 #include <thread>
@@ -21,9 +18,7 @@
 #include "ViewShuffleEntitiesSystem.h"
 #include "BL_Debug.h"
 #include <map>
-#include "MappedGroup.h"
 #include "HiTimer.h"
-
 
 int main()
 {
@@ -103,7 +98,6 @@ int main()
   _getch();
 #endif
 #endif
-
   auto world = new MWorks::ECS::TWorld();
   world->AddToConveyer<TProducerFeature>();
   //world->AddToConveyer<TPacketObserverSystem>();
@@ -111,7 +105,7 @@ int main()
   //world->AddToConveyer<TGroupedPacketSystem>();
   //world->AddToConveyer<TInitSettingsSystem>();
 
-  //world->AddToConveyer<TMakeShuffleEntitiesSystem>();
+  world->AddToConveyer<TMakeShuffleEntitiesSystem>();
   //world->AddToConveyer<TViewShuffleEntitiesSystem>();
 
   world->Init();
@@ -124,8 +118,7 @@ int main()
   }
 
   printf( "Conveyer is stopped, press any key...\n" );
-#ifdef WIN32 
-  _getch();
-#endif
+
+  getchar();
   return 0;
 }

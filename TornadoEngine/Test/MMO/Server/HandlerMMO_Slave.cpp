@@ -16,6 +16,8 @@ See for more information License.h.
 
 using namespace std;
 
+const int SLAVE_LOAD = 10;
+
 THandlerMMO_Slave::THandlerMMO_Slave() : THandlerMMO( eSlave )
 {
 
@@ -50,7 +52,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       int sizeMsg = strlen( s );
       pSlave->SendUp( s, sizeMsg );
       // при авторизации клиента выставить нагрузку
-      pSlave->SetLoad( 40 );
+      pSlave->SetLoad( SLAVE_LOAD );
     }
     break;
     case nsMMOEngine::eDisconnectDown:
@@ -82,7 +84,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       //sEvent += " msg: ";
       //sEvent += s;
       nsMMOEngine::TRecvFromDownEvent* pR = (nsMMOEngine::TRecvFromDownEvent*)pBE;
-      pSlave->SendDown( pR->sessionID, (char*)pR->data, pR->dataSize );
+      pSlave->SendDown( pR->sessionID, (char*) pR->data, pR->dataSize );
       return;
     }
     break;
@@ -104,6 +106,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       char* pData = "This is context, motherfucker!";
       int   size = strlen( pData );
       pSlave->SaveContext( pSE->sessionID, pData, size );
+      pSlave->SetLoad( 0 );// снять с себя нагрузку
     }
     break;
     case nsMMOEngine::eRestoreContext:
@@ -115,6 +118,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       sContext[pRE->c.GetSize()] = '\0';
       char s[200];
       sprintf( s, "id=%d, data=\"%s\" ", pRE->sessionID, sContext );
+      pSlave->SetLoad( SLAVE_LOAD );
     }
     break;
     default:BL_FIX_BUG();

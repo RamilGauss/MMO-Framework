@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef InputCmdTestTransportH
-#define InputCmdTestTransportH
+#pragma once
 
 #include <string>
 #include <vector>
@@ -26,13 +25,12 @@ public:
 
   struct TInput
   {
-    unsigned short port_src;
-    unsigned short port_dst;
-    int            timer_send; // ms
-    TInput()
-    {
-      timer_send = 1000000000;
-    }
+    unsigned char sub_net = 0;
+    unsigned short self_port = 10000;
+    unsigned short server_port = 20000;
+    std::string ping_data;
+    int ping_time = 100;
+    unsigned int server_ip;
   };
 
   TInputCmdTestTransport();
@@ -45,5 +43,3 @@ public:
 protected:
   TInput mInput;
 };
-
-#endif

@@ -32,6 +32,7 @@ void StartServer( int argc, char** argv );
 
 int main( int argc, char** argv )
 {
+#ifdef WIN32
   std::string title = "Title Server ";
   for( int i = 1 ; i < argc ; i++ )
   {
@@ -40,7 +41,10 @@ int main( int argc, char** argv )
     title += s;
   }
   system( title.data() );
-
+#endif
+#ifdef _DEBUG
+  StartServer( argc, argv );
+#else
   try
   {
     StartServer( argc, argv );
@@ -50,6 +54,7 @@ int main( int argc, char** argv )
     printf( "exception!!!\n" );
     getchar();
   }
+#endif
   return 0;
 }
 

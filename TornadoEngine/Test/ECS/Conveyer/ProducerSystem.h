@@ -19,16 +19,34 @@
 
 class TProducerSystem : public MWorks::ECS::TExecuteSystem, public TSpeedCalculationSystem
 {
-  TMappedGroup<ShuffledComponents::A>* mA_group;
+  typedef TMappedSingleEntityGroup<ShuffledComponents::A> SA_Group;
+  SA_Group* mSA_group;
 
+  typedef TMappedMultiEntityGroup<ShuffledComponents::A> MA_Group;
+  MA_Group* mMA_group;
 public:
   virtual void Init()
   {
-    mA_group = new TMappedGroup<ShuffledComponents::A>( GetRegistry() );// пример как использовать группу для поиска по значению
+    mSA_group = new SA_Group( GetRegistry() );// пример как использовать группу для поиска по значению
+    mMA_group = new MA_Group( GetRegistry() );// пример как использовать группу для поиска по значению
   }
 
   virtual void Execute()
   {
+    ShuffledComponents::A a;
+    a.a = 1;
+    std::list<MWorks::ECS::TEntity> entList;
+    mMA_group->Get( a, entList );
+    if( entList.size() > 0 )
+    {
+      int asd = 0;
+    }
+    auto ent = mSA_group->Get( a );
+    if( ent != entt::null )
+    {
+      int asd = 0;
+    }
+
     Start();
     auto registry = GetRegistry();
 

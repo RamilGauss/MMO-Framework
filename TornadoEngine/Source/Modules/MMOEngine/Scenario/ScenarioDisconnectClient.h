@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineScenarioDisconnectClientH
-#define MMOEngineScenarioDisconnectClientH
+#pragma once
 
 #include <vector>
 
@@ -67,6 +66,4 @@ namespace nsMMOEngine
 
 #ifdef WIN32
 #pragma pack(pop)
-#endif
-
 #endif

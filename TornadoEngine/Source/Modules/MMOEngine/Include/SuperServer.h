@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineSuperServerH
-#define MMOEngineSuperServerH
+#pragma once
 
 #include "BaseServer.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
@@ -51,5 +50,3 @@ namespace nsMMOEngine
     virtual void EndDisconnectClient(IScenario*);
   };
 }
-
-#endif

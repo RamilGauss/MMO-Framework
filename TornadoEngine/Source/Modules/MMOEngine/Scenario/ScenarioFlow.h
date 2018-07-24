@@ -48,7 +48,7 @@ namespace nsMMOEngine
   protected:
     virtual void DelayBegin();
   private:
-    TContextScFlow * Context(){ return (TContextScFlow*) mCurContext; }
+    TContextScFlow* Context(){ return (TContextScFlow*) mCurContext; }
     // для Send
     void HandlePacket( TBreakPacket& bp, bool check );
     // для Recv

@@ -1,63 +1,81 @@
 #pragma once
 #include "TypeDef.h"
-#include <map>
 
 // работает только дл€ Ќ≈»«ћ≈Ќя≈ћџ’ компонентов!!! без replace, get, each
 // значени€ компонента в течение срока жизни entity должны оставатьс€ ѕќ—“ќяЌЌџћ»
 // MappedGroup создавать до создани€ всех entity в System::Init()
-template<typename Component>
-class DllExport TMappedGroup
+template<typename Component, typename TComponentEntityMap>
+class DllExport TBaseMappedGroup
 {
-  // unoredered_map быстрее map по вставке ( 289 vs 326 ) и поиску ( 13 vs 81 )
-  typedef std::unordered_map<Component, MWorks::ECS::TEntity> TComponentEntityMap;
-
-  static inline TComponentEntityMap* mCompEntityMap = nullptr;
-
-  static inline int mConnectionCounter = 0;
+protected:
+  static inline TComponentEntityMap* g_CompEntityMap = nullptr;
+  static inline int g_ConnectionCounter = 0;
 public:
-  TMappedGroup( MWorks::ECS::THugeRegistry* registry )
+  TBaseMappedGroup( MWorks::ECS::THugeRegistry* registry )
   {
-    if( mConnectionCounter > 0 )
+    if( g_ConnectionCounter > 0 )
       return;
 
-    if( mCompEntityMap == nullptr )
-      mCompEntityMap = new TComponentEntityMap();
+    if( g_CompEntityMap == nullptr )
+      g_CompEntityMap = new TComponentEntityMap();
 
-    mConnectionCounter++;
+    g_ConnectionCounter++;
 
     // садитс€ на событи€ компонента
     MWorks::ECS::THugeRegistry::sink_type constrSig = registry->construction<Component>();
-    constrSig.connect<TMappedGroup, &TMappedGroup::Add>( this );
-
+    constrSig.connect<TBaseMappedGroup, &TBaseMappedGroup::Add>( this );
     // садитс€ на событи€ компонента
     MWorks::ECS::THugeRegistry::sink_type destrSig = registry->destruction<Component>();
-    destrSig.connect<TMappedGroup, &TMappedGroup::Remove>( this );
+    destrSig.connect<TBaseMappedGroup, &TBaseMappedGroup::Remove>( this );
   }
 
-  ~TMappedGroup()
+  virtual ~TBaseMappedGroup()
   {
-    mConnectionCounter--;
-    if( mConnectionCounter == 0 )
+    g_ConnectionCounter--;
+    if( g_ConnectionCounter == 0 )
     {
-      delete mCompEntityMap;
-      mCompEntityMap = nullptr;
+      delete g_CompEntityMap;
+      g_CompEntityMap = nullptr;
     }
-  }
-
-  inline MWorks::ECS::TEntity Get( Component& c )
-  {
-    auto fit = mCompEntityMap->find( c );
-    if( mCompEntityMap->end() == fit )
-      return entt::null;
-    return fit->second;
   }
 private:
   inline void Add( MWorks::ECS::THugeRegistry& registry, const MWorks::ECS::TEntity entity )
   {
-    mCompEntityMap->insert( TComponentEntityMap::value_type( registry.get<Component>( entity ), entity ) );
+    g_CompEntityMap->insert( TComponentEntityMap::value_type( registry.get<Component>( entity ), entity ) );
   }
   inline void Remove( MWorks::ECS::THugeRegistry& registry, const MWorks::ECS::TEntity entity )
   {
-    mCompEntityMap->erase( registry.get<Component>( entity ) );
+    g_CompEntityMap->erase( registry.get<Component>( entity ) );
+  }
+};
+
+template<typename Component>
+class DllExport TMappedSingleEntityGroup : 
+  public TBaseMappedGroup<Component, std::unordered_map<Component, MWorks::ECS::TEntity> >
+{
+public:
+  TMappedSingleEntityGroup( MWorks::ECS::THugeRegistry* registry ) :
+    TBaseMappedGroup<Component, std::unordered_map<Component, MWorks::ECS::TEntity> >( registry )  {}
+  inline MWorks::ECS::TEntity Get( Component& c )
+  {
+    auto fit = TBaseMappedGroup<Component, std::unordered_map<Component, MWorks::ECS::TEntity> >::g_CompEntityMap->find( c );
+    if( TBaseMappedGroup<Component, std::unordered_map<Component, MWorks::ECS::TEntity> >::g_CompEntityMap->end() == fit )
+      return entt::null;
+    return fit->second;
+  }
+};
+
+template<typename Component>
+class DllExport TMappedMultiEntityGroup : 
+  public TBaseMappedGroup<Component, std::unordered_multimap<Component, MWorks::ECS::TEntity> >
+{
+public:
+  TMappedMultiEntityGroup( MWorks::ECS::THugeRegistry* registry ) :
+    TBaseMappedGroup<Component, std::unordered_multimap<Component, MWorks::ECS::TEntity> >( registry )  {}
+  inline void Get( Component& c, std::list<MWorks::ECS::TEntity>& entList )
+  {
+    auto range = TBaseMappedGroup<Component, std::unordered_multimap<Component, MWorks::ECS::TEntity> >::g_CompEntityMap->equal_range( c );
+    for( auto it = range.first; it != range.second; ++it )
+      entList.push_back( it->second );
   }
 };
