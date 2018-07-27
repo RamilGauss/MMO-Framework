@@ -68,6 +68,11 @@ bool TCmdParam::IsKey( string& sKey )
   return (mSetFoundKey.find( sKey ) != mSetFoundKey.end());
 }
 //-------------------------------------------------------------------------------
+void TCmdParam::AddDefKey( std::string& key )
+{
+  mSetDefKey.insert( key );
+}
+//-------------------------------------------------------------------------------
 void TCmdParam::SetDefKey( vector<string>& vecKey )
 {
   mSetDefKey.clear();

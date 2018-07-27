@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef EventsH
-#define EventsH
+#pragma once
 
 #include "TypeDef.h"
 #include <OISMouse.h>
@@ -68,5 +67,3 @@ struct DllExport TMouseEvent : public TBaseEvent
 #pragma pack(pop)
 #endif
 }
-
-#endif

@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -9,8 +9,8 @@ See for more information License.h.
 
 TModuleClientLogic::TModuleClientLogic()
 {
-  mAggregationScenario_Client.reset(new TGP_AggregationScenario_GameMap);
-  mScene.reset(new TScene);
+  mAggregationScenario_Client.reset( new TGP_AggregationScenario_GameMap );
+  mScene.reset( new TScene );
 }
 //----------------------------------------------------------------
 bool TModuleClientLogic::WorkInherit()
@@ -21,8 +21,9 @@ bool TModuleClientLogic::WorkInherit()
   return res;
 }
 //----------------------------------------------------------------
-void TModuleClientLogic::ParseCmd(std::vector<std::string>& arg)
+void TModuleClientLogic::ParseCmd( std::vector<std::string>& arg )
 {
-  mInputCmd.SetArg(arg);
+  mInputCmd.Init();
+  mInputCmd.SetArg( arg );
 }
 //------------------------------------------------------------------------

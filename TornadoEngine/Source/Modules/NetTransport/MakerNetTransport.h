@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MakerNetTransportH
-#define MakerNetTransportH
+#pragma once
 
 #include "TypeDef.h"
 #include "IMakerTransport.h"
@@ -17,6 +16,3 @@ public:
   virtual nsMMOEngine::INetTransport* New();
   virtual void Delete(nsMMOEngine::INetTransport* pTransport);
 };
-
-#endif
-

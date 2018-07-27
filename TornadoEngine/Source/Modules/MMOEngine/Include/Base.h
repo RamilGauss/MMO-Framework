@@ -9,7 +9,6 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
-#include <boost/smart_ptr/scoped_ptr.hpp>
 #include <list>
 
 #include "Structs.h"
@@ -72,6 +71,7 @@ namespace nsMMOEngine
     virtual bool IsConnectUp();
     virtual bool IsConnect( unsigned int id );
     virtual void SetLoad( int procent );
+    virtual int GetLoad();
 
     virtual void SetTimeLiveSession( unsigned int time_ms );
 

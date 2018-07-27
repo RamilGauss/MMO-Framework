@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MANAGER_CONTEXT_CLIENT_LOGINING_H
-#define MANAGER_CONTEXT_CLIENT_LOGINING_H
+#pragma once
 
 #include <map>
 #include <boost/bimap/bimap.hpp>
@@ -45,6 +44,3 @@ namespace nsMMOEngine
     void Clear();
   };
 }
-
-#endif
-

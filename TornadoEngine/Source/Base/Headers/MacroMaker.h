@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef DEF_MACRO_MAKER_H
-#define DEF_MACRO_MAKER_H
+#pragma once
 
 #include "MacroMaker_Prepare.h"
 
@@ -44,5 +43,3 @@ MACRO_MAKER_CPP_USE_P(NameInterface, NameInterface, ClassRealize, param_for_decl
 #define MACRO_MAKER_H_EXPORT_USE_SAME(decl, NameInterface)    MACRO_MAKER_H_EXPORT_USE(decl, NameInterface, NameInterface)
 #define MACRO_MAKER_CPP_USE_SAME(NameInterface, ClassRealize) MACRO_MAKER_CPP_USE(NameInterface, NameInterface, ClassRealize)
 //------------------------------------------------------------------------------------------------------------
-
-#endif

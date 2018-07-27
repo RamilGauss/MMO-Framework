@@ -12,7 +12,7 @@ See for more information License.h.
 #include "Events.h"
 #include "Logger.h"
 
-#include <boost/locale/util.hpp>
+//#include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
 
 TGraphicEngine_Ogre_MyGUI::TGraphicEngine_Ogre_MyGUI()

@@ -32,6 +32,9 @@
     <ClCompile Include="InputCmdTestMMO_Server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ClusterMonitorServerHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HandlerMMO_Master.h">
@@ -50,6 +53,9 @@
       <Filter>Share</Filter>
     </ClInclude>
     <ClInclude Include="InputCmdTestMMO_Server.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClusterMonitorServerHandler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

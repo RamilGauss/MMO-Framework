@@ -52,7 +52,7 @@ bool TLogger::Register( const char* nameLogger, const char* extension )
   return true;
 }
 //-----------------------------------------------------------------------
-void TLogger::Init( char* prefix )
+void TLogger::Init( const char* prefix )
 {
   sPrefix = prefix;
 

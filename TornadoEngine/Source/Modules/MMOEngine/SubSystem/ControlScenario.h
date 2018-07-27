@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineControlScenarioH
-#define MMOEngineControlScenarioH
+#pragma once
 
 #include <map>
 #include "MakerScenario.h"
@@ -51,5 +50,3 @@ namespace nsMMOEngine
     void Add( IScenario* pSc );
   };
 }
-
-#endif

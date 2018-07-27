@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ArrContainerH
-#define ArrContainerH
+#pragma once
 
 #include <vector>
 #include "ContainerTypes.h"
@@ -26,7 +25,6 @@ class DllExport TArrContainer
   TContainer mFC;// вся память
 
 public:
-
   TArrContainer();
   ~TArrContainer();
   // доступ к элементам
@@ -44,5 +42,3 @@ public:
 protected:
   void Collect();
 };
-
-#endif

@@ -5,12 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleClientLogicH
-#define ModuleClientLogicH
+#pragma once
 
 #include "ModuleLogic.h"
 #include "InputCmdDevTool.h"
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "GP_AggregationScenario_GameMap.h"
 #include "Scene.h"
@@ -20,9 +18,9 @@ class DllExport TModuleClientLogic : public TModuleLogic
 protected:
   TInputCmdDevTool                                   mInputCmd;
 
-  boost::scoped_ptr<TGP_AggregationScenario_GameMap> mAggregationScenario_Client;
+  std::shared_ptr<TGP_AggregationScenario_GameMap> mAggregationScenario_Client;
 
-  boost::scoped_ptr<TScene>                          mScene;
+  std::shared_ptr<TScene>                          mScene;
 
 public:
   TModuleClientLogic();
@@ -32,5 +30,3 @@ public:
 protected:
   virtual bool WorkClient() = 0;
 };
-
-#endif

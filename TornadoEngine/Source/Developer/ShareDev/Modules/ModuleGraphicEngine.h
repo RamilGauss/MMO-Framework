@@ -5,10 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleGraphicEngineH
-#define ModuleGraphicEngineH
-
-#include <boost/smart_ptr/scoped_ptr.hpp>
+#pragma once
 
 #include "CallBackRegistrator.h"
 #include "ModuleComponent.h"
@@ -18,7 +15,7 @@ class TGraphicEngine_Ogre_MyGUI;
 
 class DllExport TModuleGraphicEngine : public TModuleComponent
 {
-  boost::scoped_ptr<TGraphicEngine_Ogre_MyGUI> mGE;
+  std::shared_ptr<TGraphicEngine_Ogre_MyGUI> mGE;
 public:
   TModuleGraphicEngine();
 
@@ -29,5 +26,3 @@ public:
   TGraphicEngine_Ogre_MyGUI* GetGE();
 protected:
 };
-
-#endif

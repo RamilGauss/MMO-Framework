@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef BreakPacketH
-#define BreakPacketH
+#pragma once
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
@@ -63,6 +62,3 @@ public:
 protected:
   void CopyFrom( const TBreakPacket& bp );
 };
-
-#endif
-

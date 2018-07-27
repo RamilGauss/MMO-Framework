@@ -31,21 +31,21 @@ namespace nsMMOEngine
 
     // DOWN
     //клиенты, которые уже в системе
-    boost::scoped_ptr<TManagerContextMoreDownClientConnection> mMngContextClient;
+    std::shared_ptr<TManagerContextMoreDownClientConnection> mMngContextClient;
     // Slaves
-    boost::scoped_ptr<TManagerContextDownConnection_Slave>     mMngContextSlave;
+    std::shared_ptr<TManagerContextDownConnection_Slave>     mMngContextSlave;
     // клиенты, которые находятся в процессе авторизации
-    boost::scoped_ptr<TManagerContextClientLogining>           mMngContextClientLogining;
+    std::shared_ptr<TManagerContextClientLogining>           mMngContextClientLogining;
     // группы клиентов
-    boost::scoped_ptr<TManagerGroupClient>                     mMngGroup;
+    std::shared_ptr<TManagerGroupClient>                     mMngGroup;
     // ID клиентов, которые ожидают в очереди, по причине загруженности Slave
-    boost::scoped_ptr<TSetOrderElement>                        mSetClientKeyInQueue;
+    std::shared_ptr<TSetOrderElement>                        mSetClientKeyInQueue;
     // для создания группы, нужна статистика по клиентам, которые уже в группе
-    boost::scoped_ptr<TStatisticaClientInGroup>                mStatisticaClientInGroup;
+    std::shared_ptr<TStatisticaClientInGroup>                mStatisticaClientInGroup;
     // какой клиент с какими Slave связан в процессе перекоммутации
     // необходимо знать если произошел Дисконнект с Клиентом, Донором или Реципиентом, что бы 
     // уведомить оставшихся на связи об этом Дисконнекте.
-    boost::scoped_ptr<TManagerRecommutation>                   mMngRcm;
+    std::shared_ptr<TManagerRecommutation>                   mMngRcm;
   public:
     typedef enum
     {

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MAKER_SCENARIO_H
-#define MAKER_SCENARIO_H
+#pragma once
 
 #include <set>
 
@@ -36,4 +35,3 @@ namespace nsMMOEngine
     void Delete( IScenario* p );
   };
 }
-#endif

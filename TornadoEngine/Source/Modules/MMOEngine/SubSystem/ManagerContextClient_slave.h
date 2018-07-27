@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MANAGER_CONTEXT_CLIENT_SLAVE_H
-#define MANAGER_CONTEXT_CLIENT_SLAVE_H
+#pragma once
 
 #include <map>
 #include "DelegateManagerContextSc.h"
@@ -58,6 +57,3 @@ namespace nsMMOEngine
     bool FindInMapUintUint( TMapUintUint& map, unsigned int key, unsigned int& value );
   };
 }
-
-#endif
-

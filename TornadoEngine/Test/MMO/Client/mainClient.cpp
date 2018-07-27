@@ -27,6 +27,8 @@ void StartClients( int argc, char** argv );
 
 int main( int argc, char** argv )
 {
+  setlocale( LC_ALL, "Russian" );
+
 #ifdef WIN32
   std::string title = "Title Client ";
   for( int i = 1; i < argc; i++ )
@@ -62,21 +64,18 @@ void StartClients( int argc, char** argv )
 
   THandlerMMO_Client handler;
 
-  TInputCmdTestMMO_Client inputCmd;
-  bool res = inputCmd.SetArg( argc, argv );
-  BL_ASSERT( res );
-
-  TInputCmdTestMMO_Client::TInput inputArg;
-  inputCmd.Get( inputArg );
+  TInputCmdTestMMO_Client cmi;
+  cmi.Init();
+  cmi.SetArg(argc, argv);
 
   TMakerNetTransport makerTransport;
   nsMMOEngine::TDescOpen descOpen;
-  descOpen.subNet = inputArg.subnet;
-  for( int i = 0; i < inputArg.count; i++ )
+  descOpen.subNet = cmi.mInput.subnet;
+  for( int i = 0; i < cmi.mInput.count; i++ )
   {
-    descOpen.port = inputArg.begin_port + i;
+    descOpen.port = cmi.mInput.begin_port + i;
     auto pClientDesc = new TClientDesc();
-    pClientDesc->mIntervalSendPing = inputArg.ping_time;
+    pClientDesc->mIntervalSendPing = cmi.mInput.ping_time;
     pClientDesc->mPort = descOpen.port;
     pClientDesc->mClient->Init( &makerTransport );
     pClientDesc->mClient->Open( &descOpen );
@@ -86,7 +85,7 @@ void StartClients( int argc, char** argv )
     handler.mArrClient.push_back( pClientDesc );
     handler.mClientDescMap.insert( THandlerMMO_Client::TPtrPtrMapVT( pClientDesc->mClient.get(), pClientDesc ) );
 
-    auto procentage = (i + 1) * 100.0f / inputArg.count;
+    auto procentage = (i + 1) * 100.0f / cmi.mInput.count;
     printf( "\b\b\b\b\b\b\b\b\b%02.02f%%", procentage );
   }
   printf( "\n" );
@@ -94,7 +93,7 @@ void StartClients( int argc, char** argv )
   auto createClientTime = ht_GetMSCount() - start;
   GetLogger( ClientLog )->WriteF( "createClientTime = %d ms\n", createClientTime );
 
-  const char* sLocalHost = inputArg.ip_server.data();
+  const char* sLocalHost = cmi.mInput.server_ip.data();
   unsigned int masterIP = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
   int indexClientOnLogin = 0;
   TIP_Port masterIP_port( masterIP, MASTER_PORT );
@@ -113,17 +112,17 @@ void StartClients( int argc, char** argv )
 
     // Login
     std::string password = CLIENT_PASSWORD;
-    int cnt = std::min( inputArg.count, indexClientOnLogin + STEP_LOGIN );
+    int cnt = std::min( cmi.mInput.count, indexClientOnLogin + STEP_LOGIN );
     for( int i = indexClientOnLogin; i < cnt; i++ )
     {
       char sLogin[100];
-      sprintf( sLogin, "%d", inputArg.begin_id + i );
+      sprintf( sLogin, "%d", cmi.mInput.begin_id + i );
       std::string login = sLogin;
       handler.mArrClient[i]->mClient->Login( masterIP_port, login, password );
     }
     indexClientOnLogin = cnt;
 
-    if( inputArg.count == indexClientOnLogin && flgNeedPrintEndLogin )
+    if( cmi.mInput.count == indexClientOnLogin && flgNeedPrintEndLogin )
     {
       GetLogger( ClientLog )->WriteF( "End login ----------------------------------------------------\n" );
       flgNeedPrintEndLogin = false;

@@ -5,12 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef TestControlTankH
-#define TestControlTankH
+#pragma once
 
 #include "ContainerTypes.h"
 #include "Mutex.h"
-#include <boost/smart_ptr/scoped_ptr.hpp>
 #include "TypeDef.h"
 
 class TTankTower;
@@ -73,6 +71,3 @@ public:
 private:
   void UpdateAngle();
 };
-
-
-#endif

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MapXML_FieldH
-#define MapXML_FieldH
+#pragma once
 
 #include <map>
 #include <string>
@@ -39,5 +38,3 @@ public:
 
 protected:
 };
-
-#endif

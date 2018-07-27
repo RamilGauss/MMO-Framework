@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef BL_DebugH
-#define BL_DebugH
+#pragma once
 
 #include "TypeDef.h"
 
@@ -44,7 +43,4 @@ DllExport void BL_MessageBug( const char* lpszFileName, int nLine );
   #define BL_DEBUG(f)  {}
   #define BL_FIX_BUG() {}
 #endif  //_DEBUG
-
-
-#endif  //BL_DebugH
 

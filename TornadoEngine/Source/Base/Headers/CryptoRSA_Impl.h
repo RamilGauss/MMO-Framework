@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CryptoRSA_ImplH
-#define CryptoRSA_ImplH
+#pragma once
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
@@ -42,7 +41,3 @@ private:
   void MakeContainerForPrivateKey();
   void MakeContainerForPublicKey();
 };
-
-
-#endif
-

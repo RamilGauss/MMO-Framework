@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineSessionNavigatorH
-#define MMOEngineSessionNavigatorH
+#pragma once
 
 #include <map>
 #include <set>
@@ -56,5 +55,3 @@ namespace nsMMOEngine
   protected:
   };
 }
-
-#endif

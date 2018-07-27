@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SC_RECOMMUTATION_CLIENT_CLIENT_IMPL_H
-#define SC_RECOMMUTATION_CLIENT_CLIENT_IMPL_H
+#pragma once
 
 #include "BaseScRecommutationClient.h"
 
@@ -26,7 +25,7 @@ namespace nsMMOEngine
     virtual void Work( unsigned int time_ms );
 
     void DisconnectClient( unsigned char subNet );
-    
+
     void SetLoginPassword( std::string& login, std::string& password );
   protected:
     virtual void RecvInherit( TDescRecvSession* pDesc );
@@ -43,4 +42,3 @@ namespace nsMMOEngine
 
   };
 }
-#endif

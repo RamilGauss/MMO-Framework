@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef HiTimerH
-#define HiTimerH
+#pragma once
 
 #include "TypeDef.h"
 
@@ -37,5 +36,3 @@ bool DllExport ht_sleep( unsigned int us, THT_CheckFunc func );
 // Точность от 55 мсек и выше
 unsigned int DllExport ht_GetMSCount();
 //------------------------------------------------------------------------------
-
-#endif

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef TypeDefH
-#define TypeDefH
+#pragma once
 
 //------------------------------------------------------------------------------
 //-----------   Определение макросов экспорта/импорта функций    ---------------
@@ -62,6 +61,4 @@ See for more information License.h.
   #else
     #define USE_NATIVE_ATOMIC_CXX11
   #endif
-#endif
-//-----------------------------------------------------------------------------
 #endif

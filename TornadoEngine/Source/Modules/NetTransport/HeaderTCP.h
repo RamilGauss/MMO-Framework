@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef HeaderTCPH
-#define HeaderTCPH
+#pragma once
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -18,7 +17,4 @@ struct THeaderTCP
 }_PACKED;
 #ifdef WIN32
 #pragma pack(pop)
-#endif
-
-
 #endif

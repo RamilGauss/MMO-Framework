@@ -17,12 +17,16 @@ namespace nsMMOEngine
 #if defined( WIN32 )
 #pragma pack(push, 1)
 #endif
-
   struct DllExport TRecvEvent : public TBaseEvent
   {
     unsigned int sessionID = INVALID_HANDLE_SESSION;
-    void* data = nullptr;
-    int dataSize = 0;
+    
+    char* GetData();
+    int GetSize();
+    unsigned short GetShift();
+    void SetShift( unsigned short val );
+  private:
+    unsigned short shift = 0;
   }_PACKED;
   //-------------------------------------------------------------
   struct DllExport TRecvFromDownEvent : public TRecvEvent

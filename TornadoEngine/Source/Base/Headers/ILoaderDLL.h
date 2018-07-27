@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ILoaderDLLH
-#define ILoaderDLLH
+#pragma once
 
 #include "TypeDef.h"
 
@@ -22,5 +21,3 @@ public:
   virtual void* Get(const char* nameFunc) = 0;
   virtual void Done() = 0;
 };
-
-#endif

@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineScContextManagerH
-#define MMOEngineScContextManagerH
+#pragma once
 
 #include <list>
 #include "CallBackRegistrator.h"
@@ -31,7 +30,7 @@ namespace nsMMOEngine
     // для обработки внутренних событий
     void Work();
 
-    bool Activate(IScenarioContext* pCSc);
+    bool Activate( IScenarioContext* pCSc );
     void Deactivate();
 
     IScenarioContext* GetActive();
@@ -47,5 +46,3 @@ namespace nsMMOEngine
     void NotifyDisactiveEvent();
   };
 }
-
-#endif

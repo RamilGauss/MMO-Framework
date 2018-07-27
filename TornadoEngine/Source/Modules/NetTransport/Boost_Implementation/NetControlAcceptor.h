@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef NetControlAcceptorH
-#define NetControlAcceptorH
+#pragma once
 
 #include "INetControl.h"
 #include "NetDeviceAcceptor.h"
@@ -21,28 +20,28 @@ class TNetControlAcceptor : public INetControl
 
 public:
 
-  TNetControlAcceptor(TNetTransport_Boost* pNTB, boost::asio::io_service& io_service);
+  TNetControlAcceptor( TNetTransport_Boost* pNTB, boost::asio::io_service& io_service );
   virtual ~TNetControlAcceptor();
   // TNetTransport_XXX
   virtual void Init();
-  virtual bool Open( unsigned short port, unsigned char numNetWork = 0);
-  virtual bool Connect(unsigned int ip, unsigned short port);              // blocking
-  virtual void Send(unsigned int ip, unsigned short port, TBreakPacket& bp);
+  virtual bool Open( unsigned short port, unsigned char numNetWork = 0 );
+  virtual bool Connect( unsigned int ip, unsigned short port );              // blocking
+  virtual void Send( unsigned int ip, unsigned short port, TBreakPacket& bp );
   virtual void Close();
-  
-  virtual TNetDeviceAcceptor* GetDevice(){return &mDevice;}
+
+  virtual TNetDeviceAcceptor* GetDevice()
+  {
+    return &mDevice;
+  }
 
   bool IsReadyAccept();
 protected:
   void Done();
 
   // asio event
-  void AcceptEvent(const boost::system::error_code& error);
+  void AcceptEvent( const boost::system::error_code& error );
 
   void ReadyAccept();
 
   TNetControlTCP* pNewControlTCP;
 };
-
-
-#endif

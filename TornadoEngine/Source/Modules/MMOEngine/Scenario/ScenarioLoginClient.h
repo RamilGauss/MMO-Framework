@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SCENARIO_LOGIN_CLIENT_H
-#define SCENARIO_LOGIN_CLIENT_H
+#pragma once
 
 #include "IScenario.h"
 #include "ContextScLoginClient.h"
@@ -90,4 +89,3 @@ namespace nsMMOEngine
     virtual void Work();
   };
 }
-#endif

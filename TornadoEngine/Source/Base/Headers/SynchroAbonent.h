@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SynchroAbonentH
-#define SynchroAbonentH
+#pragma once
 
 #include "TypeDef.h"
 #include <map>
@@ -54,6 +53,3 @@ void TSynchroAbonent::AddEventWithoutCopy(int id_recv, T* pObject)
 {
   mSynchroPoint->AddEventWithoutCopy<T>(mSelfID, id_recv, pObject);
 }
-//------------------------------------------------------------------------------
-
-#endif

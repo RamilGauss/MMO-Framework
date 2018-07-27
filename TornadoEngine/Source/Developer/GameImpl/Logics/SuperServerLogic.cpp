@@ -23,9 +23,9 @@ TSuperServerLogic::TSuperServerLogic()
   //mSuperServerForm = NULL;
   // значения по-умолчанию для параметров командной строки
   TInputCmdDevTool::TInput input;
-  input.port_self = SUPER_SERVER_PORT;
+  input.self_port = SUPER_SERVER_PORT;
 
-  mInputCmd.SetDefParam(input);
+  mInputCmd.mInput = input;
 }
 //------------------------------------------------------------------------------
 bool TSuperServerLogic::WorkServer()
@@ -71,11 +71,8 @@ void TSuperServerLogic::StopEvent()
 //----------------------------------------------------------
 void TSuperServerLogic::OpenPort()
 {
-  TInputCmdDevTool::TInput input;
-  mInputCmd.Get(input);
-
   nsMMOEngine::TDescOpen descOpen;
-  descOpen.port = input.port_self;
+  descOpen.port = mInputCmd.mInput.self_port;
   bool resOpen = mComp.pMMOEngineSuperServer->Get()->Open(&descOpen);
 }
 //----------------------------------------------------------

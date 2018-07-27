@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SynchroPointH
-#define SynchroPointH
+#pragma once
 
 #include "TypeDef.h"
 #include <vector>
@@ -67,7 +66,7 @@ private:
 template <typename T>
 void TSynchroPoint::AddEventWithoutCopy(int id_sender, int id_recv, T* pObject)
 {
-  TDescSender* pDescSender = NULL;
+  TDescSender* pDescSender = nullptr;
   pDescSender = Find(id_recv, id_sender);
   if(pDescSender)
   {
@@ -76,6 +75,3 @@ void TSynchroPoint::AddEventWithoutCopy(int id_sender, int id_recv, T* pObject)
     pDescSender->pList->Add(pC);
   }
 }
-//-----------------------------------------------------------------------------------------
-
-#endif

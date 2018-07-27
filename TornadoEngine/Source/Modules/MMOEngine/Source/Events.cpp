@@ -10,6 +10,26 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
+char* TRecvEvent::GetData()
+{
+  return c.GetPtr() + shift;
+}
+//-------------------------------------------------------------
+int TRecvEvent::GetSize()
+{
+  return c.GetSize() - shift;
+}
+//-------------------------------------------------------------
+unsigned short TRecvEvent::GetShift()
+{
+  return shift;
+}
+//-------------------------------------------------------------
+void TRecvEvent::SetShift( unsigned short val )
+{
+  shift = val;
+}
+//-------------------------------------------------------------
 TRecvFromDownEvent::TRecvFromDownEvent()
 {
   mType = eRecvFromDown;

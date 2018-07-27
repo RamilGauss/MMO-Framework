@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef IContainerH
-#define IContainerH
+#pragma once
 
 #include "TypeDef.h"
 
@@ -34,7 +33,3 @@ public:
   // освободить ресурсы
   virtual void Done() = 0;
 };
-
-
-#endif
-

@@ -5,26 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef InputCmdTestMMO_ClientH
-#define InputCmdTestMMO_ClientH
+#pragma once
 
-#include <string>
-#include <vector>
-
-#include "CmdParam.h"
-#include "CommonParam.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "ResolverSelf_IP_v4.h"
+#include "InputByCmd.h"
 
-class TInputCmdTestMMO_Client
+class TInputCmdTestMMO_Client : public TInputByCmd
 {
-  TCmdParam mCmdParam;
-
-  typedef std::vector<std::string> TVectorStr;
-  TVectorStr mVecDefKey;
-
 public:
-
   struct TInput
   {
     unsigned short begin_port;
@@ -52,5 +41,3 @@ public:
 protected:
   TInput mInput;
 };
-
-#endif

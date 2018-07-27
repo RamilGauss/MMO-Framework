@@ -5,10 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-
-#ifndef LoadFromFileH
-#define LoadFromFileH
-
+#pragma once
 
 #include <stdio.h>
 #include <string>
@@ -32,6 +29,3 @@ public:
   unsigned int Read(void* buffer, unsigned int size, unsigned int offset = 0);
   int ReadSmall(TContainer& c);
 };
-
-#endif
-

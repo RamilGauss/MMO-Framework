@@ -46,7 +46,7 @@ struct DllExport TModelItem : public TBaseItem
   typedef TMapStrPart::iterator       TMapStrPartIt;
   typedef TMapStrPart::value_type     TMapStrPartVT;
   //---------------------------------------------------------  
-  typedef std::auto_ptr<nsParamBuilderConstraint::TBaseParam> TAutoPtrConstraint;
+  typedef std::shared_ptr<nsParamBuilderConstraint::TBaseParam> TAutoPtrConstraint;
   //---------------------------------------------------------  
   struct DllExport TLink
   {

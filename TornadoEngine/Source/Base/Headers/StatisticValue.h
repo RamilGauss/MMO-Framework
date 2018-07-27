@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef StatisticValueH
-#define StatisticValueH
+#pragma once
 
 #include <math.h>
 #include <boost/cstdint.hpp>
@@ -432,5 +431,3 @@ public:
   }
 };
 //---------------------------------------------------------------------------
-
-#endif

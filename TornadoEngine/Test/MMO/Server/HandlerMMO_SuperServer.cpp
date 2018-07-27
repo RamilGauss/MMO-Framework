@@ -16,7 +16,7 @@ See for more information License.h.
 
 using namespace std;
 
-THandlerMMO_SuperServer::THandlerMMO_SuperServer() : THandlerMMO( eSuperServer )
+THandlerMMO_SuperServer::THandlerMMO_SuperServer( nsMMOEngine::TBase* pBase ) : THandlerMMO( pBase, eSuperServer )
 {
 
 }
@@ -57,8 +57,8 @@ void THandlerMMO_SuperServer::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       sEvent = "RecvFromDown";
       nsMMOEngine::TRecvFromDownEvent* pR = (nsMMOEngine::TRecvFromDownEvent*)pBE;
       char s[200];
-      memcpy( s, pR->data, pR->dataSize );
-      s[pR->dataSize] = '\0';
+      memcpy( s, pR->GetData(), pR->GetSize() );
+      s[pR->GetSize()] = '\0';
       sEvent += " msg: ";
       sEvent += s;
     }

@@ -13,6 +13,7 @@ See for more information License.h.
 #include "HiTimer.h"
 #include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
+#include <memory>
 
 
 using namespace std;
@@ -200,7 +201,7 @@ void TNetTransport_Boost::DeleteControlTCP( TNetControlTCP* pControl )
 {
   if( mTCP_Up.get() == pControl )
   {
-    mTCP_Up.reset( nullptr );
+    mTCP_Up.reset();
     return;
   }
   delete pControl;

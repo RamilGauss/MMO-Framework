@@ -5,15 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef GraphicEngine_Ogre_MyGUIH
-#define GraphicEngine_Ogre_MyGUIH
+#pragma once
 
 #include "TypeDef.h"
 #include "SrcEvent.h"
 #include "CallBackRegistrator.h"
 #include "Events.h"
-
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include <OgreRoot.h>
 #include <OgreSceneManager.h>
@@ -76,7 +73,7 @@ public:
   void SetUseClipCursor(bool v);
   bool GetUseClipCursor();
 private:
-  boost::scoped_ptr<TGE_Impl> mGE;
+  std::shared_ptr<TGE_Impl> mGE;
   void MsgException(MyGUI::Exception& _e);
 
   void KeyBoardEvent(const OIS::KeyEvent & k, bool pressed);
@@ -106,5 +103,3 @@ private:
     eTimeoutDblClick = 350, // ms
   };
 };
-
-#endif

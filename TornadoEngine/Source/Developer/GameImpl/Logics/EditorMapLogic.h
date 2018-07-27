@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef EditorMapLogicH
-#define EditorMapLogicH
+#pragma once
 
 #include "ModuleClientLogic.h"
 #include "FactoryBehaviourPattern_EoWM.h"
@@ -31,8 +30,8 @@ class TEditorMapLogic : public TModuleClientLogic
   TPhysicEngine_Bullet::eStateWorld    mStatePhysicWorld;
   TFactoryBehaviourPattern_EoWM        mFBP_EoWM;
 
-  boost::scoped_ptr<TShowTankWoT_test> mPtrShowTank;
-  boost::scoped_ptr<TControlCamera>    mPtrControlCamera;
+  std::shared_ptr<TShowTankWoT_test> mPtrShowTank;
+  std::shared_ptr<TControlCamera>    mPtrControlCamera;
 
   unsigned int mID_TimerTryMoveCamera;
 
@@ -52,22 +51,22 @@ public:
   virtual TFactoryBehaviourPattern* GetFBP();
 
 public:// TEditorMapLogic for GUI
-  void TogglePhysicState(TPhysicEngine_Bullet::eStateWorld stateWorld);
+  void TogglePhysicState( TPhysicEngine_Bullet::eStateWorld stateWorld );
 
   // in future should be locate in ClientLogic
-  void LoadGameMap(std::string& nameMap);
-  void SaveAsGameMap(std::string& nameMap);
+  void LoadGameMap( std::string& nameMap );
+  void SaveAsGameMap( std::string& nameMap );
   void SaveGameMap();
-  
-  void ModifyTerrain_Extent(TModifier_Terrain::TDescTarget& descTarget);
+
+  void ModifyTerrain_Extent( TModifier_Terrain::TDescTarget& descTarget );
 
 protected:
   virtual bool WorkClient();
-  virtual void Input(int id_sender, void* p, int size);
+  virtual void Input( int id_sender, void* p, int size );
 protected:
-  void HandleFromGraphicEngine(nsGraphicEngine::TBaseEvent* pBaseGE);
-  void HandleFromGraphicEngine_Mouse(nsGraphicEngine::TMouseEvent* pMouseGE);
-  void HandleFromGraphicEngine_Key(nsGraphicEngine::TKeyEvent* pKeyGE);
+  void HandleFromGraphicEngine( nsGraphicEngine::TBaseEvent* pBaseGE );
+  void HandleFromGraphicEngine_Mouse( nsGraphicEngine::TMouseEvent* pMouseGE );
+  void HandleFromGraphicEngine_Key( nsGraphicEngine::TKeyEvent* pKeyGE );
 private:
   void StartTimer();
   void InitForms();
@@ -79,13 +78,11 @@ private:
 
   void FreeGraphicResource();
 
-  void ProgressScenario(nsGameProcess::GP_TypeScenario type, int progress);
-  void EndScenario(nsGameProcess::GP_TypeScenario type);
+  void ProgressScenario( nsGameProcess::GP_TypeScenario type, int progress );
+  void EndScenario( nsGameProcess::GP_TypeScenario type );
 protected:
   void CameraTryMove();
 };
 
 // uses in GUI
 extern DllExport TEditorMapLogic* g_EditorMapLogic;
-
-#endif

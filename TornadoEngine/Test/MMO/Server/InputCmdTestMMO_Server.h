@@ -7,35 +7,18 @@ See for more information License.h.
 
 #pragma once
 
-#include <string>
-#include <vector>
+#include "InputByCmd.h"
 
-#include "CmdParam.h"
-#include "CommonParam.h"
-#include <boost/asio/ip/impl/address_v4.ipp>
-#include "ResolverSelf_IP_v4.h"
-
-class TInputCmdTestMMO_Server
+class TInputCmdTestMMO_Server : public TInputByCmd
 {
-  TCmdParam mCmdParam;
-
-  typedef std::vector<std::string> TVectorStr;
-  TVectorStr mVecDefKey;
-
 public:
 
   struct TInput
   {
-    unsigned char  subnet = 0;
+    unsigned char subnet = 0;
   };
 
-  TInputCmdTestMMO_Server();
-  ~TInputCmdTestMMO_Server();
-
-  bool SetArg( int argc, char** argv );
-  bool SetArg( std::vector<std::string>& vecArgv );
-  void Get( TInput& v_out );
-
-protected:
   TInput mInput;
+
+  void Init() override;
 };

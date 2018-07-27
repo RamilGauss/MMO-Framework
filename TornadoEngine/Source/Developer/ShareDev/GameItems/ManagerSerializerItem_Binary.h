@@ -5,13 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ManagerSerializerItem_BinaryH
-#define ManagerSerializerItem_BinaryH
+#pragma once
 
 #include "TypeDef.h"
 
 #include <map>
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "SerializerShapeItem_Binary.h"
 #include "SerializerModelItem_Binary.h"
@@ -30,13 +28,13 @@ class DllExport TManagerSerializerItem_Binary
   typedef TMapIntPtrSerilizer::iterator             TMapIntPtrSerilizerIt;
   typedef TMapIntPtrSerilizer::value_type           TMapIntPtrSerilizerVT;
 
-  boost::scoped_ptr<TSerializerPatternConfigItem_Binary> mSerializerPatternConfig;
-  boost::scoped_ptr<TSerializerShapeItem_Binary>         mSerializerShape;
-  boost::scoped_ptr<TSerializerModelItem_Binary>         mSerializerModel;
-  boost::scoped_ptr<TSerializerMaterialItem_Binary>      mSerializerMaterial;
-  boost::scoped_ptr<TSerializerTerrainItem_Binary>       mSerializerTerrain;
-  boost::scoped_ptr<TSerializerMapItem_Binary>           mSerializerMap;
-  boost::scoped_ptr<TSerializerTableSoundItem_Binary>    mSerializerTableSound;
+  std::shared_ptr<TSerializerPatternConfigItem_Binary> mSerializerPatternConfig;
+  std::shared_ptr<TSerializerShapeItem_Binary>         mSerializerShape;
+  std::shared_ptr<TSerializerModelItem_Binary>         mSerializerModel;
+  std::shared_ptr<TSerializerMaterialItem_Binary>      mSerializerMaterial;
+  std::shared_ptr<TSerializerTerrainItem_Binary>       mSerializerTerrain;
+  std::shared_ptr<TSerializerMapItem_Binary>           mSerializerMap;
+  std::shared_ptr<TSerializerTableSoundItem_Binary>    mSerializerTableSound;
 
   TMapIntPtrSerilizer mMapTypeSerializer;// каждому типу итэма - свой сериализатор
 
@@ -49,5 +47,3 @@ public:
 protected:
   TBaseSerializerItem_Binary* FindMap(int type);
 };
-
-#endif

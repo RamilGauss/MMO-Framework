@@ -38,6 +38,6 @@ void TModuleGraphicEngine::StopEvent()
 {
   mCBStopEvent.Notify();
 
-  mGE.reset(NULL);
+  mGE.reset();
 }
 //---------------------------------------------------------------------------------

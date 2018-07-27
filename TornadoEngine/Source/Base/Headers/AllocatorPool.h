@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef AllocatorPoolH
-#define AllocatorPoolH
+#pragma once
 
 #include "TypeDef.h"
 #include "DataExchange2ThreadElement.h"
@@ -21,5 +20,3 @@ public:
   DataExchange2Thread::TElement* Allocate();
   void Deallocate( DataExchange2Thread::TElement* pElement );
 };
-
-#endif

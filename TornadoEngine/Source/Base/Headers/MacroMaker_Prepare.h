@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef DEF_MACRO_MAKER_PREPARE_H
-#define DEF_MACRO_MAKER_PREPARE_H
+#pragma once
 
 // подготовка ( то, что для использования, смотри ниже )
 #define MACRO_MAKER_H_DECL(DECL, NameInterface, NameRealize, param_for_decl) \
@@ -39,5 +38,3 @@ void TMaker##NameRealize::Delete(I##NameInterface* ptr) \
 { \
   delete ptr;\
 }
-
-#endif

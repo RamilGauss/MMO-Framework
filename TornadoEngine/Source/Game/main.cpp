@@ -1,13 +1,13 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #ifdef WIN32
-  #include <windows.h>
-  #include <atlconv.h>
+#include <windows.h>
+#include <atlconv.h>
 #endif 
 
 #include <string>
@@ -29,60 +29,59 @@ using namespace std;
 //-------------------------------------
 typedef vector<string> TVectorStr;
 void ViewHowUse();
-bool GetArgvArgcConsole(int argc, char** argv, TVectorStr& vec_argv);
+bool GetArgvArgcConsole( int argc, char** argv, TVectorStr& vec_argv );
 //-------------------------------------
 #ifdef WIN32
-INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR cmdLine, INT){
+INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR cmdLine, INT )
+{
   char** argv = __argv;
   int argc = __argc;
 #else
-int main(int argc, char** argv){
+int main( int argc, char** argv )
+{
 #endif
 
   // установить текущую кодировку для мультибайтовой конвертации
-  const char* sLocale = setlocale ( LC_CTYPE/*LC_ALL*/, "" );
-  sLocale = setlocale ( LC_CTYPE, sLocale );
-  if( sLocale==NULL )
+  const char* sLocale = setlocale( LC_CTYPE/*LC_ALL*/, "" );
+  sLocale = setlocale( LC_CTYPE, sLocale );
+  if( sLocale == NULL )
   {
     BL_FIX_BUG();
   }
 
-  SetCurrentPathByFile(argv[0]);
+  SetCurrentPathByFile( argv[0] );
 
   TVectorStr vec_argv;
-  bool resGet = GetArgvArgcConsole(argc, argv, vec_argv);
+  bool resGet = GetArgvArgcConsole( argc, argv, vec_argv );
 
   TInputCmdTornado cmdTornado;
-  if((resGet==false)||
-     (cmdTornado.SetArg(vec_argv)==false))
+  cmdTornado.Init();
+  cmdTornado.SetArg( vec_argv );
+  if( resGet == false )
   {
     ViewHowUse();
     return -1;
   }
   //-----------------------------------------------------------------  
-  TInputCmdTornado::TInput inputTornado;
-  cmdTornado.Get(inputTornado);
-  //-----------------------------------------------------------------  
-  TGameEngine *pGame = new TGameEngine;
-  if(inputTornado.useConsole)
+  auto pGame = new TGameEngine;
+  if( cmdTornado.mInput.useConsole )
   {
     CreateConsole();
-    printf("%s\n", pGame->GetVersion().data());
-    printf("----------------------------------------------\n");
+    printf( "%s\n", pGame->GetVersion().data() );
+    printf( "----------------------------------------------\n" );
   }
   //-----------------------------------------------------------------  
-  pGame->Work(inputTornado.variant_use, 
-              inputTornado.libName.data(),
-              inputTornado.param);
+  pGame->Work( cmdTornado.mInput.variant_use,
+    cmdTornado.mInput.libName.data(), cmdTornado.mInput.param );
   delete pGame;
   return 0;
 }
 //-------------------------------------------------------------------------------
-bool GetArgvArgcConsole(int argc, char** argv, TVectorStr& vec_argv)
+bool GetArgvArgcConsole( int argc, char** argv, TVectorStr& vec_argv )
 {
-  for(int i = 0 ; i < argc ; i++)
-    vec_argv.push_back(string(argv[i]));
-  return bool(argc>0);
+  for( int i = 0; i < argc; i++ )
+    vec_argv.push_back( string( argv[i] ) );
+  return bool( argc > 0 );
 }
 //-------------------------------------------------------------------------------
 void ViewHowUse()
@@ -102,7 +101,7 @@ void ViewHowUse()
     "Tornado.exe -v 0 -d GameImpl.dll -p port_src 1234 port_self 7777\n";
 
   // Ввиду того, что весь исходный код я переконвертировал в utf-8.
-  char* sMsgUtf8_Ru = 
+  char* sMsgUtf8_Ru =
     "Некорректный ввод параметров.\n"
     "Ключ -d имя загружаемой библиотеки (обязательный параметр).\n"
     "\n"
@@ -120,12 +119,12 @@ void ViewHowUse()
 #ifdef WIN32  
   ret = GetSystemDefaultLangID();
 #endif
-  char* sMsgUtf8 = ( ret == 1049 ) ? sMsgUtf8_Ru : sMsgUtf8_En;
+  char* sMsgUtf8 = (ret == 1049) ? sMsgUtf8_Ru : sMsgUtf8_En;
 
 #ifdef WIN32
-  BL_MessageBug_Utf8(sMsgUtf8);
+  BL_MessageBug_Utf8( sMsgUtf8 );
 #else
-  BL_MessageBug(sMsgUtf8);
+  BL_MessageBug( sMsgUtf8 );
 #endif
 }
 //-------------------------------------------------------------------------------

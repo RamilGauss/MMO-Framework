@@ -5,12 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef StorageGameItem_XMLH
-#define StorageGameItem_XMLH
+#pragma once
 
 #include "TypeDef.h"
 #include <string>
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 struct TBaseItem;
 class IXML;
@@ -22,8 +20,8 @@ class DllExport TStorageGameItem_XML
 {
   IXML* mXML;
 
-  boost::scoped_ptr<TManagerSerializerItem_XML> mMngSerializer;
-  boost::scoped_ptr<TManagerCacheItem_XML>   mMngCache;
+  std::shared_ptr<TManagerSerializerItem_XML> mMngSerializer;
+  std::shared_ptr<TManagerCacheItem_XML>   mMngCache;
 public:
   TStorageGameItem_XML();
   virtual ~TStorageGameItem_XML();
@@ -42,5 +40,3 @@ public:
 private:
 
 };
-
-#endif

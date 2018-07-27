@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef STATISTICA_CLIENT_IN_GROUP_H
-#define STATISTICA_CLIENT_IN_GROUP_H
+#pragma once
 
 #include <map>
 #include <set>
@@ -65,6 +64,3 @@ namespace nsMMOEngine
   private:
   };
 }
-
-#endif
-

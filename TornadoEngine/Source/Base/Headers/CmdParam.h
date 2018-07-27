@@ -29,6 +29,7 @@ public:
   TCmdParam();
   virtual ~TCmdParam();
   // задать список возможных ключей
+  void AddDefKey( std::string& key );
   void SetDefKey( std::vector<std::string>& vecKey );
   // вставка элементов командной строки, парсинг по заданным ключам
   void SetArg( std::vector<std::string>& vecArgv );

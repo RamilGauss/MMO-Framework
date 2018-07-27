@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CryptoAES_ImplH
-#define CryptoAES_ImplH
+#pragma once
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
@@ -50,7 +49,3 @@ protected:
   bool InnerEncrypt( void* pIn, int sizeIn, void* pOut );
   bool InnerDecrypt( void* pIn, int sizeIn, void* pOut );
 };
-
-
-#endif
-

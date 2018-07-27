@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SrcEvent_ExH
-#define SrcEvent_ExH
+#pragma once
 
 #include "DstEvent.h"
 #include "SrcEvent.h"
@@ -26,7 +25,3 @@ void TSrcEvent::AddEventWithoutCopy(T* pObject, unsigned int time_create_ms)
   BL_ASSERT(pDstEvent);
   pDstEvent->AddEventInQueueWithoutCopy<T>(mTypeObject, this, pObject, time_create_ms);
 }
-//-------------------------------------------------------------------------------
-
-
-#endif

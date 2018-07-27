@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef FormManagerH
-#define FormManagerH
+#pragma once
 
 #include <string>
 #include <boost/bimap/bimap.hpp>
@@ -36,5 +35,3 @@ public:
   // чистка
   void Clear();
 };
-
-#endif

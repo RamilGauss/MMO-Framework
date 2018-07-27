@@ -1,5 +1,4 @@
-#ifndef LICENSE_H
-#define LICENSE_H
+#pragma once
 /*
 ===========================================================================
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
@@ -34,5 +33,3 @@ If you have questions concerning this license or the applicable additional terms
 you may contact in writing [ramil2085@mail.ru, ramil2085@gmail.com].
 ===========================================================================
 */ 
-
-#endif

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MD5_H
-#define MD5_H
+#pragma once
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
@@ -25,7 +24,3 @@ public:
 
   void FastCalc(void* pIn, int sizeIn,TContainer& result);
 };
-
-
-#endif
-

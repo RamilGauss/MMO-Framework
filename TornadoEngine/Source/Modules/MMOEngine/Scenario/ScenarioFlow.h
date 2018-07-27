@@ -61,16 +61,13 @@ namespace nsMMOEngine
       // создать событие
       TypeSrc* pEvent = new TypeSrc;
       // отцепиться от памяти, в которой содержится пакет
-      pDesc->c.Unlink();
       // отдать память под контроль события
-      pEvent->c.Entrust( pDesc->data, pDesc->dataSize );
-      pEvent->data = pDesc->data + sizeof( THeaderFlow );
-      pEvent->dataSize = pDesc->dataSize - sizeof( THeaderFlow );
+      pEvent->c = pDesc->c;
+      pEvent->SetShift( sizeof( THeaderFlow ) );
+
       // откуда пришел пакет - сессия
       pEvent->sessionID = pDesc->sessionID;
       // добавить событие без копирования и указать истинное время создания события в транспорте
-      //Context()->GetSE()->AddEventWithoutCopy(pEvent, sizeof(TypeSrc), pDesc->time_ms);
-
       Context()->GetSE()->AddEventWithoutCopy<TypeSrc>( pEvent, pDesc->time_ms );
     }
   };

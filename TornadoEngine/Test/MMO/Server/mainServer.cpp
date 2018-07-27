@@ -25,13 +25,16 @@ See for more information License.h.
 #include <thread>
 #include "InputCmdTestMMO_Server.h"
 #include <stdio.h>
+#include "ClusterMonitorServerHandler.h"
 
-#define COUNT_SLAVE 1
+#define COUNT_SLAVE 3
 
 void StartServer( int argc, char** argv );
 
 int main( int argc, char** argv )
 {
+  setlocale( LC_ALL, "Russian" );
+
 #ifdef WIN32
   std::string title = "Title Server ";
   for( int i = 1 ; i < argc ; i++ )
@@ -60,16 +63,14 @@ int main( int argc, char** argv )
 
 void StartServer( int argc, char** argv )
 {
-  TInputCmdTestMMO_Server inputCmd;
-  bool res = inputCmd.SetArg( argc, argv );
-  BL_ASSERT( res );
-
-  TInputCmdTestMMO_Server::TInput inputArg;
-  inputCmd.Get( inputArg );
+  TInputCmdTestMMO_Server cmi;
+  cmi.Init();
+  cmi.SetArg( argc, argv );
 
   // обязательно инициализировать лог
   std::string sLocalHost;
   TResolverSelf_IP_v4 resolver;
+
   InitLogger( ServerLog );
   {
     int countIP_v4 = resolver.GetCount();
@@ -82,11 +83,11 @@ void StartServer( int argc, char** argv )
     }
   }
 
-  if( resolver.Get( sLocalHost, inputArg.subnet ) )
+  if( resolver.Get( sLocalHost, cmi.mInput.subnet ) )
     GetLogger( ServerLog )->WriteF( "use ip = %s\n", sLocalHost.data() );
   else
   {
-    GetLogger( ServerLog )->WriteF( "FAIL subnet = %u\n", inputArg.subnet );
+    GetLogger( ServerLog )->WriteF( "FAIL subnet = %u\n", cmi.mInput.subnet );
     return;
   }
 
@@ -95,13 +96,13 @@ void StartServer( int argc, char** argv )
   TMakerNetTransport makerTransport;
 
   nsMMOEngine::TDescOpen descOpen;
-  descOpen.subNet = inputArg.subnet;
+  descOpen.subNet = cmi.mInput.subnet;
   typedef std::shared_ptr<nsMMOEngine::TSlave> TShared_Ptr_Slave;
   std::vector<TShared_Ptr_Slave> arrSlave;
   for( int i = 0; i < COUNT_SLAVE; i++ )
   {
-    THandlerMMO_Slave* pHandlerSlave = new THandlerMMO_Slave;
     TShared_Ptr_Slave pSlave = TShared_Ptr_Slave( new nsMMOEngine::TSlave );
+    THandlerMMO_Slave* pHandlerSlave = new THandlerMMO_Slave( pSlave.get() );
     pSlave->Init( &makerTransport );
     descOpen.port = SLAVE_PORT + i;
     pSlave->Open( &descOpen );
@@ -114,8 +115,10 @@ void StartServer( int argc, char** argv )
 
   std::shared_ptr<nsMMOEngine::TMaster>      pMaster( new nsMMOEngine::TMaster );
   std::shared_ptr<nsMMOEngine::TSuperServer> pSuperServer( new nsMMOEngine::TSuperServer );
-  std::shared_ptr<THandlerMMO> handlerMaster( new THandlerMMO_Master );
-  std::shared_ptr<THandlerMMO> handlerSuperServer( new THandlerMMO_SuperServer );
+  std::shared_ptr<THandlerMMO>               handlerMaster( new THandlerMMO_Master( pMaster.get() ) );
+  std::shared_ptr<THandlerMMO>               handlerSuperServer( new THandlerMMO_SuperServer( pSuperServer.get() ) );
+
+  TClusterMonitorServerHandler cmsTransport( cmi.mInput.subnet, pMaster.get() );
 
   descOpen.port = MASTER_PORT;
   pMaster->Init( &makerTransport );
@@ -136,7 +139,7 @@ void StartServer( int argc, char** argv )
   ssIP_Port.port = SUPER_SERVER_PORT;
   std::string login = MASTER_LOGIN;
   std::string password = MASTER_PASSWORD;
-  pMaster->ConnectUp( ssIP_Port, login, password, inputArg.subnet );
+  pMaster->ConnectUp( ssIP_Port, login, password, cmi.mInput.subnet );
   TIP_Port masterIP_Port;
   masterIP_Port.ip = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
   masterIP_Port.port = MASTER_PORT;
@@ -146,7 +149,7 @@ void StartServer( int argc, char** argv )
     char sLogin[100];
     sprintf( sLogin, "%d", i );
     login = SLAVE_LOGIN;// sLogin;
-    arrSlave[i]->ConnectUp( masterIP_Port, login, password, inputArg.subnet );
+    arrSlave[i]->ConnectUp( masterIP_Port, login, password, cmi.mInput.subnet );
   }
 
   const unsigned int printInterval = 6000;
@@ -179,6 +182,8 @@ void StartServer( int argc, char** argv )
     handlerSuperServer->Work();
     for( auto pHandlerSlave : arrHandlerSlave )
       pHandlerSlave->Work();
+
+    cmsTransport.Work();
 
     iCycle++;
     auto delta = ht_GetMSCount() - start;

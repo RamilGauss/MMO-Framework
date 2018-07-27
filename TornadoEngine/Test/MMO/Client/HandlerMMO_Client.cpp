@@ -15,7 +15,7 @@ See for more information License.h.
 #include "Logger.h"
 #include "EnumMMO.h"
 
-THandlerMMO_Client::THandlerMMO_Client() : THandlerMMO( eClient )
+THandlerMMO_Client::THandlerMMO_Client() : THandlerMMO( nullptr, eClient )
 {}
 //-----------------------------------------------------------------------------------
 void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
@@ -41,13 +41,14 @@ void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
     {
       nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
       sEvent = nsMMOEngine::GetStrError( pEr->code );
+      GetLogger( ClientLog )->WriteF( "MMOEngine: %s.\t\n", sEvent.data() );
     }
     break;
     case nsMMOEngine::eRecvFromUp:
     {
       sEvent = "RecvFromUp";
       nsMMOEngine::TRecvFromUpEvent* pR = (nsMMOEngine::TRecvFromUpEvent*)pBE;
-      int index = std::atoi( (const char*) pR->data );
+      int index = std::atoi( (const char*) pR->GetData() );
       auto desc = mArrClient[index];
       desc->RecvPong();
 
@@ -70,12 +71,15 @@ void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       else
         sEvent += " Reject ";
       sEvent.append( pRes->c.GetPtr(), pRes->c.GetSize() );
+      GetLogger( ClientLog )->WriteF( "MMOEngine: %s\t\n", sEvent.data() );
     }
     break;
     case nsMMOEngine::eEnterInQueue:
     {
       sEvent = "InQueueLoginClient";
+      auto pEnterEvent = (nsMMOEngine::TEnterInQueueEvent*)pBE;
       //pClient->LeaveQueue();
+      GetLogger( ClientLog )->WriteF( "MMOEngine: %s, num = %d.\t\n", sEvent.data(), pEnterEvent->numInQueue );
     }
     break;
     case nsMMOEngine::eLeaveQueue:

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef IXMLH
-#define IXMLH
+#pragma once
 
 #include <stddef.h>
 #include <string>
@@ -100,5 +99,3 @@ public:
   bool WriteFloat4(int index, float* v4);
 
 };
-
-#endif

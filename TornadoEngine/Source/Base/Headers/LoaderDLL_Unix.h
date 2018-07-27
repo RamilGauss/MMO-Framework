@@ -5,9 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-
-#ifndef LoaderDLL_UnixH
-#define LoaderDLL_UnixH
+#pragma once
 
 #ifndef WIN32
 
@@ -25,7 +23,5 @@ public:
   virtual void* Get(const char* nameFunc);
   virtual void Done();
 };
-
-#endif
 
 #endif

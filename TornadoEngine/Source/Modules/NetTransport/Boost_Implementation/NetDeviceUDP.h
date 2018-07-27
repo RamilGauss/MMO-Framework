@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef NetDeviceUDPH
-#define NetDeviceUDPH
+#pragma once
 
 #include "INetDevice.h"
 #include <boost/asio/ip/udp.hpp>
@@ -28,6 +27,3 @@ public:
 
   boost::asio::ip::udp::socket* GetSocket(){return &mSocket;}
 };
-
-
-#endif

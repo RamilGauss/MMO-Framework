@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SC_LOGIN_CLIENT_SLAVE_IMPL_H
-#define SC_LOGIN_CLIENT_SLAVE_IMPL_H
+#pragma once
 
 #include "BaseScLoginClient.h"
 
@@ -36,4 +35,3 @@ namespace nsMMOEngine
   //---------------------------------------------------------------------------------
   //---------------------------------------------------------------------------------
 }
-#endif

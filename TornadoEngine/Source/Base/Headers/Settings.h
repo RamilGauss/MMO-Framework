@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SettingsH
-#define SettingsH
+#pragma once
 
 #include <string>
 #include <boost/lexical_cast.hpp>
@@ -78,6 +77,3 @@ T TSettings::ReadEntry( std::string key, T* defaultValue)
       t = *defaultValue;
   return t;
 }
-//-----------------------------------------------------------------------
-
-#endif 

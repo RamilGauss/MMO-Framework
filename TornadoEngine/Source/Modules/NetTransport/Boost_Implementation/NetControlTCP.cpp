@@ -171,7 +171,7 @@ void TNetControlTCP::RequestConnect( TIP_Port& ip_port )
   catch( std::exception& e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
-      WriteF_time( "RequestConnect TCP error=%s.\n", e.what() );
+      WriteF_time( "RequestConnect TCP error=%s, ip_port=%s.\n", e.what(), ip_port.ToString() );
 
     flgWaitConnect = false;
     flgResConnect = false;

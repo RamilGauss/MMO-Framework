@@ -10,43 +10,30 @@ See for more information License.h.
 #include <string>
 #include <vector>
 
-#include "CmdParam.h"
 #include "CommonParam.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "ResolverSelf_IP_v4.h"
+#include "InputByCmd.h"
 
-class TInputCmdTestMMO_Client
+class TInputCmdTestMMO_Client : public TInputByCmd
 {
-  TCmdParam mCmdParam;
-
-  typedef std::vector<std::string> TVectorStr;
-  TVectorStr mVecDefKey;
-
 public:
-
   struct TInput
   {
     unsigned short begin_port = CLIENT_PORT;
     int            count = 1;
     int            begin_id = 0;
-    std::string    ip_server;
+    std::string    server_ip;
     int            ping_time = 0x1FFFFFFF;
     unsigned char  subnet = 0;
     TInput()
     {
       TResolverSelf_IP_v4 resolver;
-      resolver.Get( ip_server, 0 );
+      resolver.Get( server_ip, 0 );
     }
   };
 
-  TInputCmdTestMMO_Client();
-  ~TInputCmdTestMMO_Client();
-
-  bool SetArg( int argc, char** argv );
-  bool SetArg( std::vector<std::string>& vecArgv );
-  void Get( TInput& v_out );
-
-protected:
   TInput mInput;
+  void Init() override;
 };
 

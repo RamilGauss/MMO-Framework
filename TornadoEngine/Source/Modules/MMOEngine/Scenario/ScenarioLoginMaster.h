@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineScenarioLoginMasterH
-#define MMOEngineScenarioLoginMasterH
+#pragma once
 
 #include "IScenario.h"
 #include "ContextScLoginMaster.h"
@@ -61,6 +60,4 @@ namespace nsMMOEngine
 
 #ifdef WIN32
 #pragma pack(pop)
-#endif
-
 #endif

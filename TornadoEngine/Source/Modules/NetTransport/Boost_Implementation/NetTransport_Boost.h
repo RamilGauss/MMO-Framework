@@ -10,7 +10,6 @@ See for more information License.h.
 #include "INetTransport.h"
 #include "Mutex.h"
 #include "NetWorkThread.h"
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "NetControlTCP.h"
 #include "NetControlAcceptor.h"
@@ -28,9 +27,9 @@ class TNetTransport_Boost : public nsMMOEngine::INetTransport
 
   TNetWorkThread mNetWorkThread;
 
-  boost::scoped_ptr<TNetControlUDP>      mUDP;
-  boost::scoped_ptr<TNetControlAcceptor> mAcceptor;
-  boost::scoped_ptr<TNetControlTCP>      mTCP_Up;
+  std::shared_ptr<TNetControlUDP>      mUDP;
+  std::shared_ptr<TNetControlAcceptor> mAcceptor;
+  std::shared_ptr<TNetControlTCP>      mTCP_Up;
 
   typedef std::map<TIP_Port, TNetControlTCP*> TMapIP_Ptr;
   typedef TMapIP_Ptr::iterator TMapIP_PtrIt;

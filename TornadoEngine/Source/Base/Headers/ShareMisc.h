@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ShareMiscH
-#define ShareMiscH
+#pragma once
 
 #include "TypeDef.h"
 #include <string>
@@ -86,6 +85,3 @@ bool A_more_B_cycle( Type A, Type B )
 
   return false;
 }
-//--------------------------------------------------
-
-#endif

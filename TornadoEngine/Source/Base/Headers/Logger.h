@@ -5,13 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-
-#ifndef LoggerH 
-#define LoggerH
+#pragma once
 
 #include <map>
 #include <string>
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "SaveToFile.h"
 #include "Only_N_Object.h"
@@ -52,7 +49,7 @@ public:
   // return false if name is same
   bool Register( const char* nameLogger, const char* extension = "log" );
 
-  void Init( char* sPrefix );
+  void Init( const char* sPrefix );
   void Done();
   TSaveToFile* Get( const char* nameLog );
 
@@ -74,5 +71,3 @@ protected:
 
 extern DllExport TLogger* GetLogger();
 extern DllExport TSaveToFile* GetLogger( const char* nameLog );
-
-#endif 

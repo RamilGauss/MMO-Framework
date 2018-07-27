@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef XML_MarkupH
-#define XML_MarkupH
+#pragma once
 
 #include "IXML.h"
 #include "Markup.h"
@@ -34,7 +33,7 @@ public:
   
   // навигация
   virtual void ResetPos();
-  virtual int  GetCountSection(const char* name = NULL);
+  virtual int  GetCountSection(const char* name = nullptr);
   virtual std::string GetNameSection(int index);
   virtual bool EnterSection(const char* name, int num);
   virtual bool EnterSection(int index);
@@ -65,7 +64,5 @@ public:
   virtual std::string ReadSectionAttr(int index, const char* nameAttr );
   virtual std::string ReadSection(int index);
 
-  virtual bool Save(const char* sPath = NULL);
+  virtual bool Save(const char* sPath = nullptr);
 };
-
-#endif

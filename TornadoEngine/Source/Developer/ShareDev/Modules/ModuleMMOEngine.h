@@ -5,11 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleMMOEngineH
-#define ModuleMMOEngineH
+#pragma once
 
 #include "ModuleComponent.h"
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "SrcEvent_ex.h"
 
@@ -20,8 +18,8 @@ See for more information License.h.
 template <typename T>
 class DllExport TModuleMMOEngine : public TModuleComponent
 {
-  boost::scoped_ptr<TMakerNetTransport> mMakerTransport;
-  boost::scoped_ptr<T>                  mPtrMMO;
+  std::shared_ptr<TMakerNetTransport> mMakerTransport;
+  std::shared_ptr<T>                  mPtrMMO;
 public:
   TModuleMMOEngine();
   virtual void StartEvent();
@@ -71,5 +69,3 @@ T* TModuleMMOEngine<T>::Get()
   return mPtrMMO.get();
 }
 //------------------------------------------------------------------------------------
-
-#endif

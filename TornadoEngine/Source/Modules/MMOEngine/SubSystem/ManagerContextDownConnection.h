@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MANAGER_CONTEXT_DOWN_CONNECTION_H
-#define MANAGER_CONTEXT_DOWN_CONNECTION_H
+#pragma once
 
 #include <map>
 #include <set>
@@ -25,41 +24,40 @@ namespace nsMMOEngine
 
     typedef std::map<unsigned int, TSetUint > TMapUintSetUint;
     typedef TMapUintSetUint::iterator TMapUintSetUintIt;
-    
+
     TMapUintPtr     mMapSessionContext;
     TMapUintSetUint mMapSessionKey;
-    
-  public:
-    TManagerContextDownConnection(TBase* pBase);
-    virtual ~TManagerContextDownConnection();
-    
-    // навигация
-    TContainerContextSc* FindContextBySession(unsigned int sessionID);
-    bool FindSessionByClientKey(unsigned int id_client, unsigned int &id_session_slave);
-    
-    int GetCountSession();
-    bool GetSessionByIndex( int index, unsigned int& sessionID);
 
-    bool GetCountClientKey(unsigned int sessionID, int &count);
-    bool GetClientKeyByIndex(unsigned int sessionID, 
-                             int index, 
-                             unsigned int& id_client);
+  public:
+    TManagerContextDownConnection( TBase* pBase );
+    virtual ~TManagerContextDownConnection();
+
+    // навигация
+    TContainerContextSc* FindContextBySession( unsigned int sessionID );
+    bool FindSessionByClientKey( unsigned int id_client, unsigned int &id_session_slave );
+
+    int GetCountSession();
+    bool GetSessionByIndex( int index, unsigned int& sessionID );
+
+    bool GetCountClientKey( unsigned int sessionID, int &count );
+    bool GetClientKeyByIndex( unsigned int sessionID,
+      int index,
+      unsigned int& id_client );
 
     // добавление/удаление
-    TContainerContextSc* AddContext(unsigned int sessionID);
-    bool AddClientKey(unsigned int sessionID, 
-                      unsigned int id_client);
+    TContainerContextSc* AddContext( unsigned int sessionID );
+    bool AddClientKey( unsigned int sessionID,
+      unsigned int id_client );
 
     // удаление
-    void DeleteByClientKey(unsigned int sessionID, unsigned int id_client);
-    void DeleteContextBySession(unsigned int sessionID);
+    void DeleteByClientKey( unsigned int sessionID, unsigned int id_client );
+    void DeleteContextBySession( unsigned int sessionID );
   protected:
-    virtual void AddSessionEvent(unsigned int sessionID){}
-    virtual void DeleteSessionEvent(unsigned int sessionID){}
+    virtual void AddSessionEvent( unsigned int sessionID )
+    {}
+    virtual void DeleteSessionEvent( unsigned int sessionID )
+    {}
   private:
     void Clear();
   };
 }
-
-#endif
-

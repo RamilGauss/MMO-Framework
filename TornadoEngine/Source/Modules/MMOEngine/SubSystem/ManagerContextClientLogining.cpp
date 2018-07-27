@@ -12,7 +12,6 @@ See for more information License.h.
 #include "EnumMMO.h"
 
 using namespace nsMMOEngine;
-using namespace std;
 
 TManagerContextClientLogining::TManagerContextClientLogining( TBase* pBase ) :
   TDelegateManagerContextSc( pBase )
@@ -60,7 +59,7 @@ TContainerContextSc* TManagerContextClientLogining::FindContextBySession( unsign
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TManagerContextClientLogining::FindContextBySession(session=%u) not found.\n", sessionID );
-    return NULL;
+    return nullptr;
   }
   return fit->second;
 }
@@ -70,7 +69,7 @@ TContainerContextSc* TManagerContextClientLogining::AddContext( unsigned int ses
   BL_ASSERT( sessionID != INVALID_HANDLE_SESSION );
 
   TContainerContextSc* pC = FindContextBySession( sessionID );
-  if( pC == NULL )
+  if( pC == nullptr )
   {
     pC = AddContainer();
     mMapSessionContext.insert( TMapUintPtr::value_type( sessionID, pC ) );
@@ -81,7 +80,7 @@ TContainerContextSc* TManagerContextClientLogining::AddContext( unsigned int ses
 bool TManagerContextClientLogining::AddKeyBySession( unsigned int sessionID,
   unsigned int id_client )
 {
-  if( FindContextBySession( sessionID ) == NULL )
+  if( FindContextBySession( sessionID ) == nullptr )
   {
     BL_FIX_BUG();
     return false;
@@ -94,7 +93,7 @@ bool TManagerContextClientLogining::AddKeyBySession( unsigned int sessionID,
 void TManagerContextClientLogining::DeleteBySession( unsigned int sessionID )
 {
   TContainerContextSc* pC = FindContextBySession( sessionID );
-  if( pC == NULL )
+  if( pC == nullptr )
     return;
 
   DeleteContainer( pC );
@@ -114,7 +113,7 @@ void TManagerContextClientLogining::Clear()
 void TManagerContextClientLogining::UnlinkContextBySession( unsigned int sessionID )
 {
   TContainerContextSc* pC = FindContextBySession( sessionID );
-  if( pC == NULL )
+  if( pC == nullptr )
     return;
 
   mMapSessionContext.erase( sessionID );

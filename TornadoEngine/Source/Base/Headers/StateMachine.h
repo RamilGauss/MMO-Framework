@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef StateMachineH
-#define StateMachineH
+#pragma once
 
 #include <map>
 #include <string>
@@ -148,7 +147,3 @@ Data* TStateMachine<Key, Data>::GetDataCurrent()
 {
   return mCurStateIt->second->pData;
 }
-//---------------------------------------------------------------------
-
-#endif
-

@@ -50,6 +50,7 @@ SOURCES = \
 ./Sources/FormManager.cpp \
 ./Sources/HiTimer.cpp \
 ./Sources/InfoFile.cpp \
+./Sources/InputByCmd.cpp \
 ./Sources/IXML.cpp \
 ./Sources/LoaderDLL_Unix.cpp \
 ./Sources/LoaderDLL_Win32.cpp \
@@ -113,6 +114,7 @@ HEADERS = \
 ./Headers/IContainer.h \
 ./Headers/ILoaderDLL.h \
 ./Headers/InfoFile.h \
+./Headers/InputByCmd.h \
 ./Headers/IXML.h \
 ./Headers/License.h \
 ./Headers/ListPtr.h \

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef CRC8_H
-#define CRC8_H
+#pragma once
 
 #include "TypeDef.h"
 
@@ -18,5 +17,3 @@ public:
 
   void Calc( void* pIn, int sizeIn, unsigned char& crc );
 };
-
-#endif

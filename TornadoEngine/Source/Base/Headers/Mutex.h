@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MutexH
-#define MutexH
+#pragma once
 
 #include <boost/thread/recursive_mutex.hpp>
 
@@ -19,7 +18,7 @@ class DllExport TMutex
 
   std::string mDbgName;
 public:
-  TMutex( const char * _dbgname = NULL );
+  TMutex( const char * _dbgname = nullptr );
   virtual ~TMutex();
 
   void setDbgName( const char *_dbgname ) { mDbgName = _dbgname; }
@@ -48,7 +47,3 @@ public:
 
 #define AUTO_LOCK( cs )     TBL_Locker locker( cs )
 //===========================================================================
-
-
-#endif // GCSH
-

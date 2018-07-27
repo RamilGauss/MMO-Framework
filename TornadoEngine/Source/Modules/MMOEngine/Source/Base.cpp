@@ -82,6 +82,11 @@ void TBase::SetLoad( int procent )
   mLoadProcent = procent;
 }
 //-------------------------------------------------------------------------
+int TBase::GetLoad()
+{
+  return mLoadProcent;
+}
+//-------------------------------------------------------------------------
 void TBase::DisconnectUp()
 {
   if( mSessionUpID == INVALID_HANDLE_SESSION )

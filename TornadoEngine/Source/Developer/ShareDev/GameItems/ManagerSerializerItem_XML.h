@@ -5,13 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ManagerSerializerItem_XMLH
-#define ManagerSerializerItem_XMLH
+#pragma once
 
 #include "TypeDef.h"
 
 #include <map>
-#include <boost/smart_ptr/scoped_ptr.hpp>
 #include <boost/bimap/bimap.hpp>
 
 #include "SerializerShapeItem_XML.h"
@@ -42,13 +40,13 @@ class DllExport TManagerSerializerItem_XML
   typedef TMapIntPtrSerilizer::iterator          TMapIntPtrSerilizerIt;
   typedef TMapIntPtrSerilizer::value_type        TMapIntPtrSerilizerVT;
 
-  boost::scoped_ptr<TSerializerPatternConfigItem_XML> mSerializerPatternConfig;
-  boost::scoped_ptr<TSerializerShapeItem_XML>         mSerializerShape;
-  boost::scoped_ptr<TSerializerModelItem_XML>         mSerializerModel;
-  boost::scoped_ptr<TSerializerMaterialItem_XML>      mSerializerMaterial;
-  boost::scoped_ptr<TSerializerTerrainItem_XML>       mSerializerTerrain;
-  boost::scoped_ptr<TSerializerMapItem_XML>           mSerializerMap;
-  boost::scoped_ptr<TSerializerTableSoundItem_XML>    mSerializerTableSound;
+  std::shared_ptr<TSerializerPatternConfigItem_XML> mSerializerPatternConfig;
+  std::shared_ptr<TSerializerShapeItem_XML>         mSerializerShape;
+  std::shared_ptr<TSerializerModelItem_XML>         mSerializerModel;
+  std::shared_ptr<TSerializerMaterialItem_XML>      mSerializerMaterial;
+  std::shared_ptr<TSerializerTerrainItem_XML>       mSerializerTerrain;
+  std::shared_ptr<TSerializerMapItem_XML>           mSerializerMap;
+  std::shared_ptr<TSerializerTableSoundItem_XML>    mSerializerTableSound;
 
   TMapIntPtrSerilizer mMapTypeSerializer;// каждому типу итэма - свой сериализатор
 
@@ -68,5 +66,3 @@ public:
 protected:
   TBaseSerializerItem_XML* Find(int type);
 };
-
-#endif

@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MMOEngineDelegateManagerContextScH
-#define MMOEngineDelegateManagerContextScH
+#pragma once
 
 namespace nsMMOEngine
 {
@@ -16,14 +15,11 @@ namespace nsMMOEngine
   {
     TBase* mBase;
   public:
-    TDelegateManagerContextSc(TBase* pBase);
+    TDelegateManagerContextSc( TBase* pBase );
     virtual ~TDelegateManagerContextSc();
 
   protected:
-    TContainerContextSc* AddContainer();
-    void DeleteContainer(TContainerContextSc* pC);
+    TContainerContextSc * AddContainer();
+    void DeleteContainer( TContainerContextSc* pC );
   };
 }
-
-#endif
-

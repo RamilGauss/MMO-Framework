@@ -66,6 +66,7 @@ void TModuleServerLogic::CalcAndWaitRestTime()
 //------------------------------------------------------------------------
 void TModuleServerLogic::ParseCmd(std::vector<std::string>& arg)
 {
-  mInputCmd.SetArg(arg);
+  mInputCmd.Init();
+  mInputCmd.SetArg( arg );
 }
 //------------------------------------------------------------------------

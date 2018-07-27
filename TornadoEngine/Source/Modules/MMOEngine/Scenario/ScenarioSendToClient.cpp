@@ -88,11 +88,9 @@ void TScenarioSendToClient::RecvFromSlave(TDescRecvSession* pDesc)
 
   TRecvFromUpEvent* pEvent = new TRecvFromUpEvent;
   // отцепиться от памяти, в которой содержится пакет
-  pDesc->c.Unlink();
   // отдать память под контроль события
-  pEvent->c.EntrustByCount(pDesc->data, pDesc->dataSize);
-  pEvent->data     = pDesc->data     + sizeof(THeaderSlave);
-  pEvent->dataSize = pDesc->dataSize - sizeof(THeaderSlave);
+  pEvent->c = pDesc->c;
+  pEvent->SetShift( sizeof( THeaderSlave ) );
   // откуда пришел пакет - сессия
   pEvent->sessionID = pDesc->sessionID;
   // добавить событие без копирования и указать истинное время создания события в транспорте

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SET_ORDER_ELEMENT_H
-#define SET_ORDER_ELEMENT_H
+#pragma once
 
 #include "TypeDef.h"
 #include <boost/bimap/bimap.hpp>
@@ -49,6 +48,3 @@ private:
   void DeleteFromVectorByInnerIndex(unsigned int val);
   bool FindKeyByInnerIndex(unsigned int inner_index, unsigned int& key);
 };
-
-#endif
-

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ContainerPtrArrObjH
-#define ContainerPtrArrObjH
+#pragma once
 
 #include "IContainer.h"
 #include <memory.h>
@@ -107,6 +106,3 @@ void TContainerPtrArrObj<T>::EntrustByCount(char* p, int count)
   pData  = (char*)p;
   mCount = count;
 }
-//---------------------------------------------------------------
-#endif
-

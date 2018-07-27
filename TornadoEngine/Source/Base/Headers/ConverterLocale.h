@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ConverterLocaleH
-#define ConverterLocaleH
+#pragma once
 
 #include "TypeDef.h"
 #include "ContainerTypes.h"
@@ -19,5 +18,3 @@ public:
   static std::wstring ConvertUtf8ToCp1251( std::string& utf8 );
 };
 
-
-#endif

@@ -7,7 +7,10 @@ See for more information License.h.
 
 #pragma once
 
-#include "HandlerMMO.h"
+#define SERVER_MONITOR_PORT     60000
+#define CLIENT_MONITOR_PORT     60001
+#define CLIENT_MONITOR_LOGIN    "1"
+#define CLIENT_MONITOR_PASSWORD "1"
 
 #define SLAVE_PORT        1234
 #define MASTER_PORT       2235
@@ -27,7 +30,8 @@ See for more information License.h.
 #define CLIENT_QUANT_TIME 100 // мс
 #define STEP_LOGIN        100
 
-#define ServerLog "Server"
-#define ClientLog "Client"
+#define ServerLog         "Server"
+#define ClientLog         "Client"
+#define ClusterMonitorLog "ClusterMonitor"
 
-void InitLogger( char* loggerName );
+void InitLogger( const char* loggerName );

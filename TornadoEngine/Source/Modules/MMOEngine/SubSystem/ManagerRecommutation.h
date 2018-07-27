@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MANAGER_RECOMMUTATION_H
-#define MANAGER_RECOMMUTATION_H
+#pragma once
 
 #include <map>
 #include <set>
@@ -36,40 +35,30 @@ namespace nsMMOEngine
     };
     typedef std::map<unsigned int, TSetClient> TMapUintSet;
     typedef TMapUintSet::iterator TMapUintSetIt;
-    
+
     TMapUintPair mMapClientKey_Slaves;
     TMapUintSet  mMapSlave_SetClient;
 
-    typedef enum{eDonor,eRecipient}Type;
+    typedef enum
+    {
+      eDonor, eRecipient
+    }Type;
   public:
     TManagerRecommutation();
     ~TManagerRecommutation();
-    
+
     // навигация
-    bool FindSessionByClientKey(unsigned int key,
-                                unsigned int& id_session_donor,
-                                unsigned int& id_session_recipient);
-    
-    int GetCountClientBySessionSlave(unsigned int sessionID);
-    bool GetClientKeyByIndex(unsigned int sessionID, 
-                             int index, 
-                             unsigned int& key);
+    bool FindSessionByClientKey( unsigned int key, unsigned int& id_session_donor, unsigned int& id_session_recipient );
+
+    int GetCountClientBySessionSlave( unsigned int sessionID );
+    bool GetClientKeyByIndex( unsigned int sessionID, int index, unsigned int& key );
 
     // добавить в группу клиента
-    void AddClientKey(unsigned int key, 
-                      unsigned int id_session_donor,
-                      unsigned int id_session_recipient);
+    void AddClientKey( unsigned int key, unsigned int id_session_donor, unsigned int id_session_recipient );
     // удаление
-    void DeleteByClientKey(unsigned int key);
+    void DeleteByClientKey( unsigned int key );
   private:
-    void AddClientKeyBySession(unsigned int key, 
-                               unsigned int sessionID,
-                               Type type);
-    void DeleteClientKeyBySession(unsigned int key, 
-                                  unsigned int sessionID,     
-                                  Type type);
+    void AddClientKeyBySession( unsigned int key, unsigned int sessionID, Type type );
+    void DeleteClientKeyBySession( unsigned int key, unsigned int sessionID, Type type );
   };
 }
-
-#endif
-

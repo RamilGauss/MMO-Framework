@@ -9,7 +9,7 @@ See for more information License.h.
 #include "Logger.h"
 #include "EnumMMO.h"
 
-void InitLogger( char* loggerName )
+void InitLogger( const char* loggerName )
 {
   // обязательно инициализировать лог
   GetLogger()->Register( STR_NAME_MMO_ENGINE );

@@ -134,7 +134,8 @@ void TClientMain::EnterServer()
 
   IsOpen = pClient->Open(&mDescOpen);
   BL_ASSERT(IsOpen);
-  pClient->Login( ip, MASTER_PORT, (void*)sLogin.data(), sLogin.length(), "1", 1);// пока пароль - 1 ###
+  std::string pasword = "1";
+  pClient->Login( TIP_Port( ip, MASTER_PORT ), sLogin, pasword );
 
   SaveInputParam(ip, mDescOpen.port, sLogin.data());
 }

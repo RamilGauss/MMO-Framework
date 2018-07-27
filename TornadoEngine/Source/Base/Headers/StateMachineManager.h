@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef StateMachineManagerH
-#define StateMachineManagerH
+#pragma once
 
 #include "StateMachine.h"
 #include <vector>
@@ -54,6 +53,3 @@ public:
 protected:
   void Done();
 };
-
-
-#endif

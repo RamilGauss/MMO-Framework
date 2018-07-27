@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef PopMasterH
-#define PopMasterH
+#pragma once
 
 #include <string>
 #include <map>
@@ -485,5 +484,3 @@ void TPopMaster::PopStrByPush( Array* pArray )
     pArray->push_back( str );
   }
 }
-//------------------------------------------------------------------------
-#endif

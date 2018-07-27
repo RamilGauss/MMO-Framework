@@ -161,6 +161,9 @@
     <ClCompile Include="Sources\ReversedContainerRise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\InputByCmd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\AllocatorPool.h">
@@ -383,6 +386,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\ReversedContainerRise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\InputByCmd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

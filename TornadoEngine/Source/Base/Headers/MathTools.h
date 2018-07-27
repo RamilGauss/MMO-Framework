@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MathToolsH
-#define MathToolsH
+#pragma once
 
 #include "TypeDef.h"
 
@@ -508,4 +507,3 @@ DllExport extern void CalcMatrixByMoveVectors(nsMathTools::TMatrix16* pM,
                                               nsMathTools::TVector3* pUpTo, nsMathTools::TVector3* pForwardTo,
                                               nsMathTools::TVector3* pUpFrom, nsMathTools::TVector3* pForwardFrom);
 
-#endif

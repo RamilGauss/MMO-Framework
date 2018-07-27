@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef Only_N_ObjectH
-#define Only_N_ObjectH
+#pragma once
 
 #pragma warning(disable:4355)
 
@@ -23,7 +22,6 @@ protected:
 
 */
 
-
 #define NAME_CLASS typeid(this).name()
 
 // Thread Safe
@@ -34,5 +32,3 @@ public:
   virtual ~TOnly_N_Object();
 
 };
-
-#endif

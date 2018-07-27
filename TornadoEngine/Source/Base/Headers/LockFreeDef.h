@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef LockFreeDefH
-#define LockFreeDefH
+#pragma once
 
 #include "DataExchange2ThreadElement.h"
 
@@ -63,5 +62,3 @@ See for more information License.h.
 //  #define ALLOC_MEMORY(Type)                 new Type
 //  #define DEALLOC_MEMORY(ptr)                delete ptr
 //#endif
-
-#endif

@@ -14,11 +14,9 @@ See for more information License.h.
 #include "Slave.h"
 #include "Logger.h"
 
-using namespace std;
+const int SLAVE_LOAD_PER_CLIENT = 5;
 
-const int SLAVE_LOAD = 10;
-
-THandlerMMO_Slave::THandlerMMO_Slave() : THandlerMMO( eSlave )
+THandlerMMO_Slave::THandlerMMO_Slave( nsMMOEngine::TBase* pBase ) : THandlerMMO( pBase, eSlave )
 {
 
 }
@@ -28,7 +26,9 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
   nsMMOEngine::TBaseEvent* pBE = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
   nsMMOEngine::TSlave* pSlave = (nsMMOEngine::TSlave*)pEvent->pSrc;
 
-  string sEvent;
+  auto ccDown = pSlave->GetCountDown();
+
+  std::string sEvent;
   switch( pBE->mType )
   {
     case nsMMOEngine::eTryConnectDown:
@@ -52,13 +52,13 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       int sizeMsg = strlen( s );
       pSlave->SendUp( s, sizeMsg );
       // при авторизации клиента выставить нагрузку
-      pSlave->SetLoad( SLAVE_LOAD );
+      pSlave->SetLoad( SLAVE_LOAD_PER_CLIENT * ccDown );
     }
     break;
     case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
       RemoveConnection( ((nsMMOEngine::TDisconnectDownEvent*) pBE)->sessionID );
-      pSlave->SetLoad( 0 );
+      pSlave->SetLoad( SLAVE_LOAD_PER_CLIENT * ccDown );
       break;
     case nsMMOEngine::eConnectUp:
       sEvent = "ConnectUp";
@@ -84,7 +84,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       //sEvent += " msg: ";
       //sEvent += s;
       nsMMOEngine::TRecvFromDownEvent* pR = (nsMMOEngine::TRecvFromDownEvent*)pBE;
-      pSlave->SendDown( pR->sessionID, (char*) pR->data, pR->dataSize );
+      pSlave->SendDown( pR->sessionID, (char*) pR->GetData(), pR->GetSize() );
       return;
     }
     break;
@@ -106,7 +106,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       char* pData = "This is context, motherfucker!";
       int   size = strlen( pData );
       pSlave->SaveContext( pSE->sessionID, pData, size );
-      pSlave->SetLoad( 0 );// снять с себя нагрузку
+      pSlave->SetLoad( SLAVE_LOAD_PER_CLIENT * ccDown );
     }
     break;
     case nsMMOEngine::eRestoreContext:
@@ -118,7 +118,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       sContext[pRE->c.GetSize()] = '\0';
       char s[200];
       sprintf( s, "id=%d, data=\"%s\" ", pRE->sessionID, sContext );
-      pSlave->SetLoad( SLAVE_LOAD );
+      pSlave->SetLoad( SLAVE_LOAD_PER_CLIENT * ccDown );
     }
     break;
     default:BL_FIX_BUG();

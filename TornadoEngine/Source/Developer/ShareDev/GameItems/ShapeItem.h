@@ -5,15 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ShapeItemH
-#define ShapeItemH
+#pragma once
 
 #include "BaseItem.h"
 
 #include <vector>
 #include <map>
 #include <string>
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 #include "ParamBuilderShape.h"
 #include "MathTools.h"
@@ -49,13 +47,11 @@ struct DllExport TShapeItem : public TBaseItem
   std::vector<TMapFloatLayer> mVecPaint;        // слои краски
   std::string                 mNameMaterial;    // имя материала
   bool                        flgUseNatureColor;// использовать ли цвет материала
-  boost::scoped_ptr<nsParamBuilderShape::TBaseParam> mPtrGeometry;
+  std::shared_ptr<nsParamBuilderShape::TBaseParam> mPtrGeometry;
 
   TShapeItem(std::string& name);
 }_PACKED;
 
 #if defined( WIN32 )
 #pragma pack(pop)
-#endif
-
 #endif

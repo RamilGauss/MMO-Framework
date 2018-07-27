@@ -19,7 +19,7 @@ See for more information License.h.
 
 using namespace std;
 
-THandlerMMO_Master::THandlerMMO_Master() : THandlerMMO( eMaster )
+THandlerMMO_Master::THandlerMMO_Master( nsMMOEngine::TBase* pBase ) : THandlerMMO( pBase, eMaster )
 {
   std::string slaveLogin = SLAVE_LOGIN;
   mSHA256.FastCalc( (void*) slaveLogin.data(), slaveLogin.length(), mSlaveHashLogin );
@@ -92,8 +92,8 @@ void THandlerMMO_Master::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       sEvent = "RecvFromUp";
       nsMMOEngine::TRecvFromUpEvent* pR = (nsMMOEngine::TRecvFromUpEvent*)pBE;
       char s[200];
-      memcpy( s, pR->data, pR->dataSize );
-      s[pR->dataSize] = '\0';
+      memcpy( s, pR->GetData(), pR->GetSize() );
+      s[pR->GetSize()] = '\0';
       sEvent += " msg: ";
       sEvent += s;
     }

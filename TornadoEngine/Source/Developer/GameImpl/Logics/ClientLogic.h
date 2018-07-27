@@ -23,7 +23,7 @@ class TClientLogic : public TModuleClientLogic
   TClientMain* mClientMain;
   TDebugPanel* mDebugPanel;
 
-  boost::scoped_ptr<TShowTankWoT_test> mPtrShowTank;
+  std::shared_ptr<TShowTankWoT_test> mPtrShowTank;
 
   volatile float x;
   volatile float y;

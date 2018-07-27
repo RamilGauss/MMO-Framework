@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef DataExchange2ThreadH
-#define DataExchange2ThreadH
+#pragma once
 
 #include <stddef.h>
 
@@ -290,5 +289,3 @@ void TDataExchange2Thread<TClass>::LatencyRemove()// Producer
   }
 }
 //--------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------
-#endif

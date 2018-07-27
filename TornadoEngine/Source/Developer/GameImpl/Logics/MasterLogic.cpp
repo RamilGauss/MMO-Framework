@@ -25,11 +25,11 @@ TMasterLogic::TMasterLogic()
   resolver.Get( sLocalHost, 0 );
 
   TInputCmdDevTool::TInput input;
-  input.ip_dst = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
-  input.port_self = MASTER_PORT;
-  input.port_dst = SUPER_SERVER_PORT;
+  input.dst_ip = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
+  input.self_port = MASTER_PORT;
+  input.dst_port = SUPER_SERVER_PORT;
 
-  mInputCmd.SetDefParam( input );
+  mInputCmd.mInput = input;
 }
 //------------------------------------------------------------------------------
 bool TMasterLogic::WorkServer()
@@ -78,13 +78,12 @@ void TMasterLogic::StopEvent()
 //----------------------------------------------------------
 void TMasterLogic::ConnectToSuperServer()
 {
-  TInputCmdDevTool::TInput input;
-  mInputCmd.Get( input );
-
   nsMMOEngine::TDescOpen descOpen;
-  descOpen.port = input.port_self;
+  descOpen.port = mInputCmd.mInput.self_port;
   bool resOpen = mComp.pMMOEngineMaster->Get()->Open( &descOpen );
-  mComp.pMMOEngineMaster->Get()->ConnectUp( input.ip_dst, input.port_dst, "1", 1, "1", 1 );
+  std::string login = "1";
+  std::string password = "1";
+  mComp.pMMOEngineMaster->Get()->ConnectUp( TIP_Port( mInputCmd.mInput.dst_ip, mInputCmd.mInput.dst_port), login, password );
 }
 //----------------------------------------------------------
 void TMasterLogic::HandleFromMMOEngine( nsMMOEngine::TBaseEvent* pBE )

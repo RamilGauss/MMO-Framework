@@ -9,8 +9,6 @@ See for more information License.h.
 
 #include "ActiveServer.h"
 
-#include <boost/smart_ptr/scoped_ptr.hpp>
-
 namespace nsMMOEngine
 {
   class IScenario;
@@ -22,9 +20,9 @@ namespace nsMMOEngine
     };
 
     unsigned int mTimeNeedSendSynchro;
-    boost::scoped_ptr<TManagerContextClient_slave> mMngContextClient;
+    std::shared_ptr<TManagerContextClient_slave> mMngContextClient;
     // только для Клиентов, которые считают текущий Slave реципиентом
-    boost::scoped_ptr<TManagerContextClient_slave> mMngContextClientSlaveRecipient;
+    std::shared_ptr<TManagerContextClient_slave> mMngContextClientSlaveRecipient;
   public:
     TSlave();
     virtual ~TSlave();

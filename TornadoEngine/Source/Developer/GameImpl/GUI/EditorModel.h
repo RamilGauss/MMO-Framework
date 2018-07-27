@@ -5,14 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef EditorModelH
-#define EditorModelH
+#pragma once
 
 #include "BaseGUI.h"
 #include <MyGUI.h>
 #include <Ogre.h>
-
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 class TEditorModel : public TBaseGUI
 {
@@ -30,4 +27,3 @@ protected:
 protected:
 };
 
-#endif 

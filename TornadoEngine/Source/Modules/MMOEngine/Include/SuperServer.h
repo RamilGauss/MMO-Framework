@@ -8,7 +8,6 @@ See for more information License.h.
 #pragma once
 
 #include "BaseServer.h"
-#include <boost/smart_ptr/scoped_ptr.hpp>
 
 namespace nsMMOEngine
 {
@@ -17,11 +16,11 @@ namespace nsMMOEngine
   class DllExport TSuperServer : public TBaseServer
   {
     // в случае если повторная авторизация, что бы избежать замусоривания контекста
-    boost::scoped_ptr<TContainerContextSc> mContainer_SecondLogin;
+    std::shared_ptr<TContainerContextSc> mContainer_SecondLogin;
 
     // DOWN
-    boost::scoped_ptr<TManagerContextMoreDownClientConnection> mMngContextClient;
-    boost::scoped_ptr<TManagerContextDownConnection>           mMngContextMaster;
+    std::shared_ptr<TManagerContextMoreDownClientConnection> mMngContextClient;
+    std::shared_ptr<TManagerContextDownConnection>           mMngContextMaster;
   public:
     TSuperServer();
     virtual ~TSuperServer();

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef EditorShapeH
-#define EditorShapeH
+#pragma once
 
 #include "BaseGUI.h"
 #include <MyGUI.h>
@@ -22,8 +21,8 @@ class TClientMain;
 
 class TEditorShape : public TBaseGUI
 {
-  std::auto_ptr<TPlateParam>        mPlateParamForm;
-  std::auto_ptr<TPlateVarGeomParam> mPlateVarGeomParamForm;
+  std::shared_ptr<TPlateParam>        mPlateParamForm;
+  std::shared_ptr<TPlateVarGeomParam> mPlateVarGeomParamForm;
 
   TBaseGUI* mCurNewShape;
 
@@ -76,5 +75,3 @@ protected:
   MyGUI::MenuItem* miNewShape_Pyramid3;
   MyGUI::MenuItem* miNewShape_Pyramid4;
 };
-
-#endif 

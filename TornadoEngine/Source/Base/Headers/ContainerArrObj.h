@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ContainerArrObjH
-#define ContainerArrObjH
+#pragma once
 
 #include "IContainer.h"
 #include <memory.h>
@@ -157,6 +156,3 @@ TContainerArrObj<T>::TContainerArrObj( const TContainerArrObj<T>& c )
 
   *this = c;
 }
-//---------------------------------------------------------------
-#endif
-

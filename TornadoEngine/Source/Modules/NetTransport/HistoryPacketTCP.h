@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef HistoryPacketTCPH
-#define HistoryPacketTCPH
+#pragma once
 
 #include <map>
 
@@ -64,6 +63,3 @@ protected:
     eMaxSize = 0xFFFF, // пакета большего размера быть не может
   };
 };
-
-
-#endif

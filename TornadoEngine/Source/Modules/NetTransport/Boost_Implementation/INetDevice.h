@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef INetDeviceH
-#define INetDeviceH
+#pragma once
 
 #include "ShareMisc.h"
 
@@ -28,6 +27,3 @@ public:
   TIP_Port* GetIP_Port(){return &mIP_Port;}
   void SetIP_Port(TIP_Port& ip_port){mIP_Port = ip_port;}
 };
-
-
-#endif

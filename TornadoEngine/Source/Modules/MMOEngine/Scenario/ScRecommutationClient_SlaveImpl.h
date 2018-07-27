@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SC_RECOMMUTATION_CLIENT_SLAVE_IMPL_H
-#define SC_RECOMMUTATION_CLIENT_SLAVE_IMPL_H
+#pragma once
 
 #include "BaseScRecommutationClient.h"
 
@@ -20,26 +19,25 @@ namespace nsMMOEngine
       eTimeWait = 10000,
     };
   public:
-    TScRecommutationClient_SlaveImpl(IScenario* pSc);
+    TScRecommutationClient_SlaveImpl( IScenario* pSc );
 
-    virtual void Work(unsigned int time_ms);
-    
-    void SaveContext(void* data, int size);
+    virtual void Work( unsigned int time_ms );
+
+    void SaveContext( void* data, int size );
 
   protected:
-    virtual void RecvInherit(TDescRecvSession* pDesc);
+    virtual void RecvInherit( TDescRecvSession* pDesc );
 
   private:
-    void RecvFromMaster(TDescRecvSession* pDesc);
-    void RecvFromClient(TDescRecvSession* pDesc);
+    void RecvFromMaster( TDescRecvSession* pDesc );
+    void RecvFromClient( TDescRecvSession* pDesc );
   private:
-    void BeginDonor(TDescRecvSession* pDesc);
-    void InfoRecipientToDonor(TDescRecvSession* pDesc);
-    void BeginRecipient(TDescRecvSession* pDesc);
-    void DisconnectClientToSlave(TDescRecvSession* pDesc);
-    void CheckBeginClient(TDescRecvSession* pDesc);
-    void CheckInfoRecipient(TDescRecvSession* pDesc);
-    void RequestConnect(TDescRecvSession* pDesc);
+    void BeginDonor( TDescRecvSession* pDesc );
+    void InfoRecipientToDonor( TDescRecvSession* pDesc );
+    void BeginRecipient( TDescRecvSession* pDesc );
+    void DisconnectClientToSlave( TDescRecvSession* pDesc );
+    void CheckBeginClient( TDescRecvSession* pDesc );
+    void CheckInfoRecipient( TDescRecvSession* pDesc );
+    void RequestConnect( TDescRecvSession* pDesc );
   };
 }
-#endif

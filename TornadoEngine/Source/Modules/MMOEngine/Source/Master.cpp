@@ -33,7 +33,6 @@ See for more information License.h.
 #include "EnumMMO.h"
 #include "SessionManager.h"
 
-using namespace std;
 using namespace nsMMOEngine;
 
 TMaster::TMaster()
@@ -55,7 +54,7 @@ TMaster::~TMaster()
   Done();
 }
 //-------------------------------------------------------------------------
-bool TMaster::TryCreateGroup( list<unsigned int>& l_id_client, unsigned int& groupID )
+bool TMaster::TryCreateGroup( std::list<unsigned int>& l_id_client, unsigned int& groupID )
 {
   for( unsigned int id_client : l_id_client )
   {
@@ -131,7 +130,7 @@ void TMaster::SetResultLogin( bool res, unsigned int id_session_client,
     AddEventCopy( &event, sizeof( event ) );
 
     // отказ
-    string sReject = "Reject login. Client was been authorized.";
+    std::string sReject = "Reject login. Client was been authorized.";
     mControlSc->mLoginClient->Reject( (void*) sReject.data(), sReject.length() );
     return;
   }
@@ -220,7 +219,11 @@ void TMaster::EndLoginMaster( IScenario* pSc )
 //-------------------------------------------------------------------------
 void TMaster::EndLoginSlave( IScenario* pSc )
 {
-
+  auto pContext = (TContextScLoginSlave*) pSc->GetContext();
+  // сохранить сессию Slave
+  auto sessionID = pContext->GetSessionID();
+  TContainerContextSc* pC = mMngContextSlave->FindContextBySession( sessionID );
+  pC->SetSessionID( sessionID );
 }
 //-------------------------------------------------------------------------
 void TMaster::SendDown( unsigned int sessionID, char* p, int size, bool check )
@@ -231,12 +234,11 @@ void TMaster::SendDown( unsigned int sessionID, char* p, int size, bool check )
   mControlSc->mFlow->SetContext( &pC->mFlow );
 
   SetupBP( p, size );
-  mControlSc->mFlow->SendDown(/*bp*/mBP, check );
+  mControlSc->mFlow->SendDown( mBP, check );
 }
 //-------------------------------------------------------------------------
 void TMaster::WorkInherit()
-{
-}
+{}
 //-------------------------------------------------------------------------
 void TMaster::EndLoginClient( IScenario* pSc )
 {
@@ -254,7 +256,7 @@ void TMaster::EndLoginClient( IScenario* pSc )
     mMngContextClientLogining->DeleteBySession( id_session_client );
     if( pContainer )
     {
-      vector<unsigned int> vecID_Client;
+      std::vector<unsigned int> vecID_Client;
       vecID_Client.push_back( pContextLoginClient->GetClientKey() );
       mControlSc->mDisClient->SetContext( &pContainer->mDisClient );
       pContainer->mDisClient.SetSessionID( mSessionUpID );
@@ -335,7 +337,7 @@ bool TMaster::DisconnectSlave( unsigned int sessionID )
   if( mMngContextSlave->GetCountClientKey( sessionID, countClient ) == false )
     return false;
 
-  vector<unsigned int> vID_client;
+  std::vector<unsigned int> vID_client;
   for( int i = 0; i < countClient; i++ )
   {
     unsigned int id_client;
@@ -393,7 +395,7 @@ bool TMaster::DisconnectSlave( unsigned int sessionID )
   return true;
 }
 //-------------------------------------------------------------------------
-bool TMaster::EvalCreateGroupNow( list<unsigned int>& l_id_client, unsigned int& groupID )
+bool TMaster::EvalCreateGroupNow( std::list<unsigned int>& l_id_client, unsigned int& groupID )
 {
   // ищем минимум Slave, который содержит минимум Клиентов, состоящих в группе
   unsigned int id_session_slave;
@@ -466,7 +468,7 @@ void TMaster::EndSynchroSlave( IScenario* pSc )
     pContextSynchroSlave->GetLoadProcent() );
 }
 //-------------------------------------------------------------------------
-void TMaster::SendByClientKey( list<unsigned int>& lKey, char* p, int size )
+void TMaster::SendByClientKey( std::list<unsigned int>& lKey, char* p, int size )
 {
   SetupBP( p, size );
   mControlSc->mSendToClient->SendFromMaster( lKey, mBP );
@@ -581,7 +583,7 @@ void TMaster::NeedContextDisconnectClient( unsigned int clientID )
   // переслать дальше SuperServer
   if( mSessionUpID != INVALID_HANDLE_SESSION )
   {
-    vector<unsigned int> vecID;
+    std::vector<unsigned int> vecID;
     vecID.push_back( clientID );
     mControlSc->mDisClient->SetContext( &pC->mDisClient );
     pC->mDisClient.SetSessionID( mSessionUpID );
@@ -759,8 +761,7 @@ bool TMaster::IsClientRecommutation( unsigned int id_client )
   return false;
 }
 //-------------------------------------------------------------------------
-bool TMaster::LoadInFutureLessLimit( unsigned int id_session_slave,
-  list<unsigned int>& l_id_client )
+bool TMaster::LoadInFutureLessLimit( unsigned int id_session_slave, std::list<unsigned int>& l_id_client )
 {
   unsigned char load_procent;// текущая нагрузка
   if( mMngContextSlave->FindLoadBySession( id_session_slave, load_procent ) == false )
@@ -816,9 +817,7 @@ void TMaster::SolveExchangeClient( unsigned int id_client,
   if( id_session_slave_donor == id_session_slave_recipient )
     return;
   //===========================================
-  RcmByClientKeyContextSlaveSessionRecipient( id_client,
-    &pC_ClientInGroup->mRcm,
-    id_session_slave_recipient );
+  RcmByClientKeyContextSlaveSessionRecipient( id_client, &pC_ClientInGroup->mRcm, id_session_slave_recipient );
   //===========================================
   // Донору надо отдать от Реципиента Клиента взамен Группового
   // ищем какой именно
@@ -856,17 +855,13 @@ void TMaster::SolveExchangeClient( unsigned int id_client,
       // если Клиент находится в процессе Перекоммутации, то он нам не подходит, ищем следующего
       if( pC_client_on_recipient->IsRcmActive() )
         continue;
-      RcmByClientKeyContextSlaveSessionRecipient( id_client_on_recipient,
-        &pC_client_on_recipient->mRcm,
-        id_session_slave_donor );
+      RcmByClientKeyContextSlaveSessionRecipient( id_client_on_recipient, &pC_client_on_recipient->mRcm, id_session_slave_donor );
       return;
     }
   }
 }
 //-------------------------------------------------------------------------
-void TMaster::RcmByClientKeyContextSlaveSessionRecipient( unsigned int id_client,
-  TContextScRecommutationClient* pCRCM,
-  unsigned int id_session_slave_recipient )
+void TMaster::RcmByClientKeyContextSlaveSessionRecipient( unsigned int id_client, TContextScRecommutationClient* pCRCM, unsigned int id_session_slave_recipient )
 {
   mControlSc->mRcm->SetContext( pCRCM );
   mControlSc->mRcm->Start( id_session_slave_recipient, id_client );
