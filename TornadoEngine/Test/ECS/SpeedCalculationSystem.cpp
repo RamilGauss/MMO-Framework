@@ -1,25 +1,32 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Гудаков Рамиль Сергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include "SpeedCalculationSystem.h"
+#include "HiTimer.h"
 
 void TSpeedCalculationSystem::Start()
 {
-  mStart = std::chrono::high_resolution_clock::now();
+  mStart = ht_GetMSCount();
 }
 //------------------------------------------------------------------------
 void TSpeedCalculationSystem::Stop()
 {
-  auto finish = std::chrono::high_resolution_clock::now();
-  auto elapsed = finish - mStart;
-  melapsedTime_ns = (double)elapsed.count();
+  auto finish = ht_GetMSCount();
+  mElapsedTime_ms = finish - mStart;
 }
 //------------------------------------------------------------------------
-std::string TSpeedCalculationSystem::SpeedToStr(size_t count)
+std::string TSpeedCalculationSystem::SpeedToStr( size_t count )
 {
-  return std::to_string(Speed(count));
+  return std::to_string( Speed( count ) );
 }
 //------------------------------------------------------------------------
-float TSpeedCalculationSystem::Speed(size_t count)
+float TSpeedCalculationSystem::Speed( size_t count )
 {
-  auto speed = melapsedTime_ns / count / 1000.0f;
-  return (float)speed;
+  auto speed = mElapsedTime_ms * 1000.0f / count ;
+  return (float) speed;
 }
 //------------------------------------------------------------------------

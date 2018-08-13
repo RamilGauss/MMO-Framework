@@ -6,14 +6,14 @@ See for more information License.h.
 */
 
 #include "HandlerMMO_Client.h"
-#include "BaseEvent.h"
-#include "Events.h"
+#include "MMOEngine/include/BaseEvent.h"
+#include "MMOEngine/include/Events.h"
+#include "MMOEngine/include/Client.h"
+#include "MMOEngine/include/EnumMMO.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
 #include "ResolverSelf_IP_v4.h"
-#include "Client.h"
 #include "Logger.h"
-#include "EnumMMO.h"
 
 THandlerMMO_Client::THandlerMMO_Client() : THandlerMMO( nullptr, eClient )
 {}

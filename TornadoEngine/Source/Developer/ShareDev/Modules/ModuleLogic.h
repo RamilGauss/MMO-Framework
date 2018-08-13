@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleLogicH
-#define ModuleLogicH
+#pragma once
 
 #include "ModuleDev.h"
 #include "Components.h"
@@ -33,15 +32,15 @@ protected:
   std::set<int> mSetUseID_Module;
 public:
   TModuleLogic();
-  virtual void ParseCmd(std::vector<std::string>& arg) = 0;
+  virtual void ParseCmd( std::vector<std::string>& arg ) = 0;
   virtual void InitLog();
 
   std::set<int> GetUseID_Module();
 
-  void SetTerrainPath(std::string& path);
+  void SetTerrainPath( std::string& path );
   std::string GetTerrainPath();
 
-  void SetComponents(TComponents components);
+  void SetComponents( TComponents components );
   TComponents* GetC();
   TFactoryGameItem* GetFGI();
   virtual TFactoryBehaviourPattern* GetFBP();
@@ -50,12 +49,10 @@ public:
   // которые не знают про GameImpl
   static TModuleLogic* Get();
 
-  void Exit( int reason = 0);
+  void Exit( int reason = 0 );
 
-  void SetSettings(TSettings* pSettings);
+  void SetSettings( TSettings* pSettings );
   TSettings* GetSettings();
 protected:
   bool NeedExit();
 };
-
-#endif

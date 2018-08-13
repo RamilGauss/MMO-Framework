@@ -8,7 +8,7 @@ See for more information License.h.
 #pragma once
 
 #include "ModuleComponent.h"
-#include "PhysicEngine_Bullet.h"
+#include "PhysicEngine/PhysicEngine_Bullet.h"
 
 class DllExport TModulePhysicEngine : public TModuleComponent
 {

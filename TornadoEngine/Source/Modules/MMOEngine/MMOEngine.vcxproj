@@ -91,7 +91,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -118,7 +118,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ScenarioContext;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -143,7 +143,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -171,7 +171,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../Base/Headers;.\Include;.\Source;.\SubSystem;.\Scenario;.\ScenarioContext;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -195,7 +195,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="ScenarioContext\ContextScDisconnectClient.cpp" />
     <ClCompile Include="ScenarioContext\ContextScFlow.cpp" />
     <ClCompile Include="ScenarioContext\ContextScLoginClient.cpp" />
@@ -224,17 +223,17 @@
     <ClCompile Include="Scenario\ScRecommutationClient_ClientImpl.cpp" />
     <ClCompile Include="Scenario\ScRecommutationClient_MasterImpl.cpp" />
     <ClCompile Include="Scenario\ScRecommutationClient_SlaveImpl.cpp" />
-    <ClCompile Include="Source\ActiveServer.cpp" />
-    <ClCompile Include="Source\Base.cpp" />
-    <ClCompile Include="Source\BaseServer.cpp" />
-    <ClCompile Include="Source\Client.cpp" />
-    <ClCompile Include="Source\EnumMMO.cpp" />
-    <ClCompile Include="Source\Events.cpp" />
-    <ClCompile Include="Source\INetTransport.cpp" />
-    <ClCompile Include="Source\Master.cpp" />
-    <ClCompile Include="Source\Slave.cpp" />
-    <ClCompile Include="Source\Structs.cpp" />
-    <ClCompile Include="Source\SuperServer.cpp" />
+    <ClCompile Include="src\ActiveServer.cpp" />
+    <ClCompile Include="src\Base.cpp" />
+    <ClCompile Include="src\BaseServer.cpp" />
+    <ClCompile Include="src\Client.cpp" />
+    <ClCompile Include="src\EnumMMO.cpp" />
+    <ClCompile Include="src\Events.cpp" />
+    <ClCompile Include="src\INetTransport.cpp" />
+    <ClCompile Include="src\Master.cpp" />
+    <ClCompile Include="src\Slave.cpp" />
+    <ClCompile Include="src\Structs.cpp" />
+    <ClCompile Include="src\SuperServer.cpp" />
     <ClCompile Include="SubSystem\ContainerContextSc.cpp" />
     <ClCompile Include="SubSystem\ContextCrypto.cpp" />
     <ClCompile Include="SubSystem\ControlScenario.cpp" />
@@ -262,19 +261,19 @@
     <ClCompile Include="SubSystem\StatisticaClientInGroup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\ActiveServer.h" />
-    <ClInclude Include="Include\Base.h" />
-    <ClInclude Include="Include\BaseEvent.h" />
-    <ClInclude Include="Include\BaseServer.h" />
-    <ClInclude Include="Include\Client.h" />
-    <ClInclude Include="Include\EnumMMO.h" />
-    <ClInclude Include="Include\Events.h" />
-    <ClInclude Include="Include\IMakerTransport.h" />
-    <ClInclude Include="Include\INetTransport.h" />
-    <ClInclude Include="Include\Master.h" />
-    <ClInclude Include="Include\Slave.h" />
-    <ClInclude Include="Include\Structs.h" />
-    <ClInclude Include="Include\SuperServer.h" />
+    <ClInclude Include="include\ActiveServer.h" />
+    <ClInclude Include="include\Base.h" />
+    <ClInclude Include="include\BaseEvent.h" />
+    <ClInclude Include="include\BaseServer.h" />
+    <ClInclude Include="include\Client.h" />
+    <ClInclude Include="include\EnumMMO.h" />
+    <ClInclude Include="include\Events.h" />
+    <ClInclude Include="include\IMakerTransport.h" />
+    <ClInclude Include="include\INetTransport.h" />
+    <ClInclude Include="include\Master.h" />
+    <ClInclude Include="include\Slave.h" />
+    <ClInclude Include="include\Structs.h" />
+    <ClInclude Include="include\SuperServer.h" />
     <ClInclude Include="ScenarioContext\ContextScDisconnectClient.h" />
     <ClInclude Include="ScenarioContext\ContextScFlow.h" />
     <ClInclude Include="ScenarioContext\ContextScLoginClient.h" />

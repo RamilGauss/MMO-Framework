@@ -12,7 +12,7 @@ See for more information License.h.
 #include "Logger.h"
 
 #include "ModuleMMOEngineSuperServer.h"
-#include "Events.h"
+#include "MMOEngine/include/Events.h"
 
 #include <boost/lexical_cast.hpp>
 

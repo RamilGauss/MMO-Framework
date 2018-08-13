@@ -11,14 +11,9 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
-TContextScSendToClient::TContextScSendToClient()
-{
-
-}
-//------------------------------------------------------------------
 void TContextScSendToClient::SaveBreakPacket( TBreakPacket& bp )
 {
-  auto pDescSP = TMemoryPool<TSavePacket>::Singleton()->Pop( 1 );
+  auto pDescSP = mSavePacket_MemoryPool->Pop( 1 );
   auto pSP = pDescSP->p;
   // собрать пакет
   bp.CopyInBuffer( pSP->c );
@@ -44,7 +39,7 @@ void TContextScSendToClient::SendAndRemoveFirst()
   mBP.PushFront( pSP->c.GetPtr(), pSP->c.GetSize() );
   GetMS()->Send( sessionID, mBP );
 
-  TMemoryPool<TSavePacket>::Singleton()->Push( pDescSP );
+  mSavePacket_MemoryPool->Push( pDescSP );
 }
 //------------------------------------------------------------------
 

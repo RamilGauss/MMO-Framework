@@ -1,16 +1,15 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef SlaveLogicH
-#define SlaveLogicH
+#pragma once
 
 #include "ModuleServerLogic.h"
-#include "BaseEvent.h"
-#include "Events.h"
+#include "MMOEngine/include/BaseEvent.h"
+#include "MMOEngine/include/Events.h"
 //#include "SlaveForm.h"
 
 class TSlaveLogic : public TModuleServerLogic
@@ -22,7 +21,10 @@ class TSlaveLogic : public TModuleServerLogic
     eCycleTime = 100,
   };
 
-  typedef enum{eAdd,eDelete}TypeEvent;
+  typedef enum
+  {
+    eAdd, eDelete
+  }TypeEvent;
   struct TSessionOperation
   {
     //TSlaveForm::TDesc desc;
@@ -39,9 +41,9 @@ protected:
   virtual bool WorkServer();
   virtual void EndWork();
 
-  virtual void Input(int id, void* p, int size);
+  virtual void Input( int id, void* p, int size );
 private:
-  void HandleFromMMOEngine(nsMMOEngine::TBaseEvent* pBE);
+  void HandleFromMMOEngine( nsMMOEngine::TBaseEvent* pBE );
 private:
   void StartTimer();
   void InitForms();
@@ -51,19 +53,17 @@ private:
   void DisconnectUpQt();
   void OperationSessionQt();
 
-  void SaveContextClientMMOEngine(unsigned int* pID);
+  void SaveContextClientMMOEngine( unsigned int* pID );
 
-  void ConnectUp(nsMMOEngine::TConnectUpEvent* pBE);
-  void DisconnectUp(nsMMOEngine::TDisconnectUpEvent* pBE);
+  void ConnectUp( nsMMOEngine::TConnectUpEvent* pBE );
+  void DisconnectUp( nsMMOEngine::TDisconnectUpEvent* pBE );
 
-  void ConnectDown(nsMMOEngine::TConnectDownEvent* pEvent);
-  void DisconnectDown(nsMMOEngine::TDisconnectDownEvent* pEvent);
+  void ConnectDown( nsMMOEngine::TConnectDownEvent* pEvent );
+  void DisconnectDown( nsMMOEngine::TDisconnectDownEvent* pEvent );
 
-  void SaveContextClient(nsMMOEngine::TSaveContextEvent* pEvent);
-  void RestoreContextClient(nsMMOEngine::TRestoreContextEvent* pEvent);
+  void SaveContextClient( nsMMOEngine::TSaveContextEvent* pEvent );
+  void RestoreContextClient( nsMMOEngine::TRestoreContextEvent* pEvent );
 
   void InitMMOSlave();
   void BeginWorkMMOSlave();
 };
-
-#endif

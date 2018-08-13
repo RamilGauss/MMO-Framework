@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include <algorithm>
+#include "MMOEngine/include/EnumMMO.h"
 
 #include "NetWorkThread.h"
 
@@ -13,7 +14,6 @@ See for more information License.h.
 #include "INetControl.h"
 #include "BL_Debug.h"
 #include "Logger.h"
-#include "EnumMMO.h"
 
 TNetWorkThread::TNetWorkThread()
 {

@@ -11,9 +11,9 @@ See for more information License.h.
 
 #include "SrcEvent_ex.h"
 
-#include "Base.h"
-#include "INetTransport.h"
-#include "MakerNetTransport.h"
+#include "MMOEngine/include/Base.h"
+#include "MMOEngine/include/INetTransport.h"
+#include "NetTransport/MakerNetTransport.h"
 
 template <typename T>
 class DllExport TModuleMMOEngine : public TModuleComponent

@@ -5,15 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleMMOEngineSlaveH
-#define ModuleMMOEngineSlaveH
+#pragma once
 
 #include "ModuleMMOEngine.h"
-#include "Slave.h"
+#include "MMOEngine/include/Slave.h"
 
 class DllExport TModuleMMOEngineSlave : 
   public TModuleMMOEngine<nsMMOEngine::TSlave>
 {
 };
-
-#endif

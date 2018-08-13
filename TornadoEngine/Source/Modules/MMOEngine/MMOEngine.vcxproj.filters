@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="SubSystem">
       <UniqueIdentifier>{275c9fa9-db80-459e-8462-0887fc16e38a}</UniqueIdentifier>
     </Filter>
@@ -66,41 +58,16 @@
     <Filter Include="ScenarioContext\Source Files">
       <UniqueIdentifier>{4a467f13-9444-4641-8e0a-a8d96ebcba09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\ActiveServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BaseServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Client.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Events.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\INetTransport.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Master.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Slave.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Structs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SuperServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SubSystem\DelegateManagerContextSc.cpp">
       <Filter>SubSystem\MappingDownConnection</Filter>
     </ClCompile>
@@ -260,50 +227,41 @@
     <ClCompile Include="SubSystem\StateTimeWait.cpp">
       <Filter>SubSystem\Scenario</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EnumMMO.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\ActiveServer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Base.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BaseServer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Client.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EnumMMO.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Events.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\INetTransport.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Master.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Slave.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Structs.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SuperServer.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\ActiveServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Base.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\BaseEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\BaseServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Client.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\EnumMMO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Events.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\IMakerTransport.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\INetTransport.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Master.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Slave.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Structs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\SuperServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SubSystem\DelegateManagerContextSc.h">
       <Filter>SubSystem\MappingDownConnection</Filter>
     </ClInclude>
@@ -471,6 +429,45 @@
     </ClInclude>
     <ClInclude Include="SubSystem\TransportEvents.h">
       <Filter>SubSystem\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ActiveServer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Base.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BaseEvent.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BaseServer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Client.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EnumMMO.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMakerTransport.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\INetTransport.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Master.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Slave.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Structs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SuperServer.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

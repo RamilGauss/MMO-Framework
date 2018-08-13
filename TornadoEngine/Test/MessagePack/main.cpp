@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
-Гудаков Рамиль Сергеевич
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -73,7 +73,7 @@ int main( void )
 
   TMarshaller<TMessagePackSerializer<msgpack::object_handle>>::TypeID type;
   auto startM = ht_GetMSCount();
-  // полный цикл маршаллинга
+  // РїРѕР»РЅС‹Р№ С†РёРєР» РјР°СЂС€Р°Р»Р»РёРЅРіР°
   for( size_t i = 0; i < TEST_COUNT; i++ )
   {
     marsh.Serialize( &src, c );

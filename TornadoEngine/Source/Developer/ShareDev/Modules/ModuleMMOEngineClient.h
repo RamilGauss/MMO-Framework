@@ -5,15 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleMMOEngineClientH
-#define ModuleMMOEngineClientH
+#pragma once
 
 #include "ModuleMMOEngine.h"
-#include "Client.h"
+#include "MMOEngine/include/Client.h"
 
 class DllExport TModuleMMOEngineClient : 
   public TModuleMMOEngine<nsMMOEngine::TClient>
 {
 };
-
-#endif

@@ -9,7 +9,7 @@ See for more information License.h.
 
 #include "CallBackRegistrator.h"
 #include "ModuleComponent.h"
-#include "GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
 
 class TGraphicEngine_Ogre_MyGUI;
 

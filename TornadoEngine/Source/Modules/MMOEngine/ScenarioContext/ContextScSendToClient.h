@@ -11,6 +11,7 @@ See for more information License.h.
 #include "BreakPacket.h"
 #include <list>
 #include "MemoryPool.h"
+#include "SingletonManager.h"
 
 namespace nsMMOEngine
 {
@@ -26,8 +27,13 @@ namespace nsMMOEngine
 
     TListPtr mListSave;
 
+    TMemoryPool<TSavePacket>* mSavePacket_MemoryPool = nullptr;
+
   public:
-    TContextScSendToClient();
+    TContextScSendToClient()
+    {
+      mSavePacket_MemoryPool = SingletonManager()->Get<TMemoryPool<TSavePacket>>();
+    }
 
     void SaveBreakPacket( TBreakPacket& bp );
     void SendAndRemoveFirst();

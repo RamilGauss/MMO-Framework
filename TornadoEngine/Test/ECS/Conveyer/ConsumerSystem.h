@@ -1,9 +1,16 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Гудаков Рамиль Сергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #pragma once
 #include <iostream>
 
-#include "ReactiveForOneEventSystem.h"
-#include "DataMemoryPoolComponent.h"
-#include "ECSconfig.h"
+#include "ECS/include/ReactiveForOneEventSystem.h"
+#include "ECS/include/DataMemoryPoolComponent.h"
+#include "ECS/include/ECSconfig.h"
 #include "FreshPacket.h"
 #include "SpeedCalculationSystem.h"
 
@@ -15,27 +22,27 @@ public:
     Add<TFreshPacket>();
   }
 
-  void Reactive(std::vector<MWorks::ECS::TEntity>& entities, size_t count)
+  void Reactive( std::vector<MWorks::ECS::TEntity>& entities, size_t count )
   {
     Start();
 
     auto registry = GetRegistry();
     float sum = 0;
-    for (int i = 0; i < count; i++)
+    for( int i = 0; i < count; i++ )
     {
       auto entity = entities[i];
-      registry->get<PooledComponents::TUchar>(entity).Done();
-      registry->destroy(entity);
+      registry->get<PooledComponents::TUchar>( entity ).Done();
+      registry->destroy( entity );
     }
 
     Stop();
-    auto speed = SpeedToStr(count);
+    auto speed = SpeedToStr( count );
     std::cout << "Consumer speed = " << speed << " us/1" << std::endl;
   }
 
-  bool Filter(MWorks::ECS::TEntity& entity)
+  bool Filter( MWorks::ECS::TEntity& entity )
   {
-    return GetRegistry()->has<TFreshPacket>(entity);
+    return GetRegistry()->has<TFreshPacket>( entity );
   }
 };
 

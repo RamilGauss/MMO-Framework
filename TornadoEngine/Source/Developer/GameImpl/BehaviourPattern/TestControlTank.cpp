@@ -10,10 +10,9 @@ See for more information License.h.
 #include "HiTimer.h"
 #include "BL_Debug.h"
 #include "BreakPacket.h"
-#include "BaseServer.h"
 #include <list>
 #include "DevTool_Share.h"
-#include "Slave.h"
+#include "MMOEngine/include/Slave.h"
 
 // формула для аппроксимации параметров в будущее
 // x = x0 + v * ( now - time_recv )

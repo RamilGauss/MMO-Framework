@@ -80,5 +80,17 @@ namespace nsMMOEngine
     eLeaveQueue,
   };
 
-  extern DllExport std::string GetStrError( int code );
+  enum TypeMMO
+  {
+    eClient,
+    eSlave,
+    eMaster,
+    eSuperServer
+  };
+
+  extern DllExport std::string GetEventType( EventType type );
+
+  extern DllExport std::string GetStrError( ErrorCode code );
+
+  extern DllExport std::string GetMMOType( TypeMMO type );
 }

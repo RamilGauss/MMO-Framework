@@ -9,13 +9,12 @@ See for more information License.h.
 #include <boost/lexical_cast.hpp>
 
 #include "HandlerMMO_Master.h"
-#include "BaseEvent.h"
-#include "Events.h"
+#include "MMOEngine/include/BaseEvent.h"
+#include "MMOEngine/include/Events.h"
+#include "MMOEngine/include/Master.h"
 #include "CommonParam.h"
 #include "ResolverSelf_IP_v4.h"
-#include "Master.h"
 #include "Logger.h"
-#include "../SubSystem/SessionManager.h"
 
 using namespace std;
 

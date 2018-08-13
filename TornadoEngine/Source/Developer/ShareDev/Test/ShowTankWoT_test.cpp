@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "ShowTankWoT_test.h"
 #include "ModuleLogic.h"
-#include "GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleGraphicEngine.h"
 
 #include <boost/lexical_cast.hpp>

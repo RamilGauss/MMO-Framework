@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
+#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
+
 #include "Modifier_Terrain_Ogre.h"
 #include "ModuleLogic.h"
-#include "GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleGraphicEngine.h"
 #include "Pattern_Terrain.h"
 #include "MapItem.h"

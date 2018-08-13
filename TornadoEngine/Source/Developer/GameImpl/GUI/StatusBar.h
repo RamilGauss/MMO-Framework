@@ -1,14 +1,13 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef StatusBarH
-#define StatusBarH
+#pragma once
 
-#include "BaseGUI.h"
+#include "GraphicEngine/BaseGUI.h"
 #include <MyGUI.h>
 
 class TStatusBar : public TBaseGUI
@@ -17,7 +16,7 @@ public:
   TStatusBar();
   virtual ~TStatusBar();
 
-  void AddText(std::string text, bool appendLineFolding = true);
+  void AddText( std::string text, bool appendLineFolding = true );
   void ClearText();
 
   void ResizeWindowEvent();
@@ -27,10 +26,10 @@ protected:
   virtual const char* GetNameLayout();
   virtual void SetupTabChild();
 
-  virtual void KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char);
+  virtual void KeyEvent( MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char );
 
 protected:
-  void sl_Clear(MyGUI::Widget* _sender);
+  void sl_Clear( MyGUI::Widget* _sender );
 protected:
   MyGUI::EditBox* mTextView;
   MyGUI::Button*  mBClear;
@@ -38,4 +37,3 @@ protected:
 
 extern DllExport TStatusBar* g_StatusBar;
 
-#endif 

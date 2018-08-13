@@ -1,17 +1,17 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "CommonParam.h"
 #include "Logger.h"
-#include "EnumMMO.h"
+#include "MMOEngine/include/EnumMMO.h"
 
 void InitLogger( const char* loggerName )
 {
-  // îáÿçàòåëüíî èíèöèàëèçèðîâàòü ëîã
+  // Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð¸Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð»Ð¾Ð³
   GetLogger()->Register( STR_NAME_MMO_ENGINE );
   GetLogger()->Register( STR_NAME_NET_TRANSPORT );
   GetLogger()->Register( loggerName );

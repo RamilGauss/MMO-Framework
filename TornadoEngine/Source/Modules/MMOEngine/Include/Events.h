@@ -86,7 +86,7 @@ namespace nsMMOEngine
   struct DllExport TErrorEvent : public TBaseEvent
   {
     TErrorEvent();
-    unsigned int code;
+    nsMMOEngine::ErrorCode code;
   }_PACKED;
   //-------------------------------------------------------------
   struct DllExport TRestoreContextEvent : public TBaseEvent

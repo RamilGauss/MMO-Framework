@@ -5,13 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef WaitFormH
-#define WaitFormH
+#pragma once
 
-#include "BaseGUI.h"
+#include "GraphicEngine/BaseGUI.h"
 #include <MyGUI.h>
 
-class TWaitForm :  public TBaseGUI
+class TWaitForm : public TBaseGUI
 {
 
 public:
@@ -39,4 +38,3 @@ protected:
 
 };
 
-#endif 

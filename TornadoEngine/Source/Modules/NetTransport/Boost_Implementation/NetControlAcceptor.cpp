@@ -16,7 +16,7 @@ See for more information License.h.
 #include "Logger.h"
 #include "NetTransport_Boost.h"
 #include "NetControlTCP.h"
-#include "EnumMMO.h"
+#include "MMOEngine/include/EnumMMO.h"
 
 using namespace std;
 

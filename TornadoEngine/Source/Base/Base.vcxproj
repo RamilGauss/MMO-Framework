@@ -93,7 +93,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;$(SolutionDir)\Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;include;src;$(SolutionDir)\Source\3rdParty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -121,7 +121,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;$(SolutionDir)\Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;include;src;$(SolutionDir)\Source\3rdParty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -149,7 +149,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;$(SolutionDir)\Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;include;src;$(SolutionDir)\Source\3rdParty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -177,7 +177,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;./Headers;./Sources;$(SolutionDir)\Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;include;src;$(SolutionDir)\Source\3rdParty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EI=__declspec(dllexport);SHARE_EXPORTS;_WIN32_WINNT=0x0501;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -201,137 +201,146 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\AllocatorPool.cpp" />
-    <ClCompile Include="Sources\ArrContainer.cpp" />
-    <ClCompile Include="Sources\BL_Debug.cpp" />
-    <ClCompile Include="Sources\BreakPacket.cpp" />
-    <ClCompile Include="Sources\CmdParam.cpp" />
-    <ClCompile Include="Sources\ContainerRise.cpp" />
-    <ClCompile Include="Sources\ConverterLocale.cpp" />
-    <ClCompile Include="Sources\CRC8.cpp" />
-    <ClCompile Include="Sources\CryptoAES_Impl.cpp" />
-    <ClCompile Include="Sources\CryptoRSA_Impl.cpp" />
-    <ClCompile Include="Sources\DataExchange2ThreadElement.cpp" />
-    <ClCompile Include="Sources\DescCallBack.cpp" />
-    <ClCompile Include="Sources\DstEvent.cpp" />
-    <ClCompile Include="Sources\FileOperation.cpp" />
-    <ClCompile Include="Sources\HiTimer.cpp" />
-    <ClCompile Include="Sources\InfoFile.cpp" />
-    <ClCompile Include="Sources\InputByCmd.cpp" />
-    <ClCompile Include="Sources\IXML.cpp" />
-    <ClCompile Include="Sources\LoaderDLL_Unix.cpp" />
-    <ClCompile Include="Sources\LoaderDLL_Win32.cpp" />
-    <ClCompile Include="Sources\LoadFromFile.cpp" />
-    <ClCompile Include="Sources\Logger.cpp" />
-    <ClCompile Include="Sources\lz4.c" />
-    <ClCompile Include="Sources\MakerLoaderDLL.cpp" />
-    <ClCompile Include="Sources\MakerXML.cpp" />
-    <ClCompile Include="Sources\FormManager.cpp" />
-    <ClCompile Include="Sources\ReversedContainerRise.cpp" />
-    <ClCompile Include="Sources\StateMachineManager.cpp" />
-    <ClCompile Include="Sources\TimeManager.cpp" />
-    <ClCompile Include="Sources\MapCallBack.cpp" />
-    <ClCompile Include="Sources\MapXML_Field.cpp" />
-    <ClCompile Include="Sources\Markup.cpp" />
-    <ClCompile Include="Sources\MathTools.cpp" />
-    <ClCompile Include="Sources\MD5.cpp" />
-    <ClCompile Include="Sources\Mutex.cpp" />
-    <ClCompile Include="Sources\Only_N_Object.cpp" />
-    <ClCompile Include="Sources\PopMaster.cpp" />
-    <ClCompile Include="Sources\PushMaster.cpp" />
-    <ClCompile Include="Sources\ResolverSelf_IP_v4.cpp" />
-    <ClCompile Include="Sources\SaveToFile.cpp" />
-    <ClCompile Include="Sources\SetOrderElement.cpp" />
-    <ClCompile Include="Sources\Settings.cpp" />
-    <ClCompile Include="Sources\SHA256.cpp" />
-    <ClCompile Include="Sources\ShareLibWin.cpp" />
-    <ClCompile Include="Sources\ShareMisc.cpp" />
-    <ClCompile Include="Sources\SrcEvent.cpp" />
-    <ClCompile Include="Sources\StorePathResources.cpp" />
-    <ClCompile Include="Sources\SynchroAbonent.cpp" />
-    <ClCompile Include="Sources\SynchroPoint.cpp" />
-    <ClCompile Include="Sources\ThreadBoost.cpp" />
-    <ClCompile Include="Sources\XML_Markup.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Headers\AllocatorPool.h" />
-    <ClInclude Include="Headers\ArrContainer.h" />
-    <ClInclude Include="Headers\BL_Debug.h" />
-    <ClInclude Include="Headers\BreakPacket.h" />
-    <ClInclude Include="Headers\CallBackRegistrator.h" />
-    <ClInclude Include="Headers\CmdParam.h" />
-    <ClInclude Include="Headers\ContainerArrObj.h" />
-    <ClInclude Include="Headers\ContainerPtrArrObj.h" />
-    <ClInclude Include="Headers\ContainerRise.h" />
-    <ClInclude Include="Headers\ContainerTypes.h" />
-    <ClInclude Include="Headers\ConverterLocale.h" />
-    <ClInclude Include="Headers\CRC8.h" />
-    <ClInclude Include="Headers\CryptoAES_Impl.h" />
-    <ClInclude Include="Headers\CryptoRSA_Impl.h" />
-    <ClInclude Include="Headers\DataExchange2Thread.h" />
-    <ClInclude Include="Headers\DataExchange2ThreadElement.h" />
-    <ClInclude Include="Headers\DescCallBack.h" />
-    <ClInclude Include="Headers\DescEvent.h" />
-    <ClInclude Include="Headers\DstEvent.h" />
-    <ClInclude Include="Headers\ECS_Allocator.h" />
-    <ClInclude Include="Headers\FastUpperBound.h" />
-    <ClInclude Include="Headers\FileOperation.h" />
-    <ClInclude Include="Headers\HiTimer.h" />
-    <ClInclude Include="Headers\IContainer.h" />
-    <ClInclude Include="Headers\ILoaderDLL.h" />
-    <ClInclude Include="Headers\InfoFile.h" />
-    <ClInclude Include="Headers\InputByCmd.h" />
-    <ClInclude Include="Headers\IXML.h" />
-    <ClInclude Include="Headers\License.h" />
-    <ClInclude Include="Headers\ListPtr.h" />
-    <ClInclude Include="Headers\LoaderDLL_Unix.h" />
-    <ClInclude Include="Headers\LoaderDLL_Win32.h" />
-    <ClInclude Include="Headers\LoadFromFile.h" />
-    <ClInclude Include="Headers\LockFreeDef.h" />
-    <ClInclude Include="Headers\Logger.h" />
-    <ClInclude Include="Headers\lz4.h" />
-    <ClInclude Include="Headers\MacroMaker.h" />
-    <ClInclude Include="Headers\MacroMaker_Prepare.h" />
-    <ClInclude Include="Headers\MakerLoaderDLL.h" />
-    <ClInclude Include="Headers\MakerXML.h" />
-    <ClInclude Include="Headers\FormManager.h" />
-    <ClInclude Include="Headers\Marshaller.h" />
-    <ClInclude Include="Headers\MemoryPool.h" />
-    <ClInclude Include="Headers\MemoryPoolAllocator.h" />
-    <ClInclude Include="Headers\BinarySerializer.h" />
-    <ClInclude Include="Headers\MessagePackSerializer.h" />
-    <ClInclude Include="Headers\ReversedContainerRise.h" />
-    <ClInclude Include="Headers\StateMachineManager.h" />
-    <ClInclude Include="Headers\TimeManager.h" />
-    <ClInclude Include="Headers\MapCallBack.h" />
-    <ClInclude Include="Headers\MapXML_Field.h" />
-    <ClInclude Include="Headers\Markup.h" />
-    <ClInclude Include="Headers\MathTools.h" />
-    <ClInclude Include="Headers\MD5.h" />
-    <ClInclude Include="Headers\Mutex.h" />
-    <ClInclude Include="Headers\Only_N_Object.h" />
-    <ClInclude Include="Headers\PopMaster.h" />
-    <ClInclude Include="Headers\PushMaster.h" />
-    <ClInclude Include="Headers\ResolverSelf_IP_v4.h" />
-    <ClInclude Include="Headers\SaveToFile.h" />
-    <ClInclude Include="Headers\SetOrderElement.h" />
-    <ClInclude Include="Headers\Settings.h" />
-    <ClInclude Include="Headers\SHA256.h" />
-    <ClInclude Include="Headers\ShareMisc.h" />
-    <ClInclude Include="Headers\SrcEvent.h" />
-    <ClInclude Include="Headers\SrcEvent_ex.h" />
-    <ClInclude Include="Headers\StateMachine.h" />
-    <ClInclude Include="Headers\StatisticValue.h" />
-    <ClInclude Include="Headers\StorePathResources.h" />
-    <ClInclude Include="Headers\SynchroAbonent.h" />
-    <ClInclude Include="Headers\SynchroPoint.h" />
-    <ClInclude Include="Headers\ThreadBoost.h" />
-    <ClInclude Include="Headers\TypeDef.h" />
-    <ClInclude Include="Headers\VectorRise.h" />
-    <ClInclude Include="Headers\XML_Markup.h" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="Blog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AllocatorPool.h" />
+    <ClInclude Include="include\ArrContainer.h" />
+    <ClInclude Include="include\BinarySerializer.h" />
+    <ClInclude Include="include\BL_Debug.h" />
+    <ClInclude Include="include\BreakPacket.h" />
+    <ClInclude Include="include\CallBackRegistrator.h" />
+    <ClInclude Include="include\CmdParam.h" />
+    <ClInclude Include="include\ContainerArrObj.h" />
+    <ClInclude Include="include\ContainerPtrArrObj.h" />
+    <ClInclude Include="include\ContainerRise.h" />
+    <ClInclude Include="include\ContainerTypes.h" />
+    <ClInclude Include="include\ConverterLocale.h" />
+    <ClInclude Include="include\CRC8.h" />
+    <ClInclude Include="include\CryptoAES_Impl.h" />
+    <ClInclude Include="include\CryptoRSA_Impl.h" />
+    <ClInclude Include="include\DataExchange2Thread.h" />
+    <ClInclude Include="include\DataExchange2ThreadElement.h" />
+    <ClInclude Include="include\DescCallBack.h" />
+    <ClInclude Include="include\DescEvent.h" />
+    <ClInclude Include="include\DstEvent.h" />
+    <ClInclude Include="include\ECS_Allocator.h" />
+    <ClInclude Include="include\ExecuteInstructionEngine.h" />
+    <ClInclude Include="include\FastUpperBound.h" />
+    <ClInclude Include="include\FileOperation.h" />
+    <ClInclude Include="include\FormManager.h" />
+    <ClInclude Include="include\HiTimer.h" />
+    <ClInclude Include="include\IContainer.h" />
+    <ClInclude Include="include\ILoaderDLL.h" />
+    <ClInclude Include="include\InfoFile.h" />
+    <ClInclude Include="include\InputByCmd.h" />
+    <ClInclude Include="include\IXML.h" />
+    <ClInclude Include="include\json11.h" />
+    <ClInclude Include="include\JsonManager.h" />
+    <ClInclude Include="include\License.h" />
+    <ClInclude Include="include\ListPtr.h" />
+    <ClInclude Include="include\LoaderDLL_Unix.h" />
+    <ClInclude Include="include\LoaderDLL_Win32.h" />
+    <ClInclude Include="include\LoadFromFile.h" />
+    <ClInclude Include="include\LockFreeDef.h" />
+    <ClInclude Include="include\Logger.h" />
+    <ClInclude Include="include\lz4.h" />
+    <ClInclude Include="include\MacroMaker.h" />
+    <ClInclude Include="include\MacroMaker_Prepare.h" />
+    <ClInclude Include="include\MakerLoaderDLL.h" />
+    <ClInclude Include="include\MakerXML.h" />
+    <ClInclude Include="include\MapCallBack.h" />
+    <ClInclude Include="include\MapXML_Field.h" />
+    <ClInclude Include="include\Markup.h" />
+    <ClInclude Include="include\Marshaller.h" />
+    <ClInclude Include="include\MathTools.h" />
+    <ClInclude Include="include\MD5.h" />
+    <ClInclude Include="include\MemoryPool.h" />
+    <ClInclude Include="include\MemoryPoolAllocator.h" />
+    <ClInclude Include="include\MessagePackSerializer.h" />
+    <ClInclude Include="include\Mutex.h" />
+    <ClInclude Include="include\Only_N_Object.h" />
+    <ClInclude Include="include\PopMaster.h" />
+    <ClInclude Include="include\PushMaster.h" />
+    <ClInclude Include="include\ResolverSelf_IP_v4.h" />
+    <ClInclude Include="include\ReversedContainerRise.h" />
+    <ClInclude Include="include\SaveToFile.h" />
+    <ClInclude Include="include\SetOrderElement.h" />
+    <ClInclude Include="include\Settings.h" />
+    <ClInclude Include="include\SHA256.h" />
+    <ClInclude Include="include\ShareMisc.h" />
+    <ClInclude Include="include\SingletonManager.h" />
+    <ClInclude Include="include\SortedThinningRestoreOrder.h" />
+    <ClInclude Include="include\SrcEvent.h" />
+    <ClInclude Include="include\SrcEvent_ex.h" />
+    <ClInclude Include="include\StateMachine.h" />
+    <ClInclude Include="include\StateMachineManager.h" />
+    <ClInclude Include="include\StatisticValue.h" />
+    <ClInclude Include="include\StorePathResources.h" />
+    <ClInclude Include="include\SynchroAbonent.h" />
+    <ClInclude Include="include\SynchroPoint.h" />
+    <ClInclude Include="include\ThreadBoost.h" />
+    <ClInclude Include="include\TimeManager.h" />
+    <ClInclude Include="include\TypeDef.h" />
+    <ClInclude Include="include\VectorRise.h" />
+    <ClInclude Include="include\XML_Markup.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AllocatorPool.cpp" />
+    <ClCompile Include="src\ArrContainer.cpp" />
+    <ClCompile Include="src\BL_Debug.cpp" />
+    <ClCompile Include="src\BreakPacket.cpp" />
+    <ClCompile Include="src\CmdParam.cpp" />
+    <ClCompile Include="src\ContainerRise.cpp" />
+    <ClCompile Include="src\ConverterLocale.cpp" />
+    <ClCompile Include="src\CRC8.cpp" />
+    <ClCompile Include="src\CryptoAES_Impl.cpp" />
+    <ClCompile Include="src\CryptoRSA_Impl.cpp" />
+    <ClCompile Include="src\DataExchange2ThreadElement.cpp" />
+    <ClCompile Include="src\DescCallBack.cpp" />
+    <ClCompile Include="src\DstEvent.cpp" />
+    <ClCompile Include="src\ExecuteInstructionEngine.cpp" />
+    <ClCompile Include="src\FileOperation.cpp" />
+    <ClCompile Include="src\FormManager.cpp" />
+    <ClCompile Include="src\HiTimer.cpp" />
+    <ClCompile Include="src\InfoFile.cpp" />
+    <ClCompile Include="src\InputByCmd.cpp" />
+    <ClCompile Include="src\IXML.cpp" />
+    <ClCompile Include="src\json11.cpp" />
+    <ClCompile Include="src\JsonManager.cpp" />
+    <ClCompile Include="src\LoaderDLL_Unix.cpp" />
+    <ClCompile Include="src\LoaderDLL_Win32.cpp" />
+    <ClCompile Include="src\LoadFromFile.cpp" />
+    <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\lz4.c" />
+    <ClCompile Include="src\MakerLoaderDLL.cpp" />
+    <ClCompile Include="src\MakerXML.cpp" />
+    <ClCompile Include="src\MapCallBack.cpp" />
+    <ClCompile Include="src\MapXML_Field.cpp" />
+    <ClCompile Include="src\Markup.cpp" />
+    <ClCompile Include="src\MathTools.cpp" />
+    <ClCompile Include="src\MD5.cpp" />
+    <ClCompile Include="src\Mutex.cpp" />
+    <ClCompile Include="src\Only_N_Object.cpp" />
+    <ClCompile Include="src\PopMaster.cpp" />
+    <ClCompile Include="src\PushMaster.cpp" />
+    <ClCompile Include="src\ResolverSelf_IP_v4.cpp" />
+    <ClCompile Include="src\ReversedContainerRise.cpp" />
+    <ClCompile Include="src\SaveToFile.cpp" />
+    <ClCompile Include="src\SetOrderElement.cpp" />
+    <ClCompile Include="src\Settings.cpp" />
+    <ClCompile Include="src\SHA256.cpp" />
+    <ClCompile Include="src\ShareLibWin.cpp" />
+    <ClCompile Include="src\ShareMisc.cpp" />
+    <ClCompile Include="src\SingletonManager.cpp" />
+    <ClCompile Include="src\SrcEvent.cpp" />
+    <ClCompile Include="src\StateMachineManager.cpp" />
+    <ClCompile Include="src\StorePathResources.cpp" />
+    <ClCompile Include="src\SynchroAbonent.cpp" />
+    <ClCompile Include="src\SynchroPoint.cpp" />
+    <ClCompile Include="src\ThreadBoost.cpp" />
+    <ClCompile Include="src\TimeManager.cpp" />
+    <ClCompile Include="src\XML_Markup.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

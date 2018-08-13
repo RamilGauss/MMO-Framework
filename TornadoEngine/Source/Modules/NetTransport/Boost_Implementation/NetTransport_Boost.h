@@ -7,7 +7,7 @@ See for more information License.h.
 
 #pragma once
 
-#include "INetTransport.h"
+#include "MMOEngine/include/INetTransport.h"
 #include "Mutex.h"
 #include "NetWorkThread.h"
 

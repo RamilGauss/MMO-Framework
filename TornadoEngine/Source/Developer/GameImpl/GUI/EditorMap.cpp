@@ -214,40 +214,40 @@ void TEditorMap::sl_ToggleUsePhysic( MyGUI::Widget* _sender )
 //-------------------------------------------------------------------------------------
 void TEditorMap::SetNameMode( std::string sMode )
 {
-  std::string newCaption = "Редактор карты [Режим работы - " + sMode + "]";
+  std::string newCaption = "MapEditor [Mode - " + sMode + "]";
   std::wstring newCaptionW = TConverterLocale::ConvertUtf8ToCp1251( newCaption );
   TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE()->SetWindowCaption( newCaptionW );
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Mode_Fly( MyGUI::Widget* _sender )
 {
-  SetNameMode( "Режим свободной камеры" );
+  SetNameMode( "Free camera" );
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Mode_TerrainExtent( MyGUI::Widget* _sender )
 {
-  SetNameMode( "Переопределить параметры земли" );
+  SetNameMode( "Define terrain parameters" );
   mDialogHeightmapParam->Show();
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Mode_TerrainHeight( MyGUI::Widget* _sender )
 {
-  SetNameMode( "Изменение высоты земли" );
+  SetNameMode( "Change terrain hight" );
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Mode_TerrainPainter( MyGUI::Widget* _sender )
 {
-  SetNameMode( "Изменение цвета земли" );
+  SetNameMode( "Change terrain color" );
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Mode_MapParameter( MyGUI::Widget* _sender )
 {
-  SetNameMode( "Изменение параметров игровой карты" );
+  SetNameMode( "Change map parameters" );
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::sl_Mode_Objects( MyGUI::Widget* _sender )
 {
-  SetNameMode( "Объекты" );
+  SetNameMode( "Objects" );
 }
 //-------------------------------------------------------------------------------------
 void TEditorMap::HideDialogOpen()

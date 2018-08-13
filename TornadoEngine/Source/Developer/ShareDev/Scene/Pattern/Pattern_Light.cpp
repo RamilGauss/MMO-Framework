@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include "Pattern_Light.h"
-#include "GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
 

@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Гудаков Рамиль Сергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include <entt/entt.hpp>
 #include <cstdint>
 #include <vector>
@@ -6,8 +13,8 @@
 #include <chrono>
 #include <entt/entt.hpp>
 
-#include "World.h"
-#include "ECSconfig.h"
+#include "ECS/include/World.h"
+#include "ECS/include/ECSconfig.h"
 #include "ProducerFeature.h"
 #include "PacketObserverSystem.h"
 #include "ConsumerSystem.h"
@@ -19,9 +26,24 @@
 #include "BL_Debug.h"
 #include <map>
 #include "HiTimer.h"
+#include "BreakPacket.h"
+
+#include <type_traits>
+
+#include "ECS/include/DataMemoryPoolComponent.h"
 
 int main()
 {
+  //auto p = /*TMemoryPool<char>::Singleton();*/ SingletonManager()->Get<TMemoryPool<char>>();
+  //int count = 2000000000;
+  //auto start = ht_GetMSCount();
+  //for( int i = 0; i < count; i++ )
+  //  p = /*TMemoryPool<char>::Singleton();*/ SingletonManager()->Get<TMemoryPool<char>>();
+  //auto delta = ht_GetMSCount() - start;
+  //float cycle_time = delta * 1000.0f / count;
+  //printf( "cycle_time = %f\n", cycle_time );
+  //getchar();
+
 #if 0
   TSpeedCalculationSystem speedCalc;
 
@@ -100,8 +122,10 @@ int main()
 #endif
   auto world = new MWorks::ECS::TWorld();
   world->AddToConveyer<TProducerFeature>();
-  //world->AddToConveyer<TPacketObserverSystem>();
-  world->AddToConveyer<TConsumerSystem>();
+  world->AddToConveyer<TConsumerSystem>();// 1
+  world->AddToConveyer<TProducerFeature>();
+  //world->AddToConveyer<TConsumerSystem>();// 2
+  world->AddToConveyer<TPacketObserverSystem>();
   //world->AddToConveyer<TGroupedPacketSystem>();
   //world->AddToConveyer<TInitSettingsSystem>();
 
@@ -114,7 +138,6 @@ int main()
   {
     world->Update();
     printf( "----------------------------------------------------------------\n" );
-    //std::this_thread::sleep_for(std::chrono::milliseconds(10));
   }
 
   printf( "Conveyer is stopped, press any key...\n" );

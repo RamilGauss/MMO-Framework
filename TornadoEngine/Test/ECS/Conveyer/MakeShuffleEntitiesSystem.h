@@ -1,5 +1,12 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+–ì—É–¥–∞–∫–æ–≤ –†–∞–º–∏–ª—å –°–µ—Ä–≥–µ–µ–≤–∏—á 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #pragma once
-#include "InitSystem.h"
+#include "ECS/include/InitSystem.h"
 #include "ShuffledComponents.h"
 
 #include <ctime>
@@ -23,7 +30,7 @@ public:
     {
       auto entity = registry->create();
       auto typeCount = 1 + std::rand() % 6;
-      for( int c = 0; c < typeCount; c++ )// ÍÓÏ·ËÌËÓ‚‡Ú¸ ÍÓÏÔÓÌÂÌÚ˚
+      for( int c = 0; c < typeCount; c++ )// –∫–æ–º–±–∏–Ω–∏—Ä–æ–≤–∞—Ç—å –∫–æ–º–ø–æ–Ω–µ–Ω—Ç—ã
       {
         switch( c )
         {

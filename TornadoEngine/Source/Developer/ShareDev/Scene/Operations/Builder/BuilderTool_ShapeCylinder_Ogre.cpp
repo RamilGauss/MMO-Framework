@@ -10,7 +10,7 @@ See for more information License.h.
 
 #include "BuilderTool_ShapeCylinder_Ogre.h"
 #include "ModuleLogic.h"
-#include "GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleGraphicEngine.h"
 
 #include "BL_Debug.h"
@@ -23,7 +23,7 @@ See for more information License.h.
 
 TBuilderTool_ShapeCylinder_Ogre::TBuilderTool_ShapeCylinder_Ogre()
 {
-  mPSh = NULL;
+  mPSh = nullptr;
 }
 //-------------------------------------------------------------------------
 std::string TBuilderTool_ShapeCylinder_Ogre::GetNameType()

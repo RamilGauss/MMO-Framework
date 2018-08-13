@@ -1,14 +1,14 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "BaseTransport.h"
-#include "BaseEvent.h"
+#include "MMOEngine/include/BaseEvent.h"
+#include "MMOEngine/include/Events.h"
 #include "MonitorEvents.h"
-#include "Events.h"
 
 #include "SrcEvent_ex.h"
 
@@ -33,7 +33,7 @@ void TBaseTransport::Open( unsigned short port, unsigned char subNet )
   descOpen.port = port;
   mBase->Init( &mMakerNetTransport );
   mBase->Open( &descOpen );
-  mBase->SetLoad( 0 );// âñåãäà â íà÷àëå íåò íàãðóçêè
+  mBase->SetLoad( 0 );// Ð²ÑÐµÐ³Ð´Ð° Ð² Ð½Ð°Ñ‡Ð°Ð»Ðµ Ð½ÐµÑ‚ Ð½Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸
   mBase->SetDstObject( this );
   mBase->SetSelfID( descOpen.port );
 }
@@ -45,7 +45,7 @@ void TBaseTransport::Work()
   nsEvent::TEvent* pEvent = GetEvent();
   while( pEvent )
   {
-    // îáðàáîòàòü ñîáûòèå
+    // Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ñ‚ÑŒ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ
     auto pBase = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
     switch( pBase->mType )
     {

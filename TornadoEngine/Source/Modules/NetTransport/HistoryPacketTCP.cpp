@@ -7,9 +7,9 @@ See for more information License.h.
 
 #include "HistoryPacketTCP.h"
 #include "HeaderTCP.h"
-#include "INetTransport.h"
+#include "MMOEngine/include/INetTransport.h"
+#include "MMOEngine/include/EnumMMO.h"
 #include "Logger.h"
-#include "EnumMMO.h"
 
 THistoryPacketTCP::THistoryPacketTCP()
 {

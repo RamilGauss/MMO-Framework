@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "BuilderTool_Terrain_Ogre.h"
 #include "ModuleLogic.h"
-#include "GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleGraphicEngine.h"
 
 #include "MapItem.h"

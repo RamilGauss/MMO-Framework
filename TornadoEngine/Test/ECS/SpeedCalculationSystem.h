@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Гудаков Рамиль Сергеевич 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #pragma once
 
 #include <chrono>
@@ -5,8 +12,9 @@
 
 class TSpeedCalculationSystem
 {
-  std::chrono::high_resolution_clock::time_point mStart;
-  double melapsedTime_ns;
+  unsigned int mStart;
+
+  unsigned int mElapsedTime_ms;
 public:
   void Start();
   void Stop();

@@ -18,7 +18,7 @@ See for more information License.h.
 #include "HeaderTCP.h"
 #include "HiTimer.h"
 #include "NetTransport_Boost.h"
-#include "EnumMMO.h"
+#include "MMOEngine/include/EnumMMO.h"
 
 using namespace std;
 

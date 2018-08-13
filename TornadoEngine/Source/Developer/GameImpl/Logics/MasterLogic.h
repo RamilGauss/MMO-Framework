@@ -5,12 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MasterLogicH
-#define MasterLogicH
+#pragma once
 
 #include "ModuleServerLogic.h"
-#include "BaseEvent.h"
-#include "Events.h"
+#include "MMOEngine/include/BaseEvent.h"
+#include "MMOEngine/include/Events.h"
 
 //#include "MasterForm.h"
 
@@ -65,5 +64,3 @@ private:
 public:
   void CreateGroup();
 };
-
-#endif

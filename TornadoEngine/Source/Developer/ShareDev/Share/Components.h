@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ComponentsH
-#define ComponentsH
+#pragma once
 
 #include "TypeDef.h"
 #include <vector>
@@ -29,7 +28,7 @@ class DllExport TComponents
 public:
   TComponents();
 
-  void SetLogicID(int id);
+  void SetLogicID( int id );
 
   TModuleDataBase*             pDataBase;
   TModuleGraphicEngine*        pGraphicEngine;
@@ -41,5 +40,3 @@ public:
   TModuleSoundEngine*          pSoundEngine;
   TModuleTimer*                pTimer;
 };
-
-#endif

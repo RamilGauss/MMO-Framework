@@ -115,6 +115,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./;./Components;./Conveyer;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\ECS;$(SolutionDir)Source\Base\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,9 +128,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;$(SolutionDir)\Source\Modules\ECS\Conveyer;$(SolutionDir)\Source\Modules\ECS;./Components;./Conveyer;$(SolutionDir)\Source\Base\Headers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components;./Conveyer;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\ECS;$(SolutionDir)Source\Base\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -151,6 +152,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./;./Components;./Conveyer;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\ECS;$(SolutionDir)Source\Base\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -169,7 +171,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;$(SolutionDir)\Source\Modules\ECS\Conveyer;$(SolutionDir)\Source\Modules\ECS;./Components;./Conveyer;$(SolutionDir)\Source\Base\Headers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components;./Conveyer;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\ECS;$(SolutionDir)Source\Base\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>

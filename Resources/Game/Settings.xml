@@ -6,15 +6,19 @@
 			<Entry key="WorldSize" value="10.1000023"/>
 			<Entry key="Size"      value="3"/>
 			<Entry key="Height"    value="38.0001793"/>
-		</Group>
+		<Entry key="x_min" value="0"> </Entry>
+<Entry key="x_max" value="0"> </Entry>
+<Entry key="y_min" value="0"> </Entry>
+<Entry key="y_max" value="0"> </Entry>
+</Group>
 		<Group name="SettingCamera"> 
-			<Entry key="pos_x" value="1.86588442"/>
-			<Entry key="pos_y" value="26.8548241"/>
-			<Entry key="pos_z" value="21.0444317"/>
-			<Entry key="dir_x" value="0.300938457"/>
-			<Entry key="dir_y" value="0.0272253826"/>
-			<Entry key="dir_z" value="0.00879322272"/>
-			<Entry key="dir_w" value="-0.953219354"/>
+			<Entry key="pos_x" value="5.23670006"/>
+			<Entry key="pos_y" value="38.1051292"/>
+			<Entry key="pos_z" value="30.0966167"/>
+			<Entry key="dir_x" value="0.398389876"/>
+			<Entry key="dir_y" value="0.0151620535"/>
+			<Entry key="dir_z" value="0.00679272134"/>
+			<Entry key="dir_w" value="-0.917099178"/>
 		</Group>
 	</Application>
 </Content>

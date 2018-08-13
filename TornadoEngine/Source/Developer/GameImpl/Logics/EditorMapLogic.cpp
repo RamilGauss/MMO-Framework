@@ -24,7 +24,6 @@ See for more information License.h.
 #include "EditorMap.h"
 #include "StatusBar.h"
 
-//#include <boost/locale/util.hpp>
 #include <boost/cstdint.hpp>
 
 //###

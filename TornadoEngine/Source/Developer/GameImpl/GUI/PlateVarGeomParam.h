@@ -5,14 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef PlateVarGeomParamH
-#define PlateVarGeomParamH
+#pragma once
 
-#include "BaseGUI.h"
+#include "GraphicEngine/BaseGUI.h"
 #include <MyGUI.h>
 #include <Ogre.h>
 
-class TPlateVarGeomParam :  public TBaseGUI
+class TPlateVarGeomParam : public TBaseGUI
 {
 
 public:
@@ -42,4 +41,3 @@ protected:
   MyGUI::ImageBox* ibGeom;
 };
 
-#endif 

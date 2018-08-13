@@ -53,7 +53,7 @@ void TScLoginClient_SlaveImpl::Work( unsigned int time_ms )
   // ошибка на той стороне
   // непонятно в чем дело, но клиент сдох
   TErrorEvent event;
-  event.code = errorType;
+  event.code = (nsMMOEngine::ErrorCode)errorType;
   Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
   End();
 }

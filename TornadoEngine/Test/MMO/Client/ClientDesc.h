@@ -1,6 +1,13 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #pragma once
 #include <memory>
-#include "Client.h"
+#include "MMOEngine/include/Client.h"
 #include <algorithm>
 
 class TClientDesc
@@ -14,9 +21,9 @@ public:
   bool flgNeedSendPing = false;
   bool flgWaitPong = false;
   unsigned int mSendPingTime = 0;
-  unsigned int mLastIntervalPingPongTime = 0;// время последнего пинга от сервера
+  unsigned int mLastIntervalPingPongTime = 0;// РІСЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ РїРёРЅРіР° РѕС‚ СЃРµСЂРІРµСЂР°
 
-  unsigned int mMaxDelayPingPong = 50000;// сколько можно ждать ответа на пинг от сервера
+  unsigned int mMaxDelayPingPong = 50000;// СЃРєРѕР»СЊРєРѕ РјРѕР¶РЅРѕ Р¶РґР°С‚СЊ РѕС‚РІРµС‚Р° РЅР° РїРёРЅРі РѕС‚ СЃРµСЂРІРµСЂР°
   bool failWaitPong = false;
 
   unsigned int mIntervalSendPing = 0x1FFFFFFF;
@@ -27,7 +34,7 @@ public:
     auto recvPong = mSendPingTime + mLastIntervalPingPongTime;
     auto sendTimeInFuture = recvPong + mIntervalSendPing;
     if( sendTimeInFuture > now )
-      return;// не пришло время
+      return;// РЅРµ РїСЂРёС€Р»Рѕ РІСЂРµРјСЏ
 
     char s[100];
     sprintf( s, "%d", index );
@@ -42,6 +49,6 @@ public:
   void RecvPong()
   {
     mLastIntervalPingPongTime = ht_GetMSCount() - mSendPingTime;
-    flgNeedSendPing = true;// получили ответ, послать пинг еще раз
+    flgNeedSendPing = true;// РїРѕР»СѓС‡РёР»Рё РѕС‚РІРµС‚, РїРѕСЃР»Р°С‚СЊ РїРёРЅРі РµС‰Рµ СЂР°Р·
   }
 };

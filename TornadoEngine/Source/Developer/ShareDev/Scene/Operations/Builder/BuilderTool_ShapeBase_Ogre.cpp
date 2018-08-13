@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #include "BuilderTool_ShapeBase_Ogre.h"
-#include "GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
 #include "ShapeItem.h"

@@ -5,11 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ClientLogicH
-#define ClientLogicH
+#pragma once
 
 #include "ModuleClientLogic.h"
-#include "BaseEvent.h"
+#include "MMOEngine/include/BaseEvent.h"
 #include <Ogre.h>
 
 class TClientMain;
@@ -61,5 +60,3 @@ private:
   //void PhysicBeginWork();
   //void PhysicEndWork();
 };
-
-#endif

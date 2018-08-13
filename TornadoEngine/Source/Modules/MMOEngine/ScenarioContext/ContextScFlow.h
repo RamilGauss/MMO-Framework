@@ -11,6 +11,7 @@ See for more information License.h.
 #include "BreakPacket.h"
 #include <list>
 #include "MemoryPool.h"
+#include "SingletonManager.h"
 
 namespace nsMMOEngine
 {
@@ -26,8 +27,13 @@ namespace nsMMOEngine
     typedef std::list<TMemoryPool<TSavePacket>::TDescPointer*> TListPtr;
     TListPtr mListSave;
 
+    TMemoryPool<TSavePacket>* mSavePacketMemoryPool = nullptr;
+
   public:
-    TContextScFlow();
+    TContextScFlow()
+    {
+      mSavePacketMemoryPool = SingletonManager()->Get<TMemoryPool<TSavePacket>>();
+    }
 
     void Send( TBreakPacket& bp, bool check );
     void SaveBreakPacket( TBreakPacket& bp, bool check );

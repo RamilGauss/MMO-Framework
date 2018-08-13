@@ -105,7 +105,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>../Share;../../../Source/Base/Headers;../../../Source/Modules/NetTransport;../../../Source/Modules/MMOEngine/Include;../../../Source/Modules/ClusterMonitorProtocol;$(BOOST_PATH64);$(SolutionDir)\Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Share;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(BOOST_PATH64);$(SolutionDir)Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -128,7 +128,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>../Share;../../../Source/Base/Headers;../../../Source/Modules/NetTransport;../../../Source/Modules/MMOEngine/Include;../../../Source/Modules/ClusterMonitorProtocol;$(BOOST_PATH);$(SolutionDir)\Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Share;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(BOOST_PATH);$(SolutionDir)Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,7 +148,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>../Share;../../../Source/Base/Headers;../../../Source/Modules/NetTransport;../../../Source/Modules/MMOEngine/Include;../../../Source/Modules/ClusterMonitorProtocol;$(BOOST_PATH64);$(SolutionDir)\Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Share;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(BOOST_PATH64);$(SolutionDir)Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -172,7 +172,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>../Share;../../../Source/Base/Headers;../../../Source/Modules/NetTransport;../../../Source/Modules/MMOEngine/Include;../../../Source/Modules/ClusterMonitorProtocol;$(BOOST_PATH);$(SolutionDir)\Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Share;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(BOOST_PATH);$(SolutionDir)Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

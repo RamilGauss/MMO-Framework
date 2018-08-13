@@ -11,11 +11,6 @@ See for more information License.h.
 
 using namespace nsMMOEngine;
 
-TContextScFlow::TContextScFlow()
-{
-
-}
-//------------------------------------------------------------
 void TContextScFlow::Send( TBreakPacket& bp, bool check )
 {
   GetMS()->Send( GetSessionID(), bp, check );
@@ -23,7 +18,7 @@ void TContextScFlow::Send( TBreakPacket& bp, bool check )
 //------------------------------------------------------------
 void TContextScFlow::SaveBreakPacket( TBreakPacket& bp, bool check )
 {
-  auto pDescSP = TMemoryPool<TSavePacket>::Singleton()->Pop( 1 );
+  auto pDescSP = mSavePacketMemoryPool->Pop( 1 );
   auto pSP = pDescSP->p;
 
   // собрать пакет
@@ -49,6 +44,6 @@ void TContextScFlow::SendAndRemoveFirst()
   mBP.PushFront( pSP->c.GetPtr(), pSP->c.GetSize() );
   Send( mBP, pSP->check );
 
-  TMemoryPool<TSavePacket>::Singleton()->Push( pDescSP );
+  mSavePacketMemoryPool->Push( pDescSP );
 }
 //-------------------------------------------------------------------------

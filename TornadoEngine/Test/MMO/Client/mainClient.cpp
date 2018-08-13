@@ -13,14 +13,14 @@ See for more information License.h.
 #include <boost/lexical_cast.hpp>
 
 #include "BL_Debug.h"
-#include "Client.h"
+#include "MMOEngine/include/Client.h"
 #include "CommonParam.h"
 #include "InputCmdTestMMO_Client.h"
 #include "HiTimer.h"
 #include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
 #include "HandlerMMO_Client.h"
-#include "MakerNetTransport.h"
+#include "NetTransport/MakerNetTransport.h"
 #include "ClientDesc.h"
 
 void StartClients( int argc, char** argv );

@@ -23,7 +23,7 @@ See for more information License.h.
 #include "ParserXMLResource.h"
 
 
-#include "GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
 #include "EventGameEngine.h"
 
 #include "MakerXML.h"
@@ -134,7 +134,7 @@ TModuleDev* TDevTool_Share::FindPtrModuleByID( int id )
 {
   TMapIntPtrModuleIt fit = mMapID_PtrModules.find( id );
   if( fit == mMapID_PtrModules.end() )
-    return NULL;
+    return nullptr;
   return fit->second;
 }
 //-----------------------------------------------------------------------
@@ -259,7 +259,7 @@ void TDevTool_Share::SetVectorParam( std::vector<std::string>& vecArg )
 //-----------------------------------------------------------------------
 TModuleDev* TDevTool_Share::GetModuleByID( int id )
 {
-  TModuleDev* pModule = NULL;
+  TModuleDev* pModule = nullptr;
   switch( id )
   {
     // ядро

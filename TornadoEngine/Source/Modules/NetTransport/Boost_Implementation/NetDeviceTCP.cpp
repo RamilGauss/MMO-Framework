@@ -6,14 +6,14 @@ See for more information License.h.
 */
 
 #include "NetDeviceTCP.h"
+#include "MMOEngine/include/INetTransport.h"
+#include "MMOEngine/include/EnumMMO.h"
 #include "BL_Debug.h"
 #include "HiTimer.h"
 
 #include "Logger.h"
-#include "INetTransport.h"
 #include "ResolverSelf_IP_v4.h"
 #include <boost/asio/socket_base.hpp>
-#include "EnumMMO.h"
 
 using namespace boost::asio;
 using namespace std;

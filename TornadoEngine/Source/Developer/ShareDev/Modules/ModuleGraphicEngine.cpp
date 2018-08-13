@@ -7,7 +7,7 @@ See for more information License.h.
 
 #include "ModuleGraphicEngine.h"
 #include "BL_Debug.h"
-#include "GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
 
 TModuleGraphicEngine::TModuleGraphicEngine()
 {

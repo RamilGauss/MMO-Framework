@@ -1,77 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="include">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Conveyer\BaseReactiveSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\BaseReactiveSystem.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\ConveyerPartMaster.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\ConveyerPartMaster.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\ConveyerPartWithGlobalAccess.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\ConveyerPartWithGlobalAccess.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\DataMemoryPoolComponent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\DataMemoryPoolComponent.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\ECSconfig.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\ECSconfig.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\ExecuteSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\ExecuteSystem.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\Feature.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\Feature.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\GlobalAccess.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\GlobalAccess.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\IConveyerPart.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\IConveyerPart.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\InitSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\InitSystem.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\ReactiveForManyEventsSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\MappedGroup.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\ReactiveForOneEventSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\ReactiveForManyEventsSystem.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\System.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\ReactiveForOneEventSystem.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\World.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\System.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Conveyer\MappedGroup.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\World.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helper.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConnectTypeManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GlobalSystemInitializer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GlobalSystemUpdater.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Readme.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Conveyer\ConveyerPartMaster.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="include\World.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Conveyer\ExecuteSystem.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="include\ReactiveForOneEventSystem.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Conveyer\ReactiveForManyEventsSystem.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="include\ReactiveForManyEventsSystem.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Conveyer\ReactiveForOneEventSystem.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="include\ExecuteSystem.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Conveyer\World.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="include\ConveyerPartMaster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="include\BaseReactiveSystem.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

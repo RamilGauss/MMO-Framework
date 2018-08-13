@@ -1,16 +1,24 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡ 
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #pragma once
 #include <iostream>
 
-#include "ExecuteSystem.h"
+#include "ECS/include/ExecuteSystem.h"
+#include "ECS/include/MappedGroup.h"
+#include "ECS/include/DataMemoryPoolComponent.h"
 #include "SpeedCalculationSystem.h"
 #include "PacketData.h"
 #include "FreshPacket.h"
-#include "DataMemoryPoolComponent.h"
 #include "ShuffledComponents.h"
-#include "MappedGroup.h"
+#include "include/Helper.h"
 
 #ifdef _DEBUG
-#define PACKET_COUNT 10
+#define PACKET_COUNT 2
 #else
 #define PACKET_COUNT 20000000
 #endif
@@ -21,14 +29,17 @@ class TProducerSystem : public MWorks::ECS::TExecuteSystem, public TSpeedCalcula
 {
   typedef TMappedSingleEntityGroup<ShuffledComponents::A> SA_Group;
   SA_Group* mSA_group;
+  SA_Group* mSA_group2;
 
   typedef TMappedMultiEntityGroup<ShuffledComponents::A> MA_Group;
   MA_Group* mMA_group;
 public:
   virtual void Init()
   {
-    mSA_group = new SA_Group( GetRegistry() );// пример как использовать группу для поиска по значению
-    mMA_group = new MA_Group( GetRegistry() );// пример как использовать группу для поиска по значению
+    // РїСЂРёРјРµСЂ РєР°Рє РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РіСЂСѓРїРїСѓ РґР»СЏ РїРѕРёСЃРєР° РїРѕ Р·РЅР°С‡РµРЅРёСЋ
+    mSA_group = new SA_Group( GetRegistry() );
+    mSA_group2 = new SA_Group( GetRegistry() );
+    mMA_group = new MA_Group( GetRegistry() );
   }
 
   virtual void Execute()
@@ -42,6 +53,7 @@ public:
       int asd = 0;
     }
     auto ent = mSA_group->Get( a );
+    auto ent2 = mSA_group2->Get( a );
     if( ent != entt::null )
     {
       int asd = 0;

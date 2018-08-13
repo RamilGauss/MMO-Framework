@@ -13,7 +13,7 @@ See for more information License.h.
 
 #include "BreakPacket.h"
 #include "CallBackRegistrator.h"
-#include "INetTransport.h"
+#include "MMOEngine/include/INetTransport.h"
 
 class TNetTransport_Boost;
 

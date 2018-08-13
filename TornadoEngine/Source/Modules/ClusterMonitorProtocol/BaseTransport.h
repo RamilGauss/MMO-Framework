@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
-Гудаков Рамиль Сергеевич
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -8,8 +8,8 @@ See for more information License.h.
 #pragma once
 
 #include "DstEvent.h"
-#include "Base.h"
-#include "MakerNetTransport.h"
+#include "MMOEngine/include/Base.h"
+#include "NetTransport/MakerNetTransport.h"
 
 namespace nsClusterMonitorProtocol
 {

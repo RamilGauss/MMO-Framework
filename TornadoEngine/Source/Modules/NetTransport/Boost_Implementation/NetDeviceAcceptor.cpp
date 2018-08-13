@@ -10,10 +10,10 @@ See for more information License.h.
 #include "HiTimer.h"
 
 #include "Logger.h"
-#include "INetTransport.h"
+#include "MMOEngine/include/INetTransport.h"
+#include "MMOEngine/include/EnumMMO.h"
 #include "ResolverSelf_IP_v4.h"
 #include "NetControlTCP.h"
-#include "EnumMMO.h"
 
 using namespace boost::asio;
 using namespace std;

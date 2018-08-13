@@ -1,13 +1,13 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #pragma once
 
-#include "BaseGUI.h"
+#include "GraphicEngine/BaseGUI.h"
 #include <MyGUI.h>
 #include <Ogre.h>
 
@@ -39,7 +39,7 @@ protected:
   virtual const char* GetNameLayout();
   virtual void SetupTabChild();
 
-  virtual void KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char);
+  virtual void KeyEvent( MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char );
 protected:
   void OpenShape();
   void NewShape();
@@ -54,9 +54,9 @@ protected:
   void NewQuadrangularPyramid();
   void NewTrianglePrism();
 
-  void ShowNewShape(TBaseGUI* pForm);
+  void ShowNewShape( TBaseGUI* pForm );
 protected:
-  void sl_WidgetsSelect(MyGUI::MenuControl* _sender, MyGUI::MenuItem* _item);
+  void sl_WidgetsSelect( MyGUI::MenuControl* _sender, MyGUI::MenuItem* _item );
 
   MyGUI::MenuBar*     mBar;
   MyGUI::MenuControl* mPopupMenu_File;

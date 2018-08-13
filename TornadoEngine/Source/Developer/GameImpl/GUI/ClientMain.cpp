@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,7 +16,7 @@ See for more information License.h.
 #include "ResolverSelf_IP_v4.h"
 #include "ModuleLogic.h"
 #include "ListModules.h"
-#include "Client.h"
+#include "MMOEngine/include/Client.h"
 #include "ModuleMMOEngineClient.h"
 #include "LogicEventCallBack.h"
 
@@ -32,37 +32,37 @@ TClientMain::~TClientMain()
 //-------------------------------------------------------------------------------------
 void TClientMain::Activate()
 {
-  assignWidget(bEnter,"bEnter");
-  assignWidget(bExit, "bExit");
+  assignWidget( bEnter, "bEnter" );
+  assignWidget( bExit, "bExit" );
 
-  assignWidget(ebIP,    "ebIP");
-  assignWidget(ebPort,  "ebPort");
-  assignWidget(ebLogin, "ebLogin");
+  assignWidget( ebIP, "ebIP" );
+  assignWidget( ebPort, "ebPort" );
+  assignWidget( ebLogin, "ebLogin" );
 
-  bEnter->eventMouseButtonClick += MyGUI::newDelegate(this, &TClientMain::sl_Enter);
-  bExit ->eventMouseButtonClick += MyGUI::newDelegate(this, &TClientMain::sl_Exit);
+  bEnter->eventMouseButtonClick += MyGUI::newDelegate( this, &TClientMain::sl_Enter );
+  bExit->eventMouseButtonClick += MyGUI::newDelegate( this, &TClientMain::sl_Exit );
 
   LoadInputParam();
 }
 //-------------------------------------------------------------------------------------
-void TClientMain::sl_Enter(MyGUI::Widget* _sender)
+void TClientMain::sl_Enter( MyGUI::Widget* _sender )
 {
   USES_CONVERSION;
-  std::string sPort = W2A((LPCWSTR)ebPort->getOnlyText().data());
+  std::string sPort = W2A( (LPCWSTR) ebPort->getOnlyText().data() );
   int port = boost::lexical_cast<int>(sPort.data());
 
-  std::string sIP = W2A((LPCWSTR)ebIP->getOnlyText().data());
-  ip = boost::asio::ip::address_v4::from_string(sIP.data()).to_ulong();
+  std::string sIP = W2A( (LPCWSTR) ebIP->getOnlyText().data() );
+  ip = boost::asio::ip::address_v4::from_string( sIP.data() ).to_ulong();
 
-  sLogin = W2A((LPCWSTR)ebLogin->getOnlyText().data());
-  mDescOpen = nsMMOEngine::TDescOpen(port);
+  sLogin = W2A( (LPCWSTR) ebLogin->getOnlyText().data() );
+  mDescOpen = nsMMOEngine::TDescOpen( port );
 
   // настройка сети
-  if(IsOpen==false)
+  if( IsOpen == false )
     EnterServer();
 }
 //-------------------------------------------------------------------------------------
-void TClientMain::sl_Exit(MyGUI::Widget* _sender)
+void TClientMain::sl_Exit( MyGUI::Widget* _sender )
 {
   //IClientDeveloperTool::Singleton()->GetComponent()->mNetClient->LeaveQueue();
   TModuleLogic::Get()->Exit();
@@ -80,23 +80,23 @@ void* TClientMain::GetParent()
 //-------------------------------------------------------------------------------------
 void TClientMain::SetupTabChild()
 {
-  mVectorChild_Tab.push_back(ebIP);
-  mVectorChild_Tab.push_back(ebLogin);
-  mVectorChild_Tab.push_back(ebPort);
+  mVectorChild_Tab.push_back( ebIP );
+  mVectorChild_Tab.push_back( ebLogin );
+  mVectorChild_Tab.push_back( ebPort );
 }
 //-------------------------------------------------------------------------------------
-void TClientMain::KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char)
+void TClientMain::KeyEvent( MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char )
 {
-  switch(_key.getValue())
+  switch( _key.getValue() )
   {
     case MyGUI::KeyCode::Return:
-      sl_Enter(_sender);
+      sl_Enter( _sender );
       break;
     default:;
   }
 }
 //-------------------------------------------------------------------------------------
-void TClientMain::SaveInputParam(unsigned int ip, unsigned int port, const char* sLogin)
+void TClientMain::SaveInputParam( unsigned int ip, unsigned int port, const char* sLogin )
 {
   //QSettings settings("RUSSIA","ClientMain");
   //settings.setValue("ip",   ip);
@@ -132,11 +132,11 @@ void TClientMain::EnterServer()
 {
   nsMMOEngine::TClient* pClient = TModuleLogic::Get()->GetC()->pMMOEngineClient->Get();
 
-  IsOpen = pClient->Open(&mDescOpen);
-  BL_ASSERT(IsOpen);
+  IsOpen = pClient->Open( &mDescOpen );
+  BL_ASSERT( IsOpen );
   std::string pasword = "1";
   pClient->Login( TIP_Port( ip, MASTER_PORT ), sLogin, pasword );
 
-  SaveInputParam(ip, mDescOpen.port, sLogin.data());
+  SaveInputParam( ip, mDescOpen.port, sLogin.data() );
 }
 //-------------------------------------------------------------------------------------

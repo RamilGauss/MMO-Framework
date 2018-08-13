@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -26,13 +26,13 @@ class TGE_Impl;
 
 /*
   Задачи класса: организация использования кванта времени (через Work()),
-  выдача событий клавиатуры и мыши (те что не были поглощены GUI), 
-  отрисовка окна GUI, 
-  давать возможность управления камерой, 
+  выдача событий клавиатуры и мыши (те что не были поглощены GUI),
+  отрисовка окна GUI,
+  давать возможность управления камерой,
   добавление и изменение объектов.
 */
 
-class DllExport TGraphicEngine_Ogre_MyGUI : 
+class DllExport TGraphicEngine_Ogre_MyGUI :
   public TSrcEvent /*for generation keyboard and mouse events(unused by GUI)*/
 {
   TCallBackRegistrator2<const OIS::KeyEvent &, bool> mCBKeyBoard;
@@ -40,23 +40,23 @@ class DllExport TGraphicEngine_Ogre_MyGUI :
 public:
   TGraphicEngine_Ogre_MyGUI();
   virtual ~TGraphicEngine_Ogre_MyGUI();
-/* Order of calls:
-   1. InitOGRE, 2. AddResource, 3. InitMyGUI */
-  bool InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg);
-  void AddResource(const std::string& name, const std::string& type);
-  bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
+  /* Order of calls:
+     1. InitOGRE, 2. AddResource, 3. InitMyGUI */
+  bool InitOGRE( const std::string& pathPluginCfg, const std::string& pathOgreCfg );
+  void AddResource( const std::string& name, const std::string& type );
+  bool InitMyGUI( const std::string& nameFileCore, const std::string& nameFileSkin );
   // return false - need exit
   bool Work();
 
-  void GetWindowCaption(std::wstring& _text);
-  void SetWindowCaption(const std::wstring& _text);
+  void GetWindowCaption( std::wstring& _text );
+  void SetWindowCaption( const std::wstring& _text );
 
   size_t GetWindowHandle();
 
-  void SetTimeoutDblClick(int t_ms);
+  void SetTimeoutDblClick( int t_ms );
 
   // например, в шутерах когда мешает GUI для получения события движения мыши
-  void SetCenterClippingCursor(bool v);
+  void SetCenterClippingCursor( bool v );
   bool GetCenterClippingCursor();
 
   Ogre::Root*         GetRoot();
@@ -67,31 +67,43 @@ public:
   Ogre::TerrainGroup* GetTerrainGroup();
   Ogre::TerrainGlobalOptions* GetTerrainGlobals();
 
-  void SetGUIEnableEvent(bool v);
+  void SetGUIEnableEvent( bool v );
   bool GetGUIEnableEvent();
 
-  void SetUseClipCursor(bool v);
+  void SetUseClipCursor( bool v );
   bool GetUseClipCursor();
 private:
   std::shared_ptr<TGE_Impl> mGE;
-  void MsgException(MyGUI::Exception& _e);
+  void MsgException( MyGUI::Exception& _e );
 
-  void KeyBoardEvent(const OIS::KeyEvent & k, bool pressed);
-  void MouseEvent(const OIS::MouseEvent& m, OIS::MouseButtonID id,
-    nsGraphicEngine::tTypeMouseEvent typeEvent);
+  void KeyBoardEvent( const OIS::KeyEvent & k, bool pressed );
+  void MouseEvent( const OIS::MouseEvent& m, OIS::MouseButtonID id,
+    nsGraphicEngine::tTypeMouseEvent typeEvent );
 
-  bool CheckDblClick(const OIS::MouseEvent& m, OIS::MouseButtonID id,
-    nsGraphicEngine::tTypeMouseEvent typeEvent);
+  bool CheckDblClick( const OIS::MouseEvent& m, OIS::MouseButtonID id,
+    nsGraphicEngine::tTypeMouseEvent typeEvent );
 
 private:
   struct TInfoClick
   {
     unsigned int mTimePrevLastPress;
     unsigned int mTimeLastPress;
-    TInfoClick(){Init();}
-    void Init(){mTimePrevLastPress=-1;mTimeLastPress=-1;}
-    void SetTime(unsigned int t){mTimePrevLastPress=mTimeLastPress;mTimeLastPress=t;}
-    bool IsSecondRelease(){return mTimePrevLastPress!=-1;}
+    TInfoClick()
+    {
+      Init();
+    }
+    void Init()
+    {
+      mTimePrevLastPress = -1; mTimeLastPress = -1;
+    }
+    void SetTime( unsigned int t )
+    {
+      mTimePrevLastPress = mTimeLastPress; mTimeLastPress = t;
+    }
+    bool IsSecondRelease()
+    {
+      return mTimePrevLastPress != -1;
+    }
   };
 
   TInfoClick mLClick;

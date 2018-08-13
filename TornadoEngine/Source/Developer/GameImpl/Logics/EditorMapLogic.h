@@ -12,8 +12,8 @@ See for more information License.h.
 
 #include "GP_AggregationScenario_GameMap.h"
 
-#include "./GraphicEngine/Events.h"
-#include "PhysicEngine_Bullet.h"
+#include "GraphicEngine/Events.h"
+#include "PhysicEngine/PhysicEngine_Bullet.h"
 #include "Modifier_Terrain.h"
 
 class TEditorMap;

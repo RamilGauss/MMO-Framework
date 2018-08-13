@@ -1,398 +1,425 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="include">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Sources\AllocatorPool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ArrContainer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\BL_Debug.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\BreakPacket.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\CmdParam.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ContainerRise.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ConverterLocale.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\CRC8.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\CryptoAES_Impl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\CryptoRSA_Impl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\DataExchange2ThreadElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\DescCallBack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\DstEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\FileOperation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\HiTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\InfoFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\IXML.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\LoaderDLL_Unix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\LoaderDLL_Win32.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\LoadFromFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MakerLoaderDLL.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MakerXML.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MapCallBack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MapXML_Field.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Markup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MathTools.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MD5.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Mutex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Only_N_Object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\PopMaster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\PushMaster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ResolverSelf_IP_v4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SaveToFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SetOrderElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Settings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SHA256.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ShareLibWin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ShareMisc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SrcEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\StorePathResources.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SynchroAbonent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SynchroPoint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ThreadBoost.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\XML_Markup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\FormManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\StateMachineManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\TimeManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\lz4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ReversedContainerRise.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\InputByCmd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Headers\AllocatorPool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ArrContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\BL_Debug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\BreakPacket.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\CallBackRegistrator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\CmdParam.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ContainerArrObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ContainerPtrArrObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ContainerRise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ContainerTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ConverterLocale.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\CRC8.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\CryptoAES_Impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\CryptoRSA_Impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\DataExchange2Thread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\DataExchange2ThreadElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\DescCallBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\DescEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\DstEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\FileOperation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\HiTimer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\IContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ILoaderDLL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\InfoFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\IXML.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\License.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ListPtr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\LoaderDLL_Unix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\LoaderDLL_Win32.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\LoadFromFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\LockFreeDef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MacroMaker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MacroMaker_Prepare.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MakerLoaderDLL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MakerXML.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MapCallBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MapXML_Field.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Markup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MathTools.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MD5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Mutex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Only_N_Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\PopMaster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\PushMaster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ResolverSelf_IP_v4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\SaveToFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\SetOrderElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\SHA256.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ShareMisc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\SrcEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\SrcEvent_ex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\StateMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\StatisticValue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\StorePathResources.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\SynchroAbonent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\SynchroPoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ThreadBoost.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\TypeDef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\XML_Markup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\FormManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\StateMachineManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\TimeManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\FastUpperBound.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MemoryPool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\VectorRise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Marshaller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MemoryPoolAllocator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ECS_Allocator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\BinarySerializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\lz4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\MessagePackSerializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\ReversedContainerRise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\InputByCmd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Blog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AllocatorPool.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ArrContainer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BinarySerializer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BL_Debug.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BreakPacket.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CallBackRegistrator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CmdParam.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ContainerArrObj.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ContainerPtrArrObj.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ContainerRise.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ContainerTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConverterLocale.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CRC8.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CryptoAES_Impl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CryptoRSA_Impl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataExchange2Thread.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataExchange2ThreadElement.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DescCallBack.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DescEvent.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DstEvent.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS_Allocator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FastUpperBound.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FileOperation.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FormManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HiTimer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IContainer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ILoaderDLL.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InfoFile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputByCmd.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IXML.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\License.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ListPtr.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoaderDLL_Unix.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoaderDLL_Win32.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoadFromFile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LockFreeDef.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Logger.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\lz4.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MacroMaker.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MacroMaker_Prepare.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MakerLoaderDLL.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MakerXML.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MapCallBack.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MapXML_Field.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Markup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Marshaller.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MathTools.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MD5.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MemoryPool.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MemoryPoolAllocator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MessagePackSerializer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Mutex.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Only_N_Object.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PopMaster.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PushMaster.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ResolverSelf_IP_v4.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ReversedContainerRise.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SaveToFile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SetOrderElement.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Settings.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SHA256.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ShareMisc.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SrcEvent.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SrcEvent_ex.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StateMachine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StateMachineManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StatisticValue.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StorePathResources.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SynchroAbonent.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SynchroPoint.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ThreadBoost.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TimeManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TypeDef.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VectorRise.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\XML_Markup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\json11.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\JsonManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SortedThinningRestoreOrder.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SingletonManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExecuteInstructionEngine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AllocatorPool.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ArrContainer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BL_Debug.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BreakPacket.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CmdParam.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ContainerRise.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConverterLocale.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CRC8.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CryptoAES_Impl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CryptoRSA_Impl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataExchange2ThreadElement.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DescCallBack.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DstEvent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileOperation.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FormManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HiTimer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InfoFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputByCmd.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IXML.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoaderDLL_Unix.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoaderDLL_Win32.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoadFromFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logger.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lz4.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MakerLoaderDLL.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MakerXML.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapCallBack.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapXML_Field.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Markup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MathTools.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MD5.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mutex.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Only_N_Object.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PopMaster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PushMaster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResolverSelf_IP_v4.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReversedContainerRise.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SaveToFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SetOrderElement.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Settings.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SHA256.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShareLibWin.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShareMisc.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SrcEvent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateMachineManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StorePathResources.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SynchroAbonent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SynchroPoint.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThreadBoost.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TimeManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XML_Markup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json11.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JsonManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SingletonManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExecuteInstructionEngine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

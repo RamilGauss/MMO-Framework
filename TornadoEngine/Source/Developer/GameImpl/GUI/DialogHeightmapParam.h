@@ -5,14 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef DialogHeightmapParamH
-#define DialogHeightmapParamH
+#pragma once
 
-#include "BaseGUI.h"
+#include "GraphicEngine/BaseGUI.h"
 #include <MyGUI.h>
 #include <Ogre.h>
 
-class TDialogHeightmapParam :  public TBaseGUI
+class TDialogHeightmapParam : public TBaseGUI
 {
 
 public:
@@ -63,4 +62,3 @@ protected:
   MyGUI::EditBox* ebHeight;
 
 };
-#endif 

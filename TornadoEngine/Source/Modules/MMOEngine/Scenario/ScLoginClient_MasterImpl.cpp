@@ -78,7 +78,7 @@ void TScLoginClient_MasterImpl::Work( unsigned int now_ms )
   auto errorType = Context()->GetCurrentStateErrorCode();
   // ошибка на той стороне
   TErrorEvent event;
-  event.code = errorType;
+  event.code = (nsMMOEngine::ErrorCode)errorType;
   Context()->GetSE()->AddEventCopy( &event, sizeof( event ) );
   Context()->Reject();
   End();

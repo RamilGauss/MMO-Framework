@@ -6,24 +6,18 @@ See for more information License.h.
 */
 
 #include "HandlerMMO.h"
-#include "BaseEvent.h"
-#include "Events.h"
+#include "MMOEngine/include/BaseEvent.h"
+#include "MMOEngine/include/Client.h"
+#include "MMOEngine/include/Slave.h"
+#include "MMOEngine/include/Events.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
 #include "ResolverSelf_IP_v4.h"
-#include "Client.h"
 #include <iostream>
 #include <iomanip>
 #include "BL_Debug.h"
 #include "Logger.h"
-#include "Slave.h"
 
-//typedef std::unordered_set<unsigned int> TSetUInt;
-//
-//typedef std::unordered_map<THandlerMMO::TypeMMO, TSetUInt> TMapTypeMMOSetUInt;
-//typedef std::unordered_map<unsigned int, TSetUInt> TMapUIntSetUInt;
-//
-//typedef std::unordered_map<unsigned int, THandlerMMO*> TMapUIntPtr;
 static THandlerMMO::TMapUIntPtr g_ID_MMO_HandlerPtr;
 
 static THandlerMMO::TMapTypeMMOSetUInt g_Type_IDMap;// тип сервера - множество серверов

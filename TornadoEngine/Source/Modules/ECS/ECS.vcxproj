@@ -19,28 +19,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Conveyer\BaseReactiveSystem.h" />
-    <ClInclude Include="Conveyer\ConveyerPartMaster.h" />
-    <ClInclude Include="Conveyer\ConveyerPartWithGlobalAccess.h" />
-    <ClInclude Include="Conveyer\DataMemoryPoolComponent.h" />
-    <ClInclude Include="Conveyer\ECSconfig.h" />
-    <ClInclude Include="Conveyer\ExecuteSystem.h" />
-    <ClInclude Include="Conveyer\Feature.h" />
-    <ClInclude Include="Conveyer\GlobalAccess.h" />
-    <ClInclude Include="Conveyer\IConveyerPart.h" />
-    <ClInclude Include="Conveyer\InitSystem.h" />
-    <ClInclude Include="Conveyer\MappedGroup.h" />
-    <ClInclude Include="Conveyer\ReactiveForManyEventsSystem.h" />
-    <ClInclude Include="Conveyer\ReactiveForOneEventSystem.h" />
-    <ClInclude Include="Conveyer\System.h" />
-    <ClInclude Include="Conveyer\World.h" />
+    <ClInclude Include="include\BaseReactiveSystem.h" />
+    <ClInclude Include="include\ConnectTypeManager.h" />
+    <ClInclude Include="include\ConveyerPartMaster.h" />
+    <ClInclude Include="include\ConveyerPartWithGlobalAccess.h" />
+    <ClInclude Include="include\DataMemoryPoolComponent.h" />
+    <ClInclude Include="include\ECSconfig.h" />
+    <ClInclude Include="include\ExecuteSystem.h" />
+    <ClInclude Include="include\Feature.h" />
+    <ClInclude Include="include\GlobalAccess.h" />
+    <ClInclude Include="include\GlobalSystemInitializer.h" />
+    <ClInclude Include="include\GlobalSystemUpdater.h" />
+    <ClInclude Include="include\Helper.h" />
+    <ClInclude Include="include\IConveyerPart.h" />
+    <ClInclude Include="include\InitSystem.h" />
+    <ClInclude Include="include\MappedGroup.h" />
+    <ClInclude Include="include\ReactiveForManyEventsSystem.h" />
+    <ClInclude Include="include\ReactiveForOneEventSystem.h" />
+    <ClInclude Include="include\Readme.h" />
+    <ClInclude Include="include\System.h" />
+    <ClInclude Include="include\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Conveyer\ConveyerPartMaster.cpp" />
-    <ClCompile Include="Conveyer\ExecuteSystem.cpp" />
-    <ClCompile Include="Conveyer\ReactiveForManyEventsSystem.cpp" />
-    <ClCompile Include="Conveyer\ReactiveForOneEventSystem.cpp" />
-    <ClCompile Include="Conveyer\World.cpp" />
+    <ClCompile Include="include\BaseReactiveSystem.cpp" />
+    <ClCompile Include="include\ConveyerPartMaster.cpp" />
+    <ClCompile Include="include\ExecuteSystem.cpp" />
+    <ClCompile Include="include\ReactiveForManyEventsSystem.cpp" />
+    <ClCompile Include="include\ReactiveForOneEventSystem.cpp" />
+    <ClCompile Include="include\World.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -124,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;ECS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;./Conveyer;../../Base/Headers;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
@@ -143,9 +149,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;ECS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;ECS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;./Conveyer;../../Base/Headers;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -169,7 +175,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;ECS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;./Conveyer;../../Base/Headers;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
@@ -194,7 +200,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;ECS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;./Conveyer;../../Base/Headers;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
