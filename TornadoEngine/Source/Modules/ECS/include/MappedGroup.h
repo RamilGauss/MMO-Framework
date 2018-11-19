@@ -13,10 +13,10 @@ class DllExport TBaseMappedGroup
     int value;
   };
 protected:
-  typedef std::unordered_map<Component, MWorks::ECS::TEntity> TComponentEntityMap;
+  typedef std::unordered_map<Component, nsECSFramework::TEntity> TComponentEntityMap;
   typename typedef TComponentEntityMap::value_type TComponentEntityMapVT;
 
-  typedef std::unordered_multimap<Component, MWorks::ECS::TEntity> TComponentEntityMMap;
+  typedef std::unordered_multimap<Component, nsECSFramework::TEntity> TComponentEntityMMap;
   typename typedef TComponentEntityMMap::value_type TComponentEntityMMapVT;
 
   struct IMap
@@ -43,7 +43,7 @@ protected:
     return (TMMap*) g_CompEntityMap;
   }
 public:
-  TBaseMappedGroup( MWorks::ECS::THugeRegistry* registry )
+  TBaseMappedGroup( nsECSFramework::THugeRegistry* registry )
   {
     if( g_ConnectionCounter == nullptr )
       g_ConnectionCounter = SingletonManager()->Get<TConnectionCounter>();
@@ -61,10 +61,10 @@ public:
     g_ConnectionCounter->value++;
 
     // садится на события компонента
-    MWorks::ECS::THugeRegistry::sink_type constrSig = registry->construction<Component>();
+    nsECSFramework::THugeRegistry::sink_type constrSig = registry->construction<Component>();
     constrSig.connect<TBaseMappedGroup, &TBaseMappedGroup::Add>( this );
     // садится на события компонента
-    MWorks::ECS::THugeRegistry::sink_type destrSig = registry->destruction<Component>();
+    nsECSFramework::THugeRegistry::sink_type destrSig = registry->destruction<Component>();
     destrSig.connect<TBaseMappedGroup, &TBaseMappedGroup::Remove>( this );
   }
 
@@ -74,14 +74,14 @@ public:
     BL_ASSERT( g_ConnectionCounter->value >= 0 );
   }
 private:
-  inline void Add( MWorks::ECS::THugeRegistry& registry, const MWorks::ECS::TEntity entity )
+  inline void Add( nsECSFramework::THugeRegistry& registry, const nsECSFramework::TEntity entity )
   {
     if( map_or_multimap )
       Map()->value.insert( TComponentEntityMap::value_type( registry.get<Component>( entity ), entity ) );
     else
       MMap()->value.insert( TComponentEntityMap::value_type( registry.get<Component>( entity ), entity ) );
   }
-  inline void Remove( MWorks::ECS::THugeRegistry& registry, const MWorks::ECS::TEntity entity )
+  inline void Remove( nsECSFramework::THugeRegistry& registry, const nsECSFramework::TEntity entity )
   {
     if( map_or_multimap )
       Map()->value.erase( registry.get<Component>( entity ) );
@@ -95,10 +95,10 @@ class DllExport TMappedSingleEntityGroup :
   public TBaseMappedGroup<Component, true>
 {
 public:
-  TMappedSingleEntityGroup( MWorks::ECS::THugeRegistry* registry ) :
+  TMappedSingleEntityGroup( nsECSFramework::THugeRegistry* registry ) :
     TBaseMappedGroup<Component, true>( registry )
   {}
-  inline MWorks::ECS::TEntity Get( Component& c )
+  inline nsECSFramework::TEntity Get( Component& c )
   {
     auto fit = TBaseMappedGroup<Component, true>::Map()->value.find( c );
     if( fit == TBaseMappedGroup<Component, true>::Map()->value.end() )
@@ -112,10 +112,10 @@ class DllExport TMappedMultiEntityGroup :
   public TBaseMappedGroup<Component, false>
 {
 public:
-  TMappedMultiEntityGroup( MWorks::ECS::THugeRegistry* registry ) :
+  TMappedMultiEntityGroup( nsECSFramework::THugeRegistry* registry ) :
     TBaseMappedGroup<Component, false>( registry )
   {}
-  inline void Get( Component& c, std::list<MWorks::ECS::TEntity>& entList )
+  inline void Get( Component& c, std::list<nsECSFramework::TEntity>& entList )
   {
     auto range = TBaseMappedGroup<Component, false>::MMap()->value.equal_range( c );
     for( auto it = range.first; it != range.second; ++it )

@@ -46,7 +46,7 @@ public:
     for( int i = inOutVec.mCounter - 1; i >= 0; i-- )
     {
       auto entity = inOutVec.mVec[i];
-      auto position = fast_upper_bound2<TEntity>( mSortedUniqueEntities.mVec, mSortedUniqueEntities.mCounter, entity );
+      auto position = fast_upper_bound2<Type>( mSortedUniqueEntities.mVec, mSortedUniqueEntities.mCounter, entity );
       position--;
       if( mStatistics.mVec[position] == 0 )
       {

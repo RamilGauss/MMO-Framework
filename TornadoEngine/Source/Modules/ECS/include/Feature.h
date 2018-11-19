@@ -3,10 +3,7 @@
 #include "ECSconfig.h"
 #include "ConveyerPartMaster.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
-  {
-    class DllExport TFeature : public TConveyerPartMaster{};
-  }
+  class DllExport TFeature : public TConveyerPartMaster { };
 }

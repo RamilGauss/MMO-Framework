@@ -11,7 +11,7 @@ See for more information License.h.
 #include <iostream>
 #include "ShuffledComponents.h"
 
-class TViewShuffleEntitiesSystem : public MWorks::ECS::TExecuteSystem, public TSpeedCalculationSystem
+class TViewShuffleEntitiesSystem : public nsECSFramework::TExecuteSystem, public TSpeedCalculationSystem
 {
 #ifdef _DEBUG
   const int groupTestCount = 1;//200000;

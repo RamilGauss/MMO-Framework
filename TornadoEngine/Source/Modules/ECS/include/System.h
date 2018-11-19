@@ -3,10 +3,7 @@
 #include "ECSconfig.h"
 #include "ConveyerPartWithGlobalAccess.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
-  {
-    class DllExport TSystem : public TConveyerPartWithGlobalAccess {};
-  }
+  class DllExport TSystem : public TConveyerPartWithGlobalAccess { };
 }

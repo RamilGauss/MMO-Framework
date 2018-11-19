@@ -85,7 +85,7 @@ int main()
 #if 0
   const int mappedGroupTestCount = 50000000;
   {
-    MWorks::ECS::THugeRegistry registry;
+    nsECSFramework::THugeRegistry registry;
     TMappedGroup<ShuffledComponents::A> aMappedGroup( &registry );
 
     auto start = ht_GetMSCount();
@@ -102,7 +102,7 @@ int main()
 
     start = ht_GetMSCount();
 
-    MWorks::ECS::TEntity entity;
+    nsECSFramework::TEntity entity;
     ShuffledComponents::A a;
     for( int i = 0; i < mappedGroupTestCount; i++ )
     {
@@ -120,7 +120,7 @@ int main()
   _getch();
 #endif
 #endif
-  auto world = new MWorks::ECS::TWorld();
+  auto world = new nsECSFramework::TWorld();
   world->AddToConveyer<TProducerFeature>();
   world->AddToConveyer<TConsumerSystem>();// 1
   world->AddToConveyer<TProducerFeature>();

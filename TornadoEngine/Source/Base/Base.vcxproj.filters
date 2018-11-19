@@ -254,6 +254,12 @@
     <ClInclude Include="include\ExecuteInstructionEngine.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\IBinaryMarshaller.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IJsonSerializer.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">

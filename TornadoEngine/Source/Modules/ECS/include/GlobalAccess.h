@@ -5,22 +5,19 @@
 
 // Доступ к данным ECS инфраструктуры
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
+  class DllExport TGlobalAccess
   {
-    class DllExport TGlobalAccess
+    THugeRegistry* mRegistry;
+  public:
+    inline THugeRegistry* GetRegistry()
     {
-      THugeRegistry* mRegistry;
-    public:
-      inline THugeRegistry* GetRegistry()
-      {
-        return mRegistry;
-      }
-      inline void SetRegistry(THugeRegistry* registry) 
-      { 
-        mRegistry = registry; 
-      }
-    };
-  }
+      return mRegistry;
+    }
+    inline void SetRegistry( THugeRegistry* registry )
+    {
+      mRegistry = registry;
+    }
+  };
 }

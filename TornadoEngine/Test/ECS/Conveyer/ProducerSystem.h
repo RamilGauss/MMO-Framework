@@ -25,7 +25,7 @@ See for more information License.h.
 
 #define SIZE_PACKET 100
 
-class TProducerSystem : public MWorks::ECS::TExecuteSystem, public TSpeedCalculationSystem
+class TProducerSystem : public nsECSFramework::TExecuteSystem, public TSpeedCalculationSystem
 {
   typedef TMappedSingleEntityGroup<ShuffledComponents::A> SA_Group;
   SA_Group* mSA_group;
@@ -46,7 +46,7 @@ public:
   {
     ShuffledComponents::A a;
     a.a = 1;
-    std::list<MWorks::ECS::TEntity> entList;
+    std::list<nsECSFramework::TEntity> entList;
     mMA_group->Get( a, entList );
     if( entList.size() > 0 )
     {

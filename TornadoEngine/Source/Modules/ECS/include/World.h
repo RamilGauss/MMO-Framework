@@ -4,14 +4,11 @@
 #include "ECSconfig.h"
 #include "ConveyerPartMaster.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
+  class DllExport TWorld : public TConveyerPartMaster
   {
-    class DllExport TWorld : public TConveyerPartMaster
-    {
-    public:
-      TWorld();
-    };
-  }
+  public:
+    TWorld();
+  };
 }

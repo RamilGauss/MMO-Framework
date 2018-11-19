@@ -1,25 +1,34 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
-������� ������ ���������
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
 #include "ExecuteInstructionEngine.h"
 
-TExecuteInstructionEngine::TExecuteInstructionEngine( bool otherThread )
+void TExecuteInstructionEngine::Push( Instruction& instruction )
 {
-  mOtherThread = otherThread;
-  if( mOtherThread )
-    Start();
+  Instruction* pInstruction = new Instruction();
+  *pInstruction = instruction;
+
+  mConcurrentInstruction.Add( pInstruction );
+  // try wake up thread
+  WakeUp();
 }
 //------------------------------------------------------------------------------------------------------
-void TExecuteInstructionEngine::Execute( TInstruction& instruction )
+void TExecuteInstructionEngine::Pop()
 {
-  if( mOtherThread )
-    mConcurrentInstruction.Add( &instruction );
-  else
-    instruction();
+  auto pp = mConcurrentInstructionResult.GetFirst();
+  while( pp )
+  {
+    auto p = *pp;
+    (*p)();
+    //delete p;
+    // next
+    mConcurrentInstructionResult.RemoveFirst();
+    pp = mConcurrentInstructionResult.GetFirst();
+  }
 }
 //------------------------------------------------------------------------------------------------------
 void TExecuteInstructionEngine::Work()
@@ -28,10 +37,30 @@ void TExecuteInstructionEngine::Work()
   while( pp )
   {
     auto p = *pp;
-    (*p)();
+    if( p )
+    {
+      auto result = (*p)();
+      if( result )
+        mConcurrentInstructionResult.Add( result );
+    }
+    // next
     mConcurrentInstruction.RemoveFirst();
-
     pp = mConcurrentInstruction.GetFirst();
   }
+
+  // try sleep thread
+  TrySleep();
+}
+//------------------------------------------------------------------------------------------------------
+void TExecuteInstructionEngine::TrySleep()
+{
+  std::unique_lock<std::mutex> lock(mMutex);
+  mCondVar.wait( lock );
+}
+//------------------------------------------------------------------------------------------------------
+void TExecuteInstructionEngine::WakeUp()
+{
+  std::unique_lock<std::mutex> lock( mMutex );
+  mCondVar.notify_all();
 }
 //------------------------------------------------------------------------------------------------------

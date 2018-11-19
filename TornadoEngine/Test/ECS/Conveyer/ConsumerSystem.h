@@ -14,7 +14,7 @@ See for more information License.h.
 #include "FreshPacket.h"
 #include "SpeedCalculationSystem.h"
 
-class TConsumerSystem : public MWorks::ECS::TReactiveForOneEventSystem, public TSpeedCalculationSystem
+class TConsumerSystem : public nsECSFramework::TReactiveForOneEventSystem, public TSpeedCalculationSystem
 {
 public:
   virtual void Init()
@@ -22,7 +22,7 @@ public:
     Add<TFreshPacket>();
   }
 
-  void Reactive( std::vector<MWorks::ECS::TEntity>& entities, size_t count )
+  void Reactive( std::vector<nsECSFramework::TEntity>& entities, size_t count )
   {
     Start();
 
@@ -40,7 +40,7 @@ public:
     std::cout << "Consumer speed = " << speed << " us/1" << std::endl;
   }
 
-  bool Filter( MWorks::ECS::TEntity& entity )
+  bool Filter( nsECSFramework::TEntity& entity )
   {
     return GetRegistry()->has<TFreshPacket>( entity );
   }

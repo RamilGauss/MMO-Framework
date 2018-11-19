@@ -4,23 +4,20 @@
 #include <vector>
 #include "IConveyerPart.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
+  class TGlobalSystemUpdater// : public TSingletonPattern<TGlobalSystemUpdater>
   {
-    class TGlobalSystemUpdater// : public TSingletonPattern<TGlobalSystemUpdater>
+    std::vector<IConveyerPart*> mSystemVec;
+  public:
+    void Add( IConveyerPart* p )
     {
-      std::vector<IConveyerPart*> mSystemVec;
-    public:
-      void Add( IConveyerPart* p )
-      {
-        mSystemVec.push_back( p );
-      }
-      void UpdateSystems()
-      {
-        for( auto pSystem : mSystemVec )
-          pSystem->Update();
-      }
-    };
-  }
+      mSystemVec.push_back( p );
+    }
+    void UpdateSystems()
+    {
+      for ( auto pSystem : mSystemVec )
+        pSystem->Update();
+    }
+  };
 }

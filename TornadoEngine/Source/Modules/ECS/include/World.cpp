@@ -1,7 +1,7 @@
 #include "World.h"
 #include "IConveyerPart.h"
 
-using namespace MWorks::ECS;
+using namespace nsECSFramework;
 
 TWorld::TWorld()
 {

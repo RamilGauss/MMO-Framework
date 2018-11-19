@@ -1,6 +1,6 @@
 #include "ConveyerPartMaster.h"
 
-using namespace MWorks::ECS;
+using namespace nsECSFramework;
 
 void TConveyerPartMaster::Init()
 {

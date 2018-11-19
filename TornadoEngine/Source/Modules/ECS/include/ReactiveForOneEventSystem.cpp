@@ -1,6 +1,6 @@
 #include "ReactiveForOneEventSystem.h"
 
-using namespace MWorks::ECS;
+using namespace nsECSFramework;
 
 TReactiveForOneEventSystem::TReactiveForOneEventSystem() : TBaseReactiveSystem( false )
 {

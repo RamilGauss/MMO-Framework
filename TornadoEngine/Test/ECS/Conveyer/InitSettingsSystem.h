@@ -8,7 +8,7 @@ See for more information License.h.
 #pragma once
 #include "ECS/include/InitSystem.h"
 
-class TInitSettingsSystem : public MWorks::ECS::TInitSystem
+class TInitSettingsSystem : public nsECSFramework::TInitSystem
 {
 public:
 

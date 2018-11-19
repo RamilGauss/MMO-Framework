@@ -5,15 +5,12 @@
 #include "VectorRise.h"
 #include "BaseReactiveSystem.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
+  class DllExport TReactiveForOneEventSystem : public TBaseReactiveSystem
   {
-    class DllExport TReactiveForOneEventSystem : public TBaseReactiveSystem
-    {
-    public:
-      TReactiveForOneEventSystem();
-      virtual void Update() final;
-    };
-  }
+  public:
+    TReactiveForOneEventSystem();
+    virtual void Update() final;
+  };
 }

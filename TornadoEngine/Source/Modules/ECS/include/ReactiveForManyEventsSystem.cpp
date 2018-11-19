@@ -1,7 +1,7 @@
 #include "ReactiveForManyEventsSystem.h"
 #include "FastUpperBound.h"
 
-using namespace MWorks::ECS;
+using namespace nsECSFramework;
 
 TReactiveForManyEventsSystem::TReactiveForManyEventsSystem() : TBaseReactiveSystem( true )
 {

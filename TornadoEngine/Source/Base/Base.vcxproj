@@ -122,7 +122,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include;include;src;$(SolutionDir)\Source\3rdParty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;SHARE_EXPORTS;_WIN32_WINNT=0x0501;USE_MATH_TOOLS;LZ4_DLL_EXPORT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -230,7 +230,9 @@
     <ClInclude Include="include\FileOperation.h" />
     <ClInclude Include="include\FormManager.h" />
     <ClInclude Include="include\HiTimer.h" />
+    <ClInclude Include="include\IBinaryMarshaller.h" />
     <ClInclude Include="include\IContainer.h" />
+    <ClInclude Include="include\IJsonSerializer.h" />
     <ClInclude Include="include\ILoaderDLL.h" />
     <ClInclude Include="include\InfoFile.h" />
     <ClInclude Include="include\InputByCmd.h" />

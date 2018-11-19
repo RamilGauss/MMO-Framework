@@ -1,18 +1,15 @@
 #pragma once
 #include "TypeDef.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
+  class DllExport IConveyerPart
   {
-    class DllExport IConveyerPart
-    {
-    public:
-      virtual void Init() {}
-      virtual void Update() = 0;
-      
-      // только для TFeature
-      virtual void PrepareFeature() {}
-    };
-  }
+  public:
+    virtual void Init() { }
+    virtual void Update() = 0;
+
+    // только для TFeature
+    virtual void PrepareFeature() { }
+  };
 }

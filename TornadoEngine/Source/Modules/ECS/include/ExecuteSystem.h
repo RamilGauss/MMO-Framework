@@ -1,15 +1,12 @@
 #pragma once
 #include "System.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
+  class DllExport TExecuteSystem : public TSystem
   {
-    class DllExport TExecuteSystem : public TSystem
-    {
-    public:
-      virtual void Update() final;
-      virtual void Execute() = 0;
-    };
-  }
+  public:
+    virtual void Update() final;
+    virtual void Execute() = 0;
+  };
 }

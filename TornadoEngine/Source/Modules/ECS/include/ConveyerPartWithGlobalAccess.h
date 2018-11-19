@@ -2,10 +2,7 @@
 #include "IConveyerPart.h"
 #include "GlobalAccess.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
-  {
-    class DllExport TConveyerPartWithGlobalAccess : public IConveyerPart, public TGlobalAccess {};
-  }
+  class DllExport TConveyerPartWithGlobalAccess : public IConveyerPart, public TGlobalAccess { };
 }

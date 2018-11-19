@@ -1,6 +1,6 @@
 #include "BaseReactiveSystem.h"
 
-using namespace MWorks::ECS;
+using namespace nsECSFramework;
 
 TBaseReactiveSystem::TBaseReactiveSystem( bool moreThanOneEvent )
 {

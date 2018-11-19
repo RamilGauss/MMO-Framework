@@ -4,18 +4,15 @@
 #include "VectorRise.h"
 #include "BaseReactiveSystem.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
+  class DllExport TReactiveForManyEventsSystem : public TBaseReactiveSystem
   {
-    class DllExport TReactiveForManyEventsSystem : public TBaseReactiveSystem
-    {
-      // Важен порядок возникновения событий
-      // все изменившиеся
-      TVectorRise<TEntity> mReactionEntities;
-    public:
-      TReactiveForManyEventsSystem();
-      virtual void Update() final;
-    };
-  }
+    // Важен порядок возникновения событий
+    // все изменившиеся
+    TVectorRise<TEntity> mReactionEntities;
+  public:
+    TReactiveForManyEventsSystem();
+    virtual void Update() final;
+  };
 }

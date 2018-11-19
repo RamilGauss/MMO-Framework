@@ -1,6 +1,6 @@
 #include "ExecuteSystem.h"
 
-using namespace MWorks::ECS;
+using namespace nsECSFramework;
 
 void TExecuteSystem::Update()
 {

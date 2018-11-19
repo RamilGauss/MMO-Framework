@@ -1,23 +1,20 @@
 #pragma once
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
+  template<typename SystemType>
+  class TGlobalSystemInitializer
   {
-    template<typename SystemType>
-    class TGlobalSystemInitializer
+    std::vector<IConveyerPart*> mSystemVec;
+  public:
+    void Add( IConveyerPart* p )
     {
-      std::vector<IConveyerPart*> mSystemVec;
-    public:
-      void Add( IConveyerPart* p )
-      {
-        mSystemVec.push_back( p );
-      }
-      void InitSystems()
-      {
-        for( auto pSystem : mSystemVec )
-          pSystem->Init();
-      }
-    };
-  }
+      mSystemVec.push_back( p );
+    }
+    void InitSystems()
+    {
+      for ( auto pSystem : mSystemVec )
+        pSystem->Init();
+    }
+  };
 }

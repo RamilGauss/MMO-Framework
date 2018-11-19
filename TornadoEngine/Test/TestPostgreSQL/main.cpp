@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
-������� ������ ���������
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -16,6 +16,8 @@ See for more information License.h.
 
 #include "person.hxx"
 #include "person-odb.hxx"
+#include "ExecuteInstructionEngine.h"
+#include "HiTimer.h"
 
 using namespace odb::core;
 
@@ -37,8 +39,48 @@ void OpenDB();
 void AddPersons();
 void AddAgePerson( std::string firstName, int added_age );
 
+TExecuteInstructionEngine g_eie;
+int lastID = 0;
+
+class TSomeSystem
+{
+  std::list<int> idList;
+public:
+  void Do()
+  {
+    TExecuteInstructionEngine::Instruction* p = new TExecuteInstructionEngine::Instruction();
+    {
+      auto pList = &idList;
+      TExecuteInstructionEngine::Instruction func = [pList]()// stack var
+      {
+        //ht_msleep( 1 );// simulate big latency SELECT
+        int id = lastID++;// load from db
+        auto success = [pList, id]()// use in calling thread
+        {
+          pList->push_back( id );
+        };
+        return new TExecuteInstructionEngine::InstructionResult { std::move( success ) };
+      };
+      g_eie.Push( func );
+    }
+  }
+};
+
 int main( int argc, char* argv [] )
 {
+  g_eie.Start();
+
+  TSomeSystem someSystem;
+  for( int i = 0 ; i < 1/*0000000*/ ; i++ )
+    someSystem.Do();
+
+  while( true )
+  {
+    g_eie.Pop();
+    ht_msleep( 1000 );
+    //someSystem.Do();
+  }
+
   try
   {
     OpenDB();
@@ -111,7 +153,7 @@ l_Repeat:
   }
   catch( const object_changed& )
   {
-    // ������� ���� ���� ��� ��������� �� ����������
+    // данные в бд уже изменены, повторить
     goto l_Repeat;
   }
 }

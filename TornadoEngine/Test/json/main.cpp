@@ -8,14 +8,22 @@ See for more information License.h.
 #include "JsonManager.h"
 #include "TypeDef.h"
 
+#include "meta.hpp"
+#include "factory.hpp"
+
 #ifdef WIN32
 #pragma pack(push, 1)
 #endif
-struct TServerConfig
+class TServerConfig
 {
-  std::string    password;
+public:
+  //std::string    password;
   unsigned short port = 0;
   unsigned int   id = 0;
+
+  TServerConfig()
+  {
+  }
 }_PACKED;
 #ifdef WIN32
 #pragma pack(pop)
@@ -23,6 +31,11 @@ struct TServerConfig
 
 int main( int argc, char **argv )
 {
+  auto factory = meta::reflect<TServerConfig>().ctor();
+  auto obj = meta::resolve<TServerConfig>().ctor().invoke();
+  auto data = obj.data();
+
+
   TServerConfig serverConfig;
 
   TJsonManager jsonMng;

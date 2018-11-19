@@ -11,7 +11,7 @@ See for more information License.h.
 
 #include <ctime>
 
-class TMakeShuffleEntitiesSystem : public MWorks::ECS::TInitSystem
+class TMakeShuffleEntitiesSystem : public nsECSFramework::TInitSystem
 {
 #ifdef _DEBUG
   const int COUNT = 20000;

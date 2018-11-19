@@ -14,7 +14,7 @@ See for more information License.h.
 
 #define GROUP_TEST_COUNT 10000000
 
-class TGroupedPacketSystem : public MWorks::ECS::TExecuteSystem, public TSpeedCalculationSystem
+class TGroupedPacketSystem : public nsECSFramework::TExecuteSystem, public TSpeedCalculationSystem
 {
 public:
   virtual void Execute() override
@@ -23,7 +23,7 @@ public:
 
     Start();
 
-    //entt::View<MWorks::ECS::TEntity, TDataMemoryPoolComponent> packetGroup();
+    //entt::View<nsECSFramework::TEntity, TDataMemoryPoolComponent> packetGroup();
     for( int i = 0; i < GROUP_TEST_COUNT; i++ )
     {
       auto packetGroup = registry->view<PooledComponents::TUchar>();

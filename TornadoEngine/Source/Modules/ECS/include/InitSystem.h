@@ -1,14 +1,11 @@
 #pragma once
 #include "System.h"
 
-namespace MWorks
+namespace nsECSFramework
 {
-  namespace ECS
+  class DllExport TInitSystem : public TSystem
   {
-    class DllExport TInitSystem : public TSystem
-    {
-    public:
-      virtual void Update() { assert(true); }
-    };
-  }
+  public:
+    virtual void Update() { assert( true ); }
+  };
 }

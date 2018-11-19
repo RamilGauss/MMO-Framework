@@ -15,7 +15,7 @@ See for more information License.h.
 #include "SpeedCalculationSystem.h"
 
 class TPacketObserverSystem :
-  public MWorks::ECS::TReactiveForManyEventsSystem,
+  public nsECSFramework::TReactiveForManyEventsSystem,
   public TSpeedCalculationSystem
 {
 public:
@@ -24,7 +24,7 @@ public:
     Add<TFreshPacket, PooledComponents::TUchar>();
   }
 
-  virtual void Reactive( std::vector<MWorks::ECS::TEntity>& entities, size_t count )
+  virtual void Reactive( std::vector<nsECSFramework::TEntity>& entities, size_t count )
   {
     Start();
 
@@ -42,7 +42,7 @@ public:
     std::cout << "PacketObserverSystem speed = " << speed << " us/1" << std::endl;
   }
 
-  virtual bool Filter( MWorks::ECS::TEntity& entity )
+  virtual bool Filter( nsECSFramework::TEntity& entity )
   {
     return GetRegistry()->has<TFreshPacket, PooledComponents::TUchar>( entity );
   }

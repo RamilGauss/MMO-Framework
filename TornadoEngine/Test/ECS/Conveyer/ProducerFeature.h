@@ -9,7 +9,7 @@ See for more information License.h.
 #include "ECS/include/Feature.h"
 #include "ProducerSystem.h"
 
-class TProducerFeature : public MWorks::ECS::TFeature
+class TProducerFeature : public nsECSFramework::TFeature
 {
 public:
   virtual void PrepareFeature()
