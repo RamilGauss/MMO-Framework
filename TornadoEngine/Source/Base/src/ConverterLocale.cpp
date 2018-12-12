@@ -160,9 +160,5 @@ std::wstring TConverterLocale::ConvertUtf8ToCp1251( std::string& utf8 )
   std::use_facet<std::ctype<wchar_t> >( std::locale() ).widen
   ( cWin1251.GetPtr(), cWin1251.GetPtr() + cWin1251.GetSize(), &wstr[0] );
   return wstr;
-
-  //std::wstring result;
-  //result.append( cWin1251.GetPtr(), cWin1251.GetPtr() + cWin1251.GetSize() );
-  //return result;
 }
 //------------------------------------------------------------------------------------------

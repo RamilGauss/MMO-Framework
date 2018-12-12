@@ -7,15 +7,13 @@ See for more information License.h.
 
 #pragma once
 
-struct TMemberInfo
+#include "IncludeListGenerator.h"
+
+class TCodeGeneratorFactory
 {
-  enum AccessLevel
-  {
-    ePublic, eProtected, ePrivate
-  };
-  AccessLevel mAccessLevel;
+  TIncludeListGenerator mIncludeListGenerator;
 
-  std::string mName;
 
-  std::string mTypeName;
+public:
+  void Work();
 };

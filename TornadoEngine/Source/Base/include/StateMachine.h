@@ -8,142 +8,53 @@ See for more information License.h.
 #pragma once
 
 #include <map>
-#include <string>
+#include <functional>
+#include "TypeDef.h"
 
-/*
-  Машина описывается набором "Имя- Набор Ключ-Имя состояния" и данными
-  То есть например находясь в одном состоянии можно перейти в другое по ключу,
-  ключ в наборе связан с именем состояния.
-
-
-  Имя1 - набор {Ключ2-Имя2, Ключ3-Имя3}
-  Имя2 - набор {Ключ1-Имя1}
-  Имя3 - набор {Ключ1-Имя1, Ключ2-Имя2}
-
-  Например текущее состояние Имя1, и введя в Action(Ключ2), текущее состояние сменится на Имя2 и
-  получим данные для Имя2.
-*/
-
-template <class Key, class Data>
-class TStateMachine
+class DllExport TStateMachine
 {
+  int* mStatePtr;
+
+  std::list<int> mHistory;
+
 public:
-  typedef std::map<Key, std::string> TMapKeyStr;
-protected:
-  struct TState
+  typedef std::function<bool()> TCallBackFunc;
+  typedef std::function<bool()> TActionFunc;
+
+private:
+  typedef std::map<int, TActionFunc> TIntFuncMap;
+  TIntFuncMap mStateActionMap;
+public:
+  TStateMachine( int* pState ) : mStatePtr( pState ) { }
+
+  template<typename TFunc, typename Type>
+  void AddAction( int state, TFunc pFunc, Type pThis );
+
+  void Work( TCallBackFunc beforeAction = nullptr, TCallBackFunc afterAction = nullptr )
   {
-    Data* pData;
-    TMapKeyStr m;
-    TState( Data* _pData, TMapKeyStr* _m )
+    while ( true )
     {
-      pData = _pData;
-      if( _m != NULL )
-        m = *_m;
-      else
-        m.clear();
+      if ( beforeAction && beforeAction() == false )
+        return;
+      auto state = mStatePtr [0];
+      auto result = mStateActionMap [state]();
+      if ( mStatePtr [0] != state )
+        mHistory.push_back( state );
+      if ( result == false )
+        return;
+      if ( afterAction && afterAction() == false )
+        return;
     }
-    ~TState()
-    {
-      delete pData;
-    }
-  };
-
-  typedef std::map<std::string, TState*> TMapStrState;
-
-  TMapStrState mMapStrState;
-
-public:
-
-  TStateMachine();
-  virtual ~TStateMachine();
-
-  // для инициализации
-  // mKS - описание состояний(имена), в которые можно перейти по ключу
-  void AddState( std::string name, TMapKeyStr* mKS, Data* pData );
-  // назначить состояние по имени
-  bool Init( const char* sNewStateName );
-
-  // добавить событие - получить реакцию (реакции может и не быть)
-  Data* Action( Key k );
-
-  std::string GetNameCurrent();
-
-  Data* GetDataCurrent();
-
-  int GetStateCount() const;
-
-protected:
-  void Done();
-
-  typename TMapStrState::iterator mCurStateIt;
+  }
 };
-//---------------------------------------------------------------------
-//---------------------------------------------------------------------
-template <class Key, class Data>
-TStateMachine<Key, Data>::TStateMachine()
+//---------------------------------------------------------------------------------------
+template<typename TFunc, typename Type>
+void TStateMachine::AddAction( int state, TFunc pFunc, Type pThis )
 {
+  auto func = std::bind( pFunc, pThis );
+  auto vt = TIntFuncMap::value_type( state, func );
+  mStateActionMap.insert( vt );
+}
+//---------------------------------------------------------------------------------------
 
-}
-//---------------------------------------------------------------------
-template <class Key, class Data>
-TStateMachine<Key, Data>::~TStateMachine()
-{
-  Done();
-}
-//---------------------------------------------------------------------
-template <class Key, class Data>
-bool TStateMachine<Key, Data>::Init( const char* sNewStateName )
-{
-  typename TMapStrState::iterator fit = mMapStrState.find( sNewStateName );
-  if( fit != mMapStrState.end() )
-  {
-    mCurStateIt = fit;
-    return true;
-  }
-  return false;
-}
-//---------------------------------------------------------------------
-template <class Key, class Data>
-Data* TStateMachine<Key, Data>::Action( Key k )
-{
-  typename TMapKeyStr::iterator fit = mCurStateIt->second->m.find( k );
-  if( fit != mCurStateIt->second->m.end() )
-  {
-    if( Init( fit->second.data() ) )// ищем новое состояние
-      return mCurStateIt->second->pData;
-  }
-  return NULL;
-}
-//---------------------------------------------------------------------
-template <class Key, class Data>
-void TStateMachine<Key, Data>::AddState( std::string name, TMapKeyStr* mKS, Data* pData )
-{
-  TState* pState = new TState( pData, mKS );
-  mMapStrState.insert( typename TMapStrState::value_type( name, pState ) );
-}
-//---------------------------------------------------------------------
-template <class Key, class Data>
-int TStateMachine<Key, Data>::GetStateCount() const
-{
-  return mMapStrState.size();
-}
-//---------------------------------------------------------------------
-template <class Key, class Data>
-void TStateMachine<Key, Data>::Done()
-{
-  for( auto& bit : mMapStrState )
-    delete bit.second;
-  mMapStrState.clear();
-}
-//---------------------------------------------------------------------
-template <class Key, class Data>
-std::string TStateMachine<Key, Data>::GetNameCurrent()
-{
-  return mCurStateIt->first;
-}
-//---------------------------------------------------------------------
-template <class Key, class Data>
-Data* TStateMachine<Key, Data>::GetDataCurrent()
-{
-  return mCurStateIt->second->pData;
-}
+

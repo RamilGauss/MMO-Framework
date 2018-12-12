@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef GeneratedClassH
-#define GeneratedClassH
+#pragma once
 
 class TPushMaster;
 class TPopMaster;
@@ -20,5 +19,3 @@ public:
   void Deserialize( TPopMaster* pPopMaster );
   short GetSerializableUniqueID();
 };
-
-#endif

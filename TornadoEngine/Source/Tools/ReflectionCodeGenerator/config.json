@@ -1,0 +1,50 @@
+{
+  "targetForParsing":
+  {
+    "directories":
+    [
+      "../../",
+      "../project"
+    ],
+    "recursive": true
+  },
+  "filter":
+  {
+    "attribute": "REFLECTION_ATTRIBUTE",
+    "extensions":
+    [
+      "h",
+      "hpp",
+      "hh",
+      "hxx",
+      "h++"
+    ]
+  },
+  "targetForCodeGeneration":
+  {
+    "directory": "./GeneratedFiles",
+    "includeListFileName" :  "IncludeList",
+    "implementation":
+    {
+      "jsonSerializer":
+      {
+        "nameSpaceName": "",
+        "fileName": "JsonSerializer",
+        "className": "TJsonSerializer"
+      },
+      "binaryMarshaller":
+      {
+        "nameSpaceName": "",
+        "fileName": "BinaryMarshaller",
+        "className": "TBinaryMarshaller",
+        "deserializationHandler":
+        {
+          "nameSpaceName": "",
+          "fileName": "DeserializationHandler",
+          "className": "TDeserializationHandler",
+          "method": "Handle"
+        }
+      }
+    }
+  }
+}

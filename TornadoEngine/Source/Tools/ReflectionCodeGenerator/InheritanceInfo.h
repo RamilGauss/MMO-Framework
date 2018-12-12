@@ -6,16 +6,11 @@ See for more information License.h.
 */
 
 #pragma once
+#include "MemberInfo.h"
 
-struct TMemberInfo
+struct TInheritanceInfo
 {
-  enum AccessLevel
-  {
-    ePublic, eProtected, ePrivate
-  };
-  AccessLevel mAccessLevel;
-
-  std::string mName;
-
-  std::string mTypeName;
+  std::string mParentTypeName;
+  TMemberInfo::AccessLevel mInheritanceAccessLevel = TMemberInfo::ePrivate;
 };
+

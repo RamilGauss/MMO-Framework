@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -19,7 +19,7 @@ See for more information License.h.
 #include "ShareMisc.h"
 
 typedef unsigned int Type;
-Type g_ArrInitValue[8];
+Type g_ArrInitValue [8];
 
 #define COUNT_CALCULATE 20000
 #define COUNT_MEASURE_SPEED 10000
@@ -33,7 +33,7 @@ class TThread : public TThreadBoost
   bool mFlgPrintf;
   float mSpeed;
 public:
-  void Setup(Type* p, bool isPrintf = false)
+  void Setup( Type* p, bool isPrintf = false )
   {
     pPtr = p;
     mRes = 1.0f;
@@ -44,54 +44,54 @@ public:
 protected:
   virtual void Work()
   {
-    if(mCountWork==0)
+    if ( mCountWork == 0 )
       mStart = ht_GetMSCount();
 
-    for( int i = 0 ; i < COUNT_CALCULATE ; i++ )
-      mRes = sinf(mRes*pPtr[0])*cosf(mRes*pPtr[0]);
+    for ( int i = 0; i < COUNT_CALCULATE; i++ )
+      mRes = sinf( mRes*pPtr [0] )*cosf( mRes*pPtr [0] );
     mCountWork++;
 
-    if(mFlgPrintf)
-    if(mCountWork%COUNT_MEASURE_SPEED==0)
-    {
-      unsigned int now = ht_GetMSCount();
-      mSpeed = COUNT_MEASURE_SPEED/(0.1f*(now - mStart));
-      mStart = now;
-      printf("speed=%f\n", mSpeed);
-    }
+    if ( mFlgPrintf )
+      if ( mCountWork%COUNT_MEASURE_SPEED == 0 )
+      {
+        unsigned int now = ht_GetMSCount();
+        mSpeed = COUNT_MEASURE_SPEED / ( 0.1f*( now - mStart ) );
+        mStart = now;
+        printf( "speed=%f\n", mSpeed );
+      }
   }
 };
 //---------------------------------------------------------------------------------------
-int main(int argc, char** argv)
+int main( int argc, char** argv )
 {
   std::string CPUBrandString;
-  GetBrandCPU(CPUBrandString);
-  printf("CPU Brand Name \"%s\"\n", CPUBrandString.data() );
+  GetBrandCPU( CPUBrandString );
+  printf( "CPU Brand Name \"%s\"\n", CPUBrandString.data() );
 
-  printf("Input parameter: number of threads\n");
-  if(argc!=2)
+  printf( "Input parameter: number of threads\n" );
+  if ( argc != 2 )
   {
     _getch();
     return -1;
   }
 
-  int cntThread = boost::lexical_cast<int>(argv[1]);
-  printf("Arguments number of threads = %d\n", cntThread);
-  TThread arrThread[8];
+  int cntThread = boost::lexical_cast<int>( argv [1] );
+  printf( "Arguments number of threads = %d\n", cntThread );
+  TThread arrThread [8];
 
-  for( int i = 0 ; i < cntThread ; i++ )
+  for ( int i = 0; i < cntThread; i++ )
   {
-    if(i==0)
-      arrThread[i].Setup(&g_ArrInitValue[i], true);
+    if ( i == 0 )
+      arrThread [i].Setup( &g_ArrInitValue [i], true );
     else
-      arrThread[i].Setup(&g_ArrInitValue[i]);
-    arrThread[i].Start();
+      arrThread [i].Setup( &g_ArrInitValue [i] );
+    arrThread [i].Start();
   }
-  printf("All threads started.\n");
+  printf( "All threads started.\n" );
   _getch();
 
-  for( int i = 0 ; i < cntThread ; i++ )
-    arrThread[i].Stop();
+  for ( int i = 0; i < cntThread; i++ )
+    arrThread [i].Stop();
 
   _getch();
   return 0;
@@ -112,7 +112,7 @@ int main(int argc, char** argv)
   4                    4.35                 195%
 
   Intel(R) Core(TM) i3 4030 @ 3.00GHz
-  1                    6.6                  100% 
+  1                    6.6                  100%
   2                    3.1                  94 % Intel, что за наебалово?
   3                    2.8                  127%
   4                    2.7                  164%

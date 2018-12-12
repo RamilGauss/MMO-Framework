@@ -7,15 +7,12 @@ See for more information License.h.
 
 #pragma once
 
-struct TMemberInfo
+#include <string>
+#include <boost/wave/token_ids.hpp>
+
+struct TTokenInfo
 {
-  enum AccessLevel
-  {
-    ePublic, eProtected, ePrivate
-  };
-  AccessLevel mAccessLevel;
-
-  std::string mName;
-
-  std::string mTypeName;
+  boost::wave::token_id id;
+  std::string strId;
+  std::string value;
 };

@@ -230,9 +230,7 @@
     <ClInclude Include="include\FileOperation.h" />
     <ClInclude Include="include\FormManager.h" />
     <ClInclude Include="include\HiTimer.h" />
-    <ClInclude Include="include\IBinaryMarshaller.h" />
     <ClInclude Include="include\IContainer.h" />
-    <ClInclude Include="include\IJsonSerializer.h" />
     <ClInclude Include="include\ILoaderDLL.h" />
     <ClInclude Include="include\InfoFile.h" />
     <ClInclude Include="include\InputByCmd.h" />
@@ -276,7 +274,6 @@
     <ClInclude Include="include\SrcEvent.h" />
     <ClInclude Include="include\SrcEvent_ex.h" />
     <ClInclude Include="include\StateMachine.h" />
-    <ClInclude Include="include\StateMachineManager.h" />
     <ClInclude Include="include\StatisticValue.h" />
     <ClInclude Include="include\StorePathResources.h" />
     <ClInclude Include="include\SynchroAbonent.h" />
@@ -336,7 +333,6 @@
     <ClCompile Include="src\ShareMisc.cpp" />
     <ClCompile Include="src\SingletonManager.cpp" />
     <ClCompile Include="src\SrcEvent.cpp" />
-    <ClCompile Include="src\StateMachineManager.cpp" />
     <ClCompile Include="src\StorePathResources.cpp" />
     <ClCompile Include="src\SynchroAbonent.cpp" />
     <ClCompile Include="src\SynchroPoint.cpp" />

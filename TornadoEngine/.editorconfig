@@ -1,0 +1,6 @@
+﻿[*]
+charset = utf-8
+end_of_line = crlf
+
+[*.xml]
+indent_style = space

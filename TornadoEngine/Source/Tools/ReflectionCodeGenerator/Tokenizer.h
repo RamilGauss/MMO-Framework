@@ -7,15 +7,14 @@ See for more information License.h.
 
 #pragma once
 
-struct TMemberInfo
+#include <string>
+#include <list>
+#include "TokenInfo.h"
+
+class TTokenizer
 {
-  enum AccessLevel
-  {
-    ePublic, eProtected, ePrivate
-  };
-  AccessLevel mAccessLevel;
+public:
+  bool Work( std::string& inStr, std::list<TTokenInfo>& resultList );
 
-  std::string mName;
-
-  std::string mTypeName;
+  std::string ErrorDesc();
 };

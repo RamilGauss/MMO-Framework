@@ -209,9 +209,6 @@
     <ClInclude Include="include\StateMachine.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\StateMachineManager.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\StatisticValue.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -252,12 +249,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ExecuteInstructionEngine.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\IBinaryMarshaller.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\IJsonSerializer.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -392,9 +383,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SrcEvent.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StateMachineManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\StorePathResources.cpp">

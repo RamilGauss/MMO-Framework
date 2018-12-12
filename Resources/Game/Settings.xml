@@ -12,13 +12,13 @@
 <Entry key="y_max" value="0"> </Entry>
 </Group>
 		<Group name="SettingCamera"> 
-			<Entry key="pos_x" value="-13.378891"/>
-			<Entry key="pos_y" value="36.5437164"/>
-			<Entry key="pos_z" value="4.93049622"/>
-			<Entry key="dir_x" value="-0.443353206"/>
-			<Entry key="dir_y" value="-0.45753935"/>
-			<Entry key="dir_z" value="-0.283256054"/>
-			<Entry key="dir_w" value="0.716841519"/>
+			<Entry key="pos_x" value="-12.3715515"/>
+			<Entry key="pos_y" value="31.724678"/>
+			<Entry key="pos_z" value="0.916443586"/>
+			<Entry key="dir_x" value="-0.360462785"/>
+			<Entry key="dir_y" value="-0.545609474"/>
+			<Entry key="dir_z" value="-0.280129731"/>
+			<Entry key="dir_w" value="0.70286715"/>
 		</Group>
 	</Application>
 </Content>
