@@ -77,29 +77,8 @@ void TSaveToFile::Write( void* buffer, int size )
 //---------------------------------------------------------------
 void TSaveToFile::Write_Time()
 {
-#ifdef WIN32
-  struct _timeb timebuffer;
-  _ftime( &timebuffer );
-#else
-  struct timeb timebuffer;
-  ftime( &timebuffer );
-#endif
-
-  time_t time1;
-  unsigned short millitm1;
-
-  time1 = timebuffer.time;
-  millitm1 = timebuffer.millitm;
-
-  char str_time[1000];
-  // формируем время в строку
-  struct tm * my_time = localtime( &time1 );
-
-  sprintf( str_time, "%04d_%02d_%02d %02d:%02d:%02d.%03d\n\t",
-    my_time->tm_year + 1900, my_time->tm_mon + 1, my_time->tm_mday,
-    my_time->tm_hour, my_time->tm_min, my_time->tm_sec, millitm1 );
-
-  Write( str_time, strlen( str_time ) );
+  auto str_time = ht_GetTimeStr();
+  Write( str_time.data(), str_time.length() );
 }
 //---------------------------------------------------------------
 void TSaveToFile::FlushBuffer()

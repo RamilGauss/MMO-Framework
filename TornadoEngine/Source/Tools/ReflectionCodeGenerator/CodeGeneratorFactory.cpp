@@ -8,8 +8,9 @@ See for more information License.h.
 #include "CodeGeneratorFactory.h"
 
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFactory::Work()
+ICodeGenerator* TCodeGeneratorFactory::Get( std::string& name )
 {
-  //mIncludeListGenerator.Work();
+  return nullptr;
 }
 //---------------------------------------------------------------------------------------------
+

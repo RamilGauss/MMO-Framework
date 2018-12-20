@@ -12,7 +12,6 @@ See for more information License.h.
 
 #include "LoadFromFile.h"
 #include "ReflectionMacro.h"
-#include "IBinaryMarshaller.h"
 #include "SingletonManager.h"
 #include "Config.h"
 #include "TokenInfoManager.h"

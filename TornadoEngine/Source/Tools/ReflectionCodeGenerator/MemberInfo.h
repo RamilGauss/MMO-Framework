@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #pragma once
+#include "MemberTypeExtendedInfo.h"
 
 struct TMemberInfo
 {
@@ -18,4 +19,6 @@ struct TMemberInfo
   std::string mName;
 
   std::string mTypeName;
+
+  TMemeberTypeExtendedInfo mExtendedInfo;
 };

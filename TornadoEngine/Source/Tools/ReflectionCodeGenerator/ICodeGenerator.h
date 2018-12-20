@@ -7,18 +7,10 @@ See for more information License.h.
 
 #pragma once
 
-#include <string>
-
-#include "IncludeListGenerator.h"
-
-class ICodeGenerator;
-
-class TCodeGeneratorFactory
+class ICodeGenerator
 {
-  TIncludeListGenerator mIncludeListGenerator;
-
-
+protected:
 
 public:
-  ICodeGenerator* Get( std::string& name );
+  virtual void Work() = 0;
 };

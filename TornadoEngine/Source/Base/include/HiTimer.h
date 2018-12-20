@@ -9,8 +9,9 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
+#include <string>
+
 #include <stdint.h>
-//#include <boost/cstdint.hpp>
 
 //------------------------------------------------------------------------------
 // Модуль работы с таймером высокого разрешения
@@ -35,4 +36,6 @@ bool DllExport ht_sleep( unsigned int us, THT_CheckFunc func );
 // Время в миллисекундах с момента запуска ЭВМ или программы.
 // Точность от 55 мсек и выше
 unsigned int DllExport ht_GetMSCount();
+
+std::string ht_GetTimeStr();
 //------------------------------------------------------------------------------

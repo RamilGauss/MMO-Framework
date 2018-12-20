@@ -15,6 +15,11 @@ See for more information License.h.
 #include "readerwriterqueue.h"
 #include "TypeManager.h"
 #include "CodeGeneratorFactory.h"
+#include "fmt/time.h"
+#include "fmt/color.h"
+#include "MemberTypeExtendedInfoAnalyzer.h"
+
+std::string _VERSION = "0.1";
 
 using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
@@ -94,9 +99,39 @@ void TestQueue()
   assert( front == nullptr );           // Returns nullptr if the queue was empty
 }
 //---------------------------------------------------------------------------------------
+using namespace fmt::literals;
+
+class IStringed
+{
+public:
+  virtual std::string ToString() = 0;
+};
+
+class TMethodBegin : public IStringed
+{
+public:
+  std::string mReturnedType = "void";
+  std::string mNameMethod;
+  std::string mEndMethod = ";";
+
+  //std::vector<T>
+
+  virtual std::string ToString() override
+  {
+    return fmt::format( "{} {}({}){}", mReturnedType, mNameMethod, mEndMethod );
+  }
+
+};
+
+void ShowTitle()
+{
+  fmt::print( "The world needs reflection in C++. I give it. You take it!\n" );
+  fmt::print( "ReflectionCodeGenerator version {}\n", _VERSION );
+}
+
 int main( int argc, char *argv [] )
 {
-  //TestQueue();
+  ShowTitle();
 
   if ( CheckArgs( argc, argv ) == false )
   {
@@ -110,7 +145,11 @@ int main( int argc, char *argv [] )
   TParser parser;
   parser.Work();
 
-  TCodeGeneratorFactory cgFactory;
-  cgFactory.Work();
+  // дополнить расширенной информацией
+  TMemberTypeExtendedInfoAnalyzer analyzer;
+  analyzer.Work();
+
+  //TCodeGeneratorFactory cgFactory;
+  //cgFactory.Work();
   return 0;
 }
