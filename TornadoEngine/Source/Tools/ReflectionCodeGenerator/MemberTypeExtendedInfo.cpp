@@ -5,20 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#pragma once
 #include "MemberTypeExtendedInfo.h"
 
-struct TMemberInfo
+bool TMemberTypeExtendedInfo::IsContainer()
 {
-  enum AccessLevel
-  {
-    ePublic, eProtected, ePrivate
-  };
-  AccessLevel mAccessLevel;
-
-  std::string mName;
-
-  std::string mTypeName;
-
-  TMemberTypeExtendedInfo mExtendedInfo;
-};
+  return mCategory == Vector ||
+    mCategory == List || 
+    mCategory == Set || 
+    mCategory == Map;
+}

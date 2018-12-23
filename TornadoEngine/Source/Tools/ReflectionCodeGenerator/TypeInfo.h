@@ -29,11 +29,14 @@ struct TTypeInfo
   std::vector<std::string> mNamespaceVec;
 
   typedef std::shared_ptr<TMemberInfo> TMemberInfoPtr;
-  typedef std::map<TMemberInfo::AccessLevel, TMemberInfoPtr> TAccessLevelMemberInfoPtrMap;
+  typedef std::vector<TMemberInfoPtr> TMemberInfoPtrVec;
+  typedef std::map<TMemberInfo::AccessLevel, TMemberInfoPtrVec> TAccessLevelMemberInfoPtrVecMap;
 
-  TAccessLevelMemberInfoPtrMap mMemberMap;
+  TAccessLevelMemberInfoPtrVecMap mMemberMap;
 
   std::string GetNameSpace();// all namespaces: A::B::...::Z
 
   void AddMember( TMemberInfo& memberInfo );
+
+  void ClearMember();
 };

@@ -6,25 +6,33 @@ See for more information License.h.
 */
 
 #pragma once
+#include <vector>
 
-struct TMemeberTypeExtendedInfo
+struct TMemberTypeExtendedInfo
 {
   enum TypeCategory
   {
-    BuiltIn, Vector, List, Set, Map, String, Reflection
+    BuiltIn,
+    Vector, List, Set, Map,// containers
+    String, 
+    Reflection
   };
-
   TypeCategory mCategory;
 
   enum AccessMethod
   {
-    Object, 
-    Pointer, 
+    Object,
+    Pointer,
     SmartPointer// std::auto_ptr, std::shared_ptr, std::weak_ptr, std::unique
   };
+  AccessMethod mAccessMethod = Object;
 
-  AccessMethod mAccessMethod;
+  std::vector<TMemberTypeExtendedInfo> mTemplateChildArr;
 
-  std::vector<std::string> mSubtypeArr;// std::vector<subtype>
+  std::string mType;// builtIn, reflection
 
+  std::string mNameSpaceForReflection;// example: MySpace::
+
+public:
+  bool IsContainer();
 };

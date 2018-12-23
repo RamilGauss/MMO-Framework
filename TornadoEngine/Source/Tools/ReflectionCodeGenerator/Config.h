@@ -11,9 +11,24 @@ See for more information License.h.
 #include <vector>
 #include <list>
 #include <string>
+#include <map>
 
 namespace nsReflectionCodeGenerator
 {
+  //###
+  namespace MySpace
+  {
+    REFLECTION_ATTRIBUTE struct A
+    {
+      unsigned int uint;
+    };
+  }
+  REFLECTION_ATTRIBUTE struct B
+  {
+    std::map<int, std::vector<std::list<int>>> v;
+  };
+  //###
+
   REFLECTION_ATTRIBUTE struct TTargetForParsing
   {
     std::vector<std::string> directories;
@@ -38,20 +53,20 @@ namespace nsReflectionCodeGenerator
     std::string method;
   };
 
-  REFLECTION_ATTRIBUTE struct TBinaryMarshaller : TClassDesc
+  REFLECTION_ATTRIBUTE struct TBinaryMarshallerGeneratorConfig : TClassDesc
   {
     TDeserializationHandler deserializationHandler;
   };
 
-  REFLECTION_ATTRIBUTE struct TJsonSerializer : TClassDesc
+  REFLECTION_ATTRIBUTE struct TJsonSerializerGeneratorConfig : TClassDesc
   {
 
   };
 
   REFLECTION_ATTRIBUTE struct TImplementation
   {
-    std::shared_ptr<TJsonSerializer> jsonSerializer;
-    std::shared_ptr<TBinaryMarshaller> binaryMarshaller;
+    std::shared_ptr<TJsonSerializerGeneratorConfig> jsonSerializer;
+    std::shared_ptr<TBinaryMarshallerGeneratorConfig> binaryMarshaller;
   };
 
   REFLECTION_ATTRIBUTE struct TTargetForCodeGeneration

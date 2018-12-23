@@ -16,9 +16,7 @@ void TTypeManager::Add( std::string& nameSpaceName, TTypeInfo& typeInfo )
 
   auto fitType = fit->second->find( typeInfo.mName );
   if ( fitType == fit->second->end() )
-  {
     fit->second->insert( TStrPtrMap::value_type( typeInfo.mName, std::shared_ptr<TTypeInfo>( new TTypeInfo( typeInfo ) ) ) );
-  }
   else
     fitType->second.get() [0] = typeInfo;
 }

@@ -36,7 +36,8 @@ namespace nsReflectionCodeGenerator
           "static variables",
           "any methods (virtual, template, static, operators)",
           "constructors and destructor",
-          "friends"
+          "friends",
+          "no template members, such as T<int>",
         }
       },
       { "4. USING",

@@ -44,6 +44,12 @@
     <ClCompile Include="MemberTypeExtendedInfoAnalyzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MemberTypeExtendedInfoCache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemberTypeExtendedInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReflectionMacro.h">
@@ -110,6 +116,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MemberTypeExtendedInfoAnalyzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemberTypeExtendedInfoCache.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

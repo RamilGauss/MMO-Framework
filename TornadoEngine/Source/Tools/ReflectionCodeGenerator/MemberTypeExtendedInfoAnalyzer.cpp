@@ -46,24 +46,25 @@ void TMemberTypeExtendedInfoAnalyzer::HandleType( TTypeInfo* typeInfo )
     auto accessLevel = accessLevel_memberInfo.first;
     if ( accessLevel != TMemberInfo::AccessLevel::ePublic )
       continue;
-    auto pMemberInfo = accessLevel_memberInfo.second.get();
-    auto tokenList = GetTokenList( pMemberInfo->mTypeName );
+    for ( auto pMemberInfo : accessLevel_memberInfo.second )
+      GetTokenList( pMemberInfo->mTypeName, pMemberInfo->mExtendedInfo );
   }
 }
 //------------------------------------------------------------------------------
-TMemberTypeExtendedInfoAnalyzer::TTokenList* TMemberTypeExtendedInfoAnalyzer::GetTokenList( std::string& typeName )
+void TMemberTypeExtendedInfoAnalyzer::GetTokenList( std::string& typeName, TMemberTypeExtendedInfo& memberTypeInfo )
 {
-  auto tokenList = TryGetFromCache( typeName );
-  if ( tokenList )
-    return tokenList;
+  auto pMemberTypeInfo = mMemberCache.TryGetFromCache( typeName );
+  if ( pMemberTypeInfo )
+  {
+    memberTypeInfo = *pMemberTypeInfo;
+    return;
+  }
+  TTokenDescVector tokenVector;
+  MakeTokenList( typeName, tokenVector );
 
-  TTokenList cacheList;
-  MakeTokenList( typeName, cacheList );
+  FillInfo( tokenVector, memberTypeInfo );
 
-  AddToCache( typeName, cacheList );
-
-  tokenList = TryGetFromCache( typeName );
-  return tokenList;
+  mMemberCache.AddToCache( typeName, memberTypeInfo );
 }
 //------------------------------------------------------------------------------
 void TMemberTypeExtendedInfoAnalyzer::InitMap()
@@ -71,44 +72,179 @@ void TMemberTypeExtendedInfoAnalyzer::InitMap()
   ADD( ColonColon );
   ADD( Less );
   ADD( Greater );
-  ADD( Space );
+  ADD( Comma );
   ADD( Std );
   ADD( String );
   ADD( Vector );
   ADD( List );
   ADD( Set );
   ADD( Map );
+  ADD( Ampersand );
   ADD( Asterisk );
   ADD( SharedPtr );
   ADD( WeakPtr );
   ADD( UniquePtr );
   ADD( AutoPtr );
   ADD( Bool );
-  ADD( Unsigned );
-  ADD( Signed );
   ADD( Char );
+  ADD( UnsignedChar );
   ADD( Short );
+  ADD( UnsignedShort );
   ADD( Int );
+  ADD( UnsignedInt );
   ADD( Long );
+  ADD( LongLong );
+  ADD( UnsignedLong );
   ADD( Float );
   ADD( Double );
 }
 //------------------------------------------------------------------------------
-TMemberTypeExtendedInfoAnalyzer::TTokenList* TMemberTypeExtendedInfoAnalyzer::TryGetFromCache( std::string& memberName )
+void TMemberTypeExtendedInfoAnalyzer::MakeTokenList( std::string& typeName, TTokenDescVector& tokenVector )
 {
-  auto fit = mTokenCache.find( memberName );
-  if ( fit == mTokenCache.end() )
-    return nullptr;
-  return &( fit->second );
-}
-//------------------------------------------------------------------------------
-void TMemberTypeExtendedInfoAnalyzer::AddToCache( std::string& memberName, TTokenList& tokenList )
-{
-  mTokenCache.insert( TStrTokenMap::value_type( memberName, tokenList ) );
-}
-//------------------------------------------------------------------------------
-void TMemberTypeExtendedInfoAnalyzer::MakeTokenList( std::string& typeName, TTokenList& cacheList )
-{
+  size_t off = 0;
+  auto beginReflectionType = off;
+  auto searchReflectionType = false;
+  auto length = typeName.length();
+  while ( off < length )
+  {
+    auto found = false;
+    for ( auto& tokenStr : mTokenStrMap )
+    {
+      auto subStr = tokenStr.second;
+      auto pos = typeName.find( subStr, off );
+      if ( pos == off )
+      {
+        TTokenDesc tokenDesc;
+        if ( searchReflectionType )
+        {
+          searchReflectionType = false;
 
+          tokenDesc.type = ReflectionType;
+          tokenDesc.value = typeName.substr( beginReflectionType, off - beginReflectionType );
+          tokenVector.push_back( tokenDesc );
+        }
+        tokenDesc.type = tokenStr.first;
+        tokenDesc.value = subStr;
+
+        tokenVector.push_back( tokenDesc );
+        off += subStr.length();
+        found = true;
+        break;
+      }
+    }
+    // не нашли токен
+    if ( found == false )
+    {// переходим в поиск рефлексируеющего типа
+      if ( searchReflectionType == false )
+      {
+        beginReflectionType = off;
+        searchReflectionType = true;
+      }
+      off++;
+    }
+  }
+
+  // не закончили поиск
+  if ( searchReflectionType )
+  {
+    TTokenDesc tokenDesc;
+    tokenDesc.type = ReflectionType;
+    tokenDesc.value = typeName.substr( beginReflectionType, off - beginReflectionType );
+    tokenVector.push_back( tokenDesc );
+  }
+}
+//------------------------------------------------------------------------------
+int TMemberTypeExtendedInfoAnalyzer::FillInfo( TTokenDescVector& tokenVector, TMemberTypeExtendedInfo& memberTypeInfo, int index )
+{
+  std::string nameSpaceAccumulator;
+  std::string canBeNameSpace;
+
+  int cornerBalance = 0;
+  for ( int i = index ; i < tokenVector.size(); i++ )
+  {
+    auto& tokenDesc = tokenVector [i];
+    switch ( tokenDesc.type )
+    {
+      case Comma:
+        if ( cornerBalance == 0 )
+          return i - 1;
+        else
+        {
+          memberTypeInfo.mTemplateChildArr.push_back( TMemberTypeExtendedInfo() );
+          i = FillInfo( tokenVector, memberTypeInfo.mTemplateChildArr.back(), i + 1 );
+        }
+        break;
+      case Less:
+        cornerBalance++;
+        if( memberTypeInfo.mAccessMethod == TMemberTypeExtendedInfo::SmartPointer && 
+          !memberTypeInfo.IsContainer() )
+          i = FillInfo( tokenVector, memberTypeInfo, i + 1 );
+        else
+        {
+          memberTypeInfo.mTemplateChildArr.push_back( TMemberTypeExtendedInfo() );
+          i = FillInfo( tokenVector, memberTypeInfo.mTemplateChildArr.back(), i + 1 );
+        }
+        continue;
+      case Greater:
+        if( cornerBalance > 0 )
+          cornerBalance--;
+        return i - 1;
+      case Ampersand:
+        break;
+      case ColonColon:
+        nameSpaceAccumulator += canBeNameSpace;
+        nameSpaceAccumulator += tokenDesc.value;
+        break;
+      case Std:
+        nameSpaceAccumulator += tokenDesc.value;
+        break;
+      case String:
+        memberTypeInfo.mCategory = TMemberTypeExtendedInfo::String;
+        break;
+      case Vector:
+        memberTypeInfo.mCategory = TMemberTypeExtendedInfo::Vector;
+        break;
+      case List:
+        memberTypeInfo.mCategory = TMemberTypeExtendedInfo::List;
+        break;
+      case Set:
+        memberTypeInfo.mCategory = TMemberTypeExtendedInfo::Set;
+        break;
+      case Map:
+        memberTypeInfo.mCategory = TMemberTypeExtendedInfo::Map;
+        break;
+      case Asterisk:
+        memberTypeInfo.mAccessMethod = TMemberTypeExtendedInfo::Pointer;
+        break;
+      case SharedPtr:
+      case WeakPtr:
+      case UniquePtr:
+      case AutoPtr:
+        memberTypeInfo.mAccessMethod = TMemberTypeExtendedInfo::SmartPointer;
+        break;
+      case Bool:
+      case Char:
+      case UnsignedChar:
+      case Short:
+      case UnsignedShort:
+      case Int:
+      case UnsignedInt:
+      case Long:
+      case LongLong:
+      case UnsignedLong:
+      case Float:
+      case Double:
+        memberTypeInfo.mCategory = TMemberTypeExtendedInfo::BuiltIn;
+        memberTypeInfo.mType = tokenDesc.value;
+        break;
+      case ReflectionType:
+        canBeNameSpace = tokenDesc.value;
+        memberTypeInfo.mCategory = TMemberTypeExtendedInfo::Reflection;
+        memberTypeInfo.mType = tokenDesc.value;
+        memberTypeInfo.mNameSpaceForReflection = nameSpaceAccumulator;
+        break;
+    }
+  }
+  return tokenVector.size();
 }
 //------------------------------------------------------------------------------

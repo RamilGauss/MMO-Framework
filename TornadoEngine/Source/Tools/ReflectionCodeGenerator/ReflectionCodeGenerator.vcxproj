@@ -194,7 +194,9 @@
     <ClCompile Include="FileLexer.cpp" />
     <ClCompile Include="AST_StateMachine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MemberTypeExtendedInfo.cpp" />
     <ClCompile Include="MemberTypeExtendedInfoAnalyzer.cpp" />
+    <ClCompile Include="MemberTypeExtendedInfoCache.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="SourceAccumulator.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
@@ -213,6 +215,7 @@
     <ClInclude Include="MemberInfo.h" />
     <ClInclude Include="MemberTypeExtendedInfo.h" />
     <ClInclude Include="MemberTypeExtendedInfoAnalyzer.h" />
+    <ClInclude Include="MemberTypeExtendedInfoCache.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="readerwriterqueue.h" />
     <ClInclude Include="ReflectionMacro.h" />

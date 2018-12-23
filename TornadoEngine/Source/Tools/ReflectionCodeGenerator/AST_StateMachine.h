@@ -33,8 +33,9 @@ class TAST_StateMachine
   TMemberInfo mMemberInfo;
 
   // for method analyze
-  int mBraceBalance;
-  int mParenBalance;
+  int mBraceBalance = 0;// ()
+  int mParenBalance = 0;// {}
+  int mCornerBalance = 0;// <>
 
   enum eStateType
   {
@@ -54,6 +55,7 @@ class TAST_StateMachine
     eSearchInheritanceEndOrContinueType,
     eSearchDeclarationMethodHandler,
     eSearchMethodBodyHandler,
+    eSearchAfterColonColonIdentifier,
   };
 
 public:
@@ -81,8 +83,9 @@ private:
   bool SearchEndClassOrStruct();
   bool SearchNamespaceAccept();
   bool SearchDeclarationMethodHandler();
-
   bool SearchMethodBodyHandler();
+  bool SearchAfterColonColonIdentifier();
+
   bool IsTokensOut();
 
   bool IsBuiltInType( boost::wave::token_id id );

@@ -22,8 +22,21 @@ std::string TTypeInfo::GetNameSpace()// all namespaces: A::B::...::Z
 //-----------------------------------------------------------------------------------------
 void TTypeInfo::AddMember( TMemberInfo& memberInfo )
 {
+  // copy
   auto memberInfoPtr = TMemberInfoPtr( new TMemberInfo() );
   memberInfoPtr.get() [0] = memberInfo;
-  mMemberMap.insert( TAccessLevelMemberInfoPtrMap::value_type( memberInfo.mAccessLevel, memberInfoPtr ) );
+
+  auto fit = mMemberMap.find( memberInfo.mAccessLevel );
+  if ( fit == mMemberMap.end() )
+  {
+    mMemberMap.insert( TAccessLevelMemberInfoPtrVecMap::value_type( memberInfo.mAccessLevel, TMemberInfoPtrVec() ) );
+    fit = mMemberMap.find( memberInfo.mAccessLevel );
+  }
+  fit->second.push_back( memberInfoPtr );
+}
+//-----------------------------------------------------------------------------------------
+void TTypeInfo::ClearMember()
+{
+  mMemberMap.clear();
 }
 //-----------------------------------------------------------------------------------------

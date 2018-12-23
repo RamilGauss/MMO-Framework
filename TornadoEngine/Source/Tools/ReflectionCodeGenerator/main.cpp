@@ -19,7 +19,8 @@ See for more information License.h.
 #include "fmt/color.h"
 #include "MemberTypeExtendedInfoAnalyzer.h"
 
-std::string _VERSION = "0.1";
+const std::string _VERSION = "0.2";
+const int _COUNTER_BUILD = 3;
 
 using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
@@ -37,13 +38,13 @@ void DefaultConfig()
   config->targetForCodeGeneration.directory = ".";
   config->targetForCodeGeneration.includeListFileName = "IncludeList";
 
-  config->targetForCodeGeneration.implementation.jsonSerializer.reset( new TJsonSerializer() );
+  config->targetForCodeGeneration.implementation.jsonSerializer.reset( new TJsonSerializerGeneratorConfig() );
   auto jsonSerializer = config->targetForCodeGeneration.implementation.jsonSerializer.get();
   jsonSerializer->className = "TJsonSerializer";
   jsonSerializer->fileName = "JsonSerializer";
   jsonSerializer->nameSpaceName = "nsJson";
 
-  config->targetForCodeGeneration.implementation.binaryMarshaller.reset( new nsReflectionCodeGenerator::TBinaryMarshaller() );
+  config->targetForCodeGeneration.implementation.binaryMarshaller.reset( new TBinaryMarshallerGeneratorConfig() );
   auto binaryMarshaller = config->targetForCodeGeneration.implementation.binaryMarshaller.get();
   binaryMarshaller->className = "TBinaryMarshaller";
   binaryMarshaller->fileName = "BinaryMarshaller";
@@ -126,7 +127,7 @@ public:
 void ShowTitle()
 {
   fmt::print( "The world needs reflection in C++. I give it. You take it!\n" );
-  fmt::print( "ReflectionCodeGenerator version {}\n", _VERSION );
+  fmt::print( "ReflectionCodeGenerator version {}.b{}\n", _VERSION, _COUNTER_BUILD );
 }
 
 int main( int argc, char *argv [] )

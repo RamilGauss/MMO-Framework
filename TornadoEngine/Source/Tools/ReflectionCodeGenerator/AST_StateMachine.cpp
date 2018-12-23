@@ -55,6 +55,7 @@ void TAST_StateMachine::ConfigStateMachine()
   AddAction( eSearchInheritanceEndOrContinueType, &TAST_StateMachine::SearchInheritanceEndOrContinueType );
   AddAction( eSearchDeclarationMethodHandler, &TAST_StateMachine::SearchDeclarationMethodHandler );
   AddAction( eSearchMethodBodyHandler, &TAST_StateMachine::SearchMethodBodyHandler );
+  AddAction( eSearchAfterColonColonIdentifier, &TAST_StateMachine::SearchAfterColonColonIdentifier );
 }
 //---------------------------------------------------------------------------------------
 bool TAST_StateMachine::BeforeAction()
@@ -200,6 +201,7 @@ bool TAST_StateMachine::SearchInheritanceEndOrContinueType()
     case T_COLON_COLON:
     case T_LESS:
     case T_GREATER:
+    case T_SHIFTRIGHT:
     {
       auto& inheritanceInfo = mTypeInfo.mInheritanceVec.back();
       inheritanceInfo.mParentTypeName += mTokenInfoIt->value;
@@ -289,17 +291,33 @@ bool TAST_StateMachine::SearchFullTypeName()
 {
   switch ( mTokenInfoIt->id )
   {
-    case T_SPACE:
-    case T_SPACE2:
-      mState = eWaitVariableNameOrTypeContinuous;
-      break;
-    case T_COLON_COLON:
-    case T_LESS:
-    case T_GREATER:
-    case T_AND:// &
+    case T_COMMA:
       mMemberInfo.mTypeName += mTokenInfoIt->value;
       break;
+    case T_SPACE:
+    case T_SPACE2:
+      if( mCornerBalance == 0 )
+        mState = eWaitVariableNameOrTypeContinuous;
+      break;
+    case T_COLON_COLON:
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
+      break;
+    case T_LESS:
+      mCornerBalance++;
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
+      break;
+    case T_GREATER:
+      mCornerBalance--;
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
+      break;
+    case T_SHIFTRIGHT:
+      mCornerBalance--;
+      mCornerBalance--;
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
+      break;
+    case T_AND:// &
     case T_STAR:// *
+    case T_IDENTIFIER:
       mMemberInfo.mTypeName += mTokenInfoIt->value;
       break;
     default:
@@ -313,17 +331,38 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
 {
   switch ( mTokenInfoIt->id )
   {
+    case T_COMMA:
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
+      break;
     case T_SPACE:
     case T_SPACE2:
       break;
     case T_IDENTIFIER:
-      mMemberInfo.mName = mTokenInfoIt->value;
+      if( mCornerBalance == 0 )
+        mMemberInfo.mName = mTokenInfoIt->value;
+      else
+        mMemberInfo.mTypeName += mTokenInfoIt->value;
+      break;
+    case T_LESS:
+      mCornerBalance++;
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
+      break;
+    case T_GREATER:
+      mCornerBalance--;
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
+      break;
+    case T_SHIFTRIGHT:
+      mCornerBalance--;
+      mCornerBalance--;
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
       break;
     case T_COLON_COLON:
-    case T_LESS:
-    case T_GREATER:
-    case T_STAR:
-      mMemberInfo.mName += mTokenInfoIt->value;
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
+      mState = eSearchAfterColonColonIdentifier;
+      break;
+    case T_AND:// &
+    case T_STAR:// *
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
       break;
     case T_LEFTBRACKET:// method
       mState = eSearchDeclarationMethodHandler;
@@ -363,6 +402,8 @@ bool TAST_StateMachine::SearchEndClassOrStruct()
       auto nameSpaces = mTypeInfo.GetNameSpace();
       mTypeMng->Add( nameSpaces, mTypeInfo );
 
+      mTypeInfo.ClearMember();
+      mTypeInfo.mInheritanceVec.clear();
       mState = eSearchAttributeOrNamespace;// конец класса или структуры
     }
     break;
@@ -405,6 +446,18 @@ bool TAST_StateMachine::SearchMethodBodyHandler()
     case T_SEMICOLON:// end of declaration
       if ( mBraceBalance == 0 )
         mState = eSearchBeginSectionOrTypeOrBeginMethod;
+      break;
+  }
+  return true;
+}
+//---------------------------------------------------------------------------------------
+bool TAST_StateMachine::SearchAfterColonColonIdentifier()
+{
+  switch ( mTokenInfoIt->id )
+  {
+    case T_IDENTIFIER:
+      mMemberInfo.mTypeName += mTokenInfoIt->value;
+      mState = eSearchFullTypeName;
       break;
   }
   return true;

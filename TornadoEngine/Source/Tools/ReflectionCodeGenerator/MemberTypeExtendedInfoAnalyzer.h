@@ -10,19 +10,21 @@ See for more information License.h.
 #include <string>
 #include <map>
 #include <list>
+#include "MemberTypeExtendedInfo.h"
+#include "MemberTypeExtendedInfoCache.h"
 
 class TTypeManager;
 struct TTypeInfo;
 
 class TMemberTypeExtendedInfoAnalyzer
 {
-  enum TokenType
+  typedef enum TokenType
   {
     // separators
     ColonColon,
     Less,
     Greater,
-    Space,
+    Comma,
     // std
     Std,
     String,
@@ -30,6 +32,8 @@ class TMemberTypeExtendedInfoAnalyzer
     List,
     Set,
     Map,
+    // reference
+    Ampersand,
     // pointer
     Asterisk,
     // smart pointers
@@ -39,23 +43,26 @@ class TMemberTypeExtendedInfoAnalyzer
     AutoPtr,
     // built-in types
     Bool,
-    Unsigned,
-    Signed,
     Char,
+    UnsignedChar,
     Short,
+    UnsignedShort,
     Int,
+    UnsignedInt,
     Long,
+    LongLong,
+    UnsignedLong,
     Float,
     Double,
 
-    Reflection
+    ReflectionType
   };
 
   // separators
   const std::string s_ColonColon = "::";
   const std::string s_Less = "<";
   const std::string s_Greater = ">";
-  const std::string s_Space = " ";
+  const std::string s_Comma = ",";
 
   // std
   const std::string s_Std = "std";
@@ -65,6 +72,8 @@ class TMemberTypeExtendedInfoAnalyzer
   const std::string s_Set = "set";
   const std::string s_Map = "map";
 
+  // reference 
+  const std::string s_Ampersand = "&";
   // pointer
   const std::string s_Asterisk = "*";
 
@@ -76,12 +85,15 @@ class TMemberTypeExtendedInfoAnalyzer
 
   // built-in types
   const std::string s_Bool = "bool";
-  const std::string s_Unsigned = "unsigned";
-  const std::string s_Signed = "signed";
   const std::string s_Char = "char";
+  const std::string s_UnsignedChar = "unsigned char";
   const std::string s_Short = "short";
+  const std::string s_UnsignedShort = "unsigned short";
   const std::string s_Int = "int";
+  const std::string s_UnsignedInt = "unsigned int";
   const std::string s_Long = "long";
+  const std::string s_LongLong = "long long";
+  const std::string s_UnsignedLong = "unsigned long";
   const std::string s_Float = "float";
   const std::string s_Double = "double";
 
@@ -96,22 +108,22 @@ class TMemberTypeExtendedInfoAnalyzer
     std::string value;
   };
 
-  typedef std::list<TTokenDesc> TTokenList;
-  typedef std::map<std::string,TTokenList> TStrTokenMap;
+  typedef std::vector<TTokenDesc> TTokenDescVector;
 
-  TStrTokenMap mTokenCache;
+  TMemberTypeExtendedInfoCache mMemberCache;
+
 public:
   TMemberTypeExtendedInfoAnalyzer();
   ~TMemberTypeExtendedInfoAnalyzer();
 
   void Work();
 private:
-  void HandleType( TTypeInfo* typeInfo );
-  TTokenList* GetTokenList( std::string& typeName );
   void InitMap();
 
-  TTokenList* TryGetFromCache( std::string& memberName );
-  void AddToCache( std::string& memberName, TTokenList& tokenList );
-  void MakeTokenList( std::string& typeName, TTokenList& cacheList );
+  void HandleType( TTypeInfo* typeInfo );
+  void GetTokenList( std::string& typeName, TMemberTypeExtendedInfo& memberTypeInfo );
+
+  void MakeTokenList( std::string& typeName, TTokenDescVector& tokenList );
+  int FillInfo( TTokenDescVector& tokenList, TMemberTypeExtendedInfo& memberTypeInfo, int index = 0 );
 };
 
