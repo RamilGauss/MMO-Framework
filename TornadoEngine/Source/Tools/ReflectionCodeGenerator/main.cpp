@@ -18,65 +18,13 @@ See for more information License.h.
 #include "fmt/time.h"
 #include "fmt/color.h"
 #include "MemberTypeExtendedInfoAnalyzer.h"
+#include "SetupConfig.h"
 
 const std::string _VERSION = "0.2";
 const int _COUNTER_BUILD = 3;
 
-using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
 
-void DefaultConfig()
-{
-  auto config = SingletonManager()->Get<TConfigContainer>()->Config();
-  config->targetForParsing.recursive = true;
-  config->targetForParsing.directories.push_back(".");
-
-  config->filter.attribute = "REFLECTION_ATTRIBUTE";
-  config->filter.extensions.push_back( ".h" );
-  config->filter.extensions.push_back( ".hpp" );
-
-  config->targetForCodeGeneration.directory = ".";
-  config->targetForCodeGeneration.includeListFileName = "IncludeList";
-
-  config->targetForCodeGeneration.implementation.jsonSerializer.reset( new TJsonSerializerGeneratorConfig() );
-  auto jsonSerializer = config->targetForCodeGeneration.implementation.jsonSerializer.get();
-  jsonSerializer->className = "TJsonSerializer";
-  jsonSerializer->fileName = "JsonSerializer";
-  jsonSerializer->nameSpaceName = "nsJson";
-
-  config->targetForCodeGeneration.implementation.binaryMarshaller.reset( new TBinaryMarshallerGeneratorConfig() );
-  auto binaryMarshaller = config->targetForCodeGeneration.implementation.binaryMarshaller.get();
-  binaryMarshaller->className = "TBinaryMarshaller";
-  binaryMarshaller->fileName = "BinaryMarshaller";
-  binaryMarshaller->nameSpaceName = "nsBinary";
-
-  binaryMarshaller->deserializationHandler.className = "TDeserializationHandler";
-  binaryMarshaller->deserializationHandler.fileName = "DeserializationHandler";
-  binaryMarshaller->deserializationHandler.method = "Handle";
-  binaryMarshaller->deserializationHandler.nameSpaceName = "nsBinary";
-}
-//---------------------------------------------------------------------------------------
-bool CheckArgs( int argc, char *argv [] )
-{
-  if( argc == 1 )
-    return false;
-  return true;
-}
-//---------------------------------------------------------------------------------------
-void ShowManual()
-{
-  for ( auto key : nsReflectionCodeGenerator::nsManual::g_Manual )
-  {
-    printf( "%s: \n", key.first.data() );
-    for ( auto value : key.second )
-    {
-      printf( "\t %s\n", value.data() );
-    }
-  }
-
-  printf( "Press any key for continue...\n" );
-}
-//---------------------------------------------------------------------------------------
 using namespace moodycamel;
 void TestQueue()
 {
@@ -100,48 +48,20 @@ void TestQueue()
   assert( front == nullptr );           // Returns nullptr if the queue was empty
 }
 //---------------------------------------------------------------------------------------
-using namespace fmt::literals;
-
-class IStringed
-{
-public:
-  virtual std::string ToString() = 0;
-};
-
-class TMethodBegin : public IStringed
-{
-public:
-  std::string mReturnedType = "void";
-  std::string mNameMethod;
-  std::string mEndMethod = ";";
-
-  //std::vector<T>
-
-  virtual std::string ToString() override
-  {
-    return fmt::format( "{} {}({}){}", mReturnedType, mNameMethod, mEndMethod );
-  }
-
-};
 
 void ShowTitle()
 {
   fmt::print( "The world needs reflection in C++. I give it. You take it!\n" );
   fmt::print( "ReflectionCodeGenerator version {}.b{}\n", _VERSION, _COUNTER_BUILD );
 }
-
+//---------------------------------------------------------------------------------------
 int main( int argc, char *argv [] )
 {
   ShowTitle();
 
-  if ( CheckArgs( argc, argv ) == false )
-  {
-    ShowManual();
-    getchar();
-    return -1;
-  }
-
-  DefaultConfig();
+  TSetupConfig setupConfig;
+  if ( setupConfig.Work() == false )
+    return 0;
 
   TParser parser;
   parser.Work();
@@ -152,5 +72,6 @@ int main( int argc, char *argv [] )
 
   //TCodeGeneratorFactory cgFactory;
   //cgFactory.Work();
+  getchar();
   return 0;
 }

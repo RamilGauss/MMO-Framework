@@ -19,7 +19,6 @@ namespace nsReflectionCodeGenerator
     friend class TSingletonManager;
   public:
     TConfig mConfig;
-    std::string absPathDirJson;
 
     TConfig* Config() { return &mConfig; }
   };

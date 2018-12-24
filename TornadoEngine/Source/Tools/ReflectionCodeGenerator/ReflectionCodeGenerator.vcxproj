@@ -198,6 +198,7 @@
     <ClCompile Include="MemberTypeExtendedInfoAnalyzer.cpp" />
     <ClCompile Include="MemberTypeExtendedInfoCache.cpp" />
     <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="SetupConfig.cpp" />
     <ClCompile Include="SourceAccumulator.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="TypeInfo.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="ReflectionMacro.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Requirements.h" />
+    <ClInclude Include="SetupConfig.h" />
     <ClInclude Include="SourceAccumulator.h" />
     <ClInclude Include="TokenInfo.h" />
     <ClInclude Include="TokenInfoManager.h" />

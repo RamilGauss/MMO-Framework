@@ -18,7 +18,7 @@ struct TTypeInfo;
 
 class TMemberTypeExtendedInfoAnalyzer
 {
-  typedef enum TokenType
+  enum TokenType
   {
     // separators
     ColonColon,

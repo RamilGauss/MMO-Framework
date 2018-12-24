@@ -7,11 +7,15 @@ See for more information License.h.
 
 #pragma once
 
+#include <map>
+#include <vector>
+#include <string>
+
 namespace nsReflectionCodeGenerator
 {
   namespace nsManual
   {
-    std::map<std::string, std::vector<std::string>> g_Manual =
+    static std::map<std::string, std::vector<std::string>> g_Manual =
     {
       { "1. SHOULD BE",
         {

@@ -17,8 +17,6 @@ class TCodeGeneratorFactory
 {
   TIncludeListGenerator mIncludeListGenerator;
 
-
-
 public:
   ICodeGenerator* Get( std::string& name );
 };
