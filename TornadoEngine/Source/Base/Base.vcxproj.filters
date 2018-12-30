@@ -173,12 +173,6 @@
     <ClInclude Include="include\Only_N_Object.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\PopMaster.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\PushMaster.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\ResolverSelf_IP_v4.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -249,6 +243,18 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ExecuteInstructionEngine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BinaryPushMaster.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BinaryPopMaster.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\JsonPopMaster.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\JsonPushMaster.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -352,12 +358,6 @@
     <ClCompile Include="src\Only_N_Object.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\PopMaster.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PushMaster.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\ResolverSelf_IP_v4.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -413,6 +413,18 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ExecuteInstructionEngine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BinaryPopMaster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BinaryPushMaster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JsonPopMaster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JsonPushMaster.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -11,15 +11,15 @@ See for more information License.h.
 #include <list>
 #include "ParamClass.h"
 
-class TPushMaster;
-class TPopMaster;
+class TBinaryPushMaster;
+class TBinaryPopMaster;
 
 class TTestClass
 {
 public:// member region
   std::vector<TParamClass> vParam;
 public:
-  void Serialize( TPushMaster* pPushMaster ) const;
-  void Deserialize( TPopMaster* pPopMaster );
+  void Serialize( TBinaryPushMaster* pPushMaster ) const;
+  void Deserialize( TBinaryPopMaster* pPopMaster );
   short GetSerializableUniqueID();
 };

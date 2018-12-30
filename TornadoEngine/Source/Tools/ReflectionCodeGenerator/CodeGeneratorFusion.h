@@ -10,10 +10,17 @@ See for more information License.h.
 
 namespace nsReflectionCodeGenerator
 {
-  class TIncludeListGenerator : public ICodeGenerator
+  class TCodeGeneratorFusion
   {
+    ICodeGenerator::TPairList mForDump;
+
   public:
-    TIncludeListGenerator() : ICodeGenerator( "IncludeListGenerator" ) { }
-    virtual void Work() override;
+    void Work();
+  private:
+    void Collect();
+    void Dump();
+    void CollectFromIncludeList();
+    void CollectFromJson();
+    void CollectFromBinary();
   };
 }

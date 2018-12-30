@@ -9,14 +9,12 @@ See for more information License.h.
 
 #include <string>
 
-#include "IncludeListGenerator.h"
-
-class ICodeGenerator;
-
-class TCodeGeneratorFactory
+namespace nsReflectionCodeGenerator
 {
-  TIncludeListGenerator mIncludeListGenerator;
-
-public:
-  ICodeGenerator* Get( std::string& name );
-};
+  namespace nsProgramInfo
+  {
+    const std::string NAME = "ReflectionCodeGenerator";
+    const std::string VERSION = "0.3";
+    const int COUNTER_BUILD = 4;
+  }
+}

@@ -6,14 +6,16 @@ See for more information License.h.
 */
 
 #pragma once
-#include "ICodeGenerator.h"
+#include "IFileGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {
-  class TIncludeListGenerator : public ICodeGenerator
+  class TIncludeListFileGenerator : public IFileGenerator
   {
   public:
-    TIncludeListGenerator() : ICodeGenerator( "IncludeListGenerator" ) { }
     virtual void Work() override;
+
+  private:
+    void AddIncludes();
   };
 }

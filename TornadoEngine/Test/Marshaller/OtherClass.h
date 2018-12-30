@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef OtherClassH
-#define OtherClassH
+#pragma once
 
 #include "GeneratedClass.h"
 
@@ -20,5 +19,3 @@ public:
     return false;
   }
 };
-
-#endif

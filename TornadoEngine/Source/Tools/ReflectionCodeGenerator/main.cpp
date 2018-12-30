@@ -14,15 +14,13 @@ See for more information License.h.
 #include "Requirements.h"
 #include "readerwriterqueue.h"
 #include "TypeManager.h"
-#include "CodeGeneratorFactory.h"
-#include "fmt/time.h"
-#include "fmt/color.h"
+#include "CodeGeneratorFusion.h"
+#include "fmt/core.h"
 #include "MemberTypeExtendedInfoAnalyzer.h"
 #include "SetupConfig.h"
+#include "ProgramInfo.h"
 
-const std::string _VERSION = "0.2";
-const int _COUNTER_BUILD = 3;
-
+using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
 
 using namespace moodycamel;
@@ -48,11 +46,10 @@ void TestQueue()
   assert( front == nullptr );           // Returns nullptr if the queue was empty
 }
 //---------------------------------------------------------------------------------------
-
 void ShowTitle()
 {
-  fmt::print( "The world needs reflection in C++. I give it. You take it!\n" );
-  fmt::print( "ReflectionCodeGenerator version {}.b{}\n", _VERSION, _COUNTER_BUILD );
+  fmt::print( "The world needs reflection for C++. I give it. You take it!\n" );
+  fmt::print( "{} version {} build {}\n", nsProgramInfo::NAME, nsProgramInfo::VERSION, nsProgramInfo::COUNTER_BUILD );
 }
 //---------------------------------------------------------------------------------------
 int main( int argc, char *argv [] )
@@ -70,8 +67,12 @@ int main( int argc, char *argv [] )
   TMemberTypeExtendedInfoAnalyzer analyzer;
   analyzer.Work();
 
-  //TCodeGeneratorFactory cgFactory;
-  //cgFactory.Work();
+  TCodeGeneratorFusion cgFusion;
+  cgFusion.Work();
+
+  // Please, look at the console
+#ifdef _DEBUG
   getchar();
+#endif
   return 0;
 }

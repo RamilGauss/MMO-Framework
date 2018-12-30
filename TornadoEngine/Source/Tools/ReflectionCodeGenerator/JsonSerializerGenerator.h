@@ -6,14 +6,18 @@ See for more information License.h.
 */
 
 #pragma once
+
 #include "ICodeGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {
-  class TIncludeListGenerator : public ICodeGenerator
+  class TJsonSerializerGenerator : public ICodeGenerator
   {
   public:
-    TIncludeListGenerator() : ICodeGenerator( "IncludeListGenerator" ) { }
+    TJsonSerializerGenerator() : ICodeGenerator( "JsonSerializerGenerator" ) { }
+
     virtual void Work() override;
   };
 }
+
+

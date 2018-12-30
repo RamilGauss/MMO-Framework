@@ -18,7 +18,7 @@ See for more information License.h.
 
 class ISerializable;
 
-class DllExport TPopMaster
+class DllExport TBinaryPopMaster
 {
   char* mPtrData;
   int mSizeData;
@@ -98,20 +98,20 @@ private:
 };
 //------------------------------------------------------------------------
 template<typename T>
-void TPopMaster::Pop( T& t)
+void TBinaryPopMaster::Pop( T& t)
 { 
   memcpy( &t, mPtrData + mOffset, sizeof(T) ); 
   mOffset += sizeof(T);
 }
 //------------------------------------------------------------------------
 template<typename T>
-void TPopMaster::PopSer( T& serializable )
+void TBinaryPopMaster::PopSer( T& serializable )
 {
   serializable.Deserialize( this );
 }
 //------------------------------------------------------------------------
 template<typename T>
-void TPopMaster::PopPtrSer( T*& pSer )
+void TBinaryPopMaster::PopPtrSer( T*& pSer )
 {
   unsigned char isNotNull;
   Pop( isNotNull );
@@ -124,7 +124,7 @@ void TPopMaster::PopPtrSer( T*& pSer )
 }
 //------------------------------------------------------------------------
 template<typename T, typename Array>
-void TPopMaster::PopArray( Array& array )
+void TBinaryPopMaster::PopArray( Array& array )
 {
   array.clear();
 
@@ -150,7 +150,7 @@ void TPopMaster::PopArray( Array& array )
 }
 //------------------------------------------------------------------------
 template<typename Array>
-void TPopMaster::PopArrayStr( Array& array )
+void TBinaryPopMaster::PopArrayStr( Array& array )
 {
   array.clear();
 
@@ -176,7 +176,7 @@ void TPopMaster::PopArrayStr( Array& array )
 }
 //------------------------------------------------------------------------
 template<typename T>
-void TPopMaster::PopVectorSer( std::vector<T>& array )
+void TBinaryPopMaster::PopVectorSer( std::vector<T>& array )
 {
   array.clear();
 
@@ -192,7 +192,7 @@ void TPopMaster::PopVectorSer( std::vector<T>& array )
 }
 //------------------------------------------------------------------------
 template<typename T>
-void TPopMaster::PopListSer( std::list<T>& array )
+void TBinaryPopMaster::PopListSer( std::list<T>& array )
 {
   array.clear();
 
@@ -207,7 +207,7 @@ void TPopMaster::PopListSer( std::list<T>& array )
 }
 //------------------------------------------------------------------------
 template<typename T>
-void TPopMaster::PopSetSer( std::set<T>& array )
+void TBinaryPopMaster::PopSetSer( std::set<T>& array )
 {
   array.clear();
 
@@ -222,7 +222,7 @@ void TPopMaster::PopSetSer( std::set<T>& array )
 }
 //------------------------------------------------------------------------
 template<typename T, typename Array>
-void TPopMaster::PopArrayPtrSer( Array& array )
+void TBinaryPopMaster::PopArrayPtrSer( Array& array )
 {// а здесь set быть не может!
   array.clear();
 
@@ -237,7 +237,7 @@ void TPopMaster::PopArrayPtrSer( Array& array )
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPopMaster::PopMap__( Map& m )
+void TBinaryPopMaster::PopMap__( Map& m )
 {
   m.clear();
 
@@ -254,7 +254,7 @@ void TPopMaster::PopMap__( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Map>
-void TPopMaster::PopMap_Str( Map& m )
+void TBinaryPopMaster::PopMap_Str( Map& m )
 {
   m.clear();
 
@@ -271,7 +271,7 @@ void TPopMaster::PopMap_Str( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPopMaster::PopMap_Ser( Map& m )
+void TBinaryPopMaster::PopMap_Ser( Map& m )
 {
   m.clear();
 
@@ -288,7 +288,7 @@ void TPopMaster::PopMap_Ser( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPopMaster::PopMap_PtrSer( Map& m )
+void TBinaryPopMaster::PopMap_PtrSer( Map& m )
 {
   for( auto& vt : m )
     delete vt.second;
@@ -307,7 +307,7 @@ void TPopMaster::PopMap_PtrSer( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Value, typename Map>
-void TPopMaster::PopMapStr_( Map& m )
+void TBinaryPopMaster::PopMapStr_( Map& m )
 {
   m.clear();
 
@@ -324,7 +324,7 @@ void TPopMaster::PopMapStr_( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Map>
-void TPopMaster::PopMapStrStr( Map& m )
+void TBinaryPopMaster::PopMapStrStr( Map& m )
 {
   m.clear();
 
@@ -341,7 +341,7 @@ void TPopMaster::PopMapStrStr( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Value, typename Map>
-void TPopMaster::PopMapStrSer( Map& m )
+void TBinaryPopMaster::PopMapStrSer( Map& m )
 {
   m.clear();
 
@@ -358,7 +358,7 @@ void TPopMaster::PopMapStrSer( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Value, typename Map>
-void TPopMaster::PopMapStrPtrSer( Map& m )
+void TBinaryPopMaster::PopMapStrPtrSer( Map& m )
 {
   for( auto& vt : m )
     delete vt.second;
@@ -377,7 +377,7 @@ void TPopMaster::PopMapStrPtrSer( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPopMaster::PopMapSer_( Map& m )
+void TBinaryPopMaster::PopMapSer_( Map& m )
 {
   m.clear();
 
@@ -394,7 +394,7 @@ void TPopMaster::PopMapSer_( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Map>
-void TPopMaster::PopMapSerStr( Map& m )
+void TBinaryPopMaster::PopMapSerStr( Map& m )
 {
   m.clear();
 
@@ -411,7 +411,7 @@ void TPopMaster::PopMapSerStr( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPopMaster::PopMapSerSer( Map& m )
+void TBinaryPopMaster::PopMapSerSer( Map& m )
 {
   m.clear();
 
@@ -428,7 +428,7 @@ void TPopMaster::PopMapSerSer( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
-void TPopMaster::PopMapSerPtrSer( Map& m )
+void TBinaryPopMaster::PopMapSerPtrSer( Map& m )
 {
   for( auto& vt : m )
     delete vt.second;
@@ -447,7 +447,7 @@ void TPopMaster::PopMapSerPtrSer( Map& m )
 }
 //------------------------------------------------------------------------
 template<typename T, typename Array>
-void TPopMaster::PopByInsert( Array* pArray )
+void TBinaryPopMaster::PopByInsert( Array* pArray )
 {
   int size;
   PopSize( size );
@@ -460,7 +460,7 @@ void TPopMaster::PopByInsert( Array* pArray )
 }
 //------------------------------------------------------------------------
 template<typename T, typename Array>
-void TPopMaster::PopByPush( Array* pArray )
+void TBinaryPopMaster::PopByPush( Array* pArray )
 {
   int size;
   PopSize( size );
@@ -473,7 +473,7 @@ void TPopMaster::PopByPush( Array* pArray )
 }
 //------------------------------------------------------------------------
 template<typename Array>
-void TPopMaster::PopStrByPush( Array* pArray )
+void TBinaryPopMaster::PopStrByPush( Array* pArray )
 {
   int size;
   PopSize( size );
@@ -484,3 +484,4 @@ void TPopMaster::PopStrByPush( Array* pArray )
     pArray->push_back( str );
   }
 }
+//------------------------------------------------------------------------

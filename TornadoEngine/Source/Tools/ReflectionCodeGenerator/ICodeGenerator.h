@@ -7,10 +7,22 @@ See for more information License.h.
 
 #pragma once
 
-class ICodeGenerator
-{
-protected:
+#include "IGenerator.h"
 
-public:
-  virtual void Work() = 0;
-};
+namespace nsReflectionCodeGenerator
+{
+  class ICodeGenerator : public IGenerator
+  {
+    std::string mName;
+  protected:
+    TPairList* mPairList;
+  public:
+    ICodeGenerator( std::string name );
+
+     // abs path file - list parts of file
+     void Init( TPairList& result );
+    virtual void Work() = 0;
+  protected:
+    std::string GeneratedFileFullPath( std::string fileNameWithExt );
+  };
+}

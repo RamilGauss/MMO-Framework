@@ -7,15 +7,15 @@ See for more information License.h.
 
 #pragma once
 
-class TPushMaster;
-class TPopMaster;
+class TBinaryPushMaster;
+class TBinaryPopMaster;
 
 class TGeneratedClass
 {
 public:// member region
   int mID;
 public:
-  void Serialize( TPushMaster* pPushMaster ) const;
-  void Deserialize( TPopMaster* pPopMaster );
+  void Serialize( TBinaryPushMaster* pPushMaster ) const;
+  void Deserialize( TBinaryPopMaster* pPopMaster );
   short GetSerializableUniqueID();
 };

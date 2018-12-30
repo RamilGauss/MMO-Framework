@@ -7,16 +7,16 @@ See for more information License.h.
 
 #include "TestClass.h"
 
-#include "PushMaster.h"
-#include "PopMaster.h"
+#include "BinaryPushMaster.h"
+#include "BinaryPopMaster.h"
 #include "SerializableUniqueIdentity.h"
 
-void TTestClass::Serialize( TPushMaster* pPushMaster )const
+void TTestClass::Serialize( TBinaryPushMaster* pPushMaster )const
 {
   pPushMaster->PushArraySer<TParamClass>( vParam );
 }
 //--------------------------------------------------------------------
-void TTestClass::Deserialize( TPopMaster* pPopMaster )
+void TTestClass::Deserialize( TBinaryPopMaster* pPopMaster )
 {
   pPopMaster->PopVectorSer<TParamClass>( vParam );
 }

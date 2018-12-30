@@ -5,26 +5,26 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "PopMaster.h"
+#include "BinaryPopMaster.h"
 
-void TPopMaster::SetBuffer( TContainerRise* pC, int offset )
+void TBinaryPopMaster::SetBuffer( TContainerRise* pC, int offset )
 {
   mPtrData = pC->GetPtr();
   mSizeData = pC->GetSize();
   mOffset = offset;
 }
 //------------------------------------------------------------------------
-int TPopMaster::GetOffset()
+int TBinaryPopMaster::GetOffset()
 {
   return mOffset;
 }
 //------------------------------------------------------------------------
-void TPopMaster::PopSize( int& size)
+void TBinaryPopMaster::PopSize( int& size)
 {
   Pop( size );
 }
 //------------------------------------------------------------------------
-void TPopMaster::PopStr( std::string& str )
+void TBinaryPopMaster::PopStr( std::string& str )
 {
   int len = 0;
   PopSize( len );
@@ -35,7 +35,7 @@ void TPopMaster::PopStr( std::string& str )
   mOffset += len;
 }
 //------------------------------------------------------------------------
-void TPopMaster::PopStrByInsert( std::set<std::string>* pSetStr )
+void TBinaryPopMaster::PopStrByInsert( std::set<std::string>* pSetStr )
 {
   int size;
   PopSize( size );

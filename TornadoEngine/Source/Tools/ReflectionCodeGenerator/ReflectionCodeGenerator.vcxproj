@@ -190,9 +190,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CodeGeneratorFactory.cpp" />
+    <ClCompile Include="BinaryMarshallerGenerator.cpp" />
+    <ClCompile Include="CodeGeneratorFusion.cpp" />
     <ClCompile Include="FileLexer.cpp" />
     <ClCompile Include="AST_StateMachine.cpp" />
+    <ClCompile Include="ICodeGenerator.cpp" />
+    <ClCompile Include="IFileGenerator.cpp" />
+    <ClCompile Include="IGenerator.cpp" />
+    <ClCompile Include="IncludeListFileGenerator.cpp" />
+    <ClCompile Include="IncludeListGenerator.cpp" />
+    <ClCompile Include="JsonSerializerGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MemberTypeExtendedInfo.cpp" />
     <ClCompile Include="MemberTypeExtendedInfoAnalyzer.cpp" />
@@ -206,18 +213,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="atomicops.h" />
-    <ClInclude Include="CodeGeneratorFactory.h" />
+    <ClInclude Include="BinaryMarshallerGenerator.h" />
+    <ClInclude Include="CodeGeneratorFusion.h" />
     <ClInclude Include="FileLexer.h" />
     <ClInclude Include="ConfigContainer.h" />
     <ClInclude Include="AST_StateMachine.h" />
     <ClInclude Include="ICodeGenerator.h" />
+    <ClInclude Include="IFileGenerator.h" />
+    <ClInclude Include="IGenerator.h" />
+    <ClInclude Include="IncludeList.h" />
+    <ClInclude Include="IncludeListFileGenerator.h" />
     <ClInclude Include="IncludeListGenerator.h" />
     <ClInclude Include="InheritanceInfo.h" />
+    <ClInclude Include="JsonSerializerGenerator.h" />
     <ClInclude Include="MemberInfo.h" />
     <ClInclude Include="MemberTypeExtendedInfo.h" />
     <ClInclude Include="MemberTypeExtendedInfoAnalyzer.h" />
     <ClInclude Include="MemberTypeExtendedInfoCache.h" />
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="ProgramInfo.h" />
     <ClInclude Include="readerwriterqueue.h" />
     <ClInclude Include="ReflectionMacro.h" />
     <ClInclude Include="Config.h" />

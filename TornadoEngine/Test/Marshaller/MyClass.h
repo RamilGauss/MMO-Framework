@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef MyClassH
-#define MyClassH
+#pragma once
 
 #include "OtherClass.h"
 
@@ -201,9 +200,7 @@ public:
   TMyClass();
   ~TMyClass();
 
-  void Serialize( TPushMaster* pPushMaster ) const;
-  void Deserialize( TPopMaster* pPopMaster );
+  void Serialize( TBinaryPushMaster* pPushMaster ) const;
+  void Deserialize( TBinaryPopMaster* pPopMaster );
   short GetSerializableUniqueID();
 };
-
-#endif

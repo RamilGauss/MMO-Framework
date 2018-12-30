@@ -5,24 +5,24 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "PushMaster.h"
+#include "BinaryPushMaster.h"
 
-void TPushMaster::CopyInBuffer( TContainerRise& receiveBuffer, int offset )
+void TBinaryPushMaster::CopyInBuffer( TContainerRise& receiveBuffer, int offset )
 {
   mCollectorMember.CopyInBuffer( receiveBuffer, offset );
 }
 //-----------------------------------------------------------------------
-void TPushMaster::Clear()
+void TBinaryPushMaster::Clear()
 {
   mCollectorMember.Reset();
 }
 //-----------------------------------------------------------------------
-void TPushMaster::PushSize( const int& size )
+void TBinaryPushMaster::PushSize( const int& size )
 {
   Push( size );
 }
 //-----------------------------------------------------------------------
-void TPushMaster::PushStr( const std::string& str )
+void TBinaryPushMaster::PushStr( const std::string& str )
 {
   int len = str.length();
   PushSize( len );

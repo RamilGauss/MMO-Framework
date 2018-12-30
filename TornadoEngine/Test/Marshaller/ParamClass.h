@@ -9,8 +9,8 @@ See for more information License.h.
 
 #include "TypeDef.h"
 
-class TPushMaster;
-class TPopMaster;
+class TBinaryPushMaster;
+class TBinaryPopMaster;
 
 #ifdef WIN32
 #pragma pack(push, 1)
@@ -39,8 +39,8 @@ public:// member region
   TFloat4 rot;
   TFloat3 vel;
 public:
-  void Serialize(TPushMaster* pPushMaster) const;
-  void Deserialize(TPopMaster* pPopMaster);
+  void Serialize( TBinaryPushMaster* pPushMaster ) const;
+  void Deserialize( TBinaryPopMaster* pPopMaster );
   short GetSerializableUniqueID();
 }_PACKED;
 

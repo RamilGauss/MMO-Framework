@@ -237,6 +237,8 @@
     <ClInclude Include="include\IXML.h" />
     <ClInclude Include="include\json11.h" />
     <ClInclude Include="include\JsonManager.h" />
+    <ClInclude Include="include\JsonPopMaster.h" />
+    <ClInclude Include="include\JsonPushMaster.h" />
     <ClInclude Include="include\License.h" />
     <ClInclude Include="include\ListPtr.h" />
     <ClInclude Include="include\LoaderDLL_Unix.h" />
@@ -260,8 +262,8 @@
     <ClInclude Include="include\MessagePackSerializer.h" />
     <ClInclude Include="include\Mutex.h" />
     <ClInclude Include="include\Only_N_Object.h" />
-    <ClInclude Include="include\PopMaster.h" />
-    <ClInclude Include="include\PushMaster.h" />
+    <ClInclude Include="include\BinaryPopMaster.h" />
+    <ClInclude Include="include\BinaryPushMaster.h" />
     <ClInclude Include="include\ResolverSelf_IP_v4.h" />
     <ClInclude Include="include\ReversedContainerRise.h" />
     <ClInclude Include="include\SaveToFile.h" />
@@ -307,6 +309,8 @@
     <ClCompile Include="src\IXML.cpp" />
     <ClCompile Include="src\json11.cpp" />
     <ClCompile Include="src\JsonManager.cpp" />
+    <ClCompile Include="src\JsonPopMaster.cpp" />
+    <ClCompile Include="src\JsonPushMaster.cpp" />
     <ClCompile Include="src\LoaderDLL_Unix.cpp" />
     <ClCompile Include="src\LoaderDLL_Win32.cpp" />
     <ClCompile Include="src\LoadFromFile.cpp" />
@@ -321,8 +325,8 @@
     <ClCompile Include="src\MD5.cpp" />
     <ClCompile Include="src\Mutex.cpp" />
     <ClCompile Include="src\Only_N_Object.cpp" />
-    <ClCompile Include="src\PopMaster.cpp" />
-    <ClCompile Include="src\PushMaster.cpp" />
+    <ClCompile Include="src\BinaryPopMaster.cpp" />
+    <ClCompile Include="src\BinaryPushMaster.cpp" />
     <ClCompile Include="src\ResolverSelf_IP_v4.cpp" />
     <ClCompile Include="src\ReversedContainerRise.cpp" />
     <ClCompile Include="src\SaveToFile.cpp" />

@@ -7,16 +7,16 @@ See for more information License.h.
 
 #include "GeneratedClass.h"
 
-#include "PushMaster.h"
-#include "PopMaster.h"
+#include "BinaryPushMaster.h"
+#include "BinaryPopMaster.h"
 #include "SerializableUniqueIdentity.h"
 
-void TGeneratedClass::Serialize( TPushMaster* pPushMaster ) const
+void TGeneratedClass::Serialize( TBinaryPushMaster* pPushMaster ) const
 {
   pPushMaster->Push( mID );
 }
 //--------------------------------------------------------------------
-void TGeneratedClass::Deserialize( TPopMaster* pPopMaster )
+void TGeneratedClass::Deserialize( TBinaryPopMaster* pPopMaster )
 {
   pPopMaster->Pop( mID );
 }

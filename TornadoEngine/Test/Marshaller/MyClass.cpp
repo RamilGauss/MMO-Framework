@@ -7,14 +7,14 @@ See for more information License.h.
 
 #include "MyClass.h"
 
-#include "PushMaster.h"
-#include "PopMaster.h"
+#include "BinaryPushMaster.h"
+#include "BinaryPopMaster.h"
 #include "SerializableUniqueIdentity.h"
 
 TMyClass::TMyClass()
 {
   // init all pointers
-  pSerializable = NULL;
+  pSerializable = nullptr;
 }
 //---------------------------------------------------------------------------
 TMyClass::~TMyClass()
@@ -22,7 +22,7 @@ TMyClass::~TMyClass()
   delete pSerializable;
 }
 //---------------------------------------------------------------------------
-void TMyClass::Serialize( TPushMaster* pPushMaster ) const
+void TMyClass::Serialize( TBinaryPushMaster* pPushMaster ) const
 {
   pPushMaster->Push( b );
   pPushMaster->Push( uc );
@@ -203,7 +203,7 @@ void TMyClass::Serialize( TPushMaster* pPushMaster ) const
   pPushMaster->PushMapSerPtrSer<TOtherClass>(mSerPtrSer);      //std::map<int,ISerializable*> mIPtrSer;//std::map<int,ISerializable*>
 }
 //----------------------------------------------------------------------
-void TMyClass::Deserialize( TPopMaster* pPopMaster )
+void TMyClass::Deserialize( TBinaryPopMaster* pPopMaster )
 {
   pPopMaster->Pop( b );
   pPopMaster->Pop( uc );

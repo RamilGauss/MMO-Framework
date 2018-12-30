@@ -12,6 +12,36 @@
     <Filter Include="queue">
       <UniqueIdentifier>{e1532588-b9e9-454d-8361-db9ca2078ac4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generators">
+      <UniqueIdentifier>{16801796-a430-4272-a67e-4d0c63a95f01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\Json">
+      <UniqueIdentifier>{9418b210-54bf-47b7-8604-29879c91a30e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\Binary">
+      <UniqueIdentifier>{4984fd5a-5dfb-45b6-8b22-41b5743ddd47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{c79c5359-1d37-457d-856b-f0a7c7923ac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Native">
+      <UniqueIdentifier>{2b81180e-8a30-4789-b272-e2b07d96a151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Test">
+      <UniqueIdentifier>{572a0fa1-b882-431e-bbc8-fa36649ceecc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\General">
+      <UniqueIdentifier>{512a2a42-0dc4-4749-a71e-2f1fdc0bf6a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\General\Source Files">
+      <UniqueIdentifier>{17f422a6-0204-4faf-87ce-a1927595a248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\General\Header Files">
+      <UniqueIdentifier>{93b16250-d19e-4987-b77c-76313379c479}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\IncludeList">
+      <UniqueIdentifier>{645c1cee-0ba4-4a82-b079-552c05c5ca69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -32,9 +62,6 @@
     <ClCompile Include="TypeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CodeGeneratorFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SourceAccumulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -52,6 +79,30 @@
     </ClCompile>
     <ClCompile Include="SetupConfig.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ICodeGenerator.cpp">
+      <Filter>Generators\General\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGeneratorFusion.cpp">
+      <Filter>Generators\General\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IFileGenerator.cpp">
+      <Filter>Generators\General\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IGenerator.cpp">
+      <Filter>Generators\General\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryMarshallerGenerator.cpp">
+      <Filter>Generators\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonSerializerGenerator.cpp">
+      <Filter>Generators\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="IncludeListGenerator.cpp">
+      <Filter>Generators\IncludeList</Filter>
+    </ClCompile>
+    <ClCompile Include="IncludeListFileGenerator.cpp">
+      <Filter>Generators\IncludeList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,15 +154,6 @@
     <ClInclude Include="readerwriterqueue.h">
       <Filter>queue</Filter>
     </ClInclude>
-    <ClInclude Include="CodeGeneratorFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IncludeListGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICodeGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SourceAccumulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -126,6 +168,36 @@
     </ClInclude>
     <ClInclude Include="SetupConfig.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGeneratorFusion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ICodeGenerator.h">
+      <Filter>Generators\General\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IFileGenerator.h">
+      <Filter>Generators\General\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGenerator.h">
+      <Filter>Generators\General\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryMarshallerGenerator.h">
+      <Filter>Generators\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonSerializerGenerator.h">
+      <Filter>Generators\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeListGenerator.h">
+      <Filter>Generators\IncludeList</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeListFileGenerator.h">
+      <Filter>Generators\IncludeList</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeList.h">
+      <Filter>Generated Files\Native</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

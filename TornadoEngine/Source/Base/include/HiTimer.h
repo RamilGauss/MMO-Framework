@@ -37,5 +37,5 @@ bool DllExport ht_sleep( unsigned int us, THT_CheckFunc func );
 // Точность от 55 мсек и выше
 unsigned int DllExport ht_GetMSCount();
 
-std::string ht_GetTimeStr();
+std::string DllExport ht_GetTimeStr();
 //------------------------------------------------------------------------------

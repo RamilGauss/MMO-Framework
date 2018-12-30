@@ -7,16 +7,16 @@ See for more information License.h.
 
 #pragma once
 
-#include "PushMaster.h"
-#include "PopMaster.h"
+#include "BinaryPushMaster.h"
+#include "BinaryPopMaster.h"
 #include "ContainerRise.h"
 #include "TypeDef.h"
 
 class DllExport TBinarySerializer
 {
 protected:
-  TPushMaster mPushMaster;
-  TPopMaster mPopMaster;
+  TBinaryPushMaster mPushMaster;
+  TBinaryPopMaster mPopMaster;
 public:
   // Requirement: Type have to have 2 methods: Serialize(TPushMaster* p), Deserialize(TPopMaster* p)
   template<typename Type>

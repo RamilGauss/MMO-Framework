@@ -15,7 +15,7 @@ namespace nsReflectionCodeGenerator
 {
   namespace nsManual
   {
-    static std::map<std::string, std::vector<std::string>> g_Manual =
+    const std::map<std::string, std::vector<std::string>> g_Manual =
     {
       { "1. SHOULD BE",
         {
