@@ -257,6 +257,9 @@
     <ClInclude Include="include\JsonPushMaster.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\TextFile.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -425,6 +428,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\JsonPushMaster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextFile.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

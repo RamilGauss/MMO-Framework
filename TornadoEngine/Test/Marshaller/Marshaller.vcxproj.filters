@@ -5,50 +5,50 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedClass.cpp">
-      <Filter>GeneratedFiles\Sources</Filter>
+      <Filter>Generated Files\Sources</Filter>
     </ClCompile>
     <ClCompile Include="TestClass.cpp">
-      <Filter>GeneratedFiles\Sources</Filter>
+      <Filter>Generated Files\Sources</Filter>
     </ClCompile>
     <ClCompile Include="ParamClass.cpp">
-      <Filter>GeneratedFiles\Sources</Filter>
+      <Filter>Generated Files\Sources</Filter>
     </ClCompile>
     <ClCompile Include="MyClass.cpp">
-      <Filter>GeneratedFiles\Sources</Filter>
+      <Filter>Generated Files\Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedClass.h">
-      <Filter>GeneratedFiles\Headers</Filter>
+      <Filter>Generated Files\Headers</Filter>
     </ClInclude>
     <ClInclude Include="MyClass.h">
-      <Filter>GeneratedFiles\Headers</Filter>
+      <Filter>Generated Files\Headers</Filter>
     </ClInclude>
     <ClInclude Include="OtherClass.h">
-      <Filter>GeneratedFiles\Headers</Filter>
+      <Filter>Generated Files\Headers</Filter>
     </ClInclude>
     <ClInclude Include="ParamClass.h">
-      <Filter>GeneratedFiles\Headers</Filter>
+      <Filter>Generated Files\Headers</Filter>
     </ClInclude>
     <ClInclude Include="SerializableUniqueIdentity.h">
-      <Filter>GeneratedFiles\Headers</Filter>
+      <Filter>Generated Files\Headers</Filter>
     </ClInclude>
     <ClInclude Include="TestClass.h">
-      <Filter>GeneratedFiles\Headers</Filter>
+      <Filter>Generated Files\Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="GeneratedFiles">
-      <UniqueIdentifier>{be5ff4d1-4a1b-4cf2-bbf6-d79a63d534fa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GeneratedFiles\Headers">
-      <UniqueIdentifier>{dd90f8f7-1d0d-4445-9479-da02a2f9052b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GeneratedFiles\Sources">
-      <UniqueIdentifier>{b3102fcd-e83d-4a3f-b77b-e4ab6a5feee3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources">
       <UniqueIdentifier>{f7623564-42fe-4ddb-83f0-53378d2a5308}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{be5ff4d1-4a1b-4cf2-bbf6-d79a63d534fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Headers">
+      <UniqueIdentifier>{dd90f8f7-1d0d-4445-9479-da02a2f9052b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Sources">
+      <UniqueIdentifier>{b3102fcd-e83d-4a3f-b77b-e4ab6a5feee3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

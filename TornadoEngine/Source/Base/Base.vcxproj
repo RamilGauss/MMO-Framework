@@ -280,6 +280,7 @@
     <ClInclude Include="include\StorePathResources.h" />
     <ClInclude Include="include\SynchroAbonent.h" />
     <ClInclude Include="include\SynchroPoint.h" />
+    <ClInclude Include="include\TextFile.h" />
     <ClInclude Include="include\ThreadBoost.h" />
     <ClInclude Include="include\TimeManager.h" />
     <ClInclude Include="include\TypeDef.h" />
@@ -340,6 +341,7 @@
     <ClCompile Include="src\StorePathResources.cpp" />
     <ClCompile Include="src\SynchroAbonent.cpp" />
     <ClCompile Include="src\SynchroPoint.cpp" />
+    <ClCompile Include="src\TextFile.cpp" />
     <ClCompile Include="src\ThreadBoost.cpp" />
     <ClCompile Include="src\TimeManager.cpp" />
     <ClCompile Include="src\XML_Markup.cpp" />

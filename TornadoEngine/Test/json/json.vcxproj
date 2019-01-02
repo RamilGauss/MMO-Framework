@@ -115,6 +115,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib</AdditionalLibraryDirectories>
@@ -138,6 +139,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="JsonSerializer.cpp" />
+    <ClCompile Include="TestStruct.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="JsonSerializer.h" />
+    <ClInclude Include="TestClass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

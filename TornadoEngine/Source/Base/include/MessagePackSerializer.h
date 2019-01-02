@@ -16,21 +16,35 @@ class TMessagePackSerializer
   TContainerRise* mBuffer;
 public:
   template<typename Type>
-  inline void Serialize( Type* pObj, TContainerRise& c, int offset = 0 )
-  {
-    mBuffer = &c;
-    mBuffer->Clear();
-    mBuffer->Shift( offset );
-    msgpack::pack( this, *pObj );
-  }
+  inline void Serialize( Type* pObj, TContainerRise& c, int offset = 0 );
   template<typename Type>
-  inline void Deserialize( Type* pObj, TContainerRise& c, int offset = 0 )
-  {
-    msgpack::unpack( mObjectHandle, (const char*) c.GetPtr() + offset, (size_t) c.GetSize() );
-    mObjectHandle.get().convert( *pObj );
-  }
-  inline void write( const char* buf, size_t len )
-  {
-    mBuffer->Append( len, (char*) buf );
-  }
+  inline void Deserialize( Type* pObj, TContainerRise& c, int offset = 0 );
+
+  // for msgpack::pack
+  inline void write( const char* buf, size_t len );
 };
+//--------------------------------------------------------------------
+template<typename MsgPack_ObjectHandle>
+template<typename Type>
+inline void TMessagePackSerializer<MsgPack_ObjectHandle>::Serialize( Type* pObj, TContainerRise& c, int offset )
+{
+  mBuffer = &c;
+  mBuffer->Clear();
+  mBuffer->Shift( offset );
+  msgpack::pack( this, *pObj );
+}
+//--------------------------------------------------------------------
+template<typename MsgPack_ObjectHandle>
+template<typename Type>
+inline void TMessagePackSerializer<MsgPack_ObjectHandle>::Deserialize( Type* pObj, TContainerRise& c, int offset )
+{
+  msgpack::unpack( mObjectHandle, (const char*) c.GetPtr() + offset, (size_t) c.GetSize() );
+  mObjectHandle.get().convert( *pObj );
+}
+//--------------------------------------------------------------------
+template<typename MsgPack_ObjectHandle>
+void TMessagePackSerializer<MsgPack_ObjectHandle>::write( const char* buf, size_t len )
+{
+  mBuffer->Append( len, (char*) buf );
+}
+//--------------------------------------------------------------------
