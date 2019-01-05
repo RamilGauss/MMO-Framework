@@ -29,6 +29,9 @@
     <ClInclude Include="TestClass.h">
       <Filter>Sources</Filter>
     </ClInclude>
+    <ClInclude Include="BaseStruct.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json">

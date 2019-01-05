@@ -6,14 +6,11 @@ See for more information License.h.
 */
 
 #pragma once
-#include "TestStruct.h"
+#include <string>
+#include <list>
+#include <set>
 
-class TTestClass
+struct TBaseStruct
 {
-public:
-  TTestStruct ts;
-  //TTestStruct* ts;
-  //std::shared_ptr<TTestStruct> ts;
-
-  std::string str;
+  std::string s = "0123456789";
 };

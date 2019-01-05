@@ -17,7 +17,7 @@ class DllExport TJsonManager
 {
   TLoadFromFile mLoader;
 
-  typedef std::map<std::string, std::function<void( double /*num*/, char*/*pObj*/, int&/*offset*/ )> > TStrFuncMap;
+  typedef std::map<std::string, std::function<void( double /*num*/, char*/*pObj*/, int&/*offset*/ )>> TStrFuncMap;
   static inline TStrFuncMap* g_TypeNameFuncMap = nullptr;
 public:
   TJsonManager();

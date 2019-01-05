@@ -7,7 +7,3 @@ See for more information License.h.
 
 #include "JsonPushMaster.h"
 
-void TJsonPushMaster::PushStr( const std::string& str )
-{
-
-}

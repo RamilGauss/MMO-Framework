@@ -16,25 +16,36 @@ See for more information License.h.
 
 class TJsonSerializer
 {
+  typedef TJsonPushMaster::Jobj Jobj;
+
 public:
   template <typename Type>
-  void Serialize( Type* p, std::string& str );
+  static void Serialize( Type* p, std::string& str );
+  
   template <typename Type>
-  void Deserialize( Type*& p, std::string& str );
+  static void Deserialize( Type*& p, std::string& str );
+  
   template <typename Type>
-  void Fill( Type* p, std::string& str );
+  static void Fill( Type* p, std::string& str );
 private:
-  json11::Json _Serialize( TTestStruct* p );
-  void _Deserialize( TTestStruct* p, const json11::Json& json );
+  static void _Serialize( TBaseStruct* p, Jobj& obj );
+  static void _Deserialize( TBaseStruct* p, const json11::Json& json );
 
-  json11::Json _Serialize( TTestClass* p );
-  void _Deserialize( TTestClass* p, const json11::Json& json );
+  static void _Serialize( TTestStruct* p, Jobj& obj );
+  static void _Deserialize( TTestStruct* p, const json11::Json& json );
+
+  static void _Serialize( TTestClass* p, Jobj& obj );
+  static void _Deserialize( TTestClass* p, const json11::Json& json );
+private:
 };
 //------------------------------------------------------------------------------------
 template <typename Type>
 void TJsonSerializer::Serialize( Type* p, std::string& str )
 {
-  str = _Serialize( p ).dump();
+  Jobj obj;
+  _Serialize( p, obj );
+  json11::Json json( obj );
+  str = json.dump();
 }
 //------------------------------------------------------------------------------------
 template <typename Type>
@@ -46,7 +57,7 @@ void TJsonSerializer::Deserialize( Type*& p, std::string& str )
     return;
   p = p ? p : new Type();
 
-  _Deserialize( p, json );
+  _Deserialize( p, json.object_items() );
 }
 //------------------------------------------------------------------------------------
 template <typename Type>
@@ -57,6 +68,6 @@ void TJsonSerializer::Fill( Type* p, std::string& str )
   if ( err.size() > 0 )
     return;
 
-  _Deserialize( p, json );
+  _Deserialize( p, json.object_items() );
 }
 //------------------------------------------------------------------------------------

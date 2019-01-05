@@ -7,50 +7,92 @@ See for more information License.h.
 
 #include "JsonSerializer.h"
 #include "json11.h"
+#include "fmt/core.h"
 
 using namespace json11;
+using POM = TJsonPopMaster;
+using PUM = TJsonPushMaster;
 
-Json TJsonSerializer::_Serialize( TTestStruct* p )
+void TJsonSerializer::_Serialize( TBaseStruct* p, Jobj& obj )
 {
-  return Json::object
-  {
-    { "password", p->password },
-  { "port", p->port },
-  { "flag", p->flag },
-  { "numList", { p->numList } },
-  { "strSet", { p->strSet } },
-  };
+  PUM::Push( obj, "s", p->s );
+}
+//------------------------------------------------------------------------------------
+void TJsonSerializer::_Deserialize( TBaseStruct* p, const Json& json )
+{
+  POM::PopStr( json, "s", p->s );
+}
+//------------------------------------------------------------------------------------
+void TJsonSerializer::_Serialize( TTestStruct* p, Jobj& obj )
+{
+  _Serialize( (TBaseStruct*) p, obj );
+  PUM::Push( obj, "password", p->password );
+  PUM::Push( obj, "port", p->port );
+  PUM::Push( obj, "flag", p->flag );
+  PUM::Push( obj, "numList", p->numList );
+  PUM::Push( obj, "strSet", p->strSet );
+  PUM::Push( obj, "numVector", p->numVector );
+  PUM::Push( obj, "intSet", p->intSet );
+  PUM::PushMap( obj, "intStrMap", p->intStrMap );
+  PUM::PushMap( obj, "strStrMap", p->strStrMap );
+  PUM::PushMap( obj, "strIntMap", p->strIntMap );
+  PUM::PushMap( obj, "strBoolMap", p->strBoolMap );
+
+  PUM::PushSerObjArray<TBaseStruct, TBaseStruct>( obj, "baseVec", p->baseVec, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
+  PUM::PushSerPtrArray<TBaseStruct, TBaseStruct*>( obj, "basePtrVec", p->basePtrVec, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
+  PUM::PushSerSmartPtrArray<TBaseStruct, std::shared_ptr<TBaseStruct>>( obj, "baseSPVec", p->baseSPVec, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
+
+  PUM::PushSerObjMap<TBaseStruct, TBaseStruct>( obj, "strBaseMap", p->strBaseMap, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
+  PUM::PushSerPtrMap<TBaseStruct, TBaseStruct*>( obj, "strBasePtrMap", p->strBasePtrMap, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
+  PUM::PushSerSmartPtrMap<TBaseStruct, std::shared_ptr<TBaseStruct>>( obj, "strBaseSPMap", p->strBaseSPMap, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
 }
 //------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize( TTestStruct* p, const Json& json )
 {
-  p->password = json ["password"].string_value();
-  p->port = (unsigned short) json ["port"].number_value();
-  p->flag = json ["flag"].bool_value();
+  _Deserialize( (TBaseStruct*) p, json );
 
-  auto& v = json ["numList"].array_items();
-  for ( auto& e : v )
-    p->numList.push_back( (int) e.number_value() );
+  POM::PopStr( json, "password", p->password );
+  POM::PopNum( json, "port", p->port );
+  POM::PopBool( json, "flag", p->flag );
 
-  auto& s = json ["strSet"].array_items();
-  for ( auto& e : s )
-    p->strSet.insert( e.string_value() );
+  POM::PopNumArray<int>( json, "numList", p->numList );
+  POM::PopStrSet( json, "strSet", p->strSet );
+  POM::PopNumArray<int>( json, "numVector", p->numVector );
+  POM::PopNumSet<int>( json, "intSet", p->intSet );
+
+  POM::PopNumStrMap( json, "intStrMap", p->intStrMap );
+  POM::PopStrStrMap( json, "strStrMap", p->strStrMap );
+  POM::PopStrNumMap( json, "strIntMap", p->strIntMap );
+  POM::PopStrBoolMap( json, "strBoolMap", p->strBoolMap );
+
+  // ser array
+  POM::PopSerObjArray<TBaseStruct>( json, "baseVec", p->baseVec, [] ( TBaseStruct* p, const Json& json ) { _Deserialize(p, json); } );
+  POM::PopSerPtrArray<TBaseStruct>( json, "basePtrVec", p->basePtrVec, [] ( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); } );
+  POM::PopSerSmartPtrArray<TBaseStruct, std::shared_ptr<TBaseStruct>>( json, "baseSPVec", p->baseSPVec, [] ( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); }, [] () { return std::shared_ptr<TBaseStruct>( new TBaseStruct() ); } );
+
+
+  ////// map
+  //POM::PopStrSerObjMap( json, "strBaseMap", p->strBaseMap );
+  //POM::PopStrSerPtrMap( json, "strBasePtrMap", p->strBasePtrMap );
+  //POM::PopStrSerSmartPtrMap( json, "strBaseSPMap", p->strBaseSPMap );
+
+  //POM::PopNumSerObjMap( json, "intBaseMap", p->intBaseMap );
+  //POM::PopNumSerObjMap( json, "intBasePtrMap", p->intBasePtrMap );
+  //POM::PopNumSerObjMap( json, "intBaseSPMap", p->intBaseSPMap );
 }
 //------------------------------------------------------------------------------------
-Json TJsonSerializer::_Serialize( TTestClass* p )
+void TJsonSerializer::_Serialize( TTestClass* p, Jobj& obj )
 {
-  return Json::object
-  {
-    { "ts", _Serialize( &( p->ts ) ) },
-  { "str", p->str },
-  };
+  Jobj objTs;
+  _Serialize( &( p->ts ), objTs );
+  PUM::Push( obj, "ts", objTs );
+  PUM::Push( obj, "str", p->str );
 }
 //------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize( TTestClass* p, const Json& json )
 {
-  auto& obj = json ["ts"];
-  auto pTs = &( p->ts );
-  _Deserialize( pTs, obj );
+  auto& jsonTs = json ["ts"];
+  _Deserialize( &( p->ts ), jsonTs );
 
   p->str = json ["str"].string_value();
 }
