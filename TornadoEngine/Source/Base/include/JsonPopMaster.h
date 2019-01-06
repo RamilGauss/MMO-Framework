@@ -8,12 +8,11 @@ See for more information License.h.
 #pragma once
 
 #include "TypeDef.h"
-#include "json11.h"
+#include <functional>
+#include "JsonMaster.h"
 
-class DllExport TJsonPopMaster
+class DllExport TJsonPopMaster : public TJsonMaster
 {
-public:
-  typedef json11::Json::object Jobj;
 public:
   template <typename Type>
   using GetValueFunc = std::function<Type( const json11::Json& )>;
@@ -130,14 +129,40 @@ public:
     PopSerArray<Type, ArrayType, SmartPointer>( json, sKey, arr, deserFunc, newFunc, &GetSmartPtrPtr<Type*, SmartPointer> );
   }
 
-  // map
-  //static void PopStrSerObjMap( json, "strBaseMap", p->strBaseMap );
-  //static void PopStrSerPtrMap( json, "strBaseMap", p->strBaseMap );
-  //static void PopStrSerSmartPtrMap( json, "strBaseMap", p->strBaseMap );
+  // map<string,object>
+  template<typename Type>
+  static void PopStrSerObjMap( const json11::Json& json, const char* sKey, std::map<std::string, Type>& m, DeserFunc<Type> deserFunc )
+  {
+    PopSerMap<Type, std::string, Type, Type>( json, sKey, m, deserFunc, &Str2Str, &NewObject<Type, Type>, &GetObjPtr<Type*, Type> );
+  }
+  // map<string,pointer>
+  template<typename Type>
+  static void PopStrSerPtrMap( const json11::Json& json, const char* sKey, std::map<std::string, Type*>& m, DeserFunc<Type> deserFunc )
+  {
+    PopSerMap<Type, std::string, Type*, Type*>( json, sKey, m, deserFunc, &Str2Str, &NewPointer<Type*, Type>, &GetPtrPtr<Type*, Type*> );
+  }
+  // map<string,smart pointer>
+  template<typename Type, typename SmartPointer>
+  static void PopStrSerSmartPtrMap( const json11::Json& json, const char* sKey, std::map<std::string, SmartPointer>& m, DeserFunc<Type> deserFunc, NewFunc<SmartPointer> newFunc )
+  {
+    PopSerMap<Type, std::string, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Str, newFunc, &GetSmartPtrPtr<Type*, SmartPointer> );
+  }
 
-  //static void PopNumSerObjMap( json, "strBaseMap", p->strBaseMap );
-  //static void PopNumSerObjMap( json, "strBaseMap", p->strBaseMap );
-  //static void PopNumSerObjMap( json, "strBaseMap", p->strBaseMap );
+  template<typename KeyType, typename ValueType>
+  static void PopNumSerObjMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType>& m, DeserFunc<ValueType> deserFunc )
+  {
+    PopSerMap<ValueType, KeyType, ValueType, ValueType>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewObject<ValueType, ValueType>, &GetObjPtr<ValueType*, ValueType> );
+  }
+  template<typename KeyType, typename ValueType>
+  static void PopNumSerPtrMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType*>& m, DeserFunc<ValueType> deserFunc )
+  {
+    PopSerMap<ValueType, KeyType, ValueType*, ValueType*>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewPointer<ValueType*, ValueType>, &GetPtrPtr<ValueType*, ValueType*> );
+  }
+  template<typename KeyType, typename ValueType, typename SmartPointer>
+  static void PopNumSerSmartPtrMap( const json11::Json& json, const char* sKey, std::map<KeyType, SmartPointer>& m, DeserFunc<ValueType> deserFunc, NewFunc<SmartPointer> newFunc )
+  {
+    PopSerMap<ValueType, KeyType, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Num<KeyType>, newFunc, &GetSmartPtrPtr<ValueType*, SmartPointer> );
+  }
 
 private:
   // lambdas
@@ -203,6 +228,21 @@ private:
       auto& back = arr.back();
       auto& jobj = e.object_items();
       deserFunc( getPtr( back ), jobj );
+    }
+  }
+
+  template<typename Type, typename KeyType, typename ValueType, typename New>
+  static void PopSerMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType>& m, DeserFunc<Type> deserFunc, FromStrFunc<KeyType> fromStr, NewFunc<New> newFunc, GetPtr<Type*, New> getPtr )
+  {
+    auto& obj = json [sKey].object_items();
+    for ( auto& is : obj )
+    {
+      auto key = fromStr( is.first );
+      m.insert( { key, newFunc() } );
+      auto& value = m [key];
+      auto& jobj = is.second.object_items();
+      auto p = getPtr( value );
+      deserFunc( p, jobj );
     }
   }
 };

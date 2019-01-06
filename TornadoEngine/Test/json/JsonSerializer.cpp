@@ -8,6 +8,8 @@ See for more information License.h.
 #include "JsonSerializer.h"
 #include "json11.h"
 #include "fmt/core.h"
+#include "JsonPopMaster.h"
+#include "JsonPushMaster.h"
 
 using namespace json11;
 using POM = TJsonPopMaster;
@@ -45,6 +47,10 @@ void TJsonSerializer::_Serialize( TTestStruct* p, Jobj& obj )
   PUM::PushSerObjMap<TBaseStruct, TBaseStruct>( obj, "strBaseMap", p->strBaseMap, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
   PUM::PushSerPtrMap<TBaseStruct, TBaseStruct*>( obj, "strBasePtrMap", p->strBasePtrMap, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
   PUM::PushSerSmartPtrMap<TBaseStruct, std::shared_ptr<TBaseStruct>>( obj, "strBaseSPMap", p->strBaseSPMap, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
+
+  PUM::PushSerObjMap<TBaseStruct, TBaseStruct>( obj, "intBaseMap", p->intBaseMap, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
+  PUM::PushSerPtrMap<TBaseStruct, TBaseStruct*>( obj, "intBasePtrMap", p->intBasePtrMap, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
+  PUM::PushSerSmartPtrMap<TBaseStruct, std::shared_ptr<TBaseStruct>>( obj, "intBaseSPMap", p->intBaseSPMap, [] ( TBaseStruct* p, Jobj& jobj ) { _Serialize( p, jobj ); } );
 }
 //------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize( TTestStruct* p, const Json& json )
@@ -70,15 +76,14 @@ void TJsonSerializer::_Deserialize( TTestStruct* p, const Json& json )
   POM::PopSerPtrArray<TBaseStruct>( json, "basePtrVec", p->basePtrVec, [] ( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); } );
   POM::PopSerSmartPtrArray<TBaseStruct, std::shared_ptr<TBaseStruct>>( json, "baseSPVec", p->baseSPVec, [] ( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); }, [] () { return std::shared_ptr<TBaseStruct>( new TBaseStruct() ); } );
 
+  // map
+  POM::PopStrSerObjMap<TBaseStruct>( json, "strBaseMap", p->strBaseMap, [] ( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); } );
+  POM::PopStrSerPtrMap<TBaseStruct>( json, "strBasePtrMap", p->strBasePtrMap, [] ( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); } );
+  POM::PopStrSerSmartPtrMap<TBaseStruct, std::shared_ptr<TBaseStruct>>( json, "strBaseSPMap", p->strBaseSPMap, [] ( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); }, [] () { return std::shared_ptr<TBaseStruct>( new TBaseStruct() ); } );
 
-  ////// map
-  //POM::PopStrSerObjMap( json, "strBaseMap", p->strBaseMap );
-  //POM::PopStrSerPtrMap( json, "strBasePtrMap", p->strBasePtrMap );
-  //POM::PopStrSerSmartPtrMap( json, "strBaseSPMap", p->strBaseSPMap );
-
-  //POM::PopNumSerObjMap( json, "intBaseMap", p->intBaseMap );
-  //POM::PopNumSerObjMap( json, "intBasePtrMap", p->intBasePtrMap );
-  //POM::PopNumSerObjMap( json, "intBaseSPMap", p->intBaseSPMap );
+  POM::PopNumSerObjMap<int,TBaseStruct>( json, "intBaseMap", p->intBaseMap, [] ( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); } );
+  POM::PopNumSerPtrMap<int, TBaseStruct>( json, "intBasePtrMap", p->intBasePtrMap, [] ( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); } );
+  POM::PopNumSerSmartPtrMap<int, TBaseStruct, std::shared_ptr<TBaseStruct>>( json, "intBaseSPMap", p->intBaseSPMap, []( TBaseStruct* p, const Json& json ) { _Deserialize( p, json ); }, [] () { return std::shared_ptr<TBaseStruct>( new TBaseStruct() ); } );
 }
 //------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize( TTestClass* p, Jobj& obj )

@@ -15,20 +15,6 @@ See for more information License.h.
 
 namespace nsReflectionCodeGenerator
 {
-  //###
-  namespace MySpace
-  {
-    REFLECTION_ATTRIBUTE struct A
-    {
-      unsigned int uint;
-    };
-  }
-  REFLECTION_ATTRIBUTE struct B
-  {
-    std::map<int, std::vector<std::list<int>>> v;
-  };
-  //###
-
   REFLECTION_ATTRIBUTE struct TTargetForParsing
   {
     std::vector<std::string> directories;

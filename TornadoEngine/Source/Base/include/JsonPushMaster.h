@@ -15,10 +15,10 @@ See for more information License.h.
 #include <vector>
 #include <list>
 
-#include "json11.h"
 #include <functional>
+#include "JsonMaster.h"
 
-class DllExport TJsonPushMaster
+class DllExport TJsonPushMaster : public TJsonMaster
 {
 public:// types
   typedef json11::Json::object Jobj;

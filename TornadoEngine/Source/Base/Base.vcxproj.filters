@@ -233,9 +233,6 @@
     <ClInclude Include="include\json11.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\JsonManager.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\SortedThinningRestoreOrder.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -258,6 +255,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\TextFile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\JsonMaster.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -409,9 +409,6 @@
     <ClCompile Include="src\json11.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\JsonManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\SingletonManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -422,12 +419,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\BinaryPushMaster.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\JsonPopMaster.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\JsonPushMaster.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\TextFile.cpp">

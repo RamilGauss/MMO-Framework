@@ -9,14 +9,13 @@ See for more information License.h.
 #include <string>
 #include "TestStruct.h"
 #include "TestClass.h"
-#include "JsonPushMaster.h"
-#include "JsonPopMaster.h"
+#include "JsonMaster.h"
 
 #include "json11.h"
 
 class TJsonSerializer
 {
-  typedef TJsonPushMaster::Jobj Jobj;
+  typedef TJsonMaster::Jobj Jobj;
 
 public:
   template <typename Type>

@@ -4,14 +4,11 @@ Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
-
-#include "TypeDef.h"
 #include "TestClass.h"
 #include "JsonSerializer.h"
 #include "TextFile.h"
 
 std::string g_Path = "data.json";
-TJsonSerializer g_JsonSerializer;
 
 void TestSave()
 {
@@ -35,13 +32,16 @@ void TestSave()
   testClass.ts.baseVec.push_back( TBaseStruct() );
   testClass.ts.basePtrVec.push_back( new TBaseStruct() );
   testClass.ts.baseSPVec.push_back( std::shared_ptr<TBaseStruct>( new TBaseStruct() ) );
+
   testClass.ts.strBaseMap.insert( { "0", TBaseStruct() } );
   testClass.ts.strBasePtrMap.insert( { "0", new TBaseStruct() } );
   testClass.ts.strBaseSPMap.insert( { "0", std::shared_ptr<TBaseStruct>( new TBaseStruct() ) } );
 
+  testClass.ts.intBaseMap.insert( { 0, TBaseStruct() } );
+  testClass.ts.intBasePtrMap.insert( { 0, new TBaseStruct() } );
+  testClass.ts.intBaseSPMap.insert( { 0, std::shared_ptr<TBaseStruct>( new TBaseStruct() ) } );
 
-
-  std::string str;  g_JsonSerializer.Serialize( &testClass, str );
+  std::string str;  TJsonSerializer::Serialize( &testClass, str );
   TTextFile::Save( g_Path, str );
 }
 //------------------------------------------------------------------------------------
@@ -52,13 +52,13 @@ void TestLoad()
 
   TTestClass testClass;
   auto p = &testClass;
-  g_JsonSerializer.Deserialize( p, str );
+  TJsonSerializer::Deserialize( p, str );
 }
 //------------------------------------------------------------------------------------
 int main( int argc, char **argv )
 {
-  //TestSave();
+  TestSave();
   TestLoad();
-
   return 0;
 }
+
