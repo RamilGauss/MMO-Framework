@@ -28,17 +28,20 @@
     {
       "jsonSerializer":
       {
+        "exportDeclaration": "",
         "nameSpaceName": "",
         "fileName": "JsonSerializer",
         "className": "TJsonSerializer"
       },
       "binaryMarshaller":
       {
+        "exportDeclaration": "",
         "nameSpaceName": "",
         "fileName": "BinaryMarshaller",
         "className": "TBinaryMarshaller",
         "deserializationHandler":
         {
+          "exportDeclaration": "",
           "nameSpaceName": "",
           "fileName": "DeserializationHandler",
           "className": "TDeserializationHandler",

@@ -51,7 +51,7 @@ template <typename Type>
 void TJsonSerializer::Deserialize( Type*& p, std::string& str )
 {
   std::string err;
-  auto json = json11::Json::parse( str, err );
+  auto json = json11::Json::parse( str, err, json11::JsonParse::COMMENTS );
   if ( err.size() > 0 )
     return;
   p = p ? p : new Type();
@@ -63,7 +63,7 @@ template <typename Type>
 void TJsonSerializer::Fill( Type* p, std::string& str )
 {
   std::string err;
-  auto json = json11::Json::parse( str, err );
+  auto json = json11::Json::parse( str, err, json11::JsonParse::COMMENTS );
   if ( err.size() > 0 )
     return;
 

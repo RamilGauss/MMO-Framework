@@ -29,6 +29,7 @@ namespace nsReflectionCodeGenerator
 
   REFLECTION_ATTRIBUTE struct TClassDesc
   {
+    std::string exportDeclaration;// DllExport
     std::string nameSpaceName;
     std::string className;
     std::string fileName;

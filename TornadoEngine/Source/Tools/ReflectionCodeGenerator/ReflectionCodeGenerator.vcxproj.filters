@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="queue">
-      <UniqueIdentifier>{e1532588-b9e9-454d-8361-db9ca2078ac4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generators">
       <UniqueIdentifier>{16801796-a430-4272-a67e-4d0c63a95f01}</UniqueIdentifier>
     </Filter>
@@ -44,160 +41,157 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Sources\AST_StateMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tokenizer.cpp">
+    <ClCompile Include="Sources\CodeGeneratorFusion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Parser.cpp">
+    <ClCompile Include="Sources\FileLexer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AST_StateMachine.cpp">
+    <ClCompile Include="Sources\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileLexer.cpp">
+    <ClCompile Include="Sources\MemberTypeExtendedInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TypeManager.cpp">
+    <ClCompile Include="Sources\MemberTypeExtendedInfoAnalyzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceAccumulator.cpp">
+    <ClCompile Include="Sources\MemberTypeExtendedInfoCache.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TypeInfo.cpp">
+    <ClCompile Include="Sources\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MemberTypeExtendedInfoAnalyzer.cpp">
+    <ClCompile Include="Sources\SetupConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MemberTypeExtendedInfoCache.cpp">
+    <ClCompile Include="Sources\SourceAccumulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MemberTypeExtendedInfo.cpp">
+    <ClCompile Include="Sources\Tokenizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SetupConfig.cpp">
+    <ClCompile Include="Sources\TypeInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ICodeGenerator.cpp">
-      <Filter>Generators\General\Source Files</Filter>
+    <ClCompile Include="Sources\TypeManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CodeGeneratorFusion.cpp">
-      <Filter>Generators\General\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IFileGenerator.cpp">
-      <Filter>Generators\General\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IGenerator.cpp">
-      <Filter>Generators\General\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BinaryMarshallerGenerator.cpp">
+    <ClCompile Include="Sources\BinaryMarshallerGenerator.cpp">
       <Filter>Generators\Binary</Filter>
     </ClCompile>
-    <ClCompile Include="JsonSerializerGenerator.cpp">
+    <ClCompile Include="Sources\JsonSerializerGenerator.cpp">
       <Filter>Generators\Json</Filter>
     </ClCompile>
-    <ClCompile Include="IncludeListGenerator.cpp">
+    <ClCompile Include="Sources\IncludeListFileGenerator.cpp">
       <Filter>Generators\IncludeList</Filter>
     </ClCompile>
-    <ClCompile Include="IncludeListFileGenerator.cpp">
+    <ClCompile Include="Sources\IncludeListGenerator.cpp">
       <Filter>Generators\IncludeList</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ICodeGenerator.cpp">
+      <Filter>Generators\General\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\IFileGenerator.cpp">
+      <Filter>Generators\General\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\IGenerator.cpp">
+      <Filter>Generators\General\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ReflectionMacro.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Sources\IncludeList.h">
+      <Filter>Generated Files\Native</Filter>
     </ClInclude>
-    <ClInclude Include="TypeInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemberInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TokenInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TokenInfoManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tokenizer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AST_StateMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileLexer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Requirements.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InheritanceInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="atomicops.h">
-      <Filter>queue</Filter>
-    </ClInclude>
-    <ClInclude Include="readerwriterqueue.h">
-      <Filter>queue</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceAccumulator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemberTypeExtendedInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemberTypeExtendedInfoAnalyzer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemberTypeExtendedInfoCache.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SetupConfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CodeGeneratorFusion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ProgramInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICodeGenerator.h">
-      <Filter>Generators\General\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IFileGenerator.h">
-      <Filter>Generators\General\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGenerator.h">
-      <Filter>Generators\General\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BinaryMarshallerGenerator.h">
+    <ClInclude Include="Sources\BinaryMarshallerGenerator.h">
       <Filter>Generators\Binary</Filter>
     </ClInclude>
-    <ClInclude Include="JsonSerializerGenerator.h">
+    <ClInclude Include="Sources\TypeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Tokenizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TokenInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\SetupConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Requirements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ProgramInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\AST_StateMachine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ConfigContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\JsonSerializerGenerator.h">
       <Filter>Generators\Json</Filter>
     </ClInclude>
-    <ClInclude Include="IncludeListGenerator.h">
+    <ClInclude Include="Sources\IncludeListFileGenerator.h">
       <Filter>Generators\IncludeList</Filter>
     </ClInclude>
-    <ClInclude Include="IncludeListFileGenerator.h">
+    <ClInclude Include="Sources\IncludeListGenerator.h">
       <Filter>Generators\IncludeList</Filter>
     </ClInclude>
-    <ClInclude Include="IncludeList.h">
-      <Filter>Generated Files\Native</Filter>
+    <ClInclude Include="Sources\IGenerator.h">
+      <Filter>Generators\General\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\IFileGenerator.h">
+      <Filter>Generators\General\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ICodeGenerator.h">
+      <Filter>Generators\General\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TokenInfoManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\SourceAccumulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ReflectionMacro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\readerwriterqueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MemberTypeExtendedInfoCache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MemberTypeExtendedInfoAnalyzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MemberTypeExtendedInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MemberInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\InheritanceInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\FileLexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\CodeGeneratorFusion.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -98,15 +98,21 @@ private:
   template <typename Type, typename ElementType, typename ValueType>
   static void PushSerArray( Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc, AddressFunc<Type, ElementType> addressFunc )
   {
-    std::list<Jobj> arrJobj;
+    //std::list<Jobj> arrJobj;
+    std::list<json11::Json> arrJ;
     for ( auto& e : value )
     {
       Jobj elObj;
       auto pE = addressFunc( e );
-      serFunc( pE, elObj );
-      arrJobj.push_back( elObj );
+      if ( pE )
+      {
+        serFunc( pE, elObj );
+        arrJ.push_back( elObj );
+      }
+      else
+        arrJ.push_back( json11::Json( nullptr ) );
     }
-    obj.insert( { sKey, arrJobj } );
+    obj.insert( { sKey, arrJ } );
   }
   // map
   template <typename Type, typename ElementType, typename ValueType>
@@ -117,8 +123,13 @@ private:
     {
       Jobj elObj;
       auto pE = addressFunc( intStr.second );
-      serFunc( pE, elObj );
-      jMap.insert( { fmt::format( "{}", intStr.first ), elObj } );
+      if ( pE )
+      {
+        serFunc( pE, elObj );
+        jMap.insert( {fmt::format( "{}", intStr.first ), elObj} );
+      }
+      else
+        jMap.insert( {fmt::format( "{}", intStr.first ), json11::Json( nullptr )} );
     }
     obj.insert( { sKey, jMap } );
   }

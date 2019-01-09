@@ -104,7 +104,7 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)/Source/3rdParty/fmt/include;$(SolutionDir)/Source/Base/include;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/3rdParty/fmt/include;$(SolutionDir)/Source/Base/include;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -125,7 +125,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)/Source/Base/include;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/3rdParty/fmt/include;$(SolutionDir)/Source/Base/include;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -150,7 +150,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)/Source/Base/include;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/3rdParty/fmt/include;$(SolutionDir)/Source/Base/include;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -177,7 +177,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)/Source/Base/include;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/3rdParty/fmt/include;$(SolutionDir)/Source/Base/include;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
@@ -190,59 +190,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BinaryMarshallerGenerator.cpp" />
-    <ClCompile Include="CodeGeneratorFusion.cpp" />
-    <ClCompile Include="FileLexer.cpp" />
-    <ClCompile Include="AST_StateMachine.cpp" />
-    <ClCompile Include="ICodeGenerator.cpp" />
-    <ClCompile Include="IFileGenerator.cpp" />
-    <ClCompile Include="IGenerator.cpp" />
-    <ClCompile Include="IncludeListFileGenerator.cpp" />
-    <ClCompile Include="IncludeListGenerator.cpp" />
-    <ClCompile Include="JsonSerializerGenerator.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MemberTypeExtendedInfo.cpp" />
-    <ClCompile Include="MemberTypeExtendedInfoAnalyzer.cpp" />
-    <ClCompile Include="MemberTypeExtendedInfoCache.cpp" />
-    <ClCompile Include="Parser.cpp" />
-    <ClCompile Include="SetupConfig.cpp" />
-    <ClCompile Include="SourceAccumulator.cpp" />
-    <ClCompile Include="Tokenizer.cpp" />
-    <ClCompile Include="TypeInfo.cpp" />
-    <ClCompile Include="TypeManager.cpp" />
+    <ClCompile Include="Sources\AST_StateMachine.cpp" />
+    <ClCompile Include="Sources\BinaryMarshallerGenerator.cpp" />
+    <ClCompile Include="Sources\CodeGeneratorFusion.cpp" />
+    <ClCompile Include="Sources\FileLexer.cpp" />
+    <ClCompile Include="Sources\ICodeGenerator.cpp" />
+    <ClCompile Include="Sources\IFileGenerator.cpp" />
+    <ClCompile Include="Sources\IGenerator.cpp" />
+    <ClCompile Include="Sources\IncludeListFileGenerator.cpp" />
+    <ClCompile Include="Sources\IncludeListGenerator.cpp" />
+    <ClCompile Include="Sources\JsonSerializerGenerator.cpp" />
+    <ClCompile Include="Sources\main.cpp" />
+    <ClCompile Include="Sources\MemberTypeExtendedInfo.cpp" />
+    <ClCompile Include="Sources\MemberTypeExtendedInfoAnalyzer.cpp" />
+    <ClCompile Include="Sources\MemberTypeExtendedInfoCache.cpp" />
+    <ClCompile Include="Sources\Parser.cpp" />
+    <ClCompile Include="Sources\SetupConfig.cpp" />
+    <ClCompile Include="Sources\SourceAccumulator.cpp" />
+    <ClCompile Include="Sources\Tokenizer.cpp" />
+    <ClCompile Include="Sources\TypeInfo.cpp" />
+    <ClCompile Include="Sources\TypeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="atomicops.h" />
-    <ClInclude Include="BinaryMarshallerGenerator.h" />
-    <ClInclude Include="CodeGeneratorFusion.h" />
-    <ClInclude Include="FileLexer.h" />
-    <ClInclude Include="ConfigContainer.h" />
-    <ClInclude Include="AST_StateMachine.h" />
-    <ClInclude Include="ICodeGenerator.h" />
-    <ClInclude Include="IFileGenerator.h" />
-    <ClInclude Include="IGenerator.h" />
-    <ClInclude Include="IncludeList.h" />
-    <ClInclude Include="IncludeListFileGenerator.h" />
-    <ClInclude Include="IncludeListGenerator.h" />
-    <ClInclude Include="InheritanceInfo.h" />
-    <ClInclude Include="JsonSerializerGenerator.h" />
-    <ClInclude Include="MemberInfo.h" />
-    <ClInclude Include="MemberTypeExtendedInfo.h" />
-    <ClInclude Include="MemberTypeExtendedInfoAnalyzer.h" />
-    <ClInclude Include="MemberTypeExtendedInfoCache.h" />
-    <ClInclude Include="Parser.h" />
-    <ClInclude Include="ProgramInfo.h" />
-    <ClInclude Include="readerwriterqueue.h" />
-    <ClInclude Include="ReflectionMacro.h" />
-    <ClInclude Include="Config.h" />
-    <ClInclude Include="Requirements.h" />
-    <ClInclude Include="SetupConfig.h" />
-    <ClInclude Include="SourceAccumulator.h" />
-    <ClInclude Include="TokenInfo.h" />
-    <ClInclude Include="TokenInfoManager.h" />
-    <ClInclude Include="Tokenizer.h" />
-    <ClInclude Include="TypeInfo.h" />
-    <ClInclude Include="TypeManager.h" />
+    <ClInclude Include="Sources\AST_StateMachine.h" />
+    <ClInclude Include="Sources\BinaryMarshallerGenerator.h" />
+    <ClInclude Include="Sources\CodeGeneratorFusion.h" />
+    <ClInclude Include="Sources\Config.h" />
+    <ClInclude Include="Sources\ConfigContainer.h" />
+    <ClInclude Include="Sources\FileLexer.h" />
+    <ClInclude Include="Sources\ICodeGenerator.h" />
+    <ClInclude Include="Sources\IFileGenerator.h" />
+    <ClInclude Include="Sources\IGenerator.h" />
+    <ClInclude Include="Sources\IncludeList.h" />
+    <ClInclude Include="Sources\IncludeListFileGenerator.h" />
+    <ClInclude Include="Sources\IncludeListGenerator.h" />
+    <ClInclude Include="Sources\InheritanceInfo.h" />
+    <ClInclude Include="Sources\JsonSerializerGenerator.h" />
+    <ClInclude Include="Sources\MemberInfo.h" />
+    <ClInclude Include="Sources\MemberTypeExtendedInfo.h" />
+    <ClInclude Include="Sources\MemberTypeExtendedInfoAnalyzer.h" />
+    <ClInclude Include="Sources\MemberTypeExtendedInfoCache.h" />
+    <ClInclude Include="Sources\Parser.h" />
+    <ClInclude Include="Sources\ProgramInfo.h" />
+    <ClInclude Include="Sources\readerwriterqueue.h" />
+    <ClInclude Include="Sources\ReflectionMacro.h" />
+    <ClInclude Include="Sources\Requirements.h" />
+    <ClInclude Include="Sources\SetupConfig.h" />
+    <ClInclude Include="Sources\SourceAccumulator.h" />
+    <ClInclude Include="Sources\TokenInfo.h" />
+    <ClInclude Include="Sources\TokenInfoManager.h" />
+    <ClInclude Include="Sources\Tokenizer.h" />
+    <ClInclude Include="Sources\TypeInfo.h" />
+    <ClInclude Include="Sources\TypeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />

@@ -9,6 +9,7 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include <functional>
+#include <set>
 #include "JsonMaster.h"
 
 class DllExport TJsonPopMaster : public TJsonMaster
@@ -31,6 +32,9 @@ public:
 
   template<typename RetType, typename ArgType>
   using GetPtr = std::function<RetType( ArgType& )>;
+
+  template<typename RetType>
+  using GetNullValue = std::function<RetType()>;
 public:
   // BOOL
   static void PopBool( const json11::Json& json, const char* sKey, bool& value )
@@ -114,54 +118,54 @@ public:
   template<typename Type, typename ArrayType>
   static void PopSerObjArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc )
   {
-    PopSerArray<Type, ArrayType, Type>( json, sKey, arr, deserFunc, &NewObject<Type, Type>, &GetObjPtr<Type*, Type> );
+    PopSerArray<Type, ArrayType, Type>( json, sKey, arr, deserFunc, &NewObject<Type, Type>, &GetObjPtr<Type*, Type>, &GetNullForObject<Type> );
   }
   // list, vector<Serialized pointer>  
   template<typename Type, typename ArrayType>
   static void PopSerPtrArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc )
   {
-    PopSerArray<Type, ArrayType, Type*>( json, sKey, arr, deserFunc, &NewPointer<Type*, Type>, &GetPtrPtr<Type*, Type*> );
+    PopSerArray<Type, ArrayType, Type*>( json, sKey, arr, deserFunc, &NewPointer<Type*, Type>, &GetPtrPtr<Type*, Type*>, &GetNullForPtr<Type*> );
   }
   // list, vector<Serialized smart pointer>
   template<typename Type, typename SmartPointer, typename ArrayType>
   static void PopSerSmartPtrArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc, NewFunc<SmartPointer> newFunc )
   {
-    PopSerArray<Type, ArrayType, SmartPointer>( json, sKey, arr, deserFunc, newFunc, &GetSmartPtrPtr<Type*, SmartPointer> );
+    PopSerArray<Type, ArrayType, SmartPointer>( json, sKey, arr, deserFunc, newFunc, &GetSmartPtrPtr<Type*, SmartPointer>, &GetNullForSmartPtr<SmartPointer> );
   }
 
   // map<string,object>
   template<typename Type>
   static void PopStrSerObjMap( const json11::Json& json, const char* sKey, std::map<std::string, Type>& m, DeserFunc<Type> deserFunc )
   {
-    PopSerMap<Type, std::string, Type, Type>( json, sKey, m, deserFunc, &Str2Str, &NewObject<Type, Type>, &GetObjPtr<Type*, Type> );
+    PopSerMap<Type, std::string, Type, Type>( json, sKey, m, deserFunc, &Str2Str, &NewObject<Type, Type>, &GetObjPtr<Type*, Type>, &GetNullForObject<Type> );
   }
   // map<string,pointer>
   template<typename Type>
   static void PopStrSerPtrMap( const json11::Json& json, const char* sKey, std::map<std::string, Type*>& m, DeserFunc<Type> deserFunc )
   {
-    PopSerMap<Type, std::string, Type*, Type*>( json, sKey, m, deserFunc, &Str2Str, &NewPointer<Type*, Type>, &GetPtrPtr<Type*, Type*> );
+    PopSerMap<Type, std::string, Type*, Type*>( json, sKey, m, deserFunc, &Str2Str, &NewPointer<Type*, Type>, &GetPtrPtr<Type*, Type*>, &GetNullForPtr<Type*> );
   }
   // map<string,smart pointer>
   template<typename Type, typename SmartPointer>
   static void PopStrSerSmartPtrMap( const json11::Json& json, const char* sKey, std::map<std::string, SmartPointer>& m, DeserFunc<Type> deserFunc, NewFunc<SmartPointer> newFunc )
   {
-    PopSerMap<Type, std::string, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Str, newFunc, &GetSmartPtrPtr<Type*, SmartPointer> );
+    PopSerMap<Type, std::string, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Str, newFunc, &GetSmartPtrPtr<Type*, SmartPointer>, &GetNullForSmartPtr<SmartPointer> );
   }
 
   template<typename KeyType, typename ValueType>
   static void PopNumSerObjMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType>& m, DeserFunc<ValueType> deserFunc )
   {
-    PopSerMap<ValueType, KeyType, ValueType, ValueType>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewObject<ValueType, ValueType>, &GetObjPtr<ValueType*, ValueType> );
+    PopSerMap<ValueType, KeyType, ValueType, ValueType>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewObject<ValueType, ValueType>, &GetObjPtr<ValueType*, ValueType>, &GetNullForObject<ValueType> );
   }
   template<typename KeyType, typename ValueType>
   static void PopNumSerPtrMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType*>& m, DeserFunc<ValueType> deserFunc )
   {
-    PopSerMap<ValueType, KeyType, ValueType*, ValueType*>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewPointer<ValueType*, ValueType>, &GetPtrPtr<ValueType*, ValueType*> );
+    PopSerMap<ValueType, KeyType, ValueType*, ValueType*>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewPointer<ValueType*, ValueType>, &GetPtrPtr<ValueType*, ValueType*>, &GetNullForPtr<ValueType*> );
   }
   template<typename KeyType, typename ValueType, typename SmartPointer>
   static void PopNumSerSmartPtrMap( const json11::Json& json, const char* sKey, std::map<KeyType, SmartPointer>& m, DeserFunc<ValueType> deserFunc, NewFunc<SmartPointer> newFunc )
   {
-    PopSerMap<ValueType, KeyType, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Num<KeyType>, newFunc, &GetSmartPtrPtr<ValueType*, SmartPointer> );
+    PopSerMap<ValueType, KeyType, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Num<KeyType>, newFunc, &GetSmartPtrPtr<ValueType*, SmartPointer>, &GetNullForSmartPtr<SmartPointer> );
   }
 
 private:
@@ -169,7 +173,7 @@ private:
   static bool BoolValue( const json11::Json& json ) { return json.bool_value(); }
 
   template <typename Type>
-  static Type NumValue( const json11::Json& json ) { return json.number_value(); }
+  static Type NumValue( const json11::Json& json ) { return (Type)json.number_value(); }
 
   static std::string StrValue( const json11::Json& json ) { return json.string_value(); }
   //=================
@@ -195,6 +199,13 @@ private:
   static RetType GetPtrPtr( ArgType& p ) { return p; }
   template<typename RetType, typename ArgType>
   static RetType GetSmartPtrPtr( ArgType& p ) { return p.get(); }
+  //=================
+  template<typename RetType>
+  static RetType GetNullForObject(){ return RetType(); }
+  template<typename RetType>
+  static RetType GetNullForPtr(){ return nullptr; }
+  template<typename RetType>
+  static RetType GetNullForSmartPtr(){ return RetType(); }
 private:
   // list, vector, set
   template <typename Type, typename ArrayType>
@@ -218,12 +229,21 @@ private:
   }
 
   template<typename Type, typename ArrayType, typename New>
-  static void PopSerArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc, NewFunc<New> newFunc, GetPtr<Type*, New> getPtr )
+  static void PopSerArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc, NewFunc<New> newFunc, 
+    GetPtr<Type*, New> getPtr, GetNullValue<New> getNull )
   {
     auto& jvalue = json [sKey];
     auto jarr = jvalue.array_items();
     for ( auto& e : jarr )
     {
+      if ( e.is_null() )
+      {
+        arr.push_back( getNull() );
+        continue;
+      }
+      if ( e.is_object() == false )
+        continue;
+
       arr.push_back( newFunc() );
       auto& back = arr.back();
       auto& jobj = e.object_items();
@@ -232,12 +252,21 @@ private:
   }
 
   template<typename Type, typename KeyType, typename ValueType, typename New>
-  static void PopSerMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType>& m, DeserFunc<Type> deserFunc, FromStrFunc<KeyType> fromStr, NewFunc<New> newFunc, GetPtr<Type*, New> getPtr )
+  static void PopSerMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType>& m, DeserFunc<Type> deserFunc, FromStrFunc<KeyType> fromStr, 
+    NewFunc<New> newFunc, GetPtr<Type*, New> getPtr, GetNullValue<New> getNull )
   {
     auto& obj = json [sKey].object_items();
     for ( auto& is : obj )
     {
       auto key = fromStr( is.first );
+      if ( is.second.is_null() )
+      {
+        m.insert( { key, getNull() } );
+        continue;
+      }
+      if ( is.second.is_object() == false )
+        continue;
+
       m.insert( { key, newFunc() } );
       auto& value = m [key];
       auto& jobj = is.second.object_items();

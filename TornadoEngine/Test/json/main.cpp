@@ -30,15 +30,15 @@ void TestSave()
   testClass.ts.strBoolMap = { { "0", false }, { "1", true }, { "2", true } };
 
   testClass.ts.baseVec.push_back( TBaseStruct() );
-  testClass.ts.basePtrVec.push_back( new TBaseStruct() );
+  testClass.ts.basePtrVec.push_back( nullptr );// new TBaseStruct() );
   testClass.ts.baseSPVec.push_back( std::shared_ptr<TBaseStruct>( new TBaseStruct() ) );
 
   testClass.ts.strBaseMap.insert( { "0", TBaseStruct() } );
-  testClass.ts.strBasePtrMap.insert( { "0", new TBaseStruct() } );
+  testClass.ts.strBasePtrMap.insert( {"0", nullptr} );// new TBaseStruct() } );
   testClass.ts.strBaseSPMap.insert( { "0", std::shared_ptr<TBaseStruct>( new TBaseStruct() ) } );
 
   testClass.ts.intBaseMap.insert( { 0, TBaseStruct() } );
-  testClass.ts.intBasePtrMap.insert( { 0, new TBaseStruct() } );
+  testClass.ts.intBasePtrMap.insert( { 0, nullptr} );//new TBaseStruct() } );
   testClass.ts.intBaseSPMap.insert( { 0, std::shared_ptr<TBaseStruct>( new TBaseStruct() ) } );
 
   std::string str;  TJsonSerializer::Serialize( &testClass, str );
@@ -57,7 +57,7 @@ void TestLoad()
 //------------------------------------------------------------------------------------
 int main( int argc, char **argv )
 {
-  TestSave();
+  //TestSave();
   TestLoad();
   return 0;
 }
