@@ -17,6 +17,9 @@ namespace nsReflectionCodeGenerator
     TJsonSerializerGenerator() : ICodeGenerator( "JsonSerializerGenerator" ) { }
 
     virtual void Work() override;
+  private:
+    void GenerateHeader();
+    void GenerateSource();
   };
 }
 

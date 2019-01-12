@@ -14,7 +14,7 @@ using namespace nsReflectionCodeGenerator;
 
 void TIncludeListGenerator::Work()
 {
-  TIncludeListFileGenerator fileGenrator;
+  TIncludeListFileGenerator fileGenerator;
 
   mPairList->push_back( TStrListPair() );
 
@@ -22,7 +22,7 @@ void TIncludeListGenerator::Work()
 
   pair.first = GeneratedFileFullPath( mConfig->targetForCodeGeneration.includeListFileName + ".h" );
 
-  fileGenrator.Init( pair );
-  fileGenrator.Work();
+  fileGenerator.Init( pair );
+  fileGenerator.Work();
 }
 //-----------------------------------------------------------------------------------

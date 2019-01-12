@@ -7,14 +7,18 @@ See for more information License.h.
 
 #pragma once
 
-#include <string>
+#include "JsonSerializerFileGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {
-  namespace nsProgramInfo
+  class TJsonSerializerHeaderFileGenerator : public TJsonSerializerFileGenerator
   {
-    const std::string NAME = "ReflectionCodeGenerator";
-    const std::string VERSION = "0.33";
-    const int COUNTER_BUILD = 6;
-  }
+  public:
+  public:
+    virtual void Work() override;
+
+  private:
+
+  };
 }
+

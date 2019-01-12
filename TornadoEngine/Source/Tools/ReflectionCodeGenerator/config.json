@@ -3,8 +3,7 @@
   {
     "directories":
     [
-      "../../",
-      "../project"
+      "./Sources"
     ],
     "recursive": true
   },
@@ -22,8 +21,8 @@
   },
   "targetForCodeGeneration":
   {
-    "directory": "./GeneratedFiles",
-    "includeListFileName" :  "IncludeList",
+    "directory": "./Sources",
+    "includeListFileName": "IncludeList",
     "implementation":
     {
       "jsonSerializer":
@@ -39,6 +38,7 @@
         "nameSpaceName": "",
         "fileName": "BinaryMarshaller",
         "className": "TBinaryMarshaller",
+        "beginID": 0,
         "deserializationHandler":
         {
           "exportDeclaration": "",

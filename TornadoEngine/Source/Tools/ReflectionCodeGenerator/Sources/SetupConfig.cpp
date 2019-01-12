@@ -67,13 +67,13 @@ void TSetupConfig::DefaultConfig()
 {
   auto config = mConfigContainer->Config();
   config->targetForParsing.recursive = true;
-  config->targetForParsing.directories.push_back( "." );
+  config->targetForParsing.directories.push_back( "./Sources" );
 
   config->filter.attribute = "REFLECTION_ATTRIBUTE";
   config->filter.extensions.push_back( ".h" );
   config->filter.extensions.push_back( ".hpp" );
 
-  config->targetForCodeGeneration.directory = ".";
+  config->targetForCodeGeneration.directory = "./Sources";
   config->targetForCodeGeneration.includeListFileName = "IncludeList";
 
   config->targetForCodeGeneration.implementation.jsonSerializer.reset( new nsReflectionCodeGenerator::TJsonSerializerGeneratorConfig() );

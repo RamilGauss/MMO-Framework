@@ -7,14 +7,14 @@ See for more information License.h.
 
 #pragma once
 
-#include <string>
+#include "IFileGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {
-  namespace nsProgramInfo
+  class TJsonSerializerFileGenerator : public IFileGenerator
   {
-    const std::string NAME = "ReflectionCodeGenerator";
-    const std::string VERSION = "0.33";
-    const int COUNTER_BUILD = 6;
-  }
+  protected:
+
+  };
 }
+

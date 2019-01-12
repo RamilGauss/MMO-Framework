@@ -39,6 +39,12 @@
     <Filter Include="Generators\IncludeList">
       <UniqueIdentifier>{645c1cee-0ba4-4a82-b079-552c05c5ca69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{14239343-ebef-4173-b8e2-db9fdb629f09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Info">
+      <UniqueIdentifier>{c50e22c0-6f45-4957-a29f-17744101630b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\AST_StateMachine.cpp">
@@ -101,6 +107,9 @@
     <ClCompile Include="Sources\IGenerator.cpp">
       <Filter>Generators\General\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\JsonSerializerHeaderFileGenerator.cpp">
+      <Filter>Generators\Json</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\IncludeList.h">
@@ -112,13 +121,7 @@
     <ClInclude Include="Sources\TypeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\TypeInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Tokenizer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\TokenInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\SetupConfig.h">
@@ -178,23 +181,40 @@
     <ClInclude Include="Sources\MemberTypeExtendedInfoAnalyzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\MemberTypeExtendedInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\MemberInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\InheritanceInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\FileLexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\CodeGeneratorFusion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\TokenInfo.h">
+      <Filter>Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInfo.h">
+      <Filter>Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MemberInfo.h">
+      <Filter>Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\InheritanceInfo.h">
+      <Filter>Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MemberTypeExtendedInfo.h">
+      <Filter>Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\JsonSerializerFileGenerator.h">
+      <Filter>Generators\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\JsonSerializerHeaderFileGenerator.h">
+      <Filter>Generators\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\JsonSerializer.h">
+      <Filter>Generated Files\Native</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="config.json" />
+    <None Include="config.json">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

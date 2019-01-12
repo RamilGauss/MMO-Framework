@@ -35,6 +35,9 @@
     <ClInclude Include="JsonSerializer.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="IncludeList.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json">

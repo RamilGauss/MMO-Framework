@@ -6,7 +6,6 @@ See for more information License.h.
 */
 
 #include "JsonSerializer.h"
-#include "json11.h"
 #include "fmt/core.h"
 #include "JsonPopMaster.h"
 #include "JsonPushMaster.h"

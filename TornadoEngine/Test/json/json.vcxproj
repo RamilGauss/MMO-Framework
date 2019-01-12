@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseStruct.h" />
+    <ClInclude Include="IncludeList.h" />
     <ClInclude Include="JsonSerializer.h" />
     <ClInclude Include="TestClass.h" />
     <ClInclude Include="TestStruct.h" />

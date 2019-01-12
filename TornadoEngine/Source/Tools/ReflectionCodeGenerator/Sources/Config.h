@@ -43,6 +43,7 @@ namespace nsReflectionCodeGenerator
   REFLECTION_ATTRIBUTE struct TBinaryMarshallerGeneratorConfig : TClassDesc
   {
     TDeserializationHandler deserializationHandler;
+    unsigned short beginID;
   };
 
   REFLECTION_ATTRIBUTE struct TJsonSerializerGeneratorConfig : TClassDesc

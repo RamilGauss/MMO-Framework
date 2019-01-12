@@ -18,7 +18,7 @@ void IFileGenerator::Init( TStrListPair& strListPair )
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddHeader()
 {
-  for( auto& str : s_Header )
+  for ( auto& str : s_Header )
     Add( str );
 }
 //----------------------------------------------------------------------------------
@@ -37,20 +37,103 @@ void IFileGenerator::AddEmptyLine()
   Add( s );
 }
 //----------------------------------------------------------------------------------
-void nsReflectionCodeGenerator::IFileGenerator::AddPragmaOnce()
+void IFileGenerator::AddPragmaOnce()
 {
   auto s = "#pragma once";
   Add( s );
 }
 //----------------------------------------------------------------------------------
-void nsReflectionCodeGenerator::IFileGenerator::AddInclude( const std::string& fileName )
+void IFileGenerator::AddInclude( const std::string& fileName )
 {
-  auto s = fmt::format( "#include \"{}\"", fileName );
+  AddIncludeExt( fileName, "\"", "\"" );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddStandartInclude( const std::string& fileName )
+{
+  AddIncludeExt( fileName, "<", ">" );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddNamespaceBegin( const std::string& namespaceName )
+{
+  auto s = fmt::format( "namespace {}", namespaceName );
+  Add( s );
+  s = "{";
   Add( s );
 }
 //----------------------------------------------------------------------------------
-void nsReflectionCodeGenerator::IFileGenerator::Add( const std::string& str )
+void IFileGenerator::AddNamespaceEnd()
 {
-  pStrListPair->second.push_back( str );
+  auto s = "}";
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddClassBegin( const std::string& exportDeclaration, const std::string& className )
+{
+  auto sEexportDeclaration = fmt::format( " {}", exportDeclaration );
+  auto s = fmt::format( "class{} {}", sEexportDeclaration, className );
+  Add( s );
+  s = "{";
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddClassEnd()
+{
+  auto s = "};";
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddIncludeExt( const std::string& fileName, const std::string& beginBrace, const std::string& endBrace )
+{
+  auto s = fmt::format( "#include {0}{1}{2}", beginBrace, fileName, endBrace );
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::Add( const std::string& str )
+{
+  auto s = AddTabsToStr( str, mTabCounter );
+
+  pStrListPair->second.push_back( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::IncrementTabs()
+{
+  mTabCounter++;
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::DecrementTabs()
+{
+  mTabCounter--;
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::ClearTabs()
+{
+  mTabCounter = 0;
+}
+//----------------------------------------------------------------------------------
+std::string IFileGenerator::AddTabsToStr( const std::string& str, int tabCounter )
+{
+  std::string tabAcculumator;
+  for ( auto i = 0; i < tabCounter; i++ )
+    tabAcculumator += sTab;
+  return tabAcculumator + str;
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddPublicSection()
+{
+  auto s = "public:";
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddProtectedSection()
+{
+  auto s = "protected:";
+  Add( s );
+
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddPrivateSection()
+{
+  auto s = "private:";
+  Add( s );
 }
 //----------------------------------------------------------------------------------
