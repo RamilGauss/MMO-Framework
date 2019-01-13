@@ -18,8 +18,7 @@ void IFileGenerator::Init( TStrListPair& strListPair )
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddHeader()
 {
-  for ( auto& str : s_Header )
-    Add( str );
+  AddList( s_Header );
 }
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddTimeHeader()
@@ -135,5 +134,27 @@ void IFileGenerator::AddPrivateSection()
 {
   auto s = "private:";
   Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddList( const std::list<std::string>& strList )
+{
+  for ( auto& str : strList )
+    Add( str );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddStaticMethodDeclaration( const std::string& name, const std::string& retName, std::list<std::string>& paramList )
+{
+  std::string str = fmt::format( "static {} {}(", retName, name );
+  int cnt = paramList.size();
+  int i = 0;
+  for ( auto& param : paramList )
+  {
+    str += param;
+    if ( i != cnt - 1 )
+      str += ", ";
+    i++;
+  }
+  str += ");";
+  Add( str );
 }
 //----------------------------------------------------------------------------------

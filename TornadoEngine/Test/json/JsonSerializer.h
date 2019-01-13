@@ -23,6 +23,9 @@ public:
 
   template <typename Type>
   static void Fill( Type* p, std::string& str );
+private:
+  template <typename Type>
+  static void _Deserialize( Type*& p, std::string& str, bool checkPtr );
 private:// enumerate all structs and classes
   static void _Serialize( TBaseStruct* p, Jobj& obj );
   static void _Deserialize( TBaseStruct* p, const json11::Json& json );
@@ -32,9 +35,6 @@ private:// enumerate all structs and classes
 
   static void _Serialize( TTestClass* p, Jobj& obj );
   static void _Deserialize( TTestClass* p, const json11::Json& json );
-private:
-  template <typename Type>
-  static void _Deserialize( Type*& p, std::string& str, bool checkPtr );
 };
 //------------------------------------------------------------------------------------
 template <typename Type>

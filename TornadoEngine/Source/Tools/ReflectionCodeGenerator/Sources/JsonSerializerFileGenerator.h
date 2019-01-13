@@ -14,7 +14,8 @@ namespace nsReflectionCodeGenerator
   class TJsonSerializerFileGenerator : public IFileGenerator
   {
   protected:
-
+    const std::string sSerialzeMethod = "_Serialize";
+    const std::string sDeserialzeMethod = "_Deserialize";
   };
 }
 

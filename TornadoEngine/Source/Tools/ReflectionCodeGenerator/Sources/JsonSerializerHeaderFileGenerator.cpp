@@ -33,7 +33,11 @@ void TJsonSerializerHeaderFileGenerator::Work()
 
   AddClassBegin( jsonSerializer->exportDeclaration, jsonSerializer->className );
 
-  AddPublicSection();
+  AddList( s_JsonDecl );
+
+  AddPrivateSection();
+
+  AddDeclarations();
 
   AddClassEnd();
 
@@ -43,3 +47,45 @@ void TJsonSerializerHeaderFileGenerator::Work()
     AddNamespaceEnd();
 }
 //-----------------------------------------------------------------------------------
+void TJsonSerializerHeaderFileGenerator::AddDeclarations()
+{
+  IncrementTabs();
+  for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap )
+  {
+    auto namespaceName = namespaceTypeInfo.first;
+    auto& filenameTypeMap = *( namespaceTypeInfo.second.get() );
+    for ( auto filenameType : filenameTypeMap )
+    {
+      auto typeName = filenameType.second->mName;
+      auto namespaceWithType = namespaceName + "::" + typeName;
+      AddSerializeMethodDeclaration( namespaceWithType );
+      AddDeserializeMethodDeclaration( namespaceWithType );
+      AddEmptyLine();
+    }
+  }
+  DecrementTabs();
+}
+//-----------------------------------------------------------------------------------
+void TJsonSerializerHeaderFileGenerator::AddSerializeMethodDeclaration( std::string& namespaceWithType )
+{
+  // S - Type* p, Jobj& obj
+  std::list<std::string> strList =
+  {
+    namespaceWithType + "* p",
+    "Jobj& obj"
+  };
+  AddStaticMethodDeclaration( sSerialzeMethod, "void", strList );
+}
+//-----------------------------------------------------------------------------------
+void TJsonSerializerHeaderFileGenerator::AddDeserializeMethodDeclaration( std::string& namespaceWithType )
+{
+  // D - Type* p, const json11::Json& json 
+  std::list<std::string> strList =
+  {
+    namespaceWithType + "* p",
+    "const json11::Json& json"
+  };
+  AddStaticMethodDeclaration( sDeserialzeMethod, "void", strList );
+}
+//-----------------------------------------------------------------------------------
+

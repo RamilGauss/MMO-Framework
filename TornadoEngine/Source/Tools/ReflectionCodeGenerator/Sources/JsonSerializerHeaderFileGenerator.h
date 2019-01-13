@@ -13,11 +13,31 @@ namespace nsReflectionCodeGenerator
 {
   class TJsonSerializerHeaderFileGenerator : public TJsonSerializerFileGenerator
   {
-  public:
+    const std::list<std::string> s_JsonDecl =
+    {
+    "  typedef TJsonMaster::Jobj Jobj;",
+    "public:",
+    "  template <typename Type>",
+    "  static void Serialize( Type* p, std::string& str );",
+    "",
+    "  template <typename Type>",
+    "  static void Deserialize( Type*& p, std::string& str );",
+    "",
+    "  template <typename Type>",
+    "  static void Fill( Type* p, std::string& str );",
+    "private:",
+    "  template <typename Type>",
+    "  static void _Deserialize( Type*& p, std::string& str, bool checkPtr );",
+    };
   public:
     virtual void Work() override;
 
   private:
+    void AddDeclarations();
+
+    void AddSerializeMethodDeclaration( std::string& namespaceWithType );
+    void AddDeserializeMethodDeclaration( std::string& namespaceWithType );
+
 
   };
 }

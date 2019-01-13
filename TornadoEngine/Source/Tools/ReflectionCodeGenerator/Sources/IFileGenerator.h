@@ -61,8 +61,11 @@ namespace nsReflectionCodeGenerator
     void DecrementTabs();
     void ClearTabs();
 
+    void AddStaticMethodDeclaration( const std::string& name, const std::string& retName, std::list<std::string>& paramList );
+
   protected:
     void Add( const std::string& str );
+    void AddList( const std::list<std::string>& strList );
     void AddIncludeExt( const std::string& fileName, const std::string& beginBrace, const std::string& endBrace );
 
     std::string AddTabsToStr( const std::string& str, int tabCounter );
