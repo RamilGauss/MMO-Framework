@@ -16,6 +16,11 @@ namespace nsReflectionCodeGenerator
   protected:
     const std::string sSerialzeMethod = "_Serialize";
     const std::string sDeserialzeMethod = "_Deserialize";
+
+    // S - Type* p, Jobj& obj
+    std::list<std::string> GetParamListForSerialize( const std::string& namespaceWithType ); 
+    std::list<std::string> GetParamListForDeserialize( const std::string& namespaceWithType ); 
+
   };
 }
 

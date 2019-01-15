@@ -7,6 +7,7 @@ See for more information License.h.
 
 #include "JsonSerializerGenerator.h"
 #include "JsonSerializerHeaderFileGenerator.h"
+#include "JsonSerializerSourceFileGenerator.h"
 
 using namespace nsReflectionCodeGenerator;
 
@@ -32,7 +33,16 @@ void TJsonSerializerGenerator::GenerateHeader()
 //----------------------------------------------------------------------------------
 void nsReflectionCodeGenerator::TJsonSerializerGenerator::GenerateSource()
 {
+  TJsonSerializerSourceFileGenerator fileGenerator;
 
+  mPairList->push_back( TStrListPair() );
+
+  auto& pair = mPairList->back();
+
+  pair.first = GeneratedFileFullPath( mConfig->targetForCodeGeneration.implementation.jsonSerializer->fileName + ".cpp" );
+
+  fileGenerator.Init( pair );
+  fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------

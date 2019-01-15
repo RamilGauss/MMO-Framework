@@ -72,7 +72,7 @@ int main( int argc, char *argv [] )
 
   // Please, look at the console
 #ifdef _DEBUG
-  getchar();
+  //getchar();
 #endif
   return 0;
 }

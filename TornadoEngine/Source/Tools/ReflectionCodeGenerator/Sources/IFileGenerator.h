@@ -41,14 +41,20 @@ namespace nsReflectionCodeGenerator
     void AddHeader();
     void AddTimeHeader();
 
+    void AddLeftBrace();
+    void AddRightBrace();
+
     void AddEmptyLine();
+    void AddCommentedLongLine();
 
     void AddPragmaOnce();
 
     void AddInclude( const std::string& fileName );
     void AddStandartInclude( const std::string& fileName );
+
     void AddNamespaceBegin( const std::string& namespaceName );
     void AddNamespaceEnd();
+    void AddUsingNamespace( const std::string& namespaceName );
 
     void AddClassBegin( const std::string& exportDeclaration, const std::string& className );
     void AddClassEnd();
@@ -61,7 +67,9 @@ namespace nsReflectionCodeGenerator
     void DecrementTabs();
     void ClearTabs();
 
-    void AddStaticMethodDeclaration( const std::string& name, const std::string& retName, std::list<std::string>& paramList );
+    void AddStaticMethodDeclaration( const std::string& retName, const std::string& name, std::list<std::string>& paramList );
+
+    void AddMethodImplementationBegin( const std::string& retName, const std::string& className, const std::string& name, std::list<std::string>& paramList );
 
   protected:
     void Add( const std::string& str );

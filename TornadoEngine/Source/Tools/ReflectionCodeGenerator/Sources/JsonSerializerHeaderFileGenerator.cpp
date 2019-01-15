@@ -69,23 +69,15 @@ void TJsonSerializerHeaderFileGenerator::AddDeclarations()
 void TJsonSerializerHeaderFileGenerator::AddSerializeMethodDeclaration( std::string& namespaceWithType )
 {
   // S - Type* p, Jobj& obj
-  std::list<std::string> strList =
-  {
-    namespaceWithType + "* p",
-    "Jobj& obj"
-  };
-  AddStaticMethodDeclaration( sSerialzeMethod, "void", strList );
+  auto strList = GetParamListForSerialize( namespaceWithType );
+  AddStaticMethodDeclaration( "void", sSerialzeMethod, strList );
 }
 //-----------------------------------------------------------------------------------
 void TJsonSerializerHeaderFileGenerator::AddDeserializeMethodDeclaration( std::string& namespaceWithType )
 {
   // D - Type* p, const json11::Json& json 
-  std::list<std::string> strList =
-  {
-    namespaceWithType + "* p",
-    "const json11::Json& json"
-  };
-  AddStaticMethodDeclaration( sDeserialzeMethod, "void", strList );
+  auto strList = GetParamListForDeserialize( namespaceWithType );
+  AddStaticMethodDeclaration( "void", sDeserialzeMethod, strList );
 }
 //-----------------------------------------------------------------------------------
 

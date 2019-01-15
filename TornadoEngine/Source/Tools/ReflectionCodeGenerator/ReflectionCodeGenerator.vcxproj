@@ -199,8 +199,11 @@
     <ClCompile Include="Sources\IGenerator.cpp" />
     <ClCompile Include="Sources\IncludeListFileGenerator.cpp" />
     <ClCompile Include="Sources\IncludeListGenerator.cpp" />
+    <ClCompile Include="Sources\JsonSerializer.cpp" />
+    <ClCompile Include="Sources\JsonSerializerFileGenerator.cpp" />
     <ClCompile Include="Sources\JsonSerializerHeaderFileGenerator.cpp" />
     <ClCompile Include="Sources\JsonSerializerGenerator.cpp" />
+    <ClCompile Include="Sources\JsonSerializerSourceFileGenerator.cpp" />
     <ClCompile Include="Sources\main.cpp" />
     <ClCompile Include="Sources\MemberTypeExtendedInfo.cpp" />
     <ClCompile Include="Sources\MemberTypeExtendedInfoAnalyzer.cpp" />
@@ -230,6 +233,7 @@
     <ClInclude Include="Sources\JsonSerializerFileGenerator.h" />
     <ClInclude Include="Sources\JsonSerializerGenerator.h" />
     <ClInclude Include="Sources\JsonSerializerHeaderFileGenerator.h" />
+    <ClInclude Include="Sources\JsonSerializerSourceFileGenerator.h" />
     <ClInclude Include="Sources\MemberInfo.h" />
     <ClInclude Include="Sources\MemberTypeExtendedInfo.h" />
     <ClInclude Include="Sources\MemberTypeExtendedInfoAnalyzer.h" />

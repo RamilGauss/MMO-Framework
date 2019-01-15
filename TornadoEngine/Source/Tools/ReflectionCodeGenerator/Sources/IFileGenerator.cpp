@@ -30,9 +30,27 @@ void IFileGenerator::AddTimeHeader()
   Add( s );
 }
 //----------------------------------------------------------------------------------
+void IFileGenerator::AddLeftBrace()
+{
+  auto s = "{";
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddRightBrace()
+{
+  auto s = "}";
+  Add( s );
+}
+//----------------------------------------------------------------------------------
 void IFileGenerator::AddEmptyLine()
 {
   auto s = "";
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddCommentedLongLine()
+{
+  auto s = "//---------------------------------------------------------------------------------------";
   Add( s );
 }
 //----------------------------------------------------------------------------------
@@ -63,6 +81,12 @@ void IFileGenerator::AddNamespaceBegin( const std::string& namespaceName )
 void IFileGenerator::AddNamespaceEnd()
 {
   auto s = "}";
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddUsingNamespace( const std::string& namespaceName )
+{
+  auto s = fmt::format( "using namespace {};", namespaceName );
   Add( s );
 }
 //----------------------------------------------------------------------------------
@@ -142,7 +166,7 @@ void IFileGenerator::AddList( const std::list<std::string>& strList )
     Add( str );
 }
 //----------------------------------------------------------------------------------
-void IFileGenerator::AddStaticMethodDeclaration( const std::string& name, const std::string& retName, std::list<std::string>& paramList )
+void IFileGenerator::AddStaticMethodDeclaration( const std::string& retName, const std::string& name, std::list<std::string>& paramList )
 {
   std::string str = fmt::format( "static {} {}(", retName, name );
   int cnt = paramList.size();
@@ -155,6 +179,22 @@ void IFileGenerator::AddStaticMethodDeclaration( const std::string& name, const 
     i++;
   }
   str += ");";
+  Add( str );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddMethodImplementationBegin( const std::string& retName, const std::string& className, const std::string& name, std::list<std::string>& paramList )
+{
+  std::string str = fmt::format( "{} {}::{}(", retName, className, name );
+  int cnt = paramList.size();
+  int i = 0;
+  for ( auto& param : paramList )
+  {
+    str += param;
+    if ( i != cnt - 1 )
+      str += ", ";
+    i++;
+  }
+  str += ")";
   Add( str );
 }
 //----------------------------------------------------------------------------------

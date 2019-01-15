@@ -21,12 +21,6 @@
     <Filter Include="Generated Files">
       <UniqueIdentifier>{c79c5359-1d37-457d-856b-f0a7c7923ac4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generated Files\Native">
-      <UniqueIdentifier>{2b81180e-8a30-4789-b272-e2b07d96a151}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Generated Files\Test">
-      <UniqueIdentifier>{572a0fa1-b882-431e-bbc8-fa36649ceecc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generators\General">
       <UniqueIdentifier>{512a2a42-0dc4-4749-a71e-2f1fdc0bf6a5}</UniqueIdentifier>
     </Filter>
@@ -110,11 +104,17 @@
     <ClCompile Include="Sources\JsonSerializerHeaderFileGenerator.cpp">
       <Filter>Generators\Json</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\JsonSerializerSourceFileGenerator.cpp">
+      <Filter>Generators\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\JsonSerializer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\JsonSerializerFileGenerator.cpp">
+      <Filter>Generators\Json</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\IncludeList.h">
-      <Filter>Generated Files\Native</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\BinaryMarshallerGenerator.h">
       <Filter>Generators\Binary</Filter>
     </ClInclude>
@@ -208,8 +208,14 @@
     <ClInclude Include="Sources\JsonSerializerHeaderFileGenerator.h">
       <Filter>Generators\Json</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\IncludeList.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="Sources\JsonSerializer.h">
-      <Filter>Generated Files\Native</Filter>
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\JsonSerializerSourceFileGenerator.h">
+      <Filter>Generators\Json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
