@@ -6,15 +6,13 @@ See for more information License.h.
 */
 
 #pragma once
-
 #include <string>
+#include <list>
+#include <set>
+#include "ReflectionMacro.h"
 
-namespace nsReflectionCodeGenerator
+REFLECTION_ATTRIBUTE
+struct TBaseStruct
 {
-  namespace nsProgramInfo
-  {
-    const std::string NAME = "ReflectionCodeGenerator";
-    const std::string VERSION = "0.42";
-    const int COUNTER_BUILD = 8;
-  }
-}
+  std::string s = "0123456789";
+};

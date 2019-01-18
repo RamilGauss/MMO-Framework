@@ -65,6 +65,7 @@ void TJsonSerializer::_Deserialize( Type*& p, std::string& str, bool checkPtr )
   auto json = json11::Json::parse( str, err, json11::JsonParse::COMMENTS );
   if ( err.size() > 0 )
     return;
+
   if ( checkPtr )
     p = p ? p : new Type();
 

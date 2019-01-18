@@ -55,6 +55,7 @@ namespace nsReflectionCodeGenerator
     void AddNamespaceBegin( const std::string& namespaceName );
     void AddNamespaceEnd();
     void AddUsingNamespace( const std::string& namespaceName );
+    void AddUsing( const std::string& expression );
 
     void AddClassBegin( const std::string& exportDeclaration, const std::string& className );
     void AddClassEnd();
@@ -77,5 +78,9 @@ namespace nsReflectionCodeGenerator
     void AddIncludeExt( const std::string& fileName, const std::string& beginBrace, const std::string& endBrace );
 
     std::string AddTabsToStr( const std::string& str, int tabCounter );
+
+  protected:
+    std::string EnumerateParamToStr( std::list<std::string>& strList );
+
   };
 }

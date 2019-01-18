@@ -90,6 +90,12 @@ void IFileGenerator::AddUsingNamespace( const std::string& namespaceName )
   Add( s );
 }
 //----------------------------------------------------------------------------------
+void IFileGenerator::AddUsing( const std::string& expression )
+{
+  auto s = fmt::format( "using {};", expression );
+  Add( s );
+}
+//----------------------------------------------------------------------------------
 void IFileGenerator::AddClassBegin( const std::string& exportDeclaration, const std::string& className )
 {
   auto sEexportDeclaration = fmt::format( " {}", exportDeclaration );
@@ -185,16 +191,24 @@ void IFileGenerator::AddStaticMethodDeclaration( const std::string& retName, con
 void IFileGenerator::AddMethodImplementationBegin( const std::string& retName, const std::string& className, const std::string& name, std::list<std::string>& paramList )
 {
   std::string str = fmt::format( "{} {}::{}(", retName, className, name );
+
+  str += EnumerateParamToStr( paramList );
+  str += ")";
+  Add( str );
+}
+//----------------------------------------------------------------------------------
+std::string IFileGenerator::EnumerateParamToStr( std::list<std::string>& paramList )
+{
+  std::string str;
   int cnt = paramList.size();
   int i = 0;
-  for ( auto& param : paramList )
+  for ( auto param : paramList )
   {
     str += param;
     if ( i != cnt - 1 )
       str += ", ";
     i++;
   }
-  str += ")";
-  Add( str );
+  return str;
 }
 //----------------------------------------------------------------------------------

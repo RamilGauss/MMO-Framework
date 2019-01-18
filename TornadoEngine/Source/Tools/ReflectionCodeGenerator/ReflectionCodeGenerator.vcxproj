@@ -217,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\AST_StateMachine.h" />
+    <ClInclude Include="Sources\BaseStruct.h" />
     <ClInclude Include="Sources\BinaryMarshallerGenerator.h" />
     <ClInclude Include="Sources\CodeGeneratorFusion.h" />
     <ClInclude Include="Sources\Config.h" />
@@ -245,6 +246,8 @@
     <ClInclude Include="Sources\Requirements.h" />
     <ClInclude Include="Sources\SetupConfig.h" />
     <ClInclude Include="Sources\SourceAccumulator.h" />
+    <ClInclude Include="Sources\TestClass.h" />
+    <ClInclude Include="Sources\TestStruct.h" />
     <ClInclude Include="Sources\TokenInfo.h" />
     <ClInclude Include="Sources\TokenInfoManager.h" />
     <ClInclude Include="Sources\Tokenizer.h" />
