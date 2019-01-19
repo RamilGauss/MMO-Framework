@@ -35,6 +35,7 @@ struct TTypeInfo
   TAccessLevelMemberInfoPtrVecMap mMemberMap;
 
   std::string GetNameSpace();// all namespaces: A::B::...::Z
+  std::string GetTypeNameWithNameSpace();// namespace::typename
 
   void AddMember( TMemberInfo& memberInfo );
 

@@ -39,7 +39,7 @@
     <Filter Include="Info">
       <UniqueIdentifier>{c50e22c0-6f45-4957-a29f-17744101630b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Trash">
+    <Filter Include="Test">
       <UniqueIdentifier>{3aa3e04c-a6d5-4dc3-8a8a-4d3d9a782b04}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -221,13 +221,13 @@
       <Filter>Generators\Json</Filter>
     </ClInclude>
     <ClInclude Include="Sources\BaseStruct.h">
-      <Filter>Trash</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="Sources\TestClass.h">
-      <Filter>Trash</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="Sources\TestStruct.h">
-      <Filter>Trash</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

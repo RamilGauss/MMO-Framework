@@ -190,10 +190,36 @@ void IFileGenerator::AddStaticMethodDeclaration( const std::string& retName, con
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddMethodImplementationBegin( const std::string& retName, const std::string& className, const std::string& name, std::list<std::string>& paramList )
 {
-  std::string str = fmt::format( "{} {}::{}(", retName, className, name );
+  std::string str = fmt::format( "{} {}::{}( ", retName, className, name );
 
   str += EnumerateParamToStr( paramList );
-  str += ")";
+  str += " )";
+  Add( str );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddCallFunction( const std::string& namespaceFunc, const std::string& funcName, std::list<std::string>& templateList, std::list<std::string>& argList )
+{
+  std::string namespacePredict;
+  if ( namespaceFunc.length() )
+    namespacePredict = namespaceFunc + "::";
+
+  std::string str = fmt::format( "{}{}", namespacePredict, funcName );
+  auto templ = EnumerateParamToStr( templateList );
+  if ( templ.length() )
+    str += fmt::format( "<{}>", templ );
+
+  str += "(";
+  auto args = EnumerateParamToStr( argList );
+  if ( args.length() )
+    str += " " + args;
+
+  str += " );";
+  Add( str );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddVarDeclaration( const std::string& typeName, const std::string& varName )
+{
+  auto str = fmt::format( "{} {};", typeName, varName );
   Add( str );
 }
 //----------------------------------------------------------------------------------

@@ -14,7 +14,7 @@ namespace nsReflectionCodeGenerator
   namespace nsProgramInfo
   {
     const std::string NAME = "ReflectionCodeGenerator";
-    const std::string VERSION = "0.42";
-    const int COUNTER_BUILD = 8;
+    const std::string VERSION = "0.48";
+    const int COUNTER_BUILD = 9;
   }
 }

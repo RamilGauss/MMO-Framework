@@ -72,6 +72,9 @@ namespace nsReflectionCodeGenerator
 
     void AddMethodImplementationBegin( const std::string& retName, const std::string& className, const std::string& name, std::list<std::string>& paramList );
 
+    void AddCallFunction( const std::string& namespaceFunc, const std::string& funcName, std::list<std::string>& templateList, std::list<std::string>& argList );
+    void AddVarDeclaration( const std::string& typeName, const std::string& varName );
+
   protected:
     void Add( const std::string& str );
     void AddList( const std::list<std::string>& strList );

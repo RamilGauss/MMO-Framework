@@ -33,6 +33,8 @@ struct TMemberTypeExtendedInfo
 
   std::string mNameSpaceForReflection;// example: MySpace::
 
+  std::string mSmartPtrType;
+
 public:
   bool IsContainer();
 };

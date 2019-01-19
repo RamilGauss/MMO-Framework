@@ -12,6 +12,9 @@ See for more information License.h.
 
 class TTypeManager
 {
+  typedef std::map<std::string, TTypeInfo*> TStrTypeInfoPtrMap;
+  TStrTypeInfoPtrMap mNameTypeInfoPtrMap;
+
 public:
   typedef std::map<std::string, std::shared_ptr<TTypeInfo>> TStrPtrMap;// fileName - type info
   typedef std::map<std::string, std::shared_ptr<TStrPtrMap>> TStrPairMap;// namespace - { fileName, type info }
@@ -19,6 +22,8 @@ public:
   TStrPairMap mNameSpaceTypesMap;
 
   void Add( std::string& nameSpaceName, TTypeInfo& typeInfo );
+
+  TTypeInfo* FindTypeInfo( std::string& typeName );
 
 protected:
   TTypeManager() { };

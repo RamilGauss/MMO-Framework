@@ -220,6 +220,7 @@ int TMemberTypeExtendedInfoAnalyzer::FillInfo( TTokenDescVector& tokenVector, TM
       case WeakPtr:
       case UniquePtr:
       case AutoPtr:
+        memberTypeInfo.mSmartPtrType = tokenDesc.value;
         memberTypeInfo.mAccessMethod = TMemberTypeExtendedInfo::SmartPointer;
         break;
       case Bool:

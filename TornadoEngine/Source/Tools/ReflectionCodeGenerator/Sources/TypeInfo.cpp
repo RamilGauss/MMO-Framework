@@ -20,6 +20,14 @@ std::string TTypeInfo::GetNameSpace()// all namespaces: A::B::...::Z
   return summa;
 }
 //-----------------------------------------------------------------------------------------
+std::string TTypeInfo::GetTypeNameWithNameSpace()
+{
+  auto sNamespace = GetNameSpace();
+  if( sNamespace.length() > 0 )
+    return sNamespace + "::" + mName;
+  return mName;
+}
+//-----------------------------------------------------------------------------------------
 void TTypeInfo::AddMember( TMemberInfo& memberInfo )
 {
   // copy
