@@ -27,9 +27,10 @@ void TJsonSerializerHeaderFileGenerator::Work()
 
   auto namespaceName = jsonSerializer->nameSpaceName;
   if ( namespaceName.length() )
+  {
     AddNamespaceBegin( namespaceName );
-
-  IncrementTabs();
+    IncrementTabs();
+  }
 
   AddClassBegin( jsonSerializer->exportDeclaration, jsonSerializer->className );
 
@@ -41,10 +42,13 @@ void TJsonSerializerHeaderFileGenerator::Work()
 
   AddClassEnd();
 
-  DecrementTabs();
+  AddList( s_JsonImplentation );
 
   if ( namespaceName.length() )
+  {
+    DecrementTabs();
     AddNamespaceEnd();
+  }
 }
 //-----------------------------------------------------------------------------------
 void TJsonSerializerHeaderFileGenerator::AddDeclarations()
@@ -56,8 +60,7 @@ void TJsonSerializerHeaderFileGenerator::AddDeclarations()
     auto& filenameTypeMap = *( namespaceTypeInfo.second.get() );
     for ( auto filenameType : filenameTypeMap )
     {
-      auto typeName = filenameType.second->mName;
-      auto namespaceWithType = namespaceName + "::" + typeName;
+      auto namespaceWithType = filenameType.second->GetTypeNameWithNameSpace();
       AddSerializeMethodDeclaration( namespaceWithType );
       AddDeserializeMethodDeclaration( namespaceWithType );
       AddEmptyLine();

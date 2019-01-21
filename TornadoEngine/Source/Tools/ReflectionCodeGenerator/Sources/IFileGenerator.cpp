@@ -174,17 +174,9 @@ void IFileGenerator::AddList( const std::list<std::string>& strList )
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddStaticMethodDeclaration( const std::string& retName, const std::string& name, std::list<std::string>& paramList )
 {
-  std::string str = fmt::format( "static {} {}(", retName, name );
-  int cnt = paramList.size();
-  int i = 0;
-  for ( auto& param : paramList )
-  {
-    str += param;
-    if ( i != cnt - 1 )
-      str += ", ";
-    i++;
-  }
-  str += ");";
+  std::string str = fmt::format( "static {} {}( ", retName, name );
+  str += EnumerateParamToStr( paramList );
+  str += " );";
   Add( str );
 }
 //----------------------------------------------------------------------------------

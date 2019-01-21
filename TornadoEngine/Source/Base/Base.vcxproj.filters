@@ -260,6 +260,9 @@
     <ClInclude Include="include\JsonMaster.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ReflectionMacro.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">

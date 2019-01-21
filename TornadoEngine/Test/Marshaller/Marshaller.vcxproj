@@ -191,6 +191,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryMarshaller.cpp" />
+    <ClCompile Include="DeserializationHandler.cpp" />
     <ClCompile Include="GeneratedClass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyClass.cpp" />
@@ -198,6 +200,8 @@
     <ClCompile Include="TestClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryMarshaller.h" />
+    <ClInclude Include="DeserializationHandler.h" />
     <ClInclude Include="GeneratedClass.h" />
     <ClInclude Include="MyClass.h" />
     <ClInclude Include="OtherClass.h" />

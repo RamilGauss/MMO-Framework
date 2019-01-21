@@ -12,11 +12,11 @@
     "attribute": "REFLECTION_ATTRIBUTE",
     "extensions":
     [
-      "h",
-      "hpp",
-      "hh",
-      "hxx",
-      "h++"
+      ".h",
+      ".hpp",
+      ".hh",
+      ".hxx",
+      ".h++"
     ]
   },
   "targetForCodeGeneration":
@@ -28,14 +28,14 @@
       "jsonSerializer":
       {
         "exportDeclaration": "",
-        "nameSpaceName": "",
+        "nameSpaceName": "nsJson",
         "fileName": "JsonSerializer",
         "className": "TJsonSerializer"
       },
       "binaryMarshaller":
       {
         "exportDeclaration": "",
-        "nameSpaceName": "",
+        "nameSpaceName": "nsBinary",
         "fileName": "BinaryMarshaller",
         "className": "TBinaryMarshaller",
         "beginID": 0,

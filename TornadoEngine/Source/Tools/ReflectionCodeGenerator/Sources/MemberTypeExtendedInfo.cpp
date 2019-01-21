@@ -10,7 +10,9 @@ See for more information License.h.
 bool TMemberTypeExtendedInfo::IsContainer()
 {
   return mCategory == Vector ||
-    mCategory == List || 
-    mCategory == Set || 
+    mCategory == List ||
+    mCategory == Set ||
     mCategory == Map;
 }
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------

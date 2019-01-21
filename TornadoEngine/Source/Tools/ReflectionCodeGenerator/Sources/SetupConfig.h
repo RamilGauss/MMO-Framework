@@ -17,6 +17,7 @@ class TSetupConfig
 
   std::string mPathToJsonFile;// abs or rel
   std::string mAbsPathDirJson;
+  std::string mAbsPathJsonFile;
 
 public:
   TSetupConfig();
@@ -30,5 +31,7 @@ protected:
 private:
   bool TryLoadConfig();
   void ResolvePathes();
+
+  void ResolveJsonPath();
 };
 

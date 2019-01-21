@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -24,12 +24,12 @@ class DllExport TBinaryPopMaster
   int mSizeData;
   int mOffset;
 public:
-  void SetBuffer(TContainerRise* pC, int offset );
+  void SetBuffer( TContainerRise* pC, int offset );
   int GetOffset();
 public:
-  //bool, unsigned char, char, unsigned short, short, unsigned int, int, float, double
+  // built-in
   template<typename T>
-  void Pop( T& t);
+  void Pop( T& t );
   //std::string
   void PopStr( std::string& str );
   //ISerializable
@@ -40,7 +40,7 @@ public:
   void PopPtrSer( T*& pSer );
 
   //std::vector/list/set
-  // unsigned char, char, unsigned short, short, unsigned int, int, float, double
+  // built-in
   template<typename T, typename Array>
   void PopArray( Array& array );
   //std::vector/list/set<std::string>
@@ -98,10 +98,10 @@ private:
 };
 //------------------------------------------------------------------------
 template<typename T>
-void TBinaryPopMaster::Pop( T& t)
-{ 
-  memcpy( &t, mPtrData + mOffset, sizeof(T) ); 
-  mOffset += sizeof(T);
+void TBinaryPopMaster::Pop( T& t )
+{
+  memcpy( &t, mPtrData + mOffset, sizeof( T ) );
+  mOffset += sizeof( T );
 }
 //------------------------------------------------------------------------
 template<typename T>
@@ -115,9 +115,9 @@ void TBinaryPopMaster::PopPtrSer( T*& pSer )
 {
   unsigned char isNotNull;
   Pop( isNotNull );
-  if( isNotNull )
+  if ( isNotNull )
   {
-    if( pSer == NULL)
+    if ( pSer == nullptr )
       pSer = new T();
     pSer->Deserialize( this );
   }
@@ -132,19 +132,19 @@ void TBinaryPopMaster::PopArray( Array& array )
   typedef std::list<T> LIST_T;
   typedef std::vector<T> VECTOR_T;
   // такое кол-во веток в if возникает из-за того, что у set INSERT, а у list и vector push_back
-  if( typeid(array)==typeid(SET_T) )
+  if ( typeid( array ) == typeid( SET_T ) )
   {
-    SET_T* pSet = (SET_T*)&array;
+    SET_T* pSet = ( SET_T* )&array;
     PopByInsert<T>( pSet );
   }
-  else if( typeid(array)==typeid(LIST_T) )
+  else if ( typeid( array ) == typeid( LIST_T ) )
   {
-    LIST_T* pList = (LIST_T*)&array;
+    LIST_T* pList = ( LIST_T* )&array;
     PopByPush<T>( pList );
   }
   else
   {
-    VECTOR_T* pVector = (VECTOR_T*)&array;
+    VECTOR_T* pVector = ( VECTOR_T* )&array;
     PopByPush<T>( pVector );
   }
 }
@@ -158,19 +158,19 @@ void TBinaryPopMaster::PopArrayStr( Array& array )
   typedef std::list<std::string> LIST_STR;
   typedef std::vector<std::string> VECTOR_STR;
   // такое кол-во веток в if возникает из-за того, что у set INSERT, а у list и vector push_back
-  if( typeid(array)==typeid(SET_STR) )
+  if ( typeid( array ) == typeid( SET_STR ) )
   {
-    SET_STR* pSet = (SET_STR*)&array;
+    SET_STR* pSet = ( SET_STR* )&array;
     PopStrByInsert( pSet );
   }
-  else if( typeid(array)==typeid(LIST_STR) )
+  else if ( typeid( array ) == typeid( LIST_STR ) )
   {
-    LIST_STR* pList = (LIST_STR*)&array;
+    LIST_STR* pList = ( LIST_STR* )&array;
     PopStrByPush( pList );
   }
   else
   {
-    VECTOR_STR* pVector = (VECTOR_STR*)&array;
+    VECTOR_STR* pVector = ( VECTOR_STR* )&array;
     PopStrByPush( pVector );
   }
 }
@@ -183,7 +183,7 @@ void TBinaryPopMaster::PopVectorSer( std::vector<T>& array )
   int size;
   PopSize( size );
   array.reserve( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     T t;
     PopSer( t );
@@ -198,7 +198,7 @@ void TBinaryPopMaster::PopListSer( std::list<T>& array )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     T t;
     PopSer( t );
@@ -213,7 +213,7 @@ void TBinaryPopMaster::PopSetSer( std::set<T>& array )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     T t;
     PopSer( t );
@@ -228,9 +228,9 @@ void TBinaryPopMaster::PopArrayPtrSer( Array& array )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
-    T* t = NULL;
+    T* t = nullptr;
     PopPtrSer<T>( t );
     array.push_back( t );
   }
@@ -243,13 +243,13 @@ void TBinaryPopMaster::PopMap__( Map& m )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     Key key;
     Pop( key );
     Value value;
     Pop( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
@@ -260,13 +260,13 @@ void TBinaryPopMaster::PopMap_Str( Map& m )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     Key key;
     Pop( key );
     std::string value;
     PopStr( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
@@ -277,32 +277,32 @@ void TBinaryPopMaster::PopMap_Ser( Map& m )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     Key key;
     Pop( key );
     Value value;
     PopSer( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
 void TBinaryPopMaster::PopMap_PtrSer( Map& m )
 {
-  for( auto& vt : m )
+  for ( auto& vt : m )
     delete vt.second;
   m.clear();
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     Key key;
     Pop( key );
     Value* value = nullptr;
     PopPtrSer( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
@@ -313,13 +313,13 @@ void TBinaryPopMaster::PopMapStr_( Map& m )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     std::string key;
     PopStr( key );
     Value value;
     Pop( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
@@ -330,13 +330,13 @@ void TBinaryPopMaster::PopMapStrStr( Map& m )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     std::string key;
     PopStr( key );
     std::string value;
     PopStr( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
@@ -347,32 +347,32 @@ void TBinaryPopMaster::PopMapStrSer( Map& m )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     std::string key;
     PopStr( key );
     Value value;
     PopSer( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
 template<typename Value, typename Map>
 void TBinaryPopMaster::PopMapStrPtrSer( Map& m )
 {
-  for( auto& vt : m )
+  for ( auto& vt : m )
     delete vt.second;
   m.clear();
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     std::string key;
     PopStr( key );
     Value* value = nullptr;
     PopPtrSer( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
@@ -383,13 +383,13 @@ void TBinaryPopMaster::PopMapSer_( Map& m )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     Key key;
     PopSer( key );
     Value value;
     Pop( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
@@ -400,13 +400,13 @@ void TBinaryPopMaster::PopMapSerStr( Map& m )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     Key key;
     PopSer( key );
     std::string value;
     PopStr( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
@@ -417,32 +417,32 @@ void TBinaryPopMaster::PopMapSerSer( Map& m )
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     Key key;
     PopSer( key );
     Value value;
     PopSer( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
 template<typename Key, typename Value, typename Map>
 void TBinaryPopMaster::PopMapSerPtrSer( Map& m )
 {
-  for( auto& vt : m )
+  for ( auto& vt : m )
     delete vt.second;
   m.clear();
 
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     Key key;
     PopSer( key );
     Value* value = nullptr;
     PopPtrSer( value );
-    m.insert( Map::value_type(key,value) );
+    m.insert( Map::value_type( key, value ) );
   }
 }
 //------------------------------------------------------------------------
@@ -451,7 +451,7 @@ void TBinaryPopMaster::PopByInsert( Array* pArray )
 {
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     T t;
     Pop( t );
@@ -464,7 +464,7 @@ void TBinaryPopMaster::PopByPush( Array* pArray )
 {
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     T t;
     Pop( t );
@@ -477,7 +477,7 @@ void TBinaryPopMaster::PopStrByPush( Array* pArray )
 {
   int size;
   PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
+  for ( int i = 0; i < size; i++ )
   {
     std::string str;
     PopStr( str );

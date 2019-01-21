@@ -31,6 +31,8 @@ struct TTestStruct : public TBaseStruct
   std::map<std::string, std::string> strStrMap;
   std::map<std::string, int> strIntMap;
   std::map<std::string, bool> strBoolMap;
+  std::map<int, float> intFloatMap;
+  std::map<int, bool> intBoolMap;
 
   // ser array
   std::vector<TBaseStruct> baseVec;

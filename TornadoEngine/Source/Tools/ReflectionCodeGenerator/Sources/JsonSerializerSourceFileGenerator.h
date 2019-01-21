@@ -14,6 +14,8 @@ namespace nsReflectionCodeGenerator
 {
   class TJsonSerializerSourceFileGenerator : public TJsonSerializerFileGenerator
   {
+    const std::string s_Bool = "bool";
+
     const std::string s_CC = "::";
     const std::string s_STD = "std";
     const std::string s_STD_ = "std" + s_CC;
@@ -35,6 +37,36 @@ namespace nsReflectionCodeGenerator
     const std::string s_PushSerObjMap = "PushSerObjMap";
     const std::string s_PushSerPtrMap = "PushSerPtrMap";
     const std::string s_PushSerSmartPtrMap = "PushSerSmartPtrMap";
+
+    const std::string s_PopStr = "PopStr";
+    const std::string s_PopBool = "PopBool";
+    const std::string s_PopNum = "PopNum";
+
+    const std::string s_PopStrArray = "PopStrArray";
+    const std::string s_PopBoolArray = "PopBoolArray";
+    const std::string s_PopNumArray = "PopNumArray";
+
+    const std::string s_PopStrSet = "PopStrSet";
+    const std::string s_PopBoolSet = "PopBoolSet";
+    const std::string s_PopNumSet = "PopNumSet";
+
+    const std::string s_PopStrNumMap = "PopStrNumMap";
+    const std::string s_PopStrStrMap = "PopStrStrMap";
+    const std::string s_PopStrBoolMap = "PopStrBoolMap";
+    const std::string s_PopNumNumMap = "PopNumNumMap";
+    const std::string s_PopNumStrMap = "PopNumStrMap";
+    const std::string s_PopNumBoolMap = "PopNumBoolMap";
+
+    const std::string s_PopSerObjArray = "PopSerObjArray";
+    const std::string s_PopSerPtrArray = "PopSerPtrArray";
+    const std::string s_PopSerSmartPtrArray = "PopSerSmartPtrArray";
+    const std::string s_PopStrSerObjMap = "PopStrSerObjMap";
+    const std::string s_PopStrSerPtrMap = "PopStrSerPtrMap";
+    const std::string s_PopStrSerSmartPtrMap = "PopStrSerSmartPtrMap";
+    const std::string s_PopNumSerObjMap = "PopNumSerObjMap";
+    const std::string s_PopNumSerPtrMap = "PopNumSerPtrMap";
+    const std::string s_PopNumSerSmartPtrMap = "PopNumSerSmartPtrMap";
+
   public:
     virtual void Work() override;
 
@@ -59,13 +91,60 @@ namespace nsReflectionCodeGenerator
     void AddPushSerPtrArray( const std::string& type, const std::string& name );
     void AddPushSerSmartPtrArray( const std::string& type, const std::string& smartPtrType, const std::string& name );
 
-    void AddPushMap( const std::string& objectName );
+    void AddPushMap( const std::string& name );
 
+    void AddPushSerObjMap( const std::string& type, const std::string& name );
+    void AddPushSerPtrMap( const std::string& type, const std::string& name );
+    void AddPushSerSmartPtrMap( const std::string& type, const std::string& smartPtrType, const std::string& name );
+
+    void AddPopStr( const std::string& name );
+
+    void AddPopBool( const std::string& name );
+    void AddPopNum( const std::string& name );
+
+    void AddPopBoolArray( const std::string& name );
+    void AddPopNumArray( const std::string& name, const std::string& type );
+    void AddPopStrArray( const std::string& name );
+
+    void AddPopBoolSet( const std::string& name );
+    void AddPopNumSet( const std::string& name, const std::string& type );
+    void AddPopStrSet( const std::string& name );
+
+    void AddPopNumBoolMap( const std::string& name );
+    void AddPopNumNumMap( const std::string& name );
+    void AddPopNumStrMap( const std::string& name );
+    void AddPopStrBoolMap( const std::string& name );
+    void AddPopStrNumMap( const std::string& name );
+    void AddPopStrStrMap( const std::string& name );
+
+    void AddPopMap( const std::string& methodName, const std::string& name );
   private:
     void HandleArrayForPush( TMemberInfo* pMemberInfo );
     void HandleMapForPush( TMemberInfo* pMemberInfo );
     void HandleReflectionForPush( TMemberInfo* pMemberInfo );
 
-    void HandleSerMap( TMemberInfo* pMemberInfo );
+    void HandlePushBuiltInOrStringSerMap( TMemberInfo* pMemberInfo );
+
+    void HandlePopBuiltIn( TMemberInfo* memberInfo );
+
+    void HandlePopArray( TMemberInfo* pMemberInfo );
+    void HandlePopSet( TMemberInfo* pMemberInfo );
+    void HandlePopMap( TMemberInfo* pMemberInfo );
+    void HandlePopReflection( TMemberInfo* pMemberInfo );
+
+    void HandlePopReflectionArray( TMemberInfo* pMemberInfo );
+    void HandlePopReflectionSet( TMemberInfo* pMemberInfo );
+
+    void HandlePopBuiltInOrStringMap( TMemberInfo* pMemberInfo );
+    void HandlePopBuiltInOrStringSerMap( TMemberInfo* pMemberInfo );
+  private:
+
+    void General_AddPushSerArrayOrMap( const std::string& type, const std::string& fullType, const std::string& name, const std::string& methodName );
+    void General_AddPop( const std::string& name, const std::string& methodName );
+    void General_AddPopArrayOrSet( const std::string& name, const std::string& type, const std::string& methodName );
+
+    void General_AddPopSerArrayOrMap( const std::string& keyType, const std::string& valueType,
+      const std::string& typeForLambda,
+      const std::string& fullType, const std::string& name, const std::string& methodName, const std::string& retNewSmartPtrFunc );
   };
 }

@@ -8,6 +8,7 @@ See for more information License.h.
 #pragma once
 #include "TestStruct.h"
 
+REFLECTION_ATTRIBUTE
 class TTestClass
 {
 public:

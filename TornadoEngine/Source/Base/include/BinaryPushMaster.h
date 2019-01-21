@@ -26,7 +26,7 @@ public:
   void CopyInBuffer( TContainerRise& receiveBuffer, int offset = 0 );
   void Clear();
 public:
-  //bool, unsigned char, char, unsigned short, short, unsigned int, int, float, double
+  // built-in
   template<typename T>
   void Push( const T& t );
   //std::string
@@ -39,7 +39,7 @@ public:
   void PushPtrSer( const Type* t );
 
   //std::vector/list
-  // unsigned char, char, unsigned short, short, unsigned int, int, float, double
+  // built-in
   template<typename T, typename Array>
   void PushArray( const Array& array );
   //std::vector/list/set<std::string>
@@ -53,7 +53,7 @@ public:
   void PushArrayPtrSer( const Array& array );
 
   //std::set
-  // unsigned char, char, unsigned short, short, unsigned int, int, float, double
+  // built-in
   template<typename T, typename Set>
   void PushSet( const Set& s );
   //std::set<std::string>

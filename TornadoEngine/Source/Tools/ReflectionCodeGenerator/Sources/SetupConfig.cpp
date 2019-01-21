@@ -13,6 +13,9 @@ See for more information License.h.
 #include "fmt/color.h"
 #include <fstream>
 #include <filesystem>
+#include "JsonSerializer.h"
+#include "LoadFromFile.h"
+#include "TextFile.h"
 
 namespace fs = std::filesystem;
 
@@ -29,8 +32,11 @@ bool TSetupConfig::Work()
   if ( CheckArgs() == false )
   {
     ShowManual();
+    getchar();
     return false;
   }
+
+  ResolveJsonPath();
 
   auto loadResult = TryLoadConfig();
   // debug only
@@ -96,11 +102,14 @@ void TSetupConfig::DefaultConfig()
 //---------------------------------------------------------------------------------------
 bool TSetupConfig::TryLoadConfig()
 {
-  //TODO: load from json
-// TJsonSerializer jsonSerializer;
-//jsonSerializer.Load(  );
+  auto config = mConfigContainer->Config();
+  std::string str;
+  TTextFile::Load( mAbsPathJsonFile, str );
+  if ( str.length() == 0 )
+    return false;
 
-  return false;
+  nsJson::TJsonSerializer::Fill( config, str );
+  return true;
 }
 //---------------------------------------------------------------------------------------
 void TSetupConfig::ResolvePathes()
@@ -108,26 +117,42 @@ void TSetupConfig::ResolvePathes()
   // save
   auto oldCurrentPath = fs::current_path().string();
 
-  fs::path p( mArgv [0] );
+  fs::path p( mArgv[0] );
   auto absPathExeDir = p.parent_path();
   fs::current_path( absPathExeDir );
-
-  mPathToJsonFile = fs::path( mArgv [1] ).parent_path().string();
-  mAbsPathDirJson = fs::absolute( mPathToJsonFile ).string();
 
   // all relative config file
   fs::current_path( mAbsPathDirJson );
 
   auto pConfig = mConfigContainer->Config();
-  
+
   // input
-  for( auto& dir : pConfig->targetForParsing.directories )
+  for ( auto& dir : pConfig->targetForParsing.directories )
     dir = fs::absolute( dir ).string();
 
   // output
   auto& dir = pConfig->targetForCodeGeneration.directory;
   dir = fs::absolute( dir ).string();// i'am lazy :)
 
+  // restore
+  fs::current_path( oldCurrentPath );
+}
+//---------------------------------------------------------------------------------------
+void TSetupConfig::ResolveJsonPath()
+{
+  // save
+  auto oldCurrentPath = fs::current_path().string();
+
+  fs::path p( mArgv[0] );
+  auto absPathExeDir = p.parent_path();
+  fs::current_path( absPathExeDir );
+
+  mPathToJsonFile = fs::path( mArgv[1] ).parent_path().string();
+  mAbsPathDirJson = fs::absolute( mPathToJsonFile ).string();
+
+  auto jsonDir = fs::path( mAbsPathDirJson );
+  auto jsonFileName = fs::path( mArgv[1] ).filename().string();
+  mAbsPathJsonFile = fs::absolute( jsonDir ).append( jsonFileName ).string();
   // restore
   fs::current_path( oldCurrentPath );
 }

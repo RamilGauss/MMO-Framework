@@ -98,7 +98,6 @@ private:
   template <typename Type, typename ElementType, typename ValueType>
   static void PushSerArray( Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc, AddressFunc<Type, ElementType> addressFunc )
   {
-    //std::list<Jobj> arrJobj;
     std::list<json11::Json> arrJ;
     for ( auto& e : value )
     {

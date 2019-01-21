@@ -7,14 +7,16 @@ See for more information License.h.
 
 #pragma once
 
-#include <string>
+#include "BinaryMarshallerFileGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {
-  namespace nsProgramInfo
+  class TBinaryJsonSerializerHeaderFileGenerator : public TBinaryMarshallerFileGenerator
   {
-    const std::string NAME = "ReflectionCodeGenerator";
-    const std::string VERSION = "0.50";
-    const int COUNTER_BUILD = 12;
-  }
+  public:
+    virtual void Work() override;
+
+  private:
+  };
 }
+

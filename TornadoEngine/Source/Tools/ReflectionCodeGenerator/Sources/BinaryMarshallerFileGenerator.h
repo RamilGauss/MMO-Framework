@@ -6,13 +6,15 @@ See for more information License.h.
 */
 
 #pragma once
-#include <string>
-#include <list>
-#include <set>
-#include "ReflectionMacro.h"
 
-REFLECTION_ATTRIBUTE
-struct TBaseStruct
+#include "IFileGenerator.h"
+
+namespace nsReflectionCodeGenerator
 {
-  std::string s = "0123456789";
-};
+  class TBinaryMarshallerFileGenerator : public IFileGenerator
+  {
+  protected:
+
+  };
+}
+

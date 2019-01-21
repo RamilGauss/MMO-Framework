@@ -15,7 +15,7 @@ See for more information License.h.
 
 #define USE_LZ4_COMPRESSION
 
-template< typename TSerializerClass>
+template< typename TSerializerClass >
 class DllExport TMarshaller
 {
 public:
@@ -41,7 +41,7 @@ private:
 
   TMapTypeIndexShort mTypeIndexIDMap;
 
-  using DeserializeFunc = std::function<void*(TContainerRise& c, int offset)>;
+  using DeserializeFunc = std::function<void*( TContainerRise& c, int offset )>;
 
   typedef std::unordered_map<TypeID, DeserializeFunc> TMapShortLambda;
   typedef TMapShortLambda::value_type TMapShortLambdaVT;
@@ -60,7 +60,7 @@ public:
   inline void Serialize( Type* t, TContainerRise& c );
   inline void* Deserialize( TContainerRise& c, TypeID& type );
 
-  using AllocateFunc = void*(*)();// allocator prototype
+  using AllocateFunc = void*( *)( );// allocator prototype
 
   template<typename Type>
   inline void Add( TypeID type, AllocateFunc allocatorFunc );
@@ -75,12 +75,12 @@ template<typename TSerializerClass>
 template<typename Type>
 void TMarshaller<TSerializerClass>::Serialize( Type* t, TContainerRise& c )
 {
-  mHeader.type = mTypeIndexIDMap[std::type_index( typeid(Type) )];
+  mHeader.type = mTypeIndexIDMap[std::type_index( typeid( Type ) )];
   mHeader.useCompression = 0;
   mHeader.ratio = 0;
   mSer.Serialize( t, c, HeaderSize );
 #ifdef USE_LZ4_COMPRESSION
-  if( c.GetSize() - HeaderSize > mSetLimitForCompression )
+  if ( c.GetSize() - HeaderSize > mSetLimitForCompression )
   {
     mHeader.useCompression = 1;
 
@@ -89,7 +89,7 @@ void TMarshaller<TSerializerClass>::Serialize( Type* t, TContainerRise& c )
     mBuffer.Shift( LZ4_compressBound( c.GetSize() ) );
     int compressedSize = LZ4_compress_default( c.GetPtr() + HeaderSize, mBuffer.GetPtr(),
       c.GetSize() - HeaderSize, mBuffer.GetSize() );
-    mHeader.ratio = (c.GetSize() - HeaderSize) / compressedSize + 1;
+    mHeader.ratio = ( c.GetSize() - HeaderSize ) / compressedSize + 1;
 
     memcpy( c.GetPtr() + HeaderSize, mBuffer.GetPtr(), compressedSize );
     c.Clear();
@@ -108,7 +108,7 @@ void* TMarshaller<TSerializerClass>::Deserialize( TContainerRise& c, TypeID& typ
   TContainerRise* pC = &c;
   int offset = HeaderSize;
 #ifdef USE_LZ4_COMPRESSION
-  if( mHeader.useCompression )
+  if ( mHeader.useCompression )
   {
     mBuffer.Clear();
     mBuffer.Shift( c.GetSize() * mHeader.ratio );// расширить для запаса под декомпрессию
@@ -127,16 +127,16 @@ template<typename TSerializerClass>
 template<typename Type>
 void TMarshaller<TSerializerClass>::Add( TypeID id, AllocateFunc allocatorFunc )
 {
-  auto typeIndex = std::type_index( typeid(Type) );
+  auto typeIndex = std::type_index( typeid( Type ) );
   mTypeIndexIDMap.insert( TMapTypeIndexShortVT( typeIndex, id ) );
 
   auto pSer = &mSer;
-  DeserializeFunc func { [allocatorFunc, pSer]( TContainerRise& c, int offset )
+  DeserializeFunc func{[allocatorFunc, pSer]( TContainerRise& c, int offset )
   {
     Type* pObj = (Type*) allocatorFunc();
     pSer->Deserialize( pObj, c, offset );
     return pObj;
-  } };
+  }};
   mID_FuncMap.insert( TMapShortLambdaVT( id, func ) );
 }
 //---------------------------------------------------------------------------------------------

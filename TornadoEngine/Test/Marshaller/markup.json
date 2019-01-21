@@ -1,60 +1,53 @@
-﻿{
-	"classPrefix"       : "T",
-	"serializationType" : [ "JSON", "Binary" ],
-	"pathToSaveGeneratedFiles" : 
-	{ 
-		"headers" : "Headers", 
-		"sources" : "Sources" 
-	},
-	"structs" :
-	{
-		"MyStruct" : 
-		{
-			"bool"           : [ "a" ],
-			"unsigned char"  : [ "b" ],
-			"char"           : [ "c" ]
-		}
-	},
-	"classes" : 
-	{
-		"MyClass":
-		{
-			"bool"           : [ "a" ],
-			"unsigned char"  : [ "b" ],
-			"char"           : [ "c" ],
-			"unsigned short" : [ "d" ],
-			"short"          : [ "e" ],
-			"unsigned int"   : [ "f" ],
-			"int"            : [ "h" ],
-			"float"          : [ "g" ],
-			"double"         : [ "k" ],
-			"string"         : [ "s" ],
-			"vector" : 
-			{
-				"string" : [ "mVecStr" ]
-			},
-			"list" : 
-			{
-				"string" : [ "mListStr" ]
-			},
-			"set" : 
-			{
-				"string" : [ "mSetStr" ]
-			},
-			"map" : 
-			{
-				"int" :
-				{
-					"int"    : [ "mMapID_Index" ],
-					"string" : [ "mMapID_Name" ]
-				}
-			},
-			"OtherClass" : [ "other" ],
-			"OtherClass*" : [ "pOther" ]
-		},
-		"OtherClass":
-		{
-			"bool" : [ "flagA", "flagB" ]
-		}
-	}
+{
+  "targetForParsing":
+  {
+    "directories":
+    [
+      "."
+    ],
+    "recursive": true
+  },
+  "filter":
+  {
+    "attribute": "REFLECTION_ATTRIBUTE",
+    "extensions":
+    [
+      ".h",
+      ".hpp",
+      ".hh",
+      ".hxx",
+      ".h++"
+    ]
+  },
+  "targetForCodeGeneration":
+  {
+    "directory": ".",
+    "includeListFileName": "IncludeList",
+    "implementation":
+    {
+      "jsonSerializer":
+      {
+        "exportDeclaration": "",
+        "nameSpaceName": "nsJson",
+        "fileName": "JsonSerializer",
+        "className": "TJsonSerializer"
+      },
+      "binaryMarshaller":
+      {
+        "exportDeclaration": "",
+        "nameSpaceName": "nsBinary",
+        "fileName": "BinaryMarshaller",
+        "className": "TBinaryMarshaller",
+        "beginID": 0,
+        "deserializationHandler":
+        {
+          "exportDeclaration": "",
+          "nameSpaceName": "",
+          "fileName": "DeserializationHandler",
+          "className": "TDeserializationHandler",
+          "method": "Handle"
+        }
+      }
+    }
+  }
 }

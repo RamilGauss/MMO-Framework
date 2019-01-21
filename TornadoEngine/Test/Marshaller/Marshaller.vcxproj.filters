@@ -16,6 +16,12 @@
     <ClCompile Include="MyClass.cpp">
       <Filter>Generated Files\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="BinaryMarshaller.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DeserializationHandler.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedClass.h">
@@ -35,6 +41,12 @@
     </ClInclude>
     <ClInclude Include="TestClass.h">
       <Filter>Generated Files\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryMarshaller.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DeserializationHandler.h">
+      <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

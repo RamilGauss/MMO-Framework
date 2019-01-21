@@ -107,6 +107,10 @@
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;Base_d.lib;fmt_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "d:\Projects\MMO\MMOFramework\TornadoEngine\Test\Json\data.json"</Command>
+      <Message>Run Reflection code generator</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -174,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json" />
+    <None Include="testData.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

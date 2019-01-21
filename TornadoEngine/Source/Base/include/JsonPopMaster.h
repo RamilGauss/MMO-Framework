@@ -39,18 +39,18 @@ public:
   // BOOL
   static void PopBool( const json11::Json& json, const char* sKey, bool& value )
   {
-    value = BoolValue( json [sKey] );
+    value = BoolValue( json[sKey] );
   }
   // NUMBER
   template <typename Type>
   static void PopNum( const json11::Json& json, const char* sKey, Type& value )
   {
-    value = (Type) NumValue<Type>( json [sKey] );
+    value = (Type) NumValue<Type>( json[sKey] );
   }
   // STRING
   static void PopStr( const json11::Json& json, const char* sKey, std::string& value )
   {
-    value = StrValue( json [sKey] );
+    value = StrValue( json[sKey] );
   }
   // list, vector <bool>
   template <typename ArrayType>
@@ -68,7 +68,7 @@ public:
   template <typename ArrayType>
   static void PopStrArray( const json11::Json& json, const char* sKey, ArrayType& value )
   {
-    PopArray<std::string>( json, sKey, value, &StrValue, &PushBack<std::string, ArrayType> );
+    PopArray<std::string, ArrayType>( json, sKey, value, &StrValue, &PushBack<std::string, ArrayType> );
   }
 
   // set<bool>
@@ -112,6 +112,18 @@ public:
   static void PopStrBoolMap( const json11::Json& json, const char* sKey, std::map<std::string, bool>& m )
   {
     PopMap<std::string, bool>( json, sKey, m, &Str2Str, &BoolValue );
+  }
+  // map<built-in,built-in> 
+  template<typename KeyType, typename ValueType>
+  static void PopNumNumMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType>& m )
+  {
+    PopMap<KeyType, ValueType>( json, sKey, m, &Str2Num<KeyType>, &NumValue<ValueType> );
+  }
+  // map<built-in,bool>
+  template<typename Type>
+  static void PopNumBoolMap( const json11::Json& json, const char* sKey, std::map<Type, bool>& m )
+  {
+    PopMap<Type, bool>( json, sKey, m, &Str2Num<Type>, &BoolValue );
   }
 
   // list, vector<Serialized object>
@@ -170,48 +182,95 @@ public:
 
 private:
   // lambdas
-  static bool BoolValue( const json11::Json& json ) { return json.bool_value(); }
+  static bool BoolValue( const json11::Json& json )
+  {
+    return json.bool_value();
+  }
 
   template <typename Type>
-  static Type NumValue( const json11::Json& json ) { return (Type)json.number_value(); }
+  static Type NumValue( const json11::Json& json )
+  {
+    return (Type) json.number_value();
+  }
 
-  static std::string StrValue( const json11::Json& json ) { return json.string_value(); }
+  static std::string StrValue( const json11::Json& json )
+  {
+    return json.string_value();
+  }
   //=================
   template <typename Type, typename ArrayType>
-  static void PushBack( ArrayType& arr, Type& t ) { arr.push_back( t ); }
+  static void PushBack( ArrayType& arr, Type& t )
+  {
+    arr.push_back( t );
+  }
 
   template <typename Type, typename ArrayType>
-  static void Insert( ArrayType& arr, Type& t ) { arr.insert( t ); }
+  static void Insert( ArrayType& arr, Type& t )
+  {
+    arr.insert( t );
+  }
   //=================
   template <typename RetType>
-  static RetType Str2Num( const std::string& v ) { return (RetType) std::stod( v ); }
+  static RetType Str2Num( const std::string& v )
+  {
+    return (RetType) std::stod( v );
+  }
 
-  static std::string Str2Str( const std::string& v ) { return v; }
+  static std::string Str2Str( const std::string& v )
+  {
+    return v;
+  }
   //=================
   template<typename RetType, typename ArgType>
-  static RetType NewObject() { return ArgType(); }
+  static RetType NewObject()
+  {
+    return ArgType();
+  }
   template<typename RetType, typename ArgType>
-  static RetType NewPointer() { return new ArgType(); }
+  static RetType NewPointer()
+  {
+    return new ArgType();
+  }
   //=================
   template<typename RetType, typename ArgType>
-  static RetType GetObjPtr( ArgType& obj ) { return &obj; }
+  static RetType GetObjPtr( ArgType& obj )
+  {
+    return &obj;
+  }
   template<typename RetType, typename ArgType>
-  static RetType GetPtrPtr( ArgType& p ) { return p; }
+  static RetType GetPtrPtr( ArgType& p )
+  {
+    return p;
+  }
   template<typename RetType, typename ArgType>
-  static RetType GetSmartPtrPtr( ArgType& p ) { return p.get(); }
+  static RetType GetSmartPtrPtr( ArgType& p )
+  {
+    return p.get();
+  }
   //=================
   template<typename RetType>
-  static RetType GetNullForObject(){ return RetType(); }
+  static RetType GetNullForObject()
+  {
+    return RetType();
+  }
   template<typename RetType>
-  static RetType GetNullForPtr(){ return nullptr; }
+  static RetType GetNullForPtr()
+  {
+    return nullptr;
+  }
   template<typename RetType>
-  static RetType GetNullForSmartPtr(){ return RetType(); }
+  static RetType GetNullForSmartPtr()
+  {
+    return RetType();
+  }
 private:
   // list, vector, set
   template <typename Type, typename ArrayType>
   static void PopArray( const json11::Json& json, const char* sKey, ArrayType& value, GetValueFunc<Type> getValue, AddToArrayFunc<Type, ArrayType> addFunc )
   {
-    auto& v = json [sKey].array_items();
+    value.clear();
+
+    auto& v = json[sKey].array_items();
     for ( auto& e : v )
     {
       auto t = getValue( e );
@@ -223,16 +282,20 @@ private:
   template<typename Key, typename Value>
   static void PopMap( const json11::Json& json, const char* sKey, std::map<Key, Value>& m, FromStrFunc<Key> fromStr, GetValueFunc<Value> getValue )
   {
-    auto& obj = json [sKey].object_items();
+    m.clear();
+
+    auto& obj = json[sKey].object_items();
     for ( auto& is : obj )
-      m.insert( { fromStr( is.first ), getValue( is.second ) } );
+      m.insert( {fromStr( is.first ), getValue( is.second )} );
   }
 
   template<typename Type, typename ArrayType, typename New>
-  static void PopSerArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc, NewFunc<New> newFunc, 
+  static void PopSerArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc, NewFunc<New> newFunc,
     GetPtr<Type*, New> getPtr, GetNullValue<New> getNull )
   {
-    auto& jvalue = json [sKey];
+    arr.clear();
+
+    auto& jvalue = json[sKey];
     auto jarr = jvalue.array_items();
     for ( auto& e : jarr )
     {
@@ -252,23 +315,25 @@ private:
   }
 
   template<typename Type, typename KeyType, typename ValueType, typename New>
-  static void PopSerMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType>& m, DeserFunc<Type> deserFunc, FromStrFunc<KeyType> fromStr, 
+  static void PopSerMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType>& m, DeserFunc<Type> deserFunc, FromStrFunc<KeyType> fromStr,
     NewFunc<New> newFunc, GetPtr<Type*, New> getPtr, GetNullValue<New> getNull )
   {
-    auto& obj = json [sKey].object_items();
+    m.clear();
+
+    auto& obj = json[sKey].object_items();
     for ( auto& is : obj )
     {
       auto key = fromStr( is.first );
       if ( is.second.is_null() )
       {
-        m.insert( { key, getNull() } );
+        m.insert( {key, getNull()} );
         continue;
       }
       if ( is.second.is_object() == false )
         continue;
 
-      m.insert( { key, newFunc() } );
-      auto& value = m [key];
+      m.insert( {key, newFunc()} );
+      auto& value = m[key];
       auto& jobj = is.second.object_items();
       auto p = getPtr( value );
       deserFunc( p, jobj );

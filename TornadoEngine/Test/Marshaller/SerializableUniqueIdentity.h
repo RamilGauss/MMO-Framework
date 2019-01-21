@@ -9,8 +9,7 @@ See for more information License.h.
 // Изменения будут потеряны. Изменять бессмысленно!
 // Дата создания: XXXXXXXXXXXX
 
-#ifndef SerializableUniqueIdentityH
-#define SerializableUniqueIdentityH
+#pragma once
 
 namespace nsSerializableUniqueIdentity
 {
@@ -22,5 +21,3 @@ namespace nsSerializableUniqueIdentity
     eParamClass,
   };
 }
-
-#endif

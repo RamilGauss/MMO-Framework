@@ -69,10 +69,5 @@ int main( int argc, char *argv [] )
 
   TCodeGeneratorFusion cgFusion;
   cgFusion.Work();
-
-  // Please, look at the console
-#ifdef _DEBUG
-  //getchar();
-#endif
   return 0;
 }

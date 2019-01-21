@@ -8,12 +8,13 @@ See for more information License.h.
 #include "JsonSerializer.h"
 #include "TextFile.h"
 
-std::string g_Path = "data.json";
+std::string g_Path = "testData.json";
 
 void TestSave()
 {
   TTestClass testClass;
-  testClass.str = "my str";  testClass.ts.s = "1234567890";
+  testClass.str = "my str";
+  testClass.ts.s = "1234567890";
   testClass.ts.password = "12345678";
   testClass.ts.port = 1234;
   testClass.ts.flag = true;
@@ -41,7 +42,9 @@ void TestSave()
   testClass.ts.intBasePtrMap.insert( { 0, nullptr} );//new TBaseStruct() } );
   testClass.ts.intBaseSPMap.insert( { 0, std::shared_ptr<TBaseStruct>( new TBaseStruct() ) } );
 
-  std::string str;  TJsonSerializer::Serialize( &testClass, str );
+  std::string str;
+  nsJson::TJsonSerializer::Serialize( &testClass, str );
+
   TTextFile::Save( g_Path, str );
 }
 //------------------------------------------------------------------------------------
@@ -52,12 +55,12 @@ void TestLoad()
 
   TTestClass testClass;
   auto p = &testClass;
-  TJsonSerializer::Deserialize( p, str );
+  nsJson::TJsonSerializer::Deserialize( p, str );
 }
 //------------------------------------------------------------------------------------
 int main( int argc, char **argv )
 {
-  //TestSave();
+  TestSave();
   TestLoad();
   return 0;
 }

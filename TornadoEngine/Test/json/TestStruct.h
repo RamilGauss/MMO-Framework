@@ -13,6 +13,7 @@ See for more information License.h.
 #include <map>
 #include "BaseStruct.h"
 
+REFLECTION_ATTRIBUTE
 struct TTestStruct : public TBaseStruct
 {
   std::string    password;

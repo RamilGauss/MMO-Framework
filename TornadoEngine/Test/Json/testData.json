@@ -1,0 +1,110 @@
+{
+  "str": "my str",
+  "ts":
+  {
+    "basePtrVec":
+    [
+      null
+    ],
+    "baseSPVec":
+    [
+      {
+        "s": "0123456789"
+      }
+    ],
+    "baseVec":
+    [
+      {
+        "s": "0123456789"
+      }
+    ],
+    "flag": true,
+    "intBaseMap":
+    {
+      "0":
+      {
+        "s": "0123456789"
+      }
+    },
+    "intBasePtrMap":
+    {
+      "0": null
+    },
+    "intBaseSPMap":
+    {
+      "0":
+      {
+        "s": "0123456789"
+      }
+    },
+    "intSet":
+    [
+      0,
+      1,
+      2
+    ],
+    "intStrMap":
+    {
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "numList":
+    [
+      0,
+      1,
+      2
+    ],
+    "numVector":
+    [
+      0,
+      1,
+      2
+    ],
+    "password": "12345678",
+    "port": 1234,
+    "s": "1234567890",
+    "strBaseMap":
+    {
+      "0":
+      {
+        "s": "0123456789"
+      }
+    },
+    "strBasePtrMap":
+    {
+      "0": null
+    },
+    "strBaseSPMap":
+    {
+      "0":
+      {
+        "s": "0123456789"
+      }
+    },
+    "strBoolMap":
+    {
+      "0": false,
+      "1": true,
+      "2": true
+    },
+    "strIntMap":
+    {
+      "0": 0,
+      "1": 1,
+      "2": 2
+    },
+    "strSet":
+    [
+      "0",
+      "1",
+      "2"
+    ],
+    "strStrMap":
+    {
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    }
+  }
+}

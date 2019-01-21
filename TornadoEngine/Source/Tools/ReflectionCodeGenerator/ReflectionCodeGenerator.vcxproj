@@ -191,7 +191,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Sources\AST_StateMachine.cpp" />
+    <ClCompile Include="Sources\BinaryMarshallerFileGenerator.cpp" />
     <ClCompile Include="Sources\BinaryMarshallerGenerator.cpp" />
+    <ClCompile Include="Sources\BinaryMarshallerHeaderFileGenerator.cpp" />
     <ClCompile Include="Sources\CodeGeneratorFusion.cpp" />
     <ClCompile Include="Sources\FileLexer.cpp" />
     <ClCompile Include="Sources\ICodeGenerator.cpp" />
@@ -218,7 +220,9 @@
   <ItemGroup>
     <ClInclude Include="Sources\AST_StateMachine.h" />
     <ClInclude Include="Sources\BaseStruct.h" />
+    <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h" />
     <ClInclude Include="Sources\BinaryMarshallerGenerator.h" />
+    <ClInclude Include="Sources\BinaryMarshallerHeaderFileGenerator.h" />
     <ClInclude Include="Sources\CodeGeneratorFusion.h" />
     <ClInclude Include="Sources\Config.h" />
     <ClInclude Include="Sources\ConfigContainer.h" />
@@ -242,7 +246,6 @@
     <ClInclude Include="Sources\Parser.h" />
     <ClInclude Include="Sources\ProgramInfo.h" />
     <ClInclude Include="Sources\readerwriterqueue.h" />
-    <ClInclude Include="Sources\ReflectionMacro.h" />
     <ClInclude Include="Sources\Requirements.h" />
     <ClInclude Include="Sources\SetupConfig.h" />
     <ClInclude Include="Sources\SourceAccumulator.h" />

@@ -116,6 +116,12 @@
     <ClCompile Include="Sources\JsonSerializerFileGenerator.cpp">
       <Filter>Generators\Json</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\BinaryMarshallerHeaderFileGenerator.cpp">
+      <Filter>Generators\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BinaryMarshallerFileGenerator.cpp">
+      <Filter>Generators\Binary</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\BinaryMarshallerGenerator.h">
@@ -172,9 +178,6 @@
     <ClInclude Include="Sources\SourceAccumulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ReflectionMacro.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\readerwriterqueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -228,6 +231,12 @@
     </ClInclude>
     <ClInclude Include="Sources\TestStruct.h">
       <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BinaryMarshallerHeaderFileGenerator.h">
+      <Filter>Generators\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h">
+      <Filter>Generators\Binary</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
