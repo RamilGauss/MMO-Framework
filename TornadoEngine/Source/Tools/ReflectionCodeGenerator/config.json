@@ -39,12 +39,12 @@
         "fileName": "BinaryMarshaller",
         "className": "TBinaryMarshaller",
         "beginID": 0,
-        "deserializationHandler":
+        "unpackHandler":
         {
           "exportDeclaration": "",
           "nameSpaceName": "",
-          "fileName": "DeserializationHandler",
-          "className": "TDeserializationHandler",
+          "fileName": "UnpackHandler",
+          "className": "TUnpackHandler",
           "method": "Handle"
         }
       }

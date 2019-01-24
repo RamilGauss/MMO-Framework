@@ -35,14 +35,14 @@ namespace nsReflectionCodeGenerator
     std::string fileName;
   };
 
-  REFLECTION_ATTRIBUTE struct TDeserializationHandler : TClassDesc
+  REFLECTION_ATTRIBUTE struct TUnpackHandler : TClassDesc
   {
     std::string method;
   };
 
   REFLECTION_ATTRIBUTE struct TBinaryMarshallerGeneratorConfig : TClassDesc
   {
-    TDeserializationHandler deserializationHandler;
+    TUnpackHandler unpackHandler;
     unsigned short beginID;
   };
 

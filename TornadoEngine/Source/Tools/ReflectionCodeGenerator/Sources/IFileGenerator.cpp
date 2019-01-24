@@ -30,6 +30,18 @@ void IFileGenerator::AddTimeHeader()
   Add( s );
 }
 //----------------------------------------------------------------------------------
+void IFileGenerator::AddIf( const std::string& condition )
+{
+  auto s = fmt::format( "if ( {} )", condition );
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddElse()
+{
+  auto s = "else";
+  Add( s );
+}
+//----------------------------------------------------------------------------------
 void IFileGenerator::AddLeftBrace()
 {
   auto s = "{";

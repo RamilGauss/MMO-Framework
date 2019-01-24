@@ -94,10 +94,10 @@ void TSetupConfig::DefaultConfig()
   binaryMarshaller->fileName = "BinaryMarshaller";
   binaryMarshaller->nameSpaceName = "nsBinary";
 
-  binaryMarshaller->deserializationHandler.className = "TDeserializationHandler";
-  binaryMarshaller->deserializationHandler.fileName = "DeserializationHandler";
-  binaryMarshaller->deserializationHandler.method = "Handle";
-  binaryMarshaller->deserializationHandler.nameSpaceName = "nsBinary";
+  binaryMarshaller->unpackHandler.className = "TUnpackHandler";
+  binaryMarshaller->unpackHandler.fileName = "UnpackHandler";
+  binaryMarshaller->unpackHandler.method = "Handle";
+  binaryMarshaller->unpackHandler.nameSpaceName = "nsBinary";
 }
 //---------------------------------------------------------------------------------------
 bool TSetupConfig::TryLoadConfig()

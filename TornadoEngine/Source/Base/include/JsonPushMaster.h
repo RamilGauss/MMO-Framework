@@ -14,8 +14,8 @@ See for more information License.h.
 #include <set>
 #include <vector>
 #include <list>
-
 #include <functional>
+
 #include "JsonMaster.h"
 
 class DllExport TJsonPushMaster : public TJsonMaster
@@ -34,6 +34,11 @@ public:// prototypes
   using PushBy = std::function<void( Jobj&, const char*, ValueType&, SerFunc<Type>, AddressFunc<Type, ElementType> )>;
 
 public:// methods
+  static void PushNull( Jobj& obj, const char* sKey )
+  {
+    obj.insert( { sKey, json11::Json( nullptr ) } );
+  }
+
   // built-in, string, {vector, list, set}<{built-in, string}>
   template <typename ValueType>
   static void Push( Jobj& obj, const char* sKey, ValueType& value )
@@ -49,7 +54,7 @@ public:// methods
       jMap.insert( { fmt::format( "{}", intStr.first ), intStr.second } );
     obj.insert( { sKey, jMap } );
   }
-  // list, vector, set(serialized type)
+  // list, vector<serialized type>
   template <typename Type, typename ElementType, typename ValueType>
   static void PushSerObjArray( Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc )
   {

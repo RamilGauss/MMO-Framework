@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -14,36 +14,33 @@ void TBinaryPopMaster::SetBuffer( TContainerRise* pC, int offset )
   mOffset = offset;
 }
 //------------------------------------------------------------------------
+void TBinaryPopMaster::SetBuffer( char* pData, int size, int offset )
+{
+  mPtrData = pData;
+  mSizeData = size;
+  mOffset = offset;
+}
+//------------------------------------------------------------------------
 int TBinaryPopMaster::GetOffset()
 {
   return mOffset;
 }
 //------------------------------------------------------------------------
-void TBinaryPopMaster::PopSize( int& size)
+void TBinaryPopMaster::PopBool( bool& t )
 {
-  Pop( size );
+  BoolType v;
+  PopNum( v );
+  t = v;
 }
 //------------------------------------------------------------------------
 void TBinaryPopMaster::PopStr( std::string& str )
 {
-  int len = 0;
-  PopSize( len );
-  if( len == 0 )
+  StrSizeType len = 0;
+  PopNum( len );
+  if ( len == 0 )
     return;
   char* pStr = mPtrData + mOffset;
   str.assign( pStr, len );
   mOffset += len;
-}
-//------------------------------------------------------------------------
-void TBinaryPopMaster::PopStrByInsert( std::set<std::string>* pSetStr )
-{
-  int size;
-  PopSize( size );
-  for( int i = 0 ; i < size ; i++ )
-  {
-    std::string str;
-    PopStr( str );
-    pSetStr->insert( str );
-  }
 }
 //------------------------------------------------------------------------

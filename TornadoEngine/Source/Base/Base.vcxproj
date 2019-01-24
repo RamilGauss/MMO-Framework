@@ -206,6 +206,7 @@
   <ItemGroup>
     <ClInclude Include="include\AllocatorPool.h" />
     <ClInclude Include="include\ArrContainer.h" />
+    <ClInclude Include="include\BinaryMaster.h" />
     <ClInclude Include="include\BinarySerializer.h" />
     <ClInclude Include="include\BL_Debug.h" />
     <ClInclude Include="include\BreakPacket.h" />

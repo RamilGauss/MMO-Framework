@@ -12,370 +12,224 @@ See for more information License.h.
 #include <set>
 #include <vector>
 #include <list>
+#include <functional>
 
 #include "BreakPacket.h"
-#include "TypeDef.h"
 #include "ContainerRise.h"
+#include "BinaryMaster.h"
 
-class ISerializable;
-
-class DllExport TBinaryPushMaster
+class DllExport TBinaryPushMaster : public TBinaryMaster
 {
   TBreakPacket mCollectorMember;
+public:// prototypes
+  template<typename Type>
+  using PushFunc = std::function<void( Type )>;
+
+  template<typename Type, typename ElementType>
+  using AddressFunc = std::function<Type( ElementType )>;
 public:
   void CopyInBuffer( TContainerRise& receiveBuffer, int offset = 0 );
   void Clear();
 public:
   // built-in
   template<typename T>
-  void Push( const T& t );
-  //std::string
+  void PushNum( const T& t )
+  {
+    mCollectorMember.PushBack( (char*) &t, sizeof( T ) );
+  }
+  void PushBool( const bool& t );
+  // string
   void PushStr( const std::string& str );
-  //ISerializable
-  template<typename T>
-  void PushSer( const T& serializable );
-  //ISerializable*
-  template<typename Type>
-  void PushPtrSer( const Type* t );
 
-  //std::vector/list
-  // built-in
-  template<typename T, typename Array>
-  void PushArray( const Array& array );
-  //std::vector/list/set<std::string>
+  // vector,list,set<built-in>
+  template<typename Type, typename Array>
+  void PushNumArray( Array& value )
+  {
+    GeneralPushArray<Type, Array>( value, [this]( const Type& t ) { PushNum( t ); } );
+  }
+  // vector,list<bool>
   template<typename Array>
-  void PushArrayStr( const Array& array );
-  //std::vector/list/set<ISerializable>
-  template<typename T, typename Array>
-  void PushArraySer( const Array& array );
-  //std::vector/list/set<ISerializable*>
+  void PushBoolArray( Array& value )
+  {
+    GeneralPushArray<bool, Array>( value, [this]( const bool& t ) { PushBool( t ); } );
+  }
+  // vector,list,set<string>
   template<typename Array>
-  void PushArrayPtrSer( const Array& array );
+  void PushStrArray( Array& value )
+  {
+    GeneralPushArray<std::string, Array>( value, [this]( const std::string& t ) { PushStr( t ); } );
+  }
 
-  //std::set
-  // built-in
-  template<typename T, typename Set>
-  void PushSet( const Set& s );
-  //std::set<std::string>
-  template<typename Set>
-  void PushSetStr( const Set& s );
-  //std::set<ISerializable>
-  template<typename T, typename Set>
-  void PushSetSer( const Set& s );
-  //std::set<ISerializable*>
-  template<typename Set>
-  void PushSetPtrSer( const Set& s );
+  // list, vector<serialized type>
+  template <typename Type, typename Array>
+  void PushSerObjArray( Array& value, PushFunc<Type*> pushFunc )
+  {
+    GeneralPushSerArray<Type*, Type&, Array>( value,
+      pushFunc, []( Type& t ) { return &t; } );
+  }
+  template <typename Type, typename Array>
+  void PushSerPtrArray( Array& value, PushFunc<Type*> pushFunc )
+  {
+    GeneralPushSerArray<Type*, Type*, Array>( value,
+      pushFunc, [this]( Type* t ) { return t; } );
+  }
+  template <typename Type, typename ElementType, typename Array>
+  void PushSerSmartPtrArray( Array& value, PushFunc<Type*> pushFunc )
+  {
+    GeneralPushSerArray<Type*, ElementType, Array>( value,
+      pushFunc, [this]( ElementType t ) { return t.get(); } );
+  }
 
-  // std::map
-  template<typename Key, typename Value, typename Map>
-  void PushMap__( const Map& m );
-  template<typename Key, typename Map>
-  void PushMap_Str( const Map& m );
-  template<typename Key, typename Value, typename Map>
-  void PushMap_Ser( const Map& m );
-  template<typename Key, typename Map>
-  void PushMap_PtrSer( const Map& m );
+  // map<num,>
+  template<typename Key, typename Value>
+  void PushNumNumMap( std::map<Key, Value>& m )
+  {
+    GeneralPushMap<Key, Value>
+    ( m, [this]( const Key& t ) { PushNum( t ); },
+         [this]( Value& t )     { PushNum( t ); } );
+  }
+  template<typename Key>
+  void PushNumStrMap( std::map<Key, std::string>& m )
+  {
+    GeneralPushMap<Key, std::string>
+      ( m, [this]( const Key& t )   { PushNum( t ); },
+           [this]( std::string& t ) { PushStr( t ); });
+  }
+  template<typename Key>
+  void PushNumBoolMap( std::map<Key, bool>& m )
+  {
+    GeneralPushMap<Key, bool>
+      ( m, [this]( const Key& t ) { PushNum( t ); },
+           [this]( bool& t )      { PushBool( t ); } );
+  }
+  template<typename Key, typename Value>
+  void PushNumSerObjMap( std::map<Key, Value>& m, PushFunc<Value*> pushFunc )
+  {
+    GeneralPushSerMap<const Key*, const Key&,
+                      Value*,     Value&>
+      ( m, [this]( const Key* t ) { PushNum( *t ); }, []( const Key& t ) { return &t; },
+           pushFunc,                                  []( Value& t ) { return &t; } );
+  }
+  template<typename Key, typename Value>
+  void PushNumSerPtrMap( std::map<Key, Value*>& m, PushFunc<Value*> pushFunc )
+  {
+    GeneralPushSerMap<const Key*, const Key&,
+                      Value*,     Value*>
+      ( m, [this]( const Key* t ) { PushNum( *t ); }, []( const Key& t ) { return &t; },
+           pushFunc,                                  []( Value* t ) { return t; } );
+  }
+  template<typename Key, typename Value, typename ElementType>
+  void PushNumSerSmartPtrMap( std::map<Key, ElementType>& m, PushFunc<Value*> pushFunc )
+  {
+    GeneralPushSerMap<const Key*, const Key&,
+                      Value*,     ElementType>
+      ( m, [this]( const Key* t ) { PushNum( *t ); }, []( const Key& t ) { return &t; },
+           pushFunc,                                  []( ElementType t ) { return t.get(); } );
+  }
 
-  template<typename Value, typename Map>
-  void PushMapStr_( const Map& m );
-  template<typename Map>
-  void PushMapStrStr( const Map& m );
-  template<typename Value, typename Map>
-  void PushMapStrSer( const Map& m );
-  template<typename Map>
-  void PushMapStrPtrSer( const Map& m );
-
-  template<typename Key, typename Value, typename Map>
-  void PushMapSer_( const Map& m );
-  template<typename Key, typename Map>
-  void PushMapSerStr( const Map& m );
-  template<typename Key, typename Value, typename Map>
-  void PushMapSerSer( const Map& m );
-  template<typename Key, typename Map>
-  void PushMapSerPtrSer( const Map& m );
+  // map<string,>
+  template<typename Value>
+  void PushStrNumMap( std::map<std::string, Value>& m )
+  {
+    GeneralPushMap<std::string, Value>
+      ( m, [this]( const std::string& t ) { PushStr( t ); },
+           [this]( Value& t )             { PushNum( t ); } );
+  }
+  void PushStrStrMap( std::map<std::string, std::string>& m )
+  {
+    GeneralPushMap<std::string, std::string>
+      ( m, [this]( const std::string& t ) { PushStr( t ); },
+           [this]( std::string& t )       { PushStr( t ); });
+  }
+  void PushStrBoolMap( std::map<std::string, bool>& m )
+  {
+    GeneralPushMap<std::string, bool>
+      ( m, [this]( const std::string& t ) { PushStr( t ); },
+           [this]( bool& t )              { PushBool( t ); } );
+  }
+  template<typename Value>
+  void PushStrSerObjMap( std::map<std::string, Value>& m, PushFunc<Value*> pushFunc )
+  {
+    GeneralPushSerMap<const std::string*, const std::string&,
+                      Value*,             Value&>
+      ( m, [this]( const std::string* t ) { PushStr( *t ); }, []( const std::string& t ) { return &t; },
+           pushFunc,                                          []( Value& t ) { return &t; } );
+  }
+  template<typename Value>
+  void PushStrSerPtrMap( std::map<std::string, Value*>& m, PushFunc<Value*> pushFunc )
+  {
+    GeneralPushSerMap<const std::string*, const std::string&,
+                      Value*,             Value*>
+      ( m, [this]( const std::string* t ) { PushStr( *t ); }, []( const std::string& t ) { return &t; },
+           pushFunc,                                          []( Value* t ) { return t; } );
+  }
+  template<typename Value, typename ElementType>
+  void PushStrSerSmartPtrMap( std::map<std::string, ElementType>& m, PushFunc<Value*> pushFunc )
+  {
+    GeneralPushSerMap<const std::string*, const std::string&,
+                      Value*,             ElementType>
+      ( m, [this]( const std::string* t ) { PushStr( *t ); }, []( const std::string& t ) { return &t; },
+           pushFunc,                                          []( ElementType t ) { return t.get(); } );
+  }
 private:
-  void PushSize( const int& size );
+  // array
+  template <typename Type, typename ValueType>
+  void GeneralPushArray( ValueType& value, PushFunc<Type> pushFunc )
+  {
+    SizeType size = value.size();
+    PushNum( size );
+    for ( auto& e : value )
+      pushFunc( e );
+  }
+
+  template <typename Type, typename InputAddrType, typename ValueType>
+  void GeneralPushSerArray( ValueType& value, PushFunc<Type> pushFunc, AddressFunc<Type, InputAddrType> addressFunc )
+  {
+    SizeType size = value.size();
+    PushNum( size );
+    for ( auto& e : value )
+    {
+      Type pE = addressFunc( e );
+      auto isNotNull = !( pE == nullptr );
+      PushBool( isNotNull );
+      if( isNotNull )
+        pushFunc( pE );
+    }
+  }
+
+  template <typename KeyType, typename ValueType>
+  void GeneralPushMap( std::map<KeyType, ValueType>& m,
+    PushFunc<const KeyType&> keyPushFunc, PushFunc<ValueType&> valuePushFunc)
+  {
+    SizeType size = m.size();
+    PushNum( size );
+    for ( auto& bit : m )
+    {
+      keyPushFunc( bit.first );
+      valuePushFunc( bit.second );
+    }
+  }
+  template <typename KeyType, typename KeyInputAddrType,
+    typename ValueType, typename ValueInputAddrType,
+    typename Map>
+    void GeneralPushSerMap( Map& m,
+      PushFunc<KeyType> keyPushFunc, AddressFunc<KeyType, KeyInputAddrType> keyAddressFunc,
+      PushFunc<ValueType> valuePushFunc, AddressFunc<ValueType, ValueInputAddrType> valueAddressFunc )
+  {
+    SizeType size = m.size();
+    PushNum( size );
+    for ( auto& bit : m )
+    {
+      auto& key = bit.first;
+      KeyType pKey = keyAddressFunc( key );
+      keyPushFunc( pKey );
+
+      auto& value = bit.second;
+      ValueType pValue = valueAddressFunc( value );
+      auto isNotNull = !( pValue == nullptr );
+      PushBool( isNotNull );
+      if ( isNotNull )
+        valuePushFunc( pValue );
+    }
+  }
 };
-//------------------------------------------------------------------------
-template<typename T>
-void TBinaryPushMaster::Push( const T& t )
-{
-  mCollectorMember.PushBack( (char*) &t, sizeof( T ) );
-}
-//------------------------------------------------------------------------
-template<typename T>
-void TBinaryPushMaster::PushSer( const T& serializable )
-{
-  serializable.Serialize( this );
-}
-//------------------------------------------------------------------------
-template<typename Type>
-void TBinaryPushMaster::PushPtrSer( const Type* t )
-{
-  unsigned char isNotNULL = 1;
-  if ( t == NULL )
-    isNotNULL = 0;
-  Push( isNotNULL );
-  if ( t )
-    t->Serialize( this );
-}
-//-----------------------------------------------------------------------
-template<typename T, typename Array>
-void TBinaryPushMaster::PushArray( const Array& array )
-{
-  int size = array.size();
-  Push( size );
-  for ( auto& el : array )
-    Push( el );
-}
-//------------------------------------------------------------------------
-template<typename Array>
-void TBinaryPushMaster::PushArrayStr( const Array& array )
-{
-  int size = array.size();
-  Push( size );
-  for ( auto& el : array )
-    PushStr( el );
-}
-//------------------------------------------------------------------------
-template<typename T, typename Array>
-void TBinaryPushMaster::PushArraySer( const Array& array )
-{
-  int size = array.size();
-  Push( size );
-  for ( auto& el : array )
-    PushSer( el );
-}
-//------------------------------------------------------------------------
-template<typename Array>
-void TBinaryPushMaster::PushArrayPtrSer( const Array& array )
-{
-  int size = array.size();
-  Push( size );
-  for ( auto& el : array )
-    PushPtrSer( el );
-}
-//------------------------------------------------------------------------
-template<typename T, typename Set>
-void TBinaryPushMaster::PushSet( const Set& s )
-{
-  int size = s.size();
-  PushSize( size );
-  typename Set::iterator bit = s.begin();
-  typename Set::iterator eit = s.end();
-  while ( bit != eit )
-  {
-    T t = *bit;
-    Push<T>( t );
-    bit++;
-  }
-}
-//------------------------------------------------------------------------
-template<typename Set>
-void TBinaryPushMaster::PushSetStr( const Set& s )
-{
-  int size = s.size();
-  PushSize( size );
-  typename Set::iterator bit = s.begin();
-  typename Set::iterator eit = s.end();
-  while ( bit != eit )
-  {
-    std::string t = *bit;
-    PushStr( t );
-    bit++;
-  }
-}
-//------------------------------------------------------------------------
-template<typename T, typename Set>
-void TBinaryPushMaster::PushSetSer( const Set& s )
-{
-  int size = s.size();
-  PushSize( size );
-  typename Set::iterator bit = s.begin();
-  typename Set::iterator eit = s.end();
-  while ( bit != eit )
-  {
-    T t = *bit;
-    PushSer<T>( t );
-    bit++;
-  }
-}
-//------------------------------------------------------------------------
-template<typename Set>
-void TBinaryPushMaster::PushSetPtrSer( const Set& s )
-{
-  int size = s.size();
-  PushSize( size );
-  for ( auto& bit : s )
-  {
-    PushPtrSer( bit );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPushMaster::PushMap__( const Map& m )
-{
-  int size = m.size();
-  Push( size );
-  for ( auto& bit : m )
-  {
-    auto& key = *( ( Key* )&( bit.first ) );
-    Push( key );
-    auto& value = bit.second;
-    Push( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Map>
-void TBinaryPushMaster::PushMap_Str( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    auto& key = *( ( Key* )&( bit.first ) );
-    Push( key );
-    const std::string& value = bit.second;
-    PushStr( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPushMaster::PushMap_Ser( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    auto& key = *( ( Key* )&( bit.first ) );
-    Push( key );
-    auto& value = bit.second;
-    PushSer( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Map>
-void TBinaryPushMaster::PushMap_PtrSer( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    auto& key = *( ( Key* )&( bit.first ) );
-    Push( key );
-    auto* value = bit.second;
-    PushPtrSer( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Value, typename Map>
-void TBinaryPushMaster::PushMapStr_( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    const std::string& key = *( ( std::string* )&( bit.first ) );
-    PushStr( key );
-    auto& value = bit.second;
-    Push( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Map>
-void TBinaryPushMaster::PushMapStrStr( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto & bit : m )
-  {
-    const std::string& key = *( ( std::string* )&( bit.first ) );
-    PushStr( key );
-    const std::string& value = bit.second;
-    PushStr( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Value, typename Map>
-void TBinaryPushMaster::PushMapStrSer( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    const std::string& key = *( ( std::string* )&( bit.first ) );
-    PushStr( key );
-    auto& value = bit.second;
-    PushSer( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Map>
-void TBinaryPushMaster::PushMapStrPtrSer( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    const std::string& key = *( ( std::string* )&( bit.first ) );
-    PushStr( key );
-    auto* value = bit.second;
-    PushPtrSer( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPushMaster::PushMapSer_( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    auto& key = *( ( Key* )&( bit.first ) );
-    PushSer( key );
-    auto& value = bit.second;
-    Push( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Map>
-void TBinaryPushMaster::PushMapSerStr( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    auto& key = *( ( Key* )&( bit.first ) );
-    PushSer( key );
-    const std::string& value = bit.second;
-    PushStr( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPushMaster::PushMapSerSer( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    auto& key = *( ( Key* )&( bit.first ) );
-    PushSer( key );
-    auto& value = bit.second;
-    PushSer( value );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Map>
-void TBinaryPushMaster::PushMapSerPtrSer( const Map& m )
-{
-  int size = m.size();
-  PushSize( size );
-  for ( auto& bit : m )
-  {
-    auto& key = *( ( Key* )&( bit.first ) );
-    PushSer( key );
-    auto* value = bit.second;
-    PushPtrSer( value );
-  }
-}

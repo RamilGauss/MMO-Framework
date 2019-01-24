@@ -27,6 +27,7 @@ namespace nsReflectionCodeGenerator
     const std::string s_Obj = "obj";
     const std::string s_Json = "json";
 
+    const std::string s_PushNull = "PushNull";
     const std::string s_Push = "Push";
     const std::string s_PushMap = "PushMap";
 
@@ -122,6 +123,7 @@ namespace nsReflectionCodeGenerator
     void HandleArrayForPush( TMemberInfo* pMemberInfo );
     void HandleMapForPush( TMemberInfo* pMemberInfo );
     void HandleReflectionForPush( TMemberInfo* pMemberInfo );
+    void HandleSmartPtrOrPtrReflectionForPush( TMemberInfo* pMemberInfo );
 
     void HandlePushBuiltInOrStringSerMap( TMemberInfo* pMemberInfo );
 
@@ -131,6 +133,7 @@ namespace nsReflectionCodeGenerator
     void HandlePopSet( TMemberInfo* pMemberInfo );
     void HandlePopMap( TMemberInfo* pMemberInfo );
     void HandlePopReflection( TMemberInfo* pMemberInfo );
+    void HandleSmartPtrOrPtrPopReflection( TMemberInfo* pMemberInfo );
 
     void HandlePopReflectionArray( TMemberInfo* pMemberInfo );
     void HandlePopReflectionSet( TMemberInfo* pMemberInfo );

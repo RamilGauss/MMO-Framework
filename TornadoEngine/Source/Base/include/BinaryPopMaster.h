@@ -12,476 +12,265 @@ See for more information License.h.
 #include <set>
 #include <vector>
 #include <list>
+#include <functional>
 
-#include "BreakPacket.h"
-#include "TypeDef.h"
+#include "BinaryMaster.h"
+#include "ContainerRise.h"
 
-class ISerializable;
-
-class DllExport TBinaryPopMaster
+class DllExport TBinaryPopMaster : public TBinaryMaster
 {
   char* mPtrData;
   int mSizeData;
   int mOffset;
 public:
   void SetBuffer( TContainerRise* pC, int offset );
+  void SetBuffer( char* pData, int size, int offset );
   int GetOffset();
+public:
+  template<typename Type>
+  using PopFunc = std::function<void( Type )>;
+
+  template<typename ValueType, typename TypeForSer>
+  using AddToArray = std::function<void( ValueType, TypeForSer )>;
+
+  template<typename RetType, typename InputType>
+  using GetAddressFunc = std::function<RetType(InputType)>;
+
+  template<typename RetType>
+  using GetNewFunc = std::function<RetType()>;
+
+  template<typename RetType>
+  using GetNullPtrFunc = std::function<RetType()>;
 public:
   // built-in
   template<typename T>
-  void Pop( T& t );
-  //std::string
+  void PopNum( T& t )
+  {
+    memcpy( &t, mPtrData + mOffset, sizeof( T ) );
+    mOffset += sizeof( T );
+  }
+  // bool 
+  void PopBool( bool& t );
+  // string
   void PopStr( std::string& str );
-  //ISerializable
-  template<typename T>
-  void PopSer( T& serializable );
-  //ISerializable*
-  template<typename T>
-  void PopPtrSer( T*& pSer );
 
-  //std::vector/list/set
-  // built-in
-  template<typename T, typename Array>
-  void PopArray( Array& array );
-  //std::vector/list/set<std::string>
+  // vector/list<built-in>
+  template<typename Type, typename Array>
+  void PopNumArray( Array& array )
+  {
+    GeneralPopArray<Type, Array>( array, 
+      [this]( Type& t ) {PopNum( t ); }, []( Array& array, Type& t ) { array.push_back( t ); } );
+  }
+  // vector/list<bool>
   template<typename Array>
-  void PopArrayStr( Array& array );
-  //std::vector/list/set<ISerializable>
-  template<typename T>
-  void PopVectorSer( std::vector<T>& array );
-  template<typename T>
-  void PopListSer( std::list<T>& array );
-  template<typename T>
-  void PopSetSer( std::set<T>& array );
-  //std::vector/list/set<ISerializable*>
-  template<typename T, typename Array>
-  void PopArrayPtrSer( Array& array );
+  void PopBoolArray( Array& array )
+  {
+    GeneralPopArray<bool, Array>( array,
+      [this]( bool& t ) {PopBool( t ); }, []( Array& array, bool& t ) { array.push_back( t ); } );
+  }
+  // vector/list<string>
+  template<typename Array>
+  void PopStrArray( Array& array )
+  {
+    GeneralPopArray<std::string, Array>( array,
+      [this]( std::string& t ) {PopStr( t ); }, []( Array& array, std::string& t ) { array.push_back( t ); } );
+  }
+  // set<built-in>
+  template<typename Type>
+  void PopNumSet( std::set<Type>& array )
+  {
+    GeneralPopArray<Type, std::set<Type>>( array,
+      [this]( Type& t ) {PopNum( t ); }, []( std::set<Type>& array, Type& t ) { array.insert( t ); } );
+  }
+  // set<bool>
+  void PopBoolSet( std::set<bool>& array )
+  {
+    GeneralPopArray<bool, std::set<bool>>( array,
+      [this]( bool& t ) {PopBool( t ); }, []( std::set<bool>& array, bool& t ) { array.insert( t ); } );
+  }
+  // set<string>
+  void PopStrSet( std::set<std::string>& array )
+  {
+    GeneralPopArray<std::string, std::set<std::string>>( array,
+      [this]( std::string& t ) {PopStr( t ); }, []( std::set<std::string>& array, std::string& t ) { array.insert( t ); } );
+  }
+  // vector/list<serializable>
+  template<typename Type, typename Array>
+  void PopSerObjArray( Array& array, PopFunc<Type*> popFunc )
+  {
+    GeneralPopSerArray<Type, Type, Array>( array, 
+      []() {return Type(); }, []( Type& t ) {return &t; }, popFunc, 
+      []() {return Type(); } );
+  }
+  template<typename Type, typename Array>
+  void PopSerPtrArray( Array& array, PopFunc<Type*> popFunc )
+  {
+    GeneralPopSerArray<Type, Type*, Array>( array,
+      []() {return new Type(); }, []( Type* t ) {return t; }, popFunc,
+      []() {return nullptr; } );
+  }
+  template<typename Type, typename ElementType, typename Array>
+  void PopSerSmartPtrArray( Array& array, PopFunc<Type*> popFunc )
+  {
+    GeneralPopSerArray<Type, ElementType, Array>( array,
+      []() {return ElementType( new Type() ); }, []( ElementType& t ) {return t.get(); }, popFunc,
+      []() {return ElementType(); } );
+  }
 
-  // std::map
-  template<typename Key, typename Value, typename Map>
-  void PopMap__( Map& m );
-  template<typename Key, typename Map>
-  void PopMap_Str( Map& m );
-  template<typename Key, typename Value, typename Map>
-  void PopMap_Ser( Map& m );
-  template<typename Key, typename Value, typename Map>
-  void PopMap_PtrSer( Map& m );
+  // map<num,>
+  template<typename Key>
+  void PopNumBoolMap( std::map<Key, bool>& m )
+  {
+    GeneralPopMap<Key, bool>( m, [this]( Key& t ) { PopNum( t ); }, [this]( bool& t ) { PopBool( t ); } );
+  }
+  template<typename Key, typename Value>
+  void PopNumNumMap( std::map<Key, Value>& m )
+  {
+    GeneralPopMap<Key, Value>( m, [this]( Key& t ) { PopNum( t ); }, [this]( Value& t ) { PopNum( t ); } );
+  }
+  template<typename Key>
+  void PopNumStrMap( std::map<Key, std::string>& m )
+  {
+    GeneralPopMap<Key, std::string>( m, [this]( Key& t ) { PopNum( t ); }, [this]( std::string& t ) { PopStr( t ); } );
+  }
+  // map<str,>
+  void PopStrBoolMap( std::map<std::string, bool>& m )
+  {
+    GeneralPopMap<std::string, bool>( m, [this]( std::string& t ) { PopStr( t ); }, [this]( bool& t ) { PopBool( t ); } );
+  }
+  template<typename Value>
+  void PopStrNumMap( std::map<std::string, Value>& m )
+  {
+    GeneralPopMap<std::string, Value>( m, [this]( std::string& t ) { PopStr( t ); }, [this]( Value& t ) { PopNum( t ); } );
+  }
+  void PopStrStrMap( std::map<std::string, std::string>& m )
+  {
+    GeneralPopMap<std::string, std::string>( m, [this]( std::string& t ) { PopStr( t ); }, [this]( std::string& t ) { PopStr( t ); } );
+  }
 
-  template<typename Value, typename Map>
-  void PopMapStr_( Map& m );
-  template<typename Map>
-  void PopMapStrStr( Map& m );
-  template<typename Value, typename Map>
-  void PopMapStrSer( Map& m );
-  template<typename Value, typename Map>
-  void PopMapStrPtrSer( Map& m );
+  // map<>
+  template<typename Key, typename Value>
+  void PopNumSerObjMap( std::map<Key, Value>& m, PopFunc<Value*> popFunc )
+  {
+    GeneralPopSerMap<Key, Value, Value>( m, [this]( Key& t ) { PopNum( t ); },
+      []() {return Value(); }, []( Value& t ) { return &t; }, popFunc, 
+      []() {return Value(); } );
+  }
+  template<typename Key, typename Value>
+  void PopNumSerPtrMap( std::map<Key, Value*>& m, PopFunc<Value*> popFunc )
+  {
+    GeneralPopSerMap<Key, Value, Value*>( m, [this]( Key& t ) { PopNum( t ); },
+      []() {return new Value(); }, []( Value* t ) { return t; }, popFunc,
+      []() {return nullptr; } );
+  }
+  template<typename Key, typename Value, typename ElementType>
+  void PopNumSerSmartPtrMap( std::map<Key, ElementType>& m, PopFunc<Value*> popFunc )
+  {
+    GeneralPopSerMap<Key, Value, ElementType>( m, [this]( Key& t ) { PopNum( t ); },
+      []() {return ElementType( new Value() ); }, []( ElementType t ) { return t.get(); }, popFunc,
+      []() {return ElementType(); } );
+  }
 
-  template<typename Key, typename Value, typename Map>
-  void PopMapSer_( Map& m );
-  template<typename Key, typename Map>
-  void PopMapSerStr( Map& m );
-  template<typename Key, typename Value, typename Map>
-  void PopMapSerSer( Map& m );
-  template<typename Key, typename Value, typename Map>
-  void PopMapSerPtrSer( Map& m );
+  template<typename Value>
+  void PopStrSerObjMap( std::map<std::string, Value>& m, PopFunc<Value*> popFunc )
+  {
+    GeneralPopSerMap<std::string, Value, Value>( m, [this]( std::string& t ) { PopStr( t ); },
+      []() {return Value(); }, []( Value& t ) { return &t; }, popFunc,
+      []() {return Value(); } );
+  }
+  template<typename Value>
+  void PopStrSerPtrMap( std::map<std::string, Value*>& m, PopFunc<Value*> popFunc )
+  {
+    GeneralPopSerMap<std::string, Value, Value*>( m, [this]( std::string& t ) { PopStr( t ); },
+      []() {return new Value(); }, []( Value* t ) { return t; }, popFunc,
+      []() {return nullptr; } );
+  }
+  template<typename Value, typename ElementType>
+  void PopStrSerSmartPtrMap( std::map<std::string, ElementType>& m, PopFunc<Value*> popFunc )
+  {
+    GeneralPopSerMap<std::string, Value, ElementType>( m, [this]( std::string& t ) { PopStr( t ); },
+      []() {return ElementType( new Value() ); }, []( ElementType t ) { return t.get(); }, popFunc,
+      []() {return ElementType(); } );
+  }
 private:
-  void PopSize( int& size );
+  template<typename Type, typename Array>
+  void GeneralPopArray( Array& array, PopFunc<Type&> popFunc, AddToArray<Array&, Type&> addToArray )
+  {
+    array.clear();
+    SizeType size;
+    PopNum( size );
+    Type t;
+    for ( SizeType i = 0; i < size; i++ )
+    {
+      popFunc( t );
+      addToArray( array, t );
+    }
+  }
 
-  template<typename T, typename Array>
-  void PopByInsert( Array* pArray );
-  template<typename T, typename Array>
-  void PopByPush( Array* pArray );
+  template<typename Type, typename NewType, typename Array>
+  void GeneralPopSerArray( Array& array, 
+    GetNewFunc<NewType> getNewFunc, GetAddressFunc<Type*,NewType&> getAddressFunc, 
+    PopFunc<Type*> popFunc, GetNullPtrFunc<NewType> getNullPtrFunc )
+  {
+    array.clear();
+    SizeType size;
+    PopNum( size );
+    bool isNotNull;
+    for ( SizeType i = 0; i < size; i++ )
+    {
+      PopBool( isNotNull );
+      if ( isNotNull == false )
+      {
+        array.push_back( getNullPtrFunc() );
+        continue;
+      }
 
-  void PopStrByInsert( std::set<std::string>* pSetStr );
-  template<typename Array>
-  void PopStrByPush( Array* pArray );
+      NewType t = getNewFunc();
+      auto pT = getAddressFunc( t );
+      popFunc( pT );
+      array.push_back( t );
+    }
+  }
+
+  template<typename Key, typename Value>
+  void GeneralPopMap( std::map<Key, Value>& m, PopFunc<Key&> keyPopFunc, PopFunc<Value&> valuePopFunc )
+  {
+    SizeType size;
+    PopNum( size );
+    for ( SizeType i = 0; i < size; i++ )
+    {
+      Key key;
+      keyPopFunc( key );
+      Value value;
+      valuePopFunc( value );
+      m.insert( {key, value} );
+    }
+  }
+
+  template<typename Key, typename Value, typename NewType>
+  void GeneralPopSerMap( std::map<Key, NewType>& m, PopFunc<Key&> keyPopFunc, 
+    GetNewFunc<NewType> getNewFunc, GetAddressFunc<Value*, NewType&> getAddressFunc,
+    PopFunc<Value*> valuePopFunc, GetNullPtrFunc<NewType> getNullPtrFunc )
+  {
+    SizeType size;
+    PopNum( size );
+    for ( SizeType i = 0; i < size; i++ )
+    {
+      Key key;
+      keyPopFunc( key );
+
+      bool isNotNull;
+      PopBool( isNotNull );
+      if ( isNotNull == false )
+      {
+        m.insert( {key, getNullPtrFunc()} );
+        continue;
+      }
+      NewType value = getNewFunc();
+      auto pValue = getAddressFunc( value );
+      valuePopFunc( pValue );
+
+      m.insert( {key, value} );
+    }
+  }
 };
-//------------------------------------------------------------------------
-template<typename T>
-void TBinaryPopMaster::Pop( T& t )
-{
-  memcpy( &t, mPtrData + mOffset, sizeof( T ) );
-  mOffset += sizeof( T );
-}
-//------------------------------------------------------------------------
-template<typename T>
-void TBinaryPopMaster::PopSer( T& serializable )
-{
-  serializable.Deserialize( this );
-}
-//------------------------------------------------------------------------
-template<typename T>
-void TBinaryPopMaster::PopPtrSer( T*& pSer )
-{
-  unsigned char isNotNull;
-  Pop( isNotNull );
-  if ( isNotNull )
-  {
-    if ( pSer == nullptr )
-      pSer = new T();
-    pSer->Deserialize( this );
-  }
-}
-//------------------------------------------------------------------------
-template<typename T, typename Array>
-void TBinaryPopMaster::PopArray( Array& array )
-{
-  array.clear();
-
-  typedef std::set<T> SET_T;
-  typedef std::list<T> LIST_T;
-  typedef std::vector<T> VECTOR_T;
-  // такое кол-во веток в if возникает из-за того, что у set INSERT, а у list и vector push_back
-  if ( typeid( array ) == typeid( SET_T ) )
-  {
-    SET_T* pSet = ( SET_T* )&array;
-    PopByInsert<T>( pSet );
-  }
-  else if ( typeid( array ) == typeid( LIST_T ) )
-  {
-    LIST_T* pList = ( LIST_T* )&array;
-    PopByPush<T>( pList );
-  }
-  else
-  {
-    VECTOR_T* pVector = ( VECTOR_T* )&array;
-    PopByPush<T>( pVector );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Array>
-void TBinaryPopMaster::PopArrayStr( Array& array )
-{
-  array.clear();
-
-  typedef std::set<std::string> SET_STR;
-  typedef std::list<std::string> LIST_STR;
-  typedef std::vector<std::string> VECTOR_STR;
-  // такое кол-во веток в if возникает из-за того, что у set INSERT, а у list и vector push_back
-  if ( typeid( array ) == typeid( SET_STR ) )
-  {
-    SET_STR* pSet = ( SET_STR* )&array;
-    PopStrByInsert( pSet );
-  }
-  else if ( typeid( array ) == typeid( LIST_STR ) )
-  {
-    LIST_STR* pList = ( LIST_STR* )&array;
-    PopStrByPush( pList );
-  }
-  else
-  {
-    VECTOR_STR* pVector = ( VECTOR_STR* )&array;
-    PopStrByPush( pVector );
-  }
-}
-//------------------------------------------------------------------------
-template<typename T>
-void TBinaryPopMaster::PopVectorSer( std::vector<T>& array )
-{
-  array.clear();
-
-  int size;
-  PopSize( size );
-  array.reserve( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    T t;
-    PopSer( t );
-    array.push_back( t );
-  }
-}
-//------------------------------------------------------------------------
-template<typename T>
-void TBinaryPopMaster::PopListSer( std::list<T>& array )
-{
-  array.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    T t;
-    PopSer( t );
-    array.push_back( t );
-  }
-}
-//------------------------------------------------------------------------
-template<typename T>
-void TBinaryPopMaster::PopSetSer( std::set<T>& array )
-{
-  array.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    T t;
-    PopSer( t );
-    array.insert( t );
-  }
-}
-//------------------------------------------------------------------------
-template<typename T, typename Array>
-void TBinaryPopMaster::PopArrayPtrSer( Array& array )
-{// а здесь set быть не может!
-  array.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    T* t = nullptr;
-    PopPtrSer<T>( t );
-    array.push_back( t );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPopMaster::PopMap__( Map& m )
-{
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    Key key;
-    Pop( key );
-    Value value;
-    Pop( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Map>
-void TBinaryPopMaster::PopMap_Str( Map& m )
-{
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    Key key;
-    Pop( key );
-    std::string value;
-    PopStr( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPopMaster::PopMap_Ser( Map& m )
-{
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    Key key;
-    Pop( key );
-    Value value;
-    PopSer( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPopMaster::PopMap_PtrSer( Map& m )
-{
-  for ( auto& vt : m )
-    delete vt.second;
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    Key key;
-    Pop( key );
-    Value* value = nullptr;
-    PopPtrSer( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Value, typename Map>
-void TBinaryPopMaster::PopMapStr_( Map& m )
-{
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    std::string key;
-    PopStr( key );
-    Value value;
-    Pop( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Map>
-void TBinaryPopMaster::PopMapStrStr( Map& m )
-{
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    std::string key;
-    PopStr( key );
-    std::string value;
-    PopStr( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Value, typename Map>
-void TBinaryPopMaster::PopMapStrSer( Map& m )
-{
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    std::string key;
-    PopStr( key );
-    Value value;
-    PopSer( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Value, typename Map>
-void TBinaryPopMaster::PopMapStrPtrSer( Map& m )
-{
-  for ( auto& vt : m )
-    delete vt.second;
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    std::string key;
-    PopStr( key );
-    Value* value = nullptr;
-    PopPtrSer( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPopMaster::PopMapSer_( Map& m )
-{
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    Key key;
-    PopSer( key );
-    Value value;
-    Pop( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Map>
-void TBinaryPopMaster::PopMapSerStr( Map& m )
-{
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    Key key;
-    PopSer( key );
-    std::string value;
-    PopStr( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPopMaster::PopMapSerSer( Map& m )
-{
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    Key key;
-    PopSer( key );
-    Value value;
-    PopSer( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Key, typename Value, typename Map>
-void TBinaryPopMaster::PopMapSerPtrSer( Map& m )
-{
-  for ( auto& vt : m )
-    delete vt.second;
-  m.clear();
-
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    Key key;
-    PopSer( key );
-    Value* value = nullptr;
-    PopPtrSer( value );
-    m.insert( Map::value_type( key, value ) );
-  }
-}
-//------------------------------------------------------------------------
-template<typename T, typename Array>
-void TBinaryPopMaster::PopByInsert( Array* pArray )
-{
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    T t;
-    Pop( t );
-    pArray->insert( t );
-  }
-}
-//------------------------------------------------------------------------
-template<typename T, typename Array>
-void TBinaryPopMaster::PopByPush( Array* pArray )
-{
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    T t;
-    Pop( t );
-    pArray->push_back( t );
-  }
-}
-//------------------------------------------------------------------------
-template<typename Array>
-void TBinaryPopMaster::PopStrByPush( Array* pArray )
-{
-  int size;
-  PopSize( size );
-  for ( int i = 0; i < size; i++ )
-  {
-    std::string str;
-    PopStr( str );
-    pArray->push_back( str );
-  }
-}
-//------------------------------------------------------------------------

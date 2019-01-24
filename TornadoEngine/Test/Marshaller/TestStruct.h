@@ -16,28 +16,34 @@ See for more information License.h.
 REFLECTION_ATTRIBUTE
 struct TTestStruct : public TBaseStruct
 {
-  std::string    password;
+  TBaseStruct baseStruct;
+  TBaseStruct* pBaseStruct = nullptr;
+  std::shared_ptr<TBaseStruct> spBaseStruct;
+
+  std::string password;
   unsigned short port = 0;
   bool flag = false;
 
   // array
-  std::list<int> numList;
   std::set<std::string> strSet;
-  std::vector<int> numVector;
   std::set<int> intSet;
-
-  // map
-  std::map<int, std::string> intStrMap;
-  std::map<std::string, std::string> strStrMap;
-  std::map<std::string, int> strIntMap;
-  std::map<std::string, bool> strBoolMap;
-  std::map<int, float> intFloatMap;
-  std::map<int, bool> intBoolMap;
+  std::list<bool> boolList;
+  std::list<int> numList;
+  std::vector<int> numVector;
 
   // ser array
   std::vector<TBaseStruct> baseVec;
   std::vector<TBaseStruct*> basePtrVec;
   std::vector<std::shared_ptr<TBaseStruct>> baseSPVec;
+
+  // map
+  std::map<int, int> intIntMap;
+  std::map<int, bool> intBoolMap;
+  std::map<int, std::string> intStrMap;
+
+  std::map<std::string, std::string> strStrMap;
+  std::map<std::string, int> strIntMap;
+  std::map<std::string, bool> strBoolMap;
 
   // map
   std::map<std::string, TBaseStruct> strBaseMap;

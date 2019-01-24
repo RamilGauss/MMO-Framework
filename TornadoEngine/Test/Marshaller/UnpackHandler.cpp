@@ -5,14 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#pragma once
-#include <string>
-#include <list>
-#include <set>
-#include "ReflectionMacro.h"
+#include "UnpackHandler.h"
 
-REFLECTION_ATTRIBUTE
-struct TBaseStruct
-{
-  std::string s = "0123456789";
-};
+using namespace nsBinary;

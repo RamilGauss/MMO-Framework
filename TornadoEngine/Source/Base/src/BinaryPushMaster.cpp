@@ -17,15 +17,16 @@ void TBinaryPushMaster::Clear()
   mCollectorMember.Reset();
 }
 //-----------------------------------------------------------------------
-void TBinaryPushMaster::PushSize( const int& size )
+void TBinaryPushMaster::PushBool( const bool& t )
 {
-  Push( size );
+  BoolType v = t;
+  PushNum( v );
 }
 //-----------------------------------------------------------------------
 void TBinaryPushMaster::PushStr( const std::string& str )
 {
-  int len = str.length();
-  PushSize( len );
+  StrSizeType len = str.length();
+  PushNum( len );
   if( len )
     mCollectorMember.PushBack( (char*) str.data(), len );
 }

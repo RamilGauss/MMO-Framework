@@ -39,8 +39,8 @@
     <Filter Include="Info">
       <UniqueIdentifier>{c50e22c0-6f45-4957-a29f-17744101630b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test">
-      <UniqueIdentifier>{3aa3e04c-a6d5-4dc3-8a8a-4d3d9a782b04}</UniqueIdentifier>
+    <Filter Include="Trash">
+      <UniqueIdentifier>{eaf82497-71dc-4930-b94c-b9f8599df714}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +120,9 @@
       <Filter>Generators\Binary</Filter>
     </ClCompile>
     <ClCompile Include="Sources\BinaryMarshallerFileGenerator.cpp">
+      <Filter>Generators\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BinaryMarshallerSourceFileGenerator.cpp">
       <Filter>Generators\Binary</Filter>
     </ClCompile>
   </ItemGroup>
@@ -223,19 +226,13 @@
     <ClInclude Include="Sources\JsonSerializerSourceFileGenerator.h">
       <Filter>Generators\Json</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\BaseStruct.h">
-      <Filter>Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\TestClass.h">
-      <Filter>Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\TestStruct.h">
-      <Filter>Test</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\BinaryMarshallerHeaderFileGenerator.h">
       <Filter>Generators\Binary</Filter>
     </ClInclude>
     <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h">
+      <Filter>Generators\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BinaryMarshallerSourceFileGenerator.h">
       <Filter>Generators\Binary</Filter>
     </ClInclude>
   </ItemGroup>

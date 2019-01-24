@@ -8,18 +8,11 @@ See for more information License.h.
 #pragma once
 
 #include <vector>
-#include <list>
 #include "ParamClass.h"
 
-class TBinaryPushMaster;
-class TBinaryPopMaster;
-
+REFLECTION_ATTRIBUTE
 class TTestClass
 {
 public:// member region
   std::vector<TParamClass> vParam;
-public:
-  void Serialize( TBinaryPushMaster* pPushMaster ) const;
-  void Deserialize( TBinaryPopMaster* pPopMaster );
-  short GetSerializableUniqueID();
 };

@@ -6,15 +6,21 @@ See for more information License.h.
 */
 
 #pragma once
-#include "TestStruct.h"
+#include <string>
+#include <list>
+#include <set>
+#include "ReflectionMacro.h"
 
 REFLECTION_ATTRIBUTE
-class TTestClass
+struct TBaseStruct
 {
-public:
-  TTestStruct ts;
-  //TTestStruct* ts;
-  //std::shared_ptr<TTestStruct> ts;
+  std::string s;
 
-  std::string str;
+  TBaseStruct()
+  {
+  }
+  TBaseStruct( std::string str )
+  {
+    s = str;
+  }
 };

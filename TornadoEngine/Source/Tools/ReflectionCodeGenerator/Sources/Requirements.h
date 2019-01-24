@@ -23,7 +23,7 @@ namespace nsReflectionCodeGenerator
           "with many inheritances",
           "other types with reflection attribute",
           "in many name spaces",
-          "pointer to reflective types",
+          "pointer to reflective types (is not equal null!!!)",
           "public members only",
           "built in types",
           "std: map, set, vector, list",

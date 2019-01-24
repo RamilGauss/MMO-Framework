@@ -258,7 +258,6 @@ void TJsonSerializerSourceFileGenerator::HandleReflectionForPush( TMemberInfo* p
 {
   auto objName = fmt::format( "{}_obj", pMemberInfo->mName );
 
-  AddVarDeclaration( s_Jobj, objName );
   std::string getAddrOfMember;
   switch ( pMemberInfo->mExtendedInfo.mAccessMethod )
   {
@@ -266,14 +265,14 @@ void TJsonSerializerSourceFileGenerator::HandleReflectionForPush( TMemberInfo* p
       getAddrOfMember = fmt::format( "&({}->{})", sTypeObject, pMemberInfo->mName );
       break;
     case TMemberTypeExtendedInfo::Pointer:
-      getAddrOfMember = fmt::format( "{}->{}", sTypeObject, pMemberInfo->mName );
-      break;
     case TMemberTypeExtendedInfo::SmartPointer:
-      getAddrOfMember = fmt::format( "{}->{}.get()", sTypeObject, pMemberInfo->mName );
-      break;
+      HandleSmartPtrOrPtrReflectionForPush( pMemberInfo );
+      return;
     default:
       break;
   }
+
+  AddVarDeclaration( s_Jobj, objName );
 
   std::list<std::string> argList = {getAddrOfMember, objName};
   std::list<std::string> templateList;
@@ -287,6 +286,60 @@ void TJsonSerializerSourceFileGenerator::HandleReflectionForPush( TMemberInfo* p
     fmt::format( "{}", objName )
   };
   AddCallFunction( s_PUM, s_Push, templateList, argList );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrReflectionForPush( TMemberInfo* pMemberInfo )
+{
+  auto objName = fmt::format( "{}_obj", pMemberInfo->mName );
+  auto pointerToObjName = fmt::format( "p_{}", pMemberInfo->mName );
+
+  std::string getAddrOfMember;
+  switch ( pMemberInfo->mExtendedInfo.mAccessMethod )
+  {
+    case TMemberTypeExtendedInfo::Pointer:
+      getAddrOfMember = fmt::format( "{}->{}", sTypeObject, pMemberInfo->mName );
+      break;
+    case TMemberTypeExtendedInfo::SmartPointer:
+      getAddrOfMember = fmt::format( "{}->{}.get()", sTypeObject, pMemberInfo->mName );
+      break;
+    default:
+      break;
+  }
+
+  auto expressionGetAddress = fmt::format( "auto {} = {};", pointerToObjName, getAddrOfMember );
+
+  AddVarDeclaration( s_Jobj, objName );
+  Add( expressionGetAddress );
+  AddIf( pointerToObjName );
+  AddLeftBrace();
+  IncrementTabs();
+
+  std::list<std::string> argList = {pointerToObjName, objName};
+  std::list<std::string> templateList;
+
+  AddCallFunction( "", sSerialzeMethod, templateList, argList );
+
+  argList =
+  {
+    s_Obj,
+    fmt::format( "\"{}\"", pMemberInfo->mName, objName ),
+    fmt::format( "{}", objName )
+  };
+  AddCallFunction( s_PUM, s_Push, templateList, argList );
+
+  DecrementTabs();
+  AddRightBrace();
+  AddElse();
+  IncrementTabs();
+
+  argList =
+  {
+    s_Obj,
+    fmt::format( "\"{}\"", pMemberInfo->mName, objName ),
+  };
+  AddCallFunction( s_PUM, s_PushNull, templateList, argList );
+
+  DecrementTabs();
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPushMap( const std::string& name )
@@ -431,45 +484,64 @@ void TJsonSerializerSourceFileGenerator::HandlePopMap( TMemberInfo* pMemberInfo 
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::HandlePopReflection( TMemberInfo* pMemberInfo )
 {
+  auto jsonName = fmt::format( "{}_{}", pMemberInfo->mName, s_Json );
+  switch ( pMemberInfo->mExtendedInfo.mAccessMethod )
+  {
+    case TMemberTypeExtendedInfo::Object:
+      break;
+    case TMemberTypeExtendedInfo::Pointer:
+    case TMemberTypeExtendedInfo::SmartPointer:
+      HandleSmartPtrOrPtrPopReflection( pMemberInfo );
+      return;
+    default:
+      break;
+  }
+  auto expression = fmt::format( "auto& {} = {}[\"{}\"];", jsonName, s_Json, pMemberInfo->mName );
+  Add( expression );
+
+  std::list<std::string> argList =
+  {
+    fmt::format( "&({}->{})", sTypeObject, pMemberInfo->mName ),
+    fmt::format( "{}", jsonName )
+  };
+  std::list<std::string> templateList;
+
+  AddCallFunction( "", sDeserialzeMethod, templateList, argList );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrPopReflection( TMemberInfo* pMemberInfo )
+{
   auto typeName = pMemberInfo->mExtendedInfo.mType;
   auto pTypeInfo = mTypeMng->FindTypeInfo( typeName );
   if ( pTypeInfo == nullptr )
     return;
 
   auto jsonName = fmt::format( "{}_{}", pMemberInfo->mName, s_Json );
-  auto expression = fmt::format( "auto& {} = {}[\"{}\"];", jsonName, s_Json, pMemberInfo->mName );
-  Add( expression );
 
-  std::string checkForNewObject;
   std::string newObject;
   std::string getAddrOfMember;
   switch ( pMemberInfo->mExtendedInfo.mAccessMethod )
   {
-    case TMemberTypeExtendedInfo::Object:
-      getAddrOfMember = fmt::format( "&({}->{})", sTypeObject, pMemberInfo->mName );
-      break;
     case TMemberTypeExtendedInfo::Pointer:
       getAddrOfMember = fmt::format( "{}->{}", sTypeObject, pMemberInfo->mName );
-
-      checkForNewObject = fmt::format( "if( {}->{} == nullptr )", sTypeObject, pMemberInfo->mName );
       newObject = fmt::format( "{}->{} = new {}();", sTypeObject, pMemberInfo->mName, pTypeInfo->GetTypeNameWithNameSpace() );
       break;
     case TMemberTypeExtendedInfo::SmartPointer:
       getAddrOfMember = fmt::format( "{}->{}.get()", sTypeObject, pMemberInfo->mName );
-      checkForNewObject = fmt::format( "if( {}->{}.get() == nullptr )", sTypeObject, pMemberInfo->mName );
       newObject = fmt::format( "{}->{}.reset( new {}() );", sTypeObject, pMemberInfo->mName, pTypeInfo->GetTypeNameWithNameSpace() );
       break;
     default:
       break;
   }
-
-  if ( checkForNewObject.length() )
-  {
-    Add( checkForNewObject );
-    IncrementTabs();
-    Add( newObject );
-    DecrementTabs();
-  }
+  auto expression = fmt::format( "auto& {} = {}[\"{}\"];", jsonName, s_Json, pMemberInfo->mName );
+  Add( expression );
+  AddIf( fmt::format( "{}.is_null() == false", jsonName ) );
+  AddLeftBrace();
+  IncrementTabs();
+  AddIf( fmt::format( "{} == nullptr", getAddrOfMember ) );
+  IncrementTabs();
+  Add( newObject );
+  DecrementTabs();
 
   std::list<std::string> argList =
   {
@@ -479,6 +551,15 @@ void TJsonSerializerSourceFileGenerator::HandlePopReflection( TMemberInfo* pMemb
   std::list<std::string> templateList;
 
   AddCallFunction( "", sDeserialzeMethod, templateList, argList );
+  DecrementTabs();
+  AddRightBrace();
+  //auto& jsonSerializer_json = json["jsonSerializer"];
+  //if ( jsonSerializer_json.is_null() == false )
+  //{
+  //  if ( p->jsonSerializer.get() == nullptr )
+  //    p->jsonSerializer.reset( new nsReflectionCodeGenerator::TJsonSerializerGeneratorConfig() );
+  //  _Deserialize( p->jsonSerializer.get(), jsonSerializer_json );
+  //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPopNumArray( const std::string& name, const std::string& type )
@@ -533,7 +614,7 @@ void TJsonSerializerSourceFileGenerator::HandlePopReflectionArray( TMemberInfo* 
       break;
     case TMemberTypeExtendedInfo::SmartPointer:
       methodName = s_PopSerSmartPtrArray;
-      fullType = fmt::format( "{}{}<{}>", s_STD_,extMemberInfo.mSmartPtrType ,keyType );
+      fullType = fmt::format( "{}{}<{}>", s_STD_, extMemberInfo.mSmartPtrType, keyType );
       retNewSmartPtrFunc = fmt::format( "[](){{ return {}( new {}() );}}", fullType, keyType );
       break;
     default:
@@ -611,7 +692,7 @@ void TJsonSerializerSourceFileGenerator::HandlePopBuiltInOrStringSerMap( TMember
         methodName = s_PopNumSerPtrMap;
       break;
     case TMemberTypeExtendedInfo::SmartPointer:
-      if( keyExtMemberInfo.mCategory == TMemberTypeExtendedInfo::String )
+      if ( keyExtMemberInfo.mCategory == TMemberTypeExtendedInfo::String )
         methodName = s_PopStrSerSmartPtrMap;
       else
         methodName = s_PopNumSerSmartPtrMap;
@@ -739,7 +820,7 @@ void TJsonSerializerSourceFileGenerator::General_AddPopSerArrayOrMap( const std:
   std::list<std::string> templateList;
   if ( keyType.length() )
     templateList.push_back( keyType );
-  if( valueType.length() )
+  if ( valueType.length() )
     templateList.push_back( valueType );
   if ( fullType.length() )
     templateList.push_back( fullType );

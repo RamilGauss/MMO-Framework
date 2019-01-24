@@ -6,30 +6,31 @@ See for more information License.h.
 */
 
 #pragma once
-#include "GeneratedClass.h"
-#include "MyClass.h"
+
 #include "BinaryMarshaller.h"
 
 namespace nsBinary
 {
-  class TDeserializationHandler
+  class TUnpackHandler
   {
   public:
     // can be Handle for an every type
-    static void Handle( TGeneratedClass* p )
-    {
-      TBinaryMarshaller::Deallocate( p );
-    }
+    //static void Handle( TTestStruct* p )
+    //{
+    //  TBinaryMarshaller::Deallocate( p );
+    //}
 
-    static void Handle( TMyClass* p )
-    {
-      TBinaryMarshaller::Deallocate( p );
-    }
+    //static void Handle( TBaseStruct* p )
+    //{
+    //  TBinaryMarshaller::Deallocate( p );
+    //}
 
-    template < typename Type >
+    template <typename Type>
     static void Handle( Type* p )
     {
       // default: free all
+      //AddToECS( p );
+
       TBinaryMarshaller::Deallocate( p );
     }
   };

@@ -4,49 +4,34 @@
     <ClCompile Include="main.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedClass.cpp">
-      <Filter>Generated Files\Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="TestClass.cpp">
-      <Filter>Generated Files\Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="ParamClass.cpp">
-      <Filter>Generated Files\Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="MyClass.cpp">
-      <Filter>Generated Files\Sources</Filter>
-    </ClCompile>
     <ClCompile Include="BinaryMarshaller.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="DeserializationHandler.cpp">
+    <ClCompile Include="UnpackHandler.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GeneratedClass.h">
-      <Filter>Generated Files\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="MyClass.h">
-      <Filter>Generated Files\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="OtherClass.h">
-      <Filter>Generated Files\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="ParamClass.h">
-      <Filter>Generated Files\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SerializableUniqueIdentity.h">
-      <Filter>Generated Files\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="TestClass.h">
-      <Filter>Generated Files\Headers</Filter>
-    </ClInclude>
     <ClInclude Include="BinaryMarshaller.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="DeserializationHandler.h">
+    <ClInclude Include="UnpackHandler.h">
       <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeList.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseStruct.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="ParamClass.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="TestClass.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="TestStruct.h">
+      <Filter>Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -56,11 +41,8 @@
     <Filter Include="Generated Files">
       <UniqueIdentifier>{be5ff4d1-4a1b-4cf2-bbf6-d79a63d534fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generated Files\Headers">
-      <UniqueIdentifier>{dd90f8f7-1d0d-4445-9479-da02a2f9052b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Generated Files\Sources">
-      <UniqueIdentifier>{b3102fcd-e83d-4a3f-b77b-e4ab6a5feee3}</UniqueIdentifier>
+    <Filter Include="Test">
+      <UniqueIdentifier>{bd35ddf3-ad1a-4a7e-9850-990e827653a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

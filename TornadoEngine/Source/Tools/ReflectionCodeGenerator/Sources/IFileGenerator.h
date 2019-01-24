@@ -41,6 +41,9 @@ namespace nsReflectionCodeGenerator
     void AddHeader();
     void AddTimeHeader();
 
+    void AddIf( const std::string& condition );
+    void AddElse();
+
     void AddLeftBrace();
     void AddRightBrace();
 

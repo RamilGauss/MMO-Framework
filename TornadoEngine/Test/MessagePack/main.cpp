@@ -26,9 +26,9 @@ See for more information License.h.
 
 struct TFloat3
 {
-  float x = 1.2345678f;
-  float y = 2.2345678f;
-  float z = 3.2345678f;
+  unsigned char x = 0;
+  unsigned char y = 0;
+  unsigned char z = 0;
   MSGPACK_DEFINE( x, y, z );
 };
 
@@ -54,8 +54,10 @@ struct TLocationInfo
 
 struct TSynchronizationData
 {
-  std::vector<TLocationInfo> infoVec;
-  MSGPACK_DEFINE( infoVec );
+  //std::vector<TLocationInfo> infoVec;
+  //MSGPACK_DEFINE( infoVec );
+  std::string s;// = "0123456789";
+  MSGPACK_DEFINE( s );
 };
 
 int main( void )
@@ -67,9 +69,9 @@ int main( void )
 
   TContainerRise c;
   TSynchronizationData src;
-  src.infoVec.push_back( TLocationInfo( 1 ) );
-  src.infoVec.push_back( TLocationInfo( 2 ) );
-  src.infoVec.push_back( TLocationInfo( 3 ) );
+  //src.infoVec.push_back( TLocationInfo( 1 ) );
+  //src.infoVec.push_back( TLocationInfo( 2 ) );
+  //src.infoVec.push_back( TLocationInfo( 3 ) );
 
   TMarshaller<TMessagePackSerializer<msgpack::object_handle>>::TypeID type;
   auto startM = ht_GetMSCount();
@@ -89,9 +91,9 @@ int main( void )
   return 0;
   //------------------------------------------------
   //TSynchronizationData src;
-  src.infoVec.push_back( TLocationInfo( 1 ) );
-  src.infoVec.push_back( TLocationInfo( 2 ) );
-  src.infoVec.push_back( TLocationInfo( 3 ) );
+  //src.infoVec.push_back( TLocationInfo( 1 ) );
+  //src.infoVec.push_back( TLocationInfo( 2 ) );
+  //src.infoVec.push_back( TLocationInfo( 3 ) );
 
   TContainerRise buffer;
   TMessagePackSerializer<msgpack::object_handle> msgPackSerializer;

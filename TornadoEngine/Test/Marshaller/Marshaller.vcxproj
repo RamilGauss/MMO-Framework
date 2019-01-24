@@ -143,7 +143,8 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader />
@@ -152,6 +153,8 @@
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -192,21 +195,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BinaryMarshaller.cpp" />
-    <ClCompile Include="DeserializationHandler.cpp" />
-    <ClCompile Include="GeneratedClass.cpp" />
+    <ClCompile Include="UnpackHandler.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyClass.cpp" />
-    <ClCompile Include="ParamClass.cpp" />
-    <ClCompile Include="TestClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseStruct.h" />
     <ClInclude Include="BinaryMarshaller.h" />
-    <ClInclude Include="DeserializationHandler.h" />
-    <ClInclude Include="GeneratedClass.h" />
-    <ClInclude Include="MyClass.h" />
-    <ClInclude Include="OtherClass.h" />
+    <ClInclude Include="IncludeList.h" />
+    <ClInclude Include="TestStruct.h" />
+    <ClInclude Include="UnpackHandler.h" />
     <ClInclude Include="ParamClass.h" />
-    <ClInclude Include="SerializableUniqueIdentity.h" />
     <ClInclude Include="TestClass.h" />
   </ItemGroup>
   <ItemGroup>

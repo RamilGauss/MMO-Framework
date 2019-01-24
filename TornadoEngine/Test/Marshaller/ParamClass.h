@@ -8,42 +8,34 @@ See for more information License.h.
 #pragma once
 
 #include "TypeDef.h"
+#include "BinaryPushMaster.h"
+#include "BinaryPopMaster.h"
+#include "ReflectionMacro.h"
 
-class TBinaryPushMaster;
-class TBinaryPopMaster;
-
-#ifdef WIN32
-#pragma pack(push, 1)
-#endif
-
+REFLECTION_ATTRIBUTE
 struct TFloat3
 {
   float x = 1.2345678f;
   float y = 2.2345678f;
   float z = 3.2345678f;
-}_PACKED;
+};
 
+REFLECTION_ATTRIBUTE
 struct TFloat4
 {
   float x = 1.2345678f;
   float y = 2.2345678f;
   float z = 3.2345678f;
   float w = 4.2345678f;
-}_PACKED;
+};
 
+REFLECTION_ATTRIBUTE
 class TParamClass
 {
-public:// member region
+public:
   int id;
   TFloat3 pos;
   TFloat4 rot;
   TFloat3 vel;
-public:
-  void Serialize( TBinaryPushMaster* pPushMaster ) const;
-  void Deserialize( TBinaryPopMaster* pPopMaster );
-  short GetSerializableUniqueID();
-}_PACKED;
+};
 
-#ifdef WIN32
-#pragma pack(pop)
-#endif
