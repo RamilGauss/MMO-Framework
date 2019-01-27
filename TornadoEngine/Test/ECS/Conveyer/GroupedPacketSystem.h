@@ -43,7 +43,6 @@ public:
     for( auto i = 0; i < count; i++ )
     {
       auto entity = entities[i];
-      registry->get<PooledComponents::TUchar>( entity ).Done();
       GetRegistry()->destroy( entity );
     }
 

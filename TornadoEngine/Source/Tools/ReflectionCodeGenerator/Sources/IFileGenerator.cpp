@@ -30,6 +30,17 @@ void IFileGenerator::AddTimeHeader()
   Add( s );
 }
 //----------------------------------------------------------------------------------
+void IFileGenerator::AddCase( const std::string& condition )
+{
+  auto s = fmt::format( "case {}:", condition );
+  Add( s );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddBreak()
+{
+  Add( "break;" );
+}
+//----------------------------------------------------------------------------------
 void IFileGenerator::AddIf( const std::string& condition )
 {
   auto s = fmt::format( "if ( {} )", condition );
@@ -203,11 +214,26 @@ void IFileGenerator::AddMethodImplementationBegin( const std::string& retName, c
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddCallFunction( const std::string& namespaceFunc, const std::string& funcName, std::list<std::string>& templateList, std::list<std::string>& argList )
 {
+  General_AddCallFunctionOrObjMethod( "", namespaceFunc, funcName, templateList, argList );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddCallObjMethod( const std::string& objectName, const std::string& methodName, std::list<std::string>& templateList, std::list<std::string>& argList )
+{
+  General_AddCallFunctionOrObjMethod( objectName, "", methodName, templateList, argList );
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::General_AddCallFunctionOrObjMethod( const std::string& objectName, const std::string& namespaceFunc, 
+  const std::string& funcName, std::list<std::string>& templateList, std::list<std::string>& argList )
+{
   std::string namespacePredict;
   if ( namespaceFunc.length() )
     namespacePredict = namespaceFunc + "::";
 
-  std::string str = fmt::format( "{}{}", namespacePredict, funcName );
+  std::string objPredict;
+  if ( objectName.length() )
+    objPredict = objectName + ".";
+
+  std::string str = fmt::format( "{}{}{}", objPredict, namespacePredict, funcName );
   auto templ = EnumerateParamToStr( templateList );
   if ( templ.length() )
     str += fmt::format( "<{}>", templ );
@@ -229,10 +255,17 @@ void IFileGenerator::AddVarDeclaration( const std::string& typeName, const std::
 //----------------------------------------------------------------------------------
 std::string IFileGenerator::EnumerateParamToStr( std::list<std::string>& paramList )
 {
-  std::string str;
-  int cnt = paramList.size();
-  int i = 0;
+  std::list<std::string> existStrList;
   for ( auto param : paramList )
+  {
+    if ( param.length() > 0 )
+      existStrList.push_back( param );
+  }
+
+  std::string str;
+  int cnt = existStrList.size();
+  int i = 0;
+  for ( auto param : existStrList )
   {
     str += param;
     if ( i != cnt - 1 )
@@ -242,3 +275,25 @@ std::string IFileGenerator::EnumerateParamToStr( std::list<std::string>& paramLi
   return str;
 }
 //----------------------------------------------------------------------------------
+void IFileGenerator::AddCallingMethodForParent( TTypeInfo* p, std::function<void( const std::string& )> func )
+{
+  for ( auto& inheritanceInfo : p->mInheritanceVec )
+  {
+    if ( inheritanceInfo.mInheritanceAccessLevel != TMemberInfo::ePublic )
+      continue;
+    // найти родителя - TypeInfo
+    auto pParentInfo = mTypeMng->FindTypeInfo( inheritanceInfo.mParentTypeName );
+    if ( pParentInfo == nullptr )
+      continue;
+    func( pParentInfo->GetTypeNameWithNameSpace() );
+  }
+}
+//-----------------------------------------------------------------------------------------------------------
+void IFileGenerator::AddCallingMethod( TTypeInfo* p, std::function<void( TMemberInfo* )> func )
+{
+  auto fit = p->mMemberMap.find( TMemberInfo::AccessLevel::ePublic );
+  if ( fit != p->mMemberMap.end() )
+    for ( auto memberInfo : fit->second )
+      func( memberInfo.get() );
+}
+//-----------------------------------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
   {
     "directories":
     [
-      "./Sources"
+      "."
     ],
     "recursive": true
   },
@@ -21,7 +21,7 @@
   },
   "targetForCodeGeneration":
   {
-    "directory": "./Sources",
+    "directory": ".",
     "includeListFileName": "IncludeList",
     "implementation":
     {
@@ -38,7 +38,7 @@
         "nameSpaceName": "nsBinary",
         "fileName": "BinaryMarshaller",
         "className": "TBinaryMarshaller",
-        "beginID": 666,
+        "beginID": 0,
         "unpackHandler":
         {
           "exportDeclaration": "",

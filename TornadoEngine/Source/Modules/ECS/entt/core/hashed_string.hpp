@@ -52,7 +52,7 @@ public:
      * @tparam N Number of characters of the identifier.
      * @param str Human-readable identifer.
      */
-    template <std::size_t N>
+    template<std::size_t N>
     constexpr HashedString(const char (&str)[N]) ENTT_NOEXCEPT
         : hash{helper(offset, str)}, str{str}
     {}
@@ -108,6 +108,11 @@ constexpr bool operator!=(const HashedString &lhs, const HashedString &rhs) ENTT
 }
 
 
+/**
+ * @brief User defined literal for hashed strings.
+ * @param str The literal without its suffix.
+ * @return A properly initialized hashed string.
+ */
 constexpr entt::HashedString operator"" ENTT_HS_SUFFIX(const char *str, std::size_t) ENTT_NOEXCEPT {
     return entt::HashedString{str};
 }

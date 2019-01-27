@@ -65,7 +65,7 @@ public:
     for( auto i = 0; i < PACKET_COUNT; i++ )
     {
       auto ent = registry->create();
-      registry->assign<PooledComponents::TUchar>( ent, SIZE_PACKET );
+      registry->assign<PooledComponents::TUchar>( ent, registry, SIZE_PACKET );
       auto& c = registry->get<PooledComponents::TUchar>( ent );
       registry->assign<TFreshPacket>( ent );
     }

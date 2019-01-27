@@ -31,7 +31,7 @@ void TJsonSerializerGenerator::GenerateHeader()
   fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-void nsReflectionCodeGenerator::TJsonSerializerGenerator::GenerateSource()
+void TJsonSerializerGenerator::GenerateSource()
 {
   TJsonSerializerSourceFileGenerator fileGenerator;
 

@@ -12,8 +12,6 @@ using namespace nsReflectionCodeGenerator;
 
 void TJsonSerializerHeaderFileGenerator::Work()
 {
-  auto& jsonSerializer = mConfig->targetForCodeGeneration.implementation.jsonSerializer;
-
   AddHeader();
   AddTimeHeader();
 
@@ -25,14 +23,14 @@ void TJsonSerializerHeaderFileGenerator::Work()
   AddInclude( mConfig->targetForCodeGeneration.includeListFileName + ".h" );
   AddEmptyLine();
 
-  auto namespaceName = jsonSerializer->nameSpaceName;
+  auto namespaceName = mJsonSerializer->nameSpaceName;
   if ( namespaceName.length() )
   {
     AddNamespaceBegin( namespaceName );
     IncrementTabs();
   }
 
-  AddClassBegin( jsonSerializer->exportDeclaration, jsonSerializer->className );
+  AddClassBegin( mJsonSerializer->exportDeclaration, mJsonSerializer->className );
 
   AddList( s_JsonDecl );
 
@@ -42,7 +40,7 @@ void TJsonSerializerHeaderFileGenerator::Work()
 
   AddClassEnd();
 
-  AddList( s_JsonImplentation );
+  AddList( s_JsonImpl );
 
   if ( namespaceName.length() )
   {
@@ -73,14 +71,14 @@ void TJsonSerializerHeaderFileGenerator::AddSerializeMethodDeclaration( std::str
 {
   // S - Type* p, Jobj& obj
   auto strList = GetParamListForSerialize( namespaceWithType );
-  AddStaticMethodDeclaration( "void", sSerialzeMethod, strList );
+  AddStaticMethodDeclaration( "void", sSerializeMethod, strList );
 }
 //-----------------------------------------------------------------------------------
 void TJsonSerializerHeaderFileGenerator::AddDeserializeMethodDeclaration( std::string& namespaceWithType )
 {
   // D - Type* p, const json11::Json& json 
   auto strList = GetParamListForDeserialize( namespaceWithType );
-  AddStaticMethodDeclaration( "void", sDeserialzeMethod, strList );
+  AddStaticMethodDeclaration( "void", sDeserializeMethod, strList );
 }
 //-----------------------------------------------------------------------------------
 

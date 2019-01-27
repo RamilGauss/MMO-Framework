@@ -16,6 +16,8 @@
 #include "../core/algorithm.hpp"
 #include "../core/family.hpp"
 #include "../signal/sigh.hpp"
+#include "attachee.hpp"
+#include "entity.hpp"
 #include "entt_traits.hpp"
 #include "snapshot.hpp"
 #include "sparse_set.hpp"
@@ -44,10 +46,82 @@ class Registry {
     using signal_type = SigH<void(Registry &, const Entity)>;
     using traits_type = entt_traits<Entity>;
 
-    template<typename... Component>
+    template<typename Component>
+    struct Pool: SparseSet<Entity, Component> {
+        Pool(Registry *registry) ENTT_NOEXCEPT
+            : registry{registry}
+        {}
+
+        template<typename... Args>
+        Component & construct(const Entity entity, Args &&... args) {
+            auto &component = SparseSet<Entity, Component>::construct(entity, std::forward<Args>(args)...);
+            ctor.publish(*registry, entity);
+            return component;
+        }
+
+        void destroy(const Entity entity) override {
+            dtor.publish(*registry, entity);
+            SparseSet<Entity, Component>::destroy(entity);
+        }
+
+        typename signal_type::sink_type construction() ENTT_NOEXCEPT {
+            return ctor.sink();
+        }
+
+        typename signal_type::sink_type destruction() ENTT_NOEXCEPT {
+            return dtor.sink();
+        }
+
+    private:
+        Registry *registry;
+        signal_type ctor;
+        signal_type dtor;
+    };
+
+    template<typename Tag>
+    struct Attaching: Attachee<Entity, Tag> {
+        Attaching(Registry *registry)
+            : registry{registry}
+        {}
+
+        template<typename... Args>
+        Tag & construct(const Entity entity, Args &&... args) ENTT_NOEXCEPT {
+            auto &tag = Attachee<Entity, Tag>::construct(entity, std::forward<Args>(args)...);
+            ctor.publish(*registry, entity);
+            return tag;
+        }
+
+        void destroy() ENTT_NOEXCEPT override {
+            dtor.publish(*registry, Attachee<Entity>::get());
+            Attachee<Entity, Tag>::destroy();
+        }
+
+        Entity move(const Entity entity) ENTT_NOEXCEPT {
+            const auto owner = Attachee<Entity>::get();
+            dtor.publish(*registry, owner);
+            Attachee<Entity, Tag>::move(entity);
+            ctor.publish(*registry, entity);
+            return owner;
+        }
+
+        typename signal_type::sink_type construction() ENTT_NOEXCEPT {
+            return ctor.sink();
+        }
+
+        typename signal_type::sink_type destruction() ENTT_NOEXCEPT {
+            return dtor.sink();
+        }
+
+    private:
+        Registry *registry;
+        signal_type ctor;
+        signal_type dtor;
+    };
+
+    template<typename handler_family::family_type(*Type)(), typename... Component>
     static void creating(Registry &registry, const Entity entity) {
         if(registry.has<Component...>(entity)) {
-            registry.handlers[handler_family::type<Component...>()]->construct(entity);
+            registry.handlers[Type()]->construct(entity);
         }
     }
 
@@ -57,39 +131,65 @@ class Registry {
         return handler.has(entity) ? handler.destroy(entity) : void();
     }
 
-    struct Attachee {
-        Attachee(const Entity entity) ENTT_NOEXCEPT: entity{entity} {}
-        virtual ~Attachee() = default;
-        Entity entity;
-    };
-
     template<typename Tag>
-    struct Attaching: Attachee {
-        // requirements for aggregates are relaxed only since C++17
-        template<typename... Args>
-        Attaching(const Entity entity, Args &&... args)
-            : Attachee{entity}, tag{std::forward<Args>(args)...}
-        {}
-
-        Tag tag;
-    };
+    inline bool managed(tag_t) const ENTT_NOEXCEPT {
+        const auto ttype = tag_family::type<Tag>();
+        return ttype < tags.size() && tags[ttype];
+    }
 
     template<typename Component>
     inline bool managed() const ENTT_NOEXCEPT {
         const auto ctype = component_family::type<Component>();
-        return ctype < pools.size() && std::get<0>(pools[ctype]);
+        return ctype < pools.size() && pools[ctype];
+    }
+
+    template<typename Tag>
+    inline const Attaching<Tag> & pool(tag_t) const ENTT_NOEXCEPT {
+        assert(managed<Tag>(tag_t{}));
+        return static_cast<const Attaching<Tag> &>(*tags[tag_family::type<Tag>()]);
+    }
+
+    template<typename Tag>
+    inline Attaching<Tag> & pool(tag_t) ENTT_NOEXCEPT {
+        return const_cast<Attaching<Tag> &>(const_cast<const Registry *>(this)->pool<Tag>(tag_t{}));
     }
 
     template<typename Component>
-    inline const SparseSet<Entity, Component> & pool() const ENTT_NOEXCEPT {
+    inline const Pool<Component> & pool() const ENTT_NOEXCEPT {
         assert(managed<Component>());
-        const auto ctype = component_family::type<Component>();
-        return static_cast<SparseSet<Entity, Component> &>(*std::get<0>(pools[ctype]));
+        return static_cast<const Pool<Component> &>(*pools[component_family::type<Component>()]);
     }
 
     template<typename Component>
-    inline SparseSet<Entity, Component> & pool() ENTT_NOEXCEPT {
-        return const_cast<SparseSet<Entity, Component> &>(const_cast<const Registry *>(this)->pool<Component>());
+    inline Pool<Component> & pool() ENTT_NOEXCEPT {
+        return const_cast<Pool<Component> &>(const_cast<const Registry *>(this)->pool<Component>());
+    }
+
+    template<typename Comp, std::size_t Pivot, typename... Component, std::size_t... Indexes>
+    void connect(std::index_sequence<Indexes...>) {
+        pool<Comp>().construction().template connect<&Registry::creating<&handler_family::type<Component...>, std::tuple_element_t<(Indexes < Pivot ? Indexes : (Indexes+1)), std::tuple<Component...>>...>>();
+        pool<Comp>().destruction().template connect<&Registry::destroying<Component...>>();
+    }
+
+    template<typename... Component, std::size_t... Indexes>
+    void connect(std::index_sequence<Indexes...>) {
+        using accumulator_type = int[];
+        accumulator_type accumulator = { (assure<Component>(), connect<Component, Indexes, Component...>(std::make_index_sequence<sizeof...(Component)-1>{}), 0)... };
+        (void)accumulator;
+    }
+
+    template<typename Comp, std::size_t Pivot, typename... Component, std::size_t... Indexes>
+    void disconnect(std::index_sequence<Indexes...>) {
+        pool<Comp>().construction().template disconnect<&Registry::creating<&handler_family::type<Component...>, std::tuple_element_t<(Indexes < Pivot ? Indexes : (Indexes+1)), std::tuple<Component...>>...>>();
+        pool<Comp>().destruction().template disconnect<&Registry::destroying<Component...>>();
+    }
+
+    template<typename... Component, std::size_t... Indexes>
+    void disconnect(std::index_sequence<Indexes...>) {
+        using accumulator_type = int[];
+        // if a set exists, pools have already been created for it
+        accumulator_type accumulator = { (disconnect<Component, Indexes, Component...>(std::make_index_sequence<sizeof...(Component)-1>{}), 0)... };
+        (void)accumulator;
     }
 
     template<typename Component>
@@ -100,10 +200,8 @@ class Registry {
             pools.resize(ctype + 1);
         }
 
-        auto &cpool = std::get<0>(pools[ctype]);
-
-        if(!cpool) {
-            cpool = std::make_unique<SparseSet<Entity, Component>>();
+        if(!pools[ctype]) {
+            pools[ctype] = std::make_unique<Pool<Component>>(this);
         }
     }
 
@@ -113,6 +211,10 @@ class Registry {
 
         if(!(ttype < tags.size())) {
             tags.resize(ttype + 1);
+        }
+
+        if(!tags[ttype]) {
+            tags[ttype] = std::make_unique<Attaching<Tag>>(this);
         }
     }
 
@@ -188,10 +290,18 @@ public:
     }
 
     /**
+     * @brief Returns the number of entities created so far.
+     * @return Number of entities created so far.
+     */
+    size_type size() const ENTT_NOEXCEPT {
+        return entities.size();
+    }
+
+    /**
      * @brief Returns the number of entities still in use.
      * @return Number of entities still in use.
      */
-    size_type size() const ENTT_NOEXCEPT {
+    size_type alive() const ENTT_NOEXCEPT {
         return entities.size() - available;
     }
 
@@ -351,12 +461,21 @@ public:
     }
 
     /**
+     * @brief Returns the entity identifier without the version.
+     * @param entity An entity identifier, either valid or not.
+     * @return The entity identifier without the version.
+     */
+    entity_type entity(const entity_type entity) const ENTT_NOEXCEPT {
+        return entity & traits_type::entity_mask;
+    }
+
+    /**
      * @brief Returns the version stored along with an entity identifier.
      * @param entity An entity identifier, either valid or not.
-     * @return Version stored along with the given entity identifier.
+     * @return The version stored along with the given entity identifier.
      */
     version_type version(const entity_type entity) const ENTT_NOEXCEPT {
-        return version_type((entity >> traits_type::entity_shift) & traits_type::version_mask);
+        return version_type(entity >> traits_type::entity_shift);
     }
 
     /**
@@ -379,7 +498,7 @@ public:
     version_type current(const entity_type entity) const ENTT_NOEXCEPT {
         const auto pos = size_type(entity & traits_type::entity_mask);
         assert(pos < entities.size());
-        return version_type((entities[pos] >> traits_type::entity_shift) & traits_type::version_mask);
+        return version_type(entities[pos] >> traits_type::entity_shift);
     }
 
     /**
@@ -404,10 +523,9 @@ public:
 
         if(available) {
             const auto entt = next;
-            const auto version = entities[entt] & (~traits_type::entity_mask);
-
-            entity = entt | version;
+            const auto version = entities[entt] & (traits_type::version_mask << traits_type::entity_shift);
             next = entities[entt] & traits_type::entity_mask;
+            entity = entt | version;
             entities[entt] = entity;
             --available;
         } else {
@@ -465,39 +583,35 @@ public:
         assert(valid(entity));
 
         for(auto pos = pools.size(); pos; --pos) {
-            auto &tup = pools[pos-1];
-            auto &cpool = std::get<0>(tup);
+            auto &cpool = pools[pos-1];
 
             if(cpool && cpool->has(entity)) {
-                std::get<2>(tup).publish(*this, entity);
                 cpool->destroy(entity);
             }
         };
 
         for(auto pos = tags.size(); pos; --pos) {
-            auto &tup = tags[pos-1];
-            auto &tag = std::get<0>(tup);
+            auto &tag = tags[pos-1];
 
-            if(tag && tag->entity == entity) {
-                std::get<2>(tup).publish(*this, entity);
-                tag.reset();
+            if(tag && tag->get() == entity) {
+                tag->destroy();
             }
         };
 
         // just a way to protect users from listeners that attach components
         assert(orphan(entity));
 
+        // lengthens the implicit list of destroyed entities
         const auto entt = entity & traits_type::entity_mask;
-        const auto version = (((entity >> traits_type::entity_shift) + 1) & traits_type::version_mask) << traits_type::entity_shift;
+        const auto version = ((entity >> traits_type::entity_shift) + 1) << traits_type::entity_shift;
         const auto node = (available ? next : ((entt + 1) & traits_type::entity_mask)) | version;
-
         entities[entt] = node;
         next = entt;
         ++available;
     }
 
     /**
-     * @brief Destroys the entities that own he given components, if any.
+     * @brief Destroys the entities that own the given components, if any.
      *
      * Convenient shortcut to destroy a set of entities at once.<br/>
      * Syntactic sugar for the following snippet:
@@ -544,10 +658,7 @@ public:
         assert(valid(entity));
         assert(!has<Tag>());
         assure<Tag>(tag_t{});
-        auto &tup = tags[tag_family::type<Tag>()];
-        std::get<0>(tup).reset(new Attaching<Tag>{entity, std::forward<Args>(args)...});
-        std::get<1>(tup).publish(*this, entity);
-        return get<Tag>();
+        return pool<Tag>(tag_t{}).construct(entity, std::forward<Args>(args)...);
     }
 
     /**
@@ -574,9 +685,7 @@ public:
     Component & assign(const entity_type entity, Args &&... args) {
         assert(valid(entity));
         assure<Component>();
-        pool<Component>().construct(entity, std::forward<Args>(args)...);
-        std::get<1>(pools[component_family::type<Component>()]).publish(*this, entity);
-        return pool<Component>().get(entity);
+        return pool<Component>().construct(entity, std::forward<Args>(args)...);
     }
 
     /**
@@ -585,12 +694,7 @@ public:
      */
     template<typename Tag>
     void remove() {
-        if(has<Tag>()) {
-            auto &tup = tags[tag_family::type<Tag>()];
-            auto &tag = std::get<0>(tup);
-            std::get<2>(tup).publish(*this, tag->entity);
-            tag.reset();
-        }
+        return has<Tag>() ? pool<Tag>(tag_t{}).destroy() : void();
     }
 
     /**
@@ -610,8 +714,6 @@ public:
     void remove(const entity_type entity) {
         assert(valid(entity));
         assert(managed<Component>());
-        const auto ctype = component_family::type<Component>();
-        std::get<2>(pools[ctype]).publish(*this, entity);
         pool<Component>().destroy(entity);
     }
 
@@ -622,16 +724,7 @@ public:
      */
     template<typename Tag>
     bool has() const ENTT_NOEXCEPT {
-        const auto ttype = tag_family::type<Tag>();
-        bool found = false;
-
-        if(ttype < tags.size()) {
-            auto &tag = std::get<0>(tags[ttype]);
-            // it's a valid tag and the associated entity hasn't been destroyed in the meantime
-            found = tag && (tag->entity == (entities[tag->entity & traits_type::entity_mask]));
-        }
-
-        return found;
+        return managed<Tag>(tag_t{}) && tags[tag_family::type<Tag>()]->get() != null;
     }
 
     /**
@@ -689,7 +782,7 @@ public:
     template<typename Tag>
     const Tag & get() const ENTT_NOEXCEPT {
         assert(has<Tag>());
-        return static_cast<Attaching<Tag> *>(std::get<0>(tags[tag_family::type<Tag>()]).get())->tag;
+        return pool<Tag>(tag_t{}).get();
     }
 
     /**
@@ -857,28 +950,18 @@ public:
     entity_type move(const entity_type entity) ENTT_NOEXCEPT {
         assert(valid(entity));
         assert(has<Tag>());
-        auto &tag = std::get<0>(tags[tag_family::type<Tag>()]);
-        const auto owner = tag->entity;
-        tag->entity = entity;
-        return owner;
+        return pool<Tag>(tag_t{}).move(entity);
     }
 
     /**
      * @brief Gets the owner of the given tag, if any.
-     *
-     * @warning
-     * Attempting to get the owner of a tag that hasn't been previously attached
-     * to an entity results in undefined behavior.<br/>
-     * An assertion will abort the execution at runtime in debug mode if the
-     * tag hasn't an owner.
-     *
      * @tparam Tag Type of tag of which to get the owner.
-     * @return A valid entity identifier.
+     * @return A valid entity identifier if an owner exists, the null entity
+     * identifier otherwise.
      */
     template<typename Tag>
     entity_type attachee() const ENTT_NOEXCEPT {
-        assert(has<Tag>());
-        return std::get<0>(tags[tag_family::type<Tag>()])->entity;
+        return managed<Tag>(tag_t{}) ? tags[tag_family::type<Tag>()]->get() : null;
     }
 
     /**
@@ -912,9 +995,9 @@ public:
         assure<Component>();
         auto &cpool = pool<Component>();
 
-        return (cpool.has(entity)
+        return cpool.has(entity)
                 ? cpool.get(entity) = Component{std::forward<Args>(args)...}
-                : cpool.construct(entity, std::forward<Args>(args)...));
+                : cpool.construct(entity, std::forward<Args>(args)...);
     }
 
     /**
@@ -943,7 +1026,7 @@ public:
     template<typename Tag>
     sink_type construction(tag_t) ENTT_NOEXCEPT {
         assure<Tag>(tag_t{});
-        return std::get<1>(tags[tag_family::type<Tag>()]).sink();
+        return pool<Tag>(tag_t{}).construction();
     }
 
     /**
@@ -972,7 +1055,7 @@ public:
     template<typename Component>
     sink_type construction() ENTT_NOEXCEPT {
         assure<Component>();
-        return std::get<1>(pools[component_family::type<Component>()]).sink();
+        return pool<Component>().construction();
     }
 
     /**
@@ -1001,7 +1084,7 @@ public:
     template<typename Tag>
     sink_type destruction(tag_t) ENTT_NOEXCEPT {
         assure<Tag>(tag_t{});
-        return std::get<2>(tags[tag_family::type<Tag>()]).sink();
+        return pool<Tag>(tag_t{}).destruction();
     }
 
     /**
@@ -1030,7 +1113,7 @@ public:
     template<typename Component>
     sink_type destruction() ENTT_NOEXCEPT {
         assure<Component>();
-        return std::get<2>(pools[component_family::type<Component>()]).sink();
+        return pool<Component>().destruction();
     }
 
     /**
@@ -1135,11 +1218,9 @@ public:
     void reset(const entity_type entity) {
         assert(valid(entity));
         assure<Component>();
-        const auto ctype = component_family::type<Component>();
-        auto &cpool = *std::get<0>(pools[ctype]);
+        auto &cpool = pool<Component>();
 
         if(cpool.has(entity)) {
-            std::get<2>(pools[ctype]).publish(*this, entity);
             cpool.destroy(entity);
         }
     }
@@ -1155,12 +1236,9 @@ public:
     template<typename Component>
     void reset() {
         assure<Component>();
-        const auto ctype = component_family::type<Component>();
-        auto &cpool = *std::get<0>(pools[ctype]);
-        auto &sig = std::get<2>(pools[ctype]);
+        auto &cpool = pool<Component>();
 
-        for(const auto entity: cpool) {
-            sig.publish(*this, entity);
+        for(const auto entity: static_cast<SparseSet<Entity> &>(cpool)) {
             cpool.destroy(entity);
         }
     }
@@ -1233,13 +1311,13 @@ public:
         bool orphan = true;
 
         for(std::size_t i = 0; i < pools.size() && orphan; ++i) {
-            const auto &pool = std::get<0>(pools[i]);
-            orphan = !(pool && pool->has(entity));
+            const auto &cpool = pools[i];
+            orphan = !(cpool && cpool->has(entity));
         }
 
         for(std::size_t i = 0; i < tags.size() && orphan; ++i) {
-            const auto &tag = std::get<0>(tags[i]);
-            orphan = !(tag && (tag->entity == entity));
+            const auto &tag = tags[i];
+            orphan = !(tag && (tag->get() == entity));
         }
 
         return orphan;
@@ -1335,22 +1413,13 @@ public:
         }
 
         if(!handlers[htype]) {
+            connect<Component...>(std::make_index_sequence<sizeof...(Component)>{});
             handlers[htype] = std::make_unique<SparseSet<entity_type>>();
-            auto &handler = handlers[htype];
+            auto &handler = *handlers[htype];
 
             for(auto entity: view<Component...>()) {
-                handler->construct(entity);
+                handler.construct(entity);
             }
-
-            auto connect = [this](const auto ctype) {
-                auto &cpool = pools[ctype];
-                std::get<1>(cpool).sink().template connect<&Registry::creating<Component...>>();
-                std::get<2>(cpool).sink().template connect<&Registry::destroying<Component...>>();
-            };
-
-            using accumulator_type = int[];
-            accumulator_type accumulator = { (assure<Component>(), connect(component_family::type<Component>()), 0)... };
-            (void)accumulator;
         }
     }
 
@@ -1372,19 +1441,8 @@ public:
     template<typename... Component>
     void discard() {
         if(contains<Component...>()) {
-            const auto htype = handler_family::type<Component...>();
-
-            auto disconnect = [this](const auto ctype) {
-                auto &cpool = pools[ctype];
-                std::get<1>(cpool).sink().template disconnect<&Registry::creating<Component...>>();
-                std::get<2>(cpool).sink().template disconnect<&Registry::destroying<Component...>>();
-            };
-
-            // if a set exists, pools have already been created for it
-            using accumulator_type = int[];
-            accumulator_type accumulator = { (disconnect(component_family::type<Component>()), 0)... };
-            handlers[htype].reset();
-            (void)accumulator;
+            disconnect<Component...>(std::make_index_sequence<sizeof...(Component)>{});
+            handlers[handler_family::type<Component...>()].reset();
         }
     }
 
@@ -1507,7 +1565,7 @@ public:
         std::vector<const SparseSet<Entity> *> set(last - first);
 
         std::transform(first, last, set.begin(), [this](const component_type ctype) {
-            return ctype < pools.size() ? std::get<0>(pools[ctype]).get() : nullptr;
+            return ctype < pools.size() ? pools[ctype].get() : nullptr;
         });
 
         return RuntimeView<Entity>{std::move(set)};
@@ -1525,13 +1583,13 @@ public:
      */
     Snapshot<Entity> snapshot() const ENTT_NOEXCEPT {
         using follow_fn_type = entity_type(const Registry &, const entity_type);
-        const entity_type seed = available ? (next | (entities[next] & ~traits_type::entity_mask)) : next;
+        const entity_type seed = available ? (next | (entities[next] & (traits_type::version_mask << traits_type::entity_shift))) : next;
 
         follow_fn_type *follow = [](const Registry &registry, const entity_type entity) -> entity_type {
             const auto &entities = registry.entities;
             const auto entt = entity & traits_type::entity_mask;
             const auto next = entities[entt] & traits_type::entity_mask;
-            return (next | (entities[next] & ~traits_type::entity_mask));
+            return (next | (entities[next] & (traits_type::version_mask << traits_type::entity_shift)));
         };
 
         return { *this, seed, follow };
@@ -1571,7 +1629,7 @@ public:
 
             if(destroyed) {
                 registry.destroy(entity);
-                const auto version = (entity & (~traits_type::entity_mask));
+                const auto version = entity & (traits_type::version_mask << traits_type::entity_shift);
                 entities[entt] = ((entities[entt] & traits_type::entity_mask) | version);
             }
         };
@@ -1581,8 +1639,8 @@ public:
 
 private:
     std::vector<std::unique_ptr<SparseSet<Entity>>> handlers;
-    std::vector<std::tuple<std::unique_ptr<SparseSet<Entity>>, signal_type, signal_type>> pools;
-    std::vector<std::tuple<std::unique_ptr<Attachee>, signal_type, signal_type>> tags;
+    std::vector<std::unique_ptr<SparseSet<Entity>>> pools;
+    std::vector<std::unique_ptr<Attachee<Entity>>> tags;
     std::vector<entity_type> entities;
     size_type available{};
     entity_type next{};

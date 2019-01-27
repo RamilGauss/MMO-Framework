@@ -173,12 +173,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/3rdParty/fmt/include;$(SolutionDir)/Source/Base/include;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -186,11 +188,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\lib64-msvc-14.1;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;Base.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;Base.lib;fmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Sources\AST_StateMachine.cpp" />
+    <ClCompile Include="Sources\BinaryMarshaller.cpp" />
     <ClCompile Include="Sources\BinaryMarshallerFileGenerator.cpp" />
     <ClCompile Include="Sources\BinaryMarshallerGenerator.cpp" />
     <ClCompile Include="Sources\BinaryMarshallerHeaderFileGenerator.cpp" />
@@ -220,6 +223,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\AST_StateMachine.h" />
+    <ClInclude Include="Sources\BaseStruct.h" />
+    <ClInclude Include="Sources\BinaryMarshaller.h" />
     <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h" />
     <ClInclude Include="Sources\BinaryMarshallerGenerator.h" />
     <ClInclude Include="Sources\BinaryMarshallerHeaderFileGenerator.h" />
@@ -244,17 +249,21 @@
     <ClInclude Include="Sources\MemberTypeExtendedInfo.h" />
     <ClInclude Include="Sources\MemberTypeExtendedInfoAnalyzer.h" />
     <ClInclude Include="Sources\MemberTypeExtendedInfoCache.h" />
+    <ClInclude Include="Sources\ParamClass.h" />
     <ClInclude Include="Sources\Parser.h" />
     <ClInclude Include="Sources\ProgramInfo.h" />
     <ClInclude Include="Sources\readerwriterqueue.h" />
     <ClInclude Include="Sources\Requirements.h" />
     <ClInclude Include="Sources\SetupConfig.h" />
     <ClInclude Include="Sources\SourceAccumulator.h" />
+    <ClInclude Include="Sources\TestClass.h" />
+    <ClInclude Include="Sources\TestStruct.h" />
     <ClInclude Include="Sources\TokenInfo.h" />
     <ClInclude Include="Sources\TokenInfoManager.h" />
     <ClInclude Include="Sources\Tokenizer.h" />
     <ClInclude Include="Sources\TypeInfo.h" />
     <ClInclude Include="Sources\TypeManager.h" />
+    <ClInclude Include="Sources\UnpackHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />

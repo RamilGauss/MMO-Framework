@@ -42,6 +42,9 @@
     <Filter Include="Trash">
       <UniqueIdentifier>{eaf82497-71dc-4930-b94c-b9f8599df714}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Addin">
+      <UniqueIdentifier>{918e53c0-c1a1-42b4-b71d-4edcf142d497}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\AST_StateMachine.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Sources\BinaryMarshallerSourceFileGenerator.cpp">
       <Filter>Generators\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BinaryMarshaller.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +240,24 @@
     </ClInclude>
     <ClInclude Include="Sources\BinaryMarshallerSourceFileGenerator.h">
       <Filter>Generators\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BaseStruct.h">
+      <Filter>Trash</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ParamClass.h">
+      <Filter>Trash</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TestClass.h">
+      <Filter>Trash</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TestStruct.h">
+      <Filter>Trash</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BinaryMarshaller.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\UnpackHandler.h">
+      <Filter>Addin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,18 +15,16 @@ using namespace nsReflectionCodeGenerator;
 
 void TJsonSerializerSourceFileGenerator::Work()
 {
-  auto& jsonSerializer = mConfig->targetForCodeGeneration.implementation.jsonSerializer;
-
   AddHeader();
   AddTimeHeader();
 
-  AddInclude( mConfig->targetForCodeGeneration.implementation.jsonSerializer->fileName + ".h" );
+  AddInclude( mJsonSerializer->fileName + ".h" );
   AddInclude( "fmt/core.h" );
   AddInclude( "JsonPopMaster.h" );
   AddInclude( "JsonPushMaster.h" );
   AddEmptyLine();
 
-  auto namespaceName = jsonSerializer->nameSpaceName;
+  auto namespaceName = mJsonSerializer->nameSpaceName;
   if ( namespaceName.length() )
     AddUsingNamespace( namespaceName );
 
@@ -58,10 +56,10 @@ void TJsonSerializerSourceFileGenerator::AddImplementations()
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddSerializeMethodImplementation( TTypeInfo* p )
 {
-  auto className = mConfig->targetForCodeGeneration.implementation.jsonSerializer->className;
+  auto className = mJsonSerializer->className;
   auto namespaceWithType = p->GetTypeNameWithNameSpace();
   auto strList = GetParamListForSerialize( namespaceWithType );
-  AddMethodImplementationBegin( "void", className, sSerialzeMethod, strList );
+  AddMethodImplementationBegin( "void", className, sSerializeMethod, strList );
   AddLeftBrace();
   IncrementTabs();
 
@@ -75,10 +73,10 @@ void TJsonSerializerSourceFileGenerator::AddSerializeMethodImplementation( TType
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddDeserializeMethodImplementation( TTypeInfo* p )
 {
-  auto className = mConfig->targetForCodeGeneration.implementation.jsonSerializer->className;
+  auto className = mJsonSerializer->className;
   auto namespaceWithType = p->GetTypeNameWithNameSpace();
   auto strList = GetParamListForDeserialize( namespaceWithType );
-  AddMethodImplementationBegin( "void", className, sDeserialzeMethod, strList );
+  AddMethodImplementationBegin( "void", className, sDeserializeMethod, strList );
   AddLeftBrace();
   IncrementTabs();
 
@@ -88,28 +86,6 @@ void TJsonSerializerSourceFileGenerator::AddDeserializeMethodImplementation( TTy
 
   DecrementTabs();
   AddRightBrace();
-}
-//-----------------------------------------------------------------------------------------------------------
-void TJsonSerializerSourceFileGenerator::AddCallingMethodForParent( TTypeInfo* p, std::function<void( const std::string& )> func )
-{
-  for ( auto& inheritanceInfo : p->mInheritanceVec )
-  {
-    if ( inheritanceInfo.mInheritanceAccessLevel != TMemberInfo::ePublic )
-      continue;
-    // найти родителя - TypeInfo
-    auto pParentInfo = mTypeMng->FindTypeInfo( inheritanceInfo.mParentTypeName );
-    if ( pParentInfo == nullptr )
-      continue;
-    func( pParentInfo->GetTypeNameWithNameSpace() );
-  }
-}
-//-----------------------------------------------------------------------------------------------------------
-void TJsonSerializerSourceFileGenerator::AddCallingMethod( TTypeInfo* p, std::function<void( TMemberInfo* )> func )
-{
-  auto fit = p->mMemberMap.find( TMemberInfo::AccessLevel::ePublic );
-  if ( fit != p->mMemberMap.end() )
-    for ( auto memberInfo : fit->second )
-      func( memberInfo.get() );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPushByMemberInfo( TMemberInfo* pMemberInfo )
@@ -170,7 +146,7 @@ void TJsonSerializerSourceFileGenerator::AddPush( const std::string& name )
   {
     s_Obj,
     fmt::format( "\"{}\"", name ),
-    fmt::format( "{}->{}", sTypeObject, name )
+    fmt::format( "{}->{}", s_TypeObject, name )
   };
   std::list<std::string> templateList;
 
@@ -179,13 +155,13 @@ void TJsonSerializerSourceFileGenerator::AddPush( const std::string& name )
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddCallingSerializeParent( const std::string& parentTypeName )
 {
-  auto str = fmt::format( "{}( ({}*){}, {});", sSerialzeMethod, parentTypeName, sTypeObject, s_Obj );
+  auto str = fmt::format( "{}( ({}*){}, {});", sSerializeMethod, parentTypeName, s_TypeObject, s_Obj );
   Add( str );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddCallingDeserializeParent( const std::string& parentTypeName )
 {
-  auto str = fmt::format( "{}( ({}*){}, {});", sDeserialzeMethod, parentTypeName, sTypeObject, s_Json );
+  auto str = fmt::format( "{}( ({}*){}, {});", sDeserializeMethod, parentTypeName, s_TypeObject, s_Json );
   Add( str );
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -197,16 +173,21 @@ void TJsonSerializerSourceFileGenerator::HandleArrayForPush( TMemberInfo* pMembe
     AddPush( pMemberInfo->mName );
   else if ( templateCategory == TMemberTypeExtendedInfo::Reflection )
   {
+    auto pTypeInfo = mTypeMng->FindTypeInfo( templateType.mType );
+    if ( pTypeInfo == nullptr )
+      return;
+    auto typeWithNamespace = pTypeInfo->GetTypeNameWithNameSpace();
+
     switch ( templateType.mAccessMethod )
     {
       case TMemberTypeExtendedInfo::Object:
-        AddPushSerObjArray( templateType.mType, pMemberInfo->mName );
+        AddPushSerObjArray( typeWithNamespace, pMemberInfo->mName );
         break;
       case TMemberTypeExtendedInfo::Pointer:
-        AddPushSerPtrArray( templateType.mType, pMemberInfo->mName );
+        AddPushSerPtrArray( typeWithNamespace, pMemberInfo->mName );
         break;
       case TMemberTypeExtendedInfo::SmartPointer:
-        AddPushSerSmartPtrArray( templateType.mType, templateType.mSmartPtrType, pMemberInfo->mName );
+        AddPushSerSmartPtrArray( typeWithNamespace, templateType.mSmartPtrType, pMemberInfo->mName );
         break;
       default:
         break;
@@ -216,13 +197,12 @@ void TJsonSerializerSourceFileGenerator::HandleArrayForPush( TMemberInfo* pMembe
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPushSerObjArray( const std::string& type, const std::string& name )
 {
-  General_AddPushSerArrayOrMap( type, type, name, s_PushSerObjArray );
+  General_AddPushSerArrayOrMap( type, "", name, s_PushSerObjArray );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPushSerPtrArray( const std::string& type, const std::string& name )
 {
-  auto fullType = fmt::format( "{}*", type );
-  General_AddPushSerArrayOrMap( type, fullType, name, s_PushSerPtrArray );
+  General_AddPushSerArrayOrMap( type, "", name, s_PushSerPtrArray );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPushSerSmartPtrArray( const std::string& type, const std::string& smartPtrType, const std::string& name )
@@ -262,7 +242,7 @@ void TJsonSerializerSourceFileGenerator::HandleReflectionForPush( TMemberInfo* p
   switch ( pMemberInfo->mExtendedInfo.mAccessMethod )
   {
     case TMemberTypeExtendedInfo::Object:
-      getAddrOfMember = fmt::format( "&({}->{})", sTypeObject, pMemberInfo->mName );
+      getAddrOfMember = fmt::format( "&({}->{})", s_TypeObject, pMemberInfo->mName );
       break;
     case TMemberTypeExtendedInfo::Pointer:
     case TMemberTypeExtendedInfo::SmartPointer:
@@ -277,7 +257,7 @@ void TJsonSerializerSourceFileGenerator::HandleReflectionForPush( TMemberInfo* p
   std::list<std::string> argList = {getAddrOfMember, objName};
   std::list<std::string> templateList;
 
-  AddCallFunction( "", sSerialzeMethod, templateList, argList );
+  AddCallFunction( "", sSerializeMethod, templateList, argList );
 
   argList =
   {
@@ -297,10 +277,10 @@ void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrReflectionForPush( T
   switch ( pMemberInfo->mExtendedInfo.mAccessMethod )
   {
     case TMemberTypeExtendedInfo::Pointer:
-      getAddrOfMember = fmt::format( "{}->{}", sTypeObject, pMemberInfo->mName );
+      getAddrOfMember = fmt::format( "{}->{}", s_TypeObject, pMemberInfo->mName );
       break;
     case TMemberTypeExtendedInfo::SmartPointer:
-      getAddrOfMember = fmt::format( "{}->{}.get()", sTypeObject, pMemberInfo->mName );
+      getAddrOfMember = fmt::format( "{}->{}.get()", s_TypeObject, pMemberInfo->mName );
       break;
     default:
       break;
@@ -317,7 +297,7 @@ void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrReflectionForPush( T
   std::list<std::string> argList = {pointerToObjName, objName};
   std::list<std::string> templateList;
 
-  AddCallFunction( "", sSerialzeMethod, templateList, argList );
+  AddCallFunction( "", sSerializeMethod, templateList, argList );
 
   argList =
   {
@@ -348,7 +328,7 @@ void TJsonSerializerSourceFileGenerator::AddPushMap( const std::string& name )
   {
     s_Obj,
     fmt::format( "\"{}\"", name ),
-    fmt::format( "{}->{}", sTypeObject, name )
+    fmt::format( "{}->{}", s_TypeObject, name )
   };
   std::list<std::string> templList;
 
@@ -357,18 +337,23 @@ void TJsonSerializerSourceFileGenerator::AddPushMap( const std::string& name )
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::HandlePushBuiltInOrStringSerMap( TMemberInfo* pMemberInfo )
 {
-  auto& keyType = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
-  auto& valueType = pMemberInfo->mExtendedInfo.mTemplateChildArr[1];
-  switch ( valueType.mAccessMethod )
+  auto accessMethod = pMemberInfo->mExtendedInfo.mTemplateChildArr[1].mAccessMethod;
+  auto typeName = pMemberInfo->mExtendedInfo.mTemplateChildArr[1].mType;
+  auto pTypeInfo = mTypeMng->FindTypeInfo( typeName );
+  if ( pTypeInfo == nullptr )
+    return;
+  auto valueType = pTypeInfo->GetTypeNameWithNameSpace();
+
+  switch ( accessMethod )
   {
     case TMemberTypeExtendedInfo::Object:
-      AddPushSerObjMap( valueType.mType, pMemberInfo->mName );
+      AddPushSerObjMap( valueType, pMemberInfo->mName );
       break;
     case TMemberTypeExtendedInfo::Pointer:
-      AddPushSerPtrMap( valueType.mType, pMemberInfo->mName );
+      AddPushSerPtrMap( valueType, pMemberInfo->mName );
       break;
     case TMemberTypeExtendedInfo::SmartPointer:
-      AddPushSerSmartPtrMap( valueType.mType, valueType.mSmartPtrType, pMemberInfo->mName );
+      AddPushSerSmartPtrMap( valueType, pMemberInfo->mExtendedInfo.mTemplateChildArr[1].mSmartPtrType, pMemberInfo->mName );
       break;
     default:
       break;
@@ -377,13 +362,12 @@ void TJsonSerializerSourceFileGenerator::HandlePushBuiltInOrStringSerMap( TMembe
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPushSerObjMap( const std::string& type, const std::string& name )
 {
-  General_AddPushSerArrayOrMap( type, type, name, s_PushSerObjMap );
+  General_AddPushSerArrayOrMap( type, "", name, s_PushSerObjMap );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPushSerPtrMap( const std::string& type, const std::string& name )
 {
-  auto fullType = fmt::format( "{}*", type );
-  General_AddPushSerArrayOrMap( type, fullType, name, s_PushSerPtrMap );
+  General_AddPushSerArrayOrMap( type, "", name, s_PushSerPtrMap );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPushSerSmartPtrMap( const std::string& type, const std::string& smartPtrType, const std::string& name )
@@ -501,12 +485,12 @@ void TJsonSerializerSourceFileGenerator::HandlePopReflection( TMemberInfo* pMemb
 
   std::list<std::string> argList =
   {
-    fmt::format( "&({}->{})", sTypeObject, pMemberInfo->mName ),
+    fmt::format( "&({}->{})", s_TypeObject, pMemberInfo->mName ),
     fmt::format( "{}", jsonName )
   };
   std::list<std::string> templateList;
 
-  AddCallFunction( "", sDeserialzeMethod, templateList, argList );
+  AddCallFunction( "", sDeserializeMethod, templateList, argList );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrPopReflection( TMemberInfo* pMemberInfo )
@@ -523,12 +507,12 @@ void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrPopReflection( TMemb
   switch ( pMemberInfo->mExtendedInfo.mAccessMethod )
   {
     case TMemberTypeExtendedInfo::Pointer:
-      getAddrOfMember = fmt::format( "{}->{}", sTypeObject, pMemberInfo->mName );
-      newObject = fmt::format( "{}->{} = new {}();", sTypeObject, pMemberInfo->mName, pTypeInfo->GetTypeNameWithNameSpace() );
+      getAddrOfMember = fmt::format( "{}->{}", s_TypeObject, pMemberInfo->mName );
+      newObject = fmt::format( "{}->{} = new {}();", s_TypeObject, pMemberInfo->mName, pTypeInfo->GetTypeNameWithNameSpace() );
       break;
     case TMemberTypeExtendedInfo::SmartPointer:
-      getAddrOfMember = fmt::format( "{}->{}.get()", sTypeObject, pMemberInfo->mName );
-      newObject = fmt::format( "{}->{}.reset( new {}() );", sTypeObject, pMemberInfo->mName, pTypeInfo->GetTypeNameWithNameSpace() );
+      getAddrOfMember = fmt::format( "{}->{}.get()", s_TypeObject, pMemberInfo->mName );
+      newObject = fmt::format( "{}->{}.reset( new {}() );", s_TypeObject, pMemberInfo->mName, pTypeInfo->GetTypeNameWithNameSpace() );
       break;
     default:
       break;
@@ -550,16 +534,9 @@ void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrPopReflection( TMemb
   };
   std::list<std::string> templateList;
 
-  AddCallFunction( "", sDeserialzeMethod, templateList, argList );
+  AddCallFunction( "", sDeserializeMethod, templateList, argList );
   DecrementTabs();
   AddRightBrace();
-  //auto& jsonSerializer_json = json["jsonSerializer"];
-  //if ( jsonSerializer_json.is_null() == false )
-  //{
-  //  if ( p->jsonSerializer.get() == nullptr )
-  //    p->jsonSerializer.reset( new nsReflectionCodeGenerator::TJsonSerializerGeneratorConfig() );
-  //  _Deserialize( p->jsonSerializer.get(), jsonSerializer_json );
-  //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPopNumArray( const std::string& name, const std::string& type )
@@ -603,7 +580,6 @@ void TJsonSerializerSourceFileGenerator::HandlePopReflectionArray( TMemberInfo* 
 
   std::string fullType;
   std::string methodName;
-  std::string retNewSmartPtrFunc;
   switch ( extMemberInfo.mAccessMethod )
   {
     case TMemberTypeExtendedInfo::Object:
@@ -615,12 +591,11 @@ void TJsonSerializerSourceFileGenerator::HandlePopReflectionArray( TMemberInfo* 
     case TMemberTypeExtendedInfo::SmartPointer:
       methodName = s_PopSerSmartPtrArray;
       fullType = fmt::format( "{}{}<{}>", s_STD_, extMemberInfo.mSmartPtrType, keyType );
-      retNewSmartPtrFunc = fmt::format( "[](){{ return {}( new {}() );}}", fullType, keyType );
       break;
     default:
       break;
   }
-  General_AddPopSerArrayOrMap( keyType, "", keyType, fullType, pMemberInfo->mName, methodName, retNewSmartPtrFunc );
+  General_AddPopSerArrayOrMap( keyType, "", keyType, fullType, pMemberInfo->mName, methodName );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::HandlePopReflectionSet( TMemberInfo* pMemberInfo )
@@ -676,7 +651,6 @@ void TJsonSerializerSourceFileGenerator::HandlePopBuiltInOrStringSerMap( TMember
 
   std::string fullType;
   std::string methodName;
-  std::string retNewSmartPtrFunc;
   switch ( valueExtMemberInfo.mAccessMethod )
   {
     case TMemberTypeExtendedInfo::Object:
@@ -697,7 +671,6 @@ void TJsonSerializerSourceFileGenerator::HandlePopBuiltInOrStringSerMap( TMember
       else
         methodName = s_PopNumSerSmartPtrMap;
       fullType = fmt::format( "{}{}<{}>", s_STD_, valueExtMemberInfo.mSmartPtrType, valueType );
-      retNewSmartPtrFunc = fmt::format( "[](){{ return {}( new {}() );}}", fullType, valueType );
       break;
     default:
       break;
@@ -706,7 +679,7 @@ void TJsonSerializerSourceFileGenerator::HandlePopBuiltInOrStringSerMap( TMember
   if ( keyExtMemberInfo.mCategory == TMemberTypeExtendedInfo::BuiltIn )
     keyType = keyExtMemberInfo.mType;
 
-  General_AddPopSerArrayOrMap( keyType, valueType, valueType, fullType, pMemberInfo->mName, methodName, retNewSmartPtrFunc );
+  General_AddPopSerArrayOrMap( keyType, valueType, valueType, fullType, pMemberInfo->mName, methodName );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddPopNumBoolMap( const std::string& name )
@@ -745,7 +718,7 @@ void TJsonSerializerSourceFileGenerator::AddPopMap( const std::string& methodNam
   {
     s_Json,
     fmt::format( "\"{}\"", name ),
-    fmt::format( "{}->{}", sTypeObject, name ),
+    fmt::format( "{}->{}", s_TypeObject, name ),
   };
   std::list<std::string> templateList;
 
@@ -763,8 +736,8 @@ void TJsonSerializerSourceFileGenerator::General_AddPushSerArrayOrMap( const std
   {
     s_Obj,
     fmt::format( "\"{}\"", name ),
-    fmt::format( "{}->{}", sTypeObject, name ),
-    fmt::format( "[]( {0} ) {{ {1}( {2}, {3} ); }}", paramStr, sSerialzeMethod, sTypeObject, s_Obj )
+    fmt::format( "{}->{}", s_TypeObject, name ),
+    fmt::format( "[]( {0} ) {{ {1}( {2}, {3} ); }}", paramStr, sSerializeMethod, s_TypeObject, s_Obj )
   };
   std::list<std::string> templateList = {type, fullType};
 
@@ -777,7 +750,7 @@ void TJsonSerializerSourceFileGenerator::General_AddPop( const std::string& name
   {
     s_Json,
     fmt::format( "\"{}\"", name ),
-    fmt::format( "{}->{}", sTypeObject, name )
+    fmt::format( "{}->{}", s_TypeObject, name )
   };
   std::list<std::string> templateList;
 
@@ -790,7 +763,7 @@ void TJsonSerializerSourceFileGenerator::General_AddPopArrayOrSet( const std::st
   {
     s_Json,
     fmt::format( "\"{}\"", name ),
-    fmt::format( "{}->{}", sTypeObject, name )
+    fmt::format( "{}->{}", s_TypeObject, name )
   };
   std::list<std::string> templateList;
   if ( type.length() > 0 )
@@ -801,7 +774,7 @@ void TJsonSerializerSourceFileGenerator::General_AddPopArrayOrSet( const std::st
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::General_AddPopSerArrayOrMap( const std::string& keyType, const std::string& valueType,
   const std::string& typeForLambda,
-  const std::string& fullType, const std::string& name, const std::string& methodName, const std::string& retNewSmartPtrFunc )
+  const std::string& fullType, const std::string& name, const std::string& methodName )
 {
   auto strList = GetParamListForDeserialize( typeForLambda );
   auto paramStr = EnumerateParamToStr( strList );
@@ -810,12 +783,9 @@ void TJsonSerializerSourceFileGenerator::General_AddPopSerArrayOrMap( const std:
   {
     s_Json,
     fmt::format( "\"{}\"", name ),
-    fmt::format( "{}->{}", sTypeObject, name ),
-    fmt::format( "[]( {0} ) {{ {1}( {2}, {3} ); }}", paramStr, sDeserialzeMethod, sTypeObject, s_Json )
+    fmt::format( "{}->{}", s_TypeObject, name ),
+    fmt::format( "[]( {0} ) {{ {1}( {2}, {3} ); }}", paramStr, sDeserializeMethod, s_TypeObject, s_Json )
   };
-
-  if ( retNewSmartPtrFunc.length() )
-    argList.push_back( retNewSmartPtrFunc );
 
   std::list<std::string> templateList;
   if ( keyType.length() )

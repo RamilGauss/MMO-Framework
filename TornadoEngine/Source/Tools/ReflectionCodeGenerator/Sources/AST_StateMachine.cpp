@@ -56,6 +56,7 @@ void TAST_StateMachine::ConfigStateMachine()
   AddAction( eSearchDeclarationMethodHandler, &TAST_StateMachine::SearchDeclarationMethodHandler );
   AddAction( eSearchMethodBodyHandler, &TAST_StateMachine::SearchMethodBodyHandler );
   AddAction( eSearchAfterColonColonIdentifier, &TAST_StateMachine::SearchAfterColonColonIdentifier );
+  AddAction( eSearchWaitSemiColonAfterAssign, &TAST_StateMachine::SearchWaitSemiColonAfterAssign );
 }
 //---------------------------------------------------------------------------------------
 bool TAST_StateMachine::BeforeAction()
@@ -331,6 +332,10 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
 {
   switch ( mTokenInfoIt->id )
   {
+    case T_ASSIGN:
+      mTypeInfo.AddMember( mMemberInfo );
+      mState = eSearchWaitSemiColonAfterAssign;
+      break;
     case T_COMMA:
       mMemberInfo.mTypeName += mTokenInfoIt->value;
       break;
@@ -458,6 +463,17 @@ bool TAST_StateMachine::SearchAfterColonColonIdentifier()
     case T_IDENTIFIER:
       mMemberInfo.mTypeName += mTokenInfoIt->value;
       mState = eSearchFullTypeName;
+      break;
+  }
+  return true;
+}
+//---------------------------------------------------------------------------------------
+bool TAST_StateMachine::SearchWaitSemiColonAfterAssign()
+{
+  switch ( mTokenInfoIt->id )
+  {
+    case T_SEMICOLON:
+      mState = eSearchBeginSectionOrTypeOrBeginMethod;
       break;
   }
   return true;

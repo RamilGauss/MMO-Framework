@@ -63,16 +63,16 @@ class SparseSet<Entity> {
     class Iterator final {
         friend class SparseSet<Entity>;
 
-        using entity_type = Entity;
+        using direct_type = const std::vector<Entity>;
         using index_type = typename traits_type::difference_type;
 
-        Iterator(const entity_type *direct, index_type index) ENTT_NOEXCEPT
+        Iterator(direct_type *direct, index_type index) ENTT_NOEXCEPT
             : direct{direct}, index{index}
         {}
 
     public:
         using difference_type = index_type;
-        using value_type = const entity_type;
+        using value_type = const Entity;
         using pointer = value_type *;
         using reference = value_type &;
         using iterator_category = std::random_access_iterator_tag;
@@ -122,7 +122,8 @@ class SparseSet<Entity> {
         }
 
         reference operator[](const difference_type value) const ENTT_NOEXCEPT {
-            return direct[index-value-1];
+            const auto pos = size_type(index-value-1);
+            return (*direct)[pos];
         }
 
         bool operator==(const Iterator &other) const ENTT_NOEXCEPT {
@@ -150,7 +151,8 @@ class SparseSet<Entity> {
         }
 
         pointer operator->() const ENTT_NOEXCEPT {
-            return (direct+index-1);
+            const auto pos = size_type(index-1);
+            return &(*direct)[pos];
         }
 
         inline reference operator*() const ENTT_NOEXCEPT {
@@ -158,7 +160,7 @@ class SparseSet<Entity> {
         }
 
     private:
-        pointer direct;
+        direct_type *direct;
         index_type index;
     };
 
@@ -278,7 +280,7 @@ public:
      */
     const_iterator_type cbegin() const ENTT_NOEXCEPT {
         const typename traits_type::difference_type pos = direct.size();
-        return const_iterator_type{direct.data(), pos};
+        return const_iterator_type{&direct, pos};
     }
 
     /**
@@ -327,7 +329,7 @@ public:
      * internal packed array.
      */
     const_iterator_type cend() const ENTT_NOEXCEPT {
-        return const_iterator_type{direct.data(), {}};
+        return const_iterator_type{&direct, {}};
     }
 
     /**
@@ -422,7 +424,8 @@ public:
      */
     size_type get(const entity_type entity) const ENTT_NOEXCEPT {
         assert(has(entity));
-        return reverse[entity & traits_type::entity_mask];
+        const auto pos = size_type(entity & traits_type::entity_mask);
+        return size_type(reverse[pos]);
     }
 
     /**
@@ -463,10 +466,10 @@ public:
     virtual void destroy(const entity_type entity) {
         assert(has(entity));
         const auto back = direct.back();
-        auto &candidate = reverse[entity & traits_type::entity_mask];
+        auto &candidate = reverse[size_type(entity & traits_type::entity_mask)];
         // swapping isn't required here, we are getting rid of the last element
         reverse[back & traits_type::entity_mask] = candidate;
-        direct[candidate] = back;
+        direct[size_type(candidate)] = back;
         candidate = null;
         direct.pop_back();
     }
@@ -578,7 +581,7 @@ class SparseSet<Entity, Type>: public SparseSet<Entity> {
     class Iterator final {
         friend class SparseSet<Entity, Type>;
 
-        using instance_type = std::conditional_t<Const, const Type, Type>;
+        using instance_type = std::conditional_t<Const, const std::vector<Type>, std::vector<Type>>;
         using index_type = typename traits_type::difference_type;
 
         Iterator(instance_type *instances, index_type index) ENTT_NOEXCEPT
@@ -587,7 +590,7 @@ class SparseSet<Entity, Type>: public SparseSet<Entity> {
 
     public:
         using difference_type = index_type;
-        using value_type = instance_type;
+        using value_type = std::conditional_t<Const, const Type, Type>;
         using pointer = value_type *;
         using reference = value_type &;
         using iterator_category = std::random_access_iterator_tag;
@@ -637,7 +640,8 @@ class SparseSet<Entity, Type>: public SparseSet<Entity> {
         }
 
         reference operator[](const difference_type value) const ENTT_NOEXCEPT {
-            return instances[index-value-1];
+            const auto pos = size_type(index-value-1);
+            return (*instances)[pos];
         }
 
         bool operator==(const Iterator &other) const ENTT_NOEXCEPT {
@@ -665,7 +669,8 @@ class SparseSet<Entity, Type>: public SparseSet<Entity> {
         }
 
         pointer operator->() const ENTT_NOEXCEPT {
-            return (instances+index-1);
+            const auto pos = size_type(index-1);
+            return &(*instances)[pos];
         }
 
         inline reference operator*() const ENTT_NOEXCEPT {
@@ -673,7 +678,7 @@ class SparseSet<Entity, Type>: public SparseSet<Entity> {
         }
 
     private:
-        pointer instances;
+        instance_type *instances;
         index_type index;
     };
 
@@ -767,7 +772,7 @@ public:
      */
     const_iterator_type cbegin() const ENTT_NOEXCEPT {
         const typename traits_type::difference_type pos = instances.size();
-        return const_iterator_type{instances.data(), pos};
+        return const_iterator_type{&instances, pos};
     }
 
     /**
@@ -800,7 +805,7 @@ public:
      */
     iterator_type begin() ENTT_NOEXCEPT {
         const typename traits_type::difference_type pos = instances.size();
-        return iterator_type{instances.data(), pos};
+        return iterator_type{&instances, pos};
     }
 
     /**
@@ -818,7 +823,7 @@ public:
      * given type.
      */
     const_iterator_type cend() const ENTT_NOEXCEPT {
-        return const_iterator_type{instances.data(), {}};
+        return const_iterator_type{&instances, {}};
     }
 
     /**
@@ -854,7 +859,7 @@ public:
      * given type.
      */
     iterator_type end() ENTT_NOEXCEPT {
-        return iterator_type{instances.data(), {}};
+        return iterator_type{&instances, {}};
     }
 
     /**

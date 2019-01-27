@@ -14,16 +14,9 @@ namespace nsReflectionCodeGenerator
 {
   class TJsonSerializerSourceFileGenerator : public TJsonSerializerFileGenerator
   {
-    const std::string s_Bool = "bool";
-
-    const std::string s_CC = "::";
-    const std::string s_STD = "std";
-    const std::string s_STD_ = "std" + s_CC;
-
     const std::string s_POM = "POM";
     const std::string s_PUM = "PUM";
 
-    const std::string s_Jobj = "Jobj";
     const std::string s_Obj = "obj";
     const std::string s_Json = "json";
 
@@ -82,9 +75,6 @@ namespace nsReflectionCodeGenerator
 
     void AddPushByMemberInfo( TMemberInfo* memberInfo );
     void AddPopByMemberInfo( TMemberInfo* memberInfo );
-
-    void AddCallingMethod( TTypeInfo* p, std::function<void( TMemberInfo* )> func );
-    void AddCallingMethodForParent( TTypeInfo* p, std::function<void( const std::string& )> func );
 
     void AddPush( const std::string& objectName );
 
@@ -148,6 +138,6 @@ namespace nsReflectionCodeGenerator
 
     void General_AddPopSerArrayOrMap( const std::string& keyType, const std::string& valueType,
       const std::string& typeForLambda,
-      const std::string& fullType, const std::string& name, const std::string& methodName, const std::string& retNewSmartPtrFunc );
+      const std::string& fullType, const std::string& name, const std::string& methodName );
   };
 }

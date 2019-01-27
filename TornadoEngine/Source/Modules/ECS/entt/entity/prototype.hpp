@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include "../config/config.h"
 #include "registry.hpp"
+#include "entity.hpp"
 
 
 namespace entt {
@@ -95,7 +96,7 @@ public:
           registry{other.registry},
           entity{other.entity}
     {
-        other.entity = ~entity_type{};
+        other.entity = entt::null;
     }
 
     /*! @brief Copying a prototype isn't allowed. @return This Prototype. */
@@ -139,7 +140,7 @@ public:
         basic_fn_type *assign = [](const Prototype &prototype, Registry<Entity> &other, const Entity dst) {
             if(!other.template has<Component>(dst)) {
                 const auto &wrapper = prototype.registry->template get<Wrapper<Component>>(prototype.entity);
-                other.template accommodate<Component>(dst, wrapper.component);
+                other.template assign<Component>(dst, wrapper.component);
             }
         };
 

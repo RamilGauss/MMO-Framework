@@ -36,14 +36,14 @@ public:// prototypes
 public:// methods
   static void PushNull( Jobj& obj, const char* sKey )
   {
-    obj.insert( { sKey, json11::Json( nullptr ) } );
+    obj.insert( {sKey, json11::Json( nullptr )} );
   }
 
   // built-in, string, {vector, list, set}<{built-in, string}>
   template <typename ValueType>
   static void Push( Jobj& obj, const char* sKey, ValueType& value )
   {
-    obj.insert( { sKey, value } );
+    obj.insert( {sKey, value} );
   }
   // map<{built-in,string},{built-in,string}>
   template <typename ValueType>
@@ -51,19 +51,19 @@ public:// methods
   {
     Jobj jMap;
     for ( auto& intStr : value )
-      jMap.insert( { fmt::format( "{}", intStr.first ), intStr.second } );
-    obj.insert( { sKey, jMap } );
+      jMap.insert( {fmt::format( "{}", intStr.first ), intStr.second} );
+    obj.insert( {sKey, jMap} );
   }
   // list, vector<serialized type>
-  template <typename Type, typename ElementType, typename ValueType>
+  template <typename Type, typename ValueType>
   static void PushSerObjArray( Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc )
   {
-    PushSerArray<Type, ElementType, ValueType>( obj, sKey, value, serFunc, &ObjAddress<Type,ElementType> );
+    PushSerArray<Type, Type, ValueType>( obj, sKey, value, serFunc, &ObjAddress<Type, Type> );
   }
-  template <typename Type, typename ElementType, typename ValueType>
+  template <typename Type, typename ValueType>
   static void PushSerPtrArray( Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc )
   {
-    PushSerArray<Type, ElementType, ValueType>( obj, sKey, value, serFunc, &PtrAddress<Type, ElementType> );
+    PushSerArray<Type, Type*, ValueType>( obj, sKey, value, serFunc, &PtrAddress<Type, Type*> );
   }
   template <typename Type, typename ElementType, typename ValueType>
   static void PushSerSmartPtrArray( Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc )
@@ -72,15 +72,15 @@ public:// methods
   }
 
   // map<{built-in,string},{serialized type}>
-  template <typename Type, typename ElementType, typename ValueType>
+  template <typename Type, typename ValueType>
   static void PushSerObjMap( Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc )
   {
-    PushSerMap<Type, ElementType, ValueType>( obj, sKey, value, serFunc, &ObjAddress<Type, ElementType> );
+    PushSerMap<Type, Type, ValueType>( obj, sKey, value, serFunc, &ObjAddress<Type, Type> );
   }
-  template <typename Type, typename ElementType, typename ValueType>
+  template <typename Type, typename ValueType>
   static void PushSerPtrMap( Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc )
   {
-    PushSerMap<Type, ElementType, ValueType>( obj, sKey, value, serFunc, &PtrAddress<Type, ElementType> );
+    PushSerMap<Type, Type*, ValueType>( obj, sKey, value, serFunc, &PtrAddress<Type, Type*> );
   }
   template <typename Type, typename ElementType, typename ValueType>
   static void PushSerSmartPtrMap( Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc )
@@ -91,13 +91,22 @@ public:// methods
   // general methods
 private:
   template<typename Type, typename ElementType>
-  static Type* ObjAddress( ElementType& e ) { return &e; }
+  static Type* ObjAddress( ElementType& e )
+  {
+    return &e;
+  }
 
   template<typename Type, typename ElementType>
-  static Type* PtrAddress( ElementType& p ) { return p; }
+  static Type* PtrAddress( ElementType& p )
+  {
+    return p;
+  }
 
   template<typename Type, typename ElementType>
-  static Type* SmartPtrAddress( ElementType& sp ) { return sp.get(); }
+  static Type* SmartPtrAddress( ElementType& sp )
+  {
+    return sp.get();
+  }
 
   // array
   template <typename Type, typename ElementType, typename ValueType>
@@ -116,7 +125,7 @@ private:
       else
         arrJ.push_back( json11::Json( nullptr ) );
     }
-    obj.insert( { sKey, arrJ } );
+    obj.insert( {sKey, arrJ} );
   }
   // map
   template <typename Type, typename ElementType, typename ValueType>
@@ -135,6 +144,6 @@ private:
       else
         jMap.insert( {fmt::format( "{}", intStr.first ), json11::Json( nullptr )} );
     }
-    obj.insert( { sKey, jMap } );
+    obj.insert( {sKey, jMap} );
   }
 };

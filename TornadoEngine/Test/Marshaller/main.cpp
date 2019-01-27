@@ -35,9 +35,9 @@ void FillTestSrc( TTestStruct& t )
   t.numVector = {0, 1, 2};
 
   // ser array
-  t.baseVec = {TBaseStruct("0123456789"), TBaseStruct("0123456789"), TBaseStruct("0123456789")};
-  t.basePtrVec = {nullptr, new TBaseStruct("0123456789"), nullptr};
-  t.baseSPVec = {std::shared_ptr<TBaseStruct>( new TBaseStruct("0123456789") ), std::shared_ptr<TBaseStruct>()};
+  t.baseVec = {TBaseStruct( "0123456789" ), TBaseStruct( "0123456789" ), TBaseStruct( "0123456789" )};
+  t.basePtrVec = {nullptr, new TBaseStruct( "0123456789" ), nullptr};
+  t.baseSPVec = {std::shared_ptr<TBaseStruct>( new TBaseStruct( "0123456789" ) ), std::shared_ptr<TBaseStruct>()};
 
   // map
   t.intIntMap = {{0,0},{1,1}};
@@ -73,26 +73,18 @@ void Benchmark()
 
   TContainerRise c;
   nsBinary::TBinaryMarshaller marshaller;
-  //marshaller.Serialize( &testSrc, c );
-  //marshaller.Fill( &testDst, c.GetPtr(), c.GetSize() );
-
-  marshaller.Pack( &testSrc, c );
-  auto id = marshaller.GetID( c.GetPtr(), c.GetSize() );
-  switch ( id )
-  {
-    case nsBinary::TBinaryMarshaller::eTBaseStruct:
-    {
-      TBaseStruct baseStruct;
-      marshaller.FillUnpack<TBaseStruct>( &baseStruct, c.GetPtr(), c.GetSize() );
-    }
-      break;
-    case nsBinary::TBinaryMarshaller::eTTestStruct:
-    {
-      auto p = marshaller.HandleUnpack<TTestStruct>( c.GetPtr(), c.GetSize() );
-    }
-      break;
-  }
-  marshaller.Unpack( c.GetPtr(), c.GetSize() );
+  //marshaller.SetLimitForCompression( 1000 );
+  //marshaller.Pack( &testSrc, c );
+  //auto id = marshaller.GetID( c.GetPtr(), c.GetSize() );
+  //switch ( id )
+  //{
+  //  case nsBinary::TBinaryMarshaller::eTTestStruct:
+  //  {
+  //    auto p = marshaller.HandleUnpack<TTestStruct>( c.GetPtr(), c.GetSize() );
+  //    marshaller.FillUnpack<TTestStruct>( &testDst, c.GetPtr(), c.GetSize() );
+  //  }
+  //  break;
+  //}
 
   // настройка
   TTestClass src;
@@ -104,20 +96,28 @@ void Benchmark()
   src.vParam[1].id = 2;
   src.vParam[2].id = 3;
 
-
-  //TMarshaller<TBinarySerializer>::TypeID type;
+  TTestClass dst;
+  auto pDst = &dst;
+  //marshaller.Serialize( &src, c );
+  marshaller.Pack( &src, c );
   auto startM = ht_GetMSCount();
   // полный цикл маршаллинга
   for ( size_t i = 0; i < MARSHALL_COUNT; i++ )
   {
     //marshaller.Serialize( &src, c );
-    //void* p = marshaller.Deserialize( c, type );
-    //TMemoryPoolAllocator::DeallocateFunc( p );
+    //marshaller.Fill( pDst, c.GetPtr(), c.GetSize() );
+
+    marshaller.Pack( &src, c );
+    marshaller.Unpack( c.GetPtr(), c.GetSize() );
+
+    //auto p = marshaller.HandleUnpack<TTestClass>( c.GetPtr(), c.GetSize() );
+    //nsBinary::TBinaryMarshaller::Deallocate<TTestClass>( p );
+
+    //marshaller.FillUnpack<TTestClass>( pDst, c.GetPtr(), c.GetSize() );
   }
   auto stopM = ht_GetMSCount();
   float speedM = ( stopM - startM ) * 1000.0f / MARSHALL_COUNT;
 
-  //marshaller.Serialize( &src, c );
   printf( "size of serialized object = %d\n", c.GetSize() );
   printf( "speed = %f us/1 \n", speedM );
   return;

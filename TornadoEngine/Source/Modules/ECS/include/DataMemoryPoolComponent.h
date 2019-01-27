@@ -8,19 +8,22 @@ struct DllExport TDataMemoryPoolComponent
 {
   Type* p = nullptr;
   int size = 0;
-
+private:
   typename TMemoryPool<Type>::TDescPointer* mPtrDesc = nullptr;
 
-  // inline можно, все равно данные будут браться из общего пула (он не подвержен опасности разных указателей в разных библиотеках)
+  // inline РјРѕР¶РЅРѕ, РІСЃРµ СЂР°РІРЅРѕ РґР°РЅРЅС‹Рµ Р±СѓРґСѓС‚ Р±СЂР°С‚СЊСЃСЏ РёР· РѕР±С‰РµРіРѕ РїСѓР»Р° (РѕРЅ РЅРµ РїРѕРґРІРµСЂР¶РµРЅ РѕРїР°СЃРЅРѕСЃС‚Рё СЂР°Р·РЅС‹С… СѓРєР°Р·Р°С‚РµР»РµР№ РІ СЂР°Р·РЅС‹С… Р±РёР±Р»РёРѕС‚РµРєР°С…)
   static inline TMemoryPool<Type>* mMemoryPool = nullptr;
-
-  TDataMemoryPoolComponent( int s )
+public:
+  TDataMemoryPoolComponent( nsECSFramework::THugeRegistry* pR, int s = 1 )
   {
     if( mMemoryPool == nullptr )
       mMemoryPool = SingletonManager()->Get<TMemoryPool<Type>>();
 
     Init( s );
+    // for call Done yourself after entity destroying
+    pR->destruction<TDataMemoryPoolComponent<Type>>().connect<&DestroyHandler>();
   }
+private:
   void Init( int s )
   {
     size = s;
@@ -32,6 +35,10 @@ struct DllExport TDataMemoryPoolComponent
     mMemoryPool->Push( mPtrDesc );
     size = 0;
     p = nullptr;
+  }
+  static void DestroyHandler( nsECSFramework::THugeRegistry &r, nsECSFramework::TEntity e )
+  {
+    r.get<PooledComponents::TUchar>( e ).Done();
   }
 };
 

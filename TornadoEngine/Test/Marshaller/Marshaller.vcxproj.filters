@@ -44,5 +44,13 @@
     <Filter Include="Test">
       <UniqueIdentifier>{bd35ddf3-ad1a-4a7e-9850-990e827653a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{176ecb22-a97e-48ec-9eee-923c7a668b35}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data.json">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

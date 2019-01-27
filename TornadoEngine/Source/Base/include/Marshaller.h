@@ -10,8 +10,10 @@ See for more information License.h.
 #include "TypeDef.h"
 #include <unordered_map>
 #include <functional>
-#include "ContainerRise.h"
 #include <typeindex>
+#include "lz4.h"
+#include "ContainerRise.h"
+
 
 #define USE_LZ4_COMPRESSION
 

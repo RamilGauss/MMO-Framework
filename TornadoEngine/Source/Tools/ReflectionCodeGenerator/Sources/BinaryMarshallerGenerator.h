@@ -17,5 +17,8 @@ namespace nsReflectionCodeGenerator
     TBinaryMarshallerGenerator() : ICodeGenerator( "BinaryMarshallerGenerator" ) { }
 
     virtual void Work() override;
+  private:
+    void GenerateHeader();
+    void GenerateSource();
   };
 }

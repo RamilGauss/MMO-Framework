@@ -108,7 +108,7 @@
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "d:\Projects\MMO\MMOFramework\TornadoEngine\Test\Json\data.json"</Command>
+      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Test\Json\data.json"</Command>
       <Message>Run Reflection code generator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>

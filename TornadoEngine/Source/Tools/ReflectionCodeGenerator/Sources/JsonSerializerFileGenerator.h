@@ -14,14 +14,17 @@ namespace nsReflectionCodeGenerator
   class TJsonSerializerFileGenerator : public IFileGenerator
   {
   protected:
-    const std::string sSerialzeMethod = "_Serialize";
-    const std::string sDeserialzeMethod = "_Deserialize";
+    TJsonSerializerGeneratorConfig* mJsonSerializer;
 
-    const std::string sTypeObject = "p";
+    const std::string s_Jobj = "Jobj";
+    const std::string sSerializeMethod = "_Serialize";
+    const std::string sDeserializeMethod = "_Deserialize";
 
     // S - Type* p, Jobj& obj
     std::list<std::string> GetParamListForSerialize( const std::string& namespaceWithType ); 
     std::list<std::string> GetParamListForDeserialize( const std::string& namespaceWithType ); 
+
+    TJsonSerializerFileGenerator();
 
   };
 }

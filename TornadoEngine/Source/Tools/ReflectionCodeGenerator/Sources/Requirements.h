@@ -33,6 +33,7 @@ namespace nsReflectionCodeGenerator
         {
           "typedefs for types",
           "void*",
+          "std::function or other Lambda",
         }
       },
       { "3. IGNORE",

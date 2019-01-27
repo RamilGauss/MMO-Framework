@@ -2,6 +2,8 @@
 #define ENTT_ENTITY_HELPER_HPP
 
 
+#include <type_traits>
+#include "../core/hashed_string.hpp"
 #include "../signal/sigh.hpp"
 #include "registry.hpp"
 #include "utility.hpp"
@@ -42,7 +44,7 @@ void dependency(Registry<Entity> &registry, const Entity entity) {
  * assigned to an entity:
  * @code{.cpp}
  * entt::DefaultRegistry registry;
- * entt::dependency<AType, AnotherType>(registry.construction<MyType>());
+ * entt::connect<AType, AnotherType>(registry.construction<MyType>());
  * @endcode
  *
  * @tparam Dependency Types of components to assign to an entity if triggered.
@@ -50,7 +52,7 @@ void dependency(Registry<Entity> &registry, const Entity entity) {
  * @param sink A sink object properly initialized.
  */
 template<typename... Dependency, typename Entity>
-void dependency(Sink<void(Registry<Entity> &, const Entity)> sink) {
+inline void connect(Sink<void(Registry<Entity> &, const Entity)> sink) {
     sink.template connect<dependency<Entity, Dependency...>>();
 }
 
@@ -65,7 +67,7 @@ void dependency(Sink<void(Registry<Entity> &, const Entity)> sink) {
  * components `AType` and `AnotherType`:
  * @code{.cpp}
  * entt::DefaultRegistry registry;
- * entt::dependency<AType, AnotherType>(entt::break_t{}, registry.construction<MyType>());
+ * entt::disconnect<AType, AnotherType>(registry.construction<MyType>());
  * @endcode
  *
  * @tparam Dependency Types of components used to create the dependency.
@@ -73,9 +75,28 @@ void dependency(Sink<void(Registry<Entity> &, const Entity)> sink) {
  * @param sink A sink object properly initialized.
  */
 template<typename... Dependency, typename Entity>
-void dependency(break_t, Sink<void(Registry<Entity> &, const Entity)> sink) {
+inline void disconnect(Sink<void(Registry<Entity> &, const Entity)> sink) {
     sink.template disconnect<dependency<Entity, Dependency...>>();
 }
+
+
+/**
+ * @brief Alias template to ease the assignment of labels to entities.
+ *
+ * If used in combination with hashed strings, it simplifies the assignment of
+ * labels to entities and the use of labels in general where a type would be
+ * required otherwise.<br/>
+ * As an example and where the user defined literal for hashed strings hasn't
+ * been changed:
+ * @code{.cpp}
+ * entt::DefaultRegistry registry;
+ * registry.assign<entt::label<"enemy"_hs>>(entity);
+ * @endcode
+ *
+ * @tparam Value The numeric representation of an instance of hashed string.
+ */
+template<typename HashedString::hash_type Value>
+using label = std::integral_constant<typename HashedString::hash_type, Value>;
 
 
 }

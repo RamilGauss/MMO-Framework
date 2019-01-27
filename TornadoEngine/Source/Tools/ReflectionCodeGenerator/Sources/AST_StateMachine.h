@@ -56,6 +56,7 @@ class TAST_StateMachine
     eSearchDeclarationMethodHandler,
     eSearchMethodBodyHandler,
     eSearchAfterColonColonIdentifier,
+    eSearchWaitSemiColonAfterAssign,
   };
 
 public:
@@ -85,6 +86,7 @@ private:
   bool SearchDeclarationMethodHandler();
   bool SearchMethodBodyHandler();
   bool SearchAfterColonColonIdentifier();
+  bool SearchWaitSemiColonAfterAssign();
 
   bool IsTokensOut();
 

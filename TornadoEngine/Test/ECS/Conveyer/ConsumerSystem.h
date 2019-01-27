@@ -31,7 +31,7 @@ public:
     for( int i = 0; i < count; i++ )
     {
       auto entity = entities[i];
-      registry->get<PooledComponents::TUchar>( entity ).Done();
+      //registry->get<PooledComponents::TUchar>( entity ).Done();
       registry->destroy( entity );
     }
 

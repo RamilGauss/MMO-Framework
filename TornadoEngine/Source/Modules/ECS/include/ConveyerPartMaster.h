@@ -5,20 +5,16 @@
 #include "IConveyerPart.h"
 #include "GlobalSystemUpdater.h"
 
-#include "MemoryPool.h"//###
-#include "SingletonManager.h"//###
-
 namespace nsECSFramework
 {
   class TInitSystem;
-  //class TBaseReactiveSystem;
   class TExecuteSystem;
   class TFeature;
 
   class DllExport TConveyerPartMaster : public TConveyerPartWithGlobalAccess
   {
   protected:
-    TGlobalSystemInitializer<TBaseReactiveSystem>* mReactiveInitializer = nullptr;// реактивные системы
+    TGlobalSystemInitializer<TBaseReactiveSystem>* mReactiveInitializer = nullptr;// СЂРµР°РєС‚РёРІРЅС‹Рµ СЃРёСЃС‚РµРјС‹
     TGlobalSystemInitializer<IConveyerPart>* mInitAndExecuteInitializer = nullptr;
 
     TGlobalSystemUpdater* mSystemUpdater = nullptr;
@@ -63,20 +59,20 @@ namespace nsECSFramework
     auto t = new T( std::forward<Args>( args )... );
     t->SetRegistry( registry );
 
-    // списки для инициализации
+    // СЃРїРёСЃРєРё РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
     if ( IsTypeReactive<T>() )
-      mReactiveInitializer->Add( t );// реактивные системы
+      mReactiveInitializer->Add( t );// СЂРµР°РєС‚РёРІРЅС‹Рµ СЃРёСЃС‚РµРјС‹
     else
       if ( IsTypeFeature<T>() == false )
-        mInitAndExecuteInitializer->Add( t );// execute и обычные init системы
+        mInitAndExecuteInitializer->Add( t );// execute Рё РѕР±С‹С‡РЅС‹Рµ init СЃРёСЃС‚РµРјС‹
 
     if ( IsTypeFeature<T>() )
     {
-      t->PrepareFeature();// итеративно продолжить дальше
+      t->PrepareFeature();// РёС‚РµСЂР°С‚РёРІРЅРѕ РїСЂРѕРґРѕР»Р¶РёС‚СЊ РґР°Р»СЊС€Рµ
     }
     else
     {
-      // если чистый InitSystem, то Update не вызовется
+      // РµСЃР»Рё С‡РёСЃС‚С‹Р№ InitSystem, С‚Рѕ Update РЅРµ РІС‹Р·РѕРІРµС‚СЃСЏ
       if ( IsTypeExecute<T>() || IsTypeReactive<T>() )
         mSystemUpdater->Add( t );
     }

@@ -130,54 +130,54 @@ public:
   template<typename Type, typename ArrayType>
   static void PopSerObjArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc )
   {
-    PopSerArray<Type, ArrayType, Type>( json, sKey, arr, deserFunc, &NewObject<Type, Type>, &GetObjPtr<Type*, Type>, &GetNullForObject<Type> );
+    PopSerArray<Type, ArrayType, Type>( json, sKey, arr, deserFunc, &NewObject<Type>, &GetObjPtr<Type*, Type>, &GetNullForObject<Type> );
   }
   // list, vector<Serialized pointer>  
   template<typename Type, typename ArrayType>
   static void PopSerPtrArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc )
   {
-    PopSerArray<Type, ArrayType, Type*>( json, sKey, arr, deserFunc, &NewPointer<Type*, Type>, &GetPtrPtr<Type*, Type*>, &GetNullForPtr<Type*> );
+    PopSerArray<Type, ArrayType, Type*>( json, sKey, arr, deserFunc, &NewPointer<Type>, &GetPtrPtr<Type*, Type*>, &GetNullForPtr<Type*> );
   }
   // list, vector<Serialized smart pointer>
   template<typename Type, typename SmartPointer, typename ArrayType>
-  static void PopSerSmartPtrArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc, NewFunc<SmartPointer> newFunc )
+  static void PopSerSmartPtrArray( const json11::Json& json, const char* sKey, ArrayType& arr, DeserFunc<Type> deserFunc )
   {
-    PopSerArray<Type, ArrayType, SmartPointer>( json, sKey, arr, deserFunc, newFunc, &GetSmartPtrPtr<Type*, SmartPointer>, &GetNullForSmartPtr<SmartPointer> );
+    PopSerArray<Type, ArrayType, SmartPointer>( json, sKey, arr, deserFunc, &NewSmartPointer<Type, SmartPointer>, &GetSmartPtrPtr<Type*, SmartPointer>, &GetNullForSmartPtr<SmartPointer> );
   }
 
   // map<string,object>
   template<typename Type>
   static void PopStrSerObjMap( const json11::Json& json, const char* sKey, std::map<std::string, Type>& m, DeserFunc<Type> deserFunc )
   {
-    PopSerMap<Type, std::string, Type, Type>( json, sKey, m, deserFunc, &Str2Str, &NewObject<Type, Type>, &GetObjPtr<Type*, Type>, &GetNullForObject<Type> );
+    PopSerMap<Type, std::string, Type, Type>( json, sKey, m, deserFunc, &Str2Str, &NewObject<Type>, &GetObjPtr<Type*, Type>, &GetNullForObject<Type> );
   }
   // map<string,pointer>
   template<typename Type>
   static void PopStrSerPtrMap( const json11::Json& json, const char* sKey, std::map<std::string, Type*>& m, DeserFunc<Type> deserFunc )
   {
-    PopSerMap<Type, std::string, Type*, Type*>( json, sKey, m, deserFunc, &Str2Str, &NewPointer<Type*, Type>, &GetPtrPtr<Type*, Type*>, &GetNullForPtr<Type*> );
+    PopSerMap<Type, std::string, Type*, Type*>( json, sKey, m, deserFunc, &Str2Str, &NewPointer<Type>, &GetPtrPtr<Type*, Type*>, &GetNullForPtr<Type*> );
   }
   // map<string,smart pointer>
   template<typename Type, typename SmartPointer>
-  static void PopStrSerSmartPtrMap( const json11::Json& json, const char* sKey, std::map<std::string, SmartPointer>& m, DeserFunc<Type> deserFunc, NewFunc<SmartPointer> newFunc )
+  static void PopStrSerSmartPtrMap( const json11::Json& json, const char* sKey, std::map<std::string, SmartPointer>& m, DeserFunc<Type> deserFunc )
   {
-    PopSerMap<Type, std::string, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Str, newFunc, &GetSmartPtrPtr<Type*, SmartPointer>, &GetNullForSmartPtr<SmartPointer> );
+    PopSerMap<Type, std::string, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Str, &NewSmartPointer<Type, SmartPointer>, &GetSmartPtrPtr<Type*, SmartPointer>, &GetNullForSmartPtr<SmartPointer> );
   }
 
   template<typename KeyType, typename ValueType>
   static void PopNumSerObjMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType>& m, DeserFunc<ValueType> deserFunc )
   {
-    PopSerMap<ValueType, KeyType, ValueType, ValueType>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewObject<ValueType, ValueType>, &GetObjPtr<ValueType*, ValueType>, &GetNullForObject<ValueType> );
+    PopSerMap<ValueType, KeyType, ValueType, ValueType>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewObject<ValueType>, &GetObjPtr<ValueType*, ValueType>, &GetNullForObject<ValueType> );
   }
   template<typename KeyType, typename ValueType>
   static void PopNumSerPtrMap( const json11::Json& json, const char* sKey, std::map<KeyType, ValueType*>& m, DeserFunc<ValueType> deserFunc )
   {
-    PopSerMap<ValueType, KeyType, ValueType*, ValueType*>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewPointer<ValueType*, ValueType>, &GetPtrPtr<ValueType*, ValueType*>, &GetNullForPtr<ValueType*> );
+    PopSerMap<ValueType, KeyType, ValueType*, ValueType*>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewPointer<ValueType>, &GetPtrPtr<ValueType*, ValueType*>, &GetNullForPtr<ValueType*> );
   }
   template<typename KeyType, typename ValueType, typename SmartPointer>
-  static void PopNumSerSmartPtrMap( const json11::Json& json, const char* sKey, std::map<KeyType, SmartPointer>& m, DeserFunc<ValueType> deserFunc, NewFunc<SmartPointer> newFunc )
+  static void PopNumSerSmartPtrMap( const json11::Json& json, const char* sKey, std::map<KeyType, SmartPointer>& m, DeserFunc<ValueType> deserFunc )
   {
-    PopSerMap<ValueType, KeyType, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Num<KeyType>, newFunc, &GetSmartPtrPtr<ValueType*, SmartPointer>, &GetNullForSmartPtr<SmartPointer> );
+    PopSerMap<ValueType, KeyType, SmartPointer, SmartPointer>( json, sKey, m, deserFunc, &Str2Num<KeyType>, &NewSmartPointer<ValueType, SmartPointer>, &GetSmartPtrPtr<ValueType*, SmartPointer>, &GetNullForSmartPtr<SmartPointer> );
   }
 
 private:
@@ -221,15 +221,20 @@ private:
     return v;
   }
   //=================
-  template<typename RetType, typename ArgType>
-  static RetType NewObject()
+  template<typename Type>
+  static Type NewObject()
   {
-    return ArgType();
+    return Type();
   }
-  template<typename RetType, typename ArgType>
-  static RetType NewPointer()
+  template<typename Type>
+  static Type* NewPointer()
   {
-    return new ArgType();
+    return new Type();
+  }
+  template<typename Type, typename SmartPointer>
+  static SmartPointer NewSmartPointer()
+  {
+    return SmartPointer( new Type());
   }
   //=================
   template<typename RetType, typename ArgType>

@@ -26,9 +26,9 @@ See for more information License.h.
 
 struct TFloat3
 {
-  unsigned char x = 0;
-  unsigned char y = 0;
-  unsigned char z = 0;
+  float x = 1.2345678f;
+  float y = 2.2345678f;
+  float z = 3.2345678f;
   MSGPACK_DEFINE( x, y, z );
 };
 
@@ -54,24 +54,22 @@ struct TLocationInfo
 
 struct TSynchronizationData
 {
-  //std::vector<TLocationInfo> infoVec;
-  //MSGPACK_DEFINE( infoVec );
-  std::string s;// = "0123456789";
-  MSGPACK_DEFINE( s );
+  std::vector<TLocationInfo> infoVec;
+  MSGPACK_DEFINE( infoVec );
 };
 
 int main( void )
 {
   short id = 0;
   TMarshaller<TMessagePackSerializer<msgpack::object_handle>> marsh;
-  marsh.SetLimitForCompression( 10000 );
+  marsh.SetLimitForCompression( 1000 );
   marsh.Add<TSynchronizationData>( id++, TMemoryPoolAllocator::AllocateFunc<TSynchronizationData> );
 
   TContainerRise c;
   TSynchronizationData src;
-  //src.infoVec.push_back( TLocationInfo( 1 ) );
-  //src.infoVec.push_back( TLocationInfo( 2 ) );
-  //src.infoVec.push_back( TLocationInfo( 3 ) );
+  src.infoVec.push_back( TLocationInfo( 1 ) );
+  src.infoVec.push_back( TLocationInfo( 2 ) );
+  src.infoVec.push_back( TLocationInfo( 3 ) );
 
   TMarshaller<TMessagePackSerializer<msgpack::object_handle>>::TypeID type;
   auto startM = ht_GetMSCount();
@@ -88,6 +86,7 @@ int main( void )
   marsh.Serialize( &src, c );
   printf( "size of serialized object = %d\n", c.GetSize());
   printf( "speed = %f us/1 \n", speedM );
+  getchar();
   return 0;
   //------------------------------------------------
   //TSynchronizationData src;
