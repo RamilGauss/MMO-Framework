@@ -12,31 +12,10 @@ See for more information License.h.
 #include "IncludeListGenerator.h"
 #include "JsonSerializerGenerator.h"
 #include "BinaryMarshallerGenerator.h"
+#include "SingletonManager.h"
+#include "ConfigContainer.h"
 
 
-using namespace fmt::literals;
-
-class IStringed
-{
-public:
-  virtual std::string ToString() = 0;
-};
-
-class TMethodBegin : public IStringed
-{
-public:
-  std::string mReturnedType = "void";
-  std::string mNameMethod;
-  std::string mEndMethod = ";";
-
-  //std::vector<T>
-
-  virtual std::string ToString() override
-  {
-    return fmt::format( "{} {}({}){}", mReturnedType, mNameMethod, mEndMethod );
-  }
-};
-//---------------------------------------------------------------------------------------
 using namespace nsReflectionCodeGenerator;
 
 //---------------------------------------------------------------------------------------------
@@ -48,9 +27,14 @@ void TCodeGeneratorFusion::Work()
 //---------------------------------------------------------------------------------------------
 void TCodeGeneratorFusion::Collect()
 {
+  auto& implementation = SingletonManager()->Get<TConfigContainer>()->Config()->targetForCodeGeneration.implementation;
+
   CollectFromIncludeList();
-  CollectFromJson();
-  CollectFromBinary();
+
+  if( implementation.jsonSerializer.get() )
+    CollectFromJson();
+  if( implementation.binaryMarshaller.get() )
+    CollectFromBinary();
 }
 //---------------------------------------------------------------------------------------------
 void TCodeGeneratorFusion::Dump()

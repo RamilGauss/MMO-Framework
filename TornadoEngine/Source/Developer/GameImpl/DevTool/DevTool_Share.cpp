@@ -42,6 +42,7 @@ namespace nsDevTool_Share
 #define NAME_ID(X) NAME_MODULE(X),X
 
   const char* sFileResources = "Resources.xml";
+  //const char* sFileResources = "Resources.json";
 
   const char* sCore = "Core";
   const char* sSkin = "Skin";
@@ -60,7 +61,7 @@ TDevTool_Share::TDevTool_Share()
 TDevTool_Share::~TDevTool_Share()
 {
   // уничтожить все модули
-  for( auto& vtID_Ptr : mMapID_PtrModules )
+  for ( auto& vtID_Ptr : mMapID_PtrModules )
     delete vtID_Ptr.second;
 }
 //-----------------------------------------------------------------------
@@ -98,7 +99,7 @@ IModule* TDevTool_Share::GetModuleByName( const char* sName )
 {
   int id = FindIDByNameModule( sName );
   TModuleDev* pModule = FindPtrModuleByID( id );
-  if( pModule )
+  if ( pModule )
     return pModule;
 
   pModule = GetModuleByID( id );
@@ -125,7 +126,7 @@ void TDevTool_Share::InitMapModules()
 int TDevTool_Share::FindIDByNameModule( std::string name )
 {
   TMapStrIntIt fit = mMapNameID_Modules.find( name );
-  if( fit == mMapNameID_Modules.end() )
+  if ( fit == mMapNameID_Modules.end() )
     return Undef;
   return fit->second;
 }
@@ -133,14 +134,14 @@ int TDevTool_Share::FindIDByNameModule( std::string name )
 TModuleDev* TDevTool_Share::FindPtrModuleByID( int id )
 {
   TMapIntPtrModuleIt fit = mMapID_PtrModules.find( id );
-  if( fit == mMapID_PtrModules.end() )
+  if ( fit == mMapID_PtrModules.end() )
     return nullptr;
   return fit->second;
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::Add( int id, TModuleDev* pModule )
 {
-  if( pModule )
+  if ( pModule )
     mMapID_PtrModules.insert( TMapIntPtrModuleVT( id, pModule ) );
 }
 //-----------------------------------------------------------------------
@@ -152,7 +153,7 @@ void TDevTool_Share::Add( std::string name, int id )
 std::string TDevTool_Share::GetFileDescConveyer()
 {
   std::string pathConveyer;
-  if( FindPath_GameEngine( nsDevTool_Share::sConveyer, 0, pathConveyer ) == true )
+  if ( FindPath_GameEngine( nsDevTool_Share::sConveyer, 0, pathConveyer ) == true )
     return pathConveyer;
 
   BL_FIX_BUG();
@@ -161,7 +162,7 @@ std::string TDevTool_Share::GetFileDescConveyer()
 //-----------------------------------------------------------------------
 void TDevTool_Share::EventGameEngine( int id, const char* sDesc )
 {
-  switch( id )
+  switch ( id )
   {
     case nsGameEngine::eAfterCreateDevTool:
       Init();
@@ -187,13 +188,13 @@ void TDevTool_Share::EventGameEngine( int id, const char* sDesc )
 void TDevTool_Share::SetupGraphicEngine()
 {
   // настройка перед запуском
-  if( mGE_ForSetup->GetGE()->InitOGRE( mPluginsCfg, mOgreCfg ) == false )
+  if ( mGE_ForSetup->GetGE()->InitOGRE( mPluginsCfg, mOgreCfg ) == false )
   {
     _exit( -1 );// либо ошибка, либо пользователь не хочет запускать приложение
     return;
   }
   // пути для ресурсов графического движка
-  for( auto& vtTypePath : mMapRGraphicEngine )
+  for ( auto& vtTypePath : mMapRGraphicEngine )
     mGE_ForSetup->GetGE()->AddResource( vtTypePath.second, vtTypePath.first );
   // оболочка и ядро для GUI
   std::string sSkin, sCore;
@@ -218,7 +219,7 @@ void TDevTool_Share::SetComponentsForLogic()
 
   // ищем логику
   TModuleLogic* pLogic = (TModuleLogic*) FindPtrModuleByID( Logic );
-  if( pLogic )
+  if ( pLogic )
   {
     int id_logic = pLogic->GetID();
     components.SetLogicID( id_logic );
@@ -238,7 +239,7 @@ void TDevTool_Share::SetComponentsForLogic()
     // настройки приложения
     mSettings.Init( mPathSettings );
     std::string nameApp = GetVariantConveyer();
-    if( nameApp.length() )
+    if ( nameApp.length() )
       mSettings.BeginApplication( nameApp );
     else
     {
@@ -260,17 +261,17 @@ void TDevTool_Share::SetVectorParam( std::vector<std::string>& vecArg )
 TModuleDev* TDevTool_Share::GetModuleByID( int id )
 {
   TModuleDev* pModule = nullptr;
-  switch( id )
+  switch ( id )
   {
     // ядро
-    case Logic: pModule = GetModuleLogic(); ((TModuleLogic*) pModule)->SetTerrainPath( mTerrainPath ); break;
+    case Logic: pModule = GetModuleLogic(); ( (TModuleLogic*) pModule )->SetTerrainPath( mTerrainPath ); break;
       // периферия
     case GraphicEngine:
       // графический движок требуется настраивать в том же потоке, в котором он работает
       // единственный модуль, который требуется настраивать в том же потоке
       pModule = new TModuleGraphicEngine;
       mGE_ForSetup = (TModuleGraphicEngine*) pModule;
-      ((TModuleGraphicEngine*) pModule)->GetCBStartEvent()->Register( &TDevTool_Share::SetupGraphicEngine, this );
+      ( (TModuleGraphicEngine*) pModule )->GetCBStartEvent()->Register( &TDevTool_Share::SetupGraphicEngine, this );
       break;
     case PhysicEngine:           pModule = new TModulePhysicEngine;              break;
     case MMOEngineClient:        pModule = new TModuleMMOEngineClient;           break;
@@ -294,10 +295,10 @@ bool TDevTool_Share::FindPath( const char* type, TResources::TMMapStrStr& mapRes
   int index, std::string& result )
 {
   TResources::TMMapStrStrIt fit = mapResource.find( type );
-  for( int i = 0; i < index; i++ )
+  for ( int i = 0; i < index; i++ )
   {
     fit++;
-    if( fit == mapResource.end() )
+    if ( fit == mapResource.end() )
       return false;
   }
   result = fit->second;

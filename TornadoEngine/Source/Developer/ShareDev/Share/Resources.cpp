@@ -1,10 +1,9 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
-
 
 #include "Resources.h"
 #include "IXML.h"
@@ -21,7 +20,7 @@ using namespace nsResources;
 
 TResources::TResources()
 {
-  mXML = NULL;
+  mXML = nullptr;
 }
 //--------------------------------------------------------------------------
 TResources::~TResources()
@@ -29,13 +28,13 @@ TResources::~TResources()
 
 }
 //--------------------------------------------------------------------------
-bool TResources::Work(IXML* pXML)
+bool TResources::Work( IXML* pXML )
 {
   mMapTypePath.clear();
   strError = "";
   mXML = pXML;
 
-  if(LoadResources()==false)
+  if ( LoadResources() == false )
   {
     strError = "Resources";
     return false;
@@ -43,7 +42,7 @@ bool TResources::Work(IXML* pXML)
   return true;
 }
 //--------------------------------------------------------------------------
-void TResources::GetResource(TMMapStrStr& mapTypePath)
+void TResources::GetResource( TMMapStrStr& mapTypePath )
 {
   mapTypePath = mMapTypePath;
 }
@@ -53,7 +52,7 @@ std::string TResources::GetStrError()
   return strError;
 }
 //--------------------------------------------------------------------------
-void TResources::ErrorNoSection(const char* section)
+void TResources::ErrorNoSection( const char* section )
 {
   strError = "Нет секции ";
   strError += section;
@@ -61,13 +60,13 @@ void TResources::ErrorNoSection(const char* section)
 //--------------------------------------------------------------------------
 bool TResources::LoadResources()
 {
-  int cntResource = mXML->GetCountSection(sResource);
-  for( int iResource = 0 ; iResource < cntResource ; iResource++ )
+  int cntResource = mXML->GetCountSection( sResource );
+  for ( int iResource = 0; iResource < cntResource; iResource++ )
   {
-    std::string path = mXML->ReadSectionAttr(sResource, iResource, sPath);
-    std::string type = mXML->ReadSectionAttr(sResource, iResource, sType);
+    std::string path = mXML->ReadSectionAttr( sResource, iResource, sPath );
+    std::string type = mXML->ReadSectionAttr( sResource, iResource, sType );
 
-    mMapTypePath.insert(TMMapStrStrVT(type,path));
+    mMapTypePath.insert( TMMapStrStrVT( type, path ) );
   }
   return true;
 }

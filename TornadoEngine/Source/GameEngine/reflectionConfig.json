@@ -1,0 +1,37 @@
+{
+  "targetForParsing":
+  {
+    "directories":
+    [
+      "."
+    ],
+    "recursive": true
+  },
+  "filter":
+  {
+    "attribute": "REFLECTION_ATTRIBUTE",
+    "extensions":
+    [
+      ".h",
+      ".hpp",
+      ".hh",
+      ".hxx",
+      ".h++"
+    ]
+  },
+  "targetForCodeGeneration":
+  {
+    "directory": ".",
+    "includeListFileName": "IncludeList",
+    "implementation":
+    {
+      "jsonSerializer":
+      {
+        "exportDeclaration": "",
+        "nameSpaceName": "nsGameEngine",
+        "fileName": "JsonSerializer",
+        "className": "TJsonSerializer"
+      }
+    }
+  }
+}

@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ParserXMLResourceH
-#define ParserXMLResourceH
+#pragma once
 
 #include <vector>
 #include <map>
@@ -47,5 +46,3 @@ protected:
   bool LoadGUI();
 
 };
-
-#endif

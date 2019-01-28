@@ -203,6 +203,7 @@
     <ClInclude Include="DeveloperTool_DLL.h" />
     <ClInclude Include="EventGameEngine.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="FrameworkResources.h" />
     <ClInclude Include="IDevTool.h" />
     <ClInclude Include="IModule.h" />
     <ClInclude Include="ModulesThreadManager.h" />
