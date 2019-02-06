@@ -20,9 +20,6 @@ See for more information License.h.
 
 class DllExport TJsonPushMaster : public TJsonMaster
 {
-public:// types
-  typedef json11::Json::object Jobj;
-
 public:// prototypes
   template<typename Type>
   using SerFunc = std::function<void( Type*, Jobj& )>;
@@ -32,6 +29,9 @@ public:// prototypes
 
   template <typename Type, typename ElementType, typename ValueType>
   using PushBy = std::function<void( Jobj&, const char*, ValueType&, SerFunc<Type>, AddressFunc<Type, ElementType> )>;
+
+  template <typename Type>
+  using PushFunc = std::function<void( json11::Json& j, Type p )>;
 
 public:// methods
   static void PushNull( Jobj& obj, const char* sKey )

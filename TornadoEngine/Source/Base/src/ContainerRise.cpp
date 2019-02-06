@@ -41,27 +41,27 @@ int TContainerRise::GetSize() const
 //----------------------------------------------------------
 void TContainerRise::Alloc( int new_size )
 {
-  if( mC.GetSize() < new_size )
+  if ( mC.GetSize() < new_size )
     mC.SetDataByCount( nullptr, new_size );
   mSizeUse = new_size;
 }
 //----------------------------------------------------------
 void TContainerRise::Realloc( int new_size )
 {
-  if( mC.GetSize() < new_size )
+  if ( mC.GetSize() < new_size )
   {
     int oldSize = mC.GetSize();
-    if( oldSize )
+    if ( oldSize )
     {
       void* pOld = mC.GetPtr();
       mC.Unlink();
       mC.SetDataByCount( nullptr, new_size );
       void* pNew = mC.GetPtr();
       memcpy( pNew, pOld, mSizeUse );
-      if( oldSize == 1 )
+      if ( oldSize == 1 )
         delete  (char*) pOld;
       else
-        delete []( char* )pOld;
+        delete[]( char* )pOld;
     }
     else
       mC.SetDataByCount( nullptr, new_size );
@@ -76,7 +76,7 @@ void TContainerRise::Clear()
 //----------------------------------------------------------
 void TContainerRise::Shift( int offset )
 {
-  int newSize = mSizeUse + offset; 
+  int newSize = mSizeUse + offset;
   Realloc( newSize );
 }
 //----------------------------------------------------------
@@ -86,5 +86,23 @@ void TContainerRise::Append( int size, char* p )
   int newSize = mSizeUse + size;
   Realloc( newSize );
   memcpy( GetPtr() + oldSize, p, size );
+}
+//----------------------------------------------------------
+bool TContainerRise::operator == ( const TContainerRise& other )
+{
+  if ( mSizeUse != other.mSizeUse )
+    return false;
+  auto p = mC.GetPtr();
+  auto pOther = other.mC.GetPtr();
+  bool isEqual = true;
+  for ( int i = 0; i < mSizeUse; i++ )
+  {
+    if ( p[i] != pOther[i] )
+    {
+      isEqual = false;
+      break;
+    }
+  }
+  return isEqual;
 }
 //----------------------------------------------------------

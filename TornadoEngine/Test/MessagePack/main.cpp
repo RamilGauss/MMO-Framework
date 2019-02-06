@@ -21,7 +21,7 @@ See for more information License.h.
 #ifdef _DEBUG
 #define TEST_COUNT 3000
 #else
-#define TEST_COUNT 10000000
+#define TEST_COUNT 100000000
 #endif
 
 struct TFloat3

@@ -121,7 +121,9 @@ void IFileGenerator::AddUsing( const std::string& expression )
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddClassBegin( const std::string& exportDeclaration, const std::string& className )
 {
-  auto sEexportDeclaration = fmt::format( " {}", exportDeclaration );
+  std::string sEexportDeclaration;
+  if(exportDeclaration.length())
+    sEexportDeclaration = fmt::format( " {}", exportDeclaration );
   auto s = fmt::format( "class{} {}", sEexportDeclaration, className );
   Add( s );
   s = "{";
@@ -275,6 +277,21 @@ std::string IFileGenerator::EnumerateParamToStr( std::list<std::string>& paramLi
   return str;
 }
 //----------------------------------------------------------------------------------
+std::string IFileGenerator::GetNullExpression( TMemberTypeExtendedInfo& ext )
+{
+  auto typeName = ext.GetTypeNameWithNameSpace();
+  switch ( ext.mAccessMethod )
+  {
+    case TMemberTypeExtendedInfo::Object:
+      return "";
+    case TMemberTypeExtendedInfo::Pointer:
+      return " = nullptr";
+    case TMemberTypeExtendedInfo::SmartPointer:
+      return "";
+  }
+  return "";
+}
+//-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddCallingMethodForParent( TTypeInfo* p, std::function<void( const std::string& )> func )
 {
   for ( auto& inheritanceInfo : p->mInheritanceVec )

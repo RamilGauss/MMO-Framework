@@ -21,7 +21,7 @@ const int cnt = 1000;
 const int cnt = 100000000;
 #endif
 
-void FillTestSrc( TTestStruct& t )
+void FillTestSrc( nsBS::TTestStruct& t )
 {
   t.password = "012345678";
   t.port = 123;
@@ -35,9 +35,9 @@ void FillTestSrc( TTestStruct& t )
   t.numVector = {0, 1, 2};
 
   // ser array
-  t.baseVec = {TBaseStruct( "0123456789" ), TBaseStruct( "0123456789" ), TBaseStruct( "0123456789" )};
-  t.basePtrVec = {nullptr, new TBaseStruct( "0123456789" ), nullptr};
-  t.baseSPVec = {std::shared_ptr<TBaseStruct>( new TBaseStruct( "0123456789" ) ), std::shared_ptr<TBaseStruct>()};
+  t.baseVec = {nsBS::TBaseStruct( "0123456789" ), nsBS::TBaseStruct( "0123456789" ), nsBS::TBaseStruct( "0123456789" )};
+  t.basePtrVec = {nullptr, new nsBS::TBaseStruct( "0123456789" ), nullptr};
+  t.baseSPVec = {std::shared_ptr<nsBS::TBaseStruct>( new nsBS::TBaseStruct( "0123456789" ) ), std::shared_ptr<nsBS::TBaseStruct>()};
 
   // map
   t.intIntMap = {{0,0},{1,1}};
@@ -49,13 +49,13 @@ void FillTestSrc( TTestStruct& t )
   t.strBoolMap = {{ "0", false }, { "1", true }};
 
   // map
-  t.strBaseMap = {{"0", TBaseStruct( "0123456789" )}, {"1",TBaseStruct( "0123456789" )}};
-  t.strBasePtrMap = {{"0", new TBaseStruct( "0123456789" )}, {"1", nullptr }};
-  t.strBaseSPMap = {{"0", std::shared_ptr<TBaseStruct>()}, {"1",std::shared_ptr<TBaseStruct>( new TBaseStruct( "0123456789" ) )}};
+  t.strBaseMap = {{"0", nsBS::TBaseStruct( "0123456789" )}, {"1",nsBS::TBaseStruct( "0123456789" )}};
+  t.strBasePtrMap = {{"0", new nsBS::TBaseStruct( "0123456789" )}, {"1", nullptr }};
+  t.strBaseSPMap = {{"0", std::shared_ptr<nsBS::TBaseStruct>()}, {"1",std::shared_ptr<nsBS::TBaseStruct>( new nsBS::TBaseStruct( "0123456789" ) )}};
 
-  t.intBaseMap = {{0, TBaseStruct( "0123456789" )}, {1,TBaseStruct( "0123456789" )}};
-  t.intBasePtrMap = {{0, nullptr}, {1,new TBaseStruct( "0123456789" )}};
-  t.intBaseSPMap = {{0, std::shared_ptr<TBaseStruct>( new TBaseStruct( "0123456789" ) )}, {1,std::shared_ptr<TBaseStruct>()}};
+  t.intBaseMap = {{0, nsBS::TBaseStruct( "0123456789" )}, {1,nsBS::TBaseStruct( "0123456789" )}};
+  t.intBasePtrMap = {{0, nullptr}, {1,new nsBS::TBaseStruct( "0123456789" )}};
+  t.intBaseSPMap = {{0, std::shared_ptr<nsBS::TBaseStruct>( new nsBS::TBaseStruct( "0123456789" ) )}, {1,std::shared_ptr<nsBS::TBaseStruct>()}};
 }
 
 // Тесты
@@ -67,13 +67,13 @@ void Benchmark()
 #else
     50000000;
 #endif
-  TTestStruct testSrc;
-  TTestStruct testDst;
+  nsBS::TTestStruct testSrc;
+  nsBS::TTestStruct testDst;
   FillTestSrc( testSrc );
 
   TContainerRise c;
   nsBinary::TBinaryMarshaller marshaller;
-  //marshaller.SetLimitForCompression( 1000 );
+  marshaller.SetLimitForCompression( 1000 );
   //marshaller.Pack( &testSrc, c );
   //auto id = marshaller.GetID( c.GetPtr(), c.GetSize() );
   //switch ( id )

@@ -16,14 +16,6 @@ namespace nsBS
   REFLECTION_ATTRIBUTE
     struct TBaseStruct
   {
-    std::string s;
-
-    TBaseStruct()
-    {
-    }
-    TBaseStruct( std::string str )
-    {
-      s = str;
-    }
+    std::string s = "0123456789";
   };
 }

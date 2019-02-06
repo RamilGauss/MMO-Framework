@@ -14,6 +14,10 @@ namespace nsReflectionCodeGenerator
 {
   class TBinaryMarshallerSourceFileGenerator : public TBinaryMarshallerFileGenerator
   {
+    const std::string s_BinaryMaster = "TBinaryMaster";
+    const std::string s_SizeType = "SizeType";
+    const std::string s_BinaryMaster_SizeType = fmt::format( "{}{}{}", s_BinaryMaster, s_CC, s_SizeType );
+
     const std::list<std::string> s_BinaryImplementation =
     {
       fmt::format( "void {}::{}( int binarySize )", mBinaryMarshaller->className, s_SetLimitForCompression ),
@@ -138,7 +142,7 @@ namespace nsReflectionCodeGenerator
 
     // Handlers
     void HandlePushBuiltIn( TMemberInfo* pMemberInfo );
-    void HandlePyshArray( TMemberInfo* pMemberInfo );
+    void HandlePushArray( TMemberInfo* pMemberInfo );
     void HandlePushMap( TMemberInfo* pMemberInfo );
     void HandleReflectionForPush( TMemberInfo* pMemberInfo );
 
@@ -159,6 +163,48 @@ namespace nsReflectionCodeGenerator
     void HandleAddPopValueAsReflectionMap( TMemberInfo* pMemberInfo );
     void HandleAddPopNotReflectionMap( TMemberInfo* pMemberInfo );
 
+    void HandleComplexPushZeroDepth( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name );
+    void HandleComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void General_ComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+    void AddPushKey( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void AddPushValue( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+    void AddPushElement( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+    void AddPushSerializeValue( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void AddPushSerializeElement( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    std::string GetTemplateForGetAddress( TMemberTypeExtendedInfo::AccessMethod accessMethod );
+
+    std::string GetIsElementNotNull( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+
+    void HandleBuiltInComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void HandleStringComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void HandleReflectionComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+    void AddCleanerArrayOrMap( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name );
+    void HandleComplexPopZeroDepth( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name );
+    void HandleComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void General_ComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void HandleBuiltInComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void HandleReflectionComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+
+    std::string ElementName( const std::string& name, int depth );
+    std::string SizeName( const std::string& name, int depth );
+    std::string IndexName( const std::string& name, int depth );
+    std::string KeyName( const std::string& name, int depth );
+    std::string ValueName( const std::string& name, int depth );
+    std::string CollectorName( const std::string& name, int depth );
+
+    std::string GetAddMethodByCategory( TMemberTypeExtendedInfo::TypeCategory& category );
+    std::string GetPushMethodBy( TMemberTypeExtendedInfo& ext );
+    std::string GetAccessName( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    std::string GetFusionForAdd( TMemberTypeExtendedInfo& ext, const std::string& name, int depth );
+
+    std::string GetPopMethodBy( TMemberTypeExtendedInfo& ext );
+    std::string GetInitExpression( TMemberTypeExtendedInfo& ext );
 
     // general
     void General_AddPushSerArray( const std::string& keyType,
@@ -171,7 +217,7 @@ namespace nsReflectionCodeGenerator
       const std::string& name, const std::string& methodName, bool arrayOrMap );
 
     void General_AddPushReflection( const std::string& ptrName, const std::string& getAddress );
-    
+
     void General_AddPopSerArray( const std::string& keyType,
       const std::string& smartPtrType, const std::string& name, const std::string& methodName );
     void General_AddPopSerMap( const std::string& keyType,
@@ -180,7 +226,7 @@ namespace nsReflectionCodeGenerator
     void General_AddPopSerArrayOrMap( const std::string& keyType,
       const std::string& valueType, const std::string& smartPtrType,
       const std::string& name, const std::string& methodName, bool arrayOrMap );
-    void General_AddPopReflection( const std::string& ptrName, 
+    void General_AddPopReflection( const std::string& ptrName,
       const std::string& checkOnNullCondition, const std::string& newPtrExpression );
 
   };

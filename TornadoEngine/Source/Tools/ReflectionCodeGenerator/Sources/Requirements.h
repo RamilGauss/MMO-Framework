@@ -23,10 +23,12 @@ namespace nsReflectionCodeGenerator
           "with many inheritances",
           "other types with reflection attribute",
           "in many name spaces",
-          "pointer to reflective types (is not equal null!!!)",
+          "pointer to reflective types",
           "public members only",
-          "built in types",
+          "built-in types",
           "std: map, set, vector, list",
+          "std: shared_ptr, auto_ptr, weak_ptr, unique",
+          "class UnpackHandler with static void Handle( const Type* p )",
         }
       },
       { "2. PROHIBITED",
@@ -34,6 +36,7 @@ namespace nsReflectionCodeGenerator
           "typedefs for types",
           "void*",
           "std::function or other Lambda",
+          "other variants of use std::vector<bool> (cause it is not standart container)",
         }
       },
       { "3. IGNORE",

@@ -176,7 +176,7 @@ private:
   template <typename Type, typename ValueType>
   void GeneralPushArray( ValueType& value, PushFunc<Type> pushFunc )
   {
-    SizeType size = value.size();
+    SizeType size = (SizeType)value.size();
     PushNum( size );
     for ( auto& e : value )
       pushFunc( e );
@@ -185,7 +185,7 @@ private:
   template <typename Type, typename InputAddrType, typename ValueType>
   void GeneralPushSerArray( ValueType& value, PushFunc<Type> pushFunc, AddressFunc<Type, InputAddrType> addressFunc )
   {
-    SizeType size = value.size();
+    SizeType size = (SizeType)value.size();
     PushNum( size );
     for ( auto& e : value )
     {
@@ -201,7 +201,7 @@ private:
   void GeneralPushMap( std::map<KeyType, ValueType>& m,
     PushFunc<const KeyType&> keyPushFunc, PushFunc<ValueType&> valuePushFunc)
   {
-    SizeType size = m.size();
+    SizeType size = (SizeType)m.size();
     PushNum( size );
     for ( auto& bit : m )
     {
@@ -216,7 +216,7 @@ private:
       PushFunc<KeyType> keyPushFunc, AddressFunc<KeyType, KeyInputAddrType> keyAddressFunc,
       PushFunc<ValueType> valuePushFunc, AddressFunc<ValueType, ValueInputAddrType> valueAddressFunc )
   {
-    SizeType size = m.size();
+    SizeType size = (SizeType)m.size();
     PushNum( size );
     for ( auto& bit : m )
     {

@@ -17,6 +17,7 @@ namespace nsReflectionCodeGenerator
     TJsonSerializerGeneratorConfig* mJsonSerializer;
 
     const std::string s_Jobj = "Jobj";
+    const std::string s_Jarr = "Jarr";
     const std::string sSerializeMethod = "_Serialize";
     const std::string sDeserializeMethod = "_Deserialize";
 

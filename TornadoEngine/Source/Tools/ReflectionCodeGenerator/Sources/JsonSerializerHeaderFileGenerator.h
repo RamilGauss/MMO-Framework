@@ -16,7 +16,8 @@ namespace nsReflectionCodeGenerator
   {
     const std::list<std::string> s_JsonDecl =
     {
-      fmt::format( "    typedef TJsonMaster::Jobj {};", s_Jobj ), 
+      fmt::format( "  typedef TJsonMaster::Jobj {};", s_Jobj ), 
+      fmt::format( "  typedef TJsonMaster::Jarr {};", s_Jarr ), 
       "public:",
       "  template <typename Type>",
       "  static void Serialize( Type* p, std::string& str );",

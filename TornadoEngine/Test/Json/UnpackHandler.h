@@ -6,16 +6,18 @@ See for more information License.h.
 */
 
 #pragma once
-#include <string>
-#include <list>
-#include <set>
-#include "ReflectionMacro.h"
 
-namespace nsBS
+#include "BinaryMarshaller.h"
+
+namespace nsBinary
 {
-  REFLECTION_ATTRIBUTE
-    struct TBaseStruct
+  class TUnpackHandler
   {
-    std::string s = "0123456789";
+  public:
+    template <typename Type>
+    static void Handle( Type* p )
+    {
+      TBinaryMarshaller::Deallocate( p );
+    }
   };
 }

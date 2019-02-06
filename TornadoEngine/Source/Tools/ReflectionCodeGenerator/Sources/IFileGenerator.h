@@ -36,6 +36,14 @@ namespace nsReflectionCodeGenerator
     const std::string s_STD = "std";
     const std::string s_STD_ = "std" + s_CC;
 
+    const std::string s_PushBack = "push_back";
+    const std::string s_Insert = "insert";
+    
+    const std::string s_First = "first";
+    const std::string s_Second = "second";
+
+    const std::string s_Nullptr = "nullptr";
+
     TStrListPair* pStrListPair = nullptr;
 
   private:
@@ -100,6 +108,8 @@ namespace nsReflectionCodeGenerator
 
   protected:
     std::string EnumerateParamToStr( std::list<std::string>& strList );
+
+    std::string GetNullExpression( TMemberTypeExtendedInfo& ext );
 
   protected:
     void AddCallingMethodForParent( TTypeInfo* p, std::function<void( const std::string& )> func );

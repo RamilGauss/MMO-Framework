@@ -11,7 +11,7 @@ See for more information License.h.
 
 class DllExport TBinaryMaster
 {
-protected:
+public:
   typedef int SizeType;
   typedef int StrSizeType;
   typedef unsigned char BoolType;

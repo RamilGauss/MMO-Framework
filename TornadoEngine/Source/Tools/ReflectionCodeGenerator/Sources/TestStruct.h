@@ -56,5 +56,32 @@ namespace nsBS
     std::map<int, TBaseStruct> intBaseMap;
     std::map<int, TBaseStruct*> intBasePtrMap;
     std::map<int, std::shared_ptr<TBaseStruct>> intBaseSPMap;
+
+    // complex types
+    std::vector<std::vector<int>> intArrArr;
+    std::vector<std::vector<std::string>> strArrArr;
+
+    std::map<std::string, std::vector<std::string>> strArrMap;
+
+    std::vector<std::map<std::string, std::string>> strMapArr;
+    std::map<std::string, std::map<std::string, std::string>> strMapMap;
+
+    std::vector<std::vector<TBaseStruct>> objArrArr;
+    std::vector<std::vector<TBaseStruct*>> ptrObjArrArr;
+    std::vector<std::vector<std::shared_ptr<TBaseStruct>>> spObjArrArr;
+
+    std::vector<std::map<std::string, TBaseStruct>> objMapArr;
+    std::vector<std::map<std::string, TBaseStruct*>> ptrObjMapArr;
+    std::vector<std::map<std::string, std::shared_ptr<TBaseStruct>>> spObjMapArr;
+
+    std::map<std::string, std::map<std::string, TBaseStruct>> objMapMap;
+    std::map<std::string, std::map<std::string, TBaseStruct*>> ptrObjMapMap;
+    std::map<std::string, std::map<std::string, std::shared_ptr<TBaseStruct>>> spObjMapMap;
+
+    // super complex
+    std::map<int, std::vector<std::map<int, std::vector<std::map<int, std::map<int, std::vector<std::vector<int>>>>>>>> colossalMember;
+    std::map<int, std::map<int, std::map<int, std::map<int, int>>>> intSuperMap;
+    std::vector<std::vector<std::vector<std::vector<int>>>> intSuperVec;
+    std::list<std::list<std::list<std::list<bool>>>> boolSuperList;
   };
 }

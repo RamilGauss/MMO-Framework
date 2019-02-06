@@ -15,7 +15,7 @@ namespace nsBinary
   {
   public:
     template <typename Type>
-    static void Handle( Type* p )
+    static void Handle( const Type* p )
     {
       TBinaryMarshaller::Deallocate( p );
     }

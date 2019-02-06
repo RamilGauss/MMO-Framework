@@ -29,12 +29,17 @@ struct TMemberTypeExtendedInfo
 
   std::vector<TMemberTypeExtendedInfo> mTemplateChildArr;
 
-  std::string mType;// builtIn, reflection
+  std::string mType;// builtIn, reflection, std
 
-  std::string mNameSpaceForReflection;// example: MySpace::
+  std::string mNameSpaceForReflection;// example: MySpace
 
   std::string mSmartPtrType;
 
 public:
   bool IsContainer();
+
+  std::string GetCollectSubType();
+  std::string GetTypeNameWithNameSpace();
+  std::string GetTypeNameWithNameSpaceReflection();
+private:
 };

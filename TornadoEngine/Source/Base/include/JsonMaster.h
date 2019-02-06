@@ -14,4 +14,6 @@ class DllExport TJsonMaster
 {
 public:// types
   typedef json11::Json::object Jobj;
+
+  typedef json11::Json::array Jarr;
 };

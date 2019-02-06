@@ -21,6 +21,9 @@
     <ClCompile Include="JsonSerializer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="BinaryMarshaller.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseStruct.h">
@@ -37,6 +40,12 @@
     </ClInclude>
     <ClInclude Include="IncludeList.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryMarshaller.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnpackHandler.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -199,18 +199,28 @@ int TMemberTypeExtendedInfoAnalyzer::FillInfo( TTokenDescVector& tokenVector, TM
         nameSpaceAccumulator += tokenDesc.value;
         break;
       case String:
+        memberTypeInfo.mNameSpaceForReflection = s_Std;
+        memberTypeInfo.mType = tokenDesc.value;
         memberTypeInfo.mCategory = TMemberTypeExtendedInfo::String;
         break;
       case Vector:
+        memberTypeInfo.mNameSpaceForReflection = s_Std;
+        memberTypeInfo.mType = tokenDesc.value;
         memberTypeInfo.mCategory = TMemberTypeExtendedInfo::Vector;
         break;
       case List:
+        memberTypeInfo.mNameSpaceForReflection = s_Std;
+        memberTypeInfo.mType = tokenDesc.value;
         memberTypeInfo.mCategory = TMemberTypeExtendedInfo::List;
         break;
       case Set:
+        memberTypeInfo.mNameSpaceForReflection = s_Std;
+        memberTypeInfo.mType = tokenDesc.value;
         memberTypeInfo.mCategory = TMemberTypeExtendedInfo::Set;
         break;
       case Map:
+        memberTypeInfo.mNameSpaceForReflection = s_Std;
+        memberTypeInfo.mType = tokenDesc.value;
         memberTypeInfo.mCategory = TMemberTypeExtendedInfo::Map;
         break;
       case Asterisk:
@@ -242,7 +252,9 @@ int TMemberTypeExtendedInfoAnalyzer::FillInfo( TTokenDescVector& tokenVector, TM
         canBeNameSpace = tokenDesc.value;
         memberTypeInfo.mCategory = TMemberTypeExtendedInfo::Reflection;
         memberTypeInfo.mType = tokenDesc.value;
-        memberTypeInfo.mNameSpaceForReflection = nameSpaceAccumulator;
+        auto pTypeInfo = mTypeMng->FindTypeInfo( memberTypeInfo.mType );
+        if( pTypeInfo )
+          memberTypeInfo.mNameSpaceForReflection = pTypeInfo->GetNameSpace();
         break;
     }
   }

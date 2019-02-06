@@ -1,75 +1,64 @@
 {
   // Все ресурсы игры, движков, 3rdParty, etc.
   // All possible resources.
-  "GameEngine" :
+  "gameEngine" :
   {
     "name": "TornadoEngine",
-	"ConveyerPath" : "../../Resources/Game/Conveyer.xml"
+	  "conveyerPath" : "../../Resources/Game/Conveyer.xml"
   },
-  "GraphicEngine":
+  "graphicEngine":
   {
     "name": "OGRE",
-    "TerrainPath": "../../Resources/Graphic/terrain",
-    "PluginsCfg":
-    [ { "Release": "../../Resources/Graphic/cfg/plugins.cfg"   },
-      { "Debug"  : "../../Resources/Graphic/cfg/plugins_d.cfg" } ],
-    "OgreCfg":
-    { { "Release": "../../Resources/Graphic/cfg/ogre.cfg"   },
-      { "Debug"  : "../../Resources/Graphic/cfg/ogre_d.cfg"  } },
-	"Resources" : 
-	[
-	  { 
-	    "name" : "FileSystem", 
-	    "Paths" :
-        [ 
-	       "../../Resources/GUI/MyGUI_Media",
-           "../../Resources/GUI/Demos/Demo_Themes",          
-           "../../Resources/GUI/Common/Base",                
-           "../../Resources/GUI/Common/Themes",              
-           "../../Resources/GUI/Tools/LayoutEditor",         
-           "../../Resources/GUI_forms",                      
-           "../../Resources/Graphic/materials/programs",     
-           "../../Resources/Graphic/materials/programs/GLSL",
-           "../../Resources/Graphic/materials/programs/HLSL",
-           "../../Resources/Graphic/materials/scripts",      
-           "../../Resources/Graphic/materials/textures",     
-           "../../Resources/Graphic/models"
-	    ],
-	  },
-      { 
-	    "name" : "Zip",
-		"Paths" :
-	    [ 
-	      "../../Resources/Graphic/packs/SdkTrays.zip" 
-	    ],
-	  }
-	]
-    //[ { "Path": "../../Resources/GUI/MyGUI_Media",                 "Type": "FileSystem" },
-    //  { "Path": "../../Resources/GUI/Demos/Demo_Themes",           "Type": "FileSystem" },
-    //  { "Path": "../../Resources/GUI/Common/Base",                 "Type": "FileSystem" },
-    //  { "Path": "../../Resources/GUI/Common/Themes",               "Type": "FileSystem" },
-    //  { "Path": "../../Resources/GUI/Tools/LayoutEditor",          "Type": "FileSystem" },
-    //  { "Path": "../../Resources/GUI_forms",                       "Type": "FileSystem" },
-    //  { "Path": "../../Resources/Graphic/materials/programs",      "Type": "FileSystem" },
-    //  { "Path": "../../Resources/Graphic/materials/programs/GLSL", "Type": "FileSystem" },
-    //  { "Path": "../../Resources/Graphic/materials/programs/HLSL", "Type": "FileSystem" },
-    //  { "Path": "../../Resources/Graphic/materials/scripts",       "Type": "FileSystem" },
-    //  { "Path": "../../Resources/Graphic/materials/textures",      "Type": "FileSystem" },
-    //  { "Path": "../../Resources/Graphic/models",                  "Type": "FileSystem" },
-    //  { "Path": "../../Resources/Graphic/packs/SdkTrays.zip",      "Type": "Zip"        } ]
+    "terrainPath": "../../Resources/Graphic/terrain",
+    "pluginsCfg":
+    { 
+      "release": "../../Resources/Graphic/cfg/plugins.cfg",
+      "debug"  : "../../Resources/Graphic/cfg/plugins_d.cfg" 
+    },
+    "ogreCfg":
+    { 
+      "release": "../../Resources/Graphic/cfg/ogre.cfg",
+      "debug"  : "../../Resources/Graphic/cfg/ogre_d.cfg" 
+    },
+	  "resources" : 
+    { 
+      "FileSystem" :
+      [ 
+    	  "../../Resources/GUI/MyGUI_Media",
+    	  "../../Resources/GUI/Demos/Demo_Themes",          
+    	  "../../Resources/GUI/Common/Base",                
+    	  "../../Resources/GUI/Common/Themes",              
+    	  "../../Resources/GUI/Tools/LayoutEditor",         
+    	  "../../Resources/GUI_forms",                      
+    	  "../../Resources/Graphic/materials/programs",     
+    	  "../../Resources/Graphic/materials/programs/GLSL",
+    	  "../../Resources/Graphic/materials/programs/HLSL",
+    	  "../../Resources/Graphic/materials/scripts",      
+    	  "../../Resources/Graphic/materials/textures",     
+    	  "../../Resources/Graphic/models"
+      ],
+      "Zip" :
+      [ 
+    	  "../../Resources/Graphic/packs/SdkTrays.zip" 
+      ]
+    }
   },
-  "GUI":
+  "gui":
   {
     "name": "MyGUI",
-    "Resources":
-    [ { "Path": "MyGUI_Core.xml",           "Type": "Core" },      
-      { "Path": "MyGUI_BlackBlueTheme.xml", "Type": "Skin" } ]
+    "resources":
+    { 
+      "Core" : ["MyGUI_Core.xml"],      
+      "Skin" : ["MyGUI_BlackBlueTheme.xml"]
+    }
   },
-  "Game":
+  "game":
   {
     "name": "Crowd & Rabble : The Evolution of War Machines",
-    "Resources":
-    [ { "Path": "../../Resources/Game/Items.xml",    "Type": "Items"    },
-      { "Path": "../../Resources/Game/Settings.xml", "Type": "Settings" } ]
+    "resources":
+    { 
+      "Items":     ["../../Resources/Game/Items.xml"],
+      "Settings" : ["../../Resources/Game/Settings.xml"]
+    }
   }
 }

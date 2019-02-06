@@ -21,4 +21,6 @@ struct TMemberInfo
   std::string mTypeName;
 
   TMemberTypeExtendedInfo mExtendedInfo;
+
+  std::vector<TMemberTypeExtendedInfo> CreateExtArray();
 };

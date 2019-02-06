@@ -94,16 +94,18 @@ void TJsonSerializerSourceFileGenerator::AddPushByMemberInfo( TMemberInfo* pMemb
   {
     case TMemberTypeExtendedInfo::BuiltIn:
     case TMemberTypeExtendedInfo::String:
+    case TMemberTypeExtendedInfo::Set:
       AddPush( pMemberInfo->mName );
       break;
     case TMemberTypeExtendedInfo::Vector:
     case TMemberTypeExtendedInfo::List:
-    case TMemberTypeExtendedInfo::Set:
-      HandleArrayForPush( pMemberInfo );
-      break;
     case TMemberTypeExtendedInfo::Map:
-      HandleMapForPush( pMemberInfo );
-      break;
+    {
+      AddEmptyLine();
+      auto extArr = pMemberInfo->CreateExtArray();
+      HandleComplexPushZeroDepth( extArr, pMemberInfo->mName );
+    }
+    break;
     case TMemberTypeExtendedInfo::Reflection:
       HandleReflectionForPush( pMemberInfo );
       break;
@@ -119,19 +121,21 @@ void TJsonSerializerSourceFileGenerator::AddPopByMemberInfo( TMemberInfo* pMembe
     case TMemberTypeExtendedInfo::BuiltIn:
       HandlePopBuiltIn( pMemberInfo );
       break;
-    case TMemberTypeExtendedInfo::Vector:
-    case TMemberTypeExtendedInfo::List:
-      HandlePopArray( pMemberInfo );
+    case TMemberTypeExtendedInfo::String:
+      AddPopStr( pMemberInfo->mName );
       break;
     case TMemberTypeExtendedInfo::Set:
       HandlePopSet( pMemberInfo );
       break;
+    case TMemberTypeExtendedInfo::Vector:
+    case TMemberTypeExtendedInfo::List:
     case TMemberTypeExtendedInfo::Map:
-      HandlePopMap( pMemberInfo );
-      break;
-    case TMemberTypeExtendedInfo::String:
-      AddPopStr( pMemberInfo->mName );
-      break;
+    {
+      AddEmptyLine();
+      auto extArr = pMemberInfo->CreateExtArray();
+      HandleComplexPopZeroDepth( extArr, pMemberInfo->mName );
+    }
+    break;
     case TMemberTypeExtendedInfo::Reflection:
       HandlePopReflection( pMemberInfo );
       break;
@@ -165,33 +169,538 @@ void TJsonSerializerSourceFileGenerator::AddCallingDeserializeParent( const std:
   Add( str );
 }
 //-----------------------------------------------------------------------------------------------------------
-void TJsonSerializerSourceFileGenerator::HandleArrayForPush( TMemberInfo* pMemberInfo )
+void TJsonSerializerSourceFileGenerator::HandleComplexPushZeroDepth( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name )
+{
+  int depth = 0;
+
+  std::string pushMethod = s_Push;
+  std::string collectorType = s_Jarr;
+  if ( extArr[depth].mCategory == TMemberTypeExtendedInfo::Map )
+  {
+    pushMethod = s_PushMap;
+    collectorType = s_Jobj;
+  }
+
+  auto collectorName = CollectorName( name, depth );
+  auto collectorDeclaration = fmt::format( "{} {};", collectorType, collectorName );
+  Add( collectorDeclaration );
+
+  auto srcArray = fmt::format( "{}->{}", s_TypeObject, name );
+
+  auto elementName = ElementName( name, depth );
+  auto forExpression = fmt::format( "for ( auto& {} : {} )", elementName, srcArray );
+  Add( forExpression );
+
+  General_HandleComplexPush( extArr, name, depth );
+
+  // summarize all
+  std::list<std::string> argList =
+  {
+    s_Obj,
+    fmt::format( "\"{}\"", name ),
+    fmt::format( "{}", collectorName ),
+  };
+  std::list<std::string> templList;
+  AddCallFunction( s_PUM, pushMethod, templList, argList );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandleComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
+{
+  if ( depth == 0 )
+  {
+    BL_FIX_BUG();
+    return;
+  }
+
+  std::string collectorType = s_Jarr;
+  if ( extArr[depth].mCategory == TMemberTypeExtendedInfo::Map )
+    collectorType = s_Jobj;
+
+  auto collectorName = CollectorName( name, depth );
+  auto collectorDeclaration = fmt::format( "{} {};", collectorType, collectorName );
+  Add( collectorDeclaration );
+
+  auto prevElementName = ElementName( name, depth - 1 );
+
+  std::string srcArray;
+  if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map )
+    srcArray = fmt::format( "{}.{}", prevElementName, s_Second );
+  else
+    srcArray = prevElementName;
+
+  auto elementName = ElementName( name, depth );
+  auto forExpression = fmt::format( "for ( auto& {} : {} )", elementName, srcArray );
+  Add( forExpression );
+
+  General_HandleComplexPush( extArr, name, depth );
+
+  AddPushByElementName( extArr, name, depth - 1, collectorName );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::General_HandleComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
+{
+  AddLeftBrace();
+  IncrementTabs();
+
+  auto& templateType = extArr[depth].mTemplateChildArr.back();// use last, cause if array - first, map - second 
+  auto templateCategory = templateType.mCategory;
+  switch ( templateCategory )
+  {
+    case TMemberTypeExtendedInfo::BuiltIn:
+    case TMemberTypeExtendedInfo::String:
+      HandlePushSimple( extArr, name, depth );
+      break;
+    case TMemberTypeExtendedInfo::Vector:
+    case TMemberTypeExtendedInfo::List:
+    case TMemberTypeExtendedInfo::Set:
+      HandleComplexPush( extArr, name, depth + 1 );
+      break;
+    case TMemberTypeExtendedInfo::Map:
+      HandleComplexPush( extArr, name, depth + 1 );
+      break;
+    case TMemberTypeExtendedInfo::Reflection:
+      HandlePushReflection( extArr, name, depth );
+      break;
+  }
+  DecrementTabs();
+  AddRightBrace();
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandlePushSimple( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
+{
+  auto elementName = ElementName( name, depth );
+  if ( extArr[depth].mCategory == TMemberTypeExtendedInfo::Map )
+    elementName = fmt::format( "{}.{}", elementName, s_Second );
+
+  AddPushByElementName( extArr, name, depth, elementName );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandlePushReflection( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
+{
+  auto objForSer = fmt::format( "{}_e{}_{}", name, depth, s_Obj );
+  auto objForSerDeclaration = fmt::format( "{} {};", s_Jobj, objForSer );
+  Add( objForSerDeclaration );
+
+  auto elementName = ElementName( name, depth );
+
+  auto accessDecl = elementName;
+  if ( extArr[depth].mCategory == TMemberTypeExtendedInfo::Map )
+    accessDecl = fmt::format( "{}.{}", elementName, s_Second );
+
+  auto valueName = fmt::format( "{}_value", elementName );
+  auto elementFromDecl = fmt::format( "auto& {} = {};", valueName, accessDecl );
+  Add( elementFromDecl );
+
+  auto ptrName = fmt::format( "{}_ptr", elementName );
+  auto ptrDecl = fmt::format( "auto {} = ", ptrName );
+  std::string ptrDeclExpression;
+
+  auto& templateType = extArr[depth].mTemplateChildArr.back();// use last, cause if array - first, map - second 
+  switch ( templateType.mAccessMethod )
+  {
+    case TMemberTypeExtendedInfo::Object:
+      ptrDeclExpression = fmt::format( "{}&{};", ptrDecl, valueName );
+      break;
+    case TMemberTypeExtendedInfo::Pointer:
+      ptrDeclExpression = fmt::format( "{}{};", ptrDecl, valueName );
+      break;
+    case TMemberTypeExtendedInfo::SmartPointer:
+      ptrDeclExpression = fmt::format( "{}{}.get();", ptrDecl, valueName );
+      break;
+  }
+  Add( ptrDeclExpression );
+
+  AddIf( ptrName );
+
+  AddLeftBrace();
+  IncrementTabs();
+  auto callSerExpression = fmt::format( "{}( {}, {} );", sSerializeMethod, ptrName, objForSer );
+  Add( callSerExpression );
+  AddPushByElementName( extArr, name, depth, objForSer );
+  DecrementTabs();
+  AddRightBrace();
+  AddElse();
+
+  IncrementTabs();
+  AddPushByElementName( extArr, name, depth, s_Nullptr );
+  DecrementTabs();
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::AddPushByElementName( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth, std::string elementNameFirstOrSecond )
+{
+  auto collectorName = CollectorName( name, depth );
+  auto elementName = ElementName( name, depth );
+  std::string addExpression;
+  if ( extArr[depth].mCategory == TMemberTypeExtendedInfo::Map )
+  {
+    auto first = fmt::format( "{}.{}", elementName, s_First );
+    auto firstExpression = fmt::format( "fmt::format( \"{{}}\", {} )", first );
+    addExpression = fmt::format( "{}.{}( {{ {}, {} }} );", collectorName, s_Insert, firstExpression, elementNameFirstOrSecond );
+  }
+  else
+  {
+    addExpression = fmt::format( "{}.{}( {} );", collectorName, s_PushBack, elementNameFirstOrSecond );
+  }
+  Add( addExpression );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandleComplexPopZeroDepth( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name )
+{
+  int depth = 0;
+
+  auto sourceJsonName = SourceName( name, depth );
+  std::string itemsAccess = s_Array_items;
+  if ( extArr[depth].mCategory == TMemberTypeExtendedInfo::Map )
+    itemsAccess = s_Object_items;
+
+  auto collectorDeclExpression = fmt::format( "auto& {} = {}[\"{}\"].{}();", sourceJsonName, s_Json, name, itemsAccess );
+  Add( collectorDeclExpression );
+
+  auto elementName = ElementName( name, depth );
+  auto forExpression = fmt::format( "for ( auto& {} : {} )", elementName, sourceJsonName );
+  Add( forExpression );
+
+  General_HandleComplexPop( extArr, name, depth );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandleComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
+{
+  auto collectorType = fmt::format( "{}", extArr[depth].GetCollectSubType() );
+  auto collectorName = CollectorName( name, depth );
+  auto collectorDeclaration = fmt::format( "{} {};", collectorType, collectorName );
+  Add( collectorDeclaration );
+
+  auto itemMethod = s_Array_items;
+  if ( extArr[depth].mCategory == TMemberTypeExtendedInfo::Map )
+    itemMethod = s_Object_items;
+
+  auto elementName = ElementName( name, depth - 1 );
+  std::string elementAccess;
+  if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map )
+    elementAccess = fmt::format( ".{}", s_Second );
+
+  auto itemContainerName = SourceName( name, depth );
+  auto itemContainerExpression = fmt::format( "auto& {} = {}{}.{}();", itemContainerName, elementName, elementAccess, itemMethod );
+  Add( itemContainerExpression );
+
+  auto forElementName = ElementName( name, depth );
+  auto forExpression = fmt::format( "for ( auto& {} : {} )", forElementName, itemContainerName );
+  Add( forExpression );
+
+  General_HandleComplexPop( extArr, name, depth );
+
+  if ( depth == 1 )
+  {
+    auto popStr = GetPopStrForComplex( extArr, name, depth );
+
+    auto addExpression = fmt::format( "{}->{}.{};", s_TypeObject, name, popStr );
+    Add( addExpression );
+  }
+  else
+  {
+    auto prevCollectorName = CollectorName( name, depth - 1 );
+    auto popStr = GetPopStrForComplex( extArr, name, depth );
+
+    auto addExpression = fmt::format( "{}.{};", prevCollectorName, popStr );
+    Add( addExpression );
+  }
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string TJsonSerializerSourceFileGenerator::GetPopStrForComplex( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
+{
+  auto collectorName = CollectorName( name, depth );
+  auto elementName = ElementName( name, depth - 1 );
+
+  auto addParam = collectorName;
+  auto addMethod = s_PushBack;
+  if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map )
+  {
+    addMethod = s_Insert;
+    auto& keyExt = extArr[depth - 1].mTemplateChildArr[0];
+
+    std::string itemAccess;
+    auto key = fmt::format( "{}.{}", elementName, s_First );
+    if ( keyExt.mCategory == TMemberTypeExtendedInfo::BuiltIn )
+      key = fmt::format( "{}( {} )", s_StrToNum, key );
+
+    auto conversion = GetConversionBuiltIn( keyExt );
+    if ( conversion.length() > 0 )
+      key = fmt::format( "({})({})", conversion, key );
+
+    auto value = collectorName;
+    addParam = fmt::format( "{{ {}, {} }}", key, value );
+  }
+
+  auto addExpression = fmt::format( "{}( {} )", addMethod, addParam );
+  return addExpression;
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::General_HandleComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
+{
+  AddLeftBrace();
+  IncrementTabs();
+
+  auto templateCategory = extArr[depth + 1].mCategory;
+  switch ( templateCategory )
+  {
+    case TMemberTypeExtendedInfo::BuiltIn:
+    case TMemberTypeExtendedInfo::String:
+      if ( depth > 0 )
+        HandlePopSimple( extArr, name, depth );
+      else
+        HandlePopSimpleZeroDepth( extArr, name );
+      break;
+    case TMemberTypeExtendedInfo::Vector:
+    case TMemberTypeExtendedInfo::List:
+    case TMemberTypeExtendedInfo::Set:
+      HandleComplexPop( extArr, name, depth + 1 );
+      break;
+    case TMemberTypeExtendedInfo::Map:
+      HandleComplexPop( extArr, name, depth + 1 );
+      break;
+    case TMemberTypeExtendedInfo::Reflection:
+      HandlePopReflection( extArr, name, depth );
+      break;
+  }
+
+  DecrementTabs();
+  AddRightBrace();
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandlePopSimple( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
+{
+  auto collectorName = CollectorName( name, depth );
+  auto elementName = ElementName( name, depth );
+
+  std::string addMethod;
+  std::string param;
+  auto& ext = extArr[depth];
+  auto& keyExt = ext.mTemplateChildArr[0];
+  if ( ext.mCategory == TMemberTypeExtendedInfo::Map )
+  {
+    addMethod = s_Insert;
+
+    auto key = fmt::format( "{}.{}", elementName, s_First );
+    if ( keyExt.mCategory == TMemberTypeExtendedInfo::BuiltIn )
+      key = fmt::format( "{}( {} )", s_StrToNum, key );
+
+    auto conversion = GetConversionBuiltIn( keyExt );
+    if ( conversion.length() > 0 )
+      key = fmt::format( "({})({})", conversion, key );
+
+    auto& valueExt = ext.mTemplateChildArr[1];
+    auto valueItemAccess = ItemAccessByCategory( valueExt );
+    auto value = fmt::format( "{}.{}.{}()", elementName, s_Second, valueItemAccess );
+    conversion = GetConversionBuiltIn( valueExt );
+    if ( conversion.length() > 0 )
+      value = fmt::format( "({})({})", conversion, value );
+
+    param = fmt::format( "{{ {}, {} }}", key, value );
+  }
+  else
+  {
+    addMethod = s_PushBack;
+    auto keyItemAccess = ItemAccessByCategory( keyExt );
+    param = fmt::format( "{}.{}()", elementName, keyItemAccess );
+
+    auto conversion = GetConversionBuiltIn( keyExt );
+    if ( conversion.length() > 0 )
+      param = fmt::format( "({})({})", conversion, param );
+  }
+
+  auto addExpression = fmt::format( "{}.{}( {} );", collectorName, addMethod, param );
+  Add( addExpression );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandlePopSimpleZeroDepth( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name )
+{
+  auto ext = extArr[0];
+  auto& keyExt = ext.mTemplateChildArr[0];
+
+  auto elementName = ElementName( name, 0 );
+
+  auto addMethod = s_PushBack;
+  auto itemAccess = ItemAccessByCategory( keyExt );
+  std::string addParam = fmt::format( "{}.{}()", elementName, itemAccess );
+  auto conversion = GetConversionBuiltIn( keyExt );
+  if ( conversion.length() > 0 )
+    addParam = fmt::format( "({})({})", conversion, addParam );
+  if ( ext.mCategory == TMemberTypeExtendedInfo::Map )
+  {
+    addMethod = s_Insert;
+    auto key = fmt::format( "{}.{}", elementName, s_First );
+    if ( keyExt.mCategory == TMemberTypeExtendedInfo::BuiltIn )
+      key = fmt::format( "{}( {} )", s_StrToNum, key );
+
+    conversion = GetConversionBuiltIn( keyExt );
+    if ( conversion.length() > 0 )
+      key = fmt::format( "({})({})", conversion, key );
+
+    auto& valueExt = ext.mTemplateChildArr[1];
+    itemAccess = ItemAccessByCategory( valueExt );
+    conversion = GetConversionBuiltIn( valueExt );
+    auto value = fmt::format( "{}.{}.{}()", elementName, s_Second, itemAccess );
+    if ( conversion.length() > 0 )
+      value = fmt::format( "({})({})", conversion, value );
+    addParam = fmt::format( "{{ {}, {} }}", key, value );
+  }
+
+  auto popExpression = fmt::format( "{}( {} )", addMethod, addParam );
+
+  auto addExpression = fmt::format( "{}->{}.{};", s_TypeObject, name, popExpression );
+  Add( addExpression );
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string TJsonSerializerSourceFileGenerator::GetConversionBuiltIn( const TMemberTypeExtendedInfo& ext )
+{
+  if ( ext.mCategory != TMemberTypeExtendedInfo::BuiltIn )
+    return "";
+  if ( ext.mType == s_Bool )
+    return "";
+  return ext.mType;
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string TJsonSerializerSourceFileGenerator::ItemAccessByCategory( const TMemberTypeExtendedInfo& ext )
+{
+  std::string itemAccess;
+  if ( ext.mCategory == TMemberTypeExtendedInfo::String )
+    itemAccess = s_String_value;
+  else if ( ext.mCategory == TMemberTypeExtendedInfo::BuiltIn )
+  {
+    if ( ext.mType == s_Bool )
+      itemAccess = s_Bool_value;
+    else
+      itemAccess = s_Number_value;
+  }
+  return itemAccess;
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string TJsonSerializerSourceFileGenerator::CollectorName( const std::string& name, int depth )
+{
+  return fmt::format( "{}_c{}", name, depth );
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string TJsonSerializerSourceFileGenerator::ElementName( const std::string& name, int depth )
+{
+  return fmt::format( "{}_e{}", name, depth );
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string TJsonSerializerSourceFileGenerator::SourceName( const std::string& name, int depth )
+{
+  return fmt::format( "{}_src{}", name, depth );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandlePopReflection( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
+{
+  auto& ext = extArr[depth];
+  auto elementName = ElementName( name, depth );
+
+  auto firstElement = ElementName( s_First, depth );
+  auto secondElement = ElementName( s_Second, depth );
+
+  auto& reflectionExt = ext.mTemplateChildArr.back();
+  auto reflectionType = reflectionExt.GetCollectSubType();
+  auto reflectionName = fmt::format( "{}_newObj{}", name, depth );
+
+  std::string elementWithReflection;
+  std::string addMethod;
+  std::string param;
+
+  if ( ext.mCategory == TMemberTypeExtendedInfo::Map )
+  {
+    auto firstDeclaration = fmt::format( "auto& {} = {}.{};", firstElement, elementName, s_First );
+    auto secondDeclaration = fmt::format( "auto& {} = {}.{};", secondElement, elementName, s_Second );
+    Add( firstDeclaration );
+    Add( secondDeclaration );
+
+    elementWithReflection = secondElement;
+    addMethod = s_Insert;
+
+    auto& keyExt = ext.mTemplateChildArr[0];
+    auto key = fmt::format( "{}.{}", elementName, s_First );
+    if ( keyExt.mCategory == TMemberTypeExtendedInfo::BuiltIn )
+      key = fmt::format( "{}( {} )", s_StrToNum, key );
+
+    auto conversion = GetConversionBuiltIn( keyExt );
+    if ( conversion.length() > 0 )
+      key = fmt::format( "({})({})", conversion, key);
+
+    auto value = reflectionName;
+    param = fmt::format( "{{ {}, {} }}", key, value );
+  }
+  else
+  {
+    auto firstDeclaration = fmt::format( "auto& {} = {};", firstElement, elementName );
+    Add( firstDeclaration );
+
+    elementWithReflection = firstElement;
+    addMethod = s_PushBack;
+
+    param = reflectionName;
+  }
+
+  auto nullExpression = GetNullExpression( reflectionExt );
+  auto reflectionDecl = fmt::format( "{} {}{};", reflectionType, reflectionName, nullExpression );
+  Add( reflectionDecl );
+
+  auto condition = fmt::format( "{}.{}() == false", elementWithReflection, s_IsNull );
+  AddIf( condition );
+  AddLeftBrace();
+  IncrementTabs();
+
+  auto collectorName = CollectorName( name, depth );
+
+  auto& templateType = ext.mTemplateChildArr.back();// use last, cause if array - first, map - second 
+  auto typeName = templateType.GetTypeNameWithNameSpace();
+  std::string newExpression;
+  std::string getPtr;
+  switch ( templateType.mAccessMethod )
+  {
+    case TMemberTypeExtendedInfo::Object:
+      getPtr = fmt::format( "&{}", reflectionName );
+      break;
+    case TMemberTypeExtendedInfo::Pointer:
+      newExpression = fmt::format( "{} = new {}();", reflectionName, typeName );
+      getPtr = fmt::format( "{}", reflectionName );
+      break;
+    case TMemberTypeExtendedInfo::SmartPointer:
+      newExpression = fmt::format( "{}.reset( new {}() );", reflectionName, typeName );
+      getPtr = fmt::format( "{}.get()", reflectionName );
+      break;
+  }
+
+  if ( newExpression.length() > 0 )
+    Add( newExpression );
+
+  auto deser = fmt::format( "{}( {}, {} );", sDeserializeMethod, getPtr, elementWithReflection );
+  Add( deser );
+
+  DecrementTabs();
+  AddRightBrace();
+
+  std::string addExpression;
+  if ( depth == 0 )
+    addExpression = fmt::format( "{}->{}.{}( {} );", s_TypeObject, name, addMethod, param );
+  else
+    addExpression = fmt::format( "{}.{}( {} );", collectorName, addMethod, param );
+  Add( addExpression );
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::HandlePushReflectionArray( TMemberInfo* pMemberInfo )
 {
   auto& templateType = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
-  auto templateCategory = templateType.mCategory;
-  if ( templateCategory == TMemberTypeExtendedInfo::BuiltIn || templateCategory == TMemberTypeExtendedInfo::String )
-    AddPush( pMemberInfo->mName );
-  else if ( templateCategory == TMemberTypeExtendedInfo::Reflection )
+  auto typeWithNamespace = templateType.GetTypeNameWithNameSpace();
+  switch ( templateType.mAccessMethod )
   {
-    auto pTypeInfo = mTypeMng->FindTypeInfo( templateType.mType );
-    if ( pTypeInfo == nullptr )
-      return;
-    auto typeWithNamespace = pTypeInfo->GetTypeNameWithNameSpace();
-
-    switch ( templateType.mAccessMethod )
-    {
-      case TMemberTypeExtendedInfo::Object:
-        AddPushSerObjArray( typeWithNamespace, pMemberInfo->mName );
-        break;
-      case TMemberTypeExtendedInfo::Pointer:
-        AddPushSerPtrArray( typeWithNamespace, pMemberInfo->mName );
-        break;
-      case TMemberTypeExtendedInfo::SmartPointer:
-        AddPushSerSmartPtrArray( typeWithNamespace, templateType.mSmartPtrType, pMemberInfo->mName );
-        break;
-      default:
-        break;
-    }
+    case TMemberTypeExtendedInfo::Object:
+      AddPushSerObjArray( typeWithNamespace, pMemberInfo->mName );
+      break;
+    case TMemberTypeExtendedInfo::Pointer:
+      AddPushSerPtrArray( typeWithNamespace, pMemberInfo->mName );
+      break;
+    case TMemberTypeExtendedInfo::SmartPointer:
+      AddPushSerSmartPtrArray( typeWithNamespace, templateType.mSmartPtrType, pMemberInfo->mName );
+      break;
   }
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -209,29 +718,6 @@ void TJsonSerializerSourceFileGenerator::AddPushSerSmartPtrArray( const std::str
 {
   auto fullType = fmt::format( "{}{}<{}>", s_STD_, smartPtrType, type );
   General_AddPushSerArrayOrMap( type, fullType, name, s_PushSerSmartPtrArray );
-}
-//-----------------------------------------------------------------------------------------------------------
-void TJsonSerializerSourceFileGenerator::HandleMapForPush( TMemberInfo* pMemberInfo )
-{
-  auto& templateList = pMemberInfo->mExtendedInfo.mTemplateChildArr;
-  auto& keyInfo = templateList[0];
-  auto& valueInfo = templateList[1];
-
-  auto keyCategory = keyInfo.mCategory;
-  auto valueCategory = valueInfo.mCategory;
-  if ( ( keyCategory == TMemberTypeExtendedInfo::BuiltIn || keyCategory == TMemberTypeExtendedInfo::String ) &&
-    ( valueCategory == TMemberTypeExtendedInfo::BuiltIn || valueCategory == TMemberTypeExtendedInfo::String ) )
-  {
-    AddPushMap( pMemberInfo->mName );
-    return;
-  }
-
-  if ( ( keyCategory == TMemberTypeExtendedInfo::BuiltIn || keyCategory == TMemberTypeExtendedInfo::String ) &&
-    valueCategory == TMemberTypeExtendedInfo::Reflection )
-  {
-    HandlePushBuiltInOrStringSerMap( pMemberInfo );
-    return;
-  }
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::HandleReflectionForPush( TMemberInfo* pMemberInfo )
@@ -337,13 +823,9 @@ void TJsonSerializerSourceFileGenerator::AddPushMap( const std::string& name )
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::HandlePushBuiltInOrStringSerMap( TMemberInfo* pMemberInfo )
 {
-  auto accessMethod = pMemberInfo->mExtendedInfo.mTemplateChildArr[1].mAccessMethod;
-  auto typeName = pMemberInfo->mExtendedInfo.mTemplateChildArr[1].mType;
-  auto pTypeInfo = mTypeMng->FindTypeInfo( typeName );
-  if ( pTypeInfo == nullptr )
-    return;
-  auto valueType = pTypeInfo->GetTypeNameWithNameSpace();
-
+  auto& templateType = pMemberInfo->mExtendedInfo.mTemplateChildArr[1];
+  auto accessMethod = templateType.mAccessMethod;
+  auto valueType = templateType.GetTypeNameWithNameSpace();
   switch ( accessMethod )
   {
     case TMemberTypeExtendedInfo::Object:
@@ -354,8 +836,6 @@ void TJsonSerializerSourceFileGenerator::HandlePushBuiltInOrStringSerMap( TMembe
       break;
     case TMemberTypeExtendedInfo::SmartPointer:
       AddPushSerSmartPtrMap( valueType, pMemberInfo->mExtendedInfo.mTemplateChildArr[1].mSmartPtrType, pMemberInfo->mName );
-      break;
-    default:
       break;
   }
 }
@@ -399,28 +879,6 @@ void TJsonSerializerSourceFileGenerator::AddPopNum( const std::string& name )
   General_AddPop( name, s_PopNum );
 }
 //-----------------------------------------------------------------------------------------------------------
-void TJsonSerializerSourceFileGenerator::HandlePopArray( TMemberInfo* pMemberInfo )
-{
-  auto& templateInfo = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
-  switch ( templateInfo.mCategory )
-  {
-    case TMemberTypeExtendedInfo::BuiltIn:
-      if ( templateInfo.mType == s_Bool )
-        AddPopBoolArray( pMemberInfo->mName );
-      else
-        AddPopNumArray( pMemberInfo->mName, templateInfo.mType );
-      break;
-    case TMemberTypeExtendedInfo::String:
-      AddPopStrArray( pMemberInfo->mName );
-      break;
-    case TMemberTypeExtendedInfo::Reflection:
-      HandlePopReflectionArray( pMemberInfo );
-      break;
-    default:
-      break;
-  }
-}
-//-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::HandlePopSet( TMemberInfo* pMemberInfo )
 {
   auto& templateInfo = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
@@ -440,29 +898,6 @@ void TJsonSerializerSourceFileGenerator::HandlePopSet( TMemberInfo* pMemberInfo 
       break;
     default:
       break;
-  }
-}
-//-----------------------------------------------------------------------------------------------------------
-void TJsonSerializerSourceFileGenerator::HandlePopMap( TMemberInfo* pMemberInfo )
-{
-  auto& templateList = pMemberInfo->mExtendedInfo.mTemplateChildArr;
-  auto& keyInfo = templateList[0];
-  auto& valueInfo = templateList[1];
-
-  auto keyCategory = keyInfo.mCategory;
-  auto valueCategory = valueInfo.mCategory;
-  if ( ( keyCategory == TMemberTypeExtendedInfo::BuiltIn || keyCategory == TMemberTypeExtendedInfo::String ) &&
-    ( valueCategory == TMemberTypeExtendedInfo::BuiltIn || valueCategory == TMemberTypeExtendedInfo::String ) )
-  {
-    HandlePopBuiltInOrStringMap( pMemberInfo );
-    return;
-  }
-
-  if ( ( keyCategory == TMemberTypeExtendedInfo::BuiltIn || keyCategory == TMemberTypeExtendedInfo::String ) &&
-    valueCategory == TMemberTypeExtendedInfo::Reflection )
-  {
-    HandlePopBuiltInOrStringSerMap( pMemberInfo );
-    return;
   }
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -495,11 +930,8 @@ void TJsonSerializerSourceFileGenerator::HandlePopReflection( TMemberInfo* pMemb
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrPopReflection( TMemberInfo* pMemberInfo )
 {
-  auto typeName = pMemberInfo->mExtendedInfo.mType;
-  auto pTypeInfo = mTypeMng->FindTypeInfo( typeName );
-  if ( pTypeInfo == nullptr )
-    return;
-
+  auto& templateType = pMemberInfo->mExtendedInfo;
+  auto typeWithNamespace = templateType.GetTypeNameWithNameSpace();
   auto jsonName = fmt::format( "{}_{}", pMemberInfo->mName, s_Json );
 
   std::string newObject;
@@ -508,11 +940,11 @@ void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrPopReflection( TMemb
   {
     case TMemberTypeExtendedInfo::Pointer:
       getAddrOfMember = fmt::format( "{}->{}", s_TypeObject, pMemberInfo->mName );
-      newObject = fmt::format( "{}->{} = new {}();", s_TypeObject, pMemberInfo->mName, pTypeInfo->GetTypeNameWithNameSpace() );
+      newObject = fmt::format( "{}->{} = new {}();", s_TypeObject, pMemberInfo->mName, typeWithNamespace );
       break;
     case TMemberTypeExtendedInfo::SmartPointer:
       getAddrOfMember = fmt::format( "{}->{}.get()", s_TypeObject, pMemberInfo->mName );
-      newObject = fmt::format( "{}->{}.reset( new {}() );", s_TypeObject, pMemberInfo->mName, pTypeInfo->GetTypeNameWithNameSpace() );
+      newObject = fmt::format( "{}->{}.reset( new {}() );", s_TypeObject, pMemberInfo->mName, typeWithNamespace );
       break;
     default:
       break;
@@ -522,7 +954,7 @@ void TJsonSerializerSourceFileGenerator::HandleSmartPtrOrPtrPopReflection( TMemb
   AddIf( fmt::format( "{}.is_null() == false", jsonName ) );
   AddLeftBrace();
   IncrementTabs();
-  AddIf( fmt::format( "{} == nullptr", getAddrOfMember ) );
+  AddIf( fmt::format( "{} == {}", getAddrOfMember, s_Nullptr ) );
   IncrementTabs();
   Add( newObject );
   DecrementTabs();
@@ -572,11 +1004,7 @@ void TJsonSerializerSourceFileGenerator::AddPopStrSet( const std::string& name )
 void TJsonSerializerSourceFileGenerator::HandlePopReflectionArray( TMemberInfo* pMemberInfo )
 {
   auto& extMemberInfo = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
-  auto typeName = extMemberInfo.mType;
-  auto pTypeInfo = mTypeMng->FindTypeInfo( typeName );
-  if ( pTypeInfo == nullptr )
-    return;
-  auto keyType = pTypeInfo->GetTypeNameWithNameSpace();
+  auto keyType = extMemberInfo.GetTypeNameWithNameSpace();
 
   std::string fullType;
   std::string methodName;
@@ -644,10 +1072,7 @@ void TJsonSerializerSourceFileGenerator::HandlePopBuiltInOrStringSerMap( TMember
 {
   auto& keyExtMemberInfo = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
   auto& valueExtMemberInfo = pMemberInfo->mExtendedInfo.mTemplateChildArr[1];
-  auto pValueTypeInfo = mTypeMng->FindTypeInfo( valueExtMemberInfo.mType );
-  if ( pValueTypeInfo == nullptr )
-    return;
-  auto valueType = pValueTypeInfo->GetTypeNameWithNameSpace();
+  auto valueType = valueExtMemberInfo.GetTypeNameWithNameSpace();
 
   std::string fullType;
   std::string methodName;

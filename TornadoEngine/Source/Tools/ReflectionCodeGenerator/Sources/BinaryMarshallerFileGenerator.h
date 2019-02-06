@@ -20,6 +20,9 @@ namespace nsReflectionCodeGenerator
   protected:
     const std::string s_THeader = "THeader";
 
+    const std::string s_Deallocate = "Deallocate";
+    const std::string s_Allocate = "Allocate";
+
     const std::string s_SetLimitForCompression = "SetLimitForCompression";
     const std::string s_PrepareForUnpackPopMaster = "PrepareForUnpackPopMaster";
     const std::string s_GetID = "GetID";

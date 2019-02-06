@@ -61,6 +61,17 @@ namespace nsReflectionCodeGenerator
     const std::string s_PopNumSerPtrMap = "PopNumSerPtrMap";
     const std::string s_PopNumSerSmartPtrMap = "PopNumSerSmartPtrMap";
 
+    const std::string s_Object_items = "object_items";
+    const std::string s_Array_items = "array_items";
+
+    const std::string s_String_value = "string_value";
+    const std::string s_Number_value = "number_value";
+    const std::string s_Bool_value = "bool_value";
+
+    const std::string s_IsNull = "is_null";
+
+    const std::string s_StrToNum = "std::stod";
+
   public:
     virtual void Work() override;
 
@@ -110,8 +121,7 @@ namespace nsReflectionCodeGenerator
 
     void AddPopMap( const std::string& methodName, const std::string& name );
   private:
-    void HandleArrayForPush( TMemberInfo* pMemberInfo );
-    void HandleMapForPush( TMemberInfo* pMemberInfo );
+    void HandlePushReflectionArray( TMemberInfo* pMemberInfo );
     void HandleReflectionForPush( TMemberInfo* pMemberInfo );
     void HandleSmartPtrOrPtrReflectionForPush( TMemberInfo* pMemberInfo );
 
@@ -119,9 +129,7 @@ namespace nsReflectionCodeGenerator
 
     void HandlePopBuiltIn( TMemberInfo* memberInfo );
 
-    void HandlePopArray( TMemberInfo* pMemberInfo );
     void HandlePopSet( TMemberInfo* pMemberInfo );
-    void HandlePopMap( TMemberInfo* pMemberInfo );
     void HandlePopReflection( TMemberInfo* pMemberInfo );
     void HandleSmartPtrOrPtrPopReflection( TMemberInfo* pMemberInfo );
 
@@ -130,6 +138,33 @@ namespace nsReflectionCodeGenerator
 
     void HandlePopBuiltInOrStringMap( TMemberInfo* pMemberInfo );
     void HandlePopBuiltInOrStringSerMap( TMemberInfo* pMemberInfo );
+
+    void HandleComplexPushZeroDepth( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name );
+    void HandleComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void General_HandleComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+    void HandlePopSimpleZeroDepth( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name );
+    void HandlePushSimple( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void HandlePushReflection( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+    void AddPushByElementName( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth, std::string elementNameFirstOrSecond );
+
+
+    void HandleComplexPopZeroDepth( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name );
+    void HandleComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void General_HandleComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+    void HandlePopSimple( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    void HandlePopReflection( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+
+    std::string GetPopStrForComplex( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
+    std::string ItemAccessByCategory( const TMemberTypeExtendedInfo& ext );
+    std::string GetConversionBuiltIn( const TMemberTypeExtendedInfo& ext );
+
+    std::string CollectorName( const std::string& name, int depth );
+    std::string ElementName( const std::string& name, int depth );
+    std::string SourceName( const std::string& name, int depth );
+
   private:
 
     void General_AddPushSerArrayOrMap( const std::string& type, const std::string& fullType, const std::string& name, const std::string& methodName );

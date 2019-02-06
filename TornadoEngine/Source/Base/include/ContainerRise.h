@@ -31,4 +31,6 @@ public:
 
   void Alloc( int new_size );  // не копирует 
   void Realloc( int new_size );// копирует старый кусок
+
+  bool operator == ( const TContainerRise& other );
 };

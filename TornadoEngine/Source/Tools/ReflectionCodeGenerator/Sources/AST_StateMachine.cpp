@@ -148,6 +148,9 @@ bool TAST_StateMachine::SearchInheritanceOrLeftBrace()
 {
   switch ( mTokenInfoIt->id )
   {
+    case T_IDENTIFIER:
+      mTypeInfo.mName = mTokenInfoIt->value;// новый идентификатор, может до этого мы встречали DllExport
+      break;
     case T_LEFTBRACE:
       mState = eSearchBeginSectionOrTypeOrBeginMethod;
       break;
@@ -332,6 +335,9 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
 {
   switch ( mTokenInfoIt->id )
   {
+    case T_OPERATOR:
+      mState = eSearchDeclarationMethodHandler;
+    break;
     case T_ASSIGN:
       mTypeInfo.AddMember( mMemberInfo );
       mState = eSearchWaitSemiColonAfterAssign;

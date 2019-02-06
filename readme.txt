@@ -21,6 +21,7 @@ Article on habrahabr: http://habrahabr.ru/post/233915/
 	OGRE    1.9, 
 	Bullet  2.81+.
 
+Dependencies: https://github.com/RamilGauss/MMO-FrameworkDependency
 //------------------------------------------------------------------------------------------
     Russian
     
@@ -44,4 +45,6 @@ Article on habrahabr: http://habrahabr.ru/post/233915/
 	MyGUI   3.2.0, 
 	OGRE    1.9, 
 	Bullet  2.81+.
+
+Зависимости: https://github.com/RamilGauss/MMO-FrameworkDependency
 //------------------------------------------------------------------------------------------

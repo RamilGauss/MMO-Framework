@@ -47,6 +47,9 @@ public:
   }
   static void DeallocateFunc( void* p )
   {
+    if ( p == nullptr )
+      return;
+
     TryInitMap();
 
     mMap->value[p]();

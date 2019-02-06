@@ -11,16 +11,19 @@ See for more information License.h.
 #include <set>
 #include "ReflectionMacro.h"
 
-REFLECTION_ATTRIBUTE
-struct TBaseStruct
+namespace nsBS
 {
-  std::string s;
+  REFLECTION_ATTRIBUTE
+    struct TBaseStruct
+  {
+    std::string s = "0123456789";
 
-  TBaseStruct()
-  {
-  }
-  TBaseStruct( std::string str )
-  {
-    s = str;
-  }
-};
+    TBaseStruct()
+    {
+    }
+    TBaseStruct( std::string ss)
+    {
+      s = ss;
+    }
+  };
+}

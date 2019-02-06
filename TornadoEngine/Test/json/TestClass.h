@@ -12,9 +12,7 @@ REFLECTION_ATTRIBUTE
 class TTestClass
 {
 public:
-  TTestStruct ts;
-  //TTestStruct* ts;
-  //std::shared_ptr<TTestStruct> ts;
-
   std::string str;
+
+  nsBS::TTestStruct ts;
 };
