@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -23,13 +23,13 @@ See for more information License.h.
 #include "BL_Debug.h"
 #include "HiTimer.h"
 
-typedef unsigned char TypeStream;
+typedef int TypeStream;
 
 TDataExchange2Thread<TypeStream> g_List2Thread;
 char sErr[300];
 unsigned int g_Start;
 
-boost::pool<> g_Allocator(sizeof(TypeStream));
+boost::pool<> g_Allocator( sizeof( TypeStream ) );
 TCallBackRegistrator1<void*> g_CB_Delete;
 
 #define CNT_PRINT_SPEED 1000000
@@ -52,20 +52,20 @@ public:
 protected:
   virtual void Work()
   {
-    if( mSizeSend==0 )
+    if ( mSizeSend == 0 )
       g_Start = ht_GetMSCount();
 
-    TypeStream* pData = 
+    TypeStream* pData =
 #ifdef WITHOUT_ALLOCATE_TEST
-    &g_ValueExchange;
+      &g_ValueExchange;
 #else
-  #ifdef USE_BOOST_POOL
-        (TypeStream*)g_Allocator.malloc();
-  #else
-        new TypeStream(0);
-  #endif
+#ifdef USE_BOOST_POOL
+    ( TypeStream* )g_Allocator.malloc();
+#else
+      new TypeStream( 0 );
 #endif
-    g_List2Thread.Add(pData);
+#endif
+    g_List2Thread.Add( pData );
     mSizeSend++;
   }
 };
@@ -82,28 +82,28 @@ protected:
   virtual void Work()
   {
     TypeStream** pp = g_List2Thread.GetFirst();
-    if( pp )
+    if ( pp )
     {
       TypeStream* pData = *pp;
 #ifdef WITHOUT_ALLOCATE_TEST
-      g_List2Thread.UnlinkData(pp);
+      g_List2Thread.UnlinkData( pp );
 #else
-  #ifdef USE_BOOST_POOL
+#ifdef USE_BOOST_POOL
       //g_List2Thread.UnlinkData(pp);
       //g_SAllocator::free(pData);
-  #else
-  #endif
+#else
+#endif
 #endif
       g_List2Thread.RemoveFirst();
       mSizeRecv++;
-      if( mSizeRecv%CNT_PRINT_SPEED==0 )
+      if ( mSizeRecv%CNT_PRINT_SPEED == 0 )
       {
         unsigned int now = ht_GetMSCount();
-        printf("C speed = %f mcs/byte, %f mcs/pack, %f MB/sec, %f pack/mcs\n", 
-          ((now - g_Start)*1000.0f)/(mSizeRecv*sizeof(TypeStream)), 
-          ((now - g_Start)*1000.0f)/mSizeRecv, 
-          (mSizeRecv*sizeof(TypeStream))/((now - g_Start)*1000.0f),
-          mSizeRecv/((now - g_Start)*1000.0f));
+        printf( "C speed = %f us/byte, %f us/pack, %f MB/sec, %f pack/us\n",
+          ( ( now - g_Start )*1000.0f ) / ( mSizeRecv * sizeof( TypeStream ) ),
+          ( ( now - g_Start )*1000.0f ) / mSizeRecv,
+          ( mSizeRecv * sizeof( TypeStream ) ) / ( ( now - g_Start )*1000.0f ),
+          mSizeRecv / ( ( now - g_Start )*1000.0f ) );
       }
     }
   }
@@ -112,56 +112,56 @@ protected:
 class TDeleter
 {
 public:
-  void Delete(TypeStream* p)
+  void Delete( TypeStream* p )
   {
-    g_Allocator.free(p);
+    g_Allocator.free( p );
   }
 };
 //---------------------------------------------------------------------------------------
-int main(int argc, char** argv)
+int main( int argc, char** argv )
 {
   TDataExchange2Thread<int> list;
-  list.Add( new int(0) );
-  list.Add( new int(1) );
-  list.Add( new int(2) );
+  list.Add( new int( 0 ) );
+  list.Add( new int( 1 ) );
+  list.Add( new int( 2 ) );
 
-  while( list.GetFirst() )
+  while ( list.GetFirst() )
   {
     int** ppInt = list.GetFirst();
     list.RemoveFirst();
   }
-  list.Add( new int(3) );
+  list.Add( new int( 3 ) );
 
 
 #ifdef USE_BOOST_POOL
   TDeleter deleter;
-  g_CB_Delete.Register(&TDeleter::Delete, &deleter);
-  g_List2Thread.SetCB_DeleteData(&g_CB_Delete);
+  g_CB_Delete.Register( &TDeleter::Delete, &deleter );
+  g_List2Thread.SetCB_DeleteData( &g_CB_Delete );
 #endif
 #ifdef TESTING_ONE_THREAD
   // test one thread exchanging
   unsigned int cnt = 4000000000;
   unsigned int start = ht_GetMSCount();
-  for( unsigned int i = 0 ; i < cnt ; i++)
+  for ( unsigned int i = 0; i < cnt; i++ )
   {
-    TypeStream* p = 
+    TypeStream* p =
 #ifdef USE_BOOST_POOL
-      (TypeStream*)g_Allocator.malloc();
+    ( TypeStream* )g_Allocator.malloc();
 #else
       new TypeStream;
 #endif
-    g_List2Thread.Add(p);
+    g_List2Thread.Add( p );
     TypeStream** pp = g_List2Thread.GetFirst();
-    g_List2Thread.UnlinkData(pp);
+    g_List2Thread.UnlinkData( pp );
     g_List2Thread.RemoveFirst();
 #ifdef USE_BOOST_POOL
-    g_Allocator.free(p);
+    g_Allocator.free( p );
 #else
     delete p;
 #endif
   }
   unsigned int end = ht_GetMSCount();
-  printf("%f kilo\n", cnt/((end - start)/1.0f));
+  printf( "%f kilo\n", cnt / ( ( end - start ) / 1.0f ) );
   _getch();
 #endif
 

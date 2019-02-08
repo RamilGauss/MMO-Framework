@@ -24,7 +24,7 @@ namespace nsMMOEngine
       TContainerRise c;
     };
 
-    typedef std::list<TMemoryPool<TSavePacket>::TDescPointer*> TListPtr;
+    typedef std::list<TMemoryPool<TSavePacket>::TPointerDesc*> TListPtr;
     TListPtr mListSave;
 
     TMemoryPool<TSavePacket>* mSavePacketMemoryPool = nullptr;

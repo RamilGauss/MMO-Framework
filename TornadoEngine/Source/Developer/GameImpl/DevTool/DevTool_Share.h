@@ -53,7 +53,7 @@ public:
   virtual void SetVectorParam( std::vector<std::string>& vecArg );
   virtual std::string GetFileDescConveyer();
   virtual IModule* GetModuleByName( const char* sName );
-  virtual void EventGameEngine( int id, const char* sDesc );
+  virtual void EventGameEngine( int id, const std::string& sDesc );
 protected:
   virtual TModuleDev* GetModuleByID( int id );
   virtual TModuleDev* GetModuleLogic() = 0;

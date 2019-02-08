@@ -56,14 +56,14 @@
     <ClInclude Include="ModulesThreadManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FrameworkResources.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IncludeList.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="JsonSerializer.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConveyerConfig.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

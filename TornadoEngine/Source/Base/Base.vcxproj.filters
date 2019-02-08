@@ -161,9 +161,6 @@
     <ClInclude Include="include\MemoryPool.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MemoryPoolAllocator.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\MessagePackSerializer.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -264,6 +261,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\BinaryMaster.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MemoryObjectPoolAllocator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MemoryObjectPool.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

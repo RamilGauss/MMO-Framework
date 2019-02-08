@@ -24,7 +24,7 @@ void TBinaryMarshallerHeaderFileGenerator::Work()
   AddInclude( "TypeDef.h" );
   AddInclude( "BinaryPushMaster.h" );
   AddInclude( "BinaryPopMaster.h" );
-  AddInclude( "MemoryPoolAllocator.h" );
+  AddInclude( "MemoryObjectPoolAllocator.h" );
   AddInclude( "lz4.h" );
   AddInclude( "BL_Debug.h" );
 
@@ -71,12 +71,14 @@ void TBinaryMarshallerHeaderFileGenerator::AddDeclarations()
     {
       auto p = filenameType.second.get();
       auto typeWithNamespace = p->GetTypeNameWithNameSpace();
-      auto serMethod = fmt::format( "void {}( {}* p );", s_Serialize, typeWithNamespace );
+      auto serMethod = fmt::format( "{} {}( {}* p );", s_Void, s_Serialize, typeWithNamespace );
       Add( serMethod );
-      auto deserMethod = fmt::format( "void {}( {}* p );", s_Deserialize, typeWithNamespace );
+      auto deserMethod = fmt::format( "{} {}( {}* p );", s_Void, s_Deserialize, typeWithNamespace );
       Add( deserMethod );
       auto deser = fmt::format( "{} {}( {}* p );", s_TypeID, s_GetTypeID, typeWithNamespace );
       Add( deser );
+      std::list<std::string> paramList = {fmt::format( "{}* p", typeWithNamespace )};
+      AddStaticMethodDeclaration(s_Void, s_Deallocate, paramList );
       AddEmptyLine();
     }
   }

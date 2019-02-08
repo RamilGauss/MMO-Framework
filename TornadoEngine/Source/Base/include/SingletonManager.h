@@ -10,6 +10,7 @@ See for more information License.h.
 #include <typeindex>
 #include <map>
 
+// not Thread-safe!
 class DllExport TSingletonManager
 {
   typedef std::map<std::type_index, void*> TIntPtrMap;// std::type_index is faster than size_t

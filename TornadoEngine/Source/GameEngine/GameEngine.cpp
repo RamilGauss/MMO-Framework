@@ -22,7 +22,9 @@ See for more information License.h.
 #include "MakerLoaderDLL.h"
 #include "ILoaderDLL.h"
 
-#include <boost/lexical_cast.hpp>
+#include "fmt/core.h"
+
+//#include <boost/lexical_cast.hpp>
 
 #define STR_GAME "GameEngine"
 #define VERSION_GAME_ENGINE 8// надеюсь последняя версия :)
@@ -48,7 +50,7 @@ TGameEngine::TGameEngine()
 //----------------------------------------------------------------------
 void TGameEngine::Done()
 {
-  if( mFreeDevTool )
+  if ( mFreeDevTool )
     mFreeDevTool( mDevTool );
 
   mSynchroPoint.reset();
@@ -61,30 +63,30 @@ void TGameEngine::Done()
 //----------------------------------------------------------------------
 bool TGameEngine::LoadDLL( int variant_use, const char* sNameDLL )
 {
-  if( mLoaderDLL->Init( sNameDLL ) == false )
+  if ( mLoaderDLL->Init( sNameDLL ) == false )
   {
     GetLogger( STR_GAME )->WriteF_time( "LoadDLL() FAIL init.\n" );
     return false;
   }
   mFreeDevTool = (FuncFreeDevTool) mLoaderDLL->Get( StrFreeDevTool );
-  if( mFreeDevTool == NULL )
+  if ( mFreeDevTool == NULL )
   {
     GetLogger( STR_GAME )->WriteF_time( "LoadDLL() FAIL load FuncFree.\n" );
     return false;
   }
   mGetDevTool = (FuncGetDevTool) mLoaderDLL->Get( StrGetDevTool );
-  if( mGetDevTool == NULL )
+  if ( mGetDevTool == NULL )
   {
     GetLogger( STR_GAME )->WriteF_time( "LoadDLL() FAIL load FuncGetdevTool.\n" );
     return false;
   }
-  if( mDevTool != NULL )
+  if ( mDevTool != NULL )
   {
     GetLogger( STR_GAME )->WriteF_time( "LoadDLL() warning, object was loaded.\n" );
     return true;
   }
   mDevTool = mGetDevTool( variant_use );
-  if( mDevTool == NULL )// нет DLL - нет движка.
+  if ( mDevTool == NULL )// нет DLL - нет движка.
     return false;
 
   mMngThreadModules.reset( new TModulesThreadManager );
@@ -101,13 +103,13 @@ void TGameEngine::Init()
 //------------------------------------------------------------------------
 void TGameEngine::Work( int variant_use, const char* sNameDLL, std::vector<std::string>& vecParam )// начало работы
 {
-  if( LoadDLL( variant_use, sNameDLL ) == false )
+  if ( LoadDLL( variant_use, sNameDLL ) == false )
     return;
   mDevTool->SetVectorParam( vecParam );
   // подготовка конвейера
-  if( PrepareConveyer() == false )
+  if ( PrepareConveyer() == false )
     return;
-  if( CreateModules() == false )
+  if ( CreateModules() == false )
     return;
   LinkModulesToSynchroPoint();
   // создать поток, который создает потоки модулей
@@ -122,35 +124,30 @@ void TGameEngine::Work( int variant_use, const char* sNameDLL, std::vector<std::
 //------------------------------------------------------------------------
 std::string TGameEngine::GetVersion()
 {
-  std::string s = "Tornado Game Engine, Version ";
-  s += boost::lexical_cast<std::string>(VERSION_GAME_ENGINE);
-  s += ", mode \"";
-  s += GAME_ENGINE_MODE_WORK;
-  s += "\"";
-  return s;
+  return fmt::format( "Tornado Game Engine, Version {}, mode work \"{}\"",
+    VERSION_GAME_ENGINE, GAME_ENGINE_MODE_WORK );
 }
 //------------------------------------------------------------------------
 void TGameEngine::StopThreadByModule( std::string sNameModule )
 {
   // создать событие
-  Event( nsGameEngine::eStopThreads, sNameModule.data() );
+  Event( nsGameEngine::eStopThreads, sNameModule );
   // разбудить главный поток
   Resume();
 }
 //------------------------------------------------------------------------
 bool TGameEngine::PrepareConveyer()
 {
-  std::string sFileDescConveyer = mDevTool->GetFileDescConveyer();
-  std::string sVariantConveyer = mDevTool->GetVariantConveyer();
+  auto sFileDescConveyer = mDevTool->GetFileDescConveyer();
+  auto sVariantConveyer = mDevTool->GetVariantConveyer();
   TParserXMLConveyer parser;
-  if( parser.Work( sFileDescConveyer, sVariantConveyer ) == false )
-  {
-    std::string sError = parser.GetStrError();
-    Event( nsGameEngine::eParseFileConveyerError, sError.data() );
-    return false;
-  }
-  parser.GetResult( mVecVecStrModule );
-  return true;
+  if( parser.Work( sFileDescConveyer ) )
+    mVecVecStrModule = parser.GetResult( sVariantConveyer );
+  if ( mVecVecStrModule.size() > 0 )
+    return true;
+  auto sError = parser.GetStrError();
+  Event( nsGameEngine::eParseFileConveyerError, sError );
+  return false;
 }
 //------------------------------------------------------------------------
 void TGameEngine::StartThread_StartThreads()
@@ -173,17 +170,17 @@ void TGameEngine::StartThreadsWithModules()
 {
   // ждать пока главный поток уснет
   boost::mutex::scoped_lock lock( mMutex );
-  while( lock.owns_lock() == false )
+  while ( lock.owns_lock() == false )
     ht_msleep( 50 );
 
   int cntThread = mVecVecModule.size();
   mMngThreadModules->SetCountThread( cntThread );
-  for( int iThread = 0; iThread < cntThread; iThread++ )
+  for ( int iThread = 0; iThread < cntThread; iThread++ )
   {
     // создать поток и поместить в него модули
     int cntModule = mVecVecModule[iThread].size();
     TVecPtrModule& vecModule = mVecVecModule[iThread];
-    for( int iModule = 0; iModule < cntModule; iModule++ )
+    for ( int iModule = 0; iModule < cntModule; iModule++ )
       mMngThreadModules->AddModuleByThread( iThread, vecModule[iModule] );
   }
   mMngThreadModules->SetCallbackStop( &mCB_Stop );
@@ -204,31 +201,31 @@ void TGameEngine::StopThreadsWithModules()
 bool TGameEngine::CreateModules()
 {
   int cntThread = mVecVecStrModule.size();
-  for( int iThread = 0; iThread < cntThread; iThread++ )
+  for ( int iThread = 0; iThread < cntThread; iThread++ )
   {
     // создать поток и поместить в него модули
     int cntModule = mVecVecStrModule[iThread].size();
     TVecStr& vecStrModule = mVecVecStrModule[iThread];
 
     TVecPtrModule vecPtrModule;
-    for( int iModule = 0; iModule < cntModule; iModule++ )
+    for ( int iModule = 0; iModule < cntModule; iModule++ )
     {
       IModule* pModule = mDevTool->GetModuleByName( vecStrModule[iModule].data() );
-      if( pModule != nullptr )
+      if ( pModule != nullptr )
       {
         vecPtrModule.push_back( pModule );
         mMapName_IDModule.insert( TMapStrIntVT( pModule->GetName(), pModule->GetID() ) );
       }
       else
-        Event( nsGameEngine::eModuleNotMade, vecStrModule[iModule].data() );
+        Event( nsGameEngine::eModuleNotMade, vecStrModule[iModule] );
     }
-    if( vecPtrModule.size() )
+    if ( vecPtrModule.size() )
       mVecVecModule.push_back( vecPtrModule );
   }
 
   Event( nsGameEngine::eAfterCreateModules );
 
-  if( mVecVecStrModule.size() == 0 )
+  if ( mVecVecStrModule.size() == 0 )
     return false;
 
   return true;
@@ -237,27 +234,23 @@ bool TGameEngine::CreateModules()
 void TGameEngine::Event( int id, std::string param )
 {
   std::string sEvent;
-  if( nsGameEngine::GetStrEventsByID( id, sEvent ) == false )
+  if ( nsGameEngine::GetStrEventsByID( id, sEvent ) == false )
     return;
 
-  char sError[10000];
-  const char* format = sEvent.data();
-  if( param.length() )
-    sprintf( sError, format, param.data() );
-  else
-    sprintf( sError, format );
-
+  std::string sError = sEvent;
+  if ( param.length() )
+    sError = fmt::format( sEvent, param );
   mDevTool->EventGameEngine( id, sError );
 }
 //------------------------------------------------------------------------
 void TGameEngine::LinkModulesToSynchroPoint()
 {
   int cntThread = mVecVecModule.size();
-  for( int iThread = 0; iThread < cntThread; iThread++ )
+  for ( int iThread = 0; iThread < cntThread; iThread++ )
   {
     int cntModule = mVecVecModule[iThread].size();
     TVecPtrModule& vecModule = mVecVecModule[iThread];
-    for( int iModule = 0; iModule < cntModule; iModule++ )
+    for ( int iModule = 0; iModule < cntModule; iModule++ )
     {
       vecModule[iModule]->SetSynchroPoint( mSynchroPoint.get() );
       vecModule[iModule]->SetSelfID( vecModule[iModule]->GetID() );
@@ -269,7 +262,7 @@ void TGameEngine::LinkModulesToSynchroPoint()
 bool TGameEngine::FindIDByNameModule( std::string& nameSrc, int& id )
 {
   TMapStrIntIt fit = mMapName_IDModule.find( nameSrc );
-  if( fit == mMapName_IDModule.end() )
+  if ( fit == mMapName_IDModule.end() )
     return false;
 
   id = fit->second;

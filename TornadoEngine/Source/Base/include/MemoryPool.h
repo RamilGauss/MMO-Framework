@@ -9,6 +9,7 @@ See for more information License.h.
 #include <memory>
 #include <map>
 #include <list>
+
 #include "VectorRise.h"
 #include "TypeDef.h"
 
@@ -16,18 +17,21 @@ template<typename Type>
 class DllExport TMemoryPool
 {
 public:
-  struct TDescPointer
+  struct TPointerDesc
   {
     Type* p = nullptr;
     int size = 0;
+  private:
+    friend class TMemoryPool;
+    unsigned char poped = false;
   };
 
-  TDescPointer* Pop( int size );
-  void Push( TDescPointer* pDesc );
+  TPointerDesc* Pop( int size );
+  void Push( TPointerDesc* pDesc );
 
   void Clear();
 private:
-  typedef TVectorRise<TDescPointer*> TVectorRiseDescPtr;
+  typedef TVectorRise<TPointerDesc*> TVectorRiseDescPtr;
 
   typedef std::map<int, TVectorRiseDescPtr*> TIntVectorDescPtrMap;
   typedef typename TIntVectorDescPtrMap::iterator   TIntVectorDescPtrMapIt;
@@ -38,17 +42,17 @@ private:
   // для хранения всех указателей
   TVectorRiseDescPtr mPool;
 
-  TDescPointer* Allocate( int size );
+  TPointerDesc* Allocate( int size );
 
   TVectorRiseDescPtr* GetVectorRiseDescPtr( int size );
 };
 //--------------------------------------------------------------------------------------
 template<typename Type>
-typename TMemoryPool<Type>::TDescPointer* TMemoryPool<Type>::Pop( int size )
+typename TMemoryPool<Type>::TPointerDesc* TMemoryPool<Type>::Pop( int size )
 {
-  TDescPointer* pDesc = nullptr;
+  TPointerDesc* pDesc = nullptr;
   auto pVecRise = GetVectorRiseDescPtr( size );
-  if( pVecRise->mCounter == 0 )
+  if ( pVecRise->mCounter == 0 )
   {
     pDesc = Allocate( size );
   }
@@ -57,14 +61,20 @@ typename TMemoryPool<Type>::TDescPointer* TMemoryPool<Type>::Pop( int size )
     pDesc = pVecRise->mVec[pVecRise->mCounter - 1];
     pVecRise->PopBack();
   }
+
+  pDesc->poped = true;
   return pDesc;
 }
 //--------------------------------------------------------------------------------------
 template<typename Type>
-void TMemoryPool<Type>::Push( TDescPointer* pDesc )
+void TMemoryPool<Type>::Push( TPointerDesc* pDesc )
 {
+  if( pDesc->poped == false )
+    return;
+  pDesc->poped = false;
+
   auto pVecRise = GetVectorRiseDescPtr( pDesc->size );
-  if( pVecRise->mCounter >= pVecRise->mVec.size() )
+  if ( pVecRise->mCounter >= pVecRise->mVec.size() )
     pVecRise->IncreaseVec();
 
   pVecRise->Append( pDesc );
@@ -74,22 +84,22 @@ template<typename Type>
 typename TMemoryPool<Type>::TVectorRiseDescPtr* TMemoryPool<Type>::GetVectorRiseDescPtr( int size )
 {
   auto fit = mSizePtrMap.find( size );
-  if( fit == mSizePtrMap.end() )
+  if ( fit == mSizePtrMap.end() )
   {
-    mSizePtrMap.insert( TIntVectorDescPtrMapVT( size, new TVectorRiseDescPtr() ) );
+    mSizePtrMap.insert( {size, new TVectorRiseDescPtr()} );
     fit = mSizePtrMap.find( size );
   }
   return fit->second;
 }
 //--------------------------------------------------------------------------------------
 template<typename Type>
-typename TMemoryPool<Type>::TDescPointer* TMemoryPool<Type>::Allocate( int size )
+typename TMemoryPool<Type>::TPointerDesc* TMemoryPool<Type>::Allocate( int size )
 {
-  auto* pDesc = new TDescPointer();
+  auto* pDesc = new TPointerDesc();
   pDesc->p = new Type[size];
   pDesc->size = size;
 
-  if( mPool.mVec.size() == mPool.mCounter )
+  if ( mPool.mVec.size() == mPool.mCounter )
     mPool.IncreaseVec();
   mPool.Append( pDesc );
   return pDesc;
@@ -98,21 +108,20 @@ typename TMemoryPool<Type>::TDescPointer* TMemoryPool<Type>::Allocate( int size 
 template<typename Type>
 void TMemoryPool<Type>::Clear()
 {
-  for( size_t i = 0; i < mPool.mCounter; i++ )
+  for ( size_t i = 0; i < mPool.mCounter; i++ )
   {
     auto pDesc = mPool.mVec[i];
-    if( pDesc->size == 1 )
+    if ( pDesc->size == 1 )
       delete mPool.mVec[i]->p;
-    else if( pDesc->size > 0 )
-      delete [] mPool.mVec[i]->p;
+    else if ( pDesc->size > 0 )
+      delete[] mPool.mVec[i]->p;
     delete mPool.mVec[i];
   }
   mPool.Clear();
 
-  for( auto pair : mSizePtrMap )
-  {
+  for ( auto pair : mSizePtrMap )
     delete pair.second;
-  }
+
   mSizePtrMap.clear();
 }
 //--------------------------------------------------------------------------------------

@@ -47,7 +47,7 @@ template <typename TClass> class TDataExchange2Thread
 public:
   TDataExchange2Thread();
   ~TDataExchange2Thread();
-  // удалять тем способом, которым создали, или по-умолчанию new/delete
+  // удалять тем способом, которым создали, по-умолчанию new/delete
   // setup method of allocate memory, default new/delete.
   void SetCB_DeleteData( TCallBackRegistrator1<void*>* pCB ){ mCB_DeleteData = pCB; }
   //==============================INTERFACE=============================

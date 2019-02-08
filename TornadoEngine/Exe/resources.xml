@@ -3,7 +3,7 @@
 <!-- All possible resources. -->
 <Resources>
   <GameEngine Comment = "TornadoEngine">
-    <Resource Path = "../../Resources/Game/Conveyer.xml" Type = "Conveyer" />
+    <Resource Path = "../../Resources/Game/Conveyer.json" Type = "Conveyer" />
   </GameEngine>
   <GraphicEngine Comment = "OGRE" >
 	<TerrainPath Path = "../../Resources/Graphic/terrain"/>

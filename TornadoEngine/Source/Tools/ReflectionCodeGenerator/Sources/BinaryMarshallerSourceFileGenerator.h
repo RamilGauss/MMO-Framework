@@ -86,6 +86,7 @@ namespace nsReflectionCodeGenerator
     void AddSerializeImplementation( TTypeInfo* p );
     void AddDeserializeImplementation( TTypeInfo* p );
     void AddGetTypeIDImplementation( TTypeInfo* p );
+    void AddDeallocateImplentation( TTypeInfo* p );
 
     void AddCallingSerializeParent( const std::string& parentTypeName );
     void AddCallingDeserializeParent( const std::string& parentTypeName );
@@ -93,6 +94,7 @@ namespace nsReflectionCodeGenerator
 
     void AddPushByMemberInfo( TMemberInfo* pMemberInfo );
     void AddPopByMemberInfo( TMemberInfo* pMemberInfo );
+    void AddDeallocateByMemberInfo( TMemberInfo* pMemberInfo );
 
     // Push XXX
     void AddPushStr( const std::string& name );
@@ -184,6 +186,8 @@ namespace nsReflectionCodeGenerator
     void HandleReflectionComplexPush( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
 
     void AddCleanerArrayOrMap( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name );
+    void HandleDeallocateReflection( TMemberInfo* pMemberInfo );
+
     void HandleComplexPopZeroDepth( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name );
     void HandleComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );
     void General_ComplexPop( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth );

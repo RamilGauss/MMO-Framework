@@ -14,6 +14,8 @@ namespace nsReflectionCodeGenerator
 {
   class TBinaryMarshallerHeaderFileGenerator : public TBinaryMarshallerFileGenerator
   {
+    const std::string s_MemoryObjectPoolAllocator = "TMemoryObjectPoolAllocator";
+
     const std::list<std::string> s_BinaryDeclBeforeEnum =
     {
       "public:",
@@ -70,13 +72,13 @@ namespace nsReflectionCodeGenerator
       "  void FillUnpack( Type* p, char* packedData, int size );",
       "",
       "  template <typename Type>",
-      fmt::format( "  static void {}( const Type* p );", s_Deallocate ),
+      fmt::format( "  static void {}( Type* p );", s_GeneralDeallocate ),
       "private:",
       "  void PushIsNotNullptr( void* p );",
       "  bool PopIsNotNullptr();",
       "",
       "  template <typename Type>",
-      fmt::format( "  static Type* {}();", s_Allocate ),
+      fmt::format( "  static Type* {}();", s_GeneralAllocate ),
       "  template <typename Type>",
       "  void _Deserialize( Type*& p, char* serData, int size, bool checkPtr );",
       fmt::format( "  {} PrepareForUnpackPopMaster( char* packedData, int size );", s_TypeID ),
@@ -146,7 +148,7 @@ namespace nsReflectionCodeGenerator
       "  auto typeFromBinary = PrepareForUnpackPopMaster( packedData, size );",
       "  auto typeByUserGuest = _GetTypeID( p );",
       "  BL_ASSERT( typeFromBinary == typeByUserGuest );",
-      fmt::format( "  p = {}<Type>();", s_Allocate),
+      fmt::format( "  p = {}<Type>();", s_GeneralAllocate),
       fmt::format( "  {}( p );", s_Deserialize ),
       "  return p;",
       "}",
@@ -161,15 +163,16 @@ namespace nsReflectionCodeGenerator
       "}",
       "//-----------------------------------------------------------------------------",
       "template <typename Type>",
-      fmt::format( "void {}::{}( const Type* p )", mBinaryMarshaller->className, s_Deallocate  ),
+      fmt::format( "void {}::{}( Type* p )", mBinaryMarshaller->className, s_GeneralDeallocate  ),
       "{",
-      "  TMemoryPoolAllocator::DeallocateFunc( (void*) p );",
+      fmt::format( "  {}( p );", s_Deallocate ),
+      fmt::format( "  {}::DeallocateFunc( p );", s_MemoryObjectPoolAllocator ),
       "}",
       "//-----------------------------------------------------------------------------",
       "template <typename Type>",
-      fmt::format( "static Type* {}::{}()", mBinaryMarshaller->className, s_Allocate ),
+      fmt::format( "static Type* {}::{}()", mBinaryMarshaller->className, s_GeneralAllocate ),
       "{",
-      "  return (Type*) TMemoryPoolAllocator::AllocateFunc<Type>();",
+      fmt::format( "  return {}::AllocateFunc<Type>();", s_MemoryObjectPoolAllocator ),
       "}",
       "//-----------------------------------------------------------------------------",
       "template <typename Type>",

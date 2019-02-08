@@ -10,7 +10,7 @@ See for more information License.h.
 #include <conio.h>
 #include "Marshaller.h"
 #include "MemoryPool.h"
-#include "MemoryPoolAllocator.h"
+#include "MemoryObjectPoolAllocator.h"
 #include "BinarySerializer.h"
 #include "lz4.h"
 #include "BinaryMarshaller.h"

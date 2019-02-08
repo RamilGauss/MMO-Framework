@@ -34,17 +34,17 @@ std::shared_ptr<TTestClass> Create()
   p->ts.strIntMap = {{ "0", 0 }, { "1", 1 }, { "2", 2 }};
   p->ts.strBoolMap = {{ "0", false }, { "1", true }, { "2", true }};
 
-  p->ts.baseVec.push_back( TBaseStruct() );
+  p->ts.baseVec.push_back( nsBS::TBaseStruct() );
   p->ts.basePtrVec.push_back( nullptr );// new TBaseStruct() );
-  p->ts.baseSPVec.push_back( std::shared_ptr<TBaseStruct>( new TBaseStruct() ) );
+  p->ts.baseSPVec.push_back( std::shared_ptr<nsBS::TBaseStruct>( new nsBS::TBaseStruct() ) );
 
-  p->ts.strBaseMap.insert( {"0", TBaseStruct()} );
+  p->ts.strBaseMap.insert( {"0", nsBS::TBaseStruct()} );
   p->ts.strBasePtrMap.insert( {"0", nullptr} );// new TBaseStruct() } );
-  p->ts.strBaseSPMap.insert( {"0", std::shared_ptr<TBaseStruct>( new TBaseStruct() )} );
+  p->ts.strBaseSPMap.insert( {"0", std::shared_ptr<TBaseStruct>( new nsBS::TBaseStruct() )} );
 
-  p->ts.intBaseMap.insert( {0, TBaseStruct()} );
+  p->ts.intBaseMap.insert( {0, nsBS::TBaseStruct()} );
   p->ts.intBasePtrMap.insert( {0, nullptr} );//new TBaseStruct() } );
-  p->ts.intBaseSPMap.insert( {0, std::shared_ptr<TBaseStruct>( new TBaseStruct() )} );
+  p->ts.intBaseSPMap.insert( {0, std::shared_ptr<nsBS::TBaseStruct>( new nsBS::TBaseStruct() )} );
 
   p->ts.intArrArr = {{0,1,2,3},{0,1,2,3},{0,1,2,3}};
   p->ts.strMapMap =

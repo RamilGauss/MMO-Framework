@@ -28,7 +28,7 @@ namespace nsReflectionCodeGenerator
           "built-in types",
           "std: map, set, vector, list",
           "std: shared_ptr, auto_ptr, weak_ptr, unique",
-          "class UnpackHandler with static void Handle( const Type* p )",
+          "class UnpackHandler with static void Handle( Type* p )",
         }
       },
       { "2. PROHIBITED",

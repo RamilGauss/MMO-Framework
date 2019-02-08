@@ -253,6 +253,9 @@
     <Filter Include="Protocol\SlaveMaster">
       <UniqueIdentifier>{55ae9396-cb39-4bc5-b694-d71f2cbe84bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{ff7a3578-6538-4578-9584-9d4af3143475}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\Components.cpp">
@@ -668,6 +671,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Common\PatternNameManager.cpp">
       <Filter>Scene\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated Files\JsonSerializer.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1124,5 +1130,14 @@
     <ClInclude Include="Scene\Common\PatternNameManager.h">
       <Filter>Scene\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Generated Files\IncludeList.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated Files\JsonSerializer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="reflectionConfig.json" />
   </ItemGroup>
 </Project>

@@ -20,8 +20,8 @@ namespace nsReflectionCodeGenerator
   protected:
     const std::string s_THeader = "THeader";
 
-    const std::string s_Deallocate = "Deallocate";
-    const std::string s_Allocate = "Allocate";
+    const std::string s_GeneralDeallocate = "Deallocate";
+    const std::string s_GeneralAllocate = "Allocate";
 
     const std::string s_SetLimitForCompression = "SetLimitForCompression";
     const std::string s_PrepareForUnpackPopMaster = "PrepareForUnpackPopMaster";
@@ -35,6 +35,7 @@ namespace nsReflectionCodeGenerator
     const std::string s_Serialize = "_Serialize";
     const std::string s_Deserialize = "_Deserialize";
     const std::string s_GetTypeID = "_GetTypeID";
+    const std::string s_Deallocate = "_Deallocate";
 
     const std::string s_PushMaster = "mPushMaster";
     const std::string s_PopMaster = "mPopMaster";

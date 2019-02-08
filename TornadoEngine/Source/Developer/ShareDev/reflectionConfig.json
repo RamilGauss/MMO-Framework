@@ -1,0 +1,37 @@
+{
+  "targetForParsing":
+  {
+    "directories":
+    [
+      "."
+    ],
+    "recursive": true
+  },
+  "filter":
+  {
+    "attribute": "REFLECTION_ATTRIBUTE",
+    "extensions":
+    [
+      ".h",
+      ".hpp",
+      ".hh",
+      ".hxx",
+      ".h++"
+    ]
+  },
+  "targetForCodeGeneration":
+  {
+    "directory": "./Generated Files",
+    "includeListFileName": "IncludeList",
+    "implementation":
+    {
+      "jsonSerializer":
+      {
+        "exportDeclaration": "",
+        "nameSpaceName": "nsSharedDev",
+        "fileName": "JsonSerializer",
+        "className": "TJsonSerializer"
+      }
+    }
+  }
+}

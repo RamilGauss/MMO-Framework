@@ -160,7 +160,7 @@ std::string TDevTool_Share::GetFileDescConveyer()
   return "";
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::EventGameEngine( int id, const char* sDesc )
+void TDevTool_Share::EventGameEngine( int id, const std::string& sDesc )
 {
   switch ( id )
   {
@@ -180,7 +180,7 @@ void TDevTool_Share::EventGameEngine( int id, const char* sDesc )
     case nsGameEngine::eParseFileConveyerError:
     case nsGameEngine::eModuleNotMade:
     case nsGameEngine::eThreadsNotExist:
-      BL_MessageBug_Utf8( sDesc );
+      BL_MessageBug_Utf8( sDesc.data() );
       break;
   }
 }

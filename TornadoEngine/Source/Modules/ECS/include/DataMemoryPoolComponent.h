@@ -9,7 +9,7 @@ struct DllExport TDataMemoryPoolComponent
   Type* p = nullptr;
   int size = 0;
 private:
-  typename TMemoryPool<Type>::TDescPointer* mPtrDesc = nullptr;
+  typename TMemoryPool<Type>::TPointerDesc* mPtrDesc = nullptr;
 
   // inline можно, все равно данные будут браться из общего пула (он не подвержен опасности разных указателей в разных библиотеках)
   static inline TMemoryPool<Type>* mMemoryPool = nullptr;

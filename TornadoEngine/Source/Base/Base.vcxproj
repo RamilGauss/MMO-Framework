@@ -258,8 +258,9 @@
     <ClInclude Include="include\Marshaller.h" />
     <ClInclude Include="include\MathTools.h" />
     <ClInclude Include="include\MD5.h" />
+    <ClInclude Include="include\MemoryObjectPool.h" />
     <ClInclude Include="include\MemoryPool.h" />
-    <ClInclude Include="include\MemoryPoolAllocator.h" />
+    <ClInclude Include="include\MemoryObjectPoolAllocator.h" />
     <ClInclude Include="include\MessagePackSerializer.h" />
     <ClInclude Include="include\Mutex.h" />
     <ClInclude Include="include\Only_N_Object.h" />

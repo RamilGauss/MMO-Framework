@@ -114,6 +114,8 @@ void TBinaryMarshallerSourceFileGenerator::AddImplementation( TTypeInfo* p )
   AddCommentedLongLine();
   AddGetTypeIDImplementation( p );
   AddCommentedLongLine();
+  AddDeallocateImplentation( p );
+  AddCommentedLongLine();
 }
 //-------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddSerializeImplementation( TTypeInfo* p )
@@ -121,7 +123,7 @@ void TBinaryMarshallerSourceFileGenerator::AddSerializeImplementation( TTypeInfo
   auto className = mBinaryMarshaller->className;
   auto namespaceWithType = p->GetTypeNameWithNameSpace();
   auto strList = GetParamListForSerialize( namespaceWithType );
-  AddMethodImplementationBegin( "void", className, s_Serialize, strList );
+  AddMethodImplementationBegin( s_Void, className, s_Serialize, strList );
   AddLeftBrace();
   IncrementTabs();
 
@@ -138,7 +140,7 @@ void TBinaryMarshallerSourceFileGenerator::AddDeserializeImplementation( TTypeIn
   auto className = mBinaryMarshaller->className;
   auto namespaceWithType = p->GetTypeNameWithNameSpace();
   auto strList = GetParamListForDeserialize( namespaceWithType );
-  AddMethodImplementationBegin( "void", className, s_Deserialize, strList );
+  AddMethodImplementationBegin( s_Void, className, s_Deserialize, strList );
   AddLeftBrace();
   IncrementTabs();
 
@@ -162,6 +164,21 @@ void TBinaryMarshallerSourceFileGenerator::AddGetTypeIDImplementation( TTypeInfo
   auto enumName = MakeEnumName( p );
   auto s = fmt::format( "return {};", enumName );
   Add( s );
+
+  DecrementTabs();
+  AddRightBrace();
+}
+//-------------------------------------------------------------------------------------
+void TBinaryMarshallerSourceFileGenerator::AddDeallocateImplentation( TTypeInfo* p )
+{
+  auto className = mBinaryMarshaller->className;
+  auto namespaceWithType = p->GetTypeNameWithNameSpace();
+  auto strList = GetParamListForGetID( namespaceWithType );
+  AddMethodImplementationBegin( s_Void, className, s_Deallocate, strList );
+  AddLeftBrace();
+  IncrementTabs();
+
+  AddCallingMethod( p, [this]( TMemberInfo* mi ) {AddDeallocateByMemberInfo( mi ); } );
 
   DecrementTabs();
   AddRightBrace();
@@ -231,6 +248,30 @@ void TBinaryMarshallerSourceFileGenerator::AddPopByMemberInfo( TMemberInfo* pMem
       auto extArr = pMemberInfo->CreateExtArray();
       AddCleanerArrayOrMap( extArr, pMemberInfo->mName );
       HandleComplexPopZeroDepth( extArr, pMemberInfo->mName );
+    }
+    break;
+  }
+}
+//-----------------------------------------------------------------------------------------------------------
+void TBinaryMarshallerSourceFileGenerator::AddDeallocateByMemberInfo( TMemberInfo* pMemberInfo )
+{
+  switch ( pMemberInfo->mExtendedInfo.mCategory )
+  {
+    case TMemberTypeExtendedInfo::BuiltIn:
+    case TMemberTypeExtendedInfo::String:
+      break;
+    case TMemberTypeExtendedInfo::Reflection:
+      HandleDeallocateReflection( pMemberInfo );
+      break;
+    case TMemberTypeExtendedInfo::Set:
+      //( pMemberInfo );
+      break;
+    case TMemberTypeExtendedInfo::Vector:
+    case TMemberTypeExtendedInfo::List:
+    case TMemberTypeExtendedInfo::Map:
+    {
+      auto extArr = pMemberInfo->CreateExtArray();
+      AddCleanerArrayOrMap( extArr, pMemberInfo->mName );
     }
     break;
   }
@@ -852,7 +893,7 @@ std::string TBinaryMarshallerSourceFileGenerator::GetIsElementNotNull( std::vect
   std::string getAddress;
   auto elementName = ElementName( name, depth - 1 );
 
-  if( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map )
+  if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map )
   {
     auto templateForGetAddress = GetTemplateForGetAddress( extArr[depth - 1].mTemplateChildArr[1].mAccessMethod );
     auto keyName = fmt::format( "{}.{}", elementName, s_Second );
@@ -863,7 +904,7 @@ std::string TBinaryMarshallerSourceFileGenerator::GetIsElementNotNull( std::vect
     auto templateForGetAddress = GetTemplateForGetAddress( extArr[depth - 1].mTemplateChildArr[0].mAccessMethod );
     getAddress = fmt::format( templateForGetAddress, elementName );
   }
-  return fmt::format( "{} != {}", getAddress, s_Nullptr);
+  return fmt::format( "{} != {}", getAddress, s_Nullptr );
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPushSerializeValue( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth )
@@ -917,6 +958,29 @@ void TBinaryMarshallerSourceFileGenerator::AddPushElement( std::vector<TMemberTy
   Add( pushExpression );
 }
 //-----------------------------------------------------------------------------------------------------------
+void TBinaryMarshallerSourceFileGenerator::HandleDeallocateReflection( TMemberInfo* pMemberInfo )
+{
+  switch ( pMemberInfo->mExtendedInfo.mAccessMethod )
+  {
+    case TMemberTypeExtendedInfo::Object:
+      break;
+    case TMemberTypeExtendedInfo::Pointer:
+    {
+      auto deallocExpression = fmt::format( "{}( {}->{} );", s_Deallocate, s_TypeObject, pMemberInfo->mName );
+      Add( deallocExpression );
+      auto nullExpression = fmt::format( "{}->{} = {};", s_TypeObject, pMemberInfo->mName, s_Nullptr );
+      Add( nullExpression );
+    }
+    break;
+    case TMemberTypeExtendedInfo::SmartPointer:
+    {
+      auto resetExpression = fmt::format( "{}->{}.reset();", s_TypeObject, pMemberInfo->mName );
+      Add( resetExpression );
+    }
+    break;
+  }
+}
+//-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddCleanerArrayOrMap( std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name )
 {
   auto& ext = extArr.back();
@@ -945,7 +1009,7 @@ void TBinaryMarshallerSourceFileGenerator::AddCleanerArrayOrMap( std::vector<TMe
         if ( extArr[i].mCategory == TMemberTypeExtendedInfo::Map )
           pointerStr = fmt::format( "{}.{}", elementName, s_Second );
 
-        auto deallocateExpression = fmt::format( "{}( {} );", s_Deallocate, pointerStr );
+        auto deallocateExpression = fmt::format( "{}( {} );", s_GeneralDeallocate, pointerStr );
         Add( deallocateExpression );
       }
     }
@@ -1186,7 +1250,7 @@ std::string TBinaryMarshallerSourceFileGenerator::GetInitExpression( TMemberType
     case TMemberTypeExtendedInfo::Object:
       return "";
     case TMemberTypeExtendedInfo::Pointer:
-      return fmt::format( " = {}<{}>()", s_Allocate, typeName );
+      return fmt::format( " = {}<{}>()", s_GeneralAllocate, typeName );
     case TMemberTypeExtendedInfo::SmartPointer:
       return fmt::format( ".reset( new {}() )", typeName );
   }
@@ -1357,14 +1421,14 @@ void TBinaryMarshallerSourceFileGenerator::AddPopSerPtr( const std::string& type
 {
   auto ptrName = fmt::format( "{}->{}", s_TypeObject, name );
   auto checkOnNullCondition = fmt::format( "{}->{} == {} ", s_TypeObject, name, s_Nullptr );
-  auto newPtrExpression = fmt::format( "{}->{} = {}<{}>();", s_TypeObject, name, s_Allocate, type );
+  auto newPtrExpression = fmt::format( "{}->{} = {}<{}>();", s_TypeObject, name, s_GeneralAllocate, type );
   General_AddPopReflection( ptrName, checkOnNullCondition, newPtrExpression );
 
   AddElse();
   AddLeftBrace();
   IncrementTabs();
 
-  auto deallocateExpression = fmt::format( "{}( {}->{} );", s_Deallocate, s_TypeObject, name );
+  auto deallocateExpression = fmt::format( "{}( {}->{} );", s_GeneralDeallocate, s_TypeObject, name );
   Add( deallocateExpression );
 
   auto setNullExpression = fmt::format( "{}->{} = {};", s_TypeObject, name, s_Nullptr );

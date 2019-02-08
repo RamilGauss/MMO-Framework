@@ -20,6 +20,9 @@ See for more information License.h.
 #include "SetupConfig.h"
 #include "ProgramInfo.h"
 
+#include "HiTimer.h"
+#include "TestClass.h"
+
 using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
 
@@ -52,7 +55,7 @@ void ShowTitle()
   fmt::print( "{} version {} build {}\n", nsProgramInfo::NAME, nsProgramInfo::VERSION, nsProgramInfo::COUNTER_BUILD );
 }
 //---------------------------------------------------------------------------------------
-int main( int argc, char *argv [] )
+int main( int argc, char *argv[] )
 {
   ShowTitle();
 

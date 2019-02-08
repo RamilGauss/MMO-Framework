@@ -43,6 +43,8 @@ namespace nsReflectionCodeGenerator
     const std::string s_Second = "second";
 
     const std::string s_Nullptr = "nullptr";
+    const std::string s_Static = "static";
+    const std::string s_Void = "void";
 
     TStrListPair* pStrListPair = nullptr;
 
