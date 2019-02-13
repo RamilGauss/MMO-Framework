@@ -72,7 +72,7 @@ int main( int argc, char** argv )
   }
   //-----------------------------------------------------------------  
   pGame->Work( cmdTornado.mInput.variant_use,
-    cmdTornado.mInput.libName.data(), cmdTornado.mInput.param );
+    cmdTornado.mInput.libName, cmdTornado.mInput.param );
   delete pGame;
   return 0;
 }

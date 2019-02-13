@@ -124,7 +124,8 @@
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <UseFullPaths>false</UseFullPaths>
       <SupportJustMyCode>false</SupportJustMyCode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>
+      </LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

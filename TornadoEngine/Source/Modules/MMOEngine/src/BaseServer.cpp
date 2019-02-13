@@ -31,7 +31,7 @@ void TBaseServer::Reject( int sessionID )
 }
 //-------------------------------------------------------------------------
 //###
-void TBaseServer::DisconnectByKeyClient( unsigned int id_client )
+void TBaseServer::DisconnectByKeyClient( unsigned int clientID )
 {
 
 }

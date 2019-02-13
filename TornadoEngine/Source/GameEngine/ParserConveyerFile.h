@@ -6,10 +6,11 @@ See for more information License.h.
 */
 
 #pragma once
+
 #include <string>
 #include "ConveyerConfig.h"
 
-class TParserXMLConveyer
+class TParserConveyerFile
 {
   std::string strError;
 
@@ -17,5 +18,5 @@ class TParserXMLConveyer
 public:
   bool Work( std::string& fileDescConveyer );
   std::string GetStrError();
-  std::vector<std::vector<std::string>> GetResult( std::string& variantConveyer );
+  std::vector<std::string> GetResult( std::string& variantConveyer );
 };

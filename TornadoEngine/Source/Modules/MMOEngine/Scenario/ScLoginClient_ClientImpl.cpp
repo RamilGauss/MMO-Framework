@@ -220,7 +220,7 @@ void TScLoginClient_ClientImpl::InfoSlaveM2C( TDescRecvSession* pDesc )
   // формируем пакет для Master
   mBP.Reset();
   THeaderCheckInfoSlaveC2M h;
-  h.clientID = Context()->GetClientKey();// равнозначно - pInfoSlave->id_client;
+  h.clientID = Context()->GetClientKey();// равнозначно - pInfoSlave->clientID;
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
   Context()->GetMS()->Send( GetID_SessionClientMaster(), mBP );

@@ -379,7 +379,7 @@ void TScLoginClient_MasterImpl::CheckInfoSlaveC2M( TDescRecvSession* pDesc )
     return;
   //=====================================
   THeaderCheckInfoSlaveC2M* pHeader = (THeaderCheckInfoSlaveC2M*) pDesc->data;
-  // в целях безопасности нельзя использовать id_client, потому что клиент может "прикинуться" другим
+  // в целях безопасности нельзя использовать clientID, потому что клиент может "прикинуться" другим
   NeedContextBySessionAfterAuthorised( pDesc->sessionID );
   if( Context() == nullptr )
   {

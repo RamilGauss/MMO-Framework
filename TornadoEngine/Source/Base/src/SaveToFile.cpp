@@ -78,7 +78,7 @@ void TSaveToFile::Write( void* buffer, int size )
 void TSaveToFile::Write_Time()
 {
   auto str_time = ht_GetTimeStr();
-  Write( str_time.data(), str_time.length() );
+  Write( (char*)str_time.data(), str_time.length() );
 }
 //---------------------------------------------------------------
 void TSaveToFile::FlushBuffer()

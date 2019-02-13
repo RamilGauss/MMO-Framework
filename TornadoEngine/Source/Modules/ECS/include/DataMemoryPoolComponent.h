@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #pragma once
 #include "MemoryPool.h"
 #include "TypeDef.h"
@@ -11,8 +18,7 @@ struct DllExport TDataMemoryPoolComponent
 private:
   typename TMemoryPool<Type>::TPointerDesc* mPtrDesc = nullptr;
 
-  // inline можно, все равно данные будут браться из общего пула (он не подвержен опасности разных указателей в разных библиотеках)
-  static inline TMemoryPool<Type>* mMemoryPool = nullptr;
+  static TMemoryPool<Type>* mMemoryPool;
 public:
   TDataMemoryPoolComponent( nsECSFramework::THugeRegistry* pR, int s = 1 )
   {
@@ -41,6 +47,9 @@ private:
     r.get<PooledComponents::TUchar>( e ).Done();
   }
 };
+
+template<typename Type>
+TMemoryPool<Type>* TDataMemoryPoolComponent<Type>::mMemoryPool = nullptr;
 
 namespace PooledComponents
 {

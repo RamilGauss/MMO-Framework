@@ -23,6 +23,8 @@ See for more information License.h.
 #include "HiTimer.h"
 #include "TestClass.h"
 
+#include "DstEvent.h"
+
 using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
 

@@ -52,8 +52,7 @@ bool TManagerContextDownConnection::GetSessionByIndex( int index, unsigned int& 
   return true;
 }
 //-----------------------------------------------------------------------------------
-bool TManagerContextDownConnection::GetCountClientKey( unsigned int sessionID,
-  int &count )
+bool TManagerContextDownConnection::GetCountClientKey( unsigned int sessionID, int &count )
 {
   TMapUintSetUintIt fit = mMapSessionKey.find( sessionID );
   if( fit == mMapSessionKey.end() )
@@ -62,9 +61,7 @@ bool TManagerContextDownConnection::GetCountClientKey( unsigned int sessionID,
   return true;
 }
 //-----------------------------------------------------------------------------------
-bool TManagerContextDownConnection::GetClientKeyByIndex( unsigned int sessionID,
-  int index,
-  unsigned int& id_client )
+bool TManagerContextDownConnection::GetClientKeyByIndex( unsigned int sessionID, int index, unsigned int& clientID )
 {
   TMapUintSetUintIt fit = mMapSessionKey.find( sessionID );
   if( fit == mMapSessionKey.end() )
@@ -78,7 +75,7 @@ bool TManagerContextDownConnection::GetClientKeyByIndex( unsigned int sessionID,
     return false;
   for( int i = 0; i < index; i++ )
     it++;
-  id_client = *it;
+  clientID = *it;
   return true;
 }
 //-----------------------------------------------------------------------------------
@@ -98,8 +95,7 @@ TContainerContextSc* TManagerContextDownConnection::AddContext( unsigned int ses
   return pC;
 }
 //-----------------------------------------------------------------------------------
-bool TManagerContextDownConnection::AddClientKey( unsigned int sessionID,
-  unsigned int id_client )
+bool TManagerContextDownConnection::AddClientKey( unsigned int sessionID, unsigned int clientID )
 {
   // проверка на существование такого мастера
   TContainerContextSc* pC = FindContextBySession( sessionID );
@@ -115,17 +111,16 @@ bool TManagerContextDownConnection::AddClientKey( unsigned int sessionID,
     BL_FIX_BUG();
   }
 
-  fit->second.insert( TSetUint::value_type( id_client ) );
+  fit->second.insert( TSetUint::value_type( clientID ) );
   return true;
 }
 //-----------------------------------------------------------------------------------
-void TManagerContextDownConnection::DeleteByClientKey( unsigned int sessionID,
-  unsigned int id_client )
+void TManagerContextDownConnection::DeleteByClientKey( unsigned int sessionID, unsigned int clientID )
 {
   TMapUintSetUintIt fit = mMapSessionKey.find( sessionID );
   if( fit == mMapSessionKey.end() )
     return;
-  fit->second.erase( id_client );
+  fit->second.erase( clientID );
 }
 //-----------------------------------------------------------------------------------
 void TManagerContextDownConnection::DeleteContextBySession( unsigned int sessionID )
@@ -150,11 +145,11 @@ void TManagerContextDownConnection::Clear()
   mMapSessionContext.clear();
 }
 //-----------------------------------------------------------------------------------
-bool TManagerContextDownConnection::FindSessionByClientKey( unsigned int id_client, unsigned int &id_session_slave )
+bool TManagerContextDownConnection::FindSessionByClientKey( unsigned int clientID, unsigned int &id_session_slave )
 {
   for( auto& it : mMapSessionKey )
   {
-    TSetUintIt fit = it.second.find( id_client );
+    TSetUintIt fit = it.second.find( clientID );
     if( fit != it.second.end() )
     {
       id_session_slave = it.first;

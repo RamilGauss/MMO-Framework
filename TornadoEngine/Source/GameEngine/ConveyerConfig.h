@@ -15,7 +15,7 @@ See for more information License.h.
 REFLECTION_ATTRIBUTE
 struct TAppConfig
 {
-  std::vector<std::vector<std::string>> modulesInThreads;
+  std::vector<std::string> modules;
 };
 
 REFLECTION_ATTRIBUTE

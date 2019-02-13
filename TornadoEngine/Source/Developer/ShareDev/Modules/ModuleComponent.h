@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#ifndef ModuleComponentH
-#define ModuleComponentH
+#pragma once
 
 #include "ModuleDev.h"
 #include "DstEvent.h"
@@ -30,5 +29,3 @@ protected:
 protected:
   void OutputToSynchroPoint();
 };
-
-#endif

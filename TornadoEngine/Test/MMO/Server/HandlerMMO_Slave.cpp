@@ -44,11 +44,11 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       sEvent = "ConnectDown";
       auto sessionID = ((nsMMOEngine::TConnectDownEvent*) pBE)->sessionID;
       AddConnection( sessionID );
-      // если это Slave, то отправить пакет Мастеру с ID_Client
-      unsigned int id_client;
-      bool res = pSlave->FindClientKeyBySession( sessionID, id_client );
+      // если это Slave, то отправить пакет Мастеру с clientID
+      unsigned int clientID;
+      bool res = pSlave->FindClientKeyBySession( sessionID, clientID );
       char s[100];
-      sprintf( s, "%d", id_client );
+      sprintf( s, "%d", clientID );
       int sizeMsg = strlen( s );
       pSlave->SendUp( s, sizeMsg );
       // при авторизации клиента выставить нагрузку

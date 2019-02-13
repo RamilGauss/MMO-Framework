@@ -9,12 +9,14 @@
 #include "DataExchange2ThreadElement.h"
 #include <boost/pool/pool.hpp>
 
-struct A{};
+struct A
+{
+};
 typedef A TestingClass;
 //---------------------------------------------------------------------------------------------
 #if _DEBUG
-const long TEST_COUNT = 1000;
-const long ELEMENT_COUNT = 1000;
+const long TEST_COUNT = 100;
+const long ELEMENT_COUNT = 100;
 #else
 const long TEST_COUNT = 30000;
 const long ELEMENT_COUNT = 10000;
@@ -69,12 +71,12 @@ void Test_MemoryPool( int testCount, int elementCount )
 //---------------------------------------------------------------------------------------------
 void Test_BoostAllocator( int testCount, int elementCount )
 {
-  auto allocator = new boost::pool<>(sizeof(TestingClass));
+  auto allocator = new boost::pool<>( sizeof( TestingClass ) );
 
   for ( long i = 0; i < testCount; i++ )
   {
     for ( long e = 0; e < elementCount; e++ )
-      g_Arr[e] = (TestingClass*)allocator->malloc();
+      g_Arr[e] = (TestingClass*) allocator->malloc();
 
     for ( long e = 0; e < elementCount; e++ )
       allocator->free( g_Arr[e] );
@@ -103,9 +105,9 @@ void Test( std::string testName, std::function<void( int, int )> func )
 
   auto stop = ht_GetMSCount();
   auto delta = stop - start;
-  
+
   TTestResult result;
-  result.timePerCycle = (int)(( 1000000.0*delta ) / ( TEST_COUNT * ELEMENT_COUNT ));
+  result.timePerCycle = (int) ( ( 1000000.0*delta ) / ( TEST_COUNT * ELEMENT_COUNT ) );
   result.name = testName;
   g_TestResult.push_back( result );
 
@@ -121,15 +123,15 @@ int main( int argc, char *argv[] )
   Test( "new/delete", Test_NewDelete );
 
   int maxTime = 0;
-  for ( auto& test : g_TestResult)
+  for ( auto& test : g_TestResult )
   {
     maxTime = std::max( maxTime, test.timePerCycle );
   }
 
-  for ( auto& test : g_TestResult)
+  for ( auto& test : g_TestResult )
   {
-    auto percentage = (( 100.0f * test.timePerCycle ) / maxTime);
-    fmt::print( "{:30}: speed {:3.2} ns - {:3} %\n", test.name, test.timePerCycle, percentage );
+    auto percentage = ( ( 100.0f * test.timePerCycle ) / maxTime );
+    fmt::print( "{:30}: time per cycle {:6} ns - {:6.2f} %\n", test.name, test.timePerCycle, percentage );
   }
 
   getchar();

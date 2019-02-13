@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "ParserXMLConveyer.h"
+#include "ParserConveyerFile.h"
 
 #include "TextFile.h"
 #include "JsonSerializer.h"
 
-bool TParserXMLConveyer::Work( std::string& fileDescConveyer )
+bool TParserConveyerFile::Work( std::string& fileDescConveyer )
 {
   std::string jsonContent;
   TTextFile::Load( fileDescConveyer, jsonContent );
@@ -23,16 +23,16 @@ bool TParserXMLConveyer::Work( std::string& fileDescConveyer )
   return true;
 }
 //---------------------------------------------------------------------------------------
-std::string TParserXMLConveyer::GetStrError()
+std::string TParserConveyerFile::GetStrError()
 {
   return strError;
 }
 //---------------------------------------------------------------------------------------
-std::vector<std::vector<std::string>> TParserXMLConveyer::GetResult( std::string& variantConveyer )
+std::vector<std::string> TParserConveyerFile::GetResult( std::string& variantConveyer )
 {
   auto fit = mConveyerConfig.appList.find( variantConveyer );
   if ( fit == mConveyerConfig.appList.end() )
-    return std::vector<std::vector<std::string>>();
-  return fit->second.modulesInThreads;
+    return std::vector<std::string>();
+  return fit->second.modules;
 }
 //---------------------------------------------------------------------------------------

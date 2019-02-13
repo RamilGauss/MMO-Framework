@@ -12,7 +12,7 @@ See for more information License.h.
 
 class DllExport TAllocatorPool
 {
-  void* mAlloc;
+  void* mAlloc = nullptr;
 public:
   TAllocatorPool();
   ~TAllocatorPool();

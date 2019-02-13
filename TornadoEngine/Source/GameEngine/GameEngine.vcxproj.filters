@@ -18,17 +18,11 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParserXMLConveyer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadModules.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulesThreadManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="JsonSerializer.cpp">
       <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserConveyerFile.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,15 +41,6 @@
     <ClInclude Include="IModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ParserXMLConveyer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadModules.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulesThreadManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IncludeList.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -63,6 +48,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="ConveyerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserConveyerFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

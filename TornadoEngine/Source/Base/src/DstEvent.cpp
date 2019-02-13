@@ -11,7 +11,7 @@ using namespace nsEvent;
 
 TDstEvent::TDstEvent()
 {
-  mListEvent = new TDataExchange2Thread<TEvent>;
+  mListEvent = new TDataExchange2Thread<TEvent>();
 }
 //------------------------------------------------------------
 TDstEvent::~TDstEvent()

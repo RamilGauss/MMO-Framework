@@ -6,109 +6,91 @@
   {
     "Client":
     {
-      "modulesInThreads":
+      "modules":
       [
-        [
-          "GraphicEngine",
-          "Logic",
-          "MMOEngineClient",
-          "PhysicEngine",
-          "SoundEngine",
-          "Timer"
-        ]
+        "GraphicEngine",
+        "Logic",
+        "MMOEngineClient",
+        "PhysicEngine",
+        "SoundEngine",
+        "Timer"
       ]
     },
     "Slave":
     {
-      "modulesInThreads":
+      "modules":
       [
-        [
-          "DataBase",
-          "Logic",
-          "MMOEngineSlave",
-          "PhysicEngine",
-          "Timer"
-        ]
+        "DataBase",
+        "Logic",
+        "MMOEngineSlave",
+        "PhysicEngine",
+        "Timer"
       ]
     },
     "Master":
     {
-      "modulesInThreads":
+      "modules":
       [
-        [
-          "DataBase",
-          "Logic",
-          "MMOEngineMaster",
-          "Timer"
-        ]
+        "DataBase",
+        "Logic",
+        "MMOEngineMaster",
+        "Timer"
       ]
     },
     "SuperServer":
     {
-      "modulesInThreads":
+      "modules":
       [
-        [
-          "Logic",
-          "MMOEngineSuperServer",
-          "Timer"
-        ]
+        "Logic",
+        "MMOEngineSuperServer",
+        "Timer"
       ]
     },
     "EditorMaterial":
     {
-      "modulesInThreads":
+      "modules":
       [
-        [
-          "GraphicEngine",
-          "Logic",
-          "Timer"
-        ]
+        "GraphicEngine",
+        "Logic",
+        "Timer"
       ]
     },
     "EditorShape":
     {
-      "modulesInThreads":
+      "modules":
       [
-        [
-          "GraphicEngine",
-          "Logic",
-          "Timer"
-        ]
+        "GraphicEngine",
+        "Logic",
+        "Timer"
       ]
     },
     "EditorModel":
     {
-      "modulesInThreads":
+      "modules":
       [
-        [
-          "GraphicEngine",
-          "Logic",
-          "Timer"
-        ]
+        "GraphicEngine",
+        "Logic",
+        "Timer"
       ]
     },
     "EditorMap":
     {
-      "modulesInThreads":
+      "modules":
       [
-        [
-          "GraphicEngine",
-          "Logic",
-          "PhysicEngine",
-          "SoundEngine",
-          "Timer"
-        ]
+        "GraphicEngine",
+        "Logic",
+        "PhysicEngine",
+        "SoundEngine",
+        "Timer"
       ]
     },
     "EditorTableSound":
     {
-      "modulesInThreads":
+      "modules":
       [
-        [
-          "GraphicEngine",
-          "Logic",
-          "Timer"
-        ]
+        "GraphicEngine",
+        "Logic",
+        "Timer"
       ]
     }
   }

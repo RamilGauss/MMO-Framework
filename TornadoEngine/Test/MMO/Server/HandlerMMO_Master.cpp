@@ -78,7 +78,7 @@ void THandlerMMO_Master::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       //s[pR->dataSize] = '\0';
       //sEvent += " msg: ";
       //sEvent += s;
-      //// получили пакет от Slave с id_client
+      //// получили пакет от Slave с clientID
       //std::list<unsigned int> l_id;
       //l_id.push_front( boost::lexical_cast<int>(s) );
       //char* sMsgFromMaster = "Master say hello!";

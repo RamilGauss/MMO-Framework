@@ -1,2 +1,2 @@
 set PATH=%PATH%;%DEP_PATH_MMO_FRAMEWORK%\Bin;%DEP_PATH_MMO_FRAMEWORK%\Bin\ssl32;%DEP_PATH_MMO_FRAMEWORK%\Bin\ssl64
-start Server.exe subnet 2
+start Server_d.exe subnet 2

@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -14,65 +14,64 @@ See for more information License.h.
 using namespace nsMMOEngine;
 using namespace nsRecommutationClientStruct;
 
-TScRecommutationClient_MasterImpl::TScRecommutationClient_MasterImpl(IScenario* pSc):
-TBaseScRecommutationClient(pSc)
+TScRecommutationClient_MasterImpl::TScRecommutationClient_MasterImpl( IScenario* pSc ) :
+  TBaseScRecommutationClient( pSc )
 {
 
 }
 //--------------------------------------------------------------------------------------
-void TScRecommutationClient_MasterImpl::Work(unsigned int time_ms)
+void TScRecommutationClient_MasterImpl::Work( unsigned int time_ms )
 {
 
 }
 //--------------------------------------------------------------------------------------
-void TScRecommutationClient_MasterImpl::RecvInherit(TDescRecvSession* pDesc)
+void TScRecommutationClient_MasterImpl::RecvInherit( TDescRecvSession* pDesc )
 {
-  THeader* pHeader = (THeader*)pDesc->data;
-  switch(pHeader->from)
+  THeader* pHeader = (THeader*) pDesc->data;
+  switch ( pHeader->from )
   {
     case eSlaveDonor:
-      RecvFromSlaveDonor(pDesc);
+      RecvFromSlaveDonor( pDesc );
       break;
     case eSlaveRecipient:
-      RecvFromSlaveRecipient(pDesc);
+      RecvFromSlaveRecipient( pDesc );
       break;
     default:BL_FIX_BUG();
   }
 }
 //--------------------------------------------------------------------------------------
-void TScRecommutationClient_MasterImpl::RecvFromSlaveDonor(TDescRecvSession* pDesc)
+void TScRecommutationClient_MasterImpl::RecvFromSlaveDonor( TDescRecvSession* pDesc )
 {
-  THeader* pHeader = (THeader*)pDesc->data;
-  switch(pHeader->subType)
+  THeader* pHeader = (THeader*) pDesc->data;
+  switch ( pHeader->subType )
   {
     case eCheckBeginDonor:
-      CheckBeginDonor(pDesc);
+      CheckBeginDonor( pDesc );
       break;
     default:BL_FIX_BUG();
   }
 }
 //--------------------------------------------------------------------------------------
-void TScRecommutationClient_MasterImpl::RecvFromSlaveRecipient(TDescRecvSession* pDesc)
+void TScRecommutationClient_MasterImpl::RecvFromSlaveRecipient( TDescRecvSession* pDesc )
 {
-  THeader* pHeader = (THeader*)pDesc->data;
-  switch(pHeader->subType)
+  THeader* pHeader = (THeader*) pDesc->data;
+  switch ( pHeader->subType )
   {
     case eCheckBeginRecipient:
-      CheckBeginRecipient(pDesc);
+      CheckBeginRecipient( pDesc );
       break;
     case eClientConnect:
-      ClientConnect(pDesc);
+      ClientConnect( pDesc );
       break;
     default:BL_FIX_BUG();
   }
 }
 //--------------------------------------------------------------------------------------
-void TScRecommutationClient_MasterImpl::Start(unsigned int id_session_recipient,
-                                              unsigned int id_client)
+void TScRecommutationClient_MasterImpl::Start( unsigned int id_session_recipient, unsigned int clientID )
 {
-  Context()->SetClientKey(id_client);
-  Context()->SetSessionRecipient(id_session_recipient);
-  if(Begin()==false)
+  Context()->SetClientKey( clientID );
+  Context()->SetSessionRecipient( id_session_recipient );
+  if ( Begin() == false )
   {
     return;
   }
@@ -87,63 +86,63 @@ void TScRecommutationClient_MasterImpl::DelayBegin()
 void TScRecommutationClient_MasterImpl::SendFirstPacket()
 {
   // откуда уходим?
-  NeedSessionDonorByClientKey(mScenario);
+  NeedSessionDonorByClientKey( mScenario );
   // сценарий активен
   EventActivate();
   // проверка на совпадение  Донора с Реципиентом
-  if(Context()->GetSessionDonor()==Context()->GetSessionRecipient())
+  if ( Context()->GetSessionDonor() == Context()->GetSessionRecipient() )
   {
     End();
     return;
   }
-  
+
   mBP.Reset();
   THeaderBeginDonor h;
   h.clientID = Context()->GetClientKey();
-  mBP.PushFront((char*)&h, sizeof(h));
-  Context()->GetMS()->Send(Context()->GetSessionDonor(), mBP);
+  mBP.PushFront( (char*) &h, sizeof( h ) );
+  Context()->GetMS()->Send( Context()->GetSessionDonor(), mBP );
 }
 //--------------------------------------------------------------
-void TScRecommutationClient_MasterImpl::CheckBeginDonor(TDescRecvSession* pDesc)
+void TScRecommutationClient_MasterImpl::CheckBeginDonor( TDescRecvSession* pDesc )
 {
-  THeaderCheckBeginDonor* pHeader = (THeaderCheckBeginDonor*)pDesc->data;
-  NeedContextByClientKey(pHeader->clientID);
-  if(Context()==NULL)
+  THeaderCheckBeginDonor* pHeader = (THeaderCheckBeginDonor*) pDesc->data;
+  NeedContextByClientKey( pHeader->clientID );
+  if ( Context() == NULL )
   {
     return;
   }
   // запомнить число, которое знают только участники перекоммутации
   TDescRequestConnectForRecipient privateNum;
   privateNum.Generate();
-  Context()->SetRandomNum(privateNum.random_num);
+  Context()->SetRandomNum( privateNum.random_num );
 
   mBP.Reset();
   // поместить контекст Донора в пакет
-  mBP.PushFront(pDesc->data + sizeof(THeaderCheckBeginDonor), 
-               pDesc->dataSize - sizeof(THeaderCheckBeginDonor));
+  mBP.PushFront( pDesc->data + sizeof( THeaderCheckBeginDonor ),
+    pDesc->dataSize - sizeof( THeaderCheckBeginDonor ) );
 
   THeaderBeginRecipient h;
-  h.clientID   = Context()->GetClientKey();
-  h.random_num  = privateNum.random_num;
-  mBP.PushFront((char*)&h, sizeof(h));
+  h.clientID = Context()->GetClientKey();
+  h.random_num = privateNum.random_num;
+  mBP.PushFront( (char*) &h, sizeof( h ) );
 
-  Context()->GetMS()->Send(Context()->GetSessionRecipient(), mBP);
+  Context()->GetMS()->Send( Context()->GetSessionRecipient(), mBP );
 }
 //--------------------------------------------------------------
-void TScRecommutationClient_MasterImpl::CheckBeginRecipient(TDescRecvSession* pDesc)
+void TScRecommutationClient_MasterImpl::CheckBeginRecipient( TDescRecvSession* pDesc )
 {
-  THeaderCheckBeginRecipient* pHeader = (THeaderCheckBeginRecipient*)pDesc->data;
-  NeedContextByClientKey(pHeader->clientID);
-  if(Context()==NULL)
+  THeaderCheckBeginRecipient* pHeader = (THeaderCheckBeginRecipient*) pDesc->data;
+  NeedContextByClientKey( pHeader->clientID );
+  if ( Context() == NULL )
   {
     return;
   }
   //==============================================
   // узнать IP и порт Реципиента
   TIP_Port ip_port_recipient;
-  bool resIP_recipient = 
-    Context()->GetMS()->GetInfo(Context()->GetSessionRecipient(), ip_port_recipient);
-  if(resIP_recipient==false)
+  bool resIP_recipient =
+    Context()->GetMS()->GetInfo( Context()->GetSessionRecipient(), ip_port_recipient );
+  if ( resIP_recipient == false )
   {
     End();
     BL_FIX_BUG();
@@ -152,19 +151,19 @@ void TScRecommutationClient_MasterImpl::CheckBeginRecipient(TDescRecvSession* pD
   //==============================================
   mBP.Reset();
   THeaderInfoRecipientToDonor h;
-  h.clientID         = Context()->GetClientKey();
-  h.random_num        = Context()->GetRandomNum();
+  h.clientID = Context()->GetClientKey();
+  h.random_num = Context()->GetRandomNum();
   h.ip_port_recipient = ip_port_recipient;
-  mBP.PushFront((char*)&h, sizeof(h));
+  mBP.PushFront( (char*) &h, sizeof( h ) );
 
-  Context()->GetMS()->Send(Context()->GetSessionDonor(), mBP);
+  Context()->GetMS()->Send( Context()->GetSessionDonor(), mBP );
 }
 //--------------------------------------------------------------
-void TScRecommutationClient_MasterImpl::ClientConnect(TDescRecvSession* pDesc)
+void TScRecommutationClient_MasterImpl::ClientConnect( TDescRecvSession* pDesc )
 {
-  THeaderClientConnect* pHeader = (THeaderClientConnect*)pDesc->data;
-  NeedContextByClientKey(pHeader->clientID);
-  if(Context()==NULL)
+  THeaderClientConnect* pHeader = (THeaderClientConnect*) pDesc->data;
+  NeedContextByClientKey( pHeader->clientID );
+  if ( Context() == NULL )
     return;
 
   End();
@@ -176,8 +175,8 @@ void TScRecommutationClient_MasterImpl::DisconnectClient()
   mBP.Reset();
   THeaderDisconnectClient h;
   h.clientID = Context()->GetClientKey();
-  mBP.PushFront((char*)&h,  sizeof(h));
-  Context()->GetMS()->Send(Context()->GetSessionRecipient(), mBP);
+  mBP.PushFront( (char*) &h, sizeof( h ) );
+  Context()->GetMS()->Send( Context()->GetSessionRecipient(), mBP );
   //Нельзя вызывать End();
 }
 //--------------------------------------------------------------

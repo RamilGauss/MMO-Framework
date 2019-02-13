@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -24,9 +24,9 @@ namespace nsMMOEngine
   public:
     TSuperServer();
     virtual ~TSuperServer();
-    
+
     // BaseServer
-    virtual void SendByClientKey(std::list<unsigned int>& lKey, char* p, int size);
+    virtual void SendByClientKey( std::list<unsigned int>& lKey, char* p, int size );
 
     struct TDescDownSuperServer
     {
@@ -34,18 +34,18 @@ namespace nsMMOEngine
       int countClient;
     };
     virtual int  GetCountDown();
-    virtual bool GetDescDown(int index, void* pDesc, int& sizeDesc);
-    virtual void SendDown(unsigned int sessionID, char* p, int size, bool check = true);
+    virtual bool GetDescDown( int index, void* pDesc, int& sizeDesc );
+    virtual void SendDown( unsigned int sessionID, char* p, int size, bool check = true );
 
   protected:
     // Base
-    virtual void DisconnectInherit(unsigned int sessionID);
+    virtual void DisconnectInherit( unsigned int sessionID );
   protected:
-    virtual void NeedContextDisconnectClient(unsigned int id_client);
-    virtual void NeedContextLoginMaster(unsigned int sessionID);
-    virtual void NeedContextByMasterSessionByClientKey(unsigned int sessionID,unsigned int id_client);//SS
-    virtual void NeedContextSendToClient(unsigned int id_client);
+    virtual void NeedContextDisconnectClient( unsigned int clientID );
+    virtual void NeedContextLoginMaster( unsigned int sessionID );
+    virtual void NeedContextByMasterSessionByClientKey( unsigned int sessionID, unsigned int clientID );//SS
+    virtual void NeedContextSendToClient( unsigned int clientID );
   protected:
-    virtual void EndDisconnectClient(IScenario*);
+    virtual void EndDisconnectClient( IScenario* );
   };
 }

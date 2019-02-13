@@ -95,7 +95,7 @@ void TDevTool_Share::Init()
   FindPath_Game( nsDevTool_Share::sSettings, 0, mPathSettings );
 }
 //-----------------------------------------------------------------------
-IModule* TDevTool_Share::GetModuleByName( const char* sName )
+IModule* TDevTool_Share::GetModuleByName( const std::string& sName )
 {
   int id = FindIDByNameModule( sName );
   TModuleDev* pModule = FindPtrModuleByID( id );
@@ -269,18 +269,19 @@ TModuleDev* TDevTool_Share::GetModuleByID( int id )
     case GraphicEngine:
       // графический движок требуется настраивать в том же потоке, в котором он работает
       // единственный модуль, который требуется настраивать в том же потоке
-      pModule = new TModuleGraphicEngine;
-      mGE_ForSetup = (TModuleGraphicEngine*) pModule;
+      mGE_ForSetup = new TModuleGraphicEngine;
+      pModule = mGE_ForSetup;
       ( (TModuleGraphicEngine*) pModule )->GetCBStartEvent()->Register( &TDevTool_Share::SetupGraphicEngine, this );
       break;
-    case PhysicEngine:           pModule = new TModulePhysicEngine;              break;
-    case MMOEngineClient:        pModule = new TModuleMMOEngineClient;           break;
-    case MMOEngineSlave:         pModule = new TModuleMMOEngineSlave;            break;
-    case MMOEngineMaster:        pModule = new TModuleMMOEngineMaster;           break;
-    case MMOEngineSuperServer:   pModule = new TModuleMMOEngineSuperServer;      break;
-    case SoundEngine:            pModule = new TModuleSoundEngine;               break;
-    case DataBase:               pModule = new TModuleDataBase;                  break;
-    case Timer:                  pModule = new TModuleTimer;                     break;
+    //case GraphicEngine:          pModule = new TModuleGraphicEngine; SetupGraphicEngine((TModuleGraphicEngine*)pModule); break;
+    case PhysicEngine:           pModule = new TModulePhysicEngine;                        break;
+    case MMOEngineClient:        pModule = new TModuleMMOEngineClient;                     break;
+    case MMOEngineSlave:         pModule = new TModuleMMOEngineSlave;                      break;
+    case MMOEngineMaster:        pModule = new TModuleMMOEngineMaster;                     break;
+    case MMOEngineSuperServer:   pModule = new TModuleMMOEngineSuperServer;                break;
+    case SoundEngine:            pModule = new TModuleSoundEngine;                         break;
+    case DataBase:               pModule = new TModuleDataBase;                            break;
+    case Timer:                  pModule = new TModuleTimer;                               break;
     default:BL_FIX_BUG();
   }
   return pModule;

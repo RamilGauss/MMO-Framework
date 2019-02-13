@@ -67,18 +67,18 @@ void TClusterMonitorServerHandler::RecvPacketHandler( nsClusterMonitorProtocol::
     break;
     case nsClusterMonitorProtocol::nsPackets::Cmd_CreateGroupAllClients:
     {
-      std::list<unsigned int> l_id_client;
+      std::list<unsigned int> clientIDList;
       unsigned int groupID;
       auto& s = *(THandlerMMO::GetClientIDSet());
       for( auto id : s )
       {
-        l_id_client.push_back( id );
+        clientIDList.push_back( id );
       }
-      printf( "Clients count = %u\n", l_id_client.size() );
-      if( l_id_client.size() )
+      printf( "Clients count = %u\n", clientIDList.size() );
+      if( clientIDList.size() )
       {
         printf( "Try create group\n" );
-        mMaster->TryCreateGroup( l_id_client, groupID );
+        mMaster->TryCreateGroup( clientIDList, groupID );
       }
     }
   }

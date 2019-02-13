@@ -26,6 +26,8 @@ See for more information License.h.
 #include "ReversedContainerRise.h"
 #include "InputCmdTestMMO_Server.h"
 #include "ClusterMonitorServerHandler.h"
+#include "SrcEvent_ex.h"
+
 
 #define COUNT_SLAVE 3
 

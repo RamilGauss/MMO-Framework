@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -19,27 +19,27 @@ namespace nsMMOEngine
     typedef std::map<unsigned int, TContainerContextSc*> TMapUintPtr;
     typedef TMapUintPtr::iterator TMapUintPtrIt;
 
-    typedef boost::bimaps::bimap<unsigned int,unsigned int> bmUintUint;
+    typedef boost::bimaps::bimap<unsigned int, unsigned int> bmUintUint;
 
     TMapUintPtr  mMapSessionContext;
     bmUintUint   mMapSessionKey;
-    
+
   public:
-    TManagerContextClientLogining(TBase* pBase);
+    TManagerContextClientLogining( TBase* pBase );
     ~TManagerContextClientLogining();
-    
+
     // навигация
-    bool FindSessionByClientKey(unsigned int id, unsigned int& sessionID);
-    bool FindClientKeyBySession(unsigned int sessionID, unsigned int& id);
-    TContainerContextSc* FindContextBySession(unsigned int sessionID);
-    
+    bool FindSessionByClientKey( unsigned int clientID, unsigned int& sessionID );
+    bool FindClientKeyBySession( unsigned int sessionID, unsigned int& clientID );
+    TContainerContextSc* FindContextBySession( unsigned int sessionID );
+
     // добавление/удаление
-    TContainerContextSc* AddContext(unsigned int sessionID);
-    bool AddKeyBySession(unsigned int sessionID, unsigned int id_client);
+    TContainerContextSc* AddContext( unsigned int sessionID );
+    bool AddKeyBySession( unsigned int sessionID, unsigned int clientID );
     // удаление
-    void DeleteBySession(unsigned int sessionID);
+    void DeleteBySession( unsigned int sessionID );
     // отцепиться
-    void UnlinkContextBySession(unsigned int sessionID);
+    void UnlinkContextBySession( unsigned int sessionID );
   private:
     void Clear();
   };

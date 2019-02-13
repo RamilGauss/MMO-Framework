@@ -10,7 +10,6 @@ See for more information License.h.
 #include "TypeDef.h"
 #include <string>
 #include <vector>
-#include "SingletonManager.h"
 
 // получение ip-адреса
 class DllExport TResolverSelf_IP_v4
@@ -23,7 +22,7 @@ class DllExport TResolverSelf_IP_v4
 
   typedef std::vector<TDescHost> TVectorDesc;
 
-  static inline TVectorDesc* mVecDesc = nullptr;
+  static TVectorDesc* mVecDesc;
 public:
   TResolverSelf_IP_v4();
 

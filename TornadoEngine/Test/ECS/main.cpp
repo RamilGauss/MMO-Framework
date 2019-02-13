@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -115,6 +115,8 @@ int main()
 //  _getch();
 //#endif
 //#endif
+
+
   auto world = new nsECSFramework::TWorld();
   world->AddToConveyer<TProducerFeature>();
   world->AddToConveyer<TConsumerSystem>();// 1
@@ -129,7 +131,7 @@ int main()
 
   world->Init();
   int testCount = 20;
-  while( testCount-- > 0 )
+  while ( testCount-- > 0 )
   {
     world->Update();
     printf( "----------------------------------------------------------------\n" );

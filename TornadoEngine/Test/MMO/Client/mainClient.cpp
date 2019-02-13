@@ -22,6 +22,7 @@ See for more information License.h.
 #include "HandlerMMO_Client.h"
 #include "NetTransport/MakerNetTransport.h"
 #include "ClientDesc.h"
+#include "fmt/core.h"
 
 void StartClients( int argc, char** argv );
 
@@ -33,9 +34,7 @@ int main( int argc, char** argv )
   std::string title = "Title Client ";
   for( int i = 1; i < argc; i++ )
   {
-    char s[1000];
-    sprintf( s, "%s ", argv[i] );
-    title += s;
+    title += fmt::format( "{} ", argv[i] );
   }
   system( title.data() );
 #endif

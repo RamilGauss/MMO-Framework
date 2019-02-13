@@ -20,9 +20,9 @@ protected:
 public:
   // Requirement: Type have to have 2 methods: Serialize(TPushMaster* p), Deserialize(TPopMaster* p)
   template<typename Type>
-  inline void Serialize( Type* pObj, TContainerRise& c, int offset = 0 );
+  void Serialize( Type* pObj, TContainerRise& c, int offset = 0 );
   template<typename Type>
-  inline void Deserialize( Type* pObj, TContainerRise& c, int offset = 0 );
+  void Deserialize( Type* pObj, TContainerRise& c, int offset = 0 );
 };
 //--------------------------------------------------------------------
 template<typename Type>

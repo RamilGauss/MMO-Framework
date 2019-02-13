@@ -74,8 +74,8 @@ void IScenario::SetType( unsigned char type )
   mType = type;
 }
 //---------------------------------------------------------------------
-void IScenario::NeedContextByClientKey( unsigned int id_client )
+void IScenario::NeedContextByClientKey( unsigned int clientID )
 {
-  Notify<unsigned int>( eContextByClientKey, id_client );
+  Notify<unsigned int>( eContextByClientKey, clientID );
 }
 //---------------------------------------------------------------------

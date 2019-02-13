@@ -22,7 +22,7 @@ See for more information License.h.
 
 class DllExport TDstEvent
 {
-  TDataExchange2Thread<nsEvent::TEvent>* mListEvent;
+  TDataExchange2Thread<nsEvent::TEvent>* mListEvent = nullptr;
 public:
   TDstEvent();
   virtual ~TDstEvent();

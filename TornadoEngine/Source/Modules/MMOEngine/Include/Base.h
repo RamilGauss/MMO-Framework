@@ -85,12 +85,12 @@ namespace nsMMOEngine
     virtual void WorkInherit()
     {};
     // события сценариев
-    virtual void NeedContextDisconnectClient( unsigned int id_client )
+    virtual void NeedContextDisconnectClient( unsigned int clientID )
     {}
     //----------------------------------------------------
     // LoginClient
     virtual void NeedContextByMasterSessionByClientKey( unsigned int sessionID,
-      unsigned int id_client )
+      unsigned int clientID )
     {}//SS
     virtual void NeedContextLoginClientBySessionLeaveQueue( unsigned int sessionID )
     {}// S,M
@@ -98,16 +98,16 @@ namespace nsMMOEngine
     {}// S,M
     virtual void NeedContextLoginClientBySessionAfterAuthorised( unsigned int sessionID )
     {}// M
-    virtual void NeedContextLoginClientByClientKey( unsigned int id_client )
+    virtual void NeedContextLoginClientByClientKey( unsigned int clientID )
     {}//S,M,SS
-    virtual void NeedContextLoginClientByClientKey_SecondCallSlave( unsigned int id_client )
+    virtual void NeedContextLoginClientByClientKey_SecondCallSlave( unsigned int clientID )
     {}//S
     virtual void NeedNumInQueueLoginClient( unsigned int sessionID )
     {}// M
-    virtual void EventSetClientKeyLoginClient( unsigned int id_client )
+    virtual void EventSetClientKeyLoginClient( unsigned int clientID )
     {};//C
     virtual void NeedContextLoginClientByClientSessionByKeyClient( unsigned int id_session_client,
-      unsigned int id_client )
+      unsigned int clientID )
     {}//S
    //----------------------------------------------------
    // RCM
@@ -132,7 +132,7 @@ namespace nsMMOEngine
     {}
     virtual void NeedContextLoginMaster( unsigned int sessionID )
     {}
-    virtual void NeedContextSendToClient( unsigned int id_client )
+    virtual void NeedContextSendToClient( unsigned int clientID )
     {}
     virtual void NeedContextSynchroSlave( unsigned int sessionID )
     {}

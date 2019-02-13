@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -21,12 +21,12 @@ See for more information License.h.
 //---------------------------------------------------------------------------
 TTestControlTank::TTestControlTank()
 {
-  mTank               = NULL;
+  mTank = NULL;
   mTimeLastUpdate_ms = 0;
-  mTimeRecv_ms       = 0;
+  mTimeRecv_ms = 0;
 }
 //---------------------------------------------------------------------------
-void TTestControlTank::SetTank(TTankTower* pTank)
+void TTestControlTank::SetTank( TTankTower* pTank )
 {
   mTank = pTank;
 }
@@ -36,22 +36,22 @@ void TTestControlTank::SetupParamForNow()
   unsigned int now_ms = ht_GetMSCount();
   unsigned int delta = now_ms - mTimeRecv_ms;
 
-  float angleGun    = mDesc.mAngleGun    + delta * mDesc.mSpeedRotateGun;
+  float angleGun = mDesc.mAngleGun + delta * mDesc.mSpeedRotateGun;
   float angleTurret = mDesc.mAngleTurret + delta * mDesc.mSpeedRotateTurret;
 
-  mTank->RotateTurret(angleTurret);
-  mTank->RotateVerticalGun(angleGun);
+  mTank->RotateTurret( angleTurret );
+  mTank->RotateVerticalGun( angleGun );
 }
 //---------------------------------------------------------------------------
-void TTestControlTank::Recv(void* data, int size)
+void TTestControlTank::Recv( void* data, int size )
 {
-  if(size!=sizeof(TDesc))
+  if ( size != sizeof( TDesc ) )
   {
     BL_FIX_BUG();
     return;
   }
   //*(mDesc) = *((TDesc*)data);
-  memcpy(&mDesc, data, size);
+  memcpy( &mDesc, data, size );
   mTimeRecv_ms = ht_GetMSCount();
 }
 //---------------------------------------------------------------------------
@@ -78,9 +78,9 @@ void TTestControlTank::Send()
   //    //pBS->SendDown( descDown.sessionID, bp);
   //  if(pComponent->mSlave->Get()->GetDescDown(iClient, (void*)&descDown, sizeDesc))
   //  {
-  //    unsigned int id_client;
-  //    if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.sessionID,id_client))
-  //      listKey.push_back(id_client);
+  //    unsigned int clientID;
+  //    if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.sessionID,clientID))
+  //      listKey.push_back(clientID);
   //  }
   //}
   //pBS->SendByClientKey( listKey, bp);
@@ -89,14 +89,14 @@ void TTestControlTank::Send()
   //unlockQtSend();
 }
 //---------------------------------------------------------------------------
-void TTestControlTank::SetSpeedRotateTurret(float v)
+void TTestControlTank::SetSpeedRotateTurret( float v )
 {
   lockQtSend();
   mDesc.mSpeedRotateTurret = v;
   unlockQtSend();
 }
 //---------------------------------------------------------------------------
-void TTestControlTank::SetSpeedRotateGun(float v)
+void TTestControlTank::SetSpeedRotateGun( float v )
 {
   lockQtSend();
   mDesc.mSpeedRotateGun = v;
@@ -106,9 +106,9 @@ void TTestControlTank::SetSpeedRotateGun(float v)
 void TTestControlTank::UpdateAngle()
 {
   unsigned int now_ms = ht_GetMSCount();
-  unsigned int delta = (mTimeLastUpdate_ms==0) ? 0 : now_ms - mTimeLastUpdate_ms;
-  
-  mDesc.mAngleGun    = mDesc.mAngleGun    + delta * mDesc.mSpeedRotateGun;
+  unsigned int delta = ( mTimeLastUpdate_ms == 0 ) ? 0 : now_ms - mTimeLastUpdate_ms;
+
+  mDesc.mAngleGun = mDesc.mAngleGun + delta * mDesc.mSpeedRotateGun;
   mDesc.mAngleTurret = mDesc.mAngleTurret + delta * mDesc.mSpeedRotateTurret;
 
   mTimeLastUpdate_ms = now_ms;

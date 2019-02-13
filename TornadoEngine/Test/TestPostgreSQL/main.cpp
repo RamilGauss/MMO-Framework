@@ -5,8 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include <memory>   // std::auto_ptr
+#include <memory>
 #include <iostream>
+#include <list>
 
 #include <odb/database.hxx>
 #include <odb/transaction.hxx>
@@ -14,10 +15,10 @@ See for more information License.h.
 #include <odb/pgsql/database.hxx>
 #include <odb/query.hxx>
 
-#include "person.hxx"
 #include "person-odb.hxx"
 #include "ExecuteInstructionEngine.h"
 #include "HiTimer.h"
+#include "DataBase.h"
 
 using namespace odb::core;
 
@@ -59,37 +60,34 @@ public:
         {
           pList->push_back( id );
         };
-        return new TExecuteInstructionEngine::InstructionResult { std::move( success ) };
+        return new TExecuteInstructionEngine::InstructionResult{std::move( success )};
       };
       g_eie.Push( func );
     }
   }
 };
 
-int main( int argc, char* argv [] )
+int main( int argc, char* argv[] )
 {
-  g_eie.Start();
+  //g_eie.Start();
 
-  TSomeSystem someSystem;
-  for( int i = 0 ; i < 1/*0000000*/ ; i++ )
-    someSystem.Do();
+  //TSomeSystem someSystem;
+  //for ( int i = 0; i < 1/*0000000*/; i++ )
+  //  someSystem.Do();
 
-  while( true )
-  {
-    g_eie.Pop();
-    ht_msleep( 1000 );
+  //while ( true )
+  //{
+    //g_eie.Pop();
+    //ht_msleep( 1000 );
     //someSystem.Do();
-  }
-
+  //}
   try
   {
     OpenDB();
-
-    //AddPersons();
-
+    AddPersons();
     AddAgePerson( g_sJane, 2 );
   }
-  catch( const odb::exception& e )
+  catch ( const odb::exception& e )
   {
     std::cerr << e.what() << std::endl;
     return 1;
@@ -105,7 +103,7 @@ void OpenDB()
     g_db->query<person>( false );
     t.commit();
   }
-  catch( const odb::exception& e )
+  catch ( const odb::exception& e )
   {
     transaction t( g_db->begin() );
     schema_catalog::create_schema( *g_db );
@@ -123,7 +121,6 @@ void AddPersons()
 
   bool has_current = t.has_current();
   // Make objects persistent and save their ids for later use.
-  //
   auto john_id = g_db->persist( john );
   auto jane_id = g_db->persist( jane );
   auto joe_id = g_db->persist( joe );
@@ -134,7 +131,6 @@ void AddPersons()
 void AddAgePerson( std::string firstName, int added_age )
 {
   typedef odb::query<person> query;
-  typedef odb::result<person> result;
 
 l_Repeat:
   try
@@ -142,7 +138,7 @@ l_Repeat:
     transaction t( g_db->begin() );
     std::shared_ptr<person> personItem( g_db->query_one<person>( query::first == firstName ) );
 
-    if( personItem.get() != 0 )
+    if ( personItem.get() != 0 )
     {
       auto now_age = personItem->age();
       personItem->age( now_age + added_age );
@@ -151,7 +147,7 @@ l_Repeat:
 
     t.commit();
   }
-  catch( const object_changed& )
+  catch ( const object_changed& )
   {
     // данные в бд уже изменены, повторить
     goto l_Repeat;

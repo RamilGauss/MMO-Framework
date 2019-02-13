@@ -49,10 +49,10 @@ namespace nsMMOEngine
     virtual void DisconnectInherit( unsigned int sessionID );
 
   protected:
-    virtual void NeedContextLoginClientByClientKey( unsigned int id_client );
-    virtual void NeedContextLoginClientByClientKey_SecondCallSlave( unsigned int id_client );
+    virtual void NeedContextLoginClientByClientKey( unsigned int clientID );
+    virtual void NeedContextLoginClientByClientKey_SecondCallSlave( unsigned int clientID );
     virtual void NeedContextLoginClientByClientSessionByKeyClient( unsigned int id_session_client,
-      unsigned int id_client );
+      unsigned int clientID );
     //-----------------------------------------------------------------
     virtual void NeedContextByRequestForRecipient( TDescRequestConnectForRecipient* );
     virtual void NeedContextByClientSessionForSlaveRcm( unsigned sessionID, bool donor );

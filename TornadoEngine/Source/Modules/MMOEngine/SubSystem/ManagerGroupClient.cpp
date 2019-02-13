@@ -38,14 +38,13 @@ bool TManagerGroupClient::FindSessionByID( unsigned int groupID,
   return true;
 }
 //------------------------------------------------------------------------------------
-bool TManagerGroupClient::FindIDByClientKey( unsigned int id_client,
-  unsigned int& groupID )
+bool TManagerGroupClient::FindIDByClientKey( unsigned int clientID, unsigned int& groupID )
 {
-  TMapUintUintIt fit = mMapClientKey_ID.find( id_client );
+  TMapUintUintIt fit = mMapClientKey_ID.find( clientID );
   if( fit == mMapClientKey_ID.end() )
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TManagerGroupClient::FindIDByClientKey(id_client=%u) not found.\n", id_client );
+      WriteF_time( "TManagerGroupClient::FindIDByClientKey(clientID=%u) not found.\n", clientID );
     return false;
   }
   groupID = fit->second;
@@ -76,9 +75,7 @@ int TManagerGroupClient::GetCountClientKey( unsigned int groupID )
   return fit->second.size();
 }
 //------------------------------------------------------------------------------------
-bool TManagerGroupClient::GetClientKeyByIndex( unsigned int groupID,
-  int index,
-  unsigned int& id_client )
+bool TManagerGroupClient::GetClientKeyByIndex( unsigned int groupID, int index, unsigned int& clientID )
 {
   TMapUintSetUintIt fit = mMapID_ClientKey.find( groupID );
   if( fit == mMapID_ClientKey.end() )
@@ -89,7 +86,7 @@ bool TManagerGroupClient::GetClientKeyByIndex( unsigned int groupID,
     return false;
   for( int i = 0; i < index; i++ )
     it++;
-  id_client = *it;
+  clientID = *it;
   return true;
 }
 //------------------------------------------------------------------------------------
@@ -106,14 +103,14 @@ void TManagerGroupClient::AddGroup( unsigned int groupID, unsigned int sessionID
   mMapID_ClientKey.insert( TMapUintSetUint::value_type( groupID, TSetUint() ) );
 }
 //------------------------------------------------------------------------------------
-bool TManagerGroupClient::AddClientKey( unsigned int groupID, unsigned int id_client )
+bool TManagerGroupClient::AddClientKey( unsigned int groupID, unsigned int clientID )
 {
   TMapUintSetUintIt fit = mMapID_ClientKey.find( groupID );
   if( fit == mMapID_ClientKey.end() )
     return false;
-  fit->second.insert( TSetUint::value_type( id_client ) );
+  fit->second.insert( TSetUint::value_type( clientID ) );
 
-  mMapClientKey_ID.insert( TMapUintUint::value_type( id_client, groupID ) );
+  mMapClientKey_ID.insert( TMapUintUint::value_type( clientID, groupID ) );
   return true;
 }
 //------------------------------------------------------------------------------------
@@ -130,18 +127,18 @@ bool TManagerGroupClient::SetSessionByID( unsigned int groupID, unsigned int ses
   return false;
 }
 //------------------------------------------------------------------------------------
-void TManagerGroupClient::DeleteClientKey( unsigned int id_client )
+void TManagerGroupClient::DeleteClientKey( unsigned int clientID )
 {
   unsigned int groupID;
-  if( FindIDByClientKey( id_client, groupID ) == false )
+  if( FindIDByClientKey( clientID, groupID ) == false )
     return;
   TMapUintSetUintIt fit = mMapID_ClientKey.find( groupID );
   if( fit == mMapID_ClientKey.end() )
     return;
   // связка группа---множество клиентов
-  fit->second.erase( id_client );
+  fit->second.erase( clientID );
   // связка клиента---группа
-  mMapClientKey_ID.erase( id_client );
+  mMapClientKey_ID.erase( clientID );
 }
 //------------------------------------------------------------------------------------
 void TManagerGroupClient::DeleteByID( unsigned int groupID )
@@ -152,13 +149,13 @@ void TManagerGroupClient::DeleteByID( unsigned int groupID )
   // сформировать список ключей клиентов, которые содержаться в данной группе
   for( int i = 0; i < countClient; i++ )
   {
-    unsigned int id_client;
-    GetClientKeyByIndex( groupID, i, id_client );
-    listClientOnErase.push_back( id_client );
+    unsigned int clientID;
+    GetClientKeyByIndex( groupID, i, clientID );
+    listClientOnErase.push_back( clientID );
   }
   // удалить все упоминания о ключах
-  for( unsigned int id_client : listClientOnErase )
-    DeleteClientKey( id_client );
+  for( unsigned int clientID : listClientOnErase )
+    DeleteClientKey( clientID );
   // группа---сессия Slave
   mMapID_SlaveSession.erase( groupID );
 }

@@ -56,11 +56,11 @@ TMaster::~TMaster()
 //-------------------------------------------------------------------------
 bool TMaster::TryCreateGroup( std::list<unsigned int>& l_id_client, unsigned int& groupID )
 {
-  for( unsigned int id_client : l_id_client )
+  for( unsigned int clientID : l_id_client )
   {
     // Клиент может и не существовать в системе 
     // спросить состоит ли клиент в группе
-    if( mMngGroup->FindIDByClientKey( id_client, groupID ) )
+    if( mMngGroup->FindIDByClientKey( clientID, groupID ) )
     {
       TErrorEvent event;
       event.code = CreateGroup_ClientNotExist;
@@ -82,17 +82,17 @@ void TMaster::DestroyGroup( unsigned int groupID )
   mMngGroup->DeleteByID( groupID );
 }
 //-------------------------------------------------------------------------
-void TMaster::LeaveGroup( unsigned int id_client )
+void TMaster::LeaveGroup( unsigned int clientID )
 {
   unsigned int groupID;
-  if( mMngGroup->FindIDByClientKey( id_client, groupID ) == false )
+  if( mMngGroup->FindIDByClientKey( clientID, groupID ) == false )
     return;
 
   unsigned int id_session_slave;
   if( mMngGroup->FindSessionByID( groupID, id_session_slave ) )
-    mStatisticaClientInGroup->DeleteByClientKey( id_session_slave, id_client );
+    mStatisticaClientInGroup->DeleteByClientKey( id_session_slave, clientID );
 
-  mMngGroup->DeleteClientKey( id_client );
+  mMngGroup->DeleteClientKey( clientID );
 }
 //-------------------------------------------------------------------------
 void TMaster::GetListForGroup( unsigned int groupID, std::list<unsigned int>& lClientKey )
@@ -101,14 +101,14 @@ void TMaster::GetListForGroup( unsigned int groupID, std::list<unsigned int>& lC
 
   for( int i = 0; i < countClient; i++ )
   {
-    unsigned int id_client;
-    mMngGroup->GetClientKeyByIndex( groupID, i, id_client );
-    lClientKey.push_back( id_client );
+    unsigned int clientID;
+    mMngGroup->GetClientKeyByIndex( groupID, i, clientID );
+    lClientKey.push_back( clientID );
   }
 }
 //-------------------------------------------------------------------------
 void TMaster::SetResultLogin( bool res, unsigned int id_session_client,
-  unsigned int id_client, void* resForClient, int sizeResClient )
+  unsigned int clientID, void* resForClient, int sizeResClient )
 {
   TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( id_session_client );
   if( pC == nullptr )
@@ -122,8 +122,8 @@ void TMaster::SetResultLogin( bool res, unsigned int id_session_client,
   }
   // проверка на существование ключа в кластере
   unsigned int id_session_temp;
-  if( (mMngContextClient->FindContextByClientKey( id_client )) ||
-    (mMngContextClientLogining->FindSessionByClientKey( id_client, id_session_temp )) )
+  if( (mMngContextClient->FindContextByClientKey( clientID )) ||
+    (mMngContextClientLogining->FindSessionByClientKey( clientID, id_session_temp )) )
   {
     TErrorEvent event;
     event.code = LoginClient_MasterKeyBusy;
@@ -135,7 +135,7 @@ void TMaster::SetResultLogin( bool res, unsigned int id_session_client,
     return;
   }
   // связка сессии и ключа клиента
-  mMngContextClientLogining->AddKeyBySession( id_session_client, id_client );
+  mMngContextClientLogining->AddKeyBySession( id_session_client, clientID );
   // решить на какой Slave закинуть клиента
   // для Группы задан Slave, значит на него и перекидывать, но возможно он перегружен
   // навряд ли он перегружен, иначе, он самый не нагруженный, потому как только бы на него и пихали клиентов
@@ -145,14 +145,14 @@ void TMaster::SetResultLogin( bool res, unsigned int id_session_client,
   bool resAdd = false;
   unsigned int id_session_slave;
   unsigned int groupID;
-  if( mMngGroup->FindIDByClientKey( id_client, groupID ) )
-    resAdd = TryAddClientByGroup( id_client, groupID, id_session_slave );
+  if( mMngGroup->FindIDByClientKey( clientID, groupID ) )
+    resAdd = TryAddClientByGroup( clientID, groupID, id_session_slave );
   else
-    resAdd = TryAddClient( id_client, id_session_slave );
+    resAdd = TryAddClient( clientID, id_session_slave );
   if( resAdd )
-    AddClientBySlaveSession( id_client, id_session_slave, resForClient, sizeResClient );
+    AddClientBySlaveSession( clientID, id_session_slave, resForClient, sizeResClient );
   else
-    AddInQueue( id_client, resForClient, sizeResClient );
+    AddInQueue( clientID, resForClient, sizeResClient );
 }
 //-------------------------------------------------------------------------
 bool TMaster::FindSlaveSessionByGroup( unsigned int groupID, unsigned int& sessionID )
@@ -311,11 +311,11 @@ bool TMaster::DisconnectClientWait( unsigned int sessionID )
   if( pC == nullptr )
     return false;
 
-  unsigned int id_client;
-  if( mMngContextClientLogining->FindClientKeyBySession( sessionID, id_client ) )
+  unsigned int clientID;
+  if( mMngContextClientLogining->FindClientKeyBySession( sessionID, clientID ) )
   {
     // возможно клиент в очереди, удалим на всякий случай
-    mSetClientKeyInQueue->DeleteKey( id_client );
+    mSetClientKeyInQueue->DeleteKey( clientID );
     // закончить с Клиентом на Slave
     mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
     // в EndLoginClient в случае не принятия клиента будет рассылка уведомления выше
@@ -340,9 +340,9 @@ bool TMaster::DisconnectSlave( unsigned int sessionID )
   std::vector<unsigned int> vID_client;
   for( int i = 0; i < countClient; i++ )
   {
-    unsigned int id_client;
-    if( mMngContextSlave->GetClientKeyByIndex( sessionID, i, id_client ) )
-      vID_client.push_back( id_client );
+    unsigned int clientID;
+    if( mMngContextSlave->GetClientKeyByIndex( sessionID, i, clientID ) )
+      vID_client.push_back( clientID );
   }
   // отослать SuperServer список клиентов
   if( (mSessionUpID != INVALID_HANDLE_SESSION) && // если есть связь с SuperServer
@@ -357,13 +357,13 @@ bool TMaster::DisconnectSlave( unsigned int sessionID )
       mControlSc->mDisClient->DisconnectFromMaster( vID_client );
     }
   }
-  for( unsigned int id_client : vID_client )
+  for( unsigned int clientID : vID_client )
   {
     // если это Реципиент, то уведомить о потере Клиента
-    TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( id_client );
-    NotifyRecipientAboutDisconnectClient( id_client, pC, sessionID );
+    TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( clientID );
+    NotifyRecipientAboutDisconnectClient( clientID, pC, sessionID );
 
-    mMngContextClient->DeleteByKey( id_client );
+    mMngContextClient->DeleteByKey( clientID );
   }
   // !!! из групп нельзя удалять clientID, удалять нужно группы с sessionID
   int countGroup = mMngGroup->GetCountID();
@@ -410,29 +410,29 @@ bool TMaster::EvalCreateGroupNow( std::list<unsigned int>& l_id_client, unsigned
   // занести в статистику
   mStatisticaClientInGroup->AddSlave( id_session_slave );
   // все те Клиенты, которые активны и стали внутри Группы, поместить в Статистику
-  for( unsigned int id_client : l_id_client )
+  for( unsigned int clientID : l_id_client )
   {
     // если присутствует в системе
-    if( mMngContextClient->FindContextByClientKey( id_client ) )
-      mStatisticaClientInGroup->AddBySlaveSessionClientKey( id_session_slave, id_client );
+    if( mMngContextClient->FindContextByClientKey( clientID ) )
+      mStatisticaClientInGroup->AddBySlaveSessionClientKey( id_session_slave, clientID );
     // заполнить клиентами независимо от того существуют ли они в системе
-    mMngGroup->AddClientKey( groupID, id_client );
+    mMngGroup->AddClientKey( groupID, clientID );
   }
   //================================================================================
   // определить кто встанет на место этого Клиента на старом Slave
   // и заодно перенаправить этого Клиента на новый Slave
-  for( unsigned int id_client : l_id_client )
+  for( unsigned int clientID : l_id_client )
   {
-    TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( id_client );
+    TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( clientID );
     if( pC == nullptr )
     {
       unsigned int id_session_client = INVALID_HANDLE_SESSION;
-      mMngContextClientLogining->FindSessionByClientKey( id_client, id_session_client );
+      mMngContextClientLogining->FindSessionByClientKey( clientID, id_session_client );
       pC = mMngContextClientLogining->FindContextBySession( id_session_client );
       if( pC == nullptr )
         continue;
     }
-    SolveExchangeClient( id_client, pC, id_session_slave );
+    SolveExchangeClient( clientID, pC, id_session_slave );
   }
   return true;
 }
@@ -550,14 +550,14 @@ void TMaster::NeedNumInQueueLoginClient( unsigned int sessionID )
     BL_FIX_BUG();
     return;
   }
-  unsigned int id_client;
-  if( mMngContextClientLogining->FindClientKeyBySession( sessionID, id_client ) == false )
+  unsigned int clientID;
+  if( mMngContextClientLogining->FindClientKeyBySession( sessionID, clientID ) == false )
   {
     BL_FIX_BUG();
     return;
   }
   int index;
-  if( mSetClientKeyInQueue->FindIndexByClientKey( id_client, index ) == false )
+  if( mSetClientKeyInQueue->FindIndexByClientKey( clientID, index ) == false )
   {
     BL_FIX_BUG();
     return;
@@ -621,12 +621,12 @@ void TMaster::EndDisconnectClient( IScenario* pSc )
 //-------------------------------------------------------------------------
 void TMaster::TryAddClientFromQueue()
 {
-  unsigned int id_client;
+  unsigned int clientID;
   unsigned int id_session_slave;
-  if( TryFindClientForAdd( id_client, id_session_slave ) == false )
+  if( TryFindClientForAdd( clientID, id_session_slave ) == false )
     return;
   unsigned int id_session_client;// для проверки
-  if( mMngContextClientLogining->FindSessionByClientKey( id_client, id_session_client ) == false )
+  if( mMngContextClientLogining->FindSessionByClientKey( clientID, id_session_client ) == false )
   {
     BL_FIX_BUG();
     return;
@@ -642,21 +642,21 @@ void TMaster::TryAddClientFromQueue()
   int sizeResClient = pC->mLoginClient.GetSaveQueueDataSize();
   // начали процесс авторизации
   mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
-  AddClientBySlaveSession( id_client, id_session_slave, resForClient, sizeResClient );
+  AddClientBySlaveSession( clientID, id_session_slave, resForClient, sizeResClient );
 }
 //-------------------------------------------------------------------------
-unsigned char TMaster::GetLimitLoadProcentByKey( unsigned int id_client )
+unsigned char TMaster::GetLimitLoadProcentByKey( unsigned int clientID )
 {
   // Решение проблемы: если клиент состоит в группе и у него произошел
   // дисконнект, то он должен войти в систему по запросу в любом случае,
   // т.е. его приоритет выше чем у других клиентов
   unsigned int groupID;
-  if( mMngGroup->FindIDByClientKey( id_client, groupID ) )
+  if( mMngGroup->FindIDByClientKey( clientID, groupID ) )
     return eLimitLoadProcentOnSlaveForAdd_ClientInGroup;
   return eLimitLoadProcentOnSlaveForAdd;
 }
 //-------------------------------------------------------------------------
-bool TMaster::TryAddClientByGroup( unsigned int id_client, unsigned int groupID,
+bool TMaster::TryAddClientByGroup( unsigned int clientID, unsigned int groupID,
   unsigned int& id_session_slave )
 {
   if( mMngGroup->FindSessionByID( groupID, id_session_slave ) == false )
@@ -670,13 +670,12 @@ bool TMaster::TryAddClientByGroup( unsigned int id_client, unsigned int groupID,
     BL_FIX_BUG();
     return false;
   }
-  if( load_procent < GetLimitLoadProcentByKey( id_client ) )
+  if( load_procent < GetLimitLoadProcentByKey( clientID ) )
     return true;
   return false;
 }
 //-------------------------------------------------------------------------
-bool TMaster::TryAddClient( unsigned int id_client,
-  unsigned int& id_session_slave )
+bool TMaster::TryAddClient( unsigned int clientID, unsigned int& id_session_slave )
 {
   unsigned char load_procent;
   if( mMngContextSlave->FindMinimumLoad( id_session_slave, load_procent ) == false )
@@ -687,45 +686,45 @@ bool TMaster::TryAddClient( unsigned int id_client,
     BL_FIX_BUG();
     return false;
   }
-  unsigned char limitLoadProcent = GetLimitLoadProcentByKey( id_client );
+  unsigned char limitLoadProcent = GetLimitLoadProcentByKey( clientID );
   if( load_procent < limitLoadProcent )
     return true;
   return false;
 }
 //-------------------------------------------------------------------------
-void TMaster::AddClientBySlaveSession( unsigned int id_client, unsigned int id_session_slave,
+void TMaster::AddClientBySlaveSession( unsigned int clientID, unsigned int id_session_slave,
   void* resForClient, int sizeResClient )
 {
   // начали процесс авторизации
-  mMngContextSlave->AddClientKey( id_session_slave, id_client );
-  mControlSc->mLoginClient->Accept( id_client, resForClient, sizeResClient,
+  mMngContextSlave->AddClientKey( id_session_slave, clientID );
+  mControlSc->mLoginClient->Accept( clientID, resForClient, sizeResClient,
     id_session_slave, mSessionUpID );
 }
 //-------------------------------------------------------------------------
-void TMaster::AddInQueue( unsigned int id_client, void* resForClient, int sizeResClient )
+void TMaster::AddInQueue( unsigned int clientID, void* resForClient, int sizeResClient )
 {
   // в очередь на ожидание свободного места
-  mSetClientKeyInQueue->AddKeyAtEnd( id_client );
+  mSetClientKeyInQueue->AddKeyAtEnd( clientID );
   int index;
-  if( mSetClientKeyInQueue->FindIndexByClientKey( id_client, index ) )
+  if( mSetClientKeyInQueue->FindIndexByClientKey( clientID, index ) )
     mControlSc->mLoginClient->Queue( index + 1, resForClient, sizeResClient );
 }
 //-------------------------------------------------------------------------
-bool TMaster::TryFindClientForAdd( unsigned int& id_client, unsigned int& id_session_slave )
+bool TMaster::TryFindClientForAdd( unsigned int& clientID, unsigned int& id_session_slave )
 {
   // решить на какой Slave
   // перебор клиентов, которые стоят в очереди
   while( 1 )
   {
     // ищем до тех пора не закончатся клиенты в очереди или не найдем
-    if( mSetClientKeyInQueue->DeleteFirst( id_client ) == false )
+    if( mSetClientKeyInQueue->DeleteFirst( clientID ) == false )
       return false;// пусто
     unsigned int id_session_client;
-    if( mMngContextClientLogining->FindSessionByClientKey( id_client, id_session_client ) == false )
+    if( mMngContextClientLogining->FindSessionByClientKey( clientID, id_session_client ) == false )
       continue;// клиента нет, пропуск хода
 
     unsigned int groupID;
-    if( mMngGroup->FindIDByClientKey( id_client, groupID ) )
+    if( mMngGroup->FindIDByClientKey( clientID, groupID ) )
     {
       // находится в группе, теперь найти сессию Slave
       if( mMngGroup->FindSessionByID( groupID, id_session_slave ) == false )
@@ -751,9 +750,9 @@ bool TMaster::TryFindClientForAdd( unsigned int& id_client, unsigned int& id_ses
   }
 }
 //-------------------------------------------------------------------------
-bool TMaster::IsClientRecommutation( unsigned int id_client )
+bool TMaster::IsClientRecommutation( unsigned int clientID )
 {
-  TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( id_client );
+  TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( clientID );
   if( pC == nullptr )
     return false;
   if( pC->IsRcmActive() )
@@ -793,14 +792,14 @@ bool TMaster::LoadInFutureLessLimit( unsigned int id_session_slave, std::list<un
   return true;
 }
 //-------------------------------------------------------------------------
-void TMaster::SolveExchangeClient( unsigned int id_client,
+void TMaster::SolveExchangeClient( unsigned int clientID,
   TContainerContextSc* pC_ClientInGroup, unsigned int id_session_slave_recipient )
 {
   // если текущий сценарий Клиента находится в процессе Перекоммутации,
   // то невозможно определить где он был или будет, обменивать нечего
   if( pC_ClientInGroup->IsRcmActive() )
   {
-    RcmByClientKeyContextSlaveSessionRecipient( id_client,
+    RcmByClientKeyContextSlaveSessionRecipient( clientID,
       &pC_ClientInGroup->mRcm,
       id_session_slave_recipient );
     return;
@@ -808,16 +807,16 @@ void TMaster::SolveExchangeClient( unsigned int id_client,
   //===========================================
   // если его Slave совпадает с новым, то выйти
   unsigned int id_session_slave_donor;
-  if( mMngContextClient->FindSessionByClientKey( id_client, id_session_slave_donor ) == false )
+  if( mMngContextClient->FindSessionByClientKey( clientID, id_session_slave_donor ) == false )
   {
     // клиент авторизуется. Может быть либо уже назначен на какой-то слэйв, либо в очереди (нет слэйва), либо не дошел до принятия решения мастером о входе в кластер
-    if( mMngContextSlave->FindSessionByClientKey( id_client, id_session_slave_donor ) == false )
+    if( mMngContextSlave->FindSessionByClientKey( clientID, id_session_slave_donor ) == false )
       return;
   }
   if( id_session_slave_donor == id_session_slave_recipient )
     return;
   //===========================================
-  RcmByClientKeyContextSlaveSessionRecipient( id_client, &pC_ClientInGroup->mRcm, id_session_slave_recipient );
+  RcmByClientKeyContextSlaveSessionRecipient( clientID, &pC_ClientInGroup->mRcm, id_session_slave_recipient );
   //===========================================
   // Донору надо отдать от Реципиента Клиента взамен Группового
   // ищем какой именно
@@ -861,15 +860,15 @@ void TMaster::SolveExchangeClient( unsigned int id_client,
   }
 }
 //-------------------------------------------------------------------------
-void TMaster::RcmByClientKeyContextSlaveSessionRecipient( unsigned int id_client, TContextScRecommutationClient* pCRCM, unsigned int id_session_slave_recipient )
+void TMaster::RcmByClientKeyContextSlaveSessionRecipient( unsigned int clientID, TContextScRecommutationClient* pCRCM, unsigned int id_session_slave_recipient )
 {
   mControlSc->mRcm->SetContext( pCRCM );
-  mControlSc->mRcm->Start( id_session_slave_recipient, id_client );
+  mControlSc->mRcm->Start( id_session_slave_recipient, clientID );
 }
 //-------------------------------------------------------------------------
-void TMaster::NeedContextSendToClient( unsigned int id_client )
+void TMaster::NeedContextSendToClient( unsigned int clientID )
 {
-  TContainerContextSc* pContext = mMngContextClient->FindContextByClientKey( id_client );
+  TContainerContextSc* pContext = mMngContextClient->FindContextByClientKey( clientID );
   if( pContext )
     mControlSc->mSendToClient->SetContext( &pContext->mSendToClient );
   else
@@ -922,14 +921,13 @@ void TMaster::EventActivateRcm( IScenario* pSc )
   mMngRcm->AddClientKey( key, id_session_donor, id_session_recipient );
 }
 //-------------------------------------------------------------------------
-void TMaster::NotifyRecipientAboutDisconnectClient( unsigned int id_client,
-  TContainerContextSc* pC, unsigned int sessionID )
+void TMaster::NotifyRecipientAboutDisconnectClient( unsigned int clientID, TContainerContextSc* pC, unsigned int sessionID )
 {
   unsigned int id_session_donor, id_session_recipient;
-  if( mMngRcm->FindSessionByClientKey( id_client, id_session_donor, id_session_recipient ) == false )
+  if( mMngRcm->FindSessionByClientKey( clientID, id_session_donor, id_session_recipient ) == false )
     return;
 
-  mMngRcm->DeleteByClientKey( id_client );
+  mMngRcm->DeleteByClientKey( clientID );
 
   if( sessionID == id_session_recipient )
     return;

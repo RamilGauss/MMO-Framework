@@ -5,52 +5,46 @@
 
 #include <string>
 
-#include <odb/core.hxx>
+//#include <odb/core.hxx>
 
 #pragma db object optimistic
 class person
 {
 public:
-  person()
-  {}
+  person(){}
   person( const std::string& first,
     const std::string& last,
     unsigned short age )
     : first_( first ), last_( last ), age_( age )
   {}
 
-  const std::string&
-    first() const
+  const std::string& first() const
   {
     return first_;
   }
 
-  const std::string&
-    last() const
+  const std::string& last() const
   {
     return last_;
   }
 
-  unsigned short
-    age() const
+  unsigned short age() const
   {
     return age_;
   }
 
-  void
-    age( unsigned short age )
+  void age( unsigned short age )
   {
     age_ = age;
   }
 
-  unsigned long
-    version() const
+  unsigned long version() const
   {
     return version_;
   }
 
-private:
-  friend class odb::access;
+//private:
+//  friend class odb::access;
 
 #pragma db id auto
   unsigned long id_;

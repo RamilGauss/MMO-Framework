@@ -43,16 +43,16 @@ class TDevTool_Share : public IDevTool
 
   std::vector<std::string> mVecArg;
 
-  TModuleGraphicEngine* mGE_ForSetup;
-
   TSettings mSettings;
+
+  TModuleGraphicEngine* mGE_ForSetup = nullptr;
 public:
   TDevTool_Share();
   virtual ~TDevTool_Share();
 
   virtual void SetVectorParam( std::vector<std::string>& vecArg );
   virtual std::string GetFileDescConveyer();
-  virtual IModule* GetModuleByName( const char* sName );
+  virtual IModule* GetModuleByName( const std::string& sName );
   virtual void EventGameEngine( int id, const std::string& sDesc );
 protected:
   virtual TModuleDev* GetModuleByID( int id );

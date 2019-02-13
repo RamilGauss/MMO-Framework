@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -22,69 +22,69 @@ TScenarioSendToClient::~TScenarioSendToClient()
 
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::Recv(TDescRecvSession* pDesc)
+void TScenarioSendToClient::Recv( TDescRecvSession* pDesc )
 {
-  THeader* pPacket = (THeader*)pDesc->data;
-  switch(pPacket->subType)
+  THeader* pPacket = (THeader*) pDesc->data;
+  switch ( pPacket->subType )
   {
     case eSuperServer:
-      RecvFromSuperServer(pDesc);
+      RecvFromSuperServer( pDesc );
       break;
     case eMaster:
-      RecvFromMaster(pDesc);
+      RecvFromMaster( pDesc );
       break;
     case eSlave:
-      RecvFromSlave(pDesc);
+      RecvFromSlave( pDesc );
       break;
   }
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::SendFromSuperServer(std::list<unsigned int>& lKey, TBreakPacket& bp)
+void TScenarioSendToClient::SendFromSuperServer( std::list<unsigned int>& lKey, TBreakPacket& bp )
 {
-  SendAll<THeaderSuperServer>(lKey, bp);
+  SendAll<THeaderSuperServer>( lKey, bp );
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::SendFromMaster(std::list<unsigned int>& lKey, TBreakPacket& bp)
+void TScenarioSendToClient::SendFromMaster( std::list<unsigned int>& lKey, TBreakPacket& bp )
 {
-  SendAll<THeaderMaster>(lKey, bp);
+  SendAll<THeaderMaster>( lKey, bp );
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::SendFromSlave(std::list<unsigned int>& lKey, TBreakPacket& bp)
+void TScenarioSendToClient::SendFromSlave( std::list<unsigned int>& lKey, TBreakPacket& bp )
 {
-  SendAll<THeaderSlave>(lKey, bp);
+  SendAll<THeaderSlave>( lKey, bp );
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::RecvFromSuperServer(TDescRecvSession* pDesc)
+void TScenarioSendToClient::RecvFromSuperServer( TDescRecvSession* pDesc )
 {
-  THeaderSuperServer* pH = (THeaderSuperServer*)pDesc->data;
-  NeedContextByClientKey(pH->id_client);
-  if(Context())
+  THeaderSuperServer* pH = (THeaderSuperServer*) pDesc->data;
+  NeedContextByClientKey( pH->clientID );
+  if ( Context() )
   {
     mBP.Reset();
-    mBP.PushFront(pDesc->data + sizeof(THeaderSuperServer), 
-                 pDesc->dataSize - sizeof(THeaderSuperServer) );
+    mBP.PushFront( pDesc->data + sizeof( THeaderSuperServer ),
+      pDesc->dataSize - sizeof( THeaderSuperServer ) );
 
-    Send<THeaderMaster>(pH->id_client, mBP);
+    Send<THeaderMaster>( pH->clientID, mBP );
   }
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::RecvFromMaster(TDescRecvSession* pDesc)
+void TScenarioSendToClient::RecvFromMaster( TDescRecvSession* pDesc )
 {
-  THeaderMaster* pH = (THeaderMaster*)pDesc->data;
-  NeedContextByClientKey(pH->id_client);
-  if(Context())
+  THeaderMaster* pH = (THeaderMaster*) pDesc->data;
+  NeedContextByClientKey( pH->clientID );
+  if ( Context() )
   {
     mBP.Reset();
-    mBP.PushFront(pDesc->data + sizeof(THeaderMaster), 
-                 pDesc->dataSize - sizeof(THeaderMaster) );
-    
-    Send<THeaderSlave>(pH->id_client, mBP);
+    mBP.PushFront( pDesc->data + sizeof( THeaderMaster ),
+      pDesc->dataSize - sizeof( THeaderMaster ) );
+
+    Send<THeaderSlave>( pH->clientID, mBP );
   }
 }
 //-------------------------------------------------------------------
-void TScenarioSendToClient::RecvFromSlave(TDescRecvSession* pDesc)
+void TScenarioSendToClient::RecvFromSlave( TDescRecvSession* pDesc )
 {
-  THeaderSlave* pH = (THeaderSlave*)pDesc->data;
+  THeaderSlave* pH = (THeaderSlave*) pDesc->data;
 
   TRecvFromUpEvent* pEvent = new TRecvFromUpEvent;
   // отцепиться от памяти, в которой содержится пакет
@@ -94,7 +94,7 @@ void TScenarioSendToClient::RecvFromSlave(TDescRecvSession* pDesc)
   // откуда пришел пакет - сессия
   pEvent->sessionID = pDesc->sessionID;
   // добавить событие без копирования и указать истинное время создания события в транспорте
-  Context()->GetSE()->AddEventWithoutCopy<TRecvFromUpEvent>(pEvent, pDesc->time_ms);
+  Context()->GetSE()->AddEventWithoutCopy<TRecvFromUpEvent>( pEvent, pDesc->time_ms );
 }
 //-------------------------------------------------------------------
 void TScenarioSendToClient::DelayBegin()

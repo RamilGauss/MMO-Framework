@@ -35,23 +35,23 @@ namespace nsMMOEngine
 
     // навигация
     bool FindSessionByID( unsigned int groupID, unsigned int& sessionID );
-    bool FindIDByClientKey( unsigned int id_client, unsigned int& groupID );
+    bool FindIDByClientKey( unsigned int clientID, unsigned int& groupID );
 
     int GetCountID();
     bool GetIDByIndex( int index, unsigned int& groupID );
 
     int GetCountClientKey( unsigned int groupID );
-    bool GetClientKeyByIndex( unsigned int groupID, int index, unsigned int& id_client );
+    bool GetClientKeyByIndex( unsigned int groupID, int index, unsigned int& clientID );
 
     // добавление/удаление
     unsigned int AddGroup( unsigned int sessionID );
     // добавить в группу клиента
-    bool AddClientKey( unsigned int groupID, unsigned int id_client );
+    bool AddClientKey( unsigned int groupID, unsigned int clientID );
     // для данной группы установить сессию
     bool SetSessionByID( unsigned int groupID, unsigned int sessionID );
 
     // удаление
-    void DeleteClientKey( unsigned int id_client );
+    void DeleteClientKey( unsigned int clientID );
     void DeleteByID( unsigned int groupID );
   private:
     // добавление/удаление

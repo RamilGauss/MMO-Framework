@@ -69,8 +69,7 @@ namespace nsMMOEngine
     void SetBehavior( eBehavior v );
     virtual void Recv( TDescRecvSession* pDesc );
   public:
-    void Start( unsigned int id_session_recipient,
-      unsigned int id_client );
+    void Start( unsigned int id_session_recipient, unsigned int clientID );
 
     void SaveContext( void* data, int size );
 

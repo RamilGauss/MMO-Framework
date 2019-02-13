@@ -40,10 +40,9 @@ void TScenarioRecommutationClient::Work()
   }
 }
 //--------------------------------------------------------------
-void TScenarioRecommutationClient::Start( unsigned int id_session_recipient,
-  unsigned int id_client )
+void TScenarioRecommutationClient::Start( unsigned int id_session_recipient, unsigned int clientID )
 {
-  mMaster.Start( id_session_recipient, id_client );
+  mMaster.Start( id_session_recipient, clientID );
 }
 //--------------------------------------------------------------
 void TScenarioRecommutationClient::DelayBegin()

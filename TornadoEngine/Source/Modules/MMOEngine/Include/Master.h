@@ -58,9 +58,9 @@ namespace nsMMOEngine
 
     virtual bool TryCreateGroup( std::list<unsigned int>& l_id_client, unsigned int& groupID );
     virtual void DestroyGroup( unsigned int groupID );
-    virtual void LeaveGroup( unsigned int id_client );
+    virtual void LeaveGroup( unsigned int clientID );
     virtual void GetListForGroup( unsigned int groupID, std::list<unsigned int>& l );
-    virtual void SetResultLogin( bool res, unsigned int sessionID, unsigned int id_client, // ключ, из БД например
+    virtual void SetResultLogin( bool res, unsigned int sessionID, unsigned int clientID, // ключ, из БД например
                                  void* resForClient, int sizeResClient );
     virtual bool FindSlaveSessionByGroup( unsigned int groupID, unsigned int& sessionID );
 
@@ -84,7 +84,7 @@ namespace nsMMOEngine
     virtual void WorkInherit();
 
   protected:// like slots
-    virtual void NeedContextDisconnectClient( unsigned int id_client );
+    virtual void NeedContextDisconnectClient( unsigned int clientID );
     virtual void NeedContextLoginClientBySessionLeaveQueue( unsigned int sessionID );
     virtual void NeedContextLoginClientBySession( unsigned int sessionID );
     virtual void NeedContextLoginClientBySessionAfterAuthorised( unsigned int sessionID );
@@ -98,7 +98,7 @@ namespace nsMMOEngine
     //----------------------------------------------------
     virtual void NeedContextLoginSlave( unsigned int sessionID );
     virtual void NeedContextSynchroSlave( unsigned int sessionID );
-    virtual void NeedContextSendToClient( unsigned int id_client );
+    virtual void NeedContextSendToClient( unsigned int clientID );
   protected:
     virtual void EndDisconnectClient( IScenario* );
     virtual void EndLoginMaster( IScenario* pSc );
@@ -107,30 +107,30 @@ namespace nsMMOEngine
     virtual void EndRcm( IScenario* pSc );
     virtual void EndSynchroSlave( IScenario* pSc );
   private:
-    unsigned char GetLimitLoadProcentByKey( unsigned int id_client );
+    unsigned char GetLimitLoadProcentByKey( unsigned int clientID );
 
     bool EvalCreateGroupNow( std::list<unsigned int>& l_id_client, unsigned int& groupID );
     bool LoadInFutureLessLimit( unsigned int id_session_slave, std::list<unsigned int>& l_id_client );
-    void SolveExchangeClient( unsigned int id_client, TContainerContextSc* pC_ClientInGroup, unsigned int id_session_slave_recipient );
-    void RcmByClientKeyContextSlaveSessionRecipient( unsigned int id_client, TContextScRecommutationClient* pCRCM, unsigned int id_session_slave_recipient );
+    void SolveExchangeClient( unsigned int clientID, TContainerContextSc* pC_ClientInGroup, unsigned int id_session_slave_recipient );
+    void RcmByClientKeyContextSlaveSessionRecipient( unsigned int clientID, TContextScRecommutationClient* pCRCM, unsigned int id_session_slave_recipient );
 
   private:
     bool DisconnectSuperServer( unsigned int sessionID );
     bool DisconnectClientWait( unsigned int sessionID );
     bool DisconnectSlave( unsigned int sessionID );
 
-    bool TryAddClientByGroup( unsigned int id_client, unsigned int groupID, unsigned int& id_session_slave );
-    bool TryAddClient( unsigned int id_client, unsigned int& id_session_slave );
-    void AddClientBySlaveSession( unsigned int id_client, unsigned int id_session_slave, void* resForClient, int sizeResClient );
-    void AddInQueue( unsigned int id_client, void* resForClient, int sizeResClient );
+    bool TryAddClientByGroup( unsigned int clientID, unsigned int groupID, unsigned int& id_session_slave );
+    bool TryAddClient( unsigned int clientID, unsigned int& id_session_slave );
+    void AddClientBySlaveSession( unsigned int clientID, unsigned int id_session_slave, void* resForClient, int sizeResClient );
+    void AddInQueue( unsigned int clientID, void* resForClient, int sizeResClient );
     // при освобождении места на Slave попытаться добавить Клиента, который ждет в очереди
-    bool TryFindClientForAdd( unsigned int& id_client, unsigned int& id_session_slave );
+    bool TryFindClientForAdd( unsigned int& clientID, unsigned int& id_session_slave );
     void TryAddClientFromQueue();
     void Done();
 
     // находится ли Клиент в процессе перекоммутации
-    bool IsClientRecommutation( unsigned int id_client );
+    bool IsClientRecommutation( unsigned int clientID );
 
-    void NotifyRecipientAboutDisconnectClient( unsigned int id_client, TContainerContextSc* pC, unsigned int sessionID );
+    void NotifyRecipientAboutDisconnectClient( unsigned int clientID, TContainerContextSc* pC, unsigned int sessionID );
   };
 }

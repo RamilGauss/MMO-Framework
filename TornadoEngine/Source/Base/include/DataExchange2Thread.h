@@ -15,7 +15,7 @@ See for more information License.h.
 
 using namespace DataExchange2Thread;
 
-#ifdef DEBUG
+#ifdef _DEBUG
 #define USE_COUNT_FOR_DEBUG
 #endif
 /*
@@ -33,17 +33,17 @@ using namespace DataExchange2Thread;
 template <typename TClass> class TDataExchange2Thread
 {
 #ifdef USE_COUNT_FOR_DEBUG
-  DECLARATION_ATOMIC_INT( cnt );                  // change by Producer
+  DECLARATION_ATOMIC_INT( cnt );      // change by Producer
 #endif
 
   TElement* pFirstConsumer = nullptr; // change by Consumer
   TElement* pFirstProducer = nullptr; // change by Producer
-  TElement* pLastProducer  = nullptr;  // change by Producer
+  TElement* pLastProducer  = nullptr; // change by Producer
 
-  TCallBackRegistrator1<void*>* mCB_DeleteData;
+  TCallBackRegistrator1<void*>* mCB_DeleteData = nullptr;
 
   //DECLARATION_ALLOCATOR_MEMORY
-  TAllocatorPool mAlloactorElement;
+  TAllocatorPool mAllocatorElement;
 public:
   TDataExchange2Thread();
   ~TDataExchange2Thread();
@@ -80,7 +80,7 @@ void TDataExchange2Thread<TClass>::Clear()
     TElement* temp = pFirstProducer;
     pFirstProducer = DECLARATION_ATOMIC_POINTER_LOAD( pFirstProducer->pNext );
     temp->Done( mCB_DeleteData );
-    mAlloactorElement.Deallocate( temp );// DEALLOC_MEMORY(temp);
+    mAllocatorElement.Deallocate( temp );// DEALLOC_MEMORY(temp);
 #ifdef USE_COUNT_FOR_DEBUG
     CntDecr();
 #endif
@@ -138,7 +138,7 @@ TDataExchange2Thread<TClass>::TDataExchange2Thread()// Producer/Consumer
 {
   mCB_DeleteData = nullptr;
 
-  pFirstConsumer = mAlloactorElement.Allocate();//(TElement);
+  pFirstConsumer = mAllocatorElement.Allocate();//(TElement);
   pFirstConsumer->Init();
   pFirstProducer = pFirstConsumer;
   pLastProducer = pFirstConsumer;
@@ -211,7 +211,7 @@ TClass** TDataExchange2Thread<TClass>::Add( TClass* d )// Producer
 {
   if( d == nullptr ) { BL_FIX_BUG(); return nullptr; }
 
-  TElement* pEl = mAlloactorElement.Allocate();// ALLOC_MEMORY(TElement);
+  TElement* pEl = mAllocatorElement.Allocate();// ALLOC_MEMORY(TElement);
   pEl->Init();
 
   pEl->data = d;
@@ -237,7 +237,7 @@ void TDataExchange2Thread<TClass>::LatencyRemove()// Producer
     TElement* pEl = pFirstProducer;
     pFirstProducer = DECLARATION_ATOMIC_POINTER_LOAD( pFirstProducer->pNext );
     pEl->Done( mCB_DeleteData );
-    mAlloactorElement.Deallocate( pEl );
+    mAllocatorElement.Deallocate( pEl );
 
 #ifdef USE_COUNT_FOR_DEBUG
     CntDecr();

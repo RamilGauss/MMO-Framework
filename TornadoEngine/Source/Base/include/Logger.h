@@ -47,11 +47,12 @@ public:
   virtual ~TLogger();
 
   // return false if name is same
-  bool Register( const char* nameLogger, const char* extension = "log" );
+  bool Register( const std::string& nameLogger, const std::string& extension = "log" );
 
-  void Init( const char* sPrefix );
+  void Init( const std::string& sPrefix );
   void Done();
-  TSaveToFile* Get( const char* nameLog );
+  //TSaveToFile* Get( const char* nameLog );
+  TSaveToFile* Get( const std::string& nameLog );
 
   void SetPrintf( bool val );
   bool GetPrintf();
@@ -66,8 +67,9 @@ public:
   TSaveToFile* GetByIndex( int index );
 
 protected:
-  void InitLogger( TSaveToFile* saver, const char* sName, const char* extension );
+  void InitLogger( TSaveToFile* saver, const std::string& sName, const std::string& extension );
 };
 
 extern DllExport TLogger* GetLogger();
-extern DllExport TSaveToFile* GetLogger( const char* nameLog );
+//extern DllExport TSaveToFile* GetLogger( const char* nameLog );
+extern DllExport TSaveToFile* GetLogger( const std::string& nameLog );

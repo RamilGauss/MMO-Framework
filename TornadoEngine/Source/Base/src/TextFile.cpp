@@ -32,7 +32,7 @@ void TTextFile::Save( std::string& str, bool append )
 {
   if ( mSaver.ReOpen( (char*) mPath.data(), append ) == false )
     return;
-  mSaver.Write( str.data(), str.length() );
+  mSaver.Write( (char*) str.data(), str.length() );
 }
 //-------------------------------------------------------------------
 void TTextFile::Save( std::string& path, std::string& str, bool append )

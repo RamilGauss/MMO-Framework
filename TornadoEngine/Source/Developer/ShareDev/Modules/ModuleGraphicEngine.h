@@ -25,4 +25,5 @@ public:
 
   TGraphicEngine_Ogre_MyGUI* GetGE();
 protected:
+
 };
