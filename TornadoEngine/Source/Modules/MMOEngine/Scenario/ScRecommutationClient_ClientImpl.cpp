@@ -144,7 +144,7 @@ void TScRecommutationClient_ClientImpl::DisconnectClientAfterConnect( int id_ses
   h.clientID = Context()->GetClientKey();
   h.random_num = Context()->GetRandomNum();
   mBP.PushFront( (char*) &h, sizeof( h ) );
-  Context()->GetMS()->Send( id_session_recipient, mBP, true );
+  Context()->GetMS()->Send( id_session_recipient, mBP );
   // запомнить на будущее
   Context()->SetSessionRecipient( id_session_recipient );
   Context()->SetSessionID( id_session_recipient );

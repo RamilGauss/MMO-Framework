@@ -37,14 +37,13 @@ void TManagerContextDownConnection_Slave::DeleteSessionEvent( unsigned int sessi
   mMapSessionLoadProcent.erase( sessionID );
 }
 //---------------------------------------------------------------------------------------
-bool TManagerContextDownConnection_Slave::FindMinimumLoad( unsigned int& sessionID,
-  unsigned char& load_procent )
+bool TManagerContextDownConnection_Slave::FindMinimumLoad( unsigned int& sessionID, unsigned char& load_procent )
 {
-  if( mMapSessionLoadProcent.size() == 0 )
+  if ( mMapSessionLoadProcent.size() == 0 )
     return false;
 
   mVecDesc.clear();
-  for( auto& it : mMapSessionLoadProcent )
+  for ( auto& it : mMapSessionLoadProcent )
     mVecDesc.push_back( TDesc( it.second, it.first ) );
 
   std::sort( mVecDesc.begin(), mVecDesc.end() );
@@ -58,11 +57,10 @@ bool TManagerContextDownConnection_Slave::FindMinimumLoad( unsigned int& session
   return true;
 }
 //---------------------------------------------------------------------------------------
-void TManagerContextDownConnection_Slave::SetLoadBySession( unsigned int sessionID,
-  unsigned char load_procent )
+void TManagerContextDownConnection_Slave::SetLoadBySession( unsigned int sessionID, unsigned char load_procent )
 {
   TMapUintUcharIt fit = mMapSessionLoadProcent.find( sessionID );
-  if( fit == mMapSessionLoadProcent.end() )
+  if ( fit == mMapSessionLoadProcent.end() )
   {
     BL_FIX_BUG();
     return;
@@ -70,11 +68,10 @@ void TManagerContextDownConnection_Slave::SetLoadBySession( unsigned int session
   fit->second = load_procent;
 }
 //---------------------------------------------------------------------------------------
-bool TManagerContextDownConnection_Slave::FindLoadBySession( unsigned int sessionID,
-  unsigned char& load_procent )
+bool TManagerContextDownConnection_Slave::FindLoadBySession( unsigned int sessionID, unsigned char& load_procent )
 {
   TMapUintUcharIt fit = mMapSessionLoadProcent.find( sessionID );
-  if( fit == mMapSessionLoadProcent.end() )
+  if ( fit == mMapSessionLoadProcent.end() )
     return false;
   load_procent = fit->second;
   return true;

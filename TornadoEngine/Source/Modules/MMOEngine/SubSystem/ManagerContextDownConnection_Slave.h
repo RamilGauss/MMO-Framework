@@ -31,7 +31,7 @@ namespace nsMMOEngine
       }
       bool operator < ( const TDesc& right ) const
       {
-        if( load_procent < right.load_procent )
+        if ( load_procent < right.load_procent )
           return true;
         return false;
       }

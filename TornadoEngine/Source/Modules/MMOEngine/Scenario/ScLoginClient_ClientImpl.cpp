@@ -106,7 +106,7 @@ void TScLoginClient_ClientImpl::TryLoginAfterConnect( int sessionID )
 
   THeaderTryLoginC2M h;
   mBP.PushFront( (char*) &h, sizeof( h ) );
-  Context()->GetMS()->Send( sessionID, mBP, true );
+  Context()->GetMS()->Send( sessionID, mBP );
   
   Context()->SetCurrentStateWait( TContextScLoginClient::ClientWaitMasterAnswer );
 }
@@ -295,7 +295,7 @@ void TScLoginClient_ClientImpl::ConnectAfterDisconnect( int sessionID )
   // для Slave отдать свой ID, он по нему нас зарегистрирует  
   h.clientID = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
-  Context()->GetMS()->Send( sessionID, mBP, true );
+  Context()->GetMS()->Send( sessionID, mBP );
 
   SetID_SessionClientSlave( sessionID );
 

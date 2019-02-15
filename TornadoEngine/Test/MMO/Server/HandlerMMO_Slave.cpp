@@ -14,7 +14,7 @@ See for more information License.h.
 #include "HandlerMMO_Slave.h"
 #include "Logger.h"
 
-const int SLAVE_LOAD_PER_CLIENT = 5;
+const float SLAVE_LOAD_PER_CLIENT = 0.01f;
 
 THandlerMMO_Slave::THandlerMMO_Slave( nsMMOEngine::TBase* pBase ) : THandlerMMO( pBase, eSlave )
 {
