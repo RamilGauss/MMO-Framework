@@ -66,6 +66,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="SubSystem\MappingDownConnection\Master\New">
+      <UniqueIdentifier>{e9fc1054-f0d3-476c-b370-1d5943fae561}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SubSystem\DelegateManagerContextSc.cpp">
@@ -248,9 +251,6 @@
     <ClCompile Include="src\INetTransport.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Master.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Slave.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -258,6 +258,15 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SuperServer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ManagerLoginingClientsOnSlave.cpp">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Master.cpp.bak">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Master.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -457,9 +466,6 @@
     <ClInclude Include="include\INetTransport.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Master.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Slave.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -468,6 +474,24 @@
     </ClInclude>
     <ClInclude Include="include\SuperServer.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ManagerLoginingClientsOnSlave.h">
+      <Filter>SubSystem\MappingDownConnection\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Master.h.bak">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Master.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\Components.h">
+      <Filter>SubSystem\MappingDownConnection\Master\New</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\DataManager.h">
+      <Filter>SubSystem\MappingDownConnection\Master\New</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\BaseMasterLogic.h">
+      <Filter>SubSystem\MappingDownConnection\Master\New</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

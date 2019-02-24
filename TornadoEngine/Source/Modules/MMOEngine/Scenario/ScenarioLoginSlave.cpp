@@ -24,7 +24,6 @@ TScenarioLoginSlave::TScenarioLoginSlave()
 //-------------------------------------------------------------------------------------
 void TScenarioLoginSlave::ConnectToMaster( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet )
 {
-  Context()->SetConnect( false );
   if( Begin() == false )
   {
     // верхнее соединение занято выполнением другого сценария - такого не должно быть
@@ -86,7 +85,6 @@ void TScenarioLoginSlave::Work()
 //-------------------------------------------------------------------------------------
 void TScenarioLoginSlave::RecvFromMaster( TDescRecvSession* pDesc )
 {
-  Context()->SetConnect( true );
   End();
 }
 //-------------------------------------------------------------------------------------

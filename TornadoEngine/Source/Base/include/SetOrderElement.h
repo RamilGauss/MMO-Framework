@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -8,43 +8,36 @@ See for more information License.h.
 #pragma once
 
 #include "TypeDef.h"
-#include <boost/bimap/bimap.hpp>
-#include <vector>
+#include "SortedVecWithKeyMap.h"
 
 /*
   Множество элементов, каждый из которых может определить свой индекс,
   вне зависимости сколько элементов было удалено.
-  Добавление всегда происходит в начало. 
-  А удаление может происходить из по любому ключу массива.
+  Добавление всегда происходит в конец.
+  А удаление может происходить по любому ключу массива.
 */
 
 class DllExport TSetOrderElement
 {
-  typedef boost::bimaps::bimap<unsigned int,unsigned int> bmUintUint;
-
-  typedef std::vector<unsigned int> TVectorUint;
-
-  bmUintUint   mMapKeyInnerIndex;
-  TVectorUint  mVecSortInnerIndex; // сортированный
-
-  unsigned int mNextAddInnerID;
-
+  TSortedVecWithKeyMap mSimple;
+  TSortedVecWithKeyMap mInGroup;
+  unsigned int mNextAddInnerID = 0;
 public:
-  TSetOrderElement();
-  ~TSetOrderElement();
-  
-  // навигация
-  bool FindIndexByClientKey(unsigned int key, int& index);
+  enum ContentType
+  {
+    InGroup,
+    Simple
+  };
 
-  // добавление/удаление
-  void AddKeyAtEnd(unsigned int key);
-  void DeleteKey(unsigned int key);
-  bool DeleteFirst(unsigned int& key);
+  void PushBack( unsigned int key, ContentType type );
 
-  void Clear();
+  void RemoveFirst();// неважно в группе или простой
+  void RemoveByKey( unsigned int key );// удалить по ключу
+
+  bool GetFirst( unsigned int& key, ContentType type );
+  bool GetIndex( unsigned int key, int& index );
+
+  void MoveToSimple( unsigned int key );// из группы перевести в обычные
 private:
-  bool FindByKey(unsigned int key);
-  void ReserveForVector();
-  void DeleteFromVectorByInnerIndex(unsigned int val);
-  bool FindKeyByInnerIndex(unsigned int inner_index, unsigned int& key);
+  TSortedVecWithKeyMap* GetFirstViaID();
 };

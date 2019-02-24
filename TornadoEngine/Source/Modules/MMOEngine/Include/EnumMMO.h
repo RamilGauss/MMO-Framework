@@ -12,7 +12,7 @@ See for more information License.h.
 static const char* STR_NAME_MMO_ENGINE = "MMOEngine";
 static const char* STR_NAME_NET_TRANSPORT = "NetTransport";
 
-static const int INVALID_HANDLE_SESSION = 0;
+static const unsigned int INVALID_HANDLE_SESSION = 0;
 
 namespace nsMMOEngine
 {

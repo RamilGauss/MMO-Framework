@@ -54,7 +54,7 @@ void TBaseTransport::Work()
         auto pTryConnectDown = (nsMMOEngine::TTryConnectDownEvent*)pBase;
 
         auto pTryConnectEvent = new nsEvents::TTryConnectEvent();
-        pTryConnectEvent->clientID = pTryConnectDown->sessionID;
+        pTryConnectEvent->clientKey = pTryConnectDown->sessionID;
         pTryConnectEvent->loginHash = pTryConnectDown->c;
         AddEventWithoutCopy( pTryConnectEvent );
       }
@@ -64,7 +64,7 @@ void TBaseTransport::Work()
         auto pConnectDown = (nsMMOEngine::TConnectDownEvent*)pBase;
 
         auto pConnectEvent = new nsEvents::TConnectEvent();
-        pConnectEvent->clientID = pConnectDown->sessionID;
+        pConnectEvent->clientKey = pConnectDown->sessionID;
         AddEventWithoutCopy( pConnectEvent );
       }
         break;
@@ -86,7 +86,7 @@ void TBaseTransport::Work()
         auto pRecvEvent = (nsMMOEngine::TRecvFromDownEvent*)pBase;
 
         auto pPacketEvent = new nsEvents::TPacketEvent();
-        pPacketEvent->clientID = pRecvEvent->sessionID;
+        pPacketEvent->clientKey = pRecvEvent->sessionID;
         pPacketEvent->packet = pRecvEvent->c;
         pPacketEvent->pHeader = (nsPackets::THeader*)(pPacketEvent->packet.GetPtr() + pRecvEvent->GetShift());
         AddEventWithoutCopy( pPacketEvent );

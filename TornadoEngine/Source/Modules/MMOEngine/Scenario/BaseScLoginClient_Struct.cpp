@@ -14,7 +14,7 @@ using namespace nsLoginClientStruct;
 THeader::THeader()
 {
   type     = TMakerScenario::eLoginClient;
-  clientID = -1;
+  clientKey = -1;
 }
 //---------------------------------------------------------------------------------------
 THeaderTryLoginC2M::THeaderTryLoginC2M()

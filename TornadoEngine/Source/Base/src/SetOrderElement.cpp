@@ -13,123 +13,81 @@ See for more information License.h.
 
 using namespace std;
 
-TSetOrderElement::TSetOrderElement()
-{
-  mNextAddInnerID = 0;
-}
 //-------------------------------------------------------------------------------------
-TSetOrderElement::~TSetOrderElement()
+void TSetOrderElement::PushBack( unsigned int key, ContentType type )
 {
-
-}
-//-------------------------------------------------------------------------------------
-int compare( unsigned int* v1, unsigned int* v2 )
-{
-  if( *v1 > *v2 )
-    return 1;
-  if( *v1 == *v2 )
-    return 0;
-  return -1;
-}
-//-------------------------------------------------------------------------------------
-bool TSetOrderElement::FindIndexByClientKey( unsigned int key, int& index )
-{
-  if( mMapKeyInnerIndex.size() == 0 )
-    return false;
-
-  // ищем внутренний индекс
-  bmUintUint::left_const_iterator fmit = mMapKeyInnerIndex.left.find( key );
-  if( fmit == mMapKeyInnerIndex.left.end() )
-  {
-    BL_FIX_BUG();
-    return false;
-  }
-  // ищем итератор по внутреннему индексу
-  // т.к. массив всегда сортированный можно быстро искать дихотомией
-  void* result = bsearch( &(fmit->second), &mVecSortInnerIndex[0], mVecSortInnerIndex.size(),
-    sizeof( TVectorUint::size_type ), (int( *)(const void*, const void*))compare );
-  if( result == NULL )
-  {
-    BL_FIX_BUG();
-    return false;
-  }
-  index = ((char*) result - (char*) &mVecSortInnerIndex[0]) / sizeof( sizeof( TVectorUint::size_type ) );
-  return true;
-}
-//-------------------------------------------------------------------------------------
-void TSetOrderElement::AddKeyAtEnd( unsigned int key )
-{
-  if( FindByKey( key ) )
-  {
-    BL_FIX_BUG();
-    return;
-  }
-
   mNextAddInnerID++;
-
-  mMapKeyInnerIndex.insert( bmUintUint::value_type( key, mNextAddInnerID ) );
-
-  ReserveForVector();
-  mVecSortInnerIndex.push_back( mNextAddInnerID );
+  switch ( type )
+  {
+    case TSetOrderElement::InGroup:
+      mInGroup.PushBack( key, mNextAddInnerID );
+      break;
+    case TSetOrderElement::Simple:
+      mSimple.PushBack( key, mNextAddInnerID );
+      break;
+  }
 }
 //-------------------------------------------------------------------------------------
-void TSetOrderElement::DeleteKey( unsigned int key )
+void TSetOrderElement::RemoveFirst()
 {
-  bmUintUint::left_const_iterator fit = mMapKeyInnerIndex.left.find( key );
-  if( fit == mMapKeyInnerIndex.left.end() )
+  auto p = GetFirstViaID();
+  if ( p == nullptr )
     return;
-
-  DeleteFromVectorByInnerIndex( fit->second );
-  mMapKeyInnerIndex.left.erase( key );
+  p->RemoveFirst();
 }
 //-------------------------------------------------------------------------------------
-void TSetOrderElement::Clear()
+void TSetOrderElement::RemoveByKey( unsigned int key )
 {
-  mMapKeyInnerIndex.clear();
-  mVecSortInnerIndex.clear();
+  mSimple.RemoveByKey( key );
+  mInGroup.RemoveByKey( key );
 }
 //-------------------------------------------------------------------------------------
-bool TSetOrderElement::FindByKey( unsigned int key )
+bool TSetOrderElement::GetFirst( unsigned int& key, ContentType type )
 {
-  bmUintUint::left_const_iterator fit = mMapKeyInnerIndex.left.find( key );
-  if( fit == mMapKeyInnerIndex.left.end() )
-    return false;
+  switch ( type )
+  {
+    case TSetOrderElement::InGroup:
+      return mInGroup.GetFirst( key );
+    case TSetOrderElement::Simple:
+      return mSimple.GetFirst( key );
+  }
+  return false;
+}
+//-------------------------------------------------------------------------------------
+bool TSetOrderElement::GetIndex( unsigned int key, int& index )
+{
+  if ( mSimple.GetIndex( key, index ) == false )
+    return mInGroup.GetIndex( key, index );
   return true;
 }
 //-------------------------------------------------------------------------------------
-void TSetOrderElement::ReserveForVector()
+void TSetOrderElement::MoveToSimple( unsigned int key )
 {
-  int capacity = mVecSortInnerIndex.capacity();
-  int size = (mVecSortInnerIndex.size() + 1) * sizeof( TVectorUint::size_type );
-  if( capacity <= size )
-    mVecSortInnerIndex.reserve( 3 * size );
+  unsigned int ID;
+  if ( mInGroup.FindIDByKey( key, ID ) == false )
+    return;
+  mInGroup.RemoveByKey( key );
+  mSimple.Insert( key, ID );
 }
 //-------------------------------------------------------------------------------------
-void TSetOrderElement::DeleteFromVectorByInnerIndex( unsigned int val )
+TSortedVecWithKeyMap* TSetOrderElement::GetFirstViaID()
 {
-  TVectorUint::iterator fit = find( mVecSortInnerIndex.begin(), mVecSortInnerIndex.end(), val );
-  if( fit != mVecSortInnerIndex.end() )
-    mVecSortInnerIndex.erase( fit );
-}
-//-------------------------------------------------------------------------------------
-bool TSetOrderElement::DeleteFirst( unsigned int& key )
-{
-  if( mMapKeyInnerIndex.size() == 0 )
-    return false;
+  auto simpleCount = mSimple.GetSize();
+  auto inGroupCount = mInGroup.GetSize();
 
-  if( FindKeyByInnerIndex( mVecSortInnerIndex[0], key ) == false )
-    return false;
-  DeleteKey( key );
-  return true;
-}
-//-------------------------------------------------------------------------------------
-bool TSetOrderElement::FindKeyByInnerIndex( unsigned int inner_index, unsigned int& key )
-{
-  bmUintUint::right_const_iterator fit = mMapKeyInnerIndex.right.find( inner_index );
-  if( fit == mMapKeyInnerIndex.right.end() )
-    return false;
+  if ( simpleCount == 0 &&
+    inGroupCount == 0 )
+    return nullptr;
 
-  key = fit->second;
-  return true;
+  if ( simpleCount == 0 )
+    return &mInGroup;
+  if ( inGroupCount == 0 )
+    return &mSimple;
+
+  auto inGroupID = mInGroup.GetFirstID();
+  auto simpleID = mSimple.GetFirstID();
+  if ( inGroupID > simpleID )
+    return &mSimple;
+  return &mInGroup;
 }
 //-------------------------------------------------------------------------------------

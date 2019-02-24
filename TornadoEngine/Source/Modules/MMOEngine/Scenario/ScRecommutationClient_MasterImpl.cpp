@@ -67,10 +67,10 @@ void TScRecommutationClient_MasterImpl::RecvFromSlaveRecipient( TDescRecvSession
   }
 }
 //--------------------------------------------------------------------------------------
-void TScRecommutationClient_MasterImpl::Start( unsigned int id_session_recipient, unsigned int clientID )
+void TScRecommutationClient_MasterImpl::Start( unsigned int recipientSessionID, unsigned int clientKey )
 {
-  Context()->SetClientKey( clientID );
-  Context()->SetSessionRecipient( id_session_recipient );
+  Context()->SetClientKey( clientKey );
+  Context()->SetSessionRecipient( recipientSessionID );
   if ( Begin() == false )
   {
     return;
@@ -98,7 +98,7 @@ void TScRecommutationClient_MasterImpl::SendFirstPacket()
 
   mBP.Reset();
   THeaderBeginDonor h;
-  h.clientID = Context()->GetClientKey();
+  h.clientKey = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( Context()->GetSessionDonor(), mBP );
 }
@@ -106,8 +106,8 @@ void TScRecommutationClient_MasterImpl::SendFirstPacket()
 void TScRecommutationClient_MasterImpl::CheckBeginDonor( TDescRecvSession* pDesc )
 {
   THeaderCheckBeginDonor* pHeader = (THeaderCheckBeginDonor*) pDesc->data;
-  NeedContextByClientKey( pHeader->clientID );
-  if ( Context() == NULL )
+  NeedContextByClientKey( pHeader->clientKey );
+  if ( Context() == nullptr )
   {
     return;
   }
@@ -122,7 +122,7 @@ void TScRecommutationClient_MasterImpl::CheckBeginDonor( TDescRecvSession* pDesc
     pDesc->dataSize - sizeof( THeaderCheckBeginDonor ) );
 
   THeaderBeginRecipient h;
-  h.clientID = Context()->GetClientKey();
+  h.clientKey = Context()->GetClientKey();
   h.random_num = privateNum.random_num;
   mBP.PushFront( (char*) &h, sizeof( h ) );
 
@@ -132,8 +132,8 @@ void TScRecommutationClient_MasterImpl::CheckBeginDonor( TDescRecvSession* pDesc
 void TScRecommutationClient_MasterImpl::CheckBeginRecipient( TDescRecvSession* pDesc )
 {
   THeaderCheckBeginRecipient* pHeader = (THeaderCheckBeginRecipient*) pDesc->data;
-  NeedContextByClientKey( pHeader->clientID );
-  if ( Context() == NULL )
+  NeedContextByClientKey( pHeader->clientKey );
+  if ( Context() == nullptr )
   {
     return;
   }
@@ -151,7 +151,7 @@ void TScRecommutationClient_MasterImpl::CheckBeginRecipient( TDescRecvSession* p
   //==============================================
   mBP.Reset();
   THeaderInfoRecipientToDonor h;
-  h.clientID = Context()->GetClientKey();
+  h.clientKey = Context()->GetClientKey();
   h.random_num = Context()->GetRandomNum();
   h.ip_port_recipient = ip_port_recipient;
   mBP.PushFront( (char*) &h, sizeof( h ) );
@@ -162,8 +162,8 @@ void TScRecommutationClient_MasterImpl::CheckBeginRecipient( TDescRecvSession* p
 void TScRecommutationClient_MasterImpl::ClientConnect( TDescRecvSession* pDesc )
 {
   THeaderClientConnect* pHeader = (THeaderClientConnect*) pDesc->data;
-  NeedContextByClientKey( pHeader->clientID );
-  if ( Context() == NULL )
+  NeedContextByClientKey( pHeader->clientKey );
+  if ( Context() == nullptr )
     return;
 
   End();
@@ -174,7 +174,7 @@ void TScRecommutationClient_MasterImpl::DisconnectClient()
   // уведомить Реципиента о потере связи с Клиентом
   mBP.Reset();
   THeaderDisconnectClient h;
-  h.clientID = Context()->GetClientKey();
+  h.clientKey = Context()->GetClientKey();
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( Context()->GetSessionRecipient(), mBP );
   //Нельзя вызывать End();

@@ -56,7 +56,7 @@ namespace nsMMOEngine
     // добавление
     void AddSlave( unsigned int sessionID );
     // добавить в группу клиента
-    void AddBySlaveSessionClientKey( unsigned int id_session_slave, unsigned int clientID );
+    void AddBySlaveSessionClientKey( unsigned int id_session_slave, unsigned int clientKey );
 
     // удаление
     void DeleteBySlaveSession( unsigned int id_session_slave );

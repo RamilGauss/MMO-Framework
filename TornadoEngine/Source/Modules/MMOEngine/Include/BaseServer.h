@@ -21,10 +21,10 @@ namespace nsMMOEngine
     void Reject( int sessionID );
 
     // this method will be realize in future
-    virtual void DisconnectByKeyClient( unsigned int clientID );// = 0;
+    virtual void DisconnectByClientKey( unsigned int clientKey );// = 0;
 
     // всегда с гарантией доставки, т.к. тогда не имеет смысла так долго пересылать (слишком много затрат сил, а гарантии нет?)
-    virtual void SendByClientKey( std::list<unsigned int>& l, char* p, int size ) = 0;
+    virtual void SendByClientKey( std::list<unsigned int>& clientKeyList, char* p, int size ) = 0;
 
     virtual void SendDown( unsigned int sessionID, char* p, int size, bool check = true ) = 0;
     virtual int  GetCountDown() = 0;

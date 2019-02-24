@@ -11,7 +11,7 @@ using namespace nsMMOEngine;
 
 TContextScLoginSlave::TContextScLoginSlave()
 {
-  flgConnectToMaster = false;
+  //flgConnectToMaster = false;
   mTimeWaitAnswerFromMaster = 0;
 }
 //------------------------------------------------------------------
@@ -20,15 +20,15 @@ TContextScLoginSlave::~TContextScLoginSlave()
 
 }
 //------------------------------------------------------------------
-bool TContextScLoginSlave::IsConnect()
-{
-  return flgConnectToMaster;
-}
-//------------------------------------------------------------------
-void TContextScLoginSlave::SetConnect( bool v )
-{
-  flgConnectToMaster = v;
-}
+//bool TContextScLoginSlave::IsConnect()
+//{
+//  return flgConnectToMaster;
+//}
+////------------------------------------------------------------------
+//void TContextScLoginSlave::SetConnect( bool v )
+//{
+//  flgConnectToMaster = v;
+//}
 //------------------------------------------------------------------
 unsigned int TContextScLoginSlave::GetTimeWait()
 {

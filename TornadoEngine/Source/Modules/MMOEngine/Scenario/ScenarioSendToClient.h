@@ -30,8 +30,8 @@ namespace nsMMOEngine
     //-------------------------------------------------
     struct THeader : public TScenarioBaseHeader
     {
-      THeader(){ type = TMakerScenario::eSendToClient; clientID = 0; }
-      unsigned int clientID;
+      THeader(){ type = TMakerScenario::eSendToClient; clientKey = 0; }
+      unsigned int clientKey;
     }_PACKED;
     //==================================================================
     struct THeaderSuperServer : public THeader
@@ -72,14 +72,14 @@ namespace nsMMOEngine
     void SendAll( std::list<unsigned int>& lKey, TBreakPacket& bp );
 
     template <class T>
-    void Send( unsigned int clientID, TBreakPacket& bp );
+    void Send( unsigned int clientKey, TBreakPacket& bp );
   };
   //------------------------------------------------------------------------------
   template <class T>
-  void TScenarioSendToClient::Send( unsigned int clientID, TBreakPacket& bp )
+  void TScenarioSendToClient::Send( unsigned int clientKey, TBreakPacket& bp )
   {
     T h;
-    h.clientID = clientID;
+    h.clientKey = clientKey;
     bp.PushFront( (char*) &h, sizeof( h ) );
 
     unsigned int sessionID = Context()->GetSessionID();
@@ -91,22 +91,22 @@ namespace nsMMOEngine
   {
     if( bp.GetSize() == 0 )
       return;// нельзя передавать нулевые пакеты
-    for( unsigned int clientID : lKey )
+    for( unsigned int clientKey : lKey )
     {
-      NeedContextByClientKey( clientID );
+      NeedContextByClientKey( clientKey );
       if( Context() )
       {
         if( Begin() == false )
         {
           mBP = bp;
           T h;
-          h.clientID = clientID;
+          h.clientKey = clientKey;
           mBP.PushFront( (char*) &h, sizeof( h ) );
           // пока отослать нельзя, сохранить пакет до момента возможности
           Context()->SaveBreakPacket( mBP );
           continue;
         }
-        Send<T>( clientID, bp );
+        Send<T>( clientKey, bp );
         End();
       }
     }

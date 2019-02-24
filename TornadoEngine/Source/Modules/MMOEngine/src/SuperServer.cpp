@@ -56,9 +56,9 @@ void TSuperServer::DisconnectInherit( unsigned int sessionID )
     return;
   for( int i = 0; i < cClient; i++ )
   {
-    unsigned int clientID;
-    if( mMngContextMaster->GetClientKeyByIndex( sessionID, i, clientID ) )
-      mMngContextClient->DeleteByKey( clientID );
+    unsigned int clientKey;
+    if( mMngContextMaster->GetClientKeyByIndex( sessionID, i, clientKey ) )
+      mMngContextClient->DeleteByKey( clientKey );
   }
 
   mMngContextMaster->DeleteContextBySession( sessionID );
@@ -123,7 +123,7 @@ void TSuperServer::NeedContextLoginMaster( unsigned int sessionID )
   mControlSc->mLoginMaster->SetContext( &pC->mLoginMaster );
 }
 //-------------------------------------------------------------------------
-void TSuperServer::NeedContextByMasterSessionByClientKey( unsigned int sessionID, unsigned int clientID )
+void TSuperServer::NeedContextByMasterSessionByClientKey( unsigned int sessionID, unsigned int clientKey )
 {
   // проверка на существование мастера
   if( mMngContextMaster->FindContextBySession( sessionID ) == nullptr )
@@ -131,13 +131,13 @@ void TSuperServer::NeedContextByMasterSessionByClientKey( unsigned int sessionID
     BL_FIX_BUG();
     return;
   }
-  TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( clientID );
+  TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( clientKey );
   bool fakeClient = false;
   if( pC == nullptr )
   {
     // первый заход
-    mMngContextMaster->AddClientKey( sessionID, clientID );
-    pC = mMngContextClient->AddContext( clientID, sessionID );
+    mMngContextMaster->AddClientKey( sessionID, clientKey );
+    pC = mMngContextClient->AddContext( clientKey, sessionID );
     fakeClient = false;
   }
   else
@@ -150,14 +150,14 @@ void TSuperServer::NeedContextByMasterSessionByClientKey( unsigned int sessionID
   mControlSc->mLoginClient->SetFakeClient( fakeClient );
 }
 //-------------------------------------------------------------------------
-void TSuperServer::NeedContextDisconnectClient( unsigned int clientID )
+void TSuperServer::NeedContextDisconnectClient( unsigned int clientKey )
 {
   unsigned int id_session_master;
   // удалить запись в Мастере
-  if( mMngContextClient->FindSessionByClientKey( clientID, id_session_master ) )
-    mMngContextMaster->DeleteByClientKey( id_session_master, clientID );
+  if( mMngContextClient->FindSessionByClientKey( clientKey, id_session_master ) )
+    mMngContextMaster->DeleteByClientKey( id_session_master, clientKey );
   // и сам клиент
-  mMngContextClient->DeleteByKey( clientID );
+  mMngContextClient->DeleteByKey( clientKey );
 }
 //-------------------------------------------------------------------------
 void TSuperServer::EndDisconnectClient( IScenario* pSc )
@@ -165,9 +165,9 @@ void TSuperServer::EndDisconnectClient( IScenario* pSc )
 
 }
 //-------------------------------------------------------------------------
-void TSuperServer::NeedContextSendToClient( unsigned int clientID )
+void TSuperServer::NeedContextSendToClient( unsigned int clientKey )
 {
-  TContainerContextSc* pContext = mMngContextClient->FindContextByClientKey( clientID );
+  TContainerContextSc* pContext = mMngContextClient->FindContextByClientKey( clientKey );
   if( pContext )
     mControlSc->mSendToClient->SetContext( &pContext->mSendToClient );
   else

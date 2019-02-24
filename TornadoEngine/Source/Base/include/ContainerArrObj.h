@@ -43,7 +43,7 @@ public:
 template <class T>
 TContainerArrObj<T>::TContainerArrObj()
 {
-  pData = NULL;
+  pData = nullptr;
   mCount = 0;
 }
 //---------------------------------------------------------------

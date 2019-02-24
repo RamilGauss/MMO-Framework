@@ -23,13 +23,13 @@ TScenarioLoginClient::TScenarioLoginClient() :
 {
   mCurBehavior = nullptr;
 
-  AddCallBack( eSetClientKey, &mCBSetClientKey );
-  AddCallBack( eContextByMasterSessionByClientKey, &mCBContextByMasterSessionByClientKey );
-  AddCallBack( eNumInQueueByClientKey, &mCBNumInQueueByClientKey );
-  AddCallBack( eContextByClientSessionByClientKey, &mCBContextByClientSessionByClientKey );
+  AddCallBack( eSetClientKey,                          &mCBSetClientKey );
+  AddCallBack( eContextByMasterSessionByClientKey,     &mCBContextByMasterSessionByClientKey );
+  AddCallBack( eNumInQueueByClientKey,                 &mCBNumInQueueByClientKey );
+  AddCallBack( eContextByClientSessionByClientKey,     &mCBContextByClientSessionByClientKey );
   AddCallBack( eContextByClientSessionAfterAuthorised, &mCBContextByClientSessionAfterAuthorised );
-  AddCallBack( eContextByClientSessionLeaveQueue, &mCBContextByClientSessionLeaveQueue );
-  AddCallBack( eContextByClientKey_SecondCallSlave, &mCBContextByClientKey_SecondCallSlave );
+  AddCallBack( eContextByClientSessionLeaveQueue,      &mCBContextByClientSessionLeaveQueue );
+  AddCallBack( eContextByClientKey_SecondCallSlave,    &mCBContextByClientKey_SecondCallSlave );
 }
 //--------------------------------------------------------------
 TScenarioLoginClient::~TScenarioLoginClient()

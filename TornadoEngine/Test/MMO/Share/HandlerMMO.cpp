@@ -25,7 +25,7 @@ static THandlerMMO::TMapTypeMMOSetUInt g_Type_IDMap;// тип сервера - �
 static THandlerMMO::TMapUIntSetUInt g_ID_ConnectionMap;
 static THandlerMMO::TMapUIntSetUInt g_ID_DisconnectionMap;
 
-static THandlerMMO::TSetUInt g_ClientIDSet;
+static THandlerMMO::TSetUInt g_ClientKeySet;
 
 static THandlerMMO::TSetUInt g_Client2Master_TryConnectSet;
 
@@ -151,7 +151,7 @@ void THandlerMMO::PrintCC( const char* loggerName )
     }
     iType++;
   }
-  int clientCount = g_ClientIDSet.size();
+  int clientCount = g_ClientKeySet.size();
   sprintf( append, ", clients = %d", clientCount );
   s += append;
 
@@ -164,18 +164,18 @@ void THandlerMMO::PrintCC( const char* loggerName )
   GetLogger( loggerName )->WriteF( s.data() );
 }
 //---------------------------------------------------------------------------------------------
-void THandlerMMO::AddClient( unsigned int clientID )
+void THandlerMMO::AddClient( unsigned int clientKey )
 {
-  auto fit = g_ClientIDSet.find( clientID );
-  BL_ASSERT( fit == g_ClientIDSet.end() );
-  g_ClientIDSet.insert( clientID );
+  auto fit = g_ClientKeySet.find( clientKey );
+  BL_ASSERT( fit == g_ClientKeySet.end() );
+  g_ClientKeySet.insert( clientKey );
 }
 //---------------------------------------------------------------------------------------------
-void THandlerMMO::RemoveClient( unsigned int clientID )
+void THandlerMMO::RemoveClient( unsigned int clientKey )
 {
-  auto fit = g_ClientIDSet.find( clientID );
-  BL_ASSERT( fit != g_ClientIDSet.end() );
-  g_ClientIDSet.erase( clientID );
+  auto fit = g_ClientKeySet.find( clientKey );
+  BL_ASSERT( fit != g_ClientKeySet.end() );
+  g_ClientKeySet.erase( clientKey );
 }
 //---------------------------------------------------------------------------------------------
 void THandlerMMO::AddTryConnectClientToMaster( unsigned int sessionID )
@@ -211,8 +211,8 @@ nsMMOEngine::TBase* THandlerMMO::GetBase()
   return mBase;
 }
 //---------------------------------------------------------------------------------------------
-THandlerMMO::TSetUInt* THandlerMMO::GetClientIDSet()
+THandlerMMO::TSetUInt* THandlerMMO::GetClientKeySet()
 {
-  return &g_ClientIDSet;
+  return &g_ClientKeySet;
 }
 //-----------------------------------------------------------------------------------

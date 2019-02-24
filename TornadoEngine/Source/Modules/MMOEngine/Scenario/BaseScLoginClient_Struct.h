@@ -51,7 +51,7 @@ namespace nsMMOEngine
     {
       THeader();
       unsigned char from;
-      unsigned int  clientID;
+      unsigned int  clientKey;
     }_PACKED;
     //-------------------------------------------------
     struct THeaderC : public THeader

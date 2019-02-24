@@ -26,7 +26,6 @@ TScenarioLoginMaster::~TScenarioLoginMaster()
 //--------------------------------------------------------------
 void TScenarioLoginMaster::ConnectToSuperServer( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet )
 {
-  Context()->SetConnect( false );
   if( Begin() == false )
   {
     End();
@@ -88,7 +87,6 @@ void TScenarioLoginMaster::Work()
 //--------------------------------------------------------------
 void TScenarioLoginMaster::RecvFromSuperServer( TDescRecvSession* pDesc )
 {
-  Context()->SetConnect( true );
   End();
 }
 //-------------------------------------------------------------------------------------

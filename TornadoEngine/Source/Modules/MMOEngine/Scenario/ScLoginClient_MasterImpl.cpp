@@ -128,7 +128,7 @@ void TScLoginClient_MasterImpl::Accept( unsigned int key, void* resForClient, in
   // SuperServer
   mBP.Reset();
   THeaderRequestM2SS h;
-  h.clientID = key;
+  h.clientKey = key;
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( GetID_SessionMasterSS(), mBP );
   // ждем ответ от SuperServer
@@ -198,7 +198,7 @@ void TScLoginClient_MasterImpl::RecvFromSuperServer( TDescRecvSession* pDesc )
 void TScLoginClient_MasterImpl::CheckRequestSS2M( TDescRecvSession* pDesc )
 {
   THeaderCheckRequestSS2M* pHeader = (THeaderCheckRequestSS2M*) pDesc->data;
-  NeedContextByClientKey( pHeader->clientID );
+  NeedContextByClientKey( pHeader->clientKey );
   if( Context() == nullptr )
   {
     // такая ситуация вполне возможна, пока SS слал ответ, клиент отвалился, 
@@ -232,7 +232,7 @@ void TScLoginClient_MasterImpl::CheckRequestSS2M( TDescRecvSession* pDesc )
 
   Context()->Accept();
 
-  SendResultAccept2ClientAndSlave( pHeader->clientID, resForClient, sizeResClient );
+  SendResultAccept2ClientAndSlave( pHeader->clientKey, resForClient, sizeResClient );
 
   Context()->SetCurrentStateWait( TContextScLoginClient::MasterWaitSlave );
 }
@@ -296,7 +296,7 @@ void TScLoginClient_MasterImpl::LeaveQueueC2M( TDescRecvSession* pDesc )
 void TScLoginClient_MasterImpl::ClientConnectS2M( TDescRecvSession* pDesc )
 {
   THeaderClientConnectS2M* pHeader = (THeaderClientConnectS2M*) pDesc->data;
-  NeedContextByClientKey( pHeader->clientID );
+  NeedContextByClientKey( pHeader->clientKey );
   if( Context() == nullptr )
   {
     BL_FIX_BUG();
@@ -305,7 +305,7 @@ void TScLoginClient_MasterImpl::ClientConnectS2M( TDescRecvSession* pDesc )
   //------------------------------------------------------------
   // квитанция о запросе
   THeaderCheckClientConnectM2S h;
-  h.clientID = pHeader->clientID;
+  h.clientKey = pHeader->clientKey;
   mBP.Reset();
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
@@ -318,7 +318,7 @@ void TScLoginClient_MasterImpl::ClientConnectS2M( TDescRecvSession* pDesc )
 void TScLoginClient_MasterImpl::CheckInfoClientS2M( TDescRecvSession* pDesc )
 {
   THeaderCheckInfoClientS2M* pHeader = (THeaderCheckInfoClientS2M*) pDesc->data;
-  NeedContextByClientKey( pHeader->clientID );
+  NeedContextByClientKey( pHeader->clientKey );
   if( Context() == nullptr )
   {
     BL_FIX_BUG();
@@ -331,7 +331,7 @@ void TScLoginClient_MasterImpl::CheckInfoClientS2M( TDescRecvSession* pDesc )
 
   // отослать информацию о Slave
   THeaderInfoSlaveM2C h;
-  h.clientID = Context()->GetClientKey();
+  h.clientKey = Context()->GetClientKey();
   h.ip_port_slave = ip_port_slave;
   mBP.Reset();
   mBP.PushFront( (char*) &h, sizeof( h ) );
@@ -346,7 +346,7 @@ void TScLoginClient_MasterImpl::SendResultAccept2ClientAndSlave( unsigned int ke
   mBP.Reset();
   mBP.PushFront( (char*) resForClient, sizeResClient );
   THeaderResultLoginM2C hForClient;
-  hForClient.clientID = key;
+  hForClient.clientKey = key;
   hForClient.result = THeaderResultLoginM2C::eAccept;
   hForClient.sizeResClient = sizeResClient;
   mBP.PushFront( (char*) &hForClient, sizeof( hForClient ) );
@@ -354,7 +354,7 @@ void TScLoginClient_MasterImpl::SendResultAccept2ClientAndSlave( unsigned int ke
   // Slave
   mBP.Reset();// очистить от частей
   THeaderInfoClientM2S hForSlave;
-  hForSlave.clientID = key;
+  hForSlave.clientKey = key;
   mBP.PushFront( (char*) &hForSlave, sizeof( hForSlave ) );
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
 
@@ -365,7 +365,7 @@ void TScLoginClient_MasterImpl::SendResultAccept2ClientAndSlave( unsigned int ke
 void TScLoginClient_MasterImpl::Disconnect()
 {
   THeaderDisconnectClientM2S h;
-  h.clientID = Context()->GetClientKey();
+  h.clientKey = Context()->GetClientKey();
   mBP.Reset();
   mBP.PushFront( (char*) &h, sizeof( h ) );
   Context()->GetMS()->Send( GetID_SessionMasterSlave(), mBP );
@@ -379,7 +379,7 @@ void TScLoginClient_MasterImpl::CheckInfoSlaveC2M( TDescRecvSession* pDesc )
     return;
   //=====================================
   THeaderCheckInfoSlaveC2M* pHeader = (THeaderCheckInfoSlaveC2M*) pDesc->data;
-  // в целях безопасности нельзя использовать clientID, потому что клиент может "прикинуться" другим
+  // в целях безопасности нельзя использовать clientKey, потому что клиент может "прикинуться" другим
   NeedContextBySessionAfterAuthorised( pDesc->sessionID );
   if( Context() == nullptr )
   {

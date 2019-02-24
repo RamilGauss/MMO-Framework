@@ -24,20 +24,20 @@ TManagerContextClientLogining::~TManagerContextClientLogining()
   Clear();
 }
 //-------------------------------------------------------------------------------------------
-bool TManagerContextClientLogining::FindSessionByClientKey( unsigned int clientID, unsigned int& sessionID )
+bool TManagerContextClientLogining::FindSessionByClientKey( unsigned int clientKey, unsigned int& sessionID )
 {
-  const bmUintUint::right_iterator fit = mMapSessionKey.right.find( clientID );
+  const bmUintUint::right_iterator fit = mMapSessionKey.right.find( clientKey );
   if( fit == mMapSessionKey.right.end() )
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TManagerContextClientLogining::FindSessionByClientKey(clientID=%u) not found.\n", clientID );
+      WriteF_time( "TManagerContextClientLogining::FindSessionByClientKey(clientKey=%u) not found.\n", clientKey );
     return false;
   }
   sessionID = fit->second;
   return true;
 }
 //-------------------------------------------------------------------------------------------
-bool TManagerContextClientLogining::FindClientKeyBySession( unsigned int sessionID, unsigned int& clientID )
+bool TManagerContextClientLogining::FindClientKeyBySession( unsigned int sessionID, unsigned int& clientKey )
 {
   const bmUintUint::left_iterator fit = mMapSessionKey.left.find( sessionID );
   if( fit == mMapSessionKey.left.end() )
@@ -46,7 +46,7 @@ bool TManagerContextClientLogining::FindClientKeyBySession( unsigned int session
       WriteF_time( "TManagerContextClientLogining::FindClientKeyBySession(session=%u) not found.\n", sessionID );
     return false;
   }
-  clientID = fit->second;
+  clientKey = fit->second;
   return true;
 }
 //-------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ TContainerContextSc* TManagerContextClientLogining::AddContext( unsigned int ses
   return pC;
 }
 //-------------------------------------------------------------------------------------------
-bool TManagerContextClientLogining::AddKeyBySession( unsigned int sessionID, unsigned int clientID )
+bool TManagerContextClientLogining::AddKeyBySession( unsigned int sessionID, unsigned int clientKey )
 {
   if( FindContextBySession( sessionID ) == nullptr )
   {
@@ -83,7 +83,7 @@ bool TManagerContextClientLogining::AddKeyBySession( unsigned int sessionID, uns
     return false;
   }
 
-  mMapSessionKey.insert( bmUintUint::value_type( sessionID, clientID ) );
+  mMapSessionKey.insert( bmUintUint::value_type( sessionID, clientKey ) );
   return true;
 }
 //-------------------------------------------------------------------------------------------

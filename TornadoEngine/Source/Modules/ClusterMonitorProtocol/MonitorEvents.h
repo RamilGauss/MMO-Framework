@@ -24,7 +24,7 @@ namespace nsClusterMonitorProtocol
     struct TBaseEvent
     {
       EventType type;
-      unsigned int clientID = 0;
+      unsigned int clientKey = 0;
     };
 
     struct TTryConnectEvent : TBaseEvent

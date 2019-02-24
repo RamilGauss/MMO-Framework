@@ -25,42 +25,42 @@ TManagerContextMoreDownClientConnection::~TManagerContextMoreDownClientConnectio
   Clear();
 }
 //-------------------------------------------------------------------------
-bool TManagerContextMoreDownClientConnection::FindSessionByClientKey( unsigned int clientID, unsigned int &sessionID )
+bool TManagerContextMoreDownClientConnection::FindSessionByClientKey( unsigned int clientKey, unsigned int &sessionID )
 {
-  TMapUintUintIt fit = mMapKeySession.find( clientID );
+  TMapUintUintIt fit = mMapKeySession.find( clientKey );
   if( fit == mMapKeySession.end() )
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TManagerContextMoreDownClientConnection::FindSessionByClientKey(key=%u) not found.\n", clientID );
+      WriteF_time( "TManagerContextMoreDownClientConnection::FindSessionByClientKey(key=%u) not found.\n", clientKey );
     return false;
   }
   sessionID = fit->second;
   return true;
 }
 //-------------------------------------------------------------------------
-TContainerContextSc* TManagerContextMoreDownClientConnection::FindContextByClientKey( unsigned int clientID )
+TContainerContextSc* TManagerContextMoreDownClientConnection::FindContextByClientKey( unsigned int clientKey )
 {
-  TMapUintPtrIt fit = mMapKeyContext.find( clientID );
+  TMapUintPtrIt fit = mMapKeyContext.find( clientKey );
   if( fit == mMapKeyContext.end() )
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TManagerContextMoreDownClientConnection::FindContextByClientKey(key=%u) not found.\n", clientID );
+      WriteF_time( "TManagerContextMoreDownClientConnection::FindContextByClientKey(key=%u) not found.\n", clientKey );
     return nullptr;
   }
   return fit->second;
 }
 //-------------------------------------------------------------------------
-TContainerContextSc* TManagerContextMoreDownClientConnection::AddContext( unsigned int clientID, unsigned int sessionID )
+TContainerContextSc* TManagerContextMoreDownClientConnection::AddContext( unsigned int clientKey, unsigned int sessionID )
 {
   BL_ASSERT( sessionID != INVALID_HANDLE_SESSION );
 
-  TContainerContextSc* pC = FindContextByClientKey( clientID );
+  TContainerContextSc* pC = FindContextByClientKey( clientKey );
   if( pC == nullptr )
   {
     pC = AddContainer();
 
-    mMapKeyContext.insert( TMapUintPtr::value_type( clientID, pC ) );
-    mMapKeySession.insert( TMapUintUint::value_type( clientID, sessionID ) );
+    mMapKeyContext.insert( {clientKey, pC} );
+    mMapKeySession.insert( {clientKey, sessionID} );
 
     pC->SetSessionID( sessionID );
   }
@@ -87,30 +87,30 @@ void TManagerContextMoreDownClientConnection::Clear()
   mMapKeySession.clear();
 }
 //-------------------------------------------------------------------------
-bool TManagerContextMoreDownClientConnection::SetSessionByClientKey( unsigned int clientID, unsigned int sessionID )
+bool TManagerContextMoreDownClientConnection::SetSessionByClientKey( unsigned int clientKey, unsigned int sessionID )
 {
-  TMapUintUintIt fit = mMapKeySession.find( clientID );
+  TMapUintUintIt fit = mMapKeySession.find( clientKey );
   if( fit == mMapKeySession.end() )
   {
     GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TManagerContextMoreDownClientConnection::SetSessionByClientKey(key=%u) not found.\n", clientID );
+      WriteF_time( "TManagerContextMoreDownClientConnection::SetSessionByClientKey(key=%u) not found.\n", clientKey );
     return false;
   }
   fit->second = sessionID;
   // изменить номер сессии для всех контекстов
-  TContainerContextSc* pC = FindContextByClientKey( clientID );
+  TContainerContextSc* pC = FindContextByClientKey( clientKey );
   if( pC )
     pC->SetSessionID( sessionID );
 
   return true;
 }
 //-------------------------------------------------------------------------
-void TManagerContextMoreDownClientConnection::EntrustContext( unsigned int clientID, unsigned int sessionID, TContainerContextSc* pContext )
+void TManagerContextMoreDownClientConnection::EntrustContext( unsigned int clientKey, unsigned int sessionID, TContainerContextSc* pContext )
 {
   BL_ASSERT( sessionID != INVALID_HANDLE_SESSION );
 
-  mMapKeyContext.insert( TMapUintPtr::value_type( clientID, pContext ) );
-  mMapKeySession.insert( TMapUintUint::value_type( clientID, sessionID ) );
+  mMapKeyContext.insert( {clientKey, pContext} );
+  mMapKeySession.insert( {clientKey, sessionID} );
 
   pContext->SetSessionID( sessionID );
 }

@@ -29,7 +29,7 @@ namespace nsMMOEngine
     // Base
     virtual void DisconnectInherit( unsigned int id );
 
-    virtual void EventSetClientKeyLoginClient( unsigned int clientID );
+    virtual void EventSetClientKeyLoginClient( unsigned int clientKey );
   private:
     virtual void EndLoginClient( IScenario* );
     virtual void EndRcm( IScenario* );

@@ -42,7 +42,7 @@ namespace nsMMOEngine
     struct THeaderFromSlave : public THeaderDisconnectClient
     {
       THeaderFromSlave(){ subType = eFromSlave; }
-      unsigned int clientID;
+      unsigned int clientKey;
     }_PACKED;
     //-------------------------------------------------
   public:
@@ -50,7 +50,7 @@ namespace nsMMOEngine
 
     virtual void Recv( TDescRecvSession* pDesc );
 
-    void DisconnectFromSlave( unsigned int clientID );
+    void DisconnectFromSlave( unsigned int clientKey );
     void DisconnectFromMaster( std::vector<unsigned int>& vecID_client );
 
   protected:

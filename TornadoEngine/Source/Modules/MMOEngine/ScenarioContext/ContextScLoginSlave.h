@@ -17,13 +17,13 @@ namespace nsMMOEngine
   class TContextScLoginSlave : public IScenarioContext
   {
     unsigned int mTimeWaitAnswerFromMaster;
-    bool flgConnectToMaster;
+    //bool flgConnectToMaster;
   public:
     TContextScLoginSlave();
     virtual ~TContextScLoginSlave();
 
-    void SetConnect( bool v );
-    bool IsConnect();
+    //void SetConnect( bool v );
+    //bool IsConnect();
 
     unsigned int GetTimeWait();
     void SetTimeWait( unsigned int v );

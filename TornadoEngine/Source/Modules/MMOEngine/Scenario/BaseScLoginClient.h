@@ -53,12 +53,12 @@ namespace nsMMOEngine
     // запрос на новую сессию, кто зарегистрировался выставит контекст с помощью SetContext()
     void NeedContextBySessionLeaveQueue( unsigned int sessionID );
     void NeedContextBySession( unsigned int sessionID );
-    void NeedContextByClientKey( unsigned int clientID );
-    void NeedContextByClientKey_SecondCallSlave( unsigned int clientID );
-    void NeedContextByMasterSessionByClientKey( unsigned int id_session_master, unsigned int clientID );
-    void NeedNumInQueueByClientKey( unsigned int clientID );
-    void EventSetClientKey( unsigned int clientID );
-    void NeedContextByClientSessionByClientKey( unsigned int id_session_client, unsigned int clientID );
+    void NeedContextByClientKey( unsigned int clientKey );
+    void NeedContextByClientKey_SecondCallSlave( unsigned int clientKey );
+    void NeedContextByMasterSessionByClientKey( unsigned int id_session_master, unsigned int clientKey );
+    void NeedNumInQueueByClientKey( unsigned int clientKey );
+    void EventSetClientKey( unsigned int clientKey );
+    void NeedContextByClientSessionByClientKey( unsigned int id_session_client, unsigned int clientKey );
     void NeedContextBySessionAfterAuthorised( unsigned int id_session_client );
   };
 }

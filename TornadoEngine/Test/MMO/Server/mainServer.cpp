@@ -27,6 +27,7 @@ See for more information License.h.
 #include "InputCmdTestMMO_Server.h"
 #include "ClusterMonitorServerHandler.h"
 #include "SrcEvent_ex.h"
+#include "SetOrderElement.h"//###
 
 
 #define COUNT_SLAVE 3
@@ -35,11 +36,26 @@ void StartServer( int argc, char** argv );
 
 int main( int argc, char** argv )
 {
+  //###
+  TSetOrderElement soe;
+  soe.PushBack( 3, TSetOrderElement::InGroup );
+  soe.PushBack( 4, TSetOrderElement::Simple );
+
+  unsigned int simpleKey;
+  auto simpleRes = soe.GetFirst( simpleKey, TSetOrderElement::Simple );
+
+  unsigned int inGroupKey;
+  auto inGroupRes = soe.GetFirst( inGroupKey, TSetOrderElement::InGroup );
+  soe.MoveToSimple( inGroupKey );
+
+  simpleRes = soe.GetFirst( simpleKey, TSetOrderElement::Simple );
+  //###
+
   setlocale( LC_ALL, "Russian" );
 
 #ifdef WIN32
   std::string title = "Title Server ";
-  for( int i = 1 ; i < argc ; i++ )
+  for ( int i = 1; i < argc; i++ )
   {
     char s[1000];
     sprintf( s, "%s ", argv[i] );
@@ -54,7 +70,7 @@ int main( int argc, char** argv )
   {
     StartServer( argc, argv );
   }
-  catch( ... )
+  catch ( ... )
   {
     printf( "exception!!!\n" );
     getchar();
@@ -77,15 +93,15 @@ void StartServer( int argc, char** argv )
   {
     int countIP_v4 = resolver.GetCount();
     GetLogger( ServerLog )->WriteF( "ip count = %d\n", countIP_v4 );
-    for( int i = 0; i < countIP_v4; i++ )
+    for ( int i = 0; i < countIP_v4; i++ )
     {
-      if( resolver.Get( sLocalHost, i ) == false )
+      if ( resolver.Get( sLocalHost, i ) == false )
         continue;
       GetLogger( ServerLog )->WriteF( "ip = %s\n", sLocalHost.data() );
     }
   }
 
-  if( resolver.Get( sLocalHost, cmi.mInput.subnet ) )
+  if ( resolver.Get( sLocalHost, cmi.mInput.subnet ) )
     GetLogger( ServerLog )->WriteF( "use ip = %s\n", sLocalHost.data() );
   else
   {
@@ -101,7 +117,7 @@ void StartServer( int argc, char** argv )
   descOpen.subNet = cmi.mInput.subnet;
   typedef std::shared_ptr<nsMMOEngine::TSlave> TShared_Ptr_Slave;
   std::vector<TShared_Ptr_Slave> arrSlave;
-  for( int i = 0; i < COUNT_SLAVE; i++ )
+  for ( int i = 0; i < COUNT_SLAVE; i++ )
   {
     TShared_Ptr_Slave pSlave = TShared_Ptr_Slave( new nsMMOEngine::TSlave );
     THandlerMMO_Slave* pHandlerSlave = new THandlerMMO_Slave( pSlave.get() );
@@ -146,7 +162,7 @@ void StartServer( int argc, char** argv )
   masterIP_Port.ip = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
   masterIP_Port.port = MASTER_PORT;
   password = SLAVE_PASSWORD;
-  for( int i = 0; i < COUNT_SLAVE; i++ )
+  for ( int i = 0; i < COUNT_SLAVE; i++ )
   {
     char sLogin[100];
     sprintf( sLogin, "%d", i );
@@ -161,14 +177,14 @@ void StartServer( int argc, char** argv )
   unsigned int limitDeltaTime = 6000;// ms
   int iCycle = 0;
 
-  while( true )
+  while ( true )
   {
     auto now = ht_GetMSCount();
 
-    if( iCycle == 0 )// начало расчета скорости работы
+    if ( iCycle == 0 )// начало расчета скорости работы
       start = now;
 
-    if( printTime < now )
+    if ( printTime < now )
     {
       THandlerMMO::PrintCC( ServerLog );
       printTime = now + printInterval;
@@ -177,19 +193,19 @@ void StartServer( int argc, char** argv )
     // Work - реакции мастера и суперсервера
     pSuperServer->Work();
     pMaster->Work();
-    for( auto pSlave : arrSlave )
+    for ( auto pSlave : arrSlave )
       pSlave->Work();
     // Handle
     handlerMaster->Work();
     handlerSuperServer->Work();
-    for( auto pHandlerSlave : arrHandlerSlave )
+    for ( auto pHandlerSlave : arrHandlerSlave )
       pHandlerSlave->Work();
 
     cmsTransport.Work();
 
     iCycle++;
     auto delta = ht_GetMSCount() - start;
-    if( delta >= limitDeltaTime )
+    if ( delta >= limitDeltaTime )
     {
       auto speed_ms = delta * 1.0f / iCycle;
       GetLogger( ServerLog )->WriteF( "time of cycle = %f ms\n", speed_ms );

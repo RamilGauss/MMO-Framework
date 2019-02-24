@@ -14,7 +14,7 @@ See for more information License.h.
 #include "HandlerMMO_Slave.h"
 #include "Logger.h"
 
-const float SLAVE_LOAD_PER_CLIENT = 0.01f;
+const float SLAVE_LOAD_PER_CLIENT = 1.0f;
 
 THandlerMMO_Slave::THandlerMMO_Slave( nsMMOEngine::TBase* pBase ) : THandlerMMO( pBase, eSlave )
 {
@@ -44,11 +44,11 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       sEvent = "ConnectDown";
       auto sessionID = ((nsMMOEngine::TConnectDownEvent*) pBE)->sessionID;
       AddConnection( sessionID );
-      // если это Slave, то отправить пакет Мастеру с clientID
-      unsigned int clientID;
-      bool res = pSlave->FindClientKeyBySession( sessionID, clientID );
+      // если это Slave, то отправить пакет Мастеру с clientKey
+      unsigned int clientKey;
+      bool res = pSlave->FindClientKeyBySession( sessionID, clientKey );
       char s[100];
-      sprintf( s, "%d", clientID );
+      sprintf( s, "%d", clientKey );
       int sizeMsg = strlen( s );
       pSlave->SendUp( s, sizeMsg );
       // при авторизации клиента выставить нагрузку

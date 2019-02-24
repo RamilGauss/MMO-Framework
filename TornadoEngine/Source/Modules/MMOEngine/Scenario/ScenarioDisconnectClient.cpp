@@ -41,12 +41,12 @@ void TScenarioDisconnectClient::Work()
 
 }
 //---------------------------------------------------------------
-void TScenarioDisconnectClient::DisconnectFromSlave( unsigned int clientID )
+void TScenarioDisconnectClient::DisconnectFromSlave( unsigned int clientKey )
 {
   // формирование пакета
   mBP.Reset();
   THeaderFromSlave h;
-  h.clientID = clientID;
+  h.clientKey = clientKey;
   mBP.PushFront( (char*) &h, sizeof( h ) );
   // отослать пакет для попытки авторизации
   Context()->GetMS()->Send( Context()->GetSessionID(), mBP );
@@ -79,6 +79,6 @@ void TScenarioDisconnectClient::RecvFromMaster( TDescRecvSession* pDesc )
 void TScenarioDisconnectClient::RecvFromSlave( TDescRecvSession* pDesc )
 {
   THeaderFromSlave* pH = (THeaderFromSlave*) pDesc->data;
-  NeedContextByClientKey( pH->clientID );
+  NeedContextByClientKey( pH->clientKey );
 }
 //---------------------------------------------------------------

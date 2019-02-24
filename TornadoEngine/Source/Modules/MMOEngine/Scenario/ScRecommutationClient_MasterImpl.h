@@ -23,7 +23,7 @@ namespace nsMMOEngine
     TScRecommutationClient_MasterImpl( IScenario* pSc );
 
     virtual void Work( unsigned int time_ms );
-    void Start( unsigned int id_session_recipient, unsigned int clientID );
+    void Start( unsigned int recipientSessionID, unsigned int clientKey );
     void DelayBegin();
 
     void DisconnectClient();

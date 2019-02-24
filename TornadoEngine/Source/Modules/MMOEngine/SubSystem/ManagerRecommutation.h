@@ -51,6 +51,7 @@ namespace nsMMOEngine
     bool FindSessionByClientKey( unsigned int key, unsigned int& id_session_donor, unsigned int& id_session_recipient );
 
     int GetCountClientBySessionSlave( unsigned int sessionID );
+    int GetCountClientBySessionSlave_Balance( unsigned int sessionID );
     bool GetClientKeyByIndex( unsigned int sessionID, int index, unsigned int& key );
 
     // добавить в группу клиента

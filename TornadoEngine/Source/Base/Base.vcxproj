@@ -276,6 +276,8 @@
     <ClInclude Include="include\ShareMisc.h" />
     <ClInclude Include="include\SingletonManager.h" />
     <ClInclude Include="include\SortedThinningRestoreOrder.h" />
+    <ClInclude Include="include\SortedVector.h" />
+    <ClInclude Include="include\SortedVecWithKeyMap.h" />
     <ClInclude Include="include\SrcEvent.h" />
     <ClInclude Include="include\SrcEvent_ex.h" />
     <ClInclude Include="include\StateMachine.h" />
@@ -337,6 +339,7 @@
     <ClCompile Include="src\ShareLibWin.cpp" />
     <ClCompile Include="src\ShareMisc.cpp" />
     <ClCompile Include="src\SingletonManager.cpp" />
+    <ClCompile Include="src\SortedVecWithKeyMap.cpp" />
     <ClCompile Include="src\SrcEvent.cpp" />
     <ClCompile Include="src\StorePathResources.cpp" />
     <ClCompile Include="src\SynchroAbonent.cpp" />

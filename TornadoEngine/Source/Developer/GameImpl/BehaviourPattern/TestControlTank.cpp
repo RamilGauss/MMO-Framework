@@ -78,9 +78,9 @@ void TTestControlTank::Send()
   //    //pBS->SendDown( descDown.sessionID, bp);
   //  if(pComponent->mSlave->Get()->GetDescDown(iClient, (void*)&descDown, sizeDesc))
   //  {
-  //    unsigned int clientID;
-  //    if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.sessionID,clientID))
-  //      listKey.push_back(clientID);
+  //    unsigned int clientKey;
+  //    if(pComponent->mSlave->Get()->FindClientKeyBySession(descDown.sessionID,clientKey))
+  //      listKey.push_back(clientKey);
   //  }
   //}
   //pBS->SendByClientKey( listKey, bp);

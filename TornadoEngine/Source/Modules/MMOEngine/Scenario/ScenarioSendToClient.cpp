@@ -57,28 +57,28 @@ void TScenarioSendToClient::SendFromSlave( std::list<unsigned int>& lKey, TBreak
 void TScenarioSendToClient::RecvFromSuperServer( TDescRecvSession* pDesc )
 {
   THeaderSuperServer* pH = (THeaderSuperServer*) pDesc->data;
-  NeedContextByClientKey( pH->clientID );
+  NeedContextByClientKey( pH->clientKey );
   if ( Context() )
   {
     mBP.Reset();
     mBP.PushFront( pDesc->data + sizeof( THeaderSuperServer ),
       pDesc->dataSize - sizeof( THeaderSuperServer ) );
 
-    Send<THeaderMaster>( pH->clientID, mBP );
+    Send<THeaderMaster>( pH->clientKey, mBP );
   }
 }
 //-------------------------------------------------------------------
 void TScenarioSendToClient::RecvFromMaster( TDescRecvSession* pDesc )
 {
   THeaderMaster* pH = (THeaderMaster*) pDesc->data;
-  NeedContextByClientKey( pH->clientID );
+  NeedContextByClientKey( pH->clientKey );
   if ( Context() )
   {
     mBP.Reset();
     mBP.PushFront( pDesc->data + sizeof( THeaderMaster ),
       pDesc->dataSize - sizeof( THeaderMaster ) );
 
-    Send<THeaderSlave>( pH->clientID, mBP );
+    Send<THeaderSlave>( pH->clientKey, mBP );
   }
 }
 //-------------------------------------------------------------------

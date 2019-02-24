@@ -18,7 +18,7 @@ namespace nsPSM
 {
   enum
   { 
-    ePacket_ClientTryEnterRoom,// указать clientID, тип боя - от этого зависит кол-во игроков
+    ePacket_ClientTryEnterRoom,// указать clientKey, тип боя - от этого зависит кол-во игроков
     ePacket_ClientTryEnterGarage,
 
     ePacket_ClientEnterGarage,

@@ -29,13 +29,13 @@ namespace nsMMOEngine
     ~TManagerContextClientLogining();
 
     // навигация
-    bool FindSessionByClientKey( unsigned int clientID, unsigned int& sessionID );
-    bool FindClientKeyBySession( unsigned int sessionID, unsigned int& clientID );
+    bool FindSessionByClientKey( unsigned int clientKey, unsigned int& sessionID );
+    bool FindClientKeyBySession( unsigned int sessionID, unsigned int& clientKey );
     TContainerContextSc* FindContextBySession( unsigned int sessionID );
 
     // добавление/удаление
     TContainerContextSc* AddContext( unsigned int sessionID );
-    bool AddKeyBySession( unsigned int sessionID, unsigned int clientID );
+    bool AddKeyBySession( unsigned int sessionID, unsigned int clientKey );
     // удаление
     void DeleteBySession( unsigned int sessionID );
     // отцепиться

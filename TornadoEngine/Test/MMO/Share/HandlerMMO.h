@@ -33,8 +33,8 @@ public:
   void AddConnection( unsigned int sessionID );
   void RemoveConnection( unsigned int sessionID );
 
-  void AddClient( unsigned int clientID );
-  void RemoveClient( unsigned int clientID );
+  void AddClient( unsigned int clientKey );
+  void RemoveClient( unsigned int clientKey );
 
   void AddTryConnectClientToMaster( unsigned int sessionID );
 
@@ -52,7 +52,7 @@ public:
   typedef std::unordered_map<unsigned int, TSetUInt> TMapUIntSetUInt;
   typedef std::unordered_map<unsigned int, THandlerMMO*> TMapUIntPtr;
 
-  static TSetUInt* GetClientIDSet();
+  static TSetUInt* GetClientKeySet();
 private:
   TypeMMO mType;
 

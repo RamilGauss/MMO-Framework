@@ -41,10 +41,10 @@ namespace nsMMOEngine
     // Base
     virtual void DisconnectInherit( unsigned int sessionID );
   protected:
-    virtual void NeedContextDisconnectClient( unsigned int clientID );
+    virtual void NeedContextDisconnectClient( unsigned int clientKey );
     virtual void NeedContextLoginMaster( unsigned int sessionID );
-    virtual void NeedContextByMasterSessionByClientKey( unsigned int sessionID, unsigned int clientID );//SS
-    virtual void NeedContextSendToClient( unsigned int clientID );
+    virtual void NeedContextByMasterSessionByClientKey( unsigned int sessionID, unsigned int clientKey );//SS
+    virtual void NeedContextSendToClient( unsigned int clientKey );
   protected:
     virtual void EndDisconnectClient( IScenario* );
   };

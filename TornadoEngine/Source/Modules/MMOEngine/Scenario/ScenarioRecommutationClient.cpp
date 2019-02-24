@@ -15,15 +15,15 @@ using namespace nsMMOEngine;
 TScenarioRecommutationClient::TScenarioRecommutationClient() :
   mClient( this ), mSlave( this ), mMaster( this )
 {
-  mCurBehavior = NULL;
+  mCurBehavior = nullptr;
 
-  AddCallBack( eNeedContextByClientKeyForSlave, &mCBNeedContextByClientKeyForSlave );
+  AddCallBack( eNeedContextByClientKeyForSlave,     &mCBNeedContextByClientKeyForSlave );
   AddCallBack( eNeedContextByClientSessionForSlave, &mCBNeedContextByClientSessionForSlave );
-  AddCallBack( eNeedSessionDonor, &mCBNeedSessionDonorByClientKey );
-  AddCallBack( eEventActivate, &mCBActivate );
-  AddCallBack( eEventDisconnectClient, &mCBDisconnectByClientKey );
-  AddCallBack( eEventTimeClientElapsed, &mCBTimeClientElapsed );
-  AddCallBack( eNeedContextByRequestForRecipient, &mCBNeedContextByRequestForRecipient );
+  AddCallBack( eNeedSessionDonor,                   &mCBNeedSessionDonorByClientKey );
+  AddCallBack( eEventActivate,                      &mCBActivate );
+  AddCallBack( eEventDisconnectClient,              &mCBDisconnectByClientKey );
+  AddCallBack( eEventTimeClientElapsed,             &mCBTimeClientElapsed );
+  AddCallBack( eNeedContextByRequestForRecipient,   &mCBNeedContextByRequestForRecipient );
 }
 //--------------------------------------------------------------
 TScenarioRecommutationClient::~TScenarioRecommutationClient()
@@ -40,9 +40,9 @@ void TScenarioRecommutationClient::Work()
   }
 }
 //--------------------------------------------------------------
-void TScenarioRecommutationClient::Start( unsigned int id_session_recipient, unsigned int clientID )
+void TScenarioRecommutationClient::Start( unsigned int recipientSessionID, unsigned int clientKey )
 {
-  mMaster.Start( id_session_recipient, clientID );
+  mMaster.Start( recipientSessionID, clientKey );
 }
 //--------------------------------------------------------------
 void TScenarioRecommutationClient::DelayBegin()

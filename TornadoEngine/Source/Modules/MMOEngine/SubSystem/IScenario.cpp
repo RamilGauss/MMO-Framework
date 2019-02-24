@@ -16,8 +16,8 @@ IScenario::IScenario()
 {
   mCurContext = nullptr;
 
-  AddCallBack( eContextBySession, &mCBNeedContextBySession );
-  AddCallBack( eEnd, &mCBEnd );
+  AddCallBack( eContextBySession,   &mCBNeedContextBySession );
+  AddCallBack( eEnd,                &mCBEnd );
   AddCallBack( eContextByClientKey, &mCBContextByClientKey );
 }
 //---------------------------------------------------------------------
@@ -34,7 +34,7 @@ bool IScenario::Begin()
 void IScenario::End()
 {
   // уведомить об окончании сценария
-  Notify<IScenario*>( eEnd, this );
+  Notify( eEnd, this );
   // сценарий закончен
   mCurContext->Deactivate();
 }
@@ -61,7 +61,7 @@ IScenarioContext* IScenario::GetContext()
 //---------------------------------------------------------------------
 void IScenario::NeedContextBySession( unsigned int sessionID )
 {
-  Notify<unsigned int>( eContextBySession, sessionID );
+  Notify( eContextBySession, sessionID );
 }
 //---------------------------------------------------------------------
 unsigned char IScenario::GetType()
@@ -74,8 +74,8 @@ void IScenario::SetType( unsigned char type )
   mType = type;
 }
 //---------------------------------------------------------------------
-void IScenario::NeedContextByClientKey( unsigned int clientID )
+void IScenario::NeedContextByClientKey( unsigned int clientKey )
 {
-  Notify<unsigned int>( eContextByClientKey, clientID );
+  Notify( eContextByClientKey, clientKey );
 }
 //---------------------------------------------------------------------

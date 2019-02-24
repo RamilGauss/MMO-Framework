@@ -50,7 +50,7 @@ TControlScenario::~TControlScenario()
 //----------------------------------------------------------------------
 void TControlScenario::Add( IScenario* pSc )
 {
-  mMapTypeSc.insert( TMapIntPtr::value_type( pSc->GetType(), pSc ) );
+  mMapTypeSc.insert( {pSc->GetType(), pSc} );
 }
 //----------------------------------------------------------------------
 void TControlScenario::Recv( TDescRecvSession* pDesc )

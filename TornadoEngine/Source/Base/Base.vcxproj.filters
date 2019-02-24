@@ -269,6 +269,12 @@
     <ClInclude Include="include\MemoryObjectPool.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\SortedVecWithKeyMap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SortedVector.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -431,6 +437,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\TextFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SortedVecWithKeyMap.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

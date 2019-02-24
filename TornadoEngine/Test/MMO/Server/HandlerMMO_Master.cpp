@@ -78,7 +78,7 @@ void THandlerMMO_Master::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       //s[pR->dataSize] = '\0';
       //sEvent += " msg: ";
       //sEvent += s;
-      //// получили пакет от Slave с clientID
+      //// получили пакет от Slave с clientKey
       //std::list<unsigned int> l_id;
       //l_id.push_front( boost::lexical_cast<int>(s) );
       //char* sMsgFromMaster = "Master say hello!";
@@ -105,26 +105,26 @@ void THandlerMMO_Master::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       char s[100];
       memcpy( s, pETL->c.GetPtr() + 1, lenLogin );
       s[lenLogin] = '\0';
-      unsigned int clientID = boost::lexical_cast<int>(s);
-      pMaster->SetResultLogin( true, pETL->sessionID, clientID, (void*)"Welcome", strlen( "Welcome" ) );
+      unsigned int clientKey = boost::lexical_cast<int>(s);
+      pMaster->SetResultLogin( true, pETL->sessionID, clientKey, (void*)"Welcome", strlen( "Welcome" ) );
     }
     break;
     case nsMMOEngine::eLogin:
     {
       sEvent = "Login";
       auto pLoginEvent = (nsMMOEngine::TLoginEvent*)pBE;
-      unsigned int clientID = pLoginEvent->clientID;
-      AddClient( clientID );
+      unsigned int clientKey = pLoginEvent->clientKey;
+      AddClient( clientKey );
     }
     break;
     case nsMMOEngine::eLogoff:
     {
       nsMMOEngine::TLogoffEvent* pLogoff = (nsMMOEngine::TLogoffEvent*)pBE;
       char s[100];
-      sprintf( s, "%u", pLogoff->clientID );
+      sprintf( s, "%u", pLogoff->clientKey );
       sEvent = "Logoff ";
       sEvent += s;
-      RemoveClient( pLogoff->clientID );
+      RemoveClient( pLogoff->clientKey );
     }
     break;
     case nsMMOEngine::eDestroyGroup:

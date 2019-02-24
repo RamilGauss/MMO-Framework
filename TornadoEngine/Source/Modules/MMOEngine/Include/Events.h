@@ -104,13 +104,13 @@ namespace nsMMOEngine
   struct DllExport TLoginEvent : public TBaseEvent
   {
     TLoginEvent();
-    unsigned int clientID;
+    unsigned int clientKey;
   }_PACKED;
   //-------------------------------------------------------------
   struct DllExport TLogoffEvent : public TBaseEvent
   {
     TLogoffEvent();
-    unsigned int clientID;
+    unsigned int clientKey;
   }_PACKED;
   //-------------------------------------------------------------
   struct DllExport TSaveContextEvent : public TBaseEvent

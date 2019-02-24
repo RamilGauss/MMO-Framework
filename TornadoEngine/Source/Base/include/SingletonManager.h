@@ -21,10 +21,10 @@ public:
   Type* Get()// low-speed method, after call have to remember Type*
   {
     Type* pObj = nullptr;
-    auto id = std::type_index( typeid(Type) );
+    auto id = std::type_index( typeid( Type ) );
 
     auto fit = mTypeObjMap.find( id );
-    if( fit == mTypeObjMap.end() )
+    if ( fit == mTypeObjMap.end() )
     {
       pObj = new Type();
       mTypeObjMap.insert( TIntPtrMap::value_type( id, pObj ) );

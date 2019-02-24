@@ -15,14 +15,10 @@ namespace nsMMOEngine
   // сценарии, содержащиеся в контейнере взаимно блокируются
   class TContextScLoginMaster : public IScenarioContext
   {
-    bool flgConnect;
     unsigned int mTimeWait;
   public:
     TContextScLoginMaster();
     virtual ~TContextScLoginMaster();
-
-    void SetConnect( bool v );
-    bool IsConnect();
 
     void SetTimeWait( unsigned int v );
     unsigned int GetTimeWait();

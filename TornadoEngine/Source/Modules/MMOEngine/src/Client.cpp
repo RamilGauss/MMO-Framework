@@ -111,8 +111,8 @@ void TClient::LeaveQueue()
     mControlSc->mLoginClient->LeaveQueue();
 }
 //-------------------------------------------------------------------------
-void TClient::EventSetClientKeyLoginClient( unsigned int clientID )
+void TClient::EventSetClientKeyLoginClient( unsigned int clientKey )
 {
-  mID = clientID;
+  mID = clientKey;
 }
 //-------------------------------------------------------------------------

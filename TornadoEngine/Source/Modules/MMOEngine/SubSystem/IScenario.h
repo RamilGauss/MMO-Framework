@@ -62,6 +62,6 @@ namespace nsMMOEngine
     void End();
     // запрос на новую сессию, кто зарегистрировался выставит контекст с помощью SetContext()
     void NeedContextBySession( unsigned int sessionID );
-    void NeedContextByClientKey( unsigned int clientID );
+    void NeedContextByClientKey( unsigned int clientKey );
   };
 }

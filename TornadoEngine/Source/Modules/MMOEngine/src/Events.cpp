@@ -104,13 +104,13 @@ TTryLoginEvent::TTryLoginEvent()
 TLoginEvent::TLoginEvent()
 {
   mType = eLogin;
-  clientID = 0;
+  clientKey = 0;
 }
 //-------------------------------------------------------------
 TLogoffEvent::TLogoffEvent()
 {
   mType = eLogoff;
-  clientID = 0;
+  clientKey = 0;
 }
 //-------------------------------------------------------------
 TSaveContextEvent::TSaveContextEvent()

@@ -37,7 +37,7 @@ void TClusterMonitorServerHandler::Work()
         printf( "Try connect\n" );
         auto pTryConnectEvent = (nsClusterMonitorProtocol::nsEvents::TTryConnectEvent*)pBaseEvent;
         std::string password = "1";
-        mServerTransport.Accept( pTryConnectEvent->clientID, password );
+        mServerTransport.Accept( pTryConnectEvent->clientKey, password );
       }
       break;
       case nsClusterMonitorProtocol::nsEvents::Connect:
@@ -62,14 +62,14 @@ void TClusterMonitorServerHandler::RecvPacketHandler( nsClusterMonitorProtocol::
     {
       nsClusterMonitorProtocol::nsPackets::TAn_SlaveCount an;
       an.cnt = mMaster->GetCountDown();
-      mServerTransport.Send( pPacketEvent->clientID, &an, sizeof( an ) );
+      mServerTransport.Send( pPacketEvent->clientKey, &an, sizeof( an ) );
     }
     break;
     case nsClusterMonitorProtocol::nsPackets::Cmd_CreateGroupAllClients:
     {
       std::list<unsigned int> clientIDList;
       unsigned int groupID;
-      auto& s = *(THandlerMMO::GetClientIDSet());
+      auto& s = *(THandlerMMO::GetClientKeySet());
       for( auto id : s )
       {
         clientIDList.push_back( id );
