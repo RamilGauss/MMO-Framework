@@ -102,28 +102,17 @@ void TSlave::DisconnectInherit( unsigned int sessionID )
   }
 }
 //-------------------------------------------------------------------------
-int TSlave::GetCountDown()
+void TSlave::GetDescDown( std::list<unsigned int>& sessionID_List )
 {
-  return mMngContextClient->GetCountSession();
-}
-//-------------------------------------------------------------------------
-bool TSlave::GetDescDown( int index, void* pDesc, int& sizeDesc )
-{
-  if( sizeDesc < sizeof( TDescDownSlave ) )
+  sessionID_List.clear();
+  auto count = mMngContextClient->GetCountSession();
+  for( int index = 0 ; index < count ; index++ )
   {
-    GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TSlave::GetDescDown() size of buffer less then size of structure.\n" );
-    return false;
+    unsigned int sessionID;
+    if ( mMngContextClient->GetSessionByIndex( index, sessionID ) == false )
+      continue;
+    sessionID_List.push_back( sessionID );
   }
-
-  unsigned int sessionID;
-  if( mMngContextClient->GetSessionByIndex( index, sessionID ) == false )
-    return false;
-
-  TDescDownSlave* pDescDownSlave = (TDescDownSlave*) pDesc;
-  pDescDownSlave->sessionID = sessionID;
-  sizeDesc = sizeof( TDescDownSlave );
-  return true;
 }
 //-------------------------------------------------------------------------
 void TSlave::ConnectUp( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet )

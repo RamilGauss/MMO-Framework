@@ -26,21 +26,19 @@ See for more information License.h.
 #include "DelegateManagerContextSc.h"
 #include "Events.h"
 
-using namespace std;
+#include "EntityManager.h"
+
 using namespace nsMMOEngine;
 
 //-------------------------------------------------------------------------
 TBase::TBase() :
+  mEntMng( new nsMappedComponents::TEntityManager() ),
   mSessionManager( new TSessionManager ),
   mControlSc( new TControlScenario ),
   mContainerUp( new TContainerContextSc ),
   mMngMngContextSc( new TManagerManagerContextSc )
 {
   GetLogger()->Register( STR_NAME_MMO_ENGINE );
-
-  mLoadProcent = 0;
-
-  mSessionUpID = INVALID_HANDLE_SESSION;
 
   SetupScForContext( mContainerUp.get() );
   // задать контекст по-умолчанию
@@ -76,12 +74,12 @@ bool TBase::Open( TDescOpen* pDesc, int count )
   return mSessionManager->Start( pDesc, count );
 }
 //-------------------------------------------------------------------------
-void TBase::SetLoad( int procent )
+void TBase::SetLoad( float procent )
 {
   mLoadProcent = procent;
 }
 //-------------------------------------------------------------------------
-int TBase::GetLoad()
+float TBase::GetLoad()
 {
   return mLoadProcent;
 }

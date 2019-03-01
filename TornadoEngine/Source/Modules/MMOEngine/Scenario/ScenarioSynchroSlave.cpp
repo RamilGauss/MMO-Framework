@@ -21,7 +21,7 @@ TScenarioSynchroSlave::~TScenarioSynchroSlave()
 
 }
 //---------------------------------------------------------------------
-void TScenarioSynchroSlave::SendSynchro( int loadProcent )
+void TScenarioSynchroSlave::SendSynchro( float loadProcent )
 {
   mBP.Reset();
   THeaderSynchroSlave h;
@@ -34,7 +34,7 @@ void TScenarioSynchroSlave::Recv( TDescRecvSession* pDesc )
 {
   NeedContextBySession( pDesc->sessionID );
   THeaderSynchroSlave* pPacket = (THeaderSynchroSlave*) pDesc->data;
-  switch( pPacket->subType )
+  switch ( pPacket->subType )
   {
     case eFromSlave:
       RecvFromSlave( pDesc );

@@ -28,13 +28,9 @@ namespace nsMMOEngine
     // BaseServer
     virtual void SendByClientKey( std::list<unsigned int>& lKey, char* p, int size );
 
-    struct TDescDownSuperServer
-    {
-      unsigned int sessionID;
-      int countClient;
-    };
-    virtual int  GetCountDown();
-    virtual bool GetDescDown( int index, void* pDesc, int& sizeDesc );
+    virtual void GetDescDown( std::list<unsigned int>& sessionID_List );
+    virtual int GetClientCountBySessionID( unsigned int sessionID );
+
     virtual void SendDown( unsigned int sessionID, char* p, int size, bool check = true );
 
   protected:

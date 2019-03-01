@@ -15,7 +15,7 @@ struct TIdentityComponent : IUniqueComponent
   unsigned int id;
   bool operator< ( const TIdentityComponent& other ) const
   {
-    return other.id < this->id;
+    return other.id > this->id;
   }
 };
 
@@ -24,7 +24,7 @@ struct TGroupIDComponent : IMultiComponent
   unsigned int id;
   bool operator< ( const TGroupIDComponent& other ) const
   {
-    return other.id < this->id;
+    return other.id > this->id;
   }
 };
 
@@ -43,7 +43,7 @@ struct TStateComponent : IMultiComponent, IGroupedComponent
 
   bool operator< ( const TStateComponent& other ) const
   {
-    return other.v < this->v;
+    return other.v > this->v;
   }
   virtual int GetGroupCount()
   {
@@ -60,7 +60,7 @@ const int CLIENT_COUNT = 4;
 const int TEST_COUNT = 1;//500;
 const int sizeGroup = 2;
 #else
-const int CLIENT_COUNT = 500000;// 200000;
+const int CLIENT_COUNT = 200000;// 200000;
 const int TEST_COUNT = 1000000;
 const int sizeGroup = 30;
 #endif
@@ -235,11 +235,23 @@ void Test( std::string testName, std::function<void( int )> func )
   fmt::print( "{} : {} us\n", testName, timePerCycle );
 }
 //---------------------------------------------------------------------------------------
+struct TDestroyHandler
+{
+  void Destroy( TEntityManager::EntityID id )
+  {
+    fmt::print( "destroy entity with id = {}\n", id );
+  }
+};
 int main( int argc, char* argv )
 {
   std::srand( std::time( nullptr ) );
 
   entMng.JoinMultiToGroup<TGroupIDComponent, TStateComponent>();
+
+#ifdef _DEBUG
+  TDestroyHandler destroyHandler;
+  entMng.GetCBOnDestroy()->Register( &TDestroyHandler::Destroy,&destroyHandler);
+#endif
 
   auto start = ht_GetMSCount();
   AddClients();
@@ -266,6 +278,10 @@ int main( int argc, char* argv )
   Test( "Update unique", UpdateIdentityClient );
   Test( "Update group", UpdateStateClient );
   Test( "Update multi", UpdateGroupID_Client );
+
+  auto clientCount = entMng.GetUniqueCount<TIdentityComponent>();
+
+  auto lowGroupID = entMng.GetLow<TGroupIDComponent>();
 
   auto inQueueCount = GetInQueueCount();
   auto onSlaveCount = GetOnSlaveCount();

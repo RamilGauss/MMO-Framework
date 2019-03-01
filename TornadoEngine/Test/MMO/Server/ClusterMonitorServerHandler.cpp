@@ -61,7 +61,9 @@ void TClusterMonitorServerHandler::RecvPacketHandler( nsClusterMonitorProtocol::
     case nsClusterMonitorProtocol::nsPackets::Rq_SlaveCount:
     {
       nsClusterMonitorProtocol::nsPackets::TAn_SlaveCount an;
-      an.cnt = mMaster->GetCountDown();
+      std::list<unsigned int> sessionID_List;
+      mMaster->GetDescDown( sessionID_List );
+      an.cnt = sessionID_List.size();
       mServerTransport.Send( pPacketEvent->clientKey, &an, sizeof( an ) );
     }
     break;

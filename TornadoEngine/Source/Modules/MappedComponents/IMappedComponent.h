@@ -11,9 +11,16 @@ See for more information License.h.
 namespace nsMappedComponents
 {
   struct DllExport IUniqueComponent : IComponent {};
+
+  struct DllExport IHasComponent : IComponent {};
  
   struct DllExport IMultiComponent : IComponent {};
 
+  struct DllExport IMultiMixComponent : IComponent {};
+
+
+
+  // deprecated
   // урезанная и оптимизированная версия multi
   struct DllExport IGroupedComponent : IComponent 
   {

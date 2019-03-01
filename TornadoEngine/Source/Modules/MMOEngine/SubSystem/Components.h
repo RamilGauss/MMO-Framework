@@ -16,18 +16,40 @@ namespace nsMMOEngine
   {
     TContainerContextSc* v = nullptr;
   };
+  // identity
   struct TClientIdentityComponent : nsMappedComponents::IUniqueComponent
   {
     unsigned int v = 0;
+    bool operator< ( const TClientIdentityComponent& other ) const
+    {
+      return other.v > this->v;
+    }
+  };
+  struct TClientSessionIdentityComponent : nsMappedComponents::IUniqueComponent
+  {
+    unsigned int v = INVALID_HANDLE_SESSION;
+    bool operator< ( const TClientSessionIdentityComponent& other ) const
+    {
+      return other.v > this->v;
+    }
   };
   struct TGroupIdentityComponent : nsMappedComponents::IUniqueComponent
   {
     unsigned int v = 0;
+    bool operator< ( const TGroupIdentityComponent& other ) const
+    {
+      return other.v > this->v;
+    }
   };
-  struct TSessionIDComponent : nsMappedComponents::IUniqueComponent
+  struct TSlaveSessionIdentityComponent : nsMappedComponents::IUniqueComponent
   {
     unsigned int v = INVALID_HANDLE_SESSION;
+    bool operator< ( const TSlaveSessionIdentityComponent& other ) const
+    {
+      return other.v > this->v;
+    }
   };
+  // multi
   struct TClientStateComponent : nsMappedComponents::IMultiComponent, nsMappedComponents::IGroupedComponent
   {
     typedef enum
@@ -40,9 +62,7 @@ namespace nsMMOEngine
       Lost,
       Count
     }State;
-
     State v = Init;
-
     virtual int GetGroupCount()
     {
       return State::Count;
@@ -51,22 +71,45 @@ namespace nsMMOEngine
     {
       return v;
     }
+    bool operator< ( const TClientStateComponent& other ) const
+    {
+      return other.v > this->v;
+    }
   };
   struct TGroupIDComponent : nsMappedComponents::IMultiComponent
   {
     unsigned int v = 0;
+    bool operator< ( const TGroupIDComponent& other ) const
+    {
+      return other.v > this->v;
+    }
   };
-  struct TSlaveSessionIDComponent : nsMappedComponents::IMultiComponent
+  struct TSlaveSessionByClientComponent : nsMappedComponents::IMultiComponent
   {
     unsigned int v = INVALID_HANDLE_SESSION;
+    bool operator< ( const TSlaveSessionByClientComponent& other ) const
+    {
+      return other.v > this->v;
+    }
   };
-  struct TRCMInfoComponent : nsMappedComponents::IComponent
+  struct TSlaveSessionByGroupComponent : nsMappedComponents::IMultiComponent
   {
-    unsigned int donorSessionID = INVALID_HANDLE_SESSION;
-    unsigned int recipientSessionID = INVALID_HANDLE_SESSION;
+    unsigned int v = INVALID_HANDLE_SESSION;
+    bool operator< ( const TSlaveSessionByGroupComponent& other ) const
+    {
+      return other.v > this->v;
+    }
+  };
+  struct TDonorSessionComponent : nsMappedComponents::IMultiComponent
+  {
+    unsigned int v = INVALID_HANDLE_SESSION;
+    bool operator< ( const TDonorSessionComponent& other ) const
+    {
+      return other.v > this->v;
+    }
   };
   struct TSlaveLoadInfoComponent : nsMappedComponents::IComponent
   {
-    unsigned char v;
+    float v;
   };
 }

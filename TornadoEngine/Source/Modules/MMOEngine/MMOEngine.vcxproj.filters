@@ -66,8 +66,11 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="SubSystem\MappingDownConnection\Master\New">
-      <UniqueIdentifier>{e9fc1054-f0d3-476c-b370-1d5943fae561}</UniqueIdentifier>
+    <Filter Include="SubSystem\Logic">
+      <UniqueIdentifier>{13e389d7-3eac-46cf-a645-d04b7df1df50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SubSystem\Logic\Master">
+      <UniqueIdentifier>{7010dc45-bd83-4e69-9c5b-780313ba24d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +271,24 @@
     </ClCompile>
     <ClCompile Include="src\Master.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\BaseMasterLogic.cpp">
+      <Filter>SubSystem\Logic\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\ClientOnMasterLogic.cpp">
+      <Filter>SubSystem\Logic\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\GroupLogic.cpp">
+      <Filter>SubSystem\Logic\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\SlaveOnMasterLogic.cpp">
+      <Filter>SubSystem\Logic\Master</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\BaseLogic.cpp">
+      <Filter>SubSystem\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystem\RCMLogic.cpp">
+      <Filter>SubSystem\Logic\Master</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -485,13 +506,25 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="SubSystem\Components.h">
-      <Filter>SubSystem\MappingDownConnection\Master\New</Filter>
+      <Filter>SubSystem\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="SubSystem\DataManager.h">
-      <Filter>SubSystem\MappingDownConnection\Master\New</Filter>
+    <ClInclude Include="SubSystem\BaseLogic.h">
+      <Filter>SubSystem\Logic</Filter>
     </ClInclude>
     <ClInclude Include="SubSystem\BaseMasterLogic.h">
-      <Filter>SubSystem\MappingDownConnection\Master\New</Filter>
+      <Filter>SubSystem\Logic\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\ClientOnMasterLogic.h">
+      <Filter>SubSystem\Logic\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\GroupLogic.h">
+      <Filter>SubSystem\Logic\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\RCMLogic.h">
+      <Filter>SubSystem\Logic\Master</Filter>
+    </ClInclude>
+    <ClInclude Include="SubSystem\SlaveOnMasterLogic.h">
+      <Filter>SubSystem\Logic\Master</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

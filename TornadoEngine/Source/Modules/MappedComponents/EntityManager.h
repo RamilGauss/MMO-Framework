@@ -19,6 +19,7 @@ See for more information License.h.
 #include "IMappedComponent.h"
 #include "ContainerArrObj.h"
 #include "Entity.h"
+#include "CallBackRegistrator.h"
 
 namespace nsMappedComponents
 {
@@ -30,17 +31,28 @@ namespace nsMappedComponents
     typedef Identity EntityID;
     typedef Identity MultiID;
 
-    const Identity None = 0;
+    static const Identity None = 0;
 
     typedef std::set<EntityID> TSortedEntity;
+
+    template <typename Component>
+    using TTypeIdentityMap = std::map<Component, Identity>;// multi -> identity
 
     // сообщить какие возможны варианты использования поиска
     template<typename Multi, typename Group>
     void JoinMultiToGroup();
 
+    //###
+    //template<typename Multi>
+    //void AddComboMultiType();
+    //template<typename Component>
+    //void AddOrder();
+    //###
+
     // create/destroy
     EntityID CreateEntity();
     void DestroyEntity( EntityID id );
+
     // components
     template<typename Component>
     void AddComponent( EntityID id, Component& c );
@@ -51,9 +63,23 @@ namespace nsMappedComponents
     template<typename Component>
     bool GetComponent( EntityID id, Component& c );
 
+
+    // reactions
+    TCallBackRegistrator1<EntityID>* GetCBOnDestroy();
+
     // search
     template<typename Component>
     EntityID GetUnique( Component& c );
+
+    template<typename Component>
+    int GetUniqueCount();
+
+    // via id
+    template <typename Component>
+    using TComponentEntityMap = std::map<Component, Identity>;// unique
+
+    template<typename Component>
+    TComponentEntityMap<Component>& GetUniqueEntities();
 
     template<typename Component>
     MultiID GetMultiID( Component& c );
@@ -62,24 +88,28 @@ namespace nsMappedComponents
 
     int GetMultiCount( MultiID mid );
 
-    TSortedEntity::iterator GetBegin( MultiID mid );
-    TSortedEntity::iterator GetEnd( MultiID mid );
+    TSortedEntity& GetEntities( MultiID mid );
+
+    template<typename Component>
+    MultiID GetLow();
+    template<typename Component>
+    MultiID GetHigh();
+
+    template<typename Component>
+    TTypeIdentityMap<Component>& GetSortedEntities();
+    template<typename Component, typename Group>
+    TTypeIdentityMap<Component>& GetSortedEntities( Group& g );
   private:
+    TSortedEntity mEmptySet;
+
     // и для Entity и Multi
     Identity mIdentityForCreate = 1;
 
     typedef std::shared_ptr<TEntity> TEntityPtr;
     std::map<EntityID, TEntityPtr> mEntityComponentListMap;// все Entity
 
-    // via id
-    template <typename Component>
-    using TComponentEntityMap = std::map<Component, Identity>;// unique
-
     typedef std::shared_ptr<TSortedEntity> TSharedPtrSortedEntity;
     typedef std::map<Identity, TSharedPtrSortedEntity> TIdentityEntitiesMap;
-
-    template <typename Component>
-    using TTypeIdentityMap = std::map<Component, Identity>;// multi -> identity
 
     template <typename Component>
     using TIntTypeIdentityMap = std::map<int, TTypeIdentityMap<Component>>;// номер группы -> Multi identity
@@ -114,6 +144,7 @@ namespace nsMappedComponents
     TTypeTypeListMap mGroupMultiMap;
     TTypeUpdateFuncMap mMultiTypeFuncMap;
 
+    TCallBackRegistrator1<EntityID> mCBDestroyEntities;
   private:
     template<typename Multi>
     void AddMulti( EntityID id, Multi& m );
@@ -140,6 +171,9 @@ namespace nsMappedComponents
 
     template<typename Component>
     TTypeIdentityMap<Component>* GetMultiMng();
+
+    template<typename Component, typename Group>
+    TTypeIdentityMap<Component>* GetMultiMngByGroup( int num );
   private:
     TEntity* FindEntity( EntityID id );
 
@@ -348,9 +382,22 @@ namespace nsMappedComponents
   }
   //-------------------------------------------------------------------------------
   template<typename Component>
+  int TEntityManager::GetUniqueCount()
+  {
+    auto pMap = mSM.Get<TComponentEntityMap<Component>>();
+    return (int) pMap->size();
+  }
+  //-------------------------------------------------------------------------------
+  template<typename Component>
+  TEntityManager::TComponentEntityMap<Component>& TEntityManager::GetUniqueEntities()
+  {
+    auto pMap = mSM.Get<TComponentEntityMap<Component>>();
+    return *( pMap );
+  }
+  //-------------------------------------------------------------------------------
+  template<typename Component>
   TEntityManager::MultiID TEntityManager::GetMultiID( Component& c )
   {
-    auto componentType = std::type_index( typeid( Component ) );
     auto multiMng = GetMultiMng<Component>();
     return multiMng->operator[]( c );
   }
@@ -358,21 +405,40 @@ namespace nsMappedComponents
   template<typename Component, typename Group>
   TEntityManager::MultiID TEntityManager::GetMultiID( Component& c, Group& g )
   {
-    auto groupType = std::type_index( typeid( Group ) );
-    auto componentType = std::type_index( typeid( Component ) );
-    auto groupMng = GetGroupMng<Component, Group>();
-    auto& numPartedMng = groupMng->operator[]( groupType );
-    auto num = g.GetGroupNumber();
-    auto& multiMng = numPartedMng[num];
-    return multiMng[c];
+    auto multiMng = GetMultiMngByGroup<Component, Group>( g.GetGroupNumber() );
+    return multiMng->operator[]( c );
   }
   //-------------------------------------------------------------------------------
-  TEntity* TEntityManager::FindEntity( EntityID id )
+  template<typename Component>
+  TEntityManager::MultiID TEntityManager::GetLow()
   {
-    auto fit = mEntityComponentListMap.find( id );
-    if ( mEntityComponentListMap.end() == fit )
-      return nullptr;
-    return fit->second.get();
+    auto pMultiMng = GetMultiMng<Component>();
+    if ( pMultiMng->begin() == pMultiMng->end() )
+      return None;
+    return pMultiMng->begin()->second;
+  }
+  //-------------------------------------------------------------------------------
+  template<typename Component>
+  TEntityManager::MultiID TEntityManager::GetHigh()
+  {
+    auto pMultiMng = GetMultiMng<Component>();
+    if ( pMultiMng->begin() == pMultiMng->end() )
+      return None;
+    return pMultiMng->rbegin()->second;
+  }
+  //-------------------------------------------------------------------------------
+  template<typename Component>
+  TEntityManager::TTypeIdentityMap<Component>& TEntityManager::GetSortedEntities()
+  {
+    auto pMultiMng = GetMultiMng<Component>();
+    return *( pMultiMng );
+  }
+  //-------------------------------------------------------------------------------
+  template<typename Component, typename Group>
+  TEntityManager::TTypeIdentityMap<Component>& TEntityManager::GetSortedEntities( Group& g )
+  {
+    auto pMultiMng = GetMultiMngByGroup<Component, Group>( g.GetGroupNumber() );
+    return *( pMultiMng );
   }
   //-------------------------------------------------------------------------------
   template<typename Component, typename Group>
@@ -398,6 +464,16 @@ namespace nsMappedComponents
   TEntityManager::TTypeIdentityMap<Component>* TEntityManager::GetMultiMng()
   {
     return mSM.Get<TTypeIdentityMap<Component>>();
+  }
+  //-------------------------------------------------------------------------------
+  template<typename Component, typename Group>
+  TEntityManager::TTypeIdentityMap<Component>* TEntityManager::GetMultiMngByGroup( int num )
+  {
+    auto groupType = std::type_index( typeid( Group ) );
+    auto pGroupMng = GetGroupMng<Component, Group>();
+    auto& groupPartedMng = pGroupMng->operator[]( groupType );
+    auto& multiMng = groupPartedMng[num];
+    return &multiMng;
   }
   //-------------------------------------------------------------------------------
   template<typename Component>
@@ -434,7 +510,6 @@ namespace nsMappedComponents
   template<typename Multi, typename Group>
   void TEntityManager::AddMultiByGroup( EntityID id )
   {
-    MultiID mid;
     Group g;
     GetComponent( id, g );
     Multi m;
@@ -490,17 +565,15 @@ namespace nsMappedComponents
   template<typename Multi, typename Group>
   void TEntityManager::AddMultiInGroup( EntityID id, int num, Multi& m )
   {
-    auto groupType = std::type_index( typeid( Group ) );
-    auto groupMng = GetGroupMng<Multi, Group>();
-    auto& groupPartedMng = groupMng->operator[]( groupType );
-    auto& multiMng = groupPartedMng[num];
-    auto fit = multiMng.find( m );
+    auto multiMng = GetMultiMngByGroup<Multi, Group>( num );
+
+    auto fit = multiMng->find( m );
     MultiID mid;
-    if ( fit == multiMng.end() )// search mid
+    if ( fit == multiMng->end() )// search mid
     {// add new
       mid = NewIdentity();
       mIdentityEntitiesMap.insert( {mid, TSharedPtrSortedEntity( new TSortedEntity() )} );
-      multiMng.insert( {m, mid} );
+      multiMng->insert( {m, mid} );
     }
     else
       mid = fit->second;
@@ -511,18 +584,16 @@ namespace nsMappedComponents
   template<typename Multi, typename Group>
   void TEntityManager::EraseMultiInGroup( EntityID id, int num, Multi& m )
   {
-    auto groupType = std::type_index( typeid( Group ) );
-    auto groupMng = GetGroupMng<Multi, Group>();
-    auto& groupPartedMng = groupMng->operator[]( groupType );
-    auto& multiMng = groupPartedMng[num];
-    auto fit = multiMng.find( m );
-    if ( fit == multiMng.end() )// search mid
+    auto multiMng = GetMultiMngByGroup<Multi, Group>( num );
+
+    auto fit = multiMng->find( m );
+    if ( fit == multiMng->end() )// search mid
       return;
     auto mid = fit->second;
     if ( mid != None )
       mIdentityEntitiesMap[mid]->erase( id );
     if ( mIdentityEntitiesMap[mid]->size() == 0 )// уменьшить место
-      multiMng.erase( m );
+      multiMng->erase( m );
   }
   //-------------------------------------------------------------------------------
 }

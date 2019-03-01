@@ -10,31 +10,19 @@ See for more information License.h.
 #include "ActiveServer.h"
 
 class TSetOrderElement;
+
 namespace nsMMOEngine
 {
-  class TSlaveAuthLogic;
-  class TClientAuthLogic;
+  class TRCMLogic;
   class TGroupLogic;
+  class TSlaveOnMasterLogic;
+  class TClientOnMasterLogic;
   class DllExport TMaster : public TActiveServer
   {
-    enum
-    {
-      eLimitLoadPercentOnSlaveForAdd = 70,
-      eLimitLoadPercentOnSlaveForAdd_ClientInGroup = 75, // для Клиента, состоящего в Группе процент другой
-
-      eDefaultLoadPerClientIfClientCountZero = 5,// если на Slave нет клиентов, то считать нагрузку на одного клиента равным этому значению
-
-      eLimitCountClientWaitFreeSpace = 10000,// максимальный размер очереди ожидающих
-    };
-
-    // для доступа к Master
-    friend class TSlaveAuthLogic;
-    friend class TClientAuthLogic;
-    friend class TGroupLogic;
-
-    std::shared_ptr<TSlaveAuthLogic> mSlaveAuthLogic;
-    std::shared_ptr<TClientAuthLogic> mClientAuthLogic;
+    std::shared_ptr<TRCMLogic> mRCMLogic;
     std::shared_ptr<TGroupLogic> mGroupLogic;
+    std::shared_ptr<TSlaveOnMasterLogic> mSlaveLogic;
+    std::shared_ptr<TClientOnMasterLogic> mClientLogic;
 
   public:
     typedef enum
@@ -44,7 +32,6 @@ namespace nsMMOEngine
     }tResultLogin;
 
     TMaster();
-    virtual ~TMaster();
 
     virtual bool TryCreateGroup( std::list<unsigned int>& clientKeyList, unsigned int& groupID );
     virtual void DestroyGroup( unsigned int groupID );
@@ -56,12 +43,8 @@ namespace nsMMOEngine
 
     // BaseServer
     virtual void SendByClientKey( std::list<unsigned int>& clientKeyList, char* p, int size );
-    struct TDescDownMaster
-    {
-      unsigned int sessionID;
-    };
-    virtual int  GetCountDown();
-    virtual bool GetDescDown( int index, void* pDesc, int& sizeDesc );// pDesc имеет тип TDescDownMaster*
+
+    virtual void GetDescDown( std::list<unsigned int>& sessionIDList );
 
     virtual void SendDown( unsigned int sessionID, char* p, int size, bool check = true );
     // ActiveServer      
@@ -95,5 +78,8 @@ namespace nsMMOEngine
     virtual void EndRcm( IScenario* pSc );
     virtual void EndSynchroSlave( IScenario* pSc );
   private:
+    bool DisconnectSuperServer( unsigned int sessionID );
+    bool DisconnectClientWait( unsigned int sessionID );
+    bool DisconnectSlave( unsigned int sessionID );
   };
 }

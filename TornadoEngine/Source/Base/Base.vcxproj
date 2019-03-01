@@ -289,6 +289,7 @@
     <ClInclude Include="include\ThreadBoost.h" />
     <ClInclude Include="include\TimeManager.h" />
     <ClInclude Include="include\TypeDef.h" />
+    <ClInclude Include="include\TypeIdentifier.h" />
     <ClInclude Include="include\VectorRise.h" />
     <ClInclude Include="include\XML_Markup.h" />
   </ItemGroup>
@@ -347,6 +348,7 @@
     <ClCompile Include="src\TextFile.cpp" />
     <ClCompile Include="src\ThreadBoost.cpp" />
     <ClCompile Include="src\TimeManager.cpp" />
+    <ClCompile Include="src\TypeIdentifier.cpp" />
     <ClCompile Include="src\XML_Markup.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -127,10 +127,12 @@ void THandlerMMO::PrintCC( const char* loggerName )
       {
         auto pHandler = g_ID_MMO_HandlerPtr[slaveID];
         auto pSlave = (nsMMOEngine::TSlave*)(pHandler->GetBase());
+        std::list<unsigned int> sessionID_List;
+        pSlave->GetDescDown( sessionID_List );
         if( iSlave == slaveCount - 1 )
-          sprintf( append, "%d", pSlave->GetCountDown() );
+          sprintf( append, "%d", sessionID_List.size() );
         else
-          sprintf( append, "%d, ", pSlave->GetCountDown() );
+          sprintf( append, "%d, ", sessionID_List.size() );
         s += append;
         iSlave++;
       }

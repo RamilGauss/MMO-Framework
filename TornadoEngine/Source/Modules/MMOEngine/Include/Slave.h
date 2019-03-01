@@ -34,12 +34,8 @@ namespace nsMMOEngine
     // BaseServer
     virtual void SendByClientKey( std::list<unsigned int>& lKey, char* p, int size );
 
-    struct TDescDownSlave // для GetDescDown
-    {
-      unsigned int sessionID;
-    };
-    virtual int  GetCountDown();
-    virtual bool GetDescDown( int index, void* pDesc, int& sizeDesc );// pDesc имеет тип TDescDownSlave
+    virtual void GetDescDown( std::list<unsigned int>& sessionID_List );
+
     virtual void SendDown( unsigned int sessionID, char* p, int size, bool check = true );
     // ActiveServer      
     virtual void ConnectUp( TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet = 0 );

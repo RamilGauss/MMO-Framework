@@ -7,31 +7,25 @@ See for more information License.h.
 
 #pragma once
 #include "TypeDef.h"
-#include <typeindex>
-#include <map>
+#include "TypeIdentifier.h"
+#include <vector>
 
 // not Thread-safe!
 class DllExport TSingletonManager
 {
-  typedef std::map<std::type_index, void*> TIntPtrMap;// std::type_index is faster than size_t
-
-  TIntPtrMap mTypeObjMap;
+  typedef std::vector<void*> TPtrVector;
+  
+  TPtrVector mTypeObjVec;
 public:
   template<typename Type>
-  Type* Get()// low-speed method, after call have to remember Type*
+  Type* Get()
   {
-    Type* pObj = nullptr;
-    auto id = std::type_index( typeid( Type ) );
-
-    auto fit = mTypeObjMap.find( id );
-    if ( fit == mTypeObjMap.end() )
-    {
-      pObj = new Type();
-      mTypeObjMap.insert( TIntPtrMap::value_type( id, pObj ) );
-    }
-    else
-      pObj = (Type*) fit->second;
-    return pObj;
+    auto index = GlobalTypeIdentifier()->type<Type>();
+    if ( mTypeObjVec.size() < index + 1 )
+      mTypeObjVec.resize( index + 1 );
+    if ( mTypeObjVec[index] == nullptr )
+      mTypeObjVec[index] = new Type();
+    return (Type*)mTypeObjVec[index];
   }
 };
 

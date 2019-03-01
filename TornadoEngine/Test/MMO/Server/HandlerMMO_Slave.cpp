@@ -23,26 +23,28 @@ THandlerMMO_Slave::THandlerMMO_Slave( nsMMOEngine::TBase* pBase ) : THandlerMMO(
 //-----------------------------------------------------------------------------------
 void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
 {
-  nsMMOEngine::TBaseEvent* pBE = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
-  nsMMOEngine::TSlave* pSlave = (nsMMOEngine::TSlave*)pEvent->pSrc;
+  nsMMOEngine::TBaseEvent* pBE = ( nsMMOEngine::TBaseEvent* )pEvent->pContainer->GetPtr();
+  nsMMOEngine::TSlave* pSlave = ( nsMMOEngine::TSlave* )pEvent->pSrc;
 
-  auto ccDown = pSlave->GetCountDown();
+  std::list<unsigned int> sessionID_List;
+  pSlave->GetDescDown( sessionID_List );
+  auto ccDown = sessionID_List.size();
 
   std::string sEvent;
-  switch( pBE->mType )
+  switch ( pBE->mType )
   {
     case nsMMOEngine::eTryConnectDown:
     {
       sEvent = "TryConnectDown";
       std::string password = CLIENT_PASSWORD;
-      auto sessionID = ((nsMMOEngine::TTryConnectDownEvent*) pBE)->sessionID;
+      auto sessionID = ( ( nsMMOEngine::TTryConnectDownEvent* ) pBE )->sessionID;
       pSlave->Accept( sessionID, password );
     }
     break;
     case nsMMOEngine::eConnectDown:
     {
       sEvent = "ConnectDown";
-      auto sessionID = ((nsMMOEngine::TConnectDownEvent*) pBE)->sessionID;
+      auto sessionID = ( ( nsMMOEngine::TConnectDownEvent* ) pBE )->sessionID;
       AddConnection( sessionID );
       // если это Slave, то отправить пакет Мастеру с clientKey
       unsigned int clientKey;
@@ -57,20 +59,20 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
     break;
     case nsMMOEngine::eDisconnectDown:
       sEvent = "DisconnectDown";
-      RemoveConnection( ((nsMMOEngine::TDisconnectDownEvent*) pBE)->sessionID );
+      RemoveConnection( ( ( nsMMOEngine::TDisconnectDownEvent* ) pBE )->sessionID );
       pSlave->SetLoad( SLAVE_LOAD_PER_CLIENT * ccDown );
       break;
     case nsMMOEngine::eConnectUp:
       sEvent = "ConnectUp";
-      AddConnection( ((nsMMOEngine::TConnectUpEvent*) pBE)->sessionID );
+      AddConnection( ( ( nsMMOEngine::TConnectUpEvent* ) pBE )->sessionID );
       break;
     case nsMMOEngine::eDisconnectUp:
       sEvent = "DisconnectUp";
-      RemoveConnection( ((nsMMOEngine::TDisconnectUpEvent*) pBE)->sessionID );
+      RemoveConnection( ( ( nsMMOEngine::TDisconnectUpEvent* ) pBE )->sessionID );
       break;
     case nsMMOEngine::eError:
     {
-      nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
+      nsMMOEngine::TErrorEvent* pEr = ( nsMMOEngine::TErrorEvent* )pBE;
       sEvent = nsMMOEngine::GetStrError( pEr->code );
     }
     break;
@@ -83,7 +85,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       //s[pR->dataSize] = '\0';
       //sEvent += " msg: ";
       //sEvent += s;
-      nsMMOEngine::TRecvFromDownEvent* pR = (nsMMOEngine::TRecvFromDownEvent*)pBE;
+      nsMMOEngine::TRecvFromDownEvent* pR = ( nsMMOEngine::TRecvFromDownEvent* )pBE;
       pSlave->SendDown( pR->sessionID, (char*) pR->GetData(), pR->GetSize() );
       return;
     }
@@ -102,7 +104,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
     case nsMMOEngine::eSaveContext:
     {
       sEvent = "SaveContext";
-      nsMMOEngine::TSaveContextEvent* pSE = (nsMMOEngine::TSaveContextEvent*)pBE;
+      nsMMOEngine::TSaveContextEvent* pSE = ( nsMMOEngine::TSaveContextEvent* )pBE;
       char* pData = "This is context, motherfucker!";
       int   size = strlen( pData );
       pSlave->SaveContext( pSE->sessionID, pData, size );
@@ -112,7 +114,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
     case nsMMOEngine::eRestoreContext:
     {
       sEvent = "RestoreContext";
-      nsMMOEngine::TRestoreContextEvent* pRE = (nsMMOEngine::TRestoreContextEvent*)pBE;
+      nsMMOEngine::TRestoreContextEvent* pRE = ( nsMMOEngine::TRestoreContextEvent* )pBE;
       char sContext[200];
       memcpy( sContext, pRE->c.GetPtr(), pRE->c.GetSize() );
       sContext[pRE->c.GetSize()] = '\0';
@@ -124,7 +126,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
     default:BL_FIX_BUG();
   }
 
-  if( pBE->mType == nsMMOEngine::eError )
+  if ( pBE->mType == nsMMOEngine::eError )
   {
     GetLogger( ServerLog )->WriteF( "MMOEngine S (0x%p): %s.\t", pSlave, sEvent.data() );
     PrintCC( ServerLog );

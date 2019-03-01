@@ -47,17 +47,17 @@ void TSuperServer::SendByClientKey( std::list<unsigned int>& lKey, char* p, int 
 //-------------------------------------------------------------------------
 void TSuperServer::DisconnectInherit( unsigned int sessionID )
 {
-  if( mMngContextMaster->FindContextBySession( sessionID ) == nullptr )
+  if ( mMngContextMaster->FindContextBySession( sessionID ) == nullptr )
     return;
 
   // перечислить всех клиентов, которые сидят на этом мастере и их удаление
   int cClient;
-  if( mMngContextMaster->GetCountClientKey( sessionID, cClient ) == false )
+  if ( mMngContextMaster->GetCountClientKey( sessionID, cClient ) == false )
     return;
-  for( int i = 0; i < cClient; i++ )
+  for ( int i = 0; i < cClient; i++ )
   {
     unsigned int clientKey;
-    if( mMngContextMaster->GetClientKeyByIndex( sessionID, i, clientKey ) )
+    if ( mMngContextMaster->GetClientKeyByIndex( sessionID, i, clientKey ) )
       mMngContextClient->DeleteByKey( clientKey );
   }
 
@@ -68,39 +68,31 @@ void TSuperServer::DisconnectInherit( unsigned int sessionID )
   AddEventCopy( &event, sizeof( event ) );
 }
 //-------------------------------------------------------------------------
-int TSuperServer::GetCountDown()
+int TSuperServer::GetClientCountBySessionID( unsigned int sessionID )
 {
-  return mMngContextMaster->GetCountSession();
+  int countClient;
+  if ( mMngContextMaster->GetCountClientKey( sessionID, countClient ) == false )
+    return 0;
+  return countClient;
 }
 //-------------------------------------------------------------------------
-bool TSuperServer::GetDescDown( int index, void* pDesc, int& sizeDesc )
+void TSuperServer::GetDescDown( std::list<unsigned int>& sessionID_List )
 {
-  if( sizeDesc < sizeof( TDescDownSuperServer ) )
+  auto count = mMngContextMaster->GetCountSession();
+  sessionID_List.clear();
+  for ( int index = 0; index < count; index++ )
   {
-    GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TSuperServer::GetDescDown() size of buffer less then size of structure.\n" );
-    return false;
+    unsigned int sessionID;
+    if ( mMngContextMaster->GetSessionByIndex( index, sessionID ) == false )
+      continue;
+    sessionID_List.push_back( sessionID );
   }
-
-  unsigned int sessionID;
-  if( mMngContextMaster->GetSessionByIndex( index, sessionID ) == false )
-    return false;
-  // кол-во клиентов на одном мастере
-  int countClient;
-  if( mMngContextMaster->GetCountClientKey( sessionID, countClient ) == false )
-    return false;
-
-  TDescDownSuperServer* pD = (TDescDownSuperServer*) pDesc;
-  pD->sessionID = sessionID;
-  pD->countClient = countClient;
-  sizeDesc = sizeof( TDescDownSuperServer );
-  return true;
 }
 //-------------------------------------------------------------------------
 void TSuperServer::SendDown( unsigned int sessionID, char* p, int size, bool check )
 {
   TContainerContextSc* pC = mMngContextMaster->FindContextBySession( sessionID );
-  if( pC == nullptr )
+  if ( pC == nullptr )
     return;
   mControlSc->mFlow->SetContext( &pC->mFlow );
 
@@ -111,7 +103,7 @@ void TSuperServer::SendDown( unsigned int sessionID, char* p, int size, bool che
 void TSuperServer::NeedContextLoginMaster( unsigned int sessionID )
 {
   TContainerContextSc* pC = mMngContextMaster->FindContextBySession( sessionID );
-  if( pC )
+  if ( pC )
   {
     // внутренняя ошибка
     GetLogger( STR_NAME_MMO_ENGINE )->
@@ -126,14 +118,14 @@ void TSuperServer::NeedContextLoginMaster( unsigned int sessionID )
 void TSuperServer::NeedContextByMasterSessionByClientKey( unsigned int sessionID, unsigned int clientKey )
 {
   // проверка на существование мастера
-  if( mMngContextMaster->FindContextBySession( sessionID ) == nullptr )
+  if ( mMngContextMaster->FindContextBySession( sessionID ) == nullptr )
   {
     BL_FIX_BUG();
     return;
   }
   TContainerContextSc* pC = mMngContextClient->FindContextByClientKey( clientKey );
   bool fakeClient = false;
-  if( pC == nullptr )
+  if ( pC == nullptr )
   {
     // первый заход
     mMngContextMaster->AddClientKey( sessionID, clientKey );
@@ -154,7 +146,7 @@ void TSuperServer::NeedContextDisconnectClient( unsigned int clientKey )
 {
   unsigned int id_session_master;
   // удалить запись в Мастере
-  if( mMngContextClient->FindSessionByClientKey( clientKey, id_session_master ) )
+  if ( mMngContextClient->FindSessionByClientKey( clientKey, id_session_master ) )
     mMngContextMaster->DeleteByClientKey( id_session_master, clientKey );
   // и сам клиент
   mMngContextClient->DeleteByKey( clientKey );
@@ -168,7 +160,7 @@ void TSuperServer::EndDisconnectClient( IScenario* pSc )
 void TSuperServer::NeedContextSendToClient( unsigned int clientKey )
 {
   TContainerContextSc* pContext = mMngContextClient->FindContextByClientKey( clientKey );
-  if( pContext )
+  if ( pContext )
     mControlSc->mSendToClient->SetContext( &pContext->mSendToClient );
   else
     mControlSc->mSendToClient->SetContext( nullptr );

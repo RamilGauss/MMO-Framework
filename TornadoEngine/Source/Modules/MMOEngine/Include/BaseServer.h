@@ -27,8 +27,8 @@ namespace nsMMOEngine
     virtual void SendByClientKey( std::list<unsigned int>& clientKeyList, char* p, int size ) = 0;
 
     virtual void SendDown( unsigned int sessionID, char* p, int size, bool check = true ) = 0;
-    virtual int  GetCountDown() = 0;
-    virtual bool GetDescDown( int index, void* pDesc, int& sizeDesc ) = 0;
+
+    virtual void GetDescDown( std::list<unsigned int>& sessionIDList ) = 0;
   protected:
 
   private:

@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -48,13 +48,13 @@ public:
     a.a = 1;
     std::list<nsECSFramework::TEntity> entList;
     mMA_group->Get( a, entList );
-    if( entList.size() > 0 )
+    if ( entList.size() > 0 )
     {
       int asd = 0;
     }
     auto ent = mSA_group->Get( a );
     auto ent2 = mSA_group2->Get( a );
-    if( ent != entt::null )
+    if ( ent != entt::null )
     {
       int asd = 0;
     }
@@ -62,13 +62,44 @@ public:
     Start();
     auto registry = GetRegistry();
 
-    for( auto i = 0; i < PACKET_COUNT; i++ )
+    for ( auto i = 0; i < PACKET_COUNT; i++ )
     {
       auto ent = registry->create();
       registry->assign<PooledComponents::TUchar>( ent, registry, SIZE_PACKET );
       auto& c = registry->get<PooledComponents::TUchar>( ent );
       registry->assign<TFreshPacket>( ent );
     }
+    //###
+    struct A
+    {
+    };
+    struct B
+    {
+    };
+    for ( int i = 0; i < 1; i++ )
+    {
+      auto e = registry->create();
+      registry->assign<A>( e );
+    }
+    for ( int i = 0; i < 1; i++ )
+    {
+      auto e = registry->create();
+      registry->assign<B>( e );
+    }
+    for ( int i = 0; i < 2; i++ )
+    {
+      auto e = registry->create();
+      registry->assign<A>( e );
+      registry->assign<B>( e );
+    }
+
+    auto fu = registry->view<A,B>();
+    auto sfu = fu.size();
+    for ( auto e : fu )
+    {
+      int a = 0;
+    }
+    //###
 
     Stop();
     auto speed = SpeedToStr( PACKET_COUNT );

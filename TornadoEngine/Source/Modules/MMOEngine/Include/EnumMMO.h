@@ -22,6 +22,7 @@ namespace nsMMOEngine
     OpenClient_MoreThenOneSubNet,
     // CreateGroup
     CreateGroup_ClientNotExist,
+    CreateGroup_ClientInGroup,
     // LoginSlave
     LoginSlave_MasterNotReady,
     LoginSlave_NoAnswerFromMaster,

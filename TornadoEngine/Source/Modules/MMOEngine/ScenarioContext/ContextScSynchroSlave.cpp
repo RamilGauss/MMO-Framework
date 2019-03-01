@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -19,12 +19,12 @@ TContextScSynchroSlave::~TContextScSynchroSlave()
 
 }
 //------------------------------------------------------------------    
-void TContextScSynchroSlave::SetLoadProcent(unsigned char v)
+void TContextScSynchroSlave::SetLoadProcent( float v )
 {
   mLoadProcent = v;
 }
 //------------------------------------------------------------------    
-unsigned char TContextScSynchroSlave::GetLoadProcent()
+float TContextScSynchroSlave::GetLoadProcent()
 {
   return mLoadProcent;
 }

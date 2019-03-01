@@ -23,7 +23,7 @@ namespace nsMMOEngine
     enum{ eFromSlave, };
     struct THeaderSynchroSlave : public TScenarioBaseHeader
     {
-      unsigned char loadProcent;
+      float loadProcent;
       THeaderSynchroSlave(){ type = TMakerScenario::eSynchroSlave; subType = eFromSlave; }
     }_PACKED;
     //-------------------------------------------------
@@ -32,7 +32,7 @@ namespace nsMMOEngine
     virtual ~TScenarioSynchroSlave();
     virtual void Recv( TDescRecvSession* pDesc );
 
-    void SendSynchro( int loadProcent );
+    void SendSynchro( float loadProcent );
   protected:
     void RecvFromSlave( TDescRecvSession* pDesc );
 

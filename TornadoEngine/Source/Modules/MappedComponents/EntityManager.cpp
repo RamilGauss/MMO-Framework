@@ -20,8 +20,14 @@ TEntityManager::EntityID TEntityManager::CreateEntity()
 //-------------------------------------------------------------------------------
 void TEntityManager::DestroyEntity( EntityID id )
 {
-  FindEntity( id )->Done();
-  
+  auto pEntity = FindEntity( id );
+  if ( pEntity == nullptr )
+    return;
+
+  mCBDestroyEntities.Notify( id );
+
+  pEntity->Done();
+
   mEntityComponentListMap.erase( id );
 }
 //-------------------------------------------------------------------------------
@@ -41,20 +47,25 @@ TEntityManager::Identity TEntityManager::NewIdentity()
   return ret;
 }
 //-------------------------------------------------------------------------------
-TEntityManager::TSortedEntity::iterator TEntityManager::GetBegin( MultiID mid )
+TEntityManager::TSortedEntity& TEntityManager::GetEntities( MultiID mid )
 {
   if ( mid == None )
-    return TSortedEntity::iterator();
+    return mEmptySet;
 
-  return mIdentityEntitiesMap[mid]->begin();
+  auto s = mIdentityEntitiesMap[mid];
+  return *( s.get() );
 }
 //-------------------------------------------------------------------------------
-TEntityManager::TSortedEntity::iterator TEntityManager::GetEnd( MultiID mid )
+TEntity* TEntityManager::FindEntity( EntityID id )
 {
-  if ( mid == None )
-    return TSortedEntity::iterator();
-
-  return mIdentityEntitiesMap[mid]->end();
+  auto fit = mEntityComponentListMap.find( id );
+  if ( mEntityComponentListMap.end() == fit )
+    return nullptr;
+  return fit->second.get();
 }
 //-------------------------------------------------------------------------------
-
+TCallBackRegistrator1<TEntityManager::EntityID>* TEntityManager::GetCBOnDestroy()
+{
+  return &mCBDestroyEntities;
+}
+//-------------------------------------------------------------------------------

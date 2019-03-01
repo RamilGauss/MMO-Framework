@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -15,13 +15,13 @@ namespace nsMMOEngine
   // сценарии, содержащиеся в контейнере взаимно блокируются
   class TContextScSynchroSlave : public IScenarioContext
   {
-    unsigned char mLoadProcent;
+    float mLoadProcent;
   public:
     TContextScSynchroSlave();
     virtual ~TContextScSynchroSlave();
 
-    void SetLoadProcent(unsigned char v);
-    unsigned char GetLoadProcent();
+    void SetLoadProcent( float v );
+    float GetLoadProcent();
   private:
   };
-}  
+}

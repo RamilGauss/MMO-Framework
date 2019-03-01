@@ -70,6 +70,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphicEngine", "Source\Modules\GraphicEngine\GraphicEngine.vcxproj", "{FB6C35A2-199E-44BC-9995-ECB0975D993F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MMOEngine", "Source\Modules\MMOEngine\MMOEngine.vcxproj", "{0E4224F3-AE4D-4E4C-914C-800A97AA5594}"
+	ProjectSection(ProjectDependencies) = postProject
+		{904B4C81-0569-4F50-8D7D-FDF287731D5E} = {904B4C81-0569-4F50-8D7D-FDF287731D5E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetTransport", "Source\Modules\NetTransport\NetTransport.vcxproj", "{E7924A0D-D904-459D-9A0F-2D3C2F4A9D35}"
 EndProject
@@ -712,7 +715,7 @@ Global
 		{C8FDD4DD-8E77-4287-A0AE-1D2114059152} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 EndGlobal

@@ -13,6 +13,10 @@ namespace nsMappedComponents
 {
   struct DllExport IComponent 
   {
+    typedef std::list<TEntityManager::EntityID>::iterator EntityIDListIt;
+    std::vector<EntityIDListIt> mMappedIteratorVec;
+
+
     virtual ~IComponent()
     {
     }

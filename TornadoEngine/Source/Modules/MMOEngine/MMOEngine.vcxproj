@@ -103,7 +103,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;MappedComponents_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -132,7 +132,7 @@
       <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;MappedComponents_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -156,7 +156,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;MappedComponents.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\lib32-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -186,7 +186,7 @@
       <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;MappedComponents.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -237,11 +237,15 @@
     <ClCompile Include="src\Slave.cpp" />
     <ClCompile Include="src\Structs.cpp" />
     <ClCompile Include="src\SuperServer.cpp" />
+    <ClCompile Include="SubSystem\BaseLogic.cpp" />
+    <ClCompile Include="SubSystem\BaseMasterLogic.cpp" />
+    <ClCompile Include="SubSystem\ClientOnMasterLogic.cpp" />
     <ClCompile Include="SubSystem\ContainerContextSc.cpp" />
     <ClCompile Include="SubSystem\ContextCrypto.cpp" />
     <ClCompile Include="SubSystem\ControlScenario.cpp" />
     <ClCompile Include="SubSystem\CryptMITM.cpp" />
     <ClCompile Include="SubSystem\DelegateManagerContextSc.cpp" />
+    <ClCompile Include="SubSystem\GroupLogic.cpp" />
     <ClCompile Include="SubSystem\IScenarioContext.cpp" />
     <ClCompile Include="SubSystem\IScenario.cpp" />
     <ClCompile Include="SubSystem\MakerScenario.cpp" />
@@ -252,11 +256,13 @@
     <ClCompile Include="SubSystem\ManagerContextDownConnection_Slave.cpp" />
     <ClCompile Include="SubSystem\ManagerContextMoreDownClientConnection.cpp" />
     <ClCompile Include="SubSystem\ManagerLoginingClientsOnSlave.cpp" />
+    <ClCompile Include="SubSystem\RCMLogic.cpp" />
     <ClCompile Include="SubSystem\ScContextManager.cpp" />
     <ClCompile Include="SubSystem\ManagerGroupClient.cpp" />
     <ClCompile Include="SubSystem\ManagerManagerContextSc.cpp" />
     <ClCompile Include="SubSystem\ManagerRecommutation.cpp" />
     <ClCompile Include="SubSystem\SessionManager.cpp" />
+    <ClCompile Include="SubSystem\SlaveOnMasterLogic.cpp" />
     <ClCompile Include="SubSystem\StateTimeWait.cpp" />
     <ClCompile Include="SubSystem\TransportManager.cpp" />
     <ClCompile Include="SubSystem\SessionNavigator.cpp" />
@@ -307,15 +313,17 @@
     <ClInclude Include="Scenario\ScRecommutationClient_ClientImpl.h" />
     <ClInclude Include="Scenario\ScRecommutationClient_MasterImpl.h" />
     <ClInclude Include="Scenario\ScRecommutationClient_SlaveImpl.h" />
+    <ClInclude Include="SubSystem\BaseLogic.h" />
     <ClInclude Include="SubSystem\BaseMasterLogic.h" />
+    <ClInclude Include="SubSystem\ClientOnMasterLogic.h" />
     <ClInclude Include="SubSystem\Components.h" />
     <ClInclude Include="SubSystem\ContainerContextSc.h" />
     <ClInclude Include="SubSystem\ContextCrypto.h" />
     <ClInclude Include="SubSystem\ControlScenario.h" />
     <ClInclude Include="SubSystem\CryptMITM.h" />
-    <ClInclude Include="SubSystem\DataManager.h" />
     <ClInclude Include="SubSystem\DelegateManagerContextSc.h" />
     <ClInclude Include="SubSystem\DescRecvSession.h" />
+    <ClInclude Include="SubSystem\GroupLogic.h" />
     <ClInclude Include="SubSystem\IScenarioContext.h" />
     <ClInclude Include="SubSystem\IScenario.h" />
     <ClInclude Include="SubSystem\MakerScenario.h" />
@@ -326,11 +334,13 @@
     <ClInclude Include="SubSystem\ManagerContextDownConnection_Slave.h" />
     <ClInclude Include="SubSystem\ManagerContextMoreDownClientConnection.h" />
     <ClInclude Include="SubSystem\ManagerLoginingClientsOnSlave.h" />
+    <ClInclude Include="SubSystem\RCMLogic.h" />
     <ClInclude Include="SubSystem\ScContextManager.h" />
     <ClInclude Include="SubSystem\ManagerGroupClient.h" />
     <ClInclude Include="SubSystem\ManagerManagerContextSc.h" />
     <ClInclude Include="SubSystem\ManagerRecommutation.h" />
     <ClInclude Include="SubSystem\SessionManager.h" />
+    <ClInclude Include="SubSystem\SlaveOnMasterLogic.h" />
     <ClInclude Include="SubSystem\StateTimeWait.h" />
     <ClInclude Include="SubSystem\TransportEvents.h" />
     <ClInclude Include="SubSystem\TransportManager.h" />

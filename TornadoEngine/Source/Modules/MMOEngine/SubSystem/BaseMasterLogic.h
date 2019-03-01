@@ -6,22 +6,35 @@ See for more information License.h.
 */
 
 #pragma once
-
-#include "DataManager.h"
+#include "EntityManager.h"
+#include "BaseLogic.h"
+#include "EnumMMO.h"
 
 namespace nsMMOEngine
 {
-  class TMaster;
-  class TBaseMasterLogic
+  class TBase;
+  class TBaseMasterLogic : public TBaseLogic
   {
   protected:
-    TMaster* mMaster = nullptr;
+    // если на Slave нет клиентов, то считать нагрузку на одного клиента равным этому значению
+    const float DefaultLoadPerClientIfClientCountZero = 1.0f;
 
-    TDataManager mDataMng;
+    const float LimitLoadPercentOnSlaveForAdd = 70.0f;
+    // для Клиента, состоящего в Группе процент другой
+    const float LimitLoadPercentOnSlaveForAdd_ClientInGroup = 75.0f;
+    // максимальный размер очереди ожидающих
+    const int LimitCountClientWaitFreeSpace = 10000;
   public:
-    TBaseMasterLogic( TMaster* p )
-    {
-      mMaster = p;
-    }
+    TBaseMasterLogic( TBase* p );
+  protected:
+
+    void AddError( nsMMOEngine::ErrorCode err );
+
+    void OnDestroy( nsMappedComponents::TEntityManager::EntityID entity );
+
+    float CalculateFutureLoadOnSlave( nsMappedComponents::TEntityManager::EntityID slaveEntity, int addedClientCount );
+
+    void GetClientWithoutGroup( unsigned int slaveSession, 
+      std::list<nsMappedComponents::TEntityManager::EntityID>& clientEntityList );
   };
 }
