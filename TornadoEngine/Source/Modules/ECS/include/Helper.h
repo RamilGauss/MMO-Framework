@@ -1,9 +1,16 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #pragma once
 
 namespace nsECSFramework
 {
   template <typename Component>
-  TEntity SingleEntity( THugeRegistry* registry )// когда точно есть одна сущность с данным компонентом
+  TEntity SingleEntity( THugeRegistry* registry )// РєРѕРіРґР° С‚РѕС‡РЅРѕ РµСЃС‚СЊ РѕРґРЅР° СЃСѓС‰РЅРѕСЃС‚СЊ СЃ РґР°РЅРЅС‹Рј РєРѕРјРїРѕРЅРµРЅС‚РѕРј
   {
     auto view = registry->view<Component>();
     if ( view.size() == 0 )
@@ -12,7 +19,7 @@ namespace nsECSFramework
   }
 
   template <typename Component>
-  Component* SingleComponent( THugeRegistry* registry )// когда точно есть одна сущность с данным компонентом
+  Component* SingleComponent( THugeRegistry* registry )// РєРѕРіРґР° С‚РѕС‡РЅРѕ РµСЃС‚СЊ РѕРґРЅР° СЃСѓС‰РЅРѕСЃС‚СЊ СЃ РґР°РЅРЅС‹Рј РєРѕРјРїРѕРЅРµРЅС‚РѕРј
   {
     auto ent = SingleEntity<Component>( registry );
     if ( ent == entt::null )

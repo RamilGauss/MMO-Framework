@@ -1,17 +1,24 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include "ConveyerPartMaster.h"
 
 using namespace nsECSFramework;
 
 void TConveyerPartMaster::Init()
 {
-  // âåñü êîíâåéåð íàõîäèòñÿ çäåñü
+  // Ð²ÐµÑÑŒ ÐºÐ¾Ð½Ð²ÐµÐ¹ÐµÑ€ Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð·Ð´ÐµÑÑŒ
   mReactiveInitializer->InitSystems();
   mInitAndExecuteInitializer->InitSystems();
 }
 //--------------------------------------------------------------------------
 void TConveyerPartMaster::Update()
 {
-  // âåñü êîíâåéåð íàõîäèòñÿ çäåñü
+  // Ð²ÐµÑÑŒ ÐºÐ¾Ð½Ð²ÐµÐ¹ÐµÑ€ Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð·Ð´ÐµÑÑŒ
   mSystemUpdater->UpdateSystems();
 }
 //--------------------------------------------------------------------------

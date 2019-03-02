@@ -1,9 +1,16 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #pragma once
 #include <entt/entt.hpp>
 #include "ECSconfig.h"
 #include "TypeDef.h"
 
-// Доступ к данным ECS инфраструктуры
+// Р”РѕСЃС‚СѓРї Рє РґР°РЅРЅС‹Рј ECS РёРЅС„СЂР°СЃС‚СЂСѓРєС‚СѓСЂС‹
 
 namespace nsECSFramework
 {

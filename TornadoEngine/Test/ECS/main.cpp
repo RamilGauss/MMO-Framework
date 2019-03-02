@@ -119,11 +119,11 @@ int main()
 
   auto world = new nsECSFramework::TWorld();
   world->AddToConveyer<TProducerFeature>();
-  world->AddToConveyer<TConsumerSystem>();// 1
+  //world->AddToConveyer<TConsumerSystem>();// 1
        //world->AddToConveyer<TProducerFeature>();
   //world->AddToConveyer<TConsumerSystem>();// 2
        //world->AddToConveyer<TPacketObserverSystem>();
-  //world->AddToConveyer<TGroupedPacketSystem>();
+  world->AddToConveyer<TGroupedPacketSystem>();
   //world->AddToConveyer<TInitSettingsSystem>();
 
   //world->AddToConveyer<TMakeShuffleEntitiesSystem>();

@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\Components.h" />
+    <ClInclude Include="core\Config.h" />
+    <ClInclude Include="core\Entity.h" />
+    <ClInclude Include="core\EntityManager.h" />
     <ClInclude Include="include\BaseReactiveSystem.h" />
     <ClInclude Include="include\ConnectTypeManager.h" />
     <ClInclude Include="include\ConveyerPartMaster.h" />
@@ -41,12 +45,14 @@
     <ClInclude Include="include\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\BaseReactiveSystem.cpp" />
-    <ClCompile Include="include\ConveyerPartMaster.cpp" />
-    <ClCompile Include="include\ExecuteSystem.cpp" />
-    <ClCompile Include="include\ReactiveForManyEventsSystem.cpp" />
-    <ClCompile Include="include\ReactiveForOneEventSystem.cpp" />
-    <ClCompile Include="include\World.cpp" />
+    <ClCompile Include="core\Entity.cpp" />
+    <ClCompile Include="core\EntityManager.cpp" />
+    <ClCompile Include="src\BaseReactiveSystem.cpp" />
+    <ClCompile Include="src\ConveyerPartMaster.cpp" />
+    <ClCompile Include="src\ExecuteSystem.cpp" />
+    <ClCompile Include="src\ReactiveForManyEventsSystem.cpp" />
+    <ClCompile Include="src\ReactiveForOneEventSystem.cpp" />
+    <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

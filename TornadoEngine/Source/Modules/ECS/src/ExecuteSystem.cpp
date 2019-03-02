@@ -5,12 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#pragma once
-#include <entt/entt.hpp>
-#include "ECSconfig.h"
-#include "ConveyerPartMaster.h"
+#include "ExecuteSystem.h"
 
-namespace nsECSFramework
+using namespace nsECSFramework;
+
+void TExecuteSystem::Update()
 {
-  class DllExport TFeature : public TConveyerPartMaster { };
+  Execute();
 }

@@ -42,13 +42,6 @@ namespace nsMappedComponents
     template<typename Multi, typename Group>
     void JoinMultiToGroup();
 
-    //###
-    //template<typename Multi>
-    //void AddComboMultiType();
-    //template<typename Component>
-    //void AddOrder();
-    //###
-
     // create/destroy
     EntityID CreateEntity();
     void DestroyEntity( EntityID id );

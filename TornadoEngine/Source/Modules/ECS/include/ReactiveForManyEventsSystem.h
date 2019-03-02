@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #pragma once
 #include <entt/entt.hpp>
 
@@ -8,8 +15,8 @@ namespace nsECSFramework
 {
   class DllExport TReactiveForManyEventsSystem : public TBaseReactiveSystem
   {
-    // Важен порядок возникновения событий
-    // все изменившиеся
+    // Р’Р°Р¶РµРЅ РїРѕСЂСЏРґРѕРє РІРѕР·РЅРёРєРЅРѕРІРµРЅРёСЏ СЃРѕР±С‹С‚РёР№
+    // РІСЃРµ РёР·РјРµРЅРёРІС€РёРµСЃСЏ
     TVectorRise<TEntity> mReactionEntities;
   public:
     TReactiveForManyEventsSystem();

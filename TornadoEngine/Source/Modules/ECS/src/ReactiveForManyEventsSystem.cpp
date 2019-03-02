@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Р“СѓРґР°РєРѕРІ Р Р°РјРёР»СЊ РЎРµСЂРіРµРµРІРёС‡
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include "ReactiveForManyEventsSystem.h"
 #include "FastUpperBound.h"
 
@@ -10,20 +17,20 @@ TReactiveForManyEventsSystem::TReactiveForManyEventsSystem() : TBaseReactiveSyst
 //-------------------------------------------------------------------
 void TReactiveForManyEventsSystem::Update()
 {
-  // конъюнкция списков с сохранением порядка
+  // РєРѕРЅСЉСЋРЅРєС†РёСЏ СЃРїРёСЃРєРѕРІ СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј РїРѕСЂСЏРґРєР°
   mReactionEntities.Clear();
-  // объединение из разных источников
+  // РѕР±СЉРµРґРёРЅРµРЅРёРµ РёР· СЂР°Р·РЅС‹С… РёСЃС‚РѕС‡РЅРёРєРѕРІ
   for( auto pConTypeMng : mConTypeMngPtrVec )
   {
     auto entities = pConTypeMng->GetEntities( this );
-    mSTRO.Work( *entities );// прореживание каждого списка от "мёртвых" сущностей
+    mSTRO.Work( *entities );// РїСЂРѕСЂРµР¶РёРІР°РЅРёРµ РєР°Р¶РґРѕРіРѕ СЃРїРёСЃРєР° РѕС‚ "РјС‘СЂС‚РІС‹С…" СЃСѓС‰РЅРѕСЃС‚РµР№
     mReactionEntities += *entities;
     entities->Clear();
   }
   if( mReactionEntities.mCounter == 0 )
     return;
 
-  // общее прореживание
+  // РѕР±С‰РµРµ РїСЂРѕСЂРµР¶РёРІР°РЅРёРµ
   mSTRO.Work( mReactionEntities );
   if( mReactionEntities.mCounter == 0 )
     return;

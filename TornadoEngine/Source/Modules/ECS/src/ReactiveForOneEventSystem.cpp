@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include "ReactiveForOneEventSystem.h"
 
 using namespace nsECSFramework;
@@ -14,18 +21,18 @@ void TReactiveForOneEventSystem::Update()
   if( entities->mCounter == 0 )
     return;
 
-  mSTRO.Work( *entities );// ñîðòèðîâàòü, óáðàòü äóáëèðîâàííûå è âîññòàíîâèòü ïîðÿäîê ñîçäàíèÿ ñóùíîñòåé
+  mSTRO.Work( *entities );// ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, ÑƒÐ±Ñ€Ð°Ñ‚ÑŒ Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ðµ Ð¸ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ñ€ÑÐ´Ð¾Ðº ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ ÑÑƒÑ‰Ð½Ð¾ÑÑ‚ÐµÐ¹
   if( entities->mCounter == 0 )
     return;
 
-  // ôèëüòðàöèÿ
+  // Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð°Ñ†Ð¸Ñ
   Filter( entities );
   if( entities->mCounter == 0 )
     return;
 
-  // ãîòîâûé ðåçóëüòàò
+  // Ð³Ð¾Ñ‚Ð¾Ð²Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚
   Reactive( entities->mVec, entities->mCounter );
-  // îáÿçàòåëüíî î÷èñòèòü (òðåáîâàíèÿ IConnectTypeManager)
+  // Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð¾Ñ‡Ð¸ÑÑ‚Ð¸Ñ‚ÑŒ (Ñ‚Ñ€ÐµÐ±Ð¾Ð²Ð°Ð½Ð¸Ñ IConnectTypeManager)
   entities->Clear();
 }
 //-------------------------------------------------------------------

@@ -12,7 +12,7 @@ See for more information License.h.
 #include "FreshPacket.h"
 #include <iostream>
 
-#define GROUP_TEST_COUNT 10000000
+#define GROUP_TEST_COUNT 1
 
 class TGroupedPacketSystem : public nsECSFramework::TExecuteSystem, public TSpeedCalculationSystem
 {
@@ -21,22 +21,22 @@ public:
   {
     auto registry = GetRegistry();
 
+    //Start();
+
+    ////entt::View<nsECSFramework::TEntity, TDataMemoryPoolComponent> packetGroup();
+    //for( int i = 0; i < GROUP_TEST_COUNT; i++ )
+    //{
+    //  auto packetGroup = registry->view<TFreshPacket>();
+    //  packetGroup.size();
+    //}
+
+    //Stop();
+    //auto speed = SpeedToStr( GROUP_TEST_COUNT );
+    //std::cout << "Make grouped speed = " << speed << " us/1" << std::endl;
+
     Start();
 
-    //entt::View<nsECSFramework::TEntity, TDataMemoryPoolComponent> packetGroup();
-    for( int i = 0; i < GROUP_TEST_COUNT; i++ )
-    {
-      auto packetGroup = registry->view<PooledComponents::TUchar>();
-      packetGroup.size();
-    }
-
-    Stop();
-    auto speed = SpeedToStr( GROUP_TEST_COUNT );
-    std::cout << "Make grouped speed = " << speed << " us/1" << std::endl;
-
-    Start();
-
-    auto packetGroup = registry->view<PooledComponents::TUchar>();
+    auto packetGroup = registry->view<TFreshPacket>();
     auto count = packetGroup.size();
     auto entities = packetGroup.data();
     float sum = 0;
@@ -47,7 +47,7 @@ public:
     }
 
     Stop();
-    speed = SpeedToStr( count );
+    auto speed = SpeedToStr( count );
     std::cout << "GroupedPacketSystem speed = " << speed << " us/1" << std::endl;
   }
 

@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
 #include "BaseReactiveSystem.h"
 
 using namespace nsECSFramework;
@@ -28,7 +35,7 @@ void TBaseReactiveSystem::Filter( TVectorRise<TEntity> *pEntities )
   for( size_t i = 0; i < pEntities->mCounter; i++ )
   {
     auto& entity = pEntities->mVec[i];
-    if( GetRegistry()->valid( entity ) )// entity ����������
+    if( GetRegistry()->valid( entity ) )// entity существует
       if( Filter( entity ) )
       {
         pEntities->mVec[filtered] = entity;

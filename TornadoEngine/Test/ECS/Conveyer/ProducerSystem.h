@@ -65,42 +65,11 @@ public:
     for ( auto i = 0; i < PACKET_COUNT; i++ )
     {
       auto ent = registry->create();
-      registry->assign<PooledComponents::TUchar>( ent, registry, SIZE_PACKET );
-      auto& c = registry->get<PooledComponents::TUchar>( ent );
+      //registry->assign<PooledComponents::TUchar>( ent, registry, SIZE_PACKET );
+      //auto& c = registry->get<PooledComponents::TUchar>( ent );
       registry->assign<TFreshPacket>( ent );
     }
-    //###
-    struct A
-    {
-    };
-    struct B
-    {
-    };
-    for ( int i = 0; i < 1; i++ )
-    {
-      auto e = registry->create();
-      registry->assign<A>( e );
-    }
-    for ( int i = 0; i < 1; i++ )
-    {
-      auto e = registry->create();
-      registry->assign<B>( e );
-    }
-    for ( int i = 0; i < 2; i++ )
-    {
-      auto e = registry->create();
-      registry->assign<A>( e );
-      registry->assign<B>( e );
-    }
-
-    auto fu = registry->view<A,B>();
-    auto sfu = fu.size();
-    for ( auto e : fu )
-    {
-      int a = 0;
-    }
-    //###
-
+    
     Stop();
     auto speed = SpeedToStr( PACKET_COUNT );
     std::cout << "Producer speed = " << speed << " us/1" << std::endl;
