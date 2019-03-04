@@ -9,32 +9,38 @@ See for more information License.h.
 #include "SingletonManager.h"
 #include "Entity.h"
 
+#include <intrin.h>
+
 using namespace nsECSFramework;
 
 TEntityManager::TEntityManager( int entityCount )
 {
 
-  mEntityMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TEntity>>();
+  mEntityMemoryPool = SingletonManager()->Get<TMemoryObjectPool<Entity>>();
 }
 //----------------------------------------------------------------------------------------------------
 EntityID TEntityManager::CreateEntity()
 {
-  EntityID id = mEntities.mCounter;
-  mEntities.Append( mEntityMemoryPool->Pop() );
+  const EntityID id = mEntities.mCounter;
+  auto pEntity = mEntityMemoryPool->Pop();
+  pEntity->SetID( id );
+  mEntities.Append( pEntity );
   return id;
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::DestroyEntity( EntityID id )
 {
-  auto lastIndex = mEntities.mCounter - 1;
-  auto pEntity = mEntities.mVec[id];
+  const auto pBegin = mEntities.mVec.data();
+
+  auto ppID = pBegin + id;
+  auto pEntity = *ppID;
+
+  const auto lastIndex = mEntities.mCounter - 1;
   // swap last and current
   if ( lastIndex != id )
   {
-    auto lastEntity = mEntities.mVec[lastIndex];
-    mEntities.mVec[lastIndex] = nullptr;
-    mEntities.mVec[id] = lastEntity;
-    lastEntity->SetID( id );
+    *ppID = *( pBegin + lastIndex );
+    ( *ppID )->SetID( id );
   }
 
   pEntity->Done();
@@ -42,7 +48,7 @@ void TEntityManager::DestroyEntity( EntityID id )
   mEntities.PopBack();
 }
 //----------------------------------------------------------------------------------------------------
-TEntity* TEntityManager::GetEntity( EntityID id ) const
+Entity* TEntityManager::GetEntity( EntityID id ) const
 {
   return mEntities.mVec[id];
 }

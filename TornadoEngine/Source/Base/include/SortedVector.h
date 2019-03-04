@@ -34,10 +34,6 @@ template<typename Type>
 void TSortedVector<Type>::Insert( Type& v )
 {
   int index = fast_upper_bound2<Type>( mVec.mVec, mVec.mCounter, v );
-  // раздвинуть вектор и вставить
-  if ( mVec.mCounter + 1 > mVec.mVec.size() )
-    mVec.IncreaseVec();
-
   auto beginPtr = &mVec.mVec[0];
   int size = mVec.mCounter - index;
 

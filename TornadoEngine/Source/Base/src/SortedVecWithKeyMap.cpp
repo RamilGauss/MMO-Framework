@@ -53,10 +53,6 @@ void TSortedVecWithKeyMap::PushBack( unsigned int key, unsigned int ID )
 void TSortedVecWithKeyMap::Insert( unsigned int key, unsigned int ID )
 {
   int index = fast_upper_bound2<unsigned int>( mIDVec.mVec, mIDVec.mCounter, ID );
-  // раздвинуть вектор и вставить
-  if ( mIDVec.mCounter + 1 > mIDVec.mVec.size() )
-    mIDVec.IncreaseVec();
-
   auto beginPtr = &mIDVec.mVec[0];
   int size = mIDVec.mCounter - index;
 

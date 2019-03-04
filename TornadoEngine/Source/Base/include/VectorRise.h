@@ -14,21 +14,21 @@ See for more information License.h.
 template<typename Type>
 class DllExport TVectorRise
 {
+  void IncreaseVec();
 public:
   std::vector<Type> mVec;
   size_t mCounter = 0;
   TVectorRise();
 
-  void IncreaseVec();
-  void Append( Type value );
-  void PopBack();
-  void Shuffle();
-  void Sort();
-  void DeleteDuplicates();
-  void Clear();
-  void ReverseVec();
+  inline void Append( Type value );
+  inline void PopBack();
+  inline void Shuffle();
+  inline void Sort();
+  inline void DeleteDuplicates();
+  inline void Clear();
+  inline void ReverseVec();
 
-  void Zero( size_t count );
+  inline void Zero( size_t count );
 
   TVectorRise<Type>& operator=( const TVectorRise<Type>& other );
   TVectorRise<Type>& operator+=( const TVectorRise<Type>& other );
@@ -49,6 +49,8 @@ void TVectorRise<Type>::IncreaseVec()
 template<typename Type>
 void TVectorRise<Type>::Append( Type value )
 {
+  if ( mCounter == mVec.size() )
+    IncreaseVec();
   mVec[mCounter] = value;
   mCounter++;
 }

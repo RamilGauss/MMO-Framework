@@ -8,6 +8,7 @@ See for more information License.h.
 #pragma once
 
 #include "TypeDef.h"
+#include "Entity.h"
 #include <list>
 #include <vector>
 #include "Config.h"
@@ -16,14 +17,13 @@ See for more information License.h.
 
 namespace nsECSFramework
 {
-  class TEntity;
   class DllExport TEntityManager
   {
   public:
     TEntityManager( int entityCount );
 
-    EntityID CreateEntity();
-    void DestroyEntity( EntityID id );
+    inline EntityID CreateEntity();
+    inline void DestroyEntity( EntityID id );
 
     template <typename Component>
     void AddComponent( EntityID id, Component& c );
@@ -53,45 +53,49 @@ namespace nsECSFramework
     template <typename C0, typename C1, typename C2>
     const TEntityList& GetHas( EntityID id );
 
-    //void AddCallback();
-    //void UpdateCallback();
-    //void RemoveCallback();
-    //void DestroyCallback();
+    //void OnAddCallback();
+    //void OnUpdateCallback();
+    //void OnRemoveCallback();
+    //void OnDestroyCallback();
   private:
-    TMemoryObjectPool<TEntity>* mEntityMemoryPool;
+    TMemoryObjectPool<nsECSFramework::Entity>* mEntityMemoryPool;
 
-    TVectorRise<TEntity*> mEntities;
+    TVectorRise<nsECSFramework::Entity*> mEntities;
 
-    TEntity* GetEntity( EntityID id ) const;
+    nsECSFramework::Entity* GetEntity( EntityID id ) const;
   };
   template <typename Component>
   void TEntityManager::AddComponent( EntityID id, Component& c )
   {
-
+    auto pEntity = GetEntity( id );
+    pEntity->AddComponent( c );
   }
   //---------------------------------------------------------------------------------------
   template <typename Component>
   void TEntityManager::UpdateComponent( EntityID id, Component& c )
   {
-
+    auto pEntity = GetEntity( id );
+    pEntity->UpdateComponent( c );
   }
   //---------------------------------------------------------------------------------------
   template <typename Component>
   const Component& TEntityManager::GetComponent( EntityID id )
   {
-
+    auto pEntity = GetEntity( id );
+    return pEntity->GetComponent();
   }
   //---------------------------------------------------------------------------------------
   template <typename Component>
   void TEntityManager::RemoveComponent( EntityID id )
   {
-
+    auto pEntity = GetEntity( id );
+    pEntity->RemoveComponent();
   }
   //---------------------------------------------------------------------------------------
   template <typename Component>
   EntityID TEntityManager::GetUnique( EntityID id, Component& c )
   {
-
+    return 0;
   }
   //---------------------------------------------------------------------------------------
   template <typename Component>

@@ -9,14 +9,14 @@ See for more information License.h.
 
 #include "TypeDef.h"
 #include <list>
-#include "EntityManager.h"
+#include "Config.h"
 
 namespace nsECSFramework
 {
   struct DllExport IComponent
   {
   private:
-    friend class TEntity;
+    friend class Entity;
 
     TEntityList& entityList;
     TEntityList::iterator it;

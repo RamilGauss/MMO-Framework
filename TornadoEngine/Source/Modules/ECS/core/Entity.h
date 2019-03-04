@@ -14,12 +14,20 @@ See for more information License.h.
 
 namespace nsECSFramework
 {
-  class DllExport TEntity
+  struct TEntityData
   {
     EntityID mID;
 
     typedef std::vector<IComponent*> TComponentVec;
-    TComponentVec mComponents;
+    //TComponentVec mComponents;
+  };
+  class DllExport Entity
+  {
+    TEntityData* mData = new TEntityData();
+    //EntityID mID;
+
+    //typedef std::vector<IComponent*> TComponentVec;
+    //TComponentVec mComponents;
   public:
 
     template<typename Component>
@@ -31,30 +39,30 @@ namespace nsECSFramework
     template<typename Component>
     void RemoveComponent( Component& c );
 
-    void SetID( EntityID id );
+    inline void SetID( EntityID id );
 
-    void Done();
+    inline void Done();
   };
   template<typename Component>
-  void TEntity::AddComponent( Component& c )
+  void Entity::AddComponent( Component& c )
   {
 
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  Component& TEntity::GetComponent()
+  Component& Entity::GetComponent()
   {
 
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  void TEntity::UpdateComponent( Component& c )
+  void Entity::UpdateComponent( Component& c )
   {
 
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  void TEntity::RemoveComponent( Component& c )
+  void Entity::RemoveComponent( Component& c )
   {
 
   }

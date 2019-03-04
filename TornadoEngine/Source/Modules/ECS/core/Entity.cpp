@@ -9,12 +9,12 @@ See for more information License.h.
 
 using namespace nsECSFramework;
 
-void TEntity::SetID( EntityID id )
+void Entity::SetID( EntityID id )
 {
-  mID = id;
+  mData->mID = id;
 }
 //---------------------------------------------------------------------------------------
-void TEntity::Done()
+void Entity::Done()
 {
 
 }

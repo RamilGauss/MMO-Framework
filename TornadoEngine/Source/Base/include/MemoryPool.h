@@ -74,9 +74,6 @@ void TMemoryPool<Type>::Push( TPointerDesc* pDesc )
   pDesc->poped = false;
 
   auto pVecRise = GetVectorRiseDescPtr( pDesc->size );
-  if ( pVecRise->mCounter >= pVecRise->mVec.size() )
-    pVecRise->IncreaseVec();
-
   pVecRise->Append( pDesc );
 }
 //--------------------------------------------------------------------------------------
@@ -99,8 +96,6 @@ typename TMemoryPool<Type>::TPointerDesc* TMemoryPool<Type>::Allocate( int size 
   pDesc->p = new Type[size];
   pDesc->size = size;
 
-  if ( mPool.mVec.size() == mPool.mCounter )
-    mPool.IncreaseVec();
   mPool.Append( pDesc );
   return pDesc;
 }

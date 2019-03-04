@@ -140,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;./Components;./Conveyer;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\ECS;$(SolutionDir)Source\Base\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components;./Conveyer;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\ECS;$(SolutionDir)Source\Modules\ECS\core;$(SolutionDir)Source\Base\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
@@ -181,9 +181,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;./Components;./Conveyer;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\ECS;$(SolutionDir)Source\Base\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components;./Conveyer;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\ECS;$(SolutionDir)Source\Modules\ECS\core;$(SolutionDir)Source\Base\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

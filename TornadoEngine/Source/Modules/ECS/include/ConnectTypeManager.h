@@ -86,9 +86,6 @@ namespace nsECSFramework
     for ( auto reactSys_Ent : mReacSys_EntMap )
     {
       auto entities = reactSys_Ent.second;
-
-      if ( entities->mCounter >= entities->mVec.size() )
-        entities->IncreaseVec();
       entities->Append( entity );
     }
   }

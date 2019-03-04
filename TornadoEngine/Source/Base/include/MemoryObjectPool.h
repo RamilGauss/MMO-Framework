@@ -8,60 +8,37 @@ See for more information License.h.
 #pragma once
 
 #include "VectorRise.h"
+#include <assert.h>
 
 // not Thread-safe!
-
 template<typename Type>
 class DllExport TMemoryObjectPool
 {
-#ifdef WIN32
-#pragma pack(push, 1)
-#endif
-  class TObjectDesc
-  {
-    friend class TMemoryObjectPool;
-    Type obj;
-    unsigned char poped = false;
-  }_PACKED;
-#ifdef WIN32
-#pragma pack(pop)
-#endif
-
-  TVectorRise<TObjectDesc*> mCommonArr;
-  TVectorRise<TObjectDesc*> mReserveArr;
+  TVectorRise<Type*> mReserveArr;
+  TVectorRise<Type*> mCommonArr;
 public:
-  Type* Pop()
-  {
-    TObjectDesc* pDesc = nullptr;
-    if ( mReserveArr.mCounter == 0 )
-      pDesc = Allocate();
-    else
-    {
-      pDesc = mReserveArr.mVec[mReserveArr.mCounter - 1];
-      mReserveArr.PopBack();
-    }
-    pDesc->poped = true;
-    return &( pDesc->obj );
-  }
-  void Push( Type* p )
-  {
-    auto pDesc = (TObjectDesc*) p;
-    if ( pDesc->poped == false )
-      return;
-    pDesc->poped = false;
-
-    if ( mReserveArr.mCounter >= mReserveArr.mVec.size() )
-      mReserveArr.IncreaseVec();
-
-    mReserveArr.Append( pDesc );
-  }
+  inline Type* Pop();
+  inline void Push( Type* p );
 private:
-  TObjectDesc* Allocate()
+  Type* Allocate()
   {
-    auto pDesc = new TObjectDesc();
-    if ( mCommonArr.mVec.size() == mCommonArr.mCounter )
-      mCommonArr.IncreaseVec();
-    mCommonArr.Append( pDesc );
-    return pDesc;
+    auto p = new Type();
+    mCommonArr.Append( p );
+    return p;
   }
 };
+
+template<typename Type>
+Type* TMemoryObjectPool<Type>::Pop()
+{
+  if ( mReserveArr.mCounter == 0 )
+    return Allocate();
+  return mReserveArr.mVec[--mReserveArr.mCounter];
+}
+
+template<typename Type>
+void TMemoryObjectPool<Type>::Push( Type* p )
+{
+  mReserveArr.Append( p );
+}
+
