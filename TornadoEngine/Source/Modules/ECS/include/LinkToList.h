@@ -1,0 +1,42 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information License.h.
+*/
+
+#pragma once
+
+#include <list>
+
+template<typename Type>
+class TLinkToList
+{
+public:
+  typedef std::list<Type> List;
+  typename typedef List::iterator Iterator;
+private:
+  List* mList;
+  Iterator mIt;
+public:
+  TLinkToList()
+  {
+  }
+  TLinkToList( List& tl, Iterator it )
+  {
+    Set( tl, it );
+  }
+  void Set( List& tl, Iterator it )
+  {
+    mList = &tl;
+    mIt = it;
+  }
+  void Update( Type& v )
+  {
+    *mIt = v;
+  }
+  void Erase()
+  {
+    mList->erase( mIt );
+  }
+};

@@ -9,12 +9,19 @@ See for more information License.h.
 
 using namespace nsECSFramework;
 
-void Entity::SetID( EntityID id )
+void TEntity::SetID( TEntityID id )
 {
-  mData->mID = id;
+  // пробежка по всем компонентам и смена id внутри list
+
+  for ( auto index : mComponetIndexInUse )
+  {
+    auto p = mComponents[index];
+    if ( p == nullptr )
+      continue;
+  }
 }
 //---------------------------------------------------------------------------------------
-void Entity::Done()
+void TEntity::Done()
 {
 
 }

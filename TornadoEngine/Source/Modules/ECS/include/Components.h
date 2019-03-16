@@ -10,17 +10,25 @@ See for more information License.h.
 #include "TypeDef.h"
 #include <list>
 #include "Config.h"
+#include "LinkToList.h"
 
 namespace nsECSFramework
 {
   struct DllExport IComponent
   {
+    virtual ~IComponent()
+    {
+    }
+    bool operator< ( const IComponent& other ) const
+    {
+      return true;
+    }
   private:
-    friend class Entity;
+    friend class TEntity;
 
-    TEntityList& entityList;
-    TEntityList::iterator it;
+    TLinkToList<short> mInEntityLinkList;
 
+    std::list<TLinkToList<TEntityID>> mContainerLinkList;
   };
 
   struct DllExport IUniqueComponent : IComponent
@@ -29,7 +37,7 @@ namespace nsECSFramework
   struct DllExport IMultiComponent : IComponent
   {
   };
-  struct DllExport IMultiMixComponent : IMultiComponent
+  struct DllExport IMultiMixComponent : IComponent
   {
   };
   struct DllExport IHasComponent : IComponent

@@ -5,47 +5,33 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#if 0
-#include <entt/entt.hpp>
-#include <cstdint>
-#include <vector>
-#include <iostream>
-#include <thread>
-#include <chrono>
-
-#include "ECS/include/World.h"
-#include "ECS/include/ECSconfig.h"
-#include "ProducerFeature.h"
-#include "PacketObserverSystem.h"
-#include "ConsumerSystem.h"
-#include "InitSettingsSystem.h"
-#include "GroupedPacketSystem.h"
-#include "MemoryPool.h"
-#include "MakeShuffleEntitiesSystem.h"
-#include "ViewShuffleEntitiesSystem.h"
-#include "BL_Debug.h"
-#include <map>
-#include "HiTimer.h"
-#include "BreakPacket.h"
-#endif
-
-#include "ECS/include/ECSconfig.h"
-#include <entt/entt.hpp>
-
 #include "EntityManager.h"
 #include "VectorRise.h"
 #include "HiTimer.h"
+#include "Components.h"
 
 #ifdef _DEBUG
-#define COUNT 10
+#define COUNT 5000000
 #else
-#define COUNT 50000000
+#define COUNT 100000000
 #endif
 
 nsECSFramework::TEntityManager entMng( 1 );
 
-nsECSFramework::THugeRegistry registry;
 TVectorRise<nsECSFramework::TEntity> entities;
+
+struct A : nsECSFramework::IMultiMixComponent
+{
+  int v;
+};
+struct B : nsECSFramework::IMultiMixComponent
+{
+  int v;
+};
+struct C : nsECSFramework::IMultiMixComponent
+{
+  int v;
+};
 
 void testEntityManager()
 {
@@ -74,41 +60,21 @@ void testEntityManager()
   printf( "destroy time %f ns\n", timePerCycle );
 }
 
-void testEntt()
-{
-  entities.Clear();
-  auto start = ht_GetMSCount();
-
-  for ( int i = 0; i < COUNT; i++ )
-  {
-    entities.Append( registry.create() );
-  }
-
-  auto stop = ht_GetMSCount();
-  auto delta = stop - start;
-  auto timePerCycle = delta * 1000000.0f / COUNT;
-  printf( "create time %f ns\n", timePerCycle );
-
-  start = ht_GetMSCount();
-
-  for ( int i = 0; i < COUNT; i++ )
-  {
-    registry.destroy( entities.mVec[i] );
-  }
-
-  stop = ht_GetMSCount();
-  delta = stop - start;
-  timePerCycle = delta * 1000000.0f / COUNT;
-  printf( "destroy time %f ns\n", timePerCycle );
-}
-
 int main()
 {
-  for ( int i = 0; i < 10; i++ )
-    testEntityManager();
-  printf( "-------------------------------------------------------------------------------\n" );
-  for ( int i = 0; i < 10; i++ )
-    testEntt();
+  entMng.SetMixCombination<A, B>();
+  entMng.SetMixCombination<A, B, C>();
+
+  auto entity = entMng.CreateEntity();
+  A a;
+  a.v = 1;
+  entMng.AddComponent( entity, a );
+
+    for ( int i = 0; i < 20; i++ )
+      testEntityManager();
+  //printf( "-------------------------------------------------------------------------------\n" );
+  //for ( int i = 0; i < 10; i++ )
+  //  testEntt();
 #if 0
   auto world = new nsECSFramework::TWorld();
   world->AddToConveyer<TProducerFeature>();

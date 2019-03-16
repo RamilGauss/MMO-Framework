@@ -212,6 +212,7 @@
     <ClInclude Include="include\BreakPacket.h" />
     <ClInclude Include="include\CallBackRegistrator.h" />
     <ClInclude Include="include\CmdParam.h" />
+    <ClInclude Include="include\ColanderVector.h" />
     <ClInclude Include="include\ContainerArrObj.h" />
     <ClInclude Include="include\ContainerPtrArrObj.h" />
     <ClInclude Include="include\ContainerRise.h" />

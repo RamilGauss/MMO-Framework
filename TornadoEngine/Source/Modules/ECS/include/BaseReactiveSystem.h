@@ -7,7 +7,6 @@ See for more information License.h.
 
 #pragma once
 #include <vector>
-#include <entt/entt.hpp>
 
 #include "System.h"
 #include "VectorRise.h"
@@ -24,7 +23,7 @@ namespace nsECSFramework
     void IncrementAndCheckEventCount();
     void AddConnectTypeManager( IConnectTypeManager* p );
   protected:
-    TSortedThinningRestoreOrder<TEntity> mSTRO;
+    //TSortedThinningRestoreOrder<TEntity> mSTRO;
     std::vector<IConnectTypeManager*> mConTypeMngPtrVec;
   public:
     TBaseReactiveSystem( bool moreThanOneEvent );

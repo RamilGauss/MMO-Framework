@@ -9,9 +9,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="core">
-      <UniqueIdentifier>{d3f17ab4-b2bf-4e8c-a1a3-ea2bf5e84713}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaseReactiveSystem.h">
@@ -24,9 +21,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\DataMemoryPoolComponent.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ECSconfig.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ExecuteSystem.h">
@@ -74,17 +68,23 @@
     <ClInclude Include="include\Readme.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="core\Entity.h">
-      <Filter>core</Filter>
+    <ClInclude Include="include\LoopList.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="core\Components.h">
-      <Filter>core</Filter>
+    <ClInclude Include="include\EntityManager.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="core\EntityManager.h">
-      <Filter>core</Filter>
+    <ClInclude Include="include\Entity.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="core\Config.h">
-      <Filter>core</Filter>
+    <ClInclude Include="include\Components.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Config.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LinkToList.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -106,11 +106,11 @@
     <ClCompile Include="src\World.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="core\Entity.cpp">
-      <Filter>core</Filter>
+    <ClCompile Include="src\Entity.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="core\EntityManager.cpp">
-      <Filter>core</Filter>
+    <ClCompile Include="src\EntityManager.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -6,7 +6,6 @@ See for more information License.h.
 */
 
 #pragma once
-#include <entt/entt.hpp>
 
 #include "System.h"
 #include "VectorRise.h"

@@ -19,16 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="core\Components.h" />
-    <ClInclude Include="core\Config.h" />
-    <ClInclude Include="core\Entity.h" />
-    <ClInclude Include="core\EntityManager.h" />
     <ClInclude Include="include\BaseReactiveSystem.h" />
+    <ClInclude Include="include\Components.h" />
+    <ClInclude Include="include\Config.h" />
     <ClInclude Include="include\ConnectTypeManager.h" />
     <ClInclude Include="include\ConveyerPartMaster.h" />
     <ClInclude Include="include\ConveyerPartWithGlobalAccess.h" />
     <ClInclude Include="include\DataMemoryPoolComponent.h" />
-    <ClInclude Include="include\ECSconfig.h" />
+    <ClInclude Include="include\Entity.h" />
+    <ClInclude Include="include\EntityManager.h" />
     <ClInclude Include="include\ExecuteSystem.h" />
     <ClInclude Include="include\Feature.h" />
     <ClInclude Include="include\GlobalAccess.h" />
@@ -37,6 +36,8 @@
     <ClInclude Include="include\Helper.h" />
     <ClInclude Include="include\IConveyerPart.h" />
     <ClInclude Include="include\InitSystem.h" />
+    <ClInclude Include="include\LinkToList.h" />
+    <ClInclude Include="include\LoopList.h" />
     <ClInclude Include="include\MappedGroup.h" />
     <ClInclude Include="include\ReactiveForManyEventsSystem.h" />
     <ClInclude Include="include\ReactiveForOneEventSystem.h" />
@@ -45,10 +46,10 @@
     <ClInclude Include="include\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="core\Entity.cpp" />
-    <ClCompile Include="core\EntityManager.cpp" />
     <ClCompile Include="src\BaseReactiveSystem.cpp" />
     <ClCompile Include="src\ConveyerPartMaster.cpp" />
+    <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\ExecuteSystem.cpp" />
     <ClCompile Include="src\ReactiveForManyEventsSystem.cpp" />
     <ClCompile Include="src\ReactiveForOneEventSystem.cpp" />
@@ -136,7 +137,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;ECS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
@@ -157,7 +158,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;ECS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;core;include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp14</LanguageStandard>
@@ -181,7 +182,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;ECS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
@@ -206,7 +207,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;ECS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./;core;include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;$(SolutionDir)Source/Base/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>

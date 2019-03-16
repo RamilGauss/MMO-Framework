@@ -6,9 +6,8 @@ See for more information License.h.
 */
 
 #pragma once
-#include <entt/entt.hpp>
-#include "ECSconfig.h"
 #include "TypeDef.h"
+#include "EntityManager.h"
 
 // Доступ к данным ECS инфраструктуры
 
@@ -16,15 +15,15 @@ namespace nsECSFramework
 {
   class DllExport TGlobalAccess
   {
-    THugeRegistry* mRegistry;
+    TEntityManager* mEntMng;
   public:
-    inline THugeRegistry* GetRegistry()
+    TEntityManager* GetRegistry()
     {
-      return mRegistry;
+      return mEntMng;
     }
-    inline void SetRegistry( THugeRegistry* registry )
+    inline void SetRegistry( TEntityManager* entMng )
     {
-      mRegistry = registry;
+      mEntMng = entMng;
     }
   };
 }

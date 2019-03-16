@@ -21,7 +21,7 @@ void TReactiveForOneEventSystem::Update()
   if( entities->mCounter == 0 )
     return;
 
-  mSTRO.Work( *entities );// сортировать, убрать дублированные и восстановить порядок создания сущностей
+  //mSTRO.Work( *entities );// сортировать, убрать дублированные и восстановить порядок создания сущностей
   if( entities->mCounter == 0 )
     return;
 

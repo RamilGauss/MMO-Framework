@@ -31,17 +31,17 @@ void TBaseReactiveSystem::AddConnectTypeManager( IConnectTypeManager* p )
 void TBaseReactiveSystem::Filter( TVectorRise<TEntity> *pEntities )
 {
   // entity
-  int filtered = 0;
-  for( size_t i = 0; i < pEntities->mCounter; i++ )
-  {
-    auto& entity = pEntities->mVec[i];
-    if( GetRegistry()->valid( entity ) )// entity существует
-      if( Filter( entity ) )
-      {
-        pEntities->mVec[filtered] = entity;
-        filtered++;
-      }
-  }
-  pEntities->mCounter = filtered;
+  //int filtered = 0;
+  //for( size_t i = 0; i < pEntities->mCounter; i++ )
+  //{
+  //  auto& entity = pEntities->mVec[i];
+  //  if( GetRegistry()->valid( entity ) )// entity существует
+  //    if( Filter( entity ) )
+  //    {
+  //      pEntities->mVec[filtered] = entity;
+  //      filtered++;
+  //    }
+  //}
+  //pEntities->mCounter = filtered;
 }
 //--------------------------------------------------------------------------------------

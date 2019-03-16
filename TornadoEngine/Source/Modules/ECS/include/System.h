@@ -6,8 +6,7 @@ See for more information License.h.
 */
 
 #pragma once
-#include <entt/entt.hpp>
-#include "ECSconfig.h"
+
 #include "ConveyerPartWithGlobalAccess.h"
 
 namespace nsECSFramework

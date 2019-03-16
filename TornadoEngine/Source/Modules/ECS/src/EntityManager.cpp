@@ -9,26 +9,22 @@ See for more information License.h.
 #include "SingletonManager.h"
 #include "Entity.h"
 
-#include <intrin.h>
-
 using namespace nsECSFramework;
 
 TEntityManager::TEntityManager( int entityCount )
 {
-
-  mEntityMemoryPool = SingletonManager()->Get<TMemoryObjectPool<Entity>>();
+  mEntities.mVec.resize( entityCount );
+  mEntityMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TEntity>>();
 }
 //----------------------------------------------------------------------------------------------------
-EntityID TEntityManager::CreateEntity()
+TEntityID TEntityManager::CreateEntity()
 {
-  const EntityID id = mEntities.mCounter;
-  auto pEntity = mEntityMemoryPool->Pop();
-  pEntity->SetID( id );
-  mEntities.Append( pEntity );
+  const TEntityID id = (const TEntityID) mEntities.mCounter;
+  mEntities.Append( mEntityMemoryPool->Pop() );
   return id;
 }
 //----------------------------------------------------------------------------------------------------
-void TEntityManager::DestroyEntity( EntityID id )
+void TEntityManager::DestroyEntity( TEntityID id )
 {
   const auto pBegin = mEntities.mVec.data();
 
@@ -48,7 +44,7 @@ void TEntityManager::DestroyEntity( EntityID id )
   mEntities.PopBack();
 }
 //----------------------------------------------------------------------------------------------------
-Entity* TEntityManager::GetEntity( EntityID id ) const
+TEntity* TEntityManager::GetEntity( TEntityID id ) const
 {
   return mEntities.mVec[id];
 }

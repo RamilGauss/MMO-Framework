@@ -20,15 +20,15 @@ public:
   size_t mCounter = 0;
   TVectorRise();
 
-  inline void Append( Type value );
-  inline void PopBack();
-  inline void Shuffle();
-  inline void Sort();
-  inline void DeleteDuplicates();
-  inline void Clear();
-  inline void ReverseVec();
+  void Append( Type value );
+  void PopBack();
+  void Shuffle();
+  void Sort();
+  void DeleteDuplicates();
+  void Clear();
+  void ReverseVec();
 
-  inline void Zero( size_t count );
+  void Zero( size_t count );
 
   TVectorRise<Type>& operator=( const TVectorRise<Type>& other );
   TVectorRise<Type>& operator+=( const TVectorRise<Type>& other );

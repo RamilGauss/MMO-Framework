@@ -23,7 +23,7 @@ void TReactiveForManyEventsSystem::Update()
   for( auto pConTypeMng : mConTypeMngPtrVec )
   {
     auto entities = pConTypeMng->GetEntities( this );
-    mSTRO.Work( *entities );// прореживание каждого списка от "мёртвых" сущностей
+    //mSTRO.Work( *entities );// прореживание каждого списка от "мёртвых" сущностей
     mReactionEntities += *entities;
     entities->Clear();
   }
@@ -31,7 +31,7 @@ void TReactiveForManyEventsSystem::Update()
     return;
 
   // общее прореживание
-  mSTRO.Work( mReactionEntities );
+  //mSTRO.Work( mReactionEntities );
   if( mReactionEntities.mCounter == 0 )
     return;
 
