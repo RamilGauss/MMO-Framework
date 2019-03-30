@@ -19,7 +19,7 @@ namespace nsECSFramework
     virtual ~IComponent()
     {
     }
-    bool operator< ( const IComponent& other ) const
+    bool operator < ( const IComponent& other ) const
     {
       return true;
     }
