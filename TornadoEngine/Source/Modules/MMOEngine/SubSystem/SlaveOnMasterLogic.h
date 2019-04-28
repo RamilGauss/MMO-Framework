@@ -29,7 +29,7 @@ namespace nsMMOEngine
     bool DisconnectSlave( unsigned int sessionID );
 
   private:
-    void TryAddClientFromQueue( nsMappedComponents::TEntityManager::EntityID slaveEntity );
+    void TryAddClientFromQueue( nsECSFramework::TEntityID slaveEntity );
 
     void DestroyAllLostClientsBySlaveSession( unsigned int sessionID );
 
@@ -40,12 +40,12 @@ namespace nsMMOEngine
     void DestroyAllClientsBySlaveSession( unsigned int sessionID );
     void DestroyAllGroupsBySlaveSession( unsigned int sessionID );
 
-    void TryAddFromQueueGroupClients( nsMappedComponents::TEntityManager::EntityID slaveEntity, unsigned int sessionID );
-    void TryAddFromQueue( nsMappedComponents::TEntityManager::EntityID slaveEntity, unsigned int sessionID );
+    void TryAddFromQueueGroupClients( nsECSFramework::TEntityID slaveEntity, unsigned int sessionID );
+    void TryAddFromQueue( nsECSFramework::TEntityID slaveEntity, unsigned int sessionID );
 
-    void TSlaveOnMasterLogic::AddClientBySlave( nsMappedComponents::TEntityManager::TSortedEntity& clientEntitySet, 
-      unsigned int slaveSessionID, nsMappedComponents::TEntityManager::EntityID slaveEntity, float limit );
+    void TSlaveOnMasterLogic::AddClientBySlave( nsECSFramework::TSortedEntity& clientEntitySet,
+      unsigned int slaveSessionID, nsECSFramework::TEntityID slaveEntity, float limit );
 
-    void AddClientBySlaveSession( nsMappedComponents::TEntityManager::EntityID clientEntity, unsigned int slaveSessionID );
+    void AddClientBySlaveSession( nsECSFramework::TEntityID clientEntity, unsigned int slaveSessionID );
   };
 }

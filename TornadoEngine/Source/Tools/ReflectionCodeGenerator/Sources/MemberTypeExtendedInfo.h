@@ -6,7 +6,9 @@ See for more information License.h.
 */
 
 #pragma once
+
 #include <vector>
+#include <string>
 
 struct TMemberTypeExtendedInfo
 {

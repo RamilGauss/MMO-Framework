@@ -8,6 +8,7 @@ See for more information License.h.
 #pragma once
 
 #include <map>
+#include <string>
 #include "TypeDef.h"
 
 #include "ContainerTypes.h"

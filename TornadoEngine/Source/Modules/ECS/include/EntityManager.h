@@ -35,20 +35,22 @@ namespace nsECSFramework
       return mTypeIndex.type<Args...>();
     }
 
-    template <typename C0, typename C1, typename ... Components >
-    void SetMixCombination();
-
     TEntityID CreateEntity();
     void DestroyEntity( TEntityID id );
 
     template <typename Component>
-    void AddComponent( TEntityID id, Component& c );
+    void SetComponent( TEntityID eid, Component& c );// => add or set event
     template <typename Component>
-    void UpdateComponent( TEntityID id, Component& c );
+    const Component* ViewComponent( TEntityID eid );// for view, fast,
     template <typename Component>
-    const Component& GetComponent( TEntityID id );
+    bool GetComponent( TEntityID eid, Component& c );// for change, copy, with check
     template <typename Component>
-    void RemoveComponent( TEntityID id );
+    Component GetComponent( TEntityID eid );// for change, copy
+    template <typename Component>
+    void RemoveComponent( TEntityID eid );// => remove event
+    template <typename Component>
+    bool HasComponent( TEntityID eid );
+
 
     template <typename Component>
     TEntityID GetUnique( Component& c );
@@ -120,6 +122,41 @@ namespace nsECSFramework
 
   };
   //---------------------------------------------------------------------------------------
+  template <typename Component>
+  void TEntityManager::SetComponent( TEntityID eid, Component& c )
+  {
+
+  }
+  //---------------------------------------------------------------------------------------
+  template <typename Component>
+  const Component* TEntityManager::ViewComponent( TEntityID eid )
+  {
+
+  }
+  //---------------------------------------------------------------------------------------
+  template <typename Component>
+  bool TEntityManager::GetComponent( TEntityID eid, Component& c )
+  {
+    return false;
+  }
+  //---------------------------------------------------------------------------------------
+  template <typename Component>
+  Component TEntityManager::GetComponent( TEntityID eid )
+  {
+    return Component();
+  }
+  //---------------------------------------------------------------------------------------
+  template <typename Component>
+  void TEntityManager::RemoveComponent( TEntityID eid )
+  {
+  }
+  //---------------------------------------------------------------------------------------
+  template <typename Component>
+  bool TEntityManager::HasComponent( TEntityID eid )
+  {
+    return false;
+  }
+  //---------------------------------------------------------------------------------------
   template<typename Component>
   void TEntityManager::GalvanizeMixCombination( std::list<TTypeID::TypeCounter>& tidList )
   {
@@ -135,84 +172,84 @@ namespace nsECSFramework
     GalvanizeMixCombination<C1, Components ...>( tidList );
   }
   //---------------------------------------------------------------------------------------
-  template <typename C0, typename C1, typename ... Components >
-  void TEntityManager::SetMixCombination()
-  {
-    auto mixTID = TypeIndex<C0, C1, Components ... >();
+  //template <typename C0, typename C1, typename ... Components >
+  //void TEntityManager::SetMixCombination()
+  //{
+  //  auto mixTID = TypeIndex<C0, C1, Components ... >();
 
-    std::list<TTypeID::TypeCounter> tidList;
-    GalvanizeMixCombination<C0, C1, Components ... >( tidList );
-    for ( auto tid : tidList )
-    {
-      mIndexOnMixCombinationVector[tid].push_back( mixTID );
-    }
-  }
+  //  std::list<TTypeID::TypeCounter> tidList;
+  //  GalvanizeMixCombination<C0, C1, Components ... >( tidList );
+  //  for ( auto tid : tidList )
+  //  {
+  //    mIndexOnMixCombinationVector[tid].push_back( mixTID );
+  //  }
+  //}
+  //---------------------------------------------------------------------------------------
+  //template <typename Component>
+  //void TEntityManager::AddComponent( TEntityID id, Component& c )
+  //{
+  //  auto tid = TypeIndex<Component>();
+
+  //  auto pEntity = GetEntity( id );
+  //  pEntity->AddComponent( c, tid );
+
+  //  auto isHas = std::is_base_of<IHasComponent, Component>::value;
+  //  auto isMulti = std::is_base_of<IMultiComponent, Component>::value;
+  //  auto isUnique = std::is_base_of<IUniqueComponent, Component>::value;
+  //  auto isMultiMix = std::is_base_of<IMultiMixComponent, Component>::value;
+
+  //  if ( isUnique )
+  //  {
+  //    if ( mUniqueMapVector[tid] == nullptr )
+  //      mUniqueMapVector[tid] = new UnqiqueMap<Component>();
+  //    ( ( UnqiqueMap<Component>* )mUniqueMapVector[tid] )->insert( { c, id } );
+  //    return;
+  //  }
+  //  if ( isHas )
+  //  {
+  //    if ( mHasListVector[tid] == nullptr )
+  //      mHasListVector[tid] = new std::list<TEntityID>();
+  //    auto pList = mHasListVector[tid];
+  //    pList->push_back( id );
+
+  //    auto backIt = pList->back();
+  //  }
+  //  if ( isMulti )
+  //  {
+
+  //  }
+  //  if ( isMultiMix )
+  //  {
+
+  //  }
+  //}
+  //---------------------------------------------------------------------------------------
+  //template <typename Component>
+  //void TEntityManager::UpdateComponent( TEntityID id, Component & c )
+  //{
+  //  auto tid = TypeIndex<Component>();
+  //  auto pEntity = GetEntity( id );
+  //  pEntity->UpdateComponent( c, tid );
+  //}
+  ////---------------------------------------------------------------------------------------
+  //template <typename Component>
+  //const Component& TEntityManager::GetComponent( TEntityID id )
+  //{
+  //  auto tid = TypeIndex<Component>();
+  //  auto pEntity = GetEntity( id );
+  //  return pEntity->GetComponent( tid );
+  //}
+  //---------------------------------------------------------------------------------------
+  //template <typename Component>
+  //void TEntityManager::RemoveComponent( TEntityID id )
+  //{
+  //  auto tid = TypeIndex<Component>();
+  //  auto pEntity = GetEntity( id );
+  //  pEntity->RemoveComponent( tid );
+  //}
   //---------------------------------------------------------------------------------------
   template <typename Component>
-  void TEntityManager::AddComponent( TEntityID id, Component& c )
-  {
-    auto tid = TypeIndex<Component>();
-
-    auto pEntity = GetEntity( id );
-    pEntity->AddComponent( c, tid );
-
-    auto isHas = std::is_base_of<IHasComponent, Component>::value;
-    auto isMulti = std::is_base_of<IMultiComponent, Component>::value;
-    auto isUnique = std::is_base_of<IUniqueComponent, Component>::value;
-    auto isMultiMix = std::is_base_of<IMultiMixComponent, Component>::value;
-
-    if ( isUnique )
-    {
-      if ( mUniqueMapVector[tid] == nullptr )
-        mUniqueMapVector[tid] = new UnqiqueMap<Component>();
-      ( ( UnqiqueMap<Component>* )mUniqueMapVector[tid] )->insert( {c, id} );
-      return;
-    }
-    if ( isHas )
-    {
-      if ( mHasListVector[tid] == nullptr )
-        mHasListVector[tid] = new std::list<TEntityID>();
-      auto pList = mHasListVector[tid];
-      pList->push_back( id );
-
-      auto backIt = pList->back();
-    }
-    if ( isMulti )
-    {
-
-    }
-    if ( isMultiMix )
-    {
-
-    }
-  }
-  //---------------------------------------------------------------------------------------
-  template <typename Component>
-  void TEntityManager::UpdateComponent( TEntityID id, Component& c )
-  {
-    auto tid = TypeIndex<Component>();
-    auto pEntity = GetEntity( id );
-    pEntity->UpdateComponent( c, tid );
-  }
-  //---------------------------------------------------------------------------------------
-  template <typename Component>
-  const Component& TEntityManager::GetComponent( TEntityID id )
-  {
-    auto tid = TypeIndex<Component>();
-    auto pEntity = GetEntity( id );
-    return pEntity->GetComponent( tid );
-  }
-  //---------------------------------------------------------------------------------------
-  template <typename Component>
-  void TEntityManager::RemoveComponent( TEntityID id )
-  {
-    auto tid = TypeIndex<Component>();
-    auto pEntity = GetEntity( id );
-    pEntity->RemoveComponent( tid );
-  }
-  //---------------------------------------------------------------------------------------
-  template <typename Component>
-  TEntityID TEntityManager::GetUnique( Component& c )
+  TEntityID TEntityManager::GetUnique( Component & c )
   {
     auto index = TypeIndex<Component>();
     auto unqiqueMap = ( UnqiqueMap<Component>* ) mUniqueMapVector[index];
@@ -225,19 +262,19 @@ namespace nsECSFramework
   }
   //---------------------------------------------------------------------------------------
   template <typename Component>
-  const TEntityLoopList& TEntityManager::GetMulti( Component& c )
+  const TEntityLoopList & TEntityManager::GetMulti( Component & c )
   {
     auto index = TypeIndex<Component>();
   }
   //---------------------------------------------------------------------------------------
   template <typename C0, typename C1>
-  const TEntityLoopList& TEntityManager::GetMultiMix( C0& c0, C1& c1 )
+  const TEntityLoopList& TEntityManager::GetMultiMix( C0 & c0, C1 & c1 )
   {
     auto index = TypeIndex<C0, C1>();
   }
   //---------------------------------------------------------------------------------------
   template <typename C0, typename C1, typename C2>
-  const TEntityLoopList& TEntityManager::GetMultiMix( C0& c0, C1& c1, C2& c2 )
+  const TEntityLoopList& TEntityManager::GetMultiMix( C0 & c0, C1 & c1, C2 & c2 )
   {
     auto index = TypeIndex<C0, C1, C2>();
   }

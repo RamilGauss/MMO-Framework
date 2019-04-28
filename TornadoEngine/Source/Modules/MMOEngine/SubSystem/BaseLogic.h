@@ -18,7 +18,7 @@ namespace nsMMOEngine
   protected:
     TBase* mBase = nullptr;
 
-    nsMappedComponents::TEntityManager* mEntMng = nullptr;
+    nsECSFramework::TEntityManager* mEntMng = nullptr;
   public:
     TBaseLogic( TBase* p );
 

@@ -10,6 +10,7 @@ See for more information License.h.
 #include "TypeDef.h"
 
 #include <list>
+#include <memory>
 
 #include "Structs.h"
 #include "SrcEvent.h"

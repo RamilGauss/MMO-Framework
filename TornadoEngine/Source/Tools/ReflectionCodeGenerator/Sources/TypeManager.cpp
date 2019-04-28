@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #include "TypeManager.h"
+#include <memory>
 
 //--------------------------------------------------------------------------------------
 void TTypeManager::Add( std::string& nameSpaceName, TTypeInfo& typeInfo )

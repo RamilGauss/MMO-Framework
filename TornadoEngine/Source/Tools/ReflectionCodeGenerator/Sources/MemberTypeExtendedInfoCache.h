@@ -10,6 +10,8 @@ See for more information License.h.
 #include <string>
 #include <map>
 #include <list>
+#include <memory>
+
 #include "MemberTypeExtendedInfo.h"
 
 class TMemberTypeExtendedInfoCache

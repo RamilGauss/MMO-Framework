@@ -12,6 +12,7 @@ See for more information License.h.
 #include <list>
 #include <string>
 #include <map>
+#include <memory>
 
 namespace nsReflectionCodeGenerator
 {
