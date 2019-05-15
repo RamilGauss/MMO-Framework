@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{B430C5D8-F825-4361-96AE-EC40E71483FD}"
 EndProject
@@ -162,6 +162,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ODB", "ODB", "{BA7C9499-B754-4AC2-9B0E-354289BCEF88}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MappedComponentsTest", "Test\MappedComponentsTest\MappedComponentsTest.vcxproj", "{C8FDD4DD-8E77-4287-A0AE-1D2114059152}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibExperiment", "Test\LibExperiment\LibExperiment.vcxproj", "{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+		{D3227FF0-6115-44E0-97D3-2243B5BE87B1} = {D3227FF0-6115-44E0-97D3-2243B5BE87B1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -641,6 +647,18 @@ Global
 		{C8FDD4DD-8E77-4287-A0AE-1D2114059152}.Release|x64.Build.0 = Release|x64
 		{C8FDD4DD-8E77-4287-A0AE-1D2114059152}.Release|x86.ActiveCfg = Release|Win32
 		{C8FDD4DD-8E77-4287-A0AE-1D2114059152}.Release|x86.Build.0 = Release|Win32
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Debug|x64.ActiveCfg = Debug|x64
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Debug|x64.Build.0 = Debug|x64
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Debug|x86.ActiveCfg = Debug|Win32
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Debug|x86.Build.0 = Debug|Win32
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Profile|x64.ActiveCfg = Release|x64
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Profile|x64.Build.0 = Release|x64
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Profile|x86.ActiveCfg = Release|Win32
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Profile|x86.Build.0 = Release|Win32
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Release|x64.ActiveCfg = Release|x64
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Release|x64.Build.0 = Release|x64
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Release|x86.ActiveCfg = Release|Win32
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -689,10 +707,11 @@ Global
 		{8760CFDB-1709-44CA-B008-BDA245C2DBBE} = {BA7C9499-B754-4AC2-9B0E-354289BCEF88}
 		{BA7C9499-B754-4AC2-9B0E-354289BCEF88} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
 		{C8FDD4DD-8E77-4287-A0AE-1D2114059152} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
+		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

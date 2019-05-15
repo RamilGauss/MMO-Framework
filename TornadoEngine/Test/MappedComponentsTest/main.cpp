@@ -242,6 +242,7 @@ struct TDestroyHandler
     fmt::print( "destroy entity with id = {}\n", id );
   }
 };
+//---------------------------------------------------------------------------------------
 int main( int argc, char* argv )
 {
   std::srand( std::time( nullptr ) );

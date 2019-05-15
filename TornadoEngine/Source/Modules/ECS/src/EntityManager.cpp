@@ -17,6 +17,11 @@ TEntityManager::TEntityManager( int entityCount )
   mEntityMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TEntity>>();
 }
 //----------------------------------------------------------------------------------------------------
+void TEntityManager::Setup()
+{
+
+}
+//----------------------------------------------------------------------------------------------------
 TEntityID TEntityManager::CreateEntity()
 {
   const TEntityID id = (const TEntityID) mEntities.mCounter;

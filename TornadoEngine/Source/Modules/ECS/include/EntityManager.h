@@ -29,6 +29,8 @@ namespace nsECSFramework
   public:
     TEntityManager( int entityCount );
 
+    void Setup();
+
     template <typename ... Args>
     TTypeIdentifier<TEntityManager>::TypeCounter TypeIndex()
     {
@@ -54,22 +56,12 @@ namespace nsECSFramework
 
     template <typename Component>
     TEntityID GetUnique( Component& c );
-
     template <typename Component>
-    const TEntityLoopList& GetMulti( Component& c );
-
-    template <typename C0, typename C1>
-    const TEntityLoopList& GetMultiMix( C0& c0, C1& c1 );
-
-    template <typename C0, typename C1, typename C2>
-    const TEntityLoopList& GetMultiMix( C0& c0, C1& c1, C2& c2 );
-
-    template <typename C0>
-    const TEntityLoopList& GetHas();
-    template <typename C0, typename C1>
-    const TEntityLoopList& GetHas();
-    template <typename C0, typename C1, typename C2>
-    const TEntityLoopList& GetHas();
+    TEntityLoopList GetMulti( Component& c );
+    template <typename ... Args>
+    TEntityLoopList GetHas();
+    template <typename C0, typename ... Args >// more than 1
+    TEntityLoopList GetMultiMix( C0& c0, ... );
 
     template <typename Component>
     TCallBackRegistrator2<TEntityID, Component&>* OnAdd();
@@ -78,6 +70,9 @@ namespace nsECSFramework
     template <typename Component>
     TCallBackRegistrator2<TEntityID, Component&>* OnRemove();
   private:
+    template <typename C0, typename C1, typename ... Components >
+    void SetMixCombination();
+
     template<typename Component>
     void GalvanizeMixCombination( std::list<TTypeID::TypeCounter>& tidList );
     template<typename C0, typename C1, typename ... Components>
@@ -172,18 +167,18 @@ namespace nsECSFramework
     GalvanizeMixCombination<C1, Components ...>( tidList );
   }
   //---------------------------------------------------------------------------------------
-  //template <typename C0, typename C1, typename ... Components >
-  //void TEntityManager::SetMixCombination()
-  //{
-  //  auto mixTID = TypeIndex<C0, C1, Components ... >();
+  template <typename C0, typename C1, typename ... Components >
+  void TEntityManager::SetMixCombination()
+  {
+    auto mixTID = TypeIndex<C0, C1, Components ... >();
 
-  //  std::list<TTypeID::TypeCounter> tidList;
-  //  GalvanizeMixCombination<C0, C1, Components ... >( tidList );
-  //  for ( auto tid : tidList )
-  //  {
-  //    mIndexOnMixCombinationVector[tid].push_back( mixTID );
-  //  }
-  //}
+    std::list<TTypeID::TypeCounter> tidList;
+    GalvanizeMixCombination<C0, C1, Components ... >( tidList );
+    for ( auto tid : tidList )
+    {
+      mIndexOnMixCombinationVector[tid].push_back( mixTID );
+    }
+  }
   //---------------------------------------------------------------------------------------
   //template <typename Component>
   //void TEntityManager::AddComponent( TEntityID id, Component& c )
@@ -249,7 +244,7 @@ namespace nsECSFramework
   //}
   //---------------------------------------------------------------------------------------
   template <typename Component>
-  TEntityID TEntityManager::GetUnique( Component & c )
+  TEntityID TEntityManager::GetUnique( Component& c )
   {
     auto index = TypeIndex<Component>();
     auto unqiqueMap = ( UnqiqueMap<Component>* ) mUniqueMapVector[index];

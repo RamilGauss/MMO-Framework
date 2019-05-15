@@ -8,6 +8,7 @@
 
 #include "DataExchange2ThreadElement.h"
 #include <boost/pool/pool.hpp>
+#include "EntityManagerPrototype.h"
 
 struct A
 {
@@ -107,15 +108,34 @@ void Test( std::string testName, std::function<void( int, int )> func )
   auto delta = stop - start;
 
   TTestResult result;
-  result.timePerCycle = (int) ( ( 1000000.0*delta ) / ( TEST_COUNT * ELEMENT_COUNT ) );
+  result.timePerCycle = (int) ( ( 1000000.0 * delta ) / ( TEST_COUNT * ELEMENT_COUNT ) );
   result.name = testName;
   g_TestResult.push_back( result );
 
   fmt::print( "test ended {}\n", g_TestResult.size() );
 }
 //---------------------------------------------------------------------------------------------
-int main( int argc, char *argv[] )
+class DllExport D
 {
+};
+class F
+{
+};
+class Z
+{
+};
+
+int main( int argc, char* argv[] )
+{
+  TEntityManagerPrototype entMng;
+  entMng.Setup();
+  // где-то в другом коде, но с тем же объектом
+  auto f = entMng.GetMultiMix<F>();
+  auto z = entMng.GetMultiMix<Z>();
+  auto d = entMng.GetMultiMix<D>();
+  auto dfz = entMng.GetMultiMix<D, F, Z>();
+
+
   Test( "MemoryObjectPoolAllocator", Test_MemoryObjectPoolAllocator );
   Test( "MemoryPool", Test_MemoryPool );
   Test( "Boost", Test_BoostAllocator );

@@ -11,6 +11,7 @@ See for more information License.h.
 #include <cstddef>
 #include <atomic>
 #include "TypeDef.h"
+#include <assert.h>
 
 // The idea has been taken from https://github.com/skypjack/entt/blob/master/src/entt/core/family.hpp
 // Remove static from type(). Static values are the evil! In different Dll different id exists.

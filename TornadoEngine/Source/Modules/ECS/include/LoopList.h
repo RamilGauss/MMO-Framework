@@ -20,9 +20,13 @@ private:
   List* mList;
   Iterator mCurrentIt;
 public:
-  TLoopList( List& tl )
+  TLoopList( List* pL )
   {
-    mList = &tl;
+    Init( pL );
+  }
+  void Init( List* pL )
+  {
+    mList = pL;
     Reset();
   }
   bool Next( Type& t )
@@ -36,5 +40,12 @@ public:
   void Reset()
   {
     mCurrentIt = mList->begin();
+  }
+
+  TLoopList<Type>& operator = ( const TLoopList<Type>& other )
+  {
+    mList = other.mList;
+    mCurrentIt = other.mCurrentIt;
+    return *this;
   }
 };
