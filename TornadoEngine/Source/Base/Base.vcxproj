@@ -268,6 +268,7 @@
     <ClInclude Include="include\BinaryPopMaster.h" />
     <ClInclude Include="include\BinaryPushMaster.h" />
     <ClInclude Include="include\ReflectionMacro.h" />
+    <ClInclude Include="include\RemoveIthType.h" />
     <ClInclude Include="include\ResolverSelf_IP_v4.h" />
     <ClInclude Include="include\ReversedContainerRise.h" />
     <ClInclude Include="include\SaveToFile.h" />

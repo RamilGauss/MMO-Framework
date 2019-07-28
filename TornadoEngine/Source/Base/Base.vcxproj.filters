@@ -281,6 +281,9 @@
     <ClInclude Include="include\ColanderVector.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\RemoveIthType.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">

@@ -13,6 +13,12 @@ See for more information License.h.
 #include <vector>
 #include <type_traits>
 
+#include <boost/dll/runtime_symbol_info.hpp>
+
+#include "TypeDef.h"
+#include "TypeIdentifier.h"
+#include "SingletonManager.h"
+
 #include "Config.h"
 #include "VectorRise.h"
 #include "MemoryObjectPool.h"
@@ -22,19 +28,26 @@ See for more information License.h.
 
 namespace nsECSFramework
 {
+  struct TCollectionInfo
+  {
+    bool unique;
+    std::list<TEntityID> valueVec;
+    std::list<TEntityID> hasVec;
+  };
+
   class DllExport TEntityManager
   {
     typedef TTypeIdentifier<TEntityManager> TTypeID;
-    TTypeID mTypeIndex;
+    TTypeID* mTypeIndex;
   public:
-    TEntityManager( int entityCount );
+    TEntityManager( int entityCount = 1024 );
 
-    void Setup();
+    void Setup( std::string path = boost::dll::this_line_location().string() );
 
     template <typename ... Args>
-    TTypeIdentifier<TEntityManager>::TypeCounter TypeIndex()
+    unsigned int TypeIndex()
     {
-      return mTypeIndex.type<Args...>();
+      return mTypeIndex->type<Args...>();
     }
 
     TEntityID CreateEntity();
@@ -54,6 +67,13 @@ namespace nsECSFramework
     bool HasComponent( TEntityID eid );
 
 
+    template <typename T>
+    TEntityID GetByUnique( T& t );
+    template <typename ... Args>
+    std::list<TEntityID>* GetByValue( ... );
+    template <typename ... Args>
+    std::list<TEntityID>* GetByHas();
+
     template <typename Component>
     TEntityID GetUnique( Component& c );
     template <typename Component>
@@ -70,14 +90,15 @@ namespace nsECSFramework
     template <typename Component>
     TCallBackRegistrator2<TEntityID, Component&>* OnRemove();
   private:
-    template <typename C0, typename C1, typename ... Components >
-    void SetMixCombination();
 
-    template<typename Component>
-    void GalvanizeMixCombination( std::list<TTypeID::TypeCounter>& tidList );
-    template<typename C0, typename C1, typename ... Components>
-    void GalvanizeMixCombination( std::list<TTypeID::TypeCounter>& tidList );
+    std::vector<std::list<TEntityID>*> mHasCollectionVec;
+    std::vector<void*> mValueCollectionVec;// map<T,list<TEntityID>*>*
+    std::vector<void*> mUniqueCollectionVec;// map<T,TEntityID>*
 
+    std::vector<TCollectionInfo*> mCollectionInfoVec;
+
+
+    std::list<TEntityID> mReserverIndexInEntities;
     TMemoryObjectPool<TEntity>* mEntityMemoryPool;
 
     TVectorRise<TEntity*> mEntities;
@@ -257,19 +278,19 @@ namespace nsECSFramework
   }
   //---------------------------------------------------------------------------------------
   template <typename Component>
-  const TEntityLoopList & TEntityManager::GetMulti( Component & c )
+  const TEntityLoopList& TEntityManager::GetMulti( Component& c )
   {
     auto index = TypeIndex<Component>();
   }
   //---------------------------------------------------------------------------------------
   template <typename C0, typename C1>
-  const TEntityLoopList& TEntityManager::GetMultiMix( C0 & c0, C1 & c1 )
+  const TEntityLoopList& TEntityManager::GetMultiMix( C0& c0, C1& c1 )
   {
     auto index = TypeIndex<C0, C1>();
   }
   //---------------------------------------------------------------------------------------
   template <typename C0, typename C1, typename C2>
-  const TEntityLoopList& TEntityManager::GetMultiMix( C0 & c0, C1 & c1, C2 & c2 )
+  const TEntityLoopList& TEntityManager::GetMultiMix( C0& c0, C1& c1, C2& c2 )
   {
     auto index = TypeIndex<C0, C1, C2>();
   }

@@ -1,3 +1,4 @@
+/*
 #include "HiTimer.h"
 #include "MemoryObjectPoolAllocator.h"
 #include "fmt/core.h"
@@ -8,7 +9,6 @@
 
 #include "DataExchange2ThreadElement.h"
 #include <boost/pool/pool.hpp>
-#include "EntityManagerPrototype.h"
 
 struct A
 {
@@ -77,7 +77,7 @@ void Test_BoostAllocator( int testCount, int elementCount )
   for ( long i = 0; i < testCount; i++ )
   {
     for ( long e = 0; e < elementCount; e++ )
-      g_Arr[e] = (TestingClass*) allocator->malloc();
+      g_Arr[e] = ( TestingClass*) allocator->malloc();
 
     for ( long e = 0; e < elementCount; e++ )
       allocator->free( g_Arr[e] );
@@ -108,33 +108,56 @@ void Test( std::string testName, std::function<void( int, int )> func )
   auto delta = stop - start;
 
   TTestResult result;
-  result.timePerCycle = (int) ( ( 1000000.0 * delta ) / ( TEST_COUNT * ELEMENT_COUNT ) );
+  result.timePerCycle = ( int) ( ( 1000000.0 * delta ) / ( TEST_COUNT * ELEMENT_COUNT ) );
   result.name = testName;
   g_TestResult.push_back( result );
 
   fmt::print( "test ended {}\n", g_TestResult.size() );
 }
 //---------------------------------------------------------------------------------------------
-class DllExport D
+
+//###
+class X
 {
+public:
+  int a;
 };
-class F
+class Y
 {
+public:
+  int a;
 };
 class Z
 {
+public:
+  int a;
 };
+class W
+{
+public:
+  int a;
+};
+//###
+
 
 int main( int argc, char* argv[] )
 {
-  TEntityManagerPrototype entMng;
-  entMng.Setup();
-  // где-то в другом коде, но с тем же объектом
-  auto f = entMng.GetMultiMix<F>();
-  auto z = entMng.GetMultiMix<Z>();
-  auto d = entMng.GetMultiMix<D>();
-  auto dfz = entMng.GetMultiMix<D, F, Z>();
+  //###
+  auto pTypeId = SingletonManager()->Get<TTypeIdentifier<>>();
 
+  auto x = pTypeId->type<X>();
+  auto y = pTypeId->type<Y>();
+  auto z = pTypeId->type<Z>();
+  auto w = pTypeId->type<W>();
+  auto xz0 = pTypeId->type<X, Z>();
+  auto xz1 = pTypeId->type<X, Z>();
+  auto zx = pTypeId->type<Z, X>();
+
+  auto xyz = pTypeId->type<X, Y, Z>();
+  auto xzy = pTypeId->type<X, Z, Y>();
+  auto zxy = pTypeId->type<Z, X, Y>();
+  auto xyzw = pTypeId->type<X, Y, Z, W>();
+  //###
 
   Test( "MemoryObjectPoolAllocator", Test_MemoryObjectPoolAllocator );
   Test( "MemoryPool", Test_MemoryPool );
@@ -158,3 +181,64 @@ int main( int argc, char* argv[] )
   return 0;
 }
 //---------------------------------------------------------------------------------------------
+*/
+#include <stdio.h>
+#include <typeinfo>
+#include "RemoveIthType.h"
+#include "HiTimer.h"
+#include "MemoryObjectPoolAllocator.h"
+#include "fmt/core.h"
+#include "MemoryPool.h"
+
+#include <functional>
+#include <algorithm>
+
+
+template<typename T>
+void Print()
+{
+  auto s = typeid( T ).name();
+  printf( "%s\n", s );
+}
+//---------------------------------------------------------------------------------------------
+template<typename T0, typename T1, typename ... Args>
+void Print()
+{
+  Print<T0>();
+  Print<T1, Args...>();
+}
+//---------------------------------------------------------------------------------------------
+template<typename ... Args>
+void Func()
+{
+  Print<Args...>();
+}
+//---------------------------------------------------------------------------------------------
+template<typename tuples, std::size_t... Is>
+void PreFunc( std::index_sequence<Is...> )
+{
+  Func<std::tuple_element<Is, tuples>::type...>();
+}
+//---------------------------------------------------------------------------------------------
+
+class A
+{
+};
+class B
+{
+};
+
+int main()
+{
+  auto pTypeId = new TTypeIdentifier<>();
+  auto a_ti = pTypeId->type<A>();
+  //auto ab_ti = pTypeId->type<A, B>();
+
+  //typedef std::tuple<int, bool, double> my_tuple;
+  //typedef TRemoveIthType<1, my_tuple>::type my_tuple_wo_2nd_type;
+
+  //my_tuple_wo_2nd_type myTuple;
+
+  //constexpr auto size = std::tuple_size<my_tuple_wo_2nd_type>::value;
+  //PreFunc<decltype( myTuple )>( std::make_index_sequence<size>() );
+}
