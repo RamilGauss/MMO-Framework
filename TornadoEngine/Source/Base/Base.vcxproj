@@ -132,7 +132,7 @@
       <DisableSpecificWarnings>4996;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libuv_d.lib;shlwapi.lib;ws2_32.lib;libeay32.lib;ssleay32.lib;fmt_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -333,7 +333,9 @@
     <ClCompile Include="src\Only_N_Object.cpp" />
     <ClCompile Include="src\BinaryPopMaster.cpp" />
     <ClCompile Include="src\BinaryPushMaster.cpp" />
-    <ClCompile Include="src\ResolverSelf_IP_v4.cpp" />
+    <ClCompile Include="src\ResolverSelf_IP_v4.cpp">
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp14</LanguageStandard>
+    </ClCompile>
     <ClCompile Include="src\ReversedContainerRise.cpp" />
     <ClCompile Include="src\SaveToFile.cpp" />
     <ClCompile Include="src\SetOrderElement.cpp" />

@@ -17,7 +17,7 @@ class DllExport TResolverSelf_IP_v4
   struct TDescHost
   {
     std::string s;
-    unsigned int ip;
+    unsigned int ip = 0;
   };
 
   typedef std::vector<TDescHost> TVectorDesc;

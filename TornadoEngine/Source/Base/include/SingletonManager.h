@@ -21,8 +21,9 @@ public:
   Type* Get()
   {
     auto index = GlobalTypeIdentifier()->type<Type>();
-    if ( mTypeObjVec.size() < index + 1 )
-      mTypeObjVec.resize( index + 1 );
+    size_t count = index + 1;
+    if ( mTypeObjVec.size() < count )
+      mTypeObjVec.resize( count );
     if ( mTypeObjVec[index] == nullptr )
       mTypeObjVec[index] = new Type();
     return (Type*)mTypeObjVec[index];

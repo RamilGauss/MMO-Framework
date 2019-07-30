@@ -1,4 +1,3 @@
-/*
 #include "HiTimer.h"
 #include "MemoryObjectPoolAllocator.h"
 #include "fmt/core.h"
@@ -181,64 +180,3 @@ int main( int argc, char* argv[] )
   return 0;
 }
 //---------------------------------------------------------------------------------------------
-*/
-#include <stdio.h>
-#include <typeinfo>
-#include "RemoveIthType.h"
-#include "HiTimer.h"
-#include "MemoryObjectPoolAllocator.h"
-#include "fmt/core.h"
-#include "MemoryPool.h"
-
-#include <functional>
-#include <algorithm>
-
-
-template<typename T>
-void Print()
-{
-  auto s = typeid( T ).name();
-  printf( "%s\n", s );
-}
-//---------------------------------------------------------------------------------------------
-template<typename T0, typename T1, typename ... Args>
-void Print()
-{
-  Print<T0>();
-  Print<T1, Args...>();
-}
-//---------------------------------------------------------------------------------------------
-template<typename ... Args>
-void Func()
-{
-  Print<Args...>();
-}
-//---------------------------------------------------------------------------------------------
-template<typename tuples, std::size_t... Is>
-void PreFunc( std::index_sequence<Is...> )
-{
-  Func<std::tuple_element<Is, tuples>::type...>();
-}
-//---------------------------------------------------------------------------------------------
-
-class A
-{
-};
-class B
-{
-};
-
-int main()
-{
-  auto pTypeId = new TTypeIdentifier<>();
-  auto a_ti = pTypeId->type<A>();
-  //auto ab_ti = pTypeId->type<A, B>();
-
-  //typedef std::tuple<int, bool, double> my_tuple;
-  //typedef TRemoveIthType<1, my_tuple>::type my_tuple_wo_2nd_type;
-
-  //my_tuple_wo_2nd_type myTuple;
-
-  //constexpr auto size = std::tuple_size<my_tuple_wo_2nd_type>::value;
-  //PreFunc<decltype( myTuple )>( std::make_index_sequence<size>() );
-}
