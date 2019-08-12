@@ -77,13 +77,16 @@
     <ClInclude Include="include\Entity.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Components.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Config.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\LinkToList.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ComponentInfo.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IComponent.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

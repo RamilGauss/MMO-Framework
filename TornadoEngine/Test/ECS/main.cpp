@@ -8,7 +8,6 @@ See for more information License.h.
 #include "EntityManager.h"
 #include "VectorRise.h"
 #include "HiTimer.h"
-#include "Components.h"
 
 #ifdef _DEBUG
 #define COUNT 5000000
@@ -16,62 +15,33 @@ See for more information License.h.
 #define COUNT 100000000
 #endif
 
-nsECSFramework::TEntityManager entMng( 1 );
+using namespace nsECSFramework;
 
-TVectorRise<nsECSFramework::TEntity> entities;
+class A : public IComponent
+{
+public:
+  int id;
 
-struct A : nsECSFramework::IMultiMixComponent
-{
-  int v;
-};
-struct B : nsECSFramework::IMultiMixComponent
-{
-  int v;
-};
-struct C : nsECSFramework::IMultiMixComponent
-{
-  int v;
-};
-
-void testEntityManager()
-{
-  auto start = ht_GetMSCount();
-
-  for ( int i = 0; i < COUNT; i++ )
+  // Inherited via IComponent
+  virtual bool IsEqual( IComponent* pOther ) override
   {
-    entMng.CreateEntity();
+    return false;
   }
-
-  auto stop = ht_GetMSCount();
-  auto delta = stop - start;
-  auto timePerCycle = delta * 1000000.0f / COUNT;
-  printf( "create time %f ns\n", timePerCycle );
-
-  start = ht_GetMSCount();
-
-  for ( int i = 0; i < COUNT; i++ )
+  virtual bool IsLess( IComponent* pOther ) override
   {
-    entMng.DestroyEntity( 0 );
+    return false;
   }
-
-  stop = ht_GetMSCount();
-  delta = stop - start;
-  timePerCycle = delta * 1000000.0f / COUNT;
-  printf( "destroy time %f ns\n", timePerCycle );
-}
+  virtual bool IsMore( IComponent* pOther ) override
+  {
+    return false;
+  }
+};
 
 int main()
 {
-  entMng.SetMixCombination<A, B>();
-  entMng.SetMixCombination<A, B, C>();
+  TEntityManager entMng;
+  TComplexType complexType;
 
-  auto entity = entMng.CreateEntity();
-  A a;
-  a.v = 1;
-  entMng.AddComponent( entity, a );
-
-    for ( int i = 0; i < 20; i++ )
-      testEntityManager();
   //printf( "-------------------------------------------------------------------------------\n" );
   //for ( int i = 0; i < 10; i++ )
   //  testEntt();

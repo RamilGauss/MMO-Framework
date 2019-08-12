@@ -9,20 +9,36 @@ See for more information License.h.
 
 using namespace nsECSFramework;
 
-void TEntity::SetID( TEntityID id )
+TEntity::TEntity()
 {
-  // пробежка по всем компонентам и смена id внутри list
-
-  for ( auto index : mComponetIndexInUse )
-  {
-    auto p = mComponents[index];
-    if ( p == nullptr )
-      continue;
-  }
+  mComponentInfoMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TComponentInfo>>();
 }
 //---------------------------------------------------------------------------------------
 void TEntity::Done()
 {
-
+  while ( true )
+  {
+    if ( mComponentIndexInUse.size() == 0 )
+      return;
+    auto bit = mComponentIndexInUse.begin();
+    auto index = *bit;
+    RemoveComponent( index );
+  }
 }
 //---------------------------------------------------------------------------------------
+void TEntity::RemoveComponent( int index )
+{
+  auto pCI = mComponents[index];
+  if ( pCI == nullptr )
+    return;
+  pCI->Done();
+  mComponents[index] = nullptr;
+  mComponentInfoMemoryPool->Push( pCI );
+}
+//---------------------------------------------------------------------------------------
+bool TEntity::HasComponent( int index )
+{
+  return mComponents[index] != nullptr;
+}
+//---------------------------------------------------------------------------------------
+
