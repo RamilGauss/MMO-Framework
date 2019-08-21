@@ -89,6 +89,9 @@
     <ClInclude Include="include\IComponent.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ComplexType.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseReactiveSystem.cpp">

@@ -9,81 +9,162 @@ See for more information License.h.
 #include "SingletonManager.h"
 #include "Entity.h"
 
-#include <boost/dll/smart_library.hpp>
-#include <boost/dll/import_class.hpp>
-#include <boost/dll/shared_library.hpp>
-
 using namespace nsECSFramework;
 
 namespace dll = boost::dll;
 
-const std::string typeIndex = "TypeIndex";
+// const 
+const std::string classLiteral = "class";
+const std::string structLiteral = "struct";
+
 const std::string templateBegin = "<";
 const std::string templateEnd = ">";
-const std::string methodName = "GetByValue";// "GetByHas"
-const std::string classBegin = methodName + templateBegin;
-const std::string classLiteral = "class";
 
+const std::string commaLiteral = ",";
+
+const std::string typeIndexMethodName = "TypeIndex";
+
+const std::string getByUniqueMethodName = "GetByUnique_helper";
+const std::string getByHasMethodName = "GetByHas_helper";
+const std::string getByValueMethodName = "GetByValue_helper";
+
+
+//----------------------------------------------------------------------------------------------------
 TEntityManager::TEntityManager( int entityCount )
 {
   mEntities.mVec.resize( entityCount );
   mEntityMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TEntity>>();
+  mComplexTypeMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TComplexType>>();
+  mLinkToListMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TLinkToList<TEntityID>>>();
+  mEntityListMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TEntityIDList>>();
+  mUniqueMapMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TUniqueMap>>();
+  mComplexTypePtrListPtrMapMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TComplexTypePtrListPtrMap>>();
+
 
   mTypeIndex = SingletonManager()->Get<TTypeIdentifier<TEntityManager>>();
 }
 //----------------------------------------------------------------------------------------------------
-void TEntityManager::Setup( std::string libName )
+TEntityManager::~TEntityManager()
 {
-  // для разделения пространства имен классов, на случай когда более чем один EntityManager
-  auto className = typeid( *this ).name();
 
-  dll::experimental::smart_library lib( libName );
-
-  auto symbolStorage = lib.symbol_storage().get_storage();
-  std::list<std::string> classList;
-  std::list<std::string> funcList;
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::FindTypesOfMethod( const std::string& methodName, TStrSetList& resultList )
+{
+  auto symbolStorage = mLib.symbol_storage().get_storage();
+  TStrList classList;
   for ( auto s : symbolStorage )
   {
     auto demangled = s.demangled;
-    auto beginFound = demangled.find( classBegin );
+    auto pData = demangled.data();
+
+    auto beginFound = demangled.find( methodName );
     if ( beginFound == std::string::npos )
       continue;
-    auto endFound = demangled.find( templateEnd );
-    std::string className = demangled.data() + beginFound + classBegin.size();
-    className = className.substr( 0, endFound - beginFound - classBegin.size() );
+    auto argsBeginIndex = demangled.find( templateBegin );
 
-    classList.push_back( className );
+    TStrSet strSet;
+    int offset = argsBeginIndex;
+    while ( true )
+    {
+      auto classIndex = demangled.find( classLiteral, offset );
+      auto structIndex = demangled.find( structLiteral, offset );
+
+      if ( classIndex == std::string::npos &&
+        structIndex == std::string::npos )
+        break;
+
+      int typeIndex = classIndex + classLiteral.size();
+      if ( structIndex < classIndex )
+        typeIndex = structIndex + structLiteral.size();
+      typeIndex += 1;
+
+      auto typeEndIndex = demangled.find( commaLiteral, typeIndex );
+      if ( typeEndIndex == std::string::npos )
+        typeEndIndex = demangled.find( templateEnd, typeIndex );
+
+      std::string type = pData + typeIndex;
+      type = type.substr( 0, typeEndIndex - typeIndex );
+      strSet.insert( type );
+
+      offset = typeEndIndex;
+    }
+
+    if ( strSet.size() > 0 )
+      resultList.push_back( strSet );
   }
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::FindTypeIndex( const std::string& methodName, TStrSetStrMap& resultMap )
+{
+  auto symbolStorage = mLib.symbol_storage().get_storage();
+  TStrList classList;
   for ( auto s : symbolStorage )
   {
     auto demangled = s.demangled;
-    auto typeIndexFound = demangled.find( typeIndex );
-    if ( typeIndexFound == std::string::npos )
-      continue;
-    for ( auto className : classList )
-    {
-      auto classNameFound = demangled.find( templateBegin + className + templateEnd );
-      if ( classNameFound == std::string::npos )
-        continue;
-      printf( "%s : TypeIndex = %s\n", className.data(), demangled.data() );
-      funcList.push_back( s.demangled );
-    }
-  }
+    auto pData = demangled.data();
 
-  typedef std::map <std::string, unsigned int> TStrUIntMap;
-  TStrUIntMap funcMap;
+    auto beginFound = demangled.find( methodName );
+    if ( beginFound == std::string::npos )
+      continue;
+    auto argsBeginIndex = demangled.find( templateBegin );
+
+    TStrSet strSet;
+    int offset = argsBeginIndex;
+    while ( true )
+    {
+      auto classIndex = demangled.find( classLiteral, offset );
+      auto structIndex = demangled.find( structLiteral, offset );
+
+      if ( classIndex == std::string::npos &&
+        structIndex == std::string::npos )
+        break;
+
+      int typeIndex = classIndex + classLiteral.size();
+      if ( structIndex < classIndex )
+        typeIndex = structIndex + structLiteral.size();
+      typeIndex += 1;
+
+      auto typeEndIndex = demangled.find( commaLiteral, typeIndex );
+      if ( typeEndIndex == std::string::npos )
+        typeEndIndex = demangled.find( templateEnd, typeIndex );
+
+      std::string type = pData + typeIndex;
+      type = type.substr( 0, typeEndIndex - typeIndex );
+      strSet.insert( type );
+
+      offset = typeEndIndex;
+    }
+
+    if ( strSet.size() > 0 )
+      resultMap.insert( {strSet, pData} );
+  }
+}
+//----------------------------------------------------------------------------------------------------
+// рефлексия (boost::dll), поиск применения функций фильтрации для подготовки к накоплению карт кэширования использования компонентов
+void TEntityManager::Setup( std::string libName )
+{
+  mLib.load( libName );
+  // для разделения пространства имен классов, на случай когда более чем один EntityManager
+  auto entMngClassName = typeid( *this ).name();
+
+  FindTypesOfMethod( getByUniqueMethodName, mUniqueSet );
+  FindTypesOfMethod( getByHasMethodName, mHasComponentList );
+  FindTypesOfMethod( getByValueMethodName, mValueComponentList );
+
+  FindTypeIndex( typeIndexMethodName, mTypeIndexNameFuncMap );
+
+  using TypeIndexFunc = unsigned int( TEntityManager::* )( void );
   try
   {
-    using TypeIndexFunc = unsigned int( TEntityManager::* )( void );
-
-    for ( auto funcName : funcList )
+    for ( auto strSetFunc : mTypeIndexNameFuncMap )
     {
-      auto func = lib.get_function<unsigned int( void )>( funcName.data() );
-      auto pFunc = ( TypeIndexFunc*) & func;
+      auto func = mLib.get_function<unsigned int( void )>( strSetFunc.second.data() );
+      auto pFunc = (TypeIndexFunc*)& func;
       auto tiFunc = std::bind( *pFunc, this );
       auto typeIndexFunc = tiFunc();
 
-      funcMap.insert( { funcName , typeIndexFunc } );
+      mCompnentsTypeIndexMap.insert( {strSetFunc.first, typeIndexFunc} );
     }
   }
   catch ( std::exception e )
@@ -91,42 +172,380 @@ void TEntityManager::Setup( std::string libName )
     printf( e.what() );
   }
 
-  // 1. парсинг <class A, class B, class C, ...>
-  // 2. Разбор кто в каких комбинациях встречается
-  // => A ->{A,B,C}
-  // => B ->{A,B,C}
-  // => C ->{A,B,C}
+  for ( auto& strSet : mUniqueSet )
+  {
+    auto fit = mCompnentsTypeIndexMap.find( strSet );
+    if ( fit == mCompnentsTypeIndexMap.end() )
+    {
+      BL_FIX_BUG();
+      continue;
+    }
+    auto index = fit->second;
+    mUniqueMapVec[index] = mUniqueMapMemoryPool->Pop();
+  }
+
+  // все типы изо всех коллекций
+  TStrSet hasSet;
+  TStrSet valueSet;
+
+  for ( auto& strSet : mHasComponentList )
+  {
+    auto fit = mCompnentsTypeIndexMap.find( strSet );
+    if ( fit == mCompnentsTypeIndexMap.end() )
+    {
+      BL_FIX_BUG();
+      continue;
+    }
+    auto index = fit->second;
+    mHasCollectionVec[index] = mEntityListMemoryPool->Pop();
+
+    TShortList typeList;
+    for ( auto type : strSet )
+    {
+      hasSet.insert( type );
+
+      TStrSet forSearch;
+      forSearch.insert( type );
+      auto typeIndexIt = mCompnentsTypeIndexMap.find( forSearch );
+      typeList.push_back( typeIndexIt->second );
+    }
+    mHasCollectionWithTypes[index] = typeList;
+  }
+
+  for ( auto& strSet : mValueComponentList )
+  {
+    auto fit = mCompnentsTypeIndexMap.find( strSet );
+    if ( fit == mCompnentsTypeIndexMap.end() )
+    {
+      BL_FIX_BUG();
+      continue;
+    }
+    auto index = fit->second;
+    mValueCollectionVec[index] = mComplexTypePtrListPtrMapMemoryPool->Pop();
+
+    TShortList typeList;
+    for ( auto type : strSet )
+    {
+      valueSet.insert( type );
+
+      TStrSet forSearch;
+      forSearch.insert( type );
+      auto typeIndexIt = mCompnentsTypeIndexMap.find( forSearch );
+      typeList.push_back( typeIndexIt->second );
+    }
+    mValueCollectionWithTypes[index] = typeList;
+  }
+
+  // выяснить в каких коллекциях учавствует тип
+  for ( auto type : hasSet )
+  {
+    TShortList typeList;
+    for ( auto collectionType : mHasComponentList )
+    {
+      if ( collectionType.find( type ) == collectionType.end() )
+        continue;
+      auto collectionIndex = mCompnentsTypeIndexMap.find( collectionType );
+      typeList.push_back( collectionIndex->second );
+    }
+
+    BL_ASSERT( typeList.size() > 0 );
+
+    TStrSet forSearchIndex;
+    forSearchIndex.insert( type );
+    auto typeIndexIt = mCompnentsTypeIndexMap.find( forSearchIndex );
+
+    mHasTypeInCollection[typeIndexIt->second] = typeList;
+  }
+
+  for ( auto type : valueSet )
+  {
+    TShortList typeList;
+    for ( auto collectionType : mValueComponentList )
+    {
+      if ( collectionType.find( type ) == collectionType.end() )
+        continue;
+      auto collectionIndex = mCompnentsTypeIndexMap.find( collectionType );
+      typeList.push_back( collectionIndex->second );
+    }
+
+    BL_ASSERT( typeList.size() > 0 );
+
+    TStrSet forSearchIndex;
+    forSearchIndex.insert( type );
+    auto typeIndexIt = mCompnentsTypeIndexMap.find( forSearchIndex );
+
+    mValueTypeInCollection[typeIndexIt->second] = typeList;
+  }
 }
 //-------------------------------------------------------------------------------------------------------
 TEntityID TEntityManager::CreateEntity()
 {
-  const TEntityID id = ( const TEntityID) mEntities.mCounter;
+  auto id = (TEntityID)mEntities.mCounter;
 
   auto newEntity = mEntityMemoryPool->Pop();
   if ( mReserverIndexInEntities.size() > 0 )
   {
-    auto entityIndex = mReserverIndexInEntities.back();
+    id = mReserverIndexInEntities.back();
     mReserverIndexInEntities.pop_back();
-    mEntities.mVec[entityIndex] = newEntity;
+    mEntities.mVec[id] = newEntity;
   }
   else
     mEntities.Append( newEntity );
   return id;
 }
 //----------------------------------------------------------------------------------------------------
-void TEntityManager::DestroyEntity( TEntityID id )
+void TEntityManager::DestroyEntity( TEntityID eid )
 {
-  auto pEntity = mEntities.mVec[id];
+  auto pEntity = GetEntity( eid );
+  if ( pEntity == nullptr )
+  {
+    BL_FIX_BUG();
+    return;
+  }
 
-  pEntity->Done();
+  auto index = pEntity->GetFirstComponentIndex();
+  while ( index != TEntity::NoneIndex )
+  {
+    RemoveComponent( eid, pEntity, index );
+    index = pEntity->GetFirstComponentIndex();
+  }
+
   mEntityMemoryPool->Push( pEntity );
 
-  mReserverIndexInEntities.push_back( id );
-  mEntities.mVec[id] = nullptr;
+  mReserverIndexInEntities.push_back( eid );
+  mEntities.mVec[eid] = nullptr;
 }
 //----------------------------------------------------------------------------------------------------
 TEntity* TEntityManager::GetEntity( TEntityID id ) const
 {
   return mEntities.mVec[id];
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::RemoveComponent( TEntityID eid, TEntity* pEntity, int index )
+{
+  auto pC = (IComponent*)pEntity->GetComponent( index );
+
+  TryRemoveFromUnique( eid, pC, index );
+  TryRemoveFromHas( eid, index, pEntity );
+  TryRemoveFromValue( eid, index, pEntity );
+
+  pEntity->RemoveComponent( index );
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::TryAddInUnique( TEntityID eid, IComponent* pC, int index )
+{
+  auto pMap = mUniqueMapVec[index];
+  if ( pMap == nullptr )
+    return;
+#ifdef _DEBUG
+  if ( pMap->end() != pMap->find( pC ) )
+  {
+    BL_FIX_BUG();
+    return;
+  }
+#endif
+  pMap->insert( {pC, eid} );
+
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::TryAddInHas( TEntityID eid, int index, TEntity* pEntity )
+{
+  auto& collectionList = mHasTypeInCollection[index];
+  for ( auto& collectionIndex : collectionList )
+  {
+    auto hasList = mHasCollectionVec[collectionIndex];
+    if ( hasList == nullptr )
+    {
+      BL_FIX_BUG();
+      continue;
+    }
+
+    auto hasAllTypes = true;
+    auto& typesInCollection = mHasCollectionWithTypes[collectionIndex];
+    for ( auto& typeInCollection : typesInCollection )
+    {
+      if ( pEntity->HasComponent( typeInCollection ) == false )
+      {
+        hasAllTypes = false;
+        break;
+      }
+    }
+
+    if ( hasAllTypes == false )
+      continue;
+    hasList->push_front( eid );
+    auto frontIt = hasList->begin();
+
+    auto pLTL = mLinkToListMemoryPool->Pop();
+    pLTL->Set( *hasList, frontIt );
+    pEntity->AddHasCollectionInfo( pLTL, collectionIndex );
+  }
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::TryAddInValue( TEntityID eid, int index, TEntity* pEntity )
+{
+  auto& collectionList = mValueTypeInCollection[index];
+  for ( auto& collectionIndex : collectionList )
+  {
+    auto ctListMap = mValueCollectionVec[collectionIndex];
+    if ( ctListMap == nullptr )
+    {
+      BL_FIX_BUG();
+      continue;
+    }
+
+    auto hasAllTypes = true;
+    auto pComplexType = mComplexTypeMemoryPool->Pop();
+
+    auto& typesInCollection = mValueCollectionWithTypes[collectionIndex];
+    for ( auto& typeInCollection : typesInCollection )
+    {
+      auto pC = pEntity->GetComponent( typeInCollection );
+      if ( pC == nullptr )
+      {
+        hasAllTypes = false;
+        break;
+      }
+      pComplexType->parts[typeInCollection] = pC;
+      pComplexType->mComponentTypeIdentifierList.push_back( typeInCollection );
+    }
+
+    if ( hasAllTypes == false )
+    {
+      pComplexType->Done();
+      mComplexTypeMemoryPool->Push( pComplexType );
+      continue;
+    }
+
+    TEntityIDList* pList = nullptr;
+    auto fit = ctListMap->find( pComplexType );
+    if ( fit == ctListMap->end() )
+    {
+      pList = mEntityListMemoryPool->Pop();
+      pList->push_front( eid );// original
+      ctListMap->insert( {pComplexType, pList} );
+    }
+    else
+    {
+      pComplexType->Done();
+      mComplexTypeMemoryPool->Push( pComplexType );
+
+      pList = fit->second;
+      pList->push_front( eid );
+    }
+
+    auto frontIt = pList->begin();
+
+    auto pLTL = mLinkToListMemoryPool->Pop();
+    pLTL->Set( *pList, frontIt );
+    pEntity->AddValueCollectionInfo( pLTL, collectionIndex );
+  }
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::TryRemoveFromUnique( TEntityID eid, IComponent* pC, int index )
+{
+  auto pMap = mUniqueMapVec[index];
+  if ( pMap == nullptr )
+    return;
+#ifdef _DEBUG
+  if ( pMap->end() == pMap->find( pC ) )
+  {
+    BL_FIX_BUG();
+    return;
+  }
+#endif
+  pMap->erase( pC );
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::TryRemoveFromHas( TEntityID eid, int index, TEntity* pEntity )
+{
+  auto& collectionList = mHasTypeInCollection[index];
+  for ( auto& collectionIndex : collectionList )
+  {
+    auto& hasList = mHasCollectionVec[collectionIndex];
+    if ( hasList == nullptr )
+    {
+      BL_FIX_BUG();
+      continue;
+    }
+
+    auto pLTL = pEntity->RemoveHasCollectionInfo( collectionIndex );
+    if ( pLTL == nullptr )
+      continue;
+    pLTL->Erase();
+    mLinkToListMemoryPool->Push( pLTL );
+  }
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::TryRemoveFromValue( TEntityID eid, int index, TEntity* pEntity )
+{
+  auto& collectionList = mValueTypeInCollection[index];
+  for ( auto& collectionIndex : collectionList )
+  {
+    auto pLTL = pEntity->RemoveValueCollectionInfo( collectionIndex );
+    if ( pLTL == nullptr )
+      continue;
+    auto ctListMap = mValueCollectionVec[collectionIndex];
+    if ( ctListMap == nullptr )
+    {
+      BL_FIX_BUG();
+      continue;
+    }
+    // найти удаляется ли оригинал (back()) из листа, если оригинал, то занести следующий из списка
+    auto pList = pLTL->GetList();
+    auto isBackEntity = ( pList->back() == eid );
+    pLTL->Erase();
+    mLinkToListMemoryPool->Push( pLTL );
+
+    if ( isBackEntity == false )
+      continue;
+    auto& typesInCollection = mValueCollectionWithTypes[collectionIndex];
+    auto pComplexType = mComplexTypeMemoryPool->Pop();// сформировать для поиска в map
+    for ( auto& typeInCollection : typesInCollection )
+    {
+      auto pC = pEntity->GetComponent( typeInCollection );
+      if ( pC == nullptr )
+      {
+        BL_FIX_BUG();
+        break;
+      }
+      pComplexType->parts[typeInCollection] = pC;
+      pComplexType->mComponentTypeIdentifierList.push_back( typeInCollection );
+    }
+    auto fit = ctListMap->find( pComplexType );
+    if ( fit == ctListMap->end() )
+    {
+      BL_FIX_BUG();
+      continue;
+    }
+    auto pOriginalComplexType = fit->first;
+    pComplexType->Done();
+    mComplexTypeMemoryPool->Push( pComplexType );
+    pOriginalComplexType->Done();
+    ctListMap->erase( fit );
+    if ( pList->size() == 0 )// удаляется оригинал
+    {
+      mEntityListMemoryPool->Push( pList );
+      mComplexTypeMemoryPool->Push( pOriginalComplexType );
+      continue;
+    }
+
+    // pList->size() > 0
+    auto nextEid = pList->back();
+    auto pNextEntity = GetEntity( nextEid );
+
+    for ( auto& typeInCollection : typesInCollection )
+    {
+      auto pC = pNextEntity->GetComponent( typeInCollection );
+      if ( pC == nullptr )
+      {
+        BL_FIX_BUG();
+        break;
+      }
+      pOriginalComplexType->parts[typeInCollection] = pC;
+      pOriginalComplexType->mComponentTypeIdentifierList.push_back( typeInCollection );
+    }
+    ctListMap->insert( {pOriginalComplexType, pList} );
+  }
 }
 //----------------------------------------------------------------------------------------------------

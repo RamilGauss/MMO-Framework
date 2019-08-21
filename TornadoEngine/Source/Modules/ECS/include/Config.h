@@ -13,7 +13,7 @@ See for more information License.h.
 namespace nsECSFramework
 {
   typedef unsigned int TEntityID;
-  const TEntityID None = 0;
+  const TEntityID None = (TEntityID)(-1);
 
   typedef std::list<TEntityID> TEntityList;
   typedef TLoopList<TEntityID> TEntityLoopList;

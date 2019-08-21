@@ -39,4 +39,8 @@ public:
   {
     mList->erase( mIt );
   }
+  List* GetList()
+  {
+    return mList;
+  }
 };

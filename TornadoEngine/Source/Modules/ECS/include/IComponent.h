@@ -19,8 +19,15 @@ namespace nsECSFramework
   class DllExport IComponent
   {
   public:
-    virtual bool IsEqual( IComponent* pOther ) = 0;
-    virtual bool IsLess( IComponent* pOther ) = 0;
-    virtual bool IsMore( IComponent* pOther ) = 0;
+    virtual bool IsLess( const IComponent* pOther ) const
+    {
+      BL_FIX_BUG();
+      return true;
+    }
+    virtual bool IsEqual( const IComponent* pOther ) const
+    {
+      BL_FIX_BUG();
+      return true;
+    }
   };
 }

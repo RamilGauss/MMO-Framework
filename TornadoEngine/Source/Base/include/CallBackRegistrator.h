@@ -9,8 +9,8 @@ See for more information License.h.
 
 //-------------------------------------------------------------
 // например:
-// Register(&TClass::Method, &object)
-// Unregister(&object)
+// Register( &TClass::Method, &object )
+// Unregister( &object )
 //-------------------------------------------------------------
 
 #include <map>
@@ -34,41 +34,16 @@ protected:
       memcpy( &mFunc[0], &pFunc, sizeof( F ) );
       memcpy( &mObject[0], &pObject, sizeof( A1 ) );
     }
-    void Call()
+
+    template <typename ... Args>
+    void Call( Args& ... args )
     {
-      typedef void (TF::*TFunc)();
+      typedef void ( TF:: * TFunc )( Args ... );
       TF* pT = nullptr;
       TFunc tf;
       memcpy( &tf, &mFunc, sizeof( TFunc ) );
       memcpy( &pT, &mObject, sizeof( TF* ) );
-      (pT->*tf)();
-    }
-    template <typename T1> void Call( T1 t1 )
-    {
-      typedef void (TF::*TFunc)(T1);
-      TF* pT = nullptr;
-      TFunc tf;
-      memcpy( &tf, &mFunc, sizeof( TFunc ) );
-      memcpy( &pT, &mObject, sizeof( TF* ) );
-      (pT->*tf)(t1);
-    }
-    template <typename T1, typename T2> void Call( T1 t1, T2 t2 )
-    {
-      typedef void (TF::*TFunc)(T1, T2);
-      TF* pT = nullptr;
-      TFunc tf;
-      memcpy( &tf, &mFunc, sizeof( TFunc ) );
-      memcpy( &pT, &mObject, sizeof( TF* ) );
-      (pT->*tf)(t1, t2);
-    }
-    template <typename T1, typename T2, typename T3> void Call( T1 t1, T2 t2, T3 t3 )
-    {
-      typedef void (TF::*TFunc)(T1, T2, T3);
-      TF* pT = nullptr;
-      TFunc tf;
-      memcpy( &tf, &mFunc, sizeof( TFunc ) );
-      memcpy( &pT, &mObject, sizeof( TF* ) );
-      (pT->*tf)(t1, t2, t3);
+      ( pT->*tf )( args ... );
     }
   };
 
@@ -96,6 +71,7 @@ public:
   {
     mMapObjFunc.clear();
   }
+
 };
 //-------------------------------------------------------------
 class TCallBackRegistrator0 : public TCallBackRegistrator

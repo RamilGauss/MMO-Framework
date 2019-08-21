@@ -14,22 +14,22 @@ See for more information License.h.
 #include "MemoryObjectPool.h"
 #include "SingletonManager.h"
 
-
 namespace nsECSFramework
 {
+  class IComponent;
   struct TComponentInfo
   {
     TLinkToList<short> mLinkToList;
-    void* p = nullptr;// from memory pool
+    IComponent* p = nullptr;// from memory pool
 
     template<typename Component>
     void Init()
     {
       auto pMP = SingletonManager()->Get<TMemoryObjectPool<Component>>();
       p = pMP->Pop();
-      mDoneFunc = [p, pMP]()
+      mDoneFunc = [this, pMP]()
       {
-        pMP->Push( ( Component*) p );
+        pMP->Push( ( Component*) this->p );
       };
     }
     void Done()

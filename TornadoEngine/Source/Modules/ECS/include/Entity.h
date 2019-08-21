@@ -12,11 +12,17 @@ See for more information License.h.
 #include "Config.h"
 #include "BL_Debug.h"
 #include "ColanderVector.h"
+#include "IComponent.h"
 
 namespace nsECSFramework
 {
   class DllExport TEntity
   {
+    typedef TColanderVector<TLinkToList<TEntityID>*> TCollectionVec;
+    
+    TCollectionVec mHasCollectionVec;
+    TCollectionVec mValueCollectionVec;
+  
     typedef TColanderVector<TComponentInfo*> TComponentVec;// from memory pool
     TComponentVec mComponents;
 
@@ -27,54 +33,40 @@ namespace nsECSFramework
     TEntity();
 
     template<typename Component>
-    Component* AddComponent( Component& c, int index );
+    Component* AddComponent( int index );
     bool HasComponent( int index );
-    template<typename Component>
-    Component* GetComponent( int index );
-    template<typename Component>
-    void UpdateComponent( Component& c, int index );
+    IComponent* GetComponent( int index );
     void RemoveComponent( int index );
 
-    void Done();
+    static const int NoneIndex = -1;
+    int GetFirstComponentIndex();
+
+    void AddHasCollectionInfo( TLinkToList<TEntityID>* pLTL, int collectionIndex );
+    TLinkToList<TEntityID>* RemoveHasCollectionInfo( int collectionIndex );
+
+    void AddValueCollectionInfo( TLinkToList<TEntityID>* pLTL, int collectionIndex );
+    TLinkToList<TEntityID>* RemoveValueCollectionInfo( int collectionIndex );
   private:
   };
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  Component* TEntity::AddComponent( Component& c, int index )
+  Component* TEntity::AddComponent( int index )
   {
     auto pCI = mComponents[index];
     if ( pCI != nullptr )
     {
       BL_FIX_BUG();
-      return nullptr;
+      return nullptr;//???
     }
     mComponentIndexInUse.push_front( index );
+    
+    pCI = mComponentInfoMemoryPool->Pop();
     mComponents[index] = pCI;
 
-    pCI = mComponentInfoMemoryPool->Pop();
-    pCI->Init();
+    pCI->Init<Component>();
     auto it = mComponentIndexInUse.begin();
     pCI->mLinkToList.Set( mComponentIndexInUse, it );
-
-    *( ( Component*) pCI->p ) = c;
-  }
-  //---------------------------------------------------------------------------------------
-  template<typename Component>
-  Component* TEntity::GetComponent( int index )
-  {
-    auto pCI = mComponents[index];
-    if ( pCI == nullptr )
-      return nullptr;
-    return ( Component*) ( pCI->p );
-  }
-  //---------------------------------------------------------------------------------------
-  template<typename Component>
-  void TEntity::UpdateComponent( Component& c, int index )
-  {
-    auto pCI = mComponents[index];
-    if ( pCI == nullptr )
-      return;
-    *( ( Component*) ( pCI->p ) ) = c;
+    return (Component*)pCI->p;
   }
   //---------------------------------------------------------------------------------------
 }
