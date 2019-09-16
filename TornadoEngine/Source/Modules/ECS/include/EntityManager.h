@@ -32,12 +32,32 @@ See for more information License.h.
 
 namespace nsECSFramework
 {
+  struct TComponentEventListener
+  {
+    enum State
+    {
+      Begin, Middle, End
+    };
+
+    State state;
+
+    TEntityList::iterator it;
+  };
+
+  struct TComponentEventList
+  {
+    TEntityList list;
+    std::vector<TComponentEventListener> mVec;
+
+    TEntityList::iterator mCurrentIterator;
+  };
+
   template<class T>
   struct ptr_less
   {
-    bool operator()( const T& lhs, const T& rhs ) const
+    bool operator()( const T& pLHS, const T& pRHS ) const
     {
-      return *lhs < *rhs;
+      return *pLHS < *pRHS;
     }
   };
   template<class T>
@@ -67,8 +87,6 @@ namespace nsECSFramework
     void DestroyEntity( TEntityID id );
 
     // components
-    typedef std::list<TEntityID> TEntityIDList;
-
     template <typename Component>
     void SetComponent( TEntityID eid, Component& c );// => add or set event
     template <typename Component>
@@ -86,50 +104,49 @@ namespace nsECSFramework
     template <typename Component>
     TEntityID GetByUnique( Component& c );
     template <typename ... Args>
-    TEntityIDList* GetByValue( Args& ... );
+    TEntityList* GetByValue( Args& ... );
     template <typename ... Args>
-    TEntityIDList* GetByHas();
+    TEntityList* GetByHas();
 
     // events
-    template <typename Component>
-    using CallBackPtr = TCallBackRegistrator2<TEntityID, Component*>;
+    template<typename Component>
+    int OnAdd( void* pObject );
+    template<typename Component>
+    int OnUpdate( void* pObject );
+    template<typename Component>
+    int OnRemove( void* pObject );
 
-    template <typename Component>
-    using CBFunc = std::function<void( CallBackPtr<Component>* )>;
-
-    template<typename Component>
-    void OnAdd( CBFunc<Component> func );
-    template<typename Component>
-    void OnUpdate( CBFunc<Component> func );
-    template<typename Component>
-    void OnRemove( CBFunc<Component> func );
+    void GetAddEvents( int id, TEntityLoopList& entListLoop );
+    void GetUpdateEvents( int id, TEntityLoopList& entListLoop );
+    void GetRemoveEvents( int id, TEntityLoopList& entListLoop );
   private:
-    typedef std::map<TComplexType*, TEntityIDList*, ptr_less<TComplexType*>> TComplexTypePtrListPtrMap;
+    typedef std::map<TComplexType*, TEntityList*, ptr_less<TComplexType*>> TComplexTypePtrListPtrMap;
     typedef TColanderVector<TComplexTypePtrListPtrMap*> TComplexTypePtrListPtrMapPtrVec;
 
     typedef TColanderVector<void*> TVoidPtrVector;
+    typedef TColanderVector<TEntityList*> TListPtrVector;
 
     typedef std::map<IComponent*, TEntityID, component_ptr_less<IComponent*>> TUniqueMap;
     typedef TColanderVector<TUniqueMap*> TUniqueMapPtrVector;
 
-    TColanderVector<TEntityIDList*> mHasCollectionVec;// fill in setup
+    TListPtrVector mHasCollectionVec;// fill in setup
     TComplexTypePtrListPtrMapPtrVec mValueCollectionVec;// fill in setup
     TUniqueMapPtrVector mUniqueMapVec;// fill in setup
 
     TMemoryObjectPool<TEntity>* mEntityMemoryPool;
     TMemoryObjectPool<TComplexType>* mComplexTypeMemoryPool;
     TMemoryObjectPool<TLinkToList<TEntityID>>* mLinkToListMemoryPool;
-    TMemoryObjectPool<TEntityIDList>* mEntityListMemoryPool;
+    TMemoryObjectPool<TEntityList>* mEntityListMemoryPool;
     TMemoryObjectPool<TUniqueMap>* mUniqueMapMemoryPool;
     TMemoryObjectPool<TComplexTypePtrListPtrMap>* mComplexTypePtrListPtrMapMemoryPool;
 
 
-    TEntityIDList mReserverIndexInEntities;
+    TEntityList mReserverIndexInEntities;
     TVectorRise<TEntity*> mEntities;
 
-    TVoidPtrVector mOnAddCallBack;
-    TVoidPtrVector mOnUpdateCallBack;
-    TVoidPtrVector mOnRemoveCallBack;
+    TListPtrVector mOnAddCallBack;
+    TListPtrVector mOnUpdateCallBack;
+    TListPtrVector mOnRemoveCallBack;
 
     typedef std::list<short> TShortList;
     typedef TColanderVector<TShortList> TListVector;
@@ -143,14 +160,14 @@ namespace nsECSFramework
     TListVector mValueCollectionWithTypes;// fill in setup
   private:// inner use
     template <typename ... Args>
-    DllExport unsigned int TypeIndex() { return mTypeIndex->type<Args...>(); }
+    DllExport unsigned int TypeIndex()
+    {
+      return mTypeIndex->type<Args...>();
+    }
 
     TEntity* GetEntity( TEntityID id ) const;
 
     void RemoveComponent( TEntityID eid, TEntity* pEntity, int index );
-
-    template<typename Component>
-    void OnCallBack( TVoidPtrVector* pCBvec, CBFunc<Component> func );
 
     template<typename T0>
     void Fill( TComplexType* pComplexType, T0& t0 );
@@ -168,11 +185,17 @@ namespace nsECSFramework
 
   private:// reflection
     template <typename ... Args>
-    constexpr DllExport void GetByUnique_helper() const noexcept {}
+    constexpr DllExport void GetByUnique_helper() const noexcept
+    {
+    }
     template <typename ... Args>
-    constexpr DllExport void GetByHas_helper() const noexcept {}
+    constexpr DllExport void GetByHas_helper() const noexcept
+    {
+    }
     template <typename ... Args>
-    constexpr DllExport void GetByValue_helper() const noexcept{}
+    constexpr DllExport void GetByValue_helper() const noexcept
+    {
+    }
 
   private:
     boost::dll::experimental::smart_library mLib;
@@ -206,12 +229,12 @@ namespace nsECSFramework
     }
 
     Component* pC = nullptr;
-    CallBackPtr<Component>* pCB = nullptr;
+    //CallBackPtr<Component>* pCB = nullptr;
     auto index = TypeIndex<Component>();
     if ( pEntity->HasComponent( index ) )
     {
       pC = (Component*)pEntity->GetComponent( index );
-      pCB = ( CallBackPtr<Component>* )mOnUpdateCallBack[index];
+      //pCB = ( CallBackPtr<Component>* )mOnUpdateCallBack[index];
 
       TryRemoveFromUnique( eid, pC, index );
       TryRemoveFromValue( eid, index, pEntity );
@@ -219,7 +242,7 @@ namespace nsECSFramework
     else
     {
       pC = pEntity->AddComponent<Component>( index );
-      pCB = ( CallBackPtr<Component>* )mOnAddCallBack[index];
+      //pCB = ( CallBackPtr<Component>* )mOnAddCallBack[index];
 
       TryAddInHas( eid, index, pEntity );
     }
@@ -227,8 +250,8 @@ namespace nsECSFramework
     *pC = c;
     TryAddInUnique( eid, pC, index );
     TryAddInValue( eid, index, pEntity );
-    if ( pCB != nullptr )
-      pCB->Notify( eid, pC );
+    //if ( pCB != nullptr )
+      //pCB->Notify( eid, pC );// TODO: push_back( eid );
   }
   //---------------------------------------------------------------------------------------
   template <typename Component>
@@ -293,9 +316,9 @@ namespace nsECSFramework
     auto index = TypeIndex<Component>();
     auto pC = (Component*)pEntity->GetComponent( index );
 
-    auto cbRemove = ( CallBackPtr<Component>* )mOnRemoveCallBack[index];
-    if ( cbRemove != nullptr )
-      cbRemove->Notify( eid, pC );
+    //auto cbRemove = ( CallBackPtr<Component>* )mOnRemoveCallBack[index];
+    //if ( cbRemove != nullptr )
+      //cbRemove->Notify( eid, pC );
 
     RemoveComponent( eid, pEntity, index );
   }
@@ -329,7 +352,7 @@ namespace nsECSFramework
   }
   //---------------------------------------------------------------------------------------
   template <typename ... Args>
-  TEntityManager::TEntityIDList* TEntityManager::GetByValue( Args& ... args )
+  TEntityList* TEntityManager::GetByValue( Args& ... args )
   {
     GetByValue_helper<Args...>();
 
@@ -338,7 +361,7 @@ namespace nsECSFramework
     if ( pMap == nullptr )
       return nullptr;
 
-    TEntityIDList* pResult = nullptr;
+    TEntityList* pResult = nullptr;
     auto pComplexType = mComplexTypeMemoryPool->Pop();
     Fill( pComplexType, args ... );// берем адреса из стека, безопасно, потому что переменные еще существуют в методе
     auto fit = pMap->find( pComplexType );
@@ -352,53 +375,31 @@ namespace nsECSFramework
   }
   //---------------------------------------------------------------------------------------
   template <typename ... Args>
-  TEntityManager::TEntityIDList* TEntityManager::GetByHas()
+  TEntityList* TEntityManager::GetByHas()
   {
     GetByHas_helper<Args...>();
 
     auto index = TypeIndex<Args...>();
-    auto pList = (TEntityIDList*)mHasCollectionVec[index];
+    auto pList = (TEntityList*)mHasCollectionVec[index];
     return pList;
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  void TEntityManager::OnAdd( CBFunc<Component> func )
+  int TEntityManager::OnAdd( void* pObject )
   {
-    OnCallBack<Component>( &mOnAddCallBack, func );
+    return 0;
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  void TEntityManager::OnUpdate( CBFunc<Component> func )
+  int TEntityManager::OnUpdate( void* pObject )
   {
-    OnCallBack<Component>( &mOnUpdateCallBack, func );
+    return 0;
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  void TEntityManager::OnRemove( CBFunc<Component> func )
+  int TEntityManager::OnRemove( void* pObject )
   {
-    OnCallBack<Component>( &mOnRemoveCallBack, func );
-  }
-  //---------------------------------------------------------------------------------------
-  template<typename Component>
-  void TEntityManager::OnCallBack( TVoidPtrVector* pCBvec, CBFunc<Component> func )
-  {
-    typedef TMemoryObjectPool<CallBackPtr<Component>> CBMemPool;
-
-    auto index = TypeIndex<Component>();
-    auto p = pCBvec->operator[]( index );
-    if ( p == nullptr )
-    {
-      p = SingletonManager()->Get<CBMemPool>()->Pop();
-      pCBvec->operator[]( index ) = p;
-    }
-    auto pCB = ( CallBackPtr<Component>* )p;
-    func( pCB );
-
-    if ( pCB->RegisteredCount() == 0 )
-    {
-      pCBvec->operator[]( index ) = nullptr;
-      SingletonManager()->Get<CBMemPool>()->Push( pCB );
-    }
+    return 0;
   }
   //---------------------------------------------------------------------------------------
   template<typename T0>

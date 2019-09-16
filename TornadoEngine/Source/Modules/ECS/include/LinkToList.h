@@ -26,7 +26,7 @@ public:
   {
     Set( tl, it );
   }
-  void Set( List& tl, Iterator it )
+  inline void Set( List& tl, Iterator it )
   {
     mList = &tl;
     mIt = it;

@@ -6,6 +6,7 @@ See for more information License.h.
 */
 
 #pragma once
+
 #include <vector>
 
 #include "System.h"
@@ -18,60 +19,15 @@ namespace nsECSFramework
 {
   class DllExport TBaseReactiveSystem : public TSystem
   {
-    bool mMoreThanOneEvent;
-    int mEventCounter = 0;
-    void IncrementAndCheckEventCount();
-    void AddConnectTypeManager( IConnectTypeManager* p );
   protected:
-    //TSortedThinningRestoreOrder<TEntity> mSTRO;
-    std::vector<IConnectTypeManager*> mConTypeMngPtrVec;
+    TEntityLoopList mEntLoopList;
+    int mEventWaiterID;
   public:
-    TBaseReactiveSystem( bool moreThanOneEvent );
-    virtual bool Filter( TEntity& entity ) = 0;
-    virtual void Reactive( std::vector<TEntity>& entities, size_t count ) = 0;
-  protected:
-    // Additional events
-    template<typename Component>
-    void Add()
+    virtual bool Filter( TEntityID& eid )
     {
-      Connect<Component, true>();
-    }
-    template<typename C0, typename C1, typename ... Components>
-    void Add()
-    {
-      Add<C0>();
-      Add<C1, Components ... >();
+      return true;
     }
 
-    // Subtraction events
-    template<typename Component>
-    void Sub()
-    {
-      Connect<Component, false>();
-    }
-    template<typename C0, typename C1, typename ... Components>
-    void Sub()
-    {
-      Sub<C0>();
-      Sub<C1, Components ... >();
-    }
-
-    template<typename Component, bool add_or_sub>
-    void Connect();
-    void Filter( TVectorRise<TEntity> *pEntities );
+    virtual void Reactive( TEntityID& eid ) = 0;
   };
-  //-----------------------------------------------------------------------------
-  template<typename Component, bool add_or_sub>
-  void TBaseReactiveSystem::Connect()
-  {
-    auto pConTypeMng = SingletonManager()->Get<TConnectTypeManager<Component, add_or_sub>>();
-
-    pConTypeMng->SetRegistry( GetRegistry() );
-    pConTypeMng->Connect( this );
-
-    AddConnectTypeManager( pConTypeMng );
-
-    IncrementAndCheckEventCount();
-  }
-  //-----------------------------------------------------------------------------
 }

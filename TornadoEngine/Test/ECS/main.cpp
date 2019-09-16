@@ -11,114 +11,92 @@ See for more information License.h.
 #include "VectorRise.h"
 #include "HiTimer.h"
 #include "ExecuteSystem.h"
+#include "SingletonManager.h"
 
 #ifdef _DEBUG
 #define COUNT 10000
 #else
-#define COUNT 2000000
+#define COUNT 4000000
 #endif
 
 using namespace nsECSFramework;
 
-class Tag : public IComponent
+class TDataComponent : public IComponent
 {
 };
 
-class A : public IComponent
+class THasComponent : public IComponent
+{
+};
+
+class TUniqueComponent : public IComponent
 {
 public:
   int mID;
-  A()
+  TUniqueComponent()
   {
   }
-  A( int id )
+  TUniqueComponent( int id )
   {
     mID = id;
   }
 
   virtual bool IsLess( const IComponent* pOther ) const override
   {
-    auto p = (A*)pOther;
+    auto p = (TUniqueComponent*)pOther;
     return mID < p->mID;
   }
   virtual bool IsEqual( const IComponent* pOther ) const override
   {
-    auto p = (A*)pOther;
+    auto p = (TUniqueComponent*)pOther;
     return mID == p->mID;
   }
 };
 
-class B : public IComponent
+class TValueComponent : public IComponent
 {
 public:
   int mID;
-  B()
+  TValueComponent()
   {
   }
-  B( int id )
+  TValueComponent( int id )
   {
     mID = id;
   }
 
   virtual bool IsLess( const IComponent* pOther ) const override
   {
-    auto p = (B*)pOther;
+    auto p = (TValueComponent*)pOther;
     return mID < p->mID;
   }
   virtual bool IsEqual( const IComponent* pOther ) const override
   {
-    auto p = (B*)pOther;
+    auto p = (TValueComponent*)pOther;
     return mID == p->mID;
   }
-};
 
-class C : public IComponent
-{
-public:
-  std::string mName;
-  C()
+  bool operator < ( const TValueComponent& other ) const
   {
-  }
-  C( std::string name )
-  {
-    mName = name;
-  }
-
-  virtual bool IsLess( const IComponent* pOther ) const override
-  {
-    auto p = (C*)pOther;
-    return mName < p->mName;
-  }
-  virtual bool IsEqual( const IComponent* pOther ) const override
-  {
-    auto p = (C*)pOther;
-    return mName == p->mName;
+    return mID < other.mID;
   }
 };
 
-class TASystem// : public TExecuteSystem
-{
-public:
-  void Handle( TEntityID id, A* pA )
-  {
-    printf( "" );
-  }
-};
-
-class TKey
-{
-public:
-  int v;
-  bool operator < ( const TKey& other ) const
-  {
-    return v < other.v;
-  }
-};
+//class TASystem// : public TExecuteSystem
+//{
+//public:
+//  void Handle( TEntityID id, A* pA )
+//  {
+//    printf( "" );
+//  }
+//};
 
 TEntityManager g_EntMng;
 std::list<TEntityID> g_Entities;
 const int g_EntityCount = COUNT;
-const int testCount = 100;
+std::map<TValueComponent, int> m;
+std::map<TValueComponent*, void*, ptr_less<TValueComponent*>> g_VMap;
+std::map<TComplexType*, void*, ptr_less<TComplexType*>> g_CMap;
 
 
 void CreateEntities()
@@ -137,42 +115,136 @@ void DestroyEntities()
   g_Entities.clear();
 }
 
-void CreateComplexEntities()
+template<typename Component>
+void AddComponentToEntities()
 {
-  Tag tag;
-  A a( 777 );
-  B b;
-  C c( "123" );
-  for ( size_t i = 0; i < g_EntityCount; i++ )
-  {
-    auto entity = g_EntMng.CreateEntity();
-    g_EntMng.SetComponent( entity, tag );// tag on search all entities
-    //g_EntMng.SetComponent( entity, a );
-    //g_EntMng.SetComponent( entity, b );
-    //g_EntMng.SetComponent( entity, c );
-    g_Entities.push_back( entity );
+  Component c;
+  for ( auto eid : g_Entities )
+    g_EntMng.SetComponent( eid, c );
+}
 
-    // 4 - create = 0.717000, destroy = 0.632000
-    // 3 - create = 0.583500, destroy = 0.531500
-    // 2 - create = 0.447500, destroy = 0.435000
-    // 1 - create = 0.248000, destroy = 0.275000
-    // 1(has) - create = 0.346000, destroy = 0.343500
-    // create = 0.207500, destroy = 0.260000
-    // 0 - create = 0.089000, destroy = 0.151500
+void AddUniqueComponentToEntities()
+{
+  TUniqueComponent c;
+  for ( auto eid : g_Entities )
+  {
+    c.mID++;
+    g_EntMng.SetComponent( eid, c );
   }
 }
 
-void DestroyEntitiesByTag()
+void AddValueComponentToEntities()
 {
-  //auto entities = g_EntMng.GetByHas<Tag>();
-  //TLoopList<TEntityID> loopListEntities( entities );
-  //while ( true )
-  //{
-  //  TEntityID entity;
-  //  if ( loopListEntities.Next( entity ) == false )
-  //    break;
-  //  g_EntMng.DestroyEntity( entity );
-  //}
+  TValueComponent c;
+  for ( auto eid : g_Entities )
+  {
+    c.mID++;
+    g_EntMng.SetComponent( eid, c );
+  }
+}
+
+template<typename Component>
+void RemoveComponentFromEntities()
+{
+  for ( auto eid : g_Entities )
+    g_EntMng.RemoveComponent<Component>( eid );
+}
+
+void AddInMap()
+{
+  TValueComponent key;
+  for ( int i = 0; i < g_EntityCount; i++ )
+  {
+    key.mID = i;
+    m.insert( {key, i} );
+  }
+}
+
+void FindInMap()
+{
+  TValueComponent key;
+  for ( int i = 0; i < g_EntityCount; i++ )
+  {
+    key.mID = i;
+    auto fit = m.find( key );
+  }
+}
+
+void AddInComplexMap()
+{
+  for ( int i = 0; i < g_EntityCount; i++ )
+  {
+    auto pValue = SingletonManager()->Get<TMemoryObjectPool<TValueComponent>>()->Pop();
+    pValue->mID = i;
+    auto pCT = SingletonManager()->Get<TMemoryObjectPool<TComplexType>>()->Pop();
+    pCT->parts[0] = pValue;
+    pCT->mComponentTypeIdentifierList.push_back( 0 );
+    g_CMap.insert( {pCT, nullptr} );
+  }
+}
+
+void FindInComplexMap()
+{
+  for ( int i = 0; i < g_EntityCount; i++ )
+  {
+    auto pValue = SingletonManager()->Get<TMemoryObjectPool<TValueComponent>>()->Pop();
+    pValue->mID = i;
+    auto pCT = SingletonManager()->Get<TMemoryObjectPool<TComplexType>>()->Pop();
+    pCT->parts[0] = pValue;
+    pCT->mComponentTypeIdentifierList.push_back( 0 );
+    auto fit = g_CMap.find( pCT );
+    // full emulation
+    pCT->Done();
+    SingletonManager()->Get<TMemoryObjectPool<TComplexType>>()->Push( pCT );
+    SingletonManager()->Get<TMemoryObjectPool<TValueComponent>>()->Push( (TValueComponent*)pValue );
+  }
+}
+
+void RemoveFromComplexMap()
+{
+  for ( auto& key : g_CMap )
+  {
+    auto pCT = key.first;
+    auto pValue = pCT->parts[0];
+    pCT->Done();
+
+    SingletonManager()->Get<TMemoryObjectPool<TComplexType>>()->Push( pCT );
+    SingletonManager()->Get<TMemoryObjectPool<TValueComponent>>()->Push( (TValueComponent*)pValue );
+  }
+
+  g_CMap.clear();
+}
+
+void AddInValuePtrMap()
+{
+  for ( int i = 0; i < g_EntityCount; i++ )
+  {
+    auto pValue = SingletonManager()->Get<TMemoryObjectPool<TValueComponent>>()->Pop();
+    pValue->mID = i;
+    g_VMap.insert( {pValue, nullptr} );
+  }
+}
+
+void FindInValuePtrMap()
+{
+  auto pValue = SingletonManager()->Get<TMemoryObjectPool<TValueComponent>>()->Pop();
+  for ( int i = 0; i < g_EntityCount; i++ )
+  {
+    pValue->mID = i;
+    auto fit = g_VMap.find( pValue );
+  }
+  SingletonManager()->Get<TMemoryObjectPool<TValueComponent>>()->Push( pValue );
+}
+
+void RemoveFromValuePtrMap()
+{
+  for ( auto& key : g_VMap )
+  {
+    auto pValue = key.first;
+    SingletonManager()->Get<TMemoryObjectPool<TValueComponent>>()->Push( pValue );
+  }
+
+  g_CMap.clear();
 }
 
 float GetSpeedByTest( std::function<void()> testFunc, int count )
@@ -188,51 +260,92 @@ float GetSpeedByTest( std::function<void()> testFunc, int count )
 
 int main()
 {
+  auto addInMap = GetSpeedByTest( AddInMap, g_EntityCount );
+  auto findInMap = GetSpeedByTest( FindInMap, g_EntityCount );
+  m.clear();
+  printf( "addInMap: %f, findInMap: %f\n", addInMap, findInMap );
+
+  float addInComplexMap;
+  float findInComplexMap;
+  float removeFromComplexMap;
+
+  float addInValuePtrMap;
+  float findInValuePtrMap;
+  float removeFromValuePtrMap;
+
+  for ( int i = 0; i < 2; i++ )
+  {
+    addInComplexMap = GetSpeedByTest( AddInComplexMap, g_EntityCount );
+    findInComplexMap = GetSpeedByTest( FindInComplexMap, g_EntityCount );
+    removeFromComplexMap = GetSpeedByTest( RemoveFromComplexMap, g_EntityCount );
+
+    addInValuePtrMap = GetSpeedByTest( AddInValuePtrMap, g_EntityCount );
+    findInValuePtrMap = GetSpeedByTest( FindInValuePtrMap, g_EntityCount );
+    removeFromValuePtrMap = GetSpeedByTest( RemoveFromValuePtrMap, g_EntityCount );
+  }
+
+  printf( "Complex map add: %f, find: %f, remove: %f\n", addInComplexMap, findInComplexMap, removeFromComplexMap );
+  printf( "Value ptr map add: %f, find: %f, remove: %f\n", addInValuePtrMap, findInValuePtrMap, removeFromValuePtrMap );
+
   g_EntMng.Setup();
 
-  for ( int iTest = 0; iTest < testCount; iTest++ )
+  float createSpeed = 0;
+  float destroySpeed = 0;
+
+  float addDataSpeed = 0;
+  float removeDataSpeed = 0;
+
+  float addHasSpeed = 0;
+  float removeHasSpeed = 0;
+
+  float addUniqueSpeed = 0;
+  float removeUniqueSpeed = 0;
+
+  float addValueSpeed = 0;
+  float removeValueSpeed = 0;
+
+  for ( int i = 0; i < 2; i++ )
   {
-    //auto createSpeed = GetSpeedByTest( CreateEntities, g_EntityCount );
-    //auto destroySpeed = GetSpeedByTest( DestroyEntities, g_EntityCount );
+    createSpeed = GetSpeedByTest( CreateEntities, g_EntityCount );
 
-    auto createComplexSpeed = GetSpeedByTest( CreateComplexEntities, g_EntityCount );
-    auto destroyByTagSpeed = GetSpeedByTest( DestroyEntities/*DestroyEntitiesByTag*/, g_EntityCount );
+    addDataSpeed = GetSpeedByTest( AddComponentToEntities<TDataComponent>, g_EntityCount );
+    removeDataSpeed = GetSpeedByTest( RemoveComponentFromEntities<TDataComponent>, g_EntityCount );
 
-    std::string testName = iTest == 0 ? "Cold" : "Hot";
-    //printf( "Speed in %s test us/entity: create = %f, destroy = %f,        COMPLEX create = %f, destroy = %f \n",
-    //  testName.data(), createSpeed, destroySpeed, createComplexSpeed, destroyByTagSpeed );
-    printf( "Speed in %s test us/entity: create = %f, destroy = %f \n",
-      testName.data(), createComplexSpeed, destroyByTagSpeed );
+    addHasSpeed = GetSpeedByTest( AddComponentToEntities<THasComponent>, g_EntityCount );
+    removeHasSpeed = GetSpeedByTest( RemoveComponentFromEntities<THasComponent>, g_EntityCount );
+
+    addUniqueSpeed = GetSpeedByTest( AddUniqueComponentToEntities, g_EntityCount );
+    removeUniqueSpeed = GetSpeedByTest( RemoveComponentFromEntities<TUniqueComponent>, g_EntityCount );
+
+    addValueSpeed = GetSpeedByTest( AddValueComponentToEntities, g_EntityCount );
+    removeValueSpeed = GetSpeedByTest( RemoveComponentFromEntities<TValueComponent>, g_EntityCount );
+
+    destroySpeed = GetSpeedByTest( DestroyEntities, g_EntityCount );
   }
+
+  printf( "Speed Entity us/entity:\n" );
+
+  printf( "\t create = %f, destroy = %f \n",
+    createSpeed, destroySpeed );
+
+  printf( "Data:\t\t add = %f, remove = %f \n",
+    addDataSpeed, removeDataSpeed );
+
+  printf( "Has:\t\t add = %f, remove = %f \n",
+    addHasSpeed, removeHasSpeed );
+
+  printf( "Unique:\t\t add = %f, remove = %f \n",
+    addUniqueSpeed, removeUniqueSpeed );
+
+  printf( "Value:\t\t add = %f, remove = %f \n",
+    addValueSpeed, removeValueSpeed );
   _getch();
 
-  //A a( 777 );
-  //B b;
-  //C c( "123" );
-  //  for ( size_t i = 0; i < entityCount; i++ )
-  //  {
-  //    b.mID = i;
-  //    auto entity = entMng.CreateEntity();
-  //    if ( i < entityCount / 2 )
-  //      entMng.SetComponent( entity, a );
-  //    else
-  //      entMng.SetComponent( entity, b );
-  //    if ( i > entityCount / 3 - 1 && i < ( entityCount * 2 ) / 3 )
-  //      entMng.SetComponent( entity, c );
-  //  }
-
-  //auto hasAList = g_EntMng.GetByHas<A>();
-  //auto hasABList = g_EntMng.GetByHas<A, B>();
-  //auto hasBList = g_EntMng.GetByHas<B>();
-  //auto hasACList = g_EntMng.GetByHas<A, C>();
-  //auto hasBCList = g_EntMng.GetByHas<B, C>();
-  //auto hasCList = g_EntMng.GetByHas<C>();
-
-  //auto valueAList = g_EntMng.GetByValue( a );
-  //auto valueCList = g_EntMng.GetByValue( c );
-
-  //b.mID = 500;
-  //auto entByUnique = g_EntMng.GetByUnique( b );
+  auto hasAList = g_EntMng.GetByHas<THasComponent>();
+  TValueComponent valCom;
+  auto valueAList = g_EntMng.GetByValue( valCom );
+  TUniqueComponent uniCom;
+  auto entByUnique = g_EntMng.GetByUnique( uniCom );
 
   //  auto pASystem = new TASystem();
   //
@@ -245,29 +358,65 @@ int main()
   //  {
   //    pCB->Unregister( pASystem );
   //  } );
-#if 0
-  auto world = new nsECSFramework::TWorld();
-  world->AddToConveyer<TProducerFeature>();
-  //world->AddToConveyer<TConsumerSystem>();// 1
-       //world->AddToConveyer<TProducerFeature>();
-  //world->AddToConveyer<TConsumerSystem>();// 2
-       //world->AddToConveyer<TPacketObserverSystem>();
-  world->AddToConveyer<TGroupedPacketSystem>();
-  //world->AddToConveyer<TInitSettingsSystem>();
 
-  //world->AddToConveyer<TMakeShuffleEntitiesSystem>();
-  //world->AddToConveyer<TViewShuffleEntitiesSystem>();
+  //auto world = new nsECSFramework::TWorld();
+  //world->AddToConveyer<TProducerFeature>();
+  ////world->AddToConveyer<TConsumerSystem>();// 1
+  //     //world->AddToConveyer<TProducerFeature>();
+  ////world->AddToConveyer<TConsumerSystem>();// 2
+  //     //world->AddToConveyer<TPacketObserverSystem>();
+  //world->AddToConveyer<TGroupedPacketSystem>();
+  ////world->AddToConveyer<TInitSettingsSystem>();
 
-  world->Init();
-  int testCount = 20;
-  while ( testCount-- > 0 )
-  {
-    world->Update();
-    printf( "----------------------------------------------------------------\n" );
-  }
+  ////world->AddToConveyer<TMakeShuffleEntitiesSystem>();
+  ////world->AddToConveyer<TViewShuffleEntitiesSystem>();
 
-  printf( "Conveyer is stopped, press any key...\n" );
-#endif
-  getchar();
+  //world->Init();
+  //int testCount = 20;
+  //while ( testCount-- > 0 )
+  //{
+  //  world->Update();
+  //  printf( "----------------------------------------------------------------\n" );
+  //}
+
+  //printf( "Conveyer is stopped, press any key...\n" );
+
+  //getchar();
   return 0;
 }
+
+/* Core i5:
+addInMap: 0.230000, findInMap : 0.095000
+  Complex map add : 0.920750, find : 0.606500, remove : 0.209000
+  Value ptr map add : 0.209750, find : 0.120500, remove : 0.052250
+  Speed Entity us / entity :
+  create = 0.092750, destroy = 0.164000
+  Data : add = 0.288250, remove = 0.241750
+  Has : add = 0.422500, remove = 0.465250
+  Unique : add = 0.702000, remove = 0.570250
+  Value : add = 2.450000, remove = 1.332250
+  */
+
+/*
+addInMap: 0.206750, findInMap: 0.087250
+Complex map add: 0.660500, find: 0.491000, remove: 0.194750
+Value ptr map add: 0.193000, find: 0.115750, remove: 0.048750
+Speed Entity us/entity:
+         create = 0.079000, destroy = 0.143000
+Data:            add = 0.247000, remove = 0.211000
+Has:             add = 0.365750, remove = 0.390500
+Unique:          add = 0.606250, remove = 0.487750
+Value:           add = 1.892000, remove = 0.969750
+*/
+
+/*
+addInMap: 0.200500, findInMap: 0.084750
+Complex map add: 0.503250, find: 0.361000, remove: 0.182250
+Value ptr map add: 0.183750, find: 0.109750, remove: 0.051000
+Speed Entity us/entity:
+         create = 0.080000, destroy = 0.144500
+Data:            add = 0.252750, remove = 0.212000
+Has:             add = 0.364750, remove = 0.398250
+Unique:          add = 0.650250, remove = 0.499500
+Value:           add = 1.645500, remove = 0.959500
+*/

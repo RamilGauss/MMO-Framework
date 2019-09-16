@@ -27,7 +27,6 @@
     <ClInclude Include="include\ConnectTypeManager.h" />
     <ClInclude Include="include\ConveyerPartMaster.h" />
     <ClInclude Include="include\ConveyerPartWithGlobalAccess.h" />
-    <ClInclude Include="include\DataMemoryPoolComponent.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\EntityManager.h" />
     <ClInclude Include="include\ExecuteSystem.h" />
@@ -40,15 +39,15 @@
     <ClInclude Include="include\InitSystem.h" />
     <ClInclude Include="include\LinkToList.h" />
     <ClInclude Include="include\LoopList.h" />
-    <ClInclude Include="include\MappedGroup.h" />
     <ClInclude Include="include\ReactiveForManyEventsSystem.h" />
     <ClInclude Include="include\ReactiveForOneEventSystem.h" />
-    <ClInclude Include="include\Readme.h" />
+    <ClInclude Include="include\ReactiveOnAddSystem.h" />
+    <ClInclude Include="include\ReactiveOnRemoveSystem.h" />
+    <ClInclude Include="include\ReactiveOnUpdateSystem.h" />
     <ClInclude Include="include\System.h" />
     <ClInclude Include="include\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\BaseReactiveSystem.cpp" />
     <ClCompile Include="src\ConveyerPartMaster.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />

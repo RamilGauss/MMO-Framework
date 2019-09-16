@@ -22,4 +22,9 @@ public:
       mVec.resize( index * 2 + 1 );
     return mVec[index];
   }
+
+  inline Type* Begin() const
+  {
+    return (Type*)&mVec[0];
+  }
 };

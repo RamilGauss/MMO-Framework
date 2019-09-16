@@ -23,7 +23,7 @@ namespace nsECSFramework
     IComponent* p = nullptr;// from memory pool
 
     template<typename Component>
-    void Init()
+    inline void Init()
     {
       auto pMP = SingletonManager()->Get<TMemoryObjectPool<Component>>();
       p = pMP->Pop();

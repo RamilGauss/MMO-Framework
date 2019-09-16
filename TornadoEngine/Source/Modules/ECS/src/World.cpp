@@ -12,6 +12,6 @@ using namespace nsECSFramework;
 
 TWorld::TWorld()
 {
-  //SetRegistry( new THugeRegistry() );
+  SetEntityManager( new TEntityManager() );
 }
 //--------------------------------------------------------------------------------------

@@ -20,9 +20,6 @@
     <ClInclude Include="include\ConveyerPartWithGlobalAccess.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\DataMemoryPoolComponent.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\ExecuteSystem.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -36,9 +33,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\InitSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\MappedGroup.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ReactiveForManyEventsSystem.h">
@@ -65,9 +59,6 @@
     <ClInclude Include="include\GlobalSystemUpdater.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Readme.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\LoopList.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -92,11 +83,17 @@
     <ClInclude Include="include\ComplexType.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ReactiveOnAddSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ReactiveOnUpdateSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ReactiveOnRemoveSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\BaseReactiveSystem.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\ConveyerPartMaster.cpp">
       <Filter>src</Filter>
     </ClCompile>

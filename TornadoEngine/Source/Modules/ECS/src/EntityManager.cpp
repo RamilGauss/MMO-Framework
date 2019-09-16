@@ -36,7 +36,7 @@ TEntityManager::TEntityManager( int entityCount )
   mEntityMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TEntity>>();
   mComplexTypeMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TComplexType>>();
   mLinkToListMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TLinkToList<TEntityID>>>();
-  mEntityListMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TEntityIDList>>();
+  mEntityListMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TEntityList>>();
   mUniqueMapMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TUniqueMap>>();
   mComplexTypePtrListPtrMapMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TComplexTypePtrListPtrMap>>();
 
@@ -142,6 +142,7 @@ void TEntityManager::FindTypeIndex( const std::string& methodName, TStrSetStrMap
 }
 //----------------------------------------------------------------------------------------------------
 // рефлексия (boost::dll), поиск применения функций фильтрации для подготовки к накоплению карт кэширования использования компонентов
+// reflection magic
 void TEntityManager::Setup( std::string libName )
 {
   mLib.load( libName );
@@ -417,7 +418,7 @@ void TEntityManager::TryAddInValue( TEntityID eid, int index, TEntity* pEntity )
       continue;
     }
 
-    TEntityIDList* pList = nullptr;
+    TEntityList* pList = nullptr;
     auto fit = ctListMap->find( pComplexType );
     if ( fit == ctListMap->end() )
     {
@@ -547,5 +548,20 @@ void TEntityManager::TryRemoveFromValue( TEntityID eid, int index, TEntity* pEnt
     }
     ctListMap->insert( {pOriginalComplexType, pList} );
   }
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::GetAddEvents( int id, TEntityLoopList& entListLoop )
+{
+
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::GetUpdateEvents( int id, TEntityLoopList& entListLoop )
+{
+
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::GetRemoveEvents( int id, TEntityLoopList& entListLoop )
+{
+
 }
 //----------------------------------------------------------------------------------------------------

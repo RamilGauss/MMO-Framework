@@ -17,11 +17,11 @@ namespace nsECSFramework
   {
     TEntityManager* mEntMng;
   public:
-    TEntityManager* GetRegistry()
+    TEntityManager* GetEntityManager()
     {
       return mEntMng;
     }
-    inline void SetRegistry( TEntityManager* entMng )
+    inline void SetEntityManager( TEntityManager* entMng )
     {
       mEntMng = entMng;
     }

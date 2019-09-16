@@ -33,25 +33,24 @@ namespace nsECSFramework
 
     bool operator < ( const TComplexType& other ) const
     {
-      //я знаю, что данная операция не меняет объекты, но нужен не константный объект, потому что массив не поддерживает константный объект
-      //hack
-      auto pThis = (TComplexType*)this;
-      auto pOther = (TComplexType*)& other;
+      auto pThisParts = this->parts.Begin();
+      auto pOtherParts = other.parts.Begin();
 
       for ( auto& index : mComponentTypeIdentifierList )
       {
-        if ( pThis->parts.operator[]( index )->IsEqual( pOther->parts.operator[]( index ) ) )
+        auto pCThis = pThisParts[index];
+        auto pCOther = pOtherParts[index];
+        if ( pCThis->IsEqual( pCOther ) )
           continue;
-        return pThis->parts.operator[]( index )->IsLess( pOther->parts.operator[]( index ) );
+        return pCThis->IsLess( pCOther );
       }
-      //BL_FIX_BUG();
       return false;
     }
 
     void Done()
     {
       for ( auto& index : mComponentTypeIdentifierList )
-        parts.operator[]( index ) = nullptr;
+        parts[index] = nullptr;
       mComponentTypeIdentifierList.clear();
     }
   };

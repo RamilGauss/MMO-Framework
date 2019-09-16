@@ -7,13 +7,12 @@ See for more information License.h.
 
 #pragma once
 
-#include "ConveyerPartMaster.h"
+#include "BaseReactiveSystem.h"
 
 namespace nsECSFramework
 {
-  class DllExport TWorld : public TConveyerPartMaster
+  class DllExport TReactiveOnUpdateSystem : public TBaseReactiveSystem
   {
-  public:
-    TWorld();
+
   };
 }

@@ -7,23 +7,25 @@ See for more information License.h.
 
 #pragma once
 
+#include "EntityManager.h"
+
 namespace nsECSFramework
 {
   template <typename Component>
-  TEntity SingleEntity( THugeRegistry* registry )// когда точно есть одна сущность с данным компонентом
+  TEntityID SingleEntity( TEntityManager* entMng )// когда точно есть одна сущность с данным компонентом
   {
-    auto view = registry->view<Component>();
-    if ( view.size() == 0 )
-      entt::null;
-    return view [0];
+    auto pList = entMng->GetByHas<Component>();
+    if ( pList == nullptr || pList->size() == 0 )
+      None;
+    return pList->front();
   }
 
   template <typename Component>
-  Component* SingleComponent( THugeRegistry* registry )// когда точно есть одна сущность с данным компонентом
+  Component* SingleComponent( TEntityManager* entMng )// когда точно есть одна сущность с данным компонентом
   {
-    auto ent = SingleEntity<Component>( registry );
-    if ( ent == entt::null )
-      return nullptr;
-    return &( registry->get<Component>( ent ) );
+    auto eid = SingleEntity( entMng );
+    if ( eid == None )
+      nullptr;
+    return entMng->GetComponent<Component>( eid );
   }
 }
