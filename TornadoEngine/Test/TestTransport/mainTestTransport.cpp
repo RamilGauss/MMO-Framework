@@ -13,13 +13,13 @@ See for more information License.h.
 #include "ResolverSelf_IP_v4.h"
 #include "Logger.h"
 #include "ShareMisc.h"
-#include "MakerNetTransport.h"
-#include "INetTransport.h"
+#include "NetTransport/MakerNetTransport.h"
+#include "MMOEngine/include/INetTransport.h"
 #include "DataExchange2Thread.h"
 
 #include "CryptoAES_Impl.h"
 #include "SHA256.h"
-#include "HistoryPacketTCP.h"
+#include "NetTransport/HistoryPacketTCP.h"
 #include <uv.h>
 #include <errno.h>
 #include "Handler.h"
@@ -74,7 +74,7 @@ int main( int argc, char** argv )
         inputArg.ping_time += 1000;
 
         g_BP.Reset();
-        g_BP.PushBack( inputArg.ping_data.data(), inputArg.ping_data.size() );
+        g_BP.PushBack( (char*)inputArg.ping_data.data(), inputArg.ping_data.size() );
         g_pTransport->Send( inputArg.server_ip, inputArg.server_port, g_BP );
       }
 

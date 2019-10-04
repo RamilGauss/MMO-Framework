@@ -22,9 +22,9 @@ See for more information License.h.
 
 using namespace std;
 
-TNetControlTCP::TNetControlTCP( TNetTransport_Boost* pNTB, boost::asio::io_service& io_service ) :
+TNetControlTCP::TNetControlTCP( TNetTransport_Boost* pNTB, boost::asio::io_context* context ) :
   INetControl( pNTB ),
-  mDevice( io_service )
+  mDevice( context )
 {
   mReadSize = 0;
 }
@@ -46,7 +46,7 @@ bool TNetControlTCP::Connect( unsigned int ip, unsigned short port )
   TIP_Port ip_port( ip, port );
   RequestConnect( ip_port );
 
-  while( flgWaitConnect )
+  while ( flgWaitConnect )
     ht_msleep( eWaitConnect );
 
   return flgResConnect;
@@ -57,7 +57,7 @@ void TNetControlTCP::Send( unsigned int ip, unsigned short port, TBreakPacket& b
   THistoryPacketTCP::PackForSend( bp );
   bp.Collect();
 
-  char* data = (char*) bp.GetCollectPtr();
+  char* data = (char*)bp.GetCollectPtr();
   int size = bp.GetSize();
 
   RequestSend( data, size );
@@ -70,7 +70,7 @@ void TNetControlTCP::Close()
 //----------------------------------------------------------------------------------
 void TNetControlTCP::RecvEvent( const boost::system::error_code& error, size_t bytes_transferred )
 {
-  if( error || bytes_transferred <= 0 )
+  if ( error || bytes_transferred <= 0 )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "RecvEvent TCP disconnect error=%s.\n", error.message().data() );
@@ -80,21 +80,21 @@ void TNetControlTCP::RecvEvent( const boost::system::error_code& error, size_t b
   }
   int beginPos = 0;
   mReadSize = bytes_transferred;
-  while( beginPos < mReadSize )
+  while ( beginPos < mReadSize )
   {
     THistoryPacketTCP::TResult res;
     mHistory.Analiz( beginPos, res, mReadSize, mBuffer );
     // если ошибка парсинга - удалить и выйти
-    if( res.parse_error )
+    if ( res.parse_error )
     {
       DeleteSelf();
       return;
     }
     // завершен ли пакет
-    if( res.complete )
+    if ( res.complete )
     {
       nsMMOEngine::INetTransport::TDescRecv descRecv;
-      descRecv.ip_port = *(mDevice.GetIP_Port());
+      descRecv.ip_port = *( mDevice.GetIP_Port() );
       descRecv.type = nsMMOEngine::INetTransport::eTcp;
       descRecv.data = res.buffer;
       descRecv.dataSize = res.size;
@@ -106,17 +106,17 @@ void TNetControlTCP::RecvEvent( const boost::system::error_code& error, size_t b
 //----------------------------------------------------------------------------------
 void TNetControlTCP::SendEvent( const boost::system::error_code& error, size_t bytes_transferred )
 {
-  if( error )
+  if ( error )
     GetLogger( STR_NAME_NET_TRANSPORT )->
     WriteF_time( "SendEvent TCP error=%s.\n", error.message().data() );
 }
 //----------------------------------------------------------------------------------
 void TNetControlTCP::ConnectEvent( const boost::system::error_code& error )
 {
-  flgResConnect = (error == 0);
+  flgResConnect = ( error.failed() == false );
   flgWaitConnect = false;
 
-  if( error )
+  if ( error.failed() )
     GetLogger( STR_NAME_NET_TRANSPORT )->
     WriteF_time( "ConnectEvent TCP error=%s.\n", error.message().data() );
 }
@@ -130,7 +130,7 @@ void TNetControlTCP::ReadyRecv()
         boost::asio::placeholders::error,
         boost::asio::placeholders::bytes_transferred ) );
   }
-  catch( std::exception& e )
+  catch ( std::exception& e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "ReadyRecv TCP error=%s.\n", e.what() );
@@ -143,13 +143,13 @@ l_repeat:
   boost::asio::socket_base::message_flags flags = 0;
   boost::system::error_code ec;
   int resSend = mDevice.GetSocket()->send( boost::asio::buffer( data, size ), flags, ec );
-  if( ec )
+  if ( ec )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "RequestSend TCP error=%s.\n", ec.message().data() );
     return;
   }
-  if( resSend < size )
+  if ( resSend < size )
   {
     ht_msleep( eTimeRepeatSend );
     size -= resSend;
@@ -168,7 +168,7 @@ void TNetControlTCP::RequestConnect( TIP_Port& ip_port )
     flgWaitConnect = false;
     flgResConnect = true;
   }
-  catch( std::exception& e )
+  catch ( std::exception& e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "RequestConnect TCP error=%s, ip_port=%s.\n", e.what(), ip_port.ToString() );
@@ -185,7 +185,7 @@ void TNetControlTCP::Init()
 //--------------------------------------------------------------------------------
 void TNetControlTCP::DeleteSelf()
 {
-  TIP_Port ip_port = *(mDevice.GetIP_Port());
+  TIP_Port ip_port = *( mDevice.GetIP_Port() );
   TNetTransport_Boost* pNetTransport_Boost = GetNetBoost();
   pNetTransport_Boost->RemoveFromMapTCP( &ip_port, this );
   // передать стековый объект, т.к. mDevice уже уничтожен, а pNetTransport_Boost - указатель на хозяина (он еще существует)

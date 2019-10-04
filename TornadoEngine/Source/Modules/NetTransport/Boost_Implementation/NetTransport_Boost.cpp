@@ -23,9 +23,9 @@ using namespace boost::asio;
 TNetTransport_Boost::TNetTransport_Boost() :
   mNetWorkThread()
 {
-  mUDP.reset( new TNetControlUDP( this, *(mNetWorkThread.GetIO_Service()) ) );
-  mAcceptor.reset( new TNetControlAcceptor( this, *(mNetWorkThread.GetIO_Service()) ) );
-  mTCP_Up.reset( new TNetControlTCP( this, *(mNetWorkThread.GetIO_Service()) ) );
+  mUDP.reset( new TNetControlUDP( this, mNetWorkThread.GetIO_Context() ) );
+  mAcceptor.reset( new TNetControlAcceptor( this, mNetWorkThread.GetIO_Context() ) );
+  mTCP_Up.reset( new TNetControlTCP( this, mNetWorkThread.GetIO_Context() ) );
 
   mLocalPort = 0;
   mNumNetWork = 0;
@@ -48,11 +48,11 @@ bool TNetTransport_Boost::Open( unsigned short port, unsigned char numNetWork )
 
   bool res = true;
   res &= mUDP->Open( port, numNetWork );
-  if( res )
+  if ( res )
     mUDP->Init();
   res &= mTCP_Up->Open( mLocalPort, mNumNetWork );
   res &= mAcceptor->Open( port, numNetWork );
-  if( res )
+  if ( res )
     mAcceptor->Init();
 
   return res;
@@ -71,13 +71,13 @@ unsigned char TNetTransport_Boost::GetNumNetWork()
 void TNetTransport_Boost::Send( unsigned int ip, unsigned short port, TBreakPacket& packet, bool check )
 {
   mMutexSend.lock();
-  if( check )
+  if ( check )
   {
     mMutexMapIP_TCP.lock();
     //---------------------
     TIP_Port ip_port( ip, port );
     TNetControlTCP* pControl = GetTCP_ByIP( ip_port );
-    if( pControl )
+    if ( pControl )
       pControl->Send( ip, port, packet );
     //---------------------
     mMutexMapIP_TCP.unlock();
@@ -108,23 +108,23 @@ bool TNetTransport_Boost::IsActive()
 //--------------------------------------------------------------------------
 bool TNetTransport_Boost::Connect( unsigned int ip, unsigned short port )
 {
-  if( mTCP_Up.get() == nullptr )
+  if ( mTCP_Up.get() == nullptr )
   {
     // порядок открытия портов (сначала TCP_Up, потом Acceptor) под Ubuntu - строгий
     mAcceptor->Close();
     // ждать пока Получатель соединений избавится от сокета, который готов к приему.
-    while( mAcceptor->IsReadyAccept() )
+    while ( mAcceptor->IsReadyAccept() )
       ht_msleep( 0 );
-    mAcceptor.reset( new TNetControlAcceptor( this, *(mNetWorkThread.GetIO_Service()) ) );
+    mAcceptor.reset( new TNetControlAcceptor( this, mNetWorkThread.GetIO_Context() ) );
 
-    mTCP_Up.reset( new TNetControlTCP( this, *(mNetWorkThread.GetIO_Service()) ) );
+    mTCP_Up.reset( new TNetControlTCP( this, mNetWorkThread.GetIO_Context() ) );
     bool resOpen = mTCP_Up->Open( mLocalPort, mNumNetWork );
 
     resOpen &= mAcceptor->Open( mLocalPort, mNumNetWork );
-    if( resOpen ) mAcceptor->Init();
+    if ( resOpen ) mAcceptor->Init();
   }
   bool res = mTCP_Up->Connect( ip, port );
-  if( res )
+  if ( res )
   {
     TIP_Port ip_port( ip, port );
     mTCP_Up->GetDevice()->SetIP_Port( ip_port );
@@ -141,7 +141,7 @@ void TNetTransport_Boost::Close( unsigned int ip, unsigned short port )
   //---------------------
   TIP_Port ip_port( ip, port );
   TNetControlTCP* pControl = GetTCP_ByIP( ip_port );
-  if( pControl )
+  if ( pControl )
     pControl->Close();
   // delete pControl НЕ вызывать, т.к. при вызове pControl->Close()
   // boost создаст событие RecvEvent(0), на что отреагируем удалением
@@ -149,10 +149,10 @@ void TNetTransport_Boost::Close( unsigned int ip, unsigned short port )
   mMutexMapIP_TCP.unlock();
 }
 //----------------------------------------------------------------------------------
-TNetControlTCP* TNetTransport_Boost::GetTCP_ByIP( TIP_Port &ip_port )
+TNetControlTCP* TNetTransport_Boost::GetTCP_ByIP( TIP_Port& ip_port )
 {
   TMapIP_PtrIt fit = mMapIP_TCP.find( ip_port );
-  if( fit == mMapIP_TCP.end() )
+  if ( fit == mMapIP_TCP.end() )
     return nullptr;
   return fit->second;
 }
@@ -183,7 +183,7 @@ void TNetTransport_Boost::CloseAll()
 
   mMutexMapIP_TCP.lock();
   //---------------------
-  for( auto& bit : mMapIP_TCP )
+  for ( auto& bit : mMapIP_TCP )
     bit.second->Close();
   //---------------------
   mMutexMapIP_TCP.unlock();
@@ -191,7 +191,7 @@ void TNetTransport_Boost::CloseAll()
 //----------------------------------------------------------------------------------
 void TNetTransport_Boost::DeleteMapControlTCP()
 {
-  for( auto& bit : mMapIP_TCP )
+  for ( auto& bit : mMapIP_TCP )
     DeleteControlTCP( bit.second );
 
   mMapIP_TCP.clear();
@@ -199,11 +199,16 @@ void TNetTransport_Boost::DeleteMapControlTCP()
 //----------------------------------------------------------------------------------
 void TNetTransport_Boost::DeleteControlTCP( TNetControlTCP* pControl )
 {
-  if( mTCP_Up.get() == pControl )
+  if ( mTCP_Up.get() == pControl )
   {
     mTCP_Up.reset();
     return;
   }
   delete pControl;
+}
+//----------------------------------------------------------------------------------
+TNetWorkThread* TNetTransport_Boost::GetNetWorkThread()
+{
+  return &mNetWorkThread;
 }
 //----------------------------------------------------------------------------------

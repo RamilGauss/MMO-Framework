@@ -10,89 +10,85 @@ See for more information License.h.
 #include "Components.h"
 #include "EntityManager.h"
 #include "Events.h"
+#include "Logger.h"
 
 using namespace nsMMOEngine;
-using namespace nsMappedComponents;
+using namespace nsECSFramework;
+
+// Components RoadMap
+// Client:
+/*
+  TContextContainerComponent      C
+  TClientIdentityComponent        U
+  TClientSessionIdentityComponent U
+  TClientStateComponent           G, M
+  TGroupIDComponent               M      Join to State
+  TSlaveSessionByClientComponent  M      Join to State
+  TDonorSessionComponent          M      only for RCM state
+*/
+// Slave
+/*
+  TContextContainerComponent     C
+  TSlaveSessionIdentityComponent U
+  TSlaveLoadInfoComponent        С
+*/
+// Group
+/*
+  TGroupIdentityComponent       U
+  TSlaveSessionByGroupComponent M
+*/
+
 
 TBaseMasterLogic::TBaseMasterLogic( TBase* p ) : TBaseLogic( p )
 {
-  // Client:
-  /*
-    TContextContainerComponent      C
-    TClientIdentityComponent        U
-    TClientSessionIdentityComponent U
-    TClientStateComponent           G, M
-    TGroupIDComponent               M      Join to State
-    TSlaveSessionByClientComponent  M      Join to State
-    TDonorSessionComponent          M      only for RCM state
-  */
-  // Slave
-  /*
-    TContextContainerComponent     C
-    TSlaveSessionIdentityComponent U
-    TSlaveLoadInfoComponent        С
-  */
-  // Group
-  /*
-    TGroupIdentityComponent       U
-    TSlaveSessionByGroupComponent M
-  */
-
-  mEntMng->JoinMultiToGroup<TGroupIDComponent, TClientStateComponent>();
-  mEntMng->JoinMultiToGroup<TClientSessionIdentityComponent, TClientStateComponent>();
-
-  mEntMng->GetCBOnDestroy()->Register( &TBaseMasterLogic::OnDestroy, this );
+  mSetClientKeyInQueue.reset( new TSetOrderElement() );
+  mEntMng->RegisterOnRemoveComponent<TContextContainerComponent>()->Register( &TBaseMasterLogic::OnRemoveContextContainer, this );
 }
 //-----------------------------------------------------------------------------------
-void TBaseMasterLogic::OnDestroy( TEntityManager::EntityID entity )
+void TBaseMasterLogic::OnRemoveContextContainer( TEntityID entity, IComponent* pC )
 {
-  // уничтожить контекст 
-  TContextContainerComponent contextContainerComponent;
-  if ( mEntMng->GetComponent( entity, contextContainerComponent ) )
-    DeleteContainer( contextContainerComponent.v );
+  auto pContextContainerComponent = (TContextContainerComponent*)pC;
+  DeleteContainer( pContextContainerComponent->v );
 }
 //-----------------------------------------------------------------------------------
-float TBaseMasterLogic::CalculateFutureLoadOnSlave( TEntityManager::EntityID slaveEntity, int addedClientCount )
+float TBaseMasterLogic::CalculateFutureLoadOnSlave( TEntityID slaveEntity, int addedClientCount )
 {
-  TSlaveLoadInfoComponent slaveLoadInfoComponent;
-  mEntMng->GetComponent( slaveEntity, slaveLoadInfoComponent );
-
-  auto load = slaveLoadInfoComponent.v;
-
-  TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
-  mEntMng->GetComponent( slaveEntity, slaveSessionIdentityComponent );
+  auto load = mEntMng->ViewComponent<TSlaveLoadInfoComponent>( slaveEntity )->v;
 
   TSlaveSessionByClientComponent slaveSessionByClientComponent;
-  slaveSessionByClientComponent.v = slaveSessionIdentityComponent.v;
+  slaveSessionByClientComponent.v = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>( slaveEntity )->v;
 
   TClientStateComponent clientStateComponent;
   clientStateComponent.v = TClientStateComponent::OnSlave;
 
-  auto onSlaveClientMID = mEntMng->GetMultiID( slaveSessionByClientComponent, clientStateComponent );
-  auto onSlaveCount = mEntMng->GetMultiCount( onSlaveClientMID );
+  auto onSlaves = mEntMng->GetByValue( slaveSessionByClientComponent, clientStateComponent );
+  int onSlaveCount = 1;
 
-  if ( onSlaveCount == 0 )
-  {
-    onSlaveCount = 1;
+  if ( onSlaves == nullptr || onSlaves->size() == 0 )
     load = DefaultLoadPerClientIfClientCountZero;
-  }
+  else
+    onSlaveCount = onSlaves->size();
 
   clientStateComponent.v = TClientStateComponent::RCM;
   // все, для кого мы - реципиент
-  auto rcmClientMID = mEntMng->GetMultiID( slaveSessionByClientComponent, clientStateComponent );
-  auto rcmCount = mEntMng->GetMultiCount( onSlaveClientMID );
+  int rcmCount = 0;
+  auto rcmClients = mEntMng->GetByValue( slaveSessionByClientComponent, clientStateComponent );
+  if ( rcmClients != nullptr )
+    rcmCount = rcmClients->size();
 
   clientStateComponent.v = TClientStateComponent::Logining;
 
-  auto loginingClientMID = mEntMng->GetMultiID( slaveSessionByClientComponent, clientStateComponent );
-  auto loginingCount = mEntMng->GetMultiCount( onSlaveClientMID );
+  int loginingCount = 0;
+  auto loginingClients = mEntMng->GetByValue( slaveSessionByClientComponent, clientStateComponent );
+  if ( loginingClients != nullptr )
+    loginingCount = loginingClients->size();
 
   auto futureLoad = ( load * ( onSlaveCount + rcmCount + loginingCount + addedClientCount ) ) / onSlaveCount;
   return futureLoad;
 }
 //-----------------------------------------------------------------------------------
 void TBaseMasterLogic::GetClientWithoutGroup( unsigned int slaveSession,
-  std::list<TEntityManager::EntityID>& clientEntityList )
+  std::list<TEntityID>& clientEntityList )
 {
   clientEntityList.clear();
 
@@ -100,13 +96,14 @@ void TBaseMasterLogic::GetClientWithoutGroup( unsigned int slaveSession,
   slaveSessionByClientComponent.v = slaveSession;
   TClientStateComponent clientStateComponent;
   clientStateComponent.v = TClientStateComponent::OnSlave;
-  auto clientOnSlaveMID = mEntMng->GetMultiID( slaveSessionByClientComponent, clientStateComponent );
-  for ( auto clientEntity : mEntMng->GetEntities( clientOnSlaveMID ) )
+  auto clientOnSlaves = mEntMng->GetByValue( slaveSessionByClientComponent, clientStateComponent );
+  if ( clientOnSlaves == nullptr )
+    return;
+  for ( auto& clientEntity : *clientOnSlaves )
   {
-    TGroupIDComponent groupIDComponent;
-    mEntMng->GetComponent( clientEntity, groupIDComponent );
-    if ( groupIDComponent.v != 0 )
-      continue;// не в группе
+    if ( mEntMng->ViewComponent<TGroupIDComponent>( clientEntity )->v != 0 )
+      continue;
+    // не в группе
     clientEntityList.push_back( clientEntity );
   }
 }
@@ -118,3 +115,51 @@ void TBaseMasterLogic::AddError( nsMMOEngine::ErrorCode err )
   mBase->AddEventCopy( &event, sizeof( event ) );
 }
 //-------------------------------------------------------------------------------------------
+bool TBaseMasterLogic::FindMinimumLoad( unsigned int& slaveSessionID, unsigned char& load_procent )
+{
+  auto slaves = mEntMng->GetByHas<TSlaveSessionIdentityComponent>();
+  if ( slaves == nullptr || slaves->size() == 0 )
+    return false;
+
+  load_procent = 101;
+  for ( auto slaveEntity : *slaves )
+  {
+    auto load = mEntMng->ViewComponent<TSlaveLoadInfoComponent>( slaveEntity )->v;
+    if ( load < load_procent )
+    {
+      load_procent = (unsigned char)load;
+      slaveSessionID = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>( slaveEntity )->v;
+    }
+  }
+  return true;
+}
+//-------------------------------------------------------------------------
+unsigned char TBaseMasterLogic::GetLimitLoadProcentByKey( unsigned int clientKey )
+{
+  TClientIdentityComponent clientIdentity;
+  clientIdentity.v = clientKey;
+  auto clientEntity = mEntMng->GetByUnique( clientIdentity );
+  if ( clientEntity == nsECSFramework::None )
+  {
+    // генерация ошибки
+    GetLogger( STR_NAME_MMO_ENGINE )->
+      WriteF_time( "GetLimitLoadProcentByKey() not found client.\n" );
+    BL_FIX_BUG();
+  }
+
+  auto groupId = mEntMng->ViewComponent<TGroupIDComponent>( clientEntity )->v;
+
+  auto InGroup = groupId != 0;
+  return GetLimitLoadProcent( InGroup );
+}
+//-------------------------------------------------------------------------
+unsigned char TBaseMasterLogic::GetLimitLoadProcent( bool InGroupOrSimple )
+{
+  // Решение проблемы: если клиент состоит в группе и у него произошел
+  // дисконнект, то он должен войти в систему по запросу в любом случае,
+  // т.е. его приоритет выше чем у других клиентов
+  return InGroupOrSimple ?
+    LimitLoadProcentOnSlaveForAdd_ClientInGroup :
+    LimitLoadProcentOnSlaveForAdd;
+}
+//-------------------------------------------------------------------------

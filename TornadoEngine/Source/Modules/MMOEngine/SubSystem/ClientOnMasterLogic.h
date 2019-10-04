@@ -34,7 +34,10 @@ namespace nsMMOEngine
     bool DisconnectClientWait( unsigned int sessionID );
   private:
 
-    bool TryAddClient( unsigned int clientKey );
-    bool TryAddClientByGroup( unsigned int clientKey );
+    bool TryAddClient( unsigned int clientKey, unsigned int& slaveSessionId );
+    bool TryAddClientByGroup( unsigned int clientKey, unsigned int& slaveSessionId );
+
+    void AddClientBySlaveSession( unsigned int clientKey, unsigned int slaveSessionID, void* resForClient, int sizeResClient );
+    void AddInQueue( unsigned int clientKey, void* resForClient, int sizeResClient, bool inGroup );
   };
 }

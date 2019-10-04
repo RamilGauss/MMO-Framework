@@ -23,7 +23,6 @@ See for more information License.h.
 #include "Events.h"
 
 using namespace nsMMOEngine;
-using namespace nsMappedComponents;
 
 TSlaveOnMasterLogic::TSlaveOnMasterLogic( TBase* p ) : TBaseMasterLogic( p )
 {
@@ -33,22 +32,31 @@ TSlaveOnMasterLogic::TSlaveOnMasterLogic( TBase* p ) : TBaseMasterLogic( p )
 void TSlaveOnMasterLogic::GetDescDown( std::list<unsigned int>& sessionIDList )
 {
   sessionIDList.clear();
-  for ( auto sessionIDentityPair : mEntMng->GetUniqueEntities<TSlaveSessionIdentityComponent>() )
-    sessionIDList.push_back( sessionIDentityPair.first.v );
+
+  auto pSlaveList = mEntMng->GetByHas<TSlaveSessionIdentityComponent>();
+  if ( pSlaveList == nullptr )
+    return;
+  for ( auto& slaveEntity : *pSlaveList )
+  {
+    auto sessionId = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>( slaveEntity )->v;
+    sessionIDList.push_back( sessionId );
+  }
 }
 //---------------------------------------------------------------------------------------
 void TSlaveOnMasterLogic::EndLoginSlave( IScenario* pSc )
 {
-  auto pContext = (TContextScLoginSlave*) pSc->GetContext();
+  auto pContext = (TContextScLoginSlave*)pSc->GetContext();
   auto sessionID = pContext->GetSessionID();
 
   TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
   slaveSessionIdentityComponent.v = sessionID;
-  auto slaveEntity = mEntMng->GetUnique( slaveSessionIdentityComponent );
-  TContextContainerComponent contextComponent;
-  mEntMng->GetComponent( slaveEntity, contextComponent );
+  auto slaveEntity = mEntMng->GetByUnique( slaveSessionIdentityComponent );
+  if ( slaveEntity == nsECSFramework::None )
+    return;
 
-  contextComponent.v->SetSessionID( sessionID );
+  auto pContextComponent = mEntMng->ViewComponent<TContextContainerComponent>( slaveEntity );
+  pContextComponent->v->SetSessionID( sessionID );
+
 
   //auto pContext = (TContextScLoginSlave*) pSc->GetContext();
   //// сохранить сессию Slave
@@ -61,15 +69,15 @@ void TSlaveOnMasterLogic::SendDown( unsigned int sessionID, char* p, int size, b
 {
   TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
   slaveSessionIdentityComponent.v = sessionID;
-  auto slaveEntity = mEntMng->GetUnique( slaveSessionIdentityComponent );
-
-  TContextContainerComponent contextComponent;
-  mEntMng->GetComponent( slaveEntity, contextComponent );
-
-  if ( contextComponent.v == nullptr )
+  auto slaveEntity = mEntMng->GetByUnique( slaveSessionIdentityComponent );
+  if ( slaveEntity == nsECSFramework::None )
     return;
 
-  auto pFlow = &( contextComponent.v->mFlow );
+  auto pContextComponent = mEntMng->ViewComponent<TContextContainerComponent>( slaveEntity );
+  if ( pContextComponent->v == nullptr )
+    return;
+
+  auto pFlow = &( pContextComponent->v->mFlow );
   mBase->mControlSc->mFlow->SetContext( pFlow );
 
   mBase->SetupBP( p, size );
@@ -88,9 +96,8 @@ void TSlaveOnMasterLogic::NeedContextLoginSlave( unsigned int sessionID )
 {
   TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
   slaveSessionIdentityComponent.v = sessionID;
-  auto slaveEntity = mEntMng->GetUnique( slaveSessionIdentityComponent );
-
-  if ( slaveEntity != TEntityManager::None )
+  auto slaveEntity = mEntMng->GetByUnique( slaveSessionIdentityComponent );
+  if ( slaveEntity != nsECSFramework::None )
   {
     // внутренняя ошибка
     GetLogger( STR_NAME_MMO_ENGINE )->
@@ -101,14 +108,14 @@ void TSlaveOnMasterLogic::NeedContextLoginSlave( unsigned int sessionID )
   mBase->mControlSc->mLoginSlave->SetContext( &pC->mLoginSlave );
 
   slaveEntity = mEntMng->CreateEntity();
-  mEntMng->AddComponent( slaveEntity, slaveSessionIdentityComponent );
+  mEntMng->SetComponent( slaveEntity, slaveSessionIdentityComponent );
 
   TContextContainerComponent contextComponent;
   contextComponent.v = pC;
-  mEntMng->AddComponent( slaveEntity, contextComponent );
+  mEntMng->SetComponent( slaveEntity, contextComponent );
 
   TSlaveLoadInfoComponent loadInfoComponent;
-  mEntMng->AddComponent( slaveEntity, loadInfoComponent );
+  mEntMng->SetComponent( slaveEntity, loadInfoComponent );
 
   //TContainerContextSc* pC = mMngContextSlave->FindContextBySession( sessionID );
   //if ( pC )
@@ -128,8 +135,8 @@ void TSlaveOnMasterLogic::NeedContextSynchroSlave( unsigned int sessionID )
 {
   TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
   slaveSessionIdentityComponent.v = sessionID;
-  auto slaveEntity = mEntMng->GetUnique( slaveSessionIdentityComponent );
-  if ( slaveEntity == TEntityManager::None )
+  auto slaveEntity = mEntMng->GetByUnique( slaveSessionIdentityComponent );
+  if ( slaveEntity == nsECSFramework::None )
     return;// нет такого Slave
 
   TContextContainerComponent contextComponent;
@@ -146,18 +153,18 @@ void TSlaveOnMasterLogic::NeedContextSynchroSlave( unsigned int sessionID )
 //-------------------------------------------------------------------------
 void TSlaveOnMasterLogic::EndSynchroSlave( IScenario* pSc )
 {
-  auto pContextSynchroSlave = (TContextScSynchroSlave*) pSc->GetContext();
+  auto pContextSynchroSlave = (TContextScSynchroSlave*)pSc->GetContext();
   auto slaveSessionID = pContextSynchroSlave->GetSessionID();
 
   TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
   slaveSessionIdentityComponent.v = slaveSessionID;
-  auto slaveEntity = mEntMng->GetUnique( slaveSessionIdentityComponent );
-  if ( slaveEntity == TEntityManager::None )
+  auto slaveEntity = mEntMng->GetByUnique( slaveSessionIdentityComponent );
+  if ( slaveEntity == nsECSFramework::None )
     return;
 
   TSlaveLoadInfoComponent loadComponent;
   loadComponent.v = pContextSynchroSlave->GetLoadProcent();
-  mEntMng->UpdateComponent( slaveEntity, loadComponent );
+  mEntMng->SetComponent( slaveEntity, loadComponent );
 
   TryAddClientFromQueue( slaveEntity );
 
@@ -174,8 +181,8 @@ bool TSlaveOnMasterLogic::DisconnectSlave( unsigned int sessionID )
 {
   TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
   slaveSessionIdentityComponent.v = sessionID;
-  auto slaveEntity = mEntMng->GetUnique( slaveSessionIdentityComponent );
-  if ( slaveEntity == TEntityManager::None )
+  auto slaveEntity = mEntMng->GetByUnique( slaveSessionIdentityComponent );
+  if ( slaveEntity == nsECSFramework::None )
     return false;// нет такого Slave
 
   // исключить из всего набора клиентов потерявших связь ( т.к. находятся в группах и их нельзя было удалять )
@@ -265,17 +272,16 @@ bool TSlaveOnMasterLogic::DisconnectSlave( unsigned int sessionID )
   //return true;
 }
 //-------------------------------------------------------------------------
-void TSlaveOnMasterLogic::TryAddClientFromQueue( TEntityManager::EntityID slaveEntity )
+void TSlaveOnMasterLogic::TryAddClientFromQueue( nsECSFramework::TEntityID slaveEntity )
 {
   TClientStateComponent clientStateComponent;
   clientStateComponent.v = TClientStateComponent::InQueue;
-  auto inQueueClientsMID = mEntMng->GetMultiID( clientStateComponent );
-  if ( mEntMng->GetMultiCount( inQueueClientsMID ) == 0 )
+  auto inQueueClients = mEntMng->GetByValue( clientStateComponent );
+  if ( inQueueClients == nullptr || inQueueClients->size() == 0 )
     return;// очередь пуста
 
-  TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
-  mEntMng->GetComponent( slaveEntity, slaveSessionIdentityComponent );
-  auto sessionID = slaveSessionIdentityComponent.v;
+  auto sessionID = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>( slaveEntity )->v;
+
   // нужны все клиент из очереди
   // приоритет у клиентов из групп ( группы данного Slave )
 
@@ -285,16 +291,16 @@ void TSlaveOnMasterLogic::TryAddClientFromQueue( TEntityManager::EntityID slaveE
 //-------------------------------------------------------------------------
 void TSlaveOnMasterLogic::DestroyAllLostClientsBySlaveSession( unsigned int sessionID )
 {
-  std::list<TEntityManager::EntityID> clientForDestroy;
-
   TClientStateComponent clientStateComponent;
-  clientStateComponent.v = TClientStateComponent::Lost;
+  clientStateComponent.v = TClientStateComponent::LostFromGroup;
 
   // найти все группы slave удалить всех потерянных клиентов
   TSlaveSessionByGroupComponent slaveSessionByGroupComponent;
   slaveSessionByGroupComponent.v = sessionID;
-  auto groupMID = mEntMng->GetMultiID( slaveSessionByGroupComponent );
-  for ( auto groupEntity : mEntMng->GetEntities( groupMID ) )
+  auto groups = mEntMng->GetByValue( slaveSessionByGroupComponent );
+  if ( groups == nullptr )
+    return;
+  for ( auto groupEntity : *groups )
   {
     TGroupIdentityComponent groupIdentityComponent;
     mEntMng->GetComponent( groupEntity, groupIdentityComponent );
@@ -302,26 +308,25 @@ void TSlaveOnMasterLogic::DestroyAllLostClientsBySlaveSession( unsigned int sess
     TGroupIDComponent groupIDComponent;
     groupIDComponent.v = groupIdentityComponent.v;
 
-    auto lostClientMID = mEntMng->GetMultiID( groupIDComponent, clientStateComponent );
-
-    for ( auto clientEntity : mEntMng->GetEntities( lostClientMID ) )
-      clientForDestroy.push_back( clientEntity );
+    auto lostClients = mEntMng->GetByValue( groupIDComponent, clientStateComponent );
+    if ( lostClients == nullptr )
+      continue;
+    for ( auto clientEntity : *lostClients )
+      mEntMng->DestroyEntity( clientEntity );
   }
-
-  for ( auto clientEntity : clientForDestroy )
-    mEntMng->DestroyEntity( clientEntity );
 }
 //-------------------------------------------------------------------------
 void TSlaveOnMasterLogic::GetAllClientsBySlaveSession( unsigned int sessionID, std::vector<unsigned int>& clientKeyVector )
 {
   TSlaveSessionByClientComponent slaveSessionByClientComponent;
   slaveSessionByClientComponent.v = sessionID;
-  auto clientMID = mEntMng->GetMultiID( slaveSessionByClientComponent );
-  for ( auto clientEntity : mEntMng->GetEntities( clientMID ) )
+  auto clients = mEntMng->GetByValue( slaveSessionByClientComponent );
+  if ( clients == nullptr )
+    return;
+  for ( auto clientEntity : *clients )
   {
-    TClientIdentityComponent clientIdentityComponent;
-    mEntMng->GetComponent( clientEntity, clientIdentityComponent );
-    clientKeyVector.push_back( clientIdentityComponent.v );
+    auto clientKey = mEntMng->ViewComponent<TClientIdentityComponent>( clientEntity )->v;
+    clientKeyVector.push_back( clientKey );
   }
 }
 //-------------------------------------------------------------------------
@@ -334,11 +339,12 @@ void TSlaveOnMasterLogic::SendSuperServer( std::vector<unsigned int>& clientKeyV
 
   TClientIdentityComponent clientIdentityComponent;
   clientIdentityComponent.v = clientKeyVector[0];
-  auto clientEntity = mEntMng->GetUnique( clientIdentityComponent );
-  TContextContainerComponent contextContainerComponent;
-  mEntMng->GetComponent( clientEntity, contextContainerComponent );
+  auto clientEntity = mEntMng->GetByUnique( clientIdentityComponent );
+  if ( clientEntity == nsECSFramework::None )
+    return;
+
   // задать какой-то контекст, любой кроме мастера
-  TContainerContextSc* pC = contextContainerComponent.v;
+  auto pC = mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
   if ( pC )
   {
     mBase->mControlSc->mDisClient->SetContext( &pC->mDisClient );
@@ -349,53 +355,50 @@ void TSlaveOnMasterLogic::SendSuperServer( std::vector<unsigned int>& clientKeyV
 //-------------------------------------------------------------------------
 void TSlaveOnMasterLogic::DestroyAllClientsBySlaveSession( unsigned int sessionID )
 {
-  std::list<TEntityManager::EntityID> clientForDestroy;
-
   // найти все группы slave удалить всех потерянных клиентов
   TSlaveSessionByGroupComponent slaveSessionByGroupComponent;
   slaveSessionByGroupComponent.v = sessionID;
-  auto groupMID = mEntMng->GetMultiID( slaveSessionByGroupComponent );
-  for ( auto groupEntity : mEntMng->GetEntities( groupMID ) )
+  auto groups = mEntMng->GetByValue( slaveSessionByGroupComponent );
+  if ( groups == nullptr )
+    return;
+  for ( auto groupEntity : *groups )
   {
-    TGroupIdentityComponent groupIdentityComponent;
-    mEntMng->GetComponent( groupEntity, groupIdentityComponent );
+    auto groupId = mEntMng->ViewComponent<TGroupIdentityComponent>( groupEntity )->v;
     // найти всех потерянных клиентов по группе
     TGroupIDComponent groupIDComponent;
-    groupIDComponent.v = groupIdentityComponent.v;
+    groupIDComponent.v = groupId;
 
-    auto clientMID = mEntMng->GetMultiID( groupIDComponent );
-    for ( auto clientEntity : mEntMng->GetEntities( clientMID ) )
-      clientForDestroy.push_back( clientEntity );
+    auto clients = mEntMng->GetByValue( groupIDComponent );
+    if ( clients == nullptr )
+      continue;
+    for ( auto clientEntity : *clients )
+      mEntMng->DestroyEntity( clientEntity );
   }
-
-  for ( auto clientEntity : clientForDestroy )
-    mEntMng->DestroyEntity( clientEntity );
 }
 //-------------------------------------------------------------------------
 void TSlaveOnMasterLogic::DestroyAllGroupsBySlaveSession( unsigned int sessionID )
 {
-  std::list<TEntityManager::EntityID> groupEntitiesForDestroyList;// for delay destroy
-
   TSlaveSessionByGroupComponent slaveSessionByGroupComponent;
   slaveSessionByGroupComponent.v = sessionID;
-  auto groupMID = mEntMng->GetMultiID( slaveSessionByGroupComponent );
-  for ( auto groupEntity : mEntMng->GetEntities( groupMID ) )
+  auto groups = mEntMng->GetByValue( slaveSessionByGroupComponent );
+  if ( groups == nullptr )
+    return;
+  for ( auto groupEntity : *groups )
   {
-    TGroupIdentityComponent groupIdentityComponent;
-    if ( mEntMng->GetComponent( groupEntity, groupIdentityComponent ) == false )
+    auto pGroupIdentityComponent = mEntMng->ViewComponent<TGroupIdentityComponent>( groupEntity );
+    if ( pGroupIdentityComponent == nullptr )
     {
       BL_FIX_BUG();
       continue;
     }
-    groupEntitiesForDestroyList.push_back( groupEntity );
+    //groupEntitiesForDestroyList.push_back( groupEntity );
     // event
     TDestroyGroupEvent eventDestroyGroup;
-    eventDestroyGroup.groupID = groupIdentityComponent.v;
+    eventDestroyGroup.groupID = pGroupIdentityComponent->v;
     mBase->AddEventCopy( &eventDestroyGroup, sizeof( eventDestroyGroup ) );
-  }
 
-  for ( auto groupEntity : groupEntitiesForDestroyList )
     mEntMng->DestroyEntity( groupEntity );
+  }
 }
 //-------------------------------------------------------------------------
 void TSlaveOnMasterLogic::SendRecipient( unsigned int sessionID )
@@ -407,20 +410,19 @@ void TSlaveOnMasterLogic::SendRecipient( unsigned int sessionID )
   TDonorSessionComponent donorSessionComponent;
   donorSessionComponent.v = sessionID;
 
-  auto clientMID = mEntMng->GetMultiID( donorSessionComponent, clientStateComponent );
-  for ( auto clientEntity : mEntMng->GetEntities( clientMID ) )
+  auto clients = mEntMng->GetByValue( donorSessionComponent, clientStateComponent );
+  if ( clients == nullptr )
+    return;
+  for ( auto clientEntity : *clients )
   {
-    TContextContainerComponent contextContainerComponent;
-    mEntMng->GetComponent( clientEntity, contextContainerComponent );
-
-    auto pC = contextContainerComponent.v;
+    auto pC = mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
 
     mBase->mControlSc->mRcm->SetContext( &pC->mRcm );
     mBase->mControlSc->mRcm->DisconnectClient();
   }
 }
 //-------------------------------------------------------------------------
-void TSlaveOnMasterLogic::TryAddFromQueueGroupClients( TEntityManager::EntityID slaveEntity, unsigned int sessionID )
+void TSlaveOnMasterLogic::TryAddFromQueueGroupClients( nsECSFramework::TEntityID slaveEntity, unsigned int sessionID )
 {
   // логика здесь такая:
   // если клиент в очереди и находится в группе, значит он должен иметь информацию о Slave
@@ -430,34 +432,32 @@ void TSlaveOnMasterLogic::TryAddFromQueueGroupClients( TEntityManager::EntityID 
   clientStateComponent.v = TClientStateComponent::InQueue;
   TSlaveSessionByClientComponent slaveSessionByGroupComponent;
   slaveSessionByGroupComponent.v = sessionID;
-  auto inQueueClientsMID = mEntMng->GetMultiID( slaveSessionByGroupComponent, clientStateComponent );
-  if ( mEntMng->GetMultiCount( inQueueClientsMID ) == 0 )
+  auto inQueueClients = mEntMng->GetByValue( slaveSessionByGroupComponent, clientStateComponent );
+  if ( inQueueClients == nullptr || inQueueClients->size() == 0 )
     return;// очередь пуста
 
-  auto& clientEntitySet = mEntMng->GetEntities( inQueueClientsMID );
-  AddClientBySlave( clientEntitySet, sessionID, slaveEntity, LimitLoadPercentOnSlaveForAdd_ClientInGroup );
+  AddClientBySlave( inQueueClients, sessionID, slaveEntity, LimitLoadPercentOnSlaveForAdd_ClientInGroup );
 }
 //-------------------------------------------------------------------------
-void TSlaveOnMasterLogic::TryAddFromQueue( TEntityManager::EntityID slaveEntity, unsigned int sessionID )
+void TSlaveOnMasterLogic::TryAddFromQueue( nsECSFramework::TEntityID slaveEntity, unsigned int sessionID )
 {
   TClientStateComponent clientStateComponent;
   clientStateComponent.v = TClientStateComponent::InQueue;
   TGroupIDComponent groupIDComponent;
   groupIDComponent.v = 0;
 
-  auto inQueueClientsMID = mEntMng->GetMultiID( groupIDComponent, clientStateComponent );
-  if ( mEntMng->GetMultiCount( inQueueClientsMID ) == 0 )
+  auto inQueueClients = mEntMng->GetByValue( groupIDComponent, clientStateComponent );
+  if ( inQueueClients == nullptr || inQueueClients->size() == 0 )
     return;// очередь пуста
 
-  auto& clientEntitySet = mEntMng->GetEntities( inQueueClientsMID );
-  AddClientBySlave( clientEntitySet, sessionID, slaveEntity, LimitLoadPercentOnSlaveForAdd );
+  AddClientBySlave( inQueueClients, sessionID, slaveEntity, LimitLoadPercentOnSlaveForAdd );
 }
 //-------------------------------------------------------------------------
-void TSlaveOnMasterLogic::AddClientBySlave( TEntityManager::TSortedEntity& clientEntitySet, unsigned int slaveSessionID,
-  TEntityManager::EntityID slaveEntity, float limit )
+void TSlaveOnMasterLogic::AddClientBySlave( nsECSFramework::TEntityList* pClientEntitySet, unsigned int slaveSessionID,
+  nsECSFramework::TEntityID slaveEntity, float limit )
 {
-  auto bit = clientEntitySet.begin();
-  auto eit = clientEntitySet.end();
+  auto bit = pClientEntitySet->begin();
+  auto eit = pClientEntitySet->end();
   while ( bit != eit )
   {
     auto futureLoad = CalculateFutureLoadOnSlave( slaveEntity, 1 );// + 1 client
@@ -469,30 +469,25 @@ void TSlaveOnMasterLogic::AddClientBySlave( TEntityManager::TSortedEntity& clien
   }
 }
 //-------------------------------------------------------------------------
-void TSlaveOnMasterLogic::AddClientBySlaveSession( TEntityManager::EntityID clientEntity, unsigned int slaveSessionID )
+void TSlaveOnMasterLogic::AddClientBySlaveSession( nsECSFramework::TEntityID clientEntity, unsigned int slaveSessionID )
 {
-  TContextContainerComponent contextContainerComponent;
-  mEntMng->GetComponent( clientEntity, contextContainerComponent );
-  auto pC = contextContainerComponent.v;
+  auto pC = mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
 
   void* resForClient = pC->mLoginClient.GetSaveQueueDataPtr();
   int sizeResClient = pC->mLoginClient.GetSaveQueueDataSize();
 
   TClientStateComponent сlientStateComponent;
   сlientStateComponent.v = TClientStateComponent::Logining;
-  mEntMng->UpdateComponent( clientEntity, сlientStateComponent );
+  mEntMng->SetComponent( clientEntity, сlientStateComponent );
 
   TSlaveSessionByClientComponent slaveSessionByClientComponent;
   slaveSessionByClientComponent.v = slaveSessionID;
-  mEntMng->UpdateComponent( clientEntity, slaveSessionByClientComponent );
+  mEntMng->SetComponent( clientEntity, slaveSessionByClientComponent );
 
-  TClientIdentityComponent clientIdentityComponent;
-  mEntMng->GetComponent( clientEntity, clientIdentityComponent );
-
-  auto clientKey = clientIdentityComponent.v;
+  auto clientKey = mEntMng->ViewComponent<TClientIdentityComponent>( clientEntity )->v;
 
   mBase->mControlSc->mLoginClient->Accept( clientKey, resForClient, sizeResClient,
-      slaveSessionID, mBase->mSessionUpID );
+    slaveSessionID, mBase->mSessionUpID );
 
   //// добавить для статистики
   //mMngLoginingClientsOnSlave->AddClient( slaveSessionID, clientKey );

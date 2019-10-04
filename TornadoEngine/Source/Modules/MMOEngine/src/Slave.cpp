@@ -166,7 +166,6 @@ void TSlave::SendDown( unsigned int sessionID, char* p, int size, bool check )
   if( pC )
   {
     mControlSc->mFlow->SetContext( &pC->mFlow );
-
     SetupBP( p, size );
     mControlSc->mFlow->SendDown( mBP, check );
   }

@@ -86,7 +86,8 @@ void THandlerMMO_Slave::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       //sEvent += " msg: ";
       //sEvent += s;
       nsMMOEngine::TRecvFromDownEvent* pR = ( nsMMOEngine::TRecvFromDownEvent* )pBE;
-      pSlave->SendDown( pR->sessionID, (char*) pR->GetData(), pR->GetSize() );
+
+      pSlave->SendDown( pR->sessionID, (char*)pR->GetData(), pR->GetSize() );
       return;
     }
     break;

@@ -43,7 +43,7 @@ namespace nsMMOEngine
     void TryAddFromQueueGroupClients( nsECSFramework::TEntityID slaveEntity, unsigned int sessionID );
     void TryAddFromQueue( nsECSFramework::TEntityID slaveEntity, unsigned int sessionID );
 
-    void TSlaveOnMasterLogic::AddClientBySlave( nsECSFramework::TSortedEntity& clientEntitySet,
+    void TSlaveOnMasterLogic::AddClientBySlave( nsECSFramework::TEntityList* pClientEntitySet,
       unsigned int slaveSessionID, nsECSFramework::TEntityID slaveEntity, float limit );
 
     void AddClientBySlaveSession( nsECSFramework::TEntityID clientEntity, unsigned int slaveSessionID );

@@ -8,49 +8,68 @@ See for more information License.h.
 #pragma once
 #include "ContainerContextSc.h"
 #include "EnumMMO.h"
-#include "IMappedComponent.h"
 
 namespace nsMMOEngine
 {
-  struct TContextContainerComponent : nsMappedComponents::IComponent
+  struct TContextContainerComponent : nsECSFramework::IComponent
   {
     TContainerContextSc* v = nullptr;
   };
   // identity
-  struct TClientIdentityComponent : nsMappedComponents::IUniqueComponent
+  struct TClientIdentityComponent : nsECSFramework::IComponent
   {
     unsigned int v = 0;
-    bool operator< ( const TClientIdentityComponent& other ) const
+
+    bool IsLess( const IComponent* pOther ) const override
     {
-      return other.v > this->v;
+      return v < ( (TClientIdentityComponent*)pOther )->v;
+    }
+    bool IsEqual( const IComponent* pOther ) const override
+    {
+      return v == ( (TClientIdentityComponent*)pOther )->v;
     }
   };
-  struct TClientSessionIdentityComponent : nsMappedComponents::IUniqueComponent
+  struct TClientSessionIdentityComponent : nsECSFramework::IComponent
   {
     unsigned int v = INVALID_HANDLE_SESSION;
-    bool operator< ( const TClientSessionIdentityComponent& other ) const
+
+    bool IsLess( const IComponent* pOther ) const override
     {
-      return other.v > this->v;
+      return v < ( (TClientSessionIdentityComponent*)pOther )->v;
+    }
+    bool IsEqual( const IComponent* pOther ) const override
+    {
+      return v == ( (TClientSessionIdentityComponent*)pOther )->v;
     }
   };
-  struct TGroupIdentityComponent : nsMappedComponents::IUniqueComponent
+  struct TGroupIdentityComponent : nsECSFramework::IComponent
   {
     unsigned int v = 0;
-    bool operator< ( const TGroupIdentityComponent& other ) const
+
+    bool IsLess( const IComponent* pOther ) const override
     {
-      return other.v > this->v;
+      return v < ( (TGroupIdentityComponent*)pOther )->v;
+    }
+    bool IsEqual( const IComponent* pOther ) const override
+    {
+      return v == ( (TGroupIdentityComponent*)pOther )->v;
     }
   };
-  struct TSlaveSessionIdentityComponent : nsMappedComponents::IUniqueComponent
+  struct TSlaveSessionIdentityComponent : nsECSFramework::IComponent
   {
     unsigned int v = INVALID_HANDLE_SESSION;
-    bool operator< ( const TSlaveSessionIdentityComponent& other ) const
+
+    bool IsLess( const IComponent* pOther ) const override
     {
-      return other.v > this->v;
+      return v < ( (TSlaveSessionIdentityComponent*)pOther )->v;
+    }
+    bool IsEqual( const IComponent* pOther ) const override
+    {
+      return v == ( (TSlaveSessionIdentityComponent*)pOther )->v;
     }
   };
   // multi
-  struct TClientStateComponent : nsMappedComponents::IMultiComponent, nsMappedComponents::IGroupedComponent
+  struct TClientStateComponent : nsECSFramework::IComponent
   {
     typedef enum
     {
@@ -59,56 +78,74 @@ namespace nsMMOEngine
       Logining,
       RCM,
       OnSlave,
-      Lost,
+      LostFromGroup,
+
       Count
     }State;
     State v = Init;
-    virtual int GetGroupCount()
+
+    bool IsLess( const IComponent* pOther ) const override
     {
-      return State::Count;
+      return v < ( (TClientStateComponent*)pOther )->v;
     }
-    virtual int GetGroupNumber()
+    bool IsEqual( const IComponent* pOther ) const override
     {
-      return v;
-    }
-    bool operator< ( const TClientStateComponent& other ) const
-    {
-      return other.v > this->v;
+      return v == ( (TClientStateComponent*)pOther )->v;
     }
   };
-  struct TGroupIDComponent : nsMappedComponents::IMultiComponent
+  struct TGroupIDComponent : nsECSFramework::IComponent
   {
     unsigned int v = 0;
-    bool operator< ( const TGroupIDComponent& other ) const
+
+    bool IsLess( const IComponent* pOther ) const override
     {
-      return other.v > this->v;
+      return v < ( (TGroupIDComponent*)pOther )->v;
+    }
+    bool IsEqual( const IComponent* pOther ) const override
+    {
+      return v == ( (TGroupIDComponent*)pOther )->v;
     }
   };
-  struct TSlaveSessionByClientComponent : nsMappedComponents::IMultiComponent
+  struct TSlaveSessionByClientComponent : nsECSFramework::IComponent
   {
     unsigned int v = INVALID_HANDLE_SESSION;
-    bool operator< ( const TSlaveSessionByClientComponent& other ) const
+
+    bool IsLess( const IComponent* pOther ) const override
     {
-      return other.v > this->v;
+      return v < ( (TSlaveSessionByClientComponent*)pOther )->v;
+    }
+    bool IsEqual( const IComponent* pOther ) const override
+    {
+      return v == ( (TSlaveSessionByClientComponent*)pOther )->v;
     }
   };
-  struct TSlaveSessionByGroupComponent : nsMappedComponents::IMultiComponent
+  struct TSlaveSessionByGroupComponent : nsECSFramework::IComponent
   {
     unsigned int v = INVALID_HANDLE_SESSION;
-    bool operator< ( const TSlaveSessionByGroupComponent& other ) const
+
+    bool IsLess( const IComponent* pOther ) const override
     {
-      return other.v > this->v;
+      return v < ( (TSlaveSessionByGroupComponent*)pOther )->v;
+    }
+    bool IsEqual( const IComponent* pOther ) const override
+    {
+      return v == ( (TSlaveSessionByGroupComponent*)pOther )->v;
     }
   };
-  struct TDonorSessionComponent : nsMappedComponents::IMultiComponent
+  struct TDonorSessionComponent : nsECSFramework::IComponent
   {
     unsigned int v = INVALID_HANDLE_SESSION;
-    bool operator< ( const TDonorSessionComponent& other ) const
+
+    bool IsLess( const IComponent* pOther ) const override
     {
-      return other.v > this->v;
+      return v < ( (TDonorSessionComponent*)pOther )->v;
+    }
+    bool IsEqual( const IComponent* pOther ) const override
+    {
+      return v == ( (TDonorSessionComponent*)pOther )->v;
     }
   };
-  struct TSlaveLoadInfoComponent : nsMappedComponents::IComponent
+  struct TSlaveLoadInfoComponent : nsECSFramework::IComponent
   {
     float v;
   };

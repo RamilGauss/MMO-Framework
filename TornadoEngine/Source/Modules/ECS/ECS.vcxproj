@@ -22,6 +22,8 @@
     <ClInclude Include="include\BaseReactiveSystem.h" />
     <ClInclude Include="include\ComplexType.h" />
     <ClInclude Include="include\ComponentInfo.h" />
+    <ClInclude Include="include\ContainerForReactive.h" />
+    <ClInclude Include="include\HelpStructs.h" />
     <ClInclude Include="include\IComponent.h" />
     <ClInclude Include="include\Config.h" />
     <ClInclude Include="include\ConnectTypeManager.h" />
@@ -48,6 +50,7 @@
     <ClInclude Include="include\World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BaseReactiveSystem.cpp" />
     <ClCompile Include="src\ConveyerPartMaster.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />

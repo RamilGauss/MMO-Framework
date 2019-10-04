@@ -38,6 +38,8 @@ TBase::TBase() :
   mContainerUp( new TContainerContextSc ),
   mMngMngContextSc( new TManagerManagerContextSc )
 {
+  mEntMng->Setup();// magic reflection
+
   GetLogger()->Register( STR_NAME_MMO_ENGINE );
 
   SetupScForContext( mContainerUp.get() );

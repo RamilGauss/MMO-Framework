@@ -11,8 +11,34 @@ See for more information License.h.
 
 namespace nsECSFramework
 {
+  template<typename Component>
   class DllExport TReactiveOnRemoveSystem : public TBaseReactiveSystem
   {
-
+  public:
+    TReactiveOnRemoveSystem( bool useThinning = true ) : TBaseReactiveSystem( useThinning )
+    {
+      auto pEntMng = GetEntityManager();
+      mEventWaiterID = pEntMng->OnRemove<Component>();
+      mCollector = &( pEntMng->mRemoveCollector );
+    }
+  protected:
+    void Filter( TEntityIdVectorRise& entities ) override
+    {
+      auto pEntMng = GetEntityManager();
+      // entity
+      int filtered = 0;
+      for ( size_t i = 0; i < entities.mCounter; i++ )
+      {
+        auto& entity = entities.mVec[i];
+        if ( pEntMng->HasComponent<Component>( entity ) )
+          continue;
+        if ( Filter( entity ) )
+        {
+          entities.mVec[filtered] = entity;
+          filtered++;
+        }
+      }
+      entities.mCounter = filtered;
+    }
   };
 }

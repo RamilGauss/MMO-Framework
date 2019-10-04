@@ -21,6 +21,8 @@ class INetControl
 {
   TNetTransport_Boost* mNetTransportBoost;
 
+
+
 public:
   enum
   {

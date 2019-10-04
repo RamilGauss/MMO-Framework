@@ -19,8 +19,8 @@ using namespace boost::asio;
 using namespace std;
 
 
-TNetDeviceAcceptor::TNetDeviceAcceptor( boost::asio::io_service& io_service ) :
-  mSocket( io_service )
+TNetDeviceAcceptor::TNetDeviceAcceptor( boost::asio::io_context* io_context ) :
+  mSocket( *io_context )
 {
 
 }
@@ -100,7 +100,8 @@ bool TNetDeviceAcceptor::SetRecvBuffer( unsigned int size )
   boost::system::error_code ec;
   boost::asio::socket_base::receive_buffer_size option( size );
   mSocket.set_option( option, ec );
-  return (ec == 0);
+  //return (ec == 0);
+  return ( ec.failed() == false );
 }
 //--------------------------------------------------------------------------------
 bool TNetDeviceAcceptor::SetSendBuffer( unsigned int size )
@@ -108,6 +109,7 @@ bool TNetDeviceAcceptor::SetSendBuffer( unsigned int size )
   boost::system::error_code ec;
   boost::asio::socket_base::send_buffer_size option( size );
   mSocket.set_option( option, ec );
-  return (ec == 0);
+  //return (ec == 0);
+  return ( ec.failed() == false );
 }
 //--------------------------------------------------------------------------------

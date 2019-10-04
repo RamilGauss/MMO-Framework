@@ -30,12 +30,13 @@ void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       BL_FIX_BUG();
       break;
     case nsMMOEngine::eConnectUp:
-      sEvent = "ConnectUp";
-      AddConnection( ((nsMMOEngine::TConnectUpEvent*) pBE)->sessionID );
+      BL_FIX_BUG();
+      //sEvent = "ConnectUp";
+      //AddConnection( ((nsMMOEngine::TConnectUpEvent*) pBE)->sessionID );
       break;
     case nsMMOEngine::eDisconnectUp:
       sEvent = "DisconnectUp";
-      RemoveConnection( ((nsMMOEngine::TDisconnectUpEvent*) pBE)->sessionID );
+      RemoveConnection( 1 );// ( ( nsMMOEngine::TDisconnectUpEvent* ) pBE )->sessionID );
       break;
     case nsMMOEngine::eError:
     {
@@ -67,6 +68,8 @@ void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
         sEvent += " Accept ";
 
         mClientDescMap[pClient]->flgNeedSendPing = true;
+
+        AddConnection( 1 );
       }
       else
         sEvent += " Reject ";

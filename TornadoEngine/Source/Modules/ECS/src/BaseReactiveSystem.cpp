@@ -7,41 +7,39 @@ See for more information License.h.
 
 #include "BaseReactiveSystem.h"
 
-using namespace nsECSFramework;
 
-TBaseReactiveSystem::TBaseReactiveSystem( bool moreThanOneEvent )
+namespace nsECSFramework
 {
-  mMoreThanOneEvent = moreThanOneEvent;
-}
-//--------------------------------------------------------------------------------------
-void TBaseReactiveSystem::IncrementAndCheckEventCount()
-{
-  mEventCounter++;
-  if( mMoreThanOneEvent == false )
+  TBaseReactiveSystem::TBaseReactiveSystem( bool useThinning )
   {
-    assert( mEventCounter == 1 );
+    mUseThinning = useThinning;
   }
+  //-----------------------------------------------------------------------------
+  bool TBaseReactiveSystem::Filter( TEntityID& eid )
+  {
+    return true;
+  }
+  //-----------------------------------------------------------------------------
+  void TBaseReactiveSystem::Update()
+  {
+    mCollector->Get( mEventWaiterID, [this]( TEntityIdVectorRise& entities )
+    {
+      if ( entities.mCounter == 0 )
+        return;
+
+      if ( mUseThinning )
+        mSTRO.Work( entities );// сортировать, убрать дублированные и восстановить порядок создания сущностей
+      if ( entities.mCounter == 0 )
+        return;
+
+      // фильтрация
+      Filter( entities );
+      if ( entities.mCounter == 0 )
+        return;
+
+      // готовый результат
+      Reactive( entities );
+    } );
+  }
+  //-----------------------------------------------------------------------------
 }
-//--------------------------------------------------------------------------------------
-void TBaseReactiveSystem::AddConnectTypeManager( IConnectTypeManager* p )
-{
-  mConTypeMngPtrVec.push_back( p );
-}
-//--------------------------------------------------------------------------------------
-void TBaseReactiveSystem::Filter( TVectorRise<TEntity> *pEntities )
-{
-  // entity
-  //int filtered = 0;
-  //for( size_t i = 0; i < pEntities->mCounter; i++ )
-  //{
-  //  auto& entity = pEntities->mVec[i];
-  //  if( GetRegistry()->valid( entity ) )// entity существует
-  //    if( Filter( entity ) )
-  //    {
-  //      pEntities->mVec[filtered] = entity;
-  //      filtered++;
-  //    }
-  //}
-  //pEntities->mCounter = filtered;
-}
-//--------------------------------------------------------------------------------------

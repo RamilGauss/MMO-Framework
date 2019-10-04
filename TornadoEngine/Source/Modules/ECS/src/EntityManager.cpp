@@ -550,18 +550,11 @@ void TEntityManager::TryRemoveFromValue( TEntityID eid, int index, TEntity* pEnt
   }
 }
 //----------------------------------------------------------------------------------------------------
-void TEntityManager::GetAddEvents( int id, TEntityLoopList& entListLoop )
+void TEntityManager::NotifyOnRemoveComponent( int index, TEntityID entity, IComponent* pC )
 {
-
+  auto pCB = mRemoveCBVector.Begin() + index;
+  if ( pCB[0] == nullptr )
+    return;
+  pCB[0]->Notify( entity, pC );
 }
-//----------------------------------------------------------------------------------------------------
-void TEntityManager::GetUpdateEvents( int id, TEntityLoopList& entListLoop )
-{
-
-}
-//----------------------------------------------------------------------------------------------------
-void TEntityManager::GetRemoveEvents( int id, TEntityLoopList& entListLoop )
-{
-
-}
-//----------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------

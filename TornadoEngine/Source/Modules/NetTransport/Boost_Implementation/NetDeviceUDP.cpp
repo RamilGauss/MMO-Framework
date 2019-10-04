@@ -17,8 +17,8 @@ See for more information License.h.
 
 using namespace boost::asio;
 
-TNetDeviceUDP::TNetDeviceUDP( boost::asio::io_service& io_service ) :
-  mSocket( io_service )
+TNetDeviceUDP::TNetDeviceUDP( boost::asio::io_context* io_context ) :
+  mSocket( *io_context )
 {
 
 }
@@ -33,7 +33,7 @@ bool TNetDeviceUDP::Open( unsigned short port, unsigned char numNetWork )
   bool res = false;
   std::string sLocalHost;
   TResolverSelf_IP_v4 resolver;
-  if( resolver.Get( sLocalHost, numNetWork ) == false )
+  if ( resolver.Get( sLocalHost, numNetWork ) == false )
     return false;
   try
   {
@@ -46,7 +46,7 @@ bool TNetDeviceUDP::Open( unsigned short port, unsigned char numNetWork )
     mIP_Port.Set( ipv4_address_Local.to_ulong(), port );
     res = true;
   }
-  catch( std::exception& e )
+  catch ( std::exception& e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "Open UDP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what() );
@@ -56,12 +56,12 @@ bool TNetDeviceUDP::Open( unsigned short port, unsigned char numNetWork )
 //--------------------------------------------------------------------------------
 void TNetDeviceUDP::Close()
 {
-  if( mSocket.is_open() == false ) return;
+  if ( mSocket.is_open() == false ) return;
   try
   {
     mSocket.close();
   }
-  catch( std::exception& e )
+  catch ( std::exception& e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "Close UDP FAIL: %s.\n", e.what() );
@@ -73,7 +73,8 @@ bool TNetDeviceUDP::SetRecvBuffer( unsigned int size )
   boost::system::error_code ec;
   boost::asio::socket_base::receive_buffer_size option( size );
   mSocket.set_option( option, ec );
-  return (ec == 0);
+  //return ( ec == 0 );
+  return ( ec.failed() == false );
 }
 //--------------------------------------------------------------------------------
 bool TNetDeviceUDP::SetSendBuffer( unsigned int size )
@@ -81,6 +82,7 @@ bool TNetDeviceUDP::SetSendBuffer( unsigned int size )
   boost::system::error_code ec;
   boost::asio::socket_base::send_buffer_size option( size );
   mSocket.set_option( option, ec );
-  return (ec == 0);
+  //return ( ec == 0 );
+  return ( ec.failed() == false );
 }
 //--------------------------------------------------------------------------------

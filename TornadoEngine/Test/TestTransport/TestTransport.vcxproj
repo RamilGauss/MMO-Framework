@@ -139,7 +139,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;../../Source/Base/Headers;../../Source/Modules/NetTransport;../../Source/Modules/MMOEngine/Include;$(BOOST_PATH64);$(SolutionDir)\Source\3rdParty\libuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)\Source\3rdParty\libuv\include;$(BOOST_PATH64);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

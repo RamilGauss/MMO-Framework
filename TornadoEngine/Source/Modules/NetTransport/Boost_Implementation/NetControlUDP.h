@@ -45,7 +45,7 @@ class TNetControlUDP : public INetControl
   TMapIP_IC mMapInfoConnect;
 public:
 
-  TNetControlUDP( TNetTransport_Boost* pNTB, boost::asio::io_service& io_service );
+  TNetControlUDP( TNetTransport_Boost* pNTB, boost::asio::io_context* io_context );
   virtual ~TNetControlUDP();
   // TNetTransport_XXX
   virtual void Init();

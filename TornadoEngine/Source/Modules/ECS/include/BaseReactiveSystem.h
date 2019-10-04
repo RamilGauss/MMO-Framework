@@ -20,14 +20,20 @@ namespace nsECSFramework
   class DllExport TBaseReactiveSystem : public TSystem
   {
   protected:
-    TEntityLoopList mEntLoopList;
     int mEventWaiterID;
-  public:
-    virtual bool Filter( TEntityID& eid )
-    {
-      return true;
-    }
+    TSortedThinningRestoreOrder<TEntityID> mSTRO;
+    TContainerForReactive* mCollector;
 
-    virtual void Reactive( TEntityID& eid ) = 0;
+    bool mUseThinning;
+  public:
+    TBaseReactiveSystem( bool useThinning = true );
+    virtual bool Filter( TEntityID& eid );
+
+    virtual void Reactive( TEntityIdVectorRise& entities ) = 0;
+
+    void Update() override final;
+
+  protected:
+    virtual void Filter( TEntityIdVectorRise& entities ) = 0;
   };
 }

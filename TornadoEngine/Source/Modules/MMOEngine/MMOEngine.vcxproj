@@ -132,7 +132,7 @@
       <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;MappedComponents_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -186,7 +186,7 @@
       <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;MappedComponents.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;ECS.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

@@ -28,7 +28,7 @@ namespace nsMMOEngine
   private:
     bool EvalCreateGroupNow( std::list<unsigned int>& clientKeyList, unsigned int& groupID );
 
-    void CalculateLoadMap( std::map<int, nsMappedComponents::TEntityManager::EntityID>& loadSlaveEntityMap );
+    void CalculateLoadMap( std::map<int, nsECSFramework::TEntityID>& loadSlaveEntityMap );
 
     int CalculateClientCountNotOnSlave( unsigned int slaveSession, std::list<unsigned int>& clientKeyList );
 
@@ -37,9 +37,9 @@ namespace nsMMOEngine
     void AddClientsInGroup( unsigned int groupID, std::list<unsigned int>& clientKeyList );
 
     void ExchangeClients( unsigned int slaveSession, std::list<unsigned int>& clientKeyList,
-      std::list<nsMappedComponents::TEntityManager::EntityID>& clientEntityWithoutGroupList );
+      std::list<nsECSFramework::TEntityID>& clientEntityWithoutGroupList );
 
-    void StartRcm( nsMappedComponents::TEntityManager::EntityID clientEntity, unsigned int slaveSession );
+    void StartRcm( nsECSFramework::TEntityID clientEntity, unsigned int slaveSession );
     void RcmByClientKeyContextSlaveSessionRecipient( unsigned int clientKey, 
       TContextScRecommutationClient* pCRCM, unsigned int recipientSessionID );
   };

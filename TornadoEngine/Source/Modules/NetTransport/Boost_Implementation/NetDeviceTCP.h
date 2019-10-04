@@ -15,7 +15,7 @@ class TNetDeviceTCP : public INetDevice
 {
   boost::asio::ip::tcp::socket mSocket;
 public:
-  TNetDeviceTCP( boost::asio::io_service& io_service );
+  TNetDeviceTCP( boost::asio::io_context* context );
   virtual ~TNetDeviceTCP();
 
   virtual bool Open( unsigned short port, unsigned char numNetWork = 0 ); // ret local sock

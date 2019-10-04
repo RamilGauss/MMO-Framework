@@ -27,4 +27,9 @@ public:
   {
     return (Type*)&mVec[0];
   }
+
+  int Size()
+  {
+    return mVec.size();
+  }
 };

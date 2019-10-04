@@ -50,9 +50,18 @@ public:
 
   virtual void Send( unsigned int ip, unsigned short port, TBreakPacket& packet, bool check = true );
 
-  virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv(){ return &mCallBackRecv; }
-  virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackConnectFrom(){ return &mCallBackConnectFrom; }
-  virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect(){ return &mCallBackDisconnect; }
+  virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv()
+  {
+    return &mCallBackRecv;
+  }
+  virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackConnectFrom()
+  {
+    return &mCallBackConnectFrom;
+  }
+  virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect()
+  {
+    return &mCallBackDisconnect;
+  }
 
   virtual void Start();
   virtual void Stop();
@@ -67,6 +76,8 @@ public:
   void AddInMapTCP( TIP_Port& ip_port, TNetControlTCP* pNetControl );
   void RemoveFromMapTCP( TIP_Port* ip_port, TNetControlTCP* pControl );
 
+  TNetWorkThread* GetNetWorkThread();
+
 protected:
   void CloseAll();
   void DeleteMapControlTCP();
@@ -74,6 +85,6 @@ protected:
   //void CreateControlTcpUp();
   void DeleteControlTCP( TNetControlTCP* pControl );
 
-  TNetControlTCP* GetTCP_ByIP( TIP_Port &ip_port );
+  TNetControlTCP* GetTCP_ByIP( TIP_Port& ip_port );
   void Done();
 };

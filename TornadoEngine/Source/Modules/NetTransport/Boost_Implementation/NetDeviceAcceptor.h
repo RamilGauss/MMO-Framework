@@ -21,7 +21,7 @@ class TNetDeviceAcceptor : public INetDevice
   boost::asio::ip::tcp::acceptor mSocket;
 
 public:
-  TNetDeviceAcceptor( boost::asio::io_service& io_service );
+  TNetDeviceAcceptor( boost::asio::io_context* io_context );
   virtual ~TNetDeviceAcceptor();
 
   virtual bool Open( unsigned short port, unsigned char numNetWork = 0 ); // ret local sock

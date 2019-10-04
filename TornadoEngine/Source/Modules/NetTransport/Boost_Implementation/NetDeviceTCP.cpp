@@ -19,8 +19,8 @@ using namespace boost::asio;
 using namespace std;
 
 
-TNetDeviceTCP::TNetDeviceTCP( boost::asio::io_service& io_service ) :
-  mSocket( io_service )
+TNetDeviceTCP::TNetDeviceTCP( boost::asio::io_context* context ) :
+  mSocket( *context )
 {
 
 }
@@ -35,7 +35,7 @@ bool TNetDeviceTCP::Open( unsigned short port, unsigned char numNetWork )
   bool res = false;
   std::string sLocalHost;
   TResolverSelf_IP_v4 resolver;
-  if( resolver.Get( sLocalHost, numNetWork ) == false )
+  if ( resolver.Get( sLocalHost, numNetWork ) == false )
     return false;
   try
   {
@@ -51,7 +51,7 @@ bool TNetDeviceTCP::Open( unsigned short port, unsigned char numNetWork )
     mSocket.bind( endpoint_Local );
     res = true;
   }
-  catch( std::exception& e )
+  catch ( std::exception& e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "Open TCP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what() );
@@ -61,12 +61,12 @@ bool TNetDeviceTCP::Open( unsigned short port, unsigned char numNetWork )
 //--------------------------------------------------------------------------------
 void TNetDeviceTCP::Close()
 {
-  if( mSocket.is_open() == false ) return;
+  if ( mSocket.is_open() == false ) return;
   try
   {
     mSocket.close();
   }
-  catch( std::exception& e )
+  catch ( std::exception& e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "Close TCP FAIL: %s.\n", e.what() );
@@ -96,7 +96,8 @@ bool TNetDeviceTCP::SetRecvBuffer( unsigned int size )
   boost::system::error_code ec;
   boost::asio::socket_base::receive_buffer_size option( size );
   mSocket.set_option( option, ec );
-  return (ec == 0);
+  //return (ec == 0);
+  return ( ec.failed() == false );
 }
 //--------------------------------------------------------------------------------
 bool TNetDeviceTCP::SetSendBuffer( unsigned int size )
@@ -104,6 +105,7 @@ bool TNetDeviceTCP::SetSendBuffer( unsigned int size )
   boost::system::error_code ec;
   boost::asio::socket_base::send_buffer_size option( size );
   mSocket.set_option( option, ec );
-  return (ec == 0);
+  //return (ec == 0);
+  return ( ec.failed() == false );
 }
 //--------------------------------------------------------------------------------

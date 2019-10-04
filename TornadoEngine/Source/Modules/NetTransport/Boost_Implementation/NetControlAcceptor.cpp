@@ -20,9 +20,9 @@ See for more information License.h.
 
 using namespace std;
 
-TNetControlAcceptor::TNetControlAcceptor( TNetTransport_Boost* pNTB, boost::asio::io_service& io_service ) :
+TNetControlAcceptor::TNetControlAcceptor( TNetTransport_Boost* pNTB, boost::asio::io_context* io_context ) :
   INetControl( pNTB ),
-  mDevice( io_service )
+  mDevice( io_context )
 {
   pNewControlTCP = nullptr;
   flgReadyAccept = false;
@@ -54,7 +54,7 @@ void TNetControlAcceptor::Close()
 //------------------------------------------------------------------------------
 void TNetControlAcceptor::AcceptEvent( const boost::system::error_code& error )
 {
-  if( error == 0 )
+  if( error.failed() == false )
   {
     TIP_Port ip_port;
     ip_port.port = pNewControlTCP->GetDevice()->GetSocket()->remote_endpoint().port();
@@ -86,8 +86,12 @@ void TNetControlAcceptor::Done()
 //------------------------------------------------------------------------------
 void TNetControlAcceptor::ReadyAccept()
 {
-  pNewControlTCP = new TNetControlTCP( GetNetBoost(), mDevice.GetSocket()->get_io_service() );
-  mDevice.GetSocket()->async_accept( *(pNewControlTCP->GetDevice()->GetSocket()),
+  // TODO: get io_context via global
+  auto pContext = GetNetBoost()->GetNetWorkThread()->GetIO_Context();
+
+  pNewControlTCP = new TNetControlTCP( GetNetBoost(), pContext );
+  auto newSocket = pNewControlTCP->GetDevice()->GetSocket();
+  mDevice.GetSocket()->async_accept( *newSocket,
     boost::bind( &TNetControlAcceptor::AcceptEvent, this,
       boost::asio::placeholders::error ) );
 

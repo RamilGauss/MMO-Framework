@@ -92,6 +92,12 @@
     <ClInclude Include="include\ReactiveOnRemoveSystem.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ContainerForReactive.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HelpStructs.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ConveyerPartMaster.cpp">
@@ -113,6 +119,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\EntityManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BaseReactiveSystem.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

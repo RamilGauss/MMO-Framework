@@ -9,6 +9,7 @@ See for more information License.h.
 #include "EntityManager.h"
 #include "BaseLogic.h"
 #include "EnumMMO.h"
+#include "SetOrderElement.h"
 
 namespace nsMMOEngine
 {
@@ -24,17 +25,29 @@ namespace nsMMOEngine
     const float LimitLoadPercentOnSlaveForAdd_ClientInGroup = 75.0f;
     // максимальный размер очереди ожидающих
     const int LimitCountClientWaitFreeSpace = 10000;
+
+    const unsigned char LimitLoadProcentOnSlaveForAdd = 70;
+    const unsigned char LimitLoadProcentOnSlaveForAdd_ClientInGroup = 75; // для Клиента, состоящего в Группе процент другой
+
+    // ID клиентов, которые ожидают в очереди, по причине загруженности Slave
+    std::shared_ptr<TSetOrderElement> mSetClientKeyInQueue;
+
   public:
     TBaseMasterLogic( TBase* p );
   protected:
 
     void AddError( nsMMOEngine::ErrorCode err );
 
-    void OnDestroy( nsMappedComponents::TEntityManager::EntityID entity );
+    void OnRemoveContextContainer( nsECSFramework::TEntityID entity, nsECSFramework::IComponent* pC );
 
-    float CalculateFutureLoadOnSlave( nsMappedComponents::TEntityManager::EntityID slaveEntity, int addedClientCount );
+    float CalculateFutureLoadOnSlave( nsECSFramework::TEntityID slaveEntity, int addedClientCount );
 
-    void GetClientWithoutGroup( unsigned int slaveSession, 
-      std::list<nsMappedComponents::TEntityManager::EntityID>& clientEntityList );
+    void GetClientWithoutGroup( unsigned int slaveSession,
+      std::list<nsECSFramework::TEntityID>& clientEntityList );
+
+    bool FindMinimumLoad( unsigned int& slaveSessionID, unsigned char& load_procent );
+    unsigned char GetLimitLoadProcentByKey( unsigned int clientKey );
+
+    unsigned char GetLimitLoadProcent( bool InGroupOrSimple );
   };
 }

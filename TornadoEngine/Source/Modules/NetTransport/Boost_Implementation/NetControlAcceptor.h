@@ -20,7 +20,7 @@ class TNetControlAcceptor : public INetControl
 
 public:
 
-  TNetControlAcceptor( TNetTransport_Boost* pNTB, boost::asio::io_service& io_service );
+  TNetControlAcceptor( TNetTransport_Boost* pNTB, boost::asio::io_context* io_context );
   virtual ~TNetControlAcceptor();
   // TNetTransport_XXX
   virtual void Init();

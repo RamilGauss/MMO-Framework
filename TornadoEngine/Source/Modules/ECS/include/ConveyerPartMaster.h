@@ -62,9 +62,9 @@ namespace nsECSFramework
     mInitAndExecuteInitializer = SingletonManager()->Get<TGlobalSystemInitializer<IConveyerPart>>();
     mSystemUpdater = SingletonManager()->Get<TGlobalSystemUpdater>();
 
-    auto registry = GetRegistry();
+    auto registry = GetEntityManager();
     auto t = new T( std::forward<Args>( args )... );
-    t->SetRegistry( registry );
+    t->SetEntityManager( registry );
 
     // списки для инициализации
     if ( IsTypeReactive<T>() )

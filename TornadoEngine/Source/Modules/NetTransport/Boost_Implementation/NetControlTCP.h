@@ -34,7 +34,7 @@ class TNetControlTCP : public INetControl
   volatile bool flgResConnect;
 public:
 
-  TNetControlTCP( TNetTransport_Boost* pNTB, boost::asio::io_service& io_service );
+  TNetControlTCP( TNetTransport_Boost* pNTB, boost::asio::io_context* context );
   virtual ~TNetControlTCP();
 
   // TNetTransport_XXX

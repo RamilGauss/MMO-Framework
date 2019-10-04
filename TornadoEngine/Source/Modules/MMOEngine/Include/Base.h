@@ -18,10 +18,11 @@ See for more information License.h.
 #include "DataExchange2Thread.h"
 #include "EnumMMO.h"
 
-namespace nsMappedComponents
+namespace nsECSFramework
 {
   class TEntityManager;
 }
+
 namespace nsMMOEngine
 {
   class TSessionManager;
@@ -49,7 +50,7 @@ namespace nsMMOEngine
   protected:
 
     // mini ECS
-    std::shared_ptr<nsMappedComponents::TEntityManager> mEntMng;
+    std::shared_ptr<nsECSFramework::TEntityManager> mEntMng;
 
     std::shared_ptr<TControlScenario>    mControlSc;
     std::shared_ptr<TContainerContextSc> mContainerUp;

@@ -54,6 +54,8 @@ THandlerMMO::THandlerMMO( nsMMOEngine::TBase* pBase, TypeMMO type )
 //-----------------------------------------------------------------------------------
 void THandlerMMO::Work()
 {
+  int count = 0;
+
   nsEvent::TEvent* pEvent = GetEvent();
   while( pEvent )
   {
@@ -61,6 +63,8 @@ void THandlerMMO::Work()
     HandleFromMMOEngine( pEvent );
     delete pEvent;
     pEvent = GetEvent();
+
+    count++;
   }
 
   WorkInherit();

@@ -72,10 +72,10 @@ namespace nsMMOEngine
     eRecvFromUp,
     eSaveContext,
     eRestoreContext,
-    eTryLogin,// попытка авторизоваться
-    eLogin,   // клиент авторизовался
-    eLogoff,  // клиент на мастере отключился
-    eResultLogin,
+    eTryLogin,// M, попытка авторизоваться
+    eLogin,   // M, клиент авторизовался
+    eLogoff,  // M, клиент на мастере отключился
+    eResultLogin,// client event
     eDestroyGroup,
     eEnterInQueue,
     eLeaveQueue,

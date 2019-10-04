@@ -12,15 +12,15 @@ See for more information License.h.
 
 class TNetWorkThread : public TThreadBoost
 {
-  boost::asio::io_service mIO_Service;
+  boost::asio::io_context mIO_Context;
 
 public:
   TNetWorkThread();
   virtual ~TNetWorkThread();
 
-  boost::asio::io_service* GetIO_Service()
+  boost::asio::io_context* GetIO_Context()
   {
-    return &mIO_Service;
+    return &mIO_Context;
   }
 
   virtual void Stop();

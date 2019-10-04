@@ -14,8 +14,8 @@ See for more information License.h.
 
 #define SLAVE_PORT        1234
 #define MASTER_PORT       2235
-#define SUPER_SERVER_PORT 2236
-#define CLIENT_PORT       2237
+#define SUPER_SERVER_PORT 2237
+#define CLIENT_PORT       2238
 
 #define CLIENT_PASSWORD "1"
 

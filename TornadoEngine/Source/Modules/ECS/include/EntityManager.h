@@ -18,7 +18,6 @@ See for more information License.h.
 #include <boost/dll/import_class.hpp>
 #include <boost/dll/shared_library.hpp>
 
-#include "TypeDef.h"
 #include "TypeIdentifier.h"
 #include "SingletonManager.h"
 
@@ -29,49 +28,11 @@ See for more information License.h.
 #include "TypeIdentifier.h"
 #include "ColanderVector.h"
 #include "ComplexType.h"
+#include "ContainerForReactive.h"
+#include "HelpStructs.h"
 
 namespace nsECSFramework
 {
-  struct TComponentEventListener
-  {
-    enum State
-    {
-      Begin, Middle, End
-    };
-
-    State state;
-
-    TEntityList::iterator it;
-  };
-
-  struct TComponentEventList
-  {
-    TEntityList list;
-    std::vector<TComponentEventListener> mVec;
-
-    TEntityList::iterator mCurrentIterator;
-  };
-
-  template<class T>
-  struct ptr_less
-  {
-    bool operator()( const T& pLHS, const T& pRHS ) const
-    {
-      return *pLHS < *pRHS;
-    }
-  };
-  template<class T>
-  struct component_ptr_less
-  {
-    bool operator()( const T& lhs, const T& rhs ) const
-    {
-      auto pL = (const IComponent*)lhs;
-      auto pR = (const IComponent*)rhs;
-      return pL->IsLess( pR );
-    }
-  };
-  // usage: std::map<T*,second,ptr_less<T*>> mMap;
-
   class DllExport TEntityManager
   {
     typedef TTypeIdentifier<TEntityManager> TTypeID;
@@ -108,17 +69,25 @@ namespace nsECSFramework
     template <typename ... Args>
     TEntityList* GetByHas();
 
+    // мгновенная реакция на удаления для освобождения ресурсов
+    template<typename Component>
+    TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnRemoveComponent();
+  protected:
     // events
-    template<typename Component>
-    int OnAdd( void* pObject );
-    template<typename Component>
-    int OnUpdate( void* pObject );
-    template<typename Component>
-    int OnRemove( void* pObject );
+    friend class TReactiveOnAddSystem;
+    friend class TReactiveOnUpdateSystem;
+    friend class TReactiveOnRemoveSystem;
 
-    void GetAddEvents( int id, TEntityLoopList& entListLoop );
-    void GetUpdateEvents( int id, TEntityLoopList& entListLoop );
-    void GetRemoveEvents( int id, TEntityLoopList& entListLoop );
+    TContainerForReactive mAddCollector;
+    TContainerForReactive mUpdateCollector;
+    TContainerForReactive mRemoveCollector;
+
+    template<typename Component>
+    int OnAdd();
+    template<typename Component>
+    int OnUpdate();
+    template<typename Component>
+    int OnRemove();
   private:
     typedef std::map<TComplexType*, TEntityList*, ptr_less<TComplexType*>> TComplexTypePtrListPtrMap;
     typedef TColanderVector<TComplexTypePtrListPtrMap*> TComplexTypePtrListPtrMapPtrVec;
@@ -158,6 +127,11 @@ namespace nsECSFramework
     // из каких типов состоит коллекция
     TListVector mHasCollectionWithTypes;// fill in setup
     TListVector mValueCollectionWithTypes;// fill in setup
+
+    typedef TCallBackRegistrator2<TEntityID, IComponent*> TCB_EntPtrCom;
+    typedef TColanderVector<TCB_EntPtrCom*> TCBVector;
+
+    TCBVector mRemoveCBVector;
   private:// inner use
     template <typename ... Args>
     DllExport unsigned int TypeIndex()
@@ -182,6 +156,9 @@ namespace nsECSFramework
 
     void TryRemoveFromHas( TEntityID eid, int index, TEntity* pEntity );
     void TryRemoveFromValue( TEntityID eid, int index, TEntity* pEntity );
+
+
+    void NotifyOnRemoveComponent( int index, TEntityID entity, IComponent* pC );
 
   private:// reflection
     template <typename ... Args>
@@ -229,12 +206,12 @@ namespace nsECSFramework
     }
 
     Component* pC = nullptr;
-    //CallBackPtr<Component>* pCB = nullptr;
     auto index = TypeIndex<Component>();
     if ( pEntity->HasComponent( index ) )
     {
       pC = (Component*)pEntity->GetComponent( index );
-      //pCB = ( CallBackPtr<Component>* )mOnUpdateCallBack[index];
+
+      mAddCollector.Set( index, eid );
 
       TryRemoveFromUnique( eid, pC, index );
       TryRemoveFromValue( eid, index, pEntity );
@@ -242,7 +219,7 @@ namespace nsECSFramework
     else
     {
       pC = pEntity->AddComponent<Component>( index );
-      //pCB = ( CallBackPtr<Component>* )mOnAddCallBack[index];
+      mUpdateCollector.Set( index, eid );
 
       TryAddInHas( eid, index, pEntity );
     }
@@ -250,8 +227,6 @@ namespace nsECSFramework
     *pC = c;
     TryAddInUnique( eid, pC, index );
     TryAddInValue( eid, index, pEntity );
-    //if ( pCB != nullptr )
-      //pCB->Notify( eid, pC );// TODO: push_back( eid );
   }
   //---------------------------------------------------------------------------------------
   template <typename Component>
@@ -316,9 +291,8 @@ namespace nsECSFramework
     auto index = TypeIndex<Component>();
     auto pC = (Component*)pEntity->GetComponent( index );
 
-    //auto cbRemove = ( CallBackPtr<Component>* )mOnRemoveCallBack[index];
-    //if ( cbRemove != nullptr )
-      //cbRemove->Notify( eid, pC );
+    mRemoveCollector.Set( index, eid );
+    NotifyOnRemoveComponent( index, eid, pC );
 
     RemoveComponent( eid, pEntity, index );
   }
@@ -385,21 +359,24 @@ namespace nsECSFramework
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  int TEntityManager::OnAdd( void* pObject )
+  int TEntityManager::OnAdd()
   {
-    return 0;
+    auto index = TypeIndex<Component>();
+    return mAddCollector.Register( index );
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  int TEntityManager::OnUpdate( void* pObject )
+  int TEntityManager::OnUpdate()
   {
-    return 0;
+    auto index = TypeIndex<Component>();
+    return mUpdateCollector.Register( index );
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>
-  int TEntityManager::OnRemove( void* pObject )
+  int TEntityManager::OnRemove()
   {
-    return 0;
+    auto index = TypeIndex<Component>();
+    return mRemoveCollector.Register( index );
   }
   //---------------------------------------------------------------------------------------
   template<typename T0>
@@ -415,6 +392,19 @@ namespace nsECSFramework
   {
     Fill( pComplexType, t0 );
     Fill( pComplexType, t1, args ... );
+  }
+  //---------------------------------------------------------------------------------------
+  template<typename Component>
+  TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnRemoveComponent()
+  {
+    auto index = TypeIndex<Component>();
+    auto pCB = mRemoveCBVector[index];
+    if ( pCB == nullptr )
+    {
+      pCB = new TCB_EntPtrCom();
+      mRemoveCBVector[index] = pCB;
+    }
+    return pCB;
   }
   //---------------------------------------------------------------------------------------
 }

@@ -37,18 +37,18 @@ void StartServer( int argc, char** argv );
 int main( int argc, char** argv )
 {
   //###
-  TSetOrderElement soe;
-  soe.PushBack( 3, TSetOrderElement::InGroup );
-  soe.PushBack( 4, TSetOrderElement::Simple );
+  //TSetOrderElement soe;
+  //soe.PushBack( 3, TSetOrderElement::InGroup );
+  //soe.PushBack( 4, TSetOrderElement::Simple );
 
-  unsigned int simpleKey;
-  auto simpleRes = soe.GetFirst( simpleKey, TSetOrderElement::Simple );
+  //unsigned int simpleKey;
+  //auto simpleRes = soe.GetFirst( simpleKey, TSetOrderElement::Simple );
 
-  unsigned int inGroupKey;
-  auto inGroupRes = soe.GetFirst( inGroupKey, TSetOrderElement::InGroup );
-  soe.MoveToSimple( inGroupKey );
+  //unsigned int inGroupKey;
+  //auto inGroupRes = soe.GetFirst( inGroupKey, TSetOrderElement::InGroup );
+  //soe.MoveToSimple( inGroupKey );
 
-  simpleRes = soe.GetFirst( simpleKey, TSetOrderElement::Simple );
+  //simpleRes = soe.GetFirst( simpleKey, TSetOrderElement::Simple );
   //###
 
   setlocale( LC_ALL, "Russian" );

@@ -15,25 +15,30 @@ namespace nsECSFramework
   class DllExport TReactiveOnAddSystem : public TBaseReactiveSystem
   {
   public:
-
-    TReactiveOnAddSystem()
-    {
-      mEventWaiterID = GetEntityManager()->OnAdd<Component>( this );
-    }
-
-    void Update() override final
+    TReactiveOnAddSystem( bool useThinning = true ) : TBaseReactiveSystem( useThinning )
     {
       auto pEntMng = GetEntityManager();
-      pEntMng->GetAddEvents( mEventWaiterID, mEntLoopList );
-      TEntityID eid;
-      while ( mEntLoopList.Next( eid ) )
+      mEventWaiterID = pEntMng->OnAdd<Component>();
+      mCollector = &( pEntMng->mAddCollector );
+    }
+  protected:
+    void Filter( TEntityIdVectorRise& entities ) override
+    {
+      auto pEntMng = GetEntityManager();
+      // entity
+      int filtered = 0;
+      for ( size_t i = 0; i < entities.mCounter; i++ )
       {
-        if ( pEntMng->HasComponent<Component>( eid ) )
+        auto& entity = entities.mVec[i];
+        if ( pEntMng->HasComponent<Component>( entity ) == false )
+          continue;
+        if ( Filter( entity ) )
         {
-          if ( Filter( eid ) )
-            Reactive( eid );
+          entities.mVec[filtered] = entity;
+          filtered++;
         }
       }
+      entities.mCounter = filtered;
     }
   };
 }
