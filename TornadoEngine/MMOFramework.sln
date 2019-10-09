@@ -172,6 +172,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibExperiment", "Test\LibEx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TypeIdentifierTest", "Test\TypeIdentifierTest\TypeIdentifierTest.vcxproj", "{D2A02C8F-1344-4D1B-8E69-2214FD1800F0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_SSL", "Test\test_SSL\test_SSL.vcxproj", "{56B43845-038F-4523-BAC5-D5558F118196}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -662,6 +667,18 @@ Global
 		{D2A02C8F-1344-4D1B-8E69-2214FD1800F0}.Release|x64.Build.0 = Release|x64
 		{D2A02C8F-1344-4D1B-8E69-2214FD1800F0}.Release|x86.ActiveCfg = Release|Win32
 		{D2A02C8F-1344-4D1B-8E69-2214FD1800F0}.Release|x86.Build.0 = Release|Win32
+		{56B43845-038F-4523-BAC5-D5558F118196}.Debug|x64.ActiveCfg = Debug|x64
+		{56B43845-038F-4523-BAC5-D5558F118196}.Debug|x64.Build.0 = Debug|x64
+		{56B43845-038F-4523-BAC5-D5558F118196}.Debug|x86.ActiveCfg = Debug|Win32
+		{56B43845-038F-4523-BAC5-D5558F118196}.Debug|x86.Build.0 = Debug|Win32
+		{56B43845-038F-4523-BAC5-D5558F118196}.Profile|x64.ActiveCfg = Release|x64
+		{56B43845-038F-4523-BAC5-D5558F118196}.Profile|x64.Build.0 = Release|x64
+		{56B43845-038F-4523-BAC5-D5558F118196}.Profile|x86.ActiveCfg = Release|Win32
+		{56B43845-038F-4523-BAC5-D5558F118196}.Profile|x86.Build.0 = Release|Win32
+		{56B43845-038F-4523-BAC5-D5558F118196}.Release|x64.ActiveCfg = Release|x64
+		{56B43845-038F-4523-BAC5-D5558F118196}.Release|x64.Build.0 = Release|x64
+		{56B43845-038F-4523-BAC5-D5558F118196}.Release|x86.ActiveCfg = Release|Win32
+		{56B43845-038F-4523-BAC5-D5558F118196}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -711,6 +728,7 @@ Global
 		{BA7C9499-B754-4AC2-9B0E-354289BCEF88} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
 		{E0AAFC73-CC86-4BFA-BEC7-8422637658D0} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
 		{D2A02C8F-1344-4D1B-8E69-2214FD1800F0} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
+		{56B43845-038F-4523-BAC5-D5558F118196} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}

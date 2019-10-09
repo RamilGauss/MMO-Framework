@@ -9,6 +9,7 @@ See for more information License.h.
 
 #include "DstEvent.h"
 #include "MMOEngine/include/BaseEvent.h"
+#include "MMOEngine/include/Client.h"
 #include <unordered_set>
 #include <unordered_map>
 
@@ -33,6 +34,10 @@ public:
   void AddConnection( unsigned int sessionID );
   void RemoveConnection( unsigned int sessionID );
 
+  void AddConnectedClient( nsMMOEngine::TClient* pClient );
+  void RemoveConnectedClient( nsMMOEngine::TClient* pClient );
+
+
   void AddClient( unsigned int clientKey );
   void RemoveClient( unsigned int clientKey );
 
@@ -47,6 +52,7 @@ protected:
 public:
   static void PrintCC( const char* loggerName );
 
+  typedef std::unordered_set<nsMMOEngine::TClient*> TSetClient;
   typedef std::unordered_set<unsigned int> TSetUInt;
   typedef std::unordered_map<THandlerMMO::TypeMMO, TSetUInt> TMapTypeMMOSetUInt;
   typedef std::unordered_map<unsigned int, TSetUInt> TMapUIntSetUInt;

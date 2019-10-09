@@ -7,15 +7,13 @@
 1. Итак, архив MMO-Framework.zip скачан с github.com и распакован.
 2. В системе должно быть установлено: 
     2.1. Opera/Firefox/Chrome для скачивания зависимостей.
-    2.2. VisulaStudio 2017 Community - ОБЯЗАТЕЛЬНО
-            Visual Studio 2017: https://www.visualstudio.com/ru/downloads/?rr=https%3A%2F%2Fwww.google.ru%2F
+    2.2. VisulaStudio 2019 Community - ОБЯЗАТЕЛЬНО
+            Visual Studio 2019: https://www.visualstudio.com/ru/downloads/?rr=https%3A%2F%2Fwww.google.ru%2F
     2.3. По возможности, либо Total Commander, либо Far manager 3 - для удобства манипуляций с файлами.
     
 3. По ссылке необходимо скачать следующие архивы и исполняемые файлы: 
         https://github.com/RamilGauss/MMO-FrameworkDependency       - скачать архив репоизтория (зависимости проекта).
     При скачивании исполняемых файлов ставить галку "Я хочу скачать этот файл".
-        https://cloud.mail.ru/public/DUK2/XwGHLghb9                 - boost_1_66_0-msvc-14.1-32.exe.
-        https://cloud.mail.ru/public/7rNU/Hr7mi6AY6                 - boost_1_66_0-msvc-14.1-64.exe.
         https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe - DirectX_SDK.exe.
         https://cloud.mail.ru/public/GTAA/7e3PoB8q8                 - PostgreSQL 10.
 
@@ -34,8 +32,7 @@
     Windows 7/10:  Win+Break->Дополнительные параметры системы->Переменные среды.
     Добавить переменные:
     DEP_PATH_MMO_FRAMEWORK = C:\Dependency             - путь, куда распакованы зависимости.
-    BOOST_PATH   = C:\Program Files (x86)\boost_1_66_0 - путь, куда распакован 32-битный boost.
-    BOOST_PATH64 = C:\Program Files\boost_1_66_0       - путь, куда распакован 64-битный boost.
+    BOOST_PATH     = C:\Program Files\boost_1_71_0     - путь, куда распакован boost (32+64).
     POSTGRESQL_DEV = C:\Program Files\PostgreSQL\10    - путь, куда установлен PostgreSQL.
     
     Примечание: после добавления закрыть все оконные приложения. Старые значения переменных захватываются
@@ -46,8 +43,8 @@
 	значения, описывающих версию и название dll, например, -v 8 -d GameImpl_d.dll.
 	-v - номер версии (см. файл DefMainFunc_DeveloperDLL.cpp).
 
-	P.S. Настройка Boost под VS 2017 ( убирает warning Boost_Config )
-	В файле boost_1_66_1\boost\config\compiler\visualc.hpp ищем строку 330.
+	P.S. Настройка Boost под VS 2019 ( убирает warning Boost_Config )
+	В файле boost_1_71_0\boost\config\compiler\visualc.hpp ищем строку 330.
 	Меняем 1911 на 1914 что бы было так:
 	#if (_MSC_VER > 1914)
 	
@@ -61,14 +58,12 @@
 1. So, the MMO-Framework.zip archive has been downloaded from github.com and unpacked.
 2. In the operating system must be installed:
     2.1. Opera / Firefox / Chrome for downloading dependencies.
-    2.2. Visual Studio 2017 Community - MANDATORY for installation
-            Visual Studio 2017: https://www.visualstudio.com
+    2.2. Visual Studio 2019 Community - MANDATORY for installation
+            Visual Studio 2019: https://www.visualstudio.com
 
 3. Following link should download the following archives and executable files:
         https://github.com/RamilGauss/MMO-FrameworkDependency       - download archive repository (project dependencies).
 	When downloading executable files, check "Я хочу скачать этот файл"("I want to download this file").
-        https://cloud.mail.ru/public/DUK2/XwGHLghb9                 - boost_1_66_0-msvc-14.1-32.exe.
-        https://cloud.mail.ru/public/7rNU/Hr7mi6AY6                 - boost_1_66_0-msvc-14.1-64.exe.
         https://cloud.mail.ru/public/3aeed0579bd1%2FDXSDK_Jun10.exe - DirectX_SDK.exe.
         https://cloud.mail.ru/public/GTAA/7e3PoB8q8                 - PostgreSQL 10.
 
@@ -87,8 +82,7 @@
     Windows 7/10:  Win+Break->Additional system parameters->Environment Variables.
 		Add Variables:
     DEP_PATH_MMO_FRAMEWORK = C:\Dependency             - The path to which dependencies are unpacked.
-    BOOST_PATH   = C:\Program Files (x86)\boost_1_66_0 - The path to which 32-bit boost is unpacked.
-    BOOST_PATH64 = C:\Program Files\boost_1_66_0       - The path to which 64-bit boost is unpacked.
+    BOOST_PATH64 = C:\Program Files\boost_1_71_0       - The path to which boost is unpacked (32+64).
     POSTGRESQL_DEV = C:\Program Files\PostgreSQL\10    - The path to witch PostgreSQL is installed.
 
 	Note: after adding, close all window applications. Old variable values are captured
@@ -99,7 +93,7 @@
 	that describe the version and name of the dll, for example, -v 8 -d GameImpl_d.dll.
 	-v - version number (see file DefMainFunc_DeveloperDLL.cpp).
 
-	P.S. Configuring Boost for VS 2017 (clearing the warning Boost_Config)
-	In file boost_1_66_1\boost\config\compiler\visualc.hpp find line 330.
+	P.S. Configuring Boost for VS 2019 (clearing the warning Boost_Config)
+	In file boost_1_71_0\boost\config\compiler\visualc.hpp find line 330.
 	Change 1911 to 1914 what would it be like:
 	#if (_MSC_VER > 1914)

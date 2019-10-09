@@ -117,7 +117,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -130,7 +130,7 @@
     <Link>
       <AdditionalDependencies>Base_d.lib;BulletCollision_d.lib;BulletDynamics_d.lib;BulletSoftBody_d.lib;LinearMath_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
@@ -168,7 +168,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -179,7 +179,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH64)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>

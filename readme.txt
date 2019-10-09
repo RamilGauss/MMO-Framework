@@ -15,8 +15,8 @@ To view the architectural decisions need Enterprise Architect 7.0+.
 Article on habrahabr: http://habrahabr.ru/post/233915/
 
 		DEPENDENCY:
-	Boost   1.66+, 
-	OpenSSL 1.0.1u, 
+	Boost   1.71+, 
+	OpenSSL 1.1.1d, 
 	MyGUI   3.2.0, 
 	OGRE    1.9, 
 	Bullet  2.81+.
@@ -40,8 +40,8 @@ Dependencies: https://github.com/RamilGauss/MMO-FrameworkDependency
 
 
 		Список зависимостей:
-	Boost   1.66+, 
-	OpenSSL 1.0.1u, 
+	Boost   1.71+, 
+	OpenSSL 1.1.1d, 
 	MyGUI   3.2.0, 
 	OGRE    1.9, 
 	Bullet  2.81+.

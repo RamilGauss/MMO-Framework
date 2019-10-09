@@ -29,6 +29,8 @@ static THandlerMMO::TSetUInt g_ClientKeySet;
 
 static THandlerMMO::TSetUInt g_Client2Master_TryConnectSet;
 
+static THandlerMMO::TSetClient g_ConnectedClients;
+
 static unsigned int g_LastID = 0;
 
 THandlerMMO::THandlerMMO( nsMMOEngine::TBase* pBase, TypeMMO type )
@@ -70,8 +72,21 @@ void THandlerMMO::Work()
   WorkInherit();
 }
 //-----------------------------------------------------------------------------------
+void THandlerMMO::AddConnectedClient( nsMMOEngine::TClient* pClient )
+{
+  g_ConnectedClients.insert( pClient );
+}
+//-----------------------------------------------------------------------------------
+void THandlerMMO::RemoveConnectedClient( nsMMOEngine::TClient* pClient )
+{
+  g_ConnectedClients.erase( pClient );
+}
+//-----------------------------------------------------------------------------------
 int THandlerMMO::GetCountConnection( TypeMMO type )
 {
+  if ( type == eClient )
+    return g_ConnectedClients.size();
+
   auto fit = g_Type_IDMap.find( type );
   if( fit == g_Type_IDMap.end() )
     return 0;

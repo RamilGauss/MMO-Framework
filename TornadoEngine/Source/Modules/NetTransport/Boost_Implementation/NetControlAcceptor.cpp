@@ -54,7 +54,7 @@ void TNetControlAcceptor::Close()
 //------------------------------------------------------------------------------
 void TNetControlAcceptor::AcceptEvent( const boost::system::error_code& error )
 {
-  if( error.failed() == false )
+  if ( error.failed() == false )
   {
     TIP_Port ip_port;
     ip_port.port = pNewControlTCP->GetDevice()->GetSocket()->remote_endpoint().port();

@@ -9,6 +9,7 @@ See for more information License.h.
 
 #include "HandlerMMO.h"
 #include "ClientDesc.h"
+#include <set>
 
 class THandlerMMO_Client : public THandlerMMO
 {
