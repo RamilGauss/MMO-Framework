@@ -7,9 +7,11 @@ TARGET = /usr/lib/ECS
 
 INCLUDEPATH = \
 . \
-./Conveyer \
-./entt
+./include \
+./src \
+../../Base/include
 
+LIBS += -lBase
 
 DEFINES += _USRDLL
 DEFINES += _CRT_SECURE_NO_WARNINGS
@@ -20,28 +22,41 @@ QMAKE_CXXFLAGS_RELEASE = -O3
 OBJECTS_DIR = ../../Temp/ECS
 
 SOURCES = \
-./Conveyer/ConveyerPartMaster.cpp \
-./Conveyer/ExecuteSystem.cpp \
-./Conveyer/ReactiveForManyEventsSystem.cpp \
-./Conveyer/ReactiveForOneEventSystem.cpp \
-./Conveyer/World.cpp
+./src/BaseReactiveSystem.cpp \
+./src/ConveyerPartMaster.cpp \
+./src/Entity.cpp \
+./src/EntityManager.cpp \
+./src/ExecuteSystem.cpp \
+./src/ReactiveForManyEventsSystem.cpp \
+./src/ReactiveForOneEventSystem.cpp \
+./src/World.cpp
 
 HEADERS = \
-./TypeDef.h \
-./Conveyer/BaseReactiveSystem.h\
-./Conveyer/ConveyerPartMaster.h \
-./Conveyer/ConveyerPartWithGlobalAccess.h \
-./Conveyer/DataMemoryPoolComponent.h \
-./Conveyer/ECSconfig.h \
-./Conveyer/ExecuteSystem.h \
-./Conveyer/FastUpperBound.h \
-./Conveyer/Feature.h \
-./Conveyer/GlobalAccess.h \
-./Conveyer/IConveyerPart.h \
-./Conveyer/InitSystem.h \
-./Conveyer/MemoryPool.h \
-./Conveyer/ReactiveForManyEventsSystem.h \
-./Conveyer/ReactiveForOneEventSystem.h \
-./Conveyer/System.h \
-./Conveyer/VectorRise.h \
-./Conveyer/World.h
+./include/BaseReactiveSystem.h \
+./include/ComplexType.h \
+./include/ComponentInfo.h \
+./include/Config.h \
+./include/ConnectTypeManager.h \
+./include/ContainerForReactive.h \
+./include/ConveyerPartMaster.h \
+./include/ConveyerPartWithGlobalAccess.h \
+./include/Entity.h \
+./include/EntityManager.h \
+./include/ExecuteSystem.h \
+./include/Feature.h \
+./include/GlobalAccess.h \
+./include/GlobalSystemInitializer.h \
+./include/GlobalSystemUpdater.h \
+./include/Helper.h \
+./include/HelpStructs.h \
+./include/IConveyerPart.h \
+./include/InitSystem.h \
+./include/LinkToList.h \
+./include/LoopList.h \
+./include/ReactiveForManyEventsSystem.h \
+./include/ReactiveForOneEventSystem.h \
+./include/ReactiveOnAddSystem.h \
+./include/ReactiveOnRemoveSystem.h \
+./include/ReactiveOnUpdateSystem.h \
+./include/System.h \
+./include/World.h

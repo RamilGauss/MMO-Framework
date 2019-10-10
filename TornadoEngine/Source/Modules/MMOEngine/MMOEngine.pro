@@ -12,9 +12,11 @@ INCLUDEPATH = \
 ./Scenario \
 ./ScenarioContext \
 ./SubSystem \
-../../Base/Headers
+../../Base/include \
+../../Modules/ECS/include
 
 LIBS += -lBase
+LIBS += -lECS
 
 DEFINES += _USRDLL
 DEFINES += _CRT_SECURE_NO_WARNINGS
@@ -66,14 +68,18 @@ SOURCES = \
 ./Source/Slave.cpp \
 ./Source/Structs.cpp \
 ./Source/SuperServer.cpp \
+./SubSystem/BaseLogic.cpp \
+./SubSystem/BaseMasterLogic.cpp \
+./SubSystem/ClientOnMasterLogic.cpp \
 ./SubSystem/ContainerContextSc.cpp \
-./SubSystem/ContextCrypto.cpp \
 ./SubSystem/ControlScenario.cpp \
+./SubSystem/ContextCrypto.cpp \
 ./SubSystem/CryptoContextManager.cpp \
 ./SubSystem/CryptMITM.cpp \
 ./SubSystem/DelegateManagerContextSc.cpp \
-./SubSystem/IScenarioContext.cpp \
+./SubSystem/GroupLogic.cpp \
 ./SubSystem/IScenario.cpp \
+./SubSystem/IScenarioContext.cpp \
 ./SubSystem/MakerScenario.cpp \
 ./SubSystem/ManagerContextClientLogining.cpp \
 ./SubSystem/ManagerContextClient_slave.cpp \
@@ -83,11 +89,13 @@ SOURCES = \
 ./SubSystem/ManagerGroupClient.cpp \
 ./SubSystem/ManagerManagerContextSc.cpp \
 ./SubSystem/ManagerRecommutation.cpp \
+./SubSystem/RCMLogic.cpp \
 ./SubSystem/ReceiverTransport.cpp \
 ./SubSystem/ScContextManager.cpp \
 ./SubSystem/Session.cpp \
 ./SubSystem/SessionManager.cpp \
 ./SubSystem/SessionNavigator.cpp \
+./SubSystem/SlaveOnMasterLogic.cpp \
 ./SubSystem/StateTimeWait.cpp \
 ./SubSystem/StatisticaClientInGroup.cpp \
 ./SubSystem/TransportManager.cpp
@@ -134,6 +142,10 @@ HEADERS = \
 ./Scenario/ScRecommutationClient_ClientImpl.h \
 ./Scenario/ScRecommutationClient_MasterImpl.h \
 ./Scenario/ScRecommutationClient_SlaveImpl.h \
+./SubSystem/BaseLogic.h \
+./SubSystem/BaseMasterLogic.h \
+./SubSystem/ClientOnMasterLogic.h \
+./SubSystem/Components.h \
 ./SubSystem/ContainerContextSc.h \
 ./SubSystem/ContextCrypto.h \
 ./SubSystem/ControlScenario.h \
@@ -141,6 +153,7 @@ HEADERS = \
 ./SubSystem/CryptoContextManager.h \
 ./SubSystem/DelegateManagerContextSc.h \
 ./SubSystem/DescRecvSession.h \
+./SubSystem/GroupLogic.h \
 ./SubSystem/IScenarioContext.h \
 ./SubSystem/IScenario.h \
 ./SubSystem/MakerScenario.h \
@@ -152,11 +165,13 @@ HEADERS = \
 ./SubSystem/ManagerGroupClient.h \
 ./SubSystem/ManagerManagerContextSc.h \
 ./SubSystem/ManagerRecommutation.h \
+./SubSystem/RCMLogic.h \
 ./SubSystem/ReceiverTransport.h \
 ./SubSystem/ScContextManager.h \
 ./SubSystem/Session.h \
 ./SubSystem/SessionManager.h \
 ./SubSystem/SessionNavigator.h \
+./SubSystem/SlaveOnMasterLogic.h \
 ./SubSystem/ScenarioBaseHeader.h \
 ./SubSystem/StateTimeWait.h \
 ./SubSystem/StatisticaClientInGroup.h \

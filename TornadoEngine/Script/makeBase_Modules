@@ -10,7 +10,13 @@ make clean
 make
 cd ..
 ###########################################################
-cd ./Modules/MMOEngine
+cd ./Modules/ECS
+qmake
+make clean
+make
+cd ..
+###########################################################
+cd ./MMOEngine
 qmake
 make clean
 make
