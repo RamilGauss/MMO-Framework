@@ -26,7 +26,6 @@
     <ClInclude Include="include\HelpStructs.h" />
     <ClInclude Include="include\IComponent.h" />
     <ClInclude Include="include\Config.h" />
-    <ClInclude Include="include\ConnectTypeManager.h" />
     <ClInclude Include="include\ConveyerPartMaster.h" />
     <ClInclude Include="include\ConveyerPartWithGlobalAccess.h" />
     <ClInclude Include="include\Entity.h" />
@@ -41,8 +40,6 @@
     <ClInclude Include="include\InitSystem.h" />
     <ClInclude Include="include\LinkToList.h" />
     <ClInclude Include="include\LoopList.h" />
-    <ClInclude Include="include\ReactiveForManyEventsSystem.h" />
-    <ClInclude Include="include\ReactiveForOneEventSystem.h" />
     <ClInclude Include="include\ReactiveOnAddSystem.h" />
     <ClInclude Include="include\ReactiveOnRemoveSystem.h" />
     <ClInclude Include="include\ReactiveOnUpdateSystem.h" />
@@ -55,8 +52,6 @@
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\ExecuteSystem.cpp" />
-    <ClCompile Include="src\ReactiveForManyEventsSystem.cpp" />
-    <ClCompile Include="src\ReactiveForOneEventSystem.cpp" />
     <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -8,7 +8,7 @@ See for more information License.h.
 #include "BaseMasterLogic.h"
 #include "Master.h"
 #include "Components.h"
-#include "EntityManager.h"
+#include "ECS/include/EntityManager.h"
 #include "Events.h"
 #include "Logger.h"
 

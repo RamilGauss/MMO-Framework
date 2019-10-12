@@ -9,7 +9,8 @@ INCLUDEPATH = \
 . \
 ./include \
 ./src \
-../3rdParty/libuv/include
+../3rdParty \
+../3rdParty/fmt/include
 
 DEFINES += _USRDLL
 DEFINES += _CRT_SECURE_NO_WARNINGS
@@ -29,7 +30,7 @@ LIBS += -lboost_system
 LIBS += -lboost_thread
 LIBS += -lboost_chrono
 LIBS += -lboost_locale
-LIBS += -llibuv
+LIBS += -lfmt
 
 
 SOURCES = \
@@ -70,8 +71,6 @@ SOURCES = \
 ./src/MD5.cpp \
 ./src/Mutex.cpp \
 ./src/Only_N_Object.cpp \
-./src/PopMaster.cpp \
-./src/PushMaster.cpp \
 ./src/ResolverSelf_IP_v4.cpp \
 ./src/ReversedContainerRise.cpp \
 ./src/SaveToFile.cpp \
@@ -81,8 +80,8 @@ SOURCES = \
 ./src/ShareLibWin.cpp \
 ./src/ShareMisc.cpp \
 ./src/SingletonManager.cpp \
+./src/SortedVecWithKeyMap.cpp \
 ./src/SrcEvent.cpp \
-./src/StateMachineManager.cpp \
 ./src/StorePathResources.cpp \
 ./src/SynchroAbonent.cpp \
 ./src/SynchroPoint.cpp \

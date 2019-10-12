@@ -6,7 +6,7 @@ See for more information License.h.
 */
 
 #pragma once
-#include "EntityManager.h"
+#include "ECS/include/EntityManager.h"
 #include "BaseLogic.h"
 #include "EnumMMO.h"
 #include "SetOrderElement.h"

@@ -1,4 +1,4 @@
-cd ../Source/3rdParty/libuv
+cd ../Source/3rdParty/fmt
 qmake
 make clean
 make
@@ -23,6 +23,12 @@ make
 cd ..
 ###########################################################
 cd ./NetTransport
+qmake
+make clean
+make
+cd ../../..
+###########################################################
+cd ./ClusterMonitorProtocol
 qmake
 make clean
 make

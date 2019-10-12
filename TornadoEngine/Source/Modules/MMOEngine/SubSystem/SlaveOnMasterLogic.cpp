@@ -12,7 +12,7 @@ See for more information License.h.
 #include "ControlScenario.h"
 #include "ContainerContextSc.h"
 
-#include "EntityManager.h"
+#include "ECS/include/EntityManager.h"
 #include "Logger.h"
 #include "ScenarioFlow.h"
 #include "ScenarioLoginClient.h"
@@ -476,9 +476,9 @@ void TSlaveOnMasterLogic::AddClientBySlaveSession( nsECSFramework::TEntityID cli
   void* resForClient = pC->mLoginClient.GetSaveQueueDataPtr();
   int sizeResClient = pC->mLoginClient.GetSaveQueueDataSize();
 
-  TClientStateComponent сlientStateComponent;
-  сlientStateComponent.v = TClientStateComponent::Logining;
-  mEntMng->SetComponent( clientEntity, сlientStateComponent );
+  TClientStateComponent clientStateComponent;
+  clientStateComponent.v = TClientStateComponent::Logining;
+  mEntMng->SetComponent( clientEntity, clientStateComponent );
 
   TSlaveSessionByClientComponent slaveSessionByClientComponent;
   slaveSessionByClientComponent.v = slaveSessionID;

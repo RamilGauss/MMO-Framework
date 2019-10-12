@@ -29,7 +29,7 @@ See for more information License.h.
 #include "GroupLogic.h"
 #include "SlaveOnMasterLogic.h"
 #include "ClientOnMasterLogic.h"
-#include "EntityManager.h"
+#include "ECS/include/EntityManager.h"
 
 using namespace nsMMOEngine;
 

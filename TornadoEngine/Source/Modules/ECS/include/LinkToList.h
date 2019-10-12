@@ -14,7 +14,7 @@ class TLinkToList
 {
 public:
   typedef std::list<Type> List;
-  typename typedef List::iterator Iterator;
+  typedef typename List::iterator Iterator;
 private:
   List* mList;
   Iterator mIt;

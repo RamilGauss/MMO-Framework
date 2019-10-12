@@ -8,8 +8,8 @@ TARGET = /usr/lib/NetTransport
 INCLUDEPATH = \
 . \
 ./Boost_Implementation \
-../MMOEngine/Include \
-../../Base/Headers
+../../Modules \
+../../Base/include
 
 DEFINES += _USRDLL
 DEFINES += _CRT_SECURE_NO_WARNINGS

@@ -19,7 +19,7 @@ DEFINES += _CRT_SECURE_NO_WARNINGS
 COMPILER_FLAGS         = -fPIC
 QMAKE_CXXFLAGS_RELEASE = -O3
 
-OBJECTS_DIR = ../../Temp/ECS
+OBJECTS_DIR = ../../../Temp/ECS
 
 SOURCES = \
 ./src/BaseReactiveSystem.cpp \
@@ -27,8 +27,6 @@ SOURCES = \
 ./src/Entity.cpp \
 ./src/EntityManager.cpp \
 ./src/ExecuteSystem.cpp \
-./src/ReactiveForManyEventsSystem.cpp \
-./src/ReactiveForOneEventSystem.cpp \
 ./src/World.cpp
 
 HEADERS = \
@@ -36,7 +34,6 @@ HEADERS = \
 ./include/ComplexType.h \
 ./include/ComponentInfo.h \
 ./include/Config.h \
-./include/ConnectTypeManager.h \
 ./include/ContainerForReactive.h \
 ./include/ConveyerPartMaster.h \
 ./include/ConveyerPartWithGlobalAccess.h \
@@ -49,12 +46,11 @@ HEADERS = \
 ./include/GlobalSystemUpdater.h \
 ./include/Helper.h \
 ./include/HelpStructs.h \
+./include/IComponent.h \
 ./include/IConveyerPart.h \
 ./include/InitSystem.h \
 ./include/LinkToList.h \
 ./include/LoopList.h \
-./include/ReactiveForManyEventsSystem.h \
-./include/ReactiveForOneEventSystem.h \
 ./include/ReactiveOnAddSystem.h \
 ./include/ReactiveOnRemoveSystem.h \
 ./include/ReactiveOnUpdateSystem.h \

@@ -26,7 +26,7 @@ See for more information License.h.
 #include "DelegateManagerContextSc.h"
 #include "Events.h"
 
-#include "EntityManager.h"
+#include "ECS/include/EntityManager.h"
 
 using namespace nsMMOEngine;
 

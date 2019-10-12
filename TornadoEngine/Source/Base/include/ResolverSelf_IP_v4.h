@@ -30,5 +30,5 @@ public:
   bool Get( std::string& sIP, int numNetWork = 0 );
   bool Get( unsigned int& numIP, int numNetWork = 0 );
 private:
-  static void InitVecDesc();
+  static void GetSelfIp4( TVectorDesc* pDescList );
 };

@@ -9,7 +9,6 @@ See for more information License.h.
 
 #include <string>
 #include <boost/lexical_cast.hpp>
-#include <typeinfo.h>
 
 #include "TypeDef.h"
 #include "BL_Debug.h"
@@ -77,3 +76,4 @@ T TSettings::ReadEntry( std::string key, T* defaultValue)
       t = *defaultValue;
   return t;
 }
+//-----------------------------------------------------------------------

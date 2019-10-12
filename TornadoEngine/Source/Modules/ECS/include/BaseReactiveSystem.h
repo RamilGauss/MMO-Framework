@@ -11,7 +11,6 @@ See for more information License.h.
 
 #include "System.h"
 #include "VectorRise.h"
-#include "ConnectTypeManager.h"
 #include "SortedThinningRestoreOrder.h"
 #include "SingletonManager.h"
 

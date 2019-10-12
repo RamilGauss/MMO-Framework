@@ -35,12 +35,6 @@
     <ClInclude Include="include\InitSystem.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ReactiveForManyEventsSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ReactiveForOneEventSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\System.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -48,9 +42,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Helper.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ConnectTypeManager.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\GlobalSystemInitializer.h">
@@ -104,12 +95,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ExecuteSystem.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ReactiveForManyEventsSystem.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ReactiveForOneEventSystem.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\World.cpp">

@@ -91,7 +91,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\ECS\include;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -118,7 +118,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\ECS\include;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -145,7 +145,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\ECS\include;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -173,7 +173,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\ECS\include;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

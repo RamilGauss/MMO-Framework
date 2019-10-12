@@ -85,7 +85,8 @@ void THandlerMMO_Client::HandleFromMMOEngine( nsEvent::TEvent* pEvent )
       sEvent = "InQueueLoginClient";
       auto pEnterEvent = ( nsMMOEngine::TEnterInQueueEvent* )pBE;
       //pClient->LeaveQueue();
-      GetLogger( ClientLog )->WriteF( "MMOEngine: %s, num = %d.\t\n", sEvent.data(), pEnterEvent->numInQueue );
+      auto numInQueue = pEnterEvent->numInQueue;
+      GetLogger( ClientLog )->WriteF( "MMOEngine: %s, num = %d.\t\n", sEvent.data(), numInQueue );
     }
     break;
     case nsMMOEngine::eLeaveQueue:

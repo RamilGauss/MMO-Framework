@@ -105,7 +105,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libuv_d.lib;shlwapi.lib;ws2_32.lib;libcrypto.lib;libssl.lib;fmt_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libcrypto.lib;libssl.lib;fmt_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -135,7 +135,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libuv_d.lib;shlwapi.lib;ws2_32.lib;libcrypto.lib;libssl.lib;fmt_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libcrypto.lib;libssl.lib;fmt_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -160,7 +160,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libuv.lib;shlwapi.lib;ws2_32.lib;libcrypto.lib;libssl.lib;fmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libcrypto.lib;libssl.lib;fmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -190,7 +190,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libuv.lib;shlwapi.lib;ws2_32.lib;libcrypto.lib;libssl.lib;fmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libcrypto.lib;libssl.lib;fmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

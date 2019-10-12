@@ -8,8 +8,14 @@ See for more information License.h.
 #include "ResolverSelf_IP_v4.h"
 #include "SingletonManager.h"
 #include <stdio.h>
-#include <libuv/include/uv.h>
+#include <boost/asio.hpp>
 #include <string.h>
+
+#ifndef WIN32
+#include <sys/types.h>
+#include <ifaddrs.h>
+#endif
+
 
 TResolverSelf_IP_v4::TVectorDesc* TResolverSelf_IP_v4::mVecDesc = nullptr;
 
@@ -18,31 +24,7 @@ TResolverSelf_IP_v4::TResolverSelf_IP_v4()
   if ( mVecDesc == nullptr )
     mVecDesc = SingletonManager()->Get<TVectorDesc>();
   if ( mVecDesc->size() == 0 )
-    InitVecDesc();
-}
-//----------------------------------------------------------------------------------
-void TResolverSelf_IP_v4::InitVecDesc()
-{
-  char buf[512];
-  uv_interface_address_t *info;
-  int count;
-
-  uv_interface_addresses( &info, &count );
-  int i = count;
-  while ( i-- )
-  {
-    uv_interface_address_t intf = info[i];
-    if ( intf.address.address4.sin_family == AF_INET &&
-      intf.is_internal == 0 )
-    {
-      TDescHost desc;
-      uv_ip4_name( &intf.address.address4, buf, sizeof( buf ) );
-      memcpy( &desc.ip, &intf.address.address4.sin_addr, sizeof( desc.ip ) );
-      desc.s = buf;
-      mVecDesc->push_back( desc );
-    }
-  }
-  uv_free_interface_addresses( info, count );
+    GetSelfIp4( mVecDesc );
 }
 //----------------------------------------------------------------------------------
 int TResolverSelf_IP_v4::GetCount()
@@ -66,3 +48,57 @@ bool TResolverSelf_IP_v4::Get( unsigned int& numIP, int numNetWork )
   return true;
 }
 //----------------------------------------------------------------------------------
+#ifdef WIN32
+void TResolverSelf_IP_v4::GetSelfIp4( TVectorDesc* pDescList )
+{
+  using boost::asio::ip::tcp;
+
+  boost::asio::io_service io_service;
+  tcp::resolver resolver( io_service );
+  tcp::resolver::query query( boost::asio::ip::host_name(), "" );
+  tcp::resolver::iterator iter = resolver.resolve( query );
+  tcp::resolver::iterator end; // End marker.
+  while ( iter != end )
+  {
+    tcp::endpoint ep = *iter;
+    iter++;
+    auto address = ep.address();
+    if ( address.is_v4() == false )
+      continue;
+    TDescHost desc;
+    desc.s = ep.address().to_string();
+    desc.ip = ep.address().to_v4().to_uint();
+    pDescList->push_back( desc );
+  }
+}
+#else
+// http://man7.org/linux/man-pages/man3/getifaddrs.3.html
+void TResolverSelf_IP_v4::GetSelfIp4( TVectorDesc* pDescList )
+{
+  struct ifaddrs* ifaddr, * ifa;
+  if ( getifaddrs( &ifaddr ) == -1 )
+    return;
+
+  char host[NI_MAXHOST];
+  for ( ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next )
+  {
+    if ( ifa->ifa_addr == nullptr )
+      continue;
+
+    int family = ifa->ifa_addr->sa_family;
+    if ( family == AF_INET )
+    {
+      struct sockaddr* addr;
+      int s = getnameinfo( ifa->ifa_addr, sizeof( struct sockaddr_in ),
+        host, NI_MAXHOST, nullptr, 0, NI_NUMERICHOST );
+      if ( s != 0 )
+        continue;
+      TDescHost desc;
+      desc.s = host;
+      desc.ip = ( (sockaddr_in*)( ifa->ifa_addr ) )->sin_addr.s_addr;
+      pDescList->push_back( desc );
+    }
+  }
+  freeifaddrs( ifaddr );
+}
+#endif

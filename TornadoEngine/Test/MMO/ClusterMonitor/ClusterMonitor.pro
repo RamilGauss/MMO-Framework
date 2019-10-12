@@ -3,13 +3,12 @@ LANGUAGE = C++
 
 CONFIG += qt warn_on
 
-TARGET = ../../../Exe/Client
+TARGET = ../../../Exe/ClusterMonitor
 
 INCLUDEPATH = \
 . \
 ../Share \
 ../../../Source/Modules \
-../../../Source/3rdParty/fmt/include \
 ../../../Source/Base/include
 
 DEFINES += _USRDLL
@@ -19,24 +18,21 @@ DEFINES += USE_MATH_TOOLS
 
 COMPILER_FLAGS = -fPIC
 
-OBJECTS_DIR = ../../../Temp/Client
+OBJECTS_DIR = ../../../Temp/ClusterMonitor
 
 LIBS += -lboost_system
-LIBS += -lfmt
 LIBS += -lBase
 LIBS += -lMMOEngine
 LIBS += -lNetTransport
+LIBS += -lClusterMonitorProtocol
 
 SOURCES = \
-HandlerMMO_Client.cpp \
-InputCmdTestMMO_Client.cpp \
-mainClient.cpp \
-../Share/CommonParam.cpp \
-../Share/HandlerMMO.cpp
+main.cpp \
+ClusterMonitorClientHandler.cpp \
+InputCmdTestMMO_ClusterMonitor.cpp \
+../Share/CommonParam.cpp
 
 HEADERS = \
-ClientDesc.h \
-HandlerMMO_Client.h \
-InputCmdTestMMO_Client.h \
-../Share/CommonParam.h \
-../Share/HandlerMMO.h
+ClusterMonitorClientHandler.h \
+InputCmdTestMMO_ClusterMonitor.h \
+../Share/CommonParam.h

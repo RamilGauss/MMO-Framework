@@ -7,13 +7,13 @@ TARGET = /usr/lib/MMOEngine
 
 INCLUDEPATH = \
 . \
-./Include \
-./Source \
+./include \
+./src \
 ./Scenario \
 ./ScenarioContext \
 ./SubSystem \
 ../../Base/include \
-../../Modules/ECS/include
+../../Modules
 
 LIBS += -lBase
 LIBS += -lECS
@@ -57,17 +57,17 @@ SOURCES = \
 ./Scenario/ScRecommutationClient_ClientImpl.cpp \
 ./Scenario/ScRecommutationClient_MasterImpl.cpp \
 ./Scenario/ScRecommutationClient_SlaveImpl.cpp \
-./Source/ActiveServer.cpp \
-./Source/Base.cpp \
-./Source/BaseServer.cpp \
-./Source/Client.cpp \
-./Source/EnumMMO.cpp \
-./Source/Events.cpp \
-./Source/INetTransport.cpp \
-./Source/Master.cpp \
-./Source/Slave.cpp \
-./Source/Structs.cpp \
-./Source/SuperServer.cpp \
+./src/ActiveServer.cpp \
+./src/Base.cpp \
+./src/BaseServer.cpp \
+./src/Client.cpp \
+./src/EnumMMO.cpp \
+./src/Events.cpp \
+./src/INetTransport.cpp \
+./src/Master.cpp \
+./src/Slave.cpp \
+./src/Structs.cpp \
+./src/SuperServer.cpp \
 ./SubSystem/BaseLogic.cpp \
 ./SubSystem/BaseMasterLogic.cpp \
 ./SubSystem/ClientOnMasterLogic.cpp \
@@ -109,19 +109,19 @@ HEADERS = \
 ./ScenarioContext/ContextScRecommutationClient.h \
 ./ScenarioContext/ContextScSendToClient.h \
 ./ScenarioContext/ContextScSynchroSlave.h \
-./Include/ActiveServer.h \
-./Include/BaseEvent.h \
-./Include/Base.h \
-./Include/BaseServer.h \
-./Include/Client.h \
-./Include/EnumMMO.h \
-./Include/Events.h \
-./Include/IMakerTransport.h \
-./Include/INetTransport.h \
-./Include/Master.h \
-./Include/Slave.h \
-./Include/Structs.h \
-./Include/SuperServer.h \
+./include/ActiveServer.h \
+./include/BaseEvent.h \
+./include/Base.h \
+./include/BaseServer.h \
+./include/Client.h \
+./include/EnumMMO.h \
+./include/Events.h \
+./include/IMakerTransport.h \
+./include/INetTransport.h \
+./include/Master.h \
+./include/Slave.h \
+./include/Structs.h \
+./include/SuperServer.h \
 ./Scenario/BaseScLoginClient.h \
 ./Scenario/BaseScLoginClient_Struct.h \
 ./Scenario/BaseScRecommutationClient.h \
