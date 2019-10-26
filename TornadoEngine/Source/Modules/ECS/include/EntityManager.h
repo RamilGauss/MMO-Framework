@@ -63,12 +63,44 @@ namespace nsECSFramework
 
     // filters
     template <typename Component>
-    TEntityID GetByUnique( Component& c );
+    DllExport TEntityID NoInline GetByUnique( Component& c )
+    {// definition must be after declaration!
+      auto index = TypeIndex<Component>();
+      auto pMap = mUniqueMapVec[index];
+      if ( pMap == nullptr )
+        return None;
+      auto fit = pMap->find( &c );
+      if ( fit == pMap->end() )
+        return None;
+      return fit->second;
+    }
     template <typename ... Args>
-    TEntityList* GetByValue( Args& ... );
-    template <typename ... Args>
-    TEntityList* GetByHas();
+    DllExport TEntityList* NoInline GetByValue( Args& ... args )
+    {// definition must be after declaration!
+      auto index = TypeIndex<Args...>();
+      auto pMap = mValueCollectionVec[index];
+      if ( pMap == nullptr )
+        return nullptr;
 
+      TEntityList* pResult = nullptr;
+      auto pComplexType = mComplexTypeMemoryPool->Pop();
+      Fill( pComplexType, args ... );// берем адреса из стека, безопасно, потому что переменные еще существуют в методе
+      auto fit = pMap->find( pComplexType );
+      if ( fit != pMap->end() )
+        pResult = fit->second;
+
+      // вернуть обратно в пул
+      pComplexType->Done();
+      mComplexTypeMemoryPool->Push( pComplexType );
+      return pResult;
+    }
+    template <typename ... Args>
+    DllExport TEntityList* NoInline GetByHas()
+    {// definition must be after declaration!
+      auto index = TypeIndex<Args...>();
+      auto pList = (TEntityList*)mHasCollectionVec[index];
+      return pList;
+    }
     // мгновенная реакция на удаления для освобождения ресурсов
     template<typename Component>
     TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnRemoveComponent();
@@ -132,13 +164,13 @@ namespace nsECSFramework
     typedef TColanderVector<TCB_EntPtrCom*> TCBVector;
 
     TCBVector mRemoveCBVector;
-  private:// inner use
+  public:// inner use
     template <typename ... Args>
-    DllExport unsigned int TypeIndex()
+    DLL_PUBLIC DllExport unsigned int NoInline TypeIndex()
     {
       return mTypeIndex->type<Args...>();
     }
-
+  private:
     TEntity* GetEntity( TEntityID id ) const;
 
     void RemoveComponent( TEntityID eid, TEntity* pEntity, int index );
@@ -160,20 +192,6 @@ namespace nsECSFramework
 
     void NotifyOnRemoveComponent( int index, TEntityID entity, IComponent* pC );
 
-  private:// reflection
-    template <typename ... Args>
-    constexpr DllExport void GetByUnique_helper() const noexcept
-    {
-    }
-    template <typename ... Args>
-    constexpr DllExport void GetByHas_helper() const noexcept
-    {
-    }
-    template <typename ... Args>
-    constexpr DllExport void GetByValue_helper() const noexcept
-    {
-    }
-
   private:
     boost::dll::experimental::smart_library mLib;
 
@@ -191,6 +209,7 @@ namespace nsECSFramework
     TStrSetList mHasComponentList;
     TStrSetList mValueComponentList;
 
+    void Fill( const std::string& methodName, std::string& demangled, TStrSet& strSet );
     void FindTypesOfMethod( const std::string& methodName, TStrSetList& resultList );
     void FindTypeIndex( const std::string& methodName, TStrSetStrMap& resultMap );
   };
@@ -211,7 +230,7 @@ namespace nsECSFramework
     {
       pC = (Component*)pEntity->GetComponent( index );
 
-      mAddCollector.Set( index, eid );
+      mUpdateCollector.Set( index, eid );
 
       TryRemoveFromUnique( eid, pC, index );
       TryRemoveFromValue( eid, index, pEntity );
@@ -219,7 +238,7 @@ namespace nsECSFramework
     else
     {
       pC = pEntity->AddComponent<Component>( index );
-      mUpdateCollector.Set( index, eid );
+      mAddCollector.Set( index, eid );
 
       TryAddInHas( eid, index, pEntity );
     }
@@ -308,54 +327,6 @@ namespace nsECSFramework
     }
     auto index = TypeIndex<Component>();
     return pEntity->HasComponent( index );
-  }
-  //---------------------------------------------------------------------------------------
-  template <typename Component>
-  TEntityID TEntityManager::GetByUnique( Component& c )
-  {
-    GetByUnique_helper<Component>();
-
-    auto index = TypeIndex<Component>();
-    auto pMap = mUniqueMapVec[index];
-    if ( pMap == nullptr )
-      return None;
-    auto fit = pMap->find( &c );
-    if ( fit == pMap->end() )
-      return None;
-    return fit->second;
-  }
-  //---------------------------------------------------------------------------------------
-  template <typename ... Args>
-  TEntityList* TEntityManager::GetByValue( Args& ... args )
-  {
-    GetByValue_helper<Args...>();
-
-    auto index = TypeIndex<Args...>();
-    auto pMap = mValueCollectionVec[index];
-    if ( pMap == nullptr )
-      return nullptr;
-
-    TEntityList* pResult = nullptr;
-    auto pComplexType = mComplexTypeMemoryPool->Pop();
-    Fill( pComplexType, args ... );// берем адреса из стека, безопасно, потому что переменные еще существуют в методе
-    auto fit = pMap->find( pComplexType );
-    if ( fit != pMap->end() )
-      pResult = fit->second;
-
-    // вернуть обратно в пул
-    pComplexType->Done();
-    mComplexTypeMemoryPool->Push( pComplexType );
-    return pResult;
-  }
-  //---------------------------------------------------------------------------------------
-  template <typename ... Args>
-  TEntityList* TEntityManager::GetByHas()
-  {
-    GetByHas_helper<Args...>();
-
-    auto index = TypeIndex<Args...>();
-    auto pList = (TEntityList*)mHasCollectionVec[index];
-    return pList;
   }
   //---------------------------------------------------------------------------------------
   template<typename Component>

@@ -45,9 +45,9 @@ int main( int argc, char** argv )
   {
     StartClients( argc, argv );
   }
-  catch( ... )
+  catch( std::exception& e  )
   {
-    printf( "exception!!!\n" );
+    printf( "exception!!! %s\n", e.what() );
     getchar();
   }
 #endif

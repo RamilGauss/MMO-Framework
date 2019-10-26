@@ -1,9 +1,9 @@
 ﻿    Russian
-		
-	sudo apt-get install xinit
-	sudo apt-get install kubuntu-desktop
-	sudo apt-get install kde-workspace-randr // выбор разрешения экрана
-	sudo apt-get install synaptic // лучше ставить через установщик программ
+
+Ubuntu 19 server
+sudo apt install tasksel
+sudo tasksel
+sudo apt-get install synaptic // лучше ставить через установщик программ
 		
 		
 	Способ увеличения количества соединений.

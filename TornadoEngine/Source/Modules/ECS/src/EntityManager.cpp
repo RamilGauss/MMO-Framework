@@ -14,20 +14,20 @@ using namespace nsECSFramework;
 namespace dll = boost::dll;
 
 // const 
-const std::string classLiteral = "class";
-const std::string structLiteral = "struct";
-
 const std::string templateBegin = "<";
-const std::string templateEnd = ">";
 
-const std::string commaLiteral = ",";
+const char leftCornerLiteral = '<';
+const char rightCornerLiteral = '>';
+const char commaLiteral = ',';
+const char spaceLiteral = ' ';
 
 const std::string typeIndexMethodName = "TypeIndex";
 
-const std::string getByUniqueMethodName = "GetByUnique_helper";
-const std::string getByHasMethodName = "GetByHas_helper";
-const std::string getByValueMethodName = "GetByValue_helper";
+const std::string getByUniqueMethodName = "GetByUnique";
+const std::string getByHasMethodName = "GetByHas";
+const std::string getByValueMethodName = "GetByValue";
 
+#define SHOW_STAT
 
 //----------------------------------------------------------------------------------------------------
 TEntityManager::TEntityManager( int entityCount )
@@ -40,13 +40,62 @@ TEntityManager::TEntityManager( int entityCount )
   mUniqueMapMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TUniqueMap>>();
   mComplexTypePtrListPtrMapMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TComplexTypePtrListPtrMap>>();
 
-
   mTypeIndex = SingletonManager()->Get<TTypeIdentifier<TEntityManager>>();
 }
 //----------------------------------------------------------------------------------------------------
 TEntityManager::~TEntityManager()
 {
 
+}
+//----------------------------------------------------------------------------------------------------
+void TEntityManager::Fill( const std::string& methodName, std::string& demangled, TStrSet& strSet )
+{
+  auto beginFound = demangled.find( methodName );
+
+  auto pData = demangled.data();
+  auto argsBeginIndex = demangled.find( templateBegin, beginFound );
+  auto beginTypesIndex = argsBeginIndex + templateBegin.size();
+  auto offset = beginTypesIndex;
+
+  // функция для добавления
+  auto addFunc = [&]( int index )
+  {
+    // конец template
+    auto type = demangled.substr( offset, index - offset );
+    strSet.insert( type );
+    offset = index;
+  };
+
+  auto cornerBalance = 0;
+  for ( int i = argsBeginIndex; i < demangled.size(); i++ )
+  {
+    auto symbol = pData[i];
+    switch ( symbol )
+    {
+      case leftCornerLiteral:
+        cornerBalance++;
+        break;
+      case rightCornerLiteral:
+        cornerBalance--;
+        break;
+      case commaLiteral:
+        if ( cornerBalance == 1 )
+        {
+          addFunc( i );
+          offset += sizeof( commaLiteral );
+          if ( pData[i + 1] == spaceLiteral )
+            offset += sizeof( spaceLiteral );
+        }
+        break;
+    }
+
+    if ( cornerBalance == 0 )
+    {
+      // конец template
+      addFunc( i );
+      break;
+    }
+  }
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::FindTypesOfMethod( const std::string& methodName, TStrSetList& resultList )
@@ -61,34 +110,9 @@ void TEntityManager::FindTypesOfMethod( const std::string& methodName, TStrSetLi
     auto beginFound = demangled.find( methodName );
     if ( beginFound == std::string::npos )
       continue;
-    auto argsBeginIndex = demangled.find( templateBegin );
 
     TStrSet strSet;
-    int offset = argsBeginIndex;
-    while ( true )
-    {
-      auto classIndex = demangled.find( classLiteral, offset );
-      auto structIndex = demangled.find( structLiteral, offset );
-
-      if ( classIndex == std::string::npos &&
-        structIndex == std::string::npos )
-        break;
-
-      int typeIndex = classIndex + classLiteral.size();
-      if ( structIndex < classIndex )
-        typeIndex = structIndex + structLiteral.size();
-      typeIndex += 1;
-
-      auto typeEndIndex = demangled.find( commaLiteral, typeIndex );
-      if ( typeEndIndex == std::string::npos )
-        typeEndIndex = demangled.find( templateEnd, typeIndex );
-
-      std::string type = pData + typeIndex;
-      type = type.substr( 0, typeEndIndex - typeIndex );
-      strSet.insert( type );
-
-      offset = typeEndIndex;
-    }
+    Fill( methodName, demangled, strSet );
 
     if ( strSet.size() > 0 )
       resultList.push_back( strSet );
@@ -102,42 +126,16 @@ void TEntityManager::FindTypeIndex( const std::string& methodName, TStrSetStrMap
   for ( auto s : symbolStorage )
   {
     auto demangled = s.demangled;
-    auto pData = demangled.data();
 
     auto beginFound = demangled.find( methodName );
     if ( beginFound == std::string::npos )
       continue;
-    auto argsBeginIndex = demangled.find( templateBegin );
 
     TStrSet strSet;
-    int offset = argsBeginIndex;
-    while ( true )
-    {
-      auto classIndex = demangled.find( classLiteral, offset );
-      auto structIndex = demangled.find( structLiteral, offset );
-
-      if ( classIndex == std::string::npos &&
-        structIndex == std::string::npos )
-        break;
-
-      int typeIndex = classIndex + classLiteral.size();
-      if ( structIndex < classIndex )
-        typeIndex = structIndex + structLiteral.size();
-      typeIndex += 1;
-
-      auto typeEndIndex = demangled.find( commaLiteral, typeIndex );
-      if ( typeEndIndex == std::string::npos )
-        typeEndIndex = demangled.find( templateEnd, typeIndex );
-
-      std::string type = pData + typeIndex;
-      type = type.substr( 0, typeEndIndex - typeIndex );
-      strSet.insert( type );
-
-      offset = typeEndIndex;
-    }
+    Fill( methodName, demangled, strSet );
 
     if ( strSet.size() > 0 )
-      resultMap.insert( {strSet, pData} );
+      resultMap.insert( {strSet, demangled} );
   }
 }
 //----------------------------------------------------------------------------------------------------
@@ -155,13 +153,35 @@ void TEntityManager::Setup( std::string libName )
 
   FindTypeIndex( typeIndexMethodName, mTypeIndexNameFuncMap );
 
+  auto showWarning = mUniqueSet.size() == 0 && mHasComponentList.size() == 0 && mValueComponentList.size() == 0 && mTypeIndexNameFuncMap.size() == 0;
+  if ( showWarning )
+    printf( "Warning! TEntityManager Setup not found reflection info.\n" );
+#ifdef SHOW_STAT
+  printf( "uniqueCnt = %u, hasCnt = %u, valueCnt = %u, typeIndexCount = %u\n",
+    mUniqueSet.size(), mHasComponentList.size(), mValueComponentList.size(), mTypeIndexNameFuncMap.size() );
+
+  auto showFunc = [&]( std::string msg, auto& obj )
+  {
+    printf( "%s:\n", msg.data() );
+    for ( auto& s : obj )
+    {
+      for ( auto& d : s )
+        printf( "%s+", d.data() );
+      printf( "\n" );
+    }
+  };
+  showFunc( "unique", mUniqueSet );
+  showFunc( "has", mHasComponentList );
+  showFunc( "value", mValueComponentList );
+#endif
+
   using TypeIndexFunc = unsigned int( TEntityManager::* )( void );
   try
   {
     for ( auto strSetFunc : mTypeIndexNameFuncMap )
     {
       auto func = mLib.get_function<unsigned int( void )>( strSetFunc.second.data() );
-      auto pFunc = (TypeIndexFunc*)& func;
+      auto pFunc = (TypeIndexFunc*)&func;
       auto tiFunc = std::bind( *pFunc, this );
       auto typeIndexFunc = tiFunc();
 
