@@ -20,9 +20,6 @@ See for more information License.h.
   #ifndef NoInline
     #define NoInline
   #endif
-  #ifndef DLL_PUBLIC
-    #define DLL_PUBLIC
-  #endif
 #else// Linux
   #ifndef DllExport_C
     #define DllExport_C
@@ -32,9 +29,6 @@ See for more information License.h.
   #endif
   #ifndef NoInline
     #define NoInline __attribute__ ((noinline))
-  #endif
-  #ifndef DLL_PUBLIC
-    #define DLL_PUBLIC __attribute__((externally_visible))
   #endif
 #endif
 //------------------------------------------------------------------------------

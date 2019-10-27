@@ -165,11 +165,14 @@ namespace nsECSFramework
 
     TCBVector mRemoveCBVector;
   public:// inner use
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
     template <typename ... Args>
-    DLL_PUBLIC DllExport unsigned int NoInline TypeIndex()
+    DllExport unsigned int NoInline TypeIndex()
     {
       return mTypeIndex->type<Args...>();
     }
+#pragma GCC pop_options
   private:
     TEntity* GetEntity( TEntityID id ) const;
 
