@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
+//#define SHOW_STAT
+
 #include "EntityManager.h"
 #include "SingletonManager.h"
 #include "Entity.h"
@@ -12,6 +14,7 @@ See for more information License.h.
 using namespace nsECSFramework;
 
 namespace dll = boost::dll;
+namespace bexp = boost::dll::experimental;
 
 // const 
 const std::string templateBegin = "<";
@@ -27,7 +30,6 @@ const std::string getByUniqueMethodName = "GetByUnique";
 const std::string getByHasMethodName = "GetByHas";
 const std::string getByValueMethodName = "GetByValue";
 
-#define SHOW_STAT
 
 //----------------------------------------------------------------------------------------------------
 TEntityManager::TEntityManager( int entityCount )
@@ -159,20 +161,6 @@ void TEntityManager::Setup( std::string libName )
 #ifdef SHOW_STAT
   printf( "uniqueCnt = %u, hasCnt = %u, valueCnt = %u, typeIndexCount = %u\n",
     mUniqueSet.size(), mHasComponentList.size(), mValueComponentList.size(), mTypeIndexNameFuncMap.size() );
-
-  auto showFunc = [&]( std::string msg, auto& obj )
-  {
-    printf( "%s:\n", msg.data() );
-    for ( auto& s : obj )
-    {
-      for ( auto& d : s )
-        printf( "%s+", d.data() );
-      printf( "\n" );
-    }
-  };
-  showFunc( "unique", mUniqueSet );
-  showFunc( "has", mHasComponentList );
-  showFunc( "value", mValueComponentList );
 #endif
 
   using TypeIndexFunc = unsigned int( TEntityManager::* )( void );
@@ -180,10 +168,22 @@ void TEntityManager::Setup( std::string libName )
   {
     for ( auto strSetFunc : mTypeIndexNameFuncMap )
     {
-      auto func = mLib.get_function<unsigned int( void )>( strSetFunc.second.data() );
-      auto pFunc = (TypeIndexFunc*)&func;
-      auto tiFunc = std::bind( *pFunc, this );
-      auto typeIndexFunc = tiFunc();
+      auto& demangled = strSetFunc.second;
+
+      auto beginFound = demangled.find( typeIndexMethodName );
+      if ( beginFound == std::string::npos )
+        continue;
+
+      auto endFound = demangled.find( "(" );
+      if ( endFound == std::string::npos )
+        continue;
+
+      auto funcName = demangled.substr( beginFound, endFound - beginFound );
+
+      auto func = bexp::import_mangled<nsECSFramework::TEntityManager, unsigned int( void )>( mLib, funcName.data() );
+      auto typeIndexFunc = func( this );
+
+//      printf( "%s => %u\n", funcName.data(), typeIndexFunc );
 
       mCompnentsTypeIndexMap.insert( {strSetFunc.first, typeIndexFunc} );
     }

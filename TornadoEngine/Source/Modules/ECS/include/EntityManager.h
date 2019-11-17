@@ -168,7 +168,7 @@ namespace nsECSFramework
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
     template <typename ... Args>
-    DllExport unsigned int NoInline TypeIndex()
+    BOOST_SYMBOL_EXPORT unsigned int NoInline TypeIndex()
     {
       return mTypeIndex->type<Args...>();
     }

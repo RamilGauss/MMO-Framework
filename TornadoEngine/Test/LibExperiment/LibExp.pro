@@ -3,28 +3,26 @@ LANGUAGE = C++
 
 CONFIG += qt warn_on
 
-TARGET = ../../Exe/Tornado_d
+TARGET = ../../Exe/LibExp
 
 INCLUDEPATH = .
 
-DEFINES += _DEBUG
 DEFINES += _USRDLL
 DEFINES += _CRT_SECURE_NO_WARNINGS
 DEFINES += MARKUP_STL
 DEFINES += USE_MATH_TOOLS
 
-COMPILER_FLAGS = -fPIC
+QMAKE_CXXFLAGS = -fPIC
 QMAKE_LFLAGS = -rdynamic
 
-OBJECTS_DIR = ../../Temp/Debug/Game
+OBJECTS_DIR = ../../Temp/LibExp
 
 LIBS += -ldl
-LIBS += -lShare_d
-LIBS += -lGameEngine_d
+LIBS += -lboost_filesystem
+LIBS += -lboost_system
+LIBS += -lboost_thread
+LIBS += -lboost_chrono
+LIBS += -lboost_locale
 
-
-SOURCES = InputCmdTornado.cpp \
+SOURCES = \
 main.cpp
-
-
-HEADERS = InputCmdTornado.h

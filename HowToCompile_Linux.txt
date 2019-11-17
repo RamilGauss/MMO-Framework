@@ -27,3 +27,15 @@
 	Появится меню, выбрать "выполнить" и нажать "Установить все". Файлы станут другого цвета и появится звездочка.
 	5.3. Запустить последоватьльно ./makeBase_Modules, ./makeTestClient, ./makeTestServer.
 	5.4. Зайти в TornadoEngine/Exe/ и запустить в одной вкладке ./Server, в другой ./Client.
+
+
+Для корректной работы ECS (поиск вариантов использования GetByValue, GetByHas, GetByValue) поправить в boost::dll
+... boost_1_71_0\boost\dll\detail\demangling\itanium.hpp 
+
+Ищем функцию
+template<typename Class, typename Func>
+std::string mangled_storage_impl::get_mem_fn(const std::string &name) const
+
+правим поиск demangled
+    //auto found = std::find_if( storage_.begin(), storage_.end(), [&]( const entry& e ) { return e.demangled == matcher; } );
+    auto found = std::find_if(storage_.begin(), storage_.end(), [&](const entry& e) {return e.demangled.find( matcher ) != std::string::npos;});

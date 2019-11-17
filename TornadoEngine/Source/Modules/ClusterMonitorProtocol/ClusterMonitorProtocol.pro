@@ -21,6 +21,7 @@ LIBS += -lBase
 
 COMPILER_FLAGS = -fPIC
 QMAKE_CXXFLAGS_RELEASE = -O3
+QMAKE_LFLAGS = -rdynamic
 
 OBJECTS_DIR = ../../../Temp/Debug/ClusterMonitorProtocol
 

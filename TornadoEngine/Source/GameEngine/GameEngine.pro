@@ -15,6 +15,7 @@ DEFINES += MARKUP_STL
 DEFINES += USE_MATH_TOOLS
 
 COMPILER_FLAGS = -fPIC
+QMAKE_LFLAGS = -rdynamic
 
 OBJECTS_DIR = ../../Temp/Debug/GameEngine
 
