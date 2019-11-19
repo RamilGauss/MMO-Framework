@@ -32,4 +32,5 @@ protected:
   void OffNagl();
   void SetReUse();
   void Set_HardClose();
+  void SetNonBlockingMode( bool value );
 };

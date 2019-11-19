@@ -26,11 +26,8 @@ public:
   struct TInput
   {
     unsigned char sub_net = 0;
-    unsigned short self_port = 10000;
-    unsigned short server_port = 20000;
-    std::string ping_data;
-    int ping_time = 100;
-    unsigned int server_ip;
+    unsigned short client_count = 1;
+    unsigned short packet_size = 10;
   };
 
   TInputCmdTestTransport();

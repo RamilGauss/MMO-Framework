@@ -30,8 +30,8 @@ public:
 
   void Recv( nsMMOEngine::INetTransport::TDescRecv* p )
   {
-    count_recv++;
-    printf( "Recv event from %u\n", p->ip_port.port );
+    //count_recv++;
+    //printf( "Recv event from %u\n", p->ip_port.port );
     //if( count_recv == 1 )
       //mTransport->Close( p->ip_port.ip, p->ip_port.port );
   }

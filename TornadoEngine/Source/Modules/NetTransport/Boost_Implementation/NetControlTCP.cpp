@@ -130,15 +130,26 @@ void TNetControlTCP::ReadyRecv()
         boost::asio::placeholders::error,
         boost::asio::placeholders::bytes_transferred ) );
   }
-  catch ( std::exception& e )
+  catch ( std::exception & e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "ReadyRecv TCP error=%s.\n", e.what() );
   }
 }
 //----------------------------------------------------------------------------------
+//#define USE_ASYNC_SEND
 void TNetControlTCP::RequestSend( char* data, int size )
 {
+#ifdef USE_ASYNC_SEND
+  mDevice.GetSocket()->async_send( boost::asio::buffer( data, size ),
+    []( const boost::system::error_code& ec, std::size_t bytes_transferred )
+  {
+    if ( ec )
+    {
+      int ass = 0;
+    }
+  } );
+#else
 l_repeat:
   boost::asio::socket_base::message_flags flags = 0;
   boost::system::error_code ec;
@@ -156,6 +167,7 @@ l_repeat:
     data += resSend;
     goto l_repeat;
   }
+#endif
 }
 //----------------------------------------------------------------------------------
 void TNetControlTCP::RequestConnect( TIP_Port& ip_port )
@@ -168,7 +180,7 @@ void TNetControlTCP::RequestConnect( TIP_Port& ip_port )
     flgWaitConnect = false;
     flgResConnect = true;
   }
-  catch ( std::exception& e )
+  catch ( std::exception & e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "RequestConnect TCP error=%s, ip_port=%s.\n", e.what(), ip_port.ToString() );

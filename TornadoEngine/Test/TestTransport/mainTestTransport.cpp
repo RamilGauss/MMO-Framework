@@ -20,20 +20,20 @@ See for more information License.h.
 #include "CryptoAES_Impl.h"
 #include "SHA256.h"
 #include "NetTransport/HistoryPacketTCP.h"
-#include <uv.h>
 #include <errno.h>
 #include "Handler.h"
 
-nsMMOEngine::INetTransport* g_pTransport = nullptr;
+#define SEND_COUNT 10000000
+
+nsMMOEngine::INetTransport* g_pServerTransport = nullptr;
+std::vector<nsMMOEngine::INetTransport*> g_pClientTransportVec;
+
+unsigned short g_BeginPort = 30000;
 
 THandler* g_Handler;
 
 int main( int argc, char** argv )
 {
-  TBreakPacket g_BP;
-
-  SetCurrentPathByFile( argv[0] );
-
   TInputCmdTestTransport inputCmd;
   bool res = inputCmd.SetArg( argc, argv );
   BL_ASSERT( res );
@@ -41,53 +41,68 @@ int main( int argc, char** argv )
   TInputCmdTestTransport::TInput inputArg;
   inputCmd.Get( inputArg );
 
-  char sLog[100];
-  sprintf( sLog, "TestTransport%d", inputArg.self_port );
-
-  GetLogger()->Register( "TestNetTransport" );
-  GetLogger()->Init( sLog );
+  GetLogger()->Register( "TestTransport" );
+  GetLogger()->Init( "TestTransport" );
   GetLogger()->SetPrintf( false );
 
   TMakerNetTransport makerTransport;
-  g_pTransport = makerTransport.New();
-  g_Handler = new THandler( g_pTransport );
+  g_pServerTransport = makerTransport.New();
+  g_Handler = new THandler( g_pServerTransport );
 
-  g_pTransport->GetCallbackRecv()->Register( &THandler::Recv, g_Handler );
-  g_pTransport->GetCallbackDisconnect()->Register( &THandler::Disconnect, g_Handler );
-  g_pTransport->GetCallbackConnectFrom()->Register( &THandler::ConnectFrom, g_Handler );
+  g_pServerTransport->Open( g_BeginPort, inputArg.sub_net );
+  g_pServerTransport->Start();
 
-  g_pTransport->Open( inputArg.self_port, inputArg.sub_net );
-  g_pTransport->Start();
+  // обязательно инициализировать лог
+  std::string sLocalHost;
+  TResolverSelf_IP_v4 resolver;
+  resolver.Get( sLocalHost, inputArg.sub_net );
+  auto server_ip = boost::asio::ip::address_v4::from_string( sLocalHost ).to_ulong();
 
-  bool resConnect = g_pTransport->Connect( inputArg.server_ip, inputArg.server_port );
-  TIP_Port ip_port( inputArg.server_ip, inputArg.server_port);
-  printf( "Connect to ip_port=%s, %s\n", ip_port.ToString(), resConnect ? "OK" : "FAIL" );
-
-  unsigned int start = ht_GetMSCount();
-  while( true )
+  for ( int i = 0; i < inputArg.client_count; i++ )
   {
+    auto pClient = makerTransport.New();
+
+    //pClient->GetCallbackRecv()->Register( &THandler::Recv, g_Handler );
+    //pClient->GetCallbackDisconnect()->Register( &THandler::Disconnect, g_Handler );
+    //pClient->GetCallbackConnectFrom()->Register( &THandler::ConnectFrom, g_Handler );
+
+    auto port = g_BeginPort + i + 1;
+    pClient->Open( port, inputArg.sub_net );
+
+    bool resConnect = pClient->Connect( server_ip, g_BeginPort );
+    if ( resConnect == false )
+      printf( "Connect fails port = %u\n", port );
+
+    pClient->Start();
+    g_pClientTransportVec.push_back( pClient );
+  }
+
+  auto pPacket = new char[inputArg.packet_size];
+
+  TBreakPacket g_BP;
+  while ( true )
+  {
+    unsigned int start = ht_GetMSCount();
+    auto sendCount = SEND_COUNT / inputArg.client_count;
+    int sent = 0;
+    for ( int j = 0; j < sendCount; j++ )
+    {
+      for ( int i = 0; i < inputArg.client_count; i++ )
+      {
+        g_BP.Reset();
+        g_BP.PushBack( pPacket, inputArg.packet_size );
+
+        g_pServerTransport->Send( server_ip, g_BeginPort + i + 1, g_BP, false );
+        sent++;
+      }
+    }
     unsigned int now_ms = ht_GetMSCount();
 
-    if( resConnect && inputArg.ping_data.size() )
-      if( now_ms > start + inputArg.ping_time )
-      {
-        inputArg.ping_time += 1000;
+    auto delta = now_ms - start;
+    float timePerPacket = ( delta * 1000.0f ) / sent;
+    printf( "%f us\n", timePerPacket );
 
-        g_BP.Reset();
-        g_BP.PushBack( (char*)inputArg.ping_data.data(), inputArg.ping_data.size() );
-        g_pTransport->Send( inputArg.server_ip, inputArg.server_port, g_BP );
-      }
-
-    TIP_Port** ppFisrt = g_Handler->mListDisc.GetFirst();
-    while( ppFisrt )
-    {
-      TIP_Port* pIP_Port = *ppFisrt;
-      if( pIP_Port->port == inputArg.server_port )
-        resConnect = g_pTransport->Connect( inputArg.server_ip, inputArg.server_port );
-
-      g_Handler->mListDisc.RemoveFirst();
-      ppFisrt = g_Handler->mListDisc.GetFirst();
-    }
+    ht_msleep( 2000 );
   }
 
   return 0;

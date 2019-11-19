@@ -48,10 +48,12 @@ bool TNetDeviceTCP::Open( unsigned short port, unsigned char numNetWork )
     OffNagl();
     Set_HardClose();
 
+    //SetNonBlockingMode( true );
+
     mSocket.bind( endpoint_Local );
     res = true;
   }
-  catch ( std::exception& e )
+  catch ( std::exception & e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "Open TCP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what() );
@@ -66,7 +68,7 @@ void TNetDeviceTCP::Close()
   {
     mSocket.close();
   }
-  catch ( std::exception& e )
+  catch ( std::exception & e )
   {
     GetLogger( STR_NAME_NET_TRANSPORT )->
       WriteF_time( "Close TCP FAIL: %s.\n", e.what() );
@@ -78,6 +80,13 @@ void TNetDeviceTCP::OffNagl()
   boost::system::error_code ec;
   ip::tcp::no_delay option( true );
   mSocket.set_option( option );
+}
+//--------------------------------------------------------------------------------
+void TNetDeviceTCP::SetNonBlockingMode( bool value )
+{
+  boost::system::error_code ec;
+  mSocket.native_non_blocking( value, ec );
+  //mSocket.non_blocking( value, ec );
 }
 //--------------------------------------------------------------------------------
 void TNetDeviceTCP::SetReUse()

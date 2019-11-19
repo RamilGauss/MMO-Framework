@@ -1,2 +1,0 @@
-set PATH=%PATH%;%DEP_PATH_MMO_FRAMEWORK%\Bin;%DEP_PATH_MMO_FRAMEWORK%\Bin\ssl32;%DEP_PATH_MMO_FRAMEWORK%\Bin\ssl64
-TestTransport_d.exe self_port 10000 server_port 20000 server_ip 192.168.88.237 sub_net 2
