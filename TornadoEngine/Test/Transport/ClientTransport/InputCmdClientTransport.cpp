@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
 
-#include "InputCmdTestTransport.h"
+#include "InputCmdClientTransport.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -13,25 +13,27 @@ See for more information License.h.
 
 using namespace std;
 
-string KEY_SUB_NET( "subnet" );
+string KEY_SUB_NET( "sub_net" );
 string CLIENT_COUNT( "client_count" );
-string PACKET_SIZE( "packet_size" );
+string SERVER_IP( "server_ip" );
+string SERVER_PORT( "server_port" );
 
-TInputCmdTestTransport::TInputCmdTestTransport()
+TInputCmdClientTransport::TInputCmdClientTransport()
 {
   mVecDefKey.push_back( KEY_SUB_NET );
   mVecDefKey.push_back( CLIENT_COUNT );
-  mVecDefKey.push_back( PACKET_SIZE );
+  mVecDefKey.push_back( SERVER_IP );
+  mVecDefKey.push_back( SERVER_PORT );
 
   mCmdParam.SetDefKey( mVecDefKey );
 }
 //-------------------------------------------------------------------------------
-TInputCmdTestTransport::~TInputCmdTestTransport()
+TInputCmdClientTransport::~TInputCmdClientTransport()
 {
 
 }
 //-------------------------------------------------------------------------------
-bool TInputCmdTestTransport::SetArg( int argc, char** argv )
+bool TInputCmdClientTransport::SetArg( int argc, char** argv )
 {
   vector<string> vecArgv;
   for ( int i = 1; i < argc; i++ )
@@ -39,7 +41,7 @@ bool TInputCmdTestTransport::SetArg( int argc, char** argv )
   return SetArg( vecArgv );
 }
 //-------------------------------------------------------------------------------
-bool TInputCmdTestTransport::SetArg( vector<string>& vecArgv )
+bool TInputCmdClientTransport::SetArg( vector<string>& vecArgv )
 {
   mCmdParam.SetArg( vecArgv );
 
@@ -55,16 +57,22 @@ bool TInputCmdTestTransport::SetArg( vector<string>& vecArgv )
     mCmdParam.GetByKey( CLIENT_COUNT, 0, sClientCount );
     mInput.client_count = boost::lexical_cast<int>( sClientCount.data() );
   }
-  if ( mCmdParam.GetCountValueByKey( PACKET_SIZE ) == 1 )
+  if ( mCmdParam.GetCountValueByKey( SERVER_IP ) == 1 )
   {
-    string sPacketSize;
-    mCmdParam.GetByKey( PACKET_SIZE, 0, sPacketSize );
-    mInput.packet_size = boost::lexical_cast<int>( sPacketSize.data() );
+    string sServerIp;
+    mCmdParam.GetByKey( SERVER_IP, 0, sServerIp );
+    mInput.server_ip = sServerIp;
+  }
+  if ( mCmdParam.GetCountValueByKey( SERVER_PORT ) == 1 )
+  {
+    string sServerPort;
+    mCmdParam.GetByKey( SERVER_PORT, 0, sServerPort );
+    mInput.server_port = boost::lexical_cast<int>( sServerPort.data() );
   }
   return true;
 }
 //-------------------------------------------------------------------------------
-void TInputCmdTestTransport::Get( TInputCmdTestTransport::TInput& v_out )
+void TInputCmdClientTransport::Get( TInputCmdClientTransport::TInput& v_out )
 {
   v_out = mInput;
 }

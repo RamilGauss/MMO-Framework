@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information License.h.
 */
@@ -14,7 +14,7 @@ See for more information License.h.
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "ResolverSelf_IP_v4.h"
 
-class TInputCmdTestTransport
+class TInputCmdClientTransport
 {
   TCmdParam mCmdParam;
 
@@ -27,15 +27,16 @@ public:
   {
     unsigned char sub_net = 0;
     unsigned short client_count = 1;
-    unsigned short packet_size = 10;
+    std::string server_ip;
+    unsigned short server_port;
   };
 
-  TInputCmdTestTransport();
-  ~TInputCmdTestTransport();
+  TInputCmdClientTransport();
+  ~TInputCmdClientTransport();
 
-  bool SetArg(int argc, char** argv);
-  bool SetArg(std::vector<std::string>& vecArgv);
-  void Get(TInput& v_out);
+  bool SetArg( int argc, char** argv );
+  bool SetArg( std::vector<std::string>& vecArgv );
+  void Get( TInput& v_out );
 
 protected:
   TInput mInput;

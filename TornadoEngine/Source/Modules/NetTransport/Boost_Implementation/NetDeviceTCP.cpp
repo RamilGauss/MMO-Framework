@@ -39,18 +39,17 @@ bool TNetDeviceTCP::Open( unsigned short port, unsigned char numNetWork )
     return false;
   try
   {
-    const ip::address_v4 ipv4_address_Local = ip::address_v4::from_string( sLocalHost );
-    const ip::address addr_Local( ipv4_address_Local );
-    const ip::tcp::endpoint endpoint_Local( addr_Local, port );
-    mSocket.open( endpoint_Local.protocol() );
+    //const ip::address_v4 ipv4_address_Local = ip::address_v4::from_string( sLocalHost );
+    //const ip::address addr_Local( ipv4_address_Local );
+    //const ip::tcp::endpoint endpoint_Local( addr_Local, port );
+    mSocket.open( boost::asio::ip::tcp::v4() );
 
     SetReUse();
     OffNagl();
     Set_HardClose();
 
+    mSocket.bind( boost::asio::ip::tcp::endpoint( boost::asio::ip::tcp::v4(), port ) );
     //SetNonBlockingMode( true );
-
-    mSocket.bind( endpoint_Local );
     res = true;
   }
   catch ( std::exception & e )
@@ -85,8 +84,8 @@ void TNetDeviceTCP::OffNagl()
 void TNetDeviceTCP::SetNonBlockingMode( bool value )
 {
   boost::system::error_code ec;
-  mSocket.native_non_blocking( value, ec );
-  //mSocket.non_blocking( value, ec );
+  //mSocket.native_non_blocking( value, ec );
+  mSocket.non_blocking( value, ec );
 }
 //--------------------------------------------------------------------------------
 void TNetDeviceTCP::SetReUse()

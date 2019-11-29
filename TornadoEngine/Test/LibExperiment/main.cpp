@@ -1,3 +1,6 @@
+// For only Linux testing
+
+
 #include <boost/dll/runtime_symbol_info.hpp>
 #include <boost/dll/smart_library.hpp>
 #include <boost/dll/import_mangled.hpp>
@@ -10,6 +13,8 @@
 namespace dll = boost::dll;
 namespace bexp = boost::dll::experimental;
 
+const std::string kFuncLiteral = "Func";
+
 namespace space
 {
   class BOOST_SYMBOL_EXPORT my_plugin
@@ -17,12 +22,8 @@ namespace space
   public:
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
-    int TypeIndex()
-    {
-      return 42;
-    }
     template<typename Arg>
-    BOOST_SYMBOL_EXPORT int TypeIndex()
+    BOOST_SYMBOL_EXPORT int Func()
     {
       return 42;
     }
@@ -30,13 +31,14 @@ namespace space
   };
 }
 
-void Test();
+bool Test();
 
 int main( int argc, char** argv )
 {
   try
   {
-    Test();
+    auto testResult = Test() ? "Ok" : "fails";
+    std::cout << "Test result: " << testResult << std::endl;
   }
   catch ( std::exception & e )
   {
@@ -47,21 +49,17 @@ int main( int argc, char** argv )
   return 0;
 }
 
-using namespace space;
-
-void Test()
+bool Test()
 {
+  auto result = false;
   auto thisLineLocation = boost::dll::this_line_location();
 
   boost::dll::fs::path lib_path( thisLineLocation );
   dll::experimental::smart_library lib( lib_path );// smart library instance
 
   auto cl = new space::my_plugin();
-  cl->TypeIndex<void>();
-  cl->TypeIndex<float>();
-  cl->TypeIndex<space::my_plugin>();
-  int asd = cl->TypeIndex();
-  double dasd = cl->TypeIndex();
+  // make definition in export table
+  cl->Func<space::my_plugin>();
 
   auto storage = lib.symbol_storage().get_storage();
   for ( auto& s : storage )
@@ -69,9 +67,7 @@ void Test()
     auto& demangled = s.demangled;
     auto pData = demangled.data();
 
-    printf( "%s\n", demangled.data() ); 
-
-    auto beginFound = demangled.find( "TypeIndex" );
+    auto beginFound = demangled.find( kFuncLiteral );
     if ( beginFound == std::string::npos )
       continue;
 
@@ -83,6 +79,11 @@ void Test()
 
     auto typeIndexFunc = bexp::import_mangled<space::my_plugin, int( void )>( lib, funcName.data() );
     std::cout << funcName.data() << "\t" << typeIndexFunc( cl ) << std::endl;
+
+    result = true;
+    break;
   }
+
+  return result;
 }
 
