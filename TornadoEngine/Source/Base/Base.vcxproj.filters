@@ -104,9 +104,6 @@
     <ClInclude Include="include\IXML.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\License.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\ListPtr.h">
       <Filter>include</Filter>
     </ClInclude>

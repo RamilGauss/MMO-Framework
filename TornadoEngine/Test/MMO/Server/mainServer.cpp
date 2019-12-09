@@ -2,7 +2,7 @@
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
-See for more information License.h.
+See for more information LICENSE.md.
 */
 
 #include <boost/asio/ip/impl/address_v4.ipp>
@@ -27,8 +27,6 @@ See for more information License.h.
 #include "InputCmdTestMMO_Server.h"
 #include "ClusterMonitorServerHandler.h"
 #include "SrcEvent_ex.h"
-#include "SetOrderElement.h"//###
-
 
 #define COUNT_SLAVE 3
 
@@ -36,21 +34,6 @@ void StartServer( int argc, char** argv );
 
 int main( int argc, char** argv )
 {
-  //###
-  //TSetOrderElement soe;
-  //soe.PushBack( 3, TSetOrderElement::InGroup );
-  //soe.PushBack( 4, TSetOrderElement::Simple );
-
-  //unsigned int simpleKey;
-  //auto simpleRes = soe.GetFirst( simpleKey, TSetOrderElement::Simple );
-
-  //unsigned int inGroupKey;
-  //auto inGroupRes = soe.GetFirst( inGroupKey, TSetOrderElement::InGroup );
-  //soe.MoveToSimple( inGroupKey );
-
-  //simpleRes = soe.GetFirst( simpleKey, TSetOrderElement::Simple );
-  //###
-
   setlocale( LC_ALL, "Russian" );
 
 #ifdef WIN32
@@ -70,7 +53,7 @@ int main( int argc, char** argv )
   {
     StartServer( argc, argv );
   }
-  catch ( std::exception& e )
+  catch ( std::exception & e )
   {
     printf( "exception!!! %s\n", e.what() );
     getchar();

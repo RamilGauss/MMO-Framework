@@ -241,7 +241,6 @@
     <ClInclude Include="include\JsonMaster.h" />
     <ClInclude Include="include\JsonPopMaster.h" />
     <ClInclude Include="include\JsonPushMaster.h" />
-    <ClInclude Include="include\License.h" />
     <ClInclude Include="include\ListPtr.h" />
     <ClInclude Include="include\LoaderDLL_Unix.h" />
     <ClInclude Include="include\LoaderDLL_Win32.h" />
