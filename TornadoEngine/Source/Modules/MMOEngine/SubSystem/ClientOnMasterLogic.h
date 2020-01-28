@@ -39,5 +39,8 @@ namespace nsMMOEngine
 
     void AddClientBySlaveSession( unsigned int clientKey, unsigned int slaveSessionID, void* resForClient, int sizeResClient );
     void AddInQueue( unsigned int clientKey, void* resForClient, int sizeResClient, bool inGroup );
+
+    TContainerContextSc* GetContextByClientKey( unsigned int clientKey );
+    TContainerContextSc* GetContextBySessionID( unsigned int sessionID );
   };
 }

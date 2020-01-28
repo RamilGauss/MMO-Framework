@@ -90,52 +90,6 @@ void TClientOnMasterLogic::SetResultLogin( bool res, unsigned int clientSessionI
     AddClientBySlaveSession( clientKey, slaveSessionId, resForClient, sizeResClient );
   else
     AddInQueue( clientKey, resForClient, sizeResClient, inGroup );
-
-
-  //TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( clientSessionID );
-  //if ( pC == nullptr )
-  //  return;
-  //mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
-  //if ( res == false )
-  //{
-  //  // отказ
-  //  mControlSc->mLoginClient->Reject( resForClient, sizeResClient );
-  //  return;
-  //}
-  //// проверка на существование ключа в кластере
-  //unsigned int id_session_temp;
-  //if ( ( mMngContextClient->FindContextByClientKey( clientKey ) ) ||
-  //  ( mMngContextClientLogining->FindSessionByClientKey( clientKey, id_session_temp ) ) )
-  //{
-  //  TErrorEvent event;
-  //  event.code = LoginClient_MasterKeyBusy;
-  //  AddEventCopy( &event, sizeof( event ) );
-
-  //  // отказ
-  //  std::string sReject = "Reject login. Client was been authorized.";
-  //  mControlSc->mLoginClient->Reject( (void*) sReject.data(), sReject.length() );
-  //  return;
-  //}
-  //// связка сессии и ключа клиента
-  //mMngContextClientLogining->AddKeyBySession( clientSessionID, clientKey );
-  //// решить на какой Slave закинуть клиента
-  //// для Группы задан Slave, значит на него и перекидывать, но возможно он перегружен
-  //// навряд ли он перегружен, иначе, он самый не нагруженный, потому как только бы на него и пихали клиентов
-  //// а это противоречие, значит пихаем в него
-
-  //// клиент в группе?
-  //bool resAdd = false;
-  //unsigned int slaveSessionID;
-  //unsigned int groupID;
-  //bool inGroup = mMngGroup->FindIDByClientKey( clientKey, groupID );
-  //if ( inGroup )
-  //  resAdd = TryAddClientByGroup( clientKey, groupID, slaveSessionID );
-  //else
-  //  resAdd = TryAddClient( clientKey, slaveSessionID );
-  //if ( resAdd )
-  //  AddClientBySlaveSession( clientKey, slaveSessionID, resForClient, sizeResClient );
-  //else
-  //  AddInQueue( clientKey, resForClient, sizeResClient, inGroup );
 }
 //-------------------------------------------------------------------------------------------
 void TClientOnMasterLogic::NeedContextLoginClientBySessionAfterAuthorised( unsigned int sessionID )
@@ -156,18 +110,6 @@ void TClientOnMasterLogic::NeedContextLoginClientBySessionAfterAuthorised( unsig
   auto pC = mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
   // назначить контекст
   mBase->mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
-
-  //TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( sessionID );
-  //if ( pC == nullptr )
-  //{
-  //  // внутренняя ошибка
-  //  GetLogger( STR_NAME_MMO_ENGINE )->
-  //    WriteF_time( "TMaster::NeedContextLoginClientBySessionAfterAuthorised() context not found.\n" );
-  //  mControlSc->mLoginClient->SetContext( nullptr );
-  //  return;
-  //}
-  //// назначить контекст
-  //mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
 }
 //-------------------------------------------------------------------------------------------
 void TClientOnMasterLogic::EndLoginClient( IScenario* pSc )
@@ -219,73 +161,17 @@ void TClientOnMasterLogic::EndLoginClient( IScenario* pSc )
     pLoginEvent->clientKey = clientKey;
     mBase->AddEventWithoutCopy( pLoginEvent );
   }
-
-
-  //// получить контекст
-  //TContextScLoginClient* pContextLoginClient = (TContextScLoginClient*)pSc->GetContext();
-  //// переместить информацию из mMngContextClientLogining в mMngContextClient
-  //// либо по сессии 
-  //unsigned int clientSessionID = pContextLoginClient->GetID_SessionClientMaster();
-  //// ID Клиента
-  //unsigned int clientKey = pContextLoginClient->GetClientKey();
-  //// найти сессию Slave
-  //unsigned int slaveSessionID = pContextLoginClient->GetID_SessionMasterSlave();
-  //mMngLoginingClientsOnSlave->RemoveClient( clientKey );
-
-  //TContainerContextSc* pContainer =
-  //  mMngContextClientLogining->FindContextBySession( clientSessionID );
-  //// либо время вышло, либо отказали в авторизации
-  //if ( pContextLoginClient->IsReject() )
-  //{
-  //  // удалить из списка авторизующихся
-  //  mMngContextClientLogining->DeleteBySession( clientSessionID );
-  //  if ( pContainer )
-  //  {
-  //    std::vector<unsigned int> vecID_Client;
-  //    vecID_Client.push_back( pContextLoginClient->GetClientKey() );
-  //    mControlSc->mDisClient->SetContext( &pContainer->mDisClient );
-  //    pContainer->mDisClient.SetSessionID( mSessionUpID );
-  //    mControlSc->mDisClient->DisconnectFromMaster( vecID_Client );
-  //  }
-  //  return;
-  //}
-  //// тут если авторизация закончилась удачно
-  //if ( pContextLoginClient->IsAccept() )
-  //{
-  //  // удалить из списка авторизующихся
-  //  mMngContextClientLogining->UnlinkContextBySession( clientSessionID );
-  //  mMngContextClient->EntrustContext( clientKey, slaveSessionID, pContainer );
-
-  //  // если Клиент числится в группе, то добавить в статистику
-  //  unsigned int fakeGroupID;
-  //  if ( mMngGroup->FindIDByClientKey( clientKey, fakeGroupID ) )
-  //    mStatisticaClientInGroup->AddBySlaveSessionClientKey( slaveSessionID, clientKey );
-
-  //  auto pLoginEvent = new TLoginEvent();
-  //  pLoginEvent->clientKey = clientKey;
-  //  AddEventWithoutCopy( pLoginEvent );
-  //}
 }
 //-------------------------------------------------------------------------------------------
 void TClientOnMasterLogic::NeedContextLoginClientBySessionLeaveQueue( unsigned int sessionID )
 {
-  TClientSessionIdentityComponent clientSessionIdentityComponent;
-  clientSessionIdentityComponent.v = sessionID;
-  auto clientEntity = mEntMng->GetByUnique( clientSessionIdentityComponent );
-  if ( clientEntity == nsECSFramework::None )
+  auto pC = GetContextBySessionID( sessionID );
+  if ( pC == nullptr )
   {
     mBase->mControlSc->mLoginClient->SetContext( nullptr );// сам вышел из очереди, ну и хер с ним
     return;
   }
-
-  auto pC = mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
   mBase->mControlSc->mLoginClient->SetContext( &pC->mLoginClient );// назначить контекст
-
-  //TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( sessionID );
-  //if ( pC )
-  //  mControlSc->mLoginClient->SetContext( &pC->mLoginClient );// назначить контекст
-  //else
-  //  mControlSc->mLoginClient->SetContext( nullptr );// сам вышел из очереди, ну и хер с ним
 }
 //-------------------------------------------------------------------------
 void TClientOnMasterLogic::NeedContextLoginClientBySession( unsigned int sessionID )
@@ -320,35 +206,16 @@ void TClientOnMasterLogic::NeedContextLoginClientBySession( unsigned int session
 
   TGroupIDComponent groupIDComponent;
   mEntMng->SetComponent( clientEntity, groupIDComponent );
-
-  //// если это повторная авторизация, то Begin по данному контексту клиента
-  //// вернет false и в сценарии обработка пакета не продолжится
-  //TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( sessionID );
-  //if ( pC )
-  //{
-  //  // внутренняя ошибка
-  //  GetLogger( STR_NAME_MMO_ENGINE )->
-  //    WriteF_time( "TMaster::NeedContextLoginClientBySession() against try authorized.\n" );
-  //  mControlSc->mLoginClient->SetContext( nullptr );
-  //  return;
-  //}
-  //else
-  //{
-  //  pC = mMngContextClientLogining->AddContext( sessionID );
-  //}
-  //// назначить контекст
-  //mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
 }
 //-------------------------------------------------------------------------
 void TClientOnMasterLogic::NeedContextLoginClientByClientKey( unsigned int clientKey )
 {
-  TClientIdentityComponent clientIdentityComponent;
-  clientIdentityComponent.v = clientKey;
-  auto clientEntity = mEntMng->GetByUnique( clientIdentityComponent );
-  if ( clientEntity == nsECSFramework::None )
+  auto pC = GetContextByClientKey( clientKey );
+  if ( pC == nullptr )
+  {
+    mBase->mControlSc->mLoginClient->SetContext( nullptr );
     return;
-
-  auto pC = mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
+  }
   mBase->mControlSc->mLoginClient->SetContext( &( pC->mLoginClient ) );
 }
 //-------------------------------------------------------------------------
@@ -374,49 +241,27 @@ void TClientOnMasterLogic::NeedNumInQueueLoginClient( unsigned int sessionID )
     return;
   }
   pC->mLoginClient.SetNumInQueue( index + 1 );
-
-  //TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( sessionID );
-  //if ( pC == nullptr )
-  //{
-  //  BL_FIX_BUG();
-  //  return;
-  //}
-  //unsigned int clientKey;
-  //if ( mMngContextClientLogining->FindClientKeyBySession( sessionID, clientKey ) == false )
-  //{
-  //  BL_FIX_BUG();
-  //  return;
-  //}
-  //int index;
-  //if ( mSetClientKeyInQueue->GetIndex( clientKey, index ) == false )
-  //{
-  //  BL_FIX_BUG();
-  //  return;
-  //}
-  //pC->mLoginClient.SetNumInQueue( index + 1 );
 }
 //-------------------------------------------------------------------------
 void TClientOnMasterLogic::NeedContextDisconnectClient( unsigned int clientKey )
 {
-  TClientIdentityComponent clientIdentityComponent;
-  clientIdentityComponent.v = clientKey;
-  auto clientEntity = mEntMng->GetByUnique( clientIdentityComponent );
-  if ( clientEntity == nsECSFramework::None )
+  auto pC = GetContextByClientKey( clientKey );
+  if ( pC == nullptr )
+  {
+    mBase->mControlSc->mDisClient->SetContext( nullptr );
     return;
-
-  auto pC = mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
+  }
   mBase->mControlSc->mDisClient->SetContext( &( pC->mDisClient ) );
 }
 //-------------------------------------------------------------------------
 void TClientOnMasterLogic::NeedContextSendToClient( unsigned int clientKey )
 {
-  TClientIdentityComponent clientIdentityComponent;
-  clientIdentityComponent.v = clientKey;
-  auto clientEntity = mEntMng->GetByUnique( clientIdentityComponent );
-  if ( clientEntity == nsECSFramework::None )
+  auto pC = GetContextByClientKey( clientKey );
+  if ( pC == nullptr )
+  {
+    mBase->mControlSc->mSendToClient->SetContext( nullptr );
     return;
-
-  auto pC = mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
+  }
   mBase->mControlSc->mSendToClient->SetContext( &( pC->mSendToClient ) );
 }
 //-------------------------------------------------------------------------
@@ -450,26 +295,6 @@ bool TClientOnMasterLogic::DisconnectClientWait( unsigned int sessionID )
   else
     mEntMng->DestroyEntity( clientEntity );
   return true;
-
-  //TContainerContextSc* pC = mMngContextClientLogining->FindContextBySession( sessionID );
-  //if ( pC == nullptr )
-  //  return false;
-
-  //unsigned int clientKey;
-  //if ( mMngContextClientLogining->FindClientKeyBySession( sessionID, clientKey ) )
-  //{
-  //  // возможно клиент в очереди, удалим на всякий случай
-  //  mSetClientKeyInQueue->RemoveByKey( clientKey );
-  //  // закончить с Клиентом на Slave
-  //  mControlSc->mLoginClient->SetContext( &pC->mLoginClient );
-  //  // в EndLoginClient в случае не принятия клиента будет рассылка уведомления выше
-  //  pC->mLoginClient.Reject();
-  //  // в конце авторизации, если не будет принятия, то соединению выше передан пакет о уничтожении клиента
-  //  mControlSc->mLoginClient->DisconnectFromMaster();
-  //}
-
-  //mMngContextClientLogining->DeleteBySession( sessionID );
-  //return true;
 }
 //-------------------------------------------------------------------------
 bool TClientOnMasterLogic::TryAddClient( unsigned int clientKey, unsigned int& slaveSessionId )
@@ -525,14 +350,6 @@ void TClientOnMasterLogic::AddClientBySlaveSession( unsigned int clientKey, unsi
 
   mBase->mControlSc->mLoginClient->Accept( clientKey, resForClient, sizeResClient,
     slaveSessionID, mBase->mSessionUpID );
-
-  //// добавить для статистики
-  //mMngLoginingClientsOnSlave->AddClient( slaveSessionID, clientKey );
-
-  //// начали процесс авторизации
-  //mMngContextSlave->AddClientKey( slaveSessionID, clientKey );
-  //mControlSc->mLoginClient->Accept( clientKey, resForClient, sizeResClient,
-  //  slaveSessionID, mSessionUpID );
 }
 //-------------------------------------------------------------------------
 void TClientOnMasterLogic::AddInQueue( unsigned int clientKey, void* resForClient, int sizeResClient, bool inGroup )
@@ -543,5 +360,27 @@ void TClientOnMasterLogic::AddInQueue( unsigned int clientKey, void* resForClien
   int index;
   if ( mSetClientKeyInQueue->GetIndex( clientKey, index ) )
     mBase->mControlSc->mLoginClient->Queue( index + 1, resForClient, sizeResClient );
+}
+//-------------------------------------------------------------------------
+TContainerContextSc* TClientOnMasterLogic::GetContextByClientKey( unsigned int clientKey )
+{
+  TClientIdentityComponent clientIdentityComponent;
+  clientIdentityComponent.v = clientKey;
+  auto clientEntity = mEntMng->GetByUnique( clientIdentityComponent );
+  if ( clientEntity == nsECSFramework::None )
+    return nullptr;
+
+  return mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
+}
+//-------------------------------------------------------------------------
+TContainerContextSc* TClientOnMasterLogic::GetContextBySessionID( unsigned int sessionID )
+{
+  TClientSessionIdentityComponent clientSessionIdentityComponent;
+  clientSessionIdentityComponent.v = sessionID;
+  auto clientEntity = mEntMng->GetByUnique( clientSessionIdentityComponent );
+  if ( clientEntity == nsECSFramework::None )
+    return nullptr;
+
+  return mEntMng->ViewComponent<TContextContainerComponent>( clientEntity )->v;
 }
 //-------------------------------------------------------------------------
