@@ -57,6 +57,7 @@ void TAST_StateMachine::ConfigStateMachine()
   AddAction( eSearchMethodBodyHandler, &TAST_StateMachine::SearchMethodBodyHandler );
   AddAction( eSearchAfterColonColonIdentifier, &TAST_StateMachine::SearchAfterColonColonIdentifier );
   AddAction( eSearchWaitSemiColonAfterAssign, &TAST_StateMachine::SearchWaitSemiColonAfterAssign );
+  AddAction( eSearchPragma, &TAST_StateMachine::SearchPragma );
 }
 //---------------------------------------------------------------------------------------
 bool TAST_StateMachine::BeforeAction()
@@ -250,6 +251,9 @@ bool TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod()
 {
   switch ( mTokenInfoIt->id )
   {
+    case T_PP_PRAGMA:
+      mState = eSearchPragma;
+      break;
     case T_COMPL:// destructor
     case T_TEMPLATE:
     case T_VIRTUAL:
@@ -300,7 +304,7 @@ bool TAST_StateMachine::SearchFullTypeName()
       break;
     case T_SPACE:
     case T_SPACE2:
-      if( mCornerBalance == 0 )
+      if ( mCornerBalance == 0 )
         mState = eWaitVariableNameOrTypeContinuous;
       break;
     case T_COLON_COLON:
@@ -337,9 +341,10 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
   {
     case T_OPERATOR:
       mState = eSearchDeclarationMethodHandler;
-    break;
+      break;
     case T_ASSIGN:
       mTypeInfo.AddMember( mMemberInfo );
+      mMemberInfo.mPragmaText = "";
       mState = eSearchWaitSemiColonAfterAssign;
       break;
     case T_COMMA:
@@ -349,7 +354,7 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
     case T_SPACE2:
       break;
     case T_IDENTIFIER:
-      if( mCornerBalance == 0 )
+      if ( mCornerBalance == 0 )
         mMemberInfo.mName = mTokenInfoIt->value;
       else
         mMemberInfo.mTypeName += mTokenInfoIt->value;
@@ -380,6 +385,7 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
       break;
     case T_SEMICOLON:// end member
       mTypeInfo.AddMember( mMemberInfo );
+      mMemberInfo.mPragmaText = "";
       mState = eSearchBeginSectionOrTypeOrBeginMethod;
       break;
     case T_VIRTUAL:
@@ -479,6 +485,25 @@ bool TAST_StateMachine::SearchWaitSemiColonAfterAssign()
   switch ( mTokenInfoIt->id )
   {
     case T_SEMICOLON:
+      mState = eSearchBeginSectionOrTypeOrBeginMethod;
+      break;
+  }
+  return true;
+}
+//---------------------------------------------------------------------------------------
+bool TAST_StateMachine::SearchPragma()
+{
+  switch ( mTokenInfoIt->id )
+  {
+    case T_SPACE:
+    case T_SPACE2:
+      if ( mMemberInfo.mPragmaText.size() > 0 )
+        mMemberInfo.mPragmaText += mTokenInfoIt->value;
+      break;
+    case T_IDENTIFIER:
+      mMemberInfo.mPragmaText += mTokenInfoIt->value;
+      break;
+    case T_NEWLINE:
       mState = eSearchBeginSectionOrTypeOrBeginMethod;
       break;
   }

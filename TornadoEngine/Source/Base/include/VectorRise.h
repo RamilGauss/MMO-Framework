@@ -9,6 +9,10 @@ See for more information LICENSE.md.
 #include <vector>
 #include <algorithm>
 #include <cstring>
+#include <random>
+#include <iterator>
+#include <iostream>
+
 #include "TypeDef.h"
 
 template<typename Type>
@@ -64,7 +68,7 @@ void TVectorRise<Type>::PopBack()
 template<typename Type>
 void TVectorRise<Type>::Shuffle()
 {
-  std::random_shuffle( &mVec[0], &mVec[mCounter] );
+  std::shuffle( &mVec[0], &mVec[mCounter] );
 }
 //-----------------------------------------------------------------------------------------
 template<typename Type>

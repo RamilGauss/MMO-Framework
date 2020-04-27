@@ -20,10 +20,10 @@ void TExecuteInstructionEngine::Push( Instruction& instruction )
 void TExecuteInstructionEngine::Pop()
 {
   auto pp = mConcurrentInstructionResult.GetFirst();
-  while( pp )
+  while ( pp )
   {
     auto p = *pp;
-    (*p)();
+    ( *p )( );
     //delete p;
     // next
     mConcurrentInstructionResult.RemoveFirst();
@@ -34,13 +34,13 @@ void TExecuteInstructionEngine::Pop()
 void TExecuteInstructionEngine::Work()
 {
   auto pp = mConcurrentInstruction.GetFirst();
-  while( pp )
+  while ( pp )
   {
     auto p = *pp;
-    if( p )
+    if ( p )
     {
-      auto result = (*p)();
-      if( result )
+      auto result = ( *p )( );
+      if ( result )
         mConcurrentInstructionResult.Add( result );
     }
     // next
@@ -54,7 +54,7 @@ void TExecuteInstructionEngine::Work()
 //------------------------------------------------------------------------------------------------------
 void TExecuteInstructionEngine::TrySleep()
 {
-  std::unique_lock<std::mutex> lock(mMutex);
+  std::unique_lock<std::mutex> lock( mMutex );
   mCondVar.wait( lock );
 }
 //------------------------------------------------------------------------------------------------------

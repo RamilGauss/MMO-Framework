@@ -10,6 +10,8 @@ See for more information LICENSE.md.
 
 struct TMemberInfo
 {
+  std::string mPragmaText;// #pragma TEXT
+
   enum AccessLevel
   {
     ePublic, eProtected, ePrivate

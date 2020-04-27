@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 
 #include "Config.h"
 #include "SingletonManager.h"
+#include "ConfigContainer.h"
 
 class TParser
 {

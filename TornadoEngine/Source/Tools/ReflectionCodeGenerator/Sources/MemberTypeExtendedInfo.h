@@ -27,7 +27,7 @@ struct TMemberTypeExtendedInfo
     Pointer,
     SmartPointer// std::auto_ptr, std::shared_ptr, std::weak_ptr, std::unique
   };
-  AccessMethod mAccessMethod = Object;
+  AccessMethod mAccessMethod = AccessMethod::Object;
 
   std::vector<TMemberTypeExtendedInfo> mTemplateChildArr;
 

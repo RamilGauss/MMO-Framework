@@ -14,8 +14,9 @@ See for more information LICENSE.md.
 namespace nsBS
 {
   REFLECTION_ATTRIBUTE
-    struct TBaseStruct
+  struct TBaseStruct
   {
+#pragma Primary_key
     std::string s = "0123456789";
   };
 }

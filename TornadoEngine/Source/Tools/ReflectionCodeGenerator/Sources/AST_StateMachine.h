@@ -27,7 +27,7 @@ class TAST_StateMachine
 
   std::string mNamespaceNameForAdding;
 
-  TMemberInfo::AccessLevel mCurrentSection = TMemberInfo::ePrivate;
+  TMemberInfo::AccessLevel mCurrentSection = TMemberInfo::AccessLevel::ePrivate;
 
   TTypeInfo   mTypeInfo;
   TMemberInfo mMemberInfo;
@@ -57,6 +57,7 @@ class TAST_StateMachine
     eSearchMethodBodyHandler,
     eSearchAfterColonColonIdentifier,
     eSearchWaitSemiColonAfterAssign,
+    eSearchPragma,
   };
 
 public:
@@ -87,6 +88,7 @@ private:
   bool SearchMethodBodyHandler();
   bool SearchAfterColonColonIdentifier();
   bool SearchWaitSemiColonAfterAssign();
+  bool SearchPragma();
 
   bool IsTokensOut();
 

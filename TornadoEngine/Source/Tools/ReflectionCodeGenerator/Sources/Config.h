@@ -52,6 +52,11 @@ namespace nsReflectionCodeGenerator
 
   };
 
+  REFLECTION_ATTRIBUTE struct TSQLGeneratorConfig : TClassDesc
+  {
+
+  };
+
   REFLECTION_ATTRIBUTE struct TImplementation
   {
     std::shared_ptr<TJsonSerializerGeneratorConfig> jsonSerializer;
