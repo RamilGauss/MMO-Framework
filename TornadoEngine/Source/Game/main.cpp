@@ -40,7 +40,6 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR cmdLine, INT )
 int main( int argc, char** argv )
 {
 #endif
-
   // установить текущую кодировку для мультибайтовой конвертации
   const char* sLocale = setlocale( LC_CTYPE/*LC_ALL*/, "" );
   sLocale = setlocale( LC_CTYPE, sLocale );

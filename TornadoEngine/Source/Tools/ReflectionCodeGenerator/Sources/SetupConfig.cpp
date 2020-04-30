@@ -9,7 +9,6 @@ See for more information LICENSE.md.
 #include "SetupConfig.h"
 #include "SingletonManager.h"
 #include "Config.h"
-#include "fmt/time.h"
 #include "fmt/color.h"
 #include <fstream>
 #include <filesystem>

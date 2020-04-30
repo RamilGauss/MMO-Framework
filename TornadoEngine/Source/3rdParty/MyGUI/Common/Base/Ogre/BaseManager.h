@@ -4,8 +4,8 @@
   @date    08/2008
 */
 
-#ifndef __BASE_MANAGER_H__
-#define __BASE_MANAGER_H__
+#ifndef BASE_MANAGER_H_
+#define BASE_MANAGER_H_
 
 #include <Ogre.h>
 #include <MyGUI.h>
@@ -14,6 +14,7 @@
 #include "PointerManager.h"
 #include "MyGUI_LastHeader.h"
 
+#include <OgreWindowEventUtilities.h>
 namespace MyGUI
 {
   class OgrePlatform;
@@ -33,7 +34,7 @@ namespace base
     virtual ~BaseManager();
 
     virtual void prepare();
-    bool create();
+		bool create(int _width = 1024, int _height = 768);
     void destroy();
     void run();
     void quit();
@@ -51,8 +52,7 @@ namespace base
 
     size_t getWindowHandle();
 
-    typedef std::map<std::string, std::string> MapString;
-    MapString getStatistic();
+    MyGUI::MapString getStatistic();
 
   /*internal:*/
     Ogre::SceneManager* getSceneManager();
@@ -73,6 +73,12 @@ namespace base
 
     virtual void createGui();
     virtual void destroyGui();
+
+		virtual void setWindowMaximized(bool _value);
+		virtual bool getWindowMaximized();
+
+		virtual void setWindowCoord(const MyGUI::IntCoord& _value);
+		virtual MyGUI::IntCoord getWindowCoord();
 
   private:
     virtual bool frameStarted(const Ogre::FrameEvent& _evt);
@@ -102,4 +108,4 @@ namespace base
 
 } // namespace base
 
-#endif // __BASE_MANAGER_H__
+#endif // BASE_MANAGER_H_

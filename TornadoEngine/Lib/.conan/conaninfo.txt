@@ -1,0 +1,40 @@
+[settings]
+    arch=x86_64
+    build_type=Debug
+    compiler=Visual Studio
+    compiler.runtime=MDd
+    compiler.version=16
+    os=Windows
+
+[requires]
+    MyGUI/3.Y.Z
+    OGRE/1.Y.Z
+    OGREdeps/2019.Y.Z
+
+[options]
+
+
+[full_settings]
+    arch=x86_64
+    arch_build=x86_64
+    build_type=Debug
+    compiler=Visual Studio
+    compiler.runtime=MDd
+    compiler.toolset=v142
+    compiler.version=16
+    os=Windows
+    os_build=Windows
+
+[full_requires]
+    MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable:045e2df113a083fcbea4549e7984cbd8cae7ed9a
+    OGRE/1.11.6-with-patches@anotherfoxguy/stable:21cd320f3f44139e2192349b417d68c313aa0da7
+    OGREdeps/2019-04@anotherfoxguy/stable:d057732059ea44a47760900cb5e4855d2bea8714
+
+[full_options]
+
+
+[recipe_hash]
+
+
+[env]
+

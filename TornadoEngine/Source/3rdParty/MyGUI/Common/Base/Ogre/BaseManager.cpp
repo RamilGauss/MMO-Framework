@@ -8,6 +8,10 @@
 #include "BaseManager.h"
 #include <MyGUI_OgrePlatform.h>
 
+#if (OGRE_VERSION >= ((1 << 16) | (10 << 8) | 0))
+#include <OgreBitesConfigDialog.h>
+#endif
+
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
 #  include <windows.h>
 #elif MYGUI_PLATFORM == MYGUI_PLATFORM_LINUX
@@ -67,7 +71,7 @@ namespace base
   {
   }
 
-  bool BaseManager::create()
+  bool BaseManager::create(int _width, int _height)
   {
     Ogre::String pluginsPath;
     
@@ -83,28 +87,36 @@ namespace base
     if (!mRoot->restoreConfig())
     {
       // ничего не получилось, покажем диалог
-      if (!mRoot->showConfigDialog()) return false;
+#if (OGRE_VERSION >= ((1 << 16) | (10 << 8) | 0))
+      if ( !mRoot->showConfigDialog( OgreBites::getNativeConfigDialog() ) ) return false;
+#else
+      if ( !mRoot->showConfigDialog() ) return false;
+#endif
     }
 
+		#if (OGRE_VERSION >= ((1 << 16) | (11 << 8) | 0)) && MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
+		Ogre::NameValuePairList miscParams;
+		mWindow = mRoot->initialise(false);
+		miscParams["windowProc"] = Ogre::StringConverter::toString((size_t)Ogre::WindowEventUtilities::_WndProc);
+		mWindow = Ogre::Root::getSingleton().createRenderWindow("MyGUI Demo", 800, 600, false, &miscParams);
+		Ogre::WindowEventUtilities::_addRenderWindow(mWindow);
+		#else
     mWindow = mRoot->initialise(true);
-
+		#endif
 
     // вытаскиваем дискриптор окна
     size_t handle = getWindowHandle();
 
   #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
-    // берем имя нашего экзешника
-    char buf[MAX_PATH];
-    ::GetModuleFileNameA(0, (LPCH)&buf, MAX_PATH);
-    // берем инстанс нашего модуля
-    HINSTANCE instance = ::GetModuleHandleA(buf);
-    // побыстрому грузим иконку
-    HICON hIcon = ::LoadIcon(instance, MAKEINTRESOURCE(1001));
-    if (hIcon)
-    {
-      ::SendMessageA((HWND)handle, WM_SETICON, 1, (LPARAM)hIcon);
-      ::SendMessageA((HWND)handle, WM_SETICON, 0, (LPARAM)hIcon);
-    }
+		char buf[MAX_PATH];
+		::GetModuleFileNameA(0, (LPCH)&buf, MAX_PATH);
+		HINSTANCE instance = ::GetModuleHandleA(buf);
+		HICON hIconSmall = static_cast<HICON>(LoadImage(instance, MAKEINTRESOURCE(1001), IMAGE_ICON, 32, 32, LR_DEFAULTSIZE));
+		HICON hIconBig = static_cast<HICON>(LoadImage(instance, MAKEINTRESOURCE(1001), IMAGE_ICON, 256, 256, LR_DEFAULTSIZE));
+		if (hIconSmall)
+			::SendMessageA((HWND)handle, WM_SETICON, 0, (LPARAM)hIconSmall);
+		if (hIconBig)
+			::SendMessageA((HWND)handle, WM_SETICON, 1, (LPARAM)hIconBig);
   #endif
 
     mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "BaseSceneManager");
@@ -141,10 +153,11 @@ namespace base
 
     createPointerManager(handle);
 
-    createScene();
-
+    // this needs to be called before createScene() since some demos require
+    // screen size to properly position the widgets
     windowResized(mWindow);
 
+    createScene();
     return true;
   }
 
@@ -215,7 +228,7 @@ namespace base
   void BaseManager::createGui()
   {
     mPlatform = new MyGUI::OgrePlatform();
-    mPlatform->initialise(mWindow, mSceneManager);
+    mPlatform->initialise(mWindow, mSceneManager, Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME);
     mGUI = new MyGUI::Gui();
     mGUI->initialise(mResourceFileName);
   }
@@ -237,6 +250,71 @@ namespace base
     }
   }
 
+    void BaseManager::setWindowMaximized(bool _value)
+	{
+	#if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
+		if (_value)
+		{
+			size_t handle = getWindowHandle();
+			::ShowWindow((HWND)handle, SW_SHOWMAXIMIZED);
+		}
+	#endif
+	}
+    
+    bool BaseManager::getWindowMaximized()
+	{
+		bool result = false;
+	#if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
+		size_t handle = getWindowHandle();
+		result = ::IsZoomed((HWND)handle) != 0;
+	#endif
+		return result;
+	}
+
+	void BaseManager::setWindowCoord(const MyGUI::IntCoord& _value)
+	{
+	#if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
+		if (_value.empty())
+			return;
+
+		MyGUI::IntCoord coord = _value;
+		if (coord.left < 0)
+			coord.left = 0;
+		if (coord.top < 0)
+			coord.top = 0;
+		if (coord.width < 640)
+			coord.width = 640;
+		if (coord.height < 480)
+			coord.height = 480;
+		if (coord.width > GetSystemMetrics(SM_CXSCREEN))
+			coord.width = GetSystemMetrics(SM_CXSCREEN);
+		if (coord.height > GetSystemMetrics(SM_CYSCREEN))
+			coord.height = GetSystemMetrics(SM_CYSCREEN);
+		if (coord.right() > GetSystemMetrics(SM_CXSCREEN))
+			coord.left = GetSystemMetrics(SM_CXSCREEN) - coord.width;
+		if (coord.bottom() > GetSystemMetrics(SM_CYSCREEN))
+			coord.top = GetSystemMetrics(SM_CYSCREEN) - coord.height;
+
+		size_t handle = getWindowHandle();
+		::MoveWindow((HWND)handle, coord.left, coord.top, coord.width, coord.height, true);
+	#endif
+	}
+
+	MyGUI::IntCoord BaseManager::getWindowCoord()
+	{
+		MyGUI::IntCoord result;
+	#if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
+		size_t handle = getWindowHandle();
+		::RECT rect;
+		::GetWindowRect((HWND)handle, &rect);
+		result.left = rect.left;
+		result.top = rect.top;
+		result.width = rect.right - rect.left;
+		result.height = rect.bottom - rect.top;
+	#endif
+		return result;
+	}
+    
   void BaseManager::setupResources()
   {
     MyGUI::xml::Document doc;
@@ -291,6 +369,8 @@ namespace base
     int width = (int)_rw->getWidth();
     int height = (int)_rw->getHeight();
 
+		if (mPlatform)
+			MyGUI::RenderManager::getInstance().setViewSize(width, height);
     // при удалении окна может вызываться этот метод
     if (mCamera)
     {
@@ -486,9 +566,9 @@ namespace base
     mWindow->writeContentsToFile(file);
   }
 
-  BaseManager::MapString BaseManager::getStatistic()
+	MyGUI::MapString BaseManager::getStatistic()
   {
-    MapString result;
+		MyGUI::MapString result;
 
     try
     {

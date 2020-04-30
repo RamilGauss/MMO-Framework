@@ -16,19 +16,22 @@ See for more information LICENSE.md.
 
 namespace nsReflectionCodeGenerator
 {
-  REFLECTION_ATTRIBUTE struct TTargetForParsing
+#pragma REFLECTION_ATTRIBUTE
+  struct TTargetForParsing
   {
     std::vector<std::string> directories;
     bool recursive;
   };
 
-  REFLECTION_ATTRIBUTE struct TFilter
+#pragma REFLECTION_ATTRIBUTE
+  struct TFilter
   {
     std::string attribute;
     std::vector<std::string> extensions;
   };
 
-  REFLECTION_ATTRIBUTE struct TClassDesc
+#pragma REFLECTION_ATTRIBUTE 
+  struct TClassDesc
   {
     std::string exportDeclaration;// DllExport
     std::string nameSpaceName;
@@ -36,41 +39,49 @@ namespace nsReflectionCodeGenerator
     std::string fileName;
   };
 
-  REFLECTION_ATTRIBUTE struct TUnpackHandler : TClassDesc
+#pragma REFLECTION_ATTRIBUTE
+  struct TUnpackHandler : TClassDesc
   {
     std::string method;
   };
 
-  REFLECTION_ATTRIBUTE struct TBinaryMarshallerGeneratorConfig : TClassDesc
+#pragma REFLECTION_ATTRIBUTE
+  struct TBinaryMarshallerGeneratorConfig : TClassDesc
   {
     TUnpackHandler unpackHandler;
     unsigned short beginID;
   };
 
-  REFLECTION_ATTRIBUTE struct TJsonSerializerGeneratorConfig : TClassDesc
+#pragma REFLECTION_ATTRIBUTE
+  struct TJsonSerializerGeneratorConfig : TClassDesc
   {
 
   };
 
-  REFLECTION_ATTRIBUTE struct TSQLGeneratorConfig : TClassDesc
+#pragma REFLECTION_ATTRIBUTE
+  struct TSqlGeneratorConfig : TClassDesc
   {
 
   };
 
-  REFLECTION_ATTRIBUTE struct TImplementation
+#pragma REFLECTION_ATTRIBUTE
+  struct TImplementation
   {
     std::shared_ptr<TJsonSerializerGeneratorConfig> jsonSerializer;
     std::shared_ptr<TBinaryMarshallerGeneratorConfig> binaryMarshaller;
+    std::shared_ptr<TSqlGeneratorConfig> sql;
   };
 
-  REFLECTION_ATTRIBUTE struct TTargetForCodeGeneration
+#pragma REFLECTION_ATTRIBUTE
+  struct TTargetForCodeGeneration
   {
     std::string directory;
     std::string includeListFileName;
     TImplementation implementation;
   };
 
-  REFLECTION_ATTRIBUTE struct TConfig
+#pragma REFLECTION_ATTRIBUTE
+  struct TConfig
   {
     TTargetForParsing targetForParsing;
     TFilter filter;

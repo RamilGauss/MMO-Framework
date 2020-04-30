@@ -60,4 +60,7 @@
       <Filter>Ogre\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="conanfile.txt" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,10 @@
+[requires]
+    OGREdeps/2019-04@anotherfoxguy/stable
+    OGRE/1.11.6-with-patches@anotherfoxguy/stable
+    MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable
+
+[options]
+
+[imports]
+    bin, *.dll -> ../../Exe
+    lib, *.lib -> ../../Lib

@@ -22,5 +22,6 @@ namespace nsReflectionCodeGenerator
     void CollectFromIncludeList();
     void CollectFromJson();
     void CollectFromBinary();
+    void CollectFromSql();
   };
 }

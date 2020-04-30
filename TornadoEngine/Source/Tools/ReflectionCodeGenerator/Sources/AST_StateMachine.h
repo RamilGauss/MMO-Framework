@@ -32,6 +32,11 @@ class TAST_StateMachine
   TTypeInfo   mTypeInfo;
   TMemberInfo mMemberInfo;
 
+  std::set<std::string> mClassOrStructPragmaTextSet;
+
+  std::string mPragmaText;
+  std::string mPragmaSpaces;
+
   // for method analyze
   int mBraceBalance = 0;// ()
   int mParenBalance = 0;// {}
@@ -57,7 +62,8 @@ class TAST_StateMachine
     eSearchMethodBodyHandler,
     eSearchAfterColonColonIdentifier,
     eSearchWaitSemiColonAfterAssign,
-    eSearchPragma,
+    eSearchClassOrStructPragma,
+    eSearchMemberPragma,
   };
 
 public:
@@ -88,7 +94,8 @@ private:
   bool SearchMethodBodyHandler();
   bool SearchAfterColonColonIdentifier();
   bool SearchWaitSemiColonAfterAssign();
-  bool SearchPragma();
+  bool SearchMemberPragma();
+  bool SearchClassOrStructPragma();
 
   bool IsTokensOut();
 

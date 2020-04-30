@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef PhysicEngine_BulletH
-#define PhysicEngine_BulletH
+#pragma once
 
 #include "TypeDef.h"
 
@@ -91,5 +90,3 @@ private:
 
   TPhysicEngine_Bullet::TWorld* GetByID(int id_world);
 };
-
-#endif

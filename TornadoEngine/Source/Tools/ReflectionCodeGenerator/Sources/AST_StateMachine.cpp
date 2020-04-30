@@ -57,7 +57,8 @@ void TAST_StateMachine::ConfigStateMachine()
   AddAction( eSearchMethodBodyHandler, &TAST_StateMachine::SearchMethodBodyHandler );
   AddAction( eSearchAfterColonColonIdentifier, &TAST_StateMachine::SearchAfterColonColonIdentifier );
   AddAction( eSearchWaitSemiColonAfterAssign, &TAST_StateMachine::SearchWaitSemiColonAfterAssign );
-  AddAction( eSearchPragma, &TAST_StateMachine::SearchPragma );
+  AddAction( eSearchMemberPragma, &TAST_StateMachine::SearchMemberPragma );
+  AddAction( eSearchClassOrStructPragma, &TAST_StateMachine::SearchClassOrStructPragma );
 }
 //---------------------------------------------------------------------------------------
 bool TAST_StateMachine::BeforeAction()
@@ -75,14 +76,38 @@ bool TAST_StateMachine::AfterAction()
 //---------------------------------------------------------------------------------------
 bool TAST_StateMachine::SearchAttributeOrNamespace()
 {
+  static auto applyClassOrStructPragmaFunc = [this]( auto& token )
+  {
+    auto fit = mClassOrStructPragmaTextSet.find( mConfig->filter.attribute );
+    if ( fit != mClassOrStructPragmaTextSet.end() )
+    {
+      mTypeInfo.mPragmaTextSet = mClassOrStructPragmaTextSet;
+      if ( token == T_CLASS )
+      {
+        mTypeInfo.mType = TTypeInfo::eType::Class;
+        mCurrentSection = TMemberInfo::ePrivate;
+      }
+      else if ( token == T_STRUCT )
+      {
+        mTypeInfo.mType = TTypeInfo::eType::Struct;
+        mCurrentSection = TMemberInfo::ePublic;
+      }
+      mState = eSearchTypeName;
+    }
+    mClassOrStructPragmaTextSet.clear();
+  };
+
   switch ( mTokenInfoIt->id )
   {
+    case T_PP_PRAGMA:
+      mState = eSearchClassOrStructPragma;
+      break;
     case T_NAMESPACE:
       mState = eSearchNamespaceName;
       break;
-    case T_IDENTIFIER:
-      if ( mTokenInfoIt->value == mConfig->filter.attribute )
-        mState = eSearchClassOrStruct;
+    case T_CLASS:
+    case T_STRUCT:
+      applyClassOrStructPragmaFunc( mTokenInfoIt->id );
       break;
     case T_RIGHTBRACE:// leave namespace
       if ( mTypeInfo.mNamespaceVec.size() > 0 )
@@ -252,7 +277,7 @@ bool TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod()
   switch ( mTokenInfoIt->id )
   {
     case T_PP_PRAGMA:
-      mState = eSearchPragma;
+      mState = eSearchMemberPragma;
       break;
     case T_COMPL:// destructor
     case T_TEMPLATE:
@@ -344,7 +369,7 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
       break;
     case T_ASSIGN:
       mTypeInfo.AddMember( mMemberInfo );
-      mMemberInfo.mPragmaText = "";
+      mMemberInfo.mPragmaTextSet.clear();
       mState = eSearchWaitSemiColonAfterAssign;
       break;
     case T_COMMA:
@@ -385,7 +410,7 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
       break;
     case T_SEMICOLON:// end member
       mTypeInfo.AddMember( mMemberInfo );
-      mMemberInfo.mPragmaText = "";
+      mMemberInfo.mPragmaTextSet.clear();
       mState = eSearchBeginSectionOrTypeOrBeginMethod;
       break;
     case T_VIRTUAL:
@@ -491,20 +516,47 @@ bool TAST_StateMachine::SearchWaitSemiColonAfterAssign()
   return true;
 }
 //---------------------------------------------------------------------------------------
-bool TAST_StateMachine::SearchPragma()
+bool TAST_StateMachine::SearchMemberPragma()
 {
   switch ( mTokenInfoIt->id )
   {
     case T_SPACE:
     case T_SPACE2:
-      if ( mMemberInfo.mPragmaText.size() > 0 )
-        mMemberInfo.mPragmaText += mTokenInfoIt->value;
+      if ( mPragmaText.size() > 0 )
+        mPragmaSpaces = mTokenInfoIt->value;
+      else
+        mPragmaSpaces = "";
       break;
     case T_IDENTIFIER:
-      mMemberInfo.mPragmaText += mTokenInfoIt->value;
+      mPragmaText += mPragmaSpaces + mTokenInfoIt->value;
       break;
     case T_NEWLINE:
+      mMemberInfo.mPragmaTextSet.insert( mPragmaText );
+      mPragmaText = "";
       mState = eSearchBeginSectionOrTypeOrBeginMethod;
+      break;
+  }
+  return true;
+}
+//---------------------------------------------------------------------------------------
+bool TAST_StateMachine::SearchClassOrStructPragma()
+{
+  switch ( mTokenInfoIt->id )
+  {
+    case T_SPACE:
+    case T_SPACE2:
+      if ( mPragmaText.size() > 0 )
+        mPragmaSpaces = mTokenInfoIt->value;
+      else
+        mPragmaSpaces = "";
+      break;
+    case T_IDENTIFIER:
+      mPragmaText += mPragmaSpaces + mTokenInfoIt->value;
+      break;
+    case T_NEWLINE:
+      mClassOrStructPragmaTextSet.insert( mPragmaText );
+      mPragmaText = "";
+      mState = eSearchAttributeOrNamespace;
       break;
   }
   return true;

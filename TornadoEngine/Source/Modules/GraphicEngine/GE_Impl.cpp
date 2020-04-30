@@ -13,6 +13,10 @@ See for more information LICENSE.md.
 #include <MyGUI_OgrePlatform.h>
 #include <OgreTerrainMaterialGeneratorA.h>
 
+#if (OGRE_VERSION >= ((1 << 16) | (10 << 8) | 0))
+#include <OgreBitesConfigDialog.h>
+#endif
+
 using namespace std;
 
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
@@ -81,10 +85,15 @@ TGE_Impl::~TGE_Impl()
 bool TGE_Impl::InitOGRE( const std::string& pathPluginCfg, const std::string& ogreCfg )
 {
   mRoot = new Ogre::Root( pathPluginCfg, ogreCfg, "Ogre.log" );
-  if( !mRoot->restoreConfig() )// попробуем завестись на дефолтных
+  if ( !mRoot->restoreConfig() )// попробуем завестись на дефолтных
   {
-    if( !mRoot->showConfigDialog() )
-      return false;// ничего не получилось, покажем диалог
+    // ничего не получилось, покажем диалог
+#if (OGRE_VERSION >= ((1 << 16) | (10 << 8) | 0))
+    if ( !mRoot->showConfigDialog( OgreBites::getNativeConfigDialog() ) ) return false;
+#else
+    if ( !mRoot->showConfigDialog() ) return false;
+#endif
+    // ничего не получилось, покажем диалог
   }
 #ifdef WIN32
   ShowCursor( false );
@@ -98,15 +107,15 @@ bool TGE_Impl::InitOGRE( const std::string& pathPluginCfg, const std::string& og
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
   // берем имя нашего исполняемого файла
   char buf[MAX_PATH];
-  ::GetModuleFileNameA( 0, (LPCH) &buf, MAX_PATH );
+  ::GetModuleFileNameA( 0, (LPCH)&buf, MAX_PATH );
   // берем инстанс нашего модуля
   HINSTANCE instance = ::GetModuleHandleA( buf );
   // по-быстрому грузим иконку
   HICON hIcon = ::LoadIcon( instance, MAKEINTRESOURCE( 1001 ) );
-  if( hIcon )
+  if ( hIcon )
   {
-    ::SendMessageA( (HWND) handle, WM_SETICON, 1, (LPARAM) hIcon );
-    ::SendMessageA( (HWND) handle, WM_SETICON, 0, (LPARAM) hIcon );
+    ::SendMessageA( (HWND)handle, WM_SETICON, 1, (LPARAM)hIcon );
+    ::SendMessageA( (HWND)handle, WM_SETICON, 0, (LPARAM)hIcon );
   }
 #endif
   mSceneManager = mRoot->createSceneManager( Ogre::ST_GENERIC, "BaseSceneManager" );
@@ -124,7 +133,7 @@ bool TGE_Impl::InitOGRE( const std::string& pathPluginCfg, const std::string& og
   Ogre::Viewport* vp = mWindow->addViewport( mCamera );
   vp->setBackgroundColour( Ogre::ColourValue( 0, 0, 0 ) );
   // Alter the camera aspect ratio to match the viewport
-  mCamera->setAspectRatio( (float) vp->getActualWidth() / (float) vp->getActualHeight() );
+  mCamera->setAspectRatio( (float)vp->getActualWidth() / (float)vp->getActualHeight() );
 
   // Set default mipmap level (NB some APIs ignore this)
   Ogre::TextureManager::getSingleton().setDefaultNumMipmaps( 5 );
@@ -138,11 +147,11 @@ bool TGE_Impl::InitOGRE( const std::string& pathPluginCfg, const std::string& og
 #if OGRE_NO_GLES3_SUPPORT == 1
   // Disable the lightmap for OpenGL ES 2.0. The minimum number of samplers allowed is 8(as opposed to 16 on desktop).
   // Otherwise we will run over the limit by just one. The minimum was raised to 16 in GL ES 3.0.
-  if( mRoot->getRenderSystem()->getName().find( "OpenGL ES 2" ) != Ogre::String::npos )
+  if ( mRoot->getRenderSystem()->getName().find( "OpenGL ES 2" ) != Ogre::String::npos )
   {
     Ogre::TerrainMaterialGeneratorA::SM2Profile* matProfile =
       static_cast<Ogre::TerrainMaterialGeneratorA::SM2Profile*>
-      (mTerrainGlobals->getDefaultMaterialGenerator()->getActiveProfile());
+      ( mTerrainGlobals->getDefaultMaterialGenerator()->getActiveProfile() );
     matProfile->setLightmapEnabled( false );
   }
 #endif
@@ -181,7 +190,7 @@ void TGE_Impl::Done()
   mTerrainGlobals = NULL;
 
   // очищаем сцену
-  if( mSceneManager )
+  if ( mSceneManager )
   {
     mSceneManager->clearScene();
     mSceneManager->destroyAllCameras();
@@ -189,16 +198,16 @@ void TGE_Impl::Done()
     mCamera = nullptr;
   }
 
-  if( mWindow )
+  if ( mWindow )
   {
     mWindow->destroy();
     mWindow = nullptr;
   }
 
-  if( mRoot )
+  if ( mRoot )
   {
     Ogre::RenderWindow* window = mRoot->getAutoCreatedWindow();
-    if( window )
+    if ( window )
       window->removeAllViewports();
 
     delete mOverlaySystem;
@@ -211,14 +220,14 @@ void TGE_Impl::Done()
 //------------------------------------------------------------------------------------------
 void TGE_Impl::DestroyGui()
 {
-  if( mGUI )
+  if ( mGUI )
   {
     mGUI->shutdown();
     delete mGUI;
     mGUI = nullptr;
   }
 
-  if( mPlatform )
+  if ( mPlatform )
   {
     mPlatform->shutdown();
     delete mPlatform;
@@ -228,10 +237,10 @@ void TGE_Impl::DestroyGui()
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::frameStarted( const Ogre::FrameEvent& evt )
 {
-  if( mExit )
+  if ( mExit )
     return false;
 
-  if( !mGUI )
+  if ( !mGUI )
     return true;
 
   CaptureInput();
@@ -250,13 +259,13 @@ void TGE_Impl::windowMoved( Ogre::RenderWindow* rw )
 //------------------------------------------------------------------------------------------
 void TGE_Impl::windowResized( Ogre::RenderWindow* _rw )
 {
-  int width = (int) _rw->getWidth();
-  int height = (int) _rw->getHeight();
+  int width = (int)_rw->getWidth();
+  int height = (int)_rw->getHeight();
 
   // при удалении окна может вызываться этот метод
-  if( mCamera )
+  if ( mCamera )
   {
-    mCamera->setAspectRatio( (float) width / (float) height );
+    mCamera->setAspectRatio( (float)width / (float)height );
     SetInputViewSize( width, height );
   }
 
@@ -279,9 +288,9 @@ size_t TGE_Impl::GetWindowHandle()
 void TGE_Impl::GetWindowCaption( std::wstring& _text )
 {
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
-  int len = ::GetWindowTextLengthW( (HWND) GetWindowHandle() );
+  int len = ::GetWindowTextLengthW( (HWND)GetWindowHandle() );
   _text.resize( len + 1 );
-  int result = ::GetWindowTextW( (HWND) GetWindowHandle(), (wchar_t*) _text.data(), _text.length() );
+  int result = ::GetWindowTextW( (HWND)GetWindowHandle(), (wchar_t*)_text.data(), _text.length() );
 #elif MYGUI_PLATFORM == MYGUI_PLATFORM_LINUX
   //Display* xDisplay = nullptr;
   //unsigned long windowHandle = 0;
@@ -301,19 +310,19 @@ void TGE_Impl::GetWindowCaption( std::wstring& _text )
 void TGE_Impl::SetWindowCaption( const std::wstring& _text )
 {
 #if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
-  ::SetWindowTextW( (HWND) GetWindowHandle(), _text.c_str() );
+  ::SetWindowTextW( (HWND)GetWindowHandle(), _text.c_str() );
 #elif MYGUI_PLATFORM == MYGUI_PLATFORM_LINUX
   Display* xDisplay = nullptr;
   unsigned long windowHandle = 0;
   mWindow->getCustomAttribute( "XDISPLAY", &xDisplay );
   mWindow->getCustomAttribute( "WINDOW", &windowHandle );
-  Window win = (Window) windowHandle;
+  Window win = (Window)windowHandle;
 
   XTextProperty windowName;
-  windowName.value = (unsigned char *) (MyGUI::UString( _text ).asUTF8_c_str());
+  windowName.value = (unsigned char*)( MyGUI::UString( _text ).asUTF8_c_str() );
   windowName.encoding = XA_STRING;
   windowName.format = 8;
-  windowName.nitems = strlen( (char *) (windowName.value) );
+  windowName.nitems = strlen( (char*)( windowName.value ) );
   XSetWMName( xDisplay, win, &windowName );
 #endif
 }
@@ -374,19 +383,19 @@ Ogre::Root* TGE_Impl::GetRoot()
   return mRoot;
 }
 //------------------------------------------------------------------------------------------
-bool TGE_Impl::mouseMoved( const OIS::MouseEvent &arg )
+bool TGE_Impl::mouseMoved( const OIS::MouseEvent& arg )
 {
   TryClipCursor();
 
   bool unused = true;
-  if( mGUI )
+  if ( mGUI )
   {
-    if( flgGUIEnableEvent )
+    if ( flgGUIEnableEvent )
       unused = !MyGUI::InputManager::getInstance().injectMouseMove(
         arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs );
   }
 
-  if( unused )
+  if ( unused )
   {
     // транслировать разработчику как событие
     mCBMouse->Notify( arg, OIS::MB_Left/*nevermind*/, nsGraphicEngine::eMove );
@@ -394,18 +403,18 @@ bool TGE_Impl::mouseMoved( const OIS::MouseEvent &arg )
   return true;
 }
 //------------------------------------------------------------------------------------------
-bool TGE_Impl::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
+bool TGE_Impl::mousePressed( const OIS::MouseEvent& arg, OIS::MouseButtonID id )
 {
   bool unused = true;
 
-  if( mGUI )
+  if ( mGUI )
   {
-    if( flgGUIEnableEvent )
+    if ( flgGUIEnableEvent )
       unused = !MyGUI::InputManager::getInstance().injectMousePress(
         arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum( id ) );
   }
 
-  if( unused )
+  if ( unused )
   {
     // транслировать разработчику как событие
     mCBMouse->Notify( arg, id, nsGraphicEngine::eButtonDown );
@@ -413,17 +422,17 @@ bool TGE_Impl::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
   return true;
 }
 //------------------------------------------------------------------------------------------
-bool TGE_Impl::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
+bool TGE_Impl::mouseReleased( const OIS::MouseEvent& arg, OIS::MouseButtonID id )
 {
   bool unused = true;
-  if( mGUI )
+  if ( mGUI )
   {
-    if( flgGUIEnableEvent )
+    if ( flgGUIEnableEvent )
       unused = !MyGUI::InputManager::getInstance().injectMouseRelease(
         arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum( id ) );
   }
 
-  if( unused )
+  if ( unused )
   {
     // транслировать разработчику как событие
     mCBMouse->Notify( arg, id, nsGraphicEngine::eButtonUp );
@@ -431,7 +440,7 @@ bool TGE_Impl::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id 
   return true;
 }
 //------------------------------------------------------------------------------------------
-bool TGE_Impl::keyPressed( const OIS::KeyEvent &arg )
+bool TGE_Impl::keyPressed( const OIS::KeyEvent& arg )
 {
   SetKeyBoardModifier( arg, true );
 
@@ -440,13 +449,13 @@ bool TGE_Impl::keyPressed( const OIS::KeyEvent &arg )
   ConvertOIS2MyGUI( arg, text, key );
 
   bool unused = true;
-  if( mGUI )
+  if ( mGUI )
   {
-    if( flgGUIEnableEvent )
+    if ( flgGUIEnableEvent )
       unused = !MyGUI::InputManager::getInstance().injectKeyPress( key, text );
   }
 
-  if( unused )
+  if ( unused )
   {
     // транслировать разработчику как событие
     mCBKeyBoard->Notify( arg, true );
@@ -454,7 +463,7 @@ bool TGE_Impl::keyPressed( const OIS::KeyEvent &arg )
   return true;
 }
 //------------------------------------------------------------------------------------------
-bool TGE_Impl::keyReleased( const OIS::KeyEvent &arg )
+bool TGE_Impl::keyReleased( const OIS::KeyEvent& arg )
 {
   SetKeyBoardModifier( arg, false );
 
@@ -463,12 +472,12 @@ bool TGE_Impl::keyReleased( const OIS::KeyEvent &arg )
   ConvertOIS2MyGUI( arg, text, key );
 
   bool unused = true;
-  if( mGUI )
+  if ( mGUI )
   {
-    if( flgGUIEnableEvent )
+    if ( flgGUIEnableEvent )
       unused = !MyGUI::InputManager::getInstance().injectKeyRelease( key );
   }
-  if( unused )
+  if ( unused )
   {
     // транслировать разработчику как событие
     mCBKeyBoard->Notify( arg, false );
@@ -476,12 +485,12 @@ bool TGE_Impl::keyReleased( const OIS::KeyEvent &arg )
   return true;
 }
 //------------------------------------------------------------------------------------------
-void TGE_Impl::SetCallBackKeyBoard( TCallBackRegistrator2<const OIS::KeyEvent &, bool>* pCB )
+void TGE_Impl::SetCallBackKeyBoard( TCallBackRegistrator2<const OIS::KeyEvent&, bool>* pCB )
 {
   mCBKeyBoard = pCB;
 }
 //------------------------------------------------------------------------------------------
-void TGE_Impl::SetCallBackMouse( TCallBackRegistrator3<const OIS::MouseEvent &, OIS::MouseButtonID, nsGraphicEngine::tTypeMouseEvent>* pCB )
+void TGE_Impl::SetCallBackMouse( TCallBackRegistrator3<const OIS::MouseEvent&, OIS::MouseButtonID, nsGraphicEngine::tTypeMouseEvent>* pCB )
 {
   mCBMouse = pCB;
 }
@@ -491,9 +500,9 @@ int TGE_Impl::GetModifierKeyBoard()
   return mKeyModifier;
 }
 //------------------------------------------------------------------------------------------
-void TGE_Impl::SetKeyBoardModifier( const OIS::KeyEvent &arg, bool pressed )
+void TGE_Impl::SetKeyBoardModifier( const OIS::KeyEvent& arg, bool pressed )
 {
-  switch( arg.key )
+  switch ( arg.key )
   {
     case OIS::KC_LCONTROL:
       flgLControl_Press = pressed;
@@ -516,11 +525,11 @@ void TGE_Impl::SetKeyBoardModifier( const OIS::KeyEvent &arg, bool pressed )
     default:return;
   }
   mKeyModifier = 0;
-  if( flgLControl_Press || flgRControl_Press )
+  if ( flgLControl_Press || flgRControl_Press )
     mKeyModifier |= OIS::Keyboard::Ctrl;
-  if( flgLShift_Press || flgRShift_Press )
+  if ( flgLShift_Press || flgRShift_Press )
     mKeyModifier |= OIS::Keyboard::Shift;
-  if( flgLAlt_Press || flgRAlt_Press )
+  if ( flgLAlt_Press || flgRAlt_Press )
     mKeyModifier |= OIS::Keyboard::Alt;
 }
 //------------------------------------------------------------------------------------------
@@ -538,26 +547,26 @@ void TGE_Impl::ClipCursor()
 {
   // 04.10.2016, clipping the cursor
   TControlClippingCursor::TRect rect;
-  if( flgCenterClippingCursor )
+  if ( flgCenterClippingCursor )
   {
-    rect.x = (int) GetWindow()->getHeight() / 2;
-    rect.y = (int) GetWindow()->getHeight() / 2;
-    rect.w = (int) 1;
-    rect.h = (int) 1;
+    rect.x = (int)GetWindow()->getHeight() / 2;
+    rect.y = (int)GetWindow()->getHeight() / 2;
+    rect.w = (int)1;
+    rect.h = (int)1;
   }
   else
   {
     rect.x = 0;
     rect.y = 0;
-    rect.w = (int) GetWindow()->getWidth();
-    rect.h = (int) GetWindow()->getHeight();
+    rect.w = (int)GetWindow()->getWidth();
+    rect.h = (int)GetWindow()->getHeight();
   }
   mClipCursor.SetClipRect( rect );
 }
 //------------------------------------------------------------------------------------------
 void TGE_Impl::windowFocusChange( Ogre::RenderWindow* rw )
 {
-  if( !IsWindowFocus() )
+  if ( !IsWindowFocus() )
     TryClipCursor();
   else
     UnclipCursor();
@@ -572,7 +581,7 @@ bool TGE_Impl::IsWindowFocus()
 {
   bool res = true;
 #ifdef WIN32
-  res = bool( GetFocus() == (HWND) GetWindowHandle() );
+  res = bool( GetFocus() == (HWND)GetWindowHandle() );
 #else
 #endif
   return res;
@@ -583,7 +592,7 @@ void TGE_Impl::SetUseClipCursor( bool v )
   flgUseClipCursor = v;
 
   TryClipCursor();
-  if( GetUseClipCursor() == false )
+  if ( GetUseClipCursor() == false )
     UnclipCursor();
 }
 //------------------------------------------------------------------------------------------
@@ -594,7 +603,7 @@ bool TGE_Impl::GetUseClipCursor()
 //------------------------------------------------------------------------------------------
 void TGE_Impl::TryClipCursor()
 {
-  if( GetUseClipCursor() )
+  if ( GetUseClipCursor() )
     ClipCursor();
 }
 //------------------------------------------------------------------------------------------

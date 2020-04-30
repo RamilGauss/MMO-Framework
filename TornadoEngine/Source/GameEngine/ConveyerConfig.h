@@ -12,13 +12,13 @@ See for more information LICENSE.md.
 #include "ReflectionMacro.h"
 #include <map>
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TAppConfig
 {
   std::vector<std::string> modules;
 };
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TConveyerConfig
 {
   std::map<std::string, TAppConfig> appList;

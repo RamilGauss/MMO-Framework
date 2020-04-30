@@ -1,0 +1,14 @@
+[requires]
+    fmt/6.2.0
+    boost/1.72.0
+    OGREdeps/2019-04@anotherfoxguy/stable
+    OGRE/1.11.6-with-patches@anotherfoxguy/stable
+    MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable
+
+[options]
+    fmt:shared=True
+    boost:shared=False
+
+[imports]
+    bin, *.dll -> ../../Exe
+    lib, *.lib -> ../../Lib

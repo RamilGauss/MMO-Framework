@@ -45,6 +45,9 @@
     <Filter Include="Addin">
       <UniqueIdentifier>{918e53c0-c1a1-42b4-b71d-4edcf142d497}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generators\Sql">
+      <UniqueIdentifier>{4cbfee1f-4033-47e5-be77-a00d9fb677d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\AST_StateMachine.cpp">
@@ -133,6 +136,21 @@
     </ClCompile>
     <ClCompile Include="Sources\MemberInfo.cpp">
       <Filter>Info</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\SqlFileGenerator.cpp">
+      <Filter>Generators\Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\SqlGenerator.cpp">
+      <Filter>Generators\Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\SqlHeaderFileGenerator.cpp">
+      <Filter>Generators\Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\SqlSourceFileGenerator.cpp">
+      <Filter>Generators\Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\SqlGenerated.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +280,21 @@
     <ClInclude Include="Sources\UnpackHandler.h">
       <Filter>Addin</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\SqlFileGenerator.h">
+      <Filter>Generators\Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\SqlGenerator.h">
+      <Filter>Generators\Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\SqlHeaderFileGenerator.h">
+      <Filter>Generators\Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\SqlSourceFileGenerator.h">
+      <Filter>Generators\Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\SqlGenerated.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json">
@@ -272,5 +305,6 @@
     <Text Include="readme.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="conanfile.txt" />
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <vector>
 #include "ParamClass.h"
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 class TTestClass
 {
 public:// member region

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="Conan-RootDirs">
+    <Conan-MyGUI-Root>$(USERPROFILE)\.conan\data\MyGUI\3.2.3-OGRE-1.11.6-with-patches\anotherfoxguy\stable\package\045e2df113a083fcbea4549e7984cbd8cae7ed9a</Conan-MyGUI-Root>
+    <Conan-OGRE-Root>$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7</Conan-OGRE-Root>
+    <Conan-OGREdeps-Root>$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714</Conan-OGREdeps-Root>
+  </PropertyGroup>
+  <PropertyGroup Label="ConanVariables">
+    <ConanCompilerFlags></ConanCompilerFlags>
+    <ConanLinkerFlags></ConanLinkerFlags>
+    <ConanPreprocessorDefinitions></ConanPreprocessorDefinitions>
+    <ConanIncludeDirectories>$(USERPROFILE)\.conan\data\MyGUI\3.2.3-OGRE-1.11.6-with-patches\anotherfoxguy\stable\package\045e2df113a083fcbea4549e7984cbd8cae7ed9a\include/MYGUI;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/Bites;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/HLMS;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/MeshLodGenerator;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/Overlay;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/Paging;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/Plugins;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/Property;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/RenderSystems;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/RTShaderSystem;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/Terrain;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/Threading;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\include/OGRE/Volume;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\include;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\include/Cg;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\include/freetype;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\include/OIS;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\include/zzip;</ConanIncludeDirectories>
+    <ConanResourceDirectories></ConanResourceDirectories>
+    <ConanLibraryDirectories>$(USERPROFILE)\.conan\data\MyGUI\3.2.3-OGRE-1.11.6-with-patches\anotherfoxguy\stable\package\045e2df113a083fcbea4549e7984cbd8cae7ed9a\lib;$(USERPROFILE)\.conan\data\MyGUI\3.2.3-OGRE-1.11.6-with-patches\anotherfoxguy\stable\package\045e2df113a083fcbea4549e7984cbd8cae7ed9a\lib/debug;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\lib;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\lib;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\lib/release;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\lib/debug;</ConanLibraryDirectories>
+    <ConanBinaryDirectories>$(USERPROFILE)\.conan\data\MyGUI\3.2.3-OGRE-1.11.6-with-patches\anotherfoxguy\stable\package\045e2df113a083fcbea4549e7984cbd8cae7ed9a\bin;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\bin;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\bin;</ConanBinaryDirectories>
+    <ConanLibraries>MyGUI.OgrePlatform_d.lib;MyGUIEngine_d.lib;OgreBites_d.lib;OgreGLSupport_d.lib;OgreHLMS_d.lib;OgreMain_d.lib;OgreMeshLodGenerator_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;FreeImage_d.lib;OIS_d.lib;amd_ags_uwp_x64.lib;amd_ags_x64.lib;amd_ags_x64_2015_MD.lib;amd_ags_x64_2015_MT.lib;amd_ags_x64_2017_MD.lib;amd_ags_x64_2017_MT.lib;cg.lib;freetype_d.lib;zlib_d.lib;zziplib_d.lib;</ConanLibraries>
+    <ConanSystemDeps></ConanSystemDeps>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LocalDebuggerEnvironment>PATH=%PATH%;$(USERPROFILE)\.conan\data\MyGUI\3.2.3-OGRE-1.11.6-with-patches\anotherfoxguy\stable\package\045e2df113a083fcbea4549e7984cbd8cae7ed9a\bin;$(USERPROFILE)\.conan\data\OGRE\1.11.6-with-patches\anotherfoxguy\stable\package\21cd320f3f44139e2192349b417d68c313aa0da7\bin;$(USERPROFILE)\.conan\data\OGREdeps\2019-04\anotherfoxguy\stable\package\d057732059ea44a47760900cb5e4855d2bea8714\bin;</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ConanIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(ConanPreprocessorDefinitions)%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>$(ConanCompilerFlags) %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(ConanLibraryDirectories)%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(ConanLibraries)%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ConanSystemDeps)%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>$(ConanLinkerFlags) %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <Midl>
+      <AdditionalIncludeDirectories>$(ConanIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(ConanIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(ConanPreprocessorDefinitions)%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>$(ConanCompilerFlags) %(AdditionalOptions)</AdditionalOptions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

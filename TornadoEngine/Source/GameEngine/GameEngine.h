@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 #include <vector>
 #include <memory>
+#include <string>
 
 #include "CallBackRegistrator.h"
 #include "SynchroPoint.h"

@@ -527,4 +527,7 @@
       <Filter>SubSystem\Logic\Master</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="conanfile.txt" />
+  </ItemGroup>
 </Project>

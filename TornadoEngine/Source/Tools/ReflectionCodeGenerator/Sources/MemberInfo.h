@@ -6,11 +6,12 @@ See for more information LICENSE.md.
 */
 
 #pragma once
+#include <set>
 #include "MemberTypeExtendedInfo.h"
 
 struct TMemberInfo
 {
-  std::string mPragmaText;// #pragma TEXT
+  std::set<std::string> mPragmaTextSet;// #pragma TEXT
 
   enum AccessLevel
   {

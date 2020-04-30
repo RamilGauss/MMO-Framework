@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 #include <OgreTerrainGroup.h>
 #include <Ogre.h>
 #include <MyGUI.h>
+#include <OgreWindowEventUtilities.h>
 
 #include "InputManagerOIS.h"
 #include "MyGUI_LastHeader.h"

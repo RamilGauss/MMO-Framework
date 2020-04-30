@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "BinaryPopMaster.h"
 #include "ReflectionMacro.h"
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TFloat3
 {
   float x = 1.2345678f;
@@ -20,7 +20,7 @@ struct TFloat3
   float z = 3.2345678f;
 };
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TFloat4
 {
   float x = 1.2345678f;
@@ -29,7 +29,7 @@ struct TFloat4
   float w = 4.2345678f;
 };
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 class TParamClass
 {
 public:

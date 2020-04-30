@@ -6,7 +6,6 @@ See for more information LICENSE.md.
 */
 
 #include "CodeGeneratorFusion.h"
-#include "fmt/time.h"
 #include "fmt/color.h"
 #include "SaveToFile.h"
 #include "IncludeListGenerator.h"
@@ -14,6 +13,7 @@ See for more information LICENSE.md.
 #include "BinaryMarshallerGenerator.h"
 #include "SingletonManager.h"
 #include "ConfigContainer.h"
+#include "SqlGenerator.h"
 
 
 using namespace nsReflectionCodeGenerator;
@@ -31,10 +31,12 @@ void TCodeGeneratorFusion::Collect()
 
   CollectFromIncludeList();
 
-  if( implementation.jsonSerializer.get() )
+  if ( implementation.jsonSerializer.get() )
     CollectFromJson();
-  if( implementation.binaryMarshaller.get() )
+  if ( implementation.binaryMarshaller.get() )
     CollectFromBinary();
+  if ( implementation.sql.get() )
+    CollectFromSql();
 }
 //---------------------------------------------------------------------------------------------
 void TCodeGeneratorFusion::Dump()
@@ -42,7 +44,7 @@ void TCodeGeneratorFusion::Dump()
   TSaveToFile stf;
   for ( auto& fileParts : mForDump )
   {
-    if( stf.ReOpen( fileParts.first.data() ) == false )
+    if ( stf.ReOpen( fileParts.first.data() ) == false )
       continue;
     for ( auto& part : fileParts.second )
       stf.WriteF( "%s\n", part.data() );
@@ -66,6 +68,13 @@ void TCodeGeneratorFusion::CollectFromJson()
 void TCodeGeneratorFusion::CollectFromBinary()
 {
   TBinaryMarshallerGenerator generator;
+  generator.Init( mForDump );
+  generator.Work();
+}
+//---------------------------------------------------------------------------------------------
+void TCodeGeneratorFusion::CollectFromSql()
+{
+  TSqlGenerator generator;
   generator.Init( mForDump );
   generator.Work();
 }

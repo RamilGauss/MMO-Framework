@@ -1,11 +1,11 @@
 /*!
-  @file
-  @author    Albert Semenov
-  @date    08/2009
+	@file
+	@author		Albert Semenov
+	@date		08/2009
 */
 
-#ifndef __MYGUI_OGRE_DATA_STREAM_H__
-#define __MYGUI_OGRE_DATA_STREAM_H__
+#ifndef MYGUI_OGRE_DATA_STREAM_H_
+#define MYGUI_OGRE_DATA_STREAM_H_
 
 #include "MyGUI_Prerequest.h"
 #include "MyGUI_IDataStream.h"
@@ -17,22 +17,22 @@
 namespace MyGUI
 {
 
-  class OgreDataStream :
-    public IDataStream
-  {
-  public:
-    OgreDataStream(Ogre::DataStreamPtr _stream);
-    virtual ~OgreDataStream();
+	class OgreDataStream :
+		public IDataStream
+	{
+	public:
+		OgreDataStream(Ogre::DataStreamPtr _stream);
+		virtual ~OgreDataStream();
 
-    virtual bool eof();
-    virtual size_t size();
-    virtual void readline(std::string& _source, Char _delim);
-    virtual size_t read(void* _buf, size_t _count);
+		virtual bool eof();
+		virtual size_t size();
+		virtual void readline(std::string& _source, Char _delim);
+		virtual size_t read(void* _buf, size_t _count);
 
-  private:
-    Ogre::DataStreamPtr mStream;
-  };
+	private:
+		Ogre::DataStreamPtr mStream;
+	};
 
 } // namespace MyGUI
 
-#endif // __MYGUI_OGRE_DATA_STREAM_H__
+#endif // MYGUI_OGRE_DATA_STREAM_H_

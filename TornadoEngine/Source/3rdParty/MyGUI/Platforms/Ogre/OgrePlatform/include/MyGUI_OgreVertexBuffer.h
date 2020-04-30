@@ -1,11 +1,11 @@
 /*!
-  @file
-  @author    Albert Semenov
-  @date    04/2009
+	@file
+	@author		Albert Semenov
+	@date		04/2009
 */
 
-#ifndef __MYGUI_OGRE_VERTEX_BUFFER_H__
-#define __MYGUI_OGRE_VERTEX_BUFFER_H__
+#ifndef MYGUI_OGRE_VERTEX_BUFFER_H_
+#define MYGUI_OGRE_VERTEX_BUFFER_H_
 
 #include "MyGUI_Prerequest.h"
 #include "MyGUI_IVertexBuffer.h"
@@ -23,37 +23,37 @@
 namespace MyGUI
 {
 
-  class OgreVertexBuffer :
-    public IVertexBuffer
-  {
-  public:
-    OgreVertexBuffer();
-    virtual ~OgreVertexBuffer();
+	class OgreVertexBuffer :
+		public IVertexBuffer
+	{
+	public:
+		OgreVertexBuffer();
+		~OgreVertexBuffer() override;
 
-    virtual void setVertexCount(size_t _count);
-    virtual size_t getVertexCount();
+		void setVertexCount(size_t _count) override;
+		size_t getVertexCount() override;
 
-    virtual Vertex* lock();
-    virtual void unlock();
+		Vertex* lock() override;
+		void unlock() override;
 
-    Ogre::RenderOperation* getRenderOperation()
-    {
-      return &mRenderOperation;
-    }
+		Ogre::RenderOperation* getRenderOperation()
+		{
+			return &mRenderOperation;
+		}
 
-  private:
-    void createVertexBuffer();
-    void destroyVertexBuffer();
-    void resizeVertexBuffer();
+	private:
+		void create();
+		void destroy();
+		void resize();
 
-  private:
-    size_t mVertexCount;
-    size_t mNeedVertexCount;
+	private:
+		size_t mVertexCount;
+		size_t mNeedVertexCount;
 
-    Ogre::RenderOperation mRenderOperation;
-    Ogre::HardwareVertexBufferSharedPtr mVertexBuffer;
-  };
+		Ogre::RenderOperation mRenderOperation;
+		Ogre::HardwareVertexBufferSharedPtr mVertexBuffer;
+	};
 
 } // namespace MyGUI
 
-#endif // __MYGUI_OGRE_VERTEX_BUFFER_H__
+#endif // MYGUI_OGRE_VERTEX_BUFFER_H_

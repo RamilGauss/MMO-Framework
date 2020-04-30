@@ -65,6 +65,7 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\Exe\.conan\conanbuildinfo.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -104,15 +105,15 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/3rdParty/fmt/include;$(SolutionDir)/Source/Base/include;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;Base_d.lib;fmt_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;Base_d.lib;fmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -219,6 +220,11 @@
     <ClCompile Include="Sources\Parser.cpp" />
     <ClCompile Include="Sources\SetupConfig.cpp" />
     <ClCompile Include="Sources\SourceAccumulator.cpp" />
+    <ClCompile Include="Sources\SqlFileGenerator.cpp" />
+    <ClCompile Include="Sources\SqlGenerated.cpp" />
+    <ClCompile Include="Sources\SqlGenerator.cpp" />
+    <ClCompile Include="Sources\SqlHeaderFileGenerator.cpp" />
+    <ClCompile Include="Sources\SqlSourceFileGenerator.cpp" />
     <ClCompile Include="Sources\Tokenizer.cpp" />
     <ClCompile Include="Sources\TypeInfo.cpp" />
     <ClCompile Include="Sources\TypeManager.cpp" />
@@ -258,6 +264,11 @@
     <ClInclude Include="Sources\Requirements.h" />
     <ClInclude Include="Sources\SetupConfig.h" />
     <ClInclude Include="Sources\SourceAccumulator.h" />
+    <ClInclude Include="Sources\SqlFileGenerator.h" />
+    <ClInclude Include="Sources\SqlGenerated.h" />
+    <ClInclude Include="Sources\SqlGenerator.h" />
+    <ClInclude Include="Sources\SqlHeaderFileGenerator.h" />
+    <ClInclude Include="Sources\SqlSourceFileGenerator.h" />
     <ClInclude Include="Sources\TestClass.h" />
     <ClInclude Include="Sources\TestStruct.h" />
     <ClInclude Include="Sources\TokenInfo.h" />
@@ -271,6 +282,7 @@
     <None Include="config.json" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="conanfile.txt" />
     <Text Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

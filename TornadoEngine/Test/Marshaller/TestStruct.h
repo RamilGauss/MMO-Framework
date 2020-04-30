@@ -15,8 +15,8 @@ See for more information LICENSE.md.
 
 namespace nsBS
 {
-  REFLECTION_ATTRIBUTE
-    struct TTestStruct : public TBaseStruct
+#pragma REFLECTION_ATTRIBUTE
+  struct TTestStruct : public TBaseStruct
   {
     TBaseStruct baseStruct;
     TBaseStruct* pBaseStruct = nullptr;

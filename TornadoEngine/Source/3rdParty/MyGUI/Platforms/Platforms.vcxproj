@@ -61,6 +61,7 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\..\Lib\.conan\conanbuildinfo.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -107,7 +108,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -176,6 +177,9 @@
     <ClCompile Include="Ogre\OgrePlatform\src\MyGUI_OgreRTTexture.cpp" />
     <ClCompile Include="Ogre\OgrePlatform\src\MyGUI_OgreTexture.cpp" />
     <ClCompile Include="Ogre\OgrePlatform\src\MyGUI_OgreVertexBuffer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

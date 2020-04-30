@@ -1,11 +1,11 @@
 /*!
-  @file
-  @author    Albert Semenov
-  @date    10/2009
+	@file
+	@author		Albert Semenov
+	@date		10/2009
 */
 
-#ifndef __MYGUI_OGRE_RTTEXTURE_H__
-#define __MYGUI_OGRE_RTTEXTURE_H__
+#ifndef MYGUI_OGRE_RTTEXTURE_H_
+#define MYGUI_OGRE_RTTEXTURE_H_
 
 #include "MyGUI_Prerequest.h"
 #include "MyGUI_IRenderTarget.h"
@@ -17,31 +17,30 @@
 namespace MyGUI
 {
 
-  class OgreRTTexture :
-    public IRenderTarget
-  {
-  public:
-    OgreRTTexture(Ogre::TexturePtr _texture);
-    virtual ~OgreRTTexture();
+	class OgreRTTexture :
+		public IRenderTarget
+	{
+	public:
+		OgreRTTexture(Ogre::TexturePtr _texture);
 
-    virtual void begin();
-    virtual void end();
+		virtual void begin();
+		virtual void end();
 
-    virtual void doRender(IVertexBuffer* _buffer, ITexture* _texture, size_t _count);
+		virtual void doRender(IVertexBuffer* _buffer, ITexture* _texture, size_t _count);
 
-    virtual const RenderTargetInfo& getInfo()
-    {
-      return mRenderTargetInfo;
-    }
+		virtual const RenderTargetInfo& getInfo()
+		{
+			return mRenderTargetInfo;
+		}
 
-  private:
-    RenderTargetInfo mRenderTargetInfo;
-    Ogre::Viewport* mViewport;
-    Ogre::Viewport* mSaveViewport;
-    Ogre::TexturePtr mTexture;
-    Ogre::Matrix4 mProjectMatrix;
-  };
+	private:
+		RenderTargetInfo mRenderTargetInfo;
+		Ogre::Viewport* mViewport;
+		Ogre::Viewport* mSaveViewport;
+		Ogre::TexturePtr mTexture;
+		Ogre::Matrix4 mProjectMatrix;
+	};
 
 } // namespace MyGUI
 
-#endif // __MYGUI_OGRE_RTTEXTURE_H__
+#endif // MYGUI_OGRE_RTTEXTURE_H_

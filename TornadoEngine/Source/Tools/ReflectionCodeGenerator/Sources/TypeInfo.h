@@ -17,6 +17,8 @@ struct TTypeInfo
 {
   std::string mFileName;
 
+  std::set<std::string> mPragmaTextSet;// #pragma TEXT
+
   enum eType
   {
     Class,Struct

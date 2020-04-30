@@ -13,10 +13,13 @@ See for more information LICENSE.md.
 
 namespace nsBS
 {
-  REFLECTION_ATTRIBUTE
+#pragma _42
+#pragma REFLECTION_ATTRIBUTE
+#pragma Table
   struct TBaseStruct
   {
-#pragma Primary_key
+#pragma Primary key
+#pragma Index
     std::string s = "0123456789";
   };
 }

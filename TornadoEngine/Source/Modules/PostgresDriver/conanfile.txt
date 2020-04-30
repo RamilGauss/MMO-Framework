@@ -1,0 +1,9 @@
+[requires]
+    libpqxx/7.0.6
+
+[options]
+    libpqxx:shared=True
+
+[imports]
+    bin, *.dll -> ../../Exe
+    lib, *.lib -> ../../Lib

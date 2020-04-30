@@ -1,11 +1,11 @@
 /*!
-  @file
-  @author    Albert Semenov
-  @date    04/2008
+	@file
+	@author		Albert Semenov
+	@date		04/2008
 */
 
-#ifndef __MYGUI_OGRE_RENDER_MANAGER_H__
-#define __MYGUI_OGRE_RENDER_MANAGER_H__
+#ifndef MYGUI_OGRE_RENDER_MANAGER_H_
+#define MYGUI_OGRE_RENDER_MANAGER_H_
 
 #include "MyGUI_Prerequest.h"
 #include "MyGUI_RenderFormat.h"
@@ -19,120 +19,133 @@
 namespace MyGUI
 {
 
-  class OgreRenderManager :
-    public RenderManager,
-    public IRenderTarget,
-    public Ogre::WindowEventListener,
-    public Ogre::RenderQueueListener,
-    public Ogre::RenderSystem::Listener
-  {
-  public:
-    OgreRenderManager();
+	class OgreRenderManager :
+		public RenderManager,
+		public IRenderTarget,
+		public Ogre::RenderQueueListener,
+		public Ogre::RenderSystem::Listener
+	{
+	public:
+		OgreRenderManager();
 
-    void initialise(Ogre::RenderWindow* _window, Ogre::SceneManager* _scene);
-    void shutdown();
+		void initialise(Ogre::RenderWindow* _window, Ogre::SceneManager* _scene);
+		void shutdown();
 
-    static OgreRenderManager& getInstance();
-    static OgreRenderManager* getInstancePtr();
+		static OgreRenderManager& getInstance();
+		static OgreRenderManager* getInstancePtr();
 
-    /** @see RenderManager::getViewSize */
-    virtual const IntSize& getViewSize() const;
+		/** @see RenderManager::getViewSize */
+		virtual const IntSize& getViewSize() const;
 
-    /** @see RenderManager::getVertexFormat */
-    virtual VertexColourType getVertexFormat();
+		/** @see RenderManager::getVertexFormat */
+		virtual VertexColourType getVertexFormat();
 
-    /** @see RenderManager::createVertexBuffer */
-    virtual IVertexBuffer* createVertexBuffer();
-    /** @see RenderManager::destroyVertexBuffer */
-    virtual void destroyVertexBuffer(IVertexBuffer* _buffer);
+		/** @see RenderManager::createVertexBuffer */
+		virtual IVertexBuffer* createVertexBuffer();
+		/** @see RenderManager::destroyVertexBuffer */
+		virtual void destroyVertexBuffer(IVertexBuffer* _buffer);
 
-    /** @see RenderManager::createTexture */
-    virtual ITexture* createTexture(const std::string& _name);
-    /** @see RenderManager::destroyTexture */
-    virtual void destroyTexture(ITexture* _texture);
-    /** @see RenderManager::getTexture */
-    virtual ITexture* getTexture(const std::string& _name);
+		/** @see RenderManager::createTexture */
+		virtual ITexture* createTexture(const std::string& _name);
+		/** @see RenderManager::destroyTexture */
+		virtual void destroyTexture(ITexture* _texture);
+		/** @see RenderManager::getTexture */
+		virtual ITexture* getTexture(const std::string& _name);
 
-    /** @see RenderManager::isFormatSupported */
-    virtual bool isFormatSupported(PixelFormat _format, TextureUsage _usage);
+		/** @see RenderManager::isFormatSupported */
+		virtual bool isFormatSupported(PixelFormat _format, TextureUsage _usage);
 
-    /** @see IRenderTarget::begin */
-    virtual void begin();
-    /** @see IRenderTarget::end */
-    virtual void end();
+		/** @see IRenderTarget::begin */
+		virtual void begin();
+		/** @see IRenderTarget::end */
+		virtual void end();
 
-    /** @see IRenderTarget::doRender */
-    virtual void doRender(IVertexBuffer* _buffer, ITexture* _texture, size_t _count);
+		/** @see IRenderTarget::doRender */
+		virtual void doRender(IVertexBuffer* _buffer, ITexture* _texture, size_t _count);
 
-    /** @see IRenderTarget::getInfo */
-    virtual const RenderTargetInfo& getInfo();
+		/** @see IRenderTarget::getInfo */
+		virtual const RenderTargetInfo& getInfo();
 
-    void setRenderSystem(Ogre::RenderSystem* _render);
-    Ogre::RenderSystem* getRenderSystem();
+		void setRenderSystem(Ogre::RenderSystem* _render);
+		Ogre::RenderSystem* getRenderSystem();
 
-    void setRenderWindow(Ogre::RenderWindow* _window);
+		void setRenderWindow(Ogre::RenderWindow* _window);
 
-    /** Set scene manager where MyGUI will be rendered */
-    void setSceneManager(Ogre::SceneManager* _scene);
+		/** Set scene manager where MyGUI will be rendered */
+		void setSceneManager(Ogre::SceneManager* _scene);
 
-    /** Get GUI viewport index */
-    size_t getActiveViewport();
+		/** Get GUI viewport index */
+		size_t getActiveViewport();
 
-    /** Set GUI viewport index */
-    void setActiveViewport(unsigned short _num);
+		/** Set GUI viewport index */
+		void setActiveViewport(unsigned short _num);
 
-    Ogre::RenderWindow* getRenderWindow();
+		Ogre::RenderWindow* getRenderWindow();
 
-    bool getManualRender();
-    void setManualRender(bool _value);
+		bool getManualRender();
+		void setManualRender(bool _value);
 
-    size_t getBatchCount() const;
+		size_t getBatchCount() const;
+
+		/** @see RenderManager::setViewSize */
+		void setViewSize(int _width, int _height) override;
 
 #if MYGUI_DEBUG_MODE == 1
-    virtual bool checkTexture(ITexture* _texture);
+		virtual bool checkTexture(ITexture* _texture);
 #endif
 
-  private:
-    virtual void renderQueueStarted(Ogre::uint8 queueGroupId, const Ogre::String& invocation, bool& skipThisInvocation);
-    virtual void renderQueueEnded(Ogre::uint8 queueGroupId, const Ogre::String& invocation, bool& repeatThisInvocation);
-    virtual void windowResized(Ogre::RenderWindow* _window);
+	/*internal:*/
+		/* for use with RTT, flips Y coordinate if necesary when rendering */
+		void doRenderRtt(IVertexBuffer* _buffer, ITexture* _texture, size_t _count, bool flipY);
 
-    // восстанавливаем буферы
-    virtual void eventOccurred(const Ogre::String& eventName, const Ogre::NameValuePairList* parameters);
+	private:
+		virtual void renderQueueStarted(Ogre::uint8 queueGroupId, const Ogre::String& invocation, bool& skipThisInvocation);
+		virtual void renderQueueEnded(Ogre::uint8 queueGroupId, const Ogre::String& invocation, bool& repeatThisInvocation);
+		virtual void windowResized(Ogre::RenderWindow* _window);
 
-    void destroyAllResources();
-    void updateRenderInfo();
+		// восстанавливаем буферы
+		virtual void eventOccurred(const Ogre::String& eventName, const Ogre::NameValuePairList* parameters);
 
-  private:
-    // флаг для обновления всех и вся
-    bool mUpdate;
+		void destroyAllResources();
+		void updateRenderInfo();
 
-    IntSize mViewSize;
+	private:
+		// флаг для обновления всех и вся
+		bool mUpdate;
 
-    Ogre::SceneManager* mSceneManager;
+		IntSize mViewSize;
 
-    VertexColourType mVertexFormat;
+		Ogre::SceneManager* mSceneManager;
 
-    // окно, на которое мы подписываемся для изменения размеров
-    Ogre::RenderWindow* mWindow;
+		VertexColourType mVertexFormat;
 
-    // вьюпорт, с которым работает система
-    unsigned short mActiveViewport;
+		// окно, на которое мы подписываемся для изменения размеров
+		Ogre::RenderWindow* mWindow;
 
-    Ogre::RenderSystem* mRenderSystem;
-    Ogre::TextureUnitState::UVWAddressingMode mTextureAddressMode;
-    Ogre::LayerBlendModeEx mColorBlendMode, mAlphaBlendMode;
+		// вьюпорт, с которым работает система
+		unsigned short mActiveViewport;
 
-    RenderTargetInfo mInfo;
+		Ogre::RenderSystem* mRenderSystem;
+#if OGRE_VERSION >= MYGUI_DEFINE_VERSION(1, 11, 3)
+		Ogre::Sampler::UVWAddressingMode mTextureAddressMode;
+#else
+		Ogre::TextureUnitState::UVWAddressingMode mTextureAddressMode;
+#endif
+		Ogre::LayerBlendModeEx mColorBlendMode, mAlphaBlendMode;
 
-    typedef std::map<std::string, ITexture*> MapTexture;
-    MapTexture mTextures;
+		RenderTargetInfo mInfo;
 
-    bool mIsInitialise;
-    bool mManualRender;
-    size_t mCountBatch;
-  };
+		typedef std::map<std::string, ITexture*> MapTexture;
+		MapTexture mTextures;
+
+		bool mIsInitialise;
+		bool mManualRender;
+		size_t mCountBatch;
+
+		Ogre::HighLevelGpuProgramPtr mVertexProgram;
+		Ogre::HighLevelGpuProgramPtr mFragmentProgram;
+	};
 
 } // namespace MyGUI
 
-#endif // __MYGUI_OGRE_RENDER_MANAGER_H__
+#endif // MYGUI_OGRE_RENDER_MANAGER_H_
