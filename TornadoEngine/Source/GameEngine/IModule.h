@@ -5,8 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef IModuleH
-#define IModuleH
+#pragma once
+
+#include <string>
 
 #include "SynchroAbonent.h"
 #include "CallBackRegistrator.h"
@@ -25,5 +26,3 @@ public:
   virtual void StartEvent(){}
   virtual void StopEvent() {}
 };
-
-#endif

@@ -1,11 +1,11 @@
 [includedirs]
 C:/Users/Gauss/.conan/data/fmt/6.2.0/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/include
 C:/Users/Gauss/.conan/data/openssl/1.1.1f/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/include
-C:/.conan/0bb101/1/include
+C:/.conan/c75c6d/1/include
 C:/Users/Gauss/.conan/data/bullet3/2.89/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 C:/Users/Gauss/.conan/data/bullet3/2.89/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include/bullet
 C:/Users/Gauss/.conan/data/MyGUI/3.2.3-OGRE-1.11.6-with-patches/anotherfoxguy/stable/package/045e2df113a083fcbea4549e7984cbd8cae7ed9a/include/MYGUI
-C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+C:/Users/Gauss/.conan/data/libpqxx/7.0.6/_/_/package/137914d97d11e38e1d3b2ae4c98ad3dbb3a50810/include
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/include
 C:/Users/Gauss/.conan/data/OGRE/1.11.6-with-patches/anotherfoxguy/stable/package/21cd320f3f44139e2192349b417d68c313aa0da7/include
 C:/Users/Gauss/.conan/data/OGRE/1.11.6-with-patches/anotherfoxguy/stable/package/21cd320f3f44139e2192349b417d68c313aa0da7/include/OGRE
@@ -21,6 +21,8 @@ C:/Users/Gauss/.conan/data/OGRE/1.11.6-with-patches/anotherfoxguy/stable/package
 C:/Users/Gauss/.conan/data/OGRE/1.11.6-with-patches/anotherfoxguy/stable/package/21cd320f3f44139e2192349b417d68c313aa0da7/include/OGRE/Terrain
 C:/Users/Gauss/.conan/data/OGRE/1.11.6-with-patches/anotherfoxguy/stable/package/21cd320f3f44139e2192349b417d68c313aa0da7/include/OGRE/Threading
 C:/Users/Gauss/.conan/data/OGRE/1.11.6-with-patches/anotherfoxguy/stable/package/21cd320f3f44139e2192349b417d68c313aa0da7/include/OGRE/Volume
+C:/Users/Gauss/.conan/data/libpq/11.5/_/_/package/487a5ebc62be09517ca7a9dbf8f7f4a1f219019b/include
+C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include/Cg
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include/freetype
@@ -30,13 +32,15 @@ C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732
 [libdirs]
 C:/Users/Gauss/.conan/data/fmt/6.2.0/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib
 C:/Users/Gauss/.conan/data/openssl/1.1.1f/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib
-C:/.conan/0bb101/1/lib
+C:/.conan/c75c6d/1/lib
 C:/Users/Gauss/.conan/data/bullet3/2.89/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 C:/Users/Gauss/.conan/data/MyGUI/3.2.3-OGRE-1.11.6-with-patches/anotherfoxguy/stable/package/045e2df113a083fcbea4549e7984cbd8cae7ed9a/lib
 C:/Users/Gauss/.conan/data/MyGUI/3.2.3-OGRE-1.11.6-with-patches/anotherfoxguy/stable/package/045e2df113a083fcbea4549e7984cbd8cae7ed9a/lib/debug
-C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
+C:/Users/Gauss/.conan/data/libpqxx/7.0.6/_/_/package/137914d97d11e38e1d3b2ae4c98ad3dbb3a50810/lib
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib
 C:/Users/Gauss/.conan/data/OGRE/1.11.6-with-patches/anotherfoxguy/stable/package/21cd320f3f44139e2192349b417d68c313aa0da7/lib
+C:/Users/Gauss/.conan/data/libpq/11.5/_/_/package/487a5ebc62be09517ca7a9dbf8f7f4a1f219019b/lib
+C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/lib/release
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/lib/debug
@@ -44,8 +48,9 @@ C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732
 [bindirs]
 C:/Users/Gauss/.conan/data/fmt/6.2.0/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/bin
 C:/Users/Gauss/.conan/data/openssl/1.1.1f/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/bin
-C:/.conan/0bb101/1/lib
+C:/.conan/c75c6d/1/lib
 C:/Users/Gauss/.conan/data/MyGUI/3.2.3-OGRE-1.11.6-with-patches/anotherfoxguy/stable/package/045e2df113a083fcbea4549e7984cbd8cae7ed9a/bin
+C:/Users/Gauss/.conan/data/libpqxx/7.0.6/_/_/package/137914d97d11e38e1d3b2ae4c98ad3dbb3a50810/bin
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/bin
 C:/Users/Gauss/.conan/data/OGRE/1.11.6-with-patches/anotherfoxguy/stable/package/21cd320f3f44139e2192349b417d68c313aa0da7/bin
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/bin
@@ -56,53 +61,55 @@ C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732
 [builddirs]
 C:/Users/Gauss/.conan/data/fmt/6.2.0/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/
 C:/Users/Gauss/.conan/data/openssl/1.1.1f/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/
-C:/.conan/0bb101/1/
+C:/.conan/c75c6d/1/
 C:/Users/Gauss/.conan/data/bullet3/2.89/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
 C:/Users/Gauss/.conan/data/MyGUI/3.2.3-OGRE-1.11.6-with-patches/anotherfoxguy/stable/package/045e2df113a083fcbea4549e7984cbd8cae7ed9a/
-C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
+C:/Users/Gauss/.conan/data/libpqxx/7.0.6/_/_/package/137914d97d11e38e1d3b2ae4c98ad3dbb3a50810/
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/
 C:/Users/Gauss/.conan/data/OGRE/1.11.6-with-patches/anotherfoxguy/stable/package/21cd320f3f44139e2192349b417d68c313aa0da7/
+C:/Users/Gauss/.conan/data/libpq/11.5/_/_/package/487a5ebc62be09517ca7a9dbf8f7f4a1f219019b/
+C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/
 
 [libs]
 fmtd
 libssld
 libcryptod
-boost_wave
-boost_container
-boost_contract
+libboost_wave
+libboost_container
+libboost_contract
 libboost_exception
-boost_graph
-boost_iostreams
-boost_locale
-boost_log
-boost_program_options
-boost_random
-boost_regex
-boost_serialization
-boost_wserialization
-boost_coroutine
-boost_fiber
-boost_context
-boost_timer
-boost_thread
-boost_chrono
-boost_date_time
-boost_atomic
-boost_filesystem
-boost_system
-boost_type_erasure
-boost_log_setup
-boost_math_c99
-boost_math_c99f
-boost_math_c99l
-boost_math_tr1
-boost_math_tr1f
-boost_math_tr1l
-boost_stacktrace_noop
-boost_stacktrace_windbg
-boost_stacktrace_windbg_cached
-boost_unit_test_framework
+libboost_graph
+libboost_iostreams
+libboost_locale
+libboost_log
+libboost_program_options
+libboost_random
+libboost_regex
+libboost_serialization
+libboost_wserialization
+libboost_coroutine
+libboost_fiber
+libboost_context
+libboost_timer
+libboost_thread
+libboost_chrono
+libboost_date_time
+libboost_atomic
+libboost_filesystem
+libboost_system
+libboost_type_erasure
+libboost_log_setup
+libboost_math_c99
+libboost_math_c99f
+libboost_math_c99l
+libboost_math_tr1
+libboost_math_tr1f
+libboost_math_tr1l
+libboost_stacktrace_noop
+libboost_stacktrace_windbg
+libboost_stacktrace_windbg_cached
+libboost_unit_test_framework
 BulletDynamics_Debug
 BulletCollision_Debug
 LinearMath_Debug
@@ -111,7 +118,7 @@ Bullet3Common_Debug
 BulletInverseDynamics_Debug
 MyGUI.OgrePlatform_d
 MyGUIEngine_d
-zlib
+pqxx
 bz2
 OgreBites_d
 OgreGLSupport_d
@@ -124,6 +131,9 @@ OgreProperty_d
 OgreRTShaderSystem_d
 OgreTerrain_d
 OgreVolume_d
+libpgport
+libpq
+zlib
 FreeImage_d
 OIS_d
 amd_ags_uwp_x64
@@ -138,16 +148,19 @@ zlib_d
 zziplib_d
 
 [system_libs]
-crypt32
 msi
-ws2_32
-advapi32
 user32
 gdi32
 bcrypt
+wsock32
+ws2_32
+secur32
+advapi32
+shell32
+crypt32
+wldap32
 
 [defines]
-BOOST_ALL_DYN_LINK
 BOOST_ALL_NO_LIB
 FMT_SHARED
 
@@ -299,62 +312,61 @@ openssl
 
 
 [includedirs_boost]
-C:/.conan/0bb101/1/include
+C:/.conan/c75c6d/1/include
 
 [libdirs_boost]
-C:/.conan/0bb101/1/lib
+C:/.conan/c75c6d/1/lib
 
 [bindirs_boost]
-C:/.conan/0bb101/1/lib
+C:/.conan/c75c6d/1/lib
 
 [resdirs_boost]
 
 
 [builddirs_boost]
-C:/.conan/0bb101/1/
+C:/.conan/c75c6d/1/
 
 [libs_boost]
-boost_wave
-boost_container
-boost_contract
+libboost_wave
+libboost_container
+libboost_contract
 libboost_exception
-boost_graph
-boost_iostreams
-boost_locale
-boost_log
-boost_program_options
-boost_random
-boost_regex
-boost_serialization
-boost_wserialization
-boost_coroutine
-boost_fiber
-boost_context
-boost_timer
-boost_thread
-boost_chrono
-boost_date_time
-boost_atomic
-boost_filesystem
-boost_system
-boost_type_erasure
-boost_log_setup
-boost_math_c99
-boost_math_c99f
-boost_math_c99l
-boost_math_tr1
-boost_math_tr1f
-boost_math_tr1l
-boost_stacktrace_noop
-boost_stacktrace_windbg
-boost_stacktrace_windbg_cached
-boost_unit_test_framework
+libboost_graph
+libboost_iostreams
+libboost_locale
+libboost_log
+libboost_program_options
+libboost_random
+libboost_regex
+libboost_serialization
+libboost_wserialization
+libboost_coroutine
+libboost_fiber
+libboost_context
+libboost_timer
+libboost_thread
+libboost_chrono
+libboost_date_time
+libboost_atomic
+libboost_filesystem
+libboost_system
+libboost_type_erasure
+libboost_log_setup
+libboost_math_c99
+libboost_math_c99f
+libboost_math_c99l
+libboost_math_tr1
+libboost_math_tr1f
+libboost_math_tr1l
+libboost_stacktrace_noop
+libboost_stacktrace_windbg
+libboost_stacktrace_windbg_cached
+libboost_unit_test_framework
 
 [system_libs_boost]
 bcrypt
 
 [defines_boost]
-BOOST_ALL_DYN_LINK
 BOOST_ALL_NO_LIB
 
 [cppflags_boost]
@@ -382,7 +394,7 @@ BOOST_ALL_NO_LIB
 
 
 [rootpath_boost]
-C:/.conan/0bb101/1
+C:/.conan/c75c6d/1
 
 [name_boost]
 boost
@@ -515,62 +527,63 @@ MyGUI
 3.2.3-OGRE-1.11.6-with-patches
 
 
-[includedirs_zlib]
-C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+[includedirs_libpqxx]
+C:/Users/Gauss/.conan/data/libpqxx/7.0.6/_/_/package/137914d97d11e38e1d3b2ae4c98ad3dbb3a50810/include
 
-[libdirs_zlib]
-C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
+[libdirs_libpqxx]
+C:/Users/Gauss/.conan/data/libpqxx/7.0.6/_/_/package/137914d97d11e38e1d3b2ae4c98ad3dbb3a50810/lib
 
-[bindirs_zlib]
+[bindirs_libpqxx]
+C:/Users/Gauss/.conan/data/libpqxx/7.0.6/_/_/package/137914d97d11e38e1d3b2ae4c98ad3dbb3a50810/bin
 
-
-[resdirs_zlib]
-
-
-[builddirs_zlib]
-C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
-
-[libs_zlib]
-zlib
-
-[system_libs_zlib]
+[resdirs_libpqxx]
 
 
-[defines_zlib]
+[builddirs_libpqxx]
+C:/Users/Gauss/.conan/data/libpqxx/7.0.6/_/_/package/137914d97d11e38e1d3b2ae4c98ad3dbb3a50810/
+
+[libs_libpqxx]
+pqxx
+
+[system_libs_libpqxx]
+wsock32
+ws2_32
+
+[defines_libpqxx]
 
 
-[cppflags_zlib]
+[cppflags_libpqxx]
 
 
-[cxxflags_zlib]
+[cxxflags_libpqxx]
 
 
-[cflags_zlib]
+[cflags_libpqxx]
 
 
-[sharedlinkflags_zlib]
+[sharedlinkflags_libpqxx]
 
 
-[exelinkflags_zlib]
+[exelinkflags_libpqxx]
 
 
-[sysroot_zlib]
+[sysroot_libpqxx]
 
 
-[frameworks_zlib]
+[frameworks_libpqxx]
 
 
-[frameworkdirs_zlib]
+[frameworkdirs_libpqxx]
 
 
-[rootpath_zlib]
-C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714
+[rootpath_libpqxx]
+C:/Users/Gauss/.conan/data/libpqxx/7.0.6/_/_/package/137914d97d11e38e1d3b2ae4c98ad3dbb3a50810
 
-[name_zlib]
-zlib
+[name_libpqxx]
+libpqxx
 
-[version_zlib]
-1.2.11
+[version_libpqxx]
+7.0.6
 
 
 [includedirs_bzip2]
@@ -712,6 +725,128 @@ OGRE
 1.11.6-with-patches
 
 
+[includedirs_libpq]
+C:/Users/Gauss/.conan/data/libpq/11.5/_/_/package/487a5ebc62be09517ca7a9dbf8f7f4a1f219019b/include
+
+[libdirs_libpq]
+C:/Users/Gauss/.conan/data/libpq/11.5/_/_/package/487a5ebc62be09517ca7a9dbf8f7f4a1f219019b/lib
+
+[bindirs_libpq]
+
+
+[resdirs_libpq]
+
+
+[builddirs_libpq]
+C:/Users/Gauss/.conan/data/libpq/11.5/_/_/package/487a5ebc62be09517ca7a9dbf8f7f4a1f219019b/
+
+[libs_libpq]
+libpgport
+libpq
+
+[system_libs_libpq]
+ws2_32
+secur32
+advapi32
+shell32
+crypt32
+wldap32
+
+[defines_libpq]
+
+
+[cppflags_libpq]
+
+
+[cxxflags_libpq]
+
+
+[cflags_libpq]
+
+
+[sharedlinkflags_libpq]
+
+
+[exelinkflags_libpq]
+
+
+[sysroot_libpq]
+
+
+[frameworks_libpq]
+
+
+[frameworkdirs_libpq]
+
+
+[rootpath_libpq]
+C:/Users/Gauss/.conan/data/libpq/11.5/_/_/package/487a5ebc62be09517ca7a9dbf8f7f4a1f219019b
+
+[name_libpq]
+libpq
+
+[version_libpq]
+11.5
+
+
+[includedirs_zlib]
+C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+
+[libdirs_zlib]
+C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
+
+[bindirs_zlib]
+
+
+[resdirs_zlib]
+
+
+[builddirs_zlib]
+C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
+
+[libs_zlib]
+zlib
+
+[system_libs_zlib]
+
+
+[defines_zlib]
+
+
+[cppflags_zlib]
+
+
+[cxxflags_zlib]
+
+
+[cflags_zlib]
+
+
+[sharedlinkflags_zlib]
+
+
+[exelinkflags_zlib]
+
+
+[sysroot_zlib]
+
+
+[frameworks_zlib]
+
+
+[frameworkdirs_zlib]
+
+
+[rootpath_zlib]
+C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714
+
+[name_zlib]
+zlib
+
+[version_zlib]
+1.2.11
+
+
 [includedirs_OGREdeps]
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 C:/Users/Gauss/.conan/data/OGREdeps/2019-04/anotherfoxguy/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include/Cg
@@ -792,17 +927,22 @@ OGREdeps
 [USER_boost]
 [USER_bullet3]
 [USER_MyGUI]
-[USER_zlib]
+[USER_libpqxx]
 [USER_bzip2]
 [USER_OGRE]
+[USER_libpq]
+[USER_zlib]
 [USER_OGREdeps]
 [ENV_fmt]
 [ENV_openssl]
 [ENV_boost]
-BOOST_ROOT=C:\.conan\0bb101\1
+BOOST_ROOT=C:\.conan\c75c6d\1
 [ENV_bullet3]
 [ENV_MyGUI]
-[ENV_zlib]
+[ENV_libpqxx]
 [ENV_bzip2]
 [ENV_OGRE]
+[ENV_libpq]
+PostgreSQL_ROOT=C:\Users\Gauss\.conan\data\libpq\11.5\_\_\package\487a5ebc62be09517ca7a9dbf8f7f4a1f219019b
+[ENV_zlib]
 [ENV_OGREdeps]

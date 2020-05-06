@@ -13,6 +13,7 @@
     boost/1.Y.Z
     bullet3/2.Y.Z
     fmt/6.Y.Z
+    libpqxx/7.Y.Z
     openssl/1.Y.Z
 
 [options]
@@ -33,10 +34,12 @@
     MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable:045e2df113a083fcbea4549e7984cbd8cae7ed9a
     OGRE/1.11.6-with-patches@anotherfoxguy/stable:21cd320f3f44139e2192349b417d68c313aa0da7
     OGREdeps/2019-04@anotherfoxguy/stable:d057732059ea44a47760900cb5e4855d2bea8714
-    boost/1.72.0:fcfed344670d6686da59eca5a8b39a329b6568c9
+    boost/1.72.0:3191e02c37a4ec1a7b5378f96fc9b87f676352ad
     bullet3/2.89:d057732059ea44a47760900cb5e4855d2bea8714
     bzip2/1.0.8:589a23dff5fdb23a7fb851223eb766480ead0a9a
     fmt/6.2.0:4f1710918aa542fccb5a54d7bd712e4b0750b50d
+    libpq/11.5:487a5ebc62be09517ca7a9dbf8f7f4a1f219019b
+    libpqxx/7.0.6:137914d97d11e38e1d3b2ae4c98ad3dbb3a50810
     openssl/1.1.1f:4f1710918aa542fccb5a54d7bd712e4b0750b50d
     zlib/1.2.11:d057732059ea44a47760900cb5e4855d2bea8714
 
@@ -52,13 +55,14 @@
     boost:layout=system
     boost:lzma=False
     boost:magic_autolink=False
+    boost:multithreading=True
     boost:namespace=boost
     boost:namespace_alias=False
     boost:pch=True
     boost:python_executable=None
     boost:python_version=None
     boost:segmented_stacks=False
-    boost:shared=True
+    boost:shared=False
     boost:system_no_deprecated=False
     boost:without_atomic=False
     boost:without_chrono=False
@@ -104,6 +108,10 @@
     fmt:header_only=False
     fmt:shared=True
     fmt:with_fmt_alias=False
+    libpq:shared=False
+    libpq:with_openssl=False
+    libpq:with_zlib=True
+    libpqxx:shared=True
     openssl:386=False
     openssl:capieng_dialog=False
     openssl:no_asm=False

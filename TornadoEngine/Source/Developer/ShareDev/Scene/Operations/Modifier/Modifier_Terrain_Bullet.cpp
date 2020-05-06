@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "Modifier_Terrain_Bullet.h"
 
-#include <CollisionShapes/btHeightfieldTerrainShape.h>
+#include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
 
 #include "Pattern_Terrain.h"
 #include "ModuleLogic.h"

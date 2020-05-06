@@ -61,6 +61,7 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\Exe\.conan\conanbuildinfo.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -124,7 +125,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\ois\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -135,9 +136,9 @@
       <DisableSpecificWarnings>4251;4275;4005;4244;4250;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine_d.lib;BulletDynamics_d.lib;BulletCollision_d.lib;LinearMath_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;cg.lib;Base_d.lib;GameEngine_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;Common_d.lib;Platforms_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base_d.lib;GameEngine_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;Common_d.lib;Platforms_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
@@ -493,6 +494,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="reflectionConfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

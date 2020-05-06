@@ -13,10 +13,11 @@ See for more information LICENSE.md.
 #include "ModuleGraphicEngine.h"
 
 #include <btBulletDynamicsCommon.h>
-#include <Dynamics/btDiscreteDynamicsWorld.h>
+#include <BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h>
 #include <OgreRoot.h>
 #include <OgreEntity.h>
 #include <OgreRenderWindow.h>
+#include <OgreViewport.h>
 
 namespace nsPattern_MapParameter
 {

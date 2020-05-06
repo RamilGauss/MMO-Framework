@@ -19,9 +19,9 @@ See for more information LICENSE.md.
 
 namespace nsHeightMapTerrainFromOgre
 {
-  const char* sParameters  = "TGIN";
-  const char* sHeightDelta = "TLDA";
-  const char* sID_Terrain  = "TERR";
+  const char sParameters[] = {"TGIN"};
+  const char sHeightDelta[] = {"TLDA"};
+  const char sID_Terrain[] = {"TERR"};
 }
 
 using namespace nsHeightMapTerrainFromOgre;

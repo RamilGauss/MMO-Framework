@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include <string>
 #include <vector>
 #include <map>
+#include <locale.h>
 
 #include "BL_Debug.h"
 #include "GameEngine.h"

@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 #include <string>
+#include <memory>
 
 struct TBaseItem;
 class IXML;

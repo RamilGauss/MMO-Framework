@@ -310,4 +310,7 @@
     </ClCompile>
     <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\conanfile.txt" />
+  </ItemGroup>
 </Project>

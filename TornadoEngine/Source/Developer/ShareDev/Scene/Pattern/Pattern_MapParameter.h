@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef Pattern_MapParameterH
-#define Pattern_MapParameterH
+#pragma once
 
 #include "TypeDef.h"
 #include "BehaviourPattern.h"
@@ -28,5 +27,3 @@ public:
 protected:
 
 };
-
-#endif

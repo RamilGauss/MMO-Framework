@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef HierarchyNode_ModelH
-#define HierarchyNode_ModelH
+#pragma once
 
 #include "TypeDef.h"
 #include <map>
 #include <vector>
+#include <string>
 
 class TBaseNode_Model;
 
@@ -74,5 +74,3 @@ protected:
 
   void RemoveChild(THierarchyNode* pHNode, std::string nameChild);
 };
-
-#endif

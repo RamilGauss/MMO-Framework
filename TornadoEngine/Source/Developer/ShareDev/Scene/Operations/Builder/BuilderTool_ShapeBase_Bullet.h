@@ -5,15 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef BuilderTool_ShapeBase_BulletH
-#define BuilderTool_ShapeBase_BulletH
+#pragma once
 
 #include "TypeDef.h"
 #include "BuilderTool_Bullet.h"
 
 #include "ParamBuilderShape.h"
 
-#include <CollisionDispatch/btCollisionObjectWrapper.h>
+#include <BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h>
 
 struct TShapeItem;
 struct TMaterialItem;
@@ -34,5 +33,3 @@ public:
   virtual btRigidBody* CreateRigidBody() = 0;
 protected:
 };
-
-#endif

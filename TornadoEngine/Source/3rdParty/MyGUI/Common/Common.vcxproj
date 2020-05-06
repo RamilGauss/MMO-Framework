@@ -189,7 +189,7 @@
     <ClInclude Include="Precompiled.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="conanfile.txt" />
+    <Text Include="..\..\..\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,12 +4,12 @@ Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
-#ifndef FactoryBuilderTool_Shape_BulletH
-#define FactoryBuilderTool_Shape_BulletH
+#pragma once
 
 #include "TypeDef.h"
 
 #include <map>
+#include <string>
 #include "ParamBuilderShape.h"
 
 struct TShapeItem;
@@ -40,5 +40,3 @@ protected:
   void FindMaterialByShape();
   void SetupBuilderMap();
 };
-
-#endif

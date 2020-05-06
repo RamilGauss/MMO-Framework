@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <map>
+#include <memory>
 
 #include "SerializerShapeItem_Binary.h"
 #include "SerializerModelItem_Binary.h"

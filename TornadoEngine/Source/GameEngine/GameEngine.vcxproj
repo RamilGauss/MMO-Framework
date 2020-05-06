@@ -144,7 +144,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Source\GameEngine\reflectionConfig.json"</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\GameEngine\reflectionConfig.json"</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -228,7 +228,7 @@
     <None Include="reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="conanfile.txt" />
+    <Text Include="..\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

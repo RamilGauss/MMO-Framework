@@ -1,9 +1,0 @@
-[requires]
-    fmt/6.2.0
-
-[options]
-    fmt:shared=True
-
-[imports]
-    bin, *.dll -> ../../Exe
-    lib, *.lib -> ../../Lib

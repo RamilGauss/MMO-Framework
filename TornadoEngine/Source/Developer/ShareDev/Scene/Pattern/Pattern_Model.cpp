@@ -19,7 +19,7 @@ See for more information LICENSE.md.
 #include "ModelNode_Model.h"
 
 #include <btBulletDynamicsCommon.h>
-#include <Dynamics/btDiscreteDynamicsWorld.h>
+#include <BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h>
 #include <OgreRoot.h>
 
 namespace nsPattern_Model

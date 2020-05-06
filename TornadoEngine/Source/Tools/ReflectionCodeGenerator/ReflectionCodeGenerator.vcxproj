@@ -282,7 +282,7 @@
     <None Include="config.json" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="conanfile.txt" />
+    <Text Include="..\..\conanfile.txt" />
     <Text Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

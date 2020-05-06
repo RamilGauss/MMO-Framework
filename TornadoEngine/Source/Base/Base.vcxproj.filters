@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Blog.txt" />
-    <Text Include="conanfile.txt" />
+    <Text Include="..\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AllocatorPool.h">

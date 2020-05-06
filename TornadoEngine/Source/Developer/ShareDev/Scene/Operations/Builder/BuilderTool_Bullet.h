@@ -5,14 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef BuilderTool_BulletH
-#define BuilderTool_BulletH
+#pragma once
 
 #include "TypeDef.h"
 #include "ParamBuilderShape.h"
 #include "MaterialItem.h"
 
-#include <CollisionDispatch/btCollisionObjectWrapper.h>
+#include <BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h>
 
 class btRigidBody;
 class btCollisionShape;
@@ -33,6 +32,3 @@ public:
   btRigidBody* localCreateRigidBody(float mass, 
     const btTransform& startTransform, btCollisionShape* shape, bool addInWorld);
 };
-
-#endif
-

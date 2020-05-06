@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <memory>
+
 #include "ModuleComponent.h"
 #include "PhysicEngine/PhysicEngine_Bullet.h"
 

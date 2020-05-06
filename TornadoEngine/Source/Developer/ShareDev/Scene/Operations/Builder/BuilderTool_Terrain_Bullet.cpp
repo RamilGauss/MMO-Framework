@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 #include "TerrainItem.h"
 
 #include <boost/lexical_cast.hpp>
-#include <CollisionShapes/btHeightfieldTerrainShape.h>
+#include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
 
 #include <iomanip>
 #include <ios>
@@ -23,7 +23,7 @@ See for more information LICENSE.md.
 
 TBuilderTool_Terrain_Bullet::TBuilderTool_Terrain_Bullet()
 {
-  mTerrainItem = NULL;
+  mTerrainItem = nullptr;
 }
 //--------------------------------------------------------------------
 TBuilderTool_Terrain_Bullet::~TBuilderTool_Terrain_Bullet()

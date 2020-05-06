@@ -45,6 +45,10 @@
    "False"
   ],
   [
+   "boost:multithreading",
+   "True"
+  ],
+  [
    "boost:namespace",
    "boost"
   ],
@@ -70,7 +74,7 @@
   ],
   [
    "boost:shared",
-   "True"
+   "False"
   ],
   [
    "boost:system_no_deprecated",
@@ -251,6 +255,22 @@
   [
    "fmt:with_fmt_alias",
    "False"
+  ],
+  [
+   "libpq:shared",
+   "False"
+  ],
+  [
+   "libpq:with_openssl",
+   "False"
+  ],
+  [
+   "libpq:with_zlib",
+   "True"
+  ],
+  [
+   "libpqxx:shared",
+   "True"
   ],
   [
    "openssl:386",

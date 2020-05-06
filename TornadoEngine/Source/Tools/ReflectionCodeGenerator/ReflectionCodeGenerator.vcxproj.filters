@@ -305,6 +305,6 @@
     <Text Include="readme.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="conanfile.txt" />
+    <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
 </Project>

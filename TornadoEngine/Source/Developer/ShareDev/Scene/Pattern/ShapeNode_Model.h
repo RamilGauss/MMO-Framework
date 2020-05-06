@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef ShapeNode_ModelH
-#define ShapeNode_ModelH
+#pragma once
 
 #include "TypeDef.h"
 #include "BaseNode_Model.h"
@@ -28,5 +27,3 @@ public:
   virtual ~TShapeNode_Model();
 
 };
-
-#endif

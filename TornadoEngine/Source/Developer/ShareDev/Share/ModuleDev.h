@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef ModuleDevH
-#define ModuleDevH
+#pragma once
 
 #include "TypeDef.h"
 #include "IModule.h"
@@ -31,5 +30,3 @@ protected:
 protected:
   virtual void Input( int id_sender, void* p, int size ) = 0;
 };
-
-#endif

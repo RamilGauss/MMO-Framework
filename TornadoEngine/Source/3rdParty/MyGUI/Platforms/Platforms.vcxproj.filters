@@ -61,6 +61,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="conanfile.txt" />
+    <Text Include="..\..\..\conanfile.txt" />
   </ItemGroup>
 </Project>

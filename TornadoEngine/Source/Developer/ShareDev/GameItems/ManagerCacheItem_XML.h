@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef ManagerCacheItem_XMLH
-#define ManagerCacheItem_XMLH
+#pragma once
 
 #include <map>
 #include <set>
+#include <string>
 
 #include "TypeDef.h"
 
@@ -42,5 +42,3 @@ public:
 protected:
 
 };
-
-#endif
