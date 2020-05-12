@@ -72,6 +72,8 @@ extern bool DllExport IsConsoleExist();
 
 extern bool DllExport SetCurrentPathByFile( char* sPath );
 
+extern std::string DllExport GetRandomString( int len );
+
 template <class Type>
 bool A_more_B_cycle( Type A, Type B )
 {

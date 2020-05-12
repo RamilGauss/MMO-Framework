@@ -58,6 +58,7 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\Exe\.conan\conanbuildinfo.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -173,7 +174,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./BehaviourPattern;./DevTool;./GameParam;./GUI;./Logics;./Protocols;../ShareDev/GameItems;../ShareDev/GameProcess;../ShareDev/Modules;../ShareDev/ProtocolClientSlave;../ShareDev/ProtocolSlaveMaster;../ShareDev/Scene/Common;../ShareDev/Scene/Operations/Builder;../ShareDev/Scene/Operations/Destructor;../ShareDev/Scene/Operations/Common;../ShareDev/Scene/Operations/Modifier;../ShareDev/Scene/Operations/SaverGameItem;../ShareDev/Scene/Operations/SaverOutData;../ShareDev/Scene/Operations/Synchronizer;../ShareDev/Scene/Operations/UpdaterByGameItem;../ShareDev/Scene/Operations/UpdaterGameItem;../ShareDev/Scene/Pattern;../ShareDev/Share;../ShareDev/Test;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/3rdParty/MyGUI/Common;$(SolutionDir)Source/3rdParty/MyGUI/Common/Base;$(SolutionDir)Source/3rdParty\MyGUI/Common/Base/Ogre;$(SolutionDir)Source/3rdParty/MyGUI/Common/Input/Win32;$(SolutionDir)Source/3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;$(SolutionDir)Source/Modules;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\ois\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Paging\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Volume\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./BehaviourPattern;./DevTool;./GameParam;./GUI;./Logics;./Protocols;../ShareDev/GameItems;../ShareDev/GameProcess;../ShareDev/Modules;../ShareDev/ProtocolClientSlave;../ShareDev/ProtocolSlaveMaster;../ShareDev/Scene/Common;../ShareDev/Scene/Operations/Builder;../ShareDev/Scene/Operations/Destructor;../ShareDev/Scene/Operations/Common;../ShareDev/Scene/Operations/Modifier;../ShareDev/Scene/Operations/SaverGameItem;../ShareDev/Scene/Operations/SaverOutData;../ShareDev/Scene/Operations/Synchronizer;../ShareDev/Scene/Operations/UpdaterByGameItem;../ShareDev/Scene/Operations/UpdaterGameItem;../ShareDev/Scene/Pattern;../ShareDev/Share;../ShareDev/Test;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/3rdParty/MyGUI/Common;$(SolutionDir)Source/3rdParty/MyGUI/Common/Base;$(SolutionDir)Source/3rdParty\MyGUI/Common/Base/Ogre;$(SolutionDir)Source/3rdParty/MyGUI/Common/Input/Win32;$(SolutionDir)Source/3rdParty/MyGUI/Platforms/Ogre/OgrePlatform/include;$(SolutionDir)Source/Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -183,8 +184,8 @@
       <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;MyGUIEngine.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;cg.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;Base.lib;GameEngine.lib;Common.lib;Platforms.lib;GraphicEngine.lib;PhysicEngine.lib;NetTransport.lib;MMOEngine.lib;ShareDev.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base.lib;GameEngine.lib;Common.lib;Platforms.lib;GraphicEngine.lib;PhysicEngine.lib;NetTransport.lib;MMOEngine.lib;ShareDev.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>

@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include "FileOperation.h"
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/trim.hpp>
+#include <algorithm>
 //###
 #include <boost/dll/runtime_symbol_info.hpp>
 #include "BreakPacket.h"
@@ -70,7 +71,7 @@ void cpuid_Crossplatform( int* CPUInfo, unsigned int inputVal )
 //---------------------------------------------------------------------------
 bool GetBrandCPU( std::string& CPUBrandString )
 {
-  int CPUInfo[4] = { -1 };
+  int CPUInfo[4] = {-1};
   const int sizeCPUInfo = sizeof( CPUInfo );
   char sCPUInfo[sizeCPUInfo + 1];
   cpuid_Crossplatform( &CPUInfo[0], 0x80000000 );
@@ -107,8 +108,8 @@ void CreateConsole()
   if ( resAllocConsole == false )
     return;
   // Out
-  int hCrt = _open_osfhandle( (long) GetStdHandle( STD_OUTPUT_HANDLE ), _O_TEXT );
-  FILE * hf = _fdopen( hCrt, "w" );
+  int hCrt = _open_osfhandle( (long)GetStdHandle( STD_OUTPUT_HANDLE ), _O_TEXT );
+  FILE* hf = _fdopen( hCrt, "w" );
   *stdout = *hf;
 #endif
   g_flgConsoleExist = true;
@@ -144,5 +145,21 @@ bool SetCurrentPathByFile( char* sPathFile )
     return false;
   }
   return true;
+}
+//--------------------------------------------------
+std::string GetRandomString( int len )
+{
+  auto randchar = []() -> char
+  {
+    const char charset[] =
+      "0123456789"
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      "abcdefghijklmnopqrstuvwxyz";
+    const size_t max_index = ( sizeof( charset ) - 1 );
+    return charset[rand() % max_index];
+  };
+  std::string str( len, 0 );
+  std::generate_n( str.begin(), len, randchar );
+  return str;
 }
 //--------------------------------------------------

@@ -25,6 +25,16 @@ See for more information LICENSE.md.
 
 #include "DstEvent.h"
 
+
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <fmt/core.h>
+#include <fmt/format.h>
+//#include <fmt/time.h>
+#include <fmt/color.h>
+#include <fmt/printf.h>
+
 using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
 

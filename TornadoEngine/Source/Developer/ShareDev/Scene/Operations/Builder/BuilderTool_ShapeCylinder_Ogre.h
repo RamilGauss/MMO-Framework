@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef BuilderTool_ShapeCylinder_OgreH
-#define BuilderTool_ShapeCylinder_OgreH
+#pragma once
 
 #include "TypeDef.h"
 #include <Ogre.h>
@@ -21,7 +20,7 @@ public:
   TBuilderTool_ShapeCylinder_Ogre();
 
   virtual Ogre::Entity* CreateEntity(std::string& nameEntity);
-  virtual std::string GetNameType();
+  //virtual std::string GetNameType();
 protected:
   virtual void SetNameMesh();
   virtual void SetParamShape( nsParamBuilderShape::TBaseParam* pShape );
@@ -46,5 +45,3 @@ protected:
                    Ogre::Real v_0, Ogre::Real v_1);
   void CreateTube(Ogre::Real radius, bool x_y);
 };
-
-#endif
