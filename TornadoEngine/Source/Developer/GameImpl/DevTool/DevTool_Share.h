@@ -10,9 +10,9 @@ See for more information LICENSE.md.
 #include <map>
 
 #include "IDevTool.h"
-#include "Resources.h"
 #include "CallBackRegistrator.h"
 #include "Settings.h"
+#include "FrameworkResources.h"
 
 class TModuleLogic;
 class TModuleDev;
@@ -36,10 +36,10 @@ class TDevTool_Share : public IDevTool
   std::string mPathItems;
   std::string mPathSettings;
 
-  TResources::TMMapStrStr mMapRGame;
-  TResources::TMMapStrStr mMapRGUI;
-  TResources::TMMapStrStr mMapRGameEngine;
-  TResources::TMMapStrStr mMapRGraphicEngine;
+  TStrStrListMap mMapRGame;
+  TStrStrListMap mMapRGUI;
+  TStrStrListMap mMapRGameEngine;
+  TStrStrListMap mMapRGraphicEngine;
 
   std::vector<std::string> mVecArg;
 
@@ -66,8 +66,8 @@ protected:
   void Add( int id, TModuleDev* pModule );
   void Add( std::string name, int id );
 protected:
-  int GetCountPathInMap( const char* path, TResources::TMMapStrStr& mapResource );
-  bool FindPath( const char* path, TResources::TMMapStrStr& mapResource,
+  int GetCountPathInMap( const char* path, TStrStrListMap& mapResource );
+  bool FindPath( const char* path, TStrStrListMap& mapResource,
     int index, std::string& result );
 private:
   // Resource map{Type,Path}

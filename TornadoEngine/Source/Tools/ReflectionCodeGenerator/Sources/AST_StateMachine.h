@@ -17,8 +17,10 @@ class TAST_StateMachine
   TTypeManager* mTypeMng;
   nsReflectionCodeGenerator::TConfig* mConfig;
 
-  TStateMachine mStateMachine;
-  int mState;
+  TStateMachine<TAST_StateMachine> mStateMachine;
+
+  using StateFunc = std::function<bool( TAST_StateMachine& )>;
+  StateFunc mStateFunc = nullptr;
 
   // Data
   TTokenInfoManager::TTokenInfoList* mTokenListPtr;
@@ -42,36 +44,36 @@ class TAST_StateMachine
   int mParenBalance = 0;// {}
   int mCornerBalance = 0;// <>
 
-  enum eStateType
-  {
-    eSearchAttributeOrNamespace,// ищем в файле токен с аттрибутом или начало пространства имён
-    eSearchClassOrStruct,// ищем начало класса
-    eSearchInheritanceOrLeftBrace,
-    eSearchInheritance,
-    eSearchNamespaceName,
-    eSearchNamespaceAccept,// искать ; как конец имени namespace
-    eSearchTypeName,// ищем имя класса
-    eSearchBeginSectionOrTypeOrBeginMethod,
-    eSearchFullTypeName,
-    eSearchColonAfterSection,
-    eWaitVariableNameOrTypeContinuous,
-    eSearchEndClassOrStruct,
-    eSearchBeginInheritanceType,
-    eSearchInheritanceEndOrContinueType,
-    eSearchDeclarationMethodHandler,
-    eSearchMethodBodyHandler,
-    eSearchAfterColonColonIdentifier,
-    eSearchWaitSemiColonAfterAssign,
-    eSearchClassOrStructPragma,
-    eSearchMemberPragma,
-  };
+  //enum eStateType
+  //{
+  //  eSearchAttributeOrNamespace,// ищем в файле токен с аттрибутом или начало пространства имён
+  //  eSearchClassOrStruct,// ищем начало класса
+  //  eSearchInheritanceOrLeftBrace,
+  //  eSearchInheritance,
+  //  eSearchNamespaceName,
+  //  eSearchNamespaceAccept,// искать ; как конец имени namespace
+  //  eSearchTypeName,// ищем имя класса
+  //  eSearchBeginSectionOrTypeOrBeginMethod,
+  //  eSearchFullTypeName,
+  //  eSearchColonAfterSection,
+  //  eWaitVariableNameOrTypeContinuous,
+  //  eSearchEndClassOrStruct,
+  //  eSearchBeginInheritanceType,
+  //  eSearchInheritanceEndOrContinueType,
+  //  eSearchDeclarationMethodHandler,
+  //  eSearchMethodBodyHandler,
+  //  eSearchAfterColonColonIdentifier,
+  //  eSearchWaitSemiColonAfterAssign,
+  //  eSearchClassOrStructPragma,
+  //  eSearchMemberPragma,
+  //};
 
 public:
   TAST_StateMachine( TTokenInfoManager::TTokenInfoList* tokenListPtr, std::string fileName );
 
   void Work();
 private:
-  void ConfigStateMachine();
+  //void ConfigStateMachine();
 
   bool BeforeAction();
   bool AfterAction();
@@ -102,13 +104,7 @@ private:
   bool IsBuiltInType( boost::wave::token_id id );
   bool IsType( boost::wave::token_id id );
 
-  template<typename TFunc>
-  void AddAction( eStateType state, TFunc pFunc );
+  //template<typename TFunc>
+  //void AddAction( eStateType state, TFunc pFunc );
 };
-//---------------------------------------------------------------------------------------
-template<typename TFunc>
-void TAST_StateMachine::AddAction( eStateType state, TFunc pFunc )
-{
-  mStateMachine.AddAction( state, pFunc, this );
-}
 //---------------------------------------------------------------------------------------

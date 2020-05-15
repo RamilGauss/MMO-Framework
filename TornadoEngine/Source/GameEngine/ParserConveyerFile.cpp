@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "ParserConveyerFile.h"
 
 #include "TextFile.h"
-#include "JsonSerializer.h"
+#include "GameEngineJsonSerializer.h"
 
 bool TParserConveyerFile::Work( std::string& fileDescConveyer )
 {
@@ -19,7 +19,7 @@ bool TParserConveyerFile::Work( std::string& fileDescConveyer )
     strError = "No such file";
     return false;
   }
-  nsGameEngine::TJsonSerializer::Fill( &mConveyerConfig, jsonContent );
+  TGameEngineJsonSerializer::Fill( &mConveyerConfig, jsonContent );
   return true;
 }
 //---------------------------------------------------------------------------------------

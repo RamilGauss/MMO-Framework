@@ -13,53 +13,59 @@ See for more information LICENSE.md.
 
 #include "ReflectionMacro.h"
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TBaseResources
 {
   std::string name;
 };
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TOgreCfg
 {
   std::string release;
   std::string debug;
+
+  std::string Get()
+  {
+    return
+#ifdef _DEBUG
+      debug;
+#else
+      release;
+#endif
+  }
 };
 
-REFLECTION_ATTRIBUTE
-struct TOgreResources
-{
-  std::map<std::string, std::list<std::string>> release;
-};
+using TStrStrListMap = std::map<std::string, std::list<std::string>>;
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TGameEngineResources : TBaseResources
 {
-  std::string conveyerPath;
+  std::map<std::string, std::list<std::string>> resources;
 };
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TGraphicEngineResources : TBaseResources
 {
   std::string terrainPath;
   TOgreCfg pluginsCfg;
   TOgreCfg ogreCfg;
-  TOgreResources resources;
+  std::map<std::string, std::list<std::string>> resources;
 };
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TGUIResources : TBaseResources
 {
-  TOgreResources resources;
+  std::map<std::string, std::list<std::string>> resources;
 };
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TGameResources : TBaseResources
 {
-  TOgreResources resources;
+  std::map<std::string, std::list<std::string>> resources;
 };
 
-REFLECTION_ATTRIBUTE
+#pragma REFLECTION_ATTRIBUTE
 struct TFrameworkResources
 {
   TGameEngineResources gameEngine;

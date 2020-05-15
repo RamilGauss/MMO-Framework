@@ -11,50 +11,30 @@ See for more information LICENSE.md.
 #include <functional>
 #include "TypeDef.h"
 
+template<typename Type>
 class DllExport TStateMachine
 {
-  int* mStatePtr;
-
-  std::list<int> mHistory;
-
 public:
-  typedef std::function<bool()> TCallBackFunc;
-  typedef std::function<bool()> TActionFunc;
-
+  using TCallBackFunc = std::function<bool( Type& )>;
 private:
-  typedef std::map<int, TActionFunc> TIntFuncMap;
-  TIntFuncMap mStateActionMap;
+  TCallBackFunc* mPtrStateFunc = nullptr;
 public:
-  TStateMachine( int* pState ) : mStatePtr( pState ) { }
+  TStateMachine( TCallBackFunc* pStateFunc ) : mPtrStateFunc( pStateFunc )
+  {
+  }
 
-  template<typename TFunc, typename Type>
-  void AddAction( int state, TFunc pFunc, Type pThis );
-
-  void Work( TCallBackFunc beforeAction = nullptr, TCallBackFunc afterAction = nullptr )
+  void Work( Type* pThis, TCallBackFunc beforeAction = nullptr, TCallBackFunc afterAction = nullptr )
   {
     while ( true )
     {
-      if ( beforeAction && beforeAction() == false )
+      if ( beforeAction && beforeAction( *pThis ) == false )
         return;
-      auto state = mStatePtr [0];
-      auto result = mStateActionMap [state]();
-      if ( mStatePtr [0] != state )
-        mHistory.push_back( state );
+      auto result = mPtrStateFunc[0]( *pThis );
       if ( result == false )
         return;
-      if ( afterAction && afterAction() == false )
+      if ( afterAction && afterAction( *pThis ) == false )
         return;
     }
   }
 };
 //---------------------------------------------------------------------------------------
-template<typename TFunc, typename Type>
-void TStateMachine::AddAction( int state, TFunc pFunc, Type pThis )
-{
-  auto func = std::bind( pFunc, pThis );
-  auto vt = TIntFuncMap::value_type( state, func );
-  mStateActionMap.insert( vt );
-}
-//---------------------------------------------------------------------------------------
-
-

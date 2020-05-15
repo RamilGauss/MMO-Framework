@@ -39,7 +39,7 @@ namespace nsReflectionCodeGenerator
           "other variants of use std::vector<bool> (cause it is not standart container)",
         }
       },
-      { "3. IGNORE",
+      { "3. IGNORED",
         {
           "static variables",
           "any methods (virtual, template, static, operators)",

@@ -10,12 +10,16 @@ See for more information LICENSE.md.
 #include "AST_StateMachine.h"
 #include "SingletonManager.h"
 #include "ConfigContainer.h"
+#include <functional>
+
+// Reference on IDs:
+//https://www.boost.org/doc/libs/1_72_0/libs/wave/doc/token_ids.html
 
 using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
 
 TAST_StateMachine::TAST_StateMachine( TTokenInfoManager::TTokenInfoList* tokenListPtr, std::string fileName ) :
-  mStateMachine( &mState )
+  mStateMachine( &mStateFunc )
 {
   mTypeMng = SingletonManager()->Get<TTypeManager>();
   mConfig = SingletonManager()->Get<TConfigContainer>()->Config();
@@ -28,37 +32,11 @@ TAST_StateMachine::TAST_StateMachine( TTokenInfoManager::TTokenInfoList* tokenLi
 //-------------------------------------------------------------------------------------------
 void TAST_StateMachine::Work()
 {
-  ConfigStateMachine();
+  mStateFunc = &TAST_StateMachine::SearchAttributeOrNamespace;
 
-  auto beforeAction = std::bind( &TAST_StateMachine::BeforeAction, this );
-  auto afterAction = std::bind( &TAST_StateMachine::AfterAction, this );
-  mStateMachine.Work( beforeAction, afterAction );
-}
-//-------------------------------------------------------------------------------------------
-void TAST_StateMachine::ConfigStateMachine()
-{
-  mState = eSearchAttributeOrNamespace;
-
-  AddAction( eSearchAttributeOrNamespace, &TAST_StateMachine::SearchAttributeOrNamespace );
-  AddAction( eSearchNamespaceName, &TAST_StateMachine::SearchNamespaceName );
-  AddAction( eSearchClassOrStruct, &TAST_StateMachine::SearchClassOrStruct );
-  AddAction( eSearchInheritanceOrLeftBrace, &TAST_StateMachine::SearchInheritanceOrLeftBrace );
-  AddAction( eSearchInheritance, &TAST_StateMachine::SearchInheritance );
-  AddAction( eSearchNamespaceAccept, &TAST_StateMachine::SearchNamespaceAccept );
-  AddAction( eSearchTypeName, &TAST_StateMachine::SearchTypeName );
-  AddAction( eSearchBeginSectionOrTypeOrBeginMethod, &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod );
-  AddAction( eSearchFullTypeName, &TAST_StateMachine::SearchFullTypeName );
-  AddAction( eWaitVariableNameOrTypeContinuous, &TAST_StateMachine::WaitVariableNameOrTypeContinuous );
-  AddAction( eSearchColonAfterSection, &TAST_StateMachine::SearchColonAfterSection );
-  AddAction( eSearchEndClassOrStruct, &TAST_StateMachine::SearchEndClassOrStruct );
-  AddAction( eSearchBeginInheritanceType, &TAST_StateMachine::SearchBeginInheritanceType );
-  AddAction( eSearchInheritanceEndOrContinueType, &TAST_StateMachine::SearchInheritanceEndOrContinueType );
-  AddAction( eSearchDeclarationMethodHandler, &TAST_StateMachine::SearchDeclarationMethodHandler );
-  AddAction( eSearchMethodBodyHandler, &TAST_StateMachine::SearchMethodBodyHandler );
-  AddAction( eSearchAfterColonColonIdentifier, &TAST_StateMachine::SearchAfterColonColonIdentifier );
-  AddAction( eSearchWaitSemiColonAfterAssign, &TAST_StateMachine::SearchWaitSemiColonAfterAssign );
-  AddAction( eSearchMemberPragma, &TAST_StateMachine::SearchMemberPragma );
-  AddAction( eSearchClassOrStructPragma, &TAST_StateMachine::SearchClassOrStructPragma );
+  auto beforeAction = &TAST_StateMachine::BeforeAction;
+  auto afterAction = &TAST_StateMachine::AfterAction;
+  mStateMachine.Work( this, beforeAction, afterAction );
 }
 //---------------------------------------------------------------------------------------
 bool TAST_StateMachine::BeforeAction()
@@ -92,7 +70,7 @@ bool TAST_StateMachine::SearchAttributeOrNamespace()
         mTypeInfo.mType = TTypeInfo::eType::Struct;
         mCurrentSection = TMemberInfo::ePublic;
       }
-      mState = eSearchTypeName;
+      mStateFunc = &TAST_StateMachine::SearchTypeName;
     }
     mClassOrStructPragmaTextSet.clear();
   };
@@ -100,10 +78,10 @@ bool TAST_StateMachine::SearchAttributeOrNamespace()
   switch ( mTokenInfoIt->id )
   {
     case T_PP_PRAGMA:
-      mState = eSearchClassOrStructPragma;
+      mStateFunc = &TAST_StateMachine::SearchClassOrStructPragma;
       break;
     case T_NAMESPACE:
-      mState = eSearchNamespaceName;
+      mStateFunc = &TAST_StateMachine::SearchNamespaceName;
       break;
     case T_CLASS:
     case T_STRUCT:
@@ -126,10 +104,10 @@ bool TAST_StateMachine::SearchNamespaceAccept()
       break;
     case T_LEFTBRACE:
       mTypeInfo.mNamespaceVec.push_back( mNamespaceNameForAdding );
-      mState = eSearchAttributeOrNamespace;
+      mStateFunc = &TAST_StateMachine::SearchAttributeOrNamespace;
       break;
     case T_SEMICOLON:
-      mState = eSearchAttributeOrNamespace;
+      mStateFunc = &TAST_StateMachine::SearchAttributeOrNamespace;
       break;
   }
   return true;
@@ -144,10 +122,10 @@ bool TAST_StateMachine::SearchNamespaceName()
       break;
     case T_IDENTIFIER:
       mNamespaceNameForAdding = mTokenInfoIt->value;
-      mState = eSearchNamespaceAccept;
+      mStateFunc = &TAST_StateMachine::SearchNamespaceAccept;
       break;
     default:
-      mState = eSearchAttributeOrNamespace;
+      mStateFunc = &TAST_StateMachine::SearchAttributeOrNamespace;
   }
   return true;
 }
@@ -159,12 +137,12 @@ bool TAST_StateMachine::SearchClassOrStruct()
     case T_CLASS:
       mTypeInfo.mType = TTypeInfo::eType::Class;
       mCurrentSection = TMemberInfo::ePrivate;
-      mState = eSearchTypeName;
+      mStateFunc = &TAST_StateMachine::SearchTypeName;
       break;
     case T_STRUCT:
       mTypeInfo.mType = TTypeInfo::eType::Struct;
       mCurrentSection = TMemberInfo::ePublic;
-      mState = eSearchTypeName;
+      mStateFunc = &TAST_StateMachine::SearchTypeName;
       break;
   }
   return true;
@@ -178,11 +156,11 @@ bool TAST_StateMachine::SearchInheritanceOrLeftBrace()
       mTypeInfo.mName = mTokenInfoIt->value;// новый идентификатор, может до этого мы встречали DllExport
       break;
     case T_LEFTBRACE:
-      mState = eSearchBeginSectionOrTypeOrBeginMethod;
+      mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
       break;
     case T_COLON:
       mTypeInfo.mInheritanceVec.clear();
-      mState = eSearchInheritance;
+      mStateFunc = &TAST_StateMachine::SearchInheritance;
       break;
   }
   return true;
@@ -195,17 +173,17 @@ bool TAST_StateMachine::SearchInheritance()
     case T_PUBLIC:
       mTypeInfo.mInheritanceVec.push_back( TInheritanceInfo() );
       mTypeInfo.mInheritanceVec.back().mInheritanceAccessLevel = TMemberInfo::ePublic;
-      mState = eSearchBeginInheritanceType;
+      mStateFunc = &TAST_StateMachine::SearchBeginInheritanceType;
       break;
     case T_PROTECTED:
       mTypeInfo.mInheritanceVec.push_back( TInheritanceInfo() );
       mTypeInfo.mInheritanceVec.back().mInheritanceAccessLevel = TMemberInfo::eProtected;
-      mState = eSearchBeginInheritanceType;
+      mStateFunc = &TAST_StateMachine::SearchBeginInheritanceType;
       break;
     case T_PRIVATE:
       mTypeInfo.mInheritanceVec.push_back( TInheritanceInfo() );
       mTypeInfo.mInheritanceVec.back().mInheritanceAccessLevel = TMemberInfo::ePrivate;
-      mState = eSearchBeginInheritanceType;
+      mStateFunc = &TAST_StateMachine::SearchBeginInheritanceType;
       break;
     case T_IDENTIFIER:// namespace or type name, default type
     {
@@ -216,7 +194,7 @@ bool TAST_StateMachine::SearchInheritance()
       auto& inheritanceInfo = mTypeInfo.mInheritanceVec.back();
       inheritanceInfo.mInheritanceAccessLevel = inheritanceAccessLevel;
       inheritanceInfo.mParentTypeName = mTokenInfoIt->value;
-      mState = eSearchInheritanceEndOrContinueType;
+      mStateFunc = &TAST_StateMachine::SearchInheritanceEndOrContinueType;
     }
     break;
   }
@@ -238,10 +216,10 @@ bool TAST_StateMachine::SearchInheritanceEndOrContinueType()
     }
     break;
     case T_LEFTBRACE:
-      mState = eSearchBeginSectionOrTypeOrBeginMethod;
+      mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
       break;
     case T_COMMA:
-      mState = eSearchInheritance;
+      mStateFunc = &TAST_StateMachine::SearchInheritance;
       break;
   }
   return true;
@@ -254,7 +232,7 @@ bool TAST_StateMachine::SearchBeginInheritanceType()
     case T_IDENTIFIER:
       auto& inheritanceInfo = mTypeInfo.mInheritanceVec.back();
       inheritanceInfo.mParentTypeName = mTokenInfoIt->value;
-      mState = eSearchInheritanceEndOrContinueType;
+      mStateFunc = &TAST_StateMachine::SearchInheritanceEndOrContinueType;
       break;
   }
   return true;
@@ -266,7 +244,7 @@ bool TAST_StateMachine::SearchTypeName()
   {
     case T_IDENTIFIER:
       mTypeInfo.mName = mTokenInfoIt->value;
-      mState = eSearchInheritanceOrLeftBrace;
+      mStateFunc = &TAST_StateMachine::SearchInheritanceOrLeftBrace;
       break;
   }
   return true;
@@ -277,44 +255,44 @@ bool TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod()
   switch ( mTokenInfoIt->id )
   {
     case T_PP_PRAGMA:
-      mState = eSearchMemberPragma;
+      mStateFunc = &TAST_StateMachine::SearchMemberPragma;
       break;
     case T_COMPL:// destructor
     case T_TEMPLATE:
     case T_VIRTUAL:
     case T_STATIC:
     case T_VOID:
-      mState = eSearchDeclarationMethodHandler;
+      mStateFunc = &TAST_StateMachine::SearchDeclarationMethodHandler;
       break;
     case T_PRIVATE:
       mCurrentSection = TMemberInfo::ePrivate;
-      mState = eSearchColonAfterSection;
+      mStateFunc = &TAST_StateMachine::SearchColonAfterSection;
       break;
     case T_PROTECTED:
       mCurrentSection = TMemberInfo::eProtected;
-      mState = eSearchColonAfterSection;
+      mStateFunc = &TAST_StateMachine::SearchColonAfterSection;
       break;
     case T_PUBLIC:
       mCurrentSection = TMemberInfo::ePublic;
-      mState = eSearchColonAfterSection;
+      mStateFunc = &TAST_StateMachine::SearchColonAfterSection;
       break;
     case T_RIGHTBRACE:
-      mState = eSearchEndClassOrStruct;
+      mStateFunc = &TAST_StateMachine::SearchEndClassOrStruct;
       break;
     case T_IDENTIFIER:
       if ( mTokenInfoIt->value == mTypeInfo.mName )
       {// constructor
-        mState = eSearchDeclarationMethodHandler;
+        mStateFunc = &TAST_StateMachine::SearchDeclarationMethodHandler;
         break;
       }
       mMemberInfo.mTypeName = mTokenInfoIt->value;
-      mState = eSearchFullTypeName;
+      mStateFunc = &TAST_StateMachine::SearchFullTypeName;
       break;
     default:
       if ( IsBuiltInType( mTokenInfoIt->id ) )
       {
         mMemberInfo.mTypeName = mTokenInfoIt->value;
-        mState = eSearchFullTypeName;
+        mStateFunc = &TAST_StateMachine::SearchFullTypeName;
       }
   }
   return true;
@@ -330,7 +308,7 @@ bool TAST_StateMachine::SearchFullTypeName()
     case T_SPACE:
     case T_SPACE2:
       if ( mCornerBalance == 0 )
-        mState = eWaitVariableNameOrTypeContinuous;
+        mStateFunc = &TAST_StateMachine::WaitVariableNameOrTypeContinuous;
       break;
     case T_COLON_COLON:
       mMemberInfo.mTypeName += mTokenInfoIt->value;
@@ -365,12 +343,12 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
   switch ( mTokenInfoIt->id )
   {
     case T_OPERATOR:
-      mState = eSearchDeclarationMethodHandler;
+      mStateFunc = &TAST_StateMachine::SearchDeclarationMethodHandler;
       break;
     case T_ASSIGN:
       mTypeInfo.AddMember( mMemberInfo );
       mMemberInfo.mPragmaTextSet.clear();
-      mState = eSearchWaitSemiColonAfterAssign;
+      mStateFunc = &TAST_StateMachine::SearchWaitSemiColonAfterAssign;
       break;
     case T_COMMA:
       mMemberInfo.mTypeName += mTokenInfoIt->value;
@@ -399,22 +377,24 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
       break;
     case T_COLON_COLON:
       mMemberInfo.mTypeName += mTokenInfoIt->value;
-      mState = eSearchAfterColonColonIdentifier;
+      mStateFunc = &TAST_StateMachine::SearchAfterColonColonIdentifier;
       break;
     case T_AND:// &
     case T_STAR:// *
       mMemberInfo.mTypeName += mTokenInfoIt->value;
       break;
-    case T_LEFTBRACKET:// method
-      mState = eSearchDeclarationMethodHandler;
+    case T_LEFTPAREN:
+      // method
+      mParenBalance++;
+      mStateFunc = &TAST_StateMachine::SearchDeclarationMethodHandler;
       break;
     case T_SEMICOLON:// end member
       mTypeInfo.AddMember( mMemberInfo );
       mMemberInfo.mPragmaTextSet.clear();
-      mState = eSearchBeginSectionOrTypeOrBeginMethod;
+      mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
       break;
     case T_VIRTUAL:
-      mState = eSearchDeclarationMethodHandler;
+      mStateFunc = &TAST_StateMachine::SearchDeclarationMethodHandler;
       break;
     default:
       if ( IsBuiltInType( mTokenInfoIt->id ) )
@@ -428,7 +408,7 @@ bool TAST_StateMachine::SearchColonAfterSection()
   switch ( mTokenInfoIt->id )
   {
     case T_COLON:
-      mState = eSearchBeginSectionOrTypeOrBeginMethod;
+      mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
       break;
   }
   return true;
@@ -446,7 +426,7 @@ bool TAST_StateMachine::SearchEndClassOrStruct()
 
       mTypeInfo.ClearMember();
       mTypeInfo.mInheritanceVec.clear();
-      mState = eSearchAttributeOrNamespace;// конец класса или структуры
+      mStateFunc = &TAST_StateMachine::SearchAttributeOrNamespace;// конец класса или структуры
     }
     break;
   }
@@ -463,11 +443,11 @@ bool TAST_StateMachine::SearchDeclarationMethodHandler()
     case T_RIGHTPAREN:// check balance
       mParenBalance--;
       if ( mParenBalance == 0 )
-        mState = eSearchMethodBodyHandler;
+        mStateFunc = &TAST_StateMachine::SearchMethodBodyHandler;
       break;
     case T_SEMICOLON:
       if ( mParenBalance == 0 )
-        mState = eSearchBeginSectionOrTypeOrBeginMethod;
+        mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
       break;
   }
   return true;
@@ -483,11 +463,11 @@ bool TAST_StateMachine::SearchMethodBodyHandler()
     case T_RIGHTBRACE:
       mBraceBalance--;
       if ( mBraceBalance == 0 )// check balance
-        mState = eSearchBeginSectionOrTypeOrBeginMethod;
+        mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
       break;
     case T_SEMICOLON:// end of declaration
       if ( mBraceBalance == 0 )
-        mState = eSearchBeginSectionOrTypeOrBeginMethod;
+        mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
       break;
   }
   return true;
@@ -499,7 +479,7 @@ bool TAST_StateMachine::SearchAfterColonColonIdentifier()
   {
     case T_IDENTIFIER:
       mMemberInfo.mTypeName += mTokenInfoIt->value;
-      mState = eSearchFullTypeName;
+      mStateFunc = &TAST_StateMachine::SearchFullTypeName;
       break;
   }
   return true;
@@ -510,7 +490,7 @@ bool TAST_StateMachine::SearchWaitSemiColonAfterAssign()
   switch ( mTokenInfoIt->id )
   {
     case T_SEMICOLON:
-      mState = eSearchBeginSectionOrTypeOrBeginMethod;
+      mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
       break;
   }
   return true;
@@ -533,7 +513,7 @@ bool TAST_StateMachine::SearchMemberPragma()
     case T_NEWLINE:
       mMemberInfo.mPragmaTextSet.insert( mPragmaText );
       mPragmaText = "";
-      mState = eSearchBeginSectionOrTypeOrBeginMethod;
+      mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
       break;
   }
   return true;
@@ -556,7 +536,7 @@ bool TAST_StateMachine::SearchClassOrStructPragma()
     case T_NEWLINE:
       mClassOrStructPragmaTextSet.insert( mPragmaText );
       mPragmaText = "";
-      mState = eSearchAttributeOrNamespace;
+      mStateFunc = &TAST_StateMachine::SearchAttributeOrNamespace;
       break;
   }
   return true;

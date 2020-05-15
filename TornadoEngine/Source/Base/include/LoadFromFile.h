@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -20,12 +20,12 @@ See for more information LICENSE.md.
 class DllExport TLoadFromFile : public InfoFile
 {
 public:
-  TLoadFromFile(char* path = NULL);
+  TLoadFromFile( char* path = nullptr );
   virtual ~TLoadFromFile();
 
-  virtual bool ReOpen(char* path, bool append = false);
+  virtual bool ReOpen( char* path, bool append = false );
 
   unsigned int Size();
-  unsigned int Read(void* buffer, unsigned int size, unsigned int offset = 0);
-  int ReadSmall(TContainer& c);
+  unsigned int Read( void* buffer, unsigned int size, unsigned int offset = 0 );
+  int ReadSmall( TContainer& c );
 };

@@ -4,7 +4,7 @@
   "gameEngine" :
   {
     "name": "TornadoEngine",
-	  "conveyerPath" : "../../Resources/Game/Conveyer.xml"
+    "resources" : { "Conveyer" : ["../../Resources/Game/Conveyer.json"] }
   },
   "graphicEngine":
   {
@@ -20,7 +20,7 @@
       "release": "../../Resources/Graphic/cfg/ogre.cfg",
       "debug"  : "../../Resources/Graphic/cfg/ogre_d.cfg" 
     },
-	  "resources" : 
+	"resources" : 
     { 
       "FileSystem" :
       [ 

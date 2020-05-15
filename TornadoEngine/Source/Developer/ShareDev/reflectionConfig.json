@@ -27,10 +27,10 @@
     {
       "jsonSerializer":
       {
-        "exportDeclaration": "",
-        "nameSpaceName": "nsSharedDev",
-        "fileName": "JsonSerializer",
-        "className": "TJsonSerializer"
+        "exportDeclaration": "DllExport",
+        "nameSpaceName": "",
+        "fileName": "ShareDevJsonSerializer",
+        "className": "TShareDevJsonSerializer"
       }
     }
   }

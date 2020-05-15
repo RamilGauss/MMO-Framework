@@ -1,8 +1,8 @@
 [settings]
     arch=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=Visual Studio
-    compiler.runtime=MD
+    compiler.runtime=MDd
     compiler.version=16
     os=Windows
 
@@ -22,26 +22,26 @@
 [full_settings]
     arch=x86_64
     arch_build=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=Visual Studio
-    compiler.runtime=MD
+    compiler.runtime=MDd
     compiler.toolset=v142
     compiler.version=16
     os=Windows
     os_build=Windows
 
 [full_requires]
-    MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable:b588d63633a6cda00618dc2b72c2f9c1843f7bc9
-    OGRE/1.11.6-with-patches@anotherfoxguy/stable:d8f7765379db648af911a4cf0c0770ff29bef323
-    OGREdeps/2019-04@anotherfoxguy/stable:3fb49604f9c2f729b85ba3115852006824e72cab
-    boost/1.73.0:89ac9b647276c96622aba30e7653c7c3d006505e
-    bullet3/2.89:3fb49604f9c2f729b85ba3115852006824e72cab
-    bzip2/1.0.8:d16a91eadaaf5829b928b12d2f836ff7680d3df5
-    fmt/6.2.0:127af201a4cdf8111e2e08540525c245c9b3b99e
-    libpq/11.5:d8ac7a0f959aa6a09fd6a37c84b5d5aa5d138d1f
-    libpqxx/7.0.6:e86c7e800cb1dc7dfd14b6b6858ae3aab951ca17
-    openssl/1.1.1f:127af201a4cdf8111e2e08540525c245c9b3b99e
-    zlib/1.2.11:3fb49604f9c2f729b85ba3115852006824e72cab
+    MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable:045e2df113a083fcbea4549e7984cbd8cae7ed9a
+    OGRE/1.11.6-with-patches@anotherfoxguy/stable:21cd320f3f44139e2192349b417d68c313aa0da7
+    OGREdeps/2019-04@anotherfoxguy/stable:d057732059ea44a47760900cb5e4855d2bea8714
+    boost/1.73.0:f80bfb7f77205ccc03d07736f780cb65b6efd423
+    bullet3/2.89:d057732059ea44a47760900cb5e4855d2bea8714
+    bzip2/1.0.8:589a23dff5fdb23a7fb851223eb766480ead0a9a
+    fmt/6.2.0:4f1710918aa542fccb5a54d7bd712e4b0750b50d
+    libpq/11.5:487a5ebc62be09517ca7a9dbf8f7f4a1f219019b
+    libpqxx/7.0.6:137914d97d11e38e1d3b2ae4c98ad3dbb3a50810
+    openssl/1.1.1f:4f1710918aa542fccb5a54d7bd712e4b0750b50d
+    zlib/1.2.11:d057732059ea44a47760900cb5e4855d2bea8714
 
 [full_options]
     boost:asio_no_deprecated=False

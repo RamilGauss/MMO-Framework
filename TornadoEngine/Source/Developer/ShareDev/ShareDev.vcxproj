@@ -126,7 +126,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Generated Files;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -145,6 +145,10 @@
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Source\Developer\ShareDev\reflectionConfig.json"</Command>
+      <Message>ReflectionCodeGenerator</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -177,7 +181,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Generated Files;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -239,7 +243,7 @@
     <ClCompile Include="GameProcess\IGP_Scenario_Builder.cpp" />
     <ClCompile Include="GameProcess\IGP_Scenario_Destructor.cpp" />
     <ClCompile Include="GameProcess\IGP_Scenario_Synchro.cpp" />
-    <ClCompile Include="Generated Files\JsonSerializer.cpp" />
+    <ClCompile Include="Generated Files\ShareDevJsonSerializer.cpp" />
     <ClCompile Include="Modules\BaseLogicPacket.cpp" />
     <ClCompile Include="Modules\ModuleClientLogic.cpp" />
     <ClCompile Include="Modules\ModuleComponent.cpp" />
@@ -333,9 +337,6 @@
     <ClCompile Include="Share\InputCmdDevTool.cpp" />
     <ClCompile Include="Share\RoomManager.cpp" />
     <ClCompile Include="Share\ModuleDev.cpp" />
-    <ClCompile Include="Share\ParserXMLResource.cpp" />
-    <ClCompile Include="Share\Resources.cpp" />
-    <ClCompile Include="Share\ResourcesGraphicEngine.cpp" />
     <ClCompile Include="Test\ShowTankWoT_test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -382,7 +383,7 @@
     <ClInclude Include="GameProcess\IGP_Scenario_Destructor.h" />
     <ClInclude Include="GameProcess\IGP_Scenario_Synchro.h" />
     <ClInclude Include="Generated Files\IncludeList.h" />
-    <ClInclude Include="Generated Files\JsonSerializer.h" />
+    <ClInclude Include="Generated Files\ShareDevJsonSerializer.h" />
     <ClInclude Include="Modules\BaseLogicPacket.h" />
     <ClInclude Include="Modules\LogicEventCallBack.h" />
     <ClInclude Include="Modules\ModuleClientLogic.h" />
@@ -483,14 +484,12 @@
     <ClInclude Include="Scene\Pattern\UpdaterNodeByGameItem.h" />
     <ClInclude Include="Scene\Pattern\UpdaterNodeByPhysic.h" />
     <ClInclude Include="Share\Components.h" />
+    <ClInclude Include="Share\FrameworkResources.h" />
     <ClInclude Include="Share\IGameLogicRoom.h" />
     <ClInclude Include="Share\InputCmdDevTool.h" />
     <ClInclude Include="Share\ListModules.h" />
     <ClInclude Include="Share\RoomManager.h" />
     <ClInclude Include="Share\ModuleDev.h" />
-    <ClInclude Include="Share\ParserXMLResource.h" />
-    <ClInclude Include="Share\Resources.h" />
-    <ClInclude Include="Share\ResourcesGraphicEngine.h" />
     <ClInclude Include="Test\ShowTankWoT_test.h" />
   </ItemGroup>
   <ItemGroup>

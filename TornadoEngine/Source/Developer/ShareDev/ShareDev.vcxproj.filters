@@ -267,15 +267,6 @@
     <ClCompile Include="Share\ModuleDev.cpp">
       <Filter>Share</Filter>
     </ClCompile>
-    <ClCompile Include="Share\ParserXMLResource.cpp">
-      <Filter>Share</Filter>
-    </ClCompile>
-    <ClCompile Include="Share\Resources.cpp">
-      <Filter>Share</Filter>
-    </ClCompile>
-    <ClCompile Include="Share\ResourcesGraphicEngine.cpp">
-      <Filter>Share</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\BaseLogicPacket.cpp">
       <Filter>Modules\Logic</Filter>
     </ClCompile>
@@ -672,7 +663,7 @@
     <ClCompile Include="Scene\Common\PatternNameManager.cpp">
       <Filter>Scene\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Generated Files\JsonSerializer.cpp">
+    <ClCompile Include="Generated Files\ShareDevJsonSerializer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -690,15 +681,6 @@
       <Filter>Share</Filter>
     </ClInclude>
     <ClInclude Include="Share\ModuleDev.h">
-      <Filter>Share</Filter>
-    </ClInclude>
-    <ClInclude Include="Share\ParserXMLResource.h">
-      <Filter>Share</Filter>
-    </ClInclude>
-    <ClInclude Include="Share\Resources.h">
-      <Filter>Share</Filter>
-    </ClInclude>
-    <ClInclude Include="Share\ResourcesGraphicEngine.h">
       <Filter>Share</Filter>
     </ClInclude>
     <ClInclude Include="Modules\BaseLogicPacket.h">
@@ -1133,7 +1115,10 @@
     <ClInclude Include="Generated Files\IncludeList.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Generated Files\JsonSerializer.h">
+    <ClInclude Include="Share\FrameworkResources.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated Files\ShareDevJsonSerializer.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

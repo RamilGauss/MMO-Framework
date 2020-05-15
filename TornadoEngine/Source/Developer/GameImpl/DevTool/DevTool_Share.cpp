@@ -20,14 +20,13 @@ See for more information LICENSE.md.
 #include "ModuleTimer.h"
 #include "ModuleDatabase.h"
 
-#include "ParserXMLResource.h"
-
-
 #include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
 #include "EventGameEngine.h"
 
 #include "MakerXML.h"
 #include "IXML.h"
+#include "TextFile.h"
+#include "ShareDevJsonSerializer.h"
 
 #ifndef WIN32
 #include <unistd.h>
@@ -41,8 +40,8 @@ namespace nsDevTool_Share
 
 #define NAME_ID(X) NAME_MODULE(X),X
 
-  const char* sFileResources = "Resources.xml";
-  //const char* sFileResources = "Resources.json";
+  //const char* sFileResources = "Resources.xml";
+  const char* sFileResources = "Resources.json";
 
   const char* sCore = "Core";
   const char* sSkin = "Skin";
@@ -67,29 +66,24 @@ TDevTool_Share::~TDevTool_Share()
 //-----------------------------------------------------------------------
 void TDevTool_Share::Init()
 {
-  // загрузка и разбор XML файла (ресурсы)
-  TParserXMLResource parser;
   std::string file = nsDevTool_Share::sFileResources;
-  bool res = parser.Work( file );
 
-  TResourcesGraphicEngine mGraphicEngine_Resources;
-  TResources mGame_Resources;
-  TResources mGUI_Resources;
-  TResources mGameEngine_Resources;
+  std::string str;
+  TTextFile::Load( file, str );
+  if ( str.length() == 0 )
+    return;
 
-  parser.GetResultGame( mGame_Resources );
-  parser.GetResultGameEngine( mGameEngine_Resources );
-  parser.GetResultGUI( mGUI_Resources );
-  parser.GetResultGraphicEngine( mGraphicEngine_Resources );
+  TFrameworkResources frameworkResources;
+  TShareDevJsonSerializer::Fill( &frameworkResources, str );
 
-  mTerrainPath = mGraphicEngine_Resources.GetTerrainPath();
-  mPluginsCfg = mGraphicEngine_Resources.GetPluginsCfg();
-  mOgreCfg = mGraphicEngine_Resources.GetOgreCfg();
+  mTerrainPath = frameworkResources.graphicEngine.terrainPath;
+  mPluginsCfg = frameworkResources.graphicEngine.pluginsCfg.Get();
+  mOgreCfg = frameworkResources.graphicEngine.ogreCfg.Get();
 
-  mGame_Resources.GetResource( mMapRGame );
-  mGameEngine_Resources.GetResource( mMapRGameEngine );
-  mGUI_Resources.GetResource( mMapRGUI );
-  mGraphicEngine_Resources.GetResource( mMapRGraphicEngine );
+  mMapRGame = frameworkResources.game.resources;
+  mMapRGameEngine = frameworkResources.gameEngine.resources;
+  mMapRGUI = frameworkResources.gui.resources;
+  mMapRGraphicEngine = frameworkResources.graphicEngine.resources;
 
   FindPath_Game( nsDevTool_Share::sItems, 0, mPathItems );
   FindPath_Game( nsDevTool_Share::sSettings, 0, mPathSettings );
@@ -195,7 +189,10 @@ void TDevTool_Share::SetupGraphicEngine()
   }
   // пути для ресурсов графического движка
   for ( auto& vtTypePath : mMapRGraphicEngine )
-    mGE_ForSetup->GetGE()->AddResource( vtTypePath.second, vtTypePath.first );
+  {
+    for ( auto& type : vtTypePath.second )
+      mGE_ForSetup->GetGE()->AddResource( type, vtTypePath.first );
+  }
   // оболочка и ядро для GUI
   std::string sSkin, sCore;
   FindPath_GUI( nsDevTool_Share::sCore, 0, sCore );
@@ -287,22 +284,21 @@ TModuleDev* TDevTool_Share::GetModuleByID( int id )
   return pModule;
 }
 //-----------------------------------------------------------------------
-int TDevTool_Share::GetCountPathInMap( const char* type, TResources::TMMapStrStr& mapResource )
+int TDevTool_Share::GetCountPathInMap( const char* type, TStrStrListMap& mapResource )
 {
   return mapResource.count( type );
 }
 //-----------------------------------------------------------------------
-bool TDevTool_Share::FindPath( const char* type, TResources::TMMapStrStr& mapResource,
-  int index, std::string& result )
+bool TDevTool_Share::FindPath( const char* type, TStrStrListMap& mapResource, int index, std::string& result )
 {
-  TResources::TMMapStrStrIt fit = mapResource.find( type );
+  auto fit = mapResource.find( type );
   for ( int i = 0; i < index; i++ )
   {
     fit++;
     if ( fit == mapResource.end() )
       return false;
   }
-  result = fit->second;
+  result = *(fit->second.begin());
   return true;
 }
 //-----------------------------------------------------------------------

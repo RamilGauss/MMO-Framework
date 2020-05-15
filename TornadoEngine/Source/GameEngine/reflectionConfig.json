@@ -25,12 +25,11 @@
     "includeListFileName": "IncludeList",
     "implementation":
     {
-      "jsonSerializer":
-      {
+      "jsonSerializer": {
         "exportDeclaration": "",
-        "nameSpaceName": "nsGameEngine",
-        "fileName": "JsonSerializer",
-        "className": "TJsonSerializer"
+        "nameSpaceName": "",
+        "fileName": "GameEngineJsonSerializer",
+        "className": "TGameEngineJsonSerializer"
       }
     }
   }

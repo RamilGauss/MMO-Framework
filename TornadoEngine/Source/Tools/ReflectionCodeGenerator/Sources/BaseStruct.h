@@ -21,5 +21,18 @@ namespace nsBS
 #pragma Primary key
 #pragma Index
     std::string s = "0123456789";
+
+    int Foo( int a, int b )
+    {
+      return 0;
+    }
+    static int StaticFoo( int a, int b )
+    {
+      return 0;
+    }
+    virtual int VirtualFoo( int a, int b )
+    {
+      return 0;
+    }
   };
 }

@@ -18,11 +18,11 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="JsonSerializer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="ParserConveyerFile.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineJsonSerializer.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,14 +44,14 @@
     <ClInclude Include="IncludeList.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="JsonSerializer.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="ConveyerConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ParserConveyerFile.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineJsonSerializer.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
