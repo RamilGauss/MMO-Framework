@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Blog.txt" />
-    <Text Include="..\conanfile.txt" />
+    <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AllocatorPool.h">
@@ -150,9 +150,6 @@
     <ClInclude Include="include\Marshaller.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MathTools.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\MD5.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -253,9 +250,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\JsonMaster.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ReflectionMacro.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\BinaryMaster.h">
@@ -369,9 +363,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Markup.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MathTools.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\MD5.cpp">

@@ -1,53 +1,41 @@
 {
-  "targetForParsing":
-  {
-    "directories":
-    [
-      "."
-    ],
-    "recursive": true
-  },
-  "filter":
-  {
-    "attribute": "REFLECTION_ATTRIBUTE",
-    "extensions":
-    [
-      ".h",
-      ".hpp",
-      ".hh",
-      ".hxx",
-      ".h++"
-    ]
-  },
-  "targetForCodeGeneration":
-  {
-    "directory": ".",
-    "includeListFileName": "IncludeList",
-    "implementation":
-    {
-      "jsonSerializer":
-      {
-        "exportDeclaration": "",
-        "nameSpaceName": "nsJson",
-        "fileName": "JsonSerializer",
-        "className": "TJsonSerializer"
-      },
-      "binaryMarshaller":
-      {
-        "exportDeclaration": "",
-        "nameSpaceName": "nsBinary",
-        "fileName": "BinaryMarshaller",
-        "className": "TBinaryMarshaller",
-        "beginID": 0,
-        "unpackHandler":
-        {
-          "exportDeclaration": "",
-          "nameSpaceName": "",
-          "fileName": "UnpackHandler",
-          "className": "TUnpackHandler",
-          "method": "Handle"
+    "targetForParsing": {
+        "directories": [
+            "./DataSources"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ]
+    },
+    "targetForCodeGeneration": {
+        "directory": ".",
+        "includeListFileName": "IncludeList",
+        "header": "test",
+        "typeCustomizerMap": {
+            "int8_t": "char",
+            "uint8_t": "unsigned char",
+            "int16_t": "short",
+            "uint16_t": "unsigned short",
+            "int32_t": "int",
+            "uint32_t": "unsigned int",
+            "VectorStatic": "vector"
+        },
+        "implementation": {
+            "jsonSerializer": {
+                "exportDeclaration": "",
+                "nameSpaceName": "nsJson",
+                "fileName": "JsonSerializer",
+                "className": "TJsonSerializer"
+            },
+            "binaryMarshaller": null
         }
-      }
     }
-  }
 }

@@ -10,7 +10,6 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 #include "BinaryPushMaster.h"
 #include "BinaryPopMaster.h"
-#include "ReflectionMacro.h"
 
 #pragma REFLECTION_ATTRIBUTE
 struct TFloat3

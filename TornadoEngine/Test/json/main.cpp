@@ -4,120 +4,81 @@ Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
+
+#include <fstream>
+#include <string>
+#include <iostream>
+
 #include "TestClass.h"
 #include "JsonSerializer.h"
-#include "TextFile.h"
-#include "fmt/core.h"
-#include "BinaryMarshaller.h"
 
 using namespace nsBS;
 
 std::string g_Path = "testData.json";
 
-std::shared_ptr<TTestClass> Create()
+void Load(const std::string& fileName, std::string& content)
 {
-  std::shared_ptr<TTestClass> p( new TTestClass() );
-  p->str = "my str ";
-  p->ts.s = "1234567890";
-  p->ts.password = "12345678";
-  p->ts.port = 1234;
-  p->ts.flag = true;
-
-  p->ts.numList = {0, 1, 2};
-  p->ts.strSet = {"0", "1", "2"};
-
-  p->ts.numVector = {0, 1, 2};
-  p->ts.intSet = {0, 1, 2};
-
-  p->ts.intStrMap = {{ 0, "0" }, { 1, "1" }, { 2, "2" }};
-  p->ts.strStrMap = {{ "0", "0" }, { "1", "1" }, { "2", "2" }};
-  p->ts.strIntMap = {{ "0", 0 }, { "1", 1 }, { "2", 2 }};
-  p->ts.strBoolMap = {{ "0", false }, { "1", true }, { "2", true }};
-
-  p->ts.baseVec.push_back( nsBS::TBaseStruct() );
-  p->ts.basePtrVec.push_back( nullptr );// new TBaseStruct() );
-  p->ts.baseSPVec.push_back( std::shared_ptr<nsBS::TBaseStruct>( new nsBS::TBaseStruct() ) );
-
-  p->ts.strBaseMap.insert( {"0", nsBS::TBaseStruct()} );
-  p->ts.strBasePtrMap.insert( {"0", nullptr} );// new TBaseStruct() } );
-  p->ts.strBaseSPMap.insert( {"0", std::shared_ptr<TBaseStruct>( new nsBS::TBaseStruct() )} );
-
-  p->ts.intBaseMap.insert( {0, nsBS::TBaseStruct()} );
-  p->ts.intBasePtrMap.insert( {0, nullptr} );//new TBaseStruct() } );
-  p->ts.intBaseSPMap.insert( {0, std::shared_ptr<nsBS::TBaseStruct>( new nsBS::TBaseStruct() )} );
-
-  p->ts.intArrArr = {{0,1,2,3},{0,1,2,3},{0,1,2,3}};
-  p->ts.strMapMap =
-  {
-    { "0", {{"0", "0"}, {"1","1"}} },
-  { "1", {{"1", "1"}, {"2","2"}} }
-  };
-
-  p->ts.strMapArr =
-  {
-    {{"0", "0"}, {"1","1"}},
-  {{"1", "1"}, {"2","2"}}
-  };
-
-  p->ts.strArrMap =
-  {
-    {"0", {"0","1","2"}},
-  {"1", {"10","11","12"}}
-  };
-
-  p->ts.spObjArrArr =
-  {
-    {std::shared_ptr<TBaseStruct>( new TBaseStruct() ),std::shared_ptr<TBaseStruct>()},
-  {std::shared_ptr<TBaseStruct>( new TBaseStruct() ),std::shared_ptr<TBaseStruct>()},
-  {std::shared_ptr<TBaseStruct>( new TBaseStruct() ),std::shared_ptr<TBaseStruct>()}
-  };
-
-  p->ts.spObjMapArr =
-  {
-    {{"0", std::shared_ptr<TBaseStruct>( new TBaseStruct() )}, {"1",std::shared_ptr<TBaseStruct>()}},
-  {{"0", std::shared_ptr<TBaseStruct>( new TBaseStruct() )}, {"1",std::shared_ptr<TBaseStruct>()}},
-  };
-
-  p->ts.intSuperVec = {{{{0},{1}}}};
-  return p;
+    std::ifstream ifs(fileName);
+    std::string c((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
+    content = c;
 }
 //------------------------------------------------------------------------------------
-void TestSave( TTestClass* pTestClass )
+void Save(const std::string& content, const std::string& fileName)
 {
-  std::string str;
-  nsJson::TJsonSerializer::Serialize( pTestClass, str );
-
-  TTextFile::Save( g_Path, str );
+    std::ofstream out(fileName);
+    out << content;
+    out.close();
 }
 //------------------------------------------------------------------------------------
-std::shared_ptr<TTestClass> TestLoad()
+std::shared_ptr<TestClass> Create()
 {
-  std::string str;
-  TTextFile::Load( g_Path, str );
-
-  std::shared_ptr<TTestClass> p( new TTestClass() );
-  nsJson::TJsonSerializer::Fill( p.get(), str );
-  return p;
+    std::shared_ptr<TestClass> p(new TestClass());
+    p->myarray.push_back(0);
+    p->myarray.push_back(1);
+    p->myarray.push_back(2);
+    p->myarray.push_back(3);
+    return p;
 }
 //------------------------------------------------------------------------------------
-bool CheckSavedWithLoaded( TTestClass* pA, TTestClass* pB )
+void TestSave(TestClass* pTestClass)
 {
-  nsBinary::TBinaryMarshaller marshaller;
-  TContainerRise cA, cB;
-  marshaller.Serialize( pA, cA );
-  marshaller.Serialize( pB, cB );
-  return ( cA == cB );
+    std::string str;
+    nsJson::TJsonSerializer::Serialize(pTestClass, str);
+
+    Save(g_Path, str);
 }
 //------------------------------------------------------------------------------------
-int main( int argc, char **argv )
+std::shared_ptr<TestClass> TestLoad()
 {
-  auto pForSave = Create();
-  TestSave( pForSave.get() );
-  auto loaded = TestLoad();
-  auto check = CheckSavedWithLoaded( pForSave.get(), loaded.get() );
-  fmt::print( "Test pass {}\n", check );
+    std::string str;
+    Load(g_Path, str);
 
-  getchar();
-  return 0;
+    std::shared_ptr<TestClass> p(new TestClass());
+    nsJson::TJsonSerializer::Fill(p.get(), str);
+    return p;
+}
+//------------------------------------------------------------------------------------
+bool CheckSavedWithLoaded(TestClass* pA, TestClass* pB)
+{
+    std::string strA;
+    nsJson::TJsonSerializer::Serialize(pA, strA);
+
+    std::string strB;
+    nsJson::TJsonSerializer::Serialize(pB, strB);
+
+    return (strA == strB);
+}
+//------------------------------------------------------------------------------------
+int main(int argc, char** argv)
+{
+    auto pForSave = Create();
+    TestSave(pForSave.get());
+    auto loaded = TestLoad();
+    auto check = CheckSavedWithLoaded(pForSave.get(), loaded.get());
+    std::string strResult = check ? "true" : "false";
+    printf("Test pass %s\n", strResult.data());
+
+    getchar();
+    return 0;
 }
 //------------------------------------------------------------------------------------

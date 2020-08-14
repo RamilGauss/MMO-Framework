@@ -15,31 +15,31 @@ See for more information LICENSE.md.
 
 struct TTypeInfo
 {
-  std::string mFileName;
+    std::string mFileName;
 
-  std::set<std::string> mPragmaTextSet;// #pragma TEXT
+    std::set<std::string> mPragmaTextSet;// #pragma TEXT
 
-  enum eType
-  {
-    Class,Struct
-  };
-  eType mType;
+    enum eType
+    {
+        Class, Struct
+    };
+    eType mType;
 
-  std::vector<TInheritanceInfo> mInheritanceVec;
+    std::vector<TInheritanceInfo> mInheritanceVec;
 
-  std::string mName;
-  std::vector<std::string> mNamespaceVec;
+    std::string mName;
+    std::vector<std::string> mNamespaceVec;
 
-  typedef std::shared_ptr<TMemberInfo> TMemberInfoPtr;
-  typedef std::vector<TMemberInfoPtr> TMemberInfoPtrVec;
-  typedef std::map<TMemberInfo::AccessLevel, TMemberInfoPtrVec> TAccessLevelMemberInfoPtrVecMap;
+    typedef std::shared_ptr<TMemberInfo> TMemberInfoPtr;
+    typedef std::vector<TMemberInfoPtr> TMemberInfoPtrVec;
+    typedef std::map<TMemberInfo::AccessLevel, TMemberInfoPtrVec> TAccessLevelMemberInfoPtrVecMap;
 
-  TAccessLevelMemberInfoPtrVecMap mMemberMap;
+    TAccessLevelMemberInfoPtrVecMap mMemberMap;
 
-  std::string GetNameSpace();// all namespaces: A::B::...::Z
-  std::string GetTypeNameWithNameSpace();// namespace::typename
+    std::string GetNameSpace();// all namespaces: A::B::...::Z
+    std::string GetTypeNameWithNameSpace();// namespace::typename
 
-  void AddMember( TMemberInfo& memberInfo );
+    void AddMember(TMemberInfo& memberInfo);
 
-  void ClearMember();
+    void ClearMember();
 };

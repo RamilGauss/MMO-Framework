@@ -185,9 +185,9 @@ void TGE_Impl::Done()
 
   // terrain
   delete mTerrainGroup;
-  mTerrainGroup = NULL;
+  mTerrainGroup = nullptr;
   delete mTerrainGlobals;
-  mTerrainGlobals = NULL;
+  mTerrainGlobals = nullptr;
 
   // очищаем сцену
   if ( mSceneManager )
@@ -211,7 +211,7 @@ void TGE_Impl::Done()
       window->removeAllViewports();
 
     delete mOverlaySystem;
-    mOverlaySystem = NULL;
+    mOverlaySystem = nullptr;
 
     delete mRoot;
     mRoot = nullptr;

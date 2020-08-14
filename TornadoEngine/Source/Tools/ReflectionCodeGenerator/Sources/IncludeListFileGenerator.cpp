@@ -12,7 +12,7 @@ using namespace nsReflectionCodeGenerator;
 
 void TIncludeListFileGenerator::Work()
 {
-  AddHeader();
+  AddHeader(mConfig->targetForCodeGeneration.header);
   AddTimeHeader();
 
   AddPragmaOnce();

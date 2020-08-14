@@ -11,7 +11,6 @@ See for more information LICENSE.md.
 #include <boost/wave/cpplexer/cpp_lex_iterator.hpp> // lexer class
 
 #include "LoadFromFile.h"
-#include "ReflectionMacro.h"
 #include "SingletonManager.h"
 #include "Config.h"
 #include "TokenInfoManager.h"

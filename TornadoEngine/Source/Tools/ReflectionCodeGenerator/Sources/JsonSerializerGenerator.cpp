@@ -13,36 +13,36 @@ using namespace nsReflectionCodeGenerator;
 
 void TJsonSerializerGenerator::Work()
 {
-  GenerateHeader();
-  GenerateSource();
+    GenerateHeader();
+    GenerateSource();
 }
 //----------------------------------------------------------------------------------
 void TJsonSerializerGenerator::GenerateHeader()
 {
-  TJsonSerializerHeaderFileGenerator fileGenerator;
+    TJsonSerializerHeaderFileGenerator fileGenerator;
 
-  mPairList->push_back( TStrListPair() );
+    mPairList->push_back(TStrListPair());
 
-  auto& pair = mPairList->back();
+    auto& pair = mPairList->back();
 
-  pair.first = GeneratedFileFullPath( mConfig->targetForCodeGeneration.implementation.jsonSerializer->fileName + ".h" );
+    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.implementation.jsonSerializer->fileName + ".h");
 
-  fileGenerator.Init( pair );
-  fileGenerator.Work();
+    fileGenerator.Init(pair);
+    fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
 void TJsonSerializerGenerator::GenerateSource()
 {
-  TJsonSerializerSourceFileGenerator fileGenerator;
+    TJsonSerializerSourceFileGenerator fileGenerator;
 
-  mPairList->push_back( TStrListPair() );
+    mPairList->push_back(TStrListPair());
 
-  auto& pair = mPairList->back();
+    auto& pair = mPairList->back();
 
-  pair.first = GeneratedFileFullPath( mConfig->targetForCodeGeneration.implementation.jsonSerializer->fileName + ".cpp" );
+    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.implementation.jsonSerializer->fileName + ".cpp");
 
-  fileGenerator.Init( pair );
-  fileGenerator.Work();
+    fileGenerator.Init(pair);
+    fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------
+

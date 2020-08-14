@@ -13,6 +13,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="DataSources">
+      <UniqueIdentifier>{6ce39b3f-bafc-43ca-a63d-e8d70d465d16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OutSources">
+      <UniqueIdentifier>{88c0fe0f-200b-44ce-aca7-3dbabefd0f1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,31 +27,46 @@
     <ClCompile Include="JsonSerializer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="BinaryMarshaller.cpp">
-      <Filter>Generated Files</Filter>
+    <ClCompile Include="json11.cpp">
+      <Filter>OutSources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseStruct.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestClass.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestStruct.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="JsonSerializer.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="IncludeList.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="BinaryMarshaller.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="UnpackHandler.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorStatic.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSources\TestClass.h">
+      <Filter>DataSources</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSources\TestStruct.h">
+      <Filter>DataSources</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSources\BaseStruct.h">
+      <Filter>DataSources</Filter>
+    </ClInclude>
+    <ClInclude Include="json11.h">
+      <Filter>OutSources</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonMaster.h">
+      <Filter>OutSources</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonPopMaster.h">
+      <Filter>OutSources</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonPushMaster.h">
+      <Filter>OutSources</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeDef.h">
+      <Filter>OutSources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

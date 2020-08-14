@@ -203,7 +203,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="..\conanfile.txt" />
+    <Text Include="..\..\conanfile.txt" />
     <Text Include="Blog.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +259,6 @@
     <ClInclude Include="include\MapXML_Field.h" />
     <ClInclude Include="include\Markup.h" />
     <ClInclude Include="include\Marshaller.h" />
-    <ClInclude Include="include\MathTools.h" />
     <ClInclude Include="include\MD5.h" />
     <ClInclude Include="include\MemoryObjectPool.h" />
     <ClInclude Include="include\MemoryPool.h" />
@@ -269,7 +268,6 @@
     <ClInclude Include="include\Only_N_Object.h" />
     <ClInclude Include="include\BinaryPopMaster.h" />
     <ClInclude Include="include\BinaryPushMaster.h" />
-    <ClInclude Include="include\ReflectionMacro.h" />
     <ClInclude Include="include\RemoveIthType.h" />
     <ClInclude Include="include\ResolverSelf_IP_v4.h" />
     <ClInclude Include="include\ReversedContainerRise.h" />
@@ -329,7 +327,6 @@
     <ClCompile Include="src\MapCallBack.cpp" />
     <ClCompile Include="src\MapXML_Field.cpp" />
     <ClCompile Include="src\Markup.cpp" />
-    <ClCompile Include="src\MathTools.cpp" />
     <ClCompile Include="src\MD5.cpp" />
     <ClCompile Include="src\Mutex.cpp" />
     <ClCompile Include="src\Only_N_Object.cpp" />

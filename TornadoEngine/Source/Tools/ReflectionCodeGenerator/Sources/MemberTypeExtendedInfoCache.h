@@ -23,7 +23,7 @@ class TMemberTypeExtendedInfoCache
   TStrInfoPtrMap mTokenCache;
 
 public:
-  TMemberTypeExtendedInfo* TryGetFromCache( std::string& memberName );
-  void AddToCache( std::string& memberName, TMemberTypeExtendedInfo& memberInfo );
+  TMemberTypeExtendedInfo* TryGetFromCache(const std::string& memberName );
+  void AddToCache(const std::string& memberName, TMemberTypeExtendedInfo& memberInfo );
 };
 

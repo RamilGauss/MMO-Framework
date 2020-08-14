@@ -13,7 +13,7 @@ void TBinaryMarshallerSourceFileGenerator::Work()
 {
   auto& binaryMarshaller = mConfig->targetForCodeGeneration.implementation.binaryMarshaller;
 
-  AddHeader();
+  AddHeader(mConfig->targetForCodeGeneration.header);
   AddTimeHeader();
 
   AddInclude( binaryMarshaller->fileName + ".h" );

@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 class DllExport TBinaryMaster
 {
 public:
-  typedef int SizeType;
-  typedef int StrSizeType;
-  typedef unsigned char BoolType;
+    typedef int SizeType;
+    typedef int StrSizeType;
+    typedef unsigned char BoolType;
 };

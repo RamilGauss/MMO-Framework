@@ -12,73 +12,69 @@ using namespace nsReflectionCodeGenerator;
 
 void TJsonSerializerHeaderFileGenerator::Work()
 {
-  AddHeader();
-  AddTimeHeader();
+    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddTimeHeader();
 
-  AddPragmaOnce();
-  AddEmptyLine();
-  AddStandartInclude( "string" );
-  AddInclude( "JsonMaster.h" );
-  AddInclude( "json11.h" );
-  AddInclude( mConfig->targetForCodeGeneration.includeListFileName + ".h" );
-  AddEmptyLine();
+    AddPragmaOnce();
+    AddEmptyLine();
+    AddStandartInclude("string");
+    AddInclude("JsonMaster.h");
+    AddInclude("json11.h");
+    AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");
+    AddEmptyLine();
 
-  auto namespaceName = mJsonSerializer->nameSpaceName;
-  if ( namespaceName.length() )
-  {
-    AddNamespaceBegin( namespaceName );
-    IncrementTabs();
-  }
+    auto namespaceName = mJsonSerializer->nameSpaceName;
+    if ( namespaceName.length() ) {
+        AddNamespaceBegin(namespaceName);
+        IncrementTabs();
+    }
 
-  AddClassBegin( mJsonSerializer->exportDeclaration, mJsonSerializer->className );
+    AddClassBegin(mJsonSerializer->exportDeclaration, mJsonSerializer->className);
 
-  AddList( s_JsonDecl );
+    AddList(s_JsonDecl);
 
-  AddPrivateSection();
+    AddPrivateSection();
 
-  AddDeclarations();
+    AddDeclarations();
 
-  AddClassEnd();
+    AddClassEnd();
 
-  AddList( s_JsonImpl );
+    AddList(s_JsonImpl);
 
-  if ( namespaceName.length() )
-  {
-    DecrementTabs();
-    AddNamespaceEnd();
-  }
+    if ( namespaceName.length() ) {
+        DecrementTabs();
+        AddNamespaceEnd();
+    }
 }
 //-----------------------------------------------------------------------------------
 void TJsonSerializerHeaderFileGenerator::AddDeclarations()
 {
-  IncrementTabs();
-  for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap )
-  {
-    auto namespaceName = namespaceTypeInfo.first;
-    auto& filenameTypeMap = *( namespaceTypeInfo.second.get() );
-    for ( auto filenameType : filenameTypeMap )
-    {
-      auto namespaceWithType = filenameType.second->GetTypeNameWithNameSpace();
-      AddSerializeMethodDeclaration( namespaceWithType );
-      AddDeserializeMethodDeclaration( namespaceWithType );
-      AddEmptyLine();
+    IncrementTabs();
+    for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
+        auto namespaceName = namespaceTypeInfo.first;
+        auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
+        for ( auto filenameType : filenameTypeMap ) {
+            auto namespaceWithType = filenameType.second->GetTypeNameWithNameSpace();
+            AddSerializeMethodDeclaration(namespaceWithType);
+            AddDeserializeMethodDeclaration(namespaceWithType);
+            AddEmptyLine();
+        }
     }
-  }
-  DecrementTabs();
+    DecrementTabs();
 }
 //-----------------------------------------------------------------------------------
-void TJsonSerializerHeaderFileGenerator::AddSerializeMethodDeclaration( std::string& namespaceWithType )
+void TJsonSerializerHeaderFileGenerator::AddSerializeMethodDeclaration(std::string& namespaceWithType)
 {
-  // S - Type* p, Jobj& obj
-  auto strList = GetParamListForSerialize( namespaceWithType );
-  AddStaticMethodDeclaration( "void", sSerializeMethod, strList );
+    // S - Type* p, Jobj& obj
+    auto strList = GetParamListForSerialize(namespaceWithType);
+    AddStaticMethodDeclaration("void", sSerializeMethod, strList);
 }
 //-----------------------------------------------------------------------------------
-void TJsonSerializerHeaderFileGenerator::AddDeserializeMethodDeclaration( std::string& namespaceWithType )
+void TJsonSerializerHeaderFileGenerator::AddDeserializeMethodDeclaration(std::string& namespaceWithType)
 {
-  // D - Type* p, const json11::Json& json 
-  auto strList = GetParamListForDeserialize( namespaceWithType );
-  AddStaticMethodDeclaration( "void", sDeserializeMethod, strList );
+    // D - Type* p, const json11::Json& json 
+    auto strList = GetParamListForDeserialize(namespaceWithType);
+    AddStaticMethodDeclaration("void", sDeserializeMethod, strList);
 }
 //-----------------------------------------------------------------------------------
 

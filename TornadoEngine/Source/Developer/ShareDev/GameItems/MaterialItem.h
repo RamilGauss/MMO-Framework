@@ -5,8 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef MaterialItemH
-#define MaterialItemH
+#pragma once
 
 #include <vector>
 #include "BaseItem.h"
@@ -15,8 +14,10 @@ See for more information LICENSE.md.
 #pragma pack(push, 1)
 #endif
 
+#pragma REFLECTION_ATTRIBUTE
 struct DllExport TMaterialItem : public TBaseItem
 {
+#pragma REFLECTION_ATTRIBUTE
   struct DllExport TVariant
   {
     std::string ogreMaterial;
@@ -29,6 +30,7 @@ struct DllExport TMaterialItem : public TBaseItem
   };
   typedef std::vector<TVariant> TVecVariant;
 
+#pragma REFLECTION_ATTRIBUTE
   struct DllExport TPhysic
   {
     float density;
@@ -45,4 +47,3 @@ struct DllExport TMaterialItem : public TBaseItem
 #pragma pack(pop)
 #endif
 
-#endif

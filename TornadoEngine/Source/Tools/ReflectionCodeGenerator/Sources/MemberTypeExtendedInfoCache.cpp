@@ -8,18 +8,19 @@ See for more information LICENSE.md.
 #include "MemberTypeExtendedInfoCache.h"
 
 
-TMemberTypeExtendedInfo* TMemberTypeExtendedInfoCache::TryGetFromCache( std::string& memberName )
+TMemberTypeExtendedInfo* TMemberTypeExtendedInfoCache::TryGetFromCache(const std::string& memberName)
 {
-  auto fit = mTokenCache.find( memberName );
-  if ( fit == mTokenCache.end() )
-    return nullptr;
-  return fit->second.get();
+    auto fit = mTokenCache.find(memberName);
+    if ( fit == mTokenCache.end() ) {
+        return nullptr;
+    }
+    return fit->second.get();
 }
 //------------------------------------------------------------------------------
-void TMemberTypeExtendedInfoCache::AddToCache( std::string& memberName, TMemberTypeExtendedInfo& memberInfo )
+void TMemberTypeExtendedInfoCache::AddToCache(const std::string& memberName, TMemberTypeExtendedInfo& memberInfo)
 {
-  TMemberInfoPtr memberInfoPtr;
-  memberInfoPtr.reset( new TMemberTypeExtendedInfo( memberInfo ) );
-  mTokenCache.insert( TStrInfoPtrMap::value_type( memberName, memberInfoPtr ) );
+    TMemberInfoPtr memberInfoPtr;
+    memberInfoPtr.reset(new TMemberTypeExtendedInfo(memberInfo));
+    mTokenCache.insert(TStrInfoPtrMap::value_type(memberName, memberInfoPtr));
 }
 //------------------------------------------------------------------------------

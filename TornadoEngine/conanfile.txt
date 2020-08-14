@@ -1,0 +1,19 @@
+[requires]
+    magic_enum/0.6.6
+    fmt/6.2.0
+    openssl/1.1.1f
+    boost/1.73.0
+    libpqxx/7.1.2
+    bullet3/2.89
+    OGRE/1.11.6-with-patches@anotherfoxguy/stable
+    MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable
+
+[options]
+    fmt:shared=True
+    openssl:shared=True
+    libpqxx:shared=True
+    boost:shared=False
+
+[imports]
+    bin, *.dll -> ../../Exe
+    lib, *.lib -> ../../Lib

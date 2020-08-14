@@ -335,6 +335,7 @@
     <ClCompile Include="Scene\Pattern\UpdaterNodeByPhysic.cpp" />
     <ClCompile Include="Share\Components.cpp" />
     <ClCompile Include="Share\InputCmdDevTool.cpp" />
+    <ClCompile Include="Share\MathTools.cpp" />
     <ClCompile Include="Share\RoomManager.cpp" />
     <ClCompile Include="Share\ModuleDev.cpp" />
     <ClCompile Include="Test\ShowTankWoT_test.cpp" />
@@ -488,6 +489,7 @@
     <ClInclude Include="Share\IGameLogicRoom.h" />
     <ClInclude Include="Share\InputCmdDevTool.h" />
     <ClInclude Include="Share\ListModules.h" />
+    <ClInclude Include="Share\MathTools.h" />
     <ClInclude Include="Share\RoomManager.h" />
     <ClInclude Include="Share\ModuleDev.h" />
     <ClInclude Include="Test\ShowTankWoT_test.h" />

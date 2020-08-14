@@ -17,6 +17,8 @@ namespace nsReflectionCodeGenerator
     const std::string s_POM = "POM";
     const std::string s_PUM = "PUM";
 
+    const std::string s_ConvertToString = "ConvertToString";
+
     const std::string s_Obj = "obj";
     const std::string s_Json = "json";
 
@@ -163,6 +165,7 @@ namespace nsReflectionCodeGenerator
 
     std::string CollectorName( const std::string& name, int depth );
     std::string ElementName( const std::string& name, int depth );
+    std::string IndexName(const std::string& name, int depth);
     std::string SourceName( const std::string& name, int depth );
 
   private:

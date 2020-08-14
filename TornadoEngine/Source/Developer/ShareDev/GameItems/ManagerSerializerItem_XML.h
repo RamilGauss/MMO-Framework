@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -28,7 +28,7 @@ class DllExport TManagerSerializerItem_XML
   IXML* mXML;
 
   // для поиска типа по имени и наоборот (по типу)
-  typedef boost::bimaps::bimap<std::string,int> bmStrInt;
+  typedef boost::bimaps::bimap<std::string, int> bmStrInt;
   typedef bmStrInt::left_const_iterator         bmStrIntLeftIt;
   typedef bmStrInt::right_const_iterator        bmStrIntRightIt;
   typedef bmStrInt::value_type                  bmStrIntVT;
@@ -36,7 +36,7 @@ class DllExport TManagerSerializerItem_XML
   bmStrInt mMapStrType;
 
   // сериализаторы из/в формат XML
-  typedef std::map<int,TBaseSerializerItem_XML*> TMapIntPtrSerilizer;
+  typedef std::map<int, TBaseSerializerItem_XML*> TMapIntPtrSerilizer;
   typedef TMapIntPtrSerilizer::iterator          TMapIntPtrSerilizerIt;
   typedef TMapIntPtrSerilizer::value_type        TMapIntPtrSerilizerVT;
 
@@ -53,16 +53,16 @@ class DllExport TManagerSerializerItem_XML
 public:
   TManagerSerializerItem_XML();
 
-  void Init(IXML* xml);
-  
-  bool Str2Type(std::string& strType, int& type);
-  bool Type2Str(int type, std::string& strType);
+  void Init( IXML* xml );
 
-  bool Load(TBaseItem* pItem);
-  bool Save(TBaseItem* pItem);
-  bool Remove(int type, std::string& name);
-  bool Remove(TBaseItem* pItem);
+  bool Str2Type( std::string& strType, int& type );
+  bool Type2Str( int type, std::string& strType );
+
+  bool Load( TBaseItem* pItem );
+  bool Save( TBaseItem* pItem );
+  bool Remove( int type, std::string& name );
+  bool Remove( TBaseItem* pItem );
   bool Save();
 protected:
-  TBaseSerializerItem_XML* Find(int type);
+  TBaseSerializerItem_XML* Find( int type );
 };

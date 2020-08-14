@@ -1,17 +1,13 @@
 {
-  "targetForParsing":
-  {
-    "directories":
-    [
+  "targetForParsing": {
+    "directories": [
       "./Sources"
     ],
     "recursive": true
   },
-  "filter":
-  {
+  "filter": {
     "attribute": "REFLECTION_ATTRIBUTE",
-    "extensions":
-    [
+    "extensions": [
       ".h",
       ".hpp",
       ".hh",
@@ -19,28 +15,33 @@
       ".h++"
     ]
   },
-  "targetForCodeGeneration":
-  {
+  "targetForCodeGeneration": {
     "directory": "./Sources",
     "includeListFileName": "IncludeList",
-    "implementation":
-    {
-      "jsonSerializer":
-      {
+    "header": "\tReflectionCodeGenerator",
+    "typeCustomizerMap": {
+      "int8_t": "char",
+      "uint8_t": "unsigned char",
+      "int16_t": "short",
+      "uint16_t": "unsigned short",
+      "int32_t": "int",
+      "uint32_t": "unsigned int",
+      "vector_static_t": "vector"
+    },
+    "implementation": {
+      "jsonSerializer": {
         "exportDeclaration": "",
         "nameSpaceName": "nsJson",
         "fileName": "JsonSerializer",
         "className": "TJsonSerializer"
       },
-      "binaryMarshaller":
-      {
+      "binaryMarshaller": {
         "exportDeclaration": "",
         "nameSpaceName": "nsBinary",
         "fileName": "BinaryMarshaller",
         "className": "TBinaryMarshaller",
         "beginID": 666,
-        "unpackHandler":
-        {
+        "unpackHandler": {
           "exportDeclaration": "",
           "nameSpaceName": "",
           "fileName": "UnpackHandler",

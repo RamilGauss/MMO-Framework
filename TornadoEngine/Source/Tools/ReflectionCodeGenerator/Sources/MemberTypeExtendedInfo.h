@@ -12,36 +12,38 @@ See for more information LICENSE.md.
 
 struct TMemberTypeExtendedInfo
 {
-  enum TypeCategory
-  {
-    BuiltIn,
-    Vector, List, Set, Map,// containers
-    String, 
-    Reflection
-  };
-  TypeCategory mCategory;
+    enum TypeCategory
+    {
+        BuiltIn,
+        Vector, List, Set, Map,// containers
+        String,
+        Reflection
+    };
+    TypeCategory mCategory;
 
-  enum AccessMethod
-  {
-    Object,
-    Pointer,
-    SmartPointer// std::auto_ptr, std::shared_ptr, std::weak_ptr, std::unique
-  };
-  AccessMethod mAccessMethod = AccessMethod::Object;
+    enum AccessMethod
+    {
+        Object,
+        Pointer,
+        SmartPointer// std::auto_ptr, std::shared_ptr, std::weak_ptr, std::unique
+    };
+    AccessMethod mAccessMethod = AccessMethod::Object;
 
-  std::vector<TMemberTypeExtendedInfo> mTemplateChildArr;
+    std::vector<TMemberTypeExtendedInfo> mTemplateChildArr;
 
-  std::string mType;// builtIn, reflection, std
+    std::string mType;// builtIn, reflection, std
 
-  std::string mNameSpaceForReflection;// example: MySpace
+    std::string mNameSpaceForReflection;// example: MySpace
 
-  std::string mSmartPtrType;
+    std::string mSmartPtrType;
 
 public:
-  bool IsContainer();
+    bool IsContainer();
 
-  std::string GetCollectSubType();
-  std::string GetTypeNameWithNameSpace();
-  std::string GetTypeNameWithNameSpaceReflection();
+    std::string GetCollectSubType();
+    std::string GetTypeNameWithNameSpace();
+    std::string GetTypeNameWithNameSpaceReflection();
+
+    std::string GetAccessOperator();
 private:
 };

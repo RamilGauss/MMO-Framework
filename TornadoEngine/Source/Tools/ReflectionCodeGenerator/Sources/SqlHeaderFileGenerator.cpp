@@ -12,7 +12,7 @@ using namespace nsReflectionCodeGenerator;
 
 void TSqlHeaderFileGenerator::Work()
 {
-  AddHeader();
+  AddHeader(mConfig->targetForCodeGeneration.header);
   AddTimeHeader();
 
   AddPragmaOnce();

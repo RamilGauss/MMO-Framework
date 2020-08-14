@@ -15,7 +15,7 @@ using namespace nsReflectionCodeGenerator;
 
 void TSqlSourceFileGenerator::Work()
 {
-  AddHeader();
+  AddHeader(mConfig->targetForCodeGeneration.header);
   AddTimeHeader();
 
   AddInclude( mSqlConfig->fileName + ".h" );

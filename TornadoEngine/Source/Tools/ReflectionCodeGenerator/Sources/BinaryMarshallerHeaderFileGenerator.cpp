@@ -13,7 +13,7 @@ using namespace nsReflectionCodeGenerator;
 
 void TBinaryMarshallerHeaderFileGenerator::Work()
 {
-  AddHeader();
+  AddHeader(mConfig->targetForCodeGeneration.header);
   AddTimeHeader();
 
   AddPragmaOnce();

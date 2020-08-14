@@ -7,7 +7,6 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ReflectionMacro.h"
 #include <vector>
 #include <list>
 #include <string>
@@ -77,7 +76,10 @@ namespace nsReflectionCodeGenerator
   {
     std::string directory;
     std::string includeListFileName;
+    std::string header;
     TImplementation implementation;
+    
+    std::map<std::string, std::string> typeCustomizerMap;
   };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -87,4 +89,5 @@ namespace nsReflectionCodeGenerator
     TFilter filter;
     TTargetForCodeGeneration targetForCodeGeneration;
   };
+
 }

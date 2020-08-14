@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef ModelItemH
-#define ModelItemH
+#pragma once
 
 #include "BaseItem.h"
 
@@ -42,7 +41,7 @@ struct DllExport TModelItem : public TBaseItem
     std::vector<TVariant> vecVariant;
   };
   //---------------------------------------------------------  
-  typedef std::map<std::string,TPart> TMapStrPart;
+  typedef std::map<std::string, TPart> TMapStrPart;
   typedef TMapStrPart::iterator       TMapStrPartIt;
   typedef TMapStrPart::value_type     TMapStrPartVT;
   //---------------------------------------------------------  
@@ -54,9 +53,11 @@ struct DllExport TModelItem : public TBaseItem
     std::string        nameJointBranch;
     TAutoPtrConstraint mPtrConstraint;
 
-    TLink(){}
-    TLink(const TLink& c);
-    TLink& operator = (const TLink& c);
+    TLink()
+    {
+    }
+    TLink( const TLink& c );
+    TLink& operator = ( const TLink& c );
   };
   //---------------------------------------------------------  
   typedef std::list<TLink> TListLink;
@@ -74,16 +75,18 @@ struct DllExport TModelItem : public TBaseItem
 
     TListLink                listLink;
 
-    TLocation(){}
-    TLocation(const TLocation& c);
-    TLocation& operator = (const TLocation& c);
+    TLocation()
+    {
+    }
+    TLocation( const TLocation& c );
+    TLocation& operator = ( const TLocation& c );
   };
   //---------------------------------------------------------  
-  typedef std::multimap<std::string,TLocation> TMMapStrLocation;
+  typedef std::multimap<std::string, TLocation> TMMapStrLocation;
   typedef TMMapStrLocation::iterator           TMMapStrLocationIt;
   typedef TMMapStrLocation::value_type         TMMapStrLocationVT;
   //---------------------------------------------------------
-  typedef std::map<std::string,std::string> TMapStrStr;
+  typedef std::map<std::string, std::string> TMapStrStr;
   typedef TMapStrStr::iterator              TMapStrStrIt;
   typedef TMapStrStr::value_type            TMapStrStrVT;
   //---------------------------------------------------------
@@ -91,11 +94,11 @@ struct DllExport TModelItem : public TBaseItem
   {
     std::string namePart;
     std::string nameInternalJoint;
-    bool operator < (const TJoint& right) const;
-    bool operator > (const TJoint& right) const;
+    bool operator < ( const TJoint& right ) const;
+    bool operator > ( const TJoint& right ) const;
   };
   //---------------------------------------------------------
-  typedef std::map<std::string,TJoint>  TMapExternalJoint;
+  typedef std::map<std::string, TJoint>  TMapExternalJoint;
   typedef TMapExternalJoint::iterator   TMapExternalJointIt;
   typedef TMapExternalJoint::value_type TMapExternalJointVT;
   //---------------------------------------------------------
@@ -104,20 +107,21 @@ struct DllExport TModelItem : public TBaseItem
   std::string      mNameRoot;             // часть, которая ни к кому не подсоединена и корень должен быть всегда
   TMMapStrLocation mMapNameBranchLocation;// иерархия
 
-  typedef enum{eModel,eShape}eType;// либо модель, либо форма
+  typedef enum
+  {
+    eModel, eShape
+  }eType;// либо модель, либо форма
   eType            mTypeCollection;
   TMapStrPart      mMapNamePart;   // набор
-  
+
   // Правило:
   // если часть не имеет родителя (корень), то только он может подсоединиться к другой модели
   // если часть не имеет детей, то только к ней могут подсоединиться из других моделей
   TMapExternalJoint mMapExternalJoint;
 
-  TModelItem(std::string& name);
+  TModelItem( std::string& name );
 }_PACKED;
 
 #if defined( WIN32 )
 #pragma pack(pop)
-#endif
-
 #endif

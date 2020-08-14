@@ -1,12 +1,11 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef BaseItemH
-#define BaseItemH
+#pragma once
 
 #include <string>
 #include "TypeDef.h"
@@ -16,16 +15,15 @@ See for more information LICENSE.md.
 #pragma pack(push, 1)
 #endif
 
+#pragma REFLECTION_ATTRIBUTE
 struct DllExport TBaseItem
 {
   std::string mName;
   int mType;
 
-  TBaseItem(std::string& name, int type);
+  TBaseItem( std::string& name, int type );
 }_PACKED;
 
 #if defined( WIN32 )
 #pragma pack(pop)
-#endif
-
 #endif

@@ -9,15 +9,27 @@ See for more information LICENSE.md.
 #include <string>
 #include <list>
 #include <set>
-#include "ReflectionMacro.h"
+#include <map>
 
 namespace nsBS
 {
-#pragma _42
 #pragma REFLECTION_ATTRIBUTE
 #pragma Table
   struct TBaseStruct
   {
+    union
+    {
+      struct
+      {
+        float a;
+      }ss;
+      unsigned char m[4];
+    };
+
+    std::map<int, int> iiMap;
+
+    float a, b, c, d;
+
 #pragma Primary key
 #pragma Index
     std::string s = "0123456789";

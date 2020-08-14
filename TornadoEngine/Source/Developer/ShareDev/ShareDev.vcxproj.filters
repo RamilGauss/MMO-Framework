@@ -666,6 +666,9 @@
     <ClCompile Include="Generated Files\ShareDevJsonSerializer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Share\MathTools.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\Components.h">
@@ -1120,6 +1123,9 @@
     </ClInclude>
     <ClInclude Include="Generated Files\ShareDevJsonSerializer.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\MathTools.h">
+      <Filter>Share</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

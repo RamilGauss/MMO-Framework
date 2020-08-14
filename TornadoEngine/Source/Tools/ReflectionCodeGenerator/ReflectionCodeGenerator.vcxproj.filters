@@ -262,9 +262,6 @@
     <ClInclude Include="Sources\BinaryMarshallerSourceFileGenerator.h">
       <Filter>Generators\Binary</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\BaseStruct.h">
-      <Filter>Trash</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\ParamClass.h">
       <Filter>Trash</Filter>
     </ClInclude>
@@ -295,6 +292,9 @@
     <ClInclude Include="Sources\SqlGenerated.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\BaseStruct.h">
+      <Filter>Trash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json">
@@ -305,6 +305,6 @@
     <Text Include="readme.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="..\..\conanfile.txt" />
+    <Text Include="..\..\..\conanfile.txt" />
   </ItemGroup>
 </Project>
