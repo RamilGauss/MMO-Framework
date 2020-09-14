@@ -17,16 +17,16 @@ See for more information LICENSE.md.
 #pragma pack(push, 1)
 #endif
 
-#pragma REFLECTION_ATTRIBUTE
+//#pragma REFLECTION_ATTRIBUTE
 struct DllExport TMapItem : public TBaseItem
 {
-#pragma REFLECTION_ATTRIBUTE
+//#pragma REFLECTION_ATTRIBUTE
   struct DllExport TPatternConfig
   {
     std::string name;
     std::string nameVariant;
   };
-#pragma REFLECTION_ATTRIBUTE
+//#pragma REFLECTION_ATTRIBUTE
   struct DllExport TObject
   {
     std::string namePattern;

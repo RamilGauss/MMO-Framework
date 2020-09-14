@@ -132,9 +132,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Json", "Test\Json\Json.vcxproj", "{485EA2A3-7778-4525-8C6A-12791B876072}"
-	ProjectSection(ProjectDependencies) = postProject
-		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MemoryPoolTest", "Test\MemoryPoolTest\MemoryPoolTest.vcxproj", "{8AE9E997-F79F-4E4E-89A8-2C2B668609DF}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -697,8 +694,8 @@ Global
 		{7B6E660D-44D4-4BA9-81B8-3A30D669596E} = {66409113-263C-4F6A-A36F-6848E9E76980}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

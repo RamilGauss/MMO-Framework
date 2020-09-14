@@ -15,36 +15,27 @@ namespace nsBS
 {
 #pragma REFLECTION_ATTRIBUTE
 #pragma Table
-  struct TBaseStruct
-  {
-    union
+    struct TBaseStruct
     {
-      struct
-      {
-        float a;
-      }ss;
-      unsigned char m[4];
-    };
+        std::map<int, int> iiMap;
 
-    std::map<int, int> iiMap;
-
-    float a, b, c, d;
+        float a, b, c, d;
 
 #pragma Primary key
 #pragma Index
-    std::string s = "0123456789";
+        std::string s = "0123456789";
 
-    int Foo( int a, int b )
-    {
-      return 0;
-    }
-    static int StaticFoo( int a, int b )
-    {
-      return 0;
-    }
-    virtual int VirtualFoo( int a, int b )
-    {
-      return 0;
-    }
-  };
+        int Foo(int a, int b)
+        {
+            return 0;
+        }
+        static int StaticFoo(int a, int b)
+        {
+            return 0;
+        }
+        virtual int VirtualFoo(int a, int b)
+        {
+            return 0;
+        }
+    };
 }

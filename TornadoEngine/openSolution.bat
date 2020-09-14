@@ -1,3 +1,3 @@
-set PATH=%PATH%;..\Exe\Debug;..\Exe\Release;
+set PATH=%PATH%;%DEP_PATH_MMO_FRAMEWORK%\Bin;
 
 start MMOFramework.sln

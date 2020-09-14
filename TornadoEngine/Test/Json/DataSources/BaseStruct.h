@@ -12,9 +12,8 @@ See for more information LICENSE.md.
 
 namespace nsBS
 {
-#pragma REFLECTION_ATTRIBUTE
-  struct TBaseStruct
-  {
-    std::string s = "0123456789";
-  };
+    struct TBaseStruct
+    {
+        std::string s = "0123456789";
+    };
 }

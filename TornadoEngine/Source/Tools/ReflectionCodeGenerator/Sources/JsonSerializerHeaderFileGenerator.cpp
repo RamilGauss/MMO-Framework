@@ -18,6 +18,7 @@ void TJsonSerializerHeaderFileGenerator::Work()
     AddPragmaOnce();
     AddEmptyLine();
     AddStandartInclude("string");
+    AddStandartInclude("functional");
     AddInclude("JsonMaster.h");
     AddInclude("json11.h");
     AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");

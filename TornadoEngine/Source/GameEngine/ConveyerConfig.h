@@ -8,8 +8,6 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <vector>
-
-#include "ReflectionMacro.h"
 #include <map>
 
 #pragma REFLECTION_ATTRIBUTE

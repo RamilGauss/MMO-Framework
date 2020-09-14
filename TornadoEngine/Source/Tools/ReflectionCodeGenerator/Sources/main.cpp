@@ -39,6 +39,8 @@ See for more information LICENSE.md.
 #include <iostream>
 #include <clang-c/Index.h>
 
+#include "JsonSerializer.h"
+
 
 using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
@@ -98,6 +100,21 @@ void ClangExp()
 //---------------------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
+    //auto pF = new TFloat3();
+    //pF->x = 42;
+    //pF->y = 43;
+    //pF->z = 44;
+
+    //void* p = pF;
+    //std::string str;
+    //std::string typeName = "TFloat3";
+    //nsJson::TJsonSerializer::Serialize(p, str, typeName);
+
+    //auto pFDeser = (void*)new TFloat3();
+    //nsJson::TJsonSerializer::Deserialize(pFDeser, str, typeName);
+
+    //auto tnl = nsJson::TJsonSerializer::GetTypeNameList();
+
     //###
     //ClangExp();
     //###
@@ -269,4 +286,77 @@ CXChildVisitResult functionDeclVisitor(CXCursor cursor, CXCursor parent, CXClien
     return CXChildVisit_Continue;
 
 }
+#endif
+
+#if 0
+
+#include <iostream>
+#include "termcolor/termcolor.hpp"
+#include <functional>
+
+using ColorFunc = std::function<std::ostream& (std::ostream&)>;
+
+std::vector<ColorFunc> g_ColorArray = {
+    termcolor::on_grey,
+    termcolor::on_red,
+    termcolor::on_green,
+    termcolor::on_blue,
+    termcolor::on_cyan,
+    termcolor::on_magenta,
+    termcolor::on_yellow,
+    termcolor::on_white
+};
+
+void Color(int index, const std::string& str)
+{
+    auto& colorFunc = g_ColorArray[index];
+
+    colorFunc(std::cout) << str;
+}
+
+const int WIDTH = 200;
+const int HEIGTH = 60;
+
+struct Block
+{
+    int index;
+};
+
+std::list<Block> g_BlockList;
+
+int main(int /*argc*/, char** /*argv*/)
+{
+    getchar();
+
+    int colorCount = g_ColorArray.size();
+
+    for ( int j = 0; j < WIDTH * HEIGTH; j++ ) {
+
+        Block block;
+        block.index = std::rand() % colorCount;
+
+        g_BlockList.push_back(block);
+    }
+
+    const std::string space = " ";
+
+    int i = 0;
+    for ( auto& block : g_BlockList ) {
+
+        if ( i >= WIDTH ) {
+            i = 0;
+
+            std::cout << termcolor::reset << std::endl;
+        }
+
+        Color(block.index, space);
+
+        i++;
+    }
+
+    std::cout << termcolor::reset << std::endl;
+
+    return 0;
+}
+
 #endif

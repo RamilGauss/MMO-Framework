@@ -107,7 +107,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
       <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Base/include;C:\Program Files\LLVM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -183,7 +183,7 @@
       <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/3rdParty/fmt/include;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -196,6 +196,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\AAMathStructs.cpp" />
     <ClCompile Include="Sources\AST_StateMachine.cpp" />
     <ClCompile Include="Sources\BinaryMarshaller.cpp" />
     <ClCompile Include="Sources\BinaryMarshallerFileGenerator.cpp" />
@@ -255,6 +256,7 @@
     <ClInclude Include="Sources\JsonSerializerGenerator.h" />
     <ClInclude Include="Sources\JsonSerializerHeaderFileGenerator.h" />
     <ClInclude Include="Sources\JsonSerializerSourceFileGenerator.h" />
+    <ClInclude Include="Sources\AAMathStructs.h" />
     <ClInclude Include="Sources\MemberInfo.h" />
     <ClInclude Include="Sources\MemberTypeExtendedInfo.h" />
     <ClInclude Include="Sources\MemberTypeExtendedInfoAnalyzer.h" />

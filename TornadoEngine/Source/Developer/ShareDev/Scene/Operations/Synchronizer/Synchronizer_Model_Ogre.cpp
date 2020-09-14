@@ -43,17 +43,17 @@ void TSynchronizer_Model_Ogre::Synchro()
       nsMathTools::TMatrix16 m;
       btMatrix3x3 btM = trans.getBasis();
       btVector3 row = btM.getRow( 0 );
-      m.m[0][0] = row.x();
-      m.m[1][0] = row.y();
-      m.m[2][0] = row.z();
+      m.m(0,0) = row.x();
+      m.m(1,0) = row.y();
+      m.m(2,0) = row.z();
       row = btM.getRow( 1 );
-      m.m[0][1] = row.x();
-      m.m[1][1] = row.y();
-      m.m[2][1] = row.z();
+      m.m(0,1) = row.x();
+      m.m(1,1) = row.y();
+      m.m(2,1) = row.z();
       row = btM.getRow( 2 );
-      m.m[0][2] = row.x();
-      m.m[1][2] = row.y();
-      m.m[2][2] = row.z();
+      m.m(0,2) = row.x();
+      m.m(1,2) = row.y();
+      m.m(2,2) = row.z();
       SetMatrixToQuaternion( &m, &q );
 
       btQuaternion quat;

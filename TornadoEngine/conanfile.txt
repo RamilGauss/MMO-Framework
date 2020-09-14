@@ -5,8 +5,9 @@
     boost/1.73.0
     libpqxx/7.1.2
     bullet3/2.89
-    OGRE/1.11.6-with-patches@anotherfoxguy/stable
-    MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable
+    termcolor/1.0.1
+    #OGRE/1.11.6-with-patches@anotherfoxguy/stable
+    #MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable
 
 [options]
     fmt:shared=True

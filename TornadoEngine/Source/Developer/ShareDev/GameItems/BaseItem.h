@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 #pragma pack(push, 1)
 #endif
 
-#pragma REFLECTION_ATTRIBUTE
+//#pragma REFLECTION_ATTRIBUTE
 struct DllExport TBaseItem
 {
   std::string mName;

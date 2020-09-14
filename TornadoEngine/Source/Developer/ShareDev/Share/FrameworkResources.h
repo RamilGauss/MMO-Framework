@@ -11,8 +11,6 @@ See for more information LICENSE.md.
 #include <map>
 #include <list>
 
-#include "ReflectionMacro.h"
-
 #pragma REFLECTION_ATTRIBUTE
 struct TBaseResources
 {

@@ -29,8 +29,6 @@ class TAST_StateMachine
 
   std::string mNamespaceNameForAdding;
 
-  TMemberInfo::AccessLevel mCurrentSection = TMemberInfo::AccessLevel::ePrivate;
-
   TTypeInfo   mTypeInfo;
   TMemberInfo mMemberInfo;
 
@@ -40,40 +38,28 @@ class TAST_StateMachine
   std::string mPragmaSpaces;
 
   // for method analyze
-  int mBraceBalance = 0;// ()
-  int mParenBalance = 0;// {}
+  int mBraceBalance = 0;// {}
+  //int mParenBalance = 0;// ()
   int mCornerBalance = 0;// <>
 
-  //enum eStateType
-  //{
-  //  eSearchAttributeOrNamespace,// ищем в файле токен с аттрибутом или начало пространства имён
-  //  eSearchClassOrStruct,// ищем начало класса
-  //  eSearchInheritanceOrLeftBrace,
-  //  eSearchInheritance,
-  //  eSearchNamespaceName,
-  //  eSearchNamespaceAccept,// искать ; как конец имени namespace
-  //  eSearchTypeName,// ищем имя класса
-  //  eSearchBeginSectionOrTypeOrBeginMethod,
-  //  eSearchFullTypeName,
-  //  eSearchColonAfterSection,
-  //  eWaitVariableNameOrTypeContinuous,
-  //  eSearchEndClassOrStruct,
-  //  eSearchBeginInheritanceType,
-  //  eSearchInheritanceEndOrContinueType,
-  //  eSearchDeclarationMethodHandler,
-  //  eSearchMethodBodyHandler,
-  //  eSearchAfterColonColonIdentifier,
-  //  eSearchWaitSemiColonAfterAssign,
-  //  eSearchClassOrStructPragma,
-  //  eSearchMemberPragma,
-  //};
+  enum class BlockType
+  {
+      EMPTY,
+      NAMESPACE,
+      CLASS_STRUCT,
+      METHOD,
+  };
+
+  BlockType mCurrentBlock;
+  BlockType mPrevBlock;
+
+  std::list<BlockType> mBlockList;
 
 public:
-  TAST_StateMachine( TTokenInfoManager::TTokenInfoList* tokenListPtr, std::string fileName );
+  TAST_StateMachine( TTokenInfoManager::TTokenInfoList* tokenListPtr, const std::string& fileName );
 
   void Work();
 private:
-  //void ConfigStateMachine();
 
   bool BeforeAction();
   bool AfterAction();
@@ -103,8 +89,5 @@ private:
 
   bool IsBuiltInType( boost::wave::token_id id );
   bool IsType( boost::wave::token_id id );
-
-  //template<typename TFunc>
-  //void AddAction( eStateType state, TFunc pFunc );
 };
 //---------------------------------------------------------------------------------------

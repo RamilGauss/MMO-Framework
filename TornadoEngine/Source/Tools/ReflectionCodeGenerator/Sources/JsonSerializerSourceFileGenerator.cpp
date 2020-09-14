@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "JsonSerializerSourceFileGenerator.h"
+#include <boost/algorithm/string/replace.hpp>
 #include "fmt/core.h"
 #include "BL_Debug.h"
 
@@ -19,7 +20,6 @@ void TJsonSerializerSourceFileGenerator::Work()
     AddTimeHeader();
 
     AddInclude(mJsonSerializer->fileName + ".h");
-    //AddInclude("fmt/core.h");
     AddInclude("JsonPopMaster.h");
     AddInclude("JsonPushMaster.h");
     AddEmptyLine();
@@ -35,7 +35,115 @@ void TJsonSerializerSourceFileGenerator::Work()
     AddUsing(s_PUM + " = TJsonPushMaster");
 
     AddEmptyLine();
+    Add(fmt::format("std::map<std::string, {}::TypeFunc> {}::{};", mJsonSerializer->className, mJsonSerializer->className, s_TypeNameFuncsMap));
+    Add(fmt::format("std::list<std::string> {}::{};", mJsonSerializer->className, s_TypeNameList));
+    AddEmptyLine();
+
+    AddInit();
+    AddCommentedLongLine();
+
+    AddConstContentMethods();
+
     AddImplementations();
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::AddInit()
+{
+    auto className = mJsonSerializer->className;
+    std::string initMethod = fmt::format("void {}::{}()", className, s_Init);
+    Add(initMethod);
+
+    AddLeftBrace();
+    IncrementTabs();
+
+    Add("static bool isNeedInit = true;");
+    Add("if ( !isNeedInit ) {");
+    Add("    return;");
+    Add("}");
+    Add("isNeedInit = false;");
+    AddEmptyLine();
+
+    for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
+        auto namespaceName = namespaceTypeInfo.first;
+        auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
+        for ( auto filenameType : filenameTypeMap ) {
+            auto pTypeInfo = filenameType.second.get();
+
+            auto typeNameWithNameSpace = pTypeInfo->GetTypeNameWithNameSpace();
+
+            auto typeNameObject = fmt::format("_{}TypeFunc", typeNameWithNameSpace);
+
+            boost::replace_all(typeNameObject, "::", "_");
+
+            Add(fmt::format("TypeFunc {};", typeNameObject));
+
+            Add(fmt::format("{}.serializeFunc = [] (void* p, std::string& str) {{", typeNameObject));
+            Add(fmt::format("Serialize<{}>(({}*) p, str);", typeNameWithNameSpace, typeNameWithNameSpace));
+            Add("};");
+            Add(fmt::format("{}.deserializeFunc = [] (void*& p, const std::string& str) {{", typeNameObject));
+            Add(fmt::format("    Deserialize<{}>(({}*&) p, str);", typeNameWithNameSpace, typeNameWithNameSpace));
+            Add("};");
+            Add(fmt::format("{}.fillFunc = [] (void* p, const std::string& str) {{", typeNameObject));
+            Add(fmt::format("    Fill<{}>(({}*) p, str);", typeNameWithNameSpace, typeNameWithNameSpace));
+            Add("};");
+
+            Add(fmt::format("{}.insert({{\"{}\", {} }});", s_TypeNameFuncsMap, typeNameWithNameSpace, typeNameObject));
+            Add(fmt::format("{}.push_back(\"{}\");", s_TypeNameList, typeNameWithNameSpace));
+            AddEmptyLine();
+        }
+    }
+
+    DecrementTabs();
+    AddRightBrace();
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::AddConstContentMethods()
+{
+    auto className = mJsonSerializer->className;
+
+    Add(fmt::format("const std::list<std::string>& {}::{}()", className, s_GetTypeNameList));
+    AddLeftBrace();
+    IncrementTabs();
+
+    Add(fmt::format("{}();", s_Init));
+    Add(fmt::format("return {};", s_TypeNameList));
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    //======================
+    Add(fmt::format("void {}::{}(void* p, std::string & str, const std::string & typeName)", className, s_SerializeByTypeMethod));
+    AddLeftBrace();
+    IncrementTabs();
+
+    Add(fmt::format("{}();", s_Init));
+    Add(fmt::format("{}[typeName].serializeFunc(p, str);", s_TypeNameFuncsMap));
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    //======================
+    Add(fmt::format("void {}::{}(void*& p, const std::string & str, const std::string & typeName)", className, s_DeserializeByTypeMethod));
+    AddLeftBrace();
+    IncrementTabs();
+
+    Add(fmt::format("{}();", s_Init));
+    Add(fmt::format("{}[typeName].deserializeFunc(p, str);", s_TypeNameFuncsMap));
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    //======================
+    Add(fmt::format("void {}::{}(void* p, const std::string & str, const std::string & typeName)", className, s_FillByTypeMethod));
+    AddLeftBrace();
+    IncrementTabs();
+
+    Add(fmt::format("{}();", s_Init));
+    Add(fmt::format("{}[typeName].fillFunc(p, str);", s_TypeNameFuncsMap));
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddImplementations()
@@ -187,11 +295,18 @@ void TJsonSerializerSourceFileGenerator::HandleComplexPushZeroDepth(std::vector<
     auto srcArray = fmt::format("{}->{}", s_TypeObject, name);
 
     auto elementName = ElementName(name, depth);
-    auto forExpression = fmt::format("for ( auto& {} : {} )", elementName, srcArray);
+
+    std::string forExpression;
+    if ( category == TMemberTypeExtendedInfo::Vector ) {
+        auto indexName = IndexName(name, depth);
+        forExpression = fmt::format("for ( int {0} = 0 ; {0} < {1}.size() ; {0}++ )", indexName, srcArray);
+    } else {
+        forExpression = fmt::format("for ( auto& {} : {} )", elementName, srcArray);
+    }
 
     Add(forExpression);
 
-    General_HandleComplexPush(extArr, name, depth);
+    General_HandleComplexPush(extArr, name, depth, srcArray);
 
     // summarize all
     std::list<std::string> argList =
@@ -231,18 +346,35 @@ void TJsonSerializerSourceFileGenerator::HandleComplexPush(std::vector<TMemberTy
 
     auto elementName = ElementName(name, depth);
 
-    auto forExpression = fmt::format("for ( auto& {} : {} )", elementName, srcArray);
+    std::string forExpression;
+    if ( category == TMemberTypeExtendedInfo::Vector ) {
+        auto indexName = IndexName(name, depth);
+        forExpression = fmt::format("for ( int {0} = 0 ; {0} < {1}.size() ; {0}++ )", indexName, srcArray);
+    } else {
+        forExpression = fmt::format("for ( auto& {} : {} )", elementName, srcArray);
+    }
+
     Add(forExpression);
 
-    General_HandleComplexPush(extArr, name, depth);
+    General_HandleComplexPush(extArr, name, depth, srcArray);
 
     AddPushByElementName(extArr, name, depth - 1, collectorName);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TJsonSerializerSourceFileGenerator::General_HandleComplexPush(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TJsonSerializerSourceFileGenerator::General_HandleComplexPush(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth, const std::string& srcArray)
 {
+    auto category = extArr[depth].mCategory;
+
     AddLeftBrace();
     IncrementTabs();
+
+    if ( category == TMemberTypeExtendedInfo::Vector ) {
+        auto elementName = ElementName(name, depth);
+        auto indexName = IndexName(name, depth);
+
+        auto getElementByIndex = fmt::format("auto& {} = {}[{}];", elementName, srcArray, indexName);
+        Add(getElementByIndex);
+    }
 
     auto& templateType = extArr[depth].mTemplateChildArr.back();// use last, cause if array - first, map - second 
     auto templateCategory = templateType.mCategory;

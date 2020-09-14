@@ -95,8 +95,18 @@ namespace json11
     // Constructors for the various types of JSON value.
     Json() noexcept;                  // NUL
     Json( std::nullptr_t ) noexcept;  // NUL
+    Json( float value);               // NUMBER
     Json( double value );             // NUMBER
+
+    Json( char value);                // NUMBER
+    Json( unsigned char value);       // NUMBER
+    Json( short value);               // NUMBER
+    Json( unsigned short value);      // NUMBER
     Json( int value );                // NUMBER
+    Json( unsigned int value);        // NUMBER
+    Json( long long value);           // NUMBER
+    Json( unsigned long long value);  // NUMBER
+
     Json( bool value );               // BOOL
     Json( const std::string &value ); // STRING
     Json( std::string &&value );      // STRING
@@ -257,8 +267,16 @@ namespace json11
   {
   protected:
     friend class Json;
-    friend class JsonInt;
+    friend class JsonFloat;
     friend class JsonDouble;
+    friend class JsonChar;
+    friend class JsonUnsignedChar;
+    friend class JsonShort;
+    friend class JsonUnsignedShort;
+    friend class JsonInt;
+    friend class JsonUnsignedInt;
+    friend class JsonLongLong;
+    friend class JsonUnsignedLongLong;
     virtual Json::Type type() const = 0;
     virtual bool equals( const JsonValue * other ) const = 0;
     virtual bool less( const JsonValue * other ) const = 0;

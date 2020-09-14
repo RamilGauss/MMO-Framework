@@ -65,8 +65,9 @@ void TNodeLocation_Model::RemoveAllJoint()
 //---------------------------------------------------------------------------------
 void TNodeLocation_Model::ClearListLink()
 {
-  for( TLink*& pLink : mListLink )
-    delete pLink;
+    for ( TLink*& pLink : mListLink ) {
+        delete pLink;
+    }
   mListLink.clear();
 }
 //---------------------------------------------------------------------------------

@@ -44,7 +44,7 @@ void TSerializerMapItem_Binary::PackItem(TBaseItem* pItem, TContainerRise& cBinO
     {
       for( int j = 0 ; j < 3 ; j++ )
       {
-        Push(object.orientation.m[i][j]);
+        Push(object.orientation.m(i,j));
       }
     }
 
@@ -79,7 +79,7 @@ bool TSerializerMapItem_Binary::UnpackItem(TBaseItem* pItem, void* pIn, int size
     {
       for( int j = 0 ; j < 3 ; j++ )
       {
-        RET_FALSE( Pop(object.orientation.m[i][j]) )
+        RET_FALSE( Pop(object.orientation.m(i,j)) )
       }
     }
 

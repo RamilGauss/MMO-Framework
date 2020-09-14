@@ -109,7 +109,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

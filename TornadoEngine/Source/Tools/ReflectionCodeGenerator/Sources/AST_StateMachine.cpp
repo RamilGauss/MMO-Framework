@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
 
-TAST_StateMachine::TAST_StateMachine(TTokenInfoManager::TTokenInfoList* tokenListPtr, std::string fileName) :
+TAST_StateMachine::TAST_StateMachine(TTokenInfoManager::TTokenInfoList* tokenListPtr, const std::string& fileName) :
     mStateMachine(&mStateFunc)
 {
     mTypeMng = SingletonManager()->Get<TTypeManager>();
@@ -28,6 +28,8 @@ TAST_StateMachine::TAST_StateMachine(TTokenInfoManager::TTokenInfoList* tokenLis
 
     mTokenListPtr = tokenListPtr;
     mTokenInfoIt = mTokenListPtr->begin();
+
+    mPrevBlock = BlockType::EMPTY;
 }
 //-------------------------------------------------------------------------------------------
 void TAST_StateMachine::Work()
@@ -41,8 +43,35 @@ void TAST_StateMachine::Work()
 //---------------------------------------------------------------------------------------
 bool TAST_StateMachine::BeforeAction()
 {
-    if ( IsTokensOut() )
+    if ( mTokenInfoIt != mTokenListPtr->end() ) {
+        if ( mTokenInfoIt->id == T_LEFTBRACE ) {
+            mBlockList.push_back(mCurrentBlock);
+            mCurrentBlock = BlockType::EMPTY;
+        }
+        if ( mTokenInfoIt->id == T_RIGHTBRACE ) {
+
+            if ( mBlockList.size() > 0 ) {
+                mPrevBlock = mBlockList.back();
+                switch ( mPrevBlock ) {
+                    case BlockType::EMPTY:
+                        break;
+                    case BlockType::CLASS_STRUCT:
+                        break;
+                    case BlockType::METHOD:
+                        break;
+                    case BlockType::NAMESPACE:
+                        mTypeInfo.mNamespaceVec.pop_back();
+                        break;
+                }
+
+                mBlockList.pop_back();
+            }
+        }
+    }
+
+    if ( IsTokensOut() ) {
         return false;
+    }
     return true;
 }
 //---------------------------------------------------------------------------------------
@@ -54,23 +83,22 @@ bool TAST_StateMachine::AfterAction()
 //---------------------------------------------------------------------------------------
 bool TAST_StateMachine::SearchAttributeOrNamespace()
 {
-    static auto applyClassOrStructPragmaFunc = [this] (auto& token) 
-    {
+    static auto applyClassOrStructPragmaFunc = [this] (auto& token) {
         auto fit = mClassOrStructPragmaTextSet.find(mConfig->filter.attribute);
         auto isFound = fit != mClassOrStructPragmaTextSet.end();
 
-        if ( mConfig->filter.attribute.length() == 0 ) { 
-            isFound = true; 
+        if ( mConfig->filter.attribute.length() == 0 ) {
+            isFound = true;
         }
 
         if ( isFound ) {
             mTypeInfo.mPragmaTextSet = mClassOrStructPragmaTextSet;
             if ( token == T_CLASS ) {
                 mTypeInfo.mType = TTypeInfo::eType::Class;
-                mCurrentSection = TMemberInfo::ePrivate;
+                mMemberInfo.mAccessLevel = TMemberInfo::ePrivate;
             } else if ( token == T_STRUCT ) {
                 mTypeInfo.mType = TTypeInfo::eType::Struct;
-                mCurrentSection = TMemberInfo::ePublic;
+                mMemberInfo.mAccessLevel = TMemberInfo::ePublic;
             }
             mStateFunc = &TAST_StateMachine::SearchTypeName;
         }
@@ -83,14 +111,13 @@ bool TAST_StateMachine::SearchAttributeOrNamespace()
             break;
         case T_NAMESPACE:
             mStateFunc = &TAST_StateMachine::SearchNamespaceName;
+            mCurrentBlock = BlockType::NAMESPACE;
             break;
         case T_CLASS:
         case T_STRUCT:
+            mCurrentBlock = BlockType::CLASS_STRUCT;
+
             applyClassOrStructPragmaFunc(mTokenInfoIt->id);
-            break;
-        case T_RIGHTBRACE:// leave namespace
-            if ( mTypeInfo.mNamespaceVec.size() > 0 )
-                mTypeInfo.mNamespaceVec.pop_back();
             break;
     }
     return true;
@@ -134,12 +161,12 @@ bool TAST_StateMachine::SearchClassOrStruct()
     switch ( mTokenInfoIt->id ) {
         case T_CLASS:
             mTypeInfo.mType = TTypeInfo::eType::Class;
-            mCurrentSection = TMemberInfo::ePrivate;
+            mMemberInfo.mAccessLevel = TMemberInfo::ePrivate;
             mStateFunc = &TAST_StateMachine::SearchTypeName;
             break;
         case T_STRUCT:
             mTypeInfo.mType = TTypeInfo::eType::Struct;
-            mCurrentSection = TMemberInfo::ePublic;
+            mMemberInfo.mAccessLevel = TMemberInfo::ePublic;
             mStateFunc = &TAST_StateMachine::SearchTypeName;
             break;
     }
@@ -154,6 +181,8 @@ bool TAST_StateMachine::SearchInheritanceOrLeftBrace()
             break;
         case T_LEFTBRACE:
             mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
+
+            mCurrentBlock = BlockType::METHOD;
             break;
         case T_COLON:
             mTypeInfo.mInheritanceVec.clear();
@@ -257,15 +286,15 @@ bool TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod()
             mStateFunc = &TAST_StateMachine::SearchDeclarationMethodHandler;
             break;
         case T_PRIVATE:
-            mCurrentSection = TMemberInfo::ePrivate;
+            mMemberInfo.mAccessLevel = TMemberInfo::ePrivate;
             mStateFunc = &TAST_StateMachine::SearchColonAfterSection;
             break;
         case T_PROTECTED:
-            mCurrentSection = TMemberInfo::eProtected;
+            mMemberInfo.mAccessLevel = TMemberInfo::eProtected;
             mStateFunc = &TAST_StateMachine::SearchColonAfterSection;
             break;
         case T_PUBLIC:
-            mCurrentSection = TMemberInfo::ePublic;
+            mMemberInfo.mAccessLevel = TMemberInfo::ePublic;
             mStateFunc = &TAST_StateMachine::SearchColonAfterSection;
             break;
         case T_RIGHTBRACE:
@@ -373,7 +402,7 @@ bool TAST_StateMachine::WaitVariableNameOrTypeContinuous()
             break;
         case T_LEFTPAREN:
             // method
-            mParenBalance++;
+            //mParenBalance++;
             mStateFunc = &TAST_StateMachine::SearchDeclarationMethodHandler;
             break;
         case T_SEMICOLON:// end member
@@ -422,17 +451,16 @@ bool TAST_StateMachine::SearchEndClassOrStruct()
 bool TAST_StateMachine::SearchDeclarationMethodHandler()
 {
     switch ( mTokenInfoIt->id ) {
-        case T_LEFTPAREN:
-            mParenBalance++;
-            break;
-        case T_RIGHTPAREN:// check balance
-            mParenBalance--;
-            if ( mParenBalance == 0 )
-                mStateFunc = &TAST_StateMachine::SearchMethodBodyHandler;
+        case T_LEFTBRACE:
+            mBraceBalance++;
+            mStateFunc = &TAST_StateMachine::SearchMethodBodyHandler;
             break;
         case T_SEMICOLON:
-            if ( mParenBalance == 0 )
-                mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
+            if ( mBlockList.size() > 0 ) {
+                if ( mBlockList.back() == BlockType::CLASS_STRUCT ) {
+                    mStateFunc = &TAST_StateMachine::SearchBeginSectionOrTypeOrBeginMethod;
+                }
+            }
             break;
     }
     return true;
@@ -441,9 +469,6 @@ bool TAST_StateMachine::SearchDeclarationMethodHandler()
 bool TAST_StateMachine::SearchMethodBodyHandler()
 {
     switch ( mTokenInfoIt->id ) {
-        case T_LEFTBRACE:
-            mBraceBalance++;
-            break;
         case T_RIGHTBRACE:
             mBraceBalance--;
             if ( mBraceBalance == 0 )// check balance

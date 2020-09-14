@@ -80,6 +80,7 @@
     <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)_d</TargetName>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\Exe\</OutDir>
@@ -126,7 +127,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Generated Files;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Generated Files;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\ois\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -134,12 +135,12 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4251;4275;4005;4244;4250;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4068;4251;4275;4005;4244;4250;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base_d.lib;GameEngine_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;Common_d.lib;Platforms_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base_d.lib;GameEngine_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;Common_d.lib;Platforms_d.lib;NetTransport_d.lib;MMOEngine_d.lib;MyGUIEngine_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
@@ -181,7 +182,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Generated Files;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./GameItems;./GameProcess;./Generated Files;./Modules;./ProtocolClientSlave;./ProtocolSlaveMaster;./Scene/Common;./Scene/Operations/Builder;./Scene/Operations/Common;./Scene/Operations/Destructor;./Scene/Operations/Modifier;./Scene/Operations/SaverGameItem;./Scene/Operations/SaverOutData;./Scene/Operations/Synchronizer;./Scene/Operations/UpdaterByGameItem;./Scene/Operations/UpdaterGameItem;./Scene/Pattern;./Share;./Test;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/GameEngine;$(SolutionDir)Source/Modules;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\ois\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -191,8 +192,8 @@
       <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base.lib;GameEngine.lib;GraphicEngine.lib;PhysicEngine.lib;Common.lib;Platforms.lib;NetTransport.lib;MMOEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base.lib;GameEngine.lib;GraphicEngine.lib;PhysicEngine.lib;Common.lib;Platforms.lib;NetTransport.lib;MMOEngine.lib;MyGUIEngine.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -335,6 +336,7 @@
     <ClCompile Include="Scene\Pattern\UpdaterNodeByPhysic.cpp" />
     <ClCompile Include="Share\Components.cpp" />
     <ClCompile Include="Share\InputCmdDevTool.cpp" />
+    <ClCompile Include="Share\MathStructs.cpp" />
     <ClCompile Include="Share\MathTools.cpp" />
     <ClCompile Include="Share\RoomManager.cpp" />
     <ClCompile Include="Share\ModuleDev.cpp" />
@@ -489,6 +491,7 @@
     <ClInclude Include="Share\IGameLogicRoom.h" />
     <ClInclude Include="Share\InputCmdDevTool.h" />
     <ClInclude Include="Share\ListModules.h" />
+    <ClInclude Include="Share\MathStructs.h" />
     <ClInclude Include="Share\MathTools.h" />
     <ClInclude Include="Share\RoomManager.h" />
     <ClInclude Include="Share\ModuleDev.h" />

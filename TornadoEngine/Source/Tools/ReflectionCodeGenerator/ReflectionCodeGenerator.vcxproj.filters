@@ -152,6 +152,9 @@
     <ClCompile Include="Sources\SqlGenerated.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\AAMathStructs.cpp">
+      <Filter>Trash</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\BinaryMarshallerGenerator.h">
@@ -293,6 +296,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\BaseStruct.h">
+      <Filter>Trash</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\AAMathStructs.h">
       <Filter>Trash</Filter>
     </ClInclude>
   </ItemGroup>
