@@ -26,13 +26,16 @@ namespace nsBS
         std::string password;
         unsigned short port = 0;
         bool flag = false;
+        double floating = 112313.123;
 
         // array
         std::set<std::string> strSet;
         std::set<int> intSet;
         std::list<bool> boolList;
         std::list<int> numList;
+        std::list<double> doubleList;
         std::vector<int> numVector;
+        std::vector<double> doubleVector;
         std::vector<std::string> strVector;
 
         // ser array
@@ -43,10 +46,12 @@ namespace nsBS
         // map
         std::map<int, int> intIntMap;
         std::map<int, bool> intBoolMap;
+        std::map<int, double> intDoubleMap;
         std::map<int, std::string> intStrMap;
 
         std::map<std::string, std::string> strStrMap;
         std::map<std::string, int> strIntMap;
+        std::map<std::string, double> strDoubleMap;
         std::map<std::string, bool> strBoolMap;
 
         // map
@@ -78,6 +83,13 @@ namespace nsBS
         std::map<std::string, std::map<std::string, TBaseStruct>> objMapMap;
         std::map<std::string, std::map<std::string, TBaseStruct*>> ptrObjMapMap;
         std::map<std::string, std::map<std::string, std::shared_ptr<TBaseStruct>>> spObjMapMap;
+
+        std::map<std::string, std::list<int>> intListMap;
+        std::map<std::string, std::list<std::vector<int>>> intListVecMap;
+        std::list<std::map<std::string, int>> intMapList;
+
+        std::map<int, std::vector<int>> intVecMap;
+        std::vector<std::map<int, int>> intMapVec;
 
         // super complex
         std::map<int, std::vector<std::map<int, std::vector<std::map<int, std::map<int, std::vector<std::vector<int>>>>>>>> colossalMember;

@@ -10,9 +10,9 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  class DllExport TInitSystem : public TSystem
-  {
-  public:
-    virtual void Update() { assert( true ); }
-  };
+    class DllExport TInitSystem : public TSystem
+    {
+    public:
+        virtual void Update() { assert(true); }
+    };
 }

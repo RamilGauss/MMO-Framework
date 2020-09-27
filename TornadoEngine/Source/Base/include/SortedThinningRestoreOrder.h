@@ -13,52 +13,49 @@ See for more information LICENSE.md.
 template<typename Type>
 class TSortedThinningRestoreOrder
 {
-  // Важен порядок возникновения событий
-  // после сортировки и прореживания от повторов
-  TVectorRise<Type> mSortedUniqueEntities;
-  // статистика по встречаемости
-  TVectorRise<unsigned char> mStatistics;
+    // Важен порядок возникновения событий
+    // после сортировки и прореживания от повторов
+    TVectorRise<Type> mSortedUniqueEntities;
+    // статистика по встречаемости
+    TVectorRise<unsigned char> mStatistics;
 
-  TVectorRise<Type> mResult;
+    TVectorRise<Type> mResult;
 public:
-  void Work( TVectorRise<Type>& inOutVec )
-  {
-    if( inOutVec.mVec.size() > mSortedUniqueEntities.mVec.size() )
+    void Work(TVectorRise<Type>& inOutVec)
     {
-      int reserveSize = inOutVec.mVec.size();
+        if ( inOutVec.mVec.size() > mSortedUniqueEntities.mVec.size() ) {
+            int reserveSize = inOutVec.mVec.size();
 
-      mSortedUniqueEntities.mVec.resize( reserveSize );
-      mStatistics.mVec.resize( reserveSize );
-      mResult.mVec.resize( reserveSize );
+            mSortedUniqueEntities.mVec.resize(reserveSize);
+            mStatistics.mVec.resize(reserveSize);
+            mResult.mVec.resize(reserveSize);
+        }
+
+        mSortedUniqueEntities = inOutVec;// copy
+
+        // сортированный и прореженный список
+        mSortedUniqueEntities.Sort();
+        mSortedUniqueEntities.DeleteDuplicates();
+        mStatistics.Zero(mSortedUniqueEntities.mCounter);
+
+        // восстанавливаем порядок событий
+        // начинать с конца потому что:
+        // в списке могут быть мертвые сущности и они могут быть
+        auto uniqueCount = 0;
+        for ( int i = inOutVec.mCounter - 1; i >= 0; i-- ) {
+            auto entity = inOutVec.mVec[i];
+            auto position = fast_upper_bound2<Type>(mSortedUniqueEntities.mVec, mSortedUniqueEntities.mCounter, entity);
+            position--;
+            if ( mStatistics.mVec[position] == 0 ) {
+                mStatistics.mVec[position]++;
+                mResult.mVec[uniqueCount] = entity;
+                uniqueCount++;
+            }
+        }
+        mResult.mCounter = uniqueCount;
+        // инвертация списка
+        mResult.ReverseVec();
+
+        inOutVec = mResult;// copy
     }
-
-    mSortedUniqueEntities = inOutVec;// copy
-
-    // сортированный и прореженный список
-    mSortedUniqueEntities.Sort();
-    mSortedUniqueEntities.DeleteDuplicates();
-    mStatistics.Zero( mSortedUniqueEntities.mCounter );
-
-    // восстанавливаем порядок событий
-    // начинать с конца потому что:
-    // в списке могут быть мертвые сущности и они могут быть
-    auto uniqueCount = 0;
-    for( int i = inOutVec.mCounter - 1; i >= 0; i-- )
-    {
-      auto entity = inOutVec.mVec[i];
-      auto position = fast_upper_bound2<Type>( mSortedUniqueEntities.mVec, mSortedUniqueEntities.mCounter, entity );
-      position--;
-      if( mStatistics.mVec[position] == 0 )
-      {
-        mStatistics.mVec[position]++;
-        mResult.mVec[uniqueCount] = entity;
-        uniqueCount++;
-      }
-    }
-    mResult.mCounter = uniqueCount;
-    // инвертация списка
-    mResult.ReverseVec();
-
-    inOutVec = mResult;// copy
-  }
 };

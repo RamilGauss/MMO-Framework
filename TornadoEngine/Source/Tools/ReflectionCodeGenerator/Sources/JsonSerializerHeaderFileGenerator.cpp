@@ -17,10 +17,10 @@ void TJsonSerializerHeaderFileGenerator::Work()
 
     AddPragmaOnce();
     AddEmptyLine();
+    AddStandartInclude("list");
     AddStandartInclude("string");
     AddStandartInclude("functional");
     AddInclude("JsonMaster.h");
-    AddInclude("json11.h");
     AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");
     AddEmptyLine();
 
@@ -73,7 +73,7 @@ void TJsonSerializerHeaderFileGenerator::AddSerializeMethodDeclaration(std::stri
 //-----------------------------------------------------------------------------------
 void TJsonSerializerHeaderFileGenerator::AddDeserializeMethodDeclaration(std::string& namespaceWithType)
 {
-    // D - Type* p, const json11::Json& json 
+    // D - Type* p, const Jobj& obj 
     auto strList = GetParamListForDeserialize(namespaceWithType);
     AddStaticMethodDeclaration("void", sDeserializeMethod, strList);
 }

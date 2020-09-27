@@ -12,6 +12,6 @@ using namespace nsECSFramework;
 
 TWorld::TWorld()
 {
-  SetEntityManager( new TEntityManager() );
+    SetEntityManager(new TEntityManager());
 }
 //--------------------------------------------------------------------------------------

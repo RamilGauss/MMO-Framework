@@ -119,8 +119,7 @@
 copy $(SolutionDir)\Source\Base\include\JsonMaster.h $(SolutionDir)\Test\Json /y
 copy $(SolutionDir)\Source\Base\include\JsonPopMaster.h $(SolutionDir)\Test\Json /y
 copy $(SolutionDir)\Source\Base\include\JsonPushMaster.h $(SolutionDir)\Test\Json /y
-copy $(SolutionDir)\Source\Base\include\json11.h $(SolutionDir)\Test\Json /y
-copy $(SolutionDir)\Source\Base\src\json11.cpp $(SolutionDir)\Test\Json /y
+copy $(SolutionDir)\Source\Base\src\JsonPushMaster.cpp $(SolutionDir)\Test\Json /y
 copy $(SolutionDir)\Source\Base\include\TypeDef.h $(SolutionDir)\Test\Json /y</Command>
       <Message>Run Reflection code generator</Message>
     </PreBuildEvent>
@@ -183,7 +182,7 @@ copy $(SolutionDir)\Source\Base\include\TypeDef.h $(SolutionDir)\Test\Json /y</C
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="json11.cpp" />
+    <ClCompile Include="JsonPushMaster.cpp" />
     <ClCompile Include="JsonSerializer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -192,7 +191,6 @@ copy $(SolutionDir)\Source\Base\include\TypeDef.h $(SolutionDir)\Test\Json /y</C
     <ClInclude Include="DataSources\TestClass.h" />
     <ClInclude Include="DataSources\TestStruct.h" />
     <ClInclude Include="IncludeList.h" />
-    <ClInclude Include="json11.h" />
     <ClInclude Include="JsonMaster.h" />
     <ClInclude Include="JsonPopMaster.h" />
     <ClInclude Include="JsonPushMaster.h" />

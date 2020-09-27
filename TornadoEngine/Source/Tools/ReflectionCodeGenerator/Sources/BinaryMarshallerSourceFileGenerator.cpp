@@ -217,7 +217,8 @@ void TBinaryMarshallerSourceFileGenerator::AddPushByMemberInfo( TMemberInfo* pMe
     case TMemberTypeExtendedInfo::Map:
     {
       AddEmptyLine();
-      auto extArr = pMemberInfo->CreateExtArray();
+      std::vector<TMemberTypeExtendedInfo> extArr;
+      pMemberInfo->CreateExtArray(extArr);
       HandleComplexPushZeroDepth( extArr, pMemberInfo->mName );
     }
     break;
@@ -245,7 +246,8 @@ void TBinaryMarshallerSourceFileGenerator::AddPopByMemberInfo( TMemberInfo* pMem
     case TMemberTypeExtendedInfo::Map:
     {
       AddEmptyLine();
-      auto extArr = pMemberInfo->CreateExtArray();
+      std::vector<TMemberTypeExtendedInfo> extArr;
+      pMemberInfo->CreateExtArray(extArr);
       AddCleanerArrayOrMap( extArr, pMemberInfo->mName );
       HandleComplexPopZeroDepth( extArr, pMemberInfo->mName );
     }
@@ -270,7 +272,8 @@ void TBinaryMarshallerSourceFileGenerator::AddDeallocateByMemberInfo( TMemberInf
     case TMemberTypeExtendedInfo::List:
     case TMemberTypeExtendedInfo::Map:
     {
-      auto extArr = pMemberInfo->CreateExtArray();
+      std::vector<TMemberTypeExtendedInfo> extArr;
+      pMemberInfo->CreateExtArray(extArr);
       AddCleanerArrayOrMap( extArr, pMemberInfo->mName );
     }
     break;

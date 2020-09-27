@@ -8,7 +8,6 @@
 #include <string>
 #include <functional>
 #include "JsonMaster.h"
-#include "json11.h"
 #include "IncludeList.h"
 
 namespace nsJson
@@ -17,6 +16,7 @@ namespace nsJson
     {
         typedef TJsonMaster::Jobj Jobj;
         typedef TJsonMaster::Jarr Jarr;
+        typedef TJsonMaster::Value Value;
     
         struct TypeFunc
         {
@@ -46,90 +46,94 @@ namespace nsJson
         template <typename Type>
         static void _Deserialize( Type*& p, const std::string& str, bool checkPtr );
     private:
-        static void _Serialize( TFloat3* p, Jobj& obj );
-        static void _Deserialize( TFloat3* p, const json11::Json& json );
-        
-        static void _Serialize( TFloat4* p, Jobj& obj );
-        static void _Deserialize( TFloat4* p, const json11::Json& json );
-        
-        static void _Serialize( TParamClass* p, Jobj& obj );
-        static void _Deserialize( TParamClass* p, const json11::Json& json );
-        
-        static void _Serialize( TTestClass* p, Jobj& obj );
-        static void _Deserialize( TTestClass* p, const json11::Json& json );
-        
-        static void _Serialize( nsBS::TBaseStruct* p, Jobj& obj );
-        static void _Deserialize( nsBS::TBaseStruct* p, const json11::Json& json );
-        
-        static void _Serialize( nsBS::TTestStruct* p, Jobj& obj );
-        static void _Deserialize( nsBS::TTestStruct* p, const json11::Json& json );
-        
-        static void _Serialize( nsMathTools::TMatrix16* p, Jobj& obj );
-        static void _Deserialize( nsMathTools::TMatrix16* p, const json11::Json& json );
-        
-        static void _Serialize( nsMathTools::TMatrix9* p, Jobj& obj );
-        static void _Deserialize( nsMathTools::TMatrix9* p, const json11::Json& json );
-        
-        static void _Serialize( nsMathTools::TOrientation* p, Jobj& obj );
-        static void _Deserialize( nsMathTools::TOrientation* p, const json11::Json& json );
-        
-        static void _Serialize( nsMathTools::TPlane* p, Jobj& obj );
-        static void _Deserialize( nsMathTools::TPlane* p, const json11::Json& json );
-        
-        static void _Serialize( nsMathTools::TPoint2* p, Jobj& obj );
-        static void _Deserialize( nsMathTools::TPoint2* p, const json11::Json& json );
-        
-        static void _Serialize( nsMathTools::TQuaternion* p, Jobj& obj );
-        static void _Deserialize( nsMathTools::TQuaternion* p, const json11::Json& json );
-        
-        static void _Serialize( nsMathTools::TVector2* p, Jobj& obj );
-        static void _Deserialize( nsMathTools::TVector2* p, const json11::Json& json );
-        
-        static void _Serialize( nsMathTools::TVector3* p, Jobj& obj );
-        static void _Deserialize( nsMathTools::TVector3* p, const json11::Json& json );
-        
-        static void _Serialize( nsMathTools::TVector4* p, Jobj& obj );
-        static void _Deserialize( nsMathTools::TVector4* p, const json11::Json& json );
+        //static void _Serialize( TFloat3* p, Jobj& obj );
+        //static void _Deserialize( TFloat3* p, const json11::Json& json );
+        //
+        //static void _Serialize( TFloat4* p, Jobj& obj );
+        //static void _Deserialize( TFloat4* p, const json11::Json& json );
+        //
+        //static void _Serialize( TParamClass* p, Jobj& obj );
+        //static void _Deserialize( TParamClass* p, const json11::Json& json );
+        //
+        //static void _Serialize( TTestClass* p, Jobj& obj );
+        //static void _Deserialize( TTestClass* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsBS::TBaseStruct* p, Jobj& obj );
+        //static void _Deserialize( nsBS::TBaseStruct* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsBS::TTestStruct* p, Jobj& obj );
+        //static void _Deserialize( nsBS::TTestStruct* p, const Jobj& obj );
+        //
+        //static void _Serialize( nsMathTools::TMatrix16* p, Jobj& obj );
+        //static void _Deserialize( nsMathTools::TMatrix16* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsMathTools::TMatrix9* p, Jobj& obj );
+        //static void _Deserialize( nsMathTools::TMatrix9* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsMathTools::TOrientation* p, Jobj& obj );
+        //static void _Deserialize( nsMathTools::TOrientation* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsMathTools::TPlane* p, Jobj& obj );
+        //static void _Deserialize( nsMathTools::TPlane* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsMathTools::TPoint2* p, Jobj& obj );
+        //static void _Deserialize( nsMathTools::TPoint2* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsMathTools::TQuaternion* p, Jobj& obj );
+        //static void _Deserialize( nsMathTools::TQuaternion* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsMathTools::TVector2* p, Jobj& obj );
+        //static void _Deserialize( nsMathTools::TVector2* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsMathTools::TVector3* p, Jobj& obj );
+        //static void _Deserialize( nsMathTools::TVector3* p, const json11::Json& json );
+        //
+        //static void _Serialize( nsMathTools::TVector4* p, Jobj& obj );
+        //static void _Deserialize( nsMathTools::TVector4* p, const json11::Json& json );
         
         static void _Serialize( nsReflectionCodeGenerator::TBinaryMarshallerGeneratorConfig* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TBinaryMarshallerGeneratorConfig* p, const json11::Json& json );
+        static void _Deserialize( nsReflectionCodeGenerator::TBinaryMarshallerGeneratorConfig* p, const Jobj& obj);
         
         static void _Serialize( nsReflectionCodeGenerator::TClassDesc* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TClassDesc* p, const json11::Json& json );
+        static void _Deserialize( nsReflectionCodeGenerator::TClassDesc* p, const Jobj& obj);
         
         static void _Serialize( nsReflectionCodeGenerator::TConfig* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TConfig* p, const json11::Json& json );
+        static void _Deserialize( nsReflectionCodeGenerator::TConfig* p, const Jobj& obj);
         
         static void _Serialize( nsReflectionCodeGenerator::TFilter* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TFilter* p, const json11::Json& json );
+        static void _Deserialize( nsReflectionCodeGenerator::TFilter* p, const Jobj& obj);
         
         static void _Serialize( nsReflectionCodeGenerator::TImplementation* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TImplementation* p, const json11::Json& json );
+        static void _Deserialize( nsReflectionCodeGenerator::TImplementation* p, const Jobj& obj);
         
         static void _Serialize( nsReflectionCodeGenerator::TJsonSerializerGeneratorConfig* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TJsonSerializerGeneratorConfig* p, const json11::Json& json );
+        static void _Deserialize( nsReflectionCodeGenerator::TJsonSerializerGeneratorConfig* p, const Jobj& obj);
         
         static void _Serialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p, const json11::Json& json );
+        static void _Deserialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p, const Jobj& obj);
         
         static void _Serialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const json11::Json& json );
+        static void _Deserialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj);
         
         static void _Serialize( nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TTargetForParsing* p, const json11::Json& json );
+        static void _Deserialize( nsReflectionCodeGenerator::TTargetForParsing* p, const Jobj& obj);
         
         static void _Serialize( nsReflectionCodeGenerator::TUnpackHandler* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TUnpackHandler* p, const json11::Json& json );
-        
+        static void _Deserialize( nsReflectionCodeGenerator::TUnpackHandler* p, const Jobj& obj);        
     };
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
     static void TJsonSerializer::Serialize( Type* p, std::string& str )
     {
-        Jobj obj;
+        rapidjson::Document doc(rapidjson::Type::kObjectType);
+        rapidjson::Document::Object obj = doc.GetObject();
+
         _Serialize( p, obj );
-        json11::Json json( obj );
-        str = json.dump();
+
+        rapidjson::StringBuffer sb;
+        rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(sb);
+        doc.Accept(writer);
+        str = sb.GetString();
     }
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
@@ -147,14 +151,29 @@ namespace nsJson
     template <typename Type>
     static void TJsonSerializer::_Deserialize( Type*& p, const std::string& str, bool checkPtr )
     {
-        std::string err;
-        auto json = json11::Json::parse( str, err, json11::JsonParse::COMMENTS );
-        if ( err.size() > 0 )
+        rapidjson::Document doc;
+        const unsigned parseFlags = rapidjson::kParseFullPrecisionFlag | rapidjson::kParseCommentsFlag;
+        doc.Parse<parseFlags>(str.data());
+        if ( doc.HasParseError() ) {
             return;
-    
-        if ( checkPtr )
+        }
+        if ( checkPtr ) {
             p = p ? p : new Type();
+        }
+
+        _Deserialize(p, doc.GetObject());
+
+
+        //std::string err;
+        //auto json = json11::Json::parse( str, err, json11::JsonParse::COMMENTS );
+        //if ( err.size() > 0 ) {
+        //    return;
+        //}
     
-        _Deserialize( p, json.object_items() );
+        //if ( checkPtr ) {
+        //    p = p ? p : new Type();
+        //}
+    
+        //_Deserialize( p, json.object_items() );
     }
 }

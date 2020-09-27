@@ -74,3 +74,13 @@ std::string TMemberTypeExtendedInfo::GetAccessOperator()
     return "";
 }
 //---------------------------------------------------------------------------------
+bool TMemberTypeExtendedInfo::IsBool()
+{
+    return mType == "bool";
+}
+//---------------------------------------------------------------------------------
+bool TMemberTypeExtendedInfo::IsFloatingPoint()
+{
+    return mType == "double" || mType == "float";
+}
+//---------------------------------------------------------------------------------

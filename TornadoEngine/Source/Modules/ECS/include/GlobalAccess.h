@@ -13,17 +13,17 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  class DllExport TGlobalAccess
-  {
-    TEntityManager* mEntMng;
-  public:
-    TEntityManager* GetEntityManager()
+    class DllExport TGlobalAccess
     {
-      return mEntMng;
-    }
-    inline void SetEntityManager( TEntityManager* entMng )
-    {
-      mEntMng = entMng;
-    }
-  };
+        TEntityManager* mEntMng;
+    public:
+        TEntityManager* GetEntityManager()
+        {
+            return mEntMng;
+        }
+        inline void SetEntityManager(TEntityManager* entMng)
+        {
+            mEntMng = entMng;
+        }
+    };
 }

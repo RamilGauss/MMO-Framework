@@ -35,7 +35,8 @@
                 "fileName": "JsonSerializer",
                 "className": "TJsonSerializer"
             },
-            "binaryMarshaller": null
+            "binaryMarshaller": null,
+            "sql" : null
         }
     }
 }

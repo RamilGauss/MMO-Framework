@@ -16,23 +16,23 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  class DllExport TBaseReactiveSystem : public TSystem
-  {
-  protected:
-    int mEventWaiterID;
-    TSortedThinningRestoreOrder<TEntityID> mSTRO;
-    TContainerForReactive* mCollector;
+    class DllExport TBaseReactiveSystem : public TSystem
+    {
+    protected:
+        int mEventWaiterID;
+        TSortedThinningRestoreOrder<TEntityID> mSTRO;
+        TContainerForReactive* mCollector;
 
-    bool mUseThinning;
-  public:
-    TBaseReactiveSystem( bool useThinning = true );
-    virtual bool Filter( TEntityID& eid );
+        bool mUseThinning;
+    public:
+        TBaseReactiveSystem(bool useThinning = true);
+        virtual bool Filter(TEntityID& eid);
 
-    virtual void Reactive( TEntityIdVectorRise& entities ) = 0;
+        virtual void Reactive(TEntityIdVectorRise& entities) = 0;
 
-    void Update() override final;
+        void Update() override final;
 
-  protected:
-    virtual void Filter( TEntityIdVectorRise& entities ) = 0;
-  };
+    protected:
+        virtual void Filter(TEntityIdVectorRise& entities) = 0;
+    };
 }

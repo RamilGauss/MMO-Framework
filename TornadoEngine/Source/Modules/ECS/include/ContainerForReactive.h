@@ -32,66 +32,66 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  struct TSubscriberInfo
-  {
-    TEntityIdVectorRise eidVec;
-  };
-
-  struct TComponentEventsCollector
-  {
-    std::vector<TSubscriberInfo*> subscriberList;
-  };
-
-  class TContainerForReactive
-  {
-    TColanderVector<TComponentEventsCollector*> mComponentInfoVector;
-
-    std::vector<TSubscriberInfo*> mSubscribers;
-  public:
-    int Register( int componentIndex )
+    struct TSubscriberInfo
     {
-      auto pSubscriber = new TSubscriberInfo();
-      mSubscribers.push_back( pSubscriber );
-      auto registerId = mSubscribers.size() - 1;
+        TEntityIdVectorRise eidVec;
+    };
 
-      auto pCollector = mComponentInfoVector[componentIndex];
-      if ( pCollector == nullptr )
-      {
-        pCollector = new TComponentEventsCollector();
-        mComponentInfoVector[componentIndex] = pCollector;
-      }
-      pCollector->subscriberList.push_back( pSubscriber );
-      return (int)registerId;
-    }
-    void Set( int componentIndex, TEntityID data )
+    struct TComponentEventsCollector
     {
-      auto pCollector = mComponentInfoVector[componentIndex];
-      if ( pCollector == nullptr )
-        return;
-      for ( auto& pSubscriber : pCollector->subscriberList )
-        pSubscriber->eidVec.Append( data );
-    }
+        std::vector<TSubscriberInfo*> subscriberList;
+    };
 
-    typedef std::function<void( TEntityIdVectorRise& )> TFunc;
-    void Get( int registerId, TFunc func )
+    class TContainerForReactive
     {
-      auto& vec = mSubscribers[registerId]->eidVec;
-      func( vec );
-      vec.Clear();
-    }
+        TColanderVector<TComponentEventsCollector*> mComponentInfoVector;
 
-    virtual ~TContainerForReactive()
-    {
-      for ( auto p : mSubscribers )
-        delete p;
-      mSubscribers.clear();
+        std::vector<TSubscriberInfo*> mSubscribers;
+    public:
+        int Register(int componentIndex)
+        {
+            auto pSubscriber = new TSubscriberInfo();
+            mSubscribers.push_back(pSubscriber);
+            auto registerId = mSubscribers.size() - 1;
 
-      int size = mComponentInfoVector.Size();
-      for ( int i = 0; i < size; i++ )
-      {
-        auto pCollector = mComponentInfoVector[i];
-        delete pCollector;
-      }
-    }
-  };
+            auto pCollector = mComponentInfoVector[componentIndex];
+            if ( pCollector == nullptr ) {
+                pCollector = new TComponentEventsCollector();
+                mComponentInfoVector[componentIndex] = pCollector;
+            }
+            pCollector->subscriberList.push_back(pSubscriber);
+            return (int) registerId;
+        }
+        void Set(int componentIndex, TEntityID data)
+        {
+            auto pCollector = mComponentInfoVector[componentIndex];
+            if ( pCollector == nullptr ) {
+                return;
+            }
+            for ( auto& pSubscriber : pCollector->subscriberList )
+                pSubscriber->eidVec.Append(data);
+        }
+
+        typedef std::function<void(TEntityIdVectorRise&)> TFunc;
+        void Get(int registerId, TFunc func)
+        {
+            auto& vec = mSubscribers[registerId]->eidVec;
+            func(vec);
+            vec.Clear();
+        }
+
+        virtual ~TContainerForReactive()
+        {
+            for ( auto p : mSubscribers ) {
+                delete p;
+            }
+            mSubscribers.clear();
+
+            int size = mComponentInfoVector.Size();
+            for ( int i = 0; i < size; i++ ) {
+                auto pCollector = mComponentInfoVector[i];
+                delete pCollector;
+            }
+        }
+    };
 }

@@ -7,12 +7,20 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "json11.h"
+#include "TypeDef.h"
+
+#include <rapidjson/document.h>
+#include <rapidjson/writer.h>
+#include <rapidjson/stringbuffer.h>
+#include <rapidjson/prettywriter.h>
+
+#include <map>
 
 class DllExport TJsonMaster
 {
 public:// types
-    typedef json11::Json::object Jobj;
+    using Jobj = rapidjson::Document::Object;
+    using Jarr = rapidjson::Document::Array;
 
-    typedef json11::Json::array Jarr;
+    using Value = rapidjson::Value;
 };

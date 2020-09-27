@@ -10,5 +10,5 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  class DllExport TFeature : public TConveyerPartMaster { };
+    class DllExport TFeature : public TConveyerPartMaster {};
 }

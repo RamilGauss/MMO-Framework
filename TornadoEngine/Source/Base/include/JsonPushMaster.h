@@ -7,8 +7,6 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
-
 #include <sstream>
 #include <string>
 #include <map>
@@ -17,136 +15,65 @@ See for more information LICENSE.md.
 #include <list>
 #include <functional>
 
+#include <type_traits>
+
 #include "JsonMaster.h"
 
 class DllExport TJsonPushMaster : public TJsonMaster
 {
-public:// prototypes
-    template<typename Type>
-    using SerFunc = std::function<void(Type*, Jobj&)>;
+public:
+    using Document = rapidjson::Document;
 
-    template<typename Type, typename ElementType>
-    using AddressFunc = std::function<Type* (ElementType&)>;
-
-    template <typename Type, typename ElementType, typename ValueType>
-    using PushBy = std::function<void(Jobj&, const char*, ValueType&, SerFunc<Type>, AddressFunc<Type, ElementType>)>;
-
-    template <typename Type>
-    using PushFunc = std::function<void(json11::Json& j, Type p)>;
+    static Document::AllocatorType& Allocator();
 
 public:// methods
+    static Jobj AddObject(Jobj& obj, const char* sKey)
+    {
+        obj.AddMember(Value(sKey, Allocator()), Value(rapidjson::kObjectType), Allocator());
+        return obj.FindMember(sKey)->value.GetObject();
+    }
+    static void PushBack(Value& jarr, const std::string& value)
+    {
+        jarr.PushBack(Value(value.data(), Allocator()), Allocator());
+    }
+    template<typename ValueType, 
+        typename std::enable_if<std::is_integral<ValueType>::value || 
+                 std::is_floating_point<ValueType>::value>::type* = nullptr>
+    static void PushBack(Value& jarr, ValueType& value)
+    {
+        jarr.PushBack(Value(value), Allocator());
+    }
+    static void PushBack(Value& jarr, Value& value)
+    {
+        jarr.PushBack(value, Allocator());
+    }
+    static void PushBackNull(Value& jarr)
+    {
+        jarr.PushBack(Value(), Allocator());
+    }
     static void PushNull(Jobj& obj, const char* sKey)
     {
-        obj.insert({ sKey, json11::Json(nullptr) });
+        obj.AddMember(Value(sKey, Allocator()), Value(), Allocator());
     }
-
-    // built-in, string, {vector, list, set}<{built-in, string}>
-    template <typename ValueType>
+    static void Push(Jobj& obj, const char* sKey, std::string& value)
+    {
+        obj.AddMember(Value(sKey, Allocator()), Value(value.data(), Allocator()), Allocator());
+    }
+    static void Push(Jobj& obj, const char* sKey, Value& value)
+    {
+        obj.AddMember(Value(sKey, Allocator()), value, Allocator());
+    }
+    static void Push(Jobj& obj, const char* sKey, Jobj& addedObj)
+    {
+        obj.AddMember(Value(sKey, Allocator()), addedObj, Allocator());
+    }
+    template<typename ValueType,
+        typename std::enable_if<std::is_integral<ValueType>::value ||
+                 std::is_floating_point<ValueType>::value>::type* = nullptr>
     static void Push(Jobj& obj, const char* sKey, ValueType& value)
     {
-        obj.insert({ sKey, value });
+        obj.AddMember(Value(sKey, Allocator()), Value(value), Allocator());
     }
-    // map<{built-in,string},{built-in,string}>
-    template <typename ValueType>
-    static void PushMap(Jobj& obj, const char* sKey, ValueType& value)
-    {
-        Jobj jMap;
-        for ( auto& intStr : value ) {
-            jMap.insert({ ConvertToString(intStr.first), intStr.second });
-        }
-        obj.insert({ sKey, jMap });
-    }
-    // list, vector<serialized type>
-    template <typename Type, typename ValueType>
-    static void PushSerObjArray(Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc)
-    {
-        PushSerArray<Type, Type, ValueType>(obj, sKey, value, serFunc, &ObjAddress<Type, Type>);
-    }
-    template <typename Type, typename ValueType>
-    static void PushSerPtrArray(Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc)
-    {
-        PushSerArray<Type, Type*, ValueType>(obj, sKey, value, serFunc, &PtrAddress<Type, Type*>);
-    }
-    template <typename Type, typename ElementType, typename ValueType>
-    static void PushSerSmartPtrArray(Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc)
-    {
-        PushSerArray<Type, ElementType, ValueType>(obj, sKey, value, serFunc, &SmartPtrAddress<Type, ElementType>);
-    }
-
-    // map<{built-in,string},{serialized type}>
-    template <typename Type, typename ValueType>
-    static void PushSerObjMap(Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc)
-    {
-        PushSerMap<Type, Type, ValueType>(obj, sKey, value, serFunc, &ObjAddress<Type, Type>);
-    }
-    template <typename Type, typename ValueType>
-    static void PushSerPtrMap(Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc)
-    {
-        PushSerMap<Type, Type*, ValueType>(obj, sKey, value, serFunc, &PtrAddress<Type, Type*>);
-    }
-    template <typename Type, typename ElementType, typename ValueType>
-    static void PushSerSmartPtrMap(Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc)
-    {
-        PushSerMap<Type, ElementType, ValueType>(obj, sKey, value, serFunc, &SmartPtrAddress<Type, ElementType>);
-    }
-
-    // general methods
-private:
-    template<typename Type, typename ElementType>
-    static Type* ObjAddress(ElementType& e)
-    {
-        return &e;
-    }
-
-    template<typename Type, typename ElementType>
-    static Type* PtrAddress(ElementType& p)
-    {
-        return p;
-    }
-
-    template<typename Type, typename ElementType>
-    static Type* SmartPtrAddress(ElementType& sp)
-    {
-        return sp.get();
-    }
-
-    // array
-    template <typename Type, typename ElementType, typename ValueType>
-    static void PushSerArray(Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc, AddressFunc<Type, ElementType> addressFunc)
-    {
-        std::list<json11::Json> arrJ;
-        for ( auto& e : value ) {
-            Jobj elObj;
-            auto pE = addressFunc(e);
-            if ( pE ) {
-                serFunc(pE, elObj);
-                arrJ.push_back(elObj);
-            } else
-                arrJ.push_back(json11::Json(nullptr));
-        }
-        obj.insert({ sKey, arrJ });
-    }
-    // map
-    template <typename Type, typename ElementType, typename ValueType>
-    static void PushSerMap(Jobj& obj, const char* sKey, ValueType& value, SerFunc<Type> serFunc, AddressFunc<Type, ElementType> addressFunc)
-    {
-        Jobj jMap;
-        for ( auto& intStr : value ) {
-            Jobj elObj;
-            auto pE = addressFunc(intStr.second);
-
-            auto firstStr = ConvertToString(intStr.first);
-
-            if ( pE ) {
-                serFunc(pE, elObj);
-                jMap.insert({ firstStr, elObj });
-            } else {
-                jMap.insert({ firstStr, json11::Json(nullptr) });
-            }
-        }
-        obj.insert({ sKey, jMap });
-    }
-
 public:
     template <typename T>
     static std::string ConvertToString(const T& t)

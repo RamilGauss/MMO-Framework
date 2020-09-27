@@ -23,7 +23,6 @@ See for more information LICENSE.md.
 #include "ProgramInfo.h"
 
 #include "HiTimer.h"
-#include "TestClass.h"
 
 #include "DstEvent.h"
 
@@ -40,7 +39,6 @@ See for more information LICENSE.md.
 #include <clang-c/Index.h>
 
 #include "JsonSerializer.h"
-
 
 using namespace nsReflectionCodeGenerator;
 using namespace boost::wave;
@@ -81,10 +79,10 @@ void ClangExp()
         true   // displayDiagnostics  
     );
     CXTranslationUnit unit = clang_parseTranslationUnit(
-        index,                           // CIdx
-        "./Sources/BaseStruct.h",                      // source_filename
-        command_line_args,                        // command_line_args
-        2,                        // num_command_line_args
+        index,                            // CIdx
+        "./Sources/BaseStruct.h",         // source_filename
+        command_line_args,                // command_line_args
+        2,                                // num_command_line_args
         0,                                // unsave_files
         0,                                // num_unsaved_files
         CXTranslationUnit_None // options
@@ -100,40 +98,36 @@ void ClangExp()
 //---------------------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
-    //auto pF = new TFloat3();
-    //pF->x = 42;
-    //pF->y = 43;
-    //pF->z = 44;
-
-    //void* p = pF;
-    //std::string str;
-    //std::string typeName = "TFloat3";
-    //nsJson::TJsonSerializer::Serialize(p, str, typeName);
-
-    //auto pFDeser = (void*)new TFloat3();
-    //nsJson::TJsonSerializer::Deserialize(pFDeser, str, typeName);
-
-    //auto tnl = nsJson::TJsonSerializer::GetTypeNameList();
-
     //###
     //ClangExp();
     //###
 
-    ShowTitle();
+    const char* sLocale = setlocale(LC_CTYPE, "");
+    sLocale = setlocale(LC_CTYPE, sLocale);
+    if ( sLocale == NULL ) {
+        BL_FIX_BUG();
+    }
 
-    TSetupConfig setupConfig;
-    if ( setupConfig.Work() == false )
-        return 0;
+    try {
+        ShowTitle();
 
-    TParser parser;
-    parser.Work();
+        TSetupConfig setupConfig;
 
-    // дополнить расширенной информацией
-    TMemberTypeExtendedInfoAnalyzer analyzer;
-    analyzer.Work();
+        if ( setupConfig.Work() == false )
+            return 0;
 
-    TCodeGeneratorFusion cgFusion;
-    cgFusion.Work();
+        TParser parser;
+        parser.Work();
+
+        // дополнить расширенной информацией
+        TMemberTypeExtendedInfoAnalyzer analyzer;
+        analyzer.Work();
+
+        TCodeGeneratorFusion cgFusion;
+        cgFusion.Work();
+    } catch ( std::exception& ex ) {
+        printf("exception: %s\n", ex.what());
+    }
     return 0;
 }
 

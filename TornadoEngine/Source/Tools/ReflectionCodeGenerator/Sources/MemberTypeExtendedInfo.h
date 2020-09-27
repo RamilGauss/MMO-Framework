@@ -40,6 +40,9 @@ struct TMemberTypeExtendedInfo
 public:
     bool IsContainer();
 
+    bool IsBool();
+    bool IsFloatingPoint();
+
     std::string GetCollectSubType();
     std::string GetTypeNameWithNameSpace();
     std::string GetTypeNameWithNameSpaceReflection();

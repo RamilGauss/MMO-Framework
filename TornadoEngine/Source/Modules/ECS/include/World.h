@@ -11,9 +11,9 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  class DllExport TWorld : public TConveyerPartMaster
-  {
-  public:
-    TWorld();
-  };
+    class DllExport TWorld : public TConveyerPartMaster
+    {
+    public:
+        TWorld();
+    };
 }

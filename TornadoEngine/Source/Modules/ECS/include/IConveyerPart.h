@@ -10,13 +10,13 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  class DllExport IConveyerPart
-  {
-  public:
-    virtual void Init() { }
-    virtual void Update() = 0;
+    class DllExport IConveyerPart
+    {
+    public:
+        virtual void Init() {}
+        virtual void Update() = 0;
 
-    // только для TFeature
-    virtual void PrepareFeature() { }
-  };
+        // только для TFeature
+        virtual void PrepareFeature() {}
+    };
 }

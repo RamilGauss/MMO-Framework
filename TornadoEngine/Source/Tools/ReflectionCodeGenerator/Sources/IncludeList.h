@@ -5,9 +5,5 @@
 	
 #pragma once
 
-#include "AAMathStructs.h"
-#include "BaseStruct.h"
 #include "Config.h"
-#include "ParamClass.h"
-#include "TestClass.h"
-#include "TestStruct.h"
+

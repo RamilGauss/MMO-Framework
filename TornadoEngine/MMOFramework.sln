@@ -165,6 +165,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PostgresDriver", "Source\Mo
 		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JsonInterface", "Test\JsonInterface\JsonInterface.vcxproj", "{E9898319-A3D1-41C5-A047-CAF8B961649F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -643,6 +648,18 @@ Global
 		{7B6E660D-44D4-4BA9-81B8-3A30D669596E}.Release|x64.Build.0 = Release|x64
 		{7B6E660D-44D4-4BA9-81B8-3A30D669596E}.Release|x86.ActiveCfg = Release|Win32
 		{7B6E660D-44D4-4BA9-81B8-3A30D669596E}.Release|x86.Build.0 = Release|Win32
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Debug|x64.ActiveCfg = Debug|x64
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Debug|x64.Build.0 = Debug|x64
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Debug|x86.ActiveCfg = Debug|Win32
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Debug|x86.Build.0 = Debug|Win32
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Profile|x64.ActiveCfg = Debug|x64
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Profile|x64.Build.0 = Debug|x64
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Profile|x86.ActiveCfg = Debug|Win32
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Profile|x86.Build.0 = Debug|Win32
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Release|x64.ActiveCfg = Release|x64
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Release|x64.Build.0 = Release|x64
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Release|x86.ActiveCfg = Release|Win32
+		{E9898319-A3D1-41C5-A047-CAF8B961649F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -692,10 +709,11 @@ Global
 		{D1B45371-E976-4AC8-A689-CED9E1B7F908} = {A7F864D1-F952-48A5-A706-4EE17786221A}
 		{B3A7A914-BBE8-45DC-A78F-BC4B860BBA80} = {66409113-263C-4F6A-A36F-6848E9E76980}
 		{7B6E660D-44D4-4BA9-81B8-3A30D669596E} = {66409113-263C-4F6A-A36F-6848E9E76980}
+		{E9898319-A3D1-41C5-A047-CAF8B961649F} = {A7F864D1-F952-48A5-A706-4EE17786221A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

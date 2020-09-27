@@ -7,39 +7,41 @@ See for more information LICENSE.md.
 
 #include "BaseReactiveSystem.h"
 
-
 namespace nsECSFramework
 {
-  TBaseReactiveSystem::TBaseReactiveSystem( bool useThinning )
-  {
-    mUseThinning = useThinning;
-  }
-  //-----------------------------------------------------------------------------
-  bool TBaseReactiveSystem::Filter( TEntityID& eid )
-  {
-    return true;
-  }
-  //-----------------------------------------------------------------------------
-  void TBaseReactiveSystem::Update()
-  {
-    mCollector->Get( mEventWaiterID, [this]( TEntityIdVectorRise& entities )
+    TBaseReactiveSystem::TBaseReactiveSystem(bool useThinning)
     {
-      if ( entities.mCounter == 0 )
-        return;
+        mUseThinning = useThinning;
+    }
+    //-----------------------------------------------------------------------------
+    bool TBaseReactiveSystem::Filter(TEntityID& eid)
+    {
+        return true;
+    }
+    //-----------------------------------------------------------------------------
+    void TBaseReactiveSystem::Update()
+    {
+        mCollector->Get(mEventWaiterID, [this] (TEntityIdVectorRise& entities) {
+            if ( entities.mCounter == 0 ) {
+                return;
+            }
 
-      if ( mUseThinning )
-        mSTRO.Work( entities );// сортировать, убрать дублированные и восстановить порядок создания сущностей
-      if ( entities.mCounter == 0 )
-        return;
+            if ( mUseThinning ) {
+                mSTRO.Work(entities);// сортировать, убрать дублированные и восстановить порядок создания сущностей
+            }
+            if ( entities.mCounter == 0 ) {
+                return;
+            }
 
-      // фильтрация
-      Filter( entities );
-      if ( entities.mCounter == 0 )
-        return;
+            // фильтрация
+            Filter(entities);
+            if ( entities.mCounter == 0 ) {
+                return;
+            }
 
-      // готовый результат
-      Reactive( entities );
-    } );
-  }
-  //-----------------------------------------------------------------------------
+            // готовый результат
+            Reactive(entities);
+        });
+    }
+    //-----------------------------------------------------------------------------
 }

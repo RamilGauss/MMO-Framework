@@ -10,10 +10,10 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  class DllExport TExecuteSystem : public TSystem
-  {
-  public:
-    virtual void Update() final;
-    virtual void Execute() = 0;
-  };
+    class DllExport TExecuteSystem : public TSystem
+    {
+    public:
+        virtual void Update() final;
+        virtual void Execute() = 0;
+    };
 }

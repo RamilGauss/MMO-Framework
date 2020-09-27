@@ -29,7 +29,7 @@ std::list<std::string> TJsonSerializerFileGenerator::GetParamListForDeserialize(
   return std::list<std::string> 
   {
     namespaceWithType + "* " + s_TypeObject,
-    "const json11::Json& json"
+    "const Jobj& obj"
   };
 }
 //----------------------------------------------------------------------------------------------------

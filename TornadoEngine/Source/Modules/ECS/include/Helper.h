@@ -11,21 +11,23 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  template <typename Component>
-  TEntityID SingleEntity( TEntityManager* entMng )// когда точно есть одна сущность с данным компонентом
-  {
-    auto pList = entMng->GetByHas<Component>();
-    if ( pList == nullptr || pList->size() == 0 )
-      None;
-    return pList->front();
-  }
+    template <typename Component>
+    TEntityID SingleEntity(TEntityManager* entMng)// когда точно есть одна сущность с данным компонентом
+    {
+        auto pList = entMng->GetByHas<Component>();
+        if ( pList == nullptr || pList->size() == 0 ) {
+            return None;
+        }
+        return pList->front();
+    }
 
-  template <typename Component>
-  Component* SingleComponent( TEntityManager* entMng )// когда точно есть одна сущность с данным компонентом
-  {
-    auto eid = SingleEntity( entMng );
-    if ( eid == None )
-      nullptr;
-    return entMng->GetComponent<Component>( eid );
-  }
+    template <typename Component>
+    Component* SingleComponent(TEntityManager* entMng)// когда точно есть одна сущность с данным компонентом
+    {
+        auto eid = SingleEntity(entMng);
+        if ( eid == None ) {
+            return nullptr;
+        }
+        return entMng->GetComponent<Component>(eid);
+    }
 }

@@ -27,7 +27,7 @@
     <ClCompile Include="JsonSerializer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="json11.cpp">
+    <ClCompile Include="JsonPushMaster.cpp">
       <Filter>OutSources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -52,9 +52,6 @@
     </ClInclude>
     <ClInclude Include="DataSources\BaseStruct.h">
       <Filter>DataSources</Filter>
-    </ClInclude>
-    <ClInclude Include="json11.h">
-      <Filter>OutSources</Filter>
     </ClInclude>
     <ClInclude Include="JsonMaster.h">
       <Filter>OutSources</Filter>

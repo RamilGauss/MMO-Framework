@@ -39,9 +39,6 @@
     <Filter Include="Info">
       <UniqueIdentifier>{c50e22c0-6f45-4957-a29f-17744101630b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Trash">
-      <UniqueIdentifier>{eaf82497-71dc-4930-b94c-b9f8599df714}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Addin">
       <UniqueIdentifier>{918e53c0-c1a1-42b4-b71d-4edcf142d497}</UniqueIdentifier>
     </Filter>
@@ -151,9 +148,6 @@
     </ClCompile>
     <ClCompile Include="Sources\SqlGenerated.cpp">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\AAMathStructs.cpp">
-      <Filter>Trash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,15 +259,6 @@
     <ClInclude Include="Sources\BinaryMarshallerSourceFileGenerator.h">
       <Filter>Generators\Binary</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ParamClass.h">
-      <Filter>Trash</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\TestClass.h">
-      <Filter>Trash</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\TestStruct.h">
-      <Filter>Trash</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\BinaryMarshaller.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -294,12 +279,6 @@
     </ClInclude>
     <ClInclude Include="Sources\SqlGenerated.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\BaseStruct.h">
-      <Filter>Trash</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\AAMathStructs.h">
-      <Filter>Trash</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

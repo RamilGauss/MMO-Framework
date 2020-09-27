@@ -84,9 +84,6 @@
     <ClInclude Include="include\FileOperation.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\FormManager.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\HiTimer.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -222,9 +219,6 @@
     <ClInclude Include="include\XML_Markup.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\json11.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\SortedThinningRestoreOrder.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -318,9 +312,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\FileOperation.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\FormManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\HiTimer.cpp">
@@ -419,9 +410,6 @@
     <ClCompile Include="src\XML_Markup.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\json11.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\SingletonManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -441,6 +429,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\TypeIdentifier.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JsonPushMaster.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

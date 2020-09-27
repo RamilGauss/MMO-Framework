@@ -127,8 +127,9 @@ void IFileGenerator::AddUsing(const std::string& expression)
 void IFileGenerator::AddClassBegin(const std::string& exportDeclaration, const std::string& className)
 {
     std::string sEexportDeclaration;
-    if ( exportDeclaration.length() )
+    if ( exportDeclaration.length() ) {
         sEexportDeclaration = fmt::format(" {}", exportDeclaration);
+    }
     auto s = fmt::format("class{} {}", sEexportDeclaration, className);
     Add(s);
     s = "{";
@@ -172,8 +173,9 @@ void IFileGenerator::ClearTabs()
 std::string IFileGenerator::AddTabsToStr(const std::string& str, int tabCounter)
 {
     std::string tabAcculumator;
-    for ( auto i = 0; i < tabCounter; i++ )
+    for ( auto i = 0; i < tabCounter; i++ ) {
         tabAcculumator += sTab;
+    }
     return tabAcculumator + str;
 }
 //----------------------------------------------------------------------------------
@@ -198,8 +200,9 @@ void IFileGenerator::AddPrivateSection()
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddList(const std::list<std::string>& strList)
 {
-    for ( auto& str : strList )
+    for ( auto& str : strList ) {
         Add(str);
+    }
 }
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddStaticMethodDeclaration(const std::string& retName, const std::string& name, std::list<std::string>& paramList)
@@ -233,22 +236,26 @@ void IFileGenerator::General_AddCallFunctionOrObjMethod(const std::string& objec
     const std::string& funcName, std::list<std::string>& templateList, std::list<std::string>& argList)
 {
     std::string namespacePredict;
-    if ( namespaceFunc.length() )
+    if ( namespaceFunc.length() ) {
         namespacePredict = namespaceFunc + "::";
+    }
 
     std::string objPredict;
-    if ( objectName.length() )
+    if ( objectName.length() ) {
         objPredict = objectName + ".";
+    }
 
     std::string str = fmt::format("{}{}{}", objPredict, namespacePredict, funcName);
     auto templ = EnumerateParamToStr(templateList);
-    if ( templ.length() )
+    if ( templ.length() ) {
         str += fmt::format("<{}>", templ);
+    }
 
     str += "(";
     auto args = EnumerateParamToStr(argList);
-    if ( args.length() )
+    if ( args.length() ) {
         str += " " + args;
+    }
 
     str += " );";
     Add(str);
@@ -264,8 +271,9 @@ std::string IFileGenerator::EnumerateParamToStr(std::list<std::string>& paramLis
 {
     std::list<std::string> existStrList;
     for ( auto param : paramList ) {
-        if ( param.length() > 0 )
+        if ( param.length() > 0 ) {
             existStrList.push_back(param);
+        }
     }
 
     std::string str;
@@ -273,8 +281,9 @@ std::string IFileGenerator::EnumerateParamToStr(std::list<std::string>& paramLis
     int i = 0;
     for ( auto param : existStrList ) {
         str += param;
-        if ( i != cnt - 1 )
+        if ( i != cnt - 1 ) {
             str += ", ";
+        }
         i++;
     }
     return str;
@@ -297,12 +306,14 @@ std::string IFileGenerator::GetNullExpression(TMemberTypeExtendedInfo& ext)
 void IFileGenerator::AddCallingMethodForParent(TTypeInfo* p, std::function<void(const std::string&)> func)
 {
     for ( auto& inheritanceInfo : p->mInheritanceVec ) {
-        if ( inheritanceInfo.mInheritanceAccessLevel != TMemberInfo::ePublic )
+        if ( inheritanceInfo.mInheritanceAccessLevel != TMemberInfo::ePublic ) {
             continue;
+        }
         // найти родителя - TypeInfo
         auto pParentInfo = mTypeMng->FindTypeInfo(inheritanceInfo.mParentTypeName);
-        if ( pParentInfo == nullptr )
+        if ( pParentInfo == nullptr ) {
             continue;
+        }
         func(pParentInfo->GetTypeNameWithNameSpace());
     }
 }
@@ -310,8 +321,10 @@ void IFileGenerator::AddCallingMethodForParent(TTypeInfo* p, std::function<void(
 void IFileGenerator::AddCallingMethod(TTypeInfo* p, std::function<void(TMemberInfo*)> func)
 {
     auto fit = p->mMemberMap.find(TMemberInfo::AccessLevel::ePublic);
-    if ( fit != p->mMemberMap.end() )
-        for ( auto memberInfo : fit->second )
+    if ( fit != p->mMemberMap.end() ) {
+        for ( auto memberInfo : fit->second ) {
             func(memberInfo.get());
+        }
+    }
 }
 //-----------------------------------------------------------------------------------------------------------

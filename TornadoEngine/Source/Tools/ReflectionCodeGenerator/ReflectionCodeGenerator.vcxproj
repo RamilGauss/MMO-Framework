@@ -196,7 +196,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\AAMathStructs.cpp" />
     <ClCompile Include="Sources\AST_StateMachine.cpp" />
     <ClCompile Include="Sources\BinaryMarshaller.cpp" />
     <ClCompile Include="Sources\BinaryMarshallerFileGenerator.cpp" />
@@ -234,7 +233,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\AST_StateMachine.h" />
-    <ClInclude Include="Sources\BaseStruct.h" />
     <ClInclude Include="Sources\BinaryMarshaller.h" />
     <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h" />
     <ClInclude Include="Sources\BinaryMarshallerGenerator.h" />
@@ -256,12 +254,10 @@
     <ClInclude Include="Sources\JsonSerializerGenerator.h" />
     <ClInclude Include="Sources\JsonSerializerHeaderFileGenerator.h" />
     <ClInclude Include="Sources\JsonSerializerSourceFileGenerator.h" />
-    <ClInclude Include="Sources\AAMathStructs.h" />
     <ClInclude Include="Sources\MemberInfo.h" />
     <ClInclude Include="Sources\MemberTypeExtendedInfo.h" />
     <ClInclude Include="Sources\MemberTypeExtendedInfoAnalyzer.h" />
     <ClInclude Include="Sources\MemberTypeExtendedInfoCache.h" />
-    <ClInclude Include="Sources\ParamClass.h" />
     <ClInclude Include="Sources\Parser.h" />
     <ClInclude Include="Sources\ProgramInfo.h" />
     <ClInclude Include="Sources\readerwriterqueue.h" />
@@ -273,8 +269,6 @@
     <ClInclude Include="Sources\SqlGenerator.h" />
     <ClInclude Include="Sources\SqlHeaderFileGenerator.h" />
     <ClInclude Include="Sources\SqlSourceFileGenerator.h" />
-    <ClInclude Include="Sources\TestClass.h" />
-    <ClInclude Include="Sources\TestStruct.h" />
     <ClInclude Include="Sources\TokenInfo.h" />
     <ClInclude Include="Sources\TokenInfoManager.h" />
     <ClInclude Include="Sources\Tokenizer.h" />
@@ -292,4 +286,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties config_1json__JsonSchema="https://jenkins-x.io/schemas/jx-schema.json" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

@@ -106,80 +106,80 @@ namespace nsBinary
       void _Deserialize( Type*& p, char* serData, int size, bool checkPtr );
       TypeID PrepareForUnpackPopMaster( char* packedData, int size );
     private:
-        void _Serialize( TFloat3* p );
-        void _Deserialize( TFloat3* p );
-        TypeID _GetTypeID( TFloat3* p );
-        static void _Deallocate( TFloat3* p );
-        
-        void _Serialize( TFloat4* p );
-        void _Deserialize( TFloat4* p );
-        TypeID _GetTypeID( TFloat4* p );
-        static void _Deallocate( TFloat4* p );
-        
-        void _Serialize( TParamClass* p );
-        void _Deserialize( TParamClass* p );
-        TypeID _GetTypeID( TParamClass* p );
-        static void _Deallocate( TParamClass* p );
-        
-        void _Serialize( TTestClass* p );
-        void _Deserialize( TTestClass* p );
-        TypeID _GetTypeID( TTestClass* p );
-        static void _Deallocate( TTestClass* p );
-        
-        void _Serialize( nsBS::TBaseStruct* p );
-        void _Deserialize( nsBS::TBaseStruct* p );
-        TypeID _GetTypeID( nsBS::TBaseStruct* p );
-        static void _Deallocate( nsBS::TBaseStruct* p );
-        
-        void _Serialize( nsBS::TTestStruct* p );
-        void _Deserialize( nsBS::TTestStruct* p );
-        TypeID _GetTypeID( nsBS::TTestStruct* p );
-        static void _Deallocate( nsBS::TTestStruct* p );
-        
-        void _Serialize( nsMathTools::TMatrix16* p );
-        void _Deserialize( nsMathTools::TMatrix16* p );
-        TypeID _GetTypeID( nsMathTools::TMatrix16* p );
-        static void _Deallocate( nsMathTools::TMatrix16* p );
-        
-        void _Serialize( nsMathTools::TMatrix9* p );
-        void _Deserialize( nsMathTools::TMatrix9* p );
-        TypeID _GetTypeID( nsMathTools::TMatrix9* p );
-        static void _Deallocate( nsMathTools::TMatrix9* p );
-        
-        void _Serialize( nsMathTools::TOrientation* p );
-        void _Deserialize( nsMathTools::TOrientation* p );
-        TypeID _GetTypeID( nsMathTools::TOrientation* p );
-        static void _Deallocate( nsMathTools::TOrientation* p );
-        
-        void _Serialize( nsMathTools::TPlane* p );
-        void _Deserialize( nsMathTools::TPlane* p );
-        TypeID _GetTypeID( nsMathTools::TPlane* p );
-        static void _Deallocate( nsMathTools::TPlane* p );
-        
-        void _Serialize( nsMathTools::TPoint2* p );
-        void _Deserialize( nsMathTools::TPoint2* p );
-        TypeID _GetTypeID( nsMathTools::TPoint2* p );
-        static void _Deallocate( nsMathTools::TPoint2* p );
-        
-        void _Serialize( nsMathTools::TQuaternion* p );
-        void _Deserialize( nsMathTools::TQuaternion* p );
-        TypeID _GetTypeID( nsMathTools::TQuaternion* p );
-        static void _Deallocate( nsMathTools::TQuaternion* p );
-        
-        void _Serialize( nsMathTools::TVector2* p );
-        void _Deserialize( nsMathTools::TVector2* p );
-        TypeID _GetTypeID( nsMathTools::TVector2* p );
-        static void _Deallocate( nsMathTools::TVector2* p );
-        
-        void _Serialize( nsMathTools::TVector3* p );
-        void _Deserialize( nsMathTools::TVector3* p );
-        TypeID _GetTypeID( nsMathTools::TVector3* p );
-        static void _Deallocate( nsMathTools::TVector3* p );
-        
-        void _Serialize( nsMathTools::TVector4* p );
-        void _Deserialize( nsMathTools::TVector4* p );
-        TypeID _GetTypeID( nsMathTools::TVector4* p );
-        static void _Deallocate( nsMathTools::TVector4* p );
+        //void _Serialize( TFloat3* p );
+        //void _Deserialize( TFloat3* p );
+        //TypeID _GetTypeID( TFloat3* p );
+        //static void _Deallocate( TFloat3* p );
+        //
+        //void _Serialize( TFloat4* p );
+        //void _Deserialize( TFloat4* p );
+        //TypeID _GetTypeID( TFloat4* p );
+        //static void _Deallocate( TFloat4* p );
+        //
+        //void _Serialize( TParamClass* p );
+        //void _Deserialize( TParamClass* p );
+        //TypeID _GetTypeID( TParamClass* p );
+        //static void _Deallocate( TParamClass* p );
+        //
+        //void _Serialize( TTestClass* p );
+        //void _Deserialize( TTestClass* p );
+        //TypeID _GetTypeID( TTestClass* p );
+        //static void _Deallocate( TTestClass* p );
+        //
+        //void _Serialize( nsBS::TBaseStruct* p );
+        //void _Deserialize( nsBS::TBaseStruct* p );
+        //TypeID _GetTypeID( nsBS::TBaseStruct* p );
+        //static void _Deallocate( nsBS::TBaseStruct* p );
+        //
+        //void _Serialize( nsBS::TTestStruct* p );
+        //void _Deserialize( nsBS::TTestStruct* p );
+        //TypeID _GetTypeID( nsBS::TTestStruct* p );
+        //static void _Deallocate( nsBS::TTestStruct* p );
+        //
+        //void _Serialize( nsMathTools::TMatrix16* p );
+        //void _Deserialize( nsMathTools::TMatrix16* p );
+        //TypeID _GetTypeID( nsMathTools::TMatrix16* p );
+        //static void _Deallocate( nsMathTools::TMatrix16* p );
+        //
+        //void _Serialize( nsMathTools::TMatrix9* p );
+        //void _Deserialize( nsMathTools::TMatrix9* p );
+        //TypeID _GetTypeID( nsMathTools::TMatrix9* p );
+        //static void _Deallocate( nsMathTools::TMatrix9* p );
+        //
+        //void _Serialize( nsMathTools::TOrientation* p );
+        //void _Deserialize( nsMathTools::TOrientation* p );
+        //TypeID _GetTypeID( nsMathTools::TOrientation* p );
+        //static void _Deallocate( nsMathTools::TOrientation* p );
+        //
+        //void _Serialize( nsMathTools::TPlane* p );
+        //void _Deserialize( nsMathTools::TPlane* p );
+        //TypeID _GetTypeID( nsMathTools::TPlane* p );
+        //static void _Deallocate( nsMathTools::TPlane* p );
+        //
+        //void _Serialize( nsMathTools::TPoint2* p );
+        //void _Deserialize( nsMathTools::TPoint2* p );
+        //TypeID _GetTypeID( nsMathTools::TPoint2* p );
+        //static void _Deallocate( nsMathTools::TPoint2* p );
+        //
+        //void _Serialize( nsMathTools::TQuaternion* p );
+        //void _Deserialize( nsMathTools::TQuaternion* p );
+        //TypeID _GetTypeID( nsMathTools::TQuaternion* p );
+        //static void _Deallocate( nsMathTools::TQuaternion* p );
+        //
+        //void _Serialize( nsMathTools::TVector2* p );
+        //void _Deserialize( nsMathTools::TVector2* p );
+        //TypeID _GetTypeID( nsMathTools::TVector2* p );
+        //static void _Deallocate( nsMathTools::TVector2* p );
+        //
+        //void _Serialize( nsMathTools::TVector3* p );
+        //void _Deserialize( nsMathTools::TVector3* p );
+        //TypeID _GetTypeID( nsMathTools::TVector3* p );
+        //static void _Deallocate( nsMathTools::TVector3* p );
+        //
+        //void _Serialize( nsMathTools::TVector4* p );
+        //void _Deserialize( nsMathTools::TVector4* p );
+        //TypeID _GetTypeID( nsMathTools::TVector4* p );
+        //static void _Deallocate( nsMathTools::TVector4* p );
         
         void _Serialize( nsReflectionCodeGenerator::TBinaryMarshallerGeneratorConfig* p );
         void _Deserialize( nsReflectionCodeGenerator::TBinaryMarshallerGeneratorConfig* p );
