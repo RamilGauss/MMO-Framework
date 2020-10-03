@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include <rapidjson/writer.h>
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/prettywriter.h>
+#include <rapidjson/error/en.h>
 
 #include <map>
 

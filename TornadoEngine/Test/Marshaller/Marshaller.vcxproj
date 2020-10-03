@@ -62,6 +62,7 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Exe\.conan\conanbuildinfo.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -141,7 +142,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\ECS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>
       </MinimalRebuild>
@@ -157,15 +158,15 @@
       <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Base_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Base_d.lib;ECS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Test\Marshaller\data.json"</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\Marshaller\config.json"</Command>
       <Message>Run Reflection code generator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -200,13 +201,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BinaryMarshaller.cpp" />
+    <ClCompile Include="EntityManagerExtension.cpp" />
+    <ClCompile Include="JsonSerializer.cpp" />
+    <ClCompile Include="Reflection.cpp" />
     <ClCompile Include="UnpackHandler.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseStruct.h" />
     <ClInclude Include="BinaryMarshaller.h" />
+    <ClInclude Include="EntityManagerExtension.h" />
     <ClInclude Include="IncludeList.h" />
+    <ClInclude Include="JsonSerializer.h" />
+    <ClInclude Include="Reflection.h" />
     <ClInclude Include="TestStruct.h" />
     <ClInclude Include="UnpackHandler.h" />
     <ClInclude Include="ParamClass.h" />
@@ -219,7 +226,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="data.json" />
+    <None Include="config.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

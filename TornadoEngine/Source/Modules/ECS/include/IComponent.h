@@ -16,18 +16,18 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  class DllExport IComponent
-  {
-  public:
-    virtual bool IsLess( const IComponent* pOther ) const
+    class DllExport IComponent
     {
-      BL_FIX_BUG();
-      return true;
-    }
-    virtual bool IsEqual( const IComponent* pOther ) const
-    {
-      BL_FIX_BUG();
-      return true;
-    }
-  };
+    public:
+        virtual bool IsLess(const IComponent* pOther) const
+        {
+            BL_FIX_BUG();
+            return true;
+        }
+        virtual bool IsEqual(const IComponent* pOther) const
+        {
+            BL_FIX_BUG();
+            return true;
+        }
+    };
 }

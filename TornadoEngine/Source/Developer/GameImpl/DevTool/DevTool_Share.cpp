@@ -34,311 +34,315 @@ See for more information LICENSE.md.
 
 namespace nsDevTool_Share
 {
-  // для именования модулей в конвейере для Ядра
-  // сделано так с целью присутствия в коде имени модуля единожды
+    // для именования модулей в конвейере для Ядра
+    // сделано так с целью присутствия в коде имени модуля единожды
 #define NAME_MODULE(enumID) ""#enumID
 
 #define NAME_ID(X) NAME_MODULE(X),X
 
   //const char* sFileResources = "Resources.xml";
-  const char* sFileResources = "Resources.json";
+    const char* sFileResources = "Resources.json";
 
-  const char* sCore = "Core";
-  const char* sSkin = "Skin";
-  const char* sConveyer = "Conveyer";
-  const char* sItems = "Items";
-  const char* sSettings = "Settings";
+    const char* sCore = "Core";
+    const char* sSkin = "Skin";
+    const char* sConveyer = "Conveyer";
+    const char* sItems = "Items";
+    const char* sSettings = "Settings";
 }
 
 using namespace nsListModules;
 
 TDevTool_Share::TDevTool_Share()
 {
-  InitMapModules();
+    InitMapModules();
 }
 //-----------------------------------------------------------------------
 TDevTool_Share::~TDevTool_Share()
 {
-  // уничтожить все модули
-  for ( auto& vtID_Ptr : mMapID_PtrModules )
-    delete vtID_Ptr.second;
+    // уничтожить все модули
+    for ( auto& vtID_Ptr : mMapID_PtrModules ) {
+        delete vtID_Ptr.second;
+    }
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::Init()
 {
-  std::string file = nsDevTool_Share::sFileResources;
+    std::string file = nsDevTool_Share::sFileResources;
 
-  std::string str;
-  TTextFile::Load( file, str );
-  if ( str.length() == 0 )
-    return;
+    std::string str;
+    TTextFile::Load(file, str);
+    if ( str.length() == 0 ) {
+        return;
+    }
 
-  TFrameworkResources frameworkResources;
-  TShareDevJsonSerializer::Fill( &frameworkResources, str );
+    TFrameworkResources frameworkResources;
+    std::string err;
+    TShareDevJsonSerializer::Fill(&frameworkResources, str, err);
 
-  mTerrainPath = frameworkResources.graphicEngine.terrainPath;
-  mPluginsCfg = frameworkResources.graphicEngine.pluginsCfg.Get();
-  mOgreCfg = frameworkResources.graphicEngine.ogreCfg.Get();
+    mTerrainPath = frameworkResources.graphicEngine.terrainPath;
+    mPluginsCfg = frameworkResources.graphicEngine.pluginsCfg.Get();
+    mOgreCfg = frameworkResources.graphicEngine.ogreCfg.Get();
 
-  mMapRGame = frameworkResources.game.resources;
-  mMapRGameEngine = frameworkResources.gameEngine.resources;
-  mMapRGUI = frameworkResources.gui.resources;
-  mMapRGraphicEngine = frameworkResources.graphicEngine.resources;
+    mMapRGame = frameworkResources.game.resources;
+    mMapRGameEngine = frameworkResources.gameEngine.resources;
+    mMapRGUI = frameworkResources.gui.resources;
+    mMapRGraphicEngine = frameworkResources.graphicEngine.resources;
 
-  FindPath_Game( nsDevTool_Share::sItems, 0, mPathItems );
-  FindPath_Game( nsDevTool_Share::sSettings, 0, mPathSettings );
+    FindPath_Game(nsDevTool_Share::sItems, 0, mPathItems);
+    FindPath_Game(nsDevTool_Share::sSettings, 0, mPathSettings);
 }
 //-----------------------------------------------------------------------
-IModule* TDevTool_Share::GetModuleByName( const std::string& sName )
+IModule* TDevTool_Share::GetModuleByName(const std::string& sName)
 {
-  int id = FindIDByNameModule( sName );
-  TModuleDev* pModule = FindPtrModuleByID( id );
-  if ( pModule )
-    return pModule;
+    int id = FindIDByNameModule(sName);
+    TModuleDev* pModule = FindPtrModuleByID(id);
+    if ( pModule ) {
+        return pModule;
+    }
 
-  pModule = GetModuleByID( id );
-  pModule->SetID( id );
-  pModule->SetName( sName );
-  Add( id, pModule );
-  return pModule;
+    pModule = GetModuleByID(id);
+    pModule->SetID(id);
+    pModule->SetName(sName);
+    Add(id, pModule);
+    return pModule;
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::InitMapModules()
 {
-  Add( NAME_ID( GraphicEngine ) );
-  Add( NAME_ID( MMOEngineClient ) );
-  Add( NAME_ID( MMOEngineSlave ) );
-  Add( NAME_ID( MMOEngineMaster ) );
-  Add( NAME_ID( MMOEngineSuperServer ) );
-  Add( NAME_ID( Logic ) );
-  Add( NAME_ID( PhysicEngine ) );
-  Add( NAME_ID( SoundEngine ) );
-  Add( NAME_ID( DataBase ) );
-  Add( NAME_ID( Timer ) );
+    Add(NAME_ID(GraphicEngine));
+    Add(NAME_ID(MMOEngineClient));
+    Add(NAME_ID(MMOEngineSlave));
+    Add(NAME_ID(MMOEngineMaster));
+    Add(NAME_ID(MMOEngineSuperServer));
+    Add(NAME_ID(Logic));
+    Add(NAME_ID(PhysicEngine));
+    Add(NAME_ID(SoundEngine));
+    Add(NAME_ID(DataBase));
+    Add(NAME_ID(Timer));
 }
 //-----------------------------------------------------------------------
-int TDevTool_Share::FindIDByNameModule( std::string name )
+int TDevTool_Share::FindIDByNameModule(std::string name)
 {
-  TMapStrIntIt fit = mMapNameID_Modules.find( name );
-  if ( fit == mMapNameID_Modules.end() )
-    return Undef;
-  return fit->second;
+    TMapStrIntIt fit = mMapNameID_Modules.find(name);
+    if ( fit == mMapNameID_Modules.end() ) {
+        return Undef;
+    }
+    return fit->second;
 }
 //-----------------------------------------------------------------------
-TModuleDev* TDevTool_Share::FindPtrModuleByID( int id )
+TModuleDev* TDevTool_Share::FindPtrModuleByID(int id)
 {
-  TMapIntPtrModuleIt fit = mMapID_PtrModules.find( id );
-  if ( fit == mMapID_PtrModules.end() )
-    return nullptr;
-  return fit->second;
+    TMapIntPtrModuleIt fit = mMapID_PtrModules.find(id);
+    if ( fit == mMapID_PtrModules.end() ) {
+        return nullptr;
+    }
+    return fit->second;
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::Add( int id, TModuleDev* pModule )
+void TDevTool_Share::Add(int id, TModuleDev* pModule)
 {
-  if ( pModule )
-    mMapID_PtrModules.insert( TMapIntPtrModuleVT( id, pModule ) );
+    if ( pModule ) {
+        mMapID_PtrModules.insert(TMapIntPtrModuleVT(id, pModule));
+    }
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::Add( std::string name, int id )
+void TDevTool_Share::Add(std::string name, int id)
 {
-  mMapNameID_Modules.insert( TMapStrIntVT( name, id ) );
+    mMapNameID_Modules.insert(TMapStrIntVT(name, id));
 }
 //-----------------------------------------------------------------------
 std::string TDevTool_Share::GetFileDescConveyer()
 {
-  std::string pathConveyer;
-  if ( FindPath_GameEngine( nsDevTool_Share::sConveyer, 0, pathConveyer ) == true )
-    return pathConveyer;
+    std::string pathConveyer;
+    if ( FindPath_GameEngine(nsDevTool_Share::sConveyer, 0, pathConveyer) == true ) {
+        return pathConveyer;
+    }
 
-  BL_FIX_BUG();
-  return "";
+    BL_FIX_BUG();
+    return "";
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::EventGameEngine( int id, const std::string& sDesc )
+void TDevTool_Share::EventGameEngine(int id, const std::string& sDesc)
 {
-  switch ( id )
-  {
-    case nsGameEngine::eAfterCreateDevTool:
-      Init();
-      break;
-    case nsGameEngine::eAfterCreateModules:
-      // назначить логике компоненты
-      SetComponentsForLogic();
-      break;
-    case nsGameEngine::eStartThreads:
-      break;
-    case nsGameEngine::eStopThreads:
-      break;
-    case nsGameEngine::eStopThreadsEnd:
-      break;
-    case nsGameEngine::eParseFileConveyerError:
-    case nsGameEngine::eModuleNotMade:
-    case nsGameEngine::eThreadsNotExist:
-      BL_MessageBug_Utf8( sDesc.data() );
-      break;
-  }
+    switch ( id ) {
+        case nsGameEngine::eAfterCreateDevTool:
+            Init();
+            break;
+        case nsGameEngine::eAfterCreateModules:
+            // назначить логике компоненты
+            SetComponentsForLogic();
+            break;
+        case nsGameEngine::eStartThreads:
+            break;
+        case nsGameEngine::eStopThreads:
+            break;
+        case nsGameEngine::eStopThreadsEnd:
+            break;
+        case nsGameEngine::eParseFileConveyerError:
+        case nsGameEngine::eModuleNotMade:
+        case nsGameEngine::eThreadsNotExist:
+            BL_MessageBug_Utf8(sDesc.data());
+            break;
+    }
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetupGraphicEngine()
 {
-  // настройка перед запуском
-  if ( mGE_ForSetup->GetGE()->InitOGRE( mPluginsCfg, mOgreCfg ) == false )
-  {
-    _exit( -1 );// либо ошибка, либо пользователь не хочет запускать приложение
-    return;
-  }
-  // пути для ресурсов графического движка
-  for ( auto& vtTypePath : mMapRGraphicEngine )
-  {
-    for ( auto& type : vtTypePath.second )
-      mGE_ForSetup->GetGE()->AddResource( type, vtTypePath.first );
-  }
-  // оболочка и ядро для GUI
-  std::string sSkin, sCore;
-  FindPath_GUI( nsDevTool_Share::sCore, 0, sCore );
-  FindPath_GUI( nsDevTool_Share::sSkin, 0, sSkin );
-  BL_ASSERT( sCore.length() && sSkin.length() );
-  mGE_ForSetup->GetGE()->InitMyGUI( sCore, sSkin );
+    // настройка перед запуском
+    if ( mGE_ForSetup->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg) == false ) {
+        _exit(-1);// либо ошибка, либо пользователь не хочет запускать приложение
+        return;
+    }
+    // пути для ресурсов графического движка
+    for ( auto& vtTypePath : mMapRGraphicEngine ) {
+        for ( auto& type : vtTypePath.second ) {
+            mGE_ForSetup->GetGE()->AddResource(type, vtTypePath.first);
+        }
+    }
+    // оболочка и ядро для GUI
+    std::string sSkin, sCore;
+    FindPath_GUI(nsDevTool_Share::sCore, 0, sCore);
+    FindPath_GUI(nsDevTool_Share::sSkin, 0, sSkin);
+    BL_ASSERT(sCore.length() && sSkin.length());
+    mGE_ForSetup->GetGE()->InitMyGUI(sCore, sSkin);
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetComponentsForLogic()
 {
-  TComponents components;
-  components.pGraphicEngine = (TModuleGraphicEngine*) FindPtrModuleByID( GraphicEngine );
-  components.pMMOEngineClient = (TModuleMMOEngineClient*) FindPtrModuleByID( MMOEngineClient );
-  components.pMMOEngineSlave = (TModuleMMOEngineSlave*) FindPtrModuleByID( MMOEngineSlave );
-  components.pMMOEngineMaster = (TModuleMMOEngineMaster*) FindPtrModuleByID( MMOEngineMaster );
-  components.pMMOEngineSuperServer = (TModuleMMOEngineSuperServer*) FindPtrModuleByID( MMOEngineSuperServer );
-  components.pPhysicEngine = (TModulePhysicEngine*) FindPtrModuleByID( PhysicEngine );
-  components.pSoundEngine = (TModuleSoundEngine*) FindPtrModuleByID( SoundEngine );
-  components.pDataBase = (TModuleDataBase*) FindPtrModuleByID( DataBase );
-  components.pTimer = (TModuleTimer*) FindPtrModuleByID( Timer );
+    TComponents components;
+    components.pGraphicEngine = (TModuleGraphicEngine*) FindPtrModuleByID(GraphicEngine);
+    components.pMMOEngineClient = (TModuleMMOEngineClient*) FindPtrModuleByID(MMOEngineClient);
+    components.pMMOEngineSlave = (TModuleMMOEngineSlave*) FindPtrModuleByID(MMOEngineSlave);
+    components.pMMOEngineMaster = (TModuleMMOEngineMaster*) FindPtrModuleByID(MMOEngineMaster);
+    components.pMMOEngineSuperServer = (TModuleMMOEngineSuperServer*) FindPtrModuleByID(MMOEngineSuperServer);
+    components.pPhysicEngine = (TModulePhysicEngine*) FindPtrModuleByID(PhysicEngine);
+    components.pSoundEngine = (TModuleSoundEngine*) FindPtrModuleByID(SoundEngine);
+    components.pDataBase = (TModuleDataBase*) FindPtrModuleByID(DataBase);
+    components.pTimer = (TModuleTimer*) FindPtrModuleByID(Timer);
 
-  // ищем логику
-  TModuleLogic* pLogic = (TModuleLogic*) FindPtrModuleByID( Logic );
-  if ( pLogic )
-  {
-    int id_logic = pLogic->GetID();
-    components.SetLogicID( id_logic );
-    pLogic->SetComponents( components );
-    pLogic->GetFGI()->Init_XML( mPathItems );
+    // ищем логику
+    TModuleLogic* pLogic = (TModuleLogic*) FindPtrModuleByID(Logic);
+    if ( pLogic ) {
+        int id_logic = pLogic->GetID();
+        components.SetLogicID(id_logic);
+        pLogic->SetComponents(components);
+        pLogic->GetFGI()->Init_XML(mPathItems);
 #ifdef _DEBUG
-    pLogic->GetFGI()->ReloadFromStorageAll_XML();
+        pLogic->GetFGI()->ReloadFromStorageAll_XML();
 #else
-    // карта сама по цепочке ("раскрутит") загрузит итэмы
-    pLogic->GetFGI()->ReloadFromStorageByType_XML( TFactoryGameItem::Map );
-    pLogic->GetFGI()->ReloadFromStorageByType_XML( TFactoryGameItem::Model );
-    pLogic->GetFGI()->ReloadFromStorageByType_XML( TFactoryGameItem::Shape );
+        // карта сама по цепочке ("раскрутит") загрузит итэмы
+        pLogic->GetFGI()->ReloadFromStorageByType_XML(TFactoryGameItem::Map);
+        pLogic->GetFGI()->ReloadFromStorageByType_XML(TFactoryGameItem::Model);
+        pLogic->GetFGI()->ReloadFromStorageByType_XML(TFactoryGameItem::Shape);
 #endif
-    pLogic->InitLog();
-    pLogic->ParseCmd( mVecArg );
+        pLogic->InitLog();
+        pLogic->ParseCmd(mVecArg);
 
-    // настройки приложения
-    mSettings.Init( mPathSettings );
-    std::string nameApp = GetVariantConveyer();
-    if ( nameApp.length() )
-      mSettings.BeginApplication( nameApp );
-    else
-    {
-      BL_FIX_BUG();
+        // настройки приложения
+        mSettings.Init(mPathSettings);
+        std::string nameApp = GetVariantConveyer();
+        if ( nameApp.length() )
+            mSettings.BeginApplication(nameApp);
+        else {
+            BL_FIX_BUG();
+        }
+        pLogic->SetSettings(&mSettings);
+    } else {
+        BL_FIX_BUG();
     }
-    pLogic->SetSettings( &mSettings );
-  }
-  else
-  {
-    BL_FIX_BUG();
-  }
 }
 //-----------------------------------------------------------------------
-void TDevTool_Share::SetVectorParam( std::vector<std::string>& vecArg )
+void TDevTool_Share::SetVectorParam(std::vector<std::string>& vecArg)
 {
-  mVecArg = vecArg;
+    mVecArg = vecArg;
 }
 //-----------------------------------------------------------------------
-TModuleDev* TDevTool_Share::GetModuleByID( int id )
+TModuleDev* TDevTool_Share::GetModuleByID(int id)
 {
-  TModuleDev* pModule = nullptr;
-  switch ( id )
-  {
-    // ядро
-    case Logic: pModule = GetModuleLogic(); ( (TModuleLogic*) pModule )->SetTerrainPath( mTerrainPath ); break;
-      // периферия
-    case GraphicEngine:
-      // графический движок требуется настраивать в том же потоке, в котором он работает
-      // единственный модуль, который требуется настраивать в том же потоке
-      mGE_ForSetup = new TModuleGraphicEngine;
-      pModule = mGE_ForSetup;
-      ( (TModuleGraphicEngine*) pModule )->GetCBStartEvent()->Register( &TDevTool_Share::SetupGraphicEngine, this );
-      break;
-    //case GraphicEngine:          pModule = new TModuleGraphicEngine; SetupGraphicEngine((TModuleGraphicEngine*)pModule); break;
-    case PhysicEngine:           pModule = new TModulePhysicEngine;                        break;
-    case MMOEngineClient:        pModule = new TModuleMMOEngineClient;                     break;
-    case MMOEngineSlave:         pModule = new TModuleMMOEngineSlave;                      break;
-    case MMOEngineMaster:        pModule = new TModuleMMOEngineMaster;                     break;
-    case MMOEngineSuperServer:   pModule = new TModuleMMOEngineSuperServer;                break;
-    case SoundEngine:            pModule = new TModuleSoundEngine;                         break;
-    case DataBase:               pModule = new TModuleDataBase;                            break;
-    case Timer:                  pModule = new TModuleTimer;                               break;
-    default:BL_FIX_BUG();
-  }
-  return pModule;
+    TModuleDev* pModule = nullptr;
+    switch ( id ) {
+        // ядро
+        case Logic: pModule = GetModuleLogic(); ((TModuleLogic*) pModule)->SetTerrainPath(mTerrainPath); break;
+            // периферия
+        case GraphicEngine:
+            // графический движок требуется настраивать в том же потоке, в котором он работает
+            // единственный модуль, который требуется настраивать в том же потоке
+            mGE_ForSetup = new TModuleGraphicEngine;
+            pModule = mGE_ForSetup;
+            ((TModuleGraphicEngine*) pModule)->GetCBStartEvent()->Register(&TDevTool_Share::SetupGraphicEngine, this);
+            break;
+            //case GraphicEngine:          pModule = new TModuleGraphicEngine; SetupGraphicEngine((TModuleGraphicEngine*)pModule); break;
+        case PhysicEngine:           pModule = new TModulePhysicEngine;                        break;
+        case MMOEngineClient:        pModule = new TModuleMMOEngineClient;                     break;
+        case MMOEngineSlave:         pModule = new TModuleMMOEngineSlave;                      break;
+        case MMOEngineMaster:        pModule = new TModuleMMOEngineMaster;                     break;
+        case MMOEngineSuperServer:   pModule = new TModuleMMOEngineSuperServer;                break;
+        case SoundEngine:            pModule = new TModuleSoundEngine;                         break;
+        case DataBase:               pModule = new TModuleDataBase;                            break;
+        case Timer:                  pModule = new TModuleTimer;                               break;
+        default:BL_FIX_BUG();
+    }
+    return pModule;
 }
 //-----------------------------------------------------------------------
-int TDevTool_Share::GetCountPathInMap( const char* type, TStrStrListMap& mapResource )
+int TDevTool_Share::GetCountPathInMap(const char* type, TStrStrListMap& mapResource)
 {
-  return mapResource.count( type );
+    return mapResource.count(type);
 }
 //-----------------------------------------------------------------------
-bool TDevTool_Share::FindPath( const char* type, TStrStrListMap& mapResource, int index, std::string& result )
+bool TDevTool_Share::FindPath(const char* type, TStrStrListMap& mapResource, int index, std::string& result)
 {
-  auto fit = mapResource.find( type );
-  for ( int i = 0; i < index; i++ )
-  {
-    fit++;
-    if ( fit == mapResource.end() )
-      return false;
-  }
-  result = *(fit->second.begin());
-  return true;
+    auto fit = mapResource.find(type);
+    if ( fit == mapResource.end() ) {
+        return false;
+    }
+    for ( int i = 0; i < index; i++ ) {
+        fit++;
+        if ( fit == mapResource.end() ) {
+            return false;
+        }
+    }
+    result = *(fit->second.begin());
+    return true;
 }
 //-----------------------------------------------------------------------
-int TDevTool_Share::GetCountPathInMap_Game( const char* type )
+int TDevTool_Share::GetCountPathInMap_Game(const char* type)
 {
-  return GetCountPathInMap( type, mMapRGame );
+    return GetCountPathInMap(type, mMapRGame);
 }
 //-----------------------------------------------------------------------
-bool TDevTool_Share::FindPath_Game( const char* type, int index, std::string& result )
+bool TDevTool_Share::FindPath_Game(const char* type, int index, std::string& result)
 {
-  return FindPath( type, mMapRGame, index, result );
+    return FindPath(type, mMapRGame, index, result);
 }
 //-----------------------------------------------------------------------
-int TDevTool_Share::GetCountPathInMap_GUI( const char* type )
+int TDevTool_Share::GetCountPathInMap_GUI(const char* type)
 {
-  return GetCountPathInMap( type, mMapRGUI );
+    return GetCountPathInMap(type, mMapRGUI);
 }
 //-----------------------------------------------------------------------
-bool TDevTool_Share::FindPath_GUI( const char* type, int index, std::string& result )
+bool TDevTool_Share::FindPath_GUI(const char* type, int index, std::string& result)
 {
-  return FindPath( type, mMapRGUI, index, result );
+    return FindPath(type, mMapRGUI, index, result);
 }
 //-----------------------------------------------------------------------
-int TDevTool_Share::GetCountPathInMap_GameEngine( const char* type )
+int TDevTool_Share::GetCountPathInMap_GameEngine(const char* type)
 {
-  return GetCountPathInMap( type, mMapRGameEngine );
+    return GetCountPathInMap(type, mMapRGameEngine);
 }
 //-----------------------------------------------------------------------
-bool TDevTool_Share::FindPath_GameEngine( const char* type, int index, std::string& result )
+bool TDevTool_Share::FindPath_GameEngine(const char* type, int index, std::string& result)
 {
-  return FindPath( type, mMapRGameEngine, index, result );
+    return FindPath(type, mMapRGameEngine, index, result);
 }
 //-----------------------------------------------------------------------
-int TDevTool_Share::GetCountPathInMap_GraphicEngine( const char* type )
+int TDevTool_Share::GetCountPathInMap_GraphicEngine(const char* type)
 {
-  return GetCountPathInMap( type, mMapRGraphicEngine );
+    return GetCountPathInMap(type, mMapRGraphicEngine);
 }
 //-----------------------------------------------------------------------
-bool TDevTool_Share::FindPath_GraphicEngine( const char* type, int index, std::string& result )
+bool TDevTool_Share::FindPath_GraphicEngine(const char* type, int index, std::string& result)
 {
-  return FindPath( type, mMapRGraphicEngine, index, result );
+    return FindPath(type, mMapRGraphicEngine, index, result);
 }
 //-----------------------------------------------------------------------

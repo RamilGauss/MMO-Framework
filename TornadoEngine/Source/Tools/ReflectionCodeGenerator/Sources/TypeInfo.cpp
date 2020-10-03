@@ -28,6 +28,14 @@ std::string TTypeInfo::GetTypeNameWithNameSpace()
   return mName;
 }
 //-----------------------------------------------------------------------------------------
+std::string TTypeInfo::GetTypeNameWithNameSpaceAsVar()
+{
+    auto sNamespace = GetNameSpace();
+    if ( sNamespace.length() > 0 )
+        return sNamespace + "_" + mName;
+    return mName;
+}
+//-----------------------------------------------------------------------------------------
 void TTypeInfo::AddMember( TMemberInfo& memberInfo )
 {
   // copy

@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 #include "ParamClass.h"
 
 #pragma REFLECTION_ATTRIBUTE
-class TTestClass
+class TTestClass : public nsECSFramework::IComponent
 {
 public:// member region
-  std::vector<TParamClass> vParam;
+    std::vector<TParamClass> vParam;
 };

@@ -203,6 +203,10 @@
     <ClCompile Include="Sources\BinaryMarshallerHeaderFileGenerator.cpp" />
     <ClCompile Include="Sources\BinaryMarshallerSourceFileGenerator.cpp" />
     <ClCompile Include="Sources\CodeGeneratorFusion.cpp" />
+    <ClCompile Include="Sources\EntityManagerFileGenerator.cpp" />
+    <ClCompile Include="Sources\EntityManagerGenerator.cpp" />
+    <ClCompile Include="Sources\EntityManagerHeaderFileGenerator.cpp" />
+    <ClCompile Include="Sources\EntityManagerSourceFIleGenerator.cpp" />
     <ClCompile Include="Sources\FileLexer.cpp" />
     <ClCompile Include="Sources\ICodeGenerator.cpp" />
     <ClCompile Include="Sources\IFileGenerator.cpp" />
@@ -220,6 +224,10 @@
     <ClCompile Include="Sources\MemberTypeExtendedInfoAnalyzer.cpp" />
     <ClCompile Include="Sources\MemberTypeExtendedInfoCache.cpp" />
     <ClCompile Include="Sources\Parser.cpp" />
+    <ClCompile Include="Sources\ReflectionFileGenerator.cpp" />
+    <ClCompile Include="Sources\ReflectionGenerator.cpp" />
+    <ClCompile Include="Sources\ReflectionHeaderFileGenerator.cpp" />
+    <ClCompile Include="Sources\ReflectionSourceFIleGenerator.cpp" />
     <ClCompile Include="Sources\SetupConfig.cpp" />
     <ClCompile Include="Sources\SourceAccumulator.cpp" />
     <ClCompile Include="Sources\SqlFileGenerator.cpp" />
@@ -241,6 +249,10 @@
     <ClInclude Include="Sources\CodeGeneratorFusion.h" />
     <ClInclude Include="Sources\Config.h" />
     <ClInclude Include="Sources\ConfigContainer.h" />
+    <ClInclude Include="Sources\EntityManagerFileGenerator.h" />
+    <ClInclude Include="Sources\EntityManagerGenerator.h" />
+    <ClInclude Include="Sources\EntityManagerHeaderFileGenerator.h" />
+    <ClInclude Include="Sources\EntityManagerSourceFIleGenerator.h" />
     <ClInclude Include="Sources\FileLexer.h" />
     <ClInclude Include="Sources\ICodeGenerator.h" />
     <ClInclude Include="Sources\IFileGenerator.h" />
@@ -261,6 +273,10 @@
     <ClInclude Include="Sources\Parser.h" />
     <ClInclude Include="Sources\ProgramInfo.h" />
     <ClInclude Include="Sources\readerwriterqueue.h" />
+    <ClInclude Include="Sources\ReflectionFileGenerator.h" />
+    <ClInclude Include="Sources\ReflectionGenerator.h" />
+    <ClInclude Include="Sources\ReflectionHeaderFileGenerator.h" />
+    <ClInclude Include="Sources\ReflectionSourceFIleGenerator.h" />
     <ClInclude Include="Sources\Requirements.h" />
     <ClInclude Include="Sources\SetupConfig.h" />
     <ClInclude Include="Sources\SourceAccumulator.h" />

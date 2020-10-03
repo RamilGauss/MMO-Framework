@@ -13,34 +13,34 @@ template<typename Type>
 class TLinkToList
 {
 public:
-  typedef std::list<Type> List;
-  typedef typename List::iterator Iterator;
+    typedef std::list<Type> List;
+    typedef typename List::iterator Iterator;
 private:
-  List* mList;
-  Iterator mIt;
+    List* mList;
+    Iterator mIt;
 public:
-  TLinkToList()
-  {
-  }
-  TLinkToList( List& tl, Iterator it )
-  {
-    Set( tl, it );
-  }
-  inline void Set( List& tl, Iterator it )
-  {
-    mList = &tl;
-    mIt = it;
-  }
-  void Update( Type& v )
-  {
-    *mIt = v;
-  }
-  void Erase()
-  {
-    mList->erase( mIt );
-  }
-  List* GetList()
-  {
-    return mList;
-  }
+    TLinkToList()
+    {
+    }
+    TLinkToList(List& tl, Iterator it)
+    {
+        Set(tl, it);
+    }
+    inline void Set(List& tl, Iterator it)
+    {
+        mList = &tl;
+        mIt = it;
+    }
+    void Update(Type& v)
+    {
+        *mIt = v;
+    }
+    void Erase()
+    {
+        mList->erase(mIt);
+    }
+    List* GetList()
+    {
+        return mList;
+    }
 };

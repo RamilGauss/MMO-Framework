@@ -11,18 +11,18 @@ See for more information LICENSE.md.
 
 namespace nsReflectionCodeGenerator
 {
-  class TSqlGenerator : public ICodeGenerator
-  {
-  public:
-    TSqlGenerator() : ICodeGenerator( "SqlGenerator" )
+    class TSqlGenerator : public ICodeGenerator
     {
-    }
+    public:
+        TSqlGenerator() : ICodeGenerator("SqlGenerator")
+        {
+        }
 
-    virtual void Work() override;
-  private:
-    void GenerateHeader();
-    void GenerateSource();
-  };
+        virtual void Work() override;
+    private:
+        void GenerateHeader();
+        void GenerateSource();
+    };
 }
 
 

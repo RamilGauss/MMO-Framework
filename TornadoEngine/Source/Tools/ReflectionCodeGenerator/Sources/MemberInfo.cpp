@@ -10,12 +10,17 @@ See for more information LICENSE.md.
 
 void TMemberInfo::CreateExtArray(std::vector<TMemberTypeExtendedInfo>& arr)
 {
-  arr.clear();
-  auto pExt = &mExtendedInfo;
-  arr.push_back( *pExt );
-  while( pExt->mTemplateChildArr.size() > 0 )
-  {
-    pExt = &(pExt->mTemplateChildArr.back());
-    arr.push_back( *pExt );
-  }
+    arr.clear();
+    auto pExt = &mExtendedInfo;
+    arr.push_back(*pExt);
+    while ( pExt->mTemplateChildArr.size() > 0 ) {
+
+        size_t lastIndex = 0;
+        if ( pExt->mCategory == TMemberTypeExtendedInfo::TypeCategory::Map ) {
+            lastIndex = 1;
+        }
+
+        pExt = &(pExt->mTemplateChildArr[lastIndex]);
+        arr.push_back(*pExt);
+    }
 }

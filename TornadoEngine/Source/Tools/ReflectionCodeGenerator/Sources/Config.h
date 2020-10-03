@@ -64,11 +64,25 @@ namespace nsReflectionCodeGenerator
   };
 
 #pragma REFLECTION_ATTRIBUTE
+  struct TReflectionGeneratorConfig : TClassDesc
+  {
+
+  };
+
+#pragma REFLECTION_ATTRIBUTE
+  struct TEntityManagerGeneratorConfig : TClassDesc
+  {
+
+  };
+
+#pragma REFLECTION_ATTRIBUTE
   struct TImplementation
   {
     std::shared_ptr<TJsonSerializerGeneratorConfig> jsonSerializer;
     std::shared_ptr<TBinaryMarshallerGeneratorConfig> binaryMarshaller;
     std::shared_ptr<TSqlGeneratorConfig> sql;
+    std::shared_ptr<TReflectionGeneratorConfig> reflection;
+    std::shared_ptr<TEntityManagerGeneratorConfig> entMngExt;
   };
 
 #pragma REFLECTION_ATTRIBUTE

@@ -68,11 +68,13 @@ namespace nsECSFramework
         {// definition must be after declaration!
             auto index = TypeIndex<Component>();
             auto pMap = mUniqueMapVec[index];
-            if ( pMap == nullptr )
+            if ( pMap == nullptr ) {
                 return None;
+            }
             auto fit = pMap->find(&c);
-            if ( fit == pMap->end() )
+            if ( fit == pMap->end() ) {
                 return None;
+            }
             return fit->second;
         }
         template <typename ... Args>
@@ -80,15 +82,17 @@ namespace nsECSFramework
         {// definition must be after declaration!
             auto index = TypeIndex<Args...>();
             auto pMap = mValueCollectionVec[index];
-            if ( pMap == nullptr )
+            if ( pMap == nullptr ) {
                 return nullptr;
+            }
 
             TEntityList* pResult = nullptr;
             auto pComplexType = mComplexTypeMemoryPool->Pop();
             Fill(pComplexType, args ...);// берем адреса из стека, безопасно, потому что переменные еще существуют в методе
             auto fit = pMap->find(pComplexType);
-            if ( fit != pMap->end() )
+            if ( fit != pMap->end() ) {
                 pResult = fit->second;
+            }
 
             // вернуть обратно в пул
             pComplexType->Done();

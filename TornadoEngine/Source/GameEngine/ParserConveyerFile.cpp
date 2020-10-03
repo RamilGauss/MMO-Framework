@@ -10,29 +10,28 @@ See for more information LICENSE.md.
 #include "TextFile.h"
 #include "GameEngineJsonSerializer.h"
 
-bool TParserConveyerFile::Work( std::string& fileDescConveyer )
+bool TParserConveyerFile::Work(std::string& fileDescConveyer)
 {
-  std::string jsonContent;
-  TTextFile::Load( fileDescConveyer, jsonContent );
-  if ( jsonContent.length() == 0 )
-  {
-    strError = "No such file";
-    return false;
-  }
-  TGameEngineJsonSerializer::Fill( &mConveyerConfig, jsonContent );
-  return true;
+    std::string jsonContent;
+    TTextFile::Load(fileDescConveyer, jsonContent);
+    if ( jsonContent.length() == 0 ) {
+        strError = "No such file";
+        return false;
+    }
+    std::string err;
+    return TGameEngineJsonSerializer::Fill(&mConveyerConfig, jsonContent, err);
 }
 //---------------------------------------------------------------------------------------
 std::string TParserConveyerFile::GetStrError()
 {
-  return strError;
+    return strError;
 }
 //---------------------------------------------------------------------------------------
-std::vector<std::string> TParserConveyerFile::GetResult( std::string& variantConveyer )
+std::vector<std::string> TParserConveyerFile::GetResult(std::string& variantConveyer)
 {
-  auto fit = mConveyerConfig.appList.find( variantConveyer );
-  if ( fit == mConveyerConfig.appList.end() )
-    return std::vector<std::string>();
-  return fit->second.modules;
+    auto fit = mConveyerConfig.appList.find(variantConveyer);
+    if ( fit == mConveyerConfig.appList.end() )
+        return std::vector<std::string>();
+    return fit->second.modules;
 }
 //---------------------------------------------------------------------------------------

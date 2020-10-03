@@ -1,5 +1,4 @@
 {
-  // Все ресурсы игры, движков, 3rdParty, etc.
   // All possible resources.
   "gameEngine" :
   {

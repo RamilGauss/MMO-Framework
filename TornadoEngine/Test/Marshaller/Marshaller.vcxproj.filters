@@ -10,6 +10,15 @@
     <ClCompile Include="UnpackHandler.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="JsonSerializer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Reflection.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManagerExtension.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryMarshaller.h">
@@ -33,6 +42,15 @@
     <ClInclude Include="TestStruct.h">
       <Filter>Test</Filter>
     </ClInclude>
+    <ClInclude Include="JsonSerializer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Reflection.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManagerExtension.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Sources">
@@ -49,7 +67,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="data.json">
+    <Text Include="..\..\conanfile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.json">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

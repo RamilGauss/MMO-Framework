@@ -19,19 +19,26 @@
       ".h++"
     ]
   },
-  "targetForCodeGeneration":
-  {
-    "directory": "./Generated Files",
-    "includeListFileName": "IncludeList",
-    "implementation":
-    {
-      "jsonSerializer":
-      {
-        "exportDeclaration": "DllExport",
-        "nameSpaceName": "",
-        "fileName": "ShareDevJsonSerializer",
-        "className": "TShareDevJsonSerializer"
-      }
+    "targetForCodeGeneration": {
+        "directory": "./Generated Files",
+        "includeListFileName": "IncludeList",
+        "header": "\tReflectionCodeGenerator",
+        "typeCustomizerMap": {
+            "int8_t": "char",
+            "uint8_t": "unsigned char",
+            "int16_t": "short",
+            "uint16_t": "unsigned short",
+            "int32_t": "int",
+            "uint32_t": "unsigned int",
+            "vector_static_t": "vector"
+        },
+        "implementation": {
+            "jsonSerializer": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "",
+                "fileName": "ShareDevJsonSerializer",
+                "className": "TShareDevJsonSerializer"
+            }
+        }
     }
-  }
 }

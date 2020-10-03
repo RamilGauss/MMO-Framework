@@ -80,11 +80,11 @@ void TJsonSerializerSourceFileGenerator::AddInit()
             Add(fmt::format("{}.serializeFunc = [] (void* p, std::string& str) {{", typeNameObject));
             Add(fmt::format("Serialize<{}>(({}*) p, str);", typeNameWithNameSpace, typeNameWithNameSpace));
             Add("};");
-            Add(fmt::format("{}.deserializeFunc = [] (void*& p, const std::string& str) {{", typeNameObject));
-            Add(fmt::format("    Deserialize<{}>(({}*&) p, str);", typeNameWithNameSpace, typeNameWithNameSpace));
+            Add(fmt::format("{}.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {{", typeNameObject));
+            Add(fmt::format("    return Deserialize<{}>(({}*&) p, str, err);", typeNameWithNameSpace, typeNameWithNameSpace));
             Add("};");
-            Add(fmt::format("{}.fillFunc = [] (void* p, const std::string& str) {{", typeNameObject));
-            Add(fmt::format("    Fill<{}>(({}*) p, str);", typeNameWithNameSpace, typeNameWithNameSpace));
+            Add(fmt::format("{}.fillFunc = [] (void* p, const std::string& str, std::string& err) {{", typeNameObject));
+            Add(fmt::format("    return Fill<{}>(({}*) p, str, err);", typeNameWithNameSpace, typeNameWithNameSpace));
             Add("};");
 
             Add(fmt::format("{}.insert({{\"{}\", {} }});", s_TypeNameFuncsMap, typeNameWithNameSpace, typeNameObject));
@@ -112,7 +112,7 @@ void TJsonSerializerSourceFileGenerator::AddConstContentMethods()
     AddRightBrace();
     AddCommentedLongLine();
     //======================
-    Add(fmt::format("void {}::{}(void* p, std::string & str, const std::string & typeName)", className, s_SerializeByTypeMethod));
+    Add(fmt::format("void {}::{}(void* p, std::string& str, const std::string& typeName)", className, s_SerializeByTypeMethod));
     AddLeftBrace();
     IncrementTabs();
 
@@ -123,23 +123,23 @@ void TJsonSerializerSourceFileGenerator::AddConstContentMethods()
     AddRightBrace();
     AddCommentedLongLine();
     //======================
-    Add(fmt::format("void {}::{}(void*& p, const std::string & str, const std::string & typeName)", className, s_DeserializeByTypeMethod));
+    Add(fmt::format("bool {}::{}(void*& p, const std::string& str, const std::string& typeName, std::string& err)", className, s_DeserializeByTypeMethod));
     AddLeftBrace();
     IncrementTabs();
 
     Add(fmt::format("{}();", s_Init));
-    Add(fmt::format("{}[typeName].deserializeFunc(p, str);", s_TypeNameFuncsMap));
+    Add(fmt::format("return {}[typeName].deserializeFunc(p, str, err);", s_TypeNameFuncsMap));
 
     DecrementTabs();
     AddRightBrace();
     AddCommentedLongLine();
     //======================
-    Add(fmt::format("void {}::{}(void* p, const std::string & str, const std::string & typeName)", className, s_FillByTypeMethod));
+    Add(fmt::format("bool {}::{}(void* p, const std::string& str, const std::string& typeName, std::string& err)", className, s_FillByTypeMethod));
     AddLeftBrace();
     IncrementTabs();
 
     Add(fmt::format("{}();", s_Init));
-    Add(fmt::format("{}[typeName].fillFunc(p, str);", s_TypeNameFuncsMap));
+    Add(fmt::format("return {}[typeName].fillFunc(p, str, err);", s_TypeNameFuncsMap));
 
     DecrementTabs();
     AddRightBrace();
@@ -814,7 +814,8 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionZeroDepth(TMemberInfo* 
             reset = fmt::format("{} = new {}()", pMemberInfo->mName, pMemberInfo->mExtendedInfo.GetTypeNameWithNameSpace());
         }
 
-        auto str = fmt::format("if ( !{}::{}({}, \"{}\") ) {{", s_POM, s_IsNull, s_Obj, pMemberInfo->mName);
+        auto str = fmt::format("if ( {}::{}({}, \"{}\") && !{}::{}({}, \"{}\" ) ) {{",
+            s_POM, s_IsExist, s_Obj, pMemberInfo->mName, s_POM, s_IsNull, s_Obj, pMemberInfo->mName);
         Add(str);
         IncrementTabs();
         str = fmt::format("if ( {}->{} == {} ) {{", s_TypeObject, get, s_Nullptr);
@@ -887,7 +888,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
             newExp = fmt::format("new {}", type);
         }
 
-        auto str = fmt::format("if (!{}.{}() ) {{", prevE, s_IsNull);
+        auto str = fmt::format("if (!{}.{}()) {{", prevE, s_IsNull);
         Add(str);
         IncrementTabs();
         str = fmt::format("auto {} = {}.{}();", curO, prevE, s_GetObject);
@@ -930,7 +931,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthMap(TMemberInfo* p
     }
 
     std::string key = fmt::format("{}.name.{}()", prevE, s_GetString);
-    auto keyExt = pExtArr->at(depth-1).mTemplateChildArr.at(0);
+    auto keyExt = pExtArr->at(depth - 1).mTemplateChildArr.at(0);
     if ( keyExt.mCategory != TMemberTypeExtendedInfo::TypeCategory::String ) {
         key = fmt::format("{}({})", s_StrToNum, key);
     }
@@ -985,8 +986,31 @@ void TJsonSerializerSourceFileGenerator::AddBeginPopListSetVector(TMemberInfo* p
 
     std::string curName;
     std::string str;
-    if ( depth == 0 ) {
 
+    // If next is not array. 
+    // Excpected: { "name" : [0, 1] }, but: { "name" : 1 }
+    // Excpected: [ [0, 1], [2, 3] ], but: [ [0, 1], 42 ]
+    if ( pExtArr->size() == depth + 2 &&
+        (pExtArr->at(depth + 1).mCategory != TMemberTypeExtendedInfo::TypeCategory::Reflection) ) {
+
+        std::string condition;
+        if ( depth == 0 ) {
+            condition = fmt::format("{}::{}({}, \"{}\")", s_POM, s_IsArray, s_Obj, pMemberInfo->mName);
+        } else {
+            auto prevE = ElementName(pMemberInfo->mName, depth - 1);
+            std::string access;
+            if ( pExtArr->at(depth - 1).mCategory == TMemberTypeExtendedInfo::TypeCategory::Map ) {
+                access = ".value";
+            }
+            condition = fmt::format("{}{}.{}()", prevE, access, s_IsArray);
+        }
+
+        str = fmt::format("if ( {} ) {{", condition);
+        Add(str);
+        IncrementTabs();
+    }
+
+    if ( depth == 0 ) {
         str = fmt::format("auto {} = {}::{}({}, \"{}\");", curA, s_POM, s_FindArray, s_Obj, pMemberInfo->mName);
         Add(str);
     } else {
@@ -1078,14 +1102,129 @@ void TJsonSerializerSourceFileGenerator::AddEndPop(TMemberInfo* pMemberInfo,
     DecrementTabs();
     Add("}");
 
-    if ( depth == 0 ) {
-        return;
+    if ( depth > 0 ) {
+
+        if ( pExtArr->at(depth - 1).mCategory == TMemberTypeExtendedInfo::TypeCategory::Map ) {
+            AddEndPopMap(pMemberInfo, pExtArr, depth);
+        } else {
+            AddEndPopListSetVector(pMemberInfo, pExtArr, depth);
+        }
     }
 
-    if ( pExtArr->at(depth - 1).mCategory == TMemberTypeExtendedInfo::TypeCategory::Map ) {
-        AddEndPopMap(pMemberInfo, pExtArr, depth);
+    if ( pExtArr->at(depth).mCategory != TMemberTypeExtendedInfo::TypeCategory::Map ) {
+        if ( pExtArr->at(depth + 1).mCategory != TMemberTypeExtendedInfo::TypeCategory::Reflection ) {
+            if ( pExtArr->size() == depth + 2 ) {
+                DecrementTabs();
+                auto str = "} else {";
+                Add(str);
+                IncrementTabs();
+
+                AddPopLastElementListSetVector(pMemberInfo, pExtArr, depth);
+
+                DecrementTabs();
+                str = "}";
+                Add(str);
+            }
+        }
+    }
+}
+//-----------------------------------------------------------------------------------------------------------
+void TJsonSerializerSourceFileGenerator::AddPopLastElementListSetVector(TMemberInfo* pMemberInfo,
+    std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth)
+{
+    auto curT = TempName(pMemberInfo->mName, depth);
+    auto lastIndex = pExtArr->size() - 1;
+
+    auto category = pExtArr->at(lastIndex).mCategory;
+    auto isBool = pExtArr->at(lastIndex).IsBool();
+    auto isFloatingPoint = pExtArr->at(lastIndex).IsFloatingPoint();
+
+    std::string popMethod;
+    if ( category == TMemberTypeExtendedInfo::TypeCategory::String ) {
+        popMethod = s_PopStr;
     } else {
-        AddEndPopListSetVector(pMemberInfo, pExtArr, depth);
+        if ( isBool ) {
+            popMethod = s_PopBool;
+        } else {
+            popMethod = s_PopNum;
+        }
+    }
+
+    auto curExt = &pExtArr->at(depth);
+    std::string addMethod;
+    if ( curExt->mCategory == TMemberTypeExtendedInfo::TypeCategory::Set ) {
+        addMethod = s_Insert;
+    } else {
+        addMethod = s_PushBack;
+    }
+
+    auto type = pExtArr->at(lastIndex).GetTypeNameWithNameSpace();
+    if ( depth == 0 ) {
+        auto str = fmt::format("{} {};", type, curT);
+        Add(str);
+        str = fmt::format("{}::{}({}, \"{}\", {});", s_POM, popMethod, s_Obj, pMemberInfo->mName, curT);
+        Add(str);
+        str = fmt::format("{}->{}.{}({});", s_TypeObject, pMemberInfo->mName, addMethod, curT);
+        Add(str);
+    } else {
+        auto prevExt = &pExtArr->at(depth - 1);
+        std::string access;
+        std::string prevAddMethod;
+        if ( prevExt->mCategory == TMemberTypeExtendedInfo::TypeCategory::Set ||
+            prevExt->mCategory == TMemberTypeExtendedInfo::TypeCategory::Map ) {
+            prevAddMethod = s_Insert;
+            access = ".value";
+        } else {
+            prevAddMethod = s_PushBack;
+        }
+
+        std::string getMethod;
+        if ( category == TMemberTypeExtendedInfo::TypeCategory::String ) {
+            getMethod = s_GetString;
+        } else {
+            if ( isBool ) {
+                getMethod = s_GetBool;
+            } else {
+                if ( isFloatingPoint ) {
+                    getMethod = s_GetDouble;
+                } else {
+                    getMethod = s_GetInt64;
+                }
+            }
+        }
+
+        auto prevType = pExtArr->at(lastIndex - 1).GetCollectSubType();
+        auto prevE = ElementName(pMemberInfo->mName, depth - 1);
+        auto curC = CollectorName(pMemberInfo->mName, depth);
+        std::string curD;
+        if ( depth == 1 ) {
+            curD = fmt::format("{}->{}", s_TypeObject, pMemberInfo->mName);
+        } else {
+            curD = CollectorName(pMemberInfo->mName, depth - 1);
+        }
+
+        auto str = fmt::format("auto {} = {}{}.{}();", curT, prevE, access, getMethod);
+        Add(str);
+        str = fmt::format("{} {};", prevType, curC);
+        Add(str);
+        if ( depth > 0 ) {
+            str = fmt::format("{}.{}({});", curC, addMethod, curT);
+            Add(str);
+        }
+        std::string added;
+        if ( prevExt->mCategory == TMemberTypeExtendedInfo::TypeCategory::Map ) {
+
+            auto toValue = fmt::format("{}.name.{}()", prevE, s_GetString);
+            if ( prevExt->mTemplateChildArr.at(0).mCategory == TMemberTypeExtendedInfo::TypeCategory::BuiltIn ) {
+                toValue = fmt::format("{}({})", s_StrToNum, toValue);
+            }
+
+            added = fmt::format("{{ {}, {} }}", toValue, curC);
+        } else {
+            added = curC;
+        }
+        str = fmt::format("{}.{}({});", curD, prevAddMethod, added);
+        Add(str);
     }
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -1160,5 +1299,10 @@ std::string TJsonSerializerSourceFileGenerator::ArrayName(const std::string& nam
 std::string TJsonSerializerSourceFileGenerator::ObjectName(const std::string& name, int depth)
 {
     return fmt::format("{}_o{}", name, depth);
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string TJsonSerializerSourceFileGenerator::TempName(const std::string& name, int depth)
+{
+    return fmt::format("{}_t{}", name, depth);
 }
 //-----------------------------------------------------------------------------------------------------------

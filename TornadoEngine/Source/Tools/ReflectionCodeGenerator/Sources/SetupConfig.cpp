@@ -106,8 +106,8 @@ bool TSetupConfig::TryLoadConfig()
     if ( str.length() == 0 )
         return false;
 
-    nsJson::TJsonSerializer::Fill(config, str);
-    return true;
+    std::string err;
+    return nsJson::TJsonSerializer::Fill(config, str, err);
 }
 //---------------------------------------------------------------------------------------
 void TSetupConfig::ResolvePathes()

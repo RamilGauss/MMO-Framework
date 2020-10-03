@@ -19,6 +19,11 @@ int main(int argc, char** argv)
     rapidjson::Document doc(rapidjson::Type::kObjectType);
     rapidjson::Document::Object jobj = doc.GetObject();
 
+    auto& it = jobj.FindMember("asdasd");
+    if ( it == jobj.MemberEnd() ) {
+        std::cout << "Found\n";
+    }
+
     // Push
     TJsonPushMaster::PushNull(jobj, "empty");
     int n = 42;

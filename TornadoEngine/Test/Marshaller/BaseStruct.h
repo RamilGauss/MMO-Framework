@@ -9,21 +9,22 @@ See for more information LICENSE.md.
 #include <string>
 #include <list>
 #include <set>
-#include "ReflectionMacro.h"
+
+#include "EntityManager.h"
 
 namespace nsBS
 {
 #pragma REFLECTION_ATTRIBUTE
-  struct TBaseStruct
-  {
-    std::string s = "0123456789";
+    struct TBaseStruct : nsECSFramework::IComponent
+    {
+        std::string s = "0123456789";
 
-    TBaseStruct()
-    {
-    }
-    TBaseStruct( std::string ss )
-    {
-      s = ss;
-    }
-  };
+        TBaseStruct()
+        {
+        }
+        TBaseStruct(std::string ss)
+        {
+            s = ss;
+        }
+    };
 }

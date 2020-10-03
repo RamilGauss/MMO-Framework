@@ -11,12 +11,12 @@ See for more information LICENSE.md.
 
 namespace nsReflectionCodeGenerator
 {
-  class TSqlFileGenerator : public IFileGenerator
-  {
-  protected:
-    TSqlGeneratorConfig* mSqlConfig;
+    class TSqlFileGenerator : public IFileGenerator
+    {
+    protected:
+        TSqlGeneratorConfig* mSqlConfig;
 
-    TSqlFileGenerator();
-  };
+        TSqlFileGenerator();
+    };
 }
 

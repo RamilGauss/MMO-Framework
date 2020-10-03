@@ -34,9 +34,7 @@
                 "nameSpaceName": "nsJson",
                 "fileName": "JsonSerializer",
                 "className": "TJsonSerializer"
-            },
-            "binaryMarshaller": null,
-            "sql" : null
+            }
         }
     }
 }

@@ -21,6 +21,14 @@ public:
     {
         return Find(jobj, sKey).IsNull();
     }
+    static bool IsExist(const Jobj& jobj, const char* sKey)
+    {
+        return jobj.HasMember(sKey);
+    }
+    static bool IsArray(const Jobj& jobj, const char* sKey)
+    {
+        return Find(jobj, sKey).IsArray();
+    }
     static Value& Find(const Jobj& jobj, const char* sKey)
     {
         return jobj.FindMember(sKey)->value;
@@ -36,7 +44,12 @@ public:
 
     static void PopBool(const Jobj& jobj, const char* sKey, bool& value)
     {
-        value = jobj.FindMember(sKey)->value.GetBool();
+        auto& contentValue = jobj.FindMember(sKey)->value;
+        if ( contentValue.IsBool() ) {
+            value = contentValue.GetBool();
+        } else {
+            value = (bool)contentValue.GetInt();
+        }
     }
     template <typename ValueType, typename std::enable_if<std::is_integral<ValueType>::value>::type* = nullptr>
     static void PopNum(const Jobj& jobj, const char* sKey, ValueType& value)

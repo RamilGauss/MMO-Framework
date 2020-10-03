@@ -11,6 +11,6 @@ using namespace nsReflectionCodeGenerator;
 
 TSqlFileGenerator::TSqlFileGenerator()
 {
-  mSqlConfig = mConfig->targetForCodeGeneration.implementation.sql.get();
+    mSqlConfig = mConfig->targetForCodeGeneration.implementation.sql.get();
 }
 //----------------------------------------------------------------------------------------------------

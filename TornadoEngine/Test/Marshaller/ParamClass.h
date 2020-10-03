@@ -8,34 +8,54 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeDef.h"
-#include "BinaryPushMaster.h"
-#include "BinaryPopMaster.h"
-#include "ReflectionMacro.h"
+
+#include "EntityManager.h"
 
 #pragma REFLECTION_ATTRIBUTE
-struct TFloat3
+struct TSimpleComponent : nsECSFramework::IComponent
 {
-  float x = 1.2345678f;
-  float y = 2.2345678f;
-  float z = 3.2345678f;
+    long long ll;
+    unsigned long long ull;
+    int64_t in64;
+    uint64_t uin64;
+
+    std::string name;
+
+    bool IsLess(const IComponent* pOther) const override
+    {
+        return name < ((TSimpleComponent*) pOther)->name;
+    }
+    bool IsEqual(const IComponent* pOther) const override
+    {
+        return name == ((TSimpleComponent*) pOther)->name;
+    }
+};
+
+
+#pragma REFLECTION_ATTRIBUTE
+struct TFloat3 : nsECSFramework::IComponent
+{
+    float x = 1.2345678f;
+    float y = 2.2345678f;
+    float z = 3.2345678f;
 };
 
 #pragma REFLECTION_ATTRIBUTE
-struct TFloat4
+struct TFloat4 : nsECSFramework::IComponent
 {
-  float x = 1.2345678f;
-  float y = 2.2345678f;
-  float z = 3.2345678f;
-  float w = 4.2345678f;
+    float x = 1.2345678f;
+    float y = 2.2345678f;
+    float z = 3.2345678f;
+    float w = 4.2345678f;
 };
 
 #pragma REFLECTION_ATTRIBUTE
-class TParamClass
+class TParamClass : public nsECSFramework::IComponent
 {
 public:
-  int id;
-  TFloat3 pos;
-  TFloat4 rot;
-  TFloat3 vel;
+    int id;
+    TFloat3 pos;
+    TFloat4 rot;
+    TFloat3 vel;
 };
 

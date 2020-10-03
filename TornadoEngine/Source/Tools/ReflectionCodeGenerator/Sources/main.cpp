@@ -68,7 +68,8 @@ void TestQueue()
 //---------------------------------------------------------------------------------------
 void ShowTitle()
 {
-    fmt::print("{} version {} build {}\n", nsProgramInfo::NAME, nsProgramInfo::VERSION, nsProgramInfo::COUNTER_BUILD);
+    fmt::print("{} version {}, build {}, info {}\n", 
+        nsProgramInfo::NAME, nsProgramInfo::VERSION, nsProgramInfo::COUNTER_BUILD, nsProgramInfo::INFO);
 }
 //---------------------------------------------------------------------------------------
 void ClangExp()

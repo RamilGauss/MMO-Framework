@@ -12,13 +12,13 @@ See for more information LICENSE.md.
 
 namespace nsReflectionCodeGenerator
 {
-  class TSqlSourceFileGenerator : public TSqlFileGenerator
-  {
-  public:
-    virtual void Work() override;
+    class TSqlSourceFileGenerator : public TSqlFileGenerator
+    {
+    public:
+        virtual void Work() override;
 
-  private:
+    private:
 
-  private:
-  };
+    private:
+    };
 }

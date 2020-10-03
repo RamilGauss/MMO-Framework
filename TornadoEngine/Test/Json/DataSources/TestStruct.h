@@ -49,6 +49,8 @@ namespace nsBS
         std::map<int, double> intDoubleMap;
         std::map<int, std::string> intStrMap;
 
+        std::map<int, std::map<int, std::string>> intIntStrMap;
+
         std::map<std::string, std::string> strStrMap;
         std::map<std::string, int> strIntMap;
         std::map<std::string, double> strDoubleMap;

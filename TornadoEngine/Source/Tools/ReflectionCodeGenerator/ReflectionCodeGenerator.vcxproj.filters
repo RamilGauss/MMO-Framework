@@ -45,6 +45,12 @@
     <Filter Include="Generators\Sql">
       <UniqueIdentifier>{4cbfee1f-4033-47e5-be77-a00d9fb677d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generators\Reflection">
+      <UniqueIdentifier>{48df2734-16fb-4dfe-b742-7f66faa64882}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\EntityManagerExtension">
+      <UniqueIdentifier>{30c47e8b-b084-4cb5-baac-2d1cdba585e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\AST_StateMachine.cpp">
@@ -148,6 +154,30 @@
     </ClCompile>
     <ClCompile Include="Sources\SqlGenerated.cpp">
       <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ReflectionGenerator.cpp">
+      <Filter>Generators\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ReflectionFileGenerator.cpp">
+      <Filter>Generators\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ReflectionSourceFIleGenerator.cpp">
+      <Filter>Generators\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ReflectionHeaderFileGenerator.cpp">
+      <Filter>Generators\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EntityManagerFileGenerator.cpp">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EntityManagerGenerator.cpp">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EntityManagerHeaderFileGenerator.cpp">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EntityManagerSourceFIleGenerator.cpp">
+      <Filter>Generators\EntityManagerExtension</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +309,30 @@
     </ClInclude>
     <ClInclude Include="Sources\SqlGenerated.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ReflectionGenerator.h">
+      <Filter>Generators\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ReflectionHeaderFileGenerator.h">
+      <Filter>Generators\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ReflectionSourceFIleGenerator.h">
+      <Filter>Generators\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ReflectionFileGenerator.h">
+      <Filter>Generators\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EntityManagerFileGenerator.h">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EntityManagerGenerator.h">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EntityManagerHeaderFileGenerator.h">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EntityManagerSourceFIleGenerator.h">
+      <Filter>Generators\EntityManagerExtension</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

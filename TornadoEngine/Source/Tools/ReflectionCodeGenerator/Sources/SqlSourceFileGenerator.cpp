@@ -15,25 +15,25 @@ using namespace nsReflectionCodeGenerator;
 
 void TSqlSourceFileGenerator::Work()
 {
-  AddHeader(mConfig->targetForCodeGeneration.header);
-  AddTimeHeader();
+    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddTimeHeader();
 
-  AddInclude( mSqlConfig->fileName + ".h" );
-  AddInclude( "fmt/core.h" );
-  //AddInclude( "JsonPopMaster.h" );
-  //AddInclude( "JsonPushMaster.h" );
-  AddEmptyLine();
+    AddInclude(mSqlConfig->fileName + ".h");
+    AddInclude("fmt/core.h");
+    //AddInclude( "JsonPopMaster.h" );
+    //AddInclude( "JsonPushMaster.h" );
+    AddEmptyLine();
 
-  auto namespaceName = mSqlConfig->nameSpaceName;
-  if ( namespaceName.length() )
-    AddUsingNamespace( namespaceName );
+    auto namespaceName = mSqlConfig->nameSpaceName;
+    if ( namespaceName.length() )
+        AddUsingNamespace(namespaceName);
 
-  AddEmptyLine();
+    AddEmptyLine();
 
-  //AddUsing( s_POM + " = TJsonPopMaster" );
-  //AddUsing( s_PUM + " = TJsonPushMaster" );
+    //AddUsing( s_POM + " = TJsonPopMaster" );
+    //AddUsing( s_PUM + " = TJsonPushMaster" );
 
-  AddEmptyLine();
-  //AddImplementations();
+    AddEmptyLine();
+    //AddImplementations();
 }
 //-----------------------------------------------------------------------------------------------------------

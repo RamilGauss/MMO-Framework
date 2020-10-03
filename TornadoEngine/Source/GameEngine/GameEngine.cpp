@@ -26,162 +26,168 @@ See for more information LICENSE.md.
 
 TGameEngine::TGameEngine()
 {
-  mSynchroPoint.reset( new TSynchroPoint );
+    mSynchroPoint.reset(new TSynchroPoint);
 
-  TMakerLoaderDLL maker;
-  mLoaderDLL = maker.New();
+    TMakerLoaderDLL maker;
+    mLoaderDLL = maker.New();
 
-  mGetDevTool = nullptr;
-  mFreeDevTool = nullptr;
-  mDevTool = nullptr;
+    mGetDevTool = nullptr;
+    mFreeDevTool = nullptr;
+    mDevTool = nullptr;
 
-  Init();
+    Init();
 }
 //----------------------------------------------------------------------
 void TGameEngine::Done()
 {
-  if ( mFreeDevTool )
-    mFreeDevTool( mDevTool );
+    if ( mFreeDevTool ) {
+        mFreeDevTool(mDevTool);
+    }
 
-  mSynchroPoint.reset();
+    mSynchroPoint.reset();
 
-  TMakerLoaderDLL maker;
-  maker.Delete( mLoaderDLL );
+    TMakerLoaderDLL maker;
+    maker.Delete(mLoaderDLL);
 
-  GetLogger()->Done();
+    GetLogger()->Done();
 }
 //----------------------------------------------------------------------
-bool TGameEngine::LoadDLL( int variant_use, std::string& sNameDLL )
+bool TGameEngine::LoadDLL(int variant_use, std::string& sNameDLL)
 {
-  if ( mLoaderDLL->Init( sNameDLL.data() ) == false )
-  {
-    GetLogger( sName )->WriteF_time( "LoadDLL() FAIL init.\n" );
-    return false;
-  }
-  mFreeDevTool = (FuncFreeDevTool) mLoaderDLL->Get( StrFreeDevTool );
-  if ( mFreeDevTool == nullptr )
-  {
-    GetLogger( sName )->WriteF_time( "LoadDLL() FAIL load FuncFree.\n" );
-    return false;
-  }
-  mGetDevTool = (FuncGetDevTool) mLoaderDLL->Get( StrGetDevTool );
-  if ( mGetDevTool == nullptr )
-  {
-    GetLogger( sName )->WriteF_time( "LoadDLL() FAIL load FuncGetdevTool.\n" );
-    return false;
-  }
-  if ( mDevTool != nullptr )
-  {
-    GetLogger( sName )->WriteF_time( "LoadDLL() warning, object was loaded.\n" );
-    return true;
-  }
-  mDevTool = mGetDevTool( variant_use );
-  if ( mDevTool == nullptr )// нет DLL - нет движка.
-    return false;
+    if ( mLoaderDLL->Init(sNameDLL.data()) == false ) {
+        GetLogger(sName)->WriteF_time("LoadDLL() FAIL init.\n");
+        return false;
+    }
+    mFreeDevTool = (FuncFreeDevTool) mLoaderDLL->Get(StrFreeDevTool);
+    if ( mFreeDevTool == nullptr ) {
+        GetLogger(sName)->WriteF_time("LoadDLL() FAIL load FuncFree.\n");
+        return false;
+    }
+    mGetDevTool = (FuncGetDevTool) mLoaderDLL->Get(StrGetDevTool);
+    if ( mGetDevTool == nullptr ) {
+        GetLogger(sName)->WriteF_time("LoadDLL() FAIL load FuncGetdevTool.\n");
+        return false;
+    }
+    if ( mDevTool != nullptr ) {
+        GetLogger(sName)->WriteF_time("LoadDLL() warning, object was loaded.\n");
+        return true;
+    }
+    mDevTool = mGetDevTool(variant_use);
+    if ( mDevTool == nullptr ) {// нет DLL - нет движка.
+        return false;
+    }
 
-  Event( nsGameEngine::eAfterCreateDevTool );
-  return true;
+    Event(nsGameEngine::eAfterCreateDevTool);
+    return true;
 }
 //----------------------------------------------------------------------
 void TGameEngine::Init()
 {
-  GetLogger()->Done();
-  GetLogger()->Register( sName );
+    GetLogger()->Done();
+    GetLogger()->Register(sName);
 }
 //------------------------------------------------------------------------
-void TGameEngine::Work( int variant_use, std::string& sNameDLL, std::vector<std::string>& vecParam )// начало работы
+void TGameEngine::Work(int variant_use, std::string& sNameDLL, std::vector<std::string>& vecParam)// начало работы
 {
-  if ( LoadDLL( variant_use, sNameDLL ) == false )
-    return;
-  mDevTool->SetVectorParam( vecParam );
-  // подготовка конвейера
-  if ( PrepareConveyer() == false )
-    return;
-  if ( CreateModules() == false )
-    return;
-  LinkModulesToSynchroPoint();
+    if ( LoadDLL(variant_use, sNameDLL) == false ) {
+        return;
+    }
+    mDevTool->SetVectorParam(vecParam);
+    // подготовка конвейера
+    if ( PrepareConveyer() == false ) {
+        return;
+    }
+    if ( CreateModules() == false ) {
+        return;
+    }
+    LinkModulesToSynchroPoint();
 
-  Work();
-  // чистка
-  Done();
+    Work();
+    // чистка
+    Done();
 }
 //------------------------------------------------------------------------
 void TGameEngine::Work()
 {
-  for ( auto& pModule : mModulePtrList )
-    pModule->StartEvent();
+    for ( auto& pModule : mModulePtrList ) {
+        pModule->StartEvent();
+    }
 
-  bool needStop = false;
-  while( !needStop )
-  {
-    for ( auto& pModule : mModulePtrList )
-      if( pModule->Work() == false )
-      {
-        Event( nsGameEngine::eStopThreads, pModule->GetName() );
-        needStop = true;
-      }
-  }
+    bool needStop = false;
+    while ( !needStop ) {
+        for ( auto& pModule : mModulePtrList ) {
+            if ( pModule->Work() == false ) {
+                Event(nsGameEngine::eStopThreads, pModule->GetName());
+                needStop = true;
+            }
+        }
+    }
 
-  for ( auto& pModule : mModulePtrList )
-    pModule->StopEvent();
+    for ( auto& pModule : mModulePtrList ) {
+        pModule->StopEvent();
+    }
 }
 //------------------------------------------------------------------------
 std::string TGameEngine::GetVersion()
 {
-  return fmt::format( "Tornado Game Engine, Version {}, mode work \"{}\"", sVersion, sModeWork );
+    return fmt::format("Tornado Game Engine, Version {}, mode work \"{}\"", sVersion, sModeWork);
 }
 //------------------------------------------------------------------------
 bool TGameEngine::PrepareConveyer()
 {
-  auto sFileDescConveyer = mDevTool->GetFileDescConveyer();
-  auto sVariantConveyer = mDevTool->GetVariantConveyer();
-  TParserConveyerFile parser;
-  if( parser.Work( sFileDescConveyer ) )
-    mModuleNameList = parser.GetResult( sVariantConveyer );
-  if ( mModuleNameList.size() > 0 )
-    return true;
-  auto sError = parser.GetStrError();
-  Event( nsGameEngine::eParseFileConveyerError, sError );
-  return false;
+    auto sFileDescConveyer = mDevTool->GetFileDescConveyer();
+    auto sVariantConveyer = mDevTool->GetVariantConveyer();
+    TParserConveyerFile parser;
+    if ( parser.Work(sFileDescConveyer) ) {
+        mModuleNameList = parser.GetResult(sVariantConveyer);
+    }
+    if ( mModuleNameList.size() > 0 ) {
+        return true;
+    }
+    auto sError = parser.GetStrError();
+    Event(nsGameEngine::eParseFileConveyerError, sError);
+    return false;
 }
 //------------------------------------------------------------------------
 bool TGameEngine::CreateModules()
 {
-  if ( mModuleNameList.size() == 0 )
-    return false;
+    if ( mModuleNameList.size() == 0 ) {
+        return false;
+    }
 
-  for ( auto& moduleName : mModuleNameList )
-  {
-    IModule* pModule = mDevTool->GetModuleByName( moduleName );
-    if ( pModule != nullptr )
-      mModulePtrList.push_back( pModule );
-    else
-      Event( nsGameEngine::eModuleNotMade, moduleName );
-  }
-  Event( nsGameEngine::eAfterCreateModules );
-
-  return true;
+    for ( auto& moduleName : mModuleNameList ) {
+        IModule* pModule = mDevTool->GetModuleByName(moduleName);
+        if ( pModule != nullptr ) {
+            mModulePtrList.push_back(pModule);
+        }
+        else {
+            Event(nsGameEngine::eModuleNotMade, moduleName);
+        }
+    }
+    Event(nsGameEngine::eAfterCreateModules);
+    return true;
 }
 //------------------------------------------------------------------------
-void TGameEngine::Event( int id, std::string param )
+void TGameEngine::Event(int id, std::string param)
 {
-  std::string sEvent;
-  if ( nsGameEngine::GetStrEventsByID( id, sEvent ) == false )
-    return;
+    std::string sEvent;
+    if ( nsGameEngine::GetStrEventsByID(id, sEvent) == false ) {
+        return;
+    }
 
-  std::string sError = sEvent;
-  if ( param.length() )
-    sError = fmt::format( sEvent, param );
-  mDevTool->EventGameEngine( id, sError );
+    std::string sError = sEvent;
+    if ( param.length() ) {
+        sError = fmt::format(sEvent, param);
+    }
+    mDevTool->EventGameEngine(id, sError);
 }
 //------------------------------------------------------------------------
 void TGameEngine::LinkModulesToSynchroPoint()
 {
-  for ( auto& pModule : mModulePtrList )
-  {
-    pModule->SetSynchroPoint( mSynchroPoint.get() );
-    pModule->SetSelfID( pModule->GetID() );
-  }
-  mSynchroPoint->SetupAfterRegister();
+    for ( auto& pModule : mModulePtrList ) {
+        pModule->SetSynchroPoint(mSynchroPoint.get());
+        pModule->SetSelfID(pModule->GetID());
+    }
+    mSynchroPoint->SetupAfterRegister();
 }
 //------------------------------------------------------------------------

@@ -47,7 +47,10 @@ namespace nsReflectionCodeGenerator
         const std::string s_GetInt64 = "GetInt64";
         const std::string s_GetBool = "GetBool";
 
+        const std::string s_IsExist = "IsExist";
         const std::string s_IsNull = "IsNull";
+
+        const std::string s_IsArray = "IsArray";
 
         const std::string s_StrToNum = "std::stod";
 
@@ -145,6 +148,9 @@ namespace nsReflectionCodeGenerator
         void AddEndPop(TMemberInfo* pMemberInfo,
             std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
 
+        void AddPopLastElementListSetVector(TMemberInfo* pMemberInfo,
+            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+
         void AddEndPopMap(TMemberInfo* pMemberInfo,
             std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
         void AddEndPopListSetVector(TMemberInfo* pMemberInfo,
@@ -157,5 +163,6 @@ namespace nsReflectionCodeGenerator
         std::string SourceName(const std::string& name, int depth);
         std::string ArrayName(const std::string& name, int depth);
         std::string ObjectName(const std::string& name, int depth);
+        std::string TempName(const std::string& name, int depth);
     };
 }

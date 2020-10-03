@@ -38,6 +38,7 @@ struct TTypeInfo
 
     std::string GetNameSpace();// all namespaces: A::B::...::Z
     std::string GetTypeNameWithNameSpace();// namespace::typename
+    std::string GetTypeNameWithNameSpaceAsVar();// namespace_typename
 
     void AddMember(TMemberInfo& memberInfo);
 

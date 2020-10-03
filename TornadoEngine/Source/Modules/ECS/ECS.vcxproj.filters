@@ -65,9 +65,6 @@
     <ClInclude Include="include\LinkToList.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ComponentInfo.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\IComponent.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -87,6 +84,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\HelpStructs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ComponentContainer.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

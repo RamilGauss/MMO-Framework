@@ -70,7 +70,8 @@ std::shared_ptr<TestClass> LoadTest()
     Load(g_Path, str);
 
     std::shared_ptr<TestClass> p(new TestClass());
-    nsJson::TJsonSerializer::Fill(p.get(), str);
+    std::string err;
+    nsJson::TJsonSerializer::Fill(p.get(), str, err);
     return p;
 }
 //------------------------------------------------------------------------------------
@@ -89,6 +90,8 @@ bool CheckSavedWithLoaded(TestClass* pA, TestClass* pB)
 //------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
+    auto typeList = nsJson::TJsonSerializer::GetTypeNameList();
+
     auto pForSave = Create();
     SaveTest(pForSave.get());
     auto loaded = LoadTest();
