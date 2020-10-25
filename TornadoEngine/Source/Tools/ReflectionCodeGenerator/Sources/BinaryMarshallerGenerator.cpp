@@ -25,9 +25,11 @@ void TBinaryMarshallerGenerator::GenerateHeader()
 
   auto& pair = mPairList->back();
 
-  pair.first = GeneratedFileFullPath( mConfig->targetForCodeGeneration.implementation.binaryMarshaller->fileName + ".h" );
+  auto impl = mConfig->targetForCodeGeneration.implementation.binaryMarshaller;
 
-  fileGenerator.Init( pair );
+  pair.first = GeneratedFileFullPath(impl->fileName + ".h" );
+
+  fileGenerator.Init( pair, impl.get());
   fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
@@ -39,9 +41,11 @@ void TBinaryMarshallerGenerator::GenerateSource()
 
   auto& pair = mPairList->back();
 
-  pair.first = GeneratedFileFullPath( mConfig->targetForCodeGeneration.implementation.binaryMarshaller->fileName + ".cpp" );
+  auto impl = mConfig->targetForCodeGeneration.implementation.binaryMarshaller;
 
-  fileGenerator.Init( pair );
+  pair.first = GeneratedFileFullPath( impl->fileName + ".cpp" );
+
+  fileGenerator.Init( pair, impl.get() );
   fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------

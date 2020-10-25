@@ -12,10 +12,12 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  typedef unsigned int TEntityID;
-  const TEntityID None = (TEntityID)(-1);
+    using TypeIndexType = short;
 
-  typedef std::list<TEntityID> TEntityList;
-  typedef TVectorRise<TEntityID> TEntityIdVectorRise;
-  typedef TLoopList<TEntityID> TEntityLoopList;
+    using TEntityID = unsigned int;
+    const TEntityID None = (TEntityID) (-1);
+
+    using TEntityList = std::list<TEntityID>;
+    using TEntityIdVectorRise = TVectorRise<TEntityID>;
+    using TEntityLoopList = TLoopList<TEntityID>;
 }

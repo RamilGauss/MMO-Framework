@@ -19,6 +19,9 @@
     <ClCompile Include="EntityManagerExtension.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="TypeInformation.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryMarshaller.h">
@@ -51,6 +54,13 @@
     <ClInclude Include="EntityManagerExtension.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="CustomJsonSerializator.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="TypeInformation.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Sources">
@@ -73,5 +83,15 @@
     <None Include="config.json">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="json1.bin" />
+    <None Include="OutSources.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Custom.json">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Marshaller.rc" />
   </ItemGroup>
 </Project>

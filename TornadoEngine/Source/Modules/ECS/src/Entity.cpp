@@ -74,3 +74,8 @@ IComponent* TEntity::GetComponent(int index)
     return pCI->p;
 }
 //---------------------------------------------------------------------------------------
+const std::list<TypeIndexType>* TEntity::GetComponentIndexInUse() const
+{
+    return &mComponentIndexInUse;
+}
+//---------------------------------------------------------------------------------------

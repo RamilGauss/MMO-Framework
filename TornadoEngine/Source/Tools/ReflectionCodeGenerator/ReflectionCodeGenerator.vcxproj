@@ -106,7 +106,7 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Base/include;C:\Program Files\LLVM\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Tools;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -114,7 +114,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;C:\Program Files\LLVM\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;Base_d.lib;fmtd.lib;libclang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base_d.lib;Parser_d.lib;shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -180,7 +180,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/3rdParty/fmt/include;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Tools;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -191,7 +191,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;Base.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base_d.lib;Parser_d.lib;shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -237,6 +237,10 @@
     <ClCompile Include="Sources\SqlSourceFileGenerator.cpp" />
     <ClCompile Include="Sources\Tokenizer.cpp" />
     <ClCompile Include="Sources\TypeInfo.cpp" />
+    <ClCompile Include="Sources\TypeInformationFileGenerator.cpp" />
+    <ClCompile Include="Sources\TypeInformationGenerator.cpp" />
+    <ClCompile Include="Sources\TypeInformationHeaderFileGenerator.cpp" />
+    <ClCompile Include="Sources\TypeInformationSourceFIleGenerator.cpp" />
     <ClCompile Include="Sources\TypeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +293,10 @@
     <ClInclude Include="Sources\TokenInfoManager.h" />
     <ClInclude Include="Sources\Tokenizer.h" />
     <ClInclude Include="Sources\TypeInfo.h" />
+    <ClInclude Include="Sources\TypeInformationFileGenerator.h" />
+    <ClInclude Include="Sources\TypeInformationGenerator.h" />
+    <ClInclude Include="Sources\TypeInformationHeaderFileGenerator.h" />
+    <ClInclude Include="Sources\TypeInformationSourceFIleGenerator.h" />
     <ClInclude Include="Sources\TypeManager.h" />
     <ClInclude Include="Sources\UnpackHandler.h" />
   </ItemGroup>

@@ -409,6 +409,16 @@
     <ClInclude Include="Protocol\ClientSlave\PCS_PacketLevelGame.h" />
     <ClInclude Include="Protocol\ClientSlave\PCS_TypePacket.h" />
     <ClInclude Include="Protocol\SlaveMaster\PSM_TypePacket.h" />
+    <ClInclude Include="ReflectionContainers\ComponentsContainer.h" />
+    <ClInclude Include="ReflectionContainers\FeaturesContainer.h" />
+    <ClInclude Include="ReflectionContainers\HandlersContainer.h" />
+    <ClInclude Include="ReflectionContainers\IBinaryMarshaller.h" />
+    <ClInclude Include="ReflectionContainers\IEntityManagerExtension.h" />
+    <ClInclude Include="ReflectionContainers\IJsonSerializer.h" />
+    <ClInclude Include="ReflectionContainers\IMyGuiSerializer.h" />
+    <ClInclude Include="ReflectionContainers\IReflection.h" />
+    <ClInclude Include="ReflectionContainers\ISqlSerializer.h" />
+    <ClInclude Include="ReflectionContainers\ITypeInformation.h" />
     <ClInclude Include="Scene\Common\ControlCamera.h" />
     <ClInclude Include="Scene\Common\GameObject.h" />
     <ClInclude Include="Scene\Common\IHandlerScene.h" />

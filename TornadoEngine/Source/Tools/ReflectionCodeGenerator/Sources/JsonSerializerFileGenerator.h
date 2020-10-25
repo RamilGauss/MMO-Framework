@@ -11,22 +11,23 @@ See for more information LICENSE.md.
 
 namespace nsReflectionCodeGenerator
 {
-  class TJsonSerializerFileGenerator : public IFileGenerator
-  {
-  protected:
-    TJsonSerializerGeneratorConfig* mJsonSerializer;
+    class TJsonSerializerFileGenerator : public IFileGenerator
+    {
+    protected:
+        TJsonSerializerGeneratorConfig* mJsonSerializer;
 
-    const std::string s_Jobj = "Jobj";
-    const std::string s_Jarr = "Jarr";
-    const std::string sSerializeMethod = "_Serialize";
-    const std::string sDeserializeMethod = "_Deserialize";
+        const std::string s_Jobj = "Jobj";
+        const std::string s_Jarr = "Jarr";
 
-    // S - Type* p, Jobj& obj
-    std::list<std::string> GetParamListForSerialize( const std::string& namespaceWithType ); 
-    std::list<std::string> GetParamListForDeserialize( const std::string& namespaceWithType ); 
+        // S - Type* p, Jobj& obj
+        std::list<std::string> GetParamListForSerialize(const std::string& namespaceWithType);
+        std::list<std::string> GetParamListForDeserialize(const std::string& namespaceWithType);
 
-    TJsonSerializerFileGenerator();
+        TJsonSerializerFileGenerator();
 
-  };
+        bool IsInExternalSources(const std::string& namespaceWithType);
+
+        const TExternalSource* GetExternalSources(const std::string& namespaceWithType);
+    };
 }
 

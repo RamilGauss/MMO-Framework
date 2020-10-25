@@ -13,81 +13,81 @@ See for more information LICENSE.md.
 
 TReversedContainerRise::TReversedContainerRise()
 {
-  mSizeUse = 0;
+    mSizeUse = 0;
 }
 //----------------------------------------------------------
-TReversedContainerRise::TReversedContainerRise( const TReversedContainerRise& c )
+TReversedContainerRise::TReversedContainerRise(const TReversedContainerRise& c)
 {
-  mSizeUse = 0;
-  *this = c;
+    mSizeUse = 0;
+    *this = c;
 }
 //----------------------------------------------------------
-TReversedContainerRise& TReversedContainerRise::operator = ( const TReversedContainerRise& c )
+TReversedContainerRise& TReversedContainerRise::operator = (const TReversedContainerRise& c)
 {
-  mC = c.mC;
-  mSizeUse = c.mSizeUse;
-  return *this;
+    mC = c.mC;
+    mSizeUse = c.mSizeUse;
+    return *this;
 }
 //----------------------------------------------------------
 char* TReversedContainerRise::GetPtr() const
 {
-  int offset = mC.GetSize() - mSizeUse;
-  return (char*) mC.GetPtr() + offset;
+    int offset = mC.GetSize() - mSizeUse;
+    return (char*) mC.GetPtr() + offset;
 }
 //----------------------------------------------------------
 int TReversedContainerRise::GetSize() const
 {
-  return mSizeUse;
+    return mSizeUse;
 }
 //----------------------------------------------------------
-void TReversedContainerRise::Alloc( int new_size )
+void TReversedContainerRise::Alloc(int new_size)
 {
-  if( mC.GetSize() < new_size )
-    mC.SetDataByCount( nullptr, new_size );
-  mSizeUse = new_size;
-}
-//----------------------------------------------------------
-void TReversedContainerRise::Realloc( int new_size )
-{
-  if( mC.GetSize() < new_size )
-  {
-    int oldSize = mC.GetSize();
-    if( oldSize )
-    {
-      void* pOld = mC.GetPtr();
-      mC.Unlink();
-      mC.SetDataByCount( nullptr, new_size );
-      char* pNew = mC.GetPtr();
-
-      int offset = new_size - oldSize;
-      memcpy( pNew + offset, pOld, mSizeUse );
-      if( oldSize == 1 )
-        delete  (char*) pOld;
-      else
-        delete []( char* )pOld;
+    if ( mC.GetSize() < new_size ) {
+        mC.SetDataByCount(nullptr, new_size);
     }
-    else
-      mC.SetDataByCount( nullptr, new_size );
-  }
-  mSizeUse = new_size;
+    mSizeUse = new_size;
+}
+//----------------------------------------------------------
+void TReversedContainerRise::Realloc(int new_size)
+{
+    if ( mC.GetSize() < new_size ) {
+        int oldSize = mC.GetSize();
+        if ( oldSize ) {
+            void* pOld = mC.GetPtr();
+            mC.Unlink();
+            mC.SetDataByCount(nullptr, new_size);
+            char* pNew = mC.GetPtr();
+
+            int offset = new_size - oldSize;
+            memcpy(pNew + offset, pOld, mSizeUse);
+            if ( oldSize == 1 ) {
+                delete  (char*) pOld;
+            } else {
+                delete[](char*)pOld;
+            }
+        } else {
+            mC.SetDataByCount(nullptr, new_size);
+        }
+    }
+    mSizeUse = new_size;
 }
 //----------------------------------------------------------
 void TReversedContainerRise::Clear()
 {
-  mSizeUse = 0;
+    mSizeUse = 0;
 }
 //----------------------------------------------------------
-void TReversedContainerRise::Shift( int offset )
+void TReversedContainerRise::Shift(int offset)
 {
-  int newSize = mSizeUse + offset;
-  Realloc( newSize );
+    int newSize = mSizeUse + offset;
+    Realloc(newSize);
 }
 //----------------------------------------------------------
-void TReversedContainerRise::Append( int size, char* p )
+void TReversedContainerRise::Append(int size, char* p)
 {
-  int oldSize = mSizeUse;
-  int newSize = mSizeUse + size;
-  Realloc( newSize );
-  memcpy( GetPtr(), p, size );
+    int oldSize = mSizeUse;
+    int newSize = mSizeUse + size;
+    Realloc(newSize);
+    memcpy(GetPtr(), p, size);
 }
 //----------------------------------------------------------

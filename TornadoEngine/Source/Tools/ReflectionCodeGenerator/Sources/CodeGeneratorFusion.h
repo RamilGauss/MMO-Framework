@@ -23,6 +23,7 @@ namespace nsReflectionCodeGenerator
     void CollectFromJson();
     void CollectFromBinary();
     void CollectFromSql();
+    void CollectFromTypeInformation();
     void CollectFromReflection();
     void CollectFromEntityManagerExtension();
   };

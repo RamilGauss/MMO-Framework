@@ -11,9 +11,10 @@ See for more information LICENSE.md.
 
 #include "CodeGeneratorFusion.h"
 #include "IncludeListGenerator.h"
-#include "JsonSerializerGenerator.h"
 
+#include "JsonSerializerGenerator.h"
 #include "BinaryMarshallerGenerator.h"
+#include "TypeInformationGenerator.h"
 #include "ConfigContainer.h"
 #include "SqlGenerator.h"
 #include "ReflectionGenerator.h"
@@ -43,6 +44,9 @@ void TCodeGeneratorFusion::Collect()
     }
     if ( implementation.sql.get() ) {
         CollectFromSql();
+    }
+    if ( implementation.typeInformation.get() ) {
+        CollectFromTypeInformation();
     }
     if ( implementation.reflection.get() ) {
         CollectFromReflection();
@@ -103,6 +107,13 @@ void TCodeGeneratorFusion::CollectFromReflection()
 void TCodeGeneratorFusion::CollectFromEntityManagerExtension()
 {
     TEntityManagerGenerator generator;
+    generator.Init(mForDump);
+    generator.Work();
+}
+//---------------------------------------------------------------------------------------------
+void TCodeGeneratorFusion::CollectFromTypeInformation()
+{
+    TTypeInformationGenerator generator;
     generator.Init(mForDump);
     generator.Work();
 }

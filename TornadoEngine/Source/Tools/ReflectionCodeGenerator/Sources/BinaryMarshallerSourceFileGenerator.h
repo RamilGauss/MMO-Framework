@@ -72,6 +72,8 @@ namespace nsReflectionCodeGenerator
       "//-----------------------------------------------------------------------------",
     };
 
+
+    TTypeInfo* mCurrentTypeInfo = nullptr;
   public:
     virtual void Work() override;
 

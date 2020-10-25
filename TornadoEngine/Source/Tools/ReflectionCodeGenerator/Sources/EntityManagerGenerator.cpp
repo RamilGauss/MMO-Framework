@@ -25,9 +25,10 @@ void TEntityManagerGenerator::GenerateHeader()
 
     auto& pair = mPairList->back();
 
-    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.implementation.entMngExt->fileName + ".h");
+    auto impl = mConfig->targetForCodeGeneration.implementation.entMngExt;
+    pair.first = GeneratedFileFullPath(impl->fileName + ".h");
 
-    fileGenerator.Init(pair);
+    fileGenerator.Init(pair, impl.get());
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
@@ -39,9 +40,10 @@ void TEntityManagerGenerator::GenerateSource()
 
     auto& pair = mPairList->back();
 
-    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.implementation.entMngExt->fileName + ".cpp");
+    auto impl = mConfig->targetForCodeGeneration.implementation.entMngExt;
+    pair.first = GeneratedFileFullPath(impl->fileName + ".cpp");
 
-    fileGenerator.Init(pair);
+    fileGenerator.Init(pair, impl.get());
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------

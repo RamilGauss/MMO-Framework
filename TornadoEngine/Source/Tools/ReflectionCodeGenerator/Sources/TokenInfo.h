@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 struct TTokenInfo
 {
-  boost::wave::token_id id;
-  std::string strId;
-  std::string value;
+    boost::wave::token_id id;
+    std::string strId;
+    std::string value;
 };

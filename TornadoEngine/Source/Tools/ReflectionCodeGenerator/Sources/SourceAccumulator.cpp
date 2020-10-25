@@ -24,51 +24,52 @@ TSourceAccumulator::~TSourceAccumulator()
 //---------------------------------------------------------------------------------------------
 void TSourceAccumulator::Clear()
 {
-  mPartList.clear();
+    mPartList.clear();
 }
 //---------------------------------------------------------------------------------------------
-void TSourceAccumulator::Add( const char* p, bool back )
+void TSourceAccumulator::Add(const char* p, bool back)
 {
-  auto s = ( std::string )p;
-  Add( s );
+    auto s = (std::string)p;
+    Add(s);
 }
 //---------------------------------------------------------------------------------------------
-void TSourceAccumulator::Add( std::string& str, bool back )
+void TSourceAccumulator::Add(std::string& str, bool back)
 {
-  if ( back )
-    mPartList.push_back( str );
-  else
-    mPartList.push_front( str );
+    if ( back ) {
+        mPartList.push_back(str);
+    } else {
+        mPartList.push_front(str);
+    }
 }
 //---------------------------------------------------------------------------------------------
-void TSourceAccumulator::Flush( std::string& absFileName )
+void TSourceAccumulator::Flush(std::string& absFileName)
 {
-  AddHeader();
-  AddGeneratedInfo();
+    AddHeader();
+    AddGeneratedInfo();
 
-  TSaveToFile stf;
-  auto openResult = stf.ReOpen( absFileName.data() );
-  BL_ASSERT( openResult );
+    TSaveToFile stf;
+    auto openResult = stf.ReOpen(absFileName.data());
+    BL_ASSERT(openResult);
 
-  for ( auto& part : mPartList )
-    stf.Write( part.data(), part.length() );
+    for ( auto& part : mPartList ) {
+        stf.Write(part.data(), part.length());
+    }
 }
 //---------------------------------------------------------------------------------------------
 void TSourceAccumulator::AddGeneratedInfo()
 {
-  std::locale::global( std::locale( "ru_RU.utf8" ) );
-  std::time_t t = std::time( nullptr );
-  char mbstr [100];
-  if ( std::strftime( mbstr, sizeof( mbstr ), "%A %c", std::localtime( &t ) ) )
-  {
-    Add( &mbstr[0], false );
-  }
+    std::locale::global(std::locale("ru_RU.utf8"));
+    std::time_t t = std::time(nullptr);
+    char mbstr[100];
+    if ( std::strftime(mbstr, sizeof(mbstr), "%A %c", std::localtime(&t)) ) {
+        Add(&mbstr[0], false);
+    }
 
-  Add( GENERATED_INFO, false );
+    Add(GENERATED_INFO, false);
 }
 //---------------------------------------------------------------------------------------------
 void TSourceAccumulator::AddHeader()
 {
-  Add( HEADER, false );
+    Add(HEADER, false);
 }
 //---------------------------------------------------------------------------------------------

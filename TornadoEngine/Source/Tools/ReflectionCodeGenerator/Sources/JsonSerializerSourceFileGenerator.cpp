@@ -22,6 +22,12 @@ void TJsonSerializerSourceFileGenerator::Work()
     AddInclude(mJsonSerializer->fileName + ".h");
     AddInclude("JsonPopMaster.h");
     AddInclude("JsonPushMaster.h");
+
+    AddInclude("SingletonManager.h");
+    AddInclude("TypeIdentifier.h");
+
+    AddIncludeForExternalSources(mJsonSerializer->externalSources.get());
+
     AddEmptyLine();
 
     auto namespaceName = mJsonSerializer->nameSpaceName;
@@ -36,7 +42,7 @@ void TJsonSerializerSourceFileGenerator::Work()
 
     AddEmptyLine();
     Add(fmt::format("std::map<std::string, {}::TypeFunc> {}::{};", mJsonSerializer->className, mJsonSerializer->className, s_TypeNameFuncsMap));
-    Add(fmt::format("std::list<std::string> {}::{};", mJsonSerializer->className, s_TypeNameList));
+    Add(fmt::format("std::vector<{}::TypeFunc> {}::{};", mJsonSerializer->className, mJsonSerializer->className, s_TypeFuncVector));
     AddEmptyLine();
 
     AddInit();
@@ -62,6 +68,7 @@ void TJsonSerializerSourceFileGenerator::AddInit()
     Add("}");
     Add("isNeedInit = false;");
     AddEmptyLine();
+    Add("auto globalTypeIdentifier = SingletonManager()->Get<TTypeIdentifier<>>();");
 
     for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
         auto namespaceName = namespaceTypeInfo.first;
@@ -87,11 +94,34 @@ void TJsonSerializerSourceFileGenerator::AddInit()
             Add(fmt::format("    return Fill<{}>(({}*) p, str, err);", typeNameWithNameSpace, typeNameWithNameSpace));
             Add("};");
 
+            Add(fmt::format("{}.typeIdentifier = globalTypeIdentifier->type<{}>();", typeNameObject, typeNameWithNameSpace));
+
             Add(fmt::format("{}.insert({{\"{}\", {} }});", s_TypeNameFuncsMap, typeNameWithNameSpace, typeNameObject));
-            Add(fmt::format("{}.push_back(\"{}\");", s_TypeNameList, typeNameWithNameSpace));
             AddEmptyLine();
         }
     }
+
+    AddEmptyLine();
+    Add("int max = 0;");
+    auto str = fmt::format("for ( auto& vt : {} ) {{", s_TypeNameFuncsMap);
+    Add(str);
+    IncrementTabs();
+
+    Add("max = std::max(vt.second.typeIdentifier, max);");
+    DecrementTabs();
+    AddRightBrace();
+
+    AddEmptyLine();
+    str = fmt::format("{}.resize(max + 1);", s_TypeFuncVector);
+    Add(str);
+    str = fmt::format("for ( auto& vt : {} ) {{", s_TypeNameFuncsMap);
+    Add(str);
+    IncrementTabs();
+    str = fmt::format("{}[vt.second.typeIdentifier] = vt.second;", s_TypeFuncVector);
+    Add(str);
+    DecrementTabs();
+    AddRightBrace();
+
 
     DecrementTabs();
     AddRightBrace();
@@ -101,17 +131,7 @@ void TJsonSerializerSourceFileGenerator::AddConstContentMethods()
 {
     auto className = mJsonSerializer->className;
 
-    Add(fmt::format("const std::list<std::string>& {}::{}()", className, s_GetTypeNameList));
-    AddLeftBrace();
-    IncrementTabs();
-
-    Add(fmt::format("{}();", s_Init));
-    Add(fmt::format("return {};", s_TypeNameList));
-
-    DecrementTabs();
-    AddRightBrace();
-    AddCommentedLongLine();
-    //======================
+    //====================== type name
     Add(fmt::format("void {}::{}(void* p, std::string& str, const std::string& typeName)", className, s_SerializeByTypeMethod));
     AddLeftBrace();
     IncrementTabs();
@@ -143,6 +163,39 @@ void TJsonSerializerSourceFileGenerator::AddConstContentMethods()
 
     DecrementTabs();
     AddRightBrace();
+    //=============================================================
+    //====================== type identifier
+    Add(fmt::format("void {}::{}(void* p, std::string& str, int typeIdentifier)", className, s_SerializeByTypeMethod));
+    AddLeftBrace();
+    IncrementTabs();
+
+    Add(fmt::format("{}();", s_Init));
+    Add(fmt::format("{}[typeIdentifier].serializeFunc(p, str);", s_TypeFuncVector));
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    //======================
+    Add(fmt::format("bool {}::{}(void*& p, const std::string& str, int typeIdentifier, std::string& err)", className, s_DeserializeByTypeMethod));
+    AddLeftBrace();
+    IncrementTabs();
+
+    Add(fmt::format("{}();", s_Init));
+    Add(fmt::format("return {}[typeIdentifier].deserializeFunc(p, str, err);", s_TypeFuncVector));
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    //======================
+    Add(fmt::format("bool {}::{}(void* p, const std::string& str, int typeIdentifier, std::string& err)", className, s_FillByTypeMethod));
+    AddLeftBrace();
+    IncrementTabs();
+
+    Add(fmt::format("{}();", s_Init));
+    Add(fmt::format("return {}[typeIdentifier].fillFunc(p, str, err);", s_TypeFuncVector));
+
+    DecrementTabs();
+    AddRightBrace();
     AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -152,11 +205,22 @@ void TJsonSerializerSourceFileGenerator::AddImplementations()
         auto namespaceName = namespaceTypeInfo.first;
         auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
         for ( auto filenameType : filenameTypeMap ) {
+
+            auto namespaceWithType = filenameType.second->GetTypeNameWithNameSpace();
+            if ( IsInExternalSources(namespaceWithType) ) {
+                continue;
+            }
+
             auto pTypeInfo = filenameType.second.get();
+
+            mCurrentTypeInfo = pTypeInfo;
+
             AddSerializeMethodImplementation(pTypeInfo);
             AddCommentedLongLine();
             AddDeserializeMethodImplementation(pTypeInfo);
             AddCommentedLongLine();
+            
+            mCurrentTypeInfo = nullptr;
         }
     }
 }
@@ -294,6 +358,13 @@ void TJsonSerializerSourceFileGenerator::AddPushReflection(TMemberInfo* pMemberI
 void TJsonSerializerSourceFileGenerator::AddPushReflectionZeroDepth(TMemberInfo* pMemberInfo,
     std::vector<TMemberTypeExtendedInfo>* pExtArr)
 {
+    auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+
+    auto methodStr = GetSerializeMethod(&pMemberInfo->mExtendedInfo, withinClassTypeName);
+    if ( methodStr.length() == 0 ) {
+        return;
+    }
+
     std::string str;
 
     auto addObject = fmt::format("auto {}_o = {}::{}( {}, \"{}\");", pMemberInfo->mName, s_PUM, s_AddObject, s_Obj, pMemberInfo->mName);
@@ -301,7 +372,7 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionZeroDepth(TMemberInfo*
     auto access = pMemberInfo->mExtendedInfo.mAccessMethod;
     if ( access == TMemberTypeExtendedInfo::AccessMethod::Object ) {
         Add(addObject);
-        str = fmt::format("{}( &({}->{}), {}_o );", sSerializeMethod, s_TypeObject, pMemberInfo->mName, pMemberInfo->mName);
+        str = fmt::format("{}( &({}->{}), {}_o );", methodStr, s_TypeObject, pMemberInfo->mName, pMemberInfo->mName);
         Add(str);
     } else {
         std::string ptr;
@@ -320,7 +391,7 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionZeroDepth(TMemberInfo*
         Add("} else {");
         IncrementTabs();
         Add(addObject);
-        str = fmt::format("{}( {}, {}_o );", sSerializeMethod, ptr, pMemberInfo->mName);
+        str = fmt::format("{}( {}, {}_o );", methodStr, ptr, pMemberInfo->mName);
         Add(str);
         DecrementTabs();
         Add("}");
@@ -346,6 +417,13 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepth(TMemberInfo* pMe
 void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthSetListVector(TMemberInfo* pMemberInfo,
     std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth)
 {
+    auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+
+    auto methodStr = GetSerializeMethod(&(pExtArr->at(depth)), withinClassTypeName);
+    if ( methodStr.length() == 0 ) {
+        return;
+    }
+
     std::string str;
     std::string prevObj;
     if ( depth == 1 ) {
@@ -366,7 +444,7 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthSetListVector(TMe
         Add(str);
         str = fmt::format("auto {} = {}.{}();", curC, curA, s_GetObject);
         Add(str);
-        str = fmt::format("{}( &{}, {} );", sSerializeMethod, curE, curC);
+        str = fmt::format("{}( &{}, {} );", methodStr, curE, curC);
         Add(str);
         str = fmt::format("{}::{}( {}, {} );", s_PUM, s_PushToArray, prevA, curA);
         Add(str);
@@ -390,7 +468,7 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthSetListVector(TMe
         Add(str);
         str = fmt::format("auto {} = {}.{}();", curC, curA, s_GetObject);
         Add(str);
-        str = fmt::format("{}( {}, {} );", sSerializeMethod, ptr, curC);
+        str = fmt::format("{}( {}, {} );", methodStr, ptr, curC);
         Add(str);
         DecrementTabs();
         Add("}");
@@ -400,6 +478,13 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthSetListVector(TMe
 void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthMap(TMemberInfo* pMemberInfo,
     std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth)
 {
+    auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+
+    auto methodStr = GetSerializeMethod(&(pExtArr->at(depth)), withinClassTypeName);
+    if ( methodStr.length() == 0 ) {
+        return;
+    }
+
     std::string str;
     std::string prevObj;
     if ( depth == 1 ) {
@@ -418,7 +503,7 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthMap(TMemberInfo* 
         str = fmt::format("auto {} = {}::{}( {}, {}::{}({}.first).data() );", curA, s_PUM, s_AddObject, prevC,
             s_PUM, s_ConvertToString, curE);
         Add(str);
-        str = fmt::format("{}( &({}.second), {} );", sSerializeMethod, curE, curA);
+        str = fmt::format("{}( &({}.second), {} );", methodStr, curE, curA);
         Add(str);
     } else {
         std::string ptr;
@@ -439,7 +524,7 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthMap(TMemberInfo* 
         str = fmt::format("auto {} = {}::{}( {}, {}::{}({}.first).data() );",
             curA, s_PUM, s_AddObject, prevObj, s_PUM, s_ConvertToString, curE);
         Add(str);
-        str = fmt::format("{}( {}, {} );", sSerializeMethod, ptr, prevObj);
+        str = fmt::format("{}( {}, {} );", methodStr, ptr, prevObj);
         Add(str);
         DecrementTabs();
         Add("}");
@@ -795,13 +880,20 @@ void TJsonSerializerSourceFileGenerator::AddPopReflection(TMemberInfo* pMemberIn
 void TJsonSerializerSourceFileGenerator::AddPopReflectionZeroDepth(TMemberInfo* pMemberInfo,
     std::vector<TMemberTypeExtendedInfo>* pExtArr)
 {
+    auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+
+    auto methodStr = GetDeserializeMethod(&pMemberInfo->mExtendedInfo, withinClassTypeName);
+    if ( methodStr.length() == 0 ) {
+        return;
+    }
+
     auto curO = ObjectName(pMemberInfo->mName, 0);
     auto accessMethod = pExtArr->at(0).mAccessMethod;
     if ( accessMethod == TMemberTypeExtendedInfo::AccessMethod::Object ) {
         auto str = fmt::format("auto {} = {}::{}({}, \"{}\");", curO, s_POM, s_FindObject, s_Obj, pMemberInfo->mName);
         Add(str);
         str = fmt::format("{}(&({}->{}), {});",
-            sDeserializeMethod, s_TypeObject, pMemberInfo->mName, curO);
+            methodStr, s_TypeObject, pMemberInfo->mName, curO);
         Add(str);
     } else {
 
@@ -830,7 +922,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionZeroDepth(TMemberInfo* 
             curO, s_POM, s_FindObject, s_Obj, pMemberInfo->mName);
         Add(str);
 
-        str = fmt::format("{}( {}->{}, {});", sDeserializeMethod, s_TypeObject, get, curO);
+        str = fmt::format("{}( {}->{}, {});", methodStr, s_TypeObject, get, curO);
         Add(str);
         DecrementTabs();
         Add("}");
@@ -856,6 +948,13 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepth(TMemberInfo* pMem
 void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMemberInfo* pMemberInfo,
     std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth)
 {
+    auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+
+    auto methodStr = GetDeserializeMethod(&(pExtArr->at(depth)), withinClassTypeName);
+    if ( methodStr.length() == 0 ) {
+        return;
+    }
+
     auto prevE = ElementName(pMemberInfo->mName, depth - 1);
     auto curC = CollectorName(pMemberInfo->mName, depth);
     auto curO = ObjectName(pMemberInfo->mName, depth);
@@ -874,7 +973,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
         Add(str);
         str = fmt::format("{} {};", type, curC);
         Add(str);
-        str = fmt::format("{}(&{}, {});", sDeserializeMethod, curC, curO);
+        str = fmt::format("{}(&{}, {});", methodStr, curC, curO);
         Add(str);
         str = fmt::format("{}.{}({});", dst, s_PushBack, curC);
         Add(str);
@@ -895,7 +994,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
         Add(str);
         str = fmt::format("auto {} = {};", curC, newExp);
         Add(str);
-        str = fmt::format("{}({}{}, {});", sDeserializeMethod, curC, access, curO);
+        str = fmt::format("{}({}{}, {});", methodStr, curC, access, curO);
         Add(str);
         str = fmt::format("{}.{}({});", dst, s_PushBack, curC);
         Add(str);
@@ -908,6 +1007,13 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
 void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthMap(TMemberInfo* pMemberInfo,
     std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth)
 {
+    auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+
+    auto methodStr = GetDeserializeMethod(&(pExtArr->at(depth)), withinClassTypeName);
+    if ( methodStr.length() == 0 ) {
+        return;
+    }
+
     auto prevE = ElementName(pMemberInfo->mName, depth - 1);
     auto curE = ElementName(pMemberInfo->mName, depth);
     auto curC = CollectorName(pMemberInfo->mName, depth);
@@ -946,7 +1052,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthMap(TMemberInfo* p
         Add(str);
         str = fmt::format("{} {};", type, curC);
         Add(str);
-        str = fmt::format("{}(&{}, {});", sDeserializeMethod, curC, curO);
+        str = fmt::format("{}(&{}, {});", methodStr, curC, curO);
         Add(str);
         str = fmt::format("{}.{}({{ {}, {} }});", dst, s_Insert, key, curC);
         Add(str);
@@ -967,7 +1073,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthMap(TMemberInfo* p
         Add(str);
         str = fmt::format("auto {} = {};", curC, newExp);
         Add(str);
-        str = fmt::format("{}({}{}, {});", sDeserializeMethod, curC, access, curO);
+        str = fmt::format("{}({}{}, {});", methodStr, curC, access, curO);
         Add(str);
         str = fmt::format("{}.{}({{ {}, {} }});", dst, s_Insert, key, curC);
         Add(str);
@@ -1261,13 +1367,27 @@ void TJsonSerializerSourceFileGenerator::AddEndPopMap(TMemberInfo* pMemberInfo,
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddCallingSerializeParent(const std::string& parentTypeName)
 {
-    auto str = fmt::format("{}( ({}*){}, {});// Inheritances", sSerializeMethod, parentTypeName, s_TypeObject, s_Obj);
+    auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+
+    auto methodStr = GetSerializeMethod(parentTypeName, withinClassTypeName);
+    if ( methodStr.length() == 0 ) {
+        return;
+    }
+
+    auto str = fmt::format("{}( ({}*){}, {});// Inheritances", methodStr, parentTypeName, s_TypeObject, s_Obj);
     Add(str);
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddCallingDeserializeParent(const std::string& parentTypeName)
 {
-    auto str = fmt::format("{}( ({}*){}, {});// Inheritances", sDeserializeMethod, parentTypeName, s_TypeObject, s_Obj);
+    auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+
+    auto methodStr = GetDeserializeMethod(parentTypeName, withinClassTypeName);
+    if ( methodStr.length() == 0 ) {
+        return;
+    }
+
+    auto str = fmt::format("{}( ({}*){}, {});// Inheritances", methodStr, parentTypeName, s_TypeObject, s_Obj);
     Add(str);
 }
 //-----------------------------------------------------------------------------------------------------------

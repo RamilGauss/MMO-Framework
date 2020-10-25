@@ -257,20 +257,8 @@
    "False"
   ],
   [
-   "libpq:shared",
+   "lz4:shared",
    "False"
-  ],
-  [
-   "libpq:with_openssl",
-   "False"
-  ],
-  [
-   "libpq:with_zlib",
-   "True"
-  ],
-  [
-   "libpqxx:shared",
-   "True"
   ],
   [
    "openssl:386",

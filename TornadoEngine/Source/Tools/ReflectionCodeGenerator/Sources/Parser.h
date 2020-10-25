@@ -14,34 +14,37 @@ See for more information LICENSE.md.
 #include "SingletonManager.h"
 #include "ConfigContainer.h"
 
-class TParser
+namespace nsReflectionCodeGenerator
 {
-  typedef std::set<std::string> TSetStr;
-
-  std::set<std::string> mFilePathForParseSet;
-public:
-  void Work();
-
-private:
-  void Tokenize();
-
-  template <typename DirectoryIterator>
-  void CollectAbsPaths()
-  {
-    auto config = SingletonManager()->Get<nsReflectionCodeGenerator::TConfigContainer>()->Config();
-    TSetStr extSet( config->filter.extensions.begin(), config->filter.extensions.end() );
-
-    for ( auto& dir : config->targetForParsing.directories )
+    class TParser
     {
-      for ( auto& p : DirectoryIterator( (char*) dir.data() ) )
-      {
-        auto path = p.path();
-        std::string ext = path.extension().string();
-        if ( extSet.find( ext ) == extSet.end() )
-          continue;
-        auto str = std::filesystem::canonical( path ).string();
-        mFilePathForParseSet.insert( str );
-      }
-    }
-  }
-};
+        typedef std::set<std::string> TSetStr;
+
+        std::set<std::string> mFilePathForParseSet;
+    public:
+        void Work();
+
+    private:
+        void Tokenize();
+
+        template <typename DirectoryIterator>
+        void CollectAbsPaths()
+        {
+            auto config = SingletonManager()->Get<nsReflectionCodeGenerator::TConfigContainer>()->Config();
+            TSetStr extSet(config->filter.extensions.begin(), config->filter.extensions.end());
+
+            for ( auto& dir : config->targetForParsing.directories )
+            {
+                for ( auto& p : DirectoryIterator((char*)dir.data()) )
+                {
+                    auto path = p.path();
+                    std::string ext = path.extension().string();
+                    if ( extSet.find(ext) == extSet.end() )
+                        continue;
+                    auto str = std::filesystem::canonical(path).string();
+                    mFilePathForParseSet.insert(str);
+                }
+            }
+        }
+    };
+}

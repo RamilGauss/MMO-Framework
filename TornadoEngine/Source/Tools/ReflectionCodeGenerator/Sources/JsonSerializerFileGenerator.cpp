@@ -11,25 +11,46 @@ using namespace nsReflectionCodeGenerator;
 
 TJsonSerializerFileGenerator::TJsonSerializerFileGenerator()
 {
-  mJsonSerializer = mConfig->targetForCodeGeneration.implementation.jsonSerializer.get();
+    mJsonSerializer = mConfig->targetForCodeGeneration.implementation.jsonSerializer.get();
 }
 //----------------------------------------------------------------------------------------------------
 // S - Type* p, Jobj& obj
-std::list<std::string> TJsonSerializerFileGenerator::GetParamListForSerialize( const std::string& namespaceWithType )
+std::list<std::string> TJsonSerializerFileGenerator::GetParamListForSerialize(const std::string& namespaceWithType)
 {
-  return std::list<std::string>
-  {
-    namespaceWithType + "* " + s_TypeObject,
-    "Jobj& obj"
-  };
+    return std::list<std::string>
+    {
+        namespaceWithType + "* " + s_TypeObject,
+            "Jobj& obj"
+    };
 }
 //----------------------------------------------------------------------------------------------------
-std::list<std::string> TJsonSerializerFileGenerator::GetParamListForDeserialize( const std::string& namespaceWithType )
+std::list<std::string> TJsonSerializerFileGenerator::GetParamListForDeserialize(const std::string& namespaceWithType)
 {
-  return std::list<std::string> 
-  {
-    namespaceWithType + "* " + s_TypeObject,
-    "const Jobj& obj"
-  };
+    return std::list<std::string>
+    {
+        namespaceWithType + "* " + s_TypeObject,
+            "const Jobj& obj"
+    };
+}
+//----------------------------------------------------------------------------------------------------
+bool TJsonSerializerFileGenerator::IsInExternalSources(const std::string& namespaceWithType)
+{
+    auto p = GetExternalSources(namespaceWithType);
+    return p != nullptr;
+}
+//----------------------------------------------------------------------------------------------------
+const TExternalSource* TJsonSerializerFileGenerator::GetExternalSources(const std::string& namespaceWithType)
+{
+    return nullptr;
+    //auto extSrc = mJsonSerializer->externalSources.get();
+    //if ( extSrc == nullptr ) {
+    //    return nullptr;
+    //}
+
+    //auto fit = extSrc->value.find(namespaceWithType);
+    //if ( fit == extSrc->value.end() ) {
+    //    return nullptr;
+    //}
+    //return &(fit->second);
 }
 //----------------------------------------------------------------------------------------------------

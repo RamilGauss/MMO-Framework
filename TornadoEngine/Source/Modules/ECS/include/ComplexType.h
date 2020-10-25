@@ -25,33 +25,34 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  class DllExport TComplexType
-  {
-  public:
-    TColanderVector<IComponent*> parts;
-    std::list<unsigned char> mComponentTypeIdentifierList;
-
-    bool operator < ( const TComplexType& other ) const
+    class DllExport TComplexType
     {
-      auto pThisParts = this->parts.Begin();
-      auto pOtherParts = other.parts.Begin();
+    public:
+        TColanderVector<IComponent*> parts;
+        std::list<unsigned char> mComponentTypeIdentifierList;
 
-      for ( auto& index : mComponentTypeIdentifierList )
-      {
-        auto pCThis = pThisParts[index];
-        auto pCOther = pOtherParts[index];
-        if ( pCThis->IsEqual( pCOther ) )
-          continue;
-        return pCThis->IsLess( pCOther );
-      }
-      return false;
-    }
+        bool operator < (const TComplexType& other) const
+        {
+            auto pThisParts = this->parts.Begin();
+            auto pOtherParts = other.parts.Begin();
 
-    void Done()
-    {
-      for ( auto& index : mComponentTypeIdentifierList )
-        parts[index] = nullptr;
-      mComponentTypeIdentifierList.clear();
-    }
-  };
+            for ( auto& index : mComponentTypeIdentifierList ) {
+                auto pCThis = pThisParts[index];
+                auto pCOther = pOtherParts[index];
+                if ( pCThis->IsEqual(pCOther) ) {
+                    continue;
+                }
+                return pCThis->IsLess(pCOther);
+            }
+            return false;
+        }
+
+        void Done()
+        {
+            for ( auto& index : mComponentTypeIdentifierList ) {
+                parts[index] = nullptr;
+            }
+            mComponentTypeIdentifierList.clear();
+        }
+    };
 }

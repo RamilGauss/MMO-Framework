@@ -120,6 +120,8 @@ class TMemberTypeExtendedInfoAnalyzer
 
     TMemberTypeExtendedInfoCache mMemberCache;
 
+    TTypeInfo* mCurrentTypeInfo = nullptr;
+
 public:
     TMemberTypeExtendedInfoAnalyzer();
     ~TMemberTypeExtendedInfoAnalyzer();

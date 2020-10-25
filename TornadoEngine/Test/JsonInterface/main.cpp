@@ -2,7 +2,9 @@
 #include <iostream>
 #include <sstream>
 
-#include <termcolor/termcolor.hpp>
+#include <fmt/color.h>
+
+#include <squirrel.h>
 
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
@@ -15,6 +17,8 @@
 
 int main(int argc, char** argv)
 {
+    //struct SQVM* vm = sq_open(100000);
+
     // Add to serialize
     rapidjson::Document doc(rapidjson::Type::kObjectType);
     rapidjson::Document::Object jobj = doc.GetObject();
@@ -95,7 +99,7 @@ int main(int argc, char** argv)
     rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(sb);
     doc.Accept(writer);
     auto dump = sb.GetString();
-    std::cout << termcolor::green << dump << termcolor::white << std::endl;
+    fmt::print(fg(fmt::color::lime), dump );
     //###
 
     return 0;

@@ -25,9 +25,10 @@ void TReflectionGenerator::GenerateHeader()
 
     auto& pair = mPairList->back();
 
-    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.implementation.reflection->fileName + ".h");
+    auto impl = mConfig->targetForCodeGeneration.implementation.reflection;
+    pair.first = GeneratedFileFullPath(impl->fileName + ".h");
 
-    fileGenerator.Init(pair);
+    fileGenerator.Init(pair, impl.get());
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
@@ -39,9 +40,10 @@ void TReflectionGenerator::GenerateSource()
 
     auto& pair = mPairList->back();
 
-    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.implementation.reflection->fileName + ".cpp");
+    auto impl = mConfig->targetForCodeGeneration.implementation.reflection;
+    pair.first = GeneratedFileFullPath(impl->fileName + ".cpp");
 
-    fileGenerator.Init(pair);
+    fileGenerator.Init(pair, impl.get());
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------

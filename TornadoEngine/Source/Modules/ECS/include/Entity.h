@@ -26,7 +26,7 @@ namespace nsECSFramework
         typedef TColanderVector<TComponentContainer*> TComponentVec;// from memory pool
         TComponentVec mComponents;
 
-        std::list<short> mComponentIndexInUse;
+        std::list<TypeIndexType> mComponentIndexInUse;
 
         TMemoryObjectPool<TComponentContainer>* mComponentInfoMemoryPool;
     public:
@@ -40,6 +40,8 @@ namespace nsECSFramework
 
         static const int NoneIndex = -1;
         int GetFirstComponentIndex();
+
+        const std::list<TypeIndexType>* GetComponentIndexInUse() const;
 
         void AddHasCollectionInfo(TLinkToList<TEntityID>* pLTL, int collectionIndex);
         TLinkToList<TEntityID>* RemoveHasCollectionInfo(int collectionIndex);

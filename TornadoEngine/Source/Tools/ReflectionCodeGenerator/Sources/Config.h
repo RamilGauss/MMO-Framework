@@ -11,97 +11,145 @@ See for more information LICENSE.md.
 #include <list>
 #include <string>
 #include <map>
+#include <set>
 #include <memory>
 
 namespace nsReflectionCodeGenerator
 {
 #pragma REFLECTION_ATTRIBUTE
-  struct TTargetForParsing
-  {
-    std::vector<std::string> directories;
-    bool recursive;
-  };
+    struct TTargetForParsing
+    {
+        std::vector<std::string> directories;
+        bool recursive;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-  struct TFilter
-  {
-    std::string attribute;
-    std::vector<std::string> extensions;
-  };
+    struct TFilter
+    {
+        std::string attribute;
+        std::vector<std::string> extensions;
+    };
 
 #pragma REFLECTION_ATTRIBUTE 
-  struct TClassDesc
-  {
-    std::string exportDeclaration;// DllExport
-    std::string nameSpaceName;
-    std::string className;
-    std::string fileName;
-  };
+    struct TClassDesc
+    {
+        std::string exportDeclaration;// DllExport
+        std::string nameSpaceName;
+        std::string className;
+        std::string fileName;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-  struct TUnpackHandler : TClassDesc
-  {
-    std::string method;
-  };
+    struct TUnpackHandler : TClassDesc
+    {
+        std::string method;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-  struct TBinaryMarshallerGeneratorConfig : TClassDesc
-  {
-    TUnpackHandler unpackHandler;
-    unsigned short beginID;
-  };
+    struct TExternalSource
+    {
+        std::string fileName;
+        std::string nameSpaceName;
+        std::string className;
+
+        std::set<std::string> nameSpaceWithType;// "ns::Type"
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-  struct TJsonSerializerGeneratorConfig : TClassDesc
-  {
-
-  };
-
-#pragma REFLECTION_ATTRIBUTE
-  struct TSqlGeneratorConfig : TClassDesc
-  {
-
-  };
+    struct TExternalSourceList
+    {
+        std::list<TExternalSource> val;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-  struct TReflectionGeneratorConfig : TClassDesc
-  {
+    struct TExternalSources
+    {
+        std::list<std::string> inFileList;
+        std::string outFile;
 
-  };
-
-#pragma REFLECTION_ATTRIBUTE
-  struct TEntityManagerGeneratorConfig : TClassDesc
-  {
-
-  };
+        std::shared_ptr<TExternalSourceList> inExtSrcList;
+        std::shared_ptr<TExternalSource> outExtSrc;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-  struct TImplementation
-  {
-    std::shared_ptr<TJsonSerializerGeneratorConfig> jsonSerializer;
-    std::shared_ptr<TBinaryMarshallerGeneratorConfig> binaryMarshaller;
-    std::shared_ptr<TSqlGeneratorConfig> sql;
-    std::shared_ptr<TReflectionGeneratorConfig> reflection;
-    std::shared_ptr<TEntityManagerGeneratorConfig> entMngExt;
-  };
+    struct TSerializer : TClassDesc
+    {
+        std::shared_ptr<TExternalSources> externalSources;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-  struct TTargetForCodeGeneration
-  {
-    std::string directory;
-    std::string includeListFileName;
-    std::string header;
-    TImplementation implementation;
-    
-    std::map<std::string, std::string> typeCustomizerMap;
-  };
+    struct TBinaryMarshallerGeneratorConfig : TSerializer
+    {
+        std::shared_ptr<TUnpackHandler> unpackHandler;
+        unsigned short beginID;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-  struct TConfig
-  {
-    TTargetForParsing targetForParsing;
-    TFilter filter;
-    TTargetForCodeGeneration targetForCodeGeneration;
-  };
+    struct TJsonSerializerGeneratorConfig : TSerializer
+    {
 
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct TMyGuiGeneratorConfig : TSerializer
+    {
+
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct TSqlGeneratorConfig : TSerializer
+    {
+
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct TReflectionGeneratorConfig : TSerializer
+    {
+
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct TEntityManagerGeneratorConfig : TSerializer
+    {
+
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct TTypeInformationGeneratorConfig : TSerializer
+    {
+
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct TImplementation
+    {
+        std::shared_ptr<TJsonSerializerGeneratorConfig> jsonSerializer;
+        std::shared_ptr<TBinaryMarshallerGeneratorConfig> binaryMarshaller;
+        std::shared_ptr<TMyGuiGeneratorConfig> mygui;
+        std::shared_ptr<TSqlGeneratorConfig> sql;
+
+        std::shared_ptr<TReflectionGeneratorConfig> reflection;
+        std::shared_ptr<TEntityManagerGeneratorConfig> entMngExt;
+        std::shared_ptr<TTypeInformationGeneratorConfig> typeInformation;
+
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct TTargetForCodeGeneration
+    {
+        std::string directory;
+        std::string includeListFileName;
+        std::string header;
+        TImplementation implementation;
+
+        std::map<std::string, std::string> typeCustomizerMap;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct TConfig
+    {
+        TTargetForParsing targetForParsing;
+        TFilter filter;
+        TTargetForCodeGeneration targetForCodeGeneration;
+    };
 }

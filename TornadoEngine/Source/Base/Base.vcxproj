@@ -204,13 +204,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
-    <Text Include="Blog.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AllocatorPool.h" />
     <ClInclude Include="include\ArrContainer.h" />
     <ClInclude Include="include\BinaryMaster.h" />
-    <ClInclude Include="include\BinarySerializer.h" />
     <ClInclude Include="include\BL_Debug.h" />
     <ClInclude Include="include\BreakPacket.h" />
     <ClInclude Include="include\CallBackRegistrator.h" />
@@ -248,7 +246,6 @@
     <ClInclude Include="include\LoadFromFile.h" />
     <ClInclude Include="include\LockFreeDef.h" />
     <ClInclude Include="include\Logger.h" />
-    <ClInclude Include="include\lz4.h" />
     <ClInclude Include="include\MacroMaker.h" />
     <ClInclude Include="include\MacroMaker_Prepare.h" />
     <ClInclude Include="include\MakerLoaderDLL.h" />
@@ -318,7 +315,6 @@
     <ClCompile Include="src\LoaderDLL_Win32.cpp" />
     <ClCompile Include="src\LoadFromFile.cpp" />
     <ClCompile Include="src\Logger.cpp" />
-    <ClCompile Include="src\lz4.c" />
     <ClCompile Include="src\MakerLoaderDLL.cpp" />
     <ClCompile Include="src\MakerXML.cpp" />
     <ClCompile Include="src\MapCallBack.cpp" />
@@ -351,6 +347,9 @@
     <ClCompile Include="src\TimeManager.cpp" />
     <ClCompile Include="src\TypeIdentifier.cpp" />
     <ClCompile Include="src\XML_Markup.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Blog.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

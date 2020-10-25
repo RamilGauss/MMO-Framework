@@ -61,7 +61,9 @@ namespace nsReflectionCodeGenerator
         const std::string s_FillByTypeMethod = "Fill";
 
         const std::string s_TypeNameFuncsMap = "mTypeNameFuncsMap";
-        const std::string s_TypeNameList = "mTypeNameList";
+        const std::string s_TypeFuncVector = "mTypeFuncVector";
+
+        TTypeInfo* mCurrentTypeInfo = nullptr;
 
     public:
         virtual void Work() override;

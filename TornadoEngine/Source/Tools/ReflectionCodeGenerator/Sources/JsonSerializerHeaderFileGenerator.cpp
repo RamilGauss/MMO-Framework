@@ -17,7 +17,7 @@ void TJsonSerializerHeaderFileGenerator::Work()
 
     AddPragmaOnce();
     AddEmptyLine();
-    AddStandartInclude("list");
+    AddStandartInclude("vector");
     AddStandartInclude("string");
     AddStandartInclude("functional");
     AddInclude("JsonMaster.h");
@@ -56,6 +56,11 @@ void TJsonSerializerHeaderFileGenerator::AddDeclarations()
         auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
         for ( auto filenameType : filenameTypeMap ) {
             auto namespaceWithType = filenameType.second->GetTypeNameWithNameSpace();
+
+            if ( IsInExternalSources(namespaceWithType) ) {
+                continue;
+            }
+
             AddSerializeMethodDeclaration(namespaceWithType);
             AddDeserializeMethodDeclaration(namespaceWithType);
             AddEmptyLine();

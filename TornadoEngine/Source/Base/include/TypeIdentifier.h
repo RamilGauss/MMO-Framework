@@ -61,18 +61,21 @@ private:
     {
         auto minT = std::min(std::min(t1, t2), std::min(t2, t3));
         if ( minT == t1 ) {
-            if ( t2 < t3 )
+            if ( t2 < t3 ) {
                 return _type<T0, T1, T2, T3>();
+            }
             return _type<T0, T1, T3, T2>();
         }
         if ( minT == t2 ) {
-            if ( t1 < t3 )
+            if ( t1 < t3 ) {
                 return _type<T0, T2, T1, T3>();
+            }
             return _type<T0, T2, T3, T1>();
         }
         // 3
-        if ( t1 < t2 )
+        if ( t1 < t2 ) {
             return _type<T0, T3, T1, T2>();
+        }
         return _type<T0, T3, T2, T1>();
     }
 
@@ -83,11 +86,13 @@ private:
 
         bool operator == (const TComplexSet& other)
         {
-            if ( other.tcSet.size() != tcSet.size() )
+            if ( other.tcSet.size() != tcSet.size() ) {
                 return false;
+            }
             for ( auto& tc : tcSet ) {
-                if ( other.tcSet.find(tc) == other.tcSet.end() )
+                if ( other.tcSet.find(tc) == other.tcSet.end() ) {
                     return false;
+                }
             }
             return true;
         }
@@ -120,8 +125,9 @@ public:
     TypeCounter type()
     {
         static TypeCounter ret = -1;
-        if ( ret != -1 )
+        if ( ret != -1 ) {
             return ret;
+        }
 
         std::map<TypeCounter, std::function<TypeCounter()>> m;
 
@@ -142,8 +148,9 @@ public:
     TypeCounter type()
     {
         static TypeCounter ret = -1;
-        if ( ret != -1 )
+        if ( ret != -1 ) {
             return ret;
+        }
 
         std::map<TypeCounter, std::function<TypeCounter()>> m;
 
@@ -168,8 +175,9 @@ public:
     TypeCounter type()
     {
         static TypeCounter ret = -1;
-        if ( ret != -1 )
+        if ( ret != -1 ) {
             return ret;
+        }
 
         std::map<TypeCounter, std::function<TypeCounter()>> m;
 
@@ -198,8 +206,9 @@ public:
     TypeCounter type()
     {
         static TypeCounter ret = -1;
-        if ( ret != -1 )
+        if ( ret != -1 ) {
             return ret;// calculation once only
+        }
 
         TComplexSet complexSet;
         AddToSet<T0, T1, T2, T3, T4, Args...>(complexSet);

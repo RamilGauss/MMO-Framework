@@ -11,18 +11,18 @@ See for more information LICENSE.md.
 
 namespace nsReflectionCodeGenerator
 {
-  class ICodeGenerator : public IGenerator
-  {
-    std::string mName;
-  protected:
-    TPairList* mPairList;
-  public:
-    ICodeGenerator( std::string name );
+    class ICodeGenerator : public IGenerator
+    {
+        std::string mName;
+    protected:
+        TPairList* mPairList;
+    public:
+        ICodeGenerator(std::string name);
 
-     // abs path file - list parts of file
-     void Init( TPairList& result );
-    virtual void Work() = 0;
-  protected:
-    std::string GeneratedFileFullPath( std::string fileNameWithExt );
-  };
+        // abs path file - list parts of file
+        void Init(TPairList& result);
+        virtual void Work() = 0;
+    protected:
+        std::string GeneratedFileFullPath(std::string fileNameWithExt);
+    };
 }

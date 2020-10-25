@@ -14,15 +14,15 @@ using namespace nsReflectionCodeGenerator;
 
 void TIncludeListGenerator::Work()
 {
-  TIncludeListFileGenerator fileGenerator;
+    TIncludeListFileGenerator fileGenerator;
 
-  mPairList->push_back( TStrListPair() );
+    mPairList->push_back(TStrListPair());
 
-  auto& pair = mPairList->back();
+    auto& pair = mPairList->back();
 
-  pair.first = GeneratedFileFullPath( mConfig->targetForCodeGeneration.includeListFileName + ".h" );
+    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.includeListFileName + ".h");
 
-  fileGenerator.Init( pair );
-  fileGenerator.Work();
+    fileGenerator.Init(pair, nullptr);
+    fileGenerator.Work();
 }
 //-----------------------------------------------------------------------------------

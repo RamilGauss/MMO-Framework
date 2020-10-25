@@ -41,7 +41,12 @@ void TMemberTypeExtendedInfoAnalyzer::Work()
         auto types = nameSpaceName_Types.second.get();
         for ( auto nameTypeInfo : types[0] ) {
             auto pTypeInfo = nameTypeInfo.second.get();
+
+            mCurrentTypeInfo = pTypeInfo;
+
             HandleType(pTypeInfo);
+
+            mCurrentTypeInfo = nullptr;
         }
     }
 }
@@ -228,8 +233,9 @@ int TMemberTypeExtendedInfoAnalyzer::FillInfo(const TTokenDescVector& tokenVecto
                 }
                 continue;
             case Greater:
-                if ( cornerBalance > 0 )
+                if ( cornerBalance > 0 ) {
                     cornerBalance--;
+                }
                 return i - 1;
             case Ampersand:
                 break;
@@ -294,9 +300,14 @@ int TMemberTypeExtendedInfoAnalyzer::FillInfo(const TTokenDescVector& tokenVecto
                 canBeNameSpace = tokenDesc.value;
                 memberTypeInfo.mCategory = TMemberTypeExtendedInfo::Reflection;
                 memberTypeInfo.mType = tokenDesc.value;
-                auto pTypeInfo = mTypeMng->FindTypeInfo(memberTypeInfo.mType);
-                if ( pTypeInfo )
+
+                auto withinClassTypename = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+                auto nameSpaceTarget = nameSpaceAccumulator + memberTypeInfo.mType;
+
+                auto pTypeInfo = mTypeMng->FindTypeInfoBy(nameSpaceTarget, withinClassTypename);
+                if ( pTypeInfo ) {
                     memberTypeInfo.mNameSpaceForReflection = pTypeInfo->GetNameSpace();
+                }
                 break;
         }
     }

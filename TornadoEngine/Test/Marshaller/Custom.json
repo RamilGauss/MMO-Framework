@@ -1,0 +1,8 @@
+{
+    "fileName": "CustomJsonSerializator.h",
+    "nameSpaceName": "nsCustomJsonSerializator",
+    "className": "TCustomJsonSerializator",
+    "nameSpaceWithType": [
+        "nsUnknown::UnknownType"
+    ]
+}

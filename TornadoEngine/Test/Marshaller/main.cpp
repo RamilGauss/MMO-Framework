@@ -12,9 +12,9 @@ See for more information LICENSE.md.
 #include "Reflection.h"
 #include "MemoryPool.h"
 #include "MemoryObjectPoolAllocator.h"
-#include "BinarySerializer.h"
 #include "lz4.h"
 #include "BinaryMarshaller.h"
+#include "JsonSerializer.h"
 
 #ifdef _DEBUG
 const int cnt = 1000;
@@ -164,6 +164,16 @@ void Benchmark()
 //-----------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
+    auto ti = SingletonManager()->Get<TTypeIdentifier<>>()->type<nsBS::TTestStruct>();
+
+    nsBS::TTestStruct ts;
+
+    void* pTs = &ts;
+
+    std::string json;
+    nsJson::TJsonSerializer::Serialize(pTs, json, ti);
+
+
     std::string name = "";
 
     auto p = nsReflection::TReflection::New(name);

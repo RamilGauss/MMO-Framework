@@ -51,6 +51,12 @@
     <Filter Include="Generators\EntityManagerExtension">
       <UniqueIdentifier>{30c47e8b-b084-4cb5-baac-2d1cdba585e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generators\TypeInformation">
+      <UniqueIdentifier>{ef66642e-3ce2-4238-8c01-e8f057b2ccd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\MyGUI">
+      <UniqueIdentifier>{f8e5b8ed-e810-44ef-b187-dd38907b3c4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\AST_StateMachine.cpp">
@@ -178,6 +184,18 @@
     </ClCompile>
     <ClCompile Include="Sources\EntityManagerSourceFIleGenerator.cpp">
       <Filter>Generators\EntityManagerExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInformationFileGenerator.cpp">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInformationGenerator.cpp">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInformationHeaderFileGenerator.cpp">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInformationSourceFIleGenerator.cpp">
+      <Filter>Generators\TypeInformation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +351,18 @@
     </ClInclude>
     <ClInclude Include="Sources\EntityManagerSourceFIleGenerator.h">
       <Filter>Generators\EntityManagerExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInformationFileGenerator.h">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInformationGenerator.h">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInformationHeaderFileGenerator.h">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInformationSourceFIleGenerator.h">
+      <Filter>Generators\TypeInformation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

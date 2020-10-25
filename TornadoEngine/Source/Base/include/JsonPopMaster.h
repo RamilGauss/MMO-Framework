@@ -77,7 +77,7 @@ public:
     }
     static Value& Find(const Jobj& jobj, const char* sKey)
     {
-        auto& it = jobj.FindMember(sKey);
+        auto it = jobj.FindMember(sKey);
         if ( it == jobj.MemberEnd() ) {
             std::string caseDesc = "expected from member list: ";
             GetMemberList(jobj, caseDesc);
@@ -96,7 +96,7 @@ public:
 
     static void PopBool(const Jobj& jobj, const char* sKey, bool& value)
     {
-        auto& contentValue = jobj.FindMember(sKey)->value;
+        auto& contentValue = Find(jobj, sKey);
         if ( contentValue.IsBool() ) {
             value = contentValue.GetBool();
         } else if ( contentValue.IsInt() ) {
@@ -110,7 +110,7 @@ public:
     template <typename ValueType, typename std::enable_if<std::is_integral<ValueType>::value>::type* = nullptr>
     static void PopNum(const Jobj& jobj, const char* sKey, ValueType& value)
     {
-        auto& guessInt64 = jobj.FindMember(sKey)->value;
+        auto& guessInt64 = Find(jobj, sKey);
         if ( !guessInt64.IsInt64() ) {
             auto expected = typeid(ValueType).name();
             auto realType = GetStr(guessInt64.GetType());
@@ -123,7 +123,7 @@ public:
     template <typename ValueType, typename std::enable_if<std::is_floating_point<ValueType>::value>::type* = nullptr>
     static void PopNum(const Jobj& jobj, const char* sKey, ValueType& value)
     {
-        auto& guessDouble = jobj.FindMember(sKey)->value;
+        auto& guessDouble = Find(jobj, sKey);
         if ( !guessDouble.IsDouble() ) {
             auto realType = IsDigital(guessDouble) ? "integer" : GetStr(guessDouble.GetType());
             std::string caseDesc = "expected double, but is " + realType;
@@ -134,7 +134,7 @@ public:
     }
     static void PopStr(const Jobj& jobj, const char* sKey, std::string& value)
     {
-        auto& guessString = jobj.FindMember(sKey)->value;
+        auto& guessString = Find(jobj, sKey);
         if ( !guessString.IsString() ) {
             auto realType = GetStr(guessString.GetType());
             std::string caseDesc = "expected string, but is " + realType;

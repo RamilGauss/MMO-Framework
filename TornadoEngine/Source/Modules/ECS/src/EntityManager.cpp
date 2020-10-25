@@ -545,3 +545,16 @@ void TEntityManager::NotifyOnRemoveComponent(int index, TEntityID entity, ICompo
     pCB[0]->Notify(entity, pC);
 }
 //---------------------------------------------------------------------------------------
+void TEntityManager::GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList)
+{
+    typeIdentifierList.clear();
+
+    auto pEntity = GetEntity(eid);
+    if ( pEntity == nullptr ) {
+        return;
+    }
+
+    auto pComponentList = pEntity->GetComponentIndexInUse();
+    typeIdentifierList = *pComponentList;
+}
+//---------------------------------------------------------------------------------------

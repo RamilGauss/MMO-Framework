@@ -13,36 +13,38 @@ using namespace nsReflectionCodeGenerator;
 
 void TSqlGenerator::Work()
 {
-  GenerateHeader();
-  GenerateSource();
+    GenerateHeader();
+    GenerateSource();
 }
 //----------------------------------------------------------------------------------
 void TSqlGenerator::GenerateHeader()
 {
-  TSqlHeaderFileGenerator fileGenerator;
+    TSqlHeaderFileGenerator fileGenerator;
 
-  mPairList->push_back( TStrListPair() );
+    mPairList->push_back(TStrListPair());
 
-  auto& pair = mPairList->back();
+    auto& pair = mPairList->back();
 
-  pair.first = GeneratedFileFullPath( mConfig->targetForCodeGeneration.implementation.sql->fileName + ".h" );
+    auto impl = mConfig->targetForCodeGeneration.implementation.sql;
+    pair.first = GeneratedFileFullPath(impl->fileName + ".h");
 
-  fileGenerator.Init( pair );
-  fileGenerator.Work();
+    fileGenerator.Init(pair, impl.get());
+    fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
 void TSqlGenerator::GenerateSource()
 {
-  TSqlSourceFileGenerator fileGenerator;
+    TSqlSourceFileGenerator fileGenerator;
 
-  mPairList->push_back( TStrListPair() );
+    mPairList->push_back(TStrListPair());
 
-  auto& pair = mPairList->back();
+    auto& pair = mPairList->back();
 
-  pair.first = GeneratedFileFullPath( mConfig->targetForCodeGeneration.implementation.sql->fileName + ".cpp" );
+    auto impl = mConfig->targetForCodeGeneration.implementation.sql;
+    pair.first = GeneratedFileFullPath(impl->fileName + ".cpp");
 
-  fileGenerator.Init( pair );
-  fileGenerator.Work();
+    fileGenerator.Init(pair, impl.get());
+    fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
 

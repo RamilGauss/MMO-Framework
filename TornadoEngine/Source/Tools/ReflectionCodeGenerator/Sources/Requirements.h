@@ -29,6 +29,7 @@ namespace nsReflectionCodeGenerator
           "std: map, set, vector, list",
           "std: shared_ptr, auto_ptr, weak_ptr, unique",
           "class UnpackHandler with static void Handle( Type* p )",
+          "Custimize or out sources of other serializators: use full namespace:\n\t\t namespace::MemberType memberName;",
         }
       },
       { "2. PROHIBITED",

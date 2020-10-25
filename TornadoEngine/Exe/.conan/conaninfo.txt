@@ -9,12 +9,11 @@
 [requires]
     boost/1.Y.Z
     bullet3/2.Y.Z
-    fmt/6.Y.Z
-    libpqxx/7.Y.Z
-    magic_enum/0.6.6
+    fmt/7.Y.Z
+    lz4/1.Y.Z
+    magic_enum/0.7.0
     openssl/1.Y.Z
     rapidjson/1.Y.Z
-    termcolor/1.Y.Z
 
 [options]
 
@@ -31,16 +30,14 @@
     os_build=Windows
 
 [full_requires]
-    boost/1.73.0:3191e02c37a4ec1a7b5378f96fc9b87f676352ad
+    boost/1.74.0:3191e02c37a4ec1a7b5378f96fc9b87f676352ad
     bullet3/2.89:d057732059ea44a47760900cb5e4855d2bea8714
     bzip2/1.0.8:589a23dff5fdb23a7fb851223eb766480ead0a9a
-    fmt/6.2.0:4f1710918aa542fccb5a54d7bd712e4b0750b50d
-    libpq/12.2:487a5ebc62be09517ca7a9dbf8f7f4a1f219019b
-    libpqxx/7.1.2:6494ace458fa596bcbd207be73a3d7b1420c4fdb
-    magic_enum/0.6.6:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
-    openssl/1.1.1f:4f1710918aa542fccb5a54d7bd712e4b0750b50d
+    fmt/7.0.3:4f1710918aa542fccb5a54d7bd712e4b0750b50d
+    lz4/1.9.2:d057732059ea44a47760900cb5e4855d2bea8714
+    magic_enum/0.7.0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+    openssl/1.1.1h:4f1710918aa542fccb5a54d7bd712e4b0750b50d
     rapidjson/1.1.0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
-    termcolor/1.0.1:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
     zlib/1.2.11:d057732059ea44a47760900cb5e4855d2bea8714
 
 [full_options]
@@ -108,10 +105,7 @@
     fmt:header_only=False
     fmt:shared=True
     fmt:with_fmt_alias=False
-    libpq:shared=False
-    libpq:with_openssl=False
-    libpq:with_zlib=True
-    libpqxx:shared=True
+    lz4:shared=False
     openssl:386=False
     openssl:capieng_dialog=False
     openssl:enable_capieng=False

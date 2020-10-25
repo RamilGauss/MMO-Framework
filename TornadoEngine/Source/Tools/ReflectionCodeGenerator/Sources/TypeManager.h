@@ -12,20 +12,27 @@ See for more information LICENSE.md.
 
 class TTypeManager
 {
-  typedef std::map<std::string, TTypeInfo*> TStrTypeInfoPtrMap;
-  TStrTypeInfoPtrMap mNameTypeInfoPtrMap;
+    typedef std::map<std::string, TTypeInfo*> TStrTypeInfoPtrMap;
+    TStrTypeInfoPtrMap mNameTypeInfoPtrMap;
 
 public:
-  typedef std::map<std::string, std::shared_ptr<TTypeInfo>> TStrPtrMap;// fileName - type info
-  typedef std::map<std::string, std::shared_ptr<TStrPtrMap>> TStrPairMap;// namespace - { fileName, type info }
+    typedef std::map<std::string, std::shared_ptr<TTypeInfo>> TStrPtrMap;// fileName - type info
+    typedef std::map<std::string, std::shared_ptr<TStrPtrMap>> TStrPairMap;// namespace - { fileName, type info }
 
-  TStrPairMap mNameSpaceTypesMap;
+    TStrPairMap mNameSpaceTypesMap;
 
-  void Add( std::string& nameSpaceName, TTypeInfo& typeInfo );
+    void Add(std::string& nameSpaceName, TTypeInfo& typeInfo);
 
-  TTypeInfo* FindTypeInfo( std::string& typeName );
+    // Global search
+    TTypeInfo* FindTypeInfo(const std::string& nameSpaceTypeName);// ns::A
+
+    // Search by inheritance and members
+    TTypeInfo* FindTypeInfoBy(const std::string& nameSpaceTypeName, const std::string& withinClassTypename);
 
 protected:
-  TTypeManager() { };
-  friend class TSingletonManager;// for singleton pattern
+    TTypeManager() {};
+    friend class TSingletonManager;// for singleton pattern
+
+
+    void Split(const std::string& nameSpaceTypeName, std::string& nameSpace, std::string& typeName);
 };

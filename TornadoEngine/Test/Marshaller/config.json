@@ -39,6 +39,13 @@
                 "className": "TEntityManagerExtension"
             },
             "jsonSerializer": {
+                "externalSources": {
+                    "inFileList": [
+                        "Custom.json"
+                        //"OutSources.json"
+                    ],
+                    "outFile": "MarshallerOutPut.json"
+                },
                 "exportDeclaration": "",
                 "nameSpaceName": "nsJson",
                 "fileName": "JsonSerializer",
@@ -63,6 +70,12 @@
                 "nameSpaceName": "nsReflection",
                 "fileName": "Reflection",
                 "className": "TReflection"
+            },
+            "typeInformation": {
+                "exportDeclaration": "",
+                "nameSpaceName": "nsTypeInformation",
+                "fileName": "TypeInformation",
+                "className": "TTypeInformation"
             }
         }
     }

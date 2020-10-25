@@ -11,9 +11,10 @@ See for more information LICENSE.md.
 
 using namespace nsReflectionCodeGenerator;
 
-void IFileGenerator::Init(TStrListPair& strListPair)
+void IFileGenerator::Init(TStrListPair& strListPair, TSerializer* serializer)
 {
     pStrListPair = &strListPair;
+    mSerializer = serializer;
 }
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddHeader(const std::string& header)
@@ -293,28 +294,33 @@ std::string IFileGenerator::GetNullExpression(TMemberTypeExtendedInfo& ext)
 {
     auto typeName = ext.GetTypeNameWithNameSpace();
     switch ( ext.mAccessMethod ) {
-        case TMemberTypeExtendedInfo::Object:
-            return "";
-        case TMemberTypeExtendedInfo::Pointer:
-            return " = nullptr";
-        case TMemberTypeExtendedInfo::SmartPointer:
-            return "";
+    case TMemberTypeExtendedInfo::Object:
+        return "";
+    case TMemberTypeExtendedInfo::Pointer:
+        return " = nullptr";
+    case TMemberTypeExtendedInfo::SmartPointer:
+        return "";
     }
     return "";
 }
 //-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddCallingMethodForParent(TTypeInfo* p, std::function<void(const std::string&)> func)
 {
+    auto withinClassTypeName = p->GetTypeNameWithNameSpace();
+
     for ( auto& inheritanceInfo : p->mInheritanceVec ) {
         if ( inheritanceInfo.mInheritanceAccessLevel != TMemberInfo::ePublic ) {
             continue;
         }
+        auto parentTypeName = inheritanceInfo.mParentTypeName;
+
         // найти родителя - TypeInfo
-        auto pParentInfo = mTypeMng->FindTypeInfo(inheritanceInfo.mParentTypeName);
-        if ( pParentInfo == nullptr ) {
-            continue;
+        auto pParentInfo = mTypeMng->FindTypeInfoBy(parentTypeName, withinClassTypeName);
+        if ( pParentInfo != nullptr ) {
+            // Известный тип
+            parentTypeName = pParentInfo->GetTypeNameWithNameSpace();
         }
-        func(pParentInfo->GetTypeNameWithNameSpace());
+        func(parentTypeName);
     }
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -326,5 +332,67 @@ void IFileGenerator::AddCallingMethod(TTypeInfo* p, std::function<void(TMemberIn
             func(memberInfo.get());
         }
     }
+}
+//-----------------------------------------------------------------------------------------------------------
+void IFileGenerator::AddIncludeForExternalSources(TExternalSources* pExrSrc)
+{
+    if ( pExrSrc == nullptr || pExrSrc->inExtSrcList == nullptr ) {
+        return;
+    }
+    for ( auto& extSrc : pExrSrc->inExtSrcList->val ) {
+        AddInclude(extSrc.fileName);
+    }
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string IFileGenerator::GetSerializeMethod(TMemberTypeExtendedInfo* pExt, const std::string& withinClassTypeName)
+{
+    auto namespaceWithType = pExt->GetTypeNameWithNameSpace();
+    return GetSerializeMethod(namespaceWithType, withinClassTypeName);
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string IFileGenerator::GetDeserializeMethod(TMemberTypeExtendedInfo* pExt, const std::string& withinClassTypeName)
+{
+    auto namespaceWithType = pExt->GetTypeNameWithNameSpace();
+    return GetDeserializeMethod(namespaceWithType, withinClassTypeName);
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string IFileGenerator::GetSerializeMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName)
+{
+    return GetMethod(namespaceWithType, withinClassTypeName, sSerializeMethod);
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string IFileGenerator::GetDeserializeMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName)
+{
+    return GetMethod(namespaceWithType, withinClassTypeName, sDeserializeMethod);
+}
+//-----------------------------------------------------------------------------------------------------------
+std::string IFileGenerator::GetMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName, const std::string& methodName)
+{
+    std::string method;
+    if ( mSerializer == nullptr ) {
+        return method;
+    }
+
+    if ( mSerializer->externalSources != nullptr &&
+        mSerializer->externalSources->inExtSrcList != nullptr ) {
+
+        for ( auto& extSrc : mSerializer->externalSources->inExtSrcList.get()->val ) {
+            if ( extSrc.nameSpaceWithType.find(namespaceWithType) != extSrc.nameSpaceWithType.end() ) {
+                method = fmt::format("{}::{}::{}", extSrc.nameSpaceName, extSrc.className, methodName);
+                break;
+            }
+        }
+    }
+
+    if ( method.length() > 0 ) {
+        return method;
+    }
+
+    auto type = mTypeMng->FindTypeInfoBy(namespaceWithType, withinClassTypeName);
+    if ( type == nullptr ) {
+        return method;
+    }
+    method = methodName;
+    return method;
 }
 //-----------------------------------------------------------------------------------------------------------

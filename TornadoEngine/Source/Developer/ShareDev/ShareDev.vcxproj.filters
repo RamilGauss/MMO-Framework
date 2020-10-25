@@ -256,6 +256,9 @@
     <Filter Include="Generated Files">
       <UniqueIdentifier>{ff7a3578-6538-4578-9584-9d4af3143475}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ReflectionContainers">
+      <UniqueIdentifier>{6274044d-9b12-4437-992c-ee8e7b7b33e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\Components.cpp">
@@ -1132,6 +1135,36 @@
     </ClInclude>
     <ClInclude Include="Share\MathStructs.h">
       <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\ComponentsContainer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\HandlersContainer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\FeaturesContainer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\IJsonSerializer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\IBinaryMarshaller.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\IMyGuiSerializer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\ISqlSerializer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\IReflection.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\IEntityManagerExtension.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\ITypeInformation.h">
+      <Filter>ReflectionContainers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

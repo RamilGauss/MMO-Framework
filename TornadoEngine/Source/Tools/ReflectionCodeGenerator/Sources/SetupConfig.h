@@ -6,32 +6,39 @@ See for more information LICENSE.md.
 */
 
 #pragma once
+
 #include "ConfigContainer.h"
 
 class TSetupConfig
 {
-  nsReflectionCodeGenerator::TConfigContainer* mConfigContainer;
+    nsReflectionCodeGenerator::TConfigContainer* mConfigContainer;
 
-  int mArgc;
-  char** mArgv;
+    int mArgc;
+    char** mArgv;
 
-  std::string mPathToJsonFile;// abs or rel
-  std::string mAbsPathDirJson;
-  std::string mAbsPathJsonFile;
+    std::string mPathToJsonFile;// abs or rel
+    std::string mAbsPathDirJson;
+    std::string mAbsPathJsonFile;
 
 public:
-  TSetupConfig();
+    TSetupConfig();
 
-  bool Work();
+    bool Work();
 
 protected:
-  bool CheckArgs();
-  void ShowManual();
-  void DefaultConfig();
+    bool CheckArgs();
+    void ShowManual();
+    void DefaultConfig();
 private:
-  bool TryLoadConfig();
-  void ResolvePathes();
+    bool TryLoadConfig();
+    void ResolvePathes();
 
-  void ResolveJsonPath();
+    std::string ResolvePathRelativeConfig(const std::string& path);
+
+    void ResolveJsonPath();
+
+    void LoadExternalSources(nsReflectionCodeGenerator::TConfig* config);
+
+    void LoadExternalSources(nsReflectionCodeGenerator::TSerializer* serializer);
 };
 

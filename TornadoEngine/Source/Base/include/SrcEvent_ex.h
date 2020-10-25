@@ -13,16 +13,16 @@ See for more information LICENSE.md.
 
 //-------------------------------------------------------------------------------
 template<typename T>
-void TSrcEvent::AddEventWithoutCopy( T* pObject )
+void TSrcEvent::AddEventWithoutCopy(T* pObject)
 {
-  BL_ASSERT( pDstEvent );
-  pDstEvent->AddEventInQueueWithoutCopy<T>( mTypeObject, this, pObject, -1 );
+    BL_ASSERT(pDstEvent);
+    pDstEvent->AddEventInQueueWithoutCopy<T>(mTypeObject, this, pObject, -1);
 }
 //-------------------------------------------------------------------------------
 template<typename T>
-void TSrcEvent::AddEventWithoutCopy( T* pObject, unsigned int time_create_ms )
+void TSrcEvent::AddEventWithoutCopy(T* pObject, unsigned int time_create_ms)
 {
-  BL_ASSERT( pDstEvent );
-  pDstEvent->AddEventInQueueWithoutCopy<T>( mTypeObject, this, pObject, time_create_ms );
+    BL_ASSERT(pDstEvent);
+    pDstEvent->AddEventInQueueWithoutCopy<T>(mTypeObject, this, pObject, time_create_ms);
 }
 //-------------------------------------------------------------------------------

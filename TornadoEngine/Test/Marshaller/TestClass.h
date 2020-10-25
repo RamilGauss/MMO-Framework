@@ -10,9 +10,23 @@ See for more information LICENSE.md.
 #include <vector>
 #include "ParamClass.h"
 
+namespace nsUnknown0
+{
+    namespace nsUnknown1
+    {
+#pragma REFLECTION_ATTRIBUTE
+        struct UnknownType
+        {
+            std::string name;
+        };
+    }
+};
+
 #pragma REFLECTION_ATTRIBUTE
 class TTestClass : public nsECSFramework::IComponent
 {
 public:// member region
     std::vector<TParamClass> vParam;
+
+    nsUnknown0::nsUnknown1::UnknownType unknownType;
 };

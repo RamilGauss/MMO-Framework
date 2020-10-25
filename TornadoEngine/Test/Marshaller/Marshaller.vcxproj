@@ -84,6 +84,7 @@
     <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)_d</TargetName>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)\Exe\</OutDir>
@@ -204,17 +205,21 @@
     <ClCompile Include="EntityManagerExtension.cpp" />
     <ClCompile Include="JsonSerializer.cpp" />
     <ClCompile Include="Reflection.cpp" />
+    <ClCompile Include="TypeInformation.cpp" />
     <ClCompile Include="UnpackHandler.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseStruct.h" />
     <ClInclude Include="BinaryMarshaller.h" />
+    <ClInclude Include="CustomJsonSerializator.h" />
     <ClInclude Include="EntityManagerExtension.h" />
     <ClInclude Include="IncludeList.h" />
     <ClInclude Include="JsonSerializer.h" />
     <ClInclude Include="Reflection.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="TestStruct.h" />
+    <ClInclude Include="TypeInformation.h" />
     <ClInclude Include="UnpackHandler.h" />
     <ClInclude Include="ParamClass.h" />
     <ClInclude Include="TestClass.h" />
@@ -227,9 +232,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />
+    <None Include="Custom.json" />
+    <None Include="json1.bin" />
+    <None Include="OutSources.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Marshaller.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

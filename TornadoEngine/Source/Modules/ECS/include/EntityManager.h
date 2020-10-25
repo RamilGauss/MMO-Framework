@@ -62,6 +62,8 @@ namespace nsECSFramework
         template <typename Component>
         bool HasComponent(TEntityID eid);
 
+        void GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList);
+
         // filters
         template <typename Component>
         DllExport TEntityID NoInline GetByUnique(Component& c)
