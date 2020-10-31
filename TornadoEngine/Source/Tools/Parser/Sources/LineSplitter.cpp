@@ -7,25 +7,27 @@ See for more information LICENSE.md.
 
 #include "LineSplitter.h"
 #include "LineTokenEntity.h"
+#include "PreprocessorSplitter.h"
+#include "ColonSplitter.h"
 
 using namespace nsCppParser;
 
-void TLineSplitter::SplitLine(std::vector<std::shared_ptr<ITokenEntity>>& entities, int index)
+void TLineSplitter::SplitLine(std::shared_ptr<ITokenEntity>& entity, std::vector<std::shared_ptr<ITokenEntity>>& result)
 {
-    auto& ent = entities[index];
-
-    if ( ent->GetType() != ITokenEntity::Type::LINE ) {
+    if (entity->GetType() != ITokenEntity::Type::LINE) {
         return;
     }
 
-    auto line = (TLineTokenEntity*)ent.get();
+    std::vector<std::shared_ptr<ITokenEntity>> preprocessorResult;
+    TPreprocessorSplitter::SplitLine(entity, preprocessorResult);
 
-    std::string str;
-    for ( auto& tokenInfo : line->mTokenList )
-    {
-        str += tokenInfo.value;
+    for (auto& preprocessorprevTokenEnt : preprocessorResult) {
+        std::vector<std::shared_ptr<ITokenEntity>> colonResult;
+        TColonSplitter::SplitLine(preprocessorprevTokenEnt, colonResult);
+
+        for (auto& colonTokenEnt : colonResult) {
+            result.push_back(colonTokenEnt);
+        }
     }
-
-    printf("\n%s\n", str.data());
 }
 //--------------------------------------------------------------------------------------------------

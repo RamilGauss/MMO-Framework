@@ -12,8 +12,6 @@ See for more information LICENSE.md.
 #include "FileLexer.h"
 
 
-#include "Parser/Sources/Parser.h"
-
 using namespace nsReflectionCodeGenerator;
 namespace fs = std::filesystem;
 
@@ -32,9 +30,9 @@ void TParser::Work()
     // 2.1. Прогнать через токенизатор
     Tokenize();
 
-    // 2.2. Полученные токены использовать для создания описания типа (искать типы по атрибутам)
-    TFileLexer lexer;
-    lexer.Work();
+    //// 2.2. Полученные токены использовать для создания описания типа (искать типы по атрибутам)
+    //TFileLexer lexer;
+    //lexer.Work();
 }
 //--------------------------------------------------------------------------------------------------------
 void TParser::Tokenize()
@@ -57,14 +55,9 @@ void TParser::Tokenize()
         std::string instr;
         instr.append(data.GetPtr(), data.GetSize());
 
-        //###
-        nsCppParser::TParser cppParser;
-        cppParser.Parse(instr);
-        //###
+        mCppParser.Parse(instr);
 
-        if ( tokenizer.Work(instr, tokenList) == false ) {
-            printf("%s\n", tokenizer.ErrorDesc().data());
-        }
+        auto parseResult = mCppParser.GetResult();
     }
 }
 //--------------------------------------------------------------------------------------------------------

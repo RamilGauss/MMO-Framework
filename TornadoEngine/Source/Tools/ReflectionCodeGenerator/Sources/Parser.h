@@ -14,6 +14,8 @@ See for more information LICENSE.md.
 #include "SingletonManager.h"
 #include "ConfigContainer.h"
 
+#include "Parser/Sources/Parser.h"
+
 namespace nsReflectionCodeGenerator
 {
     class TParser
@@ -21,6 +23,8 @@ namespace nsReflectionCodeGenerator
         typedef std::set<std::string> TSetStr;
 
         std::set<std::string> mFilePathForParseSet;
+
+        nsCppParser::TParser mCppParser;
     public:
         void Work();
 

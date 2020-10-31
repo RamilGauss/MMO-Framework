@@ -16,18 +16,31 @@ See for more information LICENSE.md.
 #include "TypeInfo.h"
 #include "BlockTokenEntity.h"
 #include "LineSplitter.h"
+#include "ParserResultContainer.h"
+#include "LexemaEngine.h"
 
 namespace nsCppParser
 {
-    // content -> tokenizer -> blocks + lines -> {LineSplitter} -> lexer -> {TypeInfo}
+    // content -> 
+    // {token} -> 
+    // blocks + lines -> {LineSplitter} -> 
+    // lexemaEngine -> blocks + lexemas -> 
+    // container {TypeInfo, Functions, etc}
     class DllExport TParser
     {
         TBlockTokenEntity mRoot;
 
-        TLineSplitter lineSplitter;
+        TLineSplitter mLineSplitter;
+
+        TLexemaEngine mLexemaEngine;
+
+        TParserResultContainer mContainer;
     public:
         // Get results from TypeManager
         void Parse(const std::string& content);
+
+        const TParserResultContainer* GetResult() const;
+
     private:
         void LineSplit(TBlockTokenEntity* blockToken);
     };

@@ -7,17 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <vector>
-#include <memory>
-
 #include "TypeDef.h"
-#include "ITokenEntity.h"
+
+#include "ILexema.h"
 
 namespace nsCppParser
 {
-    class DllExport TLineSplitter
+    class DllExport TLexemaFactory
     {
     public:
-        static void SplitLine(std::shared_ptr<ITokenEntity>& entity, std::vector<std::shared_ptr<ITokenEntity>>& result);
+        static ILexema* New(ILexema::LexemaType lexemaType);
     };
 }

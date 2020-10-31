@@ -19,23 +19,45 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\AST_StateMachine.cpp" />
+    <ClCompile Include="Sources\ColonSplitter.cpp" />
     <ClCompile Include="Sources\EntitySplitter.cpp" />
+    <ClCompile Include="Sources\LexemaEngine.cpp" />
+    <ClCompile Include="Sources\LexemaFactory.cpp" />
     <ClCompile Include="Sources\LineSplitter.cpp" />
     <ClCompile Include="Sources\MemberInfo.cpp" />
     <ClCompile Include="Sources\MemberTypeExtendedInfo.cpp" />
     <ClCompile Include="Sources\Parser.cpp" />
+    <ClCompile Include="Sources\PreprocessorSplitter.cpp" />
     <ClCompile Include="Sources\Tokenizer.cpp" />
     <ClCompile Include="Sources\TypeInfo.cpp" />
     <ClCompile Include="Sources\TypeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\AccessLexema.h" />
+    <ClInclude Include="Sources\ClassLexema.h" />
+    <ClInclude Include="Sources\ColonSplitter.h" />
+    <ClInclude Include="Sources\EmptyLexema.h" />
     <ClInclude Include="Sources\EntitySplitter.h" />
+    <ClInclude Include="Sources\EnumLexema.h" />
     <ClInclude Include="Sources\FriendInfo.h" />
+    <ClInclude Include="Sources\FriendLexema.h" />
+    <ClInclude Include="Sources\FunctionDeclarationLexema.h" />
+    <ClInclude Include="Sources\FunctionDefinitionLexema.h" />
+    <ClInclude Include="Sources\ILexema.h" />
+    <ClInclude Include="Sources\LexemaEngine.h" />
+    <ClInclude Include="Sources\LexemaFactory.h" />
+    <ClInclude Include="Sources\MemberLexema.h" />
+    <ClInclude Include="Sources\MethodDeclarationLexema.h" />
+    <ClInclude Include="Sources\MethodDefinitionLexema.h" />
+    <ClInclude Include="Sources\NamespaceLexema.h" />
+    <ClInclude Include="Sources\ParserResultContainer.h" />
+    <ClInclude Include="Sources\PragmaLexema.h" />
+    <ClInclude Include="Sources\PreprocessorSplitter.h" />
+    <ClInclude Include="Sources\StructLexema.h" />
+    <ClInclude Include="Sources\TypeDeclarationLexema.h" />
     <ClInclude Include="Sources\TypeManager.h" />
     <ClInclude Include="Sources\TypeReference.h" />
     <ClInclude Include="Sources\Types.h" />
-    <ClInclude Include="Sources\AST_StateMachine.h" />
     <ClInclude Include="Sources\BlockTokenEntity.h" />
     <ClInclude Include="Sources\InheritanceInfo.h" />
     <ClInclude Include="Sources\ITokenEntity.h" />
@@ -46,7 +68,6 @@
     <ClInclude Include="Sources\MethodInfo.h" />
     <ClInclude Include="Sources\Parser.h" />
     <ClInclude Include="Sources\TokenInfo.h" />
-    <ClInclude Include="Sources\TokenInfoManager.h" />
     <ClInclude Include="Sources\Tokenizer.h" />
     <ClInclude Include="Sources\TypeInfo.h" />
   </ItemGroup>
@@ -193,6 +214,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

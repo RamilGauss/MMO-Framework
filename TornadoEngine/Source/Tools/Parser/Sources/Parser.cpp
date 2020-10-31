@@ -13,6 +13,8 @@ using namespace nsCppParser;
 
 void TParser::Parse(const std::string& content)
 {
+    mContainer.Clear();
+
     std::list<TTokenInfo> resultList;
     TTokenizer tokenizer;
     tokenizer.Work(content, resultList);
@@ -21,19 +23,31 @@ void TParser::Parse(const std::string& content)
     entLineSplitter.Work(resultList, mRoot);
 
     LineSplit(&mRoot);
+
+
 }
 //--------------------------------------------------------------------------------------------------------
 void TParser::LineSplit(TBlockTokenEntity* blockToken)
 {
-    int index = 0;
-    for ( auto& token : blockToken->mTokens ) {
+    std::vector<std::shared_ptr<ITokenEntity>> result;
+    for (auto& token : blockToken->mTokens) {
 
-        if ( token->GetType() == ITokenEntity::Type::BLOCK ) {
-            LineSplit( (TBlockTokenEntity*)token.get());
+        switch (token->GetType()) {
+            case ITokenEntity::Type::BLOCK:
+                result.push_back(token);
+                LineSplit((TBlockTokenEntity*) token.get());
+                break;
+            case ITokenEntity::Type::LINE:
+                mLineSplitter.SplitLine(token, result);
+                break;
         }
-
-        lineSplitter.SplitLine(blockToken->mTokens, index);
-        index++;
     }
+
+    blockToken->mTokens.swap(result);
+}
+//--------------------------------------------------------------------------------------------------------
+const TParserResultContainer* TParser::GetResult() const
+{
+    return &mContainer;
 }
 //--------------------------------------------------------------------------------------------------------

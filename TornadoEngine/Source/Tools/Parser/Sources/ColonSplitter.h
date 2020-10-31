@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 
 namespace nsCppParser
 {
-    class DllExport TLineSplitter
+    class DllExport TColonSplitter
     {
     public:
         static void SplitLine(std::shared_ptr<ITokenEntity>& entity, std::vector<std::shared_ptr<ITokenEntity>>& result);

@@ -7,17 +7,25 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <vector>
+#include <list>
 #include <memory>
 
 #include "TypeDef.h"
-#include "ITokenEntity.h"
+#include "TypeInfo.h"
 
 namespace nsCppParser
 {
-    class DllExport TLineSplitter
+    class DllExport TParserResultContainer
     {
     public:
-        static void SplitLine(std::shared_ptr<ITokenEntity>& entity, std::vector<std::shared_ptr<ITokenEntity>>& result);
+        std::list<std::shared_ptr<TTypeInfo>> mTypeList;
+
+        //std::list<std::shared_ptr<TFunctionInfo>> mFunctionList;
+
+
+        void Clear()
+        {
+            mTypeList.clear();
+        }
     };
 }

@@ -7,17 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <vector>
-#include <memory>
-
 #include "TypeDef.h"
-#include "ITokenEntity.h"
 
 namespace nsCppParser
 {
-    class DllExport TLineSplitter
+    class DllExport TLexemaEngine
     {
     public:
-        static void SplitLine(std::shared_ptr<ITokenEntity>& entity, std::vector<std::shared_ptr<ITokenEntity>>& result);
+        void Work();
     };
 }

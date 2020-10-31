@@ -13,7 +13,7 @@ namespace nsCppParser
 {
     enum class DeclarationType
     {
-        CLASS, STRUCT
+        CLASS, STRUCT, ENUM
     };
 
     enum class AccessLevel
@@ -38,8 +38,6 @@ namespace nsCppParser
 
     enum class TemplateArgument
     {
-        TYPENAME,
-        CLASS,
-        TYPE
+        TYPENAME, CLASS, TYPE
     };
 }

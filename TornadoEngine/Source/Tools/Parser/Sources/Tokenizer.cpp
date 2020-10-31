@@ -12,7 +12,6 @@ See for more information LICENSE.md.
 
 #include "LoadFromFile.h"
 #include "SingletonManager.h"
-#include "TokenInfoManager.h"
 #include "TokenInfo.h"
 
 using namespace boost::wave;
