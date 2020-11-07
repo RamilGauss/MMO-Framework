@@ -34,6 +34,8 @@ namespace nsCppParser
 
     struct DllExport TMethodInfo
     {
+        std::string mName;
+
         std::set<std::string> mPragmaTextSet;
 
         AccessLevel mAccessLevel;
@@ -45,8 +47,6 @@ namespace nsCppParser
         std::vector<TTypeReference> mArguments;
 
         std::vector<TTemplateArgument> mTemplateArguments;
-
-        std::vector<TFriendInfo> mFriends;
 
         TMethodContent mContent;
     };

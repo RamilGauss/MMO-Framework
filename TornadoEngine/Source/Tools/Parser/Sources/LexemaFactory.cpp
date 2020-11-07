@@ -21,6 +21,8 @@ See for more information LICENSE.md.
 #include "MemberLexema.h"
 #include "FunctionDefinitionLexema.h"
 #include "FunctionDeclarationLexema.h"
+#include "PragmaLexema.h"
+#include "IdentifierLexema.h"
 
 using namespace nsCppParser;
 
@@ -64,6 +66,12 @@ ILexema* TLexemaFactory::New(ILexema::LexemaType lexemaType)
             break;
         case ILexema::LexemaType::FRIEND:
             newLexema = new TFriendLexema();
+            break;
+        case ILexema::LexemaType::PRAGMA:
+            newLexema = new TPragmaLexema();
+            break;        
+        case ILexema::LexemaType::IDENTIFIER:
+            newLexema = new TIdentifierLexema();
             break;
         default:
             break;

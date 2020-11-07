@@ -19,17 +19,14 @@ namespace nsCppParser
         // friend type, etc.
         ILexema::LexemaType GetType() override { return ILexema::LexemaType::FRIEND; }
 
-        bool CanFill(const TLineTokenEntity& line) const override
+        bool CanFill(const TLineTokenEntity* line) const override
         {
-            for (auto& t : line.mTokenList) {
-                if (t.id == boost::wave::T_FRIEND) {
-                    return true;
-                }
-            }
+            using namespace boost::wave;
+
             return false;
         }
 
-        void Fill(const TLineTokenEntity& line) override
+        void Fill(const TLineTokenEntity* line) override
         {
 
         }

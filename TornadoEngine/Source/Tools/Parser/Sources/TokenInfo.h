@@ -12,9 +12,12 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-struct DllExport TTokenInfo
+namespace nsCppParser
 {
-    boost::wave::token_id id;
-    std::string strId;
-    std::string value;
-};
+    struct DllExport TTokenInfo
+    {
+        boost::wave::token_id id;
+        std::string strId;
+        std::string value;
+    };
+}

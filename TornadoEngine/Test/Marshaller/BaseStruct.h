@@ -7,10 +7,48 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <vector>
+
+class A
+{
+    unsigned int x = 0;
+    float y;
+    double z;
+
+    std::vector<int> vx;
+
+public:
+    virtual void Foo(){}
+};
+
+class B : public A
+{
+public:
+    void Foo() override {}
+};
+
+#pragma REFLECTION_ATTRIBUTE
+#pragma "my comment is here"
+template<class TTT, typename XXX, int abc>
 class X
 {
-int x; public   
-: int a;  protected : int b; private  : int c;
+    TTT t;
+
+    void Func(std::string& s = std::string()) const
+    {
+
+    }
+
+    template<TTT ttt = TTT()>
+    TTT TemplateFunc(T& s = T()) const
+    {
+        return t;
+    }
+
+    inline static std::vector<std::string> TFunc(T& s = T()) const
+    {
+
+    }
 };
 
 #include <string>
@@ -23,7 +61,6 @@ int x; public
 namespace nsBS
 {
 #pragma REFLECTION_ATTRIBUTE
-#pragma "мой комментарий here"
     struct TBaseStruct : nsECSFramework::IComponent
     {
         std::string s = "0123456789";

@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 #include <string>
 #include <cstdlib>
 #include <fmt/core.h>
+#include <fmt/color.h>
 
 #include "SingletonManager.h"
 #include "Config.h"
@@ -32,15 +33,19 @@ using namespace nsReflectionCodeGenerator;
 //---------------------------------------------------------------------------------------
 void ShowTitle()
 {
-    fmt::print("{} version {}, build {}, info {}\n",
+    auto parserInfo = nsCppParser::TParser::GetInfo();
+
+    fmt::print("{} version {}, build {}, info {},\n",
         nsProgramInfo::NAME, nsProgramInfo::VERSION, nsProgramInfo::COUNTER_BUILD, nsProgramInfo::INFO);
+
+    fmt::print("\n{}\n", parserInfo);
 }
 //---------------------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
     const char* sLocale = setlocale(LC_CTYPE, "");
     sLocale = setlocale(LC_CTYPE, sLocale);
-    if ( sLocale == nullptr ) {
+    if (sLocale == nullptr) {
         BL_FIX_BUG();
     }
 
@@ -48,8 +53,9 @@ int main(int argc, char* argv[])
         ShowTitle();
 
         TSetupConfig setupConfig;
-        if ( setupConfig.Work() == false )
+        if (setupConfig.Work() == false) {
             return 1;
+        }
 
         TParser parser;
         parser.Work();
@@ -60,8 +66,7 @@ int main(int argc, char* argv[])
 
         TCodeGeneratorFusion cgFusion;
         cgFusion.Work();
-    }
-    catch ( std::exception& ex ) {
+    } catch (std::exception& ex) {
         printf("exception: %s\n", ex.what());
         return 1;
     }

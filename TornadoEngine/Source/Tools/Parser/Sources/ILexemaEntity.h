@@ -9,15 +9,16 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include "MethodLexema.h"
-
 namespace nsCppParser
 {
-    class DllExport TMethodDeclarationLexema : public TMethodLexema
+    class DllExport ILexemaEntity
     {
     public:
-        TMethodDeclarationLexema() : TMethodLexema(ILexema::LexemaType::METHOD_DECLARATION) {}
+        enum class Type
+        {
+            LINE, BLOCK
+        };
 
-        ~TMethodDeclarationLexema() {}
+        virtual Type GetType() = 0;
     };
 }

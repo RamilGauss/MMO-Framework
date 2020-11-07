@@ -20,17 +20,21 @@ namespace nsCppParser
 
         ILexema::LexemaType GetType() override { return ILexema::LexemaType::ENUM; }
 
-        bool CanFill(const TLineTokenEntity& line) const override
+        bool CanFill(const TLineTokenEntity* line) const override
         {
-            line;
+            using namespace boost::wave;
 
-            if (line.mTokenList[0].id == 0) {
+            bool isEnum = false;
+            for (auto& t : line->mTokenList) {
 
+                if (t.id == T_ENUM) {
+                    isEnum = true;
+                }
             }
-            return false;
+            return isEnum;
         }
 
-        void Fill(const TLineTokenEntity& line) override
+        void Fill(const TLineTokenEntity* line) override
         {
 
         }

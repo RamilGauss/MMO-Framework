@@ -12,9 +12,9 @@ See for more information LICENSE.md.
 using namespace nsCppParser;
 using namespace boost::wave;
 
-void TEntitySplitter::Work(const std::list<TTokenInfo>& tokenList, TBlockTokenEntity& root)
+void TEntitySplitter::Work(const std::list<TTokenInfo>& tokenList, TBlockTokenEntity* root)
 {
-    mCurrentBlock = &root;
+    mCurrentBlock = root;
     for ( auto tokenInfo : tokenList ) {
         HandleToken(tokenInfo);
     }

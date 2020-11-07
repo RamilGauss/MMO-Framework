@@ -18,6 +18,7 @@ See for more information LICENSE.md.
 #include "LineSplitter.h"
 #include "ParserResultContainer.h"
 #include "LexemaEngine.h"
+#include "BlockLexemaEntity.h"
 
 namespace nsCppParser
 {
@@ -28,7 +29,9 @@ namespace nsCppParser
     // container {TypeInfo, Functions, etc}
     class DllExport TParser
     {
-        TBlockTokenEntity mRoot;
+        std::shared_ptr<TBlockTokenEntity> mTokenRoot;
+        std::shared_ptr<TBlockLexemaEntity> mLexemaRoot;
+
 
         TLineSplitter mLineSplitter;
 
@@ -41,7 +44,10 @@ namespace nsCppParser
 
         const TParserResultContainer* GetResult() const;
 
+
+        static std::string GetInfo();
     private:
         void LineSplit(TBlockTokenEntity* blockToken);
+        void ConvertTokenTreeToLexemaTree(TBlockTokenEntity* blockToken, TBlockLexemaEntity* blockLexema);
     };
 }

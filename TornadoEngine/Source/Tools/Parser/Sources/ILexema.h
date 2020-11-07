@@ -11,6 +11,10 @@ See for more information LICENSE.md.
 
 #include "LineTokenEntity.h"
 
+#include "magic_enum.hpp"
+
+#include "fmt/core.h"
+
 namespace nsCppParser
 {
     class DllExport ILexema
@@ -39,6 +43,8 @@ namespace nsCppParser
             FRIEND,
 
             PRAGMA,
+
+            IDENTIFIER,
             // IF,
             // FOR,
             // CASE,
@@ -46,15 +52,21 @@ namespace nsCppParser
             // LAMBDA,
             // TRY,
             // CATCH,
-            COUNT,
         };
 
 
         virtual LexemaType GetType() = 0;
 
-        virtual bool CanFill(const TLineTokenEntity& line) const = 0;
-        virtual void Fill(const TLineTokenEntity& line) = 0;
+        virtual bool CanFill(const TLineTokenEntity* line) const = 0;
+        virtual void Fill(const TLineTokenEntity* line) = 0;
 
         virtual ~ILexema() {}
+
+
+        virtual std::string GetInfo()
+        {
+            auto type = magic_enum::enum_name<ILexema::LexemaType>(GetType());
+            return type.data();
+        }
     };
 }

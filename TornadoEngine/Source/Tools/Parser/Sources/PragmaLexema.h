@@ -20,19 +20,44 @@ namespace nsCppParser
 
         ILexema::LexemaType GetType() override { return ILexema::LexemaType::PRAGMA; }
 
-        bool CanFill(const TLineTokenEntity& line) const override
+        bool CanFill(const TLineTokenEntity* line) const override
         {
-            if (line.mTokenList[0].id == boost::wave::T_PP_PRAGMA ) {
-                return true;
+            bool isPragma = false;
+
+            using namespace boost::wave;
+            for (auto& t : line->mTokenList) {
+
+                if (t.id == T_PP_PRAGMA) {
+                    isPragma = true;
+                }
             }
-            return false;
+            return isPragma;
         }
 
-        void Fill(const TLineTokenEntity& line) override
+        void Fill(const TLineTokenEntity* line) override
         {
+            bool isPragma = false;
 
+            using namespace boost::wave;
+            for (auto& t : line->mTokenList) {
+
+                if (t.id == T_PP_PRAGMA) {
+                    isPragma = true;
+                }
+                if (t.id == T_NEWLINE) {
+                    isPragma = false;
+                }
+                if ((t.id == T_IDENTIFIER || t.id == T_STRINGLIT) && isPragma) {
+                    mValue = t.value;
+                }
+            }
         }
 
         ~TPragmaLexema() {}
+
+        std::string GetInfo() override
+        {
+            return fmt::format("{}: value {}", ILexema::GetInfo(), mValue);
+        }
     };
 }

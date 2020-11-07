@@ -8,12 +8,21 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeDef.h"
+#include <array>
+#include <memory>
+#include "ILexema.h"
+
+#include "magic_enum.hpp"
 
 namespace nsCppParser
 {
     class DllExport TLexemaEngine
     {
+        std::array<std::shared_ptr<ILexema>, magic_enum::enum_count<ILexema::LexemaType>()> mLexemas;
+
     public:
-        void Work();
+        TLexemaEngine();
+
+        ILexema* Work(TLineTokenEntity* lineTokenEntity);
     };
 }

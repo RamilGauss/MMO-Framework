@@ -9,25 +9,14 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include "ILexema.h"
+#include "MethodLexema.h"
 
 namespace nsCppParser
 {
-    class DllExport TMethodDefinitionLexema : public ILexema
+    class DllExport TMethodDefinitionLexema : public TMethodLexema
     {
     public:
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::METHOD_DEFINITION; }
-
-        bool CanFill(const TLineTokenEntity& line) const override
-        {
-            return false;
-        }
-
-        void Fill(const TLineTokenEntity& line) override
-        {
-
-        }
-
+        TMethodDefinitionLexema() : TMethodLexema(ILexema::LexemaType::METHOD_DEFINITION) {}
         ~TMethodDefinitionLexema() {}
     };
 }

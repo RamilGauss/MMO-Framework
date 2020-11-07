@@ -22,7 +22,7 @@ namespace nsCppParser
 
         TLineTokenEntity mLineToken;
     public:
-        void Work(const std::list<TTokenInfo>& tokenList, TBlockTokenEntity& root);
+        void Work(const std::list<TTokenInfo>& tokenList, TBlockTokenEntity* root);
 
     private:
         void HandleToken(const TTokenInfo& tokenInfo);

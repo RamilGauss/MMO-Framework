@@ -18,21 +18,15 @@
     <Filter Include="Infos">
       <UniqueIdentifier>{5260fafa-0b31-4c24-8b2e-75ad2ef8f5ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tokenize">
+      <UniqueIdentifier>{4c4705df-1039-476e-b234-2d535318bcec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\TypeInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\MemberInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MemberTypeExtendedInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Tokenizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\TypeManager.cpp">
@@ -56,24 +50,18 @@
     <ClCompile Include="Sources\LexemaEngine.cpp">
       <Filter>Lexemas</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Tokenizer.cpp">
+      <Filter>Tokenize</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\MemberTypeExtendedInfo.cpp">
+      <Filter>Infos</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInfo.cpp">
+      <Filter>Infos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ITokenEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\BlockTokenEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Tokenizer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\TokenInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\LineTokenEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\TypeManager.h">
@@ -167,6 +155,36 @@
       <Filter>Infos</Filter>
     </ClInclude>
     <ClInclude Include="Sources\LexemaEngine.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Tokenizer.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TokenInfo.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BlockTokenEntity.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ITokenEntity.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\LineTokenEntity.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ILexemaEntity.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BlockLexemaEntity.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\LineLexemaEntity.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\IdentifierLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MethodLexema.h">
       <Filter>Lexemas</Filter>
     </ClInclude>
   </ItemGroup>

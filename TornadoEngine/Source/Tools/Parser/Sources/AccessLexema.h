@@ -22,36 +22,44 @@ namespace nsCppParser
 
         ILexema::LexemaType GetType() override { return ILexema::LexemaType::ACCESS; }
 
-        bool CanFill(const TLineTokenEntity& line) const override
+        bool CanFill(const TLineTokenEntity* line) const override
         {
-            for (auto& t : line.mTokenList) {
+            using namespace boost::wave;
+            bool hasAccessAttribute = false;
+            bool hasColon = false;
+
+            for (auto& t : line->mTokenList) {
 
                 if (t.id == boost::wave::T_PUBLIC) {
-                    return true;
+                    hasAccessAttribute = true;
                 }
                 if (t.id == boost::wave::T_PRIVATE) {
-                    return true;
+                    hasAccessAttribute = true;
                 }
                 if (t.id == boost::wave::T_PROTECTED) {
-                    return true;
+                    hasAccessAttribute = true;
+                }
+                if (t.id == boost::wave::T_COLON && hasAccessAttribute) {
+                    hasColon = true;
                 }
             }
-            return false;
+            return hasAccessAttribute && hasColon;
         }
 
-        void Fill(const TLineTokenEntity& line) override
+        void Fill(const TLineTokenEntity* line) override
         {
-            for (auto& t : line.mTokenList) {
+            using namespace boost::wave;
+            for (auto& t : line->mTokenList) {
 
-                if (t.id == boost::wave::T_PUBLIC) {
+                if (t.id == T_PUBLIC) {
                     mAccessLevel = AccessLevel::PUBLIC;
                     return;
                 }
-                if (t.id == boost::wave::T_PRIVATE) {
+                if (t.id == T_PRIVATE) {
                     mAccessLevel = AccessLevel::PRIVATE;
                     return;
                 }
-                if (t.id == boost::wave::T_PROTECTED) {
+                if (t.id == T_PROTECTED) {
                     mAccessLevel = AccessLevel::PROTECTED;
                     return;
                 }

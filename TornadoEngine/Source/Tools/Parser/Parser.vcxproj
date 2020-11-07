@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\AccessLexema.h" />
+    <ClInclude Include="Sources\BlockLexemaEntity.h" />
     <ClInclude Include="Sources\ClassLexema.h" />
     <ClInclude Include="Sources\ColonSplitter.h" />
     <ClInclude Include="Sources\EmptyLexema.h" />
@@ -43,12 +44,16 @@
     <ClInclude Include="Sources\FriendLexema.h" />
     <ClInclude Include="Sources\FunctionDeclarationLexema.h" />
     <ClInclude Include="Sources\FunctionDefinitionLexema.h" />
+    <ClInclude Include="Sources\IdentifierLexema.h" />
     <ClInclude Include="Sources\ILexema.h" />
+    <ClInclude Include="Sources\ILexemaEntity.h" />
     <ClInclude Include="Sources\LexemaEngine.h" />
     <ClInclude Include="Sources\LexemaFactory.h" />
+    <ClInclude Include="Sources\LineLexemaEntity.h" />
     <ClInclude Include="Sources\MemberLexema.h" />
     <ClInclude Include="Sources\MethodDeclarationLexema.h" />
     <ClInclude Include="Sources\MethodDefinitionLexema.h" />
+    <ClInclude Include="Sources\MethodLexema.h" />
     <ClInclude Include="Sources\NamespaceLexema.h" />
     <ClInclude Include="Sources\ParserResultContainer.h" />
     <ClInclude Include="Sources\PragmaLexema.h" />
@@ -215,6 +220,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
       <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

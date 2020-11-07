@@ -13,43 +13,45 @@ See for more information LICENSE.md.
 
 namespace nsCppParser
 {
-    class DllExport TNamespaceLexema : public ILexema
+    class DllExport TIdentifierLexema : public ILexema
     {
     public:
-        std::string mName;
+        std::string mIdentifier;
 
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::NAMESPACE; }
+        ILexema::LexemaType GetType() override { return ILexema::LexemaType::IDENTIFIER; }
 
         bool CanFill(const TLineTokenEntity* line) const override
         {
             using namespace boost::wave;
-            bool hasNamespace = false;
-            bool hasUsing = false;
+            bool hasIdentifier = false;
 
             for (auto& t : line->mTokenList) {
-                if (t.id == T_NAMESPACE) {
-                    hasNamespace = true;
+
+                if (t.id != T_IDENTIFIER &&
+                    t.id != T_SPACE &&
+                    t.id != T_SPACE2 &&
+                    t.id != T_NEWLINE) {
+                    return false;
                 }
-                if (t.id == T_USING) {
-                    hasUsing = true;
+                if (t.id == T_IDENTIFIER) {
+                    hasIdentifier = true;
                 }
+
             }
-            return hasNamespace && !hasUsing;
+            return hasIdentifier;
         }
 
         void Fill(const TLineTokenEntity* line) override
         {
             using namespace boost::wave;
-            bool hasNamespace = false;
-            bool hasUsing = false;
-
             for (auto& t : line->mTokenList) {
-                if (t.id == T_IDENTIFIER) {
-                    mName = t.value;
+
+                if (t.id != T_IDENTIFIER) {
+                    mIdentifier = t.value;
                 }
             }
         }
 
-        ~TNamespaceLexema() {}
+        ~TIdentifierLexema() {}
     };
 }

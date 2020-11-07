@@ -18,17 +18,23 @@ namespace nsCppParser
     public:
         ILexema::LexemaType GetType() override { return ILexema::LexemaType::EMPTY; }
 
-        bool CanFill(const TLineTokenEntity& line) const override
+        bool CanFill(const TLineTokenEntity* line) const override
         {
-            line;
+            using namespace boost::wave;
 
-            if (line.mTokenList[0].id == 0) {
+            for (auto& t : line->mTokenList) {
 
+                if (t.id != T_SPACE &&
+                    t.id != T_SPACE2 &&
+                    t.id != T_NEWLINE &&
+                    t.id != T_SEMICOLON) {
+                    return false;
+                }
             }
-            return false;
+            return true;
         }
 
-        void Fill(const TLineTokenEntity& line) override
+        void Fill(const TLineTokenEntity* line) override
         {
 
         }
