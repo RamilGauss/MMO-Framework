@@ -26,7 +26,7 @@ namespace nsCppParser
             bool hasNamespace = false;
             bool hasUsing = false;
 
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
                 if (t.id == T_NAMESPACE) {
                     hasNamespace = true;
                 }
@@ -43,7 +43,7 @@ namespace nsCppParser
             bool hasNamespace = false;
             bool hasUsing = false;
 
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
                 if (t.id == T_IDENTIFIER) {
                     mName = t.value;
                 }

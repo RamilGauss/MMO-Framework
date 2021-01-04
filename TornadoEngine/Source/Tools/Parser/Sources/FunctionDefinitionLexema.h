@@ -9,30 +9,14 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include "ILexema.h"
+#include "FunctionLexema.h"
 
 namespace nsCppParser
 {
-    class DllExport TFunctionDefinitionLexema : public ILexema
+    class DllExport TFunctionDefinitionLexema : public TFunctionLexema
     {
     public:
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::FUNCTION_DEFINITION; }
-
-        bool CanFill(const TLineTokenEntity* line) const override
-        {
-            using namespace boost::wave;
-
-            //if (line->mTokenList[0].id == 0) {
-
-            //}
-            return false;
-        }
-
-        void Fill(const TLineTokenEntity* line) override
-        {
-
-        }
-
+        TFunctionDefinitionLexema() : TFunctionLexema(ILexema::LexemaType::FUNCTION_DEFINITION) {}
         ~TFunctionDefinitionLexema() {}
     };
 }

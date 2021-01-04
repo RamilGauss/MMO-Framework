@@ -25,7 +25,7 @@ namespace nsCppParser
             using namespace boost::wave;
 
             bool isEnum = false;
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id == T_ENUM) {
                     isEnum = true;

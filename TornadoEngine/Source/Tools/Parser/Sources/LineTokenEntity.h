@@ -19,7 +19,7 @@ namespace nsCppParser
     class DllExport TLineTokenEntity : public ITokenEntity
     {
     public:
-        std::vector<TTokenInfo> mTokenList;
+        std::vector<TTokenInfo> mTokens;
 
         virtual Type GetType() override
         {

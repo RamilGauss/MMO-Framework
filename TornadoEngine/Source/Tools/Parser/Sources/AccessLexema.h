@@ -28,7 +28,7 @@ namespace nsCppParser
             bool hasAccessAttribute = false;
             bool hasColon = false;
 
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id == boost::wave::T_PUBLIC) {
                     hasAccessAttribute = true;
@@ -49,7 +49,7 @@ namespace nsCppParser
         void Fill(const TLineTokenEntity* line) override
         {
             using namespace boost::wave;
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id == T_PUBLIC) {
                     mAccessLevel = AccessLevel::PUBLIC;

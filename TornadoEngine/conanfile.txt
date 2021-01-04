@@ -4,22 +4,16 @@
     lz4/1.9.2
     fmt/7.1.2
     openssl/1.1.1h
-    boost/1.74.0
+    boost/1.75.0
     bullet3/2.89
-
-
-    #OGRE/1.11.6-with-patches@anotherfoxguy/stable
-    #MyGUI/3.2.3-OGRE-1.11.6-with-patches@anotherfoxguy/stable
-    #squirrel/3.1
+    gtest/1.10.0
 
 [options]
     fmt:shared=True
     openssl:shared=True
     boost:shared=False
+    gtest:shared=True
     
-
-    #squirrel:shared=True
-
 [imports]
     bin, *.dll -> ../../Exe
     lib, *.lib -> ../../Lib

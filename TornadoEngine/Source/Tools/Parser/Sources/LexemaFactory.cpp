@@ -16,11 +16,9 @@ See for more information LICENSE.md.
 #include "AccessLexema.h"
 #include "EnumLexema.h"
 #include "FriendLexema.h"
-#include "MethodDefinitionLexema.h"
-#include "MethodDeclarationLexema.h"
-#include "MemberLexema.h"
 #include "FunctionDefinitionLexema.h"
 #include "FunctionDeclarationLexema.h"
+#include "VariableDeclarationLexema.h"
 #include "PragmaLexema.h"
 #include "IdentifierLexema.h"
 
@@ -49,20 +47,14 @@ ILexema* TLexemaFactory::New(ILexema::LexemaType lexemaType)
         case ILexema::LexemaType::ENUM:
             newLexema = new TEnumLexema();
             break;
+        case ILexema::LexemaType::VARIABLE_DECLARATION:
+            newLexema = new TVariableDeclarationLexema();
+            break;
         case ILexema::LexemaType::FUNCTION_DECLARATION:
             newLexema = new TFunctionDeclarationLexema();
             break;
         case ILexema::LexemaType::FUNCTION_DEFINITION:
             newLexema = new TFunctionDefinitionLexema();
-            break;
-        case ILexema::LexemaType::MEMBER:
-            newLexema = new TMemberLexema();
-            break;
-        case ILexema::LexemaType::METHOD_DECLARATION:
-            newLexema = new TMethodDeclarationLexema();
-            break;
-        case ILexema::LexemaType::METHOD_DEFINITION:
-            newLexema = new TMethodDefinitionLexema();
             break;
         case ILexema::LexemaType::FRIEND:
             newLexema = new TFriendLexema();

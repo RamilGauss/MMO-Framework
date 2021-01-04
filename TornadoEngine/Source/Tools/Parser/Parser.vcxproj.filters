@@ -85,12 +85,6 @@
     <ClInclude Include="Sources\EnumLexema.h">
       <Filter>Lexemas</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\MemberLexema.h">
-      <Filter>Lexemas</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\MethodDeclarationLexema.h">
-      <Filter>Lexemas</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\LineSplitter.h">
       <Filter>Splitters</Filter>
     </ClInclude>
@@ -108,15 +102,6 @@
     </ClInclude>
     <ClInclude Include="Sources\PreprocessorSplitter.h">
       <Filter>Splitters</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\MethodDefinitionLexema.h">
-      <Filter>Lexemas</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\FunctionDeclarationLexema.h">
-      <Filter>Lexemas</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\FunctionDefinitionLexema.h">
-      <Filter>Lexemas</Filter>
     </ClInclude>
     <ClInclude Include="Sources\ColonSplitter.h">
       <Filter>Splitters</Filter>
@@ -184,7 +169,16 @@
     <ClInclude Include="Sources\IdentifierLexema.h">
       <Filter>Lexemas</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\MethodLexema.h">
+    <ClInclude Include="Sources\VariableDeclarationLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\FunctionLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\FunctionDefinitionLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\FunctionDeclarationLexema.h">
       <Filter>Lexemas</Filter>
     </ClInclude>
   </ItemGroup>

@@ -31,14 +31,11 @@ namespace nsCppParser
             CLASS,
             STRUCT,
             ENUM,
-
+            
+            VARIABLE_DECLARATION,
+            
             FUNCTION_DECLARATION,
             FUNCTION_DEFINITION,
-            
-            MEMBER,
-            
-            METHOD_DECLARATION,
-            METHOD_DEFINITION,
 
             FRIEND,
 
@@ -62,8 +59,7 @@ namespace nsCppParser
 
         virtual ~ILexema() {}
 
-
-        virtual std::string GetInfo()
+        virtual std::string ToString()
         {
             auto type = magic_enum::enum_name<ILexema::LexemaType>(GetType());
             return type.data();

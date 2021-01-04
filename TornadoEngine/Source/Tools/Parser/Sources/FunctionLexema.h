@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 
 namespace nsCppParser
 {
-    class DllExport TMethodLexema : public ILexema
+    class DllExport TFunctionLexema : public ILexema
     {
         ILexema::LexemaType mLexemaType;
 
@@ -32,7 +32,7 @@ namespace nsCppParser
 
         TMethodContent mContent;
 
-        TMethodLexema(ILexema::LexemaType lexemaType) :mLexemaType(lexemaType) {};
+        TFunctionLexema(ILexema::LexemaType lexemaType) :mLexemaType(lexemaType) {};
 
         LexemaType GetType() override
         {
@@ -41,17 +41,17 @@ namespace nsCppParser
 
         bool CanFill(const TLineTokenEntity* line) const override
         {
-            return mLexemaType == ILexema::LexemaType::METHOD_DECLARATION ?
+            return mLexemaType == ILexema::LexemaType::FUNCTION_DECLARATION ?
                 CanFillDeclaration(line) : CanFillDefinition(line);
         }
 
         void Fill(const TLineTokenEntity* line) override
         {
-            mLexemaType == ILexema::LexemaType::METHOD_DECLARATION ?
+            mLexemaType == ILexema::LexemaType::FUNCTION_DECLARATION ?
                 FillDeclaration(line) : FillDefinition(line);
         }
 
-        ~TMethodLexema() {}
+        ~TFunctionLexema() {}
     protected:
         bool CanFillDefinition(const TLineTokenEntity* line) const
         {
@@ -61,7 +61,7 @@ namespace nsCppParser
             int cornerCount = 0;
             int parenCount = 0;
 
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id == T_IDENTIFIER && cornerCount == 0 && parenCount == 0) {
                     isIdentifier = true;
@@ -100,7 +100,7 @@ namespace nsCppParser
             using namespace boost::wave;
 
             bool hasSemicolon = false;
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id == T_SEMICOLON) {
                     hasSemicolon = true;
@@ -119,7 +119,7 @@ namespace nsCppParser
             int cornerCount = 0;
             int parenCount = 0;
 
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id == T_TEMPLATE) {
                     mCategory = MethodCategoryType::TEMPLATE;

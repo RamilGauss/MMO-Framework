@@ -40,4 +40,9 @@ namespace nsCppParser
     {
         TYPENAME, CLASS, TYPE
     };
+
+    enum class VariableCategory
+    {
+        NONE, STATIC, CONST, CONSTEXPR, STATIC_CONST
+    };
 }

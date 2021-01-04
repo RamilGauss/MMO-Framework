@@ -30,9 +30,9 @@ void TColonSplitter::SplitLine(std::shared_ptr<ITokenEntity>& entity, std::vecto
     auto line = (TLineTokenEntity*) entity.get();
 
     bool isAccessLevel = false;
-    for (auto& token : line->mTokenList) {
+    for (auto& token : line->mTokens) {
 
-        ((TLineTokenEntity*) newLine.get())->mTokenList.push_back(token);
+        ((TLineTokenEntity*) newLine.get())->mTokens.push_back(token);
 
         auto isCurAccess = IsAccessLevel(token.id);;
 
@@ -53,7 +53,7 @@ void TColonSplitter::SplitLine(std::shared_ptr<ITokenEntity>& entity, std::vecto
         }
     }
 
-    auto size = ((TLineTokenEntity*) newLine.get())->mTokenList.size();
+    auto size = ((TLineTokenEntity*) newLine.get())->mTokens.size();
     if (size > 0) {
         result.push_back(newLine);
     }

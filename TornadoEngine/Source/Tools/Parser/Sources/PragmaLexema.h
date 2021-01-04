@@ -25,7 +25,7 @@ namespace nsCppParser
             bool isPragma = false;
 
             using namespace boost::wave;
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id == T_PP_PRAGMA) {
                     isPragma = true;
@@ -39,7 +39,7 @@ namespace nsCppParser
             bool isPragma = false;
 
             using namespace boost::wave;
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id == T_PP_PRAGMA) {
                     isPragma = true;
@@ -55,9 +55,9 @@ namespace nsCppParser
 
         ~TPragmaLexema() {}
 
-        std::string GetInfo() override
+        std::string ToString() override
         {
-            return fmt::format("{}: value {}", ILexema::GetInfo(), mValue);
+            return fmt::format("{}: value {}", ILexema::ToString(), mValue);
         }
     };
 }

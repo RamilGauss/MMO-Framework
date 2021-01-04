@@ -47,9 +47,9 @@ void TPreprocessorSplitter::SplitLine(std::shared_ptr<ITokenEntity>& entity, std
     auto line = (TLineTokenEntity*) entity.get();
 
     bool isPreprocessor = false;
-    for (auto& token : line->mTokenList) {
+    for (auto& token : line->mTokens) {
 
-        ((TLineTokenEntity*) newLine.get())->mTokenList.push_back(token);
+        ((TLineTokenEntity*) newLine.get())->mTokens.push_back(token);
 
         isPreprocessor |= IsPreprocessor(token.id);
         if (isPreprocessor) {
@@ -63,7 +63,7 @@ void TPreprocessorSplitter::SplitLine(std::shared_ptr<ITokenEntity>& entity, std
         }
     }
 
-    auto size = ((TLineTokenEntity*) newLine.get())->mTokenList.size();
+    auto size = ((TLineTokenEntity*) newLine.get())->mTokens.size();
     if (size > 0) {
         result.push_back(newLine);
     }

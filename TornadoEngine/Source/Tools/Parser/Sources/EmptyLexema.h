@@ -22,7 +22,7 @@ namespace nsCppParser
         {
             using namespace boost::wave;
 
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id != T_SPACE &&
                     t.id != T_SPACE2 &&

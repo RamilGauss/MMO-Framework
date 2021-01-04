@@ -25,7 +25,7 @@ namespace nsCppParser
             using namespace boost::wave;
             bool hasIdentifier = false;
 
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id != T_IDENTIFIER &&
                     t.id != T_SPACE &&
@@ -44,7 +44,7 @@ namespace nsCppParser
         void Fill(const TLineTokenEntity* line) override
         {
             using namespace boost::wave;
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
 
                 if (t.id != T_IDENTIFIER) {
                     mIdentifier = t.value;

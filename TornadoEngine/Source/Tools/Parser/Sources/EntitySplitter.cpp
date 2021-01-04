@@ -42,12 +42,12 @@ void TEntitySplitter::HandleToken(const TTokenInfo& tokenInfo)
             mCurrentBlock = mCurrentBlock->mParentBlock;
             break;
         case T_SEMICOLON:
-            mLineToken.mTokenList.push_back(tokenInfo);
+            mLineToken.mTokens.push_back(tokenInfo);
 
             AddLineToCurrentBlock();
             break;
         default:
-            mLineToken.mTokenList.push_back(tokenInfo);
+            mLineToken.mTokens.push_back(tokenInfo);
     }
 }
 //---------------------------------------------------------------------------------------------
@@ -58,6 +58,6 @@ void TEntitySplitter::AddLineToCurrentBlock()
     newLine.reset(new TLineTokenEntity());
     *newLine = mLineToken;
     mCurrentBlock->mTokens.push_back(newLine);
-    mLineToken.mTokenList.clear();
+    mLineToken.mTokens.clear();
 }
 //---------------------------------------------------------------------------------------------

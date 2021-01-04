@@ -43,7 +43,7 @@ namespace nsCppParser
             int cornerCount = 0;
             bool isSemiColon = false;
 
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
                 if (t.id == mTypeDecl && cornerCount == 0) {
                     isClass = true;
                 }
@@ -71,7 +71,7 @@ namespace nsCppParser
             bool isColon = false;
             int cornerCount = 0;
             bool isClass = false;
-            for (auto& t : line->mTokenList) {
+            for (auto& t : line->mTokens) {
                 if (t.id == mTypeDecl && cornerCount == 0) {
                     isClass = true;
                 }
@@ -109,9 +109,9 @@ namespace nsCppParser
 
         ~TTypeDeclarationLexema() {}
 
-        std::string GetInfo() override
+        std::string ToString() override
         {
-            return fmt::format("{}: name {}", ILexema::GetInfo(), mName);
+            return fmt::format("{}: name {}", ILexema::ToString(), mName);
         }
     };
 }

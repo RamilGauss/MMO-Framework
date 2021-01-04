@@ -31,6 +31,8 @@ TLexemaEngine::TLexemaEngine()
 //----------------------------------------------------------------------------------------------
 ILexema* TLexemaEngine::Work(TLineTokenEntity* lineTokenEntity)
 {
+    ILexema* prevLexema = nullptr;
+
     ILexema* retLexema = nullptr;
 
     int canFillCounter = 0;
@@ -41,13 +43,15 @@ ILexema* TLexemaEngine::Work(TLineTokenEntity* lineTokenEntity)
             if (canFillCounter > 0) {
                 BL_FIX_BUG();
             }
+            prevLexema = lexema.get();
+
             canFillCounter++;
 
             retLexema = TLexemaFactory::New(lexema->GetType());
             retLexema->Fill(lineTokenEntity);
 
             //###
-            fmt::print("{}\n", retLexema->GetInfo());
+            fmt::print("{}\n", retLexema->ToString());
             //###
         }
     }
