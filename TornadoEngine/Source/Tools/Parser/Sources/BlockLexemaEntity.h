@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include <vector>
 #include <memory>
+#include <string>
 
 #include "TypeDef.h"
 #include "ILexemaEntity.h"
@@ -26,5 +27,7 @@ namespace nsCppParser
         {
             return Type::BLOCK;
         }
+
+        std::string ToString(int indend = 0);
     };
 }

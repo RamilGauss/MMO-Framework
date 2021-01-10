@@ -118,17 +118,17 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)/Source/Tools;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)/Source/Tools;$(SolutionDir)/Source/Base/include;$(SolutionDir)Source\Modules\ECS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>Base_d.lib;Parser_d.lib;$(ConanSystemDeps)%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base_d.lib;ECS_d.lib;Parser_d.lib;$(ConanSystemDeps)%(AdditionalDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -153,6 +153,13 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseStruct.h" />
+    <ClInclude Include="ParamClass.h" />
+    <ClInclude Include="TestClass.h" />
+    <ClInclude Include="TestStruct.h" />
+    <ClInclude Include="VectorStatic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

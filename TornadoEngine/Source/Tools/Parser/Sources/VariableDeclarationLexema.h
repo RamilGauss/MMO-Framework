@@ -20,7 +20,7 @@ namespace nsCppParser
         std::string mName;
         VariableCategory mCategory;
 
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::VARIABLE_DECLARATION; }
+        ILexema::LexemaType GetType() const override { return ILexema::LexemaType::VARIABLE_DECLARATION; }
 
         bool CanFill(const TLineTokenEntity* line) const override
         {
@@ -111,11 +111,14 @@ namespace nsCppParser
 
             BL_ASSERT(nameIndex != -1);
 
+            auto mutableIndex = Find(line, T_MUTABLE);
             auto constIndex = Find(line, T_CONST);
             auto staticIndex = Find(line, T_STATIC);
-            auto consexprIndex = Find(line, T_ANY, "constexpr");
+            auto consexprIndex = Find(line, T_CONSTEXPR);
 
-            if (constIndex != -1 && staticIndex != -1) {
+            if (mutableIndex != -1) {
+                mCategory = VariableCategory::MUTABLE;
+            } else if (constIndex != -1 && staticIndex != -1) {
                 mCategory = VariableCategory::STATIC_CONST;
             } else if (constIndex != -1) {
                 mCategory = VariableCategory::CONST;
@@ -147,7 +150,8 @@ namespace nsCppParser
 
         std::string ToString() override
         {
-            return fmt::format("{}: {} {}", ILexema::ToString(), mType, mName);
+            auto strCategory = magic_enum::enum_name<VariableCategory>(mCategory);
+            return fmt::format("{}: {} {} {}", ILexema::ToString(), strCategory.data(), mType, mName);
         }
 
     private:
@@ -160,6 +164,7 @@ namespace nsCppParser
                 id == T_CHAR ||
                 id == T_SHORT ||
                 id == T_INT ||
+                id == T_LONG ||
                 id == T_FLOAT ||
                 id == T_DOUBLE ||
                 id == T_SIGNED ||

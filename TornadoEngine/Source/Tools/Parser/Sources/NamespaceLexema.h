@@ -18,7 +18,7 @@ namespace nsCppParser
     public:
         std::string mName;
 
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::NAMESPACE; }
+        ILexema::LexemaType GetType() const override { return ILexema::LexemaType::NAMESPACE; }
 
         bool CanFill(const TLineTokenEntity* line) const override
         {
@@ -51,5 +51,10 @@ namespace nsCppParser
         }
 
         ~TNamespaceLexema() {}
+
+        std::string ToString() override
+        {
+            return fmt::format("{}: \"{}\"", ILexema::ToString(), mName);
+        }
     };
 }

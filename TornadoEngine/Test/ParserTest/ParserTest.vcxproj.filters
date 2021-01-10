@@ -24,4 +24,21 @@
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseStruct.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="TestClass.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="TestStruct.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorStatic.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="ParamClass.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

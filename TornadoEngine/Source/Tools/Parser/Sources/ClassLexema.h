@@ -18,7 +18,7 @@ namespace nsCppParser
     public:
         TClassLexema() : TTypeDeclarationLexema(boost::wave::T_CLASS) { mDeclType = DeclarationType::CLASS; };
 
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::CLASS; }
+        ILexema::LexemaType GetType() const override { return ILexema::LexemaType::CLASS; }
 
         ~TClassLexema() {}
     };

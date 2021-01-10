@@ -59,6 +59,12 @@
     <ClCompile Include="Sources\TypeInfo.cpp">
       <Filter>Infos</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\TypeInfoCollector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BlockLexemaEntity.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Parser.h">
@@ -180,6 +186,9 @@
     </ClInclude>
     <ClInclude Include="Sources\FunctionDeclarationLexema.h">
       <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInfoCollector.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 
 using namespace nsCppParser;
 
-void TParser::Parse(const std::string& content)
+void TParser::Parse(const std::string& content, const std::string& fileName)
 {
     mTokenRoot.reset(new TBlockTokenEntity());
     mLexemaRoot.reset(new TBlockLexemaEntity());
@@ -31,6 +31,14 @@ void TParser::Parse(const std::string& content)
     LineSplit(mTokenRoot.get());
 
     ConvertTokenTreeToLexemaTree(mTokenRoot.get(), mLexemaRoot.get());
+
+    //###
+    auto s = mLexemaRoot->ToString();
+    fmt::print("{}", s);
+    //###
+
+    mTypeInfoCollector.mFileName = fileName;
+    mTypeInfoCollector.CollectLexemasToInfoByBlock(mLexemaRoot.get());
 }
 //--------------------------------------------------------------------------------------------------------
 void TParser::LineSplit(TBlockTokenEntity* blockToken)
@@ -68,6 +76,8 @@ void TParser::ConvertTokenTreeToLexemaTree(TBlockTokenEntity* blockToken, TBlock
                 newBlock.reset(new TBlockLexemaEntity());
                 auto pBlockLexemaEntity = (TBlockLexemaEntity*) newBlock.get();
                 pBlockLexemaEntity->mParentBlock = blockLexema;
+
+                blockLexema->mTokens.push_back(newBlock);
 
                 ConvertTokenTreeToLexemaTree((TBlockTokenEntity*) token.get(), pBlockLexemaEntity);
             }

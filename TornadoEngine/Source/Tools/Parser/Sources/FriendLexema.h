@@ -17,7 +17,7 @@ namespace nsCppParser
     {
     public:
         // friend type, etc.
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::FRIEND; }
+        ILexema::LexemaType GetType() const override { return ILexema::LexemaType::FRIEND; }
 
         bool CanFill(const TLineTokenEntity* line) const override
         {

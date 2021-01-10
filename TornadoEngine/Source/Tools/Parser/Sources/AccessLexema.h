@@ -20,7 +20,7 @@ namespace nsCppParser
     public:
         AccessLevel mAccessLevel;
 
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::ACCESS; }
+        ILexema::LexemaType GetType() const override { return ILexema::LexemaType::ACCESS; }
 
         bool CanFill(const TLineTokenEntity* line) const override
         {

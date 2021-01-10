@@ -43,6 +43,6 @@ namespace nsCppParser
 
     enum class VariableCategory
     {
-        NONE, STATIC, CONST, CONSTEXPR, STATIC_CONST
+        NONE, MUTABLE, STATIC, CONST, CONSTEXPR, STATIC_CONST
     };
 }

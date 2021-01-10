@@ -18,7 +18,7 @@ namespace nsCppParser
     public:
         std::string mIdentifier;
 
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::IDENTIFIER; }
+        ILexema::LexemaType GetType() const override { return ILexema::LexemaType::IDENTIFIER; }
 
         bool CanFill(const TLineTokenEntity* line) const override
         {

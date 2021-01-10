@@ -16,7 +16,7 @@ namespace nsCppParser
     class DllExport TEmptyLexema : public ILexema
     {
     public:
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::EMPTY; }
+        ILexema::LexemaType GetType() const override { return ILexema::LexemaType::EMPTY; }
 
         bool CanFill(const TLineTokenEntity* line) const override
         {

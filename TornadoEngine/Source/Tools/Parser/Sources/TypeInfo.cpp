@@ -13,10 +13,9 @@ std::string TTypeInfo::GetNameSpace()// all namespaces: A::B::...::Z
 {
     std::string summa;
     auto size = mNamespaceVec.size();
-    for ( auto i = 0; i < size; i++ )
-    {
+    for (auto i = 0; i < size; i++) {
         summa += mNamespaceVec[i];
-        if ( i != size - 1 )
+        if (i != size - 1)
             summa += "::";
     }
     return summa;
@@ -25,16 +24,18 @@ std::string TTypeInfo::GetNameSpace()// all namespaces: A::B::...::Z
 std::string TTypeInfo::GetTypeNameWithNameSpace()
 {
     auto sNamespace = GetNameSpace();
-    if ( sNamespace.length() > 0 )
+    if (sNamespace.length() > 0) {
         return sNamespace + "::" + mName;
+    }
     return mName;
 }
 //-----------------------------------------------------------------------------------------
 std::string TTypeInfo::GetTypeNameWithNameSpaceAsVar()
 {
     auto sNamespace = GetNameSpace();
-    if ( sNamespace.length() > 0 )
+    if (sNamespace.length() > 0) {
         return sNamespace + "_" + mName;
+    }
     return mName;
 }
 //-----------------------------------------------------------------------------------------
@@ -44,12 +45,12 @@ void TTypeInfo::AddMember(TMemberInfo& memberInfo)
     auto memberInfoPtr = TMemberInfoPtr(new TMemberInfo());
     memberInfoPtr.get()[0] = memberInfo;
 
-    mMembers[(size_t)memberInfo.mAccessLevel].push_back(memberInfoPtr);
+    mMembers[(size_t) memberInfo.mAccessLevel].push_back(memberInfoPtr);
 }
 //-----------------------------------------------------------------------------------------
 void TTypeInfo::ClearMember()
 {
-    for ( auto& v : mMembers ) {
+    for (auto& v : mMembers) {
         v.clear();
     }
 }

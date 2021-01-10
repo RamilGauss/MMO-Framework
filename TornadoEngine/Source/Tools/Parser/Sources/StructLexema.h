@@ -18,7 +18,7 @@ namespace nsCppParser
     public:
         TStructLexema() : TTypeDeclarationLexema(boost::wave::T_STRUCT) { mDeclType = DeclarationType::STRUCT; };
 
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::STRUCT; }
+        ILexema::LexemaType GetType() const override { return ILexema::LexemaType::STRUCT; }
 
         ~TStructLexema() {}
     };

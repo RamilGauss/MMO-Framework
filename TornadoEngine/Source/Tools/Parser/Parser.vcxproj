@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\BlockLexemaEntity.cpp" />
     <ClCompile Include="Sources\ColonSplitter.cpp" />
     <ClCompile Include="Sources\EntitySplitter.cpp" />
     <ClCompile Include="Sources\LexemaEngine.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="Sources\PreprocessorSplitter.cpp" />
     <ClCompile Include="Sources\Tokenizer.cpp" />
     <ClCompile Include="Sources\TypeInfo.cpp" />
+    <ClCompile Include="Sources\TypeInfoCollector.cpp" />
     <ClCompile Include="Sources\TypeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +50,7 @@
     <ClInclude Include="Sources\LexemaEngine.h" />
     <ClInclude Include="Sources\LexemaFactory.h" />
     <ClInclude Include="Sources\LineLexemaEntity.h" />
+    <ClInclude Include="Sources\TypeInfoCollector.h" />
     <ClInclude Include="Sources\VariableDeclarationLexema.h" />
     <ClInclude Include="Sources\FunctionDeclarationLexema.h" />
     <ClInclude Include="Sources\FunctionDefinitionLexema.h" />

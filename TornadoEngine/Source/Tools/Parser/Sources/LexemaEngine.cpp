@@ -25,7 +25,7 @@ TLexemaEngine::TLexemaEngine()
         std::shared_ptr<ILexema> spLexema;
         spLexema.reset(newLexema);
 
-        mLexemas[(int)lexema] = spLexema;
+        mLexemas[(int) lexema] = spLexema;
     }
 }
 //----------------------------------------------------------------------------------------------
@@ -49,10 +49,6 @@ ILexema* TLexemaEngine::Work(TLineTokenEntity* lineTokenEntity)
 
             retLexema = TLexemaFactory::New(lexema->GetType());
             retLexema->Fill(lineTokenEntity);
-
-            //###
-            fmt::print("{}\n", retLexema->ToString());
-            //###
         }
     }
 

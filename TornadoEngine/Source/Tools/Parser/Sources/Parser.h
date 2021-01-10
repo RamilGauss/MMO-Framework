@@ -19,9 +19,11 @@ See for more information LICENSE.md.
 #include "ParserResultContainer.h"
 #include "LexemaEngine.h"
 #include "BlockLexemaEntity.h"
+#include "TypeInfoCollector.h"
 
 namespace nsCppParser
 {
+    class TLineLexemaEntity;
     // content -> 
     // {token} -> 
     // blocks + lines -> {LineSplitter} -> 
@@ -38,13 +40,13 @@ namespace nsCppParser
         TLexemaEngine mLexemaEngine;
 
         TParserResultContainer mContainer;
+
+        TTypeInfoCollector mTypeInfoCollector;
     public:
         // Get results from TypeManager
-        void Parse(const std::string& content);
+        void Parse(const std::string& content, const std::string& fileName);
 
         const TParserResultContainer* GetResult() const;
-
-
         static std::string GetInfo();
     private:
         void LineSplit(TBlockTokenEntity* blockToken);

@@ -29,6 +29,11 @@ namespace nsCppParser
         {
             AccessLevel accessLevel;
             std::string typeName;
+
+            bool HasSome() const
+            {
+                return typeName.length() > 0;
+            }
         };
 
         std::list<TInheritance> mInheritanceList;
@@ -38,6 +43,11 @@ namespace nsCppParser
         bool CanFill(const TLineTokenEntity* line) const override
         {
             using namespace boost::wave;
+
+            auto hasEnum = std::find_if(std::begin(line->mTokens), std::end(line->mTokens), [](const TTokenInfo& t) { return t.id == T_ENUM; });
+            if (hasEnum != std::end(line->mTokens)) {
+                return false;
+            }
 
             bool isClass = false;
             int cornerCount = 0;
@@ -67,6 +77,9 @@ namespace nsCppParser
             std::string lastIdentifier;
             TInheritance inheritance;
 
+            auto defaultAccessLevel = GetType() == ILexema::LexemaType::CLASS ? AccessLevel::PRIVATE : AccessLevel::PUBLIC;
+            inheritance.accessLevel = defaultAccessLevel;
+
             std::string guessName;
             bool isColon = false;
             int cornerCount = 0;
@@ -84,14 +97,19 @@ namespace nsCppParser
                 if (t.id == T_COLON && cornerCount == 0 && !isColon) {
                     isColon = true;
                 }
-                if (isClass && !isColon  && t.id == T_IDENTIFIER) {
+                if (isClass && !isColon && t.id == T_IDENTIFIER) {
                     lastIdentifier = t.value;
                 }
                 if (isColon && t.id == T_IDENTIFIER) {
-                    inheritance.typeName = t.value;
+                    inheritance.typeName += t.value;
+                }
+                if (t.id == T_COLON_COLON && isColon) {
+                    inheritance.typeName += t.value;
                 }
                 if (t.id == T_COMMA && isColon) {
                     mInheritanceList.push_back(inheritance);
+                    inheritance.accessLevel = defaultAccessLevel;
+                    inheritance.typeName = "";
                 }
                 if (t.id == T_PUBLIC) {
                     inheritance.accessLevel = AccessLevel::PUBLIC;
@@ -104,6 +122,10 @@ namespace nsCppParser
                 }
             }
 
+            if (inheritance.HasSome()) {
+                mInheritanceList.push_back(inheritance);
+            }
+
             mName = lastIdentifier;
         }
 
@@ -111,7 +133,16 @@ namespace nsCppParser
 
         std::string ToString() override
         {
-            return fmt::format("{}: name {}", ILexema::ToString(), mName);
+            std::string strInheritance;
+            for (auto& inheritance : mInheritanceList) {
+                auto access = magic_enum::enum_name<AccessLevel>(inheritance.accessLevel);
+                strInheritance += fmt::format("{}: {} ", access.data(), inheritance.typeName);
+            }
+
+            if (strInheritance.length() > 0) {
+                return fmt::format("{}: {} : {}", ILexema::ToString(), mName, strInheritance);
+            }
+            return fmt::format("{}: {}", ILexema::ToString(), mName);
         }
     };
 }

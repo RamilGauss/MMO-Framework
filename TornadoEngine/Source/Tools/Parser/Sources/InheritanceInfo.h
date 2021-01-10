@@ -15,11 +15,6 @@ namespace nsCppParser
 {
     struct DllExport TInheritanceInfo : public TTypeReference
     {
-        std::string mParentTypeName;// то что в исходном варианте  A::B
-
-        std::string mShortParentTypeName;// B
-        std::string mLongParentTypeName;// ns::A::B
-
         AccessLevel mInheritanceAccessLevel = AccessLevel::PRIVATE;
     };
 }

@@ -34,7 +34,7 @@ namespace nsCppParser
 
         TFunctionLexema(ILexema::LexemaType lexemaType) :mLexemaType(lexemaType) {};
 
-        LexemaType GetType() override
+        LexemaType GetType() const override
         {
             return mLexemaType;
         }
@@ -52,6 +52,12 @@ namespace nsCppParser
         }
 
         ~TFunctionLexema() {}
+
+        std::string ToString()
+        {
+            auto strCategory = magic_enum::enum_name<MethodCategoryType>(mCategory);            
+            return fmt::format("{}: {}, {}, {}", ILexema::ToString(), strCategory.data(), mName, mReturnedType.mOriginalName);
+        }
     protected:
         bool CanFillDefinition(const TLineTokenEntity* line) const
         {

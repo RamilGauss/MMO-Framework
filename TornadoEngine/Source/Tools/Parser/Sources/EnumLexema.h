@@ -18,7 +18,7 @@ namespace nsCppParser
     public:
         std::string mName;
 
-        ILexema::LexemaType GetType() override { return ILexema::LexemaType::ENUM; }
+        ILexema::LexemaType GetType() const override { return ILexema::LexemaType::ENUM; }
 
         bool CanFill(const TLineTokenEntity* line) const override
         {
@@ -36,9 +36,22 @@ namespace nsCppParser
 
         void Fill(const TLineTokenEntity* line) override
         {
-
+            using namespace boost::wave;
+            for (auto& t : line->mTokens) {
+                if (t.id == T_IDENTIFIER) {
+                    mName = t.value;
+                    return;
+                }
+            }
+            BL_FIX_BUG();
         }
 
         ~TEnumLexema() {}
+
+        std::string ToString() override
+        {
+            auto type = magic_enum::enum_name<ILexema::LexemaType>(GetType());
+            return fmt::format("{} : {}", type.data(), mName);
+        }
     };
 }

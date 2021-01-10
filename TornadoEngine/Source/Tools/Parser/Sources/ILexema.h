@@ -52,7 +52,7 @@ namespace nsCppParser
         };
 
 
-        virtual LexemaType GetType() = 0;
+        virtual LexemaType GetType() const = 0;
 
         virtual bool CanFill(const TLineTokenEntity* line) const = 0;
         virtual void Fill(const TLineTokenEntity* line) = 0;

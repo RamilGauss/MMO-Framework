@@ -15,10 +15,10 @@ void TMemberInfo::CreateExtArray(std::vector<TMemberTypeExtendedInfo>& arr)
     arr.clear();
     auto pExt = &mExtendedInfo;
     arr.push_back(*pExt);
-    while ( pExt->mTemplateChildArr.size() > 0 ) {
+    while (pExt->mTemplateChildArr.size() > 0) {
 
         size_t lastIndex = 0;
-        if ( pExt->mCategory == TMemberTypeExtendedInfo::TypeCategory::Map ) {
+        if (pExt->mCategory == TMemberTypeExtendedInfo::TypeCategory::Map) {
             lastIndex = 1;
         }
 
