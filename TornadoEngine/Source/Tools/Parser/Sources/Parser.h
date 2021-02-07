@@ -51,5 +51,7 @@ namespace nsCppParser
     private:
         void LineSplit(TBlockTokenEntity* blockToken);
         void ConvertTokenTreeToLexemaTree(TBlockTokenEntity* blockToken, TBlockLexemaEntity* blockLexema);
+
+        void FillExtendedInfo();
     };
 }

@@ -25,19 +25,19 @@
     <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseStruct.h">
+    <ClInclude Include="Inheritance.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
-    <ClInclude Include="TestClass.h">
+    <ClInclude Include="ClassDeclaration.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
-    <ClInclude Include="TestStruct.h">
+    <ClInclude Include="NamespaceDefinition.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
-    <ClInclude Include="VectorStatic.h">
+    <ClInclude Include="Members.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
-    <ClInclude Include="ParamClass.h">
+    <ClInclude Include="Pragmas.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
   </ItemGroup>

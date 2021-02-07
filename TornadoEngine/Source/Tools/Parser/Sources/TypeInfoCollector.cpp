@@ -30,6 +30,9 @@ void TTypeInfoCollector::CollectLexemasToInfoByBlock(TBlockLexemaEntity* blockLe
     if (blockLexemaEntity->mParentBlock == nullptr) {
         Reset();
     }
+    mBlockStack.push_back(mCurrentBlock);
+    mCurrentBlock.Reset();
+    mCurrentBlock.blockLexemaEntity = blockLexemaEntity;
 
     for (auto& lexema : blockLexemaEntity->mTokens) {
         switch (lexema->GetType()) {
@@ -40,13 +43,16 @@ void TTypeInfoCollector::CollectLexemasToInfoByBlock(TBlockLexemaEntity* blockLe
                 CollectLexemasToInfoByLine((TLineLexemaEntity*) lexema.get());
                 break;
         }
+
+        mCurrentBlock.lexemaIndex++;
     }
 
-    PopSpace();
+    HandleBlockEnd();
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::CollectLexemasToInfoByLine(TLineLexemaEntity* lineLexemaEntity)
 {
+
     for (auto& lexema : lineLexemaEntity->mLexemas) {
         auto pLexema = lexema.get();
         auto type = lexema->GetType();
@@ -96,27 +102,18 @@ void TTypeInfoCollector::CollectLexemasToInfoByLine(TLineLexemaEntity* lineLexem
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::Reset()
 {
-    mTypeStack.clear();
     mTypeResult.clear();
-    mSpaceStack.clear();
-}
-//----------------------------------------------------------------------------------------------------
-void TTypeInfoCollector::PushSpace(std::string& space)
-{
-    mSpaceStack.push_back(space);
-}
-//----------------------------------------------------------------------------------------------------
-void TTypeInfoCollector::PopSpace()
-{
-    mSpaceStack.pop_back();
-    mTypeStack.pop_back();
+    mBlockStack.clear();
 }
 //----------------------------------------------------------------------------------------------------
 std::string TTypeInfoCollector::GetCurrentSpace()
 {
     std::string currentSpace;
-    for (auto& space : mSpaceStack) {
-        currentSpace += "::" + space;
+    for (auto& block : mBlockStack) {
+        if (block.type == BlockType::CLASS_OR_STRUCT ||
+            block.type == BlockType::NAMESPACE) {
+            currentSpace += "::" + block.space;
+        }
     }
     return currentSpace;
 }
@@ -128,12 +125,13 @@ void TTypeInfoCollector::HandleEmpty(TEmptyLexema* pLexema)
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleNamespace(TNamespaceLexema* pLexema)
 {
-    PushSpace(pLexema->mName);
+    mCurrentBlock.space = (pLexema->mName);
+    mCurrentBlock.type = BlockType::NAMESPACE;
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleAccess(TAccessLexema* pLexema)
 {
-
+    mCurrentBlock.accessLevel = pLexema->mAccessLevel;
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleClass(TClassLexema* pLexema)
@@ -148,12 +146,23 @@ void TTypeInfoCollector::HandleStruct(TStructLexema* pLexema)
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleEnum(TEnumLexema* pLexema)
 {
-    AddNewType((TTypeDeclarationLexema*) pLexema);
+
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleVariableDeclaration(TVariableDeclarationLexema* pLexema)
 {
+    if (GetPrevBlock()->type != BlockType::CLASS_OR_STRUCT) {
+        return;
+    }
 
+    TMemberInfo memberInfo;
+    memberInfo.mAccessLevel = mCurrentBlock.accessLevel;
+    memberInfo.mName = pLexema->mName;
+    FillPragmaListUpper(memberInfo.mPragmaTextSet);
+    memberInfo.mTypeName = pLexema->mType;
+    memberInfo.mCategory = pLexema->mCategory;
+
+    GetPrevBlock()->typeInfo->AddMember(memberInfo);
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleFunctionDeclaration(TFunctionDeclarationLexema* pLexema)
@@ -163,7 +172,7 @@ void TTypeInfoCollector::HandleFunctionDeclaration(TFunctionDeclarationLexema* p
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleFunctionDefinition(TFunctionDefinitionLexema* pLexema)
 {
-
+    mCurrentBlock.type = BlockType::FUNCTION;
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleFriend(TFriendLexema* pLexema)
@@ -189,8 +198,11 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
     typeInfo->mType = baseLexema->mDeclType;
     typeInfo->mName = baseLexema->mName;
 
-    for (auto& space : mSpaceStack) {
-        typeInfo->mNamespaceVec.push_back(space);
+    for (auto& block : mBlockStack) {
+        if (block.type == BlockType::CLASS_OR_STRUCT ||
+            block.type == BlockType::NAMESPACE) {
+            typeInfo->mNamespaceVec.push_back(block.space);
+        }
     }
 
     auto currentSpace = GetCurrentSpace();
@@ -200,9 +212,11 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
         TInheritanceInfo inheritanceInfo;
         inheritanceInfo.mOriginalName = inheritance.typeName;
 
-        auto ccIndex = inheritance.typeName.rfind("::");
+        const std::string COLON_COLON = "::";
+
+        auto ccIndex = inheritance.typeName.rfind(COLON_COLON);
         if (ccIndex != std::string::npos) {
-            inheritanceInfo.mShortTypeName = inheritance.typeName.substr(ccIndex);
+            inheritanceInfo.mShortTypeName = inheritance.typeName.substr(ccIndex + COLON_COLON.length());
         } else {
             inheritanceInfo.mShortTypeName = inheritance.typeName;
         }
@@ -219,6 +233,49 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
 
     typeInfo->mFileName = mFileName;
 
-    PushSpace(baseLexema->mName);
+    FillPragmaListUpper(typeInfo->mPragmaTextSet);
+
+    mCurrentBlock.space = baseLexema->mName;
+    mCurrentBlock.type = BlockType::CLASS_OR_STRUCT;
+    mCurrentBlock.accessLevel = baseLexema->mDeclType ==
+        DeclarationType::CLASS ? AccessLevel::PRIVATE : AccessLevel::PUBLIC;
+
+    mCurrentBlock.typeInfo = typeInfo;
+
+    mTypeResult.push_back(typeInfo);
+}
+//----------------------------------------------------------------------------------------------------
+void TTypeInfoCollector::HandleBlockEnd()
+{
+    mCurrentBlock = mBlockStack.back();
+    mBlockStack.pop_back();
+}
+//----------------------------------------------------------------------------------------------------
+void TTypeInfoCollector::FillPragmaListUpper(std::set<std::string>& pragmaList)
+{
+    pragmaList.clear();
+
+    auto block = mCurrentBlock.blockLexemaEntity;
+    auto lexemaIndex = mCurrentBlock.lexemaIndex;
+
+    for (int i = lexemaIndex - 1; i >= 0; i--) {
+        if (block->mTokens[i]->GetType() == ILexemaEntity::Type::LINE) {
+            auto line = (TLineLexemaEntity*) (block->mTokens[i].get());
+            auto lexemaCount = line->mLexemas.size();
+            for (int j = lexemaCount - 1; j >= 0; j--) {
+                if (line->mLexemas[j]->GetType() == ILexema::LexemaType::PRAGMA) {
+                    auto pragma = (TPragmaLexema*) (line->mLexemas[j].get());
+                    pragmaList.insert(pragma->mValue);
+                }
+            }
+        } else {
+            return;
+        }
+    }
+}
+//----------------------------------------------------------------------------------------------------
+TTypeInfoCollector::TBlock* TTypeInfoCollector::GetPrevBlock()
+{
+    return &mBlockStack.back();
 }
 //----------------------------------------------------------------------------------------------------

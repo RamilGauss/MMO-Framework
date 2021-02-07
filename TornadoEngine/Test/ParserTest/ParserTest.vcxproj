@@ -155,11 +155,11 @@
     <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseStruct.h" />
-    <ClInclude Include="ParamClass.h" />
-    <ClInclude Include="TestClass.h" />
-    <ClInclude Include="TestStruct.h" />
-    <ClInclude Include="VectorStatic.h" />
+    <ClInclude Include="ClassDeclaration.h" />
+    <ClInclude Include="Pragmas.h" />
+    <ClInclude Include="Inheritance.h" />
+    <ClInclude Include="Members.h" />
+    <ClInclude Include="NamespaceDefinition.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,13 +11,13 @@ See for more information LICENSE.md.
 #include <memory>
 
 #include "TypeInfo.h"
+#include "ILexema.h"
 
 
 namespace nsCppParser
 {
     class TBlockLexemaEntity;
     class TLineLexemaEntity;
-    class ILexema;
 
     class TEmptyLexema;
     class TNamespaceLexema;
@@ -38,13 +38,38 @@ namespace nsCppParser
     {
         using TTypeInfoShPtr = std::shared_ptr<TTypeInfo>;
 
-        using TTypeList = std::list<std::shared_ptr<TTypeInfo>>;
+        enum class BlockType
+        {
+            EMPTY, CLASS_OR_STRUCT, NAMESPACE, FUNCTION,
+        };
 
-        TTypeList mTypeStack;
+        struct TBlock
+        {
+            BlockType type;
+            std::string space;
+            TTypeInfoShPtr typeInfo;
+            AccessLevel accessLevel;
 
-        std::list<std::string> mSpaceStack;
+            int lexemaIndex;
+            TBlockLexemaEntity* blockLexemaEntity;
+
+            void Reset()
+            {
+                type = BlockType::EMPTY;
+                space = "";
+                typeInfo.reset();
+
+                lexemaIndex = 0;
+                blockLexemaEntity = nullptr;
+            }
+        };
+
+        std::list<TBlock> mBlockStack;
+
+        TBlock mCurrentBlock;
 
     public:
+        using TTypeList = std::list<TTypeInfoShPtr>;
         TTypeList mTypeResult;
 
         mutable std::string mFileName;
@@ -55,10 +80,11 @@ namespace nsCppParser
 
         void Reset();
 
-        void PushSpace(std::string& space);
-        void PopSpace();
+        void HandleBlockEnd();
 
         std::string GetCurrentSpace();
+
+        TBlock* GetPrevBlock();
 
         void HandleEmpty(TEmptyLexema* pLexema);
         void HandleNamespace(TNamespaceLexema* pLexema);
@@ -75,5 +101,7 @@ namespace nsCppParser
 
 
         void AddNewType(TTypeDeclarationLexema* baseLexema);
+
+        void FillPragmaListUpper(std::set<std::string>& pragmaList);
     };
 }

@@ -34,15 +34,15 @@ namespace nsCppParser
 
         typedef std::shared_ptr<TMethodInfo> TMethodInfoPtr;
         typedef std::vector<TMethodInfoPtr> TMethodInfoPtrVec;
-        typedef std::array<TMethodInfoPtrVec, (size_t)AccessLevel::COUNT> TAccessLevelMethodInfoPtrVecMap;
+        typedef std::array<TMethodInfoPtrVec, (size_t)AccessLevel::COUNT> TAccessLevelMethodInfoPtrVecArray;
 
-        TAccessLevelMethodInfoPtrVecMap mMethods;
+        TAccessLevelMethodInfoPtrVecArray mMethods;
 
         typedef std::shared_ptr<TMemberInfo> TMemberInfoPtr;
         typedef std::vector<TMemberInfoPtr> TMemberInfoPtrVec;
-        typedef std::array<TMemberInfoPtrVec, (size_t)AccessLevel::COUNT> TAccessLevelMemberInfoPtrVecMap;
+        typedef std::array<TMemberInfoPtrVec, (size_t)AccessLevel::COUNT> TAccessLevelMemberInfoPtrVecArray;
 
-        TAccessLevelMemberInfoPtrVecMap mMembers;
+        TAccessLevelMemberInfoPtrVecArray mMembers;
 
         std::string GetNameSpace();// all namespaces: A::B::...::Z
         std::string GetTypeNameWithNameSpace();// namespace::typename

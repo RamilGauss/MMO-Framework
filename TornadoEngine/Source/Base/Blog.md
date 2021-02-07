@@ -19,6 +19,10 @@ See for more information LICENSE.md.
 
 #### "DONE"  
 
+2021.02.04:
+- Тест для парсера. 
+- Declaration for TornadoEditor: Just for FUN. Only C++ in code. CodeGeneartion, ECS exist in Core.
+
 2020.10.22:
 - Добавить фильтр наследование от класса/структуры. Например class A : public B{}; а не #pragma ASDSD
 

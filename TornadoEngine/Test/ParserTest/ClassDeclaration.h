@@ -6,14 +6,6 @@ See for more information LICENSE.md.
 */
 
 #pragma once
-#include <string>
-#include <list>
-#include <set>
 
-namespace nsBS
-{
-    struct TBaseStruct
-    {
-        std::string s = "0123456789";
-    };
-}
+class ClassDeclaration;
+struct StructDeclaration;

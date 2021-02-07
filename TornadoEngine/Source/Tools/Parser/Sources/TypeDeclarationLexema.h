@@ -49,6 +49,11 @@ namespace nsCppParser
                 return false;
             }
 
+            auto hasPragma = std::find_if(std::begin(line->mTokens), std::end(line->mTokens), [](const TTokenInfo& t) { return t.id == T_PP_PRAGMA; });
+            if (hasPragma != std::end(line->mTokens)) {
+                return false;
+            }
+
             bool isClass = false;
             int cornerCount = 0;
             bool isSemiColon = false;

@@ -36,6 +36,7 @@ namespace nsCppParser
 
         void Fill(const TLineTokenEntity* line) override
         {
+            mValue = "";
             bool isPragma = false;
 
             using namespace boost::wave;
@@ -47,8 +48,25 @@ namespace nsCppParser
                 if (t.id == T_NEWLINE) {
                     isPragma = false;
                 }
-                if ((t.id == T_IDENTIFIER || t.id == T_STRINGLIT) && isPragma) {
-                    mValue = t.value;
+                if ((t.id == T_IDENTIFIER ||
+                    t.id == T_STRINGLIT ||
+                    t.id == T_CLASS ||
+                    t.id == T_STRUCT ||
+                    t.id == T_ENUM) &&
+                    isPragma) {
+                    mValue += t.value;
+                }
+
+                if (isPragma && mValue.length() > 0 && t.id == T_SPACE) {
+                    mValue += t.value;
+                }
+            }
+
+            int cnt = mValue.length();
+            for (int i = cnt - 1; i >= 0; i--) {
+                if (mValue.at(i) != ' ') {
+                    mValue.erase(i + 1, cnt - 1);
+                    break;
                 }
             }
         }

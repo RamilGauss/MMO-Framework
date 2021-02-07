@@ -30,6 +30,9 @@ namespace nsCppParser
                 if (t.id == T_ENUM) {
                     isEnum = true;
                 }
+                if (t.id == T_PP_PRAGMA) {
+                    return false;
+                }
             }
             return isEnum;
         }

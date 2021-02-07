@@ -33,12 +33,17 @@ void TParser::Parse(const std::string& content, const std::string& fileName)
     ConvertTokenTreeToLexemaTree(mTokenRoot.get(), mLexemaRoot.get());
 
     //###
-    auto s = mLexemaRoot->ToString();
-    fmt::print("{}", s);
+    //auto s = mLexemaRoot->ToString();
+    //fmt::print("{}", s);
     //###
 
     mTypeInfoCollector.mFileName = fileName;
     mTypeInfoCollector.CollectLexemasToInfoByBlock(mLexemaRoot.get());
+
+    mContainer.mTypeList = mTypeInfoCollector.mTypeResult;
+
+    //TODO: Add extended info
+    FillExtendedInfo();
 }
 //--------------------------------------------------------------------------------------------------------
 void TParser::LineSplit(TBlockTokenEntity* blockToken)
@@ -113,5 +118,10 @@ std::string TParser::GetInfo()
     }
 
     return info;
+}
+//--------------------------------------------------------------------------------------------------------
+void TParser::FillExtendedInfo()
+{
+
 }
 //--------------------------------------------------------------------------------------------------------

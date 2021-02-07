@@ -23,6 +23,8 @@ namespace nsCppParser
 
         std::string mTypeName;
 
+        VariableCategory mCategory;
+
         TMemberTypeExtendedInfo mExtendedInfo;
 
         void CreateExtArray(std::vector<TMemberTypeExtendedInfo>& arr);
