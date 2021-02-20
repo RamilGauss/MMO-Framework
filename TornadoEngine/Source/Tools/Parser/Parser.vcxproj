@@ -22,11 +22,12 @@
     <ClCompile Include="Sources\BlockLexemaEntity.cpp" />
     <ClCompile Include="Sources\ColonSplitter.cpp" />
     <ClCompile Include="Sources\EntitySplitter.cpp" />
+    <ClCompile Include="Sources\ExtendedInfoTypeExtractor.cpp" />
     <ClCompile Include="Sources\LexemaEngine.cpp" />
     <ClCompile Include="Sources\LexemaFactory.cpp" />
     <ClCompile Include="Sources\LineSplitter.cpp" />
     <ClCompile Include="Sources\MemberInfo.cpp" />
-    <ClCompile Include="Sources\MemberTypeExtendedInfo.cpp" />
+    <ClCompile Include="Sources\MemberExtendedTypeInfo.cpp" />
     <ClCompile Include="Sources\Parser.cpp" />
     <ClCompile Include="Sources\PreprocessorSplitter.cpp" />
     <ClCompile Include="Sources\Tokenizer.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="Sources\EmptyLexema.h" />
     <ClInclude Include="Sources\EntitySplitter.h" />
     <ClInclude Include="Sources\EnumLexema.h" />
+    <ClInclude Include="Sources\ExtendedInfoTypeExtractor.h" />
     <ClInclude Include="Sources\FriendInfo.h" />
     <ClInclude Include="Sources\FriendLexema.h" />
     <ClInclude Include="Sources\IdentifierLexema.h" />
@@ -70,7 +72,7 @@
     <ClInclude Include="Sources\LineSplitter.h" />
     <ClInclude Include="Sources\LineTokenEntity.h" />
     <ClInclude Include="Sources\MemberInfo.h" />
-    <ClInclude Include="Sources\MemberTypeExtendedInfo.h" />
+    <ClInclude Include="Sources\MemberExtendedTypeInfo.h" />
     <ClInclude Include="Sources\MethodInfo.h" />
     <ClInclude Include="Sources\Parser.h" />
     <ClInclude Include="Sources\TokenInfo.h" />

@@ -42,7 +42,11 @@ namespace nsCppParser
         TParserResultContainer mContainer;
 
         TTypeInfoCollector mTypeInfoCollector;
+
+        std::map<std::string, TypeCategory> mNameTypeMap;
     public:
+        void SetupTypes(std::map<std::string, TypeCategory>& nameTypeMap, bool append = false);
+
         // Get results from TypeManager
         void Parse(const std::string& content, const std::string& fileName);
 

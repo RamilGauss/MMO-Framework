@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 #include "Tokenizer.h"
 #include "EntitySplitter.h"
 #include "LineLexemaEntity.h"
+#include "ExtendedInfoTypeExtractor.h"
 
 #include "magic_enum.hpp"
 
@@ -42,7 +43,6 @@ void TParser::Parse(const std::string& content, const std::string& fileName)
 
     mContainer.mTypeList = mTypeInfoCollector.mTypeResult;
 
-    //TODO: Add extended info
     FillExtendedInfo();
 }
 //--------------------------------------------------------------------------------------------------------
@@ -76,32 +76,32 @@ void TParser::ConvertTokenTreeToLexemaTree(TBlockTokenEntity* blockToken, TBlock
 
         switch (token->GetType()) {
             case ITokenEntity::Type::BLOCK:
-            {
-                std::shared_ptr<ILexemaEntity> newBlock;
-                newBlock.reset(new TBlockLexemaEntity());
-                auto pBlockLexemaEntity = (TBlockLexemaEntity*) newBlock.get();
-                pBlockLexemaEntity->mParentBlock = blockLexema;
+                {
+                    std::shared_ptr<ILexemaEntity> newBlock;
+                    newBlock.reset(new TBlockLexemaEntity());
+                    auto pBlockLexemaEntity = (TBlockLexemaEntity*) newBlock.get();
+                    pBlockLexemaEntity->mParentBlock = blockLexema;
 
-                blockLexema->mTokens.push_back(newBlock);
+                    blockLexema->mTokens.push_back(newBlock);
 
-                ConvertTokenTreeToLexemaTree((TBlockTokenEntity*) token.get(), pBlockLexemaEntity);
-            }
-            break;
-            case ITokenEntity::Type::LINE:
-            {
-                std::shared_ptr<ILexemaEntity> spLexemaEntity;
-                std::shared_ptr<ILexema> spLexema;
-                auto lexema = mLexemaEngine.Work((TLineTokenEntity*) token.get());
-                if (lexema != nullptr) {
-                    spLexema.reset(lexema);
-
-                    spLexemaEntity.reset(new TLineLexemaEntity());
-                    auto pLineLexemaEntity = (TLineLexemaEntity*) spLexemaEntity.get();
-                    pLineLexemaEntity->mLexemas.push_back(spLexema);
-                    blockLexema->mTokens.push_back(spLexemaEntity);
+                    ConvertTokenTreeToLexemaTree((TBlockTokenEntity*) token.get(), pBlockLexemaEntity);
                 }
-            }
-            break;
+                break;
+            case ITokenEntity::Type::LINE:
+                {
+                    std::shared_ptr<ILexemaEntity> spLexemaEntity;
+                    std::shared_ptr<ILexema> spLexema;
+                    auto lexema = mLexemaEngine.Work((TLineTokenEntity*) token.get());
+                    if (lexema != nullptr) {
+                        spLexema.reset(lexema);
+
+                        spLexemaEntity.reset(new TLineLexemaEntity());
+                        auto pLineLexemaEntity = (TLineLexemaEntity*) spLexemaEntity.get();
+                        pLineLexemaEntity->mLexemas.push_back(spLexema);
+                        blockLexema->mTokens.push_back(spLexemaEntity);
+                    }
+                }
+                break;
         }
     }
 }
@@ -122,6 +122,23 @@ std::string TParser::GetInfo()
 //--------------------------------------------------------------------------------------------------------
 void TParser::FillExtendedInfo()
 {
+    TExtendedInfoTypeExtractor extendedInfoMaker;
 
+    for (auto& type : mContainer.mTypeList) {
+        for (auto& members : type->mMembers) {
+            for (auto& m : members) {
+                extendedInfoMaker.Convert(m->mTypeName, &(m->mExtendedInfo));
+            }
+        }
+    }
+}
+//--------------------------------------------------------------------------------------------------------
+void TParser::SetupTypes(std::map<std::string, TypeCategory>& nameTypeMap, bool append)
+{
+    if (!append) {
+        mNameTypeMap = nameTypeMap;
+    } else {
+        mNameTypeMap.insert(nameTypeMap.begin(), nameTypeMap.end());
+    }
 }
 //--------------------------------------------------------------------------------------------------------

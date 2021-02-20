@@ -45,4 +45,15 @@ namespace nsCppParser
     {
         NONE, MUTABLE, STATIC, CONST, CONSTEXPR, STATIC_CONST
     };
+
+
+    enum class TypeCategory
+    {
+        BOOL, NUMBER, CEIL_NUMBER, VECTOR, LIST, MAP, SET, ARRAY, STRING, REFLECTION, SMART_POINTER
+    };
+
+    enum class AccessMethod
+    {
+        OBJECT, POINTER, SMART_POINTER
+    };
 }

@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 
 using namespace nsCppParser;
 
-void TMemberInfo::CreateExtArray(std::vector<TMemberTypeExtendedInfo>& arr)
+void TMemberInfo::CreateExtArray(std::vector<TMemberExtendedTypeInfo>& arr)
 {
     arr.clear();
     auto pExt = &mExtendedInfo;
@@ -18,7 +18,7 @@ void TMemberInfo::CreateExtArray(std::vector<TMemberTypeExtendedInfo>& arr)
     while (pExt->mTemplateChildArr.size() > 0) {
 
         size_t lastIndex = 0;
-        if (pExt->mCategory == TMemberTypeExtendedInfo::TypeCategory::Map) {
+        if (pExt->mCategory == TypeCategory::MAP) {
             lastIndex = 1;
         }
 

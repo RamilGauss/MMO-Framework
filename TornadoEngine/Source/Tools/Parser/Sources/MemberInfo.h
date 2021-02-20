@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <set>
-#include "MemberTypeExtendedInfo.h"
+#include "MemberExtendedTypeInfo.h"
 #include "Types.h"
 
 namespace nsCppParser
@@ -25,8 +25,8 @@ namespace nsCppParser
 
         VariableCategory mCategory;
 
-        TMemberTypeExtendedInfo mExtendedInfo;
+        TMemberExtendedTypeInfo mExtendedInfo;
 
-        void CreateExtArray(std::vector<TMemberTypeExtendedInfo>& arr);
+        void CreateExtArray(std::vector<TMemberExtendedTypeInfo>& arr);
     };
 }

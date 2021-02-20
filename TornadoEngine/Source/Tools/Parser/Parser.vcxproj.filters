@@ -53,9 +53,6 @@
     <ClCompile Include="Sources\Tokenizer.cpp">
       <Filter>Tokenize</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\MemberTypeExtendedInfo.cpp">
-      <Filter>Infos</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\TypeInfo.cpp">
       <Filter>Infos</Filter>
     </ClCompile>
@@ -64,6 +61,12 @@
     </ClCompile>
     <ClCompile Include="Sources\BlockLexemaEntity.cpp">
       <Filter>Lexemas</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ExtendedInfoTypeExtractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\MemberExtendedTypeInfo.cpp">
+      <Filter>Infos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,9 +133,6 @@
     <ClInclude Include="Sources\FriendInfo.h">
       <Filter>Infos</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\MemberTypeExtendedInfo.h">
-      <Filter>Infos</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\MemberInfo.h">
       <Filter>Infos</Filter>
     </ClInclude>
@@ -189,6 +189,12 @@
     </ClInclude>
     <ClInclude Include="Sources\TypeInfoCollector.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ExtendedInfoTypeExtractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MemberExtendedTypeInfo.h">
+      <Filter>Infos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
