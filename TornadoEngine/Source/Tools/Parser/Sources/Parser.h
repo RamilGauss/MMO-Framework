@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 #include "SingletonManager.h"
+
 #include "ITokenEntity.h"
 #include "TypeInfo.h"
 #include "BlockTokenEntity.h"
@@ -31,6 +32,8 @@ namespace nsCppParser
     // container {TypeInfo, Functions, etc}
     class DllExport TParser
     {
+        std::string mLastError;
+
         std::shared_ptr<TBlockTokenEntity> mTokenRoot;
         std::shared_ptr<TBlockLexemaEntity> mLexemaRoot;
 
@@ -52,6 +55,10 @@ namespace nsCppParser
 
         const TParserResultContainer* GetResult() const;
         static std::string GetInfo();
+
+        std::string GetLastError() const;
+
+        static void AddError(std::string& str);
     private:
         void LineSplit(TBlockTokenEntity* blockToken);
         void ConvertTokenTreeToLexemaTree(TBlockTokenEntity* blockToken, TBlockLexemaEntity* blockLexema);

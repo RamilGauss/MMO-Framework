@@ -22,23 +22,24 @@ namespace nsCppParser
 
         bool CanFill(const TLineTokenEntity* line) const override
         {
-            using namespace boost::wave;
-            bool hasIdentifier = false;
+            return false;
+            //using namespace boost::wave;
+            //bool hasIdentifier = false;
 
-            for (auto& t : line->mTokens) {
+            //for (auto& t : line->mTokens) {
 
-                if (t.id != T_IDENTIFIER &&
-                    t.id != T_SPACE &&
-                    t.id != T_SPACE2 &&
-                    t.id != T_NEWLINE) {
-                    return false;
-                }
-                if (t.id == T_IDENTIFIER) {
-                    hasIdentifier = true;
-                }
+            //    if (t.id != T_IDENTIFIER &&
+            //        t.id != T_SPACE &&
+            //        t.id != T_SPACE2 &&
+            //        t.id != T_NEWLINE) {
+            //        return false;
+            //    }
+            //    if (t.id == T_IDENTIFIER) {
+            //        hasIdentifier = true;
+            //    }
 
-            }
-            return hasIdentifier;
+            //}
+            //return hasIdentifier;
         }
 
         void Fill(const TLineTokenEntity* line) override

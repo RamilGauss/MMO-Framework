@@ -12,6 +12,8 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
+#include "IdentifierToken.h"
+
 namespace nsCppParser
 {
     struct DllExport TTokenInfo
@@ -19,5 +21,19 @@ namespace nsCppParser
         boost::wave::token_id id;
         std::string strId;
         std::string value;
+
+        IdentifierToken Id() const
+        {
+            if (id == boost::wave::T_IDENTIFIER) {
+                if (value == "final") {
+                    return IdentifierToken::FINAL;
+                }
+                if (value == "override") {
+                    return IdentifierToken::OVERRIDE;
+                }
+                return IdentifierToken::OTHER;
+            }
+            return IdentifierToken::NOT_IDENTIFIER;
+        }
     };
 }

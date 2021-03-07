@@ -48,9 +48,25 @@ void TTypeInfo::AddMember(TMemberInfo& memberInfo)
     mMembers[(size_t) memberInfo.mAccessLevel].push_back(memberInfoPtr);
 }
 //-----------------------------------------------------------------------------------------
-void TTypeInfo::ClearMember()
+void TTypeInfo::AddMethod(TMethodInfo& methodInfo)
+{
+    // copy
+    auto methodInfoPtr = TMethodInfoPtr(new TMethodInfo());
+    methodInfoPtr.get()[0] = methodInfo;
+
+    mMethods[(size_t) methodInfo.mAccessLevel].push_back(methodInfoPtr);
+}
+//-----------------------------------------------------------------------------------------
+void TTypeInfo::ClearMembers()
 {
     for (auto& v : mMembers) {
+        v.clear();
+    }
+}
+//-----------------------------------------------------------------------------------------
+void TTypeInfo::ClearMethods()
+{
+    for (auto& v : mMethods) {
         v.clear();
     }
 }

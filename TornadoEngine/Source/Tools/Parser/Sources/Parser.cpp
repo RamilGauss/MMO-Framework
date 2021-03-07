@@ -17,6 +17,8 @@ using namespace nsCppParser;
 
 void TParser::Parse(const std::string& content, const std::string& fileName)
 {
+    mLastError = "";
+
     mTokenRoot.reset(new TBlockTokenEntity());
     mLexemaRoot.reset(new TBlockLexemaEntity());
 
@@ -32,11 +34,6 @@ void TParser::Parse(const std::string& content, const std::string& fileName)
     LineSplit(mTokenRoot.get());
 
     ConvertTokenTreeToLexemaTree(mTokenRoot.get(), mLexemaRoot.get());
-
-    //###
-    //auto s = mLexemaRoot->ToString();
-    //fmt::print("{}", s);
-    //###
 
     mTypeInfoCollector.mFileName = fileName;
     mTypeInfoCollector.CollectLexemasToInfoByBlock(mLexemaRoot.get());
@@ -140,5 +137,15 @@ void TParser::SetupTypes(std::map<std::string, TypeCategory>& nameTypeMap, bool 
     } else {
         mNameTypeMap.insert(nameTypeMap.begin(), nameTypeMap.end());
     }
+}
+//--------------------------------------------------------------------------------------------------------
+std::string TParser::GetLastError() const
+{
+    return mLastError;
+}
+//--------------------------------------------------------------------------------------------------------
+void TParser::AddError(std::string& str)
+{
+    //mLastError += str;// TODO: 
 }
 //--------------------------------------------------------------------------------------------------------

@@ -44,6 +44,15 @@
     <ClCompile Include="ExtendedTypeInfoExtractorTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MethodNames.cpp">
+      <Filter>SourcesForParsing</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumsTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodsTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
@@ -65,6 +74,33 @@
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
     <ClInclude Include="MembersWithExtended.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="MemberPragma.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="MemberCategory.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodNames.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodCategory.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum_0.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum_1.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum_2.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum_3.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodPragma.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
   </ItemGroup>

@@ -31,8 +31,9 @@ namespace nsCppParser
         VIRTUAL,
         VIRTUAL_PURE,
         OVERRIDE,
-        VIRTUAL_FINAL,
+        OVERRIDE_FINAL,
         TEMPLATE,
+        TEMPLATE_STATIC,
         OPERATOR,
     };
 
@@ -43,9 +44,8 @@ namespace nsCppParser
 
     enum class VariableCategory
     {
-        NONE, MUTABLE, STATIC, CONST, CONSTEXPR, STATIC_CONST
+        NONE, MUTABLE, STATIC, CONST, STATIC_CONST
     };
-
 
     enum class TypeCategory
     {

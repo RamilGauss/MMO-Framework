@@ -149,12 +149,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClassDeclarationsTest.cpp" />
+    <ClCompile Include="EnumsTest.cpp" />
     <ClCompile Include="ExtendedTypeInfoExtractorTest.cpp" />
     <ClCompile Include="FileParser.cpp" />
     <ClCompile Include="FileParser.h" />
     <ClCompile Include="InheritancesTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MembersTest.cpp" />
+    <ClCompile Include="MethodNames.cpp" />
+    <ClCompile Include="MethodsTest.cpp" />
     <ClCompile Include="NamespacesDefinitionTest.cpp" />
     <ClCompile Include="PragmasTest.cpp" />
     <ClCompile Include="FileParserTest.cpp" />
@@ -164,7 +167,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassDeclaration.h" />
+    <ClInclude Include="Enum_0.h" />
+    <ClInclude Include="Enum_1.h" />
+    <ClInclude Include="Enum_2.h" />
+    <ClInclude Include="Enum_3.h" />
+    <ClInclude Include="MemberCategory.h" />
+    <ClInclude Include="MemberPragma.h" />
     <ClInclude Include="MembersWithExtended.h" />
+    <ClInclude Include="MethodCategory.h" />
+    <ClInclude Include="MethodNames.h" />
+    <ClInclude Include="MethodPragma.h" />
     <ClInclude Include="Pragmas.h" />
     <ClInclude Include="Inheritance.h" />
     <ClInclude Include="Members.h" />

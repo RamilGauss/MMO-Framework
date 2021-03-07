@@ -68,6 +68,9 @@
     <ClCompile Include="Sources\MemberExtendedTypeInfo.cpp">
       <Filter>Infos</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\FunctionLexema.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Parser.h">
@@ -195,6 +198,12 @@
     </ClInclude>
     <ClInclude Include="Sources\MemberExtendedTypeInfo.h">
       <Filter>Infos</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EnumValuesLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\IdentifierToken.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

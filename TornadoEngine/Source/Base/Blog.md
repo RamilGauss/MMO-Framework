@@ -19,6 +19,11 @@ See for more information LICENSE.md.
 
 #### "DONE"  
 
+2021.02.28:
+- Добавлена поддержка enum/enum class для парсера.
+- Осталось доделать поддержку методов и написать тесты для method/member/type pragma.
+- Изучаю Intellij idea JAVA.
+
 2021.02.04:
 - Тест для парсера. 
 - Declaration for TornadoEditor: Just for FUN. Only C++ in code. CodeGeneartion, ECS exist in Core.

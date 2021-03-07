@@ -47,7 +47,7 @@ namespace nsCppParser
                 }
                 index++;
             }
-            if (semicolonIndex == -1 && assignIndex == -1) {
+            if (semicolonIndex == -1) {
                 return false;
             }
 
@@ -114,7 +114,6 @@ namespace nsCppParser
             auto mutableIndex = Find(line, T_MUTABLE);
             auto constIndex = Find(line, T_CONST);
             auto staticIndex = Find(line, T_STATIC);
-            auto consexprIndex = Find(line, T_CONSTEXPR);
 
             if (mutableIndex != -1) {
                 mCategory = VariableCategory::MUTABLE;
@@ -124,12 +123,9 @@ namespace nsCppParser
                 mCategory = VariableCategory::CONST;
             } else if (staticIndex != -1) {
                 mCategory = VariableCategory::STATIC;
-            } else if (consexprIndex != -1) {
-                mCategory = VariableCategory::CONSTEXPR;
             }
 
             auto maxPrefixIndex = std::max(constIndex, staticIndex);
-            maxPrefixIndex = std::max(maxPrefixIndex, consexprIndex);
             maxPrefixIndex += 1;
 
             std::list<TTokenInfo> typeTokens;
@@ -170,31 +166,6 @@ namespace nsCppParser
                 id == T_SIGNED ||
                 id == T_UNSIGNED ||
                 id == T_IDENTIFIER;
-        }
-
-        static int Find(const TLineTokenEntity* line, boost::wave::token_id targetId)
-        {
-            int index = 0;
-            for (auto& t : line->mTokens) {
-                if (t.id == targetId) {
-                    return index;
-                }
-
-                index++;
-            }
-            return -1;
-        }
-        static int Find(const TLineTokenEntity* line, boost::wave::token_id targetId, std::string value)
-        {
-            int index = 0;
-            for (auto& t : line->mTokens) {
-                if (t.id == targetId && t.value == value) {
-                    return index;
-                }
-
-                index++;
-            }
-            return -1;
         }
     };
 }

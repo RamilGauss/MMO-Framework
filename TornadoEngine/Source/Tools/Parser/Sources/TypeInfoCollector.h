@@ -25,9 +25,11 @@ namespace nsCppParser
     class TClassLexema;
     class TStructLexema;
     class TEnumLexema;
+    class TEnumValuesLexema;
     class TVariableDeclarationLexema;
     class TFunctionDeclarationLexema;
     class TFunctionDefinitionLexema;
+    class TFunctionLexema;
     class TFriendLexema;
     class TPragmaLexema;
     class TIdentifierLexema;
@@ -40,7 +42,7 @@ namespace nsCppParser
 
         enum class BlockType
         {
-            EMPTY, CLASS_OR_STRUCT, NAMESPACE, FUNCTION,
+            EMPTY, CLASS_STRUCT_OR_ENUM, NAMESPACE, FUNCTION,
         };
 
         struct TBlock
@@ -92,6 +94,7 @@ namespace nsCppParser
         void HandleClass(TClassLexema* pLexema);
         void HandleStruct(TStructLexema* pLexema);
         void HandleEnum(TEnumLexema* pLexema);
+        void HandleEnumValues(TEnumValuesLexema* pLexema);
         void HandleVariableDeclaration(TVariableDeclarationLexema* pLexema);
         void HandleFunctionDeclaration(TFunctionDeclarationLexema* pLexema);
         void HandleFunctionDefinition(TFunctionDefinitionLexema* pLexema);
@@ -103,5 +106,7 @@ namespace nsCppParser
         void AddNewType(TTypeDeclarationLexema* baseLexema);
 
         void FillPragmaListUpper(std::set<std::string>& pragmaList);
+
+        void AddMethod(TFunctionLexema* pLexema);
     };
 }

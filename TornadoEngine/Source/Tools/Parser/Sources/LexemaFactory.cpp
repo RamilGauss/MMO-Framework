@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include "StructLexema.h"
 #include "AccessLexema.h"
 #include "EnumLexema.h"
+#include "EnumValuesLexema.h"
 #include "FriendLexema.h"
 #include "FunctionDefinitionLexema.h"
 #include "FunctionDeclarationLexema.h"
@@ -46,6 +47,9 @@ ILexema* TLexemaFactory::New(ILexema::LexemaType lexemaType)
             break;
         case ILexema::LexemaType::ENUM:
             newLexema = new TEnumLexema();
+            break;
+        case ILexema::LexemaType::ENUM_VALUES:
+            newLexema = new TEnumValuesLexema();
             break;
         case ILexema::LexemaType::VARIABLE_DECLARATION:
             newLexema = new TVariableDeclarationLexema();

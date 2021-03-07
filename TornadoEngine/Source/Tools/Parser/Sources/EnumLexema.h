@@ -7,6 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <map>
 #include "TypeDef.h"
 
 #include "ILexema.h"

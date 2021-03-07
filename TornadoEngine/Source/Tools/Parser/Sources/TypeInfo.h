@@ -27,6 +27,9 @@ namespace nsCppParser
 
         DeclarationType mType;
 
+        std::map<std::string, int64_t> mEnumKeys;
+        std::map<int64_t, std::string> mEnumValues;
+
         std::vector<TInheritanceInfo> mInheritanceVec;
 
         std::string mName;
@@ -49,7 +52,9 @@ namespace nsCppParser
         std::string GetTypeNameWithNameSpaceAsVar();// namespace_typename
 
         void AddMember(TMemberInfo& memberInfo);
+        void AddMethod(TMethodInfo& methodInfo);
 
-        void ClearMember();
+        void ClearMembers();
+        void ClearMethods();
     };
 }

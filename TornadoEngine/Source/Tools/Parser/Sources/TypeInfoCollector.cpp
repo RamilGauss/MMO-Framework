@@ -16,6 +16,7 @@ See for more information LICENSE.md.
 #include "StructLexema.h"
 #include "AccessLexema.h"
 #include "EnumLexema.h"
+#include "EnumValuesLexema.h"
 #include "FriendLexema.h"
 #include "FunctionDefinitionLexema.h"
 #include "FunctionDeclarationLexema.h"
@@ -75,6 +76,9 @@ void TTypeInfoCollector::CollectLexemasToInfoByLine(TLineLexemaEntity* lineLexem
             case ILexema::LexemaType::ENUM:
                 HandleEnum((TEnumLexema*) pLexema);
                 break;
+            case ILexema::LexemaType::ENUM_VALUES:
+                HandleEnumValues((TEnumValuesLexema*) pLexema);
+                break;
             case ILexema::LexemaType::VARIABLE_DECLARATION:
                 HandleVariableDeclaration((TVariableDeclarationLexema*) pLexema);
                 break;
@@ -110,7 +114,7 @@ std::string TTypeInfoCollector::GetCurrentSpace()
 {
     std::string currentSpace;
     for (auto& block : mBlockStack) {
-        if (block.type == BlockType::CLASS_OR_STRUCT ||
+        if (block.type == BlockType::CLASS_STRUCT_OR_ENUM ||
             block.type == BlockType::NAMESPACE) {
             currentSpace += "::" + block.space;
         }
@@ -146,12 +150,53 @@ void TTypeInfoCollector::HandleStruct(TStructLexema* pLexema)
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleEnum(TEnumLexema* pLexema)
 {
+    TTypeInfoShPtr typeInfo;
+    typeInfo.reset(new TTypeInfo());
 
+    typeInfo->mType = DeclarationType::ENUM;
+    typeInfo->mName = pLexema->mName;
+
+    for (auto& block : mBlockStack) {
+        if (block.type == BlockType::CLASS_STRUCT_OR_ENUM ||
+            block.type == BlockType::NAMESPACE) {
+            typeInfo->mNamespaceVec.push_back(block.space);
+        }
+    }
+
+    typeInfo->mFileName = mFileName;
+
+    FillPragmaListUpper(typeInfo->mPragmaTextSet);
+
+    mCurrentBlock.space = pLexema->mName;
+    mCurrentBlock.type = BlockType::CLASS_STRUCT_OR_ENUM;
+    mCurrentBlock.accessLevel = AccessLevel::PUBLIC;
+
+    mCurrentBlock.typeInfo = typeInfo;
+
+    mTypeResult.push_back(typeInfo);
+}
+//----------------------------------------------------------------------------------------------------
+void TTypeInfoCollector::HandleEnumValues(TEnumValuesLexema* pLexema)
+{
+    if (GetPrevBlock()->type != BlockType::CLASS_STRUCT_OR_ENUM) {
+        return;
+    }
+    if (GetPrevBlock()->typeInfo->mType != DeclarationType::ENUM) {
+        return;
+    }
+
+    for (auto& value : pLexema->mValuesMap) {
+        GetPrevBlock()->typeInfo->mEnumKeys.insert({value.first, value.second});
+        GetPrevBlock()->typeInfo->mEnumValues.insert({value.second, value.first});
+    }
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleVariableDeclaration(TVariableDeclarationLexema* pLexema)
 {
-    if (GetPrevBlock()->type != BlockType::CLASS_OR_STRUCT) {
+    if (GetPrevBlock()->type != BlockType::CLASS_STRUCT_OR_ENUM) {
+        return;
+    }
+    if (GetPrevBlock()->typeInfo->mType == DeclarationType::ENUM)         {
         return;
     }
 
@@ -167,11 +212,12 @@ void TTypeInfoCollector::HandleVariableDeclaration(TVariableDeclarationLexema* p
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleFunctionDeclaration(TFunctionDeclarationLexema* pLexema)
 {
-
+    AddMethod(pLexema);
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleFunctionDefinition(TFunctionDefinitionLexema* pLexema)
 {
+    AddMethod(pLexema);
     mCurrentBlock.type = BlockType::FUNCTION;
 }
 //----------------------------------------------------------------------------------------------------
@@ -182,7 +228,7 @@ void TTypeInfoCollector::HandleFriend(TFriendLexema* pLexema)
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandlePragma(TPragmaLexema* pLexema)
 {
-
+    // See FillPragmaListUpper()
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleIdentifier(TIdentifierLexema* pLexema)
@@ -199,7 +245,7 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
     typeInfo->mName = baseLexema->mName;
 
     for (auto& block : mBlockStack) {
-        if (block.type == BlockType::CLASS_OR_STRUCT ||
+        if (block.type == BlockType::CLASS_STRUCT_OR_ENUM ||
             block.type == BlockType::NAMESPACE) {
             typeInfo->mNamespaceVec.push_back(block.space);
         }
@@ -236,7 +282,7 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
     FillPragmaListUpper(typeInfo->mPragmaTextSet);
 
     mCurrentBlock.space = baseLexema->mName;
-    mCurrentBlock.type = BlockType::CLASS_OR_STRUCT;
+    mCurrentBlock.type = BlockType::CLASS_STRUCT_OR_ENUM;
     mCurrentBlock.accessLevel = baseLexema->mDeclType ==
         DeclarationType::CLASS ? AccessLevel::PRIVATE : AccessLevel::PUBLIC;
 
@@ -266,6 +312,8 @@ void TTypeInfoCollector::FillPragmaListUpper(std::set<std::string>& pragmaList)
                 if (line->mLexemas[j]->GetType() == ILexema::LexemaType::PRAGMA) {
                     auto pragma = (TPragmaLexema*) (line->mLexemas[j].get());
                     pragmaList.insert(pragma->mValue);
+                } else {
+                    return;
                 }
             }
         } else {
@@ -277,5 +325,23 @@ void TTypeInfoCollector::FillPragmaListUpper(std::set<std::string>& pragmaList)
 TTypeInfoCollector::TBlock* TTypeInfoCollector::GetPrevBlock()
 {
     return &mBlockStack.back();
+}
+//----------------------------------------------------------------------------------------------------
+void TTypeInfoCollector::AddMethod(TFunctionLexema* pLexema)
+{
+    if (GetPrevBlock()->type != BlockType::CLASS_STRUCT_OR_ENUM) {
+        return;
+    }
+    if (GetPrevBlock()->typeInfo->mType == DeclarationType::ENUM) {
+        return;
+    }
+
+    TMethodInfo methodInfo;
+    methodInfo.mAccessLevel = mCurrentBlock.accessLevel;
+    methodInfo.mName = pLexema->mName;
+    FillPragmaListUpper(methodInfo.mPragmaTextSet);
+    methodInfo.mCategory = pLexema->mCategory;
+
+    GetPrevBlock()->typeInfo->AddMethod(methodInfo);
 }
 //----------------------------------------------------------------------------------------------------
