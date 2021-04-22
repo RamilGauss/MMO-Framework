@@ -99,12 +99,12 @@ void TBinaryMarshaller::Unpack( char* packedData, int size )
             TUnpackHandler::Handle( p );
         }
         break;
-        case e_nsReflectionCodeGenerator_TExternalSourceList:
-        {
-            auto p = Allocate<nsReflectionCodeGenerator::TExternalSourceList>();
-            _Deserialize( p );
-            TUnpackHandler::Handle( p );
-        }
+        //case e_nsReflectionCodeGenerator_TExternalSourceList:
+        //{
+        //    auto p = Allocate<nsReflectionCodeGenerator::TExternalSourceList>();
+        //    _Deserialize( p );
+        //    TUnpackHandler::Handle( p );
+        //}
         break;
         case e_nsReflectionCodeGenerator_TExternalSources:
         {
@@ -155,13 +155,13 @@ void TBinaryMarshaller::Unpack( char* packedData, int size )
             TUnpackHandler::Handle( p );
         }
         break;
-        case e_nsReflectionCodeGenerator_TSqlGeneratorConfig:
-        {
-            auto p = Allocate<nsReflectionCodeGenerator::TSqlGeneratorConfig>();
-            _Deserialize( p );
-            TUnpackHandler::Handle( p );
-        }
-        break;
+        //case e_nsReflectionCodeGenerator_TSqlGeneratorConfig:
+        //{
+        //    auto p = Allocate<nsReflectionCodeGenerator::TSqlGeneratorConfig>();
+        //    _Deserialize( p );
+        //    TUnpackHandler::Handle( p );
+        //}
+        //break;
         case e_nsReflectionCodeGenerator_TTargetForCodeGeneration:
         {
             auto p = Allocate<nsReflectionCodeGenerator::TTargetForCodeGeneration>();
@@ -314,18 +314,18 @@ void TBinaryMarshaller::_Deallocate( nsReflectionCodeGenerator::TEntityManagerGe
 //---------------------------------------------------------------------------------------
 void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TExternalSource* p )
 {
-    mPushMaster.PushStr( p->fileName );
-    mPushMaster.PushStr( p->nameSpaceName );
-    mPushMaster.PushStr( p->className );
-    mPushMaster.PushStrArray( p->nameSpaceWithType );
+    //mPushMaster.PushStr( p->fileName );
+    //mPushMaster.PushStr( p->nameSpaceName );
+    //mPushMaster.PushStr( p->className );
+    //mPushMaster.PushStrArray( p->nameSpaceWithType );
 }
 //---------------------------------------------------------------------------------------
 void TBinaryMarshaller::_Deserialize( nsReflectionCodeGenerator::TExternalSource* p )
 {
-    mPopMaster.PopStr( p->fileName );
-    mPopMaster.PopStr( p->nameSpaceName );
-    mPopMaster.PopStr( p->className );
-    mPopMaster.PopStrSet( p->nameSpaceWithType );
+    //mPopMaster.PopStr( p->fileName );
+    //mPopMaster.PopStr( p->nameSpaceName );
+    //mPopMaster.PopStr( p->className );
+    //mPopMaster.PopStrSet( p->nameSpaceWithType );
 }
 //---------------------------------------------------------------------------------------
 TBinaryMarshaller::TypeID TBinaryMarshaller::_GetTypeID( nsReflectionCodeGenerator::TExternalSource* p )
@@ -337,73 +337,73 @@ void TBinaryMarshaller::_Deallocate( nsReflectionCodeGenerator::TExternalSource*
 {
 }
 //---------------------------------------------------------------------------------------
-void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TExternalSourceList* p )
-{
-    
-    TBinaryMaster::SizeType val_size0 = (TBinaryMaster::SizeType)(p->val.size());
-    mPushMaster.PushNum( val_size0 );
-    for ( auto& val_e0 : p->val )
-    {
-        bool val_isNotNull = &(val_e0) != nullptr;
-        mPushMaster.PushBool( val_isNotNull );
-        if ( val_isNotNull )
-            _Serialize( &(val_e0) );
-    }
-}
+//void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TExternalSourceList* p )
+//{
+//    
+//    TBinaryMaster::SizeType val_size0 = (TBinaryMaster::SizeType)(p->val.size());
+//    mPushMaster.PushNum( val_size0 );
+//    for ( auto& val_e0 : p->val )
+//    {
+//        bool val_isNotNull = &(val_e0) != nullptr;
+//        mPushMaster.PushBool( val_isNotNull );
+//        if ( val_isNotNull )
+//            _Serialize( &(val_e0) );
+//    }
+//}
 //---------------------------------------------------------------------------------------
-void TBinaryMarshaller::_Deserialize( nsReflectionCodeGenerator::TExternalSourceList* p )
-{
-    
-    p->val.clear();
-    TBinaryMaster::SizeType val_size0;
-    mPopMaster.PopNum( val_size0 );
-    for ( TBinaryMaster::SizeType val_i0 = 0 ; val_i0 < val_size0 ; val_i0++ ) 
-    {
-        nsReflectionCodeGenerator::TExternalSource val_e0;
-        bool val_IsNotNull;
-        mPopMaster.PopBool( val_IsNotNull );
-        if ( val_IsNotNull )
-        {
-            _Deserialize( &(val_e0) );
-        }
-        p->val.push_back( val_e0 );
-    }
-}
+//void TBinaryMarshaller::_Deserialize( nsReflectionCodeGenerator::TExternalSourceList* p )
+//{
+//    
+//    p->val.clear();
+//    TBinaryMaster::SizeType val_size0;
+//    mPopMaster.PopNum( val_size0 );
+//    for ( TBinaryMaster::SizeType val_i0 = 0 ; val_i0 < val_size0 ; val_i0++ ) 
+//    {
+//        nsReflectionCodeGenerator::TExternalSource val_e0;
+//        bool val_IsNotNull;
+//        mPopMaster.PopBool( val_IsNotNull );
+//        if ( val_IsNotNull )
+//        {
+//            _Deserialize( &(val_e0) );
+//        }
+//        p->val.push_back( val_e0 );
+//    }
+//}
 //---------------------------------------------------------------------------------------
-TBinaryMarshaller::TypeID TBinaryMarshaller::_GetTypeID( nsReflectionCodeGenerator::TExternalSourceList* p )
-{
-    return e_nsReflectionCodeGenerator_TExternalSourceList;
-}
-//---------------------------------------------------------------------------------------
-void TBinaryMarshaller::_Deallocate( nsReflectionCodeGenerator::TExternalSourceList* p )
-{
-    p->val.clear();
-}
+//TBinaryMarshaller::TypeID TBinaryMarshaller::_GetTypeID( nsReflectionCodeGenerator::TExternalSourceList* p )
+//{
+//    return e_nsReflectionCodeGenerator_TExternalSourceList;
+//}
+////---------------------------------------------------------------------------------------
+//void TBinaryMarshaller::_Deallocate( nsReflectionCodeGenerator::TExternalSourceList* p )
+//{
+//    p->val.clear();
+//}
 //---------------------------------------------------------------------------------------
 void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TExternalSources* p )
 {
     
-    TBinaryMaster::SizeType inFileList_size0 = (TBinaryMaster::SizeType)(p->inFileList.size());
-    mPushMaster.PushNum( inFileList_size0 );
-    for ( auto& inFileList_e0 : p->inFileList )
-    {
-        mPushMaster.PushStr( inFileList_e0 );
-    }
-    mPushMaster.PushStr( p->outFile );
-    auto inExtSrcList_p = p->inExtSrcList.get();
-    PushIsNotNullptr( inExtSrcList_p );
-    if ( inExtSrcList_p )
-        _Serialize( inExtSrcList_p );
-    auto outExtSrc_p = p->outExtSrc.get();
-    PushIsNotNullptr( outExtSrc_p );
-    if ( outExtSrc_p )
-        _Serialize( outExtSrc_p );
+    //TBinaryMaster::SizeType inFileList_size0 = (TBinaryMaster::SizeType)(p->inFileList.size());
+    //mPushMaster.PushNum( inFileList_size0 );
+    //for ( auto& inFileList_e0 : p->inFileList )
+    //{
+    //    mPushMaster.PushStr( inFileList_e0 );
+    //}
+    //mPushMaster.PushStr( p->outFile );
+    //auto inExtSrcList_p = p->inExtSrcList.get();
+    //PushIsNotNullptr( inExtSrcList_p );
+    //if ( inExtSrcList_p )
+    //    _Serialize( inExtSrcList_p );
+    //auto outExtSrc_p = p->outExtSrc.get();
+    //PushIsNotNullptr( outExtSrc_p );
+    //if ( outExtSrc_p )
+    //    _Serialize( outExtSrc_p );
 }
 //---------------------------------------------------------------------------------------
 void TBinaryMarshaller::_Deserialize( nsReflectionCodeGenerator::TExternalSources* p )
 {
     
-    p->inFileList.clear();
+    /*p->inFileList.clear();
     TBinaryMaster::SizeType inFileList_size0;
     mPopMaster.PopNum( inFileList_size0 );
     for ( TBinaryMaster::SizeType inFileList_i0 = 0 ; inFileList_i0 < inFileList_size0 ; inFileList_i0++ ) 
@@ -428,7 +428,7 @@ void TBinaryMarshaller::_Deserialize( nsReflectionCodeGenerator::TExternalSource
         _Deserialize( p->outExtSrc.get() );
     }
     else
-        p->outExtSrc.reset();
+        p->outExtSrc.reset();*/
 }
 //---------------------------------------------------------------------------------------
 TBinaryMarshaller::TypeID TBinaryMarshaller::_GetTypeID( nsReflectionCodeGenerator::TExternalSources* p )
@@ -438,9 +438,9 @@ TBinaryMarshaller::TypeID TBinaryMarshaller::_GetTypeID( nsReflectionCodeGenerat
 //---------------------------------------------------------------------------------------
 void TBinaryMarshaller::_Deallocate( nsReflectionCodeGenerator::TExternalSources* p )
 {
-    p->inFileList.clear();
-    p->inExtSrcList.reset();
-    p->outExtSrc.reset();
+    //p->inFileList.clear();
+    //p->inExtSrcList.reset();
+    //p->outExtSrc.reset();
 }
 //---------------------------------------------------------------------------------------
 void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TFilter* p )
@@ -494,10 +494,10 @@ void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TImplementation* 
     PushIsNotNullptr( mygui_p );
     if ( mygui_p )
         _Serialize( mygui_p );
-    auto sql_p = p->sql.get();
-    PushIsNotNullptr( sql_p );
-    if ( sql_p )
-        _Serialize( sql_p );
+    //auto sql_p = p->sql.get();
+    //PushIsNotNullptr( sql_p );
+    //if ( sql_p )
+    //    _Serialize( sql_p );
     auto reflection_p = p->reflection.get();
     PushIsNotNullptr( reflection_p );
     if ( reflection_p )
@@ -538,14 +538,14 @@ void TBinaryMarshaller::_Deserialize( nsReflectionCodeGenerator::TImplementation
     }
     else
         p->mygui.reset();
-    if ( PopIsNotNullptr() )
-    {
-        if ( p->sql.get() == nullptr  )
-            p->sql.reset( new nsReflectionCodeGenerator::TSqlGeneratorConfig() );
-        _Deserialize( p->sql.get() );
-    }
-    else
-        p->sql.reset();
+    //if ( PopIsNotNullptr() )
+    //{
+    //    if ( p->sql.get() == nullptr  )
+    //        p->sql.reset( new nsReflectionCodeGenerator::TSqlGeneratorConfig() );
+    //    _Deserialize( p->sql.get() );
+    //}
+    //else
+    //    p->sql.reset();
     if ( PopIsNotNullptr() )
     {
         if ( p->reflection.get() == nullptr  )
@@ -582,7 +582,7 @@ void TBinaryMarshaller::_Deallocate( nsReflectionCodeGenerator::TImplementation*
     p->jsonSerializer.reset();
     p->binaryMarshaller.reset();
     p->mygui.reset();
-    p->sql.reset();
+    //p->sql.reset();
     p->reflection.reset();
     p->entMngExt.reset();
     p->typeInformation.reset();
@@ -677,24 +677,24 @@ void TBinaryMarshaller::_Deallocate( nsReflectionCodeGenerator::TSerializer* p )
     p->externalSources.reset();
 }
 //---------------------------------------------------------------------------------------
-void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p )
-{
-    _Serialize( (nsReflectionCodeGenerator::TSerializer*)p );
-}
+//void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p )
+//{
+//    _Serialize( (nsReflectionCodeGenerator::TSerializer*)p );
+//}
+////---------------------------------------------------------------------------------------
+//void TBinaryMarshaller::_Deserialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p )
+//{
+//    _Deserialize( (nsReflectionCodeGenerator::TSerializer*)p );
+//}
 //---------------------------------------------------------------------------------------
-void TBinaryMarshaller::_Deserialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p )
-{
-    _Deserialize( (nsReflectionCodeGenerator::TSerializer*)p );
-}
+//TBinaryMarshaller::TypeID TBinaryMarshaller::_GetTypeID( nsReflectionCodeGenerator::TSqlGeneratorConfig* p )
+//{
+    //return e_nsReflectionCodeGenerator_TSqlGeneratorConfig;
+//}
 //---------------------------------------------------------------------------------------
-TBinaryMarshaller::TypeID TBinaryMarshaller::_GetTypeID( nsReflectionCodeGenerator::TSqlGeneratorConfig* p )
-{
-    return e_nsReflectionCodeGenerator_TSqlGeneratorConfig;
-}
-//---------------------------------------------------------------------------------------
-void TBinaryMarshaller::_Deallocate( nsReflectionCodeGenerator::TSqlGeneratorConfig* p )
-{
-}
+//void TBinaryMarshaller::_Deallocate( nsReflectionCodeGenerator::TSqlGeneratorConfig* p )
+//{
+//}
 //---------------------------------------------------------------------------------------
 void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p )
 {
@@ -711,7 +711,7 @@ void TBinaryMarshaller::_Serialize( nsReflectionCodeGenerator::TTargetForCodeGen
     for ( auto& typeCustomizerMap_e0 : p->typeCustomizerMap )
     {
         mPushMaster.PushStr( typeCustomizerMap_e0.first );
-        mPushMaster.PushStr( typeCustomizerMap_e0.second );
+        //mPushMaster.PushStr( typeCustomizerMap_e0.second );
     }
 }
 //---------------------------------------------------------------------------------------
@@ -734,7 +734,7 @@ void TBinaryMarshaller::_Deserialize( nsReflectionCodeGenerator::TTargetForCodeG
         mPopMaster.PopStr( typeCustomizerMap_key0 );
         std::string typeCustomizerMap_value0;
         mPopMaster.PopStr( typeCustomizerMap_value0 );
-        p->typeCustomizerMap.insert( { typeCustomizerMap_key0, typeCustomizerMap_value0 } );
+        //p->typeCustomizerMap.insert( { typeCustomizerMap_key0, typeCustomizerMap_value0 } );
     }
 }
 //---------------------------------------------------------------------------------------

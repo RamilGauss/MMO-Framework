@@ -59,7 +59,7 @@ void TReflectionSourceFileGenerator::AddInit()
     Add("isNeedInit = false;");
     AddEmptyLine();
 
-    for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
+    /*for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
         auto namespaceName = namespaceTypeInfo.first;
         auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
         for ( auto filenameType : filenameTypeMap ) {
@@ -84,7 +84,7 @@ void TReflectionSourceFileGenerator::AddInit()
 
             AddEmptyLine();
         }
-    }
+    }*/
 
     DecrementTabs();
     AddRightBrace();

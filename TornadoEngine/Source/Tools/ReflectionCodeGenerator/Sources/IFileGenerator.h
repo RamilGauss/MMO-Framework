@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include "IGenerator.h"
 #include <functional>
+#include "Parser/Sources/MemberExtendedTypeInfo.h"
 
 namespace nsReflectionCodeGenerator
 {
@@ -47,8 +48,6 @@ namespace nsReflectionCodeGenerator
         TSerializer* mSerializer = nullptr;
     public:
         void Init(TStrListPair& strListPair, TSerializer* serializer);
-
-        virtual void Work() = 0;
 
     protected:
         void AddHeader(const std::string& header);
@@ -106,11 +105,11 @@ namespace nsReflectionCodeGenerator
     protected:
         std::string EnumerateParamToStr(std::list<std::string>& strList);
 
-        std::string GetNullExpression(TMemberTypeExtendedInfo& ext);
+        std::string GetNullExpression(nsCppParser::TMemberExtendedTypeInfo& ext);
 
     protected:
-        void AddCallingMethodForParent(TTypeInfo* p, std::function<void(const std::string&)> func);
-        void AddCallingMethod(TTypeInfo* p, std::function<void(TMemberInfo*)> func);
+        void AddCallingMethodForParent(nsCppParser::TTypeInfo* p, std::function<void(const std::string&)> func);
+        void AddCallingMethod(nsCppParser::TTypeInfo* p, std::function<void(nsCppParser::TMemberInfo*)> func);
     private:
 
         void General_AddCallFunctionOrObjMethod(const std::string& objectName, 
@@ -120,8 +119,8 @@ namespace nsReflectionCodeGenerator
     protected:
         void AddIncludeForExternalSources(TExternalSources* pExrSrc);
 
-        std::string GetSerializeMethod(TMemberTypeExtendedInfo* pExt, const std::string& withinClassTypeName);
-        std::string GetDeserializeMethod(TMemberTypeExtendedInfo* pExt, const std::string& withinClassTypeName);
+        std::string GetSerializeMethod(nsCppParser::TMemberExtendedTypeInfo* pExt, const std::string& withinClassTypeName);
+        std::string GetDeserializeMethod(nsCppParser::TMemberExtendedTypeInfo* pExt, const std::string& withinClassTypeName);
 
         std::string GetSerializeMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName);
         std::string GetDeserializeMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName);

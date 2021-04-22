@@ -76,9 +76,38 @@ bool TFunctionLexema::CanFillDeclaration(const TLineTokenEntity* line) const
 bool TFunctionLexema::CanFill(std::vector<TTokenInfo>& normalizedTokens, size_t size) const
 {
     using namespace boost::wave;
-    auto rightParenIndex = ReverseFind(normalizedTokens, T_RIGHTPAREN);
 
+    auto ifIndex = Find(normalizedTokens, T_IF);
+    auto forIndex = Find(normalizedTokens, T_FOR);
+    auto catchIndex = Find(normalizedTokens, T_CATCH);
+    auto switchIndex = Find(normalizedTokens, T_SWITCH);
+
+    if (ifIndex != -1 ||
+        forIndex != -1 ||
+        catchIndex != -1 ||
+        switchIndex != -1) {
+        return false;
+    }
+
+    auto rightParenIndex = ReverseFind(normalizedTokens, T_RIGHTPAREN);
     if (rightParenIndex == -1) {
+        return false;
+    }
+
+    auto leftParenIndex = Find(normalizedTokens, T_LEFTPAREN);
+    if (leftParenIndex == -1) {
+        return false;
+    }
+
+    auto assignIndex = Find(normalizedTokens, T_ASSIGN);
+    if (assignIndex != -1) {
+        if (assignIndex < leftParenIndex) {
+            return false;
+        }
+    }
+
+    auto pragmaIndex = ReverseFind(normalizedTokens, T_PP_PRAGMA);
+    if (pragmaIndex != -1) {
         return false;
     }
 

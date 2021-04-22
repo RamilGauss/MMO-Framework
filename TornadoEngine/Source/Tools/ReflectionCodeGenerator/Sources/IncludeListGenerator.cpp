@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 namespace fs = std::filesystem;
 using namespace nsReflectionCodeGenerator;
 
+//-----------------------------------------------------------------------------------
 void TIncludeListGenerator::Work()
 {
     TIncludeListFileGenerator fileGenerator;
@@ -22,7 +23,13 @@ void TIncludeListGenerator::Work()
 
     pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.includeListFileName + ".h");
 
+    fileGenerator.SetIncludes(&mHeaderSet);
     fileGenerator.Init(pair, nullptr);
     fileGenerator.Work();
+}
+//-----------------------------------------------------------------------------------
+void TIncludeListGenerator::AddInclude(const std::string& header)
+{
+    mHeaderSet.insert(header);
 }
 //-----------------------------------------------------------------------------------

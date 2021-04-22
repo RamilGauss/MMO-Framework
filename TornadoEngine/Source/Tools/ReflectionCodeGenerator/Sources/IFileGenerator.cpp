@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include "HiTimer.h"
 
 using namespace nsReflectionCodeGenerator;
+using namespace nsCppParser;
 
 void IFileGenerator::Init(TStrListPair& strListPair, TSerializer* serializer)
 {
@@ -128,7 +129,7 @@ void IFileGenerator::AddUsing(const std::string& expression)
 void IFileGenerator::AddClassBegin(const std::string& exportDeclaration, const std::string& className)
 {
     std::string sEexportDeclaration;
-    if ( exportDeclaration.length() ) {
+    if (exportDeclaration.length()) {
         sEexportDeclaration = fmt::format(" {}", exportDeclaration);
     }
     auto s = fmt::format("class{} {}", sEexportDeclaration, className);
@@ -174,7 +175,7 @@ void IFileGenerator::ClearTabs()
 std::string IFileGenerator::AddTabsToStr(const std::string& str, int tabCounter)
 {
     std::string tabAcculumator;
-    for ( auto i = 0; i < tabCounter; i++ ) {
+    for (auto i = 0; i < tabCounter; i++) {
         tabAcculumator += sTab;
     }
     return tabAcculumator + str;
@@ -201,7 +202,7 @@ void IFileGenerator::AddPrivateSection()
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddList(const std::list<std::string>& strList)
 {
-    for ( auto& str : strList ) {
+    for (auto& str : strList) {
         Add(str);
     }
 }
@@ -237,24 +238,24 @@ void IFileGenerator::General_AddCallFunctionOrObjMethod(const std::string& objec
     const std::string& funcName, std::list<std::string>& templateList, std::list<std::string>& argList)
 {
     std::string namespacePredict;
-    if ( namespaceFunc.length() ) {
+    if (namespaceFunc.length()) {
         namespacePredict = namespaceFunc + "::";
     }
 
     std::string objPredict;
-    if ( objectName.length() ) {
+    if (objectName.length()) {
         objPredict = objectName + ".";
     }
 
     std::string str = fmt::format("{}{}{}", objPredict, namespacePredict, funcName);
     auto templ = EnumerateParamToStr(templateList);
-    if ( templ.length() ) {
+    if (templ.length()) {
         str += fmt::format("<{}>", templ);
     }
 
     str += "(";
     auto args = EnumerateParamToStr(argList);
-    if ( args.length() ) {
+    if (args.length()) {
         str += " " + args;
     }
 
@@ -271,8 +272,8 @@ void IFileGenerator::AddVarDeclaration(const std::string& typeName, const std::s
 std::string IFileGenerator::EnumerateParamToStr(std::list<std::string>& paramList)
 {
     std::list<std::string> existStrList;
-    for ( auto param : paramList ) {
-        if ( param.length() > 0 ) {
+    for (auto param : paramList) {
+        if (param.length() > 0) {
             existStrList.push_back(param);
         }
     }
@@ -280,9 +281,9 @@ std::string IFileGenerator::EnumerateParamToStr(std::list<std::string>& paramLis
     std::string str;
     int cnt = existStrList.size();
     int i = 0;
-    for ( auto param : existStrList ) {
+    for (auto param : existStrList) {
         str += param;
-        if ( i != cnt - 1 ) {
+        if (i != cnt - 1) {
             str += ", ";
         }
         i++;
@@ -290,67 +291,67 @@ std::string IFileGenerator::EnumerateParamToStr(std::list<std::string>& paramLis
     return str;
 }
 //----------------------------------------------------------------------------------
-std::string IFileGenerator::GetNullExpression(TMemberTypeExtendedInfo& ext)
+std::string IFileGenerator::GetNullExpression(TMemberExtendedTypeInfo& ext)
 {
-    auto typeName = ext.GetTypeNameWithNameSpace();
-    switch ( ext.mAccessMethod ) {
-    case TMemberTypeExtendedInfo::Object:
-        return "";
-    case TMemberTypeExtendedInfo::Pointer:
-        return " = nullptr";
-    case TMemberTypeExtendedInfo::SmartPointer:
-        return "";
-    }
-    return "";
+    //auto typeName = ext.GetTypeNameWithNameSpace();
+    //switch (ext.mAccessMethod) {
+    //    case TMemberExtendedTypeInfo::Object:
+    //        return "";
+    //    case TMemberExtendedTypeInfo::Pointer:
+    //        return " = nullptr";
+    //    case TMemberExtendedTypeInfo::SmartPointer:
+    //        return "";
+    //}
+    return std::string();
 }
 //-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddCallingMethodForParent(TTypeInfo* p, std::function<void(const std::string&)> func)
 {
-    auto withinClassTypeName = p->GetTypeNameWithNameSpace();
+    //auto withinClassTypeName = p->GetTypeNameWithNameSpace();
 
-    for ( auto& inheritanceInfo : p->mInheritanceVec ) {
-        if ( inheritanceInfo.mInheritanceAccessLevel != TMemberInfo::ePublic ) {
-            continue;
-        }
-        auto parentTypeName = inheritanceInfo.mParentTypeName;
+    //for (auto& inheritanceInfo : p->mInheritanceVec) {
+    //    if (inheritanceInfo.mInheritanceAccessLevel != TMemberInfo::ePublic) {
+    //        continue;
+    //    }
+    //    auto parentTypeName = inheritanceInfo.mParentTypeName;
 
-        // найти родителя - TypeInfo
-        auto pParentInfo = mTypeMng->FindTypeInfoBy(parentTypeName, withinClassTypeName);
-        if ( pParentInfo != nullptr ) {
-            // Известный тип
-            parentTypeName = pParentInfo->GetTypeNameWithNameSpace();
-        }
-        func(parentTypeName);
-    }
+    //    // найти родителя - TypeInfo
+    //    auto pParentInfo = mTypeMng->FindTypeInfoBy(parentTypeName, withinClassTypeName);
+    //    if (pParentInfo != nullptr) {
+    //        // Известный тип
+    //        parentTypeName = pParentInfo->GetTypeNameWithNameSpace();
+    //    }
+    //    func(parentTypeName);
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddCallingMethod(TTypeInfo* p, std::function<void(TMemberInfo*)> func)
 {
-    auto fit = p->mMemberMap.find(TMemberInfo::AccessLevel::ePublic);
-    if ( fit != p->mMemberMap.end() ) {
-        for ( auto memberInfo : fit->second ) {
-            func(memberInfo.get());
-        }
-    }
+    //auto fit = p->mMemberMap.find(TMemberInfo::AccessLevel::ePublic);
+    //if (fit != p->mMemberMap.end()) {
+    //    for (auto memberInfo : fit->second) {
+    //        func(memberInfo.get());
+    //    }
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddIncludeForExternalSources(TExternalSources* pExrSrc)
 {
-    if ( pExrSrc == nullptr || pExrSrc->inExtSrcList == nullptr ) {
-        return;
-    }
-    for ( auto& extSrc : pExrSrc->inExtSrcList->val ) {
-        AddInclude(extSrc.fileName);
-    }
+    //if (pExrSrc == nullptr || pExrSrc->inExtSrcList == nullptr) {
+    //    return;
+    //}
+    //for (auto& extSrc : pExrSrc->inExtSrcList->val) {
+    //    AddInclude(extSrc.fileName);
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetSerializeMethod(TMemberTypeExtendedInfo* pExt, const std::string& withinClassTypeName)
+std::string IFileGenerator::GetSerializeMethod(TMemberExtendedTypeInfo* pExt, const std::string& withinClassTypeName)
 {
     auto namespaceWithType = pExt->GetTypeNameWithNameSpace();
     return GetSerializeMethod(namespaceWithType, withinClassTypeName);
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetDeserializeMethod(TMemberTypeExtendedInfo* pExt, const std::string& withinClassTypeName)
+std::string IFileGenerator::GetDeserializeMethod(TMemberExtendedTypeInfo* pExt, const std::string& withinClassTypeName)
 {
     auto namespaceWithType = pExt->GetTypeNameWithNameSpace();
     return GetDeserializeMethod(namespaceWithType, withinClassTypeName);
@@ -369,30 +370,30 @@ std::string IFileGenerator::GetDeserializeMethod(const std::string& namespaceWit
 std::string IFileGenerator::GetMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName, const std::string& methodName)
 {
     std::string method;
-    if ( mSerializer == nullptr ) {
+    if (mSerializer == nullptr) {
         return method;
     }
 
-    if ( mSerializer->externalSources != nullptr &&
-        mSerializer->externalSources->inExtSrcList != nullptr ) {
+    //if (mSerializer->externalSources != nullptr &&
+    //    mSerializer->externalSources->inExtSrcList != nullptr) {
 
-        for ( auto& extSrc : mSerializer->externalSources->inExtSrcList.get()->val ) {
-            if ( extSrc.nameSpaceWithType.find(namespaceWithType) != extSrc.nameSpaceWithType.end() ) {
-                method = fmt::format("{}::{}::{}", extSrc.nameSpaceName, extSrc.className, methodName);
-                break;
-            }
-        }
-    }
+    //    for (auto& extSrc : mSerializer->externalSources->inExtSrcList.get()->val) {
+    //        if (extSrc.nameSpaceWithType.find(namespaceWithType) != extSrc.nameSpaceWithType.end()) {
+    //            method = fmt::format("{}::{}::{}", extSrc.nameSpaceName, extSrc.className, methodName);
+    //            break;
+    //        }
+    //    }
+    //}
 
-    if ( method.length() > 0 ) {
+    if (method.length() > 0) {
         return method;
     }
 
-    auto type = mTypeMng->FindTypeInfoBy(namespaceWithType, withinClassTypeName);
-    if ( type == nullptr ) {
-        return method;
-    }
-    method = methodName;
+    //### auto type = mTypeMng->FindTypeInfoBy(namespaceWithType, withinClassTypeName);
+    //### if (type == nullptr) {
+    //###     return method;
+    //### }
+    //### method = methodName;
     return method;
 }
 //-----------------------------------------------------------------------------------------------------------

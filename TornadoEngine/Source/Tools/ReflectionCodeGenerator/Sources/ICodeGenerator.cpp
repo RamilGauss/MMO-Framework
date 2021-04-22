@@ -14,23 +14,23 @@ See for more information LICENSE.md.
 namespace fs = std::filesystem;
 using namespace nsReflectionCodeGenerator;
 
-ICodeGenerator::ICodeGenerator( std::string name )
+ICodeGenerator::ICodeGenerator(const std::string& name)
 {
-  mName = name;
+    mName = name;
 }
 //----------------------------------------------------------------------------------
-void ICodeGenerator::Init( TPairList& result )
+void ICodeGenerator::Init(TPairList& result)
 {
-  mPairList = &result;
+    mPairList = &result;
 
-  fmt::print( "Begin code generator {}\n", mName );
+    fmt::print("Begin code generator {}\n", mName);
 }
 //----------------------------------------------------------------------------------
-std::string ICodeGenerator::GeneratedFileFullPath( std::string fileNameWithExt )
+std::string ICodeGenerator::GeneratedFileFullPath(std::string fileNameWithExt)
 {
-  fs::path dir( mConfig->targetForCodeGeneration.directory );
-  auto path = dir.append( fileNameWithExt );
-  return path.string();
+    fs::path dir(mConfig->targetForCodeGeneration.directory);
+    auto path = dir.append(fileNameWithExt);
+    return path.string();
 }
 //----------------------------------------------------------------------------------
 

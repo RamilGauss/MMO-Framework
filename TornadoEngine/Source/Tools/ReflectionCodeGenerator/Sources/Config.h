@@ -14,6 +14,8 @@ See for more information LICENSE.md.
 #include <set>
 #include <memory>
 
+#include "Parser/Sources/Types.h"
+
 namespace nsReflectionCodeGenerator
 {
 #pragma REFLECTION_ATTRIBUTE
@@ -26,8 +28,12 @@ namespace nsReflectionCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct TFilter
     {
-        std::string attribute;
         std::vector<std::string> extensions;
+        
+        // Filter by pragma or parent
+        std::string attribute;// #pragma ATTRIBUTE
+        // or
+        std::string inheritance;// "ns::TypeA"
     };
 
 #pragma REFLECTION_ATTRIBUTE 
@@ -50,15 +56,9 @@ namespace nsReflectionCodeGenerator
     {
         std::string fileName;
         std::string nameSpaceName;
-        std::string className;
+        std::string typeName;
 
-        std::set<std::string> nameSpaceWithType;// "ns::Type"
-    };
-
-#pragma REFLECTION_ATTRIBUTE
-    struct TExternalSourceList
-    {
-        std::list<TExternalSource> val;
+        std::set<std::string> customizedTypes;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -66,9 +66,6 @@ namespace nsReflectionCodeGenerator
     {
         std::list<std::string> inFileList;
         std::string outFile;
-
-        std::shared_ptr<TExternalSourceList> inExtSrcList;
-        std::shared_ptr<TExternalSource> outExtSrc;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -97,12 +94,6 @@ namespace nsReflectionCodeGenerator
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct TSqlGeneratorConfig : TSerializer
-    {
-
-    };
-
-#pragma REFLECTION_ATTRIBUTE
     struct TReflectionGeneratorConfig : TSerializer
     {
 
@@ -126,12 +117,10 @@ namespace nsReflectionCodeGenerator
         std::shared_ptr<TJsonSerializerGeneratorConfig> jsonSerializer;
         std::shared_ptr<TBinaryMarshallerGeneratorConfig> binaryMarshaller;
         std::shared_ptr<TMyGuiGeneratorConfig> mygui;
-        std::shared_ptr<TSqlGeneratorConfig> sql;
 
         std::shared_ptr<TReflectionGeneratorConfig> reflection;
         std::shared_ptr<TEntityManagerGeneratorConfig> entMngExt;
         std::shared_ptr<TTypeInformationGeneratorConfig> typeInformation;
-
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -140,9 +129,8 @@ namespace nsReflectionCodeGenerator
         std::string directory;
         std::string includeListFileName;
         std::string header;
+        std::map<std::string, nsCppParser::TypeCategory> typeCustomizerMap;
         TImplementation implementation;
-
-        std::map<std::string, std::string> typeCustomizerMap;
     };
 
 #pragma REFLECTION_ATTRIBUTE

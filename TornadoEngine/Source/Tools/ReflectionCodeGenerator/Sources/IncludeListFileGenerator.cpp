@@ -12,28 +12,23 @@ using namespace nsReflectionCodeGenerator;
 
 void TIncludeListFileGenerator::Work()
 {
-  AddHeader(mConfig->targetForCodeGeneration.header);
-  AddTimeHeader();
+    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddTimeHeader();
 
-  AddPragmaOnce();
-  AddEmptyLine();
-  AddIncludes();
+    AddPragmaOnce();
+    AddEmptyLine();
+    AddIncludes();
 }
 //-----------------------------------------------------------------------------------
 void TIncludeListFileGenerator::AddIncludes()
 {
-  std::set<std::string> fileNameSet;
-
-  for ( auto& nameSpaceName_Types : mTypeMng->mNameSpaceTypesMap )
-  {
-    auto types = nameSpaceName_Types.second.get();
-    for ( auto name_typeInfo : types [0] )
-    {
-      auto& typeInfo = name_typeInfo.second;
-      fileNameSet.insert( typeInfo->mFileName );
+    for (auto& fileName : *mHeaderSetPtr) {
+        AddInclude(fileName);
     }
-  }
-  for(auto& fileName : fileNameSet )
-    AddInclude( fileName );
+}
+//-----------------------------------------------------------------------------------
+void TIncludeListFileGenerator::SetIncludes(std::set<std::string>* headerSet)
+{
+    mHeaderSetPtr = headerSet;
 }
 //-----------------------------------------------------------------------------------

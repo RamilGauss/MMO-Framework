@@ -11,8 +11,13 @@ See for more information LICENSE.md.
 
 using namespace nsReflectionCodeGenerator;
 
+//----------------------------------------------------------------------------------
 void TEntityManagerGenerator::Work()
 {
+    if (!IsWork()) {
+        return;
+    }
+
     GenerateHeader();
     GenerateSource();
 }
@@ -47,4 +52,8 @@ void TEntityManagerGenerator::GenerateSource()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-
+TSerializer* TEntityManagerGenerator::GetSerializer()
+{
+    return mConfig->targetForCodeGeneration.implementation.entMngExt.get();
+}
+//----------------------------------------------------------------------------------

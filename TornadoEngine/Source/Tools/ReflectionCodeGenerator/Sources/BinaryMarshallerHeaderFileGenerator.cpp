@@ -61,23 +61,23 @@ void TBinaryMarshallerHeaderFileGenerator::Work()
 void TBinaryMarshallerHeaderFileGenerator::AddDeclarations()
 {
     IncrementTabs();
-    for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
-        auto namespaceName = namespaceTypeInfo.first;
-        auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
-        for ( auto filenameType : filenameTypeMap ) {
-            auto p = filenameType.second.get();
-            auto typeWithNamespace = p->GetTypeNameWithNameSpace();
-            auto serMethod = fmt::format("{} {}( {}* p );", s_Void, s_Serialize, typeWithNamespace);
-            Add(serMethod);
-            auto deserMethod = fmt::format("{} {}( {}* p );", s_Void, s_Deserialize, typeWithNamespace);
-            Add(deserMethod);
-            auto deser = fmt::format("{} {}( {}* p );", s_TypeID, s_GetTypeID, typeWithNamespace);
-            Add(deser);
-            std::list<std::string> paramList = { fmt::format("{}* p", typeWithNamespace) };
-            AddStaticMethodDeclaration(s_Void, s_Deallocate, paramList);
-            AddEmptyLine();
-        }
-    }
+    //for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
+    //    auto namespaceName = namespaceTypeInfo.first;
+    //    auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
+    //    for ( auto filenameType : filenameTypeMap ) {
+    //        auto p = filenameType.second.get();
+    //        auto typeWithNamespace = p->GetTypeNameWithNameSpace();
+    //        auto serMethod = fmt::format("{} {}( {}* p );", s_Void, s_Serialize, typeWithNamespace);
+    //        Add(serMethod);
+    //        auto deserMethod = fmt::format("{} {}( {}* p );", s_Void, s_Deserialize, typeWithNamespace);
+    //        Add(deserMethod);
+    //        auto deser = fmt::format("{} {}( {}* p );", s_TypeID, s_GetTypeID, typeWithNamespace);
+    //        Add(deser);
+    //        std::list<std::string> paramList = { fmt::format("{}* p", typeWithNamespace) };
+    //        AddStaticMethodDeclaration(s_Void, s_Deallocate, paramList);
+    //        AddEmptyLine();
+    //    }
+    //}
     DecrementTabs();
 }
 //-------------------------------------------------------------------------------------
@@ -87,14 +87,14 @@ void TBinaryMarshallerHeaderFileGenerator::AddEnums()
     IncrementTabs();
 
     std::set<std::string> sortedTypeNameSet;
-    for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
-        auto namespaceName = namespaceTypeInfo.first;
-        auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
-        for ( auto filenameType : filenameTypeMap ) {
-            auto p = filenameType.second.get();
-            sortedTypeNameSet.insert(MakeEnumName(p));
-        }
-    }
+    //for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
+    //    auto namespaceName = namespaceTypeInfo.first;
+    //    auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
+    //    for ( auto filenameType : filenameTypeMap ) {
+    //        auto p = filenameType.second.get();
+    //        sortedTypeNameSet.insert(MakeEnumName(p));
+    //    }
+    //}
 
     int i = 0;
     std::string sEnum;

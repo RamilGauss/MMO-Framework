@@ -7,19 +7,21 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ICodeGenerator.h"
+#include "ITargetCodeGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {
-    class TTypeInformationGenerator : public ICodeGenerator
+    class TTypeInformationGenerator : public ITargetCodeGenerator
     {
     public:
-        TTypeInformationGenerator() : ICodeGenerator("TypeInformationGenerator")
-        {
-        }
+        TTypeInformationGenerator() : ITargetCodeGenerator("TypeInformationGenerator") {}
 
-        virtual void Work() override;
+        void Work() override;
+
+        void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::list<std::string>& dependencyNames) override {}
+        TSerializer* GetSerializer() override;
     private:
+
         void GenerateHeader();
         void GenerateSource();
     };

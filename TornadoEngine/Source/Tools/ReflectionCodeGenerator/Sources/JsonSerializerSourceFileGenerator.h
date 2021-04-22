@@ -63,7 +63,7 @@ namespace nsReflectionCodeGenerator
         const std::string s_TypeNameFuncsMap = "mTypeNameFuncsMap";
         const std::string s_TypeFuncVector = "mTypeFuncVector";
 
-        TTypeInfo* mCurrentTypeInfo = nullptr;
+        nsCppParser::TTypeInfo* mCurrentTypeInfo = nullptr;
 
     public:
         virtual void Work() override;
@@ -75,88 +75,88 @@ namespace nsReflectionCodeGenerator
 
         void AddImplementations();
 
-        void AddSerializeMethodImplementation(TTypeInfo* p);
-        void AddDeserializeMethodImplementation(TTypeInfo* p);
+        void AddSerializeMethodImplementation(nsCppParser::TTypeInfo* p);
+        void AddDeserializeMethodImplementation(nsCppParser::TTypeInfo* p);
 
         void AddCallingSerializeParent(const std::string& parentTypeName);
         void AddCallingDeserializeParent(const std::string& parentTypeName);
 
-        void AddPushByMemberInfo(TMemberInfo* memberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr = nullptr, int depth = 0);
+        void AddPushByMemberInfo(nsCppParser::TMemberInfo* memberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr = nullptr, int depth = 0);
 
-        void AddPush(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddPushZeroDepth(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr);
-        void AddPushDepth(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddPush(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddPushZeroDepth(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr);
+        void AddPushDepth(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddPushReflection(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddPushReflectionZeroDepth(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr);
-        void AddPushReflectionDepth(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddPushReflection(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddPushReflectionZeroDepth(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr);
+        void AddPushReflectionDepth(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddPushReflectionDepthSetListVector(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddPushReflectionDepthMap(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddPushReflectionDepthSetListVector(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddPushReflectionDepthMap(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddBeginPushListOrSet(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddEndPushListOrSet(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddBeginPushListOrSet(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddEndPushListOrSet(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddBeginPushVector(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddEndPushVector(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddBeginPushVector(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddEndPushVector(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddBeginPushMap(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddEndPushMap(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddBeginPushMap(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddEndPushMap(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
         //=======================================================================
-        void AddPopByMemberInfo(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr = nullptr, int depth = 0);
+        void AddPopByMemberInfo(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr = nullptr, int depth = 0);
 
-        void AddPop(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddPopZeroDepth(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr);
-        void AddPopDepth(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddPop(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddPopZeroDepth(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr);
+        void AddPopDepth(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddPopReflection(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddPopReflection(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddPopReflectionZeroDepth(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr);
-        void AddPopReflectionDepth(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddPopReflectionZeroDepth(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr);
+        void AddPopReflectionDepth(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddPopReflectionDepthSetListVector(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddPopReflectionDepthMap(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddPopReflectionDepthSetListVector(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddPopReflectionDepthMap(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddBeginPopListSetVector(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddBeginPopMap(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddBeginPopListSetVector(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddBeginPopMap(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddEndPop(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddEndPop(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddPopLastElementListSetVector(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddPopLastElementListSetVector(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
 
-        void AddEndPopMap(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
-        void AddEndPopListSetVector(TMemberInfo* pMemberInfo,
-            std::vector<TMemberTypeExtendedInfo>* pExtArr, int depth);
+        void AddEndPopMap(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
+        void AddEndPopListSetVector(nsCppParser::TMemberInfo* pMemberInfo,
+            std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr, int depth);
     private:
 
         std::string CollectorName(const std::string& name, int depth);

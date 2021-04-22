@@ -13,6 +13,10 @@ using namespace nsReflectionCodeGenerator;
 
 void TJsonSerializerGenerator::Work()
 {
+    if (!IsWork()) {
+        return;
+    }
+
     GenerateHeader();
     GenerateSource();
 }
@@ -47,4 +51,13 @@ void TJsonSerializerGenerator::GenerateSource()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
+void TJsonSerializerGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::list<std::string>& dependencyNames)
+{
 
+}
+//----------------------------------------------------------------------------------
+TSerializer* TJsonSerializerGenerator::GetSerializer()
+{
+    return mConfig->targetForCodeGeneration.implementation.jsonSerializer.get();
+}
+//----------------------------------------------------------------------------------

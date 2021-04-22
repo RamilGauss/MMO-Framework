@@ -36,14 +36,8 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{14239343-ebef-4173-b8e2-db9fdb629f09}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Info">
-      <UniqueIdentifier>{c50e22c0-6f45-4957-a29f-17744101630b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Addin">
       <UniqueIdentifier>{918e53c0-c1a1-42b4-b71d-4edcf142d497}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Generators\Sql">
-      <UniqueIdentifier>{4cbfee1f-4033-47e5-be77-a00d9fb677d3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Generators\Reflection">
       <UniqueIdentifier>{48df2734-16fb-4dfe-b742-7f66faa64882}</UniqueIdentifier>
@@ -59,40 +53,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\AST_StateMachine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\CodeGeneratorFusion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\FileLexer.cpp">
+    <ClCompile Include="Sources\CodeGeneratorAggregator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MemberTypeExtendedInfoAnalyzer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MemberTypeExtendedInfoCache.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\SetupConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\SourceAccumulator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Tokenizer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\TypeInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\TypeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\BinaryMarshallerGenerator.cpp">
@@ -140,27 +110,6 @@
     <ClCompile Include="Sources\BinaryMarshaller.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\MemberTypeExtendedInfo.cpp">
-      <Filter>Info</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\MemberInfo.cpp">
-      <Filter>Info</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SqlFileGenerator.cpp">
-      <Filter>Generators\Sql</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SqlGenerator.cpp">
-      <Filter>Generators\Sql</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SqlHeaderFileGenerator.cpp">
-      <Filter>Generators\Sql</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SqlSourceFileGenerator.cpp">
-      <Filter>Generators\Sql</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\SqlGenerated.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\ReflectionGenerator.cpp">
       <Filter>Generators\Reflection</Filter>
     </ClCompile>
@@ -197,16 +146,22 @@
     <ClCompile Include="Sources\TypeInformationSourceFIleGenerator.cpp">
       <Filter>Generators\TypeInformation</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\PathOperations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeNameDataBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ITargetCodeGenerator.cpp">
+      <Filter>Generators\General\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\BinaryMarshallerGenerator.h">
       <Filter>Generators\Binary</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\TypeManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Tokenizer.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\SetupConfig.h">
       <Filter>Header Files</Filter>
@@ -215,12 +170,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\ProgramInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\AST_StateMachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\ConfigContainer.h">
@@ -247,41 +196,11 @@
     <ClInclude Include="Sources\ICodeGenerator.h">
       <Filter>Generators\General\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\TokenInfoManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\SourceAccumulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\readerwriterqueue.h">
+    <ClInclude Include="Sources\CodeGeneratorAggregator.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\MemberTypeExtendedInfoCache.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\MemberTypeExtendedInfoAnalyzer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\FileLexer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\CodeGeneratorFusion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\TokenInfo.h">
-      <Filter>Info</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\TypeInfo.h">
-      <Filter>Info</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\MemberInfo.h">
-      <Filter>Info</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\InheritanceInfo.h">
-      <Filter>Info</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\MemberTypeExtendedInfo.h">
-      <Filter>Info</Filter>
     </ClInclude>
     <ClInclude Include="Sources\JsonSerializerFileGenerator.h">
       <Filter>Generators\Json</Filter>
@@ -312,21 +231,6 @@
     </ClInclude>
     <ClInclude Include="Sources\UnpackHandler.h">
       <Filter>Addin</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\SqlFileGenerator.h">
-      <Filter>Generators\Sql</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\SqlGenerator.h">
-      <Filter>Generators\Sql</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\SqlHeaderFileGenerator.h">
-      <Filter>Generators\Sql</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\SqlSourceFileGenerator.h">
-      <Filter>Generators\Sql</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\SqlGenerated.h">
-      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\ReflectionGenerator.h">
       <Filter>Generators\Reflection</Filter>
@@ -363,6 +267,21 @@
     </ClInclude>
     <ClInclude Include="Sources\TypeInformationSourceFIleGenerator.h">
       <Filter>Generators\TypeInformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeDataBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeNameDataBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\PathOperations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ITargetCodeGenerator.h">
+      <Filter>Generators\General\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

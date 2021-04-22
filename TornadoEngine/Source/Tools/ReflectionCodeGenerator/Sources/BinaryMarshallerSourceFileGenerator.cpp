@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #include "BinaryMarshallerSourceFileGenerator.h"
 
 using namespace nsReflectionCodeGenerator;
+using namespace nsCppParser;
 
 void TBinaryMarshallerSourceFileGenerator::Work()
 {
@@ -59,14 +60,14 @@ void TBinaryMarshallerSourceFileGenerator::AddPackImplentation()
     AddLeftBrace();
     IncrementTabs();
 
-    for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
-        auto namespaceName = namespaceTypeInfo.first;
-        auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
-        for ( auto filenameType : filenameTypeMap ) {
-            auto p = filenameType.second.get();
-            AddCase(p);
-        }
-    }
+    //for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
+    //    auto namespaceName = namespaceTypeInfo.first;
+    //    auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
+    //    for ( auto filenameType : filenameTypeMap ) {
+    //        auto p = filenameType.second.get();
+    //        AddCase(p);
+    //    }
+    //}
 
     DecrementTabs();
     AddRightBrace();
@@ -79,19 +80,19 @@ void TBinaryMarshallerSourceFileGenerator::AddPackImplentation()
 //-------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddImplementations()
 {
-    for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
-        auto namespaceName = namespaceTypeInfo.first;
-        auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
-        for ( auto filenameType : filenameTypeMap ) {
-            auto p = filenameType.second.get();
+    //for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
+    //    auto namespaceName = namespaceTypeInfo.first;
+    //    auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
+    //    for ( auto filenameType : filenameTypeMap ) {
+    //        auto p = filenameType.second.get();
 
-            mCurrentTypeInfo = p;
+    //        mCurrentTypeInfo = p;
 
-            AddImplementation(p);
+    //        AddImplementation(p);
 
-            mCurrentTypeInfo = nullptr;
-        }
-    }
+    //        mCurrentTypeInfo = nullptr;
+    //    }
+    //}
 }
 //-------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddCase(TTypeInfo* p)
@@ -210,35 +211,35 @@ void TBinaryMarshallerSourceFileGenerator::AddCallingDeserializeParent(const std
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPushByMemberInfo(TMemberInfo* pMemberInfo)
 {
-    switch ( pMemberInfo->mExtendedInfo.mCategory ) {
-        case TMemberTypeExtendedInfo::BuiltIn:
-            HandlePushBuiltIn(pMemberInfo);
-            break;
-        case TMemberTypeExtendedInfo::String:
-            AddPushStr(pMemberInfo->mName);
-            break;
-        case TMemberTypeExtendedInfo::Reflection:
-            HandleReflectionForPush(pMemberInfo);
-            break;
-        case TMemberTypeExtendedInfo::Set:
-            HandlePushArray(pMemberInfo);
-            break;
-        case TMemberTypeExtendedInfo::Vector:
-        case TMemberTypeExtendedInfo::List:
-        case TMemberTypeExtendedInfo::Map:
-        {
-            AddEmptyLine();
-            std::vector<TMemberTypeExtendedInfo> extArr;
-            pMemberInfo->CreateExtArray(extArr);
-            HandleComplexPushZeroDepth(extArr, pMemberInfo->mName);
-        }
-        break;
-    }
+    //switch ( pMemberInfo->mExtendedInfo.mCategory ) {
+    //    case TMemberTypeExtendedInfo::BuiltIn:
+    //        HandlePushBuiltIn(pMemberInfo);
+    //        break;
+    //    case TMemberTypeExtendedInfo::String:
+    //        AddPushStr(pMemberInfo->mName);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Reflection:
+    //        HandleReflectionForPush(pMemberInfo);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Set:
+    //        HandlePushArray(pMemberInfo);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Vector:
+    //    case TMemberTypeExtendedInfo::List:
+    //    case TMemberTypeExtendedInfo::Map:
+    //    {
+    //        AddEmptyLine();
+    //        std::vector<TMemberTypeExtendedInfo> extArr;
+    //        pMemberInfo->CreateExtArray(extArr);
+    //        HandleComplexPushZeroDepth(extArr, pMemberInfo->mName);
+    //    }
+    //    break;
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPopByMemberInfo(TMemberInfo* pMemberInfo)
 {
-    switch ( pMemberInfo->mExtendedInfo.mCategory ) {
+    /*switch ( pMemberInfo->mExtendedInfo.mCategory ) {
         case TMemberTypeExtendedInfo::BuiltIn:
             HandlePopBuiltIn(pMemberInfo);
             break;
@@ -262,39 +263,39 @@ void TBinaryMarshallerSourceFileGenerator::AddPopByMemberInfo(TMemberInfo* pMemb
             HandleComplexPopZeroDepth(extArr, pMemberInfo->mName);
         }
         break;
-    }
+    }*/
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddDeallocateByMemberInfo(TMemberInfo* pMemberInfo)
 {
-    switch ( pMemberInfo->mExtendedInfo.mCategory ) {
-        case TMemberTypeExtendedInfo::BuiltIn:
-        case TMemberTypeExtendedInfo::String:
-            break;
-        case TMemberTypeExtendedInfo::Reflection:
-            HandleDeallocateReflection(pMemberInfo);
-            break;
-        case TMemberTypeExtendedInfo::Set:
-            //( pMemberInfo );
-            break;
-        case TMemberTypeExtendedInfo::Vector:
-        case TMemberTypeExtendedInfo::List:
-        case TMemberTypeExtendedInfo::Map:
-        {
-            std::vector<TMemberTypeExtendedInfo> extArr;
-            pMemberInfo->CreateExtArray(extArr);
-            AddCleanerArrayOrMap(extArr, pMemberInfo->mName);
-        }
-        break;
-    }
+    //switch ( pMemberInfo->mExtendedInfo.mCategory ) {
+    //    case TMemberTypeExtendedInfo::BuiltIn:
+    //    case TMemberTypeExtendedInfo::String:
+    //        break;
+    //    case TMemberTypeExtendedInfo::Reflection:
+    //        HandleDeallocateReflection(pMemberInfo);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Set:
+    //        //( pMemberInfo );
+    //        break;
+    //    case TMemberTypeExtendedInfo::Vector:
+    //    case TMemberTypeExtendedInfo::List:
+    //    case TMemberTypeExtendedInfo::Map:
+    //    {
+    //        std::vector<TMemberTypeExtendedInfo> extArr;
+    //        pMemberInfo->CreateExtArray(extArr);
+    //        AddCleanerArrayOrMap(extArr, pMemberInfo->mName);
+    //    }
+    //    break;
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandlePushBuiltIn(TMemberInfo* pMemberInfo)
 {
-    if ( pMemberInfo->mExtendedInfo.mType == s_Bool )
-        AddPushBool(pMemberInfo->mName);
-    else
-        AddPushNum(pMemberInfo->mName);
+    //if ( pMemberInfo->mExtendedInfo.mType == s_Bool )
+    //    AddPushBool(pMemberInfo->mName);
+    //else
+    //    AddPushNum(pMemberInfo->mName);
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPushBool(const std::string& name)
@@ -334,54 +335,54 @@ void TBinaryMarshallerSourceFileGenerator::HandlePushArray(TMemberInfo* pMemberI
 {
     auto& templateType = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
     auto templateCategory = templateType.mCategory;
-    switch ( templateCategory ) {
-        case TMemberTypeExtendedInfo::BuiltIn:
-            HandleAddPushBuiltInArray(pMemberInfo);
-            break;
-        case TMemberTypeExtendedInfo::String:
-            AddPushStrArray(pMemberInfo->mName);
-            break;
-        case TMemberTypeExtendedInfo::Reflection:
-            HandlePushSerArray(pMemberInfo);
-            break;
-    }
+    //switch ( templateCategory ) {
+    //    case TMemberTypeExtendedInfo::BuiltIn:
+    //        HandleAddPushBuiltInArray(pMemberInfo);
+    //        break;
+    //    case TMemberTypeExtendedInfo::String:
+    //        AddPushStrArray(pMemberInfo->mName);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Reflection:
+    //        HandlePushSerArray(pMemberInfo);
+    //        break;
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandlePushMap(TMemberInfo* pMemberInfo)
 {
     auto& valueType = pMemberInfo->mExtendedInfo.mTemplateChildArr[1];
     auto valueCategory = valueType.mCategory;
-    if ( valueCategory == TMemberTypeExtendedInfo::Reflection )
-        HandleAddPushValueAsReflectionMap(pMemberInfo);
-    else
-        HandleAddPushNotReflectionMap(pMemberInfo);
+    //if ( valueCategory == TMemberTypeExtendedInfo::Reflection )
+    //    HandleAddPushValueAsReflectionMap(pMemberInfo);
+    //else
+    //    HandleAddPushNotReflectionMap(pMemberInfo);
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandleReflectionForPush(TMemberInfo* pMemberInfo)
 {
-    auto& type = pMemberInfo->mExtendedInfo.mType;
-    switch ( pMemberInfo->mExtendedInfo.mAccessMethod ) {
-        case TMemberTypeExtendedInfo::Object:
-            AddPushSerObj(type, pMemberInfo->mName);
-            break;
-        case TMemberTypeExtendedInfo::Pointer:
-            AddPushSerPtr(type, pMemberInfo->mName);
-            break;
-        case TMemberTypeExtendedInfo::SmartPointer:
-            AddPushSerSmartPtr(type, pMemberInfo->mName);
-            break;
-        default:
-            break;
-    }
+    //auto& type = pMemberInfo->mExtendedInfo.mType;
+    //switch ( pMemberInfo->mExtendedInfo.mAccessMethod ) {
+    //    case TMemberTypeExtendedInfo::Object:
+    //        AddPushSerObj(type, pMemberInfo->mName);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Pointer:
+    //        AddPushSerPtr(type, pMemberInfo->mName);
+    //        break;
+    //    case TMemberTypeExtendedInfo::SmartPointer:
+    //        AddPushSerSmartPtr(type, pMemberInfo->mName);
+    //        break;
+    //    default:
+    //        break;
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandleAddPushBuiltInArray(TMemberInfo* pMemberInfo)
 {
-    auto type = pMemberInfo->mExtendedInfo.mTemplateChildArr[0].mType;
-    if ( type == s_Bool )
-        AddPushBoolArray(pMemberInfo->mName);
-    else
-        AddPushNumArray(type, pMemberInfo->mName);
+    //auto type = pMemberInfo->mExtendedInfo.mTemplateChildArr[0].mType;
+    //if ( type == s_Bool )
+    //    AddPushBoolArray(pMemberInfo->mName);
+    //else
+    //    AddPushNumArray(type, pMemberInfo->mName);
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPushBoolArray(const std::string& name)
@@ -427,7 +428,7 @@ void TBinaryMarshallerSourceFileGenerator::HandlePushSerArray(TMemberInfo* pMemb
 
     auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
 
-    auto pTypeInfo = mTypeMng->FindTypeInfoBy(typeName, withinClassTypeName);
+   /* auto pTypeInfo = mTypeMng->FindTypeInfoBy(typeName, withinClassTypeName);
     if ( pTypeInfo == nullptr ) {
         return;
     }
@@ -445,7 +446,7 @@ void TBinaryMarshallerSourceFileGenerator::HandlePushSerArray(TMemberInfo* pMemb
             break;
         default:
             break;
-    }
+    }*/
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPushSerObjArray(const std::string& type, const std::string& name)
@@ -470,12 +471,12 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPushNotReflectionMap(TMember
     std::string type[2];
 
     auto& templateArr = pMemberInfo->mExtendedInfo.mTemplateChildArr;
-    auto keyType = templateArr[0].mType;
-    auto valueType = templateArr[1].mType;
-    auto keyCategory = templateArr[0].mCategory;
-    auto valueCategory = templateArr[1].mCategory;
+    //auto keyType = templateArr[0].mType;
+    //auto valueType = templateArr[1].mType;
+    //auto keyCategory = templateArr[0].mCategory;
+    //auto valueCategory = templateArr[1].mCategory;
 
-    if ( keyCategory == TMemberTypeExtendedInfo::BuiltIn &&
+    /*if ( keyCategory == TMemberTypeExtendedInfo::BuiltIn &&
         valueCategory == TMemberTypeExtendedInfo::BuiltIn ) {
         type[0] = keyType;
         if ( valueType == s_Bool )
@@ -501,7 +502,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPushNotReflectionMap(TMember
             methodName = s_PushStrNumMap;
             type[0] = valueType;
         }
-    }
+    }*/
 
     std::list<std::string> argList =
     {
@@ -518,7 +519,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPushValueAsReflectionMap(TMe
     auto& valueExtType = pMemberInfo->mExtendedInfo.mTemplateChildArr[1];
 
     std::string keyType;
-    if ( keyExtType.mCategory == TMemberTypeExtendedInfo::BuiltIn )
+    /*if ( keyExtType.mCategory == TMemberTypeExtendedInfo::BuiltIn )
         keyType = keyExtType.mType;
 
     auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
@@ -542,7 +543,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPushValueAsReflectionMap(TMe
             break;
         default:
             break;
-    }
+    }*/
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPushSerObjMap(const std::string& keyType, const std::string& valueType, const std::string& name)
@@ -597,10 +598,10 @@ void TBinaryMarshallerSourceFileGenerator::AddPushSerSmartPtr(const std::string&
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandlePopBuiltIn(TMemberInfo* pMemberInfo)
 {
-    if ( pMemberInfo->mExtendedInfo.mType == s_Bool )
-        AddPopBool(pMemberInfo->mName);
-    else
-        AddPopNum(pMemberInfo->mName);
+    //if ( pMemberInfo->mExtendedInfo.mType == s_Bool )
+    //    AddPopBool(pMemberInfo->mName);
+    //else
+    //    AddPopNum(pMemberInfo->mName);
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPopBool(const std::string& name)
@@ -638,7 +639,7 @@ void TBinaryMarshallerSourceFileGenerator::AddPopStr(const std::string& name)
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandlePopArray(TMemberInfo* pMemberInfo)
 {
-    switch ( pMemberInfo->mExtendedInfo.mTemplateChildArr[0].mCategory ) {
+    /*switch ( pMemberInfo->mExtendedInfo.mTemplateChildArr[0].mCategory ) {
         case TMemberTypeExtendedInfo::BuiltIn:
             HandlePopBuiltInArray(pMemberInfo);
             break;
@@ -650,12 +651,12 @@ void TBinaryMarshallerSourceFileGenerator::HandlePopArray(TMemberInfo* pMemberIn
             break;
         default:
             break;
-    }
+    }*/
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandlePopSet(TMemberInfo* pMemberInfo)
 {
-    auto ext = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
+    /*auto ext = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
     switch ( ext.mCategory ) {
         case TMemberTypeExtendedInfo::BuiltIn:
             AddPopNumSet(ext.mType, pMemberInfo->mName);
@@ -663,17 +664,17 @@ void TBinaryMarshallerSourceFileGenerator::HandlePopSet(TMemberInfo* pMemberInfo
         case TMemberTypeExtendedInfo::String:
             AddPopStrSet(pMemberInfo->mName);
             break;
-    }
+    }*/
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandlePopMap(TMemberInfo* pMemberInfo)
 {
-    auto& valueType = pMemberInfo->mExtendedInfo.mTemplateChildArr[1];
+    /*auto& valueType = pMemberInfo->mExtendedInfo.mTemplateChildArr[1];
     auto valueCategory = valueType.mCategory;
     if ( valueCategory == TMemberTypeExtendedInfo::Reflection )
         HandleAddPopValueAsReflectionMap(pMemberInfo);
     else
-        HandleAddPopNotReflectionMap(pMemberInfo);
+        HandleAddPopNotReflectionMap(pMemberInfo);*/
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandleAddPopValueAsReflectionMap(TMemberInfo* pMemberInfo)
@@ -681,7 +682,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPopValueAsReflectionMap(TMem
     auto& keyExtType = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
     auto& valueExtType = pMemberInfo->mExtendedInfo.mTemplateChildArr[1];
 
-    std::string keyType;
+    /*std::string keyType;
     if ( keyExtType.mCategory == TMemberTypeExtendedInfo::BuiltIn )
         keyType = keyExtType.mType;
 
@@ -705,7 +706,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPopValueAsReflectionMap(TMem
             break;
         default:
             break;
-    }
+    }*/
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandleAddPopNotReflectionMap(TMemberInfo* pMemberInfo)
@@ -714,7 +715,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPopNotReflectionMap(TMemberI
     std::string type[2];
 
     auto& templateArr = pMemberInfo->mExtendedInfo.mTemplateChildArr;
-    auto keyType = templateArr[0].mType;
+    /*auto keyType = templateArr[0].mType;
     auto valueType = templateArr[1].mType;
     auto keyCategory = templateArr[0].mCategory;
     auto valueCategory = templateArr[1].mCategory;
@@ -745,7 +746,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPopNotReflectionMap(TMemberI
             methodName = s_PopStrNumMap;
             type[0] = valueType;
         }
-    }
+    }*/
 
     std::list<std::string> argList =
     {
@@ -756,7 +757,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPopNotReflectionMap(TMemberI
     AddCallObjMethod(s_PopMaster, methodName, templateList, argList);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::HandleComplexPushZeroDepth(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name)
+void TBinaryMarshallerSourceFileGenerator::HandleComplexPushZeroDepth(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name)
 {
     int depth = 0;
     auto sizeName = SizeName(name, depth);
@@ -769,7 +770,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleComplexPushZeroDepth(std::vecto
     General_ComplexPush(extArr, name, depth);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::HandleComplexPush(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::HandleComplexPush(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto prevElementName = ElementName(name, depth - 1);
     std::string srcName;
@@ -785,13 +786,13 @@ void TBinaryMarshallerSourceFileGenerator::HandleComplexPush(std::vector<TMember
     auto pushSizeExpression = fmt::format("{}.{}( {} );", s_PushMaster, s_PushNum, sizeName);
     Add(pushSizeExpression);
 
-    if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map )
-        AddPushKey(extArr, name, depth);
+    //if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map )
+        //AddPushKey(extArr, name, depth);
 
     General_ComplexPush(extArr, name, depth);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::General_ComplexPush(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::General_ComplexPush(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto elementName = ElementName(name, depth);
     std::string srcName;
@@ -811,7 +812,7 @@ void TBinaryMarshallerSourceFileGenerator::General_ComplexPush(std::vector<TMemb
     AddLeftBrace();
     IncrementTabs();
 
-    auto& valueType = extArr[depth].mTemplateChildArr.back();
+    /*auto& valueType = extArr[depth].mTemplateChildArr.back();
     auto valueCategory = valueType.mCategory;
     switch ( valueCategory ) {
         case TMemberTypeExtendedInfo::BuiltIn:
@@ -828,31 +829,31 @@ void TBinaryMarshallerSourceFileGenerator::General_ComplexPush(std::vector<TMemb
         case TMemberTypeExtendedInfo::Map:
             HandleComplexPush(extArr, name, depth + 1);
             break;
-    }
+    }*/
 
     DecrementTabs();
     AddRightBrace();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::HandleBuiltInComplexPush(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::HandleBuiltInComplexPush(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
-    if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map ) {
-        AddPushKey(extArr, name, depth);
-        AddPushValue(extArr, name, depth);
-    } else
-        AddPushElement(extArr, name, depth);
+    //if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map ) {
+    //    AddPushKey(extArr, name, depth);
+    //    AddPushValue(extArr, name, depth);
+    //} else
+    //    AddPushElement(extArr, name, depth);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::HandleStringComplexPush(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::HandleStringComplexPush(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
 
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::HandleReflectionComplexPush(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::HandleReflectionComplexPush(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto& ext = extArr[depth - 1];
-    if ( ext.mCategory == TMemberTypeExtendedInfo::Map )
-        AddPushKey(extArr, name, depth);
+    //if ( ext.mCategory == TMemberTypeExtendedInfo::Map )
+    //    AddPushKey(extArr, name, depth);
 
     // PUSH
     auto isNotNullName = fmt::format("{}_isNotNull", name);
@@ -866,66 +867,66 @@ void TBinaryMarshallerSourceFileGenerator::HandleReflectionComplexPush(std::vect
     AddIf(isNotNullName);
     IncrementTabs();
 
-    if ( ext.mCategory == TMemberTypeExtendedInfo::Map )
-        AddPushSerializeValue(extArr, name, depth);
-    else
-        AddPushSerializeElement(extArr, name, depth);
+    //if ( ext.mCategory == TMemberTypeExtendedInfo::Map )
+    //    AddPushSerializeValue(extArr, name, depth);
+    //else
+    //    AddPushSerializeElement(extArr, name, depth);
 
     DecrementTabs();
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string TBinaryMarshallerSourceFileGenerator::GetTemplateForGetAddress(TMemberTypeExtendedInfo::AccessMethod accessMethod)
-{
-    switch ( accessMethod ) {
-        case TMemberTypeExtendedInfo::Object:
-            return "&({})";
-        case TMemberTypeExtendedInfo::Pointer:
-            return "{}";
-        case TMemberTypeExtendedInfo::SmartPointer:
-            return "{}.get()";
-    }
-    return "";
-}
+//std::string TBinaryMarshallerSourceFileGenerator::GetTemplateForGetAddress(TMemberExtendedTypeInfo::AccessMethod accessMethod)
+//{
+    //switch ( accessMethod ) {
+    //    case TMemberTypeExtendedInfo::Object:
+    //        return "&({})";
+    //    case TMemberTypeExtendedInfo::Pointer:
+    //        return "{}";
+    //    case TMemberTypeExtendedInfo::SmartPointer:
+    //        return "{}.get()";
+    //}
+    //return "";
+//}
 //-----------------------------------------------------------------------------------------------------------
-std::string TBinaryMarshallerSourceFileGenerator::GetIsElementNotNull(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+std::string TBinaryMarshallerSourceFileGenerator::GetIsElementNotNull(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     std::string getAddress;
-    auto elementName = ElementName(name, depth - 1);
+    //auto elementName = ElementName(name, depth - 1);
 
-    if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map ) {
-        auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[1].mAccessMethod);
-        auto keyName = fmt::format("{}.{}", elementName, s_Second);
-        getAddress = fmt::format(templateForGetAddress, keyName);
-    } else {
-        auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[0].mAccessMethod);
-        getAddress = fmt::format(templateForGetAddress, elementName);
-    }
+    //if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map ) {
+    //    auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[1].mAccessMethod);
+    //    auto keyName = fmt::format("{}.{}", elementName, s_Second);
+    //    getAddress = fmt::format(templateForGetAddress, keyName);
+    //} else {
+    //    auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[0].mAccessMethod);
+    //    getAddress = fmt::format(templateForGetAddress, elementName);
+    //}
     return fmt::format("{} != {}", getAddress, s_Nullptr);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::AddPushSerializeValue(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::AddPushSerializeValue(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
-    auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[1].mAccessMethod);
+    //auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[1].mAccessMethod);
     auto elementName = ElementName(name, depth - 1);
     auto keyName = fmt::format("{}.{}", elementName, s_Second);
 
-    auto getAddress = fmt::format(templateForGetAddress, keyName);
+    //auto getAddress = fmt::format(templateForGetAddress, keyName);
 
-    auto pushExpression = fmt::format("{}( {} );", s_Serialize, getAddress);
-    Add(pushExpression);
+    //auto pushExpression = fmt::format("{}( {} );", s_Serialize, getAddress);
+    //Add(pushExpression);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::AddPushSerializeElement(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::AddPushSerializeElement(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
-    auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[0].mAccessMethod);
+    //auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[0].mAccessMethod);
     auto elementName = ElementName(name, depth - 1);
-    auto getAddress = fmt::format(templateForGetAddress, elementName);
+    //auto getAddress = fmt::format(templateForGetAddress, elementName);
 
-    auto pushExpression = fmt::format("{}( {} );", s_Serialize, getAddress);
-    Add(pushExpression);
+    //auto pushExpression = fmt::format("{}( {} );", s_Serialize, getAddress);
+    //Add(pushExpression);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::AddPushKey(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::AddPushKey(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto elementName = ElementName(name, depth - 1);
     auto pushMethod = GetPushMethodBy(extArr[depth - 1].mTemplateChildArr[0]);
@@ -935,7 +936,7 @@ void TBinaryMarshallerSourceFileGenerator::AddPushKey(std::vector<TMemberTypeExt
     Add(pushExpression);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::AddPushValue(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::AddPushValue(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto elementName = ElementName(name, depth - 1);
     auto pushMethod = GetPushMethodBy(extArr[depth - 1].mTemplateChildArr[1]);
@@ -945,7 +946,7 @@ void TBinaryMarshallerSourceFileGenerator::AddPushValue(std::vector<TMemberTypeE
     Add(pushExpression);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::AddPushElement(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::AddPushElement(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto elementName = ElementName(name, depth - 1);
     auto pushMethod = GetPushMethodBy(extArr[depth - 1].mTemplateChildArr[0]);
@@ -956,66 +957,66 @@ void TBinaryMarshallerSourceFileGenerator::AddPushElement(std::vector<TMemberTyp
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandleDeallocateReflection(TMemberInfo* pMemberInfo)
 {
-    switch ( pMemberInfo->mExtendedInfo.mAccessMethod ) {
-        case TMemberTypeExtendedInfo::Object:
-            break;
-        case TMemberTypeExtendedInfo::Pointer:
-        {
-            auto deallocExpression = fmt::format("{}( {}->{} );", s_Deallocate, s_TypeObject, pMemberInfo->mName);
-            Add(deallocExpression);
-            auto nullExpression = fmt::format("{}->{} = {};", s_TypeObject, pMemberInfo->mName, s_Nullptr);
-            Add(nullExpression);
-        }
-        break;
-        case TMemberTypeExtendedInfo::SmartPointer:
-        {
-            auto resetExpression = fmt::format("{}->{}.reset();", s_TypeObject, pMemberInfo->mName);
-            Add(resetExpression);
-        }
-        break;
-    }
+    //switch ( pMemberInfo->mExtendedInfo.mAccessMethod ) {
+    //    case TMemberTypeExtendedInfo::Object:
+    //        break;
+    //    case TMemberTypeExtendedInfo::Pointer:
+    //    {
+    //        auto deallocExpression = fmt::format("{}( {}->{} );", s_Deallocate, s_TypeObject, pMemberInfo->mName);
+    //        Add(deallocExpression);
+    //        auto nullExpression = fmt::format("{}->{} = {};", s_TypeObject, pMemberInfo->mName, s_Nullptr);
+    //        Add(nullExpression);
+    //    }
+    //    break;
+    //    case TMemberTypeExtendedInfo::SmartPointer:
+    //    {
+    //        auto resetExpression = fmt::format("{}->{}.reset();", s_TypeObject, pMemberInfo->mName);
+    //        Add(resetExpression);
+    //    }
+    //    break;
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::AddCleanerArrayOrMap(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name)
+void TBinaryMarshallerSourceFileGenerator::AddCleanerArrayOrMap(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name)
 {
     auto& ext = extArr.back();
-    if ( ext.mCategory == TMemberTypeExtendedInfo::Reflection &&
-        ext.mAccessMethod == TMemberTypeExtendedInfo::Pointer ) {
-        int size = extArr.size() - 1;// consider template childs
-        auto prevElementName = fmt::format("{}->{}", s_TypeObject, name);
-        // open braces
-        for ( int i = 0; i < size; i++ ) {
-            auto elementName = ElementName(name, i);
+    //if ( ext.mCategory == TMemberTypeExtendedInfo::Reflection &&
+    //    ext.mAccessMethod == TMemberTypeExtendedInfo::Pointer ) {
+    //    int size = extArr.size() - 1;// consider template childs
+    //    auto prevElementName = fmt::format("{}->{}", s_TypeObject, name);
+    //    // open braces
+    //    for ( int i = 0; i < size; i++ ) {
+    //        auto elementName = ElementName(name, i);
 
-            auto forExpression = fmt::format("for ( auto& {} : {} )", elementName, prevElementName);
-            Add(forExpression);
-            AddLeftBrace();
-            IncrementTabs();
+    //        auto forExpression = fmt::format("for ( auto& {} : {} )", elementName, prevElementName);
+    //        Add(forExpression);
+    //        AddLeftBrace();
+    //        IncrementTabs();
 
-            prevElementName = elementName;
-            if ( extArr[i].mCategory == TMemberTypeExtendedInfo::Map )
-                prevElementName = fmt::format("{}.{}", prevElementName, s_Second);
+    //        prevElementName = elementName;
+    //        if ( extArr[i].mCategory == TMemberTypeExtendedInfo::Map )
+    //            prevElementName = fmt::format("{}.{}", prevElementName, s_Second);
 
-            if ( i == size - 1 ) {
-                auto pointerStr = elementName;
-                if ( extArr[i].mCategory == TMemberTypeExtendedInfo::Map )
-                    pointerStr = fmt::format("{}.{}", elementName, s_Second);
+    //        if ( i == size - 1 ) {
+    //            auto pointerStr = elementName;
+    //            if ( extArr[i].mCategory == TMemberTypeExtendedInfo::Map )
+    //                pointerStr = fmt::format("{}.{}", elementName, s_Second);
 
-                auto deallocateExpression = fmt::format("{}( {} );", s_GeneralDeallocate, pointerStr);
-                Add(deallocateExpression);
-            }
-        }
-        // close braces
-        for ( int i = 0; i < size; i++ ) {
-            DecrementTabs();
-            AddRightBrace();
-        }
-    }
+    //            auto deallocateExpression = fmt::format("{}( {} );", s_GeneralDeallocate, pointerStr);
+    //            Add(deallocateExpression);
+    //        }
+    //    }
+    //    // close braces
+    //    for ( int i = 0; i < size; i++ ) {
+    //        DecrementTabs();
+    //        AddRightBrace();
+    //    }
+    //}
     auto clearExpression = fmt::format("{}->{}.clear();", s_TypeObject, name);
     Add(clearExpression);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::HandleComplexPopZeroDepth(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name)
+void TBinaryMarshallerSourceFileGenerator::HandleComplexPopZeroDepth(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name)
 {
     int depth = 0;
     auto sizeName = SizeName(name, depth);
@@ -1028,7 +1029,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleComplexPopZeroDepth(std::vector
     General_ComplexPop(extArr, name, depth);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::HandleComplexPop(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::HandleComplexPop(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto sizeName = SizeName(name, depth);
     auto sizeExpression = fmt::format("{} {};", s_BinaryMaster_SizeType, sizeName, s_TypeObject, name);
@@ -1037,18 +1038,18 @@ void TBinaryMarshallerSourceFileGenerator::HandleComplexPop(std::vector<TMemberT
     auto popSizeExpression = fmt::format("{}.{}( {} );", s_PopMaster, s_PopNum, sizeName);
     Add(popSizeExpression);
 
-    if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map ) {
-        auto keyExtInfo = extArr[depth - 1].mTemplateChildArr[0];
+    //if ( extArr[depth - 1].mCategory == TMemberTypeExtendedInfo::Map ) {
+    //    auto keyExtInfo = extArr[depth - 1].mTemplateChildArr[0];
 
-        auto keyType = keyExtInfo.GetCollectSubType();
-        auto keyName = KeyName(name, depth - 1);
-        auto keyExpression = fmt::format("{} {};", keyType, keyName);
-        Add(keyExpression);
+    //    auto keyType = keyExtInfo.GetCollectSubType();
+    //    auto keyName = KeyName(name, depth - 1);
+    //    auto keyExpression = fmt::format("{} {};", keyType, keyName);
+    //    Add(keyExpression);
 
-        auto popMethod = GetPopMethodBy(keyExtInfo);
-        auto getKeyExpression = fmt::format("{}.{}( {} );", s_PopMaster, popMethod, keyName);
-        Add(getKeyExpression);
-    }
+    //    auto popMethod = GetPopMethodBy(keyExtInfo);
+    //    auto getKeyExpression = fmt::format("{}.{}( {} );", s_PopMaster, popMethod, keyName);
+    //    Add(getKeyExpression);
+    //}
 
     auto collectorName = CollectorName(name, depth - 1);
     auto collectorType = extArr[depth].GetCollectSubType();
@@ -1058,7 +1059,7 @@ void TBinaryMarshallerSourceFileGenerator::HandleComplexPop(std::vector<TMemberT
     General_ComplexPop(extArr, name, depth);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::General_ComplexPop(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::General_ComplexPop(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto sizeName = SizeName(name, depth);
     auto indexName = IndexName(name, depth);
@@ -1071,43 +1072,43 @@ void TBinaryMarshallerSourceFileGenerator::General_ComplexPop(std::vector<TMembe
 
     auto& valueType = extArr[depth].mTemplateChildArr.back();
     auto valueCategory = valueType.mCategory;
-    switch ( valueCategory ) {
-        case TMemberTypeExtendedInfo::BuiltIn:
-        case TMemberTypeExtendedInfo::String:
-            HandleBuiltInComplexPop(extArr, name, depth + 1);
-            break;
-        case TMemberTypeExtendedInfo::Reflection:
-            HandleReflectionComplexPop(extArr, name, depth + 1);
-            break;
-        case TMemberTypeExtendedInfo::Set:
-            break;
-        case TMemberTypeExtendedInfo::Vector:
-        case TMemberTypeExtendedInfo::List:
-        case TMemberTypeExtendedInfo::Map:
-            HandleComplexPop(extArr, name, depth + 1);
-            break;
-    }
+    //switch ( valueCategory ) {
+    //    case TMemberTypeExtendedInfo::BuiltIn:
+    //    case TMemberTypeExtendedInfo::String:
+    //        HandleBuiltInComplexPop(extArr, name, depth + 1);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Reflection:
+    //        HandleReflectionComplexPop(extArr, name, depth + 1);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Set:
+    //        break;
+    //    case TMemberTypeExtendedInfo::Vector:
+    //    case TMemberTypeExtendedInfo::List:
+    //    case TMemberTypeExtendedInfo::Map:
+    //        HandleComplexPop(extArr, name, depth + 1);
+    //        break;
+    //}
 
-    if ( extArr.size() > 2 ) {
-        if ( depth == 0 ) {
-            auto addMethod = GetAddMethodByCategory(extArr[depth].mCategory);
-            auto param = GetFusionForAdd(extArr[depth], name, depth);
-            auto addExpression = fmt::format("{}->{}.{}( {} );", s_TypeObject, name, addMethod, param);
-            Add(addExpression);
-        } else if ( depth < extArr.size() - 2 ) {
-            auto prevCollectorName = CollectorName(name, depth - 1);
-            auto addMethod = GetAddMethodByCategory(extArr[depth].mCategory);
-            auto param = GetFusionForAdd(extArr[depth], name, depth);
-            auto addExpression = fmt::format("{}.{}( {} );", prevCollectorName, addMethod, param);
-            Add(addExpression);
-        }
-    }
+    //if ( extArr.size() > 2 ) {
+    //    if ( depth == 0 ) {
+    //        auto addMethod = GetAddMethodByCategory(extArr[depth].mCategory);
+    //        auto param = GetFusionForAdd(extArr[depth], name, depth);
+    //        auto addExpression = fmt::format("{}->{}.{}( {} );", s_TypeObject, name, addMethod, param);
+    //        Add(addExpression);
+    //    } else if ( depth < extArr.size() - 2 ) {
+    //        auto prevCollectorName = CollectorName(name, depth - 1);
+    //        auto addMethod = GetAddMethodByCategory(extArr[depth].mCategory);
+    //        auto param = GetFusionForAdd(extArr[depth], name, depth);
+    //        auto addExpression = fmt::format("{}.{}( {} );", prevCollectorName, addMethod, param);
+    //        Add(addExpression);
+    //    }
+    //}
 
     DecrementTabs();
     AddRightBrace();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::HandleBuiltInComplexPop(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::HandleBuiltInComplexPop(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto ext = extArr[depth - 1];
 
@@ -1124,49 +1125,49 @@ void TBinaryMarshallerSourceFileGenerator::HandleBuiltInComplexPop(std::vector<T
 
     auto param = keyName;
 
-    if ( ext.mCategory == TMemberTypeExtendedInfo::Map ) {
-        auto valueExtInfo = ext.mTemplateChildArr[1];
+    //if ( ext.mCategory == TMemberTypeExtendedInfo::Map ) {
+    //    auto valueExtInfo = ext.mTemplateChildArr[1];
 
-        auto valueType = valueExtInfo.GetCollectSubType();
-        auto valueName = ValueName(name, depth - 1);
-        auto valueExpression = fmt::format("{} {};", valueType, valueName);
-        Add(valueExpression);
+    //    auto valueType = valueExtInfo.GetCollectSubType();
+    //    auto valueName = ValueName(name, depth - 1);
+    //    auto valueExpression = fmt::format("{} {};", valueType, valueName);
+    //    Add(valueExpression);
 
-        auto popMethod = GetPopMethodBy(valueExtInfo);
-        auto getValueExpression = fmt::format("{}.{}( {} );", s_PopMaster, popMethod, valueName);
-        Add(getValueExpression);
+    //    auto popMethod = GetPopMethodBy(valueExtInfo);
+    //    auto getValueExpression = fmt::format("{}.{}( {} );", s_PopMaster, popMethod, valueName);
+    //    Add(getValueExpression);
 
-        param = fmt::format("{{ {}, {} }}", keyName, valueName);
-    }
+    //    param = fmt::format("{{ {}, {} }}", keyName, valueName);
+    //}
 
-    auto addMethod = GetAddMethodByCategory(ext.mCategory);
-    if ( depth == 1 ) {
-        auto addExpression = fmt::format("{}->{}.{}( {} );", s_TypeObject, name, addMethod, param);
-        Add(addExpression);
-    } else {
-        auto prevCollectorName = CollectorName(name, depth - 2);
-        auto addExpression = fmt::format("{}.{}( {} );", prevCollectorName, addMethod, param);
-        Add(addExpression);
-    }
+    //auto addMethod = GetAddMethodByCategory(ext.mCategory);
+    //if ( depth == 1 ) {
+    //    auto addExpression = fmt::format("{}->{}.{}( {} );", s_TypeObject, name, addMethod, param);
+    //    Add(addExpression);
+    //} else {
+    //    auto prevCollectorName = CollectorName(name, depth - 2);
+    //    auto addExpression = fmt::format("{}.{}( {} );", prevCollectorName, addMethod, param);
+    //    Add(addExpression);
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::HandleReflectionComplexPop(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+void TBinaryMarshallerSourceFileGenerator::HandleReflectionComplexPop(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto ext = extArr[depth - 1];
 
     auto keyName = KeyName(name, depth - 1);
     int indexReflection = 0;
-    if ( ext.mCategory == TMemberTypeExtendedInfo::Map ) {
-        indexReflection = 1;
-        auto keyExtInfo = ext.mTemplateChildArr[0];
-        auto keyType = keyExtInfo.GetCollectSubType();
-        auto keyExpression = fmt::format("{} {};", keyType, keyName);
-        Add(keyExpression);
+    //if ( ext.mCategory == TMemberTypeExtendedInfo::Map ) {
+    //    indexReflection = 1;
+    //    auto keyExtInfo = ext.mTemplateChildArr[0];
+    //    auto keyType = keyExtInfo.GetCollectSubType();
+    //    auto keyExpression = fmt::format("{} {};", keyType, keyName);
+    //    Add(keyExpression);
 
-        auto popMethod = GetPopMethodBy(keyExtInfo);
-        auto getKeyExpression = fmt::format("{}.{}( {} );", s_PopMaster, popMethod, keyName);
-        Add(getKeyExpression);
-    }
+    //    auto popMethod = GetPopMethodBy(keyExtInfo);
+    //    auto getKeyExpression = fmt::format("{}.{}( {} );", s_PopMaster, popMethod, keyName);
+    //    Add(getKeyExpression);
+    //}
 
     auto elementName = ElementName(name, depth - 1);
     auto elementType = ext.mTemplateChildArr[indexReflection].GetCollectSubType();
@@ -1194,72 +1195,72 @@ void TBinaryMarshallerSourceFileGenerator::HandleReflectionComplexPop(std::vecto
         Add(allocateExpression);
     }
 
-    auto templatePtr = GetTemplateForGetAddress(reflectionExt.mAccessMethod);
-    auto getAddress = fmt::format(templatePtr, elementName);
+    //auto templatePtr = GetTemplateForGetAddress(reflectionExt.mAccessMethod);
+    //auto getAddress = fmt::format(templatePtr, elementName);
 
-    auto deserExpression = fmt::format("{}( {} );", s_Deserialize, getAddress);
-    Add(deserExpression);
+    //auto deserExpression = fmt::format("{}( {} );", s_Deserialize, getAddress);
+    //Add(deserExpression);
 
-    DecrementTabs();
-    AddRightBrace();
+    //DecrementTabs();
+    //AddRightBrace();
 
-    std::string param = elementName;
-    if ( ext.mCategory == TMemberTypeExtendedInfo::Map )
-        param = fmt::format("{{ {}, {} }}", keyName, elementName);
+    //std::string param = elementName;
+    //if ( ext.mCategory == TMemberTypeExtendedInfo::Map )
+    //    param = fmt::format("{{ {}, {} }}", keyName, elementName);
 
-    auto addMethod = GetAddMethodByCategory(ext.mCategory);
-    if ( depth == 1 ) {
-        auto addExpression = fmt::format("{}->{}.{}( {} );", s_TypeObject, name, addMethod, param);
-        Add(addExpression);
-    } else {
-        auto prevCollectorName = CollectorName(name, depth - 2);
-        auto addExpression = fmt::format("{}.{}( {} );", prevCollectorName, addMethod, param);
-        Add(addExpression);
-    }
+    //auto addMethod = GetAddMethodByCategory(ext.mCategory);
+    //if ( depth == 1 ) {
+    //    auto addExpression = fmt::format("{}->{}.{}( {} );", s_TypeObject, name, addMethod, param);
+    //    Add(addExpression);
+    //} else {
+    //    auto prevCollectorName = CollectorName(name, depth - 2);
+    //    auto addExpression = fmt::format("{}.{}( {} );", prevCollectorName, addMethod, param);
+    //    Add(addExpression);
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string TBinaryMarshallerSourceFileGenerator::GetInitExpression(TMemberTypeExtendedInfo& ext)
+std::string TBinaryMarshallerSourceFileGenerator::GetInitExpression(TMemberExtendedTypeInfo& ext)
 {
     auto typeName = ext.GetTypeNameWithNameSpace();
-    switch ( ext.mAccessMethod ) {
-        case TMemberTypeExtendedInfo::Object:
-            return "";
-        case TMemberTypeExtendedInfo::Pointer:
-            return fmt::format(" = {}<{}>()", s_GeneralAllocate, typeName);
-        case TMemberTypeExtendedInfo::SmartPointer:
-            return fmt::format(".reset( new {}() )", typeName);
-    }
+    //switch ( ext.mAccessMethod ) {
+    //    case TMemberTypeExtendedInfo::Object:
+    //        return "";
+    //    case TMemberTypeExtendedInfo::Pointer:
+    //        return fmt::format(" = {}<{}>()", s_GeneralAllocate, typeName);
+    //    case TMemberTypeExtendedInfo::SmartPointer:
+    //        return fmt::format(".reset( new {}() )", typeName);
+    //}
     return "";
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string TBinaryMarshallerSourceFileGenerator::GetFusionForAdd(TMemberTypeExtendedInfo& ext, const std::string& name, int depth)
+std::string TBinaryMarshallerSourceFileGenerator::GetFusionForAdd(TMemberExtendedTypeInfo& ext, const std::string& name, int depth)
 {
-    switch ( ext.mCategory ) {
-        case TMemberTypeExtendedInfo::Map:
-        {
-            auto keyName = KeyName(name, depth);
-            auto collectorName = CollectorName(name, depth);
-            return fmt::format("{{ {}, {} }}", keyName, collectorName);
-        }
-        case TMemberTypeExtendedInfo::List:
-        case TMemberTypeExtendedInfo::Vector:
-        {
-            return CollectorName(name, depth);
-        }
-    }
+    //switch ( ext.mCategory ) {
+    //    case TMemberTypeExtendedInfo::Map:
+    //    {
+    //        auto keyName = KeyName(name, depth);
+    //        auto collectorName = CollectorName(name, depth);
+    //        return fmt::format("{{ {}, {} }}", keyName, collectorName);
+    //    }
+    //    case TMemberTypeExtendedInfo::List:
+    //    case TMemberTypeExtendedInfo::Vector:
+    //    {
+    //        return CollectorName(name, depth);
+    //    }
+    //}
     return "";
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string TBinaryMarshallerSourceFileGenerator::GetAddMethodByCategory(TMemberTypeExtendedInfo::TypeCategory& category)
-{
-    switch ( category ) {
-        case TMemberTypeExtendedInfo::Map:
-            return s_Insert;
-        case TMemberTypeExtendedInfo::List:
-        case TMemberTypeExtendedInfo::Vector:
-            return s_PushBack;
-    }
-}
+//std::string TBinaryMarshallerSourceFileGenerator::GetAddMethodByCategory(TMemberExtendedTypeInfo::TypeCategory& category)
+//{
+    //switch ( category ) {
+    //    case TMemberTypeExtendedInfo::Map:
+    //        return s_Insert;
+    //    case TMemberTypeExtendedInfo::List:
+    //    case TMemberTypeExtendedInfo::Vector:
+    //        return s_PushBack;
+    //}
+//}
 //-----------------------------------------------------------------------------------------------------------
 std::string TBinaryMarshallerSourceFileGenerator::ElementName(const std::string& name, int depth)
 {
@@ -1291,39 +1292,39 @@ std::string TBinaryMarshallerSourceFileGenerator::CollectorName(const std::strin
     return fmt::format("{}_c{}", name, depth);
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string TBinaryMarshallerSourceFileGenerator::GetPushMethodBy(TMemberTypeExtendedInfo& ext)
+std::string TBinaryMarshallerSourceFileGenerator::GetPushMethodBy(TMemberExtendedTypeInfo& ext)
 {
-    switch ( ext.mCategory ) {
-        case TMemberTypeExtendedInfo::BuiltIn:
-            if ( ext.mType == s_Bool )
-                return s_PushBool;
-            return s_PushNum;
-        case TMemberTypeExtendedInfo::String:
-            return s_PushStr;
-    }
+    //switch ( ext.mCategory ) {
+    //    case TMemberTypeExtendedInfo::BuiltIn:
+    //        if ( ext.mType == s_Bool )
+    //            return s_PushBool;
+    //        return s_PushNum;
+    //    case TMemberTypeExtendedInfo::String:
+    //        return s_PushStr;
+    //}
     return "";
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string TBinaryMarshallerSourceFileGenerator::GetPopMethodBy(TMemberTypeExtendedInfo& ext)
+std::string TBinaryMarshallerSourceFileGenerator::GetPopMethodBy(TMemberExtendedTypeInfo& ext)
 {
-    switch ( ext.mCategory ) {
-        case TMemberTypeExtendedInfo::BuiltIn:
-            if ( ext.mType == s_Bool )
-                return s_PopBool;
-            return s_PopNum;
-        case TMemberTypeExtendedInfo::String:
-            return s_PopStr;
-    }
+    //switch ( ext.mCategory ) {
+    //    case TMemberTypeExtendedInfo::BuiltIn:
+    //        if ( ext.mType == s_Bool )
+    //            return s_PopBool;
+    //        return s_PopNum;
+    //    case TMemberTypeExtendedInfo::String:
+    //        return s_PopStr;
+    //}
     return "";
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string TBinaryMarshallerSourceFileGenerator::GetAccessName(std::vector<TMemberTypeExtendedInfo>& extArr, const std::string& name, int depth)
+std::string TBinaryMarshallerSourceFileGenerator::GetAccessName(std::vector<TMemberExtendedTypeInfo>& extArr, const std::string& name, int depth)
 {
     auto& ext = extArr[depth];
-    switch ( ext.mCategory ) {
-        case TMemberTypeExtendedInfo::Map:
-            return s_Second;
-    }
+    //switch ( ext.mCategory ) {
+    //    case TMemberExtendedTypeInfo::Map:
+    //        return s_Second;
+    //}
     return "";
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -1360,26 +1361,26 @@ void TBinaryMarshallerSourceFileGenerator::HandlePopReflection(TMemberInfo* pMem
 {
     auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
 
-    auto typeName = pMemberInfo->mExtendedInfo.mType;
-    auto pTypeInfo = mTypeMng->FindTypeInfoBy(typeName, withinClassTypeName);
-    if ( pTypeInfo == nullptr )
-        return;
+    //auto typeName = pMemberInfo->mExtendedInfo.mType;
+    //auto pTypeInfo = mTypeMng->FindTypeInfoBy(typeName, withinClassTypeName);
+    //if ( pTypeInfo == nullptr )
+    //    return;
 
-    auto type = pTypeInfo->GetTypeNameWithNameSpace();
+    //auto type = pTypeInfo->GetTypeNameWithNameSpace();
 
-    switch ( pMemberInfo->mExtendedInfo.mAccessMethod ) {
-        case TMemberTypeExtendedInfo::Object:
-            AddPopSerObj(pMemberInfo->mName);
-            break;
-        case TMemberTypeExtendedInfo::Pointer:
-            AddPopSerPtr(type, pMemberInfo->mName);
-            break;
-        case TMemberTypeExtendedInfo::SmartPointer:
-            AddPopSerSmartPtr(type, pMemberInfo->mName);
-            break;
-        default:
-            break;
-    }
+    //switch ( pMemberInfo->mExtendedInfo.mAccessMethod ) {
+    //    case TMemberTypeExtendedInfo::Object:
+    //        AddPopSerObj(pMemberInfo->mName);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Pointer:
+    //        AddPopSerPtr(type, pMemberInfo->mName);
+    //        break;
+    //    case TMemberTypeExtendedInfo::SmartPointer:
+    //        AddPopSerSmartPtr(type, pMemberInfo->mName);
+    //        break;
+    //    default:
+    //        break;
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPopSerObj(const std::string& name)
@@ -1449,11 +1450,11 @@ void TBinaryMarshallerSourceFileGenerator::AddPopStrSet(const std::string& name)
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandlePopBuiltInArray(TMemberInfo* pMemberInfo)
 {
-    auto type = pMemberInfo->mExtendedInfo.mTemplateChildArr[0].mType;
-    if ( type == s_Bool )
-        AddPopBoolArray(pMemberInfo->mName);
-    else
-        AddPopNumArray(type, pMemberInfo->mName);
+    //auto type = pMemberInfo->mExtendedInfo.mTemplateChildArr[0].mType;
+    //if ( type == s_Bool )
+    //    AddPopBoolArray(pMemberInfo->mName);
+    //else
+    //    AddPopNumArray(type, pMemberInfo->mName);
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPopBoolArray(const std::string& name)
@@ -1494,25 +1495,25 @@ void TBinaryMarshallerSourceFileGenerator::HandlePopReflectionArray(TMemberInfo*
     auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
 
     auto& templateType = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
-    auto pTypeInfo = mTypeMng->FindTypeInfoBy(templateType.mType, withinClassTypeName);
-    if ( pTypeInfo == nullptr )
-        return;
-    auto type = pTypeInfo->GetTypeNameWithNameSpace();
+    //auto pTypeInfo = mTypeMng->FindTypeInfoBy(templateType.mType, withinClassTypeName);
+    //if ( pTypeInfo == nullptr )
+    //    return;
+    //auto type = pTypeInfo->GetTypeNameWithNameSpace();
 
     auto templateCategory = templateType.mCategory;
-    switch ( templateType.mAccessMethod ) {
-        case TMemberTypeExtendedInfo::Object:
-            AddPopSerObjArray(type, pMemberInfo->mName);
-            break;
-        case TMemberTypeExtendedInfo::Pointer:
-            AddPopSerPtrArray(type, pMemberInfo->mName);
-            break;
-        case TMemberTypeExtendedInfo::SmartPointer:
-            AddPopSerSmartPtrArray(type, templateType.mSmartPtrType, pMemberInfo->mName);
-            break;
-        default:
-            break;
-    }
+    //switch ( templateType.mAccessMethod ) {
+    //    case TMemberTypeExtendedInfo::Object:
+    //        AddPopSerObjArray(type, pMemberInfo->mName);
+    //        break;
+    //    case TMemberTypeExtendedInfo::Pointer:
+    //        AddPopSerPtrArray(type, pMemberInfo->mName);
+    //        break;
+    //    case TMemberTypeExtendedInfo::SmartPointer:
+    //        AddPopSerSmartPtrArray(type, templateType.mSmartPtrType, pMemberInfo->mName);
+    //        break;
+    //    default:
+    //        break;
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::AddPopSerObjArray(const std::string& type, const std::string& name)

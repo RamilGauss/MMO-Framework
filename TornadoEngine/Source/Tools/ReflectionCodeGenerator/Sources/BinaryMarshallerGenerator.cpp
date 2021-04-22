@@ -13,39 +13,53 @@ using namespace nsReflectionCodeGenerator;
 
 void TBinaryMarshallerGenerator::Work()
 {
-  GenerateHeader();
-  GenerateSource();
+    if (!IsWork()) {
+        return;
+    }
+
+    GenerateHeader();
+    GenerateSource();
 }
 //----------------------------------------------------------------------------------
 void TBinaryMarshallerGenerator::GenerateHeader()
 {
-  TBinaryMarshallerHeaderFileGenerator fileGenerator;
+    TBinaryMarshallerHeaderFileGenerator fileGenerator;
 
-  mPairList->push_back( TStrListPair() );
+    mPairList->push_back(TStrListPair());
 
-  auto& pair = mPairList->back();
+    auto& pair = mPairList->back();
 
-  auto impl = mConfig->targetForCodeGeneration.implementation.binaryMarshaller;
+    auto impl = mConfig->targetForCodeGeneration.implementation.binaryMarshaller;
 
-  pair.first = GeneratedFileFullPath(impl->fileName + ".h" );
+    pair.first = GeneratedFileFullPath(impl->fileName + ".h");
 
-  fileGenerator.Init( pair, impl.get());
-  fileGenerator.Work();
+    fileGenerator.Init(pair, impl.get());
+    fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
 void TBinaryMarshallerGenerator::GenerateSource()
 {
-  TBinaryMarshallerSourceFileGenerator fileGenerator;
+    TBinaryMarshallerSourceFileGenerator fileGenerator;
 
-  mPairList->push_back( TStrListPair() );
+    mPairList->push_back(TStrListPair());
 
-  auto& pair = mPairList->back();
+    auto& pair = mPairList->back();
 
-  auto impl = mConfig->targetForCodeGeneration.implementation.binaryMarshaller;
+    auto impl = mConfig->targetForCodeGeneration.implementation.binaryMarshaller;
 
-  pair.first = GeneratedFileFullPath( impl->fileName + ".cpp" );
+    pair.first = GeneratedFileFullPath(impl->fileName + ".cpp");
 
-  fileGenerator.Init( pair, impl.get() );
-  fileGenerator.Work();
+    fileGenerator.Init(pair, impl.get());
+    fileGenerator.Work();
+}
+//----------------------------------------------------------------------------------
+void TBinaryMarshallerGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::list<std::string>& dependencyNames)
+{
+
+}
+//----------------------------------------------------------------------------------
+TSerializer* TBinaryMarshallerGenerator::GetSerializer()
+{
+    return mConfig->targetForCodeGeneration.implementation.binaryMarshaller.get();
 }
 //----------------------------------------------------------------------------------

@@ -8,31 +8,20 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <map>
-#include "TypeInfo.h"
+#include "SingletonManager.h"
+#include "Parser/Sources/TypeInfo.h"
 
-class TTypeManager
+namespace nsReflectionCodeGenerator
 {
-    typedef std::map<std::string, TTypeInfo*> TStrTypeInfoPtrMap;
-    TStrTypeInfoPtrMap mNameTypeInfoPtrMap;
-
-public:
-    typedef std::map<std::string, std::shared_ptr<TTypeInfo>> TStrPtrMap;// fileName - type info
-    typedef std::map<std::string, std::shared_ptr<TStrPtrMap>> TStrPairMap;// namespace - { fileName, type info }
-
-    TStrPairMap mNameSpaceTypesMap;
-
-    void Add(std::string& nameSpaceName, TTypeInfo& typeInfo);
-
-    // Global search
-    TTypeInfo* FindTypeInfo(const std::string& nameSpaceTypeName);// ns::A
-
-    // Search by inheritance and members
-    TTypeInfo* FindTypeInfoBy(const std::string& nameSpaceTypeName, const std::string& withinClassTypename);
-
-protected:
-    TTypeManager() {};
-    friend class TSingletonManager;// for singleton pattern
-
-
-    void Split(const std::string& nameSpaceTypeName, std::string& nameSpace, std::string& typeName);
-};
+    class TTypeManager
+    {
+    public:
+        void Add(nsCppParser::TTypeInfo* typeInfo);
+        nsCppParser::TTypeInfo* Get(const std::string& fullTypeName);
+    protected:
+        TTypeManager();
+        friend class TSingletonManager;
+    private:
+        std::map<std::string, nsCppParser::TTypeInfo*> mFullNameTypeMap;
+    };
+}

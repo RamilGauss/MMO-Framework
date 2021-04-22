@@ -7,18 +7,21 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ICodeGenerator.h"
+#include "ITargetCodeGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {
-  class TBinaryMarshallerGenerator : public ICodeGenerator
-  {
-  public:
-    TBinaryMarshallerGenerator() : ICodeGenerator( "BinaryMarshallerGenerator" ) { }
+    class TBinaryMarshallerGenerator : public ITargetCodeGenerator
+    {
+    public:
+        TBinaryMarshallerGenerator() : ITargetCodeGenerator("BinaryMarshallerGenerator") {}
 
-    virtual void Work() override;
-  private:
-    void GenerateHeader();
-    void GenerateSource();
-  };
+        void Work() override;
+
+        void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::list<std::string>& dependencyNames) override;
+        TSerializer* GetSerializer() override;
+    private:
+        void GenerateHeader();
+        void GenerateSource();
+    };
 }

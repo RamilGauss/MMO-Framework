@@ -19,6 +19,18 @@ See for more information LICENSE.md.
 
 #### "DONE"  
 
+2021.04.10:
+- Низкий порог вхождения (мало основных компонентов, нужно минимум знаний, чтобы написать простенькое приложение).
+- Все написано на C++, а значит очень быстрое и отзывчивое.
+- Just for fun.
+
+2021.03.13:
+- Парсер готов.
+- Сделать кодогенератор для поддержки возможности использовать компоненты: json для хранения (bin до кучи), entExt для вставки в ECS,
+MyGUI (но потом), TypeInformation для поиска по имени typeIdentifier.
+- Новая концепция конвейера кодогенератора.
+- Генератор контейнеров.
+
 2021.02.28:
 - Добавлена поддержка enum/enum class для парсера.
 - Осталось доделать поддержку методов и написать тесты для method/member/type pragma.
@@ -26,7 +38,7 @@ See for more information LICENSE.md.
 
 2021.02.04:
 - Тест для парсера. 
-- Declaration for TornadoEditor: Just for FUN. Only C++ in code. CodeGeneartion, ECS exist in Core.
+- Declaration for TornadoEditor: Just for FUN. Only C++ in code. CodeGeneartion, ECS exists in Core.
 
 2020.10.22:
 - Добавить фильтр наследование от класса/структуры. Например class A : public B{}; а не #pragma ASDSD

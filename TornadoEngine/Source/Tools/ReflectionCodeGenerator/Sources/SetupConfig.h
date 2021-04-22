@@ -9,36 +9,36 @@ See for more information LICENSE.md.
 
 #include "ConfigContainer.h"
 
-class TSetupConfig
+namespace nsReflectionCodeGenerator
 {
-    nsReflectionCodeGenerator::TConfigContainer* mConfigContainer;
+    class TSetupConfig
+    {
+        int mArgc = 0;
+        char** mArgv = nullptr;
 
-    int mArgc;
-    char** mArgv;
+    public:
+        TSetupConfig();
 
-    std::string mPathToJsonFile;// abs or rel
-    std::string mAbsPathDirJson;
-    std::string mAbsPathJsonFile;
+        bool Work();
 
-public:
-    TSetupConfig();
+    public:
+        TConfigContainer* mConfigContainer;
 
-    bool Work();
+        std::string mAbsPathDirJson;
+        std::string mAbsPathJsonFile;
+    protected:
+        void ShowManual();
+        void DefaultConfig();
+    private:
+        bool TryLoadConfig();
+        void ResolvePathes();
 
-protected:
-    bool CheckArgs();
-    void ShowManual();
-    void DefaultConfig();
-private:
-    bool TryLoadConfig();
-    void ResolvePathes();
+        std::string ResolvePathRelativeConfig(const std::string& path);
 
-    std::string ResolvePathRelativeConfig(const std::string& path);
+        void ResolveJsonPath();
 
-    void ResolveJsonPath();
+        //void LoadExternalSources(nsReflectionCodeGenerator::TConfig* config);
 
-    void LoadExternalSources(nsReflectionCodeGenerator::TConfig* config);
-
-    void LoadExternalSources(nsReflectionCodeGenerator::TSerializer* serializer);
-};
-
+        //void LoadExternalSources(nsReflectionCodeGenerator::TSerializer* serializer);
+    };
+}

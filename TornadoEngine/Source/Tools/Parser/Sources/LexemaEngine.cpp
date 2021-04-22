@@ -41,6 +41,16 @@ ILexema* TLexemaEngine::Work(TLineTokenEntity* lineTokenEntity)
         if (lexema->CanFill(lineTokenEntity)) {
 
             if (canFillCounter > 0) {
+
+                std::string tokens;
+                for (auto& t : lineTokenEntity->mTokens) {
+                    tokens += t.strId; 
+                    tokens += ", ";
+                    tokens += t.value;
+                }
+
+                fmt::print("TLexemaEngine: ambiguity of lexemas:\n  ret={},\n  found={},\n  tokens:\n{}\n", 
+                    retLexema->ToString(), lexema->ToString(), tokens);
                 BL_FIX_BUG();
             }
             prevLexema = lexema.get();

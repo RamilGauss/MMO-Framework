@@ -10,8 +10,6 @@ See for more information LICENSE.md.
 #include "IJsonSerializer.h"
 #include "IBinaryMarshaller.h"
 #include "IMyGuiSerializer.h"
-#include "ISqlSerializer.h"
-#include "IReflection.h"
 #include "IEntityManagerExtension.h"
 #include "ITypeInformation.h"
 
@@ -23,9 +21,6 @@ namespace nsShareDev
         IJsonSerializer* mJson = nullptr;
         IBinaryMarshaller* mBin = nullptr;
         IMyGuiSerializer* mMygui = nullptr;
-        ISqlSerializer* mSql = nullptr;
-
-        IReflection* mReflection = nullptr;
         IEntityManagerExtension* mEntMng = nullptr;
         ITypeInformation* mTypeInfo = nullptr;
     };

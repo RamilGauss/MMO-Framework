@@ -7,16 +7,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IFileGenerator.h"
+#include <string>
+#include "TypeDef.h"
 
 namespace nsReflectionCodeGenerator
 {
-    class TSqlFileGenerator : public IFileGenerator
+    class DllExport TPathOperations
     {
-    protected:
-        TSqlGeneratorConfig* mSqlConfig;
-
-        TSqlFileGenerator();
+    public:
+        static std::string CalculatePathBy(const std::string& abs, const std::string& absOrRel);
     };
 }
-

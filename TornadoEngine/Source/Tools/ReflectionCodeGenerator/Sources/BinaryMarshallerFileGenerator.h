@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "IFileGenerator.h"
-#include "TypeInfo.h"
+#include "Parser/Sources/TypeInfo.h"
 
 namespace nsReflectionCodeGenerator
 {
@@ -95,7 +95,7 @@ namespace nsReflectionCodeGenerator
     const std::string s_PopNumSerPtrMap = "PopNumSerPtrMap";
     const std::string s_PopNumSerSmartPtrMap = "PopNumSerSmartPtrMap";
 
-    std::string MakeEnumName( TTypeInfo* p );
+    std::string MakeEnumName( nsCppParser::TTypeInfo* p );
 
     std::list<std::string> GetParamListForSerialize( const std::string& namespaceWithType );
     std::list<std::string> GetParamListForDeserialize( const std::string& namespaceWithType );

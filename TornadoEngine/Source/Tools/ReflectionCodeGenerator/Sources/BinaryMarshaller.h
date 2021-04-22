@@ -124,10 +124,10 @@ namespace nsBinary
         TypeID _GetTypeID( nsReflectionCodeGenerator::TExternalSource* p );
         static void _Deallocate( nsReflectionCodeGenerator::TExternalSource* p );
         
-        void _Serialize( nsReflectionCodeGenerator::TExternalSourceList* p );
-        void _Deserialize( nsReflectionCodeGenerator::TExternalSourceList* p );
-        TypeID _GetTypeID( nsReflectionCodeGenerator::TExternalSourceList* p );
-        static void _Deallocate( nsReflectionCodeGenerator::TExternalSourceList* p );
+        //void _Serialize( nsReflectionCodeGenerator::TExternalSourceList* p );
+        //void _Deserialize( nsReflectionCodeGenerator::TExternalSourceList* p );
+        //TypeID _GetTypeID( nsReflectionCodeGenerator::TExternalSourceList* p );
+        //static void _Deallocate( nsReflectionCodeGenerator::TExternalSourceList* p );
         
         void _Serialize( nsReflectionCodeGenerator::TExternalSources* p );
         void _Deserialize( nsReflectionCodeGenerator::TExternalSources* p );
@@ -164,10 +164,10 @@ namespace nsBinary
         TypeID _GetTypeID( nsReflectionCodeGenerator::TSerializer* p );
         static void _Deallocate( nsReflectionCodeGenerator::TSerializer* p );
         
-        void _Serialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p );
-        void _Deserialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p );
-        TypeID _GetTypeID( nsReflectionCodeGenerator::TSqlGeneratorConfig* p );
-        static void _Deallocate( nsReflectionCodeGenerator::TSqlGeneratorConfig* p );
+        //void _Serialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p );
+        //void _Deserialize( nsReflectionCodeGenerator::TSqlGeneratorConfig* p );
+        //TypeID _GetTypeID( nsReflectionCodeGenerator::TSqlGeneratorConfig* p );
+        //static void _Deallocate( nsReflectionCodeGenerator::TSqlGeneratorConfig* p );
         
         void _Serialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p );
         void _Deserialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p );

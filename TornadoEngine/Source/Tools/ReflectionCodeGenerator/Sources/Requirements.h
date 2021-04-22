@@ -34,7 +34,6 @@ namespace nsReflectionCodeGenerator
       },
       { "2. PROHIBITED",
         {
-          "typedefs for types",
           "void*",
           "std::function or other Lambda",
           "other variants of use std::vector<bool> (cause it is not standart container)",
@@ -42,6 +41,7 @@ namespace nsReflectionCodeGenerator
       },
       { "3. IGNORED",
         {
+          "typedefs for types",
           "static variables",
           "any methods (virtual, template, static, operators)",
           "constructors and destructor",

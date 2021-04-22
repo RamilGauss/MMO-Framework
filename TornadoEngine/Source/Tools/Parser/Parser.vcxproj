@@ -24,6 +24,7 @@
     <ClCompile Include="Sources\EntitySplitter.cpp" />
     <ClCompile Include="Sources\ExtendedInfoTypeExtractor.cpp" />
     <ClCompile Include="Sources\FunctionLexema.cpp" />
+    <ClCompile Include="Sources\ILexema.cpp" />
     <ClCompile Include="Sources\LexemaEngine.cpp" />
     <ClCompile Include="Sources\LexemaFactory.cpp" />
     <ClCompile Include="Sources\LineSplitter.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="Sources\TypeInfo.cpp" />
     <ClCompile Include="Sources\TypeInfoCollector.cpp" />
     <ClCompile Include="Sources\TypeManager.cpp" />
+    <ClCompile Include="Sources\VariableDeclarationLexema.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\AccessLexema.h" />

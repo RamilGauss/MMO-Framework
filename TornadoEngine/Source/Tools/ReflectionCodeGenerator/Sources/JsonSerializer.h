@@ -61,8 +61,8 @@ namespace nsJson
         static void _Serialize(nsReflectionCodeGenerator::TExternalSource* p, Jobj& obj);
         static void _Deserialize(nsReflectionCodeGenerator::TExternalSource* p, const Jobj& obj);
 
-        static void _Serialize(nsReflectionCodeGenerator::TExternalSourceList* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TExternalSourceList* p, const Jobj& obj);
+        //static void _Serialize(nsReflectionCodeGenerator::TExternalSourceList* p, Jobj& obj);
+        //static void _Deserialize(nsReflectionCodeGenerator::TExternalSourceList* p, const Jobj& obj);
 
         static void _Serialize(nsReflectionCodeGenerator::TExternalSources* p, Jobj& obj);
         static void _Deserialize(nsReflectionCodeGenerator::TExternalSources* p, const Jobj& obj);
@@ -81,9 +81,6 @@ namespace nsJson
 
         static void _Serialize(nsReflectionCodeGenerator::TSerializer* p, Jobj& obj);
         static void _Deserialize(nsReflectionCodeGenerator::TSerializer* p, const Jobj& obj);
-
-        static void _Serialize(nsReflectionCodeGenerator::TSqlGeneratorConfig* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TSqlGeneratorConfig* p, const Jobj& obj);
 
         static void _Serialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, Jobj& obj);
         static void _Deserialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj);

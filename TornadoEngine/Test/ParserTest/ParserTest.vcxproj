@@ -161,6 +161,8 @@
     <ClCompile Include="NamespacesDefinitionTest.cpp" />
     <ClCompile Include="PragmasTest.cpp" />
     <ClCompile Include="FileParserTest.cpp" />
+    <ClCompile Include="TypeDefInClassTest.cpp" />
+    <ClCompile Include="UsingTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
@@ -171,16 +173,22 @@
     <ClInclude Include="Enum_1.h" />
     <ClInclude Include="Enum_2.h" />
     <ClInclude Include="Enum_3.h" />
+    <ClInclude Include="FunctionContent.h" />
     <ClInclude Include="MemberCategory.h" />
     <ClInclude Include="MemberPragma.h" />
     <ClInclude Include="MembersWithExtended.h" />
     <ClInclude Include="MethodCategory.h" />
     <ClInclude Include="MethodNames.h" />
     <ClInclude Include="MethodPragma.h" />
+    <ClInclude Include="PragmaPack.h" />
     <ClInclude Include="Pragmas.h" />
     <ClInclude Include="Inheritance.h" />
     <ClInclude Include="Members.h" />
     <ClInclude Include="NamespaceDefinition.h" />
+    <ClInclude Include="SizeOfInMethod.h" />
+    <ClInclude Include="TypeDefInClass.h" />
+    <ClInclude Include="Using.h" />
+    <ClInclude Include="VirtualMethodOverride.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

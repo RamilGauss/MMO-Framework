@@ -7,18 +7,20 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ICodeGenerator.h"
+#include "ITargetCodeGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {
-    class TEntityManagerGenerator : public ICodeGenerator
+    class TEntityManagerGenerator : public ITargetCodeGenerator
     {
     public:
-        TEntityManagerGenerator() : ICodeGenerator("EntityManagerGenerator")
-        {
-        }
+        TEntityManagerGenerator() : ITargetCodeGenerator("EntityManagerGenerator") {}
 
-        virtual void Work() override;
+        void Work() override;
+
+        void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::list<std::string>& dependencyNames) override {}
+
+        TSerializer* GetSerializer() override;
     private:
         void GenerateHeader();
         void GenerateSource();

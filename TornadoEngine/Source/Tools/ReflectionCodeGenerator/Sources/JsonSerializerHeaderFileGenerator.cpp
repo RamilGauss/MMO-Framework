@@ -51,21 +51,21 @@ void TJsonSerializerHeaderFileGenerator::Work()
 void TJsonSerializerHeaderFileGenerator::AddDeclarations()
 {
     IncrementTabs();
-    for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
-        auto namespaceName = namespaceTypeInfo.first;
-        auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
-        for ( auto filenameType : filenameTypeMap ) {
-            auto namespaceWithType = filenameType.second->GetTypeNameWithNameSpace();
+    //for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
+    //    auto namespaceName = namespaceTypeInfo.first;
+    //    auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
+    //    for ( auto filenameType : filenameTypeMap ) {
+    //        auto namespaceWithType = filenameType.second->GetTypeNameWithNameSpace();
 
-            if ( IsInExternalSources(namespaceWithType) ) {
-                continue;
-            }
+    //        if ( IsInExternalSources(namespaceWithType) ) {
+    //            continue;
+    //        }
 
-            AddSerializeMethodDeclaration(namespaceWithType);
-            AddDeserializeMethodDeclaration(namespaceWithType);
-            AddEmptyLine();
-        }
-    }
+    //        AddSerializeMethodDeclaration(namespaceWithType);
+    //        AddDeserializeMethodDeclaration(namespaceWithType);
+    //        AddEmptyLine();
+    //    }
+    //}
     DecrementTabs();
 }
 //-----------------------------------------------------------------------------------

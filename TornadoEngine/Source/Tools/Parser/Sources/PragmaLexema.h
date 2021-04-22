@@ -48,16 +48,23 @@ namespace nsCppParser
                 if (t.id == T_NEWLINE) {
                     isPragma = false;
                 }
-                if ((t.id == T_IDENTIFIER ||
+                if (!isPragma) {
+                    continue;
+                }
+
+                if (t.id == T_IDENTIFIER ||
                     t.id == T_STRINGLIT ||
+                    t.id == T_LEFTPAREN ||
+                    t.id == T_RIGHTPAREN ||
+                    t.id == T_INTLIT ||
+                    t.id == T_COMMA ||
                     t.id == T_CLASS ||
                     t.id == T_STRUCT ||
-                    t.id == T_ENUM) &&
-                    isPragma) {
+                    t.id == T_ENUM) {
                     mValue += t.value;
                 }
 
-                if (isPragma && mValue.length() > 0 && t.id == T_SPACE) {
+                if (mValue.length() > 0 && t.id == T_SPACE) {
                     mValue += t.value;
                 }
             }

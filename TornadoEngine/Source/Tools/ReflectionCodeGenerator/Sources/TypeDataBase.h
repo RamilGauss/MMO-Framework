@@ -7,14 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <string>
-#include <list>
-#include "TokenInfo.h"
-
-class TTokenizer
+namespace nsReflectionCodeGenerator
 {
-public:
-  bool Work( std::string& inStr, std::list<TTokenInfo>& resultList );
+    class TTypeDataBase
+    {
+    public:
 
-  std::string ErrorDesc();
-};
+    };
+}

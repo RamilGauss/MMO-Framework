@@ -1154,9 +1154,6 @@
     <ClInclude Include="ReflectionContainers\IMyGuiSerializer.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionContainers\ISqlSerializer.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
     <ClInclude Include="ReflectionContainers\IReflection.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
@@ -1164,6 +1161,9 @@
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
     <ClInclude Include="ReflectionContainers\ITypeInformation.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\MenuItemContainer.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
   </ItemGroup>

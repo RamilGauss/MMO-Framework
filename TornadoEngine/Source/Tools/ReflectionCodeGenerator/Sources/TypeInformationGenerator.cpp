@@ -11,8 +11,13 @@ See for more information LICENSE.md.
 
 using namespace nsReflectionCodeGenerator;
 
+//----------------------------------------------------------------------------------
 void TTypeInformationGenerator::Work()
 {
+    if (!IsWork()) {
+        return;
+    }
+
     GenerateHeader();
     GenerateSource();
 }
@@ -47,4 +52,8 @@ void TTypeInformationGenerator::GenerateSource()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-
+TSerializer* TTypeInformationGenerator::GetSerializer()
+{
+    return mConfig->targetForCodeGeneration.implementation.typeInformation.get();
+}
+//----------------------------------------------------------------------------------

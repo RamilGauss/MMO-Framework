@@ -139,3 +139,91 @@ TEST(Parser, MethodPragma)
         }
     }
 }
+
+TEST(Parser, SizeOfInMethod)
+{
+    TFileParser fileParser;
+    auto res = fileParser.Parse("SizeOfInMethod.h");
+    ASSERT_NE(res, nullptr);
+
+    ASSERT_EQ(res->mTypeList.size(), 1);
+
+    auto type = res->mTypeList.begin();
+
+    for (auto& type : res->mTypeList) {
+        ASSERT_EQ(type->mName, "Y");
+        if (type->mName == "Y") {
+            ASSERT_TRUE(type->mMethods.size(), 3);
+
+            auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
+            ASSERT_EQ(publicMethods.size(), 0);
+            auto& protectedMethods = type->mMethods[(int) nsCppParser::AccessLevel::PROTECTED];
+            ASSERT_EQ(protectedMethods.size(), 0);
+            auto& privateMethods = type->mMethods[(int) nsCppParser::AccessLevel::PRIVATE];
+            ASSERT_EQ(privateMethods.size(), 1);
+
+            ASSERT_EQ(privateMethods[0]->mName, "Foo");
+        }
+    }
+}
+
+TEST(Parser, FunctionContent)
+{
+    TFileParser fileParser;
+    auto res = fileParser.Parse("FunctionContent.h");
+    ASSERT_NE(res, nullptr);
+
+    ASSERT_EQ(res->mTypeList.size(), 1);
+
+    auto type = res->mTypeList.begin();
+
+    for (auto& type : res->mTypeList) {
+        ASSERT_EQ(type->mName, "X");
+        if (type->mName == "X") {
+            ASSERT_TRUE(type->mMethods.size(), 3);
+
+            auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
+            ASSERT_EQ(publicMethods.size(), 0);
+            auto& protectedMethods = type->mMethods[(int) nsCppParser::AccessLevel::PROTECTED];
+            ASSERT_EQ(protectedMethods.size(), 0);
+            auto& privateMethods = type->mMethods[(int) nsCppParser::AccessLevel::PRIVATE];
+            ASSERT_EQ(privateMethods.size(), 1);
+
+            ASSERT_EQ(privateMethods[0]->mName, "Foo");
+        }
+    }
+}
+
+TEST(Parser, VirtualMethodOverride)
+{
+    TFileParser fileParser;
+    auto res = fileParser.Parse("VirtualMethodOverride.h");
+    ASSERT_NE(res, nullptr);
+
+    ASSERT_EQ(res->mTypeList.size(), 2);
+
+    bool isPassed = false;
+
+    for (auto& type : res->mTypeList) {
+        if (type->mName == "X") {
+            ASSERT_TRUE(type->mMethods.size(), 3);
+
+            auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
+            ASSERT_EQ(publicMethods.size(), 0);
+            auto& protectedMethods = type->mMethods[(int) nsCppParser::AccessLevel::PROTECTED];
+            ASSERT_EQ(protectedMethods.size(), 0);
+            auto& privateMethods = type->mMethods[(int) nsCppParser::AccessLevel::PRIVATE];
+            ASSERT_EQ(privateMethods.size(), 1);
+
+            ASSERT_EQ(privateMethods[0]->mName, "Foo");
+
+            ASSERT_EQ(type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC].size(), 0);
+            ASSERT_EQ(type->mMembers[(int) nsCppParser::AccessLevel::PROTECTED].size(), 0);
+            ASSERT_EQ(type->mMembers[(int) nsCppParser::AccessLevel::PRIVATE].size(), 0);
+
+            isPassed = true;
+        }
+    }
+
+    ASSERT_EQ(isPassed, true);
+}

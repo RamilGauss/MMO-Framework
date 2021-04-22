@@ -11,8 +11,13 @@ See for more information LICENSE.md.
 
 using namespace nsReflectionCodeGenerator;
 
+//----------------------------------------------------------------------------------
 void TReflectionGenerator::Work()
 {
+    if (!IsWork()) {
+        return;
+    }
+
     GenerateHeader();
     GenerateSource();
 }
@@ -47,4 +52,13 @@ void TReflectionGenerator::GenerateSource()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-
+void TReflectionGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::list<std::string>& dependencyNames)
+{
+    // empty
+}
+//----------------------------------------------------------------------------------
+TSerializer* TReflectionGenerator::GetSerializer()
+{
+    return mConfig->targetForCodeGeneration.implementation.reflection.get();
+}
+//----------------------------------------------------------------------------------

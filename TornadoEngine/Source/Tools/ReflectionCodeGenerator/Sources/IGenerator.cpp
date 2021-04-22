@@ -13,7 +13,7 @@ using namespace nsReflectionCodeGenerator;
 
 IGenerator::IGenerator()
 {
-  mConfig = SingletonManager()->Get<nsReflectionCodeGenerator::TConfigContainer>()->Config();
-  mTypeMng = SingletonManager()->Get<TTypeManager>();
+    mTypeManager = SingletonManager()->Get<TTypeManager>();
+    mConfig = SingletonManager()->Get<TConfigContainer>()->Config();
 }
 //----------------------------------------------------------------------------------

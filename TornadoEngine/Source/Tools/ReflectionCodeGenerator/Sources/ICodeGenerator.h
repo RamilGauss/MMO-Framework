@@ -9,19 +9,20 @@ See for more information LICENSE.md.
 
 #include "IGenerator.h"
 
+#include "Parser/Sources/TypeInfo.h"
+
 namespace nsReflectionCodeGenerator
 {
     class ICodeGenerator : public IGenerator
     {
-        std::string mName;
     protected:
+        std::string mName;
         TPairList* mPairList;
     public:
-        ICodeGenerator(std::string name);
+        ICodeGenerator(const std::string& name);
 
         // abs path file - list parts of file
         void Init(TPairList& result);
-        virtual void Work() = 0;
     protected:
         std::string GeneratedFileFullPath(std::string fileNameWithExt);
     };

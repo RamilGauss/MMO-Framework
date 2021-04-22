@@ -12,14 +12,14 @@ See for more information LICENSE.md.
 
 namespace nsReflectionCodeGenerator
 {
-  class TConfigContainer
-  {
-  protected:
-    TConfigContainer() { }
-    friend class TSingletonManager;
-  public:
-    TConfig mConfig;
+    class TConfigContainer
+    {
+    protected:
+        TConfigContainer() {}
+        friend class TSingletonManager;
+    public:
+        TConfig mConfig;
 
-    TConfig* Config() { return &mConfig; }
-  };
+        TConfig* Config() { return &mConfig; }
+    };
 }

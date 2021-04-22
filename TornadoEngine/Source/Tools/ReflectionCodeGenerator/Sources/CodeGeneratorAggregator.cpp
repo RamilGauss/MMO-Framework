@@ -9,109 +9,94 @@ See for more information LICENSE.md.
 #include "SaveToFile.h"
 #include "SingletonManager.h"
 
-#include "CodeGeneratorFusion.h"
-#include "IncludeListGenerator.h"
-
-#include "JsonSerializerGenerator.h"
-#include "BinaryMarshallerGenerator.h"
-#include "TypeInformationGenerator.h"
-#include "ConfigContainer.h"
-#include "SqlGenerator.h"
-#include "ReflectionGenerator.h"
-#include "EntityManagerGenerator.h"
-
+#include "CodeGeneratorAggregator.h"
 
 using namespace nsReflectionCodeGenerator;
 
+TCodeGeneratorAggregator::TGeneratorInfo::TGeneratorInfo(ITargetCodeGenerator* generator)
+{
+    this->generator = generator;
+}
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::Work()
+TCodeGeneratorAggregator::TCodeGeneratorAggregator()
+{
+    mGenerators.push_back(TGeneratorInfo(&mJsonGenerator));
+    mGenerators.push_back(TGeneratorInfo(&mBinaryGenerator));
+    mGenerators.push_back(TGeneratorInfo(&mReflectionGenerator));
+    mGenerators.push_back(TGeneratorInfo(&mEntMngGenerator));
+    mGenerators.push_back(TGeneratorInfo(&mTypeInfoGenerator));
+}
+//---------------------------------------------------------------------------------------------
+TIncludeListGenerator* TCodeGeneratorAggregator::GetIncludeList()
+{
+    return &mIncludeGenerator;
+}
+//---------------------------------------------------------------------------------------------
+void TCodeGeneratorAggregator::Work()
 {
     Collect();
     Dump();
 }
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::Collect()
+void TCodeGeneratorAggregator::Collect()
 {
-    auto& implementation = SingletonManager()->Get<TConfigContainer>()->Config()->targetForCodeGeneration.implementation;
-
     CollectFromIncludeList();
-
-    if ( implementation.jsonSerializer.get() ) {
-        CollectFromJson();
-    }
-    if ( implementation.binaryMarshaller.get() ) {
-        CollectFromBinary();
-    }
-    if ( implementation.sql.get() ) {
-        CollectFromSql();
-    }
-    if ( implementation.typeInformation.get() ) {
-        CollectFromTypeInformation();
-    }
-    if ( implementation.reflection.get() ) {
-        CollectFromReflection();
-    }
-    if ( implementation.entMngExt.get() ) {
-        CollectFromEntityManagerExtension();
-    }
+    CollectFromJson();
+    CollectFromBinary();
+    CollectFromTypeInformation();
+    CollectFromReflection();
+    CollectFromEntityManagerExtension();
 }
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::Dump()
+void TCodeGeneratorAggregator::Dump()
 {
     TSaveToFile stf;
-    for ( auto& fileParts : mForDump ) {
-        if ( stf.ReOpen(fileParts.first.data()) == false ) {
+    for (auto& fileParts : mForDump) {
+        if (stf.ReOpen(fileParts.first.data()) == false) {
             continue;
         }
-        for ( auto& part : fileParts.second ) {
+        for (auto& part : fileParts.second) {
             stf.WriteF("%s\n", part.data());
         }
     }
 }
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::CollectFromIncludeList()
+void TCodeGeneratorAggregator::CollectFromIncludeList()
 {
     TIncludeListGenerator generator;
     generator.Init(mForDump);
     generator.Work();
 }
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::CollectFromJson()
+void TCodeGeneratorAggregator::CollectFromJson()
 {
     TJsonSerializerGenerator generator;
     generator.Init(mForDump);
     generator.Work();
 }
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::CollectFromBinary()
+void TCodeGeneratorAggregator::CollectFromBinary()
 {
     TBinaryMarshallerGenerator generator;
     generator.Init(mForDump);
     generator.Work();
 }
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::CollectFromSql()
-{
-    TSqlGenerator generator;
-    generator.Init(mForDump);
-    generator.Work();
-}
-//---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::CollectFromReflection()
+void TCodeGeneratorAggregator::CollectFromReflection()
 {
     TReflectionGenerator generator;
     generator.Init(mForDump);
     generator.Work();
 }
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::CollectFromEntityManagerExtension()
+void TCodeGeneratorAggregator::CollectFromEntityManagerExtension()
 {
     TEntityManagerGenerator generator;
     generator.Init(mForDump);
     generator.Work();
 }
 //---------------------------------------------------------------------------------------------
-void TCodeGeneratorFusion::CollectFromTypeInformation()
+void TCodeGeneratorAggregator::CollectFromTypeInformation()
 {
     TTypeInformationGenerator generator;
     generator.Init(mForDump);

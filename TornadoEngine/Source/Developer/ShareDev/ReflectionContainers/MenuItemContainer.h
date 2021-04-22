@@ -6,11 +6,13 @@ See for more information LICENSE.md.
 */
 
 #pragma once
-#include "MemberInfo.h"
 
-struct TInheritanceInfo
+#include "TypeDef.h"
+
+namespace nsShareDev
 {
-  std::string mParentTypeName;
-  TMemberInfo::AccessLevel mInheritanceAccessLevel = TMemberInfo::ePrivate;
-};
-
+    // Get via SingletonManager()->Get<TComponentsContainer>();
+    struct DllExport TMenuItemsContainer
+    {
+    };
+}

@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include "BL_Debug.h"
 
 using namespace nsReflectionCodeGenerator;
+using namespace nsCppParser;
 
 void TTypeInformationSourceFileGenerator::Work()
 {
@@ -82,7 +83,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
     AddEmptyLine();
 
-    for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
+    /*for ( auto& namespaceTypeInfo : mTypeMng->mNameSpaceTypesMap ) {
         auto namespaceName = namespaceTypeInfo.first;
         auto& filenameTypeMap = *(namespaceTypeInfo.second.get());
         for ( auto filenameType : filenameTypeMap ) {
@@ -111,7 +112,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
             AddEmptyLine();
         }
-    }
+    }*/
 
     DecrementTabs();
     AddRightBrace();

@@ -88,18 +88,18 @@ void TJsonSerializer::Init()
     mTypeNameFuncsMap.insert({ "nsReflectionCodeGenerator::TExternalSource", _nsReflectionCodeGenerator_TExternalSourceTypeFunc });
     mTypeNameList.push_back("nsReflectionCodeGenerator::TExternalSource");
 
-    TypeFunc _nsReflectionCodeGenerator_TExternalSourceListTypeFunc;
-    _nsReflectionCodeGenerator_TExternalSourceListTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-        Serialize<nsReflectionCodeGenerator::TExternalSourceList>((nsReflectionCodeGenerator::TExternalSourceList*) p, str);
-    };
-    _nsReflectionCodeGenerator_TExternalSourceListTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TExternalSourceList>((nsReflectionCodeGenerator::TExternalSourceList*&) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TExternalSourceListTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TExternalSourceList>((nsReflectionCodeGenerator::TExternalSourceList*) p, str, err);
-    };
-    mTypeNameFuncsMap.insert({ "nsReflectionCodeGenerator::TExternalSourceList", _nsReflectionCodeGenerator_TExternalSourceListTypeFunc });
-    mTypeNameList.push_back("nsReflectionCodeGenerator::TExternalSourceList");
+    //TypeFunc _nsReflectionCodeGenerator_TExternalSourceListTypeFunc;
+    //_nsReflectionCodeGenerator_TExternalSourceListTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    //    Serialize<nsReflectionCodeGenerator::TExternalSourceList>((nsReflectionCodeGenerator::TExternalSourceList*) p, str);
+    //};
+    //_nsReflectionCodeGenerator_TExternalSourceListTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
+    //    return Deserialize<nsReflectionCodeGenerator::TExternalSourceList>((nsReflectionCodeGenerator::TExternalSourceList*&) p, str, err);
+    //};
+    //_nsReflectionCodeGenerator_TExternalSourceListTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
+    //    return Fill<nsReflectionCodeGenerator::TExternalSourceList>((nsReflectionCodeGenerator::TExternalSourceList*) p, str, err);
+    //};
+    //mTypeNameFuncsMap.insert({ "nsReflectionCodeGenerator::TExternalSourceList", _nsReflectionCodeGenerator_TExternalSourceListTypeFunc });
+    //mTypeNameList.push_back("nsReflectionCodeGenerator::TExternalSourceList");
 
     TypeFunc _nsReflectionCodeGenerator_TExternalSourcesTypeFunc;
     _nsReflectionCodeGenerator_TExternalSourcesTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -179,19 +179,6 @@ void TJsonSerializer::Init()
     mTypeNameFuncsMap.insert({ "nsReflectionCodeGenerator::TSerializer", _nsReflectionCodeGenerator_TSerializerTypeFunc });
     mTypeNameList.push_back("nsReflectionCodeGenerator::TSerializer");
 
-    TypeFunc _nsReflectionCodeGenerator_TSqlGeneratorConfigTypeFunc;
-    _nsReflectionCodeGenerator_TSqlGeneratorConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-        Serialize<nsReflectionCodeGenerator::TSqlGeneratorConfig>((nsReflectionCodeGenerator::TSqlGeneratorConfig*) p, str);
-    };
-    _nsReflectionCodeGenerator_TSqlGeneratorConfigTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TSqlGeneratorConfig>((nsReflectionCodeGenerator::TSqlGeneratorConfig*&) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TSqlGeneratorConfigTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TSqlGeneratorConfig>((nsReflectionCodeGenerator::TSqlGeneratorConfig*) p, str, err);
-    };
-    mTypeNameFuncsMap.insert({ "nsReflectionCodeGenerator::TSqlGeneratorConfig", _nsReflectionCodeGenerator_TSqlGeneratorConfigTypeFunc });
-    mTypeNameList.push_back("nsReflectionCodeGenerator::TSqlGeneratorConfig");
-
     TypeFunc _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc;
     _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc.serializeFunc = [] (void* p, std::string& str) {
         Serialize<nsReflectionCodeGenerator::TTargetForCodeGeneration>((nsReflectionCodeGenerator::TTargetForCodeGeneration*) p, str);
@@ -259,25 +246,25 @@ bool TJsonSerializer::Fill(void* p, const std::string& str, const std::string& t
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TBinaryMarshallerGeneratorConfig* p, Jobj& obj)
 {
-    _Serialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
-    if ( p->unpackHandler.get() == nullptr ) {
-        PUM::PushNull(obj, "unpackHandler");
-    } else {
-        auto unpackHandler_o = PUM::AddObject(obj, "unpackHandler");
-        _Serialize(p->unpackHandler.get(), unpackHandler_o);
-    }
+    //_Serialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
+    //if ( p->unpackHandler.get() == nullptr ) {
+    //    PUM::PushNull(obj, "unpackHandler");
+    //} else {
+    //    auto unpackHandler_o = PUM::AddObject(obj, "unpackHandler");
+    //    _Serialize(p->unpackHandler.get(), unpackHandler_o);
+    //}
     PUM::Push(obj, "beginID", p->beginID);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TBinaryMarshallerGeneratorConfig* p, const Jobj& obj)
 {
-    _Deserialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
+    //_Deserialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
     if ( POM::IsExist(obj, "unpackHandler") && !POM::IsNull(obj, "unpackHandler") ) {
         if ( p->unpackHandler.get() == nullptr ) {
             p->unpackHandler.reset(new nsReflectionCodeGenerator::TUnpackHandler());
         }
         auto unpackHandler_o0 = POM::FindObject(obj, "unpackHandler");
-        _Deserialize(p->unpackHandler.get(), unpackHandler_o0);
+        //_Deserialize(p->unpackHandler.get(), unpackHandler_o0);
     }
     POM::PopNum(obj, "beginID", p->beginID);
 }
@@ -300,85 +287,85 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TClassDesc* p, con
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TConfig* p, Jobj& obj)
 {
-    auto targetForParsing_o = PUM::AddObject(obj, "targetForParsing");
-    _Serialize(&(p->targetForParsing), targetForParsing_o);
-    auto filter_o = PUM::AddObject(obj, "filter");
-    _Serialize(&(p->filter), filter_o);
-    auto targetForCodeGeneration_o = PUM::AddObject(obj, "targetForCodeGeneration");
-    _Serialize(&(p->targetForCodeGeneration), targetForCodeGeneration_o);
+    //auto targetForParsing_o = PUM::AddObject(obj, "targetForParsing");
+    //_Serialize(&(p->targetForParsing), targetForParsing_o);
+    //auto filter_o = PUM::AddObject(obj, "filter");
+    //_Serialize(&(p->filter), filter_o);
+    //auto targetForCodeGeneration_o = PUM::AddObject(obj, "targetForCodeGeneration");
+    //_Serialize(&(p->targetForCodeGeneration), targetForCodeGeneration_o);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TConfig* p, const Jobj& obj)
 {
-    auto targetForParsing_o0 = POM::FindObject(obj, "targetForParsing");
-    _Deserialize(&(p->targetForParsing), targetForParsing_o0);
-    auto filter_o0 = POM::FindObject(obj, "filter");
-    _Deserialize(&(p->filter), filter_o0);
-    auto targetForCodeGeneration_o0 = POM::FindObject(obj, "targetForCodeGeneration");
-    _Deserialize(&(p->targetForCodeGeneration), targetForCodeGeneration_o0);
+    //auto targetForParsing_o0 = POM::FindObject(obj, "targetForParsing");
+    //_Deserialize(&(p->targetForParsing), targetForParsing_o0);
+    //auto filter_o0 = POM::FindObject(obj, "filter");
+    //_Deserialize(&(p->filter), filter_o0);
+    //auto targetForCodeGeneration_o0 = POM::FindObject(obj, "targetForCodeGeneration");
+    //_Deserialize(&(p->targetForCodeGeneration), targetForCodeGeneration_o0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TEntityManagerGeneratorConfig* p, Jobj& obj)
 {
-    _Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    //_Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TEntityManagerGeneratorConfig* p, const Jobj& obj)
 {
-    _Deserialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    //_Deserialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TExternalSource* p, Jobj& obj)
 {
     PUM::Push(obj, "fileName", p->fileName);
     PUM::Push(obj, "nameSpaceName", p->nameSpaceName);
-    PUM::Push(obj, "className", p->className);
-    PUM::Value nameSpaceWithType_a0(rapidjson::kArrayType);
-    for ( auto& nameSpaceWithType_e0 : p->nameSpaceWithType ) {
-        PUM::PushBack(nameSpaceWithType_a0, nameSpaceWithType_e0);
-    }
-    PUM::Push(obj, "nameSpaceWithType", nameSpaceWithType_a0);
+    //PUM::Push(obj, "className", p->className);
+    //PUM::Value nameSpaceWithType_a0(rapidjson::kArrayType);
+    //for ( auto& nameSpaceWithType_e0 : p->nameSpaceWithType ) {
+    //    PUM::PushBack(nameSpaceWithType_a0, nameSpaceWithType_e0);
+    //}
+    //PUM::Push(obj, "nameSpaceWithType", nameSpaceWithType_a0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TExternalSource* p, const Jobj& obj)
 {
     POM::PopStr(obj, "fileName", p->fileName);
     POM::PopStr(obj, "nameSpaceName", p->nameSpaceName);
-    POM::PopStr(obj, "className", p->className);
-    if ( POM::IsArray(obj, "nameSpaceWithType") ) {
-        auto nameSpaceWithType_a0 = POM::FindArray(obj, "nameSpaceWithType");
-        for ( auto& nameSpaceWithType_e0 : nameSpaceWithType_a0 ) {
-            p->nameSpaceWithType.insert(nameSpaceWithType_e0.GetString());
-        }
-    } else {
-        std::string nameSpaceWithType_t0;
-        POM::PopStr(obj, "nameSpaceWithType", nameSpaceWithType_t0);
-        p->nameSpaceWithType.insert(nameSpaceWithType_t0);
-    }
+    //POM::PopStr(obj, "className", p->className);
+    //if ( POM::IsArray(obj, "nameSpaceWithType") ) {
+    //    auto nameSpaceWithType_a0 = POM::FindArray(obj, "nameSpaceWithType");
+    //    for ( auto& nameSpaceWithType_e0 : nameSpaceWithType_a0 ) {
+    //        p->nameSpaceWithType.insert(nameSpaceWithType_e0.GetString());
+    //    }
+    //} else {
+    //    std::string nameSpaceWithType_t0;
+    //    POM::PopStr(obj, "nameSpaceWithType", nameSpaceWithType_t0);
+    //    p->nameSpaceWithType.insert(nameSpaceWithType_t0);
+    //}
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TExternalSourceList* p, Jobj& obj)
-{
-    PUM::Value val_a0(rapidjson::kArrayType);
-    for ( auto& val_e0 : p->val ) {
-        PUM::Value val_a1(rapidjson::kObjectType);
-        auto val_c1 = val_a1.GetObject();
-        _Serialize(&val_e0, val_c1);
-        PUM::PushBack(val_a0, val_a1);
-    }
-    PUM::Push(obj, "val", val_a0);
-}
+//void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TExternalSourceList* p, Jobj& obj)
+//{
+//    PUM::Value val_a0(rapidjson::kArrayType);
+//    for ( auto& val_e0 : p->val ) {
+//        PUM::Value val_a1(rapidjson::kObjectType);
+//        auto val_c1 = val_a1.GetObject();
+//        _Serialize(&val_e0, val_c1);
+//        PUM::PushBack(val_a0, val_a1);
+//    }
+//    PUM::Push(obj, "val", val_a0);
+//}
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TExternalSourceList* p, const Jobj& obj)
-{
-    auto val_a0 = POM::FindArray(obj, "val");
-    for ( auto& val_e0 : val_a0 ) {
-        auto val_o1 = val_e0.GetObject();
-        nsReflectionCodeGenerator::TExternalSource val_c1;
-        _Deserialize(&val_c1, val_o1);
-        p->val.push_back(val_c1);
-    }
-}
+//void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TExternalSourceList* p, const Jobj& obj)
+//{
+    //auto val_a0 = POM::FindArray(obj, "val");
+    //for ( auto& val_e0 : val_a0 ) {
+    //    auto val_o1 = val_e0.GetObject();
+    //    nsReflectionCodeGenerator::TExternalSource val_c1;
+    //    _Deserialize(&val_c1, val_o1);
+    //    p->val.push_back(val_c1);
+    //}
+//}
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TExternalSources* p, Jobj& obj)
 {
@@ -386,20 +373,20 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TExternalSources* p,
     for ( auto& inFileList_e0 : p->inFileList ) {
         PUM::PushBack(inFileList_a0, inFileList_e0);
     }
-    PUM::Push(obj, "inFileList", inFileList_a0);
-    PUM::Push(obj, "outFile", p->outFile);
-    if ( p->inExtSrcList.get() == nullptr ) {
-        PUM::PushNull(obj, "inExtSrcList");
-    } else {
-        auto inExtSrcList_o = PUM::AddObject(obj, "inExtSrcList");
-        _Serialize(p->inExtSrcList.get(), inExtSrcList_o);
-    }
-    if ( p->outExtSrc.get() == nullptr ) {
-        PUM::PushNull(obj, "outExtSrc");
-    } else {
-        auto outExtSrc_o = PUM::AddObject(obj, "outExtSrc");
-        _Serialize(p->outExtSrc.get(), outExtSrc_o);
-    }
+    //PUM::Push(obj, "inFileList", inFileList_a0);
+    //PUM::Push(obj, "outFile", p->outFile);
+    //if ( p->inExtSrcList.get() == nullptr ) {
+    //    PUM::PushNull(obj, "inExtSrcList");
+    //} else {
+    //    auto inExtSrcList_o = PUM::AddObject(obj, "inExtSrcList");
+    //    _Serialize(p->inExtSrcList.get(), inExtSrcList_o);
+    //}
+    //if ( p->outExtSrc.get() == nullptr ) {
+    //    PUM::PushNull(obj, "outExtSrc");
+    //} else {
+    //    auto outExtSrc_o = PUM::AddObject(obj, "outExtSrc");
+    //    _Serialize(p->outExtSrc.get(), outExtSrc_o);
+    //}
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TExternalSources* p, const Jobj& obj)
@@ -414,21 +401,21 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TExternalSources* 
         POM::PopStr(obj, "inFileList", inFileList_t0);
         p->inFileList.push_back(inFileList_t0);
     }
-    POM::PopStr(obj, "outFile", p->outFile);
-    if ( POM::IsExist(obj, "inExtSrcList") && !POM::IsNull(obj, "inExtSrcList") ) {
-        if ( p->inExtSrcList.get() == nullptr ) {
-            p->inExtSrcList.reset(new nsReflectionCodeGenerator::TExternalSourceList());
-        }
-        auto inExtSrcList_o0 = POM::FindObject(obj, "inExtSrcList");
-        _Deserialize(p->inExtSrcList.get(), inExtSrcList_o0);
-    }
-    if ( POM::IsExist(obj, "outExtSrc") && !POM::IsNull(obj, "outExtSrc") ) {
-        if ( p->outExtSrc.get() == nullptr ) {
-            p->outExtSrc.reset(new nsReflectionCodeGenerator::TExternalSource());
-        }
+    //POM::PopStr(obj, "outFile", p->outFile);
+    //if ( POM::IsExist(obj, "inExtSrcList") && !POM::IsNull(obj, "inExtSrcList") ) {
+    //    if ( p->inExtSrcList.get() == nullptr ) {
+    //        p->inExtSrcList.reset(new nsReflectionCodeGenerator::TExternalSourceList());
+    //    }
+    //    auto inExtSrcList_o0 = POM::FindObject(obj, "inExtSrcList");
+    //    _Deserialize(p->inExtSrcList.get(), inExtSrcList_o0);
+    //}
+    //if ( POM::IsExist(obj, "outExtSrc") && !POM::IsNull(obj, "outExtSrc") ) {
+    //    if ( p->outExtSrc.get() == nullptr ) {
+    //        p->outExtSrc.reset(new nsReflectionCodeGenerator::TExternalSource());
+    //    }
         auto outExtSrc_o0 = POM::FindObject(obj, "outExtSrc");
-        _Deserialize(p->outExtSrc.get(), outExtSrc_o0);
-    }
+        //_Deserialize(p->outExtSrc.get(), outExtSrc_o0);
+    //}
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TFilter* p, Jobj& obj)
@@ -463,31 +450,31 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TImplementation* p, 
         PUM::PushNull(obj, "jsonSerializer");
     } else {
         auto jsonSerializer_o = PUM::AddObject(obj, "jsonSerializer");
-        _Serialize(p->jsonSerializer.get(), jsonSerializer_o);
+        //_Serialize(p->jsonSerializer.get(), jsonSerializer_o);
     }
     if ( p->binaryMarshaller.get() == nullptr ) {
         PUM::PushNull(obj, "binaryMarshaller");
     } else {
         auto binaryMarshaller_o = PUM::AddObject(obj, "binaryMarshaller");
-        _Serialize(p->binaryMarshaller.get(), binaryMarshaller_o);
+        //_Serialize(p->binaryMarshaller.get(), binaryMarshaller_o);
     }
-    if ( p->sql.get() == nullptr ) {
-        PUM::PushNull(obj, "sql");
-    } else {
-        auto sql_o = PUM::AddObject(obj, "sql");
-        _Serialize(p->sql.get(), sql_o);
-    }
+    //if ( p->sql.get() == nullptr ) {
+    //    PUM::PushNull(obj, "sql");
+    //} else {
+    //    auto sql_o = PUM::AddObject(obj, "sql");
+    //    _Serialize(p->sql.get(), sql_o);
+    //}
     if ( p->reflection.get() == nullptr ) {
         PUM::PushNull(obj, "reflection");
     } else {
         auto reflection_o = PUM::AddObject(obj, "reflection");
-        _Serialize(p->reflection.get(), reflection_o);
+        //_Serialize(p->reflection.get(), reflection_o);
     }
     if ( p->entMngExt.get() == nullptr ) {
         PUM::PushNull(obj, "entMngExt");
     } else {
         auto entMngExt_o = PUM::AddObject(obj, "entMngExt");
-        _Serialize(p->entMngExt.get(), entMngExt_o);
+        //_Serialize(p->entMngExt.get(), entMngExt_o);
     }
 }
 //---------------------------------------------------------------------------------------
@@ -498,89 +485,79 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TImplementation* p
             p->jsonSerializer.reset(new nsReflectionCodeGenerator::TJsonSerializerGeneratorConfig());
         }
         auto jsonSerializer_o0 = POM::FindObject(obj, "jsonSerializer");
-        _Deserialize(p->jsonSerializer.get(), jsonSerializer_o0);
+        //_Deserialize(p->jsonSerializer.get(), jsonSerializer_o0);
     }
     if ( POM::IsExist(obj, "binaryMarshaller") && !POM::IsNull(obj, "binaryMarshaller") ) {
         if ( p->binaryMarshaller.get() == nullptr ) {
             p->binaryMarshaller.reset(new nsReflectionCodeGenerator::TBinaryMarshallerGeneratorConfig());
         }
         auto binaryMarshaller_o0 = POM::FindObject(obj, "binaryMarshaller");
-        _Deserialize(p->binaryMarshaller.get(), binaryMarshaller_o0);
+        //_Deserialize(p->binaryMarshaller.get(), binaryMarshaller_o0);
     }
-    if ( POM::IsExist(obj, "sql") && !POM::IsNull(obj, "sql") ) {
-        if ( p->sql.get() == nullptr ) {
-            p->sql.reset(new nsReflectionCodeGenerator::TSqlGeneratorConfig());
-        }
-        auto sql_o0 = POM::FindObject(obj, "sql");
-        _Deserialize(p->sql.get(), sql_o0);
-    }
+    //if ( POM::IsExist(obj, "sql") && !POM::IsNull(obj, "sql") ) {
+    //    if ( p->sql.get() == nullptr ) {
+    //        p->sql.reset(new nsReflectionCodeGenerator::TSqlGeneratorConfig());
+    //    }
+    //    auto sql_o0 = POM::FindObject(obj, "sql");
+    //    _Deserialize(p->sql.get(), sql_o0);
+    //}
     if ( POM::IsExist(obj, "reflection") && !POM::IsNull(obj, "reflection") ) {
         if ( p->reflection.get() == nullptr ) {
             p->reflection.reset(new nsReflectionCodeGenerator::TReflectionGeneratorConfig());
         }
         auto reflection_o0 = POM::FindObject(obj, "reflection");
-        _Deserialize(p->reflection.get(), reflection_o0);
+        //_Deserialize(p->reflection.get(), reflection_o0);
     }
     if ( POM::IsExist(obj, "entMngExt") && !POM::IsNull(obj, "entMngExt") ) {
         if ( p->entMngExt.get() == nullptr ) {
             p->entMngExt.reset(new nsReflectionCodeGenerator::TEntityManagerGeneratorConfig());
         }
         auto entMngExt_o0 = POM::FindObject(obj, "entMngExt");
-        _Deserialize(p->entMngExt.get(), entMngExt_o0);
+        //_Deserialize(p->entMngExt.get(), entMngExt_o0);
     }
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TJsonSerializerGeneratorConfig* p, Jobj& obj)
 {
-    _Serialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
+    //_Serialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TJsonSerializerGeneratorConfig* p, const Jobj& obj)
 {
-    _Deserialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
+    //_Deserialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TReflectionGeneratorConfig* p, Jobj& obj)
 {
-    _Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    //_Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TReflectionGeneratorConfig* p, const Jobj& obj)
 {
-    _Deserialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    //_Deserialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TSerializer* p, Jobj& obj)
 {
-    _Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    //_Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
     if ( p->externalSources.get() == nullptr ) {
         PUM::PushNull(obj, "externalSources");
     } else {
         auto externalSources_o = PUM::AddObject(obj, "externalSources");
-        _Serialize(p->externalSources.get(), externalSources_o);
+        //_Serialize(p->externalSources.get(), externalSources_o);
     }
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TSerializer* p, const Jobj& obj)
 {
-    _Deserialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    //_Deserialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
     if ( POM::IsExist(obj, "externalSources") && !POM::IsNull(obj, "externalSources") ) {
         if ( p->externalSources.get() == nullptr ) {
             p->externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
         }
         auto externalSources_o0 = POM::FindObject(obj, "externalSources");
-        _Deserialize(p->externalSources.get(), externalSources_o0);
+        //_Deserialize(p->externalSources.get(), externalSources_o0);
     }
-}
-//---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TSqlGeneratorConfig* p, Jobj& obj)
-{
-    _Serialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TSqlGeneratorConfig* p, const Jobj& obj)
-{
-    _Deserialize((nsReflectionCodeGenerator::TSerializer*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, Jobj& obj)
@@ -589,10 +566,10 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForCodeGenera
     PUM::Push(obj, "includeListFileName", p->includeListFileName);
     PUM::Push(obj, "header", p->header);
     auto implementation_o = PUM::AddObject(obj, "implementation");
-    _Serialize(&(p->implementation), implementation_o);
+    //_Serialize(&(p->implementation), implementation_o);
     auto typeCustomizerMap_c0 = PUM::AddObject(obj, "typeCustomizerMap");
     for ( auto& typeCustomizerMap_e0 : p->typeCustomizerMap ) {
-        PUM::Push(typeCustomizerMap_c0, PUM::ConvertToString(typeCustomizerMap_e0.first).data(), typeCustomizerMap_e0.second);
+        //PUM::Push(typeCustomizerMap_c0, PUM::ConvertToString(typeCustomizerMap_e0.first).data(), typeCustomizerMap_e0.second);
     }
 }
 //---------------------------------------------------------------------------------------
@@ -602,10 +579,10 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGene
     POM::PopStr(obj, "includeListFileName", p->includeListFileName);
     POM::PopStr(obj, "header", p->header);
     auto implementation_o0 = POM::FindObject(obj, "implementation");
-    _Deserialize(&(p->implementation), implementation_o0);
+    //_Deserialize(&(p->implementation), implementation_o0);
     auto typeCustomizerMap_a0 = POM::FindObject(obj, "typeCustomizerMap");
     for ( auto& typeCustomizerMap_e0 : typeCustomizerMap_a0 ) {
-        p->typeCustomizerMap.insert({ typeCustomizerMap_e0.name.GetString(), typeCustomizerMap_e0.value.GetString() });
+        //p->typeCustomizerMap.insert({ typeCustomizerMap_e0.name.GetString(), typeCustomizerMap_e0.value.GetString() });
     }
 }
 //---------------------------------------------------------------------------------------
@@ -637,13 +614,13 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForParsing*
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TUnpackHandler* p, Jobj& obj)
 {
-    _Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    //_Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
     PUM::Push(obj, "method", p->method);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TUnpackHandler* p, const Jobj& obj)
 {
-    _Deserialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    //_Deserialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
     POM::PopStr(obj, "method", p->method);
 }
 //---------------------------------------------------------------------------------------

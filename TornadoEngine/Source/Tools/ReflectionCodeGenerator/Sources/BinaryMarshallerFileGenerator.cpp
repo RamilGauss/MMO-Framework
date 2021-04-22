@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 #include "fmt/core.h"
 
 using namespace nsReflectionCodeGenerator;
+using namespace nsCppParser;
 
 TBinaryMarshallerFileGenerator::TBinaryMarshallerFileGenerator()
 {

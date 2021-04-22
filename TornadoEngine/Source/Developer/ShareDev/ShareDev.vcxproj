@@ -417,8 +417,8 @@
     <ClInclude Include="ReflectionContainers\IJsonSerializer.h" />
     <ClInclude Include="ReflectionContainers\IMyGuiSerializer.h" />
     <ClInclude Include="ReflectionContainers\IReflection.h" />
-    <ClInclude Include="ReflectionContainers\ISqlSerializer.h" />
     <ClInclude Include="ReflectionContainers\ITypeInformation.h" />
+    <ClInclude Include="ReflectionContainers\MenuItemContainer.h" />
     <ClInclude Include="Scene\Common\ControlCamera.h" />
     <ClInclude Include="Scene\Common\GameObject.h" />
     <ClInclude Include="Scene\Common\IHandlerScene.h" />

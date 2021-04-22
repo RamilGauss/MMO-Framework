@@ -71,6 +71,12 @@
     <ClCompile Include="Sources\FunctionLexema.cpp">
       <Filter>Lexemas</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\ILexema.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\VariableDeclarationLexema.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Parser.h">

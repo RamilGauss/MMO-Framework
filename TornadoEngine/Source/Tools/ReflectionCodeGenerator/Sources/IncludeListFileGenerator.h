@@ -10,12 +10,15 @@ See for more information LICENSE.md.
 
 namespace nsReflectionCodeGenerator
 {
-  class TIncludeListFileGenerator : public IFileGenerator
-  {
-  public:
-    virtual void Work() override;
+    class TIncludeListFileGenerator : public IFileGenerator
+    {
+        std::set<std::string>* mHeaderSetPtr = nullptr;
+    public:
+        void SetIncludes(std::set<std::string>* headerSet);
 
-  private:
-    void AddIncludes();
-  };
+        virtual void Work() override;
+
+    private:
+        void AddIncludes();
+    };
 }

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <fstream>
 #include <filesystem>
-#include <fmt/color.h>
+#include <fmt/core.h>
 
 #include "Requirements.h"
 #include "SingletonManager.h"
@@ -17,20 +17,22 @@ See for more information LICENSE.md.
 #include "JsonSerializer.h"
 #include "LoadFromFile.h"
 #include "TextFile.h"
+#include "PathOperations.h"
 
 namespace fs = std::filesystem;
+using namespace nsReflectionCodeGenerator;
 
 TSetupConfig::TSetupConfig()
 {
     // dirty, but simple
     mArgc = __argc;
     mArgv = __argv;
-    mConfigContainer = SingletonManager()->Get<nsReflectionCodeGenerator::TConfigContainer>();
+    mConfigContainer = SingletonManager()->Get<TConfigContainer>();
 }
 //---------------------------------------------------------------------------------------------
 bool TSetupConfig::Work()
 {
-    if ( CheckArgs() == false ) {
+    if (mArgc == 1) {
         ShowManual();
         getchar();
         return false;
@@ -40,31 +42,22 @@ bool TSetupConfig::Work()
 
     auto loadResult = TryLoadConfig();
     // debug only
-    if ( loadResult == false )
+    if (loadResult == false)
 #ifdef _DEBUG
         DefaultConfig();
 #else
         return false;
 #endif
-
     ResolvePathes();
     return true;
 }
 //---------------------------------------------------------------------------------------------
-bool TSetupConfig::CheckArgs()
-{
-    if ( mArgc == 1 ) {
-        return false;
-    }
-    return true;
-}
-//---------------------------------------------------------------------------------------
 void TSetupConfig::ShowManual()
 {
-    for ( auto key : nsReflectionCodeGenerator::nsManual::g_Manual ) {
-        fmt::print(fg(fmt::color::yellow), "{}:\n", key.first.data());
-        for ( auto value : key.second ) {
-            fmt::print(fg(fmt::color::lime), "\t {}\n", value.data());
+    for (auto key : nsReflectionCodeGenerator::nsManual::g_Manual) {
+        fmt::print("{}:\n", key.first.data());
+        for (auto value : key.second) {
+            fmt::print("\t {}\n", value.data());
         }
     }
 
@@ -108,14 +101,12 @@ bool TSetupConfig::TryLoadConfig()
     auto config = mConfigContainer->Config();
     std::string str;
     TTextFile::Load(mAbsPathJsonFile, str);
-    if ( str.length() == 0 )
+    if (str.length() == 0)
         return false;
 
     std::string err;
     auto fillRes = nsJson::TJsonSerializer::Fill(config, str, err);
-
-    LoadExternalSources(config);
-
+    //LoadExternalSources(config);
     return fillRes;
 }
 //---------------------------------------------------------------------------------------
@@ -137,86 +128,69 @@ void TSetupConfig::ResolvePathes()
     auto pConfig = mConfigContainer->Config();
 
     // input
-    for ( auto& dir : pConfig->targetForParsing.directories ) {
-        dir = ResolvePathRelativeConfig(dir);
+    for (auto& dir : pConfig->targetForParsing.directories) {
+        dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
     }
 
     // output
     auto& dir = pConfig->targetForCodeGeneration.directory;
-    dir = ResolvePathRelativeConfig(dir);
+    dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
 }
 //---------------------------------------------------------------------------------------
 void TSetupConfig::ResolveJsonPath()
 {
-    // save
-    auto oldCurrentPath = fs::current_path().string();
-
-    fs::path p(mArgv[0]);
-    auto absPathExeDir = p.parent_path();
-
-    if ( !absPathExeDir.empty() ) {
-        fs::current_path(absPathExeDir);
-    }
-
     std::string configName = mArgv[1];
 
     auto configFileName = fs::path(configName).filename();
-    if ( configFileName == configName ) {
+    if (configFileName == configName) {
         // This is a name
         configName = "./" + configName;
     }
 
-    mPathToJsonFile = fs::path(configName).parent_path().string();
-    mAbsPathDirJson = fs::absolute(mPathToJsonFile).string();
-
-    auto jsonDir = fs::path(mAbsPathDirJson);
-    auto jsonFileName = fs::path(configName).filename().string();
-    mAbsPathJsonFile = fs::absolute(jsonDir).append(jsonFileName).string();
-    // restore
-
-    fs::current_path(oldCurrentPath);
+    auto pathToJsonFile = fs::path(configName).parent_path().string();
+    auto currentPath = fs::current_path().string();
+    mAbsPathJsonFile = TPathOperations::CalculatePathBy(currentPath, pathToJsonFile);
 }
 //---------------------------------------------------------------------------------------
-void TSetupConfig::LoadExternalSources(nsReflectionCodeGenerator::TConfig* config)
-{
-    LoadExternalSources(config->targetForCodeGeneration.implementation.binaryMarshaller.get());
-    LoadExternalSources(config->targetForCodeGeneration.implementation.jsonSerializer.get());
-    LoadExternalSources(config->targetForCodeGeneration.implementation.sql.get());
-}
+//void TSetupConfig::LoadExternalSources(nsReflectionCodeGenerator::TConfig* config)
+//{
+//    LoadExternalSources(config->targetForCodeGeneration.implementation.binaryMarshaller.get());
+//    LoadExternalSources(config->targetForCodeGeneration.implementation.jsonSerializer.get());
+//}
 //---------------------------------------------------------------------------------------
-void TSetupConfig::LoadExternalSources(nsReflectionCodeGenerator::TSerializer* serializer)
-{
-    if ( serializer == nullptr ) {
-        return;
-    }
-    auto extSrc = serializer->externalSources.get();
-    if ( extSrc == nullptr ) {
-        return;
-    }
-
-    if ( extSrc->outFile.size() > 0 ) {
-        extSrc->outExtSrc.reset(new nsReflectionCodeGenerator::TExternalSource());
-    }
-
-    if ( extSrc->inFileList.size() > 0 ) {
-        extSrc->inExtSrcList.reset(new nsReflectionCodeGenerator::TExternalSourceList());
-        for ( auto& inFile : extSrc->inFileList ) {
-
-            //inFile
-            auto absPath = ResolvePathRelativeConfig(inFile);
-
-            std::string str;
-            TTextFile::Load(absPath, str);
-            if ( str.length() == 0 ) {
-                continue;
-            }
-
-            std::string err;
-            nsReflectionCodeGenerator::TExternalSource extSrcFromJson;
-            auto fillRes = nsJson::TJsonSerializer::Fill(&extSrcFromJson, str, err);
-
-            extSrc->inExtSrcList->val.push_back(extSrcFromJson);
-        }
-    }
-}
+//void TSetupConfig::LoadExternalSources(nsReflectionCodeGenerator::TSerializer* serializer)
+//{
+//    if (serializer == nullptr) {
+//        return;
+//    }
+//    auto extSrc = serializer->externalSources.get();
+//    if (extSrc == nullptr) {
+//        return;
+//    }
+//
+//    if (extSrc->outFile.size() > 0) {
+//        extSrc->outExtSrc.reset(new nsReflectionCodeGenerator::TExternalSource());
+//    }
+//
+//    if (extSrc->inFileList.size() > 0) {
+//        extSrc->inExtSrcList.reset(new nsReflectionCodeGenerator::TExternalSourceList());
+//        for (auto& inFile : extSrc->inFileList) {
+//
+//            //inFile
+//            auto absPath = ResolvePathRelativeConfig(inFile);
+//
+//            std::string str;
+//            TTextFile::Load(absPath, str);
+//            if (str.length() == 0) {
+//                continue;
+//            }
+//
+//            std::string err;
+//            nsReflectionCodeGenerator::TExternalSource extSrcFromJson;
+//            auto fillRes = nsJson::TJsonSerializer::Fill(&extSrcFromJson, str, err);
+//
+//            extSrc->inExtSrcList->val.push_back(extSrcFromJson);
+//        }
+//    }
+//}
 //---------------------------------------------------------------------------------------
