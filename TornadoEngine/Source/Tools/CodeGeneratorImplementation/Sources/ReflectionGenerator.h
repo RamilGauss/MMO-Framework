@@ -9,12 +9,13 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/ITargetCodeGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class DllExport TReflectionGenerator : public ITargetCodeGenerator
+    class DllExport TReflectionGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TReflectionGenerator() : ITargetCodeGenerator("ReflectionGenerator"){}
+        TReflectionGenerator() : 
+            nsReflectionCodeGenerator::ITargetCodeGenerator("ReflectionGenerator"){}
 
         void Work() override;
         void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames) override;

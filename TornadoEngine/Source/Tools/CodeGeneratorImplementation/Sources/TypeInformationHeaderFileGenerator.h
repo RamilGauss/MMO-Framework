@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "TypeInformationFileGenerator.h"
 #include "fmt/core.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
     class TTypeInformationHeaderFileGenerator : public TTypeInformationFileGenerator
     {

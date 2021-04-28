@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/IFileGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class TEntityManagerFileGenerator : public IFileGenerator
+    class TEntityManagerFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
     {
     protected:
         const std::string s_SetComponent = "SetComponent";

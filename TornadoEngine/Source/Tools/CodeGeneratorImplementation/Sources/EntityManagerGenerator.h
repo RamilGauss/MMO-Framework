@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/ITargetCodeGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class DllExport TEntityManagerGenerator : public ITargetCodeGenerator
+    class DllExport TEntityManagerGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
         TEntityManagerGenerator() : ITargetCodeGenerator("EntityManagerGenerator") {}

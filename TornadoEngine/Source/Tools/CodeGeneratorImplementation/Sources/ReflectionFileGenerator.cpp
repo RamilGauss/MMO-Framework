@@ -7,5 +7,5 @@ See for more information LICENSE.md.
 
 #include "ReflectionFileGenerator.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 

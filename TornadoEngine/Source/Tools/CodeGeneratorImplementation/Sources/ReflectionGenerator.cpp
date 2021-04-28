@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "ReflectionHeaderFileGenerator.h"
 #include "ReflectionSourceFileGenerator.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 //----------------------------------------------------------------------------------
 void TReflectionGenerator::Work()

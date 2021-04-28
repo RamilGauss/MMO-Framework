@@ -18,6 +18,7 @@ See for more information LICENSE.md.
 #include "CodeGeneratorImplementation/Sources/TypeInformationGenerator.h"
 
 using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 TReflectionCodeGenerator g_Rcg;
 

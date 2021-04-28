@@ -280,8 +280,8 @@ std::string IFileGenerator::EnumerateParamToStr(std::list<std::string>& paramLis
     }
 
     std::string str;
-    int cnt = existStrList.size();
-    int i = 0;
+    size_t cnt = existStrList.size();
+    size_t i = 0;
     for (auto param : existStrList) {
         str += param;
         if (i != cnt - 1) {
@@ -308,6 +308,28 @@ std::string IFileGenerator::GetNullExpression(TMemberExtendedTypeInfo& ext)
 //-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddCallingMethodForParent(TTypeInfo* p, std::function<void(const std::string&)> func)
 {
+    // TODO: изменить 
+
+    //auto withinClassTypeName = p->GetTypeNameWithNameSpace();
+
+    //for (auto& inheritanceInfo : p->mInheritanceVec) {
+    //    if (inheritanceInfo.mInheritanceAccessLevel != AccessLevel::PUBLIC) {
+    //        continue;
+    //    }
+    //    auto parentTypeName = inheritanceInfo.mOriginalName;
+
+    //    // найти родителя - TypeInfo
+    //    mTypeNameDbPtr->GetReferenceFullTypeName
+
+    //    auto pParentInfo = mTypeMng->FindTypeInfoBy(parentTypeName, withinClassTypeName);
+    //    if (pParentInfo != nullptr) {
+    //        // Известный тип
+    //        parentTypeName = pParentInfo->GetTypeNameWithNameSpace();
+    //    }
+    //    func(parentTypeName);
+    //}
+
+
     //auto withinClassTypeName = p->GetTypeNameWithNameSpace();
 
     //for (auto& inheritanceInfo : p->mInheritanceVec) {
@@ -328,12 +350,10 @@ void IFileGenerator::AddCallingMethodForParent(TTypeInfo* p, std::function<void(
 //-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddCallingMethod(TTypeInfo* p, std::function<void(TMemberInfo*)> func)
 {
-    //auto fit = p->mMemberMap.find(TMemberInfo::AccessLevel::ePublic);
-    //if (fit != p->mMemberMap.end()) {
-    //    for (auto memberInfo : fit->second) {
-    //        func(memberInfo.get());
-    //    }
-    //}
+    auto& pubMembers = p->mMembers[(int) AccessLevel::PUBLIC];
+    for (auto memberInfo : pubMembers) {
+        func(memberInfo.get());
+    }
 }
 //-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddIncludeForExternalSources(TExternalSources* pExrSrc)

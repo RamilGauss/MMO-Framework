@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "BinaryMarshallerSourceFileGenerator.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;
 
 void TBinaryMarshallerSourceFileGenerator::Work()
@@ -699,31 +699,35 @@ void TBinaryMarshallerSourceFileGenerator::HandleAddPopValueAsReflectionMap(TMem
     auto& keyExtType = pMemberInfo->mExtendedInfo.mTemplateChildArr[0];
     auto& valueExtType = pMemberInfo->mExtendedInfo.mTemplateChildArr[1];
 
-    /*std::string keyType;
-    if ( keyExtType.mCategory == TMemberTypeExtendedInfo::BuiltIn )
-        keyType = keyExtType.mType;
+    std::string keyType;
+    if (keyExtType.mCategory == TypeCategory::BOOL || 
+        keyExtType.mCategory == TypeCategory::NUMBER ||
+        keyExtType.mCategory == TypeCategory::CEIL_NUMBER) {
+        keyType = keyExtType.mShortType;
+    }
 
-    auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
+    //auto withinClassTypeName = mCurrentTypeInfo->GetTypeNameWithNameSpace();
 
-    auto typeName = valueExtType.mType;
-    auto pTypeInfo = mTypeMng->FindTypeInfoBy(typeName, withinClassTypeName);
-    if ( pTypeInfo == nullptr )
+    auto typeName = valueExtType.GetTypeNameWithNameSpace();
+    auto pTypeInfo = mTypeManager->Get(typeName);
+    if (pTypeInfo == nullptr) {
         return;
+    }
     auto valueType = pTypeInfo->GetTypeNameWithNameSpace();
 
     switch ( valueExtType.mAccessMethod ) {
-        case TMemberTypeExtendedInfo::Object:
+        case AccessMethod::OBJECT:
             AddPopSerObjMap(keyType, valueType, pMemberInfo->mName);
             break;
-        case TMemberTypeExtendedInfo::Pointer:
+        case AccessMethod::POINTER:
             AddPopSerPtrMap(keyType, valueType, pMemberInfo->mName);
             break;
-        case TMemberTypeExtendedInfo::SmartPointer:
+        case AccessMethod::SMART_POINTER:
             AddPopSerSmartPtrMap(keyType, valueType, valueExtType.mSmartPtrType, pMemberInfo->mName);
             break;
         default:
             break;
-    }*/
+    }
 }
 //-----------------------------------------------------------------------------------------------------------
 void TBinaryMarshallerSourceFileGenerator::HandleAddPopNotReflectionMap(TMemberInfo* pMemberInfo)

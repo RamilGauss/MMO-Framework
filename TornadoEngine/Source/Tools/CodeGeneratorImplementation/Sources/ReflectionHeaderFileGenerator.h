@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "ReflectionFileGenerator.h"
 #include "fmt/core.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
     class TReflectionHeaderFileGenerator : public TReflectionFileGenerator
     {

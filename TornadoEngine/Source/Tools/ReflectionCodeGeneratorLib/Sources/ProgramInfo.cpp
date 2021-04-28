@@ -22,7 +22,7 @@ const std::string TProgramInfo::INFO = "Json, Binary, EntMng, Reflection";
 
 std::string TProgramInfo::Get()
 {
-    return fmt::format("{} version {}.{}.{}, build {}, info {},\n",
+    return fmt::format("{} version {}.{}.{}, build {}, info {}",
         NAME,
         VERSION_MAJOR,
         VERSION_MINOR_HIGH,

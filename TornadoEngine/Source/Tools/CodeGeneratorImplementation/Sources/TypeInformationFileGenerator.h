@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/IFileGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class TTypeInformationFileGenerator : public IFileGenerator
+    class TTypeInformationFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
     {
     protected:
 

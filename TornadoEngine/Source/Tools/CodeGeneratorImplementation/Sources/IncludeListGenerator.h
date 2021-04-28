@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/IIncludeListGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class DllExport TIncludeListGenerator : public IIncludeListGenerator
+    class DllExport TIncludeListGenerator : public nsReflectionCodeGenerator::IIncludeListGenerator
     {
         std::set<std::string> mHeaderSet;
 
     public:
-        TIncludeListGenerator() : IIncludeListGenerator("IncludeListGenerator") {}
+        TIncludeListGenerator() : nsReflectionCodeGenerator::IIncludeListGenerator("IncludeListGenerator") {}
 
         void Work() override;
 

@@ -19,6 +19,7 @@ See for more information LICENSE.md.
 #include "PrintableDumper.h"
 
 using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 TReflectionCodeGenerator g_Rcg;
 

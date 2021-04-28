@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "EntityManagerFileGenerator.h"
 #include "fmt/core.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
     class TEntityManagerHeaderFileGenerator : public TEntityManagerFileGenerator
     {

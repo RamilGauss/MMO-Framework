@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "fmt/core.h"
 #include <set>
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 void TBinaryMarshallerHeaderFileGenerator::Work()
 {

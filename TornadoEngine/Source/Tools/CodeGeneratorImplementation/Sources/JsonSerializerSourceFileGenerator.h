@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "JsonSerializerFileGenerator.h"
 #include <functional>
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
     class TJsonSerializerSourceFileGenerator : public TJsonSerializerFileGenerator
     {

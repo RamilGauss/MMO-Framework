@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/IFileGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class TJsonSerializerFileGenerator : public IFileGenerator
+    class TJsonSerializerFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
     {
     protected:
         const std::string s_Jobj = "Jobj";
@@ -23,7 +23,7 @@ namespace nsReflectionCodeGenerator
 
         bool IsInExternalSources(const std::string& namespaceWithType);
 
-        const TExternalSource* GetExternalSources(const std::string& namespaceWithType);
+        const nsReflectionCodeGenerator::TExternalSource* GetExternalSources(const std::string& namespaceWithType);
     };
 }
 

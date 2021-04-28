@@ -10,9 +10,9 @@ See for more information LICENSE.md.
 #include "ReflectionCodeGeneratorLib/Sources/IFileGenerator.h"
 #include "Parser/Sources/TypeInfo.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class TBinaryMarshallerFileGenerator : public IFileGenerator
+    class TBinaryMarshallerFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
     {
     protected:
         const std::string s_THeader = "THeader";

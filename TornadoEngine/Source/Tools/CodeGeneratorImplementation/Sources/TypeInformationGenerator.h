@@ -9,12 +9,13 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/ITargetCodeGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class DllExport TTypeInformationGenerator : public ITargetCodeGenerator
+    class DllExport TTypeInformationGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TTypeInformationGenerator() : ITargetCodeGenerator("TypeInformationGenerator") {}
+        TTypeInformationGenerator() : 
+            nsReflectionCodeGenerator::ITargetCodeGenerator("TypeInformationGenerator") {}
 
         void Work() override;
 

@@ -9,16 +9,16 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Generators">
-      <UniqueIdentifier>{0291651f-1a08-4a83-a184-6bd8f16bf305}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generated Files">
       <UniqueIdentifier>{606642c9-5c0f-44f6-9428-127b8bf0c97c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generators\Header Files">
+    <Filter Include="Generator">
+      <UniqueIdentifier>{0291651f-1a08-4a83-a184-6bd8f16bf305}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generator\Header Files">
       <UniqueIdentifier>{5d567ccd-e39d-40a5-b4c2-5d106f5e8d4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generators\Source Files">
+    <Filter Include="Generator\Source Files">
       <UniqueIdentifier>{4fa2b2d8-36ce-4c13-b148-bfc3a8b5a3b2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -51,16 +51,16 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\ICodeGenerator.cpp">
-      <Filter>Generators\Source Files</Filter>
+      <Filter>Generator\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\IFileGenerator.cpp">
-      <Filter>Generators\Source Files</Filter>
+      <Filter>Generator\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\IGenerator.cpp">
-      <Filter>Generators\Source Files</Filter>
+      <Filter>Generator\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\ITargetCodeGenerator.cpp">
-      <Filter>Generators\Source Files</Filter>
+      <Filter>Generator\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\ReflectionCodeGenerator.cpp">
       <Filter>Source Files</Filter>
@@ -77,22 +77,22 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\IGenerator.h">
-      <Filter>Generators\Header Files</Filter>
+      <Filter>Generator\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\IFileGenerator.h">
-      <Filter>Generators\Header Files</Filter>
+      <Filter>Generator\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\ICodeGenerator.h">
-      <Filter>Generators\Header Files</Filter>
+      <Filter>Generator\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\IIncludeListGenerator.h">
-      <Filter>Generators\Header Files</Filter>
+      <Filter>Generator\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\IncludeList.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\ITargetCodeGenerator.h">
-      <Filter>Generators\Header Files</Filter>
+      <Filter>Generator\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\TypeNameDataBase.h">
       <Filter>Header Files</Filter>

@@ -9,12 +9,13 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/ITargetCodeGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class DllExport TBinaryMarshallerGenerator : public ITargetCodeGenerator
+    class DllExport TBinaryMarshallerGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TBinaryMarshallerGenerator() : ITargetCodeGenerator("BinaryMarshallerGenerator") {}
+        TBinaryMarshallerGenerator() : 
+            nsReflectionCodeGenerator::ITargetCodeGenerator("BinaryMarshallerGenerator") {}
 
         void Work() override;
 

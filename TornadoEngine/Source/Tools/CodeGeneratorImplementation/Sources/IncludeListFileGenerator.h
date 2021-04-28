@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/IFileGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class TIncludeListFileGenerator : public IFileGenerator
+    class TIncludeListFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
     {
         std::set<std::string>* mHeaderSetPtr = nullptr;
     public:

@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "fmt/core.h"
 #include "BL_Debug.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;
 
 void TJsonSerializerSourceFileGenerator::Work()

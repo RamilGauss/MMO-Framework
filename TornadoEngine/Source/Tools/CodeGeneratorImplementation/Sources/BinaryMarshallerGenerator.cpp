@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "BinaryMarshallerHeaderFileGenerator.h"
 #include "BinaryMarshallerSourceFileGenerator.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 void TBinaryMarshallerGenerator::Work()
 {

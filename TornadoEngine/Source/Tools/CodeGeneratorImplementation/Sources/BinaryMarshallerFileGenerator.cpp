@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "BinaryMarshallerFileGenerator.h"
 #include "fmt/core.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;
 
 std::string TBinaryMarshallerFileGenerator::MakeEnumName(TTypeInfo* p)

@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "fmt/core.h"
 #include "BL_Debug.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 void TEntityManagerSourceFileGenerator::Work()
 {

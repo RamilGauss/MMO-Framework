@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "IncludeListFileGenerator.h"
 #include <set>
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 void TIncludeListFileGenerator::Work()
 {

@@ -195,6 +195,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ContainerCodeGenerator", "S
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeGeneratorImplementation", "Source\Tools\CodeGeneratorImplementation\CodeGeneratorImplementation.vcxproj", "{FE5C234A-5DB1-4AAE-8A57-96935FA67EA5}"
 	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+		{AB7DFF93-7142-43CA-81DB-1AA01EDA873C} = {AB7DFF93-7142-43CA-81DB-1AA01EDA873C}
 		{4266EAE5-3525-4E26-A8B9-52144DCD8A4F} = {4266EAE5-3525-4E26-A8B9-52144DCD8A4F}
 	EndProjectSection
 EndProject
@@ -818,8 +820,8 @@ Global
 		{FE5C234A-5DB1-4AAE-8A57-96935FA67EA5} = {63F2AF3D-F916-454F-A35D-3BECD8997B2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

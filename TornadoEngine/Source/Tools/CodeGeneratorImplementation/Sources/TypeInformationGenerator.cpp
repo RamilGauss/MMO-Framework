@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "TypeInformationHeaderFileGenerator.h"
 #include "TypeInformationSourceFileGenerator.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 //----------------------------------------------------------------------------------
 void TTypeInformationGenerator::Work()

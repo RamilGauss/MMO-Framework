@@ -9,12 +9,13 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/ITargetCodeGenerator.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsCodeGeneratorImplementation
 {
-    class DllExport TJsonSerializerGenerator : public ITargetCodeGenerator
+    class DllExport TJsonSerializerGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TJsonSerializerGenerator() : ITargetCodeGenerator("JsonSerializerGenerator") {}
+        TJsonSerializerGenerator() : 
+            nsReflectionCodeGenerator::ITargetCodeGenerator("JsonSerializerGenerator") {}
 
         void Work() override;
 

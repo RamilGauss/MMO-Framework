@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <filesystem>
 
 namespace fs = std::filesystem;
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 //-----------------------------------------------------------------------------------
 void TIncludeListGenerator::Work()

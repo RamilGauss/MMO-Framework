@@ -7,5 +7,5 @@ See for more information LICENSE.md.
 
 #include "TypeInformationFileGenerator.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "JsonSerializerHeaderFileGenerator.h"
 #include "JsonSerializerSourceFileGenerator.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 void TJsonSerializerGenerator::Work()
 {

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "EntityManagerFileGenerator.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 TEntityManagerFileGenerator::TEntityManagerFileGenerator()
 {

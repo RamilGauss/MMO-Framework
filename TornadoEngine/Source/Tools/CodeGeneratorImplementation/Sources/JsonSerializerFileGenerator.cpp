@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "JsonSerializerFileGenerator.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsCodeGeneratorImplementation;
 
 // S - Type* p, Jobj& obj
 std::list<std::string> TJsonSerializerFileGenerator::GetParamListForSerialize(const std::string& namespaceWithType)
@@ -34,7 +34,7 @@ bool TJsonSerializerFileGenerator::IsInExternalSources(const std::string& namesp
     return p != nullptr;
 }
 //----------------------------------------------------------------------------------------------------
-const TExternalSource* TJsonSerializerFileGenerator::GetExternalSources(const std::string& namespaceWithType)
+const nsReflectionCodeGenerator::TExternalSource* TJsonSerializerFileGenerator::GetExternalSources(const std::string& namespaceWithType)
 {
     return nullptr;
     //auto extSrc = mJsonSerializer->externalSources.get();
