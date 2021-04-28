@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generators">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Generators\Json">
+      <UniqueIdentifier>{eb22892f-016c-4164-96c6-df5ebe27fa8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\Binary">
+      <UniqueIdentifier>{755b901c-50e4-43e3-a90f-611a1c4b44a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\IncludeList">
+      <UniqueIdentifier>{686602aa-23fc-48d9-9f5d-66f8aabe43e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\MyGui">
+      <UniqueIdentifier>{f9bb1a54-8136-4c27-b8db-0c8211679ce9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\Reflection">
+      <UniqueIdentifier>{0a78cf14-c0c8-40df-b37c-fbe0e00e456f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\TypeInformation">
+      <UniqueIdentifier>{97183178-db7e-415f-bcb4-de2804e06175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\EntityManagerExtension">
+      <UniqueIdentifier>{4179af10-fa01-4759-b151-e8d542bb8b62}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\BinaryMarshallerFileGenerator.cpp">
+      <Filter>Generators\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BinaryMarshallerGenerator.cpp">
+      <Filter>Generators\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BinaryMarshallerHeaderFileGenerator.cpp">
+      <Filter>Generators\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BinaryMarshallerSourceFileGenerator.cpp">
+      <Filter>Generators\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EntityManagerFileGenerator.cpp">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EntityManagerGenerator.cpp">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EntityManagerHeaderFileGenerator.cpp">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EntityManagerSourceFIleGenerator.cpp">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\IncludeListFileGenerator.cpp">
+      <Filter>Generators\IncludeList</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\IncludeListGenerator.cpp">
+      <Filter>Generators\IncludeList</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\JsonSerializerFileGenerator.cpp">
+      <Filter>Generators\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\JsonSerializerGenerator.cpp">
+      <Filter>Generators\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\JsonSerializerHeaderFileGenerator.cpp">
+      <Filter>Generators\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\JsonSerializerSourceFileGenerator.cpp">
+      <Filter>Generators\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ReflectionFileGenerator.cpp">
+      <Filter>Generators\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ReflectionGenerator.cpp">
+      <Filter>Generators\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ReflectionHeaderFileGenerator.cpp">
+      <Filter>Generators\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ReflectionSourceFIleGenerator.cpp">
+      <Filter>Generators\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInformationFileGenerator.cpp">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInformationGenerator.cpp">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInformationHeaderFileGenerator.cpp">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInformationSourceFIleGenerator.cpp">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h">
+      <Filter>Generators\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BinaryMarshallerGenerator.h">
+      <Filter>Generators\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BinaryMarshallerHeaderFileGenerator.h">
+      <Filter>Generators\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BinaryMarshallerSourceFileGenerator.h">
+      <Filter>Generators\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EntityManagerFileGenerator.h">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EntityManagerGenerator.h">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EntityManagerHeaderFileGenerator.h">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EntityManagerSourceFIleGenerator.h">
+      <Filter>Generators\EntityManagerExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\IncludeListFileGenerator.h">
+      <Filter>Generators\IncludeList</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\IncludeListGenerator.h">
+      <Filter>Generators\IncludeList</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\JsonSerializerFileGenerator.h">
+      <Filter>Generators\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\JsonSerializerGenerator.h">
+      <Filter>Generators\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\JsonSerializerHeaderFileGenerator.h">
+      <Filter>Generators\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\JsonSerializerSourceFileGenerator.h">
+      <Filter>Generators\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ReflectionFileGenerator.h">
+      <Filter>Generators\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ReflectionGenerator.h">
+      <Filter>Generators\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ReflectionHeaderFileGenerator.h">
+      <Filter>Generators\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ReflectionSourceFIleGenerator.h">
+      <Filter>Generators\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInformationFileGenerator.h">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInformationGenerator.h">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInformationHeaderFileGenerator.h">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInformationSourceFIleGenerator.h">
+      <Filter>Generators\TypeInformation</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\conanfile.txt" />
+  </ItemGroup>
+</Project>

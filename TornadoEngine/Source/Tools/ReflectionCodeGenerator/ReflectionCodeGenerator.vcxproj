@@ -106,7 +106,7 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Tools;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -114,7 +114,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base_d.lib;Parser_d.lib;shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base_d.lib;Parser_d.lib;ReflectionCodeGeneratorLib_d.lib;CodeGeneratorImplementation_d.lib;shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -180,7 +180,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Tools;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -191,89 +191,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base_d.lib;Parser_d.lib;shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base.lib;Parser.lib;ReflectionCodeGeneratorLib.lib;CodeGeneratorImplementation.lib;shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\BinaryMarshaller.cpp" />
-    <ClCompile Include="Sources\BinaryMarshallerFileGenerator.cpp" />
-    <ClCompile Include="Sources\BinaryMarshallerGenerator.cpp" />
-    <ClCompile Include="Sources\BinaryMarshallerHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\BinaryMarshallerSourceFileGenerator.cpp" />
-    <ClCompile Include="Sources\CodeGeneratorAggregator.cpp" />
-    <ClCompile Include="Sources\EntityManagerFileGenerator.cpp" />
-    <ClCompile Include="Sources\EntityManagerGenerator.cpp" />
-    <ClCompile Include="Sources\EntityManagerHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\EntityManagerSourceFIleGenerator.cpp" />
-    <ClCompile Include="Sources\ICodeGenerator.cpp" />
-    <ClCompile Include="Sources\IFileGenerator.cpp" />
-    <ClCompile Include="Sources\IGenerator.cpp" />
-    <ClCompile Include="Sources\IncludeListFileGenerator.cpp" />
-    <ClCompile Include="Sources\IncludeListGenerator.cpp" />
-    <ClCompile Include="Sources\ITargetCodeGenerator.cpp" />
-    <ClCompile Include="Sources\JsonSerializer.cpp" />
-    <ClCompile Include="Sources\JsonSerializerFileGenerator.cpp" />
-    <ClCompile Include="Sources\JsonSerializerHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\JsonSerializerGenerator.cpp" />
-    <ClCompile Include="Sources\JsonSerializerSourceFileGenerator.cpp" />
     <ClCompile Include="Sources\main.cpp" />
-    <ClCompile Include="Sources\PathOperations.cpp" />
-    <ClCompile Include="Sources\ReflectionFileGenerator.cpp" />
-    <ClCompile Include="Sources\ReflectionGenerator.cpp" />
-    <ClCompile Include="Sources\ReflectionHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\ReflectionSourceFIleGenerator.cpp" />
-    <ClCompile Include="Sources\SetupConfig.cpp" />
-    <ClCompile Include="Sources\SourceAccumulator.cpp" />
-    <ClCompile Include="Sources\TypeInformationFileGenerator.cpp" />
-    <ClCompile Include="Sources\TypeInformationGenerator.cpp" />
-    <ClCompile Include="Sources\TypeInformationHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\TypeInformationSourceFIleGenerator.cpp" />
-    <ClCompile Include="Sources\TypeManager.cpp" />
-    <ClCompile Include="Sources\TypeNameDataBase.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Sources\BinaryMarshaller.h" />
-    <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h" />
-    <ClInclude Include="Sources\BinaryMarshallerGenerator.h" />
-    <ClInclude Include="Sources\BinaryMarshallerHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\BinaryMarshallerSourceFileGenerator.h" />
-    <ClInclude Include="Sources\CodeGeneratorAggregator.h" />
-    <ClInclude Include="Sources\Config.h" />
-    <ClInclude Include="Sources\ConfigContainer.h" />
-    <ClInclude Include="Sources\EntityManagerFileGenerator.h" />
-    <ClInclude Include="Sources\EntityManagerGenerator.h" />
-    <ClInclude Include="Sources\EntityManagerHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\EntityManagerSourceFIleGenerator.h" />
-    <ClInclude Include="Sources\ICodeGenerator.h" />
-    <ClInclude Include="Sources\IFileGenerator.h" />
-    <ClInclude Include="Sources\IGenerator.h" />
-    <ClInclude Include="Sources\IncludeList.h" />
-    <ClInclude Include="Sources\IncludeListFileGenerator.h" />
-    <ClInclude Include="Sources\IncludeListGenerator.h" />
-    <ClInclude Include="Sources\ITargetCodeGenerator.h" />
-    <ClInclude Include="Sources\JsonSerializer.h" />
-    <ClInclude Include="Sources\JsonSerializerFileGenerator.h" />
-    <ClInclude Include="Sources\JsonSerializerGenerator.h" />
-    <ClInclude Include="Sources\JsonSerializerHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\JsonSerializerSourceFileGenerator.h" />
-    <ClInclude Include="Sources\PathOperations.h" />
-    <ClInclude Include="Sources\ProgramInfo.h" />
-    <ClInclude Include="Sources\ReflectionFileGenerator.h" />
-    <ClInclude Include="Sources\ReflectionGenerator.h" />
-    <ClInclude Include="Sources\ReflectionHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\ReflectionSourceFIleGenerator.h" />
-    <ClInclude Include="Sources\Requirements.h" />
-    <ClInclude Include="Sources\SetupConfig.h" />
-    <ClInclude Include="Sources\SourceAccumulator.h" />
-    <ClInclude Include="Sources\TypeDataBase.h" />
-    <ClInclude Include="Sources\TypeInformationFileGenerator.h" />
-    <ClInclude Include="Sources\TypeInformationGenerator.h" />
-    <ClInclude Include="Sources\TypeInformationHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\TypeInformationSourceFIleGenerator.h" />
-    <ClInclude Include="Sources\TypeManager.h" />
-    <ClInclude Include="Sources\TypeNameDataBase.h" />
-    <ClInclude Include="Sources\UnpackHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />

@@ -1,7 +1,7 @@
 {
     "targetForParsing": {
         "directories": [
-            "./Sources"
+            "../ReflectionCodeGeneratorLib/Sources"
         ],
         "recursive": true
     },
@@ -16,7 +16,7 @@
         ]
     },
     "targetForCodeGeneration": {
-        "directory": "./Sources",
+        "directory": "../ReflectionCodeGeneratorLib/Sources",
         "includeListFileName": "IncludeList",
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {

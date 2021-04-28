@@ -51,7 +51,7 @@ private:
     template<typename T0, typename T1, typename T2>
     TypeCounter TypeLm3(TypeCounter t1, TypeCounter t2)
     {
-        if ( t1 < t2 )
+        if (t1 < t2)
             return _type<T0, T1, T2>();
         return _type<T0, T2, T1>();
     }
@@ -60,20 +60,20 @@ private:
     TypeCounter TypeLm4(TypeCounter t1, TypeCounter t2, TypeCounter t3)
     {
         auto minT = std::min(std::min(t1, t2), std::min(t2, t3));
-        if ( minT == t1 ) {
-            if ( t2 < t3 ) {
+        if (minT == t1) {
+            if (t2 < t3) {
                 return _type<T0, T1, T2, T3>();
             }
             return _type<T0, T1, T3, T2>();
         }
-        if ( minT == t2 ) {
-            if ( t1 < t3 ) {
+        if (minT == t2) {
+            if (t1 < t3) {
                 return _type<T0, T2, T1, T3>();
             }
             return _type<T0, T2, T3, T1>();
         }
         // 3
-        if ( t1 < t2 ) {
+        if (t1 < t2) {
             return _type<T0, T3, T1, T2>();
         }
         return _type<T0, T3, T2, T1>();
@@ -86,11 +86,11 @@ private:
 
         bool operator == (const TComplexSet& other)
         {
-            if ( other.tcSet.size() != tcSet.size() ) {
+            if (other.tcSet.size() != tcSet.size()) {
                 return false;
             }
-            for ( auto& tc : tcSet ) {
-                if ( other.tcSet.find(tc) == other.tcSet.end() ) {
+            for (auto& tc : tcSet) {
+                if (other.tcSet.find(tc) == other.tcSet.end()) {
                     return false;
                 }
             }
@@ -125,7 +125,7 @@ public:
     TypeCounter type()
     {
         static TypeCounter ret = -1;
-        if ( ret != -1 ) {
+        if (ret != -1) {
             return ret;
         }
 
@@ -133,12 +133,14 @@ public:
 
         auto t0 = _type<T0>();
         auto t1 = _type<T1>();
-        m.insert({ t0, [this] () {
+        m.insert({t0, [this]()
+        {
             return _type<T0, T1>();
-        } });
-        m.insert({ t1, [this] () {
+        }});
+        m.insert({t1, [this]()
+        {
             return _type<T1, T0>();
-        } });
+        }});
         ret = m.begin()->second();
         assert(m.size() == 2);
         return ret;
@@ -148,7 +150,7 @@ public:
     TypeCounter type()
     {
         static TypeCounter ret = -1;
-        if ( ret != -1 ) {
+        if (ret != -1) {
             return ret;
         }
 
@@ -157,15 +159,18 @@ public:
         auto t0 = _type<T0>();
         auto t1 = _type<T1>();
         auto t2 = _type<T2>();
-        m.insert({ t0, [this, t1, t2] () {
+        m.insert({t0, [this, t1, t2]()
+        {
             return TypeLm3<T0, T1, T2>(t1, t2);
-        } });
-        m.insert({ t1, [this, t0, t2] () {
+        }});
+        m.insert({t1, [this, t0, t2]()
+        {
             return TypeLm3<T1, T0, T2>(t0, t2);
-        } });
-        m.insert({ t2, [this, t0, t1] () {
+        }});
+        m.insert({t2, [this, t0, t1]()
+        {
             return TypeLm3<T2, T0, T1>(t0, t1);
-        } });
+        }});
         ret = m.begin()->second();
         assert(m.size() == 3);
         return ret;
@@ -175,7 +180,7 @@ public:
     TypeCounter type()
     {
         static TypeCounter ret = -1;
-        if ( ret != -1 ) {
+        if (ret != -1) {
             return ret;
         }
 
@@ -185,18 +190,22 @@ public:
         auto t1 = _type<T1>();
         auto t2 = _type<T2>();
         auto t3 = _type<T3>();
-        m.insert({ t0, [this, t1, t2, t3] () {
+        m.insert({t0, [this, t1, t2, t3]()
+        {
             return TypeLm4<T0, T1, T2, T3>(t1, t2, t3);
-        } });
-        m.insert({ t1, [this, t0, t2, t3] () {
+        }});
+        m.insert({t1, [this, t0, t2, t3]()
+        {
             return TypeLm4<T1, T0, T2, T3>(t0, t2, t3);
-        } });
-        m.insert({ t2, [this, t0, t1, t3] () {
+        }});
+        m.insert({t2, [this, t0, t1, t3]()
+        {
             return TypeLm4<T2, T0, T1, T3>(t0, t1, t3);
-        } });
-        m.insert({ t3, [this, t0, t1, t2] () {
+        }});
+        m.insert({t3, [this, t0, t1, t2]()
+        {
             return TypeLm4<T3, T0, T1, T2>(t0, t1, t2);
-        } });
+        }});
         ret = m.begin()->second();
         assert(m.size() == 4);
         return ret;
@@ -206,7 +215,7 @@ public:
     TypeCounter type()
     {
         static TypeCounter ret = -1;
-        if ( ret != -1 ) {
+        if (ret != -1) {
             return ret;// calculation once only
         }
 
@@ -214,14 +223,14 @@ public:
         AddToSet<T0, T1, T2, T3, T4, Args...>(complexSet);
 
         bool found = false;
-        for ( auto& cset : mComplexSetList )// slow with more collections!
+        for (auto& cset : mComplexSetList)// slow with more collections!
         {
-            if ( cset == complexSet ) {
+            if (cset == complexSet) {
                 ret = cset.tc;
                 found = true;
             }
         }
-        if ( found == false ) {
+        if (found == false) {
             ret = atc.fetch_add(1);
             complexSet.tc = ret;
             mComplexSetList.push_back(complexSet);
