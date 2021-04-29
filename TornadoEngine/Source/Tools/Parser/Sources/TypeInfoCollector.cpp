@@ -272,7 +272,7 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
         } else {
             inheritanceInfo.mLongTypeName = inheritance.typeName;// ns::A::B
         }
-
+        inheritanceInfo.mNameSpace = currentSpace;
         inheritanceInfo.mInheritanceAccessLevel = inheritance.accessLevel;
         typeInfo->mInheritanceVec.push_back(inheritanceInfo);
     }

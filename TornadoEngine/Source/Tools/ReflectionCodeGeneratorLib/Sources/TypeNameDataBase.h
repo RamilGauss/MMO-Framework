@@ -61,6 +61,8 @@ namespace nsReflectionCodeGenerator
 
         void AddReference(TReferenceInfo& refInfo);
         const TReferenceInfo* GetReferenceFullTypeName(TRequestParams& requestParams);
+
+        const std::map<std::string, TReferenceInfo>& GetFullTypeNameReferenceMap() const;
     protected:
         const TReferenceInfo* Find(const std::string& fullTypeName);
         void GetReferenceVariants(TRequestParams& requestParams, std::list<std::string>& variants);

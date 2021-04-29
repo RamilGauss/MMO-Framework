@@ -16,25 +16,14 @@ void TBinaryMarshallerSourceFileGenerator::Work()
     AddTimeHeader();
 
     AddInclude(mSerializer->fileName + ".h");
-    //if (binaryMarshaller->unpackHandler.get() != nullptr) {
-    //    AddInclude(mSerializer->unpackHandler->fileName + ".h");
-    //}
 
-    AddIncludeForExternalSources(mSerializer->externalSources.get());
+    AddIncludeForExternalSources();
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;
     if (namespaceName.length()) {
         AddUsingNamespace(namespaceName);
     }
-
-    //if (mSerializer->unpackHandler.get() != nullptr) {
-    //    auto namespaceUnpackHandler = mSerializer->unpackHandler->nameSpaceName;
-    //    if (namespaceName != namespaceUnpackHandler &&
-    //        namespaceUnpackHandler.length()) {
-    //        AddUsingNamespace(namespaceUnpackHandler);
-    //    }
-    //}
 
     AddEmptyLine();
 
@@ -138,7 +127,7 @@ void TBinaryMarshallerSourceFileGenerator::AddSerializeImplementation(TTypeInfo*
     AddLeftBrace();
     IncrementTabs();
 
-    AddCallingMethodForParent(p, [this](const std::string& s) { AddCallingSerializeParent(s); });
+    AddCallingMethodForParent(p, [this](TInheritanceInfo* pInheritanceInfo) { AddCallingSerializeParent(pInheritanceInfo); });
 
     AddCallingMethod(p, [this](TMemberInfo* mi) { AddPushByMemberInfo(mi); });
 
@@ -155,7 +144,7 @@ void TBinaryMarshallerSourceFileGenerator::AddDeserializeImplementation(TTypeInf
     AddLeftBrace();
     IncrementTabs();
 
-    AddCallingMethodForParent(p, [this](const std::string& s) { AddCallingDeserializeParent(s); });
+    AddCallingMethodForParent(p, [this](TInheritanceInfo* pInheritanceInfo) { AddCallingDeserializeParent(pInheritanceInfo); });
 
     AddCallingMethod(p, [this](TMemberInfo* mi) { AddPopByMemberInfo(mi); });
 
@@ -195,15 +184,15 @@ void TBinaryMarshallerSourceFileGenerator::AddDeallocateImplentation(TTypeInfo* 
     AddRightBrace();
 }
 //-------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::AddCallingSerializeParent(const std::string& parentTypeName)
+void TBinaryMarshallerSourceFileGenerator::AddCallingSerializeParent(TInheritanceInfo* pInheritanceInfo)
 {
-    auto str = fmt::format("{}( ({}*){} );", s_Serialize, parentTypeName, s_TypeObject);
+    auto str = fmt::format("{}( ({}*){} );", s_Serialize, pInheritanceInfo->mLongTypeName, s_TypeObject);
     Add(str);
 }
 //-----------------------------------------------------------------------------------------------------------
-void TBinaryMarshallerSourceFileGenerator::AddCallingDeserializeParent(const std::string& parentTypeName)
+void TBinaryMarshallerSourceFileGenerator::AddCallingDeserializeParent(TInheritanceInfo* pInheritanceInfo)
 {
-    auto str = fmt::format("{}( ({}*){} );", s_Deserialize, parentTypeName, s_TypeObject);
+    auto str = fmt::format("{}( ({}*){} );", s_Deserialize, pInheritanceInfo->mLongTypeName, s_TypeObject);
     Add(str);
 }
 //-----------------------------------------------------------------------------------------------------------

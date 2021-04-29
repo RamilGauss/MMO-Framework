@@ -127,5 +127,11 @@
     <ClInclude Include="VirtualMethodOverride.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
+    <ClInclude Include="MemberWithComments.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="MemberBuiltInTypes.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

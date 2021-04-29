@@ -78,8 +78,8 @@ namespace nsCodeGeneratorImplementation
         void AddSerializeMethodImplementation(nsCppParser::TTypeInfo* p);
         void AddDeserializeMethodImplementation(nsCppParser::TTypeInfo* p);
 
-        void AddCallingSerializeParent(const std::string& parentTypeName);
-        void AddCallingDeserializeParent(const std::string& parentTypeName);
+        void AddCallingSerializeParent(nsCppParser::TInheritanceInfo* pInheritanceInfo);
+        void AddCallingDeserializeParent(nsCppParser::TInheritanceInfo* pInheritanceInfo);
 
         void AddPushByMemberInfo(nsCppParser::TMemberInfo* memberInfo,
             std::vector<nsCppParser::TMemberExtendedTypeInfo>* pExtArr = nullptr, int depth = 0);

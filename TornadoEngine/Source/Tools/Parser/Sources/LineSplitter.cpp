@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 #include "LineTokenEntity.h"
 #include "PreprocessorSplitter.h"
 #include "ColonSplitter.h"
+#include "CommentSplitter.h"
 
 using namespace nsCppParser;
 
@@ -26,7 +27,13 @@ void TLineSplitter::SplitLine(std::shared_ptr<ITokenEntity>& entity, std::vector
         TColonSplitter::SplitLine(preprocessorprevTokenEnt, colonResult);
 
         for (auto& colonTokenEnt : colonResult) {
-            result.push_back(colonTokenEnt);
+
+            std::vector<std::shared_ptr<ITokenEntity>> commentResult;
+            TCommentSplitter::SplitLine(colonTokenEnt, commentResult);
+
+            for (auto& commentTokenEnt : commentResult) {
+                result.push_back(commentTokenEnt);
+            }
         }
     }
 }

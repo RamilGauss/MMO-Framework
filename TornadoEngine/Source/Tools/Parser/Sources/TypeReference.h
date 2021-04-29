@@ -19,6 +19,7 @@ namespace nsCppParser
 
         //For searching in TypeManager
         std::string mShortTypeName;// B
+        std::string mNameSpace;// ns::A
         std::string mLongTypeName;// ns::A::B
     };
 }

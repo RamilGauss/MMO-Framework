@@ -67,6 +67,7 @@ void TSetupConfig::DefaultConfig()
     auto mConfig = mConfigContainer->Config();
     mConfig->targetForParsing.recursive = true;
     mConfig->targetForParsing.directories.push_back("../ReflectionCodeGeneratorLib/Sources");
+    mConfig->targetForParsing.directories.push_back("../Parser/Sources");
 
     mConfig->filter.attribute = "REFLECTION_ATTRIBUTE";
     mConfig->filter.extensions.push_back(".h");

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Sources\BlockLexemaEntity.cpp" />
     <ClCompile Include="Sources\ColonSplitter.cpp" />
+    <ClCompile Include="Sources\CommentSplitter.cpp" />
     <ClCompile Include="Sources\EntitySplitter.cpp" />
     <ClCompile Include="Sources\ExtendedInfoTypeExtractor.cpp" />
     <ClCompile Include="Sources\FunctionLexema.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="Sources\BlockLexemaEntity.h" />
     <ClInclude Include="Sources\ClassLexema.h" />
     <ClInclude Include="Sources\ColonSplitter.h" />
+    <ClInclude Include="Sources\CommentSplitter.h" />
     <ClInclude Include="Sources\EmptyLexema.h" />
     <ClInclude Include="Sources\EntitySplitter.h" />
     <ClInclude Include="Sources\EnumLexema.h" />

@@ -109,7 +109,7 @@ namespace nsReflectionCodeGenerator
         std::string GetNullExpression(nsCppParser::TMemberExtendedTypeInfo& ext);
 
     protected:
-        void AddCallingMethodForParent(nsCppParser::TTypeInfo* p, std::function<void(const std::string&)> func);
+        void AddCallingMethodForParent(nsCppParser::TTypeInfo* p, std::function<void(nsCppParser::TInheritanceInfo*)> func);
         void AddCallingMethod(nsCppParser::TTypeInfo* p, std::function<void(nsCppParser::TMemberInfo*)> func);
     private:
 
@@ -118,16 +118,15 @@ namespace nsReflectionCodeGenerator
             std::list<std::string>& templateList, std::list<std::string>& argList);
 
     protected:
-        void AddIncludeForExternalSources(TExternalSources* pExrSrc);
+        void AddIncludeForExternalSources();
 
-        std::string GetSerializeMethod(nsCppParser::TMemberExtendedTypeInfo* pExt, const std::string& withinClassTypeName);
-        std::string GetDeserializeMethod(nsCppParser::TMemberExtendedTypeInfo* pExt, const std::string& withinClassTypeName);
+        std::string GetSerializeMethod(const std::string& nameSpace, const std::string& shortTypeName, 
+            const std::string& withinClassTypeName);
+        std::string GetDeserializeMethod(const std::string& nameSpace, const std::string& shortTypeName, 
+            const std::string& withinClassTypeName);
 
-        std::string GetSerializeMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName);
-        std::string GetDeserializeMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName);
-    
     private:
-        std::string GetMethod(const std::string& namespaceWithType, 
+        std::string GetMethod(const std::string& nameSpace, const std::string& shortTypeName,
             const std::string& withinClassTypeName, const std::string& methodName);
     };
 }

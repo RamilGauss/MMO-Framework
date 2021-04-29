@@ -19,6 +19,10 @@ See for more information LICENSE.md.
 
 #### "DONE"  
 
+2021.04.29:
+- Нужно дорабатывать парсер (баг с распознованием функций). При попытке распознать в исходниках самого же парсера.
+Доделать json и binary: TSerializer без namespace.
+
 2021.04.26:
 - BinaryMarshaller изменить интерфейс на void Pack<T>(T*, TContainer& c); 
 

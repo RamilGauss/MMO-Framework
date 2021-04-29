@@ -138,7 +138,110 @@ TEST(Parser, MemberPragma)
 
             std::set<std::string> ethalon = {"\"x\"", "x"};
             ASSERT_EQ(_0->mPragmaTextSet, ethalon);
+        }
+    }
+}
 
+TEST(Parser, MemberWithComments)
+{
+    TFileParser fileParser;
+    auto res = fileParser.Parse("MemberWithComments.h");
+    ASSERT_NE(res, nullptr);
+
+    ASSERT_EQ(res->mTypeList.size(), 1);
+
+    for (auto& type : res->mTypeList) {
+        ASSERT_EQ(type->mName, "X");
+        if (type->mName == "X") {
+            ASSERT_TRUE(type->mMembers.size(), 3);
+
+            auto& publicMembers = type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC];
+            ASSERT_EQ(publicMembers.size(), 2);
+            auto& protectedMembers = type->mMembers[(int) nsCppParser::AccessLevel::PROTECTED];
+            ASSERT_EQ(protectedMembers.size(), 0);
+            auto& privateMembers = type->mMembers[(int) nsCppParser::AccessLevel::PRIVATE];
+            ASSERT_EQ(privateMembers.size(), 0);
+
+            auto& _0 = publicMembers[0];
+
+            ASSERT_EQ(_0->mName, "x");
+
+            ASSERT_EQ(_0->mTypeName, "unsigned int");
+            ASSERT_EQ(_0->mExtendedInfo.GetTypeNameWithNameSpace(), "unsigned int");
+
+            auto& _1 = publicMembers[1];
+
+            ASSERT_EQ(_1->mName, "y");
+            ASSERT_EQ(_1->mTypeName, "int");
+            ASSERT_EQ(_1->mExtendedInfo.GetTypeNameWithNameSpace(), "int");
+        }
+    }
+}
+
+namespace nsTest
+{
+    struct Type
+    {
+        std::string name;
+        std::string type;
+    };
+}
+
+TEST(Parser, MemberBuilyInTypes)
+{
+    std::vector<nsTest::Type> ethalon = {
+        {"b",  "bool"},
+        {"c",  "char"},
+        {"uc", "unsigned char"},
+        {"s",  "short"},
+
+        {"us",  "unsigned short"},
+        {"i",  "int"},
+        {"ui", "unsigned int"},
+        {"l",  "long"},
+        {"ul",  "unsigned long"},
+
+        {"ll",  "long long"},
+        {"ull", "unsigned long long"},
+        {"f",  "float"},
+        {"d",  "double"},
+
+        {"i8", "int8_t"},
+        {"ui8", "uint8_t"},
+        {"i16", "int16_t"},
+        {"ui16", "uint16_t"},
+        {"i32", "int32_t"},
+        {"ui32", "uint32_t"},
+        {"i64", "int64_t"},
+        {"ui64", "uint64_t"},
+    };
+
+    TFileParser fileParser;
+    auto res = fileParser.Parse("MemberBuiltInTypes.h");
+    ASSERT_NE(res, nullptr);
+
+    ASSERT_EQ(res->mTypeList.size(), 1);
+
+    for (auto& type : res->mTypeList) {
+        ASSERT_EQ(type->mName, "X");
+        if (type->mName == "X") {
+            ASSERT_TRUE(type->mMembers.size(), 3);
+
+            auto& publicMembers = type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC];
+            ASSERT_EQ(publicMembers.size(), 21);
+            auto& protectedMembers = type->mMembers[(int) nsCppParser::AccessLevel::PROTECTED];
+            ASSERT_EQ(protectedMembers.size(), 0);
+            auto& privateMembers = type->mMembers[(int) nsCppParser::AccessLevel::PRIVATE];
+            ASSERT_EQ(privateMembers.size(), 0);
+
+            int index = 0;
+            for (auto& t : publicMembers) {
+                ASSERT_EQ(t->mName, ethalon[index].name);
+                ASSERT_EQ(t->mTypeName, ethalon[index].type);
+                ASSERT_EQ(t->mExtendedInfo.GetTypeNameWithNameSpace(), ethalon[index].type);
+
+                index++;
+            }
         }
     }
 }

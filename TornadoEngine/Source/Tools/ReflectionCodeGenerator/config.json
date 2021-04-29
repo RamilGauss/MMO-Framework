@@ -1,7 +1,8 @@
 {
     "targetForParsing": {
         "directories": [
-            "../ReflectionCodeGeneratorLib/Sources"
+            "../ReflectionCodeGeneratorLib/Sources",
+            "../Parser/Sources"
         ],
         "recursive": true
     },

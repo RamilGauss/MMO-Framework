@@ -174,9 +174,11 @@
     <ClInclude Include="Enum_2.h" />
     <ClInclude Include="Enum_3.h" />
     <ClInclude Include="FunctionContent.h" />
+    <ClInclude Include="MemberBuiltInTypes.h" />
     <ClInclude Include="MemberCategory.h" />
     <ClInclude Include="MemberPragma.h" />
     <ClInclude Include="MembersWithExtended.h" />
+    <ClInclude Include="MemberWithComments.h" />
     <ClInclude Include="MethodCategory.h" />
     <ClInclude Include="MethodNames.h" />
     <ClInclude Include="MethodPragma.h" />

@@ -63,6 +63,11 @@ void TTypeNameDataBase::GetReferenceVariants(TRequestParams& requestParams, std:
     }
 }
 //-----------------------------------------------------------------------------------------------
+const std::map<std::string, TTypeNameDataBase::TReferenceInfo>& TTypeNameDataBase::GetFullTypeNameReferenceMap() const
+{
+    return mFullTypeNameReferenceMap;
+}
+//-----------------------------------------------------------------------------------------------
 std::string TTypeNameDataBase::TTypeInfo::GetFullType() const
 {
     if (nameSpace.empty()) {

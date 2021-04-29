@@ -145,12 +145,35 @@ void TVariableDeclarationLexema::Fill(const TLineTokenEntity* line)
     for (int i = maxPrefixIndex; i < nameIndex; i++) {
         typeTokens.push_back(line->mTokens[i]);
     }
+
+    int spaceCount = 0;
     for (auto& t : typeTokens) {
         switch (t.id) {
             case T_NEWLINE:
                 break;
             default:
-                mType += t.value;
+                if (t.id == T_SPACE || t.id == T_SPACE2) {
+                    spaceCount++;
+                    if (spaceCount == 1 && mType.length() > 0) {
+                        mType += t.value;
+                    }
+                } else {
+                    spaceCount = 0;
+                    mType += t.value;
+                }
+        }
+    }
+
+    while (true) {
+        auto spaceIndex = mType.rfind(" ");
+        if (spaceIndex == std::string::npos) {
+            break;
+        }
+
+        if (spaceIndex == mType.length() - 1) {
+            mType.pop_back();
+        } else {
+            break;
         }
     }
 }

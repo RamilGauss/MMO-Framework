@@ -306,46 +306,14 @@ std::string IFileGenerator::GetNullExpression(TMemberExtendedTypeInfo& ext)
     return std::string();
 }
 //-----------------------------------------------------------------------------------------------------------
-void IFileGenerator::AddCallingMethodForParent(TTypeInfo* p, std::function<void(const std::string&)> func)
+void IFileGenerator::AddCallingMethodForParent(TTypeInfo* p, std::function<void(TInheritanceInfo*)> func)
 {
-    // TODO: изменить 
-
-    //auto withinClassTypeName = p->GetTypeNameWithNameSpace();
-
-    //for (auto& inheritanceInfo : p->mInheritanceVec) {
-    //    if (inheritanceInfo.mInheritanceAccessLevel != AccessLevel::PUBLIC) {
-    //        continue;
-    //    }
-    //    auto parentTypeName = inheritanceInfo.mOriginalName;
-
-    //    // найти родителя - TypeInfo
-    //    mTypeNameDbPtr->GetReferenceFullTypeName
-
-    //    auto pParentInfo = mTypeMng->FindTypeInfoBy(parentTypeName, withinClassTypeName);
-    //    if (pParentInfo != nullptr) {
-    //        // Известный тип
-    //        parentTypeName = pParentInfo->GetTypeNameWithNameSpace();
-    //    }
-    //    func(parentTypeName);
-    //}
-
-
-    //auto withinClassTypeName = p->GetTypeNameWithNameSpace();
-
-    //for (auto& inheritanceInfo : p->mInheritanceVec) {
-    //    if (inheritanceInfo.mInheritanceAccessLevel != TMemberInfo::ePublic) {
-    //        continue;
-    //    }
-    //    auto parentTypeName = inheritanceInfo.mParentTypeName;
-
-    //    // найти родителя - TypeInfo
-    //    auto pParentInfo = mTypeMng->FindTypeInfoBy(parentTypeName, withinClassTypeName);
-    //    if (pParentInfo != nullptr) {
-    //        // Известный тип
-    //        parentTypeName = pParentInfo->GetTypeNameWithNameSpace();
-    //    }
-    //    func(parentTypeName);
-    //}
+    for (auto& inheritanceInfo : p->mInheritanceVec) {
+        if (inheritanceInfo.mInheritanceAccessLevel != AccessLevel::PUBLIC) {
+            continue;
+        }
+        func(&inheritanceInfo);
+    }
 }
 //-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddCallingMethod(TTypeInfo* p, std::function<void(TMemberInfo*)> func)
@@ -356,65 +324,52 @@ void IFileGenerator::AddCallingMethod(TTypeInfo* p, std::function<void(TMemberIn
     }
 }
 //-----------------------------------------------------------------------------------------------------------
-void IFileGenerator::AddIncludeForExternalSources(TExternalSources* pExrSrc)
+void IFileGenerator::AddIncludeForExternalSources()
 {
-    //if (pExrSrc == nullptr || pExrSrc->inExtSrcList == nullptr) {
-    //    return;
-    //}
-    //for (auto& extSrc : pExrSrc->inExtSrcList->val) {
-    //    AddInclude(extSrc.fileName);
-    //}
+    auto& fullTypeNameReferenceMap = mTypeNameDbPtr->GetFullTypeNameReferenceMap();
+    for (auto& fullTypeRef : fullTypeNameReferenceMap) {
+        auto& refType = fullTypeRef.second;
+        if (refType.refType == TTypeNameDataBase::ReferenceType::CUSTOMIZED) {
+            AddInclude(refType.reflectionInfo->fileName);
+        }
+    }
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetSerializeMethod(TMemberExtendedTypeInfo* pExt, const std::string& withinClassTypeName)
+std::string IFileGenerator::GetSerializeMethod(const std::string& nameSpace, const std::string& shortTypeName,
+    const std::string& withinClassTypeName)
 {
-    auto namespaceWithType = pExt->GetTypeNameWithNameSpace();
-    return GetSerializeMethod(namespaceWithType, withinClassTypeName);
+    return GetMethod(nameSpace, shortTypeName, withinClassTypeName, sSerializeMethod);
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetDeserializeMethod(TMemberExtendedTypeInfo* pExt, const std::string& withinClassTypeName)
+std::string IFileGenerator::GetDeserializeMethod(const std::string& nameSpace, const std::string& shortTypeName,
+    const std::string& withinClassTypeName)
 {
-    auto namespaceWithType = pExt->GetTypeNameWithNameSpace();
-    return GetDeserializeMethod(namespaceWithType, withinClassTypeName);
+    return GetMethod(nameSpace, shortTypeName, withinClassTypeName, sDeserializeMethod);
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetSerializeMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName)
-{
-    return GetMethod(namespaceWithType, withinClassTypeName, sSerializeMethod);
-}
-//-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetDeserializeMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName)
-{
-    return GetMethod(namespaceWithType, withinClassTypeName, sDeserializeMethod);
-}
-//-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetMethod(const std::string& namespaceWithType, const std::string& withinClassTypeName, const std::string& methodName)
+std::string IFileGenerator::GetMethod(const std::string& nameSpace, const std::string& shortTypeName,
+    const std::string& withinClassTypeName, const std::string& methodName)
 {
     std::string method;
-    if (mSerializer == nullptr) {
+
+    TTypeNameDataBase::TRequestParams requestParams;
+
+    requestParams.typeInfo.nameSpace = nameSpace;
+    requestParams.typeInfo.typeName = shortTypeName;
+    requestParams.preferredNameSpace = withinClassTypeName;
+
+    auto refType = mTypeNameDbPtr->GetReferenceFullTypeName(requestParams);
+    if (refType == nullptr) {
         return method;
     }
 
-    //if (mSerializer->externalSources != nullptr &&
-    //    mSerializer->externalSources->inExtSrcList != nullptr) {
-
-    //    for (auto& extSrc : mSerializer->externalSources->inExtSrcList.get()->val) {
-    //        if (extSrc.nameSpaceWithType.find(namespaceWithType) != extSrc.nameSpaceWithType.end()) {
-    //            method = fmt::format("{}::{}::{}", extSrc.nameSpaceName, extSrc.className, methodName);
-    //            break;
-    //        }
-    //    }
-    //}
-
-    if (method.length() > 0) {
-        return method;
+    if (refType->refType == TTypeNameDataBase::ReferenceType::GENERATED) {
+        method = fmt::format("{}", methodName);
+    } else {
+        auto reflInfo = refType->reflectionInfo.get();
+        method = fmt::format("{}::{}::{}", 
+            reflInfo->nameSpace, reflInfo->className, methodName);
     }
-
-    //### auto type = mTypeMng->FindTypeInfoBy(namespaceWithType, withinClassTypeName);
-    //### if (type == nullptr) {
-    //###     return method;
-    //### }
-    //### method = methodName;
     return method;
 }
 //-----------------------------------------------------------------------------------------------------------
