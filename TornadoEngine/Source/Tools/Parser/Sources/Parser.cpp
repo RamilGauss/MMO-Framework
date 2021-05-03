@@ -9,7 +9,6 @@ See for more information LICENSE.md.
 #include "Tokenizer.h"
 #include "EntitySplitter.h"
 #include "LineLexemaEntity.h"
-#include "ExtendedInfoTypeExtractor.h"
 
 #include "magic_enum.hpp"
 
@@ -119,12 +118,10 @@ std::string TParser::GetInfo()
 //--------------------------------------------------------------------------------------------------------
 void TParser::FillExtendedInfo()
 {
-    TExtendedInfoTypeExtractor extendedInfoMaker;
-
     for (auto& type : mContainer.mTypeList) {
         for (auto& members : type->mMembers) {
             for (auto& m : members) {
-                extendedInfoMaker.Convert(m->mTypeName, &(m->mExtendedInfo));
+                mExtendedInfoMaker.Convert(m->mTypeName, &(m->mExtendedInfo));
             }
         }
     }
@@ -132,11 +129,7 @@ void TParser::FillExtendedInfo()
 //--------------------------------------------------------------------------------------------------------
 void TParser::SetupTypes(std::map<std::string, TypeCategory>& nameTypeMap, bool append)
 {
-    if (!append) {
-        mNameTypeMap = nameTypeMap;
-    } else {
-        mNameTypeMap.insert(nameTypeMap.begin(), nameTypeMap.end());
-    }
+    mExtendedInfoMaker.Setup(nameTypeMap, append);
 }
 //--------------------------------------------------------------------------------------------------------
 std::string TParser::GetLastError() const

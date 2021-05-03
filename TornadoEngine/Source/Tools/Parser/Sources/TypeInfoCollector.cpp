@@ -116,7 +116,12 @@ std::string TTypeInfoCollector::GetCurrentSpace()
     for (auto& block : mBlockStack) {
         if (block.type == BlockType::CLASS_STRUCT_OR_ENUM ||
             block.type == BlockType::NAMESPACE) {
-            currentSpace += "::" + block.space;
+
+            if (currentSpace.length() == 0) {
+                currentSpace = block.space;
+            } else {
+                currentSpace += "::" + block.space;
+            }
         }
     }
     return currentSpace;

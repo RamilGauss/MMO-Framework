@@ -25,6 +25,8 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
+#include "Parser/Sources/Parser.h"
+
 namespace nsReflectionCodeGenerator
 {
     class DllExport TReflectionCodeGenerator
@@ -97,9 +99,9 @@ namespace nsReflectionCodeGenerator
 
         template <typename DirectoryIterator>
         void CollectAbsPaths(TStringList& fileList);
-        void GetFileAbsPathList(TSetupConfig* mSetupConfig, TStringList& fileList);
-        bool GetTypeList(TSetupConfig* mSetupConfig, TStringList& fileList, TTypeInfoPtrList& typeList);
-        void FilterTypeList(TSetupConfig* mSetupConfig, TTypeInfoPtrList& typeList, TTypeInfoPtrSet& filteredTypeList);
+        void GetFileAbsPathList(TStringList& fileList);
+        bool GetTypeList(TStringList& fileList, TTypeInfoPtrList& typeList);
+        void FilterTypeList(TTypeInfoPtrList& typeList, TTypeInfoPtrSet& filteredTypeList);
         void CollectDumpFromGenerators();
         void FillIncludeList();
         void CollectDumpFromIncludeList();
@@ -117,6 +119,9 @@ namespace nsReflectionCodeGenerator
 
         void AddDependencies(ITargetCodeGenerator* generator, 
             nsCppParser::TTypeInfo* type, std::set<std::string> dependenciesTypeNameSetOut);
+
+        void ConvertStringToTypeCategory(std::map<std::string, std::string>& strTypeCustomizerMap,
+            std::map<std::string, nsCppParser::TypeCategory>& typeCustomizerMap);
     };
     //---------------------------------------------------------------------------------------
     template <typename DirectoryIterator>

@@ -199,9 +199,6 @@
     <ClCompile Include="Sources\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="config.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="..\..\..\conanfile.txt" />
     <Text Include="readme.txt" />
   </ItemGroup>

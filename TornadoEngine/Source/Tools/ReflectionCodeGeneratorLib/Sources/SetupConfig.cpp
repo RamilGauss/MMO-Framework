@@ -66,27 +66,40 @@ void TSetupConfig::DefaultConfig()
 {
     auto mConfig = mConfigContainer->Config();
     mConfig->targetForParsing.recursive = true;
-    mConfig->targetForParsing.directories.push_back("../ReflectionCodeGeneratorLib/Sources");
+    mConfig->targetForParsing.directories.push_back("./Sources");
     mConfig->targetForParsing.directories.push_back("../Parser/Sources");
 
     mConfig->filter.attribute = "REFLECTION_ATTRIBUTE";
     mConfig->filter.extensions.push_back(".h");
+    mConfig->filter.extensions.push_back(".hh");
     mConfig->filter.extensions.push_back(".hpp");
 
-    mConfig->targetForCodeGeneration.directory = "../ReflectionCodeGeneratorLib/Sources";
+    mConfig->targetForCodeGeneration.directory = "./Sources";
     mConfig->targetForCodeGeneration.includeListFileName = "IncludeList";
+    mConfig->targetForCodeGeneration.header = "\tReflectionCodeGenerator";
+
+    mConfig->targetForCodeGeneration.appendTypeCustomizerMap = true;
 
     TSerializer jsonSerializer;
+    jsonSerializer.exportDeclaration = "DllExport";
     jsonSerializer.className = "TJsonSerializer";
     jsonSerializer.fileName = "JsonSerializer";
     jsonSerializer.nameSpaceName = "nsJson";
+
+    jsonSerializer.externalSources.reset(new TExternalSources());
+    jsonSerializer.externalSources->outFile = "./Sources/JsonOutFile.json";
+
     mConfig->targetForCodeGeneration.implementations.insert({"JsonSerializerGenerator", jsonSerializer});
 
     TSerializer binaryMarshaller;
+    binaryMarshaller.exportDeclaration = "DllExport";
     binaryMarshaller.className = "TBinaryMarshaller";
     binaryMarshaller.fileName = "BinaryMarshaller";
     binaryMarshaller.nameSpaceName = "nsBinary";
     binaryMarshaller.keyValueMap.insert({"beginId", "666"});
+
+    binaryMarshaller.externalSources.reset(new TExternalSources());
+    binaryMarshaller.externalSources->outFile = "./Sources/BinaryOutFile.json";
 
     mConfig->targetForCodeGeneration.implementations.insert({"BinaryMarshallerGenerator", binaryMarshaller});
 }
@@ -96,12 +109,12 @@ bool TSetupConfig::TryLoadConfig()
     auto mConfig = mConfigContainer->Config();
     std::string str;
     TTextFile::Load(mAbsPathJsonFile, str);
-    if (str.length() == 0)
+    if (str.length() == 0) {
         return false;
+    }
 
     std::string err;
     auto fillRes = nsJson::TJsonSerializer::Fill(mConfig, str, err);
-    //LoadExternalSources(config);
     return fillRes;
 }
 //---------------------------------------------------------------------------------------
@@ -131,6 +144,9 @@ void TSetupConfig::ResolveJsonPath()
 
     auto pathToJsonFile = fs::path(configName).parent_path().string();
     auto currentPath = fs::current_path().string();
-    mAbsPathJsonFile = TPathOperations::CalculatePathBy(currentPath, pathToJsonFile);
+    mAbsPathDirJson = TPathOperations::CalculatePathBy(currentPath, pathToJsonFile);
+    mAbsPathDirJson += "\\";
+
+    mAbsPathJsonFile = TPathOperations::CalculatePathBy(mAbsPathDirJson, configName);
 }
 //---------------------------------------------------------------------------------------

@@ -62,8 +62,9 @@ bool TSaveToFile::ReOpen(char* path, bool append)
 //---------------------------------------------------------------
 void TSaveToFile::Write(void* buffer, int size)
 {
-    if (flgEnable == false)
+    if (flgEnable == false) {
         return;
+    }
 
     if (pFile) {
         fwrite(buffer, size, 1, pFile);
@@ -106,7 +107,7 @@ void TSaveToFile::FlushInBuffer(char* buffer, int size)
 
     mListBuffer->push_back(v);
 
-    BL_ASSERT(mListBuffer->size() <= eMaxNumberForBufferization);
+    BL_ASSERT(mListBuffer->size() <= MAX_NUMBER_FOR_BUFFERIZATION);
 }
 //---------------------------------------------------------------
 void TSaveToFile::SetPrintf(bool val)

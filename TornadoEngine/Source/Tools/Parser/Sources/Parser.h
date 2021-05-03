@@ -21,6 +21,7 @@ See for more information LICENSE.md.
 #include "LexemaEngine.h"
 #include "BlockLexemaEntity.h"
 #include "TypeInfoCollector.h"
+#include "ExtendedInfoTypeExtractor.h"
 
 namespace nsCppParser
 {
@@ -46,7 +47,7 @@ namespace nsCppParser
 
         TTypeInfoCollector mTypeInfoCollector;
 
-        std::map<std::string, TypeCategory> mNameTypeMap;
+        TExtendedInfoTypeExtractor mExtendedInfoMaker;
     public:
         void SetupTypes(std::map<std::string, TypeCategory>& nameTypeMap, bool append = false);
 

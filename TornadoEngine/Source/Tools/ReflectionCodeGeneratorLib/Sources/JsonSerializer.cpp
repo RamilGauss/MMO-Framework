@@ -1,8 +1,8 @@
 /*
-
+	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.0.0, build 47, info Json, Binary, EntMng, Reflection
-// File has been generated at 2021_04_29 20:20:45.681
+// File has been generated at 2021_05_03 21:31:47.864
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -133,12 +133,12 @@ void TJsonSerializer::Init()
     
     
     int max = 0;
-    for ( auto& vt : mTypeNameFuncsMap ) {
+    for (auto& vt : mTypeNameFuncsMap) {
         max = std::max(vt.second.typeIdentifier, max);
     }
     
     mTypeFuncVector.resize(max + 1);
-    for ( auto& vt : mTypeNameFuncsMap ) {
+    for (auto& vt : mTypeNameFuncsMap) {
         mTypeFuncVector[vt.second.typeIdentifier] = vt.second;
     }
 }
@@ -178,33 +178,33 @@ bool TJsonSerializer::Fill(void* p, const std::string& str, int typeIdentifier, 
     return mTypeFuncVector[typeIdentifier].fillFunc(p, str, err);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize( nsReflectionCodeGenerator::TClassDesc* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TClassDesc* p, Jobj& obj )
 {
-    PUM::Push( obj, "exportDeclaration", p->exportDeclaration );
-    PUM::Push( obj, "nameSpaceName", p->nameSpaceName );
-    PUM::Push( obj, "className", p->className );
-    PUM::Push( obj, "fileName", p->fileName );
+    PUM::Push(obj, "exportDeclaration", p->exportDeclaration);
+    PUM::Push(obj, "nameSpaceName", p->nameSpaceName);
+    PUM::Push(obj, "className", p->className);
+    PUM::Push(obj, "fileName", p->fileName);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TClassDesc* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TClassDesc* p, const Jobj& obj )
 {
-    POM::PopStr( obj, "exportDeclaration", p->exportDeclaration );
-    POM::PopStr( obj, "nameSpaceName", p->nameSpaceName );
-    POM::PopStr( obj, "className", p->className );
-    POM::PopStr( obj, "fileName", p->fileName );
+    POM::PopStr(obj, "exportDeclaration", p->exportDeclaration);
+    POM::PopStr(obj, "nameSpaceName", p->nameSpaceName);
+    POM::PopStr(obj, "className", p->className);
+    POM::PopStr(obj, "fileName", p->fileName);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize( nsReflectionCodeGenerator::TConfig* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TConfig* p, Jobj& obj )
 {
-    auto targetForParsing_o = PUM::AddObject( obj, "targetForParsing");
-    _Serialize( &(p->targetForParsing), targetForParsing_o );
-    auto filter_o = PUM::AddObject( obj, "filter");
-    _Serialize( &(p->filter), filter_o );
-    auto targetForCodeGeneration_o = PUM::AddObject( obj, "targetForCodeGeneration");
-    _Serialize( &(p->targetForCodeGeneration), targetForCodeGeneration_o );
+    auto targetForParsing_o = PUM::AddObject(obj, "targetForParsing");
+    _Serialize(&(p->targetForParsing), targetForParsing_o);
+    auto filter_o = PUM::AddObject(obj, "filter");
+    _Serialize(&(p->filter), filter_o);
+    auto targetForCodeGeneration_o = PUM::AddObject(obj, "targetForCodeGeneration");
+    _Serialize(&(p->targetForCodeGeneration), targetForCodeGeneration_o);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TConfig* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TConfig* p, const Jobj& obj )
 {
     auto targetForParsing_o0 = POM::FindObject(obj, "targetForParsing");
     _Deserialize(&(p->targetForParsing), targetForParsing_o0);
@@ -214,26 +214,26 @@ void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TConfig* p, const
     _Deserialize(&(p->targetForCodeGeneration), targetForCodeGeneration_o0);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize( nsReflectionCodeGenerator::TExternalSource* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TExternalSource* p, Jobj& obj )
 {
-    PUM::Push( obj, "fileName", p->fileName );
-    PUM::Push( obj, "nameSpaceName", p->nameSpaceName );
-    PUM::Push( obj, "typeName", p->typeName );
+    PUM::Push(obj, "fileName", p->fileName);
+    PUM::Push(obj, "nameSpaceName", p->nameSpaceName);
+    PUM::Push(obj, "typeName", p->typeName);
     PUM::Value customizedTypes_a0(rapidjson::kArrayType);
-    for( auto& customizedTypes_e0 : p->customizedTypes ) {
-        PUM::PushBack( customizedTypes_a0, customizedTypes_e0 );
+    for(auto& customizedTypes_e0 : p->customizedTypes) {
+        PUM::PushBack(customizedTypes_a0, customizedTypes_e0);
     }
     PUM::Push(obj, "customizedTypes", customizedTypes_a0);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TExternalSource* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TExternalSource* p, const Jobj& obj )
 {
-    POM::PopStr( obj, "fileName", p->fileName );
-    POM::PopStr( obj, "nameSpaceName", p->nameSpaceName );
-    POM::PopStr( obj, "typeName", p->typeName );
-    if ( POM::IsArray(obj, "customizedTypes") ) {
+    POM::PopStr(obj, "fileName", p->fileName);
+    POM::PopStr(obj, "nameSpaceName", p->nameSpaceName);
+    POM::PopStr(obj, "typeName", p->typeName);
+    if (POM::IsArray(obj, "customizedTypes")) {
         auto customizedTypes_a0 = POM::FindArray(obj, "customizedTypes");
-        for( auto& customizedTypes_e0 : customizedTypes_a0 ) {
+        for(auto& customizedTypes_e0 : customizedTypes_a0) {
             p->customizedTypes.insert(customizedTypes_e0.GetString());
         }
     } else {
@@ -243,21 +243,21 @@ void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TExternalSource* 
     }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize( nsReflectionCodeGenerator::TExternalSources* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TExternalSources* p, Jobj& obj )
 {
     PUM::Value inFileList_a0(rapidjson::kArrayType);
-    for( auto& inFileList_e0 : p->inFileList ) {
-        PUM::PushBack( inFileList_a0, inFileList_e0 );
+    for(auto& inFileList_e0 : p->inFileList) {
+        PUM::PushBack(inFileList_a0, inFileList_e0);
     }
     PUM::Push(obj, "inFileList", inFileList_a0);
-    PUM::Push( obj, "outFile", p->outFile );
+    PUM::Push(obj, "outFile", p->outFile);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TExternalSources* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TExternalSources* p, const Jobj& obj )
 {
-    if ( POM::IsArray(obj, "inFileList") ) {
+    if (POM::IsArray(obj, "inFileList")) {
         auto inFileList_a0 = POM::FindArray(obj, "inFileList");
-        for( auto& inFileList_e0 : inFileList_a0 ) {
+        for(auto& inFileList_e0 : inFileList_a0) {
             p->inFileList.push_back(inFileList_e0.GetString());
         }
     } else {
@@ -265,26 +265,26 @@ void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TExternalSources*
         POM::PopStr(obj, "inFileList", inFileList_t0);
         p->inFileList.push_back(inFileList_t0);
     }
-    POM::PopStr( obj, "outFile", p->outFile );
+    POM::PopStr(obj, "outFile", p->outFile);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize( nsReflectionCodeGenerator::TFilter* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TFilter* p, Jobj& obj )
 {
     PUM::Value extensions_a0(rapidjson::kArrayType);
-    for( size_t extensions_i0 = 0 ; extensions_i0 < p->extensions.size() ; extensions_i0++ ) {
+    for(size_t extensions_i0 = 0 ; extensions_i0 < p->extensions.size() ; extensions_i0++) {
         auto& extensions_e0 = p->extensions[extensions_i0];
-        PUM::PushBack( extensions_a0, extensions_e0 );
+        PUM::PushBack(extensions_a0, extensions_e0);
     }
     PUM::Push(obj, "extensions", extensions_a0);
-    PUM::Push( obj, "attribute", p->attribute );
-    PUM::Push( obj, "inheritance", p->inheritance );
+    PUM::Push(obj, "attribute", p->attribute);
+    PUM::Push(obj, "inheritance", p->inheritance);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TFilter* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TFilter* p, const Jobj& obj )
 {
-    if ( POM::IsArray(obj, "extensions") ) {
+    if (POM::IsArray(obj, "extensions")) {
         auto extensions_a0 = POM::FindArray(obj, "extensions");
-        for( auto& extensions_e0 : extensions_a0 ) {
+        for(auto& extensions_e0 : extensions_a0) {
             p->extensions.push_back(extensions_e0.GetString());
         }
     } else {
@@ -292,64 +292,70 @@ void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TFilter* p, const
         POM::PopStr(obj, "extensions", extensions_t0);
         p->extensions.push_back(extensions_t0);
     }
-    POM::PopStr( obj, "attribute", p->attribute );
-    POM::PopStr( obj, "inheritance", p->inheritance );
+    POM::PopStr(obj, "attribute", p->attribute);
+    POM::PopStr(obj, "inheritance", p->inheritance);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize( nsReflectionCodeGenerator::TSerializer* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TSerializer* p, Jobj& obj )
 {
-    if ( p->externalSources.get() == nullptr ) {
-        PUM::PushNull( obj, "externalSources");
+    _Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    if (p->externalSources.get() == nullptr) {
+        PUM::PushNull(obj, "externalSources");
     } else {
-        auto externalSources_o = PUM::AddObject( obj, "externalSources");
-        _Serialize( p->externalSources.get(), externalSources_o );
+        auto externalSources_o = PUM::AddObject(obj, "externalSources");
+        _Serialize(p->externalSources.get(), externalSources_o);
     }
     auto keyValueMap_c0 = PUM::AddObject(obj, "keyValueMap");
-    for( auto& keyValueMap_e0 : p->keyValueMap ) {
-        PUM::Push( keyValueMap_c0, PUM::ConvertToString(keyValueMap_e0.first).data(), keyValueMap_e0.second );
+    for(auto& keyValueMap_e0 : p->keyValueMap) {
+        PUM::Push(keyValueMap_c0, PUM::ConvertToString(keyValueMap_e0.first).data(), keyValueMap_e0.second);
     }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TSerializer* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TSerializer* p, const Jobj& obj )
 {
-    if ( POM::IsExist(obj, "externalSources") && !POM::IsNull(obj, "externalSources" ) ) {
-        if ( p->externalSources.get() == nullptr ) {
+    _Deserialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
+    if (POM::IsExist(obj, "externalSources") && !POM::IsNull(obj, "externalSources" ) ) {
+        if (p->externalSources.get() == nullptr) {
             p->externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
         }
         auto externalSources_o0 = POM::FindObject(obj, "externalSources");
-        _Deserialize( p->externalSources.get(), externalSources_o0);
+        _Deserialize(p->externalSources.get(), externalSources_o0);
     }
     auto keyValueMap_a0 = POM::FindObject(obj, "keyValueMap");
-    for( auto& keyValueMap_e0 : keyValueMap_a0 ) {
+    for(auto& keyValueMap_e0 : keyValueMap_a0) {
         p->keyValueMap.insert({ keyValueMap_e0.name.GetString(), keyValueMap_e0.value.GetString() });
     }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, Jobj& obj )
 {
-    PUM::Push( obj, "directory", p->directory );
-    PUM::Push( obj, "includeListFileName", p->includeListFileName );
-    PUM::Push( obj, "header", p->header );
+    PUM::Push(obj, "directory", p->directory);
+    PUM::Push(obj, "includeListFileName", p->includeListFileName);
+    PUM::Push(obj, "header", p->header);
     auto typeCustomizerMap_c0 = PUM::AddObject(obj, "typeCustomizerMap");
-    for( auto& typeCustomizerMap_e0 : p->typeCustomizerMap ) {
+    for(auto& typeCustomizerMap_e0 : p->typeCustomizerMap) {
+        PUM::Push(typeCustomizerMap_c0, PUM::ConvertToString(typeCustomizerMap_e0.first).data(), typeCustomizerMap_e0.second);
     }
+    PUM::Push(obj, "appendTypeCustomizerMap", p->appendTypeCustomizerMap);
     auto implementations_c0 = PUM::AddObject(obj, "implementations");
-    for( auto& implementations_e0 : p->implementations ) {
-        auto implementations_a0 = PUM::AddObject( implementations_c0, PUM::ConvertToString(implementations_e0.first).data() );
-        _Serialize( &(implementations_e0.second), implementations_a0 );
+    for(auto& implementations_e0 : p->implementations) {
+        auto implementations_a0 = PUM::AddObject(implementations_c0, PUM::ConvertToString(implementations_e0.first).data());
+        _Serialize(&(implementations_e0.second), implementations_a0);
     }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj )
 {
-    POM::PopStr( obj, "directory", p->directory );
-    POM::PopStr( obj, "includeListFileName", p->includeListFileName );
-    POM::PopStr( obj, "header", p->header );
+    POM::PopStr(obj, "directory", p->directory);
+    POM::PopStr(obj, "includeListFileName", p->includeListFileName);
+    POM::PopStr(obj, "header", p->header);
     auto typeCustomizerMap_a0 = POM::FindObject(obj, "typeCustomizerMap");
-    for( auto& typeCustomizerMap_e0 : typeCustomizerMap_a0 ) {
+    for(auto& typeCustomizerMap_e0 : typeCustomizerMap_a0) {
+        p->typeCustomizerMap.insert({ typeCustomizerMap_e0.name.GetString(), typeCustomizerMap_e0.value.GetString() });
     }
+    POM::PopBool(obj, "appendTypeCustomizerMap", p->appendTypeCustomizerMap);
     auto implementations_a0 = POM::FindObject(obj, "implementations");
-    for( auto& implementations_e0 : implementations_a0 ) {
+    for(auto& implementations_e0 : implementations_a0) {
         auto implementations_o1 = implementations_e0.value.GetObject();
         nsReflectionCodeGenerator::TSerializer implementations_c1;
         _Deserialize(&implementations_c1, implementations_o1);
@@ -357,22 +363,22 @@ void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TTargetForCodeGen
     }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize( nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj )
 {
     PUM::Value directories_a0(rapidjson::kArrayType);
-    for( size_t directories_i0 = 0 ; directories_i0 < p->directories.size() ; directories_i0++ ) {
+    for(size_t directories_i0 = 0 ; directories_i0 < p->directories.size() ; directories_i0++) {
         auto& directories_e0 = p->directories[directories_i0];
-        PUM::PushBack( directories_a0, directories_e0 );
+        PUM::PushBack(directories_a0, directories_e0);
     }
     PUM::Push(obj, "directories", directories_a0);
-    PUM::Push( obj, "recursive", p->recursive );
+    PUM::Push(obj, "recursive", p->recursive);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TTargetForParsing* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForParsing* p, const Jobj& obj )
 {
-    if ( POM::IsArray(obj, "directories") ) {
+    if (POM::IsArray(obj, "directories")) {
         auto directories_a0 = POM::FindArray(obj, "directories");
-        for( auto& directories_e0 : directories_a0 ) {
+        for(auto& directories_e0 : directories_a0) {
             p->directories.push_back(directories_e0.GetString());
         }
     } else {
@@ -380,6 +386,6 @@ void TJsonSerializer::_Deserialize( nsReflectionCodeGenerator::TTargetForParsing
         POM::PopStr(obj, "directories", directories_t0);
         p->directories.push_back(directories_t0);
     }
-    POM::PopBool( obj, "recursive", p->recursive );
+    POM::PopBool(obj, "recursive", p->recursive);
 }
 //---------------------------------------------------------------------------------------

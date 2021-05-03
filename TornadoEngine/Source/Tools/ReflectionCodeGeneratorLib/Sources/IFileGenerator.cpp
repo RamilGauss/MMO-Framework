@@ -210,7 +210,7 @@ void IFileGenerator::AddList(const std::list<std::string>& strList)
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddStaticMethodDeclaration(const std::string& retName, const std::string& name, std::list<std::string>& paramList)
 {
-    std::string str = fmt::format("{} {} {}( ", s_Static, retName, name);
+    std::string str = fmt::format("{} {} {}(", s_Static, retName, name);
     str += EnumerateParamToStr(paramList);
     str += " );";
     Add(str);
@@ -218,7 +218,7 @@ void IFileGenerator::AddStaticMethodDeclaration(const std::string& retName, cons
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddMethodImplementationBegin(const std::string& retName, const std::string& className, const std::string& name, std::list<std::string>& paramList)
 {
-    std::string str = fmt::format("{} {}::{}( ", retName, className, name);
+    std::string str = fmt::format("{} {}::{}(", retName, className, name);
 
     str += EnumerateParamToStr(paramList);
     str += " )";
@@ -260,7 +260,7 @@ void IFileGenerator::General_AddCallFunctionOrObjMethod(const std::string& objec
         str += " " + args;
     }
 
-    str += " );";
+    str += ");";
     Add(str);
 }
 //----------------------------------------------------------------------------------

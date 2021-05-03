@@ -15,8 +15,6 @@ See for more information LICENSE.md.
 #include "LoadFromFile.h"
 #include "SaveToFile.h"
 
-#include "Parser/Sources/Parser.h"
-
 namespace fs = std::filesystem;
 
 using namespace nsReflectionCodeGenerator;
@@ -47,13 +45,13 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
         }
 
         // Take all filtered files => get FileList.
-        GetFileAbsPathList(&mSetupConfig, mFileList);
+        GetFileAbsPathList(mFileList);
 
         // Add to generator list
         AddToGeneratorList();
 
         // Parse FileList => get TypeList.
-        auto parserResult = GetTypeList(&mSetupConfig, mFileList, mTypeList);
+        auto parserResult = GetTypeList(mFileList, mTypeList);
         if (!parserResult) {
             return Result::PARSER_ERROR;
         }
@@ -63,7 +61,7 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
         }
 
         // Solve Filtered.
-        FilterTypeList(&mSetupConfig, mTypeList, mFilteredTypeList);
+        FilterTypeList(mTypeList, mFilteredTypeList);
 
         // For each generator
         LoadExternalSources();
@@ -127,7 +125,7 @@ void TReflectionCodeGenerator::ShowTitle()
     fmt::print("{}\n", TProgramInfo::Get());
 }
 //---------------------------------------------------------------------------------------
-void TReflectionCodeGenerator::GetFileAbsPathList(TSetupConfig* mSetupConfig, TStringList& fileList)
+void TReflectionCodeGenerator::GetFileAbsPathList(TStringList& fileList)
 {
     fileList.clear();
     if (mConfig->targetForParsing.recursive) {
@@ -137,7 +135,7 @@ void TReflectionCodeGenerator::GetFileAbsPathList(TSetupConfig* mSetupConfig, TS
     }
 }
 //---------------------------------------------------------------------------------------
-bool TReflectionCodeGenerator::GetTypeList(TSetupConfig* mSetupConfig, TStringList& fileList, TTypeInfoPtrList& typeList)
+bool TReflectionCodeGenerator::GetTypeList(TStringList& fileList, TTypeInfoPtrList& typeList)
 {
     typeList.clear();
 
@@ -145,7 +143,10 @@ bool TReflectionCodeGenerator::GetTypeList(TSetupConfig* mSetupConfig, TStringLi
     TLoadFromFile lff;
     TContainer data;
 
-    parser.SetupTypes(mConfig->targetForCodeGeneration.typeCustomizerMap);
+    std::map<std::string, TypeCategory> nameCategoryMap;
+    ConvertStringToTypeCategory(mConfig->targetForCodeGeneration.typeCustomizerMap, nameCategoryMap);// TODO: delete, use enums
+
+    parser.SetupTypes(nameCategoryMap, mConfig->targetForCodeGeneration.appendTypeCustomizerMap);
 
     for (auto& fileAbsPath : fileList) {
         fs::path filePath(fileAbsPath);
@@ -178,7 +179,7 @@ bool TReflectionCodeGenerator::GetTypeList(TSetupConfig* mSetupConfig, TStringLi
     return true;
 }
 //---------------------------------------------------------------------------------------
-void TReflectionCodeGenerator::FilterTypeList(TSetupConfig* mSetupConfig, TTypeInfoPtrList& typeList, TTypeInfoPtrSet& filteredTypeList)
+void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeInfoPtrSet& filteredTypeList)
 {
     filteredTypeList.clear();
 
@@ -391,7 +392,7 @@ void TReflectionCodeGenerator::SaveOut()
 
         auto ser = genInfo.generator->GetSerializer();
         auto externalSources = ser->externalSources;
-        if (externalSources = nullptr) {
+        if (externalSources == nullptr) {
             continue;
         }
 
@@ -405,8 +406,8 @@ void TReflectionCodeGenerator::SaveOut()
             extSrc.customizedTypes.insert(gen.GetFullType());
         }
 
-        auto fileAbsPath = TPathOperations::CalculatePathBy(mSetupConfig.mAbsPathDirJson, externalSources->outFile);
-        mOutDumper->Save(extSrc, fileAbsPath);
+        auto absFilePath = TPathOperations::CalculatePathBy(mSetupConfig.mAbsPathDirJson, externalSources->outFile);
+        mOutDumper->Save(extSrc, absFilePath);
     }
 }
 //---------------------------------------------------------------------------------------
@@ -420,6 +421,27 @@ void TReflectionCodeGenerator::AddToGeneratorList()
         TGeneratorInfo generatorInfo;
         generatorInfo.generator = generator;
         mGenerators.push_back(generatorInfo);
+    }
+}
+//---------------------------------------------------------------------------------------
+void TReflectionCodeGenerator::ConvertStringToTypeCategory(std::map<std::string, std::string>& strTypeCustomizerMap,
+    std::map<std::string, TypeCategory>& typeCustomizerMap)
+{
+    static std::map<std::string, TypeCategory> nameToTypeCategoryMap;
+
+    if (nameToTypeCategoryMap.size() == 0) {
+        constexpr auto& typeCategories = magic_enum::enum_values<TypeCategory>();
+        for (auto& typeCategory : typeCategories) {
+
+            std::string name(magic_enum::enum_name<TypeCategory>(typeCategory));
+            nameToTypeCategoryMap.insert({name, typeCategory});
+        }
+    }
+
+    typeCustomizerMap.clear();
+    for (auto& typeCustomizer : strTypeCustomizerMap) {
+        auto& type = nameToTypeCategoryMap[typeCustomizer.second];
+        typeCustomizerMap.insert({typeCustomizer.first, type});
     }
 }
 //---------------------------------------------------------------------------------------

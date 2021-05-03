@@ -102,7 +102,7 @@ void TJsonSerializerSourceFileGenerator::AddInit()
 
     AddEmptyLine();
     Add("int max = 0;");
-    auto str = fmt::format("for ( auto& vt : {} ) {{", s_TypeNameFuncsMap);
+    auto str = fmt::format("for (auto& vt : {}) {{", s_TypeNameFuncsMap);
     Add(str);
     IncrementTabs();
 
@@ -113,7 +113,7 @@ void TJsonSerializerSourceFileGenerator::AddInit()
     AddEmptyLine();
     str = fmt::format("{}.resize(max + 1);", s_TypeFuncVector);
     Add(str);
-    str = fmt::format("for ( auto& vt : {} ) {{", s_TypeNameFuncsMap);
+    str = fmt::format("for (auto& vt : {}) {{", s_TypeNameFuncsMap);
     Add(str);
     IncrementTabs();
     str = fmt::format("{}[vt.second.typeIdentifier] = vt.second;", s_TypeFuncVector);
@@ -314,7 +314,7 @@ void TJsonSerializerSourceFileGenerator::AddPush(TMemberInfo* pMemberInfo,
 void TJsonSerializerSourceFileGenerator::AddPushZeroDepth(TMemberInfo* pMemberInfo,
     std::vector<TMemberExtendedTypeInfo>* pExtArr)
 {
-    auto str = fmt::format("{}::{}( {}, \"{}\", {}->{} );",
+    auto str = fmt::format("{}::{}({}, \"{}\", {}->{});",
         s_PUM, s_Push, s_Obj, pMemberInfo->mName, s_TypeObject, pMemberInfo->mName);
 
     Add(str);
@@ -331,10 +331,10 @@ void TJsonSerializerSourceFileGenerator::AddPushDepth(TMemberInfo* pMemberInfo,
     auto curA = ArrayName(pMemberInfo->mName, depth - 1);
 
     if (prevExt->mCategory == TypeCategory::MAP) {
-        str = fmt::format("{}::{}( {}, {}::{}({}.{}).data(), {}.{} );",
+        str = fmt::format("{}::{}({}, {}::{}({}.{}).data(), {}.{});",
             s_PUM, s_Push, curC, s_PUM, s_ConvertToString, curE, s_First, curE, s_Second);
     } else {
-        str = fmt::format("{}::{}( {}, {} );", s_PUM, s_PushToArray, curA, curE);
+        str = fmt::format("{}::{}({}, {});", s_PUM, s_PushToArray, curA, curE);
     }
     Add(str);
 }
@@ -362,12 +362,12 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionZeroDepth(TMemberInfo*
 
     std::string str;
 
-    auto addObject = fmt::format("auto {}_o = {}::{}( {}, \"{}\");", pMemberInfo->mName, s_PUM, s_AddObject, s_Obj, pMemberInfo->mName);
+    auto addObject = fmt::format("auto {}_o = {}::{}({}, \"{}\");", pMemberInfo->mName, s_PUM, s_AddObject, s_Obj, pMemberInfo->mName);
 
     auto access = pMemberInfo->mExtendedInfo.mAccessMethod;
     if (access == AccessMethod::OBJECT) {
         Add(addObject);
-        str = fmt::format("{}( &({}->{}), {}_o );", methodStr, s_TypeObject, pMemberInfo->mName, pMemberInfo->mName);
+        str = fmt::format("{}(&({}->{}), {}_o);", methodStr, s_TypeObject, pMemberInfo->mName, pMemberInfo->mName);
         Add(str);
     } else {
         std::string ptr;
@@ -377,16 +377,16 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionZeroDepth(TMemberInfo*
             ptr = fmt::format("{}->{}", s_TypeObject, pMemberInfo->mName);
         }
 
-        str = fmt::format("if ( {} == {} ) {{", ptr, s_Nullptr);
+        str = fmt::format("if ({} == {}) {{", ptr, s_Nullptr);
         Add(str);
         IncrementTabs();
-        str = fmt::format("{}::{}( {}, \"{}\");", s_PUM, s_PushNull, s_Obj, pMemberInfo->mName);
+        str = fmt::format("{}::{}({}, \"{}\");", s_PUM, s_PushNull, s_Obj, pMemberInfo->mName);
         Add(str);
         DecrementTabs();
         Add("} else {");
         IncrementTabs();
         Add(addObject);
-        str = fmt::format("{}( {}, {}_o );", methodStr, ptr, pMemberInfo->mName);
+        str = fmt::format("{}({}, {}_o);", methodStr, ptr, pMemberInfo->mName);
         Add(str);
         DecrementTabs();
         Add("}");
@@ -443,9 +443,9 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthSetListVector(TMe
         Add(str);
         str = fmt::format("auto {} = {}.{}();", curC, curA, s_GetObject);
         Add(str);
-        str = fmt::format("{}( &{}, {} );", methodStr, curE, curC);
+        str = fmt::format("{}(&{}, {});", methodStr, curE, curC);
         Add(str);
-        str = fmt::format("{}::{}( {}, {} );", s_PUM, s_PushToArray, prevA, curA);
+        str = fmt::format("{}::{}({}, {});", s_PUM, s_PushToArray, prevA, curA);
         Add(str);
     } else {
         std::string ptr;
@@ -455,10 +455,10 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthSetListVector(TMe
             ptr = fmt::format("{}", curE);
         }
 
-        str = fmt::format("if ( {} == {} ) {{", ptr, s_Nullptr);
+        str = fmt::format("if ({} == {}) {{", ptr, s_Nullptr);
         Add(str);
         IncrementTabs();
-        str = fmt::format("{}::{}( {} );", s_PUM, s_PushToArrayNull, prevA);
+        str = fmt::format("{}::{}({});", s_PUM, s_PushToArrayNull, prevA);
         Add(str);
         DecrementTabs();
         Add("} else {");
@@ -467,7 +467,7 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthSetListVector(TMe
         Add(str);
         str = fmt::format("auto {} = {}.{}();", curC, curA, s_GetObject);
         Add(str);
-        str = fmt::format("{}( {}, {} );", methodStr, ptr, curC);
+        str = fmt::format("{}({}, {});", methodStr, ptr, curC);
         Add(str);
         DecrementTabs();
         Add("}");
@@ -503,10 +503,10 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthMap(TMemberInfo* 
 
 
     if (access == AccessMethod::OBJECT) {
-        str = fmt::format("auto {} = {}::{}( {}, {}::{}({}.first).data() );", curA, s_PUM, s_AddObject, prevC,
+        str = fmt::format("auto {} = {}::{}({}, {}::{}({}.first).data());", curA, s_PUM, s_AddObject, prevC,
             s_PUM, s_ConvertToString, curE);
         Add(str);
-        str = fmt::format("{}( &({}.second), {} );", methodStr, curE, curA);
+        str = fmt::format("{}(&({}.second), {});", methodStr, curE, curA);
         Add(str);
     } else {
         std::string ptr;
@@ -524,10 +524,10 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthMap(TMemberInfo* 
         DecrementTabs();
         Add("} else {");
         IncrementTabs();
-        str = fmt::format("auto {} = {}::{}( {}, {}::{}({}.first).data() );",
+        str = fmt::format("auto {} = {}::{}({}, {}::{}({}.first).data());",
             curA, s_PUM, s_AddObject, prevObj, s_PUM, s_ConvertToString, curE);
         Add(str);
-        str = fmt::format("{}( {}, {} );", methodStr, ptr, prevObj);
+        str = fmt::format("{}({}, {});", methodStr, ptr, prevObj);
         Add(str);
         DecrementTabs();
         Add("}");
@@ -557,7 +557,7 @@ void TJsonSerializerSourceFileGenerator::AddBeginPushListOrSet(TMemberInfo* pMem
     }
 
     auto curE = ElementName(pMemberInfo->mName, depth);
-    str = fmt::format("for( auto& {} : {} ) {{", curE, prevE);
+    str = fmt::format("for(auto& {} : {}) {{", curE, prevE);
     Add(str);
 
     IncrementTabs();
@@ -615,7 +615,7 @@ void TJsonSerializerSourceFileGenerator::AddBeginPushVector(TMemberInfo* pMember
         }
         prevE = ElementName(pMemberInfo->mName, depth - 1) + accessToElement;
     }
-    str = fmt::format("for( size_t {} = 0 ; {} < {}.size() ; {}++ ) {{", curI, curI, prevE, curI);
+    str = fmt::format("for(size_t {} = 0 ; {} < {}.size() ; {}++) {{", curI, curI, prevE, curI);
     Add(str);
 
     IncrementTabs();
@@ -698,7 +698,7 @@ void TJsonSerializerSourceFileGenerator::AddBeginPushMap(TMemberInfo* pMemberInf
 
     auto index = IndexName(pMemberInfo->mName, depth);
     auto curE = ElementName(pMemberInfo->mName, depth);
-    str = fmt::format("for( auto& {} : {} ) {{", curE, curSrc);
+    str = fmt::format("for(auto& {} : {}) {{", curE, curSrc);
     Add(str);
 
     IncrementTabs();
@@ -817,7 +817,7 @@ void TJsonSerializerSourceFileGenerator::AddPopZeroDepth(TMemberInfo* pMemberInf
             break;
     }
 
-    auto str = fmt::format("{}::{}( {}, \"{}\", {}->{} );",
+    auto str = fmt::format("{}::{}({}, \"{}\", {}->{});",
         s_POM, pop, s_Obj, pMemberInfo->mName, s_TypeObject, pMemberInfo->mName);
 
     Add(str);
@@ -896,7 +896,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionZeroDepth(TMemberInfo* 
 {
     auto withinClassTypeName = mCurrentTypeInfo->GetNameSpace();
 
-    auto methodStr = GetDeserializeMethod(pMemberInfo->mExtendedInfo.mNameSpace, 
+    auto methodStr = GetDeserializeMethod(pMemberInfo->mExtendedInfo.mNameSpace,
         pMemberInfo->mExtendedInfo.mShortType, withinClassTypeName);
     if (methodStr.length() == 0) {
         return;
@@ -922,11 +922,11 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionZeroDepth(TMemberInfo* 
             reset = fmt::format("{} = new {}()", pMemberInfo->mName, pMemberInfo->mExtendedInfo.GetTypeNameWithNameSpace());
         }
 
-        auto str = fmt::format("if ( {}::{}({}, \"{}\") && !{}::{}({}, \"{}\" ) ) {{",
+        auto str = fmt::format("if ({}::{}({}, \"{}\") && !{}::{}({}, \"{}\" ) ) {{",
             s_POM, s_IsExist, s_Obj, pMemberInfo->mName, s_POM, s_IsNull, s_Obj, pMemberInfo->mName);
         Add(str);
         IncrementTabs();
-        str = fmt::format("if ( {}->{} == {} ) {{", s_TypeObject, get, s_Nullptr);
+        str = fmt::format("if ({}->{} == {}) {{", s_TypeObject, get, s_Nullptr);
         Add(str);
         IncrementTabs();
         str = fmt::format("{}->{};", s_TypeObject, reset);
@@ -938,7 +938,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionZeroDepth(TMemberInfo* 
             curO, s_POM, s_FindObject, s_Obj, pMemberInfo->mName);
         Add(str);
 
-        str = fmt::format("{}( {}->{}, {});", methodStr, s_TypeObject, get, curO);
+        str = fmt::format("{}({}->{}, {});", methodStr, s_TypeObject, get, curO);
         Add(str);
         DecrementTabs();
         Add("}");
@@ -967,7 +967,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
 {
     auto withinClassTypeName = mCurrentTypeInfo->GetNameSpace();
 
-    auto methodStr = GetDeserializeMethod(pExtArr->at(depth).mNameSpace, 
+    auto methodStr = GetDeserializeMethod(pExtArr->at(depth).mNameSpace,
         pExtArr->at(depth).mShortType, withinClassTypeName);
     if (methodStr.length() == 0) {
         return;
@@ -1027,8 +1027,8 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthMap(TMemberInfo* p
 {
     auto withinClassTypeName = mCurrentTypeInfo->GetNameSpace();
 
-    auto methodStr = GetDeserializeMethod(pExtArr->at(depth).mNameSpace, 
-        pExtArr->at(depth).mShortType ,withinClassTypeName);
+    auto methodStr = GetDeserializeMethod(pExtArr->at(depth).mNameSpace,
+        pExtArr->at(depth).mShortType, withinClassTypeName);
     if (methodStr.length() == 0) {
         return;
     }
@@ -1132,7 +1132,7 @@ void TJsonSerializerSourceFileGenerator::AddBeginPopListSetVector(TMemberInfo* p
             condition = fmt::format("{}{}.{}()", prevE, access, s_IsArray);
         }
 
-        str = fmt::format("if ( {} ) {{", condition);
+        str = fmt::format("if ({}) {{", condition);
         Add(str);
         IncrementTabs();
     }
@@ -1158,7 +1158,7 @@ void TJsonSerializerSourceFileGenerator::AddBeginPopListSetVector(TMemberInfo* p
         Add(str);
     }
 
-    str = fmt::format("for( auto& {} : {} ) {{", curE, curA);
+    str = fmt::format("for(auto& {} : {}) {{", curE, curA);
     Add(str);
 
     IncrementTabs();
@@ -1217,7 +1217,7 @@ void TJsonSerializerSourceFileGenerator::AddBeginPopMap(TMemberInfo* pMemberInfo
         Add(str);
     }
 
-    str = fmt::format("for( auto& {} : {} ) {{", curE, curA);
+    str = fmt::format("for(auto& {} : {}) {{", curE, curA);
     Add(str);
 
     IncrementTabs();
@@ -1388,7 +1388,7 @@ void TJsonSerializerSourceFileGenerator::AddCallingSerializeParent(TInheritanceI
         return;
     }
 
-    auto str = fmt::format("{}( ({}*){}, {});// Inheritances", methodStr, pInheritanceInfo->mLongTypeName, s_TypeObject, s_Obj);
+    auto str = fmt::format("{}(({}*){}, {});// Inheritances", methodStr, pInheritanceInfo->mLongTypeName, s_TypeObject, s_Obj);
     Add(str);
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -1401,7 +1401,7 @@ void TJsonSerializerSourceFileGenerator::AddCallingDeserializeParent(TInheritanc
         return;
     }
 
-    auto str = fmt::format("{}( ({}*){}, {});// Inheritances", methodStr, pInheritanceInfo->mLongTypeName, s_TypeObject, s_Obj);
+    auto str = fmt::format("{}(({}*){}, {});// Inheritances", methodStr, pInheritanceInfo->mLongTypeName, s_TypeObject, s_Obj);
     Add(str);
 }
 //-----------------------------------------------------------------------------------------------------------

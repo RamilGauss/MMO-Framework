@@ -1,8 +1,8 @@
 /*
-
+	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.0.0, build 47, info Json, Binary, EntMng, Reflection
-// File has been generated at 2021_04_29 20:20:45.677
+// File has been generated at 2021_05_03 21:31:47.861
 	
 #pragma once
 
@@ -14,7 +14,7 @@
 
 namespace nsJson
 {
-    class TJsonSerializer
+    class DllExport TJsonSerializer
     {
         typedef TJsonMaster::Jobj Jobj;
         typedef TJsonMaster::Jarr Jarr;
@@ -50,29 +50,29 @@ namespace nsJson
         template <typename Type>
         static bool _Deserialize(Type*& p, const std::string& str, bool checkPtr, std::string& err);
     private:
-        static void _Serialize( nsReflectionCodeGenerator::TClassDesc* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TClassDesc* p, const Jobj& obj );
+        static void _Serialize(nsReflectionCodeGenerator::TClassDesc* p, Jobj& obj );
+        static void _Deserialize(nsReflectionCodeGenerator::TClassDesc* p, const Jobj& obj );
         
-        static void _Serialize( nsReflectionCodeGenerator::TConfig* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TConfig* p, const Jobj& obj );
+        static void _Serialize(nsReflectionCodeGenerator::TConfig* p, Jobj& obj );
+        static void _Deserialize(nsReflectionCodeGenerator::TConfig* p, const Jobj& obj );
         
-        static void _Serialize( nsReflectionCodeGenerator::TExternalSource* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TExternalSource* p, const Jobj& obj );
+        static void _Serialize(nsReflectionCodeGenerator::TExternalSource* p, Jobj& obj );
+        static void _Deserialize(nsReflectionCodeGenerator::TExternalSource* p, const Jobj& obj );
         
-        static void _Serialize( nsReflectionCodeGenerator::TExternalSources* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TExternalSources* p, const Jobj& obj );
+        static void _Serialize(nsReflectionCodeGenerator::TExternalSources* p, Jobj& obj );
+        static void _Deserialize(nsReflectionCodeGenerator::TExternalSources* p, const Jobj& obj );
         
-        static void _Serialize( nsReflectionCodeGenerator::TFilter* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TFilter* p, const Jobj& obj );
+        static void _Serialize(nsReflectionCodeGenerator::TFilter* p, Jobj& obj );
+        static void _Deserialize(nsReflectionCodeGenerator::TFilter* p, const Jobj& obj );
         
-        static void _Serialize( nsReflectionCodeGenerator::TSerializer* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TSerializer* p, const Jobj& obj );
+        static void _Serialize(nsReflectionCodeGenerator::TSerializer* p, Jobj& obj );
+        static void _Deserialize(nsReflectionCodeGenerator::TSerializer* p, const Jobj& obj );
         
-        static void _Serialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj );
+        static void _Serialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, Jobj& obj );
+        static void _Deserialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj );
         
-        static void _Serialize( nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj );
-        static void _Deserialize( nsReflectionCodeGenerator::TTargetForParsing* p, const Jobj& obj );
+        static void _Serialize(nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj );
+        static void _Deserialize(nsReflectionCodeGenerator::TTargetForParsing* p, const Jobj& obj );
         
     };
     //------------------------------------------------------------------------------------------------------------

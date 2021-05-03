@@ -65,7 +65,7 @@ namespace nsReflectionCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TSerializer : TClassDesc
     {
-        std::shared_ptr<TExternalSources> externalSources;
+        std::shared_ptr<nsReflectionCodeGenerator::TExternalSources> externalSources;
         std::map<std::string, std::string> keyValueMap;
     };
 
@@ -75,8 +75,11 @@ namespace nsReflectionCodeGenerator
         std::string directory;
         std::string includeListFileName;
         std::string header;
-        std::map<std::string, nsCppParser::TypeCategory> typeCustomizerMap;
-        std::map<std::string, TSerializer> implementations;
+        //std::map<std::string, nsCppParser::TypeCategory> typeCustomizerMap;
+        std::map<std::string, std::string> typeCustomizerMap;
+        bool appendTypeCustomizerMap = true;
+
+        std::map<std::string, nsReflectionCodeGenerator::TSerializer> implementations;
     };
 
 #pragma REFLECTION_ATTRIBUTE

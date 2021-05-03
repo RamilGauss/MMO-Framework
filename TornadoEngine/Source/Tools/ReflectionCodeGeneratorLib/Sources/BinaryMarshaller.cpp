@@ -1,8 +1,8 @@
 /*
-
+	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.0.0, build 47, info Json, Binary, EntMng, Reflection
-// File has been generated at 2021_04_28 21:10:02.058
+// File has been generated at 2021_05_03 21:31:47.883
 	
 #include "BinaryMarshaller.h"
 

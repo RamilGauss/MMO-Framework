@@ -16,8 +16,8 @@ using namespace nsReflectionCodeGenerator;
 const std::string TProgramInfo::NAME = "ReflectionCodeGenerator";
 const std::string TProgramInfo::VERSION_MAJOR = "2";
 const std::string TProgramInfo::VERSION_MINOR_HIGH = "0";
-const std::string TProgramInfo::VERSION_MINOR_LOW = "0";
-const int TProgramInfo::COUNTER_BUILD = 47;
+const std::string TProgramInfo::VERSION_MINOR_LOW = "1";
+const int TProgramInfo::COUNTER_BUILD = 48;
 const std::string TProgramInfo::INFO = "Json, Binary, EntMng, Reflection";
 
 std::string TProgramInfo::Get()

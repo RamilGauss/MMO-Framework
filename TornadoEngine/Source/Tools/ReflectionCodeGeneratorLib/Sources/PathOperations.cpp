@@ -22,11 +22,11 @@ std::string TPathOperations::CalculatePathBy(const std::string& abs, const std::
     absPath += absOrRelPath;
 
     try {
-
-        auto absByAbs = std::filesystem::canonical(absPath);
+        auto absByAbs = std::filesystem::absolute(absPath);
         return absByAbs.string();
 
     } catch (std::filesystem::filesystem_error err) {
+
     }
     return std::string();
 }

@@ -81,11 +81,13 @@ bool TFunctionLexema::CanFill(std::vector<TTokenInfo>& normalizedTokens, size_t 
     auto forIndex = Find(normalizedTokens, T_FOR);
     auto catchIndex = Find(normalizedTokens, T_CATCH);
     auto switchIndex = Find(normalizedTokens, T_SWITCH);
+    auto returnIndex = Find(normalizedTokens, T_RETURN);
 
     if (ifIndex != -1 ||
         forIndex != -1 ||
         catchIndex != -1 ||
-        switchIndex != -1) {
+        switchIndex != -1 ||
+        returnIndex != -1) {
         return false;
     }
 
