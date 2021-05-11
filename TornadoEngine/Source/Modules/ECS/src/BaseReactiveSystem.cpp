@@ -21,21 +21,22 @@ namespace nsECSFramework
     //-----------------------------------------------------------------------------
     void TBaseReactiveSystem::Update()
     {
-        mCollector->Get(mEventWaiterID, [this] (TEntityIdVectorRise& entities) {
-            if ( entities.mCounter == 0 ) {
+        mCollector->Get(mEventWaiterID, [this](TEntityIdVectorRise& entities)
+        {
+            if (entities.mCounter == 0) {
                 return;
             }
 
-            if ( mUseThinning ) {
+            if (mUseThinning) {
                 mSTRO.Work(entities);// сортировать, убрать дублированные и восстановить порядок создания сущностей
             }
-            if ( entities.mCounter == 0 ) {
+            if (entities.mCounter == 0) {
                 return;
             }
 
             // фильтрация
             Filter(entities);
-            if ( entities.mCounter == 0 ) {
+            if (entities.mCounter == 0) {
                 return;
             }
 

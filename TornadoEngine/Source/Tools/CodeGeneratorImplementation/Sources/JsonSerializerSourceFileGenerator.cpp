@@ -469,6 +469,8 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthSetListVector(TMe
         Add(str);
         str = fmt::format("{}({}, {});", methodStr, ptr, curC);
         Add(str);
+        str = fmt::format("{}::{}({}, {});", s_PUM, s_PushToArray, prevA, curA);
+        Add(str);
         DecrementTabs();
         Add("}");
     }
@@ -500,8 +502,6 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthMap(TMemberInfo* 
 
     auto access = pExtArr->at(depth).mAccessMethod;
 
-
-
     if (access == AccessMethod::OBJECT) {
         str = fmt::format("auto {} = {}::{}({}, {}::{}({}.first).data());", curA, s_PUM, s_AddObject, prevC,
             s_PUM, s_ConvertToString, curE);
@@ -525,9 +525,9 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthMap(TMemberInfo* 
         Add("} else {");
         IncrementTabs();
         str = fmt::format("auto {} = {}::{}({}, {}::{}({}.first).data());",
-            curA, s_PUM, s_AddObject, prevObj, s_PUM, s_ConvertToString, curE);
+            curA, s_PUM, s_AddObject, prevC, s_PUM, s_ConvertToString, curE);
         Add(str);
-        str = fmt::format("{}({}, {});", methodStr, ptr, prevObj);
+        str = fmt::format("{}({}, {});", methodStr, ptr, curA);
         Add(str);
         DecrementTabs();
         Add("}");
@@ -620,7 +620,13 @@ void TJsonSerializerSourceFileGenerator::AddBeginPushVector(TMemberInfo* pMember
 
     IncrementTabs();
     auto curE = ElementName(pMemberInfo->mName, depth);
-    str = fmt::format("auto& {} = {}[{}];", curE, prevE, curI);
+
+    std::string elementType = "auto&";
+    if (pExtArr->at(depth+1).mCategory == TypeCategory::BOOL) {
+        elementType = s_Bool;
+    }
+
+    str = fmt::format("{} {} = {}[{}];", elementType, curE, prevE, curI);
     Add(str);
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -1000,9 +1006,9 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
         std::string newExp;
         if (category == AccessMethod::SMART_POINTER) {
             access = ".get()";
-            newExp = fmt::format("{}{}<{}>(new {}())", s_STD_, sptype, type, type);
+            newExp = fmt::format("{}<{}>(new {}())", sptype, type, type);
         } else {
-            newExp = fmt::format("new {}", type);
+            newExp = fmt::format("new {}()", type);
         }
 
         auto str = fmt::format("if (!{}.{}()) {{", prevE, s_IsNull);
@@ -1044,18 +1050,6 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthMap(TMemberInfo* p
 
     auto curExt = &(pExtArr->at(depth));
 
-    auto get = s_GetInt64;
-
-    if (curExt->mCategory == TypeCategory::BOOL) {
-        get = s_GetBool;
-    } else if (curExt->mCategory == TypeCategory::NUMBER) {
-        get = s_GetDouble;
-    } else if (curExt->mCategory == TypeCategory::CEIL_NUMBER) {
-        get = s_GetInt64;
-    } else {
-        get = s_GetString;
-    }
-
     std::string key = fmt::format("{}.name.{}()", prevE, s_GetString);
     auto keyExt = pExtArr->at(depth - 1).mTemplateChildArr.at(0);
 
@@ -1082,9 +1076,9 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthMap(TMemberInfo* p
         std::string newExp;
         if (category == AccessMethod::SMART_POINTER) {
             access = ".get()";
-            newExp = fmt::format("{}{}<{}>(new {}())", s_STD_, sptype, type, type);
+            newExp = fmt::format("{}<{}>(new {}())", sptype, type, type);
         } else {
-            newExp = fmt::format("new {}", type);
+            newExp = fmt::format("new {}()", type);
         }
 
         auto str = fmt::format("if (!{}.value.{}() ) {{", prevE, s_IsNull);
@@ -1361,19 +1355,18 @@ void TJsonSerializerSourceFileGenerator::AddEndPopMap(TMemberInfo* pMemberInfo,
     }
     auto nextC = CollectorName(pMemberInfo->mName, depth);
 
-    std::string getKey = s_GetString;
     auto keyInfo = pExtArr->at(depth - 1).mTemplateChildArr.at(0);
-    if (keyInfo.mCategory == TypeCategory::NUMBER) {
-        getKey = s_GetDouble;
-    } else if (keyInfo.mCategory == TypeCategory::BOOL) {
-        getKey = s_GetBool;
-    } else if (keyInfo.mCategory == TypeCategory::CEIL_NUMBER) {
-        getKey = s_GetInt64;
-    }
 
     auto prevE = ElementName(pMemberInfo->mName, depth - 1);
     auto curE = ElementName(pMemberInfo->mName, depth);
-    auto key = fmt::format("{}.name.{}()", prevE, getKey);
+
+    std::string key;
+    if (keyInfo.mCategory == TypeCategory::NUMBER ||
+        keyInfo.mCategory == TypeCategory::CEIL_NUMBER) {
+        key = fmt::format("{}({}.name.{}())", s_StrToNum, prevE, s_GetString);
+    } else {
+        key = fmt::format("{}.name.{}()", prevE, s_GetString);
+    }
 
     auto str = fmt::format("{}.{}({{ {}, {} }});", access, s_Insert, key, nextC);
     Add(str);

@@ -102,7 +102,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.\;./DataSources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./DataSources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -111,16 +111,11 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base_d.lib;ReflectionCodeGenerator_d.lib;shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\Json\data.json"
-copy $(SolutionDir)\Source\Base\include\JsonMaster.h $(SolutionDir)\Test\Json /y
-copy $(SolutionDir)\Source\Base\include\JsonPopMaster.h $(SolutionDir)\Test\Json /y
-copy $(SolutionDir)\Source\Base\include\JsonPushMaster.h $(SolutionDir)\Test\Json /y
-copy $(SolutionDir)\Source\Base\src\JsonPushMaster.cpp $(SolutionDir)\Test\Json /y
-copy $(SolutionDir)\Source\Base\include\TypeDef.h $(SolutionDir)\Test\Json /y</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\Json\data.json"</Command>
       <Message>Run Reflection code generator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -171,7 +166,7 @@ copy $(SolutionDir)\Source\Base\include\TypeDef.h $(SolutionDir)\Test\Json /y</C
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>.\;./DataSources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./DataSources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -179,29 +174,28 @@ copy $(SolutionDir)\Source\Base\include\TypeDef.h $(SolutionDir)\Test\Json /y</C
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Base.lib;ReflectionCodeGenerator.lib;shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="JsonPushMaster.cpp" />
+    <ClCompile Include="ComplexTest.cpp" />
+    <ClCompile Include="DataSources\Complex.cpp" />
+    <ClCompile Include="DataSources\Simple.cpp" />
     <ClCompile Include="JsonSerializer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SimpleTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataSources\BaseStruct.h" />
-    <ClInclude Include="DataSources\TestClass.h" />
-    <ClInclude Include="DataSources\TestStruct.h" />
+    <ClInclude Include="DataSources\Complex.hpp" />
+    <ClInclude Include="DataSources\Simple.hpp" />
     <ClInclude Include="IncludeList.h" />
-    <ClInclude Include="JsonMaster.h" />
-    <ClInclude Include="JsonPopMaster.h" />
-    <ClInclude Include="JsonPushMaster.h" />
     <ClInclude Include="JsonSerializer.h" />
-    <ClInclude Include="TypeDef.h" />
-    <ClInclude Include="UnpackHandler.h" />
-    <ClInclude Include="VectorStatic.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json" />
-    <None Include="testData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

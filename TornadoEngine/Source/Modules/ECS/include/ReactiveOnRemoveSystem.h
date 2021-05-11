@@ -11,34 +11,32 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-  template<typename Component>
-  class DllExport TReactiveOnRemoveSystem : public TBaseReactiveSystem
-  {
-  public:
-    TReactiveOnRemoveSystem( bool useThinning = true ) : TBaseReactiveSystem( useThinning )
+    template<typename Component>
+    class DllExport TReactiveOnRemoveSystem : public TBaseReactiveSystem
     {
-      auto pEntMng = GetEntityManager();
-      mEventWaiterID = pEntMng->OnRemove<Component>();
-      mCollector = &( pEntMng->mRemoveCollector );
-    }
-  protected:
-    void Filter( TEntityIdVectorRise& entities ) override
-    {
-      auto pEntMng = GetEntityManager();
-      // entity
-      int filtered = 0;
-      for ( size_t i = 0; i < entities.mCounter; i++ )
-      {
-        auto& entity = entities.mVec[i];
-        if ( pEntMng->HasComponent<Component>( entity ) )
-          continue;
-        if ( Filter( entity ) )
+    public:
+        TReactiveOnRemoveSystem(bool useThinning = true) : TBaseReactiveSystem(useThinning)
         {
-          entities.mVec[filtered] = entity;
-          filtered++;
+            auto pEntMng = GetEntityManager();
+            mEventWaiterID = pEntMng->OnRemove<Component>();
+            mCollector = &(pEntMng->mRemoveCollector);
         }
-      }
-      entities.mCounter = filtered;
-    }
-  };
+    protected:
+        void Filter(TEntityIdVectorRise& entities) override
+        {
+            auto pEntMng = GetEntityManager();
+            // entity
+            int filtered = 0;
+            for (size_t i = 0; i < entities.mCounter; i++)       {
+                auto& entity = entities.mVec[i];
+                if (pEntMng->HasComponent<Component>(entity))
+                    continue;
+                if (Filter(entity))         {
+                    entities.mVec[filtered] = entity;
+                    filtered++;
+                }
+            }
+            entities.mCounter = filtered;
+        }
+    };
 }

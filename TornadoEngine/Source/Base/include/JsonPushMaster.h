@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include <list>
 #include <functional>
 
+#include <numeric>
 #include <type_traits>
 
 #include "JsonMaster.h"
@@ -36,10 +37,10 @@ public:// methods
     {
         jarr.PushBack(Value(value.data(), Allocator()), Allocator());
     }
-    template<typename ValueType, 
-        typename std::enable_if<std::is_integral<ValueType>::value || 
-                 std::is_floating_point<ValueType>::value>::type* = nullptr>
-    static void PushBack(Value& jarr, ValueType& value)
+    template<typename ValueType,
+        typename std::enable_if<std::is_integral<ValueType>::value ||
+        std::is_floating_point<ValueType>::value>::type* = nullptr>
+        static void PushBack(Value& jarr, ValueType& value)
     {
         jarr.PushBack(Value(value), Allocator());
     }
@@ -69,10 +70,19 @@ public:// methods
     }
     template<typename ValueType,
         typename std::enable_if<std::is_integral<ValueType>::value ||
-                 std::is_floating_point<ValueType>::value>::type* = nullptr>
+        std::is_floating_point<ValueType>::value>::type* = nullptr>
     static void Push(Jobj& obj, const char* sKey, ValueType& value)
     {
-        obj.AddMember(Value(sKey, Allocator()), Value(value), Allocator());
+        constexpr bool isLong = std::is_same<long, ValueType>::value;
+        constexpr bool isUnsignedLong = std::is_same<unsigned long, ValueType>::value;
+
+        if constexpr (isLong) {
+            obj.AddMember(Value(sKey, Allocator()), Value((int64_t) value), Allocator());
+        } else if constexpr (isUnsignedLong) {
+            obj.AddMember(Value(sKey, Allocator()), Value((uint64_t) value), Allocator());
+        } else {
+            obj.AddMember(Value(sKey, Allocator()), Value(value), Allocator());
+        }
     }
 public:
     template <typename T>

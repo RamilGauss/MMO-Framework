@@ -197,7 +197,7 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
         }
 
         bool passedByInheritance = false;
-        if (!attribute.empty()) {
+        if (!inheritance.empty()) {
             for (auto& parent : type->mInheritanceVec) {
                 if (inheritance == parent.mLongTypeName) {
                     passedByInheritance = true;
@@ -210,7 +210,9 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
             }
         }
 
-        if (passedByAttribute || passedByInheritance) {
+        bool isAllEmpty = attribute.empty() && inheritance.empty();
+
+        if (isAllEmpty || passedByAttribute || passedByInheritance) {
             filteredTypeList.insert(type);
         }
     }

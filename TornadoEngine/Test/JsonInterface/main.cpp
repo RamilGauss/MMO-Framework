@@ -4,8 +4,6 @@
 
 #include <fmt/color.h>
 
-#include <squirrel.h>
-
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
@@ -17,8 +15,6 @@
 
 int main(int argc, char** argv)
 {
-    //struct SQVM* vm = sq_open(100000);
-
     // Add to serialize
     rapidjson::Document doc(rapidjson::Type::kObjectType);
     rapidjson::Document::Object jobj = doc.GetObject();

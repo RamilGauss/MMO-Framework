@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- какой-то комментарий -->
-<country name="Russian Federation">
-  <city name="Vladimir" populity="335000"/>
-  <city name="Moscow" populity="12333000">Capital of the Great Russia</city>
-  <city name="Tula" populity="1000000">Gingerbread</city>  
-</country>

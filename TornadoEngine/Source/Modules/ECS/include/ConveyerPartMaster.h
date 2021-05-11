@@ -67,22 +67,22 @@ namespace nsECSFramework
         t->SetEntityManager(registry);
 
         // списки для инициализации
-        if ( IsTypeReactive<T>() ) {
+        if (IsTypeReactive<T>()) {
             mReactiveInitializer->Add(t);// реактивные системы
         } else
-            if ( IsTypeFeature<T>() == false )
+            if (IsTypeFeature<T>() == false)
                 mInitAndExecuteInitializer->Add(t);// execute и обычные init системы
 
-        if ( IsTypeFeature<T>() ) {
+        if (IsTypeFeature<T>()) {
             t->PrepareFeature();// итеративно продолжить дальше
         } else {
             // если чистый InitSystem, то Update не вызовется
-            if ( IsTypeExecute<T>() || IsTypeReactive<T>() ) {
+            if (IsTypeExecute<T>() || IsTypeReactive<T>()) {
                 mSystemUpdater->Add(t);
             }
         }
 #ifdef _DEBUG
-        if ( IsTypeInit<T>() ) {
+        if (IsTypeInit<T>()) {
             assert(!IsTypeExecute<T>() && !IsTypeReactive<T>());
         }
 #endif
