@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.0.2, build 49, info Json, Binary, EntMng, Reflection
-// File has been generated at 2021_05_11 11:20:37.358
+// ReflectionCodeGenerator version 2.1.0, build 50, info Json, Binary, EntMng, Reflection
+// File has been generated at 2021_05_20 22:47:23.578
 	
 #pragma once
 
@@ -49,12 +49,36 @@ namespace nsJson
     private:
         template <typename Type>
         static bool _Deserialize(Type*& p, const std::string& str, bool checkPtr, std::string& err);
-    private:
-        static void _Serialize(nsComplex::Y* p, Jobj& obj );
-        static void _Deserialize(nsComplex::Y* p, const Jobj& obj );
+    public:
+        static void _Serialize(nsComplex::Y* p, Jobj& obj);
+        static void _Deserialize(nsComplex::Y* p, const Jobj& obj);
         
-        static void _Serialize(nsSimple::X* p, Jobj& obj );
-        static void _Deserialize(nsSimple::X* p, const Jobj& obj );
+        static void _Serialize(nsFarType::X* p, Jobj& obj);
+        static void _Deserialize(nsFarType::X* p, const Jobj& obj);
+        
+        static void _Serialize(nsInOut::A* p, Jobj& obj);
+        static void _Deserialize(nsInOut::A* p, const Jobj& obj);
+        
+        static void _Serialize(nsInOut::B* p, Jobj& obj);
+        static void _Deserialize(nsInOut::B* p, const Jobj& obj);
+        
+        static void _Serialize(nsSimple::X* p, Jobj& obj);
+        static void _Deserialize(nsSimple::X* p, const Jobj& obj);
+        
+        static std::string _SerializeEnum(nsSimpleEnum::A0* p);
+        static void _DeserializeEnum(std::string& str, nsSimpleEnum::A0* p);
+        
+        static std::string _SerializeEnum(nsSimpleEnum::A1* p);
+        static void _DeserializeEnum(std::string& str, nsSimpleEnum::A1* p);
+        
+        static void _Serialize(nsSimpleEnum::X* p, Jobj& obj);
+        static void _Deserialize(nsSimpleEnum::X* p, const Jobj& obj);
+        
+        static std::string _SerializeEnum(nsSimpleEnum::X::E0* p);
+        static void _DeserializeEnum(std::string& str, nsSimpleEnum::X::E0* p);
+        
+        static std::string _SerializeEnum(nsSimpleEnum::X::E1* p);
+        static void _DeserializeEnum(std::string& str, nsSimpleEnum::X::E1* p);
         
     };
     //------------------------------------------------------------------------------------------------------------

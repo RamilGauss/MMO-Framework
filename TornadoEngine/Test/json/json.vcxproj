@@ -69,6 +69,7 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Exe\.conan\conanbuildinfo.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,7 +116,9 @@
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\Json\data.json"</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\Json\data.json"
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\Json\data0.json"
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\Json\data1.json"</Command>
       <Message>Run Reflection code generator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -157,16 +160,20 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>./;./DataSources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderOutputFile />
+      <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -181,18 +188,34 @@
     <ClCompile Include="ComplexTest.cpp" />
     <ClCompile Include="DataSources\Complex.cpp" />
     <ClCompile Include="DataSources\Simple.cpp" />
+    <ClCompile Include="DataSources\SimpleEnum.cpp" />
+    <ClCompile Include="InOutTest.cpp" />
     <ClCompile Include="JsonSerializer.cpp" />
+    <ClCompile Include="JsonSerializer_InOut_0.cpp" />
+    <ClCompile Include="JsonSerializer_InOut_1.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SimpleEnumTest.cpp" />
     <ClCompile Include="SimpleTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataSources\Complex.hpp" />
+    <ClInclude Include="DataSources\FarType.h" />
+    <ClInclude Include="DataSources\InOut.h" />
     <ClInclude Include="DataSources\Simple.hpp" />
+    <ClInclude Include="DataSources\SimpleEnum.h" />
     <ClInclude Include="IncludeList.h" />
+    <ClInclude Include="IncludeList_InOut_0.h" />
+    <ClInclude Include="IncludeList_InOut_1.h" />
     <ClInclude Include="JsonSerializer.h" />
+    <ClInclude Include="JsonSerializer_InOut_0.h" />
+    <ClInclude Include="JsonSerializer_InOut_1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json" />
+    <None Include="data0.json" />
+    <None Include="data1.json" />
+    <None Include="inOut0.json" />
+    <None Include="inOut1.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />

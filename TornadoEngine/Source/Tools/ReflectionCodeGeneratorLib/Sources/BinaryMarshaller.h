@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.0.0, build 47, info Json, Binary, EntMng, Reflection
-// File has been generated at 2021_05_03 21:31:47.878
+// ReflectionCodeGenerator version 2.1.0, build 50, info Json, Binary, EntMng, Reflection
+// File has been generated at 2021_05_20 22:41:11.954
 	
 #pragma once
 
@@ -93,42 +93,42 @@ namespace nsBinary
         void _Serialize( nsReflectionCodeGenerator::TClassDesc* p );
         void _Deserialize( nsReflectionCodeGenerator::TClassDesc* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TClassDesc* p );
-        static void _Deallocate(nsReflectionCodeGenerator::TClassDesc* p );
+        static void _Deallocate(nsReflectionCodeGenerator::TClassDesc* p);
         
         void _Serialize( nsReflectionCodeGenerator::TConfig* p );
         void _Deserialize( nsReflectionCodeGenerator::TConfig* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TConfig* p );
-        static void _Deallocate(nsReflectionCodeGenerator::TConfig* p );
+        static void _Deallocate(nsReflectionCodeGenerator::TConfig* p);
         
         void _Serialize( nsReflectionCodeGenerator::TExternalSource* p );
         void _Deserialize( nsReflectionCodeGenerator::TExternalSource* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TExternalSource* p );
-        static void _Deallocate(nsReflectionCodeGenerator::TExternalSource* p );
+        static void _Deallocate(nsReflectionCodeGenerator::TExternalSource* p);
         
         void _Serialize( nsReflectionCodeGenerator::TExternalSources* p );
         void _Deserialize( nsReflectionCodeGenerator::TExternalSources* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TExternalSources* p );
-        static void _Deallocate(nsReflectionCodeGenerator::TExternalSources* p );
+        static void _Deallocate(nsReflectionCodeGenerator::TExternalSources* p);
         
         void _Serialize( nsReflectionCodeGenerator::TFilter* p );
         void _Deserialize( nsReflectionCodeGenerator::TFilter* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TFilter* p );
-        static void _Deallocate(nsReflectionCodeGenerator::TFilter* p );
+        static void _Deallocate(nsReflectionCodeGenerator::TFilter* p);
         
         void _Serialize( nsReflectionCodeGenerator::TSerializer* p );
         void _Deserialize( nsReflectionCodeGenerator::TSerializer* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TSerializer* p );
-        static void _Deallocate(nsReflectionCodeGenerator::TSerializer* p );
+        static void _Deallocate(nsReflectionCodeGenerator::TSerializer* p);
         
         void _Serialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p );
         void _Deserialize( nsReflectionCodeGenerator::TTargetForCodeGeneration* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TTargetForCodeGeneration* p );
-        static void _Deallocate(nsReflectionCodeGenerator::TTargetForCodeGeneration* p );
+        static void _Deallocate(nsReflectionCodeGenerator::TTargetForCodeGeneration* p);
         
         void _Serialize( nsReflectionCodeGenerator::TTargetForParsing* p );
         void _Deserialize( nsReflectionCodeGenerator::TTargetForParsing* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TTargetForParsing* p );
-        static void _Deallocate(nsReflectionCodeGenerator::TTargetForParsing* p );
+        static void _Deallocate(nsReflectionCodeGenerator::TTargetForParsing* p);
         
     };
     //-----------------------------------------------------------------------------

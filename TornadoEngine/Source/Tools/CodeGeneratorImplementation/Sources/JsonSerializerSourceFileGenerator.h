@@ -78,6 +78,9 @@ namespace nsCodeGeneratorImplementation
         void AddSerializeMethodImplementation(nsCppParser::TTypeInfo* p);
         void AddDeserializeMethodImplementation(nsCppParser::TTypeInfo* p);
 
+        void AddSerializeEnumMethodImplementation(nsCppParser::TTypeInfo* p);
+        void AddDeserializeEnumMethodImplementation(nsCppParser::TTypeInfo* p);
+
         void AddCallingSerializeParent(nsCppParser::TInheritanceInfo* pInheritanceInfo);
         void AddCallingDeserializeParent(nsCppParser::TInheritanceInfo* pInheritanceInfo);
 

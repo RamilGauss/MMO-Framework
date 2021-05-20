@@ -25,6 +25,9 @@ namespace nsCodeGeneratorImplementation
 
         void AddSerializeMethodDeclaration(std::string& namespaceWithType);
         void AddDeserializeMethodDeclaration(std::string& namespaceWithType);
+
+        void AddSerializeEnumMethodDeclaration(std::string& namespaceWithType);
+        void AddDeserializeEnumMethodDeclaration(std::string& namespaceWithType);
     };
 }
 

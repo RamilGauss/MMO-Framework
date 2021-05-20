@@ -36,10 +36,10 @@ namespace nsECSFramework
             auto pThisParts = this->parts.Begin();
             auto pOtherParts = other.parts.Begin();
 
-            for ( auto& index : mComponentTypeIdentifierList ) {
+            for (auto& index : mComponentTypeIdentifierList) {
                 auto pCThis = pThisParts[index];
                 auto pCOther = pOtherParts[index];
-                if ( pCThis->IsEqual(pCOther) ) {
+                if (pCThis->IsEqual(pCOther)) {
                     continue;
                 }
                 return pCThis->IsLess(pCOther);
@@ -49,7 +49,7 @@ namespace nsECSFramework
 
         void Done()
         {
-            for ( auto& index : mComponentTypeIdentifierList ) {
+            for (auto& index : mComponentTypeIdentifierList) {
                 parts[index] = nullptr;
             }
             mComponentTypeIdentifierList.clear();

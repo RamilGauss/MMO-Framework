@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include "JsonSerializerSourceFileGenerator.h"
 
 using namespace nsCodeGeneratorImplementation;
+using namespace nsCppParser;
 
 void TJsonSerializerGenerator::Work()
 {
@@ -53,6 +54,41 @@ void TJsonSerializerGenerator::GenerateSource()
 //----------------------------------------------------------------------------------
 void TJsonSerializerGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencies)
 {
+    auto& pubMem = typeName->mMembers[(int) AccessLevel::PUBLIC];
+    for (auto& member : pubMem) {
+        TMemberExtendedTypeInfo* pMemberExtendedInfo = nullptr;
+        switch (member->mExtendedInfo.mCategory) {
+            case TypeCategory::REFLECTION:
+                pMemberExtendedInfo = &(member->mExtendedInfo);
+                break;
+            case TypeCategory::SMART_POINTER:
+            case TypeCategory::VECTOR:
+            case TypeCategory::LIST:
+            case TypeCategory::SET:
+            case TypeCategory::MAP:
+                {
+                    TMemberExtendedTypeInfo* pExt = &(member->mExtendedInfo);
+                    while (true) {
+                        auto* templArr = &(pExt->mTemplateChildArr);
+                        if (!templArr->empty()) {
+                            pExt = &(templArr->at(templArr->size() - 1));
+                        } else {
+                            if (pExt->mCategory == TypeCategory::REFLECTION) {
+                                pMemberExtendedInfo = pExt;
+                            }
+                            break;
+                        }
+                    }
+                }
+                break;
+            default:;
+        }
 
+        if (pMemberExtendedInfo == nullptr) {
+            continue;
+        }
+
+        dependencies.insert(pMemberExtendedInfo->mLongType);
+    }
 }
 //----------------------------------------------------------------------------------

@@ -12,7 +12,7 @@ using namespace nsCodeGeneratorImplementation;
 // S - Type* p, Jobj& obj
 std::list<std::string> TJsonSerializerFileGenerator::GetParamListForSerialize(const std::string& namespaceWithType)
 {
-    return std::list<std::string>
+    return
     {
         namespaceWithType + "* " + s_TypeObject,
             "Jobj& obj"
@@ -21,31 +21,27 @@ std::list<std::string> TJsonSerializerFileGenerator::GetParamListForSerialize(co
 //----------------------------------------------------------------------------------------------------
 std::list<std::string> TJsonSerializerFileGenerator::GetParamListForDeserialize(const std::string& namespaceWithType)
 {
-    return std::list<std::string>
+    return
     {
         namespaceWithType + "* " + s_TypeObject,
             "const Jobj& obj"
     };
 }
 //----------------------------------------------------------------------------------------------------
-bool TJsonSerializerFileGenerator::IsInExternalSources(const std::string& namespaceWithType)
+std::list<std::string> TJsonSerializerFileGenerator::GetParamListForSerializeEnum(const std::string& namespaceWithType)
 {
-    auto p = GetExternalSources(namespaceWithType);
-    return p != nullptr;
+    return
+    {
+        namespaceWithType + "* " + s_TypeObject
+    };
 }
 //----------------------------------------------------------------------------------------------------
-const nsReflectionCodeGenerator::TExternalSource* TJsonSerializerFileGenerator::GetExternalSources(const std::string& namespaceWithType)
+std::list<std::string> TJsonSerializerFileGenerator::GetParamListForDeserializeEnum(const std::string& namespaceWithType)
 {
-    return nullptr;
-    //auto extSrc = mJsonSerializer->externalSources.get();
-    //if ( extSrc == nullptr ) {
-    //    return nullptr;
-    //}
-
-    //auto fit = extSrc->value.find(namespaceWithType);
-    //if ( fit == extSrc->value.end() ) {
-    //    return nullptr;
-    //}
-    //return &(fit->second);
+    return
+    {
+        "std::string& str",
+        namespaceWithType + "* " + s_TypeObject
+    };
 }
 //----------------------------------------------------------------------------------------------------

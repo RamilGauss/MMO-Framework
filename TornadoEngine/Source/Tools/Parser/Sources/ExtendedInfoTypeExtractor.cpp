@@ -226,7 +226,7 @@ void TExtendedInfoTypeExtractor::ConvertSimpleHierarchyToExtended(TSimple* simpl
         meti->mShortType = simple->parts.back().value;
     }
 
-    int cnt = simple->parts.size();
+    int cnt = (int)(simple->parts.size());
     cnt -= 2;
     if (isPointer) {
         cnt--;

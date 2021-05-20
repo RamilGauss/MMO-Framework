@@ -63,6 +63,8 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
         // Solve Filtered.
         FilterTypeList(mTypeList, mFilteredTypeList);
 
+        CorrectMemberInfoInAllTypes();
+
         // For each generator
         LoadExternalSources();
 
@@ -143,10 +145,8 @@ bool TReflectionCodeGenerator::GetTypeList(TStringList& fileList, TTypeInfoPtrLi
     TLoadFromFile lff;
     TContainer data;
 
-    std::map<std::string, TypeCategory> nameCategoryMap;
-    ConvertStringToTypeCategory(mConfig->targetForCodeGeneration.typeCustomizerMap, nameCategoryMap);// TODO: delete, use enums
-
-    parser.SetupTypes(nameCategoryMap, mConfig->targetForCodeGeneration.appendTypeCustomizerMap);
+    parser.SetupTypes(mConfig->targetForCodeGeneration.typeCustomizerMap, 
+        mConfig->targetForCodeGeneration.appendTypeCustomizerMap);
 
     for (auto& fileAbsPath : fileList) {
         fs::path filePath(fileAbsPath);
@@ -187,6 +187,11 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
     auto attribute = mConfig->filter.attribute;
 
     for (auto& type : typeList) {
+
+        //if (type->mType == DeclarationType::ENUM) {
+        //    filteredTypeList.insert(type);
+        //    continue;
+        //}
 
         bool passedByAttribute = false;
         if (!attribute.empty()) {
@@ -266,7 +271,7 @@ void TReflectionCodeGenerator::SolveTypeNameExternalSources()
     }
 }
 //---------------------------------------------------------------------------------------
-void TReflectionCodeGenerator::AddDependencies(ITargetCodeGenerator* generator, TTypeInfo* type, std::set<std::string> dependenciesTypeNameSetOut)
+void TReflectionCodeGenerator::AddDependencies(ITargetCodeGenerator* generator, TTypeInfo* type, std::set<std::string>& dependenciesTypeNameSetOut)
 {
     std::set<std::string> dependenciesTypeNameSet;
     generator->GetDependencies(type, dependenciesTypeNameSet);
@@ -447,3 +452,79 @@ void TReflectionCodeGenerator::ConvertStringToTypeCategory(std::map<std::string,
     }
 }
 //---------------------------------------------------------------------------------------
+void TReflectionCodeGenerator::CorrectMemberInfoInAllTypes()
+{
+    for (auto& type : mTypeList) {
+
+        std::list<std::string> withinClassTypeNameList;
+
+        withinClassTypeNameList.push_back("");
+        withinClassTypeNameList.push_back(type->GetNameSpace());
+        withinClassTypeNameList.push_back(type->GetTypeNameWithNameSpace());
+
+        auto& pubMem = type->mMembers[(int) AccessLevel::PUBLIC];
+        for (auto& member : pubMem) {
+            TMemberExtendedTypeInfo* pMemberExtendedInfo = nullptr;
+            switch (member->mExtendedInfo.mCategory) {
+                case TypeCategory::REFLECTION:
+                    pMemberExtendedInfo = &(member->mExtendedInfo);
+                    break;
+                case TypeCategory::SMART_POINTER:
+                case TypeCategory::VECTOR:
+                case TypeCategory::LIST:
+                case TypeCategory::SET:
+                case TypeCategory::MAP:
+                    {
+                        TMemberExtendedTypeInfo* pExt = &(member->mExtendedInfo);
+                        while (true) {
+                            auto* templArr = &(pExt->mTemplateChildArr);
+                            if (!templArr->empty()) {
+                                pExt = &(templArr->at(templArr->size() - 1));
+                            } else {
+                                if (pExt->mCategory == TypeCategory::REFLECTION) {
+                                    pMemberExtendedInfo = pExt;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                default:;
+            }
+
+            if (pMemberExtendedInfo == nullptr) {
+                continue;
+            }
+
+            auto foundType = Find(pMemberExtendedInfo, withinClassTypeNameList);
+            if (foundType == nullptr) {
+                continue;
+            }
+
+            pMemberExtendedInfo->mNameSpace = foundType->GetNameSpace();
+            pMemberExtendedInfo->mLongType = foundType->GetTypeNameWithNameSpace();
+        }
+    }
+}
+//---------------------------------------------------------------------------------------
+TTypeInfo* TReflectionCodeGenerator::Find(TMemberExtendedTypeInfo* pMemberExtendedInfo,
+    const std::list<std::string>& withinClassTypeNameList)
+{
+    for (auto& withinClassTypeName : withinClassTypeNameList) {
+
+        std::string fullType;
+        if (!withinClassTypeName.empty()) {
+            fullType = withinClassTypeName + "::" + pMemberExtendedInfo->mLongType;
+        } else {
+            fullType = pMemberExtendedInfo->mLongType;
+        }
+
+        auto type = mTypeManager->Get(fullType);
+        if (type != nullptr) {
+            return type;
+        }
+    }
+
+    return nullptr;
+}
+//-----------------------------------------------------------------------------------------------------------

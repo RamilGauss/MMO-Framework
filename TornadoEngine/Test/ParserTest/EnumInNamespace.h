@@ -5,11 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "gtest/gtest.h"
+#pragma once
 
-int main(int argc, char** argv)
+namespace nsEnumSpace
 {
-    ::testing::InitGoogleTest(&argc, argv);
-    RUN_ALL_TESTS();
-    return 0;
+    enum class A0
+    {
+        X = 42, Y = 0x0F, Z
+    };
+    enum class A1
+    {
+        X = 42, Y = 0x0F, Z
+    };
 }

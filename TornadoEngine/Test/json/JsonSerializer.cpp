@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.0.2, build 49, info Json, Binary, EntMng, Reflection
-// File has been generated at 2021_05_11 11:20:37.360
+// ReflectionCodeGenerator version 2.1.0, build 50, info Json, Binary, EntMng, Reflection
+// File has been generated at 2021_05_20 22:47:23.582
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -40,6 +40,45 @@ void TJsonSerializer::Init()
     _nsComplex_YTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsComplex::Y>();
     mTypeNameFuncsMap.insert({"nsComplex::Y", _nsComplex_YTypeFunc });
     
+    TypeFunc _nsFarType_XTypeFunc;
+    _nsFarType_XTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsFarType::X>((nsFarType::X*) p, str);
+    };
+    _nsFarType_XTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
+        return Deserialize<nsFarType::X>((nsFarType::X*&) p, str, err);
+    };
+    _nsFarType_XTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Fill<nsFarType::X>((nsFarType::X*) p, str, err);
+    };
+    _nsFarType_XTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsFarType::X>();
+    mTypeNameFuncsMap.insert({"nsFarType::X", _nsFarType_XTypeFunc });
+    
+    TypeFunc _nsInOut_ATypeFunc;
+    _nsInOut_ATypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsInOut::A>((nsInOut::A*) p, str);
+    };
+    _nsInOut_ATypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
+        return Deserialize<nsInOut::A>((nsInOut::A*&) p, str, err);
+    };
+    _nsInOut_ATypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Fill<nsInOut::A>((nsInOut::A*) p, str, err);
+    };
+    _nsInOut_ATypeFunc.typeIdentifier = globalTypeIdentifier->type<nsInOut::A>();
+    mTypeNameFuncsMap.insert({"nsInOut::A", _nsInOut_ATypeFunc });
+    
+    TypeFunc _nsInOut_BTypeFunc;
+    _nsInOut_BTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsInOut::B>((nsInOut::B*) p, str);
+    };
+    _nsInOut_BTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
+        return Deserialize<nsInOut::B>((nsInOut::B*&) p, str, err);
+    };
+    _nsInOut_BTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Fill<nsInOut::B>((nsInOut::B*) p, str, err);
+    };
+    _nsInOut_BTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsInOut::B>();
+    mTypeNameFuncsMap.insert({"nsInOut::B", _nsInOut_BTypeFunc });
+    
     TypeFunc _nsSimple_XTypeFunc;
     _nsSimple_XTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsSimple::X>((nsSimple::X*) p, str);
@@ -52,6 +91,19 @@ void TJsonSerializer::Init()
     };
     _nsSimple_XTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsSimple::X>();
     mTypeNameFuncsMap.insert({"nsSimple::X", _nsSimple_XTypeFunc });
+    
+    TypeFunc _nsSimpleEnum_XTypeFunc;
+    _nsSimpleEnum_XTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsSimpleEnum::X>((nsSimpleEnum::X*) p, str);
+    };
+    _nsSimpleEnum_XTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
+        return Deserialize<nsSimpleEnum::X>((nsSimpleEnum::X*&) p, str, err);
+    };
+    _nsSimpleEnum_XTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Fill<nsSimpleEnum::X>((nsSimpleEnum::X*) p, str, err);
+    };
+    _nsSimpleEnum_XTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsSimpleEnum::X>();
+    mTypeNameFuncsMap.insert({"nsSimpleEnum::X", _nsSimpleEnum_XTypeFunc });
     
     
     int max = 0;
@@ -100,7 +152,7 @@ bool TJsonSerializer::Fill(void* p, const std::string& str, int typeIdentifier, 
     return mTypeFuncVector[typeIdentifier].fillFunc(p, str, err);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize(nsComplex::Y* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsComplex::Y* p, Jobj& obj)
 {
     auto x_o = PUM::AddObject(obj, "x");
     _Serialize(&(p->x), x_o);
@@ -275,7 +327,7 @@ void TJsonSerializer::_Serialize(nsComplex::Y* p, Jobj& obj )
     }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize(nsComplex::Y* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsComplex::Y* p, const Jobj& obj)
 {
     auto x_o0 = POM::FindObject(obj, "x");
     _Deserialize(&(p->x), x_o0);
@@ -435,7 +487,52 @@ void TJsonSerializer::_Deserialize(nsComplex::Y* p, const Jobj& obj )
     }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize(nsSimple::X* p, Jobj& obj )
+void TJsonSerializer::_Serialize(nsFarType::X* p, Jobj& obj)
+{
+    PUM::Value stf_l_a0(rapidjson::kArrayType);
+    for(auto& stf_l_e0 : p->stf_l) {
+    }
+    PUM::Push(obj, "stf_l", stf_l_a0);
+    auto stf_m_c0 = PUM::AddObject(obj, "stf_m");
+    for(auto& stf_m_e0 : p->stf_m) {
+    }
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Deserialize(nsFarType::X* p, const Jobj& obj)
+{
+    auto stf_l_a0 = POM::FindArray(obj, "stf_l");
+    for(auto& stf_l_e0 : stf_l_a0) {
+    }
+    auto stf_m_a0 = POM::FindObject(obj, "stf_m");
+    for(auto& stf_m_e0 : stf_m_a0) {
+    }
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Serialize(nsInOut::A* p, Jobj& obj)
+{
+    PUM::Push(obj, "x", p->x);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Deserialize(nsInOut::A* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "x", p->x);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Serialize(nsInOut::B* p, Jobj& obj)
+{
+    PUM::Push(obj, "x", p->x);
+    auto a_o = PUM::AddObject(obj, "a");
+    _Serialize(&(p->a), a_o);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Deserialize(nsInOut::B* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "x", p->x);
+    auto a_o0 = POM::FindObject(obj, "a");
+    _Deserialize(&(p->a), a_o0);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Serialize(nsSimple::X* p, Jobj& obj)
 {
     PUM::Push(obj, "b", p->b);
     PUM::Push(obj, "c", p->c);
@@ -987,7 +1084,7 @@ void TJsonSerializer::_Serialize(nsSimple::X* p, Jobj& obj )
     }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize(nsSimple::X* p, const Jobj& obj )
+void TJsonSerializer::_Deserialize(nsSimple::X* p, const Jobj& obj)
 {
     POM::PopBool(obj, "b", p->b);
     POM::PopNum(obj, "c", p->c);
@@ -1863,5 +1960,244 @@ void TJsonSerializer::_Deserialize(nsSimple::X* p, const Jobj& obj )
         }
         p->str_strstrm_m.insert({ str_strstrm_m_e0.name.GetString(), str_strstrm_m_c1 });
     }
+}
+//---------------------------------------------------------------------------------------
+std::string TJsonSerializer::_SerializeEnum(nsSimpleEnum::A0* p)
+{
+    switch (*p) {
+        case nsSimpleEnum::A0::_0:
+            return "_0";
+        case nsSimpleEnum::A0::_1:
+            return "_1";
+        default:;
+    }
+    return "";
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_DeserializeEnum(std::string& str, nsSimpleEnum::A0* p)
+{
+    std::map<std::string, nsSimpleEnum::A0> m;
+    m.insert({"_0", nsSimpleEnum::A0::_0});
+    m.insert({"_1", nsSimpleEnum::A0::_1});
+    *p = m[str];
+}
+//---------------------------------------------------------------------------------------
+std::string TJsonSerializer::_SerializeEnum(nsSimpleEnum::A1* p)
+{
+    switch (*p) {
+        case nsSimpleEnum::A1::_0:
+            return "_0";
+        case nsSimpleEnum::A1::_1:
+            return "_1";
+        default:;
+    }
+    return "";
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_DeserializeEnum(std::string& str, nsSimpleEnum::A1* p)
+{
+    std::map<std::string, nsSimpleEnum::A1> m;
+    m.insert({"_0", nsSimpleEnum::A1::_0});
+    m.insert({"_1", nsSimpleEnum::A1::_1});
+    *p = m[str];
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Serialize(nsSimpleEnum::X* p, Jobj& obj)
+{
+    auto a0_c0 = _SerializeEnum(&(p->a0));
+    PUM::Push(obj, "a0", a0_c0);
+    auto a1_c0 = _SerializeEnum(&(p->a1));
+    PUM::Push(obj, "a1", a1_c0);
+    auto e0_c0 = _SerializeEnum(&(p->e0));
+    PUM::Push(obj, "e0", e0_c0);
+    auto e1_c0 = _SerializeEnum(&(p->e1));
+    PUM::Push(obj, "e1", e1_c0);
+    PUM::Value a0_l_a0(rapidjson::kArrayType);
+    for(auto& a0_l_e0 : p->a0_l) {
+        auto a0_l_c1 = _SerializeEnum(&a0_l_e0);
+        PUM::PushBack(a0_l_a0, a0_l_c1);
+    }
+    PUM::Push(obj, "a0_l", a0_l_a0);
+    PUM::Value a1_l_a0(rapidjson::kArrayType);
+    for(auto& a1_l_e0 : p->a1_l) {
+        auto a1_l_c1 = _SerializeEnum(&a1_l_e0);
+        PUM::PushBack(a1_l_a0, a1_l_c1);
+    }
+    PUM::Push(obj, "a1_l", a1_l_a0);
+    PUM::Value e0_l_a0(rapidjson::kArrayType);
+    for(auto& e0_l_e0 : p->e0_l) {
+        auto e0_l_c1 = _SerializeEnum(&e0_l_e0);
+        PUM::PushBack(e0_l_a0, e0_l_c1);
+    }
+    PUM::Push(obj, "e0_l", e0_l_a0);
+    PUM::Value e1_l_a0(rapidjson::kArrayType);
+    for(auto& e1_l_e0 : p->e1_l) {
+        auto e1_l_c1 = _SerializeEnum(&e1_l_e0);
+        PUM::PushBack(e1_l_a0, e1_l_c1);
+    }
+    PUM::Push(obj, "e1_l", e1_l_a0);
+    auto a0_m_c0 = PUM::AddObject(obj, "a0_m");
+    for(auto& a0_m_e0 : p->a0_m) {
+        auto a0_m_c1 = _SerializeEnum(&a0_m_e0.second);
+        PUM::Push(a0_m_c0, PUM::ConvertToString(a0_m_e0.first).data(), a0_m_c1);
+    }
+    auto a1_m_c0 = PUM::AddObject(obj, "a1_m");
+    for(auto& a1_m_e0 : p->a1_m) {
+        auto a1_m_c1 = _SerializeEnum(&a1_m_e0.second);
+        PUM::Push(a1_m_c0, PUM::ConvertToString(a1_m_e0.first).data(), a1_m_c1);
+    }
+    auto e0_m_c0 = PUM::AddObject(obj, "e0_m");
+    for(auto& e0_m_e0 : p->e0_m) {
+        auto e0_m_c1 = _SerializeEnum(&e0_m_e0.second);
+        PUM::Push(e0_m_c0, PUM::ConvertToString(e0_m_e0.first).data(), e0_m_c1);
+    }
+    auto e1_m_c0 = PUM::AddObject(obj, "e1_m");
+    for(auto& e1_m_e0 : p->e1_m) {
+        auto e1_m_c1 = _SerializeEnum(&e1_m_e0.second);
+        PUM::Push(e1_m_c0, PUM::ConvertToString(e1_m_e0.first).data(), e1_m_c1);
+    }
+    PUM::Value a0_lll_a0(rapidjson::kArrayType);
+    for(auto& a0_lll_e0 : p->a0_lll) {
+        PUM::Value a0_lll_a1(rapidjson::kArrayType);
+        for(auto& a0_lll_e1 : a0_lll_e0) {
+            PUM::Value a0_lll_a2(rapidjson::kArrayType);
+            for(auto& a0_lll_e2 : a0_lll_e1) {
+                auto a0_lll_c3 = _SerializeEnum(&a0_lll_e2);
+                PUM::PushBack(a0_lll_a2, a0_lll_c3);
+            }
+            PUM::PushBack(a0_lll_a1, a0_lll_a2);
+        }
+        PUM::PushBack(a0_lll_a0, a0_lll_a1);
+    }
+    PUM::Push(obj, "a0_lll", a0_lll_a0);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Deserialize(nsSimpleEnum::X* p, const Jobj& obj)
+{
+    std::string a0_c0;
+    POM::PopStr(obj, "a0", a0_c0);
+    _DeserializeEnum(a0_c0, &(p->a0));
+    std::string a1_c0;
+    POM::PopStr(obj, "a1", a1_c0);
+    _DeserializeEnum(a1_c0, &(p->a1));
+    std::string e0_c0;
+    POM::PopStr(obj, "e0", e0_c0);
+    _DeserializeEnum(e0_c0, &(p->e0));
+    std::string e1_c0;
+    POM::PopStr(obj, "e1", e1_c0);
+    _DeserializeEnum(e1_c0, &(p->e1));
+    auto a0_l_a0 = POM::FindArray(obj, "a0_l");
+    for(auto& a0_l_e0 : a0_l_a0) {
+        std::string a0_l_o1 = a0_l_e0.GetString();
+        nsSimpleEnum::A0 a0_l_c1;
+        _DeserializeEnum(a0_l_o1, &a0_l_c1);
+        p->a0_l.push_back(a0_l_c1);
+    }
+    auto a1_l_a0 = POM::FindArray(obj, "a1_l");
+    for(auto& a1_l_e0 : a1_l_a0) {
+        std::string a1_l_o1 = a1_l_e0.GetString();
+        nsSimpleEnum::A1 a1_l_c1;
+        _DeserializeEnum(a1_l_o1, &a1_l_c1);
+        p->a1_l.push_back(a1_l_c1);
+    }
+    auto e0_l_a0 = POM::FindArray(obj, "e0_l");
+    for(auto& e0_l_e0 : e0_l_a0) {
+        std::string e0_l_o1 = e0_l_e0.GetString();
+        nsSimpleEnum::X::E0 e0_l_c1;
+        _DeserializeEnum(e0_l_o1, &e0_l_c1);
+        p->e0_l.push_back(e0_l_c1);
+    }
+    auto e1_l_a0 = POM::FindArray(obj, "e1_l");
+    for(auto& e1_l_e0 : e1_l_a0) {
+        std::string e1_l_o1 = e1_l_e0.GetString();
+        nsSimpleEnum::X::E1 e1_l_c1;
+        _DeserializeEnum(e1_l_o1, &e1_l_c1);
+        p->e1_l.push_back(e1_l_c1);
+    }
+    auto a0_m_a0 = POM::FindObject(obj, "a0_m");
+    for(auto& a0_m_e0 : a0_m_a0) {
+        std::string a0_m_o1 = a0_m_e0.value.GetString();
+        nsSimpleEnum::A0 a0_m_c1;
+        _DeserializeEnum(a0_m_o1, &a0_m_c1);
+        p->a0_m.insert({ std::stod(a0_m_e0.name.GetString()), a0_m_c1 });
+    }
+    auto a1_m_a0 = POM::FindObject(obj, "a1_m");
+    for(auto& a1_m_e0 : a1_m_a0) {
+        std::string a1_m_o1 = a1_m_e0.value.GetString();
+        nsSimpleEnum::A1 a1_m_c1;
+        _DeserializeEnum(a1_m_o1, &a1_m_c1);
+        p->a1_m.insert({ std::stod(a1_m_e0.name.GetString()), a1_m_c1 });
+    }
+    auto e0_m_a0 = POM::FindObject(obj, "e0_m");
+    for(auto& e0_m_e0 : e0_m_a0) {
+        std::string e0_m_o1 = e0_m_e0.value.GetString();
+        nsSimpleEnum::X::E0 e0_m_c1;
+        _DeserializeEnum(e0_m_o1, &e0_m_c1);
+        p->e0_m.insert({ std::stod(e0_m_e0.name.GetString()), e0_m_c1 });
+    }
+    auto e1_m_a0 = POM::FindObject(obj, "e1_m");
+    for(auto& e1_m_e0 : e1_m_a0) {
+        std::string e1_m_o1 = e1_m_e0.value.GetString();
+        nsSimpleEnum::X::E1 e1_m_c1;
+        _DeserializeEnum(e1_m_o1, &e1_m_c1);
+        p->e1_m.insert({ std::stod(e1_m_e0.name.GetString()), e1_m_c1 });
+    }
+    auto a0_lll_a0 = POM::FindArray(obj, "a0_lll");
+    for(auto& a0_lll_e0 : a0_lll_a0) {
+        std::list<std::list<nsSimpleEnum::A0>> a0_lll_c1;
+        auto a0_lll_a1 = a0_lll_e0.GetArray();
+        for(auto& a0_lll_e1 : a0_lll_a1) {
+            std::list<nsSimpleEnum::A0> a0_lll_c2;
+            auto a0_lll_a2 = a0_lll_e1.GetArray();
+            for(auto& a0_lll_e2 : a0_lll_a2) {
+                std::string a0_lll_o3 = a0_lll_e2.GetString();
+                nsSimpleEnum::A0 a0_lll_c3;
+                _DeserializeEnum(a0_lll_o3, &a0_lll_c3);
+                a0_lll_c2.push_back(a0_lll_c3);
+            }
+            a0_lll_c1.push_back(a0_lll_c2);
+        }
+        p->a0_lll.push_back(a0_lll_c1);
+    }
+}
+//---------------------------------------------------------------------------------------
+std::string TJsonSerializer::_SerializeEnum(nsSimpleEnum::X::E0* p)
+{
+    switch (*p) {
+        case nsSimpleEnum::X::E0::_0:
+            return "_0";
+        case nsSimpleEnum::X::E0::_1:
+            return "_1";
+        default:;
+    }
+    return "";
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_DeserializeEnum(std::string& str, nsSimpleEnum::X::E0* p)
+{
+    std::map<std::string, nsSimpleEnum::X::E0> m;
+    m.insert({"_0", nsSimpleEnum::X::E0::_0});
+    m.insert({"_1", nsSimpleEnum::X::E0::_1});
+    *p = m[str];
+}
+//---------------------------------------------------------------------------------------
+std::string TJsonSerializer::_SerializeEnum(nsSimpleEnum::X::E1* p)
+{
+    switch (*p) {
+        case nsSimpleEnum::X::E1::_0:
+            return "_0";
+        case nsSimpleEnum::X::E1::_1:
+            return "_1";
+        default:;
+    }
+    return "";
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_DeserializeEnum(std::string& str, nsSimpleEnum::X::E1* p)
+{
+    std::map<std::string, nsSimpleEnum::X::E1> m;
+    m.insert({"_0", nsSimpleEnum::X::E1::_0});
+    m.insert({"_1", nsSimpleEnum::X::E1::_1});
+    *p = m[str];
 }
 //---------------------------------------------------------------------------------------

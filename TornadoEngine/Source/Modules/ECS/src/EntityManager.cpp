@@ -60,7 +60,8 @@ void TEntityManager::Fill(const std::string& methodName, std::string& demangled,
     auto offset = beginTypesIndex;
 
     // функция для добавления
-    auto addFunc = [&] (int index) {
+    auto addFunc = [&](int index)
+    {
         // конец template
         auto type = demangled.substr(offset, index - offset);
         strSet.insert(type);
@@ -68,9 +69,9 @@ void TEntityManager::Fill(const std::string& methodName, std::string& demangled,
     };
 
     auto cornerBalance = 0;
-    for ( int i = argsBeginIndex; i < demangled.size(); i++ ) {
+    for (int i = argsBeginIndex; i < demangled.size(); i++) {
         auto symbol = pData[i];
-        switch ( symbol ) {
+        switch (symbol) {
             case leftCornerLiteral:
                 cornerBalance++;
                 break;
@@ -78,16 +79,16 @@ void TEntityManager::Fill(const std::string& methodName, std::string& demangled,
                 cornerBalance--;
                 break;
             case commaLiteral:
-                if ( cornerBalance == 1 ) {
+                if (cornerBalance == 1) {
                     addFunc(i);
                     offset += sizeof(commaLiteral);
-                    if ( pData[i + 1] == spaceLiteral )
+                    if (pData[i + 1] == spaceLiteral)
                         offset += sizeof(spaceLiteral);
                 }
                 break;
         }
 
-        if ( cornerBalance == 0 ) {
+        if (cornerBalance == 0) {
             // конец template
             addFunc(i);
             break;
@@ -99,18 +100,18 @@ void TEntityManager::FindTypesOfMethod(const std::string& methodName, TStrSetLis
 {
     auto symbolStorage = mLib.symbol_storage().get_storage();
     TStrList classList;
-    for ( auto s : symbolStorage ) {
+    for (auto s : symbolStorage) {
         auto demangled = s.demangled;
         auto pData = demangled.data();
 
         auto beginFound = demangled.find(methodName);
-        if ( beginFound == std::string::npos )
+        if (beginFound == std::string::npos)
             continue;
 
         TStrSet strSet;
         Fill(methodName, demangled, strSet);
 
-        if ( strSet.size() > 0 )
+        if (strSet.size() > 0)
             resultList.push_back(strSet);
     }
 }
@@ -119,18 +120,18 @@ void TEntityManager::FindTypeIndex(const std::string& methodName, TStrSetStrMap&
 {
     auto symbolStorage = mLib.symbol_storage().get_storage();
     TStrList classList;
-    for ( auto s : symbolStorage ) {
+    for (auto s : symbolStorage) {
         auto demangled = s.demangled;
 
         auto beginFound = demangled.find(methodName);
-        if ( beginFound == std::string::npos )
+        if (beginFound == std::string::npos)
             continue;
 
         TStrSet strSet;
         Fill(methodName, demangled, strSet);
 
-        if ( strSet.size() > 0 )
-            resultMap.insert({ strSet, demangled });
+        if (strSet.size() > 0)
+            resultMap.insert({strSet, demangled});
     }
 }
 //----------------------------------------------------------------------------------------------------
@@ -138,7 +139,7 @@ void TEntityManager::FindTypeIndex(const std::string& methodName, TStrSetStrMap&
 // reflection magic
 void TEntityManager::Setup(const std::list<std::string>& pathList)
 {
-    for ( auto& path : pathList ) {
+    for (auto& path : pathList) {
         Setup(path);
     }
 }
@@ -156,7 +157,7 @@ void TEntityManager::Setup(std::string libName)
     FindTypeIndex(typeIndexMethodName, mTypeIndexNameFuncMap);
 
     auto showWarning = mUniqueSet.size() == 0 && mHasComponentList.size() == 0 && mValueComponentList.size() == 0 && mTypeIndexNameFuncMap.size() == 0;
-    if ( showWarning ) {
+    if (showWarning) {
         printf("Warning! TEntityManager Setup not found reflection info.\n");
     }
 #ifdef SHOW_STAT
@@ -166,16 +167,16 @@ void TEntityManager::Setup(std::string libName)
 
     using TypeIndexFunc = unsigned int(TEntityManager::*)(void);
     try {
-        for ( auto strSetFunc : mTypeIndexNameFuncMap ) {
+        for (auto strSetFunc : mTypeIndexNameFuncMap) {
             auto& demangled = strSetFunc.second;
 
             auto beginFound = demangled.find(typeIndexMethodName);
-            if ( beginFound == std::string::npos ) {
+            if (beginFound == std::string::npos) {
                 continue;
             }
 
             auto endFound = demangled.find("(");
-            if ( endFound == std::string::npos ) {
+            if (endFound == std::string::npos) {
                 continue;
             }
 
@@ -186,15 +187,15 @@ void TEntityManager::Setup(std::string libName)
 
             //      printf( "%s => %u\n", funcName.data(), typeIndexFunc );
 
-            mComponentsTypeIndexMap.insert({ strSetFunc.first, typeIndexFunc });
+            mComponentsTypeIndexMap.insert({strSetFunc.first, typeIndexFunc});
         }
-    } catch ( std::exception e ) {
+    } catch (std::exception e) {
         printf(e.what());
     }
 
-    for ( auto& strSet : mUniqueSet ) {
+    for (auto& strSet : mUniqueSet) {
         auto fit = mComponentsTypeIndexMap.find(strSet);
-        if ( fit == mComponentsTypeIndexMap.end() ) {
+        if (fit == mComponentsTypeIndexMap.end()) {
             BL_FIX_BUG();
             continue;
         }
@@ -206,9 +207,9 @@ void TEntityManager::Setup(std::string libName)
     TStrSet hasSet;
     TStrSet valueSet;
 
-    for ( auto& strSet : mHasComponentList ) {
+    for (auto& strSet : mHasComponentList) {
         auto fit = mComponentsTypeIndexMap.find(strSet);
-        if ( fit == mComponentsTypeIndexMap.end() ) {
+        if (fit == mComponentsTypeIndexMap.end()) {
             BL_FIX_BUG();
             continue;
         }
@@ -216,7 +217,7 @@ void TEntityManager::Setup(std::string libName)
         mHasCollectionVec[index] = mEntityListMemoryPool->Pop();
 
         TShortList typeList;
-        for ( auto type : strSet ) {
+        for (auto type : strSet) {
             hasSet.insert(type);
 
             TStrSet forSearch;
@@ -227,9 +228,9 @@ void TEntityManager::Setup(std::string libName)
         mHasCollectionWithTypes[index] = typeList;
     }
 
-    for ( auto& strSet : mValueComponentList ) {
+    for (auto& strSet : mValueComponentList) {
         auto fit = mComponentsTypeIndexMap.find(strSet);
-        if ( fit == mComponentsTypeIndexMap.end() ) {
+        if (fit == mComponentsTypeIndexMap.end()) {
             BL_FIX_BUG();
             continue;
         }
@@ -237,7 +238,7 @@ void TEntityManager::Setup(std::string libName)
         mValueCollectionVec[index] = mComplexTypePtrListPtrMapMemoryPool->Pop();
 
         TShortList typeList;
-        for ( auto type : strSet ) {
+        for (auto type : strSet) {
             valueSet.insert(type);
 
             TStrSet forSearch;
@@ -249,10 +250,10 @@ void TEntityManager::Setup(std::string libName)
     }
 
     // выяснить в каких коллекциях учавствует тип
-    for ( auto type : hasSet ) {
+    for (auto type : hasSet) {
         TShortList typeList;
-        for ( auto collectionType : mHasComponentList ) {
-            if ( collectionType.find(type) == collectionType.end() )
+        for (auto collectionType : mHasComponentList) {
+            if (collectionType.find(type) == collectionType.end())
                 continue;
             auto collectionIndex = mComponentsTypeIndexMap.find(collectionType);
             typeList.push_back(collectionIndex->second);
@@ -267,10 +268,10 @@ void TEntityManager::Setup(std::string libName)
         mHasTypeInCollection[typeIndexIt->second] = typeList;
     }
 
-    for ( auto type : valueSet ) {
+    for (auto type : valueSet) {
         TShortList typeList;
-        for ( auto collectionType : mValueComponentList ) {
-            if ( collectionType.find(type) == collectionType.end() ) {
+        for (auto collectionType : mValueComponentList) {
+            if (collectionType.find(type) == collectionType.end()) {
                 continue;
             }
             auto collectionIndex = mComponentsTypeIndexMap.find(collectionType);
@@ -292,7 +293,7 @@ TEntityID TEntityManager::CreateEntity()
     auto id = (TEntityID) mEntities.mCounter;
 
     auto newEntity = mEntityMemoryPool->Pop();
-    if ( mReserverIndexInEntities.size() > 0 ) {
+    if (mReserverIndexInEntities.size() > 0) {
         id = mReserverIndexInEntities.back();
         mReserverIndexInEntities.pop_back();
         mEntities.mVec[id] = newEntity;
@@ -305,13 +306,13 @@ TEntityID TEntityManager::CreateEntity()
 void TEntityManager::DestroyEntity(TEntityID eid)
 {
     auto pEntity = GetEntity(eid);
-    if ( pEntity == nullptr ) {
+    if (pEntity == nullptr) {
         BL_FIX_BUG();
         return;
     }
 
     auto index = pEntity->GetFirstComponentIndex();
-    while ( index != TEntity::NoneIndex ) {
+    while (index != TEntity::NoneIndex) {
         RemoveComponent(eid, pEntity, index);
         index = pEntity->GetFirstComponentIndex();
     }
@@ -341,38 +342,38 @@ void TEntityManager::RemoveComponent(TEntityID eid, TEntity* pEntity, int index)
 void TEntityManager::TryAddInUnique(TEntityID eid, IComponent* pC, int index)
 {
     auto pMap = mUniqueMapVec[index];
-    if ( pMap == nullptr ) {
+    if (pMap == nullptr) {
         return;
     }
 #ifdef _DEBUG
-    if ( pMap->end() != pMap->find(pC) ) {
+    if (pMap->end() != pMap->find(pC)) {
         BL_FIX_BUG();
         return;
     }
 #endif
-    pMap->insert({ pC, eid });
+    pMap->insert({pC, eid});
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::TryAddInHas(TEntityID eid, int index, TEntity* pEntity)
 {
     auto& collectionList = mHasTypeInCollection[index];
-    for ( auto& collectionIndex : collectionList ) {
+    for (auto& collectionIndex : collectionList) {
         auto hasList = mHasCollectionVec[collectionIndex];
-        if ( hasList == nullptr ) {
+        if (hasList == nullptr) {
             BL_FIX_BUG();
             continue;
         }
 
         auto hasAllTypes = true;
         auto& typesInCollection = mHasCollectionWithTypes[collectionIndex];
-        for ( auto& typeInCollection : typesInCollection ) {
-            if ( pEntity->HasComponent(typeInCollection) == false ) {
+        for (auto& typeInCollection : typesInCollection) {
+            if (pEntity->HasComponent(typeInCollection) == false) {
                 hasAllTypes = false;
                 break;
             }
         }
 
-        if ( hasAllTypes == false ) {
+        if (hasAllTypes == false) {
             continue;
         }
         hasList->push_front(eid);
@@ -387,9 +388,9 @@ void TEntityManager::TryAddInHas(TEntityID eid, int index, TEntity* pEntity)
 void TEntityManager::TryAddInValue(TEntityID eid, int index, TEntity* pEntity)
 {
     auto& collectionList = mValueTypeInCollection[index];
-    for ( auto& collectionIndex : collectionList ) {
+    for (auto& collectionIndex : collectionList) {
         auto ctListMap = mValueCollectionVec[collectionIndex];
-        if ( ctListMap == nullptr ) {
+        if (ctListMap == nullptr) {
             BL_FIX_BUG();
             continue;
         }
@@ -398,9 +399,9 @@ void TEntityManager::TryAddInValue(TEntityID eid, int index, TEntity* pEntity)
         auto pComplexType = mComplexTypeMemoryPool->Pop();
 
         auto& typesInCollection = mValueCollectionWithTypes[collectionIndex];
-        for ( auto& typeInCollection : typesInCollection ) {
+        for (auto& typeInCollection : typesInCollection) {
             auto pC = pEntity->GetComponent(typeInCollection);
-            if ( pC == nullptr ) {
+            if (pC == nullptr) {
                 hasAllTypes = false;
                 break;
             }
@@ -408,7 +409,7 @@ void TEntityManager::TryAddInValue(TEntityID eid, int index, TEntity* pEntity)
             pComplexType->mComponentTypeIdentifierList.push_back(typeInCollection);
         }
 
-        if ( hasAllTypes == false ) {
+        if (hasAllTypes == false) {
             pComplexType->Done();
             mComplexTypeMemoryPool->Push(pComplexType);
             continue;
@@ -416,10 +417,10 @@ void TEntityManager::TryAddInValue(TEntityID eid, int index, TEntity* pEntity)
 
         TEntityList* pList = nullptr;
         auto fit = ctListMap->find(pComplexType);
-        if ( fit == ctListMap->end() ) {
+        if (fit == ctListMap->end()) {
             pList = mEntityListMemoryPool->Pop();
             pList->push_front(eid);// original
-            ctListMap->insert({ pComplexType, pList });
+            ctListMap->insert({pComplexType, pList});
         } else {
             pComplexType->Done();
             mComplexTypeMemoryPool->Push(pComplexType);
@@ -439,11 +440,11 @@ void TEntityManager::TryAddInValue(TEntityID eid, int index, TEntity* pEntity)
 void TEntityManager::TryRemoveFromUnique(TEntityID eid, IComponent* pC, int index)
 {
     auto pMap = mUniqueMapVec[index];
-    if ( pMap == nullptr ) {
+    if (pMap == nullptr) {
         return;
     }
 #ifdef _DEBUG
-    if ( pMap->end() == pMap->find(pC) ) {
+    if (pMap->end() == pMap->find(pC)) {
         BL_FIX_BUG();
         return;
     }
@@ -454,15 +455,15 @@ void TEntityManager::TryRemoveFromUnique(TEntityID eid, IComponent* pC, int inde
 void TEntityManager::TryRemoveFromHas(TEntityID eid, int index, TEntity* pEntity)
 {
     auto& collectionList = mHasTypeInCollection[index];
-    for ( auto& collectionIndex : collectionList ) {
+    for (auto& collectionIndex : collectionList) {
         auto& hasList = mHasCollectionVec[collectionIndex];
-        if ( hasList == nullptr ) {
+        if (hasList == nullptr) {
             BL_FIX_BUG();
             continue;
         }
 
         auto pLTL = pEntity->RemoveHasCollectionInfo(collectionIndex);
-        if ( pLTL == nullptr ) {
+        if (pLTL == nullptr) {
             continue;
         }
         pLTL->Erase();
@@ -473,13 +474,13 @@ void TEntityManager::TryRemoveFromHas(TEntityID eid, int index, TEntity* pEntity
 void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEntity)
 {
     auto& collectionList = mValueTypeInCollection[index];
-    for ( auto& collectionIndex : collectionList ) {
+    for (auto& collectionIndex : collectionList) {
         auto pLTL = pEntity->RemoveValueCollectionInfo(collectionIndex);
-        if ( pLTL == nullptr ) {
+        if (pLTL == nullptr) {
             continue;
         }
         auto ctListMap = mValueCollectionVec[collectionIndex];
-        if ( ctListMap == nullptr ) {
+        if (ctListMap == nullptr) {
             BL_FIX_BUG();
             continue;
         }
@@ -489,14 +490,14 @@ void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEnti
         pLTL->Erase();
         mLinkToListMemoryPool->Push(pLTL);
 
-        if ( isBackEntity == false ) {
+        if (isBackEntity == false) {
             continue;
         }
         auto& typesInCollection = mValueCollectionWithTypes[collectionIndex];
         auto pComplexType = mComplexTypeMemoryPool->Pop();// сформировать для поиска в map
-        for ( auto& typeInCollection : typesInCollection ) {
+        for (auto& typeInCollection : typesInCollection) {
             auto pC = pEntity->GetComponent(typeInCollection);
-            if ( pC == nullptr ) {
+            if (pC == nullptr) {
                 BL_FIX_BUG();
                 break;
             }
@@ -504,7 +505,7 @@ void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEnti
             pComplexType->mComponentTypeIdentifierList.push_back(typeInCollection);
         }
         auto fit = ctListMap->find(pComplexType);
-        if ( fit == ctListMap->end() ) {
+        if (fit == ctListMap->end()) {
             BL_FIX_BUG();
             continue;
         }
@@ -513,7 +514,7 @@ void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEnti
         mComplexTypeMemoryPool->Push(pComplexType);
         pOriginalComplexType->Done();
         ctListMap->erase(fit);
-        if ( pList->size() == 0 ) { // удаляется оригинал
+        if (pList->size() == 0) { // удаляется оригинал
             mEntityListMemoryPool->Push(pList);
             mComplexTypeMemoryPool->Push(pOriginalComplexType);
             continue;
@@ -523,23 +524,23 @@ void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEnti
         auto nextEid = pList->back();
         auto pNextEntity = GetEntity(nextEid);
 
-        for ( auto& typeInCollection : typesInCollection ) {
+        for (auto& typeInCollection : typesInCollection) {
             auto pC = pNextEntity->GetComponent(typeInCollection);
-            if ( pC == nullptr ) {
+            if (pC == nullptr) {
                 BL_FIX_BUG();
                 break;
             }
             pOriginalComplexType->parts[typeInCollection] = pC;
             pOriginalComplexType->mComponentTypeIdentifierList.push_back(typeInCollection);
         }
-        ctListMap->insert({ pOriginalComplexType, pList });
+        ctListMap->insert({pOriginalComplexType, pList});
     }
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::NotifyOnRemoveComponent(int index, TEntityID entity, IComponent* pC)
 {
     auto pCB = mRemoveCBVector.Begin() + index;
-    if ( pCB[0] == nullptr ) {
+    if (pCB[0] == nullptr) {
         return;
     }
     pCB[0]->Notify(entity, pC);
@@ -550,7 +551,7 @@ void TEntityManager::GetComponentList(TEntityID eid, std::list<TypeIndexType>& t
     typeIdentifierList.clear();
 
     auto pEntity = GetEntity(eid);
-    if ( pEntity == nullptr ) {
+    if (pEntity == nullptr) {
         return;
     }
 

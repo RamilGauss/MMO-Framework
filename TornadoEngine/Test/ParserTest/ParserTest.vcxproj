@@ -128,7 +128,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>Base_d.lib;ECS_d.lib;Parser_d.lib;$(ConanSystemDeps)%(AdditionalDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base_d.lib;Parser_d.lib;$(ConanSystemDeps)%(AdditionalDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassDeclaration.h" />
+    <ClInclude Include="EnumInNamespace.h" />
     <ClInclude Include="Enum_0.h" />
     <ClInclude Include="Enum_1.h" />
     <ClInclude Include="Enum_2.h" />

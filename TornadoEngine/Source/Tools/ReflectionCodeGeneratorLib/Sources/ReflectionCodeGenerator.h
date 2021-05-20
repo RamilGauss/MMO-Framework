@@ -118,10 +118,16 @@ namespace nsReflectionCodeGenerator
         void FillTypeNameDataBase();
 
         void AddDependencies(ITargetCodeGenerator* generator, 
-            nsCppParser::TTypeInfo* type, std::set<std::string> dependenciesTypeNameSetOut);
+            nsCppParser::TTypeInfo* type, std::set<std::string>& dependenciesTypeNameSetOut);
 
         void ConvertStringToTypeCategory(std::map<std::string, std::string>& strTypeCustomizerMap,
             std::map<std::string, nsCppParser::TypeCategory>& typeCustomizerMap);
+
+        void CorrectMemberInfoInAllTypes();
+
+        nsCppParser::TTypeInfo* Find(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
+            const std::list<std::string>& withinClassTypeNameList);
+
     };
     //---------------------------------------------------------------------------------------
     template <typename DirectoryIterator>

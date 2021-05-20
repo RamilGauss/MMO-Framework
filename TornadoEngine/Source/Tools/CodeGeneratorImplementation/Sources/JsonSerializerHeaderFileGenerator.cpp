@@ -9,6 +9,8 @@ See for more information LICENSE.md.
 #include <set>
 
 using namespace nsCodeGeneratorImplementation;
+using namespace nsReflectionCodeGenerator;
+using namespace nsCppParser;
 
 void TJsonSerializerHeaderFileGenerator::Work()
 {
@@ -34,7 +36,7 @@ void TJsonSerializerHeaderFileGenerator::Work()
 
     AddList(GetJsonDecl());
 
-    AddPrivateSection();
+    AddPublicSection();
 
     AddDeclarations();
 
@@ -59,9 +61,14 @@ void TJsonSerializerHeaderFileGenerator::AddDeclarations()
         auto type = mTypeManager->Get(fullTypeName);
 
         auto namespaceWithType = type->GetTypeNameWithNameSpace();
-
-        AddSerializeMethodDeclaration(namespaceWithType);
-        AddDeserializeMethodDeclaration(namespaceWithType);
+        
+        if (type->mType == DeclarationType::ENUM) {
+            AddSerializeEnumMethodDeclaration(namespaceWithType);
+            AddDeserializeEnumMethodDeclaration(namespaceWithType);
+        } else {
+            AddSerializeMethodDeclaration(namespaceWithType);
+            AddDeserializeMethodDeclaration(namespaceWithType);
+        }
         AddEmptyLine();
     }
 
@@ -80,6 +87,20 @@ void TJsonSerializerHeaderFileGenerator::AddDeserializeMethodDeclaration(std::st
     // D - Type* p, const Jobj& obj 
     auto strList = GetParamListForDeserialize(namespaceWithType);
     AddStaticMethodDeclaration("void", sDeserializeMethod, strList);
+}
+//-----------------------------------------------------------------------------------
+void TJsonSerializerHeaderFileGenerator::AddSerializeEnumMethodDeclaration(std::string& namespaceWithType)
+{
+    // S - Type* p, Jobj& obj
+    auto strList = GetParamListForSerializeEnum(namespaceWithType);
+    AddStaticMethodDeclaration("std::string", sSerializeEnumMethod, strList);
+}
+//-----------------------------------------------------------------------------------
+void TJsonSerializerHeaderFileGenerator::AddDeserializeEnumMethodDeclaration(std::string& namespaceWithType)
+{
+    // D - Type* p, const Jobj& obj 
+    auto strList = GetParamListForDeserializeEnum(namespaceWithType);
+    AddStaticMethodDeclaration("void", sDeserializeEnumMethod, strList);
 }
 //-----------------------------------------------------------------------------------
 const std::list<std::string> TJsonSerializerHeaderFileGenerator::GetJsonDecl()

@@ -180,7 +180,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ParserTest", "Test\ParserTest\ParserTest.vcxproj", "{E6206EAB-5C23-449D-8C6E-7F99C14C8F8F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AB7DFF93-7142-43CA-81DB-1AA01EDA873C} = {AB7DFF93-7142-43CA-81DB-1AA01EDA873C}
-		{3DCD5F9C-9C3B-4DB5-8A64-FE40B69E2083} = {3DCD5F9C-9C3B-4DB5-8A64-FE40B69E2083}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReflectionCodeGeneratorTest", "Test\ReflectionCodeGeneratorTest\ReflectionCodeGeneratorTest.vcxproj", "{D722BA23-1517-4B10-A1F6-FD5241D5C5C5}"
@@ -793,8 +792,8 @@ Global
 		{FE5C234A-5DB1-4AAE-8A57-96935FA67EA5} = {63F2AF3D-F916-454F-A35D-3BECD8997B2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

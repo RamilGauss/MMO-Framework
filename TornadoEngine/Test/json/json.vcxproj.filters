@@ -36,6 +36,21 @@
     <ClCompile Include="JsonSerializer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="SimpleEnumTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSources\SimpleEnum.cpp">
+      <Filter>DataSources</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonSerializer_InOut_0.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonSerializer_InOut_1.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InOutTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataSources\Complex.hpp">
@@ -50,9 +65,42 @@
     <ClInclude Include="JsonSerializer.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="DataSources\SimpleEnum.h">
+      <Filter>DataSources</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSources\FarType.h">
+      <Filter>DataSources</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSources\InOut.h">
+      <Filter>DataSources</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeList_InOut_0.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonSerializer_InOut_0.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeList_InOut_1.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonSerializer_InOut_1.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data0.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data1.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="inOut0.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="inOut1.json">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -133,5 +133,8 @@
     <ClInclude Include="MemberBuiltInTypes.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
+    <ClInclude Include="EnumInNamespace.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

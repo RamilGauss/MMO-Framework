@@ -27,8 +27,7 @@ namespace nsCppParser
 
         DeclarationType mType;
 
-        std::map<std::string, int64_t> mEnumKeys;
-        std::map<int64_t, std::string> mEnumValues;
+        std::set<std::string> mEnumKeys;
 
         std::vector<TInheritanceInfo> mInheritanceVec;
 

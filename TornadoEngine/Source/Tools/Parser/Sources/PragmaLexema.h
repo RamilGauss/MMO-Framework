@@ -69,7 +69,7 @@ namespace nsCppParser
                 }
             }
 
-            int cnt = mValue.length();
+            int cnt = (int)(mValue.length());
             for (int i = cnt - 1; i >= 0; i--) {
                 if (mValue.at(i) != ' ') {
                     mValue.erase(i + 1, cnt - 1);

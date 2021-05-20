@@ -21,7 +21,7 @@ TEST(Parser, Enum_0)
         if (type->mName == "Enum_0") {
             ASSERT_EQ(type->mType, nsCppParser::DeclarationType::ENUM);
 
-            std::map<std::string, int64_t> ethalon = {{"X", 42}, {"Y", 15}, {"Z", 16}};
+            std::set<std::string> ethalon = {"X", "Y", "Z"};
             ASSERT_EQ(type->mEnumKeys, ethalon);
         }
     }
@@ -39,7 +39,7 @@ TEST(Parser, Enum_1)
         if (type->mName == "Enum_1") {
             ASSERT_EQ(type->mType, nsCppParser::DeclarationType::ENUM);
 
-            std::map<std::string, int64_t> ethalon = {{"A", 0}, {"B", -1}, {"C", 100}, {"D", 101}};
+            std::set<std::string> ethalon = {"A", "B", "C", "D"};
             ASSERT_EQ(type->mEnumKeys, ethalon);
         }
     }
@@ -57,7 +57,7 @@ TEST(Parser, Enum_2)
         if (type->mName == "Enum_2") {
             ASSERT_EQ(type->mType, nsCppParser::DeclarationType::ENUM);
 
-            std::map<std::string, int64_t> ethalon = {{"F", 0}};
+            std::set<std::string> ethalon = {"F"};
             ASSERT_EQ(type->mEnumKeys, ethalon);
         }
     }
@@ -77,6 +77,27 @@ TEST(Parser, EnumPragma)
 
             std::set<std::string> ethalon = {"once", "X"};
             ASSERT_EQ(type->mPragmaTextSet, ethalon);
+        }
+    }
+}
+
+TEST(Parser, EnumInNamespace)
+{
+    TFileParser fileParser;
+    auto res = fileParser.Parse("EnumInNamespace.h");
+    ASSERT_NE(res, nullptr);
+
+    ASSERT_EQ(res->mTypeList.size(), 2);
+
+    for (auto& type : res->mTypeList) {
+        if (type->mName == "A0") {
+            ASSERT_EQ(type->mType, nsCppParser::DeclarationType::ENUM);
+
+            ASSERT_EQ(type->GetTypeNameWithNameSpace(), "nsEnumSpace::A0");
+        }
+        if (type->mName == "A1") {
+            ASSERT_EQ(type->mType, nsCppParser::DeclarationType::ENUM);
+            ASSERT_EQ(type->GetTypeNameWithNameSpace(), "nsEnumSpace::A1");
         }
     }
 }

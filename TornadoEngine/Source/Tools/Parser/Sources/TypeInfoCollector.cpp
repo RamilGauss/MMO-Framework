@@ -191,8 +191,7 @@ void TTypeInfoCollector::HandleEnumValues(TEnumValuesLexema* pLexema)
     }
 
     for (auto& value : pLexema->mValuesMap) {
-        GetPrevBlock()->typeInfo->mEnumKeys.insert({value.first, value.second});
-        GetPrevBlock()->typeInfo->mEnumValues.insert({value.second, value.first});
+        GetPrevBlock()->typeInfo->mEnumKeys.insert(value.first);
     }
 }
 //----------------------------------------------------------------------------------------------------
@@ -312,7 +311,7 @@ void TTypeInfoCollector::FillPragmaListUpper(std::set<std::string>& pragmaList)
     for (int i = lexemaIndex - 1; i >= 0; i--) {
         if (block->mTokens[i]->GetType() == ILexemaEntity::Type::LINE) {
             auto line = (TLineLexemaEntity*) (block->mTokens[i].get());
-            auto lexemaCount = line->mLexemas.size();
+            auto lexemaCount = (int)(line->mLexemas.size());
             for (int j = lexemaCount - 1; j >= 0; j--) {
                 if (line->mLexemas[j]->GetType() == ILexema::LexemaType::PRAGMA) {
                     auto pragma = (TPragmaLexema*) (line->mLexemas[j].get());

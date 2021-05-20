@@ -38,6 +38,12 @@ void IFileGenerator::AddTimeHeader()
     Add(s);
 }
 //----------------------------------------------------------------------------------
+void IFileGenerator::AddSwitch(const std::string& expr)
+{
+    auto s = fmt::format("switch ({}) {{", expr);
+    Add(s);
+}
+//----------------------------------------------------------------------------------
 void IFileGenerator::AddCase(const std::string& condition)
 {
     auto s = fmt::format("case {}:", condition);
@@ -47,6 +53,11 @@ void IFileGenerator::AddCase(const std::string& condition)
 void IFileGenerator::AddBreak()
 {
     Add("break;");
+}
+//----------------------------------------------------------------------------------
+void IFileGenerator::AddDefault()
+{
+    Add("default:;");
 }
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddIf(const std::string& condition)
@@ -212,7 +223,7 @@ void IFileGenerator::AddStaticMethodDeclaration(const std::string& retName, cons
 {
     std::string str = fmt::format("{} {} {}(", s_Static, retName, name);
     str += EnumerateParamToStr(paramList);
-    str += " );";
+    str += ");";
     Add(str);
 }
 //----------------------------------------------------------------------------------
@@ -221,7 +232,7 @@ void IFileGenerator::AddMethodImplementationBegin(const std::string& retName, co
     std::string str = fmt::format("{} {}::{}(", retName, className, name);
 
     str += EnumerateParamToStr(paramList);
-    str += " )";
+    str += ")";
     Add(str);
 }
 //----------------------------------------------------------------------------------
@@ -326,50 +337,78 @@ void IFileGenerator::AddCallingMethod(TTypeInfo* p, std::function<void(TMemberIn
 //-----------------------------------------------------------------------------------------------------------
 void IFileGenerator::AddIncludeForExternalSources()
 {
+    std::set<std::string> fileNameSet;
+
     auto& fullTypeNameReferenceMap = mTypeNameDbPtr->GetFullTypeNameReferenceMap();
     for (auto& fullTypeRef : fullTypeNameReferenceMap) {
         auto& refType = fullTypeRef.second;
         if (refType.refType == TTypeNameDataBase::ReferenceType::CUSTOMIZED) {
-            AddInclude(refType.reflectionInfo->fileName);
+            fileNameSet.insert(refType.reflectionInfo->fileName + ".h");
         }
     }
+
+    for (auto& fileName : fileNameSet) {
+        AddInclude(fileName);
+    }
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetSerializeMethod(const std::string& nameSpace, const std::string& shortTypeName,
-    const std::string& withinClassTypeName)
+std::string IFileGenerator::GetSerializeMethod(TMemberExtendedTypeInfo* pMemberExtendedInfo,
+    const std::list<std::string>& withinClassTypeNameList)
 {
-    return GetMethod(nameSpace, shortTypeName, withinClassTypeName, sSerializeMethod);
+    return GetMethod(pMemberExtendedInfo, withinClassTypeNameList, sSerializeMethod, sSerializeEnumMethod);
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetDeserializeMethod(const std::string& nameSpace, const std::string& shortTypeName,
-    const std::string& withinClassTypeName)
+std::string IFileGenerator::GetDeserializeMethod(TMemberExtendedTypeInfo* pMemberExtendedInfo,
+    const std::list<std::string>& withinClassTypeNameList)
 {
-    return GetMethod(nameSpace, shortTypeName, withinClassTypeName, sDeserializeMethod);
+    return GetMethod(pMemberExtendedInfo, withinClassTypeNameList, sDeserializeMethod, sDeserializeEnumMethod);
 }
 //-----------------------------------------------------------------------------------------------------------
-std::string IFileGenerator::GetMethod(const std::string& nameSpace, const std::string& shortTypeName,
-    const std::string& withinClassTypeName, const std::string& methodName)
+std::string IFileGenerator::GetMethod(TMemberExtendedTypeInfo* pMemberExtendedInfo,
+    const std::list<std::string>& withinClassTypeNameList,
+    const std::string& methodStructOrClassName, const std::string& methodEnumName)
 {
     std::string method;
-
-    TTypeNameDataBase::TRequestParams requestParams;
-
-    requestParams.typeInfo.nameSpace = nameSpace;
-    requestParams.typeInfo.typeName = shortTypeName;
-    requestParams.preferredNameSpace = withinClassTypeName;
-
-    auto refType = mTypeNameDbPtr->GetReferenceFullTypeName(requestParams);
-    if (refType == nullptr) {
+    TTypeInfo* type = nullptr;
+    auto refType = Find(pMemberExtendedInfo, withinClassTypeNameList, type);
+    if (type == nullptr) {
         return method;
     }
+
+    std::string methodName = 
+        type->mType == DeclarationType::ENUM ? methodEnumName : methodStructOrClassName;
 
     if (refType->refType == TTypeNameDataBase::ReferenceType::GENERATED) {
         method = fmt::format("{}", methodName);
     } else {
         auto reflInfo = refType->reflectionInfo.get();
-        method = fmt::format("{}::{}::{}", 
+        method = fmt::format("{}::{}::{}",
             reflInfo->nameSpace, reflInfo->className, methodName);
     }
     return method;
+}
+//-----------------------------------------------------------------------------------------------------------
+const TTypeNameDataBase::TReferenceInfo* IFileGenerator::Find(TMemberExtendedTypeInfo* pMemberExtendedInfo, 
+    const std::list<std::string>& withinClassTypeNameList,
+    TTypeInfo*& type)
+{
+    type = nullptr;
+    for (auto& withinClassTypeName : withinClassTypeNameList) {
+        TTypeNameDataBase::TRequestParams requestParams;
+
+        requestParams.typeInfo.nameSpace = pMemberExtendedInfo->mNameSpace;
+        requestParams.typeInfo.typeName = pMemberExtendedInfo->mShortType;
+        requestParams.preferredNameSpace = withinClassTypeName;
+
+        auto refType = mTypeNameDbPtr->GetReferenceFullTypeName(requestParams);
+        if (refType == nullptr) {
+            continue;
+        }
+
+        type = mTypeManager->Get(refType->typeInfo.GetFullType());
+        return refType;
+    }
+
+    return nullptr;
 }
 //-----------------------------------------------------------------------------------------------------------

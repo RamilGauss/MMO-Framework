@@ -40,6 +40,9 @@ namespace nsReflectionCodeGenerator
         const std::string sSerializeMethod = "_Serialize";
         const std::string sDeserializeMethod = "_Deserialize";
 
+        const std::string sSerializeEnumMethod = "_SerializeEnum";
+        const std::string sDeserializeEnumMethod = "_DeserializeEnum";
+
         TStrListPair* pStrListPair = nullptr;
         TTypeNameDataBase* mTypeNameDbPtr = nullptr;
         TSerializer* mSerializer = nullptr;
@@ -54,8 +57,10 @@ namespace nsReflectionCodeGenerator
         void AddHeader(const std::string& header);
         void AddTimeHeader();
 
+        void AddSwitch(const std::string& expr);
         void AddCase(const std::string& condition);
         void AddBreak();
+        void AddDefault();
 
         void AddIf(const std::string& condition);
         void AddElse();
@@ -120,13 +125,20 @@ namespace nsReflectionCodeGenerator
     protected:
         void AddIncludeForExternalSources();
 
-        std::string GetSerializeMethod(const std::string& nameSpace, const std::string& shortTypeName, 
-            const std::string& withinClassTypeName);
-        std::string GetDeserializeMethod(const std::string& nameSpace, const std::string& shortTypeName, 
-            const std::string& withinClassTypeName);
+        std::string GetSerializeMethod(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
+            const std::list<std::string>& withinClassTypeNameList);
+        std::string GetDeserializeMethod(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
+            const std::list<std::string>& withinClassTypeNameList);
 
     private:
-        std::string GetMethod(const std::string& nameSpace, const std::string& shortTypeName,
-            const std::string& withinClassTypeName, const std::string& methodName);
+        std::string GetMethod(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
+            const std::list<std::string>& withinClassTypeNameList,
+            const std::string& methodStructOrClassName, const std::string& methodEnumName);
+
+    protected:
+        const TTypeNameDataBase::TReferenceInfo* Find(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
+            const std::list<std::string>& withinClassTypeNameList,
+            nsCppParser::TTypeInfo*& type);
+
     };
 }

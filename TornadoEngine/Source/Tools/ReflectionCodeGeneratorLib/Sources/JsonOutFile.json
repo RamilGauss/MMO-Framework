@@ -3,6 +3,7 @@
     "nameSpaceName": "nsJson",
     "typeName": "TJsonSerializer",
     "customizedTypes": [
+        "nsCppParser::TypeCategory",
         "nsReflectionCodeGenerator::TClassDesc",
         "nsReflectionCodeGenerator::TConfig",
         "nsReflectionCodeGenerator::TExternalSource",

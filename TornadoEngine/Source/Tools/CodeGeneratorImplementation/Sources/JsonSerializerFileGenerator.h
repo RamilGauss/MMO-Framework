@@ -21,9 +21,8 @@ namespace nsCodeGeneratorImplementation
         std::list<std::string> GetParamListForSerialize(const std::string& namespaceWithType);
         std::list<std::string> GetParamListForDeserialize(const std::string& namespaceWithType);
 
-        bool IsInExternalSources(const std::string& namespaceWithType);
-
-        const nsReflectionCodeGenerator::TExternalSource* GetExternalSources(const std::string& namespaceWithType);
+        std::list<std::string> GetParamListForSerializeEnum(const std::string& namespaceWithType);
+        std::list<std::string> GetParamListForDeserializeEnum(const std::string& namespaceWithType);
     };
 }
 
