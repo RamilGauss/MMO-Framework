@@ -1,21 +1,20 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.1.0, build 50, info Json, Binary, EntMng, Reflection
-// File has been generated at 2021_05_20 22:47:23.582
+// ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation
+// File has been generated at 2021_05_26 08:21:54.358
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
 #include "JsonPushMaster.h"
 #include "SingletonManager.h"
-#include "TypeIdentifier.h"
+#include "RunTimeTypeIndex.h"
 
 using namespace nsJson;
 
 using POM = TJsonPopMaster;
 using PUM = TJsonPushMaster;
 
-std::map<std::string, TJsonSerializer::TypeFunc> TJsonSerializer::mTypeNameFuncsMap;
 std::vector<TJsonSerializer::TypeFunc> TJsonSerializer::mTypeFuncVector;
 
 void TJsonSerializer::Init()
@@ -26,130 +25,103 @@ void TJsonSerializer::Init()
     }
     isNeedInit = false;
     
-    auto globalTypeIdentifier = SingletonManager()->Get<TTypeIdentifier<>>();
+    auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
+    
+    std::map<int, TypeFunc> m;
+    
     TypeFunc _nsComplex_YTypeFunc;
     _nsComplex_YTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsComplex::Y>((nsComplex::Y*) p, str);
     };
-    _nsComplex_YTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsComplex::Y>((nsComplex::Y*&) p, str, err);
+    _nsComplex_YTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsComplex::Y>((nsComplex::Y*) p, str, err);
     };
-    _nsComplex_YTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsComplex::Y>((nsComplex::Y*) p, str, err);
-    };
-    _nsComplex_YTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsComplex::Y>();
-    mTypeNameFuncsMap.insert({"nsComplex::Y", _nsComplex_YTypeFunc });
+    
+    auto rtti__nsComplex_YTypeFunc = globalTypeIdentifier->type<nsComplex::Y>();
+    
+    m.insert({ rtti__nsComplex_YTypeFunc, _nsComplex_YTypeFunc });
     
     TypeFunc _nsFarType_XTypeFunc;
     _nsFarType_XTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsFarType::X>((nsFarType::X*) p, str);
     };
-    _nsFarType_XTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsFarType::X>((nsFarType::X*&) p, str, err);
+    _nsFarType_XTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsFarType::X>((nsFarType::X*) p, str, err);
     };
-    _nsFarType_XTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsFarType::X>((nsFarType::X*) p, str, err);
-    };
-    _nsFarType_XTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsFarType::X>();
-    mTypeNameFuncsMap.insert({"nsFarType::X", _nsFarType_XTypeFunc });
+    
+    auto rtti__nsFarType_XTypeFunc = globalTypeIdentifier->type<nsFarType::X>();
+    
+    m.insert({ rtti__nsFarType_XTypeFunc, _nsFarType_XTypeFunc });
     
     TypeFunc _nsInOut_ATypeFunc;
     _nsInOut_ATypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsInOut::A>((nsInOut::A*) p, str);
     };
-    _nsInOut_ATypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsInOut::A>((nsInOut::A*&) p, str, err);
+    _nsInOut_ATypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsInOut::A>((nsInOut::A*) p, str, err);
     };
-    _nsInOut_ATypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsInOut::A>((nsInOut::A*) p, str, err);
-    };
-    _nsInOut_ATypeFunc.typeIdentifier = globalTypeIdentifier->type<nsInOut::A>();
-    mTypeNameFuncsMap.insert({"nsInOut::A", _nsInOut_ATypeFunc });
+    
+    auto rtti__nsInOut_ATypeFunc = globalTypeIdentifier->type<nsInOut::A>();
+    
+    m.insert({ rtti__nsInOut_ATypeFunc, _nsInOut_ATypeFunc });
     
     TypeFunc _nsInOut_BTypeFunc;
     _nsInOut_BTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsInOut::B>((nsInOut::B*) p, str);
     };
-    _nsInOut_BTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsInOut::B>((nsInOut::B*&) p, str, err);
+    _nsInOut_BTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsInOut::B>((nsInOut::B*) p, str, err);
     };
-    _nsInOut_BTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsInOut::B>((nsInOut::B*) p, str, err);
-    };
-    _nsInOut_BTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsInOut::B>();
-    mTypeNameFuncsMap.insert({"nsInOut::B", _nsInOut_BTypeFunc });
+    
+    auto rtti__nsInOut_BTypeFunc = globalTypeIdentifier->type<nsInOut::B>();
+    
+    m.insert({ rtti__nsInOut_BTypeFunc, _nsInOut_BTypeFunc });
     
     TypeFunc _nsSimple_XTypeFunc;
     _nsSimple_XTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsSimple::X>((nsSimple::X*) p, str);
     };
-    _nsSimple_XTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsSimple::X>((nsSimple::X*&) p, str, err);
+    _nsSimple_XTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsSimple::X>((nsSimple::X*) p, str, err);
     };
-    _nsSimple_XTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsSimple::X>((nsSimple::X*) p, str, err);
-    };
-    _nsSimple_XTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsSimple::X>();
-    mTypeNameFuncsMap.insert({"nsSimple::X", _nsSimple_XTypeFunc });
+    
+    auto rtti__nsSimple_XTypeFunc = globalTypeIdentifier->type<nsSimple::X>();
+    
+    m.insert({ rtti__nsSimple_XTypeFunc, _nsSimple_XTypeFunc });
     
     TypeFunc _nsSimpleEnum_XTypeFunc;
     _nsSimpleEnum_XTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsSimpleEnum::X>((nsSimpleEnum::X*) p, str);
     };
-    _nsSimpleEnum_XTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsSimpleEnum::X>((nsSimpleEnum::X*&) p, str, err);
+    _nsSimpleEnum_XTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsSimpleEnum::X>((nsSimpleEnum::X*) p, str, err);
     };
-    _nsSimpleEnum_XTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsSimpleEnum::X>((nsSimpleEnum::X*) p, str, err);
-    };
-    _nsSimpleEnum_XTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsSimpleEnum::X>();
-    mTypeNameFuncsMap.insert({"nsSimpleEnum::X", _nsSimpleEnum_XTypeFunc });
     
+    auto rtti__nsSimpleEnum_XTypeFunc = globalTypeIdentifier->type<nsSimpleEnum::X>();
+    
+    m.insert({ rtti__nsSimpleEnum_XTypeFunc, _nsSimpleEnum_XTypeFunc });
     
     int max = 0;
-    for (auto& vt : mTypeNameFuncsMap) {
-        max = std::max(vt.second.typeIdentifier, max);
+    for (auto& vt : m) {
+        max = std::max(vt.first, max);
     }
     
     mTypeFuncVector.resize(max + 1);
-    for (auto& vt : mTypeNameFuncsMap) {
-        mTypeFuncVector[vt.second.typeIdentifier] = vt.second;
+    for (auto& vt : m) {
+        mTypeFuncVector[vt.first] = vt.second;
     }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::Serialize(void* p, std::string& str, const std::string& typeName)
+void TJsonSerializer::Serialize(void* p, std::string& str, int rtti)
 {
     Init();
-    mTypeNameFuncsMap[typeName].serializeFunc(p, str);
+    mTypeFuncVector[rtti].serializeFunc(p, str);
 }
 //---------------------------------------------------------------------------------------
-bool TJsonSerializer::Deserialize(void*& p, const std::string& str, const std::string& typeName, std::string& err)
+bool TJsonSerializer::Deserialize(void* p, const std::string& str, int rtti, std::string& err)
 {
     Init();
-    return mTypeNameFuncsMap[typeName].deserializeFunc(p, str, err);
-}
-//---------------------------------------------------------------------------------------
-bool TJsonSerializer::Fill(void* p, const std::string& str, const std::string& typeName, std::string& err)
-{
-    Init();
-    return mTypeNameFuncsMap[typeName].fillFunc(p, str, err);
-}
-void TJsonSerializer::Serialize(void* p, std::string& str, int typeIdentifier)
-{
-    Init();
-    mTypeFuncVector[typeIdentifier].serializeFunc(p, str);
-}
-//---------------------------------------------------------------------------------------
-bool TJsonSerializer::Deserialize(void*& p, const std::string& str, int typeIdentifier, std::string& err)
-{
-    Init();
-    return mTypeFuncVector[typeIdentifier].deserializeFunc(p, str, err);
-}
-//---------------------------------------------------------------------------------------
-bool TJsonSerializer::Fill(void* p, const std::string& str, int typeIdentifier, std::string& err)
-{
-    Init();
-    return mTypeFuncVector[typeIdentifier].fillFunc(p, str, err);
+    return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsComplex::Y* p, Jobj& obj)

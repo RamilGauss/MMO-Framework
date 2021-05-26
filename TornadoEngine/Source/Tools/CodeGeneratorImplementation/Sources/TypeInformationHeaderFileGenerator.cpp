@@ -20,6 +20,10 @@ void TTypeInformationHeaderFileGenerator::Work()
     AddStandartInclude("string");
     AddStandartInclude("map");
     AddStandartInclude("list");
+    AddStandartInclude("vector");
+
+    AddEmptyLine();
+    AddInclude("TypeDef.h");
 
     AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");
     AddEmptyLine();

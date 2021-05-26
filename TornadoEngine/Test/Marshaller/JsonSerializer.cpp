@@ -7,7 +7,7 @@
 #include "JsonPopMaster.h"
 #include "JsonPushMaster.h"
 #include "SingletonManager.h"
-#include "TypeIdentifier.h"
+#include "RunTimeTypeIndex.h"
 #include "CustomJsonSerializator.h"
 
 using namespace nsJson;
@@ -26,7 +26,7 @@ void TJsonSerializer::Init()
     }
     isNeedInit = false;
     
-    auto globalTypeIdentifier = SingletonManager()->Get<TTypeIdentifier<>>();
+    auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     TypeFunc _TFloat3TypeFunc;
     _TFloat3TypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<TFloat3>((TFloat3*) p, str);

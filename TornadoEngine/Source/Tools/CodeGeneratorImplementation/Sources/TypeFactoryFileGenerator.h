@@ -11,16 +11,19 @@ See for more information LICENSE.md.
 
 namespace nsCodeGeneratorImplementation
 {
-    class TReflectionFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
+    class TTypeFactoryFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
     {
     protected:
         const std::string s_Init = "Init";
         const std::string s_New = "New";
-        const std::string s_typeName = "typeName";
+        const std::string s_Delete = "Delete";
+
+        const std::string s_rtti = "rtti";
 
         const std::string s_Data = "Data";
         const std::string s_newFunc = "newFunc";
-        const std::string s_mTypeNameMap = "mTypeNameMap";
+        const std::string s_deleteFunc = "deleteFunc";
+        const std::string s_mDataVector = "mDataVector";
       };
 }
 

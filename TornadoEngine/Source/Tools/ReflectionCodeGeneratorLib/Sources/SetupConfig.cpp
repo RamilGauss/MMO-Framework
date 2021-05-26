@@ -114,7 +114,7 @@ bool TSetupConfig::TryLoadConfig()
     }
 
     std::string err;
-    auto fillRes = nsJson::TJsonSerializer::Fill(mConfig, str, err);
+    auto fillRes = nsJson::TJsonSerializer::Deserialize(mConfig, str, err);
     return fillRes;
 }
 //---------------------------------------------------------------------------------------

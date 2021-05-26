@@ -17,23 +17,21 @@ namespace nsCodeGeneratorImplementation
         const std::list<std::string> s_Decl =
         {
             fmt::format("    static std::list<std::string> {};", s_mTypeNameList),
-            fmt::format("    static std::list<int> {};", s_mTypeIdentifierList),
             "",
-            fmt::format("    static std::map<int, std::string> {};", s_mIdentifierNameMap),
-            fmt::format("    static std::map<std::string, int> {};", s_mNameIdentifierMap),
+            fmt::format("    static std::vector<std::string> {};", s_mNameVector),
+            fmt::format("    static std::map<std::string, int> {};", s_mNameRttiMap),
             "",
             fmt::format("    static void {}();", s_Init),
             "",
             "public:",
             fmt::format("    static const std::list<std::string>* {}();", s_GetTypeNameList),
-            fmt::format("    static const std::list<int>* {}();", s_GetTypeIdentifierList),
             "",
-            fmt::format("    static bool {}(int {}, std::string& {});", s_ConvertTypeToName, s_typeIdentifier, s_typeName),
-            fmt::format("    static bool {}(const std::string& {}, int& {});", s_ConvertNameToType, s_typeName, s_typeIdentifier),
+            fmt::format("    static const std::string* {}(int {});", s_ConvertTypeToName, s_rtti),
+            fmt::format("    static bool {}(const std::string& {}, int& {});", s_ConvertNameToType, s_typeName, s_rtti),
         };
 
     public:
-        virtual void Work() override;
+        void Work() override;
     };
 }
 

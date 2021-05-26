@@ -42,7 +42,7 @@ TEntityManager::TEntityManager(int entityCount)
     mUniqueMapMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TUniqueMap>>();
     mComplexTypePtrListPtrMapMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TComplexTypePtrListPtrMap>>();
 
-    mTypeIndex = SingletonManager()->Get<TTypeIdentifier<TEntityManager>>();
+    mTypeIndex = SingletonManager()->Get<TRunTimeTypeIndex<TEntityManager>>();
 }
 //----------------------------------------------------------------------------------------------------
 TEntityManager::~TEntityManager()

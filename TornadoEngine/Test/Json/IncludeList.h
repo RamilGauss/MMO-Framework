@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.1.0, build 50, info Json, Binary, EntMng, Reflection
-// File has been generated at 2021_05_20 22:47:23.665
+// ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation
+// File has been generated at 2021_05_26 08:21:54.537
 	
 #pragma once
 

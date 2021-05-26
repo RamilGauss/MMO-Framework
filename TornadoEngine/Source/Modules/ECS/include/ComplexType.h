@@ -20,7 +20,7 @@ See for more information LICENSE.md.
 #include "VectorRise.h"
 #include "MemoryObjectPool.h"
 #include "CallBackRegistrator.h"
-#include "TypeIdentifier.h"
+#include "RunTimeTypeIndex.h"
 #include "ColanderVector.h"
 
 namespace nsECSFramework

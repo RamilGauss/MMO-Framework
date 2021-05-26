@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include "LinkToList.h"
 #include "MemoryObjectPool.h"
 #include "SingletonManager.h"
+#include "BL_Debug.h"
 
 namespace nsECSFramework
 {

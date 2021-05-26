@@ -18,14 +18,13 @@ See for more information LICENSE.md.
 #include <boost/dll/import_class.hpp>
 #include <boost/dll/shared_library.hpp>
 
-#include "TypeIdentifier.h"
+#include "RunTimeTypeIndex.h"
 #include "SingletonManager.h"
 
 #include "Config.h"
 #include "VectorRise.h"
 #include "MemoryObjectPool.h"
 #include "CallBackRegistrator.h"
-#include "TypeIdentifier.h"
 #include "ColanderVector.h"
 #include "ComplexType.h"
 #include "ContainerForReactive.h"
@@ -35,7 +34,7 @@ namespace nsECSFramework
 {
     class DllExport TEntityManager
     {
-        typedef TTypeIdentifier<TEntityManager> TTypeID;
+        typedef TRunTimeTypeIndex<TEntityManager> TTypeID;
         TTypeID* mTypeIndex;
     public:
         TEntityManager(int entityCount = 1024);

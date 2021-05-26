@@ -71,9 +71,6 @@
     <ClInclude Include="include\DstEvent.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ECS_Allocator.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\FastUpperBound.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -254,7 +251,7 @@
     <ClInclude Include="include\SortedVector.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\TypeIdentifier.h">
+    <ClInclude Include="include\RunTimeTypeIndex.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ColanderVector.h">
@@ -418,7 +415,7 @@
     <ClCompile Include="src\SortedVecWithKeyMap.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\TypeIdentifier.cpp">
+    <ClCompile Include="src\RunTimeTypeIndex.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\JsonPushMaster.cpp">
@@ -427,5 +424,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Blog.md" />
+    <None Include="..\..\Doc\SoftwareDevelopmentPrinciples.md" />
   </ItemGroup>
 </Project>

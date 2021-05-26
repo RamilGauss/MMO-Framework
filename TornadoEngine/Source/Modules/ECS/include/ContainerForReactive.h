@@ -19,14 +19,13 @@ See for more information LICENSE.md.
 #include <boost/dll/shared_library.hpp>
 
 #include "TypeDef.h"
-#include "TypeIdentifier.h"
+#include "RunTimeTypeIndex.h"
 #include "SingletonManager.h"
 
 #include "Config.h"
 #include "VectorRise.h"
 #include "MemoryObjectPool.h"
 #include "CallBackRegistrator.h"
-#include "TypeIdentifier.h"
 #include "ColanderVector.h"
 #include "ComplexType.h"
 

@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ReflectionGenerator.h"
-#include "ReflectionHeaderFileGenerator.h"
-#include "ReflectionSourceFileGenerator.h"
+#include "TypeFactoryGenerator.h"
+#include "TypeFactoryHeaderFileGenerator.h"
+#include "TypeFactorySourceFileGenerator.h"
 
 using namespace nsCodeGeneratorImplementation;
 
 //----------------------------------------------------------------------------------
-void TReflectionGenerator::Work()
+void TTypeFactoryGenerator::Work()
 {
     if (!HasSerializer()) {
         return;
@@ -22,9 +22,9 @@ void TReflectionGenerator::Work()
     GenerateSource();
 }
 //----------------------------------------------------------------------------------
-void TReflectionGenerator::GenerateHeader()
+void TTypeFactoryGenerator::GenerateHeader()
 {
-    TReflectionHeaderFileGenerator fileGenerator;
+    TTypeFactoryHeaderFileGenerator fileGenerator;
 
     mPairList->push_back(TStrListPair());
 
@@ -37,9 +37,9 @@ void TReflectionGenerator::GenerateHeader()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-void TReflectionGenerator::GenerateSource()
+void TTypeFactoryGenerator::GenerateSource()
 {
-    TReflectionSourceFileGenerator fileGenerator;
+    TTypeFactorySourceFileGenerator fileGenerator;
 
     mPairList->push_back(TStrListPair());
 
@@ -52,7 +52,7 @@ void TReflectionGenerator::GenerateSource()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-void TReflectionGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames)
+void TTypeFactoryGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames)
 {
     // empty
 }

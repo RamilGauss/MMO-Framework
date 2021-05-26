@@ -14,7 +14,7 @@ namespace nsCodeGeneratorImplementation
     class DllExport TEntityManagerGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TEntityManagerGenerator() : ITargetCodeGenerator("EntityManagerGenerator") {}
+        TEntityManagerGenerator() : ITargetCodeGenerator("EntityManagerExtension") {}
 
         void Work() override;
 

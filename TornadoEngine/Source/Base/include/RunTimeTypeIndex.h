@@ -24,10 +24,10 @@ See for more information LICENSE.md.
 // The idea has been taken from https://github.com/skypjack/entt/blob/master/src/entt/core/family.hpp
 // Remove static from type(). Static values are the evil! In different Dll different id exists.
 
-// use: SingletonManager()->Get<TTypeIdentifier<ClassSpace>>()
+// use: SingletonManager()->Get<TRunTimeTypeIndex<ClassSpace>>()
 // ClassSpace - space for unique identity
 template<typename...>
-class DllExport TTypeIdentifier
+class DllExport TRunTimeTypeIndex
 {
 public:
     typedef unsigned int TypeCounter;
@@ -239,5 +239,5 @@ public:
     }
 };
 
-typedef TTypeIdentifier<struct GlobalTypeIdentifier> TGlobalTypeIdentifier;
+typedef TRunTimeTypeIndex<struct GlobalTypeIdentifier> TGlobalTypeIdentifier;
 extern DllExport TGlobalTypeIdentifier* GlobalTypeIdentifier();// for use in SingletonManager 

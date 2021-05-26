@@ -1154,7 +1154,7 @@
     <ClInclude Include="ReflectionContainers\IMyGuiSerializer.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionContainers\IReflection.h">
+    <ClInclude Include="ReflectionContainers\ITypeFactory.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
     <ClInclude Include="ReflectionContainers\IEntityManagerExtension.h">

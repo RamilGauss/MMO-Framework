@@ -227,7 +227,6 @@
     <ClInclude Include="include\DescCallBack.h" />
     <ClInclude Include="include\DescEvent.h" />
     <ClInclude Include="include\DstEvent.h" />
-    <ClInclude Include="include\ECS_Allocator.h" />
     <ClInclude Include="include\ExecuteInstructionEngine.h" />
     <ClInclude Include="include\FastUpperBound.h" />
     <ClInclude Include="include\FileOperation.h" />
@@ -286,7 +285,7 @@
     <ClInclude Include="include\ThreadBoost.h" />
     <ClInclude Include="include\TimeManager.h" />
     <ClInclude Include="include\TypeDef.h" />
-    <ClInclude Include="include\TypeIdentifier.h" />
+    <ClInclude Include="include\RunTimeTypeIndex.h" />
     <ClInclude Include="include\VectorRise.h" />
     <ClInclude Include="include\XML_Markup.h" />
   </ItemGroup>
@@ -345,10 +344,11 @@
     <ClCompile Include="src\TextFile.cpp" />
     <ClCompile Include="src\ThreadBoost.cpp" />
     <ClCompile Include="src\TimeManager.cpp" />
-    <ClCompile Include="src\TypeIdentifier.cpp" />
+    <ClCompile Include="src\RunTimeTypeIndex.cpp" />
     <ClCompile Include="src\XML_Markup.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Doc\SoftwareDevelopmentPrinciples.md" />
     <None Include="Blog.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

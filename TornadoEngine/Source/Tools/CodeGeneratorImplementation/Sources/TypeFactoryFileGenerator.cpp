@@ -5,10 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "gtest/gtest.h"
+#include "TypeFactoryFileGenerator.h"
 
-//TEST(Json, Set0)
-//{
-//
-//    ASSERT_TRUE(true);
-//}
+using namespace nsCodeGeneratorImplementation;
+

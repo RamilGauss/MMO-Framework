@@ -250,7 +250,7 @@ void TReflectionCodeGenerator::LoadExternalSources()
 
             std::string err;
             TExternalSource extSrc;
-            auto deserResult = nsJson::TJsonSerializer::Fill(&extSrc, content, err);
+            auto deserResult = nsJson::TJsonSerializer::Deserialize(&extSrc, content, err);
             if (deserResult == false) {
                 continue;
             }

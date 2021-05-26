@@ -60,7 +60,6 @@ namespace nsCodeGeneratorImplementation
         const std::string s_DeserializeByTypeMethod = "Deserialize";
         const std::string s_FillByTypeMethod = "Fill";
 
-        const std::string s_TypeNameFuncsMap = "mTypeNameFuncsMap";
         const std::string s_TypeFuncVector = "mTypeFuncVector";
 
         nsCppParser::TTypeInfo* mCurrentTypeInfo = nullptr;

@@ -15,10 +15,10 @@ using namespace nsReflectionCodeGenerator;
 
 const std::string TProgramInfo::NAME = "ReflectionCodeGenerator";
 const std::string TProgramInfo::VERSION_MAJOR = "2";
-const std::string TProgramInfo::VERSION_MINOR_HIGH = "1";
-const std::string TProgramInfo::VERSION_MINOR_LOW = "0";
-const int TProgramInfo::COUNTER_BUILD = 50;
-const std::string TProgramInfo::INFO = "Json, Binary, EntMng, Reflection";
+const std::string TProgramInfo::VERSION_MINOR_HIGH = "2";
+const std::string TProgramInfo::VERSION_MINOR_LOW = "1";
+const int TProgramInfo::COUNTER_BUILD = 52;
+const std::string TProgramInfo::INFO = "Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation";
 
 std::string TProgramInfo::Get()
 {

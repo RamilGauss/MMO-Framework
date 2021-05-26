@@ -20,7 +20,7 @@ TEST(Json, SimpleEnum)
 
     nsSimpleEnum::X other;
     std::string err;
-    auto fillResult = nsJson::TJsonSerializer::Fill(&other, str, err);
+    auto fillResult = nsJson::TJsonSerializer::Deserialize(&other, str, err);
     ASSERT_TRUE(fillResult);
 
     auto isEqual = other == x;

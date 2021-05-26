@@ -164,7 +164,7 @@ void Benchmark()
 //-----------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-    auto ti = SingletonManager()->Get<TTypeIdentifier<>>()->type<nsBS::TTestStruct>();
+    auto ti = SingletonManager()->Get<TRunTimeTypeIndex<>>()->type<nsBS::TTestStruct>();
 
     nsBS::TTestStruct ts;
 

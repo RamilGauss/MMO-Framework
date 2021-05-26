@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <vector>
 
 #include "TypeDef.h"
-#include "TypeIdentifier.h"
+#include "RunTimeTypeIndex.h"
 
 // not Thread-safe!
 class DllExport TSingletonManager

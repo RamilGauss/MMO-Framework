@@ -142,7 +142,7 @@ public:
 int main( int argc, char* argv[] )
 {
   //###
-  auto pTypeId = SingletonManager()->Get<TTypeIdentifier<>>();
+  auto pTypeId = SingletonManager()->Get<TRunTimeTypeIndex<>>();
 
   auto x = pTypeId->type<X>();
   auto y = pTypeId->type<Y>();

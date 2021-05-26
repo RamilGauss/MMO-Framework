@@ -21,16 +21,10 @@ namespace nsShareDev
     public:
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng) { mEntMng = pEntMng; }
 
-        virtual void SetComponent(nsECSFramework::TEntityID eid, void* p, const std::string& typeName) = 0;
-        virtual void* ViewComponent(nsECSFramework::TEntityID eid, const std::string& typeName) = 0;
-        virtual bool GetComponent(nsECSFramework::TEntityID eid, void*& p, const std::string& typeName) = 0;
-        virtual bool HasComponent(nsECSFramework::TEntityID eid, const std::string& typeName) = 0;
-        virtual void RemoveComponent(nsECSFramework::TEntityID eid, const std::string& typeName) = 0;
-
-        virtual void SetComponent(nsECSFramework::TEntityID eid, void* p, int typeIdentifier) = 0;
-        virtual void* ViewComponent(nsECSFramework::TEntityID eid, int typeIdentifier) = 0;
-        virtual bool GetComponent(nsECSFramework::TEntityID eid, void*& p, int typeIdentifier) = 0;
-        virtual bool HasComponent(nsECSFramework::TEntityID eid, int typeIdentifier) = 0;
-        virtual void RemoveComponent(nsECSFramework::TEntityID eid, int typeIdentifier) = 0;
+        virtual void SetComponent(nsECSFramework::TEntityID eid, void* p, int rtti) = 0;
+        virtual void* ViewComponent(nsECSFramework::TEntityID eid, int rtti) = 0;
+        virtual bool GetComponent(nsECSFramework::TEntityID eid, void*& p, int rtti) = 0;
+        virtual bool HasComponent(nsECSFramework::TEntityID eid, int rtti) = 0;
+        virtual void RemoveComponent(nsECSFramework::TEntityID eid, int rtti) = 0;
     };
 }

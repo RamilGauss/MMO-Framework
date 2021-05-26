@@ -17,14 +17,14 @@
     <Filter Include="Generators\MyGui">
       <UniqueIdentifier>{f9bb1a54-8136-4c27-b8db-0c8211679ce9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generators\Reflection">
-      <UniqueIdentifier>{0a78cf14-c0c8-40df-b37c-fbe0e00e456f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generators\TypeInformation">
       <UniqueIdentifier>{97183178-db7e-415f-bcb4-de2804e06175}</UniqueIdentifier>
     </Filter>
     <Filter Include="Generators\EntityManagerExtension">
       <UniqueIdentifier>{4179af10-fa01-4759-b151-e8d542bb8b62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\TypeFactory">
+      <UniqueIdentifier>{0a78cf14-c0c8-40df-b37c-fbe0e00e456f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -70,17 +70,17 @@
     <ClCompile Include="Sources\JsonSerializerSourceFileGenerator.cpp">
       <Filter>Generators\Json</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ReflectionFileGenerator.cpp">
-      <Filter>Generators\Reflection</Filter>
+    <ClCompile Include="Sources\TypeFactoryFileGenerator.cpp">
+      <Filter>Generators\TypeFactory</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ReflectionGenerator.cpp">
-      <Filter>Generators\Reflection</Filter>
+    <ClCompile Include="Sources\TypeFactoryGenerator.cpp">
+      <Filter>Generators\TypeFactory</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ReflectionHeaderFileGenerator.cpp">
-      <Filter>Generators\Reflection</Filter>
+    <ClCompile Include="Sources\TypeFactoryHeaderFileGenerator.cpp">
+      <Filter>Generators\TypeFactory</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ReflectionSourceFIleGenerator.cpp">
-      <Filter>Generators\Reflection</Filter>
+    <ClCompile Include="Sources\TypeFactorySourceFIleGenerator.cpp">
+      <Filter>Generators\TypeFactory</Filter>
     </ClCompile>
     <ClCompile Include="Sources\TypeInformationFileGenerator.cpp">
       <Filter>Generators\TypeInformation</Filter>
@@ -138,17 +138,17 @@
     <ClInclude Include="Sources\JsonSerializerSourceFileGenerator.h">
       <Filter>Generators\Json</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ReflectionFileGenerator.h">
-      <Filter>Generators\Reflection</Filter>
+    <ClInclude Include="Sources\TypeFactoryFileGenerator.h">
+      <Filter>Generators\TypeFactory</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ReflectionGenerator.h">
-      <Filter>Generators\Reflection</Filter>
+    <ClInclude Include="Sources\TypeFactoryGenerator.h">
+      <Filter>Generators\TypeFactory</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ReflectionHeaderFileGenerator.h">
-      <Filter>Generators\Reflection</Filter>
+    <ClInclude Include="Sources\TypeFactoryHeaderFileGenerator.h">
+      <Filter>Generators\TypeFactory</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ReflectionSourceFIleGenerator.h">
-      <Filter>Generators\Reflection</Filter>
+    <ClInclude Include="Sources\TypeFactorySourceFIleGenerator.h">
+      <Filter>Generators\TypeFactory</Filter>
     </ClInclude>
     <ClInclude Include="Sources\TypeInformationFileGenerator.h">
       <Filter>Generators\TypeInformation</Filter>

@@ -7,18 +7,21 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ReflectionSourceFileGenerator.h"
+#include "TypeFactorySourceFileGenerator.h"
 #include "fmt/core.h"
 #include "BL_Debug.h"
 
 using namespace nsCodeGeneratorImplementation;
 
-void TReflectionSourceFileGenerator::Work()
+void TTypeFactorySourceFileGenerator::Work()
 {
     AddHeader(mConfig->targetForCodeGeneration.header);
     AddTimeHeader();
 
     AddInclude(mSerializer->fileName + ".h");
+    AddInclude("SingletonManager.h");
+    AddInclude("RunTimeTypeIndex.h");
+
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;
@@ -27,21 +30,21 @@ void TReflectionSourceFileGenerator::Work()
 
     AddEmptyLine();
 
-    auto defMap = fmt::format("std::map<std::string, {}::{}> {}::{};",
-        mSerializer->className, s_Data, mSerializer->className, s_mTypeNameMap);
-    Add(defMap);
+    auto defVector = fmt::format("std::vector<{}::{}> {}::{};",
+        mSerializer->className, s_Data, mSerializer->className, s_mDataVector);
+    Add(defVector);
 
     AddImplementations();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TReflectionSourceFileGenerator::AddImplementations()
+void TTypeFactorySourceFileGenerator::AddImplementations()
 {
     AddInit();
 
     AddMethodDeinitions();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TReflectionSourceFileGenerator::AddInit()
+void TTypeFactorySourceFileGenerator::AddInit()
 {
     std::list<std::string> paramList;
     AddMethodImplementationBegin(s_Void, mSerializer->className, s_Init, paramList);
@@ -59,8 +62,16 @@ void TReflectionSourceFileGenerator::AddInit()
     Add("isNeedInit = false;");
     AddEmptyLine();
 
-    auto& forGenerate = mTypeNameDbPtr->GetForGenerate();
-    for ( auto& type : forGenerate) {
+    Add("auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();");
+    AddEmptyLine();
+
+    auto str = fmt::format("std::map<int, {}> m;", s_Data);
+    Add(str);
+    AddEmptyLine();
+
+    auto& forGen = mTypeNameDbPtr->GetForGenerate();
+
+    for ( auto& type : forGen) {
         auto pTypeInfo = mTypeManager->Get(type.GetFullType());
 
         auto t = pTypeInfo->GetTypeNameWithNameSpace();
@@ -69,30 +80,57 @@ void TReflectionSourceFileGenerator::AddInit()
 
         auto str = fmt::format("{} {};", s_Data, var);
         Add(str);
-        str = fmt::format("{}.{} = \"{}\";", var, s_typeName, t);
-
-        Add(str);
 
         str = fmt::format("{}.{} = [](){{ return new {}(); }};",
             var, s_newFunc, t);
         Add(str);
 
-        str = fmt::format("{}.{}({{ {}.{}, {} }});", s_mTypeNameMap, s_Insert, var, s_typeName, var);
+        str = fmt::format("{}.{} = [](void* p){{ delete ({}*)p; }};",
+            var, s_deleteFunc, t);
+        Add(str);
+
+        auto typeNameWithNameSpace = pTypeInfo->GetTypeNameWithNameSpace();
+
+        str = fmt::format("auto rtti_{} = globalTypeIdentifier->type<{}>();", var, typeNameWithNameSpace);
+        Add(str);
+        AddEmptyLine();
+
+        str = fmt::format("m.insert({{ rtti_{}, {} }});", var, var);
         Add(str);
 
         AddEmptyLine();
     }
+
+    Add("int max = 0;");
+    str = fmt::format("for (auto& vt : m) {{");
+    Add(str);
+    IncrementTabs();
+
+    Add("max = std::max(vt.first, max);");
+    DecrementTabs();
+    AddRightBrace();
+
+    AddEmptyLine();
+    str = fmt::format("{}.resize(max + 1);", s_mDataVector);
+    Add(str);
+    str = fmt::format("for (auto& vt : m) {{");
+    Add(str);
+    IncrementTabs();
+    str = fmt::format("{}[vt.first] = vt.second;", s_mDataVector);
+    Add(str);
+    DecrementTabs();
+    AddRightBrace();
 
     DecrementTabs();
     AddRightBrace();
     AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TReflectionSourceFileGenerator::AddMethodDeinitions()
+void TTypeFactorySourceFileGenerator::AddMethodDeinitions()
 {
     std::list<std::string> paramList =
     {
-        fmt::format("const std::string& {}", s_typeName),
+        fmt::format("int {}", s_rtti),
     };
 
     std::string ret = s_Void + "*";
@@ -102,7 +140,27 @@ void TReflectionSourceFileGenerator::AddMethodDeinitions()
 
     auto str = fmt::format("{}();", s_Init);
     Add(str);
-    str = fmt::format("return {}[{}].{}();", s_mTypeNameMap, s_typeName, s_newFunc);
+    str = fmt::format("return {}[{}].{}();", s_mDataVector, s_rtti, s_newFunc);
+    Add(str);
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+
+    paramList =
+    {
+        fmt::format("void* p"),
+        fmt::format("int {}", s_rtti),
+    };
+
+    ret = s_Void;
+    AddMethodImplementationBegin(ret, mSerializer->className, s_Delete, paramList);
+    AddLeftBrace();
+    IncrementTabs();
+
+    str = fmt::format("{}();", s_Init);
+    Add(str);
+    str = fmt::format("{}[{}].{}(p);", s_mDataVector, s_rtti, s_deleteFunc);
     Add(str);
 
     DecrementTabs();

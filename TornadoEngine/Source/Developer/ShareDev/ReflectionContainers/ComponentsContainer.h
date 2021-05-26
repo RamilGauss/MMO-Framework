@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include "IMyGuiSerializer.h"
 #include "IEntityManagerExtension.h"
 #include "ITypeInformation.h"
+#include "ITypeFactory.h"
 
 namespace nsShareDev
 {
@@ -22,6 +23,7 @@ namespace nsShareDev
         IBinaryMarshaller* mBin = nullptr;
         IMyGuiSerializer* mMygui = nullptr;
         IEntityManagerExtension* mEntMng = nullptr;
+        ITypeFactory* mTypeFactory = nullptr;
         ITypeInformation* mTypeInfo = nullptr;
     };
 }

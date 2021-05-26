@@ -13,10 +13,10 @@ See for more information LICENSE.md.
 
 namespace nsShareDev
 {
-    class DllExport IJsonSerializer
+    class DllExport ITypeFactory
     {
     public:
-        virtual void Serialize(void* p, std::string& json, int rtti) = 0;
-        virtual bool Deserialize(void* p, const std::string& json, int rtti, std::string& err) = 0;
+        virtual void* New(int rtti) = 0;
+        virtual void Delete(void* p, int rtti) = 0;
     };
 }

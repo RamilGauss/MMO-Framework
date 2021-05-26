@@ -1,0 +1,42 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "./DataSources"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ],
+        "inheritance": ""
+    },
+    "targetForCodeGeneration": {
+        "directory": "./",
+        "includeListFileName": "IncludeList",
+        "header": "\tReflectionCodeGeneratorTest",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "TypeFactoryGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTypeFactory",
+                "fileName": "TypeFactorySerializer",
+                "className": "TTypeFactorySerializer",
+                "keyValueMap": {}
+            },
+            "TypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTypeInformation",
+                "fileName": "TypeInformationSerializer",
+                "className": "TTypeInformationSerializer",
+                "keyValueMap": {}
+            }
+        }
+    }
+}

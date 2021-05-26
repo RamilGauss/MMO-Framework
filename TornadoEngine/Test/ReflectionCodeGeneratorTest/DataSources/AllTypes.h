@@ -7,16 +7,21 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <string>
-
-#include "TypeDef.h"
-
-namespace nsShareDev
+namespace nsAllTypes
 {
-    class DllExport IReflection
+    struct A
+    {
+        int x = 42;
+    };
+    struct B
+    {
+        int x = 42;
+        A a;
+    };
+
+    class C
     {
     public:
-        virtual void* New(int typeIdentifier) = 0;
-        virtual void* New(const std::string& typeName) = 0;
+        int x = 42;
     };
 }

@@ -20,6 +20,8 @@ void TEntityManagerHeaderFileGenerator::Work()
     AddStandartInclude("string");
     AddStandartInclude("map");
     AddStandartInclude("functional");
+    AddInclude("TypeDef.h");
+
     AddInclude("EntityManager.h");
 
     AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");

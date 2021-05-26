@@ -7,12 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ReflectionFileGenerator.h"
 #include <functional>
+
+#include "TypeFactoryFileGenerator.h"
 
 namespace nsCodeGeneratorImplementation
 {
-    class TReflectionSourceFileGenerator : public TReflectionFileGenerator
+    class TTypeFactorySourceFileGenerator : public TTypeFactoryFileGenerator
     {
     public:
         virtual void Work() override;

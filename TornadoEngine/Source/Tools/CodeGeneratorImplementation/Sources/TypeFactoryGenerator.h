@@ -11,11 +11,11 @@ See for more information LICENSE.md.
 
 namespace nsCodeGeneratorImplementation
 {
-    class DllExport TReflectionGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
+    class DllExport TTypeFactoryGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TReflectionGenerator() : 
-            nsReflectionCodeGenerator::ITargetCodeGenerator("ReflectionGenerator"){}
+        TTypeFactoryGenerator() : 
+            nsReflectionCodeGenerator::ITargetCodeGenerator("TypeFactoryGenerator"){}
 
         void Work() override;
         void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames) override;

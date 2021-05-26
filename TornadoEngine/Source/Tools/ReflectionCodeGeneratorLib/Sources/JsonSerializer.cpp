@@ -1,21 +1,20 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.1.0, build 50, info Json, Binary, EntMng, Reflection
-// File has been generated at 2021_05_20 22:41:11.912
+// ReflectionCodeGenerator version 2.1.1, build 51, info Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation
+// File has been generated at 2021_05_23 18:49:56.298
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
 #include "JsonPushMaster.h"
 #include "SingletonManager.h"
-#include "TypeIdentifier.h"
+#include "RunTimeTypeIndex.h"
 
 using namespace nsJson;
 
 using POM = TJsonPopMaster;
 using PUM = TJsonPushMaster;
 
-std::map<std::string, TJsonSerializer::TypeFunc> TJsonSerializer::mTypeNameFuncsMap;
 std::vector<TJsonSerializer::TypeFunc> TJsonSerializer::mTypeFuncVector;
 
 void TJsonSerializer::Init()
@@ -26,156 +25,118 @@ void TJsonSerializer::Init()
     }
     isNeedInit = false;
     
-    auto globalTypeIdentifier = SingletonManager()->Get<TTypeIdentifier<>>();
+    auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
+    
+    mTypeFuncVector.resize(8);
+    
     TypeFunc _nsReflectionCodeGenerator_TClassDescTypeFunc;
     _nsReflectionCodeGenerator_TClassDescTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsReflectionCodeGenerator::TClassDesc>((nsReflectionCodeGenerator::TClassDesc*) p, str);
     };
-    _nsReflectionCodeGenerator_TClassDescTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TClassDesc>((nsReflectionCodeGenerator::TClassDesc*&) p, str, err);
+    _nsReflectionCodeGenerator_TClassDescTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsReflectionCodeGenerator::TClassDesc>((nsReflectionCodeGenerator::TClassDesc*) p, str, err);
     };
-    _nsReflectionCodeGenerator_TClassDescTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TClassDesc>((nsReflectionCodeGenerator::TClassDesc*) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TClassDescTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsReflectionCodeGenerator::TClassDesc>();
-    mTypeNameFuncsMap.insert({"nsReflectionCodeGenerator::TClassDesc", _nsReflectionCodeGenerator_TClassDescTypeFunc });
+    
+    auto rtti__nsReflectionCodeGenerator_TClassDescTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TClassDesc>();
+    
+    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TClassDescTypeFunc] = _nsReflectionCodeGenerator_TClassDescTypeFunc;
     
     TypeFunc _nsReflectionCodeGenerator_TConfigTypeFunc;
     _nsReflectionCodeGenerator_TConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsReflectionCodeGenerator::TConfig>((nsReflectionCodeGenerator::TConfig*) p, str);
     };
-    _nsReflectionCodeGenerator_TConfigTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TConfig>((nsReflectionCodeGenerator::TConfig*&) p, str, err);
+    _nsReflectionCodeGenerator_TConfigTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsReflectionCodeGenerator::TConfig>((nsReflectionCodeGenerator::TConfig*) p, str, err);
     };
-    _nsReflectionCodeGenerator_TConfigTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TConfig>((nsReflectionCodeGenerator::TConfig*) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TConfigTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsReflectionCodeGenerator::TConfig>();
-    mTypeNameFuncsMap.insert({"nsReflectionCodeGenerator::TConfig", _nsReflectionCodeGenerator_TConfigTypeFunc });
+    
+    auto rtti__nsReflectionCodeGenerator_TConfigTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TConfig>();
+    
+    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TConfigTypeFunc] = _nsReflectionCodeGenerator_TConfigTypeFunc;
     
     TypeFunc _nsReflectionCodeGenerator_TExternalSourceTypeFunc;
     _nsReflectionCodeGenerator_TExternalSourceTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsReflectionCodeGenerator::TExternalSource>((nsReflectionCodeGenerator::TExternalSource*) p, str);
     };
-    _nsReflectionCodeGenerator_TExternalSourceTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TExternalSource>((nsReflectionCodeGenerator::TExternalSource*&) p, str, err);
+    _nsReflectionCodeGenerator_TExternalSourceTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsReflectionCodeGenerator::TExternalSource>((nsReflectionCodeGenerator::TExternalSource*) p, str, err);
     };
-    _nsReflectionCodeGenerator_TExternalSourceTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TExternalSource>((nsReflectionCodeGenerator::TExternalSource*) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TExternalSourceTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsReflectionCodeGenerator::TExternalSource>();
-    mTypeNameFuncsMap.insert({"nsReflectionCodeGenerator::TExternalSource", _nsReflectionCodeGenerator_TExternalSourceTypeFunc });
+    
+    auto rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TExternalSource>();
+    
+    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc] = _nsReflectionCodeGenerator_TExternalSourceTypeFunc;
     
     TypeFunc _nsReflectionCodeGenerator_TExternalSourcesTypeFunc;
     _nsReflectionCodeGenerator_TExternalSourcesTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsReflectionCodeGenerator::TExternalSources>((nsReflectionCodeGenerator::TExternalSources*) p, str);
     };
-    _nsReflectionCodeGenerator_TExternalSourcesTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TExternalSources>((nsReflectionCodeGenerator::TExternalSources*&) p, str, err);
+    _nsReflectionCodeGenerator_TExternalSourcesTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsReflectionCodeGenerator::TExternalSources>((nsReflectionCodeGenerator::TExternalSources*) p, str, err);
     };
-    _nsReflectionCodeGenerator_TExternalSourcesTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TExternalSources>((nsReflectionCodeGenerator::TExternalSources*) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TExternalSourcesTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsReflectionCodeGenerator::TExternalSources>();
-    mTypeNameFuncsMap.insert({"nsReflectionCodeGenerator::TExternalSources", _nsReflectionCodeGenerator_TExternalSourcesTypeFunc });
+    
+    auto rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TExternalSources>();
+    
+    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc] = _nsReflectionCodeGenerator_TExternalSourcesTypeFunc;
     
     TypeFunc _nsReflectionCodeGenerator_TFilterTypeFunc;
     _nsReflectionCodeGenerator_TFilterTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsReflectionCodeGenerator::TFilter>((nsReflectionCodeGenerator::TFilter*) p, str);
     };
-    _nsReflectionCodeGenerator_TFilterTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TFilter>((nsReflectionCodeGenerator::TFilter*&) p, str, err);
+    _nsReflectionCodeGenerator_TFilterTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsReflectionCodeGenerator::TFilter>((nsReflectionCodeGenerator::TFilter*) p, str, err);
     };
-    _nsReflectionCodeGenerator_TFilterTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TFilter>((nsReflectionCodeGenerator::TFilter*) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TFilterTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsReflectionCodeGenerator::TFilter>();
-    mTypeNameFuncsMap.insert({"nsReflectionCodeGenerator::TFilter", _nsReflectionCodeGenerator_TFilterTypeFunc });
+    
+    auto rtti__nsReflectionCodeGenerator_TFilterTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TFilter>();
+    
+    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TFilterTypeFunc] = _nsReflectionCodeGenerator_TFilterTypeFunc;
     
     TypeFunc _nsReflectionCodeGenerator_TSerializerTypeFunc;
     _nsReflectionCodeGenerator_TSerializerTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsReflectionCodeGenerator::TSerializer>((nsReflectionCodeGenerator::TSerializer*) p, str);
     };
-    _nsReflectionCodeGenerator_TSerializerTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TSerializer>((nsReflectionCodeGenerator::TSerializer*&) p, str, err);
+    _nsReflectionCodeGenerator_TSerializerTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsReflectionCodeGenerator::TSerializer>((nsReflectionCodeGenerator::TSerializer*) p, str, err);
     };
-    _nsReflectionCodeGenerator_TSerializerTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TSerializer>((nsReflectionCodeGenerator::TSerializer*) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TSerializerTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsReflectionCodeGenerator::TSerializer>();
-    mTypeNameFuncsMap.insert({"nsReflectionCodeGenerator::TSerializer", _nsReflectionCodeGenerator_TSerializerTypeFunc });
+    
+    auto rtti__nsReflectionCodeGenerator_TSerializerTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TSerializer>();
+    
+    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TSerializerTypeFunc] = _nsReflectionCodeGenerator_TSerializerTypeFunc;
     
     TypeFunc _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc;
     _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsReflectionCodeGenerator::TTargetForCodeGeneration>((nsReflectionCodeGenerator::TTargetForCodeGeneration*) p, str);
     };
-    _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TTargetForCodeGeneration>((nsReflectionCodeGenerator::TTargetForCodeGeneration*&) p, str, err);
+    _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsReflectionCodeGenerator::TTargetForCodeGeneration>((nsReflectionCodeGenerator::TTargetForCodeGeneration*) p, str, err);
     };
-    _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TTargetForCodeGeneration>((nsReflectionCodeGenerator::TTargetForCodeGeneration*) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsReflectionCodeGenerator::TTargetForCodeGeneration>();
-    mTypeNameFuncsMap.insert({"nsReflectionCodeGenerator::TTargetForCodeGeneration", _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc });
+    
+    auto rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TTargetForCodeGeneration>();
+    
+    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc] = _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc;
     
     TypeFunc _nsReflectionCodeGenerator_TTargetForParsingTypeFunc;
     _nsReflectionCodeGenerator_TTargetForParsingTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsReflectionCodeGenerator::TTargetForParsing>((nsReflectionCodeGenerator::TTargetForParsing*) p, str);
     };
-    _nsReflectionCodeGenerator_TTargetForParsingTypeFunc.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {
-        return Deserialize<nsReflectionCodeGenerator::TTargetForParsing>((nsReflectionCodeGenerator::TTargetForParsing*&) p, str, err);
+    _nsReflectionCodeGenerator_TTargetForParsingTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsReflectionCodeGenerator::TTargetForParsing>((nsReflectionCodeGenerator::TTargetForParsing*) p, str, err);
     };
-    _nsReflectionCodeGenerator_TTargetForParsingTypeFunc.fillFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Fill<nsReflectionCodeGenerator::TTargetForParsing>((nsReflectionCodeGenerator::TTargetForParsing*) p, str, err);
-    };
-    _nsReflectionCodeGenerator_TTargetForParsingTypeFunc.typeIdentifier = globalTypeIdentifier->type<nsReflectionCodeGenerator::TTargetForParsing>();
-    mTypeNameFuncsMap.insert({"nsReflectionCodeGenerator::TTargetForParsing", _nsReflectionCodeGenerator_TTargetForParsingTypeFunc });
     
+    auto rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TTargetForParsing>();
     
-    int max = 0;
-    for (auto& vt : mTypeNameFuncsMap) {
-        max = std::max(vt.second.typeIdentifier, max);
-    }
+    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc] = _nsReflectionCodeGenerator_TTargetForParsingTypeFunc;
     
-    mTypeFuncVector.resize(max + 1);
-    for (auto& vt : mTypeNameFuncsMap) {
-        mTypeFuncVector[vt.second.typeIdentifier] = vt.second;
-    }
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::Serialize(void* p, std::string& str, const std::string& typeName)
+void TJsonSerializer::Serialize(void* p, std::string& str, int rtti)
 {
     Init();
-    mTypeNameFuncsMap[typeName].serializeFunc(p, str);
+    mTypeFuncVector[rtti].serializeFunc(p, str);
 }
 //---------------------------------------------------------------------------------------
-bool TJsonSerializer::Deserialize(void*& p, const std::string& str, const std::string& typeName, std::string& err)
+bool TJsonSerializer::Deserialize(void* p, const std::string& str, int rtti, std::string& err)
 {
     Init();
-    return mTypeNameFuncsMap[typeName].deserializeFunc(p, str, err);
-}
-//---------------------------------------------------------------------------------------
-bool TJsonSerializer::Fill(void* p, const std::string& str, const std::string& typeName, std::string& err)
-{
-    Init();
-    return mTypeNameFuncsMap[typeName].fillFunc(p, str, err);
-}
-void TJsonSerializer::Serialize(void* p, std::string& str, int typeIdentifier)
-{
-    Init();
-    mTypeFuncVector[typeIdentifier].serializeFunc(p, str);
-}
-//---------------------------------------------------------------------------------------
-bool TJsonSerializer::Deserialize(void*& p, const std::string& str, int typeIdentifier, std::string& err)
-{
-    Init();
-    return mTypeFuncVector[typeIdentifier].deserializeFunc(p, str, err);
-}
-//---------------------------------------------------------------------------------------
-bool TJsonSerializer::Fill(void* p, const std::string& str, int typeIdentifier, std::string& err)
-{
-    Init();
-    return mTypeFuncVector[typeIdentifier].fillFunc(p, str, err);
+    return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
 }
 //---------------------------------------------------------------------------------------
 std::string TJsonSerializer::_SerializeEnum(nsCppParser::TypeCategory* p)

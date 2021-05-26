@@ -23,7 +23,7 @@ void TTypeInformationSourceFileGenerator::Work()
     AddEmptyLine();
 
     AddInclude("SingletonManager.h");
-    AddInclude("TypeIdentifier.h");
+    AddInclude("RunTimeTypeIndex.h");
 
     AddEmptyLine();
 
@@ -36,14 +36,12 @@ void TTypeInformationSourceFileGenerator::Work()
     std::string str;
     str = fmt::format("std::list<std::string> {}::{};", mSerializer->className, s_mTypeNameList);
     Add(str);
-    str = fmt::format("std::list<int> {}::{};", mSerializer->className, s_mTypeIdentifierList);
-    Add(str);
 
     AddEmptyLine();
 
-    str = fmt::format("std::map<int, std::string> {}::{};", mSerializer->className, s_mIdentifierNameMap);
+    str = fmt::format("std::vector<std::string> {}::{};", mSerializer->className, s_mNameVector);
     Add(str);
-    str = fmt::format("std::map<std::string, int> {}::{};", mSerializer->className, s_mNameIdentifierMap);
+    str = fmt::format("std::map<std::string, int> {}::{};", mSerializer->className, s_mNameRttiMap);
     Add(str);
 
     AddEmptyLine();
@@ -66,8 +64,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
     IncrementTabs();
 
     Add("static bool isNeedInit = true;");
-    Add("if ( !isNeedInit )");
-    AddLeftBrace();
+    Add("if (!isNeedInit) {");
     IncrementTabs();
     Add("return;");
     DecrementTabs();
@@ -78,7 +75,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
     std::string globalTypeIdentifier = "globalTypeIdentifier";
 
-    auto str = fmt::format("auto {} = SingletonManager()->Get<TTypeIdentifier<>>();", globalTypeIdentifier);
+    auto str = fmt::format("auto {} = SingletonManager()->Get<TRunTimeTypeIndex<>>();", globalTypeIdentifier);
     Add(str);
 
     AddEmptyLine();
@@ -89,27 +86,51 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
         auto t = pTypeInfo->GetTypeNameWithNameSpace();
 
-        auto identifier = fmt::format("{}_i", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
+        auto rtti = fmt::format("{}_i", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
         auto typeName = fmt::format("{}_n", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
 
 
-        str = fmt::format("int {} = {}->type<{}>();", identifier, globalTypeIdentifier, t);
+        str = fmt::format("int {} = {}->type<{}>();", rtti, globalTypeIdentifier, t);
         Add(str);
         str = fmt::format("std::string {} = \"{}\";", typeName, t);
         Add(str);
 
-        str = fmt::format("{}.push_back({});", s_mTypeIdentifierList, identifier);
-        Add(str);
         str = fmt::format("{}.push_back({});", s_mTypeNameList, typeName);
         Add(str);
 
-        str = fmt::format("{}.insert({{ _TFloat3Identifier, _TFloat3Name }});", s_mIdentifierNameMap, identifier, typeName);
-        Add(str);
-        str = fmt::format("{}.insert({{ _TFloat3Name, _TFloat3Identifier }});", s_mNameIdentifierMap, typeName, identifier);
+        str = fmt::format("{}.insert({{ \"{}\", {} }});", s_mNameRttiMap, typeName, rtti);
         Add(str);
 
         AddEmptyLine();
     }
+
+    str = fmt::format("int max = 0;");
+    Add(str);
+
+    str = fmt::format("for (auto& nameRtti : {}) {{", s_mNameRttiMap);
+    Add(str);
+
+    IncrementTabs();
+
+    str = fmt::format("max = std::max(max, nameRtti.second);", s_mNameRttiMap);
+    Add(str);
+
+    DecrementTabs();
+    AddRightBrace();
+
+    str = fmt::format("{}.resize(max + 1);", s_mNameVector);
+    Add(str);
+
+    str = fmt::format("for (auto& nameRtti : {}) {{", s_mNameRttiMap);
+    Add(str);
+
+    IncrementTabs();
+
+    str = fmt::format("{}[nameRtti.second] = nameRtti.first;", s_mNameVector);
+    Add(str);
+
+    DecrementTabs();
+    AddRightBrace();
 
     DecrementTabs();
     AddRightBrace();
@@ -134,27 +155,11 @@ void TTypeInformationSourceFileGenerator::AddMethodDeinitions()
     AddRightBrace();
     AddCommentedLongLine();
     //=============================================================
-    ret = "const std::list<int>*";
-
-    AddMethodImplementationBegin(ret, mSerializer->className, s_GetTypeIdentifierList, paramList);
-    AddLeftBrace();
-    IncrementTabs();
-
-    str = fmt::format("{}();", s_Init);
-    Add(str);
-    str = fmt::format("return &{};", s_mTypeIdentifierList);
-    Add(str);
-
-    DecrementTabs();
-    AddRightBrace();
-    AddCommentedLongLine();
-    //=============================================================
     paramList = 
     {
-        fmt::format("int {}", s_typeIdentifier),
-        fmt::format("std::string& {}", s_typeName)
+        fmt::format("int {}", s_rtti),
     };
-    ret = s_Bool;
+    ret = "const std::string*";
 
     AddMethodImplementationBegin(ret, mSerializer->className, s_ConvertTypeToName, paramList);
     AddLeftBrace();
@@ -162,17 +167,8 @@ void TTypeInformationSourceFileGenerator::AddMethodDeinitions()
 
     str = fmt::format("{}();", s_Init);
     Add(str);
-    str = fmt::format("auto fit = {}.find({});", s_mIdentifierNameMap, s_typeIdentifier);
+    str = fmt::format("return &({}[{}]);", s_mNameVector, s_rtti);
     Add(str);
-    str = fmt::format("if ( fit == {}.end() ) {{", s_mIdentifierNameMap);
-    Add(str);
-    IncrementTabs();
-    Add("return false;");
-    DecrementTabs();
-    AddRightBrace();
-    str = fmt::format("{} = fit->second;", s_typeName);
-    Add(str);
-    Add("return true;");
 
     DecrementTabs();
     AddRightBrace();
@@ -181,7 +177,7 @@ void TTypeInformationSourceFileGenerator::AddMethodDeinitions()
     paramList =
     {
         fmt::format("const std::string& {}", s_typeName),
-        fmt::format("int& {}", s_typeIdentifier)
+        fmt::format("int& {}", s_rtti)
     };
     ret = s_Bool;
 
@@ -191,9 +187,9 @@ void TTypeInformationSourceFileGenerator::AddMethodDeinitions()
 
     str = fmt::format("{}();", s_Init);
     Add(str);
-    str = fmt::format("auto fit = {}.find({});", s_mNameIdentifierMap, s_typeName);
+    str = fmt::format("auto fit = {}.find({});", s_mNameRttiMap, s_typeName);
     Add(str);
-    str = fmt::format("if ( fit == {}.end() ) {{", s_mNameIdentifierMap);
+    str = fmt::format("if (fit == {}.end()) {{", s_mNameRttiMap);
     Add(str);
     IncrementTabs();
     Add("return false;");

@@ -20,7 +20,7 @@ TEST(Json, Complex)
 
     nsComplex::Y other;
     std::string err;
-    auto fillResult = nsJson::TJsonSerializer::Fill(&other, str, err);
+    auto fillResult = nsJson::TJsonSerializer::Deserialize(&other, str, err);
     ASSERT_TRUE(fillResult);
 
     auto isEqual = other == y;
@@ -37,7 +37,7 @@ TEST(Json, Complex_Null_Pointer)
 
     nsComplex::Y other;
     std::string err;
-    auto fillResult = nsJson::TJsonSerializer::Fill(&other, str, err);
+    auto fillResult = nsJson::TJsonSerializer::Deserialize(&other, str, err);
     ASSERT_TRUE(fillResult);
 
     auto isEqual = other == y;
@@ -54,7 +54,7 @@ TEST(Json, Complex_Null_Pointer_Not_Passed)
 
     nsComplex::Y other;
     std::string err;
-    auto fillResult = nsJson::TJsonSerializer::Fill(&other, str, err);
+    auto fillResult = nsJson::TJsonSerializer::Deserialize(&other, str, err);
     ASSERT_TRUE(fillResult);
 
     y.Fill();

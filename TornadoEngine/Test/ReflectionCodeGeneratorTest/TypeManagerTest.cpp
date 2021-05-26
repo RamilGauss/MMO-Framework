@@ -1,10 +1,10 @@
 #include "gtest/gtest.h"
 
-#include "TypeManager.h"
+#include "SingletonManager.h"
+#include "ReflectionCodeGeneratorLib/Sources/TypeManager.h"
 
 using namespace nsReflectionCodeGenerator;
 using namespace nsCppParser;
-
 
 TEST(TypeManager, _0)
 {
@@ -13,16 +13,16 @@ TEST(TypeManager, _0)
     std::shared_ptr<TTypeInfo> tiB;
     tiB.reset(new TTypeInfo());
 
-    TTypeManager typeMng;
-    tiA->mFullTypeName = "A";
-    typeMng.Add(tiA.get());
+    auto typeMng = SingletonManager()->Get<TTypeManager>();
+    tiA->mName = "A";
+    typeMng->Add(tiA.get());
 
-    tiB->mFullTypeName = "B";
-    typeMng.Add(tiB.get());
+    tiB->mName = "B";
+    typeMng->Add(tiB.get());
 
-    ASSERT_NE(typeMng.Get("A"), nullptr);
-    ASSERT_NE(typeMng.Get("B"), nullptr);
-    ASSERT_EQ(typeMng.Get("C"), nullptr);
+    ASSERT_NE(typeMng->Get("A"), nullptr);
+    ASSERT_NE(typeMng->Get("B"), nullptr);
+    ASSERT_EQ(typeMng->Get("C"), nullptr);
 }
 /*
 

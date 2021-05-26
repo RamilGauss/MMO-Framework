@@ -15,19 +15,17 @@ namespace nsCodeGeneratorImplementation
     {
     protected:
 
-        const std::string s_typeIdentifier = "typeIdentifier";
+        const std::string s_rtti = "rtti";
         const std::string s_typeName = "typeName";
         
         const std::string s_mTypeNameList = "mTypeNameList";
-        const std::string s_mTypeIdentifierList = "mTypeIdentifierList";
-        const std::string s_mIdentifierNameMap = "mIdentifierNameMap";
-        const std::string s_mNameIdentifierMap = "mNameIdentifierMap";
+        const std::string s_mNameVector = "mNameVector";
+        const std::string s_mNameRttiMap = "mNameRttiMap";
 
         const std::string s_Init = "Init";
         const std::string s_GetTypeNameList = "GetTypeNameList";
-        const std::string s_GetTypeIdentifierList = "GetTypeIdentifierList";
-        const std::string s_ConvertTypeToName = "ConvertTypeToName";
-        const std::string s_ConvertNameToType = "ConvertNameToType";
+        const std::string s_ConvertTypeToName = "ConvertRttiToName";
+        const std::string s_ConvertNameToType = "ConvertNameToRtti";
     };
 }
 

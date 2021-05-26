@@ -25,7 +25,7 @@ void TJsonSerializerSourceFileGenerator::Work()
     AddInclude("JsonPushMaster.h");
 
     AddInclude("SingletonManager.h");
-    AddInclude("TypeIdentifier.h");
+    AddInclude("RunTimeTypeIndex.h");
 
     AddIncludeForExternalSources();
 
@@ -42,7 +42,6 @@ void TJsonSerializerSourceFileGenerator::Work()
     AddUsing(s_PUM + " = TJsonPushMaster");
 
     AddEmptyLine();
-    Add(fmt::format("std::map<std::string, {}::TypeFunc> {}::{};", mSerializer->className, mSerializer->className, s_TypeNameFuncsMap));
     Add(fmt::format("std::vector<{}::TypeFunc> {}::{};", mSerializer->className, mSerializer->className, s_TypeFuncVector));
     AddEmptyLine();
 
@@ -69,7 +68,12 @@ void TJsonSerializerSourceFileGenerator::AddInit()
     Add("}");
     Add("isNeedInit = false;");
     AddEmptyLine();
-    Add("auto globalTypeIdentifier = SingletonManager()->Get<TTypeIdentifier<>>();");
+    Add("auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();");
+    AddEmptyLine();
+
+    auto str = fmt::format("std::map<int, TypeFunc> m;");
+    Add(str);
+    AddEmptyLine();
 
     auto& forGen = mTypeNameDbPtr->GetForGenerate();
     for (auto& typeInfo : forGen) {
@@ -90,40 +94,40 @@ void TJsonSerializerSourceFileGenerator::AddInit()
         Add(fmt::format("{}.serializeFunc = [] (void* p, std::string& str) {{", typeNameObject));
         Add(fmt::format("Serialize<{}>(({}*) p, str);", typeNameWithNameSpace, typeNameWithNameSpace));
         Add("};");
-        Add(fmt::format("{}.deserializeFunc = [] (void*& p, const std::string& str, std::string& err) {{", typeNameObject));
-        Add(fmt::format("    return Deserialize<{}>(({}*&) p, str, err);", typeNameWithNameSpace, typeNameWithNameSpace));
-        Add("};");
-        Add(fmt::format("{}.fillFunc = [] (void* p, const std::string& str, std::string& err) {{", typeNameObject));
-        Add(fmt::format("    return Fill<{}>(({}*) p, str, err);", typeNameWithNameSpace, typeNameWithNameSpace));
+        Add(fmt::format("{}.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {{", typeNameObject));
+        Add(fmt::format("    return Deserialize<{}>(({}*) p, str, err);", typeNameWithNameSpace, typeNameWithNameSpace));
         Add("};");
 
-        Add(fmt::format("{}.typeIdentifier = globalTypeIdentifier->type<{}>();", typeNameObject, typeNameWithNameSpace));
+        AddEmptyLine();
 
-        Add(fmt::format("{}.insert({{\"{}\", {} }});", s_TypeNameFuncsMap, typeNameWithNameSpace, typeNameObject));
+        str = fmt::format("auto rtti_{} = globalTypeIdentifier->type<{}>();", typeNameObject, typeNameWithNameSpace);
+        Add(str);
+        AddEmptyLine();
+
+        str = fmt::format("m.insert({{ rtti_{}, {} }});", typeNameObject, typeNameObject);
+        Add(str);
         AddEmptyLine();
     }
 
-    AddEmptyLine();
     Add("int max = 0;");
-    auto str = fmt::format("for (auto& vt : {}) {{", s_TypeNameFuncsMap);
+    str = fmt::format("for (auto& vt : m) {{");
     Add(str);
     IncrementTabs();
 
-    Add("max = std::max(vt.second.typeIdentifier, max);");
+    Add("max = std::max(vt.first, max);");
     DecrementTabs();
     AddRightBrace();
 
     AddEmptyLine();
     str = fmt::format("{}.resize(max + 1);", s_TypeFuncVector);
     Add(str);
-    str = fmt::format("for (auto& vt : {}) {{", s_TypeNameFuncsMap);
+    str = fmt::format("for (auto& vt : m) {{");
     Add(str);
     IncrementTabs();
-    str = fmt::format("{}[vt.second.typeIdentifier] = vt.second;", s_TypeFuncVector);
+    str = fmt::format("{}[vt.first] = vt.second;", s_TypeFuncVector);
     Add(str);
     DecrementTabs();
     AddRightBrace();
-
 
     DecrementTabs();
     AddRightBrace();
@@ -133,68 +137,24 @@ void TJsonSerializerSourceFileGenerator::AddConstContentMethods()
 {
     auto className = mSerializer->className;
 
-    //====================== type name
-    Add(fmt::format("void {}::{}(void* p, std::string& str, const std::string& typeName)", className, s_SerializeByTypeMethod));
+    //====================== run-time type index
+    Add(fmt::format("void {}::{}(void* p, std::string& str, int rtti)", className, s_SerializeByTypeMethod));
     AddLeftBrace();
     IncrementTabs();
 
     Add(fmt::format("{}();", s_Init));
-    Add(fmt::format("{}[typeName].serializeFunc(p, str);", s_TypeNameFuncsMap));
+    Add(fmt::format("{}[rtti].serializeFunc(p, str);", s_TypeFuncVector));
 
     DecrementTabs();
     AddRightBrace();
     AddCommentedLongLine();
     //======================
-    Add(fmt::format("bool {}::{}(void*& p, const std::string& str, const std::string& typeName, std::string& err)", className, s_DeserializeByTypeMethod));
+    Add(fmt::format("bool {}::{}(void* p, const std::string& str, int rtti, std::string& err)", className, s_DeserializeByTypeMethod));
     AddLeftBrace();
     IncrementTabs();
 
     Add(fmt::format("{}();", s_Init));
-    Add(fmt::format("return {}[typeName].deserializeFunc(p, str, err);", s_TypeNameFuncsMap));
-
-    DecrementTabs();
-    AddRightBrace();
-    AddCommentedLongLine();
-    //======================
-    Add(fmt::format("bool {}::{}(void* p, const std::string& str, const std::string& typeName, std::string& err)", className, s_FillByTypeMethod));
-    AddLeftBrace();
-    IncrementTabs();
-
-    Add(fmt::format("{}();", s_Init));
-    Add(fmt::format("return {}[typeName].fillFunc(p, str, err);", s_TypeNameFuncsMap));
-
-    DecrementTabs();
-    AddRightBrace();
-    //=============================================================
-    //====================== type identifier
-    Add(fmt::format("void {}::{}(void* p, std::string& str, int typeIdentifier)", className, s_SerializeByTypeMethod));
-    AddLeftBrace();
-    IncrementTabs();
-
-    Add(fmt::format("{}();", s_Init));
-    Add(fmt::format("{}[typeIdentifier].serializeFunc(p, str);", s_TypeFuncVector));
-
-    DecrementTabs();
-    AddRightBrace();
-    AddCommentedLongLine();
-    //======================
-    Add(fmt::format("bool {}::{}(void*& p, const std::string& str, int typeIdentifier, std::string& err)", className, s_DeserializeByTypeMethod));
-    AddLeftBrace();
-    IncrementTabs();
-
-    Add(fmt::format("{}();", s_Init));
-    Add(fmt::format("return {}[typeIdentifier].deserializeFunc(p, str, err);", s_TypeFuncVector));
-
-    DecrementTabs();
-    AddRightBrace();
-    AddCommentedLongLine();
-    //======================
-    Add(fmt::format("bool {}::{}(void* p, const std::string& str, int typeIdentifier, std::string& err)", className, s_FillByTypeMethod));
-    AddLeftBrace();
-    IncrementTabs();
-
-    Add(fmt::format("{}();", s_Init));
-    Add(fmt::format("return {}[typeIdentifier].fillFunc(p, str, err);", s_TypeFuncVector));
+    Add(fmt::format("return {}[rtti].deserializeFunc(p, str, err);", s_TypeFuncVector));
 
     DecrementTabs();
     AddRightBrace();

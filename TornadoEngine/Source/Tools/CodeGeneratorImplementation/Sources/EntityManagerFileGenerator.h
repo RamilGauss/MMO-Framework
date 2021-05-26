@@ -26,7 +26,7 @@ namespace nsCodeGeneratorImplementation
         const std::string s_pEntMng = "pEntMng";
         const std::string s_TEntityID = "TEntityID";
         const std::string s_eid = "eid";
-        const std::string s_typeName = "typeName";
+        const std::string s_rtti = "rtti";
         const std::string s_Ptr = "p";
 
         const std::string s_Data = "Data";
@@ -35,7 +35,7 @@ namespace nsCodeGeneratorImplementation
         const std::string s_getFunc = "getFunc";
         const std::string s_hasFunc = "hasFunc";
         const std::string s_removeFunc = "removeFunc";
-        const std::string s_mTypeNameMap = "mTypeNameMap";
+        const std::string s_mRttiVector = "mRttiVector";
 
     protected:
         TEntityManagerFileGenerator();

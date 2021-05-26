@@ -5,12 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ReflectionHeaderFileGenerator.h"
 #include <set>
+
+#include "TypeFactoryHeaderFileGenerator.h"
 
 using namespace nsCodeGeneratorImplementation;
 
-void TReflectionHeaderFileGenerator::Work()
+void TTypeFactoryHeaderFileGenerator::Work()
 {
     AddHeader(mConfig->targetForCodeGeneration.header);
     AddTimeHeader();
@@ -18,8 +19,10 @@ void TReflectionHeaderFileGenerator::Work()
     AddPragmaOnce();
     AddEmptyLine();
     AddStandartInclude("string");
-    AddStandartInclude("map");
+    AddStandartInclude("vector");
     AddStandartInclude("functional");
+
+    AddInclude("TypeDef.h");
 
     AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");
     AddEmptyLine();

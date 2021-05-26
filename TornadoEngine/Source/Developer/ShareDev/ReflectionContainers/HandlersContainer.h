@@ -7,14 +7,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IReflection.h"
+#include "ITypeFactory.h"
 #include "ITypeInformation.h"
 
 namespace nsShareDev
 {
     struct DllExport THandlersContainer
     {
-        IReflection* mReflection = nullptr;
+        ITypeFactory* mTypeFactory = nullptr;
         ITypeInformation* mTypeInfo = nullptr;
     };
 }

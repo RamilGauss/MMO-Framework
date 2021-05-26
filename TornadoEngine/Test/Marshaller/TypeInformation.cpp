@@ -3,7 +3,7 @@
 #include "IncludeList.h"
 
 #include "SingletonManager.h"
-#include "TypeIdentifier.h"
+#include "RunTimeTypeIndex.h"
 
 using namespace nsTypeInformation;
 
@@ -21,7 +21,7 @@ void TTypeInformation::Init()
     }
     isNeedInit = false;
 
-    auto globalTypeIdentifier = SingletonManager()->Get<TTypeIdentifier<>>();
+    auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
 
 
 

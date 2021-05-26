@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 #include "CodeGeneratorImplementation/Sources/JsonSerializerGenerator.h"
 #include "CodeGeneratorImplementation/Sources/BinaryMarshallerGenerator.h"
-#include "CodeGeneratorImplementation/Sources/ReflectionGenerator.h"
+#include "CodeGeneratorImplementation/Sources/TypeFactoryGenerator.h"
 #include "CodeGeneratorImplementation/Sources/EntityManagerGenerator.h"
 #include "CodeGeneratorImplementation/Sources/TypeInformationGenerator.h"
 
@@ -27,7 +27,7 @@ TIncludeListGenerator g_IncludeListGenerator;
 //TMyGuiSerializerGenerator g_MyGuiGenerator;
 TJsonSerializerGenerator g_JsonGenerator;
 TBinaryMarshallerGenerator g_BinaryGenerator;
-TReflectionGenerator g_ReflectionGenerator;
+TTypeFactoryGenerator g_ReflectionGenerator;
 TEntityManagerGenerator g_EntMngGenerator;
 TTypeInformationGenerator g_TypeInfoGenerator;
 

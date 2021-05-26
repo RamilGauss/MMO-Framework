@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-#include "TypeNameDataBase.h"
+#include "ReflectionCodeGeneratorLib/Sources/TypeNameDataBase.h"
 
 using namespace nsReflectionCodeGenerator;
 
@@ -16,11 +16,11 @@ TEST(TypeNameDataBase, GenerateList)
     tc.typeName = "C";
     tdb.AddForGenerate(tc);
 
-    auto genList = tdb.GetForGenerate();
+    auto& genList = tdb.GetForGenerate();
 
     std::set<TTypeNameDataBase::TTypeInfo> ethalon = {ta, tb, tc};
 
-    ASSERT_EQ(*genList, ethalon);
+    ASSERT_EQ(genList, ethalon);
 }
 
 /*
