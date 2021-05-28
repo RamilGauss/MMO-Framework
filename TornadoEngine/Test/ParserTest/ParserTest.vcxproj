@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassDeclaration.h" />
+    <ClInclude Include="EmptyEnum.h" />
     <ClInclude Include="EnumInNamespace.h" />
     <ClInclude Include="Enum_0.h" />
     <ClInclude Include="Enum_1.h" />

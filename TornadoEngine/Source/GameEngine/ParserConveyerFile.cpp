@@ -10,6 +10,8 @@ See for more information LICENSE.md.
 #include "TextFile.h"
 #include "GameEngineJsonSerializer.h"
 
+using namespace nsGameEngine;
+
 bool TParserConveyerFile::Work(std::string& fileDescConveyer)
 {
     std::string jsonContent;
@@ -19,7 +21,7 @@ bool TParserConveyerFile::Work(std::string& fileDescConveyer)
         return false;
     }
     std::string err;
-    return TGameEngineJsonSerializer::Fill(&mConveyerConfig, jsonContent, err);
+    return TGameEngineJsonSerializer::Deserialize(&mConveyerConfig, jsonContent, err);
 }
 //---------------------------------------------------------------------------------------
 std::string TParserConveyerFile::GetStrError()

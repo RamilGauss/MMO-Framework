@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -13,19 +13,19 @@ See for more information LICENSE.md.
 class DllExport TModuleComponent : public TModuleDev, public TDstEvent
 {
 protected:
-  int mLogicID;
+    int mLogicID;
 
-  TCallBackRegistrator0 mCBStartEvent;
-  TCallBackRegistrator0 mCBStopEvent;
+    TCallBackRegistrator0 mCBStartEvent;
+    TCallBackRegistrator0 mCBStopEvent;
 public:
-  TModuleComponent();
+    TModuleComponent();
 
-  void SetLogicID(int id);
+    void SetLogicID(int id);
 
-  TCallBackRegistrator0* GetCBStartEvent();
-  TCallBackRegistrator0* GetCBStopEvent();
+    TCallBackRegistrator0* GetCBStartEvent();
+    TCallBackRegistrator0* GetCBStopEvent();
 protected:
-  virtual void Input(int id_sender, void* p, int size);
+    virtual void Input(int id_sender, void* p, int size);
 protected:
-  void OutputToSynchroPoint();
+    void OutputToSynchroPoint();
 };

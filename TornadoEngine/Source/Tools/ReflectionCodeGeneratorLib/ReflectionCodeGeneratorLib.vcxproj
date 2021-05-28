@@ -27,7 +27,6 @@
     <ClCompile Include="Sources\ITargetCodeGenerator.cpp" />
     <ClCompile Include="Sources\JsonSerializer.cpp" />
     <ClCompile Include="Sources\OutDumper.cpp" />
-    <ClCompile Include="Sources\PathOperations.cpp" />
     <ClCompile Include="Sources\ProgramInfo.cpp" />
     <ClCompile Include="Sources\ReflectionCodeGenerator.cpp" />
     <ClCompile Include="Sources\SetupConfig.cpp" />
@@ -49,7 +48,6 @@
     <ClInclude Include="Sources\ITargetCodeGenerator.h" />
     <ClInclude Include="Sources\JsonSerializer.h" />
     <ClInclude Include="Sources\OutDumper.h" />
-    <ClInclude Include="Sources\PathOperations.h" />
     <ClInclude Include="Sources\ProgramInfo.h" />
     <ClInclude Include="Sources\ReflectionCodeGenerator.h" />
     <ClInclude Include="Sources\Requirements.h" />

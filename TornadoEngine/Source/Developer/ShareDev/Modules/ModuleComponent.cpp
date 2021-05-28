@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -11,51 +11,49 @@ See for more information LICENSE.md.
 
 TModuleComponent::TModuleComponent()
 {
-  mLogicID = -1;
+    mLogicID = -1;
 }
 //------------------------------------------------------------------------
 void TModuleComponent::SetLogicID(int id)
 {
-  mLogicID = id;
+    mLogicID = id;
 }
 //------------------------------------------------------------------------
 void TModuleComponent::Input(int id_sender, void* p, int size)
 {
-  if(id_sender!=mLogicID)
-    return;
+    if (id_sender != mLogicID)
+        return;
 
-  TBaseLogicPacket* pBLP = (TBaseLogicPacket*)p;
-  switch(pBLP->type)
-  {
-    case nsBaseLogicPacket::eCallBack0:
-      ((TLogicEventCallBack0*)pBLP)->mCB.Notify();
-      break;
-    default:;
-  }
+    TBaseLogicPacket* pBLP = (TBaseLogicPacket*) p;
+    switch (pBLP->type)   {
+        case nsBaseLogicPacket::eCallBack0:
+            ((TLogicEventCallBack0*) pBLP)->mCB.Notify();
+            break;
+        default:;
+    }
 }
 //--------------------------------------------------------------
 void TModuleComponent::OutputToSynchroPoint()
 {
-  while( true )
-  { // модуль создал события
-    nsEvent::TEvent* pEvent = TDstEvent::GetEvent();
-    if( pEvent==NULL )
-      break;
+    while (true)   { // модуль создал события
+        nsEvent::TEvent* pEvent = TDstEvent::GetEvent();
+        if (pEvent == NULL)
+            break;
 
-    TSynchroAbonent::AddEventWithoutCopy(mLogicID, pEvent->pContainer);
-    pEvent->pContainer = NULL;
-    delete pEvent;
-  }
+        TSynchroAbonent::AddEventWithoutCopy(mLogicID, pEvent->pContainer);
+        pEvent->pContainer = NULL;
+        delete pEvent;
+    }
 }
 //---------------------------------------------------------------------------------
 TCallBackRegistrator0* TModuleComponent::GetCBStartEvent()
 {
-  return &mCBStartEvent;
+    return &mCBStartEvent;
 }
 //---------------------------------------------------------------------------------
 TCallBackRegistrator0* TModuleComponent::GetCBStopEvent()
 {
-  return &mCBStopEvent;
+    return &mCBStopEvent;
 }
 //---------------------------------------------------------------------------------
 

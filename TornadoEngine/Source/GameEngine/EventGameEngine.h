@@ -11,17 +11,17 @@ See for more information LICENSE.md.
 
 namespace nsGameEngine
 {
-  enum
-  {
-    eAfterCreateDevTool,
-    eAfterCreateModules,
-    eStartThreads,
-    eStopThreads,
-    eStopThreadsEnd,
-    eParseFileConveyerError,
-    eModuleNotMade,
-    eThreadsNotExist,
-  };
+    enum
+    {
+        eAfterCreateDevTool,
+        eAfterCreateModules,
+        eStartThreads,
+        eStopThreads,
+        eStopThreadsEnd,
+        eParseFileConveyerError,
+        eModuleNotMade,
+        eThreadsNotExist,
+    };
 
-  extern bool GetStrEventsByID( int id, std::string& str );
+    extern bool GetStrEventsByID(int id, std::string& str);
 }

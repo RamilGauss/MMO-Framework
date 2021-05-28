@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -14,13 +14,13 @@ See for more information LICENSE.md.
 
 class DllExport TModulePhysicEngine : public TModuleComponent
 {
-  std::shared_ptr<TPhysicEngine_Bullet> mPE;
+    std::shared_ptr<TPhysicEngine_Bullet> mPE;
 public:
-  TModulePhysicEngine();
+    TModulePhysicEngine();
 
-  TPhysicEngine_Bullet* GetPE();
+    TPhysicEngine_Bullet* GetPE();
 
-  virtual void StartEvent();
-  virtual bool WorkInherit();
-  virtual void StopEvent();
+    virtual void StartEvent();
+    virtual bool WorkInherit();
+    virtual void StopEvent();
 };

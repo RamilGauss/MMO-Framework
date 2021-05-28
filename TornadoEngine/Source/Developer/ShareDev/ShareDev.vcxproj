@@ -338,7 +338,6 @@
     <ClCompile Include="Share\InputCmdDevTool.cpp" />
     <ClCompile Include="Share\MathStructs.cpp" />
     <ClCompile Include="Share\MathTools.cpp" />
-    <ClCompile Include="Share\RoomManager.cpp" />
     <ClCompile Include="Share\ModuleDev.cpp" />
     <ClCompile Include="Test\ShowTankWoT_test.cpp" />
   </ItemGroup>
@@ -503,7 +502,6 @@
     <ClInclude Include="Share\ListModules.h" />
     <ClInclude Include="Share\MathStructs.h" />
     <ClInclude Include="Share\MathTools.h" />
-    <ClInclude Include="Share\RoomManager.h" />
     <ClInclude Include="Share\ModuleDev.h" />
     <ClInclude Include="Test\ShowTankWoT_test.h" />
   </ItemGroup>
@@ -511,7 +509,7 @@
     <None Include="reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
+    <Text Include="..\..\..\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

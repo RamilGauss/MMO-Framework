@@ -40,7 +40,7 @@ TGameEngine::TGameEngine()
 //----------------------------------------------------------------------
 void TGameEngine::Done()
 {
-    if ( mFreeDevTool ) {
+    if (mFreeDevTool) {
         mFreeDevTool(mDevTool);
     }
 
@@ -54,26 +54,26 @@ void TGameEngine::Done()
 //----------------------------------------------------------------------
 bool TGameEngine::LoadDLL(int variant_use, std::string& sNameDLL)
 {
-    if ( mLoaderDLL->Init(sNameDLL.data()) == false ) {
+    if (mLoaderDLL->Init(sNameDLL.data()) == false) {
         GetLogger(sName)->WriteF_time("LoadDLL() FAIL init.\n");
         return false;
     }
     mFreeDevTool = (FuncFreeDevTool) mLoaderDLL->Get(StrFreeDevTool);
-    if ( mFreeDevTool == nullptr ) {
+    if (mFreeDevTool == nullptr) {
         GetLogger(sName)->WriteF_time("LoadDLL() FAIL load FuncFree.\n");
         return false;
     }
     mGetDevTool = (FuncGetDevTool) mLoaderDLL->Get(StrGetDevTool);
-    if ( mGetDevTool == nullptr ) {
+    if (mGetDevTool == nullptr) {
         GetLogger(sName)->WriteF_time("LoadDLL() FAIL load FuncGetdevTool.\n");
         return false;
     }
-    if ( mDevTool != nullptr ) {
+    if (mDevTool != nullptr) {
         GetLogger(sName)->WriteF_time("LoadDLL() warning, object was loaded.\n");
         return true;
     }
     mDevTool = mGetDevTool(variant_use);
-    if ( mDevTool == nullptr ) {// нет DLL - нет движка.
+    if (mDevTool == nullptr) {// нет DLL - нет движка.
         return false;
     }
 
@@ -89,15 +89,15 @@ void TGameEngine::Init()
 //------------------------------------------------------------------------
 void TGameEngine::Work(int variant_use, std::string& sNameDLL, std::vector<std::string>& vecParam)// начало работы
 {
-    if ( LoadDLL(variant_use, sNameDLL) == false ) {
+    if (LoadDLL(variant_use, sNameDLL) == false) {
         return;
     }
     mDevTool->SetVectorParam(vecParam);
     // подготовка конвейера
-    if ( PrepareConveyer() == false ) {
+    if (PrepareConveyer() == false) {
         return;
     }
-    if ( CreateModules() == false ) {
+    if (CreateModules() == false) {
         return;
     }
     LinkModulesToSynchroPoint();
@@ -109,21 +109,21 @@ void TGameEngine::Work(int variant_use, std::string& sNameDLL, std::vector<std::
 //------------------------------------------------------------------------
 void TGameEngine::Work()
 {
-    for ( auto& pModule : mModulePtrList ) {
+    for (auto& pModule : mModulePtrList) {
         pModule->StartEvent();
     }
 
     bool needStop = false;
-    while ( !needStop ) {
-        for ( auto& pModule : mModulePtrList ) {
-            if ( pModule->Work() == false ) {
+    while (!needStop) {
+        for (auto& pModule : mModulePtrList) {
+            if (pModule->Work() == false) {
                 Event(nsGameEngine::eStopThreads, pModule->GetName());
                 needStop = true;
             }
         }
     }
 
-    for ( auto& pModule : mModulePtrList ) {
+    for (auto& pModule : mModulePtrList) {
         pModule->StopEvent();
     }
 }
@@ -138,10 +138,10 @@ bool TGameEngine::PrepareConveyer()
     auto sFileDescConveyer = mDevTool->GetFileDescConveyer();
     auto sVariantConveyer = mDevTool->GetVariantConveyer();
     TParserConveyerFile parser;
-    if ( parser.Work(sFileDescConveyer) ) {
+    if (parser.Work(sFileDescConveyer)) {
         mModuleNameList = parser.GetResult(sVariantConveyer);
     }
-    if ( mModuleNameList.size() > 0 ) {
+    if (mModuleNameList.size() > 0) {
         return true;
     }
     auto sError = parser.GetStrError();
@@ -151,16 +151,15 @@ bool TGameEngine::PrepareConveyer()
 //------------------------------------------------------------------------
 bool TGameEngine::CreateModules()
 {
-    if ( mModuleNameList.size() == 0 ) {
+    if (mModuleNameList.size() == 0) {
         return false;
     }
 
-    for ( auto& moduleName : mModuleNameList ) {
+    for (auto& moduleName : mModuleNameList) {
         IModule* pModule = mDevTool->GetModuleByName(moduleName);
-        if ( pModule != nullptr ) {
+        if (pModule != nullptr) {
             mModulePtrList.push_back(pModule);
-        }
-        else {
+        }         else {
             Event(nsGameEngine::eModuleNotMade, moduleName);
         }
     }
@@ -171,12 +170,12 @@ bool TGameEngine::CreateModules()
 void TGameEngine::Event(int id, std::string param)
 {
     std::string sEvent;
-    if ( nsGameEngine::GetStrEventsByID(id, sEvent) == false ) {
+    if (nsGameEngine::GetStrEventsByID(id, sEvent) == false) {
         return;
     }
 
     std::string sError = sEvent;
-    if ( param.length() ) {
+    if (param.length()) {
         sError = fmt::format(sEvent, param);
     }
     mDevTool->EventGameEngine(id, sError);
@@ -184,7 +183,7 @@ void TGameEngine::Event(int id, std::string param)
 //------------------------------------------------------------------------
 void TGameEngine::LinkModulesToSynchroPoint()
 {
-    for ( auto& pModule : mModulePtrList ) {
+    for (auto& pModule : mModulePtrList) {
         pModule->SetSynchroPoint(mSynchroPoint.get());
         pModule->SetSelfID(pModule->GetID());
     }

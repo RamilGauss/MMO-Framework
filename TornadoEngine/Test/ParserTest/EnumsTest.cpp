@@ -101,3 +101,12 @@ TEST(Parser, EnumInNamespace)
         }
     }
 }
+
+TEST(Parser, EmptyEnum)
+{
+    TFileParser fileParser;
+    auto res = fileParser.Parse("EmptyEnum.h");
+    ASSERT_NE(res, nullptr);
+
+    ASSERT_EQ(res->mTypeList.size(), 0);
+}

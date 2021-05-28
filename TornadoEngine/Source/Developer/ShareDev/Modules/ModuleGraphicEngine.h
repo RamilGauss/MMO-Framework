@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -15,15 +15,15 @@ class TGraphicEngine_Ogre_MyGUI;
 
 class DllExport TModuleGraphicEngine : public TModuleComponent
 {
-  std::shared_ptr<TGraphicEngine_Ogre_MyGUI> mGE;
+    std::shared_ptr<TGraphicEngine_Ogre_MyGUI> mGE;
 public:
-  TModuleGraphicEngine();
+    TModuleGraphicEngine();
 
-  virtual void StartEvent();
-  virtual bool WorkInherit();
-  virtual void StopEvent();
+    virtual void StartEvent();
+    virtual bool WorkInherit();
+    virtual void StopEvent();
 
-  TGraphicEngine_Ogre_MyGUI* GetGE();
+    TGraphicEngine_Ogre_MyGUI* GetGE();
 protected:
 
 };

@@ -13,11 +13,11 @@ See for more information LICENSE.md.
 #pragma REFLECTION_ATTRIBUTE
 struct TAppConfig
 {
-  std::vector<std::string> modules;
+    std::vector<std::string> modules;
 };
 
 #pragma REFLECTION_ATTRIBUTE
 struct TConveyerConfig
 {
-  std::map<std::string, TAppConfig> appList;
+    std::map<std::string, TAppConfig> appList;
 };

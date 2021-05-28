@@ -32,9 +32,6 @@
     <ClCompile Include="Sources\OutDumper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\PathOperations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\ProgramInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -113,9 +110,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\ProgramInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\PathOperations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\OutDumper.h">

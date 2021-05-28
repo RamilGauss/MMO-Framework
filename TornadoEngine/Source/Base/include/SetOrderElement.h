@@ -19,25 +19,25 @@ See for more information LICENSE.md.
 
 class DllExport TSetOrderElement
 {
-  TSortedVecWithKeyMap mSimple;
-  TSortedVecWithKeyMap mInGroup;
-  unsigned int mNextAddInnerID = 0;
+    TSortedVecWithKeyMap mSimple;
+    TSortedVecWithKeyMap mInGroup;
+    unsigned int mNextAddInnerID = 0;
 public:
-  enum ContentType
-  {
-    InGroup,
-    Simple
-  };
+    enum ContentType
+    {
+        InGroup,
+        Simple
+    };
 
-  void PushBack( unsigned int key, ContentType type );
+    void PushBack(unsigned int key, ContentType type);
 
-  void RemoveFirst();// неважно в группе или простой
-  void RemoveByKey( unsigned int key );// удалить по ключу
+    void RemoveFirst();// неважно в группе или простой
+    void RemoveByKey(unsigned int key);// удалить по ключу
 
-  bool GetFirst( unsigned int& key, ContentType type );
-  bool GetIndex( unsigned int key, int& index );
+    bool GetFirst(unsigned int& key, ContentType type);
+    bool GetIndex(unsigned int key, int& index);
 
-  void MoveToSimple( unsigned int key );// из группы перевести в обычные
+    void MoveToSimple(unsigned int key);// из группы перевести в обычные
 private:
-  TSortedVecWithKeyMap* GetFirstViaID();
+    TSortedVecWithKeyMap* GetFirstViaID();
 };

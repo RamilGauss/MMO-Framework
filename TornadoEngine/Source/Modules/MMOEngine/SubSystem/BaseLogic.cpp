@@ -11,29 +11,29 @@ See for more information LICENSE.md.
 
 using namespace nsMMOEngine;
 
-TBaseLogic::TBaseLogic( TBase* p )
+TBaseLogic::TBaseLogic(TBase* p)
 {
-  mBase = p;
-  mEntMng = mBase->mEntMng.get();
+    mBase = p;
+    mEntMng = mBase->mEntMng.get();
 }
 //-----------------------------------------------------------------------------------
 unsigned int TBaseLogic::GetNewID()
 {
-  auto ret = mCreationID;
-  mCreationID++;
-  return ret;
+    auto ret = mCreationID;
+    mCreationID++;
+    return ret;
 }
 //-------------------------------------------------------------------------------------------
 TContainerContextSc* TBaseLogic::AddContainer()
 {
-  TContainerContextSc* pC = new TContainerContextSc;
-  mBase->SetupScForContext( pC );
-  return pC;
+    TContainerContextSc* pC = new TContainerContextSc;
+    mBase->SetupScForContext(pC);
+    return pC;
 }
 //--------------------------------------------------------------------------
-void TBaseLogic::DeleteContainer( TContainerContextSc* pC )
+void TBaseLogic::DeleteContainer(TContainerContextSc* pC)
 {
-  mBase->DelayDeleteContainerScenario( pC );
+    mBase->DelayDeleteContainerScenario(pC);
 }
 //--------------------------------------------------------------------------
 

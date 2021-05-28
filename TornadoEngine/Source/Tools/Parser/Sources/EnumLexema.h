@@ -26,6 +26,7 @@ namespace nsCppParser
             using namespace boost::wave;
 
             bool isEnum = false;
+            bool isIdentifierAfterEnum = false;
             for (auto& t : line->mTokens) {
 
                 if (t.id == T_ENUM) {
@@ -34,8 +35,11 @@ namespace nsCppParser
                 if (t.id == T_PP_PRAGMA) {
                     return false;
                 }
+                if (t.id == T_IDENTIFIER && isEnum) {
+                    isIdentifierAfterEnum = true;
+                }
             }
-            return isEnum;
+            return isEnum && isIdentifierAfterEnum;
         }
 
         void Fill(const TLineTokenEntity* line) override

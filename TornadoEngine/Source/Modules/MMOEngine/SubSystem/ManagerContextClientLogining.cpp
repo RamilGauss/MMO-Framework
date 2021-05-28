@@ -13,107 +13,105 @@ See for more information LICENSE.md.
 
 using namespace nsMMOEngine;
 
-TManagerContextClientLogining::TManagerContextClientLogining( TBase* pBase ) :
-  TDelegateManagerContextSc( pBase )
+TManagerContextClientLogining::TManagerContextClientLogining(TBase* pBase) :
+    TDelegateManagerContextSc(pBase)
 {
 
 }
 //-------------------------------------------------------------------------------------------
 TManagerContextClientLogining::~TManagerContextClientLogining()
 {
-  Clear();
+    Clear();
 }
 //-------------------------------------------------------------------------------------------
-bool TManagerContextClientLogining::FindSessionByClientKey( unsigned int clientKey, unsigned int& sessionID )
+bool TManagerContextClientLogining::FindSessionByClientKey(unsigned int clientKey, unsigned int& sessionID)
 {
-  const bmUintUint::right_iterator fit = mMapSessionKey.right.find( clientKey );
-  if( fit == mMapSessionKey.right.end() )
-  {
-    GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TManagerContextClientLogining::FindSessionByClientKey(clientKey=%u) not found.\n", clientKey );
-    return false;
-  }
-  sessionID = fit->second;
-  return true;
+    auto fit = mMapSessionKey.right.find(clientKey);
+    if (fit == mMapSessionKey.right.end()) {
+        GetLogger(STR_NAME_MMO_ENGINE)->
+            WriteF_time("TManagerContextClientLogining::FindSessionByClientKey(clientKey=%u) not found.\n", clientKey);
+        return false;
+    }
+    sessionID = fit->second;
+    return true;
 }
 //-------------------------------------------------------------------------------------------
-bool TManagerContextClientLogining::FindClientKeyBySession( unsigned int sessionID, unsigned int& clientKey )
+bool TManagerContextClientLogining::FindClientKeyBySession(unsigned int sessionID, unsigned int& clientKey)
 {
-  const bmUintUint::left_iterator fit = mMapSessionKey.left.find( sessionID );
-  if( fit == mMapSessionKey.left.end() )
-  {
-    GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TManagerContextClientLogining::FindClientKeyBySession(session=%u) not found.\n", sessionID );
-    return false;
-  }
-  clientKey = fit->second;
-  return true;
+    auto fit = mMapSessionKey.left.find(sessionID);
+    if (fit == mMapSessionKey.left.end()) {
+        GetLogger(STR_NAME_MMO_ENGINE)->
+            WriteF_time("TManagerContextClientLogining::FindClientKeyBySession(session=%u) not found.\n", sessionID);
+        return false;
+    }
+    clientKey = fit->second;
+    return true;
 }
 //-------------------------------------------------------------------------------------------
-TContainerContextSc* TManagerContextClientLogining::FindContextBySession( unsigned int sessionID )
+TContainerContextSc* TManagerContextClientLogining::FindContextBySession(unsigned int sessionID)
 {
-  TMapUintPtrIt fit = mMapSessionContext.find( sessionID );
-  if( fit == mMapSessionContext.end() )
-  {
-    GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TManagerContextClientLogining::FindContextBySession(session=%u) not found.\n", sessionID );
-    return nullptr;
-  }
-  return fit->second;
+    TMapUintPtrIt fit = mMapSessionContext.find(sessionID);
+    if (fit == mMapSessionContext.end()) {
+        GetLogger(STR_NAME_MMO_ENGINE)->
+            WriteF_time("TManagerContextClientLogining::FindContextBySession(session=%u) not found.\n", sessionID);
+        return nullptr;
+    }
+    return fit->second;
 }
 //-------------------------------------------------------------------------------------------
-TContainerContextSc* TManagerContextClientLogining::AddContext( unsigned int sessionID )
+TContainerContextSc* TManagerContextClientLogining::AddContext(unsigned int sessionID)
 {
-  BL_ASSERT( sessionID != INVALID_HANDLE_SESSION );
+    BL_ASSERT(sessionID != INVALID_HANDLE_SESSION);
 
-  TContainerContextSc* pC = FindContextBySession( sessionID );
-  if( pC == nullptr )
-  {
-    pC = AddContainer();
-    mMapSessionContext.insert( TMapUintPtr::value_type( sessionID, pC ) );
-  }
-  return pC;
+    TContainerContextSc* pC = FindContextBySession(sessionID);
+    if (pC == nullptr) {
+        pC = AddContainer();
+        mMapSessionContext.insert(TMapUintPtr::value_type(sessionID, pC));
+    }
+    return pC;
 }
 //-------------------------------------------------------------------------------------------
-bool TManagerContextClientLogining::AddKeyBySession( unsigned int sessionID, unsigned int clientKey )
+bool TManagerContextClientLogining::AddKeyBySession(unsigned int sessionID, unsigned int clientKey)
 {
-  if( FindContextBySession( sessionID ) == nullptr )
-  {
-    BL_FIX_BUG();
-    return false;
-  }
+    if (FindContextBySession(sessionID) == nullptr) {
+        BL_FIX_BUG();
+        return false;
+    }
 
-  mMapSessionKey.insert( bmUintUint::value_type( sessionID, clientKey ) );
-  return true;
+    mMapSessionKey.insert(sessionID, clientKey);
+    return true;
 }
 //-------------------------------------------------------------------------------------------
-void TManagerContextClientLogining::DeleteBySession( unsigned int sessionID )
+void TManagerContextClientLogining::DeleteBySession(unsigned int sessionID)
 {
-  TContainerContextSc* pC = FindContextBySession( sessionID );
-  if( pC == nullptr )
-    return;
+    TContainerContextSc* pC = FindContextBySession(sessionID);
+    if (pC == nullptr) {
+        return;
+    }
 
-  DeleteContainer( pC );
-  mMapSessionContext.erase( sessionID );
-  mMapSessionKey.left.erase( sessionID );
+    DeleteContainer(pC);
+    mMapSessionContext.erase(sessionID);
+    mMapSessionKey.left.erase(sessionID);
 }
 //-------------------------------------------------------------------------------------------
 void TManagerContextClientLogining::Clear()
 {
-  for( auto& bit : mMapSessionContext )
-    DeleteContainer( bit.second );
+    for (auto& bit : mMapSessionContext) {
+        DeleteContainer(bit.second);
+    }
 
-  mMapSessionContext.clear();
-  mMapSessionKey.clear();
+    mMapSessionContext.clear();
+    mMapSessionKey.Clear();
 }
 //-------------------------------------------------------------------------------------------
-void TManagerContextClientLogining::UnlinkContextBySession( unsigned int sessionID )
+void TManagerContextClientLogining::UnlinkContextBySession(unsigned int sessionID)
 {
-  TContainerContextSc* pC = FindContextBySession( sessionID );
-  if( pC == nullptr )
-    return;
+    TContainerContextSc* pC = FindContextBySession(sessionID);
+    if (pC == nullptr) {
+        return;
+    }
 
-  mMapSessionContext.erase( sessionID );
-  mMapSessionKey.left.erase( sessionID );
+    mMapSessionContext.erase(sessionID);
+    mMapSessionKey.left.erase(sessionID);
 }
 //-------------------------------------------------------------------------------------------

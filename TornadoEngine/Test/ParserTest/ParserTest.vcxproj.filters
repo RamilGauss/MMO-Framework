@@ -136,5 +136,8 @@
     <ClInclude Include="EnumInNamespace.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
+    <ClInclude Include="EmptyEnum.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

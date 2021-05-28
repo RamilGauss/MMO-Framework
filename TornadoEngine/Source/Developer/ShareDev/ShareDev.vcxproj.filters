@@ -660,9 +660,6 @@
     <ClCompile Include="Protocol\ClientSlave\PCS_TypePacket.cpp">
       <Filter>Protocol\ClientSlave</Filter>
     </ClCompile>
-    <ClCompile Include="Share\RoomManager.cpp">
-      <Filter>Share</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Common\PatternNameManager.cpp">
       <Filter>Scene\Common</Filter>
     </ClCompile>
@@ -1115,9 +1112,6 @@
     <ClInclude Include="Protocol\SlaveMaster\PSM_TypePacket.h">
       <Filter>Protocol\SlaveMaster</Filter>
     </ClInclude>
-    <ClInclude Include="Share\RoomManager.h">
-      <Filter>Share</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Common\PatternNameManager.h">
       <Filter>Scene\Common</Filter>
     </ClInclude>
@@ -1171,6 +1165,6 @@
     <None Include="reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
+    <Text Include="..\..\..\conanfile.txt" />
   </ItemGroup>
 </Project>

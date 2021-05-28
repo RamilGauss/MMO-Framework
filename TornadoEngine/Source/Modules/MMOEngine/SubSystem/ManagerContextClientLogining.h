@@ -8,39 +8,39 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <map>
-#include <boost/bimap/bimap.hpp>
+#include "Bimap.h"
 #include "DelegateManagerContextSc.h"
 
 namespace nsMMOEngine
 {
-  class TContainerContextSc;
-  class TManagerContextClientLogining : public TDelegateManagerContextSc
-  {
-    typedef std::map<unsigned int, TContainerContextSc*> TMapUintPtr;
-    typedef TMapUintPtr::iterator TMapUintPtrIt;
+    class TContainerContextSc;
+    class TManagerContextClientLogining : public TDelegateManagerContextSc
+    {
+        typedef std::map<unsigned int, TContainerContextSc*> TMapUintPtr;
+        typedef TMapUintPtr::iterator TMapUintPtrIt;
 
-    typedef boost::bimaps::bimap<unsigned int, unsigned int> bmUintUint;
+        using bmUintUint = TBiMap<unsigned int, unsigned int>;
 
-    TMapUintPtr  mMapSessionContext;
-    bmUintUint   mMapSessionKey;
+        TMapUintPtr  mMapSessionContext;
+        bmUintUint   mMapSessionKey;
 
-  public:
-    TManagerContextClientLogining( TBase* pBase );
-    ~TManagerContextClientLogining();
+    public:
+        TManagerContextClientLogining(TBase* pBase);
+        ~TManagerContextClientLogining();
 
-    // навигация
-    bool FindSessionByClientKey( unsigned int clientKey, unsigned int& sessionID );
-    bool FindClientKeyBySession( unsigned int sessionID, unsigned int& clientKey );
-    TContainerContextSc* FindContextBySession( unsigned int sessionID );
+        // навигация
+        bool FindSessionByClientKey(unsigned int clientKey, unsigned int& sessionID);
+        bool FindClientKeyBySession(unsigned int sessionID, unsigned int& clientKey);
+        TContainerContextSc* FindContextBySession(unsigned int sessionID);
 
-    // добавление/удаление
-    TContainerContextSc* AddContext( unsigned int sessionID );
-    bool AddKeyBySession( unsigned int sessionID, unsigned int clientKey );
-    // удаление
-    void DeleteBySession( unsigned int sessionID );
-    // отцепиться
-    void UnlinkContextBySession( unsigned int sessionID );
-  private:
-    void Clear();
-  };
+        // добавление/удаление
+        TContainerContextSc* AddContext(unsigned int sessionID);
+        bool AddKeyBySession(unsigned int sessionID, unsigned int clientKey);
+        // удаление
+        void DeleteBySession(unsigned int sessionID);
+        // отцепиться
+        void UnlinkContextBySession(unsigned int sessionID);
+    private:
+        void Clear();
+    };
 }

@@ -21,31 +21,23 @@ See for more information LICENSE.md.
 
 TComponents::TComponents()
 {
-  pDataBase = NULL;
-  pGraphicEngine = NULL;
-  pMMOEngineClient = NULL;
-  pMMOEngineSlave = NULL;
-  pMMOEngineMaster = NULL;
-  pMMOEngineSuperServer = NULL;
-  pPhysicEngine = NULL;
-  pSoundEngine = NULL;
-  pTimer = NULL;
+
 }
 //------------------------------------------------------------------------------------------
-void TComponents::SetLogicID( int id )
+void TComponents::SetLogicID(int id)
 {
-  mVecComp.push_back( pDataBase );
-  mVecComp.push_back( pGraphicEngine );
-  mVecComp.push_back( pMMOEngineClient );
-  mVecComp.push_back( pMMOEngineSlave );
-  mVecComp.push_back( pMMOEngineMaster );
-  mVecComp.push_back( pMMOEngineSuperServer );
-  mVecComp.push_back( pPhysicEngine );
-  mVecComp.push_back( pSoundEngine );
-  mVecComp.push_back( pTimer );
+    mVecComp.push_back(pDataBase);
+    mVecComp.push_back(pGraphicEngine);
+    mVecComp.push_back(pMMOEngineClient);
+    mVecComp.push_back(pMMOEngineSlave);
+    mVecComp.push_back(pMMOEngineMaster);
+    mVecComp.push_back(pMMOEngineSuperServer);
+    mVecComp.push_back(pPhysicEngine);
+    mVecComp.push_back(pSoundEngine);
+    mVecComp.push_back(pTimer);
 
-  for( auto pM : mVecComp )
-    if( pM )
-      pM->SetLogicID( id );
+    for (auto pM : mVecComp)
+        if (pM)
+            pM->SetLogicID(id);
 }
 //------------------------------------------------------------------------------------------

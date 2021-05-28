@@ -208,6 +208,7 @@
   <ItemGroup>
     <ClInclude Include="include\AllocatorPool.h" />
     <ClInclude Include="include\ArrContainer.h" />
+    <ClInclude Include="include\BiMap.h" />
     <ClInclude Include="include\BinaryMaster.h" />
     <ClInclude Include="include\BL_Debug.h" />
     <ClInclude Include="include\BreakPacket.h" />
@@ -262,6 +263,7 @@
     <ClInclude Include="include\Only_N_Object.h" />
     <ClInclude Include="include\BinaryPopMaster.h" />
     <ClInclude Include="include\BinaryPushMaster.h" />
+    <ClInclude Include="include\PathOperations.h" />
     <ClInclude Include="include\RemoveIthType.h" />
     <ClInclude Include="include\ResolverSelf_IP_v4.h" />
     <ClInclude Include="include\ReversedContainerRise.h" />
@@ -324,6 +326,7 @@
     <ClCompile Include="src\Only_N_Object.cpp" />
     <ClCompile Include="src\BinaryPopMaster.cpp" />
     <ClCompile Include="src\BinaryPushMaster.cpp" />
+    <ClCompile Include="src\PathOperations.cpp" />
     <ClCompile Include="src\ResolverSelf_IP_v4.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp14</LanguageStandard>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdcpp14</LanguageStandard>
@@ -348,6 +351,8 @@
     <ClCompile Include="src\XML_Markup.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\LICENSE.md" />
+    <None Include="..\..\..\readme.md" />
     <None Include="..\..\Doc\SoftwareDevelopmentPrinciples.md" />
     <None Include="Blog.md" />
   </ItemGroup>

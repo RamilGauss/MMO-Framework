@@ -8,9 +8,12 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeDef.h"
-#include "VectorRise.h"
-#include <boost/bimap/bimap.hpp>
+
 #include <vector>
+#include <map>
+
+#include "BiMap.h"
+#include "VectorRise.h"
 #include "ContainerRise.h"
 
 /*
@@ -22,30 +25,30 @@ See for more information LICENSE.md.
 
 class DllExport TSortedVecWithKeyMap
 {
-  typedef boost::bimaps::bimap<unsigned int, unsigned int> bmUintUint;
+    using TUintUintMap = TBiMap<unsigned int, unsigned int>;
 
-  TVectorRise<unsigned int> mIDVec;// сортированный
+    TVectorRise<unsigned int> mIDVec;// сортированный
 
-  bmUintUint mKeyIDMap;
+    TUintUintMap mKeyIDMap;
 public:
-  int GetSize();
-  unsigned int GetFirstID();
+    int GetSize();
+    unsigned int GetFirstID();
 
-  void PushBack( unsigned int key, unsigned int ID );
-  void Insert( unsigned int key, unsigned int ID );
+    void PushBack(unsigned int key, unsigned int ID);
+    void Insert(unsigned int key, unsigned int ID);
 
-  void RemoveFirst();// неважно в группе или простой
-  void RemoveByKey( unsigned int key );// удалить по ключу
+    void RemoveFirst();// неважно в группе или простой
+    void RemoveByKey(unsigned int key);// удалить по ключу
 
-  bool GetFirst( unsigned int& key );
-  bool Get( int index, unsigned int& key );
-  bool GetIndex( unsigned int key, int& index );
+    bool GetFirst(unsigned int& key);
+    bool Get(int index, unsigned int& key);
+    bool GetIndex(unsigned int key, int& index);
 
-  bool FindKeyByID( unsigned int ID, unsigned int& key );
-  bool FindIDByKey( unsigned int key, unsigned int& ID );
-  bool FindIndexByID( unsigned int ID, int& index );
+    bool FindKeyByID(unsigned int ID, unsigned int& key);
+    bool FindIDByKey(unsigned int key, unsigned int& ID);
+    bool FindIndexByID(unsigned int ID, int& index);
 private:
-  void DeleteFromVectorByID( unsigned int ID );
+    void DeleteFromVectorByID(unsigned int ID);
 };
 
 

@@ -13,27 +13,22 @@
             ".hh",
             ".hxx",
             ".h++"
-        ]
+        ],
+        "inheritance": ""
     },
     "targetForCodeGeneration": {
         "directory": ".",
         "includeListFileName": "IncludeList",
         "header": "\tReflectionCodeGenerator",
-        "typeCustomizerMap": {
-            "int8_t": "char",
-            "uint8_t": "unsigned char",
-            "int16_t": "short",
-            "uint16_t": "unsigned short",
-            "int32_t": "int",
-            "uint32_t": "unsigned int",
-            "vector_static_t": "vector"
-        },
-        "implementation": {
-            "jsonSerializer": {
-                "exportDeclaration": "",
-                "nameSpaceName": "",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "JsonSerializerGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsGameEngine",
                 "fileName": "GameEngineJsonSerializer",
-                "className": "TGameEngineJsonSerializer"
+                "className": "TGameEngineJsonSerializer",
+                "keyValueMap": {}
             }
         }
     }

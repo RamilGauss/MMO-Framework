@@ -19,6 +19,9 @@ See for more information LICENSE.md.
 
 #### "DONE"  
 
+2021.05.27:
+ - Modules - должен содержать все модули. Для EntMng должно быть 2 указателя: EntMng и EntMngEditor.
+
 2021.05.10:
 - Интерфейс для DLL:
 Какой был плюс информация о контейнерах.
