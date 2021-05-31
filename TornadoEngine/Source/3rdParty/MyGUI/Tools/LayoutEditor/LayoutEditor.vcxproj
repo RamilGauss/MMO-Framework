@@ -61,6 +61,7 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Exe\.conan\conanbuildinfo.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -91,7 +92,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -104,7 +105,7 @@
     <Link>
       <AdditionalDependencies>Common_d.lib;Platforms_d.lib;MyGUIEngine_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;EditorFramework_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(BOOST_PATH)\lib32-msvc-14.1;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
@@ -115,7 +116,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -126,7 +127,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Common.lib;Platforms.lib;MyGUIEngine.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;EditorFramework.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\..\..\Lib;..\..\..\..\..\Lib\$(Configuration);..\..\..\..\..\Exe\$(Configuration);$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\..\..\Lib;..\..\..\..\..\Lib\$(Configuration);..\..\..\..\..\Exe\$(Configuration);$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -141,7 +142,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\ois\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -154,7 +155,7 @@
     <Link>
       <AdditionalDependencies>Common_d.lib;Platforms_d.lib;MyGUIEngine_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;OIS_d.lib;EditorFramework_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
@@ -168,7 +169,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;$(BOOST_PATH64);$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\OIS;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Common;..\..\Common\Base;..\..\Common\Base\Ogre;..\..\Common\Input\OIS;..\EditorFramework;..\..\Platforms\Ogre\OgrePlatform\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\ois\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -179,7 +180,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Common.lib;Platforms.lib;MyGUIEngine.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;EditorFramework.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(BOOST_PATH64)\lib64-msvc-14.1;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(SolutionDir)\Exe;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -311,10 +312,7 @@
     <ClInclude Include="WorkspaceControl.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EditorFramework\EditorFramework.vcxproj">
-      <Project>{79a540b7-3e9d-40ff-9a45-de21947b54b5}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
+    <Text Include="..\..\..\..\..\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

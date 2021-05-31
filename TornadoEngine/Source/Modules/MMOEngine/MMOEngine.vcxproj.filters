@@ -266,7 +266,7 @@
     <ClCompile Include="SubSystem\ManagerLoginingClientsOnSlave.cpp">
       <Filter>SubSystem\MappingDownConnection\Master</Filter>
     </ClCompile>
-    <ClCompile Include="src\Master.cpp.bak">
+    <ClCompile Include="src\Master.cpp.txt">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Master.cpp">

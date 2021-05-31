@@ -147,7 +147,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>.\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\DirectX\DirectXPlatform\include;.\DirectX\DirectXPlatform\src;.\Ogre\OgrePlatform\include;.\Ogre\OgrePlatform\src;..\Common\Input\Win32;..\Common\Base\DirectX;..\Common;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -180,7 +180,7 @@
     <ClCompile Include="Ogre\OgrePlatform\src\MyGUI_OgreVertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\conanfile.txt" />
+    <Text Include="..\..\..\..\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

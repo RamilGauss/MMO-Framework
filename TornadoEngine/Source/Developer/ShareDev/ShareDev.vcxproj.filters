@@ -244,15 +244,6 @@
     <Filter Include="Test">
       <UniqueIdentifier>{cfd12457-37ce-48ee-8d6a-9fd4886999c2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Protocol">
-      <UniqueIdentifier>{2b405f47-ba9a-4571-9386-7defbda2e757}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Protocol\ClientSlave">
-      <UniqueIdentifier>{1a409e54-509c-47a4-a891-22be8e656e0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Protocol\SlaveMaster">
-      <UniqueIdentifier>{55ae9396-cb39-4bc5-b694-d71f2cbe84bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generated Files">
       <UniqueIdentifier>{ff7a3578-6538-4578-9584-9d4af3143475}</UniqueIdentifier>
     </Filter>
@@ -645,21 +636,6 @@
     <ClCompile Include="Test\ShowTankWoT_test.cpp">
       <Filter>Test</Filter>
     </ClCompile>
-    <ClCompile Include="Protocol\ClientSlave\PCS_HandlerClient.cpp">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\ClientSlave\PCS_HandlerSlave.cpp">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\ClientSlave\PCS_IHandler.cpp">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\ClientSlave\PCS_PacketLevelGame.cpp">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\ClientSlave\PCS_TypePacket.cpp">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Common\PatternNameManager.cpp">
       <Filter>Scene\Common</Filter>
     </ClCompile>
@@ -672,12 +648,12 @@
     <ClCompile Include="Share\MathStructs.cpp">
       <Filter>Share</Filter>
     </ClCompile>
+    <ClCompile Include="Generated Files\ComponentsJsonSerializer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\Components.h">
-      <Filter>Share</Filter>
-    </ClInclude>
-    <ClInclude Include="Share\IGameLogicRoom.h">
       <Filter>Share</Filter>
     </ClInclude>
     <ClInclude Include="Share\InputCmdDevTool.h">
@@ -1094,24 +1070,6 @@
     <ClInclude Include="Test\ShowTankWoT_test.h">
       <Filter>Test</Filter>
     </ClInclude>
-    <ClInclude Include="Protocol\ClientSlave\PCS_HandlerClient.h">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\ClientSlave\PCS_HandlerSlave.h">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\ClientSlave\PCS_IHandler.h">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\ClientSlave\PCS_PacketLevelGame.h">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\ClientSlave\PCS_TypePacket.h">
-      <Filter>Protocol\ClientSlave</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\SlaveMaster\PSM_TypePacket.h">
-      <Filter>Protocol\SlaveMaster</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Common\PatternNameManager.h">
       <Filter>Scene\Common</Filter>
     </ClInclude>
@@ -1160,8 +1118,12 @@
     <ClInclude Include="ReflectionContainers\MenuItemContainer.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
+    <ClInclude Include="Generated Files\ComponentsJsonSerializer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="componentsConfig.json" />
     <None Include="reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>

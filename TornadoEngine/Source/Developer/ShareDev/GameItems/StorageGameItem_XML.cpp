@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -15,98 +15,96 @@ See for more information LICENSE.md.
 
 TStorageGameItem_XML::TStorageGameItem_XML()
 {
-  TMakerXML makerXML;
-  mXML = makerXML.New();
+    TMakerXML makerXML;
+    mXML = makerXML.New();
 }
 //---------------------------------------------------------------
 TStorageGameItem_XML::~TStorageGameItem_XML()
 {
-  TMakerXML makerXML;
-  makerXML.Delete(mXML);
+    TMakerXML makerXML;
+    makerXML.Delete(mXML);
 }
 //---------------------------------------------------------------
 bool TStorageGameItem_XML::Init(std::string& name_file_xml)
 {
-  bool resLoad = mXML->Load(name_file_xml.data());
-  if(resLoad==false)
-  {
-    std::string sError = "Incorrect structure of XML file \"";
-    sError += name_file_xml;
-    sError += "\"";
-    BL_MessageBug_Utf8(sError.data());
-  }
+    bool resLoad = mXML->Load(name_file_xml.data());
+    if (resLoad == false)   {
+        std::string sError = "Incorrect structure of XML file \"";
+        sError += name_file_xml;
+        sError += "\"";
+        BL_MessageBug_Utf8(sError.data());
+    }
 
-  mMngSerializer.reset(new TManagerSerializerItem_XML);
-  mMngCache.reset(new TManagerCacheItem_XML);
+    mMngSerializer.reset(new TManagerSerializerItem_XML);
+    mMngCache.reset(new TManagerCacheItem_XML);
 
-  mMngSerializer->Init(mXML);
-  mMngCache->Init(mXML);
-  return resLoad;
+    mMngSerializer->Init(mXML);
+    mMngCache->Init(mXML);
+    return resLoad;
 }
 //---------------------------------------------------------------
 bool TStorageGameItem_XML::Save(TBaseItem* pItem)
 {
-  if( pItem==NULL )
-    return false;
+    if (pItem == NULL)
+        return false;
 
-  std::string strType;
-  if( mMngSerializer->Type2Str(pItem->mType, strType)==false )
-    return false;
-  bool isExist = mMngCache->IsExist(strType, pItem->mName);
-  bool res = mMngSerializer->Save(pItem);
-  // если удалось сохранить и итэма раньше не было, то значит произошло добавление
-  // нужно перекешировать заново
-  if( res && (isExist==false) )
-    mMngCache->Init(mXML);
-  return res;
+    std::string strType;
+    if (mMngSerializer->Type2Str(pItem->mType, strType) == false)
+        return false;
+    bool isExist = mMngCache->IsExist(strType, pItem->mName);
+    bool res = mMngSerializer->Save(pItem);
+    // если удалось сохранить и итэма раньше не было, то значит произошло добавление
+    // нужно перекешировать заново
+    if (res && (isExist == false))
+        mMngCache->Init(mXML);
+    return res;
 }
 //---------------------------------------------------------------
 bool TStorageGameItem_XML::Delete(int type, std::string& name)
 {
-  bool res = mMngSerializer->Remove(type, name);
-  if( res )
-  {
-    res = mMngSerializer->Save();
-    mMngCache->Init(mXML);
-  }
-  return res;
+    bool res = mMngSerializer->Remove(type, name);
+    if (res)   {
+        res = mMngSerializer->Save();
+        mMngCache->Init(mXML);
+    }
+    return res;
 }
 //---------------------------------------------------------------
 bool TStorageGameItem_XML::Delete(TBaseItem* pItem)
 {
-  if( pItem==NULL )
-    return false;
-  return Delete(pItem->mType, pItem->mName);
+    if (pItem == NULL)
+        return false;
+    return Delete(pItem->mType, pItem->mName);
 }
 //---------------------------------------------------------------
 bool TStorageGameItem_XML::Load(TBaseItem* pItem)
 {
-  if( pItem==NULL )
-    return false;
-  return mMngSerializer->Load(pItem);
+    if (pItem == NULL)
+        return false;
+    return mMngSerializer->Load(pItem);
 }
 //---------------------------------------------------------------
 bool TStorageGameItem_XML::IsExist(int type, std::string& name)
 {
-  std::string strType;
-  if( mMngSerializer->Type2Str(type, strType)==false )
-    return false;
-  return mMngCache->IsExist(strType, name);
+    std::string strType;
+    if (mMngSerializer->Type2Str(type, strType) == false)
+        return false;
+    return mMngCache->IsExist(strType, name);
 }
 //---------------------------------------------------------------
-int TStorageGameItem_XML::GetCountByType( int type )
+int TStorageGameItem_XML::GetCountByType(int type)
 {
-  std::string strType;
-  if( mMngSerializer->Type2Str(type, strType)==false )
-    return 0;
-  return mMngCache->GetCountByStrType(strType);
+    std::string strType;
+    if (mMngSerializer->Type2Str(type, strType) == false)
+        return 0;
+    return mMngCache->GetCountByStrType(strType);
 }
 //---------------------------------------------------------------
-bool TStorageGameItem_XML::GetNameByType( int type, int index, std::string& name )
+bool TStorageGameItem_XML::GetNameByType(int type, int index, std::string& name)
 {
-  std::string strType;
-  if( mMngSerializer->Type2Str(type, strType)==false )
-    return false;
-  return mMngCache->GetNameByIndex(strType, index, name);
+    std::string strType;
+    if (mMngSerializer->Type2Str(type, strType) == false)
+        return false;
+    return mMngCache->GetNameByIndex(strType, index, name);
 }
 //---------------------------------------------------------------

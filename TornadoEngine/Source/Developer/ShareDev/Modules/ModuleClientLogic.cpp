@@ -9,21 +9,21 @@ See for more information LICENSE.md.
 
 TModuleClientLogic::TModuleClientLogic()
 {
-  mAggregationScenario_Client.reset( new TGP_AggregationScenario_GameMap );
-  mScene.reset( new TScene );
+    mAggregationScenario_Client.reset(new TGP_AggregationScenario_GameMap);
+    mScene.reset(new TScene);
 }
 //----------------------------------------------------------------
 bool TModuleClientLogic::WorkInherit()
 {
-  InputFromSynchroPoint();
-  bool res = WorkClient();
-  res &= !NeedExit();
-  return res;
+    InputFromSynchroPoint();
+    bool res = WorkClient();
+    res &= !NeedExit();
+    return res;
 }
 //----------------------------------------------------------------
-void TModuleClientLogic::ParseCmd( std::vector<std::string>& arg )
+void TModuleClientLogic::ParseCmd(std::vector<std::string>& arg)
 {
-  mInputCmd.Init();
-  mInputCmd.SetArg( arg );
+    mInputCmd.Init();
+    mInputCmd.SetArg(arg);
 }
 //------------------------------------------------------------------------

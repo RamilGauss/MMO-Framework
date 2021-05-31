@@ -6,7 +6,7 @@
         "recursive": true
     },
     "filter": {
-        "attribute": "REFLECTION_ATTRIBUTE",
+        "attribute": "",
         "extensions": [
             ".h",
             ".hpp",
@@ -14,7 +14,7 @@
             ".hxx",
             ".h++"
         ],
-        "inheritance": ""
+        "inheritance": "nsECSFramework::IComponent"
     },
     "targetForCodeGeneration": {
         "directory": "./Generated Files",
@@ -26,8 +26,8 @@
             "JsonSerializerGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsShareDev",
-                "fileName": "ShareDevJsonSerializer",
-                "className": "TShareDevJsonSerializer",
+                "fileName": "ComponentsJsonSerializer",
+                "className": "TComponentsJsonSerializer",
                 "keyValueMap": {}
             }
         }

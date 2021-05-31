@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_05_29 10:41:58.886
+// File has been generated at 2021_05_30 18:56:54.262
 	
 #pragma once
 
@@ -12,9 +12,9 @@
 #include "JsonMaster.h"
 #include "IncludeList.h"
 
-namespace nsGameEngine
+namespace nsShareDev
 {
-    class DllExport TGameEngineJsonSerializer
+    class DllExport TComponentsJsonSerializer
     {
         typedef TJsonMaster::Jobj Jobj;
         typedef TJsonMaster::Jarr Jarr;
@@ -38,16 +38,10 @@ namespace nsGameEngine
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
     
     public:
-        static void _Serialize(TAppConfig* p, Jobj& obj);
-        static void _Deserialize(TAppConfig* p, const Jobj& obj);
-        
-        static void _Serialize(TConveyerConfig* p, Jobj& obj);
-        static void _Deserialize(TConveyerConfig* p, const Jobj& obj);
-        
     };
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static void TGameEngineJsonSerializer::Serialize(Type* p, std::string& str)
+    static void TComponentsJsonSerializer::Serialize(Type* p, std::string& str)
     {
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         auto obj = doc.GetObject();
@@ -61,7 +55,7 @@ namespace nsGameEngine
     }
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static bool TGameEngineJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
+    static bool TComponentsJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
     {
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         const auto parseFlags = rapidjson::ParseFlag::kParseFullPrecisionFlag | rapidjson::ParseFlag::kParseCommentsFlag | rapidjson::ParseFlag::kParseTrailingCommasFlag;

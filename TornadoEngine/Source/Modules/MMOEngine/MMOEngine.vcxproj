@@ -235,7 +235,7 @@
     <ClCompile Include="src\Events.cpp" />
     <ClCompile Include="src\INetTransport.cpp" />
     <ClCompile Include="src\Master.cpp" />
-    <ClCompile Include="src\Master.cpp.bak" />
+    <ClCompile Include="src\Master.cpp.txt" />
     <ClCompile Include="src\Slave.cpp" />
     <ClCompile Include="src\Structs.cpp" />
     <ClCompile Include="src\SuperServer.cpp" />

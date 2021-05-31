@@ -77,7 +77,7 @@ void TDevTool_Share::Init()
 
     TFrameworkResources frameworkResources;
     std::string err;
-    TShareDevJsonSerializer::Fill(&frameworkResources, str, err);
+    nsShareDev::TShareDevJsonSerializer::Deserialize(&frameworkResources, str, err);
 
     mTerrainPath = frameworkResources.graphicEngine.terrainPath;
     mPluginsCfg = frameworkResources.graphicEngine.pluginsCfg.Get();

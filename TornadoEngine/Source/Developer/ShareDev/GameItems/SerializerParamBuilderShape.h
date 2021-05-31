@@ -34,15 +34,15 @@ class DllExport TSerializerParamBuilderShape
 
   TMapStrHandler mMapNameType_Handler;
 
-  TCallBackRegistrator0 mCB_PlateToStruct,               mCB_PlateToStr;
-  TCallBackRegistrator0 mCB_PlateVarGeomToStruct,        mCB_PlateVarGeomToStr;
-  TCallBackRegistrator0 mCB_SphereToStruct,              mCB_SphereToStr;
-  TCallBackRegistrator0 mCB_ConeToStruct,                mCB_ConeToStr;
-  TCallBackRegistrator0 mCB_TrapeziumToStruct,           mCB_TrapeziumToStr;
-  TCallBackRegistrator0 mCB_TriangularPyramidToStruct,   mCB_TriangularPyramidToStr;
-  TCallBackRegistrator0 mCB_QuadrangularPyramidToStruct, mCB_QuadrangularPyramidToStr;
-  TCallBackRegistrator0 mCB_CylinderToStruct,            mCB_CylinderToStr;
-  TCallBackRegistrator0 mCB_TriangularPrismToStruct,     mCB_TriangularPrismToStr;
+  TCallBackRegistrator0 mCB_PlateToStruct               ;TCallBackRegistrator0 mCB_PlateToStr;
+  TCallBackRegistrator0 mCB_PlateVarGeomToStruct        ;TCallBackRegistrator0 mCB_PlateVarGeomToStr;
+  TCallBackRegistrator0 mCB_SphereToStruct              ;TCallBackRegistrator0 mCB_SphereToStr;
+  TCallBackRegistrator0 mCB_ConeToStruct                ;TCallBackRegistrator0 mCB_ConeToStr;
+  TCallBackRegistrator0 mCB_TrapeziumToStruct           ;TCallBackRegistrator0 mCB_TrapeziumToStr;
+  TCallBackRegistrator0 mCB_TriangularPyramidToStruct   ;TCallBackRegistrator0 mCB_TriangularPyramidToStr;
+  TCallBackRegistrator0 mCB_QuadrangularPyramidToStruct ;TCallBackRegistrator0 mCB_QuadrangularPyramidToStr;
+  TCallBackRegistrator0 mCB_CylinderToStruct            ;TCallBackRegistrator0 mCB_CylinderToStr;
+  TCallBackRegistrator0 mCB_TriangularPrismToStruct     ;TCallBackRegistrator0 mCB_TriangularPrismToStr;
 
 public:
   TSerializerParamBuilderShape();

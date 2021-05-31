@@ -42,7 +42,9 @@ struct DllExport TTableSoundItem : public TBaseItem
   typedef TMapStrInt::iterator      TMapStrIntIt;
   typedef TMapStrInt::value_type    TMapStrIntVT;
 
-  TMapFloatInt mMapAngle, mMapMass, mMapVelocity;
+  TMapFloatInt mMapAngle; 
+  TMapFloatInt mMapMass; 
+  TMapFloatInt mMapVelocity;
   TMapStrInt mMapMaterial;
 
   // порядок поиска: velocity, mass, mass, material, material, angle

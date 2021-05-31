@@ -147,7 +147,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>.\;.\Base\Ogre;.\Input\OIS;..\Platforms\DirectX\DirectXPlatform\include;..\Platforms\Ogre\OgrePlatform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Base\Ogre;.\Input\OIS;..\Platforms\DirectX\DirectXPlatform\include;..\Platforms\Ogre\OgrePlatform\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\ois\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -190,7 +190,7 @@
     <ClInclude Include="Precompiled.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\conanfile.txt" />
+    <Text Include="..\..\..\..\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

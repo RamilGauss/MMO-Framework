@@ -147,7 +147,8 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Source\Developer\ShareDev\reflectionConfig.json"</Command>
+      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Source\Developer\ShareDev\componentsConfig.json"
+$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Source\Developer\ShareDev\reflectionConfig.json"</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -244,6 +245,7 @@
     <ClCompile Include="GameProcess\IGP_Scenario_Builder.cpp" />
     <ClCompile Include="GameProcess\IGP_Scenario_Destructor.cpp" />
     <ClCompile Include="GameProcess\IGP_Scenario_Synchro.cpp" />
+    <ClCompile Include="Generated Files\ComponentsJsonSerializer.cpp" />
     <ClCompile Include="Generated Files\ShareDevJsonSerializer.cpp" />
     <ClCompile Include="Modules\BaseLogicPacket.cpp" />
     <ClCompile Include="Modules\ModuleClientLogic.cpp" />
@@ -255,11 +257,6 @@
     <ClCompile Include="Modules\ModuleServerLogic.cpp" />
     <ClCompile Include="Modules\ModuleSoundEngine.cpp" />
     <ClCompile Include="Modules\ModuleTimer.cpp" />
-    <ClCompile Include="Protocol\ClientSlave\PCS_HandlerClient.cpp" />
-    <ClCompile Include="Protocol\ClientSlave\PCS_HandlerSlave.cpp" />
-    <ClCompile Include="Protocol\ClientSlave\PCS_IHandler.cpp" />
-    <ClCompile Include="Protocol\ClientSlave\PCS_PacketLevelGame.cpp" />
-    <ClCompile Include="Protocol\ClientSlave\PCS_TypePacket.cpp" />
     <ClCompile Include="Scene\Common\ControlCamera.cpp" />
     <ClCompile Include="Scene\Common\GameObject.cpp" />
     <ClCompile Include="Scene\Common\IHandlerScene.cpp" />
@@ -384,6 +381,7 @@
     <ClInclude Include="GameProcess\IGP_Scenario_Builder.h" />
     <ClInclude Include="GameProcess\IGP_Scenario_Destructor.h" />
     <ClInclude Include="GameProcess\IGP_Scenario_Synchro.h" />
+    <ClInclude Include="Generated Files\ComponentsJsonSerializer.h" />
     <ClInclude Include="Generated Files\IncludeList.h" />
     <ClInclude Include="Generated Files\ShareDevJsonSerializer.h" />
     <ClInclude Include="Modules\BaseLogicPacket.h" />
@@ -402,12 +400,6 @@
     <ClInclude Include="Modules\ModuleServerLogic.h" />
     <ClInclude Include="Modules\ModuleSoundEngine.h" />
     <ClInclude Include="Modules\ModuleTimer.h" />
-    <ClInclude Include="Protocol\ClientSlave\PCS_HandlerClient.h" />
-    <ClInclude Include="Protocol\ClientSlave\PCS_HandlerSlave.h" />
-    <ClInclude Include="Protocol\ClientSlave\PCS_IHandler.h" />
-    <ClInclude Include="Protocol\ClientSlave\PCS_PacketLevelGame.h" />
-    <ClInclude Include="Protocol\ClientSlave\PCS_TypePacket.h" />
-    <ClInclude Include="Protocol\SlaveMaster\PSM_TypePacket.h" />
     <ClInclude Include="ReflectionContainers\ComponentsContainer.h" />
     <ClInclude Include="ReflectionContainers\FeaturesContainer.h" />
     <ClInclude Include="ReflectionContainers\HandlersContainer.h" />
@@ -497,7 +489,6 @@
     <ClInclude Include="Scene\Pattern\UpdaterNodeByPhysic.h" />
     <ClInclude Include="Share\Components.h" />
     <ClInclude Include="Share\FrameworkResources.h" />
-    <ClInclude Include="Share\IGameLogicRoom.h" />
     <ClInclude Include="Share\InputCmdDevTool.h" />
     <ClInclude Include="Share\ListModules.h" />
     <ClInclude Include="Share\MathStructs.h" />
@@ -506,6 +497,7 @@
     <ClInclude Include="Test\ShowTankWoT_test.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="componentsConfig.json" />
     <None Include="reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
     magic_enum/0.7.2
     lz4/1.9.3
     fmt/7.1.3
-    openssl/1.1.1j
+    openssl/1.1.1k
     boost/1.76.0
     bullet3/2.89
     gtest/1.10.0

@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <map>
-#include <boost/bimap/bimap.hpp>
+#include "BiMap.h"
 
 #include "SerializerShapeItem_XML.h"
 #include "SerializerModelItem_XML.h"
@@ -28,10 +28,11 @@ class DllExport TManagerSerializerItem_XML
   IXML* mXML;
 
   // для поиска типа по имени и наоборот (по типу)
-  typedef boost::bimaps::bimap<std::string, int> bmStrInt;
-  typedef bmStrInt::left_const_iterator         bmStrIntLeftIt;
-  typedef bmStrInt::right_const_iterator        bmStrIntRightIt;
-  typedef bmStrInt::value_type                  bmStrIntVT;
+  using bmStrInt = TBiMap<std::string, int>;
+  //typedef boost::bimaps::bimap<std::string, int> bmStrInt;
+  //typedef bmStrInt::left_const_iterator         bmStrIntLeftIt;
+  //typedef bmStrInt::right_const_iterator        bmStrIntRightIt;
+  //typedef bmStrInt::value_type                  bmStrIntVT;
 
   bmStrInt mMapStrType;
 

@@ -169,7 +169,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\3rdParty\MyGUI\Common;$(SolutionDir)Source\3rdParty\MyGUI\Common\Base;$(SolutionDir)Source\3rdParty\MyGUI\Common\Base\Ogre;$(SolutionDir)Source\3rdParty\MyGUI\Common\Input\OIS;$(SolutionDir)Source\3rdParty\MyGUI\Platforms\Ogre\OgrePlatform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\3rdParty\MyGUI\Common;$(SolutionDir)Source\3rdParty\MyGUI\Common\Base;$(SolutionDir)Source\3rdParty\MyGUI\Common\Base\Ogre;$(SolutionDir)Source\3rdParty\MyGUI\Common\Input\OIS;$(SolutionDir)Source\3rdParty\MyGUI\Platforms\Ogre\OgrePlatform\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE_dep\ois\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\MyGUIEngine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

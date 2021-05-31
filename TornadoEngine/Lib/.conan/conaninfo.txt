@@ -9,11 +9,12 @@
 [requires]
     boost/1.Y.Z
     bullet3/2.Y.Z
-    fmt/6.Y.Z
-    libpqxx/7.Y.Z
-    magic_enum/0.6.6
+    fmt/7.Y.Z
+    gtest/1.Y.Z
+    lz4/1.Y.Z
+    magic_enum/0.7.2
     openssl/1.Y.Z
-    termcolor/1.Y.Z
+    rapidjson/1.Y.Z
 
 [options]
 
@@ -30,38 +31,43 @@
     os_build=Windows
 
 [full_requires]
-    boost/1.73.0:3191e02c37a4ec1a7b5378f96fc9b87f676352ad
+    boost/1.76.0:ab588f36a0075e9aa44513754e8d90bb30065e85
     bullet3/2.89:d057732059ea44a47760900cb5e4855d2bea8714
     bzip2/1.0.8:589a23dff5fdb23a7fb851223eb766480ead0a9a
-    fmt/6.2.0:4f1710918aa542fccb5a54d7bd712e4b0750b50d
-    libpq/11.5:487a5ebc62be09517ca7a9dbf8f7f4a1f219019b
-    libpqxx/7.1.2:137914d97d11e38e1d3b2ae4c98ad3dbb3a50810
-    magic_enum/0.6.6:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
-    openssl/1.1.1f:4f1710918aa542fccb5a54d7bd712e4b0750b50d
-    termcolor/1.0.1:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+    fmt/7.1.3:4f1710918aa542fccb5a54d7bd712e4b0750b50d
+    gtest/1.10.0:dc359ea859b0535df467a5278a5ddf943a44739d
+    lz4/1.9.3:d057732059ea44a47760900cb5e4855d2bea8714
+    magic_enum/0.7.2:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+    openssl/1.1.1k:4f1710918aa542fccb5a54d7bd712e4b0750b50d
+    rapidjson/1.1.0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
     zlib/1.2.11:d057732059ea44a47760900cb5e4855d2bea8714
 
 [full_options]
     boost:asio_no_deprecated=False
     boost:bzip2=True
     boost:debug_level=0
+    boost:diagnostic_definitions=False
     boost:error_code_header_only=False
     boost:extra_b2_flags=None
     boost:filesystem_no_deprecated=False
     boost:header_only=False
-    boost:i18n_backend=iconv
+    boost:i18n_backend=deprecated
+    boost:i18n_backend_iconv=off
+    boost:i18n_backend_icu=False
     boost:layout=system
     boost:lzma=False
     boost:magic_autolink=False
     boost:multithreading=True
     boost:namespace=boost
     boost:namespace_alias=False
+    boost:numa=False
     boost:pch=True
     boost:python_executable=None
     boost:python_version=None
     boost:segmented_stacks=False
     boost:shared=False
     boost:system_no_deprecated=False
+    boost:visibility=hidden
     boost:without_atomic=False
     boost:without_chrono=False
     boost:without_container=False
@@ -73,12 +79,14 @@
     boost:without_fiber=False
     boost:without_filesystem=False
     boost:without_graph=False
-    boost:without_graph_parallel=False
+    boost:without_graph_parallel=True
     boost:without_iostreams=False
+    boost:without_json=False
     boost:without_locale=False
     boost:without_log=False
     boost:without_math=False
-    boost:without_mpi=False
+    boost:without_mpi=True
+    boost:without_nowide=False
     boost:without_program_options=False
     boost:without_python=True
     boost:without_random=False
@@ -106,32 +114,67 @@
     fmt:header_only=False
     fmt:shared=True
     fmt:with_fmt_alias=False
-    libpq:shared=False
-    libpq:with_openssl=False
-    libpq:with_zlib=True
-    libpqxx:shared=True
+    gtest:build_gmock=True
+    gtest:debug_postfix=d
+    gtest:hide_symbols=False
+    gtest:no_main=False
+    gtest:shared=True
+    lz4:shared=False
     openssl:386=False
     openssl:capieng_dialog=False
     openssl:enable_capieng=False
+    openssl:no_aria=False
     openssl:no_asm=False
     openssl:no_async=False
     openssl:no_bf=False
+    openssl:no_blake2=False
+    openssl:no_camellia=False
     openssl:no_cast=False
+    openssl:no_chacha=False
+    openssl:no_cms=False
+    openssl:no_comp=False
+    openssl:no_ct=False
+    openssl:no_deprecated=False
     openssl:no_des=False
+    openssl:no_dgram=False
     openssl:no_dh=False
     openssl:no_dsa=False
     openssl:no_dso=False
+    openssl:no_ec=False
+    openssl:no_ecdh=False
+    openssl:no_ecdsa=False
+    openssl:no_engine=False
+    openssl:no_filenames=False
+    openssl:no_gost=False
     openssl:no_hmac=False
+    openssl:no_idea=False
+    openssl:no_md4=False
     openssl:no_md5=False
     openssl:no_mdc2=False
+    openssl:no_ocsp=False
+    openssl:no_pinshared=False
     openssl:no_rc2=False
+    openssl:no_rfc3779=False
+    openssl:no_rmd160=False
     openssl:no_rsa=False
+    openssl:no_seed=False
     openssl:no_sha=False
+    openssl:no_sm2=False
+    openssl:no_sm3=False
+    openssl:no_sm4=False
+    openssl:no_sock=False
+    openssl:no_srp=False
+    openssl:no_srtp=False
     openssl:no_sse2=False
+    openssl:no_ssl=False
+    openssl:no_ssl3=False
     openssl:no_threads=False
+    openssl:no_tls1=False
+    openssl:no_ts=False
+    openssl:no_whirlpool=False
     openssl:openssldir=None
     openssl:shared=True
-    zlib:minizip=False
+    zlib:minizip=deprecated
     zlib:shared=False
 
 [recipe_hash]
