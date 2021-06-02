@@ -221,7 +221,4 @@
   <ItemGroup>
     <Text Include="..\..\..\conanfile.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="TODO.md" />
-  </ItemGroup>
 </Project>
