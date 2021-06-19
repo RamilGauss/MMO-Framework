@@ -1,0 +1,16 @@
+{
+    "fileName": "JsonSerializer",
+    "nameSpaceName": "nsJson",
+    "typeName": "TJsonSerializer",
+    "customizedTypes": [
+        "nsCppParser::TypeCategory",
+        "nsReflectionCodeGenerator::TClassDesc",
+        "nsReflectionCodeGenerator::TConfig",
+        "nsReflectionCodeGenerator::TExternalSource",
+        "nsReflectionCodeGenerator::TExternalSources",
+        "nsReflectionCodeGenerator::TFilter",
+        "nsReflectionCodeGenerator::TSerializer",
+        "nsReflectionCodeGenerator::TTargetForCodeGeneration",
+        "nsReflectionCodeGenerator::TTargetForParsing"
+    ]
+}

@@ -1,6 +1,0 @@
-cd ../Test/MMO/StressTestClient
-qmake
-make clean
-make
-cd ../..
-###########################################################

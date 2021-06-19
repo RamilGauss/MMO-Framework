@@ -1,8 +1,0 @@
-{
-    "fileName": "JsonSerializer_InOut_0",
-    "nameSpaceName": "nsJson_InOut_0",
-    "typeName": "TJsonSerializer",
-    "customizedTypes": [
-        "nsInOut::A"
-    ]
-}

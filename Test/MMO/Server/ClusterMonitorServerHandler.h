@@ -1,0 +1,27 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information LICENSE.md.
+*/
+
+#pragma once
+
+#include "ClusterMonitorProtocol/ServerTransport.h"
+#include "ClusterMonitorProtocol/MonitorEvents.h"
+
+class TClusterMonitorServerHandler
+{
+  nsClusterMonitorProtocol::TServerTransport mServerTransport;
+
+  TDstEvent mHandler;
+
+  nsMMOEngine::TMaster* mMaster = nullptr;
+public:
+  TClusterMonitorServerHandler( unsigned char subNet, nsMMOEngine::TMaster* pMaster );
+
+  void Work();
+
+protected:
+  void RecvPacketHandler( nsClusterMonitorProtocol::nsEvents::TPacketEvent* pPacketEvent );
+};

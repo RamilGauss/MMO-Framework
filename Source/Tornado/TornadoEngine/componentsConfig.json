@@ -1,0 +1,35 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "."
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ],
+        "inheritance": "nsECSFramework::IComponent"
+    },
+    "targetForCodeGeneration": {
+        "directory": "./Generated Files",
+        "includeListFileName": "IncludeList",
+        "header": "\tReflectionCodeGenerator",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "JsonSerializerGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsShareDev",
+                "fileName": "ComponentsJsonSerializer",
+                "className": "TComponentsJsonSerializer",
+                "keyValueMap": {}
+            }
+        }
+    }
+}

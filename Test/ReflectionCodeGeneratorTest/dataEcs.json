@@ -1,0 +1,35 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "./DataSources"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ],
+        "inheritance": "nsECSFramework::IComponent"
+    },
+    "targetForCodeGeneration": {
+        "directory": "./",
+        "includeListFileName": "EcsIncludeList",
+        "header": "\tReflectionCodeGeneratorTest",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "EntityManagerExtension": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsEntityManagerExtension",
+                "fileName": "EntityManagerExtension",
+                "className": "TEntityManagerExtension",
+                "keyValueMap": {}
+            }
+        }
+    }
+}

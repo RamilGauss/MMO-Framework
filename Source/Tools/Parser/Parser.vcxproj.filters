@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Lexemas">
+      <UniqueIdentifier>{e5c43206-aa04-47af-b908-587bf1b37302}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Splitters">
+      <UniqueIdentifier>{fb976252-711c-4f65-b3bd-f6767bed5152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Infos">
+      <UniqueIdentifier>{5260fafa-0b31-4c24-8b2e-75ad2ef8f5ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tokenize">
+      <UniqueIdentifier>{4c4705df-1039-476e-b234-2d535318bcec}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\MemberInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\LexemaFactory.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\LineSplitter.cpp">
+      <Filter>Splitters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EntitySplitter.cpp">
+      <Filter>Splitters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\PreprocessorSplitter.cpp">
+      <Filter>Splitters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ColonSplitter.cpp">
+      <Filter>Splitters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\LexemaEngine.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Tokenizer.cpp">
+      <Filter>Tokenize</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInfo.cpp">
+      <Filter>Infos</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TypeInfoCollector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BlockLexemaEntity.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ExtendedInfoTypeExtractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\MemberExtendedTypeInfo.cpp">
+      <Filter>Infos</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\FunctionLexema.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ILexema.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\VariableDeclarationLexema.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\CommentSplitter.cpp">
+      <Filter>Splitters</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\Parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ILexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\LexemaFactory.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EmptyLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\NamespaceLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ClassLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EnumLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\LineSplitter.h">
+      <Filter>Splitters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EntitySplitter.h">
+      <Filter>Splitters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ParserResultContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\FriendLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\PragmaLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\PreprocessorSplitter.h">
+      <Filter>Splitters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ColonSplitter.h">
+      <Filter>Splitters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\AccessLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeDeclarationLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\StructLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MethodInfo.h">
+      <Filter>Infos</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInfo.h">
+      <Filter>Infos</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\FriendInfo.h">
+      <Filter>Infos</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MemberInfo.h">
+      <Filter>Infos</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeReference.h">
+      <Filter>Infos</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Types.h">
+      <Filter>Infos</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\InheritanceInfo.h">
+      <Filter>Infos</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\LexemaEngine.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Tokenizer.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TokenInfo.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BlockTokenEntity.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ITokenEntity.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\LineTokenEntity.h">
+      <Filter>Tokenize</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ILexemaEntity.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\BlockLexemaEntity.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\LineLexemaEntity.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\IdentifierLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\VariableDeclarationLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\FunctionLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\FunctionDefinitionLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\FunctionDeclarationLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TypeInfoCollector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ExtendedInfoTypeExtractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MemberExtendedTypeInfo.h">
+      <Filter>Infos</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EnumValuesLexema.h">
+      <Filter>Lexemas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\IdentifierToken.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\CommentSplitter.h">
+      <Filter>Splitters</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\conanfile.txt" />
+  </ItemGroup>
+</Project>

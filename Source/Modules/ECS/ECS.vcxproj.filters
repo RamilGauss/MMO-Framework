@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\BaseReactiveSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConveyerPartMaster.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConveyerPartWithGlobalAccess.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExecuteSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Feature.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GlobalAccess.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IConveyerPart.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InitSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\System.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\World.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helper.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GlobalSystemInitializer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GlobalSystemUpdater.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoopList.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EntityManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Entity.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Config.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LinkToList.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IComponent.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ComplexType.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ReactiveOnAddSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ReactiveOnUpdateSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ReactiveOnRemoveSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ContainerForReactive.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HelpStructs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ComponentContainer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ConveyerPartMaster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExecuteSystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\World.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntityManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BaseReactiveSystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\conanfile.txt" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+{
+    "fileName": "OutSources.h",
+    "nameSpaceName": "nsJson",
+    "className": "TOutSourcesSerializer",
+    "nameSpaceWithType": [
+        "nsECSFramework::IComponent"
+    ]
+}

@@ -1,0 +1,19 @@
+[requires]
+    rapidjson/1.1.0
+    magic_enum/0.7.2
+    lz4/1.9.3
+    fmt/7.1.3
+    openssl/1.1.1k
+    boost/1.76.0
+    bullet3/2.89
+    gtest/1.10.0
+
+[options]
+    fmt:shared=True
+    openssl:shared=True
+    boost:shared=False
+    gtest:shared=True
+    
+[imports]
+    bin, *.dll -> ../../Exe
+    lib, *.lib -> ../../Lib
