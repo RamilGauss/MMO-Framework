@@ -169,6 +169,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TornadoEditor", "Source\Tor
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TornadoEngine", "Source\Tornado\TornadoEngine\TornadoEngine.vcxproj", "{FB1B5338-0EC6-4FDE-AE4C-10763893A9D6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Benchmarks", "Benchmarks", "{4B883F19-1DBE-4083-8699-FFDB1C80D42C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EcsBenchmark", "Test\EcsBenchmark\EcsBenchmark.vcxproj", "{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3DCD5F9C-9C3B-4DB5-8A64-FE40B69E2083} = {3DCD5F9C-9C3B-4DB5-8A64-FE40B69E2083}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -599,6 +606,18 @@ Global
 		{FB1B5338-0EC6-4FDE-AE4C-10763893A9D6}.Release|x64.Build.0 = Release|x64
 		{FB1B5338-0EC6-4FDE-AE4C-10763893A9D6}.Release|x86.ActiveCfg = Release|Win32
 		{FB1B5338-0EC6-4FDE-AE4C-10763893A9D6}.Release|x86.Build.0 = Release|Win32
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Debug|x64.ActiveCfg = Debug|x64
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Debug|x64.Build.0 = Debug|x64
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Debug|x86.ActiveCfg = Debug|Win32
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Debug|x86.Build.0 = Debug|Win32
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Profile|x64.ActiveCfg = Debug|x64
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Profile|x64.Build.0 = Debug|x64
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Profile|x86.ActiveCfg = Debug|Win32
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Profile|x86.Build.0 = Debug|Win32
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Release|x64.ActiveCfg = Release|x64
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Release|x64.Build.0 = Release|x64
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Release|x86.ActiveCfg = Release|Win32
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -643,10 +662,12 @@ Global
 		{73A4EF05-62AA-4529-8C04-0529ABFF8DCC} = {C7FA8CD1-065C-4718-B784-1D4916E37C74}
 		{73534D02-D7A8-4D08-8A8A-187CEE536C3F} = {CD32BCAD-8A49-4EAF-A88E-7D05CD2B616F}
 		{FB1B5338-0EC6-4FDE-AE4C-10763893A9D6} = {CD32BCAD-8A49-4EAF-A88E-7D05CD2B616F}
+		{4B883F19-1DBE-4083-8699-FFDB1C80D42C} = {D8991E7D-796B-4D53-BD04-A0363C6131CF}
+		{1D77EC78-B0BB-42EF-AE68-AC06B0C77ADA} = {4B883F19-1DBE-4083-8699-FFDB1C80D42C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

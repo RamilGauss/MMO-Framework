@@ -7,6 +7,7 @@
     boost/1.76.0
     bullet3/2.89
     gtest/1.10.0
+    entt/3.7.1
 
 [options]
     fmt:shared=True

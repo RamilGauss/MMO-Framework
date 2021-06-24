@@ -16,10 +16,6 @@ This is achieved by using the cluster organization within the Server.
 To view the architectural decisions need Enterprise Architect 7.0+.
 [Article on habrahabr](http://habrahabr.ru/post/233915/).
 
-		DEPENDENCIES:
-	MyGUI   3.2.0, 
-	OGRE    1.9, 
-
 [Dependencies](https://github.com/RamilGauss/MMO-FrameworkDependency).
 
 Other dependencies got via [conan](http://conan.io).
@@ -38,11 +34,6 @@ Other dependencies got via [conan](http://conan.io).
   
 Для просмотра архитектурных решений потребуется Enterprise Architect 7.0+.
 [Статья на хабре](http://habrahabr.ru/post/233915/).
-
-
-		Список зависимостей:
-	MyGUI   3.2.0, 
-	OGRE    1.9, 
 
 [Зависимости](https://github.com/RamilGauss/MMO-FrameworkDependency).
 

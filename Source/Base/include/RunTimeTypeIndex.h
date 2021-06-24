@@ -30,15 +30,25 @@ template<typename...>
 class DllExport TRunTimeTypeIndex
 {
 public:
-    typedef unsigned int TypeCounter;
-    typedef std::atomic<TypeCounter> AtomicTypeCounter;
+    using TypeCounter = unsigned int;
+    using AtomicTypeCounter = 
+#ifdef USE_MULTITHREAD
+        std::atomic<TypeCounter>;
+#else
+        TypeCounter;
+#endif
 private:
     AtomicTypeCounter atc;
 
     template<typename...>
     const TypeCounter UniqueByType(AtomicTypeCounter& global)
     {
-        static const TypeCounter value = global.fetch_add(1);
+        static const TypeCounter value =
+#ifdef USE_MULTITHREAD
+            global.fetch_add(1);
+#else
+            global++;
+#endif
         return value;
     }
 
