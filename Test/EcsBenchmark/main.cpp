@@ -27,7 +27,7 @@ const int FRAME_COUNT =
 #ifdef _DEBUG
 10;
 #else
-50000;
+10000;
 #endif
 
 using namespace nsECSFramework;
@@ -70,24 +70,24 @@ void EcsFrameworkInit()
     for (int i = 0; i < OBJECT_COUNT; i++) {
         auto eid = g_EntMng.CreateEntity();
         pc.p.reset(new TBulletObject());
-        g_EntMng.AddComponent(eid, pc);
-        g_EntMng.AddComponent(eid, tc);
+        g_EntMng.SetComponent(eid, pc);
+        g_EntMng.SetComponent(eid, tc);
     }
     for (int i = 0; i < OBJECT_COUNT; i++) {
         auto eid = g_EntMng.CreateEntity();
         pc.p.reset(new TBulletObject());
-        g_EntMng.AddComponent(eid, pc);
+        g_EntMng.SetComponent(eid, pc);
 
         gc.p.reset(new TOgreObject());
-        g_EntMng.AddComponent(eid, gc);
+        g_EntMng.SetComponent(eid, gc);
 
-        g_EntMng.AddComponent(eid, tc);
+        g_EntMng.SetComponent(eid, tc);
     }
     for (int i = 0; i < OBJECT_COUNT; i++) {
         auto eid = g_EntMng.CreateEntity();
         gc.p.reset(new TOgreObject());
-        g_EntMng.AddComponent(eid, gc);
-        g_EntMng.AddComponent(eid, tc);
+        g_EntMng.SetComponent(eid, gc);
+        g_EntMng.SetComponent(eid, tc);
     }
 }
 
@@ -100,10 +100,10 @@ void EcsFrameworkPhysicToCore()
 {
     auto& gp = *(g_EntMng.GetByHas<TGraphicComponent, TPhysicComponent>());
     for (auto& eid : gp) {
-        auto pc = g_EntMng.GetComponent<TPhysicComponent>(eid);
-        auto tc = g_EntMng.GetComponent<TTransformComponent>(eid);
+        auto pc = g_EntMng.ViewComponent<TPhysicComponent>(eid);
+        auto tc = g_EntMng.ViewComponent<TTransformComponent>(eid);
         tc->m = pc->p->m;
-        g_EntMng.UpdateComponent<TTransformComponent>(eid);
+        g_EntMng.UpdateComponent<TTransformComponent>(eid, tc);
     }
 }
 
@@ -111,10 +111,10 @@ void EcsFrameworkCoreToGraphic()
 {
     auto& gp = *(g_EntMng.GetByHas<TGraphicComponent, TPhysicComponent>());
     for (auto& eid : gp) {
-        auto tc = g_EntMng.GetComponent<TTransformComponent>(eid);
-        auto gc = g_EntMng.GetComponent<TGraphicComponent>(eid);
+        auto tc = g_EntMng.ViewComponent<TTransformComponent>(eid);
+        auto gc = g_EntMng.ViewComponent<TGraphicComponent>(eid);
         gc->p->m = tc->m;
-        g_EntMng.UpdateComponent<TGraphicComponent>(eid);
+        g_EntMng.UpdateComponent<TGraphicComponent>(eid, gc);
     }
 }
 

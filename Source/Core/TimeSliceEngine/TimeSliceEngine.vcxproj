@@ -202,7 +202,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TimeSliceEngine\reflectionConfig.json"</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\TimeSliceEngine\reflectionConfig.json"</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>

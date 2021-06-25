@@ -6,7 +6,7 @@
 
 burn time:
 
-framework:
-10.492 s
+ecs framework:
+5.021 s
 entt:
-10.905 s
+2.14 s

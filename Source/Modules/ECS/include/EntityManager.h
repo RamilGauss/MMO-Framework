@@ -34,7 +34,7 @@ namespace nsECSFramework
 {
     class DllExport TEntityManager
     {
-        using TTypeID = TRunTimeTypeIndex<TEntityManager>;
+        typedef TRunTimeTypeIndex<TEntityManager> TTypeID;
         TTypeID* mTypeIndex;
     public:
         TEntityManager(int entityCount = 1024);
@@ -51,11 +51,17 @@ namespace nsECSFramework
 
         // components
         template <typename Component>
-        void AddComponent(TEntityID eid, Component& c);// => add event
+        void SetComponent(TEntityID eid, Component& c);// => add or update event
+
         template <typename Component>
-        void UpdateComponent(TEntityID eid);// => update event
+        Component* ViewComponent(TEntityID eid);// for view, fast,
         template <typename Component>
-        Component* GetComponent(TEntityID eid);// for view, fast,
+        void UpdateComponent(TEntityID eid, Component* pC);// => update event
+
+        template <typename Component>
+        bool GetComponent(TEntityID eid, Component& c);// for change, copy, with check
+        template <typename Component>
+        Component GetComponent(TEntityID eid);// for change, copy
         template <typename Component>
         void RemoveComponent(TEntityID eid);// => remove event
         template <typename Component>
@@ -63,12 +69,53 @@ namespace nsECSFramework
 
         void GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList);
 
+        // filters
+        template <typename Component>
+        DllExport TEntityID NoInline GetByUnique(Component& c)
+        {// definition must be after declaration!
+            auto index = TypeIndex<Component>();
+            auto pMap = mUniqueMapVec[index];
+            if ( pMap == nullptr ) {
+                return None;
+            }
+            auto fit = pMap->find(&c);
+            if ( fit == pMap->end() ) {
+                return None;
+            }
+            return fit->second;
+        }
+        template <typename ... Args>
+        DllExport TEntityList* NoInline GetByValue(Args& ... args)
+        {// definition must be after declaration!
+            auto index = TypeIndex<Args...>();
+            auto pMap = mValueCollectionVec[index];
+            if ( pMap == nullptr ) {
+                return nullptr;
+            }
+
+            TEntityList* pResult = nullptr;
+            auto pComplexType = mComplexTypeMemoryPool->Pop();
+            Fill(pComplexType, args ...);// берем адреса из стека, безопасно, потому что переменные еще существуют в методе
+            auto fit = pMap->find(pComplexType);
+            if ( fit != pMap->end() ) {
+                pResult = fit->second;
+            }
+
+            // вернуть обратно в пул
+            pComplexType->Done();
+            mComplexTypeMemoryPool->Push(pComplexType);
+            return pResult;
+        }
         template <typename ... Args>
         DllExport TEntityList* NoInline GetByHas()
         {// definition must be after declaration!
-            const auto index = TypeIndex<Args...>();
-            return (TEntityList*) mHasCollectionVec[index];
+            auto index = TypeIndex<Args...>();
+            auto pList = (TEntityList*) mHasCollectionVec[index];
+            return pList;
         }
+        // мгновенная реакция на удаления для освобождения ресурсов
+        template<typename Component>
+        TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnRemoveComponent();
     protected:
         // events
         friend class TReactiveOnAddSystem;
@@ -86,16 +133,18 @@ namespace nsECSFramework
         template<typename Component>
         int OnRemove();
     private:
-        using TComplexTypePtrListPtrMap = std::map<TComplexType*, TEntityList*, ptr_less<TComplexType*>>;
-        using TComplexTypePtrListPtrMapPtrVec = TColanderVector<TComplexTypePtrListPtrMap*>;
+        typedef std::map<TComplexType*, TEntityList*, ptr_less<TComplexType*>> TComplexTypePtrListPtrMap;
+        typedef TColanderVector<TComplexTypePtrListPtrMap*> TComplexTypePtrListPtrMapPtrVec;
 
-        using TVoidPtrVector = TColanderVector<void*>;
-        using TListPtrVector = TColanderVector<TEntityList*>;
+        typedef TColanderVector<void*> TVoidPtrVector;
+        typedef TColanderVector<TEntityList*> TListPtrVector;
 
-        using TUniqueMap = std::map<IComponent*, TEntityID, component_ptr_less<IComponent*>>;
-        using TUniqueMapPtrVector = TColanderVector<TUniqueMap*>;
+        typedef std::map<IComponent*, TEntityID, component_ptr_less<IComponent*>> TUniqueMap;
+        typedef TColanderVector<TUniqueMap*> TUniqueMapPtrVector;
 
         TListPtrVector mHasCollectionVec;// fill in setup
+        TComplexTypePtrListPtrMapPtrVec mValueCollectionVec;// fill in setup
+        TUniqueMapPtrVector mUniqueMapVec;// fill in setup
 
         TMemoryObjectPool<TEntity>* mEntityMemoryPool;
         TMemoryObjectPool<TComplexType>* mComplexTypeMemoryPool;
@@ -104,6 +153,7 @@ namespace nsECSFramework
         TMemoryObjectPool<TUniqueMap>* mUniqueMapMemoryPool;
         TMemoryObjectPool<TComplexTypePtrListPtrMap>* mComplexTypePtrListPtrMapMemoryPool;
 
+
         TEntityList mReserverIndexInEntities;
         TVectorRise<TEntity*> mEntities;
 
@@ -111,8 +161,8 @@ namespace nsECSFramework
         TListPtrVector mOnUpdateCallBack;
         TListPtrVector mOnRemoveCallBack;
 
-        using TShortList = std::list<short>;
-        using TListVector = TColanderVector<TShortList>;
+        typedef std::list<short> TShortList;
+        typedef TColanderVector<TShortList> TListVector;
 
         // в каких коллекциях участвует данный тип
         TListVector mHasTypeInCollection;// fill in setup
@@ -122,8 +172,8 @@ namespace nsECSFramework
         TListVector mHasCollectionWithTypes;// fill in setup
         TListVector mValueCollectionWithTypes;// fill in setup
 
-        using TCB_EntPtrCom = TCallBackRegistrator2<TEntityID, IComponent*>;
-        using TCBVector = TColanderVector<TCB_EntPtrCom*>;
+        typedef TCallBackRegistrator2<TEntityID, IComponent*> TCB_EntPtrCom;
+        typedef TColanderVector<TCB_EntPtrCom*> TCBVector;
 
         TCBVector mRemoveCBVector;
     public:// inner use
@@ -136,7 +186,7 @@ namespace nsECSFramework
         }
 #pragma GCC pop_options
     private:
-        inline TEntity* GetEntity(TEntityID id) const;
+        TEntity* GetEntity(TEntityID id) const;
 
         void RemoveComponent(TEntityID eid, TEntity* pEntity, int index);
 
@@ -145,23 +195,33 @@ namespace nsECSFramework
         template<typename T0, typename T1, typename ... Args>
         void Fill(TComplexType* pComplexType, T0& t0, T1& t1, Args& ... args);
 
+        void TryAddInUnique(TEntityID eid, IComponent* pC, int index);
+        void TryRemoveFromUnique(TEntityID eid, IComponent* pC, int index);
+
         void TryAddInHas(TEntityID eid, int index, TEntity* pEntity);
+        void TryAddInValue(TEntityID eid, int index, TEntity* pEntity);
+
         void TryRemoveFromHas(TEntityID eid, int index, TEntity* pEntity);
+        void TryRemoveFromValue(TEntityID eid, int index, TEntity* pEntity);
+
+        void NotifyOnRemoveComponent(int index, TEntityID entity, IComponent* pC);
 
     private:
         boost::dll::experimental::smart_library mLib;
 
-        using TStrList = std::list<std::string>;
-        using TStrSet = std::set<std::string>;
-        using TStrSetList = std::list<TStrSet>;
-        using TStrSetStrListMap = std::map<TStrSet, TStrList>;
-        using TStrSetIntMap = std::map<TStrSet, int>;
-        using TStrSetStrMap = std::map<TStrSet, std::string>;
+        typedef std::list<std::string> TStrList;
+        typedef std::set<std::string> TStrSet;
+        typedef std::list<TStrSet> TStrSetList;
+        typedef std::map<TStrSet, TStrList> TStrSetStrListMap;
+        typedef std::map<TStrSet, int> TStrSetIntMap;
+        typedef std::map<TStrSet, std::string> TStrSetStrMap;
 
         TStrSetStrMap mTypeIndexNameFuncMap;
         TStrSetIntMap mComponentsTypeIndexMap;
         // после поиска использования функций
+        TStrSetList mUniqueSet;
         TStrSetList mHasComponentList;
+        TStrSetList mValueComponentList;
 
         void Fill(const std::string& methodName, std::string& demangled, TStrSet& strSet);
         void FindTypesOfMethod(const std::string& methodName, TStrSetList& resultList);
@@ -169,32 +229,64 @@ namespace nsECSFramework
     };
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::AddComponent(TEntityID eid, Component& c)
+    void TEntityManager::SetComponent(TEntityID eid, Component& c)
     {
         auto pEntity = GetEntity(eid);
+#ifdef _DEBUG
         if ( pEntity == nullptr ) {
             BL_FIX_BUG();
             return;
         }
-
+#endif
+        Component* pC = nullptr;
         const auto index = TypeIndex<Component>();
-        auto pC = pEntity->AddComponent<Component>(index);
+        if ( pEntity->HasComponent(index) ) {
+            pC = (Component*) pEntity->GetComponent(index);
+
+            mUpdateCollector.Set(index, eid);
+
+            TryRemoveFromUnique(eid, pC, index);
+            TryRemoveFromValue(eid, index, pEntity);
+        } else {
+            pC = pEntity->AddComponent<Component>(index);
+            mAddCollector.Set(index, eid);
+
+            TryAddInHas(eid, index, pEntity);
+        }
 
         *pC = c;
-
-        TryAddInHas(eid, index, pEntity);
-        mAddCollector.Set(index, eid);
+        TryAddInUnique(eid, pC, index);
+        TryAddInValue(eid, index, pEntity);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::UpdateComponent(TEntityID eid)
+    void TEntityManager::UpdateComponent(TEntityID eid, Component* pC)
     {
+        auto pEntity = GetEntity(eid);
+#ifdef _DEBUG
+        if (pEntity == nullptr) {
+            BL_FIX_BUG();
+            return;
+        }
+#endif
         const auto index = TypeIndex<Component>();
+#ifdef _DEBUG
+        // Checking
+        auto pOriginal = (Component*) pEntity->GetComponent(index);
+        if (pOriginal != pC) {
+            BL_FIX_BUG();
+        }
+#endif
         mUpdateCollector.Set(index, eid);
+
+        TryRemoveFromUnique(eid, pC, index);
+        TryRemoveFromValue(eid, index, pEntity);
+        TryAddInUnique(eid, pC, index);
+        TryAddInValue(eid, index, pEntity);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    Component* TEntityManager::GetComponent(TEntityID eid)
+    Component* TEntityManager::ViewComponent(TEntityID eid)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -204,7 +296,46 @@ namespace nsECSFramework
         }
 #endif
         const auto index = TypeIndex<Component>();
-        return (Component*) pEntity->GetComponent(index);
+        auto pC = (Component*) pEntity->GetComponent(index);
+        return pC;
+    }
+    //---------------------------------------------------------------------------------------
+    template <typename Component>
+    bool TEntityManager::GetComponent(TEntityID eid, Component& c)
+    {
+        auto pEntity = GetEntity(eid);
+#ifdef _DEBUG
+        if ( pEntity == nullptr ) {
+            BL_FIX_BUG();
+            return false;
+        }
+#endif
+        const auto index = TypeIndex<Component>();
+        auto pC = (Component*) pEntity->GetComponent(index);
+        if ( pC == nullptr )
+            return false;
+        c = *pC;
+        return true;
+    }
+    //---------------------------------------------------------------------------------------
+    template <typename Component>
+    Component TEntityManager::GetComponent(TEntityID eid)
+    {
+        Component c;
+        auto pEntity = GetEntity(eid);
+#ifdef _DEBUG
+        if ( pEntity == nullptr ) {
+            BL_FIX_BUG();
+            return c;
+        }
+#endif
+        const auto index = TypeIndex<Component>();
+        auto pC = (Component*) pEntity->GetComponent(index);
+        if (pC == nullptr) {
+            return c;
+        }
+        c = *pC;
+        return c;
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
@@ -218,7 +349,11 @@ namespace nsECSFramework
         }
 #endif
         const auto index = TypeIndex<Component>();
+        auto pC = (Component*) pEntity->GetComponent(index);
+
         mRemoveCollector.Set(index, eid);
+        NotifyOnRemoveComponent(index, eid, pC);
+
         RemoveComponent(eid, pEntity, index);
     }
     //---------------------------------------------------------------------------------------
@@ -226,10 +361,12 @@ namespace nsECSFramework
     bool TEntityManager::HasComponent(TEntityID eid)
     {
         auto pEntity = GetEntity(eid);
+#ifdef _DEBUG
         if ( pEntity == nullptr ) {
             BL_FIX_BUG();
             return false;
         }
+#endif
         const auto index = TypeIndex<Component>();
         return pEntity->HasComponent(index);
     }
@@ -268,6 +405,18 @@ namespace nsECSFramework
     {
         Fill(pComplexType, t0);
         Fill(pComplexType, t1, args ...);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnRemoveComponent()
+    {
+        const auto index = TypeIndex<Component>();
+        auto pCB = mRemoveCBVector[index];
+        if ( pCB == nullptr ) {
+            pCB = new TCB_EntPtrCom();
+            mRemoveCBVector[index] = pCB;
+        }
+        return pCB;
     }
     //---------------------------------------------------------------------------------------
 }

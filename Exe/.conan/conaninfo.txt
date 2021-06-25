@@ -1,8 +1,8 @@
 [settings]
     arch=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=Visual Studio
-    compiler.runtime=MD
+    compiler.runtime=MDd
     compiler.version=16
     os=Windows
 
@@ -23,26 +23,26 @@
 [full_settings]
     arch=x86_64
     arch_build=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=Visual Studio
-    compiler.runtime=MD
+    compiler.runtime=MDd
     compiler.toolset=v142
     compiler.version=16
     os=Windows
     os_build=Windows
 
 [full_requires]
-    boost/1.76.0:a60baac5107ef779a5865836fcb50c28ae423a0b
-    bullet3/2.89:3fb49604f9c2f729b85ba3115852006824e72cab
-    bzip2/1.0.8:d16a91eadaaf5829b928b12d2f836ff7680d3df5
+    boost/1.76.0:ab588f36a0075e9aa44513754e8d90bb30065e85
+    bullet3/2.89:d057732059ea44a47760900cb5e4855d2bea8714
+    bzip2/1.0.8:589a23dff5fdb23a7fb851223eb766480ead0a9a
     entt/3.7.1:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
-    fmt/7.1.3:127af201a4cdf8111e2e08540525c245c9b3b99e
-    gtest/1.10.0:3f0ace30056da8c8008a05842de931e7808916f6
-    lz4/1.9.3:3fb49604f9c2f729b85ba3115852006824e72cab
+    fmt/7.1.3:4f1710918aa542fccb5a54d7bd712e4b0750b50d
+    gtest/1.10.0:dc359ea859b0535df467a5278a5ddf943a44739d
+    lz4/1.9.3:d057732059ea44a47760900cb5e4855d2bea8714
     magic_enum/0.7.2:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
-    openssl/1.1.1k:127af201a4cdf8111e2e08540525c245c9b3b99e
+    openssl/1.1.1k:4f1710918aa542fccb5a54d7bd712e4b0750b50d
     rapidjson/1.1.0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
-    zlib/1.2.11:3fb49604f9c2f729b85ba3115852006824e72cab
+    zlib/1.2.11:d057732059ea44a47760900cb5e4855d2bea8714
 
 [full_options]
     boost:asio_no_deprecated=False
@@ -117,6 +117,7 @@
     fmt:shared=True
     fmt:with_fmt_alias=False
     gtest:build_gmock=True
+    gtest:debug_postfix=d
     gtest:hide_symbols=False
     gtest:no_main=False
     gtest:shared=True

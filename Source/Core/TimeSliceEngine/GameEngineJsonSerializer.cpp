@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_06_19 16:52:03.538
+// File has been generated at 2021_06_25 08:17:45.671
 	
 #include "GameEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
