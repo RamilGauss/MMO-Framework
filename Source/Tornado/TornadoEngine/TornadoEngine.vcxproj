@@ -148,8 +148,8 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Source\Tornado\TornadoEngine\componentsConfig.json"
-$(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Source\Tornado\TornadoEngine\reflectionConfig.json"</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tornado\TornadoEngine\componentsConfig.json"
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tornado\TornadoEngine\reflectionConfig.json"</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -195,7 +195,7 @@ $(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Source\Tornado\
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base.lib;TimeSliceEngine.lib;GraphicEngine.lib;PhysicEngine.lib;Common.lib;Platforms.lib;NetTransport.lib;MMOEngine.lib;MyGUIEngine.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;OIS.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base.lib;TimeSliceEngine.lib;GraphicEngine.lib;PhysicEngine.lib;NetTransport.lib;MMOEngine.lib;OgreBites.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -205,7 +205,8 @@ $(SolutionDir)\Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)\Source\Tornado\
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\Exe\ReflectionCodeGenerator.exe "$(SolutionDir)\Source\Tornado\TornadoEngine\componentsConfig.json"</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\TornadoEngine\componentsConfig.json"
+$(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\TornadoEngine\reflectionConfig.json"</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
