@@ -10,7 +10,6 @@ See for more information LICENSE.md.
 #include "GraphicEngine_Ogre_MyGUI.h"
 #include "Events.h"
 
-//#include <MyGUI_OgrePlatform.h>
 #include <OgreTerrainMaterialGeneratorA.h>
 
 #if (OGRE_VERSION >= ((1 << 16) | (10 << 8) | 0))
@@ -19,39 +18,8 @@ See for more information LICENSE.md.
 
 using namespace std;
 
-#if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
-#  include <windows.h>
-#elif MYGUI_PLATFORM == MYGUI_PLATFORM_LINUX
-#  include <X11/Xlib.h>
-#  include <X11/Xutil.h>
-#  include <X11/Xatom.h>
-#endif
-
-//#if MYGUI_PLATFORM == MYGUI_PLATFORM_APPLE
-//#include <CoreFoundation/CoreFoundation.h>
-//// This function will locate the path to our application on OS X,
-//// unlike windows you can not rely on the current working directory
-//// for locating your configuration files and resources.
-//std::string macBundlePath()
-//{
-//  char path[1024];
-//  CFBundleRef mainBundle = CFBundleGetMainBundle();
-//  assert( mainBundle );
-//  CFURLRef mainBundleURL = CFBundleCopyBundleURL( mainBundle );
-//  assert( mainBundleURL );
-//  CFStringRef cfStringRef = CFURLCopyFileSystemPath( mainBundleURL, kCFURLPOSIXPathStyle );
-//  assert( cfStringRef );
-//  CFStringGetCString( cfStringRef, path, 1024, kCFStringEncodingASCII );
-//  CFRelease( mainBundleURL );
-//  CFRelease( cfStringRef );
-//  return std::string( path );
-//}
-//#endif
-
 TGE_Impl::TGE_Impl()
 {
-    //mGUI = NULL;
-    //mPlatform = NULL;
     mRoot = NULL;
     mCamera = NULL;
     mSceneManager = NULL;
@@ -163,10 +131,6 @@ bool TGE_Impl::InitMyGUI(const std::string& nameFileCore, const std::string& nam
     // Load resources
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
-    //mPlatform = new MyGUI::OgrePlatform();
-    //mPlatform->initialise(mWindow, mSceneManager);
-    //mGUI = new MyGUI::Gui();
-    //mGUI->initialise(nameFileCore);
 
     bool resLoad = true;// MyGUI::ResourceManager::getInstance().load(nameFileSkin);
 
@@ -215,17 +179,7 @@ void TGE_Impl::Done()
 //------------------------------------------------------------------------------------------
 void TGE_Impl::DestroyGui()
 {
-    //if (mGUI) {
-    //    mGUI->shutdown();
-    //    delete mGUI;
-    //    mGUI = nullptr;
-    //}
 
-    //if (mPlatform) {
-    //    mPlatform->shutdown();
-    //    delete mPlatform;
-    //    mPlatform = nullptr;
-    //}
 }
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::frameStarted(const Ogre::FrameEvent& evt)
@@ -279,24 +233,7 @@ size_t TGE_Impl::GetWindowHandle()
 //------------------------------------------------------------------------------------------
 void TGE_Impl::GetWindowCaption(std::wstring& _text)
 {
-#if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
-    int len = ::GetWindowTextLengthW((HWND) GetWindowHandle());
-    _text.resize(len + 1);
-    int result = ::GetWindowTextW((HWND) GetWindowHandle(), (wchar_t*) _text.data(), _text.length());
-#elif MYGUI_PLATFORM == MYGUI_PLATFORM_LINUX
-    //Display* xDisplay = nullptr;
-    //unsigned long windowHandle = 0;
-    //mWindow->getCustomAttribute("XDISPLAY", &xDisplay);
-    //mWindow->getCustomAttribute("WINDOW", &windowHandle);
-    //Window win = (Window)windowHandle;
 
-    //XTextProperty windowName;
-    //windowName.value    = (unsigned char *)(MyGUI::UString(_text).asUTF8_c_str());
-    //windowName.encoding = XA_STRING;
-    //windowName.format   = 8;
-    //windowName.nitems   = strlen((char *)(windowName.value));
-    //XSetWMName(xDisplay, win, &windowName);
-#endif
 }
 //------------------------------------------------------------------------------------------
 void TGE_Impl::SetWindowCaption(const std::wstring& _text)

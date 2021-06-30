@@ -205,6 +205,7 @@
     <ClInclude Include="GE_Impl.h" />
     <ClInclude Include="GraphicEngine_Ogre_MyGUI.h" />
     <ClInclude Include="InputManagerOIS.h" />
+    <ClInclude Include="IRenderable.h" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
