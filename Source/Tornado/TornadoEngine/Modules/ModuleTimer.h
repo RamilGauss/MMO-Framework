@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -17,51 +17,51 @@ See for more information LICENSE.md.
 
 class DllExport TModuleTimer : public TModuleComponent
 {
-  unsigned int mLastID;
+    unsigned int mLastID;
 
-  struct TDescTimer
-  {
-    unsigned int start_time_ms;
-
-    unsigned int id;
-    unsigned int interval_ms;
-    bool enable;
-    TDescTimer()
+    struct TDescTimer
     {
-      start_time_ms = ht_GetMSCount();
-    }
-  };
+        unsigned int start_time_ms;
 
-  //typedef std::map<unsigned int,TDescTimer*> TMapDescPtr;
-  //typedef TMapDescPtr::iterator TMapDescPtrIt;
+        unsigned int id;
+        unsigned int interval_ms;
+        bool enable;
+        TDescTimer()
+        {
+            start_time_ms = ht_GetMSCount();
+        }
+    };
 
-  //TMapDescPtr mMapIDTimer;
+    //typedef std::map<unsigned int,TDescTimer*> TMapDescPtr;
+    //typedef TMapDescPtr::iterator TMapDescPtrIt;
 
-  typedef std::vector<TDescTimer*> TVectorDescPtr;
-  TVectorDescPtr mVecTimer;
+    //TMapDescPtr mMapIDTimer;
+
+    typedef std::vector<TDescTimer*> TVectorDescPtr;
+    TVectorDescPtr mVecTimer;
 public:
-  struct TEvent
-  {
-    unsigned int id;
-  };
+    struct TEvent
+    {
+        unsigned int id;
+    };
 
-  TModuleTimer();
-  virtual ~TModuleTimer();
+    TModuleTimer();
+    virtual ~TModuleTimer();
 
-  virtual void StartEvent();
-  virtual bool WorkInherit();
-  virtual void StopEvent();
+    virtual void StartEvent();
+    virtual bool WorkInherit();
+    virtual void StopEvent();
 
-  unsigned int New(int delta_time_ms, bool enable = true);
-  void Delete(unsigned int id);
-  void SetEnable(unsigned int id, bool val);
-  void SetInterval(unsigned int id, int val);
+    unsigned int New(int delta_time_ms, bool enable = true);
+    void Delete(unsigned int id);
+    void SetEnable(unsigned int id, bool val);
+    void SetInterval(unsigned int id, int val);
 
 protected:
-  void WorkTimer();
+    void WorkTimer();
 
-  TDescTimer* Get(unsigned int id);
-  void Done();
+    TDescTimer* Get(unsigned int id);
+    void Done();
 };
 
 #endif

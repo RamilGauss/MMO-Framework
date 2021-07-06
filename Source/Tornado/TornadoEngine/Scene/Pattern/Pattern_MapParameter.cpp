@@ -43,6 +43,7 @@ namespace nsPattern_MapParameter
 }
 
 using namespace nsPattern_MapParameter;
+using namespace nsGraphicEngine;
 
 TPattern_MapParameter::TPattern_MapParameter() : 
 TBehaviourPattern(&g_DefaultParameterMap)
@@ -73,7 +74,7 @@ TPattern_MapParameter::~TPattern_MapParameter()
 //---------------------------------------------------------------------------
 bool TPattern_MapParameter::BuildByModule_Graphic(bool fast)
 {
-  TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
+  TGraphicEngine_Ogre_ImGui* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
   Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();
   Ogre::RenderWindow* mWindow   = pGE->GetWindow();
 

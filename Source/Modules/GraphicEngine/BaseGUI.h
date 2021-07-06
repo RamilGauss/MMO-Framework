@@ -5,7 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#pragma once
+#ifndef BaseGUIH
+#define BaseGUIH
 
 //#include <MyGUI.h>
 #include <atlconv.h>
@@ -34,15 +35,15 @@ public:
     TBaseGUI() {};
     virtual ~TBaseGUI() {};
 
-    virtual void Show();
-    virtual void Hide();
+    //virtual void Show();
+    //virtual void Hide();
 
     TCallBackRegistrator0* GetCB_Show();
     TCallBackRegistrator0* GetCB_Hide();
 
-    bool IsVisible();
+    //bool IsVisible();
 
-    void Shutdown();
+    //void Shutdown();
 
     //template <typename T>
     //T GetValueFromEditBox(MyGUI::EditBox* pEB);
@@ -56,7 +57,7 @@ protected:
 
     virtual void SetupTabChild() {};
 
-    //virtual void KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char){}
+    //virtual void KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char) {}
 
 private:
     void InitTabJump();
@@ -70,19 +71,20 @@ private:
 //template <typename T>
 //T TBaseGUI::GetValueFromEditBox(MyGUI::EditBox* pEB)
 //{
-//  USES_CONVERSION;
-//  std::string s = W2A((LPCWSTR)pEB->getOnlyText().data());
-//  T retValue = s.length() ? boost::lexical_cast<T>(s.data()) : T();
-//  return retValue;
+//    USES_CONVERSION;
+//    std::string s = W2A((LPCWSTR) pEB->getOnlyText().data());
+//    T retValue = s.length() ? boost::lexical_cast<T>(s.data()) : T();
+//    return retValue;
 //}
-////-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 //template <typename T>
 //void TBaseGUI::SetValueFromEditBox(MyGUI::EditBox* pEB, T& t)
 //{
-//  USES_CONVERSION;
+//    USES_CONVERSION;
 //
-//  std::string sValue = boost::lexical_cast<std::string>(t);
-//  LPWSTR wValue = A2W(sValue.data());
-//  pEB->setOnlyText(wValue);
+//    std::string sValue = boost::lexical_cast<std::string>(t);
+//    LPWSTR wValue = A2W(sValue.data());
+//    pEB->setOnlyText(wValue);
 //}
-
+//-------------------------------------------------------------------------------
+#endif // BaseGUI

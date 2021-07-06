@@ -20,7 +20,7 @@ See for more information LICENSE.md.
 #include "ModuleTimer.h"
 #include "ModuleDatabase.h"
 
-#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 #include "EventGameEngine.h"
 
 #include "MakerXML.h"
@@ -40,11 +40,8 @@ namespace nsDevTool_Share
 
 #define NAME_ID(X) NAME_MODULE(X),X
 
-  //const char* sFileResources = "Resources.xml";
     const char* sFileResources = "Resources.json";
 
-    const char* sCore = "Core";
-    const char* sSkin = "Skin";
     const char* sConveyer = "Conveyer";
     const char* sItems = "Items";
     const char* sSettings = "Settings";
@@ -118,14 +115,14 @@ void TDevTool_Share::InitMapModules()
     Add(NAME_ID(PhysicEngine));
     Add(NAME_ID(SoundEngine));
     Add(NAME_ID(DataBase));
-    Add(NAME_ID(Timer));
+    Add("Timer", ID_Modules::Timer);
 }
 //-----------------------------------------------------------------------
 int TDevTool_Share::FindIDByNameModule(std::string name)
 {
     TMapStrIntIt fit = mMapNameID_Modules.find(name);
     if ( fit == mMapNameID_Modules.end() ) {
-        return Undef;
+        return ID_Modules::Undef;
     }
     return fit->second;
 }
@@ -199,29 +196,30 @@ void TDevTool_Share::SetupGraphicEngine()
             mGE_ForSetup->GetGE()->AddResource(type, vtTypePath.first);
         }
     }
+
     // оболочка и ядро для GUI
     std::string sSkin, sCore;
-    FindPath_GUI(nsDevTool_Share::sCore, 0, sCore);
-    FindPath_GUI(nsDevTool_Share::sSkin, 0, sSkin);
-    BL_ASSERT(sCore.length() && sSkin.length());
+    //FindPath_GUI(nsDevTool_Share::sCore, 0, sCore);
+    //FindPath_GUI(nsDevTool_Share::sSkin, 0, sSkin);
+    //BL_ASSERT(sCore.length() && sSkin.length());
     mGE_ForSetup->GetGE()->InitMyGUI(sCore, sSkin);
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetComponentsForLogic()
 {
     TComponents components;
-    components.pGraphicEngine = (TModuleGraphicEngine*) FindPtrModuleByID(GraphicEngine);
-    components.pMMOEngineClient = (TModuleMMOEngineClient*) FindPtrModuleByID(MMOEngineClient);
-    components.pMMOEngineSlave = (TModuleMMOEngineSlave*) FindPtrModuleByID(MMOEngineSlave);
-    components.pMMOEngineMaster = (TModuleMMOEngineMaster*) FindPtrModuleByID(MMOEngineMaster);
-    components.pMMOEngineSuperServer = (TModuleMMOEngineSuperServer*) FindPtrModuleByID(MMOEngineSuperServer);
-    components.pPhysicEngine = (TModulePhysicEngine*) FindPtrModuleByID(PhysicEngine);
-    components.pSoundEngine = (TModuleSoundEngine*) FindPtrModuleByID(SoundEngine);
-    components.pDataBase = (TModuleDataBase*) FindPtrModuleByID(DataBase);
-    components.pTimer = (TModuleTimer*) FindPtrModuleByID(Timer);
+    components.pGraphicEngine = (TModuleGraphicEngine*) FindPtrModuleByID(ID_Modules::GraphicEngine);
+    components.pMMOEngineClient = (TModuleMMOEngineClient*) FindPtrModuleByID(ID_Modules::MMOEngineClient);
+    components.pMMOEngineSlave = (TModuleMMOEngineSlave*) FindPtrModuleByID(ID_Modules::MMOEngineSlave);
+    components.pMMOEngineMaster = (TModuleMMOEngineMaster*) FindPtrModuleByID(ID_Modules::MMOEngineMaster);
+    components.pMMOEngineSuperServer = (TModuleMMOEngineSuperServer*) FindPtrModuleByID(ID_Modules::MMOEngineSuperServer);
+    components.pPhysicEngine = (TModulePhysicEngine*) FindPtrModuleByID(ID_Modules::PhysicEngine);
+    components.pSoundEngine = (TModuleSoundEngine*) FindPtrModuleByID(ID_Modules::SoundEngine);
+    components.pDataBase = (TModuleDataBase*) FindPtrModuleByID(ID_Modules::DataBase);
+    components.pTimer = (TModuleTimer*) FindPtrModuleByID(ID_Modules::Timer);
 
     // ищем логику
-    TModuleLogic* pLogic = (TModuleLogic*) FindPtrModuleByID(Logic);
+    TModuleLogic* pLogic = (TModuleLogic*) FindPtrModuleByID(ID_Modules::Logic);
     if ( pLogic ) {
         int id_logic = pLogic->GetID();
         components.SetLogicID(id_logic);
@@ -262,24 +260,22 @@ TModuleDev* TDevTool_Share::GetModuleByID(int id)
     TModuleDev* pModule = nullptr;
     switch ( id ) {
         // ядро
-        case Logic: pModule = GetModuleLogic(); ((TModuleLogic*) pModule)->SetTerrainPath(mTerrainPath); break;
+        case ID_Modules::Logic: pModule = GetModuleLogic(); ((TModuleLogic*) pModule)->SetTerrainPath(mTerrainPath); break;
             // периферия
-        case GraphicEngine:
-            // графический движок требуется настраивать в том же потоке, в котором он работает
-            // единственный модуль, который требуется настраивать в том же потоке
+        case ID_Modules::GraphicEngine:
             mGE_ForSetup = new TModuleGraphicEngine;
             pModule = mGE_ForSetup;
             ((TModuleGraphicEngine*) pModule)->GetCBStartEvent()->Register(&TDevTool_Share::SetupGraphicEngine, this);
             break;
             //case GraphicEngine:          pModule = new TModuleGraphicEngine; SetupGraphicEngine((TModuleGraphicEngine*)pModule); break;
-        case PhysicEngine:           pModule = new TModulePhysicEngine;                        break;
-        case MMOEngineClient:        pModule = new TModuleMMOEngineClient;                     break;
-        case MMOEngineSlave:         pModule = new TModuleMMOEngineSlave;                      break;
-        case MMOEngineMaster:        pModule = new TModuleMMOEngineMaster;                     break;
-        case MMOEngineSuperServer:   pModule = new TModuleMMOEngineSuperServer;                break;
-        case SoundEngine:            pModule = new TModuleSoundEngine;                         break;
-        case DataBase:               pModule = new TModuleDataBase;                            break;
-        case Timer:                  pModule = new TModuleTimer;                               break;
+        case ID_Modules::PhysicEngine:           pModule = new TModulePhysicEngine;                        break;
+        case ID_Modules::MMOEngineClient:        pModule = new TModuleMMOEngineClient;                     break;
+        case ID_Modules::MMOEngineSlave:         pModule = new TModuleMMOEngineSlave;                      break;
+        case ID_Modules::MMOEngineMaster:        pModule = new TModuleMMOEngineMaster;                     break;
+        case ID_Modules::MMOEngineSuperServer:   pModule = new TModuleMMOEngineSuperServer;                break;
+        case ID_Modules::SoundEngine:            pModule = new TModuleSoundEngine;                         break;
+        case ID_Modules::DataBase:               pModule = new TModuleDataBase;                            break;
+        case ID_Modules::Timer:                  pModule = new TModuleTimer;                               break;
         default:BL_FIX_BUG();
     }
     return pModule;

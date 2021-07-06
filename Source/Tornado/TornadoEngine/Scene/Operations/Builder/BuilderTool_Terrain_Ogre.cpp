@@ -7,12 +7,14 @@ See for more information LICENSE.md.
 
 #include "BuilderTool_Terrain_Ogre.h"
 #include "ModuleLogic.h"
-#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 #include "ModuleGraphicEngine.h"
 
 #include "MapItem.h"
 #include "TerrainItem.h"
 #include <boost/lexical_cast.hpp>
+
+using namespace nsGraphicEngine;
 
 TBuilderTool_Terrain_Ogre::TBuilderTool_Terrain_Ogre()
 {
@@ -82,7 +84,7 @@ void TBuilderTool_Terrain_Ogre::configureTerrainDefaults()
 //--------------------------------------------------------------------
 void TBuilderTool_Terrain_Ogre::InitOgrePtr()
 {
-  TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
+  TGraphicEngine_Ogre_ImGui* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
   mSceneMgr = pGE->GetSceneManager();
   // Terrain
   mTerrainGlobals = pGE->GetTerrainGlobals();

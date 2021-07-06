@@ -5,21 +5,24 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine_Ogre_ImGui.h"
 #include "GE_Impl.h"
 #include "BL_Debug.h"
 #include "SrcEvent_ex.h"
 #include "Events.h"
 #include "Logger.h"
+#include "GE_Impl.h"
 
 #include <boost/cstdint.hpp>
 
-TGraphicEngine_Ogre_MyGUI::TGraphicEngine_Ogre_MyGUI()
+using namespace nsGraphicEngine;
+
+TGraphicEngine_Ogre_ImGui::TGraphicEngine_Ogre_ImGui()
 {
     mTimeoutDblClick = eTimeoutDblClick;
 
-    //mCBKeyBoard.Register(&TGraphicEngine_Ogre_MyGUI::KeyBoardEvent, this);
-    //mCBMouse.Register(&TGraphicEngine_Ogre_MyGUI::MouseEvent, this);
+    //mCBKeyBoard.Register(&TGraphicEngine_Ogre_ImGui::KeyBoardEvent, this);
+    //mCBMouse.Register(&TGraphicEngine_Ogre_ImGui::MouseEvent, this);
 
     mGE.reset(new TGE_Impl);
 
@@ -27,39 +30,39 @@ TGraphicEngine_Ogre_MyGUI::TGraphicEngine_Ogre_MyGUI()
     //mGE->SetCallBackMouse(&mCBMouse);
 }
 //---------------------------------------------------------------------
-TGraphicEngine_Ogre_MyGUI::~TGraphicEngine_Ogre_MyGUI()
+TGraphicEngine_Ogre_ImGui::~TGraphicEngine_Ogre_ImGui()
 {
 
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_Ogre_MyGUI::InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg)
+bool TGraphicEngine_Ogre_ImGui::InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg)
 {
     //try {
         return mGE->InitOGRE(pathPluginCfg, pathOgreCfg);
     //} catch (MyGUI::Exception& _e) {
-    //    MsgException(_e);
-    //    throw;
+        //MsgException(_e);
+        //throw;
     //}
     //return false;
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_Ogre_MyGUI::AddResource(const std::string& name, const std::string& type)
+void TGraphicEngine_Ogre_ImGui::AddResource(const std::string& name, const std::string& type)
 {
     mGE->AddResource(name, type);
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_Ogre_MyGUI::InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin)
+bool TGraphicEngine_Ogre_ImGui::InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin)
 {
     //try {
         return mGE->InitMyGUI(nameFileCore, nameFileSkin);
     //} catch (MyGUI::Exception& _e) {
-    //    MsgException(_e);
-    //    throw;
+        //MsgException(_e);
+        //throw;
     //}
     //return false;
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_Ogre_MyGUI::Work()
+bool TGraphicEngine_Ogre_ImGui::Work()
 {
     //try {
         return mGE->Work();
@@ -70,57 +73,57 @@ bool TGraphicEngine_Ogre_MyGUI::Work()
     //return false;
 }
 //---------------------------------------------------------------------
-Ogre::Root* TGraphicEngine_Ogre_MyGUI::GetRoot()
+Ogre::Root* TGraphicEngine_Ogre_ImGui::GetRoot()
 {
     return mGE->GetRoot();
 }
 //---------------------------------------------------------------------
-Ogre::SceneManager* TGraphicEngine_Ogre_MyGUI::GetSceneManager()
+Ogre::SceneManager* TGraphicEngine_Ogre_ImGui::GetSceneManager()
 {
     return mGE->GetSceneManager();
 }
 //---------------------------------------------------------------------
-Ogre::Camera* TGraphicEngine_Ogre_MyGUI::GetCamera()
+Ogre::Camera* TGraphicEngine_Ogre_ImGui::GetCamera()
 {
     return mGE->GetCamera();
 }
 //---------------------------------------------------------------------
-Ogre::RenderWindow* TGraphicEngine_Ogre_MyGUI::GetWindow()
+Ogre::RenderWindow* TGraphicEngine_Ogre_ImGui::GetWindow()
 {
     return mGE->GetWindow();
 }
 //---------------------------------------------------------------------
-Ogre::TerrainGroup* TGraphicEngine_Ogre_MyGUI::GetTerrainGroup()
+Ogre::TerrainGroup* TGraphicEngine_Ogre_ImGui::GetTerrainGroup()
 {
     return mGE->GetTerrainGroup();
 }
 //---------------------------------------------------------------------
-Ogre::TerrainGlobalOptions* TGraphicEngine_Ogre_MyGUI::GetTerrainGlobals()
+Ogre::TerrainGlobalOptions* TGraphicEngine_Ogre_ImGui::GetTerrainGlobals()
 {
     return mGE->GetTerrainGlobals();
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_Ogre_MyGUI::SetGUIEnableEvent(bool v)
+void TGraphicEngine_Ogre_ImGui::SetGUIEnableEvent(bool v)
 {
     mGE->SetGUIEnableEvent(v);
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_Ogre_MyGUI::GetGUIEnableEvent()
+bool TGraphicEngine_Ogre_ImGui::GetGUIEnableEvent()
 {
     return mGE->GetGUIEnableEvent();
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_Ogre_MyGUI::SetUseClipCursor(bool v)
+void TGraphicEngine_Ogre_ImGui::SetUseClipCursor(bool v)
 {
     mGE->SetUseClipCursor(v);
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_Ogre_MyGUI::GetUseClipCursor()
+bool TGraphicEngine_Ogre_ImGui::GetUseClipCursor()
 {
     return mGE->GetUseClipCursor();
 }
 //---------------------------------------------------------------------
-//void TGraphicEngine_Ogre_MyGUI::MsgException(MyGUI::Exception& _e)
+//void TGraphicEngine_Ogre_ImGui::MsgException(MyGUI::Exception& _e)
 //{
 //#if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
 //    MessageBoxA(NULL, _e.getFullDescription().c_str(), "An exception has occured", MB_OK | MB_ICONERROR | MB_TASKMODAL);
@@ -129,22 +132,22 @@ bool TGraphicEngine_Ogre_MyGUI::GetUseClipCursor()
 //#endif
 //}
 //---------------------------------------------------------------------
-void TGraphicEngine_Ogre_MyGUI::GetWindowCaption(std::wstring& _text)
+void TGraphicEngine_Ogre_ImGui::GetWindowCaption(std::wstring& _text)
 {
     mGE->GetWindowCaption(_text);
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_Ogre_MyGUI::SetWindowCaption(const std::wstring& _text)
+void TGraphicEngine_Ogre_ImGui::SetWindowCaption(const std::wstring& _text)
 {
     mGE->SetWindowCaption(_text);
 }
 //---------------------------------------------------------------------
-size_t TGraphicEngine_Ogre_MyGUI::GetWindowHandle()
+size_t TGraphicEngine_Ogre_ImGui::GetWindowHandle()
 {
     return mGE->GetWindowHandle();
 }
 //---------------------------------------------------------------------
-//void TGraphicEngine_Ogre_MyGUI::KeyBoardEvent(const OIS::KeyEvent& k, bool pressed)
+//void TGraphicEngine_Ogre_ImGui::KeyBoardEvent(const OIS::KeyEvent& k, bool pressed)
 //{
 //    nsGraphicEngine::TKeyEvent* pKE = new nsGraphicEngine::TKeyEvent;
 //
@@ -155,7 +158,7 @@ size_t TGraphicEngine_Ogre_MyGUI::GetWindowHandle()
 //    AddEventWithoutCopy<nsGraphicEngine::TKeyEvent>(pKE);
 //}
 ////---------------------------------------------------------------------
-//void TGraphicEngine_Ogre_MyGUI::MouseEvent(const OIS::MouseEvent& m, OIS::MouseButtonID id,
+//void TGraphicEngine_Ogre_ImGui::MouseEvent(const OIS::MouseEvent& m, OIS::MouseButtonID id,
 //    nsGraphicEngine::tTypeMouseEvent typeEvent)
 //{
 //    nsGraphicEngine::TMouseEvent* pME = new nsGraphicEngine::TMouseEvent;
@@ -190,7 +193,7 @@ size_t TGraphicEngine_Ogre_MyGUI::GetWindowHandle()
 //    }
 //}
 ////---------------------------------------------------------------------
-//bool TGraphicEngine_Ogre_MyGUI::CheckDblClick(const OIS::MouseEvent& m, OIS::MouseButtonID id,
+//bool TGraphicEngine_Ogre_ImGui::CheckDblClick(const OIS::MouseEvent& m, OIS::MouseButtonID id,
 //    nsGraphicEngine::tTypeMouseEvent typeEvent)
 //{
 //    // проверка на двойной клик
@@ -218,17 +221,17 @@ size_t TGraphicEngine_Ogre_MyGUI::GetWindowHandle()
 //    return false;
 //}
 //---------------------------------------------------------------------
-void TGraphicEngine_Ogre_MyGUI::SetTimeoutDblClick(int t_ms)
+void TGraphicEngine_Ogre_ImGui::SetTimeoutDblClick(int t_ms)
 {
     mTimeoutDblClick = t_ms;
 }
 //---------------------------------------------------------------------
-void TGraphicEngine_Ogre_MyGUI::SetCenterClippingCursor(bool v)
+void TGraphicEngine_Ogre_ImGui::SetCenterClippingCursor(bool v)
 {
     mGE->SetCenterClippingCursor(v);
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_Ogre_MyGUI::GetCenterClippingCursor()
+bool TGraphicEngine_Ogre_ImGui::GetCenterClippingCursor()
 {
     return mGE->GetCenterClippingCursor();
 }

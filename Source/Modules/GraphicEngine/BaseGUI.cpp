@@ -9,42 +9,42 @@ See for more information LICENSE.md.
 #include "BaseGUI.h"
 //#include "MyGUI_DeprecatedTypes.h"
 
-void TBaseGUI::Show()
-{
-    //if (mMainWidget == nullptr) {
-    //    initialise(GetNameLayout(), (MyGUI::Widget*) GetParent());
-    //    Activate();
-    //    InitTabJump();// научить окно прыгать по табуляции между детьми
-    //    RegisterOnKeyEvent();
-    //}
+//void TBaseGUI::Show()
+//{
+//    if (mMainWidget == nullptr) {
+//        initialise(GetNameLayout(), (MyGUI::Widget*) GetParent());
+//        Activate();
+//        InitTabJump();// научить окно прыгать по табуляции между детьми
+//        RegisterOnKeyEvent();
+//    }
 
     //mMainWidget->setVisible(true);
 
-    mCB_Show.Notify();
-}
+    //mCB_Show.Notify();
+//}
 //--------------------------------------------------------------
-void TBaseGUI::Hide()
-{
-    //mMainWidget->setVisible(false);
-
-    mCB_Hide.Notify();
-}
+//void TBaseGUI::Hide()
+//{
+//    //mMainWidget->setVisible(false);
+//
+//    mCB_Hide.Notify();
+//}
 //--------------------------------------------------------------
-bool TBaseGUI::IsVisible()
-{
-    //if (mMainWidget == NULL)
-        return false;
-    //return mMainWidget->getVisible();
-}
+//bool TBaseGUI::IsVisible()
+//{
+//    //if (mMainWidget == NULL)
+//        //return false;
+//    return mMainWidget->getVisible();
+//}
 //--------------------------------------------------------------
 void TBaseGUI::InitTabJump()
 {
     //mVectorChild_Tab.clear();
-    //SetupTabChild();
+    SetupTabChild();
     //int cnt = mVectorChild_Tab.size();
     //for (int i = 0; i < cnt; i++) {
-    //    MyGUI::Widget* pChild = mVectorChild_Tab.at(i);
-    //    pChild->eventKeyButtonPressed += MyGUI::newDelegate(this, &TBaseGUI::sl_TabJump);
+        //MyGUI::Widget* pChild = mVectorChild_Tab.at(i);
+        //pChild->eventKeyButtonPressed += MyGUI::newDelegate(this, &TBaseGUI::sl_TabJump);
     //}
 }
 //--------------------------------------------------------------
@@ -65,25 +65,25 @@ void TBaseGUI::InitTabJump()
 //    }
 //}
 //--------------------------------------------------------------
-void TBaseGUI::RegisterOnKeyEvent()
-{
-    //mMainWidget->eventKeyButtonPressed += MyGUI::newDelegate(this, &TBaseGUI::sl_KeyEvent);
-    //int cnt = mMainWidget->getChildCount();
-    //for (int i = 0; i < cnt; i++) {
-    //    MyGUI::Widget* pChild = mMainWidget->getChildAt(i);
-    //    pChild->eventKeyButtonPressed += MyGUI::newDelegate(this, &TBaseGUI::sl_KeyEvent);
-    //}
-}
+//void TBaseGUI::RegisterOnKeyEvent()
+//{
+//    mMainWidget->eventKeyButtonPressed += MyGUI::newDelegate(this, &TBaseGUI::sl_KeyEvent);
+//    int cnt = mMainWidget->getChildCount();
+//    for (int i = 0; i < cnt; i++) {
+//        MyGUI::Widget* pChild = mMainWidget->getChildAt(i);
+//        pChild->eventKeyButtonPressed += MyGUI::newDelegate(this, &TBaseGUI::sl_KeyEvent);
+//    }
+//}
 //--------------------------------------------------------------
 //void TBaseGUI::sl_KeyEvent(MyGUI::Widget* _sender, MyGUI::KeyCode _key, MyGUI::Char _char)
 //{
 //    KeyEvent(_sender, _key, _char);
 //}
 //--------------------------------------------------------------
-void TBaseGUI::Shutdown()
-{
-    //shutdown();
-}
+//void TBaseGUI::Shutdown()
+//{
+//    shutdown();
+//}
 //--------------------------------------------------------------
 TCallBackRegistrator0* TBaseGUI::GetCB_Show()
 {

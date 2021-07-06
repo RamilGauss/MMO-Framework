@@ -7,16 +7,17 @@ See for more information LICENSE.md.
 
 #include "Pattern_Skybox.h"
 
-#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
 
-namespace nsPattern_Skypbox
+namespace nsPattern_SkyBox
 {
   static TPatternConfigItem::TMapStrStr g_DefaultParameterMap;
 }
 
-using namespace nsPattern_Skypbox;
+using namespace nsPattern_SkyBox;
+using namespace nsGraphicEngine;
 
 TPattern_Skybox::TPattern_Skybox() :
   TBehaviourPattern(&g_DefaultParameterMap)
@@ -31,7 +32,7 @@ TPattern_Skybox::~TPattern_Skybox()
 //---------------------------------------------------------------------------
 bool TPattern_Skybox::BuildByModule_Graphic(bool fast)
 {
-  TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
+  TGraphicEngine_Ogre_ImGui* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
   Ogre::SceneManager* mSceneMgr = pGE->GetSceneManager();
 
   //Ogre::Plane plane;

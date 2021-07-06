@@ -6,45 +6,40 @@ See for more information LICENSE.md.
 */
 
 
-#pragma once
+#ifndef INPUT_MANAGER_OIS_H
+#define INPUT_MANAGER_OIS_H
 
 //#include <MyGUI.h>
 //#include <OIS.h>
 
-class TInputManager
+class TInputManagerOIS// : public OIS::MouseListener, public OIS::KeyListener
 {
 public:
-    TInputManager() {};
-    virtual ~TInputManager() {};
+    TInputManagerOIS();
+    virtual ~TInputManagerOIS();
 
-    //virtual bool keyPressed(const KeyboardEvent& evt);
-    //virtual bool keyReleased(const KeyboardEvent& evt);
-    //virtual bool mouseMoved(const MouseMotionEvent& evt);
-    //virtual bool mouseWheelRolled(const MouseWheelEvent& evt);
-    //virtual bool mousePressed(const MouseButtonEvent& evt);
-    //virtual bool mouseReleased(const MouseButtonEvent& evt);
-    //virtual bool textInput(const TextInputEvent& evt);
+    void CreateInput(size_t _handle);
+    void DestroyInput();
+    void CaptureInput();
+    void SetInputViewSize(int _width, int _height);
 
-//    void CreateInput(size_t _handle);
-//    void DestroyInput();
-//    void CaptureInput();
-//    void SetInputViewSize(int _width, int _height);
-//
-//    void SetMousePosition(int _x, int _y);
-//
-//
-//    static std::string ConvertKey2Str(const OIS::KeyCode key);
-//
-//protected:
-//    void CheckPosition();
-//
-//    void ConvertOIS2MyGUI(const OIS::KeyEvent& arg, MyGUI::Char& text, MyGUI::KeyCode& key);
-//
-//private:
-//    OIS::InputManager* mInputManager;
-//    OIS::Keyboard* mKeyboard;
-//    OIS::Mouse* mMouse;
-//
-//    int mCursorX;
-//    int mCursorY;
+    void SetMousePosition(int _x, int _y);
+
+
+    //static std::string ConvertKey2Str(const OIS::KeyCode key);
+
+protected:
+    void CheckPosition();
+
+    //void ConvertOIS2MyGUI(const OIS::KeyEvent& arg, MyGUI::Char& text, MyGUI::KeyCode& key);
+
+private:
+    //OIS::InputManager* mInputManager;
+    //OIS::Keyboard* mKeyboard;
+    //OIS::Mouse* mMouse;
+
+    int mCursorX;
+    int mCursorY;
 };
+
+#endif 

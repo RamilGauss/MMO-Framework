@@ -5,8 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include "ImGuiRenderFactory.h"
+
+#include "IImGuiRender.h"
+
+#include "Direct3D9/include/OgreD3D9RenderSystem.h"
+
 #include "GE_Impl.h"
 #include "Logger.h"
+#include "GraphicEngine_Ogre_MyGUI.h"
 #include "Events.h"
 
 #include <OgreTerrainMaterialGeneratorA.h>
@@ -20,7 +27,6 @@ using namespace nsGraphicEngine;
 
 TGE_Impl::TGE_Impl()
 {
-
 }
 //------------------------------------------------------------------------------------------
 TGE_Impl::~TGE_Impl()
@@ -101,9 +107,18 @@ bool TGE_Impl::InitOGRE(const std::string& pathPluginCfg, const std::string& ogr
 #endif
 
     mOverlaySystem = new Ogre::OverlaySystem();
+
     InitialiseRTShaderSystem();
 
-    mFSLayer = new Ogre::FileSystemLayer("");
+
+    //simple._setupTrays(mWindow);
+    // test system capabilities against sample requirements
+    simple.testCapabilities(mRoot->getRenderSystem()->getCapabilities());
+#ifdef OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
+    simple.setShaderGenerator(mShaderGenerator);
+#endif
+    simple._setup(mWindow, nullptr, mOverlaySystem);   // start new sample
+
     return true;
 }
 //------------------------------------------------------------------------------------------
@@ -115,7 +130,7 @@ bool TGE_Impl::InitialiseRTShaderSystem()
 
         // Create and register the material manager listener if it doesn't exist yet.
         if (!mMaterialMgrListener) {
-            mMaterialMgrListener = new OgreBites::SGTechniqueResolverListener(mShaderGenerator);
+            mMaterialMgrListener = new SGTechniqueResolverListener(mShaderGenerator);
             Ogre::MaterialManager::getSingleton().addListener(mMaterialMgrListener);
         }
 
@@ -125,18 +140,36 @@ bool TGE_Impl::InitialiseRTShaderSystem()
     return false;
 }
 //------------------------------------------------------------------------------------------
-bool TGE_Impl::InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin)
+bool TGE_Impl::InitGui()
 {
-    // Load resources
-    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+    auto renderSystem = mRoot->getRenderSystem();
+    auto renderName = renderSystem->getName();
 
-    mGuiRender._setupTrays(mWindow);
+    void* device = nullptr;
 
-    mGuiRender.testCapabilities(mRoot->getRenderSystem()->getCapabilities());
-#ifdef OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
-    mGuiRender.setShaderGenerator(mShaderGenerator);
-#endif
-    mGuiRender._setup(mWindow, mFSLayer, mOverlaySystem);   // start new sample
+    nsImGuiRenderWrapper::Implementation impl;
+    if (renderName == DIRECTX_9) {
+        impl = nsImGuiRenderWrapper::Implementation::DIRECTX_9;
+        device = Ogre::D3D9RenderSystem::getActiveD3D9Device();
+
+    } else if (renderName == DIRECTX_10) {
+
+    } else if (renderName == DIRECTX_11) {
+
+    } else if (renderName == DIRECTX_12) {
+
+    } else if (renderName == OPEN_GL_2) {
+
+    } else if (renderName == OPEN_GL_3) {
+
+    } else {
+        return false;
+    }
+
+    mImGuiRender = nsImGuiRenderWrapper::TImGuiRenderFactory::Make(impl);
+
+    mImGuiRender->Init(device);
+
     return true;
 }
 //------------------------------------------------------------------------------------------
@@ -179,26 +212,57 @@ void TGE_Impl::Done()
 //------------------------------------------------------------------------------------------
 void TGE_Impl::DestroyGui()
 {
-    //if (mGUI) {
-    //    mGUI->shutdown();
-    //    delete mGUI;
-    //    mGUI = nullptr;
-    //}
 
-    //if (mPlatform) {
-    //    mPlatform->shutdown();
-    //    delete mPlatform;
-    //    mPlatform = nullptr;
-    //}
 }
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::frameStarted(const Ogre::FrameEvent& evt)
 {
-    if (mExit)
+    if (mExit) {
         return false;
+    }
 
-    //if (!mGUI)
-    //    return true;
+    //// Poll and handle events (inputs, window resize, etc.)
+    //// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
+    //// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
+    //// - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
+    //// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
+    //SDL_Event event;
+    //while (SDL_PollEvent(&event)) {
+    //    ImGui_ImplSDL2_ProcessEvent(&event);
+    //    if (event.type == SDL_QUIT)
+    //        done = true;
+    //    if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE && event.window.windowID == SDL_GetWindowID(window))
+    //        done = true;
+    //    if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED && event.window.windowID == SDL_GetWindowID(window)) {
+    //        // Release all outstanding references to the swap chain's buffers before resizing.
+    //        CleanupRenderTarget();
+    //        g_pSwapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+    //        CreateRenderTarget();
+    //    }
+    //}
+
+    //// window properties
+    //auto& io = ImGui::GetIO();
+    //int w = 640;
+    //int h = 480;
+    //int display_w = 1920;
+    //int display_h = 1020;
+    //io.DisplaySize = ImVec2((float) w, (float) h);
+    ////if (w > 0 && h > 0)
+    //    //io.DisplayFramebufferScale = ImVec2((float) display_w / w, (float) display_h / h);
+    //io.DeltaTime = (float) (1.0f / 60.0f);
+    //// Input
+    //memset(io.NavInputs, 0, sizeof(io.NavInputs));
+    //io.KeyMap[ImGuiKey_Space] = 0;
+    //io.MouseHoveredViewport = 0;
+    //io.BackendFlags &= ~ImGuiBackendFlags_HasGamepad;
+    //
+
+    //mImGuiRender->NewFrame();
+
+    for (auto renderable : mRenderables) {
+        renderable->Render();
+    }
 
     //CaptureInput();
     return true;
@@ -206,6 +270,8 @@ bool TGE_Impl::frameStarted(const Ogre::FrameEvent& evt)
 //------------------------------------------------------------------------------------------
 bool TGE_Impl::frameEnded(const Ogre::FrameEvent& evt)
 {
+    //mImGuiRender->EndFrame();
+
     return true;
 }
 //------------------------------------------------------------------------------------------
@@ -243,24 +309,7 @@ size_t TGE_Impl::GetWindowHandle()
 //------------------------------------------------------------------------------------------
 void TGE_Impl::GetWindowCaption(std::wstring& _text)
 {
-#if MYGUI_PLATFORM == MYGUI_PLATFORM_WIN32
-    int len = ::GetWindowTextLengthW((HWND) GetWindowHandle());
-    _text.resize(len + 1);
-    int result = ::GetWindowTextW((HWND) GetWindowHandle(), (wchar_t*) _text.data(), _text.length());
-#elif MYGUI_PLATFORM == MYGUI_PLATFORM_LINUX
-    //Display* xDisplay = nullptr;
-    //unsigned long windowHandle = 0;
-    //mWindow->getCustomAttribute("XDISPLAY", &xDisplay);
-    //mWindow->getCustomAttribute("WINDOW", &windowHandle);
-    //Window win = (Window)windowHandle;
 
-    //XTextProperty windowName;
-    //windowName.value    = (unsigned char *)(MyGUI::UString(_text).asUTF8_c_str());
-    //windowName.encoding = XA_STRING;
-    //windowName.format   = 8;
-    //windowName.nitems   = strlen((char *)(windowName.value));
-    //XSetWMName(xDisplay, win, &windowName);
-#endif
 }
 //------------------------------------------------------------------------------------------
 void TGE_Impl::SetWindowCaption(const std::wstring& _text)
@@ -542,5 +591,20 @@ void TGE_Impl::TryClipCursor()
 {
     if (GetUseClipCursor())
         ClipCursor();
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::AddRenderable(IRenderable* renderable)
+{
+    mRenderables.insert(renderable);
+}
+//------------------------------------------------------------------------------------------
+void TGE_Impl::RemoveRenderable(IRenderable* renderable)
+{
+    mRenderables.erase(renderable);
+}
+//------------------------------------------------------------------------------------------
+std::set<IRenderable*>* TGE_Impl::GetRenderable()
+{
+    return &mRenderables;
 }
 //------------------------------------------------------------------------------------------

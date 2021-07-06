@@ -20,10 +20,13 @@
     <ClCompile Include="GE_Impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicEngine_Ogre_MyGUI.cpp">
+    <ClCompile Include="GraphicEngine_Ogre_ImGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputManagerOIS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiRenderControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,13 +43,22 @@
     <ClInclude Include="GE_Impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicEngine_Ogre_MyGUI.h">
+    <ClInclude Include="GraphicEngine_Ogre_ImGui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InputManagerOIS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IRenderable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiRenderControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SdkSample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

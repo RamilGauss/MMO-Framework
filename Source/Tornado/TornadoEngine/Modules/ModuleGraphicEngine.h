@@ -9,13 +9,11 @@ See for more information LICENSE.md.
 
 #include "CallBackRegistrator.h"
 #include "ModuleComponent.h"
-#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
-
-class TGraphicEngine_Ogre_MyGUI;
+#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 
 class DllExport TModuleGraphicEngine : public TModuleComponent
 {
-    std::shared_ptr<TGraphicEngine_Ogre_MyGUI> mGE;
+    std::shared_ptr<nsGraphicEngine::TGraphicEngine_Ogre_ImGui> mGE;
 public:
     TModuleGraphicEngine();
 
@@ -23,7 +21,7 @@ public:
     virtual bool WorkInherit();
     virtual void StopEvent();
 
-    TGraphicEngine_Ogre_MyGUI* GetGE();
+    nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE();
 protected:
 
 };

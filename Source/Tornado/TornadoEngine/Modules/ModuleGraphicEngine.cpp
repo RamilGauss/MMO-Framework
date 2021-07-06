@@ -7,11 +7,12 @@ See for more information LICENSE.md.
 
 #include "ModuleGraphicEngine.h"
 #include "BL_Debug.h"
-#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
+
+using namespace nsGraphicEngine;
 
 TModuleGraphicEngine::TModuleGraphicEngine()
 {
-    mGE.reset(new TGraphicEngine_Ogre_MyGUI);
+    mGE.reset(new TGraphicEngine_Ogre_ImGui);
     mGE->SetSelfID(0);
     mGE->SetDstObject(this);
 }
@@ -24,7 +25,7 @@ bool TModuleGraphicEngine::WorkInherit()
     return res;
 }
 //---------------------------------------------------------------------------------
-TGraphicEngine_Ogre_MyGUI* TModuleGraphicEngine::GetGE()
+TGraphicEngine_Ogre_ImGui* TModuleGraphicEngine::GetGE()
 {
     return mGE.get();
 }

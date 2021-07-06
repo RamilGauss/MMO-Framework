@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
 #include "ModulePhysicEngine.h"
-#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 
 #include "MapItem.h"
 #include "TerrainItem.h"

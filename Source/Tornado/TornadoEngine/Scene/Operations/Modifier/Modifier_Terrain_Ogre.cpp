@@ -5,13 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 
 #include "Modifier_Terrain_Ogre.h"
 #include "ModuleLogic.h"
 #include "ModuleGraphicEngine.h"
 #include "Pattern_Terrain.h"
 #include "MapItem.h"
+
+using namespace nsGraphicEngine;
 
 TModifier_Terrain_Ogre::TModifier_Terrain_Ogre()
 {
@@ -22,7 +24,7 @@ void TModifier_Terrain_Ogre::SetFormat( TDescTarget& descTarget )
 {
   mDescTarget = descTarget;
 
-  TGraphicEngine_Ogre_MyGUI* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
+  TGraphicEngine_Ogre_ImGui* pGE = TModuleLogic::Get()->GetC()->pGraphicEngine->GetGE();
   mSceneMgr = pGE->GetSceneManager();
   // Terrain
   mTerrainGlobals = pGE->GetTerrainGlobals();

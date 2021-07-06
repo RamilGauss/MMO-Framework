@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 
 #include "BuilderTool_ShapePlate_Ogre.h"
 #include "ModuleLogic.h"
-#include "GraphicEngine/GraphicEngine_Ogre_MyGUI.h"
+#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 #include "ModuleGraphicEngine.h"
 
 #include "BL_Debug.h"
