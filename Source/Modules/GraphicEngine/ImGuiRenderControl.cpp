@@ -158,7 +158,7 @@ void TImGuiRenderControl::setupContent(void)
     mWindow->addListener(this);
 
     mImguiListener.reset(new ImGuiInputListener());
-    mListenerChain = InputListenerChain({mTrayMgr.get(), mImguiListener.get(), mCameraMan.get()});
+    mListenerChain = InputListenerChain({mImguiListener.get()});
 
     mTrayMgr->showCursor();
     mCameraMan->setStyle(OgreBites::CS_ORBIT);

@@ -87,7 +87,7 @@
     <ClInclude Include="Sources\TypeInfo.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\conanfile.txt" />
+    <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

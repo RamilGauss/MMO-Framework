@@ -7,15 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "IGraphicEngine_Ogre_ImGui.h"
 #include "SrcEvent.h"
 #include "CallBackRegistrator.h"
 #include "Events.h"
-
-#include <OgreRoot.h>
-#include <OgreSceneManager.h>
-#include <OgreCamera.h>
-#include <OgreTerrainGroup.h>
 
 #define STR_NAME_GRAPHIC_ENGINE "GE"
 
@@ -29,80 +24,49 @@ See for more information LICENSE.md.
 
 namespace nsGraphicEngine
 {
-    class TGE_Impl;
-
     class DllExport TGraphicEngine_Ogre_ImGui :
+        public IGraphicEngine_Ogre_ImGui,
+        //public 
         public TSrcEvent /*for generation keyboard and mouse events(unused by GUI)*/
     {
-        //TCallBackRegistrator2<const OIS::KeyEvent&, bool> mCBKeyBoard;
-        //TCallBackRegistrator3<const OIS::MouseEvent&, OIS::MouseButtonID, nsGraphicEngine::tTypeMouseEvent> mCBMouse;
     public:
         TGraphicEngine_Ogre_ImGui();
         virtual ~TGraphicEngine_Ogre_ImGui();
         /* Order of calls:
-           1. InitOGRE, 2. AddResource, 3. InitMyGUI */
-        bool InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg);
-        void AddResource(const std::string& name, const std::string& type);
-        bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin);
+           1. InitOGRE, 2. AddResource, 3. InitImGui */
+        bool InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg) override;
+        void AddResource(const std::string& name, const std::string& type) override;
+        bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin) override;
         // return false - need exit
-        bool Work();
+        bool Work() override;
 
-        void GetWindowCaption(std::wstring& _text);
-        void SetWindowCaption(const std::wstring& _text);
+        int GetModifierKeyBoard() override { return 0; }
 
-        size_t GetWindowHandle();
+        void GetWindowCaption(std::wstring& _text) override;
+        void SetWindowCaption(const std::wstring& _text) override;
 
-        void SetTimeoutDblClick(int t_ms);
+        size_t GetWindowHandle() override;
+
+        void SetTimeoutDblClick(int t_ms) override;
 
         // например, в шутерах когда мешает GUI для получения события движения мыши
-        void SetCenterClippingCursor(bool v);
-        bool GetCenterClippingCursor();
+        void SetCenterClippingCursor(bool v) override;
+        bool GetCenterClippingCursor() override;
 
-        Ogre::Root* GetRoot();
-        Ogre::SceneManager* GetSceneManager();
+        Ogre::Root* GetRoot() override;
+        Ogre::SceneManager* GetSceneManager() override;
         Ogre::Camera* GetCamera();
-        Ogre::RenderWindow* GetWindow();
+        Ogre::RenderWindow* GetWindow() override;
 
-        Ogre::TerrainGroup* GetTerrainGroup();
-        Ogre::TerrainGlobalOptions* GetTerrainGlobals();
+        Ogre::TerrainGroup* GetTerrainGroup() override;
+        Ogre::TerrainGlobalOptions* GetTerrainGlobals() override;
 
-        void SetGUIEnableEvent(bool v);
-        bool GetGUIEnableEvent();
+        void SetGUIEnableEvent(bool v) override;
+        bool GetGUIEnableEvent() override;
 
-        void SetUseClipCursor(bool v);
-        bool GetUseClipCursor();
+        void SetUseClipCursor(bool v) override;
+        bool GetUseClipCursor() override;
     private:
-        std::shared_ptr<TGE_Impl> mGE;
-    private:
-        struct TInfoClick
-        {
-            unsigned int mTimePrevLastPress;
-            unsigned int mTimeLastPress;
-            TInfoClick()
-            {
-                Init();
-            }
-            void Init()
-            {
-                mTimePrevLastPress = -1; mTimeLastPress = -1;
-            }
-            void SetTime(unsigned int t)
-            {
-                mTimePrevLastPress = mTimeLastPress; mTimeLastPress = t;
-            }
-            bool IsSecondRelease()
-            {
-                return mTimePrevLastPress != -1;
-            }
-        };
-
-        TInfoClick mLClick;
-        TInfoClick mRClick;
-
-        int mTimeoutDblClick;
-        enum
-        {
-            eTimeoutDblClick = 350, // ms
-        };
+        
     };
 }

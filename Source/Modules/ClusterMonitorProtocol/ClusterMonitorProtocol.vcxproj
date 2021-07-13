@@ -184,7 +184,7 @@
     <ClCompile Include="ServerTransport.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
+    <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

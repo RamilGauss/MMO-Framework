@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 
 class TParserConveyerFile
 {
-  std::string strError;
+    std::string strError;
 
-  TConveyerConfig mConveyerConfig;
+    TConveyerConfig mConveyerConfig;
 public:
-  bool Work( std::string& fileDescConveyer );
-  std::string GetStrError();
-  std::vector<std::string> GetResult( std::string& variantConveyer );
+    bool Work(std::string& fileDescConveyer);
+    std::string GetStrError();
+    std::vector<std::string> GetResult(std::string& variantConveyer);
 };

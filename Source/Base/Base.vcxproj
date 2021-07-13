@@ -203,7 +203,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
+    <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AllocatorPool.h" />
@@ -351,9 +351,9 @@
     <ClCompile Include="src\XML_Markup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\LICENSE.md" />
-    <None Include="..\..\..\readme.md" />
     <None Include="..\..\Doc\SoftwareDevelopmentPrinciples.md" />
+    <None Include="..\..\LICENSE.md" />
+    <None Include="..\..\readme.md" />
     <None Include="Blog.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

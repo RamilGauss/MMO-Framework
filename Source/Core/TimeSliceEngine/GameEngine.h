@@ -23,39 +23,39 @@ class IModule;
 
 class DllExport TGameEngine
 {
-  const std::string sName = "GameEngine";
-  const int sVersion = 9;// надеюсь последняя версия :)
-  const std::string sModeWork = "Single thread mode";
+    const std::string sName = "GameEngine";
+    const int sVersion = 9;// надеюсь последняя версия :)
+    const std::string sModeWork = "Single thread mode";
 
-  ILoaderDLL* mLoaderDLL;
+    ILoaderDLL* mLoaderDLL;
 
-  FuncGetDevTool  mGetDevTool;
-  FuncFreeDevTool mFreeDevTool;
+    FuncGetDevTool  mGetDevTool;
+    FuncFreeDevTool mFreeDevTool;
 
-  typedef std::vector<std::string> TVecStr;
-  TVecStr mModuleNameList;
+    typedef std::vector<std::string> TVecStr;
+    TVecStr mModuleNameList;
 
-  typedef std::vector<IModule*> TVecPtrModule;
-  TVecPtrModule mModulePtrList;
+    typedef std::vector<IModule*> TVecPtrModule;
+    TVecPtrModule mModulePtrList;
 
-  IDevTool* mDevTool;
+    IDevTool* mDevTool;
 
-  std::shared_ptr<TSynchroPoint> mSynchroPoint;
+    std::shared_ptr<TSynchroPoint> mSynchroPoint;
 public:
-  TGameEngine();
+    TGameEngine();
 
-  void Work( int variant_use, std::string& sNameDLL, std::vector<std::string>& vecParam );// начало работы
-  std::string GetVersion();
+    void Work(int variant_use, std::string& sNameDLL, std::vector<std::string>& vecParam);// начало работы
+    std::string GetVersion();
 private:
-  void Init();
-  bool LoadDLL( int variant_use, std::string& sNameDLL );
+    void Init();
+    bool LoadDLL(int variant_use, std::string& sNameDLL);
 
-  bool CreateModules();
-  bool PrepareConveyer();
-  void LinkModulesToSynchroPoint();
+    bool CreateModules();
+    bool PrepareConveyer();
+    void LinkModulesToSynchroPoint();
 
-  void Work();
+    void Work();
 private:
-  void Done();
-  void Event( int id, std::string param = "" );
+    void Done();
+    void Event(int id, std::string param = "");
 };

@@ -247,6 +247,9 @@
     <Filter Include="ReflectionContainers">
       <UniqueIdentifier>{6274044d-9b12-4437-992c-ee8e7b7b33e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Docs">
+      <UniqueIdentifier>{105390c8-29d8-4e3b-a765-013462f4e138}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\Components.cpp">
@@ -1070,6 +1073,9 @@
     <None Include="reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\conanfile.txt" />
+    <Text Include="$(SolutionDir)\conanfile.txt" />
+    <Text Include="Scenes.md">
+      <Filter>Docs</Filter>
+    </Text>
   </ItemGroup>
 </Project>

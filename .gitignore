@@ -18,6 +18,8 @@ local.properties
 .settings/
 .loadpath
 .vs
+ogre.cfg
+ogre_d.cfg
 
 # External tool builders
 .externalToolBuilders/

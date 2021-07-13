@@ -7,21 +7,21 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <OgreTerrainGroup.h>
 #include <Ogre.h>
+#include <OgreTerrainGroup.h>
 #include <OgreWindowEventUtilities.h>
+#include <OgreOverlaySystem.h>
 
-#include "InputManagerOIS.h"
+#ifdef OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
+#include <OgreSGTechniqueResolverListener.h>
+#endif // INCLUDE_RTSHADER_SYSTEM
+
 #include "CallBackRegistrator.h"
 #include "Events.h"
 #include "ControlClippingCursor.h"
-#include <OgreOverlaySystem.h>
 
 #include "ImGuiRenderControl.h"
 
-#ifdef OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
-#include "OgreSGTechniqueResolverListener.h"
-#endif // INCLUDE_RTSHADER_SYSTEM
 
 namespace nsGraphicEngine
 {

@@ -14,7 +14,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
+    <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AllocatorPool.h">
@@ -441,10 +441,10 @@
     <None Include="..\..\Doc\SoftwareDevelopmentPrinciples.md">
       <Filter>Docs</Filter>
     </None>
-    <None Include="..\..\..\readme.md">
+    <None Include="..\..\LICENSE.md">
       <Filter>Docs</Filter>
     </None>
-    <None Include="..\..\..\LICENSE.md">
+    <None Include="..\..\readme.md">
       <Filter>Docs</Filter>
     </None>
   </ItemGroup>

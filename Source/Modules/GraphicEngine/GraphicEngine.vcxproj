@@ -130,7 +130,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Base_d.lib;ImGuiRenderWrapper_d.lib;OgreBites_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;SDL2.lib;RenderSystem_Direct3D9_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base_d.lib;OgreBites_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -181,7 +181,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Base.lib;ImGuiRenderWrapper.lib;OgreBites.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;SDL2.lib;RenderSystem_Direct3D9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base.lib;OgreBites.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -192,21 +192,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BaseGUI.cpp" />
     <ClCompile Include="ControlClippingCursor.cpp" />
     <ClCompile Include="GE_Impl.cpp" />
     <ClCompile Include="GraphicEngine_Ogre_ImGui.cpp" />
     <ClCompile Include="ImGuiRenderControl.cpp" />
-    <ClCompile Include="InputManagerOIS.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseGUI.h" />
     <ClInclude Include="ControlClippingCursor.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="GE_Impl.h" />
     <ClInclude Include="GraphicEngine_Ogre_ImGui.h" />
+    <ClInclude Include="IGraphicEngine_Ogre_ImGui.h" />
     <ClInclude Include="ImGuiRenderControl.h" />
-    <ClInclude Include="InputManagerOIS.h" />
+    <ClInclude Include="InputCollectorListener.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="Sample.h" />
     <ClInclude Include="SdkSample.h" />
@@ -214,7 +212,7 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\conanfile.txt" />
+    <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

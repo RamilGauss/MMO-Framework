@@ -11,29 +11,20 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BaseGUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ControlClippingCursor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GE_Impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicEngine_Ogre_ImGui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManagerOIS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ImGuiRenderControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicEngine_Ogre_ImGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseGUI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ControlClippingCursor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -41,12 +32,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GE_Impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicEngine_Ogre_ImGui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManagerOIS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IRenderable.h">
@@ -61,8 +46,17 @@
     <ClInclude Include="SdkSample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InputCollectorListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGraphicEngine_Ogre_ImGui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicEngine_Ogre_ImGui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\conanfile.txt" />
+    <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
 </Project>
