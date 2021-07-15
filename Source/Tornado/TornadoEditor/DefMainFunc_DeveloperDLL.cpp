@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "DevTool_EditorMap.h"
 
-DllExport_C IDevTool* GetDevTool(int variant_use)
+DllExport_C IDevTool* GetDevTool()
 {
     return new TDevTool_EditorMap;
 }

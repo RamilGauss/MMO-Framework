@@ -82,9 +82,9 @@ void TImGuiRenderControl::preViewportUpdate(const RenderTargetViewportEvent& evt
     if (!evt.source->getOverlaysEnabled()) {
         return;
     }
-    if (!mTrayMgr->getTraysLayer()->isVisible()) {
-        return;
-    }
+    //if (!mTrayMgr->getTraysLayer()->isVisible()) {
+    //    return;
+    //}
 
     ImGuiOverlay::NewFrame();
 
@@ -160,7 +160,7 @@ void TImGuiRenderControl::setupContent(void)
     mImguiListener.reset(new ImGuiInputListener());
     mListenerChain = InputListenerChain({mImguiListener.get()});
 
-    mTrayMgr->showCursor();
+    //mTrayMgr->showCursor();
     mCameraMan->setStyle(OgreBites::CS_ORBIT);
     mCameraMan->setYawPitchDist(Degree(0), Degree(0), 15);
 }

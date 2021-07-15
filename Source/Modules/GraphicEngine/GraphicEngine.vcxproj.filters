@@ -55,6 +55,9 @@
     <ClInclude Include="GraphicEngine_Ogre_ImGui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SampleContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

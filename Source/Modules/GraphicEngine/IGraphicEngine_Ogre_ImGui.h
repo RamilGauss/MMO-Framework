@@ -21,7 +21,7 @@ namespace nsGraphicEngine
 
         virtual bool InitOGRE(const std::string& pathPluginCfg, const std::string& ogreCfg) = 0;
         virtual void AddResource(const std::string& name, const std::string& type) = 0;
-        virtual bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin) = 0;
+        virtual bool InitMyGUI() = 0;
 
         virtual bool Work() = 0;
 

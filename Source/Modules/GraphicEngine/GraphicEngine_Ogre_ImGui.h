@@ -12,6 +12,9 @@ See for more information LICENSE.md.
 #include "CallBackRegistrator.h"
 #include "Events.h"
 
+#include "ImGuiRenderControl.h"
+#include "SampleContext.h"
+
 #define STR_NAME_GRAPHIC_ENGINE "GE"
 
 /*
@@ -26,9 +29,14 @@ namespace nsGraphicEngine
 {
     class DllExport TGraphicEngine_Ogre_ImGui :
         public IGraphicEngine_Ogre_ImGui,
-        //public 
+        public OgreBites::SampleContext,
         public TSrcEvent /*for generation keyboard and mouse events(unused by GUI)*/
     {
+        bool mExit = false;
+        std::string mPathPluginCfg;
+        std::string mPathOgreCfg;
+
+        TImGuiRenderControl mGuiRender;
     public:
         TGraphicEngine_Ogre_ImGui();
         virtual ~TGraphicEngine_Ogre_ImGui();
@@ -36,7 +44,7 @@ namespace nsGraphicEngine
            1. InitOGRE, 2. AddResource, 3. InitImGui */
         bool InitOGRE(const std::string& pathPluginCfg, const std::string& pathOgreCfg) override;
         void AddResource(const std::string& name, const std::string& type) override;
-        bool InitMyGUI(const std::string& nameFileCore, const std::string& nameFileSkin) override;
+        bool InitMyGUI() override;
         // return false - need exit
         bool Work() override;
 
@@ -66,7 +74,16 @@ namespace nsGraphicEngine
 
         void SetUseClipCursor(bool v) override;
         bool GetUseClipCursor() override;
+    public:
+
+        void createRoot() override;
+        void setup() override;
+
+        bool frameStarted(const Ogre::FrameEvent& evt) override;
+        bool frameRenderingQueued(const Ogre::FrameEvent& evt) override;
+        bool frameEnded(const Ogre::FrameEvent& evt) override;
+
     private:
-        
+
     };
 }

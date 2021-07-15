@@ -155,7 +155,7 @@ namespace OgreBites
         // enable trays GUI for this sample
         void _setupTrays(Ogre::RenderWindow* window)
         {
-            mTrayMgr.reset(new TrayManager("SampleControls", window, this));  // create a tray interface
+            //mTrayMgr.reset(new TrayManager("SampleControls", window, this));  // create a tray interface
             // show stats and logo and hide the cursor
             //mTrayMgr->showFrameStats(TL_BOTTOMLEFT);
             //mTrayMgr->showLogo(TL_BOTTOMRIGHT);

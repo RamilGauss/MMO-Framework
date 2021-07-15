@@ -68,8 +68,7 @@ int main(int argc, char** argv)
         printf("----------------------------------------------\n");
     }
     //-----------------------------------------------------------------  
-    pGame->Work(cmdTornado.mInput.variant_use,
-        cmdTornado.mInput.libName, cmdTornado.mInput.param);
+    pGame->Work(cmdTornado.mInput.libName, cmdTornado.mInput.param);
     delete pGame;
     return 0;
 }

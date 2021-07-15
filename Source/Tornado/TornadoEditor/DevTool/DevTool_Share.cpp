@@ -198,11 +198,11 @@ void TDevTool_Share::SetupGraphicEngine()
     }
 
     // оболочка и ядро для GUI
-    std::string sSkin, sCore;
+    //std::string sSkin, sCore;
     //FindPath_GUI(nsDevTool_Share::sCore, 0, sCore);
     //FindPath_GUI(nsDevTool_Share::sSkin, 0, sSkin);
     //BL_ASSERT(sCore.length() && sSkin.length());
-    mGE_ForSetup->GetGE()->InitMyGUI(sCore, sSkin);
+    mGE_ForSetup->GetGE()->InitMyGUI();
 }
 //-----------------------------------------------------------------------
 void TDevTool_Share::SetComponentsForLogic()

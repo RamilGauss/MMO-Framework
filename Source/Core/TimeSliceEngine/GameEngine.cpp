@@ -52,7 +52,7 @@ void TGameEngine::Done()
     GetLogger()->Done();
 }
 //----------------------------------------------------------------------
-bool TGameEngine::LoadDLL(int variant_use, std::string& sNameDLL)
+bool TGameEngine::LoadDLL(std::string& sNameDLL)
 {
     if (mLoaderDLL->Init(sNameDLL.data()) == false) {
         GetLogger(sName)->WriteF_time("LoadDLL() FAIL init.\n");
@@ -72,7 +72,7 @@ bool TGameEngine::LoadDLL(int variant_use, std::string& sNameDLL)
         GetLogger(sName)->WriteF_time("LoadDLL() warning, object was loaded.\n");
         return true;
     }
-    mDevTool = mGetDevTool(variant_use);
+    mDevTool = mGetDevTool();
     if (mDevTool == nullptr) {// нет DLL - нет движка.
         return false;
     }
@@ -87,9 +87,9 @@ void TGameEngine::Init()
     GetLogger()->Register(sName);
 }
 //------------------------------------------------------------------------
-void TGameEngine::Work(int variant_use, std::string& sNameDLL, std::vector<std::string>& vecParam)// начало работы
+void TGameEngine::Work(std::string& sNameDLL, std::vector<std::string>& vecParam)// начало работы
 {
-    if (LoadDLL(variant_use, sNameDLL) == false) {
+    if (LoadDLL(sNameDLL) == false) {
         return;
     }
     mDevTool->SetVectorParam(vecParam);

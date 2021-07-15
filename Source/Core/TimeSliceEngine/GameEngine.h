@@ -44,11 +44,11 @@ class DllExport TGameEngine
 public:
     TGameEngine();
 
-    void Work(int variant_use, std::string& sNameDLL, std::vector<std::string>& vecParam);// начало работы
+    void Work(std::string& sNameDLL, std::vector<std::string>& vecParam);// начало работы
     std::string GetVersion();
 private:
     void Init();
-    bool LoadDLL(int variant_use, std::string& sNameDLL);
+    bool LoadDLL(std::string& sNameDLL);
 
     bool CreateModules();
     bool PrepareConveyer();

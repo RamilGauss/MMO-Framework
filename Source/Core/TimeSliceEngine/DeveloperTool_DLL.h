@@ -14,8 +14,8 @@ class IDevTool;
 #define StrGetDevTool  "GetDevTool"
 #define StrFreeDevTool "FreeDevTool"
 
-typedef IDevTool* (*FuncGetDevTool)(int);
+typedef IDevTool* (*FuncGetDevTool)();
 typedef void (*FuncFreeDevTool)(IDevTool*);
 
-DllExport_C IDevTool* GetDevTool(int variant_use);
+DllExport_C IDevTool* GetDevTool();
 DllExport_C void FreeDevTool(IDevTool* p);

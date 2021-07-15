@@ -17,7 +17,6 @@ public:
     {
         std::string              libName;
         std::vector<std::string> param;
-        int                      variant_use = 0;
         bool                     useConsole = false;
     };
 

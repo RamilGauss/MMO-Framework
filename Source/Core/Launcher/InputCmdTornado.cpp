@@ -9,7 +9,6 @@ See for more information LICENSE.md.
 #include <boost/lexical_cast.hpp>
 
 std::string KEY_LIB("-d");
-std::string KEY_VARIANT("-v");
 std::string KEY_PARAM("-p");
 std::string KEY_CONSOLE("-c");
 
@@ -18,11 +17,6 @@ void TInputCmdTornado::Init()
     Add(KEY_LIB, [&mInput = mInput](std::string& sValue)
     {
         mInput.libName = sValue.data();
-    });
-
-    Add(KEY_VARIANT, [&mInput = mInput](std::string& sValue)
-    {
-        mInput.variant_use = boost::lexical_cast<int>(sValue.data());
     });
 
     Add(KEY_PARAM, [&mInput = mInput, &mCmdParam = mCmdParam](std::string& sValue)

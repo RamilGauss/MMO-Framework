@@ -207,6 +207,7 @@
     <ClInclude Include="InputCollectorListener.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="Sample.h" />
+    <ClInclude Include="SampleContext.h" />
     <ClInclude Include="SdkSample.h" />
   </ItemGroup>
   <ItemGroup>
