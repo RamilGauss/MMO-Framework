@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -13,12 +13,12 @@ See for more information LICENSE.md.
 class DllExport TModuleDataBase : public TModuleComponent
 {
 public:
-  TModuleDataBase();
-  virtual ~TModuleDataBase();
+    TModuleDataBase();
+    virtual ~TModuleDataBase();
 
-  virtual void StartEvent();
-  virtual bool WorkInherit();
-  virtual void StopEvent();
+    virtual void StartEvent();
+    virtual bool WorkInherit();
+    virtual void StopEvent();
 };
 
 #endif

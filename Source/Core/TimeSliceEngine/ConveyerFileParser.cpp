@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ParserConveyerFile.h"
+#include "ConveyerFileParser.h"
 
 #include "TextFile.h"
 #include "GameEngineJsonSerializer.h"
 
 using namespace nsGameEngine;
 
-bool TParserConveyerFile::Work(std::string& fileDescConveyer)
+bool TConveyerFileParser::Parse(std::string& fileDescConveyer)
 {
     std::string jsonContent;
     TTextFile::Load(fileDescConveyer, jsonContent);
@@ -24,16 +24,13 @@ bool TParserConveyerFile::Work(std::string& fileDescConveyer)
     return TGameEngineJsonSerializer::Deserialize(&mConveyerConfig, jsonContent, err);
 }
 //---------------------------------------------------------------------------------------
-std::string TParserConveyerFile::GetStrError()
+std::string TConveyerFileParser::GetStrError()
 {
     return strError;
 }
 //---------------------------------------------------------------------------------------
-std::vector<std::string> TParserConveyerFile::GetResult(std::string& variantConveyer)
+std::vector<std::string> TConveyerFileParser::GetResult()
 {
-    auto fit = mConveyerConfig.appList.find(variantConveyer);
-    if (fit == mConveyerConfig.appList.end())
-        return std::vector<std::string>();
-    return fit->second.modules;
+    return mConveyerConfig.modules;
 }
 //---------------------------------------------------------------------------------------

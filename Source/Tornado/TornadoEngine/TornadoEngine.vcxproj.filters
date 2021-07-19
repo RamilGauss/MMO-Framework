@@ -288,9 +288,6 @@
     <ClCompile Include="Modules\ModuleSoundEngine.cpp">
       <Filter>Modules\Components\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleTimer.cpp">
-      <Filter>Modules\Components\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameItems\BaseItem.cpp">
       <Filter>GameItems\Structs</Filter>
     </ClCompile>
@@ -681,9 +678,6 @@
       <Filter>Modules\Components\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Modules\ModuleSoundEngine.h">
-      <Filter>Modules\Components\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\ModuleTimer.h">
       <Filter>Modules\Components\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameItems\BaseItem.h">

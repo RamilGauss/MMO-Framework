@@ -34,10 +34,11 @@ void TComponents::SetLogicID(int id)
     mVecComp.push_back(pMMOEngineSuperServer);
     mVecComp.push_back(pPhysicEngine);
     mVecComp.push_back(pSoundEngine);
-    mVecComp.push_back(pTimer);
 
-    for (auto pM : mVecComp)
-        if (pM)
+    for (auto pM : mVecComp) {
+        if (pM) {
             pM->SetLogicID(id);
+        }
+    }
 }
 //------------------------------------------------------------------------------------------

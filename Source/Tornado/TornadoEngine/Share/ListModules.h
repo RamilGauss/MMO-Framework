@@ -12,21 +12,17 @@ namespace nsListModules
 {
     enum ID_Modules
     {
-        Undef = 0,
-        // visual
-        GraphicEngine,      // client
-        //AloneGUI,         // server have not gui
-        // network
-        MMOEngineClient,
-        MMOEngineSlave,
-        MMOEngineMaster,
-        MMOEngineSuperServer,
-        // logic
         Logic,
-        // auxiliary
+        GraphicEngine,
         PhysicEngine,
-        SoundEngine,        // client
-        DataBase,           // common
-        Timer,              // common
+
+        // transport
+        // Low
+        NetTransport,
+        // High
+        MMOEngine,
+        
+        SoundEngine,
+        DataBase,
     };
 }

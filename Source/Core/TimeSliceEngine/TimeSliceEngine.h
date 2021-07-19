@@ -21,11 +21,9 @@ class IDevTool;
 class TThreadModules;
 class IModule;
 
-class DllExport TGameEngine
+class DllExport TTimeSliceEngine
 {
-    const std::string sName = "GameEngine";
-    const int sVersion = 9;// надеюсь последняя версия :)
-    const std::string sModeWork = "Single thread mode";
+    const std::string sName = "TimeSliceEngine";
 
     ILoaderDLL* mLoaderDLL;
 
@@ -42,20 +40,17 @@ class DllExport TGameEngine
 
     std::shared_ptr<TSynchroPoint> mSynchroPoint;
 public:
-    TGameEngine();
+    TTimeSliceEngine();
 
     void Work(std::string& sNameDLL, std::vector<std::string>& vecParam);// начало работы
-    std::string GetVersion();
 private:
     void Init();
     bool LoadDLL(std::string& sNameDLL);
 
     bool CreateModules();
     bool PrepareConveyer();
-    void LinkModulesToSynchroPoint();
 
     void Work();
 private:
     void Done();
-    void Event(int id, std::string param = "");
 };

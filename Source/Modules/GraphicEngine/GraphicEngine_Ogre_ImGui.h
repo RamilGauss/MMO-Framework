@@ -74,6 +74,10 @@ namespace nsGraphicEngine
 
         void SetUseClipCursor(bool v) override;
         bool GetUseClipCursor() override;
+
+        void AddRender(IRenderable* p)  override;
+        void RemoveRender(IRenderable* p)  override;
+        const std::set<IRenderable*>* GetRenders()  override;
     public:
 
         void createRoot() override;

@@ -16,7 +16,6 @@ public:
   TDevTool_EditorMap();
   virtual ~TDevTool_EditorMap();
 
-  virtual std::string GetVariantConveyer();
 protected:
   virtual TModuleDev* GetModuleLogic();
 };

@@ -5,69 +5,6 @@ using namespace Ogre;
 using namespace OgreBites;
 using namespace nsGraphicEngine;
 
-//###
-class TMainForm : public IRenderable
-{
-    char buffer[100];
-    bool isShowUserGuide = false;
-
-    bool isFirst = true;
-public:
-    TMainForm()
-    {
-        buffer[0] = '\0';
-    }
-    void Render() override
-    {
-        if (ImGui::BeginMainMenuBar()) {
-            if (ImGui::BeginMenu("File")) {
-                if (ImGui::MenuItem("Exit", "Alt+F4")) {
-                    //mRoot->queueEndRendering();
-                }
-                ImGui::EndMenu();
-            }
-            if (ImGui::BeginMenu("Edit")) {
-                if (ImGui::MenuItem("ShowUserGuide", "Ha-ha")) {
-                    isShowUserGuide = !isShowUserGuide;
-                }
-                if (ImGui::MenuItem("Redo", "CTRL+Y", false, false)) {}  // Disabled item
-                ImGui::Separator();
-                if (ImGui::MenuItem("Cut", "CTRL+X")) {}
-                if (ImGui::MenuItem("Copy", "CTRL+C")) {}
-                if (ImGui::MenuItem("Paste", "CTRL+V")) {}
-                ImGui::EndMenu();
-            }
-            ImGui::EndMainMenuBar();
-        }
-
-        if (isShowUserGuide) {
-            ImGui::Begin("Window");
-
-            if (isFirst) {
-                ImVec2 size(500, 500);
-                ImGui::SetWindowSize(size);
-                ImVec2 pos(10, 10);
-                ImGui::SetWindowPos(pos);
-                isFirst = false;
-            }
-
-            ImVec2 btPos(50, 50);
-            ImGui::SetCursorPos(btPos);
-
-            ImVec2 btSize(100, 30);
-            if (ImGui::Button("Login", btSize)) {
-
-            }
-
-            ImGui::InputText("ASDASD", buffer, sizeof(buffer));
-
-            ImGui::End();
-        }
-    }
-};
-//----------------------------------------------------------------------------------------------
-static TMainForm mMainForm;
-//###
 //----------------------------------------------------------------------------------------------
 TImGuiRenderControl::TImGuiRenderControl()
 {
@@ -96,14 +33,6 @@ void TImGuiRenderControl::Render()
     for (auto& render : mRenders) {
         render->Render();
     }
-    //###
-    mMainForm.Render();
-
-    static bool show = true;
-    if (show) {
-        ImGui::ShowDemoWindow(&show);
-    }
-    //###
 }
 //----------------------------------------------------------------------------------------------
 bool TImGuiRenderControl::keyPressed(const KeyboardEvent& evt)

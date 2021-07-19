@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 
 namespace nsGraphicEngine
 {
+    class IRenderable;
     class DllExport IGraphicEngine_Ogre_ImGui
     {
     public:
@@ -49,5 +50,9 @@ namespace nsGraphicEngine
 
         virtual void SetUseClipCursor(bool v) = 0;
         virtual bool GetUseClipCursor() = 0;
+
+        virtual void AddRender(IRenderable* p) = 0;
+        virtual void RemoveRender(IRenderable* p) = 0;
+        virtual const std::set<IRenderable*>* GetRenders() = 0;
     };
 }

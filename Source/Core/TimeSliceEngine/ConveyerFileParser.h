@@ -10,13 +10,13 @@ See for more information LICENSE.md.
 #include <string>
 #include "ConveyerConfig.h"
 
-class TParserConveyerFile
+class TConveyerFileParser
 {
     std::string strError;
 
     TConveyerConfig mConveyerConfig;
 public:
-    bool Work(std::string& fileDescConveyer);
+    bool Parse(std::string& fileDescConveyer);
     std::string GetStrError();
-    std::vector<std::string> GetResult(std::string& variantConveyer);
+    std::vector<std::string> GetResult();
 };

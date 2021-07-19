@@ -207,21 +207,19 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EventGameEngine.cpp" />
-    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="TimeSliceEngine.cpp" />
     <ClCompile Include="GameEngineJsonSerializer.cpp" />
-    <ClCompile Include="ParserConveyerFile.cpp" />
+    <ClCompile Include="ConveyerFileParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConveyerConfig.h" />
     <ClInclude Include="DeveloperTool_DLL.h" />
-    <ClInclude Include="EventGameEngine.h" />
-    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="TimeSliceEngine.h" />
     <ClInclude Include="GameEngineJsonSerializer.h" />
     <ClInclude Include="IDevTool.h" />
     <ClInclude Include="IModule.h" />
     <ClInclude Include="IncludeList.h" />
-    <ClInclude Include="ParserConveyerFile.h" />
+    <ClInclude Include="ConveyerFileParser.h" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

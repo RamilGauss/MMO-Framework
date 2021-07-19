@@ -19,40 +19,40 @@ class TSettings;
 
 class DllExport TModuleLogic : public TModuleDev
 {
-  volatile bool flgNeedExit;
+    volatile bool flgNeedExit;
 
-  std::string mTerrainPath;
-  TFactoryBehaviourPattern mFBP;
+    std::string mTerrainPath;
+    TFactoryBehaviourPattern mFBP;
 
-  TSettings* mPtrSettings;
+    TSettings* mPtrSettings;
 protected:
-  TComponents      mComp;
-  TFactoryGameItem mFGI;
+    TComponents      mComp;
+    TFactoryGameItem mFGI;
 
-  std::set<int> mSetUseID_Module;
+    std::set<int> mSetUseID_Module;
 public:
-  TModuleLogic();
-  virtual void ParseCmd( std::vector<std::string>& arg ) = 0;
-  virtual void InitLog();
+    TModuleLogic();
+    virtual void ParseCmd(std::vector<std::string>& arg) = 0;
+    virtual void InitLog();
 
-  std::set<int> GetUseID_Module();
+    std::set<int> GetUseID_Module();
 
-  void SetTerrainPath( std::string& path );
-  std::string GetTerrainPath();
+    void SetTerrainPath(std::string& path);
+    std::string GetTerrainPath();
 
-  void SetComponents( TComponents components );
-  TComponents* GetC();
-  TFactoryGameItem* GetFGI();
-  virtual TFactoryBehaviourPattern* GetFBP();
+    void SetComponents(TComponents components);
+    TComponents* GetC();
+    TFactoryGameItem* GetFGI();
+    virtual TFactoryBehaviourPattern* GetFBP();
 
-  // оставить, потому что не только GUI использует, но и другие объекты из ShareDev
-  // которые не знают про GameImpl
-  static TModuleLogic* Get();
+    // оставить, потому что не только GUI использует, но и другие объекты из ShareDev
+    // которые не знают про GameImpl
+    static TModuleLogic* Get();
 
-  void Exit( int reason = 0 );
+    void Exit(int reason = 0);
 
-  void SetSettings( TSettings* pSettings );
-  TSettings* GetSettings();
+    void SetSettings(TSettings* pSettings);
+    TSettings* GetSettings();
 protected:
-  bool NeedExit();
+    bool NeedExit();
 };

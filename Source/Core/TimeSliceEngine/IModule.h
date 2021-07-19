@@ -8,19 +8,15 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
+#include "TypeDef.h"
 
-#include "SynchroAbonent.h"
-#include "CallBackRegistrator.h"
-
-class DllExport IModule : public TSynchroAbonent
+class DllExport IModule
 {
 public:
-    IModule() {};
     virtual ~IModule() {};
 
     virtual bool Work() = 0;
 
-    virtual int GetID() = 0;
     virtual std::string GetName() = 0;
 
     virtual void StartEvent() {}

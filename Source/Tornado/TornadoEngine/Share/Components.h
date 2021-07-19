@@ -32,11 +32,12 @@ public:
 
     TModuleDataBase* pDataBase = nullptr;
     TModuleGraphicEngine* pGraphicEngine = nullptr;
+    
     TModuleMMOEngineClient* pMMOEngineClient = nullptr;
     TModuleMMOEngineSlave* pMMOEngineSlave = nullptr;
     TModuleMMOEngineMaster* pMMOEngineMaster = nullptr;
     TModuleMMOEngineSuperServer* pMMOEngineSuperServer = nullptr;
+    
     TModulePhysicEngine* pPhysicEngine = nullptr;
     TModuleSoundEngine* pSoundEngine = nullptr;
-    TModuleTimer* pTimer = nullptr;
 };

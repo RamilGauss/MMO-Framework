@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -23,13 +23,8 @@ TDevTool_EditorMap::~TDevTool_EditorMap()
 
 }
 //-------------------------------------------------------------
-std::string TDevTool_EditorMap::GetVariantConveyer()
-{
-  return "EditorMap";
-}
-//-------------------------------------------------------------
 TModuleDev* TDevTool_EditorMap::GetModuleLogic()
 {
-  return new TEditorMapLogic;
+    return new TEditorMapLogic;
 }
 //-----------------------------------------------------------------------

@@ -17,7 +17,6 @@ See for more information LICENSE.md.
 #include "ModuleMMOEngineSuperServer.h"
 #include "ModulePhysicEngine.h"
 #include "ModuleSoundEngine.h"
-#include "ModuleTimer.h"
 #include "ModuleDatabase.h"
 
 #include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
@@ -57,7 +56,7 @@ TDevTool_Share::TDevTool_Share()
 TDevTool_Share::~TDevTool_Share()
 {
     // уничтожить все модули
-    for ( auto& vtID_Ptr : mMapID_PtrModules ) {
+    for (auto& vtID_Ptr : mMapID_PtrModules) {
         delete vtID_Ptr.second;
     }
 }
@@ -68,7 +67,7 @@ void TDevTool_Share::Init()
 
     std::string str;
     TTextFile::Load(file, str);
-    if ( str.length() == 0 ) {
+    if (str.length() == 0) {
         return;
     }
 
@@ -93,7 +92,7 @@ IModule* TDevTool_Share::GetModuleByName(const std::string& sName)
 {
     int id = FindIDByNameModule(sName);
     TModuleDev* pModule = FindPtrModuleByID(id);
-    if ( pModule ) {
+    if (pModule) {
         return pModule;
     }
 
@@ -106,22 +105,19 @@ IModule* TDevTool_Share::GetModuleByName(const std::string& sName)
 //-----------------------------------------------------------------------
 void TDevTool_Share::InitMapModules()
 {
-    Add(NAME_ID(GraphicEngine));
-    Add(NAME_ID(MMOEngineClient));
-    Add(NAME_ID(MMOEngineSlave));
-    Add(NAME_ID(MMOEngineMaster));
-    Add(NAME_ID(MMOEngineSuperServer));
     Add(NAME_ID(Logic));
+    Add(NAME_ID(GraphicEngine));
     Add(NAME_ID(PhysicEngine));
-    Add(NAME_ID(SoundEngine));
-    Add(NAME_ID(DataBase));
-    Add("Timer", ID_Modules::Timer);
+    //Add(NAME_ID(MMOEngine));
+    //Add(NAME_ID(NetTransport));
+    //Add(NAME_ID(SoundEngine));
+    //Add(NAME_ID(DataBase));
 }
 //-----------------------------------------------------------------------
 int TDevTool_Share::FindIDByNameModule(std::string name)
 {
     TMapStrIntIt fit = mMapNameID_Modules.find(name);
-    if ( fit == mMapNameID_Modules.end() ) {
+    if (fit == mMapNameID_Modules.end()) {
         return ID_Modules::Undef;
     }
     return fit->second;
@@ -130,7 +126,7 @@ int TDevTool_Share::FindIDByNameModule(std::string name)
 TModuleDev* TDevTool_Share::FindPtrModuleByID(int id)
 {
     TMapIntPtrModuleIt fit = mMapID_PtrModules.find(id);
-    if ( fit == mMapID_PtrModules.end() ) {
+    if (fit == mMapID_PtrModules.end()) {
         return nullptr;
     }
     return fit->second;
@@ -138,7 +134,7 @@ TModuleDev* TDevTool_Share::FindPtrModuleByID(int id)
 //-----------------------------------------------------------------------
 void TDevTool_Share::Add(int id, TModuleDev* pModule)
 {
-    if ( pModule ) {
+    if (pModule) {
         mMapID_PtrModules.insert(TMapIntPtrModuleVT(id, pModule));
     }
 }
@@ -151,7 +147,7 @@ void TDevTool_Share::Add(std::string name, int id)
 std::string TDevTool_Share::GetFileDescConveyer()
 {
     std::string pathConveyer;
-    if ( FindPath_GameEngine(nsDevTool_Share::sConveyer, 0, pathConveyer) == true ) {
+    if (FindPath_GameEngine(nsDevTool_Share::sConveyer, 0, pathConveyer) == true) {
         return pathConveyer;
     }
 
@@ -161,7 +157,7 @@ std::string TDevTool_Share::GetFileDescConveyer()
 //-----------------------------------------------------------------------
 void TDevTool_Share::EventGameEngine(int id, const std::string& sDesc)
 {
-    switch ( id ) {
+    switch (id) {
         case nsGameEngine::eAfterCreateDevTool:
             Init();
             break;
@@ -186,22 +182,17 @@ void TDevTool_Share::EventGameEngine(int id, const std::string& sDesc)
 void TDevTool_Share::SetupGraphicEngine()
 {
     // настройка перед запуском
-    if ( mGE_ForSetup->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg) == false ) {
+    if (mGE_ForSetup->GetGE()->InitOGRE(mPluginsCfg, mOgreCfg) == false) {
         _exit(-1);// либо ошибка, либо пользователь не хочет запускать приложение
         return;
     }
     // пути для ресурсов графического движка
-    for ( auto& vtTypePath : mMapRGraphicEngine ) {
-        for ( auto& type : vtTypePath.second ) {
+    for (auto& vtTypePath : mMapRGraphicEngine) {
+        for (auto& type : vtTypePath.second) {
             mGE_ForSetup->GetGE()->AddResource(type, vtTypePath.first);
         }
     }
 
-    // оболочка и ядро для GUI
-    //std::string sSkin, sCore;
-    //FindPath_GUI(nsDevTool_Share::sCore, 0, sCore);
-    //FindPath_GUI(nsDevTool_Share::sSkin, 0, sSkin);
-    //BL_ASSERT(sCore.length() && sSkin.length());
     mGE_ForSetup->GetGE()->InitMyGUI();
 }
 //-----------------------------------------------------------------------
@@ -209,18 +200,14 @@ void TDevTool_Share::SetComponentsForLogic()
 {
     TComponents components;
     components.pGraphicEngine = (TModuleGraphicEngine*) FindPtrModuleByID(ID_Modules::GraphicEngine);
-    components.pMMOEngineClient = (TModuleMMOEngineClient*) FindPtrModuleByID(ID_Modules::MMOEngineClient);
-    components.pMMOEngineSlave = (TModuleMMOEngineSlave*) FindPtrModuleByID(ID_Modules::MMOEngineSlave);
-    components.pMMOEngineMaster = (TModuleMMOEngineMaster*) FindPtrModuleByID(ID_Modules::MMOEngineMaster);
-    components.pMMOEngineSuperServer = (TModuleMMOEngineSuperServer*) FindPtrModuleByID(ID_Modules::MMOEngineSuperServer);
+    components.pMMOEngineClient = (TModuleMMOEngineClient*) FindPtrModuleByID(ID_Modules::MMOEngine);
     components.pPhysicEngine = (TModulePhysicEngine*) FindPtrModuleByID(ID_Modules::PhysicEngine);
     components.pSoundEngine = (TModuleSoundEngine*) FindPtrModuleByID(ID_Modules::SoundEngine);
     components.pDataBase = (TModuleDataBase*) FindPtrModuleByID(ID_Modules::DataBase);
-    components.pTimer = (TModuleTimer*) FindPtrModuleByID(ID_Modules::Timer);
 
     // ищем логику
     TModuleLogic* pLogic = (TModuleLogic*) FindPtrModuleByID(ID_Modules::Logic);
-    if ( pLogic ) {
+    if (pLogic) {
         int id_logic = pLogic->GetID();
         components.SetLogicID(id_logic);
         pLogic->SetComponents(components);
@@ -239,9 +226,9 @@ void TDevTool_Share::SetComponentsForLogic()
         // настройки приложения
         mSettings.Init(mPathSettings);
         std::string nameApp = GetVariantConveyer();
-        if ( nameApp.length() )
+        if (nameApp.length()) {
             mSettings.BeginApplication(nameApp);
-        else {
+        } else {
             BL_FIX_BUG();
         }
         pLogic->SetSettings(&mSettings);
@@ -258,7 +245,7 @@ void TDevTool_Share::SetVectorParam(std::vector<std::string>& vecArg)
 TModuleDev* TDevTool_Share::GetModuleByID(int id)
 {
     TModuleDev* pModule = nullptr;
-    switch ( id ) {
+    switch (id) {
         // ядро
         case ID_Modules::Logic: pModule = GetModuleLogic(); ((TModuleLogic*) pModule)->SetTerrainPath(mTerrainPath); break;
             // периферия
@@ -267,15 +254,11 @@ TModuleDev* TDevTool_Share::GetModuleByID(int id)
             pModule = mGE_ForSetup;
             ((TModuleGraphicEngine*) pModule)->GetCBStartEvent()->Register(&TDevTool_Share::SetupGraphicEngine, this);
             break;
-            //case GraphicEngine:          pModule = new TModuleGraphicEngine; SetupGraphicEngine((TModuleGraphicEngine*)pModule); break;
-        case ID_Modules::PhysicEngine:           pModule = new TModulePhysicEngine;                        break;
-        case ID_Modules::MMOEngineClient:        pModule = new TModuleMMOEngineClient;                     break;
-        case ID_Modules::MMOEngineSlave:         pModule = new TModuleMMOEngineSlave;                      break;
-        case ID_Modules::MMOEngineMaster:        pModule = new TModuleMMOEngineMaster;                     break;
-        case ID_Modules::MMOEngineSuperServer:   pModule = new TModuleMMOEngineSuperServer;                break;
-        case ID_Modules::SoundEngine:            pModule = new TModuleSoundEngine;                         break;
-        case ID_Modules::DataBase:               pModule = new TModuleDataBase;                            break;
-        case ID_Modules::Timer:                  pModule = new TModuleTimer;                               break;
+        case GraphicEngine:              pModule = new TModuleGraphicEngine; SetupGraphicEngine((TModuleGraphicEngine*)pModule); break;
+        case ID_Modules::PhysicEngine:   pModule = new TModulePhysicEngine;                        break;
+        //case ID_Modules::MMOEngine:    pModule = new TModuleMMOEngineClient;                     break;
+        //case ID_Modules::SoundEngine:  pModule = new TModuleSoundEngine;                         break;
+        //case ID_Modules::DataBase:     pModule = new TModuleDataBase;                            break;
         default:BL_FIX_BUG();
     }
     return pModule;
@@ -289,12 +272,12 @@ int TDevTool_Share::GetCountPathInMap(const char* type, TStrStrListMap& mapResou
 bool TDevTool_Share::FindPath(const char* type, TStrStrListMap& mapResource, int index, std::string& result)
 {
     auto fit = mapResource.find(type);
-    if ( fit == mapResource.end() ) {
+    if (fit == mapResource.end()) {
         return false;
     }
-    for ( int i = 0; i < index; i++ ) {
+    for (int i = 0; i < index; i++) {
         fit++;
-        if ( fit == mapResource.end() ) {
+        if (fit == mapResource.end()) {
             return false;
         }
     }

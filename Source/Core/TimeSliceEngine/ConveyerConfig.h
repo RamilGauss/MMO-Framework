@@ -8,16 +8,9 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <vector>
-#include <map>
-
-#pragma REFLECTION_ATTRIBUTE
-struct TAppConfig
-{
-    std::vector<std::string> modules;
-};
 
 #pragma REFLECTION_ATTRIBUTE
 struct TConveyerConfig
 {
-    std::map<std::string, TAppConfig> appList;
+    std::vector<std::string> modules;
 };

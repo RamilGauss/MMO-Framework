@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Events.h"
 #include "Logger.h"
 #include "GE_Impl.h"
-
+#include "IRenderable.h"
 #include "OgrePlatform.h"
 
 #include <boost/cstdint.hpp>
@@ -235,5 +235,20 @@ void TGraphicEngine_Ogre_ImGui::setup()
     //if (startupSample && mFirstRun) {
     //    runSample(startupSample);
     //}
+}
+//---------------------------------------------------------------------
+void TGraphicEngine_Ogre_ImGui::AddRender(IRenderable* p)
+{
+    mGuiRender.AddRender(p);
+}
+//---------------------------------------------------------------------
+void TGraphicEngine_Ogre_ImGui::RemoveRender(IRenderable* p)
+{
+    mGuiRender.RemoveRender(p);
+}
+//---------------------------------------------------------------------
+const std::set<IRenderable*>* TGraphicEngine_Ogre_ImGui::GetRenders()
+{
+    return mGuiRender.GetRenders();
 }
 //---------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -14,7 +14,6 @@ See for more information LICENSE.md.
 #include "ModuleMMOEngineSuperServer.h"
 #include "ModulePhysicEngine.h"
 #include "ModuleSoundEngine.h"
-#include "ModuleTimer.h"
 #include "ModuleDatabase.h"
 
 static TModuleLogic* g_ptrModuleLogic = NULL;
@@ -25,59 +24,58 @@ if( MODULE ) mSetUseID_Module.insert(MODULE->GetID());
 
 TModuleLogic::TModuleLogic()
 {
-  g_ptrModuleLogic = this;
-  flgNeedExit = false;
+    g_ptrModuleLogic = this;
+    flgNeedExit = false;
 
-  mPtrSettings = NULL;
+    mPtrSettings = NULL;
 }
 //--------------------------------------------------------------------
 void TModuleLogic::SetComponents(TComponents components)
 {
-  mComp = components;
+    mComp = components;
 
-  mSetUseID_Module.clear();
+    mSetUseID_Module.clear();
 
-  mSetUseID_Module.insert(GetID());// логика есть всегда
+    mSetUseID_Module.insert(GetID());// логика есть всегда
 
-  DEF_USE_ID_MODULE( mComp.pGraphicEngine )
-  DEF_USE_ID_MODULE( mComp.pMMOEngineClient )
-  DEF_USE_ID_MODULE( mComp.pMMOEngineSlave )
-  DEF_USE_ID_MODULE( mComp.pMMOEngineMaster )
-  DEF_USE_ID_MODULE( mComp.pMMOEngineSuperServer )
-  DEF_USE_ID_MODULE( mComp.pPhysicEngine )
-  DEF_USE_ID_MODULE( mComp.pSoundEngine )
-  DEF_USE_ID_MODULE( mComp.pDataBase )
-  DEF_USE_ID_MODULE( mComp.pTimer )
+    DEF_USE_ID_MODULE(mComp.pGraphicEngine)
+    DEF_USE_ID_MODULE(mComp.pMMOEngineClient)
+    DEF_USE_ID_MODULE(mComp.pMMOEngineSlave)
+    DEF_USE_ID_MODULE(mComp.pMMOEngineMaster)
+    DEF_USE_ID_MODULE(mComp.pMMOEngineSuperServer)
+    DEF_USE_ID_MODULE(mComp.pPhysicEngine)
+    DEF_USE_ID_MODULE(mComp.pSoundEngine)
+    DEF_USE_ID_MODULE(mComp.pDataBase)
 }
 //--------------------------------------------------------------------
 TFactoryGameItem* TModuleLogic::GetFGI()
 {
-  return &mFGI;
+    return &mFGI;
 }
 //--------------------------------------------------------------------
 TFactoryBehaviourPattern* TModuleLogic::GetFBP()
 {
-  return &mFBP;
+    return &mFBP;
 }
 //--------------------------------------------------------------------
 TModuleLogic* TModuleLogic::Get()
 {
-  return g_ptrModuleLogic;
+    return g_ptrModuleLogic;
 }
 //--------------------------------------------------------------------
-void TModuleLogic::Exit( int reason )
+void TModuleLogic::Exit(int reason)
 {
-  flgNeedExit = true;
+    flgNeedExit = true;
 }
 //--------------------------------------------------------------------
 bool TModuleLogic::NeedExit()
 {
-  return flgNeedExit;
+    return flgNeedExit;
 }
 //--------------------------------------------------------------------
 TComponents* TModuleLogic::GetC()
 {
-  return &mComp;
+    return &mComp;
 }
 //--------------------------------------------------------------------
 void TModuleLogic::InitLog()
@@ -87,26 +85,26 @@ void TModuleLogic::InitLog()
 //--------------------------------------------------------------------
 std::string TModuleLogic::GetTerrainPath()
 {
-  return mTerrainPath;
+    return mTerrainPath;
 }
 //--------------------------------------------------------------------
 void TModuleLogic::SetTerrainPath(std::string& path)
 {
-  mTerrainPath = path;
+    mTerrainPath = path;
 }
 //--------------------------------------------------------------------
 std::set<int> TModuleLogic::GetUseID_Module()
 {
-  return mSetUseID_Module;
+    return mSetUseID_Module;
 }
 //--------------------------------------------------------------------
 void TModuleLogic::SetSettings(TSettings* pSettings)
 {
-  mPtrSettings = pSettings;
+    mPtrSettings = pSettings;
 }
 //--------------------------------------------------------------------
 TSettings* TModuleLogic::GetSettings()
 {
-  return mPtrSettings;
+    return mPtrSettings;
 }
 //--------------------------------------------------------------------

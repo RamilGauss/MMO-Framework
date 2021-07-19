@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_07_14 08:07:08.851
+// File has been generated at 2021_07_19 07:16:12.580
 	
 #include "GameEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -28,18 +28,6 @@ void TGameEngineJsonSerializer::Init()
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
     std::map<int, TypeFunc> m;
-    
-    TypeFunc _TAppConfigTypeFunc;
-    _TAppConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<TAppConfig>((TAppConfig*) p, str);
-    };
-    _TAppConfigTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<TAppConfig>((TAppConfig*) p, str, err);
-    };
-    
-    auto rtti__TAppConfigTypeFunc = globalTypeIdentifier->type<TAppConfig>();
-    
-    m.insert({ rtti__TAppConfigTypeFunc, _TAppConfigTypeFunc });
     
     TypeFunc _TConveyerConfigTypeFunc;
     _TConveyerConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -76,7 +64,7 @@ bool TGameEngineJsonSerializer::Deserialize(void* p, const std::string& str, int
     return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
 }
 //---------------------------------------------------------------------------------------
-void TGameEngineJsonSerializer::_Serialize(TAppConfig* p, Jobj& obj)
+void TGameEngineJsonSerializer::_Serialize(TConveyerConfig* p, Jobj& obj)
 {
     PUM::Value modules_a0(rapidjson::kArrayType);
     for(size_t modules_i0 = 0 ; modules_i0 < p->modules.size() ; modules_i0++) {
@@ -86,7 +74,7 @@ void TGameEngineJsonSerializer::_Serialize(TAppConfig* p, Jobj& obj)
     PUM::Push(obj, "modules", modules_a0);
 }
 //---------------------------------------------------------------------------------------
-void TGameEngineJsonSerializer::_Deserialize(TAppConfig* p, const Jobj& obj)
+void TGameEngineJsonSerializer::_Deserialize(TConveyerConfig* p, const Jobj& obj)
 {
     if (POM::IsArray(obj, "modules")) {
         auto modules_a0 = POM::FindArray(obj, "modules");
@@ -97,26 +85,6 @@ void TGameEngineJsonSerializer::_Deserialize(TAppConfig* p, const Jobj& obj)
         std::string modules_t0;
         POM::PopStr(obj, "modules", modules_t0);
         p->modules.push_back(modules_t0);
-    }
-}
-//---------------------------------------------------------------------------------------
-void TGameEngineJsonSerializer::_Serialize(TConveyerConfig* p, Jobj& obj)
-{
-    auto appList_c0 = PUM::AddObject(obj, "appList");
-    for(auto& appList_e0 : p->appList) {
-        auto appList_a0 = PUM::AddObject(appList_c0, PUM::ConvertToString(appList_e0.first).data());
-        _Serialize(&(appList_e0.second), appList_a0);
-    }
-}
-//---------------------------------------------------------------------------------------
-void TGameEngineJsonSerializer::_Deserialize(TConveyerConfig* p, const Jobj& obj)
-{
-    auto appList_a0 = POM::FindObject(obj, "appList");
-    for(auto& appList_e0 : appList_a0) {
-        auto appList_o1 = appList_e0.value.GetObject();
-        TAppConfig appList_c1;
-        _Deserialize(&appList_c1, appList_o1);
-        p->appList.insert({ appList_e0.name.GetString(), appList_c1 });
     }
 }
 //---------------------------------------------------------------------------------------

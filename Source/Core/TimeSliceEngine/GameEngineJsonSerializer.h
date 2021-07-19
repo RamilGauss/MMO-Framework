@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_07_14 08:07:08.850
+// File has been generated at 2021_07_19 07:16:12.577
 	
 #pragma once
 
@@ -38,9 +38,6 @@ namespace nsGameEngine
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
     
     public:
-        static void _Serialize(TAppConfig* p, Jobj& obj);
-        static void _Deserialize(TAppConfig* p, const Jobj& obj);
-        
         static void _Serialize(TConveyerConfig* p, Jobj& obj);
         static void _Deserialize(TConveyerConfig* p, const Jobj& obj);
         

@@ -8,23 +8,21 @@ See for more information LICENSE.md.
 #include <stddef.h>
 #include <stdarg.h>
 
-#include "GameEngine.h"
+#include "TimeSliceEngine.h"
 #include "BL_Debug.h"
 #include "ShareMisc.h"
 #include "HiTimer.h"
 #include "Logger.h"
-#include "ResolverSelf_IP_v4.h"
 #include "IModule.h"
 #include "FileOperation.h"
 #include "IDevTool.h"
-#include "EventGameEngine.h"
-#include "ParserConveyerFile.h"
+#include "ConveyerFileParser.h"
 #include "MakerLoaderDLL.h"
 #include "ILoaderDLL.h"
 
 #include "fmt/core.h"
 
-TGameEngine::TGameEngine()
+TTimeSliceEngine::TTimeSliceEngine()
 {
     mSynchroPoint.reset(new TSynchroPoint);
 
@@ -38,7 +36,7 @@ TGameEngine::TGameEngine()
     Init();
 }
 //----------------------------------------------------------------------
-void TGameEngine::Done()
+void TTimeSliceEngine::Done()
 {
     if (mFreeDevTool) {
         mFreeDevTool(mDevTool);
@@ -52,7 +50,7 @@ void TGameEngine::Done()
     GetLogger()->Done();
 }
 //----------------------------------------------------------------------
-bool TGameEngine::LoadDLL(std::string& sNameDLL)
+bool TTimeSliceEngine::LoadDLL(std::string& sNameDLL)
 {
     if (mLoaderDLL->Init(sNameDLL.data()) == false) {
         GetLogger(sName)->WriteF_time("LoadDLL() FAIL init.\n");
@@ -76,18 +74,16 @@ bool TGameEngine::LoadDLL(std::string& sNameDLL)
     if (mDevTool == nullptr) {// нет DLL - нет движка.
         return false;
     }
-
-    Event(nsGameEngine::eAfterCreateDevTool);
     return true;
 }
 //----------------------------------------------------------------------
-void TGameEngine::Init()
+void TTimeSliceEngine::Init()
 {
     GetLogger()->Done();
     GetLogger()->Register(sName);
 }
 //------------------------------------------------------------------------
-void TGameEngine::Work(std::string& sNameDLL, std::vector<std::string>& vecParam)// начало работы
+void TTimeSliceEngine::Work(std::string& sNameDLL, std::vector<std::string>& vecParam)// начало работы
 {
     if (LoadDLL(sNameDLL) == false) {
         return;
@@ -100,14 +96,13 @@ void TGameEngine::Work(std::string& sNameDLL, std::vector<std::string>& vecParam
     if (CreateModules() == false) {
         return;
     }
-    LinkModulesToSynchroPoint();
 
     Work();
     // чистка
     Done();
 }
 //------------------------------------------------------------------------
-void TGameEngine::Work()
+void TTimeSliceEngine::Work()
 {
     for (auto& pModule : mModulePtrList) {
         pModule->StartEvent();
@@ -117,7 +112,6 @@ void TGameEngine::Work()
     while (!needStop) {
         for (auto& pModule : mModulePtrList) {
             if (pModule->Work() == false) {
-                Event(nsGameEngine::eStopThreads, pModule->GetName());
                 needStop = true;
             }
         }
@@ -128,65 +122,29 @@ void TGameEngine::Work()
     }
 }
 //------------------------------------------------------------------------
-std::string TGameEngine::GetVersion()
-{
-    return fmt::format("Tornado Game Engine, Version {}, mode work \"{}\"", sVersion, sModeWork);
-}
-//------------------------------------------------------------------------
-bool TGameEngine::PrepareConveyer()
+bool TTimeSliceEngine::PrepareConveyer()
 {
     auto sFileDescConveyer = mDevTool->GetFileDescConveyer();
-    auto sVariantConveyer = mDevTool->GetVariantConveyer();
-    TParserConveyerFile parser;
-    if (parser.Work(sFileDescConveyer)) {
-        mModuleNameList = parser.GetResult(sVariantConveyer);
+    TConveyerFileParser parser;
+    if (parser.Parse(sFileDescConveyer)) {
+        mModuleNameList = parser.GetResult();
     }
     if (mModuleNameList.size() > 0) {
         return true;
     }
-    auto sError = parser.GetStrError();
-    Event(nsGameEngine::eParseFileConveyerError, sError);
     return false;
 }
 //------------------------------------------------------------------------
-bool TGameEngine::CreateModules()
+bool TTimeSliceEngine::CreateModules()
 {
-    if (mModuleNameList.size() == 0) {
-        return false;
-    }
-
     for (auto& moduleName : mModuleNameList) {
         IModule* pModule = mDevTool->GetModuleByName(moduleName);
         if (pModule != nullptr) {
             mModulePtrList.push_back(pModule);
-        }         else {
-            Event(nsGameEngine::eModuleNotMade, moduleName);
+        } else {
+            return false;
         }
     }
-    Event(nsGameEngine::eAfterCreateModules);
     return true;
-}
-//------------------------------------------------------------------------
-void TGameEngine::Event(int id, std::string param)
-{
-    std::string sEvent;
-    if (nsGameEngine::GetStrEventsByID(id, sEvent) == false) {
-        return;
-    }
-
-    std::string sError = sEvent;
-    if (param.length()) {
-        sError = fmt::format(sEvent, param);
-    }
-    mDevTool->EventGameEngine(id, sError);
-}
-//------------------------------------------------------------------------
-void TGameEngine::LinkModulesToSynchroPoint()
-{
-    for (auto& pModule : mModulePtrList) {
-        pModule->SetSynchroPoint(mSynchroPoint.get());
-        pModule->SetSelfID(pModule->GetID());
-    }
-    mSynchroPoint->SetupAfterRegister();
 }
 //------------------------------------------------------------------------

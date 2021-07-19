@@ -254,7 +254,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Modules\ModulePhysicEngine.cpp" />
     <ClCompile Include="Modules\ModuleServerLogic.cpp" />
     <ClCompile Include="Modules\ModuleSoundEngine.cpp" />
-    <ClCompile Include="Modules\ModuleTimer.cpp" />
     <ClCompile Include="Scene\Common\ControlCamera.cpp" />
     <ClCompile Include="Scene\Common\GameObject.cpp" />
     <ClCompile Include="Scene\Common\IHandlerScene.cpp" />
@@ -388,7 +387,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Modules\ModulePhysicEngine.h" />
     <ClInclude Include="Modules\ModuleServerLogic.h" />
     <ClInclude Include="Modules\ModuleSoundEngine.h" />
-    <ClInclude Include="Modules\ModuleTimer.h" />
     <ClInclude Include="ReflectionContainers\ComponentsContainer.h" />
     <ClInclude Include="ReflectionContainers\FeaturesContainer.h" />
     <ClInclude Include="ReflectionContainers\HandlersContainer.h" />
