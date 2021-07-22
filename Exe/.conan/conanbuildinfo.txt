@@ -8,7 +8,6 @@ C:/.conan/c887db/1/include
 C:/Users/Gauss/.conan/data/bullet3/2.89/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 C:/Users/Gauss/.conan/data/bullet3/2.89/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include/bullet
 C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/include
-C:/Users/Gauss/.conan/data/entt/3.7.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/include
 
@@ -41,7 +40,6 @@ C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd
 C:/.conan/c887db/1/
 C:/Users/Gauss/.conan/data/bullet3/2.89/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
 C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/
-C:/Users/Gauss/.conan/data/entt/3.7.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib/cmake
@@ -721,71 +719,6 @@ cmake_find_package_multi=GTest
 
 
 
-[includedirs_entt]
-C:/Users/Gauss/.conan/data/entt/3.7.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
-
-[libdirs_entt]
-
-
-[bindirs_entt]
-
-
-[resdirs_entt]
-
-
-[builddirs_entt]
-C:/Users/Gauss/.conan/data/entt/3.7.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
-
-[libs_entt]
-
-
-[system_libs_entt]
-
-
-[defines_entt]
-
-
-[cppflags_entt]
-
-
-[cxxflags_entt]
-
-
-[cflags_entt]
-
-
-[sharedlinkflags_entt]
-
-
-[exelinkflags_entt]
-
-
-[sysroot_entt]
-
-
-[frameworks_entt]
-
-
-[frameworkdirs_entt]
-
-
-[rootpath_entt]
-C:/Users/Gauss/.conan/data/entt/3.7.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
-
-[name_entt]
-entt
-
-[version_entt]
-3.7.1
-
-[generatornames_entt]
-cmake_find_package=EnTT
-cmake_find_package_multi=EnTT
-
-[generatorfilenames_entt]
-
-
-
 [includedirs_zlib]
 C:/Users/Gauss/.conan/data/zlib/1.2.11/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 
@@ -921,7 +854,6 @@ cmake_find_package_multi=BZip2
 stacktrace_addr2line_available=False
 [USER_bullet3]
 [USER_bzip2]
-[USER_entt]
 [USER_fmt]
 [USER_gtest]
 [USER_lz4]
@@ -938,7 +870,6 @@ stacktrace_addr2line_available=False
 BOOST_ROOT=C:\.conan\c887db\1
 [ENV_bullet3]
 [ENV_gtest]
-[ENV_entt]
 [ENV_zlib]
 [ENV_bzip2]
 PATH=["C:\Users\Gauss\.conan\data\bzip2\1.0.8\_\_\package\589a23dff5fdb23a7fb851223eb766480ead0a9a\bin"]

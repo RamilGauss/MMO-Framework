@@ -6,9 +6,28 @@ See for more information LICENSE.md.
 */
 
 #pragma once
-#include "ConveyerPartMaster.h"
+
+#include <list>
+#include <vector>
+#include <set>
+
+#include "InitSystem.h"
+#include "ExecuteSystem.h"
 
 namespace nsECSFramework
 {
-    class DllExport TFeature : public TConveyerPartMaster {};
+    class DllExport TFeature : public TExecuteSystem
+    {
+    protected:
+        std::list<TInitSystem*> mInitSystems;
+        std::list<TExecuteSystem*> mExecuteSystems;
+
+        std::set<TSystem*> mSystems;
+    public:
+        bool Add(TSystem* system);
+        void Remove(TSystem* system);
+        const std::set<TSystem*>* GetSystems();
+
+        void Execute() override final;
+    };
 }

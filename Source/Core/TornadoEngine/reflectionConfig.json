@@ -1,0 +1,35 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "."
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "REFLECTION_ATTRIBUTE",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ],
+        "inheritance": ""
+    },
+    "targetForCodeGeneration": {
+        "directory": "./Generated files",
+        "includeListFileName": "IncludeList",
+        "header": "\tReflectionCodeGenerator",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "JsonSerializerGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "fileName": "ShareDevJsonSerializer",
+                "className": "TShareDevJsonSerializer",
+                "keyValueMap": {}
+            }
+        }
+    }
+}

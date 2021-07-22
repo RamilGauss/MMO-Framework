@@ -551,9 +551,24 @@ void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEnti
     }
 }
 //----------------------------------------------------------------------------------------------------
+void TEntityManager::NotifyOnAddComponent(int index, TEntityID entity, IComponent* pC)
+{
+    NotifyComponent(index, entity, pC, mAddCBVector);
+}
+//---------------------------------------------------------------------------------------
+void TEntityManager::NotifyOnUpdateComponent(int index, TEntityID entity, IComponent* pC)
+{
+    NotifyComponent(index, entity, pC, mUpdateCBVector);
+}
+//---------------------------------------------------------------------------------------
 void TEntityManager::NotifyOnRemoveComponent(int index, TEntityID entity, IComponent* pC)
 {
-    auto pCB = mRemoveCBVector.Begin() + index;
+    NotifyComponent(index, entity, pC, mRemoveCBVector);
+}
+//---------------------------------------------------------------------------------------
+void TEntityManager::NotifyComponent(int index, TEntityID entity, IComponent* pC, TCBVector& cbVector)
+{
+    auto pCB = cbVector.Begin() + index;
     if (pCB[0] == nullptr) {
         return;
     }

@@ -22,37 +22,28 @@
     <ClInclude Include="include\BaseReactiveSystem.h" />
     <ClInclude Include="include\ComplexType.h" />
     <ClInclude Include="include\ComponentContainer.h" />
-    <ClInclude Include="include\ContainerForReactive.h" />
     <ClInclude Include="include\HelpStructs.h" />
     <ClInclude Include="include\IComponent.h" />
     <ClInclude Include="include\Config.h" />
-    <ClInclude Include="include\ConveyerPartMaster.h" />
-    <ClInclude Include="include\ConveyerPartWithGlobalAccess.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\EntityManager.h" />
     <ClInclude Include="include\ExecuteSystem.h" />
     <ClInclude Include="include\Feature.h" />
-    <ClInclude Include="include\GlobalAccess.h" />
-    <ClInclude Include="include\GlobalSystemInitializer.h" />
-    <ClInclude Include="include\GlobalSystemUpdater.h" />
     <ClInclude Include="include\Helper.h" />
-    <ClInclude Include="include\IConveyerPart.h" />
     <ClInclude Include="include\InitSystem.h" />
     <ClInclude Include="include\LinkToList.h" />
     <ClInclude Include="include\LoopList.h" />
-    <ClInclude Include="include\ReactiveOnAddSystem.h" />
-    <ClInclude Include="include\ReactiveOnRemoveSystem.h" />
-    <ClInclude Include="include\ReactiveOnUpdateSystem.h" />
+    <ClInclude Include="include\OnAddInstantReactiveSystem.h" />
+    <ClInclude Include="include\OnRemoveInstantReactiveSystem.h" />
+    <ClInclude Include="include\OnUpdateInstantReactiveSystem.h" />
     <ClInclude Include="include\System.h" />
-    <ClInclude Include="include\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\BaseReactiveSystem.cpp" />
-    <ClCompile Include="src\ConveyerPartMaster.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
-    <ClCompile Include="src\ExecuteSystem.cpp" />
-    <ClCompile Include="src\World.cpp" />
+    <ClCompile Include="src\Feature.cpp" />
+    <ClCompile Include="src\IComponent.cpp" />
+    <ClCompile Include="src\System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

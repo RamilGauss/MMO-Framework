@@ -17,7 +17,6 @@ See for more information LICENSE.md.
 
 #include "BL_Debug.h"
 #include "TimeSliceEngine.h"
-#include "InputCmdTornado.h"
 #include "ShareMisc.h"
 #include "ConverterLocale.h"
 #include "ContainerTypes.h"
@@ -53,20 +52,13 @@ int main(int argc, char** argv)
     TVectorStr vec_argv;
     bool resGet = GetArgvArgcConsole(argc, argv, vec_argv);
 
-    TInputCmdTornado cmdTornado;
-    cmdTornado.Init();
-    cmdTornado.SetArg(vec_argv);
-    if (resGet == false)   {
+    if (argc == 1)   {
         ViewHowUse();
         return -1;
     }
     //-----------------------------------------------------------------  
     auto pTimeSliceEngine = new TTimeSliceEngine;
-    if (cmdTornado.mInput.useConsole) {
-        CreateConsole();
-    }
-    //-----------------------------------------------------------------  
-    pTimeSliceEngine->Work(cmdTornado.mInput.libName, cmdTornado.mInput.param);
+    pTimeSliceEngine->Work(argv[1]);
     delete pTimeSliceEngine;
     return 0;
 }
@@ -83,26 +75,17 @@ void ViewHowUse()
 {
     char* sMsgUtf8_En =
         "Invalid parameter input.\n"
-        "The -d string is the name of the loadable library (required parameter).\n"
-        "\n"
-        "The -c string is the key for showing console. The key is relevant only for Windows.\n"
-        "\n"
-        "The -p string is the key to the embodiment of the game.\n"
-        "\n"
+        "Path to project file.\n"
         "For example:\n"
-        "Launcher.exe -d GameImpl.dll -p port_src 1234 port_self 7777\n";
+        "Launcher.exe \"../MyPath/MyGame.project\"\n";
 
     // Ввиду того, что весь исходный код я переконвертировал в utf-8.
     char* sMsgUtf8_Ru =
         "Некорректный ввод параметров.\n"
-        "Ключ -d имя загружаемой библиотеки (обязательный параметр).\n"
-        "\n"
-        "Ключ -c показывает консоль. Ключ актуален только для Windows.\n"
-        "\n"
-        "Ключ -p строка, адресованная воплощению игры.\n"
+        "Путь к файлу проекта.\n"
         "\n"
         "Например:\n"
-        "Launcher.exe -d GameImpl.dll -p port_src 1234 port_self 7777\n";
+        "Launcher.exe \"../MyPath/MyGame.project\"\n";
 
     int ret = 0;
 #ifdef WIN32  

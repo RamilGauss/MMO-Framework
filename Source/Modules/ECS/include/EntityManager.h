@@ -27,7 +27,6 @@ See for more information LICENSE.md.
 #include "CallBackRegistrator.h"
 #include "ColanderVector.h"
 #include "ComplexType.h"
-#include "ContainerForReactive.h"
 #include "HelpStructs.h"
 
 namespace nsECSFramework
@@ -75,11 +74,11 @@ namespace nsECSFramework
         {// definition must be after declaration!
             auto index = TypeIndex<Component>();
             auto pMap = mUniqueMapVec[index];
-            if ( pMap == nullptr ) {
+            if (pMap == nullptr) {
                 return None;
             }
             auto fit = pMap->find(&c);
-            if ( fit == pMap->end() ) {
+            if (fit == pMap->end()) {
                 return None;
             }
             return fit->second;
@@ -89,7 +88,7 @@ namespace nsECSFramework
         {// definition must be after declaration!
             auto index = TypeIndex<Args...>();
             auto pMap = mValueCollectionVec[index];
-            if ( pMap == nullptr ) {
+            if (pMap == nullptr) {
                 return nullptr;
             }
 
@@ -97,7 +96,7 @@ namespace nsECSFramework
             auto pComplexType = mComplexTypeMemoryPool->Pop();
             Fill(pComplexType, args ...);// берем адреса из стека, безопасно, потому что переменные еще существуют в методе
             auto fit = pMap->find(pComplexType);
-            if ( fit != pMap->end() ) {
+            if (fit != pMap->end()) {
                 pResult = fit->second;
             }
 
@@ -113,34 +112,33 @@ namespace nsECSFramework
             auto pList = (TEntityList*) mHasCollectionVec[index];
             return pList;
         }
-        // мгновенная реакция на удаления для освобождения ресурсов
+
+        // events - instant reactions
+        template<typename Component>
+        TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnAddComponent();
+        template<typename Component>
+        TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnUpdateComponent();
         template<typename Component>
         TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnRemoveComponent();
-    protected:
-        // events
-        friend class TReactiveOnAddSystem;
-        friend class TReactiveOnUpdateSystem;
-        friend class TReactiveOnRemoveSystem;
-
-        TContainerForReactive mAddCollector;
-        TContainerForReactive mUpdateCollector;
-        TContainerForReactive mRemoveCollector;
-
-        template<typename Component>
-        int OnAdd();
-        template<typename Component>
-        int OnUpdate();
-        template<typename Component>
-        int OnRemove();
     private:
-        typedef std::map<TComplexType*, TEntityList*, ptr_less<TComplexType*>> TComplexTypePtrListPtrMap;
-        typedef TColanderVector<TComplexTypePtrListPtrMap*> TComplexTypePtrListPtrMapPtrVec;
+        using TCB_EntPtrCom = TCallBackRegistrator2<TEntityID, IComponent*>;
+        using TCBVector = TColanderVector<TCB_EntPtrCom*>;
 
-        typedef TColanderVector<void*> TVoidPtrVector;
-        typedef TColanderVector<TEntityList*> TListPtrVector;
+        TCBVector mAddCBVector;
+        TCBVector mUpdateCBVector;
+        TCBVector mRemoveCBVector;
 
-        typedef std::map<IComponent*, TEntityID, component_ptr_less<IComponent*>> TUniqueMap;
-        typedef TColanderVector<TUniqueMap*> TUniqueMapPtrVector;
+        template<typename Component>
+        TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnComponent(TCBVector& cbVector);
+
+        using TComplexTypePtrListPtrMap = std::map<TComplexType*, TEntityList*, ptr_less<TComplexType*>>;
+        using TComplexTypePtrListPtrMapPtrVec = TColanderVector<TComplexTypePtrListPtrMap*>;
+
+        using TVoidPtrVector = TColanderVector<void*>;
+        using TListPtrVector = TColanderVector<TEntityList*>;
+
+        using TUniqueMap = std::map<IComponent*, TEntityID, component_ptr_less<IComponent*>>;
+        using TUniqueMapPtrVector = TColanderVector<TUniqueMap*>;
 
         TListPtrVector mHasCollectionVec;// fill in setup
         TComplexTypePtrListPtrMapPtrVec mValueCollectionVec;// fill in setup
@@ -161,8 +159,8 @@ namespace nsECSFramework
         TListPtrVector mOnUpdateCallBack;
         TListPtrVector mOnRemoveCallBack;
 
-        typedef std::list<short> TShortList;
-        typedef TColanderVector<TShortList> TListVector;
+        using TShortList = std::list<short>;
+        using TListVector = TColanderVector<TShortList>;
 
         // в каких коллекциях участвует данный тип
         TListVector mHasTypeInCollection;// fill in setup
@@ -172,10 +170,6 @@ namespace nsECSFramework
         TListVector mHasCollectionWithTypes;// fill in setup
         TListVector mValueCollectionWithTypes;// fill in setup
 
-        typedef TCallBackRegistrator2<TEntityID, IComponent*> TCB_EntPtrCom;
-        typedef TColanderVector<TCB_EntPtrCom*> TCBVector;
-
-        TCBVector mRemoveCBVector;
     public:// inner use
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
@@ -204,7 +198,11 @@ namespace nsECSFramework
         void TryRemoveFromHas(TEntityID eid, int index, TEntity* pEntity);
         void TryRemoveFromValue(TEntityID eid, int index, TEntity* pEntity);
 
+        void NotifyOnAddComponent(int index, TEntityID entity, IComponent* pC);
+        void NotifyOnUpdateComponent(int index, TEntityID entity, IComponent* pC);
         void NotifyOnRemoveComponent(int index, TEntityID entity, IComponent* pC);
+
+        void NotifyComponent(int index, TEntityID entity, IComponent* pC, TCBVector& cbVector);
 
     private:
         boost::dll::experimental::smart_library mLib;
@@ -233,30 +231,33 @@ namespace nsECSFramework
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
-        if ( pEntity == nullptr ) {
+        if (pEntity == nullptr) {
             BL_FIX_BUG();
             return;
         }
 #endif
         Component* pC = nullptr;
         const auto index = TypeIndex<Component>();
-        if ( pEntity->HasComponent(index) ) {
+        auto const has = pEntity->HasComponent(index);
+        if (has) {
             pC = (Component*) pEntity->GetComponent(index);
-
-            mUpdateCollector.Set(index, eid);
 
             TryRemoveFromUnique(eid, pC, index);
             TryRemoveFromValue(eid, index, pEntity);
         } else {
             pC = pEntity->AddComponent<Component>(index);
-            mAddCollector.Set(index, eid);
-
             TryAddInHas(eid, index, pEntity);
         }
 
         *pC = c;
         TryAddInUnique(eid, pC, index);
         TryAddInValue(eid, index, pEntity);
+
+        if (has) {
+            NotifyOnUpdateComponent(index, eid, pC);
+        } else {
+            NotifyOnAddComponent(index, eid, pC);
+        }
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
@@ -277,12 +278,12 @@ namespace nsECSFramework
             BL_FIX_BUG();
         }
 #endif
-        mUpdateCollector.Set(index, eid);
-
         TryRemoveFromUnique(eid, pC, index);
         TryRemoveFromValue(eid, index, pEntity);
         TryAddInUnique(eid, pC, index);
         TryAddInValue(eid, index, pEntity);
+
+        NotifyOnUpdateComponent(index, eid, pC);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
@@ -290,7 +291,7 @@ namespace nsECSFramework
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
-        if ( pEntity == nullptr ) {
+        if (pEntity == nullptr) {
             BL_FIX_BUG();
             return nullptr;
         }
@@ -305,14 +306,14 @@ namespace nsECSFramework
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
-        if ( pEntity == nullptr ) {
+        if (pEntity == nullptr) {
             BL_FIX_BUG();
             return false;
         }
 #endif
         const auto index = TypeIndex<Component>();
         auto pC = (Component*) pEntity->GetComponent(index);
-        if ( pC == nullptr )
+        if (pC == nullptr)
             return false;
         c = *pC;
         return true;
@@ -324,7 +325,7 @@ namespace nsECSFramework
         Component c;
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
-        if ( pEntity == nullptr ) {
+        if (pEntity == nullptr) {
             BL_FIX_BUG();
             return c;
         }
@@ -343,7 +344,7 @@ namespace nsECSFramework
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
-        if ( pEntity == nullptr ) {
+        if (pEntity == nullptr) {
             BL_FIX_BUG();
             return;
         }
@@ -351,7 +352,6 @@ namespace nsECSFramework
         const auto index = TypeIndex<Component>();
         auto pC = (Component*) pEntity->GetComponent(index);
 
-        mRemoveCollector.Set(index, eid);
         NotifyOnRemoveComponent(index, eid, pC);
 
         RemoveComponent(eid, pEntity, index);
@@ -362,34 +362,13 @@ namespace nsECSFramework
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
-        if ( pEntity == nullptr ) {
+        if (pEntity == nullptr) {
             BL_FIX_BUG();
             return false;
         }
 #endif
         const auto index = TypeIndex<Component>();
         return pEntity->HasComponent(index);
-    }
-    //---------------------------------------------------------------------------------------
-    template<typename Component>
-    int TEntityManager::OnAdd()
-    {
-        const auto index = TypeIndex<Component>();
-        return mAddCollector.Register(index);
-    }
-    //---------------------------------------------------------------------------------------
-    template<typename Component>
-    int TEntityManager::OnUpdate()
-    {
-        const auto index = TypeIndex<Component>();
-        return mUpdateCollector.Register(index);
-    }
-    //---------------------------------------------------------------------------------------
-    template<typename Component>
-    int TEntityManager::OnRemove()
-    {
-        const auto index = TypeIndex<Component>();
-        return mRemoveCollector.Register(index);
     }
     //---------------------------------------------------------------------------------------
     template<typename T0>
@@ -408,13 +387,31 @@ namespace nsECSFramework
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
+    TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnAddComponent()
+    {
+        return RegisterOnComponent<Component>(mAddCBVector);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnUpdateComponent()
+    {
+        return RegisterOnComponent<Component>(mUpdateCBVector);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
     TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnRemoveComponent()
     {
+        return RegisterOnComponent<Component>(mRemoveCBVector);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnComponent(TCBVector& cbVector)
+    {
         const auto index = TypeIndex<Component>();
-        auto pCB = mRemoveCBVector[index];
-        if ( pCB == nullptr ) {
+        auto pCB = cbVector[index];
+        if (pCB == nullptr) {
             pCB = new TCB_EntPtrCom();
-            mRemoveCBVector[index] = pCB;
+            cbVector[index] = pCB;
         }
         return pCB;
     }

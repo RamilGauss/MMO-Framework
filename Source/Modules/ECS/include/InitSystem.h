@@ -6,6 +6,7 @@ See for more information LICENSE.md.
 */
 
 #pragma once
+
 #include "System.h"
 
 namespace nsECSFramework
@@ -13,6 +14,8 @@ namespace nsECSFramework
     class DllExport TInitSystem : public TSystem
     {
     public:
-        virtual void Update() { assert(true); }
+        virtual void Init() = 0;
+
+        Type GetType() const override final { return Type::INIT; }
     };
 }

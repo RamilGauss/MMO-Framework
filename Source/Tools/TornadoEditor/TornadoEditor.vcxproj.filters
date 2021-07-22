@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(SolutionDir)\conanfile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Editor.project" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Components">
+      <UniqueIdentifier>{4e513025-ee15-4163-99ec-30d6828b2414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers">
+      <UniqueIdentifier>{c8e04da0-a83d-4314-b290-b33908ddaec0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features">
+      <UniqueIdentifier>{535a7d5e-79e3-422a-9a5f-467903d09eb5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

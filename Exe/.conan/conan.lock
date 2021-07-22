@@ -11,8 +11,7 @@
      "5",
      "6",
      "9",
-     "10",
-     "11"
+     "10"
     ],
     "path": "..\\..\\conanfile.txt",
     "context": "host"
@@ -88,13 +87,6 @@
     "ref": "gtest/1.10.0",
     "options": "build_gmock=True\ndebug_postfix=d\nhide_symbols=False\nno_main=False\nshared=True",
     "package_id": "dc359ea859b0535df467a5278a5ddf943a44739d",
-    "prev": "0",
-    "context": "host"
-   },
-   "11": {
-    "ref": "entt/3.7.1",
-    "options": "",
-    "package_id": "5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9",
     "prev": "0",
     "context": "host"
    }

@@ -1,0 +1,14 @@
+{
+	"info": {
+		"company": "C++ Company",
+		"appName": "TornadoEditor",
+		"license": "MIT"
+	},
+	"binary": "../TornadoEditor_d.dll",
+	"conveyorFile": "../Conveyer.json",
+	"startScenes": [
+		"../Editor.scene"
+	],
+	"args": [ "asdas" ],
+	"useConsole": false
+}

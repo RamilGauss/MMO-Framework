@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Share">
+      <UniqueIdentifier>{b1ea3285-a336-472b-ba58-5b9e220bf77d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{de01d69c-69e2-4911-9504-190d1dd0e8bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ReflectionContainers">
+      <UniqueIdentifier>{6274044d-9b12-4437-992c-ee8e7b7b33e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files">
+      <UniqueIdentifier>{5aea57d2-b753-443a-a3d9-d12708853df1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimeSliceEngine">
+      <UniqueIdentifier>{c028e809-f715-447c-9d98-95163ee8713a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{bdfd7732-0a88-4ea3-be23-3c1e6e23faed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features">
+      <UniqueIdentifier>{7c33f7a1-6a49-4aed-bd5e-b855a8729de9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers">
+      <UniqueIdentifier>{f5edd62c-cacf-4720-9626-e0b8a5cca5c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DevTool">
+      <UniqueIdentifier>{3de5098f-7130-4953-b4b3-58bfd6bb72f8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Share\Components.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\ModuleDev.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\MathTools.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\MathStructs.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\ComponentsJsonSerializer.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\ShareDevJsonSerializer.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeSliceEngine\ConveyerFileParser.cpp">
+      <Filter>TimeSliceEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeSliceEngine\TimeSliceEngine.cpp">
+      <Filter>TimeSliceEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleLogic.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Modules.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModulesAccessor.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="DevTool\DevTool_Share.cpp">
+      <Filter>DevTool</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Share\Components.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\ListModules.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\ModuleDev.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\FrameworkResources.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\MathTools.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\MathStructs.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\ComponentsContainer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\HandlersContainer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\FeaturesContainer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\IJsonSerializer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\IBinaryMarshaller.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\IMyGuiSerializer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\ITypeFactory.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\IEntityManagerExtension.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\ITypeInformation.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionContainers\MenuItemContainer.h">
+      <Filter>ReflectionContainers</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentsJsonSerializer.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\IncludeList.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ShareDevJsonSerializer.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\ConveyerConfig.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\ConveyerFileParser.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\DeveloperTool_DLL.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\IDevTool.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\IModule.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\TimeSliceEngine.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleLogic.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleComponent.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleDataBase.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleGraphicEngine.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngine.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngineClient.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngineMaster.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngineSlave.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngineSuperServer.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModulePhysicEngine.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleSoundEngine.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\Modules.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModulesAccessor.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="DevTool\DevTool_Share.h">
+      <Filter>DevTool</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\ProjectConfig.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="componentsConfig.json" />
+    <None Include="reflectionConfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(SolutionDir)\conanfile.txt" />
+  </ItemGroup>
+</Project>

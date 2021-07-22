@@ -18,6 +18,5 @@ namespace nsECSFramework
     const TEntityID None = (TEntityID) (-1);
 
     using TEntityList = std::list<TEntityID>;
-    using TEntityIdVectorRise = TVectorRise<TEntityID>;
     using TEntityLoopList = TLoopList<TEntityID>;
 }

@@ -6,6 +6,7 @@ See for more information LICENSE.md.
 */
 
 #pragma once
+
 #include "System.h"
 
 namespace nsECSFramework
@@ -13,7 +14,9 @@ namespace nsECSFramework
     class DllExport TExecuteSystem : public TSystem
     {
     public:
-        virtual void Update() final;
         virtual void Execute() = 0;
+
+        Type GetType() const override final { return Type::EXECUTE; }
     };
+
 }

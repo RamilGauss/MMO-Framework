@@ -14,22 +14,10 @@
     <ClInclude Include="include\BaseReactiveSystem.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ConveyerPartMaster.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ConveyerPartWithGlobalAccess.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\ExecuteSystem.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Feature.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GlobalAccess.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\IConveyerPart.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\InitSystem.h">
@@ -38,16 +26,7 @@
     <ClInclude Include="include\System.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\World.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Helper.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GlobalSystemInitializer.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GlobalSystemUpdater.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\LoopList.h">
@@ -71,16 +50,13 @@
     <ClInclude Include="include\ComplexType.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ReactiveOnAddSystem.h">
+    <ClInclude Include="include\OnAddInstantReactiveSystem.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ReactiveOnUpdateSystem.h">
+    <ClInclude Include="include\OnUpdateInstantReactiveSystem.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ReactiveOnRemoveSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ContainerForReactive.h">
+    <ClInclude Include="include\OnRemoveInstantReactiveSystem.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\HelpStructs.h">
@@ -91,22 +67,19 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ConveyerPartMaster.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ExecuteSystem.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\World.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Entity.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\EntityManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\BaseReactiveSystem.cpp">
+    <ClCompile Include="src\System.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Feature.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IComponent.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

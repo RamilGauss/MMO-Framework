@@ -7,32 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <vector>
-
 #include "System.h"
-#include "VectorRise.h"
-#include "SortedThinningRestoreOrder.h"
-#include "SingletonManager.h"
+#include "Config.h"
 
 namespace nsECSFramework
 {
     class DllExport TBaseReactiveSystem : public TSystem
     {
-    protected:
-        int mEventWaiterID;
-        TSortedThinningRestoreOrder<TEntityID> mSTRO;
-        TContainerForReactive* mCollector;
-
-        bool mUseThinning;
     public:
-        TBaseReactiveSystem(bool useThinning = true);
-        virtual bool Filter(TEntityID& eid);
+        Type GetType() const override final { return Type::REACTIVE; }
 
-        virtual void Reactive(TEntityIdVectorRise& entities) = 0;
-
-        void Update() override final;
-
-    protected:
-        virtual void Filter(TEntityIdVectorRise& entities) = 0;
+        virtual void Reactive(TEntityID eid, IComponent* pC) = 0;
     };
 }
