@@ -7,6 +7,7 @@ See for more information LICENSE.md.
 
 #include <stddef.h>
 #include <stdarg.h>
+#include "fmt/core.h"
 
 #include "TimeSliceEngine.h"
 #include "BL_Debug.h"
@@ -15,94 +16,48 @@ See for more information LICENSE.md.
 #include "Logger.h"
 #include "IModule.h"
 #include "FileOperation.h"
-#include "IDevTool.h"
-#include "ConveyerFileParser.h"
-#include "MakerLoaderDLL.h"
-#include "ILoaderDLL.h"
+#include "ModuleManager.h"
 
-#include "fmt/core.h"
+#include "ProjectConfigContainer.h"
+#include "ProjectConfigLoader.h"
+#include "ProjectConfigUnloader.h"
+
+using namespace nsTornadoEngine;
+
+const std::string TTimeSliceEngine::NAME = "TornadoEngine";
 
 TTimeSliceEngine::TTimeSliceEngine()
 {
-    TMakerLoaderDLL maker;
-    mLoaderDLL = maker.New();
+    mModuleMng.reset(new TModuleManager());
 
-    mGetDevTool = nullptr;
-    mFreeDevTool = nullptr;
-    mDevTool = nullptr;
-
-    Init();
+    GetLogger()->Done();
+    GetLogger()->Register(NAME);
 }
 //----------------------------------------------------------------------
 void TTimeSliceEngine::Done()
 {
-    if (mFreeDevTool) {
-        mFreeDevTool(mDevTool);
-    }
-
-    TMakerLoaderDLL maker;
-    maker.Delete(mLoaderDLL);
+    TProjectConfigUnloader projectUnloader;
+    projectUnloader.Unload(Project());
 
     GetLogger()->Done();
 }
 //----------------------------------------------------------------------
-bool TTimeSliceEngine::LoadDLL(std::string& sNameDLL)
+bool TTimeSliceEngine::Work(std::string absPathToProjectFile)
 {
-    if (mLoaderDLL->Init(sNameDLL.data()) == false) {
-        GetLogger(sName)->WriteF_time("LoadDLL() FAIL init.\n");
+    Project()->projectAbsPath = absPathToProjectFile;
+
+    TProjectConfigLoader projectLoader;
+    auto loadResult = projectLoader.Load(Project());
+    if (loadResult == false) {
         return false;
     }
-    mFreeDevTool = (FuncFreeDevTool) mLoaderDLL->Get(StrFreeDevTool);
-    if (mFreeDevTool == nullptr) {
-        GetLogger(sName)->WriteF_time("LoadDLL() FAIL load FuncFree.\n");
-        return false;
-    }
-    mGetDevTool = (FuncGetDevTool) mLoaderDLL->Get(StrGetDevTool);
-    if (mGetDevTool == nullptr) {
-        GetLogger(sName)->WriteF_time("LoadDLL() FAIL load FuncGetdevTool.\n");
-        return false;
-    }
-    if (mDevTool != nullptr) {
-        GetLogger(sName)->WriteF_time("LoadDLL() warning, object was loaded.\n");
-        return true;
-    }
-    mDevTool = mGetDevTool();
-    if (mDevTool == nullptr) {// нет DLL - нет движка.
-        return false;
-    }
-    return true;
-}
-//----------------------------------------------------------------------
-void TTimeSliceEngine::Init()
-{
-    GetLogger()->Done();
-    GetLogger()->Register(sName);
-}
-//------------------------------------------------------------------------
-bool TTimeSliceEngine::LoadProject(std::string& projectPath)
-{
-    return false;
-}
-//------------------------------------------------------------------------
-bool TTimeSliceEngine::Work(std::string pathToProjectFile)// начало работы
-{
-    if (LoadProject(pathToProjectFile) == false) {
-        return false;
-    }
-    if (LoadDLL(mProjectConfig.binary) == false) {
-        return false;
-    }
-    mDevTool->SetVectorParam(mProjectConfig.args);
-    // подготовка конвейера
-    if (PrepareConveyer() == false) {
-        return false;
-    }
+
     if (CreateModules() == false) {
         return false;
     }
 
     Work();
-    // чистка
+
     Done();
     return true;
 }
@@ -127,29 +82,18 @@ void TTimeSliceEngine::Work()
     }
 }
 //------------------------------------------------------------------------
-bool TTimeSliceEngine::PrepareConveyer()
-{
-    auto sFileDescConveyer = mDevTool->GetFileDescConveyer();
-    TConveyerFileParser parser;
-    if (parser.Parse(sFileDescConveyer)) {
-        mModuleNameList = parser.GetResult();
-    }
-    if (mModuleNameList.size() > 0) {
-        return true;
-    }
-    return false;
-}
-//------------------------------------------------------------------------
 bool TTimeSliceEngine::CreateModules()
 {
-    for (auto& moduleName : mModuleNameList) {
-        IModule* pModule = mDevTool->GetModuleByName(moduleName);
+    for (auto& moduleName : Project()->mConveyor.modules) {
+        auto pModule = mModuleMng->GetModuleByName(moduleName);
         if (pModule != nullptr) {
             mModulePtrList.push_back(pModule);
         } else {
             return false;
         }
     }
+
+    mModuleMng->ApplyToModulesSingleton();
     return true;
 }
 //------------------------------------------------------------------------

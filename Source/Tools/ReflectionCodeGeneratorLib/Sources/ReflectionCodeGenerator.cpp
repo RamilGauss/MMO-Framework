@@ -19,6 +19,7 @@ namespace fs = std::filesystem;
 
 using namespace nsReflectionCodeGenerator;
 using namespace nsCppParser;
+using namespace nsBase;
 
 TReflectionCodeGenerator::TReflectionCodeGenerator()
 {

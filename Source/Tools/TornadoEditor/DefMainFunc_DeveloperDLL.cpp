@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 #include "DeveloperTool_DLL.h"
 
-DllExport_C IDevTool* GetDevTool()
+DllExport_C TScenePartsContainer* GetScenePartsContainer()
 {
-    return new TDevTool_EditorMap;
+    return nullptr;
 }
 //-------------------------------------------------------------------
-DllExport_C void FreeDevTool(IDevTool* p)
+DllExport_C void FreeScenePartsContainer(TScenePartsContainer* p)
 {
-    delete p;
+
 }
 //-------------------------------------------------------------------

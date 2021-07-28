@@ -15,14 +15,11 @@ See for more information LICENSE.md.
 class DllExport ILoaderDLL
 {
 public:
-  ILoaderDLL()
-  {
-  };
-  virtual ~ILoaderDLL()
-  {
-  };
+    virtual ~ILoaderDLL()
+    {
+    };
 
-  virtual bool Init( const char* sPath ) = 0;
-  virtual void* Get( const char* nameFunc ) = 0;
-  virtual void Done() = 0;
+    virtual bool Init(const char* sPath) = 0;
+    virtual void* Get(const char* nameFunc) = 0;
+    virtual void Done() = 0;
 };

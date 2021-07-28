@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include <filesystem>
 
-#include "ReflectionCodeGeneratorLib/Sources/PathOperations.h"
+#include "PathOperations.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsBase;
 
 TEST(PathOperation, AbsByRel)
 {

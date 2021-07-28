@@ -18,7 +18,7 @@ const std::string TProgramInfo::VERSION_MAJOR = "2";
 const std::string TProgramInfo::VERSION_MINOR_HIGH = "2";
 const std::string TProgramInfo::VERSION_MINOR_LOW = "1";
 const int TProgramInfo::COUNTER_BUILD = 52;
-const std::string TProgramInfo::INFO = "Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation";
+const std::string TProgramInfo::INFO = "Json, Binary, ImGui, EntityManager, Reflection, TypeInformation";
 
 std::string TProgramInfo::Get()
 {

@@ -1,0 +1,11 @@
+{
+    "modules": [
+        "GraphicEngine",
+        "Logic",
+        "PhysicEngine",
+        "MMOEngine",
+        "NetTransport",
+        "DataBase",
+        "SoundEngine"
+    ]
+}

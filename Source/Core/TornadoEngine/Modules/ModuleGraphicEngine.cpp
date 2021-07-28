@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 #include "BL_Debug.h"
 
 using namespace nsGraphicEngine;
+using namespace nsTornadoEngine;
 
 TModuleGraphicEngine::TModuleGraphicEngine()
 {
@@ -17,12 +18,9 @@ TModuleGraphicEngine::TModuleGraphicEngine()
     mGE->SetDstObject(this);
 }
 //---------------------------------------------------------------------------------
-bool TModuleGraphicEngine::WorkInherit()
+bool TModuleGraphicEngine::Work()
 {
-    InputFromSynchroPoint();
-    bool res = mGE->Work();
-    OutputToSynchroPoint();
-    return res;
+    return mGE->Work();
 }
 //---------------------------------------------------------------------------------
 TGraphicEngine_Ogre_ImGui* TModuleGraphicEngine::GetGE()
@@ -32,13 +30,10 @@ TGraphicEngine_Ogre_ImGui* TModuleGraphicEngine::GetGE()
 //---------------------------------------------------------------------------------
 void TModuleGraphicEngine::StartEvent()
 {
-    mCBStartEvent.Notify();
 }
 //---------------------------------------------------------------------------------
 void TModuleGraphicEngine::StopEvent()
 {
-    mCBStopEvent.Notify();
-
     mGE.reset();
 }
 //---------------------------------------------------------------------------------

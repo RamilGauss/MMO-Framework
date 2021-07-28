@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include <filesystem>
 #include "PathOperations.h"
 
-using namespace nsReflectionCodeGenerator;
+using namespace nsBase;
 
 std::string TPathOperations::CalculatePathBy(const std::string& abs, const std::string& absOrRel)
 {

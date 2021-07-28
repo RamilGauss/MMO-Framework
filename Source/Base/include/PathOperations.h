@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 #include "TypeDef.h"
 
-namespace nsReflectionCodeGenerator
+namespace nsBase
 {
     class DllExport TPathOperations
     {

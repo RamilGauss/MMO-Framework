@@ -9,17 +9,24 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-//###
-class TGraphicEngine;
-class TPhysicEngine;
-class TEntityManager;
-class TSceneManager;
-class TPrefabManager;
-//###
-
+namespace nsECSFramework
+{
+    class TEntityManager;
+}
 
 namespace nsTornadoEngine
 {
+    class TModuleGraphicEngine;
+    class TModulePhysicEngine;
+    class TModuleLogic;
+    class TModuleMMOEngine;
+    class TModuleNetTransport;
+    class TModuleSoundEngine;
+    class TModuleDataBase;
+
+    class TSceneManager;
+    class TPrefabManager;
+
     class TModulesAccessor;
 
     class DllExport TModules
@@ -37,7 +44,7 @@ namespace nsTornadoEngine
         TModuleSoundEngine* pSoundEngine = nullptr;
         TModuleDataBase* pDataBase = nullptr;
 
-        TEntityManager* entMng = nullptr;
+        nsECSFramework::TEntityManager* entMng = nullptr;
         TSceneManager* sceneMng = nullptr;
         TPrefabManager* prefabMng = nullptr;
     public:
@@ -49,7 +56,7 @@ namespace nsTornadoEngine
         TModuleSoundEngine* S() const;
         TModuleDataBase* DB() const;
 
-        TEntityManager* EntMng() const;
+        nsECSFramework::TEntityManager* EntMng() const;
         TSceneManager* SceneMng() const;
         TPrefabManager* PrefabMng() const;
     };

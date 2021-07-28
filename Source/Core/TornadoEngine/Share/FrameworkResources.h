@@ -11,63 +11,44 @@ See for more information LICENSE.md.
 #include <map>
 #include <list>
 
-#pragma REFLECTION_ATTRIBUTE
-struct TBaseResources
+namespace nsTornadoEngine
 {
-    std::string name;
-};
-
 #pragma REFLECTION_ATTRIBUTE
-struct TOgreCfg
-{
-    std::string release;
-    std::string debug;
-
-    std::string Get()
+    struct TOgreCfg
     {
-        return
+        std::string release;
+        std::string debug;
+
+        std::string Get()
+        {
+            return
 #ifdef _DEBUG
-            debug;
+                debug;
 #else
-            release;
+                release;
 #endif
-    }
-};
-
-using TStrStrListMap = std::map<std::string, std::list<std::string>>;
+        }
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-struct TGameEngineResources : TBaseResources
-{
-    std::map<std::string, std::list<std::string>> resources;
-};
+    struct TGraphicEngineResources
+    {
+        std::string terrainPath;
+        TOgreCfg pluginsCfg;
+        TOgreCfg ogreCfg;
+        std::map<std::string, std::list<std::string>> resources;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-struct TGraphicEngineResources : TBaseResources
-{
-    std::string terrainPath;
-    TOgreCfg pluginsCfg;
-    TOgreCfg ogreCfg;
-    std::map<std::string, std::list<std::string>> resources;
-};
+    struct TGameEngineResources
+    {
+        std::list<std::string> startScenes;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-struct TGUIResources : TBaseResources
-{
-    std::map<std::string, std::list<std::string>> resources;
-};
-
-#pragma REFLECTION_ATTRIBUTE
-struct TGameResources : TBaseResources
-{
-    std::map<std::string, std::list<std::string>> resources;
-};
-
-#pragma REFLECTION_ATTRIBUTE
-struct TFrameworkResources
-{
-    TGameEngineResources gameEngine;
-    TGraphicEngineResources graphicEngine;
-    TGUIResources gui;
-    TGameResources game;
-};
+    struct TFrameworkResources
+    {
+        TGraphicEngineResources graphicEngine;
+        TGameEngineResources gameEngine;
+    };
+}

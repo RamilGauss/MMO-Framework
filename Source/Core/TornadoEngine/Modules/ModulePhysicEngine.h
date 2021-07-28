@@ -9,18 +9,21 @@ See for more information LICENSE.md.
 
 #include <memory>
 
-#include "ModuleComponent.h"
+#include "DstModule.h"
 #include "PhysicEngine/PhysicEngine_Bullet.h"
 
-class DllExport TModulePhysicEngine : public TModuleComponent
+namespace nsTornadoEngine
 {
-    std::shared_ptr<TPhysicEngine_Bullet> mPE;
-public:
-    TModulePhysicEngine();
+    class DllExport TModulePhysicEngine : public TDstModule
+    {
+        std::shared_ptr<TPhysicEngine_Bullet> mPE;
+    public:
+        TModulePhysicEngine();
 
-    TPhysicEngine_Bullet* GetPE();
+        void StartEvent() override;
+        bool Work() override;
+        void StopEvent() override;
 
-    virtual void StartEvent();
-    virtual bool WorkInherit();
-    virtual void StopEvent();
-};
+        TPhysicEngine_Bullet* GetPE();
+    };
+}

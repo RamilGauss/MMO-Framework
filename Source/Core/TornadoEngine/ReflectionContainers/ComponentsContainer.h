@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "IJsonSerializer.h"
 #include "IBinaryMarshaller.h"
-#include "IMyGuiSerializer.h"
+#include "IImGuiSerializer.h"
 #include "IEntityManagerExtension.h"
 #include "ITypeInformation.h"
 #include "ITypeFactory.h"
@@ -17,11 +17,11 @@ See for more information LICENSE.md.
 namespace nsTornadoEngine
 {
     // Get via SingletonManager()->Get<ComponentsContainer>();
-    struct DllExport ComponentsContainer
+    struct DllExport TComponentsContainer
     {
         IJsonSerializer* mJson = nullptr;
         IBinaryMarshaller* mBin = nullptr;
-        IMyGuiSerializer* mMygui = nullptr;
+        IImGuiSerializer* mMygui = nullptr;
         IEntityManagerExtension* mEntMng = nullptr;
         ITypeFactory* mTypeFactory = nullptr;
         ITypeInformation* mTypeInfo = nullptr;

@@ -8,51 +8,36 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeDef.h"
-#include <vector>
+
+#include <list>
 #include <memory>
 #include <string>
 
-
 #include "ProjectConfig.h"
 #include "CallBackRegistrator.h"
-#include "DeveloperTool_DLL.h"
 
-class ILoaderDLL;
-class IDevTool;
-class TThreadModules;
-class IModule;
-
-class DllExport TTimeSliceEngine
+namespace nsTornadoEngine
 {
-    const std::string sName = "TimeSliceEngine";
+    class IModule;
+    class TModuleManager;
 
-    ILoaderDLL* mLoaderDLL;
+    class DllExport TTimeSliceEngine
+    {
+        std::list<IModule*> mModulePtrList;
 
-    FuncGetDevTool  mGetDevTool;
-    FuncFreeDevTool mFreeDevTool;
+        std::shared_ptr<TModuleManager> mModuleMng;// Hide from Launcher
 
-    typedef std::vector<std::string> TVecStr;
-    TVecStr mModuleNameList;
+    public:
+        static const std::string NAME;
 
-    typedef std::vector<IModule*> TVecPtrModule;
-    TVecPtrModule mModulePtrList;
+        TTimeSliceEngine();
 
-    IDevTool* mDevTool;
+        bool Work(std::string absPathToProjectFile);// начало работы
+    private:
+        bool CreateModules();
 
-    TProjectConfig mProjectConfig;
-public:
-    TTimeSliceEngine();
-
-    bool Work(std::string pathToProjectFile);// начало работы
-private:
-    void Init();
-    bool LoadProject(std::string& projectPath);
-    bool LoadDLL(std::string& sNameDLL);
-
-    bool CreateModules();
-    bool PrepareConveyer();
-
-    void Work();
-private:
-    void Done();
-};
+        void Work();
+    private:
+        void Done();
+    };
+}

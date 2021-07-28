@@ -8,6 +8,8 @@ See for more information LICENSE.md.
 #include "ModuleDataBase.h"
 #include "HiTimer.h"
 
+using namespace nsTornadoEngine;
+
 TModuleDataBase::TModuleDataBase()
 {
 
@@ -18,7 +20,7 @@ TModuleDataBase::~TModuleDataBase()
 
 }
 //----------------------------------------------------------------------
-bool TModuleDataBase::WorkInherit()
+bool TModuleDataBase::Work()
 {
     //ht_msleep(20);//###
     return true;
@@ -26,11 +28,9 @@ bool TModuleDataBase::WorkInherit()
 //----------------------------------------------------------------------
 void TModuleDataBase::StartEvent()
 {
-    mCBStartEvent.Notify();
 }
 //----------------------------------------------------------------------
 void TModuleDataBase::StopEvent()
 {
-    mCBStopEvent.Notify();
 }
 //----------------------------------------------------------------------

@@ -9,43 +9,15 @@ See for more information LICENSE.md.
 
 #include <set>
 
-#include "ModuleDev.h"
-#include "Components.h"
+#include "DstModule.h"
 
-class TSettings;
-
-class DllExport TModuleLogic : public TModuleDev
+namespace nsTornadoEngine
 {
-    volatile bool flgNeedExit;
-
-    std::string mTerrainPath;
-
-    TSettings* mPtrSettings;
-protected:
-    TComponents      mComp;
-
-    std::set<int> mSetUseID_Module;
-public:
-    TModuleLogic();
-    virtual void ParseCmd(std::vector<std::string>& arg) = 0;
-    virtual void InitLog();
-
-    std::set<int> GetUseID_Module();
-
-    void SetTerrainPath(std::string& path);
-    std::string GetTerrainPath();
-
-    void SetComponents(TComponents components);
-    TComponents* GetC();
-
-    // оставить, потому что не только GUI использует, но и другие объекты из ShareDev
-    // которые не знают про GameImpl
-    static TModuleLogic* Get();
-
-    void Exit(int reason = 0);
-
-    void SetSettings(TSettings* pSettings);
-    TSettings* GetSettings();
-protected:
-    bool NeedExit();
-};
+    class DllExport TModuleLogic : public TDstModule
+    {
+    public:
+        void StartEvent() override;
+        bool Work() override;
+        void StopEvent() override;
+    };
+}

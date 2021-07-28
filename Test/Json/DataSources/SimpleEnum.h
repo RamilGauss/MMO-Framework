@@ -15,12 +15,14 @@ namespace nsSimpleEnum
     enum A0
     {
         _0 = 0,
+        // some comments
         _1
     };
 
     enum class A1
     {
         _0 = 0,
+        // some comments
         _1
     };
 

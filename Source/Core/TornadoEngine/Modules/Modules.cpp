@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
-Ãóäàêîâ Ğàìèëü Ñåğãååâè÷
+Ğ“ÑƒĞ´Ğ°ĞºĞ¾Ğ² Ğ Ğ°Ğ¼Ğ¸Ğ»ÑŒ Ğ¡ĞµÑ€Ğ³ĞµĞµĞ²Ğ¸Ñ‡
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -8,34 +8,62 @@ See for more information LICENSE.md.
 #include "Modules.h"
 #include "SingletonManager.h"
 
+nsTornadoEngine::TModules* nsTornadoEngine::Modules()
+{
+    return SingletonManager()->Get<nsTornadoEngine::TModules>();
+}
+//----------------------------------------------------------
+
 using namespace nsTornadoEngine;
+using namespace nsECSFramework;
 
-TGraphicEngine* TModules::Graphic() const
+TModuleGraphicEngine* TModules::G() const
 {
-    return graphic;
+    return pGraphicEngine;
 }
-
-TPhysicEngine* TModules::Physic() const
+//----------------------------------------------------------
+TModulePhysicEngine* TModules::P() const
 {
-    return physic;
+    return pPhysicEngine;
 }
-
+//----------------------------------------------------------
+TModuleLogic* TModules::L() const
+{
+    return pLogic;
+}
+//----------------------------------------------------------
+TModuleMMOEngine* TModules::MMO() const
+{
+    return pMMOEngine;
+}
+//----------------------------------------------------------
+TModuleNetTransport* TModules::Net() const
+{
+    return pNetTransport;
+}
+//----------------------------------------------------------
+TModuleSoundEngine* TModules::S() const
+{
+    return pSoundEngine;
+}
+//----------------------------------------------------------
+TModuleDataBase* TModules::DB() const
+{
+    return pDataBase;
+}
+//----------------------------------------------------------
 TEntityManager* TModules::EntMng() const
 {
     return entMng;
 }
-
+//----------------------------------------------------------
 TSceneManager* TModules::SceneMng() const
 {
     return sceneMng;
 }
-
+//----------------------------------------------------------
 TPrefabManager* TModules::PrefabMng() const
 {
     return prefabMng;
 }
-
-TModules* nsTornadoEngine::Modules()
-{
-    return SingletonManager()->Get<TModules>();
-}
+//----------------------------------------------------------

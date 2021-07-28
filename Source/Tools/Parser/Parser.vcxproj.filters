@@ -77,7 +77,7 @@
     <ClCompile Include="Sources\VariableDeclarationLexema.cpp">
       <Filter>Lexemas</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\CommentSplitter.cpp">
+    <ClCompile Include="Sources\CommentRemover.cpp">
       <Filter>Splitters</Filter>
     </ClCompile>
   </ItemGroup>
@@ -214,7 +214,7 @@
     <ClInclude Include="Sources\IdentifierToken.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\CommentSplitter.h">
+    <ClInclude Include="Sources\CommentRemover.h">
       <Filter>Splitters</Filter>
     </ClInclude>
   </ItemGroup>

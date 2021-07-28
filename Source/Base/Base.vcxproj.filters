@@ -167,9 +167,6 @@
     <ClInclude Include="include\SetOrderElement.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Settings.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\SHA256.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -371,9 +368,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SetOrderElement.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Settings.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SHA256.cpp">

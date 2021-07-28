@@ -1,23 +1,21 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef ModuleSoundEngineH
-#define ModuleSoundEngineH
+#pragma once
 
-#include "ModuleComponent.h"
+#include "DstModule.h"
 
-class DllExport TModuleSoundEngine : public TModuleComponent
+namespace nsTornadoEngine
 {
-public:
-  TModuleSoundEngine();
-
-  virtual void StartEvent();
-  virtual bool WorkInherit();
-  virtual void StopEvent();
-};
-
-#endif
+    class DllExport TModuleSoundEngine : public TDstModule
+    {
+    public:
+        void StartEvent() override;
+        bool Work() override;
+        void StopEvent() override;
+    };
+}

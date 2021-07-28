@@ -269,7 +269,6 @@
     <ClInclude Include="include\ReversedContainerRise.h" />
     <ClInclude Include="include\SaveToFile.h" />
     <ClInclude Include="include\SetOrderElement.h" />
-    <ClInclude Include="include\Settings.h" />
     <ClInclude Include="include\SHA256.h" />
     <ClInclude Include="include\ShareMisc.h" />
     <ClInclude Include="include\SingletonManager.h" />
@@ -334,7 +333,6 @@
     <ClCompile Include="src\ReversedContainerRise.cpp" />
     <ClCompile Include="src\SaveToFile.cpp" />
     <ClCompile Include="src\SetOrderElement.cpp" />
-    <ClCompile Include="src\Settings.cpp" />
     <ClCompile Include="src\SHA256.cpp" />
     <ClCompile Include="src\ShareLibWin.cpp" />
     <ClCompile Include="src\ShareMisc.cpp" />

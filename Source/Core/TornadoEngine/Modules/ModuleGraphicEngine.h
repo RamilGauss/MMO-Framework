@@ -8,20 +8,23 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "CallBackRegistrator.h"
-#include "ModuleComponent.h"
+#include "DstModule.h"
 #include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 
-class DllExport TModuleGraphicEngine : public TModuleComponent
+namespace nsTornadoEngine
 {
-    std::shared_ptr<nsGraphicEngine::TGraphicEngine_Ogre_ImGui> mGE;
-public:
-    TModuleGraphicEngine();
+    class DllExport TModuleGraphicEngine : public TDstModule
+    {
+        std::shared_ptr<nsGraphicEngine::TGraphicEngine_Ogre_ImGui> mGE;
+    public:
+        TModuleGraphicEngine();
 
-    virtual void StartEvent();
-    virtual bool WorkInherit();
-    virtual void StopEvent();
+        void StartEvent() override;
+        bool Work() override;
+        void StopEvent() override;
 
-    nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE();
-protected:
+        nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE();
+    protected:
 
-};
+    };
+}

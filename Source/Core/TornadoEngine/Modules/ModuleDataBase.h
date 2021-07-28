@@ -5,20 +5,20 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef ModuleDataBaseH
-#define ModuleDataBaseH
+#pragma once
 
-#include "ModuleComponent.h"
+#include "DstModule.h"
 
-class DllExport TModuleDataBase : public TModuleComponent
+namespace nsTornadoEngine
 {
-public:
-    TModuleDataBase();
-    virtual ~TModuleDataBase();
+    class DllExport TModuleDataBase : public TDstModule
+    {
+    public:
+        TModuleDataBase();
+        virtual ~TModuleDataBase();
 
-    virtual void StartEvent();
-    virtual bool WorkInherit();
-    virtual void StopEvent();
-};
-
-#endif
+        virtual void StartEvent();
+        virtual bool Work();
+        virtual void StopEvent();
+    };
+}

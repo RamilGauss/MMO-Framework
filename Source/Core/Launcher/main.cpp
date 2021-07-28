@@ -21,8 +21,11 @@ See for more information LICENSE.md.
 #include "ConverterLocale.h"
 #include "ContainerTypes.h"
 #include "FileOperation.h"
+#include "PathOperations.h"
 
 using namespace std;
+using namespace nsTornadoEngine;
+using namespace nsBase;
 
 // Назначение: упростить отладку игры разработчику (нет необходимости создавать с десяток
 // исполняемых файлов, достаточно написать скрипт)
@@ -57,8 +60,10 @@ int main(int argc, char** argv)
         return -1;
     }
     //-----------------------------------------------------------------  
+    auto projectAbsPath = TPathOperations::CalculatePathBy(argv[0], argv[1]);
+
     auto pTimeSliceEngine = new TTimeSliceEngine;
-    pTimeSliceEngine->Work(argv[1]);
+    pTimeSliceEngine->Work(projectAbsPath);
     delete pTimeSliceEngine;
     return 0;
 }

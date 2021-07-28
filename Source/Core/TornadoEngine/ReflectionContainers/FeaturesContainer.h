@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "ITypeFactory.h"
 #include "ITypeInformation.h"
 
-namespace nsShareDev
+namespace nsTornadoEngine
 {
     struct DllExport TFeaturesContainer
     {

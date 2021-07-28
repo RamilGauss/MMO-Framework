@@ -9,13 +9,13 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-class IDevTool;
+#include "ScenePartsContainer.h"
 
-#define StrGetDevTool  "GetDevTool"
-#define StrFreeDevTool "FreeDevTool"
+#define StrGetScenePartsContainer  "GetScenePartsContainer"
+#define StrFreeScenePartsContainer "FreeScenePartsContainer"
 
-typedef IDevTool* (*FuncGetDevTool)();
-typedef void (*FuncFreeDevTool)(IDevTool*);
+typedef nsTornadoEngine::TScenePartsContainer* (*FuncGetScenePartsContainer)();
+typedef void (*FuncFreeScenePartsContainer)(nsTornadoEngine::TScenePartsContainer*);
 
-DllExport_C IDevTool* GetDevTool();
-DllExport_C void FreeDevTool(IDevTool* p);
+DllExport_C nsTornadoEngine::TScenePartsContainer* GetScenePartsContainer();
+DllExport_C void FreeScenePartsContainer(nsTornadoEngine::TScenePartsContainer* p);

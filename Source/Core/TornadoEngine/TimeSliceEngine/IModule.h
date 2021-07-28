@@ -9,16 +9,21 @@ See for more information LICENSE.md.
 
 #include <string>
 #include "TypeDef.h"
+#include "ModuleType.h"
 
-class DllExport IModule
+namespace nsTornadoEngine
 {
-public:
-    virtual ~IModule() {};
+    class DllExport IModule
+    {
+    public:
+        virtual ~IModule() {};
 
-    virtual bool Work() = 0;
+        ModuleType mType;
 
-    virtual std::string GetName() = 0;
+        virtual void StartEvent() = 0;
 
-    virtual void StartEvent() {}
-    virtual void StopEvent() {}
-};
+        virtual bool Work() = 0;
+
+        virtual void StopEvent() = 0;
+    };
+}

@@ -1,6 +1,6 @@
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
-Ãóäàêîâ Ðàìèëü Ñåðãååâè÷
+Ð“ÑƒÐ´Ð°ÐºÐ¾Ð² Ð Ð°Ð¼Ð¸Ð»ÑŒ Ð¡ÐµÑ€Ð³ÐµÐµÐ²Ð¸Ñ‡
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -9,27 +9,53 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TModulesAccessor::SetGraphic(TGraphicEngine* newValue)
+void TModulesAccessor::SetGraphicEngine(TModuleGraphicEngine* value)
 {
-    Modules()->graphic = newValue;
+    Modules()->pGraphicEngine = value;
 }
-
-void TModulesAccessor::SetPhysic(TPhysicEngine* newValue)
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetPhysicEngine(TModulePhysicEngine* value)
 {
-    Modules()->physic = newValue;
+    Modules()->pPhysicEngine = value;
 }
-
-void TModulesAccessor::SetEntMng(TEntityManager* newValue)
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetLogic(TModuleLogic* value)
 {
-    Modules()->entMng = newValue;
+    Modules()->pLogic = value;
 }
-
-void TModulesAccessor::SetSceneMng(TSceneManager* newValue)
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetMMOEngine(TModuleMMOEngine* value)
 {
-    Modules()->sceneMng = newValue;
+    Modules()->pMMOEngine = value;
 }
-
-void TModulesAccessor::SetPrefabMng(TPrefabManager* newValue)
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetNetTransport(TModuleNetTransport* value)
 {
-    Modules()->prefabMng = newValue;
+    Modules()->pNetTransport = value;
 }
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetSoundEngine(TModuleSoundEngine* value)
+{
+    Modules()->pSoundEngine = value;
+}
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetDataBase(TModuleDataBase* value)
+{
+    Modules()->pDataBase = value;
+}
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetEntMng(nsECSFramework::TEntityManager* value)
+{
+    Modules()->entMng = value;
+}
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetSceneMng(TSceneManager* value)
+{
+    Modules()->sceneMng = value;
+}
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetPrefabMng(TPrefabManager* value)
+{
+    Modules()->prefabMng = value;
+}
+//--------------------------------------------------------------------------

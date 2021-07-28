@@ -11,22 +11,26 @@ See for more information LICENSE.md.
 #include <list>
 #include <string>
 
-#pragma REFLECTION_ATTRIBUTE
-struct TProjectInfo
+#include "TypeDef.h"
+
+namespace nsTornadoEngine
 {
-    std::string company;
-    std::string appName;
-    std::string license;
-};
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TProjectInfo
+    {
+        std::string company;
+        std::string appName;
+        std::string license;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-struct TProjectConfig
-{
-    TProjectInfo info;
+    struct DllExport TProjectConfig
+    {
+        TProjectInfo info;
 
-    std::string binary;
+        std::string binaryFilePath;
 
-    std::string conveyorFile;
-    std::list<std::string> startScenes;
-    std::vector<std::string> args;
-};
+        std::string conveyorFilePath;
+        std::string resourcesFilePath;
+    };
+}

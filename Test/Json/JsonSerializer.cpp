@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_05_26 08:21:54.358
+// File has been generated at 2021_07_27 08:26:23.792
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -1937,10 +1937,6 @@ void TJsonSerializer::_Deserialize(nsSimple::X* p, const Jobj& obj)
 std::string TJsonSerializer::_SerializeEnum(nsSimpleEnum::A0* p)
 {
     switch (*p) {
-        case nsSimpleEnum::A0::_0:
-            return "_0";
-        case nsSimpleEnum::A0::_1:
-            return "_1";
         default:;
     }
     return "";
@@ -1949,8 +1945,6 @@ std::string TJsonSerializer::_SerializeEnum(nsSimpleEnum::A0* p)
 void TJsonSerializer::_DeserializeEnum(std::string& str, nsSimpleEnum::A0* p)
 {
     std::map<std::string, nsSimpleEnum::A0> m;
-    m.insert({"_0", nsSimpleEnum::A0::_0});
-    m.insert({"_1", nsSimpleEnum::A0::_1});
     *p = m[str];
 }
 //---------------------------------------------------------------------------------------

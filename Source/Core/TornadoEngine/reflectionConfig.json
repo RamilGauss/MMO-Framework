@@ -26,8 +26,8 @@
             "JsonSerializerGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
-                "fileName": "ShareDevJsonSerializer",
-                "className": "TShareDevJsonSerializer",
+                "fileName": "TornadoEngineJsonSerializer",
+                "className": "TTornadoEngineJsonSerializer",
                 "keyValueMap": {}
             }
         }

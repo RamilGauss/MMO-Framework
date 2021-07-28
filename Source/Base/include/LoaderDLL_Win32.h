@@ -15,14 +15,14 @@ See for more information LICENSE.md.
 
 class TLoaderDLL_Win32 : public ILoaderDLL
 {
-  HMODULE hModule;
+    HMODULE hModule;
 public:
-  TLoaderDLL_Win32();
-  virtual ~TLoaderDLL_Win32();
+    TLoaderDLL_Win32();
+    virtual ~TLoaderDLL_Win32();
 
-  virtual bool Init( const char* sPath );
-  virtual void* Get( const char* nameFunc );
-  virtual void Done();
+    virtual bool Init(const char* sPath);
+    virtual void* Get(const char* nameFunc);
+    virtual void Done();
 };
 
 #endif

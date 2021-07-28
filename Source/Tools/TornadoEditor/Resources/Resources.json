@@ -1,0 +1,27 @@
+{
+    // All possible resources.
+    "graphicEngine": {
+        "terrainPath": "./Graphic/terrain",
+        "pluginsCfg": {
+            "release": "./Graphic/cfg/plugins.cfg",
+            "debug": "./Graphic/cfg/plugins_d.cfg"
+        },
+        "ogreCfg": {
+            "release": "./Graphic/cfg/ogre.cfg",
+            "debug": "./Graphic/cfg/ogre_d.cfg"
+        },
+        "resources": {
+            "FileSystem": [
+                "./Graphic/materials/programs",
+                "./Graphic/materials/programs/GLSL",
+                "./Graphic/materials/programs/HLSL",
+                "./Graphic/materials/scripts",
+                "./Graphic/materials/textures",
+                "./Graphic/models"
+            ],
+            "Zip": [
+                "./Graphic/packs/SdkTrays.zip"
+            ]
+        }
+    }
+}

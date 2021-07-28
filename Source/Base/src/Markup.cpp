@@ -410,7 +410,7 @@ bool TextEncoding::CanConvert( MCD_CSTR pszToEncoding, MCD_CSTR pszFromEncoding 
 #if defined(MARKUP_ICONV)
 const char* TextEncoding::IConvName( char* szEncoding, MCD_CSTR pszEncoding )
 {
-  // Make upper case char-based name from strEncoding which consists only of characters in the ASCII range
+  // GetModuleByName upper case char-based name from strEncoding which consists only of characters in the ASCII range
   int nEncChar = 0;
   while ( pszEncoding[nEncChar] )
   {
@@ -3679,7 +3679,7 @@ MCD_STR CMarkup::GetTagName() const
 
 bool CMarkup::IntoElem()
 {
-  // Make current element the parent
+  // GetModuleByName current element the parent
   if ( m_iPos && m_nNodeType == MNT_ELEMENT )
   {
     x_SetPos( m_iPos, m_iPosChild, 0 );

@@ -16,60 +16,60 @@ See for more information LICENSE.md.
 
 class DllExport TLogger : public TOnly_N_Object<TLogger>
 {
-  typedef std::vector<TSaveToFile*> TVectorPtr;
-  TVectorPtr mVecPtr;
+    typedef std::vector<TSaveToFile*> TVectorPtr;
+    TVectorPtr mVecPtr;
 
-  struct TDescFile
-  {
-    std::string sExtension;
-    TSaveToFile stf;
-  };
+    struct TDescFile
+    {
+        std::string sExtension;
+        TSaveToFile stf;
+    };
 
-  typedef std::map<std::string, TDescFile*> TMapStrPtr;
-  TMapStrPtr mMapNamePtr;
+    typedef std::map<std::string, TDescFile*> TMapStrPtr;
+    TMapStrPtr mMapNamePtr;
 
-  std::string sPrefix;
+    std::string sPrefix;
 
-  bool flgPrintf;
-  bool flgEnable;
-  bool flgBuffer;
+    bool flgPrintf;
+    bool flgEnable;
+    bool flgBuffer;
 
 protected:
-  TLogger() :                            // запрет на создание
-    TOnly_N_Object<TLogger>( 1 )
-  {
-    flgPrintf = true;
-    flgEnable = true;
-    flgBuffer = true;
-  }// только один объект
+    TLogger() :                            // запрет на создание
+        TOnly_N_Object<TLogger>(1)
+    {
+        flgPrintf = true;
+        flgEnable = true;
+        flgBuffer = true;
+    }// только один объект
 public:
 
-  virtual ~TLogger();
+    virtual ~TLogger();
 
-  // return false if name is same
-  bool Register( const std::string& nameLogger, const std::string& extension = "log" );
+    // return false if name is same
+    bool Register(const std::string& nameLogger, const std::string& extension = "log");
 
-  void Init( const std::string& sPrefix );
-  void Done();
-  //TSaveToFile* Get( const char* nameLog );
-  TSaveToFile* Get( const std::string& nameLog );
+    void Init(const std::string& sPrefix);
+    void Done();
+    //TSaveToFile* Get( const char* nameLog );
+    TSaveToFile* Get(const std::string& nameLog);
 
-  void SetPrintf( bool val );
-  bool GetPrintf();
+    void SetPrintf(bool val);
+    bool GetPrintf();
 
-  void SetEnable( bool val );
-  bool GetEnable();
+    void SetEnable(bool val);
+    bool GetEnable();
 
-  void SetBufferization( bool val );
-  bool GetBufferization();
+    void SetBufferization(bool val);
+    bool GetBufferization();
 
-  int GetCount();
-  TSaveToFile* GetByIndex( int index );
+    int GetCount();
+    TSaveToFile* GetByIndex(int index);
 
 protected:
-  void InitLogger( TSaveToFile* saver, const std::string& sName, const std::string& extension );
+    void InitLogger(TSaveToFile* saver, const std::string& sName, const std::string& extension);
 };
 
 extern DllExport TLogger* GetLogger();
 //extern DllExport TSaveToFile* GetLogger( const char* nameLog );
-extern DllExport TSaveToFile* GetLogger( const std::string& nameLog );
+extern DllExport TSaveToFile* GetLogger(const std::string& nameLog);
