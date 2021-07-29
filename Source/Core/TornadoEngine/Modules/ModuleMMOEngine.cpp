@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TModuleMMOEngine::StartEvent()
-{
-
-}
-//--------------------------------------------------------------------
-bool TModuleMMOEngine::Work()
+bool TModuleMMOEngine::StartEvent()
 {
     return true;
+}
+//--------------------------------------------------------------------
+void TModuleMMOEngine::Work()
+{
+
 }
 //--------------------------------------------------------------------
 void TModuleMMOEngine::StopEvent()

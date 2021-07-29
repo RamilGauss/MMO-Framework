@@ -269,6 +269,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="TimeSliceEngine\ProjectConfigContainer.h" />
     <ClInclude Include="TimeSliceEngine\ProjectConfigLoader.h" />
     <ClInclude Include="TimeSliceEngine\ProjectConfigUnloader.h" />
+    <ClInclude Include="TimeSliceEngine\StopAccessor.h" />
     <ClInclude Include="TimeSliceEngine\TimeSliceEngine.h" />
   </ItemGroup>
   <ItemGroup>

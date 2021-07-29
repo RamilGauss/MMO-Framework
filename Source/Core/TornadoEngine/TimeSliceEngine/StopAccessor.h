@@ -1,3 +1,5 @@
+#pragma once
+
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Гудаков Рамиль Сергеевич
@@ -7,18 +9,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DstModule.h"
+#include "TypeDef.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TModuleDataBase : public TDstModule
+    class DllExport TStopAccessor
     {
+        bool mNeedStop = false;
     public:
-        TModuleDataBase();
-        virtual ~TModuleDataBase();
-
-        bool StartEvent() override;
-        void Work() override;
-        void StopEvent() override;
+        void SetStop() { mNeedStop = true; }
+        bool IsNeedStop() const { return mNeedStop; };
     };
 }

@@ -16,6 +16,8 @@ namespace nsTornadoEngine
 {
     struct DllExport TScenePartsContainer
     {
+        virtual ~TScenePartsContainer() {}
+
         TComponentsContainer* mComponentsContainer = nullptr;
         THandlersContainer* mHandlersContainer = nullptr;
         TFeaturesContainer* mFeaturesContainer = nullptr;

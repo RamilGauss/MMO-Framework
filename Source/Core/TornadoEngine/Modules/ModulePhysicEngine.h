@@ -20,8 +20,8 @@ namespace nsTornadoEngine
     public:
         TModulePhysicEngine();
 
-        void StartEvent() override;
-        bool Work() override;
+        bool StartEvent() override;
+        void Work() override;
         void StopEvent() override;
 
         TPhysicEngine_Bullet* GetPE();

@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TModuleNetTransport::StartEvent()
-{
-
-}
-//--------------------------------------------------------------------
-bool TModuleNetTransport::Work()
+bool TModuleNetTransport::StartEvent()
 {
     return true;
+}
+//--------------------------------------------------------------------
+void TModuleNetTransport::Work()
+{
+
 }
 //--------------------------------------------------------------------
 void TModuleNetTransport::StopEvent()

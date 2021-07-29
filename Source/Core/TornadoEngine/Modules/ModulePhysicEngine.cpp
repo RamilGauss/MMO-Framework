@@ -14,20 +14,19 @@ TModulePhysicEngine::TModulePhysicEngine()
     mPE.reset(new TPhysicEngine_Bullet);
 }
 //---------------------------------------------------------------------------------
-bool TModulePhysicEngine::Work()
+void TModulePhysicEngine::Work()
 {
     mPE->Work();
-    return true;
 }
 //---------------------------------------------------------------------------------
-void TModulePhysicEngine::StartEvent()
+bool TModulePhysicEngine::StartEvent()
 {
-    
+    return true;
 }
 //---------------------------------------------------------------------------------
 void TModulePhysicEngine::StopEvent()
 {
-    
+
 }
 //---------------------------------------------------------------------------------
 TPhysicEngine_Bullet* TModulePhysicEngine::GetPE()

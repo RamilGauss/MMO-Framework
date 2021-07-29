@@ -59,3 +59,8 @@ void TModulesAccessor::SetPrefabMng(TPrefabManager* value)
     Modules()->prefabMng = value;
 }
 //--------------------------------------------------------------------------
+void TModulesAccessor::SetStopAccessor(TStopAccessor* value)
+{
+    Modules()->stopAccessor = value;
+}
+//--------------------------------------------------------------------------

@@ -15,13 +15,14 @@ See for more information LICENSE.md.
 
 #include "ProjectConfig.h"
 #include "CallBackRegistrator.h"
+#include "StopAccessor.h"
 
 namespace nsTornadoEngine
 {
     class IModule;
     class TModuleManager;
 
-    class DllExport TTimeSliceEngine
+    class DllExport TTimeSliceEngine : public TStopAccessor
     {
         std::list<IModule*> mModulePtrList;
 

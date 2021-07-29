@@ -19,8 +19,8 @@ namespace nsTornadoEngine
     public:
         TModuleGraphicEngine();
 
-        void StartEvent() override;
-        bool Work() override;
+        bool StartEvent() override;
+        void Work() override;
         void StopEvent() override;
 
         nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE();

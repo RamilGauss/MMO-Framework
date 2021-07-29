@@ -23,5 +23,8 @@
                 "./Graphic/packs/SdkTrays.zip"
             ]
         }
+    },
+    "gameEngine": {
+        "startScenes": [""]
     }
 }

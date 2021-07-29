@@ -10,19 +10,26 @@ See for more information LICENSE.md.
 #include "MakerLoaderDLL.h"
 #include "TextFile.h"
 #include "TornadoEngineJsonSerializer.h"
+#include "PathOperations.h"
 
 using namespace nsTornadoEngine;
+using namespace nsBase;
 
 TProjectConfigContainer* TProjectConfigLoader::mPcc = nullptr;
 
 bool TProjectConfigLoader::Load(TProjectConfigContainer* pcc)
 {
     mPcc = pcc;
+    
+    mPcc->projectDirAbsPath = TPathOperations::FileDirPath(mPcc->projectAbsPath);
 
     if (!LoadProjectConfig()) {
         return false;
     }
     if (!LoadConveyor()) {
+        return false;
+    }
+    if (!LoadResources()) {
         return false;
     }
     if (!LoadBinary()) {
@@ -71,5 +78,10 @@ bool TProjectConfigLoader::LoadProjectConfig()
 bool TProjectConfigLoader::LoadConveyor()
 {
     return Load(mPcc->GetConveyorAbsPath(), &(mPcc->mConveyor));
+}
+//------------------------------------------------------------------------
+bool TProjectConfigLoader::LoadResources()
+{
+    return Load(mPcc->GetResourcesAbsPath(), &(mPcc->mResources));
 }
 //------------------------------------------------------------------------

@@ -19,27 +19,27 @@ See for more information LICENSE.md.
 
 class DllExport TSrcEvent
 {
-  int mTypeObject;
-  TDstEvent* pDstEvent = nullptr;
+    int mTypeObject;
+    TDstEvent* pDstEvent = nullptr;
 
 public:
 
-  virtual ~TSrcEvent(){}
+    virtual ~TSrcEvent() {}
 
-  void SetSelfID( int srcType );
+    void SetSelfID(int srcType);
 
-  void SetDstObject( TDstEvent* p );
-  // можно добавлять события через источник 
-  // добавить событие
-  void AddEventCopy( void* data, int size );
-  void AddEventCopy( void* data, int size, unsigned int time_create_ms );
+    void SetDstObject(TDstEvent* p);
+    // можно добавлять события через источник 
+    // добавить событие
+    void AddEventCopy(void* data, int size);
+    void AddEventCopy(void* data, int size, unsigned int time_create_ms);
 
-  // Note: to use this methods include "SrcEvent_ex.h"
-  template<typename T>
-  void AddEventWithoutCopy( T* pObject );
-  template<typename T>
-  void AddEventWithoutCopy( T* pObject, unsigned int time_create_ms );
+    // Note: to use this methods include "SrcEvent_ex.h"
+    template<typename T>
+    void AddEventWithoutCopy(T* pObject);
+    template<typename T>
+    void AddEventWithoutCopy(T* pObject, unsigned int time_create_ms);
 
-  void Translate( nsEvent::TEvent* pEvent, bool use_self_info = true );
+    void Translate(nsEvent::TEvent* pEvent, bool use_self_info = true);
 };
 //-------------------------------------------------------------------------------

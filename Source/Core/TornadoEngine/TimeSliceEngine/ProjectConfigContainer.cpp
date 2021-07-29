@@ -21,16 +21,16 @@ using namespace nsBase;
 
 std::string TProjectConfigContainer::GetBinaryAbsPath()
 {
-    return TPathOperations::CalculatePathBy(projectAbsPath, mProjectConfig.binaryFilePath);
+    return TPathOperations::CalculatePathBy(projectDirAbsPath, mProjectConfig.binaryFilePath);
 }
 //---------------------------------------------------------------------
 std::string TProjectConfigContainer::GetConveyorAbsPath()
 {
-    return TPathOperations::CalculatePathBy(projectAbsPath, mProjectConfig.conveyorFilePath);
+    return TPathOperations::CalculatePathBy(projectDirAbsPath, mProjectConfig.conveyorFilePath);
 }
 //---------------------------------------------------------------------
 std::string TProjectConfigContainer::GetResourcesAbsPath()
 {
-    return TPathOperations::CalculatePathBy(projectAbsPath, mProjectConfig.resourcesFilePath);
+    return TPathOperations::CalculatePathBy(projectDirAbsPath, mProjectConfig.resourcesFilePath);
 }
 //---------------------------------------------------------------------

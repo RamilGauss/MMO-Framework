@@ -9,14 +9,13 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TModuleLogic::StartEvent()
-{
-
-}
-//--------------------------------------------------------------------
-bool TModuleLogic::Work()
+bool TModuleLogic::StartEvent()
 {
     return true;
+}
+//--------------------------------------------------------------------
+void TModuleLogic::Work()
+{
 }
 //--------------------------------------------------------------------
 void TModuleLogic::StopEvent()

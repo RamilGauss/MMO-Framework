@@ -24,7 +24,9 @@ namespace nsGraphicEngine
         virtual void AddResource(const std::string& name, const std::string& type) = 0;
         virtual bool InitMyGUI() = 0;
 
-        virtual bool Work() = 0;
+        virtual void Work() = 0;
+
+        virtual void Close() = 0;
 
         virtual int GetModifierKeyBoard() = 0;
 

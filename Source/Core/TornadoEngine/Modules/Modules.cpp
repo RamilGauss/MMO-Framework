@@ -67,3 +67,8 @@ TPrefabManager* TModules::PrefabMng() const
     return prefabMng;
 }
 //----------------------------------------------------------
+TStopAccessor* TModules::StopAccessor() const
+{
+    return stopAccessor;
+}
+//----------------------------------------------------------

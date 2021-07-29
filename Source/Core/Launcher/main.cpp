@@ -52,15 +52,14 @@ int main(int argc, char** argv)
 
     SetCurrentPathByFile(argv[0]);
 
-    TVectorStr vec_argv;
-    bool resGet = GetArgvArgcConsole(argc, argv, vec_argv);
-
     if (argc == 1)   {
         ViewHowUse();
         return -1;
     }
-    //-----------------------------------------------------------------  
-    auto projectAbsPath = TPathOperations::CalculatePathBy(argv[0], argv[1]);
+    //-----------------------------------------------------------------
+    auto currentDir = TPathOperations::GetCurrentDir();
+
+    auto projectAbsPath = TPathOperations::CalculatePathBy(currentDir, argv[1]);
 
     auto pTimeSliceEngine = new TTimeSliceEngine;
     pTimeSliceEngine->Work(projectAbsPath);

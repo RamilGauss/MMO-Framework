@@ -17,15 +17,19 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
+    class TStopAccessor;
     class TModuleManager
     {
         nsECSFramework::TEntityManager mEntMng;
         TSceneManager mSceneMng;
         TPrefabManager mPrefabMng;
+        TStopAccessor* mStopAccessor = nullptr;
 
         std::list<IModule*> mModules;
 
     public:
+        TModuleManager(TStopAccessor* stopAccessor);
+
         IModule* GetModuleByName(ModuleType moduleType);
 
         void ApplyToModulesSingleton();

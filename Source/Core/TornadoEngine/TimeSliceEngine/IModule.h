@@ -20,9 +20,9 @@ namespace nsTornadoEngine
 
         ModuleType mType;
 
-        virtual void StartEvent() = 0;
+        virtual bool StartEvent() = 0;
 
-        virtual bool Work() = 0;
+        virtual void Work() = 0;
 
         virtual void StopEvent() = 0;
     };

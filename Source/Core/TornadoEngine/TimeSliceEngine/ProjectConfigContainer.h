@@ -22,6 +22,7 @@ namespace nsTornadoEngine
     {
     public:
         std::string projectAbsPath;
+        std::string projectDirAbsPath;
 
         // Loaded
         TProjectConfig mProjectConfig;

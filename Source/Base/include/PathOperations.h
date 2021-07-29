@@ -16,5 +16,7 @@ namespace nsBase
     {
     public:
         static std::string CalculatePathBy(const std::string& abs, const std::string& absOrRel);
+        static std::string FileDirPath(const std::string& filePath);
+        static std::string GetCurrentDir();
     };
 }

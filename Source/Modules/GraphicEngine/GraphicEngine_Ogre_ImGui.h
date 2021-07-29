@@ -32,7 +32,6 @@ namespace nsGraphicEngine
         public OgreBites::SampleContext,
         public TSrcEvent /*for generation keyboard and mouse events(unused by GUI)*/
     {
-        bool mExit = false;
         std::string mPathPluginCfg;
         std::string mPathOgreCfg;
 
@@ -46,7 +45,9 @@ namespace nsGraphicEngine
         void AddResource(const std::string& name, const std::string& type) override;
         bool InitMyGUI() override;
         // return false - need exit
-        bool Work() override;
+        void Work() override;
+
+        void Close() override;
 
         int GetModifierKeyBoard() override { return 0; }
 

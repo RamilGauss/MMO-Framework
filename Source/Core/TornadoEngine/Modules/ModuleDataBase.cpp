@@ -20,14 +20,14 @@ TModuleDataBase::~TModuleDataBase()
 
 }
 //----------------------------------------------------------------------
-bool TModuleDataBase::Work()
+void TModuleDataBase::Work()
 {
     //ht_msleep(20);//###
-    return true;
 }
 //----------------------------------------------------------------------
-void TModuleDataBase::StartEvent()
+bool TModuleDataBase::StartEvent()
 {
+    return true;
 }
 //----------------------------------------------------------------------
 void TModuleDataBase::StopEvent()

@@ -20,6 +20,11 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
+TModuleManager::TModuleManager(TStopAccessor* stopAccessor)
+{
+    mStopAccessor = stopAccessor;
+}
+//----------------------------------------------------------------------------
 IModule* TModuleManager::GetModuleByName(ModuleType moduleType)
 {
     IModule* module = nullptr;
@@ -48,7 +53,7 @@ IModule* TModuleManager::GetModuleByName(ModuleType moduleType)
     }
     module->mType = moduleType;
     mModules.push_back(module);
-    return nullptr;
+    return module;
 }
 //----------------------------------------------------------------------------
 void TModuleManager::ApplyToModulesSingleton()
@@ -83,5 +88,6 @@ void TModuleManager::ApplyToModulesSingleton()
     moduleAccessor.SetEntMng(&mEntMng);
     moduleAccessor.SetSceneMng(&mSceneMng);
     moduleAccessor.SetPrefabMng(&mPrefabMng);
+    moduleAccessor.SetStopAccessor(mStopAccessor);
 }
 //----------------------------------------------------------------------------

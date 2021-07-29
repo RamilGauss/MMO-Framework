@@ -26,5 +26,6 @@ namespace nsTornadoEngine
         static void SetEntMng(nsECSFramework::TEntityManager* value);
         static void SetSceneMng(TSceneManager* value);
         static void SetPrefabMng(TPrefabManager* value);
+        static void SetStopAccessor(TStopAccessor* value);
     };
 }

@@ -27,6 +27,8 @@ namespace nsTornadoEngine
     class TSceneManager;
     class TPrefabManager;
 
+    class TStopAccessor;
+
     class TModulesAccessor;
 
     class DllExport TModules
@@ -47,6 +49,8 @@ namespace nsTornadoEngine
         nsECSFramework::TEntityManager* entMng = nullptr;
         TSceneManager* sceneMng = nullptr;
         TPrefabManager* prefabMng = nullptr;
+
+        TStopAccessor* stopAccessor = nullptr;
     public:
         TModuleGraphicEngine* G() const;
         TModulePhysicEngine* P() const;
@@ -59,6 +63,8 @@ namespace nsTornadoEngine
         nsECSFramework::TEntityManager* EntMng() const;
         TSceneManager* SceneMng() const;
         TPrefabManager* PrefabMng() const;
+
+        TStopAccessor* StopAccessor() const;
     };
 
     extern DllExport TModules* Modules();

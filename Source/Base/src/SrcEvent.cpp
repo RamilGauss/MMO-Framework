@@ -11,34 +11,33 @@ See for more information LICENSE.md.
 
 using namespace std;
 
-void TSrcEvent::SetDstObject( TDstEvent* p )
+void TSrcEvent::SetDstObject(TDstEvent* p)
 {
-  pDstEvent = p;
+    pDstEvent = p;
 }
 //------------------------------------------------------------
-void TSrcEvent::AddEventCopy( void* data, int size )
+void TSrcEvent::AddEventCopy(void* data, int size)
 {
-  pDstEvent->AddEventInQueueCopy( mTypeObject, this, data, size, (unsigned int) (-1) );
+    pDstEvent->AddEventInQueueCopy(mTypeObject, this, data, size, (unsigned int) (-1));
 }
 //------------------------------------------------------------
-void TSrcEvent::AddEventCopy( void* data, int size, unsigned int time_create_ms )
+void TSrcEvent::AddEventCopy(void* data, int size, unsigned int time_create_ms)
 {
-  pDstEvent->AddEventInQueueCopy( mTypeObject, this, data, size, time_create_ms );
+    pDstEvent->AddEventInQueueCopy(mTypeObject, this, data, size, time_create_ms);
 }
 //------------------------------------------------------------
-void TSrcEvent::SetSelfID( int srcType )
+void TSrcEvent::SetSelfID(int srcType)
 {
-  mTypeObject = srcType;
+    mTypeObject = srcType;
 }
 //------------------------------------------------------------
-void TSrcEvent::Translate( nsEvent::TEvent* pEvent, bool use_self_info )
+void TSrcEvent::Translate(nsEvent::TEvent* pEvent, bool use_self_info)
 {
-  if( use_self_info )
-  {
-    pEvent->srcType = mTypeObject;
-    pEvent->pSrc = this;
-  }
+    if (use_self_info) {
+        pEvent->srcType = mTypeObject;
+        pEvent->pSrc = this;
+    }
 
-  pDstEvent->Translate( pEvent );
+    pDstEvent->Translate(pEvent);
 }
 //------------------------------------------------------------

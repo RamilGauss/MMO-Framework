@@ -19,6 +19,7 @@ std::string TPathOperations::CalculatePathBy(const std::string& abs, const std::
 
     auto absPath = std::filesystem::path(abs);
 
+    absPath += std::filesystem::path::preferred_separator;
     absPath += absOrRelPath;
 
     try {
@@ -29,4 +30,19 @@ std::string TPathOperations::CalculatePathBy(const std::string& abs, const std::
 
     }
     return std::string();
+}
+
+std::string TPathOperations::FileDirPath(const std::string& filePath)
+{
+    auto filePathPath = std::filesystem::path(filePath);
+    if (filePathPath.empty()) {
+        return filePath;
+    }
+
+    return filePathPath.remove_filename().string();
+}
+
+std::string TPathOperations::GetCurrentDir()
+{
+    return std::filesystem::current_path().string();
 }

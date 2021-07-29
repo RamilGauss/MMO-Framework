@@ -84,8 +84,6 @@ bool TGraphicEngine_Ogre_ImGui::InitMyGUI()
 //---------------------------------------------------------------------
 bool TGraphicEngine_Ogre_ImGui::frameStarted(const Ogre::FrameEvent& evt)
 {
-    pollEvents();
-
     // manually call sample callback to ensure correct order
     return !isCurrentSamplePaused() ? mCurrentSample->frameStarted(evt) : true;
 }
@@ -108,17 +106,16 @@ bool TGraphicEngine_Ogre_ImGui::frameEnded(const Ogre::FrameEvent& evt)
     return true;
 }
 //---------------------------------------------------------------------
-bool TGraphicEngine_Ogre_ImGui::Work()
+void TGraphicEngine_Ogre_ImGui::Work()
 {
     pollEvents();
 
     auto renderResult = mRoot->renderOneFrame();
-
-    if (!renderResult || mExit) {
-        closeApp();
-        return false;
-    }
-    return true;
+}
+//---------------------------------------------------------------------
+void TGraphicEngine_Ogre_ImGui::Close()
+{
+    closeApp();
 }
 //---------------------------------------------------------------------
 Ogre::Root* TGraphicEngine_Ogre_ImGui::GetRoot()

@@ -24,6 +24,7 @@ namespace nsTornadoEngine
         static bool LoadProjectConfig();
         static bool LoadConveyor();
         static bool LoadBinary();
+        static bool LoadResources();
 
         template<typename ... Args>
         static void Log(const char* format, Args && ... args)

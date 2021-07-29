@@ -200,6 +200,9 @@
     <ClInclude Include="TimeSliceEngine\ProjectConfigUnloader.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
+    <ClInclude Include="TimeSliceEngine\StopAccessor.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="componentsConfig.json" />

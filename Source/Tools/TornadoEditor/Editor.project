@@ -4,10 +4,7 @@
 		"appName": "TornadoEditor",
 		"license": "MIT"
 	},
-	"binary": "../TornadoEditor_d.dll",
-	"conveyorFile": "../Conveyor.json",
-	"startScenes": [
-		"../Editor.scene"
-	],
-	"useConsole": false
+	"binaryFilePath": "../../../Exe/TornadoEditor_d.dll",
+	"conveyorFilePath": "./Resources/Game/Conveyor.json",
+	"resourcesFilePath": "./Resources/Resources.json"
 }

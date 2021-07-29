@@ -28,7 +28,7 @@ const std::string TTimeSliceEngine::NAME = "TornadoEngine";
 
 TTimeSliceEngine::TTimeSliceEngine()
 {
-    mModuleMng.reset(new TModuleManager());
+    mModuleMng.reset(new TModuleManager(this));
 
     GetLogger()->Done();
     GetLogger()->Register(NAME);
@@ -65,15 +65,17 @@ bool TTimeSliceEngine::Work(std::string absPathToProjectFile)
 void TTimeSliceEngine::Work()
 {
     for (auto& pModule : mModulePtrList) {
-        pModule->StartEvent();
+        if (!pModule->StartEvent()) {
+            return;
+        }
     }
 
-    bool needStop = false;
-    while (!needStop) {
+    while (true) {
         for (auto& pModule : mModulePtrList) {
-            if (pModule->Work() == false) {
-                needStop = true;
-            }
+            pModule->Work();
+        }
+        if (IsNeedStop()) {
+            break;
         }
     }
 
