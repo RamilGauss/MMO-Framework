@@ -14,8 +14,10 @@ See for more information LICENSE.md.
 #include "ShareMisc.h"
 #include "HiTimer.h"
 #include "Logger.h"
-#include "IModule.h"
 #include "FileOperation.h"
+
+#include "Modules.h"
+#include "IModule.h"
 #include "ModuleManager.h"
 
 #include "ProjectConfigContainer.h"
@@ -69,6 +71,8 @@ void TTimeSliceEngine::Work()
             return;
         }
     }
+
+    Modules()->SceneMng()->Init();
 
     while (true) {
         for (auto& pModule : mModulePtrList) {

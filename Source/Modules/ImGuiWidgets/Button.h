@@ -13,26 +13,16 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    class TButton : public TWidget
+    class DllExport TButton : public TWidget
     {
     public:
-        TButton(const std::string& name) : TWidget(name) {}
+        TButton(const std::string& name);
 
         using TCallback = std::function<void(TButton*)>;
 
-        void SetCallback(TCallback cb)
-        {
-            mCallback = cb;
-        }
+        void SetCallback(TCallback cb);
     protected:
-        void RenderInheritance() override final
-        {
-            if (ImGui::Button(GetName())) {
-                if (mCallback) {
-                    mCallback(this);
-                }
-            }
-        }
+        void RenderInheritance() override final;
 
         TCallback mCallback;
     };

@@ -10,12 +10,13 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "imgui.h"
+#include "Typedef.h"
 
 #include "IRenderable.h"
 
 namespace nsImGuiWidgets
 {
-    class TWidget : public nsGraphicEngine::IRenderable
+    class DllExport TWidget : public nsGraphicEngine::IRenderable
     {
     protected:
         std::string mName;
@@ -25,31 +26,21 @@ namespace nsImGuiWidgets
         ImVec2 mSize;
         ImVec2 mPos;
     public:
-        TWidget(const std::string& name) { mName = name; }
+        TWidget(const std::string& name);
 
-        const char* GetName() { return mName.c_str(); }
+        const char* GetName();
 
-        bool IsShown() { return mIsShown; }
+        bool IsShown();
 
-        void SetShow(bool value) { mIsShown = value; }
+        void SetShow(bool value);
 
-        void Show() { SetShow(true); }
-        void Hide() { SetShow(false); }
+        void Show();
+        void Hide();
 
-        const ImVec2* GetPos() { return &mPos; }
-        const ImVec2* GetSize() { return &mSize; }
+        const ImVec2* GetPos();
+        const ImVec2* GetSize();
 
-        void Render() override final
-        {
-            if (!mIsShown) {
-                return;
-            }
-
-            RenderInheritance();
-
-            mSize = ImGui::GetWindowSize();
-            mPos = ImGui::GetWindowPos();
-        }
+        void Render() override final;
     protected:
         virtual void RenderInheritance() = 0;
     };

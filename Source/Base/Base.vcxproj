@@ -236,7 +236,6 @@
     <ClInclude Include="include\ILoaderDLL.h" />
     <ClInclude Include="include\InfoFile.h" />
     <ClInclude Include="include\InputByCmd.h" />
-    <ClInclude Include="include\IXML.h" />
     <ClInclude Include="include\JsonMaster.h" />
     <ClInclude Include="include\JsonPopMaster.h" />
     <ClInclude Include="include\JsonPushMaster.h" />
@@ -249,10 +248,7 @@
     <ClInclude Include="include\MacroMaker.h" />
     <ClInclude Include="include\MacroMaker_Prepare.h" />
     <ClInclude Include="include\MakerLoaderDLL.h" />
-    <ClInclude Include="include\MakerXML.h" />
     <ClInclude Include="include\MapCallBack.h" />
-    <ClInclude Include="include\MapXML_Field.h" />
-    <ClInclude Include="include\Markup.h" />
     <ClInclude Include="include\Marshaller.h" />
     <ClInclude Include="include\MD5.h" />
     <ClInclude Include="include\MemoryObjectPool.h" />
@@ -279,16 +275,12 @@
     <ClInclude Include="include\SrcEvent_ex.h" />
     <ClInclude Include="include\StateMachine.h" />
     <ClInclude Include="include\StatisticValue.h" />
-    <ClInclude Include="include\StorePathResources.h" />
-    <ClInclude Include="include\SynchroAbonent.h" />
-    <ClInclude Include="include\SynchroPoint.h" />
     <ClInclude Include="include\TextFile.h" />
     <ClInclude Include="include\ThreadBoost.h" />
     <ClInclude Include="include\TimeManager.h" />
     <ClInclude Include="include\TypeDef.h" />
     <ClInclude Include="include\RunTimeTypeIndex.h" />
     <ClInclude Include="include\VectorRise.h" />
-    <ClInclude Include="include\XML_Markup.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp" />
@@ -309,17 +301,13 @@
     <ClCompile Include="src\HiTimer.cpp" />
     <ClCompile Include="src\InfoFile.cpp" />
     <ClCompile Include="src\InputByCmd.cpp" />
-    <ClCompile Include="src\IXML.cpp" />
     <ClCompile Include="src\JsonPushMaster.cpp" />
     <ClCompile Include="src\LoaderDLL_Unix.cpp" />
     <ClCompile Include="src\LoaderDLL_Win32.cpp" />
     <ClCompile Include="src\LoadFromFile.cpp" />
     <ClCompile Include="src\Logger.cpp" />
     <ClCompile Include="src\MakerLoaderDLL.cpp" />
-    <ClCompile Include="src\MakerXML.cpp" />
     <ClCompile Include="src\MapCallBack.cpp" />
-    <ClCompile Include="src\MapXML_Field.cpp" />
-    <ClCompile Include="src\Markup.cpp" />
     <ClCompile Include="src\MD5.cpp" />
     <ClCompile Include="src\Mutex.cpp" />
     <ClCompile Include="src\Only_N_Object.cpp" />
@@ -339,14 +327,10 @@
     <ClCompile Include="src\SingletonManager.cpp" />
     <ClCompile Include="src\SortedVecWithKeyMap.cpp" />
     <ClCompile Include="src\SrcEvent.cpp" />
-    <ClCompile Include="src\StorePathResources.cpp" />
-    <ClCompile Include="src\SynchroAbonent.cpp" />
-    <ClCompile Include="src\SynchroPoint.cpp" />
     <ClCompile Include="src\TextFile.cpp" />
     <ClCompile Include="src\ThreadBoost.cpp" />
     <ClCompile Include="src\TimeManager.cpp" />
     <ClCompile Include="src\RunTimeTypeIndex.cpp" />
-    <ClCompile Include="src\XML_Markup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Doc\SoftwareDevelopmentPrinciples.md" />

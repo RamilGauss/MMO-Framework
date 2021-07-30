@@ -16,30 +16,29 @@ template <class TClass>
 class TListPtr
 {
 public:
-  typedef std::list<TClass*> T;
-  ~TListPtr()
-  {
-    Clear();
-  }
-  T* Get()
-  {
-    return &mList;
-  }
-  T* operator ->()
-  {
-    return Get();
-  }
-  void Clear()
-  {
-    typename T::iterator bit = mList.begin();
-    typename T::iterator eit = mList.end();
-    while( bit != eit )
+    typedef std::list<TClass*> T;
+    ~TListPtr()
     {
-      delete *bit;
-      bit++;
+        Clear();
     }
-    mList.clear();
-  }
+    T* Get()
+    {
+        return &mList;
+    }
+    T* operator ->()
+    {
+        return Get();
+    }
+    void Clear()
+    {
+        typename T::iterator bit = mList.begin();
+        typename T::iterator eit = mList.end();
+        while (bit != eit) {
+            delete* bit;
+            bit++;
+        }
+        mList.clear();
+    }
 protected:
-  T mList;
+    T mList;
 };

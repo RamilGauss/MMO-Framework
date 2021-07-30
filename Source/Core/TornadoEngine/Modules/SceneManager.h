@@ -8,11 +8,15 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeDef.h"
+#include <string>
 
 namespace nsTornadoEngine
 {
     class DllExport TSceneManager
     {
+    public:
+        void Init();
 
+        void Load(const std::string& absPath);
     };
 }

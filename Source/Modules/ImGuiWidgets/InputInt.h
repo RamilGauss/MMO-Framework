@@ -11,15 +11,11 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    class TInputInt : public TWidget
+    class DllExport TInputInt : public TWidget
     {
     public:
-        TInputInt(const std::string& name) : TWidget(name) {}
+        TInputInt(const std::string& name);
     protected:
-        void RenderInheritance() override final
-        {
-            static int v = 0;
-            ImGui::InputInt("INT", &v);
-        }
+        void RenderInheritance() override final;
     };
 }

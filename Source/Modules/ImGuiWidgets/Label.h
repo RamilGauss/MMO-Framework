@@ -13,25 +13,15 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    class TLabel : public TWidget
+    class DllExport TLabel : public TWidget
     {
         std::string mText;
     public:
-        TLabel(const std::string& name) : TWidget(name) {}
+        TLabel(const std::string& name);
 
-        void SetText(const char* s)
-        {
-            mText = s;
-        }
-        void AppendText(const char* s)
-        {
-            mText += s;
-        }
+        void SetText(const char* s);
+        void AppendText(const char* s);
     protected:
-        void RenderInheritance() override final
-        {
-            ImVec4 color(1,1,1,1);
-            ImGui::TextColored(color, mText.c_str());
-        }
+        void RenderInheritance() override final;
     };
 }

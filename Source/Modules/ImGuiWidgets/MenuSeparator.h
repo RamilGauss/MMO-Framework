@@ -11,28 +11,16 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    class TMenuSeparator : public TWidget
+    class DllExport TMenuSeparator : public TWidget
     {
     public:
-        TMenuSeparator(const std::string& menu, const std::string& name) : TWidget(name)
-        {
-            mMenu = menu;
-        }
+        TMenuSeparator(const std::string& menu, const std::string& name);
     protected:
         std::string mMenu;
 
         bool mSelected = false;
         bool mEnabled = true;
 
-        void RenderInheritance() override final
-        {
-            if (ImGui::BeginMainMenuBar()) {
-                if (ImGui::BeginMenu(mMenu.c_str())) {
-                    ImGui::Separator();
-                    ImGui::EndMenu();
-                }
-                ImGui::EndMainMenuBar();
-            }
-        }
+        void RenderInheritance() override final;
     };
 }

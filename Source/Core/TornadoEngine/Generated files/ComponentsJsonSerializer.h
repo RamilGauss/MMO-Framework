@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, ImGui, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_07_29 22:27:50.716
+// File has been generated at 2021_07_30 08:28:34.204
 	
 #pragma once
 
@@ -10,7 +10,7 @@
 #include <string>
 #include <functional>
 #include "JsonMaster.h"
-#include "IncludeList.h"
+#include "ComponentIncludeList.h"
 
 namespace nsTornadoEngine
 {
@@ -38,6 +38,18 @@ namespace nsTornadoEngine
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
     
     public:
+        static void _Serialize(nsTornadoEngine::TGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TNameComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TNameComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TParentGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TParentGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TSceneGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TSceneGuidComponent* p, const Jobj& obj);
+        
     };
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>

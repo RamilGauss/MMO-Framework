@@ -18,7 +18,7 @@
     },
     "targetForCodeGeneration": {
         "directory": "./Generated files",
-        "includeListFileName": "IncludeList",
+        "includeListFileName": "ComponentIncludeList",
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,

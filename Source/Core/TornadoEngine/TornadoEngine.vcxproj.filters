@@ -25,6 +25,9 @@
     <Filter Include="Handlers">
       <UniqueIdentifier>{f5edd62c-cacf-4720-9626-e0b8a5cca5c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Common">
+      <UniqueIdentifier>{d7db7ef9-518c-48a3-bb9a-b04fc610ff63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -81,6 +84,12 @@
     <ClCompile Include="Modules\Modules.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\SceneManager.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\PrefabManager.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\ModuleType.h">
@@ -126,9 +135,6 @@
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\ComponentsJsonSerializer.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\IncludeList.h">
       <Filter>Generated files</Filter>
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ConveyorConfig.h">
@@ -202,6 +208,27 @@
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\StopAccessor.h">
       <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\NameComponent.h">
+      <Filter>Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\ParentGuidComponent.h">
+      <Filter>Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\GuidComponent.h">
+      <Filter>Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\SceneGuidComponent.h">
+      <Filter>Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\TestFeature.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentIncludeList.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ReflectionIncludeList.h">
+      <Filter>Generated files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

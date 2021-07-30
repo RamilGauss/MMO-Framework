@@ -95,9 +95,6 @@
     <ClInclude Include="include\InputByCmd.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\IXML.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\ListPtr.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -122,19 +119,7 @@
     <ClInclude Include="include\MacroMaker_Prepare.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MakerLoaderDLL.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\MakerXML.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\MapCallBack.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\MapXML_Field.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Markup.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Marshaller.h">
@@ -185,15 +170,6 @@
     <ClInclude Include="include\StatisticValue.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\StorePathResources.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SynchroAbonent.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SynchroPoint.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\ThreadBoost.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -204,9 +180,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\VectorRise.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\XML_Markup.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\SortedThinningRestoreOrder.h">
@@ -266,6 +239,9 @@
     <ClInclude Include="include\BiMap.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\MakerLoaderDLL.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -319,9 +295,6 @@
     <ClCompile Include="src\InputByCmd.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\IXML.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\LoaderDLL_Unix.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -337,16 +310,7 @@
     <ClCompile Include="src\MakerLoaderDLL.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\MakerXML.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\MapCallBack.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MapXML_Field.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Markup.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\MD5.cpp">
@@ -382,22 +346,10 @@
     <ClCompile Include="src\SrcEvent.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\StorePathResources.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SynchroAbonent.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SynchroPoint.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\ThreadBoost.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\TimeManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XML_Markup.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SingletonManager.cpp">

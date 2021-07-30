@@ -13,25 +13,15 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    class TMenuItem : public TWidget
+    class DllExport TMenuItem : public TWidget
     {
     public:
-        TMenuItem(const std::string& menu, const std::string& name) : TWidget(name)
-        {
-            mMenu = menu;
-        }
+        TMenuItem(const std::string& menu, const std::string& name);
 
         using TCallback = std::function<void(TMenuItem*)>;
 
-        void SetCallback(TCallback callback)
-        {
-            mCallback = callback;
-        }
-
-        void SetSelected(bool value)
-        {
-            mSelected = value;
-        }
+        void SetCallback(TCallback callback);
+        void SetSelected(bool value);
     protected:
         TCallback mCallback;
 
@@ -40,19 +30,6 @@ namespace nsImGuiWidgets
         bool mSelected = false;
         bool mEnabled = true;
 
-        void RenderInheritance() override final
-        {
-            if (ImGui::BeginMainMenuBar()) {
-                if (ImGui::BeginMenu(mMenu.c_str())) {
-                    if (ImGui::MenuItem(GetName(), "CTRL+Z", &mSelected)) {
-                        if (mCallback) {
-                            mCallback(this);
-                        }
-                    }
-                    ImGui::EndMenu();
-                }
-                ImGui::EndMainMenuBar();
-            }
-        }
+        void RenderInheritance() override final;
     };
 }

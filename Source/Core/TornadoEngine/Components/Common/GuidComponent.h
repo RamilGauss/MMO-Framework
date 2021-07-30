@@ -7,13 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <string>
+
 #include "TypeDef.h"
+
+#include <ECS/include/IComponent.h>
 
 namespace nsTornadoEngine
 {
-    class DllExport TPrefabManager
+    struct DllExport TGuidComponent : nsECSFramework::IComponent
     {
-    public:
-
+        std::string value;
     };
 }

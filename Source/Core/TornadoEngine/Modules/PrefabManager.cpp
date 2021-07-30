@@ -7,13 +7,6 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "PrefabManager.h"
 
-namespace nsTornadoEngine
-{
-    class DllExport TPrefabManager
-    {
-    public:
-
-    };
-}
+using namespace nsTornadoEngine;

@@ -12,32 +12,17 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    class TWindow : public TWidget
+    class DllExport TWindow : public TWidget
     {
     public:
-        TWindow(const std::string& name) : TWidget(name) {}
+        TWindow(const std::string& name);
 
-        void PushWidget(TWidget* pWidget)
-        {
-            mChildList.push_back(pWidget);
-        }
+        void PushWidget(TWidget* pWidget);
 
-        void ClearWidgets()
-        {
-            mChildList.clear();
-        }
+        void ClearWidgets();
     protected:
         std::list<TWidget*> mChildList;
 
-        void RenderInheritance() override
-        {
-            ImGui::Begin(mName.c_str(), &mIsShown);
-
-            for (auto& child : mChildList) {
-                child->Render();
-            }
-
-            ImGui::End();
-        }
+        void RenderInheritance() override;
     };
 }
