@@ -27,5 +27,6 @@ namespace nsTornadoEngine
         static void SetSceneMng(TSceneManager* value);
         static void SetPrefabMng(TPrefabManager* value);
         static void SetStopAccessor(TStopAccessor* value);
+        static void SetKeyMouse(nsGraphicEngine::TKeyMouseEventContainer* value);
     };
 }

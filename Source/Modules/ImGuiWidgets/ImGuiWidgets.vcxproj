@@ -23,23 +23,40 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CheckBox.h" />
     <ClInclude Include="ComboBox.h" />
+    <ClInclude Include="Frame.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="InputInt.h" />
+    <ClInclude Include="InputText.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="MenuItem.h" />
-    <ClInclude Include="MenuSeparator.h" />
+    <ClInclude Include="MenuNode.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="PopupNode.h" />
+    <ClInclude Include="Separator.h" />
+    <ClInclude Include="TreeNode.h" />
+    <ClInclude Include="TreeView.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="Widget.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckBox.cpp" />
     <ClCompile Include="ComboBox.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="InputInt.cpp" />
+    <ClCompile Include="InputText.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="MenuItem.cpp" />
-    <ClCompile Include="MenuSeparator.cpp" />
+    <ClCompile Include="MenuNode.cpp" />
+    <ClCompile Include="PopupNode.cpp" />
+    <ClCompile Include="Separator.cpp" />
+    <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="TreeNode.cpp" />
+    <ClCompile Include="TreeView.cpp" />
+    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Widget.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

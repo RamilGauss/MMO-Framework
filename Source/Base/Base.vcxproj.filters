@@ -242,6 +242,9 @@
     <ClInclude Include="include\MakerLoaderDLL.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\CallbackPool.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">

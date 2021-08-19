@@ -1,74 +1,131 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
+    <Filter Include="Units">
+      <UniqueIdentifier>{d2bf9240-c26f-41e0-9239-452767b4cd26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Frames">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Common">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Nodes">
+      <UniqueIdentifier>{63a678a6-e2da-4b42-9656-2d593a96e821}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ComboBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputInt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Label.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MainWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuSeparator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Widget.h">
-      <Filter>Header Files</Filter>
+      <Filter>Frames</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeView.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="ComboBox.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="InputInt.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeNode.h">
+      <Filter>Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Separator.h">
+      <Filter>Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuNode.h">
+      <Filter>Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="PopupNode.h">
+      <Filter>Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckBox.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="InputText.h">
+      <Filter>Units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ComboBox.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Label.cpp">
+      <Filter>Units</Filter>
     </ClCompile>
     <ClCompile Include="InputInt.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Units</Filter>
     </ClCompile>
-    <ClCompile Include="Label.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ComboBox.cpp">
+      <Filter>Units</Filter>
     </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuSeparator.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Button.cpp">
+      <Filter>Units</Filter>
     </ClCompile>
     <ClCompile Include="Widget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame.cpp">
+      <Filter>Frames</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeView.cpp">
+      <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeNode.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Separator.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuNode.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="PopupNode.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckBox.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="InputText.cpp">
+      <Filter>Units</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

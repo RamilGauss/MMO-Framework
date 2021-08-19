@@ -9,11 +9,6 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-TComboBox::TComboBox(const std::string& name) : TWidget(name)
-{
-
-}
-//----------------------------------------------------------------------------------------
 int TComboBox::GetCurrent() 
 { 
     return mCurrentItemIndex; 
@@ -39,7 +34,7 @@ void TComboBox::RenderInheritance()
 
     auto cur = mCurrentItem == nullptr ? nullptr : mCurrentItem->c_str();
 
-    if (ImGui::BeginCombo(GetName(), cur)) {
+    if (ImGui::BeginCombo(mTitle.c_str(), cur)) {
         for (int n = 0; n < mItems.size(); n++) {
             bool is_selected = (mCurrentItem == &mItems[n]);
             if (ImGui::Selectable(mItems[n].c_str(), is_selected))

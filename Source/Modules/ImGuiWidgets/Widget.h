@@ -13,35 +13,23 @@ See for more information LICENSE.md.
 #include "Typedef.h"
 
 #include "IRenderable.h"
+#include "KeyMouseEventContainer.h"
 
 namespace nsImGuiWidgets
 {
     class DllExport TWidget : public nsGraphicEngine::IRenderable
     {
+        static ImGuiID mLastId;
+        static nsGraphicEngine::TKeyMouseEventContainer* mKeyMouseInputContainer;
     protected:
-        std::string mName;
-
-        bool mIsShown = true;
-
-        ImVec2 mSize;
-        ImVec2 mPos;
+        std::string mTitle = "<Unknown>";
+        ImGuiID mId;
     public:
-        TWidget(const std::string& name);
+        void SetTitle(std::string title);
+        std::string GetTitle();
+        TWidget();
 
-        const char* GetName();
-
-        bool IsShown();
-
-        void SetShow(bool value);
-
-        void Show();
-        void Hide();
-
-        const ImVec2* GetPos();
-        const ImVec2* GetSize();
-
-        void Render() override final;
-    protected:
-        virtual void RenderInheritance() = 0;
+        static void SetInputContainer(nsGraphicEngine::TKeyMouseEventContainer* keyMouseContainer);
+        static nsGraphicEngine::TKeyMouseEventContainer* GetInputContainer();
     };
 }

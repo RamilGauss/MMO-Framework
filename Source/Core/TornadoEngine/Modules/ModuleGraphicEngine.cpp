@@ -9,6 +9,8 @@ See for more information LICENSE.md.
 #include "BL_Debug.h"
 #include "ProjectConfigContainer.h"
 #include "PathOperations.h"
+#include "Modules.h"
+#include "ImGuiWidgets/Widget.h"
 
 using namespace nsGraphicEngine;
 using namespace nsTornadoEngine; 
@@ -51,12 +53,15 @@ bool TModuleGraphicEngine::StartEvent()
     }
 
     mGE->InitMyGUI();
+
+    auto keyMouse = Modules()->KeyMouse();
+    mGE->SetKeyMouseEventContainer(keyMouse);
+    nsImGuiWidgets::TWidget::SetInputContainer(keyMouse);
     return true;
 }
 //---------------------------------------------------------------------------------
 void TModuleGraphicEngine::StopEvent()
 {
-    mGE->Close();
     mGE.reset();
 }
 //---------------------------------------------------------------------------------

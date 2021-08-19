@@ -7,20 +7,27 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Widget.h"
+#include <functional>
+
+#include "Node.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TMenuSeparator : public TWidget
+    class DllExport TMenuNode : public TNode
     {
     public:
-        TMenuSeparator(const std::string& menu, const std::string& name);
+        using TCallback = std::function<void(TMenuNode*)>;
+
+        void SetCallback(TCallback callback);
+        void SetSelected(bool value);
     protected:
+        TCallback mCallback;
+
         std::string mMenu;
 
         bool mSelected = false;
         bool mEnabled = true;
 
-        void RenderInheritance() override final;
+        void Render() override final;
     };
 }

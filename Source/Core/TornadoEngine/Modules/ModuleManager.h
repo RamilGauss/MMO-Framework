@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 #include <list>
 #include <ECS/include/EntityManager.h>
+#include "KeyMouseEventContainer.h"
 
 #include "SceneManager.h"
 #include "PrefabManager.h"
@@ -24,6 +25,7 @@ namespace nsTornadoEngine
         TSceneManager mSceneMng;
         TPrefabManager mPrefabMng;
         TStopAccessor* mStopAccessor = nullptr;
+        nsGraphicEngine::TKeyMouseEventContainer mKeyMouseEventContainer;
 
         std::list<IModule*> mModules;
 

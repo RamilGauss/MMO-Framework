@@ -9,7 +9,6 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-TButton::TButton(const std::string& name) : TWidget(name) {}
 //-------------------------------------------------------------------------------
 void TButton::SetCallback(TCallback cb)
 {
@@ -18,7 +17,7 @@ void TButton::SetCallback(TCallback cb)
 //-------------------------------------------------------------------------------
 void TButton::RenderInheritance()
 {
-    if (ImGui::Button(GetName())) {
+    if (ImGui::Button(mTitle.c_str(), mSize)) {
         if (mCallback) {
             mCallback(this);
         }

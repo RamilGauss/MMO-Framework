@@ -58,36 +58,35 @@ IModule* TModuleManager::GetModuleByName(ModuleType moduleType)
 //----------------------------------------------------------------------------
 void TModuleManager::ApplyToModulesSingleton()
 {
-    TModulesAccessor moduleAccessor;
-
     for (auto& module : mModules) {
         switch (module->mType) {
             case ModuleType::Logic:
-                moduleAccessor.SetLogic((TModuleLogic*) module);
+                TModulesAccessor::SetLogic((TModuleLogic*) module);
                 break;
             case ModuleType::GraphicEngine:
-                moduleAccessor.SetGraphicEngine((TModuleGraphicEngine*) module);
+                TModulesAccessor::SetGraphicEngine((TModuleGraphicEngine*) module);
                 break;
             case ModuleType::PhysicEngine:
-                moduleAccessor.SetPhysicEngine((TModulePhysicEngine*) module);
+                TModulesAccessor::SetPhysicEngine((TModulePhysicEngine*) module);
                 break;
             case ModuleType::NetTransport:
-                moduleAccessor.SetNetTransport((TModuleNetTransport*) module);
+                TModulesAccessor::SetNetTransport((TModuleNetTransport*) module);
                 break;
             case ModuleType::MMOEngine:
-                moduleAccessor.SetMMOEngine((TModuleMMOEngine*) module);
+                TModulesAccessor::SetMMOEngine((TModuleMMOEngine*) module);
                 break;
             case ModuleType::SoundEngine:
-                moduleAccessor.SetSoundEngine((TModuleSoundEngine*) module);
+                TModulesAccessor::SetSoundEngine((TModuleSoundEngine*) module);
                 break;
             case ModuleType::DataBase:
-                moduleAccessor.SetDataBase((TModuleDataBase*) module);
+                TModulesAccessor::SetDataBase((TModuleDataBase*) module);
                 break;
         }
     }
-    moduleAccessor.SetEntMng(&mEntMng);
-    moduleAccessor.SetSceneMng(&mSceneMng);
-    moduleAccessor.SetPrefabMng(&mPrefabMng);
-    moduleAccessor.SetStopAccessor(mStopAccessor);
+    TModulesAccessor::SetEntMng(&mEntMng);
+    TModulesAccessor::SetSceneMng(&mSceneMng);
+    TModulesAccessor::SetPrefabMng(&mPrefabMng);
+    TModulesAccessor::SetStopAccessor(mStopAccessor);
+    TModulesAccessor::SetKeyMouse(&mKeyMouseEventContainer);
 }
 //----------------------------------------------------------------------------

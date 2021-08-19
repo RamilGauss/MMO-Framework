@@ -9,10 +9,6 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-TMainWindow::TMainWindow(const std::string& name) : TWindow(name) 
-{
-}
-//----------------------------------------------------------------------------------------
 void TMainWindow::RenderInheritance()
 {
     ImGuiViewport* viewport = ImGui::GetMainViewport();
@@ -26,7 +22,7 @@ void TMainWindow::RenderInheritance()
     ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
 
-    ImGui::Begin(mName.c_str(), nullptr, s_DockSpaceFlags);
+    ImGui::Begin(mTitle.c_str(), nullptr, s_DockSpaceFlags);
     {
         ImGui::DockSpace(ImGui::GetID("Dockspace"), ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode);
     }

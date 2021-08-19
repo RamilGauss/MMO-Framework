@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, ImGui, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_07_30 08:28:34.204
+// File has been generated at 2021_08_19 09:24:32.015
 	
 #pragma once
 
@@ -38,8 +38,20 @@ namespace nsTornadoEngine
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
     
     public:
+        static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
+        static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TCameraComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TCameraComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TFocusComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TFocusComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsTornadoEngine::TGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TLightComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TLightComponent* p, const Jobj& obj);
         
         static void _Serialize(nsTornadoEngine::TNameComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TNameComponent* p, const Jobj& obj);
@@ -47,8 +59,20 @@ namespace nsTornadoEngine
         static void _Serialize(nsTornadoEngine::TParentGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TParentGuidComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsTornadoEngine::TPositionComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TPositionComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsTornadoEngine::TSceneGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TSceneGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TSizeComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TSizeComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TTransformComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TTransformComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TVisibilityComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TVisibilityComponent* p, const Jobj& obj);
         
     };
     //------------------------------------------------------------------------------------------------------------

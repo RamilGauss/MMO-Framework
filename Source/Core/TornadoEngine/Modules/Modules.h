@@ -14,6 +14,11 @@ namespace nsECSFramework
     class TEntityManager;
 }
 
+namespace nsGraphicEngine
+{
+    struct TKeyMouseEventContainer;
+}
+
 namespace nsTornadoEngine
 {
     class TModuleGraphicEngine;
@@ -30,6 +35,7 @@ namespace nsTornadoEngine
     class TStopAccessor;
 
     class TModulesAccessor;
+
 
     class DllExport TModules
     {
@@ -51,6 +57,8 @@ namespace nsTornadoEngine
         TPrefabManager* prefabMng = nullptr;
 
         TStopAccessor* stopAccessor = nullptr;
+
+        nsGraphicEngine::TKeyMouseEventContainer* keyMouse = nullptr;
     public:
         TModuleGraphicEngine* G() const;
         TModulePhysicEngine* P() const;
@@ -65,6 +73,8 @@ namespace nsTornadoEngine
         TPrefabManager* PrefabMng() const;
 
         TStopAccessor* StopAccessor() const;
+
+        nsGraphicEngine::TKeyMouseEventContainer* KeyMouse() const;
     };
 
     extern DllExport TModules* Modules();

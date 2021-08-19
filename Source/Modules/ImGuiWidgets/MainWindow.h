@@ -14,7 +14,6 @@ namespace nsImGuiWidgets
     class DllExport TMainWindow : public TWindow
     {
     public:
-        TMainWindow(const std::string& name);
     protected:
         const int TOOLBAR_HEIGHT = 20;
 

@@ -7,20 +7,19 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Widget.h"
+#include "Unit.h"
 
 #include <functional>
 
 namespace nsImGuiWidgets
 {
-    class DllExport TLabel : public TWidget
+    class DllExport TLabel : public TUnit
     {
         std::string mText;
     public:
-        TLabel(const std::string& name);
-
         void SetText(const char* s);
         void AppendText(const char* s);
+        int GetTextLength();
     protected:
         void RenderInheritance() override final;
     };

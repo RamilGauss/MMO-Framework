@@ -28,6 +28,9 @@
     <Filter Include="Components\Common">
       <UniqueIdentifier>{d7db7ef9-518c-48a3-bb9a-b04fc610ff63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Graphic">
+      <UniqueIdentifier>{67450a2e-cad7-4be0-81be-61b44dc0d1e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="Modules\PrefabManager.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeSliceEngine\TestFeature.cpp">
+      <Filter>TimeSliceEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +235,27 @@
     </ClInclude>
     <ClInclude Include="Generated files\ReflectionIncludeList.h">
       <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\TransformComponent.h">
+      <Filter>Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\CameraComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\LightComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="VisibilityComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="SizeComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="FocusComponent.h">
+      <Filter>Components\Graphic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

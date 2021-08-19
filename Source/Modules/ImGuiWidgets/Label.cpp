@@ -9,9 +9,6 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-TLabel::TLabel(const std::string& name) : TWidget(name) 
-{
-}
 //-------------------------------------------------------------------------------------
 void TLabel::SetText(const char* s)
 {
@@ -27,5 +24,10 @@ void TLabel::RenderInheritance()
 {
     ImVec4 color(1, 1, 1, 1);
     ImGui::TextColored(color, mText.c_str());
+}
+//-------------------------------------------------------------------------------------
+int TLabel::GetTextLength()
+{
+    return mText.size();
 }
 //-------------------------------------------------------------------------------------

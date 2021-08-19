@@ -8,57 +8,34 @@ See for more information LICENSE.md.
 #include "Widget.h"
 
 using namespace nsImGuiWidgets;
+using namespace nsGraphicEngine;
 
-TWidget::TWidget(const std::string& name)
-{
-    mName = name;
-}
-//------------------------------------------------------------------------
-const char* TWidget::GetName()
-{
-    return mName.c_str();
-}
-//------------------------------------------------------------------------
-bool TWidget::IsShown()
-{
-    return mIsShown;
-}
-//------------------------------------------------------------------------
-void TWidget::SetShow(bool value)
-{
-    mIsShown = value;
-}
-//------------------------------------------------------------------------
-void TWidget::Show()
-{
-    SetShow(true);
+ImGuiID TWidget::mLastId = 0;
+TKeyMouseEventContainer* TWidget::mKeyMouseInputContainer = nullptr;
 
+void TWidget::SetInputContainer(TKeyMouseEventContainer* keyMouseContainer)
+{
+    mKeyMouseInputContainer = keyMouseContainer;
+}
+//--------------------------------------------------------------------------------
+TKeyMouseEventContainer* TWidget::GetInputContainer()
+{
+    return mKeyMouseInputContainer;
+}
+//--------------------------------------------------------------------------------
+TWidget::TWidget()
+{
+    mLastId++;
+    mId = mLastId;
 }
 //------------------------------------------------------------------------
-void TWidget::Hide()
+void TWidget::SetTitle(std::string title)
 {
-    SetShow(false);
+    mTitle = title;
 }
 //------------------------------------------------------------------------
-const ImVec2* TWidget::GetPos()
+std::string TWidget::GetTitle()
 {
-    return &mPos;
-}
-//------------------------------------------------------------------------
-const ImVec2* TWidget::GetSize()
-{
-    return &mSize;
-}
-//------------------------------------------------------------------------
-void TWidget::Render()
-{
-    if (!mIsShown) {
-        return;
-    }
-
-    RenderInheritance();
-
-    mSize = ImGui::GetWindowSize();
-    mPos = ImGui::GetWindowPos();
+    return mTitle;
 }
 //------------------------------------------------------------------------

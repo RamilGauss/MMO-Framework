@@ -16,6 +16,7 @@ nsTornadoEngine::TModules* nsTornadoEngine::Modules()
 
 using namespace nsTornadoEngine;
 using namespace nsECSFramework;
+using namespace nsGraphicEngine;
 
 TModuleGraphicEngine* TModules::G() const
 {
@@ -70,5 +71,10 @@ TPrefabManager* TModules::PrefabMng() const
 TStopAccessor* TModules::StopAccessor() const
 {
     return stopAccessor;
+}
+//----------------------------------------------------------
+TKeyMouseEventContainer* TModules::KeyMouse() const
+{
+    return keyMouse;
 }
 //----------------------------------------------------------

@@ -6,31 +6,44 @@ See for more information LICENSE.md.
 */
 
 #include "Window.h"
+#include "Helper.h"
 
 using namespace nsImGuiWidgets;
 
-TWindow::TWindow(const std::string& name) : TWidget(name) 
+void TWindow::BeginRender()
 {
-}
-//---------------------------------------------------------------------------------------
-void TWindow::PushWidget(TWidget* pWidget)
-{
-    mChildList.push_back(pWidget);
-}
-//---------------------------------------------------------------------------------------
-void TWindow::ClearWidgets()
-{
-    mChildList.clear();
-}
-//---------------------------------------------------------------------------------------
-void TWindow::RenderInheritance()
-{
-    ImGui::Begin(mName.c_str(), &mIsShown);
+    mOldSize = mSize;
+    mOldPos = mPos;
 
-    for (auto& child : mChildList) {
-        child->Render();
+    auto oldIsShown = mIsShown;
+
+    ImGui::SetNextWindowSize(mSize);
+    ImGui::SetNextWindowPos(mPos, ImGuiCond_Appearing);
+    ImGui::Begin(mTitle.c_str(), &mIsShown);
+
+    if (oldIsShown != mIsShown) {
+        mShowCB.Notify(mIsShown);
     }
+}
+//---------------------------------------------------------------------------------------
+void TWindow::EndRender()
+{
+    mPos = ImGui::GetWindowPos();
+    mSize = ImGui::GetWindowSize();
 
     ImGui::End();
+
+    if (mOldSize != mSize) {
+        mSizeCB.Notify(&mSize);
+    } else {
+        mSize = mOldSize;
+    }
+
+    if (mOldPos != mPos) {
+        mPosCB.Notify(&mPos);
+    } else {
+        mPos = mOldPos;
+    }
 }
 //---------------------------------------------------------------------------------------
+

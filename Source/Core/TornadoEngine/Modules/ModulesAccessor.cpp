@@ -64,3 +64,8 @@ void TModulesAccessor::SetStopAccessor(TStopAccessor* value)
     Modules()->stopAccessor = value;
 }
 //--------------------------------------------------------------------------
+void TModulesAccessor::SetKeyMouse(nsGraphicEngine::TKeyMouseEventContainer* value)
+{
+    Modules()->keyMouse = value;
+}
+//--------------------------------------------------------------------------

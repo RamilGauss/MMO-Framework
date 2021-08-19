@@ -8,19 +8,17 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <vector>
-#include "Widget.h"
+#include "Unit.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TComboBox : public TWidget
+    class DllExport TComboBox : public TUnit
     {
     protected:
         int mCurrentItemIndex = 0;
-        std::vector<std::string> mItems = {"AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIII", "JJJJ", "KKKK", "LLLLLLL", "MMMM", "OOOOOOO", "PPPP", "QQQQQQQQQQ", "RRR", "SSSS"};
+        std::vector<std::string> mItems;
         std::string* mCurrentItem = nullptr;
     public:
-        TComboBox(const std::string& name);
-
         int GetCurrent();
         void SetCurrent(int value);
 

@@ -193,19 +193,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ControlClippingCursor.cpp" />
-    <ClCompile Include="GE_Impl.cpp" />
     <ClCompile Include="GraphicEngine_Ogre_ImGui.cpp" />
     <ClCompile Include="ImGuiRenderControl.cpp" />
+    <ClCompile Include="KeyMouseEventHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ControlClippingCursor.h" />
     <ClInclude Include="Events.h" />
-    <ClInclude Include="GE_Impl.h" />
     <ClInclude Include="GraphicEngine_Ogre_ImGui.h" />
     <ClInclude Include="IGraphicEngine_Ogre_ImGui.h" />
     <ClInclude Include="ImGuiRenderControl.h" />
-    <ClInclude Include="InputCollectorListener.h" />
+    <ClInclude Include="KeyCodes.h" />
+    <ClInclude Include="KeyMouseEventContainer.h" />
     <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="KeyMouseEventHandler.h" />
     <ClInclude Include="Sample.h" />
     <ClInclude Include="SampleContext.h" />
     <ClInclude Include="SdkSample.h" />

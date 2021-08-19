@@ -8,62 +8,55 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeDef.h"
-//#include <OISMouse.h>
-//#include <OISKeyboard.h>
+#include "KeyCodes.h"
+#include <cstdint>
 
 namespace nsGraphicEngine
 {
-#ifdef WIN32
-#pragma pack(push, 1)
-#endif
+    enum class DllExport KeyState
+    {
+        DOWN, UP
+    };
+    enum class DllExport MouseState
+    {
+        PRESSED, RELEASED
+    };
+    enum class DllExport MouseButton
+    {
+        LEFT, MIDDLE, RIGHT, COUNT
+    };
 
-    //---------------------------------------------------------------------
-    typedef enum
-    {
-        eMouse = 0,
-        eKeyBoard = 1,
-    }tTypeEvent;
-    typedef enum
-    {
-        eButtonDown,
-        eButtonUp,
-        eButtonDblClick,
-        eWheel,
-        eMove,
-    }tTypeMouseEvent;
-    //---------------------------------------------------------------------------------
     struct DllExport TBaseEvent
     {
-        tTypeEvent type;
-    }_PACKED;
-    //---------------------------------------------------------------------------------
-    struct DllExport TKeyEvent : public TBaseEvent
+        uint32_t timestamp;   // In milliseconds, populated using SDL_GetTicks()
+    };
+    struct DllExport TKeyboardEvent : public TBaseEvent
     {
-        //OIS::KeyCode key;
-        bool pressed/*or released*/;
-        int modifier;// OIS::KeyBoard::Modifier
-        TKeyEvent() { type = eKeyBoard; pressed = false; modifier = 0; }
-    }_PACKED;
-    //---------------------------------------------------------------------------------
-    // курсор мыши всегда находится внутри области окна (clipping), в случае попытки выйти за границу
-    // курсор вернётся в область окна, то есть x и y останутся теми же, а dx и dy изменятся.
-    struct DllExport TMouseEvent : public TBaseEvent
+        KeyCodes keyCode;
+
+        KeyState state;
+        uint8_t repeat; // Non-zero if this is a key repeat
+        KeyMod mod;
+    };
+    struct DllExport TMouseMotionEvent : public TBaseEvent
     {
-        tTypeMouseEvent typeEvent;// что произошло
-        // Press, Release or DblClick
-        //OIS::MouseButtonID button;
-        // wheel
-        int delta_wheel;
-        // for All events
-        int pressedButtons;// bit position indicates button down OIS::MouseButtonID, e.g. (1<<OIS::MB_Right)
-        int x;
-        int y;
-        int dx;
-        int dy;
-        //TMouseEvent() { type = eMouse; x = 0; y = 0; dx = 0; dy = 0; delta_wheel = 0; pressedButtons = 0; button = OIS::MB_Left; }
-    }_PACKED;
-    //---------------------------------------------------------------------------------
-#ifdef WIN32
-#pragma pack(pop)
-#endif
+        int x;           // X coordinate, relative to window
+        int y;           // Y coordinate, relative to window
+        int xrel;        // The relative motion in the X direction
+        int yrel;        // The relative motion in the Y direction
+    };
+    struct DllExport TMouseButtonEvent : public TBaseEvent
+    {
+        MouseButton button;
+        MouseState state;
+        uint8_t clicks;
+        int x;           // X coordinate, relative to window
+        int y;           // Y coordinate, relative to window
+    };
+    struct DllExport TMouseWheelEvent : public TBaseEvent
+    {
+        int x;           // The amount scrolled horizontally, positive to the right and negative to the left
+        int y;           // The amount scrolled vertically, positive away from the user and negative toward the user
+    };
 }
+

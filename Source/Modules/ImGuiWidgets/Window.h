@@ -8,21 +8,25 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <list>
-#include "Widget.h"
+#include "Frame.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TWindow : public TWidget
+    class DllExport TWindow : public TFrame
     {
+        ImVec2 mOldSize;
+        ImVec2 mOldPos;
+
     public:
-        TWindow(const std::string& name);
+        using TShowCallback = TCallbackPool<bool>;
+        using TSizeCallback = TCallbackPool<const ImVec2*>;
+        using TPositionCallback = TCallbackPool<const ImVec2*>;
 
-        void PushWidget(TWidget* pWidget);
-
-        void ClearWidgets();
+        TShowCallback mShowCB;
+        TSizeCallback mSizeCB;
+        TPositionCallback mPosCB;
     protected:
-        std::list<TWidget*> mChildList;
-
-        void RenderInheritance() override;
+        void BeginRender() override;
+        void EndRender() override;
     };
 }

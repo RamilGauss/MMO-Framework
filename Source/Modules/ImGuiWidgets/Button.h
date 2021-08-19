@@ -7,17 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Widget.h"
+#include "Unit.h"
 
 #include <functional>
 
 namespace nsImGuiWidgets
 {
-    class DllExport TButton : public TWidget
+    class DllExport TButton : public TUnit
     {
     public:
-        TButton(const std::string& name);
-
         using TCallback = std::function<void(TButton*)>;
 
         void SetCallback(TCallback cb);

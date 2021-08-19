@@ -10,7 +10,6 @@ See for more information LICENSE.md.
 #include "IGraphicEngine_Ogre_ImGui.h"
 #include "SrcEvent.h"
 #include "CallBackRegistrator.h"
-#include "Events.h"
 
 #include "ImGuiRenderControl.h"
 #include "SampleContext.h"
@@ -27,6 +26,7 @@ See for more information LICENSE.md.
 
 namespace nsGraphicEngine
 {
+    class TKeyMouseEventHandler;
     class DllExport TGraphicEngine_Ogre_ImGui :
         public IGraphicEngine_Ogre_ImGui,
         public OgreBites::SampleContext,
@@ -36,6 +36,10 @@ namespace nsGraphicEngine
         std::string mPathOgreCfg;
 
         TImGuiRenderControl mGuiRender;
+
+        TKeyMouseEventContainer* mKeyMouseEventContainer = nullptr;
+
+        std::shared_ptr<TKeyMouseEventHandler> mKeyMouseEventHandler;
     public:
         TGraphicEngine_Ogre_ImGui();
         virtual ~TGraphicEngine_Ogre_ImGui();
@@ -79,6 +83,8 @@ namespace nsGraphicEngine
         void AddRender(IRenderable* p)  override;
         void RemoveRender(IRenderable* p)  override;
         const std::set<IRenderable*>* GetRenders()  override;
+
+        void SetKeyMouseEventContainer(TKeyMouseEventContainer* keyMouseEventContainer) override;
     public:
 
         void createRoot() override;
@@ -88,6 +94,8 @@ namespace nsGraphicEngine
         bool frameRenderingQueued(const Ogre::FrameEvent& evt) override;
         bool frameEnded(const Ogre::FrameEvent& evt) override;
 
+
+        void pollEvents() override;
     private:
 
     };

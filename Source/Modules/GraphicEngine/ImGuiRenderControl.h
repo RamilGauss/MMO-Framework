@@ -4,7 +4,7 @@
 
 #include "SdkSample.h"
 #include "OgreImGuiOverlay.h"
-#include <OgreImGuiInputListener.h>
+#include "OgreImGuiInputListener.h"
 
 namespace nsGraphicEngine
 {
@@ -24,7 +24,6 @@ namespace nsGraphicEngine
         // Basic constructor
         TImGuiRenderControl();
         void preViewportUpdate(const Ogre::RenderTargetViewportEvent& evt);
-
 
         bool keyPressed(const OgreBites::KeyboardEvent& evt) override;
         bool keyReleased(const OgreBites::KeyboardEvent& evt) override;

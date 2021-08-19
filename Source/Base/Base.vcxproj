@@ -212,6 +212,7 @@
     <ClInclude Include="include\BinaryMaster.h" />
     <ClInclude Include="include\BL_Debug.h" />
     <ClInclude Include="include\BreakPacket.h" />
+    <ClInclude Include="include\CallbackPool.h" />
     <ClInclude Include="include\CallBackRegistrator.h" />
     <ClInclude Include="include\CmdParam.h" />
     <ClInclude Include="include\ColanderVector.h" />

@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 namespace nsGraphicEngine
 {
     class IRenderable;
+    struct TKeyMouseEventContainer;
     class DllExport IGraphicEngine_Ogre_ImGui
     {
     public:
@@ -56,5 +57,7 @@ namespace nsGraphicEngine
         virtual void AddRender(IRenderable* p) = 0;
         virtual void RemoveRender(IRenderable* p) = 0;
         virtual const std::set<IRenderable*>* GetRenders() = 0;
+
+        virtual void SetKeyMouseEventContainer(TKeyMouseEventContainer* keyMouseEventContainer) = 0;
     };
 }

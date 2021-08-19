@@ -9,13 +9,8 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-TInputInt::TInputInt(const std::string& name) : TWidget(name) 
-{
-}
-//------------------------------------------------------------------------------------
 void TInputInt::RenderInheritance()
 {
-    static int v = 0;
-    ImGui::InputInt("INT", &v);
+    ImGui::InputInt(mTitle.c_str(), &mValue, mStep, mStepFast);
 }
 //------------------------------------------------------------------------------------

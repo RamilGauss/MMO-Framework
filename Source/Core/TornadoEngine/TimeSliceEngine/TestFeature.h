@@ -15,9 +15,10 @@ See for more information LICENSE.md.
 #include <ImGuiWidgets/MainWindow.h>
 #include <ImGuiWidgets/Window.h>
 #include <ImGuiWidgets/Button.h>
+#include <ImGuiWidgets/Label.h>
+#include <ImGuiWidgets/TreeView.h>
+#include <ImGuiWidgets/TreeNode.h>
 
-#include "Modules.h"
-#include "ModuleGraphicEngine.h"
 
 namespace nsTest
 {
@@ -25,19 +26,19 @@ namespace nsTest
     {
         nsImGuiWidgets::TWindow mWindow;
         nsImGuiWidgets::TButton mButton;
+        nsImGuiWidgets::TLabel mSelectionLabel;
+        nsImGuiWidgets::TLabel mClickLabel;
+
+        nsImGuiWidgets::TTreeView mTreeView;
+
+        nsImGuiWidgets::TTreeNode mTreeNodes[6];
 
     public:
-        TInitWidgets() : mWindow("asd"), mButton("button")
-        {
-
-        }
-
-        void Init() override
-        {
-            mWindow.PushWidget(&mButton);
-
-            nsTornadoEngine::Modules()->G()->GetGE()->AddRender(&mWindow);
-        }
+        TInitWidgets();
+        void Init() override;
+    private:
+        void SelectNode(nsImGuiWidgets::TTreeNode* pNode);
+        void ClickNode(const nsImGuiWidgets::TTreeView::TClickEvent& pClickEvent);
     };
 
 
@@ -45,11 +46,6 @@ namespace nsTest
     {
         TInitWidgets mInitWidgets;
     public:
-        void SetEntMng(nsECSFramework::TEntityManager* entMng) override
-        {
-            nsECSFramework::TFeature::SetEntMng(entMng);
-
-            Add(&mInitWidgets);
-        }
+        void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
     };
 }

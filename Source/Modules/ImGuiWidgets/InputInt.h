@@ -7,15 +7,18 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Widget.h"
+#include "Unit.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TInputInt : public TWidget
+    class DllExport TInputInt : public TUnit
     {
     public:
-        TInputInt(const std::string& name);
     protected:
+        int mValue = 0;
+        int mStep = 1;
+        int mStepFast = 100;
+
         void RenderInheritance() override final;
     };
 }
