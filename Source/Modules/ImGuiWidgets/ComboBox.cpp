@@ -19,7 +19,7 @@ void TComboBox::SetCurrent(int value)
     mCurrentItemIndex = value; 
 }
 //----------------------------------------------------------------------------------------
-void TComboBox::SetItems(std::vector<std::string>& items)
+void TComboBox::SetItems(const std::vector<std::string>& items)
 {
     mItems = items;
 }

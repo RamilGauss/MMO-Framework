@@ -40,6 +40,9 @@ namespace nsGraphicEngine
         TKeyMouseEventContainer* mKeyMouseEventContainer = nullptr;
 
         std::shared_ptr<TKeyMouseEventHandler> mKeyMouseEventHandler;
+
+        Ogre::SceneManager* mSceneManager = nullptr;
+        Ogre::Camera* mCamera = nullptr;
     public:
         TGraphicEngine_Ogre_ImGui();
         virtual ~TGraphicEngine_Ogre_ImGui();

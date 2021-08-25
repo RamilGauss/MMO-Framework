@@ -21,16 +21,17 @@ void TMenuNode::SetSelected(bool value)
 //------------------------------------------------------------------------------------------
 void TMenuNode::Render()
 {
-    if (ImGui::BeginMainMenuBar()) {
-        if (ImGui::BeginMenu(mMenu.c_str())) {
-            //if (ImGui::MenuItem(GetName(), "CTRL+Z", &mSelected)) {
-            //    if (mCallback) {
-            //        mCallback(this);
-            //    }
-            //}
+    if (mWidgets.size()) {
+        if (ImGui::BeginMenu(mLabel.c_str())) {
+            for (auto& node : mWidgets) {
+                node->Render();
+            }
             ImGui::EndMenu();
         }
-        ImGui::EndMainMenuBar();
+    } else {
+        if (ImGui::Selectable(mLabel.c_str())) {
+            onLeftClick.Notify(this);
+        }
     }
 }
 //------------------------------------------------------------------------------------------

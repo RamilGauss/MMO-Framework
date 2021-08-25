@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-void TMainWindow::RenderInheritance()
+void TMainWindow::BeginRender()
 {
     ImGuiViewport* viewport = ImGui::GetMainViewport();
     ImVec2 size(viewport->Size.x, (viewport->Size.y - TOOLBAR_HEIGHT));
@@ -23,15 +23,23 @@ void TMainWindow::RenderInheritance()
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
 
     ImGui::Begin(mTitle.c_str(), nullptr, s_DockSpaceFlags);
-    {
-        ImGui::DockSpace(ImGui::GetID("Dockspace"), ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode);
-    }
+}
+//----------------------------------------------------------------------------------------
+void TMainWindow::RenderInheritance()
+{
+    ImGui::DockSpace(mId, ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode);
     ImGui::PopStyleVar(3);
 
-    for (auto& child : mChildList) {
-        child->Render();
+    if (ImGui::BeginMainMenuBar()) {
+        for (auto& child : mWidgets) {
+            child->Render();
+        }
+        ImGui::EndMainMenuBar();
     }
-
+}
+//----------------------------------------------------------------------------------------
+void TMainWindow::EndRender()
+{
     ImGui::End();
 }
 //----------------------------------------------------------------------------------------

@@ -57,12 +57,32 @@ bool TImGuiRenderControl::mouseWheelRolled(const MouseWheelEvent& evt)
 //----------------------------------------------------------------------------------------------
 bool TImGuiRenderControl::mousePressed(const MouseButtonEvent& evt)
 {
-    return mListenerChain.mousePressed(evt);
+    bool result = mListenerChain.mousePressed(evt);
+
+    // Dirty hack, but ImGui why right press not allow focus?
+    if (result && evt.button == ButtonType::BUTTON_RIGHT) {
+
+        MouseButtonEvent leftImitation = evt;
+        leftImitation.button = ButtonType::BUTTON_LEFT;
+        mListenerChain.mousePressed(leftImitation);
+    }
+
+    return result;//### mListenerChain.mousePressed(evt);
 }
 //----------------------------------------------------------------------------------------------
 bool TImGuiRenderControl::mouseReleased(const MouseButtonEvent& evt)
 {
-    return mListenerChain.mouseReleased(evt);
+    auto result = mListenerChain.mouseReleased(evt);
+
+    // Dirty hack, but ImGui why right press not allow focus?
+    if (result && evt.button == ButtonType::BUTTON_RIGHT) {
+
+        MouseButtonEvent leftImitation = evt;
+        leftImitation.button = ButtonType::BUTTON_LEFT;
+        mListenerChain.mouseReleased(leftImitation);
+    }
+
+    return result;//### mListenerChain.mouseReleased(evt);
 }
 //----------------------------------------------------------------------------------------------
 bool TImGuiRenderControl::textInput(const TextInputEvent& evt)
@@ -73,6 +93,10 @@ bool TImGuiRenderControl::textInput(const TextInputEvent& evt)
 void TImGuiRenderControl::setupContent(void)
 {
     auto imguiOverlay = new ImGuiOverlay();
+
+    auto& io = ImGui::GetIO();
+    io.IniFilename = nullptr;// Disable save to ini file.
+
     imguiOverlay->setZOrder(300);
     imguiOverlay->show();
     OverlayManager::getSingleton().addOverlay(imguiOverlay); // now owned by overlaymgr

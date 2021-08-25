@@ -19,10 +19,11 @@ namespace nsImGuiWidgets
         std::vector<std::string> mItems;
         std::string* mCurrentItem = nullptr;
     public:
+
         int GetCurrent();
         void SetCurrent(int value);
 
-        void SetItems(std::vector<std::string>& items);
+        void SetItems(const std::vector<std::string>& items);
     protected:
         void RenderInheritance() override final;
     };

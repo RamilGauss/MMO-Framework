@@ -13,15 +13,15 @@ using namespace std::placeholders;
 void TTreeNode::Render()
 {
     ImGuiTreeNodeFlags mode = ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_OpenOnArrow;
-    if (mNodes.size() == 0) {
+    if (mWidgets.size() == 0) {
         mode |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_SpanAvailWidth;
     }
     if (mSelected) {
         mode |= ImGuiTreeNodeFlags_Selected;
     }
-    if (ImGui::TreeNodeEx(mId.c_str(), mode, mLabel.c_str())) {
+    if (ImGui::TreeNodeEx(mStrId.c_str(), mode, mLabel.c_str())) {
         SearchEvents();
-        for (auto& node : mNodes) {
+        for (auto& node : mWidgets) {
             node->Render();
         }
         ImGui::TreePop();
@@ -33,7 +33,7 @@ void TTreeNode::Render()
 void TTreeNode::SearchEvents()
 {
     if (ImGui::IsItemClicked()) {
-        onClicked.Notify(this);
+        onLeftClick.Notify(this);
     }
     if (ImGui::IsItemFocused()) {
         if (!mSelected) {
@@ -43,10 +43,5 @@ void TTreeNode::SearchEvents()
     } else {
         mSelected = false;
     }
-}
-//-------------------------------------------------------------------------
-void TTreeNode::AddNode(TTreeNode* pNode)
-{
-    mNodes.push_back(pNode);
 }
 //-------------------------------------------------------------------------

@@ -32,10 +32,12 @@ namespace nsImGuiWidgets
         void SetPos(const ImVec2& newPos);
         void SetSize(const ImVec2& newSize);
 
-        const ImVec2* GetPos();
-        const ImVec2* GetSize();
+        const ImVec2& GetPos();
+        const ImVec2& GetSize();
 
         void Render() override final;
+
+        SubType GetSubType() const override;
     protected:
         virtual void BeginRender();
         virtual void RenderInheritance() = 0;

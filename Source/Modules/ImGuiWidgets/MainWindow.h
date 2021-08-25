@@ -8,12 +8,12 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Window.h"
+#include "MenuNode.h"
 
 namespace nsImGuiWidgets
 {
     class DllExport TMainWindow : public TWindow
     {
-    public:
     protected:
         const int TOOLBAR_HEIGHT = 20;
 
@@ -21,6 +21,8 @@ namespace nsImGuiWidgets
             | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus
             | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoBackground;
 
+        void BeginRender() override;
         void RenderInheritance() override;
+        void EndRender() override;
     };
 }

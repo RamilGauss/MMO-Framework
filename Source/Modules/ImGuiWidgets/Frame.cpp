@@ -11,21 +11,6 @@ See for more information LICENSE.md.
 using namespace nsImGuiWidgets;
 using namespace nsGraphicEngine;
 
-void TFrame::Push(IRenderable* pWidget)
-{
-    mChildList.push_back(pWidget);
-}
-//---------------------------------------------------------------------------------------
-void TFrame::Remove(IRenderable* pWidget)
-{
-    mChildList.remove(pWidget);
-}
-//---------------------------------------------------------------------------------------
-void TFrame::Clear()
-{
-    mChildList.clear();
-}
-//---------------------------------------------------------------------------------------
 void TFrame::BeginRender()
 {
     ImGui::SetCursorPos(mPos);
@@ -53,7 +38,7 @@ void TFrame::RenderInheritance()
         SearchInputEvents();
     }
 
-    for (auto& child : mChildList) {
+    for (auto& child : mWidgets) {
         child->Render();
     }
 }
@@ -66,8 +51,51 @@ bool TFrame::IsFocused()
 void TFrame::SearchInputEvents()
 {
     auto inputContainer = TWidget::GetInputContainer();
-    for (auto& keyEvent : inputContainer->keyEvents) {
-
+    for (auto& event : inputContainer->keyEvents) {
+        mKeyCB.Notify(event);
     }
+    for (auto& event : inputContainer->mouseButtonEvents) {
+        mMouseClickCB.Notify(event);
+    }
+    for (auto& event : inputContainer->mouseMotionEvents) {
+        mMouseMoveCB.Notify(event);
+    }
+    for (auto& event : inputContainer->mouseWheelEvents) {
+        mMouseWheelCB.Notify(event);
+    }
+}
+//---------------------------------------------------------------------------------------
+TWidget* TFrame::GetUnderMouseChild(const ImVec2& mousePos)
+{
+    auto pos = GetPos();
+    auto size = GetSize();
+    if (!InRect(pos, size, mousePos)) {
+        return nullptr;
+    }
+
+    for (auto& child : mWidgets) {
+        switch (child->GetSubType()) {
+            case SubType::UNIT:
+            case SubType::FRAME:
+            {
+                auto childPos = ((TUnit*) child)->GetPos() + GetPos();
+                auto childSize = ((TUnit*) child)->GetSize();
+                if (InRect(childPos, childSize, mousePos)) {
+                    return child;
+                }
+            }
+            break;
+            case SubType::WIDGET:
+            case SubType::NODE:
+                break;
+        }
+    }
+
+    return this;
+}
+//---------------------------------------------------------------------------------------
+TWidget::SubType TFrame::GetSubType() const
+{
+    return SubType::FRAME;
 }
 //---------------------------------------------------------------------------------------

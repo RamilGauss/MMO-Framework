@@ -6,6 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "Label.h"
+#include "Helper.h"
 
 using namespace nsImGuiWidgets;
 
@@ -22,12 +23,32 @@ void TLabel::AppendText(const char* s)
 //-------------------------------------------------------------------------------------
 void TLabel::RenderInheritance()
 {
-    ImVec4 color(1, 1, 1, 1);
-    ImGui::TextColored(color, mText.c_str());
+    mWrapWidth = mSize.x;
+
+    ImDrawList* draw_list = ImGui::GetWindowDrawList();
+    ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + mWrapWidth);
+
+    ImGui::TextColored(mColor, mText.c_str());
+
+    ImU32 counturColor = IM_COL32(mCounturColor.x * 255, mCounturColor.y * 255,
+        mCounturColor.z * 255, mCounturColor.w * 255);
+    draw_list->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMin() + mSize, counturColor);
+
+    ImGui::PopTextWrapPos();
 }
 //-------------------------------------------------------------------------------------
 int TLabel::GetTextLength()
 {
     return mText.size();
+}
+//-------------------------------------------------------------------------------------
+void TLabel::SetColor(const ImVec4& color)
+{
+    mColor = color;
+}
+//-------------------------------------------------------------------------------------
+ImVec4 TLabel::GetColor() const
+{
+    return mColor;
 }
 //-------------------------------------------------------------------------------------

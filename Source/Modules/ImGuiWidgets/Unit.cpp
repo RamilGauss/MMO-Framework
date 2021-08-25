@@ -30,14 +30,14 @@ void TUnit::Hide()
     SetShow(false);
 }
 //------------------------------------------------------------------------
-const ImVec2* TUnit::GetPos()
+const ImVec2& TUnit::GetPos()
 {
-    return &mPos;
+    return mPos;
 }
 //------------------------------------------------------------------------
-const ImVec2* TUnit::GetSize()
+const ImVec2& TUnit::GetSize()
 {
-    return &mSize;
+    return mSize;
 }
 //------------------------------------------------------------------------
 void TUnit::SetPos(const ImVec2& newPos)
@@ -69,5 +69,10 @@ void TUnit::BeginRender()
 void TUnit::EndRender()
 {
 
+}
+//------------------------------------------------------------------------
+TWidget::SubType TUnit::GetSubType() const
+{
+    return SubType::UNIT;
 }
 //------------------------------------------------------------------------

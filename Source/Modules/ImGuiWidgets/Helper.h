@@ -13,4 +13,8 @@ See for more information LICENSE.md.
 namespace nsImGuiWidgets
 {
     bool DllExport operator != (const ImVec2& l, const ImVec2& r);
+    ImVec2 DllExport operator + (const ImVec2& l, const ImVec2& r);
+    ImVec2 DllExport operator - (const ImVec2& l, const ImVec2& r);
+
+    bool DllExport InRect(const ImVec2& pos, const ImVec2& size, const ImVec2& point);
 }

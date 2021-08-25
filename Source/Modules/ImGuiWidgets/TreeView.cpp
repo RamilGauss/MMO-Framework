@@ -7,23 +7,23 @@ See for more information LICENSE.md.
 
 #include "TreeView.h"
 #include "TreeNode.h"
+#include "Helper.h"
 
 using namespace nsImGuiWidgets;
 
 void TTreeView::AddNode(TTreeNode* pNode)
 {
-    auto foundNode = FoundNode(pNode->mId);
+    auto foundNode = FoundNode(pNode->mStrId);
     if (foundNode) {
         return;
     }
     pNode->onSelection.Register(&TTreeView::OnSelection, this);
-    pNode->onClicked.Register(&TTreeView::OnClicked, this);
     mAllNodes.push_back(pNode);
     if (pNode->mParentId == "") {
-        Push(pNode);
+        Add(pNode);
     } else {
         auto pParentNode = FoundNode(pNode->mParentId);
-        pParentNode->AddNode(pNode);
+        pParentNode->Add(pNode);
     }
 }
 //---------------------------------------------------------------------------------------
@@ -36,38 +36,42 @@ void TTreeView::RemoveNode(const std::string& id)
 {
     auto pNode = FoundNode(id);
     //if(pNode->)
-    Remove(pNode);
+    Replace(pNode);
 
     std::remove_if(mAllNodes.begin(), mAllNodes.end(),
-        [this, &id](const TTreeNode* node) { return id == node->mId; });
+        [this, &id](const TTreeNode* node) { return id == node->mStrId; });
 }
 //---------------------------------------------------------------------------------------
 TTreeNode* TTreeView::FoundNode(const std::string& id)
 {
     auto fit = std::find_if(mAllNodes.begin(), mAllNodes.end(),
-        [this, &id](const TTreeNode* node) { return id == node->mId; });
+        [this, &id](const TTreeNode* node) { return id == node->mStrId; });
     if (fit == mAllNodes.end()) {
         return nullptr;
     }
     return *fit;
 }
 //---------------------------------------------------------------------------------------
-void TTreeView::OnSelection(TTreeNode* pSelectedNode)
+void TTreeView::OnSelection(TNode* pSelectedNode)
 {
-    mSelectedNode = pSelectedNode;
+    mSelectedNode = (TTreeNode*)pSelectedNode;
 
     onSelectionEvent.Notify(mSelectedNode);
 }
 //---------------------------------------------------------------------------------------
-void TTreeView::OnClicked(TTreeNode* pNode)
-{
-    TClickEvent clickEvent;
-    clickEvent.pNode = pNode;
-    onClickEvent.Notify(clickEvent);
-}
-//---------------------------------------------------------------------------------------
 TTreeNode* TTreeView::GetSelectedNode() const
 {
+    return mSelectedNode;
+}
+//---------------------------------------------------------------------------------------
+TWidget* TTreeView::GetUnderMouseChild(const ImVec2& mousePos)
+{
+    auto pos = GetPos();
+    auto size = GetSize();
+    if (!InRect(pos, size, mousePos)) {
+        return nullptr;
+    }
+
     return mSelectedNode;
 }
 //---------------------------------------------------------------------------------------

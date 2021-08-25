@@ -14,30 +14,17 @@ See for more information LICENSE.md.
 #include "imgui.h"
 #include "Typedef.h"
 
-#include "CallbackPool.h"
-#include "Widget.h"
+#include "Node.h"
 
 namespace nsImGuiWidgets
 {
     class TTreeView;
 
-    class DllExport TTreeNode : public TWidget
+    class DllExport TTreeNode : public TNode
     {
-        std::list<TTreeNode*> mNodes;
-        bool mSelected = false;
     public:
-        std::string mId;
-        std::string mParentId;
-        std::string mLabel;
-        std::string mUserData;
-
-        using EventCallback = TCallbackPool<TTreeNode*>;
-
-        EventCallback onSelection;
-        EventCallback onClicked;
-
         void Render() override;
-        void AddNode(TTreeNode* pNode);
+
     private:
         void SearchEvents();
     };

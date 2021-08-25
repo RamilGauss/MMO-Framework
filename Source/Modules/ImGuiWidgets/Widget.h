@@ -24,10 +24,18 @@ namespace nsImGuiWidgets
     protected:
         std::string mTitle = "<Unknown>";
         ImGuiID mId;
+
     public:
-        void SetTitle(std::string title);
-        std::string GetTitle();
         TWidget();
+
+        enum class SubType
+        {
+            WIDGET, NODE, UNIT, FRAME
+        };
+        virtual SubType GetSubType() const;
+
+        void SetTitle(std::string title);
+        std::string GetTitle() const;
 
         static void SetInputContainer(nsGraphicEngine::TKeyMouseEventContainer* keyMouseContainer);
         static nsGraphicEngine::TKeyMouseEventContainer* GetInputContainer();

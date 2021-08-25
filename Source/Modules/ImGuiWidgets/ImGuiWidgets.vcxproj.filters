@@ -74,6 +74,12 @@
     <ClInclude Include="InputText.h">
       <Filter>Units</Filter>
     </ClInclude>
+    <ClInclude Include="PopupMenu.h">
+      <Filter>Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetContainer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Label.cpp">
@@ -126,6 +132,15 @@
     </ClCompile>
     <ClCompile Include="InputText.cpp">
       <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="PopupMenu.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="WidgetContainer.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

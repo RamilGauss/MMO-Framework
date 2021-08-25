@@ -33,12 +33,14 @@
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="MenuNode.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="PopupMenu.h" />
     <ClInclude Include="PopupNode.h" />
     <ClInclude Include="Separator.h" />
     <ClInclude Include="TreeNode.h" />
     <ClInclude Include="TreeView.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Widget.h" />
+    <ClInclude Include="WidgetContainer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +53,8 @@
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="MenuNode.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="PopupMenu.cpp" />
     <ClCompile Include="PopupNode.cpp" />
     <ClCompile Include="Separator.cpp" />
     <ClCompile Include="Frame.cpp" />
@@ -58,6 +62,7 @@
     <ClCompile Include="TreeView.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Widget.cpp" />
+    <ClCompile Include="WidgetContainer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -22,8 +22,8 @@ namespace nsGraphicEngine
         std::list<TMouseButtonEvent> mouseButtonEvents;
         std::list<TMouseWheelEvent> mouseWheelEvents;
 
-        std::array<bool, (size_t) KeyCodes::NUM_SCANCODES> keyCodeState;
-        std::array<bool, (size_t) MouseButton::COUNT> mouseButtonState;
+        std::array<bool, (size_t) KeyCodes::NUM_SCANCODES> keyCodeState = {false};
+        std::array<bool, (size_t) MouseButton::COUNT> mouseButtonState = {false};
 
         int mouseX = 0;
         int mouseY = 0;

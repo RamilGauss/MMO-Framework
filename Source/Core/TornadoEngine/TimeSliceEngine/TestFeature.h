@@ -12,33 +12,23 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/Feature.h>
-#include <ImGuiWidgets/MainWindow.h>
-#include <ImGuiWidgets/Window.h>
-#include <ImGuiWidgets/Button.h>
-#include <ImGuiWidgets/Label.h>
-#include <ImGuiWidgets/TreeView.h>
-#include <ImGuiWidgets/TreeNode.h>
 
+#include "Window.h"
+#include "MainWindow.h"
 
 namespace nsTest
 {
     class DllExport TInitWidgets : public nsECSFramework::TInitSystem
     {
-        nsImGuiWidgets::TWindow mWindow;
-        nsImGuiWidgets::TButton mButton;
-        nsImGuiWidgets::TLabel mSelectionLabel;
-        nsImGuiWidgets::TLabel mClickLabel;
+        TWindow* mDebugLog = nullptr;
+        TWindow* mWindow = nullptr;
 
-        nsImGuiWidgets::TTreeView mTreeView;
-
-        nsImGuiWidgets::TTreeNode mTreeNodes[6];
-
+        TMainWindow* mMainWindow = nullptr;
     public:
         TInitWidgets();
         void Init() override;
     private:
         void SelectNode(nsImGuiWidgets::TTreeNode* pNode);
-        void ClickNode(const nsImGuiWidgets::TTreeView::TClickEvent& pClickEvent);
     };
 
 

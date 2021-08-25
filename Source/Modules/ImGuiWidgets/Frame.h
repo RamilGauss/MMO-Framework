@@ -9,22 +9,23 @@ See for more information LICENSE.md.
 
 #include <list>
 #include "Unit.h"
+#include "WidgetContainer.h"
 #include "Events.h"
 #include "CallbackPool.h"
 
 namespace nsImGuiWidgets
 {
     // Abstract class
-    class DllExport TFrame : public TUnit
+    class DllExport TFrame : public TUnit, public TWidgetContainer
     {
     protected:
         bool mIsFocused = false;
-        std::list<nsGraphicEngine::IRenderable*> mChildList;
     public:
-        void Push(nsGraphicEngine::IRenderable* pWidget);
-        void Remove(nsGraphicEngine::IRenderable* pWidget);
+        SubType GetSubType() const override;
 
         void Clear();
+
+        virtual TWidget* GetUnderMouseChild(const ImVec2& mousePos);
 
         // Property change events by User
         using TFocusCallback = TCallbackPool<bool>;
@@ -35,6 +36,11 @@ namespace nsImGuiWidgets
         using TMouseWheelCallback = TCallbackPool<nsGraphicEngine::TMouseWheelEvent>;
 
         TFocusCallback mFocusCB;
+
+        TKeyCallback mKeyCB;
+        TMouseClickCallback mMouseClickCB;
+        TMouseMoveCallback  mMouseMoveCB;
+        TMouseWheelCallback mMouseWheelCB;
 
         bool IsFocused();
 

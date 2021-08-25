@@ -159,6 +159,8 @@ bool TGraphicEngine_Ogre_ImGui::InitMyGUI()
     mGuiRender._setup(mWindow, mFSLayer, mOverlaySystem);   // start new sample
 
     mCurrentSample = &mGuiRender;
+
+    mSceneManager = mCurrentSample->getSceneManager();
     return true;
 }
 //---------------------------------------------------------------------
@@ -188,7 +190,6 @@ bool TGraphicEngine_Ogre_ImGui::frameEnded(const Ogre::FrameEvent& evt)
     if (mCurrentSample && mCurrentSample->isDone()) {
         runSample(0);
     }
-
     return true;
 }
 //---------------------------------------------------------------------
@@ -211,7 +212,7 @@ Ogre::Root* TGraphicEngine_Ogre_ImGui::GetRoot()
 //---------------------------------------------------------------------
 Ogre::SceneManager* TGraphicEngine_Ogre_ImGui::GetSceneManager()
 {
-    return nullptr;
+    return mSceneManager;
 }
 //---------------------------------------------------------------------
 Ogre::Camera* TGraphicEngine_Ogre_ImGui::GetCamera()
@@ -221,7 +222,7 @@ Ogre::Camera* TGraphicEngine_Ogre_ImGui::GetCamera()
 //---------------------------------------------------------------------
 Ogre::RenderWindow* TGraphicEngine_Ogre_ImGui::GetWindow()
 {
-    return nullptr;
+    return mWindow;
 }
 //---------------------------------------------------------------------
 Ogre::TerrainGroup* TGraphicEngine_Ogre_ImGui::GetTerrainGroup()

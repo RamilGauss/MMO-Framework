@@ -67,7 +67,7 @@ void TKeyMouseEventHandler::AddSdl2Event(const SDL_Event& event)
             TMouseButtonEvent mouseButtonEvent;
             mouseButtonEvent.timestamp = event.button.timestamp;
 
-            mouseButtonEvent.button = (MouseButton) event.button.button;
+            mouseButtonEvent.button = (MouseButton) (event.button.button - 1);
             mouseButtonEvent.state = event.type == SDL_EventType::SDL_MOUSEBUTTONDOWN ?
                 MouseState::PRESSED : MouseState::RELEASED;
             mouseButtonEvent.clicks = event.button.clicks;
@@ -116,10 +116,10 @@ void TKeyMouseEventHandler::UpdateStates(const SDL_Event& event)
             mKeyMouseEventContainer->keyCodeState[event.key.keysym.scancode] = false;
             break;
         case SDL_EventType::SDL_MOUSEBUTTONDOWN:
-            mKeyMouseEventContainer->mouseButtonState[event.button.button] = true;
+            mKeyMouseEventContainer->mouseButtonState[event.button.button - 1] = true;
             break;
         case SDL_EventType::SDL_MOUSEBUTTONUP:
-            mKeyMouseEventContainer->mouseButtonState[event.button.button] = false;
+            mKeyMouseEventContainer->mouseButtonState[event.button.button - 1] = false;
             break;
         case SDL_EventType::SDL_MOUSEMOTION:
             mKeyMouseEventContainer->mouseX = event.motion.x;

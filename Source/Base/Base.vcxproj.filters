@@ -131,9 +131,6 @@
     <ClInclude Include="include\MemoryPool.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MessagePackSerializer.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Mutex.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -228,9 +225,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ColanderVector.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\RemoveIthType.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\PathOperations.h">

@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
+    class TNode;
     class TTreeNode;
 
     class DllExport TTreeView : public TFrame
@@ -21,33 +22,25 @@ namespace nsImGuiWidgets
         std::list<TTreeNode*> mAllNodes;
 
         TTreeNode* mSelectedNode = nullptr;
-
     public:
+        TWidget* GetUnderMouseChild(const ImVec2& mousePos) override;
+
         void AddNode(TTreeNode* pNode);
-        void Replace(TTreeNode* pNode);
+
         void RemoveNode(const std::string& id);
         TTreeNode* GetNode(const std::string& id);
 
-        struct TClickEvent
-        {
-            TTreeNode* pNode = nullptr;// maybe null
-            //TEventType::MouseButtonType mouseButtonType;
-            //TEventType::ButtonStateType buttonStateType;
-        };
-
         using EventCallback = TCallbackPool<TTreeNode*>;
-        using ClickEventCallback = TCallbackPool<const TClickEvent&>;
 
         using OnDragEvent = std::function<bool(TTreeNode*)>;
         using OnDropEvent = std::function<bool(TTreeNode*, TTreeNode*)>;
 
         EventCallback onSelectionEvent;
-        ClickEventCallback onClickEvent;
 
         TTreeNode* GetSelectedNode() const;
     private:
         TTreeNode* FoundNode(const std::string& id);
-        void OnSelection(TTreeNode* pSelectedNode);
-        void OnClicked(TTreeNode* pSelectedNode);
+        void OnSelection(TNode* pSelectedNode);
+        void OnClicked(TNode* pSelectedNode);
     };
 }

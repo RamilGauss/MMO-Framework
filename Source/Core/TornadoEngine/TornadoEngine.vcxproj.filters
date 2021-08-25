@@ -31,6 +31,9 @@
     <Filter Include="Components\Graphic">
       <UniqueIdentifier>{67450a2e-cad7-4be0-81be-61b44dc0d1e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Testing">
+      <UniqueIdentifier>{89eea593-f595-44bd-8625-34fb6f247220}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -94,7 +97,13 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="TimeSliceEngine\TestFeature.cpp">
-      <Filter>TimeSliceEngine</Filter>
+      <Filter>Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Testing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +236,6 @@
     <ClInclude Include="Components\Common\SceneGuidComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
-    <ClInclude Include="TimeSliceEngine\TestFeature.h">
-      <Filter>TimeSliceEngine</Filter>
-    </ClInclude>
     <ClInclude Include="Generated files\ComponentIncludeList.h">
       <Filter>Generated files</Filter>
     </ClInclude>
@@ -256,6 +262,15 @@
     </ClInclude>
     <ClInclude Include="FocusComponent.h">
       <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\TestFeature.h">
+      <Filter>Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Testing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

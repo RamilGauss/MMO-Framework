@@ -7,20 +7,18 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <string>
-#include <list>
-#include <functional>
-
-#include "imgui.h"
-#include "Typedef.h"
-
-#include "Node.h"
+#include "Widget.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TPopupNode : public TNode
+    class DllExport TWidgetContainer
     {
     public:
-        void Render() override final;
+        void Add(TWidget* p);
+        void Replace(TWidget* p);
+        void Clear();
+
+    protected:
+        std::list<TWidget*> mWidgets;
     };
 }
