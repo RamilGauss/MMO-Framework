@@ -44,6 +44,9 @@ namespace nsTest
         nsImGuiWidgets::TPopupNode mPopupNodes[6];
         nsImGuiWidgets::TPopupMenu mPopup;
 
-        TWindow();
+        nsImGuiWidgets::TPopupNode mLabelPopupNodes[3];
+        nsImGuiWidgets::TPopupMenu mLabelPopup;
+
+        TWindow(std::string name);
     };
 }

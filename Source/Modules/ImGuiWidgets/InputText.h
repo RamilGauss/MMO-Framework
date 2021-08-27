@@ -16,7 +16,7 @@ namespace nsImGuiWidgets
     public:
     protected:
         static const size_t SIZE = 512;
-        char mValue[SIZE];
+        char mValue[SIZE] = {0};
 
         void RenderInheritance() override final;
     };

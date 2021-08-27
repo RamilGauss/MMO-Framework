@@ -22,6 +22,8 @@ namespace nsImGuiWidgets
 
         ImVec2 mSize;
         ImVec2 mPos;
+
+        ImVec2 mScreenPos;
     public:
         bool IsShown();
         void SetShow(bool value);

@@ -29,7 +29,7 @@ void TMenuNode::Render()
             ImGui::EndMenu();
         }
     } else {
-        if (ImGui::Selectable(mLabel.c_str())) {
+        if (ImGui::MenuItem(mLabel.c_str())) {
             onLeftClick.Notify(this);
         }
     }

@@ -14,11 +14,11 @@ See for more information LICENSE.md.
 
 using namespace nsTest;
 
-TWindow::TWindow()
+TWindow::TWindow(std::string name)
 {
-    mWindow.SetTitle("Testing");
-    mWindow.SetSize({500, 500});
-    mWindow.SetPos({10, 10});
+    mWindow.SetTitle(name.c_str());
+    mWindow.SetSize({500, 900});
+    mWindow.SetPos({20, 20});
 
     mButton.SetCallback([](nsImGuiWidgets::TButton* p)
     {
@@ -43,18 +43,32 @@ TWindow::TWindow()
                 mLogLabel.AppendText("Node \"");
                 mLogLabel.AppendText(((nsImGuiWidgets::TTreeNode*) under)->mLabel.c_str());
                 mLogLabel.AppendText("\", ");
+
+                mPopup.Open();
             }
         }
     };
-    //mWindow.mMouseClickCB.Register(mouseClickFunc);
     mTreeView.mMouseClickCB.Register(mouseClickFunc);
+
+    mWindow.mMouseClickCB.Register([&](nsGraphicEngine::TMouseButtonEvent event)
+    {
+        if (event.button != nsGraphicEngine::MouseButton::RIGHT) {
+            return;
+        }
+        if (event.state != nsGraphicEngine::MouseState::RELEASED) {
+            return;
+        }
+
+        auto mousePos = ImVec2(event.x, event.y);
+        auto under = mWindow.GetUnderMouseChild(mousePos);
+        if (under == &mLogLabel) {
+            mLabelPopup.Open();
+        }
+    });
 
     mButton.SetTitle("Exit");
     mButton.SetPos({30,30});
     mButton.SetSize({60, 20});
-
-    mLogLabel.SetPos({90,30});
-    mLogLabel.SetSize({100,20});
 
     mSpinBox.SetTitle("SpinBox");
     mSpinBox.SetPos({30, 60});
@@ -73,9 +87,11 @@ TWindow::TWindow()
     mCheckBox.SetPos({30, 150});
     mCheckBox.SetSize({60, 20});
 
-    mTreeView.SetPos({30,150});
-    mTreeView.SetSize({300, 300});
+    mTreeView.SetPos({30,180});
+    mTreeView.SetSize({150, 120});
 
+    mLogLabel.SetPos({30,300});
+    mLogLabel.SetSize({400,400});
 
     mWindow.Add(&mButton);
     mWindow.Add(&mSpinBox);
@@ -83,6 +99,7 @@ TWindow::TWindow()
     mWindow.Add(&mCheckBox);
     mWindow.Add(&mTextEdit);
     mWindow.Add(&mTreeView);
+    mWindow.Add(&mLogLabel);
 
     mTreeNodes[0].mStrId = "0";
     mTreeNodes[0].mLabel = "Scene0";
@@ -120,5 +137,54 @@ TWindow::TWindow()
         }
     });
 
+    mPopupNodes[0].mLabel = "Main";
+    mPopupNodes[1].mLabel = "Open";
+    mPopupNodes[2].mLabel = "Save";
+
+    mPopupNodes[3].mLabel = "Other";
+    mPopupNodes[4].mLabel = "Make";
+
+    mPopupNodes[5].mLabel = "Exit";
+    mPopupNodes[5].onLeftClick.Register([](nsImGuiWidgets::TNode* pNode)
+    {
+        nsTornadoEngine::Modules()->StopAccessor()->SetStop();
+    });
+
+    mPopupNodes[0].Add(&mPopupNodes[1]);
+    mPopupNodes[0].Add(&mPopupNodes[2]);
+
+    mPopupNodes[3].Add(&mPopupNodes[4]);
+
+    mPopup.Add(&mPopupNodes[0]);
+    mPopup.Add(&mPopupNodes[3]);
+    mPopup.Add(&mPopupNodes[5]);
+
+    mLabelPopupNodes[0].mLabel = "Copy";
+    mLabelPopupNodes[0].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
+    {
+        auto logLabelText = mLogLabel.GetText();
+        ImGui::SetClipboardText(logLabelText.c_str());
+    });
+
+    mLabelPopupNodes[1].mLabel = "Paste";
+    mLabelPopupNodes[1].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
+    {
+        auto logLabelText = ImGui::GetClipboardText();
+        mLogLabel.SetText(logLabelText);
+    });
+    mLabelPopupNodes[2].mLabel = "Clear";
+    mLabelPopupNodes[2].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
+    {
+        mLogLabel.SetText("");
+    });
+
+    mLabelPopup.Add(&mLabelPopupNodes[0]);
+    mLabelPopup.Add(&mLabelPopupNodes[1]);
+    mLabelPopup.Add(&mLabelPopupNodes[2]);
+
+
     nsTornadoEngine::Modules()->G()->GetGE()->AddRender(&mWindow);
+    nsTornadoEngine::Modules()->G()->GetGE()->AddRender(&mPopup);
+    nsTornadoEngine::Modules()->G()->GetGE()->AddRender(&mLabelPopup);
 }
+//--------------------------------------------------------------------------------------------------------

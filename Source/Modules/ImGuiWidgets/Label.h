@@ -19,6 +19,7 @@ namespace nsImGuiWidgets
         void SetText(const char* s);
         void AppendText(const char* s);
         int GetTextLength();
+        std::string GetText();
 
         void SetColor(const ImVec4& color);
         ImVec4 GetColor() const;

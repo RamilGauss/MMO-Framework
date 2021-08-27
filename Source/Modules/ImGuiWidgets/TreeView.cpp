@@ -66,9 +66,8 @@ TTreeNode* TTreeView::GetSelectedNode() const
 //---------------------------------------------------------------------------------------
 TWidget* TTreeView::GetUnderMouseChild(const ImVec2& mousePos)
 {
-    auto pos = GetPos();
     auto size = GetSize();
-    if (!InRect(pos, size, mousePos)) {
+    if (!InRect(mScreenPos, size, mousePos)) {
         return nullptr;
     }
 

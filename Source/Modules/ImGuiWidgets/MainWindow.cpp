@@ -23,11 +23,12 @@ void TMainWindow::BeginRender()
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
 
     ImGui::Begin(mTitle.c_str(), nullptr, s_DockSpaceFlags);
+
+    ImGui::DockSpace(mId, size, ImGuiDockNodeFlags_None | ImGuiDockNodeFlags_KeepAliveOnly);// ImGuiDockNodeFlags_KeepAliveOnly);
 }
 //----------------------------------------------------------------------------------------
 void TMainWindow::RenderInheritance()
 {
-    ImGui::DockSpace(mId, ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode);
     ImGui::PopStyleVar(3);
 
     if (ImGui::BeginMainMenuBar()) {

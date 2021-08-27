@@ -17,7 +17,7 @@ namespace nsImGuiWidgets
     protected:
         const int TOOLBAR_HEIGHT = 20;
 
-        ImGuiWindowFlags s_DockSpaceFlags = ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse
+        ImGuiWindowFlags s_DockSpaceFlags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse
             | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus
             | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoBackground;
 

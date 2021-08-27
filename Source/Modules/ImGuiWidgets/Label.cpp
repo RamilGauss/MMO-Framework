@@ -42,6 +42,11 @@ int TLabel::GetTextLength()
     return mText.size();
 }
 //-------------------------------------------------------------------------------------
+std::string TLabel::GetText()
+{
+    return mText;
+}
+//-------------------------------------------------------------------------------------
 void TLabel::SetColor(const ImVec4& color)
 {
     mColor = color;

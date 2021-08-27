@@ -15,6 +15,7 @@ namespace nsImGuiWidgets
     class TPopupNode;
     class DllExport TPopupMenu : public TWidget, public TWidgetContainer
     {
+        bool mIsOpen = false;
     public:
         void Open();
     protected:

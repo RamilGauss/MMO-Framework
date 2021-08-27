@@ -14,21 +14,23 @@ using namespace nsImGuiWidgets;
 
 void TPopupMenu::Open()
 {
-    std::string strId = std::to_string(mId);
-    ImGui::OpenPopup(strId.c_str());
+    mIsOpen = true;
 }
 //-------------------------------------------------------------------------
 void TPopupMenu::Render()
 {
     std::string strId = std::to_string(mId);
-    if (!ImGui::BeginPopup(strId.c_str())) {
-        return;
+    if (mIsOpen) {
+        mIsOpen = false;
+        ImGui::OpenPopup(strId.c_str());
+    }
+    if (ImGui::BeginPopup(strId.c_str())) {
+        for (auto& node : mWidgets) {
+            node->Render();
+        }
+
+        ImGui::EndPopup();
     }
 
-    for (auto& node : mWidgets) {
-        node->Render();
-    }
-
-    ImGui::EndPopup();
 }
 //-------------------------------------------------------------------------

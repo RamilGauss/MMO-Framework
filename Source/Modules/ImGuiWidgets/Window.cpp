@@ -19,10 +19,38 @@ void TWindow::BeginRender()
 
     ImGui::SetNextWindowSize(mSize);
     ImGui::SetNextWindowPos(mPos, ImGuiCond_Appearing);
+
+    if (mNeedSetParentDockId) {
+        mParentDockId = mNewParentDockId;
+        ImGui::SetNextWindowDockID(mParentDockId, ImGuiCond_Once);
+    }
+
     ImGui::Begin(mTitle.c_str(), &mIsShown);
+    mScreenPos = ImGui::GetCursorScreenPos();
+
+    //ImGui::DockSpace(mId, ImVec2(0,0), ImGuiDockNodeFlags_None | ImGuiDockNodeFlags_KeepAliveOnly);
 
     if (oldIsShown != mIsShown) {
         mShowCB.Notify(mIsShown);
+    }
+
+    if (mNeedSetParentDockId) {
+        mNeedSetParentDockId = false;
+    } else {
+
+        auto freshIsDocked = ImGui::IsWindowDocked();
+        if (freshIsDocked != mIsDocked) {
+            mIsDocked = freshIsDocked;
+            mParentDockId = ImGui::GetWindowDockID();
+
+            mDockCB.Notify();
+        } else if (freshIsDocked) {
+            auto freshParentDockId = ImGui::GetWindowDockID();
+            if (freshParentDockId != mParentDockId) {
+                mParentDockId = freshParentDockId;
+                mDockCB.Notify();
+            }
+        }
     }
 }
 //---------------------------------------------------------------------------------------
@@ -46,4 +74,24 @@ void TWindow::EndRender()
     }
 }
 //---------------------------------------------------------------------------------------
-
+ImGuiID TWindow::GetParentDockId() const
+{
+    return mParentDockId;
+}
+//---------------------------------------------------------------------------------------
+bool TWindow::IsDocked() const
+{
+    return mIsDocked;
+}
+//---------------------------------------------------------------------------------------
+void TWindow::SetParentDockId(ImGuiID parentId)
+{
+    mNeedSetParentDockId = true;
+    mNewParentDockId = parentId;
+}
+//---------------------------------------------------------------------------------------
+ImGuiID TWindow::GetDockId() const
+{
+    return mId;
+}
+//---------------------------------------------------------------------------------------
