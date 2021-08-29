@@ -14,6 +14,9 @@ namespace nsImGuiWidgets
     class DllExport TInputText : public TUnit
     {
     public:
+
+        std::string GetText();
+        void SetText(const std::string& str);
     protected:
         static const size_t SIZE = 512;
         char mValue[SIZE] = {0};

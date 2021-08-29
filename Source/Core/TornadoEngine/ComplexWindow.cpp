@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Window.h"
+#include "ComplexWindow.h"
 
 #include "Modules.h"
 #include "ModuleGraphicEngine.h"
@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 
 using namespace nsTest;
 
-TWindow::TWindow(std::string name)
+TComplexWindow::TComplexWindow(std::string name)
 {
     mWindow.SetTitle(name.c_str());
     mWindow.SetSize({500, 900});

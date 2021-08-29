@@ -13,43 +13,32 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "Window.h"
-#include "MainWindow.h"
+#include "TestAllWidgetsSystem.h"
+#include "DebugWindow.h"
+#include "DockingSystem.h"
+#include "DockingStuffSystem.h"
+#include "TreeViewSystem.h"
+#include "UnderMouseSystem.h"
 
 namespace nsTest
 {
-    class DllExport TDebugWindow : public nsGraphicEngine::IRenderable
-    {
-    public:
-        void Render() override
-        {
-            ImGui::ShowDemoWindow();
-        }
-    };
-
-    class DllExport TInitWidgets : public nsECSFramework::TInitSystem
-    {
-        TWindow* mDebugLog = nullptr;
-        TWindow* mWindow0 = nullptr;
-        TWindow* mWindow1 = nullptr;
-
-        TMainWindow* mMainWindow = nullptr;
-
-        TDebugWindow mDebugWindow;
-
-        std::string mIniData;
-        size_t mOutIniSize = 0;
-    public:
-        TInitWidgets();
-        void Init() override;
-    private:
-        void SelectNode(nsImGuiWidgets::TTreeNode* pNode);
-    };
-
-
     class DllExport TTestFeature : public nsECSFramework::TFeature
     {
-        TInitWidgets mInitWidgets;
+        // Testing all possible widgets
+        TTestAllWidgetsSystem mTestAllWidgetsSystem;
+
+        // View what imgui docking can
+        TDockingSystem mDockingSystem;
+
+        // Docking experiments with tools
+        TDockingStuffSystem mDockingStuffSystem;
+
+        // TreeView
+        TTreeViewSystem mTreeViewSystem;
+
+        // Under mouse position
+        TUnderMouseSystem mUnderMouseSystem;
+
     public:
         void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
     };

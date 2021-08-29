@@ -34,6 +34,12 @@
     <Filter Include="Testing">
       <UniqueIdentifier>{89eea593-f595-44bd-8625-34fb6f247220}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Testing\Systems">
+      <UniqueIdentifier>{ae7625ee-e7f5-4fad-be15-2cbd643b6e1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Testing\Windows">
+      <UniqueIdentifier>{5bf344a4-bb6e-48c8-924d-e82a0b130665}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -99,11 +105,38 @@
     <ClCompile Include="TimeSliceEngine\TestFeature.cpp">
       <Filter>Testing</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Testing</Filter>
+    <ClCompile Include="ComplexWindow.cpp">
+      <Filter>Testing\Windows</Filter>
     </ClCompile>
     <ClCompile Include="MainWindow.cpp">
-      <Filter>Testing</Filter>
+      <Filter>Testing\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="TestAllWidgetsSystem.cpp">
+      <Filter>Testing\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="DockingSystem.cpp">
+      <Filter>Testing\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeViewWindow.cpp">
+      <Filter>Testing\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="DockingWindow.cpp">
+      <Filter>Testing\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="DockingStuffWindow.cpp">
+      <Filter>Testing\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="DockingStuffSystem.cpp">
+      <Filter>Testing\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeViewSystem.cpp">
+      <Filter>Testing\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="UnderMouseSystem.cpp">
+      <Filter>Testing\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="UnderMouseWindow.cpp">
+      <Filter>Testing\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -266,11 +299,41 @@
     <ClInclude Include="TimeSliceEngine\TestFeature.h">
       <Filter>Testing</Filter>
     </ClInclude>
-    <ClInclude Include="MainWindow.h">
-      <Filter>Testing</Filter>
+    <ClInclude Include="ComplexWindow.h">
+      <Filter>Testing\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Testing</Filter>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Testing\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="TestAllWidgetsSystem.h">
+      <Filter>Testing\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="DockingSystem.h">
+      <Filter>Testing\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugWindow.h">
+      <Filter>Testing\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeViewWindow.h">
+      <Filter>Testing\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="DockingWindow.h">
+      <Filter>Testing\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="DockingStuffSystem.h">
+      <Filter>Testing\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeViewSystem.h">
+      <Filter>Testing\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="UnderMouseSystem.h">
+      <Filter>Testing\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="DockingStuffWindow.h">
+      <Filter>Testing\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="UnderMouseWindow.h">
+      <Filter>Testing\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

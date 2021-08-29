@@ -52,6 +52,12 @@ bool TFrame::IsFocused()
 //---------------------------------------------------------------------------------------
 void TFrame::SearchInputEvents()
 {
+    //###
+    //ImGui::BeginTooltip();
+    //ImGui::Text("UnderLabel");
+    //ImGui::EndTooltip();
+    //###
+
     auto inputContainer = TWidget::GetInputContainer();
     for (auto& event : inputContainer->keyEvents) {
         mKeyCB.Notify(event);

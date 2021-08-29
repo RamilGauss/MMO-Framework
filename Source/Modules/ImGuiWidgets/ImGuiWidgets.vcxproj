@@ -36,6 +36,7 @@
     <ClInclude Include="PopupMenu.h" />
     <ClInclude Include="PopupNode.h" />
     <ClInclude Include="Separator.h" />
+    <ClInclude Include="ToolTip.h" />
     <ClInclude Include="TreeNode.h" />
     <ClInclude Include="TreeView.h" />
     <ClInclude Include="Unit.h" />

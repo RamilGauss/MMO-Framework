@@ -27,26 +27,10 @@ See for more information LICENSE.md.
 
 namespace nsTest
 {
-    struct DllExport TWindow
+    struct DllExport TDockingWindow
     {
         nsImGuiWidgets::TWindow mWindow;
 
-        nsImGuiWidgets::TButton mButton;
-        nsImGuiWidgets::TInputInt mSpinBox;
-        nsImGuiWidgets::TInputText mTextEdit;
-        nsImGuiWidgets::TCheckBox mCheckBox;
-        nsImGuiWidgets::TComboBox mComboBox;
-        nsImGuiWidgets::TLabel mLogLabel;
-
-        nsImGuiWidgets::TTreeNode mTreeNodes[6];
-        nsImGuiWidgets::TTreeView mTreeView;
-
-        nsImGuiWidgets::TPopupNode mPopupNodes[6];
-        nsImGuiWidgets::TPopupMenu mPopup;
-
-        nsImGuiWidgets::TPopupNode mLabelPopupNodes[3];
-        nsImGuiWidgets::TPopupMenu mLabelPopup;
-
-        TWindow(std::string name);
+        TDockingWindow(std::string name);
     };
 }

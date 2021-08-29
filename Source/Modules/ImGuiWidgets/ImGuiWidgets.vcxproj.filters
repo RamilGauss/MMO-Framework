@@ -80,6 +80,9 @@
     <ClInclude Include="WidgetContainer.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="ToolTip.h">
+      <Filter>Units</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Label.cpp">
