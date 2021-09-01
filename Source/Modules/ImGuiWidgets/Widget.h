@@ -13,16 +13,16 @@ See for more information LICENSE.md.
 #include "Typedef.h"
 
 #include "IRenderable.h"
+#include "Title.h"
 #include "KeyMouseEventContainer.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TWidget : public nsGraphicEngine::IRenderable
+    class DllExport TWidget : public nsGraphicEngine::IRenderable, public TTitle
     {
         static ImGuiID mLastId;
         static nsGraphicEngine::TKeyMouseEventContainer* mKeyMouseInputContainer;
     protected:
-        std::string mTitle = "<Unknown>";
         ImGuiID mId;
 
     public:
@@ -33,9 +33,6 @@ namespace nsImGuiWidgets
             WIDGET, NODE, UNIT, FRAME
         };
         virtual SubType GetSubType() const;
-
-        void SetTitle(std::string title);
-        std::string GetTitle() const;
 
         static void SetInputContainer(nsGraphicEngine::TKeyMouseEventContainer* keyMouseContainer);
         static nsGraphicEngine::TKeyMouseEventContainer* GetInputContainer();

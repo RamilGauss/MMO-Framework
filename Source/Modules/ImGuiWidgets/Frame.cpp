@@ -52,12 +52,6 @@ bool TFrame::IsFocused()
 //---------------------------------------------------------------------------------------
 void TFrame::SearchInputEvents()
 {
-    //###
-    //ImGui::BeginTooltip();
-    //ImGui::Text("UnderLabel");
-    //ImGui::EndTooltip();
-    //###
-
     auto inputContainer = TWidget::GetInputContainer();
     for (auto& event : inputContainer->keyEvents) {
         mKeyCB.Notify(event);
@@ -75,8 +69,9 @@ void TFrame::SearchInputEvents()
 //---------------------------------------------------------------------------------------
 TWidget* TFrame::GetUnderMouseChild(const ImVec2& mousePos)
 {
+    auto pos = GetPos();
     auto size = GetSize();
-    if (!InRect(mScreenPos, size, mousePos)) {
+    if (!InRect(pos, size, mousePos)) {
         return nullptr;
     }
 
@@ -85,7 +80,7 @@ TWidget* TFrame::GetUnderMouseChild(const ImVec2& mousePos)
             case SubType::UNIT:
             case SubType::FRAME:
             {
-                auto childPos = ((TUnit*) child)->GetPos() + mScreenPos;
+                auto childPos = ((TUnit*) child)->GetPos() + pos;
                 auto childSize = ((TUnit*) child)->GetSize();
                 if (InRect(childPos, childSize, mousePos)) {
                     return child;

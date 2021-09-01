@@ -27,7 +27,7 @@ void TTestFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
     //Add(&mTestAllWidgetsSystem);
     //Add(&mDockingSystem);
     //Add(&mDockingStuffSystem);
-    //Add(&mTreeViewSystem);
-    Add(&mUnderMouseSystem);
+    Add(&mTreeViewSystem);
+    //Add(&mUnderMouseSystem);
 }
 //------------------------------------------------------------------------------------------------

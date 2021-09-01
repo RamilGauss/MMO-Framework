@@ -13,9 +13,11 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/Window.h>
 #include <ImGuiWidgets/TreeView.h>
+#include <ImGuiWidgets/Button.h>
 #include <ImGuiWidgets/TreeNode.h>
 #include <ImGuiWidgets/PopupNode.h>
 #include <ImGuiWidgets/PopupMenu.h>
+#include <ImGuiWidgets/ToolTip.h>
 
 namespace nsTest
 {
@@ -23,8 +25,12 @@ namespace nsTest
     {
         nsImGuiWidgets::TWindow mWindow;
 
+        nsImGuiWidgets::TButton mButton;
+
         nsImGuiWidgets::TTreeNode mTreeNodes[6];
         nsImGuiWidgets::TTreeView mTreeView;
+
+        nsImGuiWidgets::TToolTip mToolTip;
 
         TTreeViewWindow(std::string name);
     };

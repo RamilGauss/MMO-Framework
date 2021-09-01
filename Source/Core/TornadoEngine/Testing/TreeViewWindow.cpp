@@ -19,7 +19,7 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
     mWindow.SetSize({300, 400});
     mWindow.SetPos({20, 20});
 
-    auto mouseClickFunc = [&](nsGraphicEngine::TKeyboardEvent event)
+    mTreeView.mKeyCB.Register([&](nsGraphicEngine::TKeyboardEvent event)
     {
         if (event.keyCode != nsGraphicEngine::KeyCodes::F2) {
             return;
@@ -32,12 +32,29 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
         if (pNode != nullptr) {
             //mTreeView.Edit();
         }
-    };
-    mTreeView.mKeyCB.Register(mouseClickFunc);
+    });
 
-    mTreeView.SetPos({30,180});
+    mTreeView.mMouseMoveCB.Register([&](nsGraphicEngine::TMouseMotionEvent event)
+    {
+        auto pNode = mTreeView.GetUnderMouseChild({(float)event.x, (float) event.y});
+
+        if (pNode != nullptr) {
+            mToolTip.SetTitle(pNode->GetTitle());
+        }
+        mToolTip.SetShow(pNode != nullptr);
+    });
+
+    mTreeView.SetPos({30,100});
     mTreeView.SetSize({150, 120});
 
+    mButton.SetPos({30,30});
+    mButton.SetSize({50, 20});
+    mButton.SetTitle("Exit");
+    mButton.mClickCB.Register([&](nsImGuiWidgets::TButton*p) {
+        nsTornadoEngine::Modules()->StopAccessor()->SetStop();
+    });
+
+    mWindow.Add(&mButton);
     mWindow.Add(&mTreeView);
 
     mTreeNodes[0].mStrId = "0";
@@ -67,5 +84,6 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
     }
 
     nsTornadoEngine::Modules()->G()->GetGE()->AddRender(&mWindow);
+    nsTornadoEngine::Modules()->G()->GetGE()->AddRender(&mToolTip);
 }
 //--------------------------------------------------------------------------------------------------------

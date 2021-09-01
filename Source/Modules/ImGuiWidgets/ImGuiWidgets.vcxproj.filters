@@ -15,6 +15,9 @@
     <Filter Include="Nodes">
       <UniqueIdentifier>{63a678a6-e2da-4b42-9656-2d593a96e821}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Properties">
+      <UniqueIdentifier>{d323bae3-19e9-42ce-883b-66aefb7caa92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -77,11 +80,20 @@
     <ClInclude Include="PopupMenu.h">
       <Filter>Nodes</Filter>
     </ClInclude>
-    <ClInclude Include="WidgetContainer.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="ToolTip.h">
       <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetContainer.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Location.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Visibility.h">
+      <Filter>Properties</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +155,19 @@
       <Filter>Nodes</Filter>
     </ClCompile>
     <ClCompile Include="WidgetContainer.cpp">
-      <Filter>Common</Filter>
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="Location.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="Visibility.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolTip.cpp">
+      <Filter>Units</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

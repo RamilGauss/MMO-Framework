@@ -7,20 +7,18 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Unit.h"
-
-#include "CallbackPool.h"
+#include <string>
+#include "TypeDef.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TButton : public TUnit
+    class DllExport TTitle
     {
     public:
-        using TCallback = TCallbackPool<TButton*>;
+        void SetTitle(const std::string& str);
+        std::string GetTitle() const;
 
-        TCallback mClickCB;
     protected:
-        void RenderInheritance() override final;
-
+        std::string mTitle = "<Unknown>";
     };
 }

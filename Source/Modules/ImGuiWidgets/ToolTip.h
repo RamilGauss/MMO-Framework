@@ -7,23 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Unit.h"
-
-#include <functional>
+#include "Title.h"
+#include "Visibility.h"
+#include "IRenderable.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TToolTip : public TUnit
+    class DllExport TToolTip : public nsGraphicEngine::IRenderable, public TTitle, public TVisibility
     {
     protected:
-        void BeginRender() override {}
-        void EndRender() override {}
-
-        void RenderInheritance() override final
-        {
-            ImGui::BeginTooltip();
-            ImGui::Text(mTitle.c_str());
-            ImGui::EndTooltip();
-        }
+        void Render() override final;
     };
 }

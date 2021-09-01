@@ -12,6 +12,14 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
+int TPopupMenu::mLastId = 0;
+
+TPopupMenu::TPopupMenu()
+{
+    mLastId++;
+    mId = mLastId;
+}
+//-------------------------------------------------------------------------
 void TPopupMenu::Open()
 {
     mIsOpen = true;
@@ -31,6 +39,5 @@ void TPopupMenu::Render()
 
         ImGui::EndPopup();
     }
-
 }
 //-------------------------------------------------------------------------

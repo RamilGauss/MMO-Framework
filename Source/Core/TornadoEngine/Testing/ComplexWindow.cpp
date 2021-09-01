@@ -20,7 +20,7 @@ TComplexWindow::TComplexWindow(std::string name)
     mWindow.SetSize({500, 900});
     mWindow.SetPos({20, 20});
 
-    mButton.SetCallback([](nsImGuiWidgets::TButton* p)
+    mButton.mClickCB.Register([](nsImGuiWidgets::TButton* p)
     {
         nsTornadoEngine::Modules()->StopAccessor()->SetStop();
     });

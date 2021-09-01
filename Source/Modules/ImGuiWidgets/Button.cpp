@@ -10,17 +10,10 @@ See for more information LICENSE.md.
 using namespace nsImGuiWidgets;
 
 //-------------------------------------------------------------------------------
-void TButton::SetCallback(TCallback cb)
-{
-    mCallback = cb;
-}
-//-------------------------------------------------------------------------------
 void TButton::RenderInheritance()
 {
     if (ImGui::Button(mTitle.c_str(), mSize)) {
-        if (mCallback) {
-            mCallback(this);
-        }
+        mClickCB.Notify(this);
     }
 }
 //-------------------------------------------------------------------------------

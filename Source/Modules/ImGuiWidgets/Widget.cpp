@@ -29,16 +29,6 @@ TWidget::TWidget()
     mId = mLastId;
 }
 //------------------------------------------------------------------------
-void TWidget::SetTitle(std::string title)
-{
-    mTitle = title;
-}
-//------------------------------------------------------------------------
-std::string TWidget::GetTitle() const
-{
-    return mTitle;
-}
-//------------------------------------------------------------------------
 TWidget::SubType TWidget::GetSubType() const
 {
     return SubType::WIDGET;

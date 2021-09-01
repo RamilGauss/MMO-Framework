@@ -12,31 +12,16 @@ See for more information LICENSE.md.
 #include "Typedef.h"
 
 #include "Widget.h"
+#include "Visibility.h"
+#include "Location.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TUnit : public TWidget
+    class DllExport TUnit : public TWidget, public TVisibility, public TLocation
     {
     protected:
-        bool mIsShown = true;
-
-        ImVec2 mSize;
-        ImVec2 mPos;
-
         ImVec2 mScreenPos;
     public:
-        bool IsShown();
-        void SetShow(bool value);
-
-        void Show();
-        void Hide();
-
-        void SetPos(const ImVec2& newPos);
-        void SetSize(const ImVec2& newSize);
-
-        const ImVec2& GetPos();
-        const ImVec2& GetSize();
-
         void Render() override final;
 
         SubType GetSubType() const override;

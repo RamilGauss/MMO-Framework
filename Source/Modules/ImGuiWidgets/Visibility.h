@@ -7,20 +7,23 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Unit.h"
+#include <string>
 
-#include "CallbackPool.h"
+#include "Typedef.h"
+
+#include "Widget.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TButton : public TUnit
+    class DllExport TVisibility
     {
     public:
-        using TCallback = TCallbackPool<TButton*>;
+        bool IsShown();
+        void SetShow(bool value);
 
-        TCallback mClickCB;
+        void Show();
+        void Hide();
     protected:
-        void RenderInheritance() override final;
-
+        bool mIsShown = true;
     };
 }

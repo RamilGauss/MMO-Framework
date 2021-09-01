@@ -166,6 +166,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TornadoEngine", "Source\Cor
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TornadoEditor", "Source\Tools\TornadoEditor\TornadoEditor.vcxproj", "{73534D02-D7A8-4D08-8A8A-187CEE536C3F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{828F130A-B73A-49EB-9234-D4605EC24DE3} = {828F130A-B73A-49EB-9234-D4605EC24DE3}
+		{D2602F61-B76E-4537-A9A2-1A16D3DEBBA5} = {D2602F61-B76E-4537-A9A2-1A16D3DEBBA5}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{680755CA-47DA-447D-9F7E-9A64EC673DEA}"
 EndProject
@@ -608,8 +612,8 @@ Global
 		{680755CA-47DA-447D-9F7E-9A64EC673DEA} = {63F2AF3D-F916-454F-A35D-3BECD8997B2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

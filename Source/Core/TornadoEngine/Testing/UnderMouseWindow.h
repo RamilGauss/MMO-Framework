@@ -13,7 +13,9 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/Window.h>
 #include <ImGuiWidgets/Label.h>
+#include <ImGuiWidgets/TreeView.h>
 #include <ImGuiWidgets/ToolTip.h>
+#include <ImGuiWidgets/Button.h>
 
 namespace nsTest
 {
@@ -23,6 +25,9 @@ namespace nsTest
 
         nsImGuiWidgets::TLabel mLabel;
         nsImGuiWidgets::TToolTip mToolTip;
+
+        nsImGuiWidgets::TTreeView mTreeView;
+        nsImGuiWidgets::TButton mButton;
 
         TUnderMouseWindow(std::string name);
     };

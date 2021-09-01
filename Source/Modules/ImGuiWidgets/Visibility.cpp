@@ -5,37 +5,28 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Unit.h"
+#include "Visibility.h"
 
 using namespace nsImGuiWidgets;
 using namespace nsGraphicEngine;
 
-//------------------------------------------------------------------------
-void TUnit::Render()
+bool TVisibility::IsShown()
 {
-    if (!mIsShown) {
-        return;
-    }
-
-    BeginRender();
-    RenderInheritance();
-    EndRender();
+    return mIsShown;
 }
 //------------------------------------------------------------------------
-void TUnit::BeginRender()
+void TVisibility::SetShow(bool value)
 {
-    ImGui::SetCursorPos(mPos);
-
-    mScreenPos = ImGui::GetCursorScreenPos();
+    mIsShown = value;
 }
 //------------------------------------------------------------------------
-void TUnit::EndRender()
+void TVisibility::Show()
 {
-
+    SetShow(true);
 }
 //------------------------------------------------------------------------
-TWidget::SubType TUnit::GetSubType() const
+void TVisibility::Hide()
 {
-    return SubType::UNIT;
+    SetShow(false);
 }
 //------------------------------------------------------------------------

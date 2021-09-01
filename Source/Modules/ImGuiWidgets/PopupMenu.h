@@ -13,10 +13,14 @@ See for more information LICENSE.md.
 namespace nsImGuiWidgets
 {
     class TPopupNode;
-    class DllExport TPopupMenu : public TWidget, public TWidgetContainer
+    class DllExport TPopupMenu : public nsGraphicEngine::IRenderable, public TWidgetContainer
     {
+        static int mLastId;
+        int mId;
+
         bool mIsOpen = false;
     public:
+        TPopupMenu();
         void Open();
     protected:
         void Render() override final;

@@ -30,6 +30,7 @@
     <ClInclude Include="InputInt.h" />
     <ClInclude Include="InputText.h" />
     <ClInclude Include="Label.h" />
+    <ClInclude Include="Location.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="MenuNode.h" />
     <ClInclude Include="Node.h" />
@@ -39,7 +40,9 @@
     <ClInclude Include="ToolTip.h" />
     <ClInclude Include="TreeNode.h" />
     <ClInclude Include="TreeView.h" />
+    <ClInclude Include="Title.h" />
     <ClInclude Include="Unit.h" />
+    <ClInclude Include="Visibility.h" />
     <ClInclude Include="Widget.h" />
     <ClInclude Include="WidgetContainer.h" />
     <ClInclude Include="Window.h" />
@@ -52,6 +55,7 @@
     <ClCompile Include="InputInt.cpp" />
     <ClCompile Include="InputText.cpp" />
     <ClCompile Include="Label.cpp" />
+    <ClCompile Include="Location.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="MenuNode.cpp" />
     <ClCompile Include="Node.cpp" />
@@ -59,9 +63,12 @@
     <ClCompile Include="PopupNode.cpp" />
     <ClCompile Include="Separator.cpp" />
     <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="ToolTip.cpp" />
     <ClCompile Include="TreeNode.cpp" />
     <ClCompile Include="TreeView.cpp" />
     <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="Visibility.cpp" />
     <ClCompile Include="Widget.cpp" />
     <ClCompile Include="WidgetContainer.cpp" />
     <ClCompile Include="Window.cpp" />
