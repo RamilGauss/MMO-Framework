@@ -24,10 +24,17 @@ void TTestFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
 {
     nsECSFramework::TFeature::SetEntMng(entMng);
 
-    //Add(&mTestAllWidgetsSystem);
-    //Add(&mDockingSystem);
-    //Add(&mDockingStuffSystem);
-    Add(&mTreeViewSystem);
-    //Add(&mUnderMouseSystem);
+    Add(&mChooseSystem);
+
+    mChooseSystem.mInitCB.Register([&]() 
+    {
+        auto p = mChooseSystem.mWindow;
+
+        p->mDockingButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mDockingSystem);});
+        p->mDockingStuffButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mDockingStuffSystem); });
+        p->mTestAllWidgetsButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mTestAllWidgetsSystem); });
+        p->mTreeViewButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mTreeViewSystem); });
+        p->mUnderMouseButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mUnderMouseSystem); });
+    });
 }
 //------------------------------------------------------------------------------------------------

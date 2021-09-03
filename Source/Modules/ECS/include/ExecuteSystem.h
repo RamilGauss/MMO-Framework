@@ -11,12 +11,12 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    class DllExport TExecuteSystem : public TSystem
+    class DllExport TExecuteSystem : virtual public TSystem
     {
     public:
         virtual void Execute() = 0;
 
-        Type GetType() const override final { return Type::EXECUTE; }
+        bool IsExecute() const override final { return true; }
     };
 
 }

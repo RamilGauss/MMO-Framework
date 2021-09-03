@@ -138,6 +138,12 @@
     <ClCompile Include="Testing\TestFeature.cpp">
       <Filter>Testing</Filter>
     </ClCompile>
+    <ClCompile Include="Testing\ChooseWindow.cpp">
+      <Filter>Testing\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing\ChooseSystem.cpp">
+      <Filter>Testing\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\ModuleType.h">
@@ -334,6 +340,12 @@
     </ClInclude>
     <ClInclude Include="Testing\TestFeature.h">
       <Filter>Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="Testing\ChooseSystem.h">
+      <Filter>Testing\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Testing\ChooseWindow.h">
+      <Filter>Testing\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -65,6 +65,9 @@
     <ClInclude Include="include\ComponentContainer.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\TearDownSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity.cpp">

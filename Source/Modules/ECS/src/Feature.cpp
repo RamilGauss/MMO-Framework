@@ -16,31 +16,42 @@ bool TFeature::Add(TSystem* system)
     }
     system->SetEntMng(mEntMng);
     mSystems.insert(system);
-    if (system->GetType() == TSystem::Type::INIT) {
-        mInitSystems.push_back((TInitSystem*) system);
+
+    if (system->IsInit()) {
+        mInitSystems.push_back(dynamic_cast<TInitSystem*>(system));
     }
-    if (system->GetType() == TSystem::Type::EXECUTE) {
-        mExecuteSystems.push_back((TExecuteSystem*) system);
+    if (system->IsExecute()) {
+        mExecuteSystems.push_back(dynamic_cast<TExecuteSystem*>(system));
     }
     return true;
 }
+//--------------------------------------------------------------------------------------
 void TFeature::Remove(TSystem* system)
 {
-    if (system->GetType() == TSystem::Type::INIT) {
-        mInitSystems.remove((TInitSystem*) system);
+    if (mSystems.find(system) == mSystems.end()) {
+        return;
     }
-    if (system->GetType() == TSystem::Type::EXECUTE) {
-        mExecuteSystems.remove((TExecuteSystem*) system);
+
+    if (system->IsInit()) {
+        mInitSystems.remove(dynamic_cast<TInitSystem*>(system));
+    }
+    if (system->IsExecute()) {
+        mExecuteSystems.remove(dynamic_cast<TExecuteSystem*>(system));
+    }
+    if (system->IsTearDown()) {
+        mTearDownSystems.push_back(dynamic_cast<TTearDownSystem*>(system));
     }
     mSystems.erase(system);
 }
+//--------------------------------------------------------------------------------------
 const std::set<TSystem*>* TFeature::GetSystems()
 {
     return &mSystems;
 }
-
+//--------------------------------------------------------------------------------------
 void TFeature::Execute()
 {
+    // Initialize
     if (mInitSystems.size() > 0) {
         for (auto& system : mInitSystems) {
             system->Init();
@@ -51,5 +62,13 @@ void TFeature::Execute()
     for (auto& system : mExecuteSystems) {
         system->Execute();
     }
-}
 
+    // Tear down
+    if (mTearDownSystems.size() > 0) {
+        for (auto& system : mTearDownSystems) {
+            system->TearDown();
+        }
+        mTearDownSystems.clear();
+    }
+}
+//--------------------------------------------------------------------------------------

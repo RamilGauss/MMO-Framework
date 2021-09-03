@@ -20,6 +20,8 @@ See for more information LICENSE.md.
 #include "TreeViewSystem.h"
 #include "UnderMouseSystem.h"
 
+#include "ChooseSystem.h"
+
 namespace nsTest
 {
     class DllExport TTestFeature : public nsECSFramework::TFeature
@@ -39,7 +41,17 @@ namespace nsTest
         // Under mouse position
         TUnderMouseSystem mUnderMouseSystem;
 
+        TChooseSystem mChooseSystem;
+
     public:
         void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
+
+    private:
+        template <typename T>
+        void AddSystemOnClick(T& system)
+        {
+            Add(&system);
+            Remove(&mChooseSystem);
+        }
     };
 }

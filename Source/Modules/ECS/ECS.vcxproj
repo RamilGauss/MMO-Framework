@@ -37,6 +37,7 @@
     <ClInclude Include="include\OnRemoveInstantReactiveSystem.h" />
     <ClInclude Include="include\OnUpdateInstantReactiveSystem.h" />
     <ClInclude Include="include\System.h" />
+    <ClInclude Include="include\TearDownSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity.cpp" />

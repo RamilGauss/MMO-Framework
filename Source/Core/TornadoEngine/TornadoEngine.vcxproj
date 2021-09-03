@@ -227,6 +227,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Modules\SceneManager.cpp" />
     <ClCompile Include="Share\MathStructs.cpp" />
     <ClCompile Include="Share\MathTools.cpp" />
+    <ClCompile Include="Testing\ChooseSystem.cpp" />
+    <ClCompile Include="Testing\ChooseWindow.cpp" />
     <ClCompile Include="Testing\ComplexWindow.cpp" />
     <ClCompile Include="Testing\DockingStuffSystem.cpp" />
     <ClCompile Include="Testing\DockingStuffWindow.cpp" />
@@ -288,6 +290,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Share\ModuleType.h" />
     <ClInclude Include="Share\MathStructs.h" />
     <ClInclude Include="Share\MathTools.h" />
+    <ClInclude Include="Testing\ChooseSystem.h" />
+    <ClInclude Include="Testing\ChooseWindow.h" />
     <ClInclude Include="Testing\ComplexWindow.h" />
     <ClInclude Include="Testing\DebugWindow.h" />
     <ClInclude Include="Testing\DockingStuffSystem.h" />

@@ -11,11 +11,11 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    class DllExport TInitSystem : virtual public TSystem
+    class DllExport TTearDownSystem : virtual public TSystem
     {
     public:
-        virtual void Init() = 0;
+        virtual void TearDown() = 0;
 
-        bool IsInit() const override final { return true; }
+        bool IsTearDown() const override final { return true; }
     };
 }

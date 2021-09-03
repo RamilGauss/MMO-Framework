@@ -12,11 +12,9 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    class DllExport TBaseReactiveSystem : public TSystem
+    class DllExport TBaseReactiveSystem : virtual public TSystem
     {
     public:
-        Type GetType() const override final { return Type::REACTIVE; }
-
         virtual void Reactive(TEntityID eid, IComponent* pC) = 0;
     };
 }

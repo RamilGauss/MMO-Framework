@@ -157,3 +157,18 @@ TEST(ExtendedTypeInfoExtractorTest, Pointer)
     ASSERT_EQ(meti.mTemplateChildArr.size(), 0);
     ASSERT_EQ(meti.mSmartPtrType, "");
 }
+
+TEST(ExtendedTypeInfoExtractorTest, EmptyTemplate)
+{
+    std::string str = "T<>";
+
+    extendedInfoMaker.Convert(str, &meti);
+
+    ASSERT_EQ(meti.mLongType, "T");
+    ASSERT_EQ(meti.mNameSpace, "");
+    ASSERT_EQ(meti.mShortType, "T");
+    ASSERT_EQ(meti.mCategory, TypeCategory::REFLECTION);
+    ASSERT_EQ(meti.mAccessMethod, AccessMethod::OBJECT);
+    ASSERT_EQ(meti.mTemplateChildArr.size(), 0);
+    ASSERT_EQ(meti.mSmartPtrType, "");
+}

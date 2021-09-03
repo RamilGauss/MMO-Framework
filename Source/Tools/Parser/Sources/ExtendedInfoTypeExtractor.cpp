@@ -277,9 +277,11 @@ void TExtendedInfoTypeExtractor::ConvertSimpleHierarchyToExtended(TSimple* simpl
     }
 
     for (auto& child : simple->children) {
-        TMemberExtendedTypeInfo metiChild;
-        ConvertSimpleHierarchyToExtended(&child, &metiChild);
-        meti->mTemplateChildArr.push_back(metiChild);
+        if (child.parts.size() > 0) {
+            TMemberExtendedTypeInfo metiChild;
+            ConvertSimpleHierarchyToExtended(&child, &metiChild);
+            meti->mTemplateChildArr.push_back(metiChild);
+        }
     }
 }
 //-----------------------------------------------------------------------------------------------------------------------

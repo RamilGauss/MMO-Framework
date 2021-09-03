@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include <set>
 
 #include "InitSystem.h"
+#include "TearDownSystem.h"
 #include "ExecuteSystem.h"
 
 namespace nsECSFramework
@@ -21,6 +22,7 @@ namespace nsECSFramework
     protected:
         std::list<TInitSystem*> mInitSystems;
         std::list<TExecuteSystem*> mExecuteSystems;
+        std::list<TTearDownSystem*> mTearDownSystems;
 
         std::set<TSystem*> mSystems;
     public:
