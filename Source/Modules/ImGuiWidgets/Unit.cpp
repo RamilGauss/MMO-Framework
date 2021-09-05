@@ -25,8 +25,6 @@ void TUnit::Render()
 void TUnit::BeginRender()
 {
     ImGui::SetCursorPos(mPos);
-
-    mScreenPos = ImGui::GetCursorScreenPos();
 }
 //------------------------------------------------------------------------
 void TUnit::EndRender()

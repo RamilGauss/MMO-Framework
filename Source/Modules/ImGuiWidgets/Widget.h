@@ -14,16 +14,19 @@ See for more information LICENSE.md.
 
 #include "IRenderable.h"
 #include "Title.h"
+#include "Geometry.h"
 #include "KeyMouseEventContainer.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TWidget : public nsGraphicEngine::IRenderable, public TTitle
+    class DllExport TWidget : public nsGraphicEngine::IRenderable, public TTitle, public TGeometry
     {
         static ImGuiID mLastId;
         static nsGraphicEngine::TKeyMouseEventContainer* mKeyMouseInputContainer;
     protected:
         ImGuiID mId;
+
+        TWidget* mParent = nullptr;
 
     public:
         TWidget();
@@ -36,5 +39,10 @@ namespace nsImGuiWidgets
 
         static void SetInputContainer(nsGraphicEngine::TKeyMouseEventContainer* keyMouseContainer);
         static nsGraphicEngine::TKeyMouseEventContainer* GetInputContainer();
+
+        void SetParent(TWidget* parent);
+        TWidget* GetParent() const;
+
+        ImVec2 GetGlobalPos();
     };
 }

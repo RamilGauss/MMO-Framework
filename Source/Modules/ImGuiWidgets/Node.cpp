@@ -10,6 +10,10 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
+TNode::TNode() : TWidgetContainer(this)
+{
+
+}
 //-------------------------------------------------------------------------
 TWidget::SubType TNode::GetSubType() const
 {

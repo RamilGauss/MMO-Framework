@@ -23,6 +23,12 @@ ImVec2 nsImGuiWidgets::operator - (const ImVec2& l, const ImVec2& r)
     return {l.x - r.x, l.y - r.y};
 }
 //-------------------------------------------------------------------------
+ImVec2& nsImGuiWidgets::operator += (ImVec2& l, const ImVec2& r)
+{
+    l = l + r;
+    return l;
+}
+//-------------------------------------------------------------------------
 bool nsImGuiWidgets::InRect(const ImVec2& pos, const ImVec2& size, const ImVec2& point)
 {
     auto max = pos + size;

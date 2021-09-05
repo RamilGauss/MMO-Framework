@@ -11,12 +11,15 @@ See for more information LICENSE.md.
 using namespace nsImGuiWidgets;
 using namespace nsGraphicEngine;
 
+TFrame::TFrame() : TWidgetContainer(this)
+{
+
+}
+//---------------------------------------------------------------------------------------
 void TFrame::BeginRender()
 {
     ImGui::SetCursorPos(mPos);
     ImGui::BeginChildFrame(mId, mSize);
-
-    mScreenPos = ImGui::GetCursorScreenPos();
 }
 //---------------------------------------------------------------------------------------
 void TFrame::EndRender()
@@ -69,7 +72,7 @@ void TFrame::SearchInputEvents()
 //---------------------------------------------------------------------------------------
 TWidget* TFrame::GetUnderMouseChild(const ImVec2& mousePos)
 {
-    auto pos = GetPos();
+    auto pos = GetGlobalPos();
     auto size = GetSize();
     if (!InRect(pos, size, mousePos)) {
         return nullptr;
@@ -80,8 +83,8 @@ TWidget* TFrame::GetUnderMouseChild(const ImVec2& mousePos)
             case SubType::UNIT:
             case SubType::FRAME:
             {
-                auto childPos = ((TUnit*) child)->GetPos() + pos;
-                auto childSize = ((TUnit*) child)->GetSize();
+                auto childPos = child->GetGlobalPos();
+                auto childSize = child->GetSize();
                 if (InRect(childPos, childSize, mousePos)) {
                     return child;
                 }

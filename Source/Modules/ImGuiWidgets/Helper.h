@@ -16,5 +16,7 @@ namespace nsImGuiWidgets
     ImVec2 DllExport operator + (const ImVec2& l, const ImVec2& r);
     ImVec2 DllExport operator - (const ImVec2& l, const ImVec2& r);
 
+    DllExport ImVec2& operator += (ImVec2& l, const ImVec2& r);
+
     bool DllExport InRect(const ImVec2& pos, const ImVec2& size, const ImVec2& point);
 }

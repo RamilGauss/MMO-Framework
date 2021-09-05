@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    class DllExport TLocation
+    class DllExport TGeometry
     {
     public:
         void SetPos(const ImVec2& newPos);

@@ -14,7 +14,7 @@ using namespace nsImGuiWidgets;
 
 int TPopupMenu::mLastId = 0;
 
-TPopupMenu::TPopupMenu()
+TPopupMenu::TPopupMenu() : TWidgetContainer(nullptr)
 {
     mLastId++;
     mId = mLastId;

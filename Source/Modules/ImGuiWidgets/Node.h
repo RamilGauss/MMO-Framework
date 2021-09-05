@@ -29,5 +29,7 @@ namespace nsImGuiWidgets
 
         EventCallback onSelection;
         EventCallback onLeftClick;
+
+        TNode();
     };
 }

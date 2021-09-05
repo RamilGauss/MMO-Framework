@@ -13,6 +13,11 @@ This is a research project.
 Это исследовательский проект.  
 
 
+## Features
+### GUI
+
+<img src="./Doc/gui_example.gif">
+
 [Video](http://www.youtube.com/watch?v=g8IlYRepclE)
 
 ### English 

@@ -11,9 +11,14 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
+    class TWidget;
+
     class DllExport TWidgetContainer
     {
+        TWidget* mParent = nullptr;
     public:
+        TWidgetContainer(TWidget* parent);
+
         void Add(TWidget* p);
         void Replace(TWidget* p);
         void Clear();

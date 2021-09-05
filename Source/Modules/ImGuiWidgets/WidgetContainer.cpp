@@ -11,18 +11,30 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
+TWidgetContainer::TWidgetContainer(TWidget* parent)
+{
+    mParent = parent;
+}
+//------------------------------------------------------------------------
 void TWidgetContainer::Add(TWidget* p)
 {
     mWidgets.push_back(p);
+
+    p->SetParent(mParent);
 }
 //------------------------------------------------------------------------
 void TWidgetContainer::Replace(TWidget* p)
 {
     mWidgets.remove(p);
+
+    p->SetParent(nullptr);
 }
 //------------------------------------------------------------------------
 void TWidgetContainer::Clear()
 {
+    for (auto& widget : mWidgets) {
+        widget->SetParent(nullptr);
+    }
     mWidgets.clear();
 }
 //------------------------------------------------------------------------

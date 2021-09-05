@@ -13,14 +13,11 @@ See for more information LICENSE.md.
 
 #include "Widget.h"
 #include "Visibility.h"
-#include "Location.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TUnit : public TWidget, public TVisibility, public TLocation
+    class DllExport TUnit : public TWidget, public TVisibility
     {
-    protected:
-        ImVec2 mScreenPos;
     public:
         void Render() override final;
 

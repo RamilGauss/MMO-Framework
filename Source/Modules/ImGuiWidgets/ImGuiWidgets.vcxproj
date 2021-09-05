@@ -30,7 +30,7 @@
     <ClInclude Include="InputInt.h" />
     <ClInclude Include="InputText.h" />
     <ClInclude Include="Label.h" />
-    <ClInclude Include="Location.h" />
+    <ClInclude Include="Geometry.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="MenuNode.h" />
     <ClInclude Include="Node.h" />
@@ -55,7 +55,7 @@
     <ClCompile Include="InputInt.cpp" />
     <ClCompile Include="InputText.cpp" />
     <ClCompile Include="Label.cpp" />
-    <ClCompile Include="Location.cpp" />
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="MenuNode.cpp" />
     <ClCompile Include="Node.cpp" />

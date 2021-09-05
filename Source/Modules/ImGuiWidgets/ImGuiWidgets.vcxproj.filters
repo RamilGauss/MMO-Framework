@@ -89,7 +89,7 @@
     <ClInclude Include="Title.h">
       <Filter>Properties</Filter>
     </ClInclude>
-    <ClInclude Include="Location.h">
+    <ClInclude Include="Geometry.h">
       <Filter>Properties</Filter>
     </ClInclude>
     <ClInclude Include="Visibility.h">
@@ -160,7 +160,7 @@
     <ClCompile Include="Title.cpp">
       <Filter>Properties</Filter>
     </ClCompile>
-    <ClCompile Include="Location.cpp">
+    <ClCompile Include="Geometry.cpp">
       <Filter>Properties</Filter>
     </ClCompile>
     <ClCompile Include="Visibility.cpp">

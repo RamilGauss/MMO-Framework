@@ -26,8 +26,6 @@ void TWindow::BeginRender()
     }
 
     ImGui::Begin(mTitle.c_str(), &mIsShown);
-    mScreenPos = ImGui::GetCursorScreenPos();
-
     //ImGui::DockSpace(mId, ImVec2(0,0), ImGuiDockNodeFlags_None | ImGuiDockNodeFlags_KeepAliveOnly);
 
     if (oldIsShown != mIsShown) {

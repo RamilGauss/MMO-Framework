@@ -21,6 +21,8 @@ namespace nsImGuiWidgets
     protected:
         bool mIsFocused = false;
     public:
+        TFrame();
+
         SubType GetSubType() const override;
 
         void Clear();
