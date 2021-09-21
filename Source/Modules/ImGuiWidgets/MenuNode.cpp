@@ -22,14 +22,14 @@ void TMenuNode::SetSelected(bool value)
 void TMenuNode::Render()
 {
     if (mWidgets.size()) {
-        if (ImGui::BeginMenu(mLabel.c_str())) {
+        if (ImGui::BeginMenu(GetTitle().c_str())) {
             for (auto& node : mWidgets) {
                 node->Render();
             }
             ImGui::EndMenu();
         }
     } else {
-        if (ImGui::MenuItem(mLabel.c_str())) {
+        if (ImGui::MenuItem(GetTitle().c_str())) {
             onLeftClick.Notify(this);
         }
     }

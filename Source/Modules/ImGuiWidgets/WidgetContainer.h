@@ -15,13 +15,15 @@ namespace nsImGuiWidgets
 
     class DllExport TWidgetContainer
     {
-        TWidget* mParent = nullptr;
+        TWidget* mWidgetParent = nullptr;
     public:
         TWidgetContainer(TWidget* parent);
 
         void Add(TWidget* p);
         void Replace(TWidget* p);
         void Clear();
+
+        const std::list<TWidget*>* GetWidgets() const;
 
     protected:
         std::list<TWidget*> mWidgets;

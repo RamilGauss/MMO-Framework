@@ -64,14 +64,39 @@ TTreeNode* TTreeView::GetSelectedNode() const
     return mSelectedNode;
 }
 //---------------------------------------------------------------------------------------
-TWidget* TTreeView::GetUnderMouseChild(const ImVec2& mousePos)
+TWidget* TTreeView::GetChildByGlobalPos(const ImVec2& mousePos)
 {
     auto size = GetSize();
-    auto pos = GetPos();
-    if (!InRect(pos, size, mousePos)) {
+    auto globalPos = GetGlobalPos();
+    if (!InRect(globalPos, size, mousePos)) {
         return nullptr;
     }
 
-    return mSelectedNode;
+    for (auto& node : mAllNodes) {
+        if (!node->IsShown()) {
+            continue;
+        }
+
+        size = node->GetSize();
+        globalPos = node->GetGlobalPos();
+        if (InRect(globalPos, size, mousePos)) {
+            return node;
+        }
+    }
+    return this;
+}
+//---------------------------------------------------------------------------------------
+void TTreeView::BeginRender()
+{
+    for (auto& node : mAllNodes) {
+        node->Hide();
+    }
+
+    TFrame::BeginRender();
+}
+//---------------------------------------------------------------------------------------
+const std::list<TTreeNode*>* TTreeView::GetAllNodes() const
+{
+    return &mAllNodes;
 }
 //---------------------------------------------------------------------------------------

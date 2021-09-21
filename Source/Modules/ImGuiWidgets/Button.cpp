@@ -12,8 +12,12 @@ using namespace nsImGuiWidgets;
 //-------------------------------------------------------------------------------
 void TButton::RenderInheritance()
 {
+    ImGui::PushID(mId);
+
     if (ImGui::Button(mTitle.c_str(), mSize)) {
         mClickCB.Notify(this);
     }
+
+    ImGui::PopID();
 }
 //-------------------------------------------------------------------------------

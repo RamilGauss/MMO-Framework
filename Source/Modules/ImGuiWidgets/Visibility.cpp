@@ -8,7 +8,6 @@ See for more information LICENSE.md.
 #include "Visibility.h"
 
 using namespace nsImGuiWidgets;
-using namespace nsGraphicEngine;
 
 bool TVisibility::IsShown()
 {

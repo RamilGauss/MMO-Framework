@@ -18,7 +18,6 @@ namespace nsImGuiWidgets
     public:
         std::string mStrId;
         std::string mParentId;
-        std::string mLabel;
         std::string mUserData;
 
         SubType GetSubType() const override;

@@ -17,10 +17,12 @@ See for more information LICENSE.md.
 
 namespace nsTest
 {
-    class DllExport TTreeViewSystem : public nsECSFramework::TInitSystem
+    class DllExport TTreeViewSystem : public nsECSFramework::TInitSystem, public nsECSFramework::TExecuteSystem
     {
         TTreeViewWindow* mWindow = nullptr;
     public:
         void Init() override;
+
+        void Execute() override;
     };
 }

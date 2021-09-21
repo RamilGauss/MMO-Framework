@@ -8,6 +8,8 @@ See for more information LICENSE.md.
 #include "Helper.h"
 #include <cmath>
 
+#include <fmt/core.h>
+
 bool nsImGuiWidgets::operator != (const ImVec2& l, const ImVec2& r)
 {
     return (std::abs(l.x - r.x) + std::abs(l.y - r.y) > 0.001f);
@@ -37,5 +39,10 @@ bool nsImGuiWidgets::InRect(const ImVec2& pos, const ImVec2& size, const ImVec2&
         return true;
     }
     return false;
+}
+//-------------------------------------------------------------------------
+std::string nsImGuiWidgets::ToString(const ImVec2& vec2)
+{
+    return fmt::format("[{}, {}]", vec2.x, vec2.y);
 }
 //-------------------------------------------------------------------------

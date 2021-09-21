@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #include "ToolTip.h"
 
+#include <imgui.h>
+
 using namespace nsImGuiWidgets;
 
 void TToolTip::Render()

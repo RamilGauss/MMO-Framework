@@ -19,6 +19,7 @@ TFrame::TFrame() : TWidgetContainer(this)
 void TFrame::BeginRender()
 {
     ImGui::SetCursorPos(mPos);
+
     ImGui::BeginChildFrame(mId, mSize);
 }
 //---------------------------------------------------------------------------------------
@@ -36,15 +37,16 @@ void TFrame::RenderInheritance()
     } else {
         mIsFocused = false;
     }
+
+    for (auto& child : mWidgets) {
+        child->Render();
+    }
+    // strict order
     if (oldFocus != mIsFocused) {
         mFocusCB.Notify(mIsFocused);
     }
     if (mIsFocused) {
         SearchInputEvents();
-    }
-
-    for (auto& child : mWidgets) {
-        child->Render();
     }
 }
 //---------------------------------------------------------------------------------------
@@ -70,7 +72,7 @@ void TFrame::SearchInputEvents()
     }
 }
 //---------------------------------------------------------------------------------------
-TWidget* TFrame::GetUnderMouseChild(const ImVec2& mousePos)
+TWidget* TFrame::GetChildByGlobalPos(const ImVec2& mousePos)
 {
     auto pos = GetGlobalPos();
     auto size = GetSize();

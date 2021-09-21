@@ -35,13 +35,13 @@ TComplexWindow::TComplexWindow(std::string name)
         }
 
         auto mousePos = ImVec2(event.x, event.y);
-        auto under = mTreeView.GetUnderMouseChild(mousePos);
+        auto under = mTreeView.GetChildByGlobalPos(mousePos);
         if (under == &mTreeView) {
             mLogLabel.AppendText("Don't beat me!");
         } else if (under != nullptr) {
             if (under->GetSubType() == nsImGuiWidgets::TWidget::SubType::NODE) {
                 mLogLabel.AppendText("Node \"");
-                mLogLabel.AppendText(((nsImGuiWidgets::TTreeNode*) under)->mLabel.c_str());
+                mLogLabel.AppendText(((nsImGuiWidgets::TTreeNode*) under)->GetTitle().c_str());
                 mLogLabel.AppendText("\", ");
 
                 mPopup.Open();
@@ -60,7 +60,7 @@ TComplexWindow::TComplexWindow(std::string name)
         }
 
         auto mousePos = ImVec2(event.x, event.y);
-        auto under = mWindow.GetUnderMouseChild(mousePos);
+        auto under = mWindow.GetChildByGlobalPos(mousePos);
         if (under == &mLogLabel) {
             mLabelPopup.Open();
         }
@@ -102,26 +102,26 @@ TComplexWindow::TComplexWindow(std::string name)
     mWindow.Add(&mLogLabel);
 
     mTreeNodes[0].mStrId = "0";
-    mTreeNodes[0].mLabel = "Scene0";
+    mTreeNodes[0].SetTitle("Scene0");
 
     mTreeNodes[1].mStrId = "1";
-    mTreeNodes[1].mLabel = "Scene1";
+    mTreeNodes[1].SetTitle("Scene1");
 
     mTreeNodes[2].mParentId = "0";
     mTreeNodes[2].mStrId = "2";
-    mTreeNodes[2].mLabel = "Camera";
+    mTreeNodes[2].SetTitle("Camera");
 
     mTreeNodes[3].mParentId = "0";
     mTreeNodes[3].mStrId = "3";
-    mTreeNodes[3].mLabel = "Light";
+    mTreeNodes[3].SetTitle("Light");
 
     mTreeNodes[4].mParentId = "1";
     mTreeNodes[4].mStrId = "4";
-    mTreeNodes[4].mLabel = "Camera";
+    mTreeNodes[4].SetTitle("Camera");
 
     mTreeNodes[5].mParentId = "1";
     mTreeNodes[5].mStrId = "5";
-    mTreeNodes[5].mLabel = "Light";
+    mTreeNodes[5].SetTitle("Light");
 
     for (auto& node : mTreeNodes) {
         mTreeView.AddNode(&node);
@@ -137,14 +137,14 @@ TComplexWindow::TComplexWindow(std::string name)
         }
     });
 
-    mPopupNodes[0].mLabel = "Main";
-    mPopupNodes[1].mLabel = "Open";
-    mPopupNodes[2].mLabel = "Save";
+    mPopupNodes[0].SetTitle("Main");
+    mPopupNodes[1].SetTitle("Open");
+    mPopupNodes[2].SetTitle("Save");
 
-    mPopupNodes[3].mLabel = "Other";
-    mPopupNodes[4].mLabel = "Make";
+    mPopupNodes[3].SetTitle("Other");
+    mPopupNodes[4].SetTitle("Make");
 
-    mPopupNodes[5].mLabel = "Exit";
+    mPopupNodes[5].SetTitle("Exit");
     mPopupNodes[5].onLeftClick.Register([](nsImGuiWidgets::TNode* pNode)
     {
         nsTornadoEngine::Modules()->StopAccessor()->SetStop();
@@ -159,20 +159,20 @@ TComplexWindow::TComplexWindow(std::string name)
     mPopup.Add(&mPopupNodes[3]);
     mPopup.Add(&mPopupNodes[5]);
 
-    mLabelPopupNodes[0].mLabel = "Copy";
+    mLabelPopupNodes[0].SetTitle("Copy");
     mLabelPopupNodes[0].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
     {
         auto logLabelText = mLogLabel.GetText();
         ImGui::SetClipboardText(logLabelText.c_str());
     });
 
-    mLabelPopupNodes[1].mLabel = "Paste";
+    mLabelPopupNodes[1].SetTitle("Paste");
     mLabelPopupNodes[1].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
     {
         auto logLabelText = ImGui::GetClipboardText();
         mLogLabel.SetText(logLabelText);
     });
-    mLabelPopupNodes[2].mLabel = "Clear";
+    mLabelPopupNodes[2].SetTitle("Clear");
     mLabelPopupNodes[2].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
     {
         mLogLabel.SetText("");

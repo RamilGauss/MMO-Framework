@@ -16,7 +16,7 @@ using namespace nsTest;
 TDockingStuffWindow::TDockingStuffWindow(std::string name)
 {
     mWindow.SetTitle(name.c_str());
-    mWindow.SetSize({500, 900});
+    mWindow.SetSize({500, 570});
     mWindow.SetPos({20, 20});
 
     mWindow.mMouseClickCB.Register([&](nsGraphicEngine::TMouseButtonEvent event)
@@ -29,21 +29,21 @@ TDockingStuffWindow::TDockingStuffWindow(std::string name)
         }
 
         auto mousePos = ImVec2(event.x, event.y);
-        auto under = mWindow.GetUnderMouseChild(mousePos);
+        auto under = mWindow.GetChildByGlobalPos(mousePos);
         if (under == &mTextEdit) {
             mPopup.Open();
         }
     });
 
-    mTextEdit.SetTitle("TextEdit");
-    mTextEdit.SetPos({30, 120});
-    mTextEdit.SetSize({60, 20});
+    mTextEdit.SetTitle("");
+    mTextEdit.SetPos({0, 20});
+    mTextEdit.SetSize({480, 550});
 
     mWindow.Add(&mTextEdit);
 
-    mPopupNodes[0].mLabel = "Copy";
-    mPopupNodes[1].mLabel = "Paste";
-    mPopupNodes[2].mLabel = "Apply";
+    mPopupNodes[0].SetTitle("Copy");
+    mPopupNodes[1].SetTitle("Paste");
+    mPopupNodes[2].SetTitle("Apply");
 
     mPopup.Add(&mPopupNodes[0]);
     mPopup.Add(&mPopupNodes[1]);

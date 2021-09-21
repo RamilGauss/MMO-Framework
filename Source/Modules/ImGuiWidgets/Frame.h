@@ -27,7 +27,7 @@ namespace nsImGuiWidgets
 
         void Clear();
 
-        virtual TWidget* GetUnderMouseChild(const ImVec2& mousePos);
+        virtual TWidget* GetChildByGlobalPos(const ImVec2& mousePos);
 
         // Property change events by User
         using TFocusCallback = TCallbackPool<bool>;

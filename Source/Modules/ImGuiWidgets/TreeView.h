@@ -23,12 +23,14 @@ namespace nsImGuiWidgets
 
         TTreeNode* mSelectedNode = nullptr;
     public:
-        TWidget* GetUnderMouseChild(const ImVec2& mousePos) override;
+        TWidget* GetChildByGlobalPos(const ImVec2& mousePos) override;
 
         void AddNode(TTreeNode* pNode);
 
         void RemoveNode(const std::string& id);
         TTreeNode* GetNode(const std::string& id);
+
+        const std::list<TTreeNode*>* GetAllNodes() const;
 
         using EventCallback = TCallbackPool<TTreeNode*>;
 
@@ -38,6 +40,10 @@ namespace nsImGuiWidgets
         EventCallback onSelectionEvent;
 
         TTreeNode* GetSelectedNode() const;
+
+    protected:
+        void BeginRender() override;
+
     private:
         TTreeNode* FoundNode(const std::string& id);
         void OnSelection(TNode* pSelectedNode);

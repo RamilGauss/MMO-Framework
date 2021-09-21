@@ -15,4 +15,12 @@ void TDockingStuffSystem::Init()
         mWindows.push_back(new TDockingStuffWindow(std::to_string(i)));
     }
     mMainWindow = new TMainWindow();
+
+    mMainWindow->mMenuNodes[1].onLeftClick.Register([&, this] (nsImGuiWidgets::TNode* pNode) mutable
+    {
+        auto settings = ImGui::SaveIniSettingsToMemory();
+        for (auto& window : mWindows) {
+            window->mTextEdit.SetText(settings);
+        }
+    });
 }

@@ -13,14 +13,14 @@ using namespace std::placeholders;
 void TPopupNode::Render()
 {
     if (mWidgets.size()) {
-        if (ImGui::BeginMenu(mLabel.c_str())) {
+        if (ImGui::BeginMenu(GetTitle().c_str())) {
             for (auto& node : mWidgets) {
                 node->Render();
             }
             ImGui::EndMenu();
         }
     } else {
-        if (ImGui::Selectable(mLabel.c_str())) {
+        if (ImGui::Selectable(GetTitle().c_str())) {
             onLeftClick.Notify(this);
         }
     }

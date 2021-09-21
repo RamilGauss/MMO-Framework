@@ -9,16 +9,20 @@ See for more information LICENSE.md.
 
 #include "Unit.h"
 
+#include "CallbackPool.h"
+
 namespace nsImGuiWidgets
 {
     class DllExport TInputText : public TUnit
     {
     public:
-
         std::string GetText();
         void SetText(const std::string& str);
+
+        using TCallback = TCallbackPool<TInputText*>;
+        TCallback mTextEditEndCB;
     protected:
-        static const size_t SIZE = 512;
+        static const size_t SIZE = 1024 * 4;
         char mValue[SIZE] = {0};
 
         void RenderInheritance() override final;

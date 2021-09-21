@@ -6,12 +6,15 @@ See for more information LICENSE.md.
 */
 
 #include "TreeNode.h"
+#include "Helper.h"
 
 using namespace nsImGuiWidgets;
 using namespace std::placeholders;
 
 void TTreeNode::Render()
 {
+    Show();
+
     ImGuiTreeNodeFlags mode = ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_OpenOnArrow;
     if (mWidgets.size() == 0) {
         mode |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_SpanAvailWidth;
@@ -19,7 +22,7 @@ void TTreeNode::Render()
     if (mSelected) {
         mode |= ImGuiTreeNodeFlags_Selected;
     }
-    if (ImGui::TreeNodeEx(mStrId.c_str(), mode, mLabel.c_str())) {
+    if (ImGui::TreeNodeEx(mStrId.c_str(), mode, GetTitle().c_str())) {
         SearchEvents();
         for (auto& node : mWidgets) {
             node->Render();
@@ -32,6 +35,10 @@ void TTreeNode::Render()
 //-------------------------------------------------------------------------
 void TTreeNode::SearchEvents()
 {
+    auto parentGlobalPos = mParent->GetGlobalPos();
+    mPos = ImGui::GetItemRectMin() - parentGlobalPos;
+    mSize = ImGui::GetItemRectSize() + ImGui::GetStyle().ItemInnerSpacing;
+
     if (ImGui::IsItemClicked()) {
         onLeftClick.Notify(this);
     }

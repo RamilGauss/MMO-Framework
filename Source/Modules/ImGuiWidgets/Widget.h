@@ -15,11 +15,12 @@ See for more information LICENSE.md.
 #include "IRenderable.h"
 #include "Title.h"
 #include "Geometry.h"
+#include "Visibility.h"
 #include "KeyMouseEventContainer.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TWidget : public nsGraphicEngine::IRenderable, public TTitle, public TGeometry
+    class DllExport TWidget : public nsGraphicEngine::IRenderable, public TTitle, public TGeometry, public TVisibility
     {
         static ImGuiID mLastId;
         static nsGraphicEngine::TKeyMouseEventContainer* mKeyMouseInputContainer;

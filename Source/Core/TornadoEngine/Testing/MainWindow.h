@@ -22,7 +22,7 @@ namespace nsTest
     {
         nsImGuiWidgets::TMainWindow mMW;
 
-        nsImGuiWidgets::TMenuNode mMenuNodes[8];
+        nsImGuiWidgets::TMenuNode mMenuNodes[3];
 
         TMainWindow();
     };

@@ -13,14 +13,14 @@ using namespace nsImGuiWidgets;
 
 TWidgetContainer::TWidgetContainer(TWidget* parent)
 {
-    mParent = parent;
+    mWidgetParent = parent;
 }
 //------------------------------------------------------------------------
 void TWidgetContainer::Add(TWidget* p)
 {
     mWidgets.push_back(p);
 
-    p->SetParent(mParent);
+    p->SetParent(mWidgetParent);
 }
 //------------------------------------------------------------------------
 void TWidgetContainer::Replace(TWidget* p)
@@ -36,5 +36,10 @@ void TWidgetContainer::Clear()
         widget->SetParent(nullptr);
     }
     mWidgets.clear();
+}
+//------------------------------------------------------------------------
+const std::list<TWidget*>* TWidgetContainer::GetWidgets() const
+{
+    return &mWidgets;
 }
 //------------------------------------------------------------------------

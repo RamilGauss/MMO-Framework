@@ -20,7 +20,7 @@ namespace nsTest
 {
     class DllExport TDockingStuffSystem : public nsECSFramework::TInitSystem
     {
-        std::list<TDockingStuffWindow*> mWindows;
+        std::vector<TDockingStuffWindow*> mWindows;
         TMainWindow* mMainWindow = nullptr;
 
         static const int WIDGET_COUNT = 2;

@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include "StopAccessor.h"
 
 using namespace nsTest;
+using namespace nsImGuiWidgets;
 
 TTreeViewWindow::TTreeViewWindow(std::string name)
 {
@@ -36,16 +37,18 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
 
     mTreeView.mMouseMoveCB.Register([&](nsGraphicEngine::TMouseMotionEvent event)
     {
-        auto pNode = mTreeView.GetUnderMouseChild({(float)event.x, (float) event.y});
+        auto pNode = mTreeView.GetChildByGlobalPos({(float)event.x, (float) event.y});
 
-        if (pNode != nullptr) {
-            mToolTip.SetTitle(pNode->GetTitle());
+        if (pNode != &mTreeView && pNode != nullptr) {
+            mToolTip.SetTitle(((TTreeNode*)pNode)->GetTitle());
+        } else if (pNode == &mTreeView) {
+            mToolTip.SetTitle("TreeView");
         }
         mToolTip.SetShow(pNode != nullptr);
     });
 
     mTreeView.SetPos({30,100});
-    mTreeView.SetSize({150, 120});
+    mTreeView.SetSize({300, 150});
 
     mButton.SetPos({30,30});
     mButton.SetSize({50, 20});
@@ -58,26 +61,26 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
     mWindow.Add(&mTreeView);
 
     mTreeNodes[0].mStrId = "0";
-    mTreeNodes[0].mLabel = "Scene0";
+    mTreeNodes[0].SetTitle("Scene0");
 
     mTreeNodes[1].mStrId = "1";
-    mTreeNodes[1].mLabel = "Scene1";
+    mTreeNodes[1].SetTitle("Scene1");
 
     mTreeNodes[2].mParentId = "0";
     mTreeNodes[2].mStrId = "2";
-    mTreeNodes[2].mLabel = "Camera";
+    mTreeNodes[2].SetTitle("Camera");
 
     mTreeNodes[3].mParentId = "0";
     mTreeNodes[3].mStrId = "3";
-    mTreeNodes[3].mLabel = "Light";
+    mTreeNodes[3].SetTitle("Light");
 
     mTreeNodes[4].mParentId = "1";
     mTreeNodes[4].mStrId = "4";
-    mTreeNodes[4].mLabel = "Camera";
+    mTreeNodes[4].SetTitle("Camera");
 
     mTreeNodes[5].mParentId = "1";
     mTreeNodes[5].mStrId = "5";
-    mTreeNodes[5].mLabel = "Light";
+    mTreeNodes[5].SetTitle("Light");
 
     for (auto& node : mTreeNodes) {
         mTreeView.AddNode(&node);

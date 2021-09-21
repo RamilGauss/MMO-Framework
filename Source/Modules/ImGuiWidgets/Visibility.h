@@ -11,8 +11,6 @@ See for more information LICENSE.md.
 
 #include "Typedef.h"
 
-#include "Widget.h"
-
 namespace nsImGuiWidgets
 {
     class DllExport TVisibility

@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    class DllExport TTitle
+    struct DllExport TTitle
     {
     public:
         void SetTitle(const std::string& str);

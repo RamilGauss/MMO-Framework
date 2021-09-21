@@ -32,7 +32,7 @@ TUnderMouseWindow::TUnderMouseWindow(std::string name)
     mWindow.mMouseMoveCB.Register([&](nsGraphicEngine::TMouseMotionEvent event)
     {
         ImVec2 mousePos(event.x, event.y);
-        auto p = mWindow.GetUnderMouseChild(mousePos);
+        auto p = mWindow.GetChildByGlobalPos(mousePos);
         if (p == &mLabel) {
             mToolTip.Show();
             mToolTip.SetTitle(fmt::format("Label:{}, {}", event.x, event.y));

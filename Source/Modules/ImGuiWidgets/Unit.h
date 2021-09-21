@@ -12,11 +12,10 @@ See for more information LICENSE.md.
 #include "Typedef.h"
 
 #include "Widget.h"
-#include "Visibility.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TUnit : public TWidget, public TVisibility
+    class DllExport TUnit : public TWidget
     {
     public:
         void Render() override final;
