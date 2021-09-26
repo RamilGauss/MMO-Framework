@@ -7,9 +7,31 @@ See for more information LICENSE.md.
 
 #include "Window.h"
 #include "Helper.h"
+#include "DockTreeManager.h"
+
 
 using namespace nsImGuiWidgets;
 
+
+TDockTreeManager* TWindow::mDockTreeManager = nullptr;
+
+void TWindow::SetDockTreeManager(TDockTreeManager* dockTreeManager)
+{
+    mDockTreeManager = dockTreeManager;
+}
+//---------------------------------------------------------------------------------------
+TDockTreeManager* TWindow::GetDockTreeManager()
+{
+    return mDockTreeManager;
+}
+//---------------------------------------------------------------------------------------
+TWindow::TWindow()
+{
+    if (mDockTreeManager == nullptr) {
+        return;
+    }
+}
+//---------------------------------------------------------------------------------------
 void TWindow::BeginRender()
 {
     mOldSize = mSize;
@@ -20,34 +42,10 @@ void TWindow::BeginRender()
     ImGui::SetNextWindowSize(mSize);
     ImGui::SetNextWindowPos(mPos, ImGuiCond_Appearing);
 
-    if (mNeedSetParentDockId) {
-        mParentDockId = mNewParentDockId;
-        ImGui::SetNextWindowDockID(mParentDockId, ImGuiCond_Once);
-    }
-
     ImGui::Begin(mTitle.c_str(), &mIsShown);
 
     if (oldIsShown != mIsShown) {
         mShowCB.Notify(mIsShown);
-    }
-
-    if (mNeedSetParentDockId) {
-        mNeedSetParentDockId = false;
-    } else {
-
-        auto freshIsDocked = ImGui::IsWindowDocked();
-        if (freshIsDocked != mIsDocked) {
-            mIsDocked = freshIsDocked;
-            mParentDockId = ImGui::GetWindowDockID();
-
-            mDockCB.Notify();
-        } else if (freshIsDocked) {
-            auto freshParentDockId = ImGui::GetWindowDockID();
-            if (freshParentDockId != mParentDockId) {
-                mParentDockId = freshParentDockId;
-                mDockCB.Notify();
-            }
-        }
     }
 }
 //---------------------------------------------------------------------------------------
@@ -69,26 +67,5 @@ void TWindow::EndRender()
     } else {
         mPos = mOldPos;
     }
-}
-//---------------------------------------------------------------------------------------
-ImGuiID TWindow::GetParentDockId() const
-{
-    return mParentDockId;
-}
-//---------------------------------------------------------------------------------------
-bool TWindow::IsDocked() const
-{
-    return mIsDocked;
-}
-//---------------------------------------------------------------------------------------
-void TWindow::SetParentDockId(ImGuiID parentId)
-{
-    mNeedSetParentDockId = true;
-    mNewParentDockId = parentId;
-}
-//---------------------------------------------------------------------------------------
-ImGuiID TWindow::GetDockId() const
-{
-    return mId;
 }
 //---------------------------------------------------------------------------------------

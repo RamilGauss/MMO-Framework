@@ -12,17 +12,12 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
+    class TDockTreeManager;
+
     class DllExport TWindow : public TFrame
     {
         ImVec2 mOldSize;
         ImVec2 mOldPos;
-    protected:
-        ImGuiID mParentDockId = 0;
-        bool mIsDocked = false;
-
-
-        ImGuiID mNewParentDockId = 0;
-        bool mNeedSetParentDockId = false;
     public:
         using TDockCallback = TCallbackPool<>;
         using TShowCallback = TCallbackPool<bool>;
@@ -34,13 +29,16 @@ namespace nsImGuiWidgets
         TSizeCallback mSizeCB;
         TPositionCallback mPosCB;
 
-        ImGuiID GetDockId() const;
-        ImGuiID GetParentDockId() const;
-        bool IsDocked() const;
-
-        void SetParentDockId(ImGuiID parentId);
+        TWindow();
     protected:
         void BeginRender() override;
         void EndRender() override;
+
+
+    public:
+        static void SetDockTreeManager(TDockTreeManager* dockTreeManager);
+        static TDockTreeManager* GetDockTreeManager();
+    private:
+        static TDockTreeManager* mDockTreeManager;
     };
 }

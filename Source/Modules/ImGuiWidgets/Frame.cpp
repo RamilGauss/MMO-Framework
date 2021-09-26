@@ -20,7 +20,7 @@ void TFrame::BeginRender()
 {
     ImGui::SetCursorPos(mPos);
 
-    ImGui::BeginChildFrame(mId, mSize);
+    ImGui::BeginChildFrame(GetId(), mSize);
 }
 //---------------------------------------------------------------------------------------
 void TFrame::EndRender()

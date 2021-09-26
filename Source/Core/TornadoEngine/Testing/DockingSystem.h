@@ -16,6 +16,8 @@ See for more information LICENSE.md.
 #include "DockingWindow.h"
 #include "MainWindow.h"
 
+#include <ImGuiWidgets/DockTreeManager.h>
+
 namespace nsTest
 {
     class DllExport TDockingSystem : public nsECSFramework::TInitSystem
@@ -23,8 +25,7 @@ namespace nsTest
         std::list<TDockingWindow*> mWindows;
         TMainWindow* mMainWindow = nullptr;
 
-        std::string mIniData;
-        size_t mOutIniSize = 0;
+        nsImGuiWidgets::TDockTreeManager* mDockTreeManager = nullptr;
 
         static const int WIDGET_COUNT = 6;
     public:

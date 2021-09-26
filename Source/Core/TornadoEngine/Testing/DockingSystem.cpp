@@ -6,8 +6,11 @@ See for more information LICENSE.md.
 */
 
 #include "DockingSystem.h"
+#include "Modules.h"
+#include "ModuleGraphicEngine.h"
 
 using namespace nsTest;
+using namespace nsImGuiWidgets;
 
 void TDockingSystem::Init()
 {
@@ -15,4 +18,8 @@ void TDockingSystem::Init()
         mWindows.push_back(new TDockingWindow(std::to_string(i)));
     }
     mMainWindow = new TMainWindow();
+
+    mDockTreeManager = new TDockTreeManager();
+
+    nsTornadoEngine::Modules()->G()->GetGE()->AddRender(mDockTreeManager);
 }

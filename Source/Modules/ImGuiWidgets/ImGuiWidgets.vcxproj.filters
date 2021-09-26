@@ -18,6 +18,9 @@
     <Filter Include="Properties">
       <UniqueIdentifier>{d323bae3-19e9-42ce-883b-66aefb7caa92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Docking">
+      <UniqueIdentifier>{33be79c5-2108-4c3d-a898-8e394c75a0fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -95,6 +98,15 @@
     <ClInclude Include="Visibility.h">
       <Filter>Properties</Filter>
     </ClInclude>
+    <ClInclude Include="Identity.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="DockTreeManager.h">
+      <Filter>Docking</Filter>
+    </ClInclude>
+    <ClInclude Include="DockNode.h">
+      <Filter>Docking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Label.cpp">
@@ -168,6 +180,15 @@
     </ClCompile>
     <ClCompile Include="ToolTip.cpp">
       <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Identity.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="DockTreeManager.cpp">
+      <Filter>Docking</Filter>
+    </ClCompile>
+    <ClCompile Include="DockNode.cpp">
+      <Filter>Docking</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

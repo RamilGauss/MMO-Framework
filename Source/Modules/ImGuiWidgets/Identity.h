@@ -7,13 +7,19 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include <imgui.h>
+#include "Typedef.h"
 
-namespace nsGraphicEngine
+namespace nsImGuiWidgets
 {
-    class DllExport IRenderable
+    class DllExport TIdentity
     {
+        static ImGuiID mLastId;
+
+        ImGuiID mId;
     public:
-        virtual void Render() = 0;
+        TIdentity();
+
+        ImGuiID GetId() const;
     };
 }

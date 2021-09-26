@@ -24,8 +24,8 @@ void TTestAllWidgetsSystem::Init()
 
     mMainWindow->mMenuNodes[2].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
     {
-        auto mainWindowDockId = mMainWindow->mMW.GetDockId();
-        mWindow0->mWindow.SetParentDockId(mainWindowDockId);
+        //auto mainWindowDockId = mMainWindow->mMW.GetDockId();
+        //mWindow0->mWindow.SetParentDockId(mainWindowDockId);
     });
 }
 //------------------------------------------------------------------------------------------------

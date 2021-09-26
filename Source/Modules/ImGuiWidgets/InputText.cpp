@@ -22,7 +22,7 @@ void TInputText::SetText(const std::string& str)
 //------------------------------------------------------------------------------------
 void TInputText::RenderInheritance()
 {
-    ImGui::PushID(mId);
+    ImGui::PushID(GetId());
 
     if (ImGui::InputTextMultiline(mTitle.c_str(), mValue, SIZE, mSize)) {
         mTextEditEndCB.Notify(this);

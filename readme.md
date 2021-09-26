@@ -14,6 +14,16 @@ This is a research project.
 
 
 ## Features
+
+|               | GUI         | Graphic     | Physic |  Network    |   Sound |  ORM DataBase |
+|----------     | ------------| ------------|--------|-------------|---------|------------|
+|Implementaion  | [Dear ImGui](https://github.com/ocornut/imgui)  |   [Ogre](https://github.com/OGRECave/ogre)      | [Bullet](https://github.com/bulletphysics/bullet3) | High: [MMO Engine](https://github.com/RamilGauss/MMO-Framework/tree/master/Source/Modules/MMOEngine)<br>Low: [NetTransport](https://github.com/RamilGauss/MMO-Framework/tree/master/Source/Modules/NetTransport)  |    ?     |      ?     |
+|
+|Degree of embeddedness in engine      |    80%         |      0%       |    0%    |     0%        |     0%    |      0%      |
+|               |             |             |        |             |         |            |
+
+
+
 ### GUI
 
 <img src="./Doc/gui_example.gif">

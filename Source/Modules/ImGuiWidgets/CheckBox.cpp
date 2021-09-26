@@ -21,7 +21,7 @@ void TCheckBox::SetValue(bool value)
 //----------------------------------------------------------------------------------------
 void TCheckBox::RenderInheritance()
 {
-    ImGui::PushID(mId);
+    ImGui::PushID(GetId());
     
     if (ImGui::Checkbox(mTitle.c_str(), &mValue)) {
         mCheckChange.Notify(mValue);

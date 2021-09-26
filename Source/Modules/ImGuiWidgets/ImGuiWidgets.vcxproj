@@ -25,8 +25,11 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="CheckBox.h" />
     <ClInclude Include="ComboBox.h" />
+    <ClInclude Include="DockNode.h" />
+    <ClInclude Include="DockTreeManager.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Helper.h" />
+    <ClInclude Include="Identity.h" />
     <ClInclude Include="InputInt.h" />
     <ClInclude Include="InputText.h" />
     <ClInclude Include="Label.h" />
@@ -51,7 +54,10 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CheckBox.cpp" />
     <ClCompile Include="ComboBox.cpp" />
+    <ClCompile Include="DockNode.cpp" />
+    <ClCompile Include="DockTreeManager.cpp" />
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="Identity.cpp" />
     <ClCompile Include="InputInt.cpp" />
     <ClCompile Include="InputText.cpp" />
     <ClCompile Include="Label.cpp" />

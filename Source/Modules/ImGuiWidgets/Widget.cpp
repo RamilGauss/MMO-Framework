@@ -11,7 +11,6 @@ See for more information LICENSE.md.
 using namespace nsImGuiWidgets;
 using namespace nsGraphicEngine;
 
-ImGuiID TWidget::mLastId = 0;
 TKeyMouseEventContainer* TWidget::mKeyMouseInputContainer = nullptr;
 
 void TWidget::SetInputContainer(TKeyMouseEventContainer* keyMouseContainer)
@@ -24,12 +23,6 @@ TKeyMouseEventContainer* TWidget::GetInputContainer()
     return mKeyMouseInputContainer;
 }
 //--------------------------------------------------------------------------------
-TWidget::TWidget()
-{
-    mLastId++;
-    mId = mLastId;
-}
-//------------------------------------------------------------------------
 TWidget::SubType TWidget::GetSubType() const
 {
     return SubType::WIDGET;
@@ -47,7 +40,7 @@ TWidget* TWidget::GetParent() const
 //------------------------------------------------------------------------
 ImVec2 TWidget::GetGlobalPos()
 {
-    auto p = mParent;
+    auto p = GetParent();
 
     ImVec2 globalPos = mPos;
     while (true) {
