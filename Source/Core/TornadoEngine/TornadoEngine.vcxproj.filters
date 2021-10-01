@@ -144,6 +144,9 @@
     <ClCompile Include="Testing\ChooseSystem.cpp">
       <Filter>Testing\Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Testing\DockMainWindow.cpp">
+      <Filter>Testing\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\ModuleType.h">
@@ -345,6 +348,9 @@
       <Filter>Testing\Systems</Filter>
     </ClInclude>
     <ClInclude Include="Testing\ChooseWindow.h">
+      <Filter>Testing\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Testing\DockMainWindow.h">
       <Filter>Testing\Windows</Filter>
     </ClInclude>
   </ItemGroup>

@@ -29,16 +29,8 @@ namespace nsImGuiWidgets
         TSizeCallback mSizeCB;
         TPositionCallback mPosCB;
 
-        TWindow();
     protected:
         void BeginRender() override;
         void EndRender() override;
-
-
-    public:
-        static void SetDockTreeManager(TDockTreeManager* dockTreeManager);
-        static TDockTreeManager* GetDockTreeManager();
-    private:
-        static TDockTreeManager* mDockTreeManager;
     };
 }

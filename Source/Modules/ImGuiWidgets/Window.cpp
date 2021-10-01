@@ -9,29 +9,8 @@ See for more information LICENSE.md.
 #include "Helper.h"
 #include "DockTreeManager.h"
 
-
 using namespace nsImGuiWidgets;
 
-
-TDockTreeManager* TWindow::mDockTreeManager = nullptr;
-
-void TWindow::SetDockTreeManager(TDockTreeManager* dockTreeManager)
-{
-    mDockTreeManager = dockTreeManager;
-}
-//---------------------------------------------------------------------------------------
-TDockTreeManager* TWindow::GetDockTreeManager()
-{
-    return mDockTreeManager;
-}
-//---------------------------------------------------------------------------------------
-TWindow::TWindow()
-{
-    if (mDockTreeManager == nullptr) {
-        return;
-    }
-}
-//---------------------------------------------------------------------------------------
 void TWindow::BeginRender()
 {
     mOldSize = mSize;

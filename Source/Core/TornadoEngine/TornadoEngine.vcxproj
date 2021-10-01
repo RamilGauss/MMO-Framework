@@ -234,6 +234,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Testing\DockingStuffWindow.cpp" />
     <ClCompile Include="Testing\DockingSystem.cpp" />
     <ClCompile Include="Testing\DockingWindow.cpp" />
+    <ClCompile Include="Testing\DockMainWindow.cpp" />
     <ClCompile Include="Testing\MainWindow.cpp" />
     <ClCompile Include="Testing\TestAllWidgetsSystem.cpp" />
     <ClCompile Include="Testing\TestFeature.cpp" />
@@ -298,6 +299,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Testing\DockingStuffWindow.h" />
     <ClInclude Include="Testing\DockingSystem.h" />
     <ClInclude Include="Testing\DockingWindow.h" />
+    <ClInclude Include="Testing\DockMainWindow.h" />
     <ClInclude Include="Testing\MainWindow.h" />
     <ClInclude Include="Testing\TestAllWidgetsSystem.h" />
     <ClInclude Include="Testing\TestFeature.h" />

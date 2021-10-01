@@ -107,6 +107,9 @@
     <ClInclude Include="DockNode.h">
       <Filter>Docking</Filter>
     </ClInclude>
+    <ClInclude Include="DockTree.h">
+      <Filter>Docking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Label.cpp">
@@ -188,6 +191,9 @@
       <Filter>Docking</Filter>
     </ClCompile>
     <ClCompile Include="DockNode.cpp">
+      <Filter>Docking</Filter>
+    </ClCompile>
+    <ClCompile Include="DockTree.cpp">
       <Filter>Docking</Filter>
     </ClCompile>
   </ItemGroup>

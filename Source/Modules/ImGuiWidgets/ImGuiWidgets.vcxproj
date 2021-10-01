@@ -26,6 +26,7 @@
     <ClInclude Include="CheckBox.h" />
     <ClInclude Include="ComboBox.h" />
     <ClInclude Include="DockNode.h" />
+    <ClInclude Include="DockTree.h" />
     <ClInclude Include="DockTreeManager.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Helper.h" />
@@ -55,6 +56,7 @@
     <ClCompile Include="CheckBox.cpp" />
     <ClCompile Include="ComboBox.cpp" />
     <ClCompile Include="DockNode.cpp" />
+    <ClCompile Include="DockTree.cpp" />
     <ClCompile Include="DockTreeManager.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Identity.cpp" />

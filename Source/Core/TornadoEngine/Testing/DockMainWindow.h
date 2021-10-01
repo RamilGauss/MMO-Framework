@@ -17,12 +17,12 @@ See for more information LICENSE.md.
 
 namespace nsTest
 {
-    struct DllExport TMainWindow
+    struct DllExport TDockMainWindow
     {
         nsImGuiWidgets::TMainWindow mMW;
 
-        nsImGuiWidgets::TMenuNode mMenuNodes[3];
+        nsImGuiWidgets::TMenuNode mMenuNodes[4];
 
-        TMainWindow();
+        TDockMainWindow();
     };
 }

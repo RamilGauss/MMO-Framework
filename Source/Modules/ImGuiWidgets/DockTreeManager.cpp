@@ -15,11 +15,6 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-TDockTreeManager::TDockTreeManager()
-{
-    TWindow::SetDockTreeManager(this);
-}
-//----------------------------------------------------------------------
 struct TWindowNode
 {
     ImGuiID id;
@@ -47,6 +42,8 @@ struct TNode
 
 void TDockTreeManager::Render()
 {
+    mTempTrees.clear();
+
     auto ctx = ImGui::GetCurrentContext();
 
     std::list<TNode> nodeList;
@@ -114,5 +111,28 @@ void TDockTreeManager::Render()
     }
 
     // Go through all the nodes
+}
+//----------------------------------------------------------------------
+std::vector<TDockTree>& TDockTreeManager::GetTrees()
+{
+    return mTrees;
+}
+//----------------------------------------------------------------------
+void TDockTreeManager::ApplyTrees()
+{
+    for (auto& tree : mTrees) {
+        tree.root->Build();
+    }
+}
+//----------------------------------------------------------------------
+void TDockTreeManager::ClearTrees()
+{
+    for (auto& tree : mTrees) {
+
+        ImGui::DockBuilderRemoveNode(tree.root->GetId());
+        delete tree.root;
+    }
+
+    mTrees.clear();
 }
 //----------------------------------------------------------------------

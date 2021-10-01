@@ -7,6 +7,9 @@ See for more information LICENSE.md.
 
 #include "DockNode.h"
 
+#include <imgui.h>
+#include <imgui_internal.h>
+
 using namespace nsImGuiWidgets;
 
 TDockNode::TDockNode()
@@ -14,8 +17,97 @@ TDockNode::TDockNode()
 
 }
 //--------------------------------------------------------------------------
-void TDockNode::Render()
+TDockNode::TDockNode(const TDockNode& other)
 {
 
+}
+//--------------------------------------------------------------------------
+TDockNode::~TDockNode()
+{
+    delete childs[0];
+    delete childs[1];
+}
+//--------------------------------------------------------------------------
+TDockNode& TDockNode::operator = (const TDockNode& other)
+{
+    return *this;
+}
+//--------------------------------------------------------------------------
+bool TDockNode::operator == (const TDockNode& other)
+{
+    return false;
+}
+//--------------------------------------------------------------------------
+ImGuiAxis ToImGui(TDockNode::Type type)
+{
+    switch (type) {
+        case TDockNode::Type::TAB:
+            return ImGuiAxis::ImGuiAxis_None;
+        case TDockNode::Type::X_SPLIT:
+            return ImGuiAxis::ImGuiAxis_X;
+        case TDockNode::Type::Y_SPLIT:
+            return ImGuiAxis::ImGuiAxis_Y;
+    }
+    return ImGuiAxis::ImGuiAxis_None;
+}
+//----------------------------------------------------------------------
+void TDockNode::Build()
+{
+    ImGui::DockBuilderAddNode(GetId());
+
+    auto node = ImGui::DockBuilderGetNode(GetId());
+
+    if (HasDockChilds()) {
+        int childIndex = 0;
+        for (auto& child : childs) {
+            if (child == nullptr) {
+
+                childIndex++;
+                continue;
+            }
+            child->Build();
+
+            auto childNode = ImGui::DockBuilderGetNode(child->GetId());
+            childNode->ParentNode = node;
+
+            node->ChildNodes[childIndex] = childNode;
+
+            childIndex++;
+        }
+    } else {
+        int index = 0;
+        for (auto& windowName : windowNames) {
+
+            ImGui::DockBuilderDockWindow(windowName.c_str(), GetId());
+            ImGuiWindow* window = ImGui::FindWindowByName(windowName.c_str());
+            window->DockOrder = index;
+            index++;
+        }
+    }
+
+    node->SplitAxis = ToImGui(type);
+
+    ImGui::DockBuilderSetNodePos(GetId(), GetPos());
+    ImGui::DockBuilderSetNodeSize(GetId(), GetSize());
+    ImGui::DockBuilderFinish(GetId());
+
+    // Reorder windows
+    if (!HasDockChilds()) {
+        // After finish node may be changed
+        node = ImGui::DockBuilderGetNode(GetId());
+
+        auto selectedWindowName = windowNames[selectedWindowIndex];
+        for (auto& tab : node->TabBar->Tabs) {
+            if (tab.Window->Name == selectedWindowName) {
+                node->TabBar->SelectedTabId = tab.ID;
+                break;
+            }
+        }
+    }
+}
+//--------------------------------------------------------------------------
+bool TDockNode::HasDockChilds() const
+{
+    return childs[0] != nullptr || childs[1] != nullptr;
 }
 //--------------------------------------------------------------------------

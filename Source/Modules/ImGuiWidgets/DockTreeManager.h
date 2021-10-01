@@ -10,23 +10,25 @@ See for more information LICENSE.md.
 #include "CallbackPool.h"
 
 #include "IRenderable.h"
+#include "DockTree.h"
 
 namespace nsImGuiWidgets
 {
-    class TDockNode;
-
     class DllExport TDockTreeManager : public nsGraphicEngine::IRenderable
     {
-        std::list<TDockNode*> mRoots;
+        std::vector<TDockTree> mTrees;
+
+        std::vector<TDockTree> mTempTrees;
 
     public:
-        using TChangeCallback = TCallbackPool<>;
+        TCallbackPool<> mChangeTreeCB;
 
-        TChangeCallback mCB;
+        void Render() override final;// For time quant
 
-        TDockTreeManager();
-
-        void Render() override final;
+        std::vector<TDockTree>& GetTrees();
+        
+        void ClearTrees();
+        void ApplyTrees();
     protected:
     };
 }
