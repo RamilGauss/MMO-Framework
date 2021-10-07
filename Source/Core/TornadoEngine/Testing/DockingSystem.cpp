@@ -31,11 +31,11 @@ void TDockingSystem::Init()
 
         Next()->operator()();
 
-        mDockTreeManager->ApplyTrees();
+        mDockTreeManager->ApplyTreesAndBuildLight();
     });
     mMainWindow->mMenuNodes[2].onLeftClick.Register([this](nsImGuiWidgets::TNode* pNode)
     {
-        mDockTreeManager->ApplyTrees();
+        mDockTreeManager->ApplyTreesAndBuildLight();
     });
 
     // Имитация работы features в GraphicEngine

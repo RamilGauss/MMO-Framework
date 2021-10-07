@@ -28,6 +28,7 @@
     <ClInclude Include="DockNode.h" />
     <ClInclude Include="DockTree.h" />
     <ClInclude Include="DockTreeManager.h" />
+    <ClInclude Include="DockTypeHelper.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="Identity.h" />
@@ -35,6 +36,9 @@
     <ClInclude Include="InputText.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="LightDockNode.h" />
+    <ClInclude Include="LightDockTreeManager.h" />
+    <ClInclude Include="LightWindowNode.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="MenuNode.h" />
     <ClInclude Include="Node.h" />
@@ -58,12 +62,16 @@
     <ClCompile Include="DockNode.cpp" />
     <ClCompile Include="DockTree.cpp" />
     <ClCompile Include="DockTreeManager.cpp" />
+    <ClCompile Include="DockTypeHelper.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Identity.cpp" />
     <ClCompile Include="InputInt.cpp" />
     <ClCompile Include="InputText.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="LightDockNode.cpp" />
+    <ClCompile Include="LightDockTreeManager.cpp" />
+    <ClCompile Include="LightWindowNode.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="MenuNode.cpp" />
     <ClCompile Include="Node.cpp" />

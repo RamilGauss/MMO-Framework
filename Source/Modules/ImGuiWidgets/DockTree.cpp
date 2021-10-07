@@ -9,11 +9,6 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-bool TDockTree::operator == (const TDockTree& other)
-{
-    return false;
-}
-//--------------------------------------------------------------
 TDockTree& TDockTree::operator = (const TDockTree& other)
 {
     root = other.root;

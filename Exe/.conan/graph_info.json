@@ -5,6 +5,10 @@
    "False"
   ],
   [
+   "boost:buildid",
+   "None"
+  ],
+  [
    "boost:bzip2",
    "True"
   ],
@@ -70,7 +74,7 @@
   ],
   [
    "boost:numa",
-   "False"
+   "True"
   ],
   [
    "boost:pch",
@@ -283,6 +287,10 @@
   [
    "fmt:with_fmt_alias",
    "False"
+  ],
+  [
+   "fmt:with_os_api",
+   "True"
   ],
   [
    "gtest:build_gmock",

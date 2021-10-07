@@ -10,6 +10,8 @@ See for more information LICENSE.md.
 #include <imgui.h>
 #include <imgui_internal.h>
 
+#include "DockTypeHelper.h"
+
 using namespace nsImGuiWidgets;
 
 TDockNode::TDockNode()
@@ -38,19 +40,6 @@ bool TDockNode::operator == (const TDockNode& other)
     return false;
 }
 //--------------------------------------------------------------------------
-ImGuiAxis ToImGui(TDockNode::Type type)
-{
-    switch (type) {
-        case TDockNode::Type::TAB:
-            return ImGuiAxis::ImGuiAxis_None;
-        case TDockNode::Type::X_SPLIT:
-            return ImGuiAxis::ImGuiAxis_X;
-        case TDockNode::Type::Y_SPLIT:
-            return ImGuiAxis::ImGuiAxis_Y;
-    }
-    return ImGuiAxis::ImGuiAxis_None;
-}
-//----------------------------------------------------------------------
 void TDockNode::Build()
 {
     ImGui::DockBuilderAddNode(GetId());
@@ -85,7 +74,7 @@ void TDockNode::Build()
         }
     }
 
-    node->SplitAxis = ToImGui(type);
+    node->SplitAxis = TDockTypeHelper::ToImGui(type);
 
     ImGui::DockBuilderSetNodePos(GetId(), GetPos());
     ImGui::DockBuilderSetNodeSize(GetId(), GetSize());

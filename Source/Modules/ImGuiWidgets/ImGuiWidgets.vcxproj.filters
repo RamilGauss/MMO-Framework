@@ -21,6 +21,9 @@
     <Filter Include="Docking">
       <UniqueIdentifier>{33be79c5-2108-4c3d-a898-8e394c75a0fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Docking\Light">
+      <UniqueIdentifier>{cfe46495-fed0-4a48-8d8f-911f840810e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -110,6 +113,18 @@
     <ClInclude Include="DockTree.h">
       <Filter>Docking</Filter>
     </ClInclude>
+    <ClInclude Include="LightDockTreeManager.h">
+      <Filter>Docking\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="LightDockNode.h">
+      <Filter>Docking\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="LightWindowNode.h">
+      <Filter>Docking\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="DockTypeHelper.h">
+      <Filter>Docking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Label.cpp">
@@ -194,6 +209,18 @@
       <Filter>Docking</Filter>
     </ClCompile>
     <ClCompile Include="DockTree.cpp">
+      <Filter>Docking</Filter>
+    </ClCompile>
+    <ClCompile Include="LightDockNode.cpp">
+      <Filter>Docking\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="LightDockTreeManager.cpp">
+      <Filter>Docking\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="LightWindowNode.cpp">
+      <Filter>Docking\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="DockTypeHelper.cpp">
       <Filter>Docking</Filter>
     </ClCompile>
   </ItemGroup>

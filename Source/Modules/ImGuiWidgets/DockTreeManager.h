@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 
 #include "IRenderable.h"
 #include "DockTree.h"
+#include "LightDockTreeManager.h"
 
 namespace nsImGuiWidgets
 {
@@ -18,7 +19,8 @@ namespace nsImGuiWidgets
     {
         std::vector<TDockTree> mTrees;
 
-        std::vector<TDockTree> mTempTrees;
+        TLightDockTreeManager mLightTrees;
+        TLightDockTreeManager mLightForFrameTrees;
 
     public:
         TCallbackPool<> mChangeTreeCB;
@@ -28,7 +30,11 @@ namespace nsImGuiWidgets
         std::vector<TDockTree>& GetTrees();
         
         void ClearTrees();
+        void ApplyTreesAndBuildLight();
+    private:
+
         void ApplyTrees();
-    protected:
+        
+        void DestroyTrees();
     };
 }

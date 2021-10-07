@@ -7,14 +7,18 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <imgui.h>
+#include <imgui_internal.h>
+
+#include "TypeDef.h"
+
 #include "DockNode.h"
 
 namespace nsImGuiWidgets
 {
-    struct DllExport TDockTree
+    struct DllExport TDockTypeHelper
     {
-        TDockNode* root = nullptr;
-
-        TDockTree& operator = (const TDockTree& other);
+        static ImGuiAxis ToImGui(TDockNode::Type type);
+        static TDockNode::Type FromImGui(ImGuiAxis type);
     };
 }

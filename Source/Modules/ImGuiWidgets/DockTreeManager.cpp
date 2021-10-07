@@ -12,105 +12,32 @@ See for more information LICENSE.md.
 #include <imgui.h>
 #include <imgui_internal.h>
 
-
 using namespace nsImGuiWidgets;
 
-struct TWindowNode
-{
-    ImGuiID id;
-    std::string name;
-    ImGuiWindow* imWindow = nullptr;
-};
-struct TNode
-{
-    ImGuiID id;
-
-    TNode* parent = nullptr;
-    TNode* child[2] = {nullptr};
-
-    ImGuiDockNode* imParent = nullptr;
-    ImGuiDockNode* imChild[2] = {nullptr};
-
-    ImGuiAxis splitMode;
-    ImGuiDockNodeState state;
-
-    // Strict order
-    std::vector<TWindowNode> windows;
-
-    int selectedWindowIndex = 0;
-};
+//###
+static std::list<TLightDockTreeManager> g_History;
+//###
 
 void TDockTreeManager::Render()
 {
-    mTempTrees.clear();
+    mLightForFrameTrees.Build();
 
-    auto ctx = ImGui::GetCurrentContext();
-
-    std::list<TNode> nodeList;
-    std::map<ImGuiID, TNode*> nodeMap;
-
-    // Fill
-    auto& nodes = ctx->DockContext.Nodes;
-    for (auto& data : nodes.Data) {
-        auto n = (ImGuiDockNode*) data.val_p;
-        if (n == nullptr) {
-            continue;
-        }
-        TNode node;
-        node.id = n->ID;
-        node.imParent = n->ParentNode;
-        node.imChild[0] = n->ChildNodes[0];
-        node.imChild[1] = n->ChildNodes[1];
-
-        node.splitMode = n->SplitAxis;
-        node.state = n->State;
-
-        if (n->TabBar != nullptr) {
-            int index = 0;
-            for (auto& tab : n->TabBar->Tabs) {
-                auto w = tab.Window;
-                TWindowNode windowNode;
-                windowNode.id = w->ID;
-                windowNode.name = w->Name;
-                windowNode.imWindow = w;
-                node.windows.push_back(windowNode);
-
-                if (n->TabBar->SelectedTabId == tab.ID) {
-                    node.selectedWindowIndex = index;
-                }
-                index++;
-            }
-        }
-
-        nodeList.push_back(node);
-        nodeMap.insert({node.id,&nodeList.back()});
+    if (mLightForFrameTrees == mLightTrees) {
+        return;
     }
 
-    // Resolving 
-    for (auto& id_node : nodeMap) {
-        auto node = id_node.second;
-        if (node->imParent != nullptr) {
-            node->parent = nodeMap[node->imParent->ID];
-        }
-        if (node->imChild[0] != nullptr) {
-            node->child[0] = nodeMap[node->imChild[0]->ID];
-        }
-        if (node->imChild[1] != nullptr) {
-            node->child[1] = nodeMap[node->imChild[1]->ID];
-        }
-    }
+    mLightForFrameTrees.DestroyImGuiDock();
+    DestroyTrees();
 
-    for (auto& node : nodeList) {
+    mLightForFrameTrees.CloneTo(mTrees);
+    
+    ApplyTreesAndBuildLight();
 
-        if (node.parent == nullptr &&
-            node.child[0] == nullptr && node.child[1] == nullptr &&
-            node.windows.size() == 0) {
+    mChangeTreeCB.Notify();
 
-            ImGui::DockBuilderRemoveNode(node.id);
-        }
-    }
-
-    // Go through all the nodes
+    //###
+    g_History.push_back(mLightTrees);
+    //###
 }
 //----------------------------------------------------------------------
 std::vector<TDockTree>& TDockTreeManager::GetTrees()
@@ -125,6 +52,13 @@ void TDockTreeManager::ApplyTrees()
     }
 }
 //----------------------------------------------------------------------
+void TDockTreeManager::ApplyTreesAndBuildLight()
+{
+    ApplyTrees();
+
+    mLightTrees.Build();
+}
+//----------------------------------------------------------------------
 void TDockTreeManager::ClearTrees()
 {
     for (auto& tree : mTrees) {
@@ -136,3 +70,13 @@ void TDockTreeManager::ClearTrees()
     mTrees.clear();
 }
 //----------------------------------------------------------------------
+void TDockTreeManager::DestroyTrees()
+{
+    for (auto& tree : mTrees) {
+        delete tree.root;
+    }
+
+    mTrees.clear();
+}
+//----------------------------------------------------------------------
+
