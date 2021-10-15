@@ -11,8 +11,6 @@ using namespace nsImGuiWidgets;
 
 void TInputInt::RenderInheritance()
 {
-    ImGui::PushID(GetId());
     ImGui::InputInt(mTitle.c_str(), &mValue, mStep, mStepFast);
-    ImGui::PopID();
 }
 //------------------------------------------------------------------------------------

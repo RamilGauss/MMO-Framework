@@ -29,10 +29,12 @@
     <ClInclude Include="DockTree.h" />
     <ClInclude Include="DockTreeManager.h" />
     <ClInclude Include="DockTypeHelper.h" />
+    <ClInclude Include="Focus.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="Identity.h" />
     <ClInclude Include="InputInt.h" />
+    <ClInclude Include="InputMultiText.h" />
     <ClInclude Include="InputText.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Geometry.h" />
@@ -63,9 +65,11 @@
     <ClCompile Include="DockTree.cpp" />
     <ClCompile Include="DockTreeManager.cpp" />
     <ClCompile Include="DockTypeHelper.cpp" />
+    <ClCompile Include="Focus.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Identity.cpp" />
     <ClCompile Include="InputInt.cpp" />
+    <ClCompile Include="InputMultiText.cpp" />
     <ClCompile Include="InputText.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Geometry.cpp" />

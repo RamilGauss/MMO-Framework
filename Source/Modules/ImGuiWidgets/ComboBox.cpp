@@ -34,8 +34,6 @@ void TComboBox::RenderInheritance()
 
     auto cur = mCurrentItem == nullptr ? nullptr : mCurrentItem->c_str();
 
-    ImGui::PushID(GetId());
-
     if (ImGui::BeginCombo(mTitle.c_str(), cur)) {
         for (int n = 0; n < mItems.size(); n++) {
             bool is_selected = (mCurrentItem == &mItems[n]);
@@ -46,7 +44,5 @@ void TComboBox::RenderInheritance()
         }
         ImGui::EndCombo();
     }
-
-    ImGui::PopID();
 }
 //----------------------------------------------------------------------------------------

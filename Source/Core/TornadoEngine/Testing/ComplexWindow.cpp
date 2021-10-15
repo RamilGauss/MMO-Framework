@@ -127,7 +127,7 @@ TComplexWindow::TComplexWindow(std::string name)
         mTreeView.AddNode(&node);
     }
 
-    mTreeView.onSelectionEvent.Register([&](nsImGuiWidgets::TTreeNode* pNode)
+    mTreeView.mOnSelectionEvent.Register([&](nsImGuiWidgets::TTreeNode* pNode)
     {
         auto str = "S" + pNode->mStrId + ", ";
         if (mLogLabel.GetTextLength() > 1000) {

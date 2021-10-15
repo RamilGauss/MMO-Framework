@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include "Typedef.h"
 
 #include "Node.h"
+#include "InputText.h"
 
 namespace nsImGuiWidgets
 {
@@ -22,10 +23,29 @@ namespace nsImGuiWidgets
 
     class DllExport TTreeNode : public TNode
     {
+        bool mEditProcessong = false;
+        bool mBeginEditProcessing = false;
+
+        TInputText mInputText;
+
+        TTreeView* mTreeView = nullptr;
+
     public:
+        TTreeNode();
         void Render() override;
+
+        void SetEdit(bool value);
+
+        using OnEndEditEvent = TCallbackPool<TTreeNode*, const std::string&>;
+        OnEndEditEvent mOnEndEditEvent;
+
+
+        void SetTreeView(TTreeView* treeView);
+        TTreeView* GetTreeView() const;
 
     private:
         void SearchEvents();
+
+        void EndEditing();
     };
 }

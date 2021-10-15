@@ -18,8 +18,6 @@ namespace nsImGuiWidgets
     // Abstract class
     class DllExport TFrame : public TUnit, public TWidgetContainer
     {
-    protected:
-        bool mIsFocused = false;
     public:
         TFrame();
 
@@ -30,21 +28,15 @@ namespace nsImGuiWidgets
         virtual TWidget* GetChildByGlobalPos(const ImVec2& mousePos);
 
         // Property change events by User
-        using TFocusCallback = TCallbackPool<bool>;
-
         using TKeyCallback = TCallbackPool<nsGraphicEngine::TKeyboardEvent>;
         using TMouseClickCallback = TCallbackPool<nsGraphicEngine::TMouseButtonEvent>;
         using TMouseMoveCallback = TCallbackPool<nsGraphicEngine::TMouseMotionEvent>;
         using TMouseWheelCallback = TCallbackPool<nsGraphicEngine::TMouseWheelEvent>;
 
-        TFocusCallback mFocusCB;
-
         TKeyCallback mKeyCB;
         TMouseClickCallback mMouseClickCB;
         TMouseMoveCallback  mMouseMoveCB;
         TMouseWheelCallback mMouseWheelCB;
-
-        bool IsFocused();
 
     protected:
 

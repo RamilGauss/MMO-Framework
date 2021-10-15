@@ -30,29 +30,19 @@ void TFrame::EndRender()
 //---------------------------------------------------------------------------------------
 void TFrame::RenderInheritance()
 {
-    auto oldFocus = mIsFocused;
-
-    if (ImGui::IsWindowFocused()) {
-        mIsFocused = true;
-    } else {
-        mIsFocused = false;
-    }
+    auto oldFocus = IsFocused();
+    SetIsFocused(ImGui::IsWindowFocused());
 
     for (auto& child : mWidgets) {
         child->Render();
     }
     // strict order
-    if (oldFocus != mIsFocused) {
-        mFocusCB.Notify(mIsFocused);
+    if (oldFocus != IsFocused()) {
+        mFocusCB.Notify(IsFocused());
     }
-    if (mIsFocused) {
+    if (IsFocused()) {
         SearchInputEvents();
     }
-}
-//---------------------------------------------------------------------------------------
-bool TFrame::IsFocused()
-{
-    return mIsFocused;
 }
 //---------------------------------------------------------------------------------------
 void TFrame::SearchInputEvents()

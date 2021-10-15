@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 #include <ImGuiWidgets/Window.h>
-#include <ImGuiWidgets/InputText.h>
+#include <ImGuiWidgets/InputMultiText.h>
 #include <ImGuiWidgets/PopupNode.h>
 #include <ImGuiWidgets/PopupMenu.h>
 
@@ -23,7 +23,7 @@ namespace nsTest
     {
         nsImGuiWidgets::TWindow mWindow;
 
-        nsImGuiWidgets::TInputText mTextEdit;
+        nsImGuiWidgets::TInputMultiText mTextEdit;
 
         nsImGuiWidgets::TPopupNode mPopupNodes[6];
         nsImGuiWidgets::TPopupMenu mPopup;

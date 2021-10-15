@@ -80,7 +80,7 @@
     <ClInclude Include="CheckBox.h">
       <Filter>Units</Filter>
     </ClInclude>
-    <ClInclude Include="InputText.h">
+    <ClInclude Include="InputMultiText.h">
       <Filter>Units</Filter>
     </ClInclude>
     <ClInclude Include="PopupMenu.h">
@@ -124,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="DockTypeHelper.h">
       <Filter>Docking</Filter>
+    </ClInclude>
+    <ClInclude Include="InputText.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Focus.h">
+      <Filter>Properties</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,7 +181,7 @@
     <ClCompile Include="CheckBox.cpp">
       <Filter>Units</Filter>
     </ClCompile>
-    <ClCompile Include="InputText.cpp">
+    <ClCompile Include="InputMultiText.cpp">
       <Filter>Units</Filter>
     </ClCompile>
     <ClCompile Include="Node.cpp">
@@ -222,6 +228,12 @@
     </ClCompile>
     <ClCompile Include="DockTypeHelper.cpp">
       <Filter>Docking</Filter>
+    </ClCompile>
+    <ClCompile Include="InputText.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Focus.cpp">
+      <Filter>Properties</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

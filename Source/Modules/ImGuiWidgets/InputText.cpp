@@ -7,8 +7,9 @@ See for more information LICENSE.md.
 
 #include "InputText.h"
 
-using namespace nsImGuiWidgets;
+#include <imgui_internal.h>
 
+using namespace nsImGuiWidgets;
 
 std::string TInputText::GetText()
 {
@@ -20,14 +21,18 @@ void TInputText::SetText(const std::string& str)
     strcpy_s(mValue, str.c_str());
 }
 //------------------------------------------------------------------------------------
+static int EditCallback(ImGuiInputTextCallbackData* data)
+{
+    auto inputText = (TInputText*) data->UserData;
+    inputText->mTextEditCB.Notify(inputText);
+    return 0;
+}
+//------------------------------------------------------------------------------------
 void TInputText::RenderInheritance()
 {
-    ImGui::PushID(GetId());
-
-    if (ImGui::InputTextMultiline(mTitle.c_str(), mValue, SIZE, mSize)) {
-        mTextEditEndCB.Notify(this);
+    auto flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackEdit | ImGuiInputTextFlags_AutoSelectAll;
+    if (ImGui::InputText(mTitle.c_str(), mValue, SIZE, flags, EditCallback, this)) {
+        mTextEditEndsCB.Notify(this);
     }
-
-    ImGui::PopID();
 }
 //------------------------------------------------------------------------------------

@@ -6,11 +6,42 @@ See for more information LICENSE.md.
 */
 
 #include "TreeNode.h"
+#include "TreeView.h"
 #include "Helper.h"
+
+#include <imgui_internal.h>
 
 using namespace nsImGuiWidgets;
 using namespace std::placeholders;
 
+TTreeNode::TTreeNode()
+{
+    mInputText.mTextEditEndsCB.Register([&](TInputText* inputText)
+    {
+        if (!mEditProcessong) {
+            return;
+        }
+        EndEditing();
+    });
+
+    mInputText.mFocusCB.Register([&](bool isFocused)
+    {
+        if (isFocused) {
+            return;
+        }
+        if (!mEditProcessong) {
+            return;
+        }
+        EndEditing();
+    });
+}
+//-------------------------------------------------------------------------
+void TTreeNode::EndEditing()
+{
+    mOnEndEditEvent.Notify(this, mInputText.GetText());
+    mEditProcessong = false;
+}
+//-------------------------------------------------------------------------
 void TTreeNode::Render()
 {
     Show();
@@ -22,14 +53,40 @@ void TTreeNode::Render()
     if (mSelected) {
         mode |= ImGuiTreeNodeFlags_Selected;
     }
-    if (ImGui::TreeNodeEx(mStrId.c_str(), mode, GetTitle().c_str())) {
-        SearchEvents();
-        for (auto& node : mWidgets) {
-            node->Render();
+
+    if (mEditProcessong) {
+        mInputText.SetSize(GetSize());
+
+        auto& style = ImGui::GetStyle();
+        ImVec2 indent = {style.IndentSpacing, 0};
+
+        mInputText.SetPos(GetGlobalPos() - mTreeView->GetGlobalPos() + indent - style.FramePadding);
+
+        if (mBeginEditProcessing) {
+            ImGui::SetKeyboardFocusHere();
         }
-        ImGui::TreePop();
+        mBeginEditProcessing = false;
+
+        if (mWidgets.size() > 0) {
+            ImGui::TreePush(this);
+            mInputText.Render();
+            for (auto& node : mWidgets) {
+                node->Render();
+            }
+            ImGui::TreePop();
+        } else {
+            mInputText.Render();
+        }
     } else {
-        SearchEvents();
+        if (ImGui::TreeNodeEx(mStrId.c_str(), mode, GetTitle().c_str())) {
+            SearchEvents();
+            for (auto& node : mWidgets) {
+                node->Render();
+            }
+            ImGui::TreePop();
+        } else {
+            SearchEvents();
+        }
     }
 }
 //-------------------------------------------------------------------------
@@ -50,5 +107,23 @@ void TTreeNode::SearchEvents()
     } else {
         mSelected = false;
     }
+}
+//-------------------------------------------------------------------------
+void TTreeNode::SetEdit(bool value)
+{
+    mEditProcessong = value;
+    mBeginEditProcessing = true;
+    mInputText.SetText(GetTitle());
+    mInputText.SetTitle("");
+}
+//-------------------------------------------------------------------------
+void TTreeNode::SetTreeView(TTreeView* treeView)
+{
+    mTreeView = treeView;
+}
+//-------------------------------------------------------------------------
+TTreeView* TTreeNode::GetTreeView() const
+{
+    return mTreeView;
 }
 //-------------------------------------------------------------------------

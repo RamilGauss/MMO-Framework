@@ -12,10 +12,11 @@ See for more information LICENSE.md.
 #include "Typedef.h"
 
 #include "Widget.h"
+#include "Focus.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TUnit : public TWidget
+    class DllExport TUnit : public TWidget, public TFocus
     {
     public:
         void Render() override final;
@@ -25,5 +26,7 @@ namespace nsImGuiWidgets
         virtual void BeginRender();
         virtual void RenderInheritance() = 0;
         virtual void EndRender();
+
+        ImGuiID mIdFromWindow = 0;
     };
 }

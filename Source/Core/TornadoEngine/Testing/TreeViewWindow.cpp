@@ -20,6 +20,12 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
     mWindow.SetSize({300, 400});
     mWindow.SetPos({20, 20});
 
+    mTreeView.mOnEndEditEvent.Register([&](TTreeNode* pNode, const std::string& newTitle)
+    {
+        pNode->SetTitle(newTitle);
+    });
+
+
     mTreeView.mKeyCB.Register([&](nsGraphicEngine::TKeyboardEvent event)
     {
         if (event.keyCode != nsGraphicEngine::KeyCodes::F2) {
@@ -31,7 +37,7 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
 
         auto pNode = mTreeView.GetSelectedNode();
         if (pNode != nullptr) {
-            //mTreeView.Edit();
+            mTreeView.BeginEdit();
         }
     });
 

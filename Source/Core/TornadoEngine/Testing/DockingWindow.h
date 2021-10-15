@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 #include <ImGuiWidgets/Window.h>
 #include <ImGuiWidgets/Button.h>
 #include <ImGuiWidgets/InputInt.h>
-#include <ImGuiWidgets/InputText.h>
+#include <ImGuiWidgets/InputMultiText.h>
 #include <ImGuiWidgets/Label.h>
 #include <ImGuiWidgets/TreeView.h>
 #include <ImGuiWidgets/TreeNode.h>

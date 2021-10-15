@@ -14,10 +14,6 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-//###
-static std::list<TLightDockTreeManager> g_History;
-//###
-
 void TDockTreeManager::Render()
 {
     mLightForFrameTrees.Build();
@@ -34,10 +30,6 @@ void TDockTreeManager::Render()
     ApplyTreesAndBuildLight();
 
     mChangeTreeCB.Notify();
-
-    //###
-    g_History.push_back(mLightTrees);
-    //###
 }
 //----------------------------------------------------------------------
 std::vector<TDockTree>& TDockTreeManager::GetTrees()

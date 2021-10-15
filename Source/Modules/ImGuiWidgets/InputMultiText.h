@@ -13,16 +13,14 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    class DllExport TInputText : public TUnit
+    class DllExport TInputMultiText : public TUnit
     {
     public:
         std::string GetText();
         void SetText(const std::string& str);
 
-        using TCallback = TCallbackPool<TInputText*>;
-
+        using TCallback = TCallbackPool<TInputMultiText*>;
         TCallback mTextEditCB;
-        TCallback mTextEditEndsCB;
     protected:
         static const size_t SIZE = 1024 * 4;
         char mValue[SIZE] = {0};
