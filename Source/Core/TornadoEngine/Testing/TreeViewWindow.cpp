@@ -20,13 +20,13 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
     mWindow.SetSize({300, 400});
     mWindow.SetPos({20, 20});
 
-    mTreeView.mOnEndEditEvent.Register([&](TTreeNode* pNode, const std::string& newTitle)
+    mTreeView.mOnEndEditEvent.Register(this, [&](TTreeNode* pNode, const std::string& newTitle)
     {
         pNode->SetTitle(newTitle);
     });
 
 
-    mTreeView.mKeyCB.Register([&](nsGraphicEngine::TKeyboardEvent event)
+    mTreeView.mKeyCB.Register(this, [&](nsGraphicEngine::TKeyboardEvent event)
     {
         if (event.keyCode != nsGraphicEngine::KeyCodes::F2) {
             return;
@@ -41,7 +41,7 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
         }
     });
 
-    mTreeView.mMouseMoveCB.Register([&](nsGraphicEngine::TMouseMotionEvent event)
+    mTreeView.mMouseMoveCB.Register(this, [&](nsGraphicEngine::TMouseMotionEvent event)
     {
         auto pNode = mTreeView.GetChildByGlobalPos({(float)event.x, (float) event.y});
 
@@ -59,7 +59,7 @@ TTreeViewWindow::TTreeViewWindow(std::string name)
     mButton.SetPos({30,30});
     mButton.SetSize({50, 20});
     mButton.SetTitle("Exit");
-    mButton.mClickCB.Register([&](nsImGuiWidgets::TButton*p) {
+    mButton.mClickCB.Register(this, [&](nsImGuiWidgets::TButton*p) {
         nsTornadoEngine::Modules()->StopAccessor()->SetStop();
     });
 

@@ -19,7 +19,7 @@ TDockingStuffWindow::TDockingStuffWindow(std::string name)
     mWindow.SetSize({500, 570});
     mWindow.SetPos({20, 20});
 
-    mWindow.mMouseClickCB.Register([&](nsGraphicEngine::TMouseButtonEvent event)
+    mWindow.mMouseClickCB.Register(this, [&](nsGraphicEngine::TMouseButtonEvent event)
     {
         if (event.button != nsGraphicEngine::MouseButton::RIGHT) {
             return;
@@ -49,18 +49,18 @@ TDockingStuffWindow::TDockingStuffWindow(std::string name)
     mPopup.Add(&mPopupNodes[1]);
     mPopup.Add(&mPopupNodes[2]);
 
-    mPopupNodes[0].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
+    mPopupNodes[0].onLeftClick.Register(this, [&](nsImGuiWidgets::TNode* pNode)
     {
         auto logLabelText = mTextEdit.GetText();
         ImGui::SetClipboardText(logLabelText.c_str());
     });
 
-    mPopupNodes[1].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
+    mPopupNodes[1].onLeftClick.Register(this, [&](nsImGuiWidgets::TNode* pNode)
     {
         auto logLabelText = ImGui::GetClipboardText();
         mTextEdit.SetText(logLabelText);
     });
-    mPopupNodes[2].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
+    mPopupNodes[2].onLeftClick.Register(this, [&](nsImGuiWidgets::TNode* pNode)
     {
         auto logLabelText = mTextEdit.GetText();
         ImGui::LoadIniSettingsFromMemory(logLabelText.c_str(), logLabelText.size());

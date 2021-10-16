@@ -19,7 +19,7 @@ TDockMainWindow::TDockMainWindow()
     mMenuNodes[1].SetTitle("Next");
     mMenuNodes[2].SetTitle("Apply");
     mMenuNodes[3].SetTitle("Exit");
-    mMenuNodes[3].onLeftClick.Register([](nsImGuiWidgets::TNode* pNode)
+    mMenuNodes[3].onLeftClick.Register(this, [](nsImGuiWidgets::TNode* pNode)
     {
         nsTornadoEngine::Modules()->StopAccessor()->SetStop();
     });

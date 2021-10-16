@@ -18,7 +18,7 @@ TMainWindow::TMainWindow()
     mMenuNodes[0].SetTitle("Commands");
     mMenuNodes[1].SetTitle("Print state");
     mMenuNodes[2].SetTitle("Exit");
-    mMenuNodes[2].onLeftClick.Register([](nsImGuiWidgets::TNode* pNode) 
+    mMenuNodes[2].onLeftClick.Register(this, [](nsImGuiWidgets::TNode* pNode)
     {
         nsTornadoEngine::Modules()->StopAccessor()->SetStop();
     });

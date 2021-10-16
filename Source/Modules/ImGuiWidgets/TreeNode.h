@@ -30,8 +30,12 @@ namespace nsImGuiWidgets
 
         TTreeView* mTreeView = nullptr;
 
+        bool mIsOpen = false;
+
     public:
         TTreeNode();
+        ~TTreeNode();
+
         void Render() override;
 
         void SetEdit(bool value);

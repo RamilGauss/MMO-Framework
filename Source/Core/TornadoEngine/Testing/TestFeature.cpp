@@ -26,15 +26,15 @@ void TTestFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
 
     Add(&mChooseSystem);
 
-    mChooseSystem.mInitCB.Register([&]() 
+    mChooseSystem.mInitCB.Register(this, [&]()
     {
         auto p = mChooseSystem.mWindow;
 
-        p->mDockingButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mDockingSystem);});
-        p->mDockingStuffButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mDockingStuffSystem); });
-        p->mTestAllWidgetsButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mTestAllWidgetsSystem); });
-        p->mTreeViewButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mTreeViewSystem); });
-        p->mUnderMouseButton.mClickCB.Register([&](TButton*) { AddSystemOnClick(mUnderMouseSystem); });
+        p->mDockingButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mDockingSystem);});
+        p->mDockingStuffButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mDockingStuffSystem); });
+        p->mTestAllWidgetsButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mTestAllWidgetsSystem); });
+        p->mTreeViewButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mTreeViewSystem); });
+        p->mUnderMouseButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mUnderMouseSystem); });
     });
 }
 //------------------------------------------------------------------------------------------------

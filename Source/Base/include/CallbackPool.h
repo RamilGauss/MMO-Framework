@@ -59,7 +59,7 @@ class TCallbackPool
 
     TPtrDescListMap mObjFuncMap;
 public:
-    void Register(std::function<void(Args...)> func, void* pObject = nullptr)
+    void Register(void* pObject, std::function<void(Args...)> func)
     {
         auto& descList = Find(pObject);
         TDescFunc<Args ...> desc;
@@ -67,14 +67,14 @@ public:
         descList.push_back(desc);
     }
     template<class T>
-    void Register(void (T::* pFunc)(Args ...), T* pObject)
+    void Register(T* pObject, void (T::* pFunc)(Args ...))
     {
         auto& descList = Find(pObject);
         TDescFunc<Args ...> desc;
         desc.Set(pFunc, pObject);
         descList.push_back(desc);
     }
-    void Unregister(void* pObject = nullptr)
+    void Unregister(void* pObject)
     {
         mObjFuncMap.erase(pObject);
     }

@@ -23,13 +23,13 @@ TUnderMouseWindow::TUnderMouseWindow(std::string name)
     mWindow.SetSize({300, 300});
     mWindow.SetPos({20, 20});
 
-    mWindow.mPosCB.Register([&](const ImVec2* newPos)
+    mWindow.mPosCB.Register(this, [&](const ImVec2* newPos)
     {
         auto labelPos = *newPos + mLabel.GetPos();
         mLabel.SetText(fmt::format("{} {}", labelPos.x, labelPos.y).c_str());
     });
 
-    mWindow.mMouseMoveCB.Register([&](nsGraphicEngine::TMouseMotionEvent event)
+    mWindow.mMouseMoveCB.Register(this, [&](nsGraphicEngine::TMouseMotionEvent event)
     {
         ImVec2 mousePos(event.x, event.y);
         auto p = mWindow.GetChildByGlobalPos(mousePos);
@@ -51,7 +51,7 @@ TUnderMouseWindow::TUnderMouseWindow(std::string name)
     mButton.SetTitle("Exit");
     mButton.SetPos({10,20});
     mButton.SetSize({50, 20});
-    mButton.mClickCB.Register([&](nsImGuiWidgets::TButton* p)
+    mButton.mClickCB.Register(this, [&](nsImGuiWidgets::TButton* p)
     {
         nsTornadoEngine::Modules()->StopAccessor()->SetStop();
     });

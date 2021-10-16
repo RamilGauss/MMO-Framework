@@ -20,7 +20,7 @@ TComplexWindow::TComplexWindow(std::string name)
     mWindow.SetSize({500, 900});
     mWindow.SetPos({20, 20});
 
-    mButton.mClickCB.Register([](nsImGuiWidgets::TButton* p)
+    mButton.mClickCB.Register(this, [](nsImGuiWidgets::TButton* p)
     {
         nsTornadoEngine::Modules()->StopAccessor()->SetStop();
     });
@@ -48,9 +48,9 @@ TComplexWindow::TComplexWindow(std::string name)
             }
         }
     };
-    mTreeView.mMouseClickCB.Register(mouseClickFunc);
+    mTreeView.mMouseClickCB.Register(this, mouseClickFunc);
 
-    mWindow.mMouseClickCB.Register([&](nsGraphicEngine::TMouseButtonEvent event)
+    mWindow.mMouseClickCB.Register(this, [&](nsGraphicEngine::TMouseButtonEvent event)
     {
         if (event.button != nsGraphicEngine::MouseButton::RIGHT) {
             return;
@@ -127,7 +127,7 @@ TComplexWindow::TComplexWindow(std::string name)
         mTreeView.AddNode(&node);
     }
 
-    mTreeView.mOnSelectionEvent.Register([&](nsImGuiWidgets::TTreeNode* pNode)
+    mTreeView.mOnSelectionEvent.Register(this, [&](nsImGuiWidgets::TTreeNode* pNode)
     {
         auto str = "S" + pNode->mStrId + ", ";
         if (mLogLabel.GetTextLength() > 1000) {
@@ -145,7 +145,7 @@ TComplexWindow::TComplexWindow(std::string name)
     mPopupNodes[4].SetTitle("Make");
 
     mPopupNodes[5].SetTitle("Exit");
-    mPopupNodes[5].onLeftClick.Register([](nsImGuiWidgets::TNode* pNode)
+    mPopupNodes[5].onLeftClick.Register(this, [](nsImGuiWidgets::TNode* pNode)
     {
         nsTornadoEngine::Modules()->StopAccessor()->SetStop();
     });
@@ -160,20 +160,20 @@ TComplexWindow::TComplexWindow(std::string name)
     mPopup.Add(&mPopupNodes[5]);
 
     mLabelPopupNodes[0].SetTitle("Copy");
-    mLabelPopupNodes[0].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
+    mLabelPopupNodes[0].onLeftClick.Register(this, [&](nsImGuiWidgets::TNode* pNode)
     {
         auto logLabelText = mLogLabel.GetText();
         ImGui::SetClipboardText(logLabelText.c_str());
     });
 
     mLabelPopupNodes[1].SetTitle("Paste");
-    mLabelPopupNodes[1].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
+    mLabelPopupNodes[1].onLeftClick.Register(this, [&](nsImGuiWidgets::TNode* pNode)
     {
         auto logLabelText = ImGui::GetClipboardText();
         mLogLabel.SetText(logLabelText);
     });
     mLabelPopupNodes[2].SetTitle("Clear");
-    mLabelPopupNodes[2].onLeftClick.Register([&](nsImGuiWidgets::TNode* pNode)
+    mLabelPopupNodes[2].onLeftClick.Register(this, [&](nsImGuiWidgets::TNode* pNode)
     {
         mLogLabel.SetText("");
     });

@@ -16,7 +16,7 @@ using namespace std::placeholders;
 
 TTreeNode::TTreeNode()
 {
-    mInputText.mTextEditEndsCB.Register([&](TInputText* inputText)
+    mInputText.mTextEditEndsCB.Register(this, [&](TInputText* inputText)
     {
         if (!mEditProcessong) {
             return;
@@ -24,7 +24,7 @@ TTreeNode::TTreeNode()
         EndEditing();
     });
 
-    mInputText.mFocusCB.Register([&](bool isFocused)
+    mInputText.mFocusCB.Register(this, [&](bool isFocused)
     {
         if (isFocused) {
             return;
@@ -34,6 +34,12 @@ TTreeNode::TTreeNode()
         }
         EndEditing();
     });
+}
+//-------------------------------------------------------------------------
+TTreeNode::~TTreeNode()
+{
+    mInputText.mTextEditEndsCB.Unregister(this);
+    mInputText.mFocusCB.Unregister(this);
 }
 //-------------------------------------------------------------------------
 void TTreeNode::EndEditing()
@@ -67,7 +73,7 @@ void TTreeNode::Render()
         }
         mBeginEditProcessing = false;
 
-        if (mWidgets.size() > 0) {
+        if (mIsOpen && mWidgets.size() > 0) {
             ImGui::TreePush(this);
             mInputText.Render();
             for (auto& node : mWidgets) {
@@ -84,8 +90,10 @@ void TTreeNode::Render()
                 node->Render();
             }
             ImGui::TreePop();
+            mIsOpen = true;
         } else {
             SearchEvents();
+            mIsOpen = false;
         }
     }
 }

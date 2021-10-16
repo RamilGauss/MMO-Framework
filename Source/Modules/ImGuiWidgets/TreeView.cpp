@@ -14,13 +14,13 @@ using namespace nsImGuiWidgets;
 void TTreeView::AddNode(TTreeNode* pNode)
 {
     pNode->SetTreeView(this);
-    pNode->mOnEndEditEvent.Register([&](TTreeNode* p, const std::string& newTitle) { mOnEndEditEvent.Notify(p, newTitle); });
+    pNode->mOnEndEditEvent.Register(this, [&](TTreeNode* p, const std::string& newTitle) { mOnEndEditEvent.Notify(p, newTitle); });
 
     auto foundNode = FoundNode(pNode->mStrId);
     if (foundNode) {
         return;
     }
-    pNode->onSelection.Register(&TTreeView::OnSelection, this);
+    pNode->onSelection.Register(this, &TTreeView::OnSelection);
     mAllNodes.push_back(pNode);
     if (pNode->mParentId == "") {
         Add(pNode);
@@ -40,6 +40,7 @@ void TTreeView::RemoveNode(const std::string& id)
     auto pNode = FoundNode(id);
 
     pNode->mOnEndEditEvent.Unregister(this);
+    pNode->onSelection.Unregister(this);
 
     Replace(pNode);
 
