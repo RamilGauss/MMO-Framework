@@ -22,7 +22,7 @@ void TInputMultiText::SetText(const std::string& str)
 void TInputMultiText::RenderInheritance()
 {
     if (ImGui::InputTextMultiline(mTitle.c_str(), mValue, SIZE, mSize)) {
-        mTextEditCB.Notify(this);
+        mOnTextEditCB.Notify(this);
     }
 }
 //------------------------------------------------------------------------------------

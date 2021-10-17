@@ -18,5 +18,7 @@ namespace nsTornadoEngine
         void Init();
 
         void Load(const std::string& absPath);
+
+        void Instantiate(const std::string& absPath);
     };
 }

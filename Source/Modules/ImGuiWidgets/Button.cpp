@@ -13,7 +13,7 @@ using namespace nsImGuiWidgets;
 void TButton::RenderInheritance()
 {
     if (ImGui::Button(mTitle.c_str(), mSize)) {
-        mClickCB.Notify(this);
+        mOnClickCB.Notify(this);
     }
 }
 //-------------------------------------------------------------------------------

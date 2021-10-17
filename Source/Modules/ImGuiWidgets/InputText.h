@@ -21,10 +21,10 @@ namespace nsImGuiWidgets
 
         using TCallback = TCallbackPool<TInputText*>;
 
-        TCallback mTextEditCB;
-        TCallback mTextEditEndsCB;
+        TCallback mOnTextEditCB;
+        TCallback mOnTextEditEndsCB;
     protected:
-        static const size_t SIZE = 1024 * 4;
+        static const size_t SIZE = 1024 * 4;// TODO: use std::vector
         char mValue[SIZE] = {0};
 
         void RenderInheritance() override final;

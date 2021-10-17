@@ -24,7 +24,7 @@ void TWindow::BeginRender()
     ImGui::Begin(mTitle.c_str(), &mIsShown);
 
     if (oldIsShown != mIsShown) {
-        mShowCB.Notify(mIsShown);
+        mOnShowCB.Notify(mIsShown);
     }
 }
 //---------------------------------------------------------------------------------------
@@ -36,13 +36,13 @@ void TWindow::EndRender()
     ImGui::End();
 
     if (mOldSize != mSize) {
-        mSizeCB.Notify(&mSize);
+        mOnSizeCB.Notify(&mSize);
     } else {
         mSize = mOldSize;
     }
 
     if (mOldPos != mPos) {
-        mPosCB.Notify(&mPos);
+        mOnPosCB.Notify(&mPos);
     } else {
         mPos = mOldPos;
     }

@@ -30,11 +30,11 @@ void TTestFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
     {
         auto p = mChooseSystem.mWindow;
 
-        p->mDockingButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mDockingSystem);});
-        p->mDockingStuffButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mDockingStuffSystem); });
-        p->mTestAllWidgetsButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mTestAllWidgetsSystem); });
-        p->mTreeViewButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mTreeViewSystem); });
-        p->mUnderMouseButton.mClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mUnderMouseSystem); });
+        p->mDockingButton.mOnClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mDockingSystem);});
+        p->mDockingStuffButton.mOnClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mDockingStuffSystem); });
+        p->mTestAllWidgetsButton.mOnClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mTestAllWidgetsSystem); });
+        p->mTreeViewButton.mOnClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mTreeViewSystem); });
+        p->mUnderMouseButton.mOnClickCB.Register(this, [&](TButton*) { AddSystemOnClick(mUnderMouseSystem); });
     });
 }
 //------------------------------------------------------------------------------------------------

@@ -46,7 +46,7 @@ TChooseWindow::TChooseWindow(std::string name)
     mExit.SetTitle("Exit");
     mExit.SetPos({50,200});
     mExit.SetSize({width, height});
-    mExit.mClickCB.Register(this, [&](TButton* p)
+    mExit.mOnClickCB.Register(this, [&](TButton* p)
     {
         nsTornadoEngine::Modules()->StopAccessor()->SetStop();
     });

@@ -25,7 +25,7 @@ void TDockingSystem::Init()
 
     nsTornadoEngine::Modules()->G()->GetGE()->AddRender(mDockTreeManager);
 
-    mMainWindow->mMenuNodes[1].onLeftClick.Register(this, [this](nsImGuiWidgets::TNode* pNode)
+    mMainWindow->mMenuNodes[1].mOnLeftClickCB.Register(this, [this](nsImGuiWidgets::TNode* pNode)
     {
         mDockTreeManager->ClearTrees();
 
@@ -33,7 +33,7 @@ void TDockingSystem::Init()
 
         mDockTreeManager->ApplyTreesAndBuildLight();
     });
-    mMainWindow->mMenuNodes[2].onLeftClick.Register(this, [this](nsImGuiWidgets::TNode* pNode)
+    mMainWindow->mMenuNodes[2].mOnLeftClickCB.Register(this, [this](nsImGuiWidgets::TNode* pNode)
     {
         mDockTreeManager->ApplyTreesAndBuildLight();
     });

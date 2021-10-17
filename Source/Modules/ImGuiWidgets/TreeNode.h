@@ -40,8 +40,8 @@ namespace nsImGuiWidgets
 
         void SetEdit(bool value);
 
-        using OnEndEditEvent = TCallbackPool<TTreeNode*, const std::string&>;
-        OnEndEditEvent mOnEndEditEvent;
+        using CallbackOnEndEditEvent = TCallbackPool<TTreeNode*, const std::string&>;
+        CallbackOnEndEditEvent mOnEndEditEventCB;
 
 
         void SetTreeView(TTreeView* treeView);

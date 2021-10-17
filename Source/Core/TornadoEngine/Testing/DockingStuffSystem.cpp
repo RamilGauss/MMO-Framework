@@ -16,7 +16,7 @@ void TDockingStuffSystem::Init()
     }
     mMainWindow = new TMainWindow();
 
-    mMainWindow->mMenuNodes[1].onLeftClick.Register(this, [&, this] (nsImGuiWidgets::TNode* pNode) mutable
+    mMainWindow->mMenuNodes[1].mOnLeftClickCB.Register(this, [&, this] (nsImGuiWidgets::TNode* pNode) mutable
     {
         auto settings = ImGui::SaveIniSettingsToMemory();
         for (auto& window : mWindows) {

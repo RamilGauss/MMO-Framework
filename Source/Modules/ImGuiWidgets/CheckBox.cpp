@@ -22,7 +22,7 @@ void TCheckBox::SetValue(bool value)
 void TCheckBox::RenderInheritance()
 {
     if (ImGui::Checkbox(mTitle.c_str(), &mValue)) {
-        mCheckChange.Notify(mValue);
+        mOnCheckChangeCB.Notify(mValue);
     }
 }
 //----------------------------------------------------------------------------------------

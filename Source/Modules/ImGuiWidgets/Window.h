@@ -19,15 +19,13 @@ namespace nsImGuiWidgets
         ImVec2 mOldSize;
         ImVec2 mOldPos;
     public:
-        using TDockCallback = TCallbackPool<>;
         using TShowCallback = TCallbackPool<bool>;
         using TSizeCallback = TCallbackPool<const ImVec2*>;
         using TPositionCallback = TCallbackPool<const ImVec2*>;
 
-        TDockCallback mDockCB;
-        TShowCallback mShowCB;
-        TSizeCallback mSizeCB;
-        TPositionCallback mPosCB;
+        TShowCallback mOnShowCB;
+        TSizeCallback mOnSizeCB;
+        TPositionCallback mOnPosCB;
 
     protected:
         void BeginRender() override;

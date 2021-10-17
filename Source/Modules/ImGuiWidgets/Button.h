@@ -18,7 +18,7 @@ namespace nsImGuiWidgets
     public:
         using TCallback = TCallbackPool<TButton*>;
 
-        TCallback mClickCB;
+        TCallback mOnClickCB;
     protected:
         void RenderInheritance() override final;
 

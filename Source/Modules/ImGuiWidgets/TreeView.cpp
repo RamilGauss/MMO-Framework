@@ -14,13 +14,13 @@ using namespace nsImGuiWidgets;
 void TTreeView::AddNode(TTreeNode* pNode)
 {
     pNode->SetTreeView(this);
-    pNode->mOnEndEditEvent.Register(this, [&](TTreeNode* p, const std::string& newTitle) { mOnEndEditEvent.Notify(p, newTitle); });
+    pNode->mOnEndEditEventCB.Register(this, [&](TTreeNode* p, const std::string& newTitle) { mOnEndEditEventCB.Notify(p, newTitle); });
 
     auto foundNode = FoundNode(pNode->mStrId);
     if (foundNode) {
         return;
     }
-    pNode->onSelection.Register(this, &TTreeView::OnSelection);
+    pNode->mOnSelectionCB.Register(this, &TTreeView::OnSelection);
     mAllNodes.push_back(pNode);
     if (pNode->mParentId == "") {
         Add(pNode);
@@ -39,8 +39,8 @@ void TTreeView::RemoveNode(const std::string& id)
 {
     auto pNode = FoundNode(id);
 
-    pNode->mOnEndEditEvent.Unregister(this);
-    pNode->onSelection.Unregister(this);
+    pNode->mOnEndEditEventCB.Unregister(this);
+    pNode->mOnSelectionCB.Unregister(this);
 
     Replace(pNode);
 
@@ -62,7 +62,7 @@ void TTreeView::OnSelection(TNode* pSelectedNode)
 {
     mSelectedNode = (TTreeNode*)pSelectedNode;
 
-    mOnSelectionEvent.Notify(mSelectedNode);
+    mOnSelectionEventCB.Notify(mSelectedNode);
 }
 //---------------------------------------------------------------------------------------
 TTreeNode* TTreeView::GetSelectedNode() const
@@ -112,7 +112,7 @@ void TTreeView::BeginEdit(TTreeNode* pNode)
         pNode = GetSelectedNode();
     }
     if (pNode == nullptr) {
-        mOnEndEditEvent.Notify(nullptr, "");
+        mOnEndEditEventCB.Notify(nullptr, "");
         return;
     }
 

@@ -39,11 +39,11 @@ namespace nsImGuiWidgets
         using OnDropEvent = TCallbackPool<TTreeNode*, TTreeNode*>;
         using OnEndEditEvent = TCallbackPool<TTreeNode*, const std::string&>;
 
-        EventCallback mOnSelectionEvent;
-        OnDragEvent mOnDragEvent;
-        OnDragMovingEvent mOnDragMovingEvent;
-        OnDropEvent mOnDropEvent;
-        OnEndEditEvent mOnEndEditEvent;
+        EventCallback mOnSelectionEventCB;
+        OnDragEvent mOnDragEventCB;
+        OnDragMovingEvent mOnDragMovingEventCB;
+        OnDropEvent mOnDropEventCB;
+        OnEndEditEvent mOnEndEditEventCB;
 
         TTreeNode* GetSelectedNode() const;
 

@@ -24,10 +24,10 @@ namespace nsImGuiWidgets
 
         bool mSelected = false;
 
-        using EventCallback = TCallbackPool<TNode*>;
+        using Callback = TCallbackPool<TNode*>;
 
-        EventCallback onSelection;
-        EventCallback onLeftClick;
+        Callback mOnSelectionCB;
+        Callback mOnLeftClickCB;
 
         TNode();
     };

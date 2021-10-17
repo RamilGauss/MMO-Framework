@@ -14,6 +14,17 @@ namespace nsImGuiWidgets
     class DllExport TInputInt : public TUnit
     {
     public:
+        using TCallback = TCallbackPool<TInputInt*>;
+
+        TCallback mOnChangeCB;
+
+        void SetValue(int value);
+        void SetStep(int value);
+        void SetStepFast(int value);
+
+        int GetValue() const;
+        int GetStep() const;
+        int GetStepFast() const;
     protected:
         int mValue = 0;
         int mStep = 1;

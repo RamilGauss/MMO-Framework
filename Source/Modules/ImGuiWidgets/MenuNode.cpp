@@ -30,7 +30,7 @@ void TMenuNode::Render()
         }
     } else {
         if (ImGui::MenuItem(GetTitle().c_str())) {
-            onLeftClick.Notify(this);
+            mOnLeftClickCB.Notify(this);
         }
     }
 }

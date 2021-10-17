@@ -16,7 +16,7 @@ using namespace std::placeholders;
 
 TTreeNode::TTreeNode()
 {
-    mInputText.mTextEditEndsCB.Register(this, [&](TInputText* inputText)
+    mInputText.mOnTextEditEndsCB.Register(this, [&](TInputText* inputText)
     {
         if (!mEditProcessong) {
             return;
@@ -38,13 +38,13 @@ TTreeNode::TTreeNode()
 //-------------------------------------------------------------------------
 TTreeNode::~TTreeNode()
 {
-    mInputText.mTextEditEndsCB.Unregister(this);
+    mInputText.mOnTextEditEndsCB.Unregister(this);
     mInputText.mFocusCB.Unregister(this);
 }
 //-------------------------------------------------------------------------
 void TTreeNode::EndEditing()
 {
-    mOnEndEditEvent.Notify(this, mInputText.GetText());
+    mOnEndEditEventCB.Notify(this, mInputText.GetText());
     mEditProcessong = false;
 }
 //-------------------------------------------------------------------------
@@ -105,12 +105,12 @@ void TTreeNode::SearchEvents()
     mSize = ImGui::GetItemRectSize() + ImGui::GetStyle().ItemInnerSpacing;
 
     if (ImGui::IsItemClicked()) {
-        onLeftClick.Notify(this);
+        mOnLeftClickCB.Notify(this);
     }
     if (ImGui::IsItemFocused()) {
         if (!mSelected) {
             mSelected = true;
-            onSelection.Notify(this);
+            mOnSelectionCB.Notify(this);
         }
     } else {
         mSelected = false;

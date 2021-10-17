@@ -33,10 +33,10 @@ namespace nsImGuiWidgets
         using TMouseMoveCallback = TCallbackPool<nsGraphicEngine::TMouseMotionEvent>;
         using TMouseWheelCallback = TCallbackPool<nsGraphicEngine::TMouseWheelEvent>;
 
-        TKeyCallback mKeyCB;
-        TMouseClickCallback mMouseClickCB;
-        TMouseMoveCallback  mMouseMoveCB;
-        TMouseWheelCallback mMouseWheelCB;
+        TKeyCallback mOnKeyCB;
+        TMouseClickCallback mOnMouseClickCB;
+        TMouseMoveCallback  mOnMouseMoveCB;
+        TMouseWheelCallback mOnMouseWheelCB;
 
     protected:
 

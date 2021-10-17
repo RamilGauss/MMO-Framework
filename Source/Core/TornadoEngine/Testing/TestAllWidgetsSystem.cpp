@@ -22,7 +22,7 @@ void TTestAllWidgetsSystem::Init()
     mWindow0 = new TComplexWindow("Test 0");
     mMainWindow = new TMainWindow();
 
-    mMainWindow->mMenuNodes[2].onLeftClick.Register(this, [&](nsImGuiWidgets::TNode* pNode)
+    mMainWindow->mMenuNodes[2].mOnLeftClickCB.Register(this, [&](nsImGuiWidgets::TNode* pNode)
     {
         //auto mainWindowDockId = mMainWindow->mMW.GetDockId();
         //mWindow0->mWindow.SetParentDockId(mainWindowDockId);

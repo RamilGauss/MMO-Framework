@@ -29,3 +29,8 @@ void TSceneManager::Load(const std::string& absPath)
 
 }
 //--------------------------------------------------------------------------------
+void TSceneManager::Instantiate(const std::string& absPath)
+{
+
+}
+//--------------------------------------------------------------------------------

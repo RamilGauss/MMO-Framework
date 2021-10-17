@@ -49,16 +49,16 @@ void TFrame::SearchInputEvents()
 {
     auto inputContainer = TWidget::GetInputContainer();
     for (auto& event : inputContainer->keyEvents) {
-        mKeyCB.Notify(event);
+        mOnKeyCB.Notify(event);
     }
     for (auto& event : inputContainer->mouseButtonEvents) {
-        mMouseClickCB.Notify(event);
+        mOnMouseClickCB.Notify(event);
     }
     for (auto& event : inputContainer->mouseMotionEvents) {
-        mMouseMoveCB.Notify(event);
+        mOnMouseMoveCB.Notify(event);
     }
     for (auto& event : inputContainer->mouseWheelEvents) {
-        mMouseWheelCB.Notify(event);
+        mOnMouseWheelCB.Notify(event);
     }
 }
 //---------------------------------------------------------------------------------------

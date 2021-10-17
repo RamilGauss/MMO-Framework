@@ -21,7 +21,7 @@ void TPopupNode::Render()
         }
     } else {
         if (ImGui::Selectable(GetTitle().c_str())) {
-            onLeftClick.Notify(this);
+            mOnLeftClickCB.Notify(this);
         }
     }
 }

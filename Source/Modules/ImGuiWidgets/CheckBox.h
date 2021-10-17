@@ -22,7 +22,7 @@ namespace nsImGuiWidgets
         void SetValue(bool value);
 
         using TCheckChange = TCallbackPool<bool>;
-        TCheckChange mCheckChange;
+        TCheckChange mOnCheckChangeCB;
 
     protected:
         void RenderInheritance() override final;
