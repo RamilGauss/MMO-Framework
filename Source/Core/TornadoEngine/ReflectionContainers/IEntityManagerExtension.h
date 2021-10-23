@@ -19,6 +19,8 @@ namespace nsTornadoEngine
     protected:
         nsECSFramework::TEntityManager* mEntMng = nullptr;
     public:
+        virtual ~IEntityManagerExtension() {}
+
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng) { mEntMng = pEntMng; }
 
         virtual void SetComponent(nsECSFramework::TEntityID eid, void* p, int rtti) = 0;

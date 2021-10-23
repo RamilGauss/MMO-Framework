@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    // Get via SingletonManager()->Get<TComponentsContainer>();
-    struct DllExport TMenuItemsContainer
+    struct DllExport TMenuItemContainer
     {
+        virtual ~TMenuItemContainer() {}
     };
 }

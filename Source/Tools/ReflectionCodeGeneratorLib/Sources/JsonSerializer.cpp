@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.1.1, build 51, info Json, Binary, MyGUI, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_05_23 18:49:56.298
+// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_10_23 15:30:48.183
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -27,7 +27,7 @@ void TJsonSerializer::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    mTypeFuncVector.resize(8);
+    std::map<int, TypeFunc> m;
     
     TypeFunc _nsReflectionCodeGenerator_TClassDescTypeFunc;
     _nsReflectionCodeGenerator_TClassDescTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -39,7 +39,7 @@ void TJsonSerializer::Init()
     
     auto rtti__nsReflectionCodeGenerator_TClassDescTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TClassDesc>();
     
-    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TClassDescTypeFunc] = _nsReflectionCodeGenerator_TClassDescTypeFunc;
+    m.insert({ rtti__nsReflectionCodeGenerator_TClassDescTypeFunc, _nsReflectionCodeGenerator_TClassDescTypeFunc });
     
     TypeFunc _nsReflectionCodeGenerator_TConfigTypeFunc;
     _nsReflectionCodeGenerator_TConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -51,7 +51,7 @@ void TJsonSerializer::Init()
     
     auto rtti__nsReflectionCodeGenerator_TConfigTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TConfig>();
     
-    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TConfigTypeFunc] = _nsReflectionCodeGenerator_TConfigTypeFunc;
+    m.insert({ rtti__nsReflectionCodeGenerator_TConfigTypeFunc, _nsReflectionCodeGenerator_TConfigTypeFunc });
     
     TypeFunc _nsReflectionCodeGenerator_TExternalSourceTypeFunc;
     _nsReflectionCodeGenerator_TExternalSourceTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -63,7 +63,7 @@ void TJsonSerializer::Init()
     
     auto rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TExternalSource>();
     
-    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc] = _nsReflectionCodeGenerator_TExternalSourceTypeFunc;
+    m.insert({ rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc, _nsReflectionCodeGenerator_TExternalSourceTypeFunc });
     
     TypeFunc _nsReflectionCodeGenerator_TExternalSourcesTypeFunc;
     _nsReflectionCodeGenerator_TExternalSourcesTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -75,7 +75,7 @@ void TJsonSerializer::Init()
     
     auto rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TExternalSources>();
     
-    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc] = _nsReflectionCodeGenerator_TExternalSourcesTypeFunc;
+    m.insert({ rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc, _nsReflectionCodeGenerator_TExternalSourcesTypeFunc });
     
     TypeFunc _nsReflectionCodeGenerator_TFilterTypeFunc;
     _nsReflectionCodeGenerator_TFilterTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -87,7 +87,7 @@ void TJsonSerializer::Init()
     
     auto rtti__nsReflectionCodeGenerator_TFilterTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TFilter>();
     
-    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TFilterTypeFunc] = _nsReflectionCodeGenerator_TFilterTypeFunc;
+    m.insert({ rtti__nsReflectionCodeGenerator_TFilterTypeFunc, _nsReflectionCodeGenerator_TFilterTypeFunc });
     
     TypeFunc _nsReflectionCodeGenerator_TSerializerTypeFunc;
     _nsReflectionCodeGenerator_TSerializerTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -99,7 +99,7 @@ void TJsonSerializer::Init()
     
     auto rtti__nsReflectionCodeGenerator_TSerializerTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TSerializer>();
     
-    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TSerializerTypeFunc] = _nsReflectionCodeGenerator_TSerializerTypeFunc;
+    m.insert({ rtti__nsReflectionCodeGenerator_TSerializerTypeFunc, _nsReflectionCodeGenerator_TSerializerTypeFunc });
     
     TypeFunc _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc;
     _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -111,7 +111,7 @@ void TJsonSerializer::Init()
     
     auto rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TTargetForCodeGeneration>();
     
-    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc] = _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc;
+    m.insert({ rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc, _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc });
     
     TypeFunc _nsReflectionCodeGenerator_TTargetForParsingTypeFunc;
     _nsReflectionCodeGenerator_TTargetForParsingTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -123,8 +123,17 @@ void TJsonSerializer::Init()
     
     auto rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TTargetForParsing>();
     
-    mTypeFuncVector[rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc] = _nsReflectionCodeGenerator_TTargetForParsingTypeFunc;
+    m.insert({ rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc, _nsReflectionCodeGenerator_TTargetForParsingTypeFunc });
     
+    int max = 0;
+    for (auto& vt : m) {
+        max = std::max(vt.first, max);
+    }
+    
+    mTypeFuncVector.resize(max + 1);
+    for (auto& vt : m) {
+        mTypeFuncVector[vt.first] = vt.second;
+    }
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::Serialize(void* p, std::string& str, int rtti)

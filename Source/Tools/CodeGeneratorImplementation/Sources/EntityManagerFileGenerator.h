@@ -37,6 +37,8 @@ namespace nsCodeGeneratorImplementation
         const std::string s_removeFunc = "removeFunc";
         const std::string s_mRttiVector = "mRttiVector";
 
+        const std::string s_EntityManagerHeaderPath = "entityManagerHeaderPath";
+
     protected:
         TEntityManagerFileGenerator();
     };

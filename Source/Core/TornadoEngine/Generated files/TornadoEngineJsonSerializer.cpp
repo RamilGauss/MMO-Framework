@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_17 19:36:41.837
+// File has been generated at 2021_10_23 15:26:17.185
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -172,6 +172,18 @@ void TTornadoEngineJsonSerializer::Init()
     auto rtti__nsTornadoEngine_TGameEngineResourcesTypeFunc = globalTypeIdentifier->type<nsTornadoEngine::TGameEngineResources>();
     
     m.insert({ rtti__nsTornadoEngine_TGameEngineResourcesTypeFunc, _nsTornadoEngine_TGameEngineResourcesTypeFunc });
+    
+    TypeFunc _nsTornadoEngine_TGeneratorConfigTypeFunc;
+    _nsTornadoEngine_TGeneratorConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEngine::TGeneratorConfig>((nsTornadoEngine::TGeneratorConfig*) p, str);
+    };
+    _nsTornadoEngine_TGeneratorConfigTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEngine::TGeneratorConfig>((nsTornadoEngine::TGeneratorConfig*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEngine_TGeneratorConfigTypeFunc = globalTypeIdentifier->type<nsTornadoEngine::TGeneratorConfig>();
+    
+    m.insert({ rtti__nsTornadoEngine_TGeneratorConfigTypeFunc, _nsTornadoEngine_TGeneratorConfigTypeFunc });
     
     TypeFunc _nsTornadoEngine_TGraphicEngineResourcesTypeFunc;
     _nsTornadoEngine_TGraphicEngineResourcesTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -505,6 +517,18 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TGameEngineReso
     }
 }
 //---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TGeneratorConfig* p, Jobj& obj)
+{
+    PUM::Push(obj, "nameSpace", p->nameSpace);
+    PUM::Push(obj, "directoryPath", p->directoryPath);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TGeneratorConfig* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "nameSpace", p->nameSpace);
+    POM::PopStr(obj, "directoryPath", p->directoryPath);
+}
+//---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TGraphicEngineResources* p, Jobj& obj)
 {
     PUM::Push(obj, "terrainPath", p->terrainPath);
@@ -566,6 +590,8 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TProjectConfig* p
     PUM::Push(obj, "binaryFilePath", p->binaryFilePath);
     PUM::Push(obj, "conveyorFilePath", p->conveyorFilePath);
     PUM::Push(obj, "resourcesFilePath", p->resourcesFilePath);
+    auto generatorConfig_o = PUM::AddObject(obj, "generatorConfig");
+    _Serialize(&(p->generatorConfig), generatorConfig_o);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TProjectConfig* p, const Jobj& obj)
@@ -575,6 +601,8 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TProjectConfig*
     POM::PopStr(obj, "binaryFilePath", p->binaryFilePath);
     POM::PopStr(obj, "conveyorFilePath", p->conveyorFilePath);
     POM::PopStr(obj, "resourcesFilePath", p->resourcesFilePath);
+    auto generatorConfig_o0 = POM::FindObject(obj, "generatorConfig");
+    _Deserialize(&(p->generatorConfig), generatorConfig_o0);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TProjectInfo* p, Jobj& obj)

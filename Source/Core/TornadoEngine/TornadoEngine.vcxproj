@@ -148,7 +148,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\componentsConfig.json"
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\componentConfig.json"
 $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\reflectionConfig.json"</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
@@ -211,7 +211,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Generated files\ComponentsJsonSerializer.cpp" />
+    <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
+    <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
+    <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
     <ClCompile Include="Modules\ModuleDataBase.cpp" />
     <ClCompile Include="Modules\ModuleGraphicEngine.cpp" />
@@ -259,8 +261,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Graphic\PositionComponent.h" />
     <ClInclude Include="Components\Graphic\SizeComponent.h" />
     <ClInclude Include="Components\Graphic\VisibilityComponent.h" />
+    <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
-    <ClInclude Include="Generated files\ComponentsJsonSerializer.h" />
+    <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
+    <ClInclude Include="Generated files\ComponentTypeInformation.h" />
     <ClInclude Include="Generated files\ReflectionIncludeList.h" />
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h" />
     <ClInclude Include="Modules\DstModule.h" />
@@ -276,17 +280,17 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Modules\ModuleSoundEngine.h" />
     <ClInclude Include="Modules\PrefabManager.h" />
     <ClInclude Include="Modules\SceneManager.h" />
-    <ClInclude Include="ReflectionContainers\ComponentsContainer.h" />
-    <ClInclude Include="ReflectionContainers\FeaturesContainer.h" />
-    <ClInclude Include="ReflectionContainers\HandlersContainer.h" />
+    <ClInclude Include="ReflectionContainers\ComponentContainer.h" />
+    <ClInclude Include="ReflectionContainers\FeatureContainer.h" />
+    <ClInclude Include="ReflectionContainers\HandlerContainer.h" />
     <ClInclude Include="ReflectionContainers\IBinaryMarshaller.h" />
     <ClInclude Include="ReflectionContainers\IEntityManagerExtension.h" />
     <ClInclude Include="ReflectionContainers\IJsonSerializer.h" />
     <ClInclude Include="ReflectionContainers\IImGuiSerializer.h" />
     <ClInclude Include="ReflectionContainers\ITypeFactory.h" />
     <ClInclude Include="ReflectionContainers\ITypeInformation.h" />
-    <ClInclude Include="ReflectionContainers\MenuItemsContainer.h" />
-    <ClInclude Include="ReflectionContainers\ScenePartsContainer.h" />
+    <ClInclude Include="ReflectionContainers\MenuItemContainer.h" />
+    <ClInclude Include="ReflectionContainers\ScenePartContainer.h" />
     <ClInclude Include="Share\FrameworkResources.h" />
     <ClInclude Include="Share\ModuleType.h" />
     <ClInclude Include="Share\MathStructs.h" />
@@ -318,7 +322,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="TimeSliceEngine\TimeSliceEngine.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="componentsConfig.json" />
+    <None Include="componentConfig.json" />
     <None Include="reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>

@@ -16,5 +16,7 @@ namespace nsTornadoEngine
     class DllExport IImGuiSerializer
     {
     public:
+        virtual ~IImGuiSerializer() {}
+
     };
 }

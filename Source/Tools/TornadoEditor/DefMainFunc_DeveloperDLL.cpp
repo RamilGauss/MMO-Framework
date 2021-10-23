@@ -7,22 +7,16 @@ See for more information LICENSE.md.
 
 #include "DeveloperTool_DLL.h"
 
+#include "TornadoEditor_ScenePartContainer.h"
+
 using namespace nsTornadoEngine;
 
-
-//###
-class T : public TScenePartsContainer
+DllExport_C TScenePartContainer* GetScenePartContainer()
 {
-
-};
-//###
-
-DllExport_C TScenePartsContainer* GetScenePartsContainer()
-{
-    return new T();
+    return new nsTornadoEditor::TTornadoEditor_ScenePartContainer();
 }
 //-------------------------------------------------------------------
-DllExport_C void FreeScenePartsContainer(TScenePartsContainer* p)
+DllExport_C void FreeScenePartContainer(TScenePartContainer* p)
 {
     delete p;
 }

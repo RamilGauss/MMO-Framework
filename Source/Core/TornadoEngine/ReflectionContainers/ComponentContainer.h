@@ -16,12 +16,13 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    // Get via SingletonManager()->Get<ComponentsContainer>();
-    struct DllExport TComponentsContainer
+    struct DllExport TComponentContainer
     {
+        virtual ~TComponentContainer() {}
+
         IJsonSerializer* mJson = nullptr;
         IBinaryMarshaller* mBin = nullptr;
-        IImGuiSerializer* mMygui = nullptr;
+        IImGuiSerializer* mImGui = nullptr;
         IEntityManagerExtension* mEntMng = nullptr;
         ITypeFactory* mTypeFactory = nullptr;
         ITypeInformation* mTypeInfo = nullptr;

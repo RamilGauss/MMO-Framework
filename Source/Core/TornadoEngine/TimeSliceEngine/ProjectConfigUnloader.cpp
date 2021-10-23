@@ -15,8 +15,8 @@ using namespace nsTornadoEngine;
 
 bool TProjectConfigUnloader::Unload(TProjectConfigContainer* pcc)
 {
-    if (pcc->mFreeScenePartsContainer) {
-        pcc->mFreeScenePartsContainer(pcc->mScenePartsContainer);
+    if (pcc->mFreeScenePartContainer) {
+        pcc->mFreeScenePartContainer(pcc->mScenePartContainer);
     }
     if (pcc->mLoader) {
         TMakerLoaderDLL maker;

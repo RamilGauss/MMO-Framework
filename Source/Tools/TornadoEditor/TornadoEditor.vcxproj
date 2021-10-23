@@ -142,6 +142,9 @@
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\componentConfig.json"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -198,12 +201,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
+    <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
+    <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
+    <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
+    <ClCompile Include="Generated files\TornadoEditor_ComponentContainer.cpp" />
+    <ClCompile Include="Generated files\TornadoEditor_Component_JsonSerializer.cpp" />
+    <ClCompile Include="Generated files\TornadoEditor_FeatureContainer.cpp" />
+    <ClCompile Include="Generated files\TornadoEditor_HandlerContainer.cpp" />
+    <ClCompile Include="Generated files\TornadoEditor_MenuItemContainer.cpp" />
+    <ClCompile Include="Generated files\TornadoEditor_ScenePartContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="componentConfig.json" />
     <None Include="Editor.project" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
+    <ClInclude Include="Generated files\ComponentIncludeList.h" />
+    <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
+    <ClInclude Include="Generated files\ComponentTypeInformation.h" />
+    <ClInclude Include="Generated files\TornadoEditor_ComponentContainer.h" />
+    <ClInclude Include="Generated files\TornadoEditor_Component_JsonSerializer.h" />
+    <ClInclude Include="Generated files\TornadoEditor_FeatureContainer.h" />
+    <ClInclude Include="Generated files\TornadoEditor_HandlerContainer.h" />
+    <ClInclude Include="Generated files\TornadoEditor_MenuItemContainer.h" />
+    <ClInclude Include="Generated files\TornadoEditor_ScenePartContainer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

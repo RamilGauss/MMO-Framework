@@ -49,22 +49,22 @@ bool TProjectConfigLoader::LoadBinary()
         Log("LoadDLL() FAIL init.\n");
         return false;
     }
-    mPcc->mFreeScenePartsContainer = (FuncFreeScenePartsContainer) loader->Get(StrFreeScenePartsContainer);
-    if (mPcc->mFreeScenePartsContainer == nullptr) {
+    mPcc->mFreeScenePartContainer = (FuncFreeScenePartContainer) loader->Get(StrFreeScenePartContainer);
+    if (mPcc->mFreeScenePartContainer == nullptr) {
         Log("LoadDLL() FAIL load FuncFree.\n");
         return false;
     }
-    mPcc->mGetScenePartsContainer = (FuncGetScenePartsContainer) loader->Get(StrGetScenePartsContainer);
-    if (mPcc->mGetScenePartsContainer == nullptr) {
+    mPcc->mGetScenePartContainer = (FuncGetScenePartContainer) loader->Get(StrGetScenePartContainer);
+    if (mPcc->mGetScenePartContainer == nullptr) {
         Log("LoadDLL() FAIL load FuncGetdevTool.\n");
         return false;
     }
-    if (mPcc->mScenePartsContainer != nullptr) {
+    if (mPcc->mScenePartContainer != nullptr) {
         Log("LoadDLL() warning, object was loaded.\n");
         return true;
     }
-    mPcc->mScenePartsContainer = mPcc->mGetScenePartsContainer();
-    if (mPcc->mScenePartsContainer == nullptr) {// нет DLL - нет движка.
+    mPcc->mScenePartContainer = mPcc->mGetScenePartContainer();
+    if (mPcc->mScenePartContainer == nullptr) {// нет DLL - нет движка.
         return false;
     }
     return true;

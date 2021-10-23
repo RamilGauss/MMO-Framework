@@ -48,9 +48,6 @@
     <ClCompile Include="Share\MathStructs.cpp">
       <Filter>Share</Filter>
     </ClCompile>
-    <ClCompile Include="Generated files\ComponentsJsonSerializer.cpp">
-      <Filter>Generated files</Filter>
-    </ClCompile>
     <ClCompile Include="TimeSliceEngine\TimeSliceEngine.cpp">
       <Filter>TimeSliceEngine</Filter>
     </ClCompile>
@@ -147,6 +144,15 @@
     <ClCompile Include="Testing\DockMainWindow.cpp">
       <Filter>Testing\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Generated files\ComponentJsonSerializer.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\ComponentTypeInformation.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\ModuleType.h">
@@ -161,13 +167,13 @@
     <ClInclude Include="Share\MathStructs.h">
       <Filter>Share</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionContainers\ComponentsContainer.h">
+    <ClInclude Include="ReflectionContainers\ComponentContainer.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionContainers\HandlersContainer.h">
+    <ClInclude Include="ReflectionContainers\HandlerContainer.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionContainers\FeaturesContainer.h">
+    <ClInclude Include="ReflectionContainers\FeatureContainer.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
     <ClInclude Include="ReflectionContainers\IJsonSerializer.h">
@@ -188,11 +194,8 @@
     <ClInclude Include="ReflectionContainers\ITypeInformation.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionContainers\MenuItemsContainer.h">
+    <ClInclude Include="ReflectionContainers\MenuItemContainer.h">
       <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentsJsonSerializer.h">
-      <Filter>Generated files</Filter>
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ConveyorConfig.h">
       <Filter>TimeSliceEngine</Filter>
@@ -236,7 +239,7 @@
     <ClInclude Include="TimeSliceEngine\ProjectConfig.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionContainers\ScenePartsContainer.h">
+    <ClInclude Include="ReflectionContainers\ScenePartContainer.h">
       <Filter>ReflectionContainers</Filter>
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ProjectConfigContainer.h">
@@ -353,9 +356,18 @@
     <ClInclude Include="Testing\DockMainWindow.h">
       <Filter>Testing\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Generated files\ComponentJsonSerializer.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentTypeInformation.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentEntityManagerExtension.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="componentsConfig.json" />
+    <None Include="componentConfig.json" />
     <None Include="reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>

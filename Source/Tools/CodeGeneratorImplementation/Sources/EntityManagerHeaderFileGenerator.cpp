@@ -22,7 +22,14 @@ void TEntityManagerHeaderFileGenerator::Work()
     AddStandartInclude("functional");
     AddInclude("TypeDef.h");
 
-    AddInclude("EntityManager.h");
+    auto fit = mSerializer->keyValueMap.find(s_EntityManagerHeaderPath);
+    std::string entityManagerHeaderPath = "EntityManager.h";
+    if (fit != mSerializer->keyValueMap.end()) {
+        entityManagerHeaderPath = mSerializer->keyValueMap[s_EntityManagerHeaderPath];
+        AddStandartInclude(entityManagerHeaderPath);
+    } else {
+        AddInclude(entityManagerHeaderPath);
+    }
 
     AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");
     AddEmptyLine();

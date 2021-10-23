@@ -2,12 +2,40 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
+    <ClCompile Include="Generated files\TornadoEditor_ScenePartContainer.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\TornadoEditor_ComponentContainer.cpp">
+      <Filter>Generated files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\TornadoEditor_FeatureContainer.cpp">
+      <Filter>Generated files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\TornadoEditor_HandlerContainer.cpp">
+      <Filter>Generated files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\TornadoEditor_MenuItemContainer.cpp">
+      <Filter>Generated files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\TornadoEditor_Component_JsonSerializer.cpp">
+      <Filter>Generated files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp">
+      <Filter>Generated files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\ComponentJsonSerializer.cpp">
+      <Filter>Generated files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\ComponentTypeInformation.cpp">
+      <Filter>Generated files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Editor.project" />
+    <None Include="componentConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -19,5 +47,49 @@
     <Filter Include="Features">
       <UniqueIdentifier>{535a7d5e-79e3-422a-9a5f-467903d09eb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generated files">
+      <UniqueIdentifier>{117c32ec-f038-43fc-b0a5-e32aa87021d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Components">
+      <UniqueIdentifier>{f31e6360-cc3a-4347-9e38-8a75c9b987bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Containers">
+      <UniqueIdentifier>{3667497e-d88e-46b1-982e-01ba399fddc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MenuItems">
+      <UniqueIdentifier>{4029546c-3cb6-461c-af69-02598c38cde3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Generated files\TornadoEditor_ScenePartContainer.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\TornadoEditor_MenuItemContainer.h">
+      <Filter>Generated files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\TornadoEditor_ComponentContainer.h">
+      <Filter>Generated files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\TornadoEditor_FeatureContainer.h">
+      <Filter>Generated files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\TornadoEditor_HandlerContainer.h">
+      <Filter>Generated files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\TornadoEditor_Component_JsonSerializer.h">
+      <Filter>Generated files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentIncludeList.h">
+      <Filter>Generated files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentEntityManagerExtension.h">
+      <Filter>Generated files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentJsonSerializer.h">
+      <Filter>Generated files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentTypeInformation.h">
+      <Filter>Generated files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

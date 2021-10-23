@@ -17,6 +17,8 @@ namespace nsTornadoEngine
     class DllExport IBinaryMarshaller
     {
     public:
+        virtual ~IBinaryMarshaller() {}
+
         virtual void Serialize(void* p, TContainerRise& c, int rtti) = 0;
         virtual bool Deserialize(void* p, void* serData, int size, int rtti) = 0;
 

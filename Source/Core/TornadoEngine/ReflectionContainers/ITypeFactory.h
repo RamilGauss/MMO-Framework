@@ -16,6 +16,8 @@ namespace nsTornadoEngine
     class DllExport ITypeFactory
     {
     public:
+        virtual ~ITypeFactory() {}
+
         virtual void* New(int rtti) = 0;
         virtual void Delete(void* p, int rtti) = 0;
     };

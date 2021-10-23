@@ -24,6 +24,13 @@ namespace nsTornadoEngine
     };
 
 #pragma REFLECTION_ATTRIBUTE
+    struct DllExport TGeneratorConfig
+    {
+        std::string nameSpace;
+        std::string directoryPath;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
     struct DllExport TProjectConfig
     {
         TProjectInfo info;
@@ -32,5 +39,7 @@ namespace nsTornadoEngine
 
         std::string conveyorFilePath;
         std::string resourcesFilePath;
+
+        TGeneratorConfig generatorConfig;
     };
 }

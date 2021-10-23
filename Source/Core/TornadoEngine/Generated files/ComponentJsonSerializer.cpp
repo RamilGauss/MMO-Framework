@@ -2,9 +2,9 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_17 19:36:40.682
+// File has been generated at 2021_10_23 15:26:16.409
 	
-#include "ComponentsJsonSerializer.h"
+#include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
 #include "JsonPushMaster.h"
 #include "SingletonManager.h"
@@ -15,9 +15,9 @@ using namespace nsTornadoEngine;
 using POM = TJsonPopMaster;
 using PUM = TJsonPushMaster;
 
-std::vector<TComponentsJsonSerializer::TypeFunc> TComponentsJsonSerializer::mTypeFuncVector;
+std::vector<TComponentJsonSerializer::TypeFunc> TComponentJsonSerializer::mTypeFuncVector;
 
-void TComponentsJsonSerializer::Init()
+void TComponentJsonSerializer::Init()
 {
     static bool isNeedInit = true;
     if ( !isNeedInit ) {
@@ -184,19 +184,19 @@ void TComponentsJsonSerializer::Init()
     }
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::Serialize(void* p, std::string& str, int rtti)
+void TComponentJsonSerializer::Serialize(void* p, std::string& str, int rtti)
 {
     Init();
     mTypeFuncVector[rtti].serializeFunc(p, str);
 }
 //---------------------------------------------------------------------------------------
-bool TComponentsJsonSerializer::Deserialize(void* p, const std::string& str, int rtti, std::string& err)
+bool TComponentJsonSerializer::Deserialize(void* p, const std::string& str, int rtti, std::string& err)
 {
     Init();
     return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsMathTools::TMatrix16* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsMathTools::TMatrix16* p, Jobj& obj)
 {
     PUM::Push(obj, "_11", p->_11);
     PUM::Push(obj, "_12", p->_12);
@@ -216,7 +216,7 @@ void TComponentsJsonSerializer::_Serialize(nsMathTools::TMatrix16* p, Jobj& obj)
     PUM::Push(obj, "_44", p->_44);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj)
 {
     POM::PopNum(obj, "_11", p->_11);
     POM::PopNum(obj, "_12", p->_12);
@@ -236,112 +236,112 @@ void TComponentsJsonSerializer::_Deserialize(nsMathTools::TMatrix16* p, const Jo
     POM::PopNum(obj, "_44", p->_44);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TCameraComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TCameraComponent* p, Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TCameraComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TCameraComponent* p, const Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TFocusComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TFocusComponent* p, Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TFocusComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TFocusComponent* p, const Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TGuidComponent* p, Jobj& obj)
-{
-    PUM::Push(obj, "value", p->value);
-}
-//---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TGuidComponent* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "value", p->value);
-}
-//---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TLightComponent* p, Jobj& obj)
-{
-}
-//---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TLightComponent* p, const Jobj& obj)
-{
-}
-//---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TNameComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TGuidComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TNameComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TGuidComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TParentGuidComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TLightComponent* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TLightComponent* p, const Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TNameComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TParentGuidComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TNameComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TPositionComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TParentGuidComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TParentGuidComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TPositionComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "x", p->x);
     PUM::Push(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TPositionComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TPositionComponent* p, const Jobj& obj)
 {
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TSceneGuidComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TSceneGuidComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TSceneGuidComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TSceneGuidComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TSizeComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TSizeComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "x", p->x);
     PUM::Push(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TSizeComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TSizeComponent* p, const Jobj& obj)
 {
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TTransformComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TTransformComponent* p, Jobj& obj)
 {
     auto value_o = PUM::AddObject(obj, "value");
     _Serialize(&(p->value), value_o);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TTransformComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TTransformComponent* p, const Jobj& obj)
 {
     auto value_o0 = POM::FindObject(obj, "value");
     _Deserialize(&(p->value), value_o0);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Serialize(nsTornadoEngine::TVisibilityComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TVisibilityComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
-void TComponentsJsonSerializer::_Deserialize(nsTornadoEngine::TVisibilityComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TVisibilityComponent* p, const Jobj& obj)
 {
     POM::PopBool(obj, "value", p->value);
 }

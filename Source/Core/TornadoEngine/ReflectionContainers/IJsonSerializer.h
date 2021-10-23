@@ -16,6 +16,8 @@ namespace nsTornadoEngine
     class DllExport IJsonSerializer
     {
     public:
+        virtual ~IJsonSerializer() {}
+
         virtual void Serialize(void* p, std::string& json, int rtti) = 0;
         virtual bool Deserialize(void* p, const std::string& json, int rtti, std::string& err) = 0;
     };

@@ -17,6 +17,8 @@ namespace nsTornadoEngine
     class DllExport ITypeInformation
     {
     public:
+        virtual ~ITypeInformation() {}
+
         virtual const std::list<std::string>* GetTypeNameList() = 0;
         virtual const std::list<int>* GetRunTimeTypeIndexList() = 0;
 

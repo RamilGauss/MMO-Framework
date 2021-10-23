@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_17 19:36:40.680
+// File has been generated at 2021_10_23 15:26:16.407
 	
 #pragma once
 
@@ -14,7 +14,7 @@
 
 namespace nsTornadoEngine
 {
-    class DllExport TComponentsJsonSerializer
+    class DllExport TComponentJsonSerializer
     {
         typedef TJsonMaster::Jobj Jobj;
         typedef TJsonMaster::Jarr Jarr;
@@ -77,7 +77,7 @@ namespace nsTornadoEngine
     };
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static void TComponentsJsonSerializer::Serialize(Type* p, std::string& str)
+    static void TComponentJsonSerializer::Serialize(Type* p, std::string& str)
     {
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         auto obj = doc.GetObject();
@@ -91,7 +91,7 @@ namespace nsTornadoEngine
     }
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static bool TComponentsJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
+    static bool TComponentJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
     {
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         const auto parseFlags = rapidjson::ParseFlag::kParseFullPrecisionFlag | rapidjson::ParseFlag::kParseCommentsFlag | rapidjson::ParseFlag::kParseTrailingCommasFlag;

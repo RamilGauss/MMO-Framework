@@ -98,7 +98,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
         str = fmt::format("{}.push_back({});", s_mTypeNameList, typeName);
         Add(str);
 
-        str = fmt::format("{}.insert({{ \"{}\", {} }});", s_mNameRttiMap, typeName, rtti);
+        str = fmt::format("{}.insert({{ {}, {} }});", s_mNameRttiMap, typeName, rtti);
         Add(str);
 
         AddEmptyLine();
@@ -167,8 +167,17 @@ void TTypeInformationSourceFileGenerator::AddMethodDeinitions()
 
     str = fmt::format("{}();", s_Init);
     Add(str);
-    str = fmt::format("return &({}[{}]);", s_mNameVector, s_rtti);
+    AddEmptyLine();
+    str = fmt::format("if (rtti < 0 || rtti >= {}.size()) {{", s_mNameVector);
     Add(str);
+    Add("    return nullptr;");
+    AddRightBrace();
+    str = fmt::format("auto pStr = &({}[{}]);", s_mNameVector, s_rtti);
+    Add(str);
+    Add("if (pStr->size() == 0) {");
+    Add("    return nullptr;");
+    AddRightBrace();
+    Add("return pStr;");
 
     DecrementTabs();
     AddRightBrace();

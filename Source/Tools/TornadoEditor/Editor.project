@@ -6,5 +6,9 @@
 	},
 	"binaryFilePath": "../../../Exe/TornadoEditor_d.dll",
 	"conveyorFilePath": "./Resources/Game/Conveyor.json",
-	"resourcesFilePath": "./Resources/Resources.json"
+	"resourcesFilePath": "./Resources/Resources.json",
+	"generatorConfig": {
+		"nameSpace": "nsTornadoEditor",
+		"directoryPath": "./Generated files"
+	}
 }

@@ -26,9 +26,25 @@
             "JsonSerializerGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
-                "fileName": "ComponentsJsonSerializer",
-                "className": "TComponentsJsonSerializer",
+                "fileName": "ComponentJsonSerializer",
+                "className": "TComponentJsonSerializer",
                 "keyValueMap": {}
+            },
+            "TypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "fileName": "ComponentTypeInformation",
+                "className": "TComponentTypeInformation",
+                "keyValueMap": {}
+            },
+            "EntityManagerExtension": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "fileName": "ComponentEntityManagerExtension",
+                "className": "TComponentEntityManagerExtension",
+                "keyValueMap": {
+                    "entityManagerHeaderPath": "ECS/include/EntityManager.h"
+                }
             }
         }
     }

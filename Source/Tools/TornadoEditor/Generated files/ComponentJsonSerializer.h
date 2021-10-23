@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_23 15:30:48.181
+// File has been generated at 2021_10_23 15:36:25.345
 	
 #pragma once
 
@@ -10,11 +10,11 @@
 #include <string>
 #include <functional>
 #include "JsonMaster.h"
-#include "IncludeList.h"
+#include "ComponentIncludeList.h"
 
-namespace nsJson
+namespace nsTornadoEditor
 {
-    class DllExport TJsonSerializer
+    class DllExport TComponentJsonSerializer
     {
         typedef TJsonMaster::Jobj Jobj;
         typedef TJsonMaster::Jarr Jarr;
@@ -38,37 +38,10 @@ namespace nsJson
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
     
     public:
-        static std::string _SerializeEnum(nsCppParser::TypeCategory* p);
-        static void _DeserializeEnum(std::string& str, nsCppParser::TypeCategory* p);
-        
-        static void _Serialize(nsReflectionCodeGenerator::TClassDesc* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TClassDesc* p, const Jobj& obj);
-        
-        static void _Serialize(nsReflectionCodeGenerator::TConfig* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TConfig* p, const Jobj& obj);
-        
-        static void _Serialize(nsReflectionCodeGenerator::TExternalSource* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TExternalSource* p, const Jobj& obj);
-        
-        static void _Serialize(nsReflectionCodeGenerator::TExternalSources* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TExternalSources* p, const Jobj& obj);
-        
-        static void _Serialize(nsReflectionCodeGenerator::TFilter* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TFilter* p, const Jobj& obj);
-        
-        static void _Serialize(nsReflectionCodeGenerator::TSerializer* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TSerializer* p, const Jobj& obj);
-        
-        static void _Serialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj);
-        
-        static void _Serialize(nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj);
-        static void _Deserialize(nsReflectionCodeGenerator::TTargetForParsing* p, const Jobj& obj);
-        
     };
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static void TJsonSerializer::Serialize(Type* p, std::string& str)
+    static void TComponentJsonSerializer::Serialize(Type* p, std::string& str)
     {
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         auto obj = doc.GetObject();
@@ -82,7 +55,7 @@ namespace nsJson
     }
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static bool TJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
+    static bool TComponentJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
     {
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         const auto parseFlags = rapidjson::ParseFlag::kParseFullPrecisionFlag | rapidjson::ParseFlag::kParseCommentsFlag | rapidjson::ParseFlag::kParseTrailingCommasFlag;
