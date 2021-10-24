@@ -49,12 +49,12 @@ bool TProjectConfigLoader::LoadBinary()
         Log("LoadDLL() FAIL init.\n");
         return false;
     }
-    mPcc->mFreeScenePartContainer = (FuncFreeScenePartContainer) loader->Get(StrFreeScenePartContainer);
+    mPcc->mFreeScenePartContainer = (FuncFreeScenePartReflectionAggregator) loader->Get(StrFreeScenePartReflectionAggregator);
     if (mPcc->mFreeScenePartContainer == nullptr) {
         Log("LoadDLL() FAIL load FuncFree.\n");
         return false;
     }
-    mPcc->mGetScenePartContainer = (FuncGetScenePartContainer) loader->Get(StrGetScenePartContainer);
+    mPcc->mGetScenePartContainer = (FuncGetScenePartReflectionAggregator) loader->Get(StrGetScenePartReflectionAggregator);
     if (mPcc->mGetScenePartContainer == nullptr) {
         Log("LoadDLL() FAIL load FuncGetdevTool.\n");
         return false;

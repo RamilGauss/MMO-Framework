@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TornadoEditor_ComponentContainer.h"
-#include "TornadoEditor_Component_JsonSerializer.h"
+#include "ComponentReflectionAggregatorImpl.h"
+#include "ComponentJsonSerializerImpl.h"
 
 using namespace nsTornadoEditor;
 
-TTornadoEditor_ComponentContainer::TTornadoEditor_ComponentContainer()
+TComponentReflectionAggregatorImpl::TComponentReflectionAggregatorImpl()
 {
-    mJson = new TTornadoEditor_Component_JsonSerializer();
+    mJson = new TComponentJsonSerializerImpl();
     //mBin = new ;
     //mImGui = new ;
     //mEntMng = new ;
@@ -20,7 +20,7 @@ TTornadoEditor_ComponentContainer::TTornadoEditor_ComponentContainer()
     //mTypeInfo = new ;
 }
 //------------------------------------------------------------------------
-TTornadoEditor_ComponentContainer::~TTornadoEditor_ComponentContainer()
+TComponentReflectionAggregatorImpl::~TComponentReflectionAggregatorImpl()
 {
     delete mJson;
     delete mBin;

@@ -127,7 +127,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Generated files;./Features;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionContainers;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Generated files;./Features;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -184,7 +184,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\Torna
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./Components;./Generated files;./Features;./Handlers;./Modules;./Share;./TimeSliceEngine;./ReflectionContainers;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Generated files;./Features;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -280,17 +280,17 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Modules\ModuleSoundEngine.h" />
     <ClInclude Include="Modules\PrefabManager.h" />
     <ClInclude Include="Modules\SceneManager.h" />
-    <ClInclude Include="ReflectionContainers\ComponentContainer.h" />
-    <ClInclude Include="ReflectionContainers\FeatureContainer.h" />
-    <ClInclude Include="ReflectionContainers\HandlerContainer.h" />
-    <ClInclude Include="ReflectionContainers\IBinaryMarshaller.h" />
-    <ClInclude Include="ReflectionContainers\IEntityManagerExtension.h" />
-    <ClInclude Include="ReflectionContainers\IJsonSerializer.h" />
-    <ClInclude Include="ReflectionContainers\IImGuiSerializer.h" />
-    <ClInclude Include="ReflectionContainers\ITypeFactory.h" />
-    <ClInclude Include="ReflectionContainers\ITypeInformation.h" />
-    <ClInclude Include="ReflectionContainers\MenuItemContainer.h" />
-    <ClInclude Include="ReflectionContainers\ScenePartContainer.h" />
+    <ClInclude Include="ReflectionAggregators\ComponentReflectionAggregator.h" />
+    <ClInclude Include="ReflectionAggregators\FeatureReflectionAggregator.h" />
+    <ClInclude Include="ReflectionAggregators\HandlerReflectionAggregator.h" />
+    <ClInclude Include="ReflectionAggregators\IBinaryMarshaller.h" />
+    <ClInclude Include="ReflectionAggregators\IEntityManagerExtension.h" />
+    <ClInclude Include="ReflectionAggregators\IImGuiSerializer.h" />
+    <ClInclude Include="ReflectionAggregators\IJsonSerializer.h" />
+    <ClInclude Include="ReflectionAggregators\ITypeFactory.h" />
+    <ClInclude Include="ReflectionAggregators\ITypeInformation.h" />
+    <ClInclude Include="ReflectionAggregators\MenuItemReflectionAggregator.h" />
+    <ClInclude Include="ReflectionAggregators\ScenePartReflectionAggregator.h" />
     <ClInclude Include="Share\FrameworkResources.h" />
     <ClInclude Include="Share\ModuleType.h" />
     <ClInclude Include="Share\MathStructs.h" />

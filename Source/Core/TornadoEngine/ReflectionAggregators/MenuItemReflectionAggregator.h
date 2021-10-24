@@ -8,11 +8,14 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeDef.h"
+#include "ITypeInformation.h"
 
 namespace nsTornadoEngine
 {
-    struct DllExport TMenuItemContainer
+    struct DllExport TMenuItemReflectionAggregator
     {
-        virtual ~TMenuItemContainer() {}
+        virtual ~TMenuItemReflectionAggregator() {}
+
+        ITypeInformation* mTypeInfo = nullptr;
     };
 }

@@ -9,13 +9,13 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include "ScenePartContainer.h"
+#include "ScenePartReflectionAggregator.h"
 
-#define StrGetScenePartContainer  "GetScenePartContainer"
-#define StrFreeScenePartContainer "FreeScenePartContainer"
+#define StrGetScenePartReflectionAggregator  "GetScenePartReflectionAggregator"
+#define StrFreeScenePartReflectionAggregator "FreeScenePartReflectionAggregator"
 
-typedef nsTornadoEngine::TScenePartContainer* (*FuncGetScenePartContainer)();
-typedef void (*FuncFreeScenePartContainer)(nsTornadoEngine::TScenePartContainer*);
+typedef nsTornadoEngine::TScenePartReflectionAggregator* (*FuncGetScenePartReflectionAggregator)();
+typedef void (*FuncFreeScenePartReflectionAggregator)(nsTornadoEngine::TScenePartReflectionAggregator*);
 
-DllExport_C nsTornadoEngine::TScenePartContainer* GetScenePartContainer();
-DllExport_C void FreeScenePartContainer(nsTornadoEngine::TScenePartContainer* p);
+DllExport_C nsTornadoEngine::TScenePartReflectionAggregator* GetScenePartReflectionAggregator();
+DllExport_C void FreeScenePartReflectionAggregator(nsTornadoEngine::TScenePartReflectionAggregator* p);

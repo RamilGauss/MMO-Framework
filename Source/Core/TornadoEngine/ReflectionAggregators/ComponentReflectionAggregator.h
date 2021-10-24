@@ -16,15 +16,16 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    struct DllExport TComponentContainer
+    struct DllExport TComponentReflectionAggregator
     {
-        virtual ~TComponentContainer() {}
+        virtual ~TComponentReflectionAggregator() {}
+
+        ITypeInformation* mTypeInfo = nullptr;
 
         IJsonSerializer* mJson = nullptr;
         IBinaryMarshaller* mBin = nullptr;
         IImGuiSerializer* mImGui = nullptr;
         IEntityManagerExtension* mEntMng = nullptr;
         ITypeFactory* mTypeFactory = nullptr;
-        ITypeInformation* mTypeInfo = nullptr;
     };
 }

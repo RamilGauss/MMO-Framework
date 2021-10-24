@@ -17,7 +17,7 @@ namespace nsTornadoEngine
     {
     public:
         virtual ~IJsonSerializer() {}
-
+        // Не должен знать о существовании rtti, если это нужно используй ITypeInformation.
         virtual void Serialize(void* p, std::string& json, int rtti) = 0;
         virtual bool Deserialize(void* p, const std::string& json, int rtti, std::string& err) = 0;
     };

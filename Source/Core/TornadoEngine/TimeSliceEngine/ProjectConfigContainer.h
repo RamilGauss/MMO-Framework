@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include "ILoaderDLL.h"
 
 #include "ProjectConfig.h"
-#include "ScenePartContainer.h"
+#include "ScenePartReflectionAggregator.h"
 #include "DeveloperTool_DLL.h"
 #include "ConveyorConfig.h"
 #include "FrameworkResources.h"
@@ -30,10 +30,10 @@ namespace nsTornadoEngine
         TFrameworkResources mResources;
 
         // From binary
-        FuncGetScenePartContainer mGetScenePartContainer = nullptr;
-        FuncFreeScenePartContainer mFreeScenePartContainer = nullptr;
+        FuncGetScenePartReflectionAggregator mGetScenePartContainer = nullptr;
+        FuncFreeScenePartReflectionAggregator mFreeScenePartContainer = nullptr;
 
-        TScenePartContainer* mScenePartContainer = nullptr;
+        TScenePartReflectionAggregator* mScenePartContainer = nullptr;
 
         ILoaderDLL* mLoader = nullptr;
 

@@ -5,17 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TornadoEditor_HandlerContainer.h"
+#include "HandlerReflectionAggregatorImpl.h"
 
 using namespace nsTornadoEditor;
 
-TTornadoEditor_HandlerContainer::TTornadoEditor_HandlerContainer()
+THandlerReflectionAggregatorImpl::THandlerReflectionAggregatorImpl()
 {
     //mTypeFactory = new ;
     //mTypeInfo = new ;
 }
 //-------------------------------------------------------------------------------------
-TTornadoEditor_HandlerContainer::~TTornadoEditor_HandlerContainer()
+THandlerReflectionAggregatorImpl::~THandlerReflectionAggregatorImpl()
 {
     delete mTypeFactory;
     delete mTypeInfo;

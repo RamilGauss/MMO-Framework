@@ -5,17 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TornadoEditor_FeatureContainer.h"
+#include "FeatureReflectionAggregatorImpl.h"
 
 using namespace nsTornadoEditor;
 
-TTornadoEditor_FeatureContainer::TTornadoEditor_FeatureContainer()
+TFeatureReflectionAggregatorImpl::TFeatureReflectionAggregatorImpl()
 {
     //mTypeFactory = new ;
     //mTypeInfo = new ;
 }
 //-----------------------------------------------------------------------------
-TTornadoEditor_FeatureContainer::~TTornadoEditor_FeatureContainer()
+TFeatureReflectionAggregatorImpl::~TFeatureReflectionAggregatorImpl()
 {
     delete mTypeFactory;
     delete mTypeInfo;

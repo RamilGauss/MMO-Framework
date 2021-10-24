@@ -7,9 +7,6 @@
     <Filter Include="Modules">
       <UniqueIdentifier>{de01d69c-69e2-4911-9504-190d1dd0e8bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ReflectionContainers">
-      <UniqueIdentifier>{6274044d-9b12-4437-992c-ee8e7b7b33e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generated files">
       <UniqueIdentifier>{5aea57d2-b753-443a-a3d9-d12708853df1}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,9 @@
     </Filter>
     <Filter Include="Testing\Windows">
       <UniqueIdentifier>{5bf344a4-bb6e-48c8-924d-e82a0b130665}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ReflectionAggregators">
+      <UniqueIdentifier>{6274044d-9b12-4437-992c-ee8e7b7b33e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -167,36 +167,6 @@
     <ClInclude Include="Share\MathStructs.h">
       <Filter>Share</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionContainers\ComponentContainer.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\HandlerContainer.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\FeatureContainer.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\IJsonSerializer.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\IBinaryMarshaller.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\IImGuiSerializer.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\ITypeFactory.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\IEntityManagerExtension.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\ITypeInformation.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\MenuItemContainer.h">
-      <Filter>ReflectionContainers</Filter>
-    </ClInclude>
     <ClInclude Include="TimeSliceEngine\ConveyorConfig.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
@@ -238,9 +208,6 @@
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ProjectConfig.h">
       <Filter>TimeSliceEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionContainers\ScenePartContainer.h">
-      <Filter>ReflectionContainers</Filter>
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ProjectConfigContainer.h">
       <Filter>TimeSliceEngine</Filter>
@@ -364,6 +331,39 @@
     </ClInclude>
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h">
       <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\ComponentReflectionAggregator.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\FeatureReflectionAggregator.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\HandlerReflectionAggregator.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\IBinaryMarshaller.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\IEntityManagerExtension.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\IImGuiSerializer.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\IJsonSerializer.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\ITypeFactory.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\ITypeInformation.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\MenuItemReflectionAggregator.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\ScenePartReflectionAggregator.h">
+      <Filter>ReflectionAggregators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,16 +7,16 @@ See for more information LICENSE.md.
 
 #include "DeveloperTool_DLL.h"
 
-#include "TornadoEditor_ScenePartContainer.h"
+#include "ScenePartReflectionAggregatorImpl.h"
 
 using namespace nsTornadoEngine;
 
-DllExport_C TScenePartContainer* GetScenePartContainer()
+DllExport_C TScenePartReflectionAggregator* GetScenePartReflectionAggregator()
 {
-    return new nsTornadoEditor::TTornadoEditor_ScenePartContainer();
+    return new nsTornadoEditor::TScenePartReflectionAggregatorImpl();
 }
 //-------------------------------------------------------------------
-DllExport_C void FreeScenePartContainer(TScenePartContainer* p)
+DllExport_C void FreeScenePartReflectionAggregator(TScenePartReflectionAggregator* p)
 {
     delete p;
 }

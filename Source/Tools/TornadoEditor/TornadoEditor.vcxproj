@@ -121,7 +121,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Core/TornadoEngine/ReflectionContainers;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TimeSliceEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TimeSliceEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -204,12 +204,12 @@
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
-    <ClCompile Include="Generated files\TornadoEditor_ComponentContainer.cpp" />
-    <ClCompile Include="Generated files\TornadoEditor_Component_JsonSerializer.cpp" />
-    <ClCompile Include="Generated files\TornadoEditor_FeatureContainer.cpp" />
-    <ClCompile Include="Generated files\TornadoEditor_HandlerContainer.cpp" />
-    <ClCompile Include="Generated files\TornadoEditor_MenuItemContainer.cpp" />
-    <ClCompile Include="Generated files\TornadoEditor_ScenePartContainer.cpp" />
+    <ClCompile Include="Generated files\ComponentReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\ComponentJsonSerializerImpl.cpp" />
+    <ClCompile Include="Generated files\FeatureReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\HandlerReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />
@@ -223,12 +223,12 @@
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
     <ClInclude Include="Generated files\ComponentTypeInformation.h" />
-    <ClInclude Include="Generated files\TornadoEditor_ComponentContainer.h" />
-    <ClInclude Include="Generated files\TornadoEditor_Component_JsonSerializer.h" />
-    <ClInclude Include="Generated files\TornadoEditor_FeatureContainer.h" />
-    <ClInclude Include="Generated files\TornadoEditor_HandlerContainer.h" />
-    <ClInclude Include="Generated files\TornadoEditor_MenuItemContainer.h" />
-    <ClInclude Include="Generated files\TornadoEditor_ScenePartContainer.h" />
+    <ClInclude Include="Generated files\ComponentReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\ComponentJsonSerializerImpl.h" />
+    <ClInclude Include="Generated files\FeatureReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\HandlerReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

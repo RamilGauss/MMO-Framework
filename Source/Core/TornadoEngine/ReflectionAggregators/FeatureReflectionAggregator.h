@@ -12,11 +12,12 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    struct DllExport THandlerContainer
+    struct DllExport TFeatureReflectionAggregator
     {
-        virtual ~THandlerContainer() {}
+        virtual ~TFeatureReflectionAggregator() {}
+
+        ITypeInformation* mTypeInfo = nullptr;
 
         ITypeFactory* mTypeFactory = nullptr;
-        ITypeInformation* mTypeInfo = nullptr;
     };
 }

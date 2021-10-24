@@ -11,10 +11,10 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEditor
 {
-    struct DllExport TTornadoEditor_Component_JsonSerializer : public nsTornadoEngine::IJsonSerializer
+    struct DllExport TComponentJsonSerializerImpl : public nsTornadoEngine::IJsonSerializer
     {
-        TTornadoEditor_Component_JsonSerializer();
-        virtual ~TTornadoEditor_Component_JsonSerializer();
+        TComponentJsonSerializerImpl();
+        virtual ~TComponentJsonSerializerImpl();
 
         void Serialize(void* p, std::string& json, int rtti) override;
         bool Deserialize(void* p, const std::string& json, int rtti, std::string& err) override;
