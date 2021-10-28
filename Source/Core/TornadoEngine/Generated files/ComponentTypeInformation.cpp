@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_24 23:24:00.318
+// File has been generated at 2021_10_28 07:46:41.671
 	
 #include "ComponentTypeInformation.h"
 
@@ -26,60 +26,80 @@ void TComponentTypeInformation::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    int nsTornadoEngine_TCameraComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TCameraComponent>();
-    std::string nsTornadoEngine_TCameraComponent_n = "nsTornadoEngine::TCameraComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TCameraComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TCameraComponent_n, nsTornadoEngine_TCameraComponent_i });
+    int nsCommonWrapper_TGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TGuidComponent>();
+    std::string nsCommonWrapper_TGuidComponent_n = "nsCommonWrapper::TGuidComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TGuidComponent_n);
+    mNameRttiMap.insert({ nsCommonWrapper_TGuidComponent_n, nsCommonWrapper_TGuidComponent_i });
     
-    int nsTornadoEngine_TFocusComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TFocusComponent>();
-    std::string nsTornadoEngine_TFocusComponent_n = "nsTornadoEngine::TFocusComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TFocusComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TFocusComponent_n, nsTornadoEngine_TFocusComponent_i });
+    int nsCommonWrapper_TNameComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TNameComponent>();
+    std::string nsCommonWrapper_TNameComponent_n = "nsCommonWrapper::TNameComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TNameComponent_n);
+    mNameRttiMap.insert({ nsCommonWrapper_TNameComponent_n, nsCommonWrapper_TNameComponent_i });
     
-    int nsTornadoEngine_TGuidComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TGuidComponent>();
-    std::string nsTornadoEngine_TGuidComponent_n = "nsTornadoEngine::TGuidComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TGuidComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TGuidComponent_n, nsTornadoEngine_TGuidComponent_i });
+    int nsCommonWrapper_TParentGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TParentGuidComponent>();
+    std::string nsCommonWrapper_TParentGuidComponent_n = "nsCommonWrapper::TParentGuidComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TParentGuidComponent_n);
+    mNameRttiMap.insert({ nsCommonWrapper_TParentGuidComponent_n, nsCommonWrapper_TParentGuidComponent_i });
     
-    int nsTornadoEngine_TLightComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TLightComponent>();
-    std::string nsTornadoEngine_TLightComponent_n = "nsTornadoEngine::TLightComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TLightComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TLightComponent_n, nsTornadoEngine_TLightComponent_i });
+    int nsCommonWrapper_TSceneGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TSceneGuidComponent>();
+    std::string nsCommonWrapper_TSceneGuidComponent_n = "nsCommonWrapper::TSceneGuidComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TSceneGuidComponent_n);
+    mNameRttiMap.insert({ nsCommonWrapper_TSceneGuidComponent_n, nsCommonWrapper_TSceneGuidComponent_i });
     
-    int nsTornadoEngine_TNameComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TNameComponent>();
-    std::string nsTornadoEngine_TNameComponent_n = "nsTornadoEngine::TNameComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TNameComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TNameComponent_n, nsTornadoEngine_TNameComponent_i });
+    int nsCommonWrapper_TSceneRootComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TSceneRootComponent>();
+    std::string nsCommonWrapper_TSceneRootComponent_n = "nsCommonWrapper::TSceneRootComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TSceneRootComponent_n);
+    mNameRttiMap.insert({ nsCommonWrapper_TSceneRootComponent_n, nsCommonWrapper_TSceneRootComponent_i });
     
-    int nsTornadoEngine_TParentGuidComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TParentGuidComponent>();
-    std::string nsTornadoEngine_TParentGuidComponent_n = "nsTornadoEngine::TParentGuidComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TParentGuidComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TParentGuidComponent_n, nsTornadoEngine_TParentGuidComponent_i });
+    int nsCommonWrapper_TTransformComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TTransformComponent>();
+    std::string nsCommonWrapper_TTransformComponent_n = "nsCommonWrapper::TTransformComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TTransformComponent_n);
+    mNameRttiMap.insert({ nsCommonWrapper_TTransformComponent_n, nsCommonWrapper_TTransformComponent_i });
     
-    int nsTornadoEngine_TPositionComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TPositionComponent>();
-    std::string nsTornadoEngine_TPositionComponent_n = "nsTornadoEngine::TPositionComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TPositionComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TPositionComponent_n, nsTornadoEngine_TPositionComponent_i });
+    int nsGraphicWrapper_TCameraComponent_i = globalTypeIdentifier->type<nsGraphicWrapper::TCameraComponent>();
+    std::string nsGraphicWrapper_TCameraComponent_n = "nsGraphicWrapper::TCameraComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TCameraComponent_n);
+    mNameRttiMap.insert({ nsGraphicWrapper_TCameraComponent_n, nsGraphicWrapper_TCameraComponent_i });
     
-    int nsTornadoEngine_TSceneGuidComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TSceneGuidComponent>();
-    std::string nsTornadoEngine_TSceneGuidComponent_n = "nsTornadoEngine::TSceneGuidComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TSceneGuidComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TSceneGuidComponent_n, nsTornadoEngine_TSceneGuidComponent_i });
+    int nsGraphicWrapper_TLightComponent_i = globalTypeIdentifier->type<nsGraphicWrapper::TLightComponent>();
+    std::string nsGraphicWrapper_TLightComponent_n = "nsGraphicWrapper::TLightComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TLightComponent_n);
+    mNameRttiMap.insert({ nsGraphicWrapper_TLightComponent_n, nsGraphicWrapper_TLightComponent_i });
     
-    int nsTornadoEngine_TSizeComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TSizeComponent>();
-    std::string nsTornadoEngine_TSizeComponent_n = "nsTornadoEngine::TSizeComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TSizeComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TSizeComponent_n, nsTornadoEngine_TSizeComponent_i });
+    int nsGuiWrapper_TButtonComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TButtonComponent>();
+    std::string nsGuiWrapper_TButtonComponent_n = "nsGuiWrapper::TButtonComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TButtonComponent_n);
+    mNameRttiMap.insert({ nsGuiWrapper_TButtonComponent_n, nsGuiWrapper_TButtonComponent_i });
     
-    int nsTornadoEngine_TTransformComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TTransformComponent>();
-    std::string nsTornadoEngine_TTransformComponent_n = "nsTornadoEngine::TTransformComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TTransformComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TTransformComponent_n, nsTornadoEngine_TTransformComponent_i });
+    int nsGuiWrapper_TFocusComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TFocusComponent>();
+    std::string nsGuiWrapper_TFocusComponent_n = "nsGuiWrapper::TFocusComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TFocusComponent_n);
+    mNameRttiMap.insert({ nsGuiWrapper_TFocusComponent_n, nsGuiWrapper_TFocusComponent_i });
     
-    int nsTornadoEngine_TVisibilityComponent_i = globalTypeIdentifier->type<nsTornadoEngine::TVisibilityComponent>();
-    std::string nsTornadoEngine_TVisibilityComponent_n = "nsTornadoEngine::TVisibilityComponent";
-    mTypeNameList.push_back(nsTornadoEngine_TVisibilityComponent_n);
-    mNameRttiMap.insert({ nsTornadoEngine_TVisibilityComponent_n, nsTornadoEngine_TVisibilityComponent_i });
+    int nsGuiWrapper_TPositionComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TPositionComponent>();
+    std::string nsGuiWrapper_TPositionComponent_n = "nsGuiWrapper::TPositionComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TPositionComponent_n);
+    mNameRttiMap.insert({ nsGuiWrapper_TPositionComponent_n, nsGuiWrapper_TPositionComponent_i });
+    
+    int nsGuiWrapper_TSizeComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TSizeComponent>();
+    std::string nsGuiWrapper_TSizeComponent_n = "nsGuiWrapper::TSizeComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TSizeComponent_n);
+    mNameRttiMap.insert({ nsGuiWrapper_TSizeComponent_n, nsGuiWrapper_TSizeComponent_i });
+    
+    int nsGuiWrapper_TTitleComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TTitleComponent>();
+    std::string nsGuiWrapper_TTitleComponent_n = "nsGuiWrapper::TTitleComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TTitleComponent_n);
+    mNameRttiMap.insert({ nsGuiWrapper_TTitleComponent_n, nsGuiWrapper_TTitleComponent_i });
+    
+    int nsGuiWrapper_TVisibilityComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TVisibilityComponent>();
+    std::string nsGuiWrapper_TVisibilityComponent_n = "nsGuiWrapper::TVisibilityComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TVisibilityComponent_n);
+    mNameRttiMap.insert({ nsGuiWrapper_TVisibilityComponent_n, nsGuiWrapper_TVisibilityComponent_i });
+    
+    int nsGuiWrapper_TWindowComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TWindowComponent>();
+    std::string nsGuiWrapper_TWindowComponent_n = "nsGuiWrapper::TWindowComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TWindowComponent_n);
+    mNameRttiMap.insert({ nsGuiWrapper_TWindowComponent_n, nsGuiWrapper_TWindowComponent_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

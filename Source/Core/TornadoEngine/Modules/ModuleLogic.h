@@ -12,16 +12,11 @@ See for more information LICENSE.md.
 #include "DstModule.h"
 #include <ECS/include/Feature.h>
 
-#include "TestFeature.h"
-
 namespace nsTornadoEngine
 {
     class DllExport TModuleLogic : public TDstModule
     {
         nsECSFramework::TFeature mMainFeature;
-
-
-        nsTest::TTestFeature test;
 
     public:
         bool StartEvent() override;

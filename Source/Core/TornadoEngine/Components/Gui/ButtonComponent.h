@@ -7,16 +7,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <string>
-
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
 
-namespace nsCommonWrapper
+namespace nsGuiWrapper
 {
-    struct DllExport TParentGuidComponent : nsECSFramework::IComponent
+    struct DllExport TButtonComponent : nsECSFramework::IComponent
     {
-        std::string value;
+
     };
 }

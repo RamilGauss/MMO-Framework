@@ -214,6 +214,7 @@
   <ItemGroup>
     <None Include="componentConfig.json" />
     <None Include="Editor.project" />
+    <None Include="Scenes\Main.scene" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

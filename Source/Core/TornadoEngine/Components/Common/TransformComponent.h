@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 #include <ECS/include/IComponent.h>
 #include "MathStructs.h"
 
-namespace nsTornadoEngine
+namespace nsCommonWrapper
 {
     struct DllExport TTransformComponent : nsECSFramework::IComponent
     {

@@ -17,8 +17,14 @@ namespace nsTornadoEngine
     public:
         void Init();
 
-        void Load(const std::string& absPath);
+        void LoadByGuid(const std::string& guid);//???
+        void LoadByAbsPath(const std::string& absPath);
 
-        void Instantiate(const std::string& absPath);
+        void Unload(const std::string& guid);
+
+        void Save(const std::string& guid);
+
+        void InstantiateByGuid(const std::string& guid);//???
+        void InstantiateByAbsPath(const std::string& absPath);
     };
 }

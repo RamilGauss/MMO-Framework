@@ -25,6 +25,9 @@
         }
     },
     "gameEngine": {
-        "startScenes": [""]
+        "sceneManagerContentMapPath": "../Scenes/SceneManagerContentMap.json",
+        "startScenesGuid": [
+            "0"
+        ]
     }
 }

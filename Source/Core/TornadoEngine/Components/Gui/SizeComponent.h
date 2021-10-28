@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/IComponent.h>
 
-namespace nsTornadoEngine
+namespace nsGuiWrapper
 {
     struct DllExport TSizeComponent : nsECSFramework::IComponent
     {

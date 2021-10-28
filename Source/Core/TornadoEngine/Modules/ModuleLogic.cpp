@@ -14,12 +14,6 @@ using namespace nsECSFramework;
 bool TModuleLogic::StartEvent()
 {
     mMainFeature.SetEntMng(Modules()->EntMng());
-
-    //###
-    AddFeature(&test);
-    //###
-
-
     return true;
 }
 //--------------------------------------------------------------------

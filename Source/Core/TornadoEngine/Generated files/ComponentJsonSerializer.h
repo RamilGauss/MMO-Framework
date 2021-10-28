@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_24 23:24:00.307
+// File has been generated at 2021_10_28 07:46:41.658
 	
 #pragma once
 
@@ -38,41 +38,53 @@ namespace nsTornadoEngine
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
     
     public:
+        static void _Serialize(nsCommonWrapper::TGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TNameComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TNameComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TParentGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TParentGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TSceneGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TSceneGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TSceneRootComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TSceneRootComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TTransformComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TTransformComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGraphicWrapper::TCameraComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TCameraComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGraphicWrapper::TLightComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TLightComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TButtonComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TButtonComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TFocusComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TFocusComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TPositionComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TPositionComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TSizeComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TSizeComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TTitleComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TTitleComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TVisibilityComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TVisibilityComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TWindowComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TWindowComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TCameraComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TCameraComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TFocusComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TFocusComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TGuidComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TGuidComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TLightComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TLightComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TNameComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TNameComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TParentGuidComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TParentGuidComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TPositionComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TPositionComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TSceneGuidComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TSceneGuidComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TSizeComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TSizeComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TTransformComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TTransformComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TVisibilityComponent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TVisibilityComponent* p, const Jobj& obj);
         
     };
     //------------------------------------------------------------------------------------------------------------

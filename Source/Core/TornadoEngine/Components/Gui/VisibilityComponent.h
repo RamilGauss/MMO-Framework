@@ -11,11 +11,10 @@ See for more information LICENSE.md.
 
 #include <ECS/include/IComponent.h>
 
-namespace nsTornadoEngine
+namespace nsGuiWrapper
 {
-    struct DllExport TPositionComponent : nsECSFramework::IComponent
+    struct DllExport TVisibilityComponent : nsECSFramework::IComponent
     {
-        int x = 0;
-        int y = 0;
+        bool value = false;
     };
 }

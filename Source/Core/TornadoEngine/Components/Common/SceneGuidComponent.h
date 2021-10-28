@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/IComponent.h>
 
-namespace nsTornadoEngine
+namespace nsCommonWrapper
 {
     struct DllExport TSceneGuidComponent : nsECSFramework::IComponent
     {

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_24 23:24:01.071
+// File has been generated at 2021_10_28 07:46:42.578
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -28,6 +28,54 @@ void TTornadoEngineJsonSerializer::Init()
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
     std::map<int, TypeFunc> m;
+    
+    TypeFunc _TComponentContentTypeFunc;
+    _TComponentContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<TComponentContent>((TComponentContent*) p, str);
+    };
+    _TComponentContentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<TComponentContent>((TComponentContent*) p, str, err);
+    };
+    
+    auto rtti__TComponentContentTypeFunc = globalTypeIdentifier->type<TComponentContent>();
+    
+    m.insert({ rtti__TComponentContentTypeFunc, _TComponentContentTypeFunc });
+    
+    TypeFunc _TEntityContentTypeFunc;
+    _TEntityContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<TEntityContent>((TEntityContent*) p, str);
+    };
+    _TEntityContentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<TEntityContent>((TEntityContent*) p, str, err);
+    };
+    
+    auto rtti__TEntityContentTypeFunc = globalTypeIdentifier->type<TEntityContent>();
+    
+    m.insert({ rtti__TEntityContentTypeFunc, _TEntityContentTypeFunc });
+    
+    TypeFunc _TSceneContentTypeFunc;
+    _TSceneContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<TSceneContent>((TSceneContent*) p, str);
+    };
+    _TSceneContentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<TSceneContent>((TSceneContent*) p, str, err);
+    };
+    
+    auto rtti__TSceneContentTypeFunc = globalTypeIdentifier->type<TSceneContent>();
+    
+    m.insert({ rtti__TSceneContentTypeFunc, _TSceneContentTypeFunc });
+    
+    TypeFunc _TSceneHeaderTypeFunc;
+    _TSceneHeaderTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<TSceneHeader>((TSceneHeader*) p, str);
+    };
+    _TSceneHeaderTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<TSceneHeader>((TSceneHeader*) p, str, err);
+    };
+    
+    auto rtti__TSceneHeaderTypeFunc = globalTypeIdentifier->type<TSceneHeader>();
+    
+    m.insert({ rtti__TSceneHeaderTypeFunc, _TSceneHeaderTypeFunc });
     
     TypeFunc _nsMathTools_TMatrix16TypeFunc;
     _nsMathTools_TMatrix16TypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -254,6 +302,76 @@ bool TTornadoEngineJsonSerializer::Deserialize(void* p, const std::string& str, 
 {
     Init();
     return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(TComponentContent* p, Jobj& obj)
+{
+    PUM::Push(obj, "typeName", p->typeName);
+    PUM::Push(obj, "jsonBody", p->jsonBody);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(TComponentContent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "typeName", p->typeName);
+    POM::PopStr(obj, "jsonBody", p->jsonBody);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(TEntityContent* p, Jobj& obj)
+{
+    PUM::Value components_a0(rapidjson::kArrayType);
+    for(auto& components_e0 : p->components) {
+        PUM::Value components_a1(rapidjson::kObjectType);
+        auto components_c1 = components_a1.GetObject();
+        _Serialize(&components_e0, components_c1);
+        PUM::PushBack(components_a0, components_a1);
+    }
+    PUM::Push(obj, "components", components_a0);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(TEntityContent* p, const Jobj& obj)
+{
+    auto components_a0 = POM::FindArray(obj, "components");
+    for(auto& components_e0 : components_a0) {
+        auto components_o1 = components_e0.GetObject();
+        TComponentContent components_c1;
+        _Deserialize(&components_c1, components_o1);
+        p->components.push_back(components_c1);
+    }
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(TSceneContent* p, Jobj& obj)
+{
+    auto header_o = PUM::AddObject(obj, "header");
+    _Serialize(&(p->header), header_o);
+    PUM::Value entities_a0(rapidjson::kArrayType);
+    for(auto& entities_e0 : p->entities) {
+        PUM::Value entities_a1(rapidjson::kObjectType);
+        auto entities_c1 = entities_a1.GetObject();
+        _Serialize(&entities_e0, entities_c1);
+        PUM::PushBack(entities_a0, entities_a1);
+    }
+    PUM::Push(obj, "entities", entities_a0);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(TSceneContent* p, const Jobj& obj)
+{
+    auto header_o0 = POM::FindObject(obj, "header");
+    _Deserialize(&(p->header), header_o0);
+    auto entities_a0 = POM::FindArray(obj, "entities");
+    for(auto& entities_e0 : entities_a0) {
+        auto entities_o1 = entities_e0.GetObject();
+        TEntityContent entities_c1;
+        _Deserialize(&entities_c1, entities_o1);
+        p->entities.push_back(entities_c1);
+    }
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(TSceneHeader* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(TSceneHeader* p, const Jobj& obj)
+{
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsMathTools::TMatrix16* p, Jobj& obj)
@@ -496,24 +614,26 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TFrameworkResou
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TGameEngineResources* p, Jobj& obj)
 {
-    PUM::Value startScenes_a0(rapidjson::kArrayType);
-    for(auto& startScenes_e0 : p->startScenes) {
-        PUM::PushBack(startScenes_a0, startScenes_e0);
+    PUM::Push(obj, "sceneManagerContentMapPath", p->sceneManagerContentMapPath);
+    PUM::Value startScenesGuid_a0(rapidjson::kArrayType);
+    for(auto& startScenesGuid_e0 : p->startScenesGuid) {
+        PUM::PushBack(startScenesGuid_a0, startScenesGuid_e0);
     }
-    PUM::Push(obj, "startScenes", startScenes_a0);
+    PUM::Push(obj, "startScenesGuid", startScenesGuid_a0);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TGameEngineResources* p, const Jobj& obj)
 {
-    if (POM::IsArray(obj, "startScenes")) {
-        auto startScenes_a0 = POM::FindArray(obj, "startScenes");
-        for(auto& startScenes_e0 : startScenes_a0) {
-            p->startScenes.push_back(startScenes_e0.GetString());
+    POM::PopStr(obj, "sceneManagerContentMapPath", p->sceneManagerContentMapPath);
+    if (POM::IsArray(obj, "startScenesGuid")) {
+        auto startScenesGuid_a0 = POM::FindArray(obj, "startScenesGuid");
+        for(auto& startScenesGuid_e0 : startScenesGuid_a0) {
+            p->startScenesGuid.push_back(startScenesGuid_e0.GetString());
         }
     } else {
-        std::string startScenes_t0;
-        POM::PopStr(obj, "startScenes", startScenes_t0);
-        p->startScenes.push_back(startScenes_t0);
+        std::string startScenesGuid_t0;
+        POM::PopStr(obj, "startScenesGuid", startScenesGuid_t0);
+        p->startScenesGuid.push_back(startScenesGuid_t0);
     }
 }
 //---------------------------------------------------------------------------------------

@@ -1,0 +1,123 @@
+{
+    "header" : {
+        // reserved
+    },
+    "entities": [
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"0\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TSceneRootComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Main scene\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"_00\":0, \"_01\":0, \"_02\":0, \"_03\":1, \"_10\":0, \"_11\":0, \"_12\":0, \"_13\":1, \"_20\":0, \"_21\":0, \"_22\":0, \"_23\":1, \"_30\":0, \"_31\":0, \"_32\":0, \"_33\":1, }"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"1\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Camera\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"0\"}"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TCameraComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"_00\":0, \"_01\":0, \"_02\":0, \"_03\":1, \"_10\":0, \"_11\":0, \"_12\":0, \"_13\":1, \"_20\":0, \"_21\":0, \"_22\":0, \"_23\":1, \"_30\":0, \"_31\":0, \"_32\":0, \"_33\":1, }"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"2\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Window\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"_00\":0, \"_01\":0, \"_02\":0, \"_03\":1, \"_10\":0, \"_11\":0, \"_12\":0, \"_13\":1, \"_20\":0, \"_21\":0, \"_22\":0, \"_23\":1, \"_30\":0, \"_31\":0, \"_32\":0, \"_33\":1, }"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"0\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"qwerty\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\":10, \"y\":10}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\":100, \"y\":100}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TWindowComponent",
+                    "jsonBody": "{}"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"3\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"2\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Button\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"_00\":0, \"_01\":0, \"_02\":0, \"_03\":1, \"_10\":0, \"_11\":0, \"_12\":0, \"_13\":1, \"_20\":0, \"_21\":0, \"_22\":0, \"_23\":1, \"_30\":0, \"_31\":0, \"_32\":0, \"_33\":1, }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"qwerty\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\":10, \"y\":10}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\":100, \"y\":100}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonComponent",
+                    "jsonBody": "{}"
+                }
+            ]
+        }
+    ]
+}

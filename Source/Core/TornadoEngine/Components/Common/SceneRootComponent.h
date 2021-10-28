@@ -11,10 +11,9 @@ See for more information LICENSE.md.
 
 #include <ECS/include/IComponent.h>
 
-namespace nsTornadoEngine
+namespace nsCommonWrapper
 {
-    struct DllExport TVisibilityComponent : nsECSFramework::IComponent
+    struct DllExport TSceneRootComponent : nsECSFramework::IComponent
     {
-        bool value = false;
     };
 }

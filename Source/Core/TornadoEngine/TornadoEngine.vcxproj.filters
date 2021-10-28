@@ -40,6 +40,18 @@
     <Filter Include="ReflectionAggregators">
       <UniqueIdentifier>{6274044d-9b12-4437-992c-ee8e7b7b33e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Gui">
+      <UniqueIdentifier>{e8c58e6c-c6c3-48c0-8e0c-cd1a6132cbb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Common">
+      <UniqueIdentifier>{04808564-b7bc-49bd-8321-4336508fc877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Gui">
+      <UniqueIdentifier>{224c1f69-c2c9-48ee-b95a-80d96aa018a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Graphic">
+      <UniqueIdentifier>{b44980af-5515-4406-b214-edd784bc8216}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -299,18 +311,6 @@
     <ClInclude Include="Testing\TreeViewWindow.h">
       <Filter>Testing\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Graphic\FocusComponent.h">
-      <Filter>Components\Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Graphic\PositionComponent.h">
-      <Filter>Components\Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Graphic\SizeComponent.h">
-      <Filter>Components\Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Graphic\VisibilityComponent.h">
-      <Filter>Components\Graphic</Filter>
-    </ClInclude>
     <ClInclude Include="Testing\TestFeature.h">
       <Filter>Testing</Filter>
     </ClInclude>
@@ -364,6 +364,33 @@
     </ClInclude>
     <ClInclude Include="ReflectionAggregators\ScenePartReflectionAggregator.h">
       <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\SceneContent.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\ButtonComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\FocusComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\PositionComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\SizeComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\TitleComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\VisibilityComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\WindowComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\SceneRootComponent.h">
+      <Filter>Components\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

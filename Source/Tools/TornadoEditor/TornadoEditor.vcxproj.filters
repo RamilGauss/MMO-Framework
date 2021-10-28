@@ -36,6 +36,9 @@
   <ItemGroup>
     <None Include="Editor.project" />
     <None Include="componentConfig.json" />
+    <None Include="Scenes\Main.scene">
+      <Filter>Scenes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -58,6 +61,12 @@
     </Filter>
     <Filter Include="Generated files\Aggregators">
       <UniqueIdentifier>{3667497e-d88e-46b1-982e-01ba399fddc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{dceb4e38-26d7-4649-9867-0d461f1a0982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prefabs">
+      <UniqueIdentifier>{ffa09d13-6829-495c-a3fd-320face00eaf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

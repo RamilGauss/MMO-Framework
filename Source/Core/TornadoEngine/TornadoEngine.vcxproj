@@ -127,7 +127,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Generated files;./Features;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Generated files;./Features/Common;./Features/Graphic;./Features/Gui;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -254,13 +254,17 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Common\NameComponent.h" />
     <ClInclude Include="Components\Common\ParentGuidComponent.h" />
     <ClInclude Include="Components\Common\SceneGuidComponent.h" />
+    <ClInclude Include="Components\Common\SceneRootComponent.h" />
     <ClInclude Include="Components\Common\TransformComponent.h" />
     <ClInclude Include="Components\Graphic\CameraComponent.h" />
-    <ClInclude Include="Components\Graphic\FocusComponent.h" />
     <ClInclude Include="Components\Graphic\LightComponent.h" />
-    <ClInclude Include="Components\Graphic\PositionComponent.h" />
-    <ClInclude Include="Components\Graphic\SizeComponent.h" />
-    <ClInclude Include="Components\Graphic\VisibilityComponent.h" />
+    <ClInclude Include="Components\Gui\ButtonComponent.h" />
+    <ClInclude Include="Components\Gui\FocusComponent.h" />
+    <ClInclude Include="Components\Gui\PositionComponent.h" />
+    <ClInclude Include="Components\Gui\SizeComponent.h" />
+    <ClInclude Include="Components\Gui\TitleComponent.h" />
+    <ClInclude Include="Components\Gui\VisibilityComponent.h" />
+    <ClInclude Include="Components\Gui\WindowComponent.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
@@ -279,6 +283,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Modules\ModulesAccessor.h" />
     <ClInclude Include="Modules\ModuleSoundEngine.h" />
     <ClInclude Include="Modules\PrefabManager.h" />
+    <ClInclude Include="Modules\SceneContent.h" />
     <ClInclude Include="Modules\SceneManager.h" />
     <ClInclude Include="ReflectionAggregators\ComponentReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\FeatureReflectionAggregator.h" />

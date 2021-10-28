@@ -42,7 +42,8 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct TGameEngineResources
     {
-        std::list<std::string> startScenes;
+        std::string sceneManagerContentMapPath;
+        std::list<std::string> startScenesGuid;
     };
 
 #pragma REFLECTION_ATTRIBUTE

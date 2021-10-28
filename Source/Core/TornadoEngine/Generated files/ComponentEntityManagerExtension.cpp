@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_24 23:24:00.315
+// File has been generated at 2021_10_28 07:46:41.667
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -23,115 +23,155 @@ void TComponentEntityManagerExtension::Init()
     
     std::map<int, Data> m;
     
-    Data nsTornadoEngine_TCameraComponent_Data;
-    nsTornadoEngine_TCameraComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TCameraComponent*) p)); };
-    nsTornadoEngine_TCameraComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TCameraComponent>(eid); };
-    nsTornadoEngine_TCameraComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TCameraComponent>(eid, *((nsTornadoEngine::TCameraComponent*) p)); };
-    nsTornadoEngine_TCameraComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TCameraComponent>(eid); };
-    nsTornadoEngine_TCameraComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TCameraComponent>(eid); };
-    auto rtti_nsTornadoEngine_TCameraComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TCameraComponent>();
+    Data nsCommonWrapper_TGuidComponent_Data;
+    nsCommonWrapper_TGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TGuidComponent*) p)); };
+    nsCommonWrapper_TGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TGuidComponent>(eid); };
+    nsCommonWrapper_TGuidComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsCommonWrapper::TGuidComponent>(eid, *((nsCommonWrapper::TGuidComponent*) p)); };
+    nsCommonWrapper_TGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TGuidComponent>(eid); };
+    nsCommonWrapper_TGuidComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TGuidComponent>(eid); };
+    auto rtti_nsCommonWrapper_TGuidComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TGuidComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TCameraComponent_Data, nsTornadoEngine_TCameraComponent_Data });
+    m.insert({ rtti_nsCommonWrapper_TGuidComponent_Data, nsCommonWrapper_TGuidComponent_Data });
     
-    Data nsTornadoEngine_TFocusComponent_Data;
-    nsTornadoEngine_TFocusComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TFocusComponent*) p)); };
-    nsTornadoEngine_TFocusComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TFocusComponent>(eid); };
-    nsTornadoEngine_TFocusComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TFocusComponent>(eid, *((nsTornadoEngine::TFocusComponent*) p)); };
-    nsTornadoEngine_TFocusComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TFocusComponent>(eid); };
-    nsTornadoEngine_TFocusComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TFocusComponent>(eid); };
-    auto rtti_nsTornadoEngine_TFocusComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TFocusComponent>();
+    Data nsCommonWrapper_TNameComponent_Data;
+    nsCommonWrapper_TNameComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TNameComponent*) p)); };
+    nsCommonWrapper_TNameComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TNameComponent>(eid); };
+    nsCommonWrapper_TNameComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsCommonWrapper::TNameComponent>(eid, *((nsCommonWrapper::TNameComponent*) p)); };
+    nsCommonWrapper_TNameComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TNameComponent>(eid); };
+    nsCommonWrapper_TNameComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TNameComponent>(eid); };
+    auto rtti_nsCommonWrapper_TNameComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TNameComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TFocusComponent_Data, nsTornadoEngine_TFocusComponent_Data });
+    m.insert({ rtti_nsCommonWrapper_TNameComponent_Data, nsCommonWrapper_TNameComponent_Data });
     
-    Data nsTornadoEngine_TGuidComponent_Data;
-    nsTornadoEngine_TGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TGuidComponent*) p)); };
-    nsTornadoEngine_TGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TGuidComponent>(eid); };
-    nsTornadoEngine_TGuidComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TGuidComponent>(eid, *((nsTornadoEngine::TGuidComponent*) p)); };
-    nsTornadoEngine_TGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TGuidComponent>(eid); };
-    nsTornadoEngine_TGuidComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TGuidComponent>(eid); };
-    auto rtti_nsTornadoEngine_TGuidComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TGuidComponent>();
+    Data nsCommonWrapper_TParentGuidComponent_Data;
+    nsCommonWrapper_TParentGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TParentGuidComponent*) p)); };
+    nsCommonWrapper_TParentGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid); };
+    nsCommonWrapper_TParentGuidComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsCommonWrapper::TParentGuidComponent>(eid, *((nsCommonWrapper::TParentGuidComponent*) p)); };
+    nsCommonWrapper_TParentGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TParentGuidComponent>(eid); };
+    nsCommonWrapper_TParentGuidComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TParentGuidComponent>(eid); };
+    auto rtti_nsCommonWrapper_TParentGuidComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TParentGuidComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TGuidComponent_Data, nsTornadoEngine_TGuidComponent_Data });
+    m.insert({ rtti_nsCommonWrapper_TParentGuidComponent_Data, nsCommonWrapper_TParentGuidComponent_Data });
     
-    Data nsTornadoEngine_TLightComponent_Data;
-    nsTornadoEngine_TLightComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TLightComponent*) p)); };
-    nsTornadoEngine_TLightComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TLightComponent>(eid); };
-    nsTornadoEngine_TLightComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TLightComponent>(eid, *((nsTornadoEngine::TLightComponent*) p)); };
-    nsTornadoEngine_TLightComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TLightComponent>(eid); };
-    nsTornadoEngine_TLightComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TLightComponent>(eid); };
-    auto rtti_nsTornadoEngine_TLightComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TLightComponent>();
+    Data nsCommonWrapper_TSceneGuidComponent_Data;
+    nsCommonWrapper_TSceneGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TSceneGuidComponent*) p)); };
+    nsCommonWrapper_TSceneGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TSceneGuidComponent>(eid); };
+    nsCommonWrapper_TSceneGuidComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsCommonWrapper::TSceneGuidComponent>(eid, *((nsCommonWrapper::TSceneGuidComponent*) p)); };
+    nsCommonWrapper_TSceneGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TSceneGuidComponent>(eid); };
+    nsCommonWrapper_TSceneGuidComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TSceneGuidComponent>(eid); };
+    auto rtti_nsCommonWrapper_TSceneGuidComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TSceneGuidComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TLightComponent_Data, nsTornadoEngine_TLightComponent_Data });
+    m.insert({ rtti_nsCommonWrapper_TSceneGuidComponent_Data, nsCommonWrapper_TSceneGuidComponent_Data });
     
-    Data nsTornadoEngine_TNameComponent_Data;
-    nsTornadoEngine_TNameComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TNameComponent*) p)); };
-    nsTornadoEngine_TNameComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TNameComponent>(eid); };
-    nsTornadoEngine_TNameComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TNameComponent>(eid, *((nsTornadoEngine::TNameComponent*) p)); };
-    nsTornadoEngine_TNameComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TNameComponent>(eid); };
-    nsTornadoEngine_TNameComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TNameComponent>(eid); };
-    auto rtti_nsTornadoEngine_TNameComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TNameComponent>();
+    Data nsCommonWrapper_TSceneRootComponent_Data;
+    nsCommonWrapper_TSceneRootComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TSceneRootComponent*) p)); };
+    nsCommonWrapper_TSceneRootComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TSceneRootComponent>(eid); };
+    nsCommonWrapper_TSceneRootComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsCommonWrapper::TSceneRootComponent>(eid, *((nsCommonWrapper::TSceneRootComponent*) p)); };
+    nsCommonWrapper_TSceneRootComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TSceneRootComponent>(eid); };
+    nsCommonWrapper_TSceneRootComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TSceneRootComponent>(eid); };
+    auto rtti_nsCommonWrapper_TSceneRootComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TSceneRootComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TNameComponent_Data, nsTornadoEngine_TNameComponent_Data });
+    m.insert({ rtti_nsCommonWrapper_TSceneRootComponent_Data, nsCommonWrapper_TSceneRootComponent_Data });
     
-    Data nsTornadoEngine_TParentGuidComponent_Data;
-    nsTornadoEngine_TParentGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TParentGuidComponent*) p)); };
-    nsTornadoEngine_TParentGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TParentGuidComponent>(eid); };
-    nsTornadoEngine_TParentGuidComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TParentGuidComponent>(eid, *((nsTornadoEngine::TParentGuidComponent*) p)); };
-    nsTornadoEngine_TParentGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TParentGuidComponent>(eid); };
-    nsTornadoEngine_TParentGuidComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TParentGuidComponent>(eid); };
-    auto rtti_nsTornadoEngine_TParentGuidComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TParentGuidComponent>();
+    Data nsCommonWrapper_TTransformComponent_Data;
+    nsCommonWrapper_TTransformComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TTransformComponent*) p)); };
+    nsCommonWrapper_TTransformComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TTransformComponent>(eid); };
+    nsCommonWrapper_TTransformComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsCommonWrapper::TTransformComponent>(eid, *((nsCommonWrapper::TTransformComponent*) p)); };
+    nsCommonWrapper_TTransformComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TTransformComponent>(eid); };
+    nsCommonWrapper_TTransformComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TTransformComponent>(eid); };
+    auto rtti_nsCommonWrapper_TTransformComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TTransformComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TParentGuidComponent_Data, nsTornadoEngine_TParentGuidComponent_Data });
+    m.insert({ rtti_nsCommonWrapper_TTransformComponent_Data, nsCommonWrapper_TTransformComponent_Data });
     
-    Data nsTornadoEngine_TPositionComponent_Data;
-    nsTornadoEngine_TPositionComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TPositionComponent*) p)); };
-    nsTornadoEngine_TPositionComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TPositionComponent>(eid); };
-    nsTornadoEngine_TPositionComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TPositionComponent>(eid, *((nsTornadoEngine::TPositionComponent*) p)); };
-    nsTornadoEngine_TPositionComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TPositionComponent>(eid); };
-    nsTornadoEngine_TPositionComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TPositionComponent>(eid); };
-    auto rtti_nsTornadoEngine_TPositionComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TPositionComponent>();
+    Data nsGraphicWrapper_TCameraComponent_Data;
+    nsGraphicWrapper_TCameraComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TCameraComponent*) p)); };
+    nsGraphicWrapper_TCameraComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TCameraComponent>(eid); };
+    nsGraphicWrapper_TCameraComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsGraphicWrapper::TCameraComponent>(eid, *((nsGraphicWrapper::TCameraComponent*) p)); };
+    nsGraphicWrapper_TCameraComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TCameraComponent>(eid); };
+    nsGraphicWrapper_TCameraComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGraphicWrapper::TCameraComponent>(eid); };
+    auto rtti_nsGraphicWrapper_TCameraComponent_Data = globalTypeIdentifier->type<nsGraphicWrapper::TCameraComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TPositionComponent_Data, nsTornadoEngine_TPositionComponent_Data });
+    m.insert({ rtti_nsGraphicWrapper_TCameraComponent_Data, nsGraphicWrapper_TCameraComponent_Data });
     
-    Data nsTornadoEngine_TSceneGuidComponent_Data;
-    nsTornadoEngine_TSceneGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TSceneGuidComponent*) p)); };
-    nsTornadoEngine_TSceneGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TSceneGuidComponent>(eid); };
-    nsTornadoEngine_TSceneGuidComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TSceneGuidComponent>(eid, *((nsTornadoEngine::TSceneGuidComponent*) p)); };
-    nsTornadoEngine_TSceneGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TSceneGuidComponent>(eid); };
-    nsTornadoEngine_TSceneGuidComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TSceneGuidComponent>(eid); };
-    auto rtti_nsTornadoEngine_TSceneGuidComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TSceneGuidComponent>();
+    Data nsGraphicWrapper_TLightComponent_Data;
+    nsGraphicWrapper_TLightComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TLightComponent*) p)); };
+    nsGraphicWrapper_TLightComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TLightComponent>(eid); };
+    nsGraphicWrapper_TLightComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsGraphicWrapper::TLightComponent>(eid, *((nsGraphicWrapper::TLightComponent*) p)); };
+    nsGraphicWrapper_TLightComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TLightComponent>(eid); };
+    nsGraphicWrapper_TLightComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGraphicWrapper::TLightComponent>(eid); };
+    auto rtti_nsGraphicWrapper_TLightComponent_Data = globalTypeIdentifier->type<nsGraphicWrapper::TLightComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TSceneGuidComponent_Data, nsTornadoEngine_TSceneGuidComponent_Data });
+    m.insert({ rtti_nsGraphicWrapper_TLightComponent_Data, nsGraphicWrapper_TLightComponent_Data });
     
-    Data nsTornadoEngine_TSizeComponent_Data;
-    nsTornadoEngine_TSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TSizeComponent*) p)); };
-    nsTornadoEngine_TSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TSizeComponent>(eid); };
-    nsTornadoEngine_TSizeComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TSizeComponent>(eid, *((nsTornadoEngine::TSizeComponent*) p)); };
-    nsTornadoEngine_TSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TSizeComponent>(eid); };
-    nsTornadoEngine_TSizeComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TSizeComponent>(eid); };
-    auto rtti_nsTornadoEngine_TSizeComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TSizeComponent>();
+    Data nsGuiWrapper_TButtonComponent_Data;
+    nsGuiWrapper_TButtonComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TButtonComponent*) p)); };
+    nsGuiWrapper_TButtonComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TButtonComponent>(eid); };
+    nsGuiWrapper_TButtonComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsGuiWrapper::TButtonComponent>(eid, *((nsGuiWrapper::TButtonComponent*) p)); };
+    nsGuiWrapper_TButtonComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TButtonComponent>(eid); };
+    nsGuiWrapper_TButtonComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TButtonComponent>(eid); };
+    auto rtti_nsGuiWrapper_TButtonComponent_Data = globalTypeIdentifier->type<nsGuiWrapper::TButtonComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TSizeComponent_Data, nsTornadoEngine_TSizeComponent_Data });
+    m.insert({ rtti_nsGuiWrapper_TButtonComponent_Data, nsGuiWrapper_TButtonComponent_Data });
     
-    Data nsTornadoEngine_TTransformComponent_Data;
-    nsTornadoEngine_TTransformComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TTransformComponent*) p)); };
-    nsTornadoEngine_TTransformComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TTransformComponent>(eid); };
-    nsTornadoEngine_TTransformComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TTransformComponent>(eid, *((nsTornadoEngine::TTransformComponent*) p)); };
-    nsTornadoEngine_TTransformComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TTransformComponent>(eid); };
-    nsTornadoEngine_TTransformComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TTransformComponent>(eid); };
-    auto rtti_nsTornadoEngine_TTransformComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TTransformComponent>();
+    Data nsGuiWrapper_TFocusComponent_Data;
+    nsGuiWrapper_TFocusComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFocusComponent*) p)); };
+    nsGuiWrapper_TFocusComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFocusComponent>(eid); };
+    nsGuiWrapper_TFocusComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsGuiWrapper::TFocusComponent>(eid, *((nsGuiWrapper::TFocusComponent*) p)); };
+    nsGuiWrapper_TFocusComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFocusComponent>(eid); };
+    nsGuiWrapper_TFocusComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TFocusComponent>(eid); };
+    auto rtti_nsGuiWrapper_TFocusComponent_Data = globalTypeIdentifier->type<nsGuiWrapper::TFocusComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TTransformComponent_Data, nsTornadoEngine_TTransformComponent_Data });
+    m.insert({ rtti_nsGuiWrapper_TFocusComponent_Data, nsGuiWrapper_TFocusComponent_Data });
     
-    Data nsTornadoEngine_TVisibilityComponent_Data;
-    nsTornadoEngine_TVisibilityComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsTornadoEngine::TVisibilityComponent*) p)); };
-    nsTornadoEngine_TVisibilityComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEngine::TVisibilityComponent>(eid); };
-    nsTornadoEngine_TVisibilityComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsTornadoEngine::TVisibilityComponent>(eid, *((nsTornadoEngine::TVisibilityComponent*) p)); };
-    nsTornadoEngine_TVisibilityComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEngine::TVisibilityComponent>(eid); };
-    nsTornadoEngine_TVisibilityComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEngine::TVisibilityComponent>(eid); };
-    auto rtti_nsTornadoEngine_TVisibilityComponent_Data = globalTypeIdentifier->type<nsTornadoEngine::TVisibilityComponent>();
+    Data nsGuiWrapper_TPositionComponent_Data;
+    nsGuiWrapper_TPositionComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TPositionComponent*) p)); };
+    nsGuiWrapper_TPositionComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid); };
+    nsGuiWrapper_TPositionComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsGuiWrapper::TPositionComponent>(eid, *((nsGuiWrapper::TPositionComponent*) p)); };
+    nsGuiWrapper_TPositionComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TPositionComponent>(eid); };
+    nsGuiWrapper_TPositionComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TPositionComponent>(eid); };
+    auto rtti_nsGuiWrapper_TPositionComponent_Data = globalTypeIdentifier->type<nsGuiWrapper::TPositionComponent>();
     
-    m.insert({ rtti_nsTornadoEngine_TVisibilityComponent_Data, nsTornadoEngine_TVisibilityComponent_Data });
+    m.insert({ rtti_nsGuiWrapper_TPositionComponent_Data, nsGuiWrapper_TPositionComponent_Data });
+    
+    Data nsGuiWrapper_TSizeComponent_Data;
+    nsGuiWrapper_TSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TSizeComponent*) p)); };
+    nsGuiWrapper_TSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid); };
+    nsGuiWrapper_TSizeComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsGuiWrapper::TSizeComponent>(eid, *((nsGuiWrapper::TSizeComponent*) p)); };
+    nsGuiWrapper_TSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TSizeComponent>(eid); };
+    nsGuiWrapper_TSizeComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TSizeComponent>(eid); };
+    auto rtti_nsGuiWrapper_TSizeComponent_Data = globalTypeIdentifier->type<nsGuiWrapper::TSizeComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TSizeComponent_Data, nsGuiWrapper_TSizeComponent_Data });
+    
+    Data nsGuiWrapper_TTitleComponent_Data;
+    nsGuiWrapper_TTitleComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTitleComponent*) p)); };
+    nsGuiWrapper_TTitleComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid); };
+    nsGuiWrapper_TTitleComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsGuiWrapper::TTitleComponent>(eid, *((nsGuiWrapper::TTitleComponent*) p)); };
+    nsGuiWrapper_TTitleComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TTitleComponent>(eid); };
+    nsGuiWrapper_TTitleComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TTitleComponent>(eid); };
+    auto rtti_nsGuiWrapper_TTitleComponent_Data = globalTypeIdentifier->type<nsGuiWrapper::TTitleComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TTitleComponent_Data, nsGuiWrapper_TTitleComponent_Data });
+    
+    Data nsGuiWrapper_TVisibilityComponent_Data;
+    nsGuiWrapper_TVisibilityComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TVisibilityComponent*) p)); };
+    nsGuiWrapper_TVisibilityComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid); };
+    nsGuiWrapper_TVisibilityComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsGuiWrapper::TVisibilityComponent>(eid, *((nsGuiWrapper::TVisibilityComponent*) p)); };
+    nsGuiWrapper_TVisibilityComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TVisibilityComponent>(eid); };
+    nsGuiWrapper_TVisibilityComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TVisibilityComponent>(eid); };
+    auto rtti_nsGuiWrapper_TVisibilityComponent_Data = globalTypeIdentifier->type<nsGuiWrapper::TVisibilityComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TVisibilityComponent_Data, nsGuiWrapper_TVisibilityComponent_Data });
+    
+    Data nsGuiWrapper_TWindowComponent_Data;
+    nsGuiWrapper_TWindowComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TWindowComponent*) p)); };
+    nsGuiWrapper_TWindowComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TWindowComponent>(eid); };
+    nsGuiWrapper_TWindowComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsGuiWrapper::TWindowComponent>(eid, *((nsGuiWrapper::TWindowComponent*) p)); };
+    nsGuiWrapper_TWindowComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TWindowComponent>(eid); };
+    nsGuiWrapper_TWindowComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TWindowComponent>(eid); };
+    auto rtti_nsGuiWrapper_TWindowComponent_Data = globalTypeIdentifier->type<nsGuiWrapper::TWindowComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TWindowComponent_Data, nsGuiWrapper_TWindowComponent_Data });
     
     int max = 0;
     for (auto& vt : m) {
