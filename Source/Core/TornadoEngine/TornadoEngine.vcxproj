@@ -284,6 +284,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Modules\ModuleSoundEngine.h" />
     <ClInclude Include="Modules\PrefabManager.h" />
     <ClInclude Include="Modules\SceneContent.h" />
+    <ClInclude Include="Modules\SceneContentMap.h" />
     <ClInclude Include="Modules\SceneManager.h" />
     <ClInclude Include="ReflectionAggregators\ComponentReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\FeatureReflectionAggregator.h" />

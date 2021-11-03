@@ -31,7 +31,7 @@ std::string TPathOperations::CalculatePathBy(const std::string& abs, const std::
     }
     return std::string();
 }
-
+//-----------------------------------------------------------------------
 std::string TPathOperations::FileDirPath(const std::string& filePath)
 {
     auto filePathPath = std::filesystem::path(filePath);
@@ -41,8 +41,9 @@ std::string TPathOperations::FileDirPath(const std::string& filePath)
 
     return filePathPath.remove_filename().string();
 }
-
+//-----------------------------------------------------------------------
 std::string TPathOperations::GetCurrentDir()
 {
     return std::filesystem::current_path().string();
 }
+//-----------------------------------------------------------------------

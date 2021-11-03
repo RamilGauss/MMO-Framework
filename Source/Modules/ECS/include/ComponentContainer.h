@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    class IComponent;
+    struct IComponent;
     struct TComponentContainer
     {
         TLinkToList<short> mLinkToList;

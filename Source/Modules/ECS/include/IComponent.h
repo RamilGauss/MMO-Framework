@@ -11,9 +11,10 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    class DllExport IComponent
+    struct DllExport IComponent
     {
-    public:
+        virtual ~IComponent();
+
         virtual bool IsLess(const IComponent* pOther) const;
         virtual bool IsEqual(const IComponent* pOther) const;
     };

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "Modules.h"
 #include "ModuleGraphicEngine.h"
 
-#include <ImGuiWidgets/DockNode.h>
+#include <ImGuiWidgets/include/DockNode.h>
 
 using namespace nsTest;
 using namespace nsImGuiWidgets;

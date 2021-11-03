@@ -10,13 +10,20 @@ See for more information LICENSE.md.
 
 using namespace nsECSFramework;
 
+IComponent::~IComponent()
+{
+
+}
+//--------------------------------------------------------------
 bool IComponent::IsLess(const IComponent* pOther) const
 {
     BL_FIX_BUG();
     return true;
 }
+//--------------------------------------------------------------
 bool IComponent::IsEqual(const IComponent* pOther) const
 {
     BL_FIX_BUG();
     return true;
 }
+//--------------------------------------------------------------

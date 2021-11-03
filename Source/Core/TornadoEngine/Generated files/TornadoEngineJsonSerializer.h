@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_28 07:46:42.575
+// File has been generated at 2021_11_03 08:33:51.041
 	
 #pragma once
 
@@ -38,18 +38,6 @@ namespace nsTornadoEngine
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
     
     public:
-        static void _Serialize(TComponentContent* p, Jobj& obj);
-        static void _Deserialize(TComponentContent* p, const Jobj& obj);
-        
-        static void _Serialize(TEntityContent* p, Jobj& obj);
-        static void _Deserialize(TEntityContent* p, const Jobj& obj);
-        
-        static void _Serialize(TSceneContent* p, Jobj& obj);
-        static void _Deserialize(TSceneContent* p, const Jobj& obj);
-        
-        static void _Serialize(TSceneHeader* p, Jobj& obj);
-        static void _Deserialize(TSceneHeader* p, const Jobj& obj);
-        
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);
         
@@ -80,8 +68,14 @@ namespace nsTornadoEngine
         static std::string _SerializeEnum(nsTornadoEngine::ModuleType* p);
         static void _DeserializeEnum(std::string& str, nsTornadoEngine::ModuleType* p);
         
+        static void _Serialize(nsTornadoEngine::TComponentContent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TComponentContent* p, const Jobj& obj);
+        
         static void _Serialize(nsTornadoEngine::TConveyorConfig* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TConveyorConfig* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TEntityContent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TEntityContent* p, const Jobj& obj);
         
         static void _Serialize(nsTornadoEngine::TFrameworkResources* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TFrameworkResources* p, const Jobj& obj);
@@ -103,6 +97,15 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsTornadoEngine::TProjectInfo* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TProjectInfo* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TSceneContent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TSceneContent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TSceneContentMap* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TSceneContentMap* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TSceneHeader* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TSceneHeader* p, const Jobj& obj);
         
     };
     //------------------------------------------------------------------------------------------------------------

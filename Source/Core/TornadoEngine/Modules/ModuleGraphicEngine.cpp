@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "ProjectConfigContainer.h"
 #include "PathOperations.h"
 #include "Modules.h"
-#include "ImGuiWidgets/Widget.h"
+#include "ImGuiWidgets/include/Widget.h"
 
 using namespace nsGraphicEngine;
 using namespace nsTornadoEngine; 

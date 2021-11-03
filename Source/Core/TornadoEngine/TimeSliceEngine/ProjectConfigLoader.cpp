@@ -35,6 +35,12 @@ bool TProjectConfigLoader::Load(TProjectConfigContainer* pcc)
     if (!LoadBinary()) {
         return false;
     }
+    if (!LoadSceneContentMap()) {
+        return false;
+    }
+
+    ConvertRelToAbsScene();
+
     return true;
 }
 //----------------------------------------------------------------------
@@ -83,5 +89,20 @@ bool TProjectConfigLoader::LoadConveyor()
 bool TProjectConfigLoader::LoadResources()
 {
     return Load(mPcc->GetResourcesAbsPath(), &(mPcc->mResources));
+}
+//------------------------------------------------------------------------
+bool TProjectConfigLoader::LoadSceneContentMap()
+{
+    return Load(mPcc->GetSceneContentMapAbsPath(), &(mPcc->mSceneContentMap));
+}
+//------------------------------------------------------------------------
+void TProjectConfigLoader::ConvertRelToAbsScene()
+{
+    auto sceneContentMapAbsPath = mPcc->GetSceneContentMapAbsPath();
+    auto sceneContentMapDirPath = TPathOperations::FileDirPath(sceneContentMapAbsPath);
+
+    for (auto& guidPath : mPcc->mSceneContentMap.guidPathMap) {
+        guidPath.second = TPathOperations::CalculatePathBy(sceneContentMapDirPath, guidPath.second);
+    }
 }
 //------------------------------------------------------------------------

@@ -12,18 +12,18 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/Feature.h>
-#include <ImGuiWidgets/MainWindow.h>
-#include <ImGuiWidgets/Window.h>
-#include <ImGuiWidgets/Button.h>
-#include <ImGuiWidgets/InputInt.h>
-#include <ImGuiWidgets/InputMultiText.h>
-#include <ImGuiWidgets/Label.h>
-#include <ImGuiWidgets/TreeView.h>
-#include <ImGuiWidgets/TreeNode.h>
-#include <ImGuiWidgets/CheckBox.h>
-#include <ImGuiWidgets/ComboBox.h>
-#include <ImGuiWidgets/PopupNode.h>
-#include <ImGuiWidgets/PopupMenu.h>
+#include <ImGuiWidgets/include/MainWindow.h>
+#include <ImGuiWidgets/include/Window.h>
+#include <ImGuiWidgets/include/Button.h>
+#include <ImGuiWidgets/include/InputInt.h>
+#include <ImGuiWidgets/include/InputMultiText.h>
+#include <ImGuiWidgets/include/Label.h>
+#include <ImGuiWidgets/include/TreeView.h>
+#include <ImGuiWidgets/include/TreeNode.h>
+#include <ImGuiWidgets/include/CheckBox.h>
+#include <ImGuiWidgets/include/ComboBox.h>
+#include <ImGuiWidgets/include/PopupNode.h>
+#include <ImGuiWidgets/include/PopupMenu.h>
 
 namespace nsTest
 {

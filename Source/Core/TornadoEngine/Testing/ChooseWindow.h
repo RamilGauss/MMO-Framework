@@ -12,9 +12,9 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/Feature.h>
-#include <ImGuiWidgets/MainWindow.h>
-#include <ImGuiWidgets/MenuNode.h>
-#include <ImGuiWidgets/Button.h>
+#include <ImGuiWidgets/include/MainWindow.h>
+#include <ImGuiWidgets/include/MenuNode.h>
+#include <ImGuiWidgets/include/Button.h>
 
 
 namespace nsTest

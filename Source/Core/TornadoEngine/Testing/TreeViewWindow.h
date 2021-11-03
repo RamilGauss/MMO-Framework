@@ -11,13 +11,13 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include <ImGuiWidgets/Window.h>
-#include <ImGuiWidgets/TreeView.h>
-#include <ImGuiWidgets/Button.h>
-#include <ImGuiWidgets/TreeNode.h>
-#include <ImGuiWidgets/PopupNode.h>
-#include <ImGuiWidgets/PopupMenu.h>
-#include <ImGuiWidgets/ToolTip.h>
+#include <ImGuiWidgets/include/Window.h>
+#include <ImGuiWidgets/include/TreeView.h>
+#include <ImGuiWidgets/include/Button.h>
+#include <ImGuiWidgets/include/TreeNode.h>
+#include <ImGuiWidgets/include/PopupNode.h>
+#include <ImGuiWidgets/include/PopupMenu.h>
+#include <ImGuiWidgets/include/ToolTip.h>
 
 namespace nsTest
 {

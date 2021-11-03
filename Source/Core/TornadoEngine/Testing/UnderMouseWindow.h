@@ -11,11 +11,11 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include <ImGuiWidgets/Window.h>
-#include <ImGuiWidgets/Label.h>
-#include <ImGuiWidgets/TreeView.h>
-#include <ImGuiWidgets/ToolTip.h>
-#include <ImGuiWidgets/Button.h>
+#include <ImGuiWidgets/include/Window.h>
+#include <ImGuiWidgets/include/Label.h>
+#include <ImGuiWidgets/include/TreeView.h>
+#include <ImGuiWidgets/include/ToolTip.h>
+#include <ImGuiWidgets/include/Button.h>
 
 namespace nsTest
 {

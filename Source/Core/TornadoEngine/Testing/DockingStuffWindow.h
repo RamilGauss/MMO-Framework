@@ -12,10 +12,10 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/Feature.h>
-#include <ImGuiWidgets/Window.h>
-#include <ImGuiWidgets/InputMultiText.h>
-#include <ImGuiWidgets/PopupNode.h>
-#include <ImGuiWidgets/PopupMenu.h>
+#include <ImGuiWidgets/include/Window.h>
+#include <ImGuiWidgets/include/InputMultiText.h>
+#include <ImGuiWidgets/include/PopupNode.h>
+#include <ImGuiWidgets/include/PopupMenu.h>
 
 namespace nsTest
 {

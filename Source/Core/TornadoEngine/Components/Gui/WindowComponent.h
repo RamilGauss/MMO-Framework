@@ -10,11 +10,12 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
+#include <ImGuiWidgets/include/Window.h>
 
 namespace nsGuiWrapper
 {
     struct DllExport TWindowComponent : nsECSFramework::IComponent
     {
-
+        nsImGuiWidgets::TWindow* value = nullptr;
     };
 }

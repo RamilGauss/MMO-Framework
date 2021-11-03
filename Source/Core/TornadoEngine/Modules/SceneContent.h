@@ -12,29 +12,32 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#pragma REFLECTION_ATTRIBUTE
-struct DllExport TSceneHeader
+namespace nsTornadoEngine
 {
-    // Reserved
-};
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TSceneHeader
+    {
+        // Reserved
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-struct DllExport TComponentContent
-{
-    std::string typeName;
-    std::string jsonBody;
-};
+    struct DllExport TComponentContent
+    {
+        std::string typeName;
+        std::string jsonBody;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-struct DllExport TEntityContent
-{
-    std::list<TComponentContent> components;
-};
+    struct DllExport TEntityContent
+    {
+        std::list<TComponentContent> components;
+    };
 
 #pragma REFLECTION_ATTRIBUTE
-struct DllExport TSceneContent
-{
-    TSceneHeader header;
+    struct DllExport TSceneContent
+    {
+        TSceneHeader header;
 
-    std::list<TEntityContent> entities;
-};
+        std::list<TEntityContent> entities;
+    };
+}

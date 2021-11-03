@@ -72,7 +72,8 @@ void TTimeSliceEngine::Work()
         }
     }
 
-    Modules()->SceneMng()->Init();
+    Modules()->SceneMng()->SetEntityManager(Modules()->EntMng());
+    Modules()->SceneMng()->SetContentMap(Project()->mSceneContentMap);
 
     while (true) {
         for (auto& pModule : mModulePtrList) {

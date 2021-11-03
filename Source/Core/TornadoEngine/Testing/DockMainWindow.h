@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include <ImGuiWidgets/MainWindow.h>
-#include <ImGuiWidgets/MenuNode.h>
+#include <ImGuiWidgets/include/MainWindow.h>
+#include <ImGuiWidgets/include/MenuNode.h>
 
 
 namespace nsTest

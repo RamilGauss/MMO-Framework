@@ -10,11 +10,12 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
+#include <ImGuiWidgets/include/Button.h>
 
 namespace nsGuiWrapper
 {
     struct DllExport TButtonComponent : nsECSFramework::IComponent
     {
-
+        nsImGuiWidgets::TButton* value = nullptr;
     };
 }

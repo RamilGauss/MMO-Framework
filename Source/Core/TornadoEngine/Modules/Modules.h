@@ -60,6 +60,7 @@ namespace nsTornadoEngine
 
         nsGraphicEngine::TKeyMouseEventContainer* keyMouse = nullptr;
     public:
+        // Mostly for inner usage
         TModuleGraphicEngine* G() const;
         TModulePhysicEngine* P() const;
         TModuleLogic* L() const;
@@ -68,6 +69,7 @@ namespace nsTornadoEngine
         TModuleSoundEngine* S() const;
         TModuleDataBase* DB() const;
 
+        // Usage in projects
         nsECSFramework::TEntityManager* EntMng() const;
         TSceneManager* SceneMng() const;
         TPrefabManager* PrefabMng() const;

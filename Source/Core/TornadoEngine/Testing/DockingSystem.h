@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 #include "DockingWindow.h"
 #include "DockMainWindow.h"
 
-#include <ImGuiWidgets/DockTreeManager.h>
+#include <ImGuiWidgets/include/DockTreeManager.h>
 
 namespace nsTest
 {

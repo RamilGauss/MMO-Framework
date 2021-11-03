@@ -19,6 +19,15 @@ See for more information LICENSE.md.
 
 #### "DONE"
 
+2021.10.30:
+- Добавить для результата генерации ImGui возможность выбора уровня доступа к GUI: READ_ONLY, READ_WRITE, READ_WRITE_DELETE.
+- None -> NONE в ECS.
+- Правило: класс глобального модуля не должен знать способ доступа к другому через синглтон. Если и получает доступ, то
+через указатель.
+
+2021.10.29:
+ - Нельзя создавать объекты через initialize list если есть в классе/структуре есть виртуальные методы!
+ Не быть синтаксическому сахару в EntityManager. Блин.
 
 2021.10.25:
 - original namespace -> nsOriginWrapper {Components, Features, Handlers, MenuItems}  
@@ -29,17 +38,17 @@ See for more information LICENSE.md.
 
 
  Plan:
- 1. ReflectionAggregator for component                2 дня
- 2. Загрузка Scene                                    2 дня
- 3. Components and Features for nsImGuiWidgetsWrapper 10 дней
- 4. Editor design                                     10 дней
- 5. ImGuiGenerator                                    10 дней
- 6. Editable scene                                    10 дней
- 7. Reflection aggregator generator                   10 дней
- 8. Ogre-next portation                               30 дней
- 9. ImGui portation, Camera                           20 дней
- 10. Render to target                                 10 дней
- 11. View project                                     10 дней
+ 1. ReflectionAggregator for component
+ 2. Загрузка Scene
+ 3. Components and Features for nsImGuiWidgetsWrapper
+ 4. Editor design
+ 5. ImGuiGenerator
+ 6. Editable scene
+ 7. Reflection aggregator generator
+ 8. Ogre-next portation
+ 9. ImGui portation, Camera
+ 10. Render to target
+ 11. View project
 
 2021.10.15:
 - Наконец-то доделал редактирование узлов TreeView по F2!

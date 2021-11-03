@@ -29,211 +29,211 @@
     <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainWindow.h">
-      <Filter>Frames</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Frames</Filter>
-    </ClInclude>
-    <ClInclude Include="Frame.h">
-      <Filter>Frames</Filter>
-    </ClInclude>
-    <ClInclude Include="TreeView.h">
-      <Filter>Frames</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Units</Filter>
-    </ClInclude>
-    <ClInclude Include="ComboBox.h">
-      <Filter>Units</Filter>
-    </ClInclude>
-    <ClInclude Include="InputInt.h">
-      <Filter>Units</Filter>
-    </ClInclude>
-    <ClInclude Include="Label.h">
-      <Filter>Units</Filter>
-    </ClInclude>
-    <ClInclude Include="Widget.h">
+    <ClInclude Include="include\Helper.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Helper.h">
+    <ClInclude Include="include\Unit.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="TreeNode.h">
-      <Filter>Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Separator.h">
-      <Filter>Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuNode.h">
-      <Filter>Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Unit.h">
+    <ClInclude Include="include\Widget.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="PopupNode.h">
+    <ClInclude Include="include\DockNode.h">
+      <Filter>Docking</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DockTree.h">
+      <Filter>Docking</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DockTreeManager.h">
+      <Filter>Docking</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DockTypeHelper.h">
+      <Filter>Docking</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LightDockNode.h">
+      <Filter>Docking\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LightDockTreeManager.h">
+      <Filter>Docking\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LightWindowNode.h">
+      <Filter>Docking\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Frame.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MainWindow.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TreeView.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Button.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CheckBox.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ComboBox.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputInt.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputMultiText.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputText.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Label.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ToolTip.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Focus.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Geometry.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Identity.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Title.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Visibility.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WidgetContainer.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MenuNode.h">
       <Filter>Nodes</Filter>
     </ClInclude>
-    <ClInclude Include="CheckBox.h">
-      <Filter>Units</Filter>
-    </ClInclude>
-    <ClInclude Include="InputMultiText.h">
-      <Filter>Units</Filter>
-    </ClInclude>
-    <ClInclude Include="PopupMenu.h">
+    <ClInclude Include="include\Node.h">
       <Filter>Nodes</Filter>
     </ClInclude>
-    <ClInclude Include="ToolTip.h">
-      <Filter>Units</Filter>
+    <ClInclude Include="include\PopupMenu.h">
+      <Filter>Nodes</Filter>
     </ClInclude>
-    <ClInclude Include="WidgetContainer.h">
-      <Filter>Properties</Filter>
+    <ClInclude Include="include\Separator.h">
+      <Filter>Nodes</Filter>
     </ClInclude>
-    <ClInclude Include="Title.h">
-      <Filter>Properties</Filter>
+    <ClInclude Include="include\PopupNode.h">
+      <Filter>Nodes</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry.h">
-      <Filter>Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="Visibility.h">
-      <Filter>Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="Identity.h">
-      <Filter>Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="DockTreeManager.h">
-      <Filter>Docking</Filter>
-    </ClInclude>
-    <ClInclude Include="DockNode.h">
-      <Filter>Docking</Filter>
-    </ClInclude>
-    <ClInclude Include="DockTree.h">
-      <Filter>Docking</Filter>
-    </ClInclude>
-    <ClInclude Include="LightDockTreeManager.h">
-      <Filter>Docking\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="LightDockNode.h">
-      <Filter>Docking\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="LightWindowNode.h">
-      <Filter>Docking\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="DockTypeHelper.h">
-      <Filter>Docking</Filter>
-    </ClInclude>
-    <ClInclude Include="InputText.h">
-      <Filter>Units</Filter>
-    </ClInclude>
-    <ClInclude Include="Focus.h">
-      <Filter>Properties</Filter>
+    <ClInclude Include="include\TreeNode.h">
+      <Filter>Nodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Label.cpp">
-      <Filter>Units</Filter>
-    </ClCompile>
-    <ClCompile Include="InputInt.cpp">
-      <Filter>Units</Filter>
-    </ClCompile>
-    <ClCompile Include="ComboBox.cpp">
-      <Filter>Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Widget.cpp">
+    <ClCompile Include="src\Helper.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="Frame.cpp">
-      <Filter>Frames</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Frames</Filter>
-    </ClCompile>
-    <ClCompile Include="TreeView.cpp">
-      <Filter>Frames</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Frames</Filter>
-    </ClCompile>
-    <ClCompile Include="Helper.cpp">
+    <ClCompile Include="src\Unit.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="TreeNode.cpp">
-      <Filter>Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="Separator.cpp">
-      <Filter>Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuNode.cpp">
-      <Filter>Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="Unit.cpp">
+    <ClCompile Include="src\Widget.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="PopupNode.cpp">
-      <Filter>Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckBox.cpp">
-      <Filter>Units</Filter>
-    </ClCompile>
-    <ClCompile Include="InputMultiText.cpp">
-      <Filter>Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="PopupMenu.cpp">
-      <Filter>Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="WidgetContainer.cpp">
-      <Filter>Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="Geometry.cpp">
-      <Filter>Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="Visibility.cpp">
-      <Filter>Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="ToolTip.cpp">
-      <Filter>Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Identity.cpp">
-      <Filter>Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="DockTreeManager.cpp">
+    <ClCompile Include="src\DockNode.cpp">
       <Filter>Docking</Filter>
     </ClCompile>
-    <ClCompile Include="DockNode.cpp">
+    <ClCompile Include="src\DockTree.cpp">
       <Filter>Docking</Filter>
     </ClCompile>
-    <ClCompile Include="DockTree.cpp">
+    <ClCompile Include="src\DockTreeManager.cpp">
       <Filter>Docking</Filter>
     </ClCompile>
-    <ClCompile Include="LightDockNode.cpp">
+    <ClCompile Include="src\DockTypeHelper.cpp">
+      <Filter>Docking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LightDockNode.cpp">
       <Filter>Docking\Light</Filter>
     </ClCompile>
-    <ClCompile Include="LightDockTreeManager.cpp">
+    <ClCompile Include="src\LightDockTreeManager.cpp">
       <Filter>Docking\Light</Filter>
     </ClCompile>
-    <ClCompile Include="LightWindowNode.cpp">
+    <ClCompile Include="src\LightWindowNode.cpp">
       <Filter>Docking\Light</Filter>
     </ClCompile>
-    <ClCompile Include="DockTypeHelper.cpp">
-      <Filter>Docking</Filter>
+    <ClCompile Include="src\Frame.cpp">
+      <Filter>Frames</Filter>
     </ClCompile>
-    <ClCompile Include="InputText.cpp">
+    <ClCompile Include="src\MainWindow.cpp">
+      <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window.cpp">
+      <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TreeView.cpp">
+      <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Button.cpp">
       <Filter>Units</Filter>
     </ClCompile>
-    <ClCompile Include="Focus.cpp">
+    <ClCompile Include="src\CheckBox.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ComboBox.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputInt.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputMultiText.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputText.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Label.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ToolTip.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Focus.cpp">
       <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Geometry.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Identity.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Title.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Visibility.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WidgetContainer.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuNode.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Node.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PopupMenu.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PopupNode.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Separator.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TreeNode.cpp">
+      <Filter>Nodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

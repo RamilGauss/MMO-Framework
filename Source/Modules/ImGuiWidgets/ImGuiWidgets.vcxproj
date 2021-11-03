@@ -22,76 +22,76 @@
     <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="CheckBox.h" />
-    <ClInclude Include="ComboBox.h" />
-    <ClInclude Include="DockNode.h" />
-    <ClInclude Include="DockTree.h" />
-    <ClInclude Include="DockTreeManager.h" />
-    <ClInclude Include="DockTypeHelper.h" />
-    <ClInclude Include="Focus.h" />
-    <ClInclude Include="Frame.h" />
-    <ClInclude Include="Helper.h" />
-    <ClInclude Include="Identity.h" />
-    <ClInclude Include="InputInt.h" />
-    <ClInclude Include="InputMultiText.h" />
-    <ClInclude Include="InputText.h" />
-    <ClInclude Include="Label.h" />
-    <ClInclude Include="Geometry.h" />
-    <ClInclude Include="LightDockNode.h" />
-    <ClInclude Include="LightDockTreeManager.h" />
-    <ClInclude Include="LightWindowNode.h" />
-    <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="MenuNode.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="PopupMenu.h" />
-    <ClInclude Include="PopupNode.h" />
-    <ClInclude Include="Separator.h" />
-    <ClInclude Include="ToolTip.h" />
-    <ClInclude Include="TreeNode.h" />
-    <ClInclude Include="TreeView.h" />
-    <ClInclude Include="Title.h" />
-    <ClInclude Include="Unit.h" />
-    <ClInclude Include="Visibility.h" />
-    <ClInclude Include="Widget.h" />
-    <ClInclude Include="WidgetContainer.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="include\Button.h" />
+    <ClInclude Include="include\CheckBox.h" />
+    <ClInclude Include="include\ComboBox.h" />
+    <ClInclude Include="include\DockNode.h" />
+    <ClInclude Include="include\DockTree.h" />
+    <ClInclude Include="include\DockTreeManager.h" />
+    <ClInclude Include="include\DockTypeHelper.h" />
+    <ClInclude Include="include\Focus.h" />
+    <ClInclude Include="include\Frame.h" />
+    <ClInclude Include="include\Geometry.h" />
+    <ClInclude Include="include\Helper.h" />
+    <ClInclude Include="include\Identity.h" />
+    <ClInclude Include="include\InputInt.h" />
+    <ClInclude Include="include\InputMultiText.h" />
+    <ClInclude Include="include\InputText.h" />
+    <ClInclude Include="include\Label.h" />
+    <ClInclude Include="include\LightDockNode.h" />
+    <ClInclude Include="include\LightDockTreeManager.h" />
+    <ClInclude Include="include\LightWindowNode.h" />
+    <ClInclude Include="include\MainWindow.h" />
+    <ClInclude Include="include\MenuNode.h" />
+    <ClInclude Include="include\Node.h" />
+    <ClInclude Include="include\PopupMenu.h" />
+    <ClInclude Include="include\PopupNode.h" />
+    <ClInclude Include="include\Separator.h" />
+    <ClInclude Include="include\Title.h" />
+    <ClInclude Include="include\ToolTip.h" />
+    <ClInclude Include="include\TreeNode.h" />
+    <ClInclude Include="include\TreeView.h" />
+    <ClInclude Include="include\Unit.h" />
+    <ClInclude Include="include\Visibility.h" />
+    <ClInclude Include="include\Widget.h" />
+    <ClInclude Include="include\WidgetContainer.h" />
+    <ClInclude Include="include\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="CheckBox.cpp" />
-    <ClCompile Include="ComboBox.cpp" />
-    <ClCompile Include="DockNode.cpp" />
-    <ClCompile Include="DockTree.cpp" />
-    <ClCompile Include="DockTreeManager.cpp" />
-    <ClCompile Include="DockTypeHelper.cpp" />
-    <ClCompile Include="Focus.cpp" />
-    <ClCompile Include="Helper.cpp" />
-    <ClCompile Include="Identity.cpp" />
-    <ClCompile Include="InputInt.cpp" />
-    <ClCompile Include="InputMultiText.cpp" />
-    <ClCompile Include="InputText.cpp" />
-    <ClCompile Include="Label.cpp" />
-    <ClCompile Include="Geometry.cpp" />
-    <ClCompile Include="LightDockNode.cpp" />
-    <ClCompile Include="LightDockTreeManager.cpp" />
-    <ClCompile Include="LightWindowNode.cpp" />
-    <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="MenuNode.cpp" />
-    <ClCompile Include="Node.cpp" />
-    <ClCompile Include="PopupMenu.cpp" />
-    <ClCompile Include="PopupNode.cpp" />
-    <ClCompile Include="Separator.cpp" />
-    <ClCompile Include="Frame.cpp" />
-    <ClCompile Include="Title.cpp" />
-    <ClCompile Include="ToolTip.cpp" />
-    <ClCompile Include="TreeNode.cpp" />
-    <ClCompile Include="TreeView.cpp" />
-    <ClCompile Include="Unit.cpp" />
-    <ClCompile Include="Visibility.cpp" />
-    <ClCompile Include="Widget.cpp" />
-    <ClCompile Include="WidgetContainer.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="src\Button.cpp" />
+    <ClCompile Include="src\CheckBox.cpp" />
+    <ClCompile Include="src\ComboBox.cpp" />
+    <ClCompile Include="src\DockNode.cpp" />
+    <ClCompile Include="src\DockTree.cpp" />
+    <ClCompile Include="src\DockTreeManager.cpp" />
+    <ClCompile Include="src\DockTypeHelper.cpp" />
+    <ClCompile Include="src\Focus.cpp" />
+    <ClCompile Include="src\Frame.cpp" />
+    <ClCompile Include="src\Geometry.cpp" />
+    <ClCompile Include="src\Helper.cpp" />
+    <ClCompile Include="src\Identity.cpp" />
+    <ClCompile Include="src\InputInt.cpp" />
+    <ClCompile Include="src\InputMultiText.cpp" />
+    <ClCompile Include="src\InputText.cpp" />
+    <ClCompile Include="src\Label.cpp" />
+    <ClCompile Include="src\LightDockNode.cpp" />
+    <ClCompile Include="src\LightDockTreeManager.cpp" />
+    <ClCompile Include="src\LightWindowNode.cpp" />
+    <ClCompile Include="src\MainWindow.cpp" />
+    <ClCompile Include="src\MenuNode.cpp" />
+    <ClCompile Include="src\Node.cpp" />
+    <ClCompile Include="src\PopupMenu.cpp" />
+    <ClCompile Include="src\PopupNode.cpp" />
+    <ClCompile Include="src\Separator.cpp" />
+    <ClCompile Include="src\Title.cpp" />
+    <ClCompile Include="src\ToolTip.cpp" />
+    <ClCompile Include="src\TreeNode.cpp" />
+    <ClCompile Include="src\TreeView.cpp" />
+    <ClCompile Include="src\Unit.cpp" />
+    <ClCompile Include="src\Visibility.cpp" />
+    <ClCompile Include="src\Widget.cpp" />
+    <ClCompile Include="src\WidgetContainer.cpp" />
+    <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -204,7 +204,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -225,7 +225,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

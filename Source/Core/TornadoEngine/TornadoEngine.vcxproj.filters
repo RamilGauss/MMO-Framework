@@ -392,6 +392,9 @@
     <ClInclude Include="Components\Common\SceneRootComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Modules\SceneContentMap.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />

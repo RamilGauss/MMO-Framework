@@ -105,14 +105,16 @@ void TEntityManager::FindTypesOfMethod(const std::string& methodName, TStrSetLis
         auto pData = demangled.data();
 
         auto beginFound = demangled.find(methodName);
-        if (beginFound == std::string::npos)
+        if (beginFound == std::string::npos) {
             continue;
+        }
 
         TStrSet strSet;
         Fill(methodName, demangled, strSet);
 
-        if (strSet.size() > 0)
+        if (strSet.size() > 0) {
             resultList.push_back(strSet);
+        }
     }
 }
 //----------------------------------------------------------------------------------------------------
@@ -124,14 +126,16 @@ void TEntityManager::FindTypeIndex(const std::string& methodName, TStrSetStrMap&
         auto demangled = s.demangled;
 
         auto beginFound = demangled.find(methodName);
-        if (beginFound == std::string::npos)
+        if (beginFound == std::string::npos) {
             continue;
+        }
 
         TStrSet strSet;
         Fill(methodName, demangled, strSet);
 
-        if (strSet.size() > 0)
+        if (strSet.size() > 0) {
             resultMap.insert({strSet, demangled});
+        }
     }
 }
 //----------------------------------------------------------------------------------------------------

@@ -34,3 +34,11 @@ std::string TProjectConfigContainer::GetResourcesAbsPath()
     return TPathOperations::CalculatePathBy(projectDirAbsPath, mProjectConfig.resourcesFilePath);
 }
 //---------------------------------------------------------------------
+std::string TProjectConfigContainer::GetSceneContentMapAbsPath()
+{
+    auto resourcesFilePath = GetResourcesAbsPath();
+    auto dirPath = TPathOperations::FileDirPath(resourcesFilePath);
+
+    return TPathOperations::CalculatePathBy(dirPath, mResources.gameEngine.sceneManagerContentMapPath);
+}
+//---------------------------------------------------------------------

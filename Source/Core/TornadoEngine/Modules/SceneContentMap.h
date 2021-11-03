@@ -7,22 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <map>
 #include <string>
 
 #include "TypeDef.h"
 
-#include <ImGuiWidgets/include/MainWindow.h>
-#include <ImGuiWidgets/include/MenuNode.h>
-
-
-namespace nsTest
+namespace nsTornadoEngine
 {
-    struct DllExport TMainWindow
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TSceneContentMap
     {
-        nsImGuiWidgets::TMainWindow mMW;
-
-        nsImGuiWidgets::TMenuNode mMenuNodes[3];
-
-        TMainWindow();
+        std::map<std::string, std::string> guidPathMap;
     };
 }

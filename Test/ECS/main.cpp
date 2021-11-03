@@ -26,6 +26,15 @@ TFeature mainFeature;
 struct TNameComponent : IComponent
 {
     std::string name;
+
+    bool IsLess(const IComponent* pOther) const override
+    {
+        return name < ((const TNameComponent*)(pOther))->name;
+    }
+    bool IsEqual(const IComponent* pOther) const override
+    {
+        return name == ((const TNameComponent*) (pOther))->name;
+    }
 };
 
 class TMyInitSystem : public TInitSystem
@@ -120,6 +129,12 @@ TMyFeature myFeature;
 
 int main()
 {
+    TNameComponent nameComponent;
+    nameComponent.name = "asda";
+    entMng.GetByUnique<TNameComponent>(nameComponent);
+    entMng.GetByValue<TNameComponent>(nameComponent);
+
+
     entMng.Setup();
     printf("\n");
 

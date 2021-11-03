@@ -14,14 +14,14 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TSceneManager::Init()
+void TSceneManager::SetContentMap(const TSceneContentMap& sceneContentMap)
 {
-    //auto entMng = Modules()->EntMng();
-
-    //auto rootEntity = entMng->CreateEntity();
-
-    //TRootComponent rootComponent;
-    //entMng->SetComponent<TRootComponent>(rootEntity, rootComponent);
+    mSceneContentMap = sceneContentMap;
+}
+//--------------------------------------------------------------------------------
+void TSceneManager::SetEntityManager(nsECSFramework::TEntityManager* entMng)
+{
+    mEntityManager = entMng;
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::LoadByAbsPath(const std::string& absPath)

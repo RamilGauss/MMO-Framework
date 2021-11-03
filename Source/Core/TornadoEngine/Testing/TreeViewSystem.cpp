@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "TreeViewSystem.h"
 #include <fmt/core.h>
-#include <ImGuiWidgets/Helper.h>
+#include <ImGuiWidgets/include/Helper.h>
 
 using namespace nsTest;
 using namespace nsImGuiWidgets;

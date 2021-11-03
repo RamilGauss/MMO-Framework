@@ -1,8 +1,6 @@
 {
-    "scenes": [
-        {
-            "guid": "0",
-            "path": "Main.scene"
-        }
-    ]
+    "guidPathMap":
+    {
+        "0": "Main.scene"
+    }
 }
