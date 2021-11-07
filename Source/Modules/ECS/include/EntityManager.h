@@ -24,10 +24,11 @@ See for more information LICENSE.md.
 #include "Config.h"
 #include "VectorRise.h"
 #include "MemoryObjectPool.h"
-#include "CallBackRegistrator.h"
+#include "CallBackPool.h"
 #include "ColanderVector.h"
 #include "ComplexType.h"
 #include "HelpStructs.h"
+#include "FastAllocatorForeachVector.h"
 
 namespace nsECSFramework
 {
@@ -75,11 +76,11 @@ namespace nsECSFramework
             auto index = TypeIndex<Component>();
             auto pMap = mUniqueMapVec[index];
             if (pMap == nullptr) {
-                return None;
+                return NONE;
             }
             auto fit = pMap->find(&c);
             if (fit == pMap->end()) {
-                return None;
+                return NONE;
             }
             return fit->second;
         }
@@ -115,21 +116,76 @@ namespace nsECSFramework
 
         // events - instant reactions
         template<typename Component>
-        TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnAddComponent();
+        TCallbackPool<TEntityID, IComponent*>* RegisterOnAddComponent();
         template<typename Component>
-        TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnUpdateComponent();
+        TCallbackPool<TEntityID, IComponent*>* RegisterOnUpdateComponent();
         template<typename Component>
-        TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnRemoveComponent();
+        TCallbackPool<TEntityID, IComponent*>* RegisterOnRemoveComponent();
+
+        // events - collected reactions
+        struct TEvent
+        {
+            TEntityID eid = NONE;
+            IComponent* pComponent = nullptr;
+        };
+        using TEventList = std::list<TEvent>;
+
+        template<typename Component>
+        int RegisterOnAddCollectorComponent();
+        template<typename Component>
+        int RegisterOnUpdateCollectorComponent();
+
+        template<typename Component>
+        void UnregisterOnAddCollectorComponent(int id);
+        template<typename Component>
+        void UnregisterOnUpdateCollectorComponent(int id);
+
+        template<typename Component>
+        const TEventList* GetAddEvents(int id);
+        template<typename Component>
+        const TEventList* GetUpdateEvents(int id);
+
+        template<typename Component>
+        void ClearAddEvents(int id);
+        template<typename Component>
+        void ClearUpdateEvents(int id);
     private:
-        using TCB_EntPtrCom = TCallBackRegistrator2<TEntityID, IComponent*>;
+        using TCB_EntPtrCom = TCallbackPool<TEntityID, IComponent*>;
         using TCBVector = TColanderVector<TCB_EntPtrCom*>;
 
         TCBVector mAddCBVector;
         TCBVector mUpdateCBVector;
         TCBVector mRemoveCBVector;
 
+        using TEventListVector = TFastAllocatorForeachVector<TEventList, unsigned int>;
+        using TComponentEventsVector = TColanderVector<TEventListVector*>;// rtti as index
+
+        TComponentEventsVector mAddCollector;
+        TComponentEventsVector mUpdateCollector;
+
+
+        // Common collector methods
         template<typename Component>
-        TCallBackRegistrator2<TEntityID, IComponent*>* RegisterOnComponent(TCBVector& cbVector);
+        int RegisterOnCollectorComponent(TComponentEventsVector& componentEventsVector);
+
+        template<typename Component>
+        void UnregisterOnCollectorComponent(TComponentEventsVector& componentEventsVector, int id);
+
+        template<typename Component>
+        const TEventList* GetCollectorEvents(TComponentEventsVector& componentEventsVector, int id);
+
+        template<typename Component>
+        void ClearCollectorEvents(TComponentEventsVector& componentEventsVector, int id);
+
+        template <typename Component>
+        void PushEventToCollector(TComponentEventsVector& componentEventsVector, unsigned int index, TEntityID eid, Component* pComponent);
+
+        template<typename Component>
+        TCallbackPool<TEntityID, IComponent*>* RegisterOnComponent(TCBVector& cbVector);
+
+        void Destroy(TCBVector& cbVector);
+
+        void DestroyEventCollector(TComponentEventsVector& eventColector);
 
         using TComplexTypePtrListPtrMap = std::map<TComplexType*, TEntityList*, ptr_less<TComplexType*>>;
         using TComplexTypePtrListPtrMapPtrVec = TColanderVector<TComplexTypePtrListPtrMap*>;
@@ -151,9 +207,7 @@ namespace nsECSFramework
         TMemoryObjectPool<TUniqueMap>* mUniqueMapMemoryPool;
         TMemoryObjectPool<TComplexTypePtrListPtrMap>* mComplexTypePtrListPtrMapMemoryPool;
 
-
-        TEntityList mReserverIndexInEntities;
-        TVectorRise<TEntity*> mEntities;
+        TFastAllocatorVector<TEntity, TEntityID> mEntities;
 
         TListPtrVector mOnAddCallBack;
         TListPtrVector mOnUpdateCallBack;
@@ -255,8 +309,12 @@ namespace nsECSFramework
 
         if (has) {
             NotifyOnUpdateComponent(index, eid, pC);
+
+            PushEventToCollector(mUpdateCollector, index, eid, pC);
         } else {
             NotifyOnAddComponent(index, eid, pC);
+
+            PushEventToCollector(mAddCollector, index, eid, pC);
         }
     }
     //---------------------------------------------------------------------------------------
@@ -284,6 +342,8 @@ namespace nsECSFramework
         TryAddInValue(eid, index, pEntity);
 
         NotifyOnUpdateComponent(index, eid, pC);
+
+        PushEventToCollector(mUpdateCollector, index, eid, pC);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
@@ -387,25 +447,25 @@ namespace nsECSFramework
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
-    TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnAddComponent()
+    TCallbackPool<TEntityID, IComponent*>* TEntityManager::RegisterOnAddComponent()
     {
         return RegisterOnComponent<Component>(mAddCBVector);
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
-    TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnUpdateComponent()
+    TCallbackPool<TEntityID, IComponent*>* TEntityManager::RegisterOnUpdateComponent()
     {
         return RegisterOnComponent<Component>(mUpdateCBVector);
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
-    TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnRemoveComponent()
+    TCallbackPool<TEntityID, IComponent*>* TEntityManager::RegisterOnRemoveComponent()
     {
         return RegisterOnComponent<Component>(mRemoveCBVector);
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
-    TCallBackRegistrator2<TEntityID, IComponent*>* TEntityManager::RegisterOnComponent(TCBVector& cbVector)
+    TCallbackPool<TEntityID, IComponent*>* TEntityManager::RegisterOnComponent(TCBVector& cbVector)
     {
         const auto index = TypeIndex<Component>();
         auto pCB = cbVector[index];
@@ -414,6 +474,129 @@ namespace nsECSFramework
             cbVector[index] = pCB;
         }
         return pCB;
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    int TEntityManager::RegisterOnAddCollectorComponent()
+    {
+        return RegisterOnCollectorComponent<Component>(mAddCollector);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    int TEntityManager::RegisterOnUpdateCollectorComponent()
+    {
+        return RegisterOnCollectorComponent<Component>(mUpdateCollector);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    void TEntityManager::UnregisterOnAddCollectorComponent(int id)
+    {
+        UnregisterOnCollectorComponent<Component>(mAddCollector, id);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    void TEntityManager::UnregisterOnUpdateCollectorComponent(int id)
+    {
+        UnregisterOnCollectorComponent<Component>(mUpdateCollector, id);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    const TEntityManager::TEventList* TEntityManager::GetAddEvents(int id)
+    {
+        return GetCollectorEvents<Component>(mAddCollector, id);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    const TEntityManager::TEventList* TEntityManager::GetUpdateEvents(int id)
+    {
+        return GetCollectorEvents<Component>(mUpdateCollector, id);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    void TEntityManager::ClearAddEvents(int id)
+    {
+        ClearCollectorEvents<Component>(mAddCollector, id);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    void TEntityManager::ClearUpdateEvents(int id)
+    {
+        ClearCollectorEvents<Component>(mUpdateCollector, id);
+    }
+    //---------------------------------------------------------------------------------------
+    // Common collector methods
+    template<typename Component>
+    int TEntityManager::RegisterOnCollectorComponent(TComponentEventsVector& componentEventsVector)
+    {
+        const auto index = TypeIndex<Component>();
+
+        auto& collectorByType = componentEventsVector[index];
+
+        if (collectorByType == nullptr) {
+            collectorByType = new TEventListVector();
+
+            collectorByType->Init(1);
+            collectorByType->onDestroy = [&](unsigned int index, TEventList* eventList)
+            {
+                delete eventList;
+            };
+        }
+
+        auto eventList = new TEventList();
+
+        return collectorByType->Create(eventList);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    void TEntityManager::UnregisterOnCollectorComponent(TComponentEventsVector& componentEventsVector, int id)
+    {
+        const auto index = TypeIndex<Component>();
+        auto& collectorByType = componentEventsVector[index];
+        if (collectorByType == nullptr) {
+            return;
+        }
+        collectorByType->Destroy(id);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    const TEntityManager::TEventList* TEntityManager::GetCollectorEvents(TComponentEventsVector& componentEventsVector, int id)
+    {
+        const auto index = TypeIndex<Component>();
+        auto& collectorByType = componentEventsVector[index];
+        if (collectorByType == nullptr) {
+            return nullptr;
+        }
+        return collectorByType->GetElement(id);
+    }
+    //---------------------------------------------------------------------------------------
+    template<typename Component>
+    void TEntityManager::ClearCollectorEvents(TComponentEventsVector& componentEventsVector, int id)
+    {
+        const auto index = TypeIndex<Component>();
+        auto& collectorByType = componentEventsVector[index];
+        if (collectorByType == nullptr) {
+            return;
+        }
+        collectorByType->GetElement(id)->clear();
+    }
+    //---------------------------------------------------------------------------------------
+    template <typename Component>
+    void TEntityManager::PushEventToCollector(TComponentEventsVector& componentEventsVector, unsigned int index, TEntityID eid, Component* pComponent)
+    {
+        auto& collectorByType = componentEventsVector[index];
+        if (collectorByType == nullptr) {
+            return;
+        }
+
+        auto& busyIndexes = collectorByType->GetBusyIndexes();
+
+        TEvent event;
+        event.eid = eid;
+        event.pComponent = pComponent;
+        for (auto& busyIndex : busyIndexes) {
+            auto eventList = collectorByType->GetElement(busyIndex);
+            eventList->push_back(event);
+        }
     }
     //---------------------------------------------------------------------------------------
 }

@@ -13,17 +13,13 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-#if defined( WIN32 )
 #pragma pack(push, 1)
-#endif
   struct DllExport TBaseEvent
   {
     // переназначить в наследуемом классе
     EventType mType;
     TContainer c;
-  }_PACKED;
-#if defined( WIN32 )
+  };
 #pragma pack(pop)
-#endif
 
 }

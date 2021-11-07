@@ -23,18 +23,14 @@ namespace nsBinary
     public:
         typedef unsigned short TypeID;
     private:
-    #ifdef WIN32
     #pragma pack(push, 1)
-    #endif
         struct THeader
         {
             TypeID type : 15;
             TypeID useCompression : 1;
             unsigned char ratio = 0;
-        }_PACKED;
-    #ifdef WIN32
+        };
     #pragma pack(pop)
-    #endif
         // upper use LZ4 for compression
         int mSetLimitForCompression = 0x40;
     

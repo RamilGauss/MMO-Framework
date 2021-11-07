@@ -17,7 +17,7 @@ TEntity::TEntity()
 int TEntity::GetFirstComponentIndex()
 {
     if ( mComponentIndexInUse.size() == 0 ) {
-        return NoneIndex;
+        return NONE_INDEX;
     }
     auto bit = mComponentIndexInUse.begin();
     auto index = *bit;

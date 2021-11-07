@@ -27,7 +27,7 @@ bool TGroupLogic::TryCreateGroup(std::list<unsigned int>& clientKeyList, unsigne
         // спросить состоит ли клиент в группе
         clientIdentity.v = clientKey;
         auto clientEntity = mEntMng->GetByUnique<TClientIdentityComponent>(clientIdentity);
-        if (clientEntity == nsECSFramework::None) {
+        if (clientEntity == nsECSFramework::NONE) {
             AddError(CreateGroup_ClientNotExist);
             return false;
         }
@@ -47,19 +47,21 @@ void TGroupLogic::DestroyGroup(unsigned int groupID)
     TGroupIdentityComponent groupIdentityComponent;
     groupIdentityComponent.v = groupID;
     auto groupEntity = mEntMng->GetByUnique(groupIdentityComponent);
-    if (groupEntity == nsECSFramework::None)
+    if (groupEntity == nsECSFramework::NONE) {
         return;// нет такой группы
+    }
 
     TGroupIDComponent groupIDComponent;
     groupIDComponent.v = groupID;
     auto clients = mEntMng->GetByValue(groupIDComponent);
     groupIDComponent.v = 0;
     TSlaveSessionByClientComponent slaveSessionByClientComponent;
-    if (clients != nullptr)
+    if (clients != nullptr) {
         for (auto clientEntity : *clients) {
             mEntMng->SetComponent(clientEntity, groupIDComponent);
             mEntMng->SetComponent(clientEntity, slaveSessionByClientComponent);// обнулить информацию о Slave
         }
+    }
 
     mEntMng->DestroyEntity(groupEntity);
 
@@ -74,8 +76,9 @@ void TGroupLogic::LeaveGroup(unsigned int clientKey)
 {
     TClientIdentityComponent clientIdentityComponent;
     auto clientEntity = mEntMng->GetByUnique(clientIdentityComponent);
-    if (clientEntity == nsECSFramework::None)
+    if (clientEntity == nsECSFramework::NONE) {
         return;
+    }
     TGroupIDComponent groupIDComponent;
     mEntMng->SetComponent(clientEntity, groupIDComponent);
 
@@ -98,8 +101,9 @@ void TGroupLogic::GetListForGroup(unsigned int groupID, std::list<unsigned int>&
     TGroupIDComponent groupIDComponent;
     groupIDComponent.v = groupID;
     auto clients = mEntMng->GetByValue(groupIDComponent);
-    if (clients == nullptr)
+    if (clients == nullptr) {
         return;
+    }
     groupIDComponent.v = 0;
     for (auto clientEntity : *clients) {
         auto clientId = mEntMng->ViewComponent<TClientIdentityComponent>(clientEntity)->v;
@@ -112,8 +116,9 @@ bool TGroupLogic::FindSlaveSessionByGroup(unsigned int groupID, unsigned int& se
     TGroupIdentityComponent groupIdentityComponent;
     groupIdentityComponent.v = groupID;
     auto groupEntity = mEntMng->GetByUnique(groupIdentityComponent);
-    if (groupEntity == nsECSFramework::None)
+    if (groupEntity == nsECSFramework::NONE) {
         return false;// нет такой группы
+    }
 
     sessionID = mEntMng->ViewComponent<TSlaveSessionByGroupComponent>(groupEntity)->v;
     return true;
@@ -141,8 +146,9 @@ bool TGroupLogic::EvalCreateGroupNow(std::list<unsigned int>& clientKeyList, uns
 
         auto clientCountNotOnSlave = CalculateClientCountNotOnSlave(slaveEntity, clientKeyList);
         auto addedClientCount = clientCountNotOnSlave - clientEntityWithoutGroupList.size();
-        if (addedClientCount < 0)
+        if (addedClientCount < 0) {
             addedClientCount = 0;
+        }
 
         auto loadAfterAdd = CalculateFutureLoadOnSlave(slaveEntity, addedClientCount);
         if (loadAfterAdd < LimitLoadPercentOnSlaveForAdd_ClientInGroup) {
@@ -197,8 +203,9 @@ bool TGroupLogic::EvalCreateGroupNow(std::list<unsigned int>& clientKeyList, uns
 void TGroupLogic::CalculateLoadMap(std::map<int, nsECSFramework::TEntityID>& loadSlaveEntityMap)
 {
     auto slaves = mEntMng->GetByHas<TSlaveSessionIdentityComponent>();
-    if (slaves == nullptr)
+    if (slaves == nullptr) {
         return;
+    }
 
     for (auto slaveEntity : *slaves) {
         auto sessionID = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>(slaveEntity)->v;
@@ -218,22 +225,25 @@ void TGroupLogic::CalculateLoadMap(std::map<int, nsECSFramework::TEntityID>& loa
         slaveSessionByGroupComponent.v = sessionID;
         auto groups = mEntMng->GetByValue(slaveSessionByGroupComponent);
 
-        if (groups != nullptr)
+        if (groups != nullptr) {
             for (auto groupEntity : *groups) {
                 auto groupId = mEntMng->ViewComponent<TGroupIdentityComponent>(groupEntity)->v;
 
                 TGroupIDComponent groupIDComponent;
                 groupIDComponent.v = groupId;
                 auto clientInGroups = mEntMng->GetByValue(groupIDComponent);
-                if (clientInGroups == nullptr)
+                if (clientInGroups == nullptr) {
                     continue;
+                }
 
                 clientCountInGroup += clientInGroups->size();
             }
+        }
 
         int loadByGroup = 0;
-        if (clientOnSlaveCount > 0)
+        if (clientOnSlaveCount > 0) {
             loadByGroup = (int) ((slaveLoadComponent.v / clientOnSlaveCount) * clientCountInGroup);
+        }
 
         loadSlaveEntityMap.insert({loadByGroup, slaveEntity});
     }
@@ -251,13 +261,15 @@ int TGroupLogic::CalculateClientCountNotOnSlave(unsigned int slaveSession,
         TClientIdentityComponent clientIdentityComponent;
         clientIdentityComponent.v = clientKey;
         auto clientEntity = mEntMng->GetByUnique(clientIdentityComponent);
-        if (clientEntity == nsECSFramework::None)
+        if (clientEntity == nsECSFramework::NONE) {
             continue;
+        }
 
         TSlaveSessionByClientComponent slaveSessionByClientComponent;
         auto slaveSessionId = mEntMng->ViewComponent<TSlaveSessionByClientComponent>(clientEntity)->v;
-        if (slaveSessionId == slaveSession)
+        if (slaveSessionId == slaveSession) {
             continue;
+        }
 
         result++;
     }
@@ -282,8 +294,9 @@ unsigned int TGroupLogic::CreateGroup(unsigned int slaveSession, std::list<unsig
         TClientIdentityComponent clientIdentityComponent;
         clientIdentityComponent.v = clientKey;
         auto clientEntity = mEntMng->GetByUnique(clientIdentityComponent);
-        if (clientEntity == nsECSFramework::None)
+        if (clientEntity == nsECSFramework::NONE) {
             continue;
+        }
 
         TGroupIDComponent groupIDComponent;
         groupIDComponent.v = groupID;
@@ -299,8 +312,9 @@ void TGroupLogic::AddClientsInGroup(unsigned int groupID, std::list<unsigned int
         // найти клиента
         TClientIdentityComponent clientIdentityComponent;
         auto clientEntity = mEntMng->GetByUnique(clientIdentityComponent);
-        if (clientEntity == nsECSFramework::None)
+        if (clientEntity == nsECSFramework::NONE) {
             continue;
+        }
 
         TGroupIDComponent groupIDComponent;
         groupIDComponent.v = groupID;
@@ -316,16 +330,19 @@ void TGroupLogic::ExchangeClients(unsigned int slaveSession,
         // найти клиента
         TClientIdentityComponent clientIdentityComponent;
         auto clientEntity = mEntMng->GetByUnique(clientIdentityComponent);
-        if (clientEntity == nsECSFramework::None)
+        if (clientEntity == nsECSFramework::NONE) {
             continue;
+        }
 
-        if (mEntMng->ViewComponent<TSlaveSessionByClientComponent>(clientEntity)->v == slaveSession)
+        if (mEntMng->ViewComponent<TSlaveSessionByClientComponent>(clientEntity)->v == slaveSession) {
             continue;
+        }
 
         StartRcm(clientEntity, slaveSession);
 
-        if (clientEntityWithoutGroupList.size() == 0)
+        if (clientEntityWithoutGroupList.size() == 0) {
             continue;
+        }
 
         clientEntity = clientEntityWithoutGroupList.front();
         clientEntityWithoutGroupList.pop_front();

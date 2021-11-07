@@ -64,24 +64,27 @@ float TBaseMasterLogic::CalculateFutureLoadOnSlave(TEntityID slaveEntity, int ad
     auto onSlaves = mEntMng->GetByValue(slaveSessionByClientComponent, clientStateComponent);
     int onSlaveCount = 1;
 
-    if (onSlaves == nullptr || onSlaves->size() == 0)
+    if (onSlaves == nullptr || onSlaves->size() == 0) {
         load = DefaultLoadPerClientIfClientCountZero;
-    else
+    } else {
         onSlaveCount = onSlaves->size();
+    }
 
     clientStateComponent.v = TClientStateComponent::RCM;
     // все, для кого мы - реципиент
     int rcmCount = 0;
     auto rcmClients = mEntMng->GetByValue(slaveSessionByClientComponent, clientStateComponent);
-    if (rcmClients != nullptr)
+    if (rcmClients != nullptr) {
         rcmCount = rcmClients->size();
+    }
 
     clientStateComponent.v = TClientStateComponent::Logining;
 
     int loginingCount = 0;
     auto loginingClients = mEntMng->GetByValue(slaveSessionByClientComponent, clientStateComponent);
-    if (loginingClients != nullptr)
+    if (loginingClients != nullptr) {
         loginingCount = loginingClients->size();
+    }
 
     auto futureLoad = (load * (onSlaveCount + rcmCount + loginingCount + addedClientCount)) / onSlaveCount;
     return futureLoad;
@@ -97,9 +100,10 @@ void TBaseMasterLogic::GetClientWithoutGroup(unsigned int slaveSession,
     TClientStateComponent clientStateComponent;
     clientStateComponent.v = TClientStateComponent::OnSlave;
     auto clientOnSlaves = mEntMng->GetByValue(slaveSessionByClientComponent, clientStateComponent);
-    if (clientOnSlaves == nullptr)
+    if (clientOnSlaves == nullptr) {
         return;
-    for (auto& clientEntity : *clientOnSlaves)   {
+    }
+    for (auto& clientEntity : *clientOnSlaves) {
         if (mEntMng->ViewComponent<TGroupIDComponent>(clientEntity)->v != 0)
             continue;
         // не в группе
@@ -117,13 +121,14 @@ void TBaseMasterLogic::AddError(nsMMOEngine::ErrorCode err)
 bool TBaseMasterLogic::FindMinimumLoad(unsigned int& slaveSessionID, unsigned char& load_procent)
 {
     auto slaves = mEntMng->GetByHas<TSlaveSessionIdentityComponent>();
-    if (slaves == nullptr || slaves->size() == 0)
+    if (slaves == nullptr || slaves->size() == 0) {
         return false;
+    }
 
     load_procent = 101;
-    for (auto slaveEntity : *slaves)   {
+    for (auto slaveEntity : *slaves) {
         auto load = mEntMng->ViewComponent<TSlaveLoadInfoComponent>(slaveEntity)->v;
-        if (load < load_procent)     {
+        if (load < load_procent) {
             load_procent = (unsigned char) load;
             slaveSessionID = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>(slaveEntity)->v;
         }
@@ -136,7 +141,7 @@ unsigned char TBaseMasterLogic::GetLimitLoadProcentByKey(unsigned int clientKey)
     TClientIdentityComponent clientIdentity;
     clientIdentity.v = clientKey;
     auto clientEntity = mEntMng->GetByUnique(clientIdentity);
-    if (clientEntity == nsECSFramework::None)   {
+    if (clientEntity == nsECSFramework::NONE) {
         // генерация ошибки
         GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("GetLimitLoadProcentByKey() not found client.\n");

@@ -77,9 +77,7 @@ namespace nsMMOEngine
 
     TContainerRise mEncrypt;
     TContainerRise mDecrypt;
-#if defined( WIN32 )
 #pragma pack(push, 1)
-#endif
     struct THeader
     {
       unsigned char type;
@@ -87,10 +85,8 @@ namespace nsMMOEngine
       {
         type = t;
       }
-    }_PACKED;
-#if defined( WIN32 )
+    };
 #pragma pack(pop)
-#endif
 
     TContainerRise mRecvDataContainer;
 

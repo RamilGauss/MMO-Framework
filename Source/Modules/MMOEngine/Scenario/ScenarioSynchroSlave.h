@@ -12,34 +12,30 @@ See for more information LICENSE.md.
 #include "MakerScenario.h"
 #include "ScenarioBaseHeader.h"
 
-#ifdef WIN32
 #pragma pack(push, 1)
-#endif
 
 namespace nsMMOEngine
 {
-  class TScenarioSynchroSlave : public IScenario
-  {
-    enum{ eFromSlave, };
-    struct THeaderSynchroSlave : public TScenarioBaseHeader
+    class TScenarioSynchroSlave : public IScenario
     {
-      float loadProcent;
-      THeaderSynchroSlave(){ type = TMakerScenario::eSynchroSlave; subType = eFromSlave; }
-    }_PACKED;
-    //-------------------------------------------------
-  public:
-    TScenarioSynchroSlave();
-    virtual ~TScenarioSynchroSlave();
-    virtual void Recv( TDescRecvSession* pDesc );
+        enum { eFromSlave, };
+        struct THeaderSynchroSlave : public TScenarioBaseHeader
+        {
+            float loadProcent;
+            THeaderSynchroSlave() { type = TMakerScenario::eSynchroSlave; subType = eFromSlave; }
+        };
+        //-------------------------------------------------
+    public:
+        TScenarioSynchroSlave();
+        virtual ~TScenarioSynchroSlave();
+        virtual void Recv(TDescRecvSession* pDesc);
 
-    void SendSynchro( float loadProcent );
-  protected:
-    void RecvFromSlave( TDescRecvSession* pDesc );
+        void SendSynchro(float loadProcent);
+    protected:
+        void RecvFromSlave(TDescRecvSession* pDesc);
 
-    TContextScSynchroSlave* Context(){ return (TContextScSynchroSlave*) mCurContext; }
-  };
+        TContextScSynchroSlave* Context() { return (TContextScSynchroSlave*) mCurContext; }
+    };
 }
 
-#ifdef WIN32
 #pragma pack(pop)
-#endif

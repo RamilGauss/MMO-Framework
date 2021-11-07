@@ -13,9 +13,7 @@ See for more information LICENSE.md.
 
 namespace DataExchange2Thread
 {
-#ifdef WIN32
 #pragma pack(push, 1)
-#endif
   struct DllExport TElement
   {
     DECLARATION_ATOMIC_POINTER( pNext, TElement );// change by Producer
@@ -29,8 +27,6 @@ namespace DataExchange2Thread
 
     void Init();
     void Done( TCallBackRegistrator1<void*>* pCB );
-  }_PACKED;
-#ifdef WIN32
+  };
 #pragma pack(pop)
-#endif
 }

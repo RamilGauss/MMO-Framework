@@ -9,9 +9,7 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#ifdef WIN32
 #pragma pack(push, 1)
-#endif
 
 namespace nsMMOEngine
 {
@@ -21,9 +19,7 @@ namespace nsMMOEngine
     unsigned int random_num = 0;
     unsigned int sessionID = 0;
     void Generate();
-  }_PACKED;
+  };
 }
 
-#ifdef WIN32
 #pragma pack(pop)
-#endif

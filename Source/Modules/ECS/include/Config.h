@@ -15,7 +15,7 @@ namespace nsECSFramework
     using TypeIndexType = short;
 
     using TEntityID = unsigned int;
-    const TEntityID None = (TEntityID) (-1);
+    const TEntityID NONE = (TEntityID) (-1);
 
     using TEntityList = std::list<TEntityID>;
     using TEntityLoopList = TLoopList<TEntityID>;

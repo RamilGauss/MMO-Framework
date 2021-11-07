@@ -44,15 +44,13 @@ namespace nsMMOEngine
       eSuperServer,
     };
     //-------------------------------------------------
-#ifdef WIN32
 #pragma pack(push, 1)
-#endif
     struct THeader : public TScenarioBaseHeader
     {
       THeader();
       unsigned char from;
       unsigned int  clientKey;
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderC : public THeader
     {
@@ -60,44 +58,44 @@ namespace nsMMOEngine
       {
         from = eClient;
       }
-    }_PACKED;
+    };
     struct THeaderM : public THeader
     {
       THeaderM()
       {
         from = eMaster;
       }
-    }_PACKED;
+    };
     struct THeaderS : public THeader
     {
       THeaderS()
       {
         from = eSlave;
       }
-    }_PACKED;
+    };
     struct THeaderSS : public THeader
     {
       THeaderSS()
       {
         from = eSuperServer;
       }
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderTryLoginC2M : THeaderC
     {
       THeaderTryLoginC2M();
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderRequestM2SS : THeaderM
     {
       THeaderRequestM2SS();
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderCheckRequestSS2M : THeaderSS
     {
       THeaderCheckRequestSS2M();
       char isExistInSystem;// данный клиент присутствует в составе
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderResultLoginM2C : THeaderM
     {
@@ -106,62 +104,60 @@ namespace nsMMOEngine
       char result;
       int numInQueue;
       int sizeResClient;
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderLeaveQueueC2M : public THeaderC
     {
       THeaderLeaveQueueC2M();
-    }_PACKED;
+    };
     //------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------
     struct THeaderInfoClientM2S : public THeaderM
     {
       THeaderInfoClientM2S();
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderCheckInfoClientS2M : public THeaderS
     {
       THeaderCheckInfoClientS2M();
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderInfoSlaveM2C : public THeaderM
     {
       THeaderInfoSlaveM2C();
       TIP_Port ip_port_slave;
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderCheckInfoSlaveC2M : public THeaderC
     {
       THeaderCheckInfoSlaveC2M();
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderConnectToSlaveC2S : public THeaderC
     {
       THeaderConnectToSlaveC2S();
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderClientConnectS2M : public THeaderS
     {
       THeaderClientConnectS2M();
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderCheckClientConnectM2S : public THeaderM
     {
       THeaderCheckClientConnectM2S();
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderCheckConnectToSlaveS2C : public THeaderS
     {
       THeaderCheckConnectToSlaveS2C();
-    }_PACKED;
+    };
     //-------------------------------------------------
     struct THeaderDisconnectClientM2S : public THeaderM
     {
       THeaderDisconnectClientM2S();
-    }_PACKED;
+    };
     //-------------------------------------------------
-#ifdef WIN32
 #pragma pack(pop)
-#endif
   }
 }

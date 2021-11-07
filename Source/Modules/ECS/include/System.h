@@ -17,6 +17,8 @@ namespace nsECSFramework
     protected:
         TEntityManager* mEntMng = nullptr;
     public:
+        virtual ~TSystem() {}
+
         virtual void SetEntMng(TEntityManager* entMng);
         TEntityManager* GetEntMng();
 

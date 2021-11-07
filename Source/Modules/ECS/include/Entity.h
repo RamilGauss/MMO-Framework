@@ -38,7 +38,7 @@ namespace nsECSFramework
         IComponent* GetComponent(int index);
         void RemoveComponent(int index);
 
-        static const int NoneIndex = -1;
+        static const int NONE_INDEX = -1;
         int GetFirstComponentIndex();
 
         const std::list<TypeIndexType>* GetComponentIndexInUse() const;

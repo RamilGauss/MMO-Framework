@@ -13,67 +13,62 @@ See for more information LICENSE.md.
 #include "SrcEvent_ex.h"
 #include "ScenarioBaseHeader.h"
 
-#ifdef WIN32
 #pragma pack(push, 1)
-#endif
 
 namespace nsMMOEngine
 {
-  class TScenarioFlow : public IScenario
-  {
-    enum{ eUp, eDown };
-    struct THeaderFlow : public TScenarioBaseHeader
+    class TScenarioFlow : public IScenario
     {
-      THeaderFlow(){ type = TMakerScenario::eFlow; }
-    }_PACKED;
-    //-------------------------------------------------
-    struct THeaderSendUp : public THeaderFlow
-    {
-      THeaderSendUp(){ subType = eUp; }
-    }_PACKED;
-    //-------------------------------------------------
-    struct THeaderSendDown : public THeaderFlow
-    {
-      THeaderSendDown(){ subType = eDown; }
-    }_PACKED;
-    //-------------------------------------------------
-  public:
-    TScenarioFlow();
-    virtual ~TScenarioFlow();
+        enum { eUp, eDown };
+        struct THeaderFlow : public TScenarioBaseHeader
+        {
+            THeaderFlow() { type = TMakerScenario::eFlow; }
+        };
+        //-------------------------------------------------
+        struct THeaderSendUp : public THeaderFlow
+        {
+            THeaderSendUp() { subType = eUp; }
+        };
+        //-------------------------------------------------
+        struct THeaderSendDown : public THeaderFlow
+        {
+            THeaderSendDown() { subType = eDown; }
+        };
+        //-------------------------------------------------
+    public:
+        TScenarioFlow();
+        virtual ~TScenarioFlow();
 
-    void SendUp( TBreakPacket& bp, bool check );
-    void SendDown( TBreakPacket& bp, bool check );
+        void SendUp(TBreakPacket& bp, bool check);
+        void SendDown(TBreakPacket& bp, bool check);
 
-    virtual void Recv( TDescRecvSession* pDesc );
-  protected:
-    virtual void DelayBegin();
-  private:
-    TContextScFlow* Context(){ return (TContextScFlow*) mCurContext; }
-    // для Send
-    void HandlePacket( TBreakPacket& bp, bool check );
-    // для Recv
-    template <class TypeSrc>
-    void Recv( TDescRecvSession* pDesc )
-    {
-      // защита от хака, могут прислать пакет меньшего размера, сервер выйдет за границы памяти и упадет
-      if( pDesc->dataSize < sizeof( THeaderFlow ) )
-        return;
-      // создать событие
-      TypeSrc* pEvent = new TypeSrc;
-      // отцепиться от памяти, в которой содержится пакет
-      // отдать память под контроль события
-      pEvent->c = pDesc->c;
-      pEvent->SetShift( sizeof( THeaderFlow ) );
+        virtual void Recv(TDescRecvSession* pDesc);
+    protected:
+        virtual void DelayBegin();
+    private:
+        TContextScFlow* Context() { return (TContextScFlow*) mCurContext; }
+        // для Send
+        void HandlePacket(TBreakPacket& bp, bool check);
+        // для Recv
+        template <class TypeSrc>
+        void Recv(TDescRecvSession* pDesc)
+        {
+            // защита от хака, могут прислать пакет меньшего размера, сервер выйдет за границы памяти и упадет
+            if (pDesc->dataSize < sizeof(THeaderFlow))
+                return;
+            // создать событие
+            TypeSrc* pEvent = new TypeSrc;
+            // отцепиться от памяти, в которой содержится пакет
+            // отдать память под контроль события
+            pEvent->c = pDesc->c;
+            pEvent->SetShift(sizeof(THeaderFlow));
 
-      // откуда пришел пакет - сессия
-      pEvent->sessionID = pDesc->sessionID;
-      // добавить событие без копирования и указать истинное время создания события в транспорте
-      Context()->GetSE()->AddEventWithoutCopy<TypeSrc>( pEvent, pDesc->time_ms );
-    }
-  };
-  //-------------------------------------------------------------------
+            // откуда пришел пакет - сессия
+            pEvent->sessionID = pDesc->sessionID;
+            // добавить событие без копирования и указать истинное время создания события в транспорте
+            Context()->GetSE()->AddEventWithoutCopy<TypeSrc>(pEvent, pDesc->time_ms);
+        }
+    };
 }
 
-#ifdef WIN32
 #pragma pack(pop)
-#endif

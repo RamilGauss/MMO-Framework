@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\BaseCollectReactiveSystem.h" />
     <ClInclude Include="include\BaseReactiveSystem.h" />
     <ClInclude Include="include\ComplexType.h" />
     <ClInclude Include="include\ComponentContainer.h" />
+    <ClInclude Include="include\FastAllocatorVector.h" />
     <ClInclude Include="include\HelpStructs.h" />
     <ClInclude Include="include\IComponent.h" />
     <ClInclude Include="include\Config.h" />
@@ -33,11 +35,14 @@
     <ClInclude Include="include\InitSystem.h" />
     <ClInclude Include="include\LinkToList.h" />
     <ClInclude Include="include\LoopList.h" />
+    <ClInclude Include="include\OnAddCollectReactiveSystem.h" />
     <ClInclude Include="include\OnAddInstantReactiveSystem.h" />
     <ClInclude Include="include\OnRemoveInstantReactiveSystem.h" />
+    <ClInclude Include="include\OnUpdateCollectReactiveSystem.h" />
     <ClInclude Include="include\OnUpdateInstantReactiveSystem.h" />
     <ClInclude Include="include\System.h" />
     <ClInclude Include="include\TearDownSystem.h" />
+    <ClInclude Include="include\FastAllocatorForeachVector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity.cpp" />
@@ -157,7 +162,7 @@
       <AdditionalIncludeDirectories>./include;$(SolutionDir)Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

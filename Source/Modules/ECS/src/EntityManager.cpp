@@ -17,24 +17,36 @@ namespace dll = boost::dll;
 namespace bexp = boost::dll::experimental;
 
 // const 
-const std::string templateBegin = "<";
+const std::string TEMPLATE_BEGIN = "<";
 
-const char leftCornerLiteral = '<';
-const char rightCornerLiteral = '>';
-const char commaLiteral = ',';
-const char spaceLiteral = ' ';
+const char LEFT_CORNER_LITERAL = '<';
+const char RIGHT_CORNER_LITERAL = '>';
+const char COMMA_LITERAL = ',';
+const char SPACE_LITERAL = ' ';
 
-const std::string typeIndexMethodName = "TypeIndex";
+const std::string TYPE_INDEX_METHOD_NAME = "TypeIndex";
 
-const std::string getByUniqueMethodName = "GetByUnique";
-const std::string getByHasMethodName = "GetByHas";
-const std::string getByValueMethodName = "GetByValue";
+const std::string GET_BY_UNIQUE_METHOD_NAME = "GetByUnique";
+const std::string GET_BY_HAS_METHOD_NAME = "GetByHas";
+const std::string GET_BY_VALUE_METHOD_NAME = "GetByValue";
 
 
 //----------------------------------------------------------------------------------------------------
 TEntityManager::TEntityManager(int entityCount)
 {
-    mEntities.mVec.resize(entityCount);
+    mEntities.Init(entityCount);
+    mEntities.onDestroy = [&](TEntityID eid, TEntity* pEntity)
+    {
+        auto index = pEntity->GetFirstComponentIndex();
+        while (index != TEntity::NONE_INDEX) {
+            RemoveComponent(eid, pEntity, index);
+            index = pEntity->GetFirstComponentIndex();
+        }
+
+        mEntityMemoryPool->Push(pEntity);
+    };
+
+    // MemoryPools must be singleton, because it uses shared pointers 
     mEntityMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TEntity>>();
     mComplexTypeMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TComplexType>>();
     mLinkToListMemoryPool = SingletonManager()->Get<TMemoryObjectPool<TLinkToList<TEntityID>>>();
@@ -47,7 +59,12 @@ TEntityManager::TEntityManager(int entityCount)
 //----------------------------------------------------------------------------------------------------
 TEntityManager::~TEntityManager()
 {
+    Destroy(mAddCBVector);
+    Destroy(mUpdateCBVector);
+    Destroy(mRemoveCBVector);
 
+    DestroyEventCollector(mAddCollector);
+    DestroyEventCollector(mUpdateCollector);
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::Fill(const std::string& methodName, std::string& demangled, TStrSet& strSet)
@@ -55,8 +72,8 @@ void TEntityManager::Fill(const std::string& methodName, std::string& demangled,
     auto beginFound = demangled.find(methodName);
 
     auto pData = demangled.data();
-    auto argsBeginIndex = demangled.find(templateBegin, beginFound);
-    auto beginTypesIndex = argsBeginIndex + templateBegin.size();
+    auto argsBeginIndex = demangled.find(TEMPLATE_BEGIN, beginFound);
+    auto beginTypesIndex = argsBeginIndex + TEMPLATE_BEGIN.size();
     auto offset = beginTypesIndex;
 
     // функция для добавления
@@ -72,18 +89,18 @@ void TEntityManager::Fill(const std::string& methodName, std::string& demangled,
     for (int i = argsBeginIndex; i < demangled.size(); i++) {
         auto symbol = pData[i];
         switch (symbol) {
-            case leftCornerLiteral:
+            case LEFT_CORNER_LITERAL:
                 cornerBalance++;
                 break;
-            case rightCornerLiteral:
+            case RIGHT_CORNER_LITERAL:
                 cornerBalance--;
                 break;
-            case commaLiteral:
+            case COMMA_LITERAL:
                 if (cornerBalance == 1) {
                     addFunc(i);
-                    offset += sizeof(commaLiteral);
-                    if (pData[i + 1] == spaceLiteral)
-                        offset += sizeof(spaceLiteral);
+                    offset += sizeof(COMMA_LITERAL);
+                    if (pData[i + 1] == SPACE_LITERAL)
+                        offset += sizeof(SPACE_LITERAL);
                 }
                 break;
         }
@@ -154,11 +171,11 @@ void TEntityManager::Setup(std::string libName)
     // для разделения пространства имен классов, на случай когда более чем один EntityManager
     auto entMngClassName = typeid(*this).name();
 
-    FindTypesOfMethod(getByUniqueMethodName, mUniqueSet);
-    FindTypesOfMethod(getByHasMethodName, mHasComponentList);
-    FindTypesOfMethod(getByValueMethodName, mValueComponentList);
+    FindTypesOfMethod(GET_BY_UNIQUE_METHOD_NAME, mUniqueSet);
+    FindTypesOfMethod(GET_BY_HAS_METHOD_NAME, mHasComponentList);
+    FindTypesOfMethod(GET_BY_VALUE_METHOD_NAME, mValueComponentList);
 
-    FindTypeIndex(typeIndexMethodName, mTypeIndexNameFuncMap);
+    FindTypeIndex(TYPE_INDEX_METHOD_NAME, mTypeIndexNameFuncMap);
 
     auto showWarning = mUniqueSet.size() == 0 && mHasComponentList.size() == 0 && mValueComponentList.size() == 0 && mTypeIndexNameFuncMap.size() == 0;
     if (showWarning) {
@@ -174,7 +191,7 @@ void TEntityManager::Setup(std::string libName)
         try {
             auto& demangled = strSetFunc.second;
 
-            auto beginFound = demangled.find(typeIndexMethodName);
+            auto beginFound = demangled.find(TYPE_INDEX_METHOD_NAME);
             if (beginFound == std::string::npos) {
                 continue;
             }
@@ -296,54 +313,23 @@ void TEntityManager::Setup(std::string libName)
 //-------------------------------------------------------------------------------------------------------
 TEntityID TEntityManager::CreateEntity()
 {
-    auto id = (TEntityID) mEntities.mCounter;
-
     auto newEntity = mEntityMemoryPool->Pop();
-    if (mReserverIndexInEntities.size() > 0) {
-        id = mReserverIndexInEntities.back();
-        mReserverIndexInEntities.pop_back();
-        mEntities.mVec[id] = newEntity;
-    } else {
-        mEntities.Append(newEntity);
-    }
-    return id;
+    return mEntities.Create(newEntity);
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::DestroyEntity(TEntityID eid)
 {
-    auto pEntity = GetEntity(eid);
-    if (pEntity == nullptr) {
-        BL_FIX_BUG();
-        return;
-    }
-
-    auto index = pEntity->GetFirstComponentIndex();
-    while (index != TEntity::NoneIndex) {
-        RemoveComponent(eid, pEntity, index);
-        index = pEntity->GetFirstComponentIndex();
-    }
-
-    mEntityMemoryPool->Push(pEntity);
-
-    mReserverIndexInEntities.push_back(eid);
-    mEntities.mVec[eid] = nullptr;
+    mEntities.Destroy(eid);
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::Clear()
 {
-    auto cnt = mEntities.mCounter;
-    for (size_t i = 0; i < cnt; i++) {
-        auto ent = mEntities.mVec[i];
-        if (ent == nullptr) {
-            continue;
-        }
-        DestroyEntity(i);
-    }
+    mEntities.Clear();
 }
 //----------------------------------------------------------------------------------------------------
 TEntity* TEntityManager::GetEntity(TEntityID eid) const
 {
-    return mEntities.mVec[eid];
+    return mEntities.GetElement(eid);
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::RemoveComponent(TEntityID eid, TEntity* pEntity, int index)
@@ -590,5 +576,23 @@ void TEntityManager::GetComponentList(TEntityID eid, std::list<TypeIndexType>& t
 
     auto pComponentList = pEntity->GetComponentIndexInUse();
     typeIdentifierList = *pComponentList;
+}
+//---------------------------------------------------------------------------------------
+void TEntityManager::Destroy(TCBVector& cbVector)
+{
+    auto size = cbVector.Size();
+    for (int i = 0; i < size; i++) {
+        delete cbVector[i];
+        cbVector[i] = nullptr;
+    }
+}
+//---------------------------------------------------------------------------------------
+void TEntityManager::DestroyEventCollector(TComponentEventsVector& eventColector)
+{
+    auto size = eventColector.Size();
+    for (int i = 0; i < size; i++) {
+        delete eventColector[i];
+        eventColector[i] = nullptr;
+    }
 }
 //---------------------------------------------------------------------------------------

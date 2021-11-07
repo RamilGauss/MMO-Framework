@@ -11,16 +11,14 @@ See for more information LICENSE.md.
 
 namespace nsMathTools
 {
-#ifdef WIN32 
 #pragma pack(push, 1)
-#endif
     //----------------------------------------------------------------------------------------
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TPoint2
     {
         unsigned int x = 0;
         unsigned int y = 0;
-    }_PACKED;
+    };
     //----------------------------------------------------------------------------------------
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TVector2
@@ -61,7 +59,7 @@ namespace nsMathTools
 
         bool operator > (const TVector2&) const;
         bool operator < (const TVector2&) const;
-    }_PACKED;
+    };
     //-------------------------------------------------------------------
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TVector3
@@ -98,7 +96,7 @@ namespace nsMathTools
         bool operator < (const TVector3&) const;
 
         float length() const;
-    }_PACKED;
+    };
     //-----------------------------------------------------------------
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TVector4
@@ -113,7 +111,7 @@ namespace nsMathTools
         {
             x = _x; y = _y; z = _z; w = _w;
         }
-    }_PACKED;
+    };
     //-----------------------------------------------------------------
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TMatrix9
@@ -130,7 +128,7 @@ namespace nsMathTools
         {
             return pThis[i + j * 3];
         }
-    }_PACKED;
+    };
     //-----------------------------------------------------------------
 #pragma REFLECTION_ATTRIBUTE
     class DllExport TMatrix16
@@ -184,7 +182,7 @@ namespace nsMathTools
     protected:
         nsMathTools::TVector3 axis;
         float                 angle = 0;
-    }_PACKED;
+    };
     //----------------------------------------------------------------------------------------
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TPlane
@@ -218,7 +216,7 @@ namespace nsMathTools
 
         bool operator == (const TPlane&) const;
         bool operator != (const TPlane&) const;
-    }_PACKED;
+    };
     //----------------------------------------------------------------------------------------
   //#pragma REFLECTION_ATTRIBUTE
     class DllExport TLine
@@ -248,7 +246,7 @@ namespace nsMathTools
     protected:
         void SetType(int v);
         void Calc(float arg, float* res1, float* res2);
-    }_PACKED;
+    };
     //----------------------------------------------------------------------------------------
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TQuaternion
@@ -290,7 +288,7 @@ namespace nsMathTools
 
         bool operator == (const TQuaternion&) const;
         bool operator != (const TQuaternion&) const;
-    }_PACKED;
+    };
     //----------------------------------------------------------------------------------------
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TOrientation
@@ -299,8 +297,6 @@ namespace nsMathTools
         float angle = 0;
         TOrientation();
         TOrientation(float x, float y, float z, float a);
-    }_PACKED;
-#ifdef WIN32 
+    };
 #pragma pack(pop)
-#endif
 }

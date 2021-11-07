@@ -7,14 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#ifdef WIN32
 #pragma pack(push, 1)
-#endif
 struct THeaderTCP
 {
-  //int size;
-  unsigned char size[3];
-}_PACKED;
-#ifdef WIN32
+    //int size;
+    unsigned char size[3];
+};
 #pragma pack(pop)
-#endif

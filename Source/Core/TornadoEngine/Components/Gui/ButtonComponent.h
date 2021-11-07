@@ -16,6 +16,7 @@ namespace nsGuiWrapper
 {
     struct DllExport TButtonComponent : nsECSFramework::IComponent
     {
+        // Not use directly!
         nsImGuiWidgets::TButton* value = nullptr;
     };
 }

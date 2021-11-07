@@ -11,45 +11,41 @@ See for more information LICENSE.md.
 
 namespace nsClusterMonitorProtocol
 {
-  namespace nsPackets
-  {
-    enum Type
+    namespace nsPackets
     {
-      Rq_SlaveCount,
-      An_SlaveCount,
-      Cmd_CreateGroupAllClients,
-      Cmd_DestroyAllGroups,
-    };
-#ifdef WIN32
+        enum Type
+        {
+            Rq_SlaveCount,
+            An_SlaveCount,
+            Cmd_CreateGroupAllClients,
+            Cmd_DestroyAllGroups,
+        };
 #pragma pack(push, 1)
-#endif
-    struct DllExport THeader
-    {
-      unsigned short type;
-    }_PACKED;
+        struct DllExport THeader
+        {
+            unsigned short type;
+        };
 
-    struct DllExport TRq_SlaveCount : THeader
-    {
-      TRq_SlaveCount();
-    }_PACKED;
+        struct DllExport TRq_SlaveCount : THeader
+        {
+            TRq_SlaveCount();
+        };
 
-    struct DllExport TAn_SlaveCount : THeader
-    {
-      int cnt = 0;
-      TAn_SlaveCount();
-    }_PACKED;
+        struct DllExport TAn_SlaveCount : THeader
+        {
+            int cnt = 0;
+            TAn_SlaveCount();
+        };
 
-    struct DllExport TCmd_CreateGroupAllClients : THeader
-    {
-      TCmd_CreateGroupAllClients();
-    }_PACKED;
+        struct DllExport TCmd_CreateGroupAllClients : THeader
+        {
+            TCmd_CreateGroupAllClients();
+        };
 
-    struct DllExport TCmd_DestroyAllGroups : THeader
-    {
-      TCmd_DestroyAllGroups();
-    }_PACKED;
-#ifdef WIN32
+        struct DllExport TCmd_DestroyAllGroups : THeader
+        {
+            TCmd_DestroyAllGroups();
+        };
 #pragma pack(pop)
-#endif
-  }
+    }
 }

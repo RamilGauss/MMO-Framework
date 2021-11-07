@@ -68,6 +68,21 @@
     <ClInclude Include="include\TearDownSystem.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\OnAddCollectReactiveSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OnUpdateCollectReactiveSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BaseCollectReactiveSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FastAllocatorForeachVector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FastAllocatorVector.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity.cpp">

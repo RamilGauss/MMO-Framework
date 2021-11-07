@@ -11,15 +11,11 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-#if defined( WIN32 )
 #pragma pack(push, 1)
-#endif
     struct TScenarioBaseHeader
     {
       char type;
       char subType;
-    }_PACKED;
-#if defined( WIN32 )
+    };
 #pragma pack(pop)
-#endif
 }

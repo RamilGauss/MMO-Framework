@@ -134,7 +134,7 @@
       <DisableSpecificWarnings>4996;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;libcryptod.lib;libssld.lib;fmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>

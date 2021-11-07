@@ -23,18 +23,14 @@ class DllExport TMarshaller
 public:
   typedef unsigned short TypeID;
 private:
-#ifdef WIN32
 #pragma pack(push, 1)
-#endif
   struct THeader
   {
     TypeID type : 7;
     TypeID useCompression : 1;
     unsigned char ratio = 0;
   }__PACKED;
-#ifdef WIN32
 #pragma pack(pop)
-#endif
 
   TSerializerClass mSer;
 

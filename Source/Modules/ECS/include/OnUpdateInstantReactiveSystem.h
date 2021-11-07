@@ -15,10 +15,16 @@ namespace nsECSFramework
     class DllExport TOnUpdateInstantReactiveSystem : public TBaseReactiveSystem
     {
     public:
+        virtual ~TOnUpdateInstantReactiveSystem()
+        {
+            mEntMng->RegisterOnUpdateComponent<Component>()->Unregister(this);
+        }
+
         void SetEntMng(TEntityManager* entMng) override
         {
             mEntMng = entMng;
-            mEntMng->RegisterOnUpdateComponent<Component>()->Register(&TBaseReactiveSystem::Reactive, this);
+            auto callbackPool = mEntMng->RegisterOnUpdateComponent<Component>();
+            callbackPool->Register<TOnUpdateInstantReactiveSystem>(this, &TOnUpdateInstantReactiveSystem::Reactive);
         }
     };
 }

@@ -17,18 +17,14 @@ See for more information LICENSE.md.
 template<typename Type>
 class DllExport TMemoryObjectPool
 {
-#ifdef WIN32
 #pragma pack(push, 1)
-#endif
     class TObjectDesc
     {
         friend class TMemoryObjectPool;
         Type obj;
         unsigned char poped = false;
-    }_PACKED;
-#ifdef WIN32
+    };
 #pragma pack(pop)
-#endif
 
     TVectorRise<TObjectDesc*> mCommonArr;
     TVectorRise<TObjectDesc*> mReserveArr;
@@ -36,10 +32,9 @@ public:
     Type* Pop()
     {
         TObjectDesc* pDesc = nullptr;
-        if ( mReserveArr.mCounter == 0 ) {
+        if (mReserveArr.mCounter == 0) {
             pDesc = Allocate();
-        }
-        else {
+        } else {
             pDesc = mReserveArr.mVec[mReserveArr.mCounter - 1];
             mReserveArr.PopBack();
         }
@@ -49,7 +44,7 @@ public:
     void Push(Type* p)
     {
         auto pDesc = (TObjectDesc*) p;
-        if ( pDesc->poped == false ) {
+        if (pDesc->poped == false) {
             return;
         }
         pDesc->poped = false;
@@ -87,7 +82,7 @@ private:
 template<typename Type>
 Type* TMemoryObjectPool<Type>::Pop()
 {
-    if ( mReserveArr.mCounter == 0 ) {
+    if (mReserveArr.mCounter == 0) {
         return Allocate();
     }
     return mReserveArr.mVec[--mReserveArr.mCounter];

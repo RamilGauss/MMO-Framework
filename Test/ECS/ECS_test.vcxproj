@@ -24,6 +24,17 @@
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MyExecuteSystem.h" />
+    <ClInclude Include="MyFeature.h" />
+    <ClInclude Include="MyInitSystem.h" />
+    <ClInclude Include="NameAddSystem.h" />
+    <ClInclude Include="NameComponent.h" />
+    <ClInclude Include="NameRemoveSystem.h" />
+    <ClInclude Include="NameUpdateSystem.h" />
+    <ClInclude Include="TestAddCollectorReactiveSystem.h" />
+    <ClInclude Include="TestUpdateCollectorReactiveSystem.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{9A1494FD-C0FC-4550-AD89-2D23DFF0A4B3}</ProjectGuid>
@@ -132,7 +143,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\ECS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

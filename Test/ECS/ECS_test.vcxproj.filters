@@ -6,4 +6,15 @@
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NameComponent.h" />
+    <ClInclude Include="MyInitSystem.h" />
+    <ClInclude Include="MyFeature.h" />
+    <ClInclude Include="MyExecuteSystem.h" />
+    <ClInclude Include="NameRemoveSystem.h" />
+    <ClInclude Include="NameUpdateSystem.h" />
+    <ClInclude Include="NameAddSystem.h" />
+    <ClInclude Include="TestAddCollectorReactiveSystem.h" />
+    <ClInclude Include="TestUpdateCollectorReactiveSystem.h" />
+  </ItemGroup>
 </Project>
