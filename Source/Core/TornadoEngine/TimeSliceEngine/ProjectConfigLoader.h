@@ -8,10 +8,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <string>
+
 #include "TypeDef.h"
 #include "Logger.h"
 #include "ProjectConfigContainer.h"
 #include "TimeSliceEngine.h"
+#include "TextFile.h"
+#include "TornadoEngineJsonSerializer.h"
 
 namespace nsTornadoEngine
 {

@@ -77,14 +77,14 @@ bool GetArgvArgcConsole(int argc, char** argv, TVectorStr & argsVec)
 //-------------------------------------------------------------------------------
 void ViewHowUse()
 {
-    char* sMsgUtf8_En =
+    const char* sMsgUtf8_En =
         "Invalid parameter input.\n"
         "Path to project file.\n"
         "For example:\n"
         "Launcher.exe \"../MyPath/MyGame.project\"\n";
 
     // Ввиду того, что весь исходный код я переконвертировал в utf-8.
-    char* sMsgUtf8_Ru =
+    const char* sMsgUtf8_Ru =
         "Некорректный ввод параметров.\n"
         "Путь к файлу проекта.\n"
         "\n"
@@ -95,7 +95,7 @@ void ViewHowUse()
 #ifdef WIN32  
     ret = GetSystemDefaultLangID();
 #endif
-    char* sMsgUtf8 = (ret == 1049) ? sMsgUtf8_Ru : sMsgUtf8_En;
+    const char* sMsgUtf8 = (ret == 1049) ? sMsgUtf8_Ru : sMsgUtf8_En;
 
 #ifdef WIN32
     BL_MessageBug_Utf8(sMsgUtf8);

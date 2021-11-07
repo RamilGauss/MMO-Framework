@@ -42,7 +42,7 @@ using namespace nsECSFramework;
 TBaseMasterLogic::TBaseMasterLogic(TBase* p) : TBaseLogic(p)
 {
     mSetClientKeyInQueue.reset(new TSetOrderElement());
-    mEntMng->RegisterOnRemoveComponent<TContextContainerComponent>()->Register(&TBaseMasterLogic::OnRemoveContextContainer, this);
+    mEntMng->RegisterOnRemoveComponent<TContextContainerComponent>()->Register(this, &TBaseMasterLogic::OnRemoveContextContainer);
 }
 //-----------------------------------------------------------------------------------
 void TBaseMasterLogic::OnRemoveContextContainer(TEntityID entity, IComponent* pC)
