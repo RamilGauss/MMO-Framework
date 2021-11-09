@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    class DllExport TExecuteSystem : virtual public TSystem
+    class DllExport TExecuteSystem : public virtual TSystem
     {
     public:
         virtual void Execute() = 0;

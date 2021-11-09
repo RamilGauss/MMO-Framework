@@ -9,79 +9,85 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="include\TreeConveyor">
+      <UniqueIdentifier>{720da211-809b-4b0f-a6c1-ce70e1b74f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\DataControl">
+      <UniqueIdentifier>{33ef36f8-ebac-47f8-bfb8-c9cdb888373c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\BaseReactiveSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ExecuteSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Feature.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\InitSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\System.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Helper.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LoopList.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\EntityManager.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Entity.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Config.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\LinkToList.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\IComponent.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ComplexType.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\OnAddInstantReactiveSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\OnUpdateInstantReactiveSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\OnRemoveInstantReactiveSystem.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HelpStructs.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ComponentContainer.h">
-      <Filter>include</Filter>
+      <Filter>include\TreeConveyor</Filter>
     </ClInclude>
     <ClInclude Include="include\TearDownSystem.h">
-      <Filter>include</Filter>
+      <Filter>include\TreeConveyor</Filter>
     </ClInclude>
     <ClInclude Include="include\OnAddCollectReactiveSystem.h">
-      <Filter>include</Filter>
+      <Filter>include\TreeConveyor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OnAddInstantReactiveSystem.h">
+      <Filter>include\TreeConveyor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OnRemoveInstantReactiveSystem.h">
+      <Filter>include\TreeConveyor</Filter>
     </ClInclude>
     <ClInclude Include="include\OnUpdateCollectReactiveSystem.h">
-      <Filter>include</Filter>
+      <Filter>include\TreeConveyor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OnUpdateInstantReactiveSystem.h">
+      <Filter>include\TreeConveyor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Feature.h">
+      <Filter>include\TreeConveyor</Filter>
     </ClInclude>
     <ClInclude Include="include\BaseCollectReactiveSystem.h">
-      <Filter>include</Filter>
+      <Filter>include\TreeConveyor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BaseReactiveSystem.h">
+      <Filter>include\TreeConveyor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InitSystem.h">
+      <Filter>include\TreeConveyor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExecuteSystem.h">
+      <Filter>include\TreeConveyor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoopList.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ComplexType.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ComponentContainer.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Config.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Entity.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EntityManager.h">
+      <Filter>include\DataControl</Filter>
     </ClInclude>
     <ClInclude Include="include\FastAllocatorForeachVector.h">
-      <Filter>include</Filter>
+      <Filter>include\DataControl</Filter>
     </ClInclude>
     <ClInclude Include="include\FastAllocatorVector.h">
-      <Filter>include</Filter>
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helper.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HelpStructs.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IComponent.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LinkToList.h">
+      <Filter>include\DataControl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

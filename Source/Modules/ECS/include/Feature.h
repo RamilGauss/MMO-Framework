@@ -17,19 +17,23 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    class DllExport TFeature : public TExecuteSystem
+    class DllExport TFeature : public TExecuteSystem, public TTearDownSystem
     {
     protected:
         std::list<TInitSystem*> mInitSystems;
         std::list<TExecuteSystem*> mExecuteSystems;
-        std::list<TTearDownSystem*> mTearDownSystems;
 
         std::set<TSystem*> mSystems;
     public:
+        virtual ~TFeature();
+
         bool Add(TSystem* system);
         void Remove(TSystem* system);
         const std::set<TSystem*>* GetSystems();
 
+        void Clear();
+
         void Execute() override final;
+        void TearDown() override final;
     };
 }

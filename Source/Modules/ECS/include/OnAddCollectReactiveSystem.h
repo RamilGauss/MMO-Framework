@@ -12,10 +12,10 @@ See for more information LICENSE.md.
 namespace nsECSFramework
 {
     template <typename Component>
-    class DllExport TOnAddCollectReactiveSystem : virtual public TBaseCollectReactiveSystem
+    class DllExport TOnAddCollectReactiveSystem : public TBaseCollectReactiveSystem
     {
     public:
-        virtual ~TOnAddCollectReactiveSystem()
+        void TearDown() override final
         {
             mEntMng->UnregisterOnAddCollectorComponent<Component>(mReactiveId);
         }

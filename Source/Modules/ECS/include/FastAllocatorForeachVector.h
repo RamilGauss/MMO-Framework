@@ -17,8 +17,6 @@ namespace nsECSFramework
     protected:
         std::list<IndexType> mBusyIndexes;
     public:
-        std::function<void(IndexType, ElementType*)> onDestroy;
-
         IndexType Create(ElementType* newElement) override;
         void Destroy(IndexType index) override;
 

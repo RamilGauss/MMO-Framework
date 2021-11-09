@@ -9,6 +9,11 @@ See for more information LICENSE.md.
 
 using namespace nsECSFramework;
 
+TFeature::~TFeature()
+{ 
+    Clear(); 
+}
+//--------------------------------------------------------------------------------------
 bool TFeature::Add(TSystem* system)
 {
     if (mSystems.find(system) != mSystems.end()) {
@@ -39,8 +44,10 @@ void TFeature::Remove(TSystem* system)
         mExecuteSystems.remove(dynamic_cast<TExecuteSystem*>(system));
     }
     if (system->IsTearDown()) {
-        mTearDownSystems.push_back(dynamic_cast<TTearDownSystem*>(system));
+        auto tearDownSystem = dynamic_cast<TTearDownSystem*>(system);
+        tearDownSystem->TearDown();
     }
+
     mSystems.erase(system);
 }
 //--------------------------------------------------------------------------------------
@@ -62,13 +69,18 @@ void TFeature::Execute()
     for (auto& system : mExecuteSystems) {
         system->Execute();
     }
-
-    // Tear down
-    if (mTearDownSystems.size() > 0) {
-        for (auto& system : mTearDownSystems) {
-            system->TearDown();
-        }
-        mTearDownSystems.clear();
+}
+//--------------------------------------------------------------------------------------
+void TFeature::TearDown()
+{
+    Clear();
+}
+//--------------------------------------------------------------------------------------
+void TFeature::Clear()
+{
+    auto systemsCopy = mSystems;
+    for (auto& system : systemsCopy) {
+        Remove(system);
     }
 }
 //--------------------------------------------------------------------------------------

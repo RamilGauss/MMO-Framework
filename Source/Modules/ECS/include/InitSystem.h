@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    class DllExport TInitSystem : virtual public TSystem
+    class DllExport TInitSystem : public virtual TSystem
     {
     public:
         virtual void Init() = 0;

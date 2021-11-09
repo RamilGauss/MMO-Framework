@@ -19,7 +19,7 @@ class TMyExecuteSystem : public nsECSFramework::TExecuteSystem
 public:
     void Execute() override
     {
-        if (mCounter == 10) {
+        if (mCounter == 2) {
             auto nameList = *(mEntMng->GetByHas<TNameComponent>());
             for (auto& eid : nameList) {
                 mEntMng->RemoveComponent<TNameComponent>(eid);

@@ -11,30 +11,33 @@ See for more information LICENSE.md.
 
 using namespace nsECSFramework;
 
-TEntityManager entMng;
-
-TFeature mainFeature;
-
-TMyFeature myFeature;
-
 int main()
 {
+    auto entMng = new TEntityManager();
+    auto mainFeature = new TFeature();
+    auto myFeature = new TMyFeature();
+
     TNameComponent nameComponent;
-    nameComponent.name = "asda";
-    entMng.GetByUnique<TNameComponent>(nameComponent);
-    entMng.GetByValue<TNameComponent>(nameComponent);
+    nameComponent.name = "simple name";
+    entMng->GetByUnique(nameComponent);
+    entMng->GetByValue(nameComponent);
 
-
-    entMng.Setup();
+    entMng->Setup();
     printf("\n");
 
-    mainFeature.SetEntMng(&entMng);
+    mainFeature->SetEntMng(entMng);
+    // Construct tree
+    mainFeature->Add(myFeature);
 
-    mainFeature.Add(&myFeature);
-
-    while (true) {
-        mainFeature.Execute();
+    for (int i = 0; i < 100; i++) {
+        mainFeature->Execute();
     }
+
+    mainFeature->Clear();
+
+    delete mainFeature;
+    delete myFeature;
+    delete entMng;
 
     return 0;
 }

@@ -15,7 +15,7 @@ namespace nsECSFramework
     class DllExport TOnAddInstantReactiveSystem : public TBaseReactiveSystem
     {
     public:
-        virtual ~TOnAddInstantReactiveSystem()
+        void TearDown() override
         {
             mEntMng->RegisterOnAddComponent<Component>()->Unregister(this);
         }

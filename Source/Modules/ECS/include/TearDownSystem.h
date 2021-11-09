@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    class DllExport TTearDownSystem : virtual public TSystem
+    class DllExport TTearDownSystem : public virtual TSystem
     {
     public:
         virtual void TearDown() = 0;

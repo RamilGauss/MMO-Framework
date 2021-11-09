@@ -8,10 +8,11 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "ExecuteSystem.h"
+#include "TearDownSystem.h"
 
 namespace nsECSFramework
 {
-    class DllExport TBaseCollectReactiveSystem : virtual public TExecuteSystem
+    class DllExport TBaseCollectReactiveSystem : public TExecuteSystem, public TTearDownSystem
     {
     protected:
         int mReactiveId = 0;

@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "System.h"
 #include "Config.h"
+#include "TearDownSystem.h"
 
 namespace nsECSFramework
 {
-    class DllExport TBaseReactiveSystem : virtual public TSystem
+    class DllExport TBaseReactiveSystem : public TTearDownSystem
     {
     public:
         virtual void Reactive(TEntityID eid, IComponent* pC) = 0;

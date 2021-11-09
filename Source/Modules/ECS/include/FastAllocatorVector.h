@@ -63,8 +63,11 @@ namespace nsECSFramework
             return;
         }
 
-        onDestroy(index, pElement);
+        if (onDestroy != nullptr) {
+            onDestroy(index, pElement);
+        }
 
+        mFreeIndexes.push_back(index);
         mElements.mVec[index] = nullptr;
     }
     //----------------------------------------------------------------------------------------------------

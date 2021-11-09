@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-//#define SHOW_STAT
+#define SHOW_STAT
 
 #include "EntityManager.h"
 #include "SingletonManager.h"
@@ -65,6 +65,8 @@ TEntityManager::~TEntityManager()
 
     DestroyEventCollector(mAddCollector);
     DestroyEventCollector(mUpdateCollector);
+
+    Clear();
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::Fill(const std::string& methodName, std::string& demangled, TStrSet& strSet)
