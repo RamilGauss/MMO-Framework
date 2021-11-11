@@ -52,6 +52,15 @@
     <Filter Include="Features\Graphic">
       <UniqueIdentifier>{b44980af-5515-4406-b214-edd784bc8216}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Common">
+      <UniqueIdentifier>{c16aa5cf-6518-4a5c-98b7-9b220367c94b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Scene">
+      <UniqueIdentifier>{5d18b96c-e090-4861-869a-206e69daaeb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Implementations">
+      <UniqueIdentifier>{d08ce2ac-8821-41a6-ab31-a6d5824e88be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -63,53 +72,17 @@
     <ClCompile Include="TimeSliceEngine\TimeSliceEngine.cpp">
       <Filter>TimeSliceEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleLogic.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\ModulesAccessor.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="TimeSliceEngine\ProjectConfigContainer.cpp">
       <Filter>TimeSliceEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleManager.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="TimeSliceEngine\ProjectConfigLoader.cpp">
       <Filter>TimeSliceEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\ModuleNetTransport.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\ModuleMMOEngine.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\ModuleSoundEngine.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\ModulePhysicEngine.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\ModuleDataBase.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\ModuleGraphicEngine.cpp">
-      <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
     <ClCompile Include="TimeSliceEngine\ProjectConfigUnloader.cpp">
       <Filter>TimeSliceEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\Modules.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\SceneManager.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\PrefabManager.cpp">
-      <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Testing\DockingStuffSystem.cpp">
       <Filter>Testing\Systems</Filter>
@@ -165,11 +138,47 @@
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Modules.cpp">
+      <Filter>Modules\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\PrefabManager.cpp">
+      <Filter>Modules\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\SceneManager.cpp">
+      <Filter>Modules\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModulesAccessor.cpp">
+      <Filter>Modules\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleManager.cpp">
+      <Filter>Modules\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleDataBase.cpp">
+      <Filter>Modules\Implementations</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleGraphicEngine.cpp">
+      <Filter>Modules\Implementations</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleLogic.cpp">
+      <Filter>Modules\Implementations</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleMMOEngine.cpp">
+      <Filter>Modules\Implementations</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleNetTransport.cpp">
+      <Filter>Modules\Implementations</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModulePhysicEngine.cpp">
+      <Filter>Modules\Implementations</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ModuleSoundEngine.cpp">
+      <Filter>Modules\Implementations</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeSliceEngine\ProjectConfigurator.cpp">
+      <Filter>TimeSliceEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Share\ModuleType.h">
-      <Filter>Share</Filter>
-    </ClInclude>
     <ClInclude Include="Share\FrameworkResources.h">
       <Filter>Share</Filter>
     </ClInclude>
@@ -191,53 +200,14 @@
     <ClInclude Include="TimeSliceEngine\TimeSliceEngine.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleLogic.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\DstModule.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\ModuleDataBase.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\ModuleGraphicEngine.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\ModuleMMOEngine.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\ModulePhysicEngine.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\ModuleSoundEngine.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Modules.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\ModulesAccessor.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="TimeSliceEngine\ProjectConfig.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ProjectConfigContainer.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleManager.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="TimeSliceEngine\ProjectConfigLoader.h">
       <Filter>TimeSliceEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\SceneManager.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\PrefabManager.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\ModuleNetTransport.h">
-      <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h">
       <Filter>Generated files</Filter>
@@ -365,9 +335,6 @@
     <ClInclude Include="ReflectionAggregators\ScenePartReflectionAggregator.h">
       <Filter>ReflectionAggregators</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\SceneContent.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Gui\ButtonComponent.h">
       <Filter>Components\Gui</Filter>
     </ClInclude>
@@ -392,8 +359,56 @@
     <ClInclude Include="Components\Common\SceneRootComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Modules\Modules.h">
+      <Filter>Modules\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\DstModule.h">
+      <Filter>Modules\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\SceneManager.h">
+      <Filter>Modules\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\PrefabManager.h">
+      <Filter>Modules\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\SceneContent.h">
+      <Filter>Modules\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Modules\SceneContentMap.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModulesAccessor.h">
+      <Filter>Modules\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleManager.h">
+      <Filter>Modules\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleDataBase.h">
+      <Filter>Modules\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleGraphicEngine.h">
+      <Filter>Modules\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleLogic.h">
+      <Filter>Modules\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleMMOEngine.h">
+      <Filter>Modules\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleNetTransport.h">
+      <Filter>Modules\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModulePhysicEngine.h">
+      <Filter>Modules\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ModuleSoundEngine.h">
+      <Filter>Modules\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\ProjectConfigurator.h">
+      <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSliceEngine\ModuleType.h">
+      <Filter>TimeSliceEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

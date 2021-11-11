@@ -38,21 +38,12 @@ TTimeSliceEngine::TTimeSliceEngine()
 //----------------------------------------------------------------------
 void TTimeSliceEngine::Done()
 {
-    TProjectConfigUnloader projectUnloader;
-    projectUnloader.Unload(Project());
-
     GetLogger()->Done();
 }
 //----------------------------------------------------------------------
-bool TTimeSliceEngine::Work(std::string absPathToProjectFile)
+bool TTimeSliceEngine::Work(const std::list<ModuleType>& moduleTypes)
 {
-    Project()->projectAbsPath = absPathToProjectFile;
-
-    TProjectConfigLoader projectLoader;
-    auto loadResult = projectLoader.Load(Project());
-    if (loadResult == false) {
-        return false;
-    }
+    mModuleTypes = moduleTypes;
 
     if (CreateModules() == false) {
         return false;
@@ -72,8 +63,7 @@ void TTimeSliceEngine::Work()
         }
     }
 
-    Modules()->SceneMng()->SetEntityManager(Modules()->EntMng());
-    Modules()->SceneMng()->SetContentMap(Project()->mSceneContentMap);
+    onModuleCreationEndsCb.Notify();
 
     while (true) {
         for (auto& pModule : mModulePtrList) {
@@ -91,7 +81,7 @@ void TTimeSliceEngine::Work()
 //------------------------------------------------------------------------
 bool TTimeSliceEngine::CreateModules()
 {
-    for (auto& moduleName : Project()->mConveyor.modules) {
+    for (auto& moduleName : mModuleTypes) {
         auto pModule = mModuleMng->GetModuleByName(moduleName);
         if (pModule != nullptr) {
             mModulePtrList.push_back(pModule);

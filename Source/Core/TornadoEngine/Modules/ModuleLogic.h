@@ -18,6 +18,12 @@ namespace nsTornadoEngine
     {
         nsECSFramework::TFeature mMainFeature;
 
+        //###
+        //TLoadStartedScenesSystem mLoadStartedScenesSystem;
+        //TObjectMakerFeature mObjectMakerFeature;
+        //TTreeBuilderFeature mTreeBuilderFeature;
+        //###
+
     public:
         bool StartEvent() override;
         void Work() override;
@@ -25,5 +31,12 @@ namespace nsTornadoEngine
 
         void AddFeature(nsECSFramework::TFeature* p);
         void RemoveFeature(nsECSFramework::TFeature* p);
+
+        // Prototype
+        // Slot ?
+        // void SetCurrentSlot(int index);
+        // int GetCurrentSlot() const;
+        // nsECSFrameowrk::TEntityManager* GetCurrentEntMng() const;
+        // int CreateSlot(nsECSFrameowrk::TEntityManager* pEntMng);
     };
 }

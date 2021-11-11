@@ -55,22 +55,22 @@ bool TProjectConfigLoader::LoadBinary()
         Log("LoadDLL() FAIL init.\n");
         return false;
     }
-    mPcc->mFreeScenePartContainer = (FuncFreeScenePartReflectionAggregator) loader->Get(StrFreeScenePartReflectionAggregator);
-    if (mPcc->mFreeScenePartContainer == nullptr) {
+    mPcc->mFreeScenePartAggregator = (FuncFreeScenePartReflectionAggregator) loader->Get(StrFreeScenePartReflectionAggregator);
+    if (mPcc->mFreeScenePartAggregator == nullptr) {
         Log("LoadDLL() FAIL load FuncFree.\n");
         return false;
     }
-    mPcc->mGetScenePartContainer = (FuncGetScenePartReflectionAggregator) loader->Get(StrGetScenePartReflectionAggregator);
-    if (mPcc->mGetScenePartContainer == nullptr) {
+    mPcc->mGetScenePartAggregator = (FuncGetScenePartReflectionAggregator) loader->Get(StrGetScenePartReflectionAggregator);
+    if (mPcc->mGetScenePartAggregator == nullptr) {
         Log("LoadDLL() FAIL load FuncGetdevTool.\n");
         return false;
     }
-    if (mPcc->mScenePartContainer != nullptr) {
+    if (mPcc->mScenePartAggregator != nullptr) {
         Log("LoadDLL() warning, object was loaded.\n");
         return true;
     }
-    mPcc->mScenePartContainer = mPcc->mGetScenePartContainer();
-    if (mPcc->mScenePartContainer == nullptr) {// нет DLL - нет движка.
+    mPcc->mScenePartAggregator = mPcc->mGetScenePartAggregator();
+    if (mPcc->mScenePartAggregator == nullptr) {// нет DLL - нет движка.
         return false;
     }
     return true;

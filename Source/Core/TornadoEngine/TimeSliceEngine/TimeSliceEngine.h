@@ -16,6 +16,8 @@ See for more information LICENSE.md.
 #include "ProjectConfig.h"
 #include "CallBackRegistrator.h"
 #include "StopAccessor.h"
+#include "CallbackPool.h"
+#include "ModuleType.h"
 
 namespace nsTornadoEngine
 {
@@ -27,18 +29,21 @@ namespace nsTornadoEngine
         std::list<IModule*> mModulePtrList;
 
         std::shared_ptr<TModuleManager> mModuleMng;// Hide from Launcher
+        
+        std::list<ModuleType> mModuleTypes;
 
     public:
         static const std::string NAME;
 
         TTimeSliceEngine();
 
-        bool Work(std::string absPathToProjectFile);// начало работы
+        bool Work(const std::list<ModuleType>& moduleTypes);
+
+        TCallbackPool<> onModuleCreationEndsCb;
+
     private:
         bool CreateModules();
-
         void Work();
-    private:
         void Done();
     };
 }

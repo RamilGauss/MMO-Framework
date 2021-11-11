@@ -22,6 +22,7 @@ See for more information LICENSE.md.
 #include "ContainerTypes.h"
 #include "FileOperation.h"
 #include "PathOperations.h"
+#include "ProjectConfigurator.h"
 
 using namespace std;
 using namespace nsTornadoEngine;
@@ -58,12 +59,19 @@ int main(int argc, char** argv)
     }
     //-----------------------------------------------------------------
     auto currentDir = TPathOperations::GetCurrentDir();
+    auto absProjectPath = TPathOperations::CalculatePathBy(currentDir, argv[1]);
 
-    auto projectAbsPath = TPathOperations::CalculatePathBy(currentDir, argv[1]);
 
-    auto pTimeSliceEngine = new TTimeSliceEngine;
-    pTimeSliceEngine->Work(projectAbsPath);
-    delete pTimeSliceEngine;
+    auto projectConfigurator = new TProjectConfigurator();
+    projectConfigurator->LoadProject(absProjectPath);
+
+
+    auto timeSliceEngine = new TTimeSliceEngine;
+    timeSliceEngine->onModuleCreationEndsCb.Register(projectConfigurator, &TProjectConfigurator::Setup);
+    timeSliceEngine->Work(projectConfigurator->GetModuleTypes());
+    delete timeSliceEngine;
+
+    projectConfigurator->UnloadProject();
     return 0;
 }
 //-------------------------------------------------------------------------------

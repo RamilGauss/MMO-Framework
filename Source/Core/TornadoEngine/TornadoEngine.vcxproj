@@ -247,6 +247,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="TimeSliceEngine\ProjectConfigContainer.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigLoader.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigUnloader.cpp" />
+    <ClCompile Include="TimeSliceEngine\ProjectConfigurator.cpp" />
     <ClCompile Include="TimeSliceEngine\TimeSliceEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -298,7 +299,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="ReflectionAggregators\MenuItemReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\ScenePartReflectionAggregator.h" />
     <ClInclude Include="Share\FrameworkResources.h" />
-    <ClInclude Include="Share\ModuleType.h" />
     <ClInclude Include="Share\MathStructs.h" />
     <ClInclude Include="Share\MathTools.h" />
     <ClInclude Include="Testing\ChooseSystem.h" />
@@ -320,10 +320,12 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="TimeSliceEngine\ConveyorConfig.h" />
     <ClInclude Include="TimeSliceEngine\DeveloperTool_DLL.h" />
     <ClInclude Include="TimeSliceEngine\IModule.h" />
+    <ClInclude Include="TimeSliceEngine\ModuleType.h" />
     <ClInclude Include="TimeSliceEngine\ProjectConfig.h" />
     <ClInclude Include="TimeSliceEngine\ProjectConfigContainer.h" />
     <ClInclude Include="TimeSliceEngine\ProjectConfigLoader.h" />
     <ClInclude Include="TimeSliceEngine\ProjectConfigUnloader.h" />
+    <ClInclude Include="TimeSliceEngine\ProjectConfigurator.h" />
     <ClInclude Include="TimeSliceEngine\StopAccessor.h" />
     <ClInclude Include="TimeSliceEngine\TimeSliceEngine.h" />
   </ItemGroup>

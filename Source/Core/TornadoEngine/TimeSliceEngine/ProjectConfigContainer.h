@@ -32,10 +32,10 @@ namespace nsTornadoEngine
         TSceneContentMap mSceneContentMap;
 
         // From binary
-        FuncGetScenePartReflectionAggregator mGetScenePartContainer = nullptr;
-        FuncFreeScenePartReflectionAggregator mFreeScenePartContainer = nullptr;
+        FuncGetScenePartReflectionAggregator mGetScenePartAggregator = nullptr;
+        FuncFreeScenePartReflectionAggregator mFreeScenePartAggregator = nullptr;
 
-        TScenePartReflectionAggregator* mScenePartContainer = nullptr;
+        TScenePartReflectionAggregator* mScenePartAggregator = nullptr;
 
         ILoaderDLL* mLoader = nullptr;
 
