@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <set>
+#include <vector>
 
 #include "DstModule.h"
 #include <ECS/include/Feature.h>
@@ -16,7 +17,9 @@ namespace nsTornadoEngine
 {
     class DllExport TModuleLogic : public TDstModule
     {
-        nsECSFramework::TFeature mMainFeature;
+        int mCurrentIndex = 0;
+
+        std::vector<nsECSFramework::TFeature*> mFeatureSlots;
 
         //###
         //TLoadStartedScenesSystem mLoadStartedScenesSystem;
@@ -32,11 +35,17 @@ namespace nsTornadoEngine
         void AddFeature(nsECSFramework::TFeature* p);
         void RemoveFeature(nsECSFramework::TFeature* p);
 
-        // Prototype
-        // Slot ?
-        // void SetCurrentSlot(int index);
-        // int GetCurrentSlot() const;
-        // nsECSFrameowrk::TEntityManager* GetCurrentEntMng() const;
-        // int CreateSlot(nsECSFrameowrk::TEntityManager* pEntMng);
+
+        void SetCurrentSlotIndex(int index);
+        int GetCurrentSlotIndex() const;
+        nsECSFramework::TEntityManager* GetCurrentEntMng() const;
+        
+        void CreateSlot(nsECSFramework::TEntityManager* pEntMng);
+        void DestroyLastSlot();
+
+        int GetSlotCount() const;
+
+    private:
+        nsECSFramework::TFeature* GetCurrentSlot() const;
     };
 }

@@ -128,6 +128,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReflectionCodeGeneratorTest
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReflectionCodeGeneratorLib", "Source\Tools\ReflectionCodeGeneratorLib\ReflectionCodeGeneratorLib.vcxproj", "{4266EAE5-3525-4E26-A8B9-52144DCD8A4F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+		{AB7DFF93-7142-43CA-81DB-1AA01EDA873C} = {AB7DFF93-7142-43CA-81DB-1AA01EDA873C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ContainerCodeGenerator", "Source\Tools\ContainerCodeGenerator\ContainerCodeGenerator.vcxproj", "{8E9CABAE-65CC-41C5-9727-7ACAA361DB15}"
 EndProject
