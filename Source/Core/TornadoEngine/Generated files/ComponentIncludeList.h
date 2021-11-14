@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_12 07:54:28.837
+// File has been generated at 2021_11_14 11:39:25.384
 	
 #pragma once
 
@@ -15,6 +15,7 @@
 #include "NameComponent.h"
 #include "ParentGuidComponent.h"
 #include "PositionComponent.h"
+#include "SceneEditingComponent.h"
 #include "SceneGuidComponent.h"
 #include "SceneRootComponent.h"
 #include "SizeComponent.h"

@@ -18,5 +18,15 @@ namespace nsCommonWrapper
     struct DllExport TGuidComponent : nsECSFramework::IComponent
     {
         std::string value;
+
+        bool IsLess(const IComponent* pOther) const override
+        {
+            return value < ((TGuidComponent*) pOther)->value;
+        }
+
+        bool IsEqual(const IComponent* pOther) const override
+        {
+            return value == ((TGuidComponent*) pOther)->value;
+        }
     };
 }

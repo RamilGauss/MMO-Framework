@@ -17,6 +17,12 @@ namespace nsTornadoEngine
 {
     class DllExport TProjectConfigurator
     {
+        //###
+        //TLoadStartedScenesSystem mLoadStartedScenesSystem;
+        //TObjectMakerFeature mObjectMakerFeature;
+        //TTreeBuilderFeature mTreeBuilderFeature;
+        //###
+
 
     public:
         bool LoadProject(const std::string& absPathToProjectFile);

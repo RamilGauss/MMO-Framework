@@ -14,6 +14,11 @@ TFeature::~TFeature()
     Clear(); 
 }
 //--------------------------------------------------------------------------------------
+bool TFeature::IsFeature() const
+{ 
+    return true; 
+}
+//--------------------------------------------------------------------------------------
 bool TFeature::Add(TSystem* system)
 {
     if (mSystems.find(system) != mSystems.end()) {

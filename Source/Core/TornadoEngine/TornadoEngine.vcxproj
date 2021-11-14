@@ -215,6 +215,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
+    <ClCompile Include="Modules\LogicSlot.cpp" />
     <ClCompile Include="Modules\ModuleDataBase.cpp" />
     <ClCompile Include="Modules\ModuleGraphicEngine.cpp" />
     <ClCompile Include="Modules\ModuleLogic.cpp" />
@@ -254,6 +255,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Common\GuidComponent.h" />
     <ClInclude Include="Components\Common\NameComponent.h" />
     <ClInclude Include="Components\Common\ParentGuidComponent.h" />
+    <ClInclude Include="Components\Common\SceneEditingComponent.h" />
     <ClInclude Include="Components\Common\SceneGuidComponent.h" />
     <ClInclude Include="Components\Common\SceneRootComponent.h" />
     <ClInclude Include="Components\Common\TransformComponent.h" />
@@ -273,6 +275,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Generated files\ReflectionIncludeList.h" />
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h" />
     <ClInclude Include="Modules\DstModule.h" />
+    <ClInclude Include="Modules\LogicSlot.h" />
     <ClInclude Include="Modules\ModuleDataBase.h" />
     <ClInclude Include="Modules\ModuleGraphicEngine.h" />
     <ClInclude Include="Modules\ModuleLogic.h" />

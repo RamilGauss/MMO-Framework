@@ -18,5 +18,15 @@ namespace nsCommonWrapper
     struct DllExport TNameComponent : nsECSFramework::IComponent
     {
         std::string value;
+
+        bool IsLess(const IComponent* pOther) const override
+        {
+            return value < ((TNameComponent*) pOther)->value;
+        }
+
+        bool IsEqual(const IComponent* pOther) const override
+        {
+            return value == ((TNameComponent*) pOther)->value;
+        }
     };
 }

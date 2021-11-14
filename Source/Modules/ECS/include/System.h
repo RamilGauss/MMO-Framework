@@ -25,5 +25,6 @@ namespace nsECSFramework
         virtual bool IsInit() const { return false; }
         virtual bool IsExecute() const { return false; }
         virtual bool IsTearDown() const { return false; }
+        virtual bool IsFeature() const { return false; }
     };
 }

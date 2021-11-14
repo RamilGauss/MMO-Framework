@@ -177,6 +177,9 @@
     <ClCompile Include="TimeSliceEngine\ProjectConfigurator.cpp">
       <Filter>TimeSliceEngine</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\LogicSlot.cpp">
+      <Filter>Modules\Implementations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -409,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ModuleType.h">
       <Filter>TimeSliceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\LogicSlot.h">
+      <Filter>Modules\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\SceneEditingComponent.h">
+      <Filter>Components\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

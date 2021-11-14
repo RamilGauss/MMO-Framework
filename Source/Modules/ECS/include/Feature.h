@@ -26,6 +26,7 @@ namespace nsECSFramework
         std::set<TSystem*> mSystems;
     public:
         virtual ~TFeature();
+        bool IsFeature() const override final;
 
         bool Add(TSystem* system);
         void Remove(TSystem* system);

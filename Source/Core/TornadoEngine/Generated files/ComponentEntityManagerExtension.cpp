@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_12 07:54:28.825
+// File has been generated at 2021_11_14 11:39:25.369
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -52,6 +52,16 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsCommonWrapper_TParentGuidComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TParentGuidComponent>();
     
     m.insert({ rtti_nsCommonWrapper_TParentGuidComponent_Data, nsCommonWrapper_TParentGuidComponent_Data });
+    
+    Data nsCommonWrapper_TSceneEditingComponent_Data;
+    nsCommonWrapper_TSceneEditingComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TSceneEditingComponent*) p)); };
+    nsCommonWrapper_TSceneEditingComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TSceneEditingComponent>(eid); };
+    nsCommonWrapper_TSceneEditingComponent_Data.getFunc = [](TEntityManager* pEntMng, TEntityID eid, void*& p){ return pEntMng->GetComponent<nsCommonWrapper::TSceneEditingComponent>(eid, *((nsCommonWrapper::TSceneEditingComponent*) p)); };
+    nsCommonWrapper_TSceneEditingComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TSceneEditingComponent>(eid); };
+    nsCommonWrapper_TSceneEditingComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TSceneEditingComponent>(eid); };
+    auto rtti_nsCommonWrapper_TSceneEditingComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TSceneEditingComponent>();
+    
+    m.insert({ rtti_nsCommonWrapper_TSceneEditingComponent_Data, nsCommonWrapper_TSceneEditingComponent_Data });
     
     Data nsCommonWrapper_TSceneGuidComponent_Data;
     nsCommonWrapper_TSceneGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TSceneGuidComponent*) p)); };

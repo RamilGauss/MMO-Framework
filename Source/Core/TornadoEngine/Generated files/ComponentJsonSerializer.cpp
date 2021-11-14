@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_12 07:54:28.813
+// File has been generated at 2021_11_14 11:39:25.353
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -64,6 +64,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsCommonWrapper_TParentGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TParentGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TParentGuidComponentTypeFunc, _nsCommonWrapper_TParentGuidComponentTypeFunc });
+    
+    TypeFunc _nsCommonWrapper_TSceneEditingComponentTypeFunc;
+    _nsCommonWrapper_TSceneEditingComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TSceneEditingComponent>((nsCommonWrapper::TSceneEditingComponent*) p, str);
+    };
+    _nsCommonWrapper_TSceneEditingComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TSceneEditingComponent>((nsCommonWrapper::TSceneEditingComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TSceneEditingComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TSceneEditingComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TSceneEditingComponentTypeFunc, _nsCommonWrapper_TSceneEditingComponentTypeFunc });
     
     TypeFunc _nsCommonWrapper_TSceneGuidComponentTypeFunc;
     _nsCommonWrapper_TSceneGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -272,6 +284,14 @@ void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TParentGuidComponent*
 void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TParentGuidComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TSceneEditingComponent* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TSceneEditingComponent* p, const Jobj& obj)
+{
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TSceneGuidComponent* p, Jobj& obj)

@@ -19,8 +19,8 @@ bool TModuleLogic::StartEvent()
 //--------------------------------------------------------------------
 void TModuleLogic::Work()
 {
-    for (auto& slot : mFeatureSlots) {
-        slot->Execute();
+    for (auto& slot : mSlots) {
+        slot->Work();
     }
 }
 //--------------------------------------------------------------------
@@ -33,16 +33,20 @@ void TModuleLogic::StopEvent()
 //--------------------------------------------------------------------
 void TModuleLogic::AddFeature(TFeature* p)
 {
-    GetCurrentSlot()->Add(p);
+    GetCurrentSlot()->AddFeature(p);
 }
 //--------------------------------------------------------------------
 void TModuleLogic::RemoveFeature(TFeature* p)
 {
-    GetCurrentSlot()->Remove(p);
+    GetCurrentSlot()->RemoveFeature(p);
 }
 //--------------------------------------------------------------------
 void TModuleLogic::SetCurrentSlotIndex(int index)
 {
+    if (index < 0 && index >= GetSlotCount()) {
+        BL_FIX_BUG();
+    }
+
     mCurrentIndex = index;
 }
 //--------------------------------------------------------------------
@@ -58,9 +62,9 @@ nsECSFramework::TEntityManager* TModuleLogic::GetCurrentEntMng() const
 //--------------------------------------------------------------------
 void TModuleLogic::CreateSlot(nsECSFramework::TEntityManager* pEntMng)
 {
-    auto newSlot = new TFeature();
+    auto newSlot = new TLogicSlot();
     newSlot->SetEntMng(pEntMng);
-    mFeatureSlots.push_back(newSlot);
+    mSlots.push_back(newSlot);
 }
 //--------------------------------------------------------------------
 void TModuleLogic::DestroyLastSlot()
@@ -70,17 +74,17 @@ void TModuleLogic::DestroyLastSlot()
         return;
     }
 
-    delete mFeatureSlots[count - 1];
-    mFeatureSlots.pop_back();
+    delete mSlots[count - 1];
+    mSlots.pop_back();
 }
 //--------------------------------------------------------------------
 int TModuleLogic::GetSlotCount() const
 {
-    return mFeatureSlots.size();
+    return mSlots.size();
 }
 //--------------------------------------------------------------------
-nsECSFramework::TFeature* TModuleLogic::GetCurrentSlot() const
+TLogicSlot* TModuleLogic::GetCurrentSlot() const
 {
-    return mFeatureSlots[mCurrentIndex];
+    return mSlots[mCurrentIndex];
 }
 //--------------------------------------------------------------------

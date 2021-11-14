@@ -9,9 +9,10 @@ See for more information LICENSE.md.
 
 #include <set>
 #include <vector>
+#include <list>
 
 #include "DstModule.h"
-#include <ECS/include/Feature.h>
+#include "LogicSlot.h"
 
 namespace nsTornadoEngine
 {
@@ -19,13 +20,7 @@ namespace nsTornadoEngine
     {
         int mCurrentIndex = 0;
 
-        std::vector<nsECSFramework::TFeature*> mFeatureSlots;
-
-        //###
-        //TLoadStartedScenesSystem mLoadStartedScenesSystem;
-        //TObjectMakerFeature mObjectMakerFeature;
-        //TTreeBuilderFeature mTreeBuilderFeature;
-        //###
+        std::vector<TLogicSlot*> mSlots;
 
     public:
         bool StartEvent() override;
@@ -35,17 +30,18 @@ namespace nsTornadoEngine
         void AddFeature(nsECSFramework::TFeature* p);
         void RemoveFeature(nsECSFramework::TFeature* p);
 
+        // Slot managment
+        nsECSFramework::TEntityManager* GetCurrentEntMng() const;
+
+        int GetSlotCount() const;
 
         void SetCurrentSlotIndex(int index);
         int GetCurrentSlotIndex() const;
-        nsECSFramework::TEntityManager* GetCurrentEntMng() const;
         
         void CreateSlot(nsECSFramework::TEntityManager* pEntMng);
         void DestroyLastSlot();
 
-        int GetSlotCount() const;
-
     private:
-        nsECSFramework::TFeature* GetCurrentSlot() const;
+        TLogicSlot* GetCurrentSlot() const;
     };
 }
