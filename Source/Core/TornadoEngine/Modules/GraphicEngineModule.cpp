@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ModuleGraphicEngine.h"
+#include "GraphicEngineModule.h"
 #include "BL_Debug.h"
 #include "ProjectConfigContainer.h"
 #include "PathOperations.h"
@@ -16,24 +16,24 @@ using namespace nsGraphicEngine;
 using namespace nsTornadoEngine; 
 using namespace nsBase;
 
-TModuleGraphicEngine::TModuleGraphicEngine()
+TGraphicEngineModule::TGraphicEngineModule()
 {
     mGE.reset(new TGraphicEngine_Ogre_ImGui);
     mGE->SetSelfID(0);
     mGE->SetDstObject(this);
 }
 //---------------------------------------------------------------------------------
-void TModuleGraphicEngine::Work()
+void TGraphicEngineModule::ModuleWork()
 {
     mGE->Work();
 }
 //---------------------------------------------------------------------------------
-TGraphicEngine_Ogre_ImGui* TModuleGraphicEngine::GetGE()
+TGraphicEngine_Ogre_ImGui* TGraphicEngineModule::GetGE()
 {
     return mGE.get();
 }
 //---------------------------------------------------------------------------------
-bool TModuleGraphicEngine::StartEvent()
+bool TGraphicEngineModule::StartEvent()
 {
     auto resources = Project()->mResources.graphicEngine;
     auto resPath = Project()->GetResourcesAbsPath();
@@ -60,8 +60,13 @@ bool TModuleGraphicEngine::StartEvent()
     return true;
 }
 //---------------------------------------------------------------------------------
-void TModuleGraphicEngine::StopEvent()
+void TGraphicEngineModule::StopEvent()
 {
     mGE.reset();
+}
+//---------------------------------------------------------------------------------
+void TGraphicEngineModule::SetGE(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE)
+{
+
 }
 //---------------------------------------------------------------------------------

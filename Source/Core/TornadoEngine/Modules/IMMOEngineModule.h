@@ -11,11 +11,8 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    class DllExport TModuleNetTransport : public TDstModule
+    class DllExport IMMOEngineModule : public TDstModule
     {
     public:
-        bool StartEvent() override;
-        void Work() override;
-        void StopEvent() override;
     };
 }

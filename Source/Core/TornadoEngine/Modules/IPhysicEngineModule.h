@@ -8,17 +8,14 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "DstModule.h"
+#include "PhysicEngine/PhysicEngine_Bullet.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TModuleDataBase : public TDstModule
+    class DllExport IPhysicEngineModule : public TDstModule
     {
     public:
-        TModuleDataBase();
-        virtual ~TModuleDataBase();
-
-        bool StartEvent() override;
-        void Work() override;
-        void StopEvent() override;
+        virtual TPhysicEngine_Bullet* GetPE() = 0;
+        virtual void SetPE(TPhysicEngine_Bullet* pPE) = 0;
     };
 }

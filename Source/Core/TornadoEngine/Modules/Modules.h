@@ -21,13 +21,13 @@ namespace nsGraphicEngine
 
 namespace nsTornadoEngine
 {
-    class TModuleGraphicEngine;
-    class TModulePhysicEngine;
-    class TModuleLogic;
-    class TModuleMMOEngine;
-    class TModuleNetTransport;
-    class TModuleSoundEngine;
-    class TModuleDataBase;
+    class IGraphicEngineModule;
+    class IPhysicEngineModule;
+    class ILogicModule;
+    class IMMOEngineModule;
+    class INetTransportModule;
+    class ISoundEngineModule;
+    class IDataBaseModule;
 
     class TSceneManager;
     class TPrefabManager;
@@ -42,15 +42,15 @@ namespace nsTornadoEngine
     protected:
         friend class TModulesAccessor;
 
-        TModuleGraphicEngine* pGraphicEngine = nullptr;
-        TModulePhysicEngine* pPhysicEngine = nullptr;
-        TModuleLogic* pLogic = nullptr;
+        IGraphicEngineModule* pGraphicEngine = nullptr;
+        IPhysicEngineModule* pPhysicEngine = nullptr;
+        ILogicModule* pLogic = nullptr;
 
-        TModuleMMOEngine* pMMOEngine = nullptr;
-        TModuleNetTransport* pNetTransport = nullptr;
+        IMMOEngineModule* pMMOEngine = nullptr;
+        INetTransportModule* pNetTransport = nullptr;
 
-        TModuleSoundEngine* pSoundEngine = nullptr;
-        TModuleDataBase* pDataBase = nullptr;
+        ISoundEngineModule* pSoundEngine = nullptr;
+        IDataBaseModule* pDataBase = nullptr;
 
         nsECSFramework::TEntityManager* entMng = nullptr;
         TSceneManager* sceneMng = nullptr;
@@ -61,13 +61,13 @@ namespace nsTornadoEngine
         nsGraphicEngine::TKeyMouseEventContainer* keyMouse = nullptr;
     public:
         // Mostly for inner usage
-        TModuleGraphicEngine* G() const;
-        TModulePhysicEngine* P() const;
-        TModuleLogic* L() const;
-        TModuleMMOEngine* MMO() const;
-        TModuleNetTransport* Net() const;
-        TModuleSoundEngine* S() const;
-        TModuleDataBase* DB() const;
+        IGraphicEngineModule* G() const;
+        IPhysicEngineModule* P() const;
+        ILogicModule* L() const;
+        IMMOEngineModule* MMO() const;
+        INetTransportModule* Net() const;
+        ISoundEngineModule* S() const;
+        IDataBaseModule* DB() const;
 
         // Usage in projects
         nsECSFramework::TEntityManager* EntMng() const;

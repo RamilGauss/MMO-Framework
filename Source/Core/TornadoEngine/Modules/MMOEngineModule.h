@@ -7,9 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DstModule.h"
-
-#include "SrcEvent_ex.h"
+#include "IMMOEngineModule.h"
 
 #include "MMOEngine/include/Base.h"
 #include "MMOEngine/include/INetTransport.h"
@@ -17,11 +15,11 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    class DllExport TModuleMMOEngine : public TDstModule
+    class DllExport TMMOEngineModule : public IMMOEngineModule
     {
     public:
         bool StartEvent() override;
-        void Work() override;
+        void ModuleWork() override;
         void StopEvent() override;
     };
 }

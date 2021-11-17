@@ -10,13 +10,13 @@ See for more information LICENSE.md.
 #include "Modules.h"
 #include "ModulesAccessor.h"
 
-#include "ModuleLogic.h"
-#include "ModuleGraphicEngine.h"
-#include "ModulePhysicEngine.h"
-#include "ModuleSoundEngine.h"
-#include "ModuleMMOEngine.h"
-#include "ModuleNetTransport.h"
-#include "ModuleDatabase.h"
+#include "LogicModule.h"
+#include "GraphicEngineModule.h"
+#include "PhysicEngineModule.h"
+#include "SoundEngineModule.h"
+#include "MMOEngineModule.h"
+#include "NetTransportModule.h"
+#include "DatabaseModule.h"
 
 using namespace nsTornadoEngine;
 
@@ -30,25 +30,25 @@ IModule* TModuleManager::GetModuleByName(ModuleType moduleType)
     IModule* module = nullptr;
     switch (moduleType) {
         case ModuleType::Logic:
-            module = new TModuleLogic();
+            module = new TLogicModule();
             break;
         case ModuleType::GraphicEngine:
-            module = new TModuleGraphicEngine();
+            module = new TGraphicEngineModule();
             break;
         case ModuleType::PhysicEngine:
-            module = new TModulePhysicEngine();
+            module = new TPhysicEngineModule();
             break;
         case ModuleType::NetTransport:
-            module = new TModuleNetTransport();
+            module = new TNetTransportModule();
             break;
         case ModuleType::MMOEngine:
-            module = new TModuleMMOEngine();
+            module = new TMMOEngineModule();
             break;
         case ModuleType::SoundEngine:
-            module = new TModuleSoundEngine();
+            module = new TSoundEngineModule();
             break;
         case ModuleType::DataBase:
-            module = new TModuleDataBase();
+            module = new TDataBaseModule();
             break;
     }
     module->mType = moduleType;
@@ -61,25 +61,25 @@ void TModuleManager::ApplyToModulesSingleton()
     for (auto& module : mModules) {
         switch (module->mType) {
             case ModuleType::Logic:
-                TModulesAccessor::SetLogic((TModuleLogic*) module);
+                TModulesAccessor::SetLogic((ILogicModule*) module);
                 break;
             case ModuleType::GraphicEngine:
-                TModulesAccessor::SetGraphicEngine((TModuleGraphicEngine*) module);
+                TModulesAccessor::SetGraphicEngine((IGraphicEngineModule*) module);
                 break;
             case ModuleType::PhysicEngine:
-                TModulesAccessor::SetPhysicEngine((TModulePhysicEngine*) module);
+                TModulesAccessor::SetPhysicEngine((IPhysicEngineModule*) module);
                 break;
             case ModuleType::NetTransport:
-                TModulesAccessor::SetNetTransport((TModuleNetTransport*) module);
+                TModulesAccessor::SetNetTransport((INetTransportModule*) module);
                 break;
             case ModuleType::MMOEngine:
-                TModulesAccessor::SetMMOEngine((TModuleMMOEngine*) module);
+                TModulesAccessor::SetMMOEngine((IMMOEngineModule*) module);
                 break;
             case ModuleType::SoundEngine:
-                TModulesAccessor::SetSoundEngine((TModuleSoundEngine*) module);
+                TModulesAccessor::SetSoundEngine((ISoundEngineModule*) module);
                 break;
             case ModuleType::DataBase:
-                TModulesAccessor::SetDataBase((TModuleDataBase*) module);
+                TModulesAccessor::SetDataBase((IDataBaseModule*) module);
                 break;
         }
     }

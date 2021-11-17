@@ -5,32 +5,37 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ModulePhysicEngine.h"
+#include "PhysicEngineModule.h"
 
 using namespace nsTornadoEngine;
 
-TModulePhysicEngine::TModulePhysicEngine()
+TPhysicEngineModule::TPhysicEngineModule()
 {
     mPE.reset(new TPhysicEngine_Bullet);
 }
 //---------------------------------------------------------------------------------
-void TModulePhysicEngine::Work()
+void TPhysicEngineModule::ModuleWork()
 {
     mPE->Work();
 }
 //---------------------------------------------------------------------------------
-bool TModulePhysicEngine::StartEvent()
+bool TPhysicEngineModule::StartEvent()
 {
     return true;
 }
 //---------------------------------------------------------------------------------
-void TModulePhysicEngine::StopEvent()
+void TPhysicEngineModule::StopEvent()
 {
 
 }
 //---------------------------------------------------------------------------------
-TPhysicEngine_Bullet* TModulePhysicEngine::GetPE()
+TPhysicEngine_Bullet* TPhysicEngineModule::GetPE()
 {
     return mPE.get();
+}
+//---------------------------------------------------------------------------------
+void TPhysicEngineModule::SetPE(TPhysicEngine_Bullet* pPE)
+{
+
 }
 //---------------------------------------------------------------------------------

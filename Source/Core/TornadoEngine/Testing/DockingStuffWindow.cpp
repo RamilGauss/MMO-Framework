@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "DockingStuffWindow.h"
 
 #include "Modules.h"
-#include "ModuleGraphicEngine.h"
+#include "GraphicEngineModule.h"
 #include "StopAccessor.h"
 
 using namespace nsTest;

@@ -5,32 +5,32 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ModuleDataBase.h"
+#include "DataBaseModule.h"
 #include "HiTimer.h"
 
 using namespace nsTornadoEngine;
 
-TModuleDataBase::TModuleDataBase()
+TDataBaseModule::TDataBaseModule()
 {
 
 }
 //----------------------------------------------------------------------
-TModuleDataBase::~TModuleDataBase()
+TDataBaseModule::~TDataBaseModule()
 {
 
 }
 //----------------------------------------------------------------------
-void TModuleDataBase::Work()
+void TDataBaseModule::ModuleWork()
 {
     //ht_msleep(20);//###
 }
 //----------------------------------------------------------------------
-bool TModuleDataBase::StartEvent()
+bool TDataBaseModule::StartEvent()
 {
     return true;
 }
 //----------------------------------------------------------------------
-void TModuleDataBase::StopEvent()
+void TDataBaseModule::StopEvent()
 {
 }
 //----------------------------------------------------------------------

@@ -15,13 +15,13 @@ namespace nsTornadoEngine
     class DllExport TModulesAccessor
     {
     public:
-        static void SetGraphicEngine(TModuleGraphicEngine* value);
-        static void SetPhysicEngine(TModulePhysicEngine* value);
-        static void SetLogic(TModuleLogic* value);
-        static void SetMMOEngine(TModuleMMOEngine* value);
-        static void SetNetTransport(TModuleNetTransport* value);
-        static void SetSoundEngine(TModuleSoundEngine* value);
-        static void SetDataBase(TModuleDataBase* value);
+        static void SetGraphicEngine(IGraphicEngineModule* value);
+        static void SetPhysicEngine(IPhysicEngineModule* value);
+        static void SetLogic(ILogicModule* value);
+        static void SetMMOEngine(IMMOEngineModule* value);
+        static void SetNetTransport(INetTransportModule* value);
+        static void SetSoundEngine(ISoundEngineModule* value);
+        static void SetDataBase(IDataBaseModule* value);
 
         static void SetEntMng(nsECSFramework::TEntityManager* value);
         static void SetSceneMng(TSceneManager* value);

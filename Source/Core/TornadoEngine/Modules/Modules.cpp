@@ -18,37 +18,37 @@ using namespace nsTornadoEngine;
 using namespace nsECSFramework;
 using namespace nsGraphicEngine;
 
-TModuleGraphicEngine* TModules::G() const
+IGraphicEngineModule* TModules::G() const
 {
     return pGraphicEngine;
 }
 //----------------------------------------------------------
-TModulePhysicEngine* TModules::P() const
+IPhysicEngineModule* TModules::P() const
 {
     return pPhysicEngine;
 }
 //----------------------------------------------------------
-TModuleLogic* TModules::L() const
+ILogicModule* TModules::L() const
 {
     return pLogic;
 }
 //----------------------------------------------------------
-TModuleMMOEngine* TModules::MMO() const
+IMMOEngineModule* TModules::MMO() const
 {
     return pMMOEngine;
 }
 //----------------------------------------------------------
-TModuleNetTransport* TModules::Net() const
+INetTransportModule* TModules::Net() const
 {
     return pNetTransport;
 }
 //----------------------------------------------------------
-TModuleSoundEngine* TModules::S() const
+ISoundEngineModule* TModules::S() const
 {
     return pSoundEngine;
 }
 //----------------------------------------------------------
-TModuleDataBase* TModules::DB() const
+IDataBaseModule* TModules::DB() const
 {
     return pDataBase;
 }

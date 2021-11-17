@@ -7,23 +7,18 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <memory>
-
-#include "DstModule.h"
-#include "PhysicEngine/PhysicEngine_Bullet.h"
+#include "IDataBaseModule.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TModulePhysicEngine : public TDstModule
+    class DllExport TDataBaseModule : public IDataBaseModule
     {
-        std::shared_ptr<TPhysicEngine_Bullet> mPE;
     public:
-        TModulePhysicEngine();
+        TDataBaseModule();
+        virtual ~TDataBaseModule();
 
         bool StartEvent() override;
-        void Work() override;
+        void ModuleWork() override;
         void StopEvent() override;
-
-        TPhysicEngine_Bullet* GetPE();
     };
 }

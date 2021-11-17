@@ -8,14 +8,14 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "DstModule.h"
+#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TModuleSoundEngine : public TDstModule
+    class DllExport IGraphicEngineModule : public TDstModule
     {
     public:
-        bool StartEvent() override;
-        void Work() override;
-        void StopEvent() override;
+        virtual nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE() = 0;
+        virtual void SetGE(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE) = 0;
     };
 }

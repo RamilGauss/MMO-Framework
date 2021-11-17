@@ -5,21 +5,20 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ModuleMMOEngine.h"
+#include "SoundEngineModule.h"
 
 using namespace nsTornadoEngine;
 
-bool TModuleMMOEngine::StartEvent()
+bool TSoundEngineModule::StartEvent()
 {
     return true;
 }
 //--------------------------------------------------------------------
-void TModuleMMOEngine::Work()
+void TSoundEngineModule::ModuleWork()
 {
-
 }
 //--------------------------------------------------------------------
-void TModuleMMOEngine::StopEvent()
+void TSoundEngineModule::StopEvent()
 {
 
 }

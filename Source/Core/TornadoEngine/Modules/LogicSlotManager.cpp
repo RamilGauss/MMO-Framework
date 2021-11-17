@@ -5,43 +5,34 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ModuleLogic.h"
-#include "Modules.h"
+#include "LogicSlotManager.h"
 
 using namespace nsTornadoEngine;
 using namespace nsECSFramework;
 
-bool TModuleLogic::StartEvent()
+TLogicSlotManager::~TLogicSlotManager()
 {
-    CreateSlot(Modules()->EntMng());
-    return true;
+    Clear();
 }
 //--------------------------------------------------------------------
-void TModuleLogic::Work()
+void TLogicSlotManager::Work()
 {
     for (auto& slot : mSlots) {
         slot->Work();
     }
 }
 //--------------------------------------------------------------------
-void TModuleLogic::StopEvent()
-{
-    while (GetSlotCount() > 0) {
-        DestroyLastSlot();
-    }
-}
-//--------------------------------------------------------------------
-void TModuleLogic::AddFeature(TFeature* p)
+void TLogicSlotManager::AddFeature(TFeature* p)
 {
     GetCurrentSlot()->AddFeature(p);
 }
 //--------------------------------------------------------------------
-void TModuleLogic::RemoveFeature(TFeature* p)
+void TLogicSlotManager::RemoveFeature(TFeature* p)
 {
     GetCurrentSlot()->RemoveFeature(p);
 }
 //--------------------------------------------------------------------
-void TModuleLogic::SetCurrentSlotIndex(int index)
+void TLogicSlotManager::SetCurrentSlotIndex(int index)
 {
     if (index < 0 && index >= GetSlotCount()) {
         BL_FIX_BUG();
@@ -50,24 +41,24 @@ void TModuleLogic::SetCurrentSlotIndex(int index)
     mCurrentIndex = index;
 }
 //--------------------------------------------------------------------
-int TModuleLogic::GetCurrentSlotIndex() const
+int TLogicSlotManager::GetCurrentSlotIndex() const
 {
     return mCurrentIndex;
 }
 //--------------------------------------------------------------------
-nsECSFramework::TEntityManager* TModuleLogic::GetCurrentEntMng() const
+nsECSFramework::TEntityManager* TLogicSlotManager::GetCurrentEntMng() const
 {
     return GetCurrentSlot()->GetEntMng();
 }
 //--------------------------------------------------------------------
-void TModuleLogic::CreateSlot(nsECSFramework::TEntityManager* pEntMng)
+void TLogicSlotManager::CreateSlot(nsECSFramework::TEntityManager* pEntMng)
 {
     auto newSlot = new TLogicSlot();
     newSlot->SetEntMng(pEntMng);
     mSlots.push_back(newSlot);
 }
 //--------------------------------------------------------------------
-void TModuleLogic::DestroyLastSlot()
+void TLogicSlotManager::DestroyLastSlot()
 {
     auto count = GetSlotCount();
     if (count == 0) {
@@ -78,13 +69,20 @@ void TModuleLogic::DestroyLastSlot()
     mSlots.pop_back();
 }
 //--------------------------------------------------------------------
-int TModuleLogic::GetSlotCount() const
+int TLogicSlotManager::GetSlotCount() const
 {
     return mSlots.size();
 }
 //--------------------------------------------------------------------
-TLogicSlot* TModuleLogic::GetCurrentSlot() const
+TLogicSlot* TLogicSlotManager::GetCurrentSlot() const
 {
     return mSlots[mCurrentIndex];
+}
+//--------------------------------------------------------------------
+void TLogicSlotManager::Clear()
+{
+    while (GetSlotCount() > 0) {
+        DestroyLastSlot();
+    }
 }
 //--------------------------------------------------------------------

@@ -9,37 +9,37 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TModulesAccessor::SetGraphicEngine(TModuleGraphicEngine* value)
+void TModulesAccessor::SetGraphicEngine(IGraphicEngineModule* value)
 {
     Modules()->pGraphicEngine = value;
 }
 //--------------------------------------------------------------------------
-void TModulesAccessor::SetPhysicEngine(TModulePhysicEngine* value)
+void TModulesAccessor::SetPhysicEngine(IPhysicEngineModule* value)
 {
     Modules()->pPhysicEngine = value;
 }
 //--------------------------------------------------------------------------
-void TModulesAccessor::SetLogic(TModuleLogic* value)
+void TModulesAccessor::SetLogic(ILogicModule* value)
 {
     Modules()->pLogic = value;
 }
 //--------------------------------------------------------------------------
-void TModulesAccessor::SetMMOEngine(TModuleMMOEngine* value)
+void TModulesAccessor::SetMMOEngine(IMMOEngineModule* value)
 {
     Modules()->pMMOEngine = value;
 }
 //--------------------------------------------------------------------------
-void TModulesAccessor::SetNetTransport(TModuleNetTransport* value)
+void TModulesAccessor::SetNetTransport(INetTransportModule* value)
 {
     Modules()->pNetTransport = value;
 }
 //--------------------------------------------------------------------------
-void TModulesAccessor::SetSoundEngine(TModuleSoundEngine* value)
+void TModulesAccessor::SetSoundEngine(ISoundEngineModule* value)
 {
     Modules()->pSoundEngine = value;
 }
 //--------------------------------------------------------------------------
-void TModulesAccessor::SetDataBase(TModuleDataBase* value)
+void TModulesAccessor::SetDataBase(IDataBaseModule* value)
 {
     Modules()->pDataBase = value;
 }

@@ -61,6 +61,9 @@
     <Filter Include="Modules\Implementations">
       <UniqueIdentifier>{d08ce2ac-8821-41a6-ab31-a6d5824e88be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Interfaces">
+      <UniqueIdentifier>{59983bc2-315d-4b90-96d3-61b944a5ba72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -153,32 +156,38 @@
     <ClCompile Include="Modules\ModuleManager.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleDataBase.cpp">
+    <ClCompile Include="Modules\DataBaseModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleGraphicEngine.cpp">
+    <ClCompile Include="Modules\GraphicEngineModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleLogic.cpp">
+    <ClCompile Include="Modules\LogicModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleMMOEngine.cpp">
+    <ClCompile Include="Modules\MMOEngineModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleNetTransport.cpp">
+    <ClCompile Include="Modules\NetTransportModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModulePhysicEngine.cpp">
+    <ClCompile Include="Modules\PhysicEngineModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleSoundEngine.cpp">
+    <ClCompile Include="Modules\SoundEngineModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
     <ClCompile Include="TimeSliceEngine\ProjectConfigurator.cpp">
       <Filter>TimeSliceEngine</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\DstModule.cpp">
+      <Filter>Modules\Common</Filter>
+    </ClCompile>
     <ClCompile Include="Modules\LogicSlot.cpp">
-      <Filter>Modules\Implementations</Filter>
+      <Filter>Modules\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\LogicSlotManager.cpp">
+      <Filter>Modules\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -386,25 +395,25 @@
     <ClInclude Include="Modules\ModuleManager.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleDataBase.h">
+    <ClInclude Include="Modules\DataBaseModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleGraphicEngine.h">
+    <ClInclude Include="Modules\GraphicEngineModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleLogic.h">
+    <ClInclude Include="Modules\LogicModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleMMOEngine.h">
+    <ClInclude Include="Modules\MMOEngineModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleNetTransport.h">
+    <ClInclude Include="Modules\NetTransportModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModulePhysicEngine.h">
+    <ClInclude Include="Modules\PhysicEngineModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleSoundEngine.h">
+    <ClInclude Include="Modules\SoundEngineModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ProjectConfigurator.h">
@@ -413,11 +422,35 @@
     <ClInclude Include="TimeSliceEngine\ModuleType.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\LogicSlot.h">
-      <Filter>Modules\Implementations</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Common\SceneEditingComponent.h">
       <Filter>Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\LogicSlot.h">
+      <Filter>Modules\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\LogicSlotManager.h">
+      <Filter>Modules\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\IDataBaseModule.h">
+      <Filter>Modules\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\IGraphicEngineModule.h">
+      <Filter>Modules\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ILogicModule.h">
+      <Filter>Modules\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\IMMOEngineModule.h">
+      <Filter>Modules\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\INetTransportModule.h">
+      <Filter>Modules\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\IPhysicEngineModule.h">
+      <Filter>Modules\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ISoundEngineModule.h">
+      <Filter>Modules\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

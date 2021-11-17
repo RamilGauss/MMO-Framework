@@ -5,21 +5,21 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ModuleNetTransport.h"
+#include "MMOEngineModule.h"
 
 using namespace nsTornadoEngine;
 
-bool TModuleNetTransport::StartEvent()
+bool TMMOEngineModule::StartEvent()
 {
     return true;
 }
 //--------------------------------------------------------------------
-void TModuleNetTransport::Work()
+void TMMOEngineModule::ModuleWork()
 {
 
 }
 //--------------------------------------------------------------------
-void TModuleNetTransport::StopEvent()
+void TMMOEngineModule::StopEvent()
 {
 
 }
