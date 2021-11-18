@@ -14,11 +14,17 @@ See for more information LICENSE.md.
 #include "ILogicModule.h"
 #include "LogicSlot.h"
 
+#include "BeginLogicFeature.h"
+#include "EndLogicFeature.h"
+
 namespace nsTornadoEngine
 {
     class DllExport TLogicModule : public ILogicModule
     {
         TLogicSlotManager mWorkSlots;
+
+        nsLogicWrapper::TBeginLogicFeature mBeginFeature;
+        nsLogicWrapper::TEndLogicFeature mEndFeature;
     public:
         bool StartEvent() override;
         void ModuleWork() override;

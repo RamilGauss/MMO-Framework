@@ -43,12 +43,6 @@
     <Filter Include="Components\Gui">
       <UniqueIdentifier>{e8c58e6c-c6c3-48c0-8e0c-cd1a6132cbb1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Features\Common">
-      <UniqueIdentifier>{04808564-b7bc-49bd-8321-4336508fc877}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Features\Gui">
-      <UniqueIdentifier>{224c1f69-c2c9-48ee-b95a-80d96aa018a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Features\Graphic">
       <UniqueIdentifier>{b44980af-5515-4406-b214-edd784bc8216}</UniqueIdentifier>
     </Filter>
@@ -63,6 +57,18 @@
     </Filter>
     <Filter Include="Modules\Interfaces">
       <UniqueIdentifier>{59983bc2-315d-4b90-96d3-61b944a5ba72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers\Common">
+      <UniqueIdentifier>{5df1c19d-2a64-4cc2-991a-73e79b072593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers\Graphic">
+      <UniqueIdentifier>{0c84eaf1-6bd1-4c55-ac21-2aeee4daacb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers\Gui">
+      <UniqueIdentifier>{a9c1e71e-a6c3-48b9-928e-560a8844acc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Logic">
+      <UniqueIdentifier>{04808564-b7bc-49bd-8321-4336508fc877}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +194,21 @@
     </ClCompile>
     <ClCompile Include="Modules\LogicSlotManager.cpp">
       <Filter>Modules\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\BeginLogicFeature.cpp">
+      <Filter>Features\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\EndLogicFeature.cpp">
+      <Filter>Features\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\BeginGraphicFeature.cpp">
+      <Filter>Features\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\EndGraphicFeature.cpp">
+      <Filter>Features\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp">
+      <Filter>Features\Logic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +472,24 @@
     </ClInclude>
     <ClInclude Include="Modules\ISoundEngineModule.h">
       <Filter>Modules\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\BeginLogicFeature.h">
+      <Filter>Features\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\EndLogicFeature.h">
+      <Filter>Features\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\BeginGraphicFeature.h">
+      <Filter>Features\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\EndGraphicFeature.h">
+      <Filter>Features\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\StartedScenesInitSystem.h">
+      <Filter>Features\Logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

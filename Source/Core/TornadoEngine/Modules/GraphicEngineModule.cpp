@@ -35,6 +35,19 @@ TGraphicEngine_Ogre_ImGui* TGraphicEngineModule::GetGE()
 //---------------------------------------------------------------------------------
 bool TGraphicEngineModule::StartEvent()
 {
+    auto entMng = Modules()->EntMng();
+
+    auto beginSlotIndex = GetBeginLogicSlotManager()->CreateSlot(entMng);
+    GetBeginLogicSlotManager()->SetCurrentSlotIndex(beginSlotIndex);
+    GetBeginLogicSlotManager()->AddFeature(&mBeginFeature);
+
+    auto endSlotIndex = GetEndLogicSlotManager()->CreateSlot(entMng);
+    GetEndLogicSlotManager()->SetCurrentSlotIndex(endSlotIndex);
+    GetEndLogicSlotManager()->AddFeature(&mEndFeature);
+    
+    //-------------------
+    // OGRE
+
     auto resources = Project()->mResources.graphicEngine;
     auto resPath = Project()->GetResourcesAbsPath();
     resPath = TPathOperations::FileDirPath(resPath);

@@ -51,11 +51,13 @@ nsECSFramework::TEntityManager* TLogicSlotManager::GetCurrentEntMng() const
     return GetCurrentSlot()->GetEntMng();
 }
 //--------------------------------------------------------------------
-void TLogicSlotManager::CreateSlot(nsECSFramework::TEntityManager* pEntMng)
+int TLogicSlotManager::CreateSlot(nsECSFramework::TEntityManager* pEntMng)
 {
     auto newSlot = new TLogicSlot();
     newSlot->SetEntMng(pEntMng);
     mSlots.push_back(newSlot);
+    
+    return GetSlotCount() - 1;
 }
 //--------------------------------------------------------------------
 void TLogicSlotManager::DestroyLastSlot()

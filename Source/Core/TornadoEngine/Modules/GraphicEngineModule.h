@@ -10,11 +10,17 @@ See for more information LICENSE.md.
 #include "CallBackRegistrator.h"
 #include "IGraphicEngineModule.h"
 
+#include "BeginGraphicFeature.h"
+#include "EndGraphicFeature.h"
+
 namespace nsTornadoEngine
 {
     class DllExport TGraphicEngineModule : public IGraphicEngineModule
     {
         std::shared_ptr<nsGraphicEngine::TGraphicEngine_Ogre_ImGui> mGE;
+
+        nsGraphicWrapper::TBeginGraphicFeature mBeginFeature;
+        nsGraphicWrapper::TEndGraphicFeature mEndFeature;
     public:
         TGraphicEngineModule();
 

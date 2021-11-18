@@ -23,6 +23,7 @@ namespace nsTornadoEngine
 
         void Work();
 
+        // For current slot
         void AddFeature(nsECSFramework::TFeature* p);
         void RemoveFeature(nsECSFramework::TFeature* p);
 
@@ -33,7 +34,7 @@ namespace nsTornadoEngine
         void SetCurrentSlotIndex(int index);
         int GetCurrentSlotIndex() const;
 
-        void CreateSlot(nsECSFramework::TEntityManager* pEntMng);
+        int CreateSlot(nsECSFramework::TEntityManager* pEntMng);
         void DestroyLastSlot();
 
         void Clear();
