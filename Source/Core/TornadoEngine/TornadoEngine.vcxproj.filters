@@ -473,9 +473,6 @@
     <ClInclude Include="Modules\ISoundEngineModule.h">
       <Filter>Modules\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="Features\Logic\BeginLogicFeature.h">
       <Filter>Features\Logic</Filter>
     </ClInclude>
@@ -490,6 +487,15 @@
     </ClInclude>
     <ClInclude Include="Features\Logic\StartedScenesInitSystem.h">
       <Filter>Features\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IButtonClickHandler.h">
+      <Filter>Handlers\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IHandler.h">
+      <Filter>Handlers\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

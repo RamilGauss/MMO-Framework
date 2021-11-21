@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_23 15:30:48.183
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 13:50:27.174
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -146,6 +146,15 @@ bool TJsonSerializer::Deserialize(void* p, const std::string& str, int rtti, std
 {
     Init();
     return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
+}
+//---------------------------------------------------------------------------------------
+bool TJsonSerializer::Has(int rtti)
+{
+    Init();
+    if (rtti < 0 || rtti >= mTypeFuncVector.size()) {
+        return false;
+    }
+    return mTypeFuncVector[rtti].serializeFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
 std::string TJsonSerializer::_SerializeEnum(nsCppParser::TypeCategory* p)
@@ -295,6 +304,7 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TFilter* p, Jobj& ob
     PUM::Push(obj, "extensions", extensions_a0);
     PUM::Push(obj, "attribute", p->attribute);
     PUM::Push(obj, "inheritance", p->inheritance);
+    PUM::Push(obj, "memberIgnore", p->memberIgnore);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TFilter* p, const Jobj& obj)
@@ -311,6 +321,7 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TFilter* p, const 
     }
     POM::PopStr(obj, "attribute", p->attribute);
     POM::PopStr(obj, "inheritance", p->inheritance);
+    POM::PopStr(obj, "memberIgnore", p->memberIgnore);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TSerializer* p, Jobj& obj)

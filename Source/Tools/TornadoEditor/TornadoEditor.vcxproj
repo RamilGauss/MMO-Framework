@@ -121,7 +121,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TimeSliceEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Core;$(SolutionDir)Source/Core/TornadoEngine/Handlers;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Components/Common;$(SolutionDir)Source/Core/TornadoEngine/Components/Gui;$(SolutionDir)Source/Core/TornadoEngine/Components/Graphic;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -133,7 +133,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base_d.lib;TornadoEngine_d.lib;ECS_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;OgreBites_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base_d.lib;TornadoEngine_d.lib;ECS_d.lib;GraphicEngine_d.lib;ImGuiWidgets_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;OgreBites_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -178,7 +178,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./BehaviourPattern;./DevTool;./GameParam;./GUI;./Logics;./Protocols;../TornadoEngine/GameItems;../TornadoEngine/GameProcess;../TornadoEngine/Generated Files;../TornadoEngine/Modules;../TornadoEngine/Scene/Common;../TornadoEngine/Scene/Operations/Builder;../TornadoEngine/Scene/Operations/Destructor;../TornadoEngine/Scene/Operations/Common;../TornadoEngine/Scene/Operations/Modifier;../TornadoEngine/Scene/Operations/SaverGameItem;../TornadoEngine/Scene/Operations/SaverOutData;../TornadoEngine/Scene/Operations/Synchronizer;../TornadoEngine/Scene/Operations/UpdaterByGameItem;../TornadoEngine/Scene/Operations/UpdaterGameItem;../TornadoEngine/Scene/Pattern;../TornadoEngine/Share;../TornadoEngine/Test;./Modules/Client;./Modules/Slave;./Modules/Master;./Modules/SuperServer;./Modules;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Core/TimeSliceEngine;$(SolutionDir)Source/Modules;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Core;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TimeSliceEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -202,10 +202,12 @@
   <ItemGroup>
     <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
+    <ClCompile Include="Generated files\ComponentEntityManagerExtensionImpl.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
     <ClCompile Include="Generated files\ComponentReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializerImpl.cpp" />
+    <ClCompile Include="Generated files\ComponentTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\FeatureReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\HandlerReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp" />
@@ -221,11 +223,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
+    <ClInclude Include="Generated files\ComponentEntityManagerExtensionImpl.h" />
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
     <ClInclude Include="Generated files\ComponentTypeInformation.h" />
     <ClInclude Include="Generated files\ComponentReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializerImpl.h" />
+    <ClInclude Include="Generated files\ComponentTypeInformationImpl.h" />
     <ClInclude Include="Generated files\FeatureReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\HandlerReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />

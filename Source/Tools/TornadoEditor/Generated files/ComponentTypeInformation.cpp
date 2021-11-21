@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_18 08:25:15.408
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 15:06:53.156
 	
 #include "ComponentTypeInformation.h"
 
@@ -12,6 +12,7 @@
 using namespace nsTornadoEditor;
 
 std::list<std::string> TComponentTypeInformation::mTypeNameList;
+std::list<int> TComponentTypeInformation::mRttiList;
 
 std::vector<std::string> TComponentTypeInformation::mNameVector;
 std::map<std::string, int> TComponentTypeInformation::mNameRttiMap;
@@ -42,6 +43,12 @@ const std::list<std::string>* TComponentTypeInformation::GetTypeNameList()
     return &mTypeNameList;
 }
 //---------------------------------------------------------------------------------------
+const std::list<int>* TComponentTypeInformation::GetRttiList()
+{
+    Init();
+    return &mRttiList;
+}
+//---------------------------------------------------------------------------------------
 const std::string* TComponentTypeInformation::ConvertRttiToName(int rtti)
 {
     Init();
@@ -63,6 +70,7 @@ bool TComponentTypeInformation::ConvertNameToRtti(const std::string& typeName, i
     if (fit == mNameRttiMap.end()) {
         return false;
     }
+    rtti = fit->second;
     return true;
 }
 //---------------------------------------------------------------------------------------

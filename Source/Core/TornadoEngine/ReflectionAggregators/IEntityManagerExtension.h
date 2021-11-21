@@ -23,6 +23,7 @@ namespace nsTornadoEngine
 
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng) { mEntMng = pEntMng; }
 
+        virtual void AddComponent(nsECSFramework::TEntityID eid, int rtti) = 0;
         virtual void SetComponent(nsECSFramework::TEntityID eid, void* p, int rtti) = 0;
         virtual void* ViewComponent(nsECSFramework::TEntityID eid, int rtti) = 0;
         virtual bool GetComponent(nsECSFramework::TEntityID eid, void*& p, int rtti) = 0;

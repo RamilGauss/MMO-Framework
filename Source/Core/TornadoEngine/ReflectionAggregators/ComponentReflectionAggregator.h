@@ -26,6 +26,5 @@ namespace nsTornadoEngine
         IBinaryMarshaller* mBin = nullptr;
         IImGuiSerializer* mImGui = nullptr;
         IEntityManagerExtension* mEntMng = nullptr;
-        ITypeFactory* mTypeFactory = nullptr;
     };
 }

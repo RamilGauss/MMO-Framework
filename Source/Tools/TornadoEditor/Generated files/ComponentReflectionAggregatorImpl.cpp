@@ -6,7 +6,11 @@ See for more information LICENSE.md.
 */
 
 #include "ComponentReflectionAggregatorImpl.h"
+
 #include "ComponentJsonSerializerImpl.h"
+#include "ComponentEntityManagerExtensionImpl.h"
+#include "ComponentTypeInformationImpl.h"
+
 
 using namespace nsTornadoEditor;
 
@@ -15,9 +19,8 @@ TComponentReflectionAggregatorImpl::TComponentReflectionAggregatorImpl()
     mJson = new TComponentJsonSerializerImpl();
     //mBin = new ;
     //mImGui = new ;
-    //mEntMng = new ;
-    //mTypeFactory = new ;
-    //mTypeInfo = new ;
+    mEntMng = new TComponentEntityManagerExtensionImpl();
+    mTypeInfo = new TComponentTypeInformationImpl();
 }
 //------------------------------------------------------------------------
 TComponentReflectionAggregatorImpl::~TComponentReflectionAggregatorImpl()
@@ -26,7 +29,6 @@ TComponentReflectionAggregatorImpl::~TComponentReflectionAggregatorImpl()
     delete mBin;
     delete mImGui;
     delete mEntMng;
-    delete mTypeFactory;
     delete mTypeInfo;
 }
 //------------------------------------------------------------------------

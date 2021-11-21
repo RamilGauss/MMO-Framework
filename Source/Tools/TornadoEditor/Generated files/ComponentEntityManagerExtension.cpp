@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_18 08:25:15.407
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 15:06:53.155
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -32,6 +32,21 @@ void TComponentEntityManagerExtension::Init()
     for (auto& vt : m) {
         mRttiVector[vt.first] = vt.second;
     }
+}
+//---------------------------------------------------------------------------------------
+bool TComponentEntityManagerExtension::Has(int rtti)
+{
+    Init();
+    if (rtti < 0 || rtti >= mRttiVector.size()) {
+        return false;
+    }
+    return mRttiVector[rtti].addFunc != nullptr;
+}
+//---------------------------------------------------------------------------------------
+void TComponentEntityManagerExtension::AddComponent(TEntityManager* pEntMng, TEntityID eid, int rtti)
+{
+    Init();
+    mRttiVector[rtti].addFunc(pEntMng, eid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentEntityManagerExtension::SetComponent(TEntityManager* pEntMng, TEntityID eid, void* p, int rtti)

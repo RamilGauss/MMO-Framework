@@ -560,7 +560,7 @@ void TEntityManager::NotifyOnRemoveComponent(int index, TEntityID entity, ICompo
 //---------------------------------------------------------------------------------------
 void TEntityManager::NotifyComponent(int index, TEntityID entity, IComponent* pC, TCBVector& cbVector)
 {
-    auto pCB = cbVector.Begin() + index;
+    auto pCB = &cbVector[index];
     if (pCB[0] == nullptr) {
         return;
     }

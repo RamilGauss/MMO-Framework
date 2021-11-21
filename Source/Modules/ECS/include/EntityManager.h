@@ -51,6 +51,8 @@ namespace nsECSFramework
 
         // components
         template <typename Component>
+        void AddComponent(TEntityID eid);// => add event, without copy, faster than SetComponent
+        template <typename Component>
         void SetComponent(TEntityID eid, Component& c);// => add or update event
 
         template <typename Component>
@@ -281,7 +283,7 @@ namespace nsECSFramework
     };
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::SetComponent(TEntityID eid, Component& c)
+    void TEntityManager::AddComponent(TEntityID eid)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -290,31 +292,34 @@ namespace nsECSFramework
             return;
         }
 #endif
-        Component* pC = nullptr;
         const auto index = TypeIndex<Component>();
-        auto const has = pEntity->HasComponent(index);
+        const auto has = pEntity->HasComponent(index);
         if (has) {
-            pC = (Component*) pEntity->GetComponent(index);
-
-            TryRemoveFromUnique(eid, pC, index);
-            TryRemoveFromValue(eid, index, pEntity);
-        } else {
-            pC = pEntity->AddComponent<Component>(index);
-            TryAddInHas(eid, index, pEntity);
+            return;
         }
 
-        *pC = c;
+        auto pC = pEntity->AddComponent<Component>(index);
+
+        TryAddInHas(eid, index, pEntity);
         TryAddInUnique(eid, pC, index);
         TryAddInValue(eid, index, pEntity);
 
+        NotifyOnAddComponent(index, eid, pC);
+
+        PushEventToCollector(mAddCollector, index, eid, pC);
+    }
+    //---------------------------------------------------------------------------------------
+    template <typename Component>
+    void TEntityManager::SetComponent(TEntityID eid, Component& c)
+    {
+        auto has = HasComponent<Component>(eid);
+        if (!has) {
+            AddComponent<Component>(eid);
+        }
+        auto pC = ViewComponent<Component>(eid);
+        *pC = c;
         if (has) {
-            NotifyOnUpdateComponent(index, eid, pC);
-
-            PushEventToCollector(mUpdateCollector, index, eid, pC);
-        } else {
-            NotifyOnAddComponent(index, eid, pC);
-
-            PushEventToCollector(mAddCollector, index, eid, pC);
+            UpdateComponent<Component>(eid, pC);
         }
     }
     //---------------------------------------------------------------------------------------

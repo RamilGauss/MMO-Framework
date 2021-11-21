@@ -34,6 +34,8 @@ namespace nsReflectionCodeGenerator
         std::string attribute;// #pragma ATTRIBUTE
         // or
         std::string inheritance;// "ns::TypeA"
+
+        std::string memberIgnore;// #pragma IGNORE_ATTRIBUTE
     };
 
 #pragma REFLECTION_ATTRIBUTE 

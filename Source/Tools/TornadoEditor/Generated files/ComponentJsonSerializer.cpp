@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_18 08:25:15.405
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 15:06:53.154
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -50,5 +50,14 @@ bool TComponentJsonSerializer::Deserialize(void* p, const std::string& str, int 
 {
     Init();
     return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
+}
+//---------------------------------------------------------------------------------------
+bool TComponentJsonSerializer::Has(int rtti)
+{
+    Init();
+    if (rtti < 0 || rtti >= mTypeFuncVector.size()) {
+        return false;
+    }
+    return mTypeFuncVector[rtti].serializeFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------

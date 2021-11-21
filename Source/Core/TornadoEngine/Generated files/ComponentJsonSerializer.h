@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_18 08:21:03.937
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 14:59:59.595
 	
 #pragma once
 
@@ -36,6 +36,7 @@ namespace nsTornadoEngine
     
         static void Serialize(void* p, std::string& str, int rtti);
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
+        static bool Has(int rtti);
     
     public:
         static void _Serialize(nsCommonWrapper::TGuidComponent* p, Jobj& obj);
@@ -64,6 +65,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsGraphicWrapper::TLightComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TLightComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TButtonClickHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TButtonClickHandlerComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TButtonComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TButtonComponent* p, const Jobj& obj);

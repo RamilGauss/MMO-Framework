@@ -62,7 +62,7 @@ void IFileGenerator::AddDefault()
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddIf(const std::string& condition)
 {
-    auto s = fmt::format("if ( {} )", condition);
+    auto s = fmt::format("if ({})", condition);
     Add(s);
 }
 //----------------------------------------------------------------------------------

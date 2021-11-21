@@ -14,9 +14,6 @@
     <Filter Include="Generators\IncludeList">
       <UniqueIdentifier>{686602aa-23fc-48d9-9f5d-66f8aabe43e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generators\MyGui">
-      <UniqueIdentifier>{f9bb1a54-8136-4c27-b8db-0c8211679ce9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generators\TypeInformation">
       <UniqueIdentifier>{97183178-db7e-415f-bcb4-de2804e06175}</UniqueIdentifier>
     </Filter>
@@ -25,6 +22,9 @@
     </Filter>
     <Filter Include="Generators\TypeFactory">
       <UniqueIdentifier>{0a78cf14-c0c8-40df-b37c-fbe0e00e456f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\ImGui">
+      <UniqueIdentifier>{f9bb1a54-8136-4c27-b8db-0c8211679ce9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

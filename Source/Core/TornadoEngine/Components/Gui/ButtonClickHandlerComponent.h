@@ -7,17 +7,25 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <string>
+
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Window.h>
+#include "IButtonClickHandler.h"
 
 namespace nsGuiWrapper
 {
-    struct DllExport TWindowComponent : nsECSFramework::IComponent
+    struct DllExport TButtonClickHandlerComponent : nsECSFramework::IComponent
     {
-        // Not use directly!
 #pragma IGNORE_ATTRIBUTE
-        nsImGuiWidgets::TWindow* value = nullptr;
+        IButtonClickHandler* handler = nullptr;
+
+        std::string handlerTypeName;
+
+        // this scene or prefab
+        std::string partOfGuid;
+
+        std::string entityGuid;
     };
 }

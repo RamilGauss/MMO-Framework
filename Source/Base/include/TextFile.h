@@ -18,11 +18,11 @@ class DllExport TTextFile
     TLoadFromFile mLoader;
     TSaveToFile mSaver;
 public:
-    TTextFile(std::string& path);
+    TTextFile(const std::string& path);
 
     void Load(std::string& str);
     void Save(std::string& str, bool append = false);
 
-    static void Load(std::string& path, std::string& str);
-    static void Save(std::string& path, std::string& str, bool append = false);
+    static void Load(const std::string& path, std::string& str);
+    static void Save(const std::string& path, std::string& str, bool append = false);
 };

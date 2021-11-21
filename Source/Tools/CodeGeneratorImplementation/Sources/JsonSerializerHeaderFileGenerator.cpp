@@ -127,6 +127,7 @@ fmt::format("    typedef TJsonMaster::Jarr {};", s_Jarr),
             "",
             "    static void Serialize(void* p, std::string& str, int rtti);",
             "    static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);",
+            "    static bool Has(int rtti);",
             "",
     };
 }

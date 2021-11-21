@@ -15,7 +15,6 @@ class DllExport TColanderVector
 {
     std::vector<Type> mVec;
 public:
-
     Type& operator [] (int index)
     {
         if (mVec.size() <= index) {

@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_18 08:25:15.405
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 15:06:53.153
 	
 #pragma once
 
@@ -36,6 +36,7 @@ namespace nsTornadoEditor
     
         static void Serialize(void* p, std::string& str, int rtti);
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
+        static bool Has(int rtti);
     
     public:
     };

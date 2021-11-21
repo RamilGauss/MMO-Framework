@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_18 08:21:07.546
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 15:00:00.955
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -314,6 +314,15 @@ bool TTornadoEngineJsonSerializer::Deserialize(void* p, const std::string& str, 
 {
     Init();
     return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
+}
+//---------------------------------------------------------------------------------------
+bool TTornadoEngineJsonSerializer::Has(int rtti)
+{
+    Init();
+    if (rtti < 0 || rtti >= mTypeFuncVector.size()) {
+        return false;
+    }
+    return mTypeFuncVector[rtti].serializeFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsMathTools::TMatrix16* p, Jobj& obj)

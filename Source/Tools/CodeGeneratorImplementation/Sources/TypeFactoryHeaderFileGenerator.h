@@ -19,6 +19,7 @@ namespace nsCodeGeneratorImplementation
             "public:",
 fmt::format("    static void* {}(int {});", s_New, s_rtti),
 fmt::format("    static void {}(void* p, int {});", s_Delete, s_rtti),
+fmt::format("    static bool {}(int {});", s_Has, s_rtti),
             "private:",
 fmt::format("    struct {}", s_Data),
             "    {",

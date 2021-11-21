@@ -466,6 +466,10 @@ void TReflectionCodeGenerator::CorrectMemberInfoInAllTypes()
         auto& pubMem = type->mMembers[(int) AccessLevel::PUBLIC];
         for (auto& member : pubMem) {
             TMemberExtendedTypeInfo* pMemberExtendedInfo = nullptr;
+            if (member->mPragmaTextSet.find(mConfig->filter.memberIgnore) != member->mPragmaTextSet.end()) {
+                continue;
+            }
+
             switch (member->mExtendedInfo.mCategory) {
                 case TypeCategory::REFLECTION:
                     pMemberExtendedInfo = &(member->mExtendedInfo);

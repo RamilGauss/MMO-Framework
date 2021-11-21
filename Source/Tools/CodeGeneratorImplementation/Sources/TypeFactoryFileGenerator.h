@@ -17,6 +17,7 @@ namespace nsCodeGeneratorImplementation
         const std::string s_Init = "Init";
         const std::string s_New = "New";
         const std::string s_Delete = "Delete";
+        const std::string s_Has = "Has";
 
         const std::string s_rtti = "rtti";
 

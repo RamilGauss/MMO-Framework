@@ -268,6 +268,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Common\TransformComponent.h" />
     <ClInclude Include="Components\Graphic\CameraComponent.h" />
     <ClInclude Include="Components\Graphic\LightComponent.h" />
+    <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h" />
     <ClInclude Include="Components\Gui\ButtonComponent.h" />
     <ClInclude Include="Components\Gui\FocusComponent.h" />
     <ClInclude Include="Components\Gui\PositionComponent.h" />
@@ -286,6 +287,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Generated files\ComponentTypeInformation.h" />
     <ClInclude Include="Generated files\ReflectionIncludeList.h" />
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h" />
+    <ClInclude Include="Handlers\IButtonClickHandler.h" />
     <ClInclude Include="Handlers\IHandler.h" />
     <ClInclude Include="Modules\DstModule.h" />
     <ClInclude Include="Modules\IDataBaseModule.h" />

@@ -17,17 +17,23 @@
     <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp">
       <Filter>Generated files\Aggregators</Filter>
     </ClCompile>
+    <ClCompile Include="Generated files\ComponentEntityManagerExtensionImpl.cpp">
+      <Filter>Generated files\Components\Impl</Filter>
+    </ClCompile>
     <ClCompile Include="Generated files\ComponentJsonSerializerImpl.cpp">
-      <Filter>Generated files\Components</Filter>
+      <Filter>Generated files\Components\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\ComponentTypeInformationImpl.cpp">
+      <Filter>Generated files\Components\Impl</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp">
-      <Filter>Generated files\Components</Filter>
+      <Filter>Generated files\Components\GeneratedByReflection</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp">
-      <Filter>Generated files\Components</Filter>
+      <Filter>Generated files\Components\GeneratedByReflection</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp">
-      <Filter>Generated files\Components</Filter>
+      <Filter>Generated files\Components\GeneratedByReflection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +74,12 @@
     <Filter Include="Prefabs">
       <UniqueIdentifier>{ffa09d13-6829-495c-a3fd-320face00eaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generated files\Components\Impl">
+      <UniqueIdentifier>{6f65d934-9920-4b8d-b2db-21b6af9ee595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Components\GeneratedByReflection">
+      <UniqueIdentifier>{c4a1cb35-9619-4f09-b2b2-50574cc44c15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h">
@@ -85,20 +97,26 @@
     <ClInclude Include="Generated files\HandlerReflectionAggregatorImpl.h">
       <Filter>Generated files\Aggregators</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\ComponentJsonSerializerImpl.h">
-      <Filter>Generated files\Components</Filter>
+    <ClInclude Include="Generated files\ComponentEntityManagerExtensionImpl.h">
+      <Filter>Generated files\Components\Impl</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\ComponentIncludeList.h">
-      <Filter>Generated files\Components</Filter>
+    <ClInclude Include="Generated files\ComponentJsonSerializerImpl.h">
+      <Filter>Generated files\Components\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentTypeInformationImpl.h">
+      <Filter>Generated files\Components\Impl</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h">
-      <Filter>Generated files\Components</Filter>
+      <Filter>Generated files\Components\GeneratedByReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\ComponentIncludeList.h">
+      <Filter>Generated files\Components\GeneratedByReflection</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\ComponentJsonSerializer.h">
-      <Filter>Generated files\Components</Filter>
+      <Filter>Generated files\Components\GeneratedByReflection</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\ComponentTypeInformation.h">
-      <Filter>Generated files\Components</Filter>
+      <Filter>Generated files\Components\GeneratedByReflection</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

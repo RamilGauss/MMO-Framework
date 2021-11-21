@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_10_23 15:30:48.181
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 13:50:27.173
 	
 #pragma once
 
@@ -36,6 +36,7 @@ namespace nsJson
     
         static void Serialize(void* p, std::string& str, int rtti);
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
+        static bool Has(int rtti);
     
     public:
         static std::string _SerializeEnum(nsCppParser::TypeCategory* p);

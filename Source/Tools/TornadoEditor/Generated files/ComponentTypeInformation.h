@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_18 08:25:15.407
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 15:06:53.156
 	
 #pragma once
 
@@ -19,6 +19,7 @@ namespace nsTornadoEditor
     class DllExport TComponentTypeInformation
     {
         static std::list<std::string> mTypeNameList;
+        static std::list<int> mRttiList;
     
         static std::vector<std::string> mNameVector;
         static std::map<std::string, int> mNameRttiMap;
@@ -27,6 +28,7 @@ namespace nsTornadoEditor
     
     public:
         static const std::list<std::string>* GetTypeNameList();
+        static const std::list<int>* GetRttiList();
     
         static const std::string* ConvertRttiToName(int rtti);
         static bool ConvertNameToRtti(const std::string& typeName, int& rtti);

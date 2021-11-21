@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_18 08:21:03.943
+// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_11_21 14:59:59.597
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -137,6 +137,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGraphicWrapper_TLightComponentTypeFunc, _nsGraphicWrapper_TLightComponentTypeFunc });
     
+    TypeFunc _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc;
+    _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TButtonClickHandlerComponent>((nsGuiWrapper::TButtonClickHandlerComponent*) p, str);
+    };
+    _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TButtonClickHandlerComponent>((nsGuiWrapper::TButtonClickHandlerComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TButtonClickHandlerComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TButtonClickHandlerComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TButtonClickHandlerComponentTypeFunc, _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc });
+    
     TypeFunc _nsGuiWrapper_TButtonComponentTypeFunc;
     _nsGuiWrapper_TButtonComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TButtonComponent>((nsGuiWrapper::TButtonComponent*) p, str);
@@ -256,6 +268,15 @@ bool TComponentJsonSerializer::Deserialize(void* p, const std::string& str, int 
     return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
 }
 //---------------------------------------------------------------------------------------
+bool TComponentJsonSerializer::Has(int rtti)
+{
+    Init();
+    if (rtti < 0 || rtti >= mTypeFuncVector.size()) {
+        return false;
+    }
+    return mTypeFuncVector[rtti].serializeFunc != nullptr;
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TGuidComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "value", p->value);
@@ -338,6 +359,20 @@ void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TLightComponent* p, 
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TLightComponent* p, const Jobj& obj)
 {
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TButtonClickHandlerComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
+    PUM::Push(obj, "partOfGuid", p->partOfGuid);
+    PUM::Push(obj, "entityGuid", p->entityGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TButtonClickHandlerComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
+    POM::PopStr(obj, "partOfGuid", p->partOfGuid);
+    POM::PopStr(obj, "entityGuid", p->entityGuid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TButtonComponent* p, Jobj& obj)

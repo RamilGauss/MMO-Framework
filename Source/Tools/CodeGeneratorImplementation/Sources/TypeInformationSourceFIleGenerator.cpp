@@ -36,6 +36,8 @@ void TTypeInformationSourceFileGenerator::Work()
     std::string str;
     str = fmt::format("std::list<std::string> {}::{};", mSerializer->className, s_mTypeNameList);
     Add(str);
+    str = fmt::format("std::list<int> {}::{};", mSerializer->className, s_mRttiList);
+    Add(str);
 
     AddEmptyLine();
 
@@ -98,6 +100,9 @@ void TTypeInformationSourceFileGenerator::AddInit()
         str = fmt::format("{}.push_back({});", s_mTypeNameList, typeName);
         Add(str);
 
+        str = fmt::format("{}.push_back({});", s_mRttiList, rtti);
+        Add(str);
+
         str = fmt::format("{}.insert({{ {}, {} }});", s_mNameRttiMap, typeName, rtti);
         Add(str);
 
@@ -157,6 +162,24 @@ void TTypeInformationSourceFileGenerator::AddMethodDeinitions()
     //=============================================================
     paramList = 
     {
+    };
+    ret = "const std::list<int>*";
+
+    AddMethodImplementationBegin(ret, mSerializer->className, s_GetRttiList, paramList);
+    AddLeftBrace();
+    IncrementTabs();
+
+    str = fmt::format("{}();", s_Init);
+    Add(str);
+    str = fmt::format("return &{};", s_mRttiList);
+    Add(str);
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    //=============================================================
+    paramList =
+    {
         fmt::format("int {}", s_rtti),
     };
     ret = "const std::string*";
@@ -205,6 +228,7 @@ void TTypeInformationSourceFileGenerator::AddMethodDeinitions()
     DecrementTabs();
     AddRightBrace();
 
+    Add(fmt::format("{} = fit->second;", s_rtti));
     Add("return true;");
 
     DecrementTabs();

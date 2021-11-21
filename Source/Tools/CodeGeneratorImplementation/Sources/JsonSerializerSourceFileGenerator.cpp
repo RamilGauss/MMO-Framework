@@ -159,6 +159,22 @@ void TJsonSerializerSourceFileGenerator::AddConstContentMethods()
     DecrementTabs();
     AddRightBrace();
     AddCommentedLongLine();
+    //======================
+    Add(fmt::format("bool {}::{}(int rtti)", className, s_HasByTypeMethod));
+    AddLeftBrace();
+    IncrementTabs();
+
+    Add(fmt::format("{}();", s_Init));
+    Add(fmt::format("if (rtti < 0 || rtti >= {}.size()) {{", s_TypeFuncVector));
+    IncrementTabs();
+    Add("return false;");
+    DecrementTabs();
+    AddRightBrace();
+    Add(fmt::format("return {}[rtti].serializeFunc != nullptr;", s_TypeFuncVector));
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------
 void TJsonSerializerSourceFileGenerator::AddImplementations()

@@ -58,6 +58,7 @@ namespace nsCodeGeneratorImplementation
         const std::string s_GetTypeNameList = "GetTypeNameList";
         const std::string s_SerializeByTypeMethod = "Serialize";
         const std::string s_DeserializeByTypeMethod = "Deserialize";
+        const std::string s_HasByTypeMethod = "Has";
         const std::string s_FillByTypeMethod = "Fill";
 
 

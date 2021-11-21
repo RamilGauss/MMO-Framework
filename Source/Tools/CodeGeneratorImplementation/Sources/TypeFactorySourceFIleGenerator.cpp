@@ -146,7 +146,7 @@ void TTypeFactorySourceFileGenerator::AddMethodDeinitions()
     DecrementTabs();
     AddRightBrace();
     AddCommentedLongLine();
-
+    //---------------------------------------------
     paramList =
     {
         fmt::format("void* p"),
@@ -161,6 +161,30 @@ void TTypeFactorySourceFileGenerator::AddMethodDeinitions()
     str = fmt::format("{}();", s_Init);
     Add(str);
     str = fmt::format("{}[{}].{}(p);", s_mDataVector, s_rtti, s_deleteFunc);
+    Add(str);
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    //---------------------------------------------
+    paramList =
+    {
+        fmt::format("int {}", s_rtti),
+    };
+
+    ret = s_Bool;
+    AddMethodImplementationBegin(ret, mSerializer->className, s_Has, paramList);
+    AddLeftBrace();
+    IncrementTabs();
+
+    str = fmt::format("{}();", s_Init);
+    Add(str);
+    Add(fmt::format("if (rtti < 0 || rtti >= {}.size()) {{", s_mDataVector));
+    IncrementTabs();
+    Add("return false;");
+    DecrementTabs();
+    AddRightBrace();
+    str = fmt::format("return {}[{}].{} != nullptr;", s_mDataVector, s_rtti, s_deleteFunc);
     Add(str);
 
     DecrementTabs();

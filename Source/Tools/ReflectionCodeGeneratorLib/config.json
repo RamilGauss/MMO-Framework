@@ -15,7 +15,8 @@
             ".hxx",
             ".h++"
         ],
-        "inheritance": ""
+        "inheritance": "",
+        "memberIgnore": "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {
         "directory": "./Sources",
