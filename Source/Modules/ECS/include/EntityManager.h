@@ -51,14 +51,13 @@ namespace nsECSFramework
 
         // components
         template <typename Component>
-        void AddComponent(TEntityID eid);// => add event, without copy, faster than SetComponent
-        template <typename Component>
         void SetComponent(TEntityID eid, Component& c);// => add or update event
 
         template <typename Component>
+        [[nodiscard]]
         Component* ViewComponent(TEntityID eid);// for view, fast,
         template <typename Component>
-        void UpdateComponent(TEntityID eid, Component* pC);// => update event
+        void ApplyChangesComponent(TEntityID eid, Component* pC, bool withNotify = true);// => update event
 
         template <typename Component>
         bool GetComponent(TEntityID eid, Component& c);// for change, copy, with check
@@ -68,6 +67,10 @@ namespace nsECSFramework
         void RemoveComponent(TEntityID eid);// => remove event
         template <typename Component>
         bool HasComponent(TEntityID eid);
+
+        template <typename Component>
+        [[nodiscard("Call ApplyChanges")]]
+        Component* CreateComponent(TEntityID eid);// => add event, without copy, faster than SetComponent
 
         void GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList);
 
@@ -283,48 +286,41 @@ namespace nsECSFramework
     };
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::AddComponent(TEntityID eid)
+    [[nodiscard("Call ApplyChanges")]]
+    Component* TEntityManager::CreateComponent(TEntityID eid)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
         if (pEntity == nullptr) {
             BL_FIX_BUG();
-            return;
+            return nullptr;
         }
 #endif
         const auto index = TypeIndex<Component>();
         const auto has = pEntity->HasComponent(index);
         if (has) {
-            return;
+            return ViewComponent<Component>(eid);
         }
 
-        auto pC = pEntity->AddComponent<Component>(index);
-
-        TryAddInHas(eid, index, pEntity);
-        TryAddInUnique(eid, pC, index);
-        TryAddInValue(eid, index, pEntity);
-
-        NotifyOnAddComponent(index, eid, pC);
-
-        PushEventToCollector(mAddCollector, index, eid, pC);
+        return pEntity->AddComponent<Component>(index);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
     void TEntityManager::SetComponent(TEntityID eid, Component& c)
     {
         auto has = HasComponent<Component>(eid);
-        if (!has) {
-            AddComponent<Component>(eid);
-        }
-        auto pC = ViewComponent<Component>(eid);
-        *pC = c;
+        Component* pC = nullptr;
         if (has) {
-            UpdateComponent<Component>(eid, pC);
+            pC = ViewComponent<Component>(eid);
+        } else {
+            pC = CreateComponent<Component>(eid);
         }
+        *pC = c;
+        ApplyChangesComponent<Component>(eid, pC);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::UpdateComponent(TEntityID eid, Component* pC)
+    void TEntityManager::ApplyChangesComponent(TEntityID eid, Component* pC, bool withNotify)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -341,17 +337,33 @@ namespace nsECSFramework
             BL_FIX_BUG();
         }
 #endif
-        TryRemoveFromUnique(eid, pC, index);
-        TryRemoveFromValue(eid, index, pEntity);
-        TryAddInUnique(eid, pC, index);
-        TryAddInValue(eid, index, pEntity);
+        auto isJustCreated = pEntity->IsJustCreatedComponent(index);
+        if (isJustCreated) {
+            pEntity->ApplyChangesComponent(index);
 
-        NotifyOnUpdateComponent(index, eid, pC);
+            TryAddInHas(eid, index, pEntity);
+            TryAddInUnique(eid, pC, index);
+            TryAddInValue(eid, index, pEntity);
 
-        PushEventToCollector(mUpdateCollector, index, eid, pC);
+            if (withNotify) {
+                NotifyOnAddComponent(index, eid, pC);
+                PushEventToCollector(mAddCollector, index, eid, pC);
+            }
+        } else {
+            TryRemoveFromUnique(eid, pC, index);
+            TryRemoveFromValue(eid, index, pEntity);
+            TryAddInUnique(eid, pC, index);
+            TryAddInValue(eid, index, pEntity);
+
+            if (withNotify) {
+                NotifyOnUpdateComponent(index, eid, pC);
+                PushEventToCollector(mUpdateCollector, index, eid, pC);
+            }
+        }
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
+    [[nodiscard]]
     Component* TEntityManager::ViewComponent(TEntityID eid)
     {
         auto pEntity = GetEntity(eid);
@@ -362,8 +374,7 @@ namespace nsECSFramework
         }
 #endif
         const auto index = TypeIndex<Component>();
-        auto pC = (Component*) pEntity->GetComponent(index);
-        return pC;
+        return (Component*) pEntity->GetComponent(index);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
@@ -378,8 +389,9 @@ namespace nsECSFramework
 #endif
         const auto index = TypeIndex<Component>();
         auto pC = (Component*) pEntity->GetComponent(index);
-        if (pC == nullptr)
+        if (pC == nullptr) {
             return false;
+        }
         c = *pC;
         return true;
     }
@@ -387,8 +399,8 @@ namespace nsECSFramework
     template <typename Component>
     Component TEntityManager::GetComponent(TEntityID eid)
     {
-        Component c;
         auto pEntity = GetEntity(eid);
+        Component c;
 #ifdef _DEBUG
         if (pEntity == nullptr) {
             BL_FIX_BUG();
@@ -400,8 +412,7 @@ namespace nsECSFramework
         if (pC == nullptr) {
             return c;
         }
-        c = *pC;
-        return c;
+        return *pC;
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>

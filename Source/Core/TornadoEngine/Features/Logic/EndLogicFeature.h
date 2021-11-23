@@ -8,11 +8,13 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <ECS/include/Feature.h>
+#include "StartedScenesInitSystem.h"
 
 namespace nsLogicWrapper
 {
     class DllExport TEndLogicFeature : public nsECSFramework::TFeature
     {
+        TStartedScenesInitSystem mStartedScenesInitSystem;
     public:
         void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
     };

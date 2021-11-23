@@ -11,5 +11,6 @@ using namespace nsLogicWrapper;
 
 void TEndLogicFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
 {
-
+    TFeature::SetEntMng(entMng);
+    Add(&mStartedScenesInitSystem);
 }

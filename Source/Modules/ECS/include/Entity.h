@@ -18,7 +18,7 @@ namespace nsECSFramework
 {
     class DllExport TEntity
     {
-        typedef TColanderVector<TLinkToList<TEntityID>*> TCollectionVec;
+        using TCollectionVec = TColanderVector<TLinkToList<TEntityID>*>;
 
         TCollectionVec mHasCollectionVec;
         TCollectionVec mValueCollectionVec;
@@ -37,6 +37,9 @@ namespace nsECSFramework
         bool HasComponent(int index);
         IComponent* GetComponent(int index);
         void RemoveComponent(int index);
+
+        bool IsJustCreatedComponent(int index);
+        void ApplyChangesComponent(int index);
 
         static const int NONE_INDEX = -1;
         int GetFirstComponentIndex();
@@ -57,7 +60,7 @@ namespace nsECSFramework
         auto pCI = mComponents[index];
         if ( pCI != nullptr ) {
             BL_FIX_BUG();
-            return nullptr;//???
+            return (Component*) pCI->p;
         }
         mComponentIndexInUse.push_front(index);
 

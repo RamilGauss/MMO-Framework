@@ -111,7 +111,7 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TSizeComponent",
-                    "jsonBody": "{\"x\":100, \"y\":100}"
+                    "jsonBody": "{\"x\":40, \"y\":40}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TButtonComponent",

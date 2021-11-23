@@ -212,7 +212,13 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Features\Graphic\BeginGraphicFeature.cpp" />
+    <ClCompile Include="Features\Graphic\ButtonBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\ButtonMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\EndGraphicFeature.cpp" />
+    <ClCompile Include="Features\Graphic\GuiBuilderFeature.cpp" />
+    <ClCompile Include="Features\Graphic\GuiMakerFeature.cpp" />
+    <ClCompile Include="Features\Graphic\WindowBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\WindowMakerSystem.cpp" />
     <ClCompile Include="Features\Logic\BeginLogicFeature.cpp" />
     <ClCompile Include="Features\Logic\EndLogicFeature.cpp" />
     <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp" />
@@ -277,7 +283,13 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\VisibilityComponent.h" />
     <ClInclude Include="Components\Gui\WindowComponent.h" />
     <ClInclude Include="Features\Graphic\BeginGraphicFeature.h" />
+    <ClInclude Include="Features\Graphic\ButtonBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\ButtonMakerSystem.h" />
     <ClInclude Include="Features\Graphic\EndGraphicFeature.h" />
+    <ClInclude Include="Features\Graphic\GuiBuilderFeature.h" />
+    <ClInclude Include="Features\Graphic\GuiMakerFeature.h" />
+    <ClInclude Include="Features\Graphic\WindowBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\WindowMakerSystem.h" />
     <ClInclude Include="Features\Logic\BeginLogicFeature.h" />
     <ClInclude Include="Features\Logic\EndLogicFeature.h" />
     <ClInclude Include="Features\Logic\StartedScenesInitSystem.h" />

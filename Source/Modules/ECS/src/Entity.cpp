@@ -79,3 +79,21 @@ const std::list<TypeIndexType>* TEntity::GetComponentIndexInUse() const
     return &mComponentIndexInUse;
 }
 //---------------------------------------------------------------------------------------
+bool TEntity::IsJustCreatedComponent(int index)
+{
+    auto pCI = mComponents[index];
+    if (pCI == nullptr) {
+        return false;
+    }
+    return pCI->isJustCreated;
+}
+//---------------------------------------------------------------------------------------
+void TEntity::ApplyChangesComponent(int index)
+{
+    auto pCI = mComponents[index];
+    if (pCI == nullptr) {
+        return;
+    }
+    pCI->isJustCreated = false;
+}
+//---------------------------------------------------------------------------------------

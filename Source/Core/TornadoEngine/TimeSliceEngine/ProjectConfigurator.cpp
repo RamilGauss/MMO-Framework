@@ -24,7 +24,15 @@ bool TProjectConfigurator::LoadProject(const std::string& absPathToProjectFile)
 //-----------------------------------------------------------------------------------
 void TProjectConfigurator::Setup()
 {
-    Modules()->SceneMng()->SetEntityManager(Modules()->EntMng());
+    auto entMng = Modules()->EntMng();
+    std::list<std::string> dllPathList = 
+    {
+        boost::dll::this_line_location().string(), 
+        Project()->GetBinaryAbsPath()
+    };
+    entMng->Setup(dllPathList);
+
+    Modules()->SceneMng()->SetEntityManager(entMng);
     Modules()->SceneMng()->SetContentMap(Project()->mSceneContentMap);
 }
 //-----------------------------------------------------------------------------------

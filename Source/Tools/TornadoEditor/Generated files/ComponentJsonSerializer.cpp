@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_21 15:06:53.154
+// File has been generated at 2021_11_23 08:22:15.713
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"

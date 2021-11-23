@@ -70,6 +70,12 @@
     <Filter Include="Features\Logic">
       <UniqueIdentifier>{04808564-b7bc-49bd-8321-4336508fc877}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Graphic\Maker">
+      <UniqueIdentifier>{2366db95-77e9-4df5-83ae-497191e2f512}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Graphic\Builder">
+      <UniqueIdentifier>{9c1bc676-9335-4671-9aaf-a070de0158d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -209,6 +215,24 @@
     </ClCompile>
     <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp">
       <Filter>Features\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\GuiMakerFeature.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\GuiBuilderFeature.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ButtonBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\WindowBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ButtonMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\WindowMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -496,6 +520,24 @@
     </ClInclude>
     <ClInclude Include="Handlers\IHandler.h">
       <Filter>Handlers\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\GuiMakerFeature.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\GuiBuilderFeature.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\WindowMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ButtonMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\WindowBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ButtonBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

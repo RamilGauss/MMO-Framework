@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_21 15:06:53.155
+// File has been generated at 2021_11_23 08:22:15.714
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -40,13 +40,19 @@ bool TComponentEntityManagerExtension::Has(int rtti)
     if (rtti < 0 || rtti >= mRttiVector.size()) {
         return false;
     }
-    return mRttiVector[rtti].addFunc != nullptr;
+    return mRttiVector[rtti].createFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
-void TComponentEntityManagerExtension::AddComponent(TEntityManager* pEntMng, TEntityID eid, int rtti)
+void* TComponentEntityManagerExtension::CreateComponent(TEntityManager* pEntMng, TEntityID eid, int rtti)
 {
     Init();
-    mRttiVector[rtti].addFunc(pEntMng, eid);
+    return mRttiVector[rtti].createFunc(pEntMng, eid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentEntityManagerExtension::ApplyChangesComponent(TEntityManager* pEntMng, TEntityID eid, void* p, int rtti, bool withNotify)
+{
+    Init();
+    mRttiVector[rtti].applyChangesFunc(pEntMng, eid, p, withNotify);
 }
 //---------------------------------------------------------------------------------------
 void TComponentEntityManagerExtension::SetComponent(TEntityManager* pEntMng, TEntityID eid, void* p, int rtti)

@@ -11,5 +11,8 @@ using namespace nsGraphicWrapper;
 
 void TBeginGraphicFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
 {
+    TFeature::SetEntMng(entMng);
 
+    Add(&mGuiMakerFeature);
+    Add(&mGuiBuilderFeature);
 }

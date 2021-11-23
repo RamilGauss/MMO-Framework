@@ -9,14 +9,10 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "StartedScenesInitSystem.h"
-
 namespace nsLogicWrapper
 {
     class DllExport TBeginLogicFeature : public nsECSFramework::TFeature
     {
-        TStartedScenesInitSystem mStartedScenesInitSystem;
-
     public:
         void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
     };

@@ -19,17 +19,20 @@ namespace nsECSFramework
     struct IComponent;
     struct TComponentContainer
     {
+        bool isJustCreated = true;
+
         TLinkToList<short> mLinkToList;
         IComponent* p = nullptr;// from memory pool
 
         template<typename Component>
-        inline void Init()
+        void Init()
         {
             auto pMP = SingletonManager()->Get<TMemoryObjectPool<Component>>();
             p = pMP->Pop();
             mDoneFunc = [this, pMP] () {
                 pMP->Push((Component*) this->p);
             };
+            isJustCreated = true;
         }
         void Done()
         {

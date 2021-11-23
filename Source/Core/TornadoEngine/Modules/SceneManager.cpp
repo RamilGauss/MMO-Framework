@@ -59,7 +59,6 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
     }
 
     auto componentReflection = Project()->mScenePartAggregator->mComponents;
-
     componentReflection->mEntMng->SetEntityManager(Modules()->EntMng());
 
     // 2. Convert typeName to rtti
@@ -75,9 +74,7 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
                 logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
                 continue;
             }
-            componentReflection->mEntMng->AddComponent(eid, rtti);
-
-            auto pComponent = componentReflection->mEntMng->ViewComponent(eid, rtti);
+            auto pComponent = componentReflection->mEntMng->CreateComponent(eid, rtti);
 
             // 5. Deserialize component by rtti and json body
             auto componentDeserialzieResult = 
@@ -86,6 +83,8 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
             if (!componentDeserialzieResult) {
                 logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
             }
+
+            componentReflection->mEntMng->ApplyChangesComponent(eid, pComponent, rtti, true);
         }
     }
     // 6. Replace all guids to new guid with ParentGuids and SceneGuids

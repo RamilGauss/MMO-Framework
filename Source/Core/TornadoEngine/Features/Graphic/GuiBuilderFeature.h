@@ -9,15 +9,15 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "GuiMakerFeature.h"
-#include "GuiBuilderFeature.h"
+#include "ButtonBuilderSystem.h"
+#include "WindowBuilderSystem.h"
 
 namespace nsGraphicWrapper
 {
-    class DllExport TBeginGraphicFeature : public nsECSFramework::TFeature
+    class DllExport TGuiBuilderFeature : public nsECSFramework::TFeature
     {
-        TGuiMakerFeature mGuiMakerFeature;
-        TGuiBuilderFeature mGuiBuilderFeature;
+        TButtonBuilderSystem mButtonBuilderSystem;
+        TWindowBuilderSystem mWindowBuilderSystem;
     public:
         void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
     };

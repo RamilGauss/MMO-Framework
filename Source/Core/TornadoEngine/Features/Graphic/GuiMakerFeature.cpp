@@ -5,11 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BeginLogicFeature.h"
+#include "GuiMakerFeature.h"
 
-using namespace nsLogicWrapper;
+using namespace nsGraphicWrapper;
 
-void TBeginLogicFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
+void TGuiMakerFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
 {
     TFeature::SetEntMng(entMng);
+
+    Add(&mButtonMakerSystem);
+    Add(&mWindowMakerSystem);
 }
