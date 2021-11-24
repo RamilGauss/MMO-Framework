@@ -153,6 +153,7 @@
     <ClCompile Include="ExtendedTypeInfoExtractorTest.cpp" />
     <ClCompile Include="FileParser.cpp" />
     <ClCompile Include="FileParser.h" />
+    <ClCompile Include="FunctionWithDefaultArgumentTest.cpp" />
     <ClCompile Include="InheritancesTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MembersTest.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Enum_2.h" />
     <ClInclude Include="Enum_3.h" />
     <ClInclude Include="FunctionContent.h" />
+    <ClInclude Include="FunctionWithDefaultArgument.h" />
     <ClInclude Include="MemberBuiltInTypes.h" />
     <ClInclude Include="MemberCategory.h" />
     <ClInclude Include="MemberPragma.h" />

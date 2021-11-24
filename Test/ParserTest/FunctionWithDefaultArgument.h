@@ -7,14 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
-
-#include <ECS/include/IComponent.h>
-
-namespace nsGuiWrapper
+struct FunctionWithDefaultArgument
 {
-    struct DllExport TTitleComponent : nsECSFramework::IComponent
-    {
-        std::string value;
-    };
-}
+    void Func(bool flag = true) override;
+};
+

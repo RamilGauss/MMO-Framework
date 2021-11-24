@@ -33,7 +33,8 @@ bool TVariableDeclarationLexema::CanFill(const TLineTokenEntity* line) const
         if (assignParenIndex == -1) {
             return false;
         }
-        if (assignParenIndex < leftParenIndex) {
+        auto isAssignAfterParens = (assignParenIndex > leftParenIndex && assignParenIndex > rightParenIndex);
+        if (!isAssignAfterParens) {
             return false;
         }
     }

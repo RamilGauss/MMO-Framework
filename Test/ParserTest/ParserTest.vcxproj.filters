@@ -59,6 +59,9 @@
     <ClCompile Include="UsingTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FunctionWithDefaultArgumentTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
@@ -137,6 +140,9 @@
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
     <ClInclude Include="EmptyEnum.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionWithDefaultArgument.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
   </ItemGroup>

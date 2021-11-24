@@ -67,7 +67,7 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
-                    "jsonBody": "{\"value\":\"qwerty\"}"
+                    "jsonBody": "{\"value\":\"First window\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TPositionComponent",
@@ -75,7 +75,7 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TSizeComponent",
-                    "jsonBody": "{\"x\":100, \"y\":100}"
+                    "jsonBody": "{\"x\":400, \"y\":400}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TWindowComponent",
@@ -103,15 +103,15 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
-                    "jsonBody": "{\"value\":\"qwerty\"}"
+                    "jsonBody": "{\"value\":\"Exit\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TPositionComponent",
-                    "jsonBody": "{\"x\":10, \"y\":10}"
+                    "jsonBody": "{\"x\":10, \"y\":40}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TSizeComponent",
-                    "jsonBody": "{\"x\":40, \"y\":40}"
+                    "jsonBody": "{\"x\":100, \"y\":20}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TButtonComponent",

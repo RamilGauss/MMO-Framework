@@ -24,6 +24,8 @@ See for more information LICENSE.md.
 #include "PathOperations.h"
 #include "ProjectConfigurator.h"
 
+#include <fmt/core.h>
+
 using namespace std;
 using namespace nsTornadoEngine;
 using namespace nsBase;
@@ -33,6 +35,8 @@ using namespace nsBase;
 //-------------------------------------
 typedef vector<string> TVectorStr;
 void ViewHowUse();
+void IncorrectPathToProject(const std::string& absProjectPath);
+
 bool GetArgvArgcConsole(int argc, char** argv, TVectorStr& vec_argv);
 //-------------------------------------
 #ifdef WIN32
@@ -58,17 +62,20 @@ int main(int argc, char** argv)
         return -1;
     }
     //-----------------------------------------------------------------
+    auto timeSliceEngine = new TTimeSliceEngine;
+
     auto currentDir = TPathOperations::GetCurrentDir();
     auto absProjectPath = TPathOperations::CalculatePathBy(currentDir, argv[1]);
 
-
     auto projectConfigurator = new TProjectConfigurator();
-    projectConfigurator->LoadProject(absProjectPath);
+    auto loadResult = projectConfigurator->LoadProject(absProjectPath);
 
-
-    auto timeSliceEngine = new TTimeSliceEngine;
-    timeSliceEngine->onModuleCreationEndsCb.Register(projectConfigurator, &TProjectConfigurator::Setup);
-    timeSliceEngine->Work(projectConfigurator->GetModuleTypes());
+    if (loadResult) {
+        timeSliceEngine->onModuleCreationEndsCb.Register(projectConfigurator, &TProjectConfigurator::Setup);
+        timeSliceEngine->Work(projectConfigurator->GetModuleTypes());
+    } else {
+        IncorrectPathToProject(absProjectPath);
+    }
     delete timeSliceEngine;
 
     projectConfigurator->UnloadProject();
@@ -83,21 +90,27 @@ bool GetArgvArgcConsole(int argc, char** argv, TVectorStr & argsVec)
     return bool(argc > 0);
 }
 //-------------------------------------------------------------------------------
+void IncorrectPathToProject(const std::string& absProjectPath)
+{
+    auto message = fmt::format("Incorrect path to the file project:\n\"{}\"", absProjectPath);
+    BL_MessageBug(message.c_str());
+}
+//-------------------------------------------------------------------------------
 void ViewHowUse()
 {
     const char* sMsgUtf8_En =
         "Invalid parameter input.\n"
-        "Path to project file.\n"
+        "Path to the project file in relation to the launcher.\n"
         "For example:\n"
-        "Launcher.exe \"../MyPath/MyGame.project\"\n";
+        "Launcher.exe \"..\\Source\\Tools\\TornadoEditor\\Editor.project\"\n";
 
     // Ввиду того, что весь исходный код я переконвертировал в utf-8.
     const char* sMsgUtf8_Ru =
         "Некорректный ввод параметров.\n"
-        "Путь к файлу проекта.\n"
+        "Путь к файлу проекта относительно лаунчера.\n"
         "\n"
         "Например:\n"
-        "Launcher.exe \"../MyPath/MyGame.project\"\n";
+        "Launcher.exe \"..\\Source\\Tools\\TornadoEditor\\Editor.project\"\n";
 
     int ret = 0;
 #ifdef WIN32  

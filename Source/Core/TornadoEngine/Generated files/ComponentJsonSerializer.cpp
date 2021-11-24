@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_23 08:21:30.645
+// File has been generated at 2021_11_24 08:27:04.716
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -417,10 +417,12 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TSizeComponent* p, con
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TTitleComponent* p, Jobj& obj)
 {
+    PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TTitleComponent* p, const Jobj& obj)
 {
+    POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TVisibilityComponent* p, Jobj& obj)

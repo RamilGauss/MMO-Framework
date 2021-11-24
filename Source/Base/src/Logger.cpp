@@ -28,16 +28,18 @@ TSaveToFile* GetLogger(const std::string& nameLog)
 //-----------------------------------------------------------------------
 void TLogger::InitLogger(TSaveToFile* saver, const std::string& sName, const std::string& extension)
 {
-    if (saver->IsOpen())
+    if (saver->IsOpen()) {
         return;
+    }
     auto nameLogFile = fmt::format(".\\{}{}.{}", sName, sPrefix, extension);
     saver->ReOpen((char*) nameLogFile.data());
 }
 //-----------------------------------------------------------------------
 bool TLogger::Register(const std::string& nameLogger, const std::string& extension)
 {
-    if (mMapNamePtr.find(nameLogger) != mMapNamePtr.end())
+    if (mMapNamePtr.find(nameLogger) != mMapNamePtr.end()) {
         return false;
+    }
 
     TDescFile* pDF = new TDescFile;
     pDF->stf.SetPrintf(flgPrintf);
@@ -57,24 +59,26 @@ void TLogger::Init(const std::string& prefix)
 {
     sPrefix = prefix;
 
-    for (auto& bit : mMapNamePtr)
+    for (auto& bit : mMapNamePtr) {
         InitLogger(&bit.second->stf, bit.first.data(), bit.second->sExtension.data());
+    }
 }
 //-----------------------------------------------------------------------
-//TSaveToFile* TLogger::Get( const char* nameLog )
 TSaveToFile* TLogger::Get(const std::string& nameLog)
 {
     TMapStrPtr::iterator fit = mMapNamePtr.find(nameLog);
-    if (mMapNamePtr.end() != fit)
+    if (mMapNamePtr.end() != fit) {
         return &fit->second->stf;
+    }
 
     return nullptr;
 }
 //-----------------------------------------------------------------------
 void TLogger::Done()
 {
-    for (auto& bit : mMapNamePtr)
+    for (auto& bit : mMapNamePtr) {
         delete bit.second;
+    }
     mMapNamePtr.clear();
     mVecPtr.clear();
 }
@@ -86,12 +90,14 @@ TLogger::~TLogger()
 //-----------------------------------------------------------------------
 void TLogger::SetPrintf(bool val)
 {
-    if (flgPrintf == val)
+    if (flgPrintf == val) {
         return;
+    }
 
     flgPrintf = val;
-    for (auto& bit : mMapNamePtr)
+    for (auto& bit : mMapNamePtr) {
         bit.second->stf.SetPrintf(flgPrintf);
+    }
 }
 //-----------------------------------------------------------------------
 bool TLogger::GetPrintf()
@@ -101,12 +107,14 @@ bool TLogger::GetPrintf()
 //-----------------------------------------------------------------------
 void TLogger::SetEnable(bool val)
 {
-    if (flgEnable == val)
+    if (flgEnable == val) {
         return;
+    }
 
     flgEnable = val;
-    for (auto& bit : mMapNamePtr)
+    for (auto& bit : mMapNamePtr) {
         bit.second->stf.SetEnable(flgEnable);
+    }
 }
 //-----------------------------------------------------------------------
 bool TLogger::GetEnable()
@@ -116,12 +124,14 @@ bool TLogger::GetEnable()
 //-----------------------------------------------------------------------
 void TLogger::SetBufferization(bool val)
 {
-    if (flgBuffer == val)
+    if (flgBuffer == val) {
         return;
+    }
 
     flgBuffer = val;
-    for (auto& bit : mMapNamePtr)
+    for (auto& bit : mMapNamePtr) {
         bit.second->stf.SetBufferization(flgBuffer);
+    }
 }
 //-----------------------------------------------------------------------
 bool TLogger::GetBufferization()
@@ -137,8 +147,9 @@ int TLogger::GetCount()
 TSaveToFile* TLogger::GetByIndex(int index)
 {
     if ((index >= GetCount()) ||
-        (index < 0))
+        (index < 0)) {
         return nullptr;
+    }
     return mVecPtr[index];
 }
 //-----------------------------------------------------------------------

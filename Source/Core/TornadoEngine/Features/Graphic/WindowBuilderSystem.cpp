@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 
 #include "PositionComponent.h"
 #include "SizeComponent.h"
+#include "TitleComponent.h"
 
 using namespace nsGraphicWrapper;
 
@@ -29,4 +30,7 @@ void TWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramewor
 
     auto sizeComponent = entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid);
     pWindowComponent->value->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});
+
+    auto titleComponent = entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid);
+    pWindowComponent->value->SetTitle(titleComponent->value);
 }

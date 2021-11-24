@@ -84,7 +84,7 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
                 logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
             }
 
-            componentReflection->mEntMng->ApplyChangesComponent(eid, pComponent, rtti, true);
+            componentReflection->mEntMng->ApplyChangesComponent(eid, pComponent, rtti);
         }
     }
     // 6. Replace all guids to new guid with ParentGuids and SceneGuids

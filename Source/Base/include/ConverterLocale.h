@@ -14,7 +14,9 @@ See for more information LICENSE.md.
 class DllExport TConverterLocale
 {
 public:
-  static TContainer ConvertUtf8ToCp1251( TContainer& utf8 );
-  static std::wstring ConvertUtf8ToCp1251( std::string& utf8 );
+    [[nodiscard]]
+    static TContainer ConvertUtf8ToCp1251(TContainer& utf8);
+    [[nodiscard]]
+    static std::wstring ConvertUtf8ToCp1251(std::string& utf8);
 };
 
