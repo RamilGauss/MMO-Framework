@@ -51,26 +51,22 @@ namespace nsECSFramework
 
         // components
         template <typename Component>
+        void CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation);
+
+        template <typename Component>
         void SetComponent(TEntityID eid, Component& c);// => add or update event
 
         template <typename Component>
-        [[nodiscard]]
-        Component* ViewComponent(TEntityID eid);// for view, fast,
-        template <typename Component>
-        void ApplyChangesComponent(TEntityID eid, Component* pC, bool withNotify = true);// => update event
+        const Component* ViewComponent(TEntityID eid);// for view, fast,
 
         template <typename Component>
-        bool GetComponent(TEntityID eid, Component& c);// for change, copy, with check
-        template <typename Component>
-        Component GetComponent(TEntityID eid);// for change, copy
-        template <typename Component>
-        void RemoveComponent(TEntityID eid);// => remove event
+        void GetComponent(TEntityID eid, std::function<void(Component&)> onIfExist);// for change, copy
+
         template <typename Component>
         bool HasComponent(TEntityID eid);
 
         template <typename Component>
-        [[nodiscard("Call ApplyChanges")]]
-        Component* CreateComponent(TEntityID eid);// => add event, without copy, faster than SetComponent
+        void RemoveComponent(TEntityID eid);// => remove event
 
         void GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList);
 
@@ -286,41 +282,7 @@ namespace nsECSFramework
     };
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    [[nodiscard("Call ApplyChanges")]]
-    Component* TEntityManager::CreateComponent(TEntityID eid)
-    {
-        auto pEntity = GetEntity(eid);
-#ifdef _DEBUG
-        if (pEntity == nullptr) {
-            BL_FIX_BUG();
-            return nullptr;
-        }
-#endif
-        const auto index = TypeIndex<Component>();
-        const auto has = pEntity->HasComponent(index);
-        if (has) {
-            return ViewComponent<Component>(eid);
-        }
-
-        return pEntity->AddComponent<Component>(index);
-    }
-    //---------------------------------------------------------------------------------------
-    template <typename Component>
-    void TEntityManager::SetComponent(TEntityID eid, Component& c)
-    {
-        auto has = HasComponent<Component>(eid);
-        Component* pC = nullptr;
-        if (has) {
-            pC = ViewComponent<Component>(eid);
-        } else {
-            pC = CreateComponent<Component>(eid);
-        }
-        *pC = c;
-        ApplyChangesComponent<Component>(eid, pC);
-    }
-    //---------------------------------------------------------------------------------------
-    template <typename Component>
-    void TEntityManager::ApplyChangesComponent(TEntityID eid, Component* pC, bool withNotify)
+    void TEntityManager::CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -331,40 +293,62 @@ namespace nsECSFramework
 #endif
         const auto index = TypeIndex<Component>();
 #ifdef _DEBUG
-        // Checking
-        auto pOriginal = (Component*) pEntity->GetComponent(index);
-        if (pOriginal != pC) {
+        const auto has = pEntity->HasComponent(index);
+        if (has) {
             BL_FIX_BUG();
+            return;
         }
 #endif
-        auto isJustCreated = pEntity->IsJustCreatedComponent(index);
-        if (isJustCreated) {
-            pEntity->ApplyChangesComponent(index);
+        auto pC = pEntity->AddComponent<Component>(index);
+        BL_ASSERT(onAfterCreation);
+        onAfterCreation(pC);
 
-            TryAddInHas(eid, index, pEntity);
-            TryAddInUnique(eid, pC, index);
-            TryAddInValue(eid, index, pEntity);
+        TryAddInHas(eid, index, pEntity);
+        TryAddInUnique(eid, pC, index);
+        TryAddInValue(eid, index, pEntity);
 
-            if (withNotify) {
-                NotifyOnAddComponent(index, eid, pC);
-                PushEventToCollector(mAddCollector, index, eid, pC);
-            }
-        } else {
+        NotifyOnAddComponent(index, eid, pC);
+        PushEventToCollector(mAddCollector, index, eid, pC);
+    }
+    //---------------------------------------------------------------------------------------
+    template <typename Component>
+    void TEntityManager::SetComponent(TEntityID eid, Component& c)
+    {
+        auto pEntity = GetEntity(eid);
+#ifdef _DEBUG
+        if (pEntity == nullptr) {
+            BL_FIX_BUG();
+            return;
+        }
+#endif
+        Component* pC = nullptr;
+        const auto index = TypeIndex<Component>();
+        auto const has = pEntity->HasComponent(index);
+        if (has) {
+            pC = (Component*) pEntity->GetComponent(index);
+
             TryRemoveFromUnique(eid, pC, index);
             TryRemoveFromValue(eid, index, pEntity);
-            TryAddInUnique(eid, pC, index);
-            TryAddInValue(eid, index, pEntity);
+        } else {
+            pC = pEntity->AddComponent<Component>(index);
+            TryAddInHas(eid, index, pEntity);
+        }
 
-            if (withNotify) {
-                NotifyOnUpdateComponent(index, eid, pC);
-                PushEventToCollector(mUpdateCollector, index, eid, pC);
-            }
+        *pC = c;
+        TryAddInUnique(eid, pC, index);
+        TryAddInValue(eid, index, pEntity);
+
+        if (has) {
+            NotifyOnUpdateComponent(index, eid, pC);
+            PushEventToCollector(mUpdateCollector, index, eid, pC);
+        } else {
+            NotifyOnAddComponent(index, eid, pC);
+            PushEventToCollector(mAddCollector, index, eid, pC);
         }
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    [[nodiscard]]
-    Component* TEntityManager::ViewComponent(TEntityID eid)
+    const Component* TEntityManager::ViewComponent(TEntityID eid)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -374,11 +358,11 @@ namespace nsECSFramework
         }
 #endif
         const auto index = TypeIndex<Component>();
-        return (Component*) pEntity->GetComponent(index);
+        return (const Component*) pEntity->GetComponent(index);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    bool TEntityManager::GetComponent(TEntityID eid, Component& c)
+    void TEntityManager::GetComponent(TEntityID eid, std::function<void(Component&)> onIfExist)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -390,29 +374,10 @@ namespace nsECSFramework
         const auto index = TypeIndex<Component>();
         auto pC = (Component*) pEntity->GetComponent(index);
         if (pC == nullptr) {
-            return false;
+            return;
         }
-        c = *pC;
-        return true;
-    }
-    //---------------------------------------------------------------------------------------
-    template <typename Component>
-    Component TEntityManager::GetComponent(TEntityID eid)
-    {
-        auto pEntity = GetEntity(eid);
-        Component c;
-#ifdef _DEBUG
-        if (pEntity == nullptr) {
-            BL_FIX_BUG();
-            return c;
-        }
-#endif
-        const auto index = TypeIndex<Component>();
-        auto pC = (Component*) pEntity->GetComponent(index);
-        if (pC == nullptr) {
-            return c;
-        }
-        return *pC;
+        BL_ASSERT(onIfExist);
+        onIfExist(*pC);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
@@ -427,7 +392,7 @@ namespace nsECSFramework
 #endif
         const auto index = TypeIndex<Component>();
         auto pC = (Component*) pEntity->GetComponent(index);
-
+        // Notify before the removing
         NotifyOnRemoveComponent(index, eid, pC);
 
         RemoveComponent(eid, pEntity, index);

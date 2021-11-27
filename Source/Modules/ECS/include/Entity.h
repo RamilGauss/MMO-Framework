@@ -38,9 +38,6 @@ namespace nsECSFramework
         IComponent* GetComponent(int index);
         void RemoveComponent(int index);
 
-        bool IsJustCreatedComponent(int index);
-        void ApplyChangesComponent(int index);
-
         static const int NONE_INDEX = -1;
         int GetFirstComponentIndex();
 

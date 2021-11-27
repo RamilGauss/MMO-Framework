@@ -19,8 +19,6 @@ namespace nsECSFramework
     struct IComponent;
     struct TComponentContainer
     {
-        bool isJustCreated = true;
-
         TLinkToList<short> mLinkToList;
         IComponent* p = nullptr;// from memory pool
 
@@ -32,7 +30,6 @@ namespace nsECSFramework
             mDoneFunc = [this, pMP] () {
                 pMP->Push((Component*) this->p);
             };
-            isJustCreated = true;
         }
         void Done()
         {

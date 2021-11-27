@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_24 08:27:04.729
+// File has been generated at 2021_11_27 18:48:35.998
 	
 #include "ComponentTypeInformation.h"
 
@@ -45,17 +45,35 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsCommonWrapper_TParentGuidComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TParentGuidComponent_n, nsCommonWrapper_TParentGuidComponent_i });
     
-    int nsCommonWrapper_TSceneEditingComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TSceneEditingComponent>();
-    std::string nsCommonWrapper_TSceneEditingComponent_n = "nsCommonWrapper::TSceneEditingComponent";
-    mTypeNameList.push_back(nsCommonWrapper_TSceneEditingComponent_n);
-    mRttiList.push_back(nsCommonWrapper_TSceneEditingComponent_i);
-    mNameRttiMap.insert({ nsCommonWrapper_TSceneEditingComponent_n, nsCommonWrapper_TSceneEditingComponent_i });
+    int nsCommonWrapper_TPrefabGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TPrefabGuidComponent>();
+    std::string nsCommonWrapper_TPrefabGuidComponent_n = "nsCommonWrapper::TPrefabGuidComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TPrefabGuidComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TPrefabGuidComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TPrefabGuidComponent_n, nsCommonWrapper_TPrefabGuidComponent_i });
+    
+    int nsCommonWrapper_TPrefabOriginalGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TPrefabOriginalGuidComponent>();
+    std::string nsCommonWrapper_TPrefabOriginalGuidComponent_n = "nsCommonWrapper::TPrefabOriginalGuidComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TPrefabOriginalGuidComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TPrefabOriginalGuidComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TPrefabOriginalGuidComponent_n, nsCommonWrapper_TPrefabOriginalGuidComponent_i });
+    
+    int nsCommonWrapper_TPrefabRootComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TPrefabRootComponent>();
+    std::string nsCommonWrapper_TPrefabRootComponent_n = "nsCommonWrapper::TPrefabRootComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TPrefabRootComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TPrefabRootComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TPrefabRootComponent_n, nsCommonWrapper_TPrefabRootComponent_i });
     
     int nsCommonWrapper_TSceneGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TSceneGuidComponent>();
     std::string nsCommonWrapper_TSceneGuidComponent_n = "nsCommonWrapper::TSceneGuidComponent";
     mTypeNameList.push_back(nsCommonWrapper_TSceneGuidComponent_n);
     mRttiList.push_back(nsCommonWrapper_TSceneGuidComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TSceneGuidComponent_n, nsCommonWrapper_TSceneGuidComponent_i });
+    
+    int nsCommonWrapper_TSceneOriginalGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TSceneOriginalGuidComponent>();
+    std::string nsCommonWrapper_TSceneOriginalGuidComponent_n = "nsCommonWrapper::TSceneOriginalGuidComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TSceneOriginalGuidComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TSceneOriginalGuidComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TSceneOriginalGuidComponent_n, nsCommonWrapper_TSceneOriginalGuidComponent_i });
     
     int nsCommonWrapper_TSceneRootComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TSceneRootComponent>();
     std::string nsCommonWrapper_TSceneRootComponent_n = "nsCommonWrapper::TSceneRootComponent";
@@ -98,6 +116,18 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TFocusComponent_n);
     mRttiList.push_back(nsGuiWrapper_TFocusComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TFocusComponent_n, nsGuiWrapper_TFocusComponent_i });
+    
+    int nsGuiWrapper_TFrameComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TFrameComponent>();
+    std::string nsGuiWrapper_TFrameComponent_n = "nsGuiWrapper::TFrameComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TFrameComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TFrameComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TFrameComponent_n, nsGuiWrapper_TFrameComponent_i });
+    
+    int nsGuiWrapper_TMainWindowComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TMainWindowComponent>();
+    std::string nsGuiWrapper_TMainWindowComponent_n = "nsGuiWrapper::TMainWindowComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TMainWindowComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TMainWindowComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TMainWindowComponent_n, nsGuiWrapper_TMainWindowComponent_i });
     
     int nsGuiWrapper_TPositionComponent_i = globalTypeIdentifier->type<nsGuiWrapper::TPositionComponent>();
     std::string nsGuiWrapper_TPositionComponent_n = "nsGuiWrapper::TPositionComponent";

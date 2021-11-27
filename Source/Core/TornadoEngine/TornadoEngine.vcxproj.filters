@@ -76,6 +76,12 @@
     <Filter Include="Features\Graphic\Builder">
       <UniqueIdentifier>{9c1bc676-9335-4671-9aaf-a070de0158d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Common\Scene">
+      <UniqueIdentifier>{3d0f01ce-de3a-4d92-a4ab-43387ec55935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Common\Prefab">
+      <UniqueIdentifier>{78bfb446-3c32-4f7e-9255-0c8003f00f43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -234,6 +240,15 @@
     <ClCompile Include="Features\Graphic\WindowMakerSystem.cpp">
       <Filter>Features\Graphic\Maker</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\GuidGenerator.cpp">
+      <Filter>Modules\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\GuidConstants.cpp">
+      <Filter>Modules\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\UnitBuilderHelper.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -282,9 +297,6 @@
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\GuidComponent.h">
-      <Filter>Components\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Common\SceneGuidComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\ComponentIncludeList.h">
@@ -413,9 +425,6 @@
     <ClInclude Include="Components\Gui\WindowComponent.h">
       <Filter>Components\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\SceneRootComponent.h">
-      <Filter>Components\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Modules\Modules.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
@@ -466,9 +475,6 @@
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ModuleType.h">
       <Filter>TimeSliceEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Common\SceneEditingComponent.h">
-      <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Modules\LogicSlot.h">
       <Filter>Modules\Common</Filter>
@@ -537,6 +543,39 @@
       <Filter>Features\Graphic\Builder</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\ButtonBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\FrameComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\MainWindowComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\SceneRootComponent.h">
+      <Filter>Components\Common\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\SceneGuidComponent.h">
+      <Filter>Components\Common\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\SceneOriginalGuidComponent.h">
+      <Filter>Components\Common\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\PrefabOriginalGuidComponent.h">
+      <Filter>Components\Common\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\PrefabRootComponent.h">
+      <Filter>Components\Common\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\PrefabGuidComponent.h">
+      <Filter>Components\Common\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\GuidGenerator.h">
+      <Filter>Modules\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\GuidConstants.h">
+      <Filter>Modules\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\UnitBuilderHelper.h">
       <Filter>Features\Graphic\Builder</Filter>
     </ClInclude>
   </ItemGroup>

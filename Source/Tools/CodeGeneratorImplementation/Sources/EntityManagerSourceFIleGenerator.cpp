@@ -83,29 +83,24 @@ void TEntityManagerSourceFileGenerator::AddInit()
         auto str = fmt::format("{} {};", s_Data, var);
         Add(str);
 
-        str = fmt::format("{}.{} = []({}* {}, {} {}){{ return {}->{}<{}>({}); }};",
-            var, s_createFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
+        // Too long
+        str = fmt::format("{}.{} = []({}* {}, {} {}, std::function<void(void*)> onAfterCreation) {{",
+            var, s_createFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid);
+        IncrementTabs();
+        Add(str);
+        str = fmt::format("auto lambda = [&]({}* pC){{ onAfterCreation((void*)pC); }};",
+            typeNameWithNameSpace);
+        Add(str);
+        str = fmt::format("{}->{}<{}>({}, lambda);",
             s_pEntMng, s_CreateComponent, typeNameWithNameSpace, s_eid);
         Add(str);
+        DecrementTabs();
+        Add("};");
 
-        str = fmt::format("{}.{} = []({}* {}, {} {}, {}* {}, bool withNotify){{ {}->{}({}, ({}*) {}, withNotify); }};",
-            var, s_applyChangesFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid, s_Void, s_Ptr,
-            s_pEntMng, s_ApplyChangesComponent, s_eid, typeNameWithNameSpace, s_Ptr);
-        Add(str);
 
-        str = fmt::format("{}.{} = []({}* {}, {} {}, {}* {}){{ {}->{}({}, *(({}*) {})); }};",
-            var, s_setFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid, s_Void, s_Ptr,
-            s_pEntMng, s_SetComponent, s_eid, typeNameWithNameSpace, s_Ptr);
-        Add(str);
-        
         str = fmt::format("{}.{} = []({}* {}, {} {}){{ return ({}*) {}->{}<{}>({}); }};",
             var, s_viewFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
             s_Void, s_pEntMng, s_ViewComponent, typeNameWithNameSpace, s_eid);
-        Add(str);
-        
-        str = fmt::format("{}.{} = []({}* {}, {} {}, {}*& {}){{ return {}->{}<{}>({}, *(({}*) {})); }};",
-            var, s_getFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid, s_Void, s_Ptr,
-            s_pEntMng, s_GetComponent, typeNameWithNameSpace, s_eid, typeNameWithNameSpace, s_Ptr);
         Add(str);
         
         str = fmt::format("{}.{} = []({}* {}, {} {}){{ return {}->{}<{}>({}); }};",
@@ -183,56 +178,16 @@ void TEntityManagerSourceFileGenerator::AddMethodDeinitions()
         fmt::format("{}* {}", s_TEntityManager, s_pEntMng),
         fmt::format("{} {}", s_TEntityID, s_eid),
         fmt::format("int {}", s_rtti),
+        "std::function<void(void*)> onAfterCreation"
     };
-    std::string ret = s_Void + "*";
+    std::string ret = s_Void;
     AddMethodImplementationBegin(ret, mSerializer->className, s_CreateComponent, paramList);
     AddLeftBrace();
     IncrementTabs();
 
     str = fmt::format("{}();", s_Init);
     Add(str);
-    str = fmt::format("return {}[{}].{}({}, {});", s_mRttiVector, s_rtti, s_createFunc, s_pEntMng, s_eid);
-    Add(str);
-
-    DecrementTabs();
-    AddRightBrace();
-    AddCommentedLongLine();
-    // apply changes
-    paramList =
-    {
-        fmt::format("{}* {}", s_TEntityManager, s_pEntMng),
-        fmt::format("{} {}", s_TEntityID, s_eid),
-        fmt::format("{}* {}", s_Void, s_Ptr),
-        fmt::format("int {}", s_rtti),
-        "bool withNotify",
-    };
-    AddMethodImplementationBegin(s_Void, mSerializer->className, s_ApplyChangesComponent, paramList);
-    AddLeftBrace();
-    IncrementTabs();
-
-    str = fmt::format("{}();", s_Init);
-    Add(str);
-    str = fmt::format("{}[{}].{}({}, {}, {}, withNotify);", s_mRttiVector, s_rtti, s_applyChangesFunc, s_pEntMng, s_eid, s_Ptr);
-    Add(str);
-
-    DecrementTabs();
-    AddRightBrace();
-    AddCommentedLongLine();
-    // set
-    paramList =
-    {
-        fmt::format("{}* {}", s_TEntityManager, s_pEntMng),
-        fmt::format("{} {}", s_TEntityID, s_eid),
-        fmt::format("{}* {}", s_Void, s_Ptr),
-        fmt::format("int {}", s_rtti),
-    };
-    AddMethodImplementationBegin(s_Void, mSerializer->className, s_SetComponent, paramList);
-    AddLeftBrace();
-    IncrementTabs();
-
-    str = fmt::format("{}();", s_Init);
-    Add(str);
-    str = fmt::format("{}[{}].{}({}, {}, {});", s_mRttiVector, s_rtti, s_setFunc, s_pEntMng, s_eid, s_Ptr);
+    str = fmt::format("{}[{}].{}({}, {}, onAfterCreation);", s_mRttiVector, s_rtti, s_createFunc, s_pEntMng, s_eid);
     Add(str);
 
     DecrementTabs();
@@ -245,7 +200,7 @@ void TEntityManagerSourceFileGenerator::AddMethodDeinitions()
         fmt::format("{} {}", s_TEntityID, s_eid),
         fmt::format("int {}", s_rtti),
     };
-    ret = s_Void + "*";
+    ret = "const " + s_Void + "*";
     AddMethodImplementationBegin(ret, mSerializer->className, s_ViewComponent, paramList);
     AddLeftBrace();
     IncrementTabs();
@@ -253,26 +208,6 @@ void TEntityManagerSourceFileGenerator::AddMethodDeinitions()
     str = fmt::format("{}();", s_Init);
     Add(str);
     str = fmt::format("return {}[{}].{}({}, {});", s_mRttiVector, s_rtti, s_viewFunc, s_pEntMng, s_eid);
-    Add(str);
-
-    DecrementTabs();
-    AddRightBrace();
-    AddCommentedLongLine();
-    // get
-    paramList =
-    {
-        fmt::format("{}* {}", s_TEntityManager, s_pEntMng),
-        fmt::format("{} {}", s_TEntityID, s_eid),
-        fmt::format("{}*& {}", s_Void, s_Ptr),
-        fmt::format("int {}", s_rtti),
-    };
-    AddMethodImplementationBegin(s_Bool, mSerializer->className, s_GetComponent, paramList);
-    AddLeftBrace();
-    IncrementTabs();
-
-    str = fmt::format("{}();", s_Init);
-    Add(str);
-    str = fmt::format("return {}[{}].{}({}, {}, {});", s_mRttiVector, s_rtti, s_getFunc, s_pEntMng, s_eid, s_Ptr);
     Add(str);
 
     DecrementTabs();

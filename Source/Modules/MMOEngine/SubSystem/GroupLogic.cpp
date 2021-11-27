@@ -209,8 +209,7 @@ void TGroupLogic::CalculateLoadMap(std::map<int, nsECSFramework::TEntityID>& loa
 
     for (auto slaveEntity : *slaves) {
         auto sessionID = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>(slaveEntity)->v;
-        TSlaveLoadInfoComponent slaveLoadComponent;
-        mEntMng->GetComponent(slaveEntity, slaveLoadComponent);
+        auto slaveLoadComponent = mEntMng->ViewComponent<TSlaveLoadInfoComponent>(slaveEntity);
 
         TSlaveSessionByClientComponent slaveSessionByClientComponent;
         slaveSessionByClientComponent.v = sessionID;
@@ -242,7 +241,7 @@ void TGroupLogic::CalculateLoadMap(std::map<int, nsECSFramework::TEntityID>& loa
 
         int loadByGroup = 0;
         if (clientOnSlaveCount > 0) {
-            loadByGroup = (int) ((slaveLoadComponent.v / clientOnSlaveCount) * clientCountInGroup);
+            loadByGroup = (int) ((slaveLoadComponent->v / clientOnSlaveCount) * clientCountInGroup);
         }
 
         loadSlaveEntityMap.insert({loadByGroup, slaveEntity});
@@ -356,9 +355,8 @@ void TGroupLogic::StartRcm(nsECSFramework::TEntityID clientEntity, unsigned int 
     auto pContext = mEntMng->ViewComponent<TContextContainerComponent>(clientEntity)->v;
     auto pCRCM = &(pContext->mRcm);
 
-    TClientIdentityComponent clientIdentityComponent;
-    mEntMng->GetComponent(clientEntity, clientIdentityComponent);
-    auto clientKey = clientIdentityComponent.v;
+    auto clientIdentityComponent = mEntMng->ViewComponent<TClientIdentityComponent>(clientEntity);
+    auto clientKey = clientIdentityComponent->v;
 
     // обновить состояние клиента
     TClientStateComponent clientStateComponent;

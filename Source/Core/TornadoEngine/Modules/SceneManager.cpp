@@ -18,6 +18,12 @@ See for more information LICENSE.md.
 #include "TornadoEngineJsonSerializer.h"
 #include "ProjectConfigContainer.h"
 
+#include "GuidComponent.h"
+#include "ParentGuidComponent.h"
+#include "SceneOriginalGuidComponent.h"
+
+#include "GuidGenerator.h"
+
 using namespace nsTornadoEngine;
 
 void TSceneManager::SetContentMap(const TSceneContentMap& sceneContentMap)
@@ -45,7 +51,6 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
 {
     auto logger = GetLogger()->Get(TTimeSliceEngine::NAME);
 
-
     std::string json;
     TTextFile::Load(absPath, json);
 
@@ -61,10 +66,12 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
     auto componentReflection = Project()->mScenePartAggregator->mComponents;
     componentReflection->mEntMng->SetEntityManager(Modules()->EntMng());
 
+    std::list<nsECSFramework::TEntityID> newEntities;
     // 2. Convert typeName to rtti
     for (auto& entity : sceneContent.entities) {
         // 3. Add entity
         auto eid = mEntityManager->CreateEntity();
+        newEntities.push_back(eid);
 
         for (auto& component : entity.components) {
             // 4. Add component by rtti
@@ -74,21 +81,47 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
                 logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
                 continue;
             }
-            auto pComponent = componentReflection->mEntMng->CreateComponent(eid, rtti);
+            componentReflection->mEntMng->CreateComponent(eid, rtti, [&](void* pComponent) {
+                // 5. Deserialize component by rtti and json body
+                auto componentDeserialzieResult = 
+                    componentReflection->mJson->Deserialize(pComponent, component.jsonBody, rtti, err);
 
-            // 5. Deserialize component by rtti and json body
-            auto componentDeserialzieResult = 
-                componentReflection->mJson->Deserialize(pComponent, component.jsonBody, rtti, err);
+                if (!componentDeserialzieResult) {
+                    logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
+                }
+            });
 
-            if (!componentDeserialzieResult) {
-                logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
-            }
-
-            componentReflection->mEntMng->ApplyChangesComponent(eid, pComponent, rtti);
         }
     }
-    // 6. Replace all guids to new guid with ParentGuids and SceneGuids
 
+    // 6. Replace all guids to new guid with ParentGuids and SceneGuids
+    for (auto& eid : newEntities) {
+        auto pGuidComponent = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(eid);
+        if (pGuidComponent == nullptr) {
+            continue;
+        }
+        auto guidComponent = *pGuidComponent;
+        
+        auto newGuid = TGuidGenerator::Generate();
+
+        nsCommonWrapper::TParentGuidComponent parentGuid;
+        parentGuid.value = guidComponent.value;
+        auto childs = mEntityManager->GetByValue<nsCommonWrapper::TParentGuidComponent>(parentGuid);
+        if (childs != nullptr) {
+            auto copyChildEids = *childs;
+            for (auto& childEid : copyChildEids) {
+                parentGuid.value = newGuid;
+                mEntityManager->SetComponent(childEid, parentGuid);
+            }
+        }
+
+        nsCommonWrapper::TSceneOriginalGuidComponent sceneOriginalGuid;
+        sceneOriginalGuid.value = guidComponent.value;
+        mEntityManager->SetComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid, sceneOriginalGuid);
+
+        guidComponent.value = newGuid;
+        mEntityManager->SetComponent(eid, guidComponent);
+    }
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::InstantiateByGuid(const std::string& guid)

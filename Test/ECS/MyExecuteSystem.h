@@ -27,11 +27,11 @@ public:
         } else {
             auto& nameList = *(mEntMng->GetByHas<TNameComponent>());
             for (auto& eid : nameList) {
-                auto nameComponent = mEntMng->ViewComponent<TNameComponent>(eid);
+                auto nameComponent = *mEntMng->ViewComponent<TNameComponent>(eid);
 
-                nameComponent->name = fmt::format("{}", mCounter);
+                nameComponent.name = fmt::format("{}", mCounter);
 
-                mEntMng->UpdateComponent(eid, nameComponent);
+                mEntMng->SetComponent(eid, nameComponent);
             }
         }
 

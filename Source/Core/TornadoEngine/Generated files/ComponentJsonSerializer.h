@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_24 08:27:04.714
+// File has been generated at 2021_11_27 18:48:35.976
 	
 #pragma once
 
@@ -48,11 +48,20 @@ namespace nsTornadoEngine
         static void _Serialize(nsCommonWrapper::TParentGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TParentGuidComponent* p, const Jobj& obj);
         
-        static void _Serialize(nsCommonWrapper::TSceneEditingComponent* p, Jobj& obj);
-        static void _Deserialize(nsCommonWrapper::TSceneEditingComponent* p, const Jobj& obj);
+        static void _Serialize(nsCommonWrapper::TPrefabGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TPrefabGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TPrefabOriginalGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TPrefabOriginalGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TPrefabRootComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TPrefabRootComponent* p, const Jobj& obj);
         
         static void _Serialize(nsCommonWrapper::TSceneGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TSceneGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TSceneOriginalGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TSceneOriginalGuidComponent* p, const Jobj& obj);
         
         static void _Serialize(nsCommonWrapper::TSceneRootComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TSceneRootComponent* p, const Jobj& obj);
@@ -74,6 +83,12 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsGuiWrapper::TFocusComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TFocusComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TFrameComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TFrameComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TMainWindowComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TMainWindowComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TPositionComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TPositionComponent* p, const Jobj& obj);

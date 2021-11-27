@@ -7,15 +7,17 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <string>
-
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
+#include <ImGuiWidgets/include/Frame.h>
 
-namespace nsCommonWrapper
+namespace nsGuiWrapper
 {
-    struct DllExport TSceneEditingComponent : nsECSFramework::IComponent
+    struct DllExport TFrameComponent : nsECSFramework::IComponent
     {
+        // Not use directly!
+#pragma IGNORE_ATTRIBUTE
+        nsImGuiWidgets::TFrame* value = nullptr;
     };
 }

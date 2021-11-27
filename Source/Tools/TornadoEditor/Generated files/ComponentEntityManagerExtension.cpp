@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_24 08:27:52.273
+// File has been generated at 2021_11_27 18:49:41.015
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -43,34 +43,16 @@ bool TComponentEntityManagerExtension::Has(int rtti)
     return mRttiVector[rtti].createFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
-void* TComponentEntityManagerExtension::CreateComponent(TEntityManager* pEntMng, TEntityID eid, int rtti)
+void TComponentEntityManagerExtension::CreateComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation)
 {
     Init();
-    return mRttiVector[rtti].createFunc(pEntMng, eid);
+    mRttiVector[rtti].createFunc(pEntMng, eid, onAfterCreation);
 }
 //---------------------------------------------------------------------------------------
-void TComponentEntityManagerExtension::ApplyChangesComponent(TEntityManager* pEntMng, TEntityID eid, void* p, int rtti, bool withNotify)
-{
-    Init();
-    mRttiVector[rtti].applyChangesFunc(pEntMng, eid, p, withNotify);
-}
-//---------------------------------------------------------------------------------------
-void TComponentEntityManagerExtension::SetComponent(TEntityManager* pEntMng, TEntityID eid, void* p, int rtti)
-{
-    Init();
-    mRttiVector[rtti].setFunc(pEntMng, eid, p);
-}
-//---------------------------------------------------------------------------------------
-void* TComponentEntityManagerExtension::ViewComponent(TEntityManager* pEntMng, TEntityID eid, int rtti)
+const void* TComponentEntityManagerExtension::ViewComponent(TEntityManager* pEntMng, TEntityID eid, int rtti)
 {
     Init();
     return mRttiVector[rtti].viewFunc(pEntMng, eid);
-}
-//---------------------------------------------------------------------------------------
-bool TComponentEntityManagerExtension::GetComponent(TEntityManager* pEntMng, TEntityID eid, void*& p, int rtti)
-{
-    Init();
-    return mRttiVector[rtti].getFunc(pEntMng, eid, p);
 }
 //---------------------------------------------------------------------------------------
 bool TComponentEntityManagerExtension::HasComponent(TEntityManager* pEntMng, TEntityID eid, int rtti)

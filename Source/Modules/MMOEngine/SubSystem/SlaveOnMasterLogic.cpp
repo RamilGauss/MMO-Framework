@@ -142,12 +142,12 @@ void TSlaveOnMasterLogic::NeedContextSynchroSlave(unsigned int sessionID)
         return;// нет такого Slave
     }
 
-    TContextContainerComponent contextComponent;
-    if (mEntMng->GetComponent(slaveEntity, contextComponent) == false) {
+    auto contextComponent = mEntMng->ViewComponent<TContextContainerComponent>(slaveEntity);
+    if (contextComponent == nullptr) {
         return;// нет контекста
     }
 
-    mBase->mControlSc->mSynchroSlave->SetContext(&(contextComponent.v->mSynchroSlave));
+    mBase->mControlSc->mSynchroSlave->SetContext(&(contextComponent->v->mSynchroSlave));
 
     //TContainerContextSc* pC = mMngContextSlave->FindContextBySession( sessionID );
     //if ( pC == nullptr )
@@ -309,11 +309,10 @@ void TSlaveOnMasterLogic::DestroyAllLostClientsBySlaveSession(unsigned int sessi
         return;
     }
     for (auto groupEntity : *groups) {
-        TGroupIdentityComponent groupIdentityComponent;
-        mEntMng->GetComponent(groupEntity, groupIdentityComponent);
+        auto groupIdentityComponent = mEntMng->ViewComponent<TGroupIdentityComponent>(groupEntity);
         // найти всех потерянных клиентов по группе
         TGroupIDComponent groupIDComponent;
-        groupIDComponent.v = groupIdentityComponent.v;
+        groupIDComponent.v = groupIdentityComponent->v;
 
         auto lostClients = mEntMng->GetByValue(groupIDComponent, clientStateComponent);
         if (lostClients == nullptr) {

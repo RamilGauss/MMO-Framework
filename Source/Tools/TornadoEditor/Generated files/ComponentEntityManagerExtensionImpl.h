@@ -16,13 +16,8 @@ namespace nsTornadoEditor
         TComponentEntityManagerExtensionImpl();
         virtual ~TComponentEntityManagerExtensionImpl();
 
-        [[nodiscard("Call ApplyChanges")]]
-        void* CreateComponent(nsECSFramework::TEntityID eid, int rtti) override;
-        void ApplyChangesComponent(nsECSFramework::TEntityID eid, void* p, int rtti, bool withNotify) override;
-        void SetComponent(nsECSFramework::TEntityID eid, void* p, int rtti) override;
-        [[nodiscard]]
-        void* ViewComponent(nsECSFramework::TEntityID eid, int rtti) override;
-        bool GetComponent(nsECSFramework::TEntityID eid, void*& p, int rtti) override;
+        void CreateComponent(nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation) override;
+        const void* ViewComponent(nsECSFramework::TEntityID eid, int rtti) override;
         bool HasComponent(nsECSFramework::TEntityID eid, int rtti) override;
         void RemoveComponent(nsECSFramework::TEntityID eid, int rtti) override;
     };
