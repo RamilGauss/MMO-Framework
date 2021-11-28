@@ -35,6 +35,18 @@
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp">
       <Filter>Generated files\Components\GeneratedByReflection</Filter>
     </ClCompile>
+    <ClCompile Include="Generated files\HandlerTypeInformationImpl.cpp">
+      <Filter>Generated files\Handlers\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\HandlerTypeFactoryImpl.cpp">
+      <Filter>Generated files\Handlers\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\HandlerTypeFactory.cpp">
+      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\HandlerTypeInformation.cpp">
+      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -45,6 +57,7 @@
     <None Include="Scenes\Main.scene">
       <Filter>Scenes</Filter>
     </None>
+    <None Include="handlerConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -79,6 +92,15 @@
     </Filter>
     <Filter Include="Generated files\Components\GeneratedByReflection">
       <UniqueIdentifier>{c4a1cb35-9619-4f09-b2b2-50574cc44c15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Handlers">
+      <UniqueIdentifier>{8006740d-86d8-4d0f-bf39-39bf9dffd515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Handlers\GeneratedByReflection">
+      <UniqueIdentifier>{26614043-0c7a-4cfc-af09-cf1d9414efa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Handlers\Impl">
+      <UniqueIdentifier>{cdce524b-e769-44ca-8e1a-d59e7b12e19a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +139,24 @@
     </ClInclude>
     <ClInclude Include="Generated files\ComponentTypeInformation.h">
       <Filter>Generated files\Components\GeneratedByReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\HandlerTypeInformationImpl.h">
+      <Filter>Generated files\Handlers\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\HandlerTypeFactoryImpl.h">
+      <Filter>Generated files\Handlers\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\HandlerIncludeList.h">
+      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\HandlerTypeFactory.h">
+      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\HandlerTypeInformation.h">
+      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\ExitButtonHandler.h">
+      <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,39 +15,30 @@
             ".h++"
         ],
         "inheritances": [
-                [ "nsECSFramework::IComponent" ]
+            [ "nsGuiWrapper::IButtonClickHandler" ]
             ],
         "memberIgnore" : "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {
         "directory": "./Generated files",
-        "includeListFileName": "ComponentIncludeList",
+        "includeListFileName": "HandlerIncludeList",
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,
         "implementations": {
-            "JsonSerializerGenerator": {
-                "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEngine",
-                "fileName": "ComponentJsonSerializer",
-                "className": "TComponentJsonSerializer",
-                "keyValueMap": {}
-            },
             "TypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
-                "fileName": "ComponentTypeInformation",
-                "className": "TComponentTypeInformation",
+                "fileName": "HandlerTypeInformation",
+                "className": "THandlerTypeInformation",
                 "keyValueMap": {}
             },
-            "EntityManagerExtension": {
+            "TypeFactoryGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
-                "fileName": "ComponentEntityManagerExtension",
-                "className": "TComponentEntityManagerExtension",
-                "keyValueMap": {
-                    "entityManagerHeaderPath": "ECS/include/EntityManager.h"
-                }
+                "fileName": "HandlerTypeFactory",
+                "className": "THandlerTypeFactory",
+                "keyValueMap": {}
             }
         }
     }

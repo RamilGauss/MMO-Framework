@@ -136,6 +136,10 @@
                 {
                     "typeName": "nsGuiWrapper::TButtonComponent",
                     "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TExitButtonClickHandler\", \"partOfGuid\":\"\", \"entityGuid\":\"\"}"
                 }
             ]
         }

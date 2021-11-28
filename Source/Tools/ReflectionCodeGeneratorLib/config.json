@@ -15,7 +15,9 @@
             ".hxx",
             ".h++"
         ],
-        "inheritance": "",
+        "inheritances": [
+            [ "nsGuiWrapper::IButtonClickHandler" ]
+        ],
         "memberIgnore": "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {

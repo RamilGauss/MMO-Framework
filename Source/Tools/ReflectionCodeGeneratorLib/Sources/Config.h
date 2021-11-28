@@ -33,7 +33,8 @@ namespace nsReflectionCodeGenerator
         // Filter by pragma or parent
         std::string attribute;// #pragma ATTRIBUTE
         // or
-        std::string inheritance;// "ns::TypeA"
+        std::list<std::list<std::string>> inheritances;// ["ns::TypeA" and "ns::TypeC"] or ["ns::TypeB"]
+        //std::string inheritance;// "ns::TypeA"
 
         std::string memberIgnore;// #pragma IGNORE_ATTRIBUTE
     };

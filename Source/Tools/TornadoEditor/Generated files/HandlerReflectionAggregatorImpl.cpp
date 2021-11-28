@@ -7,12 +7,15 @@ See for more information LICENSE.md.
 
 #include "HandlerReflectionAggregatorImpl.h"
 
+#include "HandlerTypeFactoryImpl.h"
+#include "HandlerTypeInformationImpl.h"
+
 using namespace nsTornadoEditor;
 
 THandlerReflectionAggregatorImpl::THandlerReflectionAggregatorImpl()
 {
-    //mTypeFactory = new ;
-    //mTypeInfo = new ;
+    mTypeFactory = new THandlerTypeFactoryImpl();
+    mTypeInfo = new THandlerTypeInformationImpl();
 }
 //-------------------------------------------------------------------------------------
 THandlerReflectionAggregatorImpl::~THandlerReflectionAggregatorImpl()

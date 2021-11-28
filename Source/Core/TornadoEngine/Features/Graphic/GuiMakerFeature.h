@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 #include "ButtonMakerSystem.h"
 #include "WindowMakerSystem.h"
+#include "ButtonClickHandlerMakerSystem.h"
 
 namespace nsGraphicWrapper
 {
@@ -17,6 +18,7 @@ namespace nsGraphicWrapper
     {
         TButtonMakerSystem mButtonMakerSystem;
         TWindowMakerSystem mWindowMakerSystem;
+        TButtonClickHandlerMakerSystem mButtonClickHandlerMakerSystem;
     public:
         void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
     };

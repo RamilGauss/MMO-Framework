@@ -149,6 +149,7 @@
     </Link>
     <PreBuildEvent>
       <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\componentConfig.json"
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\handlerConfig.json"
 $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\reflectionConfig.json"</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
@@ -213,6 +214,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
   <ItemGroup>
     <ClCompile Include="Features\Graphic\BeginGraphicFeature.cpp" />
     <ClCompile Include="Features\Graphic\ButtonBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\ButtonClickHandlerMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\EndGraphicFeature.cpp" />
     <ClCompile Include="Features\Graphic\GuiBuilderFeature.cpp" />
@@ -226,6 +228,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
+    <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
+    <ClCompile Include="Generated files\HandlerTypeInformation.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
     <ClCompile Include="Modules\DstModule.cpp" />
     <ClCompile Include="Modules\GuidConstants.cpp" />
@@ -292,6 +296,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\WindowComponent.h" />
     <ClInclude Include="Features\Graphic\BeginGraphicFeature.h" />
     <ClInclude Include="Features\Graphic\ButtonBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\ButtonClickHandlerMakerSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonMakerSystem.h" />
     <ClInclude Include="Features\Graphic\EndGraphicFeature.h" />
     <ClInclude Include="Features\Graphic\GuiBuilderFeature.h" />
@@ -306,6 +311,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
     <ClInclude Include="Generated files\ComponentTypeInformation.h" />
+    <ClInclude Include="Generated files\HandlerIncludeList.h" />
+    <ClInclude Include="Generated files\HandlerTypeFactory.h" />
+    <ClInclude Include="Generated files\HandlerTypeInformation.h" />
     <ClInclude Include="Generated files\ReflectionIncludeList.h" />
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h" />
     <ClInclude Include="Handlers\IButtonClickHandler.h" />
@@ -380,6 +388,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />
+    <None Include="handlerConfig.json" />
     <None Include="reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>

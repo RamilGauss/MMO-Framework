@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_28 18:24:29.453
+// File has been generated at 2021_11_28 18:22:14.540
 	
 #pragma once
 
@@ -12,11 +12,11 @@
 #include <vector>
 
 #include "TypeDef.h"
-#include "ComponentIncludeList.h"
+#include "HandlerIncludeList.h"
 
-namespace nsTornadoEditor
+namespace nsTornadoEngine
 {
-    class DllExport TComponentTypeInformation
+    class DllExport THandlerTypeInformation
     {
         static std::list<std::string> mTypeNameList;
         static std::list<int> mRttiList;

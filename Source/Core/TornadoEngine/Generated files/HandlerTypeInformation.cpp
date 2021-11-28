@@ -2,22 +2,22 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_28 18:24:29.453
+// File has been generated at 2021_11_28 18:22:14.541
 	
-#include "ComponentTypeInformation.h"
+#include "HandlerTypeInformation.h"
 
 #include "SingletonManager.h"
 #include "RunTimeTypeIndex.h"
 
-using namespace nsTornadoEditor;
+using namespace nsTornadoEngine;
 
-std::list<std::string> TComponentTypeInformation::mTypeNameList;
-std::list<int> TComponentTypeInformation::mRttiList;
+std::list<std::string> THandlerTypeInformation::mTypeNameList;
+std::list<int> THandlerTypeInformation::mRttiList;
 
-std::vector<std::string> TComponentTypeInformation::mNameVector;
-std::map<std::string, int> TComponentTypeInformation::mNameRttiMap;
+std::vector<std::string> THandlerTypeInformation::mNameVector;
+std::map<std::string, int> THandlerTypeInformation::mNameRttiMap;
 
-void TComponentTypeInformation::Init()
+void THandlerTypeInformation::Init()
 {
     static bool isNeedInit = true;
     if (!isNeedInit) {
@@ -37,19 +37,19 @@ void TComponentTypeInformation::Init()
     }
 }
 //---------------------------------------------------------------------------------------
-const std::list<std::string>* TComponentTypeInformation::GetTypeNameList()
+const std::list<std::string>* THandlerTypeInformation::GetTypeNameList()
 {
     Init();
     return &mTypeNameList;
 }
 //---------------------------------------------------------------------------------------
-const std::list<int>* TComponentTypeInformation::GetRttiList()
+const std::list<int>* THandlerTypeInformation::GetRttiList()
 {
     Init();
     return &mRttiList;
 }
 //---------------------------------------------------------------------------------------
-const std::string* TComponentTypeInformation::ConvertRttiToName(int rtti)
+const std::string* THandlerTypeInformation::ConvertRttiToName(int rtti)
 {
     Init();
     
@@ -63,7 +63,7 @@ const std::string* TComponentTypeInformation::ConvertRttiToName(int rtti)
     return pStr;
 }
 //---------------------------------------------------------------------------------------
-bool TComponentTypeInformation::ConvertNameToRtti(const std::string& typeName, int& rtti)
+bool THandlerTypeInformation::ConvertNameToRtti(const std::string& typeName, int& rtti)
 {
     Init();
     auto fit = mNameRttiMap.find(typeName);

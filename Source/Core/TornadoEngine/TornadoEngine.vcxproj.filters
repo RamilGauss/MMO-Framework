@@ -249,6 +249,15 @@
     <ClCompile Include="Features\Graphic\UnitBuilderHelper.cpp">
       <Filter>Features\Graphic\Builder</Filter>
     </ClCompile>
+    <ClCompile Include="Generated files\HandlerTypeFactory.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\HandlerTypeInformation.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ButtonClickHandlerMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -578,10 +587,23 @@
     <ClInclude Include="Features\Graphic\UnitBuilderHelper.h">
       <Filter>Features\Graphic\Builder</Filter>
     </ClInclude>
+    <ClInclude Include="Generated files\HandlerIncludeList.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\HandlerTypeFactory.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\HandlerTypeInformation.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ButtonClickHandlerMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />
     <None Include="reflectionConfig.json" />
+    <None Include="handlerConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

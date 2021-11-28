@@ -14,7 +14,8 @@
             ".hxx",
             ".h++"
         ],
-        "inheritance": "nsECSFramework::IComponent"
+        "inheritances": [ [ "nsECSFramework::IComponent" ] ],
+        "memberIgnore": "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {
         "directory": "./",

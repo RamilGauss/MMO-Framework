@@ -121,7 +121,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Core;$(SolutionDir)Source/Core/TornadoEngine/Handlers;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Components/Common;$(SolutionDir)Source/Core/TornadoEngine/Components/Gui;$(SolutionDir)Source/Core/TornadoEngine/Components/Graphic;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Core;$(SolutionDir)Source/Core/TornadoEngine/Handlers;$(SolutionDir)Source/Core/TornadoEngine/Modules;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TornadoEngine/Components/Common;$(SolutionDir)Source/Core/TornadoEngine/Components/Gui;$(SolutionDir)Source/Core/TornadoEngine/Components/Graphic;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -143,7 +143,8 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\componentConfig.json"</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\componentConfig.json"
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\handlerConfig.json"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -210,12 +211,17 @@
     <ClCompile Include="Generated files\ComponentTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\FeatureReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\HandlerReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
+    <ClCompile Include="Generated files\HandlerTypeFactoryImpl.cpp" />
+    <ClCompile Include="Generated files\HandlerTypeInformation.cpp" />
+    <ClCompile Include="Generated files\HandlerTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />
     <None Include="Editor.project" />
+    <None Include="handlerConfig.json" />
     <None Include="Scenes\Main.scene" />
   </ItemGroup>
   <ItemGroup>
@@ -231,9 +237,15 @@
     <ClInclude Include="Generated files\ComponentJsonSerializerImpl.h" />
     <ClInclude Include="Generated files\ComponentTypeInformationImpl.h" />
     <ClInclude Include="Generated files\FeatureReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\HandlerIncludeList.h" />
     <ClInclude Include="Generated files\HandlerReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\HandlerTypeFactory.h" />
+    <ClInclude Include="Generated files\HandlerTypeFactoryImpl.h" />
+    <ClInclude Include="Generated files\HandlerTypeInformation.h" />
+    <ClInclude Include="Generated files\HandlerTypeInformationImpl.h" />
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
+    <ClInclude Include="Handlers\ExitButtonHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

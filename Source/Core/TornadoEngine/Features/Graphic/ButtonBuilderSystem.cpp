@@ -13,6 +13,8 @@ See for more information LICENSE.md.
 
 #include "TitleComponent.h"
 
+#include "ButtonClickHandlerComponent.h"
+
 using namespace nsGraphicWrapper;
 
 void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC)
@@ -24,4 +26,18 @@ void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramewor
     pButtonComponent->value->SetTitle(titleComponent->value);
 
     TUnitBuilderHelper::SetupButton(entMng, eid, pButtonComponent);
+
+    // Handler setup
+    auto buttonClickHandlers = entMng->GetByHas<nsGuiWrapper::TButtonClickHandlerComponent>();
+    if (buttonClickHandlers != nullptr) {
+        auto copyButtonClickHandlers = *buttonClickHandlers;
+        for (auto& handlerEid : copyButtonClickHandlers) {
+            auto handlerComponent = entMng->ViewComponent<nsGuiWrapper::TButtonClickHandlerComponent>(handlerEid);
+            //handlerComponent->
+            pButtonComponent->value->mOnClickCB.Register(this, [handler=handlerComponent->handler](nsImGuiWidgets::TButton* pB)
+            {
+                handler->Handle();
+            });
+        }
+    }
 }

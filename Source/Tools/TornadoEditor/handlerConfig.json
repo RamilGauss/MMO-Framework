@@ -1,0 +1,45 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "."
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ],
+        "inheritances": [
+            [ "nsGuiWrapper::IButtonClickHandler" ]
+            ],
+            "memberIgnore" : "IGNORE_ATTRIBUTE"
+    },
+    "targetForCodeGeneration": {
+        "directory": "./Generated files",
+        "includeListFileName": "HandlerIncludeList",
+        "header": "\tReflectionCodeGenerator",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "TypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "fileName": "HandlerTypeInformation",
+                "className": "THandlerTypeInformation",
+                "keyValueMap": {}
+            },
+            "TypeFactoryGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "fileName": "HandlerTypeFactory",
+                "className": "THandlerTypeFactory",
+                "keyValueMap": {}
+            }
+        }
+    }
+}

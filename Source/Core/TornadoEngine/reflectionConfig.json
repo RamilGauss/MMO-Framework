@@ -14,7 +14,7 @@
             ".hxx",
             ".h++"
         ],
-        "inheritance": "",
+        "inheritances": [],
         "memberIgnore": "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {

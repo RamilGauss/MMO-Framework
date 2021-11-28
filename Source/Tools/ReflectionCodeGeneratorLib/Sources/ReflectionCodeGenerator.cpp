@@ -146,7 +146,7 @@ bool TReflectionCodeGenerator::GetTypeList(TStringList& fileList, TTypeInfoPtrLi
     TLoadFromFile lff;
     TContainer data;
 
-    parser.SetupTypes(mConfig->targetForCodeGeneration.typeCustomizerMap, 
+    parser.SetupTypes(mConfig->targetForCodeGeneration.typeCustomizerMap,
         mConfig->targetForCodeGeneration.appendTypeCustomizerMap);
 
     for (auto& fileAbsPath : fileList) {
@@ -184,15 +184,10 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
 {
     filteredTypeList.clear();
 
-    auto inheritance = mConfig->filter.inheritance;
+    const auto& filterInheritances = mConfig->filter.inheritances;
     auto attribute = mConfig->filter.attribute;
 
     for (auto& type : typeList) {
-
-        //if (type->mType == DeclarationType::ENUM) {
-        //    filteredTypeList.insert(type);
-        //    continue;
-        //}
 
         bool passedByAttribute = false;
         if (!attribute.empty()) {
@@ -202,21 +197,33 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
             }
         }
 
-        bool passedByInheritance = false;
-        if (!inheritance.empty()) {
+        std::set<std::string> typeInheritances;
+        for (auto& typeInheritance : type->mInheritanceVec) {
             for (auto& parent : type->mInheritanceVec) {
-                if (inheritance == parent.mLongTypeName) {
-                    passedByInheritance = true;
-                    break;
-                }
-                if (inheritance == parent.mOriginalName) {
-                    passedByInheritance = true;
-                    break;
-                }
+                typeInheritances.insert(parent.mLongTypeName);
+                typeInheritances.insert(parent.mOriginalName);
             }
         }
 
-        bool isAllEmpty = attribute.empty() && inheritance.empty();
+        bool passedByInheritance = false;
+        for (auto& inheritanceList : filterInheritances) {
+            passedByInheritance = true;
+            for (auto& inheritance : inheritanceList) {
+                if (inheritance.empty()) {
+                    continue;
+                }
+                auto isInType = typeInheritances.find(inheritance) != typeInheritances.end();
+                if (!isInType) {
+                    passedByInheritance = false;
+                    break;
+                }
+            }
+            if (passedByInheritance) {
+                break;
+            }
+        }
+
+        bool isAllEmpty = attribute.empty() && filterInheritances.size() == 0;
 
         if (isAllEmpty || passedByAttribute || passedByInheritance) {
             filteredTypeList.insert(type);
@@ -479,21 +486,21 @@ void TReflectionCodeGenerator::CorrectMemberInfoInAllTypes()
                 case TypeCategory::LIST:
                 case TypeCategory::SET:
                 case TypeCategory::MAP:
-                    {
-                        TMemberExtendedTypeInfo* pExt = &(member->mExtendedInfo);
-                        while (true) {
-                            auto* templArr = &(pExt->mTemplateChildArr);
-                            if (!templArr->empty()) {
-                                pExt = &(templArr->at(templArr->size() - 1));
-                            } else {
-                                if (pExt->mCategory == TypeCategory::REFLECTION) {
-                                    pMemberExtendedInfo = pExt;
-                                }
-                                break;
+                {
+                    TMemberExtendedTypeInfo* pExt = &(member->mExtendedInfo);
+                    while (true) {
+                        auto* templArr = &(pExt->mTemplateChildArr);
+                        if (!templArr->empty()) {
+                            pExt = &(templArr->at(templArr->size() - 1));
+                        } else {
+                            if (pExt->mCategory == TypeCategory::REFLECTION) {
+                                pMemberExtendedInfo = pExt;
                             }
+                            break;
                         }
                     }
-                    break;
+                }
+                break;
                 default:;
             }
 

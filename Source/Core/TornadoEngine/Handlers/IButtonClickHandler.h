@@ -13,6 +13,7 @@ namespace nsGuiWrapper
 {
     class DllExport IButtonClickHandler : public nsTornadoEngine::IHandler
     {
+    public:
         virtual void Handle() = 0;
     };
 }

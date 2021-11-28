@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_21 13:50:27.174
+// File has been generated at 2021_11_28 14:32:37.598
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -303,7 +303,15 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TFilter* p, Jobj& ob
     }
     PUM::Push(obj, "extensions", extensions_a0);
     PUM::Push(obj, "attribute", p->attribute);
-    PUM::Push(obj, "inheritance", p->inheritance);
+    PUM::Value inheritances_a0(rapidjson::kArrayType);
+    for(auto& inheritances_e0 : p->inheritances) {
+        PUM::Value inheritances_a1(rapidjson::kArrayType);
+        for(auto& inheritances_e1 : inheritances_e0) {
+            PUM::PushBack(inheritances_a1, inheritances_e1);
+        }
+        PUM::PushBack(inheritances_a0, inheritances_a1);
+    }
+    PUM::Push(obj, "inheritances", inheritances_a0);
     PUM::Push(obj, "memberIgnore", p->memberIgnore);
 }
 //---------------------------------------------------------------------------------------
@@ -320,7 +328,22 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TFilter* p, const 
         p->extensions.push_back(extensions_t0);
     }
     POM::PopStr(obj, "attribute", p->attribute);
-    POM::PopStr(obj, "inheritance", p->inheritance);
+    auto inheritances_a0 = POM::FindArray(obj, "inheritances");
+    for(auto& inheritances_e0 : inheritances_a0) {
+        if (inheritances_e0.IsArray()) {
+            std::list<std::string> inheritances_c1;
+            auto inheritances_a1 = inheritances_e0.GetArray();
+            for(auto& inheritances_e1 : inheritances_a1) {
+                inheritances_c1.push_back(inheritances_e1.GetString());
+            }
+            p->inheritances.push_back(inheritances_c1);
+        } else {
+            auto inheritances_t1 = inheritances_e0.GetString();
+            std::list<std::string> inheritances_c1;
+            inheritances_c1.push_back(inheritances_t1);
+            p->inheritances.push_back(inheritances_c1);
+        }
+    }
     POM::PopStr(obj, "memberIgnore", p->memberIgnore);
 }
 //---------------------------------------------------------------------------------------
