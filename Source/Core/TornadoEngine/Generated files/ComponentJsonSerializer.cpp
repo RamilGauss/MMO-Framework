@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_28 18:22:13.245
+// File has been generated at 2021_11_29 08:10:20.031
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -52,6 +52,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsCommonWrapper_TNameComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNameComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TNameComponentTypeFunc, _nsCommonWrapper_TNameComponentTypeFunc });
+    
+    TypeFunc _nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc;
+    _nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TNeedUnloadSceneComponent>((nsCommonWrapper::TNeedUnloadSceneComponent*) p, str);
+    };
+    _nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TNeedUnloadSceneComponent>((nsCommonWrapper::TNeedUnloadSceneComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNeedUnloadSceneComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc, _nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc });
     
     TypeFunc _nsCommonWrapper_TParentGuidComponentTypeFunc;
     _nsCommonWrapper_TParentGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -355,6 +367,16 @@ void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TNameComponent* p, Jo
 void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TNameComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "sceneGuid", p->sceneGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "sceneGuid", p->sceneGuid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TParentGuidComponent* p, Jobj& obj)

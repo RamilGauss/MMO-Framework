@@ -338,6 +338,9 @@ void TEntityManager::RemoveComponent(TEntityID eid, TEntity* pEntity, int index)
 {
     auto pC = (IComponent*) pEntity->GetComponent(index);
 
+    // Notify before the removing
+    NotifyOnRemoveComponent(index, eid, pC);
+
     TryRemoveFromUnique(eid, pC, index);
     TryRemoveFromHas(eid, index, pEntity);
     TryRemoveFromValue(eid, index, pEntity);

@@ -21,6 +21,7 @@ See for more information LICENSE.md.
 #include "GuidComponent.h"
 #include "ParentGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
+#include "NeedUnloadSceneComponent.h"
 
 #include "GuidGenerator.h"
 
@@ -138,7 +139,12 @@ void TSceneManager::InstantiateByGuid(const std::string& guid)
 //--------------------------------------------------------------------------------
 void TSceneManager::Unload(const std::string& guid)
 {
-    // Search all entities with sceneGuid and destroy'em all
+    // Add tag component for new entity
+    auto eid = mEntityManager->CreateEntity();
+
+    nsCommonWrapper::TNeedUnloadSceneComponent needUnloadSceneComponent;
+    needUnloadSceneComponent.sceneGuid = guid;
+    mEntityManager->SetComponent(eid, needUnloadSceneComponent);
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::Save(const std::string& guid)

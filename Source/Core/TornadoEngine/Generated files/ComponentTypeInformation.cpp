@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_28 18:22:13.260
+// File has been generated at 2021_11_29 08:10:20.051
 	
 #include "ComponentTypeInformation.h"
 
@@ -38,6 +38,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsCommonWrapper_TNameComponent_n);
     mRttiList.push_back(nsCommonWrapper_TNameComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TNameComponent_n, nsCommonWrapper_TNameComponent_i });
+    
+    int nsCommonWrapper_TNeedUnloadSceneComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TNeedUnloadSceneComponent>();
+    std::string nsCommonWrapper_TNeedUnloadSceneComponent_n = "nsCommonWrapper::TNeedUnloadSceneComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TNeedUnloadSceneComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TNeedUnloadSceneComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TNeedUnloadSceneComponent_n, nsCommonWrapper_TNeedUnloadSceneComponent_i });
     
     int nsCommonWrapper_TParentGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TParentGuidComponent>();
     std::string nsCommonWrapper_TParentGuidComponent_n = "nsCommonWrapper::TParentGuidComponent";

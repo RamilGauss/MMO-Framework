@@ -61,7 +61,7 @@ class TCallbackPool
 public:
     void Register(void* pObject, std::function<void(Args...)> func)
     {
-        auto& descList = Find(pObject);
+        auto& descList = SureFind(pObject);
         TDescFunc<Args ...> desc;
         desc.mLambda = func;
         descList.push_back(desc);
@@ -69,7 +69,7 @@ public:
     template<class T>
     void Register(T* pObject, void (T::* pFunc)(Args ...))
     {
-        auto& descList = Find(pObject);
+        auto& descList = SureFind(pObject);
         TDescFunc<Args ...> desc;
         desc.Set(pFunc, pObject);
         descList.push_back(desc);
@@ -94,8 +94,12 @@ public:
     {
         mObjFuncMap.clear();
     }
+    bool IsRegistered(void* pObject)
+    {
+        return mObjFuncMap.find(pObject) != mObjFuncMap.end();
+    }
 private:
-    TDescFuncList& Find(void* pObject)
+    TDescFuncList& SureFind(void* pObject)
     {
         auto fit = mObjFuncMap.find(pObject);
         if (fit == mObjFuncMap.end()) {

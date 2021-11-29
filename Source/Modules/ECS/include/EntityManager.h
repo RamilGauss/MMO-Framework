@@ -391,10 +391,6 @@ namespace nsECSFramework
         }
 #endif
         const auto index = TypeIndex<Component>();
-        auto pC = (Component*) pEntity->GetComponent(index);
-        // Notify before the removing
-        NotifyOnRemoveComponent(index, eid, pC);
-
         RemoveComponent(eid, pEntity, index);
     }
     //---------------------------------------------------------------------------------------

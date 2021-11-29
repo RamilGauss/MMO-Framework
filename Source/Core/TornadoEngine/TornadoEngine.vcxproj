@@ -214,16 +214,22 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
   <ItemGroup>
     <ClCompile Include="Features\Graphic\BeginGraphicFeature.cpp" />
     <ClCompile Include="Features\Graphic\ButtonBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\ButtonClickHandlerBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonClickHandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\ButtonTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\EndGraphicFeature.cpp" />
     <ClCompile Include="Features\Graphic\GuiBuilderFeature.cpp" />
     <ClCompile Include="Features\Graphic\GuiMakerFeature.cpp" />
+    <ClCompile Include="Features\Graphic\GuiTerminatorFeature.cpp" />
     <ClCompile Include="Features\Graphic\UnitBuilderHelper.cpp" />
     <ClCompile Include="Features\Graphic\WindowBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\WindowMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\WindowTerminatorSystem.cpp" />
     <ClCompile Include="Features\Logic\BeginLogicFeature.cpp" />
     <ClCompile Include="Features\Logic\EndLogicFeature.cpp" />
+    <ClCompile Include="Features\Logic\NeedUnloadSceneSystem.cpp" />
     <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
@@ -274,6 +280,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
   <ItemGroup>
     <ClInclude Include="Components\Common\GuidComponent.h" />
     <ClInclude Include="Components\Common\NameComponent.h" />
+    <ClInclude Include="Components\Common\NeedUnloadSceneComponent.h" />
     <ClInclude Include="Components\Common\ParentGuidComponent.h" />
     <ClInclude Include="Components\Common\PrefabGuidComponent.h" />
     <ClInclude Include="Components\Common\PrefabOriginalGuidComponent.h" />
@@ -296,16 +303,22 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\WindowComponent.h" />
     <ClInclude Include="Features\Graphic\BeginGraphicFeature.h" />
     <ClInclude Include="Features\Graphic\ButtonBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\ButtonClickHandlerBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonClickHandlerMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\ButtonTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\EndGraphicFeature.h" />
     <ClInclude Include="Features\Graphic\GuiBuilderFeature.h" />
     <ClInclude Include="Features\Graphic\GuiMakerFeature.h" />
+    <ClInclude Include="Features\Graphic\GuiTerminatorFeature.h" />
     <ClInclude Include="Features\Graphic\UnitBuilderHelper.h" />
     <ClInclude Include="Features\Graphic\WindowBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\WindowMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\WindowTerminatorSystem.h" />
     <ClInclude Include="Features\Logic\BeginLogicFeature.h" />
     <ClInclude Include="Features\Logic\EndLogicFeature.h" />
+    <ClInclude Include="Features\Logic\NeedUnloadSceneSystem.h" />
     <ClInclude Include="Features\Logic\StartedScenesInitSystem.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
     <ClInclude Include="Generated files\ComponentIncludeList.h" />

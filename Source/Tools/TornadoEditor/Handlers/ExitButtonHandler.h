@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 
 #include "Modules.h"
 #include "StopAccessor.h"
+#include "SceneManager.h"
 
 namespace nsTornadoEditor
 {
@@ -19,7 +20,8 @@ namespace nsTornadoEditor
     public:
         void Handle() override 
         {
-            nsTornadoEngine::Modules()->StopAccessor()->SetStop();
+            nsTornadoEngine::Modules()->SceneMng()->Unload("first scene");
+            //nsTornadoEngine::Modules()->StopAccessor()->SetStop();
         }
     };
 }

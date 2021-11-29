@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 
 #include "GuiMakerFeature.h"
 #include "GuiBuilderFeature.h"
+#include "GuiTerminatorFeature.h"
 
 namespace nsGraphicWrapper
 {
@@ -18,6 +19,7 @@ namespace nsGraphicWrapper
     {
         TGuiMakerFeature mGuiMakerFeature;
         TGuiBuilderFeature mGuiBuilderFeature;
+        TGuiTerminatorFeature mGuiTerminatorFeature;
     public:
         void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
     };

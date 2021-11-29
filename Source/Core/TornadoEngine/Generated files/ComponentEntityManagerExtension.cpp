@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_28 18:22:13.255
+// File has been generated at 2021_11_29 08:10:20.045
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -46,6 +46,18 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsCommonWrapper_TNameComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TNameComponent>();
     
     m.insert({ rtti_nsCommonWrapper_TNameComponent_Data, nsCommonWrapper_TNameComponent_Data });
+    
+    Data nsCommonWrapper_TNeedUnloadSceneComponent_Data;
+        nsCommonWrapper_TNeedUnloadSceneComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
+        auto lambda = [&](nsCommonWrapper::TNeedUnloadSceneComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsCommonWrapper::TNeedUnloadSceneComponent>(eid, lambda);
+    };
+    nsCommonWrapper_TNeedUnloadSceneComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TNeedUnloadSceneComponent>(eid); };
+    nsCommonWrapper_TNeedUnloadSceneComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TNeedUnloadSceneComponent>(eid); };
+    nsCommonWrapper_TNeedUnloadSceneComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TNeedUnloadSceneComponent>(eid); };
+    auto rtti_nsCommonWrapper_TNeedUnloadSceneComponent_Data = globalTypeIdentifier->type<nsCommonWrapper::TNeedUnloadSceneComponent>();
+    
+    m.insert({ rtti_nsCommonWrapper_TNeedUnloadSceneComponent_Data, nsCommonWrapper_TNeedUnloadSceneComponent_Data });
     
     Data nsCommonWrapper_TParentGuidComponent_Data;
         nsCommonWrapper_TParentGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {

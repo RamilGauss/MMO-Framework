@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 
 #include "ButtonBuilderSystem.h"
 #include "WindowBuilderSystem.h"
+#include "ButtonClickHandlerBuilderSystem.h"
 
 namespace nsGraphicWrapper
 {
@@ -18,6 +19,7 @@ namespace nsGraphicWrapper
     {
         TButtonBuilderSystem mButtonBuilderSystem;
         TWindowBuilderSystem mWindowBuilderSystem;
+        TButtonClickHandlerBuilderSystem mButtonClickHandlerBuilderSystem;
     public:
         void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
     };

@@ -82,6 +82,12 @@
     <Filter Include="Components\Common\Prefab">
       <UniqueIdentifier>{78bfb446-3c32-4f7e-9255-0c8003f00f43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Graphic\Terminator">
+      <UniqueIdentifier>{d75b7359-1b12-4926-b382-77ab19a706ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Graphic\Updater">
+      <UniqueIdentifier>{d46be429-7ee7-4340-8c09-bd0efed20ed9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -257,6 +263,24 @@
     </ClCompile>
     <ClCompile Include="Features\Graphic\ButtonClickHandlerMakerSystem.cpp">
       <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ButtonClickHandlerBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\GuiTerminatorFeature.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ButtonTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\WindowTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\NeedUnloadSceneSystem.cpp">
+      <Filter>Features\Logic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -598,6 +622,27 @@
     </ClInclude>
     <ClInclude Include="Features\Graphic\ButtonClickHandlerMakerSystem.h">
       <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ButtonClickHandlerBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ButtonTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\WindowTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\GuiTerminatorFeature.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\NeedUnloadSceneComponent.h">
+      <Filter>Components\Common\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\NeedUnloadSceneSystem.h">
+      <Filter>Features\Logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

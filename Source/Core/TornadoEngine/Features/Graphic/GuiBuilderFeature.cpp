@@ -15,4 +15,5 @@ void TGuiBuilderFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
 
     Add(&mButtonBuilderSystem);
     Add(&mWindowBuilderSystem);
+    Add(&mButtonClickHandlerBuilderSystem);
 }
