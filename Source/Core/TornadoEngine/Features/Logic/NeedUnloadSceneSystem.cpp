@@ -11,11 +11,10 @@ See for more information LICENSE.md.
 
 using namespace nsLogicWrapper;
 
-void TNeedUnloadSceneSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC)
+void TNeedUnloadSceneSystem::Reactive(nsECSFramework::TEntityID eid, const nsCommonWrapper::TNeedUnloadSceneComponent* pNeedUnloadSceneComponent)
 {
     nsCommonWrapper::TSceneGuidComponent sceneGuidComponent;
 
-    auto pNeedUnloadSceneComponent = (nsCommonWrapper::TNeedUnloadSceneComponent*)pC;
     sceneGuidComponent.value = pNeedUnloadSceneComponent->sceneGuid;
 
     auto pSceneGuidList = GetEntMng()->GetByValue(sceneGuidComponent);
@@ -27,4 +26,6 @@ void TNeedUnloadSceneSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramew
     for (auto& sceneEid : sceneGuidList) {
         GetEntMng()->DestroyEntity(sceneEid);
     }
+
+    GetEntMng()->DestroyEntity(eid);
 }

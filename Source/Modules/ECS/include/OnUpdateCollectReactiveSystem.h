@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    template <typename Component>
+    template <typename Component, typename SystemTypeImplementation>
     class DllExport TOnUpdateCollectReactiveSystem : public TBaseCollectReactiveSystem
     {
     public:
@@ -36,7 +36,7 @@ namespace nsECSFramework
             for (auto& event : events) {
                 auto hasComponent = mEntMng->HasComponent<Component>(event.eid);
                 if (hasComponent) {
-                    Reactive(event.eid, event.pComponent);
+                    ((SystemTypeImplementation*) this)->Reactive(event.eid, (const Component*) event.pComponent);
                 }
             }
 

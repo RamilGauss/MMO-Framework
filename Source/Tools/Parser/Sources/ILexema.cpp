@@ -93,3 +93,29 @@ int ILexema::Find(const std::vector<TTokenInfo>& tokens, boost::wave::token_id t
     return -1;
 }
 //-------------------------------------------------------------------------------------------------------------
+int ILexema::FindIndexOutOfCorners(const std::vector<TTokenInfo>& tokens, boost::wave::token_id targetId, bool reverse) const
+{
+    using namespace boost::wave;
+    auto copyTokens = tokens;
+    if (reverse) {
+        std::reverse(copyTokens.begin(), copyTokens.end());
+    }
+
+    int index = 0;
+    int cornerBalance = 0;
+    for (auto& token : copyTokens) {
+        if (token.id == targetId) {
+            if (cornerBalance == 0) {
+                return reverse ? copyTokens.size() - 1 - index : index;
+            }
+        } else if (token.id == T_LESS) {
+            cornerBalance++;
+        } else if (token.id == T_GREATER) {
+            cornerBalance--;
+        }
+
+        index++;
+    }
+    return -1;
+}
+//-------------------------------------------------------------------------------------------------------------

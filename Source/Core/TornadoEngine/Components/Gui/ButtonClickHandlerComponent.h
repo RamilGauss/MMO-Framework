@@ -19,7 +19,7 @@ namespace nsGuiWrapper
     struct DllExport TButtonClickHandlerComponent : nsECSFramework::IComponent
     {
 #pragma IGNORE_ATTRIBUTE
-        IButtonClickHandler* handler = nullptr;
+        mutable IButtonClickHandler* handler = nullptr;
 
         std::string handlerTypeName;
 

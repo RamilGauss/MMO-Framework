@@ -21,6 +21,6 @@ namespace nsGraphicWrapper
         TGuiBuilderFeature mGuiBuilderFeature;
         TGuiTerminatorFeature mGuiTerminatorFeature;
     public:
-        void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
+        void InitConveyor() override;
     };
 }

@@ -14,9 +14,9 @@ See for more information LICENSE.md.
 namespace nsGraphicWrapper
 {
     class DllExport TWindowBuilderSystem :
-        public nsECSFramework::TOnAddCollectReactiveSystem<nsGuiWrapper::TWindowComponent>
+        public nsECSFramework::TOnAddCollectReactiveSystem<nsGuiWrapper::TWindowComponent, TWindowBuilderSystem>
     {
     public:
-        void Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC) override;
+        void Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TWindowComponent* pC);
     };
 }

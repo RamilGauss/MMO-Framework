@@ -212,6 +212,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h" />
+    <ClCompile Include="Components\Graphic\GuiUpdaterFeature.cpp" />
+    <ClCompile Include="Components\Graphic\WindowPositionUpdaterSystem.cpp" />
+    <ClCompile Include="Components\Graphic\WindowSizeUpdaterSystem.cpp" />
     <ClCompile Include="Features\Graphic\BeginGraphicFeature.cpp" />
     <ClCompile Include="Features\Graphic\ButtonBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonClickHandlerBuilderSystem.cpp" />
@@ -229,6 +233,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Features\Graphic\WindowTerminatorSystem.cpp" />
     <ClCompile Include="Features\Logic\BeginLogicFeature.cpp" />
     <ClCompile Include="Features\Logic\EndLogicFeature.cpp" />
+    <ClCompile Include="Features\Logic\NeedDestroySceneSystem.cpp" />
     <ClCompile Include="Features\Logic\NeedUnloadSceneSystem.cpp" />
     <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
@@ -280,9 +285,13 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
   <ItemGroup>
     <ClInclude Include="Components\Common\GuidComponent.h" />
     <ClInclude Include="Components\Common\NameComponent.h" />
+    <ClInclude Include="Components\Common\NeedDestroyPrefabComponent.h" />
+    <ClInclude Include="Components\Common\NeedDestroySceneComponent.h" />
+    <ClInclude Include="Components\Common\NeedUnloadPrefabComponent.h" />
     <ClInclude Include="Components\Common\NeedUnloadSceneComponent.h" />
     <ClInclude Include="Components\Common\ParentGuidComponent.h" />
     <ClInclude Include="Components\Common\PrefabGuidComponent.h" />
+    <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h" />
     <ClInclude Include="Components\Common\PrefabOriginalGuidComponent.h" />
     <ClInclude Include="Components\Common\PrefabRootComponent.h" />
     <ClInclude Include="Components\Common\SceneGuidComponent.h" />
@@ -290,7 +299,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Common\SceneRootComponent.h" />
     <ClInclude Include="Components\Common\TransformComponent.h" />
     <ClInclude Include="Components\Graphic\CameraComponent.h" />
+    <ClInclude Include="Components\Graphic\GuiUpdaterFeature.h" />
     <ClInclude Include="Components\Graphic\LightComponent.h" />
+    <ClInclude Include="Components\Graphic\WindowPositionUpdaterSystem.h" />
+    <ClInclude Include="Components\Graphic\WindowSizeUpdaterSystem.h" />
     <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h" />
     <ClInclude Include="Components\Gui\ButtonComponent.h" />
     <ClInclude Include="Components\Gui\FocusComponent.h" />
@@ -318,6 +330,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Features\Graphic\WindowTerminatorSystem.h" />
     <ClInclude Include="Features\Logic\BeginLogicFeature.h" />
     <ClInclude Include="Features\Logic\EndLogicFeature.h" />
+    <ClInclude Include="Features\Logic\NeedDestroySceneSystem.h" />
     <ClInclude Include="Features\Logic\NeedUnloadSceneSystem.h" />
     <ClInclude Include="Features\Logic\StartedScenesInitSystem.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />

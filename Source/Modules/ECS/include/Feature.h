@@ -26,6 +26,11 @@ namespace nsECSFramework
         std::set<TSystem*> mSystems;
     public:
         virtual ~TFeature();
+
+        void SetEntMng(TEntityManager* entMng) override final;
+        virtual void InitConveyor() {}
+
+
         bool IsFeature() const override final;
 
         bool Add(TSystem* system);

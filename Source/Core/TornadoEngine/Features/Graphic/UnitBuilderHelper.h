@@ -17,6 +17,6 @@ namespace nsGraphicWrapper
     {
     public:
         static void SetupButton(nsECSFramework::TEntityManager* entMng,
-            nsECSFramework::TEntityID eid, nsGuiWrapper::TButtonComponent* pButtonComponent);
+            nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pButtonComponent);
     };
 }

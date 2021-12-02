@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_29 08:10:20.028
+// File has been generated at 2021_12_02 08:07:38.023
 	
 #pragma once
 
@@ -45,6 +45,15 @@ namespace nsTornadoEngine
         static void _Serialize(nsCommonWrapper::TNameComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TNameComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsCommonWrapper::TNeedDestroyPrefabComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TNeedDestroyPrefabComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TNeedDestroySceneComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TNeedDestroySceneComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TNeedUnloadPrefabComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TNeedUnloadPrefabComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, const Jobj& obj);
         
@@ -54,6 +63,9 @@ namespace nsTornadoEngine
         static void _Serialize(nsCommonWrapper::TPrefabGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TPrefabGuidComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsCommonWrapper::TPrefabInstanceGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TPrefabInstanceGuidComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsCommonWrapper::TPrefabOriginalGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TPrefabOriginalGuidComponent* p, const Jobj& obj);
         
@@ -62,6 +74,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsCommonWrapper::TSceneGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TSceneGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TSceneInstanceGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TSceneInstanceGuidComponent* p, const Jobj& obj);
         
         static void _Serialize(nsCommonWrapper::TSceneOriginalGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TSceneOriginalGuidComponent* p, const Jobj& obj);

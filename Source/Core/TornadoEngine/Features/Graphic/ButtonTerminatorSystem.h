@@ -14,9 +14,9 @@ See for more information LICENSE.md.
 namespace nsGraphicWrapper
 {
     class DllExport TButtonTerminatorSystem :
-        public nsECSFramework::TOnRemoveInstantReactiveSystem<nsGuiWrapper::TButtonComponent>
+        public nsECSFramework::TOnRemoveInstantReactiveSystem<nsGuiWrapper::TButtonComponent, TButtonTerminatorSystem>
     {
     public:
-        void Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC) override;
+        void Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pC);
     };
 }

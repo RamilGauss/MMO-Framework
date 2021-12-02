@@ -9,10 +9,8 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TBeginGraphicFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
+void TBeginGraphicFeature::InitConveyor()
 {
-    TFeature::SetEntMng(entMng);
-
     Add(&mGuiMakerFeature);
     Add(&mGuiBuilderFeature);
     Add(&mGuiTerminatorFeature);

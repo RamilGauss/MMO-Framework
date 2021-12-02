@@ -23,9 +23,8 @@ See for more information LICENSE.md.
 using namespace nsGraphicWrapper;
 
 // Prefab or scene
-void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC)
+void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pButtonComponent)
 {
-    auto pButtonComponent = (nsGuiWrapper::TButtonComponent*) pC;
     auto entMng = GetEntMng();
 
     auto titleComponent = entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid);
@@ -60,9 +59,9 @@ void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramewor
                 continue;
             }
 
-            pButtonComponent->value->mOnClickCB.Register(handler, [handler](nsImGuiWidgets::TButton* pB)
+            pButtonComponent->value->mOnClickCB.Register(handler, [handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
             {
-                handler->Handle();
+                handler->Handle(eid, pButtonComponent);
             });
         }
     } 
@@ -88,9 +87,9 @@ void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramewor
                 continue;
             }
 
-            pButtonComponent->value->mOnClickCB.Register(handler, [handler](nsImGuiWidgets::TButton* pB)
+            pButtonComponent->value->mOnClickCB.Register(handler, [handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
             {
-                handler->Handle();
+                handler->Handle(eid, pButtonComponent);
             });
         }
     }

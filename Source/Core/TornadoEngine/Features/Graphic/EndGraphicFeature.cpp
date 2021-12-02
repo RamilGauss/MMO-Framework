@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TEndGraphicFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
+void TEndGraphicFeature::InitConveyor()
 {
-
+    Add(&mGuiUpdaterFeature);
 }

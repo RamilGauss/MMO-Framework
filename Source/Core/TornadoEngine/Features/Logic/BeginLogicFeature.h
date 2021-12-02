@@ -14,6 +14,6 @@ namespace nsLogicWrapper
     class DllExport TBeginLogicFeature : public nsECSFramework::TFeature
     {
     public:
-        void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
+        void InitConveyor() override;
     };
 }

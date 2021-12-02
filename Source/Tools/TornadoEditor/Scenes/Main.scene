@@ -123,7 +123,7 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
-                    "jsonBody": "{\"value\":\"Unload current scene\"}"
+                    "jsonBody": "{\"value\":\"Exit\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TPositionComponent",

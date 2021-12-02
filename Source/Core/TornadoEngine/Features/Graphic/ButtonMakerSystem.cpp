@@ -11,8 +11,7 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TButtonMakerSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC)
+void TButtonMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pButtonComponent)
 {
-    auto pButtonComponent = (nsGuiWrapper::TButtonComponent*) pC;
     pButtonComponent->value = new nsImGuiWidgets::TButton();
 }

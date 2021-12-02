@@ -13,10 +13,8 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TWindowTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC)
+void TWindowTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TWindowComponent* pWindowComponent)
 {
-    auto pWindowComponent = (nsGuiWrapper::TWindowComponent*) pC;
-
     nsTornadoEngine::Modules()->G()->GetGE()->RemoveRender(pWindowComponent->value);
 
     delete pWindowComponent->value;

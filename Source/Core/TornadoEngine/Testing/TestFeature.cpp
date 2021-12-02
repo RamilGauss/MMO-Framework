@@ -20,10 +20,8 @@ using namespace nsTest;
 using namespace nsImGuiWidgets;
 using namespace nsTornadoEngine;
 
-void TTestFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
+void TTestFeature::InitConveyor()
 {
-    nsECSFramework::TFeature::SetEntMng(entMng);
-
     Add(&mChooseSystem);
 
     mChooseSystem.mInitCB.Register(this, [&]()

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_29 08:10:20.051
+// File has been generated at 2021_12_02 08:07:38.047
 	
 #include "ComponentTypeInformation.h"
 
@@ -39,6 +39,24 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsCommonWrapper_TNameComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TNameComponent_n, nsCommonWrapper_TNameComponent_i });
     
+    int nsCommonWrapper_TNeedDestroyPrefabComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TNeedDestroyPrefabComponent>();
+    std::string nsCommonWrapper_TNeedDestroyPrefabComponent_n = "nsCommonWrapper::TNeedDestroyPrefabComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TNeedDestroyPrefabComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TNeedDestroyPrefabComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TNeedDestroyPrefabComponent_n, nsCommonWrapper_TNeedDestroyPrefabComponent_i });
+    
+    int nsCommonWrapper_TNeedDestroySceneComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TNeedDestroySceneComponent>();
+    std::string nsCommonWrapper_TNeedDestroySceneComponent_n = "nsCommonWrapper::TNeedDestroySceneComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TNeedDestroySceneComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TNeedDestroySceneComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TNeedDestroySceneComponent_n, nsCommonWrapper_TNeedDestroySceneComponent_i });
+    
+    int nsCommonWrapper_TNeedUnloadPrefabComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TNeedUnloadPrefabComponent>();
+    std::string nsCommonWrapper_TNeedUnloadPrefabComponent_n = "nsCommonWrapper::TNeedUnloadPrefabComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TNeedUnloadPrefabComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TNeedUnloadPrefabComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TNeedUnloadPrefabComponent_n, nsCommonWrapper_TNeedUnloadPrefabComponent_i });
+    
     int nsCommonWrapper_TNeedUnloadSceneComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TNeedUnloadSceneComponent>();
     std::string nsCommonWrapper_TNeedUnloadSceneComponent_n = "nsCommonWrapper::TNeedUnloadSceneComponent";
     mTypeNameList.push_back(nsCommonWrapper_TNeedUnloadSceneComponent_n);
@@ -57,6 +75,12 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsCommonWrapper_TPrefabGuidComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TPrefabGuidComponent_n, nsCommonWrapper_TPrefabGuidComponent_i });
     
+    int nsCommonWrapper_TPrefabInstanceGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TPrefabInstanceGuidComponent>();
+    std::string nsCommonWrapper_TPrefabInstanceGuidComponent_n = "nsCommonWrapper::TPrefabInstanceGuidComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TPrefabInstanceGuidComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TPrefabInstanceGuidComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TPrefabInstanceGuidComponent_n, nsCommonWrapper_TPrefabInstanceGuidComponent_i });
+    
     int nsCommonWrapper_TPrefabOriginalGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TPrefabOriginalGuidComponent>();
     std::string nsCommonWrapper_TPrefabOriginalGuidComponent_n = "nsCommonWrapper::TPrefabOriginalGuidComponent";
     mTypeNameList.push_back(nsCommonWrapper_TPrefabOriginalGuidComponent_n);
@@ -74,6 +98,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsCommonWrapper_TSceneGuidComponent_n);
     mRttiList.push_back(nsCommonWrapper_TSceneGuidComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TSceneGuidComponent_n, nsCommonWrapper_TSceneGuidComponent_i });
+    
+    int nsCommonWrapper_TSceneInstanceGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TSceneInstanceGuidComponent>();
+    std::string nsCommonWrapper_TSceneInstanceGuidComponent_n = "nsCommonWrapper::TSceneInstanceGuidComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TSceneInstanceGuidComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TSceneInstanceGuidComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TSceneInstanceGuidComponent_n, nsCommonWrapper_TSceneInstanceGuidComponent_i });
     
     int nsCommonWrapper_TSceneOriginalGuidComponent_i = globalTypeIdentifier->type<nsCommonWrapper::TSceneOriginalGuidComponent>();
     std::string nsCommonWrapper_TSceneOriginalGuidComponent_n = "nsCommonWrapper::TSceneOriginalGuidComponent";

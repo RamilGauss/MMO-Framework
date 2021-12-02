@@ -51,16 +51,16 @@ namespace nsECSFramework
 
         // components
         template <typename Component>
-        void CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation);
+        void CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation, bool isNotify = true);
 
         template <typename Component>
-        void SetComponent(TEntityID eid, Component& c);// => add or update event
+        void SetComponent(TEntityID eid, const Component& c, bool isNotify = true);// => add or update event
 
         template <typename Component>
         const Component* ViewComponent(TEntityID eid);// for view, fast,
 
         template <typename Component>
-        void GetComponent(TEntityID eid, std::function<void(Component&)> onIfExist);// for change, copy
+        void GetComponent(TEntityID eid, std::function<void(const Component&)> onIfExist);// for copy
 
         template <typename Component>
         bool HasComponent(TEntityID eid);
@@ -282,7 +282,7 @@ namespace nsECSFramework
     };
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation)
+    void TEntityManager::CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation, bool isNotify)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -307,12 +307,14 @@ namespace nsECSFramework
         TryAddInUnique(eid, pC, index);
         TryAddInValue(eid, index, pEntity);
 
-        NotifyOnAddComponent(index, eid, pC);
-        PushEventToCollector(mAddCollector, index, eid, pC);
+        if (isNotify) {
+            NotifyOnAddComponent(index, eid, pC);
+            PushEventToCollector(mAddCollector, index, eid, pC);
+        }
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::SetComponent(TEntityID eid, Component& c)
+    void TEntityManager::SetComponent(TEntityID eid, const Component& c, bool isNotify)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -338,6 +340,10 @@ namespace nsECSFramework
         TryAddInUnique(eid, pC, index);
         TryAddInValue(eid, index, pEntity);
 
+        if (!isNotify) {
+            return;
+        }
+
         if (has) {
             NotifyOnUpdateComponent(index, eid, pC);
             PushEventToCollector(mUpdateCollector, index, eid, pC);
@@ -362,7 +368,7 @@ namespace nsECSFramework
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::GetComponent(TEntityID eid, std::function<void(Component&)> onIfExist)
+    void TEntityManager::GetComponent(TEntityID eid, std::function<void(const Component&)> onIfExist)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG

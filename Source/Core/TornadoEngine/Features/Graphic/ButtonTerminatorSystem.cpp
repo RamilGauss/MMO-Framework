@@ -11,9 +11,8 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TButtonTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC)
+void TButtonTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pButtonComponent)
 {
-    auto pButtonComponent = (nsGuiWrapper::TButtonComponent*) pC;
     delete pButtonComponent->value;
     pButtonComponent->value = nullptr;
 }

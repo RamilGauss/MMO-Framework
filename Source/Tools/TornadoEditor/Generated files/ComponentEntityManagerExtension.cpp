@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_29 08:11:33.940
+// File has been generated at 2021_12_02 08:08:33.099
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -43,10 +43,16 @@ bool TComponentEntityManagerExtension::Has(int rtti)
     return mRttiVector[rtti].createFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
-void TComponentEntityManagerExtension::CreateComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation)
+void TComponentEntityManagerExtension::CreateComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation, bool isNotify)
 {
     Init();
-    mRttiVector[rtti].createFunc(pEntMng, eid, onAfterCreation);
+    mRttiVector[rtti].createFunc(pEntMng, eid, onAfterCreation, isNotify);
+}
+//---------------------------------------------------------------------------------------
+void TComponentEntityManagerExtension::SetComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, void* p, bool isNotify)
+{
+    Init();
+    mRttiVector[rtti].setFunc(pEntMng, eid, p, isNotify);
 }
 //---------------------------------------------------------------------------------------
 const void* TComponentEntityManagerExtension::ViewComponent(TEntityManager* pEntMng, TEntityID eid, int rtti)

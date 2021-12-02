@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 using namespace nsLogicWrapper;
 
-void TEndLogicFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
+void TEndLogicFeature::InitConveyor()
 {
-    TFeature::SetEntMng(entMng);
     Add(&mStartedScenesInitSystem);
     Add(&mNeedUnloadSceneSystem);
+    Add(&mNeedDestroySceneSystem);
 }

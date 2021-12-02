@@ -11,8 +11,7 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TWindowMakerSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC)
+void TWindowMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TWindowComponent* pWindowComponent)
 {
-    auto pWindowComponent = (nsGuiWrapper::TWindowComponent*) pC;
     pWindowComponent->value = new nsImGuiWidgets::TWindow();
 }

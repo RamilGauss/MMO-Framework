@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 struct FunctionWithDefaultArgument
 {
-    void Func(bool flag = true) override;
+    void Func(nsECSFramework::TEntityID eid, int rtti,
+        std::function<void(void*)> onAfterCreation, bool isNotify = true) override;
 };
 

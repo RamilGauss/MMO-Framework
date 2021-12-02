@@ -16,7 +16,5 @@ namespace nsECSFramework
     {
     protected:
         int mReactiveId = 0;
-    public:
-        virtual void Reactive(TEntityID eid, IComponent* pC) = 0;
     };
 }

@@ -44,7 +44,7 @@ namespace nsTest
         TChooseSystem mChooseSystem;
 
     public:
-        void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
+        void InitConveyor() override;
 
     private:
         template <typename T>

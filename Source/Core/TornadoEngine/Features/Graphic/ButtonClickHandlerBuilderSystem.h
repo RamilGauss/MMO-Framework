@@ -14,9 +14,9 @@ See for more information LICENSE.md.
 namespace nsGraphicWrapper
 {
     class DllExport TButtonClickHandlerBuilderSystem :
-        public nsECSFramework::TOnAddCollectReactiveSystem<nsGuiWrapper::TButtonClickHandlerComponent>
+        public nsECSFramework::TOnAddCollectReactiveSystem<nsGuiWrapper::TButtonClickHandlerComponent, TButtonClickHandlerBuilderSystem>
     {
     public:
-        void Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC) override;
+        void Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonClickHandlerComponent* pC);
     };
 }

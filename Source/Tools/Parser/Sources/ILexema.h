@@ -70,5 +70,7 @@ namespace nsCppParser
         int ReverseFind(const std::vector<TTokenInfo>& tokens, boost::wave::token_id targetId, std::string value) const;
         int Find(const std::vector<TTokenInfo>& tokens, boost::wave::token_id targetId) const;
         int Find(const std::vector<TTokenInfo>& tokens, boost::wave::token_id targetId, std::string value) const;
+
+        int FindIndexOutOfCorners(const std::vector<TTokenInfo>& tokens, boost::wave::token_id targetId, bool reverse) const;
     };
 }

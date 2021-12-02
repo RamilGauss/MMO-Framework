@@ -9,11 +9,14 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
+#include "GuiUpdaterFeature.h"
+
 namespace nsGraphicWrapper
 {
     class DllExport TEndGraphicFeature : public nsECSFramework::TFeature
     {
+        TGuiUpdaterFeature mGuiUpdaterFeature;
     public:
-        void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
+        void InitConveyor() override;
     };
 }

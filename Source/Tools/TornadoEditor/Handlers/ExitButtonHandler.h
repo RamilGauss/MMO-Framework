@@ -18,10 +18,11 @@ namespace nsTornadoEditor
     class DllExport TExitButtonClickHandler : public nsGuiWrapper::IButtonClickHandler
     {
     public:
-        void Handle() override 
+        void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pC) override
         {
-            nsTornadoEngine::Modules()->SceneMng()->Unload("first scene");
-            //nsTornadoEngine::Modules()->StopAccessor()->SetStop();
+            //nsTornadoEngine::Modules()->SceneMng()->Destroy(eid);
+            //nsTornadoEngine::Modules()->SceneMng()->Unload("first scene");
+            nsTornadoEngine::Modules()->StopAccessor()->SetStop();
         }
     };
 }

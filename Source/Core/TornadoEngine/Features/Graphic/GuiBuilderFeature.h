@@ -21,6 +21,6 @@ namespace nsGraphicWrapper
         TWindowBuilderSystem mWindowBuilderSystem;
         TButtonClickHandlerBuilderSystem mButtonClickHandlerBuilderSystem;
     public:
-        void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
+        void InitConveyor() override;
     };
 }

@@ -12,10 +12,11 @@ See for more information LICENSE.md.
 
 namespace nsLogicWrapper
 {
-    class DllExport TNeedUnloadSceneSystem : public nsECSFramework::TOnAddCollectReactiveSystem<nsCommonWrapper::TNeedUnloadSceneComponent>
+    class DllExport TNeedUnloadSceneSystem : 
+        public nsECSFramework::TOnAddCollectReactiveSystem<nsCommonWrapper::TNeedUnloadSceneComponent, TNeedUnloadSceneSystem>
     {
     public:
         // Search all entities with sceneGuid and destroy'em all
-        void Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC) override;
+        void Reactive(nsECSFramework::TEntityID eid, const nsCommonWrapper::TNeedUnloadSceneComponent* pC);
     };
 }

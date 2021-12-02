@@ -282,6 +282,21 @@
     <ClCompile Include="Features\Logic\NeedUnloadSceneSystem.cpp">
       <Filter>Features\Logic</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h">
+      <Filter>Components\Common\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\NeedDestroySceneSystem.cpp">
+      <Filter>Features\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Graphic\GuiUpdaterFeature.cpp">
+      <Filter>Features\Graphic\Updater</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Graphic\WindowPositionUpdaterSystem.cpp">
+      <Filter>Features\Graphic\Updater</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Graphic\WindowSizeUpdaterSystem.cpp">
+      <Filter>Features\Graphic\Updater</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -643,6 +658,30 @@
     </ClInclude>
     <ClInclude Include="Features\Logic\NeedUnloadSceneSystem.h">
       <Filter>Features\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h">
+      <Filter>Components\Common\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\NeedDestroySceneComponent.h">
+      <Filter>Components\Common\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\NeedDestroyPrefabComponent.h">
+      <Filter>Components\Common\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\NeedUnloadPrefabComponent.h">
+      <Filter>Components\Common\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\NeedDestroySceneSystem.h">
+      <Filter>Features\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\WindowPositionUpdaterSystem.h">
+      <Filter>Features\Graphic\Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\GuiUpdaterFeature.h">
+      <Filter>Features\Graphic\Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\WindowSizeUpdaterSystem.h">
+      <Filter>Features\Graphic\Updater</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

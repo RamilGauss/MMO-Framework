@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_29 08:10:20.054
+// File has been generated at 2021_12_02 08:07:38.050
 	
 #pragma once
 
@@ -16,13 +16,18 @@
 #include "MainWindowComponent.h"
 #include "MathStructs.h"
 #include "NameComponent.h"
+#include "NeedDestroyPrefabComponent.h"
+#include "NeedDestroySceneComponent.h"
+#include "NeedUnloadPrefabComponent.h"
 #include "NeedUnloadSceneComponent.h"
 #include "ParentGuidComponent.h"
 #include "PositionComponent.h"
 #include "PrefabGuidComponent.h"
+#include "PrefabInstanceGuidComponent.h"
 #include "PrefabOriginalGuidComponent.h"
 #include "PrefabRootComponent.h"
 #include "SceneGuidComponent.h"
+#include "SceneInstanceGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
 #include "SceneRootComponent.h"
 #include "SizeComponent.h"

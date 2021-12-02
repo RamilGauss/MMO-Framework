@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsECSFramework
 {
-    template<typename Component>
+    template<typename Component, typename SystemTypeImplementation>
     class DllExport TOnAddInstantReactiveSystem : public TBaseReactiveSystem
     {
     public:
@@ -24,7 +24,11 @@ namespace nsECSFramework
         {
             mEntMng = entMng;
             auto callbackPool = mEntMng->RegisterOnAddComponent<Component>();
-            callbackPool->Register<TOnAddInstantReactiveSystem>(this, &TOnAddInstantReactiveSystem::Reactive);
+            callbacPool->Register(this, [this](TEntityID eid, IComponent* pC)
+            {
+                ((SystemTypeImplementation*) (this))->Reactive(eid, (const Component*) pC);
+            });
+
         }
     };
 }

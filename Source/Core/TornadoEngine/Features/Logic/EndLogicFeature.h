@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 #include "StartedScenesInitSystem.h"
 #include "NeedUnloadSceneSystem.h"
+#include "NeedDestroySceneSystem.h"
 
 namespace nsLogicWrapper
 {
@@ -17,7 +18,8 @@ namespace nsLogicWrapper
     {
         TStartedScenesInitSystem mStartedScenesInitSystem;
         TNeedUnloadSceneSystem mNeedUnloadSceneSystem;
+        TNeedDestroySceneSystem mNeedDestroySceneSystem;
     public:
-        void SetEntMng(nsECSFramework::TEntityManager* entMng) override;
+        void InitConveyor() override;
     };
 }

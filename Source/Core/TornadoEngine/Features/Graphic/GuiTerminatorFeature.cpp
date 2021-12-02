@@ -9,10 +9,8 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TGuiTerminatorFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
+void TGuiTerminatorFeature::InitConveyor()
 {
-    TFeature::SetEntMng(entMng);
-
     Add(&mButtonTerminatorSystem);
     Add(&mWindowTerminatorSystem);
     Add(&mButtonClickHandlerTerminatorSystem);

@@ -20,7 +20,7 @@ See for more information LICENSE.md.
 using namespace nsGraphicWrapper;
 
 void TUnitBuilderHelper::SetupButton(nsECSFramework::TEntityManager* entMng,
-    nsECSFramework::TEntityID eid, nsGuiWrapper::TButtonComponent* pButtonComponent)
+    nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pButtonComponent)
 {
     auto posComponent = entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid);
     pButtonComponent->value->SetPos({(float) posComponent->x,(float) posComponent->y});

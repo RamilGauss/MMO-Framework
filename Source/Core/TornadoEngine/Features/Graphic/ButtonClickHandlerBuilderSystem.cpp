@@ -19,11 +19,9 @@ See for more information LICENSE.md.
 using namespace nsGraphicWrapper;
 
 // Prefab or scene
-void TButtonClickHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC)
+void TButtonClickHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonClickHandlerComponent* pButtonClickHandlerComponent)
 {
     auto entMng = GetEntMng();
-    auto pButtonClickHandlerComponent = (nsGuiWrapper::TButtonClickHandlerComponent*) pC;
-
     if (pButtonClickHandlerComponent->partOfGuid == nsTornadoEngine::TGuidConstants::THIS_SCENE) {
 
         nsCommonWrapper::TSceneOriginalGuidComponent sceneOriginalGuidComponent;
@@ -41,21 +39,21 @@ void TButtonClickHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, n
             if (isRegistered) {
                 return;
             }
-            pButtonComponent->value->mOnClickCB.Register(handler, [handler](nsImGuiWidgets::TButton* pB)
+            pButtonComponent->value->mOnClickCB.Register(handler, [handler, targetEid, pButtonComponent](nsImGuiWidgets::TButton* pB)
             {
-                handler->Handle();
+                handler->Handle(targetEid, pButtonComponent);
             });
         }
     } else {
         // Find all instantiated Prefabs
         nsCommonWrapper::TPrefabOriginalGuidComponent prefabOriginalGuidComponent;
         prefabOriginalGuidComponent.value = pButtonClickHandlerComponent->entityGuid;
-        auto pPrefabIriginalEids = entMng->GetByValue(prefabOriginalGuidComponent);
-        if (pPrefabIriginalEids == nullptr || pPrefabIriginalEids->size() == 0) {
+        auto pPrefabOriginalEids = entMng->GetByValue(prefabOriginalGuidComponent);
+        if (pPrefabOriginalEids == nullptr || pPrefabOriginalEids->size() == 0) {
             return;
         }
-        auto prefabIriginalEids = *pPrefabIriginalEids;
-        for (auto& eid : prefabIriginalEids) {
+        auto prefabOriginalEids = *pPrefabOriginalEids;
+        for (auto& eid : prefabOriginalEids) {
             // Handler setup
             auto pButtonComponent = entMng->ViewComponent<nsGuiWrapper::TButtonComponent>(eid);
             if (pButtonComponent == nullptr) {
@@ -67,9 +65,9 @@ void TButtonClickHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, n
             if (isRegistered) {
                 return;
             }
-            pButtonComponent->value->mOnClickCB.Register(handler, [handler](nsImGuiWidgets::TButton* pB)
+            pButtonComponent->value->mOnClickCB.Register(handler, [handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
             {
-                handler->Handle();
+                handler->Handle(eid, pButtonComponent);
             });
         }
     }

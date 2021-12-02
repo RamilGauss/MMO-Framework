@@ -9,10 +9,8 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TGuiBuilderFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
+void TGuiBuilderFeature::InitConveyor()
 {
-    TFeature::SetEntMng(entMng);
-
     Add(&mButtonBuilderSystem);
     Add(&mWindowBuilderSystem);
     Add(&mButtonClickHandlerBuilderSystem);

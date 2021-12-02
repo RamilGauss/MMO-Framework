@@ -21,10 +21,9 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TButtonClickHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC)
+void TButtonClickHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, 
+    const nsGuiWrapper::TButtonClickHandlerComponent* pButtonClickHandlerComponent)
 {
-    auto pButtonClickHandlerComponent = (nsGuiWrapper::TButtonClickHandlerComponent*) pC;
-
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 
     auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);

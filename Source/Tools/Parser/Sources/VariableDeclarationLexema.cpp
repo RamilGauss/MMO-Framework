@@ -25,8 +25,8 @@ bool TVariableDeclarationLexema::CanFill(const TLineTokenEntity* line) const
         return false;
     }
 
-    auto leftParenIndex = Find(line, T_LEFTPAREN);
-    auto rightParenIndex = Find(line, T_RIGHTPAREN);
+    auto leftParenIndex = FindIndexOutOfCorners(line->mTokens, T_LEFTPAREN, false);
+    auto rightParenIndex = FindIndexOutOfCorners(line->mTokens, T_RIGHTPAREN, true);
 
     if (leftParenIndex != -1 && rightParenIndex != -1) {
         auto assignParenIndex = Find(line, T_ASSIGN);
@@ -125,8 +125,8 @@ void TVariableDeclarationLexema::Fill(const TLineTokenEntity* line)
 
     BL_ASSERT(nameIndex != -1);
 
-    auto mutableIndex = Find(line, T_MUTABLE);
-    auto constIndex = Find(line, T_CONST);
+    auto mutableIndex = FindIndexOutOfCorners(line->mTokens, T_MUTABLE, false);
+    auto constIndex = FindIndexOutOfCorners(line->mTokens, T_CONST, false);
     auto staticIndex = Find(line, T_STATIC);
 
     if (mutableIndex != -1) {

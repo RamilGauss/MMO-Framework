@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_29 08:11:33.939
+// File has been generated at 2021_12_02 08:08:33.098
 	
 #pragma once
 

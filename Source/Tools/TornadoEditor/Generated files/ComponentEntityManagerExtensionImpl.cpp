@@ -22,14 +22,28 @@ TComponentEntityManagerExtensionImpl::~TComponentEntityManagerExtensionImpl()
 
 }
 //------------------------------------------------------------------------------------------------------------
-void TComponentEntityManagerExtensionImpl::CreateComponent(nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation)
+void TComponentEntityManagerExtensionImpl::CreateComponent(nsECSFramework::TEntityID eid, int rtti, 
+    std::function<void(void*)> onAfterCreation, bool isNotify)
 {
     if (TComponentEntityManagerExtension::Has(rtti)) {
-        TComponentEntityManagerExtension::CreateComponent(mEntMng, eid, rtti, onAfterCreation);
+        TComponentEntityManagerExtension::CreateComponent(mEntMng, eid, rtti, onAfterCreation, isNotify);
         return;
     }
     if (nsTornadoEngine::TComponentEntityManagerExtension::Has(rtti)) {
-        nsTornadoEngine::TComponentEntityManagerExtension::CreateComponent(mEntMng, eid, rtti, onAfterCreation);
+        nsTornadoEngine::TComponentEntityManagerExtension::CreateComponent(mEntMng, eid, rtti, onAfterCreation, isNotify);
+        return;
+    }
+}
+//------------------------------------------------------------------------------------------------------------
+void TComponentEntityManagerExtensionImpl::SetComponent(nsECSFramework::TEntityID eid, int rtti,
+    void* p, bool isNotify)
+{
+    if (TComponentEntityManagerExtension::Has(rtti)) {
+        TComponentEntityManagerExtension::SetComponent(mEntMng, eid, rtti, p, isNotify);
+        return;
+    }
+    if (nsTornadoEngine::TComponentEntityManagerExtension::Has(rtti)) {
+        nsTornadoEngine::TComponentEntityManagerExtension::SetComponent(mEntMng, eid, rtti, p, isNotify);
         return;
     }
 }

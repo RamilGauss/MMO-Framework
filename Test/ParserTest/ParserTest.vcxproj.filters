@@ -62,6 +62,9 @@
     <ClCompile Include="FunctionWithDefaultArgumentTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FunctionMemberTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
@@ -143,6 +146,9 @@
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
     <ClInclude Include="FunctionWithDefaultArgument.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionMember.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
   </ItemGroup>

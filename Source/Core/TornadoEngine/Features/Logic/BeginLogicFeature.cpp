@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 using namespace nsLogicWrapper;
 
-void TBeginLogicFeature::SetEntMng(nsECSFramework::TEntityManager* entMng)
+void TBeginLogicFeature::InitConveyor()
 {
-    TFeature::SetEntMng(entMng);
+
 }

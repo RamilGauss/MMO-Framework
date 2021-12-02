@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_29 08:10:20.031
+// File has been generated at 2021_12_02 08:07:38.026
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -53,6 +53,42 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsCommonWrapper_TNameComponentTypeFunc, _nsCommonWrapper_TNameComponentTypeFunc });
     
+    TypeFunc _nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc;
+    _nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TNeedDestroyPrefabComponent>((nsCommonWrapper::TNeedDestroyPrefabComponent*) p, str);
+    };
+    _nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TNeedDestroyPrefabComponent>((nsCommonWrapper::TNeedDestroyPrefabComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNeedDestroyPrefabComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc, _nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc });
+    
+    TypeFunc _nsCommonWrapper_TNeedDestroySceneComponentTypeFunc;
+    _nsCommonWrapper_TNeedDestroySceneComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TNeedDestroySceneComponent>((nsCommonWrapper::TNeedDestroySceneComponent*) p, str);
+    };
+    _nsCommonWrapper_TNeedDestroySceneComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TNeedDestroySceneComponent>((nsCommonWrapper::TNeedDestroySceneComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TNeedDestroySceneComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNeedDestroySceneComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TNeedDestroySceneComponentTypeFunc, _nsCommonWrapper_TNeedDestroySceneComponentTypeFunc });
+    
+    TypeFunc _nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc;
+    _nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TNeedUnloadPrefabComponent>((nsCommonWrapper::TNeedUnloadPrefabComponent*) p, str);
+    };
+    _nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TNeedUnloadPrefabComponent>((nsCommonWrapper::TNeedUnloadPrefabComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNeedUnloadPrefabComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc, _nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc });
+    
     TypeFunc _nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc;
     _nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsCommonWrapper::TNeedUnloadSceneComponent>((nsCommonWrapper::TNeedUnloadSceneComponent*) p, str);
@@ -89,6 +125,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsCommonWrapper_TPrefabGuidComponentTypeFunc, _nsCommonWrapper_TPrefabGuidComponentTypeFunc });
     
+    TypeFunc _nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc;
+    _nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TPrefabInstanceGuidComponent>((nsCommonWrapper::TPrefabInstanceGuidComponent*) p, str);
+    };
+    _nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TPrefabInstanceGuidComponent>((nsCommonWrapper::TPrefabInstanceGuidComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TPrefabInstanceGuidComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc, _nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc });
+    
     TypeFunc _nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc;
     _nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsCommonWrapper::TPrefabOriginalGuidComponent>((nsCommonWrapper::TPrefabOriginalGuidComponent*) p, str);
@@ -124,6 +172,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsCommonWrapper_TSceneGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TSceneGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TSceneGuidComponentTypeFunc, _nsCommonWrapper_TSceneGuidComponentTypeFunc });
+    
+    TypeFunc _nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc;
+    _nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TSceneInstanceGuidComponent>((nsCommonWrapper::TSceneInstanceGuidComponent*) p, str);
+    };
+    _nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TSceneInstanceGuidComponent>((nsCommonWrapper::TSceneInstanceGuidComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TSceneInstanceGuidComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc, _nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc });
     
     TypeFunc _nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc;
     _nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -369,6 +429,36 @@ void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TNameComponent* p, 
     POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TNeedDestroyPrefabComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "prefabInstanceGuid", p->prefabInstanceGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TNeedDestroyPrefabComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "prefabInstanceGuid", p->prefabInstanceGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TNeedDestroySceneComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "sceneInstanceGuid", p->sceneInstanceGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TNeedDestroySceneComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "sceneInstanceGuid", p->sceneInstanceGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TNeedUnloadPrefabComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "prefabGuid", p->prefabGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TNeedUnloadPrefabComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "prefabGuid", p->prefabGuid);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "sceneGuid", p->sceneGuid);
@@ -399,6 +489,16 @@ void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TPrefabGuidComponen
     POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TPrefabInstanceGuidComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TPrefabInstanceGuidComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TPrefabOriginalGuidComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "value", p->value);
@@ -423,6 +523,16 @@ void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TSceneGuidComponent* 
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TSceneGuidComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TSceneInstanceGuidComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TSceneInstanceGuidComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "value", p->value);
 }

@@ -21,7 +21,10 @@ See for more information LICENSE.md.
 #include "GuidComponent.h"
 #include "ParentGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
+#include "SceneInstanceGuidComponent.h"
 #include "NeedUnloadSceneComponent.h"
+#include "NeedDestroySceneComponent.h"
+#include "SceneRootComponent.h"
 
 #include "GuidGenerator.h"
 
@@ -42,7 +45,7 @@ void TSceneManager::LoadByAbsPath(const std::string& absPath)
     // Same as InstantiateByAbsPath, but without replasing guid
 }
 //--------------------------------------------------------------------------------
-void TSceneManager::LoadByGuid(const std::string& guid)
+void TSceneManager::LoadByGuid(const std::string& sceneGuid)
 {
     // Convert to abs path
     // LoadByAbsPath()
@@ -63,6 +66,8 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
         logger->WriteF_time("Deserialize error %s with %s", err.c_str(), absPath.c_str());
         return;
     }
+
+    std::string sceneIstanceGuid;
 
     auto componentReflection = Project()->mScenePartAggregator->mComponents;
     componentReflection->mEntMng->SetEntityManager(Modules()->EntMng());
@@ -92,6 +97,10 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
                 }
             });
 
+            auto hasRoot = mEntityManager->HasComponent<nsCommonWrapper::TSceneRootComponent>(eid);
+            if (hasRoot) {
+                sceneIstanceGuid = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(eid)->value;
+            }
         }
     }
 
@@ -122,34 +131,58 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
 
         guidComponent.value = newGuid;
         mEntityManager->SetComponent(eid, guidComponent);
+
+        nsCommonWrapper::TSceneInstanceGuidComponent sceneInstanceGuidComponent;
+        sceneInstanceGuidComponent.value = sceneIstanceGuid;
+        mEntityManager->SetComponent(eid, sceneInstanceGuidComponent);
     }
 }
 //--------------------------------------------------------------------------------
-void TSceneManager::InstantiateByGuid(const std::string& guid)
+void TSceneManager::InstantiateByGuid(const std::string& sceneGuid)
 {
     // Convert to abs path
-    auto fit = mSceneContentMap.guidPathMap.find(guid);
+    auto fit = mSceneContentMap.guidPathMap.find(sceneGuid);
     if (fit == mSceneContentMap.guidPathMap.end()) {
-        GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", guid.c_str());
+        GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", sceneGuid.c_str());
         return;
     }
 
     InstantiateByAbsPath(fit->second);
 }
 //--------------------------------------------------------------------------------
-void TSceneManager::Unload(const std::string& guid)
+void TSceneManager::Unload(const std::string& sceneGuid)
 {
     // Add tag component for new entity
     auto eid = mEntityManager->CreateEntity();
 
     nsCommonWrapper::TNeedUnloadSceneComponent needUnloadSceneComponent;
-    needUnloadSceneComponent.sceneGuid = guid;
+    needUnloadSceneComponent.sceneGuid = sceneGuid;
     mEntityManager->SetComponent(eid, needUnloadSceneComponent);
 }
 //--------------------------------------------------------------------------------
-void TSceneManager::Save(const std::string& guid)
+void TSceneManager::Save(const std::string& sceneGuid)
 {
     // Search all entities with sceneGuid and serialize to file
     // Check on existing in sceneManagerMap
+}
+//--------------------------------------------------------------------------------
+void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
+{
+    //// Add tag component for new entity
+    auto eid = mEntityManager->CreateEntity();
+
+    nsCommonWrapper::TNeedDestroySceneComponent needDestroySceneComponent;
+    needDestroySceneComponent.sceneInstanceGuid = sceneInstanceGuid;
+    mEntityManager->SetComponent(eid, needDestroySceneComponent);
+}
+//--------------------------------------------------------------------------------
+void TSceneManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
+{
+    // Find out
+    auto pSceneInstanceGuid = mEntityManager->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(anyEidInScene);
+    if (pSceneInstanceGuid == nullptr) {
+        return;
+    }
+    Destroy(pSceneInstanceGuid->value);
 }
 //--------------------------------------------------------------------------------

@@ -14,7 +14,5 @@ namespace nsECSFramework
 {
     class DllExport TBaseReactiveSystem : public TTearDownSystem
     {
-    public:
-        virtual void Reactive(TEntityID eid, IComponent* pC) = 0;
     };
 }
