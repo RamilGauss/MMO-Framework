@@ -53,14 +53,12 @@ void TGroupLogic::DestroyGroup(unsigned int groupID)
 
     TGroupIDComponent groupIDComponent;
     groupIDComponent.v = groupID;
-    auto clients = mEntMng->GetByValue(groupIDComponent);
+    auto clients = mEntMng->GetByValueCopy(groupIDComponent);
     groupIDComponent.v = 0;
     TSlaveSessionByClientComponent slaveSessionByClientComponent;
-    if (clients != nullptr) {
-        for (auto clientEntity : *clients) {
-            mEntMng->SetComponent(clientEntity, groupIDComponent);
-            mEntMng->SetComponent(clientEntity, slaveSessionByClientComponent);// обнулить информацию о Slave
-        }
+    for (auto clientEntity : clients) {
+        mEntMng->SetComponent(clientEntity, groupIDComponent);
+        mEntMng->SetComponent(clientEntity, slaveSessionByClientComponent);// обнулить информацию о Slave
     }
 
     mEntMng->DestroyEntity(groupEntity);
@@ -100,12 +98,9 @@ void TGroupLogic::GetListForGroup(unsigned int groupID, std::list<unsigned int>&
 
     TGroupIDComponent groupIDComponent;
     groupIDComponent.v = groupID;
-    auto clients = mEntMng->GetByValue(groupIDComponent);
-    if (clients == nullptr) {
-        return;
-    }
+    auto clients = mEntMng->GetByValueCopy(groupIDComponent);
     groupIDComponent.v = 0;
-    for (auto clientEntity : *clients) {
+    for (auto clientEntity : clients) {
         auto clientId = mEntMng->ViewComponent<TClientIdentityComponent>(clientEntity)->v;
         clientKeyList.push_back(clientId);
     }
@@ -202,12 +197,8 @@ bool TGroupLogic::EvalCreateGroupNow(std::list<unsigned int>& clientKeyList, uns
 //-------------------------------------------------------------------------------------------
 void TGroupLogic::CalculateLoadMap(std::map<int, nsECSFramework::TEntityID>& loadSlaveEntityMap)
 {
-    auto slaves = mEntMng->GetByHas<TSlaveSessionIdentityComponent>();
-    if (slaves == nullptr) {
-        return;
-    }
-
-    for (auto slaveEntity : *slaves) {
+    auto slaves = mEntMng->GetByHasCopy<TSlaveSessionIdentityComponent>();
+    for (auto slaveEntity : slaves) {
         auto sessionID = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>(slaveEntity)->v;
         auto slaveLoadComponent = mEntMng->ViewComponent<TSlaveLoadInfoComponent>(slaveEntity);
 
@@ -215,28 +206,22 @@ void TGroupLogic::CalculateLoadMap(std::map<int, nsECSFramework::TEntityID>& loa
         slaveSessionByClientComponent.v = sessionID;
         TClientStateComponent clientStateComponent;
         clientStateComponent.v = TClientStateComponent::OnSlave;
-        auto clientOnSlaves = mEntMng->GetByValue(slaveSessionByClientComponent, clientStateComponent);
-        auto clientOnSlaveCount = clientOnSlaves == nullptr ? 0 : clientOnSlaves->size();
+        auto clientOnSlaves = mEntMng->GetByValueCopy(slaveSessionByClientComponent, clientStateComponent);
+        auto clientOnSlaveCount = clientOnSlaves.size();
 
         int clientCountInGroup = 0;
 
         TSlaveSessionByGroupComponent slaveSessionByGroupComponent;
         slaveSessionByGroupComponent.v = sessionID;
-        auto groups = mEntMng->GetByValue(slaveSessionByGroupComponent);
+        auto groups = mEntMng->GetByValueCopy(slaveSessionByGroupComponent);
 
-        if (groups != nullptr) {
-            for (auto groupEntity : *groups) {
-                auto groupId = mEntMng->ViewComponent<TGroupIdentityComponent>(groupEntity)->v;
+        for (auto groupEntity : groups) {
+            auto groupId = mEntMng->ViewComponent<TGroupIdentityComponent>(groupEntity)->v;
 
-                TGroupIDComponent groupIDComponent;
-                groupIDComponent.v = groupId;
-                auto clientInGroups = mEntMng->GetByValue(groupIDComponent);
-                if (clientInGroups == nullptr) {
-                    continue;
-                }
-
-                clientCountInGroup += clientInGroups->size();
-            }
+            TGroupIDComponent groupIDComponent;
+            groupIDComponent.v = groupId;
+            auto clientInGroups = mEntMng->GetByValueCopy(groupIDComponent);
+            clientCountInGroup += clientInGroups.size();
         }
 
         int loadByGroup = 0;

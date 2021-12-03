@@ -20,7 +20,7 @@ int main()
     TNameComponent nameComponent;
     nameComponent.name = "simple name";
     entMng->GetByUnique(nameComponent);
-    entMng->GetByValue(nameComponent);
+    entMng->GetByValueCopy(nameComponent);
 
     entMng->Setup();
     printf("\n");

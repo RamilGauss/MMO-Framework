@@ -48,11 +48,7 @@ void TButtonClickHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, c
         // Find all instantiated Prefabs
         nsCommonWrapper::TPrefabOriginalGuidComponent prefabOriginalGuidComponent;
         prefabOriginalGuidComponent.value = pButtonClickHandlerComponent->entityGuid;
-        auto pPrefabOriginalEids = entMng->GetByValue(prefabOriginalGuidComponent);
-        if (pPrefabOriginalEids == nullptr || pPrefabOriginalEids->size() == 0) {
-            return;
-        }
-        auto prefabOriginalEids = *pPrefabOriginalEids;
+        auto prefabOriginalEids = entMng->GetByValueCopy(prefabOriginalGuidComponent);
         for (auto& eid : prefabOriginalEids) {
             // Handler setup
             auto pButtonComponent = entMng->ViewComponent<nsGuiWrapper::TButtonComponent>(eid);

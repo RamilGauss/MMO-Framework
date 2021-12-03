@@ -13,12 +13,7 @@ using namespace nsGraphicWrapper;
 
 void TWindowSizeUpdaterSystem::Execute()
 {
-    auto pHasWindow = GetEntMng()->GetByHas<nsGuiWrapper::TWindowComponent>();
-    if (pHasWindow == nullptr) {
-        return;
-    }
-
-    auto hasWindow = *pHasWindow;
+    auto hasWindow = GetEntMng()->GetByHasCopy<nsGuiWrapper::TWindowComponent>();
     for (auto& eid : hasWindow) {
         auto pWindow = GetEntMng()->ViewComponent<nsGuiWrapper::TWindowComponent>(eid)->value;
 

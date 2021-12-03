@@ -21,7 +21,7 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TButtonClickHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, 
+void TButtonClickHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid,
     const nsGuiWrapper::TButtonClickHandlerComponent* pButtonClickHandlerComponent)
 {
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
@@ -48,11 +48,10 @@ void TButtonClickHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid
         // Find all instantiated Prefabs
         nsCommonWrapper::TPrefabOriginalGuidComponent prefabOriginalGuidComponent;
         prefabOriginalGuidComponent.value = pButtonClickHandlerComponent->entityGuid;
-        auto pPrefabIriginalEids = entMng->GetByValue(prefabOriginalGuidComponent);
-        if (pPrefabIriginalEids == nullptr || pPrefabIriginalEids->size() == 0) {
+        auto prefabIriginalEids = entMng->GetByValueCopy(prefabOriginalGuidComponent);
+        if (prefabIriginalEids.size() == 0) {
             return;
         }
-        auto prefabIriginalEids = *pPrefabIriginalEids;
         for (auto& eid : prefabIriginalEids) {
             // Handler setup
             auto pButtonComponent = entMng->ViewComponent<nsGuiWrapper::TButtonComponent>(eid);

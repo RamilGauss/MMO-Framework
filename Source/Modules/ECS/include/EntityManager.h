@@ -70,58 +70,29 @@ namespace nsECSFramework
 
         void GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList);
 
-        // filters
+        // Filters
         template <typename Component>
-        DllExport TEntityID NoInline GetByUnique(Component& c)
-        {// definition must be after declaration!
-            auto index = TypeIndex<Component>();
-            auto pMap = mUniqueMapVec[index];
-            if (pMap == nullptr) {
-                return NONE;
-            }
-            auto fit = pMap->find(&c);
-            if (fit == pMap->end()) {
-                return NONE;
-            }
-            return fit->second;
-        }
-        template <typename ... Args>
-        DllExport TEntityList* NoInline GetByValue(Args& ... args)
-        {// definition must be after declaration!
-            auto index = TypeIndex<Args...>();
-            auto pMap = mValueCollectionVec[index];
-            if (pMap == nullptr) {
-                return nullptr;
-            }
+        DllExport TEntityID NoInline GetByUnique(Component& c);
 
-            TEntityList* pResult = nullptr;
-            auto pComplexType = mComplexTypeMemoryPool->Pop();
-            Fill(pComplexType, args ...);// берем адреса из стека, безопасно, потому что переменные еще существуют в методе
-            auto fit = pMap->find(pComplexType);
-            if (fit != pMap->end()) {
-                pResult = fit->second;
-            }
-
-            // вернуть обратно в пул
-            pComplexType->Done();
-            mComplexTypeMemoryPool->Push(pComplexType);
-            return pResult;
-        }
+        // Fast, but maybe unsafe!
         template <typename ... Args>
-        DllExport TEntityList* NoInline GetByHas()
-        {// definition must be after declaration!
-            auto index = TypeIndex<Args...>();
-            auto pList = (TEntityList*) mHasCollectionVec[index];
-            return pList;
-        }
+        DllExport const TEntityList* NoInline GetByValue(Args& ... args);
+        template <typename ... Args>
+        DllExport const TEntityList* NoInline GetByHas();
+        // Slower than GetByHas, GetByValue, but safe.
+        template <typename ... Args>
+        const TEntityList GetByValueCopy(Args& ... args);
+        template <typename ... Args>
+        const TEntityList GetByHasCopy();
+        // Filters ends
 
         // events - instant reactions
         template<typename Component>
-        TCallbackPool<TEntityID, IComponent*>* RegisterOnAddComponent();
+        TCallbackPool<TEntityID, const IComponent*>* RegisterOnAddComponent();
         template<typename Component>
-        TCallbackPool<TEntityID, IComponent*>* RegisterOnUpdateComponent();
+        TCallbackPool<TEntityID, const IComponent*>* RegisterOnUpdateComponent();
         template<typename Component>
-        TCallbackPool<TEntityID, IComponent*>* RegisterOnRemoveComponent();
+        TCallbackPool<TEntityID, const IComponent*>* RegisterOnRemoveComponent();
 
         // events - collected reactions
         struct TEvent
@@ -151,7 +122,7 @@ namespace nsECSFramework
         template<typename Component>
         void ClearUpdateEvents(int id);
     private:
-        using TCB_EntPtrCom = TCallbackPool<TEntityID, IComponent*>;
+        using TCB_EntPtrCom = TCallbackPool<TEntityID, const IComponent*>;
         using TCBVector = TColanderVector<TCB_EntPtrCom*>;
 
         TCBVector mAddCBVector;
@@ -182,7 +153,7 @@ namespace nsECSFramework
         void PushEventToCollector(TComponentEventsVector& componentEventsVector, unsigned int index, TEntityID eid, Component* pComponent);
 
         template<typename Component>
-        TCallbackPool<TEntityID, IComponent*>* RegisterOnComponent(TCBVector& cbVector);
+        TCallbackPool<TEntityID, const IComponent*>* RegisterOnComponent(TCBVector& cbVector);
 
         void Destroy(TCBVector& cbVector);
 
@@ -253,11 +224,11 @@ namespace nsECSFramework
         void TryRemoveFromHas(TEntityID eid, int index, TEntity* pEntity);
         void TryRemoveFromValue(TEntityID eid, int index, TEntity* pEntity);
 
-        void NotifyOnAddComponent(int index, TEntityID entity, IComponent* pC);
-        void NotifyOnUpdateComponent(int index, TEntityID entity, IComponent* pC);
-        void NotifyOnRemoveComponent(int index, TEntityID entity, IComponent* pC);
-
-        void NotifyComponent(int index, TEntityID entity, IComponent* pC, TCBVector& cbVector);
+        void NotifyOnAddComponent(int index, TEntityID entity, const IComponent* pC);
+        void NotifyOnUpdateComponent(int index, TEntityID entity, const IComponent* pC);
+        void NotifyOnRemoveComponent(int index, TEntityID entity, const IComponent* pC);
+        
+        void NotifyComponent(int index, TEntityID entity, const IComponent* pC, TCBVector& cbVector);
 
     private:
         boost::dll::experimental::smart_library mLib;
@@ -430,25 +401,25 @@ namespace nsECSFramework
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
-    TCallbackPool<TEntityID, IComponent*>* TEntityManager::RegisterOnAddComponent()
+    TCallbackPool<TEntityID, const IComponent*>* TEntityManager::RegisterOnAddComponent()
     {
         return RegisterOnComponent<Component>(mAddCBVector);
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
-    TCallbackPool<TEntityID, IComponent*>* TEntityManager::RegisterOnUpdateComponent()
+    TCallbackPool<TEntityID, const IComponent*>* TEntityManager::RegisterOnUpdateComponent()
     {
         return RegisterOnComponent<Component>(mUpdateCBVector);
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
-    TCallbackPool<TEntityID, IComponent*>* TEntityManager::RegisterOnRemoveComponent()
+    TCallbackPool<TEntityID, const IComponent*>* TEntityManager::RegisterOnRemoveComponent()
     {
         return RegisterOnComponent<Component>(mRemoveCBVector);
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
-    TCallbackPool<TEntityID, IComponent*>* TEntityManager::RegisterOnComponent(TCBVector& cbVector)
+    TCallbackPool<TEntityID, const IComponent*>* TEntityManager::RegisterOnComponent(TCBVector& cbVector)
     {
         const auto index = TypeIndex<Component>();
         auto pCB = cbVector[index];
@@ -582,4 +553,66 @@ namespace nsECSFramework
         }
     }
     //---------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------
+    template <typename Component>
+    DllExport TEntityID NoInline TEntityManager::GetByUnique(Component& c)
+    {// definition must be after declaration!
+        auto index = TypeIndex<Component>();
+        auto pMap = mUniqueMapVec[index];
+        if (pMap == nullptr) {
+            return NONE;
+        }
+        auto fit = pMap->find(&c);
+        if (fit == pMap->end()) {
+            return NONE;
+        }
+        return fit->second;
+    }
+    //---------------------------------------------------------------------------------------
+    template <typename ... Args>
+    DllExport const TEntityList* NoInline TEntityManager::GetByValue(Args& ... args)
+    {// definition must be after declaration!
+        auto index = TypeIndex<Args...>();
+        auto pMap = mValueCollectionVec[index];
+        if (pMap == nullptr) {
+            return nullptr;
+        }
+
+        const TEntityList* pResult = nullptr;
+        auto pComplexType = mComplexTypeMemoryPool->Pop();
+        Fill(pComplexType, args ...);// берем адреса из стека, безопасно, потому что переменные еще существуют в методе
+        auto fit = pMap->find(pComplexType);
+        if (fit != pMap->end()) {
+            pResult = fit->second;
+        }
+
+        // вернуть обратно в пул
+        pComplexType->Done();
+        mComplexTypeMemoryPool->Push(pComplexType);
+        return pResult;
+    }
+    //---------------------------------------------------------------------------------------
+    template <typename ... Args>
+    DllExport const TEntityList* NoInline TEntityManager::GetByHas()
+    {// definition must be after declaration!
+        auto index = TypeIndex<Args...>();
+        return (const TEntityList*) mHasCollectionVec[index];
+    }
+    //---------------------------------------------------------------------------------------
+    template <typename ... Args>
+    const TEntityList TEntityManager::GetByValueCopy(Args& ... args)
+    {
+        auto p = GetByValue(args ...);
+        if (p == nullptr) {
+            return TEntityList();
+        }
+        return *p;
+    }
+    //---------------------------------------------------------------------------------------
+    template <typename ... Args>
+    const TEntityList TEntityManager::GetByHasCopy()
+    {
+        return *GetByHas<Args...>();
+    }
 }

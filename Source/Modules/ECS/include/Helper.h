@@ -14,11 +14,11 @@ namespace nsECSFramework
     template <typename Component>
     TEntityID SingleEntity(TEntityManager* entMng)// когда точно есть одна сущность с данным компонентом
     {
-        auto pList = entMng->GetByHas<Component>();
-        if ( pList == nullptr || pList->size() == 0 ) {
+        auto hasList = entMng->GetByHasCopy<Component>();
+        if (hasList.size() == 0 ) {
             return None;
         }
-        return pList->front();
+        return hasList.front();
     }
 
     template <typename Component>

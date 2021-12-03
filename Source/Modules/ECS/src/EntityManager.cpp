@@ -546,30 +546,6 @@ void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEnti
     }
 }
 //----------------------------------------------------------------------------------------------------
-void TEntityManager::NotifyOnAddComponent(int index, TEntityID entity, IComponent* pC)
-{
-    NotifyComponent(index, entity, pC, mAddCBVector);
-}
-//---------------------------------------------------------------------------------------
-void TEntityManager::NotifyOnUpdateComponent(int index, TEntityID entity, IComponent* pC)
-{
-    NotifyComponent(index, entity, pC, mUpdateCBVector);
-}
-//---------------------------------------------------------------------------------------
-void TEntityManager::NotifyOnRemoveComponent(int index, TEntityID entity, IComponent* pC)
-{
-    NotifyComponent(index, entity, pC, mRemoveCBVector);
-}
-//---------------------------------------------------------------------------------------
-void TEntityManager::NotifyComponent(int index, TEntityID entity, IComponent* pC, TCBVector& cbVector)
-{
-    auto pCB = &cbVector[index];
-    if (pCB[0] == nullptr) {
-        return;
-    }
-    pCB[0]->Notify(entity, pC);
-}
-//---------------------------------------------------------------------------------------
 void TEntityManager::GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList)
 {
     typeIdentifierList.clear();
@@ -599,5 +575,29 @@ void TEntityManager::DestroyEventCollector(TComponentEventsVector& eventColector
         delete eventColector[i];
         eventColector[i] = nullptr;
     }
+}
+//---------------------------------------------------------------------------------------
+void TEntityManager::NotifyOnAddComponent(int index, TEntityID entity, const IComponent* pC)
+{
+    NotifyComponent(index, entity, pC, mAddCBVector);
+}
+//---------------------------------------------------------------------------------------
+void TEntityManager::NotifyOnUpdateComponent(int index, TEntityID entity, const IComponent* pC)
+{
+    NotifyComponent(index, entity, pC, mUpdateCBVector);
+}
+//---------------------------------------------------------------------------------------
+void TEntityManager::NotifyOnRemoveComponent(int index, TEntityID entity, const IComponent* pC)
+{
+    NotifyComponent(index, entity, pC, mRemoveCBVector);
+}
+//---------------------------------------------------------------------------------------
+void TEntityManager::NotifyComponent(int index, TEntityID entity, const IComponent* pC, TCBVector& cbVector)
+{
+    auto pCB = &cbVector[index];
+    if (pCB[0] == nullptr) {
+        return;
+    }
+    pCB[0]->Notify(entity, pC);
 }
 //---------------------------------------------------------------------------------------

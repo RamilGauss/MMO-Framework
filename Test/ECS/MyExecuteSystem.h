@@ -20,12 +20,12 @@ public:
     void Execute() override
     {
         if (mCounter == 2) {
-            auto nameList = *(mEntMng->GetByHas<TNameComponent>());
+            auto nameList = mEntMng->GetByHasCopy<TNameComponent>();
             for (auto& eid : nameList) {
                 mEntMng->RemoveComponent<TNameComponent>(eid);
             }
         } else {
-            auto& nameList = *(mEntMng->GetByHas<TNameComponent>());
+            auto nameList = mEntMng->GetByHasCopy<TNameComponent>();
             for (auto& eid : nameList) {
                 auto nameComponent = *mEntMng->ViewComponent<TNameComponent>(eid);
 

@@ -33,11 +33,8 @@ void TSlaveOnMasterLogic::GetDescDown(std::list<unsigned int>& sessionIDList)
 {
     sessionIDList.clear();
 
-    auto pSlaveList = mEntMng->GetByHas<TSlaveSessionIdentityComponent>();
-    if (pSlaveList == nullptr) {
-        return;
-    }
-    for (auto& slaveEntity : *pSlaveList) {
+    auto slaveList = mEntMng->GetByHasCopy<TSlaveSessionIdentityComponent>();
+    for (auto& slaveEntity : slaveList) {
         auto sessionId = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>(slaveEntity)->v;
         sessionIDList.push_back(sessionId);
     }
@@ -282,8 +279,8 @@ void TSlaveOnMasterLogic::TryAddClientFromQueue(nsECSFramework::TEntityID slaveE
 {
     TClientStateComponent clientStateComponent;
     clientStateComponent.v = TClientStateComponent::InQueue;
-    auto inQueueClients = mEntMng->GetByValue(clientStateComponent);
-    if (inQueueClients == nullptr || inQueueClients->size() == 0) {
+    auto inQueueClients = mEntMng->GetByValueCopy(clientStateComponent);
+    if (inQueueClients.size() == 0) {
         return;// очередь пуста
     }
 
@@ -304,21 +301,15 @@ void TSlaveOnMasterLogic::DestroyAllLostClientsBySlaveSession(unsigned int sessi
     // найти все группы slave удалить всех потерянных клиентов
     TSlaveSessionByGroupComponent slaveSessionByGroupComponent;
     slaveSessionByGroupComponent.v = sessionID;
-    auto groups = mEntMng->GetByValue(slaveSessionByGroupComponent);
-    if (groups == nullptr) {
-        return;
-    }
-    for (auto groupEntity : *groups) {
+    auto groups = mEntMng->GetByValueCopy(slaveSessionByGroupComponent);
+    for (auto groupEntity : groups) {
         auto groupIdentityComponent = mEntMng->ViewComponent<TGroupIdentityComponent>(groupEntity);
         // найти всех потерянных клиентов по группе
         TGroupIDComponent groupIDComponent;
         groupIDComponent.v = groupIdentityComponent->v;
 
-        auto lostClients = mEntMng->GetByValue(groupIDComponent, clientStateComponent);
-        if (lostClients == nullptr) {
-            continue;
-        }
-        for (auto clientEntity : *lostClients) {
+        auto lostClients = mEntMng->GetByValueCopy(groupIDComponent, clientStateComponent);
+        for (auto clientEntity : lostClients) {
             mEntMng->DestroyEntity(clientEntity);
         }
     }
@@ -328,11 +319,8 @@ void TSlaveOnMasterLogic::GetAllClientsBySlaveSession(unsigned int sessionID, st
 {
     TSlaveSessionByClientComponent slaveSessionByClientComponent;
     slaveSessionByClientComponent.v = sessionID;
-    auto clients = mEntMng->GetByValue(slaveSessionByClientComponent);
-    if (clients == nullptr) {
-        return;
-    }
-    for (auto clientEntity : *clients) {
+    auto clients = mEntMng->GetByValueCopy(slaveSessionByClientComponent);
+    for (auto clientEntity : clients) {
         auto clientKey = mEntMng->ViewComponent<TClientIdentityComponent>(clientEntity)->v;
         clientKeyVector.push_back(clientKey);
     }
@@ -368,19 +356,15 @@ void TSlaveOnMasterLogic::DestroyAllClientsBySlaveSession(unsigned int sessionID
     // найти все группы slave удалить всех потерянных клиентов
     TSlaveSessionByGroupComponent slaveSessionByGroupComponent;
     slaveSessionByGroupComponent.v = sessionID;
-    auto groups = mEntMng->GetByValue(slaveSessionByGroupComponent);
-    if (groups == nullptr)
-        return;
-    for (auto groupEntity : *groups) {
+    auto groups = mEntMng->GetByValueCopy(slaveSessionByGroupComponent);
+    for (auto groupEntity : groups) {
         auto groupId = mEntMng->ViewComponent<TGroupIdentityComponent>(groupEntity)->v;
         // найти всех потерянных клиентов по группе
         TGroupIDComponent groupIDComponent;
         groupIDComponent.v = groupId;
 
-        auto clients = mEntMng->GetByValue(groupIDComponent);
-        if (clients == nullptr)
-            continue;
-        for (auto clientEntity : *clients)
+        auto clients = mEntMng->GetByValueCopy(groupIDComponent);
+        for (auto clientEntity : clients)
             mEntMng->DestroyEntity(clientEntity);
     }
 }
@@ -389,10 +373,8 @@ void TSlaveOnMasterLogic::DestroyAllGroupsBySlaveSession(unsigned int sessionID)
 {
     TSlaveSessionByGroupComponent slaveSessionByGroupComponent;
     slaveSessionByGroupComponent.v = sessionID;
-    auto groups = mEntMng->GetByValue(slaveSessionByGroupComponent);
-    if (groups == nullptr)
-        return;
-    for (auto groupEntity : *groups) {
+    auto groups = mEntMng->GetByValueCopy(slaveSessionByGroupComponent);
+    for (auto groupEntity : groups) {
         auto pGroupIdentityComponent = mEntMng->ViewComponent<TGroupIdentityComponent>(groupEntity);
         if (pGroupIdentityComponent == nullptr) {
             BL_FIX_BUG();
@@ -417,10 +399,8 @@ void TSlaveOnMasterLogic::SendRecipient(unsigned int sessionID)
     TDonorSessionComponent donorSessionComponent;
     donorSessionComponent.v = sessionID;
 
-    auto clients = mEntMng->GetByValue(donorSessionComponent, clientStateComponent);
-    if (clients == nullptr)
-        return;
-    for (auto clientEntity : *clients) {
+    auto clients = mEntMng->GetByValueCopy(donorSessionComponent, clientStateComponent);
+    for (auto clientEntity : clients) {
         auto pC = mEntMng->ViewComponent<TContextContainerComponent>(clientEntity)->v;
 
         mBase->mControlSc->mRcm->SetContext(&pC->mRcm);
@@ -438,11 +418,12 @@ void TSlaveOnMasterLogic::TryAddFromQueueGroupClients(nsECSFramework::TEntityID 
     clientStateComponent.v = TClientStateComponent::InQueue;
     TSlaveSessionByClientComponent slaveSessionByGroupComponent;
     slaveSessionByGroupComponent.v = sessionID;
-    auto inQueueClients = mEntMng->GetByValue(slaveSessionByGroupComponent, clientStateComponent);
-    if (inQueueClients == nullptr || inQueueClients->size() == 0)
+    auto inQueueClients = mEntMng->GetByValueCopy(slaveSessionByGroupComponent, clientStateComponent);
+    if (inQueueClients.size() == 0) {
         return;// очередь пуста
+    }
 
-    AddClientBySlave(inQueueClients, sessionID, slaveEntity, LimitLoadPercentOnSlaveForAdd_ClientInGroup);
+    AddClientBySlave(&inQueueClients, sessionID, slaveEntity, LimitLoadPercentOnSlaveForAdd_ClientInGroup);
 }
 //-------------------------------------------------------------------------
 void TSlaveOnMasterLogic::TryAddFromQueue(nsECSFramework::TEntityID slaveEntity, unsigned int sessionID)
@@ -452,11 +433,12 @@ void TSlaveOnMasterLogic::TryAddFromQueue(nsECSFramework::TEntityID slaveEntity,
     TGroupIDComponent groupIDComponent;
     groupIDComponent.v = 0;
 
-    auto inQueueClients = mEntMng->GetByValue(groupIDComponent, clientStateComponent);
-    if (inQueueClients == nullptr || inQueueClients->size() == 0)
+    auto inQueueClients = mEntMng->GetByValueCopy(groupIDComponent, clientStateComponent);
+    if (inQueueClients.size() == 0) {
         return;// очередь пуста
+    }
 
-    AddClientBySlave(inQueueClients, sessionID, slaveEntity, LimitLoadPercentOnSlaveForAdd);
+    AddClientBySlave(&inQueueClients, sessionID, slaveEntity, LimitLoadPercentOnSlaveForAdd);
 }
 //-------------------------------------------------------------------------
 void TSlaveOnMasterLogic::AddClientBySlave(nsECSFramework::TEntityList* pClientEntitySet, unsigned int slaveSessionID,
@@ -466,8 +448,9 @@ void TSlaveOnMasterLogic::AddClientBySlave(nsECSFramework::TEntityList* pClientE
     auto eit = pClientEntitySet->end();
     while (bit != eit) {
         auto futureLoad = CalculateFutureLoadOnSlave(slaveEntity, 1);// + 1 client
-        if (futureLoad >= limit)
+        if (futureLoad >= limit) {
             return;// места нет
+        }
         auto clientEntity = *bit;
         bit++;
         AddClientBySlaveSession(clientEntity, slaveSessionID);

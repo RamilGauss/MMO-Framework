@@ -32,11 +32,10 @@ void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
 
     TUnitBuilderHelper::SetupButton(entMng, eid, pButtonComponent);
 
-    auto pButtonClickHandlers = entMng->GetByHas<nsGuiWrapper::TButtonClickHandlerComponent>();
-    if (pButtonClickHandlers == nullptr) {
+    auto buttonClickHandlers = entMng->GetByHasCopy<nsGuiWrapper::TButtonClickHandlerComponent>();
+    if (buttonClickHandlers.size() == 0) {
         return;
     }
-    auto buttonClickHandlers = *pButtonClickHandlers;
 
     auto isPrefabInstance = entMng->HasComponent<nsCommonWrapper::TPrefabOriginalGuidComponent>(eid);
     auto isSceneInstance = entMng->HasComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid);

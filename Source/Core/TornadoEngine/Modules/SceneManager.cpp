@@ -116,13 +116,10 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
 
         nsCommonWrapper::TParentGuidComponent parentGuid;
         parentGuid.value = guidComponent.value;
-        auto childs = mEntityManager->GetByValue<nsCommonWrapper::TParentGuidComponent>(parentGuid);
-        if (childs != nullptr) {
-            auto copyChildEids = *childs;
-            for (auto& childEid : copyChildEids) {
-                parentGuid.value = newGuid;
-                mEntityManager->SetComponent(childEid, parentGuid);
-            }
+        auto copyChildEids = mEntityManager->GetByValueCopy<nsCommonWrapper::TParentGuidComponent>(parentGuid);
+        for (auto& childEid : copyChildEids) {
+            parentGuid.value = newGuid;
+            mEntityManager->SetComponent(childEid, parentGuid);
         }
 
         nsCommonWrapper::TSceneOriginalGuidComponent sceneOriginalGuid;

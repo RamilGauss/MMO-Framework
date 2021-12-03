@@ -79,6 +79,7 @@
     <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)_d</TargetName>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\Exe\</OutDir>
@@ -145,6 +146,7 @@
     <PreBuildEvent>
       <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\componentConfig.json"
 $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\handlerConfig.json"</Command>
+      <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

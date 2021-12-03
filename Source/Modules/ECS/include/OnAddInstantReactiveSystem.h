@@ -24,11 +24,10 @@ namespace nsECSFramework
         {
             mEntMng = entMng;
             auto callbackPool = mEntMng->RegisterOnAddComponent<Component>();
-            callbacPool->Register(this, [this](TEntityID eid, IComponent* pC)
+            callbacPool->Register(this, [this](TEntityID eid, const IComponent* pC)
             {
                 ((SystemTypeImplementation*) (this))->Reactive(eid, (const Component*) pC);
             });
-
         }
     };
 }

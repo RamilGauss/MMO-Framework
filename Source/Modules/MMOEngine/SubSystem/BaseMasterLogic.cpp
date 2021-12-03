@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 #include "BaseMasterLogic.h"
 #include "Master.h"
-#include "Components.h"
 #include "ECS/include/EntityManager.h"
 #include "Events.h"
 #include "Logger.h"
+#include "Components.h"
 
 using namespace nsMMOEngine;
 using namespace nsECSFramework;
@@ -45,9 +45,9 @@ TBaseMasterLogic::TBaseMasterLogic(TBase* p) : TBaseLogic(p)
     mEntMng->RegisterOnRemoveComponent<TContextContainerComponent>()->Register(this, &TBaseMasterLogic::OnRemoveContextContainer);
 }
 //-----------------------------------------------------------------------------------
-void TBaseMasterLogic::OnRemoveContextContainer(TEntityID entity, IComponent* pC)
+void TBaseMasterLogic::OnRemoveContextContainer(TEntityID entity, const IComponent* pC)
 {
-    auto pContextContainerComponent = (TContextContainerComponent*) pC;
+    auto pContextContainerComponent = (const TContextContainerComponent*)pC;
     DeleteContainer(pContextContainerComponent->v);
 }
 //-----------------------------------------------------------------------------------
@@ -61,30 +61,26 @@ float TBaseMasterLogic::CalculateFutureLoadOnSlave(TEntityID slaveEntity, int ad
     TClientStateComponent clientStateComponent;
     clientStateComponent.v = TClientStateComponent::OnSlave;
 
-    auto onSlaves = mEntMng->GetByValue(slaveSessionByClientComponent, clientStateComponent);
+    auto onSlaves = mEntMng->GetByValueCopy(slaveSessionByClientComponent, clientStateComponent);
     int onSlaveCount = 1;
 
-    if (onSlaves == nullptr || onSlaves->size() == 0) {
+    if (onSlaves.size() == 0) {
         load = DefaultLoadPerClientIfClientCountZero;
     } else {
-        onSlaveCount = onSlaves->size();
+        onSlaveCount = onSlaves.size();
     }
 
     clientStateComponent.v = TClientStateComponent::RCM;
     // все, для кого мы - реципиент
     int rcmCount = 0;
-    auto rcmClients = mEntMng->GetByValue(slaveSessionByClientComponent, clientStateComponent);
-    if (rcmClients != nullptr) {
-        rcmCount = rcmClients->size();
-    }
+    auto rcmClients = mEntMng->GetByValueCopy(slaveSessionByClientComponent, clientStateComponent);
+    rcmCount = rcmClients.size();
 
     clientStateComponent.v = TClientStateComponent::Logining;
 
     int loginingCount = 0;
-    auto loginingClients = mEntMng->GetByValue(slaveSessionByClientComponent, clientStateComponent);
-    if (loginingClients != nullptr) {
-        loginingCount = loginingClients->size();
-    }
+    auto loginingClients = mEntMng->GetByValueCopy(slaveSessionByClientComponent, clientStateComponent);
+    loginingCount = loginingClients.size();
 
     auto futureLoad = (load * (onSlaveCount + rcmCount + loginingCount + addedClientCount)) / onSlaveCount;
     return futureLoad;
@@ -99,11 +95,8 @@ void TBaseMasterLogic::GetClientWithoutGroup(unsigned int slaveSession,
     slaveSessionByClientComponent.v = slaveSession;
     TClientStateComponent clientStateComponent;
     clientStateComponent.v = TClientStateComponent::OnSlave;
-    auto clientOnSlaves = mEntMng->GetByValue(slaveSessionByClientComponent, clientStateComponent);
-    if (clientOnSlaves == nullptr) {
-        return;
-    }
-    for (auto& clientEntity : *clientOnSlaves) {
+    auto clientOnSlaves = mEntMng->GetByValueCopy(slaveSessionByClientComponent, clientStateComponent);
+    for (auto& clientEntity : clientOnSlaves) {
         if (mEntMng->ViewComponent<TGroupIDComponent>(clientEntity)->v != 0)
             continue;
         // не в группе
@@ -120,13 +113,13 @@ void TBaseMasterLogic::AddError(nsMMOEngine::ErrorCode err)
 //-------------------------------------------------------------------------------------------
 bool TBaseMasterLogic::FindMinimumLoad(unsigned int& slaveSessionID, unsigned char& load_procent)
 {
-    auto slaves = mEntMng->GetByHas<TSlaveSessionIdentityComponent>();
-    if (slaves == nullptr || slaves->size() == 0) {
+    auto slaves = mEntMng->GetByHasCopy<TSlaveSessionIdentityComponent>();
+    if (slaves.size() == 0) {
         return false;
     }
 
     load_procent = 101;
-    for (auto slaveEntity : *slaves) {
+    for (auto slaveEntity : slaves) {
         auto load = mEntMng->ViewComponent<TSlaveLoadInfoComponent>(slaveEntity)->v;
         if (load < load_procent) {
             load_procent = (unsigned char) load;

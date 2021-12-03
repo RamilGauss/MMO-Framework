@@ -18,12 +18,7 @@ void TNeedDestroySceneSystem::Reactive(nsECSFramework::TEntityID eid,
 
     sceneInstanceGuidComponent.value = pNeedDestroySceneComponent->sceneInstanceGuid;
 
-    auto pSceneInstanceGuidList = GetEntMng()->GetByValue(sceneInstanceGuidComponent);
-    if (pSceneInstanceGuidList == nullptr) {
-        return;
-    }
-
-    auto sceneInstanceGuidList = *pSceneInstanceGuidList;
+    auto sceneInstanceGuidList = GetEntMng()->GetByValueCopy(sceneInstanceGuidComponent);
     for (auto& sceneEid : sceneInstanceGuidList) {
         GetEntMng()->DestroyEntity(sceneEid);
     }

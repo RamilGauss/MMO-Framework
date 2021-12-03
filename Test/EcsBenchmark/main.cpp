@@ -98,23 +98,23 @@ void EcsFrameworkDone()
 
 void EcsFrameworkPhysicToCore()
 {
-    auto& gp = *(g_EntMng.GetByHas<TGraphicComponent, TPhysicComponent>());
+    auto gp = g_EntMng.GetByHasCopy<TGraphicComponent, TPhysicComponent>();
     for (auto& eid : gp) {
         auto pc = g_EntMng.ViewComponent<TPhysicComponent>(eid);
-        auto tc = g_EntMng.ViewComponent<TTransformComponent>(eid);
-        tc->m = pc->p->m;
-        g_EntMng.UpdateComponent<TTransformComponent>(eid, tc);
+        auto tc = *(g_EntMng.ViewComponent<TTransformComponent>(eid));
+        tc.m = pc->p->m;
+        g_EntMng.SetComponent<TTransformComponent>(eid, tc);
     }
 }
 
 void EcsFrameworkCoreToGraphic()
 {
-    auto& gp = *(g_EntMng.GetByHas<TGraphicComponent, TPhysicComponent>());
+    auto gp = g_EntMng.GetByHasCopy<TGraphicComponent, TPhysicComponent>();
     for (auto& eid : gp) {
         auto tc = g_EntMng.ViewComponent<TTransformComponent>(eid);
-        auto gc = g_EntMng.ViewComponent<TGraphicComponent>(eid);
-        gc->p->m = tc->m;
-        g_EntMng.UpdateComponent<TGraphicComponent>(eid, gc);
+        auto gc = *(g_EntMng.ViewComponent<TGraphicComponent>(eid));
+        gc.p->m = tc->m;
+        g_EntMng.SetComponent<TGraphicComponent>(eid, *gc);
     }
 }
 

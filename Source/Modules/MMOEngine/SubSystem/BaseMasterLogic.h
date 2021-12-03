@@ -39,7 +39,7 @@ namespace nsMMOEngine
 
         void AddError(nsMMOEngine::ErrorCode err);
 
-        void OnRemoveContextContainer(nsECSFramework::TEntityID entity, nsECSFramework::IComponent* pC);
+        void OnRemoveContextContainer(nsECSFramework::TEntityID entity, const nsECSFramework::IComponent* pC);
 
         float CalculateFutureLoadOnSlave(nsECSFramework::TEntityID slaveEntity, int addedClientCount);
 
