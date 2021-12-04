@@ -16,7 +16,7 @@ namespace nsTornadoEngine
     class DllExport TGuidConstants
     {
     public:
-        static const std::string ZEROS;
+        static const std::string NONE;
         static const std::string THIS_SCENE;
     };
 }

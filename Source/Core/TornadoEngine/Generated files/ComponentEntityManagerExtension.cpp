@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_03 08:34:28.306
+// File has been generated at 2021_12_04 19:31:47.233
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -386,6 +386,19 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsGuiWrapper_TWindowComponent_Data = globalTypeIdentifier->type<nsGuiWrapper::TWindowComponent>();
     
     m.insert({ rtti_nsGuiWrapper_TWindowComponent_Data, nsGuiWrapper_TWindowComponent_Data });
+    
+    Data nsLogicWrapper_TFeatureComponent_Data;
+        nsLogicWrapper_TFeatureComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsLogicWrapper::TFeatureComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsLogicWrapper::TFeatureComponent>(eid, lambda, isNotify);
+    };
+    nsLogicWrapper_TFeatureComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TFeatureComponent*)p), isNotify); };
+    nsLogicWrapper_TFeatureComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TFeatureComponent>(eid); };
+    nsLogicWrapper_TFeatureComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TFeatureComponent>(eid); };
+    nsLogicWrapper_TFeatureComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TFeatureComponent>(eid); };
+    auto rtti_nsLogicWrapper_TFeatureComponent_Data = globalTypeIdentifier->type<nsLogicWrapper::TFeatureComponent>();
+    
+    m.insert({ rtti_nsLogicWrapper_TFeatureComponent_Data, nsLogicWrapper_TFeatureComponent_Data });
     
     int max = 0;
     for (auto& vt : m) {

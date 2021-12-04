@@ -9,5 +9,5 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-const std::string TGuidConstants::ZEROS = "ZEROS";
+const std::string TGuidConstants::NONE = "NONE";
 const std::string TGuidConstants::THIS_SCENE = "THIS_SCENE";

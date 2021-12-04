@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_03 08:34:28.312
+// File has been generated at 2021_12_04 19:31:47.240
 	
 #include "ComponentTypeInformation.h"
 
@@ -194,6 +194,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TWindowComponent_n);
     mRttiList.push_back(nsGuiWrapper_TWindowComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TWindowComponent_n, nsGuiWrapper_TWindowComponent_i });
+    
+    int nsLogicWrapper_TFeatureComponent_i = globalTypeIdentifier->type<nsLogicWrapper::TFeatureComponent>();
+    std::string nsLogicWrapper_TFeatureComponent_n = "nsLogicWrapper::TFeatureComponent";
+    mTypeNameList.push_back(nsLogicWrapper_TFeatureComponent_n);
+    mRttiList.push_back(nsLogicWrapper_TFeatureComponent_i);
+    mNameRttiMap.insert({ nsLogicWrapper_TFeatureComponent_n, nsLogicWrapper_TFeatureComponent_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

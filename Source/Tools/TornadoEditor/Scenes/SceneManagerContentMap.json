@@ -1,6 +1,6 @@
 {
-    "guidPathMap":
-    {
-        "0": "Main.scene"
+    "guidPathMap": {
+        "0": "Bootstrapper.scene",
+        "1": "Main.scene"
     }
 }

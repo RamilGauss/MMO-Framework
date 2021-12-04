@@ -8,17 +8,22 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <ECS/include/Feature.h>
-#include "StartedScenesInitSystem.h"
-#include "NeedUnloadSceneSystem.h"
-#include "NeedDestroySceneSystem.h"
+
+#include "LogicMakerFeature.h"
+#include "LogicBuilderFeature.h"
+#include "LogicTerminatorFeature.h"
+
+#include "SceneFeature.h"
 
 namespace nsLogicWrapper
 {
     class DllExport TEndLogicFeature : public nsECSFramework::TFeature
     {
-        TStartedScenesInitSystem mStartedScenesInitSystem;
-        TNeedUnloadSceneSystem mNeedUnloadSceneSystem;
-        TNeedDestroySceneSystem mNeedDestroySceneSystem;
+        TLogicMakerFeature mLogicMakerFeature;
+        TLogicBuilderFeature mLogicBuilderFeature;
+        TLogicTerminatorFeature mLogicTerminatorFeature;
+
+        TSceneFeature mSceneFeature;
     public:
         void InitConveyor() override;
     };

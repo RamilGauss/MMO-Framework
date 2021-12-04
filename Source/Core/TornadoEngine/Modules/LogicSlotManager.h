@@ -26,6 +26,7 @@ namespace nsTornadoEngine
         // For current slot
         void AddFeature(nsECSFramework::TFeature* p);
         void RemoveFeature(nsECSFramework::TFeature* p);
+        bool HasFeature(nsECSFramework::TFeature* p);
 
         nsECSFramework::TEntityManager* GetCurrentEntMng() const;
 

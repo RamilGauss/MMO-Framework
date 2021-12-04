@@ -127,7 +127,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Generated files;./Features/Logic;./Features/Graphic;./Features/Gui;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Logic;./Generated files;./Features/Logic;./Features/Graphic;./Features/Gui;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -150,7 +150,8 @@
     <PreBuildEvent>
       <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\componentConfig.json"
 $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\handlerConfig.json"
-$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\reflectionConfig.json"</Command>
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\reflectionConfig.json"
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\featureConfig.json"</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -233,12 +234,21 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Features\Graphic\WindowTerminatorSystem.cpp" />
     <ClCompile Include="Features\Logic\BeginLogicFeature.cpp" />
     <ClCompile Include="Features\Logic\EndLogicFeature.cpp" />
+    <ClCompile Include="Features\Logic\FeatureBuilderSystem.cpp" />
+    <ClCompile Include="Features\Logic\FeatureMakerSystem.cpp" />
+    <ClCompile Include="Features\Logic\FeatureTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Logic\LogicBuilderFeature.cpp" />
+    <ClCompile Include="Features\Logic\LogicMakerFeature.cpp" />
+    <ClCompile Include="Features\Logic\LogicTerminatorFeature.cpp" />
     <ClCompile Include="Features\Logic\NeedDestroySceneSystem.cpp" />
     <ClCompile Include="Features\Logic\NeedUnloadSceneSystem.cpp" />
+    <ClCompile Include="Features\Logic\SceneFeature.cpp" />
     <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
+    <ClCompile Include="Generated files\FeatureTypeFactory.cpp" />
+    <ClCompile Include="Generated files\FeatureTypeInformation.cpp" />
     <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
     <ClCompile Include="Generated files\HandlerTypeInformation.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
@@ -261,21 +271,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Modules\SceneManager.cpp" />
     <ClCompile Include="Share\MathStructs.cpp" />
     <ClCompile Include="Share\MathTools.cpp" />
-    <ClCompile Include="Testing\ChooseSystem.cpp" />
-    <ClCompile Include="Testing\ChooseWindow.cpp" />
-    <ClCompile Include="Testing\ComplexWindow.cpp" />
-    <ClCompile Include="Testing\DockingStuffSystem.cpp" />
-    <ClCompile Include="Testing\DockingStuffWindow.cpp" />
-    <ClCompile Include="Testing\DockingSystem.cpp" />
-    <ClCompile Include="Testing\DockingWindow.cpp" />
-    <ClCompile Include="Testing\DockMainWindow.cpp" />
-    <ClCompile Include="Testing\MainWindow.cpp" />
-    <ClCompile Include="Testing\TestAllWidgetsSystem.cpp" />
-    <ClCompile Include="Testing\TestFeature.cpp" />
-    <ClCompile Include="Testing\TreeViewSystem.cpp" />
-    <ClCompile Include="Testing\TreeViewWindow.cpp" />
-    <ClCompile Include="Testing\UnderMouseSystem.cpp" />
-    <ClCompile Include="Testing\UnderMouseWindow.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigContainer.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigLoader.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigUnloader.cpp" />
@@ -313,6 +308,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\TitleComponent.h" />
     <ClInclude Include="Components\Gui\VisibilityComponent.h" />
     <ClInclude Include="Components\Gui\WindowComponent.h" />
+    <ClInclude Include="Components\Logic\FeatureComponent.h" />
     <ClInclude Include="Features\Graphic\BeginGraphicFeature.h" />
     <ClInclude Include="Features\Graphic\ButtonBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonClickHandlerBuilderSystem.h" />
@@ -330,13 +326,23 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Features\Graphic\WindowTerminatorSystem.h" />
     <ClInclude Include="Features\Logic\BeginLogicFeature.h" />
     <ClInclude Include="Features\Logic\EndLogicFeature.h" />
+    <ClInclude Include="Features\Logic\FeatureBuilderSystem.h" />
+    <ClInclude Include="Features\Logic\FeatureMakerSystem.h" />
+    <ClInclude Include="Features\Logic\FeatureTerminatorSystem.h" />
+    <ClInclude Include="Features\Logic\LogicBuilderFeature.h" />
+    <ClInclude Include="Features\Logic\LogicMakerFeature.h" />
+    <ClInclude Include="Features\Logic\LogicTerminatorFeature.h" />
     <ClInclude Include="Features\Logic\NeedDestroySceneSystem.h" />
     <ClInclude Include="Features\Logic\NeedUnloadSceneSystem.h" />
+    <ClInclude Include="Features\Logic\SceneFeature.h" />
     <ClInclude Include="Features\Logic\StartedScenesInitSystem.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
     <ClInclude Include="Generated files\ComponentTypeInformation.h" />
+    <ClInclude Include="Generated files\FeatureIncludeList.h" />
+    <ClInclude Include="Generated files\FeatureTypeFactory.h" />
+    <ClInclude Include="Generated files\FeatureTypeInformation.h" />
     <ClInclude Include="Generated files\HandlerIncludeList.h" />
     <ClInclude Include="Generated files\HandlerTypeFactory.h" />
     <ClInclude Include="Generated files\HandlerTypeInformation.h" />
@@ -384,22 +390,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Share\FrameworkResources.h" />
     <ClInclude Include="Share\MathStructs.h" />
     <ClInclude Include="Share\MathTools.h" />
-    <ClInclude Include="Testing\ChooseSystem.h" />
-    <ClInclude Include="Testing\ChooseWindow.h" />
-    <ClInclude Include="Testing\ComplexWindow.h" />
-    <ClInclude Include="Testing\DebugWindow.h" />
-    <ClInclude Include="Testing\DockingStuffSystem.h" />
-    <ClInclude Include="Testing\DockingStuffWindow.h" />
-    <ClInclude Include="Testing\DockingSystem.h" />
-    <ClInclude Include="Testing\DockingWindow.h" />
-    <ClInclude Include="Testing\DockMainWindow.h" />
-    <ClInclude Include="Testing\MainWindow.h" />
-    <ClInclude Include="Testing\TestAllWidgetsSystem.h" />
-    <ClInclude Include="Testing\TestFeature.h" />
-    <ClInclude Include="Testing\TreeViewSystem.h" />
-    <ClInclude Include="Testing\TreeViewWindow.h" />
-    <ClInclude Include="Testing\UnderMouseSystem.h" />
-    <ClInclude Include="Testing\UnderMouseWindow.h" />
     <ClInclude Include="TimeSliceEngine\ConveyorConfig.h" />
     <ClInclude Include="TimeSliceEngine\DeveloperTool_DLL.h" />
     <ClInclude Include="TimeSliceEngine\IModule.h" />
@@ -414,6 +404,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />
+    <None Include="featureConfig.json" />
     <None Include="handlerConfig.json" />
     <None Include="reflectionConfig.json" />
   </ItemGroup>

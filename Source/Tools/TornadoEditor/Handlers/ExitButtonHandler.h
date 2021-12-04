@@ -20,9 +20,9 @@ namespace nsTornadoEditor
     public:
         void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pC) override
         {
-            //nsTornadoEngine::Modules()->SceneMng()->Destroy(eid);
+            nsTornadoEngine::Modules()->SceneMng()->Destroy(eid);
             //nsTornadoEngine::Modules()->SceneMng()->Unload("first scene");
-            nsTornadoEngine::Modules()->StopAccessor()->SetStop();
+            //nsTornadoEngine::Modules()->StopAccessor()->SetStop();
         }
     };
 }

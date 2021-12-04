@@ -47,6 +47,21 @@
     <ClCompile Include="Generated files\HandlerTypeInformation.cpp">
       <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
     </ClCompile>
+    <ClCompile Include="Generated files\FeatureTypeFactory.cpp">
+      <Filter>Generated files\Features\GeneratedByReflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\FeatureTypeInformation.cpp">
+      <Filter>Generated files\Features\GeneratedByReflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\FeatureTypeFactoryImpl.cpp">
+      <Filter>Generated files\Features\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\FeatureTypeInformationImpl.cpp">
+      <Filter>Generated files\Features\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\BootstrapperSystem.cpp">
+      <Filter>Features</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -58,6 +73,13 @@
       <Filter>Scenes</Filter>
     </None>
     <None Include="handlerConfig.json" />
+    <None Include="featureConfig.json" />
+    <None Include="Scenes\Bootstrapper.scene">
+      <Filter>Scenes</Filter>
+    </None>
+    <None Include="Scenes\SceneManagerContentMap.json">
+      <Filter>Scenes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -101,6 +123,15 @@
     </Filter>
     <Filter Include="Generated files\Handlers\Impl">
       <UniqueIdentifier>{cdce524b-e769-44ca-8e1a-d59e7b12e19a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Features">
+      <UniqueIdentifier>{cd06a34c-c5d9-4f3c-bad7-e97d849b91ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Features\GeneratedByReflection">
+      <UniqueIdentifier>{76a4a6c8-b775-46f6-bebf-9b2a283489fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated files\Features\Impl">
+      <UniqueIdentifier>{e21488c1-1ddb-4984-9e6e-9e514bdae979}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +188,30 @@
     </ClInclude>
     <ClInclude Include="Handlers\ExitButtonHandler.h">
       <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\BootstrapperFeature.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\BootstrapperSystem.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\FeatureIncludeList.h">
+      <Filter>Generated files\Features\GeneratedByReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\FeatureTypeFactory.h">
+      <Filter>Generated files\Features\GeneratedByReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\FeatureTypeInformation.h">
+      <Filter>Generated files\Features\GeneratedByReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\FeatureTypeFactoryImpl.h">
+      <Filter>Generated files\Features\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\FeatureTypeInformationImpl.h">
+      <Filter>Generated files\Features\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\ExampleFeature.h">
+      <Filter>Features</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

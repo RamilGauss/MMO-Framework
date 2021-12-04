@@ -7,12 +7,15 @@ See for more information LICENSE.md.
 
 #include "FeatureReflectionAggregatorImpl.h"
 
+#include "FeatureTypeFactoryImpl.h"
+#include "FeatureTypeInformationImpl.h"
+
 using namespace nsTornadoEditor;
 
 TFeatureReflectionAggregatorImpl::TFeatureReflectionAggregatorImpl()
 {
-    //mTypeFactory = new ;
-    //mTypeInfo = new ;
+    mTypeFactory = new TFeatureTypeFactoryImpl();
+    mTypeInfo = new TFeatureTypeInformationImpl();
 }
 //-----------------------------------------------------------------------------
 TFeatureReflectionAggregatorImpl::~TFeatureReflectionAggregatorImpl()

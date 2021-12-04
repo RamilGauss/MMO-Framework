@@ -20,6 +20,7 @@ namespace nsTornadoEngine
     public:
         void AddFeature(nsECSFramework::TFeature* p);
         void RemoveFeature(nsECSFramework::TFeature* p);
+        bool HasFeature(nsECSFramework::TFeature* p);
 
         void Work();
 

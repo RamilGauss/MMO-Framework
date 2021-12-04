@@ -21,6 +21,11 @@ void TLogicSlot::RemoveFeature(TFeature* p)
     std::erase(mFeatures, p);
 }
 //---------------------------------------------------------------------------------------
+bool TLogicSlot::HasFeature(nsECSFramework::TFeature* p)
+{
+    return std::find(mFeatures.begin(), mFeatures.end(), p) != mFeatures.end();
+}
+//---------------------------------------------------------------------------------------
 void TLogicSlot::Work()
 {
     for (auto& feature : mFeatures) {

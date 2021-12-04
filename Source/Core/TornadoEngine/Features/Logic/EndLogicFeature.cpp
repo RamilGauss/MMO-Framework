@@ -11,7 +11,8 @@ using namespace nsLogicWrapper;
 
 void TEndLogicFeature::InitConveyor()
 {
-    Add(&mStartedScenesInitSystem);
-    Add(&mNeedUnloadSceneSystem);
-    Add(&mNeedDestroySceneSystem);
+    Add(&mLogicMakerFeature);
+    Add(&mLogicBuilderFeature);
+    Add(&mLogicTerminatorFeature);
+    Add(&mSceneFeature);
 }

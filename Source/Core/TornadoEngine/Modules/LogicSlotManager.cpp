@@ -32,6 +32,11 @@ void TLogicSlotManager::RemoveFeature(TFeature* p)
     GetCurrentSlot()->RemoveFeature(p);
 }
 //--------------------------------------------------------------------
+bool TLogicSlotManager::HasFeature(nsECSFramework::TFeature* p)
+{
+    return GetCurrentSlot()->HasFeature(p);
+}
+//--------------------------------------------------------------------
 void TLogicSlotManager::SetCurrentSlotIndex(int index)
 {
     if (index < 0 && index >= GetSlotCount()) {

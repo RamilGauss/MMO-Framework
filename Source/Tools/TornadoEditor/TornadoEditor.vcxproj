@@ -122,7 +122,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Core;$(SolutionDir)Source/Core/TornadoEngine/Handlers;$(SolutionDir)Source/Core/TornadoEngine/Modules;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TornadoEngine/Components/Common;$(SolutionDir)Source/Core/TornadoEngine/Components/Gui;$(SolutionDir)Source/Core/TornadoEngine/Components/Graphic;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Core;$(SolutionDir)Source/Core/TornadoEngine/Features/Graphic;$(SolutionDir)Source/Core/TornadoEngine/Features/Logic;$(SolutionDir)Source/Core/TornadoEngine/Handlers;$(SolutionDir)Source/Core/TornadoEngine/Modules;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TornadoEngine/Components/Common;$(SolutionDir)Source/Core/TornadoEngine/Components/Gui;$(SolutionDir)Source/Core/TornadoEngine/Components/Graphic;$(SolutionDir)Source/Core/TornadoEngine/Components/Logic;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -145,7 +145,8 @@
     </Link>
     <PreBuildEvent>
       <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\componentConfig.json"
-$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\handlerConfig.json"</Command>
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\handlerConfig.json"
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\TornadoEditor\featureConfig.json"</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -204,6 +205,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
+    <ClCompile Include="Features\BootstrapperSystem.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtensionImpl.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
@@ -212,6 +214,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClCompile Include="Generated files\ComponentJsonSerializerImpl.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\FeatureReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\FeatureTypeFactory.cpp" />
+    <ClCompile Include="Generated files\FeatureTypeFactoryImpl.cpp" />
+    <ClCompile Include="Generated files\FeatureTypeInformation.cpp" />
+    <ClCompile Include="Generated files\FeatureTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\HandlerReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
     <ClCompile Include="Generated files\HandlerTypeFactoryImpl.cpp" />
@@ -223,13 +229,19 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
   <ItemGroup>
     <None Include="componentConfig.json" />
     <None Include="Editor.project" />
+    <None Include="featureConfig.json" />
     <None Include="handlerConfig.json" />
+    <None Include="Scenes\Bootstrapper.scene" />
     <None Include="Scenes\Main.scene" />
+    <None Include="Scenes\SceneManagerContentMap.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Features\BootstrapperFeature.h" />
+    <ClInclude Include="Features\BootstrapperSystem.h" />
+    <ClInclude Include="Features\ExampleFeature.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtensionImpl.h" />
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
@@ -238,7 +250,12 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClInclude Include="Generated files\ComponentReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializerImpl.h" />
     <ClInclude Include="Generated files\ComponentTypeInformationImpl.h" />
+    <ClInclude Include="Generated files\FeatureIncludeList.h" />
     <ClInclude Include="Generated files\FeatureReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\FeatureTypeFactory.h" />
+    <ClInclude Include="Generated files\FeatureTypeFactoryImpl.h" />
+    <ClInclude Include="Generated files\FeatureTypeInformation.h" />
+    <ClInclude Include="Generated files\FeatureTypeInformationImpl.h" />
     <ClInclude Include="Generated files\HandlerIncludeList.h" />
     <ClInclude Include="Generated files\HandlerReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\HandlerTypeFactory.h" />

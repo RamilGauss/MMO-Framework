@@ -7,11 +7,11 @@
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
-                    "jsonBody": "{\"value\":\"0\"}"
+                    "jsonBody": "{\"value\":\"main_0\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
-                    "jsonBody": "{\"value\":\"ZEROS\"}"
+                    "jsonBody": "{\"value\":\"NONE\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TNameComponent",
@@ -35,7 +35,7 @@
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
-                    "jsonBody": "{\"value\":\"1\"}"
+                    "jsonBody": "{\"value\":\"main_1\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TNameComponent",
@@ -43,7 +43,7 @@
                 },
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
-                    "jsonBody": "{\"value\":\"0\"}"
+                    "jsonBody": "{\"value\":\"main_0\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TTransformComponent",
@@ -63,7 +63,7 @@
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
-                    "jsonBody": "{\"value\":\"2\"}"
+                    "jsonBody": "{\"value\":\"main_2\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TNameComponent",
@@ -75,7 +75,7 @@
                 },
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
-                    "jsonBody": "{\"value\":\"0\"}"
+                    "jsonBody": "{\"value\":\"main_0\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TSceneGuidComponent",
@@ -103,11 +103,11 @@
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
-                    "jsonBody": "{\"value\":\"3\"}"
+                    "jsonBody": "{\"value\":\"main_3\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
-                    "jsonBody": "{\"value\":\"2\"}"
+                    "jsonBody": "{\"value\":\"main_2\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TNameComponent",
@@ -139,7 +139,11 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TExitButtonClickHandler\", \"partOfGuid\":\"THIS_SCENE\", \"entityGuid\":\"3\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TExitButtonClickHandler\", \"partOfGuid\":\"THIS_SCENE\", \"entityGuid\":\"main_3\"}"
+                },
+                {
+                    "typeName": "nsLogicWrapper::TFeatureComponent",
+                    "jsonBody": "{\"featureTypeName\":\"nsTornadoEditor::TExampleFeature\"}"
                 }
             ]
         }

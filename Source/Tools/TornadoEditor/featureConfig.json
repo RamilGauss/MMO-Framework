@@ -1,0 +1,45 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "."
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ],
+        "inheritances": [
+            [ "nsECSFramework::TFeature" ]
+            ],
+            "memberIgnore" : "IGNORE_ATTRIBUTE"
+    },
+    "targetForCodeGeneration": {
+        "directory": "./Generated files",
+        "includeListFileName": "FeatureIncludeList",
+        "header": "\tReflectionCodeGenerator",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "TypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "fileName": "FeatureTypeInformation",
+                "className": "TFeatureTypeInformation",
+                "keyValueMap": {}
+            },
+            "TypeFactoryGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "fileName": "FeatureTypeFactory",
+                "className": "TFeatureTypeFactory",
+                "keyValueMap": {}
+            }
+        }
+    }
+}

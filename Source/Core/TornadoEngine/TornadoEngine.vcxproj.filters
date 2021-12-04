@@ -28,15 +28,6 @@
     <Filter Include="Components\Graphic">
       <UniqueIdentifier>{67450a2e-cad7-4be0-81be-61b44dc0d1e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Testing">
-      <UniqueIdentifier>{89eea593-f595-44bd-8625-34fb6f247220}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Testing\Systems">
-      <UniqueIdentifier>{ae7625ee-e7f5-4fad-be15-2cbd643b6e1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Testing\Windows">
-      <UniqueIdentifier>{5bf344a4-bb6e-48c8-924d-e82a0b130665}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ReflectionAggregators">
       <UniqueIdentifier>{6274044d-9b12-4437-992c-ee8e7b7b33e2}</UniqueIdentifier>
     </Filter>
@@ -88,6 +79,21 @@
     <Filter Include="Features\Graphic\Updater">
       <UniqueIdentifier>{d46be429-7ee7-4340-8c09-bd0efed20ed9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Logic\Builder">
+      <UniqueIdentifier>{61c83f39-b9d4-44e2-b0a8-2e6a394d0e3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Logic\Maker">
+      <UniqueIdentifier>{0a2ff93b-272d-4dad-9ced-c98b6108ce08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Logic\Terminator">
+      <UniqueIdentifier>{63842419-5c91-4d90-b1d1-0e101fec6399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Logic\Scene">
+      <UniqueIdentifier>{ea376164-1d00-4a89-82d6-8e21df398185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Logic">
+      <UniqueIdentifier>{9a1bc519-de98-4af2-af55-335b1cfe430c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -110,51 +116,6 @@
     </ClCompile>
     <ClCompile Include="TimeSliceEngine\ProjectConfigUnloader.cpp">
       <Filter>TimeSliceEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\DockingStuffSystem.cpp">
-      <Filter>Testing\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\DockingSystem.cpp">
-      <Filter>Testing\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\TestAllWidgetsSystem.cpp">
-      <Filter>Testing\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\TreeViewSystem.cpp">
-      <Filter>Testing\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\UnderMouseSystem.cpp">
-      <Filter>Testing\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\ComplexWindow.cpp">
-      <Filter>Testing\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\DockingStuffWindow.cpp">
-      <Filter>Testing\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\DockingWindow.cpp">
-      <Filter>Testing\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\MainWindow.cpp">
-      <Filter>Testing\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\UnderMouseWindow.cpp">
-      <Filter>Testing\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\TreeViewWindow.cpp">
-      <Filter>Testing\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\TestFeature.cpp">
-      <Filter>Testing</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\ChooseWindow.cpp">
-      <Filter>Testing\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\ChooseSystem.cpp">
-      <Filter>Testing\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Testing\DockMainWindow.cpp">
-      <Filter>Testing\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp">
       <Filter>Generated files</Filter>
@@ -225,9 +186,6 @@
     <ClCompile Include="Features\Graphic\EndGraphicFeature.cpp">
       <Filter>Features\Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp">
-      <Filter>Features\Logic</Filter>
-    </ClCompile>
     <ClCompile Include="Features\Graphic\GuiMakerFeature.cpp">
       <Filter>Features\Graphic\Maker</Filter>
     </ClCompile>
@@ -279,14 +237,8 @@
     <ClCompile Include="Features\Graphic\WindowTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\NeedUnloadSceneSystem.cpp">
-      <Filter>Features\Logic</Filter>
-    </ClCompile>
     <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h">
       <Filter>Components\Common\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Logic\NeedDestroySceneSystem.cpp">
-      <Filter>Features\Logic</Filter>
     </ClCompile>
     <ClCompile Include="Components\Graphic\GuiUpdaterFeature.cpp">
       <Filter>Features\Graphic\Updater</Filter>
@@ -296,6 +248,42 @@
     </ClCompile>
     <ClCompile Include="Components\Graphic\WindowSizeUpdaterSystem.cpp">
       <Filter>Features\Graphic\Updater</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\FeatureTypeFactory.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\FeatureTypeInformation.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\NeedDestroySceneSystem.cpp">
+      <Filter>Features\Logic\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\NeedUnloadSceneSystem.cpp">
+      <Filter>Features\Logic\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp">
+      <Filter>Features\Logic\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\SceneFeature.cpp">
+      <Filter>Features\Logic\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\LogicMakerFeature.cpp">
+      <Filter>Features\Logic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\FeatureMakerSystem.cpp">
+      <Filter>Features\Logic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\FeatureBuilderSystem.cpp">
+      <Filter>Features\Logic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\LogicBuilderFeature.cpp">
+      <Filter>Features\Logic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\LogicTerminatorFeature.cpp">
+      <Filter>Features\Logic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\FeatureTerminatorSystem.cpp">
+      <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,54 +349,6 @@
     </ClInclude>
     <ClInclude Include="Components\Graphic\LightComponent.h">
       <Filter>Components\Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\DockingStuffSystem.h">
-      <Filter>Testing\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\DockingSystem.h">
-      <Filter>Testing\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\TestAllWidgetsSystem.h">
-      <Filter>Testing\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\TreeViewSystem.h">
-      <Filter>Testing\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\UnderMouseSystem.h">
-      <Filter>Testing\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\ComplexWindow.h">
-      <Filter>Testing\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\DebugWindow.h">
-      <Filter>Testing\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\DockingStuffWindow.h">
-      <Filter>Testing\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\DockingWindow.h">
-      <Filter>Testing\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\MainWindow.h">
-      <Filter>Testing\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\UnderMouseWindow.h">
-      <Filter>Testing\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\TreeViewWindow.h">
-      <Filter>Testing\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\TestFeature.h">
-      <Filter>Testing</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\ChooseSystem.h">
-      <Filter>Testing\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\ChooseWindow.h">
-      <Filter>Testing\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Testing\DockMainWindow.h">
-      <Filter>Testing\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\ComponentJsonSerializer.h">
       <Filter>Generated files</Filter>
@@ -563,9 +503,6 @@
     <ClInclude Include="Features\Graphic\EndGraphicFeature.h">
       <Filter>Features\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\StartedScenesInitSystem.h">
-      <Filter>Features\Logic</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\IButtonClickHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
@@ -656,9 +593,6 @@
     <ClInclude Include="Components\Common\NeedUnloadSceneComponent.h">
       <Filter>Components\Common\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\NeedUnloadSceneSystem.h">
-      <Filter>Features\Logic</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
@@ -671,9 +605,6 @@
     <ClInclude Include="Components\Common\NeedUnloadPrefabComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\NeedDestroySceneSystem.h">
-      <Filter>Features\Logic</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Graphic\WindowPositionUpdaterSystem.h">
       <Filter>Features\Graphic\Updater</Filter>
     </ClInclude>
@@ -683,11 +614,54 @@
     <ClInclude Include="Components\Graphic\WindowSizeUpdaterSystem.h">
       <Filter>Features\Graphic\Updater</Filter>
     </ClInclude>
+    <ClInclude Include="Generated files\FeatureTypeFactory.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\FeatureTypeInformation.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\FeatureIncludeList.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\StartedScenesInitSystem.h">
+      <Filter>Features\Logic\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\NeedDestroySceneSystem.h">
+      <Filter>Features\Logic\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\NeedUnloadSceneSystem.h">
+      <Filter>Features\Logic\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\SceneFeature.h">
+      <Filter>Features\Logic\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\LogicMakerFeature.h">
+      <Filter>Features\Logic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\FeatureMakerSystem.h">
+      <Filter>Features\Logic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\FeatureBuilderSystem.h">
+      <Filter>Features\Logic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\LogicBuilderFeature.h">
+      <Filter>Features\Logic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\LogicTerminatorFeature.h">
+      <Filter>Features\Logic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\FeatureTerminatorSystem.h">
+      <Filter>Features\Logic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\FeatureComponent.h">
+      <Filter>Components\Logic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />
     <None Include="reflectionConfig.json" />
     <None Include="handlerConfig.json" />
+    <None Include="featureConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
