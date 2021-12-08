@@ -7,19 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ResourceContent.h"
+#include "ResourceContentMap.h"
 
 namespace nsTornadoEngine
 {
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TSceneHeader
+    struct DllExport TPrefabContentMap : TResourceContentMap
     {
-        // Reserved
-    };
 
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TSceneContent : TResourceContent
-    {
-        TSceneHeader header;
     };
 }

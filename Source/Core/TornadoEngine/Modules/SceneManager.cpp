@@ -104,6 +104,8 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
         }
     }
 
+    BL_ASSERT(!sceneIstanceGuid.empty());
+
     // 6. Replace all guids to new guid with ParentGuids and SceneGuids
     for (auto& eid : newEntities) {
         auto pGuidComponent = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(eid);
@@ -124,7 +126,7 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
 
         nsCommonWrapper::TSceneOriginalGuidComponent sceneOriginalGuid;
         sceneOriginalGuid.value = guidComponent.value;
-        mEntityManager->SetComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid, sceneOriginalGuid);
+        mEntityManager->SetComponent(eid, sceneOriginalGuid);
 
         guidComponent.value = newGuid;
         mEntityManager->SetComponent(eid, guidComponent);

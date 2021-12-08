@@ -15,7 +15,9 @@ See for more information LICENSE.md.
 #include "DeveloperTool_DLL.h"
 #include "ConveyorConfig.h"
 #include "FrameworkResources.h"
+
 #include "SceneContentMap.h"
+#include "PrefabContentMap.h"
 
 namespace nsTornadoEngine
 {
@@ -30,6 +32,7 @@ namespace nsTornadoEngine
         TConveyorConfig mConveyor;
         TFrameworkResources mResources;
         TSceneContentMap mSceneContentMap;
+        TPrefabContentMap mPrefabContentMap;
 
         // From binary
         FuncGetScenePartReflectionAggregator mGetScenePartAggregator = nullptr;
@@ -42,7 +45,9 @@ namespace nsTornadoEngine
         std::string GetBinaryAbsPath();
         std::string GetConveyorAbsPath();
         std::string GetResourcesAbsPath();
+        
         std::string GetSceneContentMapAbsPath();
+        std::string GetPrefabContentMapAbsPath();
     };
 
     extern TProjectConfigContainer* Project();

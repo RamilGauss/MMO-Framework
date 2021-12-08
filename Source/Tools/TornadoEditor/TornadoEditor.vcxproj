@@ -231,6 +231,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <None Include="Editor.project" />
     <None Include="featureConfig.json" />
     <None Include="handlerConfig.json" />
+    <None Include="Prefabs\ButtonX.prefab" />
+    <None Include="Prefabs\PrefabManagerContentMap.json" />
+    <None Include="Resources\Resources.json" />
     <None Include="Scenes\Bootstrapper.scene" />
     <None Include="Scenes\Main.scene" />
     <None Include="Scenes\SceneManagerContentMap.json" />
@@ -264,6 +267,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClInclude Include="Generated files\HandlerTypeInformationImpl.h" />
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
+    <ClInclude Include="Handlers\DeleteOnButtonClickHandler.h" />
     <ClInclude Include="Handlers\ExitButtonHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

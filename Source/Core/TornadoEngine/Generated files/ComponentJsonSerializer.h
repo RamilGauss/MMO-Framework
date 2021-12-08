@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_04 19:31:47.213
+// File has been generated at 2021_12_07 19:36:12.823
 	
 #pragma once
 
@@ -56,6 +56,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TObjectInMemoryComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TObjectInMemoryComponent* p, const Jobj& obj);
         
         static void _Serialize(nsCommonWrapper::TParentGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TParentGuidComponent* p, const Jobj& obj);
@@ -125,6 +128,18 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsLogicWrapper::TFeatureComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TFeatureComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsLogicWrapper::TPrefabObjectReferenceComponent* p, Jobj& obj);
+        static void _Deserialize(nsLogicWrapper::TPrefabObjectReferenceComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsLogicWrapper::TPrefabReferenceComponent* p, Jobj& obj);
+        static void _Deserialize(nsLogicWrapper::TPrefabReferenceComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, Jobj& obj);
+        static void _Deserialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsLogicWrapper::TSceneReferenceComponent* p, Jobj& obj);
+        static void _Deserialize(nsLogicWrapper::TSceneReferenceComponent* p, const Jobj& obj);
         
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);

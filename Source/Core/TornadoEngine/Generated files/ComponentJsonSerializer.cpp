@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_04 19:31:47.216
+// File has been generated at 2021_12_07 19:36:12.827
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -100,6 +100,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNeedUnloadSceneComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc, _nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc });
+    
+    TypeFunc _nsCommonWrapper_TObjectInMemoryComponentTypeFunc;
+    _nsCommonWrapper_TObjectInMemoryComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TObjectInMemoryComponent>((nsCommonWrapper::TObjectInMemoryComponent*) p, str);
+    };
+    _nsCommonWrapper_TObjectInMemoryComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TObjectInMemoryComponent>((nsCommonWrapper::TObjectInMemoryComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TObjectInMemoryComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TObjectInMemoryComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TObjectInMemoryComponentTypeFunc, _nsCommonWrapper_TObjectInMemoryComponentTypeFunc });
     
     TypeFunc _nsCommonWrapper_TParentGuidComponentTypeFunc;
     _nsCommonWrapper_TParentGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -377,6 +389,54 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsLogicWrapper_TFeatureComponentTypeFunc, _nsLogicWrapper_TFeatureComponentTypeFunc });
     
+    TypeFunc _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc;
+    _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TPrefabObjectReferenceComponent>((nsLogicWrapper::TPrefabObjectReferenceComponent*) p, str);
+    };
+    _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TPrefabObjectReferenceComponent>((nsLogicWrapper::TPrefabObjectReferenceComponent*) p, str, err);
+    };
+    
+    auto rtti__nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc = globalTypeIdentifier->type<nsLogicWrapper::TPrefabObjectReferenceComponent>();
+    
+    m.insert({ rtti__nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc, _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc });
+    
+    TypeFunc _nsLogicWrapper_TPrefabReferenceComponentTypeFunc;
+    _nsLogicWrapper_TPrefabReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TPrefabReferenceComponent>((nsLogicWrapper::TPrefabReferenceComponent*) p, str);
+    };
+    _nsLogicWrapper_TPrefabReferenceComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TPrefabReferenceComponent>((nsLogicWrapper::TPrefabReferenceComponent*) p, str, err);
+    };
+    
+    auto rtti__nsLogicWrapper_TPrefabReferenceComponentTypeFunc = globalTypeIdentifier->type<nsLogicWrapper::TPrefabReferenceComponent>();
+    
+    m.insert({ rtti__nsLogicWrapper_TPrefabReferenceComponentTypeFunc, _nsLogicWrapper_TPrefabReferenceComponentTypeFunc });
+    
+    TypeFunc _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc;
+    _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TSceneObjectReferenceComponent>((nsLogicWrapper::TSceneObjectReferenceComponent*) p, str);
+    };
+    _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TSceneObjectReferenceComponent>((nsLogicWrapper::TSceneObjectReferenceComponent*) p, str, err);
+    };
+    
+    auto rtti__nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc = globalTypeIdentifier->type<nsLogicWrapper::TSceneObjectReferenceComponent>();
+    
+    m.insert({ rtti__nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc, _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc });
+    
+    TypeFunc _nsLogicWrapper_TSceneReferenceComponentTypeFunc;
+    _nsLogicWrapper_TSceneReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TSceneReferenceComponent>((nsLogicWrapper::TSceneReferenceComponent*) p, str);
+    };
+    _nsLogicWrapper_TSceneReferenceComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TSceneReferenceComponent>((nsLogicWrapper::TSceneReferenceComponent*) p, str, err);
+    };
+    
+    auto rtti__nsLogicWrapper_TSceneReferenceComponentTypeFunc = globalTypeIdentifier->type<nsLogicWrapper::TSceneReferenceComponent>();
+    
+    m.insert({ rtti__nsLogicWrapper_TSceneReferenceComponentTypeFunc, _nsLogicWrapper_TSceneReferenceComponentTypeFunc });
+    
     TypeFunc _nsMathTools_TMatrix16TypeFunc;
     _nsMathTools_TMatrix16TypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsMathTools::TMatrix16>((nsMathTools::TMatrix16*) p, str);
@@ -479,6 +539,16 @@ void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TNeedUnloadSceneCompo
 void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "sceneGuid", p->sceneGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TObjectInMemoryComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "prefabGuid", p->prefabGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TObjectInMemoryComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "prefabGuid", p->prefabGuid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TParentGuidComponent* p, Jobj& obj)
@@ -701,6 +771,48 @@ void TComponentJsonSerializer::_Serialize(nsLogicWrapper::TFeatureComponent* p, 
 void TComponentJsonSerializer::_Deserialize(nsLogicWrapper::TFeatureComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "featureTypeName", p->featureTypeName);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsLogicWrapper::TPrefabObjectReferenceComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "prefabGuid", p->prefabGuid);
+    PUM::Push(obj, "objectGuid", p->objectGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsLogicWrapper::TPrefabObjectReferenceComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "prefabGuid", p->prefabGuid);
+    POM::PopStr(obj, "objectGuid", p->objectGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsLogicWrapper::TPrefabReferenceComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "prefabGuid", p->prefabGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsLogicWrapper::TPrefabReferenceComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "prefabGuid", p->prefabGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "objectGuid", p->objectGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "objectGuid", p->objectGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsLogicWrapper::TSceneReferenceComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "sceneGuid", p->sceneGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsLogicWrapper::TSceneReferenceComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "sceneGuid", p->sceneGuid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsMathTools::TMatrix16* p, Jobj& obj)

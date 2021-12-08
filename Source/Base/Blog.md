@@ -19,6 +19,28 @@ See for more information LICENSE.md.
 
 #### "DONE"
 
+2021.12.06:
+ - 2 варианта: 
+    Load Scene     -> Instance Prefab
+    Instance Scene -> Instance Prefab
+
+
+ - Потом перенести в Wiki.
+
+ SceneRoot - только у корня сцены.
+ SceneGuid - guid сцены, есть у всех объектов сцены.
+ SceneInstanceGuid - guid инстанцированной сцены, есть у всех объектов сцены.
+ SceneOriginalGuid - старый guid объекта до инстанцирования, есть у всех объектов сцены.
+
+ PrefabRoot - только у корня префаба.
+ PrefabGuid - guid префаба, есть у всех объектов префаба.
+ PrefabInstanceGuid - guid инстанцированного префаба, есть у всех объектов префаба.
+ PrefabOriginalGuid - старый guid объекта до инстанцирования, есть у всех объектов префаба.
+
+ Можно ссылаться на сцену через SceneReference. Или ссылаться на объект сцены через SceneObjectReference.
+ Можно ссылаться на префаб через PrefabReference. Или ссылаться на объект префаба через PrefabObjectReference.
+
+
 2021.12.04:
 - Загрузка Feature из сцены. Проверка при добавлении Feature в конвейер - если такая фича уже загружена, то не добавлять повторно.
 

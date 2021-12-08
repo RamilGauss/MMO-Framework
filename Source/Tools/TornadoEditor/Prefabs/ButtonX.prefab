@@ -1,0 +1,51 @@
+{
+    "header" : {
+        // reserved
+    },
+    "entities": [
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"button_x_0\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Button\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"NONE\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
+                    "jsonBody": "{\"value\":\"delete button\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\":0, \"y\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\":70, \"y\":20}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"Delete me\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TDeleteOnButtonClickHandler\", \"partOfGuid\":\"delete button\", \"entityGuid\":\"button_x_0\"}"
+                }
+            ]
+        }
+    ]
+}

@@ -44,6 +44,8 @@ namespace nsTornadoEngine
     {
         std::string sceneManagerContentMapPath;
         std::list<std::string> startScenesGuid;
+
+        std::string prefabManagerContentMapPath;
     };
 
 #pragma REFLECTION_ATTRIBUTE

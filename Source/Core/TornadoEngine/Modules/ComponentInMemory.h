@@ -7,19 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ResourceContent.h"
+#include <string>
+
+#include "TypeDef.h"
 
 namespace nsTornadoEngine
 {
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TSceneHeader
+    struct DllExport TComponentInMemory
     {
-        // Reserved
-    };
-
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TSceneContent : TResourceContent
-    {
-        TSceneHeader header;
+        std::string typeName;
+        std::string jsonBody;
     };
 }

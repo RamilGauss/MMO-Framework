@@ -7,24 +7,26 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <string>
+
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
 
-namespace nsGuiWrapper
+namespace nsLogicWrapper
 {
-    struct DllExport TVisibilityComponent : nsECSFramework::IComponent
+    struct DllExport TSceneReferenceComponent : nsECSFramework::IComponent
     {
-        bool value = false;
+        std::string sceneGuid;
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return value < ((TVisibilityComponent*) pOther)->value;
+            return sceneGuid < ((TSceneReferenceComponent*) pOther)->sceneGuid;
         }
 
         bool IsEqual(const IComponent* pOther) const override
         {
-            return value == ((TVisibilityComponent*) pOther)->value;
+            return sceneGuid == ((TSceneReferenceComponent*) pOther)->sceneGuid;
         }
     };
 }

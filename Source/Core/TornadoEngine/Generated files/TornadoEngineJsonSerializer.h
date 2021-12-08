@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_04 19:31:50.016
+// File has been generated at 2021_12_07 19:36:15.904
 	
 #pragma once
 
@@ -93,11 +93,26 @@ namespace nsTornadoEngine
         static void _Serialize(nsTornadoEngine::TOgreCfg* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TOgreCfg* p, const Jobj& obj);
         
+        static void _Serialize(nsTornadoEngine::TPrefabContent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TPrefabContent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TPrefabContentMap* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TPrefabContentMap* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TPrefabHeader* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TPrefabHeader* p, const Jobj& obj);
+        
         static void _Serialize(nsTornadoEngine::TProjectConfig* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TProjectConfig* p, const Jobj& obj);
         
         static void _Serialize(nsTornadoEngine::TProjectInfo* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TProjectInfo* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TResourceContent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TResourceContent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TResourceContentMap* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TResourceContentMap* p, const Jobj& obj);
         
         static void _Serialize(nsTornadoEngine::TSceneContent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TSceneContent* p, const Jobj& obj);

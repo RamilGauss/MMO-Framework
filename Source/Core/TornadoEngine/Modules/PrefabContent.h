@@ -12,14 +12,14 @@ See for more information LICENSE.md.
 namespace nsTornadoEngine
 {
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TSceneHeader
+    struct DllExport TPrefabHeader
     {
         // Reserved
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TSceneContent : TResourceContent
+    struct DllExport TPrefabContent : TResourceContent
     {
-        TSceneHeader header;
+        TPrefabHeader header;
     };
 }

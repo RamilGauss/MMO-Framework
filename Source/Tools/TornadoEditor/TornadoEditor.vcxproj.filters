@@ -80,6 +80,15 @@
     <None Include="Scenes\SceneManagerContentMap.json">
       <Filter>Scenes</Filter>
     </None>
+    <None Include="Prefabs\ButtonX.prefab">
+      <Filter>Prefabs</Filter>
+    </None>
+    <None Include="Prefabs\PrefabManagerContentMap.json">
+      <Filter>Prefabs</Filter>
+    </None>
+    <None Include="Resources\Resources.json">
+      <Filter>Resources</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -132,6 +141,9 @@
     </Filter>
     <Filter Include="Generated files\Features\Impl">
       <UniqueIdentifier>{e21488c1-1ddb-4984-9e6e-9e514bdae979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{82110ff4-579e-4002-af77-285787551f4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="Features\ExampleFeature.h">
       <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\DeleteOnButtonClickHandler.h">
+      <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -40,9 +40,6 @@
     <Filter Include="Modules\Common">
       <UniqueIdentifier>{c16aa5cf-6518-4a5c-98b7-9b220367c94b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Scene">
-      <UniqueIdentifier>{5d18b96c-e090-4861-869a-206e69daaeb9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Modules\Implementations">
       <UniqueIdentifier>{d08ce2ac-8821-41a6-ab31-a6d5824e88be}</UniqueIdentifier>
     </Filter>
@@ -94,6 +91,18 @@
     <Filter Include="Components\Logic">
       <UniqueIdentifier>{9a1bc519-de98-4af2-af55-335b1cfe430c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Resources">
+      <UniqueIdentifier>{15bf84c1-2408-4c55-8497-9f2bfbb200cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Resources\Scene">
+      <UniqueIdentifier>{5d18b96c-e090-4861-869a-206e69daaeb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Resources\Prefab">
+      <UniqueIdentifier>{fe67cc45-87a1-4335-ad2f-2eb6d3752e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Resources\Common">
+      <UniqueIdentifier>{fad010d5-c533-4a49-8beb-8d7bb8012401}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -129,11 +138,8 @@
     <ClCompile Include="Modules\Modules.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\PrefabManager.cpp">
-      <Filter>Modules\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\SceneManager.cpp">
-      <Filter>Modules\Scene</Filter>
+      <Filter>Modules\Resources\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Modules\ModulesAccessor.cpp">
       <Filter>Modules\Common</Filter>
@@ -203,12 +209,6 @@
     </ClCompile>
     <ClCompile Include="Features\Graphic\WindowMakerSystem.cpp">
       <Filter>Features\Graphic\Maker</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\GuidGenerator.cpp">
-      <Filter>Modules\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\GuidConstants.cpp">
-      <Filter>Modules\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Features\Graphic\UnitBuilderHelper.cpp">
       <Filter>Features\Graphic\Builder</Filter>
@@ -284,6 +284,18 @@
     </ClCompile>
     <ClCompile Include="Features\Logic\FeatureTerminatorSystem.cpp">
       <Filter>Features\Logic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\PrefabManager.cpp">
+      <Filter>Modules\Resources\Prefab</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\GuidConstants.cpp">
+      <Filter>Modules\Resources\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\GuidGenerator.cpp">
+      <Filter>Modules\Resources\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\PrefabObjectConstructor.cpp">
+      <Filter>Modules\Resources\Prefab</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -420,16 +432,13 @@
       <Filter>Modules\Common</Filter>
     </ClInclude>
     <ClInclude Include="Modules\SceneManager.h">
-      <Filter>Modules\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\PrefabManager.h">
-      <Filter>Modules\Scene</Filter>
+      <Filter>Modules\Resources\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Modules\SceneContent.h">
-      <Filter>Modules\Scene</Filter>
+      <Filter>Modules\Resources\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Modules\SceneContentMap.h">
-      <Filter>Modules\Scene</Filter>
+      <Filter>Modules\Resources\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Modules\ModulesAccessor.h">
       <Filter>Modules\Common</Filter>
@@ -554,12 +563,6 @@
     <ClInclude Include="Components\Common\PrefabGuidComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\GuidGenerator.h">
-      <Filter>Modules\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\GuidConstants.h">
-      <Filter>Modules\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Features\Graphic\UnitBuilderHelper.h">
       <Filter>Features\Graphic\Builder</Filter>
     </ClInclude>
@@ -655,6 +658,51 @@
     </ClInclude>
     <ClInclude Include="Components\Logic\FeatureComponent.h">
       <Filter>Components\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\SceneReferenceComponent.h">
+      <Filter>Components\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\PrefabReferenceComponent.h">
+      <Filter>Components\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\PrefabContentMap.h">
+      <Filter>Modules\Resources\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\PrefabManager.h">
+      <Filter>Modules\Resources\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ResourceContentMap.h">
+      <Filter>Modules\Resources\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\GuidConstants.h">
+      <Filter>Modules\Resources\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\GuidGenerator.h">
+      <Filter>Modules\Resources\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ResourceContent.h">
+      <Filter>Modules\Resources\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\PrefabContent.h">
+      <Filter>Modules\Resources\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\SceneObjectReferenceComponent.h">
+      <Filter>Components\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h">
+      <Filter>Components\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\PrefabObjectConstructor.h">
+      <Filter>Modules\Resources\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ObjectInMemory.h">
+      <Filter>Modules\Resources\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ComponentInMemory.h">
+      <Filter>Modules\Resources\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\ObjectInMemoryComponent.h">
+      <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

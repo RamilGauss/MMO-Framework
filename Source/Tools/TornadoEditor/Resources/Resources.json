@@ -28,6 +28,7 @@
         "sceneManagerContentMapPath": "../Scenes/SceneManagerContentMap.json",
         "startScenesGuid": [
             "0"
-        ]
+        ],
+        "prefabManagerContentMapPath": "../Prefabs/PrefabManagerContentMap.json"
     }
 }

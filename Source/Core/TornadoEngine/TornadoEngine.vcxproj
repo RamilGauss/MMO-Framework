@@ -266,6 +266,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Modules\PhysicEngineModule.cpp" />
     <ClCompile Include="Modules\Modules.cpp" />
     <ClCompile Include="Modules\ModulesAccessor.cpp" />
+    <ClCompile Include="Modules\PrefabObjectConstructor.cpp" />
     <ClCompile Include="Modules\SoundEngineModule.cpp" />
     <ClCompile Include="Modules\PrefabManager.cpp" />
     <ClCompile Include="Modules\SceneManager.cpp" />
@@ -284,6 +285,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Common\NeedDestroySceneComponent.h" />
     <ClInclude Include="Components\Common\NeedUnloadPrefabComponent.h" />
     <ClInclude Include="Components\Common\NeedUnloadSceneComponent.h" />
+    <ClInclude Include="Components\Common\ObjectInMemoryComponent.h" />
     <ClInclude Include="Components\Common\ParentGuidComponent.h" />
     <ClInclude Include="Components\Common\PrefabGuidComponent.h" />
     <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h" />
@@ -309,6 +311,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\VisibilityComponent.h" />
     <ClInclude Include="Components\Gui\WindowComponent.h" />
     <ClInclude Include="Components\Logic\FeatureComponent.h" />
+    <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h" />
+    <ClInclude Include="Components\Logic\PrefabReferenceComponent.h" />
+    <ClInclude Include="Components\Logic\SceneObjectReferenceComponent.h" />
+    <ClInclude Include="Components\Logic\SceneReferenceComponent.h" />
     <ClInclude Include="Features\Graphic\BeginGraphicFeature.h" />
     <ClInclude Include="Features\Graphic\ButtonBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonClickHandlerBuilderSystem.h" />
@@ -350,6 +356,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h" />
     <ClInclude Include="Handlers\IButtonClickHandler.h" />
     <ClInclude Include="Handlers\IHandler.h" />
+    <ClInclude Include="Modules\ComponentInMemory.h" />
     <ClInclude Include="Modules\DstModule.h" />
     <ClInclude Include="Modules\GuidConstants.h" />
     <ClInclude Include="Modules\GuidGenerator.h" />
@@ -368,9 +375,15 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Modules\ModuleManager.h" />
     <ClInclude Include="Modules\MMOEngineModule.h" />
     <ClInclude Include="Modules\NetTransportModule.h" />
+    <ClInclude Include="Modules\ObjectInMemory.h" />
     <ClInclude Include="Modules\PhysicEngineModule.h" />
     <ClInclude Include="Modules\Modules.h" />
     <ClInclude Include="Modules\ModulesAccessor.h" />
+    <ClInclude Include="Modules\PrefabContent.h" />
+    <ClInclude Include="Modules\PrefabContentMap.h" />
+    <ClInclude Include="Modules\PrefabObjectConstructor.h" />
+    <ClInclude Include="Modules\ResourceContent.h" />
+    <ClInclude Include="Modules\ResourceContentMap.h" />
     <ClInclude Include="Modules\SoundEngineModule.h" />
     <ClInclude Include="Modules\PrefabManager.h" />
     <ClInclude Include="Modules\SceneContent.h" />

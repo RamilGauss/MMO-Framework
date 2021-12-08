@@ -7,16 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <map>
-#include <string>
-
-#include "TypeDef.h"
+#include "ResourceContentMap.h"
 
 namespace nsTornadoEngine
 {
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TSceneContentMap
+    struct DllExport TSceneContentMap : TResourceContentMap
     {
-        std::map<std::string, std::string> guidPathMap;
+
     };
 }
