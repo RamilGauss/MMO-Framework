@@ -15,6 +15,8 @@ See for more information LICENSE.md.
 #include "SceneManager.h"
 #include "PrefabManager.h"
 #include "IModule.h"
+#include "HandlerCallCollector.h"
+#include "PrefabObjectConstructor.h"
 
 namespace nsTornadoEngine
 {
@@ -26,6 +28,8 @@ namespace nsTornadoEngine
         TPrefabManager mPrefabMng;
         TStopAccessor* mStopAccessor = nullptr;
         nsGraphicEngine::TKeyMouseEventContainer mKeyMouseEventContainer;
+        THandlerCallCollector mHandlerCallCollector;
+        TPrefabObjectConstructor mPrefabObjConstructor;
 
         std::list<IModule*> mModules;
 

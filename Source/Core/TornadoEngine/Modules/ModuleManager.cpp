@@ -88,5 +88,7 @@ void TModuleManager::ApplyToModulesSingleton()
     TModulesAccessor::SetPrefabMng(&mPrefabMng);
     TModulesAccessor::SetStopAccessor(mStopAccessor);
     TModulesAccessor::SetKeyMouse(&mKeyMouseEventContainer);
+    TModulesAccessor::SetHandlerCall(&mHandlerCallCollector);
+    TModulesAccessor::SetPrefabObjConstructor(&mPrefabObjConstructor);
 }
 //----------------------------------------------------------------------------

@@ -14,5 +14,7 @@ void TEndLogicFeature::InitConveyor()
     Add(&mLogicMakerFeature);
     Add(&mLogicBuilderFeature);
     Add(&mLogicTerminatorFeature);
+    
     Add(&mSceneFeature);
+    Add(&mPrefabFeature);
 }

@@ -30,8 +30,10 @@ namespace nsTornadoEngine
         static bool LoadBinary();
         static bool LoadResources();
         static bool LoadSceneContentMap();
+        static bool LoadPrefabContentMap();
 
         static void ConvertRelToAbsScene();
+        static void ConvertRelToAbsPrefab();
 
         template<typename ... Args>
         static void Log(const char* format, Args && ... args)

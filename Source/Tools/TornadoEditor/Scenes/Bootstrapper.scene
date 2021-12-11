@@ -15,7 +15,7 @@
                 },
                 {
                     "typeName": "nsCommonWrapper::TNameComponent",
-                    "jsonBody": "{\"value\":\"Main scene\"}"
+                    "jsonBody": "{\"value\":\"Bootstrapper scene\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TTransformComponent",

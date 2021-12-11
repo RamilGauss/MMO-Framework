@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DstModule.h"
+#include "LogicWrapperModule.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport IMMOEngineModule : public TDstModule
+    class DllExport IMMOEngineModule : public TLogicWrapperModule
     {
     public:
     };

@@ -35,6 +35,8 @@ namespace nsTornadoEngine
     class TStopAccessor;
 
     class TModulesAccessor;
+    class THandlerCallCollector;
+    class TPrefabObjectConstructor;
 
 
     class DllExport TModules
@@ -59,6 +61,9 @@ namespace nsTornadoEngine
         TStopAccessor* stopAccessor = nullptr;
 
         nsGraphicEngine::TKeyMouseEventContainer* keyMouse = nullptr;
+
+        THandlerCallCollector* handlerCallCollector = nullptr;
+        TPrefabObjectConstructor* prefabObjectConstructor = nullptr;
     public:
         // Mostly for inner usage
         IGraphicEngineModule* G() const;
@@ -77,6 +82,9 @@ namespace nsTornadoEngine
         TStopAccessor* StopAccessor() const;
 
         nsGraphicEngine::TKeyMouseEventContainer* KeyMouse() const;
+
+        THandlerCallCollector* HandlerCalls() const;
+        TPrefabObjectConstructor* PrefabObjConstructor() const;
     };
 
     extern DllExport TModules* Modules();

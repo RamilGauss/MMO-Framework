@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_08 07:21:43.417
+// File has been generated at 2021_12_11 16:13:40.961
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -27,14 +27,14 @@ void THandlerTypeFactory::Init()
     Data nsTornadoEditor_TDeleteOnButtonClickHandler_Data;
     nsTornadoEditor_TDeleteOnButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TDeleteOnButtonClickHandler(); };
     nsTornadoEditor_TDeleteOnButtonClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TDeleteOnButtonClickHandler*)p; };
-    auto rtti_nsTornadoEditor_TDeleteOnButtonClickHandler_Data = globalTypeIdentifier->type<nsTornadoEditor::TDeleteOnButtonClickHandler>();
+    auto rtti_nsTornadoEditor_TDeleteOnButtonClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TDeleteOnButtonClickHandler>();
     
     m.insert({ rtti_nsTornadoEditor_TDeleteOnButtonClickHandler_Data, nsTornadoEditor_TDeleteOnButtonClickHandler_Data });
     
     Data nsTornadoEditor_TExitButtonClickHandler_Data;
     nsTornadoEditor_TExitButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TExitButtonClickHandler(); };
     nsTornadoEditor_TExitButtonClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TExitButtonClickHandler*)p; };
-    auto rtti_nsTornadoEditor_TExitButtonClickHandler_Data = globalTypeIdentifier->type<nsTornadoEditor::TExitButtonClickHandler>();
+    auto rtti_nsTornadoEditor_TExitButtonClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TExitButtonClickHandler>();
     
     m.insert({ rtti_nsTornadoEditor_TExitButtonClickHandler_Data, nsTornadoEditor_TExitButtonClickHandler_Data });
     

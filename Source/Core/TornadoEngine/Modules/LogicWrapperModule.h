@@ -8,12 +8,12 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "IModule.h"
-#include "DstEvent.h"
 #include "LogicSlotManager.h"
+#include "DstEvent.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TDstModule : public IModule, public TDstEvent
+    class DllExport TLogicWrapperModule : public IModule, public TDstEvent
     {
         TLogicSlotManager mBeginLogicSlotManager;
         TLogicSlotManager mEndLogicSlotManager;

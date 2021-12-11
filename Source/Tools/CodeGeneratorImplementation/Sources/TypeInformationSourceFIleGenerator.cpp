@@ -92,7 +92,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
         auto typeName = fmt::format("{}_n", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
 
 
-        str = fmt::format("int {} = {}->type<{}>();", rtti, globalTypeIdentifier, t);
+        str = fmt::format("int {} = {}->Type<{}>();", rtti, globalTypeIdentifier, t);
         Add(str);
         str = fmt::format("std::string {} = \"{}\";", typeName, t);
         Add(str);

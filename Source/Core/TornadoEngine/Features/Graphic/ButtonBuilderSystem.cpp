@@ -20,11 +20,15 @@ See for more information LICENSE.md.
 #include "SceneOriginalGuidComponent.h"
 #include "GuidConstants.h"
 
+#include "Modules.h"
+#include "HandlerCallCollector.h"
+
 using namespace nsGraphicWrapper;
 
 // Prefab or scene
 void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pButtonComponent)
 {
+    auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
     auto entMng = GetEntMng();
 
     auto titleComponent = entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid);
@@ -58,9 +62,12 @@ void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
                 continue;
             }
 
-            pButtonComponent->value->mOnClickCB.Register(handler, [handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
+            pButtonComponent->value->mOnClickCB.Register(handler, [handlerCallCollector, handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
             {
-                handler->Handle(eid, pButtonComponent);
+                handlerCallCollector->Add([handler, eid, pButtonComponent]()
+                {
+                    handler->Handle(eid, pButtonComponent);
+                });
             });
         }
     } 
@@ -86,9 +93,12 @@ void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
                 continue;
             }
 
-            pButtonComponent->value->mOnClickCB.Register(handler, [handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
+            pButtonComponent->value->mOnClickCB.Register(handler, [handlerCallCollector, handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
             {
-                handler->Handle(eid, pButtonComponent);
+                handlerCallCollector->Add([handler, eid, pButtonComponent]()
+                {
+                    handler->Handle(eid, pButtonComponent);
+                });
             });
         }
     }

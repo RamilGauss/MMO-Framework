@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_08 07:21:43.418
+// File has been generated at 2021_12_11 16:13:40.962
 	
 #include "HandlerTypeInformation.h"
 
@@ -27,13 +27,13 @@ void THandlerTypeInformation::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    int nsTornadoEditor_TDeleteOnButtonClickHandler_i = globalTypeIdentifier->type<nsTornadoEditor::TDeleteOnButtonClickHandler>();
+    int nsTornadoEditor_TDeleteOnButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TDeleteOnButtonClickHandler>();
     std::string nsTornadoEditor_TDeleteOnButtonClickHandler_n = "nsTornadoEditor::TDeleteOnButtonClickHandler";
     mTypeNameList.push_back(nsTornadoEditor_TDeleteOnButtonClickHandler_n);
     mRttiList.push_back(nsTornadoEditor_TDeleteOnButtonClickHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TDeleteOnButtonClickHandler_n, nsTornadoEditor_TDeleteOnButtonClickHandler_i });
     
-    int nsTornadoEditor_TExitButtonClickHandler_i = globalTypeIdentifier->type<nsTornadoEditor::TExitButtonClickHandler>();
+    int nsTornadoEditor_TExitButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TExitButtonClickHandler>();
     std::string nsTornadoEditor_TExitButtonClickHandler_n = "nsTornadoEditor::TExitButtonClickHandler";
     mTypeNameList.push_back(nsTornadoEditor_TExitButtonClickHandler_n);
     mRttiList.push_back(nsTornadoEditor_TExitButtonClickHandler_i);

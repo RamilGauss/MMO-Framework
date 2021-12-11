@@ -22,7 +22,7 @@ public:
     template<typename Type>
     Type* Get()
     {
-        auto index = GlobalTypeIdentifier()->type<Type>();
+        auto index = GlobalTypeIdentifier()->Type<Type>();
         size_t count = index + 1;
         if ( mTypeObjVec.size() < count ) {
             mTypeObjVec.resize(count);

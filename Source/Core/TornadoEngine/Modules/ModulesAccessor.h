@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Modules.h"
-#include <ECS/include/EntityManager.h>
+//#include <ECS/include/EntityManager.h>
 
 namespace nsTornadoEngine
 {
@@ -28,5 +28,7 @@ namespace nsTornadoEngine
         static void SetPrefabMng(TPrefabManager* value);
         static void SetStopAccessor(TStopAccessor* value);
         static void SetKeyMouse(nsGraphicEngine::TKeyMouseEventContainer* value);
+        static void SetHandlerCall(THandlerCallCollector* value);
+        static void SetPrefabObjConstructor(TPrefabObjectConstructor* value);
     };
 }

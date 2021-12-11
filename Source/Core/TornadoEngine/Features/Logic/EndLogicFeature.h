@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 #include "LogicTerminatorFeature.h"
 
 #include "SceneFeature.h"
+#include "PrefabFeature.h"
 
 namespace nsLogicWrapper
 {
@@ -24,6 +25,7 @@ namespace nsLogicWrapper
         TLogicTerminatorFeature mLogicTerminatorFeature;
 
         TSceneFeature mSceneFeature;
+        TPrefabFeature mPrefabFeature;
     public:
         void InitConveyor() override;
     };

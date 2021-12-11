@@ -5,11 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BeginLogicFeature.h"
+#include "PrefabFeature.h"
 
 using namespace nsLogicWrapper;
 
-void TBeginLogicFeature::InitConveyor()
+void TPrefabFeature::InitConveyor()
 {
-    Add(&mHandlerCallCollectorNotifySystem);
+    Add(&mNeedUnloadPrefabSystem);
+    Add(&mNeedDestroyPrefabSystem);
 }

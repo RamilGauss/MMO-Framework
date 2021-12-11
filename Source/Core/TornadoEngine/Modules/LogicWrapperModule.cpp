@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "DstModule.h"
+#include "LogicWrapperModule.h"
 
 using namespace nsTornadoEngine;
 
-void TDstModule::Work()
+void TLogicWrapperModule::Work()
 {
     mBeginLogicSlotManager.Work();
     
@@ -18,12 +18,12 @@ void TDstModule::Work()
     mEndLogicSlotManager.Work();
 }
 //-------------------------------------------------------------------
-TLogicSlotManager* TDstModule::GetBeginLogicSlotManager()
+TLogicSlotManager* TLogicWrapperModule::GetBeginLogicSlotManager()
 {
     return &mBeginLogicSlotManager;
 }
 //-------------------------------------------------------------------
-TLogicSlotManager* TDstModule::GetEndLogicSlotManager()
+TLogicSlotManager* TLogicWrapperModule::GetEndLogicSlotManager()
 {
     return &mEndLogicSlotManager;
 }

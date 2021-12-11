@@ -7,12 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "LogicWrapperModule.h"
+#include <ECS/include/ExecuteSystem.h>
 
-namespace nsTornadoEngine
+namespace nsLogicWrapper
 {
-    class DllExport ISoundEngineModule : public TLogicWrapperModule
+    class DllExport THandlerCallCollectorNotifySystem : public nsECSFramework::TExecuteSystem
     {
     public:
+        void Execute() override;
     };
 }

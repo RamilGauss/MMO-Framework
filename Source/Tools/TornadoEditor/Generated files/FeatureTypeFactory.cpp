@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_08 07:21:43.689
+// File has been generated at 2021_12_11 16:13:41.219
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -27,14 +27,14 @@ void TFeatureTypeFactory::Init()
     Data nsTornadoEditor_TBootstrapperFeature_Data;
     nsTornadoEditor_TBootstrapperFeature_Data.newFunc = [](){ return new nsTornadoEditor::TBootstrapperFeature(); };
     nsTornadoEditor_TBootstrapperFeature_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TBootstrapperFeature*)p; };
-    auto rtti_nsTornadoEditor_TBootstrapperFeature_Data = globalTypeIdentifier->type<nsTornadoEditor::TBootstrapperFeature>();
+    auto rtti_nsTornadoEditor_TBootstrapperFeature_Data = globalTypeIdentifier->Type<nsTornadoEditor::TBootstrapperFeature>();
     
     m.insert({ rtti_nsTornadoEditor_TBootstrapperFeature_Data, nsTornadoEditor_TBootstrapperFeature_Data });
     
     Data nsTornadoEditor_TExampleFeature_Data;
     nsTornadoEditor_TExampleFeature_Data.newFunc = [](){ return new nsTornadoEditor::TExampleFeature(); };
     nsTornadoEditor_TExampleFeature_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TExampleFeature*)p; };
-    auto rtti_nsTornadoEditor_TExampleFeature_Data = globalTypeIdentifier->type<nsTornadoEditor::TExampleFeature>();
+    auto rtti_nsTornadoEditor_TExampleFeature_Data = globalTypeIdentifier->Type<nsTornadoEditor::TExampleFeature>();
     
     m.insert({ rtti_nsTornadoEditor_TExampleFeature_Data, nsTornadoEditor_TExampleFeature_Data });
     

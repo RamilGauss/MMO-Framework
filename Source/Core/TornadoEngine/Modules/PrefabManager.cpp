@@ -79,6 +79,7 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& parentGuid, const s
     }
 
     std::string prefabIstanceGuid;
+    nsECSFramework::TEntityID rootEid = nsECSFramework::NONE;
 
     auto componentReflection = Project()->mScenePartAggregator->mComponents;
     componentReflection->mEntMng->SetEntityManager(Modules()->EntMng());
@@ -112,6 +113,7 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& parentGuid, const s
             auto hasRoot = mEntityManager->HasComponent<nsCommonWrapper::TPrefabRootComponent>(eid);
             if (hasRoot) {
                 prefabIstanceGuid = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(eid)->value;
+                rootEid = eid;
             }
         }
     }
@@ -149,9 +151,24 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& parentGuid, const s
     }
 
     // 7. Find parent by guid
+    std::string realParentGuid = parentGuid;
+
     nsCommonWrapper::TGuidComponent parentGuidComponent;
     parentGuidComponent.value = parentGuid;
     auto parentEid = mEntityManager->GetByUnique(parentGuidComponent);
+    if (parentEid == nsECSFramework::NONE) {
+
+        nsCommonWrapper::TSceneOriginalGuidComponent parentSceneOriginalGuidComponent;
+        parentSceneOriginalGuidComponent.value = parentGuid;
+        parentEid = mEntityManager->GetByUnique(parentSceneOriginalGuidComponent);
+
+        realParentGuid = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(parentEid)->value;
+    }
+
+    nsCommonWrapper::TParentGuidComponent newParentGuidComponent;
+    newParentGuidComponent.value = realParentGuid;
+    mEntityManager->SetComponent(rootEid, newParentGuidComponent);
+
     BL_ASSERT(parentEid != nsECSFramework::NONE);
 
     // 8. Add identification of the scene.

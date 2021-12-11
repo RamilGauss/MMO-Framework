@@ -117,7 +117,7 @@ void TEntityManagerSourceFileGenerator::AddInit()
             s_pEntMng, s_RemoveComponent, typeNameWithNameSpace, s_eid);
         Add(str);
 
-        str = fmt::format("auto rtti_{} = globalTypeIdentifier->type<{}>();", var, typeNameWithNameSpace);
+        str = fmt::format("auto rtti_{} = globalTypeIdentifier->Type<{}>();", var, typeNameWithNameSpace);
         Add(str);
         AddEmptyLine();
 

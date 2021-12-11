@@ -17,6 +17,8 @@ See for more information LICENSE.md.
 #include <functional>
 #include <algorithm>
 #include <assert.h>
+#include <typeinfo>
+#include <typeindex>
 
 #include "TypeDef.h"
 
@@ -37,214 +39,49 @@ public:
         TypeCounter;
 #endif
 private:
-    AtomicTypeCounter atc;
+    AtomicTypeCounter mCounter;
 
-    template<typename...>
-    const TypeCounter UniqueByType(AtomicTypeCounter& global)
+    struct MultiType
     {
-        static const TypeCounter value =
-#ifdef USE_MULTITHREAD
-            global.fetch_add(1);
-#else
-            global++;
-#endif
-        return value;
-    }
+        std::set<std::type_index> types;
 
-    template<typename... Type>
-    const TypeCounter _type()
-    {
-        return UniqueByType<std::decay_t<Type>...>(atc);
-    }
-
-    template<typename T0, typename T1, typename T2>
-    TypeCounter TypeLm3(TypeCounter t1, TypeCounter t2)
-    {
-        if (t1 < t2)
-            return _type<T0, T1, T2>();
-        return _type<T0, T2, T1>();
-    }
-
-    template<typename T0, typename T1, typename T2, typename T3>
-    TypeCounter TypeLm4(TypeCounter t1, TypeCounter t2, TypeCounter t3)
-    {
-        auto minT = std::min(std::min(t1, t2), std::min(t2, t3));
-        if (minT == t1) {
-            if (t2 < t3) {
-                return _type<T0, T1, T2, T3>();
-            }
-            return _type<T0, T1, T3, T2>();
-        }
-        if (minT == t2) {
-            if (t1 < t3) {
-                return _type<T0, T2, T1, T3>();
-            }
-            return _type<T0, T2, T3, T1>();
-        }
-        // 3
-        if (t1 < t2) {
-            return _type<T0, T3, T1, T2>();
-        }
-        return _type<T0, T3, T2, T1>();
-    }
-
-    struct TComplexSet
-    {
-        std::set<TypeCounter> tcSet;
-        TypeCounter tc;
-
-        bool operator == (const TComplexSet& other)
+        bool operator <(const MultiType& rhs) const
         {
-            if (other.tcSet.size() != tcSet.size()) {
-                return false;
-            }
-            for (auto& tc : tcSet) {
-                if (other.tcSet.find(tc) == other.tcSet.end()) {
-                    return false;
-                }
-            }
-            return true;
+            return types < rhs.types;
         }
     };
 
-    std::list<TComplexSet> mComplexSetList;
+    std::map<MultiType, TypeCounter> mTypeCounters;
 
-    template<typename T>
-    void AddToSet(TComplexSet& complexSet)
+    template <typename T>
+    void Fill(MultiType& multiType)
     {
-        auto t = _type<T>();
-        complexSet.tcSet.insert(t);
+        multiType.types.insert(std::type_index(typeid(T)));
     }
 
-    template<typename T0, typename T1, typename ... Args>
-    void AddToSet(TComplexSet& complexSet)
+    template <typename T0, typename T1, typename ... Args>
+    void Fill(MultiType& multiType)
     {
-        AddToSet<T0>(complexSet);
-        AddToSet<T1, Args...>(complexSet);
+        Fill<T0>(multiType);
+        Fill<T1, Args...>(multiType);
     }
-
 public:
-    template<typename T>// faster
-    TypeCounter type()
+    template <typename T, typename ... Args>
+    TypeCounter Type()
     {
-        return _type<T>();
-    }
+        static TypeCounter innerCounter = -1;
+        if (innerCounter == -1) {
+            MultiType multiType;
+            Fill<T, Args...>(multiType);
 
-    template<typename T0, typename T1>// faster
-    TypeCounter type()
-    {
-        static TypeCounter ret = -1;
-        if (ret != -1) {
-            return ret;
-        }
-
-        std::map<TypeCounter, std::function<TypeCounter()>> m;
-
-        auto t0 = _type<T0>();
-        auto t1 = _type<T1>();
-        m.insert({t0, [this]()
-        {
-            return _type<T0, T1>();
-        }});
-        m.insert({t1, [this]()
-        {
-            return _type<T1, T0>();
-        }});
-        ret = m.begin()->second();
-        assert(m.size() == 2);
-        return ret;
-    }
-
-    template<typename T0, typename T1, typename T2>// faster
-    TypeCounter type()
-    {
-        static TypeCounter ret = -1;
-        if (ret != -1) {
-            return ret;
-        }
-
-        std::map<TypeCounter, std::function<TypeCounter()>> m;
-
-        auto t0 = _type<T0>();
-        auto t1 = _type<T1>();
-        auto t2 = _type<T2>();
-        m.insert({t0, [this, t1, t2]()
-        {
-            return TypeLm3<T0, T1, T2>(t1, t2);
-        }});
-        m.insert({t1, [this, t0, t2]()
-        {
-            return TypeLm3<T1, T0, T2>(t0, t2);
-        }});
-        m.insert({t2, [this, t0, t1]()
-        {
-            return TypeLm3<T2, T0, T1>(t0, t1);
-        }});
-        ret = m.begin()->second();
-        assert(m.size() == 3);
-        return ret;
-    }
-
-    template<typename T0, typename T1, typename T2, typename T3>// faster
-    TypeCounter type()
-    {
-        static TypeCounter ret = -1;
-        if (ret != -1) {
-            return ret;
-        }
-
-        std::map<TypeCounter, std::function<TypeCounter()>> m;
-
-        auto t0 = _type<T0>();
-        auto t1 = _type<T1>();
-        auto t2 = _type<T2>();
-        auto t3 = _type<T3>();
-        m.insert({t0, [this, t1, t2, t3]()
-        {
-            return TypeLm4<T0, T1, T2, T3>(t1, t2, t3);
-        }});
-        m.insert({t1, [this, t0, t2, t3]()
-        {
-            return TypeLm4<T1, T0, T2, T3>(t0, t2, t3);
-        }});
-        m.insert({t2, [this, t0, t1, t3]()
-        {
-            return TypeLm4<T2, T0, T1, T3>(t0, t1, t3);
-        }});
-        m.insert({t3, [this, t0, t1, t2]()
-        {
-            return TypeLm4<T3, T0, T1, T2>(t0, t1, t2);
-        }});
-        ret = m.begin()->second();
-        assert(m.size() == 4);
-        return ret;
-    }
-
-    template<typename T0, typename T1, typename T2, typename T3, typename T4, typename ... Args>
-    TypeCounter type()
-    {
-        static TypeCounter ret = -1;
-        if (ret != -1) {
-            return ret;// calculation once only
-        }
-
-        TComplexSet complexSet;
-        AddToSet<T0, T1, T2, T3, T4, Args...>(complexSet);
-
-        bool found = false;
-        for (auto& cset : mComplexSetList)// slow with more collections!
-        {
-            if (cset == complexSet) {
-                ret = cset.tc;
-                found = true;
+            auto fit = mTypeCounters.find(multiType);
+            if (mTypeCounters.end() == fit) {
+                mTypeCounters[multiType] = mCounter++;
             }
+            innerCounter = mTypeCounters[multiType];
+
         }
-        if (found == false) {
-            ret = atc.fetch_add(1);
-            complexSet.tc = ret;
-            mComplexSetList.push_back(complexSet);
-        }
-        return ret;
+        return innerCounter;
     }
 };
 

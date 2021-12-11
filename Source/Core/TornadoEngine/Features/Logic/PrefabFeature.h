@@ -8,14 +8,16 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <ECS/include/Feature.h>
-#include "HandlerCallCollectorNotifySystem.h"
+
+#include "NeedUnloadPrefabSystem.h"
+#include "NeedDestroyPrefabSystem.h"
 
 namespace nsLogicWrapper
 {
-    class DllExport TBeginLogicFeature : public nsECSFramework::TFeature
+    class DllExport TPrefabFeature : public nsECSFramework::TFeature
     {
-        THandlerCallCollectorNotifySystem mHandlerCallCollectorNotifySystem;
-
+        TNeedUnloadPrefabSystem mNeedUnloadPrefabSystem;
+        TNeedDestroyPrefabSystem mNeedDestroyPrefabSystem;
     public:
         void InitConveyor() override;
     };

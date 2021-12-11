@@ -91,7 +91,7 @@ void TTypeFactorySourceFileGenerator::AddInit()
 
         auto typeNameWithNameSpace = pTypeInfo->GetTypeNameWithNameSpace();
 
-        str = fmt::format("auto rtti_{} = globalTypeIdentifier->type<{}>();", var, typeNameWithNameSpace);
+        str = fmt::format("auto rtti_{} = globalTypeIdentifier->Type<{}>();", var, typeNameWithNameSpace);
         Add(str);
         AddEmptyLine();
 

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_07 19:36:17.386
+// File has been generated at 2021_12_11 16:12:07.425
 	
 #pragma once
 
@@ -17,4 +17,5 @@
 #include "LogicBuilderFeature.h"
 #include "LogicMakerFeature.h"
 #include "LogicTerminatorFeature.h"
+#include "PrefabFeature.h"
 #include "SceneFeature.h"

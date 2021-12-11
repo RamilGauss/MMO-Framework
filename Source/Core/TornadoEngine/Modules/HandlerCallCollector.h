@@ -7,12 +7,19 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "LogicWrapperModule.h"
+#include "TypeDef.h"
+
+#include <functional>
 
 namespace nsTornadoEngine
 {
-    class DllExport ISoundEngineModule : public TLogicWrapperModule
+    class DllExport THandlerCallCollector
     {
+        std::list<std::function<void()>> mFuncs;
+
     public:
+        void Add(std::function<void()> func);
+        void Clear();
+        void CallAll();
     };
 }

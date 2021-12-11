@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DstModule.h"
+#include "LogicWrapperModule.h"
 #include "PhysicEngine/PhysicEngine_Bullet.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport IPhysicEngineModule : public TDstModule
+    class DllExport IPhysicEngineModule : public TLogicWrapperModule
     {
     public:
         virtual TPhysicEngine_Bullet* GetPE() = 0;

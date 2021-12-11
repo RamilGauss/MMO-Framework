@@ -38,8 +38,12 @@ bool TProjectConfigLoader::Load(TProjectConfigContainer* pcc)
     if (!LoadSceneContentMap()) {
         return false;
     }
+    if (!LoadPrefabContentMap()) {
+        return false;
+    }
 
     ConvertRelToAbsScene();
+    ConvertRelToAbsPrefab();
 
     return true;
 }
@@ -96,6 +100,11 @@ bool TProjectConfigLoader::LoadSceneContentMap()
     return Load(mPcc->GetSceneContentMapAbsPath(), &(mPcc->mSceneContentMap));
 }
 //------------------------------------------------------------------------
+bool TProjectConfigLoader::LoadPrefabContentMap()
+{
+    return Load(mPcc->GetPrefabContentMapAbsPath(), &(mPcc->mPrefabContentMap));
+}
+//------------------------------------------------------------------------
 void TProjectConfigLoader::ConvertRelToAbsScene()
 {
     auto sceneContentMapAbsPath = mPcc->GetSceneContentMapAbsPath();
@@ -103,6 +112,16 @@ void TProjectConfigLoader::ConvertRelToAbsScene()
 
     for (auto& guidPath : mPcc->mSceneContentMap.guidPathMap) {
         guidPath.second = TPathOperations::CalculatePathBy(sceneContentMapDirPath, guidPath.second);
+    }
+}
+//------------------------------------------------------------------------
+void TProjectConfigLoader::ConvertRelToAbsPrefab()
+{
+    auto prefabContentMapAbsPath = mPcc->GetPrefabContentMapAbsPath();
+    auto prefabContentMapDirPath = TPathOperations::FileDirPath(prefabContentMapAbsPath);
+
+    for (auto& guidPath : mPcc->mPrefabContentMap.guidPathMap) {
+        guidPath.second = TPathOperations::CalculatePathBy(prefabContentMapDirPath, guidPath.second);
     }
 }
 //------------------------------------------------------------------------

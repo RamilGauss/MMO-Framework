@@ -32,8 +32,15 @@ void TProjectConfigurator::Setup()
     };
     entMng->Setup(dllPathList);
 
-    Modules()->SceneMng()->SetEntityManager(entMng);
-    Modules()->SceneMng()->SetContentMap(Project()->mSceneContentMap);
+    auto sceneMng = Modules()->SceneMng();
+
+    sceneMng->SetEntityManager(entMng);
+    sceneMng->SetContentMap(Project()->mSceneContentMap);
+
+    auto prefabMng = Modules()->PrefabMng();
+
+    prefabMng->SetEntityManager(entMng);
+    prefabMng->SetContentMap(Project()->mPrefabContentMap);
 }
 //-----------------------------------------------------------------------------------
 void TProjectConfigurator::UnloadProject()

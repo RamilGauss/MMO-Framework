@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DstModule.h"
+#include "LogicWrapperModule.h"
 #include "LogicSlotManager.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport ILogicModule : public TDstModule
+    class DllExport ILogicModule : public TLogicWrapperModule
     {
     public:
         virtual TLogicSlotManager* GetWorkSlots() = 0;

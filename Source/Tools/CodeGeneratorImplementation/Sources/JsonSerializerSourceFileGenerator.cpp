@@ -100,7 +100,7 @@ void TJsonSerializerSourceFileGenerator::AddInit()
 
         AddEmptyLine();
 
-        str = fmt::format("auto rtti_{} = globalTypeIdentifier->type<{}>();", typeNameObject, typeNameWithNameSpace);
+        str = fmt::format("auto rtti_{} = globalTypeIdentifier->Type<{}>();", typeNameObject, typeNameWithNameSpace);
         Add(str);
         AddEmptyLine();
 

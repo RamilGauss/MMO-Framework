@@ -78,3 +78,13 @@ TKeyMouseEventContainer* TModules::KeyMouse() const
     return keyMouse;
 }
 //----------------------------------------------------------
+THandlerCallCollector* TModules::HandlerCalls() const
+{
+    return handlerCallCollector;
+}
+//----------------------------------------------------------
+TPrefabObjectConstructor* TModules::PrefabObjConstructor() const
+{
+    return prefabObjectConstructor;
+}
+//----------------------------------------------------------

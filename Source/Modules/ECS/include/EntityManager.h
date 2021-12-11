@@ -34,7 +34,7 @@ namespace nsECSFramework
 {
     class DllExport TEntityManager
     {
-        typedef TRunTimeTypeIndex<TEntityManager> TTypeID;
+        typedef TRunTimeTypeIndex<> TTypeID;
         TTypeID* mTypeIndex;
     public:
         TEntityManager(int entityCount = 1024);
@@ -202,7 +202,7 @@ namespace nsECSFramework
         template <typename ... Args>
         BOOST_SYMBOL_EXPORT unsigned int NoInline TypeIndex()
         {
-            return mTypeIndex->type<Args...>();
+            return mTypeIndex->Type<Args...>();
         }
 #pragma GCC pop_options
     private:

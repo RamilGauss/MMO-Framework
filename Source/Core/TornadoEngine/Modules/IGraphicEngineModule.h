@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DstModule.h"
+#include "LogicWrapperModule.h"
 #include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport IGraphicEngineModule : public TDstModule
+    class DllExport IGraphicEngineModule : public TLogicWrapperModule
     {
     public:
         virtual nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE() = 0;

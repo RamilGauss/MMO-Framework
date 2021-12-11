@@ -103,6 +103,9 @@
     <Filter Include="Modules\Resources\Common">
       <UniqueIdentifier>{fad010d5-c533-4a49-8beb-8d7bb8012401}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Logic\Prefab">
+      <UniqueIdentifier>{c01218d0-7a6b-4954-8503-e9879746ccea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -171,7 +174,7 @@
     <ClCompile Include="TimeSliceEngine\ProjectConfigurator.cpp">
       <Filter>TimeSliceEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\DstModule.cpp">
+    <ClCompile Include="Modules\LogicWrapperModule.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
     <ClCompile Include="Modules\LogicSlot.cpp">
@@ -296,6 +299,21 @@
     </ClCompile>
     <ClCompile Include="Modules\PrefabObjectConstructor.cpp">
       <Filter>Modules\Resources\Prefab</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\HandlerCallCollector.cpp">
+      <Filter>Modules\Resources\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\HandlerCallCollectorNotifySystem.cpp">
+      <Filter>Features\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\NeedDestroyPrefabSystem.cpp">
+      <Filter>Features\Logic\Prefab</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\NeedUnloadPrefabSystem.cpp">
+      <Filter>Features\Logic\Prefab</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Logic\PrefabFeature.cpp">
+      <Filter>Features\Logic\Prefab</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -428,7 +446,7 @@
     <ClInclude Include="Modules\Modules.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\DstModule.h">
+    <ClInclude Include="Modules\LogicWrapperModule.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
     <ClInclude Include="Modules\SceneManager.h">
@@ -703,6 +721,21 @@
     </ClInclude>
     <ClInclude Include="Components\Common\ObjectInMemoryComponent.h">
       <Filter>Components\Common\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\HandlerCallCollector.h">
+      <Filter>Modules\Resources\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\HandlerCallCollectorNotifySystem.h">
+      <Filter>Features\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\NeedDestroyPrefabSystem.h">
+      <Filter>Features\Logic\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\NeedUnloadPrefabSystem.h">
+      <Filter>Features\Logic\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Logic\PrefabFeature.h">
+      <Filter>Features\Logic\Prefab</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

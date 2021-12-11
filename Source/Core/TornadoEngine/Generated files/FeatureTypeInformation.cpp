@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_07 19:36:17.384
+// File has been generated at 2021_12_11 16:12:07.422
 	
 #include "FeatureTypeInformation.h"
 
@@ -27,73 +27,79 @@ void TFeatureTypeInformation::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    int nsGraphicWrapper_TBeginGraphicFeature_i = globalTypeIdentifier->type<nsGraphicWrapper::TBeginGraphicFeature>();
+    int nsGraphicWrapper_TBeginGraphicFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TBeginGraphicFeature>();
     std::string nsGraphicWrapper_TBeginGraphicFeature_n = "nsGraphicWrapper::TBeginGraphicFeature";
     mTypeNameList.push_back(nsGraphicWrapper_TBeginGraphicFeature_n);
     mRttiList.push_back(nsGraphicWrapper_TBeginGraphicFeature_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TBeginGraphicFeature_n, nsGraphicWrapper_TBeginGraphicFeature_i });
     
-    int nsGraphicWrapper_TEndGraphicFeature_i = globalTypeIdentifier->type<nsGraphicWrapper::TEndGraphicFeature>();
+    int nsGraphicWrapper_TEndGraphicFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TEndGraphicFeature>();
     std::string nsGraphicWrapper_TEndGraphicFeature_n = "nsGraphicWrapper::TEndGraphicFeature";
     mTypeNameList.push_back(nsGraphicWrapper_TEndGraphicFeature_n);
     mRttiList.push_back(nsGraphicWrapper_TEndGraphicFeature_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TEndGraphicFeature_n, nsGraphicWrapper_TEndGraphicFeature_i });
     
-    int nsGraphicWrapper_TGuiBuilderFeature_i = globalTypeIdentifier->type<nsGraphicWrapper::TGuiBuilderFeature>();
+    int nsGraphicWrapper_TGuiBuilderFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiBuilderFeature>();
     std::string nsGraphicWrapper_TGuiBuilderFeature_n = "nsGraphicWrapper::TGuiBuilderFeature";
     mTypeNameList.push_back(nsGraphicWrapper_TGuiBuilderFeature_n);
     mRttiList.push_back(nsGraphicWrapper_TGuiBuilderFeature_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TGuiBuilderFeature_n, nsGraphicWrapper_TGuiBuilderFeature_i });
     
-    int nsGraphicWrapper_TGuiMakerFeature_i = globalTypeIdentifier->type<nsGraphicWrapper::TGuiMakerFeature>();
+    int nsGraphicWrapper_TGuiMakerFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiMakerFeature>();
     std::string nsGraphicWrapper_TGuiMakerFeature_n = "nsGraphicWrapper::TGuiMakerFeature";
     mTypeNameList.push_back(nsGraphicWrapper_TGuiMakerFeature_n);
     mRttiList.push_back(nsGraphicWrapper_TGuiMakerFeature_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TGuiMakerFeature_n, nsGraphicWrapper_TGuiMakerFeature_i });
     
-    int nsGraphicWrapper_TGuiTerminatorFeature_i = globalTypeIdentifier->type<nsGraphicWrapper::TGuiTerminatorFeature>();
+    int nsGraphicWrapper_TGuiTerminatorFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiTerminatorFeature>();
     std::string nsGraphicWrapper_TGuiTerminatorFeature_n = "nsGraphicWrapper::TGuiTerminatorFeature";
     mTypeNameList.push_back(nsGraphicWrapper_TGuiTerminatorFeature_n);
     mRttiList.push_back(nsGraphicWrapper_TGuiTerminatorFeature_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TGuiTerminatorFeature_n, nsGraphicWrapper_TGuiTerminatorFeature_i });
     
-    int nsGraphicWrapper_TGuiUpdaterFeature_i = globalTypeIdentifier->type<nsGraphicWrapper::TGuiUpdaterFeature>();
+    int nsGraphicWrapper_TGuiUpdaterFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiUpdaterFeature>();
     std::string nsGraphicWrapper_TGuiUpdaterFeature_n = "nsGraphicWrapper::TGuiUpdaterFeature";
     mTypeNameList.push_back(nsGraphicWrapper_TGuiUpdaterFeature_n);
     mRttiList.push_back(nsGraphicWrapper_TGuiUpdaterFeature_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TGuiUpdaterFeature_n, nsGraphicWrapper_TGuiUpdaterFeature_i });
     
-    int nsLogicWrapper_TBeginLogicFeature_i = globalTypeIdentifier->type<nsLogicWrapper::TBeginLogicFeature>();
+    int nsLogicWrapper_TBeginLogicFeature_i = globalTypeIdentifier->Type<nsLogicWrapper::TBeginLogicFeature>();
     std::string nsLogicWrapper_TBeginLogicFeature_n = "nsLogicWrapper::TBeginLogicFeature";
     mTypeNameList.push_back(nsLogicWrapper_TBeginLogicFeature_n);
     mRttiList.push_back(nsLogicWrapper_TBeginLogicFeature_i);
     mNameRttiMap.insert({ nsLogicWrapper_TBeginLogicFeature_n, nsLogicWrapper_TBeginLogicFeature_i });
     
-    int nsLogicWrapper_TEndLogicFeature_i = globalTypeIdentifier->type<nsLogicWrapper::TEndLogicFeature>();
+    int nsLogicWrapper_TEndLogicFeature_i = globalTypeIdentifier->Type<nsLogicWrapper::TEndLogicFeature>();
     std::string nsLogicWrapper_TEndLogicFeature_n = "nsLogicWrapper::TEndLogicFeature";
     mTypeNameList.push_back(nsLogicWrapper_TEndLogicFeature_n);
     mRttiList.push_back(nsLogicWrapper_TEndLogicFeature_i);
     mNameRttiMap.insert({ nsLogicWrapper_TEndLogicFeature_n, nsLogicWrapper_TEndLogicFeature_i });
     
-    int nsLogicWrapper_TLogicBuilderFeature_i = globalTypeIdentifier->type<nsLogicWrapper::TLogicBuilderFeature>();
+    int nsLogicWrapper_TLogicBuilderFeature_i = globalTypeIdentifier->Type<nsLogicWrapper::TLogicBuilderFeature>();
     std::string nsLogicWrapper_TLogicBuilderFeature_n = "nsLogicWrapper::TLogicBuilderFeature";
     mTypeNameList.push_back(nsLogicWrapper_TLogicBuilderFeature_n);
     mRttiList.push_back(nsLogicWrapper_TLogicBuilderFeature_i);
     mNameRttiMap.insert({ nsLogicWrapper_TLogicBuilderFeature_n, nsLogicWrapper_TLogicBuilderFeature_i });
     
-    int nsLogicWrapper_TLogicMakerFeature_i = globalTypeIdentifier->type<nsLogicWrapper::TLogicMakerFeature>();
+    int nsLogicWrapper_TLogicMakerFeature_i = globalTypeIdentifier->Type<nsLogicWrapper::TLogicMakerFeature>();
     std::string nsLogicWrapper_TLogicMakerFeature_n = "nsLogicWrapper::TLogicMakerFeature";
     mTypeNameList.push_back(nsLogicWrapper_TLogicMakerFeature_n);
     mRttiList.push_back(nsLogicWrapper_TLogicMakerFeature_i);
     mNameRttiMap.insert({ nsLogicWrapper_TLogicMakerFeature_n, nsLogicWrapper_TLogicMakerFeature_i });
     
-    int nsLogicWrapper_TLogicTerminatorFeature_i = globalTypeIdentifier->type<nsLogicWrapper::TLogicTerminatorFeature>();
+    int nsLogicWrapper_TLogicTerminatorFeature_i = globalTypeIdentifier->Type<nsLogicWrapper::TLogicTerminatorFeature>();
     std::string nsLogicWrapper_TLogicTerminatorFeature_n = "nsLogicWrapper::TLogicTerminatorFeature";
     mTypeNameList.push_back(nsLogicWrapper_TLogicTerminatorFeature_n);
     mRttiList.push_back(nsLogicWrapper_TLogicTerminatorFeature_i);
     mNameRttiMap.insert({ nsLogicWrapper_TLogicTerminatorFeature_n, nsLogicWrapper_TLogicTerminatorFeature_i });
     
-    int nsLogicWrapper_TSceneFeature_i = globalTypeIdentifier->type<nsLogicWrapper::TSceneFeature>();
+    int nsLogicWrapper_TPrefabFeature_i = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabFeature>();
+    std::string nsLogicWrapper_TPrefabFeature_n = "nsLogicWrapper::TPrefabFeature";
+    mTypeNameList.push_back(nsLogicWrapper_TPrefabFeature_n);
+    mRttiList.push_back(nsLogicWrapper_TPrefabFeature_i);
+    mNameRttiMap.insert({ nsLogicWrapper_TPrefabFeature_n, nsLogicWrapper_TPrefabFeature_i });
+    
+    int nsLogicWrapper_TSceneFeature_i = globalTypeIdentifier->Type<nsLogicWrapper::TSceneFeature>();
     std::string nsLogicWrapper_TSceneFeature_n = "nsLogicWrapper::TSceneFeature";
     mTypeNameList.push_back(nsLogicWrapper_TSceneFeature_n);
     mRttiList.push_back(nsLogicWrapper_TSceneFeature_i);

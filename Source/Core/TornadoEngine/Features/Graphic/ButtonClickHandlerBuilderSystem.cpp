@@ -16,11 +16,16 @@ See for more information LICENSE.md.
 #include "SceneOriginalGuidComponent.h"
 #include "PrefabOriginalGuidComponent.h"
 
+#include "Modules.h"
+#include "HandlerCallCollector.h"
+
 using namespace nsGraphicWrapper;
 
 // Prefab or scene
 void TButtonClickHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonClickHandlerComponent* pButtonClickHandlerComponent)
 {
+    auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
+
     auto entMng = GetEntMng();
     if (pButtonClickHandlerComponent->partOfGuid == nsTornadoEngine::TGuidConstants::THIS_SCENE) {
 
@@ -39,9 +44,12 @@ void TButtonClickHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, c
             if (isRegistered) {
                 return;
             }
-            pButtonComponent->value->mOnClickCB.Register(handler, [handler, targetEid, pButtonComponent](nsImGuiWidgets::TButton* pB)
+            pButtonComponent->value->mOnClickCB.Register(handler, [handlerCallCollector, handler, targetEid, pButtonComponent](nsImGuiWidgets::TButton* pB)
             {
-                handler->Handle(targetEid, pButtonComponent);
+                handlerCallCollector->Add([handler, targetEid, pButtonComponent]()
+                {
+                    handler->Handle(targetEid, pButtonComponent);
+                });
             });
         }
     } else {
@@ -61,9 +69,12 @@ void TButtonClickHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, c
             if (isRegistered) {
                 return;
             }
-            pButtonComponent->value->mOnClickCB.Register(handler, [handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
+            pButtonComponent->value->mOnClickCB.Register(handler, [handlerCallCollector, handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
             {
-                handler->Handle(eid, pButtonComponent);
+                handlerCallCollector->Add([handler, eid, pButtonComponent]()
+                {
+                    handler->Handle(eid, pButtonComponent);
+                });
             });
         }
     }

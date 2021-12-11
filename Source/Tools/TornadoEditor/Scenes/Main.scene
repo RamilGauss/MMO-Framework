@@ -39,34 +39,6 @@
                 },
                 {
                     "typeName": "nsCommonWrapper::TNameComponent",
-                    "jsonBody": "{\"value\":\"Camera\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TParentGuidComponent",
-                    "jsonBody": "{\"value\":\"main_0\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TTransformComponent",
-                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"first scene\"}"
-                },
-                {
-                    "typeName": "nsGraphicWrapper::TCameraComponent",
-                    "jsonBody": "{}"
-                }
-            ]
-        },
-        {
-            "components": [
-                {
-                    "typeName": "nsCommonWrapper::TGuidComponent",
-                    "jsonBody": "{\"value\":\"main_2\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TNameComponent",
                     "jsonBody": "{\"value\":\"Window\"}"
                 },
                 {
@@ -103,11 +75,11 @@
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
-                    "jsonBody": "{\"value\":\"main_3\"}"
+                    "jsonBody": "{\"value\":\"main_2\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
-                    "jsonBody": "{\"value\":\"main_2\"}"
+                    "jsonBody": "{\"value\":\"main_1\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TNameComponent",
@@ -139,7 +111,15 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TExitButtonClickHandler\", \"partOfGuid\":\"THIS_SCENE\", \"entityGuid\":\"main_3\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TExitButtonClickHandler\", \"partOfGuid\":\"THIS_SCENE\", \"entityGuid\":\"main_2\"}"
+                },
+                {
+                    "typeName": "nsLogicWrapper::TSceneObjectReferenceComponent",
+                    "jsonBody": "{\"objectGuid\":\"main_1\"}"
+                },
+                {
+                    "typeName": "nsLogicWrapper::TPrefabReferenceComponent",
+                    "jsonBody": "{\"prefabGuid\":\"0\"}"
                 },
                 {
                     "typeName": "nsLogicWrapper::TFeatureComponent",

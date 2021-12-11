@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_08 07:21:43.690
+// File has been generated at 2021_12_11 16:13:41.220
 	
 #include "FeatureTypeInformation.h"
 
@@ -27,13 +27,13 @@ void TFeatureTypeInformation::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    int nsTornadoEditor_TBootstrapperFeature_i = globalTypeIdentifier->type<nsTornadoEditor::TBootstrapperFeature>();
+    int nsTornadoEditor_TBootstrapperFeature_i = globalTypeIdentifier->Type<nsTornadoEditor::TBootstrapperFeature>();
     std::string nsTornadoEditor_TBootstrapperFeature_n = "nsTornadoEditor::TBootstrapperFeature";
     mTypeNameList.push_back(nsTornadoEditor_TBootstrapperFeature_n);
     mRttiList.push_back(nsTornadoEditor_TBootstrapperFeature_i);
     mNameRttiMap.insert({ nsTornadoEditor_TBootstrapperFeature_n, nsTornadoEditor_TBootstrapperFeature_i });
     
-    int nsTornadoEditor_TExampleFeature_i = globalTypeIdentifier->type<nsTornadoEditor::TExampleFeature>();
+    int nsTornadoEditor_TExampleFeature_i = globalTypeIdentifier->Type<nsTornadoEditor::TExampleFeature>();
     std::string nsTornadoEditor_TExampleFeature_n = "nsTornadoEditor::TExampleFeature";
     mTypeNameList.push_back(nsTornadoEditor_TExampleFeature_n);
     mRttiList.push_back(nsTornadoEditor_TExampleFeature_i);

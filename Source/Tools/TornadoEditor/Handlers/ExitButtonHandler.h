@@ -13,6 +13,9 @@ See for more information LICENSE.md.
 #include "StopAccessor.h"
 #include "SceneManager.h"
 
+#include "SceneObjectReferenceComponent.h"
+#include "PrefabReferenceComponent.h"
+
 namespace nsTornadoEditor
 {
     class DllExport TExitButtonClickHandler : public nsGuiWrapper::IButtonClickHandler
@@ -20,9 +23,19 @@ namespace nsTornadoEditor
     public:
         void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pC) override
         {
-            nsTornadoEngine::Modules()->SceneMng()->Destroy(eid);
-            //nsTornadoEngine::Modules()->SceneMng()->Unload("first scene");
-            //nsTornadoEngine::Modules()->StopAccessor()->SetStop();
+            auto sceneMng = nsTornadoEngine::Modules()->SceneMng();
+            auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
+            auto stopAccessor = nsTornadoEngine::Modules()->StopAccessor();
+            auto entMng = nsTornadoEngine::Modules()->EntMng();
+
+            //sceneMng->Destroy(eid);
+            //sceneMng->Unload("first scene");
+            //stopAccessor->SetStop();
+
+            auto objectRef = entMng->ViewComponent<nsLogicWrapper::TSceneObjectReferenceComponent>(eid);
+            auto prefabRef = entMng->ViewComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid);
+
+            prefabMng->InstantiateByGuid(objectRef->objectGuid, prefabRef->prefabGuid);
         }
     };
 }

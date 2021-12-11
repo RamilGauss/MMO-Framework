@@ -69,3 +69,13 @@ void TModulesAccessor::SetKeyMouse(nsGraphicEngine::TKeyMouseEventContainer* val
     Modules()->keyMouse = value;
 }
 //--------------------------------------------------------------------------
+void TModulesAccessor::SetHandlerCall(THandlerCallCollector* value)
+{
+    Modules()->handlerCallCollector = value;
+}
+//--------------------------------------------------------------------------
+void TModulesAccessor::SetPrefabObjConstructor(TPrefabObjectConstructor* value)
+{
+    Modules()->prefabObjectConstructor = value;
+}
+//--------------------------------------------------------------------------

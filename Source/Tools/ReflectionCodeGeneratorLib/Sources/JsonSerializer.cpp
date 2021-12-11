@@ -37,7 +37,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TClassDesc>((nsReflectionCodeGenerator::TClassDesc*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TClassDescTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TClassDesc>();
+    auto rtti__nsReflectionCodeGenerator_TClassDescTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TClassDesc>();
     
     m.insert({ rtti__nsReflectionCodeGenerator_TClassDescTypeFunc, _nsReflectionCodeGenerator_TClassDescTypeFunc });
     
@@ -49,7 +49,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TConfig>((nsReflectionCodeGenerator::TConfig*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TConfigTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TConfig>();
+    auto rtti__nsReflectionCodeGenerator_TConfigTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TConfig>();
     
     m.insert({ rtti__nsReflectionCodeGenerator_TConfigTypeFunc, _nsReflectionCodeGenerator_TConfigTypeFunc });
     
@@ -61,7 +61,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TExternalSource>((nsReflectionCodeGenerator::TExternalSource*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TExternalSource>();
+    auto rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TExternalSource>();
     
     m.insert({ rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc, _nsReflectionCodeGenerator_TExternalSourceTypeFunc });
     
@@ -73,7 +73,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TExternalSources>((nsReflectionCodeGenerator::TExternalSources*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TExternalSources>();
+    auto rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TExternalSources>();
     
     m.insert({ rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc, _nsReflectionCodeGenerator_TExternalSourcesTypeFunc });
     
@@ -85,7 +85,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TFilter>((nsReflectionCodeGenerator::TFilter*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TFilterTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TFilter>();
+    auto rtti__nsReflectionCodeGenerator_TFilterTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TFilter>();
     
     m.insert({ rtti__nsReflectionCodeGenerator_TFilterTypeFunc, _nsReflectionCodeGenerator_TFilterTypeFunc });
     
@@ -97,7 +97,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TSerializer>((nsReflectionCodeGenerator::TSerializer*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TSerializerTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TSerializer>();
+    auto rtti__nsReflectionCodeGenerator_TSerializerTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TSerializer>();
     
     m.insert({ rtti__nsReflectionCodeGenerator_TSerializerTypeFunc, _nsReflectionCodeGenerator_TSerializerTypeFunc });
     
@@ -109,7 +109,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TTargetForCodeGeneration>((nsReflectionCodeGenerator::TTargetForCodeGeneration*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TTargetForCodeGeneration>();
+    auto rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TTargetForCodeGeneration>();
     
     m.insert({ rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc, _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc });
     
@@ -121,7 +121,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TTargetForParsing>((nsReflectionCodeGenerator::TTargetForParsing*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc = globalTypeIdentifier->type<nsReflectionCodeGenerator::TTargetForParsing>();
+    auto rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TTargetForParsing>();
     
     m.insert({ rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc, _nsReflectionCodeGenerator_TTargetForParsingTypeFunc });
     

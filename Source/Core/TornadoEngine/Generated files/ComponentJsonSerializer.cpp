@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_07 19:36:12.827
+// File has been generated at 2021_12_11 16:12:02.459
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -37,7 +37,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TGuidComponent>((nsCommonWrapper::TGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TGuidComponent>();
+    auto rtti__nsCommonWrapper_TGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TGuidComponentTypeFunc, _nsCommonWrapper_TGuidComponentTypeFunc });
     
@@ -49,7 +49,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TNameComponent>((nsCommonWrapper::TNameComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TNameComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNameComponent>();
+    auto rtti__nsCommonWrapper_TNameComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TNameComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TNameComponentTypeFunc, _nsCommonWrapper_TNameComponentTypeFunc });
     
@@ -61,7 +61,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TNeedDestroyPrefabComponent>((nsCommonWrapper::TNeedDestroyPrefabComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNeedDestroyPrefabComponent>();
+    auto rtti__nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroyPrefabComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc, _nsCommonWrapper_TNeedDestroyPrefabComponentTypeFunc });
     
@@ -73,7 +73,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TNeedDestroySceneComponent>((nsCommonWrapper::TNeedDestroySceneComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TNeedDestroySceneComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNeedDestroySceneComponent>();
+    auto rtti__nsCommonWrapper_TNeedDestroySceneComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroySceneComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TNeedDestroySceneComponentTypeFunc, _nsCommonWrapper_TNeedDestroySceneComponentTypeFunc });
     
@@ -85,7 +85,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TNeedUnloadPrefabComponent>((nsCommonWrapper::TNeedUnloadPrefabComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNeedUnloadPrefabComponent>();
+    auto rtti__nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TNeedUnloadPrefabComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc, _nsCommonWrapper_TNeedUnloadPrefabComponentTypeFunc });
     
@@ -97,7 +97,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TNeedUnloadSceneComponent>((nsCommonWrapper::TNeedUnloadSceneComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TNeedUnloadSceneComponent>();
+    auto rtti__nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TNeedUnloadSceneComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc, _nsCommonWrapper_TNeedUnloadSceneComponentTypeFunc });
     
@@ -109,7 +109,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TObjectInMemoryComponent>((nsCommonWrapper::TObjectInMemoryComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TObjectInMemoryComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TObjectInMemoryComponent>();
+    auto rtti__nsCommonWrapper_TObjectInMemoryComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TObjectInMemoryComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TObjectInMemoryComponentTypeFunc, _nsCommonWrapper_TObjectInMemoryComponentTypeFunc });
     
@@ -121,7 +121,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TParentGuidComponent>((nsCommonWrapper::TParentGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TParentGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TParentGuidComponent>();
+    auto rtti__nsCommonWrapper_TParentGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TParentGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TParentGuidComponentTypeFunc, _nsCommonWrapper_TParentGuidComponentTypeFunc });
     
@@ -133,7 +133,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TPrefabGuidComponent>((nsCommonWrapper::TPrefabGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TPrefabGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TPrefabGuidComponent>();
+    auto rtti__nsCommonWrapper_TPrefabGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TPrefabGuidComponentTypeFunc, _nsCommonWrapper_TPrefabGuidComponentTypeFunc });
     
@@ -145,7 +145,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TPrefabInstanceGuidComponent>((nsCommonWrapper::TPrefabInstanceGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TPrefabInstanceGuidComponent>();
+    auto rtti__nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabInstanceGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc, _nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc });
     
@@ -157,7 +157,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TPrefabOriginalGuidComponent>((nsCommonWrapper::TPrefabOriginalGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TPrefabOriginalGuidComponent>();
+    auto rtti__nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabOriginalGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc, _nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc });
     
@@ -169,7 +169,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TPrefabRootComponent>((nsCommonWrapper::TPrefabRootComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TPrefabRootComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TPrefabRootComponent>();
+    auto rtti__nsCommonWrapper_TPrefabRootComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabRootComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TPrefabRootComponentTypeFunc, _nsCommonWrapper_TPrefabRootComponentTypeFunc });
     
@@ -181,7 +181,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TSceneGuidComponent>((nsCommonWrapper::TSceneGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TSceneGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TSceneGuidComponent>();
+    auto rtti__nsCommonWrapper_TSceneGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TSceneGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TSceneGuidComponentTypeFunc, _nsCommonWrapper_TSceneGuidComponentTypeFunc });
     
@@ -193,7 +193,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TSceneInstanceGuidComponent>((nsCommonWrapper::TSceneInstanceGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TSceneInstanceGuidComponent>();
+    auto rtti__nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TSceneInstanceGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc, _nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc });
     
@@ -205,7 +205,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TSceneOriginalGuidComponent>((nsCommonWrapper::TSceneOriginalGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TSceneOriginalGuidComponent>();
+    auto rtti__nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TSceneOriginalGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc, _nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc });
     
@@ -217,7 +217,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TSceneRootComponent>((nsCommonWrapper::TSceneRootComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TSceneRootComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TSceneRootComponent>();
+    auto rtti__nsCommonWrapper_TSceneRootComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TSceneRootComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TSceneRootComponentTypeFunc, _nsCommonWrapper_TSceneRootComponentTypeFunc });
     
@@ -229,7 +229,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsCommonWrapper::TTransformComponent>((nsCommonWrapper::TTransformComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TTransformComponentTypeFunc = globalTypeIdentifier->type<nsCommonWrapper::TTransformComponent>();
+    auto rtti__nsCommonWrapper_TTransformComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TTransformComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TTransformComponentTypeFunc, _nsCommonWrapper_TTransformComponentTypeFunc });
     
@@ -241,7 +241,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGraphicWrapper::TCameraComponent>((nsGraphicWrapper::TCameraComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TCameraComponentTypeFunc = globalTypeIdentifier->type<nsGraphicWrapper::TCameraComponent>();
+    auto rtti__nsGraphicWrapper_TCameraComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraComponent>();
     
     m.insert({ rtti__nsGraphicWrapper_TCameraComponentTypeFunc, _nsGraphicWrapper_TCameraComponentTypeFunc });
     
@@ -253,7 +253,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGraphicWrapper::TLightComponent>((nsGraphicWrapper::TLightComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TLightComponentTypeFunc = globalTypeIdentifier->type<nsGraphicWrapper::TLightComponent>();
+    auto rtti__nsGraphicWrapper_TLightComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TLightComponent>();
     
     m.insert({ rtti__nsGraphicWrapper_TLightComponentTypeFunc, _nsGraphicWrapper_TLightComponentTypeFunc });
     
@@ -265,7 +265,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TButtonClickHandlerComponent>((nsGuiWrapper::TButtonClickHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TButtonClickHandlerComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TButtonClickHandlerComponent>();
+    auto rtti__nsGuiWrapper_TButtonClickHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TButtonClickHandlerComponentTypeFunc, _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc });
     
@@ -277,7 +277,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TButtonComponent>((nsGuiWrapper::TButtonComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TButtonComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TButtonComponent>();
+    auto rtti__nsGuiWrapper_TButtonComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TButtonComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TButtonComponentTypeFunc, _nsGuiWrapper_TButtonComponentTypeFunc });
     
@@ -289,7 +289,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TFocusComponent>((nsGuiWrapper::TFocusComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TFocusComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TFocusComponent>();
+    auto rtti__nsGuiWrapper_TFocusComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TFocusComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TFocusComponentTypeFunc, _nsGuiWrapper_TFocusComponentTypeFunc });
     
@@ -301,7 +301,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TFrameComponent>((nsGuiWrapper::TFrameComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TFrameComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TFrameComponent>();
+    auto rtti__nsGuiWrapper_TFrameComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TFrameComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TFrameComponentTypeFunc, _nsGuiWrapper_TFrameComponentTypeFunc });
     
@@ -313,7 +313,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TMainWindowComponent>((nsGuiWrapper::TMainWindowComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TMainWindowComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TMainWindowComponent>();
+    auto rtti__nsGuiWrapper_TMainWindowComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMainWindowComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TMainWindowComponentTypeFunc, _nsGuiWrapper_TMainWindowComponentTypeFunc });
     
@@ -325,7 +325,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TPositionComponent>((nsGuiWrapper::TPositionComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TPositionComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TPositionComponent>();
+    auto rtti__nsGuiWrapper_TPositionComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TPositionComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TPositionComponentTypeFunc, _nsGuiWrapper_TPositionComponentTypeFunc });
     
@@ -337,7 +337,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TSizeComponent>((nsGuiWrapper::TSizeComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TSizeComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TSizeComponent>();
+    auto rtti__nsGuiWrapper_TSizeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TSizeComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TSizeComponentTypeFunc, _nsGuiWrapper_TSizeComponentTypeFunc });
     
@@ -349,7 +349,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TTitleComponent>((nsGuiWrapper::TTitleComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TTitleComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TTitleComponent>();
+    auto rtti__nsGuiWrapper_TTitleComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TTitleComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TTitleComponentTypeFunc, _nsGuiWrapper_TTitleComponentTypeFunc });
     
@@ -361,7 +361,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TVisibilityComponent>((nsGuiWrapper::TVisibilityComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TVisibilityComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TVisibilityComponent>();
+    auto rtti__nsGuiWrapper_TVisibilityComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TVisibilityComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TVisibilityComponentTypeFunc, _nsGuiWrapper_TVisibilityComponentTypeFunc });
     
@@ -373,7 +373,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsGuiWrapper::TWindowComponent>((nsGuiWrapper::TWindowComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TWindowComponentTypeFunc = globalTypeIdentifier->type<nsGuiWrapper::TWindowComponent>();
+    auto rtti__nsGuiWrapper_TWindowComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TWindowComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TWindowComponentTypeFunc, _nsGuiWrapper_TWindowComponentTypeFunc });
     
@@ -385,7 +385,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsLogicWrapper::TFeatureComponent>((nsLogicWrapper::TFeatureComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TFeatureComponentTypeFunc = globalTypeIdentifier->type<nsLogicWrapper::TFeatureComponent>();
+    auto rtti__nsLogicWrapper_TFeatureComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TFeatureComponent>();
     
     m.insert({ rtti__nsLogicWrapper_TFeatureComponentTypeFunc, _nsLogicWrapper_TFeatureComponentTypeFunc });
     
@@ -397,7 +397,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsLogicWrapper::TPrefabObjectReferenceComponent>((nsLogicWrapper::TPrefabObjectReferenceComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc = globalTypeIdentifier->type<nsLogicWrapper::TPrefabObjectReferenceComponent>();
+    auto rtti__nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabObjectReferenceComponent>();
     
     m.insert({ rtti__nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc, _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc });
     
@@ -409,7 +409,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsLogicWrapper::TPrefabReferenceComponent>((nsLogicWrapper::TPrefabReferenceComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TPrefabReferenceComponentTypeFunc = globalTypeIdentifier->type<nsLogicWrapper::TPrefabReferenceComponent>();
+    auto rtti__nsLogicWrapper_TPrefabReferenceComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabReferenceComponent>();
     
     m.insert({ rtti__nsLogicWrapper_TPrefabReferenceComponentTypeFunc, _nsLogicWrapper_TPrefabReferenceComponentTypeFunc });
     
@@ -421,7 +421,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsLogicWrapper::TSceneObjectReferenceComponent>((nsLogicWrapper::TSceneObjectReferenceComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc = globalTypeIdentifier->type<nsLogicWrapper::TSceneObjectReferenceComponent>();
+    auto rtti__nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TSceneObjectReferenceComponent>();
     
     m.insert({ rtti__nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc, _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc });
     
@@ -433,7 +433,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsLogicWrapper::TSceneReferenceComponent>((nsLogicWrapper::TSceneReferenceComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TSceneReferenceComponentTypeFunc = globalTypeIdentifier->type<nsLogicWrapper::TSceneReferenceComponent>();
+    auto rtti__nsLogicWrapper_TSceneReferenceComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TSceneReferenceComponent>();
     
     m.insert({ rtti__nsLogicWrapper_TSceneReferenceComponentTypeFunc, _nsLogicWrapper_TSceneReferenceComponentTypeFunc });
     
@@ -445,7 +445,7 @@ void TComponentJsonSerializer::Init()
         return Deserialize<nsMathTools::TMatrix16>((nsMathTools::TMatrix16*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TMatrix16TypeFunc = globalTypeIdentifier->type<nsMathTools::TMatrix16>();
+    auto rtti__nsMathTools_TMatrix16TypeFunc = globalTypeIdentifier->Type<nsMathTools::TMatrix16>();
     
     m.insert({ rtti__nsMathTools_TMatrix16TypeFunc, _nsMathTools_TMatrix16TypeFunc });
     
