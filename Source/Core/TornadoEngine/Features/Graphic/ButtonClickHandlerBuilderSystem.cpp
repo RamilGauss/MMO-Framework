@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include "ButtonClickHandlerComponent.h"
 
 #include "GuidConstants.h"
+#include "SceneGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
 #include "PrefabOriginalGuidComponent.h"
 
@@ -29,10 +30,18 @@ void TButtonClickHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, c
     auto entMng = GetEntMng();
     if (pButtonClickHandlerComponent->partOfGuid == nsTornadoEngine::TGuidConstants::THIS_SCENE) {
 
+        auto sceneGuid = entMng->ViewComponent<nsCommonWrapper::TSceneGuidComponent>(eid)->value;
+
         nsCommonWrapper::TSceneOriginalGuidComponent sceneOriginalGuidComponent;
         sceneOriginalGuidComponent.value = pButtonClickHandlerComponent->entityGuid;
-        auto targetEid = entMng->GetByUnique(sceneOriginalGuidComponent);
-        if (targetEid != nsECSFramework::NONE) {
+        auto targetEids = entMng->GetByValueCopy(sceneOriginalGuidComponent);
+        for (auto& targetEid : targetEids) {
+
+            auto targetSceneGuid = entMng->ViewComponent<nsCommonWrapper::TSceneGuidComponent>(targetEid)->value;
+            if (targetSceneGuid != sceneGuid) {
+                continue;
+            }
+
             // Handler setup
             auto pButtonComponent = entMng->ViewComponent<nsGuiWrapper::TButtonComponent>(targetEid);
             if (pButtonComponent == nullptr) {

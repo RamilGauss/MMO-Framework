@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 #include "ButtonMakerSystem.h"
 #include "WindowMakerSystem.h"
+#include "DialogMakerSystem.h"
 #include "ButtonClickHandlerMakerSystem.h"
 
 namespace nsGraphicWrapper
@@ -18,6 +19,7 @@ namespace nsGraphicWrapper
     {
         TButtonMakerSystem mButtonMakerSystem;
         TWindowMakerSystem mWindowMakerSystem;
+        TDialogMakerSystem mDialogMakerSystem;
         TButtonClickHandlerMakerSystem mButtonClickHandlerMakerSystem;
     public:
         void InitConveyor() override;

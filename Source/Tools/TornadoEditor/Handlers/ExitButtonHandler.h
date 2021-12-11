@@ -13,6 +13,8 @@ See for more information LICENSE.md.
 #include "StopAccessor.h"
 #include "SceneManager.h"
 
+#include "SceneInstanceGuidComponent.h"
+
 #include "SceneObjectReferenceComponent.h"
 #include "PrefabReferenceComponent.h"
 
@@ -35,7 +37,9 @@ namespace nsTornadoEditor
             auto objectRef = entMng->ViewComponent<nsLogicWrapper::TSceneObjectReferenceComponent>(eid);
             auto prefabRef = entMng->ViewComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid);
 
-            prefabMng->InstantiateByGuid(objectRef->objectGuid, prefabRef->prefabGuid);
+            auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid);
+
+            prefabMng->InstantiateByGuid(objectRef->objectGuid, prefabRef->prefabGuid, sceneInstanceGuid->value);
         }
     };
 }

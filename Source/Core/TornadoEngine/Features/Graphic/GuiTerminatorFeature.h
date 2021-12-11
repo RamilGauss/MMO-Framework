@@ -11,6 +11,8 @@ See for more information LICENSE.md.
 
 #include "ButtonTerminatorSystem.h"
 #include "WindowTerminatorSystem.h"
+#include "DialogTerminatorSystem.h"
+
 #include "ButtonClickHandlerTerminatorSystem.h"
 
 namespace nsGraphicWrapper
@@ -19,6 +21,8 @@ namespace nsGraphicWrapper
     {
         TButtonTerminatorSystem mButtonTerminatorSystem;
         TWindowTerminatorSystem mWindowTerminatorSystem;
+        TDialogTerminatorSystem mDialogTerminatorSystem;
+
         TButtonClickHandlerTerminatorSystem mButtonClickHandlerTerminatorSystem;
     public:
         void InitConveyor() override;

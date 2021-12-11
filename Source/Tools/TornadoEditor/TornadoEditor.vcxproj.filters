@@ -89,6 +89,9 @@
     <None Include="Resources\Resources.json">
       <Filter>Resources</Filter>
     </None>
+    <None Include="Prefabs\Dialog.prefab">
+      <Filter>Prefabs</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

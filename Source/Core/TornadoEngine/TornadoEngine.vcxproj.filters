@@ -315,6 +315,21 @@
     <ClCompile Include="Features\Logic\PrefabFeature.cpp">
       <Filter>Features\Logic\Prefab</Filter>
     </ClCompile>
+    <ClCompile Include="Features\Graphic\DialogMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\DialogBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\DialogTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\DialogPositionUpdaterSystem.cpp">
+      <Filter>Features\Graphic\Updater</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\DialogSizeUpdaterSystem.cpp">
+      <Filter>Features\Graphic\Updater</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -736,6 +751,24 @@
     </ClInclude>
     <ClInclude Include="Features\Logic\PrefabFeature.h">
       <Filter>Features\Logic\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\DialogComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\DialogMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\DialogBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\DialogTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\DialogPositionUpdaterSystem.h">
+      <Filter>Features\Graphic\Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\DialogSizeUpdaterSystem.h">
+      <Filter>Features\Graphic\Updater</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

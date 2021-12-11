@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 
 #include "MainWindowComponent.h"
 #include "WindowComponent.h"
+#include "DialogComponent.h"
 #include "FrameComponent.h"
 
 using namespace nsGraphicWrapper;
@@ -37,24 +38,37 @@ void TUnitBuilderHelper::SetupButton(nsECSFramework::TEntityManager* entMng,
         return;
     }
 
+    AddWidgetToParent(entMng, parentEid, pButtonComponent->value);
+}
+//-----------------------------------------------------------------------------------------------------------------------
+void TUnitBuilderHelper::AddWidgetToParent(nsECSFramework::TEntityManager* entMng, nsECSFramework::TEntityID parentEid,
+    nsImGuiWidgets::TWidget* pWidget)
+{
     auto isFrame = entMng->HasComponent<nsGuiWrapper::TFrameComponent>(parentEid);
     if (isFrame) {
         auto pFrameComponent = entMng->ViewComponent<nsGuiWrapper::TFrameComponent>(parentEid);
-        pFrameComponent->value->Add(pButtonComponent->value);
+        pFrameComponent->value->Add(pWidget);
+        return;
+    }
+    auto isDialog = entMng->HasComponent<nsGuiWrapper::TDialogComponent>(parentEid);
+    if (isDialog) {
+        auto pDialogComponent = entMng->ViewComponent<nsGuiWrapper::TDialogComponent>(parentEid);
+        pDialogComponent->value->Add(pWidget);
         return;
     }
     auto isWindow = entMng->HasComponent<nsGuiWrapper::TWindowComponent>(parentEid);
     if (isWindow) {
         auto pWindowComponent = entMng->ViewComponent<nsGuiWrapper::TWindowComponent>(parentEid);
-        pWindowComponent->value->Add(pButtonComponent->value);
+        pWindowComponent->value->Add(pWidget);
         return;
     }
     auto isMainWindow = entMng->HasComponent<nsGuiWrapper::TMainWindowComponent>(parentEid);
     if (isMainWindow) {
         auto pMainWindowComponent = entMng->ViewComponent<nsGuiWrapper::TMainWindowComponent>(parentEid);
-        pMainWindowComponent->value->Add(pButtonComponent->value);
+        pMainWindowComponent->value->Add(pWidget);
         return;
     }
 
     BL_FIX_BUG();
 }
+//-----------------------------------------------------------------------------------------------------------------------

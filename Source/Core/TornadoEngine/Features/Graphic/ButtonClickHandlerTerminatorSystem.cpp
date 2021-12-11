@@ -34,8 +34,8 @@ void TButtonClickHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid
 
         nsCommonWrapper::TSceneOriginalGuidComponent sceneOriginalGuidComponent;
         sceneOriginalGuidComponent.value = pButtonClickHandlerComponent->entityGuid;
-        auto targetEid = entMng->GetByUnique(sceneOriginalGuidComponent);
-        if (targetEid != nsECSFramework::NONE) {
+        auto targetEids = entMng->GetByValueCopy(sceneOriginalGuidComponent);
+        for(auto& targetEid : targetEids) {
             // Handler setup
             auto pButtonComponent = entMng->ViewComponent<nsGuiWrapper::TButtonComponent>(targetEid);
             if (pButtonComponent == nullptr) {

@@ -13,4 +13,7 @@ void TGuiUpdaterFeature::InitConveyor()
 {
     Add(&mWindowPositionUpdaterSystem);
     Add(&mWindowSizeUpdaterSystem);
+
+    Add(&mDialogPositionUpdaterSystem);
+    Add(&mDialogSizeUpdaterSystem);
 }

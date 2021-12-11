@@ -2,13 +2,14 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_11 16:12:02.491
+// File has been generated at 2021_12_11 22:31:21.797
 	
 #pragma once
 
 #include "ButtonClickHandlerComponent.h"
 #include "ButtonComponent.h"
 #include "CameraComponent.h"
+#include "DialogComponent.h"
 #include "FeatureComponent.h"
 #include "FocusComponent.h"
 #include "FrameComponent.h"

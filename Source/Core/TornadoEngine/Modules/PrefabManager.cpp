@@ -62,7 +62,8 @@ void TPrefabManager::LoadByObjectInMemory(nsECSFramework::TEntityID eid)
 
 }
 //--------------------------------------------------------------------------------
-void TPrefabManager::InstantiateByAbsPath(const std::string& parentGuid, const std::string& absPath)
+void TPrefabManager::InstantiateByAbsPath(const std::string& parentGuid, const std::string& absPath,
+    const std::string& sceneInstanceGuid)
 {
     auto logger = GetLogger()->Get(TTimeSliceEngine::NAME);
 
@@ -160,9 +161,18 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& parentGuid, const s
 
         nsCommonWrapper::TSceneOriginalGuidComponent parentSceneOriginalGuidComponent;
         parentSceneOriginalGuidComponent.value = parentGuid;
-        parentEid = mEntityManager->GetByUnique(parentSceneOriginalGuidComponent);
+        
+        auto parentEids = mEntityManager->GetByValueCopy(parentSceneOriginalGuidComponent);
+        for (auto& sceneParentEid : parentEids) {
 
-        realParentGuid = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(parentEid)->value;
+            auto sceneInstanceGuidComponent = mEntityManager->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(sceneParentEid);
+            if (sceneInstanceGuid != sceneInstanceGuidComponent->value) {
+                continue;
+            }
+            realParentGuid = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(sceneParentEid)->value;
+            parentEid = sceneParentEid;
+            break;
+        }
     }
 
     nsCommonWrapper::TParentGuidComponent newParentGuidComponent;
@@ -189,7 +199,8 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& parentGuid, const s
     }
 }
 //--------------------------------------------------------------------------------
-void TPrefabManager::InstantiateByGuid(const std::string& parentGuid, const std::string& prefabGuid)
+void TPrefabManager::InstantiateByGuid(const std::string& parentGuid, const std::string& prefabGuid, 
+    const std::string& sceneInstanceGuid)
 {
     // Convert to abs path
     auto fit = mPrefabContentMap.guidPathMap.find(prefabGuid);
@@ -198,7 +209,7 @@ void TPrefabManager::InstantiateByGuid(const std::string& parentGuid, const std:
         return;
     }
 
-    InstantiateByAbsPath(parentGuid, fit->second);
+    InstantiateByAbsPath(parentGuid, fit->second, sceneInstanceGuid);
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::Unload(const std::string& prefabGuid)
@@ -237,7 +248,8 @@ void TPrefabManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
     Destroy(pSceneInstanceGuid->value);
 }
 //--------------------------------------------------------------------------------
-void TPrefabManager::InstanceByObjectInMemory(const std::string& parentGuid, nsECSFramework::TEntityID eid)
+void TPrefabManager::InstanceByObjectInMemory(const std::string& parentGuid, nsECSFramework::TEntityID eid,
+    const std::string& sceneInstanceGuid)
 {
 
 }

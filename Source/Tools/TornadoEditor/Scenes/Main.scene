@@ -119,7 +119,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TPrefabReferenceComponent",
-                    "jsonBody": "{\"prefabGuid\":\"0\"}"
+                    "jsonBody": "{\"prefabGuid\":\"1\"}"
                 },
                 {
                     "typeName": "nsLogicWrapper::TFeatureComponent",

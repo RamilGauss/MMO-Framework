@@ -9,6 +9,8 @@ See for more information LICENSE.md.
 
 #include <ECS/include/EntityManager.h>
 
+#include <ImGuiWidgets/include/Widget.h>
+
 #include "ButtonComponent.h"
 
 namespace nsGraphicWrapper
@@ -18,5 +20,8 @@ namespace nsGraphicWrapper
     public:
         static void SetupButton(nsECSFramework::TEntityManager* entMng,
             nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pButtonComponent);
+
+        static void AddWidgetToParent(nsECSFramework::TEntityManager* entMng, nsECSFramework::TEntityID parentEid,
+            nsImGuiWidgets::TWidget* pWidget);
     };
 }

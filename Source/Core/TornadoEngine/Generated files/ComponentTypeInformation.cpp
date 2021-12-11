@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_11 16:12:02.486
+// File has been generated at 2021_12_11 22:31:21.792
 	
 #include "ComponentTypeInformation.h"
 
@@ -152,6 +152,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TButtonComponent_n);
     mRttiList.push_back(nsGuiWrapper_TButtonComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TButtonComponent_n, nsGuiWrapper_TButtonComponent_i });
+    
+    int nsGuiWrapper_TDialogComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TDialogComponent>();
+    std::string nsGuiWrapper_TDialogComponent_n = "nsGuiWrapper::TDialogComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TDialogComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TDialogComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TDialogComponent_n, nsGuiWrapper_TDialogComponent_i });
     
     int nsGuiWrapper_TFocusComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TFocusComponent>();
     std::string nsGuiWrapper_TFocusComponent_n = "nsGuiWrapper::TFocusComponent";

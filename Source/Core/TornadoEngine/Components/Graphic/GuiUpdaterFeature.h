@@ -12,12 +12,18 @@ See for more information LICENSE.md.
 #include "WindowPositionUpdaterSystem.h"
 #include "WindowSizeUpdaterSystem.h"
 
+#include "DialogPositionUpdaterSystem.h"
+#include "DialogSizeUpdaterSystem.h"
+
 namespace nsGraphicWrapper
 {
     class DllExport TGuiUpdaterFeature : public nsECSFramework::TFeature
     {
         TWindowPositionUpdaterSystem mWindowPositionUpdaterSystem;
         TWindowSizeUpdaterSystem mWindowSizeUpdaterSystem;
+
+        TDialogPositionUpdaterSystem mDialogPositionUpdaterSystem;
+        TDialogSizeUpdaterSystem     mDialogSizeUpdaterSystem;
     public:
         void InitConveyor() override;
     };

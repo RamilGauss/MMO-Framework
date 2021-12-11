@@ -224,6 +224,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Graphic\DialogBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\DialogMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\DialogPositionUpdaterSystem.cpp" />
+    <ClCompile Include="Features\Graphic\DialogSizeUpdaterSystem.cpp" />
+    <ClCompile Include="Features\Graphic\DialogTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\EndGraphicFeature.cpp" />
     <ClCompile Include="Features\Graphic\GuiBuilderFeature.cpp" />
     <ClCompile Include="Features\Graphic\GuiMakerFeature.cpp" />
@@ -307,6 +312,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Graphic\WindowSizeUpdaterSystem.h" />
     <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h" />
     <ClInclude Include="Components\Gui\ButtonComponent.h" />
+    <ClInclude Include="Components\Gui\DialogComponent.h" />
     <ClInclude Include="Components\Gui\FocusComponent.h" />
     <ClInclude Include="Components\Gui\FrameComponent.h" />
     <ClInclude Include="Components\Gui\MainWindowComponent.h" />
@@ -327,6 +333,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonMakerSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonTerminatorSystem.h" />
+    <ClInclude Include="Features\Graphic\DialogBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\DialogMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\DialogPositionUpdaterSystem.h" />
+    <ClInclude Include="Features\Graphic\DialogSizeUpdaterSystem.h" />
+    <ClInclude Include="Features\Graphic\DialogTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\EndGraphicFeature.h" />
     <ClInclude Include="Features\Graphic\GuiBuilderFeature.h" />
     <ClInclude Include="Features\Graphic\GuiMakerFeature.h" />

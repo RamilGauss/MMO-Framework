@@ -31,7 +31,7 @@
     os_build=Windows
 
 [full_requires]
-    boost/1.77.0:e25da6736836401d14d18eb2361204b3783cc5f4
+    boost/1.76.0:ab588f36a0075e9aa44513754e8d90bb30065e85
     bullet3/2.89:d057732059ea44a47760900cb5e4855d2bea8714
     bzip2/1.0.8:589a23dff5fdb23a7fb851223eb766480ead0a9a
     fmt/8.0.1:c78baded34c8958386c75d3c49a34ce6e77a9de7
@@ -44,7 +44,6 @@
 
 [full_options]
     boost:asio_no_deprecated=False
-    boost:buildid=None
     boost:bzip2=True
     boost:debug_level=0
     boost:diagnostic_definitions=False
@@ -61,7 +60,7 @@
     boost:multithreading=True
     boost:namespace=boost
     boost:namespace_alias=False
-    boost:numa=True
+    boost:numa=False
     boost:pch=True
     boost:python_executable=None
     boost:python_version=None

@@ -131,6 +131,9 @@
     <ClInclude Include="include\TreeNode.h">
       <Filter>Nodes</Filter>
     </ClInclude>
+    <ClInclude Include="include\Dialog.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Helper.cpp">
@@ -234,6 +237,9 @@
     </ClCompile>
     <ClCompile Include="src\TreeNode.cpp">
       <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Dialog.cpp">
+      <Filter>Frames</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

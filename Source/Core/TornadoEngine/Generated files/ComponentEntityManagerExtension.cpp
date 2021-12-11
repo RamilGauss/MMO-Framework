@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_11 16:12:02.477
+// File has been generated at 2021_12_11 22:31:21.785
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -295,6 +295,19 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsGuiWrapper_TButtonComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TButtonComponent>();
     
     m.insert({ rtti_nsGuiWrapper_TButtonComponent_Data, nsGuiWrapper_TButtonComponent_Data });
+    
+    Data nsGuiWrapper_TDialogComponent_Data;
+        nsGuiWrapper_TDialogComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TDialogComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TDialogComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TDialogComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TDialogComponent*)p), isNotify); };
+    nsGuiWrapper_TDialogComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TDialogComponent>(eid); };
+    nsGuiWrapper_TDialogComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TDialogComponent>(eid); };
+    nsGuiWrapper_TDialogComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TDialogComponent>(eid); };
+    auto rtti_nsGuiWrapper_TDialogComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TDialogComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TDialogComponent_Data, nsGuiWrapper_TDialogComponent_Data });
     
     Data nsGuiWrapper_TFocusComponent_Data;
         nsGuiWrapper_TFocusComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_11 16:12:02.459
+// File has been generated at 2021_12_11 22:31:21.767
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -280,6 +280,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGuiWrapper_TButtonComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TButtonComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TButtonComponentTypeFunc, _nsGuiWrapper_TButtonComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_TDialogComponentTypeFunc;
+    _nsGuiWrapper_TDialogComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TDialogComponent>((nsGuiWrapper::TDialogComponent*) p, str);
+    };
+    _nsGuiWrapper_TDialogComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TDialogComponent>((nsGuiWrapper::TDialogComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TDialogComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TDialogComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TDialogComponentTypeFunc, _nsGuiWrapper_TDialogComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TFocusComponentTypeFunc;
     _nsGuiWrapper_TFocusComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -684,6 +696,14 @@ void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TButtonComponent* p, Job
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TButtonComponent* p, const Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TDialogComponent* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TDialogComponent* p, const Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------
