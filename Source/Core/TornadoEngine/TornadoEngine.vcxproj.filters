@@ -770,6 +770,24 @@
     <ClInclude Include="Features\Graphic\DialogSizeUpdaterSystem.h">
       <Filter>Features\Graphic\Updater</Filter>
     </ClInclude>
+    <ClInclude Include="Features\Graphic\HandlerLinkHelper.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IDialogVisibilityHandler.h">
+      <Filter>Handlers\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IWindowVisibilityHandler.h">
+      <Filter>Handlers\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\DialogVisibilityHandlerComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\WindowVisibilityHandlerComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\HandlerTarget.h">
+      <Filter>Components\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />

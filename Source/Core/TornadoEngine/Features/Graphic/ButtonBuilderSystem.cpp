@@ -15,91 +15,43 @@ See for more information LICENSE.md.
 
 #include "ButtonClickHandlerComponent.h"
 
-#include "PrefabGuidComponent.h"
 #include "PrefabOriginalGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
-#include "GuidConstants.h"
 
 #include "Modules.h"
 #include "HandlerCallCollector.h"
 
+#include "HandlerLinkHelper.h"
+
 using namespace nsGraphicWrapper;
+using namespace nsGuiWrapper;
 
 // Prefab or scene
 void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pButtonComponent)
 {
-    auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
     auto entMng = GetEntMng();
 
-    auto titleComponent = entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid);
+    auto titleComponent = entMng->ViewComponent<TTitleComponent>(eid);
     pButtonComponent->value->SetTitle(titleComponent->value);
 
     TUnitBuilderHelper::SetupButton(entMng, eid, pButtonComponent);
 
-    auto buttonClickHandlers = entMng->GetByHasCopy<nsGuiWrapper::TButtonClickHandlerComponent>();
-    if (buttonClickHandlers.size() == 0) {
-        return;
-    }
-
-    auto isPrefabInstance = entMng->HasComponent<nsCommonWrapper::TPrefabOriginalGuidComponent>(eid);
-    auto isSceneInstance = entMng->HasComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid);
-
-    // Handler setup
-    if (isSceneInstance) {
-        auto pSceneOriginalGuid = entMng->ViewComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid);
-        for (auto& handlerEid : buttonClickHandlers) {
-            auto handlerComponent = entMng->ViewComponent<nsGuiWrapper::TButtonClickHandlerComponent>(handlerEid);
-            if (handlerComponent->partOfGuid != nsTornadoEngine::TGuidConstants::THIS_SCENE) {
-                continue;
-            }
-            if (handlerComponent->entityGuid != pSceneOriginalGuid->value) {
-                continue;
-            }
-
-            auto handler = handlerComponent->handler;
-            auto isRegistered = pButtonComponent->value->mOnClickCB.IsRegistered(handler);
-            if (isRegistered) {
-                continue;
-            }
-
-            pButtonComponent->value->mOnClickCB.Register(handler, [handlerCallCollector, handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
-            {
-                handlerCallCollector->Add([handler, eid, pButtonComponent]()
-                {
-                    handler->Handle(eid, pButtonComponent);
-                });
-            });
-        }
-    } 
-    if (isPrefabInstance) {
-        auto pPrefabGuid = entMng->ViewComponent<nsCommonWrapper::TPrefabGuidComponent>(eid);
-        if (pPrefabGuid == nullptr) {
+    auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
+    THandlerLinkHelper::LinkToHandler<TButtonClickHandlerComponent>(entMng, eid, pButtonComponent,
+    [pButtonComponent, handlerCallCollector, eid](const TButtonClickHandlerComponent* handlerComponent)
+    {
+        auto handler = handlerComponent->handler;
+        auto isRegistered = pButtonComponent->value->mOnClickCB.IsRegistered(handler);
+        if (isRegistered) {
             return;
         }
 
-        auto pPrefabOriginalGuid = entMng->ViewComponent<nsCommonWrapper::TPrefabOriginalGuidComponent>(eid);
-        for (auto& handlerEid : buttonClickHandlers) {
-            auto handlerComponent = entMng->ViewComponent<nsGuiWrapper::TButtonClickHandlerComponent>(handlerEid);
-            if (handlerComponent->partOfGuid != pPrefabGuid->value) {
-                continue;
-            }
-            if (handlerComponent->entityGuid != pPrefabOriginalGuid->value) {
-                continue;
-            }
-
-            auto handler = handlerComponent->handler;
-            auto isRegistered = pButtonComponent->value->mOnClickCB.IsRegistered(handler);
-            if (isRegistered) {
-                continue;
-            }
-
-            pButtonComponent->value->mOnClickCB.Register(handler, [handlerCallCollector, handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
+        pButtonComponent->value->mOnClickCB.Register(handler, [handlerCallCollector, handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
+        {
+            handlerCallCollector->Add([handler, eid, pButtonComponent]()
             {
-                handlerCallCollector->Add([handler, eid, pButtonComponent]()
-                {
-                    handler->Handle(eid, pButtonComponent);
-                });
+                handler->Handle(eid, pButtonComponent);
             });
-        }
-    }
+        });
+    });
 }

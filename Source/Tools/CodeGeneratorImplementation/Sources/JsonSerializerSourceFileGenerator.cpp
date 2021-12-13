@@ -1489,7 +1489,7 @@ void TJsonSerializerSourceFileGenerator::AddCallingSerializeParent(TInheritanceI
     withinClassTypeNameList.push_back(mCurrentTypeInfo->GetNameSpace());
 
     TMemberExtendedTypeInfo extInfo;
-    extInfo.mNameSpace = pInheritanceInfo->mNameSpace;
+    extInfo.mNameSpace = pInheritanceInfo->mOriginalNameSpace;
     extInfo.mShortType = pInheritanceInfo->mShortTypeName;
 
     auto methodStr = GetSerializeMethod(&extInfo, withinClassTypeNameList);
@@ -1497,7 +1497,10 @@ void TJsonSerializerSourceFileGenerator::AddCallingSerializeParent(TInheritanceI
         return;
     }
 
-    auto str = fmt::format("{}(({}*){}, {});// Inheritances", methodStr, pInheritanceInfo->mLongTypeName, s_TypeObject, s_Obj);
+    TTypeInfo* type = nullptr;
+    auto refType = Find(&extInfo, withinClassTypeNameList, type);
+
+    auto str = fmt::format("{}(({}*){}, {});// Inheritances", methodStr, type->GetTypeNameWithNameSpace(), s_TypeObject, s_Obj);
     Add(str);
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -1507,7 +1510,7 @@ void TJsonSerializerSourceFileGenerator::AddCallingDeserializeParent(TInheritanc
     withinClassTypeNameList.push_back(mCurrentTypeInfo->GetNameSpace());
 
     TMemberExtendedTypeInfo extInfo;
-    extInfo.mNameSpace = pInheritanceInfo->mNameSpace;
+    extInfo.mNameSpace = pInheritanceInfo->mOriginalNameSpace;
     extInfo.mShortType = pInheritanceInfo->mShortTypeName;
 
     auto methodStr = GetDeserializeMethod(&extInfo, withinClassTypeNameList);
@@ -1515,7 +1518,10 @@ void TJsonSerializerSourceFileGenerator::AddCallingDeserializeParent(TInheritanc
         return;
     }
 
-    auto str = fmt::format("{}(({}*){}, {});// Inheritances", methodStr, pInheritanceInfo->mLongTypeName, s_TypeObject, s_Obj);
+    TTypeInfo* type = nullptr;
+    auto refType = Find(&extInfo, withinClassTypeNameList, type);
+
+    auto str = fmt::format("{}(({}*){}, {});// Inheritances", methodStr, type->GetTypeNameWithNameSpace(), s_TypeObject, s_Obj);
     Add(str);
 }
 //-----------------------------------------------------------------------------------------------------------

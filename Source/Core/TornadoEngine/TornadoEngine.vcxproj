@@ -137,6 +137,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4068;4251;4275;4005;4244;4250;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;winmm.lib;Base_d.lib;ECS_d.lib;ImGuiWidgets_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;OgreBites_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;OgreTerrain_d.lib;OgreVolume_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreMain_d.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -290,6 +291,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Common\GuidComponent.h" />
+    <ClInclude Include="Components\Common\HandlerTarget.h" />
     <ClInclude Include="Components\Common\NameComponent.h" />
     <ClInclude Include="Components\Common\NeedDestroyPrefabComponent.h" />
     <ClInclude Include="Components\Common\NeedDestroySceneComponent.h" />
@@ -313,6 +315,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h" />
     <ClInclude Include="Components\Gui\ButtonComponent.h" />
     <ClInclude Include="Components\Gui\DialogComponent.h" />
+    <ClInclude Include="Components\Gui\DialogVisibilityHandlerComponent.h" />
     <ClInclude Include="Components\Gui\FocusComponent.h" />
     <ClInclude Include="Components\Gui\FrameComponent.h" />
     <ClInclude Include="Components\Gui\MainWindowComponent.h" />
@@ -321,6 +324,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\TitleComponent.h" />
     <ClInclude Include="Components\Gui\VisibilityComponent.h" />
     <ClInclude Include="Components\Gui\WindowComponent.h" />
+    <ClInclude Include="Components\Gui\WindowVisibilityHandlerComponent.h" />
     <ClInclude Include="Components\Logic\FeatureComponent.h" />
     <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h" />
     <ClInclude Include="Components\Logic\PrefabReferenceComponent.h" />
@@ -342,6 +346,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Features\Graphic\GuiBuilderFeature.h" />
     <ClInclude Include="Features\Graphic\GuiMakerFeature.h" />
     <ClInclude Include="Features\Graphic\GuiTerminatorFeature.h" />
+    <ClInclude Include="Features\Graphic\HandlerLinkHelper.h" />
     <ClInclude Include="Features\Graphic\UnitBuilderHelper.h" />
     <ClInclude Include="Features\Graphic\WindowBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\WindowMakerSystem.h" />
@@ -374,8 +379,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Generated files\HandlerTypeInformation.h" />
     <ClInclude Include="Generated files\ReflectionIncludeList.h" />
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h" />
+    <ClInclude Include="Handlers\IDialogVisibilityHandler.h" />
     <ClInclude Include="Handlers\IButtonClickHandler.h" />
     <ClInclude Include="Handlers\IHandler.h" />
+    <ClInclude Include="Handlers\IWindowVisibilityHandler.h" />
     <ClInclude Include="Modules\ComponentInMemory.h" />
     <ClInclude Include="Modules\LogicWrapperModule.h" />
     <ClInclude Include="Modules\GuidConstants.h" />

@@ -4,7 +4,7 @@
     lz4/1.9.3
     fmt/8.0.1
     openssl/1.1.1k
-    boost/1.77.0
+    boost/1.76.0
     bullet3/2.89
     gtest/1.10.0
 

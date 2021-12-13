@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include "FrameComponent.h"
 #include "WindowComponent.h"
 #include "FrameComponent.h"
+#include "DialogComponent.h"
 
 #include <ImGuiWidgets/include/Button.h>
 
@@ -32,6 +33,10 @@ void TButtonTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsGu
     auto windowComponent = GetEntMng()->ViewComponent<nsGuiWrapper::TWindowComponent>(parentEid);
     if (windowComponent) {
         windowComponent->value->Replace(pButtonComponent->value);
+    }
+    auto dialogComponent = GetEntMng()->ViewComponent<nsGuiWrapper::TDialogComponent>(parentEid);
+    if (dialogComponent) {
+        dialogComponent->value->Replace(pButtonComponent->value);
     }
 
     delete pButtonComponent->value;

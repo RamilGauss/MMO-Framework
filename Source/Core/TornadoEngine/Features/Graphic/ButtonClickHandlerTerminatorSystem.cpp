@@ -19,55 +19,64 @@ See for more information LICENSE.md.
 #include "SceneOriginalGuidComponent.h"
 #include "PrefabOriginalGuidComponent.h"
 
+#include "HandlerLinkHelper.h"
+
 using namespace nsGraphicWrapper;
 
 void TButtonClickHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid,
     const nsGuiWrapper::TButtonClickHandlerComponent* pButtonClickHandlerComponent)
 {
-    auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
-
-    auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
     auto entMng = GetEntMng();
+    THandlerLinkHelper::UnlinkGui<nsGuiWrapper::TButtonComponent>(entMng, eid, pButtonClickHandlerComponent, 
+    [pButtonClickHandlerComponent](const nsGuiWrapper::TButtonComponent* pButtonComponent)
+    {
+        auto handler = pButtonClickHandlerComponent->handler;
+        pButtonComponent->value->mOnClickCB.Unregister(handler);
+    });
 
-    // Find button and unregister
-    if (pButtonClickHandlerComponent->partOfGuid == nsTornadoEngine::TGuidConstants::THIS_SCENE) {
+    //auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 
-        nsCommonWrapper::TSceneOriginalGuidComponent sceneOriginalGuidComponent;
-        sceneOriginalGuidComponent.value = pButtonClickHandlerComponent->entityGuid;
-        auto targetEids = entMng->GetByValueCopy(sceneOriginalGuidComponent);
-        for(auto& targetEid : targetEids) {
-            // Handler setup
-            auto pButtonComponent = entMng->ViewComponent<nsGuiWrapper::TButtonComponent>(targetEid);
-            if (pButtonComponent == nullptr) {
-                return;
-            }
-            auto handler = pButtonClickHandlerComponent->handler;
-            pButtonComponent->value->mOnClickCB.Unregister(handler);
-        }
-    } else {
-        // Find all instantiated Prefabs
-        nsCommonWrapper::TPrefabOriginalGuidComponent prefabOriginalGuidComponent;
-        prefabOriginalGuidComponent.value = pButtonClickHandlerComponent->entityGuid;
-        auto prefabIriginalEids = entMng->GetByValueCopy(prefabOriginalGuidComponent);
-        if (prefabIriginalEids.size() == 0) {
-            return;
-        }
-        for (auto& eid : prefabIriginalEids) {
-            // Handler setup
-            auto pButtonComponent = entMng->ViewComponent<nsGuiWrapper::TButtonComponent>(eid);
-            if (pButtonComponent == nullptr) {
-                return;
-            }
-            auto handler = pButtonClickHandlerComponent->handler;
-            pButtonComponent->value->mOnClickCB.Unregister(handler);
-        }
-    }
+    //auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
 
-    int rtti;
-    auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pButtonClickHandlerComponent->handlerTypeName, rtti);
-    if (convertResult == false) {
-        logger->WriteF_time("Not converted typename \"%s\"", pButtonClickHandlerComponent->handlerTypeName);
-        return;
-    }
-    handlerReflection->mTypeFactory->Delete(pButtonClickHandlerComponent->handler, rtti);
+    //// Find button and unregister
+    //if (pButtonClickHandlerComponent->partOfGuid == nsTornadoEngine::TGuidConstants::THIS_SCENE) {
+
+    //    nsCommonWrapper::TSceneOriginalGuidComponent sceneOriginalGuidComponent;
+    //    sceneOriginalGuidComponent.value = pButtonClickHandlerComponent->entityGuid;
+    //    auto targetEids = entMng->GetByValueCopy(sceneOriginalGuidComponent);
+    //    for(auto& targetEid : targetEids) {
+    //        // Handler setup
+    //        auto pButtonComponent = entMng->ViewComponent<nsGuiWrapper::TButtonComponent>(targetEid);
+    //        if (pButtonComponent == nullptr) {
+    //            return;
+    //        }
+    //        auto handler = pButtonClickHandlerComponent->handler;
+    //        pButtonComponent->value->mOnClickCB.Unregister(handler);
+    //    }
+    //} else {
+    //    // Find all instantiated Prefabs
+    //    nsCommonWrapper::TPrefabOriginalGuidComponent prefabOriginalGuidComponent;
+    //    prefabOriginalGuidComponent.value = pButtonClickHandlerComponent->entityGuid;
+    //    auto prefabIriginalEids = entMng->GetByValueCopy(prefabOriginalGuidComponent);
+    //    if (prefabIriginalEids.size() == 0) {
+    //        return;
+    //    }
+    //    for (auto& eid : prefabIriginalEids) {
+    //        // Handler setup
+    //        auto pButtonComponent = entMng->ViewComponent<nsGuiWrapper::TButtonComponent>(eid);
+    //        if (pButtonComponent == nullptr) {
+    //            return;
+    //        }
+    //        auto handler = pButtonClickHandlerComponent->handler;
+    //        pButtonComponent->value->mOnClickCB.Unregister(handler);
+    //    }
+    //}
+
+    //int rtti;
+    //auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pButtonClickHandlerComponent->handlerTypeName, rtti);
+    //if (convertResult == false) {
+    //    logger->WriteF_time("Not converted typename \"%s\"", pButtonClickHandlerComponent->handlerTypeName);
+    //    return;
+    //}
+    //handlerReflection->mTypeFactory->Delete(pButtonClickHandlerComponent->handler, rtti);
 }

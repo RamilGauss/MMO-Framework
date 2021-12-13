@@ -12,15 +12,15 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
-#include "IButtonClickHandler.h"
 
-#include "HandlerTarget.h"
-
-namespace nsGuiWrapper
+namespace nsCommonWrapper
 {
-    struct DllExport TButtonClickHandlerComponent : nsCommonWrapper::THandlerTarget, nsECSFramework::IComponent
+    struct DllExport THandlerTarget
     {
-#pragma IGNORE_ATTRIBUTE
-        mutable IButtonClickHandler* handler = nullptr;
+        std::string handlerTypeName;
+
+        // this scene or prefab
+        std::string partOfGuid;
+        std::string entityGuid;
     };
 }

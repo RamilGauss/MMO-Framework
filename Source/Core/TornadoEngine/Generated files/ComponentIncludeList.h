@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_11 22:31:21.797
+// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_13 08:08:50.285
 	
 #pragma once
 
@@ -10,10 +10,12 @@
 #include "ButtonComponent.h"
 #include "CameraComponent.h"
 #include "DialogComponent.h"
+#include "DialogVisibilityHandlerComponent.h"
 #include "FeatureComponent.h"
 #include "FocusComponent.h"
 #include "FrameComponent.h"
 #include "GuidComponent.h"
+#include "HandlerTarget.h"
 #include "LightComponent.h"
 #include "MainWindowComponent.h"
 #include "MathStructs.h"
@@ -42,3 +44,4 @@
 #include "TransformComponent.h"
 #include "VisibilityComponent.h"
 #include "WindowComponent.h"
+#include "WindowVisibilityHandlerComponent.h"

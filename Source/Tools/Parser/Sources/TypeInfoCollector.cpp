@@ -267,6 +267,7 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
         auto ccIndex = inheritance.typeName.rfind(COLON_COLON);
         if (ccIndex != std::string::npos) {
             inheritanceInfo.mShortTypeName = inheritance.typeName.substr(ccIndex + COLON_COLON.length());
+            inheritanceInfo.mOriginalNameSpace = inheritance.typeName.substr(0, ccIndex);
         } else {
             inheritanceInfo.mShortTypeName = inheritance.typeName;
         }

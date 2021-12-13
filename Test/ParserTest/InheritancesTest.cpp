@@ -25,8 +25,9 @@ TEST(Parser, Inheritance)
             if (type->mInheritanceVec[0].mShortTypeName == "TParent") {
                 hasParent = true;
             }
-        }
 
+            ASSERT_EQ(type->mInheritanceVec[0].mOriginalNameSpace, "ParentNamespace");
+        }
     }
     ASSERT_TRUE(hasParent);
 }

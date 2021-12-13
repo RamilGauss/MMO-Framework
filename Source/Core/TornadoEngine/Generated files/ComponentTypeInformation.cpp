@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.3, build 54 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_11 22:31:21.792
+// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_13 08:08:50.279
 	
 #include "ComponentTypeInformation.h"
 
@@ -159,6 +159,12 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TDialogComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TDialogComponent_n, nsGuiWrapper_TDialogComponent_i });
     
+    int nsGuiWrapper_TDialogVisibilityHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TDialogVisibilityHandlerComponent>();
+    std::string nsGuiWrapper_TDialogVisibilityHandlerComponent_n = "nsGuiWrapper::TDialogVisibilityHandlerComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TDialogVisibilityHandlerComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TDialogVisibilityHandlerComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TDialogVisibilityHandlerComponent_n, nsGuiWrapper_TDialogVisibilityHandlerComponent_i });
+    
     int nsGuiWrapper_TFocusComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TFocusComponent>();
     std::string nsGuiWrapper_TFocusComponent_n = "nsGuiWrapper::TFocusComponent";
     mTypeNameList.push_back(nsGuiWrapper_TFocusComponent_n);
@@ -206,6 +212,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TWindowComponent_n);
     mRttiList.push_back(nsGuiWrapper_TWindowComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TWindowComponent_n, nsGuiWrapper_TWindowComponent_i });
+    
+    int nsGuiWrapper_TWindowVisibilityHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TWindowVisibilityHandlerComponent>();
+    std::string nsGuiWrapper_TWindowVisibilityHandlerComponent_n = "nsGuiWrapper::TWindowVisibilityHandlerComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TWindowVisibilityHandlerComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TWindowVisibilityHandlerComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TWindowVisibilityHandlerComponent_n, nsGuiWrapper_TWindowVisibilityHandlerComponent_i });
     
     int nsLogicWrapper_TFeatureComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TFeatureComponent>();
     std::string nsLogicWrapper_TFeatureComponent_n = "nsLogicWrapper::TFeatureComponent";

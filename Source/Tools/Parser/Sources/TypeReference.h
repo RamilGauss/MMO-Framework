@@ -16,6 +16,7 @@ namespace nsCppParser
     struct TTypeReference
     {
         std::string mOriginalName;// In origianl source:  A::B
+        std::string mOriginalNameSpace;// In origianl source:  A
 
         //For searching in TypeManager
         std::string mShortTypeName;// B
