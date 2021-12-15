@@ -2,15 +2,15 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_13 08:08:50.285
+// File has been generated at 2021_12_15 07:42:45.484
 	
 #pragma once
 
 #include "ButtonClickHandlerComponent.h"
 #include "ButtonComponent.h"
 #include "CameraComponent.h"
+#include "DialogCloseEventHandlerComponent.h"
 #include "DialogComponent.h"
-#include "DialogVisibilityHandlerComponent.h"
 #include "FeatureComponent.h"
 #include "FocusComponent.h"
 #include "FrameComponent.h"
@@ -43,5 +43,5 @@
 #include "TitleComponent.h"
 #include "TransformComponent.h"
 #include "VisibilityComponent.h"
+#include "WindowCloseEventHandlerComponent.h"
 #include "WindowComponent.h"
-#include "WindowVisibilityHandlerComponent.h"

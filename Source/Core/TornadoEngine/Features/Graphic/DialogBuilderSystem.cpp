@@ -16,7 +16,15 @@ See for more information LICENSE.md.
 #include "SizeComponent.h"
 #include "TitleComponent.h"
 
+#include "PrefabOriginalGuidComponent.h"
+#include "SceneOriginalGuidComponent.h"
+
+#include "DialogCloseEventHandlerComponent.h"
+#include "HandlerLinkHelper.h"
+#include "HandlerCallCollector.h"
+
 using namespace nsGraphicWrapper;
+using namespace nsGuiWrapper;
 
 void TDialogBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TDialogComponent* pDialogComponent)
 {
@@ -32,4 +40,28 @@ void TDialogBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
 
     auto titleComponent = entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid);
     pDialogComponent->value->SetTitle(titleComponent->value);
+
+    auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
+    THandlerLinkHelper::LinkToHandler<TDialogCloseEventHandlerComponent>(entMng, eid, pDialogComponent,
+        [pDialogComponent, handlerCallCollector, eid](const TDialogCloseEventHandlerComponent* handlerComponent)
+    {
+        auto handler = handlerComponent->handler;
+        auto isRegistered = pDialogComponent->value->mOnShowCB.IsRegistered(handler);
+        if (isRegistered) {
+            return;
+        }
+
+        pDialogComponent->value->mOnShowCB.Register(handler, [handlerCallCollector, handler, eid, pDialogComponent](bool isShown)
+        {
+            if (isShown) {
+                return;
+            }
+
+            handlerCallCollector->Add([handler, eid, pDialogComponent]()
+            {
+                handler->Handle(eid, pDialogComponent);
+            });
+        });
+    });
+
 }

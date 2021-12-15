@@ -14,5 +14,7 @@ void TGuiBuilderFeature::InitConveyor()
     Add(&mButtonBuilderSystem);
     Add(&mWindowBuilderSystem);
     Add(&mDialogBuilderSystem);
+    
     Add(&mButtonClickHandlerBuilderSystem);
+    Add(&mDialogCloseEventHandlerBuilderSystem);
 }

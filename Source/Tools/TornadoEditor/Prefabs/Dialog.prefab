@@ -44,6 +44,62 @@
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"First dialog\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TDialogCloseEventHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"partOfGuid\":\"Dialog\", \"entityGuid\":\"Dialog_0\"}"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"Dialog_1\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Button\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"Dialog_0\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
+                    "jsonBody": "{\"value\":\"Dialog\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\":80, \"y\":40}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\":100, \"y\":20}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"Close dialog\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TExitButtonClickHandler\", \"partOfGuid\":\"Dialog\", \"entityGuid\":\"Dialog_1\"}"
+                },
+                {
+                    "typeName": "nsLogicWrapper::TSceneObjectReferenceComponent",
+                    "jsonBody": "{\"objectGuid\":\"Dialog_0\"}"
+                },
+                {
+                    "typeName": "nsLogicWrapper::TPrefabReferenceComponent",
+                    "jsonBody": "{\"prefabGuid\":\"1\"}"
                 }
             ]
         }

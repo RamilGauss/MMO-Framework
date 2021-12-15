@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_13 08:08:50.270
+// File has been generated at 2021_12_15 07:42:45.471
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -296,6 +296,19 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsGuiWrapper_TButtonComponent_Data, nsGuiWrapper_TButtonComponent_Data });
     
+    Data nsGuiWrapper_TDialogCloseEventHandlerComponent_Data;
+        nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TDialogCloseEventHandlerComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TDialogCloseEventHandlerComponent*)p), isNotify); };
+    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid); };
+    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid); };
+    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid); };
+    auto rtti_nsGuiWrapper_TDialogCloseEventHandlerComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TDialogCloseEventHandlerComponent_Data, nsGuiWrapper_TDialogCloseEventHandlerComponent_Data });
+    
     Data nsGuiWrapper_TDialogComponent_Data;
         nsGuiWrapper_TDialogComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
         auto lambda = [&](nsGuiWrapper::TDialogComponent* pC){ onAfterCreation((void*)pC); };
@@ -308,19 +321,6 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsGuiWrapper_TDialogComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TDialogComponent>();
     
     m.insert({ rtti_nsGuiWrapper_TDialogComponent_Data, nsGuiWrapper_TDialogComponent_Data });
-    
-    Data nsGuiWrapper_TDialogVisibilityHandlerComponent_Data;
-        nsGuiWrapper_TDialogVisibilityHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
-        auto lambda = [&](nsGuiWrapper::TDialogVisibilityHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TDialogVisibilityHandlerComponent>(eid, lambda, isNotify);
-    };
-    nsGuiWrapper_TDialogVisibilityHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TDialogVisibilityHandlerComponent*)p), isNotify); };
-    nsGuiWrapper_TDialogVisibilityHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TDialogVisibilityHandlerComponent>(eid); };
-    nsGuiWrapper_TDialogVisibilityHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TDialogVisibilityHandlerComponent>(eid); };
-    nsGuiWrapper_TDialogVisibilityHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TDialogVisibilityHandlerComponent>(eid); };
-    auto rtti_nsGuiWrapper_TDialogVisibilityHandlerComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TDialogVisibilityHandlerComponent>();
-    
-    m.insert({ rtti_nsGuiWrapper_TDialogVisibilityHandlerComponent_Data, nsGuiWrapper_TDialogVisibilityHandlerComponent_Data });
     
     Data nsGuiWrapper_TFocusComponent_Data;
         nsGuiWrapper_TFocusComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
@@ -413,6 +413,19 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsGuiWrapper_TVisibilityComponent_Data, nsGuiWrapper_TVisibilityComponent_Data });
     
+    Data nsGuiWrapper_TWindowCloseEventHandlerComponent_Data;
+        nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TWindowCloseEventHandlerComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TWindowCloseEventHandlerComponent*)p), isNotify); };
+    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid); };
+    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid); };
+    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid); };
+    auto rtti_nsGuiWrapper_TWindowCloseEventHandlerComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TWindowCloseEventHandlerComponent_Data, nsGuiWrapper_TWindowCloseEventHandlerComponent_Data });
+    
     Data nsGuiWrapper_TWindowComponent_Data;
         nsGuiWrapper_TWindowComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
         auto lambda = [&](nsGuiWrapper::TWindowComponent* pC){ onAfterCreation((void*)pC); };
@@ -425,19 +438,6 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsGuiWrapper_TWindowComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TWindowComponent>();
     
     m.insert({ rtti_nsGuiWrapper_TWindowComponent_Data, nsGuiWrapper_TWindowComponent_Data });
-    
-    Data nsGuiWrapper_TWindowVisibilityHandlerComponent_Data;
-        nsGuiWrapper_TWindowVisibilityHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
-        auto lambda = [&](nsGuiWrapper::TWindowVisibilityHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TWindowVisibilityHandlerComponent>(eid, lambda, isNotify);
-    };
-    nsGuiWrapper_TWindowVisibilityHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TWindowVisibilityHandlerComponent*)p), isNotify); };
-    nsGuiWrapper_TWindowVisibilityHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TWindowVisibilityHandlerComponent>(eid); };
-    nsGuiWrapper_TWindowVisibilityHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TWindowVisibilityHandlerComponent>(eid); };
-    nsGuiWrapper_TWindowVisibilityHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TWindowVisibilityHandlerComponent>(eid); };
-    auto rtti_nsGuiWrapper_TWindowVisibilityHandlerComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TWindowVisibilityHandlerComponent>();
-    
-    m.insert({ rtti_nsGuiWrapper_TWindowVisibilityHandlerComponent_Data, nsGuiWrapper_TWindowVisibilityHandlerComponent_Data });
     
     Data nsLogicWrapper_TFeatureComponent_Data;
         nsLogicWrapper_TFeatureComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

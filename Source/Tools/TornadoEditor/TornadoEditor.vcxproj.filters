@@ -231,5 +231,8 @@
     <ClInclude Include="Handlers\DeleteOnButtonClickHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="Handlers\OnCloseDialogHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

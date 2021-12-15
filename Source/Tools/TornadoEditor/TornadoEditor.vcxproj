@@ -293,6 +293,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
     <ClInclude Include="Handlers\DeleteOnButtonClickHandler.h" />
     <ClInclude Include="Handlers\ExitButtonHandler.h" />
+    <ClInclude Include="Handlers\OnCloseDialogHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include "WindowMakerSystem.h"
 #include "DialogMakerSystem.h"
 #include "ButtonClickHandlerMakerSystem.h"
+#include "DialogCloseEventHandlerMakerSystem.h"
 
 namespace nsGraphicWrapper
 {
@@ -20,7 +21,9 @@ namespace nsGraphicWrapper
         TButtonMakerSystem mButtonMakerSystem;
         TWindowMakerSystem mWindowMakerSystem;
         TDialogMakerSystem mDialogMakerSystem;
+        
         TButtonClickHandlerMakerSystem mButtonClickHandlerMakerSystem;
+        TDialogCloseEventHandlerMakerSystem mDialogCloseEventHandlerMakerSystem;
     public:
         void InitConveyor() override;
     };

@@ -330,6 +330,15 @@
     <ClCompile Include="Features\Graphic\DialogSizeUpdaterSystem.cpp">
       <Filter>Features\Graphic\Updater</Filter>
     </ClCompile>
+    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -773,20 +782,29 @@
     <ClInclude Include="Features\Graphic\HandlerLinkHelper.h">
       <Filter>Features\Graphic\Builder</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IDialogVisibilityHandler.h">
+    <ClInclude Include="Handlers\IDialogCloseEventHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IWindowVisibilityHandler.h">
+    <ClInclude Include="Handlers\IWindowCloseEventHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\DialogVisibilityHandlerComponent.h">
+    <ClInclude Include="Components\Gui\DialogCloseEventHandlerComponent.h">
       <Filter>Components\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\WindowVisibilityHandlerComponent.h">
+    <ClInclude Include="Components\Gui\WindowCloseEventHandlerComponent.h">
       <Filter>Components\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\HandlerTarget.h">
       <Filter>Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

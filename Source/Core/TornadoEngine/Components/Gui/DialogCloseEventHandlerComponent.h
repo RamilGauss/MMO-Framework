@@ -12,15 +12,15 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
-#include "IDialogVisibilityHandler.h"
+#include "IDialogCloseEventHandler.h"
 
 #include "HandlerTarget.h"
 
 namespace nsGuiWrapper
 {
-    struct DllExport TDialogVisibilityHandlerComponent : nsCommonWrapper::THandlerTarget, nsECSFramework::IComponent
+    struct DllExport TDialogCloseEventHandlerComponent : nsCommonWrapper::THandlerTarget, nsECSFramework::IComponent
     {
 #pragma IGNORE_ATTRIBUTE
-        mutable IDialogVisibilityHandler* handler = nullptr;
+        mutable IDialogCloseEventHandler* handler = nullptr;
     };
 }

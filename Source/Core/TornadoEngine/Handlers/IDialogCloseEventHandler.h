@@ -11,13 +11,13 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Config.h>
 
-#include "WindowComponent.h"
+#include "DialogComponent.h"
 
 namespace nsGuiWrapper
 {
-    class DllExport IWindowVisibilityHandler : public nsTornadoEngine::IHandler
+    class DllExport IDialogCloseEventHandler : public nsTornadoEngine::IHandler
     {
     public:
-        virtual void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TWindowComponent* pC, bool isShown) = 0;
+        virtual void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TDialogComponent* pC) = 0;
     };
 }

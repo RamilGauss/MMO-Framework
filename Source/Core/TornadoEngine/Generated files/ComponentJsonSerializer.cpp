@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_13 08:08:50.251
+// File has been generated at 2021_12_15 07:42:45.453
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -293,6 +293,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGuiWrapper_TButtonComponentTypeFunc, _nsGuiWrapper_TButtonComponentTypeFunc });
     
+    TypeFunc _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc;
+    _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TDialogCloseEventHandlerComponent>((nsGuiWrapper::TDialogCloseEventHandlerComponent*) p, str);
+    };
+    _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TDialogCloseEventHandlerComponent>((nsGuiWrapper::TDialogCloseEventHandlerComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc, _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc });
+    
     TypeFunc _nsGuiWrapper_TDialogComponentTypeFunc;
     _nsGuiWrapper_TDialogComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TDialogComponent>((nsGuiWrapper::TDialogComponent*) p, str);
@@ -304,18 +316,6 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGuiWrapper_TDialogComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TDialogComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TDialogComponentTypeFunc, _nsGuiWrapper_TDialogComponentTypeFunc });
-    
-    TypeFunc _nsGuiWrapper_TDialogVisibilityHandlerComponentTypeFunc;
-    _nsGuiWrapper_TDialogVisibilityHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TDialogVisibilityHandlerComponent>((nsGuiWrapper::TDialogVisibilityHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TDialogVisibilityHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TDialogVisibilityHandlerComponent>((nsGuiWrapper::TDialogVisibilityHandlerComponent*) p, str, err);
-    };
-    
-    auto rtti__nsGuiWrapper_TDialogVisibilityHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TDialogVisibilityHandlerComponent>();
-    
-    m.insert({ rtti__nsGuiWrapper_TDialogVisibilityHandlerComponentTypeFunc, _nsGuiWrapper_TDialogVisibilityHandlerComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TFocusComponentTypeFunc;
     _nsGuiWrapper_TFocusComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -401,6 +401,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGuiWrapper_TVisibilityComponentTypeFunc, _nsGuiWrapper_TVisibilityComponentTypeFunc });
     
+    TypeFunc _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc;
+    _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TWindowCloseEventHandlerComponent>((nsGuiWrapper::TWindowCloseEventHandlerComponent*) p, str);
+    };
+    _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TWindowCloseEventHandlerComponent>((nsGuiWrapper::TWindowCloseEventHandlerComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc, _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc });
+    
     TypeFunc _nsGuiWrapper_TWindowComponentTypeFunc;
     _nsGuiWrapper_TWindowComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TWindowComponent>((nsGuiWrapper::TWindowComponent*) p, str);
@@ -412,18 +424,6 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGuiWrapper_TWindowComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TWindowComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TWindowComponentTypeFunc, _nsGuiWrapper_TWindowComponentTypeFunc });
-    
-    TypeFunc _nsGuiWrapper_TWindowVisibilityHandlerComponentTypeFunc;
-    _nsGuiWrapper_TWindowVisibilityHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TWindowVisibilityHandlerComponent>((nsGuiWrapper::TWindowVisibilityHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TWindowVisibilityHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TWindowVisibilityHandlerComponent>((nsGuiWrapper::TWindowVisibilityHandlerComponent*) p, str, err);
-    };
-    
-    auto rtti__nsGuiWrapper_TWindowVisibilityHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TWindowVisibilityHandlerComponent>();
-    
-    m.insert({ rtti__nsGuiWrapper_TWindowVisibilityHandlerComponentTypeFunc, _nsGuiWrapper_TWindowVisibilityHandlerComponentTypeFunc });
     
     TypeFunc _nsLogicWrapper_TFeatureComponentTypeFunc;
     _nsLogicWrapper_TFeatureComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -745,22 +745,22 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TButtonComponent* p, c
 {
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TDialogCloseEventHandlerComponent* p, Jobj& obj)
+{
+    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TDialogCloseEventHandlerComponent* p, const Jobj& obj)
+{
+    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TDialogComponent* p, Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TDialogComponent* p, const Jobj& obj)
 {
-}
-//---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TDialogVisibilityHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TDialogVisibilityHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TFocusComponent* p, Jobj& obj)
@@ -831,22 +831,22 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TVisibilityComponent* 
     POM::PopBool(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TWindowCloseEventHandlerComponent* p, Jobj& obj)
+{
+    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TWindowCloseEventHandlerComponent* p, const Jobj& obj)
+{
+    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TWindowComponent* p, Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TWindowComponent* p, const Jobj& obj)
 {
-}
-//---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TWindowVisibilityHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TWindowVisibilityHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsLogicWrapper::TFeatureComponent* p, Jobj& obj)

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_13 08:08:50.279
+// File has been generated at 2021_12_15 07:42:45.479
 	
 #include "ComponentTypeInformation.h"
 
@@ -153,17 +153,17 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TButtonComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TButtonComponent_n, nsGuiWrapper_TButtonComponent_i });
     
+    int nsGuiWrapper_TDialogCloseEventHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
+    std::string nsGuiWrapper_TDialogCloseEventHandlerComponent_n = "nsGuiWrapper::TDialogCloseEventHandlerComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TDialogCloseEventHandlerComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TDialogCloseEventHandlerComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TDialogCloseEventHandlerComponent_n, nsGuiWrapper_TDialogCloseEventHandlerComponent_i });
+    
     int nsGuiWrapper_TDialogComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TDialogComponent>();
     std::string nsGuiWrapper_TDialogComponent_n = "nsGuiWrapper::TDialogComponent";
     mTypeNameList.push_back(nsGuiWrapper_TDialogComponent_n);
     mRttiList.push_back(nsGuiWrapper_TDialogComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TDialogComponent_n, nsGuiWrapper_TDialogComponent_i });
-    
-    int nsGuiWrapper_TDialogVisibilityHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TDialogVisibilityHandlerComponent>();
-    std::string nsGuiWrapper_TDialogVisibilityHandlerComponent_n = "nsGuiWrapper::TDialogVisibilityHandlerComponent";
-    mTypeNameList.push_back(nsGuiWrapper_TDialogVisibilityHandlerComponent_n);
-    mRttiList.push_back(nsGuiWrapper_TDialogVisibilityHandlerComponent_i);
-    mNameRttiMap.insert({ nsGuiWrapper_TDialogVisibilityHandlerComponent_n, nsGuiWrapper_TDialogVisibilityHandlerComponent_i });
     
     int nsGuiWrapper_TFocusComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TFocusComponent>();
     std::string nsGuiWrapper_TFocusComponent_n = "nsGuiWrapper::TFocusComponent";
@@ -207,17 +207,17 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TVisibilityComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TVisibilityComponent_n, nsGuiWrapper_TVisibilityComponent_i });
     
+    int nsGuiWrapper_TWindowCloseEventHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
+    std::string nsGuiWrapper_TWindowCloseEventHandlerComponent_n = "nsGuiWrapper::TWindowCloseEventHandlerComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TWindowCloseEventHandlerComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TWindowCloseEventHandlerComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TWindowCloseEventHandlerComponent_n, nsGuiWrapper_TWindowCloseEventHandlerComponent_i });
+    
     int nsGuiWrapper_TWindowComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TWindowComponent>();
     std::string nsGuiWrapper_TWindowComponent_n = "nsGuiWrapper::TWindowComponent";
     mTypeNameList.push_back(nsGuiWrapper_TWindowComponent_n);
     mRttiList.push_back(nsGuiWrapper_TWindowComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TWindowComponent_n, nsGuiWrapper_TWindowComponent_i });
-    
-    int nsGuiWrapper_TWindowVisibilityHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TWindowVisibilityHandlerComponent>();
-    std::string nsGuiWrapper_TWindowVisibilityHandlerComponent_n = "nsGuiWrapper::TWindowVisibilityHandlerComponent";
-    mTypeNameList.push_back(nsGuiWrapper_TWindowVisibilityHandlerComponent_n);
-    mRttiList.push_back(nsGuiWrapper_TWindowVisibilityHandlerComponent_i);
-    mNameRttiMap.insert({ nsGuiWrapper_TWindowVisibilityHandlerComponent_n, nsGuiWrapper_TWindowVisibilityHandlerComponent_i });
     
     int nsLogicWrapper_TFeatureComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TFeatureComponent>();
     std::string nsLogicWrapper_TFeatureComponent_n = "nsLogicWrapper::TFeatureComponent";

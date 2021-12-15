@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_13 08:08:50.247
+// File has been generated at 2021_12_15 07:42:45.448
 	
 #pragma once
 
@@ -105,11 +105,11 @@ namespace nsTornadoEngine
         static void _Serialize(nsGuiWrapper::TButtonComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TButtonComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TDialogCloseEventHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TDialogCloseEventHandlerComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TDialogComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TDialogComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsGuiWrapper::TDialogVisibilityHandlerComponent* p, Jobj& obj);
-        static void _Deserialize(nsGuiWrapper::TDialogVisibilityHandlerComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TFocusComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TFocusComponent* p, const Jobj& obj);
@@ -132,11 +132,11 @@ namespace nsTornadoEngine
         static void _Serialize(nsGuiWrapper::TVisibilityComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TVisibilityComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TWindowCloseEventHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TWindowCloseEventHandlerComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TWindowComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TWindowComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsGuiWrapper::TWindowVisibilityHandlerComponent* p, Jobj& obj);
-        static void _Deserialize(nsGuiWrapper::TWindowVisibilityHandlerComponent* p, const Jobj& obj);
         
         static void _Serialize(nsLogicWrapper::TFeatureComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TFeatureComponent* p, const Jobj& obj);

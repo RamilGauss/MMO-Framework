@@ -226,6 +226,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Features\Graphic\ButtonMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\DialogBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\DialogMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\DialogPositionUpdaterSystem.cpp" />
     <ClCompile Include="Features\Graphic\DialogSizeUpdaterSystem.cpp" />
@@ -315,7 +318,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h" />
     <ClInclude Include="Components\Gui\ButtonComponent.h" />
     <ClInclude Include="Components\Gui\DialogComponent.h" />
-    <ClInclude Include="Components\Gui\DialogVisibilityHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\DialogCloseEventHandlerComponent.h" />
     <ClInclude Include="Components\Gui\FocusComponent.h" />
     <ClInclude Include="Components\Gui\FrameComponent.h" />
     <ClInclude Include="Components\Gui\MainWindowComponent.h" />
@@ -324,7 +327,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\TitleComponent.h" />
     <ClInclude Include="Components\Gui\VisibilityComponent.h" />
     <ClInclude Include="Components\Gui\WindowComponent.h" />
-    <ClInclude Include="Components\Gui\WindowVisibilityHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\WindowCloseEventHandlerComponent.h" />
     <ClInclude Include="Components\Logic\FeatureComponent.h" />
     <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h" />
     <ClInclude Include="Components\Logic\PrefabReferenceComponent.h" />
@@ -338,6 +341,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Features\Graphic\ButtonMakerSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\DialogBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\DialogMakerSystem.h" />
     <ClInclude Include="Features\Graphic\DialogPositionUpdaterSystem.h" />
     <ClInclude Include="Features\Graphic\DialogSizeUpdaterSystem.h" />
@@ -379,10 +385,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Generated files\HandlerTypeInformation.h" />
     <ClInclude Include="Generated files\ReflectionIncludeList.h" />
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h" />
-    <ClInclude Include="Handlers\IDialogVisibilityHandler.h" />
+    <ClInclude Include="Handlers\IDialogCloseEventHandler.h" />
     <ClInclude Include="Handlers\IButtonClickHandler.h" />
     <ClInclude Include="Handlers\IHandler.h" />
-    <ClInclude Include="Handlers\IWindowVisibilityHandler.h" />
+    <ClInclude Include="Handlers\IWindowCloseEventHandler.h" />
     <ClInclude Include="Modules\ComponentInMemory.h" />
     <ClInclude Include="Modules\LogicWrapperModule.h" />
     <ClInclude Include="Modules\GuidConstants.h" />

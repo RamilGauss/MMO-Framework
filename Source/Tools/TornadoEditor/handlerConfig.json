@@ -15,7 +15,8 @@
             ".h++"
         ],
         "inheritances": [
-            [ "nsGuiWrapper::IButtonClickHandler" ]
+            [ "nsGuiWrapper::IButtonClickHandler" ],
+            [ "nsGuiWrapper::IDialogCloseEventHandler" ]
             ],
             "memberIgnore" : "IGNORE_ATTRIBUTE"
     },

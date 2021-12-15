@@ -105,7 +105,7 @@ namespace nsGraphicWrapper
                 auto prefabOriginalEids = entMng->GetByValueCopy(prefabOriginalGuidComponent);
                 for (auto& targetEid : prefabOriginalEids) {
                     // Handler setup
-                    auto pGuiComponent = entMng->ViewComponent<GuiType>(eid);
+                    auto pGuiComponent = entMng->ViewComponent<GuiType>(targetEid);
                     if (pGuiComponent == nullptr) {
                         return;
                     }
