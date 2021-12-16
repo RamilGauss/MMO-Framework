@@ -32,6 +32,9 @@ namespace nsTornadoEngine
 
         void Unload(const std::string& prefabGuid);
 
+        // Если SceneInstance не задан, то искать нужно родителю
+        // И наоборот, если не задана родитель, то нужен SceneInstance, что бы найти root.
+
         void InstantiateByGuid(const std::string& parentGuid, const std::string& prefabGuid, 
             const std::string& sceneInstanceGuid = TGuidConstants::NONE);
         void InstantiateByAbsPath(const std::string& parentGuid, const std::string& absPath,

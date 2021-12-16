@@ -92,6 +92,9 @@
     <None Include="Prefabs\Dialog.prefab">
       <Filter>Prefabs</Filter>
     </None>
+    <None Include="Prefabs\Dialog2.prefab">
+      <Filter>Prefabs</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -232,6 +235,9 @@
       <Filter>Handlers</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\OnCloseDialogHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\DialogButtonClickHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>

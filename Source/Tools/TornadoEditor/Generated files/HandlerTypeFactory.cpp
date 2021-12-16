@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_15 07:45:00.848
+// File has been generated at 2021_12_16 21:29:14.965
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -30,6 +30,13 @@ void THandlerTypeFactory::Init()
     auto rtti_nsTornadoEditor_TDeleteOnButtonClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TDeleteOnButtonClickHandler>();
     
     m.insert({ rtti_nsTornadoEditor_TDeleteOnButtonClickHandler_Data, nsTornadoEditor_TDeleteOnButtonClickHandler_Data });
+    
+    Data nsTornadoEditor_TDialogButtonClickHandler_Data;
+    nsTornadoEditor_TDialogButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TDialogButtonClickHandler(); };
+    nsTornadoEditor_TDialogButtonClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TDialogButtonClickHandler*)p; };
+    auto rtti_nsTornadoEditor_TDialogButtonClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TDialogButtonClickHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TDialogButtonClickHandler_Data, nsTornadoEditor_TDialogButtonClickHandler_Data });
     
     Data nsTornadoEditor_TExitButtonClickHandler_Data;
     nsTornadoEditor_TExitButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TExitButtonClickHandler(); };

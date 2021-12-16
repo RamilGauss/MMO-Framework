@@ -1,7 +1,7 @@
 To launch Editor use [Hub](https://github.com/RamilGauss/TornadoHub/releases).
 
 ## Disclaimer
-Compete without pretense with engines like Unity, UnrealEngine, Godot, etc.  
+No claims to compete with engines such as Unity, UnrealEngine, Godot, etc.  
 I would like to try a bunch of C ++ with a code generator and see what happens.  
 Will the code generator and ECS add convenience and speed to development?  
 This is a research project.  

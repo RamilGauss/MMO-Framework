@@ -115,7 +115,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TSceneObjectReferenceComponent",
-                    "jsonBody": "{\"objectGuid\":\"main_1\"}"
+                    "jsonBody": "{\"objectGuid\":\"main_0\"}"
                 },
                 {
                     "typeName": "nsLogicWrapper::TPrefabReferenceComponent",

@@ -1,6 +1,7 @@
 {
     "guidPathMap": {
         "0": "ButtonX.prefab",
-        "1": "Dialog.prefab"
+        "1": "Dialog.prefab",
+        "2": "Dialog2.prefab"
     }
 }

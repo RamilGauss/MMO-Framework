@@ -241,6 +241,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <None Include="Prefabs\Dialog.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>
+    <None Include="Prefabs\Dialog2.prefab">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
     <None Include="Prefabs\PrefabManagerContentMap.json">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -292,6 +296,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
     <ClInclude Include="Handlers\DeleteOnButtonClickHandler.h" />
+    <ClInclude Include="Handlers\DialogButtonClickHandler.h" />
     <ClInclude Include="Handlers\ExitButtonHandler.h" />
     <ClInclude Include="Handlers\OnCloseDialogHandler.h" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_15 07:45:00.849
+// File has been generated at 2021_12_16 21:29:14.966
 	
 #include "HandlerTypeInformation.h"
 
@@ -32,6 +32,12 @@ void THandlerTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TDeleteOnButtonClickHandler_n);
     mRttiList.push_back(nsTornadoEditor_TDeleteOnButtonClickHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TDeleteOnButtonClickHandler_n, nsTornadoEditor_TDeleteOnButtonClickHandler_i });
+    
+    int nsTornadoEditor_TDialogButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TDialogButtonClickHandler>();
+    std::string nsTornadoEditor_TDialogButtonClickHandler_n = "nsTornadoEditor::TDialogButtonClickHandler";
+    mTypeNameList.push_back(nsTornadoEditor_TDialogButtonClickHandler_n);
+    mRttiList.push_back(nsTornadoEditor_TDialogButtonClickHandler_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TDialogButtonClickHandler_n, nsTornadoEditor_TDialogButtonClickHandler_i });
     
     int nsTornadoEditor_TExitButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TExitButtonClickHandler>();
     std::string nsTornadoEditor_TExitButtonClickHandler_n = "nsTornadoEditor::TExitButtonClickHandler";

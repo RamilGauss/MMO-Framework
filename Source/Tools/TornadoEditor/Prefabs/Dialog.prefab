@@ -91,15 +91,15 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TExitButtonClickHandler\", \"partOfGuid\":\"Dialog\", \"entityGuid\":\"Dialog_1\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TDialogButtonClickHandler\", \"partOfGuid\":\"Dialog\", \"entityGuid\":\"Dialog_1\"}"
                 },
                 {
                     "typeName": "nsLogicWrapper::TSceneObjectReferenceComponent",
-                    "jsonBody": "{\"objectGuid\":\"Dialog_0\"}"
+                    "jsonBody": "{\"objectGuid\":\"main_0\"}"
                 },
                 {
                     "typeName": "nsLogicWrapper::TPrefabReferenceComponent",
-                    "jsonBody": "{\"prefabGuid\":\"1\"}"
+                    "jsonBody": "{\"prefabGuid\":\"2\"}"
                 }
             ]
         }
