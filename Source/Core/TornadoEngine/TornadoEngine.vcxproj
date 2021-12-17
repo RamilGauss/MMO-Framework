@@ -239,6 +239,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Features\Graphic\GuiTerminatorFeature.cpp" />
     <ClCompile Include="Features\Graphic\UnitBuilderHelper.cpp" />
     <ClCompile Include="Features\Graphic\WindowBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\WindowMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\WindowTerminatorSystem.cpp" />
     <ClCompile Include="Features\Logic\BeginLogicFeature.cpp" />
@@ -321,10 +324,14 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\DialogCloseEventHandlerComponent.h" />
     <ClInclude Include="Components\Gui\FocusComponent.h" />
     <ClInclude Include="Components\Gui\FrameComponent.h" />
+    <ClInclude Include="Components\Gui\InputTextComponent.h" />
     <ClInclude Include="Components\Gui\MainWindowComponent.h" />
+    <ClInclude Include="Components\Gui\MenuNodeComponent.h" />
     <ClInclude Include="Components\Gui\PositionComponent.h" />
     <ClInclude Include="Components\Gui\SizeComponent.h" />
     <ClInclude Include="Components\Gui\TitleComponent.h" />
+    <ClInclude Include="Components\Gui\TreeNodeComponent.h" />
+    <ClInclude Include="Components\Gui\TreeViewComponent.h" />
     <ClInclude Include="Components\Gui\VisibilityComponent.h" />
     <ClInclude Include="Components\Gui\WindowComponent.h" />
     <ClInclude Include="Components\Gui\WindowCloseEventHandlerComponent.h" />
@@ -355,6 +362,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Features\Graphic\HandlerLinkHelper.h" />
     <ClInclude Include="Features\Graphic\UnitBuilderHelper.h" />
     <ClInclude Include="Features\Graphic\WindowBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\WindowMakerSystem.h" />
     <ClInclude Include="Features\Graphic\WindowTerminatorSystem.h" />
     <ClInclude Include="Features\Logic\BeginLogicFeature.h" />

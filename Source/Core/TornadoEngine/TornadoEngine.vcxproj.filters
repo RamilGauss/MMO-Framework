@@ -339,6 +339,15 @@
     <ClCompile Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator</Filter>
     </ClCompile>
+    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -805,6 +814,27 @@
     </ClInclude>
     <ClInclude Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\InputTextComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\MenuNodeComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\TreeViewComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\TreeNodeComponent.h">
+      <Filter>Components\Gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

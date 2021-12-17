@@ -68,6 +68,10 @@
                 {
                     "typeName": "nsGuiWrapper::TWindowComponent",
                     "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TWindowCloseEventHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseWindowHandler\", \"partOfGuid\":\"THIS_SCENE\", \"entityGuid\":\"main_1\"}"
                 }
             ]
         },

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_16 21:29:14.966
+// File has been generated at 2021_12_17 08:02:40.392
 	
 #include "HandlerTypeInformation.h"
 
@@ -50,6 +50,12 @@ void THandlerTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TOnCloseDialogHandler_n);
     mRttiList.push_back(nsTornadoEditor_TOnCloseDialogHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TOnCloseDialogHandler_n, nsTornadoEditor_TOnCloseDialogHandler_i });
+    
+    int nsTornadoEditor_TOnCloseWindowHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseWindowHandler>();
+    std::string nsTornadoEditor_TOnCloseWindowHandler_n = "nsTornadoEditor::TOnCloseWindowHandler";
+    mTypeNameList.push_back(nsTornadoEditor_TOnCloseWindowHandler_n);
+    mRttiList.push_back(nsTornadoEditor_TOnCloseWindowHandler_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TOnCloseWindowHandler_n, nsTornadoEditor_TOnCloseWindowHandler_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

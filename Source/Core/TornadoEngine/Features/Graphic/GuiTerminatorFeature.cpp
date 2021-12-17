@@ -17,4 +17,5 @@ void TGuiTerminatorFeature::InitConveyor()
 
     Add(&mButtonClickHandlerTerminatorSystem);
     Add(&mDialogCloseEventHandlerTerminatorSystem);
+    Add(&mWindowCloseEventHandlerTerminatorSystem);
 }

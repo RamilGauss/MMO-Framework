@@ -16,8 +16,9 @@
         ],
         "inheritances": [
             [ "nsGuiWrapper::IButtonClickHandler" ],
-            [ "nsGuiWrapper::IDialogCloseEventHandler" ]
-            ],
+            [ "nsGuiWrapper::IDialogCloseEventHandler" ],
+            [ "nsGuiWrapper::IWindowCloseEventHandler" ]
+        ],
             "memberIgnore" : "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {

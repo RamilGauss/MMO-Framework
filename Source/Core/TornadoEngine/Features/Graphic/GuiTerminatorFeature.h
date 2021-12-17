@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 
 #include "ButtonClickHandlerTerminatorSystem.h"
 #include "DialogCloseEventHandlerTerminatorSystem.h"
+#include "WindowCloseEventHandlerTerminatorSystem.h"
 
 namespace nsGraphicWrapper
 {
@@ -26,6 +27,7 @@ namespace nsGraphicWrapper
 
         TButtonClickHandlerTerminatorSystem mButtonClickHandlerTerminatorSystem;
         TDialogCloseEventHandlerTerminatorSystem mDialogCloseEventHandlerTerminatorSystem;
+        TWindowCloseEventHandlerTerminatorSystem mWindowCloseEventHandlerTerminatorSystem;
     public:
         void InitConveyor() override;
     };

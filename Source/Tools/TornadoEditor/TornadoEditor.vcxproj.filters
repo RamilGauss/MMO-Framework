@@ -240,5 +240,8 @@
     <ClInclude Include="Handlers\DialogButtonClickHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="Handlers\OnCloseWindowHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 
 #include "ButtonClickHandlerBuilderSystem.h"
 #include "DialogCloseEventHandlerBuilderSystem.h"
+#include "WindowCloseEventHandlerBuilderSystem.h"
 
 namespace nsGraphicWrapper
 {
@@ -26,6 +27,7 @@ namespace nsGraphicWrapper
         
         TButtonClickHandlerBuilderSystem mButtonClickHandlerBuilderSystem;
         TDialogCloseEventHandlerBuilderSystem mDialogCloseEventHandlerBuilderSystem;
+        TWindowCloseEventHandlerBuilderSystem mWindowCloseEventHandlerBuilderSystem;
     public:
         void InitConveyor() override;
     };

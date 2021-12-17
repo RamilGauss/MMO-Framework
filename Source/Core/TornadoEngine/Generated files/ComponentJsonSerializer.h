@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_16 21:27:25.053
+// File has been generated at 2021_12_17 07:59:07.450
 	
 #pragma once
 
@@ -117,8 +117,14 @@ namespace nsTornadoEngine
         static void _Serialize(nsGuiWrapper::TFrameComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TFrameComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TInputTextComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TInputTextComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TMainWindowComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TMainWindowComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TMenuNodeComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TMenuNodeComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TPositionComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TPositionComponent* p, const Jobj& obj);
@@ -128,6 +134,12 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsGuiWrapper::TTitleComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TTitleComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TTreeNodeComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TTreeNodeComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TTreeViewComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TTreeViewComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TVisibilityComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TVisibilityComponent* p, const Jobj& obj);

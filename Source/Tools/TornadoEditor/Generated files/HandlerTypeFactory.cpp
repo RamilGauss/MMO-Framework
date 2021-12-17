@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_16 21:29:14.965
+// File has been generated at 2021_12_17 08:02:40.391
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -51,6 +51,13 @@ void THandlerTypeFactory::Init()
     auto rtti_nsTornadoEditor_TOnCloseDialogHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseDialogHandler>();
     
     m.insert({ rtti_nsTornadoEditor_TOnCloseDialogHandler_Data, nsTornadoEditor_TOnCloseDialogHandler_Data });
+    
+    Data nsTornadoEditor_TOnCloseWindowHandler_Data;
+    nsTornadoEditor_TOnCloseWindowHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnCloseWindowHandler(); };
+    nsTornadoEditor_TOnCloseWindowHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnCloseWindowHandler*)p; };
+    auto rtti_nsTornadoEditor_TOnCloseWindowHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseWindowHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TOnCloseWindowHandler_Data, nsTornadoEditor_TOnCloseWindowHandler_Data });
     
     int max = 0;
     for (auto& vt : m) {
