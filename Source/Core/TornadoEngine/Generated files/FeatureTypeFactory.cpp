@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_17 07:59:20.557
+// File has been generated at 2021_12_19 11:41:21.716
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"

@@ -15,7 +15,8 @@ using namespace nsGraphicWrapper;
 
 void TDialogTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TDialogComponent* pDialogComponent)
 {
-    nsTornadoEngine::Modules()->G()->GetGE()->RemoveRender(pDialogComponent->value);
+    auto dialogStack = nsTornadoEngine::Modules()->G()->GetDialogStack();
+    dialogStack->Remove(pDialogComponent->value);
 
     delete pDialogComponent->value;
     pDialogComponent->value = nullptr;

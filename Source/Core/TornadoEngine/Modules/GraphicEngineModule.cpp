@@ -70,6 +70,12 @@ bool TGraphicEngineModule::StartEvent()
     auto keyMouse = Modules()->KeyMouse();
     mGE->SetKeyMouseEventContainer(keyMouse);
     nsImGuiWidgets::TWidget::SetInputContainer(keyMouse);
+
+    //###
+    // Костыль
+    mGE->AddRender(&mDialogStack);
+    //###
+
     return true;
 }
 //---------------------------------------------------------------------------------
@@ -81,5 +87,10 @@ void TGraphicEngineModule::StopEvent()
 void TGraphicEngineModule::SetGE(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE)
 {
 
+}
+//---------------------------------------------------------------------------------
+nsImGuiWidgets::TDialogStack* TGraphicEngineModule::GetDialogStack()
+{
+    return &mDialogStack;
 }
 //---------------------------------------------------------------------------------

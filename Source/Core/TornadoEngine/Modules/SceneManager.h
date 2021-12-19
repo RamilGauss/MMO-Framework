@@ -9,21 +9,13 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "TypeDef.h"
-
-#include "SceneContentMap.h"
-#include <ECS/include/EntityManager.h>
+#include "ObjectManager.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TSceneManager
+    class DllExport TSceneManager : public TObjectManager
     {
-        TSceneContentMap mSceneContentMap;
-        nsECSFramework::TEntityManager* mEntityManager = nullptr;
     public:
-        void SetContentMap(const TSceneContentMap& sceneContentMap);
-        void SetEntityManager(nsECSFramework::TEntityManager* entMng);
-
         void LoadByGuid(const std::string& sceneGuid);
         void LoadByAbsPath(const std::string& absPath);
 

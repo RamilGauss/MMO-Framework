@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_17 07:59:16.490
+// File has been generated at 2021_12_19 11:41:19.997
 	
 #pragma once
 
@@ -10,10 +10,6 @@
 #include "FrameworkResources.h"
 #include "MathStructs.h"
 #include "ModuleType.h"
-#include "PrefabContent.h"
-#include "PrefabContentMap.h"
 #include "ProjectConfig.h"
 #include "ResourceContent.h"
 #include "ResourceContentMap.h"
-#include "SceneContent.h"
-#include "SceneContentMap.h"

@@ -10,6 +10,8 @@ See for more information LICENSE.md.
 #include "LogicWrapperModule.h"
 #include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 
+#include <ImGuiWidgets/include/DialogStack.h>
+
 namespace nsTornadoEngine
 {
     class DllExport IGraphicEngineModule : public TLogicWrapperModule
@@ -17,5 +19,7 @@ namespace nsTornadoEngine
     public:
         virtual nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE() = 0;
         virtual void SetGE(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE) = 0;
+
+        virtual nsImGuiWidgets::TDialogStack* GetDialogStack() = 0;
     };
 }

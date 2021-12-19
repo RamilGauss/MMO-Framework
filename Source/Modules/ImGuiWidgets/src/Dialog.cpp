@@ -7,9 +7,15 @@ See for more information LICENSE.md.
 
 #include "Dialog.h"
 #include "Helper.h"
+#include "DialogStack.h"
 
 using namespace nsImGuiWidgets;
 
+void TDialog::SetStack(TDialogStack* pDialogStack)
+{
+    mDialogStack = pDialogStack;
+}
+//---------------------------------------------------------------------------------------
 void TDialog::BeginRender()
 {
     auto oldIsShown = IsShown();
@@ -35,6 +41,10 @@ void TDialog::BeginRender()
 //---------------------------------------------------------------------------------------
 void TDialog::EndRender()
 {
+    if (mDialogStack != nullptr) {
+        mDialogStack->RenderNextDialog(this);
+    }
+
     mPos = ImGui::GetWindowPos();
     mSize = ImGui::GetWindowSize();
     

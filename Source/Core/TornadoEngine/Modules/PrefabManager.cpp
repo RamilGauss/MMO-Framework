@@ -5,23 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#pragma once
-
 #include "PrefabManager.h"
 
 #include "Modules.h"
 #include <ECS/include/EntityManager.h>
 
-#include "TextFile.h"
+#include "ProjectConfigContainer.h"
+#include "TornadoEngineJsonSerializer.h"
 #include "Logger.h"
 #include "TimeSliceEngine.h"
-#include "TornadoEngineJsonSerializer.h"
-#include "ProjectConfigContainer.h"
-#include "PrefabContent.h"
-#include "GuidGenerator.h"
+#include "TextFile.h"
 
-#include "GuidComponent.h"
-#include "ParentGuidComponent.h"
 
 #include "PrefabRootComponent.h"
 #include "PrefabOriginalGuidComponent.h"
@@ -33,19 +27,10 @@ See for more information LICENSE.md.
 #include "SceneGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
 #include "SceneInstanceGuidComponent.h"
+#include "SceneRootComponent.h"
 
 using namespace nsTornadoEngine;
 
-void TPrefabManager::SetContentMap(const TPrefabContentMap& prefabContentMap)
-{
-    mPrefabContentMap = prefabContentMap;
-}
-//--------------------------------------------------------------------------------
-void TPrefabManager::SetEntityManager(nsECSFramework::TEntityManager* entMng)
-{
-    mEntityManager = entMng;
-}
-//--------------------------------------------------------------------------------
 void TPrefabManager::LoadByAbsPath(const std::string& absPath)
 {
     // Same as InstantiateByAbsPath, but without replasing guid
@@ -62,121 +47,84 @@ void TPrefabManager::LoadByObjectInMemory(nsECSFramework::TEntityID eid)
 
 }
 //--------------------------------------------------------------------------------
-void TPrefabManager::InstantiateByAbsPath(const std::string& parentGuid, const std::string& absPath,
-    const std::string& sceneInstanceGuid)
+void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std::string& sceneInstanceGuid,
+    const std::string& parentGuid)
 {
-    auto logger = GetLogger()->Get(TTimeSliceEngine::NAME);
+    using namespace nsCommonWrapper;
 
-    std::string json;
-    TTextFile::Load(absPath, json);
-
-    // 1. Deserialize to object
-    TPrefabContent prefabContent;
-    std::string err;
-    auto deserResult = TTornadoEngineJsonSerializer::Deserialize(&prefabContent, json, err);
-    if (deserResult == false) {
-        logger->WriteF_time("Deserialize error %s with %s", err.c_str(), absPath.c_str());
+    TResourceContent prefabContent;
+    auto deserializeResult = Deserialize(prefabContent, absPath);
+    if (!deserializeResult) {
         return;
     }
 
-    std::string prefabIstanceGuid;
-    nsECSFramework::TEntityID rootEid = nsECSFramework::NONE;
-
-    auto componentReflection = Project()->mScenePartAggregator->mComponents;
-    componentReflection->mEntMng->SetEntityManager(Modules()->EntMng());
-
-    std::list<nsECSFramework::TEntityID> newEntities;
     // 2. Convert typeName to rtti
-    for (auto& entity : prefabContent.entities) {
-        // 3. Add entity
-        auto eid = mEntityManager->CreateEntity();
-        newEntities.push_back(eid);
+    std::list<nsECSFramework::TEntityID> newEntities;
+    DeserializeObjects(newEntities, prefabContent);
 
-        for (auto& component : entity.components) {
-            // 4. Add component by rtti
-            int rtti;
-            auto convertResult = componentReflection->mTypeInfo->ConvertNameToType(component.typeName, rtti);
-            if (convertResult == false) {
-                logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
-                continue;
-            }
-            componentReflection->mEntMng->CreateComponent(eid, rtti, [&](void* pComponent)
-            {
-                // 5. Deserialize component by rtti and json body
-                auto componentDeserialzieResult =
-                    componentReflection->mJson->Deserialize(pComponent, component.jsonBody, rtti, err);
+    // 3. Search prefabInstance
+    nsECSFramework::TEntityID rootEid = nsECSFramework::NONE;
+    for (auto& entity : newEntities) {
+        auto hasRoot = mEntityManager->HasComponent<TPrefabRootComponent>(entity);
+        if (hasRoot) {
+            rootEid = entity;
+        }
+    }
 
-                if (!componentDeserialzieResult) {
-                    logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
+    std::string prefabInstanceGuid = TGuidGenerator::Generate();
+
+    // 3. Replace all guids to new guid with ParentGuids and SceneGuids
+    UpdateGuidsAndInstantiate<TPrefabOriginalGuidComponent, TPrefabInstanceGuidComponent>(newEntities, prefabInstanceGuid);
+
+    nsECSFramework::TEntityID parentEid = nsECSFramework::NONE;
+    if (parentGuid == TGuidConstants::NONE) {
+        // Search ROOT of sceneInstanceGuid
+        bool editingMode = false;
+        auto sceneRootsEids = mEntityManager->GetByHasCopy<TSceneRootComponent>();
+        for (auto& sceneRootsEid : sceneRootsEids) {
+            auto sceneInstanceGuidComponent = mEntityManager->ViewComponent<TSceneInstanceGuidComponent>(sceneRootsEid);
+            if (sceneInstanceGuidComponent != nullptr) {
+                editingMode = true;
+                if (sceneInstanceGuidComponent->value == sceneInstanceGuid) {
+                    parentEid = sceneRootsEid;
+                    break;
                 }
-            });
-
-            auto hasRoot = mEntityManager->HasComponent<nsCommonWrapper::TPrefabRootComponent>(eid);
-            if (hasRoot) {
-                prefabIstanceGuid = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(eid)->value;
-                rootEid = eid;
             }
         }
-    }
-
-    BL_ASSERT(!prefabIstanceGuid.empty());
-
-    // 6. Replace all guids to new guid with ParentGuids and SceneGuids
-    for (auto& eid : newEntities) {
-        auto pGuidComponent = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(eid);
-        if (pGuidComponent == nullptr) {
-            continue;
-        }
-        auto guidComponent = *pGuidComponent;
-
-        auto newGuid = TGuidGenerator::Generate();
-
-        nsCommonWrapper::TParentGuidComponent parentGuid;
-        parentGuid.value = guidComponent.value;
-        auto copyChildEids = mEntityManager->GetByValueCopy<nsCommonWrapper::TParentGuidComponent>(parentGuid);
-        for (auto& childEid : copyChildEids) {
-            parentGuid.value = newGuid;
-            mEntityManager->SetComponent(childEid, parentGuid);
-        }
-
-        nsCommonWrapper::TPrefabOriginalGuidComponent prefabOriginalGuid;
-        prefabOriginalGuid.value = guidComponent.value;
-        mEntityManager->SetComponent(eid, prefabOriginalGuid);
-
-        guidComponent.value = newGuid;
-        mEntityManager->SetComponent(eid, guidComponent);
-
-        nsCommonWrapper::TPrefabInstanceGuidComponent prefabInstanceGuidComponent;
-        prefabInstanceGuidComponent.value = prefabIstanceGuid;
-        mEntityManager->SetComponent(eid, prefabInstanceGuidComponent);
-    }
-
-    // 7. Find parent by guid
-    std::string realParentGuid = parentGuid;
-
-    nsCommonWrapper::TGuidComponent parentGuidComponent;
-    parentGuidComponent.value = parentGuid;
-    auto parentEid = mEntityManager->GetByUnique(parentGuidComponent);
-    if (parentEid == nsECSFramework::NONE) {
-
-        nsCommonWrapper::TSceneOriginalGuidComponent parentSceneOriginalGuidComponent;
-        parentSceneOriginalGuidComponent.value = parentGuid;
-        
-        auto parentEids = mEntityManager->GetByValueCopy(parentSceneOriginalGuidComponent);
-        for (auto& sceneParentEid : parentEids) {
-
-            auto sceneInstanceGuidComponent = mEntityManager->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(sceneParentEid);
-            if (sceneInstanceGuid != sceneInstanceGuidComponent->value) {
-                continue;
+        if (parentEid == nsECSFramework::NONE) {
+            if (!editingMode) {
+                BL_FIX_BUG();
+                return;
             }
-            realParentGuid = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(sceneParentEid)->value;
-            parentEid = sceneParentEid;
-            break;
+            parentEid = *(sceneRootsEids.begin());
+        }
+    } else {
+        // 5. Find parent by guid
+        nsCommonWrapper::TGuidComponent parentGuidComponent;
+        parentGuidComponent.value = parentGuid;
+        parentEid = mEntityManager->GetByUnique(parentGuidComponent);
+
+        // ParentEid != NONE - editing mode
+        if (parentEid == nsECSFramework::NONE) {
+
+            nsCommonWrapper::TSceneOriginalGuidComponent parentSceneOriginalGuidComponent;
+            parentSceneOriginalGuidComponent.value = parentGuid;
+
+            auto parentEids = mEntityManager->GetByValueCopy(parentSceneOriginalGuidComponent);
+            for (auto& sceneParentEid : parentEids) {
+
+                auto sceneInstanceGuidComponent = mEntityManager->ViewComponent<TSceneInstanceGuidComponent>(sceneParentEid);
+                if (sceneInstanceGuid != sceneInstanceGuidComponent->value) {
+                    continue;
+                }
+                parentEid = sceneParentEid;
+                break;
+            }
         }
     }
 
     nsCommonWrapper::TParentGuidComponent newParentGuidComponent;
-    newParentGuidComponent.value = realParentGuid;
+    newParentGuidComponent.value = mEntityManager->ViewComponent<TGuidComponent>(parentEid)->value;
     mEntityManager->SetComponent(rootEid, newParentGuidComponent);
 
     BL_ASSERT(parentEid != nsECSFramework::NONE);
@@ -199,17 +147,17 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& parentGuid, const s
     }
 }
 //--------------------------------------------------------------------------------
-void TPrefabManager::InstantiateByGuid(const std::string& parentGuid, const std::string& prefabGuid, 
-    const std::string& sceneInstanceGuid)
+void TPrefabManager::InstantiateByGuid(const std::string& prefabGuid, const std::string& sceneInstanceGuid,
+    const std::string& parentGuid)
 {
     // Convert to abs path
-    auto fit = mPrefabContentMap.guidPathMap.find(prefabGuid);
-    if (fit == mPrefabContentMap.guidPathMap.end()) {
+    auto fit = mResourceContentMap.guidPathMap.find(prefabGuid);
+    if (fit == mResourceContentMap.guidPathMap.end()) {
         GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", prefabGuid.c_str());
         return;
     }
 
-    InstantiateByAbsPath(parentGuid, fit->second, sceneInstanceGuid);
+    InstantiateByAbsPath(fit->second, sceneInstanceGuid, parentGuid);
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::Unload(const std::string& prefabGuid)
@@ -248,8 +196,8 @@ void TPrefabManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
     Destroy(pSceneInstanceGuid->value);
 }
 //--------------------------------------------------------------------------------
-void TPrefabManager::InstanceByObjectInMemory(const std::string& parentGuid, nsECSFramework::TEntityID eid,
-    const std::string& sceneInstanceGuid)
+void TPrefabManager::InstanceByObjectInMemory(nsECSFramework::TEntityID eid,
+    const std::string& sceneInstanceGuid, const std::string& parentGuid)
 {
 
 }

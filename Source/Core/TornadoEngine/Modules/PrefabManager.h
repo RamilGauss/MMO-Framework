@@ -7,22 +7,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "ObjectManager.h"
 
-#include "PrefabContentMap.h"
-#include "GuidConstants.h"
-
-#include <ECS/include/EntityManager.h>
 
 namespace nsTornadoEngine
 {
-    class DllExport TPrefabManager
+    class DllExport TPrefabManager : public TObjectManager
     {
-        TPrefabContentMap mPrefabContentMap;
-        nsECSFramework::TEntityManager* mEntityManager = nullptr;
     public:
-        void SetContentMap(const TPrefabContentMap& prefabContentMap);
-        void SetEntityManager(nsECSFramework::TEntityManager* entMng);
 
         void LoadByGuid(const std::string& prefabGuid);
         void LoadByAbsPath(const std::string& absPath);
@@ -32,18 +24,18 @@ namespace nsTornadoEngine
 
         void Unload(const std::string& prefabGuid);
 
-        // Если SceneInstance не задан, то искать нужно родителю
-        // И наоборот, если не задана родитель, то нужен SceneInstance, что бы найти root.
+        // Если SceneInstance не задан, то искать нужно по родителю
+        // И наоборот, если не задан родитель, то нужен SceneInstance, что бы найти root.
 
-        void InstantiateByGuid(const std::string& parentGuid, const std::string& prefabGuid, 
-            const std::string& sceneInstanceGuid = TGuidConstants::NONE);
-        void InstantiateByAbsPath(const std::string& parentGuid, const std::string& absPath,
-            const std::string& sceneInstanceGuid = TGuidConstants::NONE);
-        void InstanceByObjectInMemory(const std::string& parentGuid, nsECSFramework::TEntityID eid,
-            const std::string& sceneInstanceGuid = TGuidConstants::NONE);
+        void InstantiateByGuid(const std::string& prefabGuid, const std::string& sceneInstanceGuid, 
+            const std::string& parentGuid = TGuidConstants::NONE);
+        void InstantiateByAbsPath(const std::string& absPath, const std::string& sceneInstanceGuid, 
+            const std::string& parentGuid = TGuidConstants::NONE);
+        void InstanceByObjectInMemory(nsECSFramework::TEntityID eid, const std::string& sceneInstanceGuid,
+            const std::string& parentGuid = TGuidConstants::NONE);
+
 
         void Destroy(const std::string& prefabInstanceGuid);
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
-
     };
 }

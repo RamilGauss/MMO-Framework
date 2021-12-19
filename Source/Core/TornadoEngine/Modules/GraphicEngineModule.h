@@ -21,6 +21,8 @@ namespace nsTornadoEngine
 
         nsGraphicWrapper::TBeginGraphicFeature mBeginFeature;
         nsGraphicWrapper::TEndGraphicFeature mEndFeature;
+
+        nsImGuiWidgets::TDialogStack mDialogStack;
     public:
         TGraphicEngineModule();
 
@@ -30,6 +32,8 @@ namespace nsTornadoEngine
 
         nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE() override;
         void SetGE(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE) override;
+
+        nsImGuiWidgets::TDialogStack* GetDialogStack() override;
     protected:
 
     };

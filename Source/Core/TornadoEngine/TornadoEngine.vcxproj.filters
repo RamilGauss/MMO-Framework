@@ -291,9 +291,6 @@
     <ClCompile Include="Modules\PrefabManager.cpp">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\GuidConstants.cpp">
-      <Filter>Modules\Resources\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\GuidGenerator.cpp">
       <Filter>Modules\Resources\Common</Filter>
     </ClCompile>
@@ -347,6 +344,9 @@
     </ClCompile>
     <ClCompile Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ObjectManager.cpp">
+      <Filter>Modules\Resources\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -483,12 +483,6 @@
       <Filter>Modules\Common</Filter>
     </ClInclude>
     <ClInclude Include="Modules\SceneManager.h">
-      <Filter>Modules\Resources\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\SceneContent.h">
-      <Filter>Modules\Resources\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\SceneContentMap.h">
       <Filter>Modules\Resources\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Modules\ModulesAccessor.h">
@@ -716,9 +710,6 @@
     <ClInclude Include="Components\Logic\PrefabReferenceComponent.h">
       <Filter>Components\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\PrefabContentMap.h">
-      <Filter>Modules\Resources\Prefab</Filter>
-    </ClInclude>
     <ClInclude Include="Modules\PrefabManager.h">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
@@ -733,9 +724,6 @@
     </ClInclude>
     <ClInclude Include="Modules\ResourceContent.h">
       <Filter>Modules\Resources\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\PrefabContent.h">
-      <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
     <ClInclude Include="Components\Logic\SceneObjectReferenceComponent.h">
       <Filter>Components\Logic</Filter>
@@ -835,6 +823,9 @@
     </ClInclude>
     <ClInclude Include="Components\Gui\TreeNodeComponent.h">
       <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ObjectManager.h">
+      <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

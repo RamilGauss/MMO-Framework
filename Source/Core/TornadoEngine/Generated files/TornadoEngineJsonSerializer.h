@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_17 07:59:16.434
+// File has been generated at 2021_12_19 11:41:19.980
 	
 #pragma once
 
@@ -93,15 +93,6 @@ namespace nsTornadoEngine
         static void _Serialize(nsTornadoEngine::TOgreCfg* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TOgreCfg* p, const Jobj& obj);
         
-        static void _Serialize(nsTornadoEngine::TPrefabContent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TPrefabContent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TPrefabContentMap* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TPrefabContentMap* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TPrefabHeader* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TPrefabHeader* p, const Jobj& obj);
-        
         static void _Serialize(nsTornadoEngine::TProjectConfig* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TProjectConfig* p, const Jobj& obj);
         
@@ -113,15 +104,6 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsTornadoEngine::TResourceContentMap* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TResourceContentMap* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TSceneContent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TSceneContent* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TSceneContentMap* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TSceneContentMap* p, const Jobj& obj);
-        
-        static void _Serialize(nsTornadoEngine::TSceneHeader* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TSceneHeader* p, const Jobj& obj);
         
     };
     //------------------------------------------------------------------------------------------------------------

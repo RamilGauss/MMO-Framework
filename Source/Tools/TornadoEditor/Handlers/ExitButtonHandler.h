@@ -34,12 +34,11 @@ namespace nsTornadoEditor
             //sceneMng->Unload("first scene");
             //stopAccessor->SetStop();
 
-            auto objectRef = entMng->ViewComponent<nsLogicWrapper::TSceneObjectReferenceComponent>(eid);
             auto prefabRef = entMng->ViewComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid);
-
             auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid);
+            //auto objectRef = entMng->ViewComponent<nsLogicWrapper::TSceneObjectReferenceComponent>(eid);
 
-            prefabMng->InstantiateByGuid(objectRef->objectGuid, prefabRef->prefabGuid, sceneInstanceGuid->value);
+            prefabMng->InstantiateByGuid(prefabRef->prefabGuid, sceneInstanceGuid->value);// , objectRef->objectGuid);
         }
     };
 }

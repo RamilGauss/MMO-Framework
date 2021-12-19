@@ -9,7 +9,6 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include "PrefabContentMap.h"
 #include <ECS/include/EntityManager.h>
 
 namespace nsTornadoEngine
