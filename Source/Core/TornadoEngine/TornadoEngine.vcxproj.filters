@@ -106,6 +106,9 @@
     <Filter Include="Features\Logic\Prefab">
       <UniqueIdentifier>{c01218d0-7a6b-4954-8503-e9879746ccea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Handlers\Logic">
+      <UniqueIdentifier>{b70ae12b-28e1-49f3-b546-8d683402ea3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -347,6 +350,54 @@
     </ClCompile>
     <ClCompile Include="Modules\ObjectManager.cpp">
       <Filter>Modules\Resources\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\InputTextBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\InputTextMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\InputTextTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MainWindowBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MainWindowMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MainWindowTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MenuNodeClickHandlerBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MenuNodeClickHandlerMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MenuNodeBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MenuNodeMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MenuNodeTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Logic\ObjectInstanceEndHandlerBuilderSystem.cpp">
+      <Filter>Features\Logic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Logic\ObjectInstanceEndHandlerMakerSystem.cpp">
+      <Filter>Features\Logic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Logic\ObjectInstanceEndHandlerTerminatorSystem.cpp">
+      <Filter>Features\Logic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\InputTextValueUpdaterSystem.cpp">
+      <Filter>Features\Graphic\Updater</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -826,6 +877,69 @@
     </ClInclude>
     <ClInclude Include="Modules\ObjectManager.h">
       <Filter>Modules\Resources\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\InputTextBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\InputTextMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\InputTextTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MainWindowBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MainWindowMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MainWindowTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IMenuNodeClickHandler.h">
+      <Filter>Handlers\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\MenuNodeClickHandlerComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MenuNodeClickHandlerBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MenuNodeClickHandlerMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MenuNodeBuilderSystem.h">
+      <Filter>Features\Graphic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MenuNodeMakerSystem.h">
+      <Filter>Features\Graphic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MenuNodeTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerComponent.h">
+      <Filter>Components\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerBuilderSystem.h">
+      <Filter>Features\Logic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerMakerSystem.h">
+      <Filter>Features\Logic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerTerminatorSystem.h">
+      <Filter>Features\Logic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IObjectInstanceEndHandler.h">
+      <Filter>Handlers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\InputTextValueComponent.h">
+      <Filter>Components\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\InputTextValueUpdaterSystem.h">
+      <Filter>Features\Graphic\Updater</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

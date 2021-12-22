@@ -20,7 +20,7 @@ void TWindowPositionUpdaterSystem::Execute()
         auto pPos = pWindow->GetPos();
         nsGuiWrapper::TPositionComponent posComponent;
 
-        posComponent.x =  pPos.x;
+        posComponent.x = pPos.x;
         posComponent.y = pPos.y;
 
         GetEntMng()->SetComponent(eid, posComponent, false);

@@ -7,11 +7,11 @@
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
-                    "jsonBody": "{\"value\":\"button_x_0\"}"
+                    "jsonBody": "{\"value\":\"FileHierarchyWindow_0\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TNameComponent",
-                    "jsonBody": "{\"value\":\"Button\"}"
+                    "jsonBody": "{\"value\":\"Window\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
@@ -27,27 +27,23 @@
                 },
                 {
                     "typeName": "nsCommonWrapper::TPrefabGuidComponent",
-                    "jsonBody": "{\"value\":\"delete button\"}"
+                    "jsonBody": "{\"value\":\"FileHierarchyWindow\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TPositionComponent",
-                    "jsonBody": "{\"x\":20, \"y\":200}"
+                    "jsonBody": "{\"x\":40, \"y\":40}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TSizeComponent",
-                    "jsonBody": "{\"x\":70, \"y\":20}"
+                    "jsonBody": "{\"x\":100, \"y\":100}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TButtonComponent",
+                    "typeName": "nsGuiWrapper::TWindowComponent",
                     "jsonBody": "{}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
-                    "jsonBody": "{\"value\":\"Delete me\"}"
-                },
-                {
-                    "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TDeleteOnButtonClickHandler\", \"partOfGuid\":\"delete button\", \"entityGuid\":\"button_x_0\"}"
+                    "jsonBody": "{\"value\":\"File hierarchy window\"}"
                 }
             ]
         }

@@ -1,0 +1,17 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information LICENSE.md.
+*/
+
+#include "MenuNodeMakerSystem.h"
+
+#include <ImGuiWidgets/include/MenuNode.h>
+
+using namespace nsGraphicWrapper;
+
+void TMenuNodeMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TMenuNodeComponent* pMenuNodeComponent)
+{
+    pMenuNodeComponent->value = new nsImGuiWidgets::TMenuNode();
+}

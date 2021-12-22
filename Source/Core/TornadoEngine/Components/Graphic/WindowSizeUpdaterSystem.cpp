@@ -17,11 +17,11 @@ void TWindowSizeUpdaterSystem::Execute()
     for (auto& eid : hasWindow) {
         auto pWindow = GetEntMng()->ViewComponent<nsGuiWrapper::TWindowComponent>(eid)->value;
 
-        auto pPos = pWindow->GetPos();
+        auto pSize = pWindow->GetSize();
         nsGuiWrapper::TSizeComponent sizeComponent;
 
-        sizeComponent.x = pPos.x;
-        sizeComponent.y = pPos.y;
+        sizeComponent.x = pSize.x;
+        sizeComponent.y = pSize.y;
 
         GetEntMng()->SetComponent(eid, sizeComponent, false);
     }

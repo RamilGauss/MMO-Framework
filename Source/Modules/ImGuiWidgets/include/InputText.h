@@ -15,6 +15,8 @@ namespace nsImGuiWidgets
 {
     class DllExport TInputText : public TUnit
     {
+        bool mIsTextEdited = false;
+
     public:
         std::string GetText();
         void SetText(const std::string& str);
@@ -23,6 +25,8 @@ namespace nsImGuiWidgets
 
         TCallback mOnTextEditCB;
         TCallback mOnTextEditEndsCB;
+
+        void SetTextEdited();
     protected:
         static const size_t SIZE = 1024 * 4;// TODO: use std::vector
         char mValue[SIZE] = {0};

@@ -22,6 +22,7 @@ See for more information LICENSE.md.
 #include "DialogCloseEventHandlerComponent.h"
 #include "HandlerLinkHelper.h"
 #include "HandlerCallCollector.h"
+#include "UnitBuilderHelper.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;
@@ -31,17 +32,9 @@ void TDialogBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     auto dialogStack = nsTornadoEngine::Modules()->G()->GetDialogStack();
     dialogStack->Add(pDialogComponent->value);
 
-
     auto entMng = GetEntMng();
 
-    auto posComponent = entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid);
-    pDialogComponent->value->SetPos({(float) posComponent->x,(float) posComponent->y});
-
-    auto sizeComponent = entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid);
-    pDialogComponent->value->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});
-
-    auto titleComponent = entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid);
-    pDialogComponent->value->SetTitle(titleComponent->value);
+    TUnitBuilderHelper::SetupWidget(entMng, eid, pDialogComponent->value);
 
     auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
     THandlerLinkHelper::LinkToHandler<TDialogCloseEventHandlerComponent>(entMng, eid, pDialogComponent,

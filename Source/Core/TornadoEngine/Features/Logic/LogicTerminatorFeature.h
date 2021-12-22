@@ -10,12 +10,14 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 
 #include "FeatureTerminatorSystem.h"
+#include "ObjectInstanceEndHandlerTerminatorSystem.h"
 
 namespace nsLogicWrapper
 {
     class DllExport TLogicTerminatorFeature : public nsECSFramework::TFeature
     {
         TFeatureTerminatorSystem mFeatureTerminatorSystem;
+        TObjectInstanceEndHandlerTerminatorSystem mObjectInstanceEndHandlerTerminatorSystem;
     public:
         void InitConveyor() override;
     };

@@ -10,10 +10,15 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 
 #include "ButtonBuilderSystem.h"
+#include "MenuNodeBuilderSystem.h"
+#include "InputTextBuilderSystem.h"
 #include "WindowBuilderSystem.h"
 #include "DialogBuilderSystem.h"
 
+#include "MainWindowBuilderSystem.h"
+
 #include "ButtonClickHandlerBuilderSystem.h"
+#include "MenuNodeClickHandlerBuilderSystem.h"
 #include "DialogCloseEventHandlerBuilderSystem.h"
 #include "WindowCloseEventHandlerBuilderSystem.h"
 
@@ -22,10 +27,15 @@ namespace nsGraphicWrapper
     class DllExport TGuiBuilderFeature : public nsECSFramework::TFeature
     {
         TButtonBuilderSystem mButtonBuilderSystem;
+        TMenuNodeBuilderSystem mMenuNodeBuilderSystem;
+        TInputTextBuilderSystem mInputTextBuilderSystem;
         TWindowBuilderSystem mWindowBuilderSystem;
         TDialogBuilderSystem mDialogBuilderSystem;
+
+        TMainWindowBuilderSystem mMainWindowBuilderSystem;
         
         TButtonClickHandlerBuilderSystem mButtonClickHandlerBuilderSystem;
+        TMenuNodeClickHandlerBuilderSystem mMenuNodeClickHandlerBuilderSystem;
         TDialogCloseEventHandlerBuilderSystem mDialogCloseEventHandlerBuilderSystem;
         TWindowCloseEventHandlerBuilderSystem mWindowCloseEventHandlerBuilderSystem;
     public:

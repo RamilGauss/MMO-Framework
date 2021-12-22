@@ -16,5 +16,15 @@ namespace nsGuiWrapper
     struct DllExport TTitleComponent : nsECSFramework::IComponent
     {
         std::string value;
+
+        bool IsLess(const IComponent* pOther) const override
+        {
+            return value < ((TTitleComponent*) pOther)->value;
+        }
+
+        bool IsEqual(const IComponent* pOther) const override
+        {
+            return value == ((TTitleComponent*) pOther)->value;
+        }
     };
 }

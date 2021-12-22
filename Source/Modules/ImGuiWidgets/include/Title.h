@@ -15,8 +15,8 @@ namespace nsImGuiWidgets
     struct DllExport TTitle
     {
     public:
-        void SetTitle(const std::string& str);
-        std::string GetTitle() const;
+        virtual void SetTitle(const std::string& str);
+        virtual std::string GetTitle() const;
 
     protected:
         std::string mTitle = "<Unknown>";

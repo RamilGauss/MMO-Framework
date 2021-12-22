@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_19 11:41:16.589
+// File has been generated at 2021_12_22 08:18:46.794
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -361,6 +361,19 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsGuiWrapper_TInputTextComponent_Data, nsGuiWrapper_TInputTextComponent_Data });
     
+    Data nsGuiWrapper_TInputTextValueComponent_Data;
+        nsGuiWrapper_TInputTextValueComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TInputTextValueComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TInputTextValueComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TInputTextValueComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TInputTextValueComponent*)p), isNotify); };
+    nsGuiWrapper_TInputTextValueComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TInputTextValueComponent>(eid); };
+    nsGuiWrapper_TInputTextValueComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TInputTextValueComponent>(eid); };
+    nsGuiWrapper_TInputTextValueComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TInputTextValueComponent>(eid); };
+    auto rtti_nsGuiWrapper_TInputTextValueComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TInputTextValueComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TInputTextValueComponent_Data, nsGuiWrapper_TInputTextValueComponent_Data });
+    
     Data nsGuiWrapper_TMainWindowComponent_Data;
         nsGuiWrapper_TMainWindowComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
         auto lambda = [&](nsGuiWrapper::TMainWindowComponent* pC){ onAfterCreation((void*)pC); };
@@ -373,6 +386,19 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsGuiWrapper_TMainWindowComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TMainWindowComponent>();
     
     m.insert({ rtti_nsGuiWrapper_TMainWindowComponent_Data, nsGuiWrapper_TMainWindowComponent_Data });
+    
+    Data nsGuiWrapper_TMenuNodeClickHandlerComponent_Data;
+        nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TMenuNodeClickHandlerComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TMenuNodeClickHandlerComponent*)p), isNotify); };
+    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid); };
+    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid); };
+    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid); };
+    auto rtti_nsGuiWrapper_TMenuNodeClickHandlerComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TMenuNodeClickHandlerComponent_Data, nsGuiWrapper_TMenuNodeClickHandlerComponent_Data });
     
     Data nsGuiWrapper_TMenuNodeComponent_Data;
         nsGuiWrapper_TMenuNodeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
@@ -503,6 +529,19 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsLogicWrapper_TFeatureComponent_Data = globalTypeIdentifier->Type<nsLogicWrapper::TFeatureComponent>();
     
     m.insert({ rtti_nsLogicWrapper_TFeatureComponent_Data, nsLogicWrapper_TFeatureComponent_Data });
+    
+    Data nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data;
+        nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsLogicWrapper::TObjectInstanceEndHandlerComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsLogicWrapper::TObjectInstanceEndHandlerComponent>(eid, lambda, isNotify);
+    };
+    nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TObjectInstanceEndHandlerComponent*)p), isNotify); };
+    nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TObjectInstanceEndHandlerComponent>(eid); };
+    nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TObjectInstanceEndHandlerComponent>(eid); };
+    nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TObjectInstanceEndHandlerComponent>(eid); };
+    auto rtti_nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstanceEndHandlerComponent>();
+    
+    m.insert({ rtti_nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data, nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data });
     
     Data nsLogicWrapper_TPrefabObjectReferenceComponent_Data;
         nsLogicWrapper_TPrefabObjectReferenceComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

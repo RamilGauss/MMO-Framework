@@ -16,6 +16,8 @@ See for more information LICENSE.md.
 #include "SizeComponent.h"
 #include "TitleComponent.h"
 
+#include "UnitBuilderHelper.h"
+
 using namespace nsGraphicWrapper;
 
 void TWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TWindowComponent* pWindowComponent)
@@ -24,12 +26,5 @@ void TWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
 
     auto entMng = GetEntMng();
 
-    auto posComponent = entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid);
-    pWindowComponent->value->SetPos({(float) posComponent->x,(float) posComponent->y});
-
-    auto sizeComponent = entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid);
-    pWindowComponent->value->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});
-
-    auto titleComponent = entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid);
-    pWindowComponent->value->SetTitle(titleComponent->value);
+    TUnitBuilderHelper::SetupWidget(entMng, eid, pWindowComponent->value);
 }

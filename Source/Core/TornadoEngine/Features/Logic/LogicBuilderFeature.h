@@ -10,12 +10,14 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 
 #include "FeatureBuilderSystem.h"
+#include "ObjectInstanceEndHandlerBuilderSystem.h"
 
 namespace nsLogicWrapper
 {
     class DllExport TLogicBuilderFeature : public nsECSFramework::TFeature
     {
         TFeatureBuilderSystem mFeatureBuilderSystem;
+        TObjectInstanceEndHandlerBuilderSystem mObjectInstanceEndHandlerBuilderSystem;
     public:
         void InitConveyor() override;
     };

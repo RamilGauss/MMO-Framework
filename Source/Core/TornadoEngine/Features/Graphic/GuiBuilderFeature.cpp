@@ -12,10 +12,15 @@ using namespace nsGraphicWrapper;
 void TGuiBuilderFeature::InitConveyor()
 {
     Add(&mButtonBuilderSystem);
+    Add(&mMenuNodeBuilderSystem);
+    Add(&mInputTextBuilderSystem);
     Add(&mWindowBuilderSystem);
     Add(&mDialogBuilderSystem);
+
+    Add(&mMainWindowBuilderSystem);
     
     Add(&mButtonClickHandlerBuilderSystem);
+    Add(&mMenuNodeClickHandlerBuilderSystem);
     Add(&mDialogCloseEventHandlerBuilderSystem);
     Add(&mWindowCloseEventHandlerBuilderSystem);
 }

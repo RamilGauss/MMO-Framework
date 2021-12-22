@@ -19,7 +19,5 @@ namespace nsGuiWrapper
         // Not use directly!
 #pragma IGNORE_ATTRIBUTE
         mutable nsImGuiWidgets::TInputText* value = nullptr;
-
-        std::string text;
     };
 }

@@ -17,5 +17,23 @@ namespace nsGuiWrapper
     {
         int x = 0;
         int y = 0;
+
+        bool IsLess(const IComponent* pOther) const override
+        {
+            if (x < ((TSizeComponent*) pOther)->x) {
+                return false;
+            }
+
+            if (x == ((TSizeComponent*) pOther)->x) {
+                return y < ((TSizeComponent*) pOther)->y;
+            }
+
+            return true;
+        }
+
+        bool IsEqual(const IComponent* pOther) const override
+        {
+            return x == ((TSizeComponent*) pOther)->x && y == ((TSizeComponent*) pOther)->y;
+        }
     };
 }

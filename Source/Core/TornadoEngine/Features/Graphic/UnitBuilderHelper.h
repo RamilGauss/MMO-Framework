@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include <ECS/include/EntityManager.h>
 
 #include <ImGuiWidgets/include/Widget.h>
+#include <ImGuiWidgets/include/MenuNode.h>
 
 #include "ButtonComponent.h"
 
@@ -18,10 +19,19 @@ namespace nsGraphicWrapper
     class DllExport TUnitBuilderHelper
     {
     public:
-        static void SetupButton(nsECSFramework::TEntityManager* entMng,
-            nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pButtonComponent);
+        static void SetupWidget(nsECSFramework::TEntityManager* entMng,
+            nsECSFramework::TEntityID eid, nsImGuiWidgets::TWidget* pWidget);
+
+        static void SetupMenuNode(nsECSFramework::TEntityManager* entMng,
+            nsECSFramework::TEntityID eid, nsImGuiWidgets::TMenuNode* pMenuNode);
 
         static void AddWidgetToParent(nsECSFramework::TEntityManager* entMng, nsECSFramework::TEntityID parentEid,
             nsImGuiWidgets::TWidget* pWidget);
+
+        static void UnlinkParent(nsECSFramework::TEntityManager* entMng, nsECSFramework::TEntityID eid,
+            nsImGuiWidgets::TWidget* pWidget);
+
+        static void UnlinkMenuNode(nsECSFramework::TEntityManager* entMng, nsECSFramework::TEntityID eid,
+            nsImGuiWidgets::TMenuNode* pMenuNode);
     };
 }

@@ -234,14 +234,14 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     </None>
     <None Include="featureConfig.json" />
     <None Include="handlerConfig.json" />
-    <None Include="Prefabs\ButtonX.prefab">
+    <None Include="Prefabs\FileHierarchyWindow.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Prefabs\Dialog.prefab">
+    <None Include="Prefabs\OpenProjectDialog.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Prefabs\Dialog2.prefab">
+    <None Include="Prefabs\WarningDialog.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
@@ -295,11 +295,14 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClInclude Include="Generated files\HandlerTypeInformationImpl.h" />
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
+    <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h" />
     <ClInclude Include="Handlers\DeleteOnButtonClickHandler.h" />
     <ClInclude Include="Handlers\DialogButtonClickHandler.h" />
     <ClInclude Include="Handlers\ExitButtonHandler.h" />
     <ClInclude Include="Handlers\OnCloseDialogHandler.h" />
     <ClInclude Include="Handlers\OnCloseWindowHandler.h" />
+    <ClInclude Include="Handlers\OnExitClickHandler.h" />
+    <ClInclude Include="Handlers\OnOpenProjectClickHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

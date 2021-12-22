@@ -17,11 +17,11 @@ void TDialogSizeUpdaterSystem::Execute()
     for (auto& eid : hasDialog) {
         auto pDialog = GetEntMng()->ViewComponent<nsGuiWrapper::TDialogComponent>(eid)->value;
 
-        auto pPos = pDialog->GetPos();
+        auto pSize = pDialog->GetSize();
         nsGuiWrapper::TSizeComponent sizeComponent;
 
-        sizeComponent.x = pPos.x;
-        sizeComponent.y = pPos.y;
+        sizeComponent.x = pSize.x;
+        sizeComponent.y = pSize.y;
 
         GetEntMng()->SetComponent(eid, sizeComponent, false);
     }

@@ -1,0 +1,183 @@
+{
+    "header" : {
+        // reserved
+    },
+    "entities": [
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog_0\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Dialog\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"NONE\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabRootComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\":200, \"y\":200}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\":600, \"y\":100}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TDialogComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"Open project dialog\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TDialogCloseEventHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"partOfGuid\":\"OpenProjectDialog\", \"entityGuid\":\"OpenProjectDialog_0\"}"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog_1\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Project path\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog_0\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\":0, \"y\":40}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\":595, \"y\":25}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TInputTextComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TInputTextValueComponent",
+                    "jsonBody": "{\"value\":\"\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"\"}"
+                },
+                {
+                    "typeName": "nsLogicWrapper::TObjectInstanceEndHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TCurrentPathToInputTextHandler\"}"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog_3\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"OK\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog_0\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\":390, \"y\":65}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\":100, \"y\":25}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"OK\"}"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog_4\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Cancel\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog_0\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
+                    "jsonBody": "{\"value\":\"OpenProjectDialog\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\":495, \"y\":65}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\":100, \"y\":25}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"Cancel\"}"
+                }
+            ]
+        }
+    ]
+}

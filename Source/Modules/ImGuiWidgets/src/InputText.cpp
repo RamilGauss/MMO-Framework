@@ -24,15 +24,28 @@ void TInputText::SetText(const std::string& str)
 static int EditCallback(ImGuiInputTextCallbackData* data)
 {
     auto inputText = (TInputText*) data->UserData;
-    inputText->mOnTextEditCB.Notify(inputText);
+    inputText->SetTextEdited();
     return 0;
 }
 //------------------------------------------------------------------------------------
 void TInputText::RenderInheritance()
 {
+    ImGui::PushItemWidth(mSize.x);
+
     auto flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackEdit | ImGuiInputTextFlags_AutoSelectAll;
     if (ImGui::InputText(mTitle.c_str(), mValue, SIZE, flags, EditCallback, this)) {
         mOnTextEditEndsCB.Notify(this);
     }
+    if (mIsTextEdited) {
+        mOnTextEditCB.Notify(this);
+        mIsTextEdited = false;
+    }
+
+    ImGui::PopItemWidth();
+}
+//------------------------------------------------------------------------------------
+void TInputText::SetTextEdited()
+{
+    mIsTextEdited = true;
 }
 //------------------------------------------------------------------------------------

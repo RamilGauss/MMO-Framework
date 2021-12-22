@@ -18,6 +18,6 @@ namespace nsGuiWrapper
     {
         // Not use directly!
 #pragma IGNORE_ATTRIBUTE
-        nsImGuiWidgets::TMainWindow* value = nullptr;
+        mutable nsImGuiWidgets::TMainWindow* value = nullptr;
     };
 }

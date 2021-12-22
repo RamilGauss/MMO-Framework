@@ -31,10 +31,7 @@ void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
 {
     auto entMng = GetEntMng();
 
-    auto titleComponent = entMng->ViewComponent<TTitleComponent>(eid);
-    pButtonComponent->value->SetTitle(titleComponent->value);
-
-    TUnitBuilderHelper::SetupButton(entMng, eid, pButtonComponent);
+    TUnitBuilderHelper::SetupWidget(entMng, eid, pButtonComponent->value);
 
     auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
     THandlerLinkHelper::LinkToHandler<TButtonClickHandlerComponent>(entMng, eid, pButtonComponent,

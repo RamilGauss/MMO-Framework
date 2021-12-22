@@ -80,7 +80,7 @@
     <None Include="Scenes\SceneManagerContentMap.json">
       <Filter>Scenes</Filter>
     </None>
-    <None Include="Prefabs\ButtonX.prefab">
+    <None Include="Prefabs\FileHierarchyWindow.prefab">
       <Filter>Prefabs</Filter>
     </None>
     <None Include="Prefabs\PrefabManagerContentMap.json">
@@ -89,10 +89,10 @@
     <None Include="Resources\Resources.json">
       <Filter>Resources</Filter>
     </None>
-    <None Include="Prefabs\Dialog.prefab">
+    <None Include="Prefabs\OpenProjectDialog.prefab">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Prefabs\Dialog2.prefab">
+    <None Include="Prefabs\WarningDialog.prefab">
       <Filter>Prefabs</Filter>
     </None>
   </ItemGroup>
@@ -241,6 +241,15 @@
       <Filter>Handlers</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\OnCloseWindowHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OnOpenProjectClickHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OnExitClickHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>

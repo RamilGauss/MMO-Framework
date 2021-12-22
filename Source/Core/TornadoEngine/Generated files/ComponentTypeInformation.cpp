@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_19 11:41:16.598
+// File has been generated at 2021_12_22 08:18:46.804
 	
 #include "ComponentTypeInformation.h"
 
@@ -183,11 +183,23 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TInputTextComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TInputTextComponent_n, nsGuiWrapper_TInputTextComponent_i });
     
+    int nsGuiWrapper_TInputTextValueComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TInputTextValueComponent>();
+    std::string nsGuiWrapper_TInputTextValueComponent_n = "nsGuiWrapper::TInputTextValueComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TInputTextValueComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TInputTextValueComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TInputTextValueComponent_n, nsGuiWrapper_TInputTextValueComponent_i });
+    
     int nsGuiWrapper_TMainWindowComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TMainWindowComponent>();
     std::string nsGuiWrapper_TMainWindowComponent_n = "nsGuiWrapper::TMainWindowComponent";
     mTypeNameList.push_back(nsGuiWrapper_TMainWindowComponent_n);
     mRttiList.push_back(nsGuiWrapper_TMainWindowComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TMainWindowComponent_n, nsGuiWrapper_TMainWindowComponent_i });
+    
+    int nsGuiWrapper_TMenuNodeClickHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
+    std::string nsGuiWrapper_TMenuNodeClickHandlerComponent_n = "nsGuiWrapper::TMenuNodeClickHandlerComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TMenuNodeClickHandlerComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TMenuNodeClickHandlerComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TMenuNodeClickHandlerComponent_n, nsGuiWrapper_TMenuNodeClickHandlerComponent_i });
     
     int nsGuiWrapper_TMenuNodeComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeComponent>();
     std::string nsGuiWrapper_TMenuNodeComponent_n = "nsGuiWrapper::TMenuNodeComponent";
@@ -248,6 +260,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsLogicWrapper_TFeatureComponent_n);
     mRttiList.push_back(nsLogicWrapper_TFeatureComponent_i);
     mNameRttiMap.insert({ nsLogicWrapper_TFeatureComponent_n, nsLogicWrapper_TFeatureComponent_i });
+    
+    int nsLogicWrapper_TObjectInstanceEndHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstanceEndHandlerComponent>();
+    std::string nsLogicWrapper_TObjectInstanceEndHandlerComponent_n = "nsLogicWrapper::TObjectInstanceEndHandlerComponent";
+    mTypeNameList.push_back(nsLogicWrapper_TObjectInstanceEndHandlerComponent_n);
+    mRttiList.push_back(nsLogicWrapper_TObjectInstanceEndHandlerComponent_i);
+    mNameRttiMap.insert({ nsLogicWrapper_TObjectInstanceEndHandlerComponent_n, nsLogicWrapper_TObjectInstanceEndHandlerComponent_i });
     
     int nsLogicWrapper_TPrefabObjectReferenceComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabObjectReferenceComponent>();
     std::string nsLogicWrapper_TPrefabObjectReferenceComponent_n = "nsLogicWrapper::TPrefabObjectReferenceComponent";

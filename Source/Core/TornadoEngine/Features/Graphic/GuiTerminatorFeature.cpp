@@ -12,10 +12,15 @@ using namespace nsGraphicWrapper;
 void TGuiTerminatorFeature::InitConveyor()
 {
     Add(&mButtonTerminatorSystem);
+    Add(&mMenuNodeTerminatorSystem);
+    Add(&mInputTextTerminatorSystem);
     Add(&mWindowTerminatorSystem);
     Add(&mDialogTerminatorSystem);
 
+    Add(&mMainWindowTerminatorSystem);
+
     Add(&mButtonClickHandlerTerminatorSystem);
+    Add(&mMenuNodeClickHandlerTerminatorSystem);
     Add(&mDialogCloseEventHandlerTerminatorSystem);
     Add(&mWindowCloseEventHandlerTerminatorSystem);
 }

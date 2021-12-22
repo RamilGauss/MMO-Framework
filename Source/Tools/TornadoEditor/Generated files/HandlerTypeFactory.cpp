@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_19 11:45:52.938
+// File has been generated at 2021_12_22 08:22:04.738
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -23,6 +23,13 @@ void THandlerTypeFactory::Init()
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
     std::map<int, Data> m;
+    
+    Data nsTornadoEditor_TCurrentPathToInputTextHandler_Data;
+    nsTornadoEditor_TCurrentPathToInputTextHandler_Data.newFunc = [](){ return new nsTornadoEditor::TCurrentPathToInputTextHandler(); };
+    nsTornadoEditor_TCurrentPathToInputTextHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TCurrentPathToInputTextHandler*)p; };
+    auto rtti_nsTornadoEditor_TCurrentPathToInputTextHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TCurrentPathToInputTextHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TCurrentPathToInputTextHandler_Data, nsTornadoEditor_TCurrentPathToInputTextHandler_Data });
     
     Data nsTornadoEditor_TDeleteOnButtonClickHandler_Data;
     nsTornadoEditor_TDeleteOnButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TDeleteOnButtonClickHandler(); };
@@ -58,6 +65,20 @@ void THandlerTypeFactory::Init()
     auto rtti_nsTornadoEditor_TOnCloseWindowHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseWindowHandler>();
     
     m.insert({ rtti_nsTornadoEditor_TOnCloseWindowHandler_Data, nsTornadoEditor_TOnCloseWindowHandler_Data });
+    
+    Data nsTornadoEditor_TOnExitClickHandler_Data;
+    nsTornadoEditor_TOnExitClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnExitClickHandler(); };
+    nsTornadoEditor_TOnExitClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnExitClickHandler*)p; };
+    auto rtti_nsTornadoEditor_TOnExitClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnExitClickHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TOnExitClickHandler_Data, nsTornadoEditor_TOnExitClickHandler_Data });
+    
+    Data nsTornadoEditor_TOnOpenProjectClickHandler_Data;
+    nsTornadoEditor_TOnOpenProjectClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnOpenProjectClickHandler(); };
+    nsTornadoEditor_TOnOpenProjectClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnOpenProjectClickHandler*)p; };
+    auto rtti_nsTornadoEditor_TOnOpenProjectClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenProjectClickHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TOnOpenProjectClickHandler_Data, nsTornadoEditor_TOnOpenProjectClickHandler_Data });
     
     int max = 0;
     for (auto& vt : m) {

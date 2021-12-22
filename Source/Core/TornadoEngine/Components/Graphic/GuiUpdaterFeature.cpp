@@ -16,4 +16,6 @@ void TGuiUpdaterFeature::InitConveyor()
 
     Add(&mDialogPositionUpdaterSystem);
     Add(&mDialogSizeUpdaterSystem);
+
+    Add(&mInputTextValueUpdaterSystem);
 }
