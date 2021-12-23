@@ -73,9 +73,6 @@
     <Filter Include="Features\Graphic\Terminator">
       <UniqueIdentifier>{d75b7359-1b12-4926-b382-77ab19a706ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Features\Graphic\Updater">
-      <UniqueIdentifier>{d46be429-7ee7-4340-8c09-bd0efed20ed9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Features\Logic\Builder">
       <UniqueIdentifier>{61c83f39-b9d4-44e2-b0a8-2e6a394d0e3b}</UniqueIdentifier>
     </Filter>
@@ -108,6 +105,12 @@
     </Filter>
     <Filter Include="Handlers\Logic">
       <UniqueIdentifier>{b70ae12b-28e1-49f3-b546-8d683402ea3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Graphic\UpdaterToModule">
+      <UniqueIdentifier>{1a50c36f-48f5-485e-853d-ea2bd730d13b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Graphic\UpdaterFromModule">
+      <UniqueIdentifier>{d46be429-7ee7-4340-8c09-bd0efed20ed9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -246,14 +249,14 @@
     <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h">
       <Filter>Components\Common\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Graphic\GuiUpdaterFeature.cpp">
-      <Filter>Features\Graphic\Updater</Filter>
+    <ClCompile Include="Components\Graphic\GuiUpdaterFromModuleFeature.cpp">
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
     <ClCompile Include="Components\Graphic\WindowPositionUpdaterSystem.cpp">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
     <ClCompile Include="Components\Graphic\WindowSizeUpdaterSystem.cpp">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\FeatureTypeFactory.cpp">
       <Filter>Generated files</Filter>
@@ -325,10 +328,10 @@
       <Filter>Features\Graphic\Terminator</Filter>
     </ClCompile>
     <ClCompile Include="Features\Graphic\DialogPositionUpdaterSystem.cpp">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
     <ClCompile Include="Features\Graphic\DialogSizeUpdaterSystem.cpp">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
     <ClCompile Include="Features\Graphic\DialogCloseEventHandlerBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder</Filter>
@@ -397,7 +400,13 @@
       <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
     <ClCompile Include="Features\Graphic\InputTextValueUpdaterSystem.cpp">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\GuiUpdaterToModuleFeature.cpp">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\TitleUpdaterSystem.cpp">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -705,13 +714,13 @@
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\WindowPositionUpdaterSystem.h">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Graphic\GuiUpdaterFeature.h">
-      <Filter>Features\Graphic\Updater</Filter>
+    <ClInclude Include="Components\Graphic\GuiUpdaterFromModuleFeature.h">
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\WindowSizeUpdaterSystem.h">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\FeatureTypeFactory.h">
       <Filter>Generated files</Filter>
@@ -822,10 +831,10 @@
       <Filter>Features\Graphic\Terminator</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\DialogPositionUpdaterSystem.h">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\DialogSizeUpdaterSystem.h">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\HandlerLinkHelper.h">
       <Filter>Features\Graphic\Builder</Filter>
@@ -938,8 +947,17 @@
     <ClInclude Include="Components\Gui\InputTextValueComponent.h">
       <Filter>Components\Gui</Filter>
     </ClInclude>
+    <ClInclude Include="Share\HandlerPool.h">
+      <Filter>Share</Filter>
+    </ClInclude>
     <ClInclude Include="Features\Graphic\InputTextValueUpdaterSystem.h">
-      <Filter>Features\Graphic\Updater</Filter>
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\GuiUpdaterToModuleFeature.h">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\TitleUpdaterSystem.h">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

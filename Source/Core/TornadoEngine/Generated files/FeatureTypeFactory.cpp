@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_22 08:18:52.305
+// File has been generated at 2021_12_23 07:49:29.691
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -59,12 +59,19 @@ void TFeatureTypeFactory::Init()
     
     m.insert({ rtti_nsGraphicWrapper_TGuiTerminatorFeature_Data, nsGraphicWrapper_TGuiTerminatorFeature_Data });
     
-    Data nsGraphicWrapper_TGuiUpdaterFeature_Data;
-    nsGraphicWrapper_TGuiUpdaterFeature_Data.newFunc = [](){ return new nsGraphicWrapper::TGuiUpdaterFeature(); };
-    nsGraphicWrapper_TGuiUpdaterFeature_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TGuiUpdaterFeature*)p; };
-    auto rtti_nsGraphicWrapper_TGuiUpdaterFeature_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiUpdaterFeature>();
+    Data nsGraphicWrapper_TGuiUpdaterFromModuleFeature_Data;
+    nsGraphicWrapper_TGuiUpdaterFromModuleFeature_Data.newFunc = [](){ return new nsGraphicWrapper::TGuiUpdaterFromModuleFeature(); };
+    nsGraphicWrapper_TGuiUpdaterFromModuleFeature_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TGuiUpdaterFromModuleFeature*)p; };
+    auto rtti_nsGraphicWrapper_TGuiUpdaterFromModuleFeature_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiUpdaterFromModuleFeature>();
     
-    m.insert({ rtti_nsGraphicWrapper_TGuiUpdaterFeature_Data, nsGraphicWrapper_TGuiUpdaterFeature_Data });
+    m.insert({ rtti_nsGraphicWrapper_TGuiUpdaterFromModuleFeature_Data, nsGraphicWrapper_TGuiUpdaterFromModuleFeature_Data });
+    
+    Data nsGraphicWrapper_TGuiUpdaterToModuleFeature_Data;
+    nsGraphicWrapper_TGuiUpdaterToModuleFeature_Data.newFunc = [](){ return new nsGraphicWrapper::TGuiUpdaterToModuleFeature(); };
+    nsGraphicWrapper_TGuiUpdaterToModuleFeature_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TGuiUpdaterToModuleFeature*)p; };
+    auto rtti_nsGraphicWrapper_TGuiUpdaterToModuleFeature_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiUpdaterToModuleFeature>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TGuiUpdaterToModuleFeature_Data, nsGraphicWrapper_TGuiUpdaterToModuleFeature_Data });
     
     Data nsLogicWrapper_TBeginLogicFeature_Data;
     nsLogicWrapper_TBeginLogicFeature_Data.newFunc = [](){ return new nsLogicWrapper::TBeginLogicFeature(); };

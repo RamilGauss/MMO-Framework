@@ -9,8 +9,16 @@ See for more information LICENSE.md.
 #include "InputTextComponent.h"
 
 using namespace nsGraphicWrapper;
+using namespace nsGuiWrapper;
+using namespace std::placeholders;
 
+void TInputTextValueUpdaterSystem::Init()
+{
+    Add(std::bind(&TInputTextValueUpdaterSystem::SetInputTextValue<TInputTextComponent>, this, _1, _2));
+}
+//--------------------------------------------------------------------------------------------------------------------------
 void TInputTextValueUpdaterSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TInputTextValueComponent* pC)
 {
-    GetEntMng()->ViewComponent<nsGuiWrapper::TInputTextComponent>(eid)->value->SetText(pC->value);
+    HandleByPool(eid, pC);
 }
+//--------------------------------------------------------------------------------------------------------------------------

@@ -9,13 +9,13 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "GuiUpdaterFromModuleFeature.h"
+#include "TitleUpdaterSystem.h"
 
 namespace nsGraphicWrapper
 {
-    class DllExport TEndGraphicFeature : public nsECSFramework::TFeature
+    class DllExport TGuiUpdaterToModuleFeature : public nsECSFramework::TFeature
     {
-        TGuiUpdaterFromModuleFeature mGuiUpdaterFromModuleFeature;
+        TTitleUpdaterSystem mTitleUpdaterSystem;
     public:
         void InitConveyor() override;
     };

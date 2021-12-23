@@ -11,5 +11,5 @@ using namespace nsGraphicWrapper;
 
 void TEndGraphicFeature::InitConveyor()
 {
-    Add(&mGuiUpdaterFeature);
+    Add(&mGuiUpdaterFromModuleFeature);
 }

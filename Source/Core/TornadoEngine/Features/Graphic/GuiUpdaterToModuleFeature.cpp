@@ -5,14 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BeginGraphicFeature.h"
+#include "GuiUpdaterToModuleFeature.h"
 
 using namespace nsGraphicWrapper;
 
-void TBeginGraphicFeature::InitConveyor()
+void TGuiUpdaterToModuleFeature::InitConveyor()
 {
-    Add(&mGuiMakerFeature);
-    Add(&mGuiBuilderFeature);
-    Add(&mGuiTerminatorFeature);
-    Add(&mGuiUpdaterToModuleFeature);
+    Add(&mTitleUpdaterSystem);
 }

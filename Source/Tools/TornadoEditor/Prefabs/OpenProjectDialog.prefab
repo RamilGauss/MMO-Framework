@@ -91,7 +91,7 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
-                    "jsonBody": "{\"value\":\"\"}"
+                    "jsonBody": "{\"value\":\"Path\"}"
                 },
                 {
                     "typeName": "nsLogicWrapper::TObjectInstanceEndHandlerComponent",

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_22 08:18:52.308
+// File has been generated at 2021_12_23 07:49:29.693
 	
 #include "FeatureTypeInformation.h"
 
@@ -57,11 +57,17 @@ void TFeatureTypeInformation::Init()
     mRttiList.push_back(nsGraphicWrapper_TGuiTerminatorFeature_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TGuiTerminatorFeature_n, nsGraphicWrapper_TGuiTerminatorFeature_i });
     
-    int nsGraphicWrapper_TGuiUpdaterFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiUpdaterFeature>();
-    std::string nsGraphicWrapper_TGuiUpdaterFeature_n = "nsGraphicWrapper::TGuiUpdaterFeature";
-    mTypeNameList.push_back(nsGraphicWrapper_TGuiUpdaterFeature_n);
-    mRttiList.push_back(nsGraphicWrapper_TGuiUpdaterFeature_i);
-    mNameRttiMap.insert({ nsGraphicWrapper_TGuiUpdaterFeature_n, nsGraphicWrapper_TGuiUpdaterFeature_i });
+    int nsGraphicWrapper_TGuiUpdaterFromModuleFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiUpdaterFromModuleFeature>();
+    std::string nsGraphicWrapper_TGuiUpdaterFromModuleFeature_n = "nsGraphicWrapper::TGuiUpdaterFromModuleFeature";
+    mTypeNameList.push_back(nsGraphicWrapper_TGuiUpdaterFromModuleFeature_n);
+    mRttiList.push_back(nsGraphicWrapper_TGuiUpdaterFromModuleFeature_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TGuiUpdaterFromModuleFeature_n, nsGraphicWrapper_TGuiUpdaterFromModuleFeature_i });
+    
+    int nsGraphicWrapper_TGuiUpdaterToModuleFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiUpdaterToModuleFeature>();
+    std::string nsGraphicWrapper_TGuiUpdaterToModuleFeature_n = "nsGraphicWrapper::TGuiUpdaterToModuleFeature";
+    mTypeNameList.push_back(nsGraphicWrapper_TGuiUpdaterToModuleFeature_n);
+    mRttiList.push_back(nsGraphicWrapper_TGuiUpdaterToModuleFeature_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TGuiUpdaterToModuleFeature_n, nsGraphicWrapper_TGuiUpdaterToModuleFeature_i });
     
     int nsLogicWrapper_TBeginLogicFeature_i = globalTypeIdentifier->Type<nsLogicWrapper::TBeginLogicFeature>();
     std::string nsLogicWrapper_TBeginLogicFeature_n = "nsLogicWrapper::TBeginLogicFeature";

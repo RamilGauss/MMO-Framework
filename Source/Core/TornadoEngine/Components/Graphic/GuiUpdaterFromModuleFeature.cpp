@@ -5,17 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "GuiUpdaterFeature.h"
+#include "GuiUpdaterFromModuleFeature.h"
 
 using namespace nsGraphicWrapper;
 
-void TGuiUpdaterFeature::InitConveyor()
+void TGuiUpdaterFromModuleFeature::InitConveyor()
 {
     Add(&mWindowPositionUpdaterSystem);
     Add(&mWindowSizeUpdaterSystem);
 
     Add(&mDialogPositionUpdaterSystem);
     Add(&mDialogSizeUpdaterSystem);
-
-    Add(&mInputTextValueUpdaterSystem);
 }

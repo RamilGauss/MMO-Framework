@@ -15,19 +15,15 @@ See for more information LICENSE.md.
 #include "DialogPositionUpdaterSystem.h"
 #include "DialogSizeUpdaterSystem.h"
 
-#include "InputTextValueUpdaterSystem.h"
-
 namespace nsGraphicWrapper
 {
-    class DllExport TGuiUpdaterFeature : public nsECSFramework::TFeature
+    class DllExport TGuiUpdaterFromModuleFeature : public nsECSFramework::TFeature
     {
         TWindowPositionUpdaterSystem mWindowPositionUpdaterSystem;
         TWindowSizeUpdaterSystem     mWindowSizeUpdaterSystem;
 
         TDialogPositionUpdaterSystem mDialogPositionUpdaterSystem;
         TDialogSizeUpdaterSystem     mDialogSizeUpdaterSystem;
-
-        TInputTextValueUpdaterSystem mInputTextValueUpdaterSystem;
     public:
         void InitConveyor() override;
     };

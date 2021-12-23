@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_22 08:18:52.309
+// File has been generated at 2021_12_23 07:49:29.696
 	
 #pragma once
 
@@ -13,7 +13,8 @@
 #include "GuiBuilderFeature.h"
 #include "GuiMakerFeature.h"
 #include "GuiTerminatorFeature.h"
-#include "GuiUpdaterFeature.h"
+#include "GuiUpdaterFromModuleFeature.h"
+#include "GuiUpdaterToModuleFeature.h"
 #include "LogicBuilderFeature.h"
 #include "LogicMakerFeature.h"
 #include "LogicTerminatorFeature.h"

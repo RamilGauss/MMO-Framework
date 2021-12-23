@@ -10,27 +10,27 @@ See for more information LICENSE.md.
 #include <ECS/include/OnUpdateInstantReactiveSystem.h>
 #include <ECS/include/InitSystem.h>
 
-#include "InputTextValueComponent.h"
+#include "TitleComponent.h"
 #include "HandlerPool.h"
 
 namespace nsGraphicWrapper
 {
-    class DllExport TInputTextValueUpdaterSystem : 
-        public nsECSFramework::TOnUpdateInstantReactiveSystem<nsGuiWrapper::TInputTextValueComponent, TInputTextValueUpdaterSystem>,
+    class DllExport TTitleUpdaterSystem :
+        public nsECSFramework::TOnUpdateInstantReactiveSystem<nsGuiWrapper::TTitleComponent, TTitleUpdaterSystem>,
         public nsECSFramework::TInitSystem,
-        public nsTornadoEngine::THandlerPool<nsGuiWrapper::TInputTextValueComponent>
+        public nsTornadoEngine::THandlerPool<nsGuiWrapper::TTitleComponent>
     {
         template<typename T>
-        bool SetInputTextValue(nsECSFramework::TEntityID eid, const nsGuiWrapper::TInputTextValueComponent* pC)
+        bool SetTitle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TTitleComponent* pC)
         {
             auto viewComponent = GetEntMng()->ViewComponent<T>(eid);
             if (viewComponent != nullptr) {
-                viewComponent->value->SetText(pC->value);
+                viewComponent->value->SetTitle(pC->value);
             }
             return (viewComponent != nullptr);
         }
     public:
         void Init() override;
-        void Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TInputTextValueComponent* pC);
+        void Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TTitleComponent* pC);
     };
 }

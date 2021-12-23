@@ -16,6 +16,7 @@ See for more information LICENSE.md.
 #include "PrefabManager.h"
 
 #include "InputTextValueComponent.h"
+#include "TitleComponent.h"
 
 namespace nsTornadoEditor
 {
