@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_23 07:53:16.556
+// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_30 17:13:40.625
 	
 #include "ComponentTypeInformation.h"
 
@@ -26,6 +26,24 @@ void TComponentTypeInformation::Init()
     isNeedInit = false;
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
+    
+    int nsTornadoEditor_TAbsoluteFilePathComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TAbsoluteFilePathComponent>();
+    std::string nsTornadoEditor_TAbsoluteFilePathComponent_n = "nsTornadoEditor::TAbsoluteFilePathComponent";
+    mTypeNameList.push_back(nsTornadoEditor_TAbsoluteFilePathComponent_n);
+    mRttiList.push_back(nsTornadoEditor_TAbsoluteFilePathComponent_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TAbsoluteFilePathComponent_n, nsTornadoEditor_TAbsoluteFilePathComponent_i });
+    
+    int nsTornadoEditor_TEditorInfoTagComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TEditorInfoTagComponent>();
+    std::string nsTornadoEditor_TEditorInfoTagComponent_n = "nsTornadoEditor::TEditorInfoTagComponent";
+    mTypeNameList.push_back(nsTornadoEditor_TEditorInfoTagComponent_n);
+    mRttiList.push_back(nsTornadoEditor_TEditorInfoTagComponent_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TEditorInfoTagComponent_n, nsTornadoEditor_TEditorInfoTagComponent_i });
+    
+    int nsTornadoEditor_TProjectConfigComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TProjectConfigComponent>();
+    std::string nsTornadoEditor_TProjectConfigComponent_n = "nsTornadoEditor::TProjectConfigComponent";
+    mTypeNameList.push_back(nsTornadoEditor_TProjectConfigComponent_n);
+    mRttiList.push_back(nsTornadoEditor_TProjectConfigComponent_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TProjectConfigComponent_n, nsTornadoEditor_TProjectConfigComponent_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

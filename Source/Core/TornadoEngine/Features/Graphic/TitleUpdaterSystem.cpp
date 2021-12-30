@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include "InputTextComponent.h"
 #include "MenuNodeComponent.h"
 #include "WindowComponent.h"
+#include "TreeNodeComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;
@@ -24,6 +25,7 @@ void TTitleUpdaterSystem::Init()
     Add(std::bind(&TTitleUpdaterSystem::SetTitle<TInputTextComponent>, this, _1, _2));
     Add(std::bind(&TTitleUpdaterSystem::SetTitle<TMenuNodeComponent>, this, _1, _2));
     Add(std::bind(&TTitleUpdaterSystem::SetTitle<TWindowComponent>, this, _1, _2));
+    Add(std::bind(&TTitleUpdaterSystem::SetTitle<TTreeNodeComponent>, this, _1, _2));
 }
 //--------------------------------------------------------------------------------------------------------------------------
 void TTitleUpdaterSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TTitleComponent* pC)

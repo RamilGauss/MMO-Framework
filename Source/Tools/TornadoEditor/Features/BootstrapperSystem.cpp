@@ -9,10 +9,16 @@ See for more information LICENSE.md.
 
 #include "Modules.h"
 #include "SceneManager.h"
+#include "EditorInfoTagComponent.h"
 
 using namespace nsTornadoEditor;
 
 void TBootstrapperSystem::Init()
 {
     nsTornadoEngine::Modules()->SceneMng()->InstantiateByGuid("1");
+
+    auto editorEid = GetEntMng()->CreateEntity();
+
+    TEditorInfoTagComponent editorInfoTagComponent;
+    GetEntMng()->SetComponent(editorEid, editorInfoTagComponent);
 }

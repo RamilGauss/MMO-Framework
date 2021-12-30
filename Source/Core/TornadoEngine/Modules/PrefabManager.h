@@ -12,6 +12,8 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
+    class TPrefabObjectConstructor;
+
     class DllExport TPrefabManager : public TObjectManager
     {
     public:
@@ -31,11 +33,19 @@ namespace nsTornadoEngine
             const std::string& parentGuid = TGuidConstants::NONE);
         void InstantiateByAbsPath(const std::string& absPath, const std::string& sceneInstanceGuid, 
             const std::string& parentGuid = TGuidConstants::NONE);
-        void InstanceByObjectInMemory(nsECSFramework::TEntityID eid, const std::string& sceneInstanceGuid,
-            const std::string& parentGuid = TGuidConstants::NONE);
+        void InstantiateByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor, nsECSFramework::TEntityID eid, 
+            const std::string& sceneInstanceGuid, const std::string& parentGuid = TGuidConstants::NONE);
 
 
         void Destroy(const std::string& prefabInstanceGuid);
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
+
+
+    private:
+        void CreateEntity(TPrefabObjectConstructor* prefabObjConstructor, 
+            nsECSFramework::TEntityID eid, std::list<nsECSFramework::TEntityID>& newEntities);
+
+        void InstantiateEntities(const std::list<nsECSFramework::TEntityID>& newEntities, 
+            const std::string& sceneInstanceGuid, const std::string& parentGuid);
     };
 }

@@ -6,6 +6,7 @@
 
 #include "Modules.h"
 #include "ModuleManager.h"
+#include "HierarchyHelper.h"
 
 using namespace nsTornadoEngine;
 
@@ -31,6 +32,11 @@ void TProjectConfigurator::Setup()
         Project()->GetBinaryAbsPath()
     };
     entMng->Setup(dllPathList);
+    
+    Modules()->PrefabObjConstructor()->Setup(dllPathList);
+    Modules()->PrefabObjConstructor()->SetContentMap(Project()->mPrefabContentMap);
+
+    Modules()->HierarchyHelper()->SetEntMng(entMng);
 
     auto sceneMng = Modules()->SceneMng();
 

@@ -17,7 +17,10 @@ See for more information LICENSE.md.
 #include "WindowComponent.h"
 #include "DialogComponent.h"
 #include "FrameComponent.h"
+#include "TreeViewComponent.h"
 #include "MenuNodeComponent.h"
+#include "TreeNodeComponent.h"
+#include "LabelValueComponent.h"
 
 using namespace nsGraphicWrapper;
 
@@ -49,6 +52,30 @@ void TUnitBuilderHelper::SetupWidget(nsECSFramework::TEntityManager* entMng,
     AddWidgetToParent(entMng, parentEid, pWidget);
 }
 //-----------------------------------------------------------------------------------------------------------------------
+void TUnitBuilderHelper::SetupLabel(nsECSFramework::TEntityManager* entMng,
+    nsECSFramework::TEntityID eid, nsImGuiWidgets::TLabel* pLabel)
+{
+    auto labelValueComponent = entMng->ViewComponent<nsGuiWrapper::TLabelValueComponent>(eid);
+    pLabel->SetText(labelValueComponent->value);
+
+    auto posComponent = entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid);
+    pLabel->SetPos({(float) posComponent->x,(float) posComponent->y});
+
+    auto sizeComponent = entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid);
+    pLabel->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});
+
+    auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid)->value;
+
+    nsCommonWrapper::TGuidComponent guidComponent;
+    guidComponent.value = parentGuid;
+    auto parentEid = entMng->GetByUnique(guidComponent);
+    if (parentEid == nsECSFramework::NONE) {
+        return;
+    }
+
+    AddWidgetToParent(entMng, parentEid, pLabel);
+}
+//-----------------------------------------------------------------------------------------------------------------------
 void TUnitBuilderHelper::SetupMenuNode(nsECSFramework::TEntityManager* entMng,
     nsECSFramework::TEntityID eid, nsImGuiWidgets::TMenuNode* pMenuNode)
 {
@@ -78,6 +105,55 @@ void TUnitBuilderHelper::SetupMenuNode(nsECSFramework::TEntityManager* entMng,
     }
 
     BL_FIX_BUG();
+}
+//-----------------------------------------------------------------------------------------------------------------------
+void TUnitBuilderHelper::SetupTreeNode(nsECSFramework::TEntityManager* entMng,
+    nsECSFramework::TEntityID eid, nsImGuiWidgets::TTreeNode* pTreeNode)
+{
+    auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid)->value;
+
+    pTreeNode->mStrId = entMng->ViewComponent<nsCommonWrapper::TGuidComponent>(eid)->value;
+    pTreeNode->mParentId = entMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid)->value;
+
+    auto titleComponent = entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid);
+    pTreeNode->SetTitle(titleComponent->value);
+
+    nsCommonWrapper::TGuidComponent guidComponent;
+    guidComponent.value = parentGuid;
+    auto parentEid = entMng->GetByUnique(guidComponent);
+    if (parentEid == nsECSFramework::NONE) {
+        return;
+    }
+
+    auto isTreeView = entMng->HasComponent<nsGuiWrapper::TTreeViewComponent>(parentEid);
+    if (isTreeView) {
+        auto pTreeViewComponent = entMng->ViewComponent<nsGuiWrapper::TTreeViewComponent>(parentEid);
+        pTreeViewComponent->value->AddNode(pTreeNode);
+        return;
+    }
+
+    BL_FIX_BUG();
+}
+//-----------------------------------------------------------------------------------------------------------------------
+void TUnitBuilderHelper::SetupTreeView(nsECSFramework::TEntityManager* entMng,
+    nsECSFramework::TEntityID eid, nsImGuiWidgets::TTreeView* pTreeNode)
+{
+    auto posComponent = entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid);
+    pTreeNode->SetPos({(float) posComponent->x,(float) posComponent->y});
+
+    auto sizeComponent = entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid);
+    pTreeNode->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});
+
+    auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid)->value;
+
+    nsCommonWrapper::TGuidComponent guidComponent;
+    guidComponent.value = parentGuid;
+    auto parentEid = entMng->GetByUnique(guidComponent);
+    if (parentEid == nsECSFramework::NONE) {
+        return;
+    }
+
+    AddWidgetToParent(entMng, parentEid, pTreeNode);
 }
 //-----------------------------------------------------------------------------------------------------------------------
 void TUnitBuilderHelper::AddWidgetToParent(nsECSFramework::TEntityManager* entMng, nsECSFramework::TEntityID parentEid,
@@ -151,17 +227,24 @@ void TUnitBuilderHelper::UnlinkMenuNode(nsECSFramework::TEntityManager* entMng, 
     if (menuNodeComponent) {
         menuNodeComponent->value->Replace(pMenuNode);
     }
-    auto windowComponent = entMng->ViewComponent<nsGuiWrapper::TWindowComponent>(parentEid);
-    if (windowComponent) {
-        windowComponent->value->Replace(pMenuNode);
-    }
-    auto dialogComponent = entMng->ViewComponent<nsGuiWrapper::TDialogComponent>(parentEid);
-    if (dialogComponent) {
-        dialogComponent->value->Replace(pMenuNode);
-    }
     auto mainWindowComponent = entMng->ViewComponent<nsGuiWrapper::TMainWindowComponent>(parentEid);
     if (mainWindowComponent) {
         mainWindowComponent->value->Replace(pMenuNode);
+    }
+}
+//-----------------------------------------------------------------------------------------------------------------------
+void TUnitBuilderHelper::UnlinkTreeNode(nsECSFramework::TEntityManager* entMng, nsECSFramework::TEntityID eid,
+    nsImGuiWidgets::TTreeNode* pTreeNode)
+{
+    auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid)->value;
+
+    nsCommonWrapper::TGuidComponent guidComponent;
+    guidComponent.value = parentGuid;
+    auto parentEid = entMng->GetByUnique(guidComponent);
+
+    auto treeViewComponent = entMng->ViewComponent<nsGuiWrapper::TTreeViewComponent>(parentEid);
+    if (treeViewComponent) {
+        treeViewComponent->value->RemoveNode(pTreeNode->mStrId);
     }
 }
 //-----------------------------------------------------------------------------------------------------------------------

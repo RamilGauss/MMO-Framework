@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_23 07:49:23.650
+// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_30 17:08:14.645
 	
 #pragma once
 
@@ -24,6 +24,7 @@ namespace nsTornadoEngine
             std::function<const void*(nsECSFramework::TEntityManager* pEntMng, nsECSFramework::TEntityID eid)> viewFunc;
             std::function<bool(nsECSFramework::TEntityManager* pEntMng, nsECSFramework::TEntityID eid)> hasFunc;
             std::function<void(nsECSFramework::TEntityManager* pEntMng, nsECSFramework::TEntityID eid)> removeFunc;
+            std::function<nsECSFramework::TEntityList(nsECSFramework::TEntityManager* pEntMng)> getByHasFunc;
         };
     
         static std::vector<Data> mRttiVector;
@@ -42,5 +43,7 @@ namespace nsTornadoEngine
             nsECSFramework::TEntityID eid, int rtti);
         static void RemoveComponent(nsECSFramework::TEntityManager* pEntMng,
             nsECSFramework::TEntityID eid, int rtti);
+        static nsECSFramework::TEntityList GetByHas(nsECSFramework::TEntityManager* pEntMng,
+            int rtti);
     };
 }

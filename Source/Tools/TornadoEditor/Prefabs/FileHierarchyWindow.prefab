@@ -31,11 +31,11 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TPositionComponent",
-                    "jsonBody": "{\"x\":40, \"y\":40}"
+                    "jsonBody": "{\"x\":10, \"y\":40}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TSizeComponent",
-                    "jsonBody": "{\"x\":100, \"y\":100}"
+                    "jsonBody": "{\"x\":500, \"y\":700}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TWindowComponent",
@@ -44,6 +44,42 @@
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"File hierarchy window\"}"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"FileHierarchyWindow_1\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"TreeView\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"FileHierarchyWindow_0\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
+                    "jsonBody": "{\"value\":\"FileHierarchyWindow\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\":0, \"y\":20}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\":500, \"y\":670}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTreeViewComponent",
+                    "jsonBody": "{}"
                 }
             ]
         }

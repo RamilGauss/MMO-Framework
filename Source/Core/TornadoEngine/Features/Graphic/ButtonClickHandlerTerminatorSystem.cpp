@@ -30,6 +30,10 @@ void TButtonClickHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid
     THandlerLinkHelper::UnlinkGui<nsGuiWrapper::TButtonComponent>(entMng, eid, pButtonClickHandlerComponent, 
     [pButtonClickHandlerComponent](const nsGuiWrapper::TButtonComponent* pButtonComponent)
     {
+        if (pButtonComponent->value == nullptr) {
+            return;
+        }
+
         auto handler = pButtonClickHandlerComponent->handler;
         pButtonComponent->value->mOnClickCB.Unregister(handler);
     });

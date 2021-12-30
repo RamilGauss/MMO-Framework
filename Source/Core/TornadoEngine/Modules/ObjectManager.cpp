@@ -53,11 +53,8 @@ void TObjectManager::DeserializeObjects(std::list<nsECSFramework::TEntityID>& ne
 {
     auto logger = GetLogger()->Get(TTimeSliceEngine::NAME);
 
-    std::string prefabIstanceGuid;
-    nsECSFramework::TEntityID rootEid = nsECSFramework::NONE;
-
     auto componentReflection = Project()->mScenePartAggregator->mComponents;
-    componentReflection->mEntMng->SetEntityManager(Modules()->EntMng());
+    componentReflection->mEntMng->SetEntityManager(mEntityManager);
 
     // Convert typeName to rtti
     for (auto& entity : content.entities) {

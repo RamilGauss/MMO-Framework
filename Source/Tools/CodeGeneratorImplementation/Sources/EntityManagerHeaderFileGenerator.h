@@ -28,6 +28,8 @@ fmt::format("        std::function<bool({}::{}* {}, {}::{} {})> hasFunc;",
                 s_nsECSFramework, s_TEntityManager, s_pEntMng, s_nsECSFramework, s_TEntityID, s_eid, s_hasFunc),
 fmt::format("        std::function<void({}::{}* {}, {}::{} {})> {};", 
                 s_nsECSFramework, s_TEntityManager, s_pEntMng, s_nsECSFramework, s_TEntityID, s_eid, s_removeFunc),
+fmt::format("        std::function<nsECSFramework::TEntityList({}::{}* {})> {};",
+                s_nsECSFramework, s_TEntityManager, s_pEntMng, s_getByHasFunc),
             "    };",
             "",
 fmt::format("    static std::vector<{}> {};", s_Data, s_mRttiVector),
@@ -46,6 +48,8 @@ fmt::format("    static bool {}({}::{}* {},", s_HasComponent, s_nsECSFramework, 
 fmt::format("        {}::{} {}, int {});", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
 fmt::format("    static void {}({}::{}* {},", s_RemoveComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
 fmt::format("        {}::{} {}, int {});", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
+fmt::format("    static nsECSFramework::TEntityList {}({}::{}* {},", s_GetByHas, s_nsECSFramework, s_TEntityManager, s_pEntMng),
+fmt::format("        int {});", s_rtti),
         };
 
 

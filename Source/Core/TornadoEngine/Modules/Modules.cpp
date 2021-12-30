@@ -88,3 +88,8 @@ TPrefabObjectConstructor* TModules::PrefabObjConstructor() const
     return prefabObjectConstructor;
 }
 //----------------------------------------------------------
+THierarchyHelper* TModules::HierarchyHelper() const
+{
+    return hierarchyHelper;
+}
+//----------------------------------------------------------

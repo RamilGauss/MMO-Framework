@@ -16,7 +16,7 @@ namespace nsECSFramework
     {
         auto hasList = entMng->GetByHasCopy<Component>();
         if (hasList.size() == 0 ) {
-            return None;
+            return NONE;
         }
         return hasList.front();
     }
@@ -24,8 +24,8 @@ namespace nsECSFramework
     template <typename Component>
     Component* SingleComponent(TEntityManager* entMng)// когда точно есть одна сущность с данным компонентом
     {
-        auto eid = SingleEntity(entMng);
-        if ( eid == None ) {
+        auto eid = SingleEntity<Component>(entMng);
+        if ( eid == NONE ) {
             return nullptr;
         }
         return entMng->GetComponent<Component>(eid);

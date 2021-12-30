@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_23 07:53:16.553
+// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_30 17:13:40.612
 	
 #pragma once
 
@@ -39,6 +39,15 @@ namespace nsTornadoEditor
         static bool Has(int rtti);
     
     public:
+        static void _Serialize(nsTornadoEditor::TAbsoluteFilePathComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEditor::TAbsoluteFilePathComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEditor::TEditorInfoTagComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEditor::TEditorInfoTagComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEditor::TProjectConfigComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEditor::TProjectConfigComponent* p, const Jobj& obj);
+        
     };
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>

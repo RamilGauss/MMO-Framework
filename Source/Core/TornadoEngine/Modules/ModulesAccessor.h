@@ -30,5 +30,6 @@ namespace nsTornadoEngine
         static void SetKeyMouse(nsGraphicEngine::TKeyMouseEventContainer* value);
         static void SetHandlerCall(THandlerCallCollector* value);
         static void SetPrefabObjConstructor(TPrefabObjectConstructor* value);
+        static void SetHierarchyHelper(THierarchyHelper* value);
     };
 }

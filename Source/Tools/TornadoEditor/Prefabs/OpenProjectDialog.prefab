@@ -136,6 +136,10 @@
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"OK\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectOkButtonClickHandler\", \"partOfGuid\" : \"THIS_SCENE\", \"entityGuid\" : \"OpenProjectDialog_3\"}"
                 }
             ]
         },
@@ -176,6 +180,10 @@
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"Cancel\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectCancelButtonClickHandler\", \"partOfGuid\" : \"THIS_SCENE\", \"entityGuid\" : \"OpenProjectDialog_4\"}"
                 }
             ]
         }

@@ -22,6 +22,8 @@ namespace nsCodeGeneratorImplementation
         const std::string s_HasComponent = "HasComponent";
         const std::string s_RemoveComponent = "RemoveComponent";
 
+        const std::string s_GetByHas    = "GetByHas";
+
         const std::string s_Init = "Init";
 
         const std::string s_nsECSFramework = "nsECSFramework";
@@ -39,6 +41,8 @@ namespace nsCodeGeneratorImplementation
         const std::string s_viewFunc = "viewFunc";
         const std::string s_hasFunc = "hasFunc";
         const std::string s_removeFunc = "removeFunc";
+
+        const std::string s_getByHasFunc = "getByHasFunc";
 
         const std::string s_mRttiVector = "mRttiVector";
 

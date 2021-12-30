@@ -37,10 +37,15 @@ TEntityManager::TEntityManager(int entityCount)
     mEntities.Init(entityCount);
     mEntities.onDestroy = [&](TEntityID eid, TEntity* pEntity)
     {
-        auto index = pEntity->GetFirstComponentIndex();
-        while (index != TEntity::NONE_INDEX) {
-            RemoveComponent(eid, pEntity, index);
-            index = pEntity->GetFirstComponentIndex();
+        auto components = *(pEntity->GetComponentIndexInUse());
+
+        for (auto& index : components) {
+            auto pC = (IComponent*) pEntity->GetComponent(index);
+            NotifyOnRemoveComponent(index, eid, pC);
+        }
+
+        for (auto& index : components) {
+            RemoveComponent(eid, pEntity, index, false);
         }
 
         mEntityMemoryPool->Push(pEntity);
@@ -334,12 +339,14 @@ TEntity* TEntityManager::GetEntity(TEntityID eid) const
     return mEntities.GetElement(eid);
 }
 //----------------------------------------------------------------------------------------------------
-void TEntityManager::RemoveComponent(TEntityID eid, TEntity* pEntity, int index)
+void TEntityManager::RemoveComponent(TEntityID eid, TEntity* pEntity, int index, bool isNotify)
 {
     auto pC = (IComponent*) pEntity->GetComponent(index);
 
     // Notify before the removing
-    NotifyOnRemoveComponent(index, eid, pC);
+    if (isNotify) {
+        NotifyOnRemoveComponent(index, eid, pC);
+    }
 
     TryRemoveFromUnique(eid, pC, index);
     TryRemoveFromHas(eid, index, pEntity);

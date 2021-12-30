@@ -10,12 +10,16 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 
 #include "ButtonMakerSystem.h"
+#include "LabelMakerSystem.h"
 #include "MenuNodeMakerSystem.h"
 #include "InputTextMakerSystem.h"
 #include "WindowMakerSystem.h"
 #include "DialogMakerSystem.h"
 #include "ButtonClickHandlerMakerSystem.h"
 #include "MenuNodeClickHandlerMakerSystem.h"
+
+#include "TreeNodeMakerSystem.h"
+#include "TreeViewMakerSystem.h"
 
 #include "MainWindowMakerSystem.h"
 
@@ -27,10 +31,14 @@ namespace nsGraphicWrapper
     class DllExport TGuiMakerFeature : public nsECSFramework::TFeature
     {
         TButtonMakerSystem mButtonMakerSystem;
+        TLabelMakerSystem mLabelMakerSystem;
         TMenuNodeMakerSystem mMenuNodeMakerSystem;
         TInputTextMakerSystem mInputTextMakerSystem;
         TWindowMakerSystem mWindowMakerSystem;
         TDialogMakerSystem mDialogMakerSystem;
+
+        TTreeNodeMakerSystem mTreeNodeMakerSystem;
+        TTreeViewMakerSystem mTreeViewMakerSystem;
 
         TMainWindowMakerSystem mMainWindowMakerSystem;
         

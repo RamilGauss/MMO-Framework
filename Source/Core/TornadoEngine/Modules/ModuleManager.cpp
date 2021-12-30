@@ -90,5 +90,6 @@ void TModuleManager::ApplyToModulesSingleton()
     TModulesAccessor::SetKeyMouse(&mKeyMouseEventContainer);
     TModulesAccessor::SetHandlerCall(&mHandlerCallCollector);
     TModulesAccessor::SetPrefabObjConstructor(&mPrefabObjConstructor);
+    TModulesAccessor::SetHierarchyHelper(&mHierarchyHelper);
 }
 //----------------------------------------------------------------------------

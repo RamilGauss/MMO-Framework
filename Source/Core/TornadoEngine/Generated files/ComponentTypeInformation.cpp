@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_23 07:49:23.661
+// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_30 17:08:14.657
 	
 #include "ComponentTypeInformation.h"
 
@@ -188,6 +188,18 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TInputTextValueComponent_n);
     mRttiList.push_back(nsGuiWrapper_TInputTextValueComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TInputTextValueComponent_n, nsGuiWrapper_TInputTextValueComponent_i });
+    
+    int nsGuiWrapper_TLabelComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TLabelComponent>();
+    std::string nsGuiWrapper_TLabelComponent_n = "nsGuiWrapper::TLabelComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TLabelComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TLabelComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TLabelComponent_n, nsGuiWrapper_TLabelComponent_i });
+    
+    int nsGuiWrapper_TLabelValueComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TLabelValueComponent>();
+    std::string nsGuiWrapper_TLabelValueComponent_n = "nsGuiWrapper::TLabelValueComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TLabelValueComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TLabelValueComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TLabelValueComponent_n, nsGuiWrapper_TLabelValueComponent_i });
     
     int nsGuiWrapper_TMainWindowComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TMainWindowComponent>();
     std::string nsGuiWrapper_TMainWindowComponent_n = "nsGuiWrapper::TMainWindowComponent";

@@ -11,14 +11,14 @@ See for more information LICENSE.md.
 using namespace nsImGuiWidgets;
 
 //-------------------------------------------------------------------------------------
-void TLabel::SetText(const char* s)
+void TLabel::SetText(const std::string& value)
 {
-    mText = s;
+    mText = value;
 }
 //-------------------------------------------------------------------------------------
-void TLabel::AppendText(const char* s)
+void TLabel::AppendText(const std::string& value)
 {
-    mText += s;
+    mText += value;
 }
 //-------------------------------------------------------------------------------------
 void TLabel::RenderInheritance()

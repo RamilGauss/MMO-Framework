@@ -1,8 +1,11 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_23 07:53:16.557
+// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_30 17:13:40.626
 	
 #pragma once
 
+#include "AbsoluteFilePathComponent.h"
+#include "EditorInfoTagComponent.h"
+#include "ProjectConfigComponent.h"

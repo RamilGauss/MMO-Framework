@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_23 07:49:23.622
+// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_30 17:08:14.614
 	
 #pragma once
 
@@ -122,6 +122,12 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsGuiWrapper::TInputTextValueComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TInputTextValueComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TLabelComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TLabelComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TLabelValueComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TLabelValueComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TMainWindowComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TMainWindowComponent* p, const Jobj& obj);

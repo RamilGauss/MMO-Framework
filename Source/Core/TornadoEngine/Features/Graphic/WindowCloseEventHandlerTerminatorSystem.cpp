@@ -30,6 +30,10 @@ void TWindowCloseEventHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityI
     THandlerLinkHelper::UnlinkGui<TWindowComponent>(entMng, eid, pWindowCloseEventHandlerComponent,
         [pWindowCloseEventHandlerComponent](const nsGuiWrapper::TWindowComponent* pWindowComponent)
     {
+        if (pWindowComponent->value == nullptr) {
+            return;
+        }
+
         auto handler = pWindowCloseEventHandlerComponent->handler;
         pWindowComponent->value->mOnShowCB.Unregister(handler);
     });

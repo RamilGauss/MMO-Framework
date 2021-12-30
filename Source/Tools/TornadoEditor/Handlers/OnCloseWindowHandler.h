@@ -20,8 +20,6 @@ namespace nsTornadoEditor
         void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TWindowComponent* pC) override
         {
             nsTornadoEngine::Modules()->StopAccessor()->SetStop();
-            //auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
-            //prefabMng->Destroy(eid);
         }
     };
 }

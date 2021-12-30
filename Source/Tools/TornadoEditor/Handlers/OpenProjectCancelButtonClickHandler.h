@@ -20,7 +20,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEditor
 {
-    class DllExport TExitButtonClickHandler : public nsGuiWrapper::IButtonClickHandler
+    class DllExport TOpenProjectCancelButtonClickHandler : public nsGuiWrapper::IButtonClickHandler
     {
     public:
         void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pC) override
@@ -34,11 +34,11 @@ namespace nsTornadoEditor
             //sceneMng->Unload("first scene");
             //stopAccessor->SetStop();
 
-            auto prefabRef = entMng->ViewComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid);
-            auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid);
+            //auto prefabRef = entMng->ViewComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid);
+            //auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid);
             //auto objectRef = entMng->ViewComponent<nsLogicWrapper::TSceneObjectReferenceComponent>(eid);
 
-            prefabMng->InstantiateByGuid(prefabRef->prefabGuid, sceneInstanceGuid->value);// , objectRef->objectGuid);
+            //prefabMng->InstantiateByGuid(prefabRef->prefabGuid, sceneInstanceGuid->value);// , objectRef->objectGuid);
         }
     };
 }

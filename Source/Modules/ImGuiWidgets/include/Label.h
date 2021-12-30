@@ -16,8 +16,8 @@ namespace nsImGuiWidgets
     class DllExport TLabel : public TUnit
     {
     public:
-        void SetText(const char* s);
-        void AppendText(const char* s);
+        void SetText(const std::string& value);
+        void AppendText(const std::string& value);
         int GetTextLength();
         std::string GetText();
 

@@ -117,6 +117,11 @@ void TEntityManagerSourceFileGenerator::AddInit()
             s_pEntMng, s_RemoveComponent, typeNameWithNameSpace, s_eid);
         Add(str);
 
+
+        str = fmt::format("{}.{} = []({}* {}){{ return {}->{}Copy<{}>(); }};",
+            var, s_getByHasFunc, s_TEntityManager, s_pEntMng, s_pEntMng, s_GetByHas, typeNameWithNameSpace);
+        Add(str);
+
         str = fmt::format("auto rtti_{} = globalTypeIdentifier->Type<{}>();", var, typeNameWithNameSpace);
         Add(str);
         AddEmptyLine();
@@ -274,6 +279,24 @@ void TEntityManagerSourceFileGenerator::AddMethodDeinitions()
     str = fmt::format("{}();", s_Init);
     Add(str);
     str = fmt::format("{}[{}].{}({}, {});", s_mRttiVector, s_rtti, s_removeFunc, s_pEntMng, s_eid);
+    Add(str);
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    // getByHas
+    paramList =
+    {
+        fmt::format("{}* {}", s_TEntityManager, s_pEntMng),
+        fmt::format("int {}", s_rtti),
+    };
+    AddMethodImplementationBegin("nsECSFramework::TEntityList", mSerializer->className, s_GetByHas, paramList);
+    AddLeftBrace();
+    IncrementTabs();
+
+    str = fmt::format("{}();", s_Init);
+    Add(str);
+    str = fmt::format("return {}[{}].{}({});", s_mRttiVector, s_rtti, s_getByHasFunc, s_pEntMng);
     Add(str);
 
     DecrementTabs();

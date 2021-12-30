@@ -30,7 +30,7 @@ namespace nsTornadoEngine
     public:
 
         void SetContentMap(const TResourceContentMap& resourceContentMap);
-        void SetEntityManager(nsECSFramework::TEntityManager* entMng);
+        virtual void SetEntityManager(nsECSFramework::TEntityManager* entMng);
 
         // Каскадное уничтожение детей
         void DestroyObject(const std::string& guid);

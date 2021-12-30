@@ -12,4 +12,5 @@ using namespace nsGraphicWrapper;
 void TGuiUpdaterToModuleFeature::InitConveyor()
 {
     Add(&mTitleUpdaterSystem);
+    Add(&mInputTextValueUpdaterSystem);
 }

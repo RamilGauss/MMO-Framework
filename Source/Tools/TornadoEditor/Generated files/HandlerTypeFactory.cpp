@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_23 07:53:16.894
+// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_30 17:13:41.344
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -31,26 +31,12 @@ void THandlerTypeFactory::Init()
     
     m.insert({ rtti_nsTornadoEditor_TCurrentPathToInputTextHandler_Data, nsTornadoEditor_TCurrentPathToInputTextHandler_Data });
     
-    Data nsTornadoEditor_TDeleteOnButtonClickHandler_Data;
-    nsTornadoEditor_TDeleteOnButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TDeleteOnButtonClickHandler(); };
-    nsTornadoEditor_TDeleteOnButtonClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TDeleteOnButtonClickHandler*)p; };
-    auto rtti_nsTornadoEditor_TDeleteOnButtonClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TDeleteOnButtonClickHandler>();
-    
-    m.insert({ rtti_nsTornadoEditor_TDeleteOnButtonClickHandler_Data, nsTornadoEditor_TDeleteOnButtonClickHandler_Data });
-    
     Data nsTornadoEditor_TDialogButtonClickHandler_Data;
     nsTornadoEditor_TDialogButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TDialogButtonClickHandler(); };
     nsTornadoEditor_TDialogButtonClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TDialogButtonClickHandler*)p; };
     auto rtti_nsTornadoEditor_TDialogButtonClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TDialogButtonClickHandler>();
     
     m.insert({ rtti_nsTornadoEditor_TDialogButtonClickHandler_Data, nsTornadoEditor_TDialogButtonClickHandler_Data });
-    
-    Data nsTornadoEditor_TExitButtonClickHandler_Data;
-    nsTornadoEditor_TExitButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TExitButtonClickHandler(); };
-    nsTornadoEditor_TExitButtonClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TExitButtonClickHandler*)p; };
-    auto rtti_nsTornadoEditor_TExitButtonClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TExitButtonClickHandler>();
-    
-    m.insert({ rtti_nsTornadoEditor_TExitButtonClickHandler_Data, nsTornadoEditor_TExitButtonClickHandler_Data });
     
     Data nsTornadoEditor_TOnCloseDialogHandler_Data;
     nsTornadoEditor_TOnCloseDialogHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnCloseDialogHandler(); };
@@ -79,6 +65,20 @@ void THandlerTypeFactory::Init()
     auto rtti_nsTornadoEditor_TOnOpenProjectClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenProjectClickHandler>();
     
     m.insert({ rtti_nsTornadoEditor_TOnOpenProjectClickHandler_Data, nsTornadoEditor_TOnOpenProjectClickHandler_Data });
+    
+    Data nsTornadoEditor_TOpenProjectCancelButtonClickHandler_Data;
+    nsTornadoEditor_TOpenProjectCancelButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOpenProjectCancelButtonClickHandler(); };
+    nsTornadoEditor_TOpenProjectCancelButtonClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOpenProjectCancelButtonClickHandler*)p; };
+    auto rtti_nsTornadoEditor_TOpenProjectCancelButtonClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOpenProjectCancelButtonClickHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TOpenProjectCancelButtonClickHandler_Data, nsTornadoEditor_TOpenProjectCancelButtonClickHandler_Data });
+    
+    Data nsTornadoEditor_TOpenProjectOkButtonClickHandler_Data;
+    nsTornadoEditor_TOpenProjectOkButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOpenProjectOkButtonClickHandler(); };
+    nsTornadoEditor_TOpenProjectOkButtonClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOpenProjectOkButtonClickHandler*)p; };
+    auto rtti_nsTornadoEditor_TOpenProjectOkButtonClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOpenProjectOkButtonClickHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TOpenProjectOkButtonClickHandler_Data, nsTornadoEditor_TOpenProjectOkButtonClickHandler_Data });
     
     int max = 0;
     for (auto& vt : m) {

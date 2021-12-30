@@ -122,7 +122,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Core;$(SolutionDir)Source/Core/TornadoEngine/Features/Graphic;$(SolutionDir)Source/Core/TornadoEngine/Features/Logic;$(SolutionDir)Source/Core/TornadoEngine/Handlers;$(SolutionDir)Source/Core/TornadoEngine/Modules;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TornadoEngine/Components/Common;$(SolutionDir)Source/Core/TornadoEngine/Components/Gui;$(SolutionDir)Source/Core/TornadoEngine/Components/Graphic;$(SolutionDir)Source/Core/TornadoEngine/Components/Logic;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Handlers;./Features;./Components;./Generated files;$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Core;$(SolutionDir)Source/Core/TornadoEngine/Features/Graphic;$(SolutionDir)Source/Core/TornadoEngine/Features/Logic;$(SolutionDir)Source/Core/TornadoEngine/Handlers;$(SolutionDir)Source/Core/TornadoEngine/Modules;$(SolutionDir)Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)Source/Core/TornadoEngine/Share;$(SolutionDir)Source/Core/TornadoEngine/Components/Common;$(SolutionDir)Source/Core/TornadoEngine/Components/Gui;$(SolutionDir)Source/Core/TornadoEngine/Components/Graphic;$(SolutionDir)Source/Core/TornadoEngine/Components/Logic;$(SolutionDir)Source/Core/TornadoEngine/Generated files;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\includes;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -225,6 +225,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClCompile Include="Generated files\HandlerTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />
@@ -270,9 +271,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\AbsoluteFilePathComponent.h" />
+    <ClInclude Include="Components\EditorInfoTagComponent.h" />
+    <ClInclude Include="Components\ProjectConfigComponent.h" />
     <ClInclude Include="Features\BootstrapperFeature.h" />
     <ClInclude Include="Features\BootstrapperSystem.h" />
-    <ClInclude Include="Features\ExampleFeature.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtensionImpl.h" />
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
@@ -296,9 +299,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
     <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h" />
-    <ClInclude Include="Handlers\DeleteOnButtonClickHandler.h" />
-    <ClInclude Include="Handlers\DialogButtonClickHandler.h" />
-    <ClInclude Include="Handlers\ExitButtonHandler.h" />
+    <ClInclude Include="Handlers\OpenProjectCancelButtonClickHandler.h" />
+    <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h" />
     <ClInclude Include="Handlers\OnCloseDialogHandler.h" />
     <ClInclude Include="Handlers\OnCloseWindowHandler.h" />
     <ClInclude Include="Handlers\OnExitClickHandler.h" />

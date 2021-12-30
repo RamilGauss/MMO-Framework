@@ -5,6 +5,10 @@
    "False"
   ],
   [
+   "boost:buildid",
+   "None"
+  ],
+  [
    "boost:bzip2",
    "True"
   ],
@@ -70,7 +74,7 @@
   ],
   [
    "boost:numa",
-   "False"
+   "True"
   ],
   [
    "boost:pch",

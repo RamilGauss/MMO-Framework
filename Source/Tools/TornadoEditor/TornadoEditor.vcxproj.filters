@@ -62,6 +62,9 @@
     <ClCompile Include="Features\BootstrapperSystem.cpp">
       <Filter>Features</Filter>
     </ClCompile>
+    <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -204,7 +207,7 @@
     <ClInclude Include="Generated files\HandlerTypeInformation.h">
       <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\ExitButtonHandler.h">
+    <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
     <ClInclude Include="Features\BootstrapperFeature.h">
@@ -228,16 +231,7 @@
     <ClInclude Include="Generated files\FeatureTypeInformationImpl.h">
       <Filter>Generated files\Features\Impl</Filter>
     </ClInclude>
-    <ClInclude Include="Features\ExampleFeature.h">
-      <Filter>Features</Filter>
-    </ClInclude>
-    <ClInclude Include="Handlers\DeleteOnButtonClickHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\OnCloseDialogHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Handlers\DialogButtonClickHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\OnCloseWindowHandler.h">
@@ -251,6 +245,18 @@
     </ClInclude>
     <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h">
       <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\AbsoluteFilePathComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OpenProjectCancelButtonClickHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\EditorInfoTagComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ProjectConfigComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

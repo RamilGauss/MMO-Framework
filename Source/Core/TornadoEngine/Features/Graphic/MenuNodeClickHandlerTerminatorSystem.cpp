@@ -30,6 +30,10 @@ void TMenuNodeClickHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID e
     THandlerLinkHelper::UnlinkGui<nsGuiWrapper::TMenuNodeComponent>(entMng, eid, pMenuNodeClickHandlerComponent,
         [pMenuNodeClickHandlerComponent](const nsGuiWrapper::TMenuNodeComponent* pMenuNodeComponent)
     {
+        if (pMenuNodeComponent->value == nullptr) {
+            return;
+        }
+
         auto handler = pMenuNodeClickHandlerComponent->handler;
         pMenuNodeComponent->value->mOnLeftClickCB.Unregister(handler);
     });

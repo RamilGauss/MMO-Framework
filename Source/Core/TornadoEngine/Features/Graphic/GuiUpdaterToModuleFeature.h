@@ -10,12 +10,14 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 
 #include "TitleUpdaterSystem.h"
+#include "InputTextValueUpdaterSystem.h"
 
 namespace nsGraphicWrapper
 {
     class DllExport TGuiUpdaterToModuleFeature : public nsECSFramework::TFeature
     {
         TTitleUpdaterSystem mTitleUpdaterSystem;
+        TInputTextValueUpdaterSystem mInputTextValueUpdaterSystem;
     public:
         void InitConveyor() override;
     };

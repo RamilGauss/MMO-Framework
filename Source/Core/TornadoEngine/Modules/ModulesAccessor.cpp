@@ -79,3 +79,8 @@ void TModulesAccessor::SetPrefabObjConstructor(TPrefabObjectConstructor* value)
     Modules()->prefabObjectConstructor = value;
 }
 //--------------------------------------------------------------------------
+void TModulesAccessor::SetHierarchyHelper(THierarchyHelper* value)
+{
+    Modules()->hierarchyHelper = value;
+}
+//--------------------------------------------------------------------------

@@ -37,7 +37,7 @@ namespace nsTornadoEngine
     class TModulesAccessor;
     class THandlerCallCollector;
     class TPrefabObjectConstructor;
-
+    class THierarchyHelper;
 
     class DllExport TModules
     {
@@ -64,6 +64,8 @@ namespace nsTornadoEngine
 
         THandlerCallCollector* handlerCallCollector = nullptr;
         TPrefabObjectConstructor* prefabObjectConstructor = nullptr;
+
+        THierarchyHelper* hierarchyHelper = nullptr;
     public:
         // Mostly for inner usage
         IGraphicEngineModule* G() const;
@@ -85,6 +87,8 @@ namespace nsTornadoEngine
 
         THandlerCallCollector* HandlerCalls() const;
         TPrefabObjectConstructor* PrefabObjConstructor() const;
+
+        THierarchyHelper* HierarchyHelper() const;
     };
 
     extern DllExport TModules* Modules();

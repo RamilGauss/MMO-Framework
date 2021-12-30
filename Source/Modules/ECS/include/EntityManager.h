@@ -68,6 +68,7 @@ namespace nsECSFramework
         template <typename Component>
         void RemoveComponent(TEntityID eid);// => remove event
 
+        // Access by rtti
         void GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList);
 
         // Filters
@@ -208,7 +209,7 @@ namespace nsECSFramework
     private:
         TEntity* GetEntity(TEntityID id) const;
 
-        void RemoveComponent(TEntityID eid, TEntity* pEntity, int index);
+        void RemoveComponent(TEntityID eid, TEntity* pEntity, int index, bool isNotify = true);
 
         template<typename T0>
         void Fill(TComplexType* pComplexType, T0& t0);

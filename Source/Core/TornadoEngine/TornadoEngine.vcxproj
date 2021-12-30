@@ -245,6 +245,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Features\Graphic\InputTextMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\InputTextTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\InputTextValueUpdaterSystem.cpp" />
+    <ClCompile Include="Features\Graphic\LabelBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\LabelMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\LabelTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\MainWindowBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\MainWindowMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\MainWindowTerminatorSystem.cpp" />
@@ -255,6 +258,12 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Features\Graphic\MenuNodeMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\MenuNodeTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\TitleUpdaterSystem.cpp" />
+    <ClCompile Include="Features\Graphic\TreeNodeBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\TreeNodeMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\TreeNodeTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Graphic\TreeViewBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\TreeViewMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\TreeViewTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\UnitBuilderHelper.cpp" />
     <ClCompile Include="Features\Graphic\WindowBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\WindowCloseEventHandlerBuilderSystem.cpp" />
@@ -286,6 +295,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
     <ClCompile Include="Generated files\HandlerTypeInformation.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
+    <ClCompile Include="Modules\HierarchyHelper.cpp" />
     <ClCompile Include="Modules\LogicWrapperModule.cpp" />
     <ClCompile Include="Modules\GuidGenerator.cpp" />
     <ClCompile Include="Modules\HandlerCallCollector.cpp" />
@@ -344,6 +354,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Components\Gui\FrameComponent.h" />
     <ClInclude Include="Components\Gui\InputTextComponent.h" />
     <ClInclude Include="Components\Gui\InputTextValueComponent.h" />
+    <ClInclude Include="Components\Gui\LabelComponent.h" />
+    <ClInclude Include="Components\Gui\LabelValueComponent.h" />
     <ClInclude Include="Components\Gui\MainWindowComponent.h" />
     <ClInclude Include="Components\Gui\MenuNodeClickHandlerComponent.h" />
     <ClInclude Include="Components\Gui\MenuNodeComponent.h" />
@@ -389,6 +401,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Features\Graphic\InputTextMakerSystem.h" />
     <ClInclude Include="Features\Graphic\InputTextTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\InputTextValueUpdaterSystem.h" />
+    <ClInclude Include="Features\Graphic\LabelBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\LabelMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\LabelTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\MainWindowBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\MainWindowMakerSystem.h" />
     <ClInclude Include="Features\Graphic\MainWindowTerminatorSystem.h" />
@@ -399,6 +414,12 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Features\Graphic\MenuNodeMakerSystem.h" />
     <ClInclude Include="Features\Graphic\MenuNodeTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\TitleUpdaterSystem.h" />
+    <ClInclude Include="Features\Graphic\TreeNodeBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\TreeNodeMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\TreeNodeTerminatorSystem.h" />
+    <ClInclude Include="Features\Graphic\TreeViewBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\TreeViewMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\TreeViewTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\UnitBuilderHelper.h" />
     <ClInclude Include="Features\Graphic\WindowBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\WindowCloseEventHandlerBuilderSystem.h" />
@@ -441,6 +462,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tornado\Torn
     <ClInclude Include="Handlers\IObjectInstanceEndHandler.h" />
     <ClInclude Include="Handlers\IWindowCloseEventHandler.h" />
     <ClInclude Include="Modules\ComponentInMemory.h" />
+    <ClInclude Include="Modules\HierarchyHelper.h" />
     <ClInclude Include="Modules\LogicWrapperModule.h" />
     <ClInclude Include="Modules\GuidConstants.h" />
     <ClInclude Include="Modules\GuidGenerator.h" />

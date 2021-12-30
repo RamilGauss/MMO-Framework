@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_23 07:49:23.627
+// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_30 17:08:14.620
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -364,6 +364,30 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGuiWrapper_TInputTextValueComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TInputTextValueComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TInputTextValueComponentTypeFunc, _nsGuiWrapper_TInputTextValueComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_TLabelComponentTypeFunc;
+    _nsGuiWrapper_TLabelComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TLabelComponent>((nsGuiWrapper::TLabelComponent*) p, str);
+    };
+    _nsGuiWrapper_TLabelComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TLabelComponent>((nsGuiWrapper::TLabelComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TLabelComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TLabelComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TLabelComponentTypeFunc, _nsGuiWrapper_TLabelComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_TLabelValueComponentTypeFunc;
+    _nsGuiWrapper_TLabelValueComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TLabelValueComponent>((nsGuiWrapper::TLabelValueComponent*) p, str);
+    };
+    _nsGuiWrapper_TLabelValueComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TLabelValueComponent>((nsGuiWrapper::TLabelValueComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TLabelValueComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TLabelValueComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TLabelValueComponentTypeFunc, _nsGuiWrapper_TLabelValueComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TMainWindowComponentTypeFunc;
     _nsGuiWrapper_TMainWindowComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -877,6 +901,24 @@ void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TInputTextValueComponent
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TInputTextValueComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TLabelComponent* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TLabelComponent* p, const Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TLabelValueComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TLabelValueComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "value", p->value);
 }

@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.4, build 55 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_23 07:53:16.896
+// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
+// File has been generated at 2021_12_30 17:13:41.346
 	
 #include "HandlerTypeInformation.h"
 
@@ -33,23 +33,11 @@ void THandlerTypeInformation::Init()
     mRttiList.push_back(nsTornadoEditor_TCurrentPathToInputTextHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TCurrentPathToInputTextHandler_n, nsTornadoEditor_TCurrentPathToInputTextHandler_i });
     
-    int nsTornadoEditor_TDeleteOnButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TDeleteOnButtonClickHandler>();
-    std::string nsTornadoEditor_TDeleteOnButtonClickHandler_n = "nsTornadoEditor::TDeleteOnButtonClickHandler";
-    mTypeNameList.push_back(nsTornadoEditor_TDeleteOnButtonClickHandler_n);
-    mRttiList.push_back(nsTornadoEditor_TDeleteOnButtonClickHandler_i);
-    mNameRttiMap.insert({ nsTornadoEditor_TDeleteOnButtonClickHandler_n, nsTornadoEditor_TDeleteOnButtonClickHandler_i });
-    
     int nsTornadoEditor_TDialogButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TDialogButtonClickHandler>();
     std::string nsTornadoEditor_TDialogButtonClickHandler_n = "nsTornadoEditor::TDialogButtonClickHandler";
     mTypeNameList.push_back(nsTornadoEditor_TDialogButtonClickHandler_n);
     mRttiList.push_back(nsTornadoEditor_TDialogButtonClickHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TDialogButtonClickHandler_n, nsTornadoEditor_TDialogButtonClickHandler_i });
-    
-    int nsTornadoEditor_TExitButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TExitButtonClickHandler>();
-    std::string nsTornadoEditor_TExitButtonClickHandler_n = "nsTornadoEditor::TExitButtonClickHandler";
-    mTypeNameList.push_back(nsTornadoEditor_TExitButtonClickHandler_n);
-    mRttiList.push_back(nsTornadoEditor_TExitButtonClickHandler_i);
-    mNameRttiMap.insert({ nsTornadoEditor_TExitButtonClickHandler_n, nsTornadoEditor_TExitButtonClickHandler_i });
     
     int nsTornadoEditor_TOnCloseDialogHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseDialogHandler>();
     std::string nsTornadoEditor_TOnCloseDialogHandler_n = "nsTornadoEditor::TOnCloseDialogHandler";
@@ -74,6 +62,18 @@ void THandlerTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TOnOpenProjectClickHandler_n);
     mRttiList.push_back(nsTornadoEditor_TOnOpenProjectClickHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TOnOpenProjectClickHandler_n, nsTornadoEditor_TOnOpenProjectClickHandler_i });
+    
+    int nsTornadoEditor_TOpenProjectCancelButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOpenProjectCancelButtonClickHandler>();
+    std::string nsTornadoEditor_TOpenProjectCancelButtonClickHandler_n = "nsTornadoEditor::TOpenProjectCancelButtonClickHandler";
+    mTypeNameList.push_back(nsTornadoEditor_TOpenProjectCancelButtonClickHandler_n);
+    mRttiList.push_back(nsTornadoEditor_TOpenProjectCancelButtonClickHandler_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TOpenProjectCancelButtonClickHandler_n, nsTornadoEditor_TOpenProjectCancelButtonClickHandler_i });
+    
+    int nsTornadoEditor_TOpenProjectOkButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOpenProjectOkButtonClickHandler>();
+    std::string nsTornadoEditor_TOpenProjectOkButtonClickHandler_n = "nsTornadoEditor::TOpenProjectOkButtonClickHandler";
+    mTypeNameList.push_back(nsTornadoEditor_TOpenProjectOkButtonClickHandler_n);
+    mRttiList.push_back(nsTornadoEditor_TOpenProjectOkButtonClickHandler_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TOpenProjectOkButtonClickHandler_n, nsTornadoEditor_TOpenProjectOkButtonClickHandler_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

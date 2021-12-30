@@ -17,6 +17,7 @@ See for more information LICENSE.md.
 #include "IModule.h"
 #include "HandlerCallCollector.h"
 #include "PrefabObjectConstructor.h"
+#include "HierarchyHelper.h"
 
 namespace nsTornadoEngine
 {
@@ -30,6 +31,7 @@ namespace nsTornadoEngine
         nsGraphicEngine::TKeyMouseEventContainer mKeyMouseEventContainer;
         THandlerCallCollector mHandlerCallCollector;
         TPrefabObjectConstructor mPrefabObjConstructor;
+        THierarchyHelper mHierarchyHelper;
 
         std::list<IModule*> mModules;
 

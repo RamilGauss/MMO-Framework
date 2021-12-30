@@ -30,6 +30,10 @@ void TDialogCloseEventHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityI
     THandlerLinkHelper::UnlinkGui<TDialogComponent>(entMng, eid, pDialogCloseEventHandlerComponent,
         [pDialogCloseEventHandlerComponent](const nsGuiWrapper::TDialogComponent* pDialogComponent)
     {
+        if (pDialogComponent->value == nullptr) {
+            return;
+        }
+
         auto handler = pDialogCloseEventHandlerComponent->handler;
         pDialogComponent->value->mOnShowCB.Unregister(handler);
     });
