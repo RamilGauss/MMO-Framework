@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_30 17:13:40.614
+// File has been generated at 2022_01_01 22:01:10.030
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -52,6 +52,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsTornadoEditor_TEditorInfoTagComponentTypeFunc = globalTypeIdentifier->Type<nsTornadoEditor::TEditorInfoTagComponent>();
     
     m.insert({ rtti__nsTornadoEditor_TEditorInfoTagComponentTypeFunc, _nsTornadoEditor_TEditorInfoTagComponentTypeFunc });
+    
+    TypeFunc _nsTornadoEditor_TFilePathNodeComponentTypeFunc;
+    _nsTornadoEditor_TFilePathNodeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEditor::TFilePathNodeComponent>((nsTornadoEditor::TFilePathNodeComponent*) p, str);
+    };
+    _nsTornadoEditor_TFilePathNodeComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEditor::TFilePathNodeComponent>((nsTornadoEditor::TFilePathNodeComponent*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEditor_TFilePathNodeComponentTypeFunc = globalTypeIdentifier->Type<nsTornadoEditor::TFilePathNodeComponent>();
+    
+    m.insert({ rtti__nsTornadoEditor_TFilePathNodeComponentTypeFunc, _nsTornadoEditor_TFilePathNodeComponentTypeFunc });
     
     TypeFunc _nsTornadoEditor_TProjectConfigComponentTypeFunc;
     _nsTornadoEditor_TProjectConfigComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -113,6 +125,16 @@ void TComponentJsonSerializer::_Serialize(nsTornadoEditor::TEditorInfoTagCompone
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsTornadoEditor::TEditorInfoTagComponent* p, const Jobj& obj)
 {
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsTornadoEditor::TFilePathNodeComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsTornadoEditor::TFilePathNodeComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsTornadoEditor::TProjectConfigComponent* p, Jobj& obj)

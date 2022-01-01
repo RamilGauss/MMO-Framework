@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_30 17:13:40.625
+// File has been generated at 2022_01_01 22:01:10.035
 	
 #include "ComponentTypeInformation.h"
 
@@ -38,6 +38,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TEditorInfoTagComponent_n);
     mRttiList.push_back(nsTornadoEditor_TEditorInfoTagComponent_i);
     mNameRttiMap.insert({ nsTornadoEditor_TEditorInfoTagComponent_n, nsTornadoEditor_TEditorInfoTagComponent_i });
+    
+    int nsTornadoEditor_TFilePathNodeComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TFilePathNodeComponent>();
+    std::string nsTornadoEditor_TFilePathNodeComponent_n = "nsTornadoEditor::TFilePathNodeComponent";
+    mTypeNameList.push_back(nsTornadoEditor_TFilePathNodeComponent_n);
+    mRttiList.push_back(nsTornadoEditor_TFilePathNodeComponent_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TFilePathNodeComponent_n, nsTornadoEditor_TFilePathNodeComponent_i });
     
     int nsTornadoEditor_TProjectConfigComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TProjectConfigComponent>();
     std::string nsTornadoEditor_TProjectConfigComponent_n = "nsTornadoEditor::TProjectConfigComponent";

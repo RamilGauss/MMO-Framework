@@ -38,5 +38,13 @@ namespace nsTornadoEngine
         [[nodiscard]]
         nsECSFramework::TEntityList GetChildsByName(nsECSFramework::TEntityID eid,
             const std::string& brotherName);
+
+        // ???? спорно
+        [[nodiscard]]
+        nsECSFramework::TEntityID GetByName(nsECSFramework::TEntityID anyInPrefabEid,
+            const std::string& name);
+        [[nodiscard]]
+        nsECSFramework::TEntityList GetListByName(nsECSFramework::TEntityID anyInPrefabEid,
+            const std::string& name);
     };
 }

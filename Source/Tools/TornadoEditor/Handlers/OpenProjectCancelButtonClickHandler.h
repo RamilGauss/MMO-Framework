@@ -25,20 +25,8 @@ namespace nsTornadoEditor
     public:
         void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pC) override
         {
-            auto sceneMng = nsTornadoEngine::Modules()->SceneMng();
             auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
-            auto stopAccessor = nsTornadoEngine::Modules()->StopAccessor();
-            auto entMng = nsTornadoEngine::Modules()->EntMng();
-
-            //sceneMng->Destroy(eid);
-            //sceneMng->Unload("first scene");
-            //stopAccessor->SetStop();
-
-            //auto prefabRef = entMng->ViewComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid);
-            //auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid);
-            //auto objectRef = entMng->ViewComponent<nsLogicWrapper::TSceneObjectReferenceComponent>(eid);
-
-            //prefabMng->InstantiateByGuid(prefabRef->prefabGuid, sceneInstanceGuid->value);// , objectRef->objectGuid);
+            prefabMng->Destroy(eid);// Close
         }
     };
 }

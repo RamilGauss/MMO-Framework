@@ -392,11 +392,12 @@ void TEntityManager::TryAddInHas(TEntityID eid, int index, TEntity* pEntity)
         if (hasAllTypes == false) {
             continue;
         }
-        hasList->push_front(eid);
-        auto frontIt = hasList->begin();
+        hasList->push_back(eid);
+        auto backIt = hasList->end();
+        backIt--;
 
         auto pLTL = mLinkToListMemoryPool->Pop();
-        pLTL->Set(*hasList, frontIt);
+        pLTL->Set(*hasList, backIt);
         pEntity->AddHasCollectionInfo(pLTL, collectionIndex);
     }
 }
@@ -435,20 +436,21 @@ void TEntityManager::TryAddInValue(TEntityID eid, int index, TEntity* pEntity)
         auto fit = ctListMap->find(pComplexType);
         if (fit == ctListMap->end()) {
             pList = mEntityListMemoryPool->Pop();
-            pList->push_front(eid);// original
+            pList->push_back(eid);// original
             ctListMap->insert({pComplexType, pList});
         } else {
             pComplexType->Done();
             mComplexTypeMemoryPool->Push(pComplexType);
 
             pList = fit->second;
-            pList->push_front(eid);
+            pList->push_back(eid);
         }
 
-        auto frontIt = pList->begin();
+        auto backIt = pList->end();
+        backIt--;
 
         auto pLTL = mLinkToListMemoryPool->Pop();
-        pLTL->Set(*pList, frontIt);
+        pLTL->Set(*pList, backIt);
         pEntity->AddValueCollectionInfo(pLTL, collectionIndex);
     }
 }
@@ -500,13 +502,13 @@ void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEnti
             BL_FIX_BUG();
             continue;
         }
-        // найти удаляется ли оригинал (back()) из листа, если оригинал, то занести следующий из списка
+        // найти удаляется ли оригинал (front()) из листа, если оригинал, то занести следующий из списка
         auto pList = pLTL->GetList();
-        auto isBackEntity = (pList->back() == eid);
+        auto isFrontEntity = (pList->front() == eid);
         pLTL->Erase();
         mLinkToListMemoryPool->Push(pLTL);
 
-        if (isBackEntity == false) {
+        if (isFrontEntity == false) {
             continue;
         }
         auto& typesInCollection = mValueCollectionWithTypes[collectionIndex];
@@ -537,7 +539,7 @@ void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEnti
         }
 
         // pList->size() > 0
-        auto nextEid = pList->back();
+        auto nextEid = pList->front();
         auto pNextEntity = GetEntity(nextEid);
 
         for (auto& typeInCollection : typesInCollection) {

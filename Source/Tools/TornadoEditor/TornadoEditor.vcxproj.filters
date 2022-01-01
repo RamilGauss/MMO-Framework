@@ -65,6 +65,9 @@
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="Handlers\OnOpenFileHierarchyWindowHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -96,6 +99,9 @@
       <Filter>Prefabs</Filter>
     </None>
     <None Include="Prefabs\WarningDialog.prefab">
+      <Filter>Prefabs</Filter>
+    </None>
+    <None Include="Prefabs\FileNode.prefab">
       <Filter>Prefabs</Filter>
     </None>
   </ItemGroup>
@@ -256,6 +262,12 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Components\ProjectConfigComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OnOpenFileHierarchyWindowHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\FilePathNodeComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

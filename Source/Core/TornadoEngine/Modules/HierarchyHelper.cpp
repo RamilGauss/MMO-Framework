@@ -104,3 +104,36 @@ nsECSFramework::TEntityList THierarchyHelper::GetChildsByName(nsECSFramework::TE
     return entities;
 }
 //-----------------------------------------------------------------------------------------------
+nsECSFramework::TEntityID THierarchyHelper::GetByName(nsECSFramework::TEntityID anyInPrefabEid,
+    const std::string& name)
+{
+    auto nameEids = GetListByName(anyInPrefabEid, name);
+    if (nameEids.size() == 0) {
+        return nsECSFramework::NONE;
+    }
+    return *(nameEids.begin());
+}
+//-----------------------------------------------------------------------------------------------
+nsECSFramework::TEntityList THierarchyHelper::GetListByName(nsECSFramework::TEntityID anyInPrefabEid,
+    const std::string& name)
+{
+    nsCommonWrapper::TNameComponent nameComponent;
+    nameComponent.value = name;
+    auto nameEids = mEntMng->GetByValueCopy(nameComponent);
+    if (nameEids.size() == 0) {
+        return {};
+    }
+
+    nsECSFramework::TEntityList filteredByPrefabGuidList;
+    auto prefabGuid = mEntMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(anyInPrefabEid)->value;
+    
+    for (auto& nameEid : nameEids) {
+        auto prefabGuidComponentByName = mEntMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(nameEid);
+        if (prefabGuidComponentByName->value == prefabGuid) {
+            filteredByPrefabGuidList.push_back(nameEid);
+        }
+    }
+
+    return filteredByPrefabGuidList;
+}
+//-----------------------------------------------------------------------------------------------

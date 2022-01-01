@@ -80,6 +80,10 @@
                 {
                     "typeName": "nsGuiWrapper::TTreeViewComponent",
                     "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsLogicWrapper::TObjectInstanceEndHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenFileHierarchyWindowHandler\"}"
                 }
             ]
         }

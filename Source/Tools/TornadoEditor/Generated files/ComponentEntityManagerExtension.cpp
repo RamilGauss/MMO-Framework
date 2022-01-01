@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_30 17:13:40.616
+// File has been generated at 2022_01_01 22:01:10.033
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -50,6 +50,20 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsTornadoEditor_TEditorInfoTagComponent_Data = globalTypeIdentifier->Type<nsTornadoEditor::TEditorInfoTagComponent>();
     
     m.insert({ rtti_nsTornadoEditor_TEditorInfoTagComponent_Data, nsTornadoEditor_TEditorInfoTagComponent_Data });
+    
+    Data nsTornadoEditor_TFilePathNodeComponent_Data;
+        nsTornadoEditor_TFilePathNodeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsTornadoEditor::TFilePathNodeComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsTornadoEditor::TFilePathNodeComponent>(eid, lambda, isNotify);
+    };
+    nsTornadoEditor_TFilePathNodeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsTornadoEditor::TFilePathNodeComponent*)p), isNotify); };
+    nsTornadoEditor_TFilePathNodeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEditor::TFilePathNodeComponent>(eid); };
+    nsTornadoEditor_TFilePathNodeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEditor::TFilePathNodeComponent>(eid); };
+    nsTornadoEditor_TFilePathNodeComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEditor::TFilePathNodeComponent>(eid); };
+    nsTornadoEditor_TFilePathNodeComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsTornadoEditor::TFilePathNodeComponent>(); };
+    auto rtti_nsTornadoEditor_TFilePathNodeComponent_Data = globalTypeIdentifier->Type<nsTornadoEditor::TFilePathNodeComponent>();
+    
+    m.insert({ rtti_nsTornadoEditor_TFilePathNodeComponent_Data, nsTornadoEditor_TFilePathNodeComponent_Data });
     
     Data nsTornadoEditor_TProjectConfigComponent_Data;
         nsTornadoEditor_TProjectConfigComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

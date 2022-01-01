@@ -132,6 +132,14 @@ void TUnitBuilderHelper::SetupTreeNode(nsECSFramework::TEntityManager* entMng,
         return;
     }
 
+    auto isTreeNode = entMng->HasComponent<nsGuiWrapper::TTreeNodeComponent>(parentEid);
+    if (isTreeNode) {
+        auto pTreeNodeComponent = entMng->ViewComponent<nsGuiWrapper::TTreeNodeComponent>(parentEid);
+        auto pTreeView = pTreeNodeComponent->value->GetTreeView();
+        pTreeView->AddNode(pTreeNode);
+        return;
+    }
+
     BL_FIX_BUG();
 }
 //-----------------------------------------------------------------------------------------------------------------------
@@ -196,6 +204,10 @@ void TUnitBuilderHelper::UnlinkParent(nsECSFramework::TEntityManager* entMng, ns
     guidComponent.value = parentGuid;
     auto parentEid = entMng->GetByUnique(guidComponent);
 
+    if (parentEid == nsECSFramework::NONE) {
+        return;
+    }
+
     auto frameComponent = entMng->ViewComponent<nsGuiWrapper::TFrameComponent>(parentEid);
     if (frameComponent) {
         frameComponent->value->Replace(pWidget);
@@ -223,6 +235,10 @@ void TUnitBuilderHelper::UnlinkMenuNode(nsECSFramework::TEntityManager* entMng, 
     guidComponent.value = parentGuid;
     auto parentEid = entMng->GetByUnique(guidComponent);
 
+    if (parentEid == nsECSFramework::NONE) {
+        return;
+    }
+
     auto menuNodeComponent = entMng->ViewComponent<nsGuiWrapper::TMenuNodeComponent>(parentEid);
     if (menuNodeComponent) {
         menuNodeComponent->value->Replace(pMenuNode);
@@ -241,6 +257,10 @@ void TUnitBuilderHelper::UnlinkTreeNode(nsECSFramework::TEntityManager* entMng, 
     nsCommonWrapper::TGuidComponent guidComponent;
     guidComponent.value = parentGuid;
     auto parentEid = entMng->GetByUnique(guidComponent);
+
+    if (parentEid == nsECSFramework::NONE) {
+        return;
+    }
 
     auto treeViewComponent = entMng->ViewComponent<nsGuiWrapper::TTreeViewComponent>(parentEid);
     if (treeViewComponent) {

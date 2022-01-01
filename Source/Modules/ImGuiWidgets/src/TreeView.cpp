@@ -22,10 +22,11 @@ void TTreeView::AddNode(TTreeNode* pNode)
     }
     pNode->mOnSelectionCB.Register(this, &TTreeView::OnSelection);
     mAllNodes.push_back(pNode);
-    if (pNode->mParentId == "") {
+
+    auto pParentNode = FoundNode(pNode->mParentId);
+    if (pParentNode == nullptr) {
         Add(pNode);
     } else {
-        auto pParentNode = FoundNode(pNode->mParentId);
         pParentNode->Add(pNode);
     }
 }

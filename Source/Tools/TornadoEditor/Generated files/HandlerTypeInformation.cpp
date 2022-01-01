@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_12_30 17:13:41.346
+// File has been generated at 2022_01_01 22:01:10.413
 	
 #include "HandlerTypeInformation.h"
 
@@ -56,6 +56,12 @@ void THandlerTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TOnExitClickHandler_n);
     mRttiList.push_back(nsTornadoEditor_TOnExitClickHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TOnExitClickHandler_n, nsTornadoEditor_TOnExitClickHandler_i });
+    
+    int nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenFileHierarchyWindowHandler>();
+    std::string nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_n = "nsTornadoEditor::TOnOpenFileHierarchyWindowHandler";
+    mTypeNameList.push_back(nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_n);
+    mRttiList.push_back(nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_n, nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_i });
     
     int nsTornadoEditor_TOnOpenProjectClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenProjectClickHandler>();
     std::string nsTornadoEditor_TOnOpenProjectClickHandler_n = "nsTornadoEditor::TOnOpenProjectClickHandler";

@@ -26,6 +26,8 @@ Only free and open source engines / libraries / frameworks!
 
 ### GUI
 
+<img src="./Doc/open_project_file.gif">
+<br>
 <img src="./Doc/gui_example.gif">
 <br>
 <img src="./Doc/tree_view_editing.gif">

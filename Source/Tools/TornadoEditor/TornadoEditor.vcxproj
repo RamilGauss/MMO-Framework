@@ -225,6 +225,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClCompile Include="Generated files\HandlerTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Handlers\OnOpenFileHierarchyWindowHandler.cpp" />
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +239,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <None Include="Prefabs\FileHierarchyWindow.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="Prefabs\FileNode.prefab">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>
     <None Include="Prefabs\OpenProjectDialog.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -273,6 +277,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
   <ItemGroup>
     <ClInclude Include="Components\AbsoluteFilePathComponent.h" />
     <ClInclude Include="Components\EditorInfoTagComponent.h" />
+    <ClInclude Include="Components\FilePathNodeComponent.h" />
     <ClInclude Include="Components\ProjectConfigComponent.h" />
     <ClInclude Include="Features\BootstrapperFeature.h" />
     <ClInclude Include="Features\BootstrapperSystem.h" />
@@ -299,6 +304,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
     <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h" />
+    <ClInclude Include="Handlers\OnOpenFileHierarchyWindowHandler.h" />
     <ClInclude Include="Handlers\OpenProjectCancelButtonClickHandler.h" />
     <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h" />
     <ClInclude Include="Handlers\OnCloseDialogHandler.h" />
