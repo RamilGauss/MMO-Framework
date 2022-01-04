@@ -16,17 +16,10 @@ namespace nsImGuiWidgets
 
     class DllExport TWindow : public TFrame
     {
-        ImVec2 mOldSize;
-        ImVec2 mOldPos;
     public:
         using TShowCallback = TCallbackPool<bool>;
-        using TSizeCallback = TCallbackPool<const ImVec2*>;
-        using TPositionCallback = TCallbackPool<const ImVec2*>;
 
         TShowCallback mOnShowCB;
-        TSizeCallback mOnSizeCB;
-        TPositionCallback mOnPosCB;
-
     protected:
         void BeginRender() override;
         void EndRender() override;

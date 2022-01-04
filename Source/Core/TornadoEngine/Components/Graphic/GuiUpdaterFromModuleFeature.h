@@ -9,21 +9,10 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "WindowPositionUpdaterSystem.h"
-#include "WindowSizeUpdaterSystem.h"
-
-#include "DialogPositionUpdaterSystem.h"
-#include "DialogSizeUpdaterSystem.h"
-
 namespace nsGraphicWrapper
 {
     class DllExport TGuiUpdaterFromModuleFeature : public nsECSFramework::TFeature
     {
-        TWindowPositionUpdaterSystem mWindowPositionUpdaterSystem;
-        TWindowSizeUpdaterSystem     mWindowSizeUpdaterSystem;
-
-        TDialogPositionUpdaterSystem mDialogPositionUpdaterSystem;
-        TDialogSizeUpdaterSystem     mDialogSizeUpdaterSystem;
     public:
         void InitConveyor() override;
     };

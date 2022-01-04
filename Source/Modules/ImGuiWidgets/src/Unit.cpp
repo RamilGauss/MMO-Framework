@@ -26,7 +26,7 @@ void TUnit::Render()
 //------------------------------------------------------------------------
 void TUnit::BeginRender()
 {
-    ImGui::SetCursorPos(mPos);
+    ImGui::SetCursorPos(GetPos());
 
     if (GetSubType() == SubType::UNIT) {
         ImGui::PushID(GetId());

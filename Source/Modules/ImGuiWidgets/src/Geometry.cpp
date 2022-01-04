@@ -6,17 +6,24 @@ See for more information LICENSE.md.
 */
 
 #include "Geometry.h"
+#include "Helper.h"
 
 using namespace nsImGuiWidgets;
 
 void TGeometry::SetPos(const ImVec2& newPos)
 {
-    mPos = newPos;
+    if (mPos != newPos) {
+        mPos = newPos;
+        mOnPositionCB.Notify();
+    }
 }
 //--------------------------------------------------------------------------------
 void TGeometry::SetSize(const ImVec2& newSize)
 {
-    mSize = newSize;
+    if (mSize != newSize) {
+        mSize = newSize;
+        mOnSizeCB.Notify();
+    }
 }
 //--------------------------------------------------------------------------------
 const ImVec2& TGeometry::GetPos()

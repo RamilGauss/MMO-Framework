@@ -21,6 +21,9 @@ namespace nsGraphicWrapper
     class DllExport TUnitBuilderHelper
     {
     public:
+        static void SetupGeometry(nsECSFramework::TEntityManager* entMng,
+            nsECSFramework::TEntityID eid, nsImGuiWidgets::TGeometry* pGeometry);
+
         static void SetupWidget(nsECSFramework::TEntityManager* entMng,
             nsECSFramework::TEntityID eid, nsImGuiWidgets::TWidget* pWidget);
 

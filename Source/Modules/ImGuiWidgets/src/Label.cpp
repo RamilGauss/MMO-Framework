@@ -23,7 +23,7 @@ void TLabel::AppendText(const std::string& value)
 //-------------------------------------------------------------------------------------
 void TLabel::RenderInheritance()
 {
-    mWrapWidth = mSize.x;
+    mWrapWidth = GetSize().x;
 
     ImDrawList* draw_list = ImGui::GetWindowDrawList();
     ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + mWrapWidth);
@@ -32,7 +32,7 @@ void TLabel::RenderInheritance()
 
     ImU32 counturColor = IM_COL32(mCounturColor.x * 255, mCounturColor.y * 255,
         mCounturColor.z * 255, mCounturColor.w * 255);
-    draw_list->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMin() + mSize, counturColor);
+    draw_list->AddRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMin() + GetSize(), counturColor);
 
     ImGui::PopTextWrapPos();
 }

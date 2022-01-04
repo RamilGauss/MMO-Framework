@@ -30,7 +30,7 @@ static int EditCallback(ImGuiInputTextCallbackData* data)
 //------------------------------------------------------------------------------------
 void TInputText::RenderInheritance()
 {
-    ImGui::PushItemWidth(mSize.x);
+    ImGui::PushItemWidth(GetSize().x);
 
     auto flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackEdit | ImGuiInputTextFlags_AutoSelectAll;
     if (ImGui::InputText(mTitle.c_str(), mValue, SIZE, flags, EditCallback, this)) {

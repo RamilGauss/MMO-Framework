@@ -26,11 +26,8 @@ void TDialog::BeginRender()
 
     mLastIsShown = oldIsShown;
 
-    mOldSize = mSize;
-    mOldPos = mPos;
-
-    ImGui::SetNextWindowSize(mSize);
-    ImGui::SetNextWindowPos(mPos, ImGuiCond_Appearing);
+    ImGui::SetNextWindowSize(GetSize());
+    ImGui::SetNextWindowPos(GetPos(), ImGuiCond_Appearing);
 
     ImGui::BeginPopupModal(mTitle.c_str(), &mIsShown, ImGuiWindowFlags_MenuBar);
 
@@ -45,23 +42,14 @@ void TDialog::EndRender()
         mDialogStack->RenderNextDialog(this);
     }
 
-    mPos = ImGui::GetWindowPos();
-    mSize = ImGui::GetWindowSize();
+    auto position = ImGui::GetWindowPos();
+    auto size = ImGui::GetWindowSize();
     
     if (mIsShown) {
         ImGui::EndPopup();
     }
 
-    if (mOldSize != mSize) {
-        mOnSizeCB.Notify(&mSize);
-    } else {
-        mSize = mOldSize;
-    }
-
-    if (mOldPos != mPos) {
-        mOnPosCB.Notify(&mPos);
-    } else {
-        mPos = mOldPos;
-    }
+    SetPos(position);
+    SetSize(size);
 }
 //---------------------------------------------------------------------------------------

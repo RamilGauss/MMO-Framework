@@ -22,6 +22,11 @@ See for more information LICENSE.md.
 #include "HandlerCallCollector.h"
 
 #include "HandlerLinkHelper.h"
+#include "TreeNodeIconComponent.h"
+
+
+#include <OgreTextureManager.h>
+#include <OgreTexture.h>
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;
@@ -33,6 +38,17 @@ void TTreeNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
 
     TUnitBuilderHelper::SetupTreeNode(entMng, eid, pTreeNodeComponent->value);
 
+    auto pTreeNodeIconComponent = entMng->ViewComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid);
+    if (pTreeNodeIconComponent) {
+        
+        try {
+            auto mTex = Ogre::TextureManager::getSingleton().load(pTreeNodeIconComponent->iconFileName, "General");
+            auto handle = (void*) (mTex->getHandle());
+            pTreeNodeComponent->value->SetTexture(handle, pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);
+        } catch(...) { 
+
+        }
+    }
     //auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
     //THandlerLinkHelper::LinkToHandler<TButtonClickHandlerComponent>(entMng, eid, pButtonComponent,
     //[pButtonComponent, handlerCallCollector, eid](const TButtonClickHandlerComponent* handlerComponent)

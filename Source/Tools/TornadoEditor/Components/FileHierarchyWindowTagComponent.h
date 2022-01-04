@@ -7,13 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/ExecuteSystem.h>
+#include <string>
 
-namespace nsGraphicWrapper
+#include "TypeDef.h"
+
+#include <ECS/include/IComponent.h>
+
+namespace nsTornadoEditor
 {
-    class DllExport TWindowPositionUpdaterSystem : public nsECSFramework::TExecuteSystem
+    struct DllExport TFileHierarchyWindowTagComponent : nsECSFramework::IComponent
     {
-    public:
-        void Execute() override;
     };
 }

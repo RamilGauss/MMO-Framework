@@ -21,7 +21,7 @@ void TInputMultiText::SetText(const std::string& str)
 //------------------------------------------------------------------------------------
 void TInputMultiText::RenderInheritance()
 {
-    if (ImGui::InputTextMultiline(mTitle.c_str(), mValue, SIZE, mSize)) {
+    if (ImGui::InputTextMultiline(mTitle.c_str(), mValue, SIZE, GetSize())) {
         mOnTextEditCB.Notify(this);
     }
 }

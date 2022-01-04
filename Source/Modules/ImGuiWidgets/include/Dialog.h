@@ -16,19 +16,11 @@ namespace nsImGuiWidgets
     {
         bool mLastIsShown = false;
 
-        ImVec2 mOldSize;
-        ImVec2 mOldPos;
-
         TDialogStack* mDialogStack = nullptr;
     public:
         using TShowCallback = TCallbackPool<bool>;
-        using TSizeCallback = TCallbackPool<const ImVec2*>;
-        using TPositionCallback = TCallbackPool<const ImVec2*>;
 
         TShowCallback mOnShowCB;
-        TSizeCallback mOnSizeCB;
-        TPositionCallback mOnPosCB;
-
 
         void SetStack(TDialogStack* pDialogStack);
 

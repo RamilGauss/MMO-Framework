@@ -21,6 +21,7 @@ See for more information LICENSE.md.
 #include "AbsoluteFilePathComponent.h"
 #include "EditorInfoTagComponent.h"
 #include "FilePathNodeComponent.h"
+#include "TreeNodeIconComponent.h"
 
 #include <iostream>
 
@@ -69,9 +70,15 @@ void TOnOpenFileHierarchyWindowHandler::AddFileNodes(nsECSFramework::TEntityID p
 
         auto fileName = path.filename().string();
 
+        std::string icon;
+
         auto isDir = std::filesystem::is_directory(path);
         if (isDir) {
             fileName = "[" + fileName + "]";
+
+            icon = "folder.png";
+        } else {
+            icon = GetIcon(path);
         }
 
         nsGuiWrapper::TTitleComponent titleComponent;
@@ -81,6 +88,12 @@ void TOnOpenFileHierarchyWindowHandler::AddFileNodes(nsECSFramework::TEntityID p
         TFilePathNodeComponent filePathNodeComponent;
         filePathNodeComponent.value = absFilePathStr;
         prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, filePathNodeComponent);
+
+        nsGuiWrapper::TTreeNodeIconComponent treeNodeIconComponent;
+        treeNodeIconComponent.iconFileName = icon;
+        treeNodeIconComponent.width = 16;
+        treeNodeIconComponent.height = 16;
+        prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, treeNodeIconComponent);
 
         if (isDir) {
             AddFileNodes(fileNodeEid, absFilePathStr, sceneInstanceGuid, parentGuid);
@@ -100,5 +113,30 @@ void TOnOpenFileHierarchyWindowHandler::GetFiles(const std::filesystem::path& di
             paths.push_back(entry.path());
         }
     }
+}
+//--------------------------------------------------------------------------------------------
+std::string TOnOpenFileHierarchyWindowHandler::GetIcon(const std::filesystem::path& fileNamePath)
+{
+    std::map<std::string, std::string> extIconMap;
+    extIconMap = 
+    {
+        {".cpp", "cpp.png"},
+        {".h", "cpp.png"},
+        {".json", "json.png"},
+        {".png", "image.png"},
+        {".jpg", "image.png"},
+        {".jpeg", "image.png"},
+        {".scene", "scene.png"},
+        {".prefab", "prefab.png"},
+    };
+
+    auto ext = fileNamePath.extension();
+
+    auto fit = extIconMap.find(ext.string());
+    if (fit == extIconMap.end()) {
+        return "undefined.jpg";
+    }
+
+    return fit->second;
 }
 //--------------------------------------------------------------------------------------------

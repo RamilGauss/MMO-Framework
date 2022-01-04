@@ -40,6 +40,10 @@
                 {
                     "typeName": "nsTornadoEditor::TFilePathNodeComponent",
                     "jsonBody": "{\"value\":\"\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTreeNodeIconComponent",
+                    "jsonBody": "{\"iconFileName\":\"folder.png\", \"width\":16, \"height\":16}"
                 }
             ]
         }

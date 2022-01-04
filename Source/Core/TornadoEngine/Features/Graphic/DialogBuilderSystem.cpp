@@ -35,6 +35,7 @@ void TDialogBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     auto entMng = GetEntMng();
 
     TUnitBuilderHelper::SetupWidget(entMng, eid, pDialogComponent->value);
+    TUnitBuilderHelper::SetupGeometry(entMng, eid, pDialogComponent->value);
 
     auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
     THandlerLinkHelper::LinkToHandler<TDialogCloseEventHandlerComponent>(entMng, eid, pDialogComponent,

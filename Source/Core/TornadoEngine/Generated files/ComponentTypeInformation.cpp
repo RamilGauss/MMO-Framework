@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_01 21:59:10.810
+// File has been generated at 2022_01_04 19:52:59.978
 	
 #include "ComponentTypeInformation.h"
 
@@ -177,6 +177,30 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TFrameComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TFrameComponent_n, nsGuiWrapper_TFrameComponent_i });
     
+    int nsGuiWrapper_TFrameKeyHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TFrameKeyHandlerComponent>();
+    std::string nsGuiWrapper_TFrameKeyHandlerComponent_n = "nsGuiWrapper::TFrameKeyHandlerComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TFrameKeyHandlerComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TFrameKeyHandlerComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TFrameKeyHandlerComponent_n, nsGuiWrapper_TFrameKeyHandlerComponent_i });
+    
+    int nsGuiWrapper_TFrameMouseClickHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseClickHandlerComponent>();
+    std::string nsGuiWrapper_TFrameMouseClickHandlerComponent_n = "nsGuiWrapper::TFrameMouseClickHandlerComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TFrameMouseClickHandlerComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TFrameMouseClickHandlerComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TFrameMouseClickHandlerComponent_n, nsGuiWrapper_TFrameMouseClickHandlerComponent_i });
+    
+    int nsGuiWrapper_TFrameMouseMoveHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseMoveHandlerComponent>();
+    std::string nsGuiWrapper_TFrameMouseMoveHandlerComponent_n = "nsGuiWrapper::TFrameMouseMoveHandlerComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TFrameMouseMoveHandlerComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TFrameMouseMoveHandlerComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TFrameMouseMoveHandlerComponent_n, nsGuiWrapper_TFrameMouseMoveHandlerComponent_i });
+    
+    int nsGuiWrapper_TFrameMouseWheelHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseWheelHandlerComponent>();
+    std::string nsGuiWrapper_TFrameMouseWheelHandlerComponent_n = "nsGuiWrapper::TFrameMouseWheelHandlerComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TFrameMouseWheelHandlerComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TFrameMouseWheelHandlerComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TFrameMouseWheelHandlerComponent_n, nsGuiWrapper_TFrameMouseWheelHandlerComponent_i });
+    
     int nsGuiWrapper_TInputTextComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TInputTextComponent>();
     std::string nsGuiWrapper_TInputTextComponent_n = "nsGuiWrapper::TInputTextComponent";
     mTypeNameList.push_back(nsGuiWrapper_TInputTextComponent_n);
@@ -242,6 +266,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TTreeNodeComponent_n);
     mRttiList.push_back(nsGuiWrapper_TTreeNodeComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TTreeNodeComponent_n, nsGuiWrapper_TTreeNodeComponent_i });
+    
+    int nsGuiWrapper_TTreeNodeIconComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeIconComponent>();
+    std::string nsGuiWrapper_TTreeNodeIconComponent_n = "nsGuiWrapper::TTreeNodeIconComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TTreeNodeIconComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TTreeNodeIconComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TTreeNodeIconComponent_n, nsGuiWrapper_TTreeNodeIconComponent_i });
     
     int nsGuiWrapper_TTreeViewComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TTreeViewComponent>();
     std::string nsGuiWrapper_TTreeViewComponent_n = "nsGuiWrapper::TTreeViewComponent";

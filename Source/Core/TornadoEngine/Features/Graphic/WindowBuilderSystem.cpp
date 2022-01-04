@@ -27,4 +27,6 @@ void TWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     auto entMng = GetEntMng();
 
     TUnitBuilderHelper::SetupWidget(entMng, eid, pWindowComponent->value);
+
+    TUnitBuilderHelper::SetupGeometry(entMng, eid, pWindowComponent->value);
 }

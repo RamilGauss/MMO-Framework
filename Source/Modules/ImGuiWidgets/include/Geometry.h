@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include <imgui.h>
 #include "TypeDef.h"
+#include "CallbackPool.h"
 
 namespace nsImGuiWidgets
 {
@@ -21,7 +22,10 @@ namespace nsImGuiWidgets
         const ImVec2& GetPos();
         const ImVec2& GetSize();
 
-    protected:
+        TCallbackPool<> mOnPositionCB;
+        TCallbackPool<> mOnSizeCB;
+
+    private:
         ImVec2 mPos;
         ImVec2 mSize;
     };

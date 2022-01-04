@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_01 21:59:10.744
+// File has been generated at 2022_01_04 19:52:59.965
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -373,6 +373,62 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsGuiWrapper_TFrameComponent_Data, nsGuiWrapper_TFrameComponent_Data });
     
+    Data nsGuiWrapper_TFrameKeyHandlerComponent_Data;
+        nsGuiWrapper_TFrameKeyHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TFrameKeyHandlerComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TFrameKeyHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameKeyHandlerComponent*)p), isNotify); };
+    nsGuiWrapper_TFrameKeyHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameKeyHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameKeyHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameKeyHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TFrameKeyHandlerComponent>(); };
+    auto rtti_nsGuiWrapper_TFrameKeyHandlerComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TFrameKeyHandlerComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TFrameKeyHandlerComponent_Data, nsGuiWrapper_TFrameKeyHandlerComponent_Data });
+    
+    Data nsGuiWrapper_TFrameMouseClickHandlerComponent_Data;
+        nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TFrameMouseClickHandlerComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameMouseClickHandlerComponent*)p), isNotify); };
+    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TFrameMouseClickHandlerComponent>(); };
+    auto rtti_nsGuiWrapper_TFrameMouseClickHandlerComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseClickHandlerComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TFrameMouseClickHandlerComponent_Data, nsGuiWrapper_TFrameMouseClickHandlerComponent_Data });
+    
+    Data nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data;
+        nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TFrameMouseMoveHandlerComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameMouseMoveHandlerComponent*)p), isNotify); };
+    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(); };
+    auto rtti_nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseMoveHandlerComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data, nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data });
+    
+    Data nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data;
+        nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TFrameMouseWheelHandlerComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameMouseWheelHandlerComponent*)p), isNotify); };
+    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid); };
+    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(); };
+    auto rtti_nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseWheelHandlerComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data, nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data });
+    
     Data nsGuiWrapper_TInputTextComponent_Data;
         nsGuiWrapper_TInputTextComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
         auto lambda = [&](nsGuiWrapper::TInputTextComponent* pC){ onAfterCreation((void*)pC); };
@@ -526,6 +582,20 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsGuiWrapper_TTreeNodeComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeComponent>();
     
     m.insert({ rtti_nsGuiWrapper_TTreeNodeComponent_Data, nsGuiWrapper_TTreeNodeComponent_Data });
+    
+    Data nsGuiWrapper_TTreeNodeIconComponent_Data;
+        nsGuiWrapper_TTreeNodeIconComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TTreeNodeIconComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TTreeNodeIconComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTreeNodeIconComponent*)p), isNotify); };
+    nsGuiWrapper_TTreeNodeIconComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid); };
+    nsGuiWrapper_TTreeNodeIconComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid); };
+    nsGuiWrapper_TTreeNodeIconComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid); };
+    nsGuiWrapper_TTreeNodeIconComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TTreeNodeIconComponent>(); };
+    auto rtti_nsGuiWrapper_TTreeNodeIconComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeIconComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TTreeNodeIconComponent_Data, nsGuiWrapper_TTreeNodeIconComponent_Data });
     
     Data nsGuiWrapper_TTreeViewComponent_Data;
         nsGuiWrapper_TTreeViewComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

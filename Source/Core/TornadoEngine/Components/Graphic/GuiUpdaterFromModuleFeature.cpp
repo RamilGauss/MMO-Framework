@@ -11,10 +11,4 @@ using namespace nsGraphicWrapper;
 
 void TGuiUpdaterFromModuleFeature::InitConveyor()
 {
-    // TODO: Collect Size and Pos events
-    //Add(&mWindowPositionUpdaterSystem);
-    //Add(&mWindowSizeUpdaterSystem);
-
-    //Add(&mDialogPositionUpdaterSystem);
-    //Add(&mDialogSizeUpdaterSystem);
 }

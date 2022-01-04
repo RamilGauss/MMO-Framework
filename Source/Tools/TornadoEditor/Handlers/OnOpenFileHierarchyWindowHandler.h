@@ -25,5 +25,7 @@ namespace nsTornadoEditor
 
         void GetFiles(const std::filesystem::path& directory,
             std::list<std::filesystem::path>& paths, bool isDir);
+
+        std::string GetIcon(const std::filesystem::path& fileNamePath);
     };
 }

@@ -19,7 +19,11 @@
             [ "nsGuiWrapper::IDialogCloseEventHandler" ],
             [ "nsGuiWrapper::IWindowCloseEventHandler" ],
             [ "nsGuiWrapper::IMenuNodeClickHandler" ],
-            [ "nsLogicWrapper::IObjectInstanceEndHandler" ]
+            [ "nsLogicWrapper::IObjectInstanceEndHandler" ],
+            [ "nsGuiWrapper::IFrameKeyHandler" ],
+            [ "nsGuiWrapper::IFrameMouseClickHandler" ],
+            [ "nsGuiWrapper::IFrameMouseMoveHandler" ],
+            [ "nsGuiWrapper::IFrameMouseWheelHandler" ]
         ],
         "memberIgnore" : "IGNORE_ATTRIBUTE"
     },

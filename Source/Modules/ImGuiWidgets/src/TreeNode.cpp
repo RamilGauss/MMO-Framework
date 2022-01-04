@@ -14,6 +14,13 @@ See for more information LICENSE.md.
 using namespace nsImGuiWidgets;
 using namespace std::placeholders;
 
+void TTreeNode::SetTexture(void* textureId, int width, int height)
+{
+    mTextureId = textureId;
+    mWidth = width;
+    mHeight = height;
+}
+//-------------------------------------------------------------------------
 TTreeNode::TTreeNode()
 {
     mInputText.mOnTextEditEndsCB.Register(this, [&](TInputText* inputText)
@@ -84,7 +91,9 @@ void TTreeNode::Render()
             mInputText.Render();
         }
     } else {
-        if (ImGui::TreeNodeEx(mStrId.c_str(), mode, GetTitle().c_str())) {
+        if (ImGui::TreeNodeEx(mStrId.c_str(), mode, "")) {
+            RenderContent();
+            
             SearchEvents();
             for (auto& node : mWidgets) {
                 node->Render();
@@ -92,6 +101,8 @@ void TTreeNode::Render()
             ImGui::TreePop();
             mIsOpen = true;
         } else {
+            RenderContent();
+
             SearchEvents();
             mIsOpen = false;
         }
@@ -101,8 +112,11 @@ void TTreeNode::Render()
 void TTreeNode::SearchEvents()
 {
     auto parentGlobalPos = mParent->GetGlobalPos();
-    mPos = ImGui::GetItemRectMin() - parentGlobalPos;
-    mSize = ImGui::GetItemRectSize() + ImGui::GetStyle().ItemInnerSpacing;
+    auto pos = ImGui::GetItemRectMin() - parentGlobalPos;
+    auto size = ImGui::GetItemRectSize() + ImGui::GetStyle().ItemInnerSpacing;
+
+    SetPos(pos);
+    SetSize(size);
 
     if (ImGui::IsItemClicked()) {
         mOnLeftClickCB.Notify(this);
@@ -133,5 +147,16 @@ void TTreeNode::SetTreeView(TTreeView* treeView)
 TTreeView* TTreeNode::GetTreeView() const
 {
     return mTreeView;
+}
+//-------------------------------------------------------------------------
+void TTreeNode::RenderContent()
+{
+    ImGui::SameLine();
+    if (mTextureId != nullptr) {
+        ImGui::Image(mTextureId, ImVec2(mWidth, mHeight));
+        ImGui::SameLine();
+    }
+
+    ImGui::Text(GetTitle().c_str());
 }
 //-------------------------------------------------------------------------

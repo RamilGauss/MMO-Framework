@@ -13,13 +13,10 @@ using namespace nsImGuiWidgets;
 
 void TWindow::BeginRender()
 {
-    mOldSize = mSize;
-    mOldPos = mPos;
-
     auto oldIsShown = mIsShown;
 
-    ImGui::SetNextWindowSize(mSize);
-    ImGui::SetNextWindowPos(mPos, ImGuiCond_Appearing);
+    ImGui::SetNextWindowSize(GetSize());
+    ImGui::SetNextWindowPos(GetPos(), ImGuiCond_Appearing);
 
     ImGui::Begin(mTitle.c_str(), &mIsShown);
 
@@ -30,21 +27,12 @@ void TWindow::BeginRender()
 //---------------------------------------------------------------------------------------
 void TWindow::EndRender()
 {
-    mPos = ImGui::GetWindowPos();
-    mSize = ImGui::GetWindowSize();
+    auto position = ImGui::GetWindowPos();
+    auto size = ImGui::GetWindowSize();
 
     ImGui::End();
 
-    if (mOldSize != mSize) {
-        mOnSizeCB.Notify(&mSize);
-    } else {
-        mSize = mOldSize;
-    }
-
-    if (mOldPos != mPos) {
-        mOnPosCB.Notify(&mPos);
-    } else {
-        mPos = mOldPos;
-    }
+    SetPos(position);
+    SetSize(size);
 }
 //---------------------------------------------------------------------------------------

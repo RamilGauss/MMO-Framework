@@ -32,9 +32,15 @@ namespace nsImGuiWidgets
 
         bool mIsOpen = false;
 
+        void* mTextureId = nullptr;
+        int mWidth = 0;
+        int mHeight = 0;
+
     public:
         TTreeNode();
         ~TTreeNode();
+
+        void SetTexture(void* textureId, int width, int height);
 
         void Render() override;
 
@@ -43,12 +49,12 @@ namespace nsImGuiWidgets
         using CallbackOnEndEditEvent = TCallbackPool<TTreeNode*, const std::string&>;
         CallbackOnEndEditEvent mOnEndEditEventCB;
 
-
         void SetTreeView(TTreeView* treeView);
         TTreeView* GetTreeView() const;
 
     private:
         void SearchEvents();
+        void RenderContent();
 
         void EndEditing();
     };

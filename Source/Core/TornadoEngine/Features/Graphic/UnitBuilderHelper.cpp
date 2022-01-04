@@ -24,6 +24,26 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
+void TUnitBuilderHelper::SetupGeometry(nsECSFramework::TEntityManager* entMng,
+    nsECSFramework::TEntityID eid, nsImGuiWidgets::TGeometry* pGeometry)
+{
+    pGeometry->mOnPositionCB.Register(nullptr, [entMng, eid, pGeometry]()
+    {
+        nsGuiWrapper::TPositionComponent positionComponent;
+        positionComponent.x = pGeometry->GetPos().x;
+        positionComponent.y = pGeometry->GetPos().y;
+        entMng->SetComponent(eid, positionComponent);
+    });
+
+    pGeometry->mOnSizeCB.Register(nullptr, [entMng, eid, pGeometry]()
+    {
+        nsGuiWrapper::TSizeComponent sizeComponent;
+        sizeComponent.x = pGeometry->GetSize().x;
+        sizeComponent.y = pGeometry->GetSize().y;
+        entMng->SetComponent(eid, sizeComponent);
+    });
+}
+//-----------------------------------------------------------------------------------------------------------------------
 void TUnitBuilderHelper::SetupWidget(nsECSFramework::TEntityManager* entMng,
     nsECSFramework::TEntityID eid, nsImGuiWidgets::TWidget* pWidget)
 {

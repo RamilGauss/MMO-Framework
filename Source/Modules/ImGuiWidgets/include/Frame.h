@@ -23,8 +23,6 @@ namespace nsImGuiWidgets
 
         SubType GetSubType() const override;
 
-        void Clear();
-
         virtual TWidget* GetChildByGlobalPos(const ImVec2& mousePos);
 
         // Property change events by User

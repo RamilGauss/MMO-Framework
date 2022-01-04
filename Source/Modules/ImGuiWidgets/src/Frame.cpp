@@ -18,9 +18,9 @@ TFrame::TFrame() : TWidgetContainer(this)
 //---------------------------------------------------------------------------------------
 void TFrame::BeginRender()
 {
-    ImGui::SetCursorPos(mPos);
+    ImGui::SetCursorPos(GetPos());
 
-    ImGui::BeginChildFrame(GetId(), mSize);
+    ImGui::BeginChildFrame(GetId(), GetSize());
 }
 //---------------------------------------------------------------------------------------
 void TFrame::EndRender()

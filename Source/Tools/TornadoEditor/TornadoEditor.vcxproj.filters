@@ -160,6 +160,9 @@
     <Filter Include="Resources">
       <UniqueIdentifier>{82110ff4-579e-4002-af77-285787551f4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\WindowTags">
+      <UniqueIdentifier>{7287816e-b46b-4b4f-9a9f-81d8461d02bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h">
@@ -269,6 +272,9 @@
     </ClInclude>
     <ClInclude Include="Components\FilePathNodeComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\FileHierarchyWindowTagComponent.h">
+      <Filter>Components\WindowTags</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

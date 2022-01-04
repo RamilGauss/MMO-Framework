@@ -145,6 +145,18 @@
     <Filter Include="Modules\Helpers">
       <UniqueIdentifier>{61a5d85b-aa42-45d6-ac02-1dd096df455d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Gui\Handlers">
+      <UniqueIdentifier>{0e430a6c-f8a6-45d5-b444-26e550f96ebf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Gui\Widgets">
+      <UniqueIdentifier>{a665ad51-a8f0-4095-9baa-b973d6095b4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Logic\Handlers">
+      <UniqueIdentifier>{4355c765-db8e-417c-89d2-3846a6d835a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Logic\Units">
+      <UniqueIdentifier>{f1f67c9f-46f7-45bb-8e1f-b8a221095255}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -255,12 +267,6 @@
     <ClCompile Include="Components\Graphic\GuiUpdaterFromModuleFeature.cpp">
       <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Graphic\WindowPositionUpdaterSystem.cpp">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Graphic\WindowSizeUpdaterSystem.cpp">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClCompile>
     <ClCompile Include="Generated files\FeatureTypeFactory.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
@@ -320,12 +326,6 @@
     </ClCompile>
     <ClCompile Include="Features\Logic\PrefabFeature.cpp">
       <Filter>Features\Logic\Prefab</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Graphic\DialogPositionUpdaterSystem.cpp">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Graphic\DialogSizeUpdaterSystem.cpp">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
     <ClCompile Include="Modules\ObjectManager.cpp">
       <Filter>Modules\Resources\Common</Filter>
@@ -578,27 +578,6 @@
     <ClInclude Include="ReflectionAggregators\ScenePartReflectionAggregator.h">
       <Filter>ReflectionAggregators</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\ButtonComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\FocusComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\PositionComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\SizeComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\TitleComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\VisibilityComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\WindowComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
     <ClInclude Include="Modules\Modules.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
@@ -683,9 +662,6 @@
     <ClInclude Include="Handlers\IButtonClickHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\IHandler.h">
       <Filter>Handlers\Common</Filter>
     </ClInclude>
@@ -694,12 +670,6 @@
     </ClInclude>
     <ClInclude Include="Features\Graphic\GuiBuilderFeature.h">
       <Filter>Features\Graphic\Builder</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\FrameComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\MainWindowComponent.h">
-      <Filter>Components\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\SceneRootComponent.h">
       <Filter>Components\Common\Scene</Filter>
@@ -746,13 +716,7 @@
     <ClInclude Include="Components\Common\NeedUnloadPrefabComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Graphic\WindowPositionUpdaterSystem.h">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Graphic\GuiUpdaterFromModuleFeature.h">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Graphic\WindowSizeUpdaterSystem.h">
       <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\FeatureTypeFactory.h">
@@ -794,15 +758,6 @@
     <ClInclude Include="Features\Logic\FeatureTerminatorSystem.h">
       <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Logic\FeatureComponent.h">
-      <Filter>Components\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Logic\SceneReferenceComponent.h">
-      <Filter>Components\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Logic\PrefabReferenceComponent.h">
-      <Filter>Components\Logic</Filter>
-    </ClInclude>
     <ClInclude Include="Modules\PrefabManager.h">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
@@ -817,12 +772,6 @@
     </ClInclude>
     <ClInclude Include="Modules\ResourceContent.h">
       <Filter>Modules\Resources\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Logic\SceneObjectReferenceComponent.h">
-      <Filter>Components\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h">
-      <Filter>Components\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Modules\PrefabObjectConstructor.h">
       <Filter>Modules\Resources\Prefab</Filter>
@@ -851,53 +800,20 @@
     <ClInclude Include="Features\Logic\PrefabFeature.h">
       <Filter>Features\Logic\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\DialogComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Graphic\DialogPositionUpdaterSystem.h">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Graphic\DialogSizeUpdaterSystem.h">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\IDialogCloseEventHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\IWindowCloseEventHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\DialogCloseEventHandlerComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\WindowCloseEventHandlerComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Common\HandlerTarget.h">
       <Filter>Components\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\InputTextComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\MenuNodeComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\TreeViewComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\TreeNodeComponent.h">
-      <Filter>Components\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Modules\ObjectManager.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\IMenuNodeClickHandler.h">
       <Filter>Handlers\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\MenuNodeClickHandlerComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerComponent.h">
-      <Filter>Components\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerBuilderSystem.h">
       <Filter>Features\Logic\Builder</Filter>
@@ -910,9 +826,6 @@
     </ClInclude>
     <ClInclude Include="Handlers\IObjectInstanceEndHandler.h">
       <Filter>Handlers\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Gui\InputTextValueComponent.h">
-      <Filter>Components\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Share\HandlerPool.h">
       <Filter>Share</Filter>
@@ -1043,9 +956,6 @@
     <ClInclude Include="Modules\HierarchyHelper.h">
       <Filter>Modules\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\LabelComponent.h">
-      <Filter>Components\Gui</Filter>
-    </ClInclude>
     <ClInclude Include="Features\Graphic\LabelBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClInclude>
@@ -1055,8 +965,113 @@
     <ClInclude Include="Features\Graphic\LabelTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Gui\WindowCloseEventHandlerComponent.h">
+      <Filter>Components\Gui\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\MenuNodeClickHandlerComponent.h">
+      <Filter>Components\Gui\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\DialogCloseEventHandlerComponent.h">
+      <Filter>Components\Gui\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h">
+      <Filter>Components\Gui\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\ButtonComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\DialogComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\FocusComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\FrameComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\InputTextComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\InputTextValueComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\LabelComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
     <ClInclude Include="Components\Gui\LabelValueComponent.h">
-      <Filter>Components\Gui</Filter>
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\MainWindowComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\MenuNodeComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\PositionComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\SizeComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\TitleComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\TreeNodeComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\TreeViewComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\VisibilityComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\WindowComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerComponent.h">
+      <Filter>Components\Logic\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\FeatureComponent.h">
+      <Filter>Components\Logic\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h">
+      <Filter>Components\Logic\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\PrefabReferenceComponent.h">
+      <Filter>Components\Logic\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\SceneObjectReferenceComponent.h">
+      <Filter>Components\Logic\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Logic\SceneReferenceComponent.h">
+      <Filter>Components\Logic\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\FrameMouseClickHandlerComponent.h">
+      <Filter>Components\Gui\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IFrameMouseClickHandler.h">
+      <Filter>Handlers\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IFrameMouseMoveHandler.h">
+      <Filter>Handlers\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IFrameMouseWheelHandler.h">
+      <Filter>Handlers\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\IFrameKeyHandler.h">
+      <Filter>Handlers\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\FrameMouseWheelHandlerComponent.h">
+      <Filter>Components\Gui\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\FrameMouseMoveHandlerComponent.h">
+      <Filter>Components\Gui\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\FrameKeyHandlerComponent.h">
+      <Filter>Components\Gui\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Gui\TreeNodeIconComponent.h">
+      <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

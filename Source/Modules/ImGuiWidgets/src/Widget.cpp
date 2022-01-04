@@ -42,13 +42,13 @@ ImVec2 TWidget::GetGlobalPos()
 {
     auto p = GetParent();
 
-    ImVec2 globalPos = mPos;
+    auto globalPos = GetPos();
     while (true) {
         if (!p) {
             break;
         }
 
-        globalPos += p->mPos;
+        globalPos += p->GetPos();
         p = p->GetParent();
     }
     return globalPos;

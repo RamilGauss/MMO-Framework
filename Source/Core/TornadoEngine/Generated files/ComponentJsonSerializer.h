@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_01 21:59:10.673
+// File has been generated at 2022_01_04 19:52:59.917
 	
 #pragma once
 
@@ -117,6 +117,18 @@ namespace nsTornadoEngine
         static void _Serialize(nsGuiWrapper::TFrameComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TFrameComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TFrameKeyHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TFrameKeyHandlerComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TFrameMouseClickHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TFrameMouseClickHandlerComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TFrameMouseMoveHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TFrameMouseMoveHandlerComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TFrameMouseWheelHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TFrameMouseWheelHandlerComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TInputTextComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TInputTextComponent* p, const Jobj& obj);
         
@@ -149,6 +161,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsGuiWrapper::TTreeNodeComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TTreeNodeComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TTreeNodeIconComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TTreeNodeIconComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TTreeViewComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TTreeViewComponent* p, const Jobj& obj);
