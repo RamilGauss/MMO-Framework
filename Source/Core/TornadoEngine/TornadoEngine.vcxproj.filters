@@ -444,6 +444,42 @@
     <ClCompile Include="Features\Graphic\LabelTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClCompile>
+    <ClCompile Include="Features\Graphic\FrameMouseClickHandlerMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\FrameKeyHandlerMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\FrameMouseMoveHandlerMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\FrameMouseWheelHandlerMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\FrameKeyHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\FrameMouseClickHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\FrameMouseMoveHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\FrameMouseWheelHandlerTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -1021,6 +1057,42 @@
     </ClInclude>
     <ClInclude Include="Components\Gui\TreeNodeIconComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\FrameMouseClickHandlerMakerSystem.h">
+      <Filter>Features\Graphic\Maker\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\FrameKeyHandlerMakerSystem.h">
+      <Filter>Features\Graphic\Maker\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\FrameMouseMoveHandlerMakerSystem.h">
+      <Filter>Features\Graphic\Maker\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\FrameMouseWheelHandlerMakerSystem.h">
+      <Filter>Features\Graphic\Maker\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\FrameKeyHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\FrameMouseClickHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\FrameMouseMoveHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\FrameMouseWheelHandlerTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

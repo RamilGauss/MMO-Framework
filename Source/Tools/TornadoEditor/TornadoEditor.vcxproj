@@ -225,6 +225,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClCompile Include="Generated files\HandlerTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Handlers\OnMouseClickFileNodeHandler.cpp" />
     <ClCompile Include="Handlers\OnOpenFileHierarchyWindowHandler.cpp" />
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp" />
   </ItemGroup>
@@ -305,6 +306,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
     <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h" />
+    <ClInclude Include="Handlers\OnMouseClickFileNodeHandler.h" />
     <ClInclude Include="Handlers\OnOpenFileHierarchyWindowHandler.h" />
     <ClInclude Include="Handlers\OpenProjectCancelButtonClickHandler.h" />
     <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h" />

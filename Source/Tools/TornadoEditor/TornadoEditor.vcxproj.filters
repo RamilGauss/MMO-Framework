@@ -68,6 +68,9 @@
     <ClCompile Include="Handlers\OnOpenFileHierarchyWindowHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="Handlers\OnMouseClickFileNodeHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -275,6 +278,9 @@
     </ClInclude>
     <ClInclude Include="Components\FileHierarchyWindowTagComponent.h">
       <Filter>Components\WindowTags</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OnMouseClickFileNodeHandler.h">
+      <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -21,8 +21,8 @@ See for more information LICENSE.md.
 
 #include "DialogCloseEventHandlerComponent.h"
 #include "HandlerLinkHelper.h"
-#include "HandlerCallCollector.h"
 #include "UnitBuilderHelper.h"
+#include "FrameMouseClickHandlerComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;
@@ -54,4 +54,7 @@ void TDialogBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
             });
         }
     });
+
+
+    THandlerLinkHelper::RegisterMouseKey(entMng, eid, pDialogComponent);
 }

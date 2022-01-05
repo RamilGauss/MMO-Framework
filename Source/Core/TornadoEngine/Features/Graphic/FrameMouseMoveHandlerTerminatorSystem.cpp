@@ -1,0 +1,22 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information LICENSE.md.
+*/
+
+#include "FrameMouseMoveHandlerTerminatorSystem.h"
+#include "Modules.h"
+#include "ProjectConfigContainer.h"
+#include "Logger.h"
+#include "TimeSliceEngine.h"
+#include "HandlerLinkHelper.h"
+
+using namespace nsGraphicWrapper;
+
+void TFrameMouseMoveHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid,
+    const nsGuiWrapper::TFrameMouseMoveHandlerComponent* pFrameMouseMoveHandlerComponent)
+{
+    auto entMng = GetEntMng();
+    THandlerLinkHelper::UnlinkGui(entMng, eid, pFrameMouseMoveHandlerComponent);
+}

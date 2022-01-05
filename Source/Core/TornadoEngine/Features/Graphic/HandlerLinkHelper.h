@@ -20,6 +20,12 @@ See for more information LICENSE.md.
 #include "TimeSliceEngine.h"
 #include "PrefabOriginalGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
+#include "HandlerCallCollector.h"
+
+#include "FrameMouseMoveHandlerComponent.h"
+#include "FrameMouseWheelHandlerComponent.h"
+#include "FrameMouseClickHandlerComponent.h"
+#include "FrameKeyHandlerComponent.h"
 
 namespace nsGraphicWrapper
 {
@@ -29,6 +35,14 @@ namespace nsGraphicWrapper
         template<typename HandlerType, typename GuiType>
         static std::list<const HandlerType*> FindHandlers(nsECSFramework::TEntityManager* entMng,
             nsECSFramework::TEntityID eid, GuiType* pGui);
+
+        template<typename GuiType>
+        static void RegisterMouseKey(nsECSFramework::TEntityManager* entMng,
+            nsECSFramework::TEntityID eid, GuiType* pGui);
+
+        template<typename HandlerType>
+        static void UnlinkGui(nsECSFramework::TEntityManager* entMng,
+            nsECSFramework::TEntityID eid, HandlerType* pHandlerComponent);
     };
 
     template<typename HandlerType, typename GuiType>
@@ -81,5 +95,78 @@ namespace nsGraphicWrapper
         }
 
         return handlers;
+    }
+
+    template<typename GuiType>
+    void THandlerLinkHelper::RegisterMouseKey(nsECSFramework::TEntityManager* entMng,
+        nsECSFramework::TEntityID eid, GuiType* pGui)
+    {
+        auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
+
+        pGui->value->mOnMouseClickCB.Register(pGui->value,
+            [entMng, handlerCallCollector, eid, pGui](nsGraphicEngine::TMouseButtonEvent mouseEvent)
+        {
+            auto handlers = THandlerLinkHelper::FindHandlers<nsGuiWrapper::TFrameMouseClickHandlerComponent>(entMng, eid, pGui);
+            for (auto& pHandler : handlers) {
+                handlerCallCollector->Add([mouseEvent, pHandler, eid]()
+                {
+                    pHandler->handler->Handle(eid, mouseEvent);
+                });
+            }
+        });
+
+        pGui->value->mOnMouseMoveCB.Register(pGui->value,
+            [entMng, handlerCallCollector, eid, pGui](nsGraphicEngine::TMouseMotionEvent mouseEvent)
+        {
+            auto handlers = THandlerLinkHelper::FindHandlers<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(entMng, eid, pGui);
+            for (auto& pHandler : handlers) {
+                handlerCallCollector->Add([mouseEvent, pHandler, eid]()
+                {
+                    pHandler->handler->Handle(eid, mouseEvent);
+                });
+            }
+        });
+
+        pGui->value->mOnMouseWheelCB.Register(pGui->value,
+            [entMng, handlerCallCollector, eid, pGui](nsGraphicEngine::TMouseWheelEvent mouseEvent)
+        {
+            auto handlers = THandlerLinkHelper::FindHandlers<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(entMng, eid, pGui);
+            for (auto& pHandler : handlers) {
+                handlerCallCollector->Add([mouseEvent, pHandler, eid]()
+                {
+                    pHandler->handler->Handle(eid, mouseEvent);
+                });
+            }
+        });
+
+        pGui->value->mOnKeyCB.Register(pGui->value,
+            [entMng, handlerCallCollector, eid, pGui](nsGraphicEngine::TKeyboardEvent keyEvent)
+        {
+            auto handlers = THandlerLinkHelper::FindHandlers<nsGuiWrapper::TFrameKeyHandlerComponent>(entMng, eid, pGui);
+            for (auto& pHandler : handlers) {
+                handlerCallCollector->Add([keyEvent, pHandler, eid]()
+                {
+                    pHandler->handler->Handle(eid, keyEvent);
+                });
+            }
+        });
+    }
+
+
+    template<typename HandlerType>
+    void THandlerLinkHelper::UnlinkGui(nsECSFramework::TEntityManager* entMng,
+        nsECSFramework::TEntityID eid, HandlerType* pHandlerComponent)
+    {
+        auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
+
+        auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
+
+        int rtti;
+        auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pHandlerComponent->handlerTypeName, rtti);
+        if (convertResult == false) {
+            logger->WriteF_time("Not converted typename \"%s\"", pHandlerComponent->handlerTypeName);
+            return;
+        }
+        handlerReflection->mTypeFactory->Delete(pHandlerComponent->handler, rtti);
     }
 }

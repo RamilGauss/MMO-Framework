@@ -26,6 +26,11 @@ See for more information LICENSE.md.
 #include "DialogCloseEventHandlerMakerSystem.h"
 #include "WindowCloseEventHandlerMakerSystem.h"
 
+#include "FrameMouseClickHandlerMakerSystem.h"
+#include "FrameMouseMoveHandlerMakerSystem.h"
+#include "FrameMouseWheelHandlerMakerSystem.h"
+#include "FrameKeyHandlerMakerSystem.h"
+
 namespace nsGraphicWrapper
 {
     class DllExport TGuiMakerFeature : public nsECSFramework::TFeature
@@ -46,6 +51,12 @@ namespace nsGraphicWrapper
         TMenuNodeClickHandlerMakerSystem mMenuNodeClickHandlerMakerSystem;
         TDialogCloseEventHandlerMakerSystem mDialogCloseEventHandlerMakerSystem;
         TWindowCloseEventHandlerMakerSystem mWindowCloseEventHandlerMakerSystem;
+
+        TFrameMouseClickHandlerMakerSystem mFrameMouseClickHandlerMakerSystem;
+        TFrameMouseMoveHandlerMakerSystem  mFrameMouseMoveHandlerMakerSystem;
+        TFrameMouseWheelHandlerMakerSystem mFrameMouseWheelHandlerMakerSystem;
+
+        TFrameKeyHandlerMakerSystem mFrameKeyHandlerMakerSystem;
     public:
         void InitConveyor() override;
     };

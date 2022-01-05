@@ -88,6 +88,10 @@
                 {
                     "typeName": "nsLogicWrapper::TObjectInstanceEndHandlerComponent",
                     "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenFileHierarchyWindowHandler\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TFrameMouseClickHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnMouseClickFileNodeHandler\", \"partOfGuid\":\"FileHierarchyWindow\", \"entityGuid\":\"FileHierarchyWindow_1\"}"
                 }
             ]
         }

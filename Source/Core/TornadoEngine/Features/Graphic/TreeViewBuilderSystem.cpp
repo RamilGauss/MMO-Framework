@@ -32,4 +32,6 @@ void TTreeViewBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
     auto entMng = GetEntMng();
 
     TUnitBuilderHelper::SetupTreeView(entMng, eid, pTreeViewComponent->value);
+
+    THandlerLinkHelper::RegisterMouseKey(entMng, eid, pTreeViewComponent);
 }

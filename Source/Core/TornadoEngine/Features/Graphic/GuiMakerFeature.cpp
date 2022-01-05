@@ -27,4 +27,9 @@ void TGuiMakerFeature::InitConveyor()
     Add(&mMenuNodeClickHandlerMakerSystem);
     Add(&mDialogCloseEventHandlerMakerSystem);
     Add(&mWindowCloseEventHandlerMakerSystem);
+
+    Add(&mFrameMouseClickHandlerMakerSystem);
+    Add(&mFrameMouseMoveHandlerMakerSystem);
+    Add(&mFrameMouseWheelHandlerMakerSystem);
+    Add(&mFrameKeyHandlerMakerSystem);
 }

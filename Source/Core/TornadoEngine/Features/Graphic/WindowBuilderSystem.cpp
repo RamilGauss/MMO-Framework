@@ -50,4 +50,6 @@ void TWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
             });
         }
     });
+
+    THandlerLinkHelper::RegisterMouseKey(entMng, eid, pWindowComponent);
 }
