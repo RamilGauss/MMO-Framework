@@ -22,9 +22,4 @@ void TGuiBuilderFeature::InitConveyor()
     Add(&mTreeViewBuilderSystem);
 
     Add(&mMainWindowBuilderSystem);
-    
-    Add(&mButtonClickHandlerBuilderSystem);
-    Add(&mMenuNodeClickHandlerBuilderSystem);
-    Add(&mDialogCloseEventHandlerBuilderSystem);
-    Add(&mWindowCloseEventHandlerBuilderSystem);
 }

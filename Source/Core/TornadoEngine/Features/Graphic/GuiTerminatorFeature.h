@@ -21,11 +21,6 @@ See for more information LICENSE.md.
 
 #include "MainWindowTerminatorSystem.h"
 
-#include "ButtonClickHandlerTerminatorSystem.h"
-#include "MenuNodeClickHandlerTerminatorSystem.h"
-#include "DialogCloseEventHandlerTerminatorSystem.h"
-#include "WindowCloseEventHandlerTerminatorSystem.h"
-
 namespace nsGraphicWrapper
 {
     class DllExport TGuiTerminatorFeature : public nsECSFramework::TFeature
@@ -41,11 +36,6 @@ namespace nsGraphicWrapper
         TTreeViewTerminatorSystem mTreeViewTerminatorSystem;
 
         TMainWindowTerminatorSystem mMainWindowTerminatorSystem;
-
-        TButtonClickHandlerTerminatorSystem mButtonClickHandlerTerminatorSystem;
-        TMenuNodeClickHandlerTerminatorSystem mMenuNodeClickHandlerTerminatorSystem;
-        TDialogCloseEventHandlerTerminatorSystem mDialogCloseEventHandlerTerminatorSystem;
-        TWindowCloseEventHandlerTerminatorSystem mWindowCloseEventHandlerTerminatorSystem;
     public:
         void InitConveyor() override;
     };

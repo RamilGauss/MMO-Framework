@@ -22,9 +22,4 @@ void TGuiTerminatorFeature::InitConveyor()
     Add(&mTreeViewTerminatorSystem);
 
     Add(&mMainWindowTerminatorSystem);
-
-    Add(&mButtonClickHandlerTerminatorSystem);
-    Add(&mMenuNodeClickHandlerTerminatorSystem);
-    Add(&mDialogCloseEventHandlerTerminatorSystem);
-    Add(&mWindowCloseEventHandlerTerminatorSystem);
 }

@@ -34,21 +34,15 @@ void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     TUnitBuilderHelper::SetupWidget(entMng, eid, pButtonComponent->value);
 
     auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
-    THandlerLinkHelper::LinkToHandler<TButtonClickHandlerComponent>(entMng, eid, pButtonComponent,
-    [pButtonComponent, handlerCallCollector, eid](const TButtonClickHandlerComponent* handlerComponent)
+    pButtonComponent->value->mOnClickCB.Register(pButtonComponent->value, 
+        [entMng, handlerCallCollector, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
     {
-        auto handler = handlerComponent->handler;
-        auto isRegistered = pButtonComponent->value->mOnClickCB.IsRegistered(handler);
-        if (isRegistered) {
-            return;
-        }
-
-        pButtonComponent->value->mOnClickCB.Register(handler, [handlerCallCollector, handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
-        {
-            handlerCallCollector->Add([handler, eid, pButtonComponent]()
+        auto handlers = THandlerLinkHelper::FindHandlers<TButtonClickHandlerComponent>(entMng, eid, pButtonComponent);
+        for (auto& pHandler : handlers) {
+            handlerCallCollector->Add([pHandler, eid, pButtonComponent]()
             {
-                handler->Handle(eid, pButtonComponent);
+                pHandler->handler->Handle(eid, pButtonComponent);
             });
-        });
+        }
     });
 }

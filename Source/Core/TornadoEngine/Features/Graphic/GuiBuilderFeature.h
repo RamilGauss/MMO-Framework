@@ -21,11 +21,6 @@ See for more information LICENSE.md.
 
 #include "MainWindowBuilderSystem.h"
 
-#include "ButtonClickHandlerBuilderSystem.h"
-#include "MenuNodeClickHandlerBuilderSystem.h"
-#include "DialogCloseEventHandlerBuilderSystem.h"
-#include "WindowCloseEventHandlerBuilderSystem.h"
-
 namespace nsGraphicWrapper
 {
     class DllExport TGuiBuilderFeature : public nsECSFramework::TFeature
@@ -41,11 +36,6 @@ namespace nsGraphicWrapper
         TTreeViewBuilderSystem mTreeViewBuilderSystem;
 
         TMainWindowBuilderSystem mMainWindowBuilderSystem;
-        
-        TButtonClickHandlerBuilderSystem mButtonClickHandlerBuilderSystem;
-        TMenuNodeClickHandlerBuilderSystem mMenuNodeClickHandlerBuilderSystem;
-        TDialogCloseEventHandlerBuilderSystem mDialogCloseEventHandlerBuilderSystem;
-        TWindowCloseEventHandlerBuilderSystem mWindowCloseEventHandlerBuilderSystem;
     public:
         void InitConveyor() override;
     };

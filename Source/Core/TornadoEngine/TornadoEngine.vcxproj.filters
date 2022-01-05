@@ -118,9 +118,6 @@
     <Filter Include="Features\Graphic\Builder\Helpers">
       <UniqueIdentifier>{63d249a8-9528-4fb6-a32f-32aec7e472f2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Features\Graphic\Builder\Handlers">
-      <UniqueIdentifier>{69fe9ad9-ef58-496b-a0b6-2183142025f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Features\Graphic\Builder\Frames">
       <UniqueIdentifier>{8f926727-25f0-41a7-aa16-438bb716cce0}</UniqueIdentifier>
     </Filter>
@@ -351,18 +348,6 @@
     <ClCompile Include="Features\Graphic\UnitBuilderHelper.cpp">
       <Filter>Features\Graphic\Builder\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerBuilderSystem.cpp">
-      <Filter>Features\Graphic\Builder\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Graphic\MenuNodeClickHandlerBuilderSystem.cpp">
-      <Filter>Features\Graphic\Builder\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerBuilderSystem.cpp">
-      <Filter>Features\Graphic\Builder\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Graphic\ButtonClickHandlerBuilderSystem.cpp">
-      <Filter>Features\Graphic\Builder\Handlers</Filter>
-    </ClCompile>
     <ClCompile Include="Features\Graphic\ButtonBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClCompile>
@@ -434,18 +419,6 @@
     </ClCompile>
     <ClCompile Include="Features\Graphic\DialogTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.cpp">
-      <Filter>Features\Graphic\Terminator\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.cpp">
-      <Filter>Features\Graphic\Terminator\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.cpp">
-      <Filter>Features\Graphic\Terminator\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.cpp">
-      <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClCompile>
     <ClCompile Include="Features\Graphic\ButtonTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Units</Filter>
@@ -842,18 +815,6 @@
     <ClInclude Include="Features\Graphic\UnitBuilderHelper.h">
       <Filter>Features\Graphic\Builder\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerBuilderSystem.h">
-      <Filter>Features\Graphic\Builder\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Graphic\MenuNodeClickHandlerBuilderSystem.h">
-      <Filter>Features\Graphic\Builder\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerBuilderSystem.h">
-      <Filter>Features\Graphic\Builder\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Graphic\ButtonClickHandlerBuilderSystem.h">
-      <Filter>Features\Graphic\Builder\Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="Features\Graphic\HandlerLinkHelper.h">
       <Filter>Features\Graphic\Builder\Helpers</Filter>
     </ClInclude>
@@ -928,18 +889,6 @@
     </ClInclude>
     <ClInclude Include="Features\Graphic\DialogTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.h">
-      <Filter>Features\Graphic\Terminator\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.h">
-      <Filter>Features\Graphic\Terminator\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.h">
-      <Filter>Features\Graphic\Terminator\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.h">
-      <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\ButtonTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Units</Filter>

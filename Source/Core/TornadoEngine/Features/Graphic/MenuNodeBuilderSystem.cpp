@@ -34,22 +34,15 @@ void TMenuNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
     TUnitBuilderHelper::SetupMenuNode(entMng, eid, pMenuNodeComponent->value);
 
     auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
-    THandlerLinkHelper::LinkToHandler<TMenuNodeClickHandlerComponent>(entMng, eid, pMenuNodeComponent,
-        [pMenuNodeComponent, handlerCallCollector, eid](const TMenuNodeClickHandlerComponent* handlerComponent)
+    pMenuNodeComponent->value->mOnLeftClickCB.Register(pMenuNodeComponent->value,
+        [entMng, handlerCallCollector, eid, pMenuNodeComponent](nsImGuiWidgets::TNode* pB)
     {
-        auto handler = handlerComponent->handler;
-        auto isRegistered = pMenuNodeComponent->value->mOnLeftClickCB.IsRegistered(handler);
-        if (isRegistered) {
-            return;
-        }
-
-        pMenuNodeComponent->value->mOnLeftClickCB.Register(handler, 
-            [handlerCallCollector, handler, eid, pMenuNodeComponent](nsImGuiWidgets::TNode* pB)
-        {
-            handlerCallCollector->Add([handler, eid, pMenuNodeComponent]()
+        auto handlers = THandlerLinkHelper::FindHandlers<TMenuNodeClickHandlerComponent>(entMng, eid, pMenuNodeComponent);
+        for (auto& pHandler : handlers) {
+            handlerCallCollector->Add([pHandler, eid, pMenuNodeComponent]()
             {
-                handler->Handle(eid, pMenuNodeComponent);
+                pHandler->handler->Handle(eid, pMenuNodeComponent);
             });
-        });
+        }
     });
 }

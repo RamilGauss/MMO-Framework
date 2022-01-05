@@ -38,26 +38,20 @@ void TDialogBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     TUnitBuilderHelper::SetupGeometry(entMng, eid, pDialogComponent->value);
 
     auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
-    THandlerLinkHelper::LinkToHandler<TDialogCloseEventHandlerComponent>(entMng, eid, pDialogComponent,
-        [pDialogComponent, handlerCallCollector, eid](const TDialogCloseEventHandlerComponent* handlerComponent)
+    pDialogComponent->value->mOnShowCB.Register(pDialogComponent->value, 
+        [entMng, handlerCallCollector, eid, pDialogComponent](bool isShown)
     {
-        auto handler = handlerComponent->handler;
-        auto isRegistered = pDialogComponent->value->mOnShowCB.IsRegistered(handler);
-        if (isRegistered) {
+        if (isShown) {
             return;
         }
 
-        pDialogComponent->value->mOnShowCB.Register(handler, [handlerCallCollector, handler, eid, pDialogComponent](bool isShown)
-        {
-            if (isShown) {
-                return;
-            }
+        auto handlers = THandlerLinkHelper::FindHandlers<TDialogCloseEventHandlerComponent>(entMng, eid, pDialogComponent);
 
-            handlerCallCollector->Add([handler, eid, pDialogComponent]()
+        for (auto& pHandler : handlers) {
+            handlerCallCollector->Add([pHandler, eid, pDialogComponent]()
             {
-                handler->Handle(eid, pDialogComponent);
+                pHandler->handler->Handle(eid, pDialogComponent);
             });
-        });
+        }
     });
-
 }

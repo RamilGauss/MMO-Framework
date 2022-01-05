@@ -49,22 +49,4 @@ void TTreeNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
 
         }
     }
-    //auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
-    //THandlerLinkHelper::LinkToHandler<TButtonClickHandlerComponent>(entMng, eid, pButtonComponent,
-    //[pButtonComponent, handlerCallCollector, eid](const TButtonClickHandlerComponent* handlerComponent)
-    //{
-    //    auto handler = handlerComponent->handler;
-    //    auto isRegistered = pButtonComponent->value->mOnClickCB.IsRegistered(handler);
-    //    if (isRegistered) {
-    //        return;
-    //    }
-
-    //    pButtonComponent->value->mOnClickCB.Register(handler, [handlerCallCollector, handler, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
-    //    {
-    //        handlerCallCollector->Add([handler, eid, pButtonComponent]()
-    //        {
-    //            handler->Handle(eid, pButtonComponent);
-    //        });
-    //    });
-    //});
 }
