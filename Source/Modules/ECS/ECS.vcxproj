@@ -210,7 +210,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>./include;$(SolutionDir)Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

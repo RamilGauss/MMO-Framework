@@ -21,7 +21,7 @@ See for more information LICENSE.md.
 #include "AbsoluteFilePathComponent.h"
 #include "EditorInfoTagComponent.h"
 #include "FilePathNodeComponent.h"
-#include "TreeNodeIconComponent.h"
+#include "NodeIconComponent.h"
 
 #include <iostream>
 
@@ -89,11 +89,11 @@ void TOnOpenFileHierarchyWindowHandler::AddFileNodes(nsECSFramework::TEntityID p
         filePathNodeComponent.value = absFilePathStr;
         prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, filePathNodeComponent);
 
-        nsGuiWrapper::TTreeNodeIconComponent treeNodeIconComponent;
-        treeNodeIconComponent.iconFileName = icon;
-        treeNodeIconComponent.width = 16;
-        treeNodeIconComponent.height = 16;
-        prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, treeNodeIconComponent);
+        nsGuiWrapper::TNodeIconComponent nodeIconComponent;
+        nodeIconComponent.iconFileName = icon;
+        nodeIconComponent.width = 16;
+        nodeIconComponent.height = 16;
+        prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, nodeIconComponent);
 
         if (isDir) {
             AddFileNodes(fileNodeEid, absFilePathStr, sceneInstanceGuid, parentGuid);

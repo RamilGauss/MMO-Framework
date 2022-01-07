@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_05 21:22:27.035
+// File has been generated at 2022_01_07 20:30:26.689
 	
 #include "ComponentTypeInformation.h"
 
@@ -243,6 +243,12 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TMenuNodeComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TMenuNodeComponent_n, nsGuiWrapper_TMenuNodeComponent_i });
     
+    int nsGuiWrapper_TNodeIconComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TNodeIconComponent>();
+    std::string nsGuiWrapper_TNodeIconComponent_n = "nsGuiWrapper::TNodeIconComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TNodeIconComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TNodeIconComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TNodeIconComponent_n, nsGuiWrapper_TNodeIconComponent_i });
+    
     int nsGuiWrapper_TPositionComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TPositionComponent>();
     std::string nsGuiWrapper_TPositionComponent_n = "nsGuiWrapper::TPositionComponent";
     mTypeNameList.push_back(nsGuiWrapper_TPositionComponent_n);
@@ -266,12 +272,6 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TTreeNodeComponent_n);
     mRttiList.push_back(nsGuiWrapper_TTreeNodeComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TTreeNodeComponent_n, nsGuiWrapper_TTreeNodeComponent_i });
-    
-    int nsGuiWrapper_TTreeNodeIconComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeIconComponent>();
-    std::string nsGuiWrapper_TTreeNodeIconComponent_n = "nsGuiWrapper::TTreeNodeIconComponent";
-    mTypeNameList.push_back(nsGuiWrapper_TTreeNodeIconComponent_n);
-    mRttiList.push_back(nsGuiWrapper_TTreeNodeIconComponent_i);
-    mNameRttiMap.insert({ nsGuiWrapper_TTreeNodeIconComponent_n, nsGuiWrapper_TTreeNodeIconComponent_i });
     
     int nsGuiWrapper_TTreeViewComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TTreeViewComponent>();
     std::string nsGuiWrapper_TTreeViewComponent_n = "nsGuiWrapper::TTreeViewComponent";

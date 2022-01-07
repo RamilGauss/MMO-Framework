@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_05 21:22:27.041
+// File has been generated at 2022_01_07 20:30:26.696
 	
 #pragma once
 
@@ -34,6 +34,7 @@
 #include "NeedDestroySceneComponent.h"
 #include "NeedUnloadPrefabComponent.h"
 #include "NeedUnloadSceneComponent.h"
+#include "NodeIconComponent.h"
 #include "ObjectInMemoryComponent.h"
 #include "ObjectInstanceEndHandlerComponent.h"
 #include "ParentGuidComponent.h"
@@ -54,7 +55,6 @@
 #include "TitleComponent.h"
 #include "TransformComponent.h"
 #include "TreeNodeComponent.h"
-#include "TreeNodeIconComponent.h"
 #include "TreeViewComponent.h"
 #include "VisibilityComponent.h"
 #include "WindowCloseEventHandlerComponent.h"

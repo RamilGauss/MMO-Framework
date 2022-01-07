@@ -1055,7 +1055,7 @@
     <ClInclude Include="Components\Gui\FrameKeyHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\TreeNodeIconComponent.h">
+    <ClInclude Include="Components\Gui\NodeIconComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\FrameMouseClickHandlerMakerSystem.h">

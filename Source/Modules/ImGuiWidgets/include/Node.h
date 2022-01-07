@@ -15,6 +15,15 @@ namespace nsImGuiWidgets
 {
     class DllExport TNode : public TWidget, public TWidgetContainer
     {
+    protected:
+        void* mTextureId = nullptr;
+        int mWidth = 0;
+        int mHeight = 0;
+
+        bool mChooseText = false;
+
+        void RenderContent(float offset_from_start_x = 0.0f, float spacing = -1.0f);
+
     public:
         std::string mStrId;
         std::string mParentId;
@@ -30,5 +39,7 @@ namespace nsImGuiWidgets
         Callback mOnLeftClickCB;
 
         TNode();
+
+        void SetTexture(void* textureId, int width, int height);
     };
 }

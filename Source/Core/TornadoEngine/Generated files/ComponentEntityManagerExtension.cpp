@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_05 21:22:27.023
+// File has been generated at 2022_01_07 20:30:26.677
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -527,6 +527,20 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsGuiWrapper_TMenuNodeComponent_Data, nsGuiWrapper_TMenuNodeComponent_Data });
     
+    Data nsGuiWrapper_TNodeIconComponent_Data;
+        nsGuiWrapper_TNodeIconComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGuiWrapper::TNodeIconComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGuiWrapper::TNodeIconComponent>(eid, lambda, isNotify);
+    };
+    nsGuiWrapper_TNodeIconComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TNodeIconComponent*)p), isNotify); };
+    nsGuiWrapper_TNodeIconComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid); };
+    nsGuiWrapper_TNodeIconComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TNodeIconComponent>(eid); };
+    nsGuiWrapper_TNodeIconComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TNodeIconComponent>(eid); };
+    nsGuiWrapper_TNodeIconComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TNodeIconComponent>(); };
+    auto rtti_nsGuiWrapper_TNodeIconComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TNodeIconComponent>();
+    
+    m.insert({ rtti_nsGuiWrapper_TNodeIconComponent_Data, nsGuiWrapper_TNodeIconComponent_Data });
+    
     Data nsGuiWrapper_TPositionComponent_Data;
         nsGuiWrapper_TPositionComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
         auto lambda = [&](nsGuiWrapper::TPositionComponent* pC){ onAfterCreation((void*)pC); };
@@ -582,20 +596,6 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsGuiWrapper_TTreeNodeComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeComponent>();
     
     m.insert({ rtti_nsGuiWrapper_TTreeNodeComponent_Data, nsGuiWrapper_TTreeNodeComponent_Data });
-    
-    Data nsGuiWrapper_TTreeNodeIconComponent_Data;
-        nsGuiWrapper_TTreeNodeIconComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
-        auto lambda = [&](nsGuiWrapper::TTreeNodeIconComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid, lambda, isNotify);
-    };
-    nsGuiWrapper_TTreeNodeIconComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTreeNodeIconComponent*)p), isNotify); };
-    nsGuiWrapper_TTreeNodeIconComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid); };
-    nsGuiWrapper_TTreeNodeIconComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid); };
-    nsGuiWrapper_TTreeNodeIconComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid); };
-    nsGuiWrapper_TTreeNodeIconComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TTreeNodeIconComponent>(); };
-    auto rtti_nsGuiWrapper_TTreeNodeIconComponent_Data = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeIconComponent>();
-    
-    m.insert({ rtti_nsGuiWrapper_TTreeNodeIconComponent_Data, nsGuiWrapper_TTreeNodeIconComponent_Data });
     
     Data nsGuiWrapper_TTreeViewComponent_Data;
         nsGuiWrapper_TTreeViewComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

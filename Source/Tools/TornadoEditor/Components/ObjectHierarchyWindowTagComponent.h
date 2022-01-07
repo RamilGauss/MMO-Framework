@@ -10,14 +10,12 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "TypeDef.h"
+
 #include <ECS/include/IComponent.h>
 
-namespace nsGuiWrapper
+namespace nsTornadoEditor
 {
-    struct DllExport TTreeNodeIconComponent : nsECSFramework::IComponent
+    struct DllExport TObjectHierarchyWindowTagComponent : nsECSFramework::IComponent
     {
-        std::string iconFileName;
-        int width;
-        int height;
     };
 }

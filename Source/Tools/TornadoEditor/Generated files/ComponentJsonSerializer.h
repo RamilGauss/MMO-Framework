@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_05 21:27:10.457
+// File has been generated at 2022_01_07 20:32:25.016
 	
 #pragma once
 
@@ -50,6 +50,12 @@ namespace nsTornadoEditor
         
         static void _Serialize(nsTornadoEditor::TFilePathNodeComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEditor::TFilePathNodeComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEditor::TInspectorWindowTagComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEditor::TInspectorWindowTagComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEditor::TObjectHierarchyWindowTagComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEditor::TObjectHierarchyWindowTagComponent* p, const Jobj& obj);
         
         static void _Serialize(nsTornadoEditor::TProjectConfigComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEditor::TProjectConfigComponent* p, const Jobj& obj);

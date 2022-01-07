@@ -42,7 +42,7 @@
                     "jsonBody": "{\"value\":\"\"}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TTreeNodeIconComponent",
+                    "typeName": "nsGuiWrapper::TNodeIconComponent",
                     "jsonBody": "{\"iconFileName\":\"folder.png\", \"width\":16, \"height\":16}"
                 }
             ]

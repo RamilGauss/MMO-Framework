@@ -14,22 +14,51 @@ void TMenuNode::SetCallback(TCallback callback)
     mCallback = callback;
 }
 //------------------------------------------------------------------------------------------
-void TMenuNode::SetSelected(bool value)
+void TMenuNode::SetCheckable(bool value)
 {
-    mSelected = value;
+    mIsCheckable = value;
+}
+//------------------------------------------------------------------------------------------
+bool TMenuNode::IsCheckable()
+{
+    return mIsCheckable;
+}
+//------------------------------------------------------------------------------------------
+void TMenuNode::SetChecked(bool value)
+{
+    mIsChecked = value;
+}
+//------------------------------------------------------------------------------------------
+bool TMenuNode::IsChecked()
+{
+    return mIsChecked;
 }
 //------------------------------------------------------------------------------------------
 void TMenuNode::Render()
 {
     if (mWidgets.size()) {
-        if (ImGui::BeginMenu(GetTitle().c_str())) {
+        auto open = ImGui::BeginMenu(GetTitle().c_str());
+        if(open) {
+
             for (auto& node : mWidgets) {
                 node->Render();
             }
             ImGui::EndMenu();
         }
     } else {
-        if (ImGui::MenuItem(GetTitle().c_str())) {
+
+        bool open = false;
+        if (mIsCheckable) {
+            open = ImGui::MenuItem(GetTitle().c_str(), nullptr, &mIsChecked);
+        } else {
+            std::string title = (mTextureId == nullptr) ? GetTitle() : "";
+            open = ImGui::MenuItem(title.c_str());
+
+            if (mTextureId != nullptr) {
+                RenderContent(-1, mWidth / 2);
+            }
+        }
+        if (open || mChooseText) {
             mOnLeftClickCB.Notify(this);
         }
     }

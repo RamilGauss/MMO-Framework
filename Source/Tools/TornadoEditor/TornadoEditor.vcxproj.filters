@@ -282,5 +282,11 @@
     <ClInclude Include="Handlers\OnMouseClickFileNodeHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="Components\ObjectHierarchyWindowTagComponent.h">
+      <Filter>Components\WindowTags</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\InspectorWindowTagComponent.h">
+      <Filter>Components\WindowTags</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

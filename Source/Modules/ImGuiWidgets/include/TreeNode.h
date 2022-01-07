@@ -32,15 +32,11 @@ namespace nsImGuiWidgets
 
         bool mIsOpen = false;
 
-        void* mTextureId = nullptr;
-        int mWidth = 0;
-        int mHeight = 0;
+        //bool mChooseText = false;
 
     public:
         TTreeNode();
         ~TTreeNode();
-
-        void SetTexture(void* textureId, int width, int height);
 
         void Render() override;
 
@@ -54,7 +50,7 @@ namespace nsImGuiWidgets
 
     private:
         void SearchEvents();
-        void RenderContent();
+        //void RenderContent();
 
         void EndEditing();
     };

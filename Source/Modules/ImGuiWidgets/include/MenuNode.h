@@ -20,12 +20,20 @@ namespace nsImGuiWidgets
 
         void SetCallback(TCallback callback);
         void SetSelected(bool value);
+        
+        void SetCheckable(bool value);
+        bool IsCheckable();
+
+        void SetChecked(bool value);
+        bool IsChecked();
     protected:
         TCallback mCallback;
 
         std::string mMenu;
 
-        bool mSelected = false;
+        bool mIsCheckable = false;
+        bool mIsChecked = false;
+
         bool mEnabled = true;
 
         void Render() override final;

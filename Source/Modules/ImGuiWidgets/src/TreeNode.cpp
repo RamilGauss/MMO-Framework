@@ -14,13 +14,6 @@ See for more information LICENSE.md.
 using namespace nsImGuiWidgets;
 using namespace std::placeholders;
 
-void TTreeNode::SetTexture(void* textureId, int width, int height)
-{
-    mTextureId = textureId;
-    mWidth = width;
-    mHeight = height;
-}
-//-------------------------------------------------------------------------
 TTreeNode::TTreeNode()
 {
     mInputText.mOnTextEditEndsCB.Register(this, [&](TInputText* inputText)
@@ -91,20 +84,17 @@ void TTreeNode::Render()
             mInputText.Render();
         }
     } else {
-        if (ImGui::TreeNodeEx(mStrId.c_str(), mode, "")) {
-            RenderContent();
-            
-            SearchEvents();
+
+        mIsOpen = ImGui::TreeNodeEx(mStrId.c_str(), mode, "");
+        
+        RenderContent();
+        SearchEvents();
+
+        if (mIsOpen) {
             for (auto& node : mWidgets) {
                 node->Render();
             }
             ImGui::TreePop();
-            mIsOpen = true;
-        } else {
-            RenderContent();
-
-            SearchEvents();
-            mIsOpen = false;
         }
     }
 }
@@ -118,7 +108,7 @@ void TTreeNode::SearchEvents()
     SetPos(pos);
     SetSize(size);
 
-    if (ImGui::IsItemClicked()) {
+    if (ImGui::IsItemClicked() || mChooseText) {
         mOnLeftClickCB.Notify(this);
     }
     if (ImGui::IsItemFocused()) {
@@ -149,14 +139,14 @@ TTreeView* TTreeNode::GetTreeView() const
     return mTreeView;
 }
 //-------------------------------------------------------------------------
-void TTreeNode::RenderContent()
-{
-    ImGui::SameLine();
-    if (mTextureId != nullptr) {
-        ImGui::Image(mTextureId, ImVec2(mWidth, mHeight));
-        ImGui::SameLine();
-    }
-
-    ImGui::Text(GetTitle().c_str());
-}
-//-------------------------------------------------------------------------
+//void TTreeNode::RenderContent()
+//{
+//    ImGui::SameLine();
+//    if (mTextureId != nullptr) {
+//        ImGui::Image(mTextureId, ImVec2(mWidth, mHeight));
+//        ImGui::SameLine();
+//    }
+//
+//    mChooseText = ImGui::Selectable(GetTitle().c_str(), false);
+//}
+////-------------------------------------------------------------------------

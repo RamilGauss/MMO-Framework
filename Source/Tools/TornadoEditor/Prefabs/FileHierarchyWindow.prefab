@@ -31,11 +31,11 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TPositionComponent",
-                    "jsonBody": "{\"x\":10, \"y\":40}"
+                    "jsonBody": "{\"x\":2, \"y\":20}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TSizeComponent",
-                    "jsonBody": "{\"x\":500, \"y\":700}"
+                    "jsonBody": "{\"x\":400, \"y\":700}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TWindowComponent",
@@ -79,7 +79,7 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TSizeComponent",
-                    "jsonBody": "{\"x\":500, \"y\":670}"
+                    "jsonBody": "{\"x\":400, \"y\":670}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTreeViewComponent",

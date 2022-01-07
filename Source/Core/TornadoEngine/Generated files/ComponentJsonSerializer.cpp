@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_05 21:22:26.995
+// File has been generated at 2022_01_07 20:30:26.650
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -473,6 +473,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGuiWrapper_TMenuNodeComponentTypeFunc, _nsGuiWrapper_TMenuNodeComponentTypeFunc });
     
+    TypeFunc _nsGuiWrapper_TNodeIconComponentTypeFunc;
+    _nsGuiWrapper_TNodeIconComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TNodeIconComponent>((nsGuiWrapper::TNodeIconComponent*) p, str);
+    };
+    _nsGuiWrapper_TNodeIconComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TNodeIconComponent>((nsGuiWrapper::TNodeIconComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TNodeIconComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TNodeIconComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TNodeIconComponentTypeFunc, _nsGuiWrapper_TNodeIconComponentTypeFunc });
+    
     TypeFunc _nsGuiWrapper_TPositionComponentTypeFunc;
     _nsGuiWrapper_TPositionComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TPositionComponent>((nsGuiWrapper::TPositionComponent*) p, str);
@@ -520,18 +532,6 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGuiWrapper_TTreeNodeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TTreeNodeComponentTypeFunc, _nsGuiWrapper_TTreeNodeComponentTypeFunc });
-    
-    TypeFunc _nsGuiWrapper_TTreeNodeIconComponentTypeFunc;
-    _nsGuiWrapper_TTreeNodeIconComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TTreeNodeIconComponent>((nsGuiWrapper::TTreeNodeIconComponent*) p, str);
-    };
-    _nsGuiWrapper_TTreeNodeIconComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TTreeNodeIconComponent>((nsGuiWrapper::TTreeNodeIconComponent*) p, str, err);
-    };
-    
-    auto rtti__nsGuiWrapper_TTreeNodeIconComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeIconComponent>();
-    
-    m.insert({ rtti__nsGuiWrapper_TTreeNodeIconComponentTypeFunc, _nsGuiWrapper_TTreeNodeIconComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TTreeViewComponentTypeFunc;
     _nsGuiWrapper_TTreeViewComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -1049,6 +1049,20 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMenuNodeComponent* p,
 {
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TNodeIconComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "iconFileName", p->iconFileName);
+    PUM::Push(obj, "width", p->width);
+    PUM::Push(obj, "height", p->height);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TNodeIconComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "iconFileName", p->iconFileName);
+    POM::PopNum(obj, "width", p->width);
+    POM::PopNum(obj, "height", p->height);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TPositionComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "x", p->x);
@@ -1089,20 +1103,6 @@ void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TTreeNodeComponent* p, J
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TTreeNodeComponent* p, const Jobj& obj)
 {
-}
-//---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TTreeNodeIconComponent* p, Jobj& obj)
-{
-    PUM::Push(obj, "iconFileName", p->iconFileName);
-    PUM::Push(obj, "width", p->width);
-    PUM::Push(obj, "height", p->height);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TTreeNodeIconComponent* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "iconFileName", p->iconFileName);
-    POM::PopNum(obj, "width", p->width);
-    POM::PopNum(obj, "height", p->height);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TTreeViewComponent* p, Jobj& obj)

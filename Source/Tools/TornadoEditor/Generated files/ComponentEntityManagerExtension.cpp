@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_05 21:27:10.461
+// File has been generated at 2022_01_07 20:32:25.021
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -78,6 +78,34 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsTornadoEditor_TFilePathNodeComponent_Data = globalTypeIdentifier->Type<nsTornadoEditor::TFilePathNodeComponent>();
     
     m.insert({ rtti_nsTornadoEditor_TFilePathNodeComponent_Data, nsTornadoEditor_TFilePathNodeComponent_Data });
+    
+    Data nsTornadoEditor_TInspectorWindowTagComponent_Data;
+        nsTornadoEditor_TInspectorWindowTagComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsTornadoEditor::TInspectorWindowTagComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsTornadoEditor::TInspectorWindowTagComponent>(eid, lambda, isNotify);
+    };
+    nsTornadoEditor_TInspectorWindowTagComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsTornadoEditor::TInspectorWindowTagComponent*)p), isNotify); };
+    nsTornadoEditor_TInspectorWindowTagComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEditor::TInspectorWindowTagComponent>(eid); };
+    nsTornadoEditor_TInspectorWindowTagComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEditor::TInspectorWindowTagComponent>(eid); };
+    nsTornadoEditor_TInspectorWindowTagComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEditor::TInspectorWindowTagComponent>(eid); };
+    nsTornadoEditor_TInspectorWindowTagComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsTornadoEditor::TInspectorWindowTagComponent>(); };
+    auto rtti_nsTornadoEditor_TInspectorWindowTagComponent_Data = globalTypeIdentifier->Type<nsTornadoEditor::TInspectorWindowTagComponent>();
+    
+    m.insert({ rtti_nsTornadoEditor_TInspectorWindowTagComponent_Data, nsTornadoEditor_TInspectorWindowTagComponent_Data });
+    
+    Data nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data;
+        nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsTornadoEditor::TObjectHierarchyWindowTagComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsTornadoEditor::TObjectHierarchyWindowTagComponent>(eid, lambda, isNotify);
+    };
+    nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsTornadoEditor::TObjectHierarchyWindowTagComponent*)p), isNotify); };
+    nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsTornadoEditor::TObjectHierarchyWindowTagComponent>(eid); };
+    nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsTornadoEditor::TObjectHierarchyWindowTagComponent>(eid); };
+    nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsTornadoEditor::TObjectHierarchyWindowTagComponent>(eid); };
+    nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsTornadoEditor::TObjectHierarchyWindowTagComponent>(); };
+    auto rtti_nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowTagComponent>();
+    
+    m.insert({ rtti_nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data, nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data });
     
     Data nsTornadoEditor_TProjectConfigComponent_Data;
         nsTornadoEditor_TProjectConfigComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

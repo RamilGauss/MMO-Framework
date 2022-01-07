@@ -22,7 +22,7 @@ See for more information LICENSE.md.
 #include "HandlerCallCollector.h"
 
 #include "HandlerLinkHelper.h"
-#include "TreeNodeIconComponent.h"
+#include "NodeIconComponent.h"
 
 
 #include <OgreTextureManager.h>
@@ -38,7 +38,7 @@ void TTreeNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
 
     TUnitBuilderHelper::SetupTreeNode(entMng, eid, pTreeNodeComponent->value);
 
-    auto pTreeNodeIconComponent = entMng->ViewComponent<nsGuiWrapper::TTreeNodeIconComponent>(eid);
+    auto pTreeNodeIconComponent = entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid);
     if (pTreeNodeIconComponent) {
         
         try {

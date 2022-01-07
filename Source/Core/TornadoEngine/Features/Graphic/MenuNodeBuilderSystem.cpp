@@ -23,6 +23,11 @@ See for more information LICENSE.md.
 
 #include "HandlerLinkHelper.h"
 
+#include "NodeIconComponent.h"
+
+#include <OgreTextureManager.h>
+#include <OgreTexture.h>
+
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;
 
@@ -32,6 +37,19 @@ void TMenuNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
     auto entMng = GetEntMng();
 
     TUnitBuilderHelper::SetupMenuNode(entMng, eid, pMenuNodeComponent->value);
+
+    auto pTreeNodeIconComponent = entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid);
+    if (pTreeNodeIconComponent) {
+
+        try {
+            auto mTex = Ogre::TextureManager::getSingleton().load(pTreeNodeIconComponent->iconFileName, "General");
+            auto handle = (void*) (mTex->getHandle());
+            pMenuNodeComponent->value->SetTexture(handle, pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);
+        } catch (...) {
+
+        }
+    }
+
 
     auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
     pMenuNodeComponent->value->mOnLeftClickCB.Register(pMenuNodeComponent->value,
