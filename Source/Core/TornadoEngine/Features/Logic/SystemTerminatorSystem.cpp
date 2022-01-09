@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "FeatureTerminatorSystem.h"
+#include "SystemTerminatorSystem.h"
 #include "ProjectConfigContainer.h"
 #include "Logger.h"
 #include "TimeSliceEngine.h"
@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 
 using namespace nsLogicWrapper;
 
-void TFeatureTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TFeatureComponent* pC)
+void TSystemTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TSystemComponent* pC)
 {
     auto copy = *pC;
     auto featureEids = mEntMng->GetByValueCopy(copy);
@@ -24,16 +24,16 @@ void TFeatureTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsL
     auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
 
     int rtti;
-    auto convertResult = featureReflection->mTypeInfo->ConvertNameToType(pC->featureTypeName, rtti);
+    auto convertResult = featureReflection->mTypeInfo->ConvertNameToType(pC->typeName, rtti);
     if (convertResult == false) {
-        logger->WriteF_time("Not converted typename \"%s\"", pC->featureTypeName);
+        logger->WriteF_time("Not converted typename \"%s\"", pC->typeName);
         return;
     }
 
     if (featureEids.size() == 1) {
-        nsTornadoEngine::Modules()->L()->GetWorkSlots()->RemoveFeature(pC->feature);
-        featureReflection->mTypeFactory->Delete(pC->feature, rtti);
+        nsTornadoEngine::Modules()->L()->GetWorkSlots()->RemoveSystem(pC->value);
+        featureReflection->mTypeFactory->Delete(pC->value, rtti);
     }
 
-    pC->feature = nullptr;
+    pC->value = nullptr;
 }

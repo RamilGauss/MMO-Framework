@@ -25,6 +25,9 @@ namespace nsTornadoEngine
         [[nodiscard]]
         nsECSFramework::TEntityList GetChilds(nsECSFramework::TEntityID eid);
 
+        void GetAllTree(nsECSFramework::TEntityID eid, nsECSFramework::TEntityList& eids);
+        void GetAllChilds(nsECSFramework::TEntityID eid, nsECSFramework::TEntityList& eids);
+
         [[nodiscard]]
         nsECSFramework::TEntityID GetBrotherByName(nsECSFramework::TEntityID eid,
             const std::string& brotherName);
@@ -34,17 +37,17 @@ namespace nsTornadoEngine
 
         [[nodiscard]]
         nsECSFramework::TEntityID GetChildByName(nsECSFramework::TEntityID eid,
-            const std::string& brotherName);
+            const std::string& childName);
         [[nodiscard]]
         nsECSFramework::TEntityList GetChildsByName(nsECSFramework::TEntityID eid,
-            const std::string& brotherName);
+            const std::string& childName);
 
         // ???? спорно
-        [[nodiscard]]
-        nsECSFramework::TEntityID GetByName(nsECSFramework::TEntityID anyInPrefabEid,
-            const std::string& name);
-        [[nodiscard]]
-        nsECSFramework::TEntityList GetListByName(nsECSFramework::TEntityID anyInPrefabEid,
-            const std::string& name);
+        //[[nodiscard]]
+        //nsECSFramework::TEntityID GetByName(nsECSFramework::TEntityID anyInPrefabEid,
+        //    const std::string& name);
+        //[[nodiscard]]
+        //nsECSFramework::TEntityList GetListByName(nsECSFramework::TEntityID anyInPrefabEid,
+        //    const std::string& name);
     };
 }

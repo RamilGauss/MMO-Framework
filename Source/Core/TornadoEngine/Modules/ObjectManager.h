@@ -32,7 +32,8 @@ namespace nsTornadoEngine
         void SetContentMap(const TResourceContentMap& resourceContentMap);
         virtual void SetEntityManager(nsECSFramework::TEntityManager* entMng);
 
-        // Каскадное уничтожение детей
+        // Каскадное уничтожение детей, только для редактирования префабов и сцен
+        // доступ только в редакторе!
         void DestroyObject(const std::string& guid);
 
     protected:

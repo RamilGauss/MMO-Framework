@@ -12,7 +12,6 @@ See for more information LICENSE.md.
 #include <list>
 
 #include "ILogicModule.h"
-#include "LogicSlot.h"
 
 #include "BeginLogicFeature.h"
 #include "EndLogicFeature.h"
@@ -21,7 +20,7 @@ namespace nsTornadoEngine
 {
     class DllExport TLogicModule : public ILogicModule
     {
-        TLogicSlotManager mWorkSlots;
+        TFeatureManager mWorkSlots;
 
         nsLogicWrapper::TBeginLogicFeature mBeginFeature;
         nsLogicWrapper::TEndLogicFeature mEndFeature;
@@ -30,7 +29,7 @@ namespace nsTornadoEngine
         void ModuleWork() override;
         void StopEvent() override;
 
-        TLogicSlotManager* GetWorkSlots() override;
-        void SetWorkSlots(TLogicSlotManager* pLSM) override;
+        TFeatureManager* GetWorkSlots() override;
+        void SetWorkSlots(TFeatureManager* pLSM) override;
     };
 }

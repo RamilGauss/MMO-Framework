@@ -5,20 +5,20 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "FeatureBuilderSystem.h"
+#include "SystemBuilderSystem.h"
 
 #include "Modules.h"
 #include "LogicModule.h"
 
 using namespace nsLogicWrapper;
 
-void TFeatureBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TFeatureComponent* pC)
+void TSystemBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TSystemComponent* pC)
 {
     auto slot = nsTornadoEngine::Modules()->L()->GetWorkSlots();
 
-    if (slot->HasFeature(pC->feature)) {
+    if (slot->HasSystem(pC->value)) {
         return;
     }
 
-    slot->AddFeature(pC->feature);
+    slot->AddSystem(pC->value);
 }

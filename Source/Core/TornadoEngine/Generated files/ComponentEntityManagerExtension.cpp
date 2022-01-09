@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:30:26.677
+// File has been generated at 2022_01_09 09:39:43.823
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -51,61 +51,19 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsCommonWrapper_TNameComponent_Data, nsCommonWrapper_TNameComponent_Data });
     
-    Data nsCommonWrapper_TNeedDestroyPrefabComponent_Data;
-        nsCommonWrapper_TNeedDestroyPrefabComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
-        auto lambda = [&](nsCommonWrapper::TNeedDestroyPrefabComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TNeedDestroyPrefabComponent>(eid, lambda, isNotify);
+    Data nsCommonWrapper_TNeedDestroyObjectTagComponent_Data;
+        nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsCommonWrapper::TNeedDestroyObjectTagComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsCommonWrapper::TNeedDestroyObjectTagComponent>(eid, lambda, isNotify);
     };
-    nsCommonWrapper_TNeedDestroyPrefabComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TNeedDestroyPrefabComponent*)p), isNotify); };
-    nsCommonWrapper_TNeedDestroyPrefabComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TNeedDestroyPrefabComponent>(eid); };
-    nsCommonWrapper_TNeedDestroyPrefabComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TNeedDestroyPrefabComponent>(eid); };
-    nsCommonWrapper_TNeedDestroyPrefabComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TNeedDestroyPrefabComponent>(eid); };
-    nsCommonWrapper_TNeedDestroyPrefabComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsCommonWrapper::TNeedDestroyPrefabComponent>(); };
-    auto rtti_nsCommonWrapper_TNeedDestroyPrefabComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroyPrefabComponent>();
+    nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TNeedDestroyObjectTagComponent*)p), isNotify); };
+    nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TNeedDestroyObjectTagComponent>(eid); };
+    nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TNeedDestroyObjectTagComponent>(eid); };
+    nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TNeedDestroyObjectTagComponent>(eid); };
+    nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsCommonWrapper::TNeedDestroyObjectTagComponent>(); };
+    auto rtti_nsCommonWrapper_TNeedDestroyObjectTagComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroyObjectTagComponent>();
     
-    m.insert({ rtti_nsCommonWrapper_TNeedDestroyPrefabComponent_Data, nsCommonWrapper_TNeedDestroyPrefabComponent_Data });
-    
-    Data nsCommonWrapper_TNeedDestroySceneComponent_Data;
-        nsCommonWrapper_TNeedDestroySceneComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
-        auto lambda = [&](nsCommonWrapper::TNeedDestroySceneComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TNeedDestroySceneComponent>(eid, lambda, isNotify);
-    };
-    nsCommonWrapper_TNeedDestroySceneComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TNeedDestroySceneComponent*)p), isNotify); };
-    nsCommonWrapper_TNeedDestroySceneComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TNeedDestroySceneComponent>(eid); };
-    nsCommonWrapper_TNeedDestroySceneComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TNeedDestroySceneComponent>(eid); };
-    nsCommonWrapper_TNeedDestroySceneComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TNeedDestroySceneComponent>(eid); };
-    nsCommonWrapper_TNeedDestroySceneComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsCommonWrapper::TNeedDestroySceneComponent>(); };
-    auto rtti_nsCommonWrapper_TNeedDestroySceneComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroySceneComponent>();
-    
-    m.insert({ rtti_nsCommonWrapper_TNeedDestroySceneComponent_Data, nsCommonWrapper_TNeedDestroySceneComponent_Data });
-    
-    Data nsCommonWrapper_TNeedUnloadPrefabComponent_Data;
-        nsCommonWrapper_TNeedUnloadPrefabComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
-        auto lambda = [&](nsCommonWrapper::TNeedUnloadPrefabComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TNeedUnloadPrefabComponent>(eid, lambda, isNotify);
-    };
-    nsCommonWrapper_TNeedUnloadPrefabComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TNeedUnloadPrefabComponent*)p), isNotify); };
-    nsCommonWrapper_TNeedUnloadPrefabComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TNeedUnloadPrefabComponent>(eid); };
-    nsCommonWrapper_TNeedUnloadPrefabComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TNeedUnloadPrefabComponent>(eid); };
-    nsCommonWrapper_TNeedUnloadPrefabComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TNeedUnloadPrefabComponent>(eid); };
-    nsCommonWrapper_TNeedUnloadPrefabComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsCommonWrapper::TNeedUnloadPrefabComponent>(); };
-    auto rtti_nsCommonWrapper_TNeedUnloadPrefabComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TNeedUnloadPrefabComponent>();
-    
-    m.insert({ rtti_nsCommonWrapper_TNeedUnloadPrefabComponent_Data, nsCommonWrapper_TNeedUnloadPrefabComponent_Data });
-    
-    Data nsCommonWrapper_TNeedUnloadSceneComponent_Data;
-        nsCommonWrapper_TNeedUnloadSceneComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
-        auto lambda = [&](nsCommonWrapper::TNeedUnloadSceneComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TNeedUnloadSceneComponent>(eid, lambda, isNotify);
-    };
-    nsCommonWrapper_TNeedUnloadSceneComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TNeedUnloadSceneComponent*)p), isNotify); };
-    nsCommonWrapper_TNeedUnloadSceneComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TNeedUnloadSceneComponent>(eid); };
-    nsCommonWrapper_TNeedUnloadSceneComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TNeedUnloadSceneComponent>(eid); };
-    nsCommonWrapper_TNeedUnloadSceneComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TNeedUnloadSceneComponent>(eid); };
-    nsCommonWrapper_TNeedUnloadSceneComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsCommonWrapper::TNeedUnloadSceneComponent>(); };
-    auto rtti_nsCommonWrapper_TNeedUnloadSceneComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TNeedUnloadSceneComponent>();
-    
-    m.insert({ rtti_nsCommonWrapper_TNeedUnloadSceneComponent_Data, nsCommonWrapper_TNeedUnloadSceneComponent_Data });
+    m.insert({ rtti_nsCommonWrapper_TNeedDestroyObjectTagComponent_Data, nsCommonWrapper_TNeedDestroyObjectTagComponent_Data });
     
     Data nsCommonWrapper_TObjectInMemoryComponent_Data;
         nsCommonWrapper_TObjectInMemoryComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
@@ -653,20 +611,6 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsGuiWrapper_TWindowComponent_Data, nsGuiWrapper_TWindowComponent_Data });
     
-    Data nsLogicWrapper_TFeatureComponent_Data;
-        nsLogicWrapper_TFeatureComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
-        auto lambda = [&](nsLogicWrapper::TFeatureComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsLogicWrapper::TFeatureComponent>(eid, lambda, isNotify);
-    };
-    nsLogicWrapper_TFeatureComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TFeatureComponent*)p), isNotify); };
-    nsLogicWrapper_TFeatureComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TFeatureComponent>(eid); };
-    nsLogicWrapper_TFeatureComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TFeatureComponent>(eid); };
-    nsLogicWrapper_TFeatureComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TFeatureComponent>(eid); };
-    nsLogicWrapper_TFeatureComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TFeatureComponent>(); };
-    auto rtti_nsLogicWrapper_TFeatureComponent_Data = globalTypeIdentifier->Type<nsLogicWrapper::TFeatureComponent>();
-    
-    m.insert({ rtti_nsLogicWrapper_TFeatureComponent_Data, nsLogicWrapper_TFeatureComponent_Data });
-    
     Data nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data;
         nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
         auto lambda = [&](nsLogicWrapper::TObjectInstanceEndHandlerComponent* pC){ onAfterCreation((void*)pC); };
@@ -736,6 +680,20 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsLogicWrapper_TSceneReferenceComponent_Data = globalTypeIdentifier->Type<nsLogicWrapper::TSceneReferenceComponent>();
     
     m.insert({ rtti_nsLogicWrapper_TSceneReferenceComponent_Data, nsLogicWrapper_TSceneReferenceComponent_Data });
+    
+    Data nsLogicWrapper_TSystemComponent_Data;
+        nsLogicWrapper_TSystemComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsLogicWrapper::TSystemComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsLogicWrapper::TSystemComponent>(eid, lambda, isNotify);
+    };
+    nsLogicWrapper_TSystemComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TSystemComponent*)p), isNotify); };
+    nsLogicWrapper_TSystemComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TSystemComponent>(eid); };
+    nsLogicWrapper_TSystemComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TSystemComponent>(eid); };
+    nsLogicWrapper_TSystemComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TSystemComponent>(eid); };
+    nsLogicWrapper_TSystemComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TSystemComponent>(); };
+    auto rtti_nsLogicWrapper_TSystemComponent_Data = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
+    
+    m.insert({ rtti_nsLogicWrapper_TSystemComponent_Data, nsLogicWrapper_TSystemComponent_Data });
     
     int max = 0;
     for (auto& vt : m) {

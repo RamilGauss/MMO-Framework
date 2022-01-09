@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnRemoveInstantReactiveSystem.h>
 
-#include "FeatureComponent.h"
+#include "SystemComponent.h"
 
 namespace nsLogicWrapper
 {
-    class DllExport TFeatureTerminatorSystem :
-        public nsECSFramework::TOnRemoveInstantReactiveSystem<nsLogicWrapper::TFeatureComponent, TFeatureTerminatorSystem>
+    class DllExport TSystemTerminatorSystem :
+        public nsECSFramework::TOnRemoveInstantReactiveSystem<nsLogicWrapper::TSystemComponent, TSystemTerminatorSystem>
     {
     public:
-        void Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TFeatureComponent* pC);
+        void Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TSystemComponent* pC);
     };
 }

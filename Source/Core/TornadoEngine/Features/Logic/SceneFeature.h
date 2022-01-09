@@ -10,16 +10,12 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 
 #include "StartedScenesInitSystem.h"
-#include "NeedUnloadSceneSystem.h"
-#include "NeedDestroySceneSystem.h"
 
 namespace nsLogicWrapper
 {
     class DllExport TSceneFeature : public nsECSFramework::TFeature
     {
         TStartedScenesInitSystem mStartedScenesInitSystem;
-        TNeedUnloadSceneSystem mNeedUnloadSceneSystem;
-        TNeedDestroySceneSystem mNeedDestroySceneSystem;
     public:
         void InitConveyor() override;
     };

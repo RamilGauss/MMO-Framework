@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:30:26.689
+// File has been generated at 2022_01_09 09:39:43.833
 	
 #include "ComponentTypeInformation.h"
 
@@ -39,29 +39,11 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsCommonWrapper_TNameComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TNameComponent_n, nsCommonWrapper_TNameComponent_i });
     
-    int nsCommonWrapper_TNeedDestroyPrefabComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroyPrefabComponent>();
-    std::string nsCommonWrapper_TNeedDestroyPrefabComponent_n = "nsCommonWrapper::TNeedDestroyPrefabComponent";
-    mTypeNameList.push_back(nsCommonWrapper_TNeedDestroyPrefabComponent_n);
-    mRttiList.push_back(nsCommonWrapper_TNeedDestroyPrefabComponent_i);
-    mNameRttiMap.insert({ nsCommonWrapper_TNeedDestroyPrefabComponent_n, nsCommonWrapper_TNeedDestroyPrefabComponent_i });
-    
-    int nsCommonWrapper_TNeedDestroySceneComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroySceneComponent>();
-    std::string nsCommonWrapper_TNeedDestroySceneComponent_n = "nsCommonWrapper::TNeedDestroySceneComponent";
-    mTypeNameList.push_back(nsCommonWrapper_TNeedDestroySceneComponent_n);
-    mRttiList.push_back(nsCommonWrapper_TNeedDestroySceneComponent_i);
-    mNameRttiMap.insert({ nsCommonWrapper_TNeedDestroySceneComponent_n, nsCommonWrapper_TNeedDestroySceneComponent_i });
-    
-    int nsCommonWrapper_TNeedUnloadPrefabComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TNeedUnloadPrefabComponent>();
-    std::string nsCommonWrapper_TNeedUnloadPrefabComponent_n = "nsCommonWrapper::TNeedUnloadPrefabComponent";
-    mTypeNameList.push_back(nsCommonWrapper_TNeedUnloadPrefabComponent_n);
-    mRttiList.push_back(nsCommonWrapper_TNeedUnloadPrefabComponent_i);
-    mNameRttiMap.insert({ nsCommonWrapper_TNeedUnloadPrefabComponent_n, nsCommonWrapper_TNeedUnloadPrefabComponent_i });
-    
-    int nsCommonWrapper_TNeedUnloadSceneComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TNeedUnloadSceneComponent>();
-    std::string nsCommonWrapper_TNeedUnloadSceneComponent_n = "nsCommonWrapper::TNeedUnloadSceneComponent";
-    mTypeNameList.push_back(nsCommonWrapper_TNeedUnloadSceneComponent_n);
-    mRttiList.push_back(nsCommonWrapper_TNeedUnloadSceneComponent_i);
-    mNameRttiMap.insert({ nsCommonWrapper_TNeedUnloadSceneComponent_n, nsCommonWrapper_TNeedUnloadSceneComponent_i });
+    int nsCommonWrapper_TNeedDestroyObjectTagComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroyObjectTagComponent>();
+    std::string nsCommonWrapper_TNeedDestroyObjectTagComponent_n = "nsCommonWrapper::TNeedDestroyObjectTagComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TNeedDestroyObjectTagComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TNeedDestroyObjectTagComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TNeedDestroyObjectTagComponent_n, nsCommonWrapper_TNeedDestroyObjectTagComponent_i });
     
     int nsCommonWrapper_TObjectInMemoryComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TObjectInMemoryComponent>();
     std::string nsCommonWrapper_TObjectInMemoryComponent_n = "nsCommonWrapper::TObjectInMemoryComponent";
@@ -297,12 +279,6 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TWindowComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TWindowComponent_n, nsGuiWrapper_TWindowComponent_i });
     
-    int nsLogicWrapper_TFeatureComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TFeatureComponent>();
-    std::string nsLogicWrapper_TFeatureComponent_n = "nsLogicWrapper::TFeatureComponent";
-    mTypeNameList.push_back(nsLogicWrapper_TFeatureComponent_n);
-    mRttiList.push_back(nsLogicWrapper_TFeatureComponent_i);
-    mNameRttiMap.insert({ nsLogicWrapper_TFeatureComponent_n, nsLogicWrapper_TFeatureComponent_i });
-    
     int nsLogicWrapper_TObjectInstanceEndHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstanceEndHandlerComponent>();
     std::string nsLogicWrapper_TObjectInstanceEndHandlerComponent_n = "nsLogicWrapper::TObjectInstanceEndHandlerComponent";
     mTypeNameList.push_back(nsLogicWrapper_TObjectInstanceEndHandlerComponent_n);
@@ -332,6 +308,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsLogicWrapper_TSceneReferenceComponent_n);
     mRttiList.push_back(nsLogicWrapper_TSceneReferenceComponent_i);
     mNameRttiMap.insert({ nsLogicWrapper_TSceneReferenceComponent_n, nsLogicWrapper_TSceneReferenceComponent_i });
+    
+    int nsLogicWrapper_TSystemComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
+    std::string nsLogicWrapper_TSystemComponent_n = "nsLogicWrapper::TSystemComponent";
+    mTypeNameList.push_back(nsLogicWrapper_TSystemComponent_n);
+    mRttiList.push_back(nsLogicWrapper_TSystemComponent_i);
+    mNameRttiMap.insert({ nsLogicWrapper_TSystemComponent_n, nsLogicWrapper_TSystemComponent_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:32:25.432
+// File has been generated at 2022_01_09 09:44:00.634
 	
 #include "HandlerTypeInformation.h"
 
@@ -57,17 +57,17 @@ void THandlerTypeInformation::Init()
     mRttiList.push_back(nsTornadoEditor_TOnExitClickHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TOnExitClickHandler_n, nsTornadoEditor_TOnExitClickHandler_i });
     
+    int nsTornadoEditor_TOnFileHierarchyClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnFileHierarchyClickHandler>();
+    std::string nsTornadoEditor_TOnFileHierarchyClickHandler_n = "nsTornadoEditor::TOnFileHierarchyClickHandler";
+    mTypeNameList.push_back(nsTornadoEditor_TOnFileHierarchyClickHandler_n);
+    mRttiList.push_back(nsTornadoEditor_TOnFileHierarchyClickHandler_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TOnFileHierarchyClickHandler_n, nsTornadoEditor_TOnFileHierarchyClickHandler_i });
+    
     int nsTornadoEditor_TOnMouseClickFileNodeHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnMouseClickFileNodeHandler>();
     std::string nsTornadoEditor_TOnMouseClickFileNodeHandler_n = "nsTornadoEditor::TOnMouseClickFileNodeHandler";
     mTypeNameList.push_back(nsTornadoEditor_TOnMouseClickFileNodeHandler_n);
     mRttiList.push_back(nsTornadoEditor_TOnMouseClickFileNodeHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TOnMouseClickFileNodeHandler_n, nsTornadoEditor_TOnMouseClickFileNodeHandler_i });
-    
-    int nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenFileHierarchyWindowHandler>();
-    std::string nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_n = "nsTornadoEditor::TOnOpenFileHierarchyWindowHandler";
-    mTypeNameList.push_back(nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_n);
-    mRttiList.push_back(nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_i);
-    mNameRttiMap.insert({ nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_n, nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_i });
     
     int nsTornadoEditor_TOnOpenProjectClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenProjectClickHandler>();
     std::string nsTornadoEditor_TOnOpenProjectClickHandler_n = "nsTornadoEditor::TOnOpenProjectClickHandler";

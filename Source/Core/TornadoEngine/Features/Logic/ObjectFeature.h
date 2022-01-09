@@ -9,15 +9,13 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "NeedUnloadPrefabSystem.h"
-#include "NeedDestroyPrefabSystem.h"
+#include "NeedDestroyObjectSystem.h"
 
 namespace nsLogicWrapper
 {
-    class DllExport TPrefabFeature : public nsECSFramework::TFeature
+    class DllExport TObjectFeature : public nsECSFramework::TFeature
     {
-        TNeedUnloadPrefabSystem mNeedUnloadPrefabSystem;
-        TNeedDestroyPrefabSystem mNeedDestroyPrefabSystem;
+        TNeedDestroyObjectSystem mNeedDestroyObjectSystem;
     public:
         void InitConveyor() override;
     };

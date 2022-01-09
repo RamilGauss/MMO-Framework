@@ -48,6 +48,10 @@
                 {
                     "typeName": "nsTornadoEditor::TFileHierarchyWindowTagComponent",
                     "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent",
+                    "jsonBody": "{}"
                 }
             ]
         },
@@ -84,10 +88,6 @@
                 {
                     "typeName": "nsGuiWrapper::TTreeViewComponent",
                     "jsonBody": "{}"
-                },
-                {
-                    "typeName": "nsLogicWrapper::TObjectInstanceEndHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenFileHierarchyWindowHandler\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TFrameMouseClickHandlerComponent",

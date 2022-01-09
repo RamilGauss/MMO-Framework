@@ -20,9 +20,9 @@ See for more information LICENSE.md.
 #include "ParentGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
 #include "SceneInstanceGuidComponent.h"
-#include "NeedUnloadSceneComponent.h"
-#include "NeedDestroySceneComponent.h"
+#include "NeedDestroyObjectTagComponent.h"
 #include "SceneRootComponent.h"
+#include "SceneGuidComponent.h"
 
 #include "GuidGenerator.h"
 
@@ -99,12 +99,15 @@ void TSceneManager::InstantiateByGuid(const std::string& sceneGuid)
 //--------------------------------------------------------------------------------
 void TSceneManager::Unload(const std::string& sceneGuid)
 {
-    // Add tag component for new entity
-    auto eid = mEntityManager->CreateEntity();
+    nsCommonWrapper::TSceneGuidComponent sceneGuidComponent;
+    sceneGuidComponent.value = sceneGuid;
+    auto eids = mEntityManager->GetByValueCopy(sceneGuidComponent);
 
-    nsCommonWrapper::TNeedUnloadSceneComponent needUnloadSceneComponent;
-    needUnloadSceneComponent.sceneGuid = sceneGuid;
-    mEntityManager->SetComponent(eid, needUnloadSceneComponent);
+    // Add tag component for all entities
+    nsCommonWrapper::TNeedDestroyObjectTagComponent needDestroySceneComponent;
+    for (auto& eid : eids) {
+        mEntityManager->SetComponent(eid, needDestroySceneComponent);
+    }
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::Save(const std::string& sceneGuid)
@@ -115,12 +118,15 @@ void TSceneManager::Save(const std::string& sceneGuid)
 //--------------------------------------------------------------------------------
 void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
 {
-    //// Add tag component for new entity
-    auto eid = mEntityManager->CreateEntity();
+    nsCommonWrapper::TSceneInstanceGuidComponent sceneInstanceGuidComponent;
+    sceneInstanceGuidComponent.value = sceneInstanceGuid;
+    auto eids = mEntityManager->GetByValueCopy(sceneInstanceGuidComponent);
 
-    nsCommonWrapper::TNeedDestroySceneComponent needDestroySceneComponent;
-    needDestroySceneComponent.sceneInstanceGuid = sceneInstanceGuid;
-    mEntityManager->SetComponent(eid, needDestroySceneComponent);
+    // Add tag component for all entities
+    nsCommonWrapper::TNeedDestroyObjectTagComponent needDestroySceneComponent;
+    for (auto& eid : eids) {
+        mEntityManager->SetComponent(eid, needDestroySceneComponent);
+    }
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::Destroy(nsECSFramework::TEntityID anyEidInScene)

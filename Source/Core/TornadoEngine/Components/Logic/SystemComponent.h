@@ -12,21 +12,25 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
+#include <ECS/include/Feature.h>
 
-namespace nsCommonWrapper
+namespace nsLogicWrapper
 {
-    struct DllExport TNeedDestroyPrefabComponent : nsECSFramework::IComponent
+    struct DllExport TSystemComponent : nsECSFramework::IComponent
     {
-        std::string prefabInstanceGuid;
+#pragma IGNORE_ATTRIBUTE
+        mutable nsECSFramework::TFeature* value = nullptr;
+
+        std::string typeName;
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return prefabInstanceGuid < ((TNeedDestroyPrefabComponent*) pOther)->prefabInstanceGuid;
+            return typeName < ((TSystemComponent*) pOther)->typeName;
         }
 
         bool IsEqual(const IComponent* pOther) const override
         {
-            return prefabInstanceGuid == ((TNeedDestroyPrefabComponent*) pOther)->prefabInstanceGuid;
+            return typeName == ((TSystemComponent*) pOther)->typeName;
         }
     };
 }

@@ -30,11 +30,12 @@ namespace nsECSFramework
         void SetEntMng(TEntityManager* entMng) override final;
         virtual void InitConveyor() {}
 
-
         bool IsFeature() const override final;
 
         bool Add(TSystem* system);
         void Remove(TSystem* system);
+        bool Has(TSystem* system) const;
+
         const std::set<TSystem*>* GetSystems();
 
         void Clear();

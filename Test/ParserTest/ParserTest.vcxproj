@@ -156,6 +156,7 @@
     <ClCompile Include="FunctionMemberTest.cpp" />
     <ClCompile Include="FunctionWithDefaultArgumentTest.cpp" />
     <ClCompile Include="InheritancesTest.cpp" />
+    <ClCompile Include="InheritanceTemplateTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MembersTest.cpp" />
     <ClCompile Include="MethodNames.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="FunctionContent.h" />
     <ClInclude Include="FunctionMember.h" />
     <ClInclude Include="FunctionWithDefaultArgument.h" />
+    <ClInclude Include="InheritanceTemplate.h" />
     <ClInclude Include="MemberBuiltInTypes.h" />
     <ClInclude Include="MemberCategory.h" />
     <ClInclude Include="MemberPragma.h" />

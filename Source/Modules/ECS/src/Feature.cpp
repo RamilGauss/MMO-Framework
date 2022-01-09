@@ -56,6 +56,11 @@ void TFeature::Remove(TSystem* system)
     mSystems.erase(system);
 }
 //--------------------------------------------------------------------------------------
+bool TFeature::Has(TSystem* system) const
+{
+    return mSystems.find(system) != mSystems.end();
+}
+//--------------------------------------------------------------------------------------
 const std::set<TSystem*>* TFeature::GetSystems()
 {
     return &mSystems;

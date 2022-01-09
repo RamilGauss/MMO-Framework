@@ -8,20 +8,20 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "IModule.h"
-#include "LogicSlotManager.h"
+#include "FeatureManager.h"
 #include "DstEvent.h"
 
 namespace nsTornadoEngine
 {
     class DllExport TLogicWrapperModule : public IModule, public TDstEvent
     {
-        TLogicSlotManager mBeginLogicSlotManager;
-        TLogicSlotManager mEndLogicSlotManager;
+        TFeatureManager mBeginLogicSlotManager;
+        TFeatureManager mEndLogicSlotManager;
     public:
         void Work() override final;
 
-        TLogicSlotManager* GetBeginLogicSlotManager();
-        TLogicSlotManager* GetEndLogicSlotManager();
+        TFeatureManager* GetBeginLogicSlotManager();
+        TFeatureManager* GetEndLogicSlotManager();
     protected:
         virtual void ModuleWork() = 0;
     };

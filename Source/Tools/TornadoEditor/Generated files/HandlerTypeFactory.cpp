@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:32:25.430
+// File has been generated at 2022_01_09 09:44:00.632
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -59,19 +59,19 @@ void THandlerTypeFactory::Init()
     
     m.insert({ rtti_nsTornadoEditor_TOnExitClickHandler_Data, nsTornadoEditor_TOnExitClickHandler_Data });
     
+    Data nsTornadoEditor_TOnFileHierarchyClickHandler_Data;
+    nsTornadoEditor_TOnFileHierarchyClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnFileHierarchyClickHandler(); };
+    nsTornadoEditor_TOnFileHierarchyClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnFileHierarchyClickHandler*)p; };
+    auto rtti_nsTornadoEditor_TOnFileHierarchyClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnFileHierarchyClickHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TOnFileHierarchyClickHandler_Data, nsTornadoEditor_TOnFileHierarchyClickHandler_Data });
+    
     Data nsTornadoEditor_TOnMouseClickFileNodeHandler_Data;
     nsTornadoEditor_TOnMouseClickFileNodeHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnMouseClickFileNodeHandler(); };
     nsTornadoEditor_TOnMouseClickFileNodeHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnMouseClickFileNodeHandler*)p; };
     auto rtti_nsTornadoEditor_TOnMouseClickFileNodeHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnMouseClickFileNodeHandler>();
     
     m.insert({ rtti_nsTornadoEditor_TOnMouseClickFileNodeHandler_Data, nsTornadoEditor_TOnMouseClickFileNodeHandler_Data });
-    
-    Data nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_Data;
-    nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnOpenFileHierarchyWindowHandler(); };
-    nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnOpenFileHierarchyWindowHandler*)p; };
-    auto rtti_nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenFileHierarchyWindowHandler>();
-    
-    m.insert({ rtti_nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_Data, nsTornadoEditor_TOnOpenFileHierarchyWindowHandler_Data });
     
     Data nsTornadoEditor_TOnOpenProjectClickHandler_Data;
     nsTornadoEditor_TOnOpenProjectClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnOpenProjectClickHandler(); };

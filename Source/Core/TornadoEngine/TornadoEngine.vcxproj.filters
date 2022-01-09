@@ -100,9 +100,6 @@
     <Filter Include="Modules\Resources\Common">
       <UniqueIdentifier>{fad010d5-c533-4a49-8beb-8d7bb8012401}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Features\Logic\Prefab">
-      <UniqueIdentifier>{c01218d0-7a6b-4954-8503-e9879746ccea}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Handlers\Logic">
       <UniqueIdentifier>{b70ae12b-28e1-49f3-b546-8d683402ea3d}</UniqueIdentifier>
     </Filter>
@@ -153,6 +150,9 @@
     </Filter>
     <Filter Include="Components\Logic\Units">
       <UniqueIdentifier>{f1f67c9f-46f7-45bb-8e1f-b8a221095255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Logic\Object">
+      <UniqueIdentifier>{c01218d0-7a6b-4954-8503-e9879746ccea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -225,10 +225,7 @@
     <ClCompile Include="Modules\LogicWrapperModule.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\LogicSlot.cpp">
-      <Filter>Modules\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\LogicSlotManager.cpp">
+    <ClCompile Include="Modules\FeatureManager.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
     <ClCompile Include="Features\Logic\BeginLogicFeature.cpp">
@@ -270,12 +267,6 @@
     <ClCompile Include="Generated files\FeatureTypeInformation.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\NeedDestroySceneSystem.cpp">
-      <Filter>Features\Logic\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Logic\NeedUnloadSceneSystem.cpp">
-      <Filter>Features\Logic\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp">
       <Filter>Features\Logic\Scene</Filter>
     </ClCompile>
@@ -285,10 +276,10 @@
     <ClCompile Include="Features\Logic\LogicMakerFeature.cpp">
       <Filter>Features\Logic\Maker</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\FeatureMakerSystem.cpp">
+    <ClCompile Include="Features\Logic\SystemMakerSystem.cpp">
       <Filter>Features\Logic\Maker</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\FeatureBuilderSystem.cpp">
+    <ClCompile Include="Features\Logic\SystemBuilderSystem.cpp">
       <Filter>Features\Logic\Builder</Filter>
     </ClCompile>
     <ClCompile Include="Features\Logic\LogicBuilderFeature.cpp">
@@ -297,7 +288,7 @@
     <ClCompile Include="Features\Logic\LogicTerminatorFeature.cpp">
       <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\FeatureTerminatorSystem.cpp">
+    <ClCompile Include="Features\Logic\SystemTerminatorSystem.cpp">
       <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
     <ClCompile Include="Modules\PrefabManager.cpp">
@@ -315,14 +306,11 @@
     <ClCompile Include="Features\Logic\HandlerCallCollectorNotifySystem.cpp">
       <Filter>Features\Logic</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\NeedDestroyPrefabSystem.cpp">
-      <Filter>Features\Logic\Prefab</Filter>
+    <ClCompile Include="Features\Logic\NeedDestroyObjectSystem.cpp">
+      <Filter>Features\Logic\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\NeedUnloadPrefabSystem.cpp">
-      <Filter>Features\Logic\Prefab</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\Logic\PrefabFeature.cpp">
-      <Filter>Features\Logic\Prefab</Filter>
+    <ClCompile Include="Features\Logic\ObjectFeature.cpp">
+      <Filter>Features\Logic\Object</Filter>
     </ClCompile>
     <ClCompile Include="Modules\ObjectManager.cpp">
       <Filter>Modules\Resources\Common</Filter>
@@ -629,10 +617,7 @@
     <ClInclude Include="TimeSliceEngine\ModuleType.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\LogicSlot.h">
-      <Filter>Modules\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\LogicSlotManager.h">
+    <ClInclude Include="Modules\FeatureManager.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
     <ClInclude Include="Modules\IDataBaseModule.h">
@@ -710,19 +695,7 @@
     <ClInclude Include="Features\Graphic\GuiTerminatorFeature.h">
       <Filter>Features\Graphic\Terminator</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\NeedUnloadSceneComponent.h">
-      <Filter>Components\Common\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h">
-      <Filter>Components\Common\Prefab</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Common\NeedDestroySceneComponent.h">
-      <Filter>Components\Common\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Common\NeedDestroyPrefabComponent.h">
-      <Filter>Components\Common\Prefab</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Common\NeedUnloadPrefabComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\GuiUpdaterFromModuleFeature.h">
@@ -740,22 +713,16 @@
     <ClInclude Include="Features\Logic\StartedScenesInitSystem.h">
       <Filter>Features\Logic\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\NeedDestroySceneSystem.h">
-      <Filter>Features\Logic\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Logic\NeedUnloadSceneSystem.h">
-      <Filter>Features\Logic\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Features\Logic\SceneFeature.h">
       <Filter>Features\Logic\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Features\Logic\LogicMakerFeature.h">
       <Filter>Features\Logic\Maker</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\FeatureMakerSystem.h">
+    <ClInclude Include="Features\Logic\SystemMakerSystem.h">
       <Filter>Features\Logic\Maker</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\FeatureBuilderSystem.h">
+    <ClInclude Include="Features\Logic\SystemBuilderSystem.h">
       <Filter>Features\Logic\Builder</Filter>
     </ClInclude>
     <ClInclude Include="Features\Logic\LogicBuilderFeature.h">
@@ -764,7 +731,7 @@
     <ClInclude Include="Features\Logic\LogicTerminatorFeature.h">
       <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\FeatureTerminatorSystem.h">
+    <ClInclude Include="Features\Logic\SystemTerminatorSystem.h">
       <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
     <ClInclude Include="Modules\PrefabManager.h">
@@ -800,14 +767,11 @@
     <ClInclude Include="Features\Logic\HandlerCallCollectorNotifySystem.h">
       <Filter>Features\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\NeedDestroyPrefabSystem.h">
-      <Filter>Features\Logic\Prefab</Filter>
+    <ClInclude Include="Features\Logic\NeedDestroyObjectSystem.h">
+      <Filter>Features\Logic\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\NeedUnloadPrefabSystem.h">
-      <Filter>Features\Logic\Prefab</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Logic\PrefabFeature.h">
-      <Filter>Features\Logic\Prefab</Filter>
+    <ClInclude Include="Features\Logic\ObjectFeature.h">
+      <Filter>Features\Logic\Object</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\IDialogCloseEventHandler.h">
       <Filter>Handlers\Gui</Filter>
@@ -1016,7 +980,7 @@
     <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerComponent.h">
       <Filter>Components\Logic\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Logic\FeatureComponent.h">
+    <ClInclude Include="Components\Logic\SystemComponent.h">
       <Filter>Components\Logic\Units</Filter>
     </ClInclude>
     <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h">
@@ -1093,6 +1057,9 @@
     </ClInclude>
     <ClInclude Include="Features\Graphic\FrameMouseWheelHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\NeedDestroyObjectTagComponent.h">
+      <Filter>Components\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

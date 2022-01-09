@@ -34,6 +34,7 @@
     <ClCompile Include="Sources\Parser.cpp" />
     <ClCompile Include="Sources\PreprocessorSplitter.cpp" />
     <ClCompile Include="Sources\Tokenizer.cpp" />
+    <ClCompile Include="Sources\TypeDeclarationLexema.cpp" />
     <ClCompile Include="Sources\TypeInfo.cpp" />
     <ClCompile Include="Sources\TypeInfoCollector.cpp" />
     <ClCompile Include="Sources\TypeManager.cpp" />

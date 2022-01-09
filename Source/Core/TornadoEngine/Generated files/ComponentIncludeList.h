@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:30:26.696
+// File has been generated at 2022_01_09 09:39:43.839
 	
 #pragma once
 
@@ -11,7 +11,6 @@
 #include "CameraComponent.h"
 #include "DialogCloseEventHandlerComponent.h"
 #include "DialogComponent.h"
-#include "FeatureComponent.h"
 #include "FocusComponent.h"
 #include "FrameComponent.h"
 #include "FrameKeyHandlerComponent.h"
@@ -30,10 +29,7 @@
 #include "MenuNodeClickHandlerComponent.h"
 #include "MenuNodeComponent.h"
 #include "NameComponent.h"
-#include "NeedDestroyPrefabComponent.h"
-#include "NeedDestroySceneComponent.h"
-#include "NeedUnloadPrefabComponent.h"
-#include "NeedUnloadSceneComponent.h"
+#include "NeedDestroyObjectTagComponent.h"
 #include "NodeIconComponent.h"
 #include "ObjectInMemoryComponent.h"
 #include "ObjectInstanceEndHandlerComponent.h"
@@ -52,6 +48,7 @@
 #include "SceneReferenceComponent.h"
 #include "SceneRootComponent.h"
 #include "SizeComponent.h"
+#include "SystemComponent.h"
 #include "TitleComponent.h"
 #include "TransformComponent.h"
 #include "TreeNodeComponent.h"

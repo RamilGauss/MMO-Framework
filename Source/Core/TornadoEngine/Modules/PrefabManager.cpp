@@ -20,9 +20,9 @@ See for more information LICENSE.md.
 #include "PrefabRootComponent.h"
 #include "PrefabOriginalGuidComponent.h"
 #include "PrefabInstanceGuidComponent.h"
+#include "PrefabGuidComponent.h"
 
-#include "NeedUnloadPrefabComponent.h"
-#include "NeedDestroyPrefabComponent.h"
+#include "NeedDestroyObjectTagComponent.h"
 
 #include "SceneGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
@@ -81,28 +81,21 @@ void TPrefabManager::InstantiateByGuid(const std::string& prefabGuid, const std:
 //--------------------------------------------------------------------------------
 void TPrefabManager::Unload(const std::string& prefabGuid)
 {
-    // Add tag component for new entity
-    auto eid = mEntityManager->CreateEntity();
+    nsCommonWrapper::TPrefabGuidComponent prefabGuidComponent;
+    prefabGuidComponent.value = prefabGuid;
+    auto eids = mEntityManager->GetByValueCopy(prefabGuidComponent);
 
-    nsCommonWrapper::TNeedUnloadPrefabComponent needUnloadPrefabComponent;
-    needUnloadPrefabComponent.prefabGuid = prefabGuid;
-    mEntityManager->SetComponent(eid, needUnloadPrefabComponent);
+    // Add tag component for all entities
+    nsCommonWrapper::TNeedDestroyObjectTagComponent needDestroySceneComponent;
+    for (auto& eid : eids) {
+        mEntityManager->SetComponent(eid, needDestroySceneComponent);
+    }
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::Save(const std::string& sceneGuid)
 {
     // Search all entities with sceneGuid and serialize to file
     // Check on existing in sceneManagerMap
-}
-//--------------------------------------------------------------------------------
-void TPrefabManager::Destroy(const std::string& prefabInstanceGuid)
-{
-    // Add tag component for new entity
-    auto eid = mEntityManager->CreateEntity();
-
-    nsCommonWrapper::TNeedDestroyPrefabComponent needDestroyPrefabComponent;
-    needDestroyPrefabComponent.prefabInstanceGuid = prefabInstanceGuid;
-    mEntityManager->SetComponent(eid, needDestroyPrefabComponent);
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
@@ -113,6 +106,30 @@ void TPrefabManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
         return;
     }
     Destroy(pSceneInstanceGuid->value);
+}
+//--------------------------------------------------------------------------------
+void TPrefabManager::Destroy(const std::string& prefabInstanceGuid)
+{
+    nsCommonWrapper::TPrefabInstanceGuidComponent prefabInstanceGuidComponent;
+    prefabInstanceGuidComponent.value = prefabInstanceGuid;
+    auto prefabInstanceGuidEids = mEntityManager->GetByValueCopy(prefabInstanceGuidComponent);
+    nsECSFramework::TEntityID rootEid = nsECSFramework::NONE;
+    for (auto& prefabInstanceGuidEid : prefabInstanceGuidEids) {
+        if (mEntityManager->HasComponent<nsCommonWrapper::TPrefabRootComponent>(prefabInstanceGuidEid)) {
+            rootEid = prefabInstanceGuidEid;
+            break;
+        }
+    }
+
+    BL_ASSERT(rootEid != nsECSFramework::NONE);
+
+    nsECSFramework::TEntityList eids;
+    Modules()->HierarchyHelper()->GetAllTree(rootEid, eids);
+
+    nsCommonWrapper::TNeedDestroyObjectTagComponent needDestroyObjectTagComponent;
+    for (auto& eid : eids) {
+        mEntityManager->SetComponent(eid, needDestroyObjectTagComponent);
+    }
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::InstantiateByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor,

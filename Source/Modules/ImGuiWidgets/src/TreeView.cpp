@@ -43,10 +43,21 @@ void TTreeView::RemoveNode(const std::string& id)
     pNode->mOnEndEditEventCB.Unregister(this);
     pNode->mOnSelectionCB.Unregister(this);
 
+    pNode->SetTreeView(nullptr);
+
     Replace(pNode);
 
     std::remove_if(mAllNodes.begin(), mAllNodes.end(),
         [this, &id](const TTreeNode* node) { return id == node->mStrId; });
+}
+//---------------------------------------------------------------------------------------
+void TTreeView::RemoveAllNodes()
+{
+    auto allNodesCopy = mAllNodes;
+
+    for (auto& node : allNodesCopy) {
+        RemoveNode(node->mStrId);
+    }
 }
 //---------------------------------------------------------------------------------------
 TTreeNode* TTreeView::FoundNode(const std::string& id)

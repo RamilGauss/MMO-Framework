@@ -23,6 +23,8 @@ void TTreeViewTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const ns
 {
     TUnitBuilderHelper::UnlinkParent(GetEntMng(), eid, pTreeViewComponent->value);
 
+    pTreeViewComponent->value->RemoveAllNodes();
+
     delete pTreeViewComponent->value;
     pTreeViewComponent->value = nullptr;
 }

@@ -5,8 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "OnOpenFileHierarchyWindowHandler.h"
+#include "FileHierarchyWindowRefreshSystem.h"
 
+#include "Modules.h"
+#include "HierarchyHelper.h"
 #include <filesystem>
 #include "Modules.h"
 #include "StopAccessor.h"
@@ -28,19 +30,38 @@ See for more information LICENSE.md.
 namespace fs = std::filesystem;
 
 using namespace nsTornadoEditor;
-using namespace nsTornadoEngine;
 
-void TOnOpenFileHierarchyWindowHandler::Handle(nsECSFramework::TEntityID eid)
+void TFileHierarchyWindowRefreshSystem::Reactive(nsECSFramework::TEntityID eid, const TFileHierarchyWindowRefreshTagComponent* pC)
+{
+    auto entMng = GetEntMng();
+
+    entMng->RemoveComponent<TFileHierarchyWindowRefreshTagComponent>(eid);
+
+    auto treeViewEid = nsTornadoEngine::Modules()->HierarchyHelper()->GetChildByName(eid, "TreeView");
+
+    Handle(treeViewEid);
+}
+//--------------------------------------------------------------------------------------------
+void TFileHierarchyWindowRefreshSystem::Handle(nsECSFramework::TEntityID treeViewEid)
 {
     auto entMng = nsTornadoEngine::Modules()->EntMng();
     auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
     auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
 
-    auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid)->value;
-    auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TGuidComponent>(eid)->value;
+    auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(treeViewEid)->value;
+    auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TGuidComponent>(treeViewEid)->value;
 
     auto editorInfoEid = nsECSFramework::SingleEntity<TEditorInfoTagComponent>(entMng);
-    auto absoluteFilePath = entMng->ViewComponent<TAbsoluteFilePathComponent>(editorInfoEid)->value;
+
+    auto absoluteFilePathComponent = entMng->ViewComponent<TAbsoluteFilePathComponent>(editorInfoEid);
+    if (absoluteFilePathComponent == nullptr) {
+        return;
+    }
+
+    auto absoluteFilePath = absoluteFilePathComponent->value;
+    if (!fs::exists(absoluteFilePath)) {
+        return;
+    }
 
     prefabObjConstructor->EntMng()->Clear();
 
@@ -48,7 +69,7 @@ void TOnOpenFileHierarchyWindowHandler::Handle(nsECSFramework::TEntityID eid)
     AddFileNodes(nsECSFramework::NONE, directory.string(), sceneInstanceGuid, parentGuid);
 }
 //--------------------------------------------------------------------------------------------
-void TOnOpenFileHierarchyWindowHandler::AddFileNodes(nsECSFramework::TEntityID parentNodeEid, 
+void TFileHierarchyWindowRefreshSystem::AddFileNodes(nsECSFramework::TEntityID parentNodeEid,
     const std::string& absoluteFilePath, const std::string& sceneInstanceGuid, const std::string& parentGuid)
 {
     nsECSFramework::TEntityID fileNodeEid;
@@ -105,7 +126,7 @@ void TOnOpenFileHierarchyWindowHandler::AddFileNodes(nsECSFramework::TEntityID p
     }
 }
 //--------------------------------------------------------------------------------------------
-void TOnOpenFileHierarchyWindowHandler::GetFiles(const std::filesystem::path& directory,
+void TFileHierarchyWindowRefreshSystem::GetFiles(const std::filesystem::path& directory,
     std::list<std::filesystem::path>& paths, bool isDir)
 {
     for (const auto& entry : fs::directory_iterator(directory)) {
@@ -115,10 +136,10 @@ void TOnOpenFileHierarchyWindowHandler::GetFiles(const std::filesystem::path& di
     }
 }
 //--------------------------------------------------------------------------------------------
-std::string TOnOpenFileHierarchyWindowHandler::GetIcon(const std::filesystem::path& fileNamePath)
+std::string TFileHierarchyWindowRefreshSystem::GetIcon(const std::filesystem::path& fileNamePath)
 {
     std::map<std::string, std::string> extIconMap;
-    extIconMap = 
+    extIconMap =
     {
         {".cpp", "cpp.png"},
         {".h", "cpp.png"},

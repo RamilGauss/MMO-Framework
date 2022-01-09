@@ -15,7 +15,15 @@
             ".h++"
         ],
         "inheritances": [
-            [ "nsECSFramework::TFeature" ]
+            [ "nsECSFramework::TFeature" ],
+            [ "nsECSFramework::TInitSystem" ],
+            [ "nsECSFramework::TExecuteSystem" ],
+            [ "nsECSFramework::TTearDownSystem" ],
+            [ "nsECSFramework::TOnAddCollectReactiveSystem" ],
+            [ "nsECSFramework::TOnUpdateCollectReactiveSystem" ],
+            [ "nsECSFramework::TOnAddInstantReactiveSystem" ],
+            [ "nsECSFramework::TOnUpdateInstantReactiveSystem" ],
+            [ "nsECSFramework::TOnRemoveInstantReactiveSystem" ]
             ],
         "memberIgnore" : "IGNORE_ATTRIBUTE"
     },

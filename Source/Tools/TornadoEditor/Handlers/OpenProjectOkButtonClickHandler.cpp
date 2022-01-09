@@ -31,6 +31,8 @@ See for more information LICENSE.md.
 #include "PrefabObjectConstructor.h"
 #include "TitleComponent.h"
 #include "LabelValueComponent.h"
+#include "FileHierarchyWindowTagComponent.h"
+#include "FileHierarchyWindowRefreshTagComponent.h"
 
 using namespace nsTornadoEditor;
 using namespace nsTornadoEngine;
@@ -105,6 +107,23 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
 
     prefabMng->Destroy(eid);
 
-    prefabMng->InstantiateByGuid("0", sceneInstanceGuid);
+    auto fileHierarchyWindowEid = nsECSFramework::SingleEntity<TFileHierarchyWindowTagComponent>(entMng);
+
+    if (fileHierarchyWindowEid == nsECSFramework::NONE) {
+        prefabMng->InstantiateByGuid("0", sceneInstanceGuid);
+    } else {
+
+        // Destroy file hierarchy
+        auto hierarchyHelper = nsTornadoEngine::Modules()->HierarchyHelper();
+        
+        auto treeViewEid = hierarchyHelper->GetChildByName(fileHierarchyWindowEid, "TreeView");
+
+        auto treeNodeEids = hierarchyHelper->GetChilds(treeViewEid);
+        for (auto& treeNodeEid : treeNodeEids) {
+            prefabMng->Destroy(treeNodeEid);
+        }
+
+        entMng->SetComponent(fileHierarchyWindowEid, TFileHierarchyWindowRefreshTagComponent());
+    }
 }
 //---------------------------------------------------------------------------------------------------------------------

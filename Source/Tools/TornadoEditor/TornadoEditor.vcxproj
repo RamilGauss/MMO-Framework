@@ -212,6 +212,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
   <ItemGroup>
     <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
     <ClCompile Include="Features\BootstrapperSystem.cpp" />
+    <ClCompile Include="Features\FileHierarchyWindowRefreshSystem.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtensionImpl.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
@@ -231,8 +232,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClCompile Include="Generated files\HandlerTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Handlers\OnFileHierarchyClickHandler.cpp" />
     <ClCompile Include="Handlers\OnMouseClickFileNodeHandler.cpp" />
-    <ClCompile Include="Handlers\OnOpenFileHierarchyWindowHandler.cpp" />
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +285,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
   <ItemGroup>
     <ClInclude Include="Components\AbsoluteFilePathComponent.h" />
     <ClInclude Include="Components\EditorInfoTagComponent.h" />
+    <ClInclude Include="Components\FileHierarchyWindowRefreshTagComponent.h" />
     <ClInclude Include="Components\FilePathNodeComponent.h" />
     <ClInclude Include="Components\FileHierarchyWindowTagComponent.h" />
     <ClInclude Include="Components\InspectorWindowTagComponent.h" />
@@ -291,6 +293,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClInclude Include="Components\ProjectConfigComponent.h" />
     <ClInclude Include="Features\BootstrapperFeature.h" />
     <ClInclude Include="Features\BootstrapperSystem.h" />
+    <ClInclude Include="Features\FileHierarchyWindowRefreshSystem.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtensionImpl.h" />
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
@@ -314,8 +317,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
     <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h" />
+    <ClInclude Include="Handlers\OnFileHierarchyClickHandler.h" />
     <ClInclude Include="Handlers\OnMouseClickFileNodeHandler.h" />
-    <ClInclude Include="Handlers\OnOpenFileHierarchyWindowHandler.h" />
     <ClInclude Include="Handlers\OpenProjectCancelButtonClickHandler.h" />
     <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h" />
     <ClInclude Include="Handlers\OnCloseDialogHandler.h" />

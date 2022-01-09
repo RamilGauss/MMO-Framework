@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:32:25.024
+// File has been generated at 2022_01_09 09:44:00.228
 	
 #include "ComponentTypeInformation.h"
 
@@ -38,6 +38,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TEditorInfoTagComponent_n);
     mRttiList.push_back(nsTornadoEditor_TEditorInfoTagComponent_i);
     mNameRttiMap.insert({ nsTornadoEditor_TEditorInfoTagComponent_n, nsTornadoEditor_TEditorInfoTagComponent_i });
+    
+    int nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent>();
+    std::string nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_n = "nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent";
+    mTypeNameList.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_n);
+    mRttiList.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_n, nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_i });
     
     int nsTornadoEditor_TFileHierarchyWindowTagComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowTagComponent>();
     std::string nsTornadoEditor_TFileHierarchyWindowTagComponent_n = "nsTornadoEditor::TFileHierarchyWindowTagComponent";

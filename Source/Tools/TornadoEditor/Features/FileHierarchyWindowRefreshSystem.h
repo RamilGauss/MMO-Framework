@@ -7,25 +7,31 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "IObjectInstanceEndHandler.h"
+#include "FileHierarchyWindowRefreshTagComponent.h"
+
 #include <string>
 #include <filesystem>
 
 namespace nsTornadoEditor
 {
-    class DllExport TOnOpenFileHierarchyWindowHandler : public nsLogicWrapper::IObjectInstanceEndHandler
+    class DllExport TFileHierarchyWindowRefreshSystem : 
+        public nsECSFramework::TOnAddCollectReactiveSystem<TFileHierarchyWindowRefreshTagComponent, TFileHierarchyWindowRefreshSystem>
     {
     public:
-        void Handle(nsECSFramework::TEntityID eid) override;
+        void Reactive(nsECSFramework::TEntityID eid, const TFileHierarchyWindowRefreshTagComponent* pC);
 
     private:
-        void AddFileNodes(nsECSFramework::TEntityID parentNodeEid, 
+        void Handle(nsECSFramework::TEntityID eid);
+
+        void AddFileNodes(nsECSFramework::TEntityID parentNodeEid,
             const std::string& absoluteFilePath, const std::string& sceneInstanceGuid, const std::string& parentGuid);
 
         void GetFiles(const std::filesystem::path& directory,
             std::list<std::filesystem::path>& paths, bool isDir);
 
         std::string GetIcon(const std::filesystem::path& fileNamePath);
+
     };
 }

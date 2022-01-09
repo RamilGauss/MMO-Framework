@@ -39,11 +39,11 @@ bool TGraphicEngineModule::StartEvent()
 
     auto beginSlotIndex = GetBeginLogicSlotManager()->CreateSlot(entMng);
     GetBeginLogicSlotManager()->SetCurrentSlotIndex(beginSlotIndex);
-    GetBeginLogicSlotManager()->AddFeature(&mBeginFeature);
+    GetBeginLogicSlotManager()->AddSystem(&mBeginFeature);
 
     auto endSlotIndex = GetEndLogicSlotManager()->CreateSlot(entMng);
     GetEndLogicSlotManager()->SetCurrentSlotIndex(endSlotIndex);
-    GetEndLogicSlotManager()->AddFeature(&mEndFeature);
+    GetEndLogicSlotManager()->AddSystem(&mEndFeature);
     
     //-------------------
     // OGRE

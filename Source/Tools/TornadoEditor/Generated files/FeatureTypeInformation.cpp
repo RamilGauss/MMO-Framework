@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:32:25.836
+// File has been generated at 2022_01_09 09:44:01.029
 	
 #include "FeatureTypeInformation.h"
 
@@ -33,11 +33,17 @@ void TFeatureTypeInformation::Init()
     mRttiList.push_back(nsTornadoEditor_TBootstrapperFeature_i);
     mNameRttiMap.insert({ nsTornadoEditor_TBootstrapperFeature_n, nsTornadoEditor_TBootstrapperFeature_i });
     
-    int nsTornadoEditor_TExampleFeature_i = globalTypeIdentifier->Type<nsTornadoEditor::TExampleFeature>();
-    std::string nsTornadoEditor_TExampleFeature_n = "nsTornadoEditor::TExampleFeature";
-    mTypeNameList.push_back(nsTornadoEditor_TExampleFeature_n);
-    mRttiList.push_back(nsTornadoEditor_TExampleFeature_i);
-    mNameRttiMap.insert({ nsTornadoEditor_TExampleFeature_n, nsTornadoEditor_TExampleFeature_i });
+    int nsTornadoEditor_TBootstrapperSystem_i = globalTypeIdentifier->Type<nsTornadoEditor::TBootstrapperSystem>();
+    std::string nsTornadoEditor_TBootstrapperSystem_n = "nsTornadoEditor::TBootstrapperSystem";
+    mTypeNameList.push_back(nsTornadoEditor_TBootstrapperSystem_n);
+    mRttiList.push_back(nsTornadoEditor_TBootstrapperSystem_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TBootstrapperSystem_n, nsTornadoEditor_TBootstrapperSystem_i });
+    
+    int nsTornadoEditor_TFileHierarchyWindowRefreshSystem_i = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowRefreshSystem>();
+    std::string nsTornadoEditor_TFileHierarchyWindowRefreshSystem_n = "nsTornadoEditor::TFileHierarchyWindowRefreshSystem";
+    mTypeNameList.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshSystem_n);
+    mRttiList.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshSystem_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TFileHierarchyWindowRefreshSystem_n, nsTornadoEditor_TFileHierarchyWindowRefreshSystem_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

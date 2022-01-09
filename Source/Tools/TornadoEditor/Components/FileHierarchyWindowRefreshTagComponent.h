@@ -7,15 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/Feature.h>
+#include <string>
+
+#include "TypeDef.h"
+
+#include <ECS/include/IComponent.h>
 
 namespace nsTornadoEditor
 {
-    class DllExport TExampleFeature : public nsECSFramework::TFeature
+    struct DllExport TFileHierarchyWindowRefreshTagComponent : nsECSFramework::IComponent
     {
-    public:
-        void InitConveyor() override
-        {
-        }
     };
 }

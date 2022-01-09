@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "PrefabFeature.h"
+#include "NeedDestroyObjectSystem.h"
 
 using namespace nsLogicWrapper;
 
-void TPrefabFeature::InitConveyor()
+void TNeedDestroyObjectSystem::Reactive(nsECSFramework::TEntityID eid,
+    const nsCommonWrapper::TNeedDestroyObjectTagComponent* pC)
 {
-    Add(&mNeedUnloadPrefabSystem);
-    Add(&mNeedDestroyPrefabSystem);
+    GetEntMng()->DestroyEntity(eid);
 }

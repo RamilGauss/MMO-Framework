@@ -32,6 +32,8 @@ namespace nsImGuiWidgets
 
         const std::list<TTreeNode*>* GetAllNodes() const;
 
+        void RemoveAllNodes();
+
         using EventCallback = TCallbackPool<TTreeNode*>;
 
         using OnDragEvent = TCallbackPool<TTreeNode*>;

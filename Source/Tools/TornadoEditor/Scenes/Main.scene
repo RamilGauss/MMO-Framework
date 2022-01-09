@@ -28,6 +28,10 @@
                 {
                     "typeName": "nsCommonWrapper::TSceneRootComponent",
                     "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsLogicWrapper::TSystemComponent",
+                    "jsonBody": "{\"typeName\":\"nsTornadoEditor::TFileHierarchyWindowRefreshSystem\"}"
                 }
             ]
         },
@@ -236,6 +240,10 @@
                 {
                     "typeName": "nsGuiWrapper::TMenuNodeComponent",
                     "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMenuNodeClickHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnFileHierarchyClickHandler\", \"partOfGuid\":\"THIS_SCENE\", \"entityGuid\":\"main_6\"}"
                 }
             ]
         },

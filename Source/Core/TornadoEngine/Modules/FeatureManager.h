@@ -9,24 +9,24 @@ See for more information LICENSE.md.
 
 #include <vector>
 
-#include "LogicSlot.h"
+#include <ECS/include/Feature.h>
 
 namespace nsTornadoEngine
 {
-    class DllExport TLogicSlotManager
+    class DllExport TFeatureManager
     {
         int mCurrentIndex = 0;
 
-        std::vector<TLogicSlot*> mSlots;
+        std::vector<nsECSFramework::TFeature*> mSlots;
     public:
-        virtual ~TLogicSlotManager();
+        virtual ~TFeatureManager();
 
         void Work();
 
         // For current slot
-        void AddFeature(nsECSFramework::TFeature* p);
-        void RemoveFeature(nsECSFramework::TFeature* p);
-        bool HasFeature(nsECSFramework::TFeature* p);
+        void AddSystem(nsECSFramework::TSystem* p);
+        void RemoveSystem(nsECSFramework::TSystem* p);
+        bool HasSystem(nsECSFramework::TSystem* p);
 
         nsECSFramework::TEntityManager* GetCurrentEntMng() const;
 
@@ -41,6 +41,6 @@ namespace nsTornadoEngine
         void Clear();
 
     private:
-        TLogicSlot* GetCurrentSlot() const;
+        nsECSFramework::TFeature* GetCurrentSlot() const;
     };
 }

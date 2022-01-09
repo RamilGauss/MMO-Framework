@@ -80,6 +80,9 @@
     <ClCompile Include="Sources\CommentRemover.cpp">
       <Filter>Splitters</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\TypeDeclarationLexema.cpp">
+      <Filter>Lexemas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Parser.h">

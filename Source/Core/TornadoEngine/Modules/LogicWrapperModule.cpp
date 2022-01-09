@@ -18,12 +18,12 @@ void TLogicWrapperModule::Work()
     mEndLogicSlotManager.Work();
 }
 //-------------------------------------------------------------------
-TLogicSlotManager* TLogicWrapperModule::GetBeginLogicSlotManager()
+TFeatureManager* TLogicWrapperModule::GetBeginLogicSlotManager()
 {
     return &mBeginLogicSlotManager;
 }
 //-------------------------------------------------------------------
-TLogicSlotManager* TLogicWrapperModule::GetEndLogicSlotManager()
+TFeatureManager* TLogicWrapperModule::GetEndLogicSlotManager()
 {
     return &mEndLogicSlotManager;
 }

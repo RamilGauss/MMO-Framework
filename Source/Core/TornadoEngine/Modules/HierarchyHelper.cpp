@@ -38,6 +38,22 @@ nsECSFramework::TEntityList THierarchyHelper::GetChilds(nsECSFramework::TEntityI
     return mEntMng->GetByValueCopy(parentGuid);
 }
 //-----------------------------------------------------------------------------------------------
+void THierarchyHelper::GetAllTree(nsECSFramework::TEntityID eid, nsECSFramework::TEntityList& eids)
+{
+    eids.push_back(eid);
+    GetAllChilds(eid, eids);
+}
+//-----------------------------------------------------------------------------------------------
+void THierarchyHelper::GetAllChilds(nsECSFramework::TEntityID eid, nsECSFramework::TEntityList& eids)
+{
+    auto childEids = GetChilds(eid);
+    eids.insert(eids.end(), childEids.begin(), childEids.end());
+
+    for (auto& childEid : childEids) {
+        GetAllChilds(childEid, eids);
+    }
+}
+//-----------------------------------------------------------------------------------------------
 nsECSFramework::TEntityID THierarchyHelper::GetBrotherByName(nsECSFramework::TEntityID eid,
     const std::string& brotherName)
 {
@@ -73,13 +89,13 @@ nsECSFramework::TEntityList THierarchyHelper::GetBrothersByName(nsECSFramework::
 }
 //-----------------------------------------------------------------------------------------------
 nsECSFramework::TEntityID THierarchyHelper::GetChildByName(nsECSFramework::TEntityID eid,
-    const std::string& brotherName)
+    const std::string& childName)
 {
     auto childEids = GetChilds(eid);
 
     for (auto& childEid : childEids) {
         auto name = mEntMng->ViewComponent<nsCommonWrapper::TNameComponent>(childEid)->value;
-        if (name == brotherName) {
+        if (name == childName) {
             return childEid;
         }
     }
@@ -88,7 +104,7 @@ nsECSFramework::TEntityID THierarchyHelper::GetChildByName(nsECSFramework::TEnti
 }
 //-----------------------------------------------------------------------------------------------
 nsECSFramework::TEntityList THierarchyHelper::GetChildsByName(nsECSFramework::TEntityID eid,
-    const std::string& brotherName)
+    const std::string& childName)
 {
     auto childEids = GetChilds(eid);
 
@@ -96,7 +112,7 @@ nsECSFramework::TEntityList THierarchyHelper::GetChildsByName(nsECSFramework::TE
 
     for (auto& childEid : childEids) {
         auto name = mEntMng->ViewComponent<nsCommonWrapper::TNameComponent>(childEid)->value;
-        if (name == brotherName) {
+        if (name == childName) {
             entities.push_back(childEid);
         }
     }
@@ -104,36 +120,36 @@ nsECSFramework::TEntityList THierarchyHelper::GetChildsByName(nsECSFramework::TE
     return entities;
 }
 //-----------------------------------------------------------------------------------------------
-nsECSFramework::TEntityID THierarchyHelper::GetByName(nsECSFramework::TEntityID anyInPrefabEid,
-    const std::string& name)
-{
-    auto nameEids = GetListByName(anyInPrefabEid, name);
-    if (nameEids.size() == 0) {
-        return nsECSFramework::NONE;
-    }
-    return *(nameEids.begin());
-}
-//-----------------------------------------------------------------------------------------------
-nsECSFramework::TEntityList THierarchyHelper::GetListByName(nsECSFramework::TEntityID anyInPrefabEid,
-    const std::string& name)
-{
-    nsCommonWrapper::TNameComponent nameComponent;
-    nameComponent.value = name;
-    auto nameEids = mEntMng->GetByValueCopy(nameComponent);
-    if (nameEids.size() == 0) {
-        return {};
-    }
-
-    nsECSFramework::TEntityList filteredByPrefabGuidList;
-    auto prefabGuid = mEntMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(anyInPrefabEid)->value;
-    
-    for (auto& nameEid : nameEids) {
-        auto prefabGuidComponentByName = mEntMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(nameEid);
-        if (prefabGuidComponentByName->value == prefabGuid) {
-            filteredByPrefabGuidList.push_back(nameEid);
-        }
-    }
-
-    return filteredByPrefabGuidList;
-}
-//-----------------------------------------------------------------------------------------------
+//nsECSFramework::TEntityID THierarchyHelper::GetByName(nsECSFramework::TEntityID anyInPrefabEid,
+//    const std::string& name)
+//{
+//    auto nameEids = GetListByName(anyInPrefabEid, name);
+//    if (nameEids.size() == 0) {
+//        return nsECSFramework::NONE;
+//    }
+//    return *(nameEids.begin());
+//}
+////-----------------------------------------------------------------------------------------------
+//nsECSFramework::TEntityList THierarchyHelper::GetListByName(nsECSFramework::TEntityID anyInPrefabEid,
+//    const std::string& name)
+//{
+//    nsCommonWrapper::TNameComponent nameComponent;
+//    nameComponent.value = name;
+//    auto nameEids = mEntMng->GetByValueCopy(nameComponent);
+//    if (nameEids.size() == 0) {
+//        return {};
+//    }
+//
+//    nsECSFramework::TEntityList filteredByPrefabGuidList;
+//    auto prefabGuid = mEntMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(anyInPrefabEid)->value;
+//    
+//    for (auto& nameEid : nameEids) {
+//        auto prefabGuidComponentByName = mEntMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(nameEid);
+//        if (prefabGuidComponentByName->value == prefabGuid) {
+//            filteredByPrefabGuidList.push_back(nameEid);
+//        }
+//    }
+//
+//    return filteredByPrefabGuidList;
+//}
+////-----------------------------------------------------------------------------------------------

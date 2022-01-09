@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:32:25.835
+// File has been generated at 2022_01_09 09:44:01.028
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -31,12 +31,19 @@ void TFeatureTypeFactory::Init()
     
     m.insert({ rtti_nsTornadoEditor_TBootstrapperFeature_Data, nsTornadoEditor_TBootstrapperFeature_Data });
     
-    Data nsTornadoEditor_TExampleFeature_Data;
-    nsTornadoEditor_TExampleFeature_Data.newFunc = [](){ return new nsTornadoEditor::TExampleFeature(); };
-    nsTornadoEditor_TExampleFeature_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TExampleFeature*)p; };
-    auto rtti_nsTornadoEditor_TExampleFeature_Data = globalTypeIdentifier->Type<nsTornadoEditor::TExampleFeature>();
+    Data nsTornadoEditor_TBootstrapperSystem_Data;
+    nsTornadoEditor_TBootstrapperSystem_Data.newFunc = [](){ return new nsTornadoEditor::TBootstrapperSystem(); };
+    nsTornadoEditor_TBootstrapperSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TBootstrapperSystem*)p; };
+    auto rtti_nsTornadoEditor_TBootstrapperSystem_Data = globalTypeIdentifier->Type<nsTornadoEditor::TBootstrapperSystem>();
     
-    m.insert({ rtti_nsTornadoEditor_TExampleFeature_Data, nsTornadoEditor_TExampleFeature_Data });
+    m.insert({ rtti_nsTornadoEditor_TBootstrapperSystem_Data, nsTornadoEditor_TBootstrapperSystem_Data });
+    
+    Data nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data;
+    nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data.newFunc = [](){ return new nsTornadoEditor::TFileHierarchyWindowRefreshSystem(); };
+    nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TFileHierarchyWindowRefreshSystem*)p; };
+    auto rtti_nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowRefreshSystem>();
+    
+    m.insert({ rtti_nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data, nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data });
     
     int max = 0;
     for (auto& vt : m) {

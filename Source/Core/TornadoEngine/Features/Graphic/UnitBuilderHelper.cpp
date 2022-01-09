@@ -272,19 +272,9 @@ void TUnitBuilderHelper::UnlinkMenuNode(nsECSFramework::TEntityManager* entMng, 
 void TUnitBuilderHelper::UnlinkTreeNode(nsECSFramework::TEntityManager* entMng, nsECSFramework::TEntityID eid,
     nsImGuiWidgets::TTreeNode* pTreeNode)
 {
-    auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid)->value;
-
-    nsCommonWrapper::TGuidComponent guidComponent;
-    guidComponent.value = parentGuid;
-    auto parentEid = entMng->GetByUnique(guidComponent);
-
-    if (parentEid == nsECSFramework::NONE) {
-        return;
-    }
-
-    auto treeViewComponent = entMng->ViewComponent<nsGuiWrapper::TTreeViewComponent>(parentEid);
-    if (treeViewComponent) {
-        treeViewComponent->value->RemoveNode(pTreeNode->mStrId);
+    auto treeView = pTreeNode->GetTreeView();
+    if (treeView) {
+        treeView->RemoveNode(pTreeNode->mStrId);
     }
 }
 //-----------------------------------------------------------------------------------------------------------------------

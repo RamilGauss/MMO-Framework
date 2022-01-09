@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:30:26.644
+// File has been generated at 2022_01_09 09:39:43.795
 	
 #pragma once
 
@@ -48,17 +48,8 @@ namespace nsTornadoEngine
         static void _Serialize(nsCommonWrapper::TNameComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TNameComponent* p, const Jobj& obj);
         
-        static void _Serialize(nsCommonWrapper::TNeedDestroyPrefabComponent* p, Jobj& obj);
-        static void _Deserialize(nsCommonWrapper::TNeedDestroyPrefabComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsCommonWrapper::TNeedDestroySceneComponent* p, Jobj& obj);
-        static void _Deserialize(nsCommonWrapper::TNeedDestroySceneComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsCommonWrapper::TNeedUnloadPrefabComponent* p, Jobj& obj);
-        static void _Deserialize(nsCommonWrapper::TNeedUnloadPrefabComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, Jobj& obj);
-        static void _Deserialize(nsCommonWrapper::TNeedUnloadSceneComponent* p, const Jobj& obj);
+        static void _Serialize(nsCommonWrapper::TNeedDestroyObjectTagComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TNeedDestroyObjectTagComponent* p, const Jobj& obj);
         
         static void _Serialize(nsCommonWrapper::TObjectInMemoryComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TObjectInMemoryComponent* p, const Jobj& obj);
@@ -177,9 +168,6 @@ namespace nsTornadoEngine
         static void _Serialize(nsGuiWrapper::TWindowComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TWindowComponent* p, const Jobj& obj);
         
-        static void _Serialize(nsLogicWrapper::TFeatureComponent* p, Jobj& obj);
-        static void _Deserialize(nsLogicWrapper::TFeatureComponent* p, const Jobj& obj);
-        
         static void _Serialize(nsLogicWrapper::TObjectInstanceEndHandlerComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TObjectInstanceEndHandlerComponent* p, const Jobj& obj);
         
@@ -194,6 +182,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsLogicWrapper::TSceneReferenceComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TSceneReferenceComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsLogicWrapper::TSystemComponent* p, Jobj& obj);
+        static void _Deserialize(nsLogicWrapper::TSystemComponent* p, const Jobj& obj);
         
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);

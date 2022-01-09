@@ -8,14 +8,14 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "LogicWrapperModule.h"
-#include "LogicSlotManager.h"
+#include "FeatureManager.h"
 
 namespace nsTornadoEngine
 {
     class DllExport ILogicModule : public TLogicWrapperModule
     {
     public:
-        virtual TLogicSlotManager* GetWorkSlots() = 0;
-        virtual void SetWorkSlots(TLogicSlotManager* pLSM) = 0;
+        virtual TFeatureManager* GetWorkSlots() = 0;
+        virtual void SetWorkSlots(TFeatureManager* pLSM) = 0;
     };
 }

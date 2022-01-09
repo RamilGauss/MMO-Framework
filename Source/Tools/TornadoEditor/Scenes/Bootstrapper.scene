@@ -54,8 +54,8 @@
                     "jsonBody": "{\"value\":\"bootstrapper\"}"
                 },
                 {
-                    "typeName": "nsLogicWrapper::TFeatureComponent",
-                    "jsonBody": "{\"featureTypeName\":\"nsTornadoEditor::TBootstrapperFeature\"}"
+                    "typeName": "nsLogicWrapper::TSystemComponent",
+                    "jsonBody": "{\"typeName\":\"nsTornadoEditor::TBootstrapperFeature\"}"
                 }
             ]
         }

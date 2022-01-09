@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_07 20:32:25.018
+// File has been generated at 2022_01_09 09:44:00.219
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -52,6 +52,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsTornadoEditor_TEditorInfoTagComponentTypeFunc = globalTypeIdentifier->Type<nsTornadoEditor::TEditorInfoTagComponent>();
     
     m.insert({ rtti__nsTornadoEditor_TEditorInfoTagComponentTypeFunc, _nsTornadoEditor_TEditorInfoTagComponentTypeFunc });
+    
+    TypeFunc _nsTornadoEditor_TFileHierarchyWindowRefreshTagComponentTypeFunc;
+    _nsTornadoEditor_TFileHierarchyWindowRefreshTagComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent>((nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent*) p, str);
+    };
+    _nsTornadoEditor_TFileHierarchyWindowRefreshTagComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent>((nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEditor_TFileHierarchyWindowRefreshTagComponentTypeFunc = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent>();
+    
+    m.insert({ rtti__nsTornadoEditor_TFileHierarchyWindowRefreshTagComponentTypeFunc, _nsTornadoEditor_TFileHierarchyWindowRefreshTagComponentTypeFunc });
     
     TypeFunc _nsTornadoEditor_TFileHierarchyWindowTagComponentTypeFunc;
     _nsTornadoEditor_TFileHierarchyWindowTagComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -160,6 +172,14 @@ void TComponentJsonSerializer::_Serialize(nsTornadoEditor::TEditorInfoTagCompone
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsTornadoEditor::TEditorInfoTagComponent* p, const Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent* p, const Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------

@@ -65,6 +65,9 @@
     <ClCompile Include="FunctionMemberTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InheritanceTemplateTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
@@ -149,6 +152,9 @@
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
     <ClInclude Include="FunctionMember.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="InheritanceTemplate.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
   </ItemGroup>

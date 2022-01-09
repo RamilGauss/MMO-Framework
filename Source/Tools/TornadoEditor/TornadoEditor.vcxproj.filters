@@ -65,11 +65,14 @@
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Handlers\OnOpenFileHierarchyWindowHandler.cpp">
-      <Filter>Handlers</Filter>
-    </ClCompile>
     <ClCompile Include="Handlers\OnMouseClickFileNodeHandler.cpp">
       <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\FileHierarchyWindowRefreshSystem.cpp">
+      <Filter>Features\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Handlers\OnFileHierarchyClickHandler.cpp">
+      <Filter>Handlers\Menu\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +169,21 @@
     <Filter Include="Components\WindowTags">
       <UniqueIdentifier>{7287816e-b46b-4b4f-9a9f-81d8461d02bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\ServiceTags">
+      <UniqueIdentifier>{05ac273a-0353-470b-a744-6f2ee2aac637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Windows">
+      <UniqueIdentifier>{8d488379-421f-4a89-b14b-8ed4d02dcf98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers\Menu">
+      <UniqueIdentifier>{f7107922-864a-4f30-8c96-0887daf1dd4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers\Menu\View">
+      <UniqueIdentifier>{6b7ba718-bad3-44d6-ae9a-3107af34c9e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers\Menu\File">
+      <UniqueIdentifier>{a04c6b19-5d7f-47b6-b1db-3f3249e68896}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h">
@@ -249,12 +267,6 @@
     <ClInclude Include="Handlers\OnCloseWindowHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnOpenProjectClickHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Handlers\OnExitClickHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
@@ -270,9 +282,6 @@
     <ClInclude Include="Components\ProjectConfigComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnOpenFileHierarchyWindowHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="Components\FilePathNodeComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -287,6 +296,21 @@
     </ClInclude>
     <ClInclude Include="Components\InspectorWindowTagComponent.h">
       <Filter>Components\WindowTags</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\FileHierarchyWindowRefreshTagComponent.h">
+      <Filter>Components\ServiceTags</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\FileHierarchyWindowRefreshSystem.h">
+      <Filter>Features\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OnExitClickHandler.h">
+      <Filter>Handlers\Menu\File</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OnOpenProjectClickHandler.h">
+      <Filter>Handlers\Menu\File</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OnFileHierarchyClickHandler.h">
+      <Filter>Handlers\Menu\View</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,13 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-
-#include "LogicTerminatorFeature.h"
+#include "ObjectFeature.h"
 
 using namespace nsLogicWrapper;
 
-void TLogicTerminatorFeature::InitConveyor()
+void TObjectFeature::InitConveyor()
 {
-    Add(&mSystemTerminatorSystem);
-    Add(&mObjectInstanceEndHandlerTerminatorSystem);
+    Add(&mNeedDestroyObjectSystem);
 }

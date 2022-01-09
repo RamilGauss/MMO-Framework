@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "FeatureComponent.h"
+#include "SystemComponent.h"
 
 namespace nsLogicWrapper
 {
-    class DllExport TFeatureMakerSystem :
-        public nsECSFramework::TOnAddCollectReactiveSystem<nsLogicWrapper::TFeatureComponent, TFeatureMakerSystem>
+    class DllExport TSystemMakerSystem :
+        public nsECSFramework::TOnAddCollectReactiveSystem<nsLogicWrapper::TSystemComponent, TSystemMakerSystem>
     {
     public:
-        void Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TFeatureComponent* pC);
+        void Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TSystemComponent* pC);
     };
 }

@@ -5,39 +5,39 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "LogicSlotManager.h"
+#include "FeatureManager.h"
 
 using namespace nsTornadoEngine;
 using namespace nsECSFramework;
 
-TLogicSlotManager::~TLogicSlotManager()
+TFeatureManager::~TFeatureManager()
 {
     Clear();
 }
 //--------------------------------------------------------------------
-void TLogicSlotManager::Work()
+void TFeatureManager::Work()
 {
     for (auto& slot : mSlots) {
-        slot->Work();
+        slot->Execute();
     }
 }
 //--------------------------------------------------------------------
-void TLogicSlotManager::AddFeature(TFeature* p)
+void TFeatureManager::AddSystem(TSystem* p)
 {
-    GetCurrentSlot()->AddFeature(p);
+    GetCurrentSlot()->Add(p);
 }
 //--------------------------------------------------------------------
-void TLogicSlotManager::RemoveFeature(TFeature* p)
+void TFeatureManager::RemoveSystem(TSystem* p)
 {
-    GetCurrentSlot()->RemoveFeature(p);
+    GetCurrentSlot()->Remove(p);
 }
 //--------------------------------------------------------------------
-bool TLogicSlotManager::HasFeature(nsECSFramework::TFeature* p)
+bool TFeatureManager::HasSystem(nsECSFramework::TSystem* p)
 {
-    return GetCurrentSlot()->HasFeature(p);
+    return GetCurrentSlot()->Has(p);
 }
 //--------------------------------------------------------------------
-void TLogicSlotManager::SetCurrentSlotIndex(int index)
+void TFeatureManager::SetCurrentSlotIndex(int index)
 {
     if (index < 0 && index >= GetSlotCount()) {
         BL_FIX_BUG();
@@ -46,26 +46,26 @@ void TLogicSlotManager::SetCurrentSlotIndex(int index)
     mCurrentIndex = index;
 }
 //--------------------------------------------------------------------
-int TLogicSlotManager::GetCurrentSlotIndex() const
+int TFeatureManager::GetCurrentSlotIndex() const
 {
     return mCurrentIndex;
 }
 //--------------------------------------------------------------------
-nsECSFramework::TEntityManager* TLogicSlotManager::GetCurrentEntMng() const
+nsECSFramework::TEntityManager* TFeatureManager::GetCurrentEntMng() const
 {
     return GetCurrentSlot()->GetEntMng();
 }
 //--------------------------------------------------------------------
-int TLogicSlotManager::CreateSlot(nsECSFramework::TEntityManager* pEntMng)
+int TFeatureManager::CreateSlot(nsECSFramework::TEntityManager* pEntMng)
 {
-    auto newSlot = new TLogicSlot();
+    auto newSlot = new TFeature();
     newSlot->SetEntMng(pEntMng);
     mSlots.push_back(newSlot);
     
     return GetSlotCount() - 1;
 }
 //--------------------------------------------------------------------
-void TLogicSlotManager::DestroyLastSlot()
+void TFeatureManager::DestroyLastSlot()
 {
     auto count = GetSlotCount();
     if (count == 0) {
@@ -76,17 +76,17 @@ void TLogicSlotManager::DestroyLastSlot()
     mSlots.pop_back();
 }
 //--------------------------------------------------------------------
-int TLogicSlotManager::GetSlotCount() const
+int TFeatureManager::GetSlotCount() const
 {
     return mSlots.size();
 }
 //--------------------------------------------------------------------
-TLogicSlot* TLogicSlotManager::GetCurrentSlot() const
+TFeature* TFeatureManager::GetCurrentSlot() const
 {
     return mSlots[mCurrentIndex];
 }
 //--------------------------------------------------------------------
-void TLogicSlotManager::Clear()
+void TFeatureManager::Clear()
 {
     while (GetSlotCount() > 0) {
         DestroyLastSlot();
