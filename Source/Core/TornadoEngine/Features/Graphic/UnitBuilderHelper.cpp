@@ -21,6 +21,7 @@ See for more information LICENSE.md.
 #include "MenuNodeComponent.h"
 #include "TreeNodeComponent.h"
 #include "LabelValueComponent.h"
+#include "SelectedTreeNodeGuidComponent.h"
 
 using namespace nsGraphicWrapper;
 
@@ -182,6 +183,14 @@ void TUnitBuilderHelper::SetupTreeView(nsECSFramework::TEntityManager* entMng,
     }
 
     AddWidgetToParent(entMng, parentEid, pTreeNode);
+
+    pTreeNode->mOnSelectionEventCB.Register(pTreeNode, [eid, entMng](nsImGuiWidgets::TTreeNode* pSelectedTreeNode)
+    {
+        nsGuiWrapper::TSelectedTreeNodeGuidComponent selectedTreeNodeGuidComponent;
+        selectedTreeNodeGuidComponent.value =
+            pSelectedTreeNode == nullptr ? nsTornadoEngine::TGuidConstants::NONE : pSelectedTreeNode->mStrId;
+        entMng->SetComponent(eid, selectedTreeNodeGuidComponent);
+    });
 }
 //-----------------------------------------------------------------------------------------------------------------------
 void TUnitBuilderHelper::AddWidgetToParent(nsECSFramework::TEntityManager* entMng, nsECSFramework::TEntityID parentEid,

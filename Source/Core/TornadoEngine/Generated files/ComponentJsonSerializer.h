@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_09 09:39:43.795
+// File has been generated at 2022_01_10 22:47:23.760
 	
 #pragma once
 
@@ -146,6 +146,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsGuiWrapper::TPositionComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TPositionComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TSelectedTreeNodeGuidComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TSelectedTreeNodeGuidComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TSizeComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TSizeComponent* p, const Jobj& obj);

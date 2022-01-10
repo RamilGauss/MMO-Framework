@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_09 09:44:00.218
+// File has been generated at 2022_01_10 22:51:06.393
 	
 #pragma once
 
@@ -42,6 +42,9 @@ namespace nsTornadoEditor
         static void _Serialize(nsTornadoEditor::TAbsoluteFilePathComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEditor::TAbsoluteFilePathComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsTornadoEditor::TAssetAbsoluteFilePathComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEditor::TAssetAbsoluteFilePathComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsTornadoEditor::TEditorInfoTagComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEditor::TEditorInfoTagComponent* p, const Jobj& obj);
         
@@ -56,6 +59,9 @@ namespace nsTornadoEditor
         
         static void _Serialize(nsTornadoEditor::TInspectorWindowTagComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEditor::TInspectorWindowTagComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEditor::TObjectHierarchyWindowRefreshTagComponent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEditor::TObjectHierarchyWindowRefreshTagComponent* p, const Jobj& obj);
         
         static void _Serialize(nsTornadoEditor::TObjectHierarchyWindowTagComponent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEditor::TObjectHierarchyWindowTagComponent* p, const Jobj& obj);

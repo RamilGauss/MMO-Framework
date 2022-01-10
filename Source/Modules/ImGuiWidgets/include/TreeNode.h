@@ -32,8 +32,6 @@ namespace nsImGuiWidgets
 
         bool mIsOpen = false;
 
-        //bool mChooseText = false;
-
     public:
         TTreeNode();
         ~TTreeNode();

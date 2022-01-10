@@ -7,7 +7,29 @@ See for more information LICENSE.md.
 
 #include "OnMouseClickFileNodeHandler.h"
 
+#include <filesystem>
+
+#include <ECS/include/Helper.h>
+
+#include "Modules.h"
+#include "StopAccessor.h"
+#include "SceneManager.h"
+#include "PrefabManager.h"
+#include "HierarchyHelper.h"
+#include "PrefabObjectConstructor.h"
+#include "SceneInstanceGuidComponent.h"
+#include "FilePathNodeComponent.h"
+#include "ObjectHierarchyWindowTagComponent.h"
+#include "ObjectHierarchyWindowRefreshTagComponent.h"
+#include "EditorInfoTagComponent.h"
+#include "AssetAbsoluteFilePathComponent.h"
+
+#include "SelectedTreeNodeGuidComponent.h"
+
 using namespace nsTornadoEditor;
+using namespace nsTornadoEngine;
+
+namespace fs = std::filesystem;
 
 void TOnMouseClickFileNodeHandler::Handle(nsECSFramework::TEntityID eid, const nsGraphicEngine::TMouseButtonEvent event)
 {
@@ -20,4 +42,66 @@ void TOnMouseClickFileNodeHandler::Handle(nsECSFramework::TEntityID eid, const n
     }
 
     //TODO: open scene or prefab editing window
+    auto sceneMng = nsTornadoEngine::Modules()->SceneMng();
+    auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
+    auto stopAccessor = nsTornadoEngine::Modules()->StopAccessor();
+    auto entMng = nsTornadoEngine::Modules()->EntMng();
+    auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
+
+    prefabObjConstructor->EntMng()->Clear();
+
+    auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid)->value;
+
+    auto hierarchy = nsTornadoEngine::Modules()->HierarchyHelper();
+
+    auto selectedTreeNodeGuidComponent = entMng->ViewComponent<nsGuiWrapper::TSelectedTreeNodeGuidComponent>(eid);
+
+    if (selectedTreeNodeGuidComponent == nullptr ||
+        selectedTreeNodeGuidComponent->value == nsTornadoEngine::TGuidConstants::NONE) {
+        return;
+    }
+
+    nsCommonWrapper::TGuidComponent guidComponent;
+    guidComponent.value = selectedTreeNodeGuidComponent->value;
+    auto selectedTreeNodeEid = entMng->GetByUnique(guidComponent);
+
+    if (selectedTreeNodeEid == nsECSFramework::NONE) {
+        return;
+    }
+
+    auto absPath =
+        entMng->ViewComponent<TFilePathNodeComponent>(selectedTreeNodeEid)->value;
+
+    auto path = fs::path(absPath);
+
+    auto ext = path.extension();
+
+    if (ext.string() != ".prefab"&& ext.string() != ".scene") {
+        return;
+    }
+
+    auto fileHierarchyWindowEid = nsECSFramework::SingleEntity<TObjectHierarchyWindowTagComponent>(entMng);
+
+    auto editorInfoTagEid = nsECSFramework::SingleEntity<TEditorInfoTagComponent>(entMng);
+    TAssetAbsoluteFilePathComponent assetAbsoluteFilePathComponent;
+    assetAbsoluteFilePathComponent.value = absPath;
+
+    entMng->SetComponent(editorInfoTagEid, assetAbsoluteFilePathComponent);
+
+    if (fileHierarchyWindowEid == nsECSFramework::NONE) {
+        prefabMng->InstantiateByGuid("4", sceneInstanceGuid);
+    } else {
+
+        // Destroy file hierarchy
+        auto hierarchyHelper = nsTornadoEngine::Modules()->HierarchyHelper();
+
+        auto treeViewEid = hierarchyHelper->GetChildByName(fileHierarchyWindowEid, "TreeView");
+
+        auto treeNodeEids = hierarchyHelper->GetChilds(treeViewEid);
+        for (auto& treeNodeEid : treeNodeEids) {
+            prefabMng->Destroy(treeNodeEid);
+        }
+
+        entMng->SetComponent(fileHierarchyWindowEid, TObjectHierarchyWindowRefreshTagComponent());
+    }
 }

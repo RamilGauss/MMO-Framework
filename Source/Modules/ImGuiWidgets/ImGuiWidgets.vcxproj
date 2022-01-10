@@ -36,6 +36,7 @@
     <ClInclude Include="include\Geometry.h" />
     <ClInclude Include="include\Helper.h" />
     <ClInclude Include="include\Identity.h" />
+    <ClInclude Include="include\ImGuiCustom.h" />
     <ClInclude Include="include\InputInt.h" />
     <ClInclude Include="include\InputMultiText.h" />
     <ClInclude Include="include\InputText.h" />
@@ -74,6 +75,7 @@
     <ClCompile Include="src\Geometry.cpp" />
     <ClCompile Include="src\Helper.cpp" />
     <ClCompile Include="src\Identity.cpp" />
+    <ClCompile Include="src\ImGuiCustom.cpp" />
     <ClCompile Include="src\InputInt.cpp" />
     <ClCompile Include="src\InputMultiText.cpp" />
     <ClCompile Include="src\InputText.cpp" />

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_09 09:39:43.800
+// File has been generated at 2022_01_10 22:47:23.765
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -460,6 +460,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGuiWrapper_TPositionComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TPositionComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TPositionComponentTypeFunc, _nsGuiWrapper_TPositionComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc;
+    _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TSelectedTreeNodeGuidComponent>((nsGuiWrapper::TSelectedTreeNodeGuidComponent*) p, str);
+    };
+    _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TSelectedTreeNodeGuidComponent>((nsGuiWrapper::TSelectedTreeNodeGuidComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TSelectedTreeNodeGuidComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc, _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TSizeComponentTypeFunc;
     _nsGuiWrapper_TSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -1005,6 +1017,16 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TPositionComponent* p,
 {
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TSelectedTreeNodeGuidComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TSelectedTreeNodeGuidComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TSizeComponent* p, Jobj& obj)

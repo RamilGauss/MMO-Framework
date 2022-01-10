@@ -24,6 +24,9 @@
     <Filter Include="Docking\Light">
       <UniqueIdentifier>{cfe46495-fed0-4a48-8d8f-911f840810e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Custom">
+      <UniqueIdentifier>{9261b8d3-1e94-4a88-90fc-5f5f3e71c38b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -137,6 +140,9 @@
     <ClInclude Include="include\DialogStack.h">
       <Filter>Frames</Filter>
     </ClInclude>
+    <ClInclude Include="include\ImGuiCustom.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Helper.cpp">
@@ -246,6 +252,9 @@
     </ClCompile>
     <ClCompile Include="src\DialogStack.cpp">
       <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGuiCustom.cpp">
+      <Filter>Custom</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

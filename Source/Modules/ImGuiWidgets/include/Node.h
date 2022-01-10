@@ -20,10 +20,6 @@ namespace nsImGuiWidgets
         int mWidth = 0;
         int mHeight = 0;
 
-        bool mChooseText = false;
-
-        void RenderContent(float offset_from_start_x = 0.0f, float spacing = -1.0f);
-
     public:
         std::string mStrId;
         std::string mParentId;

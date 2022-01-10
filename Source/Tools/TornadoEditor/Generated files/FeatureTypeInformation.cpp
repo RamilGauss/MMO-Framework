@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_09 09:44:01.029
+// File has been generated at 2022_01_10 22:51:07.299
 	
 #include "FeatureTypeInformation.h"
 
@@ -44,6 +44,18 @@ void TFeatureTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshSystem_n);
     mRttiList.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshSystem_i);
     mNameRttiMap.insert({ nsTornadoEditor_TFileHierarchyWindowRefreshSystem_n, nsTornadoEditor_TFileHierarchyWindowRefreshSystem_i });
+    
+    int nsTornadoEditor_TMainFeature_i = globalTypeIdentifier->Type<nsTornadoEditor::TMainFeature>();
+    std::string nsTornadoEditor_TMainFeature_n = "nsTornadoEditor::TMainFeature";
+    mTypeNameList.push_back(nsTornadoEditor_TMainFeature_n);
+    mRttiList.push_back(nsTornadoEditor_TMainFeature_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TMainFeature_n, nsTornadoEditor_TMainFeature_i });
+    
+    int nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_i = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowRefreshSystem>();
+    std::string nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_n = "nsTornadoEditor::TObjectHierarchyWindowRefreshSystem";
+    mTypeNameList.push_back(nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_n);
+    mRttiList.push_back(nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_n, nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

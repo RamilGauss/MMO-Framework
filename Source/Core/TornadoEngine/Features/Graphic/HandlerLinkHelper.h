@@ -110,7 +110,9 @@ namespace nsGraphicWrapper
             for (auto& pHandler : handlers) {
                 handlerCallCollector->Add([mouseEvent, pHandler, eid]()
                 {
-                    pHandler->handler->Handle(eid, mouseEvent);
+                    if (pHandler->handler) {
+                        pHandler->handler->Handle(eid, mouseEvent);
+                    }
                 });
             }
         });
@@ -122,7 +124,9 @@ namespace nsGraphicWrapper
             for (auto& pHandler : handlers) {
                 handlerCallCollector->Add([mouseEvent, pHandler, eid]()
                 {
-                    pHandler->handler->Handle(eid, mouseEvent);
+                    if (pHandler->handler) {
+                        pHandler->handler->Handle(eid, mouseEvent);
+                    }
                 });
             }
         });
@@ -134,7 +138,9 @@ namespace nsGraphicWrapper
             for (auto& pHandler : handlers) {
                 handlerCallCollector->Add([mouseEvent, pHandler, eid]()
                 {
-                    pHandler->handler->Handle(eid, mouseEvent);
+                    if (pHandler->handler) {
+                        pHandler->handler->Handle(eid, mouseEvent);
+                    }
                 });
             }
         });
@@ -146,7 +152,9 @@ namespace nsGraphicWrapper
             for (auto& pHandler : handlers) {
                 handlerCallCollector->Add([keyEvent, pHandler, eid]()
                 {
-                    pHandler->handler->Handle(eid, keyEvent);
+                    if (pHandler->handler) {
+                        pHandler->handler->Handle(eid, keyEvent);
+                    }
                 });
             }
         });

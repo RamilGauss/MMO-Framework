@@ -7,28 +7,26 @@ See for more information LICENSE.md.
 
 #include "OpenProjectOkButtonClickHandler.h"
 
+#include <ECS/include/Helper.h>
+
+#include "TextFile.h"
+
 #include "Modules.h"
 #include "StopAccessor.h"
 #include "SceneManager.h"
 #include "PrefabManager.h"
+#include "HierarchyHelper.h"
+#include "PrefabObjectConstructor.h"
 
 #include "SceneInstanceGuidComponent.h"
-
 #include "SceneObjectReferenceComponent.h"
 #include "PrefabReferenceComponent.h"
-
-#include "HierarchyHelper.h"
 #include "EditorInfoTagComponent.h"
-
 #include "InputTextValueComponent.h"
 #include "AbsoluteFilePathComponent.h"
-
-#include <ECS/include/Helper.h>
-
 #include "ProjectConfigComponent.h"
-#include "TextFile.h"
+
 #include "TornadoEngineJsonSerializer.h"
-#include "PrefabObjectConstructor.h"
 #include "TitleComponent.h"
 #include "LabelValueComponent.h"
 #include "FileHierarchyWindowTagComponent.h"

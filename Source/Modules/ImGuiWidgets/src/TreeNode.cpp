@@ -11,6 +11,8 @@ See for more information LICENSE.md.
 
 #include <imgui_internal.h>
 
+#include "ImGuiCustom.h"
+
 using namespace nsImGuiWidgets;
 using namespace std::placeholders;
 
@@ -85,9 +87,10 @@ void TTreeNode::Render()
         }
     } else {
 
-        mIsOpen = ImGui::TreeNodeEx(mStrId.c_str(), mode, "");
+        const auto textureSize = ImVec2(mWidth, mHeight);
+
+        mIsOpen = TImGuiCustom::TreeNodeExV(mStrId.c_str(), mode, GetTitle().c_str(), mTextureId, textureSize);
         
-        RenderContent();
         SearchEvents();
 
         if (mIsOpen) {
@@ -108,7 +111,7 @@ void TTreeNode::SearchEvents()
     SetPos(pos);
     SetSize(size);
 
-    if (ImGui::IsItemClicked() || mChooseText) {
+    if (ImGui::IsItemClicked()) {
         mOnLeftClickCB.Notify(this);
     }
     if (ImGui::IsItemFocused()) {
@@ -139,14 +142,4 @@ TTreeView* TTreeNode::GetTreeView() const
     return mTreeView;
 }
 //-------------------------------------------------------------------------
-//void TTreeNode::RenderContent()
-//{
-//    ImGui::SameLine();
-//    if (mTextureId != nullptr) {
-//        ImGui::Image(mTextureId, ImVec2(mWidth, mHeight));
-//        ImGui::SameLine();
-//    }
-//
-//    mChooseText = ImGui::Selectable(GetTitle().c_str(), false);
-//}
-////-------------------------------------------------------------------------
+

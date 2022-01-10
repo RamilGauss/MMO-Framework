@@ -31,7 +31,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TSystemComponent",
-                    "jsonBody": "{\"typeName\":\"nsTornadoEditor::TFileHierarchyWindowRefreshSystem\"}"
+                    "jsonBody": "{\"typeName\":\"nsTornadoEditor::TMainFeature\"}"
                 }
             ]
         },

@@ -213,6 +213,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
     <ClCompile Include="Features\BootstrapperSystem.cpp" />
     <ClCompile Include="Features\FileHierarchyWindowRefreshSystem.cpp" />
+    <ClCompile Include="Features\MainFeature.cpp" />
+    <ClCompile Include="Features\ObjectHierarchyWindowRefreshSystem.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtensionImpl.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
@@ -234,6 +236,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Handlers\OnFileHierarchyClickHandler.cpp" />
     <ClCompile Include="Handlers\OnMouseClickFileNodeHandler.cpp" />
+    <ClCompile Include="Handlers\OnOpenProjectClickHandler.cpp" />
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +252,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
     <None Include="Prefabs\FileNode.prefab">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="Prefabs\ObjectHierarchyWindow.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>
     <None Include="Prefabs\OpenProjectDialog.prefab">
@@ -284,16 +290,20 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\AbsoluteFilePathComponent.h" />
+    <ClInclude Include="Components\AssetAbsoluteFilePathComponent.h" />
     <ClInclude Include="Components\EditorInfoTagComponent.h" />
     <ClInclude Include="Components\FileHierarchyWindowRefreshTagComponent.h" />
     <ClInclude Include="Components\FilePathNodeComponent.h" />
     <ClInclude Include="Components\FileHierarchyWindowTagComponent.h" />
     <ClInclude Include="Components\InspectorWindowTagComponent.h" />
+    <ClInclude Include="Components\ObjectHierarchyWindowRefreshTagComponent.h" />
     <ClInclude Include="Components\ObjectHierarchyWindowTagComponent.h" />
     <ClInclude Include="Components\ProjectConfigComponent.h" />
     <ClInclude Include="Features\BootstrapperFeature.h" />
     <ClInclude Include="Features\BootstrapperSystem.h" />
     <ClInclude Include="Features\FileHierarchyWindowRefreshSystem.h" />
+    <ClInclude Include="Features\MainFeature.h" />
+    <ClInclude Include="Features\ObjectHierarchyWindowRefreshSystem.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtensionImpl.h" />
     <ClInclude Include="Generated files\ComponentIncludeList.h" />

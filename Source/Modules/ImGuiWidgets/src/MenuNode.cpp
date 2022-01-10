@@ -6,6 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "MenuNode.h"
+#include "ImGuiCustom.h"
 
 using namespace nsImGuiWidgets;
 
@@ -47,18 +48,15 @@ void TMenuNode::Render()
         }
     } else {
 
+        const auto textureSize = ImVec2(mWidth, mHeight);
+
         bool open = false;
         if (mIsCheckable) {
-            open = ImGui::MenuItem(GetTitle().c_str(), nullptr, &mIsChecked);
+            open = TImGuiCustom::MenuItem(GetTitle().c_str(), nullptr, &mIsChecked, true, mTextureId, textureSize);
         } else {
-            std::string title = (mTextureId == nullptr) ? GetTitle() : "";
-            open = ImGui::MenuItem(title.c_str());
-
-            if (mTextureId != nullptr) {
-                RenderContent(-1, mWidth / 2);
-            }
+            open = TImGuiCustom::MenuItem(GetTitle().c_str(), nullptr, false, true, mTextureId, textureSize);
         }
-        if (open || mChooseText) {
+        if (open) {
             mOnLeftClickCB.Notify(this);
         }
     }

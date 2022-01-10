@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_09 09:39:43.833
+// File has been generated at 2022_01_10 22:47:23.800
 	
 #include "ComponentTypeInformation.h"
 
@@ -236,6 +236,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TPositionComponent_n);
     mRttiList.push_back(nsGuiWrapper_TPositionComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TPositionComponent_n, nsGuiWrapper_TPositionComponent_i });
+    
+    int nsGuiWrapper_TSelectedTreeNodeGuidComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TSelectedTreeNodeGuidComponent>();
+    std::string nsGuiWrapper_TSelectedTreeNodeGuidComponent_n = "nsGuiWrapper::TSelectedTreeNodeGuidComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TSelectedTreeNodeGuidComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TSelectedTreeNodeGuidComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TSelectedTreeNodeGuidComponent_n, nsGuiWrapper_TSelectedTreeNodeGuidComponent_i });
     
     int nsGuiWrapper_TSizeComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TSizeComponent>();
     std::string nsGuiWrapper_TSizeComponent_n = "nsGuiWrapper::TSizeComponent";

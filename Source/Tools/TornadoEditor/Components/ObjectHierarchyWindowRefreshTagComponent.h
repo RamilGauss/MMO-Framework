@@ -7,13 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IMenuNodeClickHandler.h"
+#include <string>
+
+#include "TypeDef.h"
+
+#include <ECS/include/IComponent.h>
 
 namespace nsTornadoEditor
 {
-    class DllExport TOnOpenProjectClickHandler : public nsGuiWrapper::IMenuNodeClickHandler
+    struct DllExport TObjectHierarchyWindowRefreshTagComponent : nsECSFramework::IComponent
     {
-    public:
-        void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TMenuNodeComponent* pC) override;
     };
 }

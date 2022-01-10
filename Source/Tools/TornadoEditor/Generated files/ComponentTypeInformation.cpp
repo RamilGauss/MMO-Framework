@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_09 09:44:00.228
+// File has been generated at 2022_01_10 22:51:06.402
 	
 #include "ComponentTypeInformation.h"
 
@@ -33,6 +33,12 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsTornadoEditor_TAbsoluteFilePathComponent_i);
     mNameRttiMap.insert({ nsTornadoEditor_TAbsoluteFilePathComponent_n, nsTornadoEditor_TAbsoluteFilePathComponent_i });
     
+    int nsTornadoEditor_TAssetAbsoluteFilePathComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TAssetAbsoluteFilePathComponent>();
+    std::string nsTornadoEditor_TAssetAbsoluteFilePathComponent_n = "nsTornadoEditor::TAssetAbsoluteFilePathComponent";
+    mTypeNameList.push_back(nsTornadoEditor_TAssetAbsoluteFilePathComponent_n);
+    mRttiList.push_back(nsTornadoEditor_TAssetAbsoluteFilePathComponent_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TAssetAbsoluteFilePathComponent_n, nsTornadoEditor_TAssetAbsoluteFilePathComponent_i });
+    
     int nsTornadoEditor_TEditorInfoTagComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TEditorInfoTagComponent>();
     std::string nsTornadoEditor_TEditorInfoTagComponent_n = "nsTornadoEditor::TEditorInfoTagComponent";
     mTypeNameList.push_back(nsTornadoEditor_TEditorInfoTagComponent_n);
@@ -62,6 +68,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TInspectorWindowTagComponent_n);
     mRttiList.push_back(nsTornadoEditor_TInspectorWindowTagComponent_i);
     mNameRttiMap.insert({ nsTornadoEditor_TInspectorWindowTagComponent_n, nsTornadoEditor_TInspectorWindowTagComponent_i });
+    
+    int nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowRefreshTagComponent>();
+    std::string nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_n = "nsTornadoEditor::TObjectHierarchyWindowRefreshTagComponent";
+    mTypeNameList.push_back(nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_n);
+    mRttiList.push_back(nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_n, nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_i });
     
     int nsTornadoEditor_TObjectHierarchyWindowTagComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowTagComponent>();
     std::string nsTornadoEditor_TObjectHierarchyWindowTagComponent_n = "nsTornadoEditor::TObjectHierarchyWindowTagComponent";

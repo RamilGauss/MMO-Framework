@@ -74,6 +74,15 @@
     <ClCompile Include="Handlers\OnFileHierarchyClickHandler.cpp">
       <Filter>Handlers\Menu\View</Filter>
     </ClCompile>
+    <ClCompile Include="Handlers\OnOpenProjectClickHandler.cpp">
+      <Filter>Handlers\Menu\File</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\ObjectHierarchyWindowRefreshSystem.cpp">
+      <Filter>Features\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\MainFeature.cpp">
+      <Filter>Features\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -108,6 +117,9 @@
       <Filter>Prefabs</Filter>
     </None>
     <None Include="Prefabs\FileNode.prefab">
+      <Filter>Prefabs</Filter>
+    </None>
+    <None Include="Prefabs\ObjectHierarchyWindow.prefab">
       <Filter>Prefabs</Filter>
     </None>
   </ItemGroup>
@@ -183,6 +195,12 @@
     </Filter>
     <Filter Include="Handlers\Menu\File">
       <UniqueIdentifier>{a04c6b19-5d7f-47b6-b1db-3f3249e68896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers\Menu\Help">
+      <UniqueIdentifier>{de0d5b8c-7f5b-403c-b2b8-d8ba55405ea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\ProjectEntity">
+      <UniqueIdentifier>{bc0b2afa-307f-4583-936d-c73df2e5500b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -270,17 +288,8 @@
     <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\AbsoluteFilePathComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\OpenProjectCancelButtonClickHandler.h">
       <Filter>Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\EditorInfoTagComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\ProjectConfigComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Components\FilePathNodeComponent.h">
       <Filter>Components</Filter>
@@ -311,6 +320,27 @@
     </ClInclude>
     <ClInclude Include="Handlers\OnFileHierarchyClickHandler.h">
       <Filter>Handlers\Menu\View</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ObjectHierarchyWindowRefreshTagComponent.h">
+      <Filter>Components\ServiceTags</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\ObjectHierarchyWindowRefreshSystem.h">
+      <Filter>Features\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ProjectConfigComponent.h">
+      <Filter>Components\ProjectEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\EditorInfoTagComponent.h">
+      <Filter>Components\ProjectEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\AbsoluteFilePathComponent.h">
+      <Filter>Components\ProjectEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\AssetAbsoluteFilePathComponent.h">
+      <Filter>Components\ProjectEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\MainFeature.h">
+      <Filter>Features\Windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
