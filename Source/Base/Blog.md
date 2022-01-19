@@ -19,6 +19,10 @@ See for more information LICENSE.md.
 
 #### "DONE"
 
+2022.01.19:
+ - Universe Index - для каждой вселенной контекст для каждого движка: Graphic, Gui, Sound, Physic.
+TUniverseIndexComponent {uint16_t value;}
+
 2022.01.15:
  - Создал проект BigJack для аппробирования новой версии Ogre. SDL2 будет доставаться из conan.
  imgui-docking будет отдельно, но тоже как зависимость.
