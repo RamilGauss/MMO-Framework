@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_11 07:38:55.335
+// File has been generated at 2022_01_29 20:15:44.429
 	
 #include "ComponentTypeInformation.h"
 
@@ -110,6 +110,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsCommonWrapper_TTransformComponent_n);
     mRttiList.push_back(nsCommonWrapper_TTransformComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TTransformComponent_n, nsCommonWrapper_TTransformComponent_i });
+    
+    int nsCommonWrapper_TUniverseGuidComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseGuidComponent>();
+    std::string nsCommonWrapper_TUniverseGuidComponent_n = "nsCommonWrapper::TUniverseGuidComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TUniverseGuidComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TUniverseGuidComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TUniverseGuidComponent_n, nsCommonWrapper_TUniverseGuidComponent_i });
     
     int nsGraphicWrapper_TCameraComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraComponent>();
     std::string nsGraphicWrapper_TCameraComponent_n = "nsGraphicWrapper::TCameraComponent";

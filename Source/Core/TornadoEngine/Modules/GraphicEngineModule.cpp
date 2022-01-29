@@ -54,7 +54,7 @@ bool TGraphicEngineModule::StartEvent()
     auto pluginCfg = TPathOperations::CalculatePathBy(resPath, resources.pluginsCfg.Get());
     auto ogreCfg = TPathOperations::CalculatePathBy(resPath, resources.ogreCfg.Get());
     // настройка перед запуском
-    if (mGE->InitOGRE(pluginCfg, ogreCfg) == false) {
+    if (mGE->Init(pluginCfg, ogreCfg) == false) {
         return false;
     }
     // пути для ресурсов графического движка
@@ -64,17 +64,6 @@ bool TGraphicEngineModule::StartEvent()
             mGE->AddResource(absPath, vtTypePath.first);
         }
     }
-
-    mGE->InitMyGUI();
-
-    auto keyMouse = Modules()->KeyMouse();
-    mGE->SetKeyMouseEventContainer(keyMouse);
-    nsImGuiWidgets::TWidget::SetInputContainer(keyMouse);
-
-    //###
-    // Костыль
-    mGE->AddRender(&mDialogStack);
-    //###
 
     return true;
 }
@@ -92,5 +81,21 @@ void TGraphicEngineModule::SetGE(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE
 nsImGuiWidgets::TDialogStack* TGraphicEngineModule::GetDialogStack()
 {
     return &mDialogStack;
+}
+//---------------------------------------------------------------------------------
+TGraphicEngineContext* TGraphicEngineModule::CreateContext()
+{
+    auto pCtx = new TGraphicEngineContext();
+    pCtx->Init(GetGE());
+    //pCtx->guiCtx = ImGui::CreateContext();
+    // ...
+    return pCtx;
+}
+//---------------------------------------------------------------------------------
+void TGraphicEngineModule::DestroyContext(TGraphicEngineContext* pCtx)
+{
+    //ImGui::DestroyContext(pCtx->guiCtx);
+    // ...
+    delete pCtx;
 }
 //---------------------------------------------------------------------------------

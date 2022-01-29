@@ -12,9 +12,14 @@ See for more information LICENSE.md.
 #include "Modules.h"
 #include "GraphicEngineModule.h"
 
+#include "UniverseGuidComponent.h"
+
 using namespace nsGraphicWrapper;
 
 void TMainWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TMainWindowComponent* pMainWindowComponent)
 {
-    nsTornadoEngine::Modules()->G()->GetGE()->AddRender(pMainWindowComponent->value);
+    auto universeGuid = GetEntMng()->ViewComponent<nsCommonWrapper::TUniverseGuidComponent>(eid)->value;
+
+    auto pContext = nsTornadoEngine::Modules()->G()->GetContext(universeGuid);
+    pContext->AddRender(pMainWindowComponent->value);
 }

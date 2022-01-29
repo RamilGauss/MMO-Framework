@@ -18,5 +18,7 @@ namespace nsTornadoEngine
     public:
         static inline const std::string NONE = "NONE";
         static inline const std::string THIS_SCENE = "THIS_SCENE";
+
+        static inline const std::string DEFAULT_UNIVERSE = "DEFAULT_UNIVERSE";
     };
 }

@@ -11,11 +11,16 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/MainWindow.h>
 
+#include "UniverseGuidComponent.h"
+
 using namespace nsGraphicWrapper;
 
 void TMainWindowTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TMainWindowComponent* pMainWindowComponent)
 {
-    nsTornadoEngine::Modules()->G()->GetGE()->RemoveRender(pMainWindowComponent->value);
+    auto universeGuid = GetEntMng()->ViewComponent<nsCommonWrapper::TUniverseGuidComponent>(eid)->value;
+
+    auto pContext = nsTornadoEngine::Modules()->G()->GetContext(universeGuid);
+    pContext->RemoveRender(pMainWindowComponent->value);
 
     delete pMainWindowComponent->value;
     pMainWindowComponent->value = nullptr;

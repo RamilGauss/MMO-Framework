@@ -30,11 +30,12 @@ namespace nsTornadoEngine
         // И наоборот, если не задан родитель, то нужен SceneInstance, что бы найти root.
 
         void InstantiateByGuid(const std::string& prefabGuid, const std::string& sceneInstanceGuid, 
-            const std::string& parentGuid = TGuidConstants::NONE);
+            const std::string& parentGuid = TGuidConstants::NONE, const std::string& universeGuid = TGuidConstants::DEFAULT_UNIVERSE);
         void InstantiateByAbsPath(const std::string& absPath, const std::string& sceneInstanceGuid, 
-            const std::string& parentGuid = TGuidConstants::NONE);
+            const std::string& parentGuid = TGuidConstants::NONE, const std::string& universeGuid = TGuidConstants::DEFAULT_UNIVERSE);
         void InstantiateByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor, nsECSFramework::TEntityID eid, 
-            const std::string& sceneInstanceGuid, const std::string& parentGuid = TGuidConstants::NONE);
+            const std::string& sceneInstanceGuid, const std::string& parentGuid = TGuidConstants::NONE,
+            const std::string& universeGuid = TGuidConstants::DEFAULT_UNIVERSE);
 
 
         void Destroy(nsECSFramework::TEntityID anyEidInScene);

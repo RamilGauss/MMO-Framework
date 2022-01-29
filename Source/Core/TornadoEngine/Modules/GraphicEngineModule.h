@@ -35,6 +35,7 @@ namespace nsTornadoEngine
 
         nsImGuiWidgets::TDialogStack* GetDialogStack() override;
     protected:
-
+        TGraphicEngineContext* CreateContext() override;
+        void DestroyContext(TGraphicEngineContext* pCtx) override;
     };
 }

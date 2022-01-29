@@ -15,6 +15,7 @@
     magic_enum/0.7.3
     openssl/1.Y.Z
     rapidjson/1.Y.Z
+    sdl/2.Y.Z
 
 [options]
 
@@ -34,12 +35,13 @@
     boost/1.78.0:e25da6736836401d14d18eb2361204b3783cc5f4
     bullet3/2.89:d057732059ea44a47760900cb5e4855d2bea8714
     bzip2/1.0.8:589a23dff5fdb23a7fb851223eb766480ead0a9a
-    fmt/8.0.1:c78baded34c8958386c75d3c49a34ce6e77a9de7
+    fmt/8.1.1:c78baded34c8958386c75d3c49a34ce6e77a9de7
     gtest/1.10.0:dc359ea859b0535df467a5278a5ddf943a44739d
     lz4/1.9.3:d057732059ea44a47760900cb5e4855d2bea8714
     magic_enum/0.7.3:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
     openssl/1.1.1k:4f1710918aa542fccb5a54d7bd712e4b0750b50d
     rapidjson/1.1.0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+    sdl/2.0.18:7fbacd5d9c153ab2ef076669a9067213bac1a6f9
     zlib/1.2.11:d057732059ea44a47760900cb5e4855d2bea8714
 
 [full_options]
@@ -176,6 +178,12 @@
     openssl:no_whirlpool=False
     openssl:openssldir=None
     openssl:shared=True
+    sdl:directx=True
+    sdl:opengl=True
+    sdl:opengles=True
+    sdl:sdl2main=True
+    sdl:shared=True
+    sdl:vulkan=True
     zlib:minizip=deprecated
     zlib:shared=False
 

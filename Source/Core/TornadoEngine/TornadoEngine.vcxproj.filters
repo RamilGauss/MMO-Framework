@@ -154,6 +154,9 @@
     <Filter Include="Features\Logic\Object">
       <UniqueIdentifier>{c01218d0-7a6b-4954-8503-e9879746ccea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Contexts">
+      <UniqueIdentifier>{cdd5875f-516e-40b5-94c1-3664c3393c00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -467,6 +470,9 @@
     </ClCompile>
     <ClCompile Include="Features\Graphic\FrameMouseWheelHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\GraphicEngineContext.cpp">
+      <Filter>Modules\Contexts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1063,6 +1069,15 @@
     </ClInclude>
     <ClInclude Include="Components\Gui\SelectedTreeNodeGuidComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\IContextManager.h">
+      <Filter>Modules\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\UniverseGuidComponent.h">
+      <Filter>Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\GraphicEngineContext.h">
+      <Filter>Modules\Contexts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

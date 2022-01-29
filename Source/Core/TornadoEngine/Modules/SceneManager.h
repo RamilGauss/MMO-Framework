@@ -23,8 +23,8 @@ namespace nsTornadoEngine
 
         void Unload(const std::string& sceneGuid);
 
-        void InstantiateByGuid(const std::string& sceneGuid);
-        void InstantiateByAbsPath(const std::string& absPath);
+        void InstantiateByGuid(const std::string& sceneGuid, const std::string& universeGuid = TGuidConstants::DEFAULT_UNIVERSE);
+        void InstantiateByAbsPath(const std::string& absPath, const std::string& universeGuid = TGuidConstants::DEFAULT_UNIVERSE);
 
         void Destroy(const std::string& sceneInstanceGuid);
         void Destroy(nsECSFramework::TEntityID anyEidInScene);

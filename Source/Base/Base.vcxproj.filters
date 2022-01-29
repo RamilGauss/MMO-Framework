@@ -378,9 +378,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Blog.md">
-      <Filter>Docs</Filter>
-    </None>
     <None Include="..\..\Doc\SoftwareDevelopmentPrinciples.md">
       <Filter>Docs</Filter>
     </None>
@@ -388,6 +385,9 @@
       <Filter>Docs</Filter>
     </None>
     <None Include="..\..\readme.md">
+      <Filter>Docs</Filter>
+    </None>
+    <None Include="..\..\Blog.md">
       <Filter>Docs</Filter>
     </None>
   </ItemGroup>

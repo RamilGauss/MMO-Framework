@@ -24,9 +24,11 @@ See for more information LICENSE.md.
 #include "HandlerLinkHelper.h"
 #include "NodeIconComponent.h"
 
+#include "Modules.h"
+#include "GraphicEngineModule.h"
 
-#include <OgreTextureManager.h>
-#include <OgreTexture.h>
+#include "OgreGpuResource.h"
+#include "OgreTextureGpuManager.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;
@@ -42,8 +44,14 @@ void TTreeNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
     if (pTreeNodeIconComponent) {
         
         try {
-            auto mTex = Ogre::TextureManager::getSingleton().load(pTreeNodeIconComponent->iconFileName, "General");
-            auto handle = (void*) (mTex->getHandle());
+            auto root = nsTornadoEngine::Modules()->G()->GetGE()->GetRoot();
+            auto textureGpuMng = root->getRenderSystem()->getTextureGpuManager();
+
+            auto mTex = textureGpuMng->createTexture(pTreeNodeIconComponent->iconFileName,
+                Ogre::GpuPageOutStrategy::SaveToSystemRam,
+                Ogre::TextureFlags::ManualTexture,
+                Ogre::TextureTypes::Type2D);
+            auto handle = (void*) (mTex);
             pTreeNodeComponent->value->SetTexture(handle, pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);
         } catch(...) { 
 

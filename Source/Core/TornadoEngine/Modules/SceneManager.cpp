@@ -60,7 +60,7 @@ void TSceneManager::LoadByGuid(const std::string& sceneGuid)
     LoadByAbsPath(fit->second);
 }
 //--------------------------------------------------------------------------------
-void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
+void TSceneManager::InstantiateByAbsPath(const std::string& absPath, const std::string& universeGuid)
 {
     using namespace nsCommonWrapper;
 
@@ -85,7 +85,7 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath)
     UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, sceneIstanceGuid);
 }
 //--------------------------------------------------------------------------------
-void TSceneManager::InstantiateByGuid(const std::string& sceneGuid)
+void TSceneManager::InstantiateByGuid(const std::string& sceneGuid, const std::string& universeGuid)
 {
     // Convert to abs path
     auto fit = mResourceContentMap.guidPathMap.find(sceneGuid);
@@ -94,7 +94,7 @@ void TSceneManager::InstantiateByGuid(const std::string& sceneGuid)
         return;
     }
 
-    InstantiateByAbsPath(fit->second);
+    InstantiateByAbsPath(fit->second, universeGuid);
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::Unload(const std::string& sceneGuid)

@@ -533,6 +533,30 @@
    "True"
   ],
   [
+   "sdl:directx",
+   "True"
+  ],
+  [
+   "sdl:opengl",
+   "True"
+  ],
+  [
+   "sdl:opengles",
+   "True"
+  ],
+  [
+   "sdl:sdl2main",
+   "True"
+  ],
+  [
+   "sdl:shared",
+   "True"
+  ],
+  [
+   "sdl:vulkan",
+   "True"
+  ],
+  [
    "zlib:minizip",
    "deprecated"
   ],

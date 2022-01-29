@@ -2,17 +2,19 @@
     rapidjson/1.1.0
     magic_enum/0.7.3
     lz4/1.9.3
-    fmt/8.0.1
+    fmt/8.1.1
     openssl/1.1.1k
     boost/1.78.0
     bullet3/2.89
     gtest/1.10.0
+    sdl/2.0.18
 
 [options]
     fmt:shared=True
     openssl:shared=True
     boost:shared=False
     gtest:shared=True
+    sdl:shared=True
     
 [imports]
     bin, *.dll -> ../../Exe

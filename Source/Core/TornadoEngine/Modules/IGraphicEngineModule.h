@@ -7,6 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include "IContextManager.h"
+#include "GraphicEngineContext.h"
+
 #include "LogicWrapperModule.h"
 #include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 
@@ -14,7 +17,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    class DllExport IGraphicEngineModule : public TLogicWrapperModule
+    class DllExport IGraphicEngineModule : public TLogicWrapperModule, public IContextManager<TGraphicEngineContext>
     {
     public:
         virtual nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE() = 0;

@@ -49,7 +49,7 @@ void TPrefabManager::LoadByObjectInMemory(nsECSFramework::TEntityID eid)
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std::string& sceneInstanceGuid,
-    const std::string& parentGuid)
+    const std::string& parentGuid, const std::string& universeGuid)
 {
     using namespace nsCommonWrapper;
 
@@ -67,7 +67,7 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std:
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::InstantiateByGuid(const std::string& prefabGuid, const std::string& sceneInstanceGuid,
-    const std::string& parentGuid)
+    const std::string& parentGuid, const std::string& universeGuid)
 {
     // Convert to abs path
     auto fit = mResourceContentMap.guidPathMap.find(prefabGuid);
@@ -76,7 +76,7 @@ void TPrefabManager::InstantiateByGuid(const std::string& prefabGuid, const std:
         return;
     }
 
-    InstantiateByAbsPath(fit->second, sceneInstanceGuid, parentGuid);
+    InstantiateByAbsPath(fit->second, sceneInstanceGuid, parentGuid, universeGuid);
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::Unload(const std::string& prefabGuid)
@@ -133,7 +133,8 @@ void TPrefabManager::Destroy(const std::string& prefabInstanceGuid)
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::InstantiateByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor,
-    nsECSFramework::TEntityID eid, const std::string& sceneInstanceGuid, const std::string& parentGuid)
+    nsECSFramework::TEntityID eid, const std::string& sceneInstanceGuid, const std::string& parentGuid,
+    const std::string& universeGuid)
 {
     auto parentEid = prefabObjConstructor->GetParent(eid);
     if (parentEid != nsECSFramework::NONE) {
