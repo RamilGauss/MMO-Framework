@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    class DllExport IGraphicEngineModule : public TLogicWrapperModule, public IContextManager<TGraphicEngineContext>
+    class DllExport IGraphicEngineModule : public TLogicWrapperModule, public IContextManager
     {
     public:
         virtual nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE() = 0;

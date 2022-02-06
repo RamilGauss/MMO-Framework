@@ -17,8 +17,13 @@ See for more information LICENSE.md.
 using namespace nsTornadoEngine;
 using namespace nsECSFramework;
 
+TPrefabObjectConstructor::TPrefabObjectConstructor() :
+    mInnerEntityManager("PrefabObjectConstructor")
+{
 
-void TPrefabObjectConstructor::Setup(const std::list<std::string>& libPathList)
+}
+//-----------------------------------------------------------------------------------------------------
+void TPrefabObjectConstructor::Setup(const std::list<std::string>& libPathList) 
 {
     SetEntityManager(&mInnerEntityManager);
 

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_29 20:15:44.410
+// File has been generated at 2022_02_05 20:36:15.178
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -232,6 +232,20 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsCommonWrapper_TUniverseGuidComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseGuidComponent>();
     
     m.insert({ rtti_nsCommonWrapper_TUniverseGuidComponent_Data, nsCommonWrapper_TUniverseGuidComponent_Data });
+    
+    Data nsCommonWrapper_TUniverseIndexComponent_Data;
+        nsCommonWrapper_TUniverseIndexComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsCommonWrapper::TUniverseIndexComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsCommonWrapper::TUniverseIndexComponent>(eid, lambda, isNotify);
+    };
+    nsCommonWrapper_TUniverseIndexComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TUniverseIndexComponent*)p), isNotify); };
+    nsCommonWrapper_TUniverseIndexComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TUniverseIndexComponent>(eid); };
+    nsCommonWrapper_TUniverseIndexComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TUniverseIndexComponent>(eid); };
+    nsCommonWrapper_TUniverseIndexComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TUniverseIndexComponent>(eid); };
+    nsCommonWrapper_TUniverseIndexComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsCommonWrapper::TUniverseIndexComponent>(); };
+    auto rtti_nsCommonWrapper_TUniverseIndexComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseIndexComponent>();
+    
+    m.insert({ rtti_nsCommonWrapper_TUniverseIndexComponent_Data, nsCommonWrapper_TUniverseIndexComponent_Data });
     
     Data nsGraphicWrapper_TCameraComponent_Data;
         nsGraphicWrapper_TCameraComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

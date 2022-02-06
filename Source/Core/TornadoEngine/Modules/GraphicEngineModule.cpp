@@ -83,7 +83,7 @@ nsImGuiWidgets::TDialogStack* TGraphicEngineModule::GetDialogStack()
     return &mDialogStack;
 }
 //---------------------------------------------------------------------------------
-TGraphicEngineContext* TGraphicEngineModule::CreateContext()
+IContext* TGraphicEngineModule::CreateContext()
 {
     auto pCtx = new TGraphicEngineContext();
     pCtx->Init(GetGE());
@@ -92,7 +92,7 @@ TGraphicEngineContext* TGraphicEngineModule::CreateContext()
     return pCtx;
 }
 //---------------------------------------------------------------------------------
-void TGraphicEngineModule::DestroyContext(TGraphicEngineContext* pCtx)
+void TGraphicEngineModule::DestroyContext(IContext* pCtx)
 {
     //ImGui::DestroyContext(pCtx->guiCtx);
     // ...

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_29 20:15:53.207
+// File has been generated at 2022_02_05 20:36:21.845
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -65,6 +65,13 @@ void TFeatureTypeFactory::Init()
     auto rtti_nsGraphicWrapper_TButtonTerminatorSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonTerminatorSystem>();
     
     m.insert({ rtti_nsGraphicWrapper_TButtonTerminatorSystem_Data, nsGraphicWrapper_TButtonTerminatorSystem_Data });
+    
+    Data nsGraphicWrapper_TCleanUpUniverseContextSystem_Data;
+    nsGraphicWrapper_TCleanUpUniverseContextSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TCleanUpUniverseContextSystem(); };
+    nsGraphicWrapper_TCleanUpUniverseContextSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TCleanUpUniverseContextSystem*)p; };
+    auto rtti_nsGraphicWrapper_TCleanUpUniverseContextSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TCleanUpUniverseContextSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TCleanUpUniverseContextSystem_Data, nsGraphicWrapper_TCleanUpUniverseContextSystem_Data });
     
     Data nsGraphicWrapper_TDialogBuilderSystem_Data;
     nsGraphicWrapper_TDialogBuilderSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TDialogBuilderSystem(); };
@@ -303,6 +310,20 @@ void TFeatureTypeFactory::Init()
     auto rtti_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeTerminatorSystem>();
     
     m.insert({ rtti_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data, nsGraphicWrapper_TMenuNodeTerminatorSystem_Data });
+    
+    Data nsGraphicWrapper_TOnAddUniverseContextSystem_Data;
+    nsGraphicWrapper_TOnAddUniverseContextSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TOnAddUniverseContextSystem(); };
+    nsGraphicWrapper_TOnAddUniverseContextSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TOnAddUniverseContextSystem*)p; };
+    auto rtti_nsGraphicWrapper_TOnAddUniverseContextSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TOnAddUniverseContextSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TOnAddUniverseContextSystem_Data, nsGraphicWrapper_TOnAddUniverseContextSystem_Data });
+    
+    Data nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data;
+    nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TOnRemoveUniverseContextSystem(); };
+    nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TOnRemoveUniverseContextSystem*)p; };
+    auto rtti_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TOnRemoveUniverseContextSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data, nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data });
     
     Data nsGraphicWrapper_TTitleUpdaterSystem_Data;
     nsGraphicWrapper_TTitleUpdaterSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TTitleUpdaterSystem(); };

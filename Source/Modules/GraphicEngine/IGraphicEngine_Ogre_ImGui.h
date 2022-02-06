@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 
 #include <OgreRoot.h>
 #include <OgreWindow.h>
+#include <OgreOverlaySystem.h>
 
 namespace nsGraphicEngine
 {
@@ -30,5 +31,6 @@ namespace nsGraphicEngine
 
         virtual Ogre::Root* GetRoot() = 0;
         virtual Ogre::Window* GetWindow() = 0;
+        virtual Ogre::v1::OverlaySystem* GetOverlaySystem() = 0;
     };
 }

@@ -11,11 +11,18 @@ using namespace nsECSFramework;
 
 void TSystem::SetEntMng(TEntityManager* entMng)
 { 
-    mEntMng = entMng; 
+    mEntMng = entMng;
+
+    mEntMng->AddSystem(this);
 }
 //-------------------------------------------------------------------------
 TEntityManager* TSystem::GetEntMng() 
 { 
     return mEntMng; 
+}
+//-------------------------------------------------------------------------
+TSystem::~TSystem()
+{
+    mEntMng->RemoveSystem(this);
 }
 //-------------------------------------------------------------------------

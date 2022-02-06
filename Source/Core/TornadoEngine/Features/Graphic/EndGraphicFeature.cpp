@@ -12,4 +12,8 @@ using namespace nsGraphicWrapper;
 void TEndGraphicFeature::InitConveyor()
 {
     Add(&mGuiUpdaterFromModuleFeature);
+
+    Add(&mOnRemoveUniverseContextSystem);
+
+    Add(&mCleanUpUniverseContextSystem);
 }

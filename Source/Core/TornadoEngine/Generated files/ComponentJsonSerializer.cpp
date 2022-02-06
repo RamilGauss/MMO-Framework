@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_29 20:15:44.372
+// File has been generated at 2022_02_05 20:36:15.147
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -220,6 +220,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsCommonWrapper_TUniverseGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseGuidComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TUniverseGuidComponentTypeFunc, _nsCommonWrapper_TUniverseGuidComponentTypeFunc });
+    
+    TypeFunc _nsCommonWrapper_TUniverseIndexComponentTypeFunc;
+    _nsCommonWrapper_TUniverseIndexComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TUniverseIndexComponent>((nsCommonWrapper::TUniverseIndexComponent*) p, str);
+    };
+    _nsCommonWrapper_TUniverseIndexComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TUniverseIndexComponent>((nsCommonWrapper::TUniverseIndexComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TUniverseIndexComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseIndexComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TUniverseIndexComponentTypeFunc, _nsCommonWrapper_TUniverseIndexComponentTypeFunc });
     
     TypeFunc _nsGraphicWrapper_TCameraComponentTypeFunc;
     _nsGraphicWrapper_TCameraComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -843,6 +855,16 @@ void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TUniverseGuidComponen
 void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TUniverseGuidComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TUniverseIndexComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TUniverseIndexComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TCameraComponent* p, Jobj& obj)

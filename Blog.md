@@ -19,6 +19,9 @@ See for more information LICENSE.md.
 
 #### "DONE"
 
+2022.02.04:
+ - Удалить Load из Prefab и SceneManager. Оставить Save. Использовать в редакторе конвейер для редактирования.
+
 2022.01.19:
  - Universe Index - для каждой вселенной контекст для каждого движка: Graphic, Gui, Sound, Physic.
 TUniverseIndexComponent {uint16_t value;}

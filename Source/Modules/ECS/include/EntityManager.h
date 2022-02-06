@@ -29,15 +29,18 @@ See for more information LICENSE.md.
 #include "ComplexType.h"
 #include "HelpStructs.h"
 #include "FastAllocatorForeachVector.h"
+#include "SystemConveyerContainer.h"
 
 namespace nsECSFramework
 {
-    class DllExport TEntityManager
+    class DllExport TEntityManager : public TSystemConveyerContainer
     {
         typedef TRunTimeTypeIndex<> TTypeID;
         TTypeID* mTypeIndex;
+
+        std::string mName;
     public:
-        TEntityManager(int entityCount = 1024);
+        TEntityManager(const std::string& name, int entityCount = 1024);
         virtual ~TEntityManager();
 
         void Setup(const std::list<std::string>& pathList);

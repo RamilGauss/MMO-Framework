@@ -89,6 +89,12 @@
     <ClInclude Include="include\LinkToList.h">
       <Filter>include\DataControl</Filter>
     </ClInclude>
+    <ClInclude Include="include\SystemConveyerContainer.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EntityManagerMaster.h">
+      <Filter>include\DataControl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity.cpp">
@@ -105,6 +111,12 @@
     </ClCompile>
     <ClCompile Include="src\IComponent.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SystemConveyerContainer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntityManagerMaster.cpp">
+      <Filter>include\DataControl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

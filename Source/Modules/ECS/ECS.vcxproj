@@ -23,6 +23,7 @@
     <ClInclude Include="include\BaseReactiveSystem.h" />
     <ClInclude Include="include\ComplexType.h" />
     <ClInclude Include="include\ComponentContainer.h" />
+    <ClInclude Include="include\EntityManagerMaster.h" />
     <ClInclude Include="include\FastAllocatorVector.h" />
     <ClInclude Include="include\HelpStructs.h" />
     <ClInclude Include="include\IComponent.h" />
@@ -41,15 +42,18 @@
     <ClInclude Include="include\OnUpdateCollectReactiveSystem.h" />
     <ClInclude Include="include\OnUpdateInstantReactiveSystem.h" />
     <ClInclude Include="include\System.h" />
+    <ClInclude Include="include\SystemConveyerContainer.h" />
     <ClInclude Include="include\TearDownSystem.h" />
     <ClInclude Include="include\FastAllocatorForeachVector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
+    <ClCompile Include="src\EntityManagerMaster.cpp" />
     <ClCompile Include="src\Feature.cpp" />
     <ClCompile Include="src\IComponent.cpp" />
     <ClCompile Include="src\System.cpp" />
+    <ClCompile Include="src\SystemConveyerContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

@@ -118,7 +118,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Hlms\Common;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Hlms\Pbs;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Hlms\Unlit;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;$(SolutionDir)Source\Base\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Hlms\Common;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Hlms\Pbs;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Hlms\Unlit;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Overlay;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

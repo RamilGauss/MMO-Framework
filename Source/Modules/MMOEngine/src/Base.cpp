@@ -32,7 +32,7 @@ using namespace nsMMOEngine;
 
 //-------------------------------------------------------------------------
 TBase::TBase() :
-  mEntMng( new nsECSFramework::TEntityManager() ),
+  mEntMng( new nsECSFramework::TEntityManager("MMO-Engine")),
   mSessionManager( new TSessionManager ),
   mControlSc( new TControlScenario ),
   mContainerUp( new TContainerContextSc ),

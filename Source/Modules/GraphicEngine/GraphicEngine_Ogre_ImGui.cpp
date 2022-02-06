@@ -139,7 +139,111 @@ bool TGraphicEngine_Ogre_ImGui::Init(const std::string& pathPluginCfg, const std
 
     // Initialize Root
     mRoot->getRenderSystem()->setConfigOption("sRGB Gamma Conversion", "Yes");
-    mWindow = mRoot->initialise(true, "");
+    mRoot->initialise(false, "");
+
+    Ogre::ConfigOptionMap& cfgOpts = mRoot->getRenderSystem()->getConfigOptions();
+
+    int width = 1280;
+    int height = 720;
+
+    Ogre::ConfigOptionMap::iterator opt = cfgOpts.find("Video Mode");
+    if (opt != cfgOpts.end() && !opt->second.currentValue.empty()) {
+        //Ignore leading space
+        const Ogre::String::size_type start = opt->second.currentValue.find_first_of("012356789");
+        //Get the width and height
+        Ogre::String::size_type widthEnd = opt->second.currentValue.find(' ', start);
+        // we know that the height starts 3 characters after the width and goes until the next space
+        Ogre::String::size_type heightEnd = opt->second.currentValue.find(' ', widthEnd + 3);
+        // Now we can parse out the values
+        width = Ogre::StringConverter::parseInt(opt->second.currentValue.substr(0, widthEnd));
+        height = Ogre::StringConverter::parseInt(opt->second.currentValue.substr(
+            widthEnd + 3, heightEnd));
+    }
+
+    Ogre::NameValuePairList params;
+    bool fullscreen = Ogre::StringConverter::parseBool(cfgOpts["Full Screen"].currentValue);
+
+    int screen = 0;
+    int posX = SDL_WINDOWPOS_CENTERED_DISPLAY(screen);
+    int posY = SDL_WINDOWPOS_CENTERED_DISPLAY(screen);
+
+    if (fullscreen) {
+        posX = SDL_WINDOWPOS_UNDEFINED_DISPLAY(screen);
+        posY = SDL_WINDOWPOS_UNDEFINED_DISPLAY(screen);
+    }
+
+    mSdlWindow = SDL_CreateWindow(
+        "",    // window title
+        posX,               // initial x position
+        posY,               // initial y position
+        width,              // width, in pixels
+        height,             // height, in pixels
+        SDL_WINDOW_SHOWN
+        | (fullscreen ? SDL_WINDOW_FULLSCREEN : 0) | SDL_WINDOW_RESIZABLE);
+
+    //Get the native whnd
+    SDL_SysWMinfo wmInfo;
+    SDL_VERSION(&wmInfo.version);
+
+    if (SDL_GetWindowWMInfo(mSdlWindow, &wmInfo) == SDL_FALSE) {
+        OGRE_EXCEPT(Ogre::Exception::ERR_INTERNAL_ERROR,
+            "Couldn't get WM Info! (SDL2)",
+            "GraphicsSystem::initialize");
+    }
+
+    Ogre::String winHandle;
+    switch (wmInfo.subsystem) {
+#if defined(SDL_VIDEO_DRIVER_WINDOWS)
+        case SDL_SYSWM_WINDOWS:
+            // Windows code
+            winHandle = Ogre::StringConverter::toString((uintptr_t) wmInfo.info.win.window);
+            break;
+#endif
+#if defined(SDL_VIDEO_DRIVER_WINRT)
+        case SDL_SYSWM_WINRT:
+            // Windows code
+            winHandle = Ogre::StringConverter::toString((uintptr_t) wmInfo.info.winrt.window);
+            break;
+#endif
+#if defined(SDL_VIDEO_DRIVER_COCOA)
+        case SDL_SYSWM_COCOA:
+            winHandle = Ogre::StringConverter::toString(WindowContentViewHandle(wmInfo));
+            break;
+#endif
+#if defined(SDL_VIDEO_DRIVER_X11)
+        case SDL_SYSWM_X11:
+            winHandle = Ogre::StringConverter::toString((uintptr_t) wmInfo.info.x11.window);
+            params.insert(std::make_pair(
+                "SDL2x11", Ogre::StringConverter::toString((uintptr_t) &wmInfo.info.x11)));
+            break;
+#endif
+        default:
+            OGRE_EXCEPT(Ogre::Exception::ERR_NOT_IMPLEMENTED,
+                "Unexpected WM! (SDL2)",
+                "GraphicsSystem::initialize");
+            break;
+    }
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WINRT
+    params.insert(std::make_pair("externalWindowHandle", winHandle));
+#else
+    params.insert(std::make_pair("parentWindowHandle", winHandle));
+#endif
+
+
+    params.insert(std::make_pair("title", ""));
+    params.insert(std::make_pair("gamma", cfgOpts["sRGB Gamma Conversion"].currentValue));
+    if (cfgOpts.find("VSync Method") != cfgOpts.end())
+        params.insert(std::make_pair("vsync_method", cfgOpts["VSync Method"].currentValue));
+    params.insert(std::make_pair("FSAA", cfgOpts["FSAA"].currentValue));
+    params.insert(std::make_pair("vsync", cfgOpts["VSync"].currentValue));
+    params.insert(std::make_pair("reverse_depth", "Yes"));
+
+    //initMiscParamsListener(params);
+
+    mWindow = Ogre::Root::getSingleton().createRenderWindow("", width, height, fullscreen, &params);
+
+    mOverlaySystem = OGRE_NEW Ogre::v1::OverlaySystem();
 
     //### registerHlms();
 
@@ -153,6 +257,10 @@ void TGraphicEngine_Ogre_ImGui::AddResource(const std::string& name, const std::
 //---------------------------------------------------------------------
 void TGraphicEngine_Ogre_ImGui::Work()
 {
+    Ogre::WindowEventUtilities::messagePump();
+
+    pollEvents();
+
     auto renderResult = mRoot->renderOneFrame();
 }
 //---------------------------------------------------------------------
@@ -166,48 +274,64 @@ Ogre::Window* TGraphicEngine_Ogre_ImGui::GetWindow()
     return mWindow;
 }
 //---------------------------------------------------------------------
-//void TGraphicEngine_Ogre_ImGui::pollEvents()
-//{
-//    mKeyMouseEventHandler->ClearEvents();
-//
-//    if (mWindows.empty()) {
-//        // SDL events not initialized
-//        return;
-//    }
-//
-//    SDL_Event event;
-//    while (SDL_PollEvent(&event)) {
-//        switch (event.type) {
-//            case SDL_QUIT:
-//                mRoot->queueEndRendering();
-//                break;
-//            case SDL_WINDOWEVENT:
-//                if (event.window.event != SDL_WINDOWEVENT_RESIZED)
-//                    continue;
-//
-//                for (WindowList::iterator it = mWindows.begin(); it != mWindows.end(); ++it) {
-//                    if (event.window.windowID != SDL_GetWindowID(it->native))
-//                        continue;
-//
-//                    Ogre::RenderWindow* win = it->render;
-//                    win->resize(event.window.data1, event.window.data2);
-//                    windowResized(win);
-//                }
-//                break;
-//            case SDL_CONTROLLERDEVICEADDED:
-//                if (auto c = SDL_GameControllerOpen(event.cdevice.which)) {
-//                    const char* name = SDL_GameControllerName(c);
-//                    Ogre::LogManager::getSingleton().stream() << "Opened Gamepad: " << (name ? name : "unnamed");
-//                }
-//                break;
-//            default:
-//                mKeyMouseEventHandler->AddSdl2Event(event);
-//                _fireInputEvent(convert(event), event.window.windowID);
-//                break;
-//        }
-//    }
-//}
-////---------------------------------------------------------------------
+void TGraphicEngine_Ogre_ImGui::pollEvents()
+{
+    SDL_Event evt;
+    while (SDL_PollEvent(&evt)) {
+        switch (evt.type) {
+            case SDL_WINDOWEVENT:
+                handleWindowEvent(evt);
+                break;
+            case SDL_QUIT:
+                //mQuit = true;
+                break;
+            default:
+                break;
+        }
+
+        //mInputHandler->_handleSdlEvents(evt);
+    }
+
+    //mKeyMouseEventHandler->ClearEvents();
+
+    //if (mWindows.empty()) {
+    //    // SDL events not initialized
+    //    return;
+    //}
+
+    //SDL_Event event;
+    //while (SDL_PollEvent(&event)) {
+    //    switch (event.type) {
+    //        case SDL_QUIT:
+    //            mRoot->queueEndRendering();
+    //            break;
+    //        case SDL_WINDOWEVENT:
+    //            if (event.window.event != SDL_WINDOWEVENT_RESIZED)
+    //                continue;
+
+    //            for (WindowList::iterator it = mWindows.begin(); it != mWindows.end(); ++it) {
+    //                if (event.window.windowID != SDL_GetWindowID(it->native))
+    //                    continue;
+
+    //                Ogre::RenderWindow* win = it->render;
+    //                mWindow->resize(event.window.data1, event.window.data2);
+    //                windowResized(win);
+    //            }
+    //            break;
+    //        case SDL_CONTROLLERDEVICEADDED:
+    //            if (auto c = SDL_GameControllerOpen(event.cdevice.which)) {
+    //                const char* name = SDL_GameControllerName(c);
+    //                Ogre::LogManager::getSingleton().stream() << "Opened Gamepad: " << (name ? name : "unnamed");
+    //            }
+    //            break;
+    //        default:
+    //            mKeyMouseEventHandler->AddSdl2Event(event);
+    //            //_fireInputEvent(convert(event), event.window.windowID);
+    //            break;
+    //    }
+    //}
+}
+//---------------------------------------------------------------------
 //void TGraphicEngine_Ogre_ImGui::SetKeyMouseEventContainer(TKeyMouseEventContainer* keyMouseEventContainer)
 //{
 //    mKeyMouseEventHandler->SetContainer(keyMouseEventContainer);
@@ -311,3 +435,50 @@ void TGraphicEngine_Ogre_ImGui::RegisterHlms()
         }
     }
 }
+//-------------------------------------------------------------------------------------------------
+void TGraphicEngine_Ogre_ImGui::handleWindowEvent(const SDL_Event& evt)
+{
+    switch (evt.window.event) {
+        /*case SDL_WINDOWEVENT_MAXIMIZED:
+            SDL_SetWindowBordered( mSdlWindow, SDL_FALSE );
+            break;
+        case SDL_WINDOWEVENT_MINIMIZED:
+        case SDL_WINDOWEVENT_RESTORED:
+            SDL_SetWindowBordered( mSdlWindow, SDL_TRUE );
+            break;*/
+        case SDL_WINDOWEVENT_SIZE_CHANGED:
+            int w, h;
+            SDL_GetWindowSize(mSdlWindow, &w, &h);
+#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX
+            mWindow->requestResolution(w, h);
+#endif
+            mWindow->windowMovedOrResized();
+            break;
+        case SDL_WINDOWEVENT_RESIZED:
+#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX
+            mWindow->requestResolution(evt.window.data1, evt.window.data2);
+#endif
+            mWindow->windowMovedOrResized();
+            break;
+        case SDL_WINDOWEVENT_CLOSE:
+            break;
+        case SDL_WINDOWEVENT_SHOWN:
+            mWindow->_setVisible(true);
+            break;
+        case SDL_WINDOWEVENT_HIDDEN:
+            mWindow->_setVisible(false);
+            break;
+        case SDL_WINDOWEVENT_FOCUS_GAINED:
+            mWindow->setFocused(true);
+            break;
+        case SDL_WINDOWEVENT_FOCUS_LOST:
+            mWindow->setFocused(false);
+            break;
+    }
+}
+//-------------------------------------------------------------------------------------------------
+Ogre::v1::OverlaySystem* TGraphicEngine_Ogre_ImGui::GetOverlaySystem()
+{
+    return mOverlaySystem;
+}
+//-------------------------------------------------------------------------------------------------

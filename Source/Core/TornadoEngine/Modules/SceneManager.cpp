@@ -26,6 +26,9 @@ See for more information LICENSE.md.
 
 #include "GuidGenerator.h"
 
+#include "UniverseIndexComponent.h"
+#include "UniverseGuidComponent.h"
+
 using namespace nsTornadoEngine;
 
 void TSceneManager::LoadByAbsPath(const std::string& absPath)
@@ -83,6 +86,23 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath, const std::
 
     // 3. Replace all guids to new guid with ParentGuids and SceneGuids
     UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, sceneIstanceGuid);
+
+    TUniverseGuidComponent universeGuidComponent;
+    universeGuidComponent.value = universeGuid;
+    AddComponent(newEntities, &universeGuidComponent);
+
+
+    auto universeIndex = mUniverseManager.GetIndexByGuid(universeGuid);
+    if (universeIndex == TUniverseManager::UNDEFINED_INDEX) {
+        mUniverseManager.Create(universeGuid);
+        universeIndex = mUniverseManager.GetIndexByGuid(universeGuid);
+    }
+
+    IncrementCounter(universeIndex);
+
+    TUniverseIndexComponent universeIndexComponent;
+    universeIndexComponent.value = universeIndex;
+    AddComponent(newEntities, &universeIndexComponent);
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::InstantiateByGuid(const std::string& sceneGuid, const std::string& universeGuid)
@@ -127,6 +147,13 @@ void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
     for (auto& eid : eids) {
         mEntityManager->SetComponent(eid, needDestroySceneComponent);
     }
+
+    // Try destroy universe
+    auto firstEid = *(eids.begin());
+    auto index = mEntityManager->ViewComponent<nsCommonWrapper::TUniverseIndexComponent>(firstEid)->value;
+    if (GetCounter(index) == 0) {
+        mUniverseManager.Delete(index);
+    }
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
@@ -137,5 +164,22 @@ void TSceneManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
         return;
     }
     Destroy(pSceneInstanceGuid->value);
+}
+//--------------------------------------------------------------------------------
+void TSceneManager::IncrementCounter(TUniverseManager::IndexType index)
+{
+    mReferenceCounters[index].counter++;
+}
+//--------------------------------------------------------------------------------
+void TSceneManager::DecrementCounter(TUniverseManager::IndexType index)
+{
+    mReferenceCounters[index].counter--;
+
+    BL_ASSERT(mReferenceCounters[index].counter >= 0);
+}
+//--------------------------------------------------------------------------------
+int TSceneManager::GetCounter(TUniverseManager::IndexType index)
+{
+    return mReferenceCounters[index].counter;
 }
 //--------------------------------------------------------------------------------

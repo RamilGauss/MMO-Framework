@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_29 20:15:44.366
+// File has been generated at 2022_02_05 20:36:15.141
 	
 #pragma once
 
@@ -86,6 +86,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsCommonWrapper::TUniverseGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TUniverseGuidComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsCommonWrapper::TUniverseIndexComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TUniverseIndexComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGraphicWrapper::TCameraComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TCameraComponent* p, const Jobj& obj);

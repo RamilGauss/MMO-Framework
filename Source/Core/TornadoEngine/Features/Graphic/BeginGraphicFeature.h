@@ -9,6 +9,8 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
+#include "OnAddUniverseContextSystem.h"
+
 #include "GuiMakerFeature.h"
 #include "GuiBuilderFeature.h"
 #include "GuiTerminatorFeature.h"
@@ -18,6 +20,8 @@ namespace nsGraphicWrapper
 {
     class DllExport TBeginGraphicFeature : public nsECSFramework::TFeature
     {
+        TOnAddUniverseContextSystem mOnAddUniverseContextSystem;
+
         TGuiMakerFeature mGuiMakerFeature;
         TGuiBuilderFeature mGuiBuilderFeature;
         TGuiTerminatorFeature mGuiTerminatorFeature;

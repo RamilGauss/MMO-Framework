@@ -30,6 +30,9 @@ See for more information LICENSE.md.
 #include "SceneRootComponent.h"
 #include "PrefabObjectConstructor.h"
 
+#include "UniverseGuidComponent.h"
+#include "UniverseIndexComponent.h"
+
 using namespace nsTornadoEngine;
 
 void TPrefabManager::LoadByAbsPath(const std::string& absPath)
@@ -49,7 +52,7 @@ void TPrefabManager::LoadByObjectInMemory(nsECSFramework::TEntityID eid)
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std::string& sceneInstanceGuid,
-    const std::string& parentGuid, const std::string& universeGuid)
+    const std::string& parentGuid)
 {
     using namespace nsCommonWrapper;
 
@@ -64,10 +67,29 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std:
     DeserializeObjects(newEntities, prefabContent);
 
     InstantiateEntities(newEntities, sceneInstanceGuid, parentGuid);
+
+    // Find scene root
+    auto sceneRootEids = mEntityManager->GetByHasCopy<TSceneRootComponent>();
+
+    nsECSFramework::TEntityID sceneRootEid = nsECSFramework::NONE;
+    for (auto& eid : sceneRootEids) {
+        if (mEntityManager->ViewComponent<TSceneGuidComponent>(eid)->value == sceneInstanceGuid) {
+            sceneRootEid = eid;
+            break;
+        }
+    }
+
+    BL_ASSERT(sceneRootEid != nsECSFramework::NONE);
+
+    auto universeGuidComponent = mEntityManager->ViewComponent<TUniverseGuidComponent>(sceneRootEid);
+    AddComponent(newEntities, universeGuidComponent);
+
+    auto universeIndexComponent = mEntityManager->ViewComponent<TUniverseIndexComponent>(sceneRootEid);
+    AddComponent(newEntities, universeIndexComponent);
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::InstantiateByGuid(const std::string& prefabGuid, const std::string& sceneInstanceGuid,
-    const std::string& parentGuid, const std::string& universeGuid)
+    const std::string& parentGuid)
 {
     // Convert to abs path
     auto fit = mResourceContentMap.guidPathMap.find(prefabGuid);
@@ -76,7 +98,7 @@ void TPrefabManager::InstantiateByGuid(const std::string& prefabGuid, const std:
         return;
     }
 
-    InstantiateByAbsPath(fit->second, sceneInstanceGuid, parentGuid, universeGuid);
+    InstantiateByAbsPath(fit->second, sceneInstanceGuid, parentGuid);
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::Unload(const std::string& prefabGuid)
@@ -133,8 +155,7 @@ void TPrefabManager::Destroy(const std::string& prefabInstanceGuid)
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::InstantiateByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor,
-    nsECSFramework::TEntityID eid, const std::string& sceneInstanceGuid, const std::string& parentGuid,
-    const std::string& universeGuid)
+    nsECSFramework::TEntityID eid, const std::string& sceneInstanceGuid, const std::string& parentGuid)
 {
     auto parentEid = prefabObjConstructor->GetParent(eid);
     if (parentEid != nsECSFramework::NONE) {

@@ -157,6 +157,9 @@
     <Filter Include="Modules\Contexts">
       <UniqueIdentifier>{cdd5875f-516e-40b5-94c1-3664c3393c00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Graphic\GraphicContext">
+      <UniqueIdentifier>{6661bba8-5424-426c-9954-f5a207b575d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -473,6 +476,27 @@
     </ClCompile>
     <ClCompile Include="Modules\GraphicEngineContext.cpp">
       <Filter>Modules\Contexts</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\OnAddUniverseContextSystem.cpp">
+      <Filter>Features\Graphic\GraphicContext</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\OnRemoveUniverseContextSystem.cpp">
+      <Filter>Features\Graphic\GraphicContext</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\CleanUpUniverseContextSystem.cpp">
+      <Filter>Features\Graphic\GraphicContext</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\IContext.h">
+      <Filter>Modules\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\IContextManager.cpp">
+      <Filter>Modules\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\IContext.cpp">
+      <Filter>Modules\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\UniverseManager.cpp">
+      <Filter>Modules\Resources\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1078,6 +1102,21 @@
     </ClInclude>
     <ClInclude Include="Modules\GraphicEngineContext.h">
       <Filter>Modules\Contexts</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\OnAddUniverseContextSystem.h">
+      <Filter>Features\Graphic\GraphicContext</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\OnRemoveUniverseContextSystem.h">
+      <Filter>Features\Graphic\GraphicContext</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\CleanUpUniverseContextSystem.h">
+      <Filter>Features\Graphic\GraphicContext</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\UniverseManager.h">
+      <Filter>Modules\Resources\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Common\UniverseIndexComponent.h">
+      <Filter>Components\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

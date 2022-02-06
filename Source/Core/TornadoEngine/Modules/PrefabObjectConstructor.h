@@ -28,6 +28,8 @@ namespace nsTornadoEngine
 
 		THierarchyHelper mHierarchyHelper;
 	public:
+		TPrefabObjectConstructor();
+
 		void Setup(const std::list<std::string>& libPathList);
 
 		// Returns RootEid

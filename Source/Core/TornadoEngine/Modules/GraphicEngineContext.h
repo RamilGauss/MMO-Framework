@@ -15,12 +15,14 @@ See for more information LICENSE.md.
 
 #include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
 
+#include "IContext.h"
+
 namespace nsTornadoEngine
 {
-    class DllExport TGraphicEngineContext
+    class DllExport TGraphicEngineContext : public IContext
     {
     public:
-        Ogre::SceneManager* pSceneManager = nullptr;
+        Ogre::SceneManager* mSceneManager = nullptr;
 
         std::list<Ogre::Camera*> cameras;
 
@@ -33,5 +35,9 @@ namespace nsTornadoEngine
 
     private:
         nsGraphicEngine::TGraphicEngine_Ogre_ImGui* mGE = nullptr;
+
+        void CreateCamera();
+
+        void ImportV1Mesh(const Ogre::String& meshName);
     };
 }

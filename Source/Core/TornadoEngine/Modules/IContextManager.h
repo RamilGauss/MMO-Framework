@@ -8,50 +8,30 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <map>
+#include <set>
+#include <list>
 #include <string>
+
 #include "TypeDef.h"
+#include "IContext.h"
+#include "ColanderVector.h"
 
 namespace nsTornadoEngine
 {
-    template <typename ContextType>
     class DllExport IContextManager
     {
-        int mReferenceCount = 0;
-        std::map<std::string, ContextType*> mGuidCtxMap;
+        TColanderVector<IContext*> mCtxs;
     public:
-        ContextType* GetContext(const std::string& guid)
-        {
-            auto fit = mGuidCtxMap.find(guid);
-            if (fit == mGuidCtxMap.end()) {
-                return nullptr;
-            }
-            return fit->second;
-        }
-
-        void OnAdd(const std::string& guid)
-        {
-            if (GetReferenceCount() == 0) {
-                auto pCtx = CreateContext();
-                mGuidCtxMap.insert({guid, pCtx});
-            }
-            IncrementReference();
-        }
-
-        void OnRemove(const std::string& guid)
-        {
-            DecrementReference();
-            if (GetReferenceCount() == 0) {
-                auto pCtx = GetContext(guid);
-                DestroyContext(pCtx);
-                mGuidCtxMap.erase(guid);
-            }
-        }
+        IContext* GetContext(int index);
+        void TryAdd(int index);
+        void OnRemove(int index);
+        void CleanUp();
     protected:
-        virtual ContextType* CreateContext() = 0;
-        virtual void DestroyContext(ContextType* pCtx) = 0;
+        virtual IContext* CreateContext() = 0;
+        virtual void DestroyContext(IContext* pCtx) = 0;
+    private:
+        TColanderVector<IContext*> mRemovedCtxs;
 
-        void IncrementReference() { mReferenceCount++; }
-        void DecrementReference() { mReferenceCount--; }
-        int GetReferenceCount() const { return mReferenceCount; }
+        std::list<int> mRemovedIndexes;
     };
 }

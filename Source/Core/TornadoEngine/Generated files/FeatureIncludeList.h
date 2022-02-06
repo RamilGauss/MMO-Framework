@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_29 20:15:53.226
+// File has been generated at 2022_02_05 20:36:21.862
 	
 #pragma once
 
@@ -13,6 +13,7 @@
 #include "ButtonClickHandlerTerminatorSystem.h"
 #include "ButtonMakerSystem.h"
 #include "ButtonTerminatorSystem.h"
+#include "CleanUpUniverseContextSystem.h"
 #include "DialogBuilderSystem.h"
 #include "DialogCloseEventHandlerMakerSystem.h"
 #include "DialogCloseEventHandlerTerminatorSystem.h"
@@ -57,6 +58,8 @@
 #include "ObjectInstanceEndHandlerBuilderSystem.h"
 #include "ObjectInstanceEndHandlerMakerSystem.h"
 #include "ObjectInstanceEndHandlerTerminatorSystem.h"
+#include "OnAddUniverseContextSystem.h"
+#include "OnRemoveUniverseContextSystem.h"
 #include "SceneFeature.h"
 #include "StartedScenesInitSystem.h"
 #include "SystemBuilderSystem.h"

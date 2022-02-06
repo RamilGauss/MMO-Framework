@@ -11,11 +11,19 @@ See for more information LICENSE.md.
 
 #include "GuiUpdaterFromModuleFeature.h"
 
+#include "OnRemoveUniverseContextSystem.h"
+
+#include "CleanUpUniverseContextSystem.h"
+
 namespace nsGraphicWrapper
 {
     class DllExport TEndGraphicFeature : public nsECSFramework::TFeature
     {
         TGuiUpdaterFromModuleFeature mGuiUpdaterFromModuleFeature;
+
+        TOnRemoveUniverseContextSystem mOnRemoveUniverseContextSystem;
+
+        TCleanUpUniverseContextSystem mCleanUpUniverseContextSystem;
     public:
         void InitConveyor() override;
     };

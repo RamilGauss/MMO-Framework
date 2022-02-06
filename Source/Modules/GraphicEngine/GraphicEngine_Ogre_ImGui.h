@@ -11,6 +11,9 @@ See for more information LICENSE.md.
 #include "SrcEvent.h"
 #include "CallBackRegistrator.h"
 
+
+#include <SDL2/SDL.h>
+
 //#include "ImGuiRenderControl.h"
 //#include "SampleContext.h"
 
@@ -40,6 +43,12 @@ namespace nsGraphicEngine
 
         Ogre::Root* mRoot = nullptr;
         Ogre::Window* mWindow = nullptr;
+
+        Ogre::v1::OverlaySystem* mOverlaySystem = nullptr;;
+
+        SDL_Window* mSdlWindow;
+        //SdlInputHandler* mInputHandler;
+
     public:
         TGraphicEngine_Ogre_ImGui();
         virtual ~TGraphicEngine_Ogre_ImGui();
@@ -51,7 +60,13 @@ namespace nsGraphicEngine
 
         Ogre::Root* GetRoot() override;
         Ogre::Window* GetWindow() override;
+
+        Ogre::v1::OverlaySystem* GetOverlaySystem() override;
     private:
         void RegisterHlms();
+
+        void pollEvents();
+
+        void handleWindowEvent(const SDL_Event& evt);
     };
 }

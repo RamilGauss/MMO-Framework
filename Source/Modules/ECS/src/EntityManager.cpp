@@ -11,6 +11,8 @@ See for more information LICENSE.md.
 #include "SingletonManager.h"
 #include "Entity.h"
 
+#include "EntityManagerMaster.h"
+
 using namespace nsECSFramework;
 
 namespace dll = boost::dll;
@@ -32,8 +34,12 @@ const std::string GET_BY_VALUE_METHOD_NAME = "GetByValue";
 
 
 //----------------------------------------------------------------------------------------------------
-TEntityManager::TEntityManager(int entityCount)
+TEntityManager::TEntityManager(const std::string& name, int entityCount)
 {
+    mName = name;
+
+    SingletonManager()->Get<TEntityManagerMaster>()->AddEntityManager(this);
+
     mEntities.Init(entityCount);
     mEntities.onDestroy = [&](TEntityID eid, TEntity* pEntity)
     {
@@ -72,6 +78,8 @@ TEntityManager::~TEntityManager()
     DestroyEventCollector(mUpdateCollector);
 
     Clear();
+
+    SingletonManager()->Get<TEntityManagerMaster>()->RemoveEntityManager(this);
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::Fill(const std::string& methodName, std::string& demangled, TStrSet& strSet)

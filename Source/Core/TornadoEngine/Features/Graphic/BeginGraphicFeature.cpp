@@ -11,6 +11,8 @@ using namespace nsGraphicWrapper;
 
 void TBeginGraphicFeature::InitConveyor()
 {
+    Add(&mOnAddUniverseContextSystem);
+
     Add(&mGuiMakerFeature);
     Add(&mGuiBuilderFeature);
     Add(&mGuiTerminatorFeature);

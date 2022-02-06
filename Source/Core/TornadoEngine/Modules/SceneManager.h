@@ -9,12 +9,22 @@ See for more information LICENSE.md.
 
 #include <string>
 
+#include "UniverseManager.h"
 #include "ObjectManager.h"
 
 namespace nsTornadoEngine
 {
     class DllExport TSceneManager : public TObjectManager
     {
+        TUniverseManager mUniverseManager;
+
+        struct TReference
+        {
+            int counter = 0;
+        };
+
+        TColanderVector<TReference> mReferenceCounters;
+
     public:
         void LoadByGuid(const std::string& sceneGuid);
         void LoadByAbsPath(const std::string& absPath);
@@ -28,5 +38,12 @@ namespace nsTornadoEngine
 
         void Destroy(const std::string& sceneInstanceGuid);
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
+
+    private:
+
+        void IncrementCounter(TUniverseManager::IndexType index);
+        void DecrementCounter(TUniverseManager::IndexType index);
+
+        int GetCounter(TUniverseManager::IndexType index);
     };
 }

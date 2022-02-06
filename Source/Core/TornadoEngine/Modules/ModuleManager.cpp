@@ -20,7 +20,8 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-TModuleManager::TModuleManager(TStopAccessor* stopAccessor)
+TModuleManager::TModuleManager(TStopAccessor* stopAccessor) : 
+    mEntMng("ModuleManager")
 {
     mStopAccessor = stopAccessor;
 }

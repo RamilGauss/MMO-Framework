@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_01_29 20:15:53.215
+// File has been generated at 2022_02_05 20:36:21.853
 	
 #include "FeatureTypeInformation.h"
 
@@ -62,6 +62,12 @@ void TFeatureTypeInformation::Init()
     mTypeNameList.push_back(nsGraphicWrapper_TButtonTerminatorSystem_n);
     mRttiList.push_back(nsGraphicWrapper_TButtonTerminatorSystem_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TButtonTerminatorSystem_n, nsGraphicWrapper_TButtonTerminatorSystem_i });
+    
+    int nsGraphicWrapper_TCleanUpUniverseContextSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCleanUpUniverseContextSystem>();
+    std::string nsGraphicWrapper_TCleanUpUniverseContextSystem_n = "nsGraphicWrapper::TCleanUpUniverseContextSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TCleanUpUniverseContextSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TCleanUpUniverseContextSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TCleanUpUniverseContextSystem_n, nsGraphicWrapper_TCleanUpUniverseContextSystem_i });
     
     int nsGraphicWrapper_TDialogBuilderSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogBuilderSystem>();
     std::string nsGraphicWrapper_TDialogBuilderSystem_n = "nsGraphicWrapper::TDialogBuilderSystem";
@@ -266,6 +272,18 @@ void TFeatureTypeInformation::Init()
     mTypeNameList.push_back(nsGraphicWrapper_TMenuNodeTerminatorSystem_n);
     mRttiList.push_back(nsGraphicWrapper_TMenuNodeTerminatorSystem_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TMenuNodeTerminatorSystem_n, nsGraphicWrapper_TMenuNodeTerminatorSystem_i });
+    
+    int nsGraphicWrapper_TOnAddUniverseContextSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TOnAddUniverseContextSystem>();
+    std::string nsGraphicWrapper_TOnAddUniverseContextSystem_n = "nsGraphicWrapper::TOnAddUniverseContextSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TOnAddUniverseContextSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TOnAddUniverseContextSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TOnAddUniverseContextSystem_n, nsGraphicWrapper_TOnAddUniverseContextSystem_i });
+    
+    int nsGraphicWrapper_TOnRemoveUniverseContextSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TOnRemoveUniverseContextSystem>();
+    std::string nsGraphicWrapper_TOnRemoveUniverseContextSystem_n = "nsGraphicWrapper::TOnRemoveUniverseContextSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TOnRemoveUniverseContextSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TOnRemoveUniverseContextSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TOnRemoveUniverseContextSystem_n, nsGraphicWrapper_TOnRemoveUniverseContextSystem_i });
     
     int nsGraphicWrapper_TTitleUpdaterSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdaterSystem>();
     std::string nsGraphicWrapper_TTitleUpdaterSystem_n = "nsGraphicWrapper::TTitleUpdaterSystem";

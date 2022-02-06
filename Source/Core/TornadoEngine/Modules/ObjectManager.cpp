@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include "TimeSliceEngine.h"
 #include "TextFile.h"
 #include "ProjectConfigContainer.h"
+#include "UniverseGuidComponent.h"
 
 using namespace nsTornadoEngine;
 
@@ -48,8 +49,7 @@ bool TObjectManager::Deserialize(TResourceContent& content, const std::string& a
     return true;
 }
 //--------------------------------------------------------------------------------
-void TObjectManager::DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities,
-    const TResourceContent& content)
+void TObjectManager::DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities, const TResourceContent& content)
 {
     auto logger = GetLogger()->Get(TTimeSliceEngine::NAME);
 

@@ -19,16 +19,16 @@ See for more information LICENSE.md.
 #include "UnitBuilderHelper.h"
 #include "HandlerLinkHelper.h"
 #include "HandlerCallCollector.h"
-#include "UniverseGuidComponent.h"
+#include "UniverseIndexComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;
 
 void TWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TWindowComponent* pWindowComponent)
 {
-    auto universeGuid = GetEntMng()->ViewComponent<nsCommonWrapper::TUniverseGuidComponent>(eid)->value;
+    auto universeIndex = GetEntMng()->ViewComponent<nsCommonWrapper::TUniverseIndexComponent>(eid)->value;
 
-    auto pContext = nsTornadoEngine::Modules()->G()->GetContext(universeGuid);
+    auto pContext = (nsTornadoEngine::TGraphicEngineContext*) (nsTornadoEngine::Modules()->G()->GetContext(universeIndex));
     pContext->AddRender(pWindowComponent->value);
 
     auto entMng = GetEntMng();
