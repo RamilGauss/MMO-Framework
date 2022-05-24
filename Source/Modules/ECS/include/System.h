@@ -26,5 +26,7 @@ namespace nsECSFramework
         virtual bool IsExecute()  const { return false; }
         virtual bool IsTearDown() const { return false; }
         virtual bool IsFeature()  const { return false; }
+
+        const std::string& GetTypeName() const;
     };
 }

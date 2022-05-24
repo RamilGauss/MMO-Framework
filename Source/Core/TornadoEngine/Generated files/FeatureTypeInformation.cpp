@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_02_05 20:36:21.853
+// File has been generated at 2022_05_23 22:49:04.787
 	
 #include "FeatureTypeInformation.h"
 
@@ -284,6 +284,18 @@ void TFeatureTypeInformation::Init()
     mTypeNameList.push_back(nsGraphicWrapper_TOnRemoveUniverseContextSystem_n);
     mRttiList.push_back(nsGraphicWrapper_TOnRemoveUniverseContextSystem_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TOnRemoveUniverseContextSystem_n, nsGraphicWrapper_TOnRemoveUniverseContextSystem_i });
+    
+    int nsGraphicWrapper_TTextureMakerSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureMakerSystem>();
+    std::string nsGraphicWrapper_TTextureMakerSystem_n = "nsGraphicWrapper::TTextureMakerSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TTextureMakerSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TTextureMakerSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TTextureMakerSystem_n, nsGraphicWrapper_TTextureMakerSystem_i });
+    
+    int nsGraphicWrapper_TTextureTerminatorSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureTerminatorSystem>();
+    std::string nsGraphicWrapper_TTextureTerminatorSystem_n = "nsGraphicWrapper::TTextureTerminatorSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TTextureTerminatorSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TTextureTerminatorSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TTextureTerminatorSystem_n, nsGraphicWrapper_TTextureTerminatorSystem_i });
     
     int nsGraphicWrapper_TTitleUpdaterSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdaterSystem>();
     std::string nsGraphicWrapper_TTitleUpdaterSystem_n = "nsGraphicWrapper::TTitleUpdaterSystem";

@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #include "System.h"
 
+#include <typeinfo>
+
 using namespace nsECSFramework;
 
 void TSystem::SetEntMng(TEntityManager* entMng)
@@ -24,5 +26,10 @@ TEntityManager* TSystem::GetEntMng()
 TSystem::~TSystem()
 {
     mEntMng->RemoveSystem(this);
+}
+//-------------------------------------------------------------------------
+const std::string& TSystem::GetTypeName() const
+{
+    return typeid(*this).name();
 }
 //-------------------------------------------------------------------------

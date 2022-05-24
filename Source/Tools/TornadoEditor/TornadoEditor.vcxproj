@@ -134,7 +134,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Base_d.lib;TornadoEngine_d.lib;ECS_d.lib;GraphicEngine_d.lib;ImGuiWidgets_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;OgreOverlay_d.lib;OgreHlmsPbs_d.lib;OgreHlmsUnlit_d.lib;OgreMain_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base_d.lib;TornadoEngine_d.lib;ECS_d.lib;GraphicEngine_d.lib;ImGuiWidgets_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -193,7 +193,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Tools\Torn
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Base.lib;TornadoEngine.lib;ECS.lib;GraphicEngine.lib;ImGuiWidgets.lib;PhysicEngine.lib;NetTransport.lib;MMOEngine.lib;OgreBites.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base.lib;TornadoEngine.lib;ECS.lib;GraphicEngine.lib;ImGuiWidgets.lib;PhysicEngine.lib;NetTransport.lib;MMOEngine.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

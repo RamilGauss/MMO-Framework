@@ -32,4 +32,6 @@ void TGuiMakerFeature::InitConveyor()
     Add(&mFrameMouseMoveHandlerMakerSystem);
     Add(&mFrameMouseWheelHandlerMakerSystem);
     Add(&mFrameKeyHandlerMakerSystem);
+    
+    Add(&mTextureMakerSystem);
 }

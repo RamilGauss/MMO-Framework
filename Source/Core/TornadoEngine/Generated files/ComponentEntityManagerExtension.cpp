@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_02_05 20:36:15.178
+// File has been generated at 2022_05_23 22:48:56.321
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -274,6 +274,20 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsGraphicWrapper_TLightComponent_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TLightComponent>();
     
     m.insert({ rtti_nsGraphicWrapper_TLightComponent_Data, nsGraphicWrapper_TLightComponent_Data });
+    
+    Data nsGraphicWrapper_TTextureComponent_Data;
+        nsGraphicWrapper_TTextureComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGraphicWrapper::TTextureComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGraphicWrapper::TTextureComponent>(eid, lambda, isNotify);
+    };
+    nsGraphicWrapper_TTextureComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TTextureComponent*)p), isNotify); };
+    nsGraphicWrapper_TTextureComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TTextureComponent>(eid); };
+    nsGraphicWrapper_TTextureComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TTextureComponent>(eid); };
+    nsGraphicWrapper_TTextureComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGraphicWrapper::TTextureComponent>(eid); };
+    nsGraphicWrapper_TTextureComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGraphicWrapper::TTextureComponent>(); };
+    auto rtti_nsGraphicWrapper_TTextureComponent_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureComponent>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TTextureComponent_Data, nsGraphicWrapper_TTextureComponent_Data });
     
     Data nsGuiWrapper_TButtonClickHandlerComponent_Data;
         nsGuiWrapper_TButtonClickHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

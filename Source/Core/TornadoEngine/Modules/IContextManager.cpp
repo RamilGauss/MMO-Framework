@@ -31,7 +31,6 @@ void IContextManager::OnRemove(int index)
     BL_ASSERT(pCtx != nullptr);
     pCtx->DecrementReference();
 
-
     if (mRemovedCtxs[index] == nullptr) {
         mRemovedCtxs[index] = pCtx;
         mRemovedIndexes.push_back(index);

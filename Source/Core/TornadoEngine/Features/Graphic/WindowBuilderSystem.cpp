@@ -29,7 +29,7 @@ void TWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     auto universeIndex = GetEntMng()->ViewComponent<nsCommonWrapper::TUniverseIndexComponent>(eid)->value;
 
     auto pContext = (nsTornadoEngine::TGraphicEngineContext*) (nsTornadoEngine::Modules()->G()->GetContext(universeIndex));
-    pContext->AddRender(pWindowComponent->value);
+    pContext->GetGraphicEngineContext()->AddRender(pWindowComponent->value);
 
     auto entMng = GetEntMng();
 

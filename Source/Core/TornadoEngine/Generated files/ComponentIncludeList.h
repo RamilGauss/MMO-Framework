@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_02_05 20:36:15.201
+// File has been generated at 2022_05_23 22:48:56.342
 	
 #pragma once
 
@@ -50,6 +50,7 @@
 #include "SelectedTreeNodeGuidComponent.h"
 #include "SizeComponent.h"
 #include "SystemComponent.h"
+#include "TextureComponent.h"
 #include "TitleComponent.h"
 #include "TransformComponent.h"
 #include "TreeNodeComponent.h"

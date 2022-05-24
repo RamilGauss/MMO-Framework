@@ -32,4 +32,6 @@ void TGuiTerminatorFeature::InitConveyor()
     Add(&mFrameMouseClickHandlerTerminatorSystem);
     Add(&mFrameMouseMoveHandlerTerminatorSystem);
     Add(&mFrameMouseWheelHandlerTerminatorSystem);
+
+    Add(&mTextureTerminatorSystem);
 }

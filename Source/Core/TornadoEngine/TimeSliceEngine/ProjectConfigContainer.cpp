@@ -50,3 +50,16 @@ std::string TProjectConfigContainer::GetPrefabContentMapAbsPath()
     return TPathOperations::CalculatePathBy(dirPath, mResources.gameEngine.prefabManagerContentMapPath);
 }
 //---------------------------------------------------------------------
+std::string TProjectConfigContainer::GetResourcesAbsPath(const std::string& guid)
+{
+    auto fit = mResources.resources.find(guid);
+    if (fit == mResources.resources.end()) {
+        return "";
+    }
+
+    auto resourcesFilePath = GetResourcesAbsPath();
+    auto dirPath = TPathOperations::FileDirPath(resourcesFilePath);
+
+    return TPathOperations::CalculatePathBy(dirPath, fit->second);
+}
+//---------------------------------------------------------------------

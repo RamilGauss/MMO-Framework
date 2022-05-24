@@ -175,7 +175,11 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TNodeIconComponent",
-                    "jsonBody": "{\"iconFileName\":\"exit.png\", \"width\":16, \"height\":16}"
+                    "jsonBody": "{\"width\":16, \"height\":16}"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TTextureComponent",
+                    "jsonBody": "{\"resourceGuid\":\"exit.png\"}"
                 }
             ]
         },

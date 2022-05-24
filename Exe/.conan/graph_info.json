@@ -101,6 +101,10 @@
    "False"
   ],
   [
+   "boost:system_use_utf8",
+   "False"
+  ],
+  [
    "boost:visibility",
    "hidden"
   ],
@@ -242,7 +246,7 @@
   ],
   [
    "bullet3:bullet3",
-   "False"
+   "True"
   ],
   [
    "bullet3:double_precision",
@@ -293,6 +297,42 @@
    "True"
   ],
   [
+   "glad:extensions",
+   "''"
+  ],
+  [
+   "glad:gl_profile",
+   "compatibility"
+  ],
+  [
+   "glad:gl_version",
+   "3.3"
+  ],
+  [
+   "glad:gles1_version",
+   "None"
+  ],
+  [
+   "glad:gles2_version",
+   "None"
+  ],
+  [
+   "glad:glsc2_version",
+   "None"
+  ],
+  [
+   "glad:no_loader",
+   "False"
+  ],
+  [
+   "glad:shared",
+   "False"
+  ],
+  [
+   "glad:spec",
+   "gl"
+  ],
+  [
    "gtest:build_gmock",
    "True"
   ],
@@ -326,6 +366,10 @@
   ],
   [
    "openssl:enable_capieng",
+   "False"
+  ],
+  [
+   "openssl:enable_weak_ssl_ciphers",
    "False"
   ],
   [
@@ -509,6 +553,14 @@
    "False"
   ],
   [
+   "openssl:no_stdio",
+   "False"
+  ],
+  [
+   "openssl:no_tests",
+   "False"
+  ],
+  [
    "openssl:no_threads",
    "False"
   ],
@@ -555,10 +607,6 @@
   [
    "sdl:vulkan",
    "True"
-  ],
-  [
-   "zlib:minizip",
-   "deprecated"
   ],
   [
    "zlib:shared",

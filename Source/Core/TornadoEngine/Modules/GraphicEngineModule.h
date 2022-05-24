@@ -17,12 +17,10 @@ namespace nsTornadoEngine
 {
     class DllExport TGraphicEngineModule : public IGraphicEngineModule
     {
-        std::shared_ptr<nsGraphicEngine::TGraphicEngine_Ogre_ImGui> mGE;
+        std::shared_ptr<nsGraphicEngine::TGraphicEngine> mGE;
 
         nsGraphicWrapper::TBeginGraphicFeature mBeginFeature;
         nsGraphicWrapper::TEndGraphicFeature mEndFeature;
-
-        nsImGuiWidgets::TDialogStack mDialogStack;
     public:
         TGraphicEngineModule();
 
@@ -30,10 +28,8 @@ namespace nsTornadoEngine
         void ModuleWork() override;
         void StopEvent() override;
 
-        nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE() override;
-        void SetGE(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE) override;
-
-        nsImGuiWidgets::TDialogStack* GetDialogStack() override;
+        nsGraphicEngine::TGraphicEngine* GetGE() override;
+        void SetGE(nsGraphicEngine::TGraphicEngine* pGE) override;
     protected:
         IContext* CreateContext() override;
         void DestroyContext(IContext* pCtx) override;

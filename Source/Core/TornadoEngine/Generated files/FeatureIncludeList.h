@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_02_05 20:36:21.862
+// File has been generated at 2022_05_23 22:49:04.796
 	
 #pragma once
 
@@ -65,6 +65,8 @@
 #include "SystemBuilderSystem.h"
 #include "SystemMakerSystem.h"
 #include "SystemTerminatorSystem.h"
+#include "TextureMakerSystem.h"
+#include "TextureTerminatorSystem.h"
 #include "TitleUpdaterSystem.h"
 #include "TreeNodeBuilderSystem.h"
 #include "TreeNodeMakerSystem.h"

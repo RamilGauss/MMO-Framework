@@ -16,7 +16,6 @@ namespace nsGuiWrapper
 {
     struct DllExport TNodeIconComponent : nsECSFramework::IComponent
     {
-        std::string iconFileName;
         int width;
         int height;
     };

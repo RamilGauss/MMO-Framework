@@ -1,28 +1,17 @@
 {
     // All possible resources.
-    "graphicEngine": {
-        "terrainPath": "./Graphic/terrain",
-        "pluginsCfg": {
-            "release": "./Graphic/cfg/plugins.cfg",
-            "debug": "./Graphic/cfg/plugins_d.cfg"
-        },
-        "ogreCfg": {
-            "release": "./Graphic/cfg/ogre.cfg",
-            "debug": "./Graphic/cfg/ogre_d.cfg"
-        },
-        "resources": {
-            "FileSystem": [
-                "./Graphic/materials/programs",
-                "./Graphic/materials/programs/GLSL",
-                "./Graphic/materials/programs/HLSL",
-                "./Graphic/materials/scripts",
-                "./Graphic/materials/textures",
-                "./Graphic/models"
-            ],
-            "Zip": [
-                "./Graphic/packs/SdkTrays.zip"
-            ]
-        }
+    "resources": {
+        "exit.png": "./Graphic/textures/exit.png",
+        "cpp.png": "./Graphic/textures/cpp.png",
+        "prefab.png": "./Graphic/textures/prefab.png",
+        "json.png": "./Graphic/textures/json.png",
+        "image.png": "./Graphic/textures/image.png",
+        "undefined.jpg": "./Graphic/textures/undefined.jpg",
+        "png.png": "./Graphic/textures/png.png",
+        "folder.png": "./Graphic/textures/folder.png",
+        "scene.png": "./Graphic/textures/scene.png",
+        "color.png": "./Graphic/textures/color.png",
+        "mesh0": "./Meshes/mesh.mesh"
     },
     "gameEngine": {
         "sceneManagerContentMapPath": "../Scenes/SceneManagerContentMap.json",

@@ -29,7 +29,9 @@ using namespace nsGuiWrapper;
 
 void TDialogBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TDialogComponent* pDialogComponent)
 {
-    auto dialogStack = nsTornadoEngine::Modules()->G()->GetDialogStack();
+    auto universeIndex = GetEntMng()->ViewComponent<nsCommonWrapper::TUniverseIndexComponent>(eid)->value;
+    auto pCtx = (nsTornadoEngine::TGraphicEngineContext*)(nsTornadoEngine::Modules()->G()->GetContext(universeIndex));
+    auto dialogStack = pCtx->GetDialogStack();
     dialogStack->Add(pDialogComponent->value);
 
     auto entMng = GetEntMng();

@@ -18,17 +18,17 @@ using namespace nsBase;
 
 TGraphicEngineModule::TGraphicEngineModule()
 {
-    mGE.reset(new TGraphicEngine_Ogre_ImGui);
-    mGE->SetSelfID(0);
-    mGE->SetDstObject(this);
+    mGE.reset(new TGraphicEngine);
 }
 //---------------------------------------------------------------------------------
 void TGraphicEngineModule::ModuleWork()
 {
-    mGE->Work();
+    mGE->GenerateInputEvents();
+
+    mGE->Draw();
 }
 //---------------------------------------------------------------------------------
-TGraphicEngine_Ogre_ImGui* TGraphicEngineModule::GetGE()
+TGraphicEngine* TGraphicEngineModule::GetGE()
 {
     return mGE.get();
 }
@@ -45,57 +45,51 @@ bool TGraphicEngineModule::StartEvent()
     GetEndLogicSlotManager()->SetCurrentSlotIndex(endSlotIndex);
     GetEndLogicSlotManager()->AddSystem(&mEndFeature);
     
-    //-------------------
-    // OGRE
+    mGE->SetPosition( 100, 100);   // TODO: get from config
+    mGE->SetSize( 800, 600);       // TODO: get from config
+    mGE->SetTitle("MMO Framework");// TODO: get from config
+    mGE->Init();
 
-    auto resources = Project()->mResources.graphicEngine;
-    auto resPath = Project()->GetResourcesAbsPath();
-    resPath = TPathOperations::FileDirPath(resPath);
-    auto pluginCfg = TPathOperations::CalculatePathBy(resPath, resources.pluginsCfg.Get());
-    auto ogreCfg = TPathOperations::CalculatePathBy(resPath, resources.ogreCfg.Get());
-    // настройка перед запуском
-    if (mGE->Init(pluginCfg, ogreCfg) == false) {
-        return false;
-    }
-    // пути для ресурсов графического движка
-    for (auto& vtTypePath : resources.resources) {
-        for (auto& type : vtTypePath.second) {
-            auto absPath = TPathOperations::CalculatePathBy(resPath, type);
-            mGE->AddResource(absPath, vtTypePath.first);
-        }
-    }
+    // Input
+    auto keyMouse = Modules()->KeyMouse();
+    mGE->SetKeyMouseEventContainer(keyMouse);
+    nsImGuiWidgets::TWidget::SetInputContainer(keyMouse);
 
     return true;
 }
 //---------------------------------------------------------------------------------
 void TGraphicEngineModule::StopEvent()
 {
+    mGE->Done();
     mGE.reset();
 }
 //---------------------------------------------------------------------------------
-void TGraphicEngineModule::SetGE(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE)
+void TGraphicEngineModule::SetGE(nsGraphicEngine::TGraphicEngine* pGE)
 {
 
 }
 //---------------------------------------------------------------------------------
-nsImGuiWidgets::TDialogStack* TGraphicEngineModule::GetDialogStack()
-{
-    return &mDialogStack;
-}
-//---------------------------------------------------------------------------------
 IContext* TGraphicEngineModule::CreateContext()
 {
-    auto pCtx = new TGraphicEngineContext();
-    pCtx->Init(GetGE());
-    //pCtx->guiCtx = ImGui::CreateContext();
-    // ...
-    return pCtx;
+    auto pModuleCtx = new TGraphicEngineContext();
+
+    auto pCtx = mGE->CreateContext(TGraphicEngine::PipeLineType::SIMPLE);
+
+    //###
+    auto pCamera = pCtx->CreateCamera();// TODO: delete me!
+    pCtx->SetGuiCamera(pCamera);
+    pCamera->SetWindowSize({ 800, 600 });
+    //###
+
+    pModuleCtx->SetGraphicEngineContext(pCtx);
+
+    return pModuleCtx;
 }
 //---------------------------------------------------------------------------------
 void TGraphicEngineModule::DestroyContext(IContext* pCtx)
 {
-    //ImGui::DestroyContext(pCtx->guiCtx);
-    // ...
+    mGE->DestroyContext(((TGraphicEngineContext*)pCtx)->GetGraphicEngineContext());
+
     delete pCtx;
 }
 //---------------------------------------------------------------------------------

@@ -43,7 +43,11 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TNodeIconComponent",
-                    "jsonBody": "{\"iconFileName\":\"folder.png\", \"width\":16, \"height\":16}"
+                    "jsonBody": "{\"width\":16, \"height\":16}"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TTextureComponent",
+                    "jsonBody": "{\"resourceGuid\":\"folder.png\"}"
                 }
             ]
         }

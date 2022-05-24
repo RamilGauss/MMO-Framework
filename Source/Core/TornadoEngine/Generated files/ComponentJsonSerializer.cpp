@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_02_05 20:36:15.147
+// File has been generated at 2022_05_23 22:48:56.293
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -256,6 +256,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGraphicWrapper_TLightComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TLightComponent>();
     
     m.insert({ rtti__nsGraphicWrapper_TLightComponentTypeFunc, _nsGraphicWrapper_TLightComponentTypeFunc });
+    
+    TypeFunc _nsGraphicWrapper_TTextureComponentTypeFunc;
+    _nsGraphicWrapper_TTextureComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGraphicWrapper::TTextureComponent>((nsGraphicWrapper::TTextureComponent*) p, str);
+    };
+    _nsGraphicWrapper_TTextureComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGraphicWrapper::TTextureComponent>((nsGraphicWrapper::TTextureComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGraphicWrapper_TTextureComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureComponent>();
+    
+    m.insert({ rtti__nsGraphicWrapper_TTextureComponentTypeFunc, _nsGraphicWrapper_TTextureComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc;
     _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -883,6 +895,16 @@ void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TLightComponent* p
 {
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TTextureComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "resourceGuid", p->resourceGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TTextureComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "resourceGuid", p->resourceGuid);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TButtonClickHandlerComponent* p, Jobj& obj)
 {
     _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
@@ -1039,14 +1061,12 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMenuNodeComponent* p,
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TNodeIconComponent* p, Jobj& obj)
 {
-    PUM::Push(obj, "iconFileName", p->iconFileName);
     PUM::Push(obj, "width", p->width);
     PUM::Push(obj, "height", p->height);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TNodeIconComponent* p, const Jobj& obj)
 {
-    POM::PopStr(obj, "iconFileName", p->iconFileName);
     POM::PopNum(obj, "width", p->width);
     POM::PopNum(obj, "height", p->height);
 }

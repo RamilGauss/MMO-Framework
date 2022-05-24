@@ -41,6 +41,29 @@ namespace nsTornadoEngine
 
     class DllExport TModules
     {
+    public:
+        // Mostly for inner usage
+        IGraphicEngineModule* G() const;
+        IPhysicEngineModule* P() const;
+        ILogicModule* L() const;
+        IMMOEngineModule* MMO() const;
+        INetTransportModule* Net() const;
+        ISoundEngineModule* S() const;
+        IDataBaseModule* DB() const;
+
+        // Usage in projects
+        nsECSFramework::TEntityManager* EntMng() const;
+        TSceneManager* SceneMng() const;
+        TPrefabManager* PrefabMng() const;
+
+        TStopAccessor* StopAccessor() const;
+
+        nsGraphicEngine::TKeyMouseEventContainer* KeyMouse() const;
+
+        THandlerCallCollector* HandlerCalls() const;
+        TPrefabObjectConstructor* PrefabObjConstructor() const;
+
+        THierarchyHelper* HierarchyHelper() const;
     protected:
         friend class TModulesAccessor;
 
@@ -66,29 +89,6 @@ namespace nsTornadoEngine
         TPrefabObjectConstructor* prefabObjectConstructor = nullptr;
 
         THierarchyHelper* hierarchyHelper = nullptr;
-    public:
-        // Mostly for inner usage
-        IGraphicEngineModule* G() const;
-        IPhysicEngineModule* P() const;
-        ILogicModule* L() const;
-        IMMOEngineModule* MMO() const;
-        INetTransportModule* Net() const;
-        ISoundEngineModule* S() const;
-        IDataBaseModule* DB() const;
-
-        // Usage in projects
-        nsECSFramework::TEntityManager* EntMng() const;
-        TSceneManager* SceneMng() const;
-        TPrefabManager* PrefabMng() const;
-
-        TStopAccessor* StopAccessor() const;
-
-        nsGraphicEngine::TKeyMouseEventContainer* KeyMouse() const;
-
-        THandlerCallCollector* HandlerCalls() const;
-        TPrefabObjectConstructor* PrefabObjConstructor() const;
-
-        THierarchyHelper* HierarchyHelper() const;
     };
 
     extern DllExport TModules* Modules();

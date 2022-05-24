@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_02_05 20:36:15.192
+// File has been generated at 2022_05_23 22:48:56.334
 	
 #include "ComponentTypeInformation.h"
 
@@ -134,6 +134,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGraphicWrapper_TLightComponent_n);
     mRttiList.push_back(nsGraphicWrapper_TLightComponent_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TLightComponent_n, nsGraphicWrapper_TLightComponent_i });
+    
+    int nsGraphicWrapper_TTextureComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureComponent>();
+    std::string nsGraphicWrapper_TTextureComponent_n = "nsGraphicWrapper::TTextureComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TTextureComponent_n);
+    mRttiList.push_back(nsGraphicWrapper_TTextureComponent_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TTextureComponent_n, nsGraphicWrapper_TTextureComponent_i });
     
     int nsGuiWrapper_TButtonClickHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
     std::string nsGuiWrapper_TButtonClickHandlerComponent_n = "nsGuiWrapper::TButtonClickHandlerComponent";

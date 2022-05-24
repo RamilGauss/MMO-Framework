@@ -11,10 +11,13 @@ See for more information LICENSE.md.
 
 #include <ECS/include/IComponent.h>
 
+#include "GraphicEngine/Camera.h"
+
 namespace nsGraphicWrapper
 {
     struct DllExport TCameraComponent : nsECSFramework::IComponent
     {
-        
+#pragma IGNORE_ATTRIBUTE
+        mutable nsGraphicEngine::TCamera* value = nullptr;
     };
 }

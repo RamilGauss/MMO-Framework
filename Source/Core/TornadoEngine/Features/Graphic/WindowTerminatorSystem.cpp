@@ -20,7 +20,7 @@ void TWindowTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsGu
     auto universeIndex = GetEntMng()->ViewComponent<nsCommonWrapper::TUniverseIndexComponent>(eid)->value;
 
     auto pContext = (nsTornadoEngine::TGraphicEngineContext*) (nsTornadoEngine::Modules()->G()->GetContext(universeIndex));
-    pContext->RemoveRender(pWindowComponent->value);
+    pContext->GetGraphicEngineContext()->RemoveRender(pWindowComponent->value);
 
     delete pWindowComponent->value;
     pWindowComponent->value = nullptr;

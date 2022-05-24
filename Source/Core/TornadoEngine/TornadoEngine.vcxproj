@@ -127,7 +127,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Logic;./Generated files;./Features/Logic;./Features/Graphic;./Features/Gui;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE;$(DEP_PATH_MMO_FRAMEWORK)\Include\OGRE\Overlay;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Logic;./Generated files;./Features/Logic;./Features/Graphic;./Features/Gui;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules\GraphicEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -140,7 +140,7 @@
       <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;ImGuiWidgets_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;OgreOverlay_d.lib;OgreHlmsPbs_d.lib;OgreHlmsUnlit_d.lib;OgreMain_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;ImGuiWidgets_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -198,7 +198,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\Torna
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;ECS.lib;ImGuiWidgets.lib;GraphicEngine.lib;PhysicEngine.lib;NetTransport.lib;MMOEngine.lib;OgreBites.lib;OgreProperty.lib;OgreRTShaderSystem.lib;OgreTerrain.lib;OgreVolume.lib;OgreOverlay.lib;OgrePaging.lib;OgreMain.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;ECS.lib;ImGuiWidgets.lib;GraphicEngine.lib;PhysicEngine.lib;NetTransport.lib;MMOEngine.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -217,10 +217,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h" />
-    <ClCompile Include="Components\Graphic\GuiUpdaterFromModuleFeature.cpp" />
-    <ClCompile Include="Components\Logic\ObjectInstanceEndHandlerBuilderSystem.cpp" />
-    <ClCompile Include="Components\Logic\ObjectInstanceEndHandlerMakerSystem.cpp" />
-    <ClCompile Include="Components\Logic\ObjectInstanceEndHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\BeginGraphicFeature.cpp" />
     <ClCompile Include="Features\Graphic\ButtonBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonClickHandlerMakerSystem.cpp" />
@@ -244,6 +240,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Graphic\GuiBuilderFeature.cpp" />
     <ClCompile Include="Features\Graphic\GuiMakerFeature.cpp" />
     <ClCompile Include="Features\Graphic\GuiTerminatorFeature.cpp" />
+    <ClCompile Include="Features\Graphic\GuiUpdaterFromModuleFeature.cpp" />
     <ClCompile Include="Features\Graphic\GuiUpdaterToModuleFeature.cpp" />
     <ClCompile Include="Features\Graphic\InputTextBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\InputTextMakerSystem.cpp" />
@@ -260,8 +257,13 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\MenuNodeMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\MenuNodeTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\OnAddUniverseContextSystem.cpp" />
     <ClCompile Include="Features\Graphic\OnRemoveUniverseContextSystem.cpp" />
+    <ClCompile Include="Features\Graphic\TextureMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\TextureTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\TitleUpdaterSystem.cpp" />
     <ClCompile Include="Features\Graphic\TreeNodeBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\TreeNodeMakerSystem.cpp" />
@@ -347,8 +349,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Components\Common\UniverseGuidComponent.h" />
     <ClInclude Include="Components\Common\UniverseIndexComponent.h" />
     <ClInclude Include="Components\Graphic\CameraComponent.h" />
-    <ClInclude Include="Components\Graphic\GuiUpdaterFromModuleFeature.h" />
     <ClInclude Include="Components\Graphic\LightComponent.h" />
+    <ClInclude Include="Components\Graphic\TextureComponent.h" />
     <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h" />
     <ClInclude Include="Components\Gui\ButtonComponent.h" />
     <ClInclude Include="Components\Gui\DialogComponent.h" />
@@ -377,10 +379,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Components\Gui\WindowComponent.h" />
     <ClInclude Include="Components\Gui\WindowCloseEventHandlerComponent.h" />
     <ClInclude Include="Components\Logic\SystemComponent.h" />
-    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerBuilderSystem.h" />
     <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerComponent.h" />
-    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerMakerSystem.h" />
-    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerTerminatorSystem.h" />
     <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h" />
     <ClInclude Include="Components\Logic\PrefabReferenceComponent.h" />
     <ClInclude Include="Components\Logic\SceneObjectReferenceComponent.h" />
@@ -408,6 +407,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Features\Graphic\GuiBuilderFeature.h" />
     <ClInclude Include="Features\Graphic\GuiMakerFeature.h" />
     <ClInclude Include="Features\Graphic\GuiTerminatorFeature.h" />
+    <ClInclude Include="Features\Graphic\GuiUpdaterFromModuleFeature.h" />
     <ClInclude Include="Features\Graphic\GuiUpdaterToModuleFeature.h" />
     <ClInclude Include="Features\Graphic\HandlerLinkHelper.h" />
     <ClInclude Include="Features\Graphic\InputTextBuilderSystem.h" />
@@ -425,8 +425,13 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\MenuNodeMakerSystem.h" />
     <ClInclude Include="Features\Graphic\MenuNodeTerminatorSystem.h" />
+    <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\OnAddUniverseContextSystem.h" />
     <ClInclude Include="Features\Graphic\OnRemoveUniverseContextSystem.h" />
+    <ClInclude Include="Features\Graphic\TextureMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\TextureTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\TitleUpdaterSystem.h" />
     <ClInclude Include="Features\Graphic\TreeNodeBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\TreeNodeMakerSystem.h" />

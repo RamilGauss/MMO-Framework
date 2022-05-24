@@ -160,6 +160,12 @@
     <Filter Include="Features\Graphic\GraphicContext">
       <UniqueIdentifier>{6661bba8-5424-426c-9954-f5a207b575d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Graphic\Maker\Graphic">
+      <UniqueIdentifier>{9e6b51ad-9644-4656-81f3-f8d28c492586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Graphic\Terminator\Graphic">
+      <UniqueIdentifier>{273ac64f-877e-4a90-8b85-aa0c4a0e1b17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -264,9 +270,6 @@
     <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h">
       <Filter>Components\Common\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Graphic\GuiUpdaterFromModuleFeature.cpp">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClCompile>
     <ClCompile Include="Generated files\FeatureTypeFactory.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
@@ -320,15 +323,6 @@
     </ClCompile>
     <ClCompile Include="Modules\ObjectManager.cpp">
       <Filter>Modules\Resources\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Logic\ObjectInstanceEndHandlerBuilderSystem.cpp">
-      <Filter>Features\Logic\Builder</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Logic\ObjectInstanceEndHandlerMakerSystem.cpp">
-      <Filter>Features\Logic\Maker</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Logic\ObjectInstanceEndHandlerTerminatorSystem.cpp">
-      <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
     <ClCompile Include="Features\Graphic\InputTextValueUpdaterSystem.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
@@ -497,6 +491,24 @@
     </ClCompile>
     <ClCompile Include="Modules\UniverseManager.cpp">
       <Filter>Modules\Resources\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\GuiUpdaterFromModuleFeature.cpp">
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerBuilderSystem.cpp">
+      <Filter>Features\Logic\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerMakerSystem.cpp">
+      <Filter>Features\Logic\Maker</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerTerminatorSystem.cpp">
+      <Filter>Features\Logic\Terminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\TextureMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\TextureTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Graphic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -728,9 +740,6 @@
     <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Graphic\GuiUpdaterFromModuleFeature.h">
-      <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClInclude>
     <ClInclude Include="Generated files\FeatureTypeFactory.h">
       <Filter>Generated files</Filter>
     </ClInclude>
@@ -817,15 +826,6 @@
     </ClInclude>
     <ClInclude Include="Handlers\IMenuNodeClickHandler.h">
       <Filter>Handlers\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerBuilderSystem.h">
-      <Filter>Features\Logic\Builder</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerMakerSystem.h">
-      <Filter>Features\Logic\Maker</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerTerminatorSystem.h">
-      <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\IObjectInstanceEndHandler.h">
       <Filter>Handlers\Logic</Filter>
@@ -1117,6 +1117,27 @@
     </ClInclude>
     <ClInclude Include="Components\Common\UniverseIndexComponent.h">
       <Filter>Components\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\GuiUpdaterFromModuleFeature.h">
+      <Filter>Features\Graphic\UpdaterFromModule</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerBuilderSystem.h">
+      <Filter>Features\Logic\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerMakerSystem.h">
+      <Filter>Features\Logic\Maker</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerTerminatorSystem.h">
+      <Filter>Features\Logic\Terminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\TextureComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\TextureMakerSystem.h">
+      <Filter>Features\Graphic\Maker\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\TextureTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Graphic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

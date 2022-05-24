@@ -14,32 +14,6 @@ See for more information LICENSE.md.
 namespace nsTornadoEngine
 {
 #pragma REFLECTION_ATTRIBUTE
-    struct TOgreCfg
-    {
-        std::string release;
-        std::string debug;
-
-        std::string Get()
-        {
-            return
-#ifdef _DEBUG
-                debug;
-#else
-                release;
-#endif
-        }
-    };
-
-#pragma REFLECTION_ATTRIBUTE
-    struct TGraphicEngineResources
-    {
-        std::string terrainPath;
-        TOgreCfg pluginsCfg;
-        TOgreCfg ogreCfg;
-        std::map<std::string, std::list<std::string>> resources;
-    };
-
-#pragma REFLECTION_ATTRIBUTE
     struct TGameEngineResources
     {
         std::string sceneManagerContentMapPath;
@@ -51,7 +25,8 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct TFrameworkResources
     {
-        TGraphicEngineResources graphicEngine;
+        std::map<std::string, std::string> resources;
+
         TGameEngineResources gameEngine;
     };
 }

@@ -15,7 +15,11 @@ using namespace nsGraphicWrapper;
 
 void TDialogTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TDialogComponent* pDialogComponent)
 {
-    auto dialogStack = nsTornadoEngine::Modules()->G()->GetDialogStack();
+    auto universeIndex = GetEntMng()->ViewComponent<nsCommonWrapper::TUniverseIndexComponent>(eid)->value;
+
+    auto pContext = (nsTornadoEngine::TGraphicEngineContext*)(nsTornadoEngine::Modules()->G()->GetContext(universeIndex));
+
+    auto dialogStack = pContext->GetDialogStack();
     dialogStack->Remove(pDialogComponent->value);
 
     delete pDialogComponent->value;

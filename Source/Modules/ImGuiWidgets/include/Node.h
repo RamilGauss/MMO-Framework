@@ -11,6 +11,8 @@ See for more information LICENSE.md.
 #include "WidgetContainer.h"
 #include "CallbackPool.h"
 
+#include "Texture.h"
+
 namespace nsImGuiWidgets
 {
     class DllExport TNode : public TWidget, public TWidgetContainer
@@ -19,6 +21,8 @@ namespace nsImGuiWidgets
         void* mTextureId = nullptr;
         int mWidth = 0;
         int mHeight = 0;
+
+        nsGraphicEngine::TTexture* mTexture = nullptr;
 
     public:
         std::string mStrId;

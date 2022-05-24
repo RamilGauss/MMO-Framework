@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_02_05 20:36:21.845
+// File has been generated at 2022_05_23 22:49:04.778
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -324,6 +324,20 @@ void TFeatureTypeFactory::Init()
     auto rtti_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TOnRemoveUniverseContextSystem>();
     
     m.insert({ rtti_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data, nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data });
+    
+    Data nsGraphicWrapper_TTextureMakerSystem_Data;
+    nsGraphicWrapper_TTextureMakerSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TTextureMakerSystem(); };
+    nsGraphicWrapper_TTextureMakerSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TTextureMakerSystem*)p; };
+    auto rtti_nsGraphicWrapper_TTextureMakerSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureMakerSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TTextureMakerSystem_Data, nsGraphicWrapper_TTextureMakerSystem_Data });
+    
+    Data nsGraphicWrapper_TTextureTerminatorSystem_Data;
+    nsGraphicWrapper_TTextureTerminatorSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TTextureTerminatorSystem(); };
+    nsGraphicWrapper_TTextureTerminatorSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TTextureTerminatorSystem*)p; };
+    auto rtti_nsGraphicWrapper_TTextureTerminatorSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureTerminatorSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TTextureTerminatorSystem_Data, nsGraphicWrapper_TTextureTerminatorSystem_Data });
     
     Data nsGraphicWrapper_TTitleUpdaterSystem_Data;
     nsGraphicWrapper_TTitleUpdaterSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TTitleUpdaterSystem(); };

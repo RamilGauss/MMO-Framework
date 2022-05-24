@@ -31,6 +31,8 @@ See for more information LICENSE.md.
 #include "FrameMouseMoveHandlerTerminatorSystem.h"
 #include "FrameMouseWheelHandlerTerminatorSystem.h"
 
+#include "TextureTerminatorSystem.h"
+
 namespace nsGraphicWrapper
 {
     class DllExport TGuiTerminatorFeature : public nsECSFramework::TFeature
@@ -56,6 +58,8 @@ namespace nsGraphicWrapper
         TFrameMouseClickHandlerTerminatorSystem mFrameMouseClickHandlerTerminatorSystem;
         TFrameMouseMoveHandlerTerminatorSystem  mFrameMouseMoveHandlerTerminatorSystem;
         TFrameMouseWheelHandlerTerminatorSystem mFrameMouseWheelHandlerTerminatorSystem;
+
+        TTextureTerminatorSystem mTextureTerminatorSystem;
     public:
         void InitConveyor() override;
     };

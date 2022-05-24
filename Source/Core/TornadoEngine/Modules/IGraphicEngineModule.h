@@ -11,18 +11,14 @@ See for more information LICENSE.md.
 #include "GraphicEngineContext.h"
 
 #include "LogicWrapperModule.h"
-#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
-
-#include <ImGuiWidgets/include/DialogStack.h>
+#include "GraphicEngine/GraphicEngine.h"
 
 namespace nsTornadoEngine
 {
     class DllExport IGraphicEngineModule : public TLogicWrapperModule, public IContextManager
     {
     public:
-        virtual nsGraphicEngine::TGraphicEngine_Ogre_ImGui* GetGE() = 0;
-        virtual void SetGE(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE) = 0;
-
-        virtual nsImGuiWidgets::TDialogStack* GetDialogStack() = 0;
+        virtual nsGraphicEngine::TGraphicEngine* GetGE() = 0;
+        virtual void SetGE(nsGraphicEngine::TGraphicEngine* pGE) = 0;
     };
 }

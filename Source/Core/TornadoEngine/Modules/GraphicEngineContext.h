@@ -7,37 +7,28 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
 #include <list>
 
-#include <OgreCamera.h>
-#include <OgreSceneManager.h>
-
-#include "GraphicEngine/GraphicEngine_Ogre_ImGui.h"
+#include "TypeDef.h"
 
 #include "IContext.h"
+
+#include <ImGuiWidgets/include/DialogStack.h>
+#include <GraphicEngine/GraphicEngineContext.h>
 
 namespace nsTornadoEngine
 {
     class DllExport TGraphicEngineContext : public IContext
     {
+        nsImGuiWidgets::TDialogStack mDialogStack;
+
+        nsGraphicEngine::TGraphicEngineContext* mGraphicEngineContext = nullptr;
     public:
-        Ogre::SceneManager* mSceneManager = nullptr;
+        nsImGuiWidgets::TDialogStack* GetDialogStack();
 
-        std::list<Ogre::Camera*> cameras;
-
-
-        void Init(nsGraphicEngine::TGraphicEngine_Ogre_ImGui* pGE);
-
-        // GUI
-        void AddRender(nsGraphicEngine::IRenderable* pRenderable);
-        void RemoveRender(nsGraphicEngine::IRenderable* pRenderable);
+        nsGraphicEngine::TGraphicEngineContext* GetGraphicEngineContext() const;
+        void SetGraphicEngineContext(nsGraphicEngine::TGraphicEngineContext* pCtx);
 
     private:
-        nsGraphicEngine::TGraphicEngine_Ogre_ImGui* mGE = nullptr;
-
-        void CreateCamera();
-
-        void ImportV1Mesh(const Ogre::String& meshName);
     };
 }

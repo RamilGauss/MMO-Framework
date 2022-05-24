@@ -62,7 +62,7 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std:
         return;
     }
 
-    // 2. Convert typeName to rtti
+    // Convert typeName to rtti
     std::list<nsECSFramework::TEntityID> newEntities;
     DeserializeObjects(newEntities, prefabContent);
 
@@ -73,7 +73,8 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std:
 
     nsECSFramework::TEntityID sceneRootEid = nsECSFramework::NONE;
     for (auto& eid : sceneRootEids) {
-        if (mEntityManager->ViewComponent<TSceneGuidComponent>(eid)->value == sceneInstanceGuid) {
+        auto rootSceneInstanceGuid = mEntityManager->ViewComponent<TSceneInstanceGuidComponent>(eid)->value;
+        if (rootSceneInstanceGuid == sceneInstanceGuid) {
             sceneRootEid = eid;
             break;
         }
@@ -214,7 +215,7 @@ void TPrefabManager::InstantiateEntities(const std::list<nsECSFramework::TEntity
 {
     using namespace nsCommonWrapper;
 
-    // 3. Search prefabInstance
+    // Search prefabInstance
     nsECSFramework::TEntityID rootEid = nsECSFramework::NONE;
     for (auto& entity : newEntities) {
         auto hasRoot = mEntityManager->HasComponent<TPrefabRootComponent>(entity);
@@ -225,7 +226,7 @@ void TPrefabManager::InstantiateEntities(const std::list<nsECSFramework::TEntity
 
     std::string prefabInstanceGuid = TGuidGenerator::Generate();
 
-    // 3. Replace all guids to new guid with ParentGuids and SceneGuids
+    // Replace all guids to new guid with ParentGuids and SceneGuids
     UpdateGuidsAndInstantiate<TPrefabOriginalGuidComponent, TPrefabInstanceGuidComponent>(newEntities, prefabInstanceGuid);
 
     nsECSFramework::TEntityID parentEid = nsECSFramework::NONE;
@@ -251,7 +252,7 @@ void TPrefabManager::InstantiateEntities(const std::list<nsECSFramework::TEntity
             parentEid = *(sceneRootsEids.begin());
         }
     } else {
-        // 5. Find parent by guid
+        // Find parent by guid
         nsCommonWrapper::TGuidComponent parentGuidComponent;
         parentGuidComponent.value = parentGuid;
         parentEid = mEntityManager->GetByUnique(parentGuidComponent);
@@ -281,7 +282,7 @@ void TPrefabManager::InstantiateEntities(const std::list<nsECSFramework::TEntity
 
     BL_ASSERT(parentEid != nsECSFramework::NONE);
 
-    // 8. Add identification of the scene.
+    // Add identification of the scene.
     auto parentSceneGuid = mEntityManager->ViewComponent<nsCommonWrapper::TSceneGuidComponent>(parentEid);
     auto parentSceneInstanceGuid = mEntityManager->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(parentEid);
 

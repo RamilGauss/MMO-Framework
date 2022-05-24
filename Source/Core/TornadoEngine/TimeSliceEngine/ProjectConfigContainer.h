@@ -47,6 +47,8 @@ namespace nsTornadoEngine
         
         std::string GetSceneContentMapAbsPath();
         std::string GetPrefabContentMapAbsPath();
+
+        std::string GetResourcesAbsPath(const std::string& guid);
     };
 
     extern TProjectConfigContainer* Project();

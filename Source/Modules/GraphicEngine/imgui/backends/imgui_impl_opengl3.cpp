@@ -5,8 +5,8 @@
 
 // Implemented features:
 //  [X] Renderer: User texture binding. Use 'GLuint' OpenGL texture identifier as void*/ImTextureID. Read the FAQ about ImTextureID!
-//  [X] Renderer: Multi-viewport support. Enable with 'io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable'.
-//  [x] Renderer: Desktop GL only: Support for large meshes (64k+ vertices) with 16-bit indices.
+//  [X] Renderer: Multi-viewport support (multiple windows). Enable with 'io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable'.
+//  [x] Renderer: Large meshes support (64k+ vertices) with 16-bit indices (Desktop OpenGL only).
 
 // You can use unmodified imgui_impl_* files in your project. See examples/ folder for examples of using this.
 // Prefer including the entire imgui/ repository into your project (either as a copy or as a submodule), and only build the backends you need.
@@ -110,7 +110,11 @@
 
 // GL includes
 #if defined(IMGUI_IMPL_OPENGL_ES2)
-#include <GLES2/gl2.h>
+#if (defined(__APPLE__) && (TARGET_OS_IOS || TARGET_OS_TV))
+#include <OpenGLES/ES2/gl.h>    // Use GL ES 2
+#else
+#include <GLES2/gl2.h>          // Use GL ES 2
+#endif
 #if defined(__EMSCRIPTEN__)
 #ifndef GL_GLEXT_PROTOTYPES
 #define GL_GLEXT_PROTOTYPES
@@ -191,7 +195,7 @@ struct ImGui_ImplOpenGL3_Data
     GLsizeiptr      IndexBufferSize;
     bool            HasClipOrigin;
 
-    ImGui_ImplOpenGL3_Data() { memset(this, 0, sizeof(*this)); }
+    ImGui_ImplOpenGL3_Data() { memset((void*)this, 0, sizeof(*this)); }
 };
 
 // Backend data stored in io.BackendRendererUserData to allow support for multiple Dear ImGui contexts
@@ -312,7 +316,8 @@ void    ImGui_ImplOpenGL3_NewFrame()
         ImGui_ImplOpenGL3_CreateDeviceObjects();
 }
 
-static void ImGui_ImplOpenGL3_SetupRenderState(ImDrawData* draw_data, int fb_width, int fb_height, GLuint vertex_array_object)
+static void ImGui_ImplOpenGL3_SetupRenderState(ImDrawData* draw_data, int fb_width, int fb_height, GLuint vertex_array_object,
+    int glPosX, int glPosY, int width, int height)
 {
     ImGui_ImplOpenGL3_Data* bd = ImGui_ImplOpenGL3_GetBackendData();
 
@@ -345,7 +350,10 @@ static void ImGui_ImplOpenGL3_SetupRenderState(ImDrawData* draw_data, int fb_wid
 
     // Setup viewport, orthographic projection matrix
     // Our visible imgui space lies from draw_data->DisplayPos (top left) to draw_data->DisplayPos+data_data->DisplaySize (bottom right). DisplayPos is (0,0) for single viewport apps.
-    glViewport(0, 0, (GLsizei)fb_width, (GLsizei)fb_height);
+    //### glViewport(0, 0, (GLsizei)fb_width, (GLsizei)fb_height);
+
+    glViewport(glPosX, glPosY, width, height);//###
+
     float L = draw_data->DisplayPos.x;
     float R = draw_data->DisplayPos.x + draw_data->DisplaySize.x;
     float T = draw_data->DisplayPos.y;
@@ -388,7 +396,9 @@ static void ImGui_ImplOpenGL3_SetupRenderState(ImDrawData* draw_data, int fb_wid
 // OpenGL3 Render function.
 // Note that this implementation is little overcomplicated because we are saving/setting up/restoring every OpenGL state explicitly.
 // This is in order to be able to run within an OpenGL engine that doesn't do so.
-void    ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data)
+//void    ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data)
+// 2022.05.15 Gauss, set up openGl viewport options
+void ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data, int glPosX, int glPosY, int width, int height)
 {
     // Avoid rendering when minimized, scale coordinates for retina displays (screen coordinates != framebuffer coordinates)
     int fb_width = (int)(draw_data->DisplaySize.x * draw_data->FramebufferScale.x);
@@ -437,7 +447,7 @@ void    ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data)
 #ifdef IMGUI_IMPL_OPENGL_USE_VERTEX_ARRAY
     glGenVertexArrays(1, &vertex_array_object);
 #endif
-    ImGui_ImplOpenGL3_SetupRenderState(draw_data, fb_width, fb_height, vertex_array_object);
+    ImGui_ImplOpenGL3_SetupRenderState(draw_data, fb_width, fb_height, vertex_array_object, glPosX, glPosY, width, height);
 
     // Will project scissor/clipping rectangles into framebuffer space
     ImVec2 clip_off = draw_data->DisplayPos;         // (0,0) unless using multi-viewports
@@ -472,7 +482,7 @@ void    ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data)
                 // User callback, registered via ImDrawList::AddCallback()
                 // (ImDrawCallback_ResetRenderState is a special callback value used by the user to request the renderer to reset render state.)
                 if (pcmd->UserCallback == ImDrawCallback_ResetRenderState)
-                    ImGui_ImplOpenGL3_SetupRenderState(draw_data, fb_width, fb_height, vertex_array_object);
+                    ImGui_ImplOpenGL3_SetupRenderState(draw_data, fb_width, fb_height, vertex_array_object, glPosX, glPosY, width, height);
                 else
                     pcmd->UserCallback(cmd_list, pcmd);
             }
@@ -485,7 +495,8 @@ void    ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data)
                     continue;
 
                 // Apply scissor/clipping rectangle (Y is inverted in OpenGL)
-                glScissor((int)clip_min.x, (int)((float)fb_height - clip_max.y), (int)(clip_max.x - clip_min.x), (int)(clip_max.y - clip_min.y));
+                //### glScissor((int)clip_min.x, (int)((float)fb_height - clip_max.y), (int)(clip_max.x - clip_min.x), (int)(clip_max.y - clip_min.y));
+                glScissor(glPosX, glPosY, width, height);//###
 
                 // Bind texture, Draw
                 glBindTexture(GL_TEXTURE_2D, (GLuint)(intptr_t)pcmd->GetTexID());
@@ -546,6 +557,7 @@ bool ImGui_ImplOpenGL3_CreateFontsTexture()
     io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);   // Load as RGBA 32-bit (75% of the memory is wasted, but default font is so small) because it is more likely to be compatible with user's existing shaders. If your ImTextureId represent a higher-level concept than just a GL texture id, consider calling GetTexDataAsAlpha8() instead to save on GPU memory.
 
     // Upload texture to graphics system
+    // (Bilinear sampling is required by default. Set 'io.Fonts->Flags |= ImFontAtlasFlags_NoBakedLines' or 'style.AntiAliasedLinesUseTex = false' to allow point/nearest sampling)
     GLint last_texture;
     glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
     glGenTextures(1, &bd->FontTexture);
@@ -827,7 +839,7 @@ static void ImGui_ImplOpenGL3_RenderWindow(ImGuiViewport* viewport, void*)
         glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT);
     }
-    ImGui_ImplOpenGL3_RenderDrawData(viewport->DrawData);
+    ImGui_ImplOpenGL3_RenderDrawData(viewport->DrawData, 0,0,0,0);
 }
 
 static void ImGui_ImplOpenGL3_InitPlatformInterface()

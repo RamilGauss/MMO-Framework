@@ -22,8 +22,6 @@ namespace nsTornadoEngine
     {
         using Func = std::function<bool(nsECSFramework::TEntityID, const T*)>;
 
-        std::list<Func> mFuncs;
-
         void Add(Func func)
         {
             mFuncs.push_back(func);
@@ -41,5 +39,7 @@ namespace nsTornadoEngine
 
             BL_ASSERT(counter == 1);
         }
+    private:
+        std::list<Func> mFuncs;
     };
 }

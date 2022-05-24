@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_02_05 20:36:19.561
+// File has been generated at 2022_05_23 22:49:02.193
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -208,30 +208,6 @@ void TTornadoEngineJsonSerializer::Init()
     auto rtti__nsTornadoEngine_TGeneratorConfigTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TGeneratorConfig>();
     
     m.insert({ rtti__nsTornadoEngine_TGeneratorConfigTypeFunc, _nsTornadoEngine_TGeneratorConfigTypeFunc });
-    
-    TypeFunc _nsTornadoEngine_TGraphicEngineResourcesTypeFunc;
-    _nsTornadoEngine_TGraphicEngineResourcesTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsTornadoEngine::TGraphicEngineResources>((nsTornadoEngine::TGraphicEngineResources*) p, str);
-    };
-    _nsTornadoEngine_TGraphicEngineResourcesTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsTornadoEngine::TGraphicEngineResources>((nsTornadoEngine::TGraphicEngineResources*) p, str, err);
-    };
-    
-    auto rtti__nsTornadoEngine_TGraphicEngineResourcesTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TGraphicEngineResources>();
-    
-    m.insert({ rtti__nsTornadoEngine_TGraphicEngineResourcesTypeFunc, _nsTornadoEngine_TGraphicEngineResourcesTypeFunc });
-    
-    TypeFunc _nsTornadoEngine_TOgreCfgTypeFunc;
-    _nsTornadoEngine_TOgreCfgTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsTornadoEngine::TOgreCfg>((nsTornadoEngine::TOgreCfg*) p, str);
-    };
-    _nsTornadoEngine_TOgreCfgTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsTornadoEngine::TOgreCfg>((nsTornadoEngine::TOgreCfg*) p, str, err);
-    };
-    
-    auto rtti__nsTornadoEngine_TOgreCfgTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TOgreCfg>();
-    
-    m.insert({ rtti__nsTornadoEngine_TOgreCfgTypeFunc, _nsTornadoEngine_TOgreCfgTypeFunc });
     
     TypeFunc _nsTornadoEngine_TProjectConfigTypeFunc;
     _nsTornadoEngine_TProjectConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -572,16 +548,20 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TEntityContent*
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TFrameworkResources* p, Jobj& obj)
 {
-    auto graphicEngine_o = PUM::AddObject(obj, "graphicEngine");
-    _Serialize(&(p->graphicEngine), graphicEngine_o);
+    auto resources_c0 = PUM::AddObject(obj, "resources");
+    for(auto& resources_e0 : p->resources) {
+        PUM::Push(resources_c0, PUM::ConvertToString(resources_e0.first).data(), resources_e0.second);
+    }
     auto gameEngine_o = PUM::AddObject(obj, "gameEngine");
     _Serialize(&(p->gameEngine), gameEngine_o);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TFrameworkResources* p, const Jobj& obj)
 {
-    auto graphicEngine_o0 = POM::FindObject(obj, "graphicEngine");
-    _Deserialize(&(p->graphicEngine), graphicEngine_o0);
+    auto resources_a0 = POM::FindObject(obj, "resources");
+    for(auto& resources_e0 : resources_a0) {
+        p->resources.insert({ resources_e0.name.GetString(), resources_e0.value.GetString() });
+    }
     auto gameEngine_o0 = POM::FindObject(obj, "gameEngine");
     _Deserialize(&(p->gameEngine), gameEngine_o0);
 }
@@ -623,60 +603,6 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TGeneratorConfi
 {
     POM::PopStr(obj, "nameSpace", p->nameSpace);
     POM::PopStr(obj, "directoryPath", p->directoryPath);
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TGraphicEngineResources* p, Jobj& obj)
-{
-    PUM::Push(obj, "terrainPath", p->terrainPath);
-    auto pluginsCfg_o = PUM::AddObject(obj, "pluginsCfg");
-    _Serialize(&(p->pluginsCfg), pluginsCfg_o);
-    auto ogreCfg_o = PUM::AddObject(obj, "ogreCfg");
-    _Serialize(&(p->ogreCfg), ogreCfg_o);
-    auto resources_c0 = PUM::AddObject(obj, "resources");
-    for(auto& resources_e0 : p->resources) {
-        PUM::Value resources_a1(rapidjson::kArrayType);
-        for(auto& resources_e1 : resources_e0.second) {
-            PUM::PushBack(resources_a1, resources_e1);
-        }
-        PUM::Push(resources_c0, PUM::ConvertToString(resources_e0.first).data(), resources_a1);
-    }
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TGraphicEngineResources* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "terrainPath", p->terrainPath);
-    auto pluginsCfg_o0 = POM::FindObject(obj, "pluginsCfg");
-    _Deserialize(&(p->pluginsCfg), pluginsCfg_o0);
-    auto ogreCfg_o0 = POM::FindObject(obj, "ogreCfg");
-    _Deserialize(&(p->ogreCfg), ogreCfg_o0);
-    auto resources_a0 = POM::FindObject(obj, "resources");
-    for(auto& resources_e0 : resources_a0) {
-        if (resources_e0.value.IsArray()) {
-            std::list<std::string> resources_c1;
-            auto resources_a1 = resources_e0.value.GetArray();
-            for(auto& resources_e1 : resources_a1) {
-                resources_c1.push_back(resources_e1.GetString());
-            }
-            p->resources.insert({ resources_e0.name.GetString(), resources_c1 });
-        } else {
-            auto resources_t1 = resources_e0.value.GetString();
-            std::list<std::string> resources_c1;
-            resources_c1.push_back(resources_t1);
-            p->resources.insert({ resources_e0.name.GetString(), resources_c1 });
-        }
-    }
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TOgreCfg* p, Jobj& obj)
-{
-    PUM::Push(obj, "release", p->release);
-    PUM::Push(obj, "debug", p->debug);
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TOgreCfg* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "release", p->release);
-    POM::PopStr(obj, "debug", p->debug);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TProjectConfig* p, Jobj& obj)

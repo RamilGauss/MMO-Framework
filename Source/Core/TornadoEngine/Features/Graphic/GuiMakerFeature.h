@@ -31,6 +31,8 @@ See for more information LICENSE.md.
 #include "FrameMouseWheelHandlerMakerSystem.h"
 #include "FrameKeyHandlerMakerSystem.h"
 
+#include "TextureMakerSystem.h"
+
 namespace nsGraphicWrapper
 {
     class DllExport TGuiMakerFeature : public nsECSFramework::TFeature
@@ -57,6 +59,8 @@ namespace nsGraphicWrapper
         TFrameMouseWheelHandlerMakerSystem mFrameMouseWheelHandlerMakerSystem;
 
         TFrameKeyHandlerMakerSystem mFrameKeyHandlerMakerSystem;
+
+        TTextureMakerSystem mTextureMakerSystem;
     public:
         void InitConveyor() override;
     };

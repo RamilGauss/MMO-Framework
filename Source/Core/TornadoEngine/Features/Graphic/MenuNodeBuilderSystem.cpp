@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include "UnitBuilderHelper.h"
 
 #include "TitleComponent.h"
+#include "TextureComponent.h"
 
 #include "MenuNodeClickHandlerComponent.h"
 
@@ -27,8 +28,7 @@ See for more information LICENSE.md.
 #include "Modules.h"
 #include "GraphicEngineModule.h"
 
-#include "OgreGpuResource.h"
-#include "OgreTextureGpuManager.h"
+#include "GraphicEngine/TextureFactory.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;
@@ -43,19 +43,10 @@ void TMenuNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
     auto pTreeNodeIconComponent = entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid);
     if (pTreeNodeIconComponent) {
 
-        try {
-            auto root = nsTornadoEngine::Modules()->G()->GetGE()->GetRoot();
-            auto textureGpuMng = root->getRenderSystem()->getTextureGpuManager();
+        auto pTexture = entMng->ViewComponent<TTextureComponent>(eid)->value;
 
-            auto mTex = textureGpuMng->createTexture(pTreeNodeIconComponent->iconFileName, 
-                Ogre::GpuPageOutStrategy::SaveToSystemRam,
-                Ogre::TextureFlags::ManualTexture,
-                Ogre::TextureTypes::Type2D);
-            auto handle = (void*) (mTex);
-            pMenuNodeComponent->value->SetTexture(handle, pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);
-        } catch (...) {
-
-        }
+        auto handle = (void*)(pTexture->mId);
+        pMenuNodeComponent->value->SetTexture(handle, pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);
     }
 
 

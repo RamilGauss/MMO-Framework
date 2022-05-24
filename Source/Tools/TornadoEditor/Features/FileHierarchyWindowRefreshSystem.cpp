@@ -24,6 +24,7 @@ See for more information LICENSE.md.
 #include "EditorInfoTagComponent.h"
 #include "FilePathNodeComponent.h"
 #include "NodeIconComponent.h"
+#include "TextureComponent.h"
 
 #include <iostream>
 
@@ -110,8 +111,11 @@ void TFileHierarchyWindowRefreshSystem::AddFileNodes(nsECSFramework::TEntityID p
         filePathNodeComponent.value = absFilePathStr;
         prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, filePathNodeComponent);
 
+        nsGraphicWrapper::TTextureComponent textureComponent;
+        textureComponent.resourceGuid = icon;
+        prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, textureComponent);
+
         nsGuiWrapper::TNodeIconComponent nodeIconComponent;
-        nodeIconComponent.iconFileName = icon;
         nodeIconComponent.width = 16;
         nodeIconComponent.height = 16;
         prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, nodeIconComponent);
@@ -138,8 +142,7 @@ void TFileHierarchyWindowRefreshSystem::GetFiles(const std::filesystem::path& di
 //--------------------------------------------------------------------------------------------
 std::string TFileHierarchyWindowRefreshSystem::GetIcon(const std::filesystem::path& fileNamePath)
 {
-    std::map<std::string, std::string> extIconMap;
-    extIconMap =
+    std::map<std::string, std::string> extIconMap = 
     {
         {".cpp", "cpp.png"},
         {".h", "cpp.png"},
